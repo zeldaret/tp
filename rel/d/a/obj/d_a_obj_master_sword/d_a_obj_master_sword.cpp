@@ -21,9 +21,9 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmTevRegKey {};
-
 struct J3DAnmTextureSRTKey {};
+
+struct J3DAnmTevRegKey {};
 
 struct J3DMaterialTable {
     /* 8032F7B4 */ void removeTexMtxAnimator(J3DAnmTextureSRTKey*);
@@ -133,9 +133,9 @@ struct dBgS_AcchCir {
     /* 80C9127C */ ~dBgS_AcchCir();
 };
 
-struct dBgS {};
-
 struct csXyz {};
+
+struct dBgS {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -335,7 +335,7 @@ asm void daObjMasterSword_c::createHeapCallBack(fopAc_ac_c* param_0) {
 /* ############################################################################################## */
 /* 80C91940-80C91944 000000 0004+00 2/2 0/0 0/0 .rodata          mAttr__18daObjMasterSword_c */
 SECTION_RODATA f32 const daObjMasterSword_c::mAttr = 1.0f;
-COMPILER_STRIP_GATE(80C91940, &daObjMasterSword_c::mAttr);
+COMPILER_STRIP_GATE(0x80C91940, &daObjMasterSword_c::mAttr);
 
 /* 80C91944-80C91950 000004 000C+00 0/1 0/0 0/0 .rodata          @3710 */
 #pragma push
@@ -343,12 +343,18 @@ COMPILER_STRIP_GATE(80C91940, &daObjMasterSword_c::mAttr);
 SECTION_RODATA static u8 const lit_3710[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C91944, &lit_3710);
+COMPILER_STRIP_GATE(0x80C91944, &lit_3710);
 #pragma pop
 
 /* 80C91950-80C91954 000010 0004+00 1/2 0/0 0/0 .rodata          @3759 */
 SECTION_RODATA static f32 const lit_3759 = 1.0f;
-COMPILER_STRIP_GATE(80C91950, &lit_3759);
+COMPILER_STRIP_GATE(0x80C91950, &lit_3759);
+
+/* 80C91970-80C91970 000030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C91970 = "MstrSword";
+#pragma pop
 
 /* 80C9197C-80C91988 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -522,21 +528,21 @@ asm void daObjMasterSword_c::create() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3861 = 100.0f;
-COMPILER_STRIP_GATE(80C91954, &lit_3861);
+COMPILER_STRIP_GATE(0x80C91954, &lit_3861);
 #pragma pop
 
 /* 80C91958-80C9195C 000018 0004+00 0/2 0/0 0/0 .rodata          @3862 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3862 = 10.0f;
-COMPILER_STRIP_GATE(80C91958, &lit_3862);
+COMPILER_STRIP_GATE(0x80C91958, &lit_3862);
 #pragma pop
 
 /* 80C9195C-80C91960 00001C 0004+00 0/1 0/0 0/0 .rodata          @3863 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3863 = 30.0f;
-COMPILER_STRIP_GATE(80C9195C, &lit_3863);
+COMPILER_STRIP_GATE(0x80C9195C, &lit_3863);
 #pragma pop
 
 /* 80C90F6C-80C9120C 0004EC 02A0+00 1/1 0/0 0/0 .text            create_init__18daObjMasterSword_cFv
@@ -636,7 +642,7 @@ asm daObjMasterSword_c::~daObjMasterSword_c() {
 SECTION_RODATA static u8 const lit_4030[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C91960, &lit_4030);
+COMPILER_STRIP_GATE(0x80C91960, &lit_4030);
 
 /* 80C915E8-80C916F4 000B68 010C+00 1/0 0/0 0/0 .text
  * daObjMasterSword_Execute__FP18daObjMasterSword_c             */
@@ -665,14 +671,14 @@ static asm void daObjMasterSword_Draw(daObjMasterSword_c* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4091 = 50.0f;
-COMPILER_STRIP_GATE(80C91968, &lit_4091);
+COMPILER_STRIP_GATE(0x80C91968, &lit_4091);
 #pragma pop
 
 /* 80C9196C-80C91970 00002C 0004+00 0/1 0/0 0/0 .rodata          @4092 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4092 = 200.0f;
-COMPILER_STRIP_GATE(80C9196C, &lit_4092);
+COMPILER_STRIP_GATE(0x80C9196C, &lit_4092);
 #pragma pop
 
 /* 80C91714-80C91894 000C94 0180+00 1/1 0/0 0/0 .text            draw__18daObjMasterSword_cFv */
@@ -713,7 +719,7 @@ asm void __sinit_d_a_obj_master_sword_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80C918E4 = (void*)__sinit_d_a_obj_master_sword_cpp;
+REGISTER_CTORS(0x80C918E4, __sinit_d_a_obj_master_sword_cpp);
 #pragma pop
 
 /* 80C91924-80C9192C 000EA4 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
@@ -736,9 +742,4 @@ static asm void func_80C9192C() {
 }
 #pragma pop
 
-/* 80C91970-80C9197A 000030 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C91970 = "MstrSword";
-#pragma pop
+/* 80C91970-80C91970 000030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

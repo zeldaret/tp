@@ -19,16 +19,16 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct JAISoundHandle {};
-
-struct JAISoundID {};
-
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
 };
+
+struct JAISoundID {};
+
+struct JAISoundHandle {};
 
 struct Z2SoundStarter {
     /* 802AAB94 */ Z2SoundStarter(bool);
@@ -314,15 +314,10 @@ void Z2CreatureLink::setLinkGroupInfo(u8 param_0) {
     /* empty function */
 }
 
-/* 802C3220-802C3228 2BDB60 0008+00 0/0 1/1 0/0 .text            setLinkHp__14Z2CreatureLinkFll */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2CreatureLink::setLinkHp(s32 param_0, s32 param_1) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2LinkMgr/setLinkHp__14Z2CreatureLinkFll.s"
+/* 802C3220-802C3228 -00001 0008+00 0/0 0/0 0/0 .text            setLinkHp__14Z2CreatureLinkFll */
+void Z2CreatureLink::setLinkHp(s32 param_0, s32 param_1) {
+    *(u8*)(((u8*)this) + 195) /* this->field_0xc3 */ = (u8)(param_0);
 }
-#pragma pop
 
 /* 802C3228-802C328C 2BDB68 0064+00 0/0 1/1 0/0 .text setLinkSwordType__14Z2CreatureLinkFll */
 #pragma push
@@ -498,15 +493,10 @@ asm void Z2CreatureLink::deleteKantera() {
 }
 #pragma pop
 
-/* 802C3778-802C3780 2BE0B8 0008+00 0/0 5/5 0/0 .text setKanteraState__14Z2CreatureLinkFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2CreatureLink::setKanteraState(u8 param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2LinkMgr/setKanteraState__14Z2CreatureLinkFUc.s"
+/* 802C3778-802C3780 -00001 0008+00 0/0 0/0 0/0 .text setKanteraState__14Z2CreatureLinkFUc */
+void Z2CreatureLink::setKanteraState(u8 param_0) {
+    *(u8*)(((u8*)this) + 197) /* this->field_0xc5 */ = (u8)(param_0);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80455C98-80455C9C 004298 0004+00 9/9 0/0 0/0 .sdata2          @3721 */
@@ -543,16 +533,11 @@ asm void Z2CreatureLink::framework(u32 param_0, s8 param_1) {
 }
 #pragma pop
 
-/* 802C3A64-802C3A6C 2BE3A4 0008+00 0/0 1/1 0/0 .text            setSinkDepth__14Z2CreatureLinkFSc
+/* 802C3A64-802C3A6C -00001 0008+00 0/0 0/0 0/0 .text            setSinkDepth__14Z2CreatureLinkFSc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2CreatureLink::setSinkDepth(s8 param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2LinkMgr/setSinkDepth__14Z2CreatureLinkFSc.s"
+void Z2CreatureLink::setSinkDepth(s8 param_0) {
+    *(u8*)(((u8*)this) + 202) /* this->field_0xca */ = (u8)(param_0);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80455CC0-80455CC4 0042C0 0004+00 1/1 0/0 0/0 .sdata2          @3743 */
@@ -820,16 +805,11 @@ asm void Z2CreatureRide::init(Vec* param_0, Vec* param_1, u8 param_2, u8 param_3
 }
 #pragma pop
 
-/* 802C522C-802C5234 2BFB6C 0008+00 0/0 2/2 1/1 .text            setLinkRiding__14Z2CreatureRideFb
+/* 802C522C-802C5234 -00001 0008+00 0/0 0/0 0/0 .text            setLinkRiding__14Z2CreatureRideFb
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2CreatureRide::setLinkRiding(bool param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2LinkMgr/setLinkRiding__14Z2CreatureRideFb.s"
+void Z2CreatureRide::setLinkRiding(bool param_0) {
+    *(u8*)(((u8*)this) + 152) /* this->field_0x98 */ = (u8)(param_0);
 }
-#pragma pop
 
 /* 802C5234-802C5284 2BFB74 0050+00 1/1 0/0 0/0 .text __ct__18Z2RideSoundStarterFP14Z2CreatureRide
  */

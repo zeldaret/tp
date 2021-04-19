@@ -199,7 +199,7 @@ SECTION_RODATA static u8 const l_sph_src[64] = {
     0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D39C88, &l_sph_src);
+COMPILER_STRIP_GATE(0x80D39C88, &l_sph_src);
 
 /* 80D39CC8-80D39D08 000040 0040+00 0/1 0/0 0/0 .rodata          l_sph_src2 */
 #pragma push
@@ -210,7 +210,7 @@ SECTION_RODATA static u8 const l_sph_src2[64] = {
     0x00, 0x00, 0x00, 0x08, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0xF0, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D39CC8, &l_sph_src2);
+COMPILER_STRIP_GATE(0x80D39CC8, &l_sph_src2);
 #pragma pop
 
 /* 80D39D08-80D39D10 000080 0004+04 0/1 0/0 0/0 .rodata          @3672 */
@@ -221,7 +221,7 @@ SECTION_RODATA static u32 const lit_3672[1 + 1 /* padding */] = {
     /* padding */
     0x00000000,
 };
-COMPILER_STRIP_GATE(80D39D08, &lit_3672);
+COMPILER_STRIP_GATE(0x80D39D08, &lit_3672);
 #pragma pop
 
 /* 80D39D10-80D39D18 000088 0008+00 0/1 0/0 0/0 .rodata          @3674 */
@@ -230,7 +230,7 @@ COMPILER_STRIP_GATE(80D39D08, &lit_3672);
 SECTION_RODATA static u8 const lit_3674[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D39D10, &lit_3674);
+COMPILER_STRIP_GATE(0x80D39D10, &lit_3674);
 #pragma pop
 
 /* 80D394CC-80D395C8 00014C 00FC+00 1/1 0/0 0/0 .text            Create__13daObjWPndlm_cFv */
@@ -244,6 +244,12 @@ asm void daObjWPndlm_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80D39D38-80D39D38 0000B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D39D38 = "A_Turuki";
+#pragma pop
+
 /* 80D39D44-80D39D48 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_wood_pendulum__stringBase0;
 
@@ -352,7 +358,7 @@ SECTION_RODATA static u8 const lit_3826[24] = {
     0xC2, 0x70, 0x00, 0x00, 0xC4, 0x8C, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00,
     0x42, 0xA0, 0x00, 0x00, 0xC4, 0x99, 0xC0, 0x00, 0xC2, 0x48, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D39D18, &lit_3826);
+COMPILER_STRIP_GATE(0x80D39D18, &lit_3826);
 #pragma pop
 
 /* 80D39D30-80D39D34 0000A8 0004+00 0/1 0/0 0/0 .rodata          @3860 */
@@ -364,14 +370,14 @@ SECTION_RODATA static u8 const lit_3860[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D39D30, &lit_3860);
+COMPILER_STRIP_GATE(0x80D39D30, &lit_3860);
 #pragma pop
 
 /* 80D39D34-80D39D38 0000AC 0004+00 0/1 0/0 0/0 .rodata          @3861 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3861 = -1200.0f;
-COMPILER_STRIP_GATE(80D39D34, &lit_3861);
+COMPILER_STRIP_GATE(0x80D39D34, &lit_3861);
 #pragma pop
 
 /* 80D39978-80D39B68 0005F8 01F0+00 1/1 0/0 0/0 .text            execute__13daObjWPndlm_cFv */
@@ -446,9 +452,4 @@ static asm void daObjWPndlm_Create(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 80D39D38-80D39D41 0000B0 0009+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D39D38 = "A_Turuki";
-#pragma pop
+/* 80D39D38-80D39D38 0000B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

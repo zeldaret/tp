@@ -416,32 +416,32 @@ SECTION_RODATA static u8 const lit_3780[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BE9AA0, &lit_3780);
+COMPILER_STRIP_GATE(0x80BE9AA0, &lit_3780);
 
 /* 80BE9AA4-80BE9AA8 000004 0004+00 0/1 0/0 0/0 .rodata          @3781 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3781 = 1.0f;
-COMPILER_STRIP_GATE(80BE9AA4, &lit_3781);
+COMPILER_STRIP_GATE(0x80BE9AA4, &lit_3781);
 #pragma pop
 
 /* 80BE9AA8-80BE9AAC 000008 0004+00 0/1 0/0 0/0 .rodata          @3782 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3782 = 100.0f;
-COMPILER_STRIP_GATE(80BE9AA8, &lit_3782);
+COMPILER_STRIP_GATE(0x80BE9AA8, &lit_3782);
 #pragma pop
 
 /* 80BE9AAC-80BE9AB0 00000C 0004+00 0/1 0/0 0/0 .rodata          @3783 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3783 = 50.0f;
-COMPILER_STRIP_GATE(80BE9AAC, &lit_3783);
+COMPILER_STRIP_GATE(0x80BE9AAC, &lit_3783);
 #pragma pop
 
 /* 80BE9AB0-80BE9AB4 000010 0004+00 3/4 0/0 0/0 .rodata          @3784 */
 SECTION_RODATA static f32 const lit_3784 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80BE9AB0, &lit_3784);
+COMPILER_STRIP_GATE(0x80BE9AB0, &lit_3784);
 
 /* 80BE94E4-80BE9610 000444 012C+00 1/1 0/0 0/0 .text            execute__14daObjFPillar_cFv */
 #pragma push
@@ -497,7 +497,7 @@ asm void daObjFPillar_c::actionOnWaitInit() {
 /* ############################################################################################## */
 /* 80BE9AB4-80BE9AB8 000014 0004+00 1/1 0/0 0/0 .rodata          @3853 */
 SECTION_RODATA static f32 const lit_3853 = 1.0f / 50.0f;
-COMPILER_STRIP_GATE(80BE9AB4, &lit_3853);
+COMPILER_STRIP_GATE(0x80BE9AB4, &lit_3853);
 
 /* 80BE97B8-80BE986C 000718 00B4+00 1/0 0/0 0/0 .text            actionOnWait__14daObjFPillar_cFv */
 #pragma push
@@ -626,5 +626,5 @@ static asm void func_80BE9A90() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3895 = 0xFF000060;
-COMPILER_STRIP_GATE(80BE9AB8, &lit_3895);
+COMPILER_STRIP_GATE(0x80BE9AB8, &lit_3895);
 #pragma pop

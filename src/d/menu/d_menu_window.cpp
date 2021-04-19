@@ -162,15 +162,15 @@ struct dMenu_save_c {
     /* 801F69FC */ void _draw2();
 };
 
-struct JKRExpHeap {};
-
-struct CSTControl {};
-
 struct STControl {
     /* 80032044 */ STControl(s16, s16, s16, s16, f32, f32, s16, s16);
     /* 80032088 */ void setWaitParm(s16, s16, s16, s16, f32, f32, s16, s16);
     /* 8003219C */ void checkTrigger();
 };
+
+struct CSTControl {};
+
+struct JKRExpHeap {};
 
 struct dMenu_Skill_c {
     /* 801F7224 */ dMenu_Skill_c(JKRExpHeap*, STControl*, CSTControl*);
@@ -270,9 +270,9 @@ struct dDlst_MENU_CAPTURE_c {
     /* 801FE2E8 */ ~dDlst_MENU_CAPTURE_c();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -2582,6 +2582,15 @@ asm void dMw_c::markMemSize() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80397E38-80397E38 024498 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80397E38 = "memory free error!!\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80397E4D = "\0\0";
+#pragma pop
+
 /* 801FD0D4-801FD140 1F7A14 006C+00 10/10 0/0 0/0 .text            checkMemSize__5dMw_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -2700,7 +2709,7 @@ asm void __sinit_d_menu_window_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_801FD928 = (void*)__sinit_d_menu_window_cpp;
+REGISTER_CTORS(0x801FD928, __sinit_d_menu_window_cpp);
 #pragma pop
 
 /* ############################################################################################## */
@@ -2727,11 +2736,4 @@ asm dDlst_MENU_CAPTURE_c::~dDlst_MENU_CAPTURE_c() {
 }
 #pragma pop
 
-/* 80397E38-80397E50 024498 0015+03 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80397E38 = "memory free error!!\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80397E4D = "\0\0";
-#pragma pop
+/* 80397E38-80397E38 024498 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -87,7 +87,7 @@ def merge_section_symbols(context, section, add_list, remove_list):
             symbols.extend(group)
 
     for old_symbol in section.symbols:
-        is_unaligned = isinstance(old_symbol, ArbitraryData) and old_symbol.addr % 4 != 0
+        is_unaligned = type(old_symbol).__name__ == "ArbitraryData" and old_symbol.addr % 4 != 0
 
         if is_unaligned:
             assert group

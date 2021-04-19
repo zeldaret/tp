@@ -63,13 +63,13 @@ SECTION_RODATA static f32 const lit_3831[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80D63E54, &lit_3831);
+COMPILER_STRIP_GATE(0x80D63E54, &lit_3831);
 
 /* 80D63E5C-80D63E64 000008 0008+00 1/1 0/0 0/0 .rodata          @3832 */
 SECTION_RODATA static u8 const lit_3832[8] = {
     0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D63E5C, &lit_3832);
+COMPILER_STRIP_GATE(0x80D63E5C, &lit_3832);
 
 /* 80D63CD8-80D63D4C 000078 0074+00 1/0 0/0 0/0 .text daTagTheBHint_Create__FP10fopAc_ac_c */
 #pragma push

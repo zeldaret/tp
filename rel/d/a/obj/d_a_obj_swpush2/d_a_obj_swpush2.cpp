@@ -25,11 +25,11 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmColor {};
+struct J3DAnmTextureSRTKey {};
 
 struct J3DAnmTevRegKey {};
 
-struct J3DAnmTextureSRTKey {};
+struct J3DAnmColor {};
 
 struct J3DMaterialTable {
     /* 8032F64C */ void removeMatColorAnimator(J3DAnmColor*);
@@ -120,7 +120,8 @@ struct daObj {
     template <typename A1>
     void PrmAbstract(/* ... */);
     /* 80CFFBD0 */ /* daObj::PrmAbstract<daObjSwpush2::Act_c::Prm_e> */
-    void func_80CFFBD0(fopAc_ac_c const*, daObjSwpush2::Act_c::Prm_e, daObjSwpush2::Act_c::Prm_e);
+    void func_80CFFBD0(void* _this, fopAc_ac_c const*, daObjSwpush2::Act_c::Prm_e,
+                       daObjSwpush2::Act_c::Prm_e);
 };
 
 struct dVibration_c {
@@ -175,9 +176,9 @@ struct cBgS {
 
 struct cBgD_t {};
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -245,7 +246,7 @@ extern "C" static void func_80CFFB50();
 extern "C" static void func_80CFFB70();
 extern "C" static void func_80CFFB90();
 extern "C" static void func_80CFFBB0();
-extern "C" void func_80CFFBD0(fopAc_ac_c const*, daObjSwpush2::Act_c::Prm_e,
+extern "C" void func_80CFFBD0(void* _this, fopAc_ac_c const*, daObjSwpush2::Act_c::Prm_e,
                               daObjSwpush2::Act_c::Prm_e);
 extern "C" u8 const M_arcname__Q212daObjSwpush25Act_c[9 + 3 /* padding */];
 extern "C" void* const M_attr__Q212daObjSwpush25Act_c[56];
@@ -326,6 +327,13 @@ extern "C" extern u8 struct_80CFFEF8[4];
 // Declarations:
 //
 
+/* ############################################################################################## */
+/* 80CFFD24-80CFFD24 000130 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CFFD24 = "K_swmn00";
+#pragma pop
+
 /* 80CFE098-80CFE0A4 000078 000C+00 1/1 0/0 0/0 .text getArcName__Q212daObjSwpush25Act_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -334,6 +342,13 @@ asm void daObjSwpush2::Act_c::getArcName() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swpush2/d_a_obj_swpush2/getArcName__Q212daObjSwpush25Act_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80CFFD24-80CFFD24 000130 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CFFD2D = "K_hum_isw00.bmd";
 #pragma pop
 
 /* 80CFE0A4-80CFE0B4 000084 0010+00 1/1 0/0 0/0 .text getBmdName__Q212daObjSwpush25Act_cFv */
@@ -346,6 +361,13 @@ asm void daObjSwpush2::Act_c::getBmdName() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80CFFD24-80CFFD24 000130 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CFFD3D = "K_hum_isw00.dzb";
+#pragma pop
+
 /* 80CFE0B4-80CFE0C4 000094 0010+00 1/1 0/0 0/0 .text getDzbName__Q212daObjSwpush25Act_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -354,6 +376,13 @@ asm void daObjSwpush2::Act_c::getDzbName() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swpush2/d_a_obj_swpush2/getDzbName__Q212daObjSwpush25Act_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80CFFD24-80CFFD24 000130 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CFFD4D = "K_isw_nml.btk";
 #pragma pop
 
 /* 80CFE0C4-80CFE0D4 0000A4 0010+00 1/1 0/0 0/0 .text getNmlBtkName__Q212daObjSwpush25Act_cFv */
@@ -366,6 +395,13 @@ asm void daObjSwpush2::Act_c::getNmlBtkName() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80CFFD24-80CFFD24 000130 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CFFD5B = "K_isw_nml.brk";
+#pragma pop
+
 /* 80CFE0D4-80CFE0E4 0000B4 0010+00 1/1 0/0 0/0 .text getNmlBrkName__Q212daObjSwpush25Act_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -374,6 +410,13 @@ asm void daObjSwpush2::Act_c::getNmlBrkName() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swpush2/d_a_obj_swpush2/getNmlBrkName__Q212daObjSwpush25Act_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80CFFD24-80CFFD24 000130 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CFFD69 = "K_isw_on.btk";
 #pragma pop
 
 /* 80CFE0E4-80CFE0F4 0000C4 0010+00 1/1 0/0 0/0 .text getOnBtkName__Q212daObjSwpush25Act_cFv */
@@ -386,6 +429,13 @@ asm void daObjSwpush2::Act_c::getOnBtkName() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80CFFD24-80CFFD24 000130 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CFFD76 = "K_isw_run.bpk";
+#pragma pop
+
 /* 80CFE0F4-80CFE104 0000D4 0010+00 1/1 0/0 0/0 .text getRunBpkName__Q212daObjSwpush25Act_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -396,6 +446,13 @@ asm void daObjSwpush2::Act_c::getRunBpkName() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80CFFD24-80CFFD24 000130 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CFFD84 = "K_isw_run.brk";
+#pragma pop
+
 /* 80CFE104-80CFE114 0000E4 0010+00 1/1 0/0 0/0 .text getRunBrkName__Q212daObjSwpush25Act_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -404,6 +461,13 @@ asm void daObjSwpush2::Act_c::getRunBrkName() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swpush2/d_a_obj_swpush2/getRunBrkName__Q212daObjSwpush25Act_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80CFFD24-80CFFD24 000130 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CFFD92 = "K_isw_run.btk";
 #pragma pop
 
 /* 80CFE114-80CFE124 0000F4 0010+00 1/1 0/0 0/0 .text getRunBtkName__Q212daObjSwpush25Act_cFv */
@@ -466,7 +530,7 @@ SECTION_RODATA u8 const daObjSwpush2::Act_c::M_arcname[9 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CFFBF4, &daObjSwpush2::Act_c::M_arcname);
+COMPILER_STRIP_GATE(0x80CFFBF4, &daObjSwpush2::Act_c::M_arcname);
 
 /* 80CFFC00-80CFFCE0 -00001 00E0+00 7/10 0/0 0/0 .rodata          M_attr__Q212daObjSwpush25Act_c */
 SECTION_RODATA void* const daObjSwpush2::Act_c::M_attr[56] = {
@@ -499,11 +563,11 @@ SECTION_RODATA void* const daObjSwpush2::Act_c::M_attr[56] = {
     (void*)0x3F800000, (void*)0x40200000,
     (void*)0x00060000, (void*)0x43960000,
 };
-COMPILER_STRIP_GATE(80CFFC00, &daObjSwpush2::Act_c::M_attr);
+COMPILER_STRIP_GATE(0x80CFFC00, &daObjSwpush2::Act_c::M_attr);
 
 /* 80CFFCE0-80CFFCE4 0000EC 0004+00 3/7 0/0 0/0 .rodata          @3857 */
 SECTION_RODATA static f32 const lit_3857 = 1.0f;
-COMPILER_STRIP_GATE(80CFFCE0, &lit_3857);
+COMPILER_STRIP_GATE(0x80CFFCE0, &lit_3857);
 
 /* 80CFFCE4-80CFFCE8 0000F0 0004+00 2/5 0/0 0/0 .rodata          @3858 */
 SECTION_RODATA static u8 const lit_3858[4] = {
@@ -512,7 +576,7 @@ SECTION_RODATA static u8 const lit_3858[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CFFCE4, &lit_3858);
+COMPILER_STRIP_GATE(0x80CFFCE4, &lit_3858);
 
 /* 80CFFDA0-80CFFDAC 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -689,26 +753,26 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3936 = 150.0f;
-COMPILER_STRIP_GATE(80CFFCE8, &lit_3936);
+COMPILER_STRIP_GATE(0x80CFFCE8, &lit_3936);
 #pragma pop
 
 /* 80CFFCEC-80CFFCF0 0000F8 0004+00 0/1 0/0 0/0 .rodata          @3937 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3937 = -150.0f;
-COMPILER_STRIP_GATE(80CFFCEC, &lit_3937);
+COMPILER_STRIP_GATE(0x80CFFCEC, &lit_3937);
 #pragma pop
 
 /* 80CFFCF0-80CFFCF4 0000FC 0004+00 0/1 0/0 0/0 .rodata          @3938 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3938 = 60.0f;
-COMPILER_STRIP_GATE(80CFFCF0, &lit_3938);
+COMPILER_STRIP_GATE(0x80CFFCF0, &lit_3938);
 #pragma pop
 
 /* 80CFFCF4-80CFFCF8 000100 0004+00 1/4 0/0 0/0 .rodata          @3939 */
 SECTION_RODATA static f32 const lit_3939 = -1.0f;
-COMPILER_STRIP_GATE(80CFFCF4, &lit_3939);
+COMPILER_STRIP_GATE(0x80CFFCF4, &lit_3939);
 
 /* 80CFE6D8-80CFE8CC 0006B8 01F4+00 1/1 0/0 0/0 .text create_init__Q212daObjSwpush25Act_cFv */
 #pragma push
@@ -753,7 +817,7 @@ asm void daObjSwpush2::Act_c::Mthd_Delete() {
 /* ############################################################################################## */
 /* 80CFFCF8-80CFFCFC 000104 0004+00 1/2 0/0 0/0 .rodata          @4012 */
 SECTION_RODATA static f32 const lit_4012 = -10.0f;
-COMPILER_STRIP_GATE(80CFFCF8, &lit_4012);
+COMPILER_STRIP_GATE(0x80CFFCF8, &lit_4012);
 
 /* 80CFEAB4-80CFEB3C 000A94 0088+00 2/2 0/0 0/0 .text            set_mtx__Q212daObjSwpush25Act_cFv
  */
@@ -793,28 +857,28 @@ asm void daObjSwpush2::Act_c::rideCB(dBgW* param_0, fopAc_ac_c* param_1, fopAc_a
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4039 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(80CFFCFC, &lit_4039);
+COMPILER_STRIP_GATE(0x80CFFCFC, &lit_4039);
 #pragma pop
 
 /* 80CFFD00-80CFFD04 00010C 0004+00 0/1 0/0 0/0 .rodata          @4040 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4040 = 1.0f / 50.0f;
-COMPILER_STRIP_GATE(80CFFD00, &lit_4040);
+COMPILER_STRIP_GATE(0x80CFFD00, &lit_4040);
 #pragma pop
 
 /* 80CFFD04-80CFFD08 000110 0004+00 0/1 0/0 0/0 .rodata          @4041 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4041 = 1.0f / 100.0f;
-COMPILER_STRIP_GATE(80CFFD04, &lit_4041);
+COMPILER_STRIP_GATE(0x80CFFD04, &lit_4041);
 #pragma pop
 
 /* 80CFFD08-80CFFD0C 000114 0004+00 0/1 0/0 0/0 .rodata          @4042 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4042 = -50.0f;
-COMPILER_STRIP_GATE(80CFFD08, &lit_4042);
+COMPILER_STRIP_GATE(0x80CFFD08, &lit_4042);
 #pragma pop
 
 /* 80CFEBE4-80CFEC4C 000BC4 0068+00 1/1 0/0 0/0 .text calc_top_pos__Q212daObjSwpush25Act_cFv */
@@ -1019,7 +1083,7 @@ asm void daObjSwpush2::Act_c::demo_runSw() {
 SECTION_RODATA static u8 const lit_4395[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CFFD0C, &lit_4395);
+COMPILER_STRIP_GATE(0x80CFFD0C, &lit_4395);
 #pragma pop
 
 /* 80CFFD14-80CFFD1C 000120 0008+00 0/1 0/0 0/0 .rodata          @4396 */
@@ -1028,7 +1092,7 @@ COMPILER_STRIP_GATE(80CFFD0C, &lit_4395);
 SECTION_RODATA static u8 const lit_4396[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CFFD14, &lit_4396);
+COMPILER_STRIP_GATE(0x80CFFD14, &lit_4396);
 #pragma pop
 
 /* 80CFFD1C-80CFFD24 000128 0008+00 0/1 0/0 0/0 .rodata          @4397 */
@@ -1037,7 +1101,7 @@ COMPILER_STRIP_GATE(80CFFD14, &lit_4396);
 SECTION_RODATA static u8 const lit_4397[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CFFD1C, &lit_4397);
+COMPILER_STRIP_GATE(0x80CFFD1C, &lit_4397);
 #pragma pop
 
 /* 80CFF568-80CFF8FC 001548 0394+00 1/1 0/0 0/0 .text Mthd_Execute__Q212daObjSwpush25Act_cFv */
@@ -1111,24 +1175,12 @@ static asm void func_80CFFBB0() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80CFFBD0(fopAc_ac_c const* param_0, daObjSwpush2::Act_c::Prm_e param_1,
+extern "C" asm void func_80CFFBD0(void* _this, fopAc_ac_c const* param_0,
+                                  daObjSwpush2::Act_c::Prm_e param_1,
                                   daObjSwpush2::Act_c::Prm_e param_2) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swpush2/d_a_obj_swpush2/func_80CFFBD0.s"
 }
 #pragma pop
 
-/* 80CFFD24-80CFFDA0 000130 007C+00 9/9 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CFFD24 = "K_swmn00";
-SECTION_DEAD static char const* const stringBase_80CFFD2D = "K_hum_isw00.bmd";
-SECTION_DEAD static char const* const stringBase_80CFFD3D = "K_hum_isw00.dzb";
-SECTION_DEAD static char const* const stringBase_80CFFD4D = "K_isw_nml.btk";
-SECTION_DEAD static char const* const stringBase_80CFFD5B = "K_isw_nml.brk";
-SECTION_DEAD static char const* const stringBase_80CFFD69 = "K_isw_on.btk";
-SECTION_DEAD static char const* const stringBase_80CFFD76 = "K_isw_run.bpk";
-SECTION_DEAD static char const* const stringBase_80CFFD84 = "K_isw_run.brk";
-SECTION_DEAD static char const* const stringBase_80CFFD92 = "K_isw_run.btk";
-#pragma pop
+/* 80CFFD24-80CFFD24 000130 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

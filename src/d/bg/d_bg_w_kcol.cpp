@@ -18,7 +18,6 @@ struct fopAc_ac_c {};
 struct cXyz {};
 
 struct dBgW_Base {
-    /* 80074AB4 */ void SetOldShapeAngleY(s16);
     /* 8007E5A8 */ dBgW_Base();
     /* 8007E640 */ ~dBgW_Base();
     /* 8007E69C */ void ClrDBgWBase();
@@ -27,15 +26,17 @@ struct dBgW_Base {
     /* 8007E6DC */ void CallArrowStickCallBack(fopAc_ac_c*, fopAc_ac_c*, cXyz&);
 };
 
-struct dBgS_CaptPoly {};
+struct cBgS_PolyInfo {};
 
-struct cBgS_GndChk {};
+struct csXyz {};
+
+struct cBgS_ShdwDraw {};
+
+struct dBgPc {
+    /* 80074048 */ void setCode(sBgPc&);
+};
 
 struct Vec {};
-
-struct KC_PrismData {};
-
-struct dBgS_RoofChk {};
 
 struct dBgS_Acch {
     /* 800771E4 */ void GetSpeedY();
@@ -44,27 +45,23 @@ struct dBgS_Acch {
     /* 800772E8 */ void CalcMovePosWork();
 };
 
-struct csXyz {};
+struct dBgS_SphChk {};
 
-struct dBgPc {
-    /* 80074048 */ void setCode(sBgPc&);
-};
-
-struct cBgS_PolyPassChk {};
+struct dBgS_CaptPoly {};
 
 struct dBgS_SplGrpChk {};
 
-struct cBgS_PolyInfo {
-    /* 802681A4 */ void SetPolyIndex(int);
-};
-
-struct cBgS_LinChk {};
-
-struct cBgS_ShdwDraw {};
+struct KC_PrismData {};
 
 struct cBgS_GrpPassChk {};
 
-struct dBgS_SphChk {};
+struct cBgS_LinChk {};
+
+struct cBgS_GndChk {};
+
+struct dBgS_RoofChk {};
+
+struct cBgS_PolyPassChk {};
 
 struct dBgWKCol {
     /* 8007E6F4 */ dBgWKCol();
@@ -140,7 +137,6 @@ struct dBgS_PolyPassChk {
 struct dBgPlc {
     /* 80074074 */ dBgPlc();
     /* 80074080 */ ~dBgPlc();
-    /* 800740BC */ void setBase(void*);
     /* 800740C4 */ void getCode(int, sBgPc**) const;
     /* 800740DC */ void getGrpCode(int) const;
 };

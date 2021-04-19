@@ -172,7 +172,7 @@ extern "C" static void daObjL4DigSand_MoveBGDelete__FP16daObjL4DigSand_c();
 extern "C" static void daObjL4DigSand_MoveBGExecute__FP16daObjL4DigSand_c();
 extern "C" static void daObjL4DigSand_MoveBGDraw__FP16daObjL4DigSand_c();
 extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void func_80C67588(u8*);
+extern "C" void func_80C67588(void* _this, u8*);
 extern "C" static void func_80C675A4();
 extern "C" static void func_80C675AC();
 extern "C" static void func_80C675B4();
@@ -275,6 +275,12 @@ asm void daObjL4DigSand_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80C675E4-80C675E4 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C675E4 = "P_DSand";
+#pragma pop
+
 /* 80C675EC-80C675F8 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -400,7 +406,7 @@ asm void daObjL4DigSand_c::mode_wait() {
 /* ############################################################################################## */
 /* 80C675D4-80C675D8 000000 0004+00 2/2 0/0 0/0 .rodata          @3746 */
 SECTION_RODATA static f32 const lit_3746 = -1000000000.0f;
-COMPILER_STRIP_GATE(80C675D4, &lit_3746);
+COMPILER_STRIP_GATE(0x80C675D4, &lit_3746);
 
 /* 80C67658-80C67678 -00001 0020+00 1/0 0/0 0/0 .data            daObjL4DigSand_METHODS */
 SECTION_DATA static void* daObjL4DigSand_METHODS[8] = {
@@ -514,21 +520,21 @@ asm dBgS_ObjGndChk::~dBgS_ObjGndChk() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3765 = 10.0f;
-COMPILER_STRIP_GATE(80C675D8, &lit_3765);
+COMPILER_STRIP_GATE(0x80C675D8, &lit_3765);
 #pragma pop
 
 /* 80C675DC-80C675E0 000008 0004+00 0/1 0/0 0/0 .rodata          @3766 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3766 = 15.0f;
-COMPILER_STRIP_GATE(80C675DC, &lit_3766);
+COMPILER_STRIP_GATE(0x80C675DC, &lit_3766);
 #pragma pop
 
 /* 80C675E0-80C675E4 00000C 0004+00 0/1 0/0 0/0 .rodata          @3767 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3767 = 1.0f;
-COMPILER_STRIP_GATE(80C675E0, &lit_3767);
+COMPILER_STRIP_GATE(0x80C675E0, &lit_3767);
 #pragma pop
 
 /* 80C66FFC-80C670AC 00055C 00B0+00 1/0 0/0 0/0 .text            mode_dig__16daObjL4DigSand_cFv */
@@ -700,7 +706,7 @@ asm cCcD_GStts::~cCcD_GStts() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80C67588(u8* param_0) {
+extern "C" asm void func_80C67588(void* _this, u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4digsand/d_a_obj_lv4digsand/func_80C67588.s"
 }
@@ -756,9 +762,4 @@ static asm void func_80C675C4() {
 }
 #pragma pop
 
-/* 80C675E4-80C675EC 000010 0008+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C675E4 = "P_DSand";
-#pragma pop
+/* 80C675E4-80C675E4 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

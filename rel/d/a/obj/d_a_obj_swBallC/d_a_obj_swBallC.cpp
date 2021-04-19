@@ -104,9 +104,9 @@ struct Z2SeqMgr {
     /* 802AFE18 */ void bgmStreamPlay();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -156,7 +156,7 @@ extern "C" static void daObjSwBallC_Draw__FP14daObjSwBallC_c();
 extern "C" static void daObjSwBallC_Execute__FP14daObjSwBallC_c();
 extern "C" static void daObjSwBallC_Delete__FP14daObjSwBallC_c();
 extern "C" static void daObjSwBallC_Create__FP14daObjSwBallC_c();
-extern "C" void func_80CF6CB0(u8*);
+extern "C" void func_80CF6CB0(void* _this, u8*);
 extern "C" extern char const* const d_a_obj_swBallC__stringBase0;
 
 //
@@ -294,13 +294,13 @@ asm void daObjSwBallC_c::setBaseMtx() {
 /* ############################################################################################## */
 /* 80CF6CD4-80CF6CD8 000000 0004+00 3/3 0/0 0/0 .rodata          l_color */
 SECTION_RODATA static u32 const l_color = 0x0396FFFF;
-COMPILER_STRIP_GATE(80CF6CD4, &l_color);
+COMPILER_STRIP_GATE(0x80CF6CD4, &l_color);
 
 /* 80CF6CD8-80CF6CDC 000004 0004+00 0/0 0/0 0/0 .rodata          @3697 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3697 = -1.0f;
-COMPILER_STRIP_GATE(80CF6CD8, &lit_3697);
+COMPILER_STRIP_GATE(0x80CF6CD8, &lit_3697);
 #pragma pop
 
 /* 80CF6CDC-80CF6CE4 000008 0004+04 2/3 0/0 0/0 .rodata          @3814 */
@@ -309,13 +309,20 @@ SECTION_RODATA static f32 const lit_3814[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80CF6CDC, &lit_3814);
+COMPILER_STRIP_GATE(0x80CF6CDC, &lit_3814);
 
 /* 80CF6CE4-80CF6CEC 000010 0008+00 1/1 0/0 0/0 .rodata          @3816 */
 SECTION_RODATA static u8 const lit_3816[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CF6CE4, &lit_3816);
+COMPILER_STRIP_GATE(0x80CF6CE4, &lit_3816);
+
+/* 80CF6D08-80CF6D08 000034 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CF6D08 = "P_LBswBC";
+SECTION_DEAD static char const* const stringBase_80CF6D11 = "REVIVE_MASTER_SWORD";
+#pragma pop
 
 /* 80CF6D90-80CF6D9C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -359,7 +366,26 @@ SECTION_RODATA static u8 const lit_3850[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CF6CEC, &lit_3850);
+COMPILER_STRIP_GATE(0x80CF6CEC, &lit_3850);
+
+/* 80CF6D08-80CF6D08 000034 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CF6D25 = "lbsw";
+SECTION_DEAD static char const* const stringBase_80CF6D2A = "WAIT";
+SECTION_DEAD static char const* const stringBase_80CF6D2F = "ON";
+SECTION_DEAD static char const* const stringBase_80CF6D32 = "OFF";
+SECTION_DEAD static char const* const stringBase_80CF6D36 = "ON_ALL_B";
+SECTION_DEAD static char const* const stringBase_80CF6D3F = "OFF_ALL_B";
+SECTION_DEAD static char const* const stringBase_80CF6D49 = "DEL_BALL";
+SECTION_DEAD static char const* const stringBase_80CF6D52 = "SOUND";
+SECTION_DEAD static char const* const stringBase_80CF6D58 = "SCALING";
+SECTION_DEAD static char const* const stringBase_80CF6D60 = "INIT";
+SECTION_DEAD static char const* const stringBase_80CF6D65 = "MESSAGE";
+SECTION_DEAD static char const* const stringBase_80CF6D6D = "ST_CUT2";
+SECTION_DEAD static char const* const stringBase_80CF6D75 = "LINK_INIT";
+SECTION_DEAD static char const* const stringBase_80CF6D7F = "EQUIP_SWD";
+#pragma pop
 
 /* 80CF6DB8-80CF6DBC -00001 0004+00 1/1 0/0 0/0 .data            l_staffName */
 SECTION_DATA static void* l_staffName = (void*)(((char*)&d_a_obj_swBallC__stringBase0) + 0x1D);
@@ -580,6 +606,13 @@ void daObjSwBallC_c::actionDead() {
     /* empty function */
 }
 
+/* ############################################################################################## */
+/* 80CF6D08-80CF6D08 000034 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CF6D89 = "Timer";
+#pragma pop
+
 /* 80CF63F4-80CF6818 0008D4 0424+00 4/2 0/0 0/0 .text            demoProc__14daObjSwBallC_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -648,26 +681,26 @@ asm void daObjSwBallC_c::deleteLightBallB() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4109 = 262.5f;
-COMPILER_STRIP_GATE(80CF6CF0, &lit_4109);
+COMPILER_STRIP_GATE(0x80CF6CF0, &lit_4109);
 #pragma pop
 
 /* 80CF6CF4-80CF6CF8 000020 0004+00 0/0 0/0 0/0 .rodata          @4110 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4110 = -188.0f;
-COMPILER_STRIP_GATE(80CF6CF4, &lit_4110);
+COMPILER_STRIP_GATE(0x80CF6CF4, &lit_4110);
 #pragma pop
 
 /* 80CF6CF8-80CF6CFC 000024 0004+00 0/0 0/0 0/0 .rodata          @4111 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4111 = 10712.5f;
-COMPILER_STRIP_GATE(80CF6CF8, &lit_4111);
+COMPILER_STRIP_GATE(0x80CF6CF8, &lit_4111);
 #pragma pop
 
 /* 80CF6CFC-80CF6D00 000028 0004+00 1/1 0/0 0/0 .rodata          @4175 */
 SECTION_RODATA static f32 const lit_4175 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(80CF6CFC, &lit_4175);
+COMPILER_STRIP_GATE(0x80CF6CFC, &lit_4175);
 
 /* 80CF699C-80CF6A74 000E7C 00D8+00 1/1 0/0 0/0 .text calcLightBallScale__14daObjSwBallC_cFv */
 #pragma push
@@ -684,14 +717,14 @@ asm void daObjSwBallC_c::calcLightBallScale() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4252 = 100.0f;
-COMPILER_STRIP_GATE(80CF6D00, &lit_4252);
+COMPILER_STRIP_GATE(0x80CF6D00, &lit_4252);
 #pragma pop
 
 /* 80CF6D04-80CF6D08 000030 0004+00 0/1 0/0 0/0 .rodata          @4253 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4253 = -100.0f;
-COMPILER_STRIP_GATE(80CF6D04, &lit_4253);
+COMPILER_STRIP_GATE(0x80CF6D04, &lit_4253);
 #pragma pop
 
 /* 80CF6A74-80CF6BFC 000F54 0188+00 1/1 0/0 0/0 .text            draw__14daObjSwBallC_cFv */
@@ -758,31 +791,10 @@ static asm void daObjSwBallC_Create(daObjSwBallC_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80CF6CB0(u8* param_0) {
+extern "C" asm void func_80CF6CB0(void* _this, u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swBallC/d_a_obj_swBallC/func_80CF6CB0.s"
 }
 #pragma pop
 
-/* 80CF6D08-80CF6D8F 000034 0087+00 5/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CF6D08 = "P_LBswBC";
-SECTION_DEAD static char const* const stringBase_80CF6D11 = "REVIVE_MASTER_SWORD";
-SECTION_DEAD static char const* const stringBase_80CF6D25 = "lbsw";
-SECTION_DEAD static char const* const stringBase_80CF6D2A = "WAIT";
-SECTION_DEAD static char const* const stringBase_80CF6D2F = "ON";
-SECTION_DEAD static char const* const stringBase_80CF6D32 = "OFF";
-SECTION_DEAD static char const* const stringBase_80CF6D36 = "ON_ALL_B";
-SECTION_DEAD static char const* const stringBase_80CF6D3F = "OFF_ALL_B";
-SECTION_DEAD static char const* const stringBase_80CF6D49 = "DEL_BALL";
-SECTION_DEAD static char const* const stringBase_80CF6D52 = "SOUND";
-SECTION_DEAD static char const* const stringBase_80CF6D58 = "SCALING";
-SECTION_DEAD static char const* const stringBase_80CF6D60 = "INIT";
-SECTION_DEAD static char const* const stringBase_80CF6D65 = "MESSAGE";
-SECTION_DEAD static char const* const stringBase_80CF6D6D = "ST_CUT2";
-SECTION_DEAD static char const* const stringBase_80CF6D75 = "LINK_INIT";
-SECTION_DEAD static char const* const stringBase_80CF6D7F = "EQUIP_SWD";
-SECTION_DEAD static char const* const stringBase_80CF6D89 = "Timer";
-#pragma pop
+/* 80CF6D08-80CF6D08 000034 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

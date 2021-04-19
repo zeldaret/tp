@@ -265,6 +265,13 @@ asm JKRExpHeap::~JKRExpHeap() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039CAF0-8039CAF0 029150 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039CAF0 = ":::cannot alloc memory (0x%x byte).\n";
+#pragma pop
+
 /* 802CF128-802CF234 2C9A68 010C+00 1/0 0/0 0/0 .text            do_alloc__10JKRExpHeapFUli */
 #pragma push
 #pragma optimization_level 0
@@ -450,6 +457,15 @@ asm void JKRExpHeap::getTotalUsedSize() const {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039CAF0-8039CAF0 029150 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039CB15 = "JKRExpHeap.cpp";
+SECTION_DEAD static char const* const stringBase_8039CB24 = "%s";
+SECTION_DEAD static char const* const stringBase_8039CB27 = "bad appendUsedList\n";
+#pragma pop
+
 /* 802CFDCC-802CFE68 2CA70C 009C+00 4/4 0/0 0/0 .text
  * appendUsedList__10JKRExpHeapFPQ210JKRExpHeap9CMemBlock       */
 #pragma push
@@ -507,6 +523,14 @@ asm void JKRExpHeap::recycleFreeBlock(JKRExpHeap::CMemBlock* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039CAF0-8039CAF0 029150 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039CB3B = ":::Heap may be broken. (block = %x)";
+SECTION_DEAD static char const* const stringBase_8039CB5F = "Bad Block\n";
+#pragma pop
+
 /* 802D00B4-802D0190 2CA9F4 00DC+00 1/1 0/0 0/0 .text
  * joinTwoBlocks__10JKRExpHeapFPQ210JKRExpHeap9CMemBlock        */
 #pragma push
@@ -516,6 +540,25 @@ asm void JKRExpHeap::joinTwoBlocks(JKRExpHeap::CMemBlock* param_0) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRExpHeap/joinTwoBlocks__10JKRExpHeapFPQ210JKRExpHeap9CMemBlock.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8039CAF0-8039CAF0 029150 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039CB6A =
+    ":::addr %08x: bad heap signature. (%c%c)\n";
+SECTION_DEAD static char const* const stringBase_8039CB94 =
+    ":::addr %08x: bad next pointer (%08x)\nabort\n";
+SECTION_DEAD static char const* const stringBase_8039CBC1 =
+    ":::addr %08x: bad previous pointer (%08x)\n";
+SECTION_DEAD static char const* const stringBase_8039CBEC =
+    ":::addr %08x: bad used list(REV) (%08x)\n";
+SECTION_DEAD static char const* const stringBase_8039CC15 = ":::addr %08x: bad block size (%08x)\n";
+SECTION_DEAD static char const* const stringBase_8039CC3A =
+    ":::bad total memory block size (%08X, %08X)\n";
+SECTION_DEAD static char const* const stringBase_8039CC67 =
+    ":::there is some error in this heap!\n";
 #pragma pop
 
 /* 802D0190-802D03B8 2CAAD0 0228+00 1/0 0/0 0/0 .text            check__10JKRExpHeapFv */
@@ -529,6 +572,26 @@ asm void JKRExpHeap::check() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8039CAF0-8039CAF0 029150 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039CC8D =
+    " attr  address:   size    gid aln   prev_ptr nex"
+    "t_ptr\n";
+SECTION_DEAD static char const* const stringBase_8039CCC4 = "(Used Blocks)\n";
+SECTION_DEAD static char const* const stringBase_8039CCD3 = " NONE\n";
+SECTION_DEAD static char const* const stringBase_8039CCDA =
+    "xxxxx %08x: --------  --- ---  (-------- -------"
+    "-)\nabort\n";
+SECTION_DEAD static char const* const stringBase_8039CD14 = "%s %08x: %08x  %3d %3d  (%08x %08x)\n";
+SECTION_DEAD static char const* const stringBase_8039CD39 = " temp";
+SECTION_DEAD static char const* const stringBase_8039CD3F = "alloc";
+SECTION_DEAD static char const* const stringBase_8039CD45 = "(Free Blocks)\n";
+SECTION_DEAD static char const* const stringBase_8039CD54 = " free";
+SECTION_DEAD static char const* const stringBase_8039CD5A =
+    "%d / %d bytes (%6.2f%%) used (U:%d F:%d)\n";
+#pragma pop
+
 /* 80455F98-80455FA0 004598 0004+04 2/2 0/0 0/0 .sdata2          @1121 */
 SECTION_SDATA2 static f32 lit_1121[1 + 1 /* padding */] = {
     100.0f,
@@ -660,52 +723,60 @@ asm void JKRExpHeap::do_getCurrentGroupId() {
 }
 #pragma pop
 
-/* 8039CAF0-8039CE50 029150 0360+00 6/6 0/0 0/0 .rodata          @stringBase0 */
+/* ############################################################################################## */
+/* 8039CD84-8039CDA0 0293E4 001C+00 0/0 0/0 0/0 .rodata          None */
 #pragma push
 #pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039CAF0 = ":::cannot alloc memory (0x%x byte).\n";
-SECTION_DEAD static char const* const stringBase_8039CB15 = "JKRExpHeap.cpp";
-SECTION_DEAD static char const* const stringBase_8039CB24 = "%s";
-SECTION_DEAD static char const* const stringBase_8039CB27 = "bad appendUsedList\n";
-SECTION_DEAD static char const* const stringBase_8039CB3B = ":::Heap may be broken. (block = %x)";
-SECTION_DEAD static char const* const stringBase_8039CB5F = "Bad Block\n";
-SECTION_DEAD static char const* const stringBase_8039CB6A =
-    ":::addr %08x: bad heap signature. (%c%c)\n";
-SECTION_DEAD static char const* const stringBase_8039CB94 =
-    ":::addr %08x: bad next pointer (%08x)\nabort\n";
-SECTION_DEAD static char const* const stringBase_8039CBC1 =
-    ":::addr %08x: bad previous pointer (%08x)\n";
-SECTION_DEAD static char const* const stringBase_8039CBEC =
-    ":::addr %08x: bad used list(REV) (%08x)\n";
-SECTION_DEAD static char const* const stringBase_8039CC15 = ":::addr %08x: bad block size (%08x)\n";
-SECTION_DEAD static char const* const stringBase_8039CC3A =
-    ":::bad total memory block size (%08X, %08X)\n";
-SECTION_DEAD static char const* const stringBase_8039CC67 =
-    ":::there is some error in this heap!\n";
-SECTION_DEAD static char const* const stringBase_8039CC8D =
-    " attr  address:   size    gid aln   prev_ptr nex"
-    "t_ptr\n";
-SECTION_DEAD static char const* const stringBase_8039CCC4 = "(Used Blocks)\n";
-SECTION_DEAD static char const* const stringBase_8039CCD3 = " NONE\n";
-SECTION_DEAD static char const* const stringBase_8039CCDA =
-    "xxxxx %08x: --------  --- ---  (-------- -------"
-    "-)\nabort\n";
-SECTION_DEAD static char const* const stringBase_8039CD14 = "%s %08x: %08x  %3d %3d  (%08x %08x)\n";
-SECTION_DEAD static char const* const stringBase_8039CD39 = " temp";
-SECTION_DEAD static char const* const stringBase_8039CD3F = "alloc";
-SECTION_DEAD static char const* const stringBase_8039CD45 = "(Free Blocks)\n";
-SECTION_DEAD static char const* const stringBase_8039CD54 = " free";
-SECTION_DEAD static char const* const stringBase_8039CD5A =
-    "%d / %d bytes (%6.2f%%) used (U:%d F:%d)\n";
 SECTION_DEAD static char const* const stringBase_8039CD84 = "+---------------JKRExpHeap\n";
+#pragma pop
+
+/* 8039CDA0-8039CDD0 029400 0030+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
 SECTION_DEAD static char const* const stringBase_8039CDA0 =
     "|         Align Group  size    ( prev , next )\n";
+#pragma pop
+
+/* 8039CDD0-8039CDE2 029430 0012+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
 SECTION_DEAD static char const* const stringBase_8039CDD0 = "| ---- FreeFirst\n";
+#pragma pop
+
+/* 8039CDE2-8039CDEB 029442 0009+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
 SECTION_DEAD static char const* const stringBase_8039CDE2 = "| %08x  ";
+#pragma pop
+
+/* 8039CDEB-8039CE07 02944B 001C+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
 SECTION_DEAD static char const* const stringBase_8039CDEB = "%2x  %3d  %6x  (%08x %08x)\n";
+#pragma pop
+
+/* 8039CE07-8039CE18 029467 0011+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
 SECTION_DEAD static char const* const stringBase_8039CE07 = "| ---- FreeLast\n";
+#pragma pop
+
+/* 8039CE18-8039CE2A 029478 0012+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
 SECTION_DEAD static char const* const stringBase_8039CE18 = "| ---- UsedFirst\n";
+#pragma pop
+
+/* 8039CE2A-8039CE3B 02948A 0011+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
 SECTION_DEAD static char const* const stringBase_8039CE2A = "| ---- UsedLast\n";
+#pragma pop
+
+/* 8039CE3B-8039CE50 02949B 0015+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
 SECTION_DEAD static char const* const stringBase_8039CE3B = "+---------------End\n";
 #pragma pop
+
+/* 8039CAF0-8039CAF0 029150 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

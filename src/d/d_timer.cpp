@@ -73,12 +73,12 @@ struct dDlst_list_c {
     /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
 };
 
-struct JKRArchive {};
-
 struct J2DPane {
     /* 802F7AFC */ void getParentPane();
     /* 802F7FCC */ void animationTransform();
 };
+
+struct JKRArchive {};
 
 struct dDlst_TimerScrnDraw_c {
     /* 8025DB38 */ dDlst_TimerScrnDraw_c();
@@ -110,21 +110,16 @@ struct dDlst_TimerScrnDraw_c {
 };
 
 struct dComIfG_play_c {
-    /* 8002CB94 */ void setTimerNowTimeMs(int);
     /* 8002CB9C */ void getTimerNowTimeMs();
-    /* 8002CBA4 */ void setTimerLimitTimeMs(int);
     /* 8002CBAC */ void getTimerLimitTimeMs();
-    /* 8002CBB4 */ void setTimerMode(int);
     /* 8002CBBC */ void getTimerMode();
-    /* 8002CBC4 */ void setTimerType(u8);
     /* 8002CBCC */ void getTimerType();
-    /* 8002CBD4 */ void setTimerPtr(dTimer_c*);
     /* 8002CBDC */ void getTimerPtr();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -318,6 +313,12 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
+/* 8039A3D8-8039A3D8 026A38 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039A3D8 = "Timer";
+#pragma pop
+
 /* 80454F40-80454F44 003540 0004+00 10/10 0/0 0/0 .sdata2          @3919 */
 SECTION_SDATA2 static u8 lit_3919[4] = {
     0x00,
@@ -562,6 +563,14 @@ asm void dDlst_TimerScrnDraw_c::setHIO() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039A3D8-8039A3D8 026A38 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039A3DE = "zelda_game_image_cow_get_in.blo";
+SECTION_DEAD static char const* const stringBase_8039A3FE = "zelda_game_image_cow_get_in.bck";
+#pragma pop
+
 /* 8025DFBC-8025E240 2588FC 0284+00 1/1 0/0 0/0 .text
  * setScreen__21dDlst_TimerScrnDraw_cFlP10JKRArchive            */
 #pragma push
@@ -571,6 +580,13 @@ asm void dDlst_TimerScrnDraw_c::setScreen(s32 param_0, JKRArchive* param_1) {
     nofralloc
 #include "asm/d/d_timer/setScreen__21dDlst_TimerScrnDraw_cFlP10JKRArchive.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8039A3D8-8039A3D8 026A38 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039A41E = "zelda_game_image_cow_game.blo";
 #pragma pop
 
 /* 8025E240-8025E66C 258B80 042C+00 1/1 0/0 0/0 .text setScreenBase__21dDlst_TimerScrnDraw_cFv */
@@ -583,6 +599,13 @@ asm void dDlst_TimerScrnDraw_c::setScreenBase() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039A3D8-8039A3D8 026A38 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039A43C = "zelda_game_image_zora_kawakudari.blo";
+#pragma pop
+
 /* 8025E66C-8025E8B8 258FAC 024C+00 1/1 0/0 0/0 .text setScreenBoatRace__21dDlst_TimerScrnDraw_cFv
  */
 #pragma push
@@ -592,6 +615,13 @@ asm void dDlst_TimerScrnDraw_c::setScreenBoatRace() {
     nofralloc
 #include "asm/d/d_timer/setScreenBoatRace__21dDlst_TimerScrnDraw_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8039A3D8-8039A3D8 026A38 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039A461 = "zelda_game_image_rider.blo";
 #pragma pop
 
 /* 8025E8B8-8025EB20 2591F8 0268+00 1/1 0/0 0/0 .text setScreenRider__21dDlst_TimerScrnDraw_cFv */
@@ -930,6 +960,14 @@ asm void dTimer_createTimer(s32 param_0, u32 param_1, u8 param_2, u8 param_3, f3
 #pragma pop
 
 /* ############################################################################################## */
+/* 8039A3D8-8039A3D8 026A38 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039A47C = "F_SP115";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039A484 = "\0\0\0";
+#pragma pop
+
 /* 80454FA0-80454FA4 0035A0 0004+00 1/1 0/0 0/0 .sdata2          @5544 */
 SECTION_SDATA2 static f32 lit_5544 = 221.0f;
 
@@ -1042,17 +1080,4 @@ asm void dTimer_c::createGetIn(cXyz param_0) {
 }
 #pragma pop
 
-/* 8039A3D8-8039A488 026A38 00AC+04 7/7 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039A3D8 = "Timer";
-SECTION_DEAD static char const* const stringBase_8039A3DE = "zelda_game_image_cow_get_in.blo";
-SECTION_DEAD static char const* const stringBase_8039A3FE = "zelda_game_image_cow_get_in.bck";
-SECTION_DEAD static char const* const stringBase_8039A41E = "zelda_game_image_cow_game.blo";
-SECTION_DEAD static char const* const stringBase_8039A43C = "zelda_game_image_zora_kawakudari.blo";
-SECTION_DEAD static char const* const stringBase_8039A461 = "zelda_game_image_rider.blo";
-SECTION_DEAD static char const* const stringBase_8039A47C = "F_SP115";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039A484 = "\0\0\0";
-#pragma pop
+/* 8039A3D8-8039A3D8 026A38 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

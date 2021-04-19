@@ -264,6 +264,12 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80CA49F8-80CA49F8 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CA49F8 = "Jagar4";
+#pragma pop
+
 /* 80CA4A00-80CA4A40 000000 0040+00 2/2 0/0 0/0 .data            mCcDSph__13daObj_Nougu_c */
 SECTION_DATA u8 daObj_Nougu_c::mCcDSph[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -377,55 +383,55 @@ asm dCcD_Sph::~dCcD_Sph() {
 SECTION_RODATA u8 const daObj_Nougu_Param_c::m[16] = {
     0x00, 0x00, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0x48, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CA49B8, &daObj_Nougu_Param_c::m);
+COMPILER_STRIP_GATE(0x80CA49B8, &daObj_Nougu_Param_c::m);
 
 /* 80CA49C8-80CA49CC 000010 0004+00 0/1 0/0 0/0 .rodata          @3916 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3916 = -75.0f;
-COMPILER_STRIP_GATE(80CA49C8, &lit_3916);
+COMPILER_STRIP_GATE(0x80CA49C8, &lit_3916);
 #pragma pop
 
 /* 80CA49CC-80CA49D0 000014 0004+00 0/1 0/0 0/0 .rodata          @3917 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3917 = -50.0f;
-COMPILER_STRIP_GATE(80CA49CC, &lit_3917);
+COMPILER_STRIP_GATE(0x80CA49CC, &lit_3917);
 #pragma pop
 
 /* 80CA49D0-80CA49D4 000018 0004+00 0/1 0/0 0/0 .rodata          @3918 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3918 = -100.0f;
-COMPILER_STRIP_GATE(80CA49D0, &lit_3918);
+COMPILER_STRIP_GATE(0x80CA49D0, &lit_3918);
 #pragma pop
 
 /* 80CA49D4-80CA49D8 00001C 0004+00 0/1 0/0 0/0 .rodata          @3919 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3919 = 75.0f;
-COMPILER_STRIP_GATE(80CA49D4, &lit_3919);
+COMPILER_STRIP_GATE(0x80CA49D4, &lit_3919);
 #pragma pop
 
 /* 80CA49D8-80CA49DC 000020 0004+00 0/1 0/0 0/0 .rodata          @3920 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3920 = 50.0f;
-COMPILER_STRIP_GATE(80CA49D8, &lit_3920);
+COMPILER_STRIP_GATE(0x80CA49D8, &lit_3920);
 #pragma pop
 
 /* 80CA49DC-80CA49E0 000024 0004+00 0/1 0/0 0/0 .rodata          @3921 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3921 = 100.0f;
-COMPILER_STRIP_GATE(80CA49DC, &lit_3921);
+COMPILER_STRIP_GATE(0x80CA49DC, &lit_3921);
 #pragma pop
 
 /* 80CA49E0-80CA49E4 000028 0004+00 0/3 0/0 0/0 .rodata          @3922 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3922 = -1000000000.0f;
-COMPILER_STRIP_GATE(80CA49E0, &lit_3922);
+COMPILER_STRIP_GATE(0x80CA49E0, &lit_3922);
 #pragma pop
 
 /* 80CA3E24-80CA40D8 000304 02B4+00 1/1 0/0 0/0 .text            create__13daObj_Nougu_cFv */
@@ -523,7 +529,7 @@ asm void daObj_Nougu_c::Delete() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4046 = 60.0f;
-COMPILER_STRIP_GATE(80CA49E4, &lit_4046);
+COMPILER_STRIP_GATE(0x80CA49E4, &lit_4046);
 #pragma pop
 
 /* 80CA49E8-80CA49EC 000030 0004+00 0/1 0/0 0/0 .rodata          @4047 */
@@ -535,14 +541,14 @@ SECTION_RODATA static u8 const lit_4047[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CA49E8, &lit_4047);
+COMPILER_STRIP_GATE(0x80CA49E8, &lit_4047);
 #pragma pop
 
 /* 80CA49EC-80CA49F0 000034 0004+00 0/1 0/0 0/0 .rodata          @4048 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4048 = 30.0f;
-COMPILER_STRIP_GATE(80CA49EC, &lit_4048);
+COMPILER_STRIP_GATE(0x80CA49EC, &lit_4048);
 #pragma pop
 
 /* 80CA43D4-80CA45F4 0008B4 0220+00 2/2 0/0 0/0 .text            Execute__13daObj_Nougu_cFv */
@@ -560,14 +566,14 @@ asm void daObj_Nougu_c::Execute() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4060 = 20.0f;
-COMPILER_STRIP_GATE(80CA49F0, &lit_4060);
+COMPILER_STRIP_GATE(0x80CA49F0, &lit_4060);
 #pragma pop
 
 /* 80CA49F4-80CA49F8 00003C 0004+00 0/1 0/0 0/0 .rodata          @4061 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4061 = 1.0f;
-COMPILER_STRIP_GATE(80CA49F4, &lit_4061);
+COMPILER_STRIP_GATE(0x80CA49F4, &lit_4061);
 #pragma pop
 
 /* 80CA45F4-80CA46B8 000AD4 00C4+00 1/1 0/0 0/0 .text            Draw__13daObj_Nougu_cFv */
@@ -723,7 +729,7 @@ asm void __sinit_d_a_obj_nougu_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80CA48D8 = (void*)__sinit_d_a_obj_nougu_cpp;
+REGISTER_CTORS(0x80CA48D8, __sinit_d_a_obj_nougu_cpp);
 #pragma pop
 
 /* 80CA494C-80CA4994 000E2C 0048+00 2/1 0/0 0/0 .text            __dt__19daObj_Nougu_Param_cFv */
@@ -756,9 +762,4 @@ static asm void func_80CA499C() {
 }
 #pragma pop
 
-/* 80CA49F8-80CA49FF 000040 0007+00 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CA49F8 = "Jagar4";
-#pragma pop
+/* 80CA49F8-80CA49F8 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

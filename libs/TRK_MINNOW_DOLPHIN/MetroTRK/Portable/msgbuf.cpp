@@ -203,7 +203,7 @@ SECTION_RODATA static u8 const lit_618[29 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(803A26E0, &lit_618);
+COMPILER_STRIP_GATE(0x803A26E0, &lit_618);
 
 /* 8036D71C-8036D7E4 36805C 00C8+00 0/0 6/6 0/0 .text            TRKGetFreeBuffer */
 #pragma push

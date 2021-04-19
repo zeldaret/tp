@@ -60,6 +60,8 @@ struct dBgS_AcchCir {
     /* 80077414 */ ~dBgS_AcchCir();
 };
 
+struct csXyz {};
+
 struct Vec {};
 
 struct cBgS_PolyInfo {
@@ -67,12 +69,9 @@ struct cBgS_PolyInfo {
     /* 802680B0 */ ~cBgS_PolyInfo();
     /* 80268120 */ void ClearPi();
     /* 8026816C */ void SetActorInfo(int, void*, unsigned int);
-    /* 802681A4 */ void SetPolyIndex(int);
 };
 
 struct dBgS_Acch;
-struct csXyz {};
-
 struct dBgS {
     /* 8007524C */ void WallCorrect(dBgS_Acch*);
     /* 80075374 */ void WallCorrectSort(dBgS_Acch*);

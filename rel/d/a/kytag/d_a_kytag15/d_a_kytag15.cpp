@@ -106,27 +106,27 @@ SECTION_RODATA static u8 const lit_3823[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80860B40, &lit_3823);
+COMPILER_STRIP_GATE(0x80860B40, &lit_3823);
 
 /* 80860B44-80860B48 000004 0004+00 0/1 0/0 0/0 .rodata          @3824 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3824 = 0x3BABB44E;
-COMPILER_STRIP_GATE(80860B44, &lit_3824);
+COMPILER_STRIP_GATE(0x80860B44, &lit_3824);
 #pragma pop
 
 /* 80860B48-80860B4C 000008 0004+00 0/1 0/0 0/0 .rodata          @3825 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3825 = -255.0f;
-COMPILER_STRIP_GATE(80860B48, &lit_3825);
+COMPILER_STRIP_GATE(0x80860B48, &lit_3825);
 #pragma pop
 
 /* 80860B4C-80860B50 00000C 0004+00 0/1 0/0 0/0 .rodata          @3826 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3826 = 255.0f;
-COMPILER_STRIP_GATE(80860B4C, &lit_3826);
+COMPILER_STRIP_GATE(0x80860B4C, &lit_3826);
 #pragma pop
 
 /* 80860B50-80860B58 000010 0008+00 0/1 0/0 0/0 .rodata          @3828 */
@@ -135,7 +135,7 @@ COMPILER_STRIP_GATE(80860B4C, &lit_3826);
 SECTION_RODATA static u8 const lit_3828[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80860B50, &lit_3828);
+COMPILER_STRIP_GATE(0x80860B50, &lit_3828);
 #pragma pop
 
 /* 80860638-808607F8 000078 01C0+00 1/0 0/0 0/0 .text            daKytag15_Draw__FP13kytag15_class
@@ -152,27 +152,27 @@ static asm void daKytag15_Draw(kytag15_class* param_0) {
 /* ############################################################################################## */
 /* 80860B58-80860B5C 000018 0004+00 2/3 0/0 0/0 .rodata          @3845 */
 SECTION_RODATA static f32 const lit_3845 = 1.0f;
-COMPILER_STRIP_GATE(80860B58, &lit_3845);
+COMPILER_STRIP_GATE(0x80860B58, &lit_3845);
 
 /* 80860B5C-80860B60 00001C 0004+00 0/1 0/0 0/0 .rodata          @3846 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3846 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(80860B5C, &lit_3846);
+COMPILER_STRIP_GATE(0x80860B5C, &lit_3846);
 #pragma pop
 
 /* 80860B60-80860B64 000020 0004+00 0/1 0/0 0/0 .rodata          @3847 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3847 = 1.0f / 100.0f;
-COMPILER_STRIP_GATE(80860B60, &lit_3847);
+COMPILER_STRIP_GATE(0x80860B60, &lit_3847);
 #pragma pop
 
 /* 80860B64-80860B68 000024 0004+00 0/1 0/0 0/0 .rodata          @3848 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3848 = 0x322BCC77;
-COMPILER_STRIP_GATE(80860B64, &lit_3848);
+COMPILER_STRIP_GATE(0x80860B64, &lit_3848);
 #pragma pop
 
 /* 808607F8-808608B0 000238 00B8+00 1/0 0/0 0/0 .text daKytag15_Execute__FP13kytag15_class */
@@ -189,6 +189,13 @@ static asm void daKytag15_Execute(kytag15_class* param_0) {
 static bool daKytag15_IsDelete(kytag15_class* param_0) {
     return true;
 }
+
+/* ############################################################################################## */
+/* 80860B68-80860B68 000028 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80860B68 = "Kytag15";
+#pragma pop
 
 /* 808608B8-808608E8 0002F8 0030+00 1/0 0/0 0/0 .text            daKytag15_Delete__FP13kytag15_class
  */
@@ -235,6 +242,12 @@ static asm void useHeapInit(fopAc_ac_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80860B68-80860B68 000028 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80860B70 = "F_SP118";
+#pragma pop
+
 /* 80860BC8-80860BD4 000050 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
 SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
     (void*)NULL /* RTTI */,
@@ -262,10 +275,4 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 }
 #pragma pop
 
-/* 80860B68-80860B78 000028 0010+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80860B68 = "Kytag15";
-SECTION_DEAD static char const* const stringBase_80860B70 = "F_SP118";
-#pragma pop
+/* 80860B68-80860B68 000028 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

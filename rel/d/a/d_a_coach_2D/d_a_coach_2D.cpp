@@ -199,6 +199,14 @@ static asm void daCoach2D_createHeap(fopAc_ac_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80657954-80657954 000030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80657954 = "Coach2D";
+SECTION_DEAD static char const* const stringBase_8065795C = "zelda_game_image_fire_icon.blo";
+SECTION_DEAD static char const* const stringBase_8065797B = "zelda_game_image_fire_icon.brk";
+#pragma pop
+
 /* 8065799C-806579F4 000000 0058+00 1/1 0/0 0/0 .data
  * aParam$localstatic3$__ct__15daCoach2D_HIO_cFv                */
 SECTION_DATA static u8 data_8065799C[88] = {
@@ -266,7 +274,7 @@ asm void daCoach2D_c::execute() {
 /* ############################################################################################## */
 /* 80657924-80657928 000000 0004+00 2/2 0/0 0/0 .rodata          @4003 */
 SECTION_RODATA static f32 const lit_4003 = 180.0f;
-COMPILER_STRIP_GATE(80657924, &lit_4003);
+COMPILER_STRIP_GATE(0x80657924, &lit_4003);
 
 /* 80657928-8065792C 000004 0004+00 1/2 0/0 0/0 .rodata          @4004 */
 SECTION_RODATA static u8 const lit_4004[4] = {
@@ -275,13 +283,13 @@ SECTION_RODATA static u8 const lit_4004[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80657928, &lit_4004);
+COMPILER_STRIP_GATE(0x80657928, &lit_4004);
 
 /* 8065792C-80657930 000008 0004+00 0/1 0/0 0/0 .rodata          @4005 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4005 = 1.0f;
-COMPILER_STRIP_GATE(8065792C, &lit_4005);
+COMPILER_STRIP_GATE(0x8065792C, &lit_4005);
 #pragma pop
 
 /* 80657A90-80657A9C 000008 000C+00 1/1 0/0 0/0 .bss             @3772 */
@@ -315,21 +323,21 @@ asm void daCoach2D_c::initiate() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4050 = 4.0f;
-COMPILER_STRIP_GATE(80657930, &lit_4050);
+COMPILER_STRIP_GATE(0x80657930, &lit_4050);
 #pragma pop
 
 /* 80657934-80657938 000010 0004+00 0/1 0/0 0/0 .rodata          @4051 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4051 = 255.0f;
-COMPILER_STRIP_GATE(80657934, &lit_4051);
+COMPILER_STRIP_GATE(0x80657934, &lit_4051);
 #pragma pop
 
 /* 80657938-8065793C 000014 0004+00 0/1 0/0 0/0 .rodata          @4052 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4052 = 70.0f;
-COMPILER_STRIP_GATE(80657938, &lit_4052);
+COMPILER_STRIP_GATE(0x80657938, &lit_4052);
 #pragma pop
 
 /* 8065793C-80657944 000018 0004+04 0/1 0/0 0/0 .rodata          @4053 */
@@ -340,20 +348,20 @@ SECTION_RODATA static f32 const lit_4053[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(8065793C, &lit_4053);
+COMPILER_STRIP_GATE(0x8065793C, &lit_4053);
 #pragma pop
 
 /* 80657944-8065794C 000020 0008+00 1/2 0/0 0/0 .rodata          @4055 */
 SECTION_RODATA static u8 const lit_4055[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80657944, &lit_4055);
+COMPILER_STRIP_GATE(0x80657944, &lit_4055);
 
 /* 8065794C-80657954 000028 0008+00 1/2 0/0 0/0 .rodata          @4056 */
 SECTION_RODATA static u8 const lit_4056[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8065794C, &lit_4056);
+COMPILER_STRIP_GATE(0x8065794C, &lit_4056);
 
 /* 80657260-80657490 000980 0230+00 1/1 0/0 0/0 .text            update__11daCoach2D_cFv */
 #pragma push
@@ -535,14 +543,7 @@ asm void __sinit_d_a_coach_2D_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8065789C = (void*)__sinit_d_a_coach_2D_cpp;
+REGISTER_CTORS(0x8065789C, __sinit_d_a_coach_2D_cpp);
 #pragma pop
 
-/* 80657954-8065799A 000030 0046+00 2/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80657954 = "Coach2D";
-SECTION_DEAD static char const* const stringBase_8065795C = "zelda_game_image_fire_icon.blo";
-SECTION_DEAD static char const* const stringBase_8065797B = "zelda_game_image_fire_icon.brk";
-#pragma pop
+/* 80657954-80657954 000030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

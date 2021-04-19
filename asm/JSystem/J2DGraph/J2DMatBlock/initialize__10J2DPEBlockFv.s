@@ -1,5 +1,5 @@
 lbl_802F17FC:
-/* 802F17FC  A0 02 C7 AE */	lhz r0, struct_804561AC+0x2(r2)
+/* 802F17FC  A0 02 C7 AE */	lhz r0, j2dDefaultAlphaCmp(r2)
 /* 802F1800  B0 03 00 00 */	sth r0, 0(r3)
 /* 802F1804  38 00 00 00 */	li r0, 0
 /* 802F1808  98 03 00 02 */	stb r0, 2(r3)

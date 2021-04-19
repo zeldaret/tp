@@ -73,11 +73,11 @@ struct J2DAnmLoader {
     /* 8030A410 */ ~J2DAnmLoader();
 };
 
-struct J2DAnmColorKey {};
-
 struct J2DAnmBase {
     /* 800569B0 */ void searchUpdateMaterialID(J2DScreen*);
 };
+
+struct J2DAnmColorKey {};
 
 struct J2DAnmKeyLoader_v15 {
     /* 80309290 */ J2DAnmKeyLoader_v15();
@@ -158,19 +158,19 @@ setAnmVtxColor__20J2DAnmFullLoader_v15FP18J2DAnmVtxColorFullPC22J3DAnmVtxColorFu
 extern "C" void __dt__14J2DAnmVtxColorFv();
 extern "C" void __dt__20J2DAnmVisibilityFullFv();
 extern "C" void __dt__12J2DAnmLoaderFv();
-extern "C" void func_8030A458(void const*, void const*);
-extern "C" void func_8030A470(void const*, void const*);
-extern "C" void func_8030A488(void const*, void const*);
-extern "C" void func_8030A4A0(void const*, void const*);
-extern "C" void func_8030A4B8(void const*, void const*);
-extern "C" void func_8030A4D0(void const*, void const*);
-extern "C" void func_8030A4E8(void const*, void const*);
-extern "C" void func_8030A500(void const*, void const*);
-extern "C" void func_8030A518(void const*, void const*);
-extern "C" void func_8030A530(void const*, void const*);
-extern "C" void func_8030A548(void const*, void const*);
-extern "C" void func_8030A560(void const*, void const*);
-extern "C" void func_8030A578(void const*, void const*);
+extern "C" void func_8030A458(void* _this, void const*, void const*);
+extern "C" void func_8030A470(void* _this, void const*, void const*);
+extern "C" void func_8030A488(void* _this, void const*, void const*);
+extern "C" void func_8030A4A0(void* _this, void const*, void const*);
+extern "C" void func_8030A4B8(void* _this, void const*, void const*);
+extern "C" void func_8030A4D0(void* _this, void const*, void const*);
+extern "C" void func_8030A4E8(void* _this, void const*, void const*);
+extern "C" void func_8030A500(void* _this, void const*, void const*);
+extern "C" void func_8030A518(void* _this, void const*, void const*);
+extern "C" void func_8030A530(void* _this, void const*, void const*);
+extern "C" void func_8030A548(void* _this, void const*, void const*);
+extern "C" void func_8030A560(void* _this, void const*, void const*);
+extern "C" void func_8030A578(void* _this, void const*, void const*);
 
 //
 // External References:
@@ -181,8 +181,8 @@ extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();
 extern "C" void __ct__10JUTNameTabFv();
 extern "C" void setResource__10JUTNameTabFPC7ResNTAB();
-extern "C" void func_802F4260(void const*, void const*);
-extern "C" void func_802F42C0(void const*, void const*);
+extern "C" void func_802F4260(void* _this, void const*, void const*);
+extern "C" void func_802F42C0(void* _this, void const*, void const*);
 extern "C" void getColor__14J2DAnmVtxColorCFUcUsP8_GXColor();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_27();
@@ -611,7 +611,7 @@ asm J2DAnmLoader::~J2DAnmLoader() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8030A458(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A458(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A458.s"
 }
@@ -622,7 +622,7 @@ extern "C" asm void func_8030A458(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8030A470(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A470(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A470.s"
 }
@@ -633,7 +633,7 @@ extern "C" asm void func_8030A470(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8030A488(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A488(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A488.s"
 }
@@ -644,7 +644,7 @@ extern "C" asm void func_8030A488(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8030A4A0(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A4A0(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A4A0.s"
 }
@@ -655,7 +655,7 @@ extern "C" asm void func_8030A4A0(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8030A4B8(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A4B8(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A4B8.s"
 }
@@ -666,7 +666,7 @@ extern "C" asm void func_8030A4B8(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8030A4D0(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A4D0(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A4D0.s"
 }
@@ -677,7 +677,7 @@ extern "C" asm void func_8030A4D0(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8030A4E8(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A4E8(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A4E8.s"
 }
@@ -688,7 +688,7 @@ extern "C" asm void func_8030A4E8(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8030A500(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A500(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A500.s"
 }
@@ -698,7 +698,7 @@ extern "C" asm void func_8030A500(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8030A518(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A518(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A518.s"
 }
@@ -709,7 +709,7 @@ extern "C" asm void func_8030A518(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8030A530(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A530(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A530.s"
 }
@@ -720,7 +720,7 @@ extern "C" asm void func_8030A530(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8030A548(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A548(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A548.s"
 }
@@ -731,7 +731,7 @@ extern "C" asm void func_8030A548(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8030A560(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A560(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A560.s"
 }
@@ -742,7 +742,7 @@ extern "C" asm void func_8030A560(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8030A578(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A578(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A578.s"
 }

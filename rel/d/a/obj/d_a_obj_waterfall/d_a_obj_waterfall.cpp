@@ -218,20 +218,20 @@ SECTION_RODATA static u8 const lit_3807[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D2FD58, &lit_3807);
+COMPILER_STRIP_GATE(0x80D2FD58, &lit_3807);
 
 /* 80D2FD5C-80D2FD60 000004 0004+00 0/4 0/0 0/0 .rodata          @3808 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3808 = 50.0f;
-COMPILER_STRIP_GATE(80D2FD5C, &lit_3808);
+COMPILER_STRIP_GATE(0x80D2FD5C, &lit_3808);
 #pragma pop
 
 /* 80D2FD60-80D2FD64 000008 0004+00 0/4 0/0 0/0 .rodata          @3809 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3809 = 100.0f;
-COMPILER_STRIP_GATE(80D2FD60, &lit_3809);
+COMPILER_STRIP_GATE(0x80D2FD60, &lit_3809);
 #pragma pop
 
 /* 80D2ED14-80D2EFF8 000174 02E4+00 1/1 0/0 0/0 .text            search_bomb__16daObjWaterFall_cFv
@@ -292,14 +292,20 @@ asm void daObjWaterFall_c::setBaseMtx() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3953 = -50.0f;
-COMPILER_STRIP_GATE(80D2FD64, &lit_3953);
+COMPILER_STRIP_GATE(0x80D2FD64, &lit_3953);
 #pragma pop
 
 /* 80D2FD68-80D2FD6C 000010 0004+00 0/2 0/0 0/0 .rodata          @3954 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3954 = 10.0f;
-COMPILER_STRIP_GATE(80D2FD68, &lit_3954);
+COMPILER_STRIP_GATE(0x80D2FD68, &lit_3954);
+#pragma pop
+
+/* 80D2FD7C-80D2FD7C 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D2FD7C = "sample";
 #pragma pop
 
 /* 80D2FD84-80D2FD88 -00001 0004+00 1/1 0/0 0/0 .data            l_arcName */
@@ -465,28 +471,28 @@ asm void daObjWaterFall_c::execute() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4203 = 25.0f;
-COMPILER_STRIP_GATE(80D2FD6C, &lit_4203);
+COMPILER_STRIP_GATE(0x80D2FD6C, &lit_4203);
 #pragma pop
 
 /* 80D2FD70-80D2FD74 000018 0004+00 0/1 0/0 0/0 .rodata          @4204 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4204 = -10.0f;
-COMPILER_STRIP_GATE(80D2FD70, &lit_4204);
+COMPILER_STRIP_GATE(0x80D2FD70, &lit_4204);
 #pragma pop
 
 /* 80D2FD74-80D2FD78 00001C 0004+00 0/1 0/0 0/0 .rodata          @4205 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4205 = 60.0f;
-COMPILER_STRIP_GATE(80D2FD74, &lit_4205);
+COMPILER_STRIP_GATE(0x80D2FD74, &lit_4205);
 #pragma pop
 
 /* 80D2FD78-80D2FD7C 000020 0004+00 0/1 0/0 0/0 .rodata          @4206 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4206 = -60.0f;
-COMPILER_STRIP_GATE(80D2FD78, &lit_4206);
+COMPILER_STRIP_GATE(0x80D2FD78, &lit_4206);
 #pragma pop
 
 /* 80D2FA6C-80D2FC94 000ECC 0228+00 1/1 0/0 0/0 .text            push_player__16daObjWaterFall_cFv
@@ -557,9 +563,4 @@ static asm void daObjWaterFall_Create(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 80D2FD7C-80D2FD83 000024 0007+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D2FD7C = "sample";
-#pragma pop
+/* 80D2FD7C-80D2FD7C 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

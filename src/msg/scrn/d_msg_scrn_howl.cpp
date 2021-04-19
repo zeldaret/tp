@@ -270,6 +270,19 @@ extern "C" extern u8 g_MsgObject_HIO_c[1040];
 //
 
 /* ############################################################################################## */
+/* 80399A20-80399A20 026080 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399A20 = "zelda_wolf_howl.blo";
+SECTION_DEAD static char const* const stringBase_80399A34 = "";
+SECTION_DEAD static char const* const stringBase_80399A35 = "tt_ginnouroko_s3tc.bti";
+SECTION_DEAD static char const* const stringBase_80399A4C = "tt_black_32.bti";
+SECTION_DEAD static char const* const stringBase_80399A5C = "tt_iastarRR.bti";
+SECTION_DEAD static char const* const stringBase_80399A6C = "tt_block8x8.bti";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80399A7C = "\0\0\0";
+#pragma pop
+
 /* 803C0FD0-803C0FDC 01E0F0 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -962,19 +975,7 @@ asm void __sinit_d_msg_scrn_howl_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80244454 = (void*)__sinit_d_msg_scrn_howl_cpp;
+REGISTER_CTORS(0x80244454, __sinit_d_msg_scrn_howl_cpp);
 #pragma pop
 
-/* 80399A20-80399A80 026080 005C+04 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80399A20 = "zelda_wolf_howl.blo";
-SECTION_DEAD static char const* const stringBase_80399A34 = "";
-SECTION_DEAD static char const* const stringBase_80399A35 = "tt_ginnouroko_s3tc.bti";
-SECTION_DEAD static char const* const stringBase_80399A4C = "tt_black_32.bti";
-SECTION_DEAD static char const* const stringBase_80399A5C = "tt_iastarRR.bti";
-SECTION_DEAD static char const* const stringBase_80399A6C = "tt_block8x8.bti";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80399A7C = "\0\0\0";
-#pragma pop
+/* 80399A20-80399A20 026080 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

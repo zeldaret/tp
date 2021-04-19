@@ -78,12 +78,7 @@ asm void JPACalcChildScaleOut(JPAEmitterWorkData* param_0, JPABaseParticle* para
 }
 #pragma pop
 
-/* 8027B038-8027B040 275978 0008+00 0/0 1/1 0/0 .text            __ct__13JPAChildShapeFPCUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JPAChildShape::JPAChildShape(u8 const* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAChildShape/__ct__13JPAChildShapeFPCUc.s"
+/* 8027B038-8027B040 -00001 0008+00 0/0 0/0 0/0 .text            __ct__13JPAChildShapeFPCUc */
+JPAChildShape::JPAChildShape(u8 const* param_0) {
+    *(u32*)this = (u32)(param_0);
 }
-#pragma pop

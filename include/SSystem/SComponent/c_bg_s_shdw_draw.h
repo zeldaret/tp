@@ -1,9 +1,9 @@
 #ifndef C_BG_S_SHDW_DRAW_H
 #define C_BG_S_SHDW_DRAW_H
 
-#include "dolphin/types.h"
 #include "SSystem/SComponent/c_m3d_g_pla.h"
 #include "SSystem/SComponent/c_xyz.h"
+#include "dolphin/types.h"
 
 struct cBgD_Vtx_t;
 

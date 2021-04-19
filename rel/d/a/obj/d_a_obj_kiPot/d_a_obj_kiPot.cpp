@@ -185,7 +185,7 @@ asm void daKiPot_c::create() {
 /* ############################################################################################## */
 /* 80C45194-80C45198 000000 0004+00 2/2 0/0 0/0 .rodata          @3683 */
 SECTION_RODATA static f32 const lit_3683 = 150.0f;
-COMPILER_STRIP_GATE(80C45194, &lit_3683);
+COMPILER_STRIP_GATE(0x80C45194, &lit_3683);
 
 /* 80C44E7C-80C44EF8 00025C 007C+00 1/1 0/0 0/0 .text            Execute__9daKiPot_cFv */
 #pragma push
@@ -232,21 +232,21 @@ asm void daKiPot_c::init_modeWait() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3711 = 100.0f;
-COMPILER_STRIP_GATE(80C45198, &lit_3711);
+COMPILER_STRIP_GATE(0x80C45198, &lit_3711);
 #pragma pop
 
 /* 80C4519C-80C451A0 000008 0004+00 0/1 0/0 0/0 .rodata          @3712 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3712 = 50.0f;
-COMPILER_STRIP_GATE(80C4519C, &lit_3712);
+COMPILER_STRIP_GATE(0x80C4519C, &lit_3712);
 #pragma pop
 
 /* 80C451A0-80C451A4 00000C 0004+00 0/1 0/0 0/0 .rodata          @3713 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3713 = -50.0f;
-COMPILER_STRIP_GATE(80C451A0, &lit_3713);
+COMPILER_STRIP_GATE(0x80C451A0, &lit_3713);
 #pragma pop
 
 /* 80C44F80-80C45008 000360 0088+00 1/0 0/0 0/0 .text            modeWait__9daKiPot_cFv */
@@ -341,5 +341,5 @@ asm void __sinit_d_a_obj_kiPot_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80C45144 = (void*)__sinit_d_a_obj_kiPot_cpp;
+REGISTER_CTORS(0x80C45144, __sinit_d_a_obj_kiPot_cpp);
 #pragma pop

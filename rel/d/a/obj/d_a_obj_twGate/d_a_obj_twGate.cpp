@@ -194,7 +194,22 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80D20308-80D2030C 000000 0004+00 4/4 0/0 0/0 .rodata          @3638 */
 SECTION_RODATA static f32 const lit_3638 = 1900.0f;
-COMPILER_STRIP_GATE(80D20308, &lit_3638);
+COMPILER_STRIP_GATE(0x80D20308, &lit_3638);
+
+/* 80D20554-80D20554 00024C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D20554 = "twGtFiro";
+SECTION_DEAD static char const* const stringBase_80D2055D = "twGtK0102";
+SECTION_DEAD static char const* const stringBase_80D20567 = "twGtK0709";
+SECTION_DEAD static char const* const stringBase_80D20571 = "";
+SECTION_DEAD static char const* const stringBase_80D20572 = "twGnFiro";
+SECTION_DEAD static char const* const stringBase_80D2057B = "twGnK0102";
+SECTION_DEAD static char const* const stringBase_80D20585 = "twGnK0709";
+SECTION_DEAD static char const* const stringBase_80D2058F = "twGnK079b";
+SECTION_DEAD static char const* const stringBase_80D20599 = "twGnK1415";
+SECTION_DEAD static char const* const stringBase_80D205A3 = "twGnK0616";
+#pragma pop
 
 /* 80D205B0-80D205E4 -00001 0034+00 3/3 0/0 0/0 .data            l_resNameIdx */
 SECTION_DATA static void* l_resNameIdx[13] = {
@@ -334,7 +349,7 @@ SECTION_RODATA static u8 const l_bmdIdx[52] = {
     0x00, 0x06, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00,
     0x06, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x06, 0xFF, 0xFF, 0xFF, 0xFF,
 };
-COMPILER_STRIP_GATE(80D2030C, &l_bmdIdx);
+COMPILER_STRIP_GATE(0x80D2030C, &l_bmdIdx);
 #pragma pop
 
 /* 80D20340-80D20374 000038 0034+00 0/1 0/0 0/0 .rodata          l_dzbIdx */
@@ -346,7 +361,7 @@ SECTION_RODATA static u8 const l_dzbIdx[52] = {
     0x00, 0x0F, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00,
     0x0F, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x0F, 0xFF, 0xFF, 0xFF, 0xFF,
 };
-COMPILER_STRIP_GATE(80D20340, &l_dzbIdx);
+COMPILER_STRIP_GATE(0x80D20340, &l_dzbIdx);
 #pragma pop
 
 /* 80D20374-80D203A8 00006C 0034+00 0/1 0/0 0/0 .rodata          l_btkIdx */
@@ -358,7 +373,7 @@ SECTION_RODATA static u8 const l_btkIdx[52] = {
     0x00, 0x0C, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00,
     0x0C, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x0C, 0xFF, 0xFF, 0xFF, 0xFF,
 };
-COMPILER_STRIP_GATE(80D20374, &l_btkIdx);
+COMPILER_STRIP_GATE(0x80D20374, &l_btkIdx);
 #pragma pop
 
 /* 80D203A8-80D203DC 0000A0 0034+00 0/1 0/0 0/0 .rodata          l_brkIdx */
@@ -370,7 +385,7 @@ SECTION_RODATA static u8 const l_brkIdx[52] = {
     0x00, 0x09, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00,
     0x09, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x09, 0xFF, 0xFF, 0xFF, 0xFF,
 };
-COMPILER_STRIP_GATE(80D203A8, &l_brkIdx);
+COMPILER_STRIP_GATE(0x80D203A8, &l_brkIdx);
 #pragma pop
 
 /* 80D203DC-80D20410 0000D4 0034+00 0/2 0/0 0/0 .rodata          l_twFlagIdx */
@@ -382,7 +397,7 @@ SECTION_RODATA static u8 const l_twFlagIdx[52] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
     0x02, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04,
 };
-COMPILER_STRIP_GATE(80D203DC, &l_twFlagIdx);
+COMPILER_STRIP_GATE(0x80D203DC, &l_twFlagIdx);
 #pragma pop
 
 /* 80D20410-80D204AC 000108 009C+00 0/1 0/0 0/0 .rodata          l_cheeckPos0 */
@@ -400,7 +415,7 @@ SECTION_RODATA static u8 const l_cheeckPos0[156] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D20410, &l_cheeckPos0);
+COMPILER_STRIP_GATE(0x80D20410, &l_cheeckPos0);
 #pragma pop
 
 /* 80D204AC-80D20548 0001A4 009C+00 0/1 0/0 0/0 .rodata          l_cheeckPos1 */
@@ -418,14 +433,14 @@ SECTION_RODATA static u8 const l_cheeckPos1[156] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D204AC, &l_cheeckPos1);
+COMPILER_STRIP_GATE(0x80D204AC, &l_cheeckPos1);
 #pragma pop
 
 /* 80D20548-80D2054C 000240 0004+00 0/2 0/0 0/0 .rodata          @3693 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3693 = 1.0f;
-COMPILER_STRIP_GATE(80D20548, &lit_3693);
+COMPILER_STRIP_GATE(0x80D20548, &lit_3693);
 #pragma pop
 
 /* 80D1FC0C-80D1FD44 00024C 0138+00 1/0 0/0 0/0 .text            CreateHeap__10daTwGate_cFv */
@@ -443,7 +458,7 @@ asm void daTwGate_c::CreateHeap() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3769 = -1.0f;
-COMPILER_STRIP_GATE(80D2054C, &lit_3769);
+COMPILER_STRIP_GATE(0x80D2054C, &lit_3769);
 #pragma pop
 
 /* 80D1FD44-80D1FF14 000384 01D0+00 1/1 0/0 0/0 .text            create__10daTwGate_cFv */
@@ -486,7 +501,7 @@ SECTION_RODATA static u8 const lit_3837[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D20550, &lit_3837);
+COMPILER_STRIP_GATE(0x80D20550, &lit_3837);
 #pragma pop
 
 /* 80D206A0-80D206AC 000008 000C+00 1/1 0/0 0/0 .bss             @3630 */
@@ -587,21 +602,7 @@ asm void __sinit_d_a_obj_twGate_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80D202B8 = (void*)__sinit_d_a_obj_twGate_cpp;
+REGISTER_CTORS(0x80D202B8, __sinit_d_a_obj_twGate_cpp);
 #pragma pop
 
-/* 80D20554-80D205AD 00024C 0059+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D20554 = "twGtFiro";
-SECTION_DEAD static char const* const stringBase_80D2055D = "twGtK0102";
-SECTION_DEAD static char const* const stringBase_80D20567 = "twGtK0709";
-SECTION_DEAD static char const* const stringBase_80D20571 = "";
-SECTION_DEAD static char const* const stringBase_80D20572 = "twGnFiro";
-SECTION_DEAD static char const* const stringBase_80D2057B = "twGnK0102";
-SECTION_DEAD static char const* const stringBase_80D20585 = "twGnK0709";
-SECTION_DEAD static char const* const stringBase_80D2058F = "twGnK079b";
-SECTION_DEAD static char const* const stringBase_80D20599 = "twGnK1415";
-SECTION_DEAD static char const* const stringBase_80D205A3 = "twGnK0616";
-#pragma pop
+/* 80D20554-80D20554 00024C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

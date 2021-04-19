@@ -13,14 +13,6 @@
 
 struct Vec {};
 
-struct JStage {
-    struct TSystem {};
-
-    struct TCamera {};
-
-    struct TObject {};
-};
-
 namespace JStudio {
 struct data {
     struct TEOperationData {};
@@ -54,6 +46,14 @@ struct TAdaptor_camera {
 };
 
 };  // namespace JStudio
+
+struct JStage {
+    struct TSystem {};
+
+    struct TCamera {};
+
+    struct TObject {};
+};
 
 struct JStudio_JStage {
     struct TAdaptor_camera {
@@ -89,8 +89,8 @@ struct JStudio_JStage {
     struct TVariableValueOutput_object_ {};
     /* TVariableValueOutput_object_<JStudio_JStage::TAdaptor_camera, JStage::TCamera> */
     struct TVariableValueOutput_object___template1 {
-        /* 8028C4E4 */ void func_8028C4E4();
-        /* 8028C544 */ void func_8028C544(f32, JStudio::TAdaptor*) /* const */;
+        /* 8028C4E4 */ void func_8028C4E4(void* _this);
+        /* 8028C544 */ void func_8028C544(void* _this, f32, JStudio::TAdaptor*) /* const */;
     };
 
     struct TAdaptor_object_ {
@@ -137,8 +137,8 @@ extern "C" void getJSG_position___Q214JStudio_JStage15TAdaptor_cameraFPCQ27JStud
 extern "C" void setJSG_targetPosition___Q214JStudio_JStage15TAdaptor_cameraFPCQ27JStudio8TControl();
 extern "C" void getJSG_targetPosition___Q214JStudio_JStage15TAdaptor_cameraFPCQ27JStudio8TControl();
 extern "C" void func_8028C180();
-extern "C" void func_8028C4E4();
-extern "C" void func_8028C544(f32, JStudio::TAdaptor*);
+extern "C" void func_8028C4E4(void* _this);
+extern "C" void func_8028C544(void* _this, f32, JStudio::TAdaptor*);
 extern "C" u8 saoVVOutput___Q214JStudio_JStage15TAdaptor_camera[160 + 4 /* padding */];
 
 //
@@ -561,7 +561,7 @@ asm void func_8028C180() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8028C180 = (void*)func_8028C180;
+REGISTER_CTORS(0x8028C180, func_8028C180);
 #pragma pop
 
 /* 8028C4E4-8028C544 286E24 0060+00 2/1 0/0 0/0 .text
@@ -570,7 +570,7 @@ SECTION_CTORS void* const _ctors_8028C180 = (void*)func_8028C180;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8028C4E4() {
+extern "C" asm void func_8028C4E4(void* _this) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio_JStage/object-camera/func_8028C4E4.s"
 }
@@ -582,7 +582,8 @@ extern "C" asm void func_8028C4E4() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8028C544(f32 param_0, JStudio::TAdaptor* param_1) /* const */ {
+extern "C" asm void func_8028C544(void* _this, f32 param_0,
+                                  JStudio::TAdaptor* param_1) /* const */ {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio_JStage/object-camera/func_8028C544.s"
 }

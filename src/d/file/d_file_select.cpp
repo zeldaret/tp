@@ -83,8 +83,6 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct JKRArchive {};
-
 struct J2DAnmTextureSRTKey {
     /* 80184274 */ ~J2DAnmTextureSRTKey();
 };
@@ -102,6 +100,8 @@ struct J2DPane {
     /* 802F6714 */ void insertChild(J2DPane*, J2DPane*);
     /* 802F7FCC */ void animationTransform();
 };
+
+struct JKRArchive {};
 
 struct dSelect_cursor_c {
     /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
@@ -129,8 +129,6 @@ struct dName_c {
     /* 80250560 */ void _draw();
 };
 
-struct COutFont_c {};
-
 struct JUtility {
     struct TColor {};
 };
@@ -143,6 +141,8 @@ struct J2DTextBox {
 };
 
 struct JUTFont {};
+
+struct COutFont_c {};
 
 struct dMsgString_c {
     /* 80191B6C */ void getString(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, u8);
@@ -394,9 +394,9 @@ struct dComIfG_play_c {
     /* 8002B2C8 */ void itemInit();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -937,6 +937,54 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
+/* 80394388-80394388 0209E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394388 = "tt_1_metal_40x40.bti";
+SECTION_DEAD static char const* const stringBase_8039439D = "tt_2_metal_40x40.bti";
+SECTION_DEAD static char const* const stringBase_803943B2 = "tt_3_metal_40x40.bti";
+SECTION_DEAD static char const* const stringBase_803943C7 = "zelda_file_select.blo";
+SECTION_DEAD static char const* const stringBase_803943DD = "zelda_file_select.bck";
+SECTION_DEAD static char const* const stringBase_803943F3 = "";
+SECTION_DEAD static char const* const stringBase_803943F4 = "zelda_file_select.bpk";
+SECTION_DEAD static char const* const stringBase_8039440A = "zelda_file_select_05.btk";
+SECTION_DEAD static char const* const stringBase_80394423 = "zelda_file_select.btk";
+SECTION_DEAD static char const* const stringBase_80394439 = "zelda_file_select.brk";
+SECTION_DEAD static char const* const stringBase_8039444F = "zelda_file_select_02.btk";
+SECTION_DEAD static char const* const stringBase_80394468 = "zelda_file_select_03.btk";
+SECTION_DEAD static char const* const stringBase_80394481 = "tt_block8x8.bti";
+SECTION_DEAD static char const* const stringBase_80394491 = "zelda_file_select_copy_select.blo";
+SECTION_DEAD static char const* const stringBase_803944B3 = "zelda_file_select_copy_select.bck";
+SECTION_DEAD static char const* const stringBase_803944D5 = "zelda_file_select_copy_select.bpk";
+SECTION_DEAD static char const* const stringBase_803944F7 = "zelda_file_select_copy_select_03.btk";
+SECTION_DEAD static char const* const stringBase_8039451C = "zelda_file_select_copy_select.btk";
+SECTION_DEAD static char const* const stringBase_8039453E = "zelda_file_select_copy_select.brk";
+SECTION_DEAD static char const* const stringBase_80394560 = "zelda_file_select_yes_no_window.blo";
+SECTION_DEAD static char const* const stringBase_80394584 = "zelda_file_select_yes_no_window.bck";
+SECTION_DEAD static char const* const stringBase_803945A8 = "zelda_file_select_yes_no_window.bpk";
+SECTION_DEAD static char const* const stringBase_803945CC = "zelda_file_select_yes_no_window.btk";
+SECTION_DEAD static char const* const stringBase_803945F0 = "zelda_file_select_3menu_window.blo";
+SECTION_DEAD static char const* const stringBase_80394613 = "zelda_file_select_3menu_window.bck";
+SECTION_DEAD static char const* const stringBase_80394636 = "zelda_file_select_3menu_window.bpk";
+SECTION_DEAD static char const* const stringBase_80394659 = "zelda_file_select_3menu_window.btk";
+SECTION_DEAD static char const* const stringBase_8039467C = "zelda_file_select_details.blo";
+SECTION_DEAD static char const* const stringBase_8039469A = "zelda_file_select_details.btk";
+SECTION_DEAD static char const* const stringBase_803946B8 = "md_mask_parts_spin_1.bck";
+SECTION_DEAD static char const* const stringBase_803946D1 = "md_mask_parts_spin_2.bck";
+SECTION_DEAD static char const* const stringBase_803946EA = "md_mask_parts_spin_3.bck";
+SECTION_DEAD static char const* const stringBase_80394703 = "md_mask_parts_spin_4.bck";
+SECTION_DEAD static char const* const stringBase_8039471C = "md_mask_parts_spin_1.brk";
+SECTION_DEAD static char const* const stringBase_80394735 = "md_mask_parts_spin_2_3.brk";
+SECTION_DEAD static char const* const stringBase_80394750 = "md_mask_parts_spin_4.brk";
+SECTION_DEAD static char const* const stringBase_80394769 = "md_mask_UI.bmd";
+SECTION_DEAD static char const* const stringBase_80394778 = "kageri_mirrer_spin_1.bck";
+SECTION_DEAD static char const* const stringBase_80394791 = "kageri_mirrer_spin_2.bck";
+SECTION_DEAD static char const* const stringBase_803947AA = "kageri_mirrer_spin_3.bck";
+SECTION_DEAD static char const* const stringBase_803947C3 = "kageri_mirrer_spin_4.bck";
+SECTION_DEAD static char const* const stringBase_803947DC = "kageri_mirrer_spin_1.brk";
+SECTION_DEAD static char const* const stringBase_803947F5 = "kageri_mirrer_spin_2_3_4.brk";
+#pragma pop
+
 /* 803BA848-803BA854 017968 000C+00 6/6 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -4346,7 +4394,7 @@ SECTION_RODATA static u8 const m_kamen_offset_x[20] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80394310, &m_kamen_offset_x);
+COMPILER_STRIP_GATE(0x80394310, &m_kamen_offset_x);
 
 /* 80394324-80394338 020984 0014+00 0/1 0/0 0/0 .rodata          m_kamen_offset_y$8679 */
 #pragma push
@@ -4355,7 +4403,7 @@ SECTION_RODATA static u8 const m_kamen_offset_y[20] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x40, 0xA0, 0x00, 0x00, 0x40, 0xA0, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80394324, &m_kamen_offset_y);
+COMPILER_STRIP_GATE(0x80394324, &m_kamen_offset_y);
 #pragma pop
 
 /* 80394338-8039434C 020998 0014+00 0/1 0/0 0/0 .rodata          m_kamen_scale$8680 */
@@ -4365,7 +4413,7 @@ SECTION_RODATA static u8 const m_kamen_scale[20] = {
     0x40, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0x40, 0x00,
     0x00, 0x00, 0x3F, 0xCC, 0xCC, 0xCD, 0x3F, 0xCC, 0xCC, 0xCD,
 };
-COMPILER_STRIP_GATE(80394338, &m_kamen_scale);
+COMPILER_STRIP_GATE(0x80394338, &m_kamen_scale);
 #pragma pop
 
 /* 80190BA8-80190D68 18B4E8 01C0+00 1/1 0/0 0/0 .text createMaskModel__16dFile_select3D_cFv */
@@ -4386,7 +4434,7 @@ SECTION_RODATA static u8 const m_mirror_offset_x[20] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8039434C, &m_mirror_offset_x);
+COMPILER_STRIP_GATE(0x8039434C, &m_mirror_offset_x);
 #pragma pop
 
 /* 80394360-80394374 0209C0 0014+00 0/1 0/0 0/0 .rodata          m_mirror_offset_y$8782 */
@@ -4396,7 +4444,7 @@ SECTION_RODATA static u8 const m_mirror_offset_y[20] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80394360, &m_mirror_offset_y);
+COMPILER_STRIP_GATE(0x80394360, &m_mirror_offset_y);
 #pragma pop
 
 /* 80394374-80394388 0209D4 0014+00 0/1 0/0 0/0 .rodata          m_mirror_scale$8783 */
@@ -4406,7 +4454,15 @@ SECTION_RODATA static u8 const m_mirror_scale[20] = {
     0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x19,
     0x99, 0x9A, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x19, 0x99, 0x9A,
 };
-COMPILER_STRIP_GATE(80394374, &m_mirror_scale);
+COMPILER_STRIP_GATE(0x80394374, &m_mirror_scale);
+#pragma pop
+
+/* 80394388-80394388 0209E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394812 = "kageri_mirrer_UI.bmd";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80394827 = "";
 #pragma pop
 
 /* 80190D68-80190FE8 18B6A8 0280+00 1/1 0/0 0/0 .text createMirrorModel__16dFile_select3D_cFv */
@@ -4548,7 +4604,7 @@ asm void __sinit_d_file_select_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80191428 = (void*)__sinit_d_file_select_cpp;
+REGISTER_CTORS(0x80191428, __sinit_d_file_select_cpp);
 #pragma pop
 
 /* 80191B6C-80191BAC 18C4AC 0040+00 0/0 1/0 0/0 .text
@@ -4563,54 +4619,4 @@ asm void dMsgString_c::getString(u32 param_0, J2DTextBox* param_1, J2DTextBox* p
 }
 #pragma pop
 
-/* 80394388-80394828 0209E8 049F+01 14/9 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80394388 = "tt_1_metal_40x40.bti";
-SECTION_DEAD static char const* const stringBase_8039439D = "tt_2_metal_40x40.bti";
-SECTION_DEAD static char const* const stringBase_803943B2 = "tt_3_metal_40x40.bti";
-SECTION_DEAD static char const* const stringBase_803943C7 = "zelda_file_select.blo";
-SECTION_DEAD static char const* const stringBase_803943DD = "zelda_file_select.bck";
-SECTION_DEAD static char const* const stringBase_803943F3 = "";
-SECTION_DEAD static char const* const stringBase_803943F4 = "zelda_file_select.bpk";
-SECTION_DEAD static char const* const stringBase_8039440A = "zelda_file_select_05.btk";
-SECTION_DEAD static char const* const stringBase_80394423 = "zelda_file_select.btk";
-SECTION_DEAD static char const* const stringBase_80394439 = "zelda_file_select.brk";
-SECTION_DEAD static char const* const stringBase_8039444F = "zelda_file_select_02.btk";
-SECTION_DEAD static char const* const stringBase_80394468 = "zelda_file_select_03.btk";
-SECTION_DEAD static char const* const stringBase_80394481 = "tt_block8x8.bti";
-SECTION_DEAD static char const* const stringBase_80394491 = "zelda_file_select_copy_select.blo";
-SECTION_DEAD static char const* const stringBase_803944B3 = "zelda_file_select_copy_select.bck";
-SECTION_DEAD static char const* const stringBase_803944D5 = "zelda_file_select_copy_select.bpk";
-SECTION_DEAD static char const* const stringBase_803944F7 = "zelda_file_select_copy_select_03.btk";
-SECTION_DEAD static char const* const stringBase_8039451C = "zelda_file_select_copy_select.btk";
-SECTION_DEAD static char const* const stringBase_8039453E = "zelda_file_select_copy_select.brk";
-SECTION_DEAD static char const* const stringBase_80394560 = "zelda_file_select_yes_no_window.blo";
-SECTION_DEAD static char const* const stringBase_80394584 = "zelda_file_select_yes_no_window.bck";
-SECTION_DEAD static char const* const stringBase_803945A8 = "zelda_file_select_yes_no_window.bpk";
-SECTION_DEAD static char const* const stringBase_803945CC = "zelda_file_select_yes_no_window.btk";
-SECTION_DEAD static char const* const stringBase_803945F0 = "zelda_file_select_3menu_window.blo";
-SECTION_DEAD static char const* const stringBase_80394613 = "zelda_file_select_3menu_window.bck";
-SECTION_DEAD static char const* const stringBase_80394636 = "zelda_file_select_3menu_window.bpk";
-SECTION_DEAD static char const* const stringBase_80394659 = "zelda_file_select_3menu_window.btk";
-SECTION_DEAD static char const* const stringBase_8039467C = "zelda_file_select_details.blo";
-SECTION_DEAD static char const* const stringBase_8039469A = "zelda_file_select_details.btk";
-SECTION_DEAD static char const* const stringBase_803946B8 = "md_mask_parts_spin_1.bck";
-SECTION_DEAD static char const* const stringBase_803946D1 = "md_mask_parts_spin_2.bck";
-SECTION_DEAD static char const* const stringBase_803946EA = "md_mask_parts_spin_3.bck";
-SECTION_DEAD static char const* const stringBase_80394703 = "md_mask_parts_spin_4.bck";
-SECTION_DEAD static char const* const stringBase_8039471C = "md_mask_parts_spin_1.brk";
-SECTION_DEAD static char const* const stringBase_80394735 = "md_mask_parts_spin_2_3.brk";
-SECTION_DEAD static char const* const stringBase_80394750 = "md_mask_parts_spin_4.brk";
-SECTION_DEAD static char const* const stringBase_80394769 = "md_mask_UI.bmd";
-SECTION_DEAD static char const* const stringBase_80394778 = "kageri_mirrer_spin_1.bck";
-SECTION_DEAD static char const* const stringBase_80394791 = "kageri_mirrer_spin_2.bck";
-SECTION_DEAD static char const* const stringBase_803947AA = "kageri_mirrer_spin_3.bck";
-SECTION_DEAD static char const* const stringBase_803947C3 = "kageri_mirrer_spin_4.bck";
-SECTION_DEAD static char const* const stringBase_803947DC = "kageri_mirrer_spin_1.brk";
-SECTION_DEAD static char const* const stringBase_803947F5 = "kageri_mirrer_spin_2_3_4.brk";
-SECTION_DEAD static char const* const stringBase_80394812 = "kageri_mirrer_UI.bmd";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80394827 = "";
-#pragma pop
+/* 80394388-80394388 0209E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

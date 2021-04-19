@@ -517,7 +517,7 @@ asm void __sinit_d_a_obj_lv4CandleDemoTag_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80C5D0D8 = (void*)__sinit_d_a_obj_lv4CandleDemoTag_cpp;
+REGISTER_CTORS(0x80C5D0D8, __sinit_d_a_obj_lv4CandleDemoTag_cpp);
 #pragma pop
 
 /* 80C5D114-80C5D11C 000814 0008+00 1/0 0/0 0/0 .text @1392@eventStart__20dalv4CandleDemoTag_cFv

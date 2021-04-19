@@ -4,17 +4,17 @@
 //
 
 #include "SSystem/SComponent/c_m3d.h"
+#include "SSystem/SComponent/c_m3d_g_aab.h"
+#include "SSystem/SComponent/c_m3d_g_cps.h"
+#include "SSystem/SComponent/c_m3d_g_cyl.h"
+#include "SSystem/SComponent/c_m3d_g_lin.h"
+#include "SSystem/SComponent/c_m3d_g_pla.h"
+#include "SSystem/SComponent/c_m3d_g_sph.h"
+#include "SSystem/SComponent/c_m3d_g_tri.h"
+#include "SSystem/SComponent/c_math.h"
+#include "SSystem/SComponent/c_xyz.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "SSystem/SComponent/c_xyz.h"
-#include "SSystem/SComponent/c_m3d_g_tri.h"
-#include "SSystem/SComponent/c_m3d_g_pla.h"
-#include "SSystem/SComponent/c_m3d_g_lin.h"
-#include "SSystem/SComponent/c_m3d_g_cyl.h"
-#include "SSystem/SComponent/c_m3d_g_cps.h"
-#include "SSystem/SComponent/c_m3d_g_aab.h"
-#include "SSystem/SComponent/c_m3d_g_sph.h"
-#include "SSystem/SComponent/c_math.h"
 #include "msl_c/math.h"
 
 //
@@ -222,7 +222,7 @@ bool cM3d_Len3dSqPntAndSegLine(const cM3dGLin* pLine, const Vec* pVec, Vec* pOut
 f32 cM3d_SignedLenPlaAndPos(const cM3dGPla* pPlane, const Vec* pPosition) {
     f32 mag = PSVECMag(&pPlane->GetNP());
     if (cM3d_IsZero(mag)) {
-        return /* 0.0 */ FLOAT_LABEL(lit_2256) ;
+        return /* 0.0 */ FLOAT_LABEL(lit_2256);
     } else {
         return (pPlane->mD + PSVECDotProduct(&pPlane->GetNP(), pPosition)) / mag;
     }
@@ -407,7 +407,7 @@ int cM3d_Check_LinLin(const cM3dGLin* pLinA, const cM3dGLin* pLinB, f32* pFloatA
 #pragma optimization_level 0
 #pragma optimizewithasm off
 static asm int cM3d_Check_LinLin(cM3dGLin const* param_0, cM3dGLin const* param_1, f32* param_2,
-                                  f32* param_3) {
+                                 f32* param_3) {
     nofralloc
 #include "asm/SSystem/SComponent/c_m3d/cM3d_Check_LinLin__FPC8cM3dGLinPC8cM3dGLinPfPf.s"
 }
@@ -416,8 +416,8 @@ static asm int cM3d_Check_LinLin(cM3dGLin const* param_0, cM3dGLin const* param_
 
 /* 80268ED4-80268F34 263814 0060+00 2/2 0/0 0/0 .text
  * cM3d_CrossInfLineVsInfPlane_proc__FffPC3VecPC3VecP3Vec       */
-static bool cM3d_CrossInfLineVsInfPlane_proc(f32 pFloatA, f32 pFloatB, const Vec* pVecA, const Vec* pVecB,
-                                      Vec* pVecOut) {
+static bool cM3d_CrossInfLineVsInfPlane_proc(f32 pFloatA, f32 pFloatB, const Vec* pVecA,
+                                             const Vec* pVecB, Vec* pVecOut) {
     if (cM3d_IsZero(pFloatA - pFloatB)) {
         *pVecOut = *pVecB;
         return false;
@@ -440,7 +440,8 @@ bool cM3d_Cross_LinPla(const cM3dGLin* pLine, const cM3dGPla* pPlane, Vec* pVecO
         *pVecOut = pLine->GetEndP();
         return false;
     } else {
-        if (startVal >= /* 0.0 */ FLOAT_LABEL(lit_2256) && endVal <= /* 0.0 */ FLOAT_LABEL(lit_2256)) {
+        if (startVal >= /* 0.0 */ FLOAT_LABEL(lit_2256) &&
+            endVal <= /* 0.0 */ FLOAT_LABEL(lit_2256)) {
             // if (startVal >= 0 && endVal <= 0) {
             if (pBoolA) {
                 return cM3d_CrossInfLineVsInfPlane_proc(startVal, endVal, &pLine->GetStartP(),
@@ -844,7 +845,7 @@ SECTION_SDATA2 static f32 lit_3740 = 4.0f;
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm int cM3d_Cross_LinSph_CrossPos(cM3dGSph const& param_0, cM3dGLin const& param_1, Vec* param_2,
-                                    Vec* param_3) {
+                                   Vec* param_3) {
     nofralloc
 #include "asm/SSystem/SComponent/c_m3d/cM3d_Cross_LinSph_CrossPos__FRC8cM3dGSphRC8cM3dGLinP3VecP3Vec.s"
 }
@@ -991,7 +992,7 @@ asm bool cM3d_Cross_CylTri(cM3dGCyl const* param_0, cM3dGTri const* param_1, Vec
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm int cM3d_Cross_CylLin(cM3dGCyl const* param_0, cM3dGLin const* param_1, Vec* param_2,
-                           Vec* param_3) {
+                          Vec* param_3) {
     nofralloc
 #include "asm/SSystem/SComponent/c_m3d/cM3d_Cross_CylLin__FPC8cM3dGCylPC8cM3dGLinP3VecP3Vec.s"
 }
@@ -1000,7 +1001,7 @@ asm int cM3d_Cross_CylLin(cM3dGCyl const* param_0, cM3dGLin const* param_1, Vec*
 /* 8026D044-8026D0B0 267984 006C+00 1/1 0/0 0/0 .text
  * cM3d_Cross_CylPntPnt__FPC8cM3dGCylPC3VecPC3VecP3VecP3Vec     */
 static int cM3d_Cross_CylPntPnt(const cM3dGCyl* pCylinder, const Vec* pVecStart, const Vec* pVecEnd,
-                         Vec* pVecOutA, Vec* pVecOutB) {
+                                Vec* pVecOutA, Vec* pVecOutB) {
     cM3dGLin lin;
     lin.SetStartEnd(*pVecStart, *pVecEnd);
     return cM3d_Cross_CylLin(pCylinder, &lin, pVecOutA, pVecOutB);
@@ -1121,7 +1122,8 @@ void cM3d_PlaneCrossLineProcWork(f32 f1, f32 f2, f32 f3, f32 f4, f32 f5, f32 f6,
 
 /* 8026E6F0-8026E8A0 269030 01B0+00 2/2 0/0 0/0 .text
  * cM3d_2PlaneCrossLine__FRC8cM3dGPlaRC8cM3dGPlaP8cM3dGLin      */
-static int cM3d_2PlaneCrossLine(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB, cM3dGLin* pLinOut) {
+static int cM3d_2PlaneCrossLine(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB,
+                                cM3dGLin* pLinOut) {
     Vec tmp;
     PSVECCrossProduct(&pPlaneA.GetNP(), &pPlaneB.GetNP(), &tmp);
     if (cM3d_IsZero(tmp.x) && cM3d_IsZero(tmp.y) && cM3d_IsZero(tmp.z)) {

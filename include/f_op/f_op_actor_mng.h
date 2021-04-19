@@ -5,13 +5,13 @@
 #include "SSystem/SComponent/c_m3d_g_pla.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
+#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 #include "f_pc/f_pc_executor.h"
 #include "f_pc/f_pc_fstcreate_req.h"
 #include "f_pc/f_pc_manager.h"
 #include "f_pc/f_pc_searcher.h"
 #include "f_pc/f_pc_stdcreate_req.h"
-#include "dolphin/types.h"
 
 struct fopAcM_prm_class {
     /* 0x00 */ u32 unk_0x00;

@@ -190,7 +190,7 @@ SECTION_RODATA static u8 const black_tex[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8037B140, &black_tex);
+COMPILER_STRIP_GATE(0x8037B140, &black_tex);
 
 /* 8037B180-8037B3E0 0077E0 0260+00 1/1 0/0 0/0 .rodata          msg_data */
 SECTION_RODATA static u8 const msg_data[608] = {
@@ -233,7 +233,7 @@ SECTION_RODATA static u8 const msg_data[608] = {
     0x6F, 0x72, 0x20, 0x64, 0x65, 0x74, 0x61, 0x69, 0x6C, 0x73, 0x2E, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8037B180, &msg_data);
+COMPILER_STRIP_GATE(0x8037B180, &msg_data);
 
 /* 8037B3E0-8038D640 -00001 12260+00 1/1 0/0 0/0 .rodata          font_data */
 SECTION_RODATA static void* const font_data[18584] = {
@@ -18823,7 +18823,7 @@ SECTION_RODATA static void* const font_data[18584] = {
     (void*)0x69727473,
     (void*)0xE1B80000,
 };
-COMPILER_STRIP_GATE(8037B3E0, &font_data);
+COMPILER_STRIP_GATE(0x8037B3E0, &font_data);
 
 /* 80452C18-80452C1C 001218 0004+00 3/3 0/0 0/0 .sdata2          @3758 */
 SECTION_SDATA2 static u8 lit_3758[4] = {
@@ -18891,6 +18891,15 @@ asm void dDvdErrorMsg_c::draw(s32 param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8038D640-8038D640 019CA0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8038D640 = "DVD Error !! <%d>\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8038D653 = "\0\0\0\0";
+#pragma pop
+
 /* 8009D354-8009D410 097C94 00BC+00 0/0 1/1 0/0 .text            execute__14dDvdErrorMsg_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -18925,11 +18934,4 @@ asm void dShutdownErrorMsg_c::execute() {
 }
 #pragma pop
 
-/* 8038D640-8038D658 019CA0 0013+05 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8038D640 = "DVD Error !! <%d>\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8038D653 = "\0\0\0\0";
-#pragma pop
+/* 8038D640-8038D640 019CA0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

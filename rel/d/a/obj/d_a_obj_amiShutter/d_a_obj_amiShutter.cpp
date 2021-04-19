@@ -220,11 +220,11 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80BA2390-80BA2394 000000 0004+00 5/5 0/0 0/0 .rodata          @3655 */
 SECTION_RODATA static f32 const lit_3655 = 70.0f;
-COMPILER_STRIP_GATE(80BA2390, &lit_3655);
+COMPILER_STRIP_GATE(0x80BA2390, &lit_3655);
 
 /* 80BA2394-80BA2398 000004 0004+00 1/1 0/0 0/0 .rodata          @3656 */
 SECTION_RODATA static f32 const lit_3656 = 400.0f;
-COMPILER_STRIP_GATE(80BA2394, &lit_3656);
+COMPILER_STRIP_GATE(0x80BA2394, &lit_3656);
 
 /* 80BA23DC-80BA23E8 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -414,6 +414,13 @@ asm void daAmiShutter_c::setBaseMtx() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80BA23D4-80BA23D4 000044 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BA23D4 = "S_Zami";
+#pragma pop
+
 /* 80BA15E4-80BA1650 000204 006C+00 1/0 0/0 0/0 .text            CreateHeap__14daAmiShutter_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -427,11 +434,11 @@ asm void daAmiShutter_c::CreateHeap() {
 /* ############################################################################################## */
 /* 80BA2398-80BA239C 000008 0004+00 1/1 0/0 0/0 .rodata          @3739 */
 SECTION_RODATA static f32 const lit_3739 = -800.0f;
-COMPILER_STRIP_GATE(80BA2398, &lit_3739);
+COMPILER_STRIP_GATE(0x80BA2398, &lit_3739);
 
 /* 80BA239C-80BA23A0 00000C 0004+00 1/2 0/0 0/0 .rodata          @3740 */
 SECTION_RODATA static f32 const lit_3740 = 600.0f;
-COMPILER_STRIP_GATE(80BA239C, &lit_3740);
+COMPILER_STRIP_GATE(0x80BA239C, &lit_3740);
 
 /* 80BA1650-80BA182C 000270 01DC+00 1/1 0/0 0/0 .text            create__14daAmiShutter_cFv */
 #pragma push
@@ -489,7 +496,7 @@ SECTION_RODATA static u8 const lit_3822[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BA23A0, &lit_3822);
+COMPILER_STRIP_GATE(0x80BA23A0, &lit_3822);
 #pragma pop
 
 /* 80BA23A8-80BA23B0 000018 0008+00 0/1 0/0 0/0 .rodata          @3823 */
@@ -498,7 +505,7 @@ COMPILER_STRIP_GATE(80BA23A0, &lit_3822);
 SECTION_RODATA static u8 const lit_3823[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BA23A8, &lit_3823);
+COMPILER_STRIP_GATE(0x80BA23A8, &lit_3823);
 #pragma pop
 
 /* 80BA23B0-80BA23B8 000020 0008+00 0/1 0/0 0/0 .rodata          @3824 */
@@ -507,7 +514,7 @@ COMPILER_STRIP_GATE(80BA23A8, &lit_3823);
 SECTION_RODATA static u8 const lit_3824[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BA23B0, &lit_3824);
+COMPILER_STRIP_GATE(0x80BA23B0, &lit_3824);
 #pragma pop
 
 /* 80BA23B8-80BA23C0 000028 0008+00 0/1 0/0 0/0 .rodata          @3825 */
@@ -516,14 +523,14 @@ COMPILER_STRIP_GATE(80BA23B0, &lit_3824);
 SECTION_RODATA static u8 const lit_3825[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BA23B8, &lit_3825);
+COMPILER_STRIP_GATE(0x80BA23B8, &lit_3825);
 #pragma pop
 
 /* 80BA23C0-80BA23C4 000030 0004+00 0/1 0/0 0/0 .rodata          @3826 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3826 = 50.0f;
-COMPILER_STRIP_GATE(80BA23C0, &lit_3826);
+COMPILER_STRIP_GATE(0x80BA23C0, &lit_3826);
 #pragma pop
 
 /* 80BA1974-80BA1B4C 000594 01D8+00 1/1 0/0 0/0 .text            playerAreaCheck__14daAmiShutter_cFv
@@ -592,11 +599,11 @@ asm void daAmiShutter_c::eventStart() {
 /* ############################################################################################## */
 /* 80BA23C4-80BA23C8 000034 0004+00 3/6 0/0 0/0 .rodata          @3890 */
 SECTION_RODATA static f32 const lit_3890 = 1.0f;
-COMPILER_STRIP_GATE(80BA23C4, &lit_3890);
+COMPILER_STRIP_GATE(0x80BA23C4, &lit_3890);
 
 /* 80BA23C8-80BA23CC 000038 0004+00 3/3 0/0 0/0 .rodata          @3891 */
 SECTION_RODATA static f32 const lit_3891 = -1.0f;
-COMPILER_STRIP_GATE(80BA23C8, &lit_3891);
+COMPILER_STRIP_GATE(0x80BA23C8, &lit_3891);
 
 /* 80BA1CB4-80BA1D48 0008D4 0094+00 1/1 0/0 0/0 .text            init_modeClose__14daAmiShutter_cFv
  */
@@ -614,7 +621,7 @@ asm void daAmiShutter_c::init_modeClose() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3900 = 0.5f;
-COMPILER_STRIP_GATE(80BA23CC, &lit_3900);
+COMPILER_STRIP_GATE(0x80BA23CC, &lit_3900);
 #pragma pop
 
 /* 80BA1D48-80BA1DCC 000968 0084+00 1/0 0/0 0/0 .text            modeClose__14daAmiShutter_cFv */
@@ -642,7 +649,7 @@ asm void daAmiShutter_c::init_modeCloseEvent() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3919 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80BA23D0, &lit_3919);
+COMPILER_STRIP_GATE(0x80BA23D0, &lit_3919);
 #pragma pop
 
 /* 80BA1E60-80BA1EEC 000A80 008C+00 1/0 0/0 0/0 .text            modeCloseEvent__14daAmiShutter_cFv
@@ -775,7 +782,7 @@ asm void __sinit_d_a_obj_amiShutter_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80BA223C = (void*)__sinit_d_a_obj_amiShutter_cpp;
+REGISTER_CTORS(0x80BA223C, __sinit_d_a_obj_amiShutter_cpp);
 #pragma pop
 
 /* 80BA2278-80BA2280 000E98 0008+00 1/0 0/0 0/0 .text @1448@eventStart__14daAmiShutter_cFv */
@@ -834,9 +841,4 @@ asm daAmiShutter_c::~daAmiShutter_c() {
 }
 #pragma pop
 
-/* 80BA23D4-80BA23DB 000044 0007+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BA23D4 = "S_Zami";
-#pragma pop
+/* 80BA23D4-80BA23D4 000044 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

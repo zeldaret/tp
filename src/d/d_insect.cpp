@@ -36,7 +36,6 @@ struct dInsect_c {
 
 struct dEvt_control_c {
     /* 80042468 */ void reset();
-    /* 800436EC */ void setPtI_Id(unsigned int);
 };
 
 struct dEvent_manager_c {
@@ -108,6 +107,13 @@ asm dInsect_c::dInsect_c() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80393D98-80393D98 0203F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80393D98 = "DEFAULT_GETITEM";
+#pragma pop
+
 /* 8015E078-8015E26C 1589B8 01F4+00 0/0 0/0 24/24 .text            Insect_GetDemoMain__9dInsect_cFv
  */
 #pragma push
@@ -160,9 +166,4 @@ asm void dInsect_c::CalcZBuffer(f32 param_0) {
 }
 #pragma pop
 
-/* 80393D98-80393DA8 0203F8 0010+00 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80393D98 = "DEFAULT_GETITEM";
-#pragma pop
+/* 80393D98-80393D98 0203F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

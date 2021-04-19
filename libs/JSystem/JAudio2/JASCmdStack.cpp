@@ -122,7 +122,7 @@ asm void __sinit_JASCmdStack_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8029116C = (void*)__sinit_JASCmdStack_cpp;
+REGISTER_CTORS(0x8029116C, __sinit_JASCmdStack_cpp);
 #pragma pop
 
 /* 802911D0-80291228 28BB10 0058+00 1/1 0/0 0/0 .text            __dt__Q210JASPortCmd9TPortHeadFv */

@@ -103,20 +103,20 @@ SECTION_RODATA static u8 const lit_3713[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(805A2880, &lit_3713);
+COMPILER_STRIP_GATE(0x805A2880, &lit_3713);
 
 /* 805A2884-805A2888 000004 0004+00 0/1 0/0 0/0 .rodata          @3714 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3714 = 100.0f;
-COMPILER_STRIP_GATE(805A2884, &lit_3714);
+COMPILER_STRIP_GATE(0x805A2884, &lit_3714);
 #pragma pop
 
 /* 805A2888-805A288C 000008 0004+00 0/1 0/0 0/0 .rodata          @3715 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3715 = 10000.0f;
-COMPILER_STRIP_GATE(805A2888, &lit_3715);
+COMPILER_STRIP_GATE(0x805A2888, &lit_3715);
 #pragma pop
 
 /* 805A2744-805A2850 000164 010C+00 1/1 0/0 0/0 .text            execute__12daTagAJnot_cFv */

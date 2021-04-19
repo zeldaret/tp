@@ -79,27 +79,27 @@ static bool daKytag11_Draw(kytag11_class* param_0) {
 /* ############################################################################################## */
 /* 80529894-80529898 000000 0004+00 1/1 0/0 0/0 .rodata          @3874 */
 SECTION_RODATA static f32 const lit_3874 = 15.0f;
-COMPILER_STRIP_GATE(80529894, &lit_3874);
+COMPILER_STRIP_GATE(0x80529894, &lit_3874);
 
 /* 80529898-8052989C 000004 0004+00 0/1 0/0 0/0 .rodata          @3875 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3875 = 0.5f;
-COMPILER_STRIP_GATE(80529898, &lit_3875);
+COMPILER_STRIP_GATE(0x80529898, &lit_3875);
 #pragma pop
 
 /* 8052989C-805298A0 000008 0004+00 0/1 0/0 0/0 .rodata          @3876 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3876 = 255.0f;
-COMPILER_STRIP_GATE(8052989C, &lit_3876);
+COMPILER_STRIP_GATE(0x8052989C, &lit_3876);
 #pragma pop
 
 /* 805298A0-805298A4 00000C 0004+00 0/1 0/0 0/0 .rodata          @3877 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3877 = 360.0f;
-COMPILER_STRIP_GATE(805298A0, &lit_3877);
+COMPILER_STRIP_GATE(0x805298A0, &lit_3877);
 #pragma pop
 
 /* 805298A4-805298AC 000010 0004+04 0/1 0/0 0/0 .rodata          @3878 */
@@ -116,7 +116,7 @@ SECTION_RODATA static u8 const lit_3878[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(805298A4, &lit_3878);
+COMPILER_STRIP_GATE(0x805298A4, &lit_3878);
 #pragma pop
 
 /* 805298AC-805298B4 000018 0008+00 0/1 0/0 0/0 .rodata          @3880 */
@@ -125,7 +125,7 @@ COMPILER_STRIP_GATE(805298A4, &lit_3878);
 SECTION_RODATA static u8 const lit_3880[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(805298AC, &lit_3880);
+COMPILER_STRIP_GATE(0x805298AC, &lit_3880);
 #pragma pop
 
 /* 80529520-80529798 000080 0278+00 1/0 0/0 0/0 .text daKytag11_Execute__FP13kytag11_class */

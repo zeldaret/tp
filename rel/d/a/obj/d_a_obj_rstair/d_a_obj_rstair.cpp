@@ -138,9 +138,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -294,7 +294,7 @@ asm void daObjRotStair_c::setBaseMtx() {
 SECTION_RODATA static u8 const l_wtr_bmd[8] = {
     0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x07,
 };
-COMPILER_STRIP_GATE(80CC2700, &l_wtr_bmd);
+COMPILER_STRIP_GATE(0x80CC2700, &l_wtr_bmd);
 
 /* 80CC2708-80CC2710 000008 0008+00 0/1 0/0 0/0 .rodata          l_wtr_btk */
 #pragma push
@@ -302,14 +302,14 @@ COMPILER_STRIP_GATE(80CC2700, &l_wtr_bmd);
 SECTION_RODATA static u8 const l_wtr_btk[8] = {
     0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x0B,
 };
-COMPILER_STRIP_GATE(80CC2708, &l_wtr_btk);
+COMPILER_STRIP_GATE(0x80CC2708, &l_wtr_btk);
 #pragma pop
 
 /* 80CC2710-80CC2720 000010 0010+00 2/2 0/0 0/0 .rodata          l_target_angleY */
 SECTION_RODATA static u8 const l_target_angleY[16] = {
     0x7F, 0xFF, 0x40, 0x00, 0x00, 0x00, 0xC0, 0x00, 0x00, 0x00, 0xC0, 0x00, 0x7F, 0xFF, 0x40, 0x00,
 };
-COMPILER_STRIP_GATE(80CC2710, &l_target_angleY);
+COMPILER_STRIP_GATE(0x80CC2710, &l_target_angleY);
 
 /* 80CC16B0-80CC17F0 0001D0 0140+00 1/0 0/0 0/0 .text            Create__15daObjRotStair_cFv */
 #pragma push
@@ -326,7 +326,13 @@ asm void daObjRotStair_c::Create() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3770 = 1.0f;
-COMPILER_STRIP_GATE(80CC2720, &lit_3770);
+COMPILER_STRIP_GATE(0x80CC2720, &lit_3770);
+#pragma pop
+
+/* 80CC2730-80CC2730 000030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CC2730 = "K_spkai00";
 #pragma pop
 
 /* 80CC273C-80CC2748 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -558,14 +564,14 @@ SECTION_RODATA static u8 const lit_3911[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CC2724, &lit_3911);
+COMPILER_STRIP_GATE(0x80CC2724, &lit_3911);
 #pragma pop
 
 /* 80CC2728-80CC272C 000028 0004+00 0/1 0/0 0/0 .rodata          @3912 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3912 = -1.0f;
-COMPILER_STRIP_GATE(80CC2728, &lit_3912);
+COMPILER_STRIP_GATE(0x80CC2728, &lit_3912);
 #pragma pop
 
 /* 80CC1EC8-80CC2024 0009E8 015C+00 1/0 0/0 0/0 .text            modeRotate__15daObjRotStair_cFv */
@@ -671,7 +677,7 @@ asm void daObjRotStair_c::offWaterModel() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4107 = -1.0f / 100.0f;
-COMPILER_STRIP_GATE(80CC272C, &lit_4107);
+COMPILER_STRIP_GATE(0x80CC272C, &lit_4107);
 #pragma pop
 
 /* 80CC23C4-80CC25C0 000EE4 01FC+00 1/0 0/0 0/0 .text            Draw__15daObjRotStair_cFv */
@@ -753,9 +759,4 @@ static asm void daObjRotStair_MoveBGDraw(daObjRotStair_c* param_0) {
 }
 #pragma pop
 
-/* 80CC2730-80CC273A 000030 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CC2730 = "K_spkai00";
-#pragma pop
+/* 80CC2730-80CC2730 000030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -122,9 +122,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
@@ -408,55 +408,55 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80D2E770-80D2E774 000000 0004+00 16/16 0/0 0/0 .rodata          @3645 */
 SECTION_RODATA static f32 const lit_3645 = 1.0f;
-COMPILER_STRIP_GATE(80D2E770, &lit_3645);
+COMPILER_STRIP_GATE(0x80D2E770, &lit_3645);
 
 /* 80D2E774-80D2E778 000004 0004+00 0/1 0/0 0/0 .rodata          @3646 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3646 = 2000.0f;
-COMPILER_STRIP_GATE(80D2E774, &lit_3646);
+COMPILER_STRIP_GATE(0x80D2E774, &lit_3646);
 #pragma pop
 
 /* 80D2E778-80D2E77C 000008 0004+00 0/1 0/0 0/0 .rodata          @3647 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3647 = 5000.0f;
-COMPILER_STRIP_GATE(80D2E778, &lit_3647);
+COMPILER_STRIP_GATE(0x80D2E778, &lit_3647);
 #pragma pop
 
 /* 80D2E77C-80D2E780 00000C 0004+00 0/1 0/0 0/0 .rodata          @3648 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3648 = 1000.0f;
-COMPILER_STRIP_GATE(80D2E77C, &lit_3648);
+COMPILER_STRIP_GATE(0x80D2E77C, &lit_3648);
 #pragma pop
 
 /* 80D2E780-80D2E784 000010 0004+00 0/1 0/0 0/0 .rodata          @3649 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3649 = 20.0f;
-COMPILER_STRIP_GATE(80D2E780, &lit_3649);
+COMPILER_STRIP_GATE(0x80D2E780, &lit_3649);
 #pragma pop
 
 /* 80D2E784-80D2E788 000014 0004+00 0/1 0/0 0/0 .rodata          @3650 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3650 = 25.0f;
-COMPILER_STRIP_GATE(80D2E784, &lit_3650);
+COMPILER_STRIP_GATE(0x80D2E784, &lit_3650);
 #pragma pop
 
 /* 80D2E788-80D2E78C 000018 0004+00 0/1 0/0 0/0 .rodata          @3651 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3651 = 1.0f / 100.0f;
-COMPILER_STRIP_GATE(80D2E788, &lit_3651);
+COMPILER_STRIP_GATE(0x80D2E788, &lit_3651);
 #pragma pop
 
 /* 80D2E78C-80D2E790 00001C 0004+00 0/2 0/0 0/0 .rodata          @3652 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3652 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(80D2E78C, &lit_3652);
+COMPILER_STRIP_GATE(0x80D2E78C, &lit_3652);
 #pragma pop
 
 /* 80D2E84C-80D2E858 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -796,6 +796,13 @@ asm void daWtPillar_c::createHeapCallBack(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80D2E844-80D2E844 0000D4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D2E844 = "efWater";
+#pragma pop
+
 /* 80D2C858-80D2C960 000278 0108+00 1/1 0/0 0/0 .text            CreateHeap__12daWtPillar_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -813,7 +820,7 @@ SECTION_RODATA u8 const daWtPillar_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D2E790, &daWtPillar_c::mCcDObjInfo);
+COMPILER_STRIP_GATE(0x80D2E790, &daWtPillar_c::mCcDObjInfo);
 
 /* 80D2E7C0-80D2E7F0 000050 0030+00 1/1 0/0 0/0 .rodata          mCcDObjCoInfo__12daWtPillar_c */
 SECTION_RODATA u8 const daWtPillar_c::mCcDObjCoInfo[48] = {
@@ -821,34 +828,34 @@ SECTION_RODATA u8 const daWtPillar_c::mCcDObjCoInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x01, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D2E7C0, &daWtPillar_c::mCcDObjCoInfo);
+COMPILER_STRIP_GATE(0x80D2E7C0, &daWtPillar_c::mCcDObjCoInfo);
 
 /* 80D2E7F0-80D2E7F4 000080 0004+00 0/2 0/0 0/0 .rodata          @3742 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3742 = 150.0f;
-COMPILER_STRIP_GATE(80D2E7F0, &lit_3742);
+COMPILER_STRIP_GATE(0x80D2E7F0, &lit_3742);
 #pragma pop
 
 /* 80D2E7F4-80D2E7F8 000084 0004+00 0/3 0/0 0/0 .rodata          @3743 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3743 = 5.0f;
-COMPILER_STRIP_GATE(80D2E7F4, &lit_3743);
+COMPILER_STRIP_GATE(0x80D2E7F4, &lit_3743);
 #pragma pop
 
 /* 80D2E7F8-80D2E7FC 000088 0004+00 0/1 0/0 0/0 .rodata          @3744 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3744 = 10000.0f;
-COMPILER_STRIP_GATE(80D2E7F8, &lit_3744);
+COMPILER_STRIP_GATE(0x80D2E7F8, &lit_3744);
 #pragma pop
 
 /* 80D2E7FC-80D2E800 00008C 0004+00 0/4 0/0 0/0 .rodata          @3745 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3745 = 100.0f;
-COMPILER_STRIP_GATE(80D2E7FC, &lit_3745);
+COMPILER_STRIP_GATE(0x80D2E7FC, &lit_3745);
 #pragma pop
 
 /* 80D2E800-80D2E808 000090 0004+04 2/11 0/0 0/0 .rodata          @3746 */
@@ -863,7 +870,7 @@ SECTION_RODATA static u8 const lit_3746[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D2E800, &lit_3746);
+COMPILER_STRIP_GATE(0x80D2E800, &lit_3746);
 
 /* 80D2E808-80D2E810 000098 0008+00 0/4 0/0 0/0 .rodata          @3748 */
 #pragma push
@@ -871,7 +878,7 @@ COMPILER_STRIP_GATE(80D2E800, &lit_3746);
 SECTION_RODATA static u8 const lit_3748[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D2E808, &lit_3748);
+COMPILER_STRIP_GATE(0x80D2E808, &lit_3748);
 #pragma pop
 
 /* 80D2C960-80D2CC0C 000380 02AC+00 1/1 0/0 0/0 .text            create__12daWtPillar_cFv */
@@ -889,14 +896,14 @@ asm void daWtPillar_c::create() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3947 = 140.0f;
-COMPILER_STRIP_GATE(80D2E810, &lit_3947);
+COMPILER_STRIP_GATE(0x80D2E810, &lit_3947);
 #pragma pop
 
 /* 80D2E814-80D2E818 0000A4 0004+00 0/1 0/0 0/0 .rodata          @3948 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3948 = 0x43360B61;
-COMPILER_STRIP_GATE(80D2E814, &lit_3948);
+COMPILER_STRIP_GATE(0x80D2E814, &lit_3948);
 #pragma pop
 
 /* 80D2EB30-80D2EB3C 000008 000C+00 1/1 0/0 0/0 .bss             @3635 */
@@ -944,7 +951,7 @@ asm void daWtPillar_c::effectSet() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4088 = 500.0f;
-COMPILER_STRIP_GATE(80D2E818, &lit_4088);
+COMPILER_STRIP_GATE(0x80D2E818, &lit_4088);
 #pragma pop
 
 /* 80D2D278-80D2D3FC 000C98 0184+00 1/1 0/0 0/0 .text            effectSet2__12daWtPillar_cFv */
@@ -993,19 +1000,19 @@ asm void daWtPillar_c::eventStart() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4124 = 30.0f;
-COMPILER_STRIP_GATE(80D2E81C, &lit_4124);
+COMPILER_STRIP_GATE(0x80D2E81C, &lit_4124);
 #pragma pop
 
 /* 80D2E820-80D2E824 0000B0 0004+00 0/1 0/0 0/0 .rodata          @4125 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4125 = 0.5f;
-COMPILER_STRIP_GATE(80D2E820, &lit_4125);
+COMPILER_STRIP_GATE(0x80D2E820, &lit_4125);
 #pragma pop
 
 /* 80D2E824-80D2E828 0000B4 0004+00 3/8 0/0 0/0 .rodata          @4126 */
 SECTION_RODATA static f32 const lit_4126 = -1.0f;
-COMPILER_STRIP_GATE(80D2E824, &lit_4126);
+COMPILER_STRIP_GATE(0x80D2E824, &lit_4126);
 
 /* 80D2D4AC-80D2D588 000ECC 00DC+00 1/1 0/0 0/0 .text            actionWaitInit__12daWtPillar_cFv */
 #pragma push
@@ -1032,14 +1039,14 @@ asm void daWtPillar_c::actionWait() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4151 = 50.0f;
-COMPILER_STRIP_GATE(80D2E828, &lit_4151);
+COMPILER_STRIP_GATE(0x80D2E828, &lit_4151);
 #pragma pop
 
 /* 80D2E82C-80D2E830 0000BC 0004+00 0/1 0/0 0/0 .rodata          @4152 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4152 = 300.0f;
-COMPILER_STRIP_GATE(80D2E82C, &lit_4152);
+COMPILER_STRIP_GATE(0x80D2E82C, &lit_4152);
 #pragma pop
 
 /* 80D2D5C0-80D2D6C4 000FE0 0104+00 3/3 0/0 0/0 .text            actionUpFirstInit__12daWtPillar_cFv
@@ -1058,7 +1065,7 @@ asm void daWtPillar_c::actionUpFirstInit() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4161 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80D2E830, &lit_4161);
+COMPILER_STRIP_GATE(0x80D2E830, &lit_4161);
 #pragma pop
 
 /* 80D2D6C4-80D2D73C 0010E4 0078+00 1/0 0/0 0/0 .text            actionUpFirst__12daWtPillar_cFv */
@@ -1097,7 +1104,7 @@ asm void daWtPillar_c::actionUpFirstWait() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4182 = -250.0f;
-COMPILER_STRIP_GATE(80D2E834, &lit_4182);
+COMPILER_STRIP_GATE(0x80D2E834, &lit_4182);
 #pragma pop
 
 /* 80D2D7B8-80D2D850 0011D8 0098+00 1/1 0/0 0/0 .text            actionUpInit__12daWtPillar_cFv */
@@ -1197,21 +1204,21 @@ asm void daWtPillar_c::actionRockOnInit() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4271 = 250.0f;
-COMPILER_STRIP_GATE(80D2E838, &lit_4271);
+COMPILER_STRIP_GATE(0x80D2E838, &lit_4271);
 #pragma pop
 
 /* 80D2E83C-80D2E840 0000CC 0004+00 0/1 0/0 0/0 .rodata          @4272 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4272 = 3.0f / 5.0f;
-COMPILER_STRIP_GATE(80D2E83C, &lit_4272);
+COMPILER_STRIP_GATE(0x80D2E83C, &lit_4272);
 #pragma pop
 
 /* 80D2E840-80D2E844 0000D0 0004+00 0/1 0/0 0/0 .rodata          @4273 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4273 = 10.0f;
-COMPILER_STRIP_GATE(80D2E840, &lit_4273);
+COMPILER_STRIP_GATE(0x80D2E840, &lit_4273);
 #pragma pop
 
 /* 80D2DC2C-80D2DD0C 00164C 00E0+00 1/0 0/0 0/0 .text            actionRockOn__12daWtPillar_cFv */
@@ -1340,7 +1347,7 @@ asm void __sinit_d_a_obj_waterPillar_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80D2DF90 = (void*)__sinit_d_a_obj_waterPillar_cpp;
+REGISTER_CTORS(0x80D2DF90, __sinit_d_a_obj_waterPillar_cpp);
 #pragma pop
 
 /* 80D2E034-80D2E03C 001A54 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
@@ -1500,9 +1507,4 @@ bool dEvLib_callback_c::eventStart() {
     return true;
 }
 
-/* 80D2E844-80D2E84C 0000D4 0008+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D2E844 = "efWater";
-#pragma pop
+/* 80D2E844-80D2E844 0000D4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

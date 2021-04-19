@@ -211,6 +211,12 @@ static asm void daObjTable_Delete(daObjTable_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80D06C0C-80D06C0C 000008 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D06C0C = "Table";
+#pragma pop
+
 /* 80D06C1C-80D06C20 -00001 0004+00 4/4 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_table__stringBase0;
 
@@ -274,7 +280,7 @@ asm void daObjTable_c::CreateHeap() {
 /* ############################################################################################## */
 /* 80D06C04-80D06C08 000000 0004+00 2/2 0/0 0/0 .rodata          @4017 */
 SECTION_RODATA static f32 const lit_4017 = 100.0f;
-COMPILER_STRIP_GATE(80D06C04, &lit_4017);
+COMPILER_STRIP_GATE(0x80D06C04, &lit_4017);
 
 /* 80D065D0-80D0695C 000210 038C+00 1/0 0/0 0/0 .text            Create__12daObjTable_cFv */
 #pragma push
@@ -284,6 +290,13 @@ asm void daObjTable_c::Create() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_table/d_a_obj_table/Create__12daObjTable_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80D06C0C-80D06C0C 000008 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D06C12 = "TABLE_MAP";
 #pragma pop
 
 /* 80D0695C-80D06AD8 00059C 017C+00 1/0 0/0 0/0 .text            Execute__12daObjTable_cFPPA3_A4_f
@@ -300,7 +313,7 @@ asm void daObjTable_c::Execute(f32 (**param_0)[3][4]) {
 /* ############################################################################################## */
 /* 80D06C08-80D06C0C 000004 0004+00 1/1 0/0 0/0 .rodata          @4077 */
 SECTION_RODATA static f32 const lit_4077 = 500.0f;
-COMPILER_STRIP_GATE(80D06C08, &lit_4077);
+COMPILER_STRIP_GATE(0x80D06C08, &lit_4077);
 
 /* 80D06AD8-80D06BC8 000718 00F0+00 1/0 0/0 0/0 .text            Draw__12daObjTable_cFv */
 #pragma push
@@ -322,10 +335,4 @@ asm void daObjTable_c::Delete() {
 }
 #pragma pop
 
-/* 80D06C0C-80D06C1C 000008 0010+00 2/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D06C0C = "Table";
-SECTION_DEAD static char const* const stringBase_80D06C12 = "TABLE_MAP";
-#pragma pop
+/* 80D06C0C-80D06C0C 000008 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

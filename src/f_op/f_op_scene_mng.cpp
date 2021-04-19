@@ -4,11 +4,11 @@
 //
 
 #include "f_op/f_op_scene_mng.h"
+#include "dol2asm.h"
+#include "dolphin/types.h"
 #include "f_op/f_op_scene_iter.h"
 #include "f_op/f_op_scene_req.h"
 #include "f_pc/f_pc_searcher.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Declarations:

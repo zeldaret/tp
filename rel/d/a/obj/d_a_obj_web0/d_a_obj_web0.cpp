@@ -67,9 +67,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -139,9 +139,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -341,20 +341,20 @@ static asm void daObj_Web0_Draw(obj_web0_class* param_0) {
 /* ############################################################################################## */
 /* 80D3517C-80D35180 000000 0004+00 3/3 0/0 0/0 .rodata          @3724 */
 SECTION_RODATA static f32 const lit_3724 = 1.0f;
-COMPILER_STRIP_GATE(80D3517C, &lit_3724);
+COMPILER_STRIP_GATE(0x80D3517C, &lit_3724);
 
 /* 80D35180-80D35184 000004 0004+00 0/2 0/0 0/0 .rodata          @3725 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3725 = -1.0f;
-COMPILER_STRIP_GATE(80D35180, &lit_3725);
+COMPILER_STRIP_GATE(0x80D35180, &lit_3725);
 #pragma pop
 
 /* 80D35184-80D35188 000008 0004+00 0/1 0/0 0/0 .rodata          @3726 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3726 = 260.0f;
-COMPILER_STRIP_GATE(80D35184, &lit_3726);
+COMPILER_STRIP_GATE(0x80D35184, &lit_3726);
 #pragma pop
 
 /* 80D345C0-80D34794 000180 01D4+00 1/1 0/0 0/0 .text            damage_check__FP14obj_web0_class */
@@ -372,21 +372,21 @@ static asm void damage_check(obj_web0_class* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3850 = 3.0f / 40.0f;
-COMPILER_STRIP_GATE(80D35188, &lit_3850);
+COMPILER_STRIP_GATE(0x80D35188, &lit_3850);
 #pragma pop
 
 /* 80D3518C-80D35190 000010 0004+00 0/1 0/0 0/0 .rodata          @3851 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3851 = 70.0f;
-COMPILER_STRIP_GATE(80D3518C, &lit_3851);
+COMPILER_STRIP_GATE(0x80D3518C, &lit_3851);
 #pragma pop
 
 /* 80D35190-80D35194 000014 0004+00 0/1 0/0 0/0 .rodata          @3852 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3852 = 20000.0f;
-COMPILER_STRIP_GATE(80D35190, &lit_3852);
+COMPILER_STRIP_GATE(0x80D35190, &lit_3852);
 #pragma pop
 
 /* 80D35194-80D3519C 000018 0004+04 0/1 0/0 0/0 .rodata          @3853 */
@@ -397,7 +397,7 @@ SECTION_RODATA static f32 const lit_3853[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80D35194, &lit_3853);
+COMPILER_STRIP_GATE(0x80D35194, &lit_3853);
 #pragma pop
 
 /* 80D3519C-80D351A4 000020 0008+00 0/1 0/0 0/0 .rodata          @3855 */
@@ -406,7 +406,7 @@ COMPILER_STRIP_GATE(80D35194, &lit_3853);
 SECTION_RODATA static u8 const lit_3855[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D3519C, &lit_3855);
+COMPILER_STRIP_GATE(0x80D3519C, &lit_3855);
 #pragma pop
 
 /* 80D34794-80D34B24 000354 0390+00 2/1 0/0 0/0 .text daObj_Web0_Execute__FP14obj_web0_class */
@@ -425,6 +425,12 @@ static bool daObj_Web0_IsDelete(obj_web0_class* param_0) {
 }
 
 /* ############################################################################################## */
+/* 80D351BC-80D351BC 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D351BC = "Obj_web0";
+#pragma pop
+
 /* 80D35290-80D35294 000008 0004+00 2/2 0/0 0/0 .bss             None */
 static u8 data_80D35290[4];
 
@@ -446,7 +452,7 @@ SECTION_RODATA static u8 const lit_3917[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D351A4, &lit_3917);
+COMPILER_STRIP_GATE(0x80D351A4, &lit_3917);
 
 /* 80D34B94-80D34D44 000754 01B0+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 #pragma push
@@ -471,7 +477,7 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 /* ############################################################################################## */
 /* 80D351A8-80D351AC 00002C 0004+00 1/1 0/0 0/0 .rodata          @4014 */
 SECTION_RODATA static f32 const lit_4014 = -1000.0f;
-COMPILER_STRIP_GATE(80D351A8, &lit_4014);
+COMPILER_STRIP_GATE(0x80D351A8, &lit_4014);
 
 /* 80D351AC-80D351B4 000030 0004+04 1/1 0/0 0/0 .rodata          @4015 */
 SECTION_RODATA static f32 const lit_4015[1 + 1 /* padding */] = {
@@ -479,13 +485,13 @@ SECTION_RODATA static f32 const lit_4015[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80D351AC, &lit_4015);
+COMPILER_STRIP_GATE(0x80D351AC, &lit_4015);
 
 /* 80D351B4-80D351BC 000038 0008+00 1/1 0/0 0/0 .rodata          @4017 */
 SECTION_RODATA static u8 const lit_4017[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D351B4, &lit_4017);
+COMPILER_STRIP_GATE(0x80D351B4, &lit_4017);
 
 /* 80D35294-80D352A0 00000C 000C+00 1/1 0/0 0/0 .bss             @3643 */
 static u8 lit_3643[12];
@@ -546,12 +552,7 @@ asm void __sinit_d_a_obj_web0_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80D3512C = (void*)__sinit_d_a_obj_web0_cpp;
+REGISTER_CTORS(0x80D3512C, __sinit_d_a_obj_web0_cpp);
 #pragma pop
 
-/* 80D351BC-80D351C5 000040 0009+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D351BC = "Obj_web0";
-#pragma pop
+/* 80D351BC-80D351BC 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

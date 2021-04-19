@@ -16,10 +16,10 @@ template <typename A1>
 struct __bitset_base {};
 /* __bitset_base<8> */
 struct __bitset_base__template0 {
-    /* 802A65D4 */ void func_802A65D4(u32, bool);
-    /* 802A6614 */ void func_802A6614(u32);
-    /* 802A6634 */ void func_802A6634(u32) /* const */;
-    /* 802A665C */ void func_802A665C();
+    /* 802A65D4 */ void func_802A65D4(void* _this, u32, bool);
+    /* 802A6614 */ void func_802A6614(void* _this, u32);
+    /* 802A6634 */ void func_802A6634(void* _this, u32) /* const */;
+    /* 802A665C */ void func_802A665C(void* _this);
 };
 
 };  // namespace std
@@ -84,11 +84,11 @@ struct JAUSeqCollection {
     /* 802A66AC */ void init(void const*);
 };
 
-struct JAISoundID {};
-
 struct JAISeqDataUser {};
 
 struct JAISeqData {};
+
+struct JAISoundID {};
 
 struct JAUSectionHeap {
     struct TSectionHeapData {
@@ -136,7 +136,6 @@ struct JAUSection {
 
 struct JAUDynamicSeqDataBlocks {
     /* 802A6A58 */ JAUDynamicSeqDataBlocks();
-    /* 802A6AA0 */ void setSeqDataArchive(JKRArchive*);
     /* 802A6AA8 */ void getSeqData(JAISoundID, JAISeqDataUser*, JAISeqData*, bool);
     /* 802A6B8C */ void appendDynamicSeqDataBlock(JAUSeqDataBlock*);
     /* 802A6C18 */ void loadDynamicSeq(JAISoundID, bool, JAISeqDataUser*);
@@ -217,10 +216,10 @@ extern "C" void __dt__14JAUSectionHeapFv();
 extern "C" static void func_802A6440();
 extern "C" void __dt__10JAUSectionFv();
 extern "C" void func_802A6574();
-extern "C" void func_802A65D4(u32, bool);
-extern "C" void func_802A6614(u32);
-extern "C" void func_802A6634(u32);
-extern "C" void func_802A665C();
+extern "C" void func_802A65D4(void* _this, u32, bool);
+extern "C" void func_802A6614(void* _this, u32);
+extern "C" void func_802A6634(void* _this, u32);
+extern "C" void func_802A665C(void* _this);
 extern "C" static void func_802A6680();
 extern "C" static void func_802A6688();
 extern "C" static void func_802A6690();
@@ -311,6 +310,13 @@ asm JAUSection::TSectionData::TSectionData() {
     nofralloc
 #include "asm/JSystem/JAudio2/JAUSectionHeap/__ct__Q210JAUSection12TSectionDataFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8039B950-8039B950 027FB0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039B950 = "index out of range of bitset::reset";
 #pragma pop
 
 /* 802A4F68-802A4FE4 29F8A8 007C+00 1/1 0/0 0/0 .text
@@ -500,6 +506,16 @@ asm void JAUSection::newCopy(void const* param_0, u32 param_1, s32 param_2) {
     nofralloc
 #include "asm/JSystem/JAudio2/JAUSectionHeap/newCopy__10JAUSectionFPCvUll.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8039B950-8039B950 027FB0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039B974 = "index out of range of bitset::test";
+SECTION_DEAD static char const* const stringBase_8039B997 = "index out of range of bitset::set";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039B9B9 = "\0\0\0\0\0\0";
 #pragma pop
 
 /* 802A5854-802A5948 2A0194 00F4+00 0/0 1/1 0/0 .text            newWaveBank__10JAUSectionFUlPCv */
@@ -732,7 +748,7 @@ asm void func_802A6574() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802A65D4(u32 param_0, bool param_1) {
+extern "C" asm void func_802A65D4(void* _this, u32 param_0, bool param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JAUSectionHeap/func_802A65D4.s"
 }
@@ -743,7 +759,7 @@ extern "C" asm void func_802A65D4(u32 param_0, bool param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802A6614(u32 param_0) {
+extern "C" asm void func_802A6614(void* _this, u32 param_0) {
     nofralloc
 #include "asm/JSystem/JAudio2/JAUSectionHeap/func_802A6614.s"
 }
@@ -754,7 +770,7 @@ extern "C" asm void func_802A6614(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802A6634(u32 param_0) /* const */ {
+extern "C" asm void func_802A6634(void* _this, u32 param_0) /* const */ {
     nofralloc
 #include "asm/JSystem/JAudio2/JAUSectionHeap/func_802A6634.s"
 }
@@ -778,7 +794,7 @@ SECTION_SDATA static u8 lit_2588[4 + 4 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802A665C() {
+extern "C" asm void func_802A665C(void* _this) {
     nofralloc
 #include "asm/JSystem/JAudio2/JAUSectionHeap/func_802A665C.s"
 }
@@ -826,13 +842,4 @@ static asm void func_802A6698() {
 }
 #pragma pop
 
-/* 8039B950-8039B9C0 027FB0 0069+07 6/6 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039B950 = "index out of range of bitset::reset";
-SECTION_DEAD static char const* const stringBase_8039B974 = "index out of range of bitset::test";
-SECTION_DEAD static char const* const stringBase_8039B997 = "index out of range of bitset::set";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039B9B9 = "\0\0\0\0\0\0";
-#pragma pop
+/* 8039B950-8039B950 027FB0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

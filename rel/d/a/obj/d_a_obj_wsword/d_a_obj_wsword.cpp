@@ -201,6 +201,14 @@ asm void daObjWSword_c::setBaseMtx() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80D3BF20-80D3BF20 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D3BF20 = "Obj_brksw";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80D3BF2A = "\0";
+#pragma pop
+
 /* 80D3BF2C-80D3BF30 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_wsword__stringBase0;
 
@@ -415,11 +423,4 @@ static asm void func_80D3BF10() {
 }
 #pragma pop
 
-/* 80D3BF20-80D3BF2C 000000 000A+02 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D3BF20 = "Obj_brksw";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80D3BF2A = "\0";
-#pragma pop
+/* 80D3BF20-80D3BF20 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

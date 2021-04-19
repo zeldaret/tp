@@ -290,8 +290,8 @@ extern "C" void executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter();
 extern "C" void draw__18JPAEmitterCallBackFP14JPABaseEmitter();
 extern "C" void drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter();
 extern "C" bool eventStart__17dEvLib_callback_cFv();
-extern "C" void func_80D23D6C(u8*);
-extern "C" void func_80D23D88(u32*);
+extern "C" void func_80D23D6C(void* _this, u8*);
+extern "C" void func_80D23D88(void* _this, u32*);
 extern "C" static void func_80D23DA4();
 extern "C" static void func_80D23DAC();
 extern "C" static void func_80D23DB4();
@@ -403,6 +403,12 @@ extern "C" extern u8 data_80D24100[4];
 //
 
 /* ############################################################################################## */
+/* 80D23E80-80D23E80 0000B4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D23E80 = "M_Volcbal";
+#pragma pop
+
 /* 80D23E8C-80D23E98 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -497,17 +503,17 @@ SECTION_RODATA static u8 const l_sph_src[64] = {
     0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D23DCC, &l_sph_src);
+COMPILER_STRIP_GATE(0x80D23DCC, &l_sph_src);
 
 /* 80D23E0C-80D23E10 000040 0004+00 2/6 0/0 0/0 .rodata          @3715 */
 SECTION_RODATA static f32 const lit_3715 = 30.0f;
-COMPILER_STRIP_GATE(80D23E0C, &lit_3715);
+COMPILER_STRIP_GATE(0x80D23E0C, &lit_3715);
 
 /* 80D23E10-80D23E14 000044 0004+00 0/1 0/0 0/0 .rodata          @3716 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3716 = -1000.0f;
-COMPILER_STRIP_GATE(80D23E10, &lit_3716);
+COMPILER_STRIP_GATE(0x80D23E10, &lit_3716);
 #pragma pop
 
 /* 80D23E14-80D23E18 000048 0004+00 4/8 0/0 0/0 .rodata          @3717 */
@@ -517,13 +523,13 @@ SECTION_RODATA static u8 const lit_3717[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D23E14, &lit_3717);
+COMPILER_STRIP_GATE(0x80D23E14, &lit_3717);
 
 /* 80D23E18-80D23E1C 00004C 0004+00 0/1 0/0 0/0 .rodata          @3718 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3718 = 1000.0f;
-COMPILER_STRIP_GATE(80D23E18, &lit_3718);
+COMPILER_STRIP_GATE(0x80D23E18, &lit_3718);
 #pragma pop
 
 /* 80D21C40-80D21D80 0001A0 0140+00 1/1 0/0 0/0 .text            Create__15daObjVolcBall_cFv */
@@ -889,14 +895,14 @@ asm void daObjVolcBall_c::initActionSwWait() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3969 = 2500.0f;
-COMPILER_STRIP_GATE(80D23E1C, &lit_3969);
+COMPILER_STRIP_GATE(0x80D23E1C, &lit_3969);
 #pragma pop
 
 /* 80D23E20-80D23E24 000054 0004+00 0/1 0/0 0/0 .rodata          @3970 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3970 = 300.0f;
-COMPILER_STRIP_GATE(80D23E20, &lit_3970);
+COMPILER_STRIP_GATE(0x80D23E20, &lit_3970);
 #pragma pop
 
 /* 80D225B0-80D2267C 000B10 00CC+00 1/0 0/0 0/0 .text actionPlayerWait__15daObjVolcBall_cFv */
@@ -933,13 +939,13 @@ asm void daObjVolcBall_c::actionStop() {
 /* ############################################################################################## */
 /* 80D23E24-80D23E28 000058 0004+00 2/7 0/0 0/0 .rodata          @4031 */
 SECTION_RODATA static f32 const lit_4031 = 1.0f;
-COMPILER_STRIP_GATE(80D23E24, &lit_4031);
+COMPILER_STRIP_GATE(0x80D23E24, &lit_4031);
 
 /* 80D23E28-80D23E2C 00005C 0004+00 0/3 0/0 0/0 .rodata          @4032 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4032 = -1.0f;
-COMPILER_STRIP_GATE(80D23E28, &lit_4032);
+COMPILER_STRIP_GATE(0x80D23E28, &lit_4032);
 #pragma pop
 
 /* 80D227E4-80D22944 000D44 0160+00 1/0 0/0 0/0 .text            actionWarning__15daObjVolcBall_cFv
@@ -962,7 +968,7 @@ SECTION_RODATA static f32 const lit_4095[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80D23E2C, &lit_4095);
+COMPILER_STRIP_GATE(0x80D23E2C, &lit_4095);
 #pragma pop
 
 /* 80D23E34-80D23E3C 000068 0008+00 0/1 0/0 0/0 .rodata          @4097 */
@@ -971,7 +977,7 @@ COMPILER_STRIP_GATE(80D23E2C, &lit_4095);
 SECTION_RODATA static u8 const lit_4097[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D23E34, &lit_4097);
+COMPILER_STRIP_GATE(0x80D23E34, &lit_4097);
 #pragma pop
 
 /* 80D22944-80D22C6C 000EA4 0328+00 1/0 0/0 0/0 .text            actionEruption__15daObjVolcBall_cFv
@@ -1021,7 +1027,7 @@ asm void daObjVolcBall_c::eventStart() {
 SECTION_RODATA static u8 const l_effect_id[12] = {
     0x84, 0xA8, 0x84, 0xA9, 0x84, 0xAA, 0x84, 0xAB, 0x84, 0xAC, 0x84, 0xAD,
 };
-COMPILER_STRIP_GATE(80D23E3C, &l_effect_id);
+COMPILER_STRIP_GATE(0x80D23E3C, &l_effect_id);
 
 /* 80D22E24-80D22ED4 001384 00B0+00 1/1 0/0 0/0 .text            setEruptEffect__15daObjVolcBall_cFi
  */
@@ -1039,7 +1045,7 @@ asm void daObjVolcBall_c::setEruptEffect(int param_0) {
 SECTION_RODATA static u8 const l_fall_effect_id[8] = {
     0x84, 0xAE, 0x84, 0xAF, 0x84, 0xB0, 0x84, 0xB1,
 };
-COMPILER_STRIP_GATE(80D23E48, &l_fall_effect_id);
+COMPILER_STRIP_GATE(0x80D23E48, &l_fall_effect_id);
 
 /* 80D22ED4-80D22FCC 001434 00F8+00 2/2 0/0 0/0 .text            setFallEffect__15daObjVolcBall_cFi
  */
@@ -1078,14 +1084,14 @@ asm void daObjVolcBall_c::createSearchBall() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4279 = 32767.0f;
-COMPILER_STRIP_GATE(80D23E50, &lit_4279);
+COMPILER_STRIP_GATE(0x80D23E50, &lit_4279);
 #pragma pop
 
 /* 80D23E54-80D23E58 000088 0004+00 0/1 0/0 0/0 .rodata          @4280 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4280 = 3000.0f;
-COMPILER_STRIP_GATE(80D23E54, &lit_4280);
+COMPILER_STRIP_GATE(0x80D23E54, &lit_4280);
 #pragma pop
 
 /* 80D23188-80D23438 0016E8 02B0+00 1/1 0/0 0/0 .text createNormalBall__15daObjVolcBall_cFv */
@@ -1103,7 +1109,7 @@ asm void daObjVolcBall_c::createNormalBall() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4407 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80D23E58, &lit_4407);
+COMPILER_STRIP_GATE(0x80D23E58, &lit_4407);
 #pragma pop
 
 /* 80D23E5C-80D23E64 000090 0004+04 0/1 0/0 0/0 .rodata          @4408 */
@@ -1114,7 +1120,7 @@ SECTION_RODATA static f32 const lit_4408[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80D23E5C, &lit_4408);
+COMPILER_STRIP_GATE(0x80D23E5C, &lit_4408);
 #pragma pop
 
 /* 80D23E64-80D23E6C 000098 0008+00 0/1 0/0 0/0 .rodata          @4409 */
@@ -1123,7 +1129,7 @@ COMPILER_STRIP_GATE(80D23E5C, &lit_4408);
 SECTION_RODATA static u8 const lit_4409[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D23E64, &lit_4409);
+COMPILER_STRIP_GATE(0x80D23E64, &lit_4409);
 #pragma pop
 
 /* 80D23E6C-80D23E74 0000A0 0008+00 0/1 0/0 0/0 .rodata          @4410 */
@@ -1132,7 +1138,7 @@ COMPILER_STRIP_GATE(80D23E64, &lit_4409);
 SECTION_RODATA static u8 const lit_4410[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D23E6C, &lit_4410);
+COMPILER_STRIP_GATE(0x80D23E6C, &lit_4410);
 #pragma pop
 
 /* 80D23E74-80D23E7C 0000A8 0008+00 0/1 0/0 0/0 .rodata          @4411 */
@@ -1141,7 +1147,7 @@ COMPILER_STRIP_GATE(80D23E6C, &lit_4410);
 SECTION_RODATA static u8 const lit_4411[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D23E74, &lit_4411);
+COMPILER_STRIP_GATE(0x80D23E74, &lit_4411);
 #pragma pop
 
 /* 80D23438-80D23868 001998 0430+00 1/1 0/0 0/0 .text            executeBall__15daObjVolcBall_cFv */
@@ -1169,7 +1175,7 @@ asm void daObjVolcBall_c::startQuake() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4447 = 2000.0f;
-COMPILER_STRIP_GATE(80D23E7C, &lit_4447);
+COMPILER_STRIP_GATE(0x80D23E7C, &lit_4447);
 #pragma pop
 
 /* 80D23904-80D23A0C 001E64 0108+00 1/1 0/0 0/0 .text            draw__15daObjVolcBall_cFv */
@@ -1317,7 +1323,7 @@ bool dEvLib_callback_c::eventStart() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80D23D6C(u8* param_0) {
+extern "C" asm void func_80D23D6C(void* _this, u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_volcball/d_a_obj_volcball/func_80D23D6C.s"
 }
@@ -1327,7 +1333,7 @@ extern "C" asm void func_80D23D6C(u8* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80D23D88(u32* param_0) {
+extern "C" asm void func_80D23D88(void* _this, u32* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_volcball/d_a_obj_volcball/func_80D23D88.s"
 }
@@ -1373,9 +1379,4 @@ static asm void func_80D23DBC() {
 }
 #pragma pop
 
-/* 80D23E80-80D23E8A 0000B4 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D23E80 = "M_Volcbal";
-#pragma pop
+/* 80D23E80-80D23E80 0000B4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

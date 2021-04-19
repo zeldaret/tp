@@ -35,7 +35,7 @@ public:
     /* 80018C8C */ ~fopAc_ac_c();
 
     static u8 stopStatus[4];
-    
+
     const cXyz& getPosition() const { return mPosition; }
     const csXyz& getAngle() const { return mAngle; }
 };  // Size: unknown

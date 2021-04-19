@@ -4,11 +4,11 @@
 //
 
 #include "SSystem/SComponent/c_bg_s_shdw_draw.h"
+#include "SSystem/SComponent/c_m3d_g_aab.h"
+#include "SSystem/SComponent/c_m3d_g_pla.h"
+#include "SSystem/SComponent/c_xyz.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "SSystem/SComponent/c_xyz.h"
-#include "SSystem/SComponent/c_m3d_g_pla.h"
-#include "SSystem/SComponent/c_m3d_g_aab.h"
 
 //
 // Forward References:
@@ -74,14 +74,9 @@ asm void cBgS_ShdwDraw::Set(cXyz& param_0, cXyz& param_1) {
 }
 #pragma pop
 
-/* 8026806C-80268074 2629AC 0008+00 0/0 1/1 0/0 .text
+/* 8026806C-80268074 -00001 0008+00 0/0 0/0 0/0 .text
  * SetCallback__13cBgS_ShdwDrawFPFP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP8cM3dGPla_i */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgS_ShdwDraw::SetCallback(int (*)(cBgS_ShdwDraw*, cBgD_Vtx_t*, int, int, int,
-                                            cM3dGPla*)) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_s_shdw_draw/SetCallback__13cBgS_ShdwDrawFPFP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP8cM3dGPla_i.s"
+void cBgS_ShdwDraw::SetCallback(int (*param_0)(cBgS_ShdwDraw*, cBgD_Vtx_t*, int, int, int,
+                                               cM3dGPla*)) {
+    *(u32*)(((u8*)this) + 48) /* this->field_0x30 */ = (u32)(param_0);
 }
-#pragma pop

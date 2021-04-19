@@ -50,13 +50,13 @@ struct mDoExt_invisibleModel {
     /* 8000E7C0 */ void entryDL(cXyz*);
 };
 
-struct J3DAnmColor {};
+struct J3DAnmTextureSRTKey {};
 
 struct J3DAnmTexPattern {};
 
 struct J3DAnmTevRegKey {};
 
-struct J3DAnmTextureSRTKey {};
+struct J3DAnmColor {};
 
 struct J3DMaterialTable {
     /* 8032F64C */ void removeMatColorAnimator(J3DAnmColor*);
@@ -133,6 +133,14 @@ struct daPy_py_c {
     /* 8015F3FC */ void getAttentionOffsetY();
 };
 
+struct dCcD_GObjInf {
+    /* 80083A28 */ dCcD_GObjInf();
+    /* 800840E4 */ ~dCcD_GObjInf();
+    /* 800842C0 */ void ChkAtHit();
+    /* 80084460 */ void ChkTgHit();
+    /* 800844F8 */ void GetTgHitObj();
+};
+
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -141,13 +149,11 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80A3C4A8 */ ~daNpcT_MotionSeqMngr_c();
 };
 
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-    /* 800842C0 */ void ChkAtHit();
-    /* 80084460 */ void ChkTgHit();
-    /* 800844F8 */ void GetTgHitObj();
-};
+struct J3DAnmTransformKey {};
+
+struct daNpcT_motionAnmData_c {};
+
+struct daNpcT_faceMotionAnmData_c {};
 
 struct daNpcT_evtData_c {};
 
@@ -159,12 +165,6 @@ struct J3DFrameCtrl {
 };
 
 struct J3DJoint {};
-
-struct daNpcT_motionAnmData_c {};
-
-struct daNpcT_faceMotionAnmData_c {};
-
-struct J3DAnmTransformKey {};
 
 struct daNpc_Kn_c {
     struct daNpc_Kn_prtclMngr_c {
@@ -479,7 +479,6 @@ struct dEvt_control_c {
     /* 80042518 */ void reset(void*);
     /* 800432EC */ void convPId(unsigned int);
     /* 8004368C */ void setPtT(void*);
-    /* 800436EC */ void setPtI_Id(unsigned int);
 };
 
 struct dEvent_manager_c {
@@ -822,10 +821,10 @@ __ct__10daNpc_Kn_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ22
 extern "C" bool getEyeballMaterialNo__10daNpc_Kn_cFv();
 extern "C" bool getEyeballLMaterialNo__10daNpc_Kn_cFv();
 extern "C" bool getEyeballRMaterialNo__10daNpc_Kn_cFv();
-extern "C" void func_80A3BD2C(s16*);
-extern "C" void func_80A3BD48(int*);
-extern "C" void func_80A3BD64(s16, s16);
-extern "C" void func_80A3BDE8(int, int);
+extern "C" void func_80A3BD2C(void* _this, s16*);
+extern "C" void func_80A3BD48(void* _this, int*);
+extern "C" void func_80A3BD64(void* _this, s16, s16);
+extern "C" void func_80A3BDE8(void* _this, int, int);
 extern "C" void __sinit_d_a_npc_kn_cpp();
 extern "C" void __dt__16daNpc_Kn_Param_cFv();
 extern "C" static void func_80A3C16C();
@@ -1136,6 +1135,46 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80A40AF8-80A40AF8 000230 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80A40AF8 = "DEFAULT_GETITEM";
+SECTION_DEAD static char const* const stringBase_80A40B08 = "";
+SECTION_DEAD static char const* const stringBase_80A40B09 = "NONE_EQUIP_CHANGE_TALK";
+SECTION_DEAD static char const* const stringBase_80A40B20 = "NONE_EQUIP_CHANGE_TALK_WAIT";
+SECTION_DEAD static char const* const stringBase_80A40B3C = "NO_EQ_CHNGE_TLK_STD";
+SECTION_DEAD static char const* const stringBase_80A40B50 = "LARGE_DAMAGE_TALK";
+SECTION_DEAD static char const* const stringBase_80A40B62 = "FIRST_ENCOUNT";
+SECTION_DEAD static char const* const stringBase_80A40B70 = "ATTACK_FAILED";
+SECTION_DEAD static char const* const stringBase_80A40B7E = "FIRST_SKILL_GET";
+SECTION_DEAD static char const* const stringBase_80A40B8E = "SECOND_ENCOUNT";
+SECTION_DEAD static char const* const stringBase_80A40B9D = "SECOND_SKILL_EXPLAIN";
+SECTION_DEAD static char const* const stringBase_80A40BB2 = "REFLECT_EXPLAIN";
+SECTION_DEAD static char const* const stringBase_80A40BC2 = "SECOND_SKILL_GET";
+SECTION_DEAD static char const* const stringBase_80A40BD3 = "THIRD_SKILL_EXPLAIN";
+SECTION_DEAD static char const* const stringBase_80A40BE7 = "THIRD_SKILL_FIRST";
+SECTION_DEAD static char const* const stringBase_80A40BF9 = "THIRD_SKILL_GET";
+SECTION_DEAD static char const* const stringBase_80A40C09 = "FOURTH_SKILL_EXPLAIN";
+SECTION_DEAD static char const* const stringBase_80A40C1E = "FOURTH_SKILL_GET";
+SECTION_DEAD static char const* const stringBase_80A40C2F = "FIFTH_SKILL_EXPLAIN";
+SECTION_DEAD static char const* const stringBase_80A40C43 = "FIFTH_SKILL_FIRST";
+SECTION_DEAD static char const* const stringBase_80A40C55 = "FIFTH_SKILL_GET";
+SECTION_DEAD static char const* const stringBase_80A40C65 = "SIXTH_SKILL_EXPLAIN";
+SECTION_DEAD static char const* const stringBase_80A40C79 = "SIXTH_SKILL_GET";
+SECTION_DEAD static char const* const stringBase_80A40C89 = "SIXTH_SKILL_GET_STAND";
+SECTION_DEAD static char const* const stringBase_80A40C9F = "SEVENTH_SKILL_EXPLAIN";
+SECTION_DEAD static char const* const stringBase_80A40CB5 = "SEVENTH_SKILL_GET";
+SECTION_DEAD static char const* const stringBase_80A40CC7 = "SEVENTH_SKILL_GET_STAND";
+SECTION_DEAD static char const* const stringBase_80A40CDF = "KN_a";
+SECTION_DEAD static char const* const stringBase_80A40CE4 = "KN_tch01D";
+SECTION_DEAD static char const* const stringBase_80A40CEE = "KN_tch02D";
+SECTION_DEAD static char const* const stringBase_80A40CF8 = "KN_tch03D";
+SECTION_DEAD static char const* const stringBase_80A40D02 = "KN_tch04D";
+SECTION_DEAD static char const* const stringBase_80A40D0C = "KN_tch05D";
+SECTION_DEAD static char const* const stringBase_80A40D16 = "KN_tch06D";
+SECTION_DEAD static char const* const stringBase_80A40D20 = "KN_tch07D";
+#pragma pop
+
 /* 80A40D34-80A40D40 000000 000C+00 10/10 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -3896,13 +3935,13 @@ SECTION_RODATA u8 const daNpc_Kn_c::mCcDObjData[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A408C8, &daNpc_Kn_c::mCcDObjData);
+COMPILER_STRIP_GATE(0x80A408C8, &daNpc_Kn_c::mCcDObjData);
 
 /* 80A408F8-80A40900 000030 0008+00 6/11 0/0 0/0 .rodata          @4095 */
 SECTION_RODATA static u8 const lit_4095[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A408F8, &lit_4095);
+COMPILER_STRIP_GATE(0x80A408F8, &lit_4095);
 
 /* 80A40900-80A40904 000038 0004+00 26/59 0/0 0/0 .rodata          @4204 */
 SECTION_RODATA static u8 const lit_4204[4] = {
@@ -3911,95 +3950,95 @@ SECTION_RODATA static u8 const lit_4204[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80A40900, &lit_4204);
+COMPILER_STRIP_GATE(0x80A40900, &lit_4204);
 
 /* 80A40904-80A40908 00003C 0004+00 2/2 0/0 0/0 .rodata          @4205 */
 SECTION_RODATA static f32 const lit_4205 = -1000000000.0f;
-COMPILER_STRIP_GATE(80A40904, &lit_4205);
+COMPILER_STRIP_GATE(0x80A40904, &lit_4205);
 
 /* 80A40908-80A4090C 000040 0004+00 2/5 0/0 0/0 .rodata          @4326 */
 SECTION_RODATA static f32 const lit_4326 = 20.0f;
-COMPILER_STRIP_GATE(80A40908, &lit_4326);
+COMPILER_STRIP_GATE(0x80A40908, &lit_4326);
 
 /* 80A4090C-80A40910 000044 0004+00 9/16 0/0 0/0 .rodata          @4327 */
 SECTION_RODATA static f32 const lit_4327 = 1.0f;
-COMPILER_STRIP_GATE(80A4090C, &lit_4327);
+COMPILER_STRIP_GATE(0x80A4090C, &lit_4327);
 
 /* 80A40910-80A40914 000048 0004+00 1/2 0/0 0/0 .rodata          @4561 */
 SECTION_RODATA static f32 const lit_4561 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80A40910, &lit_4561);
+COMPILER_STRIP_GATE(0x80A40910, &lit_4561);
 
 /* 80A40914-80A40918 00004C 0004+00 16/45 0/0 0/0 .rodata          @4613 */
 SECTION_RODATA static f32 const lit_4613 = -1.0f;
-COMPILER_STRIP_GATE(80A40914, &lit_4613);
+COMPILER_STRIP_GATE(0x80A40914, &lit_4613);
 
 /* 80A40918-80A4091C 000050 0004+00 1/3 0/0 0/0 .rodata          @5160 */
 SECTION_RODATA static f32 const lit_5160 = 500.0f;
-COMPILER_STRIP_GATE(80A40918, &lit_5160);
+COMPILER_STRIP_GATE(0x80A40918, &lit_5160);
 
 /* 80A4091C-80A40920 000054 0004+00 1/4 0/0 0/0 .rodata          @5255 */
 SECTION_RODATA static f32 const lit_5255 = 180.0f;
-COMPILER_STRIP_GATE(80A4091C, &lit_5255);
+COMPILER_STRIP_GATE(0x80A4091C, &lit_5255);
 
 /* 80A40920-80A40924 000058 0004+00 1/1 0/0 0/0 .rodata          @5256 */
 SECTION_RODATA static u32 const lit_5256 = 0x43360B61;
-COMPILER_STRIP_GATE(80A40920, &lit_5256);
+COMPILER_STRIP_GATE(0x80A40920, &lit_5256);
 
 /* 80A40924-80A40928 00005C 0004+00 0/4 0/0 0/0 .rodata          @5390 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5390 = 30.0f;
-COMPILER_STRIP_GATE(80A40924, &lit_5390);
+COMPILER_STRIP_GATE(0x80A40924, &lit_5390);
 #pragma pop
 
 /* 80A40928-80A4092C 000060 0004+00 0/1 0/0 0/0 .rodata          @5391 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5391 = 45.0f;
-COMPILER_STRIP_GATE(80A40928, &lit_5391);
+COMPILER_STRIP_GATE(0x80A40928, &lit_5391);
 #pragma pop
 
 /* 80A4092C-80A40930 000064 0004+00 0/1 0/0 0/0 .rodata          @5392 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5392 = 60.0f;
-COMPILER_STRIP_GATE(80A4092C, &lit_5392);
+COMPILER_STRIP_GATE(0x80A4092C, &lit_5392);
 #pragma pop
 
 /* 80A40930-80A40934 000068 0004+00 0/1 0/0 0/0 .rodata          @5393 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5393 = 90.0f;
-COMPILER_STRIP_GATE(80A40930, &lit_5393);
+COMPILER_STRIP_GATE(0x80A40930, &lit_5393);
 #pragma pop
 
 /* 80A40934-80A40938 00006C 0004+00 0/1 0/0 0/0 .rodata          @5394 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5394 = 110.0f;
-COMPILER_STRIP_GATE(80A40934, &lit_5394);
+COMPILER_STRIP_GATE(0x80A40934, &lit_5394);
 #pragma pop
 
 /* 80A40938-80A4093C 000070 0004+00 5/6 0/0 0/0 .rodata          @5395 */
 SECTION_RODATA static f32 const lit_5395 = 135.0f;
-COMPILER_STRIP_GATE(80A40938, &lit_5395);
+COMPILER_STRIP_GATE(0x80A40938, &lit_5395);
 
 /* 80A4093C-80A40940 000074 0004+00 1/2 0/0 0/0 .rodata          @5560 */
 SECTION_RODATA static u32 const lit_5560 = 0x3BB40000;
-COMPILER_STRIP_GATE(80A4093C, &lit_5560);
+COMPILER_STRIP_GATE(0x80A4093C, &lit_5560);
 
 /* 80A40940-80A40944 000078 0004+00 0/1 0/0 0/0 .rodata          @5561 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5561 = 8.0f;
-COMPILER_STRIP_GATE(80A40940, &lit_5561);
+COMPILER_STRIP_GATE(0x80A40940, &lit_5561);
 #pragma pop
 
 /* 80A40944-80A40948 00007C 0004+00 0/1 0/0 0/0 .rodata          @5562 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5562 = 16384.0f;
-COMPILER_STRIP_GATE(80A40944, &lit_5562);
+COMPILER_STRIP_GATE(0x80A40944, &lit_5562);
 #pragma pop
 
 /* 80A40948-80A40950 000080 0008+00 0/5 0/0 0/0 .rodata          @5687 */
@@ -4008,7 +4047,7 @@ COMPILER_STRIP_GATE(80A40944, &lit_5562);
 SECTION_RODATA static u8 const lit_5687[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A40948, &lit_5687);
+COMPILER_STRIP_GATE(0x80A40948, &lit_5687);
 #pragma pop
 
 /* 80A40950-80A40958 000088 0008+00 0/5 0/0 0/0 .rodata          @5688 */
@@ -4017,7 +4056,7 @@ COMPILER_STRIP_GATE(80A40948, &lit_5687);
 SECTION_RODATA static u8 const lit_5688[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A40950, &lit_5688);
+COMPILER_STRIP_GATE(0x80A40950, &lit_5688);
 #pragma pop
 
 /* 80A40958-80A40960 000090 0008+00 0/5 0/0 0/0 .rodata          @5689 */
@@ -4026,28 +4065,28 @@ COMPILER_STRIP_GATE(80A40950, &lit_5688);
 SECTION_RODATA static u8 const lit_5689[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A40958, &lit_5689);
+COMPILER_STRIP_GATE(0x80A40958, &lit_5689);
 #pragma pop
 
 /* 80A40960-80A40964 000098 0004+00 0/0 0/0 0/0 .rodata          @5690 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5690 = 17.0f / 20.0f;
-COMPILER_STRIP_GATE(80A40960, &lit_5690);
+COMPILER_STRIP_GATE(0x80A40960, &lit_5690);
 #pragma pop
 
 /* 80A40964-80A40968 00009C 0004+00 0/1 0/0 0/0 .rodata          @5710 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5710 = 6.0f;
-COMPILER_STRIP_GATE(80A40964, &lit_5710);
+COMPILER_STRIP_GATE(0x80A40964, &lit_5710);
 #pragma pop
 
 /* 80A40968-80A4096C 0000A0 0004+00 0/0 0/0 0/0 .rodata          @5787 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5787 = 1000000000.0f;
-COMPILER_STRIP_GATE(80A40968, &lit_5787);
+COMPILER_STRIP_GATE(0x80A40968, &lit_5787);
 #pragma pop
 
 /* 80A4096C-80A40970 0000A4 0004+00 1/1 0/0 0/0 .rodata          id$5838 */
@@ -4057,7 +4096,7 @@ SECTION_RODATA static u8 const id[4] = {
     0x84,
     0x98,
 };
-COMPILER_STRIP_GATE(80A4096C, &id);
+COMPILER_STRIP_GATE(0x80A4096C, &id);
 
 /* 80A40970-80A40A24 0000A8 00B4+00 8/29 0/0 0/0 .rodata          m__16daNpc_Kn_Param_c */
 SECTION_RODATA u8 const daNpc_Kn_Param_c::m[180] = {
@@ -4074,7 +4113,7 @@ SECTION_RODATA u8 const daNpc_Kn_Param_c::m[180] = {
     0x00, 0x00, 0x43, 0x70, 0x00, 0x00, 0x44, 0x89, 0x80, 0x00, 0x41, 0xD8, 0x00, 0x00, 0x42,
     0x48, 0x00, 0x00, 0x00, 0x10, 0x02, 0x00, 0x00, 0x78, 0x00, 0x5A, 0x40, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A40970, &daNpc_Kn_Param_c::m);
+COMPILER_STRIP_GATE(0x80A40970, &daNpc_Kn_Param_c::m);
 
 /* 80A40A24-80A40A44 00015C 0020+00 0/1 0/0 0/0 .rodata          heapSize$6094 */
 #pragma push
@@ -4083,35 +4122,35 @@ SECTION_RODATA static u8 const heapSize[32] = {
     0x00, 0x00, 0x4B, 0x10, 0x00, 0x00, 0x4B, 0x20, 0x00, 0x00, 0x4B, 0x10, 0x00, 0x00, 0x4B, 0x10,
     0x00, 0x00, 0x5A, 0x00, 0x00, 0x00, 0x4B, 0x10, 0x00, 0x00, 0x4B, 0x20, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A40A24, &heapSize);
+COMPILER_STRIP_GATE(0x80A40A24, &heapSize);
 #pragma pop
 
 /* 80A40A44-80A40A48 00017C 0004+00 0/1 0/0 0/0 .rodata          @6139 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_6139 = -300.0f;
-COMPILER_STRIP_GATE(80A40A44, &lit_6139);
+COMPILER_STRIP_GATE(0x80A40A44, &lit_6139);
 #pragma pop
 
 /* 80A40A48-80A40A4C 000180 0004+00 0/1 0/0 0/0 .rodata          @6140 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_6140 = -50.0f;
-COMPILER_STRIP_GATE(80A40A48, &lit_6140);
+COMPILER_STRIP_GATE(0x80A40A48, &lit_6140);
 #pragma pop
 
 /* 80A40A4C-80A40A50 000184 0004+00 0/1 0/0 0/0 .rodata          @6141 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_6141 = 300.0f;
-COMPILER_STRIP_GATE(80A40A4C, &lit_6141);
+COMPILER_STRIP_GATE(0x80A40A4C, &lit_6141);
 #pragma pop
 
 /* 80A40A50-80A40A54 000188 0004+00 0/1 0/0 0/0 .rodata          @6142 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_6142 = 450.0f;
-COMPILER_STRIP_GATE(80A40A50, &lit_6142);
+COMPILER_STRIP_GATE(0x80A40A50, &lit_6142);
 #pragma pop
 
 /* 80A2AFD4-80A2B278 0006B4 02A4+00 1/1 0/0 0/0 .text            create__10daNpc_Kn_cFv */
@@ -4352,6 +4391,13 @@ asm void daNpc_Kn_c::evtTalk() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80A40AF8-80A40AF8 000230 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80A40D2A = "Kn";
+#pragma pop
+
 /* 80A2C318-80A2C3FC 0019F8 00E4+00 1/1 0/0 0/0 .text            evtCutProc__10daNpc_Kn_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -4397,7 +4443,7 @@ asm void daNpc_Kn_c::afterMoved() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_7002 = 0x38C90FDB;
-COMPILER_STRIP_GATE(80A40A54, &lit_7002);
+COMPILER_STRIP_GATE(0x80A40A54, &lit_7002);
 #pragma pop
 
 /* 80A2C56C-80A2C77C 001C4C 0210+00 1/1 0/0 0/0 .text            setAttnPos__10daNpc_Kn_cFv */
@@ -4425,7 +4471,7 @@ asm void daNpc_Kn_c::setCollision() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_7177 = 40.0f;
-COMPILER_STRIP_GATE(80A40A58, &lit_7177);
+COMPILER_STRIP_GATE(0x80A40A58, &lit_7177);
 #pragma pop
 
 /* 80A2C984-80A2CB30 002064 01AC+00 1/1 0/0 0/0 .text            setCollisionSword__10daNpc_Kn_cFv
@@ -4605,7 +4651,7 @@ asm void daNpc_Kn_c::teach07_selectAction() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_Kn_c::chkAction(int (daNpc_Kn_c::*)(void*)) {
+asm void daNpc_Kn_c::chkAction(int (daNpc_Kn_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_kn/d_a_npc_kn/chkAction__10daNpc_Kn_cFM10daNpc_Kn_cFPCvPvPv_i.s"
 }
@@ -4616,7 +4662,7 @@ asm void daNpc_Kn_c::chkAction(int (daNpc_Kn_c::*)(void*)) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_Kn_c::setAction(int (daNpc_Kn_c::*)(void*)) {
+asm void daNpc_Kn_c::setAction(int (daNpc_Kn_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_kn/d_a_npc_kn/setAction__10daNpc_Kn_cFM10daNpc_Kn_cFPCvPvPv_i.s"
 }
@@ -4660,6 +4706,13 @@ asm void daNpc_Kn_c::setSceneChange(int param_0) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_kn/d_a_npc_kn/setSceneChange__10daNpc_Kn_cFi.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80A40AF8-80A40AF8 000230 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80A40D2D = "prm";
 #pragma pop
 
 /* 80A2DD70-80A2DF84 003450 0214+00 1/0 0/0 0/0 .text ECut_noneEquipChangeTalk__10daNpc_Kn_cFi */
@@ -4730,14 +4783,14 @@ asm void daNpc_Kn_c::teach04_attackWait(void* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_8270 = 10.0f;
-COMPILER_STRIP_GATE(80A40A5C, &lit_8270);
+COMPILER_STRIP_GATE(0x80A40A5C, &lit_8270);
 #pragma pop
 
 /* 80A40A60-80A40A64 000198 0004+00 0/1 0/0 0/0 .rodata          @8271 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_8271 = -10.0f;
-COMPILER_STRIP_GATE(80A40A60, &lit_8271);
+COMPILER_STRIP_GATE(0x80A40A60, &lit_8271);
 #pragma pop
 
 /* 80A2EF8C-80A2F24C 00466C 02C0+00 1/0 0/0 0/0 .text teach04_headBreakWait__10daNpc_Kn_cFPv */
@@ -4840,14 +4893,14 @@ asm void daNpc_Kn_c::teach06_superJumpWaitDivide(void* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_9120 = 13.0f;
-COMPILER_STRIP_GATE(80A40A64, &lit_9120);
+COMPILER_STRIP_GATE(0x80A40A64, &lit_9120);
 #pragma pop
 
 /* 80A40A68-80A40A6C 0001A0 0004+00 0/3 0/0 0/0 .rodata          @9121 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_9121 = 14.0f;
-COMPILER_STRIP_GATE(80A40A68, &lit_9121);
+COMPILER_STRIP_GATE(0x80A40A68, &lit_9121);
 #pragma pop
 
 /* 80A30D44-80A30EDC 006424 0198+00 1/0 0/0 0/0 .text teach06_superJumpedDivide__10daNpc_Kn_cFPv
@@ -4908,7 +4961,7 @@ asm void daNpc_Kn_c::teach07_superTurnAttackWait(void* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_9374 = 375.0f;
-COMPILER_STRIP_GATE(80A40A6C, &lit_9374);
+COMPILER_STRIP_GATE(0x80A40A6C, &lit_9374);
 #pragma pop
 
 /* 80A315D0-80A317F8 006CB0 0228+00 1/0 0/0 0/0 .text            teach07_divideMove__10daNpc_Kn_cFPv
@@ -5086,70 +5139,70 @@ asm void daNpc_Kn_c::ECut_seventhSkillGet(int param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_9980 = 4.0f;
-COMPILER_STRIP_GATE(80A40A70, &lit_9980);
+COMPILER_STRIP_GATE(0x80A40A70, &lit_9980);
 #pragma pop
 
 /* 80A40A74-80A40A78 0001AC 0004+00 0/0 0/0 0/0 .rodata          @9981 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_9981 = 0x407147AE;
-COMPILER_STRIP_GATE(80A40A74, &lit_9981);
+COMPILER_STRIP_GATE(0x80A40A74, &lit_9981);
 #pragma pop
 
 /* 80A40A78-80A40A7C 0001B0 0004+00 0/0 0/0 0/0 .rodata          @9982 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_9982 = 0x41986666;
-COMPILER_STRIP_GATE(80A40A78, &lit_9982);
+COMPILER_STRIP_GATE(0x80A40A78, &lit_9982);
 #pragma pop
 
 /* 80A40A7C-80A40A80 0001B4 0004+00 0/0 0/0 0/0 .rodata          @9983 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_9983 = 0xC15A8F5C;
-COMPILER_STRIP_GATE(80A40A7C, &lit_9983);
+COMPILER_STRIP_GATE(0x80A40A7C, &lit_9983);
 #pragma pop
 
 /* 80A40A80-80A40A84 0001B8 0004+00 0/0 0/0 0/0 .rodata          @10161 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_10161 = 700.0f;
-COMPILER_STRIP_GATE(80A40A80, &lit_10161);
+COMPILER_STRIP_GATE(0x80A40A80, &lit_10161);
 #pragma pop
 
 /* 80A40A84-80A40A88 0001BC 0004+00 0/0 0/0 0/0 .rodata          @10494 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_10494 = 594.0f;
-COMPILER_STRIP_GATE(80A40A84, &lit_10494);
+COMPILER_STRIP_GATE(0x80A40A84, &lit_10494);
 #pragma pop
 
 /* 80A40A88-80A40A8C 0001C0 0004+00 0/0 0/0 0/0 .rodata          @11020 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_11020 = 165.0f;
-COMPILER_STRIP_GATE(80A40A88, &lit_11020);
+COMPILER_STRIP_GATE(0x80A40A88, &lit_11020);
 #pragma pop
 
 /* 80A40A8C-80A40A90 0001C4 0004+00 0/0 0/0 0/0 .rodata          @11021 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_11021 = 9.0f;
-COMPILER_STRIP_GATE(80A40A8C, &lit_11021);
+COMPILER_STRIP_GATE(0x80A40A8C, &lit_11021);
 #pragma pop
 
 /* 80A40A90-80A40A94 0001C8 0004+00 0/0 0/0 0/0 .rodata          @11516 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_11516 = 0x430AA3D7;
-COMPILER_STRIP_GATE(80A40A90, &lit_11516);
+COMPILER_STRIP_GATE(0x80A40A90, &lit_11516);
 #pragma pop
 
 /* 80A40A94-80A40A98 0001CC 0004+00 0/1 0/0 0/0 .rodata          @11694 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_11694 = 1000.0f;
-COMPILER_STRIP_GATE(80A40A94, &lit_11694);
+COMPILER_STRIP_GATE(0x80A40A94, &lit_11694);
 #pragma pop
 
 /* 80A40A98-80A40AA0 0001D0 0008+00 0/0 0/0 0/0 .rodata          @11976 */
@@ -5158,14 +5211,14 @@ COMPILER_STRIP_GATE(80A40A94, &lit_11694);
 SECTION_RODATA static u8 const lit_11976[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A40A98, &lit_11976);
+COMPILER_STRIP_GATE(0x80A40A98, &lit_11976);
 #pragma pop
 
 /* 80A40AA0-80A40AA4 0001D8 0004+00 0/2 0/0 0/0 .rodata          @12218 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_12218 = 2.0f;
-COMPILER_STRIP_GATE(80A40AA0, &lit_12218);
+COMPILER_STRIP_GATE(0x80A40AA0, &lit_12218);
 #pragma pop
 
 /* 80A372D0-80A37430 00C9B0 0160+00 1/1 0/0 0/0 .text            setPrtcl__10daNpc_Kn_cFv */
@@ -5202,7 +5255,7 @@ asm void daNpc_Kn_c::setLandingPrtcl() {
 /* ############################################################################################## */
 /* 80A40AA4-80A40AA8 0001DC 0004+00 1/2 0/0 0/0 .rodata          @12304 */
 SECTION_RODATA static f32 const lit_12304 = 150.0f;
-COMPILER_STRIP_GATE(80A40AA4, &lit_12304);
+COMPILER_STRIP_GATE(0x80A40AA4, &lit_12304);
 
 /* 80A37598-80A37670 00CC78 00D8+00 1/1 0/0 0/0 .text            calcMagicBallPos__10daNpc_Kn_cFv */
 #pragma push
@@ -5219,49 +5272,49 @@ asm void daNpc_Kn_c::calcMagicBallPos() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_12497 = 17.0f;
-COMPILER_STRIP_GATE(80A40AA8, &lit_12497);
+COMPILER_STRIP_GATE(0x80A40AA8, &lit_12497);
 #pragma pop
 
 /* 80A40AAC-80A40AB0 0001E4 0004+00 0/1 0/0 0/0 .rodata          @12498 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_12498 = 37.0f;
-COMPILER_STRIP_GATE(80A40AAC, &lit_12498);
+COMPILER_STRIP_GATE(0x80A40AAC, &lit_12498);
 #pragma pop
 
 /* 80A40AB0-80A40AB4 0001E8 0004+00 0/1 0/0 0/0 .rodata          @12499 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_12499 = 0x3FC2DABA;
-COMPILER_STRIP_GATE(80A40AB0, &lit_12499);
+COMPILER_STRIP_GATE(0x80A40AB0, &lit_12499);
 #pragma pop
 
 /* 80A40AB4-80A40AB8 0001EC 0004+00 0/1 0/0 0/0 .rodata          @12500 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_12500 = 13.0f / 10.0f;
-COMPILER_STRIP_GATE(80A40AB4, &lit_12500);
+COMPILER_STRIP_GATE(0x80A40AB4, &lit_12500);
 #pragma pop
 
 /* 80A40AB8-80A40ABC 0001F0 0004+00 0/1 0/0 0/0 .rodata          @12501 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_12501 = 0x42B0CCCC;
-COMPILER_STRIP_GATE(80A40AB8, &lit_12501);
+COMPILER_STRIP_GATE(0x80A40AB8, &lit_12501);
 #pragma pop
 
 /* 80A40ABC-80A40AC0 0001F4 0004+00 0/1 0/0 0/0 .rodata          @12502 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_12502 = 31.0f;
-COMPILER_STRIP_GATE(80A40ABC, &lit_12502);
+COMPILER_STRIP_GATE(0x80A40ABC, &lit_12502);
 #pragma pop
 
 /* 80A40AC0-80A40AC4 0001F8 0004+00 0/1 0/0 0/0 .rodata          @12503 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_12503 = 52.0f / 5.0f;
-COMPILER_STRIP_GATE(80A40AC0, &lit_12503);
+COMPILER_STRIP_GATE(0x80A40AC0, &lit_12503);
 #pragma pop
 
 /* 80A432C0-80A432C4 000008 0001+03 1/1 0/0 0/0 .bss             @1109 */
@@ -5417,21 +5470,21 @@ asm void daNpc_Kn_c::setSwordChargePtcl() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_12556 = 0.25f;
-COMPILER_STRIP_GATE(80A40AC4, &lit_12556);
+COMPILER_STRIP_GATE(0x80A40AC4, &lit_12556);
 #pragma pop
 
 /* 80A40AC8-80A40ACC 000200 0004+00 0/1 0/0 0/0 .rodata          @12557 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_12557 = 25.0f;
-COMPILER_STRIP_GATE(80A40AC8, &lit_12557);
+COMPILER_STRIP_GATE(0x80A40AC8, &lit_12557);
 #pragma pop
 
 /* 80A40ACC-80A40AD0 000204 0004+00 0/1 0/0 0/0 .rodata          @12558 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_12558 = 5.0f;
-COMPILER_STRIP_GATE(80A40ACC, &lit_12558);
+COMPILER_STRIP_GATE(0x80A40ACC, &lit_12558);
 #pragma pop
 
 /* 80A37B08-80A37D20 00D1E8 0218+00 13/13 0/0 0/0 .text            calcSlip__10daNpc_Kn_cFv */
@@ -5449,7 +5502,7 @@ asm void daNpc_Kn_c::calcSlip() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_12656 = 250.0f;
-COMPILER_STRIP_GATE(80A40AD0, &lit_12656);
+COMPILER_STRIP_GATE(0x80A40AD0, &lit_12656);
 #pragma pop
 
 /* 80A37D20-80A3805C 00D400 033C+00 9/9 0/0 0/0 .text            calcSwordAttackMove__10daNpc_Kn_cFi
@@ -6149,7 +6202,7 @@ bool daNpc_Kn_c::getEyeballRMaterialNo() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80A3BD2C(s16* param_0) {
+extern "C" asm void func_80A3BD2C(void* _this, s16* param_0) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_kn/d_a_npc_kn/func_80A3BD2C.s"
 }
@@ -6159,7 +6212,7 @@ extern "C" asm void func_80A3BD2C(s16* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80A3BD48(int* param_0) {
+extern "C" asm void func_80A3BD48(void* _this, int* param_0) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_kn/d_a_npc_kn/func_80A3BD48.s"
 }
@@ -6169,7 +6222,7 @@ extern "C" asm void func_80A3BD48(int* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80A3BD64(s16 param_0, s16 param_1) {
+extern "C" asm void func_80A3BD64(void* _this, s16 param_0, s16 param_1) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_kn/d_a_npc_kn/func_80A3BD64.s"
 }
@@ -6179,7 +6232,7 @@ extern "C" asm void func_80A3BD64(s16 param_0, s16 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80A3BDE8(int param_0, int param_1) {
+extern "C" asm void func_80A3BDE8(void* _this, int param_0, int param_1) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_kn/d_a_npc_kn/func_80A3BDE8.s"
 }
@@ -6205,7 +6258,7 @@ asm void __sinit_d_a_npc_kn_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80A3BE64 = (void*)__sinit_d_a_npc_kn_cpp;
+REGISTER_CTORS(0x80A3BE64, __sinit_d_a_npc_kn_cpp);
 #pragma pop
 
 /* 80A3C124-80A3C16C 011804 0048+00 2/1 0/0 0/0 .text            __dt__16daNpc_Kn_Param_cFv */
@@ -6482,28 +6535,28 @@ asm void daNpc_Kn_c::teach01_swordFinishWait(void* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_12826 = 27.0f;
-COMPILER_STRIP_GATE(80A40AD4, &lit_12826);
+COMPILER_STRIP_GATE(0x80A40AD4, &lit_12826);
 #pragma pop
 
 /* 80A40AD8-80A40ADC 000210 0004+00 0/0 0/0 0/0 .rodata          @12827 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_12827 = 28.0f;
-COMPILER_STRIP_GATE(80A40AD8, &lit_12827);
+COMPILER_STRIP_GATE(0x80A40AD8, &lit_12827);
 #pragma pop
 
 /* 80A40ADC-80A40AE0 000214 0004+00 0/2 0/0 0/0 .rodata          @13396 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_13396 = 600.0f;
-COMPILER_STRIP_GATE(80A40ADC, &lit_13396);
+COMPILER_STRIP_GATE(0x80A40ADC, &lit_13396);
 #pragma pop
 
 /* 80A40AE0-80A40AE4 000218 0004+00 0/1 0/0 0/0 .rodata          @13397 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_13397 = 100.0f;
-COMPILER_STRIP_GATE(80A40AE0, &lit_13397);
+COMPILER_STRIP_GATE(0x80A40AE0, &lit_13397);
 #pragma pop
 
 /* 80A3D6D8-80A3DCEC 012DB8 0614+00 3/3 0/0 0/0 .text            ctrlWarp__10daNpc_Kn_cFv */
@@ -6554,7 +6607,7 @@ asm void daNpc_Kn_c::ECut_firstSkillGet(int param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_13839 = 255.0f;
-COMPILER_STRIP_GATE(80A40AE4, &lit_13839);
+COMPILER_STRIP_GATE(0x80A40AE4, &lit_13839);
 #pragma pop
 
 /* 80A3EB84-80A3EE38 014264 02B4+00 1/1 0/0 0/0 .text            setParamTeach02__10daNpc_Kn_cFv */
@@ -6614,21 +6667,21 @@ asm void daNpc_Kn_c::teach02_finishWait(void* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_14209 = 3.0f;
-COMPILER_STRIP_GATE(80A40AE8, &lit_14209);
+COMPILER_STRIP_GATE(0x80A40AE8, &lit_14209);
 #pragma pop
 
 /* 80A40AEC-80A40AF0 000224 0004+00 0/1 0/0 0/0 .rodata          @14210 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_14210 = 34.0f;
-COMPILER_STRIP_GATE(80A40AEC, &lit_14210);
+COMPILER_STRIP_GATE(0x80A40AEC, &lit_14210);
 #pragma pop
 
 /* 80A40AF0-80A40AF4 000228 0004+00 0/1 0/0 0/0 .rodata          @14211 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_14211 = 35.0f;
-COMPILER_STRIP_GATE(80A40AF0, &lit_14211);
+COMPILER_STRIP_GATE(0x80A40AF0, &lit_14211);
 #pragma pop
 
 /* 80A3F5A4-80A3F99C 014C84 03F8+00 1/0 0/0 0/0 .text teach02_shieldReflectWait__10daNpc_Kn_cFPv
@@ -6679,7 +6732,7 @@ asm void daNpc_Kn_c::ECut_secondSkillGet(int param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_14385 = 15.0f;
-COMPILER_STRIP_GATE(80A40AF4, &lit_14385);
+COMPILER_STRIP_GATE(0x80A40AF4, &lit_14385);
 #pragma pop
 
 /* 80A43414-80A43418 00015C 0004+00 0/0 0/0 0/0 .bss
@@ -6853,45 +6906,4 @@ static u8 data_80A43470[4];
 static u8 data_80A43474[4];
 #pragma pop
 
-/* 80A40AF8-80A40D31 000230 0239+00 25/22 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80A40AF8 = "DEFAULT_GETITEM";
-SECTION_DEAD static char const* const stringBase_80A40B08 = "";
-SECTION_DEAD static char const* const stringBase_80A40B09 = "NONE_EQUIP_CHANGE_TALK";
-SECTION_DEAD static char const* const stringBase_80A40B20 = "NONE_EQUIP_CHANGE_TALK_WAIT";
-SECTION_DEAD static char const* const stringBase_80A40B3C = "NO_EQ_CHNGE_TLK_STD";
-SECTION_DEAD static char const* const stringBase_80A40B50 = "LARGE_DAMAGE_TALK";
-SECTION_DEAD static char const* const stringBase_80A40B62 = "FIRST_ENCOUNT";
-SECTION_DEAD static char const* const stringBase_80A40B70 = "ATTACK_FAILED";
-SECTION_DEAD static char const* const stringBase_80A40B7E = "FIRST_SKILL_GET";
-SECTION_DEAD static char const* const stringBase_80A40B8E = "SECOND_ENCOUNT";
-SECTION_DEAD static char const* const stringBase_80A40B9D = "SECOND_SKILL_EXPLAIN";
-SECTION_DEAD static char const* const stringBase_80A40BB2 = "REFLECT_EXPLAIN";
-SECTION_DEAD static char const* const stringBase_80A40BC2 = "SECOND_SKILL_GET";
-SECTION_DEAD static char const* const stringBase_80A40BD3 = "THIRD_SKILL_EXPLAIN";
-SECTION_DEAD static char const* const stringBase_80A40BE7 = "THIRD_SKILL_FIRST";
-SECTION_DEAD static char const* const stringBase_80A40BF9 = "THIRD_SKILL_GET";
-SECTION_DEAD static char const* const stringBase_80A40C09 = "FOURTH_SKILL_EXPLAIN";
-SECTION_DEAD static char const* const stringBase_80A40C1E = "FOURTH_SKILL_GET";
-SECTION_DEAD static char const* const stringBase_80A40C2F = "FIFTH_SKILL_EXPLAIN";
-SECTION_DEAD static char const* const stringBase_80A40C43 = "FIFTH_SKILL_FIRST";
-SECTION_DEAD static char const* const stringBase_80A40C55 = "FIFTH_SKILL_GET";
-SECTION_DEAD static char const* const stringBase_80A40C65 = "SIXTH_SKILL_EXPLAIN";
-SECTION_DEAD static char const* const stringBase_80A40C79 = "SIXTH_SKILL_GET";
-SECTION_DEAD static char const* const stringBase_80A40C89 = "SIXTH_SKILL_GET_STAND";
-SECTION_DEAD static char const* const stringBase_80A40C9F = "SEVENTH_SKILL_EXPLAIN";
-SECTION_DEAD static char const* const stringBase_80A40CB5 = "SEVENTH_SKILL_GET";
-SECTION_DEAD static char const* const stringBase_80A40CC7 = "SEVENTH_SKILL_GET_STAND";
-SECTION_DEAD static char const* const stringBase_80A40CDF = "KN_a";
-SECTION_DEAD static char const* const stringBase_80A40CE4 = "KN_tch01D";
-SECTION_DEAD static char const* const stringBase_80A40CEE = "KN_tch02D";
-SECTION_DEAD static char const* const stringBase_80A40CF8 = "KN_tch03D";
-SECTION_DEAD static char const* const stringBase_80A40D02 = "KN_tch04D";
-SECTION_DEAD static char const* const stringBase_80A40D0C = "KN_tch05D";
-SECTION_DEAD static char const* const stringBase_80A40D16 = "KN_tch06D";
-SECTION_DEAD static char const* const stringBase_80A40D20 = "KN_tch07D";
-SECTION_DEAD static char const* const stringBase_80A40D2A = "Kn";
-SECTION_DEAD static char const* const stringBase_80A40D2D = "prm";
-#pragma pop
+/* 80A40AF8-80A40AF8 000230 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

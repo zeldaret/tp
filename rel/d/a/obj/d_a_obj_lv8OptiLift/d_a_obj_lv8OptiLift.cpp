@@ -279,7 +279,7 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80C8B9AC-80C8B9B0 000000 0004+00 5/5 0/0 0/0 .rodata          @3661 */
 SECTION_RODATA static f32 const lit_3661 = 600.0f;
-COMPILER_STRIP_GATE(80C8B9AC, &lit_3661);
+COMPILER_STRIP_GATE(0x80C8B9AC, &lit_3661);
 
 /* 80C8BA44-80C8BA50 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -498,11 +498,17 @@ SECTION_RODATA u8 const daOptiLift_c::mSpeed[64] = {
     0x41, 0x92, 0xAA, 0xAB, 0x41, 0xA0, 0x00, 0x00, 0x41, 0xAD, 0x55, 0x55, 0x41, 0xBA, 0xAA, 0xAB,
     0x41, 0xC8, 0x00, 0x00, 0x41, 0xD5, 0x55, 0x55, 0x41, 0xE2, 0xAA, 0xAB, 0x40, 0x55, 0x55, 0x55,
 };
-COMPILER_STRIP_GATE(80C8B9B0, &daOptiLift_c::mSpeed);
+COMPILER_STRIP_GATE(0x80C8B9B0, &daOptiLift_c::mSpeed);
 
 /* 80C8B9F0-80C8B9F4 000044 0004+00 4/8 0/0 0/0 .rodata          @3695 */
 SECTION_RODATA static f32 const lit_3695 = 1.0f;
-COMPILER_STRIP_GATE(80C8B9F0, &lit_3695);
+COMPILER_STRIP_GATE(0x80C8B9F0, &lit_3695);
+
+/* 80C8BA3C-80C8BA3C 000090 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C8BA3C = "Lv8Lift";
+#pragma pop
 
 /* 80C8A438-80C8A500 000218 00C8+00 1/0 0/0 0/0 .text            CreateHeap__12daOptiLift_cFv */
 #pragma push
@@ -522,7 +528,7 @@ SECTION_RODATA static u8 const lit_3778[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C8B9F4, &lit_3778);
+COMPILER_STRIP_GATE(0x80C8B9F4, &lit_3778);
 
 /* 80C8BBE0-80C8BBEC 000008 000C+00 1/1 0/0 0/0 .bss             @3655 */
 static u8 lit_3655[12];
@@ -611,19 +617,19 @@ asm void daOptiLift_c::init_modeAcc() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3900 = 30.0f;
-COMPILER_STRIP_GATE(80C8B9F8, &lit_3900);
+COMPILER_STRIP_GATE(0x80C8B9F8, &lit_3900);
 #pragma pop
 
 /* 80C8B9FC-80C8BA00 000050 0004+00 0/3 0/0 0/0 .rodata          @3901 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3901 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80C8B9FC, &lit_3901);
+COMPILER_STRIP_GATE(0x80C8B9FC, &lit_3901);
 #pragma pop
 
 /* 80C8BA00-80C8BA04 000054 0004+00 2/5 0/0 0/0 .rodata          @3902 */
 SECTION_RODATA static f32 const lit_3902 = -1.0f;
-COMPILER_STRIP_GATE(80C8BA00, &lit_3902);
+COMPILER_STRIP_GATE(0x80C8BA00, &lit_3902);
 
 /* 80C8AAD0-80C8ABB0 0008B0 00E0+00 1/0 0/0 0/0 .text            modeAcc__12daOptiLift_cFv */
 #pragma push
@@ -652,7 +658,7 @@ asm void daOptiLift_c::init_modeMove() {
 SECTION_RODATA static u8 const lit_3984[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C8BA04, &lit_3984);
+COMPILER_STRIP_GATE(0x80C8BA04, &lit_3984);
 #pragma pop
 
 /* 80C8BA0C-80C8BA14 000060 0008+00 0/2 0/0 0/0 .rodata          @3985 */
@@ -661,7 +667,7 @@ COMPILER_STRIP_GATE(80C8BA04, &lit_3984);
 SECTION_RODATA static u8 const lit_3985[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C8BA0C, &lit_3985);
+COMPILER_STRIP_GATE(0x80C8BA0C, &lit_3985);
 #pragma pop
 
 /* 80C8BA14-80C8BA1C 000068 0008+00 0/2 0/0 0/0 .rodata          @3986 */
@@ -670,21 +676,21 @@ COMPILER_STRIP_GATE(80C8BA0C, &lit_3985);
 SECTION_RODATA static u8 const lit_3986[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C8BA14, &lit_3986);
+COMPILER_STRIP_GATE(0x80C8BA14, &lit_3986);
 #pragma pop
 
 /* 80C8BA1C-80C8BA20 000070 0004+00 0/1 0/0 0/0 .rodata          @3987 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3987 = 3.0f / 10.0f;
-COMPILER_STRIP_GATE(80C8BA1C, &lit_3987);
+COMPILER_STRIP_GATE(0x80C8BA1C, &lit_3987);
 #pragma pop
 
 /* 80C8BA20-80C8BA24 000074 0004+00 0/1 0/0 0/0 .rodata          @3988 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3988 = 300.0f;
-COMPILER_STRIP_GATE(80C8BA20, &lit_3988);
+COMPILER_STRIP_GATE(0x80C8BA20, &lit_3988);
 #pragma pop
 
 /* 80C8ABBC-80C8AED4 00099C 0318+00 1/0 0/0 0/0 .text            modeMove__12daOptiLift_cFv */
@@ -712,7 +718,7 @@ asm void daOptiLift_c::init_modeBrk() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4039 = 0.5f;
-COMPILER_STRIP_GATE(80C8BA24, &lit_4039);
+COMPILER_STRIP_GATE(0x80C8BA24, &lit_4039);
 #pragma pop
 
 /* 80C8AEE0-80C8B100 000CC0 0220+00 1/0 0/0 0/0 .text            modeBrk__12daOptiLift_cFv */
@@ -795,13 +801,13 @@ asm void daOptiLift_c::init_modeStop() {
 /* ############################################################################################## */
 /* 80C8BA28-80C8BA2C 00007C 0004+00 1/1 0/0 0/0 .rodata          @4125 */
 SECTION_RODATA static f32 const lit_4125 = 20.0f;
-COMPILER_STRIP_GATE(80C8BA28, &lit_4125);
+COMPILER_STRIP_GATE(0x80C8BA28, &lit_4125);
 
 /* 80C8BA2C-80C8BA34 000080 0008+00 1/1 0/0 0/0 .rodata          @4127 */
 SECTION_RODATA static u8 const lit_4127[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C8BA2C, &lit_4127);
+COMPILER_STRIP_GATE(0x80C8BA2C, &lit_4127);
 
 /* 80C8B318-80C8B428 0010F8 0110+00 1/0 0/0 0/0 .text            modeStop__12daOptiLift_cFv */
 #pragma push
@@ -880,14 +886,14 @@ asm void daOptiLift_c::setNextPoint() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4231 = 100.0f;
-COMPILER_STRIP_GATE(80C8BA34, &lit_4231);
+COMPILER_STRIP_GATE(0x80C8BA34, &lit_4231);
 #pragma pop
 
 /* 80C8BA38-80C8BA3C 00008C 0004+00 0/1 0/0 0/0 .rodata          @4232 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4232 = -100.0f;
-COMPILER_STRIP_GATE(80C8BA38, &lit_4232);
+COMPILER_STRIP_GATE(0x80C8BA38, &lit_4232);
 #pragma pop
 
 /* 80C8B66C-80C8B824 00144C 01B8+00 1/0 0/0 0/0 .text            Draw__12daOptiLift_cFv */
@@ -975,12 +981,7 @@ asm void __sinit_d_a_obj_lv8OptiLift_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80C8B95C = (void*)__sinit_d_a_obj_lv8OptiLift_cpp;
+REGISTER_CTORS(0x80C8B95C, __sinit_d_a_obj_lv8OptiLift_cpp);
 #pragma pop
 
-/* 80C8BA3C-80C8BA44 000090 0008+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C8BA3C = "Lv8Lift";
-#pragma pop
+/* 80C8BA3C-80C8BA3C 000090 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

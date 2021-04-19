@@ -123,9 +123,9 @@ struct Z2SoundObjBase {
     /* 802BE4A4 */ void startCollisionSE(u32, u32, Z2SoundObjBase*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -263,7 +263,7 @@ SECTION_RODATA static u8 const l_cyl_src[68] = {
     0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x43, 0x0C, 0x00, 0x00, 0x42, 0x8C, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C28120, &l_cyl_src);
+COMPILER_STRIP_GATE(0x80C28120, &l_cyl_src);
 
 /* 80C28164-80C281A8 000044 0044+00 0/1 0/0 0/0 .rodata          l_cyl_src2 */
 #pragma push
@@ -275,16 +275,16 @@ SECTION_RODATA static u8 const l_cyl_src2[68] = {
     0x00, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x43, 0x0C, 0x00, 0x00, 0x42, 0x8C, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C28164, &l_cyl_src2);
+COMPILER_STRIP_GATE(0x80C28164, &l_cyl_src2);
 #pragma pop
 
 /* 80C281A8-80C281AC 000088 0004+00 1/2 0/0 0/0 .rodata          @3693 */
 SECTION_RODATA static f32 const lit_3693 = 100.0f;
-COMPILER_STRIP_GATE(80C281A8, &lit_3693);
+COMPILER_STRIP_GATE(0x80C281A8, &lit_3693);
 
 /* 80C281AC-80C281B0 00008C 0004+00 1/2 0/0 0/0 .rodata          @3694 */
 SECTION_RODATA static f32 const lit_3694 = 240.0f;
-COMPILER_STRIP_GATE(80C281AC, &lit_3694);
+COMPILER_STRIP_GATE(0x80C281AC, &lit_3694);
 
 /* 80C27780-80C27810 000140 0090+00 1/1 0/0 0/0 .text            s_boar_sub__FPvPv */
 #pragma push
@@ -331,7 +331,7 @@ asm void daObjIBone_c::setBaseMtx() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3738 = 27.0f / 20.0f;
-COMPILER_STRIP_GATE(80C281B0, &lit_3738);
+COMPILER_STRIP_GATE(0x80C281B0, &lit_3738);
 #pragma pop
 
 /* 80C278CC-80C279A8 00028C 00DC+00 1/1 0/0 0/0 .text            Create__12daObjIBone_cFv */
@@ -345,6 +345,13 @@ asm void daObjIBone_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80C281C4-80C281C4 0000A4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C281C4 = "Obj_Ibone";
+SECTION_DEAD static char const* const stringBase_80C281CE = "A_InoBone.bmd";
+#pragma pop
+
 /* 80C281F8-80C281FC -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_inobone__stringBase0;
 
@@ -438,7 +445,7 @@ SECTION_RODATA static u8 const lit_3926[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C281B4, &lit_3926);
+COMPILER_STRIP_GATE(0x80C281B4, &lit_3926);
 #pragma pop
 
 /* 80C27C4C-80C27E48 00060C 01FC+00 1/1 0/0 0/0 .text            execute__12daObjIBone_cFv */
@@ -462,21 +469,28 @@ SECTION_RODATA static u8 const particle_id[2 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C281B8, &particle_id);
+COMPILER_STRIP_GATE(0x80C281B8, &particle_id);
 #pragma pop
 
 /* 80C281BC-80C281C0 00009C 0004+00 0/1 0/0 0/0 .rodata          @3963 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3963 = 1.0f;
-COMPILER_STRIP_GATE(80C281BC, &lit_3963);
+COMPILER_STRIP_GATE(0x80C281BC, &lit_3963);
 #pragma pop
 
 /* 80C281C0-80C281C4 0000A0 0004+00 0/1 0/0 0/0 .rodata          @3964 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3964 = -1.0f;
-COMPILER_STRIP_GATE(80C281C0, &lit_3964);
+COMPILER_STRIP_GATE(0x80C281C0, &lit_3964);
+#pragma pop
+
+/* 80C281C4-80C281C4 0000A4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C281DC = "BreakBoarBone.bmd";
+SECTION_DEAD static char const* const stringBase_80C281EE = "Always";
 #pragma pop
 
 /* 80C27E48-80C27FEC 000808 01A4+00 1/1 0/0 0/0 .text            setBreakEffect__12daObjIBone_cFv */
@@ -552,12 +566,4 @@ static asm void daObjIBone_Create(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 80C281C4-80C281F5 0000A4 0031+00 3/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C281C4 = "Obj_Ibone";
-SECTION_DEAD static char const* const stringBase_80C281CE = "A_InoBone.bmd";
-SECTION_DEAD static char const* const stringBase_80C281DC = "BreakBoarBone.bmd";
-SECTION_DEAD static char const* const stringBase_80C281EE = "Always";
-#pragma pop
+/* 80C281C4-80C281C4 0000A4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -653,5 +653,5 @@ asm void __sinit_d_particle_copoly_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80051614 = (void*)__sinit_d_particle_copoly_cpp;
+REGISTER_CTORS(0x80051614, __sinit_d_particle_copoly_cpp);
 #pragma pop

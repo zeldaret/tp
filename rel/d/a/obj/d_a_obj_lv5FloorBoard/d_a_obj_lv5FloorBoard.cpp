@@ -73,9 +73,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -144,9 +144,9 @@ struct cCcD_GStts {
     /* 80C6B010 */ ~cCcD_GStts();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -258,7 +258,7 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80C6B148-80C6B14C 000000 0004+00 4/5 0/0 0/0 .rodata          @3656 */
 SECTION_RODATA static f32 const lit_3656 = 1.0f;
-COMPILER_STRIP_GATE(80C6B148, &lit_3656);
+COMPILER_STRIP_GATE(0x80C6B148, &lit_3656);
 
 /* 80C6B198-80C6B1A4 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -441,6 +441,13 @@ asm void daFlorBoad_c::setBaseMtx() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80C6B18C-80C6B18C 000044 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C6B18C = "L5haYuka";
+#pragma pop
+
 /* 80C6A784-80C6A7F0 000264 006C+00 1/0 0/0 0/0 .text            CreateHeap__12daFlorBoad_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -539,27 +546,27 @@ SECTION_RODATA u8 const daFlorBoad_c::mCcDObjInfo[48] = {
     0x00, 0x40, 0x00, 0x20, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x02,
     0x00, 0x00, 0x00, 0x01, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C6B14C, &daFlorBoad_c::mCcDObjInfo);
+COMPILER_STRIP_GATE(0x80C6B14C, &daFlorBoad_c::mCcDObjInfo);
 
 /* 80C6B17C-80C6B180 000034 0004+00 0/1 0/0 0/0 .rodata          @3870 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3870 = 280.0f;
-COMPILER_STRIP_GATE(80C6B17C, &lit_3870);
+COMPILER_STRIP_GATE(0x80C6B17C, &lit_3870);
 #pragma pop
 
 /* 80C6B180-80C6B184 000038 0004+00 0/1 0/0 0/0 .rodata          @3871 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3871 = 170.0f;
-COMPILER_STRIP_GATE(80C6B180, &lit_3871);
+COMPILER_STRIP_GATE(0x80C6B180, &lit_3871);
 #pragma pop
 
 /* 80C6B184-80C6B188 00003C 0004+00 0/1 0/0 0/0 .rodata          @3872 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3872 = 150.0f;
-COMPILER_STRIP_GATE(80C6B184, &lit_3872);
+COMPILER_STRIP_GATE(0x80C6B184, &lit_3872);
 #pragma pop
 
 /* 80C6ABAC-80C6AC9C 00068C 00F0+00 1/0 0/0 0/0 .text            modeWait__12daFlorBoad_cFv */
@@ -575,7 +582,7 @@ asm void daFlorBoad_c::modeWait() {
 /* ############################################################################################## */
 /* 80C6B188-80C6B18C 000040 0004+00 1/1 0/0 0/0 .rodata          @3891 */
 SECTION_RODATA static f32 const lit_3891 = -1.0f;
-COMPILER_STRIP_GATE(80C6B188, &lit_3891);
+COMPILER_STRIP_GATE(0x80C6B188, &lit_3891);
 
 /* 80C6AC9C-80C6AD40 00077C 00A4+00 1/1 0/0 0/0 .text            init_modeBreak__12daFlorBoad_cFv */
 #pragma push
@@ -693,12 +700,7 @@ asm void __sinit_d_a_obj_lv5FloorBoard_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80C6B0C4 = (void*)__sinit_d_a_obj_lv5FloorBoard_cpp;
+REGISTER_CTORS(0x80C6B0C4, __sinit_d_a_obj_lv5FloorBoard_cpp);
 #pragma pop
 
-/* 80C6B18C-80C6B195 000044 0009+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C6B18C = "L5haYuka";
-#pragma pop
+/* 80C6B18C-80C6B18C 000044 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

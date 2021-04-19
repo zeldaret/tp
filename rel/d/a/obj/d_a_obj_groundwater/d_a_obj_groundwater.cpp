@@ -233,7 +233,7 @@ SECTION_RODATA static u8 const lit_3642[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C149E0, &lit_3642);
+COMPILER_STRIP_GATE(0x80C149E0, &lit_3642);
 
 /* 80C149FC-80C14A08 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -401,7 +401,13 @@ asm void daGrdWater_c::setBaseMtx() {
 /* ############################################################################################## */
 /* 80C149E4-80C149E8 000004 0004+00 5/6 0/0 0/0 .rodata          @3712 */
 SECTION_RODATA static f32 const lit_3712 = 1.0f;
-COMPILER_STRIP_GATE(80C149E4, &lit_3712);
+COMPILER_STRIP_GATE(0x80C149E4, &lit_3712);
+
+/* 80C149F4-80C149F4 000014 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C149F4 = "Water";
+#pragma pop
 
 /* 80C13618-80C139E4 000258 03CC+00 1/0 0/0 0/0 .text            CreateHeap__12daGrdWater_cFv */
 #pragma push
@@ -418,7 +424,7 @@ asm void daGrdWater_c::CreateHeap() {
 SECTION_RODATA static u8 const lit_3891[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C149E8, &lit_3891);
+COMPILER_STRIP_GATE(0x80C149E8, &lit_3891);
 
 /* 80C139E4-80C13DB0 000624 03CC+00 1/1 0/0 0/0 .text            create__12daGrdWater_cFv */
 #pragma push
@@ -563,7 +569,7 @@ asm void daGrdWater_c::modeLevelDownB() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4253 = -1.0f / 100.0f;
-COMPILER_STRIP_GATE(80C149F0, &lit_4253);
+COMPILER_STRIP_GATE(0x80C149F0, &lit_4253);
 #pragma pop
 
 /* 80C14554-80C147EC 001194 0298+00 1/0 0/0 0/0 .text            Draw__12daGrdWater_cFv */
@@ -658,12 +664,7 @@ asm void __sinit_d_a_obj_groundwater_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80C14904 = (void*)__sinit_d_a_obj_groundwater_cpp;
+REGISTER_CTORS(0x80C14904, __sinit_d_a_obj_groundwater_cpp);
 #pragma pop
 
-/* 80C149F4-80C149FA 000014 0006+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C149F4 = "Water";
-#pragma pop
+/* 80C149F4-80C149F4 000014 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -11,17 +11,17 @@
 // Types:
 //
 
-struct JAISoundHandle {
-    /* 802A2184 */ void releaseSound();
-};
-
-struct JAISoundID {};
-
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
+};
+
+struct JAISoundID {};
+
+struct JAISoundHandle {
+    /* 802A2184 */ void releaseSound();
 };
 
 struct Z2SpeechStarter {
@@ -100,12 +100,6 @@ struct Z2EnvSeMgr {
 
 struct Z2AudioMgr {
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JMath {
-    struct TRandom_fast_ {
-        /* 80339AE4 */ TRandom_fast_(u32);
-    };
 };
 
 struct JAISoundStarter {
@@ -596,7 +590,7 @@ SECTION_RODATA u8 const Z2MdnPrm::sReply[100] = {
     0x5D, 0x60, 0x63, 0x63, 0x54, 0x3E, 0x38, 0x38, 0x39, 0x35, 0x41, 0x41, 0x41, 0x41, 0x56,
     0x71, 0x85, 0x85, 0xA2, 0xA2, 0x52, 0x52, 0x5C, 0x5C, 0x75,
 };
-COMPILER_STRIP_GATE(8039C260, &Z2MdnPrm::sReply);
+COMPILER_STRIP_GATE(0x8039C260, &Z2MdnPrm::sReply);
 
 /* 8039C2C4-8039C2D0 028924 000A+02 1/0 0/0 0/0 .rodata          sReplyTail__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sReplyTail[10 + 2 /* padding */] = {
@@ -614,7 +608,7 @@ SECTION_RODATA u8 const Z2MdnPrm::sReplyTail[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C2C4, &Z2MdnPrm::sReplyTail);
+COMPILER_STRIP_GATE(0x8039C2C4, &Z2MdnPrm::sReplyTail);
 
 /* 8039C2D0-8039C334 028930 0064+00 1/0 0/0 0/0 .rodata          sJoke__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sJoke[100] = {
@@ -626,7 +620,7 @@ SECTION_RODATA u8 const Z2MdnPrm::sJoke[100] = {
     0x64, 0x60, 0xB1, 0x6C, 0x6D, 0x6D, 0x7E, 0x7A, 0x97, 0x97, 0x99, 0xA5, 0x89, 0x90, 0xA4,
     0x45, 0x45, 0x29, 0x4C, 0x4B, 0x64, 0x64, 0x60, 0x5C, 0xB1,
 };
-COMPILER_STRIP_GATE(8039C2D0, &Z2MdnPrm::sJoke);
+COMPILER_STRIP_GATE(0x8039C2D0, &Z2MdnPrm::sJoke);
 
 /* 8039C334-8039C340 028994 000A+02 1/0 0/0 0/0 .rodata          sJokeTail__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sJokeTail[10 + 2 /* padding */] = {
@@ -644,7 +638,7 @@ SECTION_RODATA u8 const Z2MdnPrm::sJokeTail[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C334, &Z2MdnPrm::sJokeTail);
+COMPILER_STRIP_GATE(0x8039C334, &Z2MdnPrm::sJokeTail);
 
 /* 8039C340-8039C3A4 0289A0 0064+00 1/0 0/0 0/0 .rodata          sSexy__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sSexy[100] = {
@@ -656,7 +650,7 @@ SECTION_RODATA u8 const Z2MdnPrm::sSexy[100] = {
     0x76, 0x79, 0x79, 0x5C, 0x6A, 0x90, 0xAB, 0x5C, 0x7D, 0x52, 0x49, 0x54, 0x57, 0x49, 0x55,
     0x79, 0x65, 0x65, 0x4A, 0x5C, 0x78, 0x78, 0x8B, 0x8D, 0x7C,
 };
-COMPILER_STRIP_GATE(8039C340, &Z2MdnPrm::sSexy);
+COMPILER_STRIP_GATE(0x8039C340, &Z2MdnPrm::sSexy);
 
 /* 8039C3A4-8039C3B0 028A04 000A+02 1/0 0/0 0/0 .rodata          sSexyTail__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sSexyTail[10 + 2 /* padding */] = {
@@ -674,7 +668,7 @@ SECTION_RODATA u8 const Z2MdnPrm::sSexyTail[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C3A4, &Z2MdnPrm::sSexyTail);
+COMPILER_STRIP_GATE(0x8039C3A4, &Z2MdnPrm::sSexyTail);
 
 /* 8039C3B0-8039C414 028A10 0064+00 1/0 0/0 0/0 .rodata          sRidicule__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sRidicule[100] = {
@@ -686,7 +680,7 @@ SECTION_RODATA u8 const Z2MdnPrm::sRidicule[100] = {
     0x79, 0x79, 0x7C, 0x7C, 0x6C, 0x6C, 0x73, 0x73, 0x6E, 0x6E, 0x36, 0x3F, 0x3C, 0x56, 0x2D,
     0x2D, 0x2D, 0x2D, 0x8C, 0x8C, 0x8B, 0x8B, 0x93, 0x93, 0x6E,
 };
-COMPILER_STRIP_GATE(8039C3B0, &Z2MdnPrm::sRidicule);
+COMPILER_STRIP_GATE(0x8039C3B0, &Z2MdnPrm::sRidicule);
 
 /* 8039C414-8039C420 028A74 000A+02 1/0 0/0 0/0 .rodata          sRidiculeTail__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sRidiculeTail[10 + 2 /* padding */] = {
@@ -704,7 +698,7 @@ SECTION_RODATA u8 const Z2MdnPrm::sRidiculeTail[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C414, &Z2MdnPrm::sRidiculeTail);
+COMPILER_STRIP_GATE(0x8039C414, &Z2MdnPrm::sRidiculeTail);
 
 /* 8039C420-8039C48C 028A80 006C+00 1/0 0/0 0/0 .rodata          sBoring__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sBoring[108] = {
@@ -716,7 +710,7 @@ SECTION_RODATA u8 const Z2MdnPrm::sBoring[108] = {
     0x89, 0x5A, 0x5A, 0x63, 0x66, 0x5E, 0x5E, 0x71, 0x62, 0x55, 0x55, 0x85, 0x85, 0x5B, 0x5B, 0x5B,
     0x5B, 0x5E, 0x70, 0x56, 0x56, 0x4C, 0x4C, 0x59, 0x59, 0x5B, 0x5B, 0x71,
 };
-COMPILER_STRIP_GATE(8039C420, &Z2MdnPrm::sBoring);
+COMPILER_STRIP_GATE(0x8039C420, &Z2MdnPrm::sBoring);
 
 /* 8039C48C-8039C4EC 028AEC 005E+02 1/0 0/0 0/0 .rodata          sIrritated__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sIrritated[94 + 2 /* padding */] = {
@@ -818,7 +812,7 @@ SECTION_RODATA u8 const Z2MdnPrm::sIrritated[94 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C48C, &Z2MdnPrm::sIrritated);
+COMPILER_STRIP_GATE(0x8039C48C, &Z2MdnPrm::sIrritated);
 
 /* 8039C4EC-8039C4F8 028B4C 000A+02 1/0 0/0 0/0 .rodata          sIrritatedTail__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sIrritatedTail[10 + 2 /* padding */] = {
@@ -836,7 +830,7 @@ SECTION_RODATA u8 const Z2MdnPrm::sIrritatedTail[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C4EC, &Z2MdnPrm::sIrritatedTail);
+COMPILER_STRIP_GATE(0x8039C4EC, &Z2MdnPrm::sIrritatedTail);
 
 /* 8039C4F8-8039C56C 028B58 0072+02 1/0 0/0 0/0 .rodata          sOrder__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sOrder[114 + 2 /* padding */] = {
@@ -958,7 +952,7 @@ SECTION_RODATA u8 const Z2MdnPrm::sOrder[114 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C4F8, &Z2MdnPrm::sOrder);
+COMPILER_STRIP_GATE(0x8039C4F8, &Z2MdnPrm::sOrder);
 
 /* 8039C56C-8039C5D8 028BCC 006A+02 1/0 0/0 0/0 .rodata          sResent__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sResent[106 + 2 /* padding */] = {
@@ -1072,7 +1066,7 @@ SECTION_RODATA u8 const Z2MdnPrm::sResent[106 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C56C, &Z2MdnPrm::sResent);
+COMPILER_STRIP_GATE(0x8039C56C, &Z2MdnPrm::sResent);
 
 /* 8039C5D8-8039C644 028C38 006A+02 1/0 0/0 0/0 .rodata          sCheerful__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sCheerful[106 + 2 /* padding */] = {
@@ -1186,7 +1180,7 @@ SECTION_RODATA u8 const Z2MdnPrm::sCheerful[106 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C5D8, &Z2MdnPrm::sCheerful);
+COMPILER_STRIP_GATE(0x8039C5D8, &Z2MdnPrm::sCheerful);
 
 /* 8039C644-8039C6B0 028CA4 006A+02 1/0 0/0 0/0 .rodata          sConfused__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sConfused[106 + 2 /* padding */] = {
@@ -1300,7 +1294,7 @@ SECTION_RODATA u8 const Z2MdnPrm::sConfused[106 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C644, &Z2MdnPrm::sConfused);
+COMPILER_STRIP_GATE(0x8039C644, &Z2MdnPrm::sConfused);
 
 /* 8039C6B0-8039C718 028D10 0068+00 1/0 0/0 0/0 .rodata          sHostility__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sHostility[104] = {
@@ -1312,7 +1306,7 @@ SECTION_RODATA u8 const Z2MdnPrm::sHostility[104] = {
     0x65, 0x6B, 0x6E, 0x6E, 0x83, 0x83, 0x96, 0x3F, 0x56, 0x56, 0x56, 0x56, 0x4F, 0x5F, 0x57,
     0x62, 0x6A, 0x5F, 0x72, 0x72, 0x62, 0x62, 0x65, 0x5E, 0x69, 0x69, 0x63, 0x63, 0x7F,
 };
-COMPILER_STRIP_GATE(8039C6B0, &Z2MdnPrm::sHostility);
+COMPILER_STRIP_GATE(0x8039C6B0, &Z2MdnPrm::sHostility);
 
 /* 8039C718-8039C784 028D78 006A+02 1/0 0/0 0/0 .rodata          sTired__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sTired[106 + 2 /* padding */] = {
@@ -1426,7 +1420,7 @@ SECTION_RODATA u8 const Z2MdnPrm::sTired[106 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C718, &Z2MdnPrm::sTired);
+COMPILER_STRIP_GATE(0x8039C718, &Z2MdnPrm::sTired);
 
 /* 8039C784-8039C7F0 028DE4 006A+02 1/0 0/0 0/0 .rodata          sSerious__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sSerious[106 + 2 /* padding */] = {
@@ -1540,7 +1534,7 @@ SECTION_RODATA u8 const Z2MdnPrm::sSerious[106 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C784, &Z2MdnPrm::sSerious);
+COMPILER_STRIP_GATE(0x8039C784, &Z2MdnPrm::sSerious);
 
 /* 8039C7F0-8039C844 028E50 0054+00 1/0 0/0 0/0 .rodata          sReplyb__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sReplyb[84] = {
@@ -1551,7 +1545,7 @@ SECTION_RODATA u8 const Z2MdnPrm::sReplyb[84] = {
     0x72, 0x8A, 0x2C, 0x1F, 0x1F, 0x95, 0x95, 0x69, 0x4C, 0x59, 0x59, 0x79, 0x5B, 0x44,
     0x44, 0x4F, 0x52, 0x58, 0x5A, 0x6F, 0x6E, 0x8A, 0x8E, 0x8E, 0x8E, 0x8C, 0x8C, 0x9B,
 };
-COMPILER_STRIP_GATE(8039C7F0, &Z2MdnPrm::sReplyb);
+COMPILER_STRIP_GATE(0x8039C7F0, &Z2MdnPrm::sReplyb);
 
 /* 8039C844-8039C8A8 028EA4 0064+00 1/0 0/0 0/0 .rodata          sApologize__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sApologize[100] = {
@@ -1563,7 +1557,7 @@ SECTION_RODATA u8 const Z2MdnPrm::sApologize[100] = {
     0x5B, 0x70, 0x72, 0x72, 0x72, 0x72, 0x6E, 0x76, 0x6B, 0x6B, 0x58, 0x69, 0x66, 0x66, 0x64,
     0x64, 0x60, 0x61, 0x63, 0x6A, 0x62, 0x62, 0x64, 0x65, 0x71,
 };
-COMPILER_STRIP_GATE(8039C844, &Z2MdnPrm::sApologize);
+COMPILER_STRIP_GATE(0x8039C844, &Z2MdnPrm::sApologize);
 
 /* 8039C8A8-8039C8B4 028F08 0009+03 1/0 0/0 0/0 .rodata          sApologizeTail__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sApologizeTail[9 + 3 /* padding */] = {
@@ -1581,7 +1575,7 @@ SECTION_RODATA u8 const Z2MdnPrm::sApologizeTail[9 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C8A8, &Z2MdnPrm::sApologizeTail);
+COMPILER_STRIP_GATE(0x8039C8A8, &Z2MdnPrm::sApologizeTail);
 
 /* 8039C8B4-8039C918 028F14 0064+00 1/0 0/0 0/0 .rodata          sDeside__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sDeside[100] = {
@@ -1593,7 +1587,7 @@ SECTION_RODATA u8 const Z2MdnPrm::sDeside[100] = {
     0x62, 0x5D, 0x67, 0x5D, 0x5F, 0x62, 0x59, 0x5D, 0x55, 0x55, 0x48, 0x5F, 0x5F, 0x5F, 0x5D,
     0x75, 0x6A, 0x66, 0x76, 0x69, 0x69, 0x69, 0x60, 0x60, 0x5F,
 };
-COMPILER_STRIP_GATE(8039C8B4, &Z2MdnPrm::sDeside);
+COMPILER_STRIP_GATE(0x8039C8B4, &Z2MdnPrm::sDeside);
 
 /* 8039C918-8039C980 028F78 0068+00 1/0 0/0 0/0 .rodata          sAfford__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sAfford[104] = {
@@ -1605,13 +1599,13 @@ SECTION_RODATA u8 const Z2MdnPrm::sAfford[104] = {
     0x7D, 0x6E, 0x56, 0x79, 0x79, 0x50, 0x4C, 0x50, 0x43, 0x52, 0x51, 0x66, 0x6C, 0x64, 0x63,
     0x63, 0x5D, 0x69, 0x70, 0x56, 0x50, 0x4B, 0x92, 0x86, 0x8F, 0x4B, 0x4F, 0x57, 0x56,
 };
-COMPILER_STRIP_GATE(8039C918, &Z2MdnPrm::sAfford);
+COMPILER_STRIP_GATE(0x8039C918, &Z2MdnPrm::sAfford);
 
 /* 8039C980-8039C98C 028FE0 000C+00 1/0 0/0 0/0 .rodata          sAffordTail__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sAffordTail[12] = {
     0x63, 0x8E, 0x5B, 0x59, 0x4C, 0x3A, 0x69, 0x47, 0x41, 0x59, 0x50, 0x55,
 };
-COMPILER_STRIP_GATE(8039C980, &Z2MdnPrm::sAffordTail);
+COMPILER_STRIP_GATE(0x8039C980, &Z2MdnPrm::sAffordTail);
 
 /* 8039C98C-8039CA58 -00001 00CC+00 2/2 0/0 0/0 .rodata          sPrm__8Z2MdnPrm */
 SECTION_RODATA void* const Z2MdnPrm::sPrm[51] = {
@@ -1633,7 +1627,7 @@ SECTION_RODATA void* const Z2MdnPrm::sPrm[51] = {
     (void*)&Z2MdnPrm::sDeside,    (void*)&Z2MdnPrm::sDesideTail,    (void*)0x32010700,
     (void*)&Z2MdnPrm::sAfford,    (void*)&Z2MdnPrm::sAffordTail,    (void*)0x34020A00,
 };
-COMPILER_STRIP_GATE(8039C98C, &Z2MdnPrm::sPrm);
+COMPILER_STRIP_GATE(0x8039C98C, &Z2MdnPrm::sPrm);
 
 /* 80455F48-80455F50 004548 0008+00 3/3 0/0 0/0 .sdata2          @4083 */
 SECTION_SDATA2 static f64 lit_4083 = 4503599627370496.0 /* cast u32 to float */;

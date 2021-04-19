@@ -92,9 +92,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -190,7 +190,7 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80BFDFE8-80BFDFEC 000000 0004+00 5/5 0/0 0/0 .rodata          @3627 */
 SECTION_RODATA static f32 const lit_3627 = 2.0f;
-COMPILER_STRIP_GATE(80BFDFE8, &lit_3627);
+COMPILER_STRIP_GATE(0x80BFDFE8, &lit_3627);
 
 /* 80BFE010-80BFE01C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -328,7 +328,7 @@ SECTION_RODATA static u8 const lit_3648[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BFDFEC, &lit_3648);
+COMPILER_STRIP_GATE(0x80BFDFEC, &lit_3648);
 
 /* 80BFD724-80BFD7C0 000164 009C+00 2/2 0/0 0/0 .text            setBaseMtx__10daGoGate_cFv */
 #pragma push
@@ -338,6 +338,13 @@ asm void daGoGate_c::setBaseMtx() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_goGate/d_a_obj_goGate/setBaseMtx__10daGoGate_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80BFE008-80BFE008 000020 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BFE008 = "P_Ggate";
 #pragma pop
 
 /* 80BFD7C0-80BFD82C 000200 006C+00 1/0 0/0 0/0 .text            CreateHeap__10daGoGate_cFv */
@@ -355,14 +362,14 @@ asm void daGoGate_c::CreateHeap() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3712 = -250.0f;
-COMPILER_STRIP_GATE(80BFDFF0, &lit_3712);
+COMPILER_STRIP_GATE(0x80BFDFF0, &lit_3712);
 #pragma pop
 
 /* 80BFDFF4-80BFDFF8 00000C 0004+00 0/1 0/0 0/0 .rodata          @3713 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3713 = 250.0f;
-COMPILER_STRIP_GATE(80BFDFF4, &lit_3713);
+COMPILER_STRIP_GATE(0x80BFDFF4, &lit_3713);
 #pragma pop
 
 /* 80BFD82C-80BFD984 00026C 0158+00 1/1 0/0 0/0 .text            create__10daGoGate_cFv */
@@ -436,28 +443,28 @@ asm void daGoGate_c::init_modeMoveOpen() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3780 = 1.0f;
-COMPILER_STRIP_GATE(80BFDFF8, &lit_3780);
+COMPILER_STRIP_GATE(0x80BFDFF8, &lit_3780);
 #pragma pop
 
 /* 80BFDFFC-80BFE000 000014 0004+00 0/3 0/0 0/0 .rodata          @3781 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3781 = -1.0f;
-COMPILER_STRIP_GATE(80BFDFFC, &lit_3781);
+COMPILER_STRIP_GATE(0x80BFDFFC, &lit_3781);
 #pragma pop
 
 /* 80BFE000-80BFE004 000018 0004+00 0/2 0/0 0/0 .rodata          @3782 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3782 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80BFE000, &lit_3782);
+COMPILER_STRIP_GATE(0x80BFE000, &lit_3782);
 #pragma pop
 
 /* 80BFE004-80BFE008 00001C 0004+00 0/2 0/0 0/0 .rodata          @3783 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3783 = 0.5f;
-COMPILER_STRIP_GATE(80BFE004, &lit_3783);
+COMPILER_STRIP_GATE(0x80BFE004, &lit_3783);
 #pragma pop
 
 /* 80BFDAF4-80BFDC04 000534 0110+00 1/0 0/0 0/0 .text            modeMoveOpen__10daGoGate_cFv */
@@ -583,12 +590,7 @@ asm void __sinit_d_a_obj_goGate_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80BFDF98 = (void*)__sinit_d_a_obj_goGate_cpp;
+REGISTER_CTORS(0x80BFDF98, __sinit_d_a_obj_goGate_cpp);
 #pragma pop
 
-/* 80BFE008-80BFE010 000020 0008+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BFE008 = "P_Ggate";
-#pragma pop
+/* 80BFE008-80BFE008 000020 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

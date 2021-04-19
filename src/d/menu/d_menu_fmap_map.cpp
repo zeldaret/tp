@@ -11,8 +11,6 @@
 // Types:
 //
 
-struct dMenu_Fmap_world_data_c {};
-
 struct dDrawPath_c {
     struct group_class {};
 
@@ -33,6 +31,8 @@ struct dDrawPath_c {
 struct dMenu_Fmap_region_data_c {
     /* 8003DB70 */ void getPointStagePathInnerNo(f32, f32, int, int*, int*);
 };
+
+struct dMenu_Fmap_world_data_c {};
 
 struct renderingFmap_c {
     struct palette_e {};
@@ -297,6 +297,15 @@ asm void renderingFmap_c::entry(dMenu_Fmap_world_data_c* param_0, int param_1, f
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039623C-8039623C 02289C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039623C = "F_SP121";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80396244 = "\0\0\0";
+#pragma pop
+
 /* 801CE224-801CE288 1C8B64 0064+00 1/1 0/0 0/0 .text isSwitchSpecialOff__15renderingFmap_cFi */
 #pragma push
 #pragma optimization_level 0
@@ -523,7 +532,7 @@ SECTION_RODATA static u8 const palNo[32] = {
     0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x12, 0x00, 0x00, 0x00, 0x13, 0x00, 0x00, 0x00, 0x14,
     0x00, 0x00, 0x00, 0x15, 0x00, 0x00, 0x00, 0x16, 0x00, 0x00, 0x00, 0x17, 0x00, 0x00, 0x00, 0x18,
 };
-COMPILER_STRIP_GATE(803961B0, &palNo);
+COMPILER_STRIP_GATE(0x803961B0, &palNo);
 
 /* 801CEB1C-801CEC24 1C945C 0108+00 1/1 0/0 0/0 .text            setPointColor__15dMenu_FmapMap_cFf
  */
@@ -817,7 +826,7 @@ SECTION_RODATA static u8 const l_dungeon_onColor[36] = {
     0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00,
     0x18, 0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803961D0, &l_dungeon_onColor);
+COMPILER_STRIP_GATE(0x803961D0, &l_dungeon_onColor);
 #pragma pop
 
 /* 803961F4-80396218 022854 0024+00 0/1 0/0 0/0 .rodata          l_dungeon_stayColor$4187 */
@@ -828,7 +837,7 @@ SECTION_RODATA static u8 const l_dungeon_stayColor[36] = {
     0x00, 0x00, 0x00, 0x00, 0x30, 0x00, 0x00, 0x00, 0x34, 0x00, 0x00, 0x00,
     0x38, 0x00, 0x00, 0x00, 0x3C, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803961F4, &l_dungeon_stayColor);
+COMPILER_STRIP_GATE(0x803961F4, &l_dungeon_stayColor);
 #pragma pop
 
 /* 80396218-8039623C 022878 0024+00 0/1 0/0 0/0 .rodata          l_dungeon_pointColor$4188 */
@@ -839,7 +848,7 @@ SECTION_RODATA static u8 const l_dungeon_pointColor[36] = {
     0x00, 0x00, 0x00, 0x00, 0x50, 0x00, 0x00, 0x00, 0x54, 0x00, 0x00, 0x00,
     0x58, 0x00, 0x00, 0x00, 0x5C, 0x00, 0x00, 0x00, 0x60, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80396218, &l_dungeon_pointColor);
+COMPILER_STRIP_GATE(0x80396218, &l_dungeon_pointColor);
 #pragma pop
 
 /* 801CF2A0-801CF394 1C9BE0 00F4+00 1/0 0/0 0/0 .text            getColor__15dMenu_FmapMap_cFi */
@@ -901,11 +910,4 @@ void renderingFmap_c::afterDrawPath() {
     /* empty function */
 }
 
-/* 8039623C-80396248 02289C 0008+04 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039623C = "F_SP121";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80396244 = "\0\0\0";
-#pragma pop
+/* 8039623C-8039623C 02289C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

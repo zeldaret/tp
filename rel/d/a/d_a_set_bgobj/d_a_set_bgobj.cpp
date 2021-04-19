@@ -82,7 +82,7 @@ SECTION_RODATA static u8 const l_specName[9 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80485F00, &l_specName);
+COMPILER_STRIP_GATE(0x80485F00, &l_specName);
 
 /* 80485F10-80485F1C 000000 000A+02 1/1 0/0 0/0 .data            l_bg_profName$3618 */
 SECTION_DATA static u8 l_bg_profName[10 + 2 /* padding */] = {
@@ -109,6 +109,13 @@ asm void daSetBgObj_c::CreateInit() {
     nofralloc
 #include "asm/rel/d/a/d_a_set_bgobj/d_a_set_bgobj/CreateInit__12daSetBgObj_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80485F0C-80485F0C 00000C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80485F0C = "%s";
 #pragma pop
 
 /* 80485DFC-80485E88 0000FC 008C+00 1/1 0/0 0/0 .text            create__12daSetBgObj_cFv */
@@ -176,9 +183,4 @@ SECTION_DATA extern void* g_profile_SET_BG_OBJ[12] = {
     (void*)0x00040100, (void*)0x000E0000,
 };
 
-/* 80485F0C-80485F0F 00000C 0003+00 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80485F0C = "%s";
-#pragma pop
+/* 80485F0C-80485F0C 00000C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

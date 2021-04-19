@@ -65,6 +65,66 @@ asm void daShopItem_c::getPosP() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80379738-80379742 005D98 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80379738;
+
+/* 80379742-8037974B 005DA2 0009+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80379742;
+
+/* 8037974B-80379754 005DAB 0009+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_8037974B;
+
+/* 80379754-8037975E 005DB4 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80379754;
+
+/* 8037975E-80379768 005DBE 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_8037975E;
+
+/* 80379768-80379771 005DC8 0009+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80379768;
+
+/* 80379771-8037977A 005DD1 0009+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80379771;
+
+/* 8037977A-80379783 005DDA 0009+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_8037977A;
+
+/* 80379783-8037978D 005DE3 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80379783;
+
+/* 8037978D-80379795 005DED 0008+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_8037978D;
+
+/* 80379795-8037979D 005DF5 0008+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80379795;
+
+/* 8037979D-803797A7 005DFD 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_8037979D;
+
+/* 803797A7-803797B1 005E07 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_803797A7;
+
+/* 803797B1-803797BB 005E11 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_803797B1;
+
+/* 803797BB-803797C5 005E1B 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_803797BB;
+
+/* 803797C5-803797CF 005E25 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_803797C5;
+
+/* 803797CF-803797D9 005E2F 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_803797CF;
+
+/* 803797D9-803797E3 005E39 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_803797D9;
+
+/* 803797E3-803797ED 005E43 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_803797E3;
+
+/* 803797ED-803797F8 005E4D 000A+01 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_803797ED;
+
 /* 803792E8-80379738 -00001 0450+00 1/1 0/0 9/9 .rodata          mData__12daShopItem_c */
 SECTION_RODATA void* const daShopItem_c::mData[276] = {
     (void*)&d_a_d_a_shop_item_static__stringBase0,
@@ -344,22 +404,11 @@ SECTION_RODATA void* const daShopItem_c::mData[276] = {
     (void*)0x0000000C,
     (void*)NULL,
 };
-COMPILER_STRIP_GATE(803792E8, &daShopItem_c::mData);
+COMPILER_STRIP_GATE(0x803792E8, &daShopItem_c::mData);
 
-/* 80037C24-80037C7C 032564 0058+00 0/0 0/0 1/1 .text CheckShopItemCreateHeap__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CheckShopItemCreateHeap(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/a/d_a_shop_item_static/CheckShopItemCreateHeap__FP10fopAc_ac_c.s"
-}
-#pragma pop
-
-/* 80379738-803797F8 005D98 00BF+01 1/0 0/0 0/0 .rodata          @stringBase0 */
+/* 80379738-80379738 005D98 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 #pragma push
 #pragma force_active on
-#pragma section ".dead"
 SECTION_DEAD static char const* const stringBase_80379738 = "B_mD_sold";
 SECTION_DEAD static char const* const stringBase_80379742 = "B_mD_oil";
 SECTION_DEAD static char const* const stringBase_8037974B = "O_mD_red";
@@ -383,3 +432,15 @@ SECTION_DEAD static char const* const stringBase_803797ED = "O_mD_gren";
 /* @stringBase0 padding */
 SECTION_DEAD static char const* const pad_803797F7 = "";
 #pragma pop
+
+/* 80037C24-80037C7C 032564 0058+00 0/0 0/0 1/1 .text CheckShopItemCreateHeap__FP10fopAc_ac_c */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void CheckShopItemCreateHeap(fopAc_ac_c* param_0) {
+    nofralloc
+#include "asm/d/a/d_a_shop_item_static/CheckShopItemCreateHeap__FP10fopAc_ac_c.s"
+}
+#pragma pop
+
+/* 80379738-80379738 005D98 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

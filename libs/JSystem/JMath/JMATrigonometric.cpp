@@ -16,7 +16,7 @@ template <typename A1, typename B1>
 struct pair {};
 /* pair<f32, f32> */
 struct pair__template0 {
-    /* 80339CB0 */ void func_80339CB0();
+    /* 80339CB0 */ void func_80339CB0(void* _this);
 };
 
 };  // namespace std
@@ -32,7 +32,7 @@ struct JMath {
 //
 
 extern "C" void __sinit_JMATrigonometric_cpp();
-extern "C" void func_80339CB0();
+extern "C" void func_80339CB0(void* _this);
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" f32 atanTable___5JMath[1032];
 extern "C" f32 asinAcosTable___5JMath[1032];
@@ -101,14 +101,14 @@ asm void __sinit_JMATrigonometric_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80339AEC = (void*)__sinit_JMATrigonometric_cpp;
+REGISTER_CTORS(0x80339AEC, __sinit_JMATrigonometric_cpp);
 #pragma pop
 
 /* 80339CB0-80339CC0 3345F0 0010+00 1/1 0/0 0/0 .text            __ct__Q23std9pair<f,f>Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80339CB0() {
+extern "C" asm void func_80339CB0(void* _this) {
     nofralloc
 #include "asm/JSystem/JMath/JMATrigonometric/func_80339CB0.s"
 }

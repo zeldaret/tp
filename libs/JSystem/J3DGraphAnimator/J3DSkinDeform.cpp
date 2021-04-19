@@ -27,9 +27,9 @@ struct J3DSkinNList {
     /* 8032C8E4 */ void calcSkin_VtxNrmF32(f32 (*)[4], void*, void*);
 };
 
-struct J3DModelData {};
-
 struct J3DMtxBuffer {};
+
+struct J3DModelData {};
 
 struct J3DSkinDeform {
     /* 8032C96C */ J3DSkinDeform();
@@ -228,7 +228,17 @@ asm void J3DSkinDeform::initSkinInfo(J3DModelData* param_0) {
 SECTION_RODATA static u8 const lit_1142[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02,
 };
-COMPILER_STRIP_GATE(803A2008, &lit_1142);
+COMPILER_STRIP_GATE(0x803A2008, &lit_1142);
+
+/* 803A2028-803A2028 02E688 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803A2028 =
+    " Invlid Data : CPU Pipeline process GX_INDEX16 D"
+    "ata Only\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_803A2062 = "\0\0\0\0\0";
+#pragma pop
 
 /* 80439218-80439A20 065F38 0800+08 1/1 0/0 0/0 .bss             sWorkArea_MtxReg__13J3DSkinDeform
  */
@@ -250,7 +260,7 @@ asm void J3DSkinDeform::initMtxIndexArray(J3DModelData* param_0) {
 SECTION_RODATA static u8 const lit_1270[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02,
 };
-COMPILER_STRIP_GATE(803A2018, &lit_1270);
+COMPILER_STRIP_GATE(0x803A2018, &lit_1270);
 
 /* 8032D378-8032D5C4 327CB8 024C+00 0/0 1/1 0/0 .text
  * changeFastSkinDL__13J3DSkinDeformFP12J3DModelData            */
@@ -416,13 +426,4 @@ asm J3DSkinDeform::~J3DSkinDeform() {
 }
 #pragma pop
 
-/* 803A2028-803A2068 02E688 003A+06 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803A2028 =
-    " Invlid Data : CPU Pipeline process GX_INDEX16 D"
-    "ata Only\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803A2062 = "\0\0\0\0\0";
-#pragma pop
+/* 803A2028-803A2028 02E688 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

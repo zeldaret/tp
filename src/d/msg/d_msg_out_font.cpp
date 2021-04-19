@@ -93,6 +93,61 @@ extern "C" extern u8 g_MsgObject_HIO_c[1040];
 //
 
 /* ############################################################################################## */
+/* 80399350-80399350 0259B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399350 = "font_07_02.bti";
+SECTION_DEAD static char const* const stringBase_8039935F = "font_20.bti";
+SECTION_DEAD static char const* const stringBase_8039936B = "font_21.bti";
+SECTION_DEAD static char const* const stringBase_80399377 = "font_30.bti";
+SECTION_DEAD static char const* const stringBase_80399383 = "font_31.bti";
+SECTION_DEAD static char const* const stringBase_8039938F = "font_34.bti";
+SECTION_DEAD static char const* const stringBase_8039939B = "font_00.bti";
+SECTION_DEAD static char const* const stringBase_803993A7 = "font_01.bti";
+SECTION_DEAD static char const* const stringBase_803993B3 = "font_09.bti";
+SECTION_DEAD static char const* const stringBase_803993BF = "font_04.bti";
+SECTION_DEAD static char const* const stringBase_803993CB = "font_05.bti";
+SECTION_DEAD static char const* const stringBase_803993D7 = "font_02.bti";
+SECTION_DEAD static char const* const stringBase_803993E3 = "font_03.bti";
+SECTION_DEAD static char const* const stringBase_803993EF = "font_06.bti";
+SECTION_DEAD static char const* const stringBase_803993FB = "font_08.bti";
+SECTION_DEAD static char const* const stringBase_80399407 = "font_07_01.bti";
+SECTION_DEAD static char const* const stringBase_80399416 = "font_10.bti";
+SECTION_DEAD static char const* const stringBase_80399422 = "font_15.bti";
+SECTION_DEAD static char const* const stringBase_8039942E = "font_12.bti";
+SECTION_DEAD static char const* const stringBase_8039943A = "im_map_icon_portal_4ia_40_05.bti";
+SECTION_DEAD static char const* const stringBase_8039945B = "font_16_backlight.bti";
+SECTION_DEAD static char const* const stringBase_80399471 = "font_13.bti";
+SECTION_DEAD static char const* const stringBase_8039947D = "font_14.bti";
+SECTION_DEAD static char const* const stringBase_80399489 = "im_zelda_item_icon_rupy_13.bti";
+SECTION_DEAD static char const* const stringBase_803994A8 = "";
+SECTION_DEAD static char const* const stringBase_803994A9 = "st_bompoach_lv1.bti";
+SECTION_DEAD static char const* const stringBase_803994BD = "font_46.bti";
+SECTION_DEAD static char const* const stringBase_803994C9 = "font_47.bti";
+SECTION_DEAD static char const* const stringBase_803994D5 = "font_35.bti";
+SECTION_DEAD static char const* const stringBase_803994E1 = "font_36.bti";
+SECTION_DEAD static char const* const stringBase_803994ED = "font_19.bti";
+SECTION_DEAD static char const* const stringBase_803994F9 = "font_22.bti";
+SECTION_DEAD static char const* const stringBase_80399505 = "font_23.bti";
+SECTION_DEAD static char const* const stringBase_80399511 = "font_24.bti";
+SECTION_DEAD static char const* const stringBase_8039951D = "font_25.bti";
+SECTION_DEAD static char const* const stringBase_80399529 = "font_40.bti";
+SECTION_DEAD static char const* const stringBase_80399535 = "font_39.bti";
+SECTION_DEAD static char const* const stringBase_80399541 = "font_29.bti";
+SECTION_DEAD static char const* const stringBase_8039954D = "font_28.bti";
+SECTION_DEAD static char const* const stringBase_80399559 = "font_32.bti";
+SECTION_DEAD static char const* const stringBase_80399565 = "font_33.bti";
+SECTION_DEAD static char const* const stringBase_80399571 = "font_41.bti";
+SECTION_DEAD static char const* const stringBase_8039957D = "font_42.bti";
+SECTION_DEAD static char const* const stringBase_80399589 = "font_50.bti";
+SECTION_DEAD static char const* const stringBase_80399595 = "font_49.bti";
+SECTION_DEAD static char const* const stringBase_803995A1 = "font_51.bti";
+SECTION_DEAD static char const* const stringBase_803995AD = "font_52.bti";
+SECTION_DEAD static char const* const stringBase_803995B9 = "font_53.bti";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_803995C5 = "\0\0";
+#pragma pop
+
 /* 803BFA90-803BFBA8 -00001 0118+00 1/1 0/0 0/0 .data            @4395 */
 SECTION_DATA static void* lit_4395[70] = {
     (void*)(((char*)createPane__10COutFont_cFv) + 0xDC),
@@ -546,58 +601,4 @@ asm void COutFont_c::getBtiName(int param_0) {
 }
 #pragma pop
 
-/* 80399350-803995C8 0259B0 0275+03 2/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80399350 = "font_07_02.bti";
-SECTION_DEAD static char const* const stringBase_8039935F = "font_20.bti";
-SECTION_DEAD static char const* const stringBase_8039936B = "font_21.bti";
-SECTION_DEAD static char const* const stringBase_80399377 = "font_30.bti";
-SECTION_DEAD static char const* const stringBase_80399383 = "font_31.bti";
-SECTION_DEAD static char const* const stringBase_8039938F = "font_34.bti";
-SECTION_DEAD static char const* const stringBase_8039939B = "font_00.bti";
-SECTION_DEAD static char const* const stringBase_803993A7 = "font_01.bti";
-SECTION_DEAD static char const* const stringBase_803993B3 = "font_09.bti";
-SECTION_DEAD static char const* const stringBase_803993BF = "font_04.bti";
-SECTION_DEAD static char const* const stringBase_803993CB = "font_05.bti";
-SECTION_DEAD static char const* const stringBase_803993D7 = "font_02.bti";
-SECTION_DEAD static char const* const stringBase_803993E3 = "font_03.bti";
-SECTION_DEAD static char const* const stringBase_803993EF = "font_06.bti";
-SECTION_DEAD static char const* const stringBase_803993FB = "font_08.bti";
-SECTION_DEAD static char const* const stringBase_80399407 = "font_07_01.bti";
-SECTION_DEAD static char const* const stringBase_80399416 = "font_10.bti";
-SECTION_DEAD static char const* const stringBase_80399422 = "font_15.bti";
-SECTION_DEAD static char const* const stringBase_8039942E = "font_12.bti";
-SECTION_DEAD static char const* const stringBase_8039943A = "im_map_icon_portal_4ia_40_05.bti";
-SECTION_DEAD static char const* const stringBase_8039945B = "font_16_backlight.bti";
-SECTION_DEAD static char const* const stringBase_80399471 = "font_13.bti";
-SECTION_DEAD static char const* const stringBase_8039947D = "font_14.bti";
-SECTION_DEAD static char const* const stringBase_80399489 = "im_zelda_item_icon_rupy_13.bti";
-SECTION_DEAD static char const* const stringBase_803994A8 = "";
-SECTION_DEAD static char const* const stringBase_803994A9 = "st_bompoach_lv1.bti";
-SECTION_DEAD static char const* const stringBase_803994BD = "font_46.bti";
-SECTION_DEAD static char const* const stringBase_803994C9 = "font_47.bti";
-SECTION_DEAD static char const* const stringBase_803994D5 = "font_35.bti";
-SECTION_DEAD static char const* const stringBase_803994E1 = "font_36.bti";
-SECTION_DEAD static char const* const stringBase_803994ED = "font_19.bti";
-SECTION_DEAD static char const* const stringBase_803994F9 = "font_22.bti";
-SECTION_DEAD static char const* const stringBase_80399505 = "font_23.bti";
-SECTION_DEAD static char const* const stringBase_80399511 = "font_24.bti";
-SECTION_DEAD static char const* const stringBase_8039951D = "font_25.bti";
-SECTION_DEAD static char const* const stringBase_80399529 = "font_40.bti";
-SECTION_DEAD static char const* const stringBase_80399535 = "font_39.bti";
-SECTION_DEAD static char const* const stringBase_80399541 = "font_29.bti";
-SECTION_DEAD static char const* const stringBase_8039954D = "font_28.bti";
-SECTION_DEAD static char const* const stringBase_80399559 = "font_32.bti";
-SECTION_DEAD static char const* const stringBase_80399565 = "font_33.bti";
-SECTION_DEAD static char const* const stringBase_80399571 = "font_41.bti";
-SECTION_DEAD static char const* const stringBase_8039957D = "font_42.bti";
-SECTION_DEAD static char const* const stringBase_80399589 = "font_50.bti";
-SECTION_DEAD static char const* const stringBase_80399595 = "font_49.bti";
-SECTION_DEAD static char const* const stringBase_803995A1 = "font_51.bti";
-SECTION_DEAD static char const* const stringBase_803995AD = "font_52.bti";
-SECTION_DEAD static char const* const stringBase_803995B9 = "font_53.bti";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803995C5 = "\0\0";
-#pragma pop
+/* 80399350-80399350 0259B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

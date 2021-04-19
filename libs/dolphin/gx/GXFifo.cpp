@@ -31,9 +31,9 @@ extern "C" void __GXWriteFifoIntEnable();
 extern "C" void __GXWriteFifoIntReset();
 extern "C" void __GXCleanGPFifo();
 extern "C" void GXSetCurrentGXThread();
-extern "C" void GXGetCurrentGXThread();
-extern "C" void GXGetCPUFifo();
-extern "C" void GXGetGPFifo();
+extern "C" u32 GXGetCurrentGXThread();
+extern "C" u32 GXGetCPUFifo();
+extern "C" u32 GXGetGPFifo();
 
 //
 // External References:
@@ -59,13 +59,13 @@ extern "C" extern void* __GXData;
 //
 
 /* ############################################################################################## */
-/* 80451948-8045194C 000E48 0004+00 4/4 0/0 0/0 .sbss            CPUFifo */
+/* 80451948-8045194C 000E48 0004+00 4/3 0/0 0/0 .sbss            CPUFifo */
 static u8 CPUFifo[4];
 
-/* 8045194C-80451950 000E4C 0004+00 4/4 0/0 0/0 .sbss            GPFifo */
+/* 8045194C-80451950 000E4C 0004+00 4/3 0/0 0/0 .sbss            GPFifo */
 static u8 GPFifo[4];
 
-/* 80451950-80451954 000E50 0004+00 4/4 0/0 0/0 .sbss            __GXCurrentThread */
+/* 80451950-80451954 000E50 0004+00 4/3 0/0 0/0 .sbss            __GXCurrentThread */
 static u8 __GXCurrentThread[4];
 
 /* 80451954-80451958 000E54 0004+00 3/3 0/0 0/0 .sbss            None */
@@ -280,32 +280,17 @@ asm void GXSetCurrentGXThread() {
 }
 #pragma pop
 
-/* 8035AEA0-8035AEA8 3557E0 0008+00 0/0 1/1 0/0 .text            GXGetCurrentGXThread */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXGetCurrentGXThread() {
-    nofralloc
-#include "asm/dolphin/gx/GXFifo/GXGetCurrentGXThread.s"
+/* 8035AEA0-8035AEA8 -00001 0008+00 0/0 0/0 0/0 .text            GXGetCurrentGXThread */
+u32 GXGetCurrentGXThread() {
+    return *(u32*)(&__GXCurrentThread);
 }
-#pragma pop
 
-/* 8035AEA8-8035AEB0 3557E8 0008+00 1/1 1/1 0/0 .text            GXGetCPUFifo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXGetCPUFifo() {
-    nofralloc
-#include "asm/dolphin/gx/GXFifo/GXGetCPUFifo.s"
+/* 8035AEA8-8035AEB0 -00001 0008+00 0/0 0/0 0/0 .text            GXGetCPUFifo */
+u32 GXGetCPUFifo() {
+    return *(u32*)(&CPUFifo);
 }
-#pragma pop
 
-/* 8035AEB0-8035AEB8 3557F0 0008+00 1/1 2/2 0/0 .text            GXGetGPFifo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXGetGPFifo() {
-    nofralloc
-#include "asm/dolphin/gx/GXFifo/GXGetGPFifo.s"
+/* 8035AEB0-8035AEB8 -00001 0008+00 0/0 0/0 0/0 .text            GXGetGPFifo */
+u32 GXGetGPFifo() {
+    return *(u32*)(&GPFifo);
 }
-#pragma pop

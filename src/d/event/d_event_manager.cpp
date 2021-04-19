@@ -43,8 +43,6 @@ struct dEvt_control_c {
     /* 800436F4 */ void setPtD(void*);
 };
 
-struct dEvDtData_c {};
-
 struct dEvDtStaff_c {
     /* 80044134 */ void init();
 };
@@ -53,6 +51,8 @@ struct dEvDtEvent_c {
     /* 80043E78 */ void finishCheck();
     /* 80043F70 */ void specialStaffProc(dEvDtStaff_c*);
 };
+
+struct dEvDtData_c {};
 
 struct Vec {};
 
@@ -302,6 +302,30 @@ asm void dEvent_exception_c::setStartDemo(int param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80379F60-80379F60 0065C0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379F60 = "NORMAL_COMEBACK";
+SECTION_DEAD static char const* const stringBase_80379F70 = "DEFAULT_START";
+SECTION_DEAD static char const* const stringBase_80379F7E = "SHUTTER_START";
+SECTION_DEAD static char const* const stringBase_80379F8C = "SHUTTER_START_STOP";
+SECTION_DEAD static char const* const stringBase_80379F9F = "BS_SHUTTER_START";
+SECTION_DEAD static char const* const stringBase_80379FB0 = "BS_SHUTTER_START_B";
+SECTION_DEAD static char const* const stringBase_80379FC3 = "KNOB_START";
+SECTION_DEAD static char const* const stringBase_80379FCE = "KNOB_START_B";
+SECTION_DEAD static char const* const stringBase_80379FDB = "FMASTER_START";
+SECTION_DEAD static char const* const stringBase_80379FE9 = "FALL_START";
+SECTION_DEAD static char const* const stringBase_80379FF4 = "CRAWLOUT_START";
+SECTION_DEAD static char const* const stringBase_8037A003 = "BOSSWARP_START";
+SECTION_DEAD static char const* const stringBase_8037A012 = "PORTALWARP_START";
+SECTION_DEAD static char const* const stringBase_8037A023 = "PORTALWARP_START_B";
+SECTION_DEAD static char const* const stringBase_8037A036 = "(!NO REGIST!)";
+SECTION_DEAD static char const* const stringBase_8037A044 = "(!NO INFO!)";
+SECTION_DEAD static char const* const stringBase_8037A050 = "(!BAD NUMBER!)";
+SECTION_DEAD static char const* const stringBase_8037A05F = "(MAP TOOL CAMERA)";
+SECTION_DEAD static char const* const stringBase_8037A071 = "(!BAD DATA!)";
+#pragma pop
+
 /* 803A8270-803A82A8 -00001 0038+00 1/1 0/0 0/0 .data            soecial_names$3966 */
 SECTION_DATA static void* soecial_names[14] = {
     (void*)&d_event_d_event_manager__stringBase0,
@@ -383,7 +407,13 @@ SECTION_RODATA static u8 const data_80379F50[15 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
-COMPILER_STRIP_GATE(80379F50, &data_80379F50);
+COMPILER_STRIP_GATE(0x80379F50, &data_80379F50);
+
+/* 80379F60-80379F60 0065C0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A07E = "Event";
+#pragma pop
 
 /* 80046710-80046800 041050 00F0+00 0/0 1/1 0/0 .text            create__16dEvent_manager_cFv */
 #pragma push
@@ -433,6 +463,14 @@ asm void dEvent_manager_c::roomFinish(int param_0) {
     nofralloc
 #include "asm/d/event/d_event_manager/roomFinish__16dEvent_manager_cFi.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80379F60-80379F60 0065C0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A084 = "WOLF_WORLD_CHANGE_OUT";
+SECTION_DEAD static char const* const stringBase_8037A09A = "WORLD_CHANGE_OUT";
 #pragma pop
 
 /* 80046A58-80046C0C 041398 01B4+00 0/0 1/1 0/0 .text orderStartDemo__16dEvent_manager_cFv */
@@ -505,6 +543,13 @@ asm void dEvent_manager_c::closeProc(dEvDtEvent_c* param_0) {
     nofralloc
 #include "asm/d/event/d_event_manager/closeProc__16dEvent_manager_cFP12dEvDtEvent_c.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80379F60-80379F60 0065C0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A0AB = "ALL";
 #pragma pop
 
 /* 80046DAC-80046E64 0416EC 00B8+00 0/0 2/2 0/0 .text            endProc__16dEvent_manager_cFsi */
@@ -588,6 +633,12 @@ asm void dEvent_manager_c::getEventData(s16 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80379F60-80379F60 0065C0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A0AF = "MapToolCamera%d";
+#pragma pop
+
 /* 804246A0-804246B4 0513C0 0011+03 1/1 0/0 0/0 .bss             map_tool_name$4449 */
 static u8 map_tool_name_4449[17 + 3 /* padding */];
 
@@ -690,6 +741,14 @@ asm void dEvent_manager_c::endCheckOld(char const* param_0) {
     nofralloc
 #include "asm/d/event/d_event_manager/endCheckOld__16dEvent_manager_cFPCc.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80379F60-80379F60 0065C0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A0BF = "Alink";
+SECTION_DEAD static char const* const stringBase_8037A0C5 = "Link";
 #pragma pop
 
 /* 80047B1C-80047D4C 04245C 0230+00 1/1 10/10 210/210 .text
@@ -841,6 +900,14 @@ asm void dEvent_manager_c::getGoal() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80379F60-80379F60 0065C0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A0CA = "NO DATA";
+SECTION_DEAD static char const* const stringBase_8037A0D2 = "NOT RUNNING";
+#pragma pop
+
 /* 800483E8-8004846C 042D28 0084+00 0/0 5/5 27/27 .text getRunEventName__16dEvent_manager_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -883,6 +950,13 @@ asm void dEvent_manager_c::specialCast_Shutter(s16 param_0, int param_1) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80379F60-80379F60 0065C0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A0DE = "SHUTTER_DOOR";
+#pragma pop
+
 /* 80048618-80048748 042F58 0130+00 1/1 0/0 0/0 .text specialCast__16dEvent_manager_cFPCci */
 #pragma push
 #pragma optimization_level 0
@@ -894,6 +968,17 @@ asm void dEvent_manager_c::specialCast(char const* param_0, int param_1) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80379F60-80379F60 0065C0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A0EB = "WAIT";
+SECTION_DEAD static char const* const stringBase_8037A0F0 = "TALK0";
+SECTION_DEAD static char const* const stringBase_8037A0F6 = "TALK1";
+SECTION_DEAD static char const* const stringBase_8037A0FC = "TALKMAN";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8037A104 = "\0\0\0";
+#pragma pop
+
 /* 803A82A8-803A82B8 -00001 000C+04 1/1 0/0 0/0 .data            action_table$5100 */
 SECTION_DATA static void* action_table[3 + 1 /* padding */] = {
     (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x18B),
@@ -933,43 +1018,4 @@ asm void dEvent_manager_c::checkStartDemo() {
 }
 #pragma pop
 
-/* 80379F60-8037A108 0065C0 01A4+04 15/13 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80379F60 = "NORMAL_COMEBACK";
-SECTION_DEAD static char const* const stringBase_80379F70 = "DEFAULT_START";
-SECTION_DEAD static char const* const stringBase_80379F7E = "SHUTTER_START";
-SECTION_DEAD static char const* const stringBase_80379F8C = "SHUTTER_START_STOP";
-SECTION_DEAD static char const* const stringBase_80379F9F = "BS_SHUTTER_START";
-SECTION_DEAD static char const* const stringBase_80379FB0 = "BS_SHUTTER_START_B";
-SECTION_DEAD static char const* const stringBase_80379FC3 = "KNOB_START";
-SECTION_DEAD static char const* const stringBase_80379FCE = "KNOB_START_B";
-SECTION_DEAD static char const* const stringBase_80379FDB = "FMASTER_START";
-SECTION_DEAD static char const* const stringBase_80379FE9 = "FALL_START";
-SECTION_DEAD static char const* const stringBase_80379FF4 = "CRAWLOUT_START";
-SECTION_DEAD static char const* const stringBase_8037A003 = "BOSSWARP_START";
-SECTION_DEAD static char const* const stringBase_8037A012 = "PORTALWARP_START";
-SECTION_DEAD static char const* const stringBase_8037A023 = "PORTALWARP_START_B";
-SECTION_DEAD static char const* const stringBase_8037A036 = "(!NO REGIST!)";
-SECTION_DEAD static char const* const stringBase_8037A044 = "(!NO INFO!)";
-SECTION_DEAD static char const* const stringBase_8037A050 = "(!BAD NUMBER!)";
-SECTION_DEAD static char const* const stringBase_8037A05F = "(MAP TOOL CAMERA)";
-SECTION_DEAD static char const* const stringBase_8037A071 = "(!BAD DATA!)";
-SECTION_DEAD static char const* const stringBase_8037A07E = "Event";
-SECTION_DEAD static char const* const stringBase_8037A084 = "WOLF_WORLD_CHANGE_OUT";
-SECTION_DEAD static char const* const stringBase_8037A09A = "WORLD_CHANGE_OUT";
-SECTION_DEAD static char const* const stringBase_8037A0AB = "ALL";
-SECTION_DEAD static char const* const stringBase_8037A0AF = "MapToolCamera%d";
-SECTION_DEAD static char const* const stringBase_8037A0BF = "Alink";
-SECTION_DEAD static char const* const stringBase_8037A0C5 = "Link";
-SECTION_DEAD static char const* const stringBase_8037A0CA = "NO DATA";
-SECTION_DEAD static char const* const stringBase_8037A0D2 = "NOT RUNNING";
-SECTION_DEAD static char const* const stringBase_8037A0DE = "SHUTTER_DOOR";
-SECTION_DEAD static char const* const stringBase_8037A0EB = "WAIT";
-SECTION_DEAD static char const* const stringBase_8037A0F0 = "TALK0";
-SECTION_DEAD static char const* const stringBase_8037A0F6 = "TALK1";
-SECTION_DEAD static char const* const stringBase_8037A0FC = "TALKMAN";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037A104 = "\0\0\0";
-#pragma pop
+/* 80379F60-80379F60 0065C0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -193,9 +193,9 @@ struct dStage_nextStage_c {
     /* 80023E28 */ void set(char const*, s8, s16, s8, s8, u8);
 };
 
-struct J3DModelData {};
-
 struct J3DModel {};
+
+struct J3DModelData {};
 
 struct dSmplMdl_draw_c {
     /* 80048CB4 */ dSmplMdl_draw_c();
@@ -849,15 +849,10 @@ asm void dComIfG_play_c::clearItemBombNumCount(u8 param_0) {
 }
 #pragma pop
 
-/* 8002B3A8-8002B3B0 025CE8 0008+00 0/0 2/2 0/0 .text setNowVibration__14dComIfG_play_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_play_c::setNowVibration(u8 param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/setNowVibration__14dComIfG_play_cFUc.s"
+/* 8002B3A8-8002B3B0 -00001 0008+00 0/0 0/0 0/0 .text setNowVibration__14dComIfG_play_cFUc */
+void dComIfG_play_c::setNowVibration(u8 param_0) {
+    *(u8*)(((u8*)this) + 20314) /* this->field_0x4f5a */ = (u8)(param_0);
 }
-#pragma pop
 
 /* 8002B3B0-8002B3B8 025CF0 0008+00 0/0 2/2 0/0 .text            getNowVibration__14dComIfG_play_cFv
  */
@@ -889,6 +884,46 @@ static asm void dComIfG_get_timelayer(int* param_0) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/dComIfG_get_timelayer__FPi.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80378F38-80378F38 005598 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378F38 = "D_MN11";
+SECTION_DEAD static char const* const stringBase_80378F3F = "F_SP114";
+SECTION_DEAD static char const* const stringBase_80378F47 = "F_SP108";
+SECTION_DEAD static char const* const stringBase_80378F4F = "R_SP108";
+SECTION_DEAD static char const* const stringBase_80378F57 = "F_SP109";
+SECTION_DEAD static char const* const stringBase_80378F5F = "F_SP111";
+SECTION_DEAD static char const* const stringBase_80378F67 = "R_SP109";
+SECTION_DEAD static char const* const stringBase_80378F6F = "R_SP209";
+SECTION_DEAD static char const* const stringBase_80378F77 = "F_SP110";
+SECTION_DEAD static char const* const stringBase_80378F7F = "R_SP110";
+SECTION_DEAD static char const* const stringBase_80378F87 = "F_SP115";
+SECTION_DEAD static char const* const stringBase_80378F8F = "F_SP116";
+SECTION_DEAD static char const* const stringBase_80378F97 = "R_SP116";
+SECTION_DEAD static char const* const stringBase_80378F9F = "R_SP115";
+SECTION_DEAD static char const* const stringBase_80378FA7 = "F_SP113";
+SECTION_DEAD static char const* const stringBase_80378FAF = "F_SP126";
+SECTION_DEAD static char const* const stringBase_80378FB7 = "F_SP124";
+SECTION_DEAD static char const* const stringBase_80378FBF = "F_SP112";
+SECTION_DEAD static char const* const stringBase_80378FC7 = "F_SP103";
+SECTION_DEAD static char const* const stringBase_80378FCF = "R_SP01";
+SECTION_DEAD static char const* const stringBase_80378FD6 = "F_SP104";
+SECTION_DEAD static char const* const stringBase_80378FDE = "F_SP00";
+SECTION_DEAD static char const* const stringBase_80378FE5 = "F_SP121";
+SECTION_DEAD static char const* const stringBase_80378FED = "F_SP122";
+SECTION_DEAD static char const* const stringBase_80378FF5 = "F_SP128";
+SECTION_DEAD static char const* const stringBase_80378FFD = "R_SP160";
+SECTION_DEAD static char const* const stringBase_80379005 = "F_SP117";
+SECTION_DEAD static char const* const stringBase_8037900D = "F_SP118";
+SECTION_DEAD static char const* const stringBase_80379015 = "D_SB10";
+SECTION_DEAD static char const* const stringBase_8037901C = "R_SP107";
+SECTION_DEAD static char const* const stringBase_80379024 = "D_MN09";
+SECTION_DEAD static char const* const stringBase_8037902B = "F_SP127";
+SECTION_DEAD static char const* const stringBase_80379033 = "R_SP127";
+SECTION_DEAD static char const* const stringBase_8037903B = "D_MN08A";
 #pragma pop
 
 /* 8002B434-8002C950 025D74 151C+00 1/1 1/1 0/0 .text
@@ -998,15 +1033,10 @@ asm void dComIfG_play_c::entrySimpleModel(J3DModel* param_0, int param_1) {
 }
 #pragma pop
 
-/* 8002CB94-8002CB9C 0274D4 0008+00 0/0 4/4 0/0 .text setTimerNowTimeMs__14dComIfG_play_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_play_c::setTimerNowTimeMs(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/setTimerNowTimeMs__14dComIfG_play_cFi.s"
+/* 8002CB94-8002CB9C -00001 0008+00 0/0 0/0 0/0 .text setTimerNowTimeMs__14dComIfG_play_cFi */
+void dComIfG_play_c::setTimerNowTimeMs(int param_0) {
+    *(u32*)(((u8*)this) + 20476) /* this->field_0x4ffc */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 8002CB9C-8002CBA4 0274DC 0008+00 0/0 2/2 3/3 .text getTimerNowTimeMs__14dComIfG_play_cFv */
 #pragma push
@@ -1018,15 +1048,10 @@ asm void dComIfG_play_c::getTimerNowTimeMs() {
 }
 #pragma pop
 
-/* 8002CBA4-8002CBAC 0274E4 0008+00 0/0 3/3 0/0 .text setTimerLimitTimeMs__14dComIfG_play_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_play_c::setTimerLimitTimeMs(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/setTimerLimitTimeMs__14dComIfG_play_cFi.s"
+/* 8002CBA4-8002CBAC -00001 0008+00 0/0 0/0 0/0 .text setTimerLimitTimeMs__14dComIfG_play_cFi */
+void dComIfG_play_c::setTimerLimitTimeMs(int param_0) {
+    *(u32*)(((u8*)this) + 20480) /* this->field_0x5000 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 8002CBAC-8002CBB4 0274EC 0008+00 0/0 1/1 0/0 .text getTimerLimitTimeMs__14dComIfG_play_cFv */
 #pragma push
@@ -1038,15 +1063,10 @@ asm void dComIfG_play_c::getTimerLimitTimeMs() {
 }
 #pragma pop
 
-/* 8002CBB4-8002CBBC 0274F4 0008+00 0/0 3/3 0/0 .text            setTimerMode__14dComIfG_play_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_play_c::setTimerMode(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/setTimerMode__14dComIfG_play_cFi.s"
+/* 8002CBB4-8002CBBC -00001 0008+00 0/0 0/0 0/0 .text            setTimerMode__14dComIfG_play_cFi */
+void dComIfG_play_c::setTimerMode(int param_0) {
+    *(u32*)(((u8*)this) + 20484) /* this->field_0x5004 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 8002CBBC-8002CBC4 0274FC 0008+00 6/6 8/8 7/7 .text            getTimerMode__14dComIfG_play_cFv */
 #pragma push
@@ -1058,16 +1078,11 @@ asm void dComIfG_play_c::getTimerMode() {
 }
 #pragma pop
 
-/* 8002CBC4-8002CBCC 027504 0008+00 0/0 1/1 0/0 .text            setTimerType__14dComIfG_play_cFUc
+/* 8002CBC4-8002CBCC -00001 0008+00 0/0 0/0 0/0 .text            setTimerType__14dComIfG_play_cFUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_play_c::setTimerType(u8 param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/setTimerType__14dComIfG_play_cFUc.s"
+void dComIfG_play_c::setTimerType(u8 param_0) {
+    *(u8*)(((u8*)this) + 20488) /* this->field_0x5008 */ = (u8)(param_0);
 }
-#pragma pop
 
 /* 8002CBCC-8002CBD4 02750C 0008+00 0/0 1/1 0/0 .text            getTimerType__14dComIfG_play_cFv */
 #pragma push
@@ -1079,15 +1094,10 @@ asm void dComIfG_play_c::getTimerType() {
 }
 #pragma pop
 
-/* 8002CBD4-8002CBDC 027514 0008+00 0/0 2/2 0/0 .text setTimerPtr__14dComIfG_play_cFP8dTimer_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_play_c::setTimerPtr(dTimer_c* param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/setTimerPtr__14dComIfG_play_cFP8dTimer_c.s"
+/* 8002CBD4-8002CBDC -00001 0008+00 0/0 0/0 0/0 .text setTimerPtr__14dComIfG_play_cFP8dTimer_c */
+void dComIfG_play_c::setTimerPtr(dTimer_c* param_0) {
+    *(u32*)(((u8*)this) + 20472) /* this->field_0x4ff8 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 8002CBDC-8002CBE4 02751C 0008+00 6/6 7/7 15/15 .text            getTimerPtr__14dComIfG_play_cFv
  */
@@ -1111,6 +1121,12 @@ asm void dComIfG_inf_c::ct() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80378F38-80378F38 005598 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379043 = "F_SP102";
+#pragma pop
+
 /* 80450600-80450604 000080 0004+00 0/0 18/18 2/2 .sdata           g_clearColor */
 SECTION_SDATA extern u8 g_clearColor[4] = {
     0x00,
@@ -1143,6 +1159,14 @@ asm void dComIfG_resetToOpening(scene_class* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80378F38-80378F38 005598 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037904B = "/res/Object/";
+SECTION_DEAD static char const* const stringBase_80379058 = "%s.arc Read Error !!\n";
+#pragma pop
+
 /* 8002CDB8-8002CE38 0276F8 0080+00 1/0 0/0 0/0 .text            phase_1__FPc */
 #pragma push
 #pragma optimization_level 0
@@ -1151,6 +1175,13 @@ static asm void phase_1(char* param_0) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/phase_1__FPc.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80378F38-80378F38 005598 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037906E = "%s.arc Sync Read Error !!\n";
 #pragma pop
 
 /* 8002CE38-8002CEB4 027778 007C+00 1/0 0/0 0/0 .text            phase_2__FPc */
@@ -1297,6 +1328,13 @@ asm void dComIfGp_getRoomArrow(int param_0) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/dComIfGp_getRoomArrow__Fi.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80378F38-80378F38 005598 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379089 = "";
 #pragma pop
 
 /* 8002D2FC-8002D554 027C3C 0258+00 2/2 7/7 4/4 .text dComIfGp_setNextStage__FPCcsScScfUliScsii */
@@ -1812,6 +1850,12 @@ asm void dComIfG_getTrigA(u32 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80378F38-80378F38 005598 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037908A = "dat/field.dat";
+#pragma pop
+
 /* 80451D18-80451D1C 000318 0004+00 1/1 0/0 0/0 .sdata2          @6980 */
 SECTION_SDATA2 static f32 lit_6980 = -90300.0f;
 
@@ -2035,6 +2079,13 @@ asm void dComIfG_resLoader_c::load(char const** param_0, JKRHeap* param_1) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80378F38-80378F38 005598 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379098 = "Stg_00";
+#pragma pop
+
 /* 8002F434-8002F478 029D74 0044+00 0/0 12/12 12/12 .text            dComIfG_getStageRes__FPCc */
 #pragma push
 #pragma optimization_level 0
@@ -2043,6 +2094,13 @@ asm void dComIfG_getStageRes(char const* param_0) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/dComIfG_getStageRes__FPCc.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80378F38-80378F38 005598 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037909F = "Xtg_00";
 #pragma pop
 
 /* 8002F478-8002F4BC 029DB8 0044+00 0/0 1/1 0/0 .text            dComIfG_getOldStageRes__FPCc */
@@ -2056,6 +2114,14 @@ asm void dComIfG_getOldStageRes(char const* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80378F38-80378F38 005598 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803790A6 = "R%02d_00";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_803790AF = "";
+#pragma pop
+
 /* 80423FD0-80423FF0 050CF0 0020+00 1/1 0/0 0/0 .bss             buf$7371 */
 static u8 buf[32];
 
@@ -2285,7 +2351,7 @@ asm void dComIfGp_TransportWarp_check() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dComLbG_PhaseHandler(request_of_phase_process_class* param_0, int (**)(void*),
+asm void dComLbG_PhaseHandler(request_of_phase_process_class* param_0, int (**param_1)(void*),
                               void* param_2) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv.s"
@@ -2354,7 +2420,7 @@ asm void __sinit_d_com_inf_game_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8002FD18 = (void*)__sinit_d_com_inf_game_cpp;
+REGISTER_CTORS(0x8002FD18, __sinit_d_com_inf_game_cpp);
 #pragma pop
 
 /* 8002FD74-8002FDE8 02A6B4 0074+00 1/1 0/0 0/0 .text            __dt__13dComIfG_inf_cFv */
@@ -2774,53 +2840,4 @@ SECTION_SDATA extern u32 g_whiteColor = 0xFFFFFFFF;
 /* 8045060C-80450610 00008C 0004+00 0/0 3/3 3/3 .sdata           g_saftyWhiteColor */
 SECTION_SDATA extern u32 g_saftyWhiteColor = 0xA0A0A0FF;
 
-/* 80378F38-803790B0 005598 0177+01 12/12 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80378F38 = "D_MN11";
-SECTION_DEAD static char const* const stringBase_80378F3F = "F_SP114";
-SECTION_DEAD static char const* const stringBase_80378F47 = "F_SP108";
-SECTION_DEAD static char const* const stringBase_80378F4F = "R_SP108";
-SECTION_DEAD static char const* const stringBase_80378F57 = "F_SP109";
-SECTION_DEAD static char const* const stringBase_80378F5F = "F_SP111";
-SECTION_DEAD static char const* const stringBase_80378F67 = "R_SP109";
-SECTION_DEAD static char const* const stringBase_80378F6F = "R_SP209";
-SECTION_DEAD static char const* const stringBase_80378F77 = "F_SP110";
-SECTION_DEAD static char const* const stringBase_80378F7F = "R_SP110";
-SECTION_DEAD static char const* const stringBase_80378F87 = "F_SP115";
-SECTION_DEAD static char const* const stringBase_80378F8F = "F_SP116";
-SECTION_DEAD static char const* const stringBase_80378F97 = "R_SP116";
-SECTION_DEAD static char const* const stringBase_80378F9F = "R_SP115";
-SECTION_DEAD static char const* const stringBase_80378FA7 = "F_SP113";
-SECTION_DEAD static char const* const stringBase_80378FAF = "F_SP126";
-SECTION_DEAD static char const* const stringBase_80378FB7 = "F_SP124";
-SECTION_DEAD static char const* const stringBase_80378FBF = "F_SP112";
-SECTION_DEAD static char const* const stringBase_80378FC7 = "F_SP103";
-SECTION_DEAD static char const* const stringBase_80378FCF = "R_SP01";
-SECTION_DEAD static char const* const stringBase_80378FD6 = "F_SP104";
-SECTION_DEAD static char const* const stringBase_80378FDE = "F_SP00";
-SECTION_DEAD static char const* const stringBase_80378FE5 = "F_SP121";
-SECTION_DEAD static char const* const stringBase_80378FED = "F_SP122";
-SECTION_DEAD static char const* const stringBase_80378FF5 = "F_SP128";
-SECTION_DEAD static char const* const stringBase_80378FFD = "R_SP160";
-SECTION_DEAD static char const* const stringBase_80379005 = "F_SP117";
-SECTION_DEAD static char const* const stringBase_8037900D = "F_SP118";
-SECTION_DEAD static char const* const stringBase_80379015 = "D_SB10";
-SECTION_DEAD static char const* const stringBase_8037901C = "R_SP107";
-SECTION_DEAD static char const* const stringBase_80379024 = "D_MN09";
-SECTION_DEAD static char const* const stringBase_8037902B = "F_SP127";
-SECTION_DEAD static char const* const stringBase_80379033 = "R_SP127";
-SECTION_DEAD static char const* const stringBase_8037903B = "D_MN08A";
-SECTION_DEAD static char const* const stringBase_80379043 = "F_SP102";
-SECTION_DEAD static char const* const stringBase_8037904B = "/res/Object/";
-SECTION_DEAD static char const* const stringBase_80379058 = "%s.arc Read Error !!\n";
-SECTION_DEAD static char const* const stringBase_8037906E = "%s.arc Sync Read Error !!\n";
-SECTION_DEAD static char const* const stringBase_80379089 = "";
-SECTION_DEAD static char const* const stringBase_8037908A = "dat/field.dat";
-SECTION_DEAD static char const* const stringBase_80379098 = "Stg_00";
-SECTION_DEAD static char const* const stringBase_8037909F = "Xtg_00";
-SECTION_DEAD static char const* const stringBase_803790A6 = "R%02d_00";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803790AF = "";
-#pragma pop
+/* 80378F38-80378F38 005598 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

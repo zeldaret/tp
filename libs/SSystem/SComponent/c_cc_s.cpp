@@ -21,20 +21,20 @@ struct cM3dGAab {
     /* 8026EE24 */ void CalcCenter(cXyz*) const;
 };
 
+struct cCcD_GStts {};
+
+struct cCcD_GObjInf {};
+
+struct cCcD_Obj {
+    /* 80263A48 */ void GetAc();
+};
+
 struct cCcD_Stts {
     /* 80263934 */ void PlusCcMove(f32, f32, f32);
     /* 8026395C */ void ClrCcMove();
     /* 80263970 */ void PlusDmg(int);
     /* 80263984 */ void GetWeightF() const;
 };
-
-struct cCcD_GStts {};
-
-struct cCcD_Obj {
-    /* 80263A48 */ void GetAc();
-};
-
-struct cCcD_GObjInf {};
 
 struct cCcS {
     /* 80030BDC */ ~cCcS();

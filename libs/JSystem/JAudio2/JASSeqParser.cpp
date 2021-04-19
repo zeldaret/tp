@@ -11,12 +11,6 @@
 // Types:
 //
 
-struct JMath {
-    struct TRandom_fast_ {
-        /* 80339AE4 */ TRandom_fast_(u32);
-    };
-};
-
 struct JASTrackPort {
     /* 8029360C */ void checkImport(u32) const;
     /* 80293628 */ void checkExport(u32) const;
@@ -1980,6 +1974,31 @@ asm void JASSeqParser::cmdRegTblLoad(JASTrack* param_0, u32* param_1) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039B018-8039B018 027678 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039B018 =
+    "--------------- JASTrack (%8x) dump ------------"
+    "----";
+SECTION_DEAD static char const* const stringBase_8039B04D = " Base: 0x%08x Cur: 0x%08x(0x%06x)";
+SECTION_DEAD static char const* const stringBase_8039B06F = "";
+SECTION_DEAD static char const* const stringBase_8039B070 =
+    " REG_A: 0x%04x REG_B: 0x%04x REG_S: 0x%04x";
+SECTION_DEAD static char const* const stringBase_8039B09B =
+    " REG_X: 0x%04x REG_Y: 0x%04x REG_F: 0x%04x";
+SECTION_DEAD static char const* const stringBase_8039B0C6 =
+    " PORT 0-3: 0x%04x 0x%04x 0x%04x 0x%04x";
+SECTION_DEAD static char const* const stringBase_8039B0ED =
+    " PORT 4-7: 0x%04x 0x%04x 0x%04x 0x%04x";
+SECTION_DEAD static char const* const stringBase_8039B114 =
+    " PORT 8-B: 0x%04x 0x%04x 0x%04x 0x%04x";
+SECTION_DEAD static char const* const stringBase_8039B13B =
+    " PORT C-F: 0x%04x 0x%04x 0x%04x 0x%04x";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039B162 = "\0\0\0\0\0";
+#pragma pop
+
 /* 80295088-8029526C 28F9C8 01E4+00 1/0 0/0 0/0 .text cmdDump__12JASSeqParserFP8JASTrackPUl */
 #pragma push
 #pragma optimization_level 0
@@ -2038,7 +2057,7 @@ asm void JASSeqParser::execNoteOff(JASTrack* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASSeqParser::execCommand(JASTrack* param_0, s32 (JASSeqParser::*)(JASTrack*, u32*),
+asm void JASSeqParser::execCommand(JASTrack* param_0, s32 (JASSeqParser::*param_1)(JASTrack*, u32*),
                                    u32 param_2, u32* param_3) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASSeqParser/execCommand__12JASSeqParserFP8JASTrackM12JASSeqParserFPCvPvP8JASTrackPUl_lUlPUl.s"
@@ -2109,7 +2128,7 @@ asm void __sinit_JASSeqParser_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80295950 = (void*)__sinit_JASSeqParser_cpp;
+REGISTER_CTORS(0x80295950, __sinit_JASSeqParser_cpp);
 #pragma pop
 
 /* ############################################################################################## */
@@ -2125,27 +2144,4 @@ SECTION_DATA extern void* __vt__12JASSeqParser[8] = {
     (void*)execCommand__12JASSeqParserFP8JASTrackM12JASSeqParserFPCvPvP8JASTrackPUl_lUlPUl,
 };
 
-/* 8039B018-8039B168 027678 014A+06 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039B018 =
-    "--------------- JASTrack (%8x) dump ------------"
-    "----";
-SECTION_DEAD static char const* const stringBase_8039B04D = " Base: 0x%08x Cur: 0x%08x(0x%06x)";
-SECTION_DEAD static char const* const stringBase_8039B06F = "";
-SECTION_DEAD static char const* const stringBase_8039B070 =
-    " REG_A: 0x%04x REG_B: 0x%04x REG_S: 0x%04x";
-SECTION_DEAD static char const* const stringBase_8039B09B =
-    " REG_X: 0x%04x REG_Y: 0x%04x REG_F: 0x%04x";
-SECTION_DEAD static char const* const stringBase_8039B0C6 =
-    " PORT 0-3: 0x%04x 0x%04x 0x%04x 0x%04x";
-SECTION_DEAD static char const* const stringBase_8039B0ED =
-    " PORT 4-7: 0x%04x 0x%04x 0x%04x 0x%04x";
-SECTION_DEAD static char const* const stringBase_8039B114 =
-    " PORT 8-B: 0x%04x 0x%04x 0x%04x 0x%04x";
-SECTION_DEAD static char const* const stringBase_8039B13B =
-    " PORT C-F: 0x%04x 0x%04x 0x%04x 0x%04x";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039B162 = "\0\0\0\0\0";
-#pragma pop
+/* 8039B018-8039B018 027678 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

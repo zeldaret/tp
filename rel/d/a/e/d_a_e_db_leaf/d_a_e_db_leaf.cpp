@@ -124,6 +124,13 @@ static bool daE_DB_LEAF_IsDelete(e_db_leaf_class* param_0) {
     return true;
 }
 
+/* ############################################################################################## */
+/* 806A2118-806A2118 000004 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_806A2118 = "E_DB";
+#pragma pop
+
 /* 806A1F2C-806A1F5C 00016C 0030+00 1/0 0/0 0/0 .text daE_DB_LEAF_Delete__FP15e_db_leaf_class */
 #pragma push
 #pragma optimization_level 0
@@ -137,7 +144,7 @@ static asm void daE_DB_LEAF_Delete(e_db_leaf_class* param_0) {
 /* ############################################################################################## */
 /* 806A2114-806A2118 000000 0004+00 1/1 0/0 0/0 .rodata          @3699 */
 SECTION_RODATA static f32 const lit_3699 = 1.0f;
-COMPILER_STRIP_GATE(806A2114, &lit_3699);
+COMPILER_STRIP_GATE(0x806A2114, &lit_3699);
 
 /* 806A1F5C-806A205C 00019C 0100+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 #pragma push
@@ -183,9 +190,4 @@ SECTION_DATA extern void* g_profile_E_DB_LEAF[12] = {
     (void*)0x00040000, (void*)NULL,
 };
 
-/* 806A2118-806A211D 000004 0005+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_806A2118 = "E_DB";
-#pragma pop
+/* 806A2118-806A2118 000004 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

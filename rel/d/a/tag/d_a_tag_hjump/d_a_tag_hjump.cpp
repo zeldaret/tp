@@ -157,7 +157,7 @@ SECTION_RODATA static u8 const l_arcName[7 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
-COMPILER_STRIP_GATE(805A4238, &l_arcName);
+COMPILER_STRIP_GATE(0x805A4238, &l_arcName);
 
 /* 805A3AB8-805A3B24 000078 006C+00 1/0 0/0 0/0 .text            CreateHeap__12daTagHjump_cFv */
 #pragma push
@@ -174,35 +174,35 @@ asm void daTagHjump_c::CreateHeap() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3747 = 100.0f;
-COMPILER_STRIP_GATE(805A4240, &lit_3747);
+COMPILER_STRIP_GATE(0x805A4240, &lit_3747);
 #pragma pop
 
 /* 805A4244-805A4248 00000C 0004+00 0/1 0/0 0/0 .rodata          @3748 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3748 = 250.0f;
-COMPILER_STRIP_GATE(805A4244, &lit_3748);
+COMPILER_STRIP_GATE(0x805A4244, &lit_3748);
 #pragma pop
 
 /* 805A4248-805A424C 000010 0004+00 0/1 0/0 0/0 .rodata          @3749 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3749 = 350.0f;
-COMPILER_STRIP_GATE(805A4248, &lit_3749);
+COMPILER_STRIP_GATE(0x805A4248, &lit_3749);
 #pragma pop
 
 /* 805A424C-805A4250 000014 0004+00 0/1 0/0 0/0 .rodata          @3750 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3750 = 400.0f;
-COMPILER_STRIP_GATE(805A424C, &lit_3750);
+COMPILER_STRIP_GATE(0x805A424C, &lit_3750);
 #pragma pop
 
 /* 805A4250-805A4254 000018 0004+00 0/1 0/0 0/0 .rodata          @3751 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3751 = 200.0f;
-COMPILER_STRIP_GATE(805A4250, &lit_3751);
+COMPILER_STRIP_GATE(0x805A4250, &lit_3751);
 #pragma pop
 
 /* 805A4254-805A4258 00001C 0004+00 0/2 0/0 0/0 .rodata          @3752 */
@@ -214,28 +214,28 @@ SECTION_RODATA static u8 const lit_3752[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(805A4254, &lit_3752);
+COMPILER_STRIP_GATE(0x805A4254, &lit_3752);
 #pragma pop
 
 /* 805A4258-805A425C 000020 0004+00 0/1 0/0 0/0 .rodata          @3753 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3753 = -50.0f;
-COMPILER_STRIP_GATE(805A4258, &lit_3753);
+COMPILER_STRIP_GATE(0x805A4258, &lit_3753);
 #pragma pop
 
 /* 805A425C-805A4260 000024 0004+00 0/1 0/0 0/0 .rodata          @3754 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3754 = 50.0f;
-COMPILER_STRIP_GATE(805A425C, &lit_3754);
+COMPILER_STRIP_GATE(0x805A425C, &lit_3754);
 #pragma pop
 
 /* 805A4260-805A4264 000028 0004+00 0/1 0/0 0/0 .rodata          @3755 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3755 = 5.0f;
-COMPILER_STRIP_GATE(805A4260, &lit_3755);
+COMPILER_STRIP_GATE(0x805A4260, &lit_3755);
 #pragma pop
 
 /* 805A426C-805A428C -00001 0020+00 1/0 0/0 0/0 .data            l_daTagHjump_Method */
@@ -321,14 +321,14 @@ static asm void daTagHjump_Delete(daTagHjump_c* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3904 = 4.0f / 5.0f;
-COMPILER_STRIP_GATE(805A4264, &lit_3904);
+COMPILER_STRIP_GATE(0x805A4264, &lit_3904);
 #pragma pop
 
 /* 805A4268-805A426C 000030 0004+00 0/1 0/0 0/0 .rodata          @3905 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3905 = 0.5f;
-COMPILER_STRIP_GATE(805A4268, &lit_3905);
+COMPILER_STRIP_GATE(0x805A4268, &lit_3905);
 #pragma pop
 
 /* 805A3E70-805A4134 000430 02C4+00 1/1 0/0 0/0 .text            execute__12daTagHjump_cFv */

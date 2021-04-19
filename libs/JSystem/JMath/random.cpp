@@ -31,12 +31,7 @@ extern "C" void __ct__Q25JMath13TRandom_fast_FUl();
 // Declarations:
 //
 
-/* 80339AE4-80339AEC 334424 0008+00 0/0 3/3 0/0 .text            __ct__Q25JMath13TRandom_fast_FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JMath::TRandom_fast_::TRandom_fast_(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/JMath/random/__ct__Q25JMath13TRandom_fast_FUl.s"
+/* 80339AE4-80339AEC -00001 0008+00 0/0 0/0 0/0 .text            __ct__Q25JMath13TRandom_fast_FUl */
+JMath::TRandom_fast_::TRandom_fast_(u32 param_0) {
+    *(u32*)this = (u32)(param_0);
 }
-#pragma pop

@@ -11,20 +11,6 @@
 // Types:
 //
 
-struct JStage {
-    struct TSystem {};
-
-    struct TActor {};
-
-    struct TAmbientLight {};
-
-    struct TCamera {};
-
-    struct TFog {};
-
-    struct TLight {};
-};
-
 namespace JStudio {
 struct TObject {};
 
@@ -75,6 +61,20 @@ struct TObject_light {
 };
 
 };  // namespace JStudio
+
+struct JStage {
+    struct TSystem {};
+
+    struct TActor {};
+
+    struct TAmbientLight {};
+
+    struct TCamera {};
+
+    struct TFog {};
+
+    struct TLight {};
+};
 
 struct JStudio_JStage {
     struct TCreateObject {

@@ -378,7 +378,7 @@ asm void JMessage::TProcessor::toMessageCode_messageID(u32 param_0, u32 param_1,
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JMessage::TProcessor::on_select_begin(char const* (*)(JMessage::TProcessor*),
+asm void JMessage::TProcessor::on_select_begin(char const* (*param_0)(JMessage::TProcessor*),
                                                void const* param_1, char const* param_2,
                                                u32 param_3) {
     nofralloc
@@ -588,9 +588,8 @@ asm void JMessage::TSequenceProcessor::on_isReady() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void
-JMessage::TSequenceProcessor::on_jump_register(void const* (*)(JMessage::TSequenceProcessor const*),
-                                               u32 param_1) {
+asm void JMessage::TSequenceProcessor::on_jump_register(
+    void const* (*param_0)(JMessage::TSequenceProcessor const*), u32 param_1) {
     nofralloc
 #include "asm/JSystem/JMessage/processor/func_802A85D0.s"
 }
@@ -625,7 +624,8 @@ asm void JMessage::TSequenceProcessor::on_jump(void const* param_0, char const* 
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm void JMessage::TSequenceProcessor::on_branch_register(
-    void const* (*)(JMessage::TSequenceProcessor const*, u32), void const* param_1, u32 param_2) {
+    void const* (*param_0)(JMessage::TSequenceProcessor const*, u32), void const* param_1,
+    u32 param_2) {
     nofralloc
 #include "asm/JSystem/JMessage/processor/func_802A8690.s"
 }

@@ -90,27 +90,27 @@ extern "C" u8 m_midnaActor__9daPy_py_c[4];
 /* ############################################################################################## */
 /* 80D5C580-80D5C584 000000 0004+00 2/2 0/0 0/0 .rodata          @3841 */
 SECTION_RODATA static f32 const lit_3841 = -1.0f;
-COMPILER_STRIP_GATE(80D5C580, &lit_3841);
+COMPILER_STRIP_GATE(0x80D5C580, &lit_3841);
 
 /* 80D5C584-80D5C588 000004 0004+00 0/1 0/0 0/0 .rodata          @3842 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3842 = 100.0f;
-COMPILER_STRIP_GATE(80D5C584, &lit_3842);
+COMPILER_STRIP_GATE(0x80D5C584, &lit_3842);
 #pragma pop
 
 /* 80D5C588-80D5C58C 000008 0004+00 0/1 0/0 0/0 .rodata          @3843 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3843 = 10.0f;
-COMPILER_STRIP_GATE(80D5C588, &lit_3843);
+COMPILER_STRIP_GATE(0x80D5C588, &lit_3843);
 #pragma pop
 
 /* 80D5C58C-80D5C590 00000C 0004+00 0/1 0/0 0/0 .rodata          @3844 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3844 = 220.0f;
-COMPILER_STRIP_GATE(80D5C58C, &lit_3844);
+COMPILER_STRIP_GATE(0x80D5C58C, &lit_3844);
 #pragma pop
 
 /* 80D5C590-80D5C598 000010 0004+04 0/1 0/0 0/0 .rodata          @3845 */
@@ -121,7 +121,7 @@ SECTION_RODATA static f32 const lit_3845[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80D5C590, &lit_3845);
+COMPILER_STRIP_GATE(0x80D5C590, &lit_3845);
 #pragma pop
 
 /* 80D5C598-80D5C5A0 000018 0008+00 0/1 0/0 0/0 .rodata          @3847 */
@@ -130,7 +130,7 @@ COMPILER_STRIP_GATE(80D5C590, &lit_3845);
 SECTION_RODATA static u8 const lit_3847[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D5C598, &lit_3847);
+COMPILER_STRIP_GATE(0x80D5C598, &lit_3847);
 #pragma pop
 
 /* 80D5BE18-80D5BFFC 000078 01E4+00 1/1 0/0 0/0 .text            create__12daTagMwait_cFv */
@@ -190,7 +190,7 @@ SECTION_RODATA static u8 const lit_4006[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D5C5A0, &lit_4006);
+COMPILER_STRIP_GATE(0x80D5C5A0, &lit_4006);
 #pragma pop
 
 /* 80D5C5A8-80D5C5B0 000028 0008+00 0/1 0/0 0/0 .rodata          @4007 */
@@ -199,7 +199,7 @@ COMPILER_STRIP_GATE(80D5C5A0, &lit_4006);
 SECTION_RODATA static u8 const lit_4007[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D5C5A8, &lit_4007);
+COMPILER_STRIP_GATE(0x80D5C5A8, &lit_4007);
 #pragma pop
 
 /* 80D5C5B0-80D5C5B8 000030 0008+00 0/1 0/0 0/0 .rodata          @4008 */
@@ -208,7 +208,7 @@ COMPILER_STRIP_GATE(80D5C5A8, &lit_4007);
 SECTION_RODATA static u8 const lit_4008[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D5C5B0, &lit_4008);
+COMPILER_STRIP_GATE(0x80D5C5B0, &lit_4008);
 #pragma pop
 
 /* 80D5C5B8-80D5C5C0 000038 0008+00 0/1 0/0 0/0 .rodata          @4009 */
@@ -217,14 +217,14 @@ COMPILER_STRIP_GATE(80D5C5B0, &lit_4008);
 SECTION_RODATA static u8 const lit_4009[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D5C5B8, &lit_4009);
+COMPILER_STRIP_GATE(0x80D5C5B8, &lit_4009);
 #pragma pop
 
 /* 80D5C5C0-80D5C5C4 000040 0004+00 0/1 0/0 0/0 .rodata          @4010 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4010 = 5.0f;
-COMPILER_STRIP_GATE(80D5C5C0, &lit_4010);
+COMPILER_STRIP_GATE(0x80D5C5C0, &lit_4010);
 #pragma pop
 
 /* 80D5C0A8-80D5C550 000308 04A8+00 1/1 0/0 0/0 .text            execute__12daTagMwait_cFv */

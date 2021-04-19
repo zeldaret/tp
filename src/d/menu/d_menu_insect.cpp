@@ -40,9 +40,9 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct JKRArchive {};
-
 struct J2DPane {};
+
+struct JKRArchive {};
 
 struct dSelect_cursor_c {
     /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
@@ -78,9 +78,9 @@ struct J2DPicture {
     /* 802FC708 */ J2DPicture(ResTIMG const*);
 };
 
-struct JMSMesgEntry_c {};
-
 struct JUTFont {};
+
+struct JMSMesgEntry_c {};
 
 struct dMeter2Info_c {
     /* 8021C250 */ void getString(u32, char*, JMSMesgEntry_c*);
@@ -90,10 +90,6 @@ struct dMeter2Info_c {
                                         J2DPicture*, void*, J2DPicture*, int);
 };
 
-struct JKRExpHeap {};
-
-struct CSTControl {};
-
 struct STControl {
     /* 8003219C */ void checkTrigger();
     /* 8003242C */ void checkLeftTrigger();
@@ -101,6 +97,10 @@ struct STControl {
     /* 80032524 */ void checkUpTrigger();
     /* 800325A0 */ void checkDownTrigger();
 };
+
+struct CSTControl {};
+
+struct JKRExpHeap {};
 
 struct dMenu_Insect_c {
     /* 801D8114 */ dMenu_Insect_c(JKRExpHeap*, STControl*, CSTControl*, u8);
@@ -141,9 +141,9 @@ struct dMenu_Insect_c {
     /* 801DA630 */ void draw();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -311,6 +311,12 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
+/* 803968C0-803968C0 022F20 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803968C0 = "tt_block8x8.bti";
+#pragma pop
+
 /* 803BD780-803BD78C 01A8A0 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -566,6 +572,12 @@ asm void dMenu_Insect_c::init() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 803968C0-803968C0 022F20 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803968D0 = "/res/Layout/insectRes.arc";
+#pragma pop
+
 /* 80454260-80454268 002860 0008+00 2/2 0/0 0/0 .sdata2          @4020 */
 SECTION_SDATA2 static f64 lit_4020 = 4503601774854144.0 /* cast s32 to float */;
 
@@ -614,6 +626,15 @@ asm void dMenu_Insect_c::wait_move() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 803968C0-803968C0 022F20 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803968EA = ""
+                                                            "\x1B"
+                                                            "CR[%d]";
+SECTION_DEAD static char const* const stringBase_803968F2 = "";
+#pragma pop
+
 /* 8045426C-80454270 00286C 0004+00 1/1 0/0 0/0 .sdata2          @4135 */
 SECTION_SDATA2 static f32 lit_4135 = 48.0f;
 
@@ -718,7 +739,7 @@ SECTION_RODATA static u8 const insect_tag[192] = {
     0x00, 0x00, 0x62, 0x61, 0x74, 0x5F, 0x6F, 0x73, 0x00, 0x62, 0x61, 0x74, 0x5F, 0x6D, 0x65, 0x73,
     0x00, 0x74, 0x6F, 0x6E, 0x62, 0x5F, 0x6F, 0x73, 0x74, 0x6F, 0x6E, 0x62, 0x5F, 0x6D, 0x65, 0x73,
 };
-COMPILER_STRIP_GATE(80396690, &insect_tag);
+COMPILER_STRIP_GATE(0x80396690, &insect_tag);
 
 /* 80396750-80396810 022DB0 00C0+00 1/1 0/0 0/0 .rodata          ageha_tag$4250 */
 SECTION_RODATA static u8 const ageha_tag[192] = {
@@ -735,7 +756,13 @@ SECTION_RODATA static u8 const ageha_tag[192] = {
     0x00, 0x61, 0x67, 0x65, 0x68, 0x61, 0x32, 0x30, 0x00, 0x61, 0x67, 0x65, 0x68, 0x61, 0x32, 0x31,
     0x00, 0x61, 0x67, 0x65, 0x68, 0x61, 0x32, 0x32, 0x00, 0x61, 0x67, 0x65, 0x68, 0x61, 0x32, 0x33,
 };
-COMPILER_STRIP_GATE(80396750, &ageha_tag);
+COMPILER_STRIP_GATE(0x80396750, &ageha_tag);
+
+/* 803968C0-803968C0 022F20 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803968F3 = "zelda_gold_insects.blo";
+#pragma pop
 
 /* 801D9644-801D98F0 1D3F84 02AC+00 1/1 0/0 0/0 .text            screenSetBase__14dMenu_Insect_cFv
  */
@@ -746,6 +773,13 @@ asm void dMenu_Insect_c::screenSetBase() {
     nofralloc
 #include "asm/d/menu/d_menu_insect/screenSetBase__14dMenu_Insect_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 803968C0-803968C0 022F20 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039690A = "zelda_gold_insects_info.blo";
 #pragma pop
 
 /* 801D98F0-801D9BD0 1D4230 02E0+00 1/1 0/0 0/0 .text screenSetExplain__14dMenu_Insect_cFv */
@@ -765,7 +799,7 @@ SECTION_RODATA static u8 const text_a_tag[40] = {
     0x5F, 0x32, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x33, 0x61, 0x74, 0x65, 0x78,
     0x74, 0x31, 0x5F, 0x34, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x35,
 };
-COMPILER_STRIP_GATE(80396810, &text_a_tag);
+COMPILER_STRIP_GATE(0x80396810, &text_a_tag);
 
 /* 80396838-80396860 022E98 0028+00 1/1 0/0 0/0 .rodata          text_b_tag$4329 */
 SECTION_RODATA static u8 const text_b_tag[40] = {
@@ -773,7 +807,15 @@ SECTION_RODATA static u8 const text_b_tag[40] = {
     0x5F, 0x32, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x33, 0x62, 0x74, 0x65, 0x78,
     0x74, 0x31, 0x5F, 0x34, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x35,
 };
-COMPILER_STRIP_GATE(80396838, &text_b_tag);
+COMPILER_STRIP_GATE(0x80396838, &text_b_tag);
+
+/* 803968C0-803968C0 022F20 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80396926 = "zelda_collect_soubi_do_icon_parts.blo";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039694C = "\0\0\0";
+#pragma pop
 
 /* 801D9BD0-801D9D4C 1D4510 017C+00 1/1 0/0 0/0 .text            screenSetDoIcon__14dMenu_Insect_cFv
  */
@@ -827,7 +869,7 @@ SECTION_RODATA static u8 const i_evtID[96] = {
     0x00, 0x00, 0x01, 0xA1, 0x00, 0x00, 0x01, 0xA2, 0x00, 0x00, 0x01, 0x99, 0x00, 0x00, 0x01, 0x9A,
     0x00, 0x00, 0x01, 0x97, 0x00, 0x00, 0x01, 0x98, 0x00, 0x00, 0x01, 0xA3, 0x00, 0x00, 0x01, 0xA4,
 };
-COMPILER_STRIP_GATE(80396860, &i_evtID);
+COMPILER_STRIP_GATE(0x80396860, &i_evtID);
 
 /* 801D9E20-801D9E7C 1D4760 005C+00 4/4 0/0 0/0 .text            isGiveInsect__14dMenu_Insect_cFii
  */
@@ -958,22 +1000,7 @@ asm void __sinit_d_menu_insect_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_801DA650 = (void*)__sinit_d_menu_insect_cpp;
+REGISTER_CTORS(0x801DA650, __sinit_d_menu_insect_cpp);
 #pragma pop
 
-/* 803968C0-80396950 022F20 008C+04 8/8 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803968C0 = "tt_block8x8.bti";
-SECTION_DEAD static char const* const stringBase_803968D0 = "/res/Layout/insectRes.arc";
-SECTION_DEAD static char const* const stringBase_803968EA = ""
-                                                            "\x1B"
-                                                            "CR[%d]";
-SECTION_DEAD static char const* const stringBase_803968F2 = "";
-SECTION_DEAD static char const* const stringBase_803968F3 = "zelda_gold_insects.blo";
-SECTION_DEAD static char const* const stringBase_8039690A = "zelda_gold_insects_info.blo";
-SECTION_DEAD static char const* const stringBase_80396926 = "zelda_collect_soubi_do_icon_parts.blo";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039694C = "\0\0\0";
-#pragma pop
+/* 803968C0-803968C0 022F20 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

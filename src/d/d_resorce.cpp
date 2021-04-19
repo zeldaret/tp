@@ -35,17 +35,17 @@ struct mDoDvdThd_mountArchive_c {
     /* 80015E14 */ void create(char const*, u8, JKRHeap*);
 };
 
+struct J3DModelData {
+    /* 80325E14 */ void newSharedDisplayList(u32);
+    /* 80325F94 */ void makeSharedDL();
+    /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
+};
+
 struct JKRArchive {
     /* 802D5CE4 */ void getIdxResource(u32);
     /* 802D625C */ void getFileAttribute(u32) const;
     /* 802D6684 */ void findIdxResource(u32) const;
     /* 802D66AC */ void findNameResource(char const*) const;
-};
-
-struct J3DModelData {
-    /* 80325E14 */ void newSharedDisplayList(u32);
-    /* 80325F94 */ void makeSharedDL();
-    /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
 };
 
 struct cXyz {};
@@ -370,6 +370,13 @@ asm dRes_info_c::~dRes_info_c() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803798B8 = "%s%s.arc";
+#pragma pop
+
 /* 8003A348-8003A3F0 034C88 00A8+00 1/1 0/0 0/0 .text set__11dRes_info_cFPCcPCcUcP7JKRHeap */
 #pragma push
 #pragma optimization_level 0
@@ -388,6 +395,15 @@ static asm void setAlpha(J3DMaterialTable* param_0) {
     nofralloc
 #include "asm/d/d_resorce/setAlpha__FP16J3DMaterialTable.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803798C1 = "fbtex_dummy";
+SECTION_DEAD static char const* const stringBase_803798CD = "dummy";
+SECTION_DEAD static char const* const stringBase_803798D3 = "Zbuffer";
 #pragma pop
 
 /* 8003A490-8003A81C 034DD0 038C+00 1/1 0/0 0/0 .text            setIndirectTex__FP12J3DModelData */
@@ -421,14 +437,20 @@ SECTION_RODATA static u8 const l_texMtxInfo[100] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80379840, &l_texMtxInfo);
+COMPILER_STRIP_GATE(0x80379840, &l_texMtxInfo);
 
 /* 803798A4-803798B8 005F04 0014+00 1/1 0/0 0/0 .rodata          l_tevStageInfo$3774 */
 SECTION_RODATA static u8 const l_tevStageInfo[20] = {
     0x05, 0x0F, 0x08, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x01, 0x00,
     0x07, 0x04, 0x00, 0x07, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803798A4, &l_tevStageInfo);
+COMPILER_STRIP_GATE(0x803798A4, &l_tevStageInfo);
+
+/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803798DB = "Always";
+#pragma pop
 
 /* 80450628-8045062C 0000A8 0004+00 1/1 0/0 0/0 .sdata           l_texCoordInfo$3772 */
 SECTION_SDATA static u8 l_texCoordInfo[4] = {
@@ -678,6 +700,15 @@ asm J3DMatColorAnm::J3DMatColorAnm() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803798E2 =
+    "<%s.arc> setRes: res pointer buffer nothing !!\n";
+SECTION_DEAD static char const* const stringBase_80379912 = "<%s> res == NULL !!\n";
+#pragma pop
+
 /* 8003B30C-8003B8D0 035C4C 05C4+00 2/2 0/0 0/0 .text            loadResource__11dRes_info_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -740,6 +771,16 @@ asm void dRes_info_c::setRes(JKRArchive* param_0, JKRHeap* param_1) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379927 =
+    "<%s.arc> setRes: archive mount error !!\n";
+SECTION_DEAD static char const* const stringBase_80379950 =
+    "<%s.arc> mDMCommandsetRes: can't alloc memory\n";
+#pragma pop
+
 /* 8003BAF8-8003BC98 036438 01A0+00 2/2 0/0 0/0 .text            setRes__11dRes_info_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -770,6 +811,19 @@ static asm void myGetMemBlockSize0(void* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037997F = "%5.1f %5x %5.1f %5x %3d %s\n";
+SECTION_DEAD static char const* const stringBase_8037999B = "dRes_info_c::dump_long %08x %d\n";
+SECTION_DEAD static char const* const stringBase_803799BB =
+    "No Command Archive  ArcHeader(size) SolidHeap(si"
+    "ze) Resource Cnt ArchiveName\n";
+SECTION_DEAD static char const* const stringBase_80379A09 =
+    "%2d %08x %08x %08x(%6x) %08x(%5x) %08x %3d %s\n";
+#pragma pop
+
 /* 8003BD2C-8003BE38 03666C 010C+00 1/1 0/0 0/0 .text dump_long__11dRes_info_cFP11dRes_info_ci */
 #pragma push
 #pragma optimization_level 0
@@ -781,6 +835,19 @@ asm void dRes_info_c::dump_long(dRes_info_c* param_0, int param_1) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379A38 = "dRes_info_c::dump %08x %d\n";
+SECTION_DEAD static char const* const stringBase_80379A53 =
+    "No ArchiveSize(KB) SolidHeapSize(KB) Cnt Archive"
+    "Name\n";
+SECTION_DEAD static char const* const stringBase_80379A89 = "%2d %6.1f %6x %6.1f %6x %3d %s\n";
+SECTION_DEAD static char const* const stringBase_80379AA9 =
+    "----------------------------------------------\n "
+    "  %6.1f %6x %6.1f %6x   Total\n\n";
+#pragma pop
+
 /* 80451DF8-80451E00 0003F8 0008+00 1/1 0/0 0/0 .sdata2          @4277 */
 SECTION_SDATA2 static f64 lit_4277 = 4503601774854144.0 /* cast s32 to float */;
 
@@ -810,6 +877,22 @@ asm dRes_control_c::~dRes_control_c() {
     nofralloc
 #include "asm/d/d_resorce/__dt__14dRes_control_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+// MWCC ignores mapping of some japanese characters using the
+// byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
+SECTION_DEAD static char const* const stringBase_80379AF9 =
+    "\x3C\x25\x73\x2E\x61\x72\x63\x3E\x20\x64\x52\x65\x73\x5F\x63\x6F\x6E\x74\x72\x6F\x6C\x5F\x63"
+    "\x3A\x3A\x73\x65\x74\x52\x65\x73\x3A\x20\x8B\xF3\x82\xAB\x83\x8A\x83\x5C\x81\x5B\x83\x58\x8F"
+    "\xEE\x95"
+    "\xF1\x83\x7C\x83\x43\x83\x93\x83\x5E\x82\xAA\x82\xA0\x82\xE8\x82\xDC\x82\xB9\x82\xF1\x0A";
+SECTION_DEAD static char const* const stringBase_80379B40 =
+    "<%s.arc> dRes_control_c::setRes: res info set er"
+    "ror !!\n";
 #pragma pop
 
 /* 8003C078-8003C160 0369B8 00E8+00 2/2 8/8 0/0 .text
@@ -868,6 +951,14 @@ asm void dRes_control_c::newResInfo(dRes_info_c* param_0, int param_1) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379B78 =
+    "<%s.arc> getRes: res during reading !!\n";
+#pragma pop
+
 /* 8003C288-8003C2EC 036BC8 0064+00 4/4 0/0 0/0 .text
  * getResInfoLoaded__14dRes_control_cFPCcP11dRes_info_ci        */
 #pragma push
@@ -877,6 +968,15 @@ asm void dRes_control_c::getResInfoLoaded(char const* param_0, dRes_info_c* para
     nofralloc
 #include "asm/d/d_resorce/getResInfoLoaded__14dRes_control_cFPCcP11dRes_info_ci.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379BA0 =
+    "<%s.arc> getRes: res index over !! index=%d coun"
+    "t=%d\n";
 #pragma pop
 
 /* 8003C2EC-8003C37C 036C2C 0090+00 1/1 54/54 894/894 .text
@@ -926,6 +1026,13 @@ asm void dRes_control_c::syncAllRes(dRes_info_c* param_0, int param_1) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379BD6 = "";
+#pragma pop
+
 /* 8003C4E4-8003C5BC 036E24 00D8+00 1/1 0/0 0/0 .text
  * setObjectRes__14dRes_control_cFPCcPvUlP7JKRHeap              */
 #pragma push
@@ -938,6 +1045,13 @@ asm void dRes_control_c::setObjectRes(char const* param_0, void* param_1, u32 pa
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379BD7 = "/res/Stage/%s/";
+#pragma pop
+
 /* 8003C5BC-8003C638 036EFC 007C+00 0/0 2/2 0/0 .text setStageRes__14dRes_control_cFPCcP7JKRHeap
  */
 #pragma push
@@ -947,6 +1061,16 @@ asm void dRes_control_c::setStageRes(char const* param_0, JKRHeap* param_1) {
     nofralloc
 #include "asm/d/d_resorce/setStageRes__14dRes_control_cFPCcP7JKRHeap.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379BE6 = "\ndRes_control_c::dump mObjectInfo\n";
+SECTION_DEAD static char const* const stringBase_80379C09 = "\ndRes_control_c::dump mStageInfo\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80379C2B = "\0\0\0\0";
 #pragma pop
 
 /* 8003C638-8003C6B8 036F78 0080+00 0/0 2/2 0/0 .text            dump__14dRes_control_cFv */
@@ -1021,56 +1145,4 @@ asm void J3DTexNoAnm::calc(u16* param_0) const {
 }
 #pragma pop
 
-/* 803798B8-80379C30 005F18 0373+05 13/13 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803798B8 = "%s%s.arc";
-SECTION_DEAD static char const* const stringBase_803798C1 = "fbtex_dummy";
-SECTION_DEAD static char const* const stringBase_803798CD = "dummy";
-SECTION_DEAD static char const* const stringBase_803798D3 = "Zbuffer";
-SECTION_DEAD static char const* const stringBase_803798DB = "Always";
-SECTION_DEAD static char const* const stringBase_803798E2 =
-    "<%s.arc> setRes: res pointer buffer nothing !!\n";
-SECTION_DEAD static char const* const stringBase_80379912 = "<%s> res == NULL !!\n";
-SECTION_DEAD static char const* const stringBase_80379927 =
-    "<%s.arc> setRes: archive mount error !!\n";
-SECTION_DEAD static char const* const stringBase_80379950 =
-    "<%s.arc> mDMCommandsetRes: can't alloc memory\n";
-SECTION_DEAD static char const* const stringBase_8037997F = "%5.1f %5x %5.1f %5x %3d %s\n";
-SECTION_DEAD static char const* const stringBase_8037999B = "dRes_info_c::dump_long %08x %d\n";
-SECTION_DEAD static char const* const stringBase_803799BB =
-    "No Command Archive  ArcHeader(size) SolidHeap(si"
-    "ze) Resource Cnt ArchiveName\n";
-SECTION_DEAD static char const* const stringBase_80379A09 =
-    "%2d %08x %08x %08x(%6x) %08x(%5x) %08x %3d %s\n";
-SECTION_DEAD static char const* const stringBase_80379A38 = "dRes_info_c::dump %08x %d\n";
-SECTION_DEAD static char const* const stringBase_80379A53 =
-    "No ArchiveSize(KB) SolidHeapSize(KB) Cnt Archive"
-    "Name\n";
-SECTION_DEAD static char const* const stringBase_80379A89 = "%2d %6.1f %6x %6.1f %6x %3d %s\n";
-SECTION_DEAD static char const* const stringBase_80379AA9 =
-    "----------------------------------------------\n "
-    "  %6.1f %6x %6.1f %6x   Total\n\n";
-// MWCC ignores mapping of some japanese characters using the
-// byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
-SECTION_DEAD static char const* const stringBase_80379AF9 =
-    "\x3C\x25\x73\x2E\x61\x72\x63\x3E\x20\x64\x52\x65\x73\x5F\x63\x6F\x6E\x74\x72\x6F\x6C\x5F\x63"
-    "\x3A\x3A\x73\x65\x74\x52\x65\x73\x3A\x20\x8B\xF3\x82\xAB\x83\x8A\x83\x5C\x81\x5B\x83\x58\x8F"
-    "\xEE\x95"
-    "\xF1\x83\x7C\x83\x43\x83\x93\x83\x5E\x82\xAA\x82\xA0\x82\xE8\x82\xDC\x82\xB9\x82\xF1\x0A";
-SECTION_DEAD static char const* const stringBase_80379B40 =
-    "<%s.arc> dRes_control_c::setRes: res info set er"
-    "ror !!\n";
-SECTION_DEAD static char const* const stringBase_80379B78 =
-    "<%s.arc> getRes: res during reading !!\n";
-SECTION_DEAD static char const* const stringBase_80379BA0 =
-    "<%s.arc> getRes: res index over !! index=%d coun"
-    "t=%d\n";
-SECTION_DEAD static char const* const stringBase_80379BD6 = "";
-SECTION_DEAD static char const* const stringBase_80379BD7 = "/res/Stage/%s/";
-SECTION_DEAD static char const* const stringBase_80379BE6 = "\ndRes_control_c::dump mObjectInfo\n";
-SECTION_DEAD static char const* const stringBase_80379C09 = "\ndRes_control_c::dump mStageInfo\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80379C2B = "\0\0\0\0";
-#pragma pop
+/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

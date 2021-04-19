@@ -122,7 +122,7 @@ extern "C" extern u8 struct_80450D64[4];
 /* ############################################################################################## */
 /* 80499A6C-80499A70 000000 0004+00 4/4 0/0 0/0 .rodata          @3627 */
 SECTION_RODATA static f32 const lit_3627 = 1.0f;
-COMPILER_STRIP_GATE(80499A6C, &lit_3627);
+COMPILER_STRIP_GATE(0x80499A6C, &lit_3627);
 
 /* 80499A70-80499A74 000004 0004+00 1/3 0/0 0/0 .rodata          @3628 */
 SECTION_RODATA static u8 const lit_3628[4] = {
@@ -131,7 +131,7 @@ SECTION_RODATA static u8 const lit_3628[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80499A70, &lit_3628);
+COMPILER_STRIP_GATE(0x80499A70, &lit_3628);
 
 /* 80498A78-80498ACC 000078 0054+00 1/1 0/0 0/0 .text            texScrollCheck__FRf */
 #pragma push
@@ -148,81 +148,88 @@ static asm void texScrollCheck(f32& param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3835 = 9.0f / 100.0f;
-COMPILER_STRIP_GATE(80499A74, &lit_3835);
+COMPILER_STRIP_GATE(0x80499A74, &lit_3835);
 #pragma pop
 
 /* 80499A78-80499A7C 00000C 0004+00 0/1 0/0 0/0 .rodata          @3836 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3836 = 8000.0f;
-COMPILER_STRIP_GATE(80499A78, &lit_3836);
+COMPILER_STRIP_GATE(0x80499A78, &lit_3836);
 #pragma pop
 
 /* 80499A7C-80499A80 000010 0004+00 1/3 0/0 0/0 .rodata          @3837 */
 SECTION_RODATA static f32 const lit_3837 = 255.0f;
-COMPILER_STRIP_GATE(80499A7C, &lit_3837);
+COMPILER_STRIP_GATE(0x80499A7C, &lit_3837);
 
 /* 80499A80-80499A84 000014 0004+00 0/1 0/0 0/0 .rodata          @3838 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3838 = 2.0f / 5.0f;
-COMPILER_STRIP_GATE(80499A80, &lit_3838);
+COMPILER_STRIP_GATE(0x80499A80, &lit_3838);
 #pragma pop
 
 /* 80499A84-80499A88 000018 0004+00 0/1 0/0 0/0 .rodata          @3839 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3839 = 270.0f;
-COMPILER_STRIP_GATE(80499A84, &lit_3839);
+COMPILER_STRIP_GATE(0x80499A84, &lit_3839);
 #pragma pop
 
 /* 80499A88-80499A8C 00001C 0004+00 0/1 0/0 0/0 .rodata          @3840 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3840 = 240.0f;
-COMPILER_STRIP_GATE(80499A88, &lit_3840);
+COMPILER_STRIP_GATE(0x80499A88, &lit_3840);
 #pragma pop
 
 /* 80499A8C-80499A90 000020 0004+00 0/2 0/0 0/0 .rodata          @3841 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3841 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80499A8C, &lit_3841);
+COMPILER_STRIP_GATE(0x80499A8C, &lit_3841);
 #pragma pop
 
 /* 80499A90-80499A94 000024 0004+00 0/1 0/0 0/0 .rodata          @3842 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3842 = 300.0f;
-COMPILER_STRIP_GATE(80499A90, &lit_3842);
+COMPILER_STRIP_GATE(0x80499A90, &lit_3842);
 #pragma pop
 
 /* 80499A94-80499A98 000028 0004+00 0/1 0/0 0/0 .rodata          @3843 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3843 = 17.0f / 20.0f;
-COMPILER_STRIP_GATE(80499A94, &lit_3843);
+COMPILER_STRIP_GATE(0x80499A94, &lit_3843);
 #pragma pop
 
 /* 80499A98-80499A9C 00002C 0004+00 0/1 0/0 0/0 .rodata          @3844 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3844 = 3.0f / 20.0f;
-COMPILER_STRIP_GATE(80499A98, &lit_3844);
+COMPILER_STRIP_GATE(0x80499A98, &lit_3844);
 #pragma pop
 
 /* 80499A9C-80499AA0 000030 0004+00 0/1 0/0 0/0 .rodata          @3845 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3845 = 483.0f;
-COMPILER_STRIP_GATE(80499A9C, &lit_3845);
+COMPILER_STRIP_GATE(0x80499A9C, &lit_3845);
 #pragma pop
 
 /* 80499AA0-80499AA4 000034 0004+00 0/1 0/0 0/0 .rodata          @3846 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3846 = 100.0f;
-COMPILER_STRIP_GATE(80499AA0, &lit_3846);
+COMPILER_STRIP_GATE(0x80499AA0, &lit_3846);
+#pragma pop
+
+/* 80499AC4-80499AC4 000058 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80499AC4 = "F_SP102";
+SECTION_DEAD static char const* const stringBase_80499ACC = "F_SP127";
 #pragma pop
 
 /* 80499B78-80499B7C 000000 0002+02 1/1 0/0 0/0 .bss             mangZ$3688 */
@@ -243,56 +250,62 @@ static asm void daVrbox2_Draw(vrbox2_class* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4069 = 0x3A03126F;
-COMPILER_STRIP_GATE(80499AA4, &lit_4069);
+COMPILER_STRIP_GATE(0x80499AA4, &lit_4069);
 #pragma pop
 
 /* 80499AA8-80499AAC 00003C 0004+00 0/1 0/0 0/0 .rodata          @4070 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4070 = 3.0f / 10.0f;
-COMPILER_STRIP_GATE(80499AA8, &lit_4070);
+COMPILER_STRIP_GATE(0x80499AA8, &lit_4070);
 #pragma pop
 
 /* 80499AAC-80499AB0 000040 0004+00 0/1 0/0 0/0 .rodata          @4071 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4071 = 1.75f;
-COMPILER_STRIP_GATE(80499AAC, &lit_4071);
+COMPILER_STRIP_GATE(0x80499AAC, &lit_4071);
 #pragma pop
 
 /* 80499AB0-80499AB4 000044 0004+00 0/1 0/0 0/0 .rodata          @4072 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4072 = 22.0f / 5.0f;
-COMPILER_STRIP_GATE(80499AB0, &lit_4072);
+COMPILER_STRIP_GATE(0x80499AB0, &lit_4072);
 #pragma pop
 
 /* 80499AB4-80499AB8 000048 0004+00 0/1 0/0 0/0 .rodata          @4073 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4073 = 11.0f / 5.0f;
-COMPILER_STRIP_GATE(80499AB4, &lit_4073);
+COMPILER_STRIP_GATE(0x80499AB4, &lit_4073);
 #pragma pop
 
 /* 80499AB8-80499ABC 00004C 0004+00 0/1 0/0 0/0 .rodata          @4074 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4074 = 97.5f;
-COMPILER_STRIP_GATE(80499AB8, &lit_4074);
+COMPILER_STRIP_GATE(0x80499AB8, &lit_4074);
 #pragma pop
 
 /* 80499ABC-80499AC0 000050 0004+00 0/1 0/0 0/0 .rodata          @4075 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4075 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80499ABC, &lit_4075);
+COMPILER_STRIP_GATE(0x80499ABC, &lit_4075);
 #pragma pop
 
 /* 80499AC0-80499AC4 000054 0004+00 0/1 0/0 0/0 .rodata          @4076 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4076 = 0x38D1B717;
-COMPILER_STRIP_GATE(80499AC0, &lit_4076);
+COMPILER_STRIP_GATE(0x80499AC0, &lit_4076);
+#pragma pop
+
+/* 80499AC4-80499AC4 000058 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80499AD4 = "R_SP30";
 #pragma pop
 
 /* 804990DC-804997E8 0006DC 070C+00 1/1 0/0 0/0 .text daVrbox2_color_set__FP12vrbox2_class */
@@ -327,6 +340,16 @@ static bool daVrbox2_IsDelete(vrbox2_class* param_0) {
 static bool daVrbox2_Delete(vrbox2_class* param_0) {
     return true;
 }
+
+/* ############################################################################################## */
+/* 80499AC4-80499AC4 000058 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80499ADB = "vrbox_kumo.bmd";
+SECTION_DEAD static char const* const stringBase_80499AEA = "vrbox_sun.bmd";
+SECTION_DEAD static char const* const stringBase_80499AF8 = "vrbox_sun.btk";
+SECTION_DEAD static char const* const stringBase_80499B06 = "vrbox_kasumiM.bmd";
+#pragma pop
 
 /* 8049983C-80499978 000E3C 013C+00 1/1 0/0 0/0 .text daVrbox2_solidHeapCB__FP10fopAc_ac_c */
 #pragma push
@@ -388,15 +411,4 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 }
 #pragma pop
 
-/* 80499AC4-80499B18 000058 0054+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80499AC4 = "F_SP102";
-SECTION_DEAD static char const* const stringBase_80499ACC = "F_SP127";
-SECTION_DEAD static char const* const stringBase_80499AD4 = "R_SP30";
-SECTION_DEAD static char const* const stringBase_80499ADB = "vrbox_kumo.bmd";
-SECTION_DEAD static char const* const stringBase_80499AEA = "vrbox_sun.bmd";
-SECTION_DEAD static char const* const stringBase_80499AF8 = "vrbox_sun.btk";
-SECTION_DEAD static char const* const stringBase_80499B06 = "vrbox_kasumiM.bmd";
-#pragma pop
+/* 80499AC4-80499AC4 000058 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

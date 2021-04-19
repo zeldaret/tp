@@ -57,7 +57,7 @@ extern "C" static void daPasserMng_Delete__FP13daPasserMng_c();
 extern "C" static void daPasserMng_Create__FP10fopAc_ac_c();
 extern "C" void create__13daPasserMng_cFv();
 extern "C" void create_init__13daPasserMng_cFv();
-extern "C" void func_80D46B9C(int, int);
+extern "C" void func_80D46B9C(void* _this, int, int);
 extern "C" void* mGroupTbl__13daPasserMng_c[4];
 extern "C" extern void* g_profile_PASSER_MNG[12];
 
@@ -125,7 +125,7 @@ SECTION_RODATA static u8 const groupA[32] = {
     0x07, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x04, 0x50, 0x00, 0x00, 0x06, 0x01, 0x00, 0x00, 0x07,
     0x01, 0x00, 0x00, 0x05, 0x01, 0x00, 0x00, 0x1B, 0x01, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x1D,
 };
-COMPILER_STRIP_GATE(80D46C20, &groupA);
+COMPILER_STRIP_GATE(0x80D46C20, &groupA);
 
 /* 80D46C40-80D46C64 000020 0024+00 1/0 0/0 0/0 .rodata          groupB */
 SECTION_RODATA static u8 const groupB[36] = {
@@ -133,7 +133,7 @@ SECTION_RODATA static u8 const groupB[36] = {
     0x11, 0x00, 0x00, 0x12, 0x10, 0x00, 0x00, 0x13, 0x40, 0x00, 0x00, 0x09,
     0x40, 0x00, 0x00, 0x08, 0x50, 0x00, 0x00, 0x0A, 0x01, 0x00, 0x00, 0x0B,
 };
-COMPILER_STRIP_GATE(80D46C40, &groupB);
+COMPILER_STRIP_GATE(0x80D46C40, &groupB);
 
 /* 80D46C64-80D46C88 000044 0024+00 1/0 0/0 0/0 .rodata          groupC */
 SECTION_RODATA static u8 const groupC[36] = {
@@ -141,14 +141,14 @@ SECTION_RODATA static u8 const groupC[36] = {
     0x50, 0x00, 0x00, 0x02, 0x01, 0x00, 0x00, 0x03, 0x21, 0x00, 0x00, 0x17,
     0x10, 0x00, 0x00, 0x18, 0x01, 0x00, 0x00, 0x19, 0x10, 0x00, 0x00, 0x1A,
 };
-COMPILER_STRIP_GATE(80D46C64, &groupC);
+COMPILER_STRIP_GATE(0x80D46C64, &groupC);
 
 /* 80D46C88-80D46CA8 000068 0020+00 1/0 0/0 0/0 .rodata          groupD */
 SECTION_RODATA static u8 const groupD[32] = {
     0x07, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x14, 0x21, 0x00, 0x00, 0x15, 0x00, 0x00, 0x00, 0x16,
     0x11, 0x00, 0x00, 0x0C, 0x50, 0x00, 0x00, 0x0E, 0x40, 0x00, 0x00, 0x0F, 0x01, 0x00, 0x00, 0x0D,
 };
-COMPILER_STRIP_GATE(80D46C88, &groupD);
+COMPILER_STRIP_GATE(0x80D46C88, &groupD);
 
 /* 80D46CB0-80D46CC0 -00001 0010+00 1/1 0/0 0/0 .data            mGroupTbl__13daPasserMng_c */
 SECTION_DATA void* daPasserMng_c::mGroupTbl[4] = {
@@ -299,13 +299,13 @@ asm void daPasserMng_c::create_init() {
 SECTION_RODATA static u8 const lit_4430[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D46CA8, &lit_4430);
+COMPILER_STRIP_GATE(0x80D46CA8, &lit_4430);
 
 /* 80D46B9C-80D46C18 0014FC 007C+00 3/3 0/0 0/0 .text            cLib_getRndValue<i>__Fii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80D46B9C(int param_0, int param_1) {
+extern "C" asm void func_80D46B9C(void* _this, int param_0, int param_1) {
     nofralloc
 #include "asm/rel/d/a/d_a_passer_mng/d_a_passer_mng/func_80D46B9C.s"
 }

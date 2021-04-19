@@ -31,9 +31,9 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -187,11 +187,11 @@ void daTagLv2PrChk_c::actionEnd() {
 /* ############################################################################################## */
 /* 805A5364-805A5368 000000 0004+00 1/1 0/0 0/0 .rodata          @3844 */
 SECTION_RODATA static f32 const lit_3844 = 1.0f;
-COMPILER_STRIP_GATE(805A5364, &lit_3844);
+COMPILER_STRIP_GATE(0x805A5364, &lit_3844);
 
 /* 805A5368-805A536C 000004 0004+00 1/1 0/0 0/0 .rodata          @3845 */
 SECTION_RODATA static f32 const lit_3845 = -1.0f;
-COMPILER_STRIP_GATE(805A5368, &lit_3845);
+COMPILER_STRIP_GATE(0x805A5368, &lit_3845);
 
 /* 805A5294-805A52F4 0006B4 0060+00 1/1 0/0 0/0 .text            seStartWrong__15daTagLv2PrChk_cFv
  */

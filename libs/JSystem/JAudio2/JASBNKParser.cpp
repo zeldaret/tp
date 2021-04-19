@@ -25,7 +25,7 @@ template <typename A0>
 struct JASMemPool_MultiThreaded {};
 /* JASMemPool_MultiThreaded<JASChannel> */
 struct JASMemPool_MultiThreaded__template2 {
-    /* 802978DC */ void func_802978DC();
+    /* 802978DC */ void func_802978DC(void* _this);
 };
 
 struct JASInst {};
@@ -37,7 +37,6 @@ struct JASGenericMemPool {
 struct JASDrumSet {
     struct TPerc {
         /* 802984C4 */ TPerc();
-        /* 802984E4 */ void setRelease(u32);
     };
 
     /* 802982EC */ JASDrumSet();
@@ -98,13 +97,13 @@ extern "C" void createBasicBank__Q212JASBNKParser4Ver0FPCvP7JKRHeap();
 extern "C" void
 findOscPtr__Q212JASBNKParser4Ver0FP12JASBasicBankPCQ312JASBNKParser4Ver07THeaderPCQ312JASBNKParser4Ver04TOsc();
 extern "C" void getOscTableEndPtr__Q212JASBNKParser4Ver0FPCQ213JASOscillator5Point();
-extern "C" void func_80299FA0(void const*, u32);
-extern "C" void func_80299FB8(void const*, u32);
-extern "C" void func_80299FD0(void const*, u32);
-extern "C" void func_80299FE8(void const*, u32);
-extern "C" void func_8029A000(void const*, u32);
-extern "C" void func_8029A018(void const*, u32);
-extern "C" void func_8029A030(void const*, u32);
+extern "C" void func_80299FA0(void* _this, void const*, u32);
+extern "C" void func_80299FB8(void* _this, void const*, u32);
+extern "C" void func_80299FD0(void* _this, void const*, u32);
+extern "C" void func_80299FE8(void* _this, void const*, u32);
+extern "C" void func_8029A000(void* _this, void const*, u32);
+extern "C" void func_8029A018(void* _this, void const*, u32);
+extern "C" void func_8029A030(void* _this, void const*, u32);
 extern "C" void __sinit_JASBNKParser_cpp();
 extern "C" u8 sUsedHeapSize__12JASBNKParser[4];
 
@@ -114,7 +113,7 @@ extern "C" u8 sUsedHeapSize__12JASBNKParser[4];
 
 extern "C" void bcopy__7JASCalcFPCvPvUl();
 extern "C" void __ct__17JASGenericMemPoolFv();
-extern "C" void func_802978DC();
+extern "C" void func_802978DC(void* _this);
 extern "C" void __ct__12JASBasicBankFv();
 extern "C" void newInstTable__12JASBasicBankFUcP7JKRHeap();
 extern "C" void setInst__12JASBasicBankFiP7JASInst();
@@ -267,7 +266,7 @@ asm void JASBNKParser::Ver0::getOscTableEndPtr(JASOscillator::Point const* param
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80299FA0(void const* param_0, u32 param_1) {
+extern "C" asm void func_80299FA0(void* _this, void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASBNKParser/func_80299FA0.s"
 }
@@ -278,7 +277,7 @@ extern "C" asm void func_80299FA0(void const* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80299FB8(void const* param_0, u32 param_1) {
+extern "C" asm void func_80299FB8(void* _this, void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASBNKParser/func_80299FB8.s"
 }
@@ -289,7 +288,7 @@ extern "C" asm void func_80299FB8(void const* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80299FD0(void const* param_0, u32 param_1) {
+extern "C" asm void func_80299FD0(void* _this, void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASBNKParser/func_80299FD0.s"
 }
@@ -300,7 +299,7 @@ extern "C" asm void func_80299FD0(void const* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80299FE8(void const* param_0, u32 param_1) {
+extern "C" asm void func_80299FE8(void* _this, void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASBNKParser/func_80299FE8.s"
 }
@@ -311,7 +310,7 @@ extern "C" asm void func_80299FE8(void const* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8029A000(void const* param_0, u32 param_1) {
+extern "C" asm void func_8029A000(void* _this, void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASBNKParser/func_8029A000.s"
 }
@@ -322,7 +321,7 @@ extern "C" asm void func_8029A000(void const* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8029A018(void const* param_0, u32 param_1) {
+extern "C" asm void func_8029A018(void* _this, void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASBNKParser/func_8029A018.s"
 }
@@ -333,7 +332,7 @@ extern "C" asm void func_8029A018(void const* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8029A030(void const* param_0, u32 param_1) {
+extern "C" asm void func_8029A030(void* _this, void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASBNKParser/func_8029A030.s"
 }
@@ -362,5 +361,5 @@ asm void __sinit_JASBNKParser_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8029A048 = (void*)__sinit_JASBNKParser_cpp;
+REGISTER_CTORS(0x8029A048, __sinit_JASBNKParser_cpp);
 #pragma pop

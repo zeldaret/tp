@@ -147,8 +147,8 @@ extern "C" void getVisibility__20J2DAnmVisibilityFullCFUsPUc();
 extern "C" void getTevColorReg__15J2DAnmTevRegKeyCFUsP11_GXColorS10();
 extern "C" void getTevKonstReg__15J2DAnmTevRegKeyCFUsP8_GXColor();
 extern "C" void searchUpdateMaterialID__15J2DAnmTevRegKeyFP9J2DScreen();
-extern "C" void func_8030C77C(f32, J3DAnmKeyTableBase*, s16*);
-extern "C" void func_8030C9B0(f32, J3DAnmKeyTableBase*, f32*);
+extern "C" void func_8030C77C(void* _this, f32, J3DAnmKeyTableBase*, s16*);
+extern "C" void func_8030C9B0(void* _this, f32, J3DAnmKeyTableBase*, f32*);
 extern "C" void __ct__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv();
 extern "C" void __dt__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv();
 extern "C" void __dt__16J2DAnmTexPatternFv();
@@ -419,7 +419,8 @@ SECTION_SDATA2 static f64 lit_2379 = 4503601774854144.0 /* cast s32 to float */;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8030C77C(f32 param_0, J3DAnmKeyTableBase* param_1, s16* param_2) {
+extern "C" asm void func_8030C77C(void* _this, f32 param_0, J3DAnmKeyTableBase* param_1,
+                                  s16* param_2) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnimation/func_8030C77C.s"
 }
@@ -430,7 +431,8 @@ extern "C" asm void func_8030C77C(f32 param_0, J3DAnmKeyTableBase* param_1, s16*
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8030C9B0(f32 param_0, J3DAnmKeyTableBase* param_1, f32* param_2) {
+extern "C" asm void func_8030C9B0(void* _this, f32 param_0, J3DAnmKeyTableBase* param_1,
+                                  f32* param_2) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnimation/func_8030C9B0.s"
 }

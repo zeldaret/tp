@@ -29,7 +29,7 @@ struct dMsgObject_c {
     /* 8023822C */ void getStatus();
 };
 
-struct JMSMesgEntry_c {};
+struct ResTIMG {};
 
 struct ResTLUT {};
 
@@ -40,12 +40,12 @@ struct JGeometry {
     struct TBox2__template0 {};
 };
 
-struct ResTIMG {};
-
 struct J2DPicture {
     /* 802FC708 */ J2DPicture(ResTIMG const*);
     /* 802FC800 */ J2DPicture(u64, JGeometry::TBox2<f32> const&, ResTIMG const*, ResTLUT const*);
 };
+
+struct JMSMesgEntry_c {};
 
 struct dMeter2Info_c {
     /* 8021C250 */ void getString(u32, char*, JMSMesgEntry_c*);
@@ -56,17 +56,17 @@ struct dMeter2Info_c {
                                         J2DPicture*, void*, J2DPicture*, int);
 };
 
-struct JKRExpHeap {};
-
 struct JUtility {
     struct TColor {};
 };
 
+struct JKRExpHeap {};
+
+struct J2DGrafContext {};
+
 struct JKRArchive {
     /* 802D5B38 */ void getGlbResource(u32, char const*, JKRArchive*);
 };
-
-struct J2DGrafContext {};
 
 struct J2DScreen {
     /* 802F8498 */ J2DScreen();
@@ -75,9 +75,18 @@ struct J2DScreen {
     /* 802F9690 */ void animation();
 };
 
-struct J2DRotateAxis {};
+struct CPaneMgrAlpha {
+    /* 802553FC */ CPaneMgrAlpha(J2DScreen*, u64, u8, JKRExpHeap*);
+    /* 802555C8 */ void show();
+    /* 80255608 */ void hide();
+    /* 8025564C */ void isVisible();
+    /* 802557D0 */ void setAlphaRate(f32);
+    /* 80255828 */ void getAlphaRate();
+};
 
 struct J2DBasePosition {};
+
+struct J2DRotateAxis {};
 
 struct J2DPane {
     /* 802F666C */ void appendChild(J2DPane*);
@@ -92,15 +101,6 @@ struct CPaneMgr {
     /* 80254458 */ void setBlackWhite(JUtility::TColor, JUtility::TColor);
     /* 802545B0 */ void paneTrans(f32, f32);
     /* 80254EBC */ void getGlobalVtxCenter(J2DPane*, bool, s16);
-};
-
-struct CPaneMgrAlpha {
-    /* 802553FC */ CPaneMgrAlpha(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 802555C8 */ void show();
-    /* 80255608 */ void hide();
-    /* 8025564C */ void isVisible();
-    /* 802557D0 */ void setAlphaRate(f32);
-    /* 80255828 */ void getAlphaRate();
 };
 
 struct J2DAnmColor {};
@@ -219,9 +219,9 @@ struct dItem_data {
     static void* item_resource[1530];
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -462,7 +462,7 @@ SECTION_RODATA static u8 const a_tag[40] = {
     0x74, 0x32, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74, 0x33, 0x63, 0x6F, 0x6E, 0x74,
     0x5F, 0x61, 0x74, 0x34, 0x00, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74,
 };
-COMPILER_STRIP_GATE(80398258, &a_tag);
+COMPILER_STRIP_GATE(0x80398258, &a_tag);
 
 /* 80398280-803982A8 0248E0 0028+00 0/1 0/0 0/0 .rodata          b_tag$3950 */
 #pragma push
@@ -472,7 +472,7 @@ SECTION_RODATA static u8 const b_tag[40] = {
     0x74, 0x32, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x62, 0x74, 0x33, 0x63, 0x6F, 0x6E, 0x74,
     0x5F, 0x62, 0x74, 0x34, 0x00, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x62, 0x74,
 };
-COMPILER_STRIP_GATE(80398280, &b_tag);
+COMPILER_STRIP_GATE(0x80398280, &b_tag);
 #pragma pop
 
 /* 803982A8-803982D0 024908 0028+00 0/1 0/0 0/0 .rodata          z_tag$3951 */
@@ -483,7 +483,7 @@ SECTION_RODATA static u8 const z_tag[40] = {
     0x74, 0x32, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x7A, 0x74, 0x33, 0x63, 0x6F, 0x6E, 0x74,
     0x5F, 0x7A, 0x74, 0x34, 0x00, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x72, 0x74,
 };
-COMPILER_STRIP_GATE(803982A8, &z_tag);
+COMPILER_STRIP_GATE(0x803982A8, &z_tag);
 #pragma pop
 
 /* 803982D0-803982F8 024930 0028+00 0/1 0/0 0/0 .rodata          x_tag$3952 */
@@ -494,7 +494,7 @@ SECTION_RODATA static u8 const x_tag[40] = {
     0x74, 0x32, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x78, 0x74, 0x33, 0x63, 0x6F, 0x6E, 0x74,
     0x5F, 0x78, 0x74, 0x34, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x78, 0x74, 0x35,
 };
-COMPILER_STRIP_GATE(803982D0, &x_tag);
+COMPILER_STRIP_GATE(0x803982D0, &x_tag);
 #pragma pop
 
 /* 803982F8-80398320 024958 0028+00 0/1 0/0 0/0 .rodata          y_tag$3953 */
@@ -505,7 +505,29 @@ SECTION_RODATA static u8 const y_tag[40] = {
     0x74, 0x32, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x79, 0x74, 0x33, 0x63, 0x6F, 0x6E, 0x74,
     0x5F, 0x79, 0x74, 0x34, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x79, 0x74, 0x35,
 };
-COMPILER_STRIP_GATE(803982F8, &y_tag);
+COMPILER_STRIP_GATE(0x803982F8, &y_tag);
+#pragma pop
+
+/* 803988D0-803988D0 024F30 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803988D0 = "zel_00.bmg";
+SECTION_DEAD static char const* const stringBase_803988DB = "zel_01.bmg";
+SECTION_DEAD static char const* const stringBase_803988E6 = "zel_02.bmg";
+SECTION_DEAD static char const* const stringBase_803988F1 = "zel_03.bmg";
+SECTION_DEAD static char const* const stringBase_803988FC = "zel_04.bmg";
+SECTION_DEAD static char const* const stringBase_80398907 = "zel_05.bmg";
+SECTION_DEAD static char const* const stringBase_80398912 = "zel_06.bmg";
+SECTION_DEAD static char const* const stringBase_8039891D = "zel_07.bmg";
+SECTION_DEAD static char const* const stringBase_80398928 = "zel_08.bmg";
+SECTION_DEAD static char const* const stringBase_80398933 = "zel_99.bmg";
+SECTION_DEAD static char const* const stringBase_8039893E = "zel_unit.bmg";
+SECTION_DEAD static char const* const stringBase_8039894B = "zelda_game_image.blo";
+SECTION_DEAD static char const* const stringBase_80398960 = "zelda_game_image_kantera.blo";
+SECTION_DEAD static char const* const stringBase_8039897D = "zelda_icon_pikari.blo";
+SECTION_DEAD static char const* const stringBase_80398993 = "zelda_icon_pikari.bck";
+SECTION_DEAD static char const* const stringBase_803989A9 = "zelda_icon_pikari.bpk";
+SECTION_DEAD static char const* const stringBase_803989BF = "";
 #pragma pop
 
 /* 803BF328-803BF350 -00001 0028+00 1/1 0/0 0/0 .data            bmg_filename$3954 */
@@ -811,7 +833,7 @@ SECTION_RODATA static u8 const life_tag[160] = {
     0x00, 0x00, 0x68, 0x70, 0x62, 0x5F, 0x31, 0x36, 0x00, 0x00, 0x68, 0x70, 0x62, 0x5F, 0x31, 0x37,
     0x00, 0x00, 0x68, 0x70, 0x62, 0x5F, 0x31, 0x38, 0x00, 0x00, 0x68, 0x70, 0x62, 0x5F, 0x31, 0x39,
 };
-COMPILER_STRIP_GATE(80398320, &life_tag);
+COMPILER_STRIP_GATE(0x80398320, &life_tag);
 #pragma pop
 
 /* 803983C0-80398460 024A20 00A0+00 0/1 0/0 0/0 .rodata          mark_tag$4932 */
@@ -829,7 +851,7 @@ SECTION_RODATA static u8 const mark_tag[160] = {
     0x68, 0x65, 0x61, 0x72, 0x74, 0x6E, 0x31, 0x36, 0x68, 0x65, 0x61, 0x72, 0x74, 0x6E, 0x31, 0x37,
     0x68, 0x65, 0x61, 0x72, 0x74, 0x6E, 0x31, 0x38, 0x68, 0x65, 0x61, 0x72, 0x74, 0x6E, 0x31, 0x39,
 };
-COMPILER_STRIP_GATE(803983C0, &mark_tag);
+COMPILER_STRIP_GATE(0x803983C0, &mark_tag);
 #pragma pop
 
 /* 80398460-80398500 024AC0 00A0+00 0/1 0/0 0/0 .rodata          base_tag$4933 */
@@ -847,7 +869,7 @@ SECTION_RODATA static u8 const base_tag[160] = {
     0x68, 0x5F, 0x62, 0x61, 0x5F, 0x6E, 0x31, 0x36, 0x68, 0x5F, 0x62, 0x61, 0x5F, 0x6E, 0x31, 0x37,
     0x68, 0x5F, 0x62, 0x61, 0x5F, 0x6E, 0x31, 0x38, 0x68, 0x5F, 0x62, 0x61, 0x5F, 0x6E, 0x31, 0x39,
 };
-COMPILER_STRIP_GATE(80398460, &base_tag);
+COMPILER_STRIP_GATE(0x80398460, &base_tag);
 #pragma pop
 
 /* 80398500-803985A0 024B60 00A0+00 0/1 0/0 0/0 .rodata          lifet1_tag$4934 */
@@ -865,7 +887,7 @@ SECTION_RODATA static u8 const lifet1_tag[160] = {
     0x68, 0x65, 0x61, 0x72, 0x5F, 0x31, 0x36, 0x73, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x31, 0x37, 0x73,
     0x68, 0x65, 0x61, 0x72, 0x5F, 0x31, 0x38, 0x73, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x31, 0x39, 0x73,
 };
-COMPILER_STRIP_GATE(80398500, &lifet1_tag);
+COMPILER_STRIP_GATE(0x80398500, &lifet1_tag);
 #pragma pop
 
 /* 803985A0-80398640 024C00 00A0+00 0/1 0/0 0/0 .rodata          lifet2_tag$4935 */
@@ -883,7 +905,7 @@ SECTION_RODATA static u8 const lifet2_tag[160] = {
     0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x31, 0x36, 0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x31, 0x37,
     0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x31, 0x38, 0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x31, 0x39,
 };
-COMPILER_STRIP_GATE(803985A0, &lifet2_tag);
+COMPILER_STRIP_GATE(0x803985A0, &lifet2_tag);
 #pragma pop
 
 /* 80211BEC-80211E64 20C52C 0278+00 1/1 0/0 0/0 .text            initLife__13dMeter2Draw_cFv */
@@ -894,6 +916,15 @@ asm void dMeter2Draw_c::initLife() {
     nofralloc
 #include "asm/d/meter/d_meter2_draw/initLife__13dMeter2Draw_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 803988D0-803988D0 024F30 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803989C0 = "zelda_game_image_sanso_10percent.bpk";
+SECTION_DEAD static char const* const stringBase_803989E5 = "zelda_game_image_sanso_25percent.bpk";
+SECTION_DEAD static char const* const stringBase_80398A0A = "zelda_game_image_sanso_50percent.bpk";
 #pragma pop
 
 /* 80211E64-80212190 20C7A4 032C+00 1/1 0/0 0/0 .text            initMagic__13dMeter2Draw_cFv */
@@ -920,7 +951,7 @@ SECTION_RODATA static u8 const tuta_0[128] = {
     0x00, 0x00, 0x00, 0x00, 0x73, 0x5F, 0x31, 0x32, 0x00, 0x00, 0x00, 0x00, 0x73, 0x5F, 0x31, 0x33,
     0x00, 0x00, 0x00, 0x00, 0x73, 0x5F, 0x31, 0x34, 0x00, 0x00, 0x00, 0x00, 0x73, 0x5F, 0x31, 0x35,
 };
-COMPILER_STRIP_GATE(80398640, &tuta_0);
+COMPILER_STRIP_GATE(0x80398640, &tuta_0);
 #pragma pop
 
 /* 803986C0-80398740 024D20 0080+00 0/1 0/0 0/0 .rodata          tuta_1$5095 */
@@ -936,7 +967,7 @@ SECTION_RODATA static u8 const tuta_1[128] = {
     0x00, 0x00, 0x00, 0x73, 0x6C, 0x5F, 0x31, 0x32, 0x00, 0x00, 0x00, 0x73, 0x6C, 0x5F, 0x31, 0x33,
     0x00, 0x00, 0x00, 0x73, 0x6C, 0x5F, 0x31, 0x34, 0x00, 0x00, 0x00, 0x73, 0x6C, 0x5F, 0x31, 0x35,
 };
-COMPILER_STRIP_GATE(803986C0, &tuta_1);
+COMPILER_STRIP_GATE(0x803986C0, &tuta_1);
 #pragma pop
 
 /* 80398740-803987C0 024DA0 0080+00 0/1 0/0 0/0 .rodata          tuta_2$5096 */
@@ -952,7 +983,7 @@ SECTION_RODATA static u8 const tuta_2[128] = {
     0x00, 0x00, 0x73, 0x63, 0x70, 0x5F, 0x31, 0x32, 0x00, 0x00, 0x73, 0x63, 0x70, 0x5F, 0x31, 0x33,
     0x00, 0x00, 0x73, 0x63, 0x70, 0x5F, 0x31, 0x34, 0x00, 0x00, 0x73, 0x63, 0x70, 0x5F, 0x31, 0x35,
 };
-COMPILER_STRIP_GATE(80398740, &tuta_2);
+COMPILER_STRIP_GATE(0x80398740, &tuta_2);
 #pragma pop
 
 /* 80212190-80212404 20CAD0 0274+00 1/1 0/0 0/0 .text            initLightDrop__13dMeter2Draw_cFv */
@@ -973,7 +1004,7 @@ SECTION_RODATA static u8 const rupeet1_tag[32] = {
     0x00, 0x72, 0x5F, 0x6E, 0x5F, 0x31, 0x5F, 0x73, 0x00, 0x72, 0x5F, 0x6E, 0x5F, 0x32, 0x5F, 0x73,
     0x00, 0x72, 0x5F, 0x6E, 0x5F, 0x33, 0x5F, 0x73, 0x00, 0x72, 0x5F, 0x6E, 0x5F, 0x34, 0x5F, 0x73,
 };
-COMPILER_STRIP_GATE(803987C0, &rupeet1_tag);
+COMPILER_STRIP_GATE(0x803987C0, &rupeet1_tag);
 #pragma pop
 
 /* 803987E0-80398800 024E40 0020+00 0/1 0/0 0/0 .rodata          rupeet2_tag$5153 */
@@ -983,7 +1014,7 @@ SECTION_RODATA static u8 const rupeet2_tag[32] = {
     0x00, 0x00, 0x00, 0x72, 0x5F, 0x6E, 0x5F, 0x31, 0x00, 0x00, 0x00, 0x72, 0x5F, 0x6E, 0x5F, 0x32,
     0x00, 0x00, 0x00, 0x72, 0x5F, 0x6E, 0x5F, 0x33, 0x00, 0x00, 0x00, 0x72, 0x5F, 0x6E, 0x5F, 0x34,
 };
-COMPILER_STRIP_GATE(803987E0, &rupeet2_tag);
+COMPILER_STRIP_GATE(0x803987E0, &rupeet2_tag);
 #pragma pop
 
 /* 80398800-80398828 024E60 0028+00 0/1 0/0 0/0 .rodata          key_tag$5165 */
@@ -994,7 +1025,7 @@ SECTION_RODATA static u8 const key_tag[40] = {
     0x5F, 0x6E, 0x00, 0x6B, 0x5F, 0x6E, 0x5F, 0x32, 0x5F, 0x6E, 0x00, 0x6B, 0x5F, 0x6E,
     0x5F, 0x33, 0x5F, 0x6E, 0x00, 0x6B, 0x5F, 0x6E, 0x5F, 0x34, 0x5F, 0x6E,
 };
-COMPILER_STRIP_GATE(80398800, &key_tag);
+COMPILER_STRIP_GATE(0x80398800, &key_tag);
 #pragma pop
 
 /* 80212404-802126E4 20CD44 02E0+00 1/1 0/0 0/0 .text            initRupeeKey__13dMeter2Draw_cFv */
@@ -1014,7 +1045,7 @@ SECTION_RODATA static u8 const juji_i_tag[40] = {
     0x30, 0x30, 0x00, 0x79, 0x61, 0x6A, 0x69, 0x5F, 0x30, 0x31, 0x6A, 0x75, 0x5F, 0x72,
     0x69, 0x6E, 0x67, 0x32, 0x6A, 0x75, 0x5F, 0x72, 0x69, 0x6E, 0x67, 0x34,
 };
-COMPILER_STRIP_GATE(80398828, &juji_i_tag);
+COMPILER_STRIP_GATE(0x80398828, &juji_i_tag);
 
 /* 80398850-80398878 024EB0 0028+00 1/1 0/0 0/0 .rodata          juji_m_tag$5270 */
 SECTION_RODATA static u8 const juji_m_tag[40] = {
@@ -1022,7 +1053,7 @@ SECTION_RODATA static u8 const juji_m_tag[40] = {
     0x30, 0x32, 0x00, 0x79, 0x61, 0x6A, 0x69, 0x5F, 0x30, 0x33, 0x6A, 0x75, 0x5F, 0x72,
     0x69, 0x6E, 0x67, 0x33, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80398850, &juji_m_tag);
+COMPILER_STRIP_GATE(0x80398850, &juji_m_tag);
 
 /* 802126E4-8021350C 20D024 0E28+00 1/1 0/0 0/0 .text            initButton__13dMeter2Draw_cFv */
 #pragma push
@@ -1147,13 +1178,13 @@ SECTION_RODATA static u8 const tag_bigh[32] = {
     0x00, 0x62, 0x69, 0x67, 0x68, 0x5F, 0x30, 0x30, 0x00, 0x62, 0x69, 0x67, 0x68, 0x5F, 0x30, 0x31,
     0x00, 0x62, 0x69, 0x67, 0x68, 0x5F, 0x30, 0x32, 0x00, 0x62, 0x69, 0x67, 0x68, 0x5F, 0x30, 0x33,
 };
-COMPILER_STRIP_GATE(80398878, &tag_bigh);
+COMPILER_STRIP_GATE(0x80398878, &tag_bigh);
 
 /* 80398898-803988A8 024EF8 0010+00 1/1 0/0 0/0 .rodata          tag_du$5852 */
 SECTION_RODATA static u8 const tag_du[16] = {
     0x68, 0x65, 0x61, 0x72, 0x74, 0x5F, 0x6C, 0x6E, 0x68, 0x65, 0x61, 0x72, 0x74, 0x5F, 0x75, 0x6E,
 };
-COMPILER_STRIP_GATE(80398898, &tag_du);
+COMPILER_STRIP_GATE(0x80398898, &tag_du);
 
 /* 802147CC-802149F4 20F10C 0228+00 1/1 0/0 0/0 .text changeTextureLife__13dMeter2Draw_cFibUc */
 #pragma push
@@ -1556,7 +1587,7 @@ asm void dMeter2Draw_c::drawButtonBin(u8 param_0) {
 SECTION_RODATA static u8 const tag_7361[16] = {
     0x69, 0x74, 0x65, 0x6D, 0x5F, 0x78, 0x5F, 0x6E, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x79, 0x5F, 0x6E,
 };
-COMPILER_STRIP_GATE(803988A8, &tag_7361);
+COMPILER_STRIP_GATE(0x803988A8, &tag_7361);
 
 /* 80217AB4-80218238 2123F4 0784+00 1/1 1/1 0/0 .text drawButtonXY__13dMeter2Draw_cFiUcUcbb */
 #pragma push
@@ -2112,6 +2143,19 @@ asm void dMeter2Draw_c::getFishingType() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 803988D0-803988D0 024F30 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80398A2F = "tt_heart_00.bti";
+SECTION_DEAD static char const* const stringBase_80398A3F = "tt_heart_01.bti";
+SECTION_DEAD static char const* const stringBase_80398A4F = "tt_heart_02.bti";
+SECTION_DEAD static char const* const stringBase_80398A5F = "tt_heart_03.bti";
+SECTION_DEAD static char const* const stringBase_80398A6F = "F_SP127";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80398A77 = "";
+#pragma pop
+
 /* 8021BBB4-8021BC24 2164F4 0070+00 2/2 1/1 0/0 .text            getCanoeFishing__13dMeter2Draw_cFv
  */
 #pragma push
@@ -2185,38 +2229,7 @@ SECTION_RODATA static u8 const tag_7759[24] = {
     0x69, 0x74, 0x65, 0x6D, 0x5F, 0x78, 0x5F, 0x6E, 0x69, 0x74, 0x65, 0x6D,
     0x5F, 0x79, 0x5F, 0x6E, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x6A, 0x5F, 0x6E,
 };
-COMPILER_STRIP_GATE(803988B8, &tag_7759);
+COMPILER_STRIP_GATE(0x803988B8, &tag_7759);
 #pragma pop
 
-/* 803988D0-80398A78 024F30 01A7+01 6/5 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803988D0 = "zel_00.bmg";
-SECTION_DEAD static char const* const stringBase_803988DB = "zel_01.bmg";
-SECTION_DEAD static char const* const stringBase_803988E6 = "zel_02.bmg";
-SECTION_DEAD static char const* const stringBase_803988F1 = "zel_03.bmg";
-SECTION_DEAD static char const* const stringBase_803988FC = "zel_04.bmg";
-SECTION_DEAD static char const* const stringBase_80398907 = "zel_05.bmg";
-SECTION_DEAD static char const* const stringBase_80398912 = "zel_06.bmg";
-SECTION_DEAD static char const* const stringBase_8039891D = "zel_07.bmg";
-SECTION_DEAD static char const* const stringBase_80398928 = "zel_08.bmg";
-SECTION_DEAD static char const* const stringBase_80398933 = "zel_99.bmg";
-SECTION_DEAD static char const* const stringBase_8039893E = "zel_unit.bmg";
-SECTION_DEAD static char const* const stringBase_8039894B = "zelda_game_image.blo";
-SECTION_DEAD static char const* const stringBase_80398960 = "zelda_game_image_kantera.blo";
-SECTION_DEAD static char const* const stringBase_8039897D = "zelda_icon_pikari.blo";
-SECTION_DEAD static char const* const stringBase_80398993 = "zelda_icon_pikari.bck";
-SECTION_DEAD static char const* const stringBase_803989A9 = "zelda_icon_pikari.bpk";
-SECTION_DEAD static char const* const stringBase_803989BF = "";
-SECTION_DEAD static char const* const stringBase_803989C0 = "zelda_game_image_sanso_10percent.bpk";
-SECTION_DEAD static char const* const stringBase_803989E5 = "zelda_game_image_sanso_25percent.bpk";
-SECTION_DEAD static char const* const stringBase_80398A0A = "zelda_game_image_sanso_50percent.bpk";
-SECTION_DEAD static char const* const stringBase_80398A2F = "tt_heart_00.bti";
-SECTION_DEAD static char const* const stringBase_80398A3F = "tt_heart_01.bti";
-SECTION_DEAD static char const* const stringBase_80398A4F = "tt_heart_02.bti";
-SECTION_DEAD static char const* const stringBase_80398A5F = "tt_heart_03.bti";
-SECTION_DEAD static char const* const stringBase_80398A6F = "F_SP127";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80398A77 = "";
-#pragma pop
+/* 803988D0-803988D0 024F30 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -28,7 +28,7 @@ struct J3DJoint {
 
 extern "C" void __ct__15J3DJointFactoryFRC13J3DJointBlock();
 extern "C" void create__15J3DJointFactoryFi();
-extern "C" void func_80337338(void const*, u32);
+extern "C" void func_80337338(void* _this, void const*, u32);
 
 //
 // External References:
@@ -36,7 +36,7 @@ extern "C" void func_80337338(void const*, u32);
 
 extern "C" void* __nw__FUl();
 extern "C" void __ct__8J3DJointFv();
-extern "C" void func_8033677C(void const*, u32);
+extern "C" void func_8033677C(void* _this, void const*, u32);
 
 //
 // Declarations:
@@ -67,7 +67,7 @@ asm void J3DJointFactory::create(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80337338(void const* param_0, u32 param_1) {
+extern "C" asm void func_80337338(void* _this, void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DJointFactory/func_80337338.s"
 }

@@ -246,5 +246,5 @@ asm void __sinit_d_event_lib_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80048BD8 = (void*)__sinit_d_event_lib_cpp;
+REGISTER_CTORS(0x80048BD8, __sinit_d_event_lib_cpp);
 #pragma pop

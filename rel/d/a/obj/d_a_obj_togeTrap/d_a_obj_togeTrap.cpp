@@ -94,9 +94,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -311,34 +311,34 @@ SECTION_RODATA static u8 const lit_3655[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D18E98, &lit_3655);
+COMPILER_STRIP_GATE(0x80D18E98, &lit_3655);
 
 /* 80D18E9C-80D18EA0 000004 0004+00 0/1 0/0 0/0 .rodata          @3656 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3656 = 250.0f;
-COMPILER_STRIP_GATE(80D18E9C, &lit_3656);
+COMPILER_STRIP_GATE(0x80D18E9C, &lit_3656);
 #pragma pop
 
 /* 80D18EA0-80D18EA4 000008 0004+00 0/1 0/0 0/0 .rodata          @3657 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3657 = 10.0f;
-COMPILER_STRIP_GATE(80D18EA0, &lit_3657);
+COMPILER_STRIP_GATE(0x80D18EA0, &lit_3657);
 #pragma pop
 
 /* 80D18EA4-80D18EA8 00000C 0004+00 0/1 0/0 0/0 .rodata          @3658 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3658 = 20.0f;
-COMPILER_STRIP_GATE(80D18EA4, &lit_3658);
+COMPILER_STRIP_GATE(0x80D18EA4, &lit_3658);
 #pragma pop
 
 /* 80D18EA8-80D18EAC 000010 0004+00 0/2 0/0 0/0 .rodata          @3659 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3659 = 500.0f;
-COMPILER_STRIP_GATE(80D18EA8, &lit_3659);
+COMPILER_STRIP_GATE(0x80D18EA8, &lit_3659);
 #pragma pop
 
 /* 80D18F10-80D18F1C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -543,6 +543,13 @@ asm void daTogeTrap_c::setBaseMtx() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80D18F08-80D18F08 000070 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D18F08 = "P_Toge";
+#pragma pop
+
 /* 80D17D5C-80D17E14 0002DC 00B8+00 1/0 0/0 0/0 .text            CreateHeap__12daTogeTrap_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -560,11 +567,11 @@ SECTION_RODATA u8 const daTogeTrap_c::mCcDObjInfo[48] = {
     0x00, 0x48, 0x00, 0x28, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D18EAC, &daTogeTrap_c::mCcDObjInfo);
+COMPILER_STRIP_GATE(0x80D18EAC, &daTogeTrap_c::mCcDObjInfo);
 
 /* 80D18EDC-80D18EE0 000044 0004+00 1/2 0/0 0/0 .rodata          @3780 */
 SECTION_RODATA static f32 const lit_3780 = 300.0f;
-COMPILER_STRIP_GATE(80D18EDC, &lit_3780);
+COMPILER_STRIP_GATE(0x80D18EDC, &lit_3780);
 
 /* 80D17E14-80D18008 000394 01F4+00 1/1 0/0 0/0 .text            create__12daTogeTrap_cFv */
 #pragma push
@@ -653,28 +660,28 @@ asm void daTogeTrap_c::Execute(f32 (**param_0)[3][4]) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3940 = 60.0f;
-COMPILER_STRIP_GATE(80D18EE0, &lit_3940);
+COMPILER_STRIP_GATE(0x80D18EE0, &lit_3940);
 #pragma pop
 
 /* 80D18EE4-80D18EE8 00004C 0004+00 0/1 0/0 0/0 .rodata          @3941 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3941 = 290.0f;
-COMPILER_STRIP_GATE(80D18EE4, &lit_3941);
+COMPILER_STRIP_GATE(0x80D18EE4, &lit_3941);
 #pragma pop
 
 /* 80D18EE8-80D18EEC 000050 0004+00 0/1 0/0 0/0 .rodata          @3942 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3942 = 100.0f;
-COMPILER_STRIP_GATE(80D18EE8, &lit_3942);
+COMPILER_STRIP_GATE(0x80D18EE8, &lit_3942);
 #pragma pop
 
 /* 80D18EEC-80D18EF0 000054 0004+00 0/1 0/0 0/0 .rodata          @3943 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3943 = 150.0f;
-COMPILER_STRIP_GATE(80D18EEC, &lit_3943);
+COMPILER_STRIP_GATE(0x80D18EEC, &lit_3943);
 #pragma pop
 
 /* 80D18EF0-80D18EF8 000058 0008+00 0/1 0/0 0/0 .rodata          @3945 */
@@ -683,7 +690,7 @@ COMPILER_STRIP_GATE(80D18EEC, &lit_3943);
 SECTION_RODATA static u8 const lit_3945[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D18EF0, &lit_3945);
+COMPILER_STRIP_GATE(0x80D18EF0, &lit_3945);
 #pragma pop
 
 /* 80D190A8-80D190B4 000008 000C+00 1/1 0/0 0/0 .bss             @3647 */
@@ -708,7 +715,7 @@ asm void daTogeTrap_c::moveMain() {
 /* ############################################################################################## */
 /* 80D18EF8-80D18EFC 000060 0004+00 1/1 0/0 0/0 .rodata          @3975 */
 SECTION_RODATA static f32 const lit_3975 = 225.0f;
-COMPILER_STRIP_GATE(80D18EF8, &lit_3975);
+COMPILER_STRIP_GATE(0x80D18EF8, &lit_3975);
 
 /* 80D185DC-80D186B0 000B5C 00D4+00 2/2 0/0 0/0 .text            playerAreaCheck__12daTogeTrap_cFv
  */
@@ -739,11 +746,11 @@ void daTogeTrap_c::modeWait() {
 /* ############################################################################################## */
 /* 80D18EFC-80D18F00 000064 0004+00 3/5 0/0 0/0 .rodata          @4006 */
 SECTION_RODATA static f32 const lit_4006 = 1.0f;
-COMPILER_STRIP_GATE(80D18EFC, &lit_4006);
+COMPILER_STRIP_GATE(0x80D18EFC, &lit_4006);
 
 /* 80D18F00-80D18F04 000068 0004+00 2/2 0/0 0/0 .rodata          @4007 */
 SECTION_RODATA static f32 const lit_4007 = -1.0f;
-COMPILER_STRIP_GATE(80D18F00, &lit_4007);
+COMPILER_STRIP_GATE(0x80D18F00, &lit_4007);
 
 /* 80D186C0-80D18784 000C40 00C4+00 1/1 0/0 0/0 .text            init_modeMoveUp__12daTogeTrap_cFv
  */
@@ -761,7 +768,7 @@ asm void daTogeTrap_c::init_modeMoveUp() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4036 = 30.0f;
-COMPILER_STRIP_GATE(80D18F04, &lit_4036);
+COMPILER_STRIP_GATE(0x80D18F04, &lit_4036);
 #pragma pop
 
 /* 80D18784-80D188C0 000D04 013C+00 1/0 0/0 0/0 .text            modeMoveUp__12daTogeTrap_cFv */
@@ -910,12 +917,7 @@ asm void __sinit_d_a_obj_togeTrap_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80D18E14 = (void*)__sinit_d_a_obj_togeTrap_cpp;
+REGISTER_CTORS(0x80D18E14, __sinit_d_a_obj_togeTrap_cpp);
 #pragma pop
 
-/* 80D18F08-80D18F0F 000070 0007+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D18F08 = "P_Toge";
-#pragma pop
+/* 80D18F08-80D18F08 000070 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

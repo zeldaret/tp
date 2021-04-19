@@ -50,13 +50,13 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct cXyz {
-    /* 80009184 */ ~cXyz();
-};
-
 struct dKy_tevstr_c {};
 
 struct csXyz {};
+
+struct cXyz {
+    /* 80009184 */ ~cXyz();
+};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -1117,6 +1117,12 @@ static asm void branchFile(char const* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 803797F8-803797F8 005E58 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803797F8 = "-";
+#pragma pop
+
 /* 80450620-80450628 0000A0 0002+06 3/3 1/1 0/0 .sdata           m_branchId__7dDemo_c */
 SECTION_SDATA u16 dDemo_c::m_branchId[1 + 3 /* padding */] = {
     0xFFFF,
@@ -1685,6 +1691,13 @@ asm dDemo_ambient_c::~dDemo_ambient_c() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 803797F8-803797F8 005E58 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803797FA = "d_act";
+#pragma pop
+
 /* 80039528-80039678 033E68 0150+00 1/0 0/0 0/0 .text
  * JSGFindObject__14dDemo_system_cCFPPQ26JStage7TObjectPCcQ26JStage8TEObject */
 #pragma push
@@ -1742,6 +1755,12 @@ asm jmessage_tControl::~jmessage_tControl() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 803797F8-803797F8 005E58 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379800 = "デモデータ読み込みエラー！！\n";
+#pragma pop
+
 /* 8042465C-80424668 05137C 000C+00 1/1 0/0 0/0 .bss             @5233 */
 static u8 lit_5233[12];
 
@@ -1933,14 +1952,13 @@ asm void dDemo_actor_c::JSGGetRotation(Vec* param_0) const {
 }
 #pragma pop
 
-/* 803797F8-80379840 005E58 0046+02 3/3 0/0 0/0 .rodata          @stringBase0 */
+/* ############################################################################################## */
+/* 8037981E-80379840 005E7E 0020+02 0/0 0/0 0/0 .rodata          None */
 #pragma push
 #pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803797F8 = "-";
-SECTION_DEAD static char const* const stringBase_803797FA = "d_act";
-SECTION_DEAD static char const* const stringBase_80379800 = "デモデータ読み込みエラー！！\n";
 SECTION_DEAD static char const* const stringBase_8037981E = "デモデータ再読み込みエラー！！\n";
 /* @stringBase0 padding */
 SECTION_DEAD static char const* const pad_8037983E = "\0";
 #pragma pop
+
+/* 803797F8-803797F8 005E58 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

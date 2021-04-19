@@ -27,18 +27,19 @@ struct daObj {
     template <typename A1>
     void PrmAbstract(/* ... */);
     /* 8057CAD4 */ /* daObj::PrmAbstract<daObjEff::Act_c::Prm_e> */
-    void func_8057CAD4(fopAc_ac_c const*, daObjEff::Act_c::Prm_e, daObjEff::Act_c::Prm_e);
+    void func_8057CAD4(void* _this, fopAc_ac_c const*, daObjEff::Act_c::Prm_e,
+                       daObjEff::Act_c::Prm_e);
 };
 
 struct dPa_levelEcallBack {};
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct csXyz {};
 
 struct _GXColor {};
 
-struct csXyz {};
+struct cXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -56,7 +57,8 @@ extern "C" static bool func_8057CAB4();
 extern "C" static bool func_8057CABC();
 extern "C" static bool func_8057CAC4();
 extern "C" static bool func_8057CACC();
-extern "C" void func_8057CAD4(fopAc_ac_c const*, daObjEff::Act_c::Prm_e, daObjEff::Act_c::Prm_e);
+extern "C" void func_8057CAD4(void* _this, fopAc_ac_c const*, daObjEff::Act_c::Prm_e,
+                              daObjEff::Act_c::Prm_e);
 extern "C" extern void* g_profile_Obj_Eff[12];
 
 //
@@ -82,7 +84,7 @@ SECTION_RODATA static u8 const lit_3648[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8057CAF8, &lit_3648);
+COMPILER_STRIP_GATE(0x8057CAF8, &lit_3648);
 
 /* 8057C9D8-8057CA94 000078 00BC+00 1/1 0/0 0/0 .text            _create__Q28daObjEff5Act_cFv */
 #pragma push
@@ -135,8 +137,8 @@ static bool func_8057CACC() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8057CAD4(fopAc_ac_c const* param_0, daObjEff::Act_c::Prm_e param_1,
-                                  daObjEff::Act_c::Prm_e param_2) {
+extern "C" asm void func_8057CAD4(void* _this, fopAc_ac_c const* param_0,
+                                  daObjEff::Act_c::Prm_e param_1, daObjEff::Act_c::Prm_e param_2) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_eff/d_a_obj_eff/func_8057CAD4.s"
 }

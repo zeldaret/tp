@@ -28,10 +28,6 @@ struct JASResArcLoader {
     /* 80290D18 */ void loadResourceAsync(JKRArchive*, u16, u8*, u32, void (*)(u32, u32), u32);
 };
 
-struct JASDvd {
-    /* 8028FEFC */ void getThreadPointer();
-};
-
 //
 // Forward References:
 //
@@ -97,7 +93,7 @@ asm void JASResArcLoader::loadResourceCallback(void* param_0) {
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm void JASResArcLoader::loadResourceAsync(JKRArchive* param_0, u16 param_1, u8* param_2,
-                                            u32 param_3, void (*)(u32, u32), u32 param_5) {
+                                            u32 param_3, void (*param_4)(u32, u32), u32 param_5) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASResArcLoader/loadResourceAsync__15JASResArcLoaderFP10JKRArchiveUsPUcUlPFUlUl_vUl.s"
 }

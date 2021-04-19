@@ -4,13 +4,13 @@
 //
 
 #include "SSystem/SComponent/c_lib.h"
+#include "JSystem/JMath/JMath.h"
+#include "SSystem/SComponent/c_math.h"
+#include "SSystem/SComponent/c_xyz.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "JSystem/JMath/JMath.h"
-#include "SSystem/SComponent/c_xyz.h"
-#include "SSystem/SComponent/c_math.h"
-#include "msl_c/string.h"
 #include "msl_c/math.h"
+#include "msl_c/string.h"
 
 //
 // Forward References:
@@ -132,8 +132,7 @@ SECTION_SDATA2 static f32 lit_2382[1 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm f32 cLib_addCalcPos(cXyz* param_0, cXyz const& param_1, f32 param_2, f32 param_3,
-                         f32 param_4) {
+asm f32 cLib_addCalcPos(cXyz* param_0, cXyz const& param_1, f32 param_2, f32 param_3, f32 param_4) {
     nofralloc
 #include "asm/SSystem/SComponent/c_lib/cLib_addCalcPos__FP4cXyzRC4cXyzfff.s"
 }
@@ -144,7 +143,7 @@ asm f32 cLib_addCalcPos(cXyz* param_0, cXyz const& param_1, f32 param_2, f32 par
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm f32 cLib_addCalcPosXZ(cXyz* param_0, cXyz const& param_1, f32 param_2, f32 param_3,
-                           f32 param_4) {
+                          f32 param_4) {
     nofralloc
 #include "asm/SSystem/SComponent/c_lib/cLib_addCalcPosXZ__FP4cXyzRC4cXyzfff.s"
 }
@@ -269,7 +268,6 @@ s16 cLib_targetAngleX(cXyz const* param_0, cXyz const* param_1) {
     cXyz diff = *param_1 - *param_0;
     f32 f1 = sqrtf(diff.getMagXZ());
     return cM_atan2s(diff.GetY(), f1);
-
 }
 #else
 #pragma push
@@ -303,7 +301,7 @@ s32 cLib_distanceAngleS(s16 x, s16 y) {
 static Mtx mtx[10];
 
 /* 80450768-80450770 -00001 0004+04 6/6 2/2 695/695 .sdata           calc_mtx */
-Mtx *calc_mtx = mtx;
+Mtx* calc_mtx = mtx;
 
 /* 80270E4C-80270E5C 26B78C 0010+00 0/0 1/1 0/0 .text            MtxInit__Fv */
 void MtxInit() {

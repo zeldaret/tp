@@ -256,6 +256,15 @@ static asm void dThunder_Create(kankyo_class* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80394F40-80394F40 0215A0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394F40 = "Always";
+SECTION_DEAD static char const* const stringBase_80394F47 = "R_SP30";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80394F4E = "\0";
+#pragma pop
+
 /* 80453E9C-80453EA0 00249C 0004+00 1/1 0/0 0/0 .sdata2          @4079 */
 SECTION_SDATA2 static f32 lit_4079 = 0.5f;
 
@@ -357,12 +366,4 @@ SECTION_DATA extern void* g_profile_KY_THUNDER[10 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80394F40-80394F50 0215A0 000E+02 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80394F40 = "Always";
-SECTION_DEAD static char const* const stringBase_80394F47 = "R_SP30";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80394F4E = "\0";
-#pragma pop
+/* 80394F40-80394F40 0215A0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

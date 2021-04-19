@@ -212,62 +212,62 @@ SECTION_RODATA u8 const daObjNameplate_c::M_attr[32] = {
     0x42, 0x48, 0x00, 0x00, 0x45, 0x1C, 0x40, 0x00, 0x43, 0xC8, 0x00, 0x00, 0x40, 0xC0, 0x00, 0x00,
     0xBC, 0xA3, 0xD7, 0x0A, 0x3F, 0x73, 0x33, 0x33, 0x00, 0xAA, 0x07, 0xD0, 0x00, 0x0A, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80594E74, &daObjNameplate_c::M_attr);
+COMPILER_STRIP_GATE(0x80594E74, &daObjNameplate_c::M_attr);
 
 /* 80594E94-80594E98 000020 0004+00 0/1 0/0 0/0 .rodata          @3659 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3659 = -75.0f;
-COMPILER_STRIP_GATE(80594E94, &lit_3659);
+COMPILER_STRIP_GATE(0x80594E94, &lit_3659);
 #pragma pop
 
 /* 80594E98-80594E9C 000024 0004+00 0/1 0/0 0/0 .rodata          @3660 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3660 = -180.0f;
-COMPILER_STRIP_GATE(80594E98, &lit_3660);
+COMPILER_STRIP_GATE(0x80594E98, &lit_3660);
 #pragma pop
 
 /* 80594E9C-80594EA0 000028 0004+00 0/1 0/0 0/0 .rodata          @3661 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3661 = -25.0f;
-COMPILER_STRIP_GATE(80594E9C, &lit_3661);
+COMPILER_STRIP_GATE(0x80594E9C, &lit_3661);
 #pragma pop
 
 /* 80594EA0-80594EA4 00002C 0004+00 0/1 0/0 0/0 .rodata          @3662 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3662 = 75.0f;
-COMPILER_STRIP_GATE(80594EA0, &lit_3662);
+COMPILER_STRIP_GATE(0x80594EA0, &lit_3662);
 #pragma pop
 
 /* 80594EA4-80594EA8 000030 0004+00 0/1 0/0 0/0 .rodata          @3663 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3663 = 20.0f;
-COMPILER_STRIP_GATE(80594EA4, &lit_3663);
+COMPILER_STRIP_GATE(0x80594EA4, &lit_3663);
 #pragma pop
 
 /* 80594EA8-80594EAC 000034 0004+00 0/1 0/0 0/0 .rodata          @3664 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3664 = 25.0f;
-COMPILER_STRIP_GATE(80594EA8, &lit_3664);
+COMPILER_STRIP_GATE(0x80594EA8, &lit_3664);
 #pragma pop
 
 /* 80594EAC-80594EB0 000038 0004+00 0/1 0/0 0/0 .rodata          @3665 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3665 = -105.0f;
-COMPILER_STRIP_GATE(80594EAC, &lit_3665);
+COMPILER_STRIP_GATE(0x80594EAC, &lit_3665);
 #pragma pop
 
 /* 80594EB0-80594EB4 00003C 0004+00 0/1 0/0 0/0 .rodata          @3666 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3666 = 120.0f;
-COMPILER_STRIP_GATE(80594EB0, &lit_3666);
+COMPILER_STRIP_GATE(0x80594EB0, &lit_3666);
 #pragma pop
 
 /* 80594098-8059415C 000078 00C4+00 1/1 0/0 0/0 .text            create_init__16daObjNameplate_cFv
@@ -310,7 +310,7 @@ SECTION_RODATA static u8 const ccSphSrc[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0xC2, 0xE6, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80594EB4, &ccSphSrc);
+COMPILER_STRIP_GATE(0x80594EB4, &ccSphSrc);
 
 /* 80594248-805942B8 000228 0070+00 1/1 0/0 0/0 .text            initCcSphere__16daObjNameplate_cFv
  */
@@ -331,11 +331,11 @@ SECTION_RODATA static u8 const lit_3718[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80594EF4, &lit_3718);
+COMPILER_STRIP_GATE(0x80594EF4, &lit_3718);
 
 /* 80594EF8-80594EFC 000084 0004+00 1/1 0/0 0/0 .rodata          @3719 */
 SECTION_RODATA static f32 const lit_3719 = -115.0f;
-COMPILER_STRIP_GATE(80594EF8, &lit_3719);
+COMPILER_STRIP_GATE(0x80594EF8, &lit_3719);
 
 /* 805942B8-8059434C 000298 0094+00 1/1 0/0 0/0 .text            setCcSphere__16daObjNameplate_cFv
  */
@@ -357,7 +357,7 @@ SECTION_RODATA static f32 const lit_3769[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80594EFC, &lit_3769);
+COMPILER_STRIP_GATE(0x80594EFC, &lit_3769);
 #pragma pop
 
 /* 8059434C-805945CC 00032C 0280+00 1/1 0/0 0/0 .text            calcAngle__16daObjNameplate_cFv */
@@ -375,7 +375,7 @@ asm void daObjNameplate_c::calcAngle() {
 SECTION_RODATA static u8 const lit_3791[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80594F04, &lit_3791);
+COMPILER_STRIP_GATE(0x80594F04, &lit_3791);
 
 /* 805945CC-80594754 0005AC 0188+00 1/1 0/0 0/0 .text            calcSpring__16daObjNameplate_cFv */
 #pragma push
@@ -410,6 +410,13 @@ asm void daObjNameplate_c::messageProc() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80594F0C-80594F0C 000098 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80594F0C = "J_Hyosatu";
+SECTION_DEAD static char const* const stringBase_80594F16 = "J_Hyousatu.bmd";
+#pragma pop
+
 /* 80594F28-80594F2C -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_nameplate__stringBase0;
 
@@ -562,10 +569,4 @@ asm cCcD_GStts::~cCcD_GStts() {
 }
 #pragma pop
 
-/* 80594F0C-80594F25 000098 0019+00 2/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80594F0C = "J_Hyosatu";
-SECTION_DEAD static char const* const stringBase_80594F16 = "J_Hyousatu.bmd";
-#pragma pop
+/* 80594F0C-80594F0C 000098 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

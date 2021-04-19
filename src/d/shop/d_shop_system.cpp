@@ -25,13 +25,13 @@ struct daNpcT_faceMotionAnmData_c {};
 
 struct J3DModel {};
 
+struct J3DJoint {};
+
 struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
 };
-
-struct J3DJoint {};
 
 struct daNpcT_c {
     /* 801490D4 */ void ctrlBtk();
@@ -94,12 +94,6 @@ struct dSv_memBit_c {
     /* 80034860 */ void isSwitch(int) const;
 };
 
-struct dMsgFlow_c {
-    /* 8024A2D8 */ void doFlow(fopAc_ac_c*, fopAc_ac_c**, int);
-    /* 8024A528 */ void getEventId(int*);
-    /* 8024B2C0 */ void query005(mesg_flow_node_branch*, fopAc_ac_c*, int);
-};
-
 struct STControl {
     /* 80032088 */ void setWaitParm(s16, s16, s16, s16, f32, f32, s16, s16);
     /* 800320AC */ void init();
@@ -108,6 +102,12 @@ struct STControl {
     /* 800324A8 */ void checkRightTrigger();
     /* 80032524 */ void checkUpTrigger();
     /* 800325A0 */ void checkDownTrigger();
+};
+
+struct dMsgFlow_c {
+    /* 8024A2D8 */ void doFlow(fopAc_ac_c*, fopAc_ac_c**, int);
+    /* 8024A528 */ void getEventId(int*);
+    /* 8024B2C0 */ void query005(mesg_flow_node_branch*, fopAc_ac_c*, int);
 };
 
 struct dShopSystem_c {
@@ -1118,6 +1118,12 @@ asm void dShopSystem_c::itemRotate() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80394C10-80394C10 021270 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394C10 = "R_SP01";
+#pragma pop
+
 /* 80453B24-80453B28 002124 0004+00 1/1 0/0 0/0 .sdata2          @5000 */
 SECTION_SDATA2 static f32 lit_5000 = -25.0f;
 
@@ -1511,7 +1517,7 @@ asm void __sinit_d_shop_system_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8019ABB0 = (void*)__sinit_d_shop_system_cpp;
+REGISTER_CTORS(0x8019ABB0, __sinit_d_shop_system_cpp);
 #pragma pop
 
 /* 8019ACE0-8019ACE8 195620 0008+00 1/0 0/0 0/0 .text
@@ -1531,14 +1537,25 @@ bool dShopSystem_c::getResName2(int param_0) {
     return false;
 }
 
-/* 80394C10-80394C28 021270 0016+02 1/1 0/0 0/0 .rodata          @stringBase0 */
+/* ############################################################################################## */
+/* 80394C17-80394C1C 021277 0005+00 0/0 0/0 0/0 .rodata          None */
 #pragma push
 #pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80394C10 = "R_SP01";
 SECTION_DEAD static char const* const stringBase_80394C17 = ".bck";
+#pragma pop
+
+/* 80394C1C-80394C21 02127C 0005+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
 SECTION_DEAD static char const* const stringBase_80394C1C = ".btp";
+#pragma pop
+
+/* 80394C21-80394C28 021281 0005+02 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
 SECTION_DEAD static char const* const stringBase_80394C21 = ".btk";
 /* @stringBase0 padding */
 SECTION_DEAD static char const* const pad_80394C26 = "\0";
 #pragma pop
+
+/* 80394C10-80394C10 021270 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

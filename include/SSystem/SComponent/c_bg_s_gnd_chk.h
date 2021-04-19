@@ -1,9 +1,9 @@
 #ifndef C_BG_S_GND_CHK_H
 #define C_BG_S_GND_CHK_H
 
-#include "dolphin/types.h"
 #include "SSystem/SComponent/c_bg_s_chk.h"
 #include "SSystem/SComponent/c_xyz.h"
+#include "dolphin/types.h"
 
 class cBgS_GndChk : public cBgS_Chk {
 private:

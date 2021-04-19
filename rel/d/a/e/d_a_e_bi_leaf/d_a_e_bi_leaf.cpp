@@ -122,6 +122,15 @@ static bool daE_BI_LEAF_IsDelete(e_bi_leaf_class* param_0) {
     return true;
 }
 
+/* ############################################################################################## */
+/* 8068DFE0-8068DFE0 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8068DFE0 = "E_BI";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8068DFE5 = "\0\0";
+#pragma pop
+
 /* 8068DE70-8068DEA0 000290 0030+00 1/0 0/0 0/0 .text daE_BI_LEAF_Delete__FP15e_bi_leaf_class */
 #pragma push
 #pragma optimization_level 0
@@ -176,11 +185,4 @@ SECTION_DATA extern void* g_profile_E_BI_LEAF[12] = {
     (void*)0x00040000, (void*)NULL,
 };
 
-/* 8068DFE0-8068DFE8 000000 0005+03 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8068DFE0 = "E_BI";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8068DFE5 = "\0\0";
-#pragma pop
+/* 8068DFE0-8068DFE0 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

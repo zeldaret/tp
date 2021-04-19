@@ -87,7 +87,7 @@ extern "C" static void daTag_EvtMsg_Execute__FPv();
 extern "C" static void daTag_EvtMsg_Draw__FPv();
 extern "C" static bool daTag_EvtMsg_IsDelete__FPv();
 extern "C" void __dt__14daTag_EvtMsg_cFv();
-extern "C" void func_8048D760(int*);
+extern "C" void func_8048D760(void* _this, int*);
 extern "C" void __sinit_d_a_tag_evtmsg_cpp();
 extern "C" extern char const* const d_a_tag_evtmsg__stringBase0;
 extern "C" void* mEvtCutNameList__14daTag_EvtMsg_c[3];
@@ -140,7 +140,16 @@ extern "C" extern u8 struct_80450D64[4];
 /* ############################################################################################## */
 /* 8048D7E8-8048D7EC 000000 0004+00 1/1 0/0 0/0 .rodata          @3826 */
 SECTION_RODATA static f32 const lit_3826 = 100.0f;
-COMPILER_STRIP_GATE(8048D7E8, &lit_3826);
+COMPILER_STRIP_GATE(0x8048D7E8, &lit_3826);
+
+/* 8048D7EC-8048D7EC 000004 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8048D7EC = "";
+SECTION_DEAD static char const* const stringBase_8048D7ED = "TALK";
+SECTION_DEAD static char const* const stringBase_8048D7F2 = "WAIT";
+SECTION_DEAD static char const* const stringBase_8048D7F7 = "EvtMsg";
+#pragma pop
 
 /* 8048D818-8048D824 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -251,6 +260,13 @@ bool daTag_EvtMsg_c::Delete() {
     return true;
 }
 
+/* ############################################################################################## */
+/* 8048D7EC-8048D7EC 000004 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8048D7FE = "DEFAULT_EVT_TALK";
+#pragma pop
+
 /* 8048D01C-8048D31C 00015C 0300+00 1/1 0/0 0/0 .text            Execute__14daTag_EvtMsg_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -346,6 +362,13 @@ asm void daTag_EvtMsg_c::ECut_talk(int param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8048D7EC-8048D7EC 000004 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8048D80F = "timer";
+#pragma pop
+
 /* 8048D5CC-8048D668 00070C 009C+00 1/0 0/0 0/0 .text            ECut_wait__14daTag_EvtMsg_cFi */
 #pragma push
 #pragma optimization_level 0
@@ -415,7 +438,7 @@ asm daTag_EvtMsg_c::~daTag_EvtMsg_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8048D760(int* param_0) {
+extern "C" asm void func_8048D760(void* _this, int* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_evtmsg/d_a_tag_evtmsg/func_8048D760.s"
 }
@@ -433,17 +456,7 @@ asm void __sinit_d_a_tag_evtmsg_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8048D77C = (void*)__sinit_d_a_tag_evtmsg_cpp;
+REGISTER_CTORS(0x8048D77C, __sinit_d_a_tag_evtmsg_cpp);
 #pragma pop
 
-/* 8048D7EC-8048D815 000004 0029+00 4/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8048D7EC = "";
-SECTION_DEAD static char const* const stringBase_8048D7ED = "TALK";
-SECTION_DEAD static char const* const stringBase_8048D7F2 = "WAIT";
-SECTION_DEAD static char const* const stringBase_8048D7F7 = "EvtMsg";
-SECTION_DEAD static char const* const stringBase_8048D7FE = "DEFAULT_EVT_TALK";
-SECTION_DEAD static char const* const stringBase_8048D80F = "timer";
-#pragma pop
+/* 8048D7EC-8048D7EC 000004 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

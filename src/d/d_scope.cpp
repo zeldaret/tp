@@ -94,6 +94,15 @@ extern "C" extern u8 g_meter2_info[248];
 //
 
 /* ############################################################################################## */
+/* 803949F0-803949F0 021050 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803949F0 = "wipe_00.bti";
+SECTION_DEAD static char const* const stringBase_803949FC = "tt_block8x8.bti";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80394A0C = "\0\0\0";
+#pragma pop
+
 /* 803BB618-803BB624 018738 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -392,15 +401,7 @@ asm void __sinit_d_scope_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80194140 = (void*)__sinit_d_scope_cpp;
+REGISTER_CTORS(0x80194140, __sinit_d_scope_cpp);
 #pragma pop
 
-/* 803949F0-80394A10 021050 001C+04 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803949F0 = "wipe_00.bti";
-SECTION_DEAD static char const* const stringBase_803949FC = "tt_block8x8.bti";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80394A0C = "\0\0\0";
-#pragma pop
+/* 803949F0-803949F0 021050 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -15,11 +15,11 @@ struct dMeterSub_c {
     /* 80194138 */ bool isDead();
 };
 
+struct J2DAnmColor {};
+
 struct J2DAnmTransformKey {};
 
 struct J2DAnmTextureSRTKey {};
-
-struct J2DAnmColor {};
 
 struct dMeterHaihai_c {
     /* 8020AE8C */ dMeterHaihai_c(u8);
@@ -160,6 +160,15 @@ asm dMeterHaihai_c::~dMeterHaihai_c() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80398158-80398158 0247B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80398158 = "zelda_hihi_cursor.blo";
+SECTION_DEAD static char const* const stringBase_8039816E = "zelda_hihi_cursor.bck";
+SECTION_DEAD static char const* const stringBase_80398184 = "zelda_hihi_cursor.btk";
+SECTION_DEAD static char const* const stringBase_8039819A = "zelda_hihi_cursor.bpk";
+#pragma pop
+
 /* 804547B0-804547B4 002DB0 0004+00 6/6 0/0 0/0 .sdata2          @3742 */
 SECTION_SDATA2 static u8 lit_3742[4] = {
     0x00,
@@ -390,12 +399,4 @@ asm void dMeterHaihai_c::playBpkAnime(J2DAnmColor* param_0) {
 }
 #pragma pop
 
-/* 80398158-803981B0 0247B8 0058+00 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80398158 = "zelda_hihi_cursor.blo";
-SECTION_DEAD static char const* const stringBase_8039816E = "zelda_hihi_cursor.bck";
-SECTION_DEAD static char const* const stringBase_80398184 = "zelda_hihi_cursor.btk";
-SECTION_DEAD static char const* const stringBase_8039819A = "zelda_hihi_cursor.bpk";
-#pragma pop
+/* 80398158-80398158 0247B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

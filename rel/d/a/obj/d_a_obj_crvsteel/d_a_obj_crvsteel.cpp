@@ -223,7 +223,7 @@ asm void daObjCRVSTEEL_c::CloseSet(f32 param_0) {
 /* ############################################################################################## */
 /* 80BD6208-80BD620C 000000 0004+00 3/3 0/0 0/0 .rodata          @3789 */
 SECTION_RODATA static f32 const lit_3789 = 5.0f;
-COMPILER_STRIP_GATE(80BD6208, &lit_3789);
+COMPILER_STRIP_GATE(0x80BD6208, &lit_3789);
 
 /* 80BD5C28-80BD5CA0 0000E8 0078+00 1/1 0/0 0/0 .text            CloseExecute__15daObjCRVSTEEL_cFv
  */
@@ -288,6 +288,13 @@ static asm void daObjCRVSTEEL_Execute(daObjCRVSTEEL_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80BD623C-80BD623C 000034 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BD623C = "CrvSteel";
+SECTION_DEAD static char const* const stringBase_80BD6245 = "U_CrvSteelGate.bmd";
+#pragma pop
+
 /* 80BD626C-80BD6270 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_crvsteel__stringBase0;
 
@@ -306,21 +313,21 @@ asm void daObjCRVSTEEL_c::CreateHeap() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3900 = -9.0f;
-COMPILER_STRIP_GATE(80BD620C, &lit_3900);
+COMPILER_STRIP_GATE(0x80BD620C, &lit_3900);
 #pragma pop
 
 /* 80BD6210-80BD6214 000008 0004+00 0/1 0/0 0/0 .rodata          @3901 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3901 = 100.0f;
-COMPILER_STRIP_GATE(80BD6210, &lit_3901);
+COMPILER_STRIP_GATE(0x80BD6210, &lit_3901);
 #pragma pop
 
 /* 80BD6214-80BD6218 00000C 0004+00 0/1 0/0 0/0 .rodata          @3902 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3902 = -400.0f;
-COMPILER_STRIP_GATE(80BD6214, &lit_3902);
+COMPILER_STRIP_GATE(0x80BD6214, &lit_3902);
 #pragma pop
 
 /* 80BD6218-80BD621C 000010 0004+00 0/1 0/0 0/0 .rodata          @3903 */
@@ -332,35 +339,41 @@ SECTION_RODATA static u8 const lit_3903[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BD6218, &lit_3903);
+COMPILER_STRIP_GATE(0x80BD6218, &lit_3903);
 #pragma pop
 
 /* 80BD621C-80BD6220 000014 0004+00 0/1 0/0 0/0 .rodata          @3904 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3904 = -50.0f;
-COMPILER_STRIP_GATE(80BD621C, &lit_3904);
+COMPILER_STRIP_GATE(0x80BD621C, &lit_3904);
 #pragma pop
 
 /* 80BD6220-80BD6224 000018 0004+00 0/1 0/0 0/0 .rodata          @3905 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3905 = 400.0f;
-COMPILER_STRIP_GATE(80BD6220, &lit_3905);
+COMPILER_STRIP_GATE(0x80BD6220, &lit_3905);
 #pragma pop
 
 /* 80BD6224-80BD6228 00001C 0004+00 0/1 0/0 0/0 .rodata          @3906 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3906 = 900.0f;
-COMPILER_STRIP_GATE(80BD6224, &lit_3906);
+COMPILER_STRIP_GATE(0x80BD6224, &lit_3906);
 #pragma pop
 
 /* 80BD6228-80BD622C 000020 0004+00 0/1 0/0 0/0 .rodata          @3907 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3907 = 50.0f;
-COMPILER_STRIP_GATE(80BD6228, &lit_3907);
+COMPILER_STRIP_GATE(0x80BD6228, &lit_3907);
+#pragma pop
+
+/* 80BD623C-80BD623C 000034 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BD6258 = "U_CrvSteelGate.dzb";
 #pragma pop
 
 /* 80BD6270-80BD6290 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjCRVSTEEL_Method */
@@ -443,28 +456,28 @@ static bool daObjCRVSTEEL_IsDelete(daObjCRVSTEEL_c* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3947 = -1000.0f;
-COMPILER_STRIP_GATE(80BD622C, &lit_3947);
+COMPILER_STRIP_GATE(0x80BD622C, &lit_3947);
 #pragma pop
 
 /* 80BD6230-80BD6234 000028 0004+00 0/1 0/0 0/0 .rodata          @3948 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3948 = -500.0f;
-COMPILER_STRIP_GATE(80BD6230, &lit_3948);
+COMPILER_STRIP_GATE(0x80BD6230, &lit_3948);
 #pragma pop
 
 /* 80BD6234-80BD6238 00002C 0004+00 0/1 0/0 0/0 .rodata          @3949 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3949 = 1000.0f;
-COMPILER_STRIP_GATE(80BD6234, &lit_3949);
+COMPILER_STRIP_GATE(0x80BD6234, &lit_3949);
 #pragma pop
 
 /* 80BD6238-80BD623C 000030 0004+00 0/1 0/0 0/0 .rodata          @3950 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3950 = 500.0f;
-COMPILER_STRIP_GATE(80BD6238, &lit_3950);
+COMPILER_STRIP_GATE(0x80BD6238, &lit_3950);
 #pragma pop
 
 /* 80BD60A8-80BD60EC 000568 0044+00 1/0 0/0 0/0 .text            Create__15daObjCRVSTEEL_cFv */
@@ -527,11 +540,4 @@ static asm void func_80BD61F8() {
 }
 #pragma pop
 
-/* 80BD623C-80BD626B 000034 002F+00 3/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BD623C = "CrvSteel";
-SECTION_DEAD static char const* const stringBase_80BD6245 = "U_CrvSteelGate.bmd";
-SECTION_DEAD static char const* const stringBase_80BD6258 = "U_CrvSteelGate.dzb";
-#pragma pop
+/* 80BD623C-80BD623C 000034 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -300,6 +300,12 @@ class Dol2AsmSplitter:
             for symbol in add_list:
                 self.symbol_table.add_symbol(symbol)
 
+            add_list, remove_list = generate_functions.decompile(self.context, libs, self.symbol_table)
+            for symbol in remove_list:
+                self.symbol_table.remove_symbol(symbol)
+            for symbol in add_list:
+                self.symbol_table.add_symbol(symbol)
+
     def name_symbols(self):
         print(f"{self.step_count:2} Naming")
         self.step_count += 1

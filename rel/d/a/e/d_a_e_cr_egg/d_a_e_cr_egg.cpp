@@ -49,9 +49,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -236,11 +236,11 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 /* ############################################################################################## */
 /* 8069A8CC-8069A8D0 000000 0004+00 4/4 0/0 0/0 .rodata          @3657 */
 SECTION_RODATA static f32 const lit_3657 = 30.0f;
-COMPILER_STRIP_GATE(8069A8CC, &lit_3657);
+COMPILER_STRIP_GATE(0x8069A8CC, &lit_3657);
 
 /* 8069A8D0-8069A8D4 000004 0004+00 1/3 0/0 0/0 .rodata          @3658 */
 SECTION_RODATA static f32 const lit_3658 = 1.0f;
-COMPILER_STRIP_GATE(8069A8D0, &lit_3658);
+COMPILER_STRIP_GATE(0x8069A8D0, &lit_3658);
 
 /* 80699F38-80699FC8 000078 0090+00 1/0 0/0 0/0 .text            daE_CR_EGG_Draw__FP14e_cr_egg_class
  */
@@ -260,56 +260,56 @@ static asm void daE_CR_EGG_Draw(e_cr_egg_class* param_0) {
 SECTION_RODATA static u8 const lit_3676[12] = {
     0x00, 0x00, 0x00, 0x28, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x0A,
 };
-COMPILER_STRIP_GATE(8069A8D4, &lit_3676);
+COMPILER_STRIP_GATE(0x8069A8D4, &lit_3676);
 #pragma pop
 
 /* 8069A8E0-8069A8E4 000014 0004+00 0/1 0/0 0/0 .rodata          @3702 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3702 = 5.0f;
-COMPILER_STRIP_GATE(8069A8E0, &lit_3702);
+COMPILER_STRIP_GATE(0x8069A8E0, &lit_3702);
 #pragma pop
 
 /* 8069A8E4-8069A8E8 000018 0004+00 0/2 0/0 0/0 .rodata          @3703 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3703 = 3.0f;
-COMPILER_STRIP_GATE(8069A8E4, &lit_3703);
+COMPILER_STRIP_GATE(0x8069A8E4, &lit_3703);
 #pragma pop
 
 /* 8069A8E8-8069A8EC 00001C 0004+00 0/1 0/0 0/0 .rodata          @3704 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3704 = 10000.0f;
-COMPILER_STRIP_GATE(8069A8E8, &lit_3704);
+COMPILER_STRIP_GATE(0x8069A8E8, &lit_3704);
 #pragma pop
 
 /* 8069A8EC-8069A8F0 000020 0004+00 0/1 0/0 0/0 .rodata          @3705 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3705 = -0.5f;
-COMPILER_STRIP_GATE(8069A8EC, &lit_3705);
+COMPILER_STRIP_GATE(0x8069A8EC, &lit_3705);
 #pragma pop
 
 /* 8069A8F0-8069A8F4 000024 0004+00 0/1 0/0 0/0 .rodata          @3706 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3706 = 8000.0f;
-COMPILER_STRIP_GATE(8069A8F0, &lit_3706);
+COMPILER_STRIP_GATE(0x8069A8F0, &lit_3706);
 #pragma pop
 
 /* 8069A8F4-8069A8F8 000028 0004+00 0/1 0/0 0/0 .rodata          @3707 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3707 = -1.0f;
-COMPILER_STRIP_GATE(8069A8F4, &lit_3707);
+COMPILER_STRIP_GATE(0x8069A8F4, &lit_3707);
 #pragma pop
 
 /* 8069A8F8-8069A8FC 00002C 0004+00 0/1 0/0 0/0 .rodata          @3708 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3708 = 0.5f;
-COMPILER_STRIP_GATE(8069A8F8, &lit_3708);
+COMPILER_STRIP_GATE(0x8069A8F8, &lit_3708);
 #pragma pop
 
 /* 8069A914-8069A920 000000 000C+00 1/1 0/0 0/0 .data            spy$3662 */
@@ -333,7 +333,7 @@ static asm void e_cr_egg_move(e_cr_egg_class* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3728 = 700.0f;
-COMPILER_STRIP_GATE(8069A8FC, &lit_3728);
+COMPILER_STRIP_GATE(0x8069A8FC, &lit_3728);
 #pragma pop
 
 /* 8069A900-8069A904 000034 0004+00 0/2 0/0 0/0 .rodata          @3729 */
@@ -345,12 +345,12 @@ SECTION_RODATA static u8 const lit_3729[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8069A900, &lit_3729);
+COMPILER_STRIP_GATE(0x8069A900, &lit_3729);
 #pragma pop
 
 /* 8069A904-8069A908 000038 0004+00 1/3 0/0 0/0 .rodata          @3730 */
 SECTION_RODATA static f32 const lit_3730 = 20.0f;
-COMPILER_STRIP_GATE(8069A904, &lit_3730);
+COMPILER_STRIP_GATE(0x8069A904, &lit_3730);
 
 /* 8069A258-8069A378 000398 0120+00 1/1 0/0 0/0 .text            action__FP14e_cr_egg_class */
 #pragma push
@@ -367,7 +367,7 @@ static asm void action(e_cr_egg_class* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3770 = -20.0f;
-COMPILER_STRIP_GATE(8069A908, &lit_3770);
+COMPILER_STRIP_GATE(0x8069A908, &lit_3770);
 #pragma pop
 
 /* 8069A378-8069A4C4 0004B8 014C+00 2/1 0/0 0/0 .text daE_CR_EGG_Execute__FP14e_cr_egg_class */
@@ -384,6 +384,13 @@ static asm void daE_CR_EGG_Execute(e_cr_egg_class* param_0) {
 static bool daE_CR_EGG_IsDelete(e_cr_egg_class* param_0) {
     return true;
 }
+
+/* ############################################################################################## */
+/* 8069A90C-8069A90C 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8069A90C = "E_CR";
+#pragma pop
 
 /* 8069A4CC-8069A510 00060C 0044+00 1/0 0/0 0/0 .text daE_CR_EGG_Delete__FP14e_cr_egg_class */
 #pragma push
@@ -524,9 +531,4 @@ static asm void func_8069A8BC() {
 }
 #pragma pop
 
-/* 8069A90C-8069A911 000040 0005+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8069A90C = "E_CR";
-#pragma pop
+/* 8069A90C-8069A90C 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

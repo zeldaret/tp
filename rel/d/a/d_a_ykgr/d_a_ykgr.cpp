@@ -37,13 +37,13 @@ struct daYkgr_HIO_c {
 
 struct dPa_levelEcallBack {};
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct csXyz {};
 
 struct _GXColor {};
 
-struct csXyz {};
+struct cXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -152,13 +152,13 @@ asm void dPa_YkgrPcallBack::draw(JPABaseEmitter* param_0, JPABaseParticle* param
 /* ############################################################################################## */
 /* 805A8FBC-805A8FC0 000000 0004+00 6/6 0/0 0/0 .rodata          @3759 */
 SECTION_RODATA static f32 const lit_3759 = -17.0f;
-COMPILER_STRIP_GATE(805A8FBC, &lit_3759);
+COMPILER_STRIP_GATE(0x805A8FBC, &lit_3759);
 
 /* 805A8FC0-805A8FC4 000004 0004+00 0/1 0/0 0/0 .rodata          @3760 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3760 = 47.0f;
-COMPILER_STRIP_GATE(805A8FC0, &lit_3760);
+COMPILER_STRIP_GATE(0x805A8FC0, &lit_3760);
 #pragma pop
 
 /* 805A8FC4-805A8FC8 000008 0004+00 0/5 0/0 0/0 .rodata          @3761 */
@@ -170,14 +170,14 @@ SECTION_RODATA static u8 const lit_3761[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(805A8FC4, &lit_3761);
+COMPILER_STRIP_GATE(0x805A8FC4, &lit_3761);
 #pragma pop
 
 /* 805A8FC8-805A8FCC 00000C 0004+00 0/4 0/0 0/0 .rodata          @3762 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3762 = 0.5f;
-COMPILER_STRIP_GATE(805A8FC8, &lit_3762);
+COMPILER_STRIP_GATE(0x805A8FC8, &lit_3762);
 #pragma pop
 
 /* 805A8FCC-805A8FD4 000010 0004+04 0/4 0/0 0/0 .rodata          @3763 */
@@ -188,7 +188,7 @@ SECTION_RODATA static f32 const lit_3763[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(805A8FCC, &lit_3763);
+COMPILER_STRIP_GATE(0x805A8FCC, &lit_3763);
 #pragma pop
 
 /* 805A8FD4-805A8FDC 000018 0008+00 0/2 0/0 0/0 .rodata          @3766 */
@@ -197,7 +197,7 @@ COMPILER_STRIP_GATE(805A8FCC, &lit_3763);
 SECTION_RODATA static u8 const lit_3766[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(805A8FD4, &lit_3766);
+COMPILER_STRIP_GATE(0x805A8FD4, &lit_3766);
 #pragma pop
 
 /* 805A84D4-805A85D4 000134 0100+00 2/2 0/0 0/0 .text            setParam__17dPa_YkgrPcallBackFf */
@@ -217,7 +217,7 @@ asm void dPa_YkgrPcallBack::setParam(f32 param_0) {
 SECTION_RODATA static u8 const lit_3846[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(805A8FDC, &lit_3846);
+COMPILER_STRIP_GATE(0x805A8FDC, &lit_3846);
 #pragma pop
 
 /* 805A8FE4-805A8FEC 000028 0008+00 0/1 0/0 0/0 .rodata          @3847 */
@@ -226,7 +226,7 @@ COMPILER_STRIP_GATE(805A8FDC, &lit_3846);
 SECTION_RODATA static u8 const lit_3847[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(805A8FE4, &lit_3847);
+COMPILER_STRIP_GATE(0x805A8FE4, &lit_3847);
 #pragma pop
 
 /* 805A8FEC-805A8FF4 000030 0008+00 0/1 0/0 0/0 .rodata          @3848 */
@@ -235,7 +235,7 @@ COMPILER_STRIP_GATE(805A8FE4, &lit_3847);
 SECTION_RODATA static u8 const lit_3848[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(805A8FEC, &lit_3848);
+COMPILER_STRIP_GATE(0x805A8FEC, &lit_3848);
 #pragma pop
 
 /* 805A90B8-805A90BC 000008 0001+03 1/1 0/0 0/0 .bss             @1109 */
@@ -355,7 +355,7 @@ asm void daYkgr_c::getPosRate() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3951 = -3.0f;
-COMPILER_STRIP_GATE(805A8FF4, &lit_3951);
+COMPILER_STRIP_GATE(0x805A8FF4, &lit_3951);
 #pragma pop
 
 /* 805A912C-805A9138 00007C 000C+00 0/1 0/0 0/0 .bss             @3851 */
@@ -387,14 +387,14 @@ static bool daYkgrDelete(void* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3976 = 0.25f;
-COMPILER_STRIP_GATE(805A8FF8, &lit_3976);
+COMPILER_STRIP_GATE(0x805A8FF8, &lit_3976);
 #pragma pop
 
 /* 805A8FFC-805A9000 000040 0004+00 0/1 0/0 0/0 .rodata          @3977 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3977 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(805A8FFC, &lit_3977);
+COMPILER_STRIP_GATE(0x805A8FFC, &lit_3977);
 #pragma pop
 
 /* 805A8A50-805A8BBC 0006B0 016C+00 1/0 0/0 0/0 .text            daYkgrExecute__FPv */
@@ -412,14 +412,20 @@ static asm void daYkgrExecute(void* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4032 = 100.0f;
-COMPILER_STRIP_GATE(805A9000, &lit_4032);
+COMPILER_STRIP_GATE(0x805A9000, &lit_4032);
 #pragma pop
 
 /* 805A9004-805A9008 000048 0004+00 0/1 0/0 0/0 .rodata          @4033 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4033 = 255.0f;
-COMPILER_STRIP_GATE(805A9004, &lit_4033);
+COMPILER_STRIP_GATE(0x805A9004, &lit_4033);
+#pragma pop
+
+/* 805A9018-805A9018 00005C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_805A9018 = "D_MN04A";
 #pragma pop
 
 /* 805A8BBC-805A8D90 00081C 01D4+00 1/0 0/0 0/0 .text            daYkgrDraw__FPv */
@@ -533,28 +539,28 @@ void JPAParticleCallBack::execute(JPABaseEmitter* param_0, JPABaseParticle* para
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4061 = -16.0f;
-COMPILER_STRIP_GATE(805A9008, &lit_4061);
+COMPILER_STRIP_GATE(0x805A9008, &lit_4061);
 #pragma pop
 
 /* 805A900C-805A9010 000050 0004+00 0/1 0/0 0/0 .rodata          @4062 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4062 = -5.0f;
-COMPILER_STRIP_GATE(805A900C, &lit_4062);
+COMPILER_STRIP_GATE(0x805A900C, &lit_4062);
 #pragma pop
 
 /* 805A9010-805A9014 000054 0004+00 0/1 0/0 0/0 .rodata          @4063 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4063 = 1500.0f;
-COMPILER_STRIP_GATE(805A9010, &lit_4063);
+COMPILER_STRIP_GATE(0x805A9010, &lit_4063);
 #pragma pop
 
 /* 805A9014-805A9018 000058 0004+00 0/1 0/0 0/0 .rodata          @4064 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4064 = 500.0f;
-COMPILER_STRIP_GATE(805A9014, &lit_4064);
+COMPILER_STRIP_GATE(0x805A9014, &lit_4064);
 #pragma pop
 
 /* 805A8EA0-805A8FA4 000B00 0104+00 0/0 1/0 0/0 .text            __sinit_d_a_ykgr_cpp */
@@ -569,7 +575,7 @@ asm void __sinit_d_a_ykgr_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_805A8EA0 = (void*)__sinit_d_a_ykgr_cpp;
+REGISTER_CTORS(0x805A8EA0, __sinit_d_a_ykgr_cpp);
 #pragma pop
 
 /* 805A8FA4-805A8FA8 000C04 0004+00 1/0 0/0 0/0 .text
@@ -750,9 +756,4 @@ static u8 data_805A91B4[4];
 static u8 data_805A91B8[4];
 #pragma pop
 
-/* 805A9018-805A9020 00005C 0008+00 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_805A9018 = "D_MN04A";
-#pragma pop
+/* 805A9018-805A9018 00005C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

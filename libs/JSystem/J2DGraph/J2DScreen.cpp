@@ -56,14 +56,13 @@ struct J2DAnmVisibilityFull {};
 
 struct J2DAnmBase {};
 
-struct J2DAnmTransform {};
-
 struct J2DGrafContext {};
+
+struct J2DAnmTransform {};
 
 struct J2DAnmVtxColor {};
 
 struct J2DPane {
-    /* 80020158 */ void setAlpha(u8);
     /* 80053C00 */ void makeMatrix(f32, f32);
     /* 802F7540 */ void makeMatrix(f32, f32, f32, f32);
     /* 802F5F9C */ J2DPane(J2DPane*, JSURandomInputStream*, u8);
@@ -91,13 +90,13 @@ struct J2DPane {
     /* 802F8478 */ void drawSelf(f32, f32);
 };
 
-struct J2DAnmTextureSRTKey {};
-
-struct J2DAnmColor {};
+struct J2DAnmTexPattern {};
 
 struct J2DAnmTevRegKey {};
 
-struct J2DAnmTexPattern {};
+struct J2DAnmTextureSRTKey {};
+
+struct J2DAnmColor {};
 
 struct J2DMaterial {
     /* 802EA1AC */ J2DMaterial();

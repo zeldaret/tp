@@ -31,15 +31,15 @@ struct dMeterHakusha_c {
     /* 8020D480 */ void getHakushaNum();
 };
 
+struct JUtility {
+    struct TColor {};
+};
+
 struct CPaneMgrAlpha {
     /* 802555C8 */ void show();
     /* 80255608 */ void hide();
     /* 802557D0 */ void setAlphaRate(f32);
     /* 80255828 */ void getAlphaRate();
-};
-
-struct JUtility {
-    struct TColor {};
 };
 
 struct dMeter2Draw_c {
@@ -173,6 +173,14 @@ asm dMeterHakusha_c::~dMeterHakusha_c() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 803981B0-803981B0 024810 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803981B0 = "zelda_game_image_hakusha_parts.blo";
+SECTION_DEAD static char const* const stringBase_803981D3 = "zelda_game_image_hakusha_a_btn.blo";
+SECTION_DEAD static char const* const stringBase_803981F6 = "F_SP108";
+#pragma pop
+
 /* 80454800-80454804 002E00 0004+00 6/6 0/0 0/0 .sdata2          @3793 */
 SECTION_SDATA2 static u8 lit_3793[4] = {
     0x00,
@@ -226,6 +234,15 @@ asm void dMeterHakusha_c::_delete() {
     nofralloc
 #include "asm/d/meter/d_meter_hakusha/_delete__15dMeterHakusha_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 803981B0-803981B0 024810 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803981FE = "F_SP00";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80398205 = "\0\0";
 #pragma pop
 
 /* 8020CC58-8020CD6C 207598 0114+00 1/1 0/0 0/0 .text alphaAnimeHakusha__15dMeterHakusha_cFUl */
@@ -317,14 +334,4 @@ asm void dMeterHakusha_c::getHakushaNum() {
 }
 #pragma pop
 
-/* 803981B0-80398208 024810 0055+03 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803981B0 = "zelda_game_image_hakusha_parts.blo";
-SECTION_DEAD static char const* const stringBase_803981D3 = "zelda_game_image_hakusha_a_btn.blo";
-SECTION_DEAD static char const* const stringBase_803981F6 = "F_SP108";
-SECTION_DEAD static char const* const stringBase_803981FE = "F_SP00";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80398205 = "\0\0";
-#pragma pop
+/* 803981B0-803981B0 024810 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

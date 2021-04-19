@@ -175,6 +175,16 @@ asm dMeterString_c::~dMeterString_c() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80398210-80398210 024870 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80398210 = "zelda_game_image_cow_get_in.blo";
+SECTION_DEAD static char const* const stringBase_80398230 = "zelda_game_image_cow_get_in.bck";
+SECTION_DEAD static char const* const stringBase_80398250 = "";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80398251 = "\0\0\0\0\0\0";
+#pragma pop
+
 /* 80454848-8045484C 002E48 0004+00 1/1 0/0 0/0 .sdata2          @3758 */
 SECTION_SDATA2 static f32 lit_3758 = 210.0f;
 
@@ -303,13 +313,4 @@ asm void dMeterString_c::isLeadByte(int param_0) {
 }
 #pragma pop
 
-/* 80398210-80398258 024870 0041+07 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80398210 = "zelda_game_image_cow_get_in.blo";
-SECTION_DEAD static char const* const stringBase_80398230 = "zelda_game_image_cow_get_in.bck";
-SECTION_DEAD static char const* const stringBase_80398250 = "";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80398251 = "\0\0\0\0\0\0";
-#pragma pop
+/* 80398210-80398210 024870 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

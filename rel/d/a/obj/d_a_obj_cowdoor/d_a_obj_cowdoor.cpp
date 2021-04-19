@@ -134,7 +134,7 @@ asm void daCowdoor_c::setBaseMtx() {
 /* ############################################################################################## */
 /* 80BCCBB4-80BCCBB8 000000 0004+00 1/1 0/0 0/0 .rodata          @3648 */
 SECTION_RODATA static f32 const lit_3648 = 5.0f;
-COMPILER_STRIP_GATE(80BCCBB4, &lit_3648);
+COMPILER_STRIP_GATE(0x80BCCBB4, &lit_3648);
 
 /* 80BCC86C-80BCC8C4 0000EC 0058+00 1/0 0/0 0/0 .text            Create__11daCowdoor_cFv */
 #pragma push
@@ -147,6 +147,13 @@ asm void daCowdoor_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80BCCBB8-80BCCBB8 000004 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BCCBB8 = "A_UHDoor";
+SECTION_DEAD static char const* const stringBase_80BCCBC1 = "A_UHDoor.bmd";
+#pragma pop
+
 /* 80BCCBDC-80BCCBE0 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_cowdoor__stringBase0;
 
@@ -164,6 +171,12 @@ asm void daCowdoor_c::CreateHeap() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80BCCBB8-80BCCBB8 000004 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BCCBCE = "A_UHDoor.dzb";
+#pragma pop
+
 /* 80BCCBE4-80BCCBE8 -00001 0004+00 1/1 0/0 0/0 .data            l_dzbName */
 SECTION_DATA static void* l_dzbName = (void*)(((char*)&d_a_obj_cowdoor__stringBase0) + 0x16);
 
@@ -285,11 +298,4 @@ static asm void daCowdoor_Create(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 80BCCBB8-80BCCBDB 000004 0023+00 3/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BCCBB8 = "A_UHDoor";
-SECTION_DEAD static char const* const stringBase_80BCCBC1 = "A_UHDoor.bmd";
-SECTION_DEAD static char const* const stringBase_80BCCBCE = "A_UHDoor.dzb";
-#pragma pop
+/* 80BCCBB8-80BCCBB8 000004 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

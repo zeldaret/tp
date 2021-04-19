@@ -56,9 +56,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -118,9 +118,9 @@ struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -239,7 +239,7 @@ SECTION_RODATA static u8 const l_cyl_src[68] = {
     0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x42, 0xB4, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BAD474, &l_cyl_src);
+COMPILER_STRIP_GATE(0x80BAD474, &l_cyl_src);
 
 /* 80BACDD8-80BACE50 000118 0078+00 1/0 0/0 0/0 .text            Create__11daObjBBox_cFv */
 #pragma push
@@ -252,6 +252,12 @@ asm void daObjBBox_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80BAD4CC-80BAD4CC 000058 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BAD4CC = "M_BBox";
+#pragma pop
+
 /* 80BAD4D4-80BAD4D8 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_bbox__stringBase0;
 
@@ -365,21 +371,21 @@ SECTION_RODATA static u8 const particle_id[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BAD4B8, &particle_id);
+COMPILER_STRIP_GATE(0x80BAD4B8, &particle_id);
 #pragma pop
 
 /* 80BAD4C4-80BAD4C8 000050 0004+00 0/1 0/0 0/0 .rodata          @3821 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3821 = 1.0f;
-COMPILER_STRIP_GATE(80BAD4C4, &lit_3821);
+COMPILER_STRIP_GATE(0x80BAD4C4, &lit_3821);
 #pragma pop
 
 /* 80BAD4C8-80BAD4CC 000054 0004+00 0/1 0/0 0/0 .rodata          @3822 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3822 = -1.0f;
-COMPILER_STRIP_GATE(80BAD4C8, &lit_3822);
+COMPILER_STRIP_GATE(0x80BAD4C8, &lit_3822);
 #pragma pop
 
 /* 80BAD0C0-80BAD234 000400 0174+00 1/0 0/0 0/0 .text            Execute__11daObjBBox_cFPPA3_A4_f */
@@ -452,9 +458,4 @@ static asm void daObjBBox_MoveBGDraw(daObjBBox_c* param_0) {
 }
 #pragma pop
 
-/* 80BAD4CC-80BAD4D3 000058 0007+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BAD4CC = "M_BBox";
-#pragma pop
+/* 80BAD4CC-80BAD4CC 000058 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

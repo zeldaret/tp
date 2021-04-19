@@ -82,7 +82,7 @@ SECTION_RODATA static u8 const ClampRegion[10 + 6 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(803A2170, &ClampRegion);
+COMPILER_STRIP_GATE(0x803A2170, &ClampRegion);
 
 /* 8034E094-8034E1A8 3489D4 0114+00 0/0 1/1 0/0 .text            PADClamp */
 #pragma push

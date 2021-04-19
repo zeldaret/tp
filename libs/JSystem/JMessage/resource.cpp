@@ -15,7 +15,7 @@ namespace std {
 template <typename A1, typename B1>
 void lower_bound(/* ... */);
 /* 802A94D4 */ /* std::lower_bound<u32 const*, u32> */
-void func_802A94D4(u32 const*, u32 const*, u32 const&);
+void func_802A94D4(void* _this, u32 const*, u32 const*, u32 const&);
 };  // namespace std
 
 struct JMessage {
@@ -96,7 +96,7 @@ extern "C" void parseHeader_next__Q28JMessage6TParseFPPCvPUlUl();
 extern "C" void parseBlock_next__Q28JMessage6TParseFPPCvPUlUl();
 extern "C" void parseCharacter_1Byte__Q28JMessage6localeFPPCc();
 extern "C" void parseCharacter_2Byte__Q28JMessage6localeFPPCc();
-extern "C" void func_802A94D4(u32 const*, u32 const*, u32 const&);
+extern "C" void func_802A94D4(void* _this, u32 const*, u32 const*, u32 const&);
 extern "C" void* sapfnParseCharacter___Q28JMessage18TResourceContainer[5];
 
 //
@@ -326,7 +326,8 @@ asm void JMessage::locale::parseCharacter_2Byte(char const** param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802A94D4(u32 const* param_0, u32 const* param_1, u32 const& param_2) {
+extern "C" asm void func_802A94D4(void* _this, u32 const* param_0, u32 const* param_1,
+                                  u32 const& param_2) {
     nofralloc
 #include "asm/JSystem/JMessage/resource/func_802A94D4.s"
 }

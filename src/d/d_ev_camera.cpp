@@ -580,6 +580,14 @@ asm void dCamera_c::getEvActor(char* param_0, char* param_1) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037AAF4 = "Timer";
+SECTION_DEAD static char const* const stringBase_8037AAFA = "Stay";
+#pragma pop
+
 /* 80089730-800897E8 084070 00B8+00 0/0 3/0 0/0 .text            pauseEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -591,6 +599,19 @@ asm void dCamera_c::pauseEvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037AAFF = "Eye";
+SECTION_DEAD static char const* const stringBase_8037AB03 = "Center";
+SECTION_DEAD static char const* const stringBase_8037AB0A = "BasePos";
+SECTION_DEAD static char const* const stringBase_8037AB12 = "Fovy";
+SECTION_DEAD static char const* const stringBase_8037AB17 = "Bank";
+SECTION_DEAD static char const* const stringBase_8037AB1C = "RelUseMask";
+SECTION_DEAD static char const* const stringBase_8037AB27 = "oo";
+SECTION_DEAD static char const* const stringBase_8037AB2A = "RelActor";
+#pragma pop
+
 /* 804253A8-804253B4 0520C8 000C+00 1/1 0/0 0/0 .bss             @4202 */
 static u8 lit_4202[12];
 
@@ -630,6 +651,19 @@ asm void dCamera_c::fixedFrameEvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037AB33 = "EyeGap";
+SECTION_DEAD static char const* const stringBase_8037AB3A = "CtrGap";
+SECTION_DEAD static char const* const stringBase_8037AB41 = "EyeCus";
+SECTION_DEAD static char const* const stringBase_8037AB48 = "CtrCus";
+SECTION_DEAD static char const* const stringBase_8037AB4F = "Stoker";
+SECTION_DEAD static char const* const stringBase_8037AB56 = "@STARTER";
+SECTION_DEAD static char const* const stringBase_8037AB5F = "Target";
+SECTION_DEAD static char const* const stringBase_8037AB66 = "@PLAYER";
+#pragma pop
+
 /* 804528DC-804528E0 000EDC 0004+00 10/10 0/0 0/0 .sdata2          @5346 */
 SECTION_SDATA2 static f32 lit_5346 = 1.0f;
 
@@ -644,6 +678,15 @@ asm void dCamera_c::stokerEvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037AB6E = "TransType";
+SECTION_DEAD static char const* const stringBase_8037AB78 = "Roll";
+SECTION_DEAD static char const* const stringBase_8037AB7D = "RadiusAdd";
+SECTION_DEAD static char const* const stringBase_8037AB87 = "Latitude";
+#pragma pop
+
 /* 804528E0-804528E8 000EE0 0004+04 1/1 0/0 0/0 .sdata2          @5844 */
 SECTION_SDATA2 static f32 lit_5844[1 + 1 /* padding */] = {
     2.0f,
@@ -665,6 +708,14 @@ asm void dCamera_c::rollingEvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037AB90 = "Radius";
+SECTION_DEAD static char const* const stringBase_8037AB97 = "StartRadius";
+SECTION_DEAD static char const* const stringBase_8037ABA3 = "o";
+#pragma pop
+
 /* 804253C0-804253CC 0520E0 000C+00 0/1 0/0 0/0 .bss             @4203 */
 #pragma push
 #pragma force_active on
@@ -740,7 +791,7 @@ asm void dCamera_c::uniformAcceleEvCamera() {
 SECTION_RODATA static u8 const lit_3871[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8037A7F0, &lit_3871);
+COMPILER_STRIP_GATE(0x8037A7F0, &lit_3871);
 
 /* 8037A7FC-8037A80C 006E5C 0010+00 0/1 0/0 0/0 .rodata          @5984 */
 #pragma push
@@ -748,7 +799,22 @@ COMPILER_STRIP_GATE(8037A7F0, &lit_3871);
 SECTION_RODATA static u8 const lit_5984[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8037A7FC, &lit_5984);
+COMPILER_STRIP_GATE(0x8037A7FC, &lit_5984);
+#pragma pop
+
+/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037ABA5 = "BSpCurve";
+SECTION_DEAD static char const* const stringBase_8037ABAE = "BSpPoints";
+SECTION_DEAD static char const* const stringBase_8037ABB8 = "EndSlot";
+SECTION_DEAD static char const* const stringBase_8037ABC0 = "StartSlot";
+SECTION_DEAD static char const* const stringBase_8037ABCA = "StartEye";
+SECTION_DEAD static char const* const stringBase_8037ABD3 = "StartCenter";
+SECTION_DEAD static char const* const stringBase_8037ABDF = "StartFovy";
+SECTION_DEAD static char const* const stringBase_8037ABE9 = "StartBank";
+SECTION_DEAD static char const* const stringBase_8037ABF3 = "--oo";
+SECTION_DEAD static char const* const stringBase_8037ABF8 = "Cushion";
 #pragma pop
 
 /* 80452900-80452904 000F00 0004+00 1/1 0/0 0/0 .sdata2          @6682 */
@@ -828,6 +894,19 @@ asm void cXyz::operator+=(Vec const& param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037AC00 = "NearDist";
+SECTION_DEAD static char const* const stringBase_8037AC09 = "ZoomDist";
+SECTION_DEAD static char const* const stringBase_8037AC12 = "ZoomVAngle";
+SECTION_DEAD static char const* const stringBase_8037AC1D = "FarDist";
+SECTION_DEAD static char const* const stringBase_8037AC25 = "NearTimer";
+SECTION_DEAD static char const* const stringBase_8037AC2F = "FarTimer";
+SECTION_DEAD static char const* const stringBase_8037AC38 = "FrontAngle";
+SECTION_DEAD static char const* const stringBase_8037AC43 = "Blure";
+#pragma pop
+
 /* 804253F0-804253FC 052110 000C+00 1/1 0/0 0/0 .bss             @6756 */
 static u8 lit_6756[12];
 
@@ -913,6 +992,13 @@ static asm void func_8008FA94() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037AC49 = "Dest";
+SECTION_DEAD static char const* const stringBase_8037AC4E = "TargetType";
+#pragma pop
+
 /* 80425408-80425414 052128 000C+00 1/1 0/0 0/0 .bss             @7364 */
 static u8 lit_7364[12];
 
@@ -939,6 +1025,14 @@ asm void dCamera_c::talktoEvCamera() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037AC59 = "ID";
+SECTION_DEAD static char const* const stringBase_8037AC5C = "CameraID";
+#pragma pop
+
 /* 80090230-80090478 08AB70 0248+00 0/0 1/0 0/0 .text            maptoolIdEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -947,6 +1041,14 @@ asm void dCamera_c::maptoolIdEvCamera() {
     nofralloc
 #include "asm/d/d_ev_camera/maptoolIdEvCamera__9dCamera_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037AC65 = "Name";
+SECTION_DEAD static char const* const stringBase_8037AC6A = "FN01";
 #pragma pop
 
 /* 80090478-80090514 08ADB8 009C+00 0/0 1/0 0/0 .text            styleEvCamera__9dCamera_cFv */
@@ -960,6 +1062,12 @@ asm void dCamera_c::styleEvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037AC6F = "Type";
+#pragma pop
+
 /* 80452944-80452948 000F44 0004+00 4/4 0/0 0/0 .sdata2          @8178 */
 SECTION_SDATA2 static f32 lit_8178 = -45.0f;
 
@@ -1125,7 +1233,7 @@ SECTION_RODATA static u8 const lit_5985[28] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3E, 0xCC, 0xCC, 0xCD, 0x3F, 0x33,
     0x33, 0x33, 0x3F, 0x66, 0x66, 0x66, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8037A80C, &lit_5985);
+COMPILER_STRIP_GATE(0x8037A80C, &lit_5985);
 #pragma pop
 
 /* 8037A828-8037A844 006E88 001C+00 0/0 0/0 0/0 .rodata          @5986 */
@@ -1135,7 +1243,7 @@ SECTION_RODATA static u8 const lit_5986[28] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3D, 0xCC, 0xCC, 0xCD, 0x3E, 0x99,
     0x99, 0x9A, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8037A828, &lit_5986);
+COMPILER_STRIP_GATE(0x8037A828, &lit_5986);
 #pragma pop
 
 /* 8037A844-8037A858 006EA4 0014+00 0/0 0/0 0/0 .rodata          @5987 */
@@ -1145,7 +1253,7 @@ SECTION_RODATA static u8 const lit_5987[20] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8037A844, &lit_5987);
+COMPILER_STRIP_GATE(0x8037A844, &lit_5987);
 #pragma pop
 
 /* 8037A858-8037A86C 006EB8 0014+00 0/0 0/0 0/0 .rodata          @5988 */
@@ -1155,7 +1263,7 @@ SECTION_RODATA static u8 const lit_5988[20] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00,
     0x00, 0x07, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8037A858, &lit_5988);
+COMPILER_STRIP_GATE(0x8037A858, &lit_5988);
 #pragma pop
 
 /* 8037A86C-8037A884 006ECC 0018+00 1/1 0/0 0/0 .rodata          @8236 */
@@ -1163,7 +1271,7 @@ SECTION_RODATA static u8 const lit_8236[24] = {
     0x3F, 0x40, 0x00, 0x00, 0x3E, 0xB3, 0x33, 0x33, 0x3F, 0x4C, 0xCC, 0xCD,
     0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0x4C, 0xCC, 0xCD,
 };
-COMPILER_STRIP_GATE(8037A86C, &lit_8236);
+COMPILER_STRIP_GATE(0x8037A86C, &lit_8236);
 
 /* 803AC528-803AC5A0 -00001 0078+00 1/1 0/0 0/0 .data            @8754 */
 SECTION_DATA static void* lit_8754[30] = {
@@ -1333,6 +1441,13 @@ asm void dCamera_c::stbWaitEvCamera() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037AC74 = "Slot";
+#pragma pop
+
 /* 800924D0-8009258C 08CE10 00BC+00 0/0 1/0 0/0 .text            saveEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -1349,7 +1464,7 @@ SECTION_RODATA static u8 const lit_8840[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
     0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8037A884, &lit_8840);
+COMPILER_STRIP_GATE(0x8037A884, &lit_8840);
 
 /* 8009258C-800929AC 08CECC 0420+00 0/0 1/0 0/0 .text            loadEvCamera__9dCamera_cFv */
 #pragma push
@@ -1388,7 +1503,7 @@ SECTION_RODATA static u8 const lit_8969[364] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x82, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF,
 };
-COMPILER_STRIP_GATE(8037A89C, &lit_8969);
+COMPILER_STRIP_GATE(0x8037A89C, &lit_8969);
 
 /* 80452A88-80452A8C 001088 0004+00 1/1 0/0 0/0 .sdata2          @9395 */
 SECTION_SDATA2 static f32 lit_9395 = 64.0f;
@@ -1549,7 +1664,7 @@ SECTION_RODATA static u8 const lit_9468[56] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x41, 0xF0,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x50, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF,
 };
-COMPILER_STRIP_GATE(8037AA08, &lit_9468);
+COMPILER_STRIP_GATE(0x8037AA08, &lit_9468);
 
 /* 80452B44-80452B48 001144 0004+00 2/2 0/0 0/0 .sdata2          @9798 */
 SECTION_SDATA2 static f32 lit_9798 = 1.0f / 20.0f;
@@ -1584,14 +1699,20 @@ SECTION_RODATA static u8 const lit_9811[100] = {
     0x11, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8037AA40, &lit_9811);
+COMPILER_STRIP_GATE(0x8037AA40, &lit_9811);
 
 /* 8037AAA4-8037AABC 007104 0018+00 1/1 0/0 0/0 .rodata          @9812 */
 SECTION_RODATA static u8 const lit_9812[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3D, 0xCC, 0xCC, 0xCD,
     0x3F, 0x33, 0x33, 0x33, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8037AAA4, &lit_9812);
+COMPILER_STRIP_GATE(0x8037AAA4, &lit_9812);
+
+/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037AC79 = "CurvePoints";
+#pragma pop
 
 /* 80452B54-80452B58 001154 0004+00 1/1 0/0 0/0 .sdata2          @10118 */
 SECTION_SDATA2 static f32 lit_10118 = 32.0f;
@@ -1631,6 +1752,12 @@ asm void dCamera_c::getItemEvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037AC85 = "Longitude";
+#pragma pop
+
 /* 80452B78-80452B7C 001178 0004+00 1/1 0/0 0/0 .sdata2          @10278 */
 SECTION_SDATA2 static f32 lit_10278 = 0.5f;
 
@@ -1663,6 +1790,15 @@ asm void dCamera_c::possessedEvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037AC8F = "Centers";
+SECTION_DEAD static char const* const stringBase_8037AC97 = "Eyes";
+SECTION_DEAD static char const* const stringBase_8037AC9C = "Fovys";
+SECTION_DEAD static char const* const stringBase_8037ACA2 = "Choice";
+#pragma pop
+
 /* 80452B94-80452B98 001194 0004+00 1/1 0/0 0/0 .sdata2          @10437 */
 SECTION_SDATA2 static f32 lit_10437 = 1.0f / 100.0f;
 
@@ -1688,6 +1824,21 @@ asm void dCamera_c::bSplineEvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037ACA9 = "Actor1";
+SECTION_DEAD static char const* const stringBase_8037ACB0 = "Actor2";
+SECTION_DEAD static char const* const stringBase_8037ACB7 = "CtrRatio";
+SECTION_DEAD static char const* const stringBase_8037ACC0 = "RadiusMin";
+SECTION_DEAD static char const* const stringBase_8037ACCA = "RadiusMax";
+SECTION_DEAD static char const* const stringBase_8037ACD4 = "LatitudeMin";
+SECTION_DEAD static char const* const stringBase_8037ACE0 = "LatitudeMax";
+SECTION_DEAD static char const* const stringBase_8037ACEC = "LongitudeMin";
+SECTION_DEAD static char const* const stringBase_8037ACF9 = "LongitudeMax";
+SECTION_DEAD static char const* const stringBase_8037AD06 = "LongitudeType";
+#pragma pop
+
 /* 80425420-8042542C 052140 000C+00 1/1 0/0 0/0 .bss             @10516 */
 static u8 lit_10516[12];
 
@@ -1724,6 +1875,12 @@ asm void dCamera_c::peepHoleEvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037AD14 = "R_SP01";
+#pragma pop
+
 /* 80452BA4-80452BA8 0011A4 0004+00 1/1 0/0 0/0 .sdata2          @11068 */
 SECTION_SDATA2 static f32 lit_11068 = 245.0f;
 
@@ -1744,7 +1901,16 @@ SECTION_RODATA static u8 const lit_11087[40] = {
     0x00, 0x00, 0x42, 0x96, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0x70, 0x00, 0x00,
     0x42, 0xB4, 0x00, 0x00, 0x42, 0xDC, 0x00, 0x00, 0x43, 0x0C, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8037AABC, &lit_11087);
+COMPILER_STRIP_GATE(0x8037AABC, &lit_11087);
+
+/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037AD1B = "Teacher";
+SECTION_DEAD static char const* const stringBase_8037AD23 = "Midna";
+SECTION_DEAD static char const* const stringBase_8037AD29 = "Student";
+SECTION_DEAD static char const* const stringBase_8037AD31 = "CtrGapY";
+#pragma pop
 
 /* 80452BA8-80452BAC 0011A8 0004+00 1/1 0/0 0/0 .sdata2          @11415 */
 SECTION_SDATA2 static f32 lit_11415 = 280.0f;
@@ -1785,7 +1951,22 @@ asm void dCamera_c::hintTalkEvCamera() {
 SECTION_RODATA static u8 const lit_11437[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8037AAE4, &lit_11437);
+COMPILER_STRIP_GATE(0x8037AAE4, &lit_11437);
+
+/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037AD39 = "Base";
+SECTION_DEAD static char const* const stringBase_8037AD3E = "xxxxxx";
+SECTION_DEAD static char const* const stringBase_8037AD45 = "Set1";
+SECTION_DEAD static char const* const stringBase_8037AD4A = "Use1";
+SECTION_DEAD static char const* const stringBase_8037AD4F = "ooxxxx";
+SECTION_DEAD static char const* const stringBase_8037AD56 = "Set2";
+SECTION_DEAD static char const* const stringBase_8037AD5B = "Use2";
+SECTION_DEAD static char const* const stringBase_8037AD60 = "xxooox";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8037AD67 = "";
+#pragma pop
 
 /* 80096EDC-80097694 09181C 07B8+00 0/0 1/0 0/0 .text            bspTransEvCamera__9dCamera_cFv */
 #pragma push
@@ -1814,7 +1995,7 @@ asm void __sinit_d_ev_camera_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8009769C = (void*)__sinit_d_ev_camera_cpp;
+REGISTER_CTORS(0x8009769C, __sinit_d_ev_camera_cpp);
 #pragma pop
 
 /* 8009771C-80097738 09205C 001C+00 11/11 22/22 0/0 .text attentionPos__9dCamera_cFP10fopAc_ac_c
@@ -1966,90 +2147,4 @@ asm void daAlink_c::getShadowTalkAtnPos() {
 }
 #pragma pop
 
-/* 8037AAF4-8037AD68 007154 0273+01 23/23 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8037AAF4 = "Timer";
-SECTION_DEAD static char const* const stringBase_8037AAFA = "Stay";
-SECTION_DEAD static char const* const stringBase_8037AAFF = "Eye";
-SECTION_DEAD static char const* const stringBase_8037AB03 = "Center";
-SECTION_DEAD static char const* const stringBase_8037AB0A = "BasePos";
-SECTION_DEAD static char const* const stringBase_8037AB12 = "Fovy";
-SECTION_DEAD static char const* const stringBase_8037AB17 = "Bank";
-SECTION_DEAD static char const* const stringBase_8037AB1C = "RelUseMask";
-SECTION_DEAD static char const* const stringBase_8037AB27 = "oo";
-SECTION_DEAD static char const* const stringBase_8037AB2A = "RelActor";
-SECTION_DEAD static char const* const stringBase_8037AB33 = "EyeGap";
-SECTION_DEAD static char const* const stringBase_8037AB3A = "CtrGap";
-SECTION_DEAD static char const* const stringBase_8037AB41 = "EyeCus";
-SECTION_DEAD static char const* const stringBase_8037AB48 = "CtrCus";
-SECTION_DEAD static char const* const stringBase_8037AB4F = "Stoker";
-SECTION_DEAD static char const* const stringBase_8037AB56 = "@STARTER";
-SECTION_DEAD static char const* const stringBase_8037AB5F = "Target";
-SECTION_DEAD static char const* const stringBase_8037AB66 = "@PLAYER";
-SECTION_DEAD static char const* const stringBase_8037AB6E = "TransType";
-SECTION_DEAD static char const* const stringBase_8037AB78 = "Roll";
-SECTION_DEAD static char const* const stringBase_8037AB7D = "RadiusAdd";
-SECTION_DEAD static char const* const stringBase_8037AB87 = "Latitude";
-SECTION_DEAD static char const* const stringBase_8037AB90 = "Radius";
-SECTION_DEAD static char const* const stringBase_8037AB97 = "StartRadius";
-SECTION_DEAD static char const* const stringBase_8037ABA3 = "o";
-SECTION_DEAD static char const* const stringBase_8037ABA5 = "BSpCurve";
-SECTION_DEAD static char const* const stringBase_8037ABAE = "BSpPoints";
-SECTION_DEAD static char const* const stringBase_8037ABB8 = "EndSlot";
-SECTION_DEAD static char const* const stringBase_8037ABC0 = "StartSlot";
-SECTION_DEAD static char const* const stringBase_8037ABCA = "StartEye";
-SECTION_DEAD static char const* const stringBase_8037ABD3 = "StartCenter";
-SECTION_DEAD static char const* const stringBase_8037ABDF = "StartFovy";
-SECTION_DEAD static char const* const stringBase_8037ABE9 = "StartBank";
-SECTION_DEAD static char const* const stringBase_8037ABF3 = "--oo";
-SECTION_DEAD static char const* const stringBase_8037ABF8 = "Cushion";
-SECTION_DEAD static char const* const stringBase_8037AC00 = "NearDist";
-SECTION_DEAD static char const* const stringBase_8037AC09 = "ZoomDist";
-SECTION_DEAD static char const* const stringBase_8037AC12 = "ZoomVAngle";
-SECTION_DEAD static char const* const stringBase_8037AC1D = "FarDist";
-SECTION_DEAD static char const* const stringBase_8037AC25 = "NearTimer";
-SECTION_DEAD static char const* const stringBase_8037AC2F = "FarTimer";
-SECTION_DEAD static char const* const stringBase_8037AC38 = "FrontAngle";
-SECTION_DEAD static char const* const stringBase_8037AC43 = "Blure";
-SECTION_DEAD static char const* const stringBase_8037AC49 = "Dest";
-SECTION_DEAD static char const* const stringBase_8037AC4E = "TargetType";
-SECTION_DEAD static char const* const stringBase_8037AC59 = "ID";
-SECTION_DEAD static char const* const stringBase_8037AC5C = "CameraID";
-SECTION_DEAD static char const* const stringBase_8037AC65 = "Name";
-SECTION_DEAD static char const* const stringBase_8037AC6A = "FN01";
-SECTION_DEAD static char const* const stringBase_8037AC6F = "Type";
-SECTION_DEAD static char const* const stringBase_8037AC74 = "Slot";
-SECTION_DEAD static char const* const stringBase_8037AC79 = "CurvePoints";
-SECTION_DEAD static char const* const stringBase_8037AC85 = "Longitude";
-SECTION_DEAD static char const* const stringBase_8037AC8F = "Centers";
-SECTION_DEAD static char const* const stringBase_8037AC97 = "Eyes";
-SECTION_DEAD static char const* const stringBase_8037AC9C = "Fovys";
-SECTION_DEAD static char const* const stringBase_8037ACA2 = "Choice";
-SECTION_DEAD static char const* const stringBase_8037ACA9 = "Actor1";
-SECTION_DEAD static char const* const stringBase_8037ACB0 = "Actor2";
-SECTION_DEAD static char const* const stringBase_8037ACB7 = "CtrRatio";
-SECTION_DEAD static char const* const stringBase_8037ACC0 = "RadiusMin";
-SECTION_DEAD static char const* const stringBase_8037ACCA = "RadiusMax";
-SECTION_DEAD static char const* const stringBase_8037ACD4 = "LatitudeMin";
-SECTION_DEAD static char const* const stringBase_8037ACE0 = "LatitudeMax";
-SECTION_DEAD static char const* const stringBase_8037ACEC = "LongitudeMin";
-SECTION_DEAD static char const* const stringBase_8037ACF9 = "LongitudeMax";
-SECTION_DEAD static char const* const stringBase_8037AD06 = "LongitudeType";
-SECTION_DEAD static char const* const stringBase_8037AD14 = "R_SP01";
-SECTION_DEAD static char const* const stringBase_8037AD1B = "Teacher";
-SECTION_DEAD static char const* const stringBase_8037AD23 = "Midna";
-SECTION_DEAD static char const* const stringBase_8037AD29 = "Student";
-SECTION_DEAD static char const* const stringBase_8037AD31 = "CtrGapY";
-SECTION_DEAD static char const* const stringBase_8037AD39 = "Base";
-SECTION_DEAD static char const* const stringBase_8037AD3E = "xxxxxx";
-SECTION_DEAD static char const* const stringBase_8037AD45 = "Set1";
-SECTION_DEAD static char const* const stringBase_8037AD4A = "Use1";
-SECTION_DEAD static char const* const stringBase_8037AD4F = "ooxxxx";
-SECTION_DEAD static char const* const stringBase_8037AD56 = "Set2";
-SECTION_DEAD static char const* const stringBase_8037AD5B = "Use2";
-SECTION_DEAD static char const* const stringBase_8037AD60 = "xxooox";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037AD67 = "";
-#pragma pop
+/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

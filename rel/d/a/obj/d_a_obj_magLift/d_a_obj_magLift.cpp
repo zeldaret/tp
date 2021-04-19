@@ -365,6 +365,13 @@ asm void daMagLift_c::setBaseMtx() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80C8E6D0-80C8E6D0 000074 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C8E6D0 = "L_maglift";
+#pragma pop
+
 /* 80C8DB28-80C8DB94 0001E8 006C+00 1/0 0/0 0/0 .text            CreateHeap__11daMagLift_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -383,7 +390,7 @@ SECTION_RODATA u8 const daMagLift_c::mSpeed[64] = {
     0x41, 0x92, 0xAA, 0xAB, 0x41, 0xA0, 0x00, 0x00, 0x41, 0xAD, 0x55, 0x55, 0x41, 0xBA, 0xAA, 0xAB,
     0x41, 0xC8, 0x00, 0x00, 0x41, 0xD5, 0x55, 0x55, 0x41, 0xE2, 0xAA, 0xAB, 0x40, 0x55, 0x55, 0x55,
 };
-COMPILER_STRIP_GATE(80C8E65C, &daMagLift_c::mSpeed);
+COMPILER_STRIP_GATE(0x80C8E65C, &daMagLift_c::mSpeed);
 
 /* 80C8E69C-80C8E6A0 000040 0004+00 1/3 0/0 0/0 .rodata          @3718 */
 SECTION_RODATA static u8 const lit_3718[4] = {
@@ -392,7 +399,7 @@ SECTION_RODATA static u8 const lit_3718[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C8E69C, &lit_3718);
+COMPILER_STRIP_GATE(0x80C8E69C, &lit_3718);
 
 /* 80C8DB94-80C8DD38 000254 01A4+00 1/1 0/0 0/0 .text            create__11daMagLift_cFv */
 #pragma push
@@ -439,21 +446,21 @@ asm void daMagLift_c::moveLift() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3759 = 30.0f;
-COMPILER_STRIP_GATE(80C8E6A0, &lit_3759);
+COMPILER_STRIP_GATE(0x80C8E6A0, &lit_3759);
 #pragma pop
 
 /* 80C8E6A4-80C8E6A8 000048 0004+00 0/2 0/0 0/0 .rodata          @3760 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3760 = 1.0f;
-COMPILER_STRIP_GATE(80C8E6A4, &lit_3760);
+COMPILER_STRIP_GATE(0x80C8E6A4, &lit_3760);
 #pragma pop
 
 /* 80C8E6A8-80C8E6AC 00004C 0004+00 0/3 0/0 0/0 .rodata          @3761 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3761 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80C8E6A8, &lit_3761);
+COMPILER_STRIP_GATE(0x80C8E6A8, &lit_3761);
 #pragma pop
 
 /* 80C8DE98-80C8DF20 000558 0088+00 1/0 0/0 0/0 .text            modeAcc__11daMagLift_cFv */
@@ -483,7 +490,7 @@ asm void daMagLift_c::init_modeMove() {
 SECTION_RODATA static u8 const lit_3834[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C8E6AC, &lit_3834);
+COMPILER_STRIP_GATE(0x80C8E6AC, &lit_3834);
 #pragma pop
 
 /* 80C8E6B4-80C8E6BC 000058 0008+00 0/1 0/0 0/0 .rodata          @3835 */
@@ -492,7 +499,7 @@ COMPILER_STRIP_GATE(80C8E6AC, &lit_3834);
 SECTION_RODATA static u8 const lit_3835[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C8E6B4, &lit_3835);
+COMPILER_STRIP_GATE(0x80C8E6B4, &lit_3835);
 #pragma pop
 
 /* 80C8E6BC-80C8E6C4 000060 0008+00 0/1 0/0 0/0 .rodata          @3836 */
@@ -501,21 +508,21 @@ COMPILER_STRIP_GATE(80C8E6B4, &lit_3835);
 SECTION_RODATA static u8 const lit_3836[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C8E6BC, &lit_3836);
+COMPILER_STRIP_GATE(0x80C8E6BC, &lit_3836);
 #pragma pop
 
 /* 80C8E6C4-80C8E6C8 000068 0004+00 0/1 0/0 0/0 .rodata          @3837 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3837 = 3.0f / 10.0f;
-COMPILER_STRIP_GATE(80C8E6C4, &lit_3837);
+COMPILER_STRIP_GATE(0x80C8E6C4, &lit_3837);
 #pragma pop
 
 /* 80C8E6C8-80C8E6CC 00006C 0004+00 0/1 0/0 0/0 .rodata          @3838 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3838 = 300.0f;
-COMPILER_STRIP_GATE(80C8E6C8, &lit_3838);
+COMPILER_STRIP_GATE(0x80C8E6C8, &lit_3838);
 #pragma pop
 
 /* 80C8DF2C-80C8E1EC 0005EC 02C0+00 1/0 0/0 0/0 .text            modeMove__11daMagLift_cFv */
@@ -543,7 +550,7 @@ asm void daMagLift_c::init_modeBrk() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3852 = 0.5f;
-COMPILER_STRIP_GATE(80C8E6CC, &lit_3852);
+COMPILER_STRIP_GATE(0x80C8E6CC, &lit_3852);
 #pragma pop
 
 /* 80C8E1F8-80C8E260 0008B8 0068+00 1/0 0/0 0/0 .text            modeBrk__11daMagLift_cFv */
@@ -717,12 +724,7 @@ asm void __sinit_d_a_obj_magLift_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80C8E60C = (void*)__sinit_d_a_obj_magLift_cpp;
+REGISTER_CTORS(0x80C8E60C, __sinit_d_a_obj_magLift_cpp);
 #pragma pop
 
-/* 80C8E6D0-80C8E6DA 000074 000A+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C8E6D0 = "L_maglift";
-#pragma pop
+/* 80C8E6D0-80C8E6D0 000074 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -154,7 +154,7 @@ extern "C" extern u8 j3dSys[284];
 /* ############################################################################################## */
 /* 80BC49B4-80BC49B8 000000 0004+00 3/3 0/0 0/0 .rodata          M_attr__14daObjCatDoor_c */
 SECTION_RODATA u32 const daObjCatDoor_c::M_attr = 0x001E0578;
-COMPILER_STRIP_GATE(80BC49B4, &daObjCatDoor_c::M_attr);
+COMPILER_STRIP_GATE(0x80BC49B4, &daObjCatDoor_c::M_attr);
 
 /* 80BC42B8-80BC42C4 000078 000C+00 1/1 0/0 1/1 .text            attr__14daObjCatDoor_cCFv */
 #pragma push
@@ -167,6 +167,12 @@ asm void daObjCatDoor_c::attr() const {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80BC49D8-80BC49D8 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BC49D8 = "CatDoor";
+#pragma pop
+
 /* 80BC49E0-80BC49E4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_catdoor__stringBase0;
 
@@ -195,14 +201,14 @@ asm void daObjCatDoor_c::initBaseMtx() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3712 = -97.0f;
-COMPILER_STRIP_GATE(80BC49B8, &lit_3712);
+COMPILER_STRIP_GATE(0x80BC49B8, &lit_3712);
 #pragma pop
 
 /* 80BC49BC-80BC49C0 000008 0004+00 0/1 0/0 0/0 .rodata          @3713 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3713 = 97.0f;
-COMPILER_STRIP_GATE(80BC49BC, &lit_3713);
+COMPILER_STRIP_GATE(0x80BC49BC, &lit_3713);
 #pragma pop
 
 /* 80BC49C0-80BC49C4 00000C 0004+00 0/2 0/0 0/0 .rodata          @3714 */
@@ -214,7 +220,7 @@ SECTION_RODATA static u8 const lit_3714[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BC49C0, &lit_3714);
+COMPILER_STRIP_GATE(0x80BC49C0, &lit_3714);
 #pragma pop
 
 /* 80BC4454-80BC4560 000214 010C+00 2/2 0/0 1/1 .text            setBaseMtx__14daObjCatDoor_cFv */
@@ -277,35 +283,35 @@ static asm void daObjCatDoor_Delete(daObjCatDoor_c* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3860 = -200.0f;
-COMPILER_STRIP_GATE(80BC49C4, &lit_3860);
+COMPILER_STRIP_GATE(0x80BC49C4, &lit_3860);
 #pragma pop
 
 /* 80BC49C8-80BC49CC 000014 0004+00 0/1 0/0 0/0 .rodata          @3861 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3861 = -20.0f;
-COMPILER_STRIP_GATE(80BC49C8, &lit_3861);
+COMPILER_STRIP_GATE(0x80BC49C8, &lit_3861);
 #pragma pop
 
 /* 80BC49CC-80BC49D0 000018 0004+00 0/1 0/0 0/0 .rodata          @3862 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3862 = 200.0f;
-COMPILER_STRIP_GATE(80BC49CC, &lit_3862);
+COMPILER_STRIP_GATE(0x80BC49CC, &lit_3862);
 #pragma pop
 
 /* 80BC49D0-80BC49D4 00001C 0004+00 0/1 0/0 0/0 .rodata          @3863 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3863 = 260.0f;
-COMPILER_STRIP_GATE(80BC49D0, &lit_3863);
+COMPILER_STRIP_GATE(0x80BC49D0, &lit_3863);
 #pragma pop
 
 /* 80BC49D4-80BC49D8 000020 0004+00 0/1 0/0 0/0 .rodata          @3864 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3864 = 100.0f;
-COMPILER_STRIP_GATE(80BC49D4, &lit_3864);
+COMPILER_STRIP_GATE(0x80BC49D4, &lit_3864);
 #pragma pop
 
 /* 80BC4848-80BC49AC 000608 0164+00 1/0 0/0 0/0 .text            daObjCatDoor_Create__FP10fopAc_ac_c
@@ -342,9 +348,4 @@ SECTION_DATA extern void* g_profile_Obj_CatDoor[12] = {
     (void*)0x00044100, (void*)0x000E0000,
 };
 
-/* 80BC49D8-80BC49E0 000024 0008+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BC49D8 = "CatDoor";
-#pragma pop
+/* 80BC49D8-80BC49D8 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

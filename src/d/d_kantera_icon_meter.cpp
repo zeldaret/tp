@@ -119,6 +119,15 @@ asm dKantera_icon_c::~dKantera_icon_c() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80394F50-80394F50 0215B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394F50 = "zelda_kantera_icon_mater.blo";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80394F6D = "\0\0";
+#pragma pop
+
 /* 801AEA68-801AEB7C 1A93A8 0114+00 1/1 0/0 0/0 .text            initiate__15dKantera_icon_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -210,11 +219,4 @@ asm dDlst_KanteraIcon_c::~dDlst_KanteraIcon_c() {
 }
 #pragma pop
 
-/* 80394F50-80394F70 0215B0 001D+03 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80394F50 = "zelda_kantera_icon_mater.blo";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80394F6D = "\0\0";
-#pragma pop
+/* 80394F50-80394F50 0215B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -147,6 +147,13 @@ static asm void daObjToaruMaki_c_createHeap(fopAc_ac_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80D13614-80D13614 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D13614 = "T_Maki1";
+SECTION_DEAD static char const* const stringBase_80D1361C = "T_Maki2";
+#pragma pop
+
 /* 80D13624-80D1362C -00001 0008+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName[2] = {
     (void*)&d_a_obj_toaru_maki__stringBase0,
@@ -207,7 +214,7 @@ asm daObjToaruMaki_c::~daObjToaruMaki_c() {
 SECTION_RODATA static u8 const l_bmdIdx[8] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x03,
 };
-COMPILER_STRIP_GATE(80D13604, &l_bmdIdx);
+COMPILER_STRIP_GATE(0x80D13604, &l_bmdIdx);
 
 /* 80D1316C-80D132B4 00016C 0148+00 1/1 0/0 0/0 .text            createHeap__16daObjToaruMaki_cFv */
 #pragma push
@@ -224,7 +231,7 @@ asm void daObjToaruMaki_c::createHeap() {
 SECTION_RODATA static u8 const l_heapSize[8] = {
     0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x0E, 0xB0,
 };
-COMPILER_STRIP_GATE(80D1360C, &l_heapSize);
+COMPILER_STRIP_GATE(0x80D1360C, &l_heapSize);
 
 /* 80D132B4-80D133C0 0002B4 010C+00 1/1 0/0 0/0 .text            create__16daObjToaruMaki_cFv */
 #pragma push
@@ -320,10 +327,4 @@ static asm void daObjToaruMaki_draw(daObjToaruMaki_c* param_0) {
 }
 #pragma pop
 
-/* 80D13614-80D13624 000010 0010+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D13614 = "T_Maki1";
-SECTION_DEAD static char const* const stringBase_80D1361C = "T_Maki2";
-#pragma pop
+/* 80D13614-80D13614 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

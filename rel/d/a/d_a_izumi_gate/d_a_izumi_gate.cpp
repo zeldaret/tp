@@ -179,6 +179,13 @@ static asm void daIzumiGate_Delete(daIzumiGate_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80849408-80849408 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80849408 = "M_IzmGate";
+SECTION_DEAD static char const* const stringBase_80849412 = "M_IzumiGate_b.dzb";
+#pragma pop
+
 /* 80849438-8084943C -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_izumi_gate__stringBase0;
 
@@ -227,6 +234,15 @@ static asm void daIzumiGate_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_izumi_gate/d_a_izumi_gate/daIzumiGate_Create__FP10fopAc_ac_c.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80849408-80849408 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80849424 = "M_IzumiGate_b.bmd";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80849436 = "\0";
 #pragma pop
 
 /* 80849260-808492D8 000240 0078+00 1/0 0/0 0/0 .text            CreateHeap__13daIzumiGate_cFv */
@@ -280,13 +296,4 @@ asm void daIzumiGate_c::Delete() {
 }
 #pragma pop
 
-/* 80849408-80849438 000000 002E+02 3/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80849408 = "M_IzmGate";
-SECTION_DEAD static char const* const stringBase_80849412 = "M_IzumiGate_b.dzb";
-SECTION_DEAD static char const* const stringBase_80849424 = "M_IzumiGate_b.bmd";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80849436 = "\0";
-#pragma pop
+/* 80849408-80849408 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

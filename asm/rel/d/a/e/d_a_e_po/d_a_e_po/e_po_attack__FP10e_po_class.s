@@ -220,8 +220,8 @@ lbl_8074DF60:
 /* 8074DF68  4B FF E6 85 */	bl mArg0Check__FP10e_po_classs
 /* 8074DF6C  2C 03 00 02 */	cmpwi r3, 2
 /* 8074DF70  40 82 00 28 */	bne lbl_8074DF98
-/* 8074DF74  3C 60 80 75 */	lis r3, struct_80757AD4+0x6@ha /* 0x80757ADA@ha */
-/* 8074DF78  A8 03 7A DA */	lha r0, struct_80757AD4+0x6@l(r3)  /* 0x80757ADA@l */
+/* 8074DF74  3C 60 80 75 */	lis r3, mAttackNo@ha /* 0x80757ADA@ha */
+/* 8074DF78  A8 03 7A DA */	lha r0, mAttackNo@l(r3)  /* 0x80757ADA@l */
 /* 8074DF7C  2C 00 00 00 */	cmpwi r0, 0
 /* 8074DF80  40 82 00 18 */	bne lbl_8074DF98
 /* 8074DF84  38 00 00 01 */	li r0, 1

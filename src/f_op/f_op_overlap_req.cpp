@@ -4,11 +4,11 @@
 //
 
 #include "f_op/f_op_overlap_req.h"
+#include "dol2asm.h"
+#include "dolphin/types.h"
 #include "f_pc/f_pc_executor.h"
 #include "f_pc/f_pc_manager.h"
 #include "f_pc/f_pc_stdcreate_req.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

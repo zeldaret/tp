@@ -14,7 +14,7 @@
 extern "C" void PPCMfmsr();
 extern "C" void PPCMtmsr();
 extern "C" void PPCMfhid0();
-extern "C" static void PPCMthid0();
+extern "C" void PPCMthid0();
 extern "C" void PPCMfl2cr();
 extern "C" void PPCMtl2cr();
 extern "C" void PPCMtdec();
@@ -42,85 +42,77 @@ extern "C" void PPCSetFpNonIEEEMode();
 // Declarations:
 //
 
-/* 80339CC0-80339CC8 334600 0008+00 0/0 5/5 0/0 .text            PPCMfmsr */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
+/* 80339CC0-80339CC8 -00001 0008+00 0/0 0/0 0/0 .text            PPCMfmsr */
 asm void PPCMfmsr() {
-    nofralloc
-#include "asm/dolphin/base/PPCArch/PPCMfmsr.s"
+    // clang-format off
+	nofralloc
+	mfmsr r3
+	blr
+    // clang-format on
 }
-#pragma pop
 
-/* 80339CC8-80339CD0 334608 0008+00 0/0 4/4 0/0 .text            PPCMtmsr */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
+/* 80339CC8-80339CD0 -00001 0008+00 0/0 0/0 0/0 .text            PPCMtmsr */
 asm void PPCMtmsr() {
-    nofralloc
-#include "asm/dolphin/base/PPCArch/PPCMtmsr.s"
+    // clang-format off
+	nofralloc
+	mtmsr r3
+	blr
+    // clang-format on
 }
-#pragma pop
 
-/* 80339CD0-80339CD8 334610 0008+00 1/1 1/1 0/0 .text            PPCMfhid0 */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
+/* 80339CD0-80339CD8 -00001 0008+00 0/0 0/0 0/0 .text            PPCMfhid0 */
 asm void PPCMfhid0() {
-    nofralloc
-#include "asm/dolphin/base/PPCArch/PPCMfhid0.s"
+    // clang-format off
+	nofralloc
+	mfspr r3, 0x3f0
+	blr
+    // clang-format on
 }
-#pragma pop
 
-/* 80339CD8-80339CE0 334618 0008+00 1/1 0/0 0/0 .text            PPCMthid0 */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void PPCMthid0() {
-    nofralloc
-#include "asm/dolphin/base/PPCArch/PPCMthid0.s"
+/* 80339CD8-80339CE0 -00001 0008+00 0/0 0/0 0/0 .text            PPCMthid0 */
+asm void PPCMthid0() {
+    // clang-format off
+	nofralloc
+	mtspr 0x3f0, r3
+	blr
+    // clang-format on
 }
-#pragma pop
 
-/* 80339CE0-80339CE8 334620 0008+00 0/0 2/2 0/0 .text            PPCMfl2cr */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
+/* 80339CE0-80339CE8 -00001 0008+00 0/0 0/0 0/0 .text            PPCMfl2cr */
 asm void PPCMfl2cr() {
-    nofralloc
-#include "asm/dolphin/base/PPCArch/PPCMfl2cr.s"
+    // clang-format off
+	nofralloc
+	mfspr r3, 0x3f9
+	blr
+    // clang-format on
 }
-#pragma pop
 
-/* 80339CE8-80339CF0 334628 0008+00 0/0 2/2 0/0 .text            PPCMtl2cr */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
+/* 80339CE8-80339CF0 -00001 0008+00 0/0 0/0 0/0 .text            PPCMtl2cr */
 asm void PPCMtl2cr() {
-    nofralloc
-#include "asm/dolphin/base/PPCArch/PPCMtl2cr.s"
+    // clang-format off
+	nofralloc
+	mtspr 0x3f9, r3
+	blr
+    // clang-format on
 }
-#pragma pop
 
-/* 80339CF0-80339CF8 334630 0008+00 0/0 3/3 0/0 .text            PPCMtdec */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
+/* 80339CF0-80339CF8 -00001 0008+00 0/0 0/0 0/0 .text            PPCMtdec */
 asm void PPCMtdec() {
-    nofralloc
-#include "asm/dolphin/base/PPCArch/PPCMtdec.s"
+    // clang-format off
+	nofralloc
+	mtspr 0x16, r3
+	blr
+    // clang-format on
 }
-#pragma pop
 
-/* 80339CF8-80339D00 334638 0008+00 0/0 9/9 0/0 .text            PPCSync */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
+/* 80339CF8-80339D00 -00001 0008+00 0/0 0/0 0/0 .text            PPCSync */
 asm void PPCSync() {
-    nofralloc
-#include "asm/dolphin/base/PPCArch/PPCSync.s"
+    // clang-format off
+	nofralloc
+	sc 
+	blr
+    // clang-format on
 }
-#pragma pop
 
 /* 80339D00-80339D14 334640 0014+00 0/0 7/7 0/0 .text            PPCHalt */
 #pragma push
@@ -132,65 +124,59 @@ asm void PPCHalt() {
 }
 #pragma pop
 
-/* 80339D14-80339D1C 334654 0008+00 0/0 1/1 0/0 .text            PPCMtmmcr0 */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
+/* 80339D14-80339D1C -00001 0008+00 0/0 0/0 0/0 .text            PPCMtmmcr0 */
 asm void PPCMtmmcr0() {
-    nofralloc
-#include "asm/dolphin/base/PPCArch/PPCMtmmcr0.s"
+    // clang-format off
+	nofralloc
+	mtspr 0x3b8, r3
+	blr
+    // clang-format on
 }
-#pragma pop
 
-/* 80339D1C-80339D24 33465C 0008+00 0/0 1/1 0/0 .text            PPCMtmmcr1 */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
+/* 80339D1C-80339D24 -00001 0008+00 0/0 0/0 0/0 .text            PPCMtmmcr1 */
 asm void PPCMtmmcr1() {
-    nofralloc
-#include "asm/dolphin/base/PPCArch/PPCMtmmcr1.s"
+    // clang-format off
+	nofralloc
+	mtspr 0x3bc, r3
+	blr
+    // clang-format on
 }
-#pragma pop
 
-/* 80339D24-80339D2C 334664 0008+00 0/0 1/1 0/0 .text            PPCMtpmc1 */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
+/* 80339D24-80339D2C -00001 0008+00 0/0 0/0 0/0 .text            PPCMtpmc1 */
 asm void PPCMtpmc1() {
-    nofralloc
-#include "asm/dolphin/base/PPCArch/PPCMtpmc1.s"
+    // clang-format off
+	nofralloc
+	mtspr 0x3b9, r3
+	blr
+    // clang-format on
 }
-#pragma pop
 
-/* 80339D2C-80339D34 33466C 0008+00 0/0 1/1 0/0 .text            PPCMtpmc2 */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
+/* 80339D2C-80339D34 -00001 0008+00 0/0 0/0 0/0 .text            PPCMtpmc2 */
 asm void PPCMtpmc2() {
-    nofralloc
-#include "asm/dolphin/base/PPCArch/PPCMtpmc2.s"
+    // clang-format off
+	nofralloc
+	mtspr 0x3ba, r3
+	blr
+    // clang-format on
 }
-#pragma pop
 
-/* 80339D34-80339D3C 334674 0008+00 0/0 1/1 0/0 .text            PPCMtpmc3 */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
+/* 80339D34-80339D3C -00001 0008+00 0/0 0/0 0/0 .text            PPCMtpmc3 */
 asm void PPCMtpmc3() {
-    nofralloc
-#include "asm/dolphin/base/PPCArch/PPCMtpmc3.s"
+    // clang-format off
+	nofralloc
+	mtspr 0x3bd, r3
+	blr
+    // clang-format on
 }
-#pragma pop
 
-/* 80339D3C-80339D44 33467C 0008+00 0/0 1/1 0/0 .text            PPCMtpmc4 */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
+/* 80339D3C-80339D44 -00001 0008+00 0/0 0/0 0/0 .text            PPCMtpmc4 */
 asm void PPCMtpmc4() {
-    nofralloc
-#include "asm/dolphin/base/PPCArch/PPCMtpmc4.s"
+    // clang-format off
+	nofralloc
+	mtspr 0x3be, r3
+	blr
+    // clang-format on
 }
-#pragma pop
 
 /* 80339D44-80339D64 334684 0020+00 0/0 2/2 0/0 .text            PPCMffpscr */
 #pragma push
@@ -212,35 +198,32 @@ asm void PPCMtfpscr() {
 }
 #pragma pop
 
-/* 80339D8C-80339D94 3346CC 0008+00 0/0 4/4 1/1 .text            PPCMfhid2 */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
+/* 80339D8C-80339D94 -00001 0008+00 0/0 0/0 0/0 .text            PPCMfhid2 */
 asm void PPCMfhid2() {
-    nofralloc
-#include "asm/dolphin/base/PPCArch/PPCMfhid2.s"
+    // clang-format off
+	nofralloc
+	mfspr r3, 0x398
+	blr
+    // clang-format on
 }
-#pragma pop
 
-/* 80339D94-80339D9C 3346D4 0008+00 0/0 4/4 0/0 .text            PPCMthid2 */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
+/* 80339D94-80339D9C -00001 0008+00 0/0 0/0 0/0 .text            PPCMthid2 */
 asm void PPCMthid2() {
-    nofralloc
-#include "asm/dolphin/base/PPCArch/PPCMthid2.s"
+    // clang-format off
+	nofralloc
+	mtspr 0x398, r3
+	blr
+    // clang-format on
 }
-#pragma pop
 
-/* 80339D9C-80339DA4 3346DC 0008+00 0/0 1/1 0/0 .text            PPCMtwpar */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
+/* 80339D9C-80339DA4 -00001 0008+00 0/0 0/0 0/0 .text            PPCMtwpar */
 asm void PPCMtwpar() {
-    nofralloc
-#include "asm/dolphin/base/PPCArch/PPCMtwpar.s"
+    // clang-format off
+	nofralloc
+	mtspr 0x399, r3
+	blr
+    // clang-format on
 }
-#pragma pop
 
 /* 80339DA4-80339DCC 3346E4 0028+00 0/0 1/1 0/0 .text            PPCDisableSpeculation */
 #pragma push
@@ -252,12 +235,11 @@ asm void PPCDisableSpeculation() {
 }
 #pragma pop
 
-/* 80339DCC-80339DD4 33470C 0008+00 0/0 1/1 0/0 .text            PPCSetFpNonIEEEMode */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
+/* 80339DCC-80339DD4 -00001 0008+00 0/0 0/0 0/0 .text            PPCSetFpNonIEEEMode */
 asm void PPCSetFpNonIEEEMode() {
-    nofralloc
-#include "asm/dolphin/base/PPCArch/PPCSetFpNonIEEEMode.s"
+    // clang-format off
+	nofralloc
+	mtfsb1 0x1d
+	blr
+    // clang-format on
 }
-#pragma pop

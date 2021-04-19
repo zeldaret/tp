@@ -188,27 +188,27 @@ asm void daTag_BottleItem_c::restart() {
 /* ############################################################################################## */
 /* 80D56658-80D5665C 000000 0004+00 1/1 0/0 0/0 .rodata          @3697 */
 SECTION_RODATA static f32 const lit_3697 = -30.0f;
-COMPILER_STRIP_GATE(80D56658, &lit_3697);
+COMPILER_STRIP_GATE(0x80D56658, &lit_3697);
 
 /* 80D5665C-80D56660 000004 0004+00 0/1 0/0 0/0 .rodata          @3698 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3698 = -15.0f;
-COMPILER_STRIP_GATE(80D5665C, &lit_3698);
+COMPILER_STRIP_GATE(0x80D5665C, &lit_3698);
 #pragma pop
 
 /* 80D56660-80D56664 000008 0004+00 0/1 0/0 0/0 .rodata          @3699 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3699 = 30.0f;
-COMPILER_STRIP_GATE(80D56660, &lit_3699);
+COMPILER_STRIP_GATE(0x80D56660, &lit_3699);
 #pragma pop
 
 /* 80D56664-80D56668 00000C 0004+00 0/1 0/0 0/0 .rodata          @3700 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3700 = 45.0f;
-COMPILER_STRIP_GATE(80D56664, &lit_3700);
+COMPILER_STRIP_GATE(0x80D56664, &lit_3700);
 #pragma pop
 
 /* 80D56170-80D561E8 000210 0078+00 1/1 0/0 0/0 .text            initialize__18daTag_BottleItem_cFv
@@ -227,7 +227,7 @@ asm void daTag_BottleItem_c::initialize() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daTag_BottleItem_c::checkProcess(int (daTag_BottleItem_c::*)(void*)) {
+asm void daTag_BottleItem_c::checkProcess(int (daTag_BottleItem_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_bottle_item/d_a_tag_bottle_item/func_80D561E8.s"
 }
@@ -238,7 +238,7 @@ asm void daTag_BottleItem_c::checkProcess(int (daTag_BottleItem_c::*)(void*)) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daTag_BottleItem_c::setProcess(int (daTag_BottleItem_c::*)(void*)) {
+asm void daTag_BottleItem_c::setProcess(int (daTag_BottleItem_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_bottle_item/d_a_tag_bottle_item/func_80D56214.s"
 }
@@ -289,11 +289,11 @@ asm void daTag_BottleItem_c::makeSoup() {
 /* ############################################################################################## */
 /* 80D56668-80D5666C 000010 0004+00 1/1 0/0 0/0 .rodata          @3796 */
 SECTION_RODATA static f32 const lit_3796 = 140.0f;
-COMPILER_STRIP_GATE(80D56668, &lit_3796);
+COMPILER_STRIP_GATE(0x80D56668, &lit_3796);
 
 /* 80D5666C-80D56670 000014 0004+00 1/1 0/0 0/0 .rodata          @3797 */
 SECTION_RODATA static f32 const lit_3797 = 100.0f;
-COMPILER_STRIP_GATE(80D5666C, &lit_3797);
+COMPILER_STRIP_GATE(0x80D5666C, &lit_3797);
 
 /* 80D564A0-80D56568 000540 00C8+00 1/0 0/0 0/0 .text            wait__18daTag_BottleItem_cFPv */
 #pragma push

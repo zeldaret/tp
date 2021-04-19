@@ -234,6 +234,12 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80CB1890-80CB1890 00002C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CB1890 = "J_Hatake";
+#pragma pop
+
 /* 80CB189C-80CB18A0 -00001 0004+00 1/1 0/0 0/0 .data            l_resName */
 SECTION_DATA static void* l_resName = (void*)&d_a_obj_pleaf__stringBase0;
 
@@ -329,36 +335,36 @@ asm daObj_Pleaf_c::~daObj_Pleaf_c() {
 SECTION_RODATA u8 const daObj_Pleaf_Param_c::m[16] = {
     0x00, 0x00, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x44, 0x61, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CB1864, &daObj_Pleaf_Param_c::m);
+COMPILER_STRIP_GATE(0x80CB1864, &daObj_Pleaf_Param_c::m);
 
 /* 80CB1874-80CB1878 000010 0004+00 0/1 0/0 0/0 .rodata          @3905 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3905 = -300.0f;
-COMPILER_STRIP_GATE(80CB1874, &lit_3905);
+COMPILER_STRIP_GATE(0x80CB1874, &lit_3905);
 #pragma pop
 
 /* 80CB1878-80CB187C 000014 0004+00 0/1 0/0 0/0 .rodata          @3906 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3906 = -50.0f;
-COMPILER_STRIP_GATE(80CB1878, &lit_3906);
+COMPILER_STRIP_GATE(0x80CB1878, &lit_3906);
 #pragma pop
 
 /* 80CB187C-80CB1880 000018 0004+00 0/1 0/0 0/0 .rodata          @3907 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3907 = 300.0f;
-COMPILER_STRIP_GATE(80CB187C, &lit_3907);
+COMPILER_STRIP_GATE(0x80CB187C, &lit_3907);
 #pragma pop
 
 /* 80CB1880-80CB1884 00001C 0004+00 1/2 0/0 0/0 .rodata          @3908 */
 SECTION_RODATA static f32 const lit_3908 = 50.0f;
-COMPILER_STRIP_GATE(80CB1880, &lit_3908);
+COMPILER_STRIP_GATE(0x80CB1880, &lit_3908);
 
 /* 80CB1884-80CB1888 000020 0004+00 1/3 0/0 0/0 .rodata          @3909 */
 SECTION_RODATA static f32 const lit_3909 = -1000000000.0f;
-COMPILER_STRIP_GATE(80CB1884, &lit_3909);
+COMPILER_STRIP_GATE(0x80CB1884, &lit_3909);
 
 /* 80CB0F08-80CB1180 0002A8 0278+00 1/1 0/0 0/0 .text            create__13daObj_Pleaf_cFv */
 #pragma push
@@ -455,14 +461,14 @@ asm void daObj_Pleaf_c::Execute() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4025 = 20.0f;
-COMPILER_STRIP_GATE(80CB1888, &lit_4025);
+COMPILER_STRIP_GATE(0x80CB1888, &lit_4025);
 #pragma pop
 
 /* 80CB188C-80CB1890 000028 0004+00 0/1 0/0 0/0 .rodata          @4026 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4026 = 1.0f;
-COMPILER_STRIP_GATE(80CB188C, &lit_4026);
+COMPILER_STRIP_GATE(0x80CB188C, &lit_4026);
 #pragma pop
 
 /* 80CB14D4-80CB1598 000874 00C4+00 1/1 0/0 0/0 .text            Draw__13daObj_Pleaf_cFv */
@@ -618,7 +624,7 @@ asm void __sinit_d_a_obj_pleaf_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80CB17B8 = (void*)__sinit_d_a_obj_pleaf_cpp;
+REGISTER_CTORS(0x80CB17B8, __sinit_d_a_obj_pleaf_cpp);
 #pragma pop
 
 /* 80CB17F8-80CB1840 000B98 0048+00 2/1 0/0 0/0 .text            __dt__19daObj_Pleaf_Param_cFv */
@@ -651,9 +657,4 @@ static asm void func_80CB1848() {
 }
 #pragma pop
 
-/* 80CB1890-80CB1899 00002C 0009+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CB1890 = "J_Hatake";
-#pragma pop
+/* 80CB1890-80CB1890 00002C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

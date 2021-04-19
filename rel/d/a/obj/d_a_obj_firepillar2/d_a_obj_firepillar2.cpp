@@ -230,7 +230,7 @@ extern "C" static void daObjFPillar2_Execute__FP15daObjFPillar2_c();
 extern "C" static void daObjFPillar2_Delete__FP15daObjFPillar2_c();
 extern "C" static void daObjFPillar2_Create__FP10fopAc_ac_c();
 extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void func_80BEB490(u8*);
+extern "C" void func_80BEB490(void* _this, u8*);
 extern "C" static void func_80BEB4AC();
 extern "C" static void func_80BEB4B4();
 extern "C" extern char const* const d_a_obj_firepillar2__stringBase0;
@@ -339,7 +339,7 @@ asm void daObjFPillar2_c::initBaseMtx() {
 /* ############################################################################################## */
 /* 80BEB4C4-80BEB4C8 000000 0004+00 9/9 0/0 0/0 .rodata          @3656 */
 SECTION_RODATA static f32 const lit_3656 = 1.0f;
-COMPILER_STRIP_GATE(80BEB4C4, &lit_3656);
+COMPILER_STRIP_GATE(0x80BEB4C4, &lit_3656);
 
 /* 80BE9D5C-80BE9DDC 00011C 0080+00 2/2 0/0 0/0 .text            setBaseMtx__15daObjFPillar2_cFv */
 #pragma push
@@ -356,42 +356,48 @@ asm void daObjFPillar2_c::setBaseMtx() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3712 = 4.0f / 5.0f;
-COMPILER_STRIP_GATE(80BEB4C8, &lit_3712);
+COMPILER_STRIP_GATE(0x80BEB4C8, &lit_3712);
 #pragma pop
 
 /* 80BEB4CC-80BEB4D0 000008 0004+00 0/1 0/0 0/0 .rodata          @3713 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3713 = 1.5f;
-COMPILER_STRIP_GATE(80BEB4CC, &lit_3713);
+COMPILER_STRIP_GATE(0x80BEB4CC, &lit_3713);
 #pragma pop
 
 /* 80BEB4D0-80BEB4D4 00000C 0004+00 0/1 0/0 0/0 .rodata          @3714 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3714 = 7.5f;
-COMPILER_STRIP_GATE(80BEB4D0, &lit_3714);
+COMPILER_STRIP_GATE(0x80BEB4D0, &lit_3714);
 #pragma pop
 
 /* 80BEB4D4-80BEB4D8 000010 0004+00 0/2 0/0 0/0 .rodata          @3715 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3715 = 50.0f;
-COMPILER_STRIP_GATE(80BEB4D4, &lit_3715);
+COMPILER_STRIP_GATE(0x80BEB4D4, &lit_3715);
 #pragma pop
 
 /* 80BEB4D8-80BEB4DC 000014 0004+00 0/1 0/0 0/0 .rodata          @3716 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3716 = 11.0f;
-COMPILER_STRIP_GATE(80BEB4D8, &lit_3716);
+COMPILER_STRIP_GATE(0x80BEB4D8, &lit_3716);
 #pragma pop
 
 /* 80BEB4DC-80BEB4E0 000018 0004+00 0/1 0/0 0/0 .rodata          @3717 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3717 = 2.0f;
-COMPILER_STRIP_GATE(80BEB4DC, &lit_3717);
+COMPILER_STRIP_GATE(0x80BEB4DC, &lit_3717);
+#pragma pop
+
+/* 80BEB51C-80BEB51C 000058 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BEB51C = "Obj_yogan";
 #pragma pop
 
 /* 80BEB528-80BEB534 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -698,14 +704,14 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3928 = 100.0f;
-COMPILER_STRIP_GATE(80BEB4E0, &lit_3928);
+COMPILER_STRIP_GATE(0x80BEB4E0, &lit_3928);
 #pragma pop
 
 /* 80BEB4E4-80BEB4E8 000020 0004+00 0/4 0/0 0/0 .rodata          @3929 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3929 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80BEB4E4, &lit_3929);
+COMPILER_STRIP_GATE(0x80BEB4E4, &lit_3929);
 #pragma pop
 
 /* 80BEA584-80BEA734 000944 01B0+00 1/1 0/0 0/0 .text            execute__15daObjFPillar2_cFv */
@@ -736,7 +742,7 @@ SECTION_RODATA static u8 const lit_3961[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BEB4E8, &lit_3961);
+COMPILER_STRIP_GATE(0x80BEB4E8, &lit_3961);
 
 /* 80BEA808-80BEA854 000BC8 004C+00 3/3 0/0 0/0 .text            actionOffInit__15daObjFPillar2_cFv
  */
@@ -754,7 +760,7 @@ asm void daObjFPillar2_c::actionOffInit() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3999 = -1.0f;
-COMPILER_STRIP_GATE(80BEB4EC, &lit_3999);
+COMPILER_STRIP_GATE(0x80BEB4EC, &lit_3999);
 #pragma pop
 
 /* 80BEA854-80BEA98C 000C14 0138+00 1/0 0/0 0/0 .text            actionOff__15daObjFPillar2_cFv */
@@ -782,7 +788,7 @@ asm void daObjFPillar2_c::actionOnWaitInit() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4086 = 1.0f / 50.0f;
-COMPILER_STRIP_GATE(80BEB4F0, &lit_4086);
+COMPILER_STRIP_GATE(0x80BEB4F0, &lit_4086);
 #pragma pop
 
 /* 80BEAAE4-80BEAC68 000EA4 0184+00 1/0 0/0 0/0 .text            actionOnWait__15daObjFPillar2_cFv
@@ -801,14 +807,14 @@ asm void daObjFPillar2_c::actionOnWait() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4142 = 30.0f;
-COMPILER_STRIP_GATE(80BEB4F4, &lit_4142);
+COMPILER_STRIP_GATE(0x80BEB4F4, &lit_4142);
 #pragma pop
 
 /* 80BEB4F8-80BEB4FC 000034 0004+00 0/1 0/0 0/0 .rodata          @4143 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4143 = 80.0f;
-COMPILER_STRIP_GATE(80BEB4F8, &lit_4143);
+COMPILER_STRIP_GATE(0x80BEB4F8, &lit_4143);
 #pragma pop
 
 /* 80BEAC68-80BEADD0 001028 0168+00 1/1 0/0 0/0 .text            actionOnInit__15daObjFPillar2_cFv
@@ -827,56 +833,56 @@ asm void daObjFPillar2_c::actionOnInit() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4288 = 1.0f / 25.0f;
-COMPILER_STRIP_GATE(80BEB4FC, &lit_4288);
+COMPILER_STRIP_GATE(0x80BEB4FC, &lit_4288);
 #pragma pop
 
 /* 80BEB500-80BEB504 00003C 0004+00 0/1 0/0 0/0 .rodata          @4289 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4289 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80BEB500, &lit_4289);
+COMPILER_STRIP_GATE(0x80BEB500, &lit_4289);
 #pragma pop
 
 /* 80BEB504-80BEB508 000040 0004+00 0/1 0/0 0/0 .rodata          @4290 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4290 = 2.0f / 125.0f;
-COMPILER_STRIP_GATE(80BEB504, &lit_4290);
+COMPILER_STRIP_GATE(0x80BEB504, &lit_4290);
 #pragma pop
 
 /* 80BEB508-80BEB50C 000044 0004+00 0/1 0/0 0/0 .rodata          @4291 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4291 = 15.0f;
-COMPILER_STRIP_GATE(80BEB508, &lit_4291);
+COMPILER_STRIP_GATE(0x80BEB508, &lit_4291);
 #pragma pop
 
 /* 80BEB50C-80BEB510 000048 0004+00 0/1 0/0 0/0 .rodata          @4292 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4292 = 3.0f / 10.0f;
-COMPILER_STRIP_GATE(80BEB50C, &lit_4292);
+COMPILER_STRIP_GATE(0x80BEB50C, &lit_4292);
 #pragma pop
 
 /* 80BEB510-80BEB514 00004C 0004+00 0/1 0/0 0/0 .rodata          @4293 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4293 = 8.0f / 5.0f;
-COMPILER_STRIP_GATE(80BEB510, &lit_4293);
+COMPILER_STRIP_GATE(0x80BEB510, &lit_4293);
 #pragma pop
 
 /* 80BEB514-80BEB518 000050 0004+00 0/1 0/0 0/0 .rodata          @4294 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4294 = 0x3B83126E;
-COMPILER_STRIP_GATE(80BEB514, &lit_4294);
+COMPILER_STRIP_GATE(0x80BEB514, &lit_4294);
 #pragma pop
 
 /* 80BEB518-80BEB51C 000054 0004+00 0/1 0/0 0/0 .rodata          @4295 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4295 = 60.0f;
-COMPILER_STRIP_GATE(80BEB518, &lit_4295);
+COMPILER_STRIP_GATE(0x80BEB518, &lit_4295);
 #pragma pop
 
 /* 80BEADD0-80BEB1B4 001190 03E4+00 1/0 0/0 0/0 .text            actionOn__15daObjFPillar2_cFv */
@@ -964,7 +970,7 @@ asm cCcD_GStts::~cCcD_GStts() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80BEB490(u8* param_0) {
+extern "C" asm void func_80BEB490(void* _this, u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_firepillar2/d_a_obj_firepillar2/func_80BEB490.s"
 }
@@ -990,9 +996,4 @@ static asm void func_80BEB4B4() {
 }
 #pragma pop
 
-/* 80BEB51C-80BEB526 000058 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BEB51C = "Obj_yogan";
-#pragma pop
+/* 80BEB51C-80BEB51C 000058 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -36,12 +36,12 @@ struct daNpcT_MotionSeqMngr_c {
 
 struct J3DModel {};
 
+struct J3DJoint {};
+
 struct cXyz {
     /* 80AEC0DC */ ~cXyz();
     /* 80AEC670 */ cXyz();
 };
-
-struct J3DJoint {};
 
 struct daNpcT_c {
     /* 801490D4 */ void ctrlBtk();
@@ -481,20 +481,20 @@ asm daNpc_shopMaro_c::~daNpc_shopMaro_c() {
 /* ############################################################################################## */
 /* 80AEC918-80AEC91C 000000 0004+00 2/2 0/0 0/0 .rodata          @4009 */
 SECTION_RODATA static f32 const lit_4009 = 0.25f;
-COMPILER_STRIP_GATE(80AEC918, &lit_4009);
+COMPILER_STRIP_GATE(0x80AEC918, &lit_4009);
 
 /* 80AEC91C-80AEC920 000004 0004+00 0/1 0/0 0/0 .rodata          @4010 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4010 = 20.0f;
-COMPILER_STRIP_GATE(80AEC91C, &lit_4010);
+COMPILER_STRIP_GATE(0x80AEC91C, &lit_4010);
 #pragma pop
 
 /* 80AEC920-80AEC924 000008 0004+00 0/1 0/0 0/0 .rodata          @4011 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4011 = 5.0f;
-COMPILER_STRIP_GATE(80AEC920, &lit_4011);
+COMPILER_STRIP_GATE(0x80AEC920, &lit_4011);
 #pragma pop
 
 /* 80AEC924-80AEC928 00000C 0004+00 0/2 0/0 0/0 .rodata          @4012 */
@@ -506,21 +506,21 @@ SECTION_RODATA static u8 const lit_4012[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80AEC924, &lit_4012);
+COMPILER_STRIP_GATE(0x80AEC924, &lit_4012);
 #pragma pop
 
 /* 80AEC928-80AEC92C 000010 0004+00 0/1 0/0 0/0 .rodata          @4013 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4013 = 100.0f;
-COMPILER_STRIP_GATE(80AEC928, &lit_4013);
+COMPILER_STRIP_GATE(0x80AEC928, &lit_4013);
 #pragma pop
 
 /* 80AEC92C-80AEC930 000014 0004+00 0/1 0/0 0/0 .rodata          @4014 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4014 = 60.0f;
-COMPILER_STRIP_GATE(80AEC92C, &lit_4014);
+COMPILER_STRIP_GATE(0x80AEC92C, &lit_4014);
 #pragma pop
 
 /* 80AEBFC4-80AEC0DC 0001E4 0118+00 1/1 0/0 0/0 .text
@@ -582,14 +582,14 @@ asm csXyz::~csXyz() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4238 = 65536.0f;
-COMPILER_STRIP_GATE(80AEC930, &lit_4238);
+COMPILER_STRIP_GATE(0x80AEC930, &lit_4238);
 #pragma pop
 
 /* 80AEC934-80AEC938 00001C 0004+00 0/1 0/0 0/0 .rodata          @4239 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4239 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80AEC934, &lit_4239);
+COMPILER_STRIP_GATE(0x80AEC934, &lit_4239);
 #pragma pop
 
 /* 80AEC16C-80AEC570 00038C 0404+00 1/1 0/0 0/0 .text

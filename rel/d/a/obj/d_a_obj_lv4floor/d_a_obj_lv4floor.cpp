@@ -172,6 +172,12 @@ asm void daObjLv4Floor_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80C67D90-80C67D90 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C67D90 = "P_L4Floor";
+#pragma pop
+
 /* 80C67D9C-80C67DA8 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -292,7 +298,7 @@ SECTION_RODATA static u8 const lit_3704[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C67D80, &lit_3704);
+COMPILER_STRIP_GATE(0x80C67D80, &lit_3704);
 
 /* 80C67B28-80C67B40 0003A8 0018+00 1/1 0/0 0/0 .text            mode_init_move__15daObjLv4Floor_cFv
  */
@@ -310,21 +316,21 @@ asm void daObjLv4Floor_c::mode_init_move() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3711 = 19.0f / 5.0f;
-COMPILER_STRIP_GATE(80C67D84, &lit_3711);
+COMPILER_STRIP_GATE(0x80C67D84, &lit_3711);
 #pragma pop
 
 /* 80C67D88-80C67D8C 000008 0004+00 0/1 0/0 0/0 .rodata          @3712 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3712 = 2.0f / 25.0f;
-COMPILER_STRIP_GATE(80C67D88, &lit_3712);
+COMPILER_STRIP_GATE(0x80C67D88, &lit_3712);
 #pragma pop
 
 /* 80C67D8C-80C67D90 00000C 0004+00 0/1 0/0 0/0 .rodata          @3713 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3713 = -1500.0f;
-COMPILER_STRIP_GATE(80C67D8C, &lit_3713);
+COMPILER_STRIP_GATE(0x80C67D8C, &lit_3713);
 #pragma pop
 
 /* 80C67B40-80C67BA8 0003C0 0068+00 1/0 0/0 0/0 .text            mode_move__15daObjLv4Floor_cFv */
@@ -459,9 +465,4 @@ static asm void daObjLv4Floor_MoveBGDraw(daObjLv4Floor_c* param_0) {
 }
 #pragma pop
 
-/* 80C67D90-80C67D9A 000010 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C67D90 = "P_L4Floor";
-#pragma pop
+/* 80C67D90-80C67D90 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

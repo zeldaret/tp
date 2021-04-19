@@ -91,7 +91,7 @@ struct daPy_py_c {
     /* 80182A10 */ void checkGoronSideMove() const;
     /* 80182AAC */ void getRightFootPosP();
     /* 80182AB4 */ void getLeftFootPosP();
-    /* 80182ABC */ void getMidnaActor();
+    /* 80182ABC */ u32 getMidnaActor();
     /* 80182AC4 */ void checkCopyRodThrowAfter() const;
     /* 80182AD8 */ void checkRide() const;
     /* 80182B9C */ void getRightHandPos() const;
@@ -206,15 +206,8 @@ struct dCcMassS_Mng {
     /* 80085EB8 */ void GetCamTopPos(Vec*);
 };
 
-struct camera_class {};
-
-struct dCamMapToolData {
-    /* 8015FEB8 */ void Set(s32, s32, fopAc_ac_c*, u16, u8);
-};
-
 struct cSAngle {
     /* 80030510 */ ~cSAngle();
-    /* 80271004 */ void Val(s16);
     /* 8027100C */ void Val(f32);
     /* 8016C2CC */ void Val() const;
     /* 80270FF8 */ void Val(cSAngle const&);
@@ -248,6 +241,12 @@ struct cSAngle {
     static u8 _180[2 + 2 /* padding */];
     static u8 _270[2 + 6 /* padding */];
 };
+
+struct dCamMapToolData {
+    /* 8015FEB8 */ void Set(s32, s32, fopAc_ac_c*, u16, u8);
+};
+
+struct camera_class {};
 
 struct dBgS_LinChk {
     /* 80077D64 */ void Set(cXyz const*, cXyz const*, fopAc_ac_c const*);
@@ -852,7 +851,7 @@ extern "C" bool __lt__7cSAngleCFRC7cSAngle();
 extern "C" bool __gt__7cSAngleCFRC7cSAngle();
 extern "C" void getRightFootPosP__9daPy_py_cFv();
 extern "C" void getLeftFootPosP__9daPy_py_cFv();
-extern "C" void getMidnaActor__9daPy_py_cFv();
+extern "C" u32 getMidnaActor__9daPy_py_cFv();
 extern "C" void checkCopyRodThrowAfter__9daPy_py_cCFv();
 extern "C" void keepLock__12dAttention_cFi();
 extern "C" void checkRide__9daPy_py_cCFv();
@@ -1296,6 +1295,111 @@ asm void dCamMapToolData::Set(s32 param_0, s32 param_1, fopAc_ac_c* param_2, u16
 #pragma pop
 
 /* ############################################################################################## */
+/* 80393F68-80393F68 0205C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80393F68 = "camtype.dat";
+SECTION_DEAD static char const* const stringBase_80393F74 = "D_MN01A";
+SECTION_DEAD static char const* const stringBase_80393F7C = "D_MN10A";
+SECTION_DEAD static char const* const stringBase_80393F84 = "D_MN11A";
+SECTION_DEAD static char const* const stringBase_80393F8C = "D_MN04A";
+SECTION_DEAD static char const* const stringBase_80393F94 = "D_MN05A";
+SECTION_DEAD static char const* const stringBase_80393F9C = "D_MN07A";
+SECTION_DEAD static char const* const stringBase_80393FA4 = "FieldS";
+SECTION_DEAD static char const* const stringBase_80393FAB = "Event";
+SECTION_DEAD static char const* const stringBase_80393FB1 = "Water";
+SECTION_DEAD static char const* const stringBase_80393FB7 = "Scope";
+SECTION_DEAD static char const* const stringBase_80393FBD = "WaterSurf";
+SECTION_DEAD static char const* const stringBase_80393FC7 = "HorseT";
+SECTION_DEAD static char const* const stringBase_80393FCE = "Board";
+SECTION_DEAD static char const* const stringBase_80393FD4 = "Canoe";
+SECTION_DEAD static char const* const stringBase_80393FDA = "Keep";
+SECTION_DEAD static char const* const stringBase_80393FDF = "Rodeo";
+SECTION_DEAD static char const* const stringBase_80393FE5 = "MagneBoots";
+SECTION_DEAD static char const* const stringBase_80393FF0 = "MagneRoof";
+SECTION_DEAD static char const* const stringBase_80393FFA = "MagneWall";
+SECTION_DEAD static char const* const stringBase_80394004 = "CoccoJump";
+SECTION_DEAD static char const* const stringBase_8039400E = "Boar";
+SECTION_DEAD static char const* const stringBase_80394013 = "GoatBattle";
+SECTION_DEAD static char const* const stringBase_8039401E = "GoronJump";
+SECTION_DEAD static char const* const stringBase_80394028 = "Spinner";
+SECTION_DEAD static char const* const stringBase_80394030 = "HookWall";
+SECTION_DEAD static char const* const stringBase_80394039 = "HookRoof";
+SECTION_DEAD static char const* const stringBase_80394042 = "HookActor";
+SECTION_DEAD static char const* const stringBase_8039404C = "RoofHung";
+SECTION_DEAD static char const* const stringBase_80394055 = "Rotary";
+SECTION_DEAD static char const* const stringBase_8039405C = "Street";
+SECTION_DEAD static char const* const stringBase_80394063 = "StreetN";
+SECTION_DEAD static char const* const stringBase_8039406B = "StreetP";
+SECTION_DEAD static char const* const stringBase_80394073 = "Rampart2";
+SECTION_DEAD static char const* const stringBase_8039407C = "Allay";
+SECTION_DEAD static char const* const stringBase_80394082 = "AllayR";
+SECTION_DEAD static char const* const stringBase_80394089 = "AllayR2";
+SECTION_DEAD static char const* const stringBase_80394091 = "AllayS";
+SECTION_DEAD static char const* const stringBase_80394098 = "AllayN";
+SECTION_DEAD static char const* const stringBase_8039409F = "AllayR3";
+SECTION_DEAD static char const* const stringBase_803940A7 = "CopyRodHall";
+SECTION_DEAD static char const* const stringBase_803940B3 = "MidnaTag";
+SECTION_DEAD static char const* const stringBase_803940BC = "WarpObj";
+SECTION_DEAD static char const* const stringBase_803940C4 = "LV9GZeldaTri";
+SECTION_DEAD static char const* const stringBase_803940D1 = "LV4BOSSSPJP";
+SECTION_DEAD static char const* const stringBase_803940DD = "LV7BOSS";
+SECTION_DEAD static char const* const stringBase_803940E5 = "TeppeiHook";
+SECTION_DEAD static char const* const stringBase_803940F0 = "Peep";
+SECTION_DEAD static char const* const stringBase_803940F5 = "DungeonS";
+SECTION_DEAD static char const* const stringBase_803940FE = "Room";
+SECTION_DEAD static char const* const stringBase_80394103 = "Cave";
+SECTION_DEAD static char const* const stringBase_80394108 = "Timer";
+SECTION_DEAD static char const* const stringBase_8039410E = "Target";
+SECTION_DEAD static char const* const stringBase_80394115 = "Smoothless";
+SECTION_DEAD static char const* const stringBase_80394120 = "Mode";
+SECTION_DEAD static char const* const stringBase_80394125 = "Radius";
+SECTION_DEAD static char const* const stringBase_8039412C = "RadiusNear";
+SECTION_DEAD static char const* const stringBase_80394137 = "Longitude";
+SECTION_DEAD static char const* const stringBase_80394141 = "Fovy";
+SECTION_DEAD static char const* const stringBase_80394146 = "FovyNear";
+SECTION_DEAD static char const* const stringBase_8039414F = "Latitude";
+SECTION_DEAD static char const* const stringBase_80394158 = "Listener";
+SECTION_DEAD static char const* const stringBase_80394161 = "@STARTER";
+SECTION_DEAD static char const* const stringBase_8039416A = "Speaker";
+SECTION_DEAD static char const* const stringBase_80394172 = "@TALKPARTNER";
+SECTION_DEAD static char const* const stringBase_8039417F = "E_RD";
+SECTION_DEAD static char const* const stringBase_80394184 = "PAUSE";
+SECTION_DEAD static char const* const stringBase_8039418A = "WAIT";
+SECTION_DEAD static char const* const stringBase_8039418F = "TALK";
+SECTION_DEAD static char const* const stringBase_80394194 = "FIXEDPOS";
+SECTION_DEAD static char const* const stringBase_8039419D = "FIXEDFRM";
+SECTION_DEAD static char const* const stringBase_803941A6 = "UNITRANS";
+SECTION_DEAD static char const* const stringBase_803941AF = "WATCHACTOR";
+SECTION_DEAD static char const* const stringBase_803941BA = "RESTOREPOS";
+SECTION_DEAD static char const* const stringBase_803941C5 = "GETITEM";
+SECTION_DEAD static char const* const stringBase_803941CD = "GAMEOVER";
+SECTION_DEAD static char const* const stringBase_803941D6 = "TURNTOACTOR";
+SECTION_DEAD static char const* const stringBase_803941E2 = "ROLLING";
+SECTION_DEAD static char const* const stringBase_803941EA = "TACT";
+SECTION_DEAD static char const* const stringBase_803941EF = "WINDDIR";
+SECTION_DEAD static char const* const stringBase_803941F7 = "PORTALWARP";
+SECTION_DEAD static char const* const stringBase_80394202 = "STYLE";
+SECTION_DEAD static char const* const stringBase_80394208 = "SAVE";
+SECTION_DEAD static char const* const stringBase_8039420D = "LOAD";
+SECTION_DEAD static char const* const stringBase_80394212 = "USEITEM0";
+SECTION_DEAD static char const* const stringBase_8039421B = "USEITEM1";
+SECTION_DEAD static char const* const stringBase_80394224 = "FIXEDFRMS";
+SECTION_DEAD static char const* const stringBase_8039422E = "BSPLINE";
+SECTION_DEAD static char const* const stringBase_80394236 = "POSSESSED";
+SECTION_DEAD static char const* const stringBase_80394240 = "TWOACTOR0";
+SECTION_DEAD static char const* const stringBase_8039424A = "STOKER";
+SECTION_DEAD static char const* const stringBase_80394251 = "UNIBRAKE";
+SECTION_DEAD static char const* const stringBase_8039425A = "UNIACCELE";
+SECTION_DEAD static char const* const stringBase_80394264 = "STBWAIT";
+SECTION_DEAD static char const* const stringBase_8039426C = "CURRENT";
+SECTION_DEAD static char const* const stringBase_80394274 = "PEEPHOLE";
+SECTION_DEAD static char const* const stringBase_8039427D = "DIGHOLE";
+SECTION_DEAD static char const* const stringBase_80394285 = "HINTTALK";
+SECTION_DEAD static char const* const stringBase_8039428E = "BSPTRANS";
+SECTION_DEAD static char const* const stringBase_80394297 = "MAPTOOL";
+#pragma pop
+
 /* 803BA160-803BA16C 017280 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -3720,7 +3824,23 @@ SECTION_RODATA static u8 const lit_16654[408] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80393DC0, &lit_16654);
+COMPILER_STRIP_GATE(0x80393DC0, &lit_16654);
+
+/* 80393F68-80393F68 0205C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039429F = "CAMERA";
+SECTION_DEAD static char const* const stringBase_803942A6 = "KeepDist";
+SECTION_DEAD static char const* const stringBase_803942AF = "Trim";
+SECTION_DEAD static char const* const stringBase_803942B4 = "DEFAULT";
+SECTION_DEAD static char const* const stringBase_803942BC = "Recover";
+SECTION_DEAD static char const* const stringBase_803942C4 = "WaitAnyKey";
+SECTION_DEAD static char const* const stringBase_803942CF = "BGCheck";
+SECTION_DEAD static char const* const stringBase_803942D7 = "SavePos";
+SECTION_DEAD static char const* const stringBase_803942DF = "LoadPos";
+SECTION_DEAD static char const* const stringBase_803942E7 = "PlayerHide";
+SECTION_DEAD static char const* const stringBase_803942F2 = "WideMode";
+#pragma pop
 
 /* 8017F828-8018050C 17A168 0CE4+00 2/1 0/0 0/0 .text            eventCamera__9dCamera_cFl */
 #pragma push
@@ -3730,6 +3850,15 @@ asm void dCamera_c::eventCamera(s32 param_0) {
     nofralloc
 #include "asm/d/d_camera/eventCamera__9dCamera_cFl.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80393F68-80393F68 0205C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803942FB = "Continue";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80394304 = "\0\0\0";
 #pragma pop
 
 /* 8018050C-801806D4 17AE4C 01C8+00 1/0 0/0 0/0 .text            currentEvCamera__9dCamera_cFv */
@@ -3844,7 +3973,7 @@ asm void dCamera_c::Reset() {
 SECTION_RODATA static u8 const wave[16] = {
     0x3E, 0xCC, 0xCC, 0xCD, 0x3F, 0x66, 0x66, 0x66, 0x40, 0x06, 0x66, 0x66, 0x40, 0x4C, 0xCC, 0xCD,
 };
-COMPILER_STRIP_GATE(80393F58, &wave);
+COMPILER_STRIP_GATE(0x80393F58, &wave);
 
 /* 80453908-8045390C 001F08 0004+00 1/1 0/0 0/0 .sdata2          @17253 */
 SECTION_SDATA2 static f32 lit_17253 = 43.0f / 100.0f;
@@ -3946,15 +4075,10 @@ asm void dCamera_c::SetBlurePosition(f32 param_0, f32 param_1, f32 param_2) {
 }
 #pragma pop
 
-/* 80181278-80181280 17BBB8 0008+00 1/1 0/0 0/0 .text SetBlureActor__9dCamera_cFP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::SetBlureActor(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/d_camera/SetBlureActor__9dCamera_cFP10fopAc_ac_c.s"
+/* 80181278-80181280 -00001 0008+00 0/0 0/0 0/0 .text SetBlureActor__9dCamera_cFP10fopAc_ac_c */
+void dCamera_c::SetBlureActor(fopAc_ac_c* param_0) {
+    *(u32*)(((u8*)this) + 1808) /* this->field_0x710 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80453918-8045391C 001F18 0004+00 1/1 0/0 0/0 .sdata2          @17392 */
@@ -4250,7 +4374,7 @@ asm void __sinit_d_camera_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_801825FC = (void*)__sinit_d_camera_cpp;
+REGISTER_CTORS(0x801825FC, __sinit_d_camera_cpp);
 #pragma pop
 
 /* 801827EC-801827F4 17D12C 0008+00 1/0 0/0 0/0 .text            @20@__dt__14dBgS_CamSphChkFv */
@@ -4620,15 +4744,10 @@ asm void daPy_py_c::getLeftFootPosP() {
 }
 #pragma pop
 
-/* 80182ABC-80182AC4 17D3FC 0008+00 2/2 0/0 0/0 .text            getMidnaActor__9daPy_py_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daPy_py_c::getMidnaActor() {
-    nofralloc
-#include "asm/d/d_camera/getMidnaActor__9daPy_py_cFv.s"
+/* 80182ABC-80182AC4 -00001 0008+00 0/0 0/0 0/0 .text            getMidnaActor__9daPy_py_cFv */
+u32 daPy_py_c::getMidnaActor() {
+    return *(u32*)(&daPy_py_c::m_midnaActor);
 }
-#pragma pop
 
 /* 80182AC4-80182AD0 17D404 000C+00 1/1 0/0 0/0 .text checkCopyRodThrowAfter__9daPy_py_cCFv */
 #pragma push
@@ -4640,15 +4759,10 @@ asm void daPy_py_c::checkCopyRodThrowAfter() const {
 }
 #pragma pop
 
-/* 80182AD0-80182AD8 17D410 0008+00 1/1 0/0 0/0 .text            keepLock__12dAttention_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::keepLock(int param_0) {
-    nofralloc
-#include "asm/d/d_camera/keepLock__12dAttention_cFi.s"
+/* 80182AD0-80182AD8 -00001 0008+00 0/0 0/0 0/0 .text            keepLock__12dAttention_cFi */
+void dAttention_c::keepLock(int param_0) {
+    *(u32*)(((u8*)this) + 1220) /* this->field_0x4c4 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80182AD8-80182B9C 17D418 00C4+00 1/1 0/0 0/0 .text            checkRide__9daPy_py_cCFv */
 #pragma push
@@ -4820,35 +4934,20 @@ asm void dCamParam_c::Arg2(s16 param_0) {
 }
 #pragma pop
 
-/* 80182C6C-80182C74 17D5AC 0008+00 1/1 0/0 0/0 .text            Arg1__11dCamParam_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamParam_c::Arg1(u8 param_0) {
-    nofralloc
-#include "asm/d/d_camera/Arg1__11dCamParam_cFUc.s"
+/* 80182C6C-80182C74 -00001 0008+00 0/0 0/0 0/0 .text            Arg1__11dCamParam_cFUc */
+void dCamParam_c::Arg1(u8 param_0) {
+    *(u8*)(((u8*)this) + 2) /* this->field_0x2 */ = (u8)(param_0);
 }
-#pragma pop
 
-/* 80182C74-80182C7C 17D5B4 0008+00 1/1 0/0 0/0 .text            Arg0__11dCamParam_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamParam_c::Arg0(u8 param_0) {
-    nofralloc
-#include "asm/d/d_camera/Arg0__11dCamParam_cFUc.s"
+/* 80182C74-80182C7C -00001 0008+00 0/0 0/0 0/0 .text            Arg0__11dCamParam_cFUc */
+void dCamParam_c::Arg0(u8 param_0) {
+    *(u8*)(((u8*)this) + 1) /* this->field_0x1 */ = (u8)(param_0);
 }
-#pragma pop
 
-/* 80182C7C-80182C84 17D5BC 0008+00 1/1 0/0 0/0 .text            Fovy__11dCamParam_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamParam_c::Fovy(u8 param_0) {
-    nofralloc
-#include "asm/d/d_camera/Fovy__11dCamParam_cFUc.s"
+/* 80182C7C-80182C84 -00001 0008+00 0/0 0/0 0/0 .text            Fovy__11dCamParam_cFUc */
+void dCamParam_c::Fovy(u8 param_0) {
+    *(u8*)this = (u8)(param_0);
 }
-#pragma pop
 
 /* 80182C84-80182C8C 17D5C4 0008+00 2/2 0/0 0/0 .text            U__7cSGlobeCFv */
 #pragma push
@@ -5034,122 +5133,4 @@ asm void daTagMwait_c::checkEndMessage() {
 }
 #pragma pop
 
-/* 80393F68-80394308 0205C8 039C+04 9/8 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80393F68 = "camtype.dat";
-SECTION_DEAD static char const* const stringBase_80393F74 = "D_MN01A";
-SECTION_DEAD static char const* const stringBase_80393F7C = "D_MN10A";
-SECTION_DEAD static char const* const stringBase_80393F84 = "D_MN11A";
-SECTION_DEAD static char const* const stringBase_80393F8C = "D_MN04A";
-SECTION_DEAD static char const* const stringBase_80393F94 = "D_MN05A";
-SECTION_DEAD static char const* const stringBase_80393F9C = "D_MN07A";
-SECTION_DEAD static char const* const stringBase_80393FA4 = "FieldS";
-SECTION_DEAD static char const* const stringBase_80393FAB = "Event";
-SECTION_DEAD static char const* const stringBase_80393FB1 = "Water";
-SECTION_DEAD static char const* const stringBase_80393FB7 = "Scope";
-SECTION_DEAD static char const* const stringBase_80393FBD = "WaterSurf";
-SECTION_DEAD static char const* const stringBase_80393FC7 = "HorseT";
-SECTION_DEAD static char const* const stringBase_80393FCE = "Board";
-SECTION_DEAD static char const* const stringBase_80393FD4 = "Canoe";
-SECTION_DEAD static char const* const stringBase_80393FDA = "Keep";
-SECTION_DEAD static char const* const stringBase_80393FDF = "Rodeo";
-SECTION_DEAD static char const* const stringBase_80393FE5 = "MagneBoots";
-SECTION_DEAD static char const* const stringBase_80393FF0 = "MagneRoof";
-SECTION_DEAD static char const* const stringBase_80393FFA = "MagneWall";
-SECTION_DEAD static char const* const stringBase_80394004 = "CoccoJump";
-SECTION_DEAD static char const* const stringBase_8039400E = "Boar";
-SECTION_DEAD static char const* const stringBase_80394013 = "GoatBattle";
-SECTION_DEAD static char const* const stringBase_8039401E = "GoronJump";
-SECTION_DEAD static char const* const stringBase_80394028 = "Spinner";
-SECTION_DEAD static char const* const stringBase_80394030 = "HookWall";
-SECTION_DEAD static char const* const stringBase_80394039 = "HookRoof";
-SECTION_DEAD static char const* const stringBase_80394042 = "HookActor";
-SECTION_DEAD static char const* const stringBase_8039404C = "RoofHung";
-SECTION_DEAD static char const* const stringBase_80394055 = "Rotary";
-SECTION_DEAD static char const* const stringBase_8039405C = "Street";
-SECTION_DEAD static char const* const stringBase_80394063 = "StreetN";
-SECTION_DEAD static char const* const stringBase_8039406B = "StreetP";
-SECTION_DEAD static char const* const stringBase_80394073 = "Rampart2";
-SECTION_DEAD static char const* const stringBase_8039407C = "Allay";
-SECTION_DEAD static char const* const stringBase_80394082 = "AllayR";
-SECTION_DEAD static char const* const stringBase_80394089 = "AllayR2";
-SECTION_DEAD static char const* const stringBase_80394091 = "AllayS";
-SECTION_DEAD static char const* const stringBase_80394098 = "AllayN";
-SECTION_DEAD static char const* const stringBase_8039409F = "AllayR3";
-SECTION_DEAD static char const* const stringBase_803940A7 = "CopyRodHall";
-SECTION_DEAD static char const* const stringBase_803940B3 = "MidnaTag";
-SECTION_DEAD static char const* const stringBase_803940BC = "WarpObj";
-SECTION_DEAD static char const* const stringBase_803940C4 = "LV9GZeldaTri";
-SECTION_DEAD static char const* const stringBase_803940D1 = "LV4BOSSSPJP";
-SECTION_DEAD static char const* const stringBase_803940DD = "LV7BOSS";
-SECTION_DEAD static char const* const stringBase_803940E5 = "TeppeiHook";
-SECTION_DEAD static char const* const stringBase_803940F0 = "Peep";
-SECTION_DEAD static char const* const stringBase_803940F5 = "DungeonS";
-SECTION_DEAD static char const* const stringBase_803940FE = "Room";
-SECTION_DEAD static char const* const stringBase_80394103 = "Cave";
-SECTION_DEAD static char const* const stringBase_80394108 = "Timer";
-SECTION_DEAD static char const* const stringBase_8039410E = "Target";
-SECTION_DEAD static char const* const stringBase_80394115 = "Smoothless";
-SECTION_DEAD static char const* const stringBase_80394120 = "Mode";
-SECTION_DEAD static char const* const stringBase_80394125 = "Radius";
-SECTION_DEAD static char const* const stringBase_8039412C = "RadiusNear";
-SECTION_DEAD static char const* const stringBase_80394137 = "Longitude";
-SECTION_DEAD static char const* const stringBase_80394141 = "Fovy";
-SECTION_DEAD static char const* const stringBase_80394146 = "FovyNear";
-SECTION_DEAD static char const* const stringBase_8039414F = "Latitude";
-SECTION_DEAD static char const* const stringBase_80394158 = "Listener";
-SECTION_DEAD static char const* const stringBase_80394161 = "@STARTER";
-SECTION_DEAD static char const* const stringBase_8039416A = "Speaker";
-SECTION_DEAD static char const* const stringBase_80394172 = "@TALKPARTNER";
-SECTION_DEAD static char const* const stringBase_8039417F = "E_RD";
-SECTION_DEAD static char const* const stringBase_80394184 = "PAUSE";
-SECTION_DEAD static char const* const stringBase_8039418A = "WAIT";
-SECTION_DEAD static char const* const stringBase_8039418F = "TALK";
-SECTION_DEAD static char const* const stringBase_80394194 = "FIXEDPOS";
-SECTION_DEAD static char const* const stringBase_8039419D = "FIXEDFRM";
-SECTION_DEAD static char const* const stringBase_803941A6 = "UNITRANS";
-SECTION_DEAD static char const* const stringBase_803941AF = "WATCHACTOR";
-SECTION_DEAD static char const* const stringBase_803941BA = "RESTOREPOS";
-SECTION_DEAD static char const* const stringBase_803941C5 = "GETITEM";
-SECTION_DEAD static char const* const stringBase_803941CD = "GAMEOVER";
-SECTION_DEAD static char const* const stringBase_803941D6 = "TURNTOACTOR";
-SECTION_DEAD static char const* const stringBase_803941E2 = "ROLLING";
-SECTION_DEAD static char const* const stringBase_803941EA = "TACT";
-SECTION_DEAD static char const* const stringBase_803941EF = "WINDDIR";
-SECTION_DEAD static char const* const stringBase_803941F7 = "PORTALWARP";
-SECTION_DEAD static char const* const stringBase_80394202 = "STYLE";
-SECTION_DEAD static char const* const stringBase_80394208 = "SAVE";
-SECTION_DEAD static char const* const stringBase_8039420D = "LOAD";
-SECTION_DEAD static char const* const stringBase_80394212 = "USEITEM0";
-SECTION_DEAD static char const* const stringBase_8039421B = "USEITEM1";
-SECTION_DEAD static char const* const stringBase_80394224 = "FIXEDFRMS";
-SECTION_DEAD static char const* const stringBase_8039422E = "BSPLINE";
-SECTION_DEAD static char const* const stringBase_80394236 = "POSSESSED";
-SECTION_DEAD static char const* const stringBase_80394240 = "TWOACTOR0";
-SECTION_DEAD static char const* const stringBase_8039424A = "STOKER";
-SECTION_DEAD static char const* const stringBase_80394251 = "UNIBRAKE";
-SECTION_DEAD static char const* const stringBase_8039425A = "UNIACCELE";
-SECTION_DEAD static char const* const stringBase_80394264 = "STBWAIT";
-SECTION_DEAD static char const* const stringBase_8039426C = "CURRENT";
-SECTION_DEAD static char const* const stringBase_80394274 = "PEEPHOLE";
-SECTION_DEAD static char const* const stringBase_8039427D = "DIGHOLE";
-SECTION_DEAD static char const* const stringBase_80394285 = "HINTTALK";
-SECTION_DEAD static char const* const stringBase_8039428E = "BSPTRANS";
-SECTION_DEAD static char const* const stringBase_80394297 = "MAPTOOL";
-SECTION_DEAD static char const* const stringBase_8039429F = "CAMERA";
-SECTION_DEAD static char const* const stringBase_803942A6 = "KeepDist";
-SECTION_DEAD static char const* const stringBase_803942AF = "Trim";
-SECTION_DEAD static char const* const stringBase_803942B4 = "DEFAULT";
-SECTION_DEAD static char const* const stringBase_803942BC = "Recover";
-SECTION_DEAD static char const* const stringBase_803942C4 = "WaitAnyKey";
-SECTION_DEAD static char const* const stringBase_803942CF = "BGCheck";
-SECTION_DEAD static char const* const stringBase_803942D7 = "SavePos";
-SECTION_DEAD static char const* const stringBase_803942DF = "LoadPos";
-SECTION_DEAD static char const* const stringBase_803942E7 = "PlayerHide";
-SECTION_DEAD static char const* const stringBase_803942F2 = "WideMode";
-SECTION_DEAD static char const* const stringBase_803942FB = "Continue";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80394304 = "\0\0\0";
-#pragma pop
+/* 80393F68-80393F68 0205C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

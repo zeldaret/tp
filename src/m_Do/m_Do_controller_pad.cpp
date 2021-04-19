@@ -15,6 +15,8 @@ struct mDoRst {
     static u8 mResetData[4 + 4 /* padding */];
 };
 
+struct interface_of_controller_pad {};
+
 struct JUTGamePad {
     struct EPadPort {};
 
@@ -34,8 +36,6 @@ struct JUTGamePad {
 
     static u8 sAnalogMode[4];
 };
-
-struct interface_of_controller_pad {};
 
 struct mDoCPd_c {
     /* 80007954 */ void create();

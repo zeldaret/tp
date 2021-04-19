@@ -93,7 +93,7 @@ template <typename A0>
 struct JSUList {};
 /* JSUList<JFWAlarm> */
 struct JSUList__template0 {
-    /* 80273724 */ void func_80273724();
+    /* 80273724 */ void func_80273724(void* _this);
 };
 
 struct JFWDisplay {
@@ -163,7 +163,7 @@ extern "C" static void JFWDrawDoneAlarm__Fv();
 extern "C" static void JFWGXAbortAlarmHandler__FP7OSAlarmP9OSContext();
 extern "C" static void diagnoseGpHang__Fv();
 extern "C" void __sinit_JFWDisplay_cpp();
-extern "C" void func_80273724();
+extern "C" void func_80273724(void* _this);
 extern "C" extern char const* const JFWDisplay__stringBase0;
 extern "C" u8 sList__8JFWAlarm[12];
 extern "C" u8 sManager__10JFWDisplay[4];
@@ -721,6 +721,20 @@ static asm void JFWGXAbortAlarmHandler(OSAlarm* param_0, OSContext* param_1) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039A878-8039A878 026ED8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039A878 = "GP status %d%d%d%d%d%d --> ";
+SECTION_DEAD static char const* const stringBase_8039A894 = "GP hang due to XF stall bug.\n";
+SECTION_DEAD static char const* const stringBase_8039A8B2 =
+    "GP hang due to unterminated primitive.\n";
+SECTION_DEAD static char const* const stringBase_8039A8DA = "GP hang due to illegal instruction.\n";
+SECTION_DEAD static char const* const stringBase_8039A8FF =
+    "GP appears to be not hung (waiting for input).\n";
+SECTION_DEAD static char const* const stringBase_8039A92F = "GP is in unknown state.\n";
+#pragma pop
+
 /* 802734FC-802736DC 26DE3C 01E0+00 1/1 0/0 0/0 .text            diagnoseGpHang__Fv */
 #pragma push
 #pragma optimization_level 0
@@ -743,29 +757,17 @@ asm void __sinit_JFWDisplay_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_802736DC = (void*)__sinit_JFWDisplay_cpp;
+REGISTER_CTORS(0x802736DC, __sinit_JFWDisplay_cpp);
 #pragma pop
 
 /* 80273724-80273778 26E064 0054+00 1/1 0/0 0/0 .text            __dt__18JSUList<8JFWAlarm>Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80273724() {
+extern "C" asm void func_80273724(void* _this) {
     nofralloc
 #include "asm/JSystem/JFramework/JFWDisplay/func_80273724.s"
 }
 #pragma pop
 
-/* 8039A878-8039A948 026ED8 00D0+00 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039A878 = "GP status %d%d%d%d%d%d --> ";
-SECTION_DEAD static char const* const stringBase_8039A894 = "GP hang due to XF stall bug.\n";
-SECTION_DEAD static char const* const stringBase_8039A8B2 =
-    "GP hang due to unterminated primitive.\n";
-SECTION_DEAD static char const* const stringBase_8039A8DA = "GP hang due to illegal instruction.\n";
-SECTION_DEAD static char const* const stringBase_8039A8FF =
-    "GP appears to be not hung (waiting for input).\n";
-SECTION_DEAD static char const* const stringBase_8039A92F = "GP is in unknown state.\n";
-#pragma pop
+/* 8039A878-8039A878 026ED8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -76,9 +76,9 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct JKRArchive {};
-
 struct J2DPane {};
+
+struct JKRArchive {};
 
 struct dSelect_cursor_c {
     /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
@@ -120,6 +120,16 @@ struct dMenu_save_c {
     /* 801F69B8 */ void _draw();
 };
 
+struct STControl {
+    /* 8003219C */ void checkTrigger();
+    /* 8003242C */ void checkLeftTrigger();
+    /* 800324A8 */ void checkRightTrigger();
+    /* 80032524 */ void checkUpTrigger();
+    /* 800325A0 */ void checkDownTrigger();
+};
+
+struct CSTControl {};
+
 struct JKRHeap {
     /* 802CE5CC */ void freeAll();
     /* 802CE784 */ void getTotalFreeSize();
@@ -127,16 +137,6 @@ struct JKRHeap {
 
 struct JKRExpHeap {
     /* 802CEE2C */ void create(u32, JKRHeap*, bool);
-};
-
-struct CSTControl {};
-
-struct STControl {
-    /* 8003219C */ void checkTrigger();
-    /* 8003242C */ void checkLeftTrigger();
-    /* 800324A8 */ void checkRightTrigger();
-    /* 80032524 */ void checkUpTrigger();
-    /* 800325A0 */ void checkDownTrigger();
 };
 
 struct dMenu_Skill_c {
@@ -305,9 +305,9 @@ struct dDlst_list_c {
     /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -709,6 +709,30 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
+/* 80395330-80395330 021990 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80395330 = "zelda_collect_soubi_screen.blo";
+SECTION_DEAD static char const* const stringBase_8039534F = "zelda_collect_soubi_do_icon_parts.blo";
+SECTION_DEAD static char const* const stringBase_80395375 = "tt_block8x8.bti";
+SECTION_DEAD static char const* const stringBase_80395385 = "";
+SECTION_DEAD static char const* const stringBase_80395386 = "zelda_collect_soubi_screen.btk";
+SECTION_DEAD static char const* const stringBase_803953A5 = "md_mask_parts_spin_1.bck";
+SECTION_DEAD static char const* const stringBase_803953BE = "md_mask_parts_spin_2.bck";
+SECTION_DEAD static char const* const stringBase_803953D7 = "md_mask_parts_spin_3.bck";
+SECTION_DEAD static char const* const stringBase_803953F0 = "md_mask_parts_spin_4.bck";
+SECTION_DEAD static char const* const stringBase_80395409 = "md_mask_parts_spin_1.brk";
+SECTION_DEAD static char const* const stringBase_80395422 = "md_mask_parts_spin_2_3.brk";
+SECTION_DEAD static char const* const stringBase_8039543D = "md_mask_parts_spin_4.brk";
+SECTION_DEAD static char const* const stringBase_80395456 = "md_mask_UI.bmd";
+SECTION_DEAD static char const* const stringBase_80395465 = "kageri_mirrer_spin_1.bck";
+SECTION_DEAD static char const* const stringBase_8039547E = "kageri_mirrer_spin_2.bck";
+SECTION_DEAD static char const* const stringBase_80395497 = "kageri_mirrer_spin_3.bck";
+SECTION_DEAD static char const* const stringBase_803954B0 = "kageri_mirrer_spin_4.bck";
+SECTION_DEAD static char const* const stringBase_803954C9 = "kageri_mirrer_spin_1.brk";
+SECTION_DEAD static char const* const stringBase_803954E2 = "kageri_mirrer_spin_2_3_4.brk";
+#pragma pop
+
 /* 803BC380-803BC38C 0194A0 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1332,7 +1356,7 @@ SECTION_RODATA static u8 const lit_3778[12 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80394F78, &lit_3778);
+COMPILER_STRIP_GATE(0x80394F78, &lit_3778);
 
 /* 80394F88-80394FA0 0215E8 0018+00 0/1 0/0 0/0 .rodata          text_sv$4768 */
 #pragma push
@@ -1341,7 +1365,7 @@ SECTION_RODATA static u8 const text_sv[24] = {
     0x00, 0x00, 0x00, 0x73, 0x61, 0x76, 0x5F, 0x30, 0x00, 0x00, 0x00, 0x73,
     0x61, 0x76, 0x5F, 0x31, 0x00, 0x00, 0x00, 0x73, 0x61, 0x76, 0x5F, 0x32,
 };
-COMPILER_STRIP_GATE(80394F88, &text_sv);
+COMPILER_STRIP_GATE(0x80394F88, &text_sv);
 #pragma pop
 
 /* 80394FA0-80394FB8 021600 0018+00 0/1 0/0 0/0 .rodata          text_op$4769 */
@@ -1351,7 +1375,7 @@ SECTION_RODATA static u8 const text_op[24] = {
     0x00, 0x00, 0x00, 0x6F, 0x70, 0x74, 0x5F, 0x30, 0x00, 0x00, 0x00, 0x6F,
     0x70, 0x74, 0x5F, 0x31, 0x00, 0x00, 0x00, 0x6F, 0x70, 0x74, 0x5F, 0x32,
 };
-COMPILER_STRIP_GATE(80394FA0, &text_op);
+COMPILER_STRIP_GATE(0x80394FA0, &text_op);
 #pragma pop
 
 /* 80394FB8-80394FD0 021618 0018+00 0/1 0/0 0/0 .rodata          ftext_sv$4770 */
@@ -1361,7 +1385,7 @@ SECTION_RODATA static u8 const ftext_sv[24] = {
     0x00, 0x66, 0x5F, 0x73, 0x61, 0x76, 0x5F, 0x30, 0x00, 0x66, 0x5F, 0x73,
     0x61, 0x76, 0x5F, 0x31, 0x00, 0x66, 0x5F, 0x73, 0x61, 0x76, 0x5F, 0x32,
 };
-COMPILER_STRIP_GATE(80394FB8, &ftext_sv);
+COMPILER_STRIP_GATE(0x80394FB8, &ftext_sv);
 #pragma pop
 
 /* 80394FD0-80394FE8 021630 0018+00 0/1 0/0 0/0 .rodata          ftext_op$4771 */
@@ -1371,7 +1395,7 @@ SECTION_RODATA static u8 const ftext_op[24] = {
     0x00, 0x66, 0x5F, 0x6F, 0x70, 0x74, 0x5F, 0x30, 0x00, 0x66, 0x5F, 0x6F,
     0x70, 0x74, 0x5F, 0x31, 0x00, 0x66, 0x5F, 0x6F, 0x70, 0x74, 0x5F, 0x32,
 };
-COMPILER_STRIP_GATE(80394FD0, &ftext_op);
+COMPILER_STRIP_GATE(0x80394FD0, &ftext_op);
 #pragma pop
 
 /* 80394FE8-80395010 021648 0028+00 0/1 0/0 0/0 .rodata          text_a_tag$4777 */
@@ -1382,7 +1406,7 @@ SECTION_RODATA static u8 const text_a_tag_4777[40] = {
     0x5F, 0x32, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x33, 0x61, 0x74, 0x65, 0x78,
     0x74, 0x31, 0x5F, 0x34, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x35,
 };
-COMPILER_STRIP_GATE(80394FE8, &text_a_tag_4777);
+COMPILER_STRIP_GATE(0x80394FE8, &text_a_tag_4777);
 #pragma pop
 
 /* 80395010-80395038 021670 0028+00 0/1 0/0 0/0 .rodata          text_b_tag$4778 */
@@ -1393,7 +1417,7 @@ SECTION_RODATA static u8 const text_b_tag_4778[40] = {
     0x5F, 0x32, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x33, 0x62, 0x74, 0x65, 0x78,
     0x74, 0x31, 0x5F, 0x34, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x35,
 };
-COMPILER_STRIP_GATE(80395010, &text_b_tag_4778);
+COMPILER_STRIP_GATE(0x80395010, &text_b_tag_4778);
 #pragma pop
 
 /* 80453F30-80453F34 002530 0004+00 2/2 0/0 0/0 .sdata2          @5173 */
@@ -1476,7 +1500,7 @@ SECTION_RODATA static u8 const lit_5343[9 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80395038, &lit_5343);
+COMPILER_STRIP_GATE(0x80395038, &lit_5343);
 
 /* 80395044-80395050 0216A4 0009+03 1/1 0/0 0/0 .rodata          @5344 */
 SECTION_RODATA static u8 const lit_5344[9 + 3 /* padding */] = {
@@ -1494,7 +1518,7 @@ SECTION_RODATA static u8 const lit_5344[9 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80395044, &lit_5344);
+COMPILER_STRIP_GATE(0x80395044, &lit_5344);
 
 /* 80453F50-80453F54 002550 0004+00 1/1 0/0 0/0 .sdata2          @5402 */
 SECTION_SDATA2 static u32 lit_5402 = 0x03020301;
@@ -1615,7 +1639,7 @@ SECTION_RODATA static u8 const smell_tag[40] = {
     0x68, 0x69, 0x77, 0x6F, 0x6C, 0x66, 0x5F, 0x66, 0x69, 0x73, 0x77, 0x6F, 0x6C, 0x66,
     0x5F, 0x69, 0x72, 0x69, 0x77, 0x6F, 0x6C, 0x66, 0x5F, 0x70, 0x6F, 0x75,
 };
-COMPILER_STRIP_GATE(80395050, &smell_tag);
+COMPILER_STRIP_GATE(0x80395050, &smell_tag);
 
 /* 801B3524-801B3640 1ADE64 011C+00 1/1 0/0 0/0 .text            setSmellType__17dMenu_Collect2D_cFv
  */
@@ -1634,7 +1658,7 @@ SECTION_RODATA static u8 const heart_tag[32] = {
     0x68, 0x65, 0x61, 0x72, 0x74, 0x5F, 0x31, 0x6E, 0x68, 0x65, 0x61, 0x72, 0x74, 0x5F, 0x32, 0x6E,
     0x68, 0x65, 0x61, 0x72, 0x74, 0x5F, 0x33, 0x6E, 0x68, 0x65, 0x61, 0x72, 0x74, 0x5F, 0x34, 0x6E,
 };
-COMPILER_STRIP_GATE(80395078, &heart_tag);
+COMPILER_STRIP_GATE(0x80395078, &heart_tag);
 
 /* 801B3640-801B370C 1ADF80 00CC+00 1/1 0/0 0/0 .text setHeartPiece__17dMenu_Collect2D_cFv */
 #pragma push
@@ -1661,7 +1685,7 @@ asm void dMenu_Collect2D_c::setPohMaxNum(u8 param_0) {
 SECTION_RODATA static u8 const tag_5980[16] = {
     0x00, 0x6B, 0x65, 0x6E, 0x5F, 0x67, 0x5F, 0x30, 0x00, 0x6B, 0x65, 0x6E, 0x5F, 0x67, 0x5F, 0x31,
 };
-COMPILER_STRIP_GATE(80395098, &tag_5980);
+COMPILER_STRIP_GATE(0x80395098, &tag_5980);
 
 /* 801B39D0-801B3CF4 1AE310 0324+00 2/2 0/0 0/0 .text
  * setEquipItemFrameColorSword__17dMenu_Collect2D_cFi           */
@@ -1679,7 +1703,7 @@ asm void dMenu_Collect2D_c::setEquipItemFrameColorSword(int param_0) {
 SECTION_RODATA static u8 const tag_6100[16] = {
     0x74, 0x61, 0x74, 0x65, 0x5F, 0x67, 0x5F, 0x30, 0x74, 0x61, 0x74, 0x65, 0x5F, 0x67, 0x5F, 0x31,
 };
-COMPILER_STRIP_GATE(803950A8, &tag_6100);
+COMPILER_STRIP_GATE(0x803950A8, &tag_6100);
 
 /* 801B3CF4-801B3FDC 1AE634 02E8+00 2/2 0/0 0/0 .text
  * setEquipItemFrameColorShield__17dMenu_Collect2D_cFi          */
@@ -1698,7 +1722,7 @@ SECTION_RODATA static u8 const tag_6213[24] = {
     0x66, 0x75, 0x6B, 0x75, 0x5F, 0x67, 0x5F, 0x30, 0x66, 0x75, 0x6B, 0x75,
     0x5F, 0x67, 0x5F, 0x31, 0x66, 0x75, 0x6B, 0x75, 0x5F, 0x67, 0x5F, 0x32,
 };
-COMPILER_STRIP_GATE(803950B8, &tag_6213);
+COMPILER_STRIP_GATE(0x803950B8, &tag_6213);
 
 /* 801B3FDC-801B42D8 1AE91C 02FC+00 2/2 0/0 0/0 .text
  * setEquipItemFrameColorClothes__17dMenu_Collect2D_cFi         */
@@ -1720,7 +1744,7 @@ SECTION_RODATA static u8 const kaz_n[72] = {
     0x5F, 0x30, 0x35, 0x00, 0x00, 0x75, 0x7A, 0x75, 0x5F, 0x30, 0x36, 0x00, 0x00, 0x75, 0x7A,
     0x75, 0x5F, 0x30, 0x37, 0x00, 0x00, 0x00, 0x68, 0x69, 0x73, 0x68, 0x69,
 };
-COMPILER_STRIP_GATE(803950D0, &kaz_n);
+COMPILER_STRIP_GATE(0x803950D0, &kaz_n);
 
 /* 801B42D8-801B46FC 1AEC18 0424+00 2/2 0/0 0/0 .text            setHIO__17dMenu_Collect2D_cFb */
 #pragma push
@@ -1757,7 +1781,7 @@ SECTION_RODATA static u8 const itemTag[336] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80395118, &itemTag);
+COMPILER_STRIP_GATE(0x80395118, &itemTag);
 
 /* 801B46FC-801B473C 1AF03C 0040+00 3/3 0/0 0/0 .text            getItemTag__17dMenu_Collect2D_cFiib
  */
@@ -2204,7 +2228,7 @@ SECTION_RODATA static u8 const text_a_tag_7111[40] = {
     0x5F, 0x32, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x33, 0x61, 0x74, 0x65, 0x78,
     0x74, 0x31, 0x5F, 0x34, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x35,
 };
-COMPILER_STRIP_GATE(80395268, &text_a_tag_7111);
+COMPILER_STRIP_GATE(0x80395268, &text_a_tag_7111);
 
 /* 801B5FB4-801B60B8 1B08F4 0104+00 20/20 0/0 0/0 .text setAButtonString__17dMenu_Collect2D_cFUs
  */
@@ -2224,7 +2248,7 @@ SECTION_RODATA static u8 const text_b_tag_7134[40] = {
     0x5F, 0x32, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x33, 0x62, 0x74, 0x65, 0x78,
     0x74, 0x31, 0x5F, 0x34, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x35,
 };
-COMPILER_STRIP_GATE(80395290, &text_b_tag_7134);
+COMPILER_STRIP_GATE(0x80395290, &text_b_tag_7134);
 
 /* 801B60B8-801B61BC 1B09F8 0104+00 20/20 0/0 0/0 .text setBButtonString__17dMenu_Collect2D_cFUs
  */
@@ -2423,7 +2447,7 @@ SECTION_RODATA static u8 const m_kamen_offset_x[20] = {
     0xC1, 0x60, 0x00, 0x00, 0xC1, 0x60, 0x00, 0x00, 0xC1, 0x60,
     0x00, 0x00, 0x3F, 0xA6, 0x66, 0x66, 0x40, 0xD0, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803952B8, &m_kamen_offset_x);
+COMPILER_STRIP_GATE(0x803952B8, &m_kamen_offset_x);
 #pragma pop
 
 /* 803952CC-803952E0 02192C 0014+00 0/1 0/0 0/0 .rodata          m_kamen_offset_y$7579 */
@@ -2433,7 +2457,7 @@ SECTION_RODATA static u8 const m_kamen_offset_y[20] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x41, 0xB0, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803952CC, &m_kamen_offset_y);
+COMPILER_STRIP_GATE(0x803952CC, &m_kamen_offset_y);
 #pragma pop
 
 /* 803952E0-803952F4 021940 0014+00 0/1 0/0 0/0 .rodata          m_kamen_scale$7580 */
@@ -2443,7 +2467,7 @@ SECTION_RODATA static u8 const m_kamen_scale[20] = {
     0x40, 0x26, 0x66, 0x66, 0x40, 0x26, 0x66, 0x66, 0x40, 0x0C,
     0xCC, 0xCD, 0x3F, 0xE6, 0x66, 0x66, 0x3F, 0xE6, 0x66, 0x66,
 };
-COMPILER_STRIP_GATE(803952E0, &m_kamen_scale);
+COMPILER_STRIP_GATE(0x803952E0, &m_kamen_scale);
 #pragma pop
 
 /* 801B7014-801B71C4 1B1954 01B0+00 1/1 0/0 0/0 .text createMaskModel__17dMenu_Collect3D_cFv */
@@ -2464,7 +2488,7 @@ SECTION_RODATA static u8 const m_mirror_offset_x[20] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803952F4, &m_mirror_offset_x);
+COMPILER_STRIP_GATE(0x803952F4, &m_mirror_offset_x);
 #pragma pop
 
 /* 80395308-8039531C 021968 0014+00 0/1 0/0 0/0 .rodata          m_mirror_offset_y$7683 */
@@ -2474,7 +2498,7 @@ SECTION_RODATA static u8 const m_mirror_offset_y[20] = {
     0x40, 0x80, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00, 0x40, 0x80,
     0x00, 0x00, 0x40, 0x80, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80395308, &m_mirror_offset_y);
+COMPILER_STRIP_GATE(0x80395308, &m_mirror_offset_y);
 #pragma pop
 
 /* 8039531C-80395330 02197C 0014+00 0/1 0/0 0/0 .rodata          m_mirror_scale$7684 */
@@ -2484,7 +2508,15 @@ SECTION_RODATA static u8 const m_mirror_scale[20] = {
     0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x19,
     0x99, 0x9A, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x19, 0x99, 0x9A,
 };
-COMPILER_STRIP_GATE(8039531C, &m_mirror_scale);
+COMPILER_STRIP_GATE(0x8039531C, &m_mirror_scale);
+#pragma pop
+
+/* 80395330-80395330 021990 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803954FF = "kageri_mirrer_UI.bmd";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80395514 = "\0\0\0";
 #pragma pop
 
 /* 801B71C4-801B7434 1B1B04 0270+00 1/1 0/0 0/0 .text createMirrorModel__17dMenu_Collect3D_cFv */
@@ -2677,7 +2709,7 @@ asm void __sinit_d_menu_collect_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_801B7B14 = (void*)__sinit_d_menu_collect_cpp;
+REGISTER_CTORS(0x801B7B14, __sinit_d_menu_collect_cpp);
 #pragma pop
 
 /* 801B7EB8-801B7F00 1B27F8 0048+00 1/0 0/0 0/0 .text            __dt__20dMenu_Collect2DTop_cFv */
@@ -2700,30 +2732,4 @@ asm void dMenu_Collect2D_c::draw() {
 }
 #pragma pop
 
-/* 80395330-80395518 021990 01E4+04 13/9 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80395330 = "zelda_collect_soubi_screen.blo";
-SECTION_DEAD static char const* const stringBase_8039534F = "zelda_collect_soubi_do_icon_parts.blo";
-SECTION_DEAD static char const* const stringBase_80395375 = "tt_block8x8.bti";
-SECTION_DEAD static char const* const stringBase_80395385 = "";
-SECTION_DEAD static char const* const stringBase_80395386 = "zelda_collect_soubi_screen.btk";
-SECTION_DEAD static char const* const stringBase_803953A5 = "md_mask_parts_spin_1.bck";
-SECTION_DEAD static char const* const stringBase_803953BE = "md_mask_parts_spin_2.bck";
-SECTION_DEAD static char const* const stringBase_803953D7 = "md_mask_parts_spin_3.bck";
-SECTION_DEAD static char const* const stringBase_803953F0 = "md_mask_parts_spin_4.bck";
-SECTION_DEAD static char const* const stringBase_80395409 = "md_mask_parts_spin_1.brk";
-SECTION_DEAD static char const* const stringBase_80395422 = "md_mask_parts_spin_2_3.brk";
-SECTION_DEAD static char const* const stringBase_8039543D = "md_mask_parts_spin_4.brk";
-SECTION_DEAD static char const* const stringBase_80395456 = "md_mask_UI.bmd";
-SECTION_DEAD static char const* const stringBase_80395465 = "kageri_mirrer_spin_1.bck";
-SECTION_DEAD static char const* const stringBase_8039547E = "kageri_mirrer_spin_2.bck";
-SECTION_DEAD static char const* const stringBase_80395497 = "kageri_mirrer_spin_3.bck";
-SECTION_DEAD static char const* const stringBase_803954B0 = "kageri_mirrer_spin_4.bck";
-SECTION_DEAD static char const* const stringBase_803954C9 = "kageri_mirrer_spin_1.brk";
-SECTION_DEAD static char const* const stringBase_803954E2 = "kageri_mirrer_spin_2_3_4.brk";
-SECTION_DEAD static char const* const stringBase_803954FF = "kageri_mirrer_UI.bmd";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80395514 = "\0\0\0";
-#pragma pop
+/* 80395330-80395330 021990 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

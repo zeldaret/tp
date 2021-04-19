@@ -25,7 +25,7 @@ template <typename A0>
 struct JSUList {};
 /* JSUList<JKRFileLoader> */
 struct JSUList__template7 {
-    /* 802D45E4 */ void func_802D45E4();
+    /* 802D45E4 */ void func_802D45E4(void* _this);
 };
 
 struct JKRFileLoader {
@@ -62,7 +62,7 @@ extern "C" void detachResource__13JKRFileLoaderFPvP13JKRFileLoader();
 extern "C" void findVolume__13JKRFileLoaderFPPCc();
 extern "C" void fetchVolumeName__13JKRFileLoaderFPclPCc();
 extern "C" void __sinit_JKRFileLoader_cpp();
-extern "C" void func_802D45E4();
+extern "C" void func_802D45E4(void* _this);
 extern "C" extern char const* const JKRFileLoader__stringBase0;
 extern "C" u8 sVolumeList__13JKRFileLoader[12];
 extern "C" u8 sCurrentVolume__13JKRFileLoader[4 + 4 /* padding */];
@@ -207,6 +207,14 @@ asm void JKRFileLoader::findVolume(char const** param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8039D150-8039D150 0297B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D150 = "/";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039D152 = "\0\0\0\0\0";
+#pragma pop
+
 /* 804508C0-804508C8 000340 0002+06 1/1 0/0 0/0 .sdata           rootPath$2498 */
 SECTION_SDATA static u8 rootPath[2 + 6 /* padding */] = {
     0x2F,
@@ -242,7 +250,7 @@ asm void __sinit_JKRFileLoader_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_802D45A0 = (void*)__sinit_JKRFileLoader_cpp;
+REGISTER_CTORS(0x802D45A0, __sinit_JKRFileLoader_cpp);
 #pragma pop
 
 /* 802D45E4-802D4638 2CEF24 0054+00 1/1 0/0 0/0 .text            __dt__24JSUList<13JKRFileLoader>Fv
@@ -250,17 +258,10 @@ SECTION_CTORS void* const _ctors_802D45A0 = (void*)__sinit_JKRFileLoader_cpp;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802D45E4() {
+extern "C" asm void func_802D45E4(void* _this) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRFileLoader/func_802D45E4.s"
 }
 #pragma pop
 
-/* 8039D150-8039D158 0297B0 0002+06 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039D150 = "/";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039D152 = "\0\0\0\0\0";
-#pragma pop
+/* 8039D150-8039D150 0297B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

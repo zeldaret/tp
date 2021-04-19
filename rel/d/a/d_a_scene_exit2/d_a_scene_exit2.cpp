@@ -56,9 +56,9 @@ struct dEvent_manager_c {
     /* 8004817C */ void cutEnd(int);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -90,7 +90,7 @@ extern "C" static void daScExit_Draw__FP10daScExit_c();
 extern "C" static void daScExit_Execute__FP10daScExit_c();
 extern "C" static void daScExit_Delete__FP10daScExit_c();
 extern "C" static void daScExit_Create__FP10daScExit_c();
-extern "C" void func_8059E7D0(u8*);
+extern "C" void func_8059E7D0(void* _this, u8*);
 extern "C" extern char const* const d_a_scene_exit2__stringBase0;
 extern "C" extern void* g_profile_SCENE_EXIT2[12];
 
@@ -151,7 +151,14 @@ asm void daScExit_c::setBaseMtx() {
 /* ############################################################################################## */
 /* 8059E7F4-8059E7F8 000000 0004+00 2/2 0/0 0/0 .rodata          @3659 */
 SECTION_RODATA static f32 const lit_3659 = 100.0f;
-COMPILER_STRIP_GATE(8059E7F4, &lit_3659);
+COMPILER_STRIP_GATE(0x8059E7F4, &lit_3659);
+
+/* 8059E808-8059E808 000014 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8059E808 = "SceneExit";
+SECTION_DEAD static char const* const stringBase_8059E812 = "SCENE_EXIT";
+#pragma pop
 
 /* 8059E838-8059E844 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -308,21 +315,30 @@ void daScExit_c::actionDead() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3797 = 1.0f;
-COMPILER_STRIP_GATE(8059E7F8, &lit_3797);
+COMPILER_STRIP_GATE(0x8059E7F8, &lit_3797);
 #pragma pop
 
 /* 8059E7FC-8059E800 000008 0004+00 0/1 0/0 0/0 .rodata          @3798 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3798 = -1.0f;
-COMPILER_STRIP_GATE(8059E7FC, &lit_3798);
+COMPILER_STRIP_GATE(0x8059E7FC, &lit_3798);
 #pragma pop
 
 /* 8059E800-8059E804 00000C 0004+00 0/1 0/0 0/0 .rodata          @3799 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3799 = 800.0f;
-COMPILER_STRIP_GATE(8059E800, &lit_3799);
+COMPILER_STRIP_GATE(0x8059E800, &lit_3799);
+#pragma pop
+
+/* 8059E808-8059E808 000014 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8059E81D = "WAIT";
+SECTION_DEAD static char const* const stringBase_8059E822 = "START";
+SECTION_DEAD static char const* const stringBase_8059E828 = "SCENE_CHG";
+SECTION_DEAD static char const* const stringBase_8059E832 = "Timer";
 #pragma pop
 
 /* 8059E8C0-8059E8CC -00001 000C+00 1/1 0/0 0/0 .data            action_table$3745 */
@@ -411,7 +427,7 @@ static asm void daScExit_Create(daScExit_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8059E7D0(u8* param_0) {
+extern "C" asm void func_8059E7D0(void* _this, u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_scene_exit2/d_a_scene_exit2/func_8059E7D0.s"
 }
@@ -427,7 +443,7 @@ SECTION_RODATA static u8 const lit_3800[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8059E804, &lit_3800);
+COMPILER_STRIP_GATE(0x8059E804, &lit_3800);
 #pragma pop
 
 /* 8059E8CC-8059E8EC -00001 0020+00 1/0 0/0 0/0 .data            l_daScExit_Method */
@@ -452,14 +468,4 @@ SECTION_DATA extern void* g_profile_SCENE_EXIT2[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 8059E808-8059E838 000014 0030+00 4/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8059E808 = "SceneExit";
-SECTION_DEAD static char const* const stringBase_8059E812 = "SCENE_EXIT";
-SECTION_DEAD static char const* const stringBase_8059E81D = "WAIT";
-SECTION_DEAD static char const* const stringBase_8059E822 = "START";
-SECTION_DEAD static char const* const stringBase_8059E828 = "SCENE_CHG";
-SECTION_DEAD static char const* const stringBase_8059E832 = "Timer";
-#pragma pop
+/* 8059E808-8059E808 000014 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

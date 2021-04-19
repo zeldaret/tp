@@ -75,9 +75,9 @@ struct dPa_followEcallBack {
     /* 80CED4C8 */ void __defctor();
 };
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -158,9 +158,9 @@ struct cCcD_GStts {
     /* 80CEEE7C */ ~cCcD_GStts();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -230,8 +230,8 @@ extern "C" void execute__18JPAEmitterCallBackFP14JPABaseEmitter();
 extern "C" void executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter();
 extern "C" void draw__18JPAEmitterCallBackFP14JPABaseEmitter();
 extern "C" void drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter();
-extern "C" void func_80CEEF48(u16*);
-extern "C" void func_80CEEF64(u8*);
+extern "C" void func_80CEEF48(void* _this, u16*);
+extern "C" void func_80CEEF64(void* _this, u8*);
 extern "C" static void func_80CEEF80();
 extern "C" static void func_80CEEF88();
 extern "C" extern char const* const d_a_obj_stopper__stringBase0;
@@ -312,6 +312,13 @@ extern "C" void __register_global_object();
 // Declarations:
 //
 
+/* ############################################################################################## */
+/* 80CEEFF0-80CEEFF0 000050 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CEEFF0 = "door-stop.bmd";
+#pragma pop
+
 /* 80CECF0C-80CECF34 0000EC 0028+00 1/1 0/0 0/0 .text            getStopModelData__Fv */
 #pragma push
 #pragma optimization_level 0
@@ -330,11 +337,11 @@ SECTION_RODATA static u8 const lit_3635[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CEEFA0, &lit_3635);
+COMPILER_STRIP_GATE(0x80CEEFA0, &lit_3635);
 
 /* 80CEEFA4-80CEEFA8 000004 0004+00 1/1 0/0 0/0 .rodata          @3636 */
 SECTION_RODATA static f32 const lit_3636 = 100.0f;
-COMPILER_STRIP_GATE(80CEEFA4, &lit_3636);
+COMPILER_STRIP_GATE(0x80CEEFA4, &lit_3636);
 
 /* 80CEF1E8-80CEF1EC 000008 0001+03 1/1 0/0 0/0 .bss             @1109 */
 static u8 lit_1109[1 + 3 /* padding */];
@@ -474,20 +481,20 @@ asm void daObjStopper_c::setBaseMtx() {
 /* ############################################################################################## */
 /* 80CEEFA8-80CEEFAC 000008 0004+00 1/2 0/0 0/0 .rodata          @3692 */
 SECTION_RODATA static f32 const lit_3692 = 300.0f;
-COMPILER_STRIP_GATE(80CEEFA8, &lit_3692);
+COMPILER_STRIP_GATE(0x80CEEFA8, &lit_3692);
 
 /* 80CEEFAC-80CEEFB0 00000C 0004+00 0/1 0/0 0/0 .rodata          @3693 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3693 = 30.0f;
-COMPILER_STRIP_GATE(80CEEFAC, &lit_3693);
+COMPILER_STRIP_GATE(0x80CEEFAC, &lit_3693);
 #pragma pop
 
 /* 80CEEFB0-80CEEFB4 000010 0004+00 0/2 0/0 0/0 .rodata          @3694 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3694 = 2.0f;
-COMPILER_STRIP_GATE(80CEEFB0, &lit_3694);
+COMPILER_STRIP_GATE(0x80CEEFB0, &lit_3694);
 #pragma pop
 
 /* 80CED0B8-80CED20C 000298 0154+00 1/0 0/0 0/0 .text            Create__14daObjStopper_cFv */
@@ -835,46 +842,46 @@ asm void daObjStopper_c::action() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3876 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(80CEEFB4, &lit_3876);
+COMPILER_STRIP_GATE(0x80CEEFB4, &lit_3876);
 #pragma pop
 
 /* 80CEEFB8-80CEEFBC 000018 0004+00 2/6 0/0 0/0 .rodata          @3877 */
 SECTION_RODATA static f32 const lit_3877 = 1.0f;
-COMPILER_STRIP_GATE(80CEEFB8, &lit_3877);
+COMPILER_STRIP_GATE(0x80CEEFB8, &lit_3877);
 
 /* 80CEEFBC-80CEEFC0 00001C 0004+00 0/1 0/0 0/0 .rodata          @3878 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3878 = -0.25f;
-COMPILER_STRIP_GATE(80CEEFBC, &lit_3878);
+COMPILER_STRIP_GATE(0x80CEEFBC, &lit_3878);
 #pragma pop
 
 /* 80CEEFC0-80CEEFC4 000020 0004+00 0/1 0/0 0/0 .rodata          @3879 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3879 = 25.0f;
-COMPILER_STRIP_GATE(80CEEFC0, &lit_3879);
+COMPILER_STRIP_GATE(0x80CEEFC0, &lit_3879);
 #pragma pop
 
 /* 80CEEFC4-80CEEFC8 000024 0004+00 0/1 0/0 0/0 .rodata          @3880 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3880 = 17.0f / 10.0f;
-COMPILER_STRIP_GATE(80CEEFC4, &lit_3880);
+COMPILER_STRIP_GATE(0x80CEEFC4, &lit_3880);
 #pragma pop
 
 /* 80CEEFC8-80CEEFCC 000028 0004+00 0/2 0/0 0/0 .rodata          @3881 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3881 = 60.0f;
-COMPILER_STRIP_GATE(80CEEFC8, &lit_3881);
+COMPILER_STRIP_GATE(0x80CEEFC8, &lit_3881);
 #pragma pop
 
 /* 80CEEFCC-80CEEFD0 00002C 0004+00 0/2 0/0 0/0 .rodata          @3882 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3882 = 350.0f;
-COMPILER_STRIP_GATE(80CEEFCC, &lit_3882);
+COMPILER_STRIP_GATE(0x80CEEFCC, &lit_3882);
 #pragma pop
 
 /* 80CED824-80CEDA24 000A04 0200+00 1/0 0/0 0/0 .text            actionWait__14daObjStopper_cFv */
@@ -910,7 +917,7 @@ asm void daObjStopper_c::actionOrderEvent() {
 /* ############################################################################################## */
 /* 80CEEFD0-80CEEFD4 000030 0004+00 2/5 0/0 0/0 .rodata          @4025 */
 SECTION_RODATA static f32 const lit_4025 = -1.0f;
-COMPILER_STRIP_GATE(80CEEFD0, &lit_4025);
+COMPILER_STRIP_GATE(0x80CEEFD0, &lit_4025);
 
 /* 80CEDB2C-80CEE048 000D0C 051C+00 1/0 0/0 0/0 .text            actionEvent__14daObjStopper_cFv */
 #pragma push
@@ -954,7 +961,7 @@ asm void daObjStopper_c::actionCloseInit() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4053 = 6.0f;
-COMPILER_STRIP_GATE(80CEEFD4, &lit_4053);
+COMPILER_STRIP_GATE(0x80CEEFD4, &lit_4053);
 #pragma pop
 
 /* 80CEE0E0-80CEE148 0012C0 0068+00 1/0 0/0 0/0 .text            actionClose__14daObjStopper_cFv */
@@ -976,7 +983,7 @@ SECTION_RODATA static f32 const lit_4166[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80CEEFD8, &lit_4166);
+COMPILER_STRIP_GATE(0x80CEEFD8, &lit_4166);
 #pragma pop
 
 /* 80CEEFE0-80CEEFE8 000040 0008+00 0/3 0/0 0/0 .rodata          @4168 */
@@ -985,7 +992,7 @@ COMPILER_STRIP_GATE(80CEEFD8, &lit_4166);
 SECTION_RODATA static u8 const lit_4168[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CEEFE0, &lit_4168);
+COMPILER_STRIP_GATE(0x80CEEFE0, &lit_4168);
 #pragma pop
 
 /* 80CEE148-80CEE5D0 001328 0488+00 1/1 0/0 0/0 .text            hint_action1__14daObjStopper_cFv */
@@ -1013,14 +1020,14 @@ asm void daObjStopper_c::hint_action2() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4311 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80CEEFE8, &lit_4311);
+COMPILER_STRIP_GATE(0x80CEEFE8, &lit_4311);
 #pragma pop
 
 /* 80CEEFEC-80CEEFF0 00004C 0004+00 0/1 0/0 0/0 .rodata          @4312 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4312 = 115.0f;
-COMPILER_STRIP_GATE(80CEEFEC, &lit_4312);
+COMPILER_STRIP_GATE(0x80CEEFEC, &lit_4312);
 #pragma pop
 
 /* 80CEEA28-80CEECFC 001C08 02D4+00 1/1 0/0 0/0 .text            hint_action3__14daObjStopper_cFv */
@@ -1142,7 +1149,7 @@ void JPAEmitterCallBack::drawAfter(JPABaseEmitter* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80CEEF48(u16* param_0) {
+extern "C" asm void func_80CEEF48(void* _this, u16* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_stopper/d_a_obj_stopper/func_80CEEF48.s"
 }
@@ -1152,7 +1159,7 @@ extern "C" asm void func_80CEEF48(u16* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80CEEF64(u8* param_0) {
+extern "C" asm void func_80CEEF64(void* _this, u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_stopper/d_a_obj_stopper/func_80CEEF64.s"
 }
@@ -1350,9 +1357,4 @@ static u8 data_80CEF2A4[4];
 static u8 data_80CEF2A8[4];
 #pragma pop
 
-/* 80CEEFF0-80CEEFFE 000050 000E+00 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CEEFF0 = "door-stop.bmd";
-#pragma pop
+/* 80CEEFF0-80CEEFF0 000050 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

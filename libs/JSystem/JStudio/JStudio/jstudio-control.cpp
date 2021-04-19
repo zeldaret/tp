@@ -210,7 +210,7 @@ extern "C" u8 ga8cSignature__Q27JStudio4data[8];
 SECTION_RODATA static u8 const lit_745[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8039AA40, &lit_745);
+COMPILER_STRIP_GATE(0x8039AA40, &lit_745);
 
 /* 803C4AC0-803C4AE0 021BE0 0020+00 2/2 0/0 0/0 .data            __vt__Q27JStudio6TParse */
 SECTION_DATA extern void* __vt__Q27JStudio6TParse[8] = {
@@ -310,7 +310,7 @@ asm void JStudio::TControl::transformOnGet_setOrigin_TxyzRy(Vec const& param_0, 
 SECTION_RODATA static u8 const lit_838[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8039AA4C, &lit_838);
+COMPILER_STRIP_GATE(0x8039AA4C, &lit_838);
 
 /* 80285368-8028543C 27FCA8 00D4+00 1/1 0/0 0/0 .text
  * transform_setOrigin_ctb__Q27JStudio8TControlFRCQ37JStudio3ctb7TObject */
@@ -419,7 +419,7 @@ SECTION_RODATA static u8 const lit_1138[12 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039AA58, &lit_1138);
+COMPILER_STRIP_GATE(0x8039AA58, &lit_1138);
 
 /* 80285708-802857E4 280048 00DC+00 1/0 0/0 0/0 .text
  * parseHeader__Q27JStudio6TParseFRCQ47JStudio3stb4data14TParse_THeaderUl */

@@ -47,8 +47,6 @@ struct renderingDmap_c {
     /* 801C263C */ bool isRendIcon() const;
 };
 
-struct Vec {};
-
 struct dDrawPath_c {
     struct line_class {};
 
@@ -65,6 +63,8 @@ struct dDrawPath_c {
     /* 8003C94C */ void rendering(dDrawPath_c::line_class const*);
     /* 8003CCC4 */ void drawPath();
 };
+
+struct Vec {};
 
 struct renderingDAmap_c {
     /* 8003FCC8 */ void init(u8*, u16, u16, u16, u16);
@@ -631,7 +631,7 @@ SECTION_RODATA static void* const l_paletteDmap_m[60] = {
     (void*)NULL,
     (void*)NULL,
 };
-COMPILER_STRIP_GATE(80395860, &l_paletteDmap_m);
+COMPILER_STRIP_GATE(0x80395860, &l_paletteDmap_m);
 
 /* 80395950-80395974 021FB0 0024+00 0/1 0/0 0/0 .rodata          l_dungeon_offColor$3841 */
 #pragma push
@@ -641,7 +641,7 @@ SECTION_RODATA static u8 const l_dungeon_offColor[36] = {
     0x04, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x18, 0x00, 0x00, 0x00,
     0x1C, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x24, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80395950, &l_dungeon_offColor);
+COMPILER_STRIP_GATE(0x80395950, &l_dungeon_offColor);
 #pragma pop
 
 /* 80395974-80395998 021FD4 0024+00 0/1 0/0 0/0 .rodata          l_dungeon_onColor$3842 */
@@ -652,7 +652,7 @@ SECTION_RODATA static u8 const l_dungeon_onColor[36] = {
     0x04, 0x00, 0x00, 0x00, 0x34, 0x00, 0x00, 0x00, 0x38, 0x00, 0x00, 0x00,
     0x3C, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0x44, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80395974, &l_dungeon_onColor);
+COMPILER_STRIP_GATE(0x80395974, &l_dungeon_onColor);
 #pragma pop
 
 /* 80395998-803959C0 021FF8 0024+04 0/1 0/0 0/0 .rodata          l_dungeon_stayColor$3843 */
@@ -701,7 +701,7 @@ SECTION_RODATA static u8 const l_dungeon_stayColor[36 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80395998, &l_dungeon_stayColor);
+COMPILER_STRIP_GATE(0x80395998, &l_dungeon_stayColor);
 #pragma pop
 
 /* 801C0C48-801C0CB8 1BB588 0070+00 1/0 0/0 0/0 .text            getColor__15renderingDmap_cFi */
@@ -1511,7 +1511,7 @@ asm void __sinit_d_menu_dmap_map_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_801C2644 = (void*)__sinit_d_menu_dmap_map_cpp;
+REGISTER_CTORS(0x801C2644, __sinit_d_menu_dmap_map_cpp);
 #pragma pop
 
 /* ############################################################################################## */

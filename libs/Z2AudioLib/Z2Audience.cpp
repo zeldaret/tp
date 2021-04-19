@@ -88,12 +88,12 @@ struct Z2Audience3DSetting {
     /* 802BC6F8 */ void updateDolbyDist(f32, f32);
 };
 
-struct Z2AudibleChannel {
-    /* 802BBE74 */ Z2AudibleChannel();
-};
-
 struct JAIAudible {
     /* 8029EFAC */ ~JAIAudible();
+};
+
+struct Z2AudibleChannel {
+    /* 802BBE74 */ Z2AudibleChannel();
 };
 
 struct Z2Audience {
@@ -135,7 +135,7 @@ template <typename A0>
 struct JASMemPool {};
 /* JASMemPool<Z2Audible> */
 struct JASMemPool__template5 {
-    /* 802BD288 */ void func_802BD288();
+    /* 802BD288 */ void func_802BD288(void* _this);
 };
 
 struct JASGenericMemPool {
@@ -184,7 +184,7 @@ extern "C" void calcMicPriority__9Z2SpotMicFf();
 extern "C" void calcMicVolume__9Z2SpotMicFfif();
 extern "C" void __ct__10Z2AudienceFv();
 extern "C" void __dt__10Z2AudienceFv();
-extern "C" void func_802BD288();
+extern "C" void func_802BD288(void* _this);
 extern "C" void setAudioCamera__10Z2AudienceFPA4_fR3VecR3Vecffbib();
 extern "C" void func_802BD338();
 extern "C" void deleteAudible__10Z2AudienceFP10JAIAudible();
@@ -582,7 +582,7 @@ SECTION_RODATA static u8 const lit_1193[12 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C220, &lit_1193);
+COMPILER_STRIP_GATE(0x8039C220, &lit_1193);
 
 /* 80455B08-80455B0C 004108 0004+00 1/1 0/0 0/0 .sdata2          @1267 */
 SECTION_SDATA2 static f32 lit_1267 = -22.755556106567383f;
@@ -758,7 +758,7 @@ asm Z2Audience::~Z2Audience() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802BD288() {
+extern "C" asm void func_802BD288(void* _this) {
     nofralloc
 #include "asm/Z2AudioLib/Z2Audience/func_802BD288.s"
 }
@@ -986,7 +986,7 @@ asm void __sinit_Z2Audience_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_802BDEDC = (void*)__sinit_Z2Audience_cpp;
+REGISTER_CTORS(0x802BDEDC, __sinit_Z2Audience_cpp);
 #pragma pop
 
 /* ############################################################################################## */

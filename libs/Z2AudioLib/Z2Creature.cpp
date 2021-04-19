@@ -27,9 +27,9 @@ struct JSULink {};
 /* JSULink<Z2CreatureEnemy> */
 struct JSULink__template2 {};
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2CreatureEnemy {
     /* 802C0F64 */ Z2CreatureEnemy();
@@ -1470,5 +1470,5 @@ asm void __sinit_Z2Creature_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_802C3040 = (void*)__sinit_Z2Creature_cpp;
+REGISTER_CTORS(0x802C3040, __sinit_Z2Creature_cpp);
 #pragma pop

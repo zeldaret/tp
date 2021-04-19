@@ -93,20 +93,20 @@ SECTION_RODATA static u8 const lit_3758[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D64D74, &lit_3758);
+COMPILER_STRIP_GATE(0x80D64D74, &lit_3758);
 
 /* 80D64D78-80D64D7C 000004 0004+00 0/1 0/0 0/0 .rodata          @3759 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3759 = 10000.0f;
-COMPILER_STRIP_GATE(80D64D78, &lit_3759);
+COMPILER_STRIP_GATE(0x80D64D78, &lit_3759);
 #pragma pop
 
 /* 80D64D7C-80D64D80 000008 0004+00 0/1 0/0 0/0 .rodata          @3760 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3760 = 3.0f;
-COMPILER_STRIP_GATE(80D64D7C, &lit_3760);
+COMPILER_STRIP_GATE(0x80D64D7C, &lit_3760);
 #pragma pop
 
 /* 80D64D94-80D64D98 000000 0004+00 2/2 0/0 0/0 .data            m_master_id */
@@ -179,7 +179,7 @@ static asm void s_waterfall(void* param_0, void* param_1) {
 /* ############################################################################################## */
 /* 80D64D80-80D64D84 00000C 0004+00 2/2 0/0 0/0 .rodata          @3803 */
 SECTION_RODATA static f32 const lit_3803 = 1.0f;
-COMPILER_STRIP_GATE(80D64D80, &lit_3803);
+COMPILER_STRIP_GATE(0x80D64D80, &lit_3803);
 
 /* 80D64724-80D64768 0001E4 0044+00 1/1 0/0 0/0 .text            getEllipseY__16daTagWaterFall_cFf
  */
@@ -277,13 +277,13 @@ static asm void daTagWaterFall_Delete(daTagWaterFall_c* param_0) {
 SECTION_RODATA static u8 const lit_3959[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D64D84, &lit_3959);
+COMPILER_STRIP_GATE(0x80D64D84, &lit_3959);
 
 /* 80D64D8C-80D64D94 000018 0008+00 1/1 0/0 0/0 .rodata          @3960 */
 SECTION_RODATA static u8 const lit_3960[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D64D8C, &lit_3960);
+COMPILER_STRIP_GATE(0x80D64D8C, &lit_3960);
 
 /* 80D64B20-80D64CBC 0005E0 019C+00 1/1 0/0 0/0 .text            create__16daTagWaterFall_cFv */
 #pragma push
@@ -328,5 +328,5 @@ asm void __sinit_d_a_tag_waterfall_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80D64D24 = (void*)__sinit_d_a_tag_waterfall_cpp;
+REGISTER_CTORS(0x80D64D24, __sinit_d_a_tag_waterfall_cpp);
 #pragma pop

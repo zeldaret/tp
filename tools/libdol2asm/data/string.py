@@ -58,13 +58,27 @@ def escape_full_string(data):
 class String(ArbitraryData):
     encoding: str = None
     decoded_string: str = None
+    string_base: "StringBase" = None
 
     def array_type(self):
         return self.element_type()
 
-    async def export_declaration(self, exporter, builder: AsyncBuilder):
-        assert self.padding == 0
+    def asm_reference(self, addr):
+        if self.string_base:
+            return self.string_base.asm_reference(addr)
+        else:
+            return super().asm_reference(addr)
 
+    def cpp_reference(self, accessor, addr):
+        if self.string_base:
+            return self.string_base.cpp_reference(accessor, addr)
+        else:
+            return super().cpp_reference(accessor, addr)
+
+    async def export_declaration(self, exporter, builder: AsyncBuilder, force_active=True):
+        if force_active:
+            await builder.write("#pragma push")
+            await builder.write("#pragma force_active on")
         sjis = self.decoded_string.encode("shift_jisx0213")
         if 0x5c in sjis:
             await builder.write("// MWCC ignores mapping of some japanese characters using the ")
@@ -78,6 +92,18 @@ class String(ArbitraryData):
             await self.export_static(builder)
         await builder.write_nonewline(self.array_type().decl(self.identifier.label))
         await String.export_string(builder, data)
+
+        if self.padding > 0:
+            assert len(self.padding_data) == self.padding
+            assert self.padding_data[-1] == 0
+            data = escape_full_string(self.padding_data[:-1])
+            await builder.write("/* @stringBase0 padding */")
+            await builder.write_nonewline("SECTION_DEAD ")
+            await builder.write_nonewline("static ")
+            await builder.write_nonewline(self.array_type().decl(f"pad_{self.end:08X}"))
+            await String.export_string(builder, data)
+        if force_active:
+            await builder.write("#pragma pop")
 
     @staticmethod
     async def export_string(builder: AsyncBuilder, data: List[str]):
@@ -119,9 +145,10 @@ class StringBase(ArbitraryData):
             string.set_mlts(module, library, translation_unit, section)
 
     async def export_declaration(self, exporter, builder: AsyncBuilder):
+        pass
+        """
         await builder.write("#pragma push")
         await builder.write("#pragma force_active on")
-        await builder.write("#pragma section \".dead\"")
         for string in self.strings:
             # if the @stringBase0 is static (which it will almost always be), setup 
             # so that the sub-strings are static.
@@ -139,6 +166,7 @@ class StringBase(ArbitraryData):
             await builder.write_nonewline(self.array_type().decl(f"pad_{self.end:08X}"))
             await String.export_string(builder, data)
         await builder.write("#pragma pop")
+        """
 
     @staticmethod
     def create(symbol, strings, data, padding_data):

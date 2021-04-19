@@ -74,7 +74,7 @@ lbl_802CAFD4:
 /* 802CAFD4  57 C0 06 3F */	clrlwi. r0, r30, 0x18
 /* 802CAFD8  41 82 00 6C */	beq lbl_802CB044
 /* 802CAFDC  80 7F 00 88 */	lwz r3, 0x88(r31)
-/* 802CAFE0  88 0D 83 0E */	lbz r0, struct_8045088C+0x2(r13)
+/* 802CAFE0  88 0D 83 0E */	lbz r0, data_8045088E(r13)
 /* 802CAFE4  7C 03 00 40 */	cmplw r3, r0
 /* 802CAFE8  40 81 00 24 */	ble lbl_802CB00C
 /* 802CAFEC  3C 60 00 01 */	lis r3, 0x0001 /* 0x00010035@ha */
@@ -103,7 +103,7 @@ lbl_802CB034:
 /* 802CB040  48 00 00 98 */	b lbl_802CB0D8
 lbl_802CB044:
 /* 802CB044  80 7F 00 88 */	lwz r3, 0x88(r31)
-/* 802CB048  88 0D 83 0E */	lbz r0, struct_8045088C+0x2(r13)
+/* 802CB048  88 0D 83 0E */	lbz r0, data_8045088E(r13)
 /* 802CB04C  7C 03 00 40 */	cmplw r3, r0
 /* 802CB050  40 81 00 80 */	ble lbl_802CB0D0
 /* 802CB054  88 1F 00 8C */	lbz r0, 0x8c(r31)

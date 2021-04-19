@@ -301,6 +301,15 @@ asm void JKRAramArchive::getAramAddress(char const* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039D188-8039D188 0297E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D188 = "JKRAramArchive.cpp";
+SECTION_DEAD static char const* const stringBase_8039D19B = "%s";
+SECTION_DEAD static char const* const stringBase_8039D19E = "??? bad sequence\n";
+#pragma pop
+
 /* 802D7858-802D7914 2D2198 00BC+00 1/1 1/1 0/0 .text
  * fetchResource_subroutine__14JKRAramArchiveFUlUlPUcUli        */
 #pragma push
@@ -345,11 +354,4 @@ asm JKRFile::~JKRFile() {
 }
 #pragma pop
 
-/* 8039D188-8039D1B0 0297E8 0028+00 2/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039D188 = "JKRAramArchive.cpp";
-SECTION_DEAD static char const* const stringBase_8039D19B = "%s";
-SECTION_DEAD static char const* const stringBase_8039D19E = "??? bad sequence\n";
-#pragma pop
+/* 8039D188-8039D188 0297E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

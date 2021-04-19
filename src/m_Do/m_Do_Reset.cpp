@@ -12,7 +12,7 @@
 //
 
 struct mDoRst {
-    /* 800157F4 */ void getResetData();
+    /* 800157F4 */ u32 getResetData();
 
     static u8 mResetData[4 + 4 /* padding */];
 };
@@ -44,10 +44,6 @@ struct JASTaskThread {
     /* 8028FE88 */ void pause(bool);
 };
 
-struct JASDvd {
-    /* 8028FEFC */ void getThreadPointer();
-};
-
 //
 // Forward References:
 //
@@ -56,7 +52,7 @@ extern "C" static void my_OSCancelAlarmAll__Fv();
 extern "C" static void destroyVideo__Fv();
 extern "C" void mDoRst_reset__FiUli();
 extern "C" void mDoRst_resetCallBack__FiPv();
-extern "C" void getResetData__6mDoRstFv();
+extern "C" u32 getResetData__6mDoRstFv();
 extern "C" extern char const* const m_Do_m_Do_Reset__stringBase0;
 extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 extern "C" extern u8 struct_80450C80[8];
@@ -123,7 +119,13 @@ static asm void destroyVideo() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450C78-80450C80 000178 0004+04 3/3 42/42 2/2 .sbss            mResetData__6mDoRst */
+/* 80374198-80374198 0007F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80374198 = "DVD_STATE_BUSY\n";
+#pragma pop
+
+/* 80450C78-80450C80 000178 0004+04 3/2 42/42 2/2 .sbss            mResetData__6mDoRst */
 u8 mDoRst::mResetData[4 + 4 /* padding */];
 
 /* 80015614-8001574C 00FF54 0138+00 0/0 3/3 0/0 .text            mDoRst_reset__FiUli */
@@ -146,15 +148,10 @@ asm void mDoRst_resetCallBack(int param_0, void* param_1) {
 }
 #pragma pop
 
-/* 800157F4-800157FC 010134 0008+00 1/1 0/0 0/0 .text            getResetData__6mDoRstFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoRst::getResetData() {
-    nofralloc
-#include "asm/m_Do/m_Do_Reset/getResetData__6mDoRstFv.s"
+/* 800157F4-800157FC -00001 0008+00 0/0 0/0 0/0 .text            getResetData__6mDoRstFv */
+u32 mDoRst::getResetData() {
+    return *(u32*)(&mDoRst::mResetData);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450C80-80450C88 -00001 0008+00 0/0 6/6 0/0 .sbss            None */
@@ -167,9 +164,4 @@ u8 struct_80450C80[8];
 extern u8 data_80450C88[8];
 u8 data_80450C88[8];
 
-/* 80374198-803741A8 0007F8 0010+00 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80374198 = "DVD_STATE_BUSY\n";
-#pragma pop
+/* 80374198-80374198 0007F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

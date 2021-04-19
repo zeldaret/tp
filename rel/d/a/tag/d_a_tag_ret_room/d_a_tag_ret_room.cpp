@@ -161,11 +161,11 @@ asm void daTagRetRm_c::execute() {
 /* ############################################################################################## */
 /* 80D5F208-80D5F20C 000000 0004+00 1/1 0/0 0/0 .rodata          @3682 */
 SECTION_RODATA static f32 const lit_3682 = 50.0f;
-COMPILER_STRIP_GATE(80D5F208, &lit_3682);
+COMPILER_STRIP_GATE(0x80D5F208, &lit_3682);
 
 /* 80D5F20C-80D5F210 000004 0004+00 1/1 0/0 0/0 .rodata          @3683 */
 SECTION_RODATA static f32 const lit_3683 = 100.0f;
-COMPILER_STRIP_GATE(80D5F20C, &lit_3683);
+COMPILER_STRIP_GATE(0x80D5F20C, &lit_3683);
 
 /* 80D5F010-80D5F050 0001F0 0040+00 1/1 0/0 0/0 .text            init__12daTagRetRm_cFv */
 #pragma push
@@ -185,7 +185,7 @@ SECTION_RODATA static u8 const lit_3718[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D5F210, &lit_3718);
+COMPILER_STRIP_GATE(0x80D5F210, &lit_3718);
 
 /* 80D5F050-80D5F14C 000230 00FC+00 1/1 0/0 0/0 .text            chkPlyrInTag__12daTagRetRm_cFv */
 #pragma push

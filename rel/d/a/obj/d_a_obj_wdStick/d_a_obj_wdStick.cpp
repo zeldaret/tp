@@ -91,9 +91,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     struct level_c {
@@ -617,6 +617,13 @@ asm void daWdStick_c::setBaseMtx() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80D34210-80D34210 0000D8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D34210 = "H_Kinobou";
+#pragma pop
+
 /* 80D31C58-80D31CC4 0001F8 006C+00 1/0 0/0 0/0 .text            CreateHeap__11daWdStick_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -634,31 +641,31 @@ SECTION_RODATA u8 const daWdStick_c::mCcDObjInfo[48] = {
     0xD8, 0xFB, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D34138, &daWdStick_c::mCcDObjInfo);
+COMPILER_STRIP_GATE(0x80D34138, &daWdStick_c::mCcDObjInfo);
 
 /* 80D34168-80D3416C 000030 0004+00 0/2 0/0 0/0 .rodata          @3775 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3775 = 10.0f;
-COMPILER_STRIP_GATE(80D34168, &lit_3775);
+COMPILER_STRIP_GATE(0x80D34168, &lit_3775);
 #pragma pop
 
 /* 80D3416C-80D34170 000034 0004+00 0/1 0/0 0/0 .rodata          @3776 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3776 = 35.0f;
-COMPILER_STRIP_GATE(80D3416C, &lit_3776);
+COMPILER_STRIP_GATE(0x80D3416C, &lit_3776);
 #pragma pop
 
 /* 80D34170-80D34174 000038 0004+00 1/2 0/0 0/0 .rodata          @3777 */
 SECTION_RODATA static f32 const lit_3777 = -10.0f;
-COMPILER_STRIP_GATE(80D34170, &lit_3777);
+COMPILER_STRIP_GATE(0x80D34170, &lit_3777);
 
 /* 80D34174-80D34178 00003C 0004+00 0/1 0/0 0/0 .rodata          @3778 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3778 = -100.0f;
-COMPILER_STRIP_GATE(80D34174, &lit_3778);
+COMPILER_STRIP_GATE(0x80D34174, &lit_3778);
 #pragma pop
 
 /* 80D31CC4-80D31F9C 000264 02D8+00 1/1 0/0 0/0 .text            create__11daWdStick_cFv */
@@ -747,14 +754,14 @@ void daWdStick_c::setLight() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4028 = 75.0f;
-COMPILER_STRIP_GATE(80D34178, &lit_4028);
+COMPILER_STRIP_GATE(0x80D34178, &lit_4028);
 #pragma pop
 
 /* 80D3417C-80D34180 000044 0004+00 0/3 0/0 0/0 .rodata          @4029 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4029 = 4.0f;
-COMPILER_STRIP_GATE(80D3417C, &lit_4029);
+COMPILER_STRIP_GATE(0x80D3417C, &lit_4029);
 #pragma pop
 
 /* 80D34180-80D34184 000048 0004+00 2/9 0/0 0/0 .rodata          @4030 */
@@ -764,34 +771,34 @@ SECTION_RODATA static u8 const lit_4030[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D34180, &lit_4030);
+COMPILER_STRIP_GATE(0x80D34180, &lit_4030);
 
 /* 80D34184-80D34188 00004C 0004+00 0/1 0/0 0/0 .rodata          @4031 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4031 = -75.0f;
-COMPILER_STRIP_GATE(80D34184, &lit_4031);
+COMPILER_STRIP_GATE(0x80D34184, &lit_4031);
 #pragma pop
 
 /* 80D34188-80D3418C 000050 0004+00 0/6 0/0 0/0 .rodata          @4032 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4032 = 1.0f;
-COMPILER_STRIP_GATE(80D34188, &lit_4032);
+COMPILER_STRIP_GATE(0x80D34188, &lit_4032);
 #pragma pop
 
 /* 80D3418C-80D34190 000054 0004+00 0/5 0/0 0/0 .rodata          @4033 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4033 = -1.0f;
-COMPILER_STRIP_GATE(80D3418C, &lit_4033);
+COMPILER_STRIP_GATE(0x80D3418C, &lit_4033);
 #pragma pop
 
 /* 80D34190-80D34194 000058 0004+00 0/1 0/0 0/0 .rodata          @4034 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4034 = 7.0f / 10.0f;
-COMPILER_STRIP_GATE(80D34190, &lit_4034);
+COMPILER_STRIP_GATE(0x80D34190, &lit_4034);
 #pragma pop
 
 /* 80D3219C-80D3269C 00073C 0500+00 1/1 0/0 0/0 .text            setFire__11daWdStick_cFv */
@@ -809,21 +816,21 @@ asm void daWdStick_c::setFire() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4118 = 90.0f;
-COMPILER_STRIP_GATE(80D34194, &lit_4118);
+COMPILER_STRIP_GATE(0x80D34194, &lit_4118);
 #pragma pop
 
 /* 80D34198-80D3419C 000060 0004+00 0/1 0/0 0/0 .rodata          @4119 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4119 = -90.0f;
-COMPILER_STRIP_GATE(80D34198, &lit_4119);
+COMPILER_STRIP_GATE(0x80D34198, &lit_4119);
 #pragma pop
 
 /* 80D3419C-80D341A0 000064 0004+00 0/1 0/0 0/0 .rodata          @4120 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4120 = 30.0f;
-COMPILER_STRIP_GATE(80D3419C, &lit_4120);
+COMPILER_STRIP_GATE(0x80D3419C, &lit_4120);
 #pragma pop
 
 /* 80D341A0-80D341A8 000068 0004+04 0/1 0/0 0/0 .rodata          @4121 */
@@ -834,7 +841,7 @@ SECTION_RODATA static f32 const lit_4121[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80D341A0, &lit_4121);
+COMPILER_STRIP_GATE(0x80D341A0, &lit_4121);
 #pragma pop
 
 /* 80D34418-80D34424 000008 000C+00 1/1 0/0 0/0 .bss             @3643 */
@@ -860,7 +867,7 @@ asm void daWdStick_c::Execute() {
 SECTION_RODATA static u8 const lit_4220[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D341A8, &lit_4220);
+COMPILER_STRIP_GATE(0x80D341A8, &lit_4220);
 #pragma pop
 
 /* 80D341B0-80D341B8 000078 0008+00 0/3 0/0 0/0 .rodata          @4221 */
@@ -869,7 +876,7 @@ COMPILER_STRIP_GATE(80D341A8, &lit_4220);
 SECTION_RODATA static u8 const lit_4221[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D341B0, &lit_4221);
+COMPILER_STRIP_GATE(0x80D341B0, &lit_4221);
 #pragma pop
 
 /* 80D341B8-80D341C0 000080 0008+00 0/3 0/0 0/0 .rodata          @4222 */
@@ -878,7 +885,7 @@ COMPILER_STRIP_GATE(80D341B0, &lit_4221);
 SECTION_RODATA static u8 const lit_4222[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D341B8, &lit_4222);
+COMPILER_STRIP_GATE(0x80D341B8, &lit_4222);
 #pragma pop
 
 /* 80D32A70-80D32D6C 001010 02FC+00 1/1 0/0 0/0 .text            bound__FP4cXyzRC13cBgS_PolyInfof */
@@ -906,42 +913,42 @@ asm cM3dGPla::~cM3dGPla() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4444 = 8.0f;
-COMPILER_STRIP_GATE(80D341C0, &lit_4444);
+COMPILER_STRIP_GATE(0x80D341C0, &lit_4444);
 #pragma pop
 
 /* 80D341C4-80D341C8 00008C 0004+00 0/1 0/0 0/0 .rodata          @4445 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4445 = 3.0f / 5.0f;
-COMPILER_STRIP_GATE(80D341C4, &lit_4445);
+COMPILER_STRIP_GATE(0x80D341C4, &lit_4445);
 #pragma pop
 
 /* 80D341C8-80D341CC 000090 0004+00 0/1 0/0 0/0 .rodata          @4446 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4446 = -50.0f;
-COMPILER_STRIP_GATE(80D341C8, &lit_4446);
+COMPILER_STRIP_GATE(0x80D341C8, &lit_4446);
 #pragma pop
 
 /* 80D341CC-80D341D0 000094 0004+00 0/2 0/0 0/0 .rodata          @4447 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4447 = -15.0f;
-COMPILER_STRIP_GATE(80D341CC, &lit_4447);
+COMPILER_STRIP_GATE(0x80D341CC, &lit_4447);
 #pragma pop
 
 /* 80D341D0-80D341D4 000098 0004+00 0/2 0/0 0/0 .rodata          @4448 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4448 = 2.0f;
-COMPILER_STRIP_GATE(80D341D0, &lit_4448);
+COMPILER_STRIP_GATE(0x80D341D0, &lit_4448);
 #pragma pop
 
 /* 80D341D4-80D341D8 00009C 0004+00 0/1 0/0 0/0 .rodata          @4449 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4449 = 5.0f;
-COMPILER_STRIP_GATE(80D341D4, &lit_4449);
+COMPILER_STRIP_GATE(0x80D341D4, &lit_4449);
 #pragma pop
 
 /* 80D32DB4-80D33348 001354 0594+00 3/3 0/0 0/0 .text            bgCheck__11daWdStick_cFv */
@@ -1021,7 +1028,7 @@ asm void daWdStick_c::mode_proc_carry() {
 /* ############################################################################################## */
 /* 80D341D8-80D341DC 0000A0 0004+00 1/2 0/0 0/0 .rodata          @4574 */
 SECTION_RODATA static f32 const lit_4574 = -5.0f;
-COMPILER_STRIP_GATE(80D341D8, &lit_4574);
+COMPILER_STRIP_GATE(0x80D341D8, &lit_4574);
 
 /* 80D3386C-80D33890 001E0C 0024+00 1/1 0/0 0/0 .text            mode_init_drop__11daWdStick_cFv */
 #pragma push
@@ -1058,49 +1065,49 @@ asm void daWdStick_c::mode_init_roll() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4704 = -1000000000.0f;
-COMPILER_STRIP_GATE(80D341DC, &lit_4704);
+COMPILER_STRIP_GATE(0x80D341DC, &lit_4704);
 #pragma pop
 
 /* 80D341E0-80D341E4 0000A8 0004+00 0/1 0/0 0/0 .rodata          @4705 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4705 = 0x4645B05B;
-COMPILER_STRIP_GATE(80D341E0, &lit_4705);
+COMPILER_STRIP_GATE(0x80D341E0, &lit_4705);
 #pragma pop
 
 /* 80D341E4-80D341E8 0000AC 0004+00 0/2 0/0 0/0 .rodata          @4706 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4706 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80D341E4, &lit_4706);
+COMPILER_STRIP_GATE(0x80D341E4, &lit_4706);
 #pragma pop
 
 /* 80D341E8-80D341EC 0000B0 0004+00 0/1 0/0 0/0 .rodata          @4707 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4707 = 0.75f;
-COMPILER_STRIP_GATE(80D341E8, &lit_4707);
+COMPILER_STRIP_GATE(0x80D341E8, &lit_4707);
 #pragma pop
 
 /* 80D341EC-80D341F0 0000B4 0004+00 0/1 0/0 0/0 .rodata          @4708 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4708 = 0x3C23D70B;
-COMPILER_STRIP_GATE(80D341EC, &lit_4708);
+COMPILER_STRIP_GATE(0x80D341EC, &lit_4708);
 #pragma pop
 
 /* 80D341F0-80D341F4 0000B8 0004+00 0/2 0/0 0/0 .rodata          @4709 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4709 = 9.0f / 10.0f;
-COMPILER_STRIP_GATE(80D341F0, &lit_4709);
+COMPILER_STRIP_GATE(0x80D341F0, &lit_4709);
 #pragma pop
 
 /* 80D341F4-80D341F8 0000BC 0004+00 0/1 0/0 0/0 .rodata          @4710 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4710 = 3.0f / 10.0f;
-COMPILER_STRIP_GATE(80D341F4, &lit_4710);
+COMPILER_STRIP_GATE(0x80D341F4, &lit_4710);
 #pragma pop
 
 /* 80D338F4-80D33CCC 001E94 03D8+00 1/0 0/0 0/0 .text            mode_proc_roll__11daWdStick_cFv */
@@ -1128,12 +1135,12 @@ asm dBgS_ObjGndChk::~dBgS_ObjGndChk() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4725 = 100.0f;
-COMPILER_STRIP_GATE(80D341F8, &lit_4725);
+COMPILER_STRIP_GATE(0x80D341F8, &lit_4725);
 #pragma pop
 
 /* 80D341FC-80D34200 0000C4 0004+00 1/1 0/0 0/0 .rodata          @4731 */
 SECTION_RODATA static f32 const lit_4731 = 40.0f;
-COMPILER_STRIP_GATE(80D341FC, &lit_4731);
+COMPILER_STRIP_GATE(0x80D341FC, &lit_4731);
 
 /* 80D33D44-80D33D68 0022E4 0024+00 2/2 0/0 0/0 .text            chkWaterLineIn__11daWdStick_cFv */
 #pragma push
@@ -1160,28 +1167,28 @@ asm void daWdStick_c::mode_init_sink() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4777 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(80D34200, &lit_4777);
+COMPILER_STRIP_GATE(0x80D34200, &lit_4777);
 #pragma pop
 
 /* 80D34204-80D34208 0000CC 0004+00 0/1 0/0 0/0 .rodata          @4778 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4778 = 1.0f / 100.0f;
-COMPILER_STRIP_GATE(80D34204, &lit_4778);
+COMPILER_STRIP_GATE(0x80D34204, &lit_4778);
 #pragma pop
 
 /* 80D34208-80D3420C 0000D0 0004+00 0/1 0/0 0/0 .rodata          @4779 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4779 = 13.0f;
-COMPILER_STRIP_GATE(80D34208, &lit_4779);
+COMPILER_STRIP_GATE(0x80D34208, &lit_4779);
 #pragma pop
 
 /* 80D3420C-80D34210 0000D4 0004+00 0/1 0/0 0/0 .rodata          @4780 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4780 = -2.0f;
-COMPILER_STRIP_GATE(80D3420C, &lit_4780);
+COMPILER_STRIP_GATE(0x80D3420C, &lit_4780);
 #pragma pop
 
 /* 80D33D8C-80D33EB0 00232C 0124+00 1/0 0/0 0/0 .text            mode_proc_sink__11daWdStick_cFv */
@@ -1288,7 +1295,7 @@ asm void __sinit_d_a_obj_wdStick_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80D3408C = (void*)__sinit_d_a_obj_wdStick_cpp;
+REGISTER_CTORS(0x80D3408C, __sinit_d_a_obj_wdStick_cpp);
 #pragma pop
 
 /* 80D340FC-80D34104 00269C 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
@@ -1341,9 +1348,4 @@ static asm void func_80D3411C() {
 }
 #pragma pop
 
-/* 80D34210-80D3421A 0000D8 000A+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D34210 = "H_Kinobou";
-#pragma pop
+/* 80D34210-80D34210 0000D8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

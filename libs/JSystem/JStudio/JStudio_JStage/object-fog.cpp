@@ -61,8 +61,8 @@ struct JStudio_JStage {
     struct TVariableValueOutput_object_ {};
     /* TVariableValueOutput_object_<JStudio_JStage::TAdaptor_fog, JStage::TFog> */
     struct TVariableValueOutput_object___template2 {
-        /* 8028CAC0 */ void func_8028CAC0();
-        /* 8028CB20 */ void func_8028CB20(f32, JStudio::TAdaptor*) /* const */;
+        /* 8028CAC0 */ void func_8028CAC0(void* _this);
+        /* 8028CB20 */ void func_8028CB20(void* _this, f32, JStudio::TAdaptor*) /* const */;
     };
 
     struct TAdaptor_object_ {
@@ -82,8 +82,8 @@ extern "C" void adaptor_do_end__Q214JStudio_JStage12TAdaptor_fogFv();
 extern "C" void adaptor_do_update__Q214JStudio_JStage12TAdaptor_fogFUl();
 extern "C" void adaptor_do_data__Q214JStudio_JStage12TAdaptor_fogFPCvUlPCvUl();
 extern "C" void func_8028C8A4();
-extern "C" void func_8028CAC0();
-extern "C" void func_8028CB20(f32, JStudio::TAdaptor*);
+extern "C" void func_8028CAC0(void* _this);
+extern "C" void func_8028CB20(void* _this, f32, JStudio::TAdaptor*);
 extern "C" u8 saoVVOutput___Q214JStudio_JStage12TAdaptor_fog[96 + 4 /* padding */];
 
 //
@@ -293,7 +293,7 @@ asm void func_8028C8A4() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8028C8A4 = (void*)func_8028C8A4;
+REGISTER_CTORS(0x8028C8A4, func_8028C8A4);
 #pragma pop
 
 /* 8028CAC0-8028CB20 287400 0060+00 2/1 0/0 0/0 .text
@@ -302,7 +302,7 @@ SECTION_CTORS void* const _ctors_8028C8A4 = (void*)func_8028C8A4;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8028CAC0() {
+extern "C" asm void func_8028CAC0(void* _this) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio_JStage/object-fog/func_8028CAC0.s"
 }
@@ -314,7 +314,8 @@ extern "C" asm void func_8028CAC0() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8028CB20(f32 param_0, JStudio::TAdaptor* param_1) /* const */ {
+extern "C" asm void func_8028CB20(void* _this, f32 param_0,
+                                  JStudio::TAdaptor* param_1) /* const */ {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio_JStage/object-fog/func_8028CB20.s"
 }

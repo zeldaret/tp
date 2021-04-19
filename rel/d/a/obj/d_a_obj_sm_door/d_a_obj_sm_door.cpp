@@ -120,9 +120,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -257,7 +257,7 @@ SECTION_RODATA static u8 const lit_3697[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CD9590, &lit_3697);
+COMPILER_STRIP_GATE(0x80CD9590, &lit_3697);
 
 /* 80CD9598-80CD95A0 000008 0008+00 0/2 0/0 0/0 .rodata          @3698 */
 #pragma push
@@ -265,7 +265,7 @@ COMPILER_STRIP_GATE(80CD9590, &lit_3697);
 SECTION_RODATA static u8 const lit_3698[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CD9598, &lit_3698);
+COMPILER_STRIP_GATE(0x80CD9598, &lit_3698);
 #pragma pop
 
 /* 80CD95A0-80CD95A8 000010 0008+00 0/2 0/0 0/0 .rodata          @3699 */
@@ -274,7 +274,7 @@ COMPILER_STRIP_GATE(80CD9598, &lit_3698);
 SECTION_RODATA static u8 const lit_3699[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CD95A0, &lit_3699);
+COMPILER_STRIP_GATE(0x80CD95A0, &lit_3699);
 #pragma pop
 
 /* 80CD95A8-80CD95B0 000018 0008+00 0/2 0/0 0/0 .rodata          @3700 */
@@ -283,14 +283,14 @@ COMPILER_STRIP_GATE(80CD95A0, &lit_3699);
 SECTION_RODATA static u8 const lit_3700[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CD95A8, &lit_3700);
+COMPILER_STRIP_GATE(0x80CD95A8, &lit_3700);
 #pragma pop
 
 /* 80CD95B0-80CD95B4 000020 0004+00 0/1 0/0 0/0 .rodata          @3701 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3701 = 800.0f;
-COMPILER_STRIP_GATE(80CD95B0, &lit_3701);
+COMPILER_STRIP_GATE(0x80CD95B0, &lit_3701);
 #pragma pop
 
 /* 80CD85FC-80CD8784 0000BC 0188+00 1/1 0/0 0/0 .text            s_obj_sub__FPvPv */
@@ -318,35 +318,35 @@ asm void daObjSM_DOOR_c::ChangeModel() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3753 = 1000.0f;
-COMPILER_STRIP_GATE(80CD95B4, &lit_3753);
+COMPILER_STRIP_GATE(0x80CD95B4, &lit_3753);
 #pragma pop
 
 /* 80CD95B8-80CD95BC 000028 0004+00 0/1 0/0 0/0 .rodata          @3829 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3829 = 600.0f;
-COMPILER_STRIP_GATE(80CD95B8, &lit_3829);
+COMPILER_STRIP_GATE(0x80CD95B8, &lit_3829);
 #pragma pop
 
 /* 80CD95BC-80CD95C0 00002C 0004+00 0/1 0/0 0/0 .rodata          @3830 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3830 = 1.0f;
-COMPILER_STRIP_GATE(80CD95BC, &lit_3830);
+COMPILER_STRIP_GATE(0x80CD95BC, &lit_3830);
 #pragma pop
 
 /* 80CD95C0-80CD95C4 000030 0004+00 0/1 0/0 0/0 .rodata          @3831 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3831 = -1.0f;
-COMPILER_STRIP_GATE(80CD95C0, &lit_3831);
+COMPILER_STRIP_GATE(0x80CD95C0, &lit_3831);
 #pragma pop
 
 /* 80CD95C4-80CD95C8 000034 0004+00 0/1 0/0 0/0 .rodata          @3832 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3832 = 3.0f;
-COMPILER_STRIP_GATE(80CD95C4, &lit_3832);
+COMPILER_STRIP_GATE(0x80CD95C4, &lit_3832);
 #pragma pop
 
 /* 80CD95C8-80CD95D0 000038 0008+00 0/1 0/0 0/0 .rodata          @3834 */
@@ -355,7 +355,7 @@ COMPILER_STRIP_GATE(80CD95C4, &lit_3832);
 SECTION_RODATA static u8 const lit_3834[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CD95C8, &lit_3834);
+COMPILER_STRIP_GATE(0x80CD95C8, &lit_3834);
 #pragma pop
 
 /* 80CD8790-80CD8A40 000250 02B0+00 1/1 0/0 0/0 .text            Action__14daObjSM_DOOR_cFv */
@@ -443,35 +443,44 @@ static asm void daObjSM_DOOR_Execute(daObjSM_DOOR_c* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4060 = -9.0f;
-COMPILER_STRIP_GATE(80CD95D0, &lit_4060);
+COMPILER_STRIP_GATE(0x80CD95D0, &lit_4060);
 #pragma pop
 
 /* 80CD95D4-80CD95D8 000044 0004+00 0/1 0/0 0/0 .rodata          @4061 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4061 = 100.0f;
-COMPILER_STRIP_GATE(80CD95D4, &lit_4061);
+COMPILER_STRIP_GATE(0x80CD95D4, &lit_4061);
 #pragma pop
 
 /* 80CD95D8-80CD95DC 000048 0004+00 0/2 0/0 0/0 .rodata          @4062 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4062 = -1000.0f;
-COMPILER_STRIP_GATE(80CD95D8, &lit_4062);
+COMPILER_STRIP_GATE(0x80CD95D8, &lit_4062);
 #pragma pop
 
 /* 80CD95DC-80CD95E0 00004C 0004+00 0/2 0/0 0/0 .rodata          @4063 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4063 = -500.0f;
-COMPILER_STRIP_GATE(80CD95DC, &lit_4063);
+COMPILER_STRIP_GATE(0x80CD95DC, &lit_4063);
 #pragma pop
 
 /* 80CD95E0-80CD95E4 000050 0004+00 0/2 0/0 0/0 .rodata          @4064 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4064 = 500.0f;
-COMPILER_STRIP_GATE(80CD95E0, &lit_4064);
+COMPILER_STRIP_GATE(0x80CD95E0, &lit_4064);
+#pragma pop
+
+/* 80CD95E4-80CD95E4 000054 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CD95E4 = "sm_door";
+SECTION_DEAD static char const* const stringBase_80CD95EC = "A_SM_DoorA.dzb";
+SECTION_DEAD static char const* const stringBase_80CD95FB = "A_SM_DoorBl.dzb";
+SECTION_DEAD static char const* const stringBase_80CD960B = "A_SM_DoorWo.dzb";
 #pragma pop
 
 /* 80CD968C-80CD9690 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
@@ -551,6 +560,18 @@ static bool daObjSM_DOOR_IsDelete(daObjSM_DOOR_c* param_0) {
     return true;
 }
 
+/* ############################################################################################## */
+/* 80CD95E4-80CD95E4 000054 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CD961B = "A_SM_DoorA.bmd";
+SECTION_DEAD static char const* const stringBase_80CD962A = "A_SM_DoorA_Alpha.bmd";
+SECTION_DEAD static char const* const stringBase_80CD963F = "A_SM_DoorBl.bmd";
+SECTION_DEAD static char const* const stringBase_80CD964F = "A_SM_DoorBl_Alpha.bmd";
+SECTION_DEAD static char const* const stringBase_80CD9665 = "A_SM_DoorWo.bmd";
+SECTION_DEAD static char const* const stringBase_80CD9675 = "A_SM_DoorWo_Alpha.bmd";
+#pragma pop
+
 /* 80CD90A4-80CD9258 000B64 01B4+00 1/0 0/0 0/0 .text            CreateHeap__14daObjSM_DOOR_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -622,18 +643,4 @@ static asm void func_80CD9580() {
 }
 #pragma pop
 
-/* 80CD95E4-80CD968B 000054 00A7+00 3/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CD95E4 = "sm_door";
-SECTION_DEAD static char const* const stringBase_80CD95EC = "A_SM_DoorA.dzb";
-SECTION_DEAD static char const* const stringBase_80CD95FB = "A_SM_DoorBl.dzb";
-SECTION_DEAD static char const* const stringBase_80CD960B = "A_SM_DoorWo.dzb";
-SECTION_DEAD static char const* const stringBase_80CD961B = "A_SM_DoorA.bmd";
-SECTION_DEAD static char const* const stringBase_80CD962A = "A_SM_DoorA_Alpha.bmd";
-SECTION_DEAD static char const* const stringBase_80CD963F = "A_SM_DoorBl.bmd";
-SECTION_DEAD static char const* const stringBase_80CD964F = "A_SM_DoorBl_Alpha.bmd";
-SECTION_DEAD static char const* const stringBase_80CD9665 = "A_SM_DoorWo.bmd";
-SECTION_DEAD static char const* const stringBase_80CD9675 = "A_SM_DoorWo_Alpha.bmd";
-#pragma pop
+/* 80CD95E4-80CD95E4 000054 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

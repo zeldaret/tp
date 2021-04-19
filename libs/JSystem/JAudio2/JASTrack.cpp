@@ -32,6 +32,16 @@ struct JASTrackPort {
     /* 802935E8 */ void writeExport(u32, u16);
 };
 
+struct JASDsp {
+    struct TChannel {
+        /* 8029E00C */ void setFilterMode(u16);
+        /* 8029E044 */ void setIIRFilterParam(s16*);
+        /* 8029E06C */ void setFIR8FilterParam(s16*);
+    };
+
+    static u32 FILTER_MODE_IIR;
+};
+
 struct JASOscillator {
     struct Point {};
 
@@ -47,17 +57,6 @@ struct JASChannel {
 };
 
 struct JASSoundParams {};
-
-struct JASDsp {
-    struct TChannel {
-        /* 8029E00C */ void setFilterMode(u16);
-        /* 8029E044 */ void setIIRFilterParam(s16*);
-        /* 8029E06C */ void setFIR8FilterParam(s16*);
-        /* 8029E094 */ void setDistFilter(s16);
-    };
-
-    static u32 FILTER_MODE_IIR;
-};
 
 struct JASTrack {
     struct TChannelMgr {
@@ -158,12 +157,12 @@ template <typename A0>
 struct JASMemPool_MultiThreaded {};
 /* JASMemPool_MultiThreaded<JASTrack> */
 struct JASMemPool_MultiThreaded__template0 {
-    /* 802932E0 */ void func_802932E0();
+    /* 802932E0 */ void func_802932E0(void* _this);
 };
 
 /* JASMemPool_MultiThreaded<JASTrack::TChannelMgr> */
 struct JASMemPool_MultiThreaded__template1 {
-    /* 80293334 */ void func_80293334();
+    /* 80293334 */ void func_80293334(void* _this);
 };
 
 struct JASGenericMemPool {
@@ -175,7 +174,6 @@ struct JASGenericMemPool {
 
 struct JASDriver {
     /* 8029C9E8 */ void getDacRate();
-    /* 8029C9F0 */ void getSubFrames();
     /* 8029E274 */ void registerSubFrameCallback(s32 (*)(void*), void*);
 };
 
@@ -187,7 +185,7 @@ template <typename A0>
 struct JASBankTable {};
 /* JASBankTable<256> */
 struct JASBankTable__template0 {
-    /* 80293528 */ void func_80293528(u32) /* const */;
+    /* 80293528 */ void func_80293528(void* _this, u32) /* const */;
 };
 
 struct JASBank {
@@ -260,12 +258,12 @@ extern "C" void releaseAll__Q28JASTrack11TChannelMgrFv();
 extern "C" void noteOff__Q28JASTrack11TChannelMgrFUlUs();
 extern "C" void setPauseFlag__Q28JASTrack11TChannelMgrFb();
 extern "C" void __ct__Q28JASTrack10MoveParam_Fv();
-extern "C" void func_802932E0();
-extern "C" void func_80293334();
+extern "C" void func_802932E0(void* _this);
+extern "C" void func_80293334(void* _this);
 extern "C" void __sinit_JASTrack_cpp();
 extern "C" void __dt__Q28JASTrack5TListFv();
 extern "C" void __dt__19JASDefaultBankTableFv();
-extern "C" void func_80293528(u32);
+extern "C" void func_80293528(void* _this, u32);
 extern "C" u8 const sAdsTable__8JASTrack[24];
 extern "C" u8 const sEnvOsc__8JASTrack[24];
 extern "C" u8 const sPitchEnvOsc__8JASTrack[24];
@@ -414,14 +412,14 @@ SECTION_RODATA u8 const JASTrack::sAdsTable[24] = {
     0x00, 0x00, 0x00, 0x00, 0x7F, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x7F, 0xFF,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8039AFD0, &JASTrack::sAdsTable);
+COMPILER_STRIP_GATE(0x8039AFD0, &JASTrack::sAdsTable);
 
 /* 8039AFE8-8039B000 027648 0018+00 1/2 0/0 0/0 .rodata          sEnvOsc__8JASTrack */
 SECTION_RODATA u8 const JASTrack::sEnvOsc[24] = {
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8039AFE8, &JASTrack::sEnvOsc);
+COMPILER_STRIP_GATE(0x8039AFE8, &JASTrack::sEnvOsc);
 
 /* 8039B000-8039B018 027660 0018+00 0/1 0/0 0/0 .rodata          sPitchEnvOsc__8JASTrack */
 #pragma push
@@ -430,7 +428,7 @@ SECTION_RODATA u8 const JASTrack::sPitchEnvOsc[24] = {
     0x00, 0x00, 0x00, 0x01, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8039B000, &JASTrack::sPitchEnvOsc);
+COMPILER_STRIP_GATE(0x8039B000, &JASTrack::sPitchEnvOsc);
 #pragma pop
 
 /* 804555A4-804555A8 003BA4 0004+00 9/9 0/0 0/0 .sdata2          @679 */
@@ -1065,7 +1063,7 @@ asm JASTrack::MoveParam_::MoveParam_() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802932E0() {
+extern "C" asm void func_802932E0(void* _this) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASTrack/func_802932E0.s"
 }
@@ -1076,7 +1074,7 @@ extern "C" asm void func_802932E0() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80293334() {
+extern "C" asm void func_80293334(void* _this) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASTrack/func_80293334.s"
 }
@@ -1118,7 +1116,7 @@ asm void __sinit_JASTrack_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80293388 = (void*)__sinit_JASTrack_cpp;
+REGISTER_CTORS(0x80293388, __sinit_JASTrack_cpp);
 #pragma pop
 
 /* 8029345C-802934B4 28DD9C 0058+00 1/1 0/0 0/0 .text            __dt__Q28JASTrack5TListFv */
@@ -1145,7 +1143,7 @@ asm JASDefaultBankTable::~JASDefaultBankTable() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80293528(u32 param_0) /* const */ {
+extern "C" asm void func_80293528(void* _this, u32 param_0) /* const */ {
     nofralloc
 #include "asm/JSystem/JAudio2/JASTrack/func_80293528.s"
 }

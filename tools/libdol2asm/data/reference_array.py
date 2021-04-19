@@ -33,6 +33,7 @@ class ReferenceArray(ArbitraryData):
 
     def values(self):
         return Integer.u32_from(self.data)
+        
     def gather_references(self, context, valid_range):
         self.references = [ addr for addr in self.values() if addr in valid_range ]
 

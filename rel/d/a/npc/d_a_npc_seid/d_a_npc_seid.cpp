@@ -11,11 +11,13 @@
 // Types:
 //
 
-struct J3DModelData {};
-
 struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
+
+struct J3DAnmTransform {};
+
+struct J3DModelData {};
 
 struct Vec {};
 
@@ -24,8 +26,6 @@ struct Z2Creature {
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
-
-struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -39,6 +39,8 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
+struct daNpcT_faceMotionAnmData_c {};
+
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -46,11 +48,9 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80ACAF64 */ ~daNpcT_MotionSeqMngr_c();
 };
 
-struct daNpcT_motionAnmData_c {};
-
-struct daNpcT_faceMotionAnmData_c {};
-
 struct daNpcT_evtData_c {};
+
+struct daNpcT_motionAnmData_c {};
 
 struct daNpc_seiD_c {
     /* 80AC968C */ ~daNpc_seiD_c();
@@ -94,20 +94,20 @@ struct daNpc_seiD_Param_c {
     static u8 const m[148];
 };
 
+struct J3DAnmTextureSRTKey {};
+
+struct _GXColorS10 {};
+
 struct J3DModel {};
 
-struct J3DAnmTextureSRTKey {};
+struct J3DJoint {};
+
+struct J3DAnmTevRegKey {};
 
 struct cXyz {
     /* 80ACA99C */ ~cXyz();
     /* 80ACAF18 */ cXyz();
 };
-
-struct _GXColorS10 {};
-
-struct J3DJoint {};
-
-struct J3DAnmTevRegKey {};
 
 struct daNpcT_c {
     /* 8014810C */ void getTexSRTKeyAnmP(char const*, int);
@@ -240,12 +240,12 @@ struct dBgS_AcchCir {
     /* 80ACAFAC */ ~dBgS_AcchCir();
 };
 
-struct dBgS {};
-
 struct csXyz {
     /* 80ACA9D8 */ ~csXyz();
     /* 80ACAE18 */ csXyz();
 };
+
+struct dBgS {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -472,6 +472,15 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80ACB408-80ACB408 0000AC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80ACB408 = "";
+SECTION_DEAD static char const* const stringBase_80ACB409 = "DEFAULT_GETITEM";
+SECTION_DEAD static char const* const stringBase_80ACB419 = "NO_RESPONSE";
+SECTION_DEAD static char const* const stringBase_80ACB425 = "seiD";
+#pragma pop
+
 /* 80ACB430-80ACB43C 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -767,7 +776,7 @@ SECTION_RODATA u8 const daNpc_seiD_Param_c::m[148] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x44, 0x96, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80ACB35C, &daNpc_seiD_Param_c::m);
+COMPILER_STRIP_GATE(0x80ACB35C, &daNpc_seiD_Param_c::m);
 
 /* 80AC9728-80AC9968 000188 0240+00 1/1 0/0 0/0 .text            create__12daNpc_seiD_cFv */
 #pragma push
@@ -787,25 +796,25 @@ SECTION_RODATA static u8 const lit_4089[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80ACB3F0, &lit_4089);
+COMPILER_STRIP_GATE(0x80ACB3F0, &lit_4089);
 
 /* 80ACB3F4-80ACB3F8 000098 0004+00 0/2 0/0 0/0 .rodata          @4090 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4090 = 65536.0f;
-COMPILER_STRIP_GATE(80ACB3F4, &lit_4090);
+COMPILER_STRIP_GATE(0x80ACB3F4, &lit_4090);
 #pragma pop
 
 /* 80ACB3F8-80ACB3FC 00009C 0004+00 0/2 0/0 0/0 .rodata          @4091 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4091 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80ACB3F8, &lit_4091);
+COMPILER_STRIP_GATE(0x80ACB3F8, &lit_4091);
 #pragma pop
 
 /* 80ACB3FC-80ACB400 0000A0 0004+00 2/2 0/0 0/0 .rodata          @4215 */
 SECTION_RODATA static f32 const lit_4215 = 1.0f;
-COMPILER_STRIP_GATE(80ACB3FC, &lit_4215);
+COMPILER_STRIP_GATE(0x80ACB3FC, &lit_4215);
 
 /* 80AC9968-80AC9AC0 0003C8 0158+00 1/1 0/0 0/0 .text            CreateHeap__12daNpc_seiD_cFv */
 #pragma push
@@ -840,7 +849,7 @@ asm void daNpc_seiD_c::Execute() {
 /* ############################################################################################## */
 /* 80ACB400-80ACB404 0000A4 0004+00 1/1 0/0 0/0 .rodata          @4247 */
 SECTION_RODATA static f32 const lit_4247 = 100.0f;
-COMPILER_STRIP_GATE(80ACB400, &lit_4247);
+COMPILER_STRIP_GATE(0x80ACB400, &lit_4247);
 
 /* 80AC9B14-80AC9BA8 000574 0094+00 1/1 0/0 0/0 .text            Draw__12daNpc_seiD_cFv */
 #pragma push
@@ -893,7 +902,7 @@ bool daNpc_seiD_c::isDelete() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4292 = -1.0f;
-COMPILER_STRIP_GATE(80ACB404, &lit_4292);
+COMPILER_STRIP_GATE(0x80ACB404, &lit_4292);
 #pragma pop
 
 /* 80AC9C0C-80AC9D5C 00066C 0150+00 1/1 0/0 0/0 .text            reset__12daNpc_seiD_cFv */
@@ -939,6 +948,13 @@ asm void daNpc_seiD_c::evtTalk() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_seid/d_a_npc_seid/evtTalk__12daNpc_seiD_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80ACB408-80ACB408 0000AC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80ACB42A = "Seid";
 #pragma pop
 
 /* 80AC9F8C-80ACA054 0009EC 00C8+00 1/0 0/0 0/0 .text            evtCutProc__12daNpc_seiD_cFv */
@@ -1011,7 +1027,7 @@ asm void daNpc_seiD_c::selectAction() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_seiD_c::chkAction(int (daNpc_seiD_c::*)(void*)) {
+asm void daNpc_seiD_c::chkAction(int (daNpc_seiD_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_seid/d_a_npc_seid/chkAction__12daNpc_seiD_cFM12daNpc_seiD_cFPCvPvPv_i.s"
 }
@@ -1022,7 +1038,7 @@ asm void daNpc_seiD_c::chkAction(int (daNpc_seiD_c::*)(void*)) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_seiD_c::setAction(int (daNpc_seiD_c::*)(void*)) {
+asm void daNpc_seiD_c::setAction(int (daNpc_seiD_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_seid/d_a_npc_seid/setAction__12daNpc_seiD_cFM12daNpc_seiD_cFPCvPvPv_i.s"
 }
@@ -1420,7 +1436,7 @@ asm void __sinit_d_a_npc_seid_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80ACB244 = (void*)__sinit_d_a_npc_seid_cpp;
+REGISTER_CTORS(0x80ACB244, __sinit_d_a_npc_seid_cpp);
 #pragma pop
 
 /* 80ACB2AC-80ACB2F0 001D0C 0044+00 1/1 0/0 0/0 .text
@@ -1470,13 +1486,4 @@ static asm void func_80ACB340() {
 }
 #pragma pop
 
-/* 80ACB408-80ACB42F 0000AC 0027+00 4/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80ACB408 = "";
-SECTION_DEAD static char const* const stringBase_80ACB409 = "DEFAULT_GETITEM";
-SECTION_DEAD static char const* const stringBase_80ACB419 = "NO_RESPONSE";
-SECTION_DEAD static char const* const stringBase_80ACB425 = "seiD";
-SECTION_DEAD static char const* const stringBase_80ACB42A = "Seid";
-#pragma pop
+/* 80ACB408-80ACB408 0000AC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

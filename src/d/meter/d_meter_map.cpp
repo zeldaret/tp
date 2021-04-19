@@ -36,10 +36,6 @@ struct dMsgObject_c {
     /* 8023822C */ void getStatus();
 };
 
-struct dMpath_c {
-    /* 8003F758 */ void isExistMapPathData();
-};
-
 struct J2DScreen {};
 
 struct dMeterMap_c {
@@ -88,9 +84,9 @@ struct dDlst_list_c {
     /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -328,15 +324,10 @@ asm void dMeterMap_c::setDispPosOutsideFlg_SE_On() {
 }
 #pragma pop
 
-/* 8020D8F8-8020D900 208238 0008+00 0/0 1/1 0/0 .text            setMapAlpha__11dMeterMap_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeterMap_c::setMapAlpha(u8 param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter_map/setMapAlpha__11dMeterMap_cFUc.s"
+/* 8020D8F8-8020D900 -00001 0008+00 0/0 0/0 0/0 .text            setMapAlpha__11dMeterMap_cFUc */
+void dMeterMap_c::setMapAlpha(u8 param_0) {
+    *(u8*)(((u8*)this) + 44) /* this->field_0x2c */ = (u8)(param_0);
 }
-#pragma pop
 
 /* 8020D900-8020D948 208240 0048+00 3/3 1/1 0/0 .text            isMapOpenCheck__11dMeterMap_cFv */
 #pragma push
@@ -408,6 +399,13 @@ asm void dMeterMap_c::_delete() {
     nofralloc
 #include "asm/d/meter/d_meter_map/_delete__11dMeterMap_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80398208-80398208 024868 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80398208 = "F_SP115";
 #pragma pop
 
 /* 8020DCE4-8020DF1C 208624 0238+00 0/0 1/1 0/0 .text            _move__11dMeterMap_cFUl */
@@ -514,9 +512,4 @@ asm void dMeterMap_c::keyCheck() {
 }
 #pragma pop
 
-/* 80398208-80398210 024868 0008+00 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80398208 = "F_SP115";
-#pragma pop
+/* 80398208-80398208 024868 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

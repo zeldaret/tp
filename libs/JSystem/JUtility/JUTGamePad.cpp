@@ -29,9 +29,9 @@ struct JUTGamePad {
         /* 802E1CD8 */ CButton();
     };
 
-    struct EWhichStick {};
-
     struct EStickMode {};
+
+    struct EWhichStick {};
 
     struct CStick {
         /* 802E121C */ void clear();
@@ -115,12 +115,12 @@ template <typename A0>
 struct JSUList {};
 /* JSUList<JUTGamePadLongPress> */
 struct JSUList__template11 {
-    /* 802E1C54 */ void func_802E1C54();
+    /* 802E1C54 */ void func_802E1C54(void* _this);
 };
 
 /* JSUList<JUTGamePad> */
 struct JSUList__template12 {
-    /* 802E1D08 */ void func_802E1D08();
+    /* 802E1D08 */ void func_802E1D08(void* _this);
 };
 
 struct JKRDisposer {
@@ -165,10 +165,10 @@ extern "C" void setRepeat__Q210JUTGamePad7CButtonFUlUlUl();
 extern "C" void recalibrate__10JUTGamePadFUl();
 extern "C" void checkCallback__19JUTGamePadLongPressFiUl();
 extern "C" void __sinit_JUTGamePad_cpp();
-extern "C" void func_802E1C54();
+extern "C" void func_802E1C54(void* _this);
 extern "C" void __ct__Q210JUTGamePad6CStickFv();
 extern "C" void __ct__Q210JUTGamePad7CButtonFv();
-extern "C" void func_802E1D08();
+extern "C" void func_802E1D08(void* _this);
 extern "C" u8 sChannelMask__Q210JUTGamePad7CRumble[16];
 extern "C" u8 mPadList__10JUTGamePad[12];
 extern "C" u8 mPadStatus__10JUTGamePad[48];
@@ -730,14 +730,14 @@ asm void __sinit_JUTGamePad_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_802E1B60 = (void*)__sinit_JUTGamePad_cpp;
+REGISTER_CTORS(0x802E1B60, __sinit_JUTGamePad_cpp);
 #pragma pop
 
 /* 802E1C54-802E1CA8 2DC594 0054+00 1/1 0/0 0/0 .text __dt__30JSUList<19JUTGamePadLongPress>Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802E1C54() {
+extern "C" asm void func_802E1C54(void* _this) {
     nofralloc
 #include "asm/JSystem/JUtility/JUTGamePad/func_802E1C54.s"
 }
@@ -767,7 +767,7 @@ asm JUTGamePad::CButton::CButton() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802E1D08() {
+extern "C" asm void func_802E1D08(void* _this) {
     nofralloc
 #include "asm/JSystem/JUtility/JUTGamePad/func_802E1D08.s"
 }

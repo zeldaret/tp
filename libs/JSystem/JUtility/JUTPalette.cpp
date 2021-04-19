@@ -48,6 +48,16 @@ extern "C" void _restgpr_29();
 // Declarations:
 //
 
+/* ############################################################################################## */
+/* 8039D360-8039D360 0299C0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D360 = "JUTPalette.cpp";
+SECTION_DEAD static char const* const stringBase_8039D36F = "JUTTexture: TLUT is NULL\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039D389 = "\0\0\0\0\0\0";
+#pragma pop
+
 /* 802DE890-802DE91C 2D91D0 008C+00 0/0 8/8 0/0 .text storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT */
 #pragma push
 #pragma optimization_level 0
@@ -80,12 +90,4 @@ asm void JUTPalette::load() {
 }
 #pragma pop
 
-/* 8039D360-8039D390 0299C0 0029+07 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039D360 = "JUTPalette.cpp";
-SECTION_DEAD static char const* const stringBase_8039D36F = "JUTTexture: TLUT is NULL\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039D389 = "\0\0\0\0\0\0";
-#pragma pop
+/* 8039D360-8039D360 0299C0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

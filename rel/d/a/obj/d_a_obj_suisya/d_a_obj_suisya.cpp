@@ -78,9 +78,9 @@ struct cBgS_PolyInfo {};
 
 struct _GXTexObj {};
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -157,13 +157,13 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 /* ############################################################################################## */
 /* 80CF0520-80CF0524 000000 0004+00 2/2 0/0 0/0 .rodata          @3662 */
 SECTION_RODATA static f32 const lit_3662 = 100.0f;
-COMPILER_STRIP_GATE(80CF0520, &lit_3662);
+COMPILER_STRIP_GATE(0x80CF0520, &lit_3662);
 
 /* 80CF0524-80CF0528 000004 0004+00 0/1 0/0 0/0 .rodata          @3663 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3663 = 400.0f;
-COMPILER_STRIP_GATE(80CF0524, &lit_3663);
+COMPILER_STRIP_GATE(0x80CF0524, &lit_3663);
 #pragma pop
 
 /* 80CF0528-80CF052C 000008 0004+00 0/2 0/0 0/0 .rodata          @3664 */
@@ -175,12 +175,12 @@ SECTION_RODATA static u8 const lit_3664[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CF0528, &lit_3664);
+COMPILER_STRIP_GATE(0x80CF0528, &lit_3664);
 #pragma pop
 
 /* 80CF052C-80CF0530 00000C 0004+00 1/2 0/0 0/0 .rodata          @3665 */
 SECTION_RODATA static f32 const lit_3665 = 1.0f;
-COMPILER_STRIP_GATE(80CF052C, &lit_3665);
+COMPILER_STRIP_GATE(0x80CF052C, &lit_3665);
 
 /* 80CF0078-80CF0148 000078 00D0+00 1/1 0/0 0/0 .text            draw__14daObj_Suisya_cFv */
 #pragma push
@@ -205,7 +205,7 @@ static asm void daObj_Suisya_Draw(daObj_Suisya_c* param_0) {
 /* ############################################################################################## */
 /* 80CF0530-80CF0534 000010 0004+00 1/1 0/0 0/0 .rodata          @3682 */
 SECTION_RODATA static f32 const lit_3682 = -1.0f;
-COMPILER_STRIP_GATE(80CF0530, &lit_3682);
+COMPILER_STRIP_GATE(0x80CF0530, &lit_3682);
 
 /* 80CF0168-80CF020C 000168 00A4+00 1/1 0/0 0/0 .text            execute__14daObj_Suisya_cFv */
 #pragma push
@@ -231,6 +231,13 @@ static asm void daObj_Suisya_Execute(daObj_Suisya_c* param_0) {
 static bool daObj_Suisya_IsDelete(daObj_Suisya_c* param_0) {
     return true;
 }
+
+/* ############################################################################################## */
+/* 80CF0544-80CF0544 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CF0544 = "Obj_sui";
+#pragma pop
 
 /* 80CF0234-80CF0264 000234 0030+00 1/1 0/0 0/0 .text            _delete__14daObj_Suisya_cFv */
 #pragma push
@@ -277,28 +284,28 @@ static asm void useHeapInit(fopAc_ac_c* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3749 = -200.0f;
-COMPILER_STRIP_GATE(80CF0534, &lit_3749);
+COMPILER_STRIP_GATE(0x80CF0534, &lit_3749);
 #pragma pop
 
 /* 80CF0538-80CF053C 000018 0004+00 0/1 0/0 0/0 .rodata          @3750 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3750 = -500.0f;
-COMPILER_STRIP_GATE(80CF0538, &lit_3750);
+COMPILER_STRIP_GATE(0x80CF0538, &lit_3750);
 #pragma pop
 
 /* 80CF053C-80CF0540 00001C 0004+00 0/1 0/0 0/0 .rodata          @3751 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3751 = 200.0f;
-COMPILER_STRIP_GATE(80CF053C, &lit_3751);
+COMPILER_STRIP_GATE(0x80CF053C, &lit_3751);
 #pragma pop
 
 /* 80CF0540-80CF0544 000020 0004+00 0/1 0/0 0/0 .rodata          @3752 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3752 = 500.0f;
-COMPILER_STRIP_GATE(80CF0540, &lit_3752);
+COMPILER_STRIP_GATE(0x80CF0540, &lit_3752);
 #pragma pop
 
 /* 80CF054C-80CF056C -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Suisya_Method */
@@ -386,9 +393,4 @@ static asm void func_80CF0510() {
 }
 #pragma pop
 
-/* 80CF0544-80CF054C 000024 0008+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CF0544 = "Obj_sui";
-#pragma pop
+/* 80CF0544-80CF0544 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

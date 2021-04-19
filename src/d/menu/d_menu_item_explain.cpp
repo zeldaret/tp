@@ -52,6 +52,8 @@ struct dMsgScrn3Select_c {
     /* 8023A97C */ void getCharSpace();
 };
 
+struct ResTIMG {};
+
 struct ResTLUT {};
 
 struct JGeometry {
@@ -61,16 +63,14 @@ struct JGeometry {
     struct TBox2__template0 {};
 };
 
-struct ResTIMG {};
-
 struct J2DPicture {
     /* 802FC708 */ J2DPicture(ResTIMG const*);
     /* 802FC800 */ J2DPicture(u64, JGeometry::TBox2<f32> const&, ResTIMG const*, ResTLUT const*);
 };
 
-struct JMSMesgEntry_c {};
-
 struct JUTFont {};
+
+struct JMSMesgEntry_c {};
 
 struct dMeter2Info_c {
     /* 8021C250 */ void getString(u32, char*, JMSMesgEntry_c*);
@@ -79,17 +79,17 @@ struct dMeter2Info_c {
                                         J2DPicture*, void*, J2DPicture*, int);
 };
 
-struct J2DOrthoGraph {};
-
-struct JKRExpHeap {};
-
-struct JKRArchive {};
-
 struct STControl {
     /* 8003219C */ void checkTrigger();
     /* 80032524 */ void checkUpTrigger();
     /* 800325A0 */ void checkDownTrigger();
 };
+
+struct JKRArchive {};
+
+struct J2DOrthoGraph {};
+
+struct JKRExpHeap {};
 
 struct dMenu_ItemExplain_c {
     /* 801DA754 */ dMenu_ItemExplain_c(JKRExpHeap*, JKRArchive*, STControl*, bool);
@@ -126,9 +126,9 @@ struct dKantera_icon_c {
     /* 801AEC44 */ void setNowGauge(u16, u16);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -303,14 +303,22 @@ SECTION_RODATA static u8 const name_tag[32] = {
     0x69, 0x74, 0x65, 0x6D, 0x5F, 0x6E, 0x30, 0x34, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x6E, 0x30, 0x35,
     0x69, 0x74, 0x65, 0x6D, 0x5F, 0x6E, 0x30, 0x36, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x6E, 0x30, 0x37,
 };
-COMPILER_STRIP_GATE(80396950, &name_tag);
+COMPILER_STRIP_GATE(0x80396950, &name_tag);
 
 /* 80396970-80396990 022FD0 0020+00 1/1 0/0 0/0 .rodata          fame_tag$3884 */
 SECTION_RODATA static u8 const fame_tag[32] = {
     0x66, 0x5F, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x31, 0x66, 0x5F, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x32,
     0x66, 0x5F, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x33, 0x66, 0x5F, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x34,
 };
-COMPILER_STRIP_GATE(80396970, &fame_tag);
+COMPILER_STRIP_GATE(0x80396970, &fame_tag);
+
+/* 80396990-80396990 022FF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80396990 = "zelda_item_screen_info.blo";
+SECTION_DEAD static char const* const stringBase_803969AB = "";
+SECTION_DEAD static char const* const stringBase_803969AC = "tt_block8x8.bti";
+#pragma pop
 
 /* 803BD8C8-803BD8D4 01A9E8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -631,6 +639,17 @@ asm void dMenu_ItemExplain_c::move_proc() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80396990-80396990 022FF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803969BC = ""
+                                                            "\x1B"
+                                                            "CR[%d]";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_803969C4 = "\0\0\0";
+#pragma pop
+
 /* 801DBCB4-801DBF44 1D65F4 0290+00 1/0 0/0 0/0 .text move_select_init__19dMenu_ItemExplain_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -791,19 +810,7 @@ asm void __sinit_d_menu_item_explain_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_801DCC8C = (void*)__sinit_d_menu_item_explain_cpp;
+REGISTER_CTORS(0x801DCC8C, __sinit_d_menu_item_explain_cpp);
 #pragma pop
 
-/* 80396990-803969C8 022FF0 0034+04 2/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80396990 = "zelda_item_screen_info.blo";
-SECTION_DEAD static char const* const stringBase_803969AB = "";
-SECTION_DEAD static char const* const stringBase_803969AC = "tt_block8x8.bti";
-SECTION_DEAD static char const* const stringBase_803969BC = ""
-                                                            "\x1B"
-                                                            "CR[%d]";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803969C4 = "\0\0\0";
-#pragma pop
+/* 80396990-80396990 022FF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

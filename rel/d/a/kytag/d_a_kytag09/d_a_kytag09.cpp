@@ -122,7 +122,7 @@ SECTION_RODATA static u8 const lit_3863[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8085BA44, &lit_3863);
+COMPILER_STRIP_GATE(0x8085BA44, &lit_3863);
 
 /* 8085B3F8-8085B5F4 000078 01FC+00 1/0 0/0 0/0 .text            daKytag09_Draw__FP13kytag09_class
  */
@@ -145,6 +145,14 @@ static bool daKytag09_IsDelete(kytag09_class* param_0) {
     return true;
 }
 
+/* ############################################################################################## */
+/* 8085BA4C-8085BA4C 000008 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8085BA4C = "Kytag09";
+SECTION_DEAD static char const* const stringBase_8085BA54 = "kytag09_2";
+#pragma pop
+
 /* 8085B604-8085B658 000284 0054+00 1/0 0/0 0/0 .text            daKytag09_Delete__FP13kytag09_class
  */
 #pragma push
@@ -159,7 +167,7 @@ static asm void daKytag09_Delete(kytag09_class* param_0) {
 /* ############################################################################################## */
 /* 8085BA48-8085BA4C 000004 0004+00 2/2 0/0 0/0 .rodata          @3906 */
 SECTION_RODATA static f32 const lit_3906 = 1.0f;
-COMPILER_STRIP_GATE(8085BA48, &lit_3906);
+COMPILER_STRIP_GATE(0x8085BA48, &lit_3906);
 
 /* 8085BA60-8085BA80 -00001 0020+00 1/0 0/0 0/0 .data            l_daKytag09_Method */
 SECTION_DATA static void* l_daKytag09_Method[8] = {
@@ -231,10 +239,4 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 }
 #pragma pop
 
-/* 8085BA4C-8085BA5E 000008 0012+00 4/4 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8085BA4C = "Kytag09";
-SECTION_DEAD static char const* const stringBase_8085BA54 = "kytag09_2";
-#pragma pop
+/* 8085BA4C-8085BA4C 000008 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

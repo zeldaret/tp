@@ -11,9 +11,9 @@
 // Types:
 //
 
-struct JAISoundID {};
-
 struct JAISeqDataUser {};
+
+struct JAISoundID {};
 
 struct JAISeqData {};
 

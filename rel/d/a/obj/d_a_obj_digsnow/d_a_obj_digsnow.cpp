@@ -273,6 +273,12 @@ asm void daObjDigSnow_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80BDD6DC-80BDD6DC 000014 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BDD6DC = "Y_horiyuk";
+#pragma pop
+
 /* 80BDD6E8-80BDD6F4 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -400,7 +406,7 @@ asm void daObjDigSnow_c::mode_wait() {
 /* ############################################################################################## */
 /* 80BDD6C8-80BDD6CC 000000 0004+00 2/2 0/0 0/0 .rodata          @3744 */
 SECTION_RODATA static f32 const lit_3744 = -1000000000.0f;
-COMPILER_STRIP_GATE(80BDD6C8, &lit_3744);
+COMPILER_STRIP_GATE(0x80BDD6C8, &lit_3744);
 
 /* 80BDD754-80BDD774 -00001 0020+00 1/0 0/0 0/0 .data            daObjDigSnow_METHODS */
 SECTION_DATA static void* daObjDigSnow_METHODS[8] = {
@@ -514,28 +520,28 @@ asm dBgS_ObjGndChk::~dBgS_ObjGndChk() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3761 = 10.0f;
-COMPILER_STRIP_GATE(80BDD6CC, &lit_3761);
+COMPILER_STRIP_GATE(0x80BDD6CC, &lit_3761);
 #pragma pop
 
 /* 80BDD6D0-80BDD6D4 000008 0004+00 0/1 0/0 0/0 .rodata          @3762 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3762 = 35.0f;
-COMPILER_STRIP_GATE(80BDD6D0, &lit_3762);
+COMPILER_STRIP_GATE(0x80BDD6D0, &lit_3762);
 #pragma pop
 
 /* 80BDD6D4-80BDD6D8 00000C 0004+00 0/1 0/0 0/0 .rodata          @3763 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3763 = 1.0f;
-COMPILER_STRIP_GATE(80BDD6D4, &lit_3763);
+COMPILER_STRIP_GATE(0x80BDD6D4, &lit_3763);
 #pragma pop
 
 /* 80BDD6D8-80BDD6DC 000010 0004+00 0/1 0/0 0/0 .rodata          @3764 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3764 = 30.0f;
-COMPILER_STRIP_GATE(80BDD6D8, &lit_3764);
+COMPILER_STRIP_GATE(0x80BDD6D8, &lit_3764);
 #pragma pop
 
 /* 80BDD124-80BDD1BC 000544 0098+00 1/0 0/0 0/0 .text            mode_dig__14daObjDigSnow_cFv */
@@ -753,9 +759,4 @@ static asm void func_80BDD6B8() {
 }
 #pragma pop
 
-/* 80BDD6DC-80BDD6E6 000014 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BDD6DC = "Y_horiyuk";
-#pragma pop
+/* 80BDD6DC-80BDD6DC 000014 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

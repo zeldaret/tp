@@ -136,9 +136,9 @@ struct cDylPhs {
     /* 8001884C */ void Link(request_of_phase_process_class*, s16);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -229,7 +229,7 @@ extern "C" void getProgressiveMode__10dScnLogo_cFv();
 extern "C" void isProgressiveMode__10dScnLogo_cFv();
 extern "C" void setRenderMode__10dScnLogo_cFv();
 extern "C" void __dt__10dLog_HIO_cFv();
-extern "C" void func_802585A4(u16*);
+extern "C" void func_802585A4(void* _this, u16*);
 extern "C" void __sinit_d_s_logo_cpp();
 extern "C" extern char const* const d_s_d_s_logo__stringBase0;
 
@@ -574,7 +574,7 @@ SECTION_RODATA static u8 const l_preLoad_dylKeyTbl[28] = {
     0x02, 0xDC, 0x02, 0xCE, 0x02, 0x21, 0x00, 0xF2, 0x02, 0x1B, 0x02, 0xF4, 0x01, 0x39,
     0x01, 0x5A, 0x02, 0xE4, 0x00, 0xFE, 0x03, 0x08, 0x03, 0x0F, 0x00, 0xFF, 0x01, 0x3F,
 };
-COMPILER_STRIP_GATE(80399FE0, &l_preLoad_dylKeyTbl);
+COMPILER_STRIP_GATE(0x80399FE0, &l_preLoad_dylKeyTbl);
 
 /* 8025611C-80256198 250A5C 007C+00 2/2 0/0 0/0 .text            preLoad_dyl__10dScnLogo_cFv */
 #pragma push
@@ -788,6 +788,14 @@ asm void dScnLogo_c::nextSceneChange() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80399FFC-80399FFC 02665C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399FFC = "LogoUs";
+SECTION_DEAD static char const* const stringBase_8039A003 = "Always";
+#pragma pop
+
 /* 802572B8-80257910 251BF8 0658+00 1/1 0/0 0/0 .text            __dt__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -806,6 +814,13 @@ static asm void phase_0(dScnLogo_c* param_0) {
     nofralloc
 #include "asm/d/s/d_s_logo/phase_0__FP10dScnLogo_c.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80399FFC-80399FFC 02665C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039A00A = "/res/Object/";
 #pragma pop
 
 /* 802579BC-80257A70 2522FC 00B4+00 1/0 0/0 0/0 .text            phase_1__FP10dScnLogo_c */
@@ -857,6 +872,41 @@ asm void dScnLogo_c::logoInitGC() {
     nofralloc
 #include "asm/d/s/d_s_logo/logoInitGC__10dScnLogo_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80399FFC-80399FFC 02665C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039A017 = "Alink";
+SECTION_DEAD static char const* const stringBase_8039A01D = "/res/FieldMap/Field0.arc";
+SECTION_DEAD static char const* const stringBase_8039A036 = "/res/Object/AlAnm.arc";
+SECTION_DEAD static char const* const stringBase_8039A04C = "/res/Layout/fmapres.arc";
+SECTION_DEAD static char const* const stringBase_8039A064 = "/res/Layout/dmapres.arc";
+SECTION_DEAD static char const* const stringBase_8039A07C = "/res/Layout/clctres.arc";
+SECTION_DEAD static char const* const stringBase_8039A094 = "/res/Layout/itemicon.arc";
+SECTION_DEAD static char const* const stringBase_8039A0AD = "/res/Layout/ringres.arc";
+SECTION_DEAD static char const* const stringBase_8039A0C5 = "/res/Layout/playerName.arc";
+SECTION_DEAD static char const* const stringBase_8039A0E0 = "/res/Layout/itmInfRes.arc";
+SECTION_DEAD static char const* const stringBase_8039A0FA = "/res/Layout/button.arc";
+SECTION_DEAD static char const* const stringBase_8039A111 = "/res/CardIcon/cardicon.arc";
+SECTION_DEAD static char const* const stringBase_8039A12C = "/res/Msgus/bmgres.arc";
+SECTION_DEAD static char const* const stringBase_8039A142 = "/res/Layout/msgcom.arc";
+SECTION_DEAD static char const* const stringBase_8039A159 = "/res/Layout/msgres00.arc";
+SECTION_DEAD static char const* const stringBase_8039A172 = "/res/Layout/msgres01.arc";
+SECTION_DEAD static char const* const stringBase_8039A18B = "/res/Layout/msgres02.arc";
+SECTION_DEAD static char const* const stringBase_8039A1A4 = "/res/Layout/msgres03.arc";
+SECTION_DEAD static char const* const stringBase_8039A1BD = "/res/Layout/msgres04F.arc";
+SECTION_DEAD static char const* const stringBase_8039A1D7 = "/res/Layout/msgres05.arc";
+SECTION_DEAD static char const* const stringBase_8039A1F0 = "/res/Layout/msgres06.arc";
+SECTION_DEAD static char const* const stringBase_8039A209 = "/res/Layout/main2D.arc";
+SECTION_DEAD static char const* const stringBase_8039A220 = "/res/Fontus/fontres.arc";
+SECTION_DEAD static char const* const stringBase_8039A238 = "/res/Fontus/rubyres.arc";
+SECTION_DEAD static char const* const stringBase_8039A250 = "/res/Particle/common.jpc";
+SECTION_DEAD static char const* const stringBase_8039A269 = "/res/ItemTable/item_table.bin";
+SECTION_DEAD static char const* const stringBase_8039A287 = "/res/ItemTable/enemy_table.bin";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039A2A6 = "\0";
 #pragma pop
 
 /* 80257FEC-80258420 25292C 0434+00 1/1 0/0 0/0 .text            dvdDataLoad__10dScnLogo_cFv */
@@ -972,7 +1022,7 @@ asm dLog_HIO_c::~dLog_HIO_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802585A4(u16* param_0) {
+extern "C" asm void func_802585A4(void* _this, u16* param_0) {
     nofralloc
 #include "asm/d/s/d_s_logo/func_802585A4.s"
 }
@@ -997,43 +1047,7 @@ asm void __sinit_d_s_logo_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_802585C0 = (void*)__sinit_d_s_logo_cpp;
+REGISTER_CTORS(0x802585C0, __sinit_d_s_logo_cpp);
 #pragma pop
 
-/* 80399FFC-8039A2A8 02665C 02AA+02 4/4 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80399FFC = "LogoUs";
-SECTION_DEAD static char const* const stringBase_8039A003 = "Always";
-SECTION_DEAD static char const* const stringBase_8039A00A = "/res/Object/";
-SECTION_DEAD static char const* const stringBase_8039A017 = "Alink";
-SECTION_DEAD static char const* const stringBase_8039A01D = "/res/FieldMap/Field0.arc";
-SECTION_DEAD static char const* const stringBase_8039A036 = "/res/Object/AlAnm.arc";
-SECTION_DEAD static char const* const stringBase_8039A04C = "/res/Layout/fmapres.arc";
-SECTION_DEAD static char const* const stringBase_8039A064 = "/res/Layout/dmapres.arc";
-SECTION_DEAD static char const* const stringBase_8039A07C = "/res/Layout/clctres.arc";
-SECTION_DEAD static char const* const stringBase_8039A094 = "/res/Layout/itemicon.arc";
-SECTION_DEAD static char const* const stringBase_8039A0AD = "/res/Layout/ringres.arc";
-SECTION_DEAD static char const* const stringBase_8039A0C5 = "/res/Layout/playerName.arc";
-SECTION_DEAD static char const* const stringBase_8039A0E0 = "/res/Layout/itmInfRes.arc";
-SECTION_DEAD static char const* const stringBase_8039A0FA = "/res/Layout/button.arc";
-SECTION_DEAD static char const* const stringBase_8039A111 = "/res/CardIcon/cardicon.arc";
-SECTION_DEAD static char const* const stringBase_8039A12C = "/res/Msgus/bmgres.arc";
-SECTION_DEAD static char const* const stringBase_8039A142 = "/res/Layout/msgcom.arc";
-SECTION_DEAD static char const* const stringBase_8039A159 = "/res/Layout/msgres00.arc";
-SECTION_DEAD static char const* const stringBase_8039A172 = "/res/Layout/msgres01.arc";
-SECTION_DEAD static char const* const stringBase_8039A18B = "/res/Layout/msgres02.arc";
-SECTION_DEAD static char const* const stringBase_8039A1A4 = "/res/Layout/msgres03.arc";
-SECTION_DEAD static char const* const stringBase_8039A1BD = "/res/Layout/msgres04F.arc";
-SECTION_DEAD static char const* const stringBase_8039A1D7 = "/res/Layout/msgres05.arc";
-SECTION_DEAD static char const* const stringBase_8039A1F0 = "/res/Layout/msgres06.arc";
-SECTION_DEAD static char const* const stringBase_8039A209 = "/res/Layout/main2D.arc";
-SECTION_DEAD static char const* const stringBase_8039A220 = "/res/Fontus/fontres.arc";
-SECTION_DEAD static char const* const stringBase_8039A238 = "/res/Fontus/rubyres.arc";
-SECTION_DEAD static char const* const stringBase_8039A250 = "/res/Particle/common.jpc";
-SECTION_DEAD static char const* const stringBase_8039A269 = "/res/ItemTable/item_table.bin";
-SECTION_DEAD static char const* const stringBase_8039A287 = "/res/ItemTable/enemy_table.bin";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039A2A6 = "\0";
-#pragma pop
+/* 80399FFC-80399FFC 02665C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

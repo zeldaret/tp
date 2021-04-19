@@ -310,6 +310,15 @@ extern "C" void soldoutItem__8daMyna_cFUi();
 //
 
 /* ############################################################################################## */
+/* 80CE7F18-80CE7F18 000068 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CE7F18 = "Always";
+SECTION_DEAD static char const* const stringBase_80CE7F1F = "Pumpkin";
+SECTION_DEAD static char const* const stringBase_80CE7F27 = "";
+SECTION_DEAD static char const* const stringBase_80CE7F28 = "pumpkin.bmd";
+#pragma pop
+
 /* 80CE7F34-80CE7F40 -00001 000C+00 1/1 0/0 0/0 .data            l_resFileName */
 SECTION_DATA static void* l_resFileName[3] = {
     (void*)&d_a_obj_ss_item__stringBase0,
@@ -528,7 +537,7 @@ SECTION_RODATA u8 const daObj_SSItem_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CE7EB0, &daObj_SSItem_c::mCcDObjInfo);
+COMPILER_STRIP_GATE(0x80CE7EB0, &daObj_SSItem_c::mCcDObjInfo);
 
 /* 80CE7EE0-80CE7EE4 000030 0004+00 1/2 0/0 0/0 .rodata          @4205 */
 SECTION_RODATA static u8 const lit_4205[4] = {
@@ -537,27 +546,27 @@ SECTION_RODATA static u8 const lit_4205[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CE7EE0, &lit_4205);
+COMPILER_STRIP_GATE(0x80CE7EE0, &lit_4205);
 
 /* 80CE7EE4-80CE7EE8 000034 0004+00 0/2 0/0 0/0 .rodata          @4206 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4206 = -1000000000.0f;
-COMPILER_STRIP_GATE(80CE7EE4, &lit_4206);
+COMPILER_STRIP_GATE(0x80CE7EE4, &lit_4206);
 #pragma pop
 
 /* 80CE7EE8-80CE7EEC 000038 0004+00 0/1 0/0 0/0 .rodata          @4207 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4207 = 8.0f;
-COMPILER_STRIP_GATE(80CE7EE8, &lit_4207);
+COMPILER_STRIP_GATE(0x80CE7EE8, &lit_4207);
 #pragma pop
 
 /* 80CE7EEC-80CE7EF0 00003C 0004+00 0/1 0/0 0/0 .rodata          @4208 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4208 = 62.0f;
-COMPILER_STRIP_GATE(80CE7EEC, &lit_4208);
+COMPILER_STRIP_GATE(0x80CE7EEC, &lit_4208);
 #pragma pop
 
 /* 80CE738C-80CE7610 0007EC 0284+00 2/2 0/0 0/0 .text            Execute__14daObj_SSItem_cFv */
@@ -575,14 +584,14 @@ asm void daObj_SSItem_c::Execute() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4234 = 20.0f;
-COMPILER_STRIP_GATE(80CE7EF0, &lit_4234);
+COMPILER_STRIP_GATE(0x80CE7EF0, &lit_4234);
 #pragma pop
 
 /* 80CE7EF4-80CE7EF8 000044 0004+00 0/1 0/0 0/0 .rodata          @4235 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4235 = 1.0f;
-COMPILER_STRIP_GATE(80CE7EF4, &lit_4235);
+COMPILER_STRIP_GATE(0x80CE7EF4, &lit_4235);
 #pragma pop
 
 /* 80CE7610-80CE7710 000A70 0100+00 1/1 0/0 0/0 .text            Draw__14daObj_SSItem_cFv */
@@ -702,42 +711,42 @@ asm void daObj_SSItem_c::restart() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4347 = -30.0f;
-COMPILER_STRIP_GATE(80CE7EF8, &lit_4347);
+COMPILER_STRIP_GATE(0x80CE7EF8, &lit_4347);
 #pragma pop
 
 /* 80CE7EFC-80CE7F00 00004C 0004+00 0/1 0/0 0/0 .rodata          @4348 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4348 = -15.0f;
-COMPILER_STRIP_GATE(80CE7EFC, &lit_4348);
+COMPILER_STRIP_GATE(0x80CE7EFC, &lit_4348);
 #pragma pop
 
 /* 80CE7F00-80CE7F04 000050 0004+00 0/1 0/0 0/0 .rodata          @4349 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4349 = 30.0f;
-COMPILER_STRIP_GATE(80CE7F00, &lit_4349);
+COMPILER_STRIP_GATE(0x80CE7F00, &lit_4349);
 #pragma pop
 
 /* 80CE7F04-80CE7F08 000054 0004+00 0/1 0/0 0/0 .rodata          @4350 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4350 = 45.0f;
-COMPILER_STRIP_GATE(80CE7F04, &lit_4350);
+COMPILER_STRIP_GATE(0x80CE7F04, &lit_4350);
 #pragma pop
 
 /* 80CE7F08-80CE7F0C 000058 0004+00 0/2 0/0 0/0 .rodata          @4351 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4351 = 24.0f;
-COMPILER_STRIP_GATE(80CE7F08, &lit_4351);
+COMPILER_STRIP_GATE(0x80CE7F08, &lit_4351);
 #pragma pop
 
 /* 80CE7F0C-80CE7F10 00005C 0004+00 0/2 0/0 0/0 .rodata          @4352 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4352 = 12.0f;
-COMPILER_STRIP_GATE(80CE7F0C, &lit_4352);
+COMPILER_STRIP_GATE(0x80CE7F0C, &lit_4352);
 #pragma pop
 
 /* 80CE7950-80CE7B04 000DB0 01B4+00 1/1 0/0 0/0 .text            initialize__14daObj_SSItem_cFv */
@@ -755,7 +764,7 @@ asm void daObj_SSItem_c::initialize() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObj_SSItem_c::setProcess(int (daObj_SSItem_c::*)(void*)) {
+asm void daObj_SSItem_c::setProcess(int (daObj_SSItem_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_ss_item/d_a_obj_ss_item/setProcess__14daObj_SSItem_cFM14daObj_SSItem_cFPCvPvPv_i.s"
 }
@@ -766,14 +775,14 @@ asm void daObj_SSItem_c::setProcess(int (daObj_SSItem_c::*)(void*)) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4377 = 7.0f / 5.0f;
-COMPILER_STRIP_GATE(80CE7F10, &lit_4377);
+COMPILER_STRIP_GATE(0x80CE7F10, &lit_4377);
 #pragma pop
 
 /* 80CE7F14-80CE7F18 000064 0004+00 0/1 0/0 0/0 .rodata          @4378 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4378 = -5.0f;
-COMPILER_STRIP_GATE(80CE7F14, &lit_4378);
+COMPILER_STRIP_GATE(0x80CE7F14, &lit_4378);
 #pragma pop
 
 /* 80CE7BB4-80CE7C24 001014 0070+00 1/1 0/0 0/0 .text            setParam__14daObj_SSItem_cFv */
@@ -904,7 +913,7 @@ asm void __sinit_d_a_obj_ss_item_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80CE7E5C = (void*)__sinit_d_a_obj_ss_item_cpp;
+REGISTER_CTORS(0x80CE7E5C, __sinit_d_a_obj_ss_item_cpp);
 #pragma pop
 
 /* 80CE7E94-80CE7E9C 0012F4 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
@@ -927,12 +936,4 @@ static asm void func_80CE7E9C() {
 }
 #pragma pop
 
-/* 80CE7F18-80CE7F34 000068 001C+00 2/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CE7F18 = "Always";
-SECTION_DEAD static char const* const stringBase_80CE7F1F = "Pumpkin";
-SECTION_DEAD static char const* const stringBase_80CE7F27 = "";
-SECTION_DEAD static char const* const stringBase_80CE7F28 = "pumpkin.bmd";
-#pragma pop
+/* 80CE7F18-80CE7F18 000068 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

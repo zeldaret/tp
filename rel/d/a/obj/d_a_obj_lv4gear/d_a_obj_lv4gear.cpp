@@ -51,9 +51,9 @@ struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -178,7 +178,13 @@ asm void daObjLv4Gear_c::Create() {
 SECTION_RODATA static u8 const l_bmd[8] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x03,
 };
-COMPILER_STRIP_GATE(80C68500, &l_bmd);
+COMPILER_STRIP_GATE(0x80C68500, &l_bmd);
+
+/* 80C68524-80C68524 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C68524 = "P_Gear";
+#pragma pop
 
 /* 80C6852C-80C68530 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_lv4gear__stringBase0;
@@ -200,21 +206,21 @@ asm void daObjLv4Gear_c::CreateHeap() {
 SECTION_RODATA static u8 const l_size[8] = {
     0x42, 0xC8, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C68508, &l_size);
+COMPILER_STRIP_GATE(0x80C68508, &l_size);
 #pragma pop
 
 /* 80C68510-80C68514 000010 0004+00 0/1 0/0 0/0 .rodata          l_rot_start_time */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const l_rot_start_time = 0x000F0064;
-COMPILER_STRIP_GATE(80C68510, &l_rot_start_time);
+COMPILER_STRIP_GATE(0x80C68510, &l_rot_start_time);
 #pragma pop
 
 /* 80C68514-80C6851C 000014 0008+00 1/1 0/0 0/0 .rodata          l_heap_size */
 SECTION_RODATA static u8 const l_heap_size[8] = {
     0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x0F, 0x00,
 };
-COMPILER_STRIP_GATE(80C68514, &l_heap_size);
+COMPILER_STRIP_GATE(0x80C68514, &l_heap_size);
 
 /* 80C68124-80C681F4 000284 00D0+00 1/1 0/0 0/0 .text            create__14daObjLv4Gear_cFv */
 #pragma push
@@ -231,14 +237,14 @@ asm void daObjLv4Gear_c::create() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3773 = 1.0f;
-COMPILER_STRIP_GATE(80C6851C, &lit_3773);
+COMPILER_STRIP_GATE(0x80C6851C, &lit_3773);
 #pragma pop
 
 /* 80C68520-80C68524 000020 0004+00 0/1 0/0 0/0 .rodata          @3774 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3774 = -1.0f;
-COMPILER_STRIP_GATE(80C68520, &lit_3774);
+COMPILER_STRIP_GATE(0x80C68520, &lit_3774);
 #pragma pop
 
 /* 80C681F4-80C683E0 000354 01EC+00 1/1 0/0 0/0 .text            execute__14daObjLv4Gear_cFv */
@@ -334,9 +340,4 @@ SECTION_DATA extern void* g_profile_Obj_Lv4Gear[12] = {
     (void*)0x00040100, (void*)0x000E0000,
 };
 
-/* 80C68524-80C6852B 000024 0007+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C68524 = "P_Gear";
-#pragma pop
+/* 80C68524-80C68524 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

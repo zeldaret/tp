@@ -289,27 +289,27 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80BA8E0C-80BA8E10 000000 0004+00 4/4 0/0 0/0 .rodata          @3656 */
 SECTION_RODATA static f32 const lit_3656 = 1.0f;
-COMPILER_STRIP_GATE(80BA8E0C, &lit_3656);
+COMPILER_STRIP_GATE(0x80BA8E0C, &lit_3656);
 
 /* 80BA8E10-80BA8E14 000004 0004+00 0/1 0/0 0/0 .rodata          @3657 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3657 = 1.5f;
-COMPILER_STRIP_GATE(80BA8E10, &lit_3657);
+COMPILER_STRIP_GATE(0x80BA8E10, &lit_3657);
 #pragma pop
 
 /* 80BA8E14-80BA8E18 000008 0004+00 0/1 0/0 0/0 .rodata          @3658 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3658 = 3.0f;
-COMPILER_STRIP_GATE(80BA8E14, &lit_3658);
+COMPILER_STRIP_GATE(0x80BA8E14, &lit_3658);
 #pragma pop
 
 /* 80BA8E18-80BA8E1C 00000C 0004+00 0/1 0/0 0/0 .rodata          @3659 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3659 = 10.0f;
-COMPILER_STRIP_GATE(80BA8E18, &lit_3659);
+COMPILER_STRIP_GATE(0x80BA8E18, &lit_3659);
 #pragma pop
 
 /* 80BA8E5C-80BA8E68 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -469,14 +469,14 @@ asm daObj_Balloon_HIO_c::daObj_Balloon_HIO_c() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3687 = 100.0f;
-COMPILER_STRIP_GATE(80BA8E1C, &lit_3687);
+COMPILER_STRIP_GATE(0x80BA8E1C, &lit_3687);
 #pragma pop
 
 /* 80BA8E20-80BA8E24 000014 0004+00 0/1 0/0 0/0 .rodata          @3688 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3688 = 400.0f;
-COMPILER_STRIP_GATE(80BA8E20, &lit_3688);
+COMPILER_STRIP_GATE(0x80BA8E20, &lit_3688);
 #pragma pop
 
 /* 80BA8E24-80BA8E28 000018 0004+00 0/3 0/0 0/0 .rodata          @3689 */
@@ -488,7 +488,7 @@ SECTION_RODATA static u8 const lit_3689[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BA8E24, &lit_3689);
+COMPILER_STRIP_GATE(0x80BA8E24, &lit_3689);
 #pragma pop
 
 /* 80BA7FF4-80BA80D4 000134 00E0+00 1/1 0/0 0/0 .text            draw__15daObj_Balloon_cFv */
@@ -659,63 +659,63 @@ asm void daObj_Balloon_c::cc_set() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3809 = -3.0f;
-COMPILER_STRIP_GATE(80BA8E28, &lit_3809);
+COMPILER_STRIP_GATE(0x80BA8E28, &lit_3809);
 #pragma pop
 
 /* 80BA8E2C-80BA8E30 000020 0004+00 0/1 0/0 0/0 .rodata          @3810 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3810 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80BA8E2C, &lit_3810);
+COMPILER_STRIP_GATE(0x80BA8E2C, &lit_3810);
 #pragma pop
 
 /* 80BA8E30-80BA8E34 000024 0004+00 0/1 0/0 0/0 .rodata          @3811 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3811 = 30.0f;
-COMPILER_STRIP_GATE(80BA8E30, &lit_3811);
+COMPILER_STRIP_GATE(0x80BA8E30, &lit_3811);
 #pragma pop
 
 /* 80BA8E34-80BA8E38 000028 0004+00 0/1 0/0 0/0 .rodata          @3812 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3812 = 60.0f;
-COMPILER_STRIP_GATE(80BA8E34, &lit_3812);
+COMPILER_STRIP_GATE(0x80BA8E34, &lit_3812);
 #pragma pop
 
 /* 80BA8E38-80BA8E3C 00002C 0004+00 0/1 0/0 0/0 .rodata          @3813 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3813 = 512.0f;
-COMPILER_STRIP_GATE(80BA8E38, &lit_3813);
+COMPILER_STRIP_GATE(0x80BA8E38, &lit_3813);
 #pragma pop
 
 /* 80BA8E3C-80BA8E40 000030 0004+00 0/1 0/0 0/0 .rodata          @3814 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3814 = 5.0f;
-COMPILER_STRIP_GATE(80BA8E3C, &lit_3814);
+COMPILER_STRIP_GATE(0x80BA8E3C, &lit_3814);
 #pragma pop
 
 /* 80BA8E40-80BA8E44 000034 0004+00 0/1 0/0 0/0 .rodata          @3815 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3815 = 128.0f;
-COMPILER_STRIP_GATE(80BA8E40, &lit_3815);
+COMPILER_STRIP_GATE(0x80BA8E40, &lit_3815);
 #pragma pop
 
 /* 80BA8E44-80BA8E48 000038 0004+00 0/2 0/0 0/0 .rodata          @3816 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3816 = 2.0f;
-COMPILER_STRIP_GATE(80BA8E44, &lit_3816);
+COMPILER_STRIP_GATE(0x80BA8E44, &lit_3816);
 #pragma pop
 
 /* 80BA8E48-80BA8E4C 00003C 0004+00 0/1 0/0 0/0 .rodata          @3817 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3817 = -1.0f;
-COMPILER_STRIP_GATE(80BA8E48, &lit_3817);
+COMPILER_STRIP_GATE(0x80BA8E48, &lit_3817);
 #pragma pop
 
 /* 80BA81B8-80BA865C 0002F8 04A4+00 1/1 0/0 0/0 .text            action__15daObj_Balloon_cFv */
@@ -765,6 +765,13 @@ static bool daObj_Balloon_IsDelete(daObj_Balloon_c* param_0) {
     return true;
 }
 
+/* ############################################################################################## */
+/* 80BA8E54-80BA8E54 000048 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BA8E54 = "Obj_bal";
+#pragma pop
+
 /* 80BA8734-80BA87AC 000874 0078+00 1/1 0/0 0/0 .text            _delete__15daObj_Balloon_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -810,14 +817,14 @@ static asm void useHeapInit(fopAc_ac_c* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3946 = -1000.0f;
-COMPILER_STRIP_GATE(80BA8E4C, &lit_3946);
+COMPILER_STRIP_GATE(0x80BA8E4C, &lit_3946);
 #pragma pop
 
 /* 80BA8E50-80BA8E54 000044 0004+00 0/1 0/0 0/0 .rodata          @3947 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3947 = 1000.0f;
-COMPILER_STRIP_GATE(80BA8E50, &lit_3947);
+COMPILER_STRIP_GATE(0x80BA8E50, &lit_3947);
 #pragma pop
 
 /* 80BA88C4-80BA8B30 000A04 026C+00 1/1 0/0 0/0 .text            create__15daObj_Balloon_cFv */
@@ -922,7 +929,7 @@ asm void __sinit_d_a_obj_balloon_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80BA8DAC = (void*)__sinit_d_a_obj_balloon_cpp;
+REGISTER_CTORS(0x80BA8DAC, __sinit_d_a_obj_balloon_cpp);
 #pragma pop
 
 /* 80BA8DE8-80BA8DF0 000F28 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
@@ -1117,9 +1124,4 @@ static u8 data_80BA9088[4];
 static u8 data_80BA908C[4];
 #pragma pop
 
-/* 80BA8E54-80BA8E5C 000048 0008+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BA8E54 = "Obj_bal";
-#pragma pop
+/* 80BA8E54-80BA8E54 000048 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

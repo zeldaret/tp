@@ -48,5 +48,4 @@ void MtxPosition(cXyz*, cXyz*);
 void MtxPush(void);
 Mtx* MtxPull(void);
 
-
 #endif

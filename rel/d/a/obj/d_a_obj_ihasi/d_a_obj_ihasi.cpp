@@ -185,20 +185,20 @@ static void ih_disappear(obj_ihasi_class* param_0) {
 /* ############################################################################################## */
 /* 80C26888-80C2688C 000000 0004+00 2/2 0/0 0/0 .rodata          @3841 */
 SECTION_RODATA static f32 const lit_3841 = 34800.0f;
-COMPILER_STRIP_GATE(80C26888, &lit_3841);
+COMPILER_STRIP_GATE(0x80C26888, &lit_3841);
 
 /* 80C2688C-80C26890 000004 0004+00 0/2 0/0 0/0 .rodata          @3842 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3842 = -300.0f;
-COMPILER_STRIP_GATE(80C2688C, &lit_3842);
+COMPILER_STRIP_GATE(0x80C2688C, &lit_3842);
 #pragma pop
 
 /* 80C26890-80C26894 000008 0004+00 0/2 0/0 0/0 .rodata          @3843 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3843 = -26735.0f;
-COMPILER_STRIP_GATE(80C26890, &lit_3843);
+COMPILER_STRIP_GATE(0x80C26890, &lit_3843);
 #pragma pop
 
 /* 80C26124-80C26204 000184 00E0+00 1/1 0/0 0/0 .text            action__FP15obj_ihasi_class */
@@ -226,6 +226,13 @@ static bool daObj_Ihasi_IsDelete(obj_ihasi_class* param_0) {
     return true;
 }
 
+/* ############################################################################################## */
+/* 80C268C4-80C268C4 00003C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C268C4 = "Obj_ihasi";
+#pragma pop
+
 /* 80C262CC-80C26324 00032C 0058+00 1/0 0/0 0/0 .text daObj_Ihasi_Delete__FP15obj_ihasi_class */
 #pragma push
 #pragma optimization_level 0
@@ -239,7 +246,7 @@ static asm void daObj_Ihasi_Delete(obj_ihasi_class* param_0) {
 /* ############################################################################################## */
 /* 80C26894-80C26898 00000C 0004+00 1/1 0/0 0/0 .rodata          @3922 */
 SECTION_RODATA static f32 const lit_3922 = 1.0f;
-COMPILER_STRIP_GATE(80C26894, &lit_3922);
+COMPILER_STRIP_GATE(0x80C26894, &lit_3922);
 
 /* 80C268D8-80C268F8 -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Ihasi_Method */
 SECTION_DATA static void* l_daObj_Ihasi_Method[8] = {
@@ -295,77 +302,83 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4021 = 34750.0f;
-COMPILER_STRIP_GATE(80C26898, &lit_4021);
+COMPILER_STRIP_GATE(0x80C26898, &lit_4021);
 #pragma pop
 
 /* 80C2689C-80C268A0 000014 0004+00 0/1 0/0 0/0 .rodata          @4022 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4022 = -44000.0f;
-COMPILER_STRIP_GATE(80C2689C, &lit_4022);
+COMPILER_STRIP_GATE(0x80C2689C, &lit_4022);
 #pragma pop
 
 /* 80C268A0-80C268A4 000018 0004+00 0/1 0/0 0/0 .rodata          @4023 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4023 = 35250.0f;
-COMPILER_STRIP_GATE(80C268A0, &lit_4023);
+COMPILER_STRIP_GATE(0x80C268A0, &lit_4023);
 #pragma pop
 
 /* 80C268A4-80C268A8 00001C 0004+00 0/1 0/0 0/0 .rodata          @4024 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4024 = -43500.0f;
-COMPILER_STRIP_GATE(80C268A4, &lit_4024);
+COMPILER_STRIP_GATE(0x80C268A4, &lit_4024);
 #pragma pop
 
 /* 80C268A8-80C268AC 000020 0004+00 0/1 0/0 0/0 .rodata          @4025 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4025 = 34250.0f;
-COMPILER_STRIP_GATE(80C268A8, &lit_4025);
+COMPILER_STRIP_GATE(0x80C268A8, &lit_4025);
 #pragma pop
 
 /* 80C268AC-80C268B0 000024 0004+00 0/1 0/0 0/0 .rodata          @4026 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4026 = 65536.0f;
-COMPILER_STRIP_GATE(80C268AC, &lit_4026);
+COMPILER_STRIP_GATE(0x80C268AC, &lit_4026);
 #pragma pop
 
 /* 80C268B0-80C268B4 000028 0004+00 0/1 0/0 0/0 .rodata          @4027 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4027 = 5700.0f;
-COMPILER_STRIP_GATE(80C268B0, &lit_4027);
+COMPILER_STRIP_GATE(0x80C268B0, &lit_4027);
 #pragma pop
 
 /* 80C268B4-80C268B8 00002C 0004+00 0/1 0/0 0/0 .rodata          @4028 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4028 = -30340.0f;
-COMPILER_STRIP_GATE(80C268B4, &lit_4028);
+COMPILER_STRIP_GATE(0x80C268B4, &lit_4028);
 #pragma pop
 
 /* 80C268B8-80C268BC 000030 0004+00 0/1 0/0 0/0 .rodata          @4029 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4029 = 35087.0f;
-COMPILER_STRIP_GATE(80C268B8, &lit_4029);
+COMPILER_STRIP_GATE(0x80C268B8, &lit_4029);
 #pragma pop
 
 /* 80C268BC-80C268C0 000034 0004+00 0/1 0/0 0/0 .rodata          @4030 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4030 = -29879.0f;
-COMPILER_STRIP_GATE(80C268BC, &lit_4030);
+COMPILER_STRIP_GATE(0x80C268BC, &lit_4030);
 #pragma pop
 
 /* 80C268C0-80C268C4 000038 0004+00 0/1 0/0 0/0 .rodata          @4031 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4031 = 34500.0f;
-COMPILER_STRIP_GATE(80C268C0, &lit_4031);
+COMPILER_STRIP_GATE(0x80C268C0, &lit_4031);
+#pragma pop
+
+/* 80C268C4-80C268C4 00003C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C268CE = "F_SP121";
 #pragma pop
 
 /* 80C26540-80C26880 0005A0 0340+00 1/0 0/0 0/0 .text            daObj_Ihasi_Create__FP10fopAc_ac_c
@@ -379,10 +392,4 @@ static asm void daObj_Ihasi_Create(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 80C268C4-80C268D6 00003C 0012+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C268C4 = "Obj_ihasi";
-SECTION_DEAD static char const* const stringBase_80C268CE = "F_SP121";
-#pragma pop
+/* 80C268C4-80C268C4 00003C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

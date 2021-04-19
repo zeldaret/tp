@@ -71,9 +71,9 @@ struct dPa_modelEcallBack {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -181,6 +181,14 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
+/* 803792A8-803792A8 005908 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803792A8 = "Always";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_803792AF = "";
+#pragma pop
+
 /* 80451D98-80451D9C 000398 0004+00 6/6 0/0 0/0 .sdata2          @3671 */
 SECTION_SDATA2 static f32 lit_3671 = 1.0f;
 
@@ -339,7 +347,7 @@ SECTION_RODATA static f32 const zero_quat[4] = {
     0.0f,
     1.0f,
 };
-COMPILER_STRIP_GATE(80379298, &zero_quat);
+COMPILER_STRIP_GATE(0x80379298, &zero_quat);
 
 /* 80451DA8-80451DB0 0003A8 0004+04 1/1 0/0 0/0 .sdata2          @3956 */
 SECTION_SDATA2 static f32 lit_3956[1 + 1 /* padding */] = {
@@ -391,11 +399,4 @@ asm void cCcD_SphAttr::GetCoCP() {
 }
 #pragma pop
 
-/* 803792A8-803792B0 005908 0007+01 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803792A8 = "Always";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803792AF = "";
-#pragma pop
+/* 803792A8-803792A8 005908 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

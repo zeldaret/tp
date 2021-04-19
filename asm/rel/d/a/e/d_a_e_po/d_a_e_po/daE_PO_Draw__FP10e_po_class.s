@@ -202,8 +202,8 @@ lbl_8074CB14:
 /* 8074CB54  2C 03 00 02 */	cmpwi r3, 2
 /* 8074CB58  40 82 00 20 */	bne lbl_8074CB78
 /* 8074CB5C  7F A3 EB 78 */	mr r3, r29
-/* 8074CB60  3C 80 80 75 */	lis r4, struct_80757AD4+0x6@ha /* 0x80757ADA@ha */
-/* 8074CB64  38 84 7A DA */	addi r4, r4, struct_80757AD4+0x6@l /* 0x80757ADA@l */
+/* 8074CB60  3C 80 80 75 */	lis r4, mAttackNo@ha /* 0x80757ADA@ha */
+/* 8074CB64  38 84 7A DA */	addi r4, r4, mAttackNo@l /* 0x80757ADA@l */
 /* 8074CB68  A8 84 00 00 */	lha r4, 0(r4)
 /* 8074CB6C  4B FF FA 81 */	bl mArg0Check__FP10e_po_classs
 /* 8074CB70  2C 03 00 00 */	cmpwi r3, 0

@@ -262,6 +262,15 @@ asm void JKRCompArchive::fetchResource(JKRArchive::SDIFileEntry* param_0, u32* p
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039D220-8039D220 029880 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D220 = "JKRCompArchive.cpp";
+SECTION_DEAD static char const* const stringBase_8039D233 = "%s";
+SECTION_DEAD static char const* const stringBase_8039D236 = "illegal archive.";
+#pragma pop
+
 /* 802D90C0-802D9260 2D3A00 01A0+00 1/0 0/0 0/0 .text
  * fetchResource__14JKRCompArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl */
 #pragma push
@@ -295,6 +304,15 @@ asm void JKRCompArchive::removeResource(void* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039D220-8039D220 029880 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D247 = "illegal resource.";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039D259 = "\0\0\0\0\0\0";
+#pragma pop
+
 /* 802D9360-802D9518 2D3CA0 01B8+00 1/0 0/0 0/0 .text getExpandedResSize__14JKRCompArchiveCFPCv */
 #pragma push
 #pragma optimization_level 0
@@ -305,14 +323,4 @@ asm void JKRCompArchive::getExpandedResSize(void const* param_0) const {
 }
 #pragma pop
 
-/* 8039D220-8039D260 029880 0039+07 2/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039D220 = "JKRCompArchive.cpp";
-SECTION_DEAD static char const* const stringBase_8039D233 = "%s";
-SECTION_DEAD static char const* const stringBase_8039D236 = "illegal archive.";
-SECTION_DEAD static char const* const stringBase_8039D247 = "illegal resource.";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039D259 = "\0\0\0\0\0\0";
-#pragma pop
+/* 8039D220-8039D220 029880 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

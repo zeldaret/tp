@@ -53,24 +53,23 @@ struct J2DTextBoxVBinding {};
 
 struct J2DTextBoxHBinding {};
 
-struct J2DAnmColor {};
-
-struct J2DAnmTevRegKey {};
+struct J2DAnmTexPattern {};
 
 struct J2DAnmVisibilityFull {};
 
 struct J2DAnmBase {};
 
+struct J2DAnmColor {};
+
+struct J2DAnmTevRegKey {};
+
+struct J2DAnmTextureSRTKey {};
+
 struct J2DAnmTransform {};
 
 struct J2DAnmVtxColor {};
 
-struct J2DAnmTextureSRTKey {};
-
-struct J2DAnmTexPattern {};
-
 struct J2DPane {
-    /* 80020158 */ void setAlpha(u8);
     /* 80053BC0 */ void calcMtx();
     /* 80053C00 */ void makeMatrix(f32, f32);
     /* 802F7540 */ void makeMatrix(f32, f32, f32, f32);
@@ -78,7 +77,6 @@ struct J2DPane {
     /* 8025601C */ void setAnimation(J2DAnmVisibilityFull*);
     /* 80256020 */ void setAnimation(J2DAnmTexPattern*);
     /* 8018BF28 */ void setAnimation(J2DAnmTextureSRTKey*);
-    /* 802F7FC4 */ void setAnimation(J2DAnmTransform*);
     /* 80126350 */ void setAnimation(J2DAnmTevRegKey*);
     /* 80126354 */ void setAnimation(J2DAnmColor*);
     /* 802F7EF4 */ void setAnimation(J2DAnmBase*);
@@ -424,6 +422,13 @@ asm void J2DTextBox::setFont(JUTFont* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 803A1C58-803A1C58 02E2B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803A1C58 = "%s";
+#pragma pop
+
 /* 803002E8-80300490 2FAC28 01A8+00 1/0 0/0 0/0 .text            draw__10J2DTextBoxFff */
 #pragma push
 #pragma optimization_level 0
@@ -554,12 +559,13 @@ void J2DTextBox::rewriteAlpha() {
     /* empty function */
 }
 
-/* 803A1C58-803A1C60 02E2B8 0004+04 1/1 0/0 0/0 .rodata          @stringBase0 */
+/* ############################################################################################## */
+/* 803A1C5B-803A1C60 02E2BB 0001+04 0/0 0/0 0/0 .rodata          None */
 #pragma push
 #pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803A1C58 = "%s";
 SECTION_DEAD static char const* const stringBase_803A1C5B = "";
 /* @stringBase0 padding */
 SECTION_DEAD static char const* const pad_803A1C5C = "\0\0\0";
 #pragma pop
+
+/* 803A1C58-803A1C58 02E2B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

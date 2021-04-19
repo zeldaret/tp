@@ -232,7 +232,14 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80CBF668-80CBF66C 000000 0004+00 4/4 0/0 0/0 .rodata          @3626 */
 SECTION_RODATA static f32 const lit_3626 = 1500.0f;
-COMPILER_STRIP_GATE(80CBF668, &lit_3626);
+COMPILER_STRIP_GATE(0x80CBF668, &lit_3626);
+
+/* 80CBF6C4-80CBF6C4 00005C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CBF6C4 = "P_Mbridge";
+SECTION_DEAD static char const* const stringBase_80CBF6CE = "P_Mbrid9";
+#pragma pop
 
 /* 80CBF6D8-80CBF6E4 -00001 000C+00 3/3 0/0 0/0 .data            l_resNameIdx */
 SECTION_DATA static void* l_resNameIdx[3] = {
@@ -335,14 +342,14 @@ asm void daRotBridge_c::setBaseMtx() {
 SECTION_RODATA static u8 const l_bmdIdx[12] = {
     0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x08,
 };
-COMPILER_STRIP_GATE(80CBF66C, &l_bmdIdx);
+COMPILER_STRIP_GATE(0x80CBF66C, &l_bmdIdx);
 #pragma pop
 
 /* 80CBF678-80CBF684 000010 000C+00 1/1 0/0 0/0 .rodata          l_dzbIdx */
 SECTION_RODATA static u8 const l_dzbIdx[12] = {
     0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x0B,
 };
-COMPILER_STRIP_GATE(80CBF678, &l_dzbIdx);
+COMPILER_STRIP_GATE(0x80CBF678, &l_dzbIdx);
 
 /* 80CBF684-80CBF690 00001C 000C+00 0/1 0/0 0/0 .rodata          l_bckIdx */
 #pragma push
@@ -350,7 +357,7 @@ COMPILER_STRIP_GATE(80CBF678, &l_dzbIdx);
 SECTION_RODATA static u8 const l_bckIdx[12] = {
     0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x05,
 };
-COMPILER_STRIP_GATE(80CBF684, &l_bckIdx);
+COMPILER_STRIP_GATE(0x80CBF684, &l_bckIdx);
 #pragma pop
 
 /* 80CBF690-80CBF698 000028 0004+04 2/4 0/0 0/0 .rodata          @3694 */
@@ -359,7 +366,7 @@ SECTION_RODATA static f32 const lit_3694[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80CBF690, &lit_3694);
+COMPILER_STRIP_GATE(0x80CBF690, &lit_3694);
 
 /* 80CBEB38-80CBECBC 000298 0184+00 1/0 0/0 0/0 .text            CreateHeap__13daRotBridge_cFv */
 #pragma push
@@ -376,7 +383,7 @@ asm void daRotBridge_c::CreateHeap() {
 SECTION_RODATA static u8 const lit_3776[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CBF698, &lit_3776);
+COMPILER_STRIP_GATE(0x80CBF698, &lit_3776);
 
 /* 80CBECBC-80CBEED4 00041C 0218+00 1/1 0/0 0/0 .text            create__13daRotBridge_cFv */
 #pragma push
@@ -412,7 +419,7 @@ asm void daRotBridge_c::rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_a
 /* ############################################################################################## */
 /* 80CBF6A0-80CBF6A4 000038 0004+00 1/2 0/0 0/0 .rodata          @3833 */
 SECTION_RODATA static f32 const lit_3833 = -1.0f;
-COMPILER_STRIP_GATE(80CBF6A0, &lit_3833);
+COMPILER_STRIP_GATE(0x80CBF6A0, &lit_3833);
 
 /* 80CBEF34-80CBF050 000694 011C+00 1/0 0/0 0/0 .text            Execute__13daRotBridge_cFPPA3_A4_f
  */
@@ -435,7 +442,7 @@ SECTION_RODATA static u8 const lit_3878[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CBF6A4, &lit_3878);
+COMPILER_STRIP_GATE(0x80CBF6A4, &lit_3878);
 #pragma pop
 
 /* 80CBF6A8-80CBF6B0 000040 0008+00 0/1 0/0 0/0 .rodata          @3879 */
@@ -444,7 +451,7 @@ COMPILER_STRIP_GATE(80CBF6A4, &lit_3878);
 SECTION_RODATA static u8 const lit_3879[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CBF6A8, &lit_3879);
+COMPILER_STRIP_GATE(0x80CBF6A8, &lit_3879);
 #pragma pop
 
 /* 80CBF6B0-80CBF6B8 000048 0008+00 0/1 0/0 0/0 .rodata          @3880 */
@@ -453,7 +460,7 @@ COMPILER_STRIP_GATE(80CBF6A8, &lit_3879);
 SECTION_RODATA static u8 const lit_3880[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CBF6B0, &lit_3880);
+COMPILER_STRIP_GATE(0x80CBF6B0, &lit_3880);
 #pragma pop
 
 /* 80CBF6B8-80CBF6C0 000050 0008+00 0/1 0/0 0/0 .rodata          @3881 */
@@ -462,7 +469,7 @@ COMPILER_STRIP_GATE(80CBF6B0, &lit_3880);
 SECTION_RODATA static u8 const lit_3881[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CBF6B8, &lit_3881);
+COMPILER_STRIP_GATE(0x80CBF6B8, &lit_3881);
 #pragma pop
 
 /* 80CBF788-80CBF794 000008 000C+00 1/1 0/0 0/0 .bss             @3620 */
@@ -487,7 +494,7 @@ asm void daRotBridge_c::playerAreaCheck() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3939 = 10.0f;
-COMPILER_STRIP_GATE(80CBF6C0, &lit_3939);
+COMPILER_STRIP_GATE(0x80CBF6C0, &lit_3939);
 #pragma pop
 
 /* 80CBF1EC-80CBF404 00094C 0218+00 1/1 0/0 0/0 .text            moveBridge__13daRotBridge_cFv */
@@ -584,13 +591,7 @@ asm void __sinit_d_a_obj_rotBridge_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80CBF618 = (void*)__sinit_d_a_obj_rotBridge_cpp;
+REGISTER_CTORS(0x80CBF618, __sinit_d_a_obj_rotBridge_cpp);
 #pragma pop
 
-/* 80CBF6C4-80CBF6D7 00005C 0013+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CBF6C4 = "P_Mbridge";
-SECTION_DEAD static char const* const stringBase_80CBF6CE = "P_Mbrid9";
-#pragma pop
+/* 80CBF6C4-80CBF6C4 00005C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

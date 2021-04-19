@@ -59,6 +59,37 @@ asm void __num2dec_internal() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 803A2238-803A2238 02E898 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803A2238 = "179769313486231580793729011405303420";
+SECTION_DEAD static char const* const stringBase_803A225D =
+    "542101086242752217003726400434970855712890625";
+SECTION_DEAD static char const* const stringBase_803A228B =
+    "11102230246251565404236316680908203125";
+SECTION_DEAD static char const* const stringBase_803A22B2 = "23283064365386962890625";
+SECTION_DEAD static char const* const stringBase_803A22CA = "152587890625";
+SECTION_DEAD static char const* const stringBase_803A22D7 = "390625";
+SECTION_DEAD static char const* const stringBase_803A22DE = "78125";
+SECTION_DEAD static char const* const stringBase_803A22E4 = "15625";
+SECTION_DEAD static char const* const stringBase_803A22EA = "3125";
+SECTION_DEAD static char const* const stringBase_803A22EF = "625";
+SECTION_DEAD static char const* const stringBase_803A22F3 = "125";
+SECTION_DEAD static char const* const stringBase_803A22F7 = "25";
+SECTION_DEAD static char const* const stringBase_803A22FA = "5";
+SECTION_DEAD static char const* const stringBase_803A22FC = "1";
+SECTION_DEAD static char const* const stringBase_803A22FE = "2";
+SECTION_DEAD static char const* const stringBase_803A2300 = "4";
+SECTION_DEAD static char const* const stringBase_803A2302 = "8";
+SECTION_DEAD static char const* const stringBase_803A2304 = "16";
+SECTION_DEAD static char const* const stringBase_803A2307 = "32";
+SECTION_DEAD static char const* const stringBase_803A230A = "64";
+SECTION_DEAD static char const* const stringBase_803A230D = "128";
+SECTION_DEAD static char const* const stringBase_803A2311 = "256";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_803A2315 = "\0\0";
+#pragma pop
+
 /* 803D2AF0-803D2C18 -00001 0124+04 1/1 0/0 0/0 .data            @1710 */
 SECTION_DATA static void* lit_1710[73 + 1 /* padding */] = {
     (void*)(((char*)__two_exp) + 0x40),
@@ -158,34 +189,4 @@ asm void __timesdec() {
 }
 #pragma pop
 
-/* 803A2238-803A2318 02E898 00DD+03 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803A2238 = "179769313486231580793729011405303420";
-SECTION_DEAD static char const* const stringBase_803A225D =
-    "542101086242752217003726400434970855712890625";
-SECTION_DEAD static char const* const stringBase_803A228B =
-    "11102230246251565404236316680908203125";
-SECTION_DEAD static char const* const stringBase_803A22B2 = "23283064365386962890625";
-SECTION_DEAD static char const* const stringBase_803A22CA = "152587890625";
-SECTION_DEAD static char const* const stringBase_803A22D7 = "390625";
-SECTION_DEAD static char const* const stringBase_803A22DE = "78125";
-SECTION_DEAD static char const* const stringBase_803A22E4 = "15625";
-SECTION_DEAD static char const* const stringBase_803A22EA = "3125";
-SECTION_DEAD static char const* const stringBase_803A22EF = "625";
-SECTION_DEAD static char const* const stringBase_803A22F3 = "125";
-SECTION_DEAD static char const* const stringBase_803A22F7 = "25";
-SECTION_DEAD static char const* const stringBase_803A22FA = "5";
-SECTION_DEAD static char const* const stringBase_803A22FC = "1";
-SECTION_DEAD static char const* const stringBase_803A22FE = "2";
-SECTION_DEAD static char const* const stringBase_803A2300 = "4";
-SECTION_DEAD static char const* const stringBase_803A2302 = "8";
-SECTION_DEAD static char const* const stringBase_803A2304 = "16";
-SECTION_DEAD static char const* const stringBase_803A2307 = "32";
-SECTION_DEAD static char const* const stringBase_803A230A = "64";
-SECTION_DEAD static char const* const stringBase_803A230D = "128";
-SECTION_DEAD static char const* const stringBase_803A2311 = "256";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803A2315 = "\0\0";
-#pragma pop
+/* 803A2238-803A2238 02E898 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

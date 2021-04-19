@@ -105,13 +105,13 @@ SECTION_RODATA static u8 const lit_3720[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BE3888, &lit_3720);
+COMPILER_STRIP_GATE(0x80BE3888, &lit_3720);
 
 /* 80BE388C-80BE3890 000004 0004+00 0/1 0/0 0/0 .rodata          @3721 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3721 = 100.0f;
-COMPILER_STRIP_GATE(80BE388C, &lit_3721);
+COMPILER_STRIP_GATE(0x80BE388C, &lit_3721);
 #pragma pop
 
 /* 80BE3890-80BE3898 000008 0004+04 0/1 0/0 0/0 .rodata          @3722 */
@@ -122,7 +122,7 @@ SECTION_RODATA static f32 const lit_3722[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80BE3890, &lit_3722);
+COMPILER_STRIP_GATE(0x80BE3890, &lit_3722);
 #pragma pop
 
 /* 80BE3898-80BE38A0 000010 0008+00 0/1 0/0 0/0 .rodata          @3724 */
@@ -131,7 +131,7 @@ COMPILER_STRIP_GATE(80BE3890, &lit_3722);
 SECTION_RODATA static u8 const lit_3724[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BE3898, &lit_3724);
+COMPILER_STRIP_GATE(0x80BE3898, &lit_3724);
 #pragma pop
 
 /* 80BE31BC-80BE345C 0000BC 02A0+00 3/3 0/0 0/0 .text            NormalAction__15daObjE_CREATE_cFv

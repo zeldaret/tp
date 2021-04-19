@@ -179,6 +179,52 @@ extern "C" void snprintf();
 //
 
 /* ############################################################################################## */
+/* 8039A4A0-8039A4A0 026B00 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039A4A0 =
+    "%08x DynamicModuleControlBase::unlink() mLinkCou"
+    "nt id already zero.\n";
+SECTION_DEAD static char const* const stringBase_8039A4E5 = "\nDynamicModuleControlBase::dump()\n";
+SECTION_DEAD static char const* const stringBase_8039A508 = "Do  Lnk Size      Name\n";
+SECTION_DEAD static char const* const stringBase_8039A520 = "(Null)";
+SECTION_DEAD static char const* const stringBase_8039A527 = "%3d%3d%5.1f %05x %-4s %-24s ";
+SECTION_DEAD static char const* const stringBase_8039A544 = "%3d%3d ???? ????? %-4s %-24s ";
+SECTION_DEAD static char const* const stringBase_8039A562 = "\n";
+SECTION_DEAD static char const* const stringBase_8039A564 = "TotalSize %6.2f %06x\n\n";
+SECTION_DEAD static char const* const stringBase_8039A57B = "Base";
+SECTION_DEAD static char const* const stringBase_8039A580 = "/rel/Final/Release";
+SECTION_DEAD static char const* const stringBase_8039A593 = "RELS.arc";
+SECTION_DEAD static char const* const stringBase_8039A59C =
+    "マウント失敗ですが単にアーカイブを作ってないだけなら遅いだけです %s\n";
+SECTION_DEAD static char const* const stringBase_8039A5E1 = "%s.rel";
+SECTION_DEAD static char const* const stringBase_8039A5E8 = "/rel/Final/Release/%s.rel";
+// MWCC ignores mapping of some japanese characters using the
+// byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
+SECTION_DEAD static char const* const stringBase_8039A602 =
+    "\x44\x79\x6E\x61\x6D\x69\x63\x4D\x6F\x64\x75\x6C\x65\x43\x6F\x6E\x74\x72\x6F\x6C\x3A\x3A\x64"
+    "\x6F\x5F\x6C\x6F\x61\x64\x28\x29\x20\x83\x8A\x83\x5C\x81\x5B\x83\x58\x93\xC7\x82\xDD\x8D\x9E"
+    "\x82\xDD"
+    "\x8E\xB8\x94\x73\x20\x5B\x25\x73\x5D\x0A";
+SECTION_DEAD static char const* const stringBase_8039A63D =
+    "DynamicModuleControl::do_load() チェックサムエラー %04x %"
+    "04x[%s]\n";
+SECTION_DEAD static char const* const stringBase_8039A67F =
+    "DynamicModuleControl::do_load_async() 非同期読み込みコール"
+    "バック登録失敗 [%s]\n";
+SECTION_DEAD static char const* const stringBase_8039A6CE = "%08x-%08x %08x %08x";
+SECTION_DEAD static char const* const stringBase_8039A6E2 = "BSSメモリ確保失敗\n";
+SECTION_DEAD static char const* const stringBase_8039A6F5 = "リンク失敗\n";
+SECTION_DEAD static char const* const stringBase_8039A701 = "モジュールリサイズ(縮小)失敗\n";
+SECTION_DEAD static char const* const stringBase_8039A71F = "BSSメモリ確保失敗 [%x]\n";
+SECTION_DEAD static char const* const stringBase_8039A737 =
+    "アンリンク失敗 mModule=%08x mBss=%08x\n";
+SECTION_DEAD static char const* const stringBase_8039A75E = "????";
+SECTION_DEAD static char const* const stringBase_8039A763 = "MEM";
+SECTION_DEAD static char const* const stringBase_8039A767 = "ARAM";
+SECTION_DEAD static char const* const stringBase_8039A76C = "DVD";
+#pragma pop
+
 /* 803C34B0-803C34C0 -00001 0010+00 1/1 0/0 0/0 .data            strings$4165 */
 SECTION_DATA static void* strings[4] = {
     (void*)(((char*)&DynamicLink__stringBase0) + 0x2BE),
@@ -473,6 +519,18 @@ void ModuleEpilog() {
     /* empty function */
 }
 
+/* ############################################################################################## */
+/* 8039A4A0-8039A4A0 026B00 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039A770 =
+    "\nError: リンクされていない関数が呼び出されました.\n";
+SECTION_DEAD static char const* const stringBase_8039A7A3 = "Address:      Back Chain    LR Save\n";
+SECTION_DEAD static char const* const stringBase_8039A7C8 = "0x%08x:   0x%08x    0x%08x\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039A7E4 = "\0\0\0";
+#pragma pop
+
 /* 80263090-8026314C 25D9D0 00BC+00 0/0 0/0 757/757 .text            ModuleUnresolved */
 #pragma push
 #pragma optimization_level 0
@@ -562,55 +620,4 @@ asm void DynamicModuleControl::getModuleName() const {
 }
 #pragma pop
 
-/* 8039A4A0-8039A7E8 026B00 0344+04 11/10 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039A4A0 =
-    "%08x DynamicModuleControlBase::unlink() mLinkCou"
-    "nt id already zero.\n";
-SECTION_DEAD static char const* const stringBase_8039A4E5 = "\nDynamicModuleControlBase::dump()\n";
-SECTION_DEAD static char const* const stringBase_8039A508 = "Do  Lnk Size      Name\n";
-SECTION_DEAD static char const* const stringBase_8039A520 = "(Null)";
-SECTION_DEAD static char const* const stringBase_8039A527 = "%3d%3d%5.1f %05x %-4s %-24s ";
-SECTION_DEAD static char const* const stringBase_8039A544 = "%3d%3d ???? ????? %-4s %-24s ";
-SECTION_DEAD static char const* const stringBase_8039A562 = "\n";
-SECTION_DEAD static char const* const stringBase_8039A564 = "TotalSize %6.2f %06x\n\n";
-SECTION_DEAD static char const* const stringBase_8039A57B = "Base";
-SECTION_DEAD static char const* const stringBase_8039A580 = "/rel/Final/Release";
-SECTION_DEAD static char const* const stringBase_8039A593 = "RELS.arc";
-SECTION_DEAD static char const* const stringBase_8039A59C =
-    "マウント失敗ですが単にアーカイブを作ってないだけなら遅いだけです %s\n";
-SECTION_DEAD static char const* const stringBase_8039A5E1 = "%s.rel";
-SECTION_DEAD static char const* const stringBase_8039A5E8 = "/rel/Final/Release/%s.rel";
-// MWCC ignores mapping of some japanese characters using the
-// byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
-SECTION_DEAD static char const* const stringBase_8039A602 =
-    "\x44\x79\x6E\x61\x6D\x69\x63\x4D\x6F\x64\x75\x6C\x65\x43\x6F\x6E\x74\x72\x6F\x6C\x3A\x3A\x64"
-    "\x6F\x5F\x6C\x6F\x61\x64\x28\x29\x20\x83\x8A\x83\x5C\x81\x5B\x83\x58\x93\xC7\x82\xDD\x8D\x9E"
-    "\x82\xDD"
-    "\x8E\xB8\x94\x73\x20\x5B\x25\x73\x5D\x0A";
-SECTION_DEAD static char const* const stringBase_8039A63D =
-    "DynamicModuleControl::do_load() チェックサムエラー %04x %"
-    "04x[%s]\n";
-SECTION_DEAD static char const* const stringBase_8039A67F =
-    "DynamicModuleControl::do_load_async() 非同期読み込みコール"
-    "バック登録失敗 [%s]\n";
-SECTION_DEAD static char const* const stringBase_8039A6CE = "%08x-%08x %08x %08x";
-SECTION_DEAD static char const* const stringBase_8039A6E2 = "BSSメモリ確保失敗\n";
-SECTION_DEAD static char const* const stringBase_8039A6F5 = "リンク失敗\n";
-SECTION_DEAD static char const* const stringBase_8039A701 = "モジュールリサイズ(縮小)失敗\n";
-SECTION_DEAD static char const* const stringBase_8039A71F = "BSSメモリ確保失敗 [%x]\n";
-SECTION_DEAD static char const* const stringBase_8039A737 =
-    "アンリンク失敗 mModule=%08x mBss=%08x\n";
-SECTION_DEAD static char const* const stringBase_8039A75E = "????";
-SECTION_DEAD static char const* const stringBase_8039A763 = "MEM";
-SECTION_DEAD static char const* const stringBase_8039A767 = "ARAM";
-SECTION_DEAD static char const* const stringBase_8039A76C = "DVD";
-SECTION_DEAD static char const* const stringBase_8039A770 =
-    "\nError: リンクされていない関数が呼び出されました.\n";
-SECTION_DEAD static char const* const stringBase_8039A7A3 = "Address:      Back Chain    LR Save\n";
-SECTION_DEAD static char const* const stringBase_8039A7C8 = "0x%08x:   0x%08x    0x%08x\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039A7E4 = "\0\0\0";
-#pragma pop
+/* 8039A4A0-8039A4A0 026B00 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

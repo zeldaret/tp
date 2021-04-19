@@ -82,9 +82,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
@@ -119,9 +119,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -237,6 +237,12 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80C5B398-80C5B398 000034 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C5B398 = "Kr03wat04";
+#pragma pop
+
 /* 80C5B3A4-80C5B3B0 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -392,22 +398,22 @@ asm void daLv3Water2_c::setBaseMtx() {
 /* ############################################################################################## */
 /* 80C5B364-80C5B368 000000 0004+00 3/3 0/0 0/0 .rodata          l_bmdIdx */
 SECTION_RODATA static u32 const l_bmdIdx = 0x00000005;
-COMPILER_STRIP_GATE(80C5B364, &l_bmdIdx);
+COMPILER_STRIP_GATE(0x80C5B364, &l_bmdIdx);
 
 /* 80C5B368-80C5B36C 000004 0004+00 1/1 0/0 0/0 .rodata          l_dzbIdx */
 SECTION_RODATA static u32 const l_dzbIdx = 0x0000000D;
-COMPILER_STRIP_GATE(80C5B368, &l_dzbIdx);
+COMPILER_STRIP_GATE(0x80C5B368, &l_dzbIdx);
 
 /* 80C5B36C-80C5B370 000008 0004+00 0/1 0/0 0/0 .rodata          l_btkIdx */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const l_btkIdx = 0x00000009;
-COMPILER_STRIP_GATE(80C5B36C, &l_btkIdx);
+COMPILER_STRIP_GATE(0x80C5B36C, &l_btkIdx);
 #pragma pop
 
 /* 80C5B370-80C5B374 00000C 0004+00 2/5 0/0 0/0 .rodata          @3682 */
 SECTION_RODATA static f32 const lit_3682 = 1.0f;
-COMPILER_STRIP_GATE(80C5B370, &lit_3682);
+COMPILER_STRIP_GATE(0x80C5B370, &lit_3682);
 
 /* 80C5A4F8-80C5A5E4 0001D8 00EC+00 1/0 0/0 0/0 .text            CreateHeap__13daLv3Water2_cFv */
 #pragma push
@@ -426,13 +432,13 @@ SECTION_RODATA static f32 const lit_3747[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80C5B374, &lit_3747);
+COMPILER_STRIP_GATE(0x80C5B374, &lit_3747);
 
 /* 80C5B37C-80C5B384 000018 0008+00 1/2 0/0 0/0 .rodata          @3749 */
 SECTION_RODATA static u8 const lit_3749[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C5B37C, &lit_3749);
+COMPILER_STRIP_GATE(0x80C5B37C, &lit_3749);
 
 /* 80C5A5E4-80C5A7FC 0002C4 0218+00 1/1 0/0 0/0 .text            create__13daLv3Water2_cFv */
 #pragma push
@@ -498,7 +504,7 @@ asm void daLv3Water2_c::mode_init_levelCtrl() {
 SECTION_RODATA static u8 const lit_3899[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C5B384, &lit_3899);
+COMPILER_STRIP_GATE(0x80C5B384, &lit_3899);
 
 /* 80C5ACE4-80C5ADA4 0009C4 00C0+00 1/0 0/0 0/0 .text mode_proc_levelCtrl__13daLv3Water2_cFv */
 #pragma push
@@ -515,7 +521,7 @@ asm void daLv3Water2_c::mode_proc_levelCtrl() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3951 = -1.0f / 100.0f;
-COMPILER_STRIP_GATE(80C5B38C, &lit_3951);
+COMPILER_STRIP_GATE(0x80C5B38C, &lit_3951);
 #pragma pop
 
 /* 80C5B390-80C5B394 00002C 0004+00 0/1 0/0 0/0 .rodata          @3952 */
@@ -527,7 +533,7 @@ SECTION_RODATA static u8 const lit_3952[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C5B390, &lit_3952);
+COMPILER_STRIP_GATE(0x80C5B390, &lit_3952);
 #pragma pop
 
 /* 80C5ADA4-80C5AEFC 000A84 0158+00 1/0 0/0 0/0 .text            Draw__13daLv3Water2_cFv */
@@ -555,7 +561,7 @@ asm void daLv3Water2_c::Delete() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3983 = -1.0f;
-COMPILER_STRIP_GATE(80C5B394, &lit_3983);
+COMPILER_STRIP_GATE(0x80C5B394, &lit_3983);
 #pragma pop
 
 /* 80C5AF3C-80C5B0C0 000C1C 0184+00 2/1 0/0 0/0 .text            eventStart__13daLv3Water2_cFv */
@@ -632,7 +638,7 @@ asm void __sinit_d_a_obj_lv3Water2_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80C5B1A8 = (void*)__sinit_d_a_obj_lv3Water2_cpp;
+REGISTER_CTORS(0x80C5B1A8, __sinit_d_a_obj_lv3Water2_cpp);
 #pragma pop
 
 /* 80C5B228-80C5B230 000F08 0008+00 1/0 0/0 0/0 .text            @1448@eventStart__13daLv3Water2_cFv
@@ -692,9 +698,4 @@ asm daLv3Water2_c::~daLv3Water2_c() {
 }
 #pragma pop
 
-/* 80C5B398-80C5B3A2 000034 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C5B398 = "Kr03wat04";
-#pragma pop
+/* 80C5B398-80C5B398 000034 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -15,11 +15,13 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DModelData {};
-
 struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
+
+struct J3DAnmTransform {};
+
+struct J3DModelData {};
 
 struct Vec {};
 
@@ -28,8 +30,6 @@ struct Z2Creature {
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
-
-struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -43,6 +43,8 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
+struct daNpcT_faceMotionAnmData_c {};
+
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -51,11 +53,9 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80AD787C */ ~daNpcT_MotionSeqMngr_c();
 };
 
-struct daNpcT_motionAnmData_c {};
-
-struct daNpcT_faceMotionAnmData_c {};
-
 struct daNpcT_evtData_c {};
+
+struct daNpcT_motionAnmData_c {};
 
 struct daNpc_Seirei_c {
     /* 80AD572C */ ~daNpc_Seirei_c();
@@ -102,20 +102,20 @@ struct daNpc_Seirei_Param_c {
     static u8 const m[148];
 };
 
+struct J3DAnmTextureSRTKey {};
+
+struct _GXColorS10 {};
+
 struct J3DModel {};
 
-struct J3DAnmTextureSRTKey {};
+struct J3DJoint {};
+
+struct J3DAnmTevRegKey {};
 
 struct cXyz {
     /* 80AD72B4 */ ~cXyz();
     /* 80AD7830 */ cXyz();
 };
-
-struct _GXColorS10 {};
-
-struct J3DJoint {};
-
-struct J3DAnmTevRegKey {};
 
 struct daNpcT_c {
     /* 8014810C */ void getTexSRTKeyAnmP(char const*, int);
@@ -206,12 +206,12 @@ struct dPa_levelEcallBack {};
 
 struct dKy_tevstr_c {};
 
-struct _GXColor {};
-
 struct csXyz {
     /* 80AD72F0 */ ~csXyz();
     /* 80AD7730 */ csXyz();
 };
+
+struct _GXColor {};
 
 struct dPa_control_c {
     struct level_c {
@@ -403,7 +403,7 @@ extern "C" void changeAnm__8daNpcT_cFPiPi();
 extern "C" void changeBck__8daNpcT_cFPiPi();
 extern "C" void changeBtp__8daNpcT_cFPiPi();
 extern "C" void changeBtk__8daNpcT_cFPiPi();
-extern "C" void func_80AD7B54(int*);
+extern "C" void func_80AD7B54(void* _this, int*);
 extern "C" void __sinit_d_a_npc_seirei_cpp();
 extern "C" void
 __ct__14daNpc_Seirei_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
@@ -540,6 +540,18 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80AD7D88-80AD7D88 0000E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80AD7D88 = "";
+SECTION_DEAD static char const* const stringBase_80AD7D89 = "CONVERSATION_ABOUT_YM";
+SECTION_DEAD static char const* const stringBase_80AD7D9F = "DEFAULT_GETITEM";
+SECTION_DEAD static char const* const stringBase_80AD7DAF = "NO_RESPONSE";
+SECTION_DEAD static char const* const stringBase_80AD7DBB = "Seirei";
+SECTION_DEAD static char const* const stringBase_80AD7DC2 = "Seirei1";
+SECTION_DEAD static char const* const stringBase_80AD7DCA = "CONVERSATION";
+#pragma pop
+
 /* 80AD7DE4-80AD7DF0 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -862,11 +874,11 @@ SECTION_RODATA u8 const daNpc_Seirei_Param_c::m[148] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x44, 0x96, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AD7CA8, &daNpc_Seirei_Param_c::m);
+COMPILER_STRIP_GATE(0x80AD7CA8, &daNpc_Seirei_Param_c::m);
 
 /* 80AD7D3C-80AD7D40 000094 0004+00 1/1 0/0 0/0 .rodata          @4042 */
 SECTION_RODATA static f32 const lit_4042 = -1000000000.0f;
-COMPILER_STRIP_GATE(80AD7D3C, &lit_4042);
+COMPILER_STRIP_GATE(0x80AD7D3C, &lit_4042);
 
 /* 80AD57C4-80AD5A7C 000184 02B8+00 1/1 0/0 0/0 .text            create__14daNpc_Seirei_cFv */
 #pragma push
@@ -886,25 +898,25 @@ SECTION_RODATA static u8 const lit_4135[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80AD7D40, &lit_4135);
+COMPILER_STRIP_GATE(0x80AD7D40, &lit_4135);
 
 /* 80AD7D44-80AD7D48 00009C 0004+00 0/2 0/0 0/0 .rodata          @4136 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4136 = 65536.0f;
-COMPILER_STRIP_GATE(80AD7D44, &lit_4136);
+COMPILER_STRIP_GATE(0x80AD7D44, &lit_4136);
 #pragma pop
 
 /* 80AD7D48-80AD7D4C 0000A0 0004+00 0/2 0/0 0/0 .rodata          @4137 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4137 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80AD7D48, &lit_4137);
+COMPILER_STRIP_GATE(0x80AD7D48, &lit_4137);
 #pragma pop
 
 /* 80AD7D4C-80AD7D50 0000A4 0004+00 2/3 0/0 0/0 .rodata          @4260 */
 SECTION_RODATA static f32 const lit_4260 = 1.0f;
-COMPILER_STRIP_GATE(80AD7D4C, &lit_4260);
+COMPILER_STRIP_GATE(0x80AD7D4C, &lit_4260);
 
 /* 80AD5A7C-80AD5BC4 00043C 0148+00 1/1 0/0 0/0 .text            CreateHeap__14daNpc_Seirei_cFv */
 #pragma push
@@ -939,7 +951,7 @@ asm void daNpc_Seirei_c::Execute() {
 /* ############################################################################################## */
 /* 80AD7D50-80AD7D54 0000A8 0004+00 1/1 0/0 0/0 .rodata          @4294 */
 SECTION_RODATA static f32 const lit_4294 = 100.0f;
-COMPILER_STRIP_GATE(80AD7D50, &lit_4294);
+COMPILER_STRIP_GATE(0x80AD7D50, &lit_4294);
 
 /* 80AD5C18-80AD5CC0 0005D8 00A8+00 1/1 0/0 0/0 .text            Draw__14daNpc_Seirei_cFv */
 #pragma push
@@ -980,7 +992,7 @@ bool daNpc_Seirei_c::isDelete() {
 /* ############################################################################################## */
 /* 80AD7D54-80AD7D58 0000AC 0004+00 1/3 0/0 0/0 .rodata          @4348 */
 SECTION_RODATA static f32 const lit_4348 = -1.0f;
-COMPILER_STRIP_GATE(80AD7D54, &lit_4348);
+COMPILER_STRIP_GATE(0x80AD7D54, &lit_4348);
 
 /* 80AD5D34-80AD5EEC 0006F4 01B8+00 1/1 0/0 0/0 .text            reset__14daNpc_Seirei_cFv */
 #pragma push
@@ -1068,28 +1080,28 @@ asm void daNpc_Seirei_c::beforeMove() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4513 = 300.0f;
-COMPILER_STRIP_GATE(80AD7D58, &lit_4513);
+COMPILER_STRIP_GATE(0x80AD7D58, &lit_4513);
 #pragma pop
 
 /* 80AD7D5C-80AD7D60 0000B4 0004+00 0/1 0/0 0/0 .rodata          @4514 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4514 = 40.0f;
-COMPILER_STRIP_GATE(80AD7D5C, &lit_4514);
+COMPILER_STRIP_GATE(0x80AD7D5C, &lit_4514);
 #pragma pop
 
 /* 80AD7D60-80AD7D64 0000B8 0004+00 0/1 0/0 0/0 .rodata          @4515 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4515 = 800.0f;
-COMPILER_STRIP_GATE(80AD7D60, &lit_4515);
+COMPILER_STRIP_GATE(0x80AD7D60, &lit_4515);
 #pragma pop
 
 /* 80AD7D64-80AD7D68 0000BC 0004+00 0/1 0/0 0/0 .rodata          @4516 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4516 = 350.0f;
-COMPILER_STRIP_GATE(80AD7D64, &lit_4516);
+COMPILER_STRIP_GATE(0x80AD7D64, &lit_4516);
 #pragma pop
 
 /* 80AD6330-80AD6464 000CF0 0134+00 1/0 0/0 0/0 .text            setAttnPos__14daNpc_Seirei_cFv */
@@ -1132,7 +1144,7 @@ asm void daNpc_Seirei_c::selectAction() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_Seirei_c::chkAction(int (daNpc_Seirei_c::*)(void*)) {
+asm void daNpc_Seirei_c::chkAction(int (daNpc_Seirei_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_seirei/d_a_npc_seirei/chkAction__14daNpc_Seirei_cFM14daNpc_Seirei_cFPCvPvPv_i.s"
 }
@@ -1143,7 +1155,7 @@ asm void daNpc_Seirei_c::chkAction(int (daNpc_Seirei_c::*)(void*)) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_Seirei_c::setAction(int (daNpc_Seirei_c::*)(void*)) {
+asm void daNpc_Seirei_c::setAction(int (daNpc_Seirei_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_seirei/d_a_npc_seirei/setAction__14daNpc_Seirei_cFM14daNpc_Seirei_cFPCvPvPv_i.s"
 }
@@ -1182,7 +1194,7 @@ SECTION_RODATA static u8 const id1[14 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80AD7D68, &id1);
+COMPILER_STRIP_GATE(0x80AD7D68, &id1);
 #pragma pop
 
 /* 80AD7D78-80AD7D88 0000D0 000E+02 0/1 0/0 0/0 .rodata          id2$4628 */
@@ -1207,7 +1219,7 @@ SECTION_RODATA static u8 const id2[14 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80AD7D78, &id2);
+COMPILER_STRIP_GATE(0x80AD7D78, &id2);
 #pragma pop
 
 /* 80AD6808-80AD6A38 0011C8 0230+00 1/1 0/0 0/0 .text            setPrtcls__14daNpc_Seirei_cFv */
@@ -1229,6 +1241,14 @@ asm void daNpc_Seirei_c::chkFirstMeeting() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_seirei/d_a_npc_seirei/chkFirstMeeting__14daNpc_Seirei_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80AD7D88-80AD7D88 0000E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80AD7DD7 = "prm";
+SECTION_DEAD static char const* const stringBase_80AD7DDB = "timer";
 #pragma pop
 
 /* 80AD6ABC-80AD6C58 00147C 019C+00 1/0 0/0 0/0 .text            cutConversation__14daNpc_Seirei_cFi
@@ -1602,7 +1622,7 @@ void daNpcT_c::changeBtk(int* param_0, int* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80AD7B54(int* param_0) {
+extern "C" asm void func_80AD7B54(void* _this, int* param_0) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_seirei/d_a_npc_seirei/func_80AD7B54.s"
 }
@@ -1634,7 +1654,7 @@ asm void __sinit_d_a_npc_seirei_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80AD7B70 = (void*)__sinit_d_a_npc_seirei_cpp;
+REGISTER_CTORS(0x80AD7B70, __sinit_d_a_npc_seirei_cpp);
 #pragma pop
 
 /* 80AD7BF8-80AD7C3C 0025B8 0044+00 1/1 0/0 0/0 .text
@@ -1684,17 +1704,4 @@ static asm void func_80AD7C8C() {
 }
 #pragma pop
 
-/* 80AD7D88-80AD7DE1 0000E0 0059+00 5/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80AD7D88 = "";
-SECTION_DEAD static char const* const stringBase_80AD7D89 = "CONVERSATION_ABOUT_YM";
-SECTION_DEAD static char const* const stringBase_80AD7D9F = "DEFAULT_GETITEM";
-SECTION_DEAD static char const* const stringBase_80AD7DAF = "NO_RESPONSE";
-SECTION_DEAD static char const* const stringBase_80AD7DBB = "Seirei";
-SECTION_DEAD static char const* const stringBase_80AD7DC2 = "Seirei1";
-SECTION_DEAD static char const* const stringBase_80AD7DCA = "CONVERSATION";
-SECTION_DEAD static char const* const stringBase_80AD7DD7 = "prm";
-SECTION_DEAD static char const* const stringBase_80AD7DDB = "timer";
-#pragma pop
+/* 80AD7D88-80AD7D88 0000E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

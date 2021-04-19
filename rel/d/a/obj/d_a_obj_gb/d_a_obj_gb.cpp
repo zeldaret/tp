@@ -91,9 +91,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -201,24 +201,24 @@ static asm void daObj_Gb_Draw(obj_gb_class* param_0) {
 /* ############################################################################################## */
 /* 80BF6DBC-80BF6DC0 000000 0004+00 2/2 0/0 0/0 .rodata          @3890 */
 SECTION_RODATA static f32 const lit_3890 = 0.5f;
-COMPILER_STRIP_GATE(80BF6DBC, &lit_3890);
+COMPILER_STRIP_GATE(0x80BF6DBC, &lit_3890);
 
 /* 80BF6DC0-80BF6DC4 000004 0004+00 1/2 0/0 0/0 .rodata          @3891 */
 SECTION_RODATA static f32 const lit_3891 = 1.0f;
-COMPILER_STRIP_GATE(80BF6DC0, &lit_3891);
+COMPILER_STRIP_GATE(0x80BF6DC0, &lit_3891);
 
 /* 80BF6DC4-80BF6DC8 000008 0004+00 0/1 0/0 0/0 .rodata          @3892 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3892 = -1.0f;
-COMPILER_STRIP_GATE(80BF6DC4, &lit_3892);
+COMPILER_STRIP_GATE(0x80BF6DC4, &lit_3892);
 #pragma pop
 
 /* 80BF6DC8-80BF6DCC 00000C 0004+00 0/1 0/0 0/0 .rodata          @3893 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3893 = 29.0f;
-COMPILER_STRIP_GATE(80BF6DC8, &lit_3893);
+COMPILER_STRIP_GATE(0x80BF6DC8, &lit_3893);
 #pragma pop
 
 /* 80BF6DCC-80BF6DD0 000010 0004+00 1/3 0/0 0/0 .rodata          @3894 */
@@ -228,13 +228,19 @@ SECTION_RODATA static u8 const lit_3894[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BF6DCC, &lit_3894);
+COMPILER_STRIP_GATE(0x80BF6DCC, &lit_3894);
 
 /* 80BF6DD0-80BF6DD4 000014 0004+00 0/1 0/0 0/0 .rodata          @3895 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3895 = -200.0f;
-COMPILER_STRIP_GATE(80BF6DD0, &lit_3895);
+COMPILER_STRIP_GATE(0x80BF6DD0, &lit_3895);
+#pragma pop
+
+/* 80BF6DEC-80BF6DEC 000030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BF6DEC = "D_MN09B";
 #pragma pop
 
 /* 80BF63F8-80BF678C 000158 0394+00 2/1 0/0 0/0 .text            daObj_Gb_Execute__FP12obj_gb_class
@@ -263,6 +269,13 @@ asm cXyz::~cXyz() {
 static bool daObj_Gb_IsDelete(obj_gb_class* param_0) {
     return true;
 }
+
+/* ############################################################################################## */
+/* 80BF6DEC-80BF6DEC 000030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BF6DF4 = "Obj_gb";
+#pragma pop
 
 /* 80BF67D0-80BF682C 000530 005C+00 1/0 0/0 0/0 .text            daObj_Gb_Delete__FP12obj_gb_class
  */
@@ -380,28 +393,28 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4083 = 1.0f / 100.0f;
-COMPILER_STRIP_GATE(80BF6DD4, &lit_4083);
+COMPILER_STRIP_GATE(0x80BF6DD4, &lit_4083);
 #pragma pop
 
 /* 80BF6DD8-80BF6DDC 00001C 0004+00 0/1 0/0 0/0 .rodata          @4084 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4084 = 0x3EAAAA9F;
-COMPILER_STRIP_GATE(80BF6DD8, &lit_4084);
+COMPILER_STRIP_GATE(0x80BF6DD8, &lit_4084);
 #pragma pop
 
 /* 80BF6DDC-80BF6DE0 000020 0004+00 0/1 0/0 0/0 .rodata          @4085 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4085 = 65536.0f;
-COMPILER_STRIP_GATE(80BF6DDC, &lit_4085);
+COMPILER_STRIP_GATE(0x80BF6DDC, &lit_4085);
 #pragma pop
 
 /* 80BF6DE0-80BF6DE4 000024 0004+00 0/1 0/0 0/0 .rodata          @4086 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4086 = 1000.0f;
-COMPILER_STRIP_GATE(80BF6DE0, &lit_4086);
+COMPILER_STRIP_GATE(0x80BF6DE0, &lit_4086);
 #pragma pop
 
 /* 80BF6DE4-80BF6DEC 000028 0008+00 0/1 0/0 0/0 .rodata          @4088 */
@@ -410,7 +423,7 @@ COMPILER_STRIP_GATE(80BF6DE0, &lit_4086);
 SECTION_RODATA static u8 const lit_4088[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BF6DE4, &lit_4088);
+COMPILER_STRIP_GATE(0x80BF6DE4, &lit_4088);
 #pragma pop
 
 /* 80BF6AE0-80BF6DB0 000840 02D0+00 1/0 0/0 0/0 .text            daObj_Gb_Create__FP10fopAc_ac_c */
@@ -428,10 +441,4 @@ cXyz::cXyz() {
     /* empty function */
 }
 
-/* 80BF6DEC-80BF6DFB 000030 000F+00 4/4 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BF6DEC = "D_MN09B";
-SECTION_DEAD static char const* const stringBase_80BF6DF4 = "Obj_gb";
-#pragma pop
+/* 80BF6DEC-80BF6DEC 000030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

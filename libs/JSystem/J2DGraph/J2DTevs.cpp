@@ -102,7 +102,8 @@ extern "C" extern u32 j2dDefaultTevSwapModeTable;
 extern "C" extern u32 j2dDefaultBlendInfo;
 extern "C" extern u8 data_804561A4[4];
 extern "C" extern u32 j2dDefaultColorChanInfo;
-extern "C" extern u8 struct_804561AC[4];
+extern "C" extern u16 data_804561AC;
+extern "C" extern u16 j2dDefaultAlphaCmp;
 
 //
 // External References:
@@ -321,7 +322,7 @@ SECTION_RODATA extern u8 const j2dDefaultTexCoordInfo[32] = {
     0x01, 0x04, 0x3C, 0x00, 0x01, 0x05, 0x3C, 0x00, 0x01, 0x06, 0x3C, 0x00, 0x01, 0x07, 0x3C, 0x00,
     0x01, 0x08, 0x3C, 0x00, 0x01, 0x09, 0x3C, 0x00, 0x01, 0x0A, 0x3C, 0x00, 0x01, 0x0B, 0x3C, 0x00,
 };
-COMPILER_STRIP_GATE(803A1B80, &j2dDefaultTexCoordInfo);
+COMPILER_STRIP_GATE(0x803A1B80, &j2dDefaultTexCoordInfo);
 
 /* 803A1BA0-803A1BC4 02E200 0024+00 0/0 3/3 0/0 .rodata          j2dDefaultTexMtxInfo */
 SECTION_RODATA extern u8 const j2dDefaultTexMtxInfo[36] = {
@@ -329,27 +330,27 @@ SECTION_RODATA extern u8 const j2dDefaultTexMtxInfo[36] = {
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803A1BA0, &j2dDefaultTexMtxInfo);
+COMPILER_STRIP_GATE(0x803A1BA0, &j2dDefaultTexMtxInfo);
 
 /* 803A1BC4-803A1BE0 02E224 001C+00 0/0 3/3 0/0 .rodata          j2dDefaultIndTexMtxInfo */
 SECTION_RODATA extern u8 const j2dDefaultIndTexMtxInfo[28] = {
     0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803A1BC4, &j2dDefaultIndTexMtxInfo);
+COMPILER_STRIP_GATE(0x803A1BC4, &j2dDefaultIndTexMtxInfo);
 
 /* 803A1BE0-803A1BF4 02E240 0014+00 0/0 1/1 0/0 .rodata          j2dDefaultTevStageInfo */
 SECTION_RODATA extern u8 const j2dDefaultTevStageInfo[20] = {
     0x04, 0x0A, 0x0F, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
     0x05, 0x07, 0x07, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803A1BE0, &j2dDefaultTevStageInfo);
+COMPILER_STRIP_GATE(0x803A1BE0, &j2dDefaultTevStageInfo);
 
 /* 803A1BF4-803A1C00 02E254 000C+00 0/0 7/7 0/0 .rodata          j2dDefaultIndTevStageInfo */
 SECTION_RODATA extern u8 const j2dDefaultIndTevStageInfo[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803A1BF4, &j2dDefaultIndTevStageInfo);
+COMPILER_STRIP_GATE(0x803A1BF4, &j2dDefaultIndTevStageInfo);
 
 /* 8045617C-80456180 00477C 0004+00 0/0 1/1 0/0 .sdata2          j2dDefaultColInfo */
 SECTION_SDATA2 extern u32 j2dDefaultColInfo = 0xFFFFFFFF;
@@ -406,13 +407,8 @@ SECTION_SDATA2 extern u8 data_804561A4[4] = {
 /* 804561A8-804561AC 0047A8 0004+00 0/0 3/3 0/0 .sdata2          j2dDefaultColorChanInfo */
 SECTION_SDATA2 extern u32 j2dDefaultColorChanInfo = 0x00030000;
 
-/* 804561AC-804561B0 -00001 0004+00 0/0 4/4 0/0 .sdata2          None */
-SECTION_SDATA2 extern u8 struct_804561AC[4];
-SECTION_SDATA2 u8 struct_804561AC[4] = {
-    /* 804561AC 0002+00 data_804561AC None */
-    0x1B,
-    0x00,
-    /* 804561AE 0002+00 data_804561AE j2dDefaultAlphaCmp */
-    0x00,
-    0xE7,
-};
+/* 804561AC-804561AE 0047AC 0002+00 0/0 1/1 0/0 .sdata2          None */
+SECTION_SDATA2 extern u16 data_804561AC = 0x1B00;
+
+/* 804561AE-804561B0 0047AE 0002+00 0/0 3/3 0/0 .sdata2          j2dDefaultAlphaCmp */
+SECTION_SDATA2 extern u16 j2dDefaultAlphaCmp = 0x00E7;

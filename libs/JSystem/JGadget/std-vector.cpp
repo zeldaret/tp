@@ -32,9 +32,9 @@ template <typename A1, typename B1>
 struct TVector {};
 /* TVector<void*, JGadget::TAllocator<void*>> */
 struct TVector__template0 {
-    /* 802DD130 */ void func_802DD130(void**, void* const&);
-    /* 802DCE1C */ void func_802DCE1C(void**, u32, void* const&);
-    /* 802DCE8C */ void func_802DCE8C(void**, u32);
+    /* 802DD130 */ void func_802DD130(void* _this, void**, void* const&);
+    /* 802DCE1C */ void func_802DCE1C(void* _this, void**, u32, void* const&);
+    /* 802DCE8C */ void func_802DCE8C(void* _this, void**, u32);
 };
 
 };  // namespace JGadget
@@ -48,9 +48,9 @@ extern "C" void func_802DCCD0();
 extern "C" void __dt__Q27JGadget20TVector_pointer_voidFv();
 extern "C" void insert__Q27JGadget20TVector_pointer_voidFPPvRCPv();
 extern "C" void erase__Q27JGadget20TVector_pointer_voidFPPvPPv();
-extern "C" void func_802DCE1C(void**, u32, void* const&);
-extern "C" void func_802DCE8C(void**, u32);
-extern "C" void func_802DD130(void**, void* const&);
+extern "C" void func_802DCE1C(void* _this, void**, u32, void* const&);
+extern "C" void func_802DCE8C(void* _this, void**, u32);
+extern "C" void func_802DD130(void* _this, void**, void* const&);
 
 //
 // External References:
@@ -125,7 +125,7 @@ asm void JGadget::TVector_pointer_void::erase(void** param_0, void** param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802DCE1C(void** param_0, u32 param_1, void* const& param_2) {
+extern "C" asm void func_802DCE1C(void* _this, void** param_0, u32 param_1, void* const& param_2) {
     nofralloc
 #include "asm/JSystem/JGadget/std-vector/func_802DCE1C.s"
 }
@@ -136,7 +136,7 @@ extern "C" asm void func_802DCE1C(void** param_0, u32 param_1, void* const& para
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802DCE8C(void** param_0, u32 param_1) {
+extern "C" asm void func_802DCE8C(void* _this, void** param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JGadget/std-vector/func_802DCE8C.s"
 }
@@ -147,7 +147,7 @@ extern "C" asm void func_802DCE8C(void** param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802DD130(void** param_0, void* const& param_1) {
+extern "C" asm void func_802DD130(void* _this, void** param_0, void* const& param_1) {
     nofralloc
 #include "asm/JSystem/JGadget/std-vector/func_802DD130.s"
 }

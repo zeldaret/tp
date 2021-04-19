@@ -233,8 +233,8 @@ asm void dBgS_MoveBgActor::MoveBGCreateHeap() {
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm void dBgS_MoveBgActor::MoveBGCreate(char const* param_0, int param_1,
-                                        void (*)(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*,
-                                                 csXyz*, csXyz*),
+                                        void (*param_2)(dBgW*, void*, cBgS_PolyInfo const&, bool,
+                                                        cXyz*, csXyz*, csXyz*),
                                         u32 param_3, f32 (*param_4)[3][4]) {
     nofralloc
 #include "asm/d/bg/d_bg_s_movebg_actor/func_800787BC.s"

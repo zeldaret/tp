@@ -57,9 +57,9 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
-struct JPABaseEmitter {};
-
 struct daMidna_c {};
+
+struct JPABaseEmitter {};
 
 struct daSCannonCrs_c {
     /* 80CC973C */ daSCannonCrs_c();
@@ -375,6 +375,19 @@ static asm void eventCallBack(void* param_0, int param_1) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80CCB114-80CCB114 000094 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CCB114 = "SCanCrs";
+SECTION_DEAD static char const* const stringBase_80CCB11C = "SKY_CANNON_WARP_START";
+SECTION_DEAD static char const* const stringBase_80CCB132 = "effect_p";
+SECTION_DEAD static char const* const stringBase_80CCB13B = "center";
+SECTION_DEAD static char const* const stringBase_80CCB142 = "WAIT";
+SECTION_DEAD static char const* const stringBase_80CCB147 = "BEAM_HIT";
+SECTION_DEAD static char const* const stringBase_80CCB150 = "READY";
+SECTION_DEAD static char const* const stringBase_80CCB156 = "UP";
+#pragma pop
+
 /* 80CCB15C-80CCB168 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -550,7 +563,7 @@ asm daSCannonCrs_c::~daSCannonCrs_c() {
 SECTION_RODATA static u8 const DISAP_PARTICLE_NAME[8] = {
     0x8B, 0x2B, 0x8B, 0x2C, 0x8B, 0x2D, 0x8B, 0x2E,
 };
-COMPILER_STRIP_GATE(80CCB080, &DISAP_PARTICLE_NAME);
+COMPILER_STRIP_GATE(0x80CCB080, &DISAP_PARTICLE_NAME);
 
 /* 80CCB088-80CCB090 000008 0008+00 0/1 0/0 0/0 .rodata          BEAM_PARTICLE_NAME */
 #pragma push
@@ -558,35 +571,35 @@ COMPILER_STRIP_GATE(80CCB080, &DISAP_PARTICLE_NAME);
 SECTION_RODATA static u8 const BEAM_PARTICLE_NAME[8] = {
     0x8B, 0x43, 0x8B, 0x44, 0x8B, 0x45, 0x8B, 0x46,
 };
-COMPILER_STRIP_GATE(80CCB088, &BEAM_PARTICLE_NAME);
+COMPILER_STRIP_GATE(0x80CCB088, &BEAM_PARTICLE_NAME);
 #pragma pop
 
 /* 80CCB090-80CCB094 000010 0004+00 0/1 0/0 0/0 .rodata          @3822 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3822 = -500.0f;
-COMPILER_STRIP_GATE(80CCB090, &lit_3822);
+COMPILER_STRIP_GATE(0x80CCB090, &lit_3822);
 #pragma pop
 
 /* 80CCB094-80CCB098 000014 0004+00 0/1 0/0 0/0 .rodata          @3823 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3823 = -100.0f;
-COMPILER_STRIP_GATE(80CCB094, &lit_3823);
+COMPILER_STRIP_GATE(0x80CCB094, &lit_3823);
 #pragma pop
 
 /* 80CCB098-80CCB09C 000018 0004+00 0/1 0/0 0/0 .rodata          @3824 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3824 = 500.0f;
-COMPILER_STRIP_GATE(80CCB098, &lit_3824);
+COMPILER_STRIP_GATE(0x80CCB098, &lit_3824);
 #pragma pop
 
 /* 80CCB09C-80CCB0A0 00001C 0004+00 0/1 0/0 0/0 .rodata          @3825 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3825 = 2500.0f;
-COMPILER_STRIP_GATE(80CCB09C, &lit_3825);
+COMPILER_STRIP_GATE(0x80CCB09C, &lit_3825);
 #pragma pop
 
 /* 80CC9910-80CC9B10 000310 0200+00 1/1 0/0 0/0 .text            create__14daSCannonCrs_cFv */
@@ -644,32 +657,32 @@ asm void daSCannonCrs_c::middleExe(daMidna_c* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3949 = 4750.0f;
-COMPILER_STRIP_GATE(80CCB0A0, &lit_3949);
+COMPILER_STRIP_GATE(0x80CCB0A0, &lit_3949);
 #pragma pop
 
 /* 80CCB0A4-80CCB0A8 000024 0004+00 0/2 0/0 0/0 .rodata          @3950 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3950 = -1520.0f;
-COMPILER_STRIP_GATE(80CCB0A4, &lit_3950);
+COMPILER_STRIP_GATE(0x80CCB0A4, &lit_3950);
 #pragma pop
 
 /* 80CCB0A8-80CCB0AC 000028 0004+00 0/2 0/0 0/0 .rodata          @3951 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3951 = -3900.0f;
-COMPILER_STRIP_GATE(80CCB0A8, &lit_3951);
+COMPILER_STRIP_GATE(0x80CCB0A8, &lit_3951);
 #pragma pop
 
 /* 80CCB0AC-80CCB0B0 00002C 0004+00 1/4 0/0 0/0 .rodata          @3952 */
 SECTION_RODATA static f32 const lit_3952 = 1.0f;
-COMPILER_STRIP_GATE(80CCB0AC, &lit_3952);
+COMPILER_STRIP_GATE(0x80CCB0AC, &lit_3952);
 
 /* 80CCB0B0-80CCB0B4 000030 0004+00 0/2 0/0 0/0 .rodata          @3953 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3953 = -1.0f;
-COMPILER_STRIP_GATE(80CCB0B0, &lit_3953);
+COMPILER_STRIP_GATE(0x80CCB0B0, &lit_3953);
 #pragma pop
 
 /* 80CC9D60-80CC9F34 000760 01D4+00 1/0 0/0 0/0 .text exeModeWait__14daSCannonCrs_cFP9daMidna_c */
@@ -701,7 +714,7 @@ SECTION_RODATA static u8 const lit_4033[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CCB0B4, &lit_4033);
+COMPILER_STRIP_GATE(0x80CCB0B4, &lit_4033);
 
 /* 80CCB0B8-80CCB0C0 000038 0008+00 0/2 0/0 0/0 .rodata          @4034 */
 #pragma push
@@ -709,7 +722,7 @@ COMPILER_STRIP_GATE(80CCB0B4, &lit_4033);
 SECTION_RODATA static u8 const lit_4034[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CCB0B8, &lit_4034);
+COMPILER_STRIP_GATE(0x80CCB0B8, &lit_4034);
 #pragma pop
 
 /* 80CCB0C0-80CCB0C8 000040 0008+00 0/2 0/0 0/0 .rodata          @4035 */
@@ -718,7 +731,7 @@ COMPILER_STRIP_GATE(80CCB0B8, &lit_4034);
 SECTION_RODATA static u8 const lit_4035[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CCB0C0, &lit_4035);
+COMPILER_STRIP_GATE(0x80CCB0C0, &lit_4035);
 #pragma pop
 
 /* 80CCB0C8-80CCB0D0 000048 0008+00 0/2 0/0 0/0 .rodata          @4036 */
@@ -727,14 +740,14 @@ COMPILER_STRIP_GATE(80CCB0C0, &lit_4035);
 SECTION_RODATA static u8 const lit_4036[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CCB0C8, &lit_4036);
+COMPILER_STRIP_GATE(0x80CCB0C8, &lit_4036);
 #pragma pop
 
 /* 80CCB0D0-80CCB0D4 000050 0004+00 0/1 0/0 0/0 .rodata          @4037 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4037 = 5.0f;
-COMPILER_STRIP_GATE(80CCB0D0, &lit_4037);
+COMPILER_STRIP_GATE(0x80CCB0D0, &lit_4037);
 #pragma pop
 
 /* 80CC9F80-80CCA240 000980 02C0+00 1/0 0/0 0/0 .text
@@ -780,21 +793,21 @@ void daSCannonCrs_c::exeModeEnd(daMidna_c* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4189 = 35.0f;
-COMPILER_STRIP_GATE(80CCB0D4, &lit_4189);
+COMPILER_STRIP_GATE(0x80CCB0D4, &lit_4189);
 #pragma pop
 
 /* 80CCB0D8-80CCB0DC 000058 0004+00 0/1 0/0 0/0 .rodata          @4190 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4190 = 88.0f;
-COMPILER_STRIP_GATE(80CCB0D8, &lit_4190);
+COMPILER_STRIP_GATE(0x80CCB0D8, &lit_4190);
 #pragma pop
 
 /* 80CCB0DC-80CCB0E0 00005C 0004+00 0/1 0/0 0/0 .rodata          @4191 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4191 = 240.0f;
-COMPILER_STRIP_GATE(80CCB0DC, &lit_4191);
+COMPILER_STRIP_GATE(0x80CCB0DC, &lit_4191);
 #pragma pop
 
 /* 80CCA348-80CCA74C 000D48 0404+00 1/1 0/0 0/0 .text            demoExe__14daSCannonCrs_cFv */
@@ -814,14 +827,14 @@ asm void daSCannonCrs_c::demoExe() {
 SECTION_RODATA static u8 const MIDNA_WAIT_POS_OFFSET[12] = {
     0x42, 0xC8, 0x00, 0x00, 0x44, 0x61, 0x00, 0x00, 0x42, 0xB4, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CCB0E0, &MIDNA_WAIT_POS_OFFSET);
+COMPILER_STRIP_GATE(0x80CCB0E0, &MIDNA_WAIT_POS_OFFSET);
 #pragma pop
 
 /* 80CCB0EC-80CCB0F0 00006C 0004+00 0/1 0/0 0/0 .rodata          @4205 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4205 = 200.0f;
-COMPILER_STRIP_GATE(80CCB0EC, &lit_4205);
+COMPILER_STRIP_GATE(0x80CCB0EC, &lit_4205);
 #pragma pop
 
 /* 80CCB0F0-80CCB0F8 000070 0004+04 0/1 0/0 0/0 .rodata          @4206 */
@@ -832,7 +845,7 @@ SECTION_RODATA static f32 const lit_4206[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80CCB0F0, &lit_4206);
+COMPILER_STRIP_GATE(0x80CCB0F0, &lit_4206);
 #pragma pop
 
 /* 80CCB0F8-80CCB100 000078 0008+00 0/1 0/0 0/0 .rodata          @4208 */
@@ -841,7 +854,7 @@ COMPILER_STRIP_GATE(80CCB0F0, &lit_4206);
 SECTION_RODATA static u8 const lit_4208[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CCB0F8, &lit_4208);
+COMPILER_STRIP_GATE(0x80CCB0F8, &lit_4208);
 #pragma pop
 
 /* 80CCA74C-80CCA848 00114C 00FC+00 1/1 0/0 0/0 .text            init__14daSCannonCrs_cFv */
@@ -915,21 +928,21 @@ asm void daSCannonCrs_c::exeEmtRt(u16 param_0, int param_1, JPABaseEmitter** par
 SECTION_RODATA static u8 const MIDNA_BEAM_OFFSET[12] = {
     0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CCB100, &MIDNA_BEAM_OFFSET);
+COMPILER_STRIP_GATE(0x80CCB100, &MIDNA_BEAM_OFFSET);
 #pragma pop
 
 /* 80CCB10C-80CCB110 00008C 0004+00 0/1 0/0 0/0 .rodata          @4434 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4434 = 400.0f;
-COMPILER_STRIP_GATE(80CCB10C, &lit_4434);
+COMPILER_STRIP_GATE(0x80CCB10C, &lit_4434);
 #pragma pop
 
 /* 80CCB110-80CCB114 000090 0004+00 0/1 0/0 0/0 .rodata          @4435 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4435 = 1.0f / 100.0f;
-COMPILER_STRIP_GATE(80CCB110, &lit_4435);
+COMPILER_STRIP_GATE(0x80CCB110, &lit_4435);
 #pragma pop
 
 /* 80CCACD0-80CCAF20 0016D0 0250+00 1/1 0/0 0/0 .text callMidnaBeamEmt__14daSCannonCrs_cFv */
@@ -994,19 +1007,7 @@ asm void __sinit_d_a_obj_scannon_crs_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80CCAFD4 = (void*)__sinit_d_a_obj_scannon_crs_cpp;
+REGISTER_CTORS(0x80CCAFD4, __sinit_d_a_obj_scannon_crs_cpp);
 #pragma pop
 
-/* 80CCB114-80CCB159 000094 0045+00 6/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CCB114 = "SCanCrs";
-SECTION_DEAD static char const* const stringBase_80CCB11C = "SKY_CANNON_WARP_START";
-SECTION_DEAD static char const* const stringBase_80CCB132 = "effect_p";
-SECTION_DEAD static char const* const stringBase_80CCB13B = "center";
-SECTION_DEAD static char const* const stringBase_80CCB142 = "WAIT";
-SECTION_DEAD static char const* const stringBase_80CCB147 = "BEAM_HIT";
-SECTION_DEAD static char const* const stringBase_80CCB150 = "READY";
-SECTION_DEAD static char const* const stringBase_80CCB156 = "UP";
-#pragma pop
+/* 80CCB114-80CCB114 000094 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

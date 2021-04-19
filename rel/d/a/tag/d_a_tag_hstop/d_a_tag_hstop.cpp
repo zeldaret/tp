@@ -99,7 +99,7 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 805A4B20-805A4B24 000000 0004+00 1/1 0/0 0/0 .rodata          @3782 */
 SECTION_RODATA static f32 const lit_3782 = 100.0f;
-COMPILER_STRIP_GATE(805A4B20, &lit_3782);
+COMPILER_STRIP_GATE(0x805A4B20, &lit_3782);
 
 /* 805A43EC-805A45D8 0000EC 01EC+00 1/1 0/0 0/0 .text            create__12daTagHstop_cFv */
 #pragma push
@@ -198,7 +198,7 @@ asm void __sinit_d_a_tag_hstop_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_805A4AD0 = (void*)__sinit_d_a_tag_hstop_cpp;
+REGISTER_CTORS(0x805A4AD0, __sinit_d_a_tag_hstop_cpp);
 #pragma pop
 
 /* ############################################################################################## */

@@ -39,7 +39,7 @@ lbl_802CACD4:
 /* 802CAD68  48 00 01 48 */	b lbl_802CAEB0
 lbl_802CAD6C:
 /* 802CAD6C  80 7F 00 88 */	lwz r3, 0x88(r31)
-/* 802CAD70  88 0D 83 0E */	lbz r0, struct_8045088C+0x2(r13)
+/* 802CAD70  88 0D 83 0E */	lbz r0, data_8045088E(r13)
 /* 802CAD74  7C 03 00 40 */	cmplw r3, r0
 /* 802CAD78  40 80 00 10 */	bge lbl_802CAD88
 /* 802CAD7C  C0 02 C4 60 */	lfs f0, lit_3485(r2)

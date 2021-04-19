@@ -48,14 +48,14 @@ struct JASDriver {
     /* 8029C900 */ void finishDSPFrame();
     /* 8029C9DC */ void registerMixCallback(s16* (*)(s32), JASMixMode);
     /* 8029C9E8 */ void getDacRate();
-    /* 8029C9F0 */ void getSubFrames();
+    /* 8029C9F0 */ u32 getSubFrames();
     /* 8029C9F8 */ void getDacSize();
     /* 8029CA04 */ void getFrameSamples();
     /* 8029CA10 */ void mixMonoTrack(s16*, u32, s16* (*)(s32));
     /* 8029CAC0 */ void mixMonoTrackWide(s16*, u32, s16* (*)(s32));
     /* 8029CB70 */ void mixExtraTrack(s16*, u32, s16* (*)(s32));
     /* 8029CC50 */ void mixInterleaveTrack(s16*, u32, s16* (*)(s32));
-    /* 8029CCD4 */ void getSubFrameCounter();
+    /* 8029CCD4 */ u32 getSubFrameCounter();
     /* 8029E2A8 */ void subframeCallback();
     /* 8029E2D0 */ void DSPSyncCallback();
 
@@ -92,7 +92,7 @@ struct JASCalc {
     template <typename A1, typename B1>
     void clamp(/* ... */);
     /* 8028F69C */ /* JASCalc::clamp<s16, s32> */
-    void func_8028F69C(s32);
+    void func_8028F69C(void* _this, s32);
 };
 
 struct JASAudioThread {
@@ -113,14 +113,14 @@ extern "C" void readDspBuffer__9JASDriverFPsUl();
 extern "C" void finishDSPFrame__9JASDriverFv();
 extern "C" void registerMixCallback__9JASDriverFPFl_Ps10JASMixMode();
 extern "C" void getDacRate__9JASDriverFv();
-extern "C" void getSubFrames__9JASDriverFv();
+extern "C" u32 getSubFrames__9JASDriverFv();
 extern "C" void getDacSize__9JASDriverFv();
 extern "C" void getFrameSamples__9JASDriverFv();
 extern "C" void mixMonoTrack__9JASDriverFPsUlPFl_Ps();
 extern "C" void mixMonoTrackWide__9JASDriverFPsUlPFl_Ps();
 extern "C" void mixExtraTrack__9JASDriverFPsUlPFl_Ps();
 extern "C" void mixInterleaveTrack__9JASDriverFPsUlPFl_Ps();
-extern "C" void getSubFrameCounter__9JASDriverFv();
+extern "C" u32 getSubFrameCounter__9JASDriverFv();
 extern "C" void* const sMixFuncs__9JASDriver[4];
 extern "C" extern char const* const JASAiCtrl__stringBase0;
 extern "C" u8 sDmaDacBuffer__9JASDriver[12 + 4 /* padding */];
@@ -144,7 +144,7 @@ extern "C" u8 sSubFrameCounter__9JASDriver[4];
 
 extern "C" void imixcopy__7JASCalcFPCsPCsPsUl();
 extern "C" void bzero__7JASCalcFPvUl();
-extern "C" void func_8028F69C(s32);
+extern "C" void func_8028F69C(void* _this, s32);
 extern "C" void start__8JASProbeFlPCc();
 extern "C" void stop__8JASProbeFl();
 extern "C" void JASReport__FPCce();
@@ -224,7 +224,7 @@ u8 JASDriver::sOutputRate[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASDriver::initAI(void (*)(void)) {
+asm void JASDriver::initAI(void (*param_0)(void)) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASAiCtrl/initAI__9JASDriverFPFv_v.s"
 }
@@ -257,7 +257,7 @@ SECTION_SDATA u32 JASDriver::sMixMode = 0x00000002;
 /* 804507B0-804507B4 000230 0004+00 2/2 0/0 0/0 .sdata           sDacRate__9JASDriver */
 SECTION_SDATA f32 JASDriver::sDacRate = 32028.5f;
 
-/* 804507B4-804507B8 000234 0004+00 4/4 0/0 0/0 .sdata           sSubFrames__9JASDriver */
+/* 804507B4-804507B8 000234 0004+00 4/3 0/0 0/0 .sdata           sSubFrames__9JASDriver */
 SECTION_SDATA u32 JASDriver::sSubFrames = 0x00000007;
 
 /* 80455720-80455724 003D20 0004+00 1/1 0/0 0/0 .sdata2          @233 */
@@ -287,9 +287,9 @@ SECTION_RODATA void* const JASDriver::sMixFuncs[4] = {
     (void*)mixExtraTrack__9JASDriverFPsUlPFl_Ps,
     (void*)mixInterleaveTrack__9JASDriverFPsUlPFl_Ps,
 };
-COMPILER_STRIP_GATE(8039B2E0, &JASDriver::sMixFuncs);
+COMPILER_STRIP_GATE(0x8039B2E0, &JASDriver::sMixFuncs);
 
-/* 804512C4-804512C8 0007C4 0004+00 2/2 0/0 0/0 .sbss            sSubFrameCounter__9JASDriver */
+/* 804512C4-804512C8 0007C4 0004+00 2/1 0/0 0/0 .sbss            sSubFrameCounter__9JASDriver */
 u8 JASDriver::sSubFrameCounter[4];
 
 /* 804512C8-804512CC 0007C8 0004+00 1/1 0/0 0/0 .sbss            dacp$239 */
@@ -309,6 +309,13 @@ asm void JASDriver::updateDac() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8039B2F0-8039B2F0 027950 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039B2F0 = "SFR-UPDATE";
+SECTION_DEAD static char const* const stringBase_8039B2FB = "kill DSP channel";
+#pragma pop
+
 /* 803C78B8-803C78E0 0249D8 0028+00 1/1 0/0 0/0 .data            history$267 */
 SECTION_DATA static u8 history[40] = {
     0x00, 0x0F, 0x42, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -355,6 +362,13 @@ asm void JASDriver::readDspBuffer(s16* param_0, u32 param_1) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039B2F0-8039B2F0 027950 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039B30C = "DSP-MAIN";
+#pragma pop
+
 /* 8029C900-8029C9DC 297240 00DC+00 1/1 1/1 0/0 .text            finishDSPFrame__9JASDriverFv */
 #pragma push
 #pragma optimization_level 0
@@ -370,7 +384,7 @@ asm void JASDriver::finishDSPFrame() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASDriver::registerMixCallback(s16* (*)(s32), JASMixMode param_1) {
+asm void JASDriver::registerMixCallback(s16* (*param_0)(s32), JASMixMode param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASAiCtrl/registerMixCallback__9JASDriverFPFl_Ps10JASMixMode.s"
 }
@@ -386,15 +400,10 @@ asm void JASDriver::getDacRate() {
 }
 #pragma pop
 
-/* 8029C9F0-8029C9F8 297330 0008+00 2/2 2/2 0/0 .text            getSubFrames__9JASDriverFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDriver::getSubFrames() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAiCtrl/getSubFrames__9JASDriverFv.s"
+/* 8029C9F0-8029C9F8 -00001 0008+00 0/0 0/0 0/0 .text            getSubFrames__9JASDriverFv */
+u32 JASDriver::getSubFrames() {
+    return *(u32*)(&JASDriver::sSubFrames);
 }
-#pragma pop
 
 /* 8029C9F8-8029CA04 297338 000C+00 2/2 0/0 0/0 .text            getDacSize__9JASDriverFv */
 #pragma push
@@ -416,32 +425,54 @@ asm void JASDriver::getFrameSamples() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039B2F0-8039B2F0 027950 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039B315 = "MONO-MIX";
+#pragma pop
+
 /* 8029CA10-8029CAC0 297350 00B0+00 1/0 0/0 0/0 .text            mixMonoTrack__9JASDriverFPsUlPFl_Ps
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASDriver::mixMonoTrack(s16* param_0, u32 param_1, s16* (*)(s32)) {
+asm void JASDriver::mixMonoTrack(s16* param_0, u32 param_1, s16* (*param_2)(s32)) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASAiCtrl/mixMonoTrack__9JASDriverFPsUlPFl_Ps.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8039B2F0-8039B2F0 027950 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039B31E = "MONO(W)-MIX";
 #pragma pop
 
 /* 8029CAC0-8029CB70 297400 00B0+00 1/0 0/0 0/0 .text mixMonoTrackWide__9JASDriverFPsUlPFl_Ps */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASDriver::mixMonoTrackWide(s16* param_0, u32 param_1, s16* (*)(s32)) {
+asm void JASDriver::mixMonoTrackWide(s16* param_0, u32 param_1, s16* (*param_2)(s32)) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASAiCtrl/mixMonoTrackWide__9JASDriverFPsUlPFl_Ps.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8039B2F0-8039B2F0 027950 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039B32A = "DSPMIX";
+SECTION_DEAD static char const* const stringBase_8039B331 = "MIXING";
 #pragma pop
 
 /* 8029CB70-8029CC50 2974B0 00E0+00 1/0 0/0 0/0 .text mixExtraTrack__9JASDriverFPsUlPFl_Ps */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASDriver::mixExtraTrack(s16* param_0, u32 param_1, s16* (*)(s32)) {
+asm void JASDriver::mixExtraTrack(s16* param_0, u32 param_1, s16* (*param_2)(s32)) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASAiCtrl/mixExtraTrack__9JASDriverFPsUlPFl_Ps.s"
 }
@@ -451,31 +482,15 @@ asm void JASDriver::mixExtraTrack(s16* param_0, u32 param_1, s16* (*)(s32)) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASDriver::mixInterleaveTrack(s16* param_0, u32 param_1, s16* (*)(s32)) {
+asm void JASDriver::mixInterleaveTrack(s16* param_0, u32 param_1, s16* (*param_2)(s32)) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASAiCtrl/mixInterleaveTrack__9JASDriverFPsUlPFl_Ps.s"
 }
 #pragma pop
 
-/* 8029CCD4-8029CCDC 297614 0008+00 0/0 1/1 0/0 .text            getSubFrameCounter__9JASDriverFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDriver::getSubFrameCounter() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAiCtrl/getSubFrameCounter__9JASDriverFv.s"
+/* 8029CCD4-8029CCDC -00001 0008+00 0/0 0/0 0/0 .text            getSubFrameCounter__9JASDriverFv */
+u32 JASDriver::getSubFrameCounter() {
+    return *(u32*)(&JASDriver::sSubFrameCounter);
 }
-#pragma pop
 
-/* 8039B2F0-8039B338 027950 0048+00 5/5 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039B2F0 = "SFR-UPDATE";
-SECTION_DEAD static char const* const stringBase_8039B2FB = "kill DSP channel";
-SECTION_DEAD static char const* const stringBase_8039B30C = "DSP-MAIN";
-SECTION_DEAD static char const* const stringBase_8039B315 = "MONO-MIX";
-SECTION_DEAD static char const* const stringBase_8039B31E = "MONO(W)-MIX";
-SECTION_DEAD static char const* const stringBase_8039B32A = "DSPMIX";
-SECTION_DEAD static char const* const stringBase_8039B331 = "MIXING";
-#pragma pop
+/* 8039B2F0-8039B2F0 027950 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

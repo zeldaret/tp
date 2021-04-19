@@ -86,9 +86,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -179,7 +179,7 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80C73CBC-80C73CC0 000000 0004+00 3/3 0/0 0/0 .rodata          @3627 */
 SECTION_RODATA static f32 const lit_3627 = 15.0f;
-COMPILER_STRIP_GATE(80C73CBC, &lit_3627);
+COMPILER_STRIP_GATE(0x80C73CBC, &lit_3627);
 
 /* 80C73CE4-80C73CF0 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -324,6 +324,13 @@ asm void daLv6Lblock_c::setBaseMtx() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80C73CD8-80C73CD8 00001C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C73CD8 = "L6Lblock";
+#pragma pop
+
 /* 80C734EC-80C73558 0001EC 006C+00 1/0 0/0 0/0 .text            CreateHeap__13daLv6Lblock_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -337,7 +344,7 @@ asm void daLv6Lblock_c::CreateHeap() {
 /* ############################################################################################## */
 /* 80C73CC0-80C73CC4 000004 0004+00 1/1 0/0 0/0 .rodata          @3709 */
 SECTION_RODATA static f32 const lit_3709 = 300.0f;
-COMPILER_STRIP_GATE(80C73CC0, &lit_3709);
+COMPILER_STRIP_GATE(0x80C73CC0, &lit_3709);
 
 /* 80C73558-80C736C0 000258 0168+00 1/1 0/0 0/0 .text            create__13daLv6Lblock_cFv */
 #pragma push
@@ -421,28 +428,28 @@ asm void daLv6Lblock_c::init_modeLiftUp() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3777 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80C73CC4, &lit_3777);
+COMPILER_STRIP_GATE(0x80C73CC4, &lit_3777);
 #pragma pop
 
 /* 80C73CC8-80C73CCC 00000C 0004+00 0/2 0/0 0/0 .rodata          @3778 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3778 = 5.0f;
-COMPILER_STRIP_GATE(80C73CC8, &lit_3778);
+COMPILER_STRIP_GATE(0x80C73CC8, &lit_3778);
 #pragma pop
 
 /* 80C73CCC-80C73CD0 000010 0004+00 0/2 0/0 0/0 .rodata          @3779 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3779 = 1.0f;
-COMPILER_STRIP_GATE(80C73CCC, &lit_3779);
+COMPILER_STRIP_GATE(0x80C73CCC, &lit_3779);
 #pragma pop
 
 /* 80C73CD0-80C73CD4 000014 0004+00 0/2 0/0 0/0 .rodata          @3780 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3780 = -1.0f;
-COMPILER_STRIP_GATE(80C73CD0, &lit_3780);
+COMPILER_STRIP_GATE(0x80C73CD0, &lit_3780);
 #pragma pop
 
 /* 80C73CD4-80C73CD8 000018 0004+00 0/2 0/0 0/0 .rodata          @3781 */
@@ -454,7 +461,7 @@ SECTION_RODATA static u8 const lit_3781[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C73CD4, &lit_3781);
+COMPILER_STRIP_GATE(0x80C73CD4, &lit_3781);
 #pragma pop
 
 /* 80C7386C-80C7398C 00056C 0120+00 1/0 0/0 0/0 .text            modeLiftUp__13daLv6Lblock_cFv */
@@ -571,12 +578,7 @@ asm void __sinit_d_a_obj_lv6Lblock_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80C73C6C = (void*)__sinit_d_a_obj_lv6Lblock_cpp;
+REGISTER_CTORS(0x80C73C6C, __sinit_d_a_obj_lv6Lblock_cpp);
 #pragma pop
 
-/* 80C73CD8-80C73CE1 00001C 0009+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C73CD8 = "L6Lblock";
-#pragma pop
+/* 80C73CD8-80C73CD8 00001C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

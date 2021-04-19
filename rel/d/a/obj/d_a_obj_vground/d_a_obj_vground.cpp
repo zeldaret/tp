@@ -157,7 +157,7 @@ static asm void CheckCreateHeap(fopAc_ac_c* param_0) {
 /* ############################################################################################## */
 /* 80D21A08-80D21A0C 000000 0004+00 2/2 0/0 0/0 .rodata          @3630 */
 SECTION_RODATA static f32 const lit_3630 = 5.0f;
-COMPILER_STRIP_GATE(80D21A08, &lit_3630);
+COMPILER_STRIP_GATE(0x80D21A08, &lit_3630);
 
 /* 80D213F8-80D21448 000098 0050+00 1/1 0/0 0/0 .text            initBaseMtx__11daObjVGnd_cFv */
 #pragma push
@@ -192,7 +192,13 @@ asm void daObjVGnd_c::Create() {
 /* ############################################################################################## */
 /* 80D21A0C-80D21A10 000004 0004+00 1/2 0/0 0/0 .rodata          @3704 */
 SECTION_RODATA static f32 const lit_3704 = 1.0f;
-COMPILER_STRIP_GATE(80D21A0C, &lit_3704);
+COMPILER_STRIP_GATE(0x80D21A0C, &lit_3704);
+
+/* 80D21A18-80D21A18 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D21A18 = "M_VolcGnd";
+#pragma pop
 
 /* 80D21A24-80D21A28 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_vground__stringBase0;
@@ -261,7 +267,7 @@ asm void daObjVGnd_c::create() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3778 = 2.0f;
-COMPILER_STRIP_GATE(80D21A10, &lit_3778);
+COMPILER_STRIP_GATE(0x80D21A10, &lit_3778);
 #pragma pop
 
 /* 80D21A14-80D21A18 00000C 0004+00 0/1 0/0 0/0 .rodata          @3779 */
@@ -273,7 +279,7 @@ SECTION_RODATA static u8 const lit_3779[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D21A14, &lit_3779);
+COMPILER_STRIP_GATE(0x80D21A14, &lit_3779);
 #pragma pop
 
 /* 80D217A8-80D21878 000448 00D0+00 2/2 0/0 0/0 .text            execute__11daObjVGnd_cFv */
@@ -348,9 +354,4 @@ static asm void daObjVGnd_Create(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 80D21A18-80D21A22 000010 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D21A18 = "M_VolcGnd";
-#pragma pop
+/* 80D21A18-80D21A18 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

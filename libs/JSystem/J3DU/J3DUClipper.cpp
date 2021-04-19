@@ -67,7 +67,7 @@ asm void J3DUClipper::init() {
 SECTION_RODATA static u8 const lit_898[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8039A948, &lit_898);
+COMPILER_STRIP_GATE(0x8039A948, &lit_898);
 
 /* 8039A954-8039A960 026FB4 000C+00 0/1 0/0 0/0 .rodata          @899 */
 #pragma push
@@ -75,7 +75,7 @@ COMPILER_STRIP_GATE(8039A948, &lit_898);
 SECTION_RODATA static u8 const lit_899[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8039A954, &lit_899);
+COMPILER_STRIP_GATE(0x8039A954, &lit_899);
 #pragma pop
 
 /* 8039A960-8039A96C 026FC0 000C+00 0/1 0/0 0/0 .rodata          @900 */
@@ -84,7 +84,7 @@ COMPILER_STRIP_GATE(8039A954, &lit_899);
 SECTION_RODATA static u8 const lit_900[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8039A960, &lit_900);
+COMPILER_STRIP_GATE(0x8039A960, &lit_900);
 #pragma pop
 
 /* 8039A96C-8039A978 026FCC 000C+00 0/1 0/0 0/0 .rodata          @901 */
@@ -93,7 +93,7 @@ COMPILER_STRIP_GATE(8039A960, &lit_900);
 SECTION_RODATA static u8 const lit_901[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8039A96C, &lit_901);
+COMPILER_STRIP_GATE(0x8039A96C, &lit_901);
 #pragma pop
 
 /* 8039A978-8039A984 026FD8 000C+00 0/1 0/0 0/0 .rodata          @902 */
@@ -102,7 +102,7 @@ COMPILER_STRIP_GATE(8039A96C, &lit_901);
 SECTION_RODATA static u8 const lit_902[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8039A978, &lit_902);
+COMPILER_STRIP_GATE(0x8039A978, &lit_902);
 #pragma pop
 
 /* 80455280-80455284 003880 0004+00 1/1 0/0 0/0 .sdata2          @913 */
@@ -149,14 +149,31 @@ asm void J3DUClipper::clip(f32 const (*param_0)[4], Vec* param_1, Vec* param_2) 
 }
 #pragma pop
 
-/* 8039A984-8039A9F0 026FE4 0065+07 0/0 0/0 0/0 .rodata          @stringBase0 */
+/* ############################################################################################## */
+/* 8039A984-8039A99D 026FE4 0019+00 0/0 0/0 0/0 .rodata          None */
 #pragma push
 #pragma force_active on
-#pragma section ".dead"
 SECTION_DEAD static char const* const stringBase_8039A984 = " J3DUClipper::mFovy = %f";
+#pragma pop
+
+/* 8039A99D-8039A9B8 026FFD 001B+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
 SECTION_DEAD static char const* const stringBase_8039A99D = " J3DUClipper::mAspect = %f";
+#pragma pop
+
+/* 8039A9B8-8039A9D1 027018 0019+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
 SECTION_DEAD static char const* const stringBase_8039A9B8 = " J3DUClipper::mNear = %f";
+#pragma pop
+
+/* 8039A9D1-8039A9F0 027031 0018+07 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
 SECTION_DEAD static char const* const stringBase_8039A9D1 = " J3DUClipper::mFar = %f";
 /* @stringBase0 padding */
 SECTION_DEAD static char const* const pad_8039A9E9 = "\0\0\0\0\0\0";
 #pragma pop
+
+/* 8039A984-8039A984 026FE4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

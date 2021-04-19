@@ -75,4 +75,4 @@ SECTION_RODATA extern u8 const __ptmf_null[12 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(803A2180, &__ptmf_null);
+COMPILER_STRIP_GATE(0x803A2180, &__ptmf_null);

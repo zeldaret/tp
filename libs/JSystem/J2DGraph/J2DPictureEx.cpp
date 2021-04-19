@@ -55,7 +55,7 @@ struct JGeometry {
     struct TVec2 {};
     /* TVec2<s16> */
     struct TVec2__template0 {
-        /* 802FF204 */ void func_802FF204();
+        /* 802FF204 */ void func_802FF204(void* _this);
     };
 };
 
@@ -71,19 +71,21 @@ struct J2DScreen {
     /* 802F9640 */ void getNameResource(char const*);
 };
 
-struct J2DAnmTevRegKey {};
-
-struct J2DAnmTransform {};
-
-struct J2DAnmVtxColor {};
-
-struct J2DAnmTextureSRTKey {};
+struct J2DAnmTexPattern {};
 
 struct J2DAnmVisibilityFull {
     /* 8030C048 */ void getVisibility(u16, u8*) const;
 };
 
 struct J2DAnmBase {};
+
+struct J2DAnmTevRegKey {};
+
+struct J2DAnmTextureSRTKey {};
+
+struct J2DAnmVtxColor {};
+
+struct J2DAnmTransform {};
 
 struct J2DPane {
     /* 80053BC0 */ void calcMtx();
@@ -109,8 +111,6 @@ struct J2DPane {
     /* 802F8464 */ void setConnectParent(bool);
     /* 802F8474 */ void update();
 };
-
-struct J2DAnmTexPattern {};
 
 struct J2DAnmColor {};
 
@@ -336,7 +336,7 @@ extern "C" void __ct__10J2DPictureFv();
 extern "C" void __dt__10J2DPictureFv();
 extern "C" void drawSelf__10J2DPictureFff();
 extern "C" void getTlutID__10J2DPictureFPC7ResTIMGUc();
-extern "C" void func_802FF204();
+extern "C" void func_802FF204(void* _this);
 extern "C" s32 getTypeID__10J2DPictureCFv();
 extern "C" void getVisibility__20J2DAnmVisibilityFullCFUsPUc();
 extern "C" void PSMTXIdentity();
@@ -768,7 +768,7 @@ SECTION_RODATA static u8 const lit_2555[32] = {
     0x0F, 0x08, 0x0A, 0x0F, 0x0F, 0x08, 0x0A, 0x0F, 0x0F, 0x08, 0x0E, 0x0F, 0x0F, 0x08, 0x0E, 0x00,
     0x0F, 0x0A, 0x00, 0x0F, 0x02, 0x04, 0x08, 0x0F, 0x02, 0x04, 0x08, 0x0F, 0x02, 0x04, 0x00, 0x0F,
 };
-COMPILER_STRIP_GATE(803A1D50, &lit_2555);
+COMPILER_STRIP_GATE(0x803A1D50, &lit_2555);
 
 /* 80305688-80305928 2FFFC8 02A0+00 1/1 0/0 0/0 .text
  * setStage__12J2DPictureExFP11J2DTevStageQ212J2DPictureEx10stage_enum */
@@ -1076,16 +1076,11 @@ asm void J2DPictureEx::setAnimation(J2DAnmTevRegKey* param_0) {
 }
 #pragma pop
 
-/* 80306B74-80306B7C 3014B4 0008+00 1/0 0/0 0/0 .text
+/* 80306B74-80306B7C -00001 0008+00 0/0 0/0 0/0 .text
  * setAnimation__12J2DPictureExFP20J2DAnmVisibilityFull         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPictureEx::setAnimation(J2DAnmVisibilityFull* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPictureEx/setAnimation__12J2DPictureExFP20J2DAnmVisibilityFull.s"
+void J2DPictureEx::setAnimation(J2DAnmVisibilityFull* param_0) {
+    *(u32*)(((u8*)this) + 404) /* this->field_0x194 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80306B7C-80306C70 3014BC 00F4+00 1/0 0/0 0/0 .text
  * setAnimation__12J2DPictureExFP14J2DAnmVtxColor               */
@@ -1283,7 +1278,7 @@ SECTION_RODATA static u8 const lit_2556[32] = {
     0x07, 0x04, 0x05, 0x07, 0x05, 0x07, 0x07, 0x07, 0x07, 0x04, 0x06, 0x07, 0x07, 0x04, 0x06, 0x00,
     0x07, 0x05, 0x00, 0x07, 0x01, 0x02, 0x04, 0x07, 0x07, 0x07, 0x07, 0x02, 0x01, 0x02, 0x00, 0x07,
 };
-COMPILER_STRIP_GATE(803A1D70, &lit_2556);
+COMPILER_STRIP_GATE(0x803A1D70, &lit_2556);
 #pragma pop
 
 /* 803A1D90-803A1DB8 02E3F0 0028+00 0/0 0/0 0/0 .rodata          @2557 */
@@ -1294,5 +1289,5 @@ SECTION_RODATA static u8 const lit_2557[40] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
     0x01, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803A1D90, &lit_2557);
+COMPILER_STRIP_GATE(0x803A1D90, &lit_2557);
 #pragma pop

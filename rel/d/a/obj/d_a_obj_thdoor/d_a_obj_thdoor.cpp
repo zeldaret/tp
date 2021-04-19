@@ -212,7 +212,7 @@ extern "C" static void daObjThDoor_MoveBGDelete__FP13daObjThDoor_c();
 extern "C" static void daObjThDoor_MoveBGExecute__FP13daObjThDoor_c();
 extern "C" static void daObjThDoor_MoveBGDraw__FP13daObjThDoor_c();
 extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void func_80D0E5D4(u8*);
+extern "C" void func_80D0E5D4(void* _this, u8*);
 extern "C" extern char const* const d_a_obj_thdoor__stringBase0;
 
 //
@@ -305,7 +305,7 @@ SECTION_RODATA static u8 const lit_3663[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D0E5F8, &lit_3663);
+COMPILER_STRIP_GATE(0x80D0E5F8, &lit_3663);
 
 /* 80D0D4F8-80D0D59C 000078 00A4+00 1/1 0/0 0/0 .text            checkPlayerPos__FP13daObjThDoor_c
  */
@@ -321,7 +321,7 @@ static asm void checkPlayerPos(daObjThDoor_c* param_0) {
 /* ############################################################################################## */
 /* 80D0E5FC-80D0E600 000004 0004+00 1/1 0/0 0/0 .rodata          @3681 */
 SECTION_RODATA static f32 const lit_3681 = 3.0f;
-COMPILER_STRIP_GATE(80D0E5FC, &lit_3681);
+COMPILER_STRIP_GATE(0x80D0E5FC, &lit_3681);
 
 /* 80D0D59C-80D0D618 00011C 007C+00 1/1 0/0 0/0 .text
  * doorCoHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
@@ -356,6 +356,14 @@ asm void daObjThDoor_c::setBaseMtx() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80D0E620-80D0E620 000028 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D0E620 = "V_CTDoor";
+SECTION_DEAD static char const* const stringBase_80D0E629 = "CHASE_AWAY_WOLF";
+SECTION_DEAD static char const* const stringBase_80D0E639 = "thdoor";
+#pragma pop
+
 /* 80D0E658-80D0E664 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -431,11 +439,11 @@ asm void daObjThDoor_c::create1st() {
 /* ############################################################################################## */
 /* 80D0E600-80D0E604 000008 0004+00 1/2 0/0 0/0 .rodata          @3765 */
 SECTION_RODATA static f32 const lit_3765 = 1.0f;
-COMPILER_STRIP_GATE(80D0E600, &lit_3765);
+COMPILER_STRIP_GATE(0x80D0E600, &lit_3765);
 
 /* 80D0E604-80D0E608 00000C 0004+00 1/2 0/0 0/0 .rodata          @3766 */
 SECTION_RODATA static f32 const lit_3766 = -1.0f;
-COMPILER_STRIP_GATE(80D0E604, &lit_3766);
+COMPILER_STRIP_GATE(0x80D0E604, &lit_3766);
 
 /* 80D0D8E8-80D0D9B4 000468 00CC+00 1/0 0/0 0/0 .text            Execute__13daObjThDoor_cFPPA3_A4_f
  */
@@ -453,14 +461,14 @@ asm void daObjThDoor_c::Execute(f32 (**param_0)[3][4]) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3807 = 37.5f;
-COMPILER_STRIP_GATE(80D0E608, &lit_3807);
+COMPILER_STRIP_GATE(0x80D0E608, &lit_3807);
 #pragma pop
 
 /* 80D0E60C-80D0E610 000014 0004+00 0/1 0/0 0/0 .rodata          @3808 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3808 = 112.5f;
-COMPILER_STRIP_GATE(80D0E60C, &lit_3808);
+COMPILER_STRIP_GATE(0x80D0E60C, &lit_3808);
 #pragma pop
 
 /* 80D0D9B4-80D0DAC8 000534 0114+00 1/1 0/0 0/0 .text            set_cyl__13daObjThDoor_cFv */
@@ -582,6 +590,15 @@ void daObjThDoor_c::actionDead() {
 }
 
 /* ############################################################################################## */
+/* 80D0E620-80D0E620 000028 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D0E640 = "WAIT";
+SECTION_DEAD static char const* const stringBase_80D0E645 = "MSG";
+SECTION_DEAD static char const* const stringBase_80D0E649 = "CLOSE";
+SECTION_DEAD static char const* const stringBase_80D0E64F = "Timer";
+#pragma pop
+
 /* 80D0E728-80D0E734 -00001 000C+00 1/1 0/0 0/0 .data            action_table$3895 */
 SECTION_DATA static void* action_table[3] = {
     (void*)(((char*)&d_a_obj_thdoor__stringBase0) + 0x20),
@@ -604,28 +621,28 @@ asm void daObjThDoor_c::demoProc() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3988 = -50.0f;
-COMPILER_STRIP_GATE(80D0E610, &lit_3988);
+COMPILER_STRIP_GATE(0x80D0E610, &lit_3988);
 #pragma pop
 
 /* 80D0E614-80D0E618 00001C 0004+00 0/1 0/0 0/0 .rodata          @3989 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3989 = -300.0f;
-COMPILER_STRIP_GATE(80D0E614, &lit_3989);
+COMPILER_STRIP_GATE(0x80D0E614, &lit_3989);
 #pragma pop
 
 /* 80D0E618-80D0E61C 000020 0004+00 0/1 0/0 0/0 .rodata          @3990 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3990 = -100.0f;
-COMPILER_STRIP_GATE(80D0E618, &lit_3990);
+COMPILER_STRIP_GATE(0x80D0E618, &lit_3990);
 #pragma pop
 
 /* 80D0E61C-80D0E620 000024 0004+00 0/1 0/0 0/0 .rodata          @3991 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3991 = 100.0f;
-COMPILER_STRIP_GATE(80D0E61C, &lit_3991);
+COMPILER_STRIP_GATE(0x80D0E61C, &lit_3991);
 #pragma pop
 
 /* 80D0E06C-80D0E150 000BEC 00E4+00 1/1 0/0 0/0 .text            checkArea__13daObjThDoor_cFv */
@@ -829,21 +846,10 @@ asm cCcD_GStts::~cCcD_GStts() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80D0E5D4(u8* param_0) {
+extern "C" asm void func_80D0E5D4(void* _this, u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_thdoor/d_a_obj_thdoor/func_80D0E5D4.s"
 }
 #pragma pop
 
-/* 80D0E620-80D0E655 000028 0035+00 5/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D0E620 = "V_CTDoor";
-SECTION_DEAD static char const* const stringBase_80D0E629 = "CHASE_AWAY_WOLF";
-SECTION_DEAD static char const* const stringBase_80D0E639 = "thdoor";
-SECTION_DEAD static char const* const stringBase_80D0E640 = "WAIT";
-SECTION_DEAD static char const* const stringBase_80D0E645 = "MSG";
-SECTION_DEAD static char const* const stringBase_80D0E649 = "CLOSE";
-SECTION_DEAD static char const* const stringBase_80D0E64F = "Timer";
-#pragma pop
+/* 80D0E620-80D0E620 000028 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

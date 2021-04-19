@@ -67,16 +67,16 @@ template <typename A0, typename B0>
 struct J3DMtxCalcNoAnm {};
 /* J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformSoftimage, J3DMtxCalcJ3DSysInitSoftimage> */
 struct J3DMtxCalcNoAnm__template1 {
-    /* 803364B8 */ void func_803364B8();
-    /* 80336524 */ void func_80336524(Vec const&, f32 const (&)[3][4]);
-    /* 8033656C */ void func_8033656C();
+    /* 803364B8 */ void func_803364B8(void* _this);
+    /* 80336524 */ void func_80336524(void* _this, Vec const&, f32 const (&)[3][4]);
+    /* 8033656C */ void func_8033656C(void* _this);
 };
 
 /* J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformBasic, J3DMtxCalcJ3DSysInitBasic> */
 struct J3DMtxCalcNoAnm__template2 {
-    /* 80336594 */ void func_80336594();
-    /* 80336600 */ void func_80336600(Vec const&, f32 const (&)[3][4]);
-    /* 80336628 */ void func_80336628();
+    /* 80336594 */ void func_80336594(void* _this);
+    /* 80336600 */ void func_80336600(void* _this, Vec const&, f32 const (&)[3][4]);
+    /* 80336628 */ void func_80336628(void* _this);
 };
 
 struct J3DMtxCalcJ3DSysInitBasic {
@@ -126,15 +126,15 @@ struct J3DModelLoaderDataBase {
     /* 803346BC */ void load(void const*, u32);
 };
 
+struct J3DDrawBlock {};
+
 struct J3DMaterialDLBlock {};
+
+struct J3DJointBlock {};
 
 struct J3DEnvelopeBlock {};
 
 struct J3DModelInfoBlock {};
-
-struct J3DJointBlock {};
-
-struct J3DDrawBlock {};
 
 struct J3DModelLoader {
     /* 8033468C */ J3DModelLoader();
@@ -249,21 +249,21 @@ extern "C" void readMaterialTable_v21__14J3DModelLoaderFPC20J3DMaterialBlock_v21
 extern "C" void readMaterialTable__14J3DModelLoaderFPC16J3DMaterialBlockUl();
 extern "C" bool calcSizeMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl();
 extern "C" bool calcSizeMaterialTable__14J3DModelLoaderFPC16J3DMaterialBlockUl();
-extern "C" void func_803364B8();
-extern "C" void func_80336524(Vec const&, f32 const (&)[3][4]);
-extern "C" void func_8033656C();
-extern "C" void func_80336594();
-extern "C" void func_80336600(Vec const&, f32 const (&)[3][4]);
-extern "C" void func_80336628();
+extern "C" void func_803364B8(void* _this);
+extern "C" void func_80336524(void* _this, Vec const&, f32 const (&)[3][4]);
+extern "C" void func_8033656C(void* _this);
+extern "C" void func_80336594(void* _this);
+extern "C" void func_80336600(void* _this, Vec const&, f32 const (&)[3][4]);
+extern "C" void func_80336628(void* _this);
 extern "C" void __ct__11J3DMaterialFv();
 extern "C" void __dt__10J3DTextureFv();
-extern "C" void func_803366EC(void const*, void const*);
-extern "C" void func_80336704(void const*, void const*);
-extern "C" void func_8033671C(void const*, void const*);
-extern "C" void func_80336734(void const*, void const*);
-extern "C" void func_8033674C(void const*, void const*);
-extern "C" void func_80336764(void const*, u32);
-extern "C" void func_8033677C(void const*, u32);
+extern "C" void func_803366EC(void* _this, void const*, void const*);
+extern "C" void func_80336704(void* _this, void const*, void const*);
+extern "C" void func_8033671C(void* _this, void const*, void const*);
+extern "C" void func_80336734(void* _this, void const*, void const*);
+extern "C" void func_8033674C(void* _this, void const*, void const*);
+extern "C" void func_80336764(void* _this, void const*, u32);
+extern "C" void func_8033677C(void* _this, void const*, u32);
 extern "C" extern char const* const J3DModelLoader__stringBase0;
 
 //
@@ -283,10 +283,10 @@ extern "C" void* __nwa__FUl();
 extern "C" void* __nwa__FUli();
 extern "C" void __dl__FPv();
 extern "C" void __ct__10JUTNameTabFPC7ResNTAB();
-extern "C" void func_802F4260(void const*, void const*);
-extern "C" void func_802F42C0(void const*, void const*);
-extern "C" void func_8030A530(void const*, void const*);
-extern "C" void func_8030A560(void const*, void const*);
+extern "C" void func_802F4260(void* _this, void const*, void const*);
+extern "C" void func_802F42C0(void* _this, void const*, void const*);
+extern "C" void func_8030A530(void* _this, void const*, void const*);
+extern "C" void func_8030A560(void* _this, void const*, void const*);
 extern "C" void initialize__11J3DMaterialFv();
 extern "C" void initShapeNodes__13J3DShapeTableFP14J3DDrawMtxDataP13J3DVertexData();
 extern "C" void sortVcdVatCmd__13J3DShapeTableFv();
@@ -470,6 +470,13 @@ asm void J3DModelLoaderDataBase::load(void const* param_0, u32 param_1) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 803A20B0-803A20B0 02E710 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803A20B0 = "Unknown data block\n";
+#pragma pop
+
 /* 803347E0-80334ABC 32F120 02DC+00 4/1 0/0 0/0 .text            load__14J3DModelLoaderFPCvUl */
 #pragma push
 #pragma optimization_level 0
@@ -499,6 +506,13 @@ asm void J3DModelLoader::loadBinaryDisplayList(void const* param_0, u32 param_1)
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DModelLoader/loadBinaryDisplayList__14J3DModelLoaderFPCvUl.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 803A20B0-803A20B0 02E710 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803A20C4 = "WRONG SHAPE MATRIX TYPE (__FILE__)\n";
 #pragma pop
 
 /* 80334EE0-80335048 32F820 0168+00 3/0 0/0 0/0 .text            setupBBoardInfo__14J3DModelLoaderFv
@@ -759,7 +773,7 @@ bool J3DModelLoader::calcSizeMaterialTable(J3DMaterialBlock const* param_0, u32 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_803364B8() {
+extern "C" asm void func_803364B8(void* _this) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DModelLoader/func_803364B8.s"
 }
@@ -771,7 +785,7 @@ extern "C" asm void func_803364B8() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80336524(Vec const& param_0, f32 const (&param_1)[3][4]) {
+extern "C" asm void func_80336524(void* _this, Vec const& param_0, f32 const (&param_1)[3][4]) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DModelLoader/func_80336524.s"
 }
@@ -782,7 +796,7 @@ extern "C" asm void func_80336524(Vec const& param_0, f32 const (&param_1)[3][4]
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8033656C() {
+extern "C" asm void func_8033656C(void* _this) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DModelLoader/func_8033656C.s"
 }
@@ -793,7 +807,7 @@ extern "C" asm void func_8033656C() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80336594() {
+extern "C" asm void func_80336594(void* _this) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DModelLoader/func_80336594.s"
 }
@@ -805,7 +819,7 @@ extern "C" asm void func_80336594() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80336600(Vec const& param_0, f32 const (&param_1)[3][4]) {
+extern "C" asm void func_80336600(void* _this, Vec const& param_0, f32 const (&param_1)[3][4]) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DModelLoader/func_80336600.s"
 }
@@ -816,7 +830,7 @@ extern "C" asm void func_80336600(Vec const& param_0, f32 const (&param_1)[3][4]
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80336628() {
+extern "C" asm void func_80336628(void* _this) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DModelLoader/func_80336628.s"
 }
@@ -846,7 +860,7 @@ asm J3DTexture::~J3DTexture() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_803366EC(void const* param_0, void const* param_1) {
+extern "C" asm void func_803366EC(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DModelLoader/func_803366EC.s"
 }
@@ -856,7 +870,7 @@ extern "C" asm void func_803366EC(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80336704(void const* param_0, void const* param_1) {
+extern "C" asm void func_80336704(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DModelLoader/func_80336704.s"
 }
@@ -867,7 +881,7 @@ extern "C" asm void func_80336704(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8033671C(void const* param_0, void const* param_1) {
+extern "C" asm void func_8033671C(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DModelLoader/func_8033671C.s"
 }
@@ -878,7 +892,7 @@ extern "C" asm void func_8033671C(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80336734(void const* param_0, void const* param_1) {
+extern "C" asm void func_80336734(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DModelLoader/func_80336734.s"
 }
@@ -889,7 +903,7 @@ extern "C" asm void func_80336734(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8033674C(void const* param_0, void const* param_1) {
+extern "C" asm void func_8033674C(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DModelLoader/func_8033674C.s"
 }
@@ -900,7 +914,7 @@ extern "C" asm void func_8033674C(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80336764(void const* param_0, u32 param_1) {
+extern "C" asm void func_80336764(void* _this, void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DModelLoader/func_80336764.s"
 }
@@ -911,16 +925,10 @@ extern "C" asm void func_80336764(void const* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8033677C(void const* param_0, u32 param_1) {
+extern "C" asm void func_8033677C(void* _this, void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DModelLoader/func_8033677C.s"
 }
 #pragma pop
 
-/* 803A20B0-803A20E8 02E710 0038+00 4/4 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803A20B0 = "Unknown data block\n";
-SECTION_DEAD static char const* const stringBase_803A20C4 = "WRONG SHAPE MATRIX TYPE (__FILE__)\n";
-#pragma pop
+/* 803A20B0-803A20B0 02E710 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

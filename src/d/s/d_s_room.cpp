@@ -189,6 +189,13 @@ static bool dScnRoom_Draw(room_of_scene_class* param_0) {
     return true;
 }
 
+/* ############################################################################################## */
+/* 8039A388-8039A388 0269E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039A388 = "";
+#pragma pop
+
 /* 8025AE24-8025AF24 255764 0100+00 2/2 0/0 0/0 .text            getResetArchiveBank__FiPPCUc */
 #pragma push
 #pragma optimization_level 0
@@ -207,6 +214,15 @@ static asm void resetArchiveBank(int param_0) {
     nofralloc
 #include "asm/d/s/d_s_room/resetArchiveBank__Fi.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8039A388-8039A388 0269E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039A389 = "pack";
+SECTION_DEAD static char const* const stringBase_8039A38E = "/res/Object/";
+SECTION_DEAD static char const* const stringBase_8039A39B = "Bank[%d] : %s.arc Read Error !!\n";
 #pragma pop
 
 /* 8025AF4C-8025B0F0 25588C 01A4+00 1/1 0/0 0/0 .text            setArchiveBank__Fi */
@@ -257,6 +273,13 @@ static asm void isCreating(unsigned int param_0) {
     nofralloc
 #include "asm/d/s/d_s_room/isCreating__FUi.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8039A388-8039A388 0269E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039A3BC = "Demo%02d_%02d";
 #pragma pop
 
 /* 8025B1D0-8025B2EC 255B10 011C+00 1/1 0/0 0/0 .text            loadDemoArchive__Fi */
@@ -335,6 +358,15 @@ static asm void phase_1(room_of_scene_class* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039A388-8039A388 0269E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039A3CA = "room.dzr";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039A3D3 = "\0\0\0\0";
+#pragma pop
+
 /* 8025B980-8025BAAC 2562C0 012C+00 1/0 0/0 0/0 .text            phase_2__FP19room_of_scene_class */
 #pragma push
 #pragma optimization_level 0
@@ -410,16 +442,4 @@ SECTION_DATA extern void* g_profile_ROOM_SCENE[10] = {
     (void*)&l_dScnRoom_Method, (void*)NULL,
 };
 
-/* 8039A388-8039A3D8 0269E8 004B+05 4/4 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039A388 = "";
-SECTION_DEAD static char const* const stringBase_8039A389 = "pack";
-SECTION_DEAD static char const* const stringBase_8039A38E = "/res/Object/";
-SECTION_DEAD static char const* const stringBase_8039A39B = "Bank[%d] : %s.arc Read Error !!\n";
-SECTION_DEAD static char const* const stringBase_8039A3BC = "Demo%02d_%02d";
-SECTION_DEAD static char const* const stringBase_8039A3CA = "room.dzr";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039A3D3 = "\0\0\0\0";
-#pragma pop
+/* 8039A388-8039A388 0269E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

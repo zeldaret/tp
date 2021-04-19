@@ -34,13 +34,13 @@ struct dSv_info_c {
 
 struct dPa_levelEcallBack {};
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct csXyz {};
 
 struct _GXColor {};
 
-struct csXyz {};
+struct cXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -105,7 +105,7 @@ asm void daObjSmoke_c::setBaseMtx() {
 /* ############################################################################################## */
 /* 80CDD160-80CDD164 000000 0004+00 2/2 0/0 0/0 .rodata          @3655 */
 SECTION_RODATA static f32 const lit_3655 = 1.0f;
-COMPILER_STRIP_GATE(80CDD160, &lit_3655);
+COMPILER_STRIP_GATE(0x80CDD160, &lit_3655);
 
 /* 80CDCEF0-80CDCF9C 0000F0 00AC+00 1/1 0/0 0/0 .text            Create__12daObjSmoke_cFv */
 #pragma push

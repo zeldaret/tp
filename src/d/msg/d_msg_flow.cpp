@@ -417,7 +417,7 @@ extern "C" void event039__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
 extern "C" void event040__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
 extern "C" void event041__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
 extern "C" bool event042__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void func_8024DAB0(s32*);
+extern "C" void func_8024DAB0(void* _this, s32*);
 extern "C" void __sinit_d_msg_flow_cpp();
 extern "C" extern char const* const d_msg_d_msg_flow__stringBase0;
 extern "C" u8 mQueryList__10dMsgFlow_c[636];
@@ -1743,6 +1743,14 @@ asm dMsgFlow_c::~dMsgFlow_c() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80399CB0-80399CB0 026310 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399CB0 = "FLW1";
+SECTION_DEAD static char const* const stringBase_80399CB5 = "FLI1";
+#pragma pop
+
 /* 80249F90-8024A13C 2448D0 01AC+00 0/0 10/10 86/86 .text
  * init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c             */
 #pragma push
@@ -1895,6 +1903,14 @@ asm void dMsgFlow_c::setNodeIndex(u16 param_0, fopAc_ac_c** param_1) {
     nofralloc
 #include "asm/d/msg/d_msg_flow/setNodeIndex__10dMsgFlow_cFUsPP10fopAc_ac_c.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80399CB0-80399CB0 026310 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399CBA = "";
+SECTION_DEAD static char const* const stringBase_80399CBB = "INF1";
 #pragma pop
 
 /* 8024A95C-8024AA50 24529C 00F4+00 1/1 0/0 0/0 .text
@@ -2456,6 +2472,13 @@ asm void dMsgFlow_c::query041(mesg_flow_node_branch* param_0, fopAc_ac_c* param_
     nofralloc
 #include "asm/d/msg/d_msg_flow/query041__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80399CB0-80399CB0 026310 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399CC0 = "F_SP116";
 #pragma pop
 
 /* 8024BFEC-8024C0A8 24692C 00BC+00 1/0 0/0 0/0 .text
@@ -3059,7 +3082,7 @@ bool dMsgFlow_c::event042(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8024DAB0(s32* param_0) {
+extern "C" asm void func_8024DAB0(void* _this, s32* param_0) {
     nofralloc
 #include "asm/d/msg/d_msg_flow/func_8024DAB0.s"
 }
@@ -3077,16 +3100,7 @@ asm void __sinit_d_msg_flow_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8024DACC = (void*)__sinit_d_msg_flow_cpp;
+REGISTER_CTORS(0x8024DACC, __sinit_d_msg_flow_cpp);
 #pragma pop
 
-/* 80399CB0-80399CC8 026310 0018+00 5/5 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80399CB0 = "FLW1";
-SECTION_DEAD static char const* const stringBase_80399CB5 = "FLI1";
-SECTION_DEAD static char const* const stringBase_80399CBA = "";
-SECTION_DEAD static char const* const stringBase_80399CBB = "INF1";
-SECTION_DEAD static char const* const stringBase_80399CC0 = "F_SP116";
-#pragma pop
+/* 80399CB0-80399CB0 026310 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

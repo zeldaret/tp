@@ -139,9 +139,9 @@ struct dDemo_c {
     static u8 m_object[4];
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -310,7 +310,7 @@ extern "C" void __register_global_object();
 SECTION_RODATA static u8 const lit_3772[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D67BD4, &lit_3772);
+COMPILER_STRIP_GATE(0x80D67BD4, &lit_3772);
 
 /* 80D67BE0-80D67BE8 00000C 0006+02 3/3 0/0 0/0 .rodata          l_arcName */
 SECTION_RODATA static u8 const l_arcName[6 + 2 /* padding */] = {
@@ -324,24 +324,24 @@ SECTION_RODATA static u8 const l_arcName[6 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D67BE0, &l_arcName);
+COMPILER_STRIP_GATE(0x80D67BE0, &l_arcName);
 
 /* 80D67BE8-80D67BEC 000014 0004+00 3/4 0/0 0/0 .rodata          @4003 */
 SECTION_RODATA static f32 const lit_4003 = 1.0f;
-COMPILER_STRIP_GATE(80D67BE8, &lit_4003);
+COMPILER_STRIP_GATE(0x80D67BE8, &lit_4003);
 
 /* 80D67BEC-80D67BF0 000018 0004+00 0/1 0/0 0/0 .rodata          @4004 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4004 = 303.0f;
-COMPILER_STRIP_GATE(80D67BEC, &lit_4004);
+COMPILER_STRIP_GATE(0x80D67BEC, &lit_4004);
 #pragma pop
 
 /* 80D67BF0-80D67BF4 00001C 0004+00 0/1 0/0 0/0 .rodata          @4005 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4005 = 347.0f;
-COMPILER_STRIP_GATE(80D67BF0, &lit_4005);
+COMPILER_STRIP_GATE(0x80D67BF0, &lit_4005);
 #pragma pop
 
 /* 80D67C40-80D67C4C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -495,7 +495,7 @@ asm daTit_HIO_c::daTit_HIO_c() {
 /* ############################################################################################## */
 /* 80D67BF4-80D67BF8 000020 0004+00 1/1 0/0 0/0 .rodata          @4030 */
 SECTION_RODATA static f32 const lit_4030 = 2.0f;
-COMPILER_STRIP_GATE(80D67BF4, &lit_4030);
+COMPILER_STRIP_GATE(0x80D67BF4, &lit_4030);
 
 /* 80D66B54-80D66CDC 000134 0188+00 1/1 0/0 0/0 .text            CreateHeap__9daTitle_cFv */
 #pragma push
@@ -508,6 +508,12 @@ asm void daTitle_c::CreateHeap() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80D67C10-80D67C10 00003C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D67C10 = "/res/Layout/Title2D.arc";
+#pragma pop
+
 /* 80D67D80-80D67D8C 000008 000C+00 1/1 0/0 0/0 .bss             @3998 */
 static u8 lit_3998[12];
 
@@ -543,7 +549,7 @@ SECTION_RODATA static u8 const lit_4139[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D67BF8, &lit_4139);
+COMPILER_STRIP_GATE(0x80D67BF8, &lit_4139);
 
 /* 80D66E9C-80D66F34 00047C 0098+00 1/1 0/0 0/0 .text            Execute__9daTitle_cFv */
 #pragma push
@@ -573,6 +579,14 @@ asm void daTitle_c::loadWait_init() {
     nofralloc
 #include "asm/rel/d/a/d_a_title/d_a_title/loadWait_init__9daTitle_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80D67C10-80D67C10 00003C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D67C28 = "zelda_press_start.blo";
+SECTION_DEAD static char const* const stringBase_80D67C3E = "";
 #pragma pop
 
 /* 80D6701C-80D672E0 0005FC 02C4+00 1/0 0/0 0/0 .text            loadWait_proc__9daTitle_cFv */
@@ -642,7 +656,7 @@ SECTION_RODATA static f32 const lit_4287[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80D67BFC, &lit_4287);
+COMPILER_STRIP_GATE(0x80D67BFC, &lit_4287);
 
 /* 80D674B4-80D67544 000A94 0090+00 1/0 0/0 0/0 .text            keyWait__9daTitle_cFv */
 #pragma push
@@ -679,7 +693,7 @@ asm void daTitle_c::nextScene_proc() {
 SECTION_RODATA static u8 const lit_4337[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D67C04, &lit_4337);
+COMPILER_STRIP_GATE(0x80D67C04, &lit_4337);
 
 /* 80D675EC-80D676AC 000BCC 00C0+00 1/1 0/0 0/0 .text            fastLogoDispInit__9daTitle_cFv */
 #pragma push
@@ -716,7 +730,7 @@ asm void daTitle_c::getDemoPrm() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4453 = -430.0f;
-COMPILER_STRIP_GATE(80D67C0C, &lit_4453);
+COMPILER_STRIP_GATE(0x80D67C0C, &lit_4453);
 #pragma pop
 
 /* 80D67768-80D6786C 000D48 0104+00 1/1 0/0 0/0 .text            Draw__9daTitle_cFv */
@@ -816,7 +830,7 @@ asm void __sinit_d_a_title_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80D67A50 = (void*)__sinit_d_a_title_cpp;
+REGISTER_CTORS(0x80D67A50, __sinit_d_a_title_cpp);
 #pragma pop
 
 /* 80D67B30-80D67B78 001110 0048+00 1/0 0/0 0/0 .text            __dt__15dDlst_daTitle_cFv */
@@ -839,11 +853,4 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 }
 #pragma pop
 
-/* 80D67C10-80D67C3F 00003C 002F+00 2/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D67C10 = "/res/Layout/Title2D.arc";
-SECTION_DEAD static char const* const stringBase_80D67C28 = "zelda_press_start.blo";
-SECTION_DEAD static char const* const stringBase_80D67C3E = "";
-#pragma pop
+/* 80D67C10-80D67C10 00003C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

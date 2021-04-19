@@ -289,6 +289,17 @@ asm void JAISound::die_JAISound_() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039B910-8039B910 027F70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039B910 =
+    "It cost %d steps to prepare Sound(ID:%08x, Addre"
+    "ss%08x).\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039B94A = "\0\0\0\0\0";
+#pragma pop
+
 /* 802A266C-802A26B8 29CFAC 004C+00 0/0 3/3 0/0 .text increasePrepareCount_JAISound___8JAISoundFv
  */
 #pragma push
@@ -328,13 +339,4 @@ asm void JAISound::initTrack_JAISound_(JASTrack* param_0) {
 }
 #pragma pop
 
-/* 8039B910-8039B950 027F70 003A+06 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039B910 =
-    "It cost %d steps to prepare Sound(ID:%08x, Addre"
-    "ss%08x).\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039B94A = "\0\0\0\0\0";
-#pragma pop
+/* 8039B910-8039B910 027F70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -77,13 +77,13 @@ struct J2DTevOrder {
     /* 802F1B70 */ J2DTevOrder();
 };
 
-struct J2DGXColorS10 {
-    /* 802F1B90 */ J2DGXColorS10();
-};
-
 struct J2DIndTevStage {
     /* 802EA044 */ void load(u8);
     /* 802F18A0 */ J2DIndTevStage();
+};
+
+struct J2DGXColorS10 {
+    /* 802F1B90 */ J2DGXColorS10();
 };
 
 struct J2DTevBlock8 {
@@ -793,7 +793,8 @@ extern "C" extern u32 j2dDefaultTevSwapModeTable;
 extern "C" extern u32 j2dDefaultBlendInfo;
 extern "C" extern u8 data_804561A4[4];
 extern "C" extern u32 j2dDefaultColorChanInfo;
-extern "C" extern u8 struct_804561AC[4];
+extern "C" extern u16 data_804561AC;
+extern "C" extern u16 j2dDefaultAlphaCmp;
 
 //
 // Declarations:
@@ -814,7 +815,7 @@ asm void J2DColorBlock::initialize() {
 SECTION_RODATA static u8 const lit_1463[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x03,
 };
-COMPILER_STRIP_GATE(803A1C00, &lit_1463);
+COMPILER_STRIP_GATE(0x803A1C00, &lit_1463);
 
 /* 802EB424-802EB510 2E5D64 00EC+00 0/0 1/1 0/0 .text            setGX__13J2DColorBlockFv */
 #pragma push
@@ -2116,15 +2117,10 @@ asm void J2DIndBlockFull::getType() {
 }
 #pragma pop
 
-/* 802F1BA0-802F1BA8 2EC4E0 0008+00 1/0 0/0 0/0 .text setIndTexStageNum__15J2DIndBlockFullFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DIndBlockFull::setIndTexStageNum(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setIndTexStageNum__15J2DIndBlockFullFUc.s"
+/* 802F1BA0-802F1BA8 -00001 0008+00 0/0 0/0 0/0 .text setIndTexStageNum__15J2DIndBlockFullFUc */
+void J2DIndBlockFull::setIndTexStageNum(u8 param_0) {
+    *(u8*)(((u8*)this) + 4) /* this->field_0x4 */ = (u8)(param_0);
 }
-#pragma pop
 
 /* 802F1BA8-802F1BB0 2EC4E8 0008+00 1/0 0/0 0/0 .text getIndTexStageNum__15J2DIndBlockFullCFv */
 #pragma push
@@ -2245,15 +2241,10 @@ asm void J2DTevBlock16::getTexNo(u32 param_0) const {
 }
 #pragma pop
 
-/* 802F1D4C-802F1D54 2EC68C 0008+00 1/0 0/0 0/0 .text            setFontNo__13J2DTevBlock16FUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock16::setFontNo(u16 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setFontNo__13J2DTevBlock16FUs.s"
+/* 802F1D4C-802F1D54 -00001 0008+00 0/0 0/0 0/0 .text            setFontNo__13J2DTevBlock16FUs */
+void J2DTevBlock16::setFontNo(u16 param_0) {
+    *(u16*)(((u8*)this) + 20) /* this->field_0x14 */ = (u16)(param_0);
 }
-#pragma pop
 
 /* 802F1D54-802F1D5C 2EC694 0008+00 1/0 0/0 0/0 .text            getFontNo__13J2DTevBlock16CFv */
 #pragma push
@@ -2370,16 +2361,11 @@ asm void J2DTevBlock16::getTevKAlphaSel(u32 param_0) {
 }
 #pragma pop
 
-/* 802F1E44-802F1E4C 2EC784 0008+00 1/0 0/0 0/0 .text            setTevStageNum__13J2DTevBlock16FUc
+/* 802F1E44-802F1E4C -00001 0008+00 0/0 0/0 0/0 .text            setTevStageNum__13J2DTevBlock16FUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock16::setTevStageNum(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevStageNum__13J2DTevBlock16FUc.s"
+void J2DTevBlock16::setTevStageNum(u8 param_0) {
+    *(u8*)(((u8*)this) + 118) /* this->field_0x76 */ = (u8)(param_0);
 }
-#pragma pop
 
 /* 802F1E4C-802F1E54 2EC78C 0008+00 1/0 0/0 0/0 .text            getTevStageNum__13J2DTevBlock16CFv
  */
@@ -2564,15 +2550,10 @@ asm void J2DTevBlock8::getTexNo(u32 param_0) const {
 }
 #pragma pop
 
-/* 802F1FEC-802F1FF4 2EC92C 0008+00 1/0 0/0 0/0 .text            setFontNo__12J2DTevBlock8FUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock8::setFontNo(u16 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setFontNo__12J2DTevBlock8FUs.s"
+/* 802F1FEC-802F1FF4 -00001 0008+00 0/0 0/0 0/0 .text            setFontNo__12J2DTevBlock8FUs */
+void J2DTevBlock8::setFontNo(u16 param_0) {
+    *(u16*)(((u8*)this) + 20) /* this->field_0x14 */ = (u16)(param_0);
 }
-#pragma pop
 
 /* 802F1FF4-802F1FFC 2EC934 0008+00 1/0 0/0 0/0 .text            getFontNo__12J2DTevBlock8CFv */
 #pragma push
@@ -2689,16 +2670,11 @@ asm void J2DTevBlock8::getTevKAlphaSel(u32 param_0) {
 }
 #pragma pop
 
-/* 802F20E4-802F20EC 2ECA24 0008+00 1/0 0/0 0/0 .text            setTevStageNum__12J2DTevBlock8FUc
+/* 802F20E4-802F20EC -00001 0008+00 0/0 0/0 0/0 .text            setTevStageNum__12J2DTevBlock8FUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock8::setTevStageNum(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevStageNum__12J2DTevBlock8FUc.s"
+void J2DTevBlock8::setTevStageNum(u8 param_0) {
+    *(u8*)(((u8*)this) + 86) /* this->field_0x56 */ = (u8)(param_0);
 }
-#pragma pop
 
 /* 802F20EC-802F20F4 2ECA2C 0008+00 1/0 0/0 0/0 .text            getTevStageNum__12J2DTevBlock8CFv
  */
@@ -2883,15 +2859,10 @@ asm void J2DTevBlock4::getTexNo(u32 param_0) const {
 }
 #pragma pop
 
-/* 802F228C-802F2294 2ECBCC 0008+00 1/0 0/0 0/0 .text            setFontNo__12J2DTevBlock4FUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock4::setFontNo(u16 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setFontNo__12J2DTevBlock4FUs.s"
+/* 802F228C-802F2294 -00001 0008+00 0/0 0/0 0/0 .text            setFontNo__12J2DTevBlock4FUs */
+void J2DTevBlock4::setFontNo(u16 param_0) {
+    *(u16*)(((u8*)this) + 12) /* this->field_0xc */ = (u16)(param_0);
 }
-#pragma pop
 
 /* 802F2294-802F229C 2ECBD4 0008+00 1/0 0/0 0/0 .text            getFontNo__12J2DTevBlock4CFv */
 #pragma push
@@ -3008,16 +2979,11 @@ asm void J2DTevBlock4::getTevKAlphaSel(u32 param_0) {
 }
 #pragma pop
 
-/* 802F2384-802F238C 2ECCC4 0008+00 1/0 0/0 0/0 .text            setTevStageNum__12J2DTevBlock4FUc
+/* 802F2384-802F238C -00001 0008+00 0/0 0/0 0/0 .text            setTevStageNum__12J2DTevBlock4FUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock4::setTevStageNum(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevStageNum__12J2DTevBlock4FUc.s"
+void J2DTevBlock4::setTevStageNum(u8 param_0) {
+    *(u8*)(((u8*)this) + 62) /* this->field_0x3e */ = (u8)(param_0);
 }
-#pragma pop
 
 /* 802F238C-802F2394 2ECCCC 0008+00 1/0 0/0 0/0 .text            getTevStageNum__12J2DTevBlock4CFv
  */
@@ -3202,15 +3168,10 @@ asm void J2DTevBlock2::getTexNo(u32 param_0) const {
 }
 #pragma pop
 
-/* 802F2530-802F2538 2ECE70 0008+00 1/0 0/0 0/0 .text            setFontNo__12J2DTevBlock2FUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock2::setFontNo(u16 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setFontNo__12J2DTevBlock2FUs.s"
+/* 802F2530-802F2538 -00001 0008+00 0/0 0/0 0/0 .text            setFontNo__12J2DTevBlock2FUs */
+void J2DTevBlock2::setFontNo(u16 param_0) {
+    *(u16*)(((u8*)this) + 8) /* this->field_0x8 */ = (u16)(param_0);
 }
-#pragma pop
 
 /* 802F2538-802F2540 2ECE78 0008+00 1/0 0/0 0/0 .text            getFontNo__12J2DTevBlock2CFv */
 #pragma push
@@ -3327,16 +3288,11 @@ asm void J2DTevBlock2::getTevKAlphaSel(u32 param_0) {
 }
 #pragma pop
 
-/* 802F2628-802F2630 2ECF68 0008+00 1/0 0/0 0/0 .text            setTevStageNum__12J2DTevBlock2FUc
+/* 802F2628-802F2630 -00001 0008+00 0/0 0/0 0/0 .text            setTevStageNum__12J2DTevBlock2FUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock2::setTevStageNum(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevStageNum__12J2DTevBlock2FUc.s"
+void J2DTevBlock2::setTevStageNum(u8 param_0) {
+    *(u8*)(((u8*)this) + 50) /* this->field_0x32 */ = (u8)(param_0);
 }
-#pragma pop
 
 /* 802F2630-802F2638 2ECF70 0008+00 1/0 0/0 0/0 .text            getTevStageNum__12J2DTevBlock2CFv
  */
@@ -3521,15 +3477,10 @@ asm void J2DTevBlock1::getTexNo(u32 param_0) const {
 }
 #pragma pop
 
-/* 802F27D4-802F27DC 2ED114 0008+00 1/0 0/0 0/0 .text            setFontNo__12J2DTevBlock1FUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock1::setFontNo(u16 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setFontNo__12J2DTevBlock1FUs.s"
+/* 802F27D4-802F27DC -00001 0008+00 0/0 0/0 0/0 .text            setFontNo__12J2DTevBlock1FUs */
+void J2DTevBlock1::setFontNo(u16 param_0) {
+    *(u16*)(((u8*)this) + 6) /* this->field_0x6 */ = (u16)(param_0);
 }
-#pragma pop
 
 /* 802F27DC-802F27E4 2ED11C 0008+00 1/0 0/0 0/0 .text            getFontNo__12J2DTevBlock1CFv */
 #pragma push

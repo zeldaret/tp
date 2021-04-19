@@ -157,41 +157,41 @@ static asm void daObj_Ndoor_Draw(obj_ndoor_class* param_0) {
 /* ############################################################################################## */
 /* 80CA3A44-80CA3A48 000000 0004+00 1/1 0/0 0/0 .rodata          @3831 */
 SECTION_RODATA static f32 const lit_3831 = 350.0f;
-COMPILER_STRIP_GATE(80CA3A44, &lit_3831);
+COMPILER_STRIP_GATE(0x80CA3A44, &lit_3831);
 
 /* 80CA3A48-80CA3A4C 000004 0004+00 0/1 0/0 0/0 .rodata          @3832 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3832 = 2500.0f;
-COMPILER_STRIP_GATE(80CA3A48, &lit_3832);
+COMPILER_STRIP_GATE(0x80CA3A48, &lit_3832);
 #pragma pop
 
 /* 80CA3A4C-80CA3A50 000008 0004+00 0/1 0/0 0/0 .rodata          @3833 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3833 = 25.0f;
-COMPILER_STRIP_GATE(80CA3A4C, &lit_3833);
+COMPILER_STRIP_GATE(0x80CA3A4C, &lit_3833);
 #pragma pop
 
 /* 80CA3A50-80CA3A54 00000C 0004+00 0/1 0/0 0/0 .rodata          @3834 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3834 = 27000.0f;
-COMPILER_STRIP_GATE(80CA3A50, &lit_3834);
+COMPILER_STRIP_GATE(0x80CA3A50, &lit_3834);
 #pragma pop
 
 /* 80CA3A54-80CA3A58 000010 0004+00 0/1 0/0 0/0 .rodata          @3835 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3835 = 30.0f;
-COMPILER_STRIP_GATE(80CA3A54, &lit_3835);
+COMPILER_STRIP_GATE(0x80CA3A54, &lit_3835);
 #pragma pop
 
 /* 80CA3A58-80CA3A5C 000014 0004+00 0/1 0/0 0/0 .rodata          @3836 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3836 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(80CA3A58, &lit_3836);
+COMPILER_STRIP_GATE(0x80CA3A58, &lit_3836);
 #pragma pop
 
 /* 80CA3A5C-80CA3A64 000018 0004+04 0/1 0/0 0/0 .rodata          @3837 */
@@ -202,7 +202,7 @@ SECTION_RODATA static f32 const lit_3837[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80CA3A5C, &lit_3837);
+COMPILER_STRIP_GATE(0x80CA3A5C, &lit_3837);
 #pragma pop
 
 /* 80CA3A64-80CA3A6C 000020 0008+00 0/1 0/0 0/0 .rodata          @3839 */
@@ -211,7 +211,7 @@ COMPILER_STRIP_GATE(80CA3A5C, &lit_3837);
 SECTION_RODATA static u8 const lit_3839[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CA3A64, &lit_3839);
+COMPILER_STRIP_GATE(0x80CA3A64, &lit_3839);
 #pragma pop
 
 /* 80CA359C-80CA37A4 0000DC 0208+00 2/1 0/0 0/0 .text daObj_Ndoor_Execute__FP15obj_ndoor_class */
@@ -228,6 +228,13 @@ static asm void daObj_Ndoor_Execute(obj_ndoor_class* param_0) {
 static bool daObj_Ndoor_IsDelete(obj_ndoor_class* param_0) {
     return true;
 }
+
+/* ############################################################################################## */
+/* 80CA3A6C-80CA3A6C 000028 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CA3A6C = "Obj_ndoor";
+#pragma pop
 
 /* 80CA37AC-80CA37DC 0002EC 0030+00 1/0 0/0 0/0 .text daObj_Ndoor_Delete__FP15obj_ndoor_class */
 #pragma push
@@ -325,9 +332,4 @@ asm cM3dGAab::~cM3dGAab() {
 }
 #pragma pop
 
-/* 80CA3A6C-80CA3A76 000028 000A+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CA3A6C = "Obj_ndoor";
-#pragma pop
+/* 80CA3A6C-80CA3A6C 000028 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

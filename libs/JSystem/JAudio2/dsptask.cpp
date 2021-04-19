@@ -569,7 +569,7 @@ static u8 AUDIO_YIELD_BUFFER[8192];
 #pragma optimization_level 0
 #pragma optimizewithasm off
 #pragma function_align 32
-asm void DspBoot(void (*)(void*)) {
+asm void DspBoot(void (*param_0)(void*)) {
     nofralloc
 #include "asm/JSystem/JAudio2/dsptask/DspBoot__FPFPv_v.s"
 }
@@ -580,7 +580,7 @@ asm void DspBoot(void (*)(void*)) {
 #pragma optimization_level 0
 #pragma optimizewithasm off
 #pragma function_align 32
-asm void DSPSendCommands2(u32* param_0, u32 param_1, void (*)(u16)) {
+asm void DSPSendCommands2(u32* param_0, u32 param_1, void (*param_2)(u16)) {
     nofralloc
 #include "asm/JSystem/JAudio2/dsptask/DSPSendCommands2__FPUlUlPFUs_v.s"
 }
@@ -613,7 +613,7 @@ static u8 taskwritep[4];
 #pragma optimization_level 0
 #pragma optimizewithasm off
 #pragma function_align 32
-static asm void DspStartWork(u32 param_0, void (*)(u16)) {
+static asm void DspStartWork(u32 param_0, void (*param_1)(u16)) {
     nofralloc
 #include "asm/JSystem/JAudio2/dsptask/DspStartWork__FUlPFUs_v.s"
 }

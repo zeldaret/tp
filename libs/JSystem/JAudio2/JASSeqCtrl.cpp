@@ -208,7 +208,7 @@ asm void __sinit_JASSeqCtrl_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80293C6C = (void*)__sinit_JASSeqCtrl_cpp;
+REGISTER_CTORS(0x80293C6C, __sinit_JASSeqCtrl_cpp);
 #pragma pop
 
 /* 80293CAC-80293CF4 28E5EC 0048+00 1/1 1/0 0/0 .text            __dt__12JASSeqParserFv */

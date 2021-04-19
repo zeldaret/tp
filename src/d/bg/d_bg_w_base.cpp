@@ -16,7 +16,6 @@ struct fopAc_ac_c {};
 struct cXyz {};
 
 struct dBgW_Base {
-    /* 80074AB4 */ void SetOldShapeAngleY(s16);
     /* 8007E5A8 */ dBgW_Base();
     /* 8007E640 */ ~dBgW_Base();
     /* 8007E69C */ void ClrDBgWBase();

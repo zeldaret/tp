@@ -152,7 +152,7 @@ SECTION_RODATA static u8 const lit_3630[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C96510, &lit_3630);
+COMPILER_STRIP_GATE(0x80C96510, &lit_3630);
 
 /* 80C95E18-80C95E2C 000078 0014+00 1/0 0/0 0/0 .text            initWait__18daObjMirror6Pole_cFv */
 #pragma push
@@ -165,6 +165,12 @@ asm void daObjMirror6Pole_c::initWait() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80C96520-80C96520 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C96520 = "MR-6Pole";
+#pragma pop
+
 /* 80C9652C-80C96538 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -286,13 +292,13 @@ asm void daObjMirror6Pole_c::createHeapCallBack(fopAc_ac_c* param_0) {
 /* ############################################################################################## */
 /* 80C96514-80C96518 000004 0004+00 1/1 0/0 0/0 .rodata          @3755 */
 SECTION_RODATA static f32 const lit_3755 = 1.0f;
-COMPILER_STRIP_GATE(80C96514, &lit_3755);
+COMPILER_STRIP_GATE(0x80C96514, &lit_3755);
 
 /* 80C96518-80C96520 000008 0008+00 1/1 0/0 0/0 .rodata          @3757 */
 SECTION_RODATA static u8 const lit_3757[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C96518, &lit_3757);
+COMPILER_STRIP_GATE(0x80C96518, &lit_3757);
 
 /* 80C965B0-80C965D0 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjMirror6Pole_Method */
 SECTION_DATA static void* l_daObjMirror6Pole_Method[8] = {
@@ -405,12 +411,7 @@ asm void __sinit_d_a_obj_mirror_6pole_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80C96494 = (void*)__sinit_d_a_obj_mirror_6pole_cpp;
+REGISTER_CTORS(0x80C96494, __sinit_d_a_obj_mirror_6pole_cpp);
 #pragma pop
 
-/* 80C96520-80C96529 000010 0009+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C96520 = "MR-6Pole";
-#pragma pop
+/* 80C96520-80C96520 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

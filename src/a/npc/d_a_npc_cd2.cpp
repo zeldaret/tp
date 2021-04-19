@@ -41,15 +41,15 @@ struct mDoExt_btpAnm {
     /* 8000D5E8 */ void entry(J3DMaterialTable*, s16);
 };
 
-struct J3DModelData {};
-
 struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct Z2Creature {};
-
 struct J3DAnmTransform {};
+
+struct J3DModelData {};
+
+struct Z2Creature {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -67,11 +67,11 @@ struct daPy_py_c {
     /* 8015F424 */ void checkNowWolfEyeUp();
 };
 
+struct J3DModel {};
+
 struct J3DJoint {};
 
 struct J3DAnmTransformKey {};
-
-struct J3DModel {};
 
 struct daNpcCd2_c {
     /* 80157D00 */ void NpcCreate(int);
@@ -284,8 +284,8 @@ extern "C" void dPath_GetPnt__FPC5dPathi();
 extern "C" void dPath_GetRoomPath__Fii();
 extern "C" void GetPolyColor__4dBgSFRC13cBgS_PolyInfo();
 extern "C" void GetRoomId__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void func_8014D348(int*);
-extern "C" void func_8014D364(int, int);
+extern "C" void func_8014D348(void* _this, int*);
+extern "C" void func_8014D364(void* _this, int, int);
 extern "C" void checkNowWolfEyeUp__9daPy_py_cFv();
 extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
 extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
@@ -346,6 +346,204 @@ static asm void jntNodeCallBack(J3DJoint* param_0, int param_1) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80393B70-80393B76 0201D0 0006+00 2/1 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393B70;
+
+/* 80393B76-80393B7F 0201D6 0009+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393B76;
+
+/* 80393B7F-80393B88 0201DF 0009+00 17/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393B7F;
+
+/* 80393B88-80393B91 0201E8 0009+00 17/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393B88;
+
+/* 80393B91-80393B98 0201F1 0007+00 31/1 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393B91;
+
+/* 80393B98-80393BA1 0201F8 0009+00 31/1 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393B98;
+
+/* 80393BA1-80393BA7 020201 0006+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393BA1;
+
+/* 80393BA7-80393BB0 020207 0009+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393BA7;
+
+/* 80393BB0-80393BB6 020210 0006+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393BB0;
+
+/* 80393BB6-80393BBF 020216 0009+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393BB6;
+
+/* 80393BBF-80393BC5 02021F 0006+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393BBF;
+
+/* 80393BC5-80393BCE 020225 0009+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393BC5;
+
+/* 80393BCE-80393BD4 02022E 0006+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393BCE;
+
+/* 80393BD4-80393BDD 020234 0009+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393BD4;
+
+/* 80393BDD-80393BE3 02023D 0006+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393BDD;
+
+/* 80393BE3-80393BEC 020243 0009+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393BE3;
+
+/* 80393BEC-80393BF2 02024C 0006+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393BEC;
+
+/* 80393BF2-80393BFB 020252 0009+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393BF2;
+
+/* 80393BFB-80393C01 02025B 0006+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393BFB;
+
+/* 80393C01-80393C0A 020261 0009+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393C01;
+
+/* 80393C0A-80393C11 02026A 0007+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393C0A;
+
+/* 80393C11-80393C1B 020271 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393C11;
+
+/* 80393C1B-80393C22 02027B 0007+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393C1B;
+
+/* 80393C22-80393C2C 020282 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393C22;
+
+/* 80393C2C-80393C33 02028C 0007+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393C2C;
+
+/* 80393C33-80393C3D 020293 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393C33;
+
+/* 80393C3D-80393C44 02029D 0007+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393C3D;
+
+/* 80393C44-80393C4E 0202A4 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393C44;
+
+/* 80393C4E-80393C55 0202AE 0007+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393C4E;
+
+/* 80393C55-80393C5F 0202B5 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393C55;
+
+/* 80393C5F-80393C66 0202BF 0007+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393C5F;
+
+/* 80393C66-80393C70 0202C6 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393C66;
+
+/* 80393C70-80393C77 0202D0 0007+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393C70;
+
+/* 80393C77-80393C81 0202D7 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393C77;
+
+/* 80393C81-80393C88 0202E1 0007+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393C81;
+
+/* 80393C88-80393C92 0202E8 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393C88;
+
+/* 80393C92-80393C98 0202F2 0006+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393C92;
+
+/* 80393C98-80393CA1 0202F8 0009+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393C98;
+
+/* 80393CA1-80393CAA 020301 0009+00 15/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393CA1;
+
+/* 80393CAA-80393CB3 02030A 0009+00 15/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393CAA;
+
+/* 80393CB3-80393CB9 020313 0006+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393CB3;
+
+/* 80393CB9-80393CC2 020319 0009+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393CB9;
+
+/* 80393CC2-80393CC8 020322 0006+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393CC2;
+
+/* 80393CC8-80393CD1 020328 0009+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393CC8;
+
+/* 80393CD1-80393CD7 020331 0006+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393CD1;
+
+/* 80393CD7-80393CE0 020337 0009+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393CD7;
+
+/* 80393CE0-80393CE6 020340 0006+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393CE0;
+
+/* 80393CE6-80393CEF 020346 0009+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393CE6;
+
+/* 80393CEF-80393CF5 02034F 0006+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393CEF;
+
+/* 80393CF5-80393CFE 020355 0009+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393CF5;
+
+/* 80393CFE-80393D04 02035E 0006+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393CFE;
+
+/* 80393D04-80393D0D 020364 0009+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393D04;
+
+/* 80393D0D-80393D14 02036D 0007+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393D0D;
+
+/* 80393D14-80393D1E 020374 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393D14;
+
+/* 80393D1E-80393D25 02037E 0007+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393D1E;
+
+/* 80393D25-80393D2F 020385 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393D25;
+
+/* 80393D2F-80393D36 02038F 0007+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393D2F;
+
+/* 80393D36-80393D40 020396 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393D36;
+
+/* 80393D40-80393D47 0203A0 0007+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393D40;
+
+/* 80393D47-80393D51 0203A7 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393D47;
+
+/* 80393D51-80393D58 0203B1 0007+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393D51;
+
+/* 80393D58-80393D62 0203B8 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393D58;
+
+/* 80393D62-80393D69 0203C2 0007+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393D62;
+
+/* 80393D69-80393D73 0203C9 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393D69;
+
+/* 80393D73-80393D7A 0203D3 0007+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393D73;
+
+/* 80393D7A-80393D88 0203DA 000A+04 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80393D7A;
+
 /* 80393250-80393268 -00001 0018+00 2/1 0/0 0/0 .rodata          l_resMANa */
 SECTION_RODATA static void* const l_resMANa[6] = {
     (void*)&a_npc_d_a_npc_cd2__stringBase0,
@@ -355,7 +553,7 @@ SECTION_RODATA static void* const l_resMANa[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(80393250, &l_resMANa);
+COMPILER_STRIP_GATE(0x80393250, &l_resMANa);
 
 /* 80393268-80393280 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMADa */
 SECTION_RODATA static void* const l_resMADa[6] = {
@@ -366,7 +564,7 @@ SECTION_RODATA static void* const l_resMADa[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(80393268, &l_resMADa);
+COMPILER_STRIP_GATE(0x80393268, &l_resMADa);
 
 /* 80393280-80393298 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMCNa */
 SECTION_RODATA static void* const l_resMCNa[6] = {
@@ -377,7 +575,7 @@ SECTION_RODATA static void* const l_resMCNa[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(80393280, &l_resMCNa);
+COMPILER_STRIP_GATE(0x80393280, &l_resMCNa);
 
 /* 80393298-803932B0 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMONa */
 SECTION_RODATA static void* const l_resMONa[6] = {
@@ -388,7 +586,7 @@ SECTION_RODATA static void* const l_resMONa[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(80393298, &l_resMONa);
+COMPILER_STRIP_GATE(0x80393298, &l_resMONa);
 
 /* 803932B0-803932C8 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMANb */
 SECTION_RODATA static void* const l_resMANb[6] = {
@@ -399,7 +597,7 @@ SECTION_RODATA static void* const l_resMANb[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(803932B0, &l_resMANb);
+COMPILER_STRIP_GATE(0x803932B0, &l_resMANb);
 
 /* 803932C8-803932E0 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMANc */
 SECTION_RODATA static void* const l_resMANc[6] = {
@@ -410,7 +608,7 @@ SECTION_RODATA static void* const l_resMANc[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(803932C8, &l_resMANc);
+COMPILER_STRIP_GATE(0x803932C8, &l_resMANc);
 
 /* 803932E0-803932F8 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMASa */
 SECTION_RODATA static void* const l_resMASa[6] = {
@@ -421,7 +619,7 @@ SECTION_RODATA static void* const l_resMASa[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(803932E0, &l_resMASa);
+COMPILER_STRIP_GATE(0x803932E0, &l_resMASa);
 
 /* 803932F8-80393310 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMBNa */
 SECTION_RODATA static void* const l_resMBNa[6] = {
@@ -432,7 +630,7 @@ SECTION_RODATA static void* const l_resMBNa[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(803932F8, &l_resMBNa);
+COMPILER_STRIP_GATE(0x803932F8, &l_resMBNa);
 
 /* 80393310-80393328 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMANa2 */
 SECTION_RODATA static void* const l_resMANa2[6] = {
@@ -443,7 +641,7 @@ SECTION_RODATA static void* const l_resMANa2[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(80393310, &l_resMANa2);
+COMPILER_STRIP_GATE(0x80393310, &l_resMANa2);
 
 /* 80393328-80393340 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMADa2 */
 SECTION_RODATA static void* const l_resMADa2[6] = {
@@ -454,7 +652,7 @@ SECTION_RODATA static void* const l_resMADa2[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(80393328, &l_resMADa2);
+COMPILER_STRIP_GATE(0x80393328, &l_resMADa2);
 
 /* 80393340-80393358 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMCNa2 */
 SECTION_RODATA static void* const l_resMCNa2[6] = {
@@ -465,7 +663,7 @@ SECTION_RODATA static void* const l_resMCNa2[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(80393340, &l_resMCNa2);
+COMPILER_STRIP_GATE(0x80393340, &l_resMCNa2);
 
 /* 80393358-80393370 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMONa2 */
 SECTION_RODATA static void* const l_resMONa2[6] = {
@@ -476,7 +674,7 @@ SECTION_RODATA static void* const l_resMONa2[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(80393358, &l_resMONa2);
+COMPILER_STRIP_GATE(0x80393358, &l_resMONa2);
 
 /* 80393370-80393388 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMANb2 */
 SECTION_RODATA static void* const l_resMANb2[6] = {
@@ -487,7 +685,7 @@ SECTION_RODATA static void* const l_resMANb2[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(80393370, &l_resMANb2);
+COMPILER_STRIP_GATE(0x80393370, &l_resMANb2);
 
 /* 80393388-803933A0 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMANc2 */
 SECTION_RODATA static void* const l_resMANc2[6] = {
@@ -498,7 +696,7 @@ SECTION_RODATA static void* const l_resMANc2[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(80393388, &l_resMANc2);
+COMPILER_STRIP_GATE(0x80393388, &l_resMANc2);
 
 /* 803933A0-803933B8 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMASa2 */
 SECTION_RODATA static void* const l_resMASa2[6] = {
@@ -509,7 +707,7 @@ SECTION_RODATA static void* const l_resMASa2[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(803933A0, &l_resMASa2);
+COMPILER_STRIP_GATE(0x803933A0, &l_resMASa2);
 
 /* 803933B8-803933D0 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMBNa2 */
 SECTION_RODATA static void* const l_resMBNa2[6] = {
@@ -520,7 +718,7 @@ SECTION_RODATA static void* const l_resMBNa2[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(803933B8, &l_resMBNa2);
+COMPILER_STRIP_GATE(0x803933B8, &l_resMBNa2);
 
 /* 803933D0-803933E8 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWANa */
 SECTION_RODATA static void* const l_resWANa[6] = {
@@ -531,7 +729,7 @@ SECTION_RODATA static void* const l_resWANa[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(803933D0, &l_resWANa);
+COMPILER_STRIP_GATE(0x803933D0, &l_resWANa);
 
 /* 803933E8-80393400 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWADa */
 SECTION_RODATA static void* const l_resWADa[6] = {
@@ -542,7 +740,7 @@ SECTION_RODATA static void* const l_resWADa[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(803933E8, &l_resWADa);
+COMPILER_STRIP_GATE(0x803933E8, &l_resWADa);
 
 /* 80393400-80393418 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMATa */
 SECTION_RODATA static void* const l_resMATa[6] = {
@@ -553,7 +751,7 @@ SECTION_RODATA static void* const l_resMATa[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(80393400, &l_resMATa);
+COMPILER_STRIP_GATE(0x80393400, &l_resMATa);
 
 /* 80393418-80393430 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWCNa */
 SECTION_RODATA static void* const l_resWCNa[6] = {
@@ -564,7 +762,7 @@ SECTION_RODATA static void* const l_resWCNa[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(80393418, &l_resWCNa);
+COMPILER_STRIP_GATE(0x80393418, &l_resWCNa);
 
 /* 80393430-80393448 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWONa */
 SECTION_RODATA static void* const l_resWONa[6] = {
@@ -575,7 +773,7 @@ SECTION_RODATA static void* const l_resWONa[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(80393430, &l_resWONa);
+COMPILER_STRIP_GATE(0x80393430, &l_resWONa);
 
 /* 80393448-80393460 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWGNa */
 SECTION_RODATA static void* const l_resWGNa[6] = {
@@ -586,7 +784,7 @@ SECTION_RODATA static void* const l_resWGNa[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(80393448, &l_resWGNa);
+COMPILER_STRIP_GATE(0x80393448, &l_resWGNa);
 
 /* 80393460-80393478 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWANb */
 SECTION_RODATA static void* const l_resWANb[6] = {
@@ -597,7 +795,7 @@ SECTION_RODATA static void* const l_resWANb[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(80393460, &l_resWANb);
+COMPILER_STRIP_GATE(0x80393460, &l_resWANb);
 
 /* 80393478-80393490 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWANa2 */
 SECTION_RODATA static void* const l_resWANa2[6] = {
@@ -608,7 +806,7 @@ SECTION_RODATA static void* const l_resWANa2[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(80393478, &l_resWANa2);
+COMPILER_STRIP_GATE(0x80393478, &l_resWANa2);
 
 /* 80393490-803934A8 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWADa2 */
 SECTION_RODATA static void* const l_resWADa2[6] = {
@@ -619,7 +817,7 @@ SECTION_RODATA static void* const l_resWADa2[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(80393490, &l_resWADa2);
+COMPILER_STRIP_GATE(0x80393490, &l_resWADa2);
 
 /* 803934A8-803934C0 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMATa2 */
 SECTION_RODATA static void* const l_resMATa2[6] = {
@@ -630,7 +828,7 @@ SECTION_RODATA static void* const l_resMATa2[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(803934A8, &l_resMATa2);
+COMPILER_STRIP_GATE(0x803934A8, &l_resMATa2);
 
 /* 803934C0-803934D8 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWCNa2 */
 SECTION_RODATA static void* const l_resWCNa2[6] = {
@@ -641,7 +839,7 @@ SECTION_RODATA static void* const l_resWCNa2[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(803934C0, &l_resWCNa2);
+COMPILER_STRIP_GATE(0x803934C0, &l_resWCNa2);
 
 /* 803934D8-803934F0 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWONa2 */
 SECTION_RODATA static void* const l_resWONa2[6] = {
@@ -652,7 +850,7 @@ SECTION_RODATA static void* const l_resWONa2[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(803934D8, &l_resWONa2);
+COMPILER_STRIP_GATE(0x803934D8, &l_resWONa2);
 
 /* 803934F0-80393508 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWGNa2 */
 SECTION_RODATA static void* const l_resWGNa2[6] = {
@@ -663,7 +861,7 @@ SECTION_RODATA static void* const l_resWGNa2[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(803934F0, &l_resWGNa2);
+COMPILER_STRIP_GATE(0x803934F0, &l_resWGNa2);
 
 /* 80393508-80393520 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWANb2 */
 SECTION_RODATA static void* const l_resWANb2[6] = {
@@ -674,7 +872,7 @@ SECTION_RODATA static void* const l_resWANb2[6] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21),
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28),
 };
-COMPILER_STRIP_GATE(80393508, &l_resWANb2);
+COMPILER_STRIP_GATE(0x80393508, &l_resWANb2);
 
 /* 80393520-80393588 -00001 0068+00 1/1 0/0 0/0 .rodata          l_objTbl */
 SECTION_RODATA static void* const l_objTbl[26] = {
@@ -692,7 +890,7 @@ SECTION_RODATA static void* const l_objTbl[26] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21), (void*)0x0000000F,
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x21), (void*)0x00000010,
 };
-COMPILER_STRIP_GATE(80393520, &l_objTbl);
+COMPILER_STRIP_GATE(0x80393520, &l_objTbl);
 
 /* 80393588-803935F0 -00001 0068+00 1/1 0/0 0/0 .rodata          l_objTWTbl */
 SECTION_RODATA static void* const l_objTWTbl[26] = {
@@ -710,7 +908,7 @@ SECTION_RODATA static void* const l_objTWTbl[26] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28), (void*)0xFFFFFFFF,
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x28), (void*)0xFFFFFFFF,
 };
-COMPILER_STRIP_GATE(80393588, &l_objTWTbl);
+COMPILER_STRIP_GATE(0x80393588, &l_objTWTbl);
 
 /* 803935F0-803937A0 -00001 01B0+00 1/1 0/0 0/0 .rodata          l_bckTbl_M */
 SECTION_RODATA static void* const l_bckTbl_M[108] = {
@@ -769,7 +967,7 @@ SECTION_RODATA static void* const l_bckTbl_M[108] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0xF),  (void*)0xFFFFFFFF,
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0xF),  (void*)0x0000000A,
 };
-COMPILER_STRIP_GATE(803935F0, &l_bckTbl_M);
+COMPILER_STRIP_GATE(0x803935F0, &l_bckTbl_M);
 
 /* 803937A0-80393950 -00001 01B0+00 1/1 0/0 0/0 .rodata          l_bckTbl_W */
 SECTION_RODATA static void* const l_bckTbl_W[108] = {
@@ -828,7 +1026,7 @@ SECTION_RODATA static void* const l_bckTbl_W[108] = {
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x131), (void*)0x00000009,
     (void*)(((char*)&a_npc_d_a_npc_cd2__stringBase0) + 0x131), (void*)0x0000000F,
 };
-COMPILER_STRIP_GATE(803937A0, &l_bckTbl_W);
+COMPILER_STRIP_GATE(0x803937A0, &l_bckTbl_W);
 
 /* 80393950-80393994 01FFB0 0044+00 0/0 0/0 4/4 .rodata          m_cylDat__10daNpcCd2_c */
 SECTION_RODATA u8 const daNpcCd2_c::m_cylDat[68] = {
@@ -838,7 +1036,7 @@ SECTION_RODATA u8 const daNpcCd2_c::m_cylDat[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80393950, &daNpcCd2_c::m_cylDat);
+COMPILER_STRIP_GATE(0x80393950, &daNpcCd2_c::m_cylDat);
 
 /* 80393994-80393AFC 01FFF4 0168+00 1/1 0/0 0/0 .rodata          a_transScaleTbl$3998 */
 SECTION_RODATA static u8 const a_transScaleTbl[360] = {
@@ -866,7 +1064,80 @@ SECTION_RODATA static u8 const a_transScaleTbl[360] = {
     0x3F, 0x80, 0x00, 0x00, 0x3F, 0x5C, 0xF2, 0x9A, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
     0x3F, 0x86, 0xC7, 0x2F, 0x3F, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80393994, &a_transScaleTbl);
+COMPILER_STRIP_GATE(0x80393994, &a_transScaleTbl);
+
+/* 80393B70-80393B70 0201D0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80393B70 = "MAN_a";
+SECTION_DEAD static char const* const stringBase_80393B76 = "MAN_a_TW";
+SECTION_DEAD static char const* const stringBase_80393B7F = "Mgeneral";
+SECTION_DEAD static char const* const stringBase_80393B88 = "Mspecial";
+SECTION_DEAD static char const* const stringBase_80393B91 = "object";
+SECTION_DEAD static char const* const stringBase_80393B98 = "objectTW";
+SECTION_DEAD static char const* const stringBase_80393BA1 = "MAD_a";
+SECTION_DEAD static char const* const stringBase_80393BA7 = "MAD_a_TW";
+SECTION_DEAD static char const* const stringBase_80393BB0 = "MCN_a";
+SECTION_DEAD static char const* const stringBase_80393BB6 = "MCN_a_TW";
+SECTION_DEAD static char const* const stringBase_80393BBF = "MON_a";
+SECTION_DEAD static char const* const stringBase_80393BC5 = "MON_a_TW";
+SECTION_DEAD static char const* const stringBase_80393BCE = "MAN_b";
+SECTION_DEAD static char const* const stringBase_80393BD4 = "MAN_b_TW";
+SECTION_DEAD static char const* const stringBase_80393BDD = "MAN_c";
+SECTION_DEAD static char const* const stringBase_80393BE3 = "MAN_c_TW";
+SECTION_DEAD static char const* const stringBase_80393BEC = "MAS_a";
+SECTION_DEAD static char const* const stringBase_80393BF2 = "MAS_a_TW";
+SECTION_DEAD static char const* const stringBase_80393BFB = "MBN_a";
+SECTION_DEAD static char const* const stringBase_80393C01 = "MBN_a_TW";
+SECTION_DEAD static char const* const stringBase_80393C0A = "MAN_a2";
+SECTION_DEAD static char const* const stringBase_80393C11 = "MAN_a2_TW";
+SECTION_DEAD static char const* const stringBase_80393C1B = "MAD_a2";
+SECTION_DEAD static char const* const stringBase_80393C22 = "MAD_a2_TW";
+SECTION_DEAD static char const* const stringBase_80393C2C = "MCN_a2";
+SECTION_DEAD static char const* const stringBase_80393C33 = "MCN_a2_TW";
+SECTION_DEAD static char const* const stringBase_80393C3D = "MON_a2";
+SECTION_DEAD static char const* const stringBase_80393C44 = "MON_a2_TW";
+SECTION_DEAD static char const* const stringBase_80393C4E = "MAN_b2";
+SECTION_DEAD static char const* const stringBase_80393C55 = "MAN_b2_TW";
+SECTION_DEAD static char const* const stringBase_80393C5F = "MAN_c2";
+SECTION_DEAD static char const* const stringBase_80393C66 = "MAN_c2_TW";
+SECTION_DEAD static char const* const stringBase_80393C70 = "MAS_a2";
+SECTION_DEAD static char const* const stringBase_80393C77 = "MAS_a2_TW";
+SECTION_DEAD static char const* const stringBase_80393C81 = "MBN_a2";
+SECTION_DEAD static char const* const stringBase_80393C88 = "MBN_a2_TW";
+SECTION_DEAD static char const* const stringBase_80393C92 = "WAN_a";
+SECTION_DEAD static char const* const stringBase_80393C98 = "WAN_a_TW";
+SECTION_DEAD static char const* const stringBase_80393CA1 = "Wgeneral";
+SECTION_DEAD static char const* const stringBase_80393CAA = "Wspecial";
+SECTION_DEAD static char const* const stringBase_80393CB3 = "WAD_a";
+SECTION_DEAD static char const* const stringBase_80393CB9 = "WAD_a_TW";
+SECTION_DEAD static char const* const stringBase_80393CC2 = "MAT_a";
+SECTION_DEAD static char const* const stringBase_80393CC8 = "MAT_a_TW";
+SECTION_DEAD static char const* const stringBase_80393CD1 = "WCN_a";
+SECTION_DEAD static char const* const stringBase_80393CD7 = "WCN_a_TW";
+SECTION_DEAD static char const* const stringBase_80393CE0 = "WON_a";
+SECTION_DEAD static char const* const stringBase_80393CE6 = "WON_a_TW";
+SECTION_DEAD static char const* const stringBase_80393CEF = "WGN_a";
+SECTION_DEAD static char const* const stringBase_80393CF5 = "WGN_a_TW";
+SECTION_DEAD static char const* const stringBase_80393CFE = "WAN_b";
+SECTION_DEAD static char const* const stringBase_80393D04 = "WAN_b_TW";
+SECTION_DEAD static char const* const stringBase_80393D0D = "WAN_a2";
+SECTION_DEAD static char const* const stringBase_80393D14 = "WAN_a2_TW";
+SECTION_DEAD static char const* const stringBase_80393D1E = "WAD_a2";
+SECTION_DEAD static char const* const stringBase_80393D25 = "WAD_a2_TW";
+SECTION_DEAD static char const* const stringBase_80393D2F = "MAT_a2";
+SECTION_DEAD static char const* const stringBase_80393D36 = "MAT_a2_TW";
+SECTION_DEAD static char const* const stringBase_80393D40 = "WCN_a2";
+SECTION_DEAD static char const* const stringBase_80393D47 = "WCN_a2_TW";
+SECTION_DEAD static char const* const stringBase_80393D51 = "WON_a2";
+SECTION_DEAD static char const* const stringBase_80393D58 = "WON_a2_TW";
+SECTION_DEAD static char const* const stringBase_80393D62 = "WGN_a2";
+SECTION_DEAD static char const* const stringBase_80393D69 = "WGN_a2_TW";
+SECTION_DEAD static char const* const stringBase_80393D73 = "WAN_b2";
+SECTION_DEAD static char const* const stringBase_80393D7A = "WAN_b2_TW";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80393D84 = "\0\0\0";
+#pragma pop
 
 /* 804534E0-804534E4 001AE0 0004+00 3/3 0/0 0/0 .sdata2          @4050 */
 SECTION_SDATA2 static f32 lit_4050 = 1.0f;
@@ -896,7 +1167,7 @@ asm void daNpcCd2_c::ObjCreate(int param_0) {
 SECTION_RODATA static u8 const lit_4072[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80393AFC, &lit_4072);
+COMPILER_STRIP_GATE(0x80393AFC, &lit_4072);
 
 /* 80157F68-801580A8 1528A8 0140+00 0/0 0/0 1/1 .text            ChairCreate__10daNpcCd2_cFf */
 #pragma push
@@ -2305,7 +2576,7 @@ SECTION_RODATA static u8 const a_jntNumTbl[104] = {
     0x0A, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x00,
     0x00, 0x0A, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x0B,
 };
-COMPILER_STRIP_GATE(80393B08, &a_jntNumTbl);
+COMPILER_STRIP_GATE(0x80393B08, &a_jntNumTbl);
 
 /* 80158FF0-801590FC 153930 010C+00 0/0 0/0 4/4 .text            drawObj__10daNpcCd2_cFiP8J3DModelf
  */
@@ -2739,7 +3010,7 @@ asm void __sinit_d_a_npc_cd2_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8015A90C = (void*)__sinit_d_a_npc_cd2_cpp;
+REGISTER_CTORS(0x8015A90C, __sinit_d_a_npc_cd2_cpp);
 #pragma pop
 
 /* ############################################################################################## */
@@ -2747,76 +3018,4 @@ SECTION_CTORS void* const _ctors_8015A90C = (void*)__sinit_d_a_npc_cd2_cpp;
 extern u8 data_80451010[8];
 u8 data_80451010[8];
 
-/* 80393B70-80393D88 0201D0 0214+04 35/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80393B70 = "MAN_a";
-SECTION_DEAD static char const* const stringBase_80393B76 = "MAN_a_TW";
-SECTION_DEAD static char const* const stringBase_80393B7F = "Mgeneral";
-SECTION_DEAD static char const* const stringBase_80393B88 = "Mspecial";
-SECTION_DEAD static char const* const stringBase_80393B91 = "object";
-SECTION_DEAD static char const* const stringBase_80393B98 = "objectTW";
-SECTION_DEAD static char const* const stringBase_80393BA1 = "MAD_a";
-SECTION_DEAD static char const* const stringBase_80393BA7 = "MAD_a_TW";
-SECTION_DEAD static char const* const stringBase_80393BB0 = "MCN_a";
-SECTION_DEAD static char const* const stringBase_80393BB6 = "MCN_a_TW";
-SECTION_DEAD static char const* const stringBase_80393BBF = "MON_a";
-SECTION_DEAD static char const* const stringBase_80393BC5 = "MON_a_TW";
-SECTION_DEAD static char const* const stringBase_80393BCE = "MAN_b";
-SECTION_DEAD static char const* const stringBase_80393BD4 = "MAN_b_TW";
-SECTION_DEAD static char const* const stringBase_80393BDD = "MAN_c";
-SECTION_DEAD static char const* const stringBase_80393BE3 = "MAN_c_TW";
-SECTION_DEAD static char const* const stringBase_80393BEC = "MAS_a";
-SECTION_DEAD static char const* const stringBase_80393BF2 = "MAS_a_TW";
-SECTION_DEAD static char const* const stringBase_80393BFB = "MBN_a";
-SECTION_DEAD static char const* const stringBase_80393C01 = "MBN_a_TW";
-SECTION_DEAD static char const* const stringBase_80393C0A = "MAN_a2";
-SECTION_DEAD static char const* const stringBase_80393C11 = "MAN_a2_TW";
-SECTION_DEAD static char const* const stringBase_80393C1B = "MAD_a2";
-SECTION_DEAD static char const* const stringBase_80393C22 = "MAD_a2_TW";
-SECTION_DEAD static char const* const stringBase_80393C2C = "MCN_a2";
-SECTION_DEAD static char const* const stringBase_80393C33 = "MCN_a2_TW";
-SECTION_DEAD static char const* const stringBase_80393C3D = "MON_a2";
-SECTION_DEAD static char const* const stringBase_80393C44 = "MON_a2_TW";
-SECTION_DEAD static char const* const stringBase_80393C4E = "MAN_b2";
-SECTION_DEAD static char const* const stringBase_80393C55 = "MAN_b2_TW";
-SECTION_DEAD static char const* const stringBase_80393C5F = "MAN_c2";
-SECTION_DEAD static char const* const stringBase_80393C66 = "MAN_c2_TW";
-SECTION_DEAD static char const* const stringBase_80393C70 = "MAS_a2";
-SECTION_DEAD static char const* const stringBase_80393C77 = "MAS_a2_TW";
-SECTION_DEAD static char const* const stringBase_80393C81 = "MBN_a2";
-SECTION_DEAD static char const* const stringBase_80393C88 = "MBN_a2_TW";
-SECTION_DEAD static char const* const stringBase_80393C92 = "WAN_a";
-SECTION_DEAD static char const* const stringBase_80393C98 = "WAN_a_TW";
-SECTION_DEAD static char const* const stringBase_80393CA1 = "Wgeneral";
-SECTION_DEAD static char const* const stringBase_80393CAA = "Wspecial";
-SECTION_DEAD static char const* const stringBase_80393CB3 = "WAD_a";
-SECTION_DEAD static char const* const stringBase_80393CB9 = "WAD_a_TW";
-SECTION_DEAD static char const* const stringBase_80393CC2 = "MAT_a";
-SECTION_DEAD static char const* const stringBase_80393CC8 = "MAT_a_TW";
-SECTION_DEAD static char const* const stringBase_80393CD1 = "WCN_a";
-SECTION_DEAD static char const* const stringBase_80393CD7 = "WCN_a_TW";
-SECTION_DEAD static char const* const stringBase_80393CE0 = "WON_a";
-SECTION_DEAD static char const* const stringBase_80393CE6 = "WON_a_TW";
-SECTION_DEAD static char const* const stringBase_80393CEF = "WGN_a";
-SECTION_DEAD static char const* const stringBase_80393CF5 = "WGN_a_TW";
-SECTION_DEAD static char const* const stringBase_80393CFE = "WAN_b";
-SECTION_DEAD static char const* const stringBase_80393D04 = "WAN_b_TW";
-SECTION_DEAD static char const* const stringBase_80393D0D = "WAN_a2";
-SECTION_DEAD static char const* const stringBase_80393D14 = "WAN_a2_TW";
-SECTION_DEAD static char const* const stringBase_80393D1E = "WAD_a2";
-SECTION_DEAD static char const* const stringBase_80393D25 = "WAD_a2_TW";
-SECTION_DEAD static char const* const stringBase_80393D2F = "MAT_a2";
-SECTION_DEAD static char const* const stringBase_80393D36 = "MAT_a2_TW";
-SECTION_DEAD static char const* const stringBase_80393D40 = "WCN_a2";
-SECTION_DEAD static char const* const stringBase_80393D47 = "WCN_a2_TW";
-SECTION_DEAD static char const* const stringBase_80393D51 = "WON_a2";
-SECTION_DEAD static char const* const stringBase_80393D58 = "WON_a2_TW";
-SECTION_DEAD static char const* const stringBase_80393D62 = "WGN_a2";
-SECTION_DEAD static char const* const stringBase_80393D69 = "WGN_a2_TW";
-SECTION_DEAD static char const* const stringBase_80393D73 = "WAN_b2";
-SECTION_DEAD static char const* const stringBase_80393D7A = "WAN_b2_TW";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80393D84 = "\0\0\0";
-#pragma pop
+/* 80393B70-80393B70 0201D0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

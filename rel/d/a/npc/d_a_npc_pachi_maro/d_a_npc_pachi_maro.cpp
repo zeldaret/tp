@@ -15,11 +15,13 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DModelData {};
-
 struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
+
+struct J3DAnmTransform {};
+
+struct J3DModelData {};
 
 struct Vec {};
 
@@ -28,8 +30,6 @@ struct Z2Creature {
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
-
-struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -43,6 +43,8 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
+struct daNpcT_faceMotionAnmData_c {};
+
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -50,19 +52,17 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80A9B054 */ ~daNpcT_MotionSeqMngr_c();
 };
 
+struct daNpcT_evtData_c {};
+
 struct daNpcT_motionAnmData_c {};
+
+struct J3DJoint {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80A9A9C0 */ ~cXyz();
     /* 80A9B050 */ cXyz();
 };
-
-struct J3DJoint {};
-
-struct daNpcT_faceMotionAnmData_c {};
-
-struct daNpcT_evtData_c {};
 
 struct daNpc_Pachi_Maro_c {
     /* 80A97C8C */ ~daNpc_Pachi_Maro_c();
@@ -156,9 +156,9 @@ struct dCcD_GObjInf {
     /* 800840E4 */ ~dCcD_GObjInf();
 };
 
-struct J3DModel {};
-
 struct _GXColorS10 {};
+
+struct J3DModel {};
 
 struct daNpcT_c {
     /* 80147FA4 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
@@ -304,12 +304,12 @@ struct dBgS_AcchCir {
     /* 80A9B09C */ ~dBgS_AcchCir();
 };
 
-struct dBgS {};
-
 struct csXyz {
     /* 80A9A9FC */ ~csXyz();
     /* 80A9AF50 */ csXyz();
 };
+
+struct dBgS {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -669,6 +669,32 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80A9B988-80A9B988 0000FC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80A9B988 = "";
+SECTION_DEAD static char const* const stringBase_80A9B989 = "TUTRIAL_TALK";
+SECTION_DEAD static char const* const stringBase_80A9B996 = "Maro";
+SECTION_DEAD static char const* const stringBase_80A9B99B = "Maro_TW";
+SECTION_DEAD static char const* const stringBase_80A9B9A3 = "Maro1";
+SECTION_DEAD static char const* const stringBase_80A9B9A9 = "Maro2";
+SECTION_DEAD static char const* const stringBase_80A9B9AF = "Maro3";
+SECTION_DEAD static char const* const stringBase_80A9B9B5 = "Taro1";
+SECTION_DEAD static char const* const stringBase_80A9B9BB = "Taro2";
+SECTION_DEAD static char const* const stringBase_80A9B9C1 = "Len1";
+SECTION_DEAD static char const* const stringBase_80A9B9C6 = "Besu1";
+SECTION_DEAD static char const* const stringBase_80A9B9CC = "evt_pachi";
+SECTION_DEAD static char const* const stringBase_80A9B9D6 = "TUTRIAL_BEGIN";
+SECTION_DEAD static char const* const stringBase_80A9B9E4 = "TUTRIAL_BEGIN_SKIP";
+SECTION_DEAD static char const* const stringBase_80A9B9F7 = "TUTRIAL_CLEAR";
+SECTION_DEAD static char const* const stringBase_80A9BA05 = "TUTRIAL_TALK2";
+SECTION_DEAD static char const* const stringBase_80A9BA13 = "HIT_KAKASI_BODY";
+SECTION_DEAD static char const* const stringBase_80A9BA23 = "TUTRIAL_SELECT_GIVEUP";
+SECTION_DEAD static char const* const stringBase_80A9BA39 = "TUTRIAL_GIVEUP";
+SECTION_DEAD static char const* const stringBase_80A9BA48 = "TUTRIAL_CONTINUE";
+SECTION_DEAD static char const* const stringBase_80A9BA59 = "TUTRIAL_CAUTION";
+#pragma pop
+
 /* 80A9BA78-80A9BA84 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1195,41 +1221,41 @@ SECTION_RODATA u8 const daNpc_Pachi_Maro_Param_c::m[144] = {
     0xC1, 0x70, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC1, 0x70, 0x00, 0x00, 0x41, 0x70, 0x00, 0x00,
     0x41, 0xF0, 0x00, 0x00, 0x41, 0x70, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A9B88C, &daNpc_Pachi_Maro_Param_c::m);
+COMPILER_STRIP_GATE(0x80A9B88C, &daNpc_Pachi_Maro_Param_c::m);
 
 /* 80A9B91C-80A9B920 000090 0004+00 0/1 0/0 0/0 .rodata          @4185 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4185 = -300.0f;
-COMPILER_STRIP_GATE(80A9B91C, &lit_4185);
+COMPILER_STRIP_GATE(0x80A9B91C, &lit_4185);
 #pragma pop
 
 /* 80A9B920-80A9B924 000094 0004+00 0/1 0/0 0/0 .rodata          @4186 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4186 = -50.0f;
-COMPILER_STRIP_GATE(80A9B920, &lit_4186);
+COMPILER_STRIP_GATE(0x80A9B920, &lit_4186);
 #pragma pop
 
 /* 80A9B924-80A9B928 000098 0004+00 0/1 0/0 0/0 .rodata          @4187 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4187 = 300.0f;
-COMPILER_STRIP_GATE(80A9B924, &lit_4187);
+COMPILER_STRIP_GATE(0x80A9B924, &lit_4187);
 #pragma pop
 
 /* 80A9B928-80A9B92C 00009C 0004+00 0/1 0/0 0/0 .rodata          @4188 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4188 = 450.0f;
-COMPILER_STRIP_GATE(80A9B928, &lit_4188);
+COMPILER_STRIP_GATE(0x80A9B928, &lit_4188);
 #pragma pop
 
 /* 80A9B92C-80A9B930 0000A0 0004+00 0/1 0/0 0/0 .rodata          @4189 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4189 = -1000000000.0f;
-COMPILER_STRIP_GATE(80A9B92C, &lit_4189);
+COMPILER_STRIP_GATE(0x80A9B92C, &lit_4189);
 #pragma pop
 
 /* 80A97DC4-80A9809C 000224 02D8+00 1/1 0/0 0/0 .text            create__18daNpc_Pachi_Maro_cFv */
@@ -1250,25 +1276,25 @@ SECTION_RODATA static u8 const lit_4346[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80A9B930, &lit_4346);
+COMPILER_STRIP_GATE(0x80A9B930, &lit_4346);
 
 /* 80A9B934-80A9B938 0000A8 0004+00 0/2 0/0 0/0 .rodata          @4347 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4347 = 65536.0f;
-COMPILER_STRIP_GATE(80A9B934, &lit_4347);
+COMPILER_STRIP_GATE(0x80A9B934, &lit_4347);
 #pragma pop
 
 /* 80A9B938-80A9B93C 0000AC 0004+00 0/3 0/0 0/0 .rodata          @4348 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4348 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80A9B938, &lit_4348);
+COMPILER_STRIP_GATE(0x80A9B938, &lit_4348);
 #pragma pop
 
 /* 80A9B93C-80A9B940 0000B0 0004+00 2/4 0/0 0/0 .rodata          @4494 */
 SECTION_RODATA static f32 const lit_4494 = 1.0f;
-COMPILER_STRIP_GATE(80A9B93C, &lit_4494);
+COMPILER_STRIP_GATE(0x80A9B93C, &lit_4494);
 
 /* 80A9809C-80A98320 0004FC 0284+00 1/1 0/0 0/0 .text            CreateHeap__18daNpc_Pachi_Maro_cFv
  */
@@ -1404,7 +1430,7 @@ asm void daNpc_Pachi_Maro_c::Execute() {
 /* ############################################################################################## */
 /* 80A9B940-80A9B944 0000B4 0004+00 1/1 0/0 0/0 .rodata          @4543 */
 SECTION_RODATA static f32 const lit_4543 = 100.0f;
-COMPILER_STRIP_GATE(80A9B940, &lit_4543);
+COMPILER_STRIP_GATE(0x80A9B940, &lit_4543);
 
 /* 80A98530-80A985C4 000990 0094+00 1/1 0/0 0/0 .text            Draw__18daNpc_Pachi_Maro_cFv */
 #pragma push
@@ -1463,14 +1489,14 @@ asm void daNpc_Pachi_Maro_c::isDelete() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4596 = 7.0f / 100.0f;
-COMPILER_STRIP_GATE(80A9B944, &lit_4596);
+COMPILER_STRIP_GATE(0x80A9B944, &lit_4596);
 #pragma pop
 
 /* 80A9B948-80A9B94C 0000BC 0004+00 0/1 0/0 0/0 .rodata          @4597 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4597 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80A9B948, &lit_4597);
+COMPILER_STRIP_GATE(0x80A9B948, &lit_4597);
 #pragma pop
 
 /* 80A9867C-80A987F4 000ADC 0178+00 1/1 0/0 0/0 .text            reset__18daNpc_Pachi_Maro_cFv */
@@ -1512,7 +1538,7 @@ bool daNpc_Pachi_Maro_c::checkChangeEvt() {
 /* ############################################################################################## */
 /* 80A9B94C-80A9B950 0000C0 0004+00 3/3 0/0 0/0 .rodata          @4673 */
 SECTION_RODATA static f32 const lit_4673 = -1.0f;
-COMPILER_STRIP_GATE(80A9B94C, &lit_4673);
+COMPILER_STRIP_GATE(0x80A9B94C, &lit_4673);
 
 /* 80A98974-80A98A10 000DD4 009C+00 1/0 0/0 0/0 .text setAfterTalkMotion__18daNpc_Pachi_Maro_cFv
  */
@@ -1544,6 +1570,13 @@ asm void daNpc_Pachi_Maro_c::evtTalk() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_pachi_maro/d_a_npc_pachi_maro/evtTalk__18daNpc_Pachi_Maro_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80A9B988-80A9B988 0000FC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80A9BA69 = "PA_Maro";
 #pragma pop
 
 /* 80A98B9C-80A98C64 000FFC 00C8+00 1/0 0/0 0/0 .text            evtCutProc__18daNpc_Pachi_Maro_cFv
@@ -1594,7 +1627,7 @@ asm void daNpc_Pachi_Maro_c::afterMoved() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4850 = -30.0f;
-COMPILER_STRIP_GATE(80A9B950, &lit_4850);
+COMPILER_STRIP_GATE(0x80A9B950, &lit_4850);
 #pragma pop
 
 /* 80A9B954-80A9B95C 0000C8 0004+04 0/1 0/0 0/0 .rodata          @4851 */
@@ -1605,14 +1638,14 @@ SECTION_RODATA static u32 const lit_4851[1 + 1 /* padding */] = {
     /* padding */
     0x00000000,
 };
-COMPILER_STRIP_GATE(80A9B954, &lit_4851);
+COMPILER_STRIP_GATE(0x80A9B954, &lit_4851);
 #pragma pop
 
 /* 80A9B95C-80A9B964 0000D0 0008+00 1/3 0/0 0/0 .rodata          @4853 */
 SECTION_RODATA static u8 const lit_4853[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A9B95C, &lit_4853);
+COMPILER_STRIP_GATE(0x80A9B95C, &lit_4853);
 
 /* 80A98FB4-80A9928C 001414 02D8+00 1/0 0/0 0/0 .text            setAttnPos__18daNpc_Pachi_Maro_cFv
  */
@@ -1678,7 +1711,7 @@ asm void daNpc_Pachi_Maro_c::selectAction() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_Pachi_Maro_c::chkAction(int (daNpc_Pachi_Maro_c::*)(void*)) {
+asm void daNpc_Pachi_Maro_c::chkAction(int (daNpc_Pachi_Maro_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_pachi_maro/d_a_npc_pachi_maro/chkAction__18daNpc_Pachi_Maro_cFM18daNpc_Pachi_Maro_cFPCvPvPv_i.s"
 }
@@ -1689,7 +1722,7 @@ asm void daNpc_Pachi_Maro_c::chkAction(int (daNpc_Pachi_Maro_c::*)(void*)) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_Pachi_Maro_c::setAction(int (daNpc_Pachi_Maro_c::*)(void*)) {
+asm void daNpc_Pachi_Maro_c::setAction(int (daNpc_Pachi_Maro_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_pachi_maro/d_a_npc_pachi_maro/setAction__18daNpc_Pachi_Maro_cFM18daNpc_Pachi_Maro_cFPCvPvPv_i.s"
 }
@@ -1743,6 +1776,13 @@ asm void daNpc_Pachi_Maro_c::_turn_pos(cXyz const& param_0) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_pachi_maro/d_a_npc_pachi_maro/_turn_pos__18daNpc_Pachi_Maro_cFRC4cXyz.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80A9B988-80A9B988 0000FC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80A9BA71 = "cutId";
 #pragma pop
 
 /* 80A999E4-80A99A78 001E44 0094+00 1/0 0/0 0/0 .text cutTutrialBegin__18daNpc_Pachi_Maro_cFi */
@@ -1818,7 +1858,7 @@ asm void daNpc_Pachi_Maro_c::_cutTutrialClear_Init(int const& param_0) {
 SECTION_RODATA static u8 const lit_4911[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A9B964, &lit_4911);
+COMPILER_STRIP_GATE(0x80A9B964, &lit_4911);
 #pragma pop
 
 /* 80A9B96C-80A9B974 0000E0 0008+00 0/1 0/0 0/0 .rodata          @4912 */
@@ -1827,7 +1867,7 @@ COMPILER_STRIP_GATE(80A9B964, &lit_4911);
 SECTION_RODATA static u8 const lit_4912[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A9B96C, &lit_4912);
+COMPILER_STRIP_GATE(0x80A9B96C, &lit_4912);
 #pragma pop
 
 /* 80A9B974-80A9B97C 0000E8 0008+00 0/1 0/0 0/0 .rodata          @4913 */
@@ -1836,28 +1876,28 @@ COMPILER_STRIP_GATE(80A9B96C, &lit_4912);
 SECTION_RODATA static u8 const lit_4913[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A9B974, &lit_4913);
+COMPILER_STRIP_GATE(0x80A9B974, &lit_4913);
 #pragma pop
 
 /* 80A9B97C-80A9B980 0000F0 0004+00 0/2 0/0 0/0 .rodata          @5222 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_5222 = 0x445FBAA0;
-COMPILER_STRIP_GATE(80A9B97C, &lit_5222);
+COMPILER_STRIP_GATE(0x80A9B97C, &lit_5222);
 #pragma pop
 
 /* 80A9B980-80A9B984 0000F4 0004+00 0/2 0/0 0/0 .rodata          @5223 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_5223 = 0x4461DA4E;
-COMPILER_STRIP_GATE(80A9B980, &lit_5223);
+COMPILER_STRIP_GATE(0x80A9B980, &lit_5223);
 #pragma pop
 
 /* 80A9B984-80A9B988 0000F8 0004+00 0/2 0/0 0/0 .rodata          @5224 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_5224 = 0xC4FF0B85;
-COMPILER_STRIP_GATE(80A9B984, &lit_5224);
+COMPILER_STRIP_GATE(0x80A9B984, &lit_5224);
 #pragma pop
 
 /* 80A99CB8-80A99D4C 002118 0094+00 1/1 0/0 0/0 .text
@@ -2420,7 +2460,7 @@ asm void __sinit_d_a_npc_pachi_maro_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80A9B5B8 = (void*)__sinit_d_a_npc_pachi_maro_cpp;
+REGISTER_CTORS(0x80A9B5B8, __sinit_d_a_npc_pachi_maro_cpp);
 #pragma pop
 
 /* 80A9B714-80A9B7E0 003B74 00CC+00 1/1 0/0 0/0 .text
@@ -2512,31 +2552,4 @@ static asm void func_80A9B870() {
 }
 #pragma pop
 
-/* 80A9B988-80A9BA77 0000FC 00EF+00 14/11 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80A9B988 = "";
-SECTION_DEAD static char const* const stringBase_80A9B989 = "TUTRIAL_TALK";
-SECTION_DEAD static char const* const stringBase_80A9B996 = "Maro";
-SECTION_DEAD static char const* const stringBase_80A9B99B = "Maro_TW";
-SECTION_DEAD static char const* const stringBase_80A9B9A3 = "Maro1";
-SECTION_DEAD static char const* const stringBase_80A9B9A9 = "Maro2";
-SECTION_DEAD static char const* const stringBase_80A9B9AF = "Maro3";
-SECTION_DEAD static char const* const stringBase_80A9B9B5 = "Taro1";
-SECTION_DEAD static char const* const stringBase_80A9B9BB = "Taro2";
-SECTION_DEAD static char const* const stringBase_80A9B9C1 = "Len1";
-SECTION_DEAD static char const* const stringBase_80A9B9C6 = "Besu1";
-SECTION_DEAD static char const* const stringBase_80A9B9CC = "evt_pachi";
-SECTION_DEAD static char const* const stringBase_80A9B9D6 = "TUTRIAL_BEGIN";
-SECTION_DEAD static char const* const stringBase_80A9B9E4 = "TUTRIAL_BEGIN_SKIP";
-SECTION_DEAD static char const* const stringBase_80A9B9F7 = "TUTRIAL_CLEAR";
-SECTION_DEAD static char const* const stringBase_80A9BA05 = "TUTRIAL_TALK2";
-SECTION_DEAD static char const* const stringBase_80A9BA13 = "HIT_KAKASI_BODY";
-SECTION_DEAD static char const* const stringBase_80A9BA23 = "TUTRIAL_SELECT_GIVEUP";
-SECTION_DEAD static char const* const stringBase_80A9BA39 = "TUTRIAL_GIVEUP";
-SECTION_DEAD static char const* const stringBase_80A9BA48 = "TUTRIAL_CONTINUE";
-SECTION_DEAD static char const* const stringBase_80A9BA59 = "TUTRIAL_CAUTION";
-SECTION_DEAD static char const* const stringBase_80A9BA69 = "PA_Maro";
-SECTION_DEAD static char const* const stringBase_80A9BA71 = "cutId";
-#pragma pop
+/* 80A9B988-80A9B988 0000FC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -91,6 +91,16 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 //
 
 /* ############################################################################################## */
+/* 803998A0-803998A0 025F00 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803998A0 = "zelda_window_yajirushi.blo";
+SECTION_DEAD static char const* const stringBase_803998BB = "zelda_window_yajirushi.bck";
+SECTION_DEAD static char const* const stringBase_803998D6 = "zelda_window_yajirushi.bpk";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_803998F1 = "\0\0\0\0\0\0";
+#pragma pop
+
 /* 803C0CF8-803C0D08 01DE18 000C+04 2/2 0/0 0/0 .data            __vt__15dMsgScrnArrow_c */
 SECTION_DATA extern void* __vt__15dMsgScrnArrow_c[3 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
@@ -199,13 +209,4 @@ asm void dMsgScrnArrow_c::dotAnimeMove() {
 }
 #pragma pop
 
-/* 803998A0-803998F8 025F00 0051+07 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803998A0 = "zelda_window_yajirushi.blo";
-SECTION_DEAD static char const* const stringBase_803998BB = "zelda_window_yajirushi.bck";
-SECTION_DEAD static char const* const stringBase_803998D6 = "zelda_window_yajirushi.bpk";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803998F1 = "\0\0\0\0\0\0";
-#pragma pop
+/* 803998A0-803998A0 025F00 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

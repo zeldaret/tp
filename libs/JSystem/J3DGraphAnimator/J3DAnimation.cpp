@@ -183,8 +183,8 @@ extern "C" void getTevColorReg__15J3DAnmTevRegKeyCFUsP11_GXColorS10();
 extern "C" void getTevKonstReg__15J3DAnmTevRegKeyCFUsP8_GXColor();
 extern "C" void searchUpdateMaterialID__15J3DAnmTevRegKeyFP16J3DMaterialTable();
 extern "C" void searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData();
-extern "C" void func_8032B8A0(f32, J3DAnmKeyTableBase*, s16*);
-extern "C" void func_8032BAD4(f32, J3DAnmKeyTableBase*, f32*);
+extern "C" void func_8032B8A0(void* _this, f32, J3DAnmKeyTableBase*, s16*);
+extern "C" void func_8032BAD4(void* _this, f32, J3DAnmKeyTableBase*, f32*);
 extern "C" void __dt__14J3DAnmVtxColorFv();
 extern "C" void __dt__11J3DAnmColorFv();
 extern "C" void __dt__16J3DAnmTexPatternFv();
@@ -753,7 +753,8 @@ asm void J3DAnmTevRegKey::searchUpdateMaterialID(J3DModelData* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8032B8A0(f32 param_0, J3DAnmKeyTableBase* param_1, s16* param_2) {
+extern "C" asm void func_8032B8A0(void* _this, f32 param_0, J3DAnmKeyTableBase* param_1,
+                                  s16* param_2) {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/func_8032B8A0.s"
 }
@@ -764,7 +765,8 @@ extern "C" asm void func_8032B8A0(f32 param_0, J3DAnmKeyTableBase* param_1, s16*
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8032BAD4(f32 param_0, J3DAnmKeyTableBase* param_1, f32* param_2) {
+extern "C" asm void func_8032BAD4(void* _this, f32 param_0, J3DAnmKeyTableBase* param_1,
+                                  f32* param_2) {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/func_8032BAD4.s"
 }

@@ -175,7 +175,6 @@ struct dItem_data {
 
 struct dEvt_control_c {
     /* 80042468 */ void reset();
-    /* 800436EC */ void setPtI_Id(unsigned int);
 };
 
 struct dEvent_manager_c {
@@ -399,7 +398,7 @@ extern "C" void Set__8dCcD_CylFRC11dCcD_SrcCyl();
 extern "C" void execItemGet__FUc();
 extern "C" void checkItemGet__FUci();
 extern "C" void isHeart__FUc();
-extern "C" void func_80141AE8(u8*);
+extern "C" void func_80141AE8(void* _this, u8*);
 extern "C" void DeleteBase__12daItemBase_cFPCc();
 extern "C" bool clothCreate__12daItemBase_cFv();
 extern "C" bool __CreateHeap__12daItemBase_cFv();
@@ -1029,6 +1028,13 @@ asm void daItem_c::procWaitGetDemoEvent() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80393D88-80393D88 0203E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80393D88 = "DEFAULT_GETITEM";
+#pragma pop
+
 /* 8015C3BC-8015C41C 156CFC 0060+00 1/0 0/0 0/0 .text            procMainGetDemoEvent__8daItem_cFv
  */
 #pragma push
@@ -1461,7 +1467,7 @@ asm void __sinit_d_a_obj_item_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8015DED0 = (void*)__sinit_d_a_obj_item_cpp;
+REGISTER_CTORS(0x8015DED0, __sinit_d_a_obj_item_cpp);
 #pragma pop
 
 /* 8015DFD8-8015DFF4 158918 001C+00 2/2 0/0 0/0 .text            getItemPos__9daPy_py_cCFv */
@@ -1484,9 +1490,4 @@ asm void daPy_py_c::getLeftHandPos() const {
 }
 #pragma pop
 
-/* 80393D88-80393D98 0203E8 0010+00 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80393D88 = "DEFAULT_GETITEM";
-#pragma pop
+/* 80393D88-80393D88 0203E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

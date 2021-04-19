@@ -97,7 +97,7 @@ extern "C" static void daTag_Evt_Execute__FPv();
 extern "C" static void daTag_Evt_Draw__FPv();
 extern "C" static bool daTag_Evt_IsDelete__FPv();
 extern "C" void __dt__11daTag_Evt_cFv();
-extern "C" void func_8048C374(int*);
+extern "C" void func_8048C374(void* _this, int*);
 extern "C" extern char const* const d_a_tag_evt__stringBase0;
 extern "C" void* mEvtCutList__11daTag_Evt_c[3];
 
@@ -150,6 +150,17 @@ extern "C" extern u8 struct_80450D64[4];
 //
 
 /* ############################################################################################## */
+/* 8048C3BC-8048C3BC 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8048C3BC = "JUMP_DEMOSTAGE";
+SECTION_DEAD static char const* const stringBase_8048C3CB = "TAGEVT";
+SECTION_DEAD static char const* const stringBase_8048C3D2 = "WAIT";
+SECTION_DEAD static char const* const stringBase_8048C3D7 = "TALK";
+SECTION_DEAD static char const* const stringBase_8048C3DC = "NEXT";
+SECTION_DEAD static char const* const stringBase_8048C3E1 = "TagEvt";
+#pragma pop
+
 /* 8048C3FC-8048C404 -00001 0008+00 1/1 0/0 0/0 .data            l_evtNameList */
 SECTION_DATA static void* l_evtNameList[2] = {
     (void*)NULL,
@@ -218,7 +229,7 @@ asm void daTag_Evt_c::destroy() {
 /* ############################################################################################## */
 /* 8048C398-8048C39C 000000 0004+00 2/2 0/0 0/0 .rodata          @3784 */
 SECTION_RODATA static f32 const lit_3784 = 100.0f;
-COMPILER_STRIP_GATE(8048C398, &lit_3784);
+COMPILER_STRIP_GATE(0x8048C398, &lit_3784);
 
 /* 8048C39C-8048C3A0 000004 0004+00 1/2 0/0 0/0 .rodata          @3785 */
 SECTION_RODATA static u8 const lit_3785[4] = {
@@ -227,7 +238,7 @@ SECTION_RODATA static u8 const lit_3785[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8048C39C, &lit_3785);
+COMPILER_STRIP_GATE(0x8048C39C, &lit_3785);
 
 /* 8048C3A0-8048C3A8 000008 0008+00 0/1 0/0 0/0 .rodata          @3786 */
 #pragma push
@@ -235,7 +246,7 @@ COMPILER_STRIP_GATE(8048C39C, &lit_3785);
 SECTION_RODATA static u8 const lit_3786[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8048C3A0, &lit_3786);
+COMPILER_STRIP_GATE(0x8048C3A0, &lit_3786);
 #pragma pop
 
 /* 8048C3A8-8048C3B0 000010 0008+00 0/1 0/0 0/0 .rodata          @3787 */
@@ -244,7 +255,7 @@ COMPILER_STRIP_GATE(8048C3A0, &lit_3786);
 SECTION_RODATA static u8 const lit_3787[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8048C3A8, &lit_3787);
+COMPILER_STRIP_GATE(0x8048C3A8, &lit_3787);
 #pragma pop
 
 /* 8048C3B0-8048C3B8 000018 0008+00 0/1 0/0 0/0 .rodata          @3788 */
@@ -253,7 +264,7 @@ COMPILER_STRIP_GATE(8048C3A8, &lit_3787);
 SECTION_RODATA static u8 const lit_3788[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8048C3B0, &lit_3788);
+COMPILER_STRIP_GATE(0x8048C3B0, &lit_3788);
 #pragma pop
 
 /* 8048BA0C-8048BE44 00016C 0438+00 1/1 0/0 0/0 .text            execute__11daTag_Evt_cFv */
@@ -274,7 +285,7 @@ bool daTag_Evt_c::draw() {
 /* ############################################################################################## */
 /* 8048C3B8-8048C3BC 000020 0004+00 1/1 0/0 0/0 .rodata          @3815 */
 SECTION_RODATA static f32 const lit_3815 = 10.0f;
-COMPILER_STRIP_GATE(8048C3B8, &lit_3815);
+COMPILER_STRIP_GATE(0x8048C3B8, &lit_3815);
 
 /* 8048BE4C-8048BF64 0005AC 0118+00 1/1 0/0 0/0 .text            getParam__11daTag_Evt_cFv */
 #pragma push
@@ -296,6 +307,13 @@ asm void daTag_Evt_c::isDelete() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8048C3BC-8048C3BC 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8048C3E8 = "timer";
+#pragma pop
+
 /* 8048C090-8048C124 0007F0 0094+00 1/1 0/0 0/0 .text            doEvtCutWait__11daTag_Evt_cFi */
 #pragma push
 #pragma optimization_level 0
@@ -304,6 +322,13 @@ asm void daTag_Evt_c::doEvtCutWait(int param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_evt/d_a_tag_evt/doEvtCutWait__11daTag_Evt_cFi.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8048C3BC-8048C3BC 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8048C3EE = "flowNodeNo";
 #pragma pop
 
 /* 8048C124-8048C1C8 000884 00A4+00 1/1 0/0 0/0 .text            doEvtCutTalk__11daTag_Evt_cFi */
@@ -385,22 +410,10 @@ asm daTag_Evt_c::~daTag_Evt_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8048C374(int* param_0) {
+extern "C" asm void func_8048C374(void* _this, int* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_evt/d_a_tag_evt/func_8048C374.s"
 }
 #pragma pop
 
-/* 8048C3BC-8048C3F9 000024 003D+00 6/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8048C3BC = "JUMP_DEMOSTAGE";
-SECTION_DEAD static char const* const stringBase_8048C3CB = "TAGEVT";
-SECTION_DEAD static char const* const stringBase_8048C3D2 = "WAIT";
-SECTION_DEAD static char const* const stringBase_8048C3D7 = "TALK";
-SECTION_DEAD static char const* const stringBase_8048C3DC = "NEXT";
-SECTION_DEAD static char const* const stringBase_8048C3E1 = "TagEvt";
-SECTION_DEAD static char const* const stringBase_8048C3E8 = "timer";
-SECTION_DEAD static char const* const stringBase_8048C3EE = "flowNodeNo";
-#pragma pop
+/* 8048C3BC-8048C3BC 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

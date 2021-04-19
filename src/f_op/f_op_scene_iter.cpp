@@ -4,11 +4,11 @@
 //
 
 #include "f_op/f_op_scene_iter.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "SSystem/SComponent/c_list.h"
 #include "SSystem/SComponent/c_list_iter.h"
 #include "SSystem/SComponent/c_tag_iter.h"
+#include "dol2asm.h"
+#include "dolphin/types.h"
 #include "f_op/f_op_scene_tag.h"
 
 //

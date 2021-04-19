@@ -240,5 +240,5 @@ asm void __sinit_d_a_tag_poFire_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80D5DD0C = (void*)__sinit_d_a_tag_poFire_cpp;
+REGISTER_CTORS(0x80D5DD0C, __sinit_d_a_tag_poFire_cpp);
 #pragma pop

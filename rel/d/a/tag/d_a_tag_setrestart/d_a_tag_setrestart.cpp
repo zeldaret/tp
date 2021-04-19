@@ -88,13 +88,13 @@ extern "C" extern u8 struct_80450D64[4];
 /* ############################################################################################## */
 /* 80D607B4-80D607B8 000000 0004+00 2/2 0/0 0/0 .rodata          @3650 */
 SECTION_RODATA static f32 const lit_3650 = -100.0f;
-COMPILER_STRIP_GATE(80D607B4, &lit_3650);
+COMPILER_STRIP_GATE(0x80D607B4, &lit_3650);
 
 /* 80D607B8-80D607BC 000004 0004+00 0/2 0/0 0/0 .rodata          @3651 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3651 = 100.0f;
-COMPILER_STRIP_GATE(80D607B8, &lit_3651);
+COMPILER_STRIP_GATE(0x80D607B8, &lit_3651);
 #pragma pop
 
 /* 80D607BC-80D607C0 000008 0004+00 0/2 0/0 0/0 .rodata          @3652 */
@@ -106,7 +106,7 @@ SECTION_RODATA static u8 const lit_3652[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D607BC, &lit_3652);
+COMPILER_STRIP_GATE(0x80D607BC, &lit_3652);
 #pragma pop
 
 /* 80D603F8-80D6048C 000078 0094+00 1/1 0/0 0/0 .text            Create__14daTagRestart_cFv */

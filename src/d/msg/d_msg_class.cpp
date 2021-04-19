@@ -15,6 +15,12 @@ struct mDoCPd_c {
     static u8 m_cpadInfo[256];
 };
 
+struct Vec {};
+
+struct cXyz {
+    /* 80266B34 */ void operator-(Vec const&) const;
+};
+
 struct jmessage_tControl {
     /* 802299EC */ jmessage_tControl();
 };
@@ -49,12 +55,6 @@ struct jmessage_tReference {
     /* 8022994C */ void isLightEnd();
     /* 802299AC */ void decideOutFontRupeeColor(int);
     /* 80232A20 */ void getActorPos();
-};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
 };
 
 struct jmessage_tSequenceProcessor {
@@ -124,15 +124,15 @@ struct jmessage_string_tControl {
     /* 802328DC */ ~jmessage_string_tControl();
 };
 
-struct COutFont_c {
-    /* 80226CF8 */ void initialize();
-};
-
 struct J2DTextBox {
     /* 80300658 */ void getStringPtr() const;
 };
 
 struct JUTFont {};
+
+struct COutFont_c {
+    /* 80226CF8 */ void initialize();
+};
 
 struct jmessage_string_tReference {
     /* 8022F8C0 */ jmessage_string_tReference();
@@ -728,7 +728,7 @@ SECTION_RODATA static u8 const colorTable_3861[36] = {
     0xA0, 0xB4, 0xDC, 0xFF, 0xDC, 0xDC, 0x82, 0xFF, 0xB4, 0xC8, 0xE6, 0xFF,
     0xC8, 0xA0, 0xDC, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xDC, 0xAA, 0x78, 0xFF,
 };
-COMPILER_STRIP_GATE(803995C8, &colorTable_3861);
+COMPILER_STRIP_GATE(0x803995C8, &colorTable_3861);
 
 /* 802288FC-802289A8 22323C 00AC+00 2/2 0/0 0/0 .text            getFontCCColorTable__FUcUc */
 #pragma push
@@ -747,7 +747,7 @@ SECTION_RODATA static u8 const colorTable_3877[36] = {
     0xA0, 0xB4, 0xDC, 0xFF, 0xDC, 0xDC, 0x82, 0xFF, 0xB4, 0xC8, 0xE6, 0xFF,
     0xC8, 0xA0, 0xDC, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xDC, 0xAA, 0x78, 0xFF,
 };
-COMPILER_STRIP_GATE(803995EC, &colorTable_3877);
+COMPILER_STRIP_GATE(0x803995EC, &colorTable_3877);
 
 /* 802289A8-80228A54 2232E8 00AC+00 2/2 0/0 0/0 .text            getFontGCColorTable__FUcUc */
 #pragma push
@@ -2017,6 +2017,14 @@ asm void jmessage_tMeasureProcessor::do_character(int param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399610 = "'";
+SECTION_DEAD static char const* const stringBase_80399612 = "s";
+SECTION_DEAD static char const* const stringBase_80399614 = "%d";
+#pragma pop
+
 /* 80454A7C-80454A80 00307C 0004+00 5/5 0/0 0/0 .sdata2          @5151 */
 SECTION_SDATA2 static f32 lit_5151 = 100.0f;
 
@@ -2269,6 +2277,13 @@ void jmessage_tRenderingProcessor::do_reset() {
     /* empty function */
 }
 
+/* ############################################################################################## */
+/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399617 = "";
+#pragma pop
+
 /* 8022CDCC-8022CFD8 22770C 020C+00 1/0 0/0 0/0 .text
  * do_begin__28jmessage_tRenderingProcessorFPCvPCc              */
 #pragma push
@@ -2327,6 +2342,15 @@ asm void jmessage_tRenderingProcessor::resetRendering() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399618 = ""
+                                                            "\x1B"
+                                                            "CR[%d]";
+#pragma pop
+
 /* 8022E17C-8022E260 228ABC 00E4+00 2/2 0/0 0/0 .text
  * do_widthcenter__28jmessage_tRenderingProcessorFv             */
 #pragma push
@@ -2349,6 +2373,15 @@ asm void jmessage_tRenderingProcessor::do_selwidthcenter(int param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399620 = ""
+                                                            "\x1B"
+                                                            "CD[%d]";
+#pragma pop
+
 /* 8022E318-8022E7CC 228C58 04B4+00 3/2 0/0 0/0 .text
  * do_heightcenter__28jmessage_tRenderingProcessorFv            */
 #pragma push
@@ -2360,6 +2393,17 @@ asm void jmessage_tRenderingProcessor::do_heightcenter() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399628 = ""
+                                                            "\x1B"
+                                                            "CC[%08x]"
+                                                            "\x1B"
+                                                            "GC[%08x]";
+#pragma pop
+
 /* 8022E7CC-8022E860 22910C 0094+00 2/2 0/0 0/0 .text do_color__28jmessage_tRenderingProcessorFUc
  */
 #pragma push
@@ -2369,6 +2413,17 @@ asm void jmessage_tRenderingProcessor::do_color(u8 param_0) {
     nofralloc
 #include "asm/d/msg/d_msg_class/do_color__28jmessage_tRenderingProcessorFUc.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039963B = ""
+                                                            "\x1B"
+                                                            "FX[%d]"
+                                                            "\x1B"
+                                                            "FY[%d]";
 #pragma pop
 
 /* 8022E860-8022E960 2291A0 0100+00 2/2 0/0 0/0 .text do_scale__28jmessage_tRenderingProcessorFf
@@ -2391,6 +2446,15 @@ asm void jmessage_tRenderingProcessor::do_linedown(s16 param_0) {
     nofralloc
 #include "asm/d/msg/d_msg_class/do_linedown__28jmessage_tRenderingProcessorFs.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039964A = ""
+                                                            "\x1B"
+                                                            "CU[%d]";
 #pragma pop
 
 /* 8022E9C0-8022EAE4 229300 0124+00 1/1 0/0 0/0 .text do_transY__28jmessage_tRenderingProcessorFsb
@@ -2462,6 +2526,17 @@ asm void jmessage_tRenderingProcessor::do_rubyset(void const* param_0, u32 param
     nofralloc
 #include "asm/d/msg/d_msg_class/do_rubyset__28jmessage_tRenderingProcessorFPCvUl.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399652 = ""
+                                                            "\x1B"
+                                                            "CL[%d]";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039965A = "\0\0\0\0\0";
 #pragma pop
 
 /* 8022F384-8022F53C 229CC4 01B8+00 3/3 0/0 0/0 .text
@@ -3063,36 +3138,4 @@ asm void jmessage_tReference::getActorPos() {
 }
 #pragma pop
 
-/* 80399610-80399660 025C70 004A+06 22/22 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80399610 = "'";
-SECTION_DEAD static char const* const stringBase_80399612 = "s";
-SECTION_DEAD static char const* const stringBase_80399614 = "%d";
-SECTION_DEAD static char const* const stringBase_80399617 = "";
-SECTION_DEAD static char const* const stringBase_80399618 = ""
-                                                            "\x1B"
-                                                            "CR[%d]";
-SECTION_DEAD static char const* const stringBase_80399620 = ""
-                                                            "\x1B"
-                                                            "CD[%d]";
-SECTION_DEAD static char const* const stringBase_80399628 = ""
-                                                            "\x1B"
-                                                            "CC[%08x]"
-                                                            "\x1B"
-                                                            "GC[%08x]";
-SECTION_DEAD static char const* const stringBase_8039963B = ""
-                                                            "\x1B"
-                                                            "FX[%d]"
-                                                            "\x1B"
-                                                            "FY[%d]";
-SECTION_DEAD static char const* const stringBase_8039964A = ""
-                                                            "\x1B"
-                                                            "CU[%d]";
-SECTION_DEAD static char const* const stringBase_80399652 = ""
-                                                            "\x1B"
-                                                            "CL[%d]";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039965A = "\0\0\0\0\0";
-#pragma pop
+/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

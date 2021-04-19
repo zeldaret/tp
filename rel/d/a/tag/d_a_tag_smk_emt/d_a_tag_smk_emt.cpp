@@ -29,15 +29,15 @@ struct daTagSmkEmt_c {
 
 struct dPa_levelEcallBack {};
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
-
-struct _GXColor {};
 
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
+
+struct _GXColor {};
+
+struct cXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -176,11 +176,11 @@ SECTION_RODATA static u8 const PARTICLE_NAME[6 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D61600, &PARTICLE_NAME);
+COMPILER_STRIP_GATE(0x80D61600, &PARTICLE_NAME);
 
 /* 80D61608-80D6160C 000008 0004+00 1/1 0/0 0/0 .rodata          @3677 */
 SECTION_RODATA static f32 const lit_3677 = 1.0f;
-COMPILER_STRIP_GATE(80D61608, &lit_3677);
+COMPILER_STRIP_GATE(0x80D61608, &lit_3677);
 
 /* 80D61410-80D61500 0001B0 00F0+00 1/1 0/0 0/0 .text            createSmkEmt__13daTagSmkEmt_cFv */
 #pragma push

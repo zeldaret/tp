@@ -80,11 +80,11 @@ SECTION_RODATA static u8 const lit_3695[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80498990, &lit_3695);
+COMPILER_STRIP_GATE(0x80498990, &lit_3695);
 
 /* 80498994-80498998 000004 0004+00 1/1 0/0 0/0 .rodata          @3696 */
 SECTION_RODATA static f32 const lit_3696 = 9.0f / 100.0f;
-COMPILER_STRIP_GATE(80498994, &lit_3696);
+COMPILER_STRIP_GATE(0x80498994, &lit_3696);
 
 /* 80498518-804986B8 000078 01A0+00 1/0 0/0 0/0 .text            daVrbox_Draw__FP11vrbox_class */
 #pragma push
@@ -122,6 +122,13 @@ static bool daVrbox_IsDelete(vrbox_class* param_0) {
 static bool daVrbox_Delete(vrbox_class* param_0) {
     return true;
 }
+
+/* ############################################################################################## */
+/* 80498998-80498998 000008 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80498998 = "vrbox_sora.bmd";
+#pragma pop
 
 /* 80498868-804988DC 0003C8 0074+00 1/1 0/0 0/0 .text            daVrbox_solidHeapCB__FP10fopAc_ac_c
  */
@@ -167,9 +174,4 @@ SECTION_DATA extern void* g_profile_VRBOX[12] = {
     (void*)0x00044000, (void*)NULL,
 };
 
-/* 80498998-804989A7 000008 000F+00 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80498998 = "vrbox_sora.bmd";
-#pragma pop
+/* 80498998-80498998 000008 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

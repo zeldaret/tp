@@ -237,6 +237,16 @@ extern "C" u8 sAramObject__7JKRAram[4];
 // Declarations:
 //
 
+/* ############################################################################################## */
+/* 803739A0-803739A0 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803739A0 = "20Apr2004";
+SECTION_DEAD static char const* const stringBase_803739AA = "Patch2";
+SECTION_DEAD static char const* const stringBase_803739B1 =
+    "SDKのバージョンが一致しません。停止します\n";
+#pragma pop
+
 /* 800056C0-80005728 000000 0068+00 1/1 0/0 0/0 .text            version_check__Fv */
 #pragma push
 #pragma optimization_level 0
@@ -368,6 +378,24 @@ asm void HeapCheck::getUsedCount() const {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 803739A0-803739A0 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803739DC = "[%sName]";
+SECTION_DEAD static char const* const stringBase_803739E5 = "HeapSize         %8ld";
+SECTION_DEAD static char const* const stringBase_803739FB = "TargetHeapSize   %8ld";
+SECTION_DEAD static char const* const stringBase_80373A11 = "TotalFree        %8ld";
+SECTION_DEAD static char const* const stringBase_80373A27 = "FreeSize         %8ld";
+SECTION_DEAD static char const* const stringBase_80373A3D = "TotalUsedSize    %8ld";
+SECTION_DEAD static char const* const stringBase_80373A53 = "TotalUsedRate        %3ld%%";
+SECTION_DEAD static char const* const stringBase_80373A6F = "MaxTotalUsedSize %8ld";
+SECTION_DEAD static char const* const stringBase_80373A85 = "MaxTotalUsedRate     %3ld%%";
+SECTION_DEAD static char const* const stringBase_80373AA1 = "MinFreeSize      %8ld";
+SECTION_DEAD static char const* const stringBase_80373AB7 = "MinFreeRate          %3ld%%";
+SECTION_DEAD static char const* const stringBase_80373AD3 = "UsedCount             %3ld%";
+#pragma pop
+
 /* 800058C4-80005AD8 000204 0214+00 1/1 0/0 0/0 .text            heapDisplay__9HeapCheckCFv */
 #pragma push
 #pragma optimization_level 0
@@ -379,6 +407,24 @@ asm void HeapCheck::heapDisplay() const {
 #pragma pop
 
 /* ############################################################################################## */
+/* 803739A0-803739A0 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80373AEF = "";
+SECTION_DEAD static char const* const stringBase_80373AF0 = "TotalFree";
+SECTION_DEAD static char const* const stringBase_80373AFA = "MaxUsed  ";
+SECTION_DEAD static char const* const stringBase_80373B04 = "Used     ";
+SECTION_DEAD static char const* const stringBase_80373B0E = "RelUsed  ";
+SECTION_DEAD static char const* const stringBase_80373B18 = "/ MaxFree";
+SECTION_DEAD static char const* const stringBase_80373B22 = "/HeapSize";
+SECTION_DEAD static char const* const stringBase_80373B2C = "Blk/Bytes";
+SECTION_DEAD static char const* const stringBase_80373B36 = "ARAM Free";
+SECTION_DEAD static char const* const stringBase_80373B40 = "%d";
+SECTION_DEAD static char const* const stringBase_80373B43 = "%s";
+SECTION_DEAD static char const* const stringBase_80373B46 = " [%s]";
+SECTION_DEAD static char const* const stringBase_80373B4C = "%10d";
+#pragma pop
+
 /* 803A2F14-803A2F28 -00001 0014+00 0/1 0/0 0/0 .data            desc1$3717 */
 #pragma push
 #pragma force_active on
@@ -450,6 +496,19 @@ static asm void debugDisplay() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 803739A0-803739A0 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80373B51 = "Press X+Y+START to CLEAR console.";
+SECTION_DEAD static char const* const stringBase_80373B73 = "3DStick UP/Down to scroll";
+SECTION_DEAD static char const* const stringBase_80373B8D =
+    "Press A to output terminal from console.";
+SECTION_DEAD static char const* const stringBase_80373BB6 = "SCROLL：%3d %3d %3d Output=%1x";
+SECTION_DEAD static char const* const stringBase_80373BD5 = "Press L+R trigger to control console.";
+SECTION_DEAD static char const* const stringBase_80373BFB =
+    "Press [Z] trigger to close this window.";
+#pragma pop
+
 /* 80450B1C-80450B20 00001C 0004+00 1/1 0/0 0/0 .sbss            console_position_x$3776 */
 static f32 console_position_x;
 
@@ -503,6 +562,13 @@ static asm void Debug_console(u32 param_0) {
     nofralloc
 #include "asm/m_Do/m_Do_main/Debug_console__FUl.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 803739A0-803739A0 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80373C23 = "/str/Final/Release/COPYDATE";
 #pragma pop
 
 /* 8000614C-800061C8 000A8C 007C+00 1/1 0/0 0/0 .text            LOAD_COPYDATE__FPv */
@@ -561,6 +627,28 @@ bool JKRHeap::dump_sort() {
     return true;
 }
 
+/* ############################################################################################## */
+/* 803739A0-803739A0 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80373C3F = "Root";
+SECTION_DEAD static char const* const stringBase_80373C44 = "ルート";
+SECTION_DEAD static char const* const stringBase_80373C4B = "System";
+SECTION_DEAD static char const* const stringBase_80373C52 = "システム";
+SECTION_DEAD static char const* const stringBase_80373C5B = "Zelda";
+SECTION_DEAD static char const* const stringBase_80373C61 = "ゼルダ";
+SECTION_DEAD static char const* const stringBase_80373C68 = "Game";
+SECTION_DEAD static char const* const stringBase_80373C6D = "ゲーム";
+SECTION_DEAD static char const* const stringBase_80373C74 = "Archive";
+SECTION_DEAD static char const* const stringBase_80373C7C = "アーカイブ";
+SECTION_DEAD static char const* const stringBase_80373C87 = "J2d";
+SECTION_DEAD static char const* const stringBase_80373C8B = "J2D";
+SECTION_DEAD static char const* const stringBase_80373C8F = "Hostio";
+SECTION_DEAD static char const* const stringBase_80373C96 = "ホストIO";
+SECTION_DEAD static char const* const stringBase_80373C9F = "Command";
+SECTION_DEAD static char const* const stringBase_80373CA7 = "コマンド";
+#pragma pop
+
 /* 800065E0-80006798 000F20 01B8+00 0/0 1/0 0/0 .text            __sinit_m_Do_main_cpp */
 #pragma push
 #pragma optimization_level 0
@@ -573,7 +661,7 @@ asm void __sinit_m_Do_main_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_800065E0 = (void*)__sinit_m_Do_main_cpp;
+REGISTER_CTORS(0x800065E0, __sinit_m_Do_main_cpp);
 #pragma pop
 
 /* ############################################################################################## */
@@ -703,62 +791,4 @@ u8 struct_80450B98[4];
 extern u8 data_80450B9C[4];
 u8 data_80450B9C[4];
 
-/* 803739A0-80373CB0 000000 0310+00 8/6 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803739A0 = "20Apr2004";
-SECTION_DEAD static char const* const stringBase_803739AA = "Patch2";
-SECTION_DEAD static char const* const stringBase_803739B1 =
-    "SDKのバージョンが一致しません。停止します\n";
-SECTION_DEAD static char const* const stringBase_803739DC = "[%sName]";
-SECTION_DEAD static char const* const stringBase_803739E5 = "HeapSize         %8ld";
-SECTION_DEAD static char const* const stringBase_803739FB = "TargetHeapSize   %8ld";
-SECTION_DEAD static char const* const stringBase_80373A11 = "TotalFree        %8ld";
-SECTION_DEAD static char const* const stringBase_80373A27 = "FreeSize         %8ld";
-SECTION_DEAD static char const* const stringBase_80373A3D = "TotalUsedSize    %8ld";
-SECTION_DEAD static char const* const stringBase_80373A53 = "TotalUsedRate        %3ld%%";
-SECTION_DEAD static char const* const stringBase_80373A6F = "MaxTotalUsedSize %8ld";
-SECTION_DEAD static char const* const stringBase_80373A85 = "MaxTotalUsedRate     %3ld%%";
-SECTION_DEAD static char const* const stringBase_80373AA1 = "MinFreeSize      %8ld";
-SECTION_DEAD static char const* const stringBase_80373AB7 = "MinFreeRate          %3ld%%";
-SECTION_DEAD static char const* const stringBase_80373AD3 = "UsedCount             %3ld%";
-SECTION_DEAD static char const* const stringBase_80373AEF = "";
-SECTION_DEAD static char const* const stringBase_80373AF0 = "TotalFree";
-SECTION_DEAD static char const* const stringBase_80373AFA = "MaxUsed  ";
-SECTION_DEAD static char const* const stringBase_80373B04 = "Used     ";
-SECTION_DEAD static char const* const stringBase_80373B0E = "RelUsed  ";
-SECTION_DEAD static char const* const stringBase_80373B18 = "/ MaxFree";
-SECTION_DEAD static char const* const stringBase_80373B22 = "/HeapSize";
-SECTION_DEAD static char const* const stringBase_80373B2C = "Blk/Bytes";
-SECTION_DEAD static char const* const stringBase_80373B36 = "ARAM Free";
-SECTION_DEAD static char const* const stringBase_80373B40 = "%d";
-SECTION_DEAD static char const* const stringBase_80373B43 = "%s";
-SECTION_DEAD static char const* const stringBase_80373B46 = " [%s]";
-SECTION_DEAD static char const* const stringBase_80373B4C = "%10d";
-SECTION_DEAD static char const* const stringBase_80373B51 = "Press X+Y+START to CLEAR console.";
-SECTION_DEAD static char const* const stringBase_80373B73 = "3DStick UP/Down to scroll";
-SECTION_DEAD static char const* const stringBase_80373B8D =
-    "Press A to output terminal from console.";
-SECTION_DEAD static char const* const stringBase_80373BB6 = "SCROLL：%3d %3d %3d Output=%1x";
-SECTION_DEAD static char const* const stringBase_80373BD5 = "Press L+R trigger to control console.";
-SECTION_DEAD static char const* const stringBase_80373BFB =
-    "Press [Z] trigger to close this window.";
-SECTION_DEAD static char const* const stringBase_80373C23 = "/str/Final/Release/COPYDATE";
-SECTION_DEAD static char const* const stringBase_80373C3F = "Root";
-SECTION_DEAD static char const* const stringBase_80373C44 = "ルート";
-SECTION_DEAD static char const* const stringBase_80373C4B = "System";
-SECTION_DEAD static char const* const stringBase_80373C52 = "システム";
-SECTION_DEAD static char const* const stringBase_80373C5B = "Zelda";
-SECTION_DEAD static char const* const stringBase_80373C61 = "ゼルダ";
-SECTION_DEAD static char const* const stringBase_80373C68 = "Game";
-SECTION_DEAD static char const* const stringBase_80373C6D = "ゲーム";
-SECTION_DEAD static char const* const stringBase_80373C74 = "Archive";
-SECTION_DEAD static char const* const stringBase_80373C7C = "アーカイブ";
-SECTION_DEAD static char const* const stringBase_80373C87 = "J2d";
-SECTION_DEAD static char const* const stringBase_80373C8B = "J2D";
-SECTION_DEAD static char const* const stringBase_80373C8F = "Hostio";
-SECTION_DEAD static char const* const stringBase_80373C96 = "ホストIO";
-SECTION_DEAD static char const* const stringBase_80373C9F = "Command";
-SECTION_DEAD static char const* const stringBase_80373CA7 = "コマンド";
-#pragma pop
+/* 803739A0-803739A0 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

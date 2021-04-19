@@ -111,11 +111,11 @@ struct JAISoundStatus_ {
     /* 802A2244 */ void unlockIfLocked();
 };
 
+struct JAISoundID {};
+
 struct JAISoundHandle {
     /* 802A2184 */ void releaseSound();
 };
-
-struct JAISoundID {};
 
 struct JAISoundStarter {
     /* 802A2FEC */ void startLevelSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
@@ -656,5 +656,5 @@ asm void func_8028E0F4() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8028E0F4 = (void*)func_8028E0F4;
+REGISTER_CTORS(0x8028E0F4, func_8028E0F4);
 #pragma pop

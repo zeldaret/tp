@@ -16,11 +16,11 @@ struct _GXColor {};
 struct Vec {};
 
 namespace JStudio {
+struct TControl {};
+
 struct data {
     struct TEOperationData {};
 };
-
-struct TControl {};
 
 struct TAdaptor {
     struct TSetVariableValue_immediate {};
@@ -1927,7 +1927,7 @@ asm JStudio::TObject_actor::TObject_actor(JStudio::stb::data::TParse_TBlock_obje
 SECTION_RODATA u8 const JStudio::TAdaptor_actor::sauVariableValue_3_TRANSLATION_XYZ[12] = {
     0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x05,
 };
-COMPILER_STRIP_GATE(8039AA68, &JStudio::TAdaptor_actor::sauVariableValue_3_TRANSLATION_XYZ);
+COMPILER_STRIP_GATE(0x8039AA68, &JStudio::TAdaptor_actor::sauVariableValue_3_TRANSLATION_XYZ);
 
 /* 80431010-8043101C 05DD30 000C+00 3/3 0/0 0/0 .bss             @744 */
 static u8 lit_744[12];
@@ -1991,28 +1991,28 @@ asm JStudio::TObject_ambientLight::TObject_ambientLight(
 SECTION_RODATA u8 const JStudio::TAdaptor_actor::sauVariableValue_3_ROTATION_XYZ[12] = {
     0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x08,
 };
-COMPILER_STRIP_GATE(8039AA74, &JStudio::TAdaptor_actor::sauVariableValue_3_ROTATION_XYZ);
+COMPILER_STRIP_GATE(0x8039AA74, &JStudio::TAdaptor_actor::sauVariableValue_3_ROTATION_XYZ);
 
 /* 8039AA80-8039AA8C 0270E0 000C+00 0/0 2/2 0/0 .rodata
  * sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor   */
 SECTION_RODATA u8 const JStudio::TAdaptor_actor::sauVariableValue_3_SCALING_XYZ[12] = {
     0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x0B,
 };
-COMPILER_STRIP_GATE(8039AA80, &JStudio::TAdaptor_actor::sauVariableValue_3_SCALING_XYZ);
+COMPILER_STRIP_GATE(0x8039AA80, &JStudio::TAdaptor_actor::sauVariableValue_3_SCALING_XYZ);
 
 /* 8039AA8C-8039AA98 0270EC 000C+00 1/1 0/0 0/0 .rodata
  * sauVariableValue_3_COLOR_RGB__Q27JStudio21TAdaptor_ambientLight */
 SECTION_RODATA u8 const JStudio::TAdaptor_ambientLight::sauVariableValue_3_COLOR_RGB[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02,
 };
-COMPILER_STRIP_GATE(8039AA8C, &JStudio::TAdaptor_ambientLight::sauVariableValue_3_COLOR_RGB);
+COMPILER_STRIP_GATE(0x8039AA8C, &JStudio::TAdaptor_ambientLight::sauVariableValue_3_COLOR_RGB);
 
 /* 8039AA98-8039AAA8 0270F8 0010+00 1/1 2/2 0/0 .rodata
  * sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight */
 SECTION_RODATA u8 const JStudio::TAdaptor_ambientLight::sauVariableValue_4_COLOR_RGBA[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x03,
 };
-COMPILER_STRIP_GATE(8039AA98, &JStudio::TAdaptor_ambientLight::sauVariableValue_4_COLOR_RGBA);
+COMPILER_STRIP_GATE(0x8039AA98, &JStudio::TAdaptor_ambientLight::sauVariableValue_4_COLOR_RGBA);
 
 /* 80286D38-80286E1C 281678 00E4+00 1/0 0/0 0/0 .text
  * do_paragraph__Q27JStudio20TObject_ambientLightFUlPCvUl       */
@@ -2056,14 +2056,14 @@ asm JStudio::TObject_camera::TObject_camera(JStudio::stb::data::TParse_TBlock_ob
 SECTION_RODATA u8 const JStudio::TAdaptor_camera::sauVariableValue_3_POSITION_XYZ[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02,
 };
-COMPILER_STRIP_GATE(8039AAA8, &JStudio::TAdaptor_camera::sauVariableValue_3_POSITION_XYZ);
+COMPILER_STRIP_GATE(0x8039AAA8, &JStudio::TAdaptor_camera::sauVariableValue_3_POSITION_XYZ);
 
 /* 8039AAB4-8039AAC0 027114 000C+00 1/1 2/2 0/0 .rodata
  * sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio15TAdaptor_camera */
 SECTION_RODATA u8 const JStudio::TAdaptor_camera::sauVariableValue_3_TARGET_POSITION_XYZ[12] = {
     0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x05,
 };
-COMPILER_STRIP_GATE(8039AAB4, &JStudio::TAdaptor_camera::sauVariableValue_3_TARGET_POSITION_XYZ);
+COMPILER_STRIP_GATE(0x8039AAB4, &JStudio::TAdaptor_camera::sauVariableValue_3_TARGET_POSITION_XYZ);
 
 /* 80431048-80431054 05DD68 000C+00 0/1 0/0 0/0 .bss             @750 */
 #pragma push
@@ -2131,14 +2131,14 @@ asm JStudio::TObject_fog::TObject_fog(JStudio::stb::data::TParse_TBlock_object c
 SECTION_RODATA u8 const JStudio::TAdaptor_fog::sauVariableValue_3_COLOR_RGB[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02,
 };
-COMPILER_STRIP_GATE(8039AAC0, &JStudio::TAdaptor_fog::sauVariableValue_3_COLOR_RGB);
+COMPILER_STRIP_GATE(0x8039AAC0, &JStudio::TAdaptor_fog::sauVariableValue_3_COLOR_RGB);
 
 /* 8039AACC-8039AADC 02712C 0010+00 1/1 2/2 0/0 .rodata
  * sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog      */
 SECTION_RODATA u8 const JStudio::TAdaptor_fog::sauVariableValue_4_COLOR_RGBA[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x03,
 };
-COMPILER_STRIP_GATE(8039AACC, &JStudio::TAdaptor_fog::sauVariableValue_4_COLOR_RGBA);
+COMPILER_STRIP_GATE(0x8039AACC, &JStudio::TAdaptor_fog::sauVariableValue_4_COLOR_RGBA);
 
 /* 804554B8-804554C0 003AB8 0008+00 1/1 0/0 0/0 .sdata2
  * sauVariableValue_2_RANGE_BEGIN_END__Q27JStudio12TAdaptor_fog */
@@ -2309,7 +2309,7 @@ asm JStudio::TObject_sound::TObject_sound(JStudio::stb::data::TParse_TBlock_obje
 SECTION_RODATA u8 const JStudio::TAdaptor_light::sauVariableValue_3_COLOR_RGB[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02,
 };
-COMPILER_STRIP_GATE(8039AADC, &JStudio::TAdaptor_light::sauVariableValue_3_COLOR_RGB);
+COMPILER_STRIP_GATE(0x8039AADC, &JStudio::TAdaptor_light::sauVariableValue_3_COLOR_RGB);
 #pragma pop
 
 /* 8039AAE8-8039AAF8 027148 0010+00 0/0 2/2 0/0 .rodata
@@ -2317,42 +2317,42 @@ COMPILER_STRIP_GATE(8039AADC, &JStudio::TAdaptor_light::sauVariableValue_3_COLOR
 SECTION_RODATA u8 const JStudio::TAdaptor_light::sauVariableValue_4_COLOR_RGBA[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x03,
 };
-COMPILER_STRIP_GATE(8039AAE8, &JStudio::TAdaptor_light::sauVariableValue_4_COLOR_RGBA);
+COMPILER_STRIP_GATE(0x8039AAE8, &JStudio::TAdaptor_light::sauVariableValue_4_COLOR_RGBA);
 
 /* 8039AAF8-8039AB04 027158 000C+00 0/0 2/2 0/0 .rodata
  * sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light  */
 SECTION_RODATA u8 const JStudio::TAdaptor_light::sauVariableValue_3_POSITION_XYZ[12] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x06,
 };
-COMPILER_STRIP_GATE(8039AAF8, &JStudio::TAdaptor_light::sauVariableValue_3_POSITION_XYZ);
+COMPILER_STRIP_GATE(0x8039AAF8, &JStudio::TAdaptor_light::sauVariableValue_3_POSITION_XYZ);
 
 /* 8039AB04-8039AB10 027164 000C+00 0/0 2/2 0/0 .rodata
  * sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light */
 SECTION_RODATA u8 const JStudio::TAdaptor_light::sauVariableValue_3_TARGET_POSITION_XYZ[12] = {
     0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x09,
 };
-COMPILER_STRIP_GATE(8039AB04, &JStudio::TAdaptor_light::sauVariableValue_3_TARGET_POSITION_XYZ);
+COMPILER_STRIP_GATE(0x8039AB04, &JStudio::TAdaptor_light::sauVariableValue_3_TARGET_POSITION_XYZ);
 
 /* 8039AB10-8039AB1C 027170 000C+00 0/0 1/1 0/0 .rodata
  * sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio17TAdaptor_particle */
 SECTION_RODATA u8 const JStudio::TAdaptor_particle::sauVariableValue_3_TRANSLATION_XYZ[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02,
 };
-COMPILER_STRIP_GATE(8039AB10, &JStudio::TAdaptor_particle::sauVariableValue_3_TRANSLATION_XYZ);
+COMPILER_STRIP_GATE(0x8039AB10, &JStudio::TAdaptor_particle::sauVariableValue_3_TRANSLATION_XYZ);
 
 /* 8039AB1C-8039AB28 02717C 000C+00 0/0 1/1 0/0 .rodata
  * sauVariableValue_3_ROTATION_XYZ__Q27JStudio17TAdaptor_particle */
 SECTION_RODATA u8 const JStudio::TAdaptor_particle::sauVariableValue_3_ROTATION_XYZ[12] = {
     0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x05,
 };
-COMPILER_STRIP_GATE(8039AB1C, &JStudio::TAdaptor_particle::sauVariableValue_3_ROTATION_XYZ);
+COMPILER_STRIP_GATE(0x8039AB1C, &JStudio::TAdaptor_particle::sauVariableValue_3_ROTATION_XYZ);
 
 /* 8039AB28-8039AB34 027188 000C+00 0/0 1/1 0/0 .rodata
  * sauVariableValue_3_SCALING_XYZ__Q27JStudio17TAdaptor_particle */
 SECTION_RODATA u8 const JStudio::TAdaptor_particle::sauVariableValue_3_SCALING_XYZ[12] = {
     0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x08,
 };
-COMPILER_STRIP_GATE(8039AB28, &JStudio::TAdaptor_particle::sauVariableValue_3_SCALING_XYZ);
+COMPILER_STRIP_GATE(0x8039AB28, &JStudio::TAdaptor_particle::sauVariableValue_3_SCALING_XYZ);
 
 /* 8039AB34-8039AB40 027194 000C+00 0/0 0/0 0/0 .rodata
  * sauVariableValue_3_COLOR_RGB__Q27JStudio17TAdaptor_particle  */
@@ -2361,7 +2361,7 @@ COMPILER_STRIP_GATE(8039AB28, &JStudio::TAdaptor_particle::sauVariableValue_3_SC
 SECTION_RODATA u8 const JStudio::TAdaptor_particle::sauVariableValue_3_COLOR_RGB[12] = {
     0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x0B,
 };
-COMPILER_STRIP_GATE(8039AB34, &JStudio::TAdaptor_particle::sauVariableValue_3_COLOR_RGB);
+COMPILER_STRIP_GATE(0x8039AB34, &JStudio::TAdaptor_particle::sauVariableValue_3_COLOR_RGB);
 #pragma pop
 
 /* 8039AB40-8039AB50 0271A0 0010+00 0/0 1/1 0/0 .rodata
@@ -2369,7 +2369,7 @@ COMPILER_STRIP_GATE(8039AB34, &JStudio::TAdaptor_particle::sauVariableValue_3_CO
 SECTION_RODATA u8 const JStudio::TAdaptor_particle::sauVariableValue_4_COLOR_RGBA[16] = {
     0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x00, 0x00, 0x0C,
 };
-COMPILER_STRIP_GATE(8039AB40, &JStudio::TAdaptor_particle::sauVariableValue_4_COLOR_RGBA);
+COMPILER_STRIP_GATE(0x8039AB40, &JStudio::TAdaptor_particle::sauVariableValue_4_COLOR_RGBA);
 
 /* 8039AB50-8039AB5C 0271B0 000C+00 0/0 0/0 0/0 .rodata
  * sauVariableValue_3_COLOR1_RGB__Q27JStudio17TAdaptor_particle */
@@ -2378,7 +2378,7 @@ COMPILER_STRIP_GATE(8039AB40, &JStudio::TAdaptor_particle::sauVariableValue_4_CO
 SECTION_RODATA u8 const JStudio::TAdaptor_particle::sauVariableValue_3_COLOR1_RGB[12] = {
     0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x0B,
 };
-COMPILER_STRIP_GATE(8039AB50, &JStudio::TAdaptor_particle::sauVariableValue_3_COLOR1_RGB);
+COMPILER_STRIP_GATE(0x8039AB50, &JStudio::TAdaptor_particle::sauVariableValue_3_COLOR1_RGB);
 #pragma pop
 
 /* 8039AB5C-8039AB6C 0271BC 0010+00 0/0 0/0 0/0 .rodata
@@ -2388,7 +2388,7 @@ COMPILER_STRIP_GATE(8039AB50, &JStudio::TAdaptor_particle::sauVariableValue_3_CO
 SECTION_RODATA u8 const JStudio::TAdaptor_particle::sauVariableValue_4_COLOR1_RGBA[16] = {
     0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x00, 0x00, 0x0C,
 };
-COMPILER_STRIP_GATE(8039AB5C, &JStudio::TAdaptor_particle::sauVariableValue_4_COLOR1_RGBA);
+COMPILER_STRIP_GATE(0x8039AB5C, &JStudio::TAdaptor_particle::sauVariableValue_4_COLOR1_RGBA);
 #pragma pop
 
 /* 8039AB6C-8039AB78 0271CC 000C+00 1/1 1/1 0/0 .rodata
@@ -2396,7 +2396,7 @@ COMPILER_STRIP_GATE(8039AB5C, &JStudio::TAdaptor_particle::sauVariableValue_4_CO
 SECTION_RODATA u8 const JStudio::TAdaptor_sound::sauVariableValue_3_POSITION_XYZ[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02,
 };
-COMPILER_STRIP_GATE(8039AB6C, &JStudio::TAdaptor_sound::sauVariableValue_3_POSITION_XYZ);
+COMPILER_STRIP_GATE(0x8039AB6C, &JStudio::TAdaptor_sound::sauVariableValue_3_POSITION_XYZ);
 
 /* 80287BD8-80287F04 282518 032C+00 2/0 0/0 0/0 .text
  * do_paragraph__Q27JStudio13TObject_soundFUlPCvUl              */
@@ -2667,7 +2667,7 @@ asm void func_80288204() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80288204 = (void*)func_80288204;
+REGISTER_CTORS(0x80288204, func_80288204);
 #pragma pop
 
 /* 802885DC-8028863C 282F1C 0060+00 2/1 0/0 0/0 .text
@@ -2799,6 +2799,14 @@ asm void func_8028892C() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8039AB78-8039AB88 0271D8 000A+06 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039AB78 = "(unnamed)";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039AB82 = "\0\0\0\0\0";
+#pragma pop
+
 /* 804511F8-80451200 0006F8 0008+00 0/0 1/1 0/0 .sbss            None */
 extern u8 data_804511F8[8];
 u8 data_804511F8[8];
@@ -2807,11 +2815,4 @@ u8 data_804511F8[8];
 extern u8 data_80451200[8];
 u8 data_80451200[8];
 
-/* 8039AB78-8039AB88 0271D8 000A+06 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039AB78 = "(unnamed)";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039AB82 = "\0\0\0\0\0";
-#pragma pop
+/* 8039AB78-8039AB78 0271D8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

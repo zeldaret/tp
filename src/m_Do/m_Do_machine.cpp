@@ -277,6 +277,24 @@ extern "C" u8 sManager__17JUTConsoleManager[4];
 //
 
 /* ############################################################################################## */
+/* 80373DE8-80373DE8 000448 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80373DE8 = "SystemHeap";
+SECTION_DEAD static char const* const stringBase_80373DF3 = "ZeldaHeap";
+SECTION_DEAD static char const* const stringBase_80373DFD = "GameHeap";
+SECTION_DEAD static char const* const stringBase_80373E06 = "ArchiveHeap";
+SECTION_DEAD static char const* const stringBase_80373E12 = "CommandHeap";
+SECTION_DEAD static char const* const stringBase_80373E1E = "DbPrintHeap";
+SECTION_DEAD static char const* const stringBase_80373E2A = "J2dHeap";
+SECTION_DEAD static char const* const stringBase_80373E32 = "ASTH";
+SECTION_DEAD static char const* const stringBase_80373E37 = "EXPH";
+SECTION_DEAD static char const* const stringBase_80373E3C = "SLID";
+SECTION_DEAD static char const* const stringBase_80373E41 = "STDH";
+SECTION_DEAD static char const* const stringBase_80373E46 = "UNIT";
+SECTION_DEAD static char const* const stringBase_80373E4B = "(Null)";
+#pragma pop
+
 /* 80450BF0-80450BF4 0000F0 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_80450BF0[4];
 
@@ -319,6 +337,18 @@ static asm void myGetHeapTypeByString(JKRHeap* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80373DE8-80373DE8 000448 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80373E52 =
+    "エラー: メモリを確保できません %d(0x%x)バイト、 %d バイトアライメント from "
+    "%08x\n";
+SECTION_DEAD static char const* const stringBase_80373EA3 =
+    "FreeSize=%08x TotalFreeSize=%08x HeapType=%08x(%"
+    "c%c%c%c) HeapSize=%08x %s\n";
+#pragma pop
+
 /* 8000B3EC-8000B5C8 005D2C 01DC+00 1/1 0/0 0/0 .text            myMemoryErrorRoutine__FPvUli */
 #pragma push
 #pragma optimization_level 0
@@ -327,6 +357,13 @@ static asm void myMemoryErrorRoutine(void* param_0, u32 param_1, int param_2) {
     nofralloc
 #include "asm/m_Do/m_Do_machine/myMemoryErrorRoutine__FPvUli.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80373DE8-80373DE8 000448 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80373EEE = "error in %08x(%s)\n";
 #pragma pop
 
 /* 8000B5C8-8000B668 005F08 00A0+00 1/1 0/0 0/0 .text            myHeapCheckRecursive__FP7JKRHeap */
@@ -389,6 +426,18 @@ static asm void exceptionRestart() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80373DE8-80373DE8 000448 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80373F01 = "振動停止＆原点復帰\n";
+SECTION_DEAD static char const* const stringBase_80373F15 = "例外マネージャがありません\n";
+SECTION_DEAD static char const* const stringBase_80373F31 = "キー入力を受け付けています\n";
+SECTION_DEAD static char const* const stringBase_80373F4D = "JUTAssertionを可視化しました\n";
+SECTION_DEAD static char const* const stringBase_80373F6B = "3秒間停止\n";
+SECTION_DEAD static char const* const stringBase_80373F76 = "/map/Final/Release";
+#pragma pop
+
 /* 8000B7C8-8000B95C 006108 0194+00 1/1 0/0 0/0 .text myExceptionCallback__FUsP9OSContextUlUl */
 #pragma push
 #pragma optimization_level 0
@@ -400,6 +449,16 @@ static asm void myExceptionCallback(u16 param_0, OSContext* param_1, u32 param_2
 #pragma pop
 
 /* ############################################################################################## */
+/* 80373DE8-80373DE8 000448 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80373F89 = "(SRR0-3):%08X %08X %08X %08X\n";
+SECTION_DEAD static char const* const stringBase_80373FA7 =
+    "PUSH START BUTTON TO ADDITIONAL INFOMATION\n";
+SECTION_DEAD static char const* const stringBase_80373FD3 =
+    "--------------------------------------\n";
+#pragma pop
+
 /* 80451B00-80451B04 000100 0004+00 1/1 0/0 0/0 .sdata2          @3940 */
 SECTION_SDATA2 static f32 lit_3940 = 8.0f;
 
@@ -421,6 +480,22 @@ static void my_PrintHeap(char const* param_0, u32 param_1) {
     /* empty function */
 }
 
+/* ############################################################################################## */
+/* 80373DE8-80373DE8 000448 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80373FFB = ""
+                                                            "\x1B"
+                                                            "[32m%-24s = size=%d KB\n"
+                                                            "\x1B"
+                                                            "[m";
+SECTION_DEAD static char const* const stringBase_80374017 = ""
+                                                            "\x1B"
+                                                            "[32m%-24s = %08x-%08x size=%d KB\n"
+                                                            "\x1B"
+                                                            "[m";
+#pragma pop
+
 /* 8000BCF8-8000BD44 006638 004C+00 1/1 0/0 0/0 .text            my_SysPrintHeap__FPCcPvUl */
 #pragma push
 #pragma optimization_level 0
@@ -432,6 +507,19 @@ static asm void my_SysPrintHeap(char const* param_0, void* param_1, u32 param_2)
 #pragma pop
 
 /* ############################################################################################## */
+/* 80373DE8-80373DE8 000448 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037403D = "アリーナ";
+SECTION_DEAD static char const* const stringBase_80374046 = "システムヒープ";
+SECTION_DEAD static char const* const stringBase_80374055 = "コマンドヒープ";
+SECTION_DEAD static char const* const stringBase_80374064 = "アーカイブヒープ";
+SECTION_DEAD static char const* const stringBase_80374075 = "Ｊ２Ｄ用ヒープ";
+SECTION_DEAD static char const* const stringBase_80374084 = "ゲームヒープ";
+SECTION_DEAD static char const* const stringBase_80374091 = "ゼルダヒープ";
+SECTION_DEAD static char const* const stringBase_8037409E = "/map/Final/Release/frameworkF.map";
+#pragma pop
+
 /* 803A2F60-803A2F9C 000080 003C+00 1/0 0/0 0/0 .data            g_ntscZeldaIntDf */
 SECTION_DATA static u8 g_ntscZeldaIntDf[60] = {
     0x00, 0x00, 0x00, 0x00, 0x02, 0x60, 0x01, 0xC0, 0x01, 0xC0, 0x00, 0x1B, 0x00, 0x10, 0x02,
@@ -466,57 +554,4 @@ asm void mDoMch_Create() {
 }
 #pragma pop
 
-/* 80373DE8-803740C0 000448 02D8+00 7/7 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80373DE8 = "SystemHeap";
-SECTION_DEAD static char const* const stringBase_80373DF3 = "ZeldaHeap";
-SECTION_DEAD static char const* const stringBase_80373DFD = "GameHeap";
-SECTION_DEAD static char const* const stringBase_80373E06 = "ArchiveHeap";
-SECTION_DEAD static char const* const stringBase_80373E12 = "CommandHeap";
-SECTION_DEAD static char const* const stringBase_80373E1E = "DbPrintHeap";
-SECTION_DEAD static char const* const stringBase_80373E2A = "J2dHeap";
-SECTION_DEAD static char const* const stringBase_80373E32 = "ASTH";
-SECTION_DEAD static char const* const stringBase_80373E37 = "EXPH";
-SECTION_DEAD static char const* const stringBase_80373E3C = "SLID";
-SECTION_DEAD static char const* const stringBase_80373E41 = "STDH";
-SECTION_DEAD static char const* const stringBase_80373E46 = "UNIT";
-SECTION_DEAD static char const* const stringBase_80373E4B = "(Null)";
-SECTION_DEAD static char const* const stringBase_80373E52 =
-    "エラー: メモリを確保できません %d(0x%x)バイト、 %d バイトアライメント from "
-    "%08x\n";
-SECTION_DEAD static char const* const stringBase_80373EA3 =
-    "FreeSize=%08x TotalFreeSize=%08x HeapType=%08x(%"
-    "c%c%c%c) HeapSize=%08x %s\n";
-SECTION_DEAD static char const* const stringBase_80373EEE = "error in %08x(%s)\n";
-SECTION_DEAD static char const* const stringBase_80373F01 = "振動停止＆原点復帰\n";
-SECTION_DEAD static char const* const stringBase_80373F15 = "例外マネージャがありません\n";
-SECTION_DEAD static char const* const stringBase_80373F31 = "キー入力を受け付けています\n";
-SECTION_DEAD static char const* const stringBase_80373F4D = "JUTAssertionを可視化しました\n";
-SECTION_DEAD static char const* const stringBase_80373F6B = "3秒間停止\n";
-SECTION_DEAD static char const* const stringBase_80373F76 = "/map/Final/Release";
-SECTION_DEAD static char const* const stringBase_80373F89 = "(SRR0-3):%08X %08X %08X %08X\n";
-SECTION_DEAD static char const* const stringBase_80373FA7 =
-    "PUSH START BUTTON TO ADDITIONAL INFOMATION\n";
-SECTION_DEAD static char const* const stringBase_80373FD3 =
-    "--------------------------------------\n";
-SECTION_DEAD static char const* const stringBase_80373FFB = ""
-                                                            "\x1B"
-                                                            "[32m%-24s = size=%d KB\n"
-                                                            "\x1B"
-                                                            "[m";
-SECTION_DEAD static char const* const stringBase_80374017 = ""
-                                                            "\x1B"
-                                                            "[32m%-24s = %08x-%08x size=%d KB\n"
-                                                            "\x1B"
-                                                            "[m";
-SECTION_DEAD static char const* const stringBase_8037403D = "アリーナ";
-SECTION_DEAD static char const* const stringBase_80374046 = "システムヒープ";
-SECTION_DEAD static char const* const stringBase_80374055 = "コマンドヒープ";
-SECTION_DEAD static char const* const stringBase_80374064 = "アーカイブヒープ";
-SECTION_DEAD static char const* const stringBase_80374075 = "Ｊ２Ｄ用ヒープ";
-SECTION_DEAD static char const* const stringBase_80374084 = "ゲームヒープ";
-SECTION_DEAD static char const* const stringBase_80374091 = "ゼルダヒープ";
-SECTION_DEAD static char const* const stringBase_8037409E = "/map/Final/Release/frameworkF.map";
-#pragma pop
+/* 80373DE8-80373DE8 000448 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

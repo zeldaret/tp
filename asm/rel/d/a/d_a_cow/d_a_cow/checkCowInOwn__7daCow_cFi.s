@@ -25,8 +25,8 @@ lbl_8065BB64:
 /* 8065BB8C  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 8065BB90  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
 /* 8065BB94  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
-/* 8065BB98  3C 80 80 66 */	lis r4, struct_80662FB8+0x0@ha /* 0x80662FB8@ha */
-/* 8065BB9C  A8 04 2F B8 */	lha r0, struct_80662FB8+0x0@l(r4)  /* 0x80662FB8@l */
+/* 8065BB98  3C 80 80 66 */	lis r4, data_80662FB8@ha /* 0x80662FB8@ha */
+/* 8065BB9C  A8 04 2F B8 */	lha r0, data_80662FB8@l(r4)  /* 0x80662FB8@l */
 /* 8065BBA0  7C 00 00 D0 */	neg r0, r0
 /* 8065BBA4  7C 04 07 34 */	extsh r4, r0
 /* 8065BBA8  4B 9B 08 35 */	bl mDoMtx_YrotS__FPA4_fs
@@ -47,8 +47,8 @@ lbl_8065BB64:
 /* 8065BBE4  C0 03 2E 70 */	lfs f0, lit_5517@l(r3)  /* 0x80662E70@l */
 /* 8065BBE8  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8065BBEC  40 80 00 60 */	bge lbl_8065BC4C
-/* 8065BBF0  3C 60 80 66 */	lis r3, struct_80662FB8+0x0@ha /* 0x80662FB8@ha */
-/* 8065BBF4  38 63 2F B8 */	addi r3, r3, struct_80662FB8+0x0@l /* 0x80662FB8@l */
+/* 8065BBF0  3C 60 80 66 */	lis r3, data_80662FB8@ha /* 0x80662FB8@ha */
+/* 8065BBF4  38 63 2F B8 */	addi r3, r3, data_80662FB8@l /* 0x80662FB8@l */
 /* 8065BBF8  A8 63 00 00 */	lha r3, 0(r3)
 /* 8065BBFC  A8 9E 0C 34 */	lha r4, 0xc34(r30)
 /* 8065BC00  4B C1 52 25 */	bl cLib_distanceAngleS__Fss

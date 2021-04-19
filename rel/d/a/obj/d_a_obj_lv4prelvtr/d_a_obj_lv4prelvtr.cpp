@@ -130,6 +130,12 @@ extern "C" extern u8 j3dSys[284];
 //
 
 /* ############################################################################################## */
+/* 80C68B90-80C68B90 000028 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C68B90 = "PRElvtr";
+#pragma pop
+
 /* 80C68B98-80C68B9C -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_lv4prelvtr__stringBase0;
 
@@ -169,7 +175,7 @@ SECTION_RODATA static u8 const l_cull_box[24] = {
     0xC4, 0x35, 0x40, 0x00, 0xC3, 0x9D, 0x80, 0x00, 0xC4, 0x35, 0x40, 0x00,
     0x44, 0x35, 0x40, 0x00, 0xC1, 0x70, 0x00, 0x00, 0x44, 0x35, 0x40, 0x00,
 };
-COMPILER_STRIP_GATE(80C68B68, &l_cull_box);
+COMPILER_STRIP_GATE(0x80C68B68, &l_cull_box);
 
 /* 80C68768-80C687D0 0001E8 0068+00 1/0 0/0 0/0 .text            Create__14daObjPRElvtr_cFv */
 #pragma push
@@ -194,17 +200,17 @@ static asm void searchObjSwTurn(void* param_0, void* param_1) {
 /* ############################################################################################## */
 /* 80C68B80-80C68B84 000018 0004+00 1/1 0/0 0/0 .rodata          @3694 */
 SECTION_RODATA static f32 const lit_3694 = 900.0f;
-COMPILER_STRIP_GATE(80C68B80, &lit_3694);
+COMPILER_STRIP_GATE(0x80C68B80, &lit_3694);
 
 /* 80C68B84-80C68B88 00001C 0004+00 1/1 0/0 0/0 .rodata          @3695 */
 SECTION_RODATA static f32 const lit_3695 = 16383.0f;
-COMPILER_STRIP_GATE(80C68B84, &lit_3695);
+COMPILER_STRIP_GATE(0x80C68B84, &lit_3695);
 
 /* 80C68B88-80C68B90 000020 0008+00 1/1 0/0 0/0 .rodata          @3697 */
 SECTION_RODATA static u8 const lit_3697[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C68B88, &lit_3697);
+COMPILER_STRIP_GATE(0x80C68B88, &lit_3697);
 
 /* 80C68844-80C68944 0002C4 0100+00 1/0 0/0 0/0 .text            Execute__14daObjPRElvtr_cFPPA3_A4_f
  */
@@ -329,9 +335,4 @@ asm daObjPRElvtr_c::~daObjPRElvtr_c() {
 }
 #pragma pop
 
-/* 80C68B90-80C68B98 000028 0008+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C68B90 = "PRElvtr";
-#pragma pop
+/* 80C68B90-80C68B90 000028 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

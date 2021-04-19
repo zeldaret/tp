@@ -83,9 +83,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -174,6 +174,12 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
+/* 80C83848-80C83848 000038 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C83848 = "Lv6ElevtA";
+#pragma pop
+
 /* 80C83854-80C83858 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_lv6elevta__stringBase0;
 
@@ -213,7 +219,7 @@ SECTION_RODATA static u8 const l_cull_box[24] = {
     0xC3, 0xC4, 0x90, 0xA4, 0xC5, 0x3B, 0x80, 0x00, 0xC4, 0x3B, 0x80, 0x00,
     0x43, 0xC4, 0x90, 0xA4, 0x43, 0x16, 0x00, 0x00, 0x43, 0xC4, 0x90, 0xA4,
 };
-COMPILER_STRIP_GATE(80C83810, &l_cull_box);
+COMPILER_STRIP_GATE(0x80C83810, &l_cull_box);
 
 /* 80C82EA8-80C82FA4 0001E8 00FC+00 1/0 0/0 0/0 .text            Create__16daObjLv6ElevtA_cFv */
 #pragma push
@@ -250,26 +256,26 @@ asm void daObjLv6ElevtA_c::eventStart() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3752 = 1500.0f;
-COMPILER_STRIP_GATE(80C83828, &lit_3752);
+COMPILER_STRIP_GATE(0x80C83828, &lit_3752);
 #pragma pop
 
 /* 80C8382C-80C83830 00001C 0004+00 0/1 0/0 0/0 .rodata          @3753 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3753 = 16383.0f;
-COMPILER_STRIP_GATE(80C8382C, &lit_3753);
+COMPILER_STRIP_GATE(0x80C8382C, &lit_3753);
 #pragma pop
 
 /* 80C83830-80C83834 000020 0004+00 0/1 0/0 0/0 .rodata          @3754 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3754 = 800.0f;
-COMPILER_STRIP_GATE(80C83830, &lit_3754);
+COMPILER_STRIP_GATE(0x80C83830, &lit_3754);
 #pragma pop
 
 /* 80C83834-80C83838 000024 0004+00 1/2 0/0 0/0 .rodata          @3755 */
 SECTION_RODATA static f32 const lit_3755 = 1.0f;
-COMPILER_STRIP_GATE(80C83834, &lit_3755);
+COMPILER_STRIP_GATE(0x80C83834, &lit_3755);
 
 /* 80C83838-80C83840 000028 0004+04 1/2 0/0 0/0 .rodata          @3756 */
 SECTION_RODATA static f32 const lit_3756[1 + 1 /* padding */] = {
@@ -277,7 +283,7 @@ SECTION_RODATA static f32 const lit_3756[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80C83838, &lit_3756);
+COMPILER_STRIP_GATE(0x80C83838, &lit_3756);
 
 /* 80C83840-80C83848 000030 0008+00 0/1 0/0 0/0 .rodata          @3758 */
 #pragma push
@@ -285,7 +291,7 @@ COMPILER_STRIP_GATE(80C83838, &lit_3756);
 SECTION_RODATA static u8 const lit_3758[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C83840, &lit_3758);
+COMPILER_STRIP_GATE(0x80C83840, &lit_3758);
 #pragma pop
 
 /* 80C830BC-80C8321C 0003FC 0160+00 1/1 0/0 0/0 .text            moveAngle__16daObjLv6ElevtA_cFPv */
@@ -483,9 +489,4 @@ static asm void func_80C83800() {
 }
 #pragma pop
 
-/* 80C83848-80C83852 000038 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C83848 = "Lv6ElevtA";
-#pragma pop
+/* 80C83848-80C83848 000038 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -66,7 +66,7 @@ extern "C" u8 m_top__13daTagStream_c[4];
 /* ############################################################################################## */
 /* 80D63BF0-80D63BF4 000000 0004+00 1/1 0/0 0/0 .rodata          @3721 */
 SECTION_RODATA static f32 const lit_3721 = 100.0f;
-COMPILER_STRIP_GATE(80D63BF0, &lit_3721);
+COMPILER_STRIP_GATE(0x80D63BF0, &lit_3721);
 
 /* 80D638F8-80D63A78 000078 0180+00 1/1 0/0 0/0 .text            create__13daTagStream_cFv */
 #pragma push

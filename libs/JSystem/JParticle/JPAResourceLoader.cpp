@@ -44,16 +44,8 @@ struct JPAExtraShape {
     /* 8027AD88 */ JPAExtraShape(u8 const*);
 };
 
-struct JPAExTexShape {
-    /* 8027B13C */ JPAExTexShape(u8 const*);
-};
-
 struct JPADynamicsBlock {
     /* 8027BB18 */ JPADynamicsBlock(u8 const*);
-};
-
-struct JPAChildShape {
-    /* 8027B038 */ JPAChildShape(u8 const*);
 };
 
 struct JPABaseShape {

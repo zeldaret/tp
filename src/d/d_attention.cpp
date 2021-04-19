@@ -393,6 +393,12 @@ static asm void func_80070018() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037A770-8037A770 006DD0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A770 = "D_MN09B";
+#pragma pop
+
 /* 803A9BF8-803A9C04 006D18 000C+00 2/2 0/0 0/0 .data            loc_type_tbl__12dAttention_c */
 SECTION_DATA u8 dAttention_c::loc_type_tbl[12] = {
     0x00, 0x00, 0x00, 0x01, 0x00, 0x01, 0x00, 0x02, 0x00, 0x02, 0x00, 0x04,
@@ -536,6 +542,14 @@ asm void dAttDraw_CallBack_c::execute(u16 param_0, J3DTransformInfo* param_1) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037A770-8037A770 006DD0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A778 = "Always";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8037A77F = "";
+#pragma pop
+
 /* 80424B00-80424B0C 051820 000C+00 1/1 0/0 0/0 .bss             @4093 */
 static u8 lit_4093[12];
 
@@ -1300,7 +1314,7 @@ asm void __sinit_d_attention_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8007400C = (void*)__sinit_d_attention_cpp;
+REGISTER_CTORS(0x8007400C, __sinit_d_attention_cpp);
 #pragma pop
 
 /* ############################################################################################## */
@@ -1325,12 +1339,4 @@ SECTION_SDATA extern u8 data_80450688[8] = {
     0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 8037A770-8037A780 006DD0 000F+01 2/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8037A770 = "D_MN09B";
-SECTION_DEAD static char const* const stringBase_8037A778 = "Always";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037A77F = "";
-#pragma pop
+/* 8037A770-8037A770 006DD0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -355,6 +355,13 @@ asm dSn_HIO_c::dSn_HIO_c() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039A2A8-8039A2A8 026908 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039A2A8 = "/res/Object/";
+#pragma pop
+
 /* 802587A4-80258820 2530E4 007C+00 1/0 0/0 0/0 .text            phase_1__FPc */
 #pragma push
 #pragma optimization_level 0
@@ -394,6 +401,12 @@ static asm void resLoad(request_of_phase_process_class* param_0, char* param_1) 
 #pragma pop
 
 /* ############################################################################################## */
+/* 8039A2A8-8039A2A8 026908 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039A2B5 = "fileSel";
+#pragma pop
+
 /* 804510F0-804510F8 0005F0 0008+00 2/2 0/0 0/0 .sbss            g_snHIO */
 static u8 g_snHIO[8];
 
@@ -533,6 +546,15 @@ asm void dScnName_c::brightCheck() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039A2A8-8039A2A8 026908 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039A2BD = "F_SP108";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039A2C5 = "\0\0";
+#pragma pop
+
 /* 802590F8-802591C0 253A38 00C8+00 1/0 0/0 0/0 .text            changeGameScene__10dScnName_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -630,16 +652,7 @@ asm void __sinit_d_s_name_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80259324 = (void*)__sinit_d_s_name_cpp;
+REGISTER_CTORS(0x80259324, __sinit_d_s_name_cpp);
 #pragma pop
 
-/* 8039A2A8-8039A2C8 026908 001D+03 4/4 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039A2A8 = "/res/Object/";
-SECTION_DEAD static char const* const stringBase_8039A2B5 = "fileSel";
-SECTION_DEAD static char const* const stringBase_8039A2BD = "F_SP108";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039A2C5 = "\0\0";
-#pragma pop
+/* 8039A2A8-8039A2A8 026908 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -4419,6 +4419,15 @@ asm void isInsect(u8 param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8037B0D0-8037B0D0 007730 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037B0D0 = "D_MN08";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8037B0D7 = "";
+#pragma pop
+
 /* 8009B7C4-8009B940 096104 017C+00 0/0 3/3 0/0 .text            check_itemno__Fi */
 #pragma push
 #pragma optimization_level 0
@@ -4443,11 +4452,4 @@ static asm void addBombCount(u8 param_0, u8 param_1) {
 /* 80450F90-80450F98 000490 0004+04 0/0 2/2 0/0 .sbss            mData__12dEnemyItem_c */
 u8 dEnemyItem_c::mData[4 + 4 /* padding */];
 
-/* 8037B0D0-8037B0D8 007730 0007+01 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8037B0D0 = "D_MN08";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037B0D7 = "";
-#pragma pop
+/* 8037B0D0-8037B0D0 007730 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

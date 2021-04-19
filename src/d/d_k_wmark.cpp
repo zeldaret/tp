@@ -157,6 +157,14 @@ extern "C" extern u8 struct_80450D64[4];
 //
 
 /* ############################################################################################## */
+/* 8039A494-8039A494 026AF4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039A494 = "Alink";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039A49A = "\0\0\0\0\0";
+#pragma pop
+
 /* 80430C90-80430C9C 05D9B0 000C+00 1/1 0/0 0/0 .bss             @3644 */
 static u8 lit_3644[12];
 
@@ -260,7 +268,7 @@ static asm void dkWmark_Execute(dkWmark_c* param_0) {
 SECTION_RODATA static u8 const data_8039A488[12] = {
     0x00, 0x00, 0x00, 0x82, 0x5F, 0x4B, 0x32, 0x3C, 0x64, 0x6E, 0x78, 0x28,
 };
-COMPILER_STRIP_GATE(8039A488, &data_8039A488);
+COMPILER_STRIP_GATE(0x8039A488, &data_8039A488);
 
 /* 80454FE4-80454FE8 0035E4 0004+00 1/1 0/0 0/0 .sdata2          @3906 */
 SECTION_SDATA2 static f32 lit_3906 = 50.0f;
@@ -302,11 +310,4 @@ SECTION_DATA extern void* g_profile_WMARK[10 + 1 /* padding */] = {
     NULL,
 };
 
-/* 8039A494-8039A4A0 026AF4 0006+06 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039A494 = "Alink";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039A49A = "\0\0\0\0\0";
-#pragma pop
+/* 8039A494-8039A494 026AF4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -61,6 +61,16 @@ extern "C" extern u8 g_envHIO[68];
 // Declarations:
 //
 
+/* ############################################################################################## */
+/* 8037B100-8037B100 007760 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037B100 =
+    "目のハイライトテクスチャーがありません！\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8037B12A = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
+#pragma pop
+
 /* 8009C964-8009CA28 0972A4 00C4+00 0/0 2/2 0/0 .text            entry__8dEyeHL_cFP12J3DModelDataPCc
  */
 #pragma push
@@ -145,12 +155,4 @@ u8 struct_80450FB8[4];
 extern u8 struct_80450FBC[4];
 u8 struct_80450FBC[4];
 
-/* 8037B100-8037B140 007760 002A+16 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8037B100 =
-    "目のハイライトテクスチャーがありません！\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037B12A = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
-#pragma pop
+/* 8037B100-8037B100 007760 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

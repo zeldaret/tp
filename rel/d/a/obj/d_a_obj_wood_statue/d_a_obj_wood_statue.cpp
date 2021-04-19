@@ -110,7 +110,6 @@ struct dItem_data {
 struct dEvt_control_c {
     /* 80042468 */ void reset();
     /* 80042518 */ void reset(void*);
-    /* 800436EC */ void setPtI_Id(unsigned int);
 };
 
 struct dEvent_manager_c {
@@ -208,9 +207,9 @@ struct cBgS {
     /* 80074744 */ void GetTriPla(cBgS_PolyInfo const&, cM3dGPla*) const;
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -281,7 +280,7 @@ extern "C" void execute__18JPAEmitterCallBackFP14JPABaseEmitter();
 extern "C" void executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter();
 extern "C" void draw__18JPAEmitterCallBackFP14JPABaseEmitter();
 extern "C" void drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter();
-extern "C" void func_80D3B604(u8*);
+extern "C" void func_80D3B604(void* _this, u8*);
 extern "C" static void func_80D3B620();
 extern "C" static void func_80D3B628();
 extern "C" extern char const* const d_a_obj_wood_statue__stringBase0;
@@ -404,7 +403,7 @@ SECTION_RODATA static u8 const l_cyl_src[68] = {
     0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D3B638, &l_cyl_src);
+COMPILER_STRIP_GATE(0x80D3B638, &l_cyl_src);
 
 /* 80D3B67C-80D3B680 000044 0004+00 0/3 0/0 0/0 .rodata          @3857 */
 #pragma push
@@ -415,7 +414,7 @@ SECTION_RODATA static u8 const lit_3857[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D3B67C, &lit_3857);
+COMPILER_STRIP_GATE(0x80D3B67C, &lit_3857);
 #pragma pop
 
 /* 80D3B680-80D3B688 000048 0008+00 0/1 0/0 0/0 .rodata          @3858 */
@@ -424,7 +423,7 @@ COMPILER_STRIP_GATE(80D3B67C, &lit_3857);
 SECTION_RODATA static u8 const lit_3858[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D3B680, &lit_3858);
+COMPILER_STRIP_GATE(0x80D3B680, &lit_3858);
 #pragma pop
 
 /* 80D3B688-80D3B690 000050 0008+00 0/1 0/0 0/0 .rodata          @3859 */
@@ -433,7 +432,7 @@ COMPILER_STRIP_GATE(80D3B680, &lit_3858);
 SECTION_RODATA static u8 const lit_3859[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D3B688, &lit_3859);
+COMPILER_STRIP_GATE(0x80D3B688, &lit_3859);
 #pragma pop
 
 /* 80D3B690-80D3B698 000058 0008+00 0/1 0/0 0/0 .rodata          @3860 */
@@ -442,7 +441,19 @@ COMPILER_STRIP_GATE(80D3B688, &lit_3859);
 SECTION_RODATA static u8 const lit_3860[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D3B690, &lit_3860);
+COMPILER_STRIP_GATE(0x80D3B690, &lit_3860);
+#pragma pop
+
+/* 80D3B6D4-80D3B6D4 00009C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D3B6D4 = "O_wood";
+SECTION_DEAD static char const* const stringBase_80D3B6DB = "GET_WOOD_STATUE";
+SECTION_DEAD static char const* const stringBase_80D3B6EB = "DEFAULT_GETITEM";
+SECTION_DEAD static char const* const stringBase_80D3B6FB = "WAIT";
+SECTION_DEAD static char const* const stringBase_80D3B700 = "MOVE";
+SECTION_DEAD static char const* const stringBase_80D3B705 = "SETPOS";
+SECTION_DEAD static char const* const stringBase_80D3B70C = "NOTEND";
 #pragma pop
 
 /* 80D3B71C-80D3B728 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -729,21 +740,21 @@ asm void daObjWStatue_c::setBaseMtx() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3943 = 30.0f;
-COMPILER_STRIP_GATE(80D3B698, &lit_3943);
+COMPILER_STRIP_GATE(0x80D3B698, &lit_3943);
 #pragma pop
 
 /* 80D3B69C-80D3B6A0 000064 0004+00 0/1 0/0 0/0 .rodata          @3944 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3944 = -6.0f;
-COMPILER_STRIP_GATE(80D3B69C, &lit_3944);
+COMPILER_STRIP_GATE(0x80D3B69C, &lit_3944);
 #pragma pop
 
 /* 80D3B6A0-80D3B6A8 000068 0008+00 1/2 0/0 0/0 .rodata          @3946 */
 SECTION_RODATA static u8 const lit_3946[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D3B6A0, &lit_3946);
+COMPILER_STRIP_GATE(0x80D3B6A0, &lit_3946);
 
 /* 80D3A2F0-80D3A474 000530 0184+00 1/1 0/0 0/0 .text            Create__14daObjWStatue_cFv */
 #pragma push
@@ -851,32 +862,32 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4128 = 5.0f;
-COMPILER_STRIP_GATE(80D3B6A8, &lit_4128);
+COMPILER_STRIP_GATE(0x80D3B6A8, &lit_4128);
 #pragma pop
 
 /* 80D3B6AC-80D3B6B0 000074 0004+00 2/4 0/0 0/0 .rodata          @4129 */
 SECTION_RODATA static f32 const lit_4129 = 1.0f;
-COMPILER_STRIP_GATE(80D3B6AC, &lit_4129);
+COMPILER_STRIP_GATE(0x80D3B6AC, &lit_4129);
 
 /* 80D3B6B0-80D3B6B4 000078 0004+00 0/1 0/0 0/0 .rodata          @4130 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4130 = 7.0f / 10.0f;
-COMPILER_STRIP_GATE(80D3B6B0, &lit_4130);
+COMPILER_STRIP_GATE(0x80D3B6B0, &lit_4130);
 #pragma pop
 
 /* 80D3B6B4-80D3B6B8 00007C 0004+00 0/1 0/0 0/0 .rodata          @4131 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4131 = 3.0f;
-COMPILER_STRIP_GATE(80D3B6B4, &lit_4131);
+COMPILER_STRIP_GATE(0x80D3B6B4, &lit_4131);
 #pragma pop
 
 /* 80D3B6B8-80D3B6BC 000080 0004+00 0/1 0/0 0/0 .rodata          @4132 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4132 = -1.0f;
-COMPILER_STRIP_GATE(80D3B6B8, &lit_4132);
+COMPILER_STRIP_GATE(0x80D3B6B8, &lit_4132);
 #pragma pop
 
 /* 80D3A8E8-80D3AA3C 000B28 0154+00 1/1 0/0 0/0 .text            bg_check__14daObjWStatue_cFv */
@@ -905,7 +916,7 @@ asm void daObjWStatue_c::actionWaitInit() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4168 = 9.0f / 10.0f;
-COMPILER_STRIP_GATE(80D3B6BC, &lit_4168);
+COMPILER_STRIP_GATE(0x80D3B6BC, &lit_4168);
 #pragma pop
 
 /* 80D3AA80-80D3AB9C 000CC0 011C+00 1/0 0/0 0/0 .text            actionWait__14daObjWStatue_cFv */
@@ -974,7 +985,7 @@ asm void daObjWStatue_c::actionSwOnWait() {
 /* ############################################################################################## */
 /* 80D3B6C0-80D3B6C4 000088 0004+00 1/1 0/0 0/0 .rodata          @4256 */
 SECTION_RODATA static f32 const lit_4256 = 4.0f;
-COMPILER_STRIP_GATE(80D3B6C0, &lit_4256);
+COMPILER_STRIP_GATE(0x80D3B6C0, &lit_4256);
 
 /* 80D3AE7C-80D3AF5C 0010BC 00E0+00 1/1 0/0 0/0 .text actionInitBoomerangCarry__14daObjWStatue_cFv
  */
@@ -1002,28 +1013,34 @@ asm void daObjWStatue_c::actionBoomerangCarry() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4321 = 10.0f;
-COMPILER_STRIP_GATE(80D3B6C4, &lit_4321);
+COMPILER_STRIP_GATE(0x80D3B6C4, &lit_4321);
 #pragma pop
 
 /* 80D3B6C8-80D3B6CC 000090 0004+00 0/1 0/0 0/0 .rodata          @4322 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4322 = -2.5f;
-COMPILER_STRIP_GATE(80D3B6C8, &lit_4322);
+COMPILER_STRIP_GATE(0x80D3B6C8, &lit_4322);
 #pragma pop
 
 /* 80D3B6CC-80D3B6D0 000094 0004+00 0/1 0/0 0/0 .rodata          @4323 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4323 = 20.0f;
-COMPILER_STRIP_GATE(80D3B6CC, &lit_4323);
+COMPILER_STRIP_GATE(0x80D3B6CC, &lit_4323);
 #pragma pop
 
 /* 80D3B6D0-80D3B6D4 000098 0004+00 0/1 0/0 0/0 .rodata          @4324 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4324 = 100.0f;
-COMPILER_STRIP_GATE(80D3B6D0, &lit_4324);
+COMPILER_STRIP_GATE(0x80D3B6D0, &lit_4324);
+#pragma pop
+
+/* 80D3B6D4-80D3B6D4 00009C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D3B713 = "Timer";
 #pragma pop
 
 /* 80D3AFC0-80D3B164 001200 01A4+00 1/1 0/0 0/0 .text            demoProc__14daObjWStatue_cFv */
@@ -1180,7 +1197,7 @@ void JPAEmitterCallBack::drawAfter(JPABaseEmitter* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80D3B604(u8* param_0) {
+extern "C" asm void func_80D3B604(void* _this, u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wood_statue/d_a_obj_wood_statue/func_80D3B604.s"
 }
@@ -1206,16 +1223,4 @@ static asm void func_80D3B628() {
 }
 #pragma pop
 
-/* 80D3B6D4-80D3B719 00009C 0045+00 6/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D3B6D4 = "O_wood";
-SECTION_DEAD static char const* const stringBase_80D3B6DB = "GET_WOOD_STATUE";
-SECTION_DEAD static char const* const stringBase_80D3B6EB = "DEFAULT_GETITEM";
-SECTION_DEAD static char const* const stringBase_80D3B6FB = "WAIT";
-SECTION_DEAD static char const* const stringBase_80D3B700 = "MOVE";
-SECTION_DEAD static char const* const stringBase_80D3B705 = "SETPOS";
-SECTION_DEAD static char const* const stringBase_80D3B70C = "NOTEND";
-SECTION_DEAD static char const* const stringBase_80D3B713 = "Timer";
-#pragma pop
+/* 80D3B6D4-80D3B6D4 00009C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

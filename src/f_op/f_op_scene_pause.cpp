@@ -4,10 +4,10 @@
 //
 
 #include "f_op/f_op_scene_pause.h"
-#include "f_pc/f_pc_executor.h"
-#include "f_pc/f_pc_manager.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_pc/f_pc_executor.h"
+#include "f_pc/f_pc_manager.h"
 
 //
 // Declarations:

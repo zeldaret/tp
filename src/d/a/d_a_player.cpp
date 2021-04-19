@@ -378,7 +378,7 @@ asm void daPy_boomerangMove_c::initOffset(cXyz const* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451018-8045101C 000518 0004+00 2/2 33/33 103/103 .sbss            m_midnaActor__9daPy_py_c */
+/* 80451018-8045101C 000518 0004+00 2/2 33/32 103/103 .sbss            m_midnaActor__9daPy_py_c */
 u8 daPy_py_c::m_midnaActor[4];
 
 /* 8045101C-80451020 -00001 0004+00 1/1 1/1 1/1 .sbss            None */
@@ -668,7 +668,7 @@ SECTION_RODATA static u8 const twglArcName[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80393DA8, &twglArcName);
+COMPILER_STRIP_GATE(0x80393DA8, &twglArcName);
 
 /* 80393DB4-80393DC0 020414 000A+02 1/0 0/0 0/0 .rodata          twgwArcName$4617 */
 SECTION_RODATA static u8 const twgwArcName[10 + 2 /* padding */] = {
@@ -686,7 +686,7 @@ SECTION_RODATA static u8 const twgwArcName[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80393DB4, &twgwArcName);
+COMPILER_STRIP_GATE(0x80393DB4, &twgwArcName);
 
 /* 803BA0A0-803BA0C0 -00001 0020+00 1/1 0/0 0/0 .data            arcName$4622 */
 SECTION_DATA static void* arcName[8] = {

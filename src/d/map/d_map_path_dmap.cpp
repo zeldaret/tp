@@ -24,8 +24,6 @@ struct renderingPlusDoor_c {
     /* 8004145C */ void beforeDrawPath();
 };
 
-struct Vec {};
-
 struct dTres_c {
     struct data_s {};
 
@@ -37,6 +35,8 @@ struct dTres_c {
 
     static u8 mTypeGroupListAll[204 + 4 /* padding */];
 };
+
+struct Vec {};
 
 struct renderingPlusDoorAndCursor_c {
     /* 8002B008 */ ~renderingPlusDoorAndCursor_c();
@@ -137,7 +137,7 @@ struct dMpath_n {
 };
 
 struct dMpath_c {
-    /* 8003F758 */ void isExistMapPathData();
+    /* 8003F758 */ u8 isExistMapPathData();
     /* 8003F760 */ void getTopBottomFloorNo(s8*, s8*);
     /* 8003F7E8 */ void createWork();
     /* 8003FA40 */ void setPointer(s8, void*, int);
@@ -218,7 +218,7 @@ extern "C" void init__10dMapInfo_cFv();
 extern "C" void reset__10dMapInfo_cFv();
 extern "C" void create__10dMapInfo_cFv();
 extern "C" void remove__10dMapInfo_cFv();
-extern "C" void isExistMapPathData__8dMpath_cFv();
+extern "C" u8 isExistMapPathData__8dMpath_cFv();
 extern "C" void getTopBottomFloorNo__8dMpath_cFPScPSc();
 extern "C" void createWork__8dMpath_cFv();
 extern "C" void setPointer__8dMpath_cFPQ211dDrawPath_c10room_classPScPSc();
@@ -629,32 +629,24 @@ f32 dMpath_c::mAllSizeX;
 /* 80450E84-80450E88 000384 0004+00 1/1 4/4 0/0 .sbss            mAllSizeZ__8dMpath_c */
 f32 dMpath_c::mAllSizeZ;
 
-/* 80450E88-80450E90 000388 0008+00 4/4 0/0 0/0 .sbss            None */
+/* 80450E88-80450E90 000388 0008+00 4/3 0/0 0/0 .sbss            None */
 static u8 data_80450E88[8];
 
-/* 8003F758-8003F760 03A098 0008+00 2/2 1/1 0/0 .text            isExistMapPathData__8dMpath_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMpath_c::isExistMapPathData() {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/isExistMapPathData__8dMpath_cFv.s"
+/* 8003F758-8003F760 -00001 0008+00 0/0 0/0 0/0 .text            isExistMapPathData__8dMpath_cFv */
+u8 dMpath_c::isExistMapPathData() {
+    return *(u8*)(&data_80450E88);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450630-80450634 0000B0 0004+00 0/0 1/1 2/2 .sdata           mNextRoomNo__10dMapInfo_c */
 SECTION_SDATA u32 dMapInfo_c::mNextRoomNo = 0xFFFFFFFF;
 
-/* 80450634-80450638 -00001 0004+00 4/4 0/0 0/0 .sdata           None */
-SECTION_SDATA static u8 struct_80450634[4] = {
+/* 80450634-80450636 -00001 0002+00 3/3 0/0 0/0 .sdata           None */
+SECTION_SDATA static u8 struct_80450634[2] = {
     /* 80450634 0001+00 data_80450634 None */
     0x7F,
     /* 80450635 0001+00 data_80450635 None */
     0x80,
-    /* 80450636 0002+00 data_80450636 None */
-    0x01,
-    0x00,
 };
 
 /* 8003F760-8003F7E8 03A0A0 0088+00 0/0 1/1 0/0 .text getTopBottomFloorNo__8dMpath_cFPScPSc */
@@ -707,6 +699,10 @@ asm void dMpath_c::create() {
 #include "asm/d/map/d_map_path_dmap/create__8dMpath_cFv.s"
 }
 #pragma pop
+
+/* ############################################################################################## */
+/* 80450636-80450638 0000B6 0002+00 2/2 0/0 0/0 .sdata           None */
+SECTION_SDATA static u16 data_80450636 = 0x0100;
 
 /* 8003FBD0-8003FC70 03A510 00A0+00 2/2 0/0 0/0 .text            reset__8dMpath_cFv */
 #pragma push
@@ -1036,7 +1032,7 @@ SECTION_RODATA static u8 const l_100x100BoxVertexList[48] = {
     0xC2, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0xC2, 0x48, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80379C58, &l_100x100BoxVertexList);
+COMPILER_STRIP_GATE(0x80379C58, &l_100x100BoxVertexList);
 
 /* 80451E70-80451E74 000470 0004+00 1/1 0/0 0/0 .sdata2          @4484 */
 SECTION_SDATA2 static f32 lit_4484 = 6.0f;
@@ -1140,7 +1136,7 @@ SECTION_RODATA static void* const l_treasureDispList_4524[12] = {
     (void*)NULL,       (void*)0x00000001, (void*)&l_treasureStartColor,
     (void*)0x05000000, (void*)0x00000003, (void*)&l_destinationStartColor,
 };
-COMPILER_STRIP_GATE(80379C88, &l_treasureDispList_4524);
+COMPILER_STRIP_GATE(0x80379C88, &l_treasureDispList_4524);
 
 /* 80451E74-80451E78 000474 0004+00 1/0 0/0 0/0 .sdata2          l_entranceStartColor */
 SECTION_SDATA2 static u32 l_entranceStartColor = 0x94000000;
@@ -1232,7 +1228,7 @@ SECTION_RODATA static void* const l_treasureDispList_4606[33] = {
     (void*)0x04000000, (void*)0x00000004, (void*)&l_smallKeyStartColor,
     (void*)0x03000000, (void*)0x00000004, (void*)&l_bossStartColor,
 };
-COMPILER_STRIP_GATE(80379CB8, &l_treasureDispList_4606);
+COMPILER_STRIP_GATE(0x80379CB8, &l_treasureDispList_4606);
 
 /* 80451EAC-80451EB4 0004AC 0008+00 1/1 0/0 0/0 .sdata2          l_iconTex0$4605 */
 SECTION_SDATA2 static u8 l_iconTex0_4605[8] = {
@@ -1264,7 +1260,7 @@ SECTION_RODATA static u8 const l_iconPosData[32] = {
     0xC2, 0x48, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00,
     0x42, 0x48, 0x00, 0x00, 0xC2, 0x48, 0x00, 0x00, 0xC2, 0x48, 0x00, 0x00, 0xC2, 0x48, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80379D3C, &l_iconPosData);
+COMPILER_STRIP_GATE(0x80379D3C, &l_iconPosData);
 
 /* 80041208-800412C0 03BB48 00B8+00 2/2 0/0 0/0 .text
  * drawIconSingle__28renderingPlusDoorAndCursor_cFRC3Vecff      */
@@ -1285,7 +1281,7 @@ SECTION_RODATA static u8 const l_offset[36] = {
     0xC3, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC3, 0x70, 0x00, 0x00,
     0x43, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC3, 0x70, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80379D5C, &l_offset);
+COMPILER_STRIP_GATE(0x80379D5C, &l_offset);
 
 /* 80450638-80450640 0000B8 0004+04 1/1 0/0 0/0 .sdata           l_cursorColor$4709 */
 SECTION_SDATA static u8 l_cursorColor[4 + 4 /* padding */] = {
@@ -1336,7 +1332,7 @@ asm void __sinit_d_map_path_dmap_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80041460 = (void*)__sinit_d_map_path_dmap_cpp;
+REGISTER_CTORS(0x80041460, __sinit_d_map_path_dmap_cpp);
 #pragma pop
 
 /* ############################################################################################## */

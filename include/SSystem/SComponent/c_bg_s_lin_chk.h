@@ -1,8 +1,8 @@
 #ifndef C_BG_S_LIN_CHK_H
 #define C_BG_S_LIN_CHK_H
 
-#include "dolphin/types.h"
 #include "SSystem/SComponent/c_xyz.h"
+#include "dolphin/types.h"
 
 class cBgS_LinChk {
 public:

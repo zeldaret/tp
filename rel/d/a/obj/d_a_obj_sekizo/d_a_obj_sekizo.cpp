@@ -146,6 +146,13 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80CCE174-80CCE174 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CCE174 = "";
+SECTION_DEAD static char const* const stringBase_80CCE175 = "Sekizo";
+#pragma pop
+
 /* 80CCE17C-80CCE188 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -371,7 +378,7 @@ asm void __sinit_d_a_obj_sekizo_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80CCE0D8 = (void*)__sinit_d_a_obj_sekizo_cpp;
+REGISTER_CTORS(0x80CCE0D8, __sinit_d_a_obj_sekizo_cpp);
 #pragma pop
 
 /* 80CCE118-80CCE160 0005F8 0048+00 2/1 0/0 0/0 .text            __dt__20daObj_Sekizo_Param_cFv */
@@ -384,10 +391,4 @@ asm daObj_Sekizo_Param_c::~daObj_Sekizo_Param_c() {
 }
 #pragma pop
 
-/* 80CCE174-80CCE17C 000000 0008+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CCE174 = "";
-SECTION_DEAD static char const* const stringBase_80CCE175 = "Sekizo";
-#pragma pop
+/* 80CCE174-80CCE174 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

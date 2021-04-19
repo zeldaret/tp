@@ -581,5 +581,5 @@ asm void __sinit_d_pane_class_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_802553D0 = (void*)__sinit_d_pane_class_cpp;
+REGISTER_CTORS(0x802553D0, __sinit_d_pane_class_cpp);
 #pragma pop

@@ -96,9 +96,9 @@ struct dMsgString_c {
     /* 80249D28 */ ~dMsgString_c();
 };
 
-struct JKRExpHeap {};
-
 struct JUTFont {};
+
+struct JKRExpHeap {};
 
 struct dMsgScrnTree_c {
     /* 80248954 */ dMsgScrnTree_c(JUTFont*, JKRExpHeap*);
@@ -154,11 +154,11 @@ struct dMsgScrnBase_c {
     /* 8023C3EC */ void setRubyString(char*);
 };
 
+struct J2DTextBox {};
+
 struct COutFont_c {
     /* 80225C94 */ COutFont_c(u8);
 };
-
-struct J2DTextBox {};
 
 struct dMsgObject_c {
     /* 80233284 */ void _create(msg_class*);
@@ -407,7 +407,7 @@ struct TNodeLinkList {
 // Forward References:
 //
 
-extern "C" void dMsgObject_getGroupID__Fv();
+extern "C" s32 dMsgObject_getGroupID__Fv();
 extern "C" static void dMsgObject_searchSSItem__FPvPv();
 extern "C" void __ct__20dMsgObject_HowlHIO_cFv();
 extern "C" void __ct__16dMsgObject_HIO_cFv();
@@ -695,18 +695,13 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 804510C8-804510D0 0005C8 0002+06 5/5 0/0 0/0 .sbss            s_groupID */
+/* 804510C8-804510D0 0005C8 0002+06 5/4 0/0 0/0 .sbss            s_groupID */
 static u8 s_groupID[2 + 6 /* padding */];
 
-/* 80232A3C-80232A44 22D37C 0008+00 0/0 1/1 0/0 .text            dMsgObject_getGroupID__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgObject_getGroupID() {
-    nofralloc
-#include "asm/d/msg/d_msg_object/dMsgObject_getGroupID__Fv.s"
+/* 80232A3C-80232A44 -00001 0008+00 0/0 0/0 0/0 .text            dMsgObject_getGroupID__Fv */
+s32 dMsgObject_getGroupID() {
+    return (s32) * (s16*)(&s_groupID);
 }
-#pragma pop
 
 /* 80232A44-80232AEC 22D384 00A8+00 1/1 0/0 0/0 .text            dMsgObject_searchSSItem__FPvPv */
 #pragma push
@@ -937,6 +932,22 @@ asm void dMsgObject_c::_create(msg_class* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80399660-80399660 025CC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399660 = "zel_00.bmg";
+SECTION_DEAD static char const* const stringBase_8039966B = "zel_01.bmg";
+SECTION_DEAD static char const* const stringBase_80399676 = "zel_02.bmg";
+SECTION_DEAD static char const* const stringBase_80399681 = "zel_03.bmg";
+SECTION_DEAD static char const* const stringBase_8039968C = "zel_04.bmg";
+SECTION_DEAD static char const* const stringBase_80399697 = "zel_05.bmg";
+SECTION_DEAD static char const* const stringBase_803996A2 = "zel_06.bmg";
+SECTION_DEAD static char const* const stringBase_803996AD = "zel_07.bmg";
+SECTION_DEAD static char const* const stringBase_803996B8 = "zel_08.bmg";
+SECTION_DEAD static char const* const stringBase_803996C3 = "zel_99.bmg";
+SECTION_DEAD static char const* const stringBase_803996CE = "";
+#pragma pop
+
 /* 80430280-8043028C 05CFA0 000C+00 1/1 0/0 0/0 .bss             @4011 */
 static u8 lit_4011[12];
 
@@ -1253,6 +1264,14 @@ asm void dMsgObject_c::isSend() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80399660-80399660 025CC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803996CF = "/res/Msgus/bmgres%d.arc";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_803996E7 = "";
+#pragma pop
+
 /* 8043069C-804306B8 05D3BC 0016+06 1/1 0/0 0/0 .bss             arcName$6106 */
 static u8 arcName[22 + 6 /* padding */];
 
@@ -1658,15 +1677,10 @@ asm void dMsgObject_c::setShopWaitTimer(u8 param_0) {
 }
 #pragma pop
 
-/* 802378CC-802378D4 23220C 0008+00 1/1 0/0 0/0 .text setSelectWordFlagLocal__12dMsgObject_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgObject_c::setSelectWordFlagLocal(u8 param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_object/setSelectWordFlagLocal__12dMsgObject_cFUc.s"
+/* 802378CC-802378D4 -00001 0008+00 0/0 0/0 0/0 .text setSelectWordFlagLocal__12dMsgObject_cFUc */
+void dMsgObject_c::setSelectWordFlagLocal(u8 param_0) {
+    *(u8*)(((u8*)this) + 1222) /* this->field_0x4c6 */ = (u8)(param_0);
 }
-#pragma pop
 
 /* 802378D4-80237934 232214 0060+00 1/1 0/0 0/0 .text isHowlHearingModeLocal__12dMsgObject_cFv */
 #pragma push
@@ -1897,16 +1911,11 @@ asm void dMsgObject_c::setSelectCursorPosLocal(u8 param_0) {
 }
 #pragma pop
 
-/* 80237F10-80237F18 232850 0008+00 1/1 0/0 0/0 .text
+/* 80237F10-80237F18 -00001 0008+00 0/0 0/0 0/0 .text
  * setTalkActorLocal__12dMsgObject_cFP10fopAc_ac_c              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgObject_c::setTalkActorLocal(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_object/setTalkActorLocal__12dMsgObject_cFP10fopAc_ac_c.s"
+void dMsgObject_c::setTalkActorLocal(fopAc_ac_c* param_0) {
+    *(u32*)(((u8*)this) + 312) /* this->field_0x138 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80237F18-80237F38 232858 0020+00 1/0 0/0 0/0 .text            dMsgObject_Draw__FP12dMsgObject_c
  */
@@ -2534,7 +2543,7 @@ asm void __sinit_d_msg_object_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80238B58 = (void*)__sinit_d_msg_object_cpp;
+REGISTER_CTORS(0x80238B58, __sinit_d_msg_object_cpp);
 #pragma pop
 
 /* 80238B94-80238BDC 2334D4 0048+00 1/0 0/0 0/0 .text            __dt__20dMsgObject_HowlHIO_cFv */
@@ -2629,22 +2638,4 @@ asm void jmessage_tReference::setActorPos(cXyz param_0) {
 }
 #pragma pop
 
-/* 80399660-803996E8 025CC0 0087+01 4/4 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80399660 = "zel_00.bmg";
-SECTION_DEAD static char const* const stringBase_8039966B = "zel_01.bmg";
-SECTION_DEAD static char const* const stringBase_80399676 = "zel_02.bmg";
-SECTION_DEAD static char const* const stringBase_80399681 = "zel_03.bmg";
-SECTION_DEAD static char const* const stringBase_8039968C = "zel_04.bmg";
-SECTION_DEAD static char const* const stringBase_80399697 = "zel_05.bmg";
-SECTION_DEAD static char const* const stringBase_803996A2 = "zel_06.bmg";
-SECTION_DEAD static char const* const stringBase_803996AD = "zel_07.bmg";
-SECTION_DEAD static char const* const stringBase_803996B8 = "zel_08.bmg";
-SECTION_DEAD static char const* const stringBase_803996C3 = "zel_99.bmg";
-SECTION_DEAD static char const* const stringBase_803996CE = "";
-SECTION_DEAD static char const* const stringBase_803996CF = "/res/Msgus/bmgres%d.arc";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803996E7 = "";
-#pragma pop
+/* 80399660-80399660 025CC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

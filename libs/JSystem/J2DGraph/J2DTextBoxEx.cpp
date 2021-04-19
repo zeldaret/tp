@@ -38,21 +38,21 @@ struct J2DTextBoxVBinding {};
 
 struct J2DTextBoxHBinding {};
 
-struct J2DAnmTevRegKey {};
-
-struct J2DAnmTransform {};
-
-struct J2DTevStage {};
-
-struct J2DAnmVtxColor {};
-
-struct J2DAnmTextureSRTKey {};
+struct J2DAnmTexPattern {};
 
 struct J2DAnmVisibilityFull {
     /* 8030C048 */ void getVisibility(u16, u8*) const;
 };
 
 struct J2DAnmBase {};
+
+struct J2DAnmTevRegKey {};
+
+struct J2DAnmTextureSRTKey {};
+
+struct J2DAnmVtxColor {};
+
+struct J2DAnmTransform {};
 
 struct J2DPane {
     /* 80053BC0 */ void calcMtx();
@@ -77,7 +77,7 @@ struct J2DPane {
     /* 802F8474 */ void update();
 };
 
-struct J2DAnmTexPattern {};
+struct J2DTevStage {};
 
 struct J2DAnmColor {};
 
@@ -359,6 +359,15 @@ asm void J2DTextBoxEx::drawSelf(f32 param_0, f32 param_1, f32 (*param_2)[3][4]) 
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 803A1DF0-803A1DF0 02E450 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803A1DF0 = "%s";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_803A1DF3 = "\0\0\0\0";
+#pragma pop
+
 /* 803078AC-80307AF0 3021EC 0244+00 1/0 0/0 0/0 .text            draw__12J2DTextBoxExFff */
 #pragma push
 #pragma optimization_level 0
@@ -426,7 +435,7 @@ asm void J2DTextBoxEx::setTevStage(bool param_0) {
 SECTION_RODATA static u8 const lit_1953[12] = {
     0x0F, 0x08, 0x0A, 0x0F, 0x02, 0x04, 0x08, 0x0F, 0x0F, 0x0A, 0x00, 0x0F,
 };
-COMPILER_STRIP_GATE(803A1DB8, &lit_1953);
+COMPILER_STRIP_GATE(0x803A1DB8, &lit_1953);
 
 /* 803A1DC4-803A1DD0 02E424 000C+00 0/1 0/0 0/0 .rodata          @1954 */
 #pragma push
@@ -434,7 +443,7 @@ COMPILER_STRIP_GATE(803A1DB8, &lit_1953);
 SECTION_RODATA static u8 const lit_1954[12] = {
     0x07, 0x04, 0x05, 0x07, 0x01, 0x02, 0x04, 0x07, 0x07, 0x05, 0x00, 0x07,
 };
-COMPILER_STRIP_GATE(803A1DC4, &lit_1954);
+COMPILER_STRIP_GATE(0x803A1DC4, &lit_1954);
 #pragma pop
 
 /* 803A1DD0-803A1DE0 02E430 000F+01 0/1 0/0 0/0 .rodata          @1955 */
@@ -459,7 +468,7 @@ SECTION_RODATA static u8 const lit_1955[15 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
-COMPILER_STRIP_GATE(803A1DD0, &lit_1955);
+COMPILER_STRIP_GATE(0x803A1DD0, &lit_1955);
 #pragma pop
 
 /* 803A1DE0-803A1DF0 02E440 000F+01 0/1 0/0 0/0 .rodata          @1956 */
@@ -484,7 +493,7 @@ SECTION_RODATA static u8 const lit_1956[15 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
-COMPILER_STRIP_GATE(803A1DE0, &lit_1956);
+COMPILER_STRIP_GATE(0x803A1DE0, &lit_1956);
 #pragma pop
 
 /* 80307F94-8030823C 3028D4 02A8+00 1/1 0/0 0/0 .text
@@ -658,16 +667,11 @@ asm void J2DTextBoxEx::setAnimation(J2DAnmTevRegKey* param_0) {
 }
 #pragma pop
 
-/* 80308964-8030896C 3032A4 0008+00 1/0 0/0 0/0 .text
+/* 80308964-8030896C -00001 0008+00 0/0 0/0 0/0 .text
  * setAnimation__12J2DTextBoxExFP20J2DAnmVisibilityFull         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTextBoxEx::setAnimation(J2DAnmVisibilityFull* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTextBoxEx/setAnimation__12J2DTextBoxExFP20J2DAnmVisibilityFull.s"
+void J2DTextBoxEx::setAnimation(J2DAnmVisibilityFull* param_0) {
+    *(u32*)(((u8*)this) + 324) /* this->field_0x144 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 8030896C-803089EC 3032AC 0080+00 1/0 0/0 0/0 .text
  * animationPane__12J2DTextBoxExFPC15J2DAnmTransform            */
@@ -718,11 +722,4 @@ asm void J2DTextBoxEx::setAnimation(J2DAnmBase* param_0) {
 }
 #pragma pop
 
-/* 803A1DF0-803A1DF8 02E450 0003+05 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803A1DF0 = "%s";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803A1DF3 = "\0\0\0\0";
-#pragma pop
+/* 803A1DF0-803A1DF0 02E450 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -104,7 +104,7 @@ static asm void fish_set(fopAc_ac_c* param_0, fish_data_s* param_1) {
 /* ############################################################################################## */
 /* 805424C0-805424C4 000000 0004+00 1/1 0/0 0/0 .rodata          @3787 */
 SECTION_RODATA static f32 const lit_3787 = -3382.0f;
-COMPILER_STRIP_GATE(805424C0, &lit_3787);
+COMPILER_STRIP_GATE(0x805424C0, &lit_3787);
 
 /* 805424C4-805424C8 000004 0004+00 0/1 0/0 0/0 .rodata          @3788 */
 #pragma push
@@ -115,42 +115,48 @@ SECTION_RODATA static u8 const lit_3788[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(805424C4, &lit_3788);
+COMPILER_STRIP_GATE(0x805424C4, &lit_3788);
 #pragma pop
 
 /* 805424C8-805424CC 000008 0004+00 0/1 0/0 0/0 .rodata          @3789 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3789 = -7473.0f;
-COMPILER_STRIP_GATE(805424C8, &lit_3789);
+COMPILER_STRIP_GATE(0x805424C8, &lit_3789);
 #pragma pop
 
 /* 805424CC-805424D0 00000C 0004+00 0/1 0/0 0/0 .rodata          @3790 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3790 = -7865.0f;
-COMPILER_STRIP_GATE(805424CC, &lit_3790);
+COMPILER_STRIP_GATE(0x805424CC, &lit_3790);
 #pragma pop
 
 /* 805424D0-805424D4 000010 0004+00 0/1 0/0 0/0 .rodata          @3791 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3791 = 700.0f;
-COMPILER_STRIP_GATE(805424D0, &lit_3791);
+COMPILER_STRIP_GATE(0x805424D0, &lit_3791);
 #pragma pop
 
 /* 805424D4-805424D8 000014 0004+00 0/1 0/0 0/0 .rodata          @3792 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3792 = -2936.0f;
-COMPILER_STRIP_GATE(805424D4, &lit_3792);
+COMPILER_STRIP_GATE(0x805424D4, &lit_3792);
 #pragma pop
 
 /* 805424D8-805424DC 000018 0004+00 0/1 0/0 0/0 .rodata          @3793 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3793 = -180.0f;
-COMPILER_STRIP_GATE(805424D8, &lit_3793);
+COMPILER_STRIP_GATE(0x805424D8, &lit_3793);
+#pragma pop
+
+/* 805424DC-805424DC 00001C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_805424DC = "F_SP127";
 #pragma pop
 
 /* 805424E4-805424F0 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -367,9 +373,4 @@ SECTION_DATA extern void* g_profile_NPC_FISH[12] = {
     (void*)0x00040100, (void*)0x00060000,
 };
 
-/* 805424DC-805424E4 00001C 0008+00 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_805424DC = "F_SP127";
-#pragma pop
+/* 805424DC-805424DC 00001C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

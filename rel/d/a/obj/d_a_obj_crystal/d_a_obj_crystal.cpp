@@ -167,7 +167,14 @@ asm void daObjCrystal_c::setBaseMtx() {
 /* ############################################################################################## */
 /* 80BD68BC-80BD68C0 000000 0004+00 2/2 0/0 0/0 .rodata          @3693 */
 SECTION_RODATA static f32 const lit_3693 = 1.0f;
-COMPILER_STRIP_GATE(80BD68BC, &lit_3693);
+COMPILER_STRIP_GATE(0x80BD68BC, &lit_3693);
+
+/* 80BD68D8-80BD68D8 00001C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BD68D8 = "H_Suisho";
+SECTION_DEAD static char const* const stringBase_80BD68E1 = "polySurface1";
+#pragma pop
 
 /* 80BD6470-80BD65B0 000150 0140+00 1/1 0/0 0/0 .text            Create__14daObjCrystal_cFv */
 #pragma push
@@ -186,7 +193,7 @@ asm void daObjCrystal_c::Create() {
 SECTION_RODATA static u8 const l_bmd[8] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x07,
 };
-COMPILER_STRIP_GATE(80BD68C0, &l_bmd);
+COMPILER_STRIP_GATE(0x80BD68C0, &l_bmd);
 #pragma pop
 
 /* 80BD68C8-80BD68D0 00000C 0008+00 0/1 0/0 0/0 .rodata          l_diff_flag$3698 */
@@ -195,7 +202,7 @@ COMPILER_STRIP_GATE(80BD68C0, &l_bmd);
 SECTION_RODATA static u8 const l_diff_flag[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BD68C8, &l_diff_flag);
+COMPILER_STRIP_GATE(0x80BD68C8, &l_diff_flag);
 #pragma pop
 
 /* 80BD68D0-80BD68D8 000014 0008+00 0/1 0/0 0/0 .rodata          l_flag$3699 */
@@ -204,7 +211,7 @@ COMPILER_STRIP_GATE(80BD68C8, &l_diff_flag);
 SECTION_RODATA static u8 const l_flag[8] = {
     0x19, 0x00, 0x00, 0x84, 0x11, 0x00, 0x00, 0x84,
 };
-COMPILER_STRIP_GATE(80BD68D0, &l_flag);
+COMPILER_STRIP_GATE(0x80BD68D0, &l_flag);
 #pragma pop
 
 /* 80BD68F0-80BD68F4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
@@ -323,10 +330,4 @@ SECTION_DATA extern void* g_profile_Obj_Crystal[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 80BD68D8-80BD68EE 00001C 0016+00 2/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BD68D8 = "H_Suisho";
-SECTION_DEAD static char const* const stringBase_80BD68E1 = "polySurface1";
-#pragma pop
+/* 80BD68D8-80BD68D8 00001C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

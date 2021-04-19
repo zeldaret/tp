@@ -84,6 +84,12 @@ class ArbitraryData(Symbol):
             self.size // self.element_size,
             self.padding // self.element_size)
 
+    def return_type(self):
+        array_type = self.array_type()
+        if isinstance(array_type, ArrayType) or isinstance(array_type, PaddingArrayType)  or isinstance(array_type, ZeroArrayType):
+            return PointerType(array_type.base)
+        return array_type
+
     def cpp_reference(self, accessor, addr):
         name = self.declaration_name(forward=False, c_export=False,full_qualified_name=True)
         if addr == self.addr:
@@ -91,6 +97,14 @@ class ArbitraryData(Symbol):
         else:
             offset = addr - self.addr
             return f"(((char*)&{name})+0x{offset:X})"
+
+    def cpp_load(self, accessor, addr):
+        name = self.declaration_name(forward=False, c_export=False,full_qualified_name=True)
+        if addr == self.addr:
+            return f"{name}"
+        else:
+            offset = addr - self.addr
+            return f"*(((char*)&{name})+0x{offset:X})"
 
     def declaration_name(self, forward: bool,
                          c_export: bool,
@@ -201,12 +215,7 @@ class ArbitraryData(Symbol):
         await self.export_declaration_body(exporter, builder)
 
         if self._section == ".rodata":
-            await builder.write(f"COMPILER_STRIP_GATE({self.addr:08X}, {self.cpp_reference(None, self.addr)});")
-            # await builder.write_nonewline("SECTION_DEAD ")
-            # await builder.write_nonewline("void* const ")
-            # await builder.write_nonewline(f"cg_{self.addr:08X} = (void*)(")
-            # await builder.write_nonewline(self.cpp_reference(None, self.addr))
-            # await builder.write(f");")
+            await builder.write(f"COMPILER_STRIP_GATE(0x{self.addr:08X}, {self.cpp_reference(None, self.addr)});")
 
         if self.requires_force_active:
             await builder.write(f"#pragma pop")

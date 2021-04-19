@@ -206,41 +206,41 @@ SECTION_RODATA static u8 const l_cull_box[24] = {
     0xC3, 0x9B, 0x00, 0x00, 0xC1, 0xF0, 0x00, 0x00, 0xC4, 0x3E, 0x00, 0x00,
     0x43, 0x9B, 0x00, 0x00, 0x43, 0xB4, 0x00, 0x00, 0x44, 0x3E, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D04C38, &l_cull_box);
+COMPILER_STRIP_GATE(0x80D04C38, &l_cull_box);
 
 /* 80D04C50-80D04C54 000018 0004+00 0/1 0/0 0/0 .rodata          @3642 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3642 = 1.0f;
-COMPILER_STRIP_GATE(80D04C50, &lit_3642);
+COMPILER_STRIP_GATE(0x80D04C50, &lit_3642);
 #pragma pop
 
 /* 80D04C54-80D04C58 00001C 0004+00 0/1 0/0 0/0 .rodata          @3643 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3643 = 3.0f / 10.0f;
-COMPILER_STRIP_GATE(80D04C54, &lit_3643);
+COMPILER_STRIP_GATE(0x80D04C54, &lit_3643);
 #pragma pop
 
 /* 80D04C58-80D04C5C 000020 0004+00 0/1 0/0 0/0 .rodata          @3644 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3644 = 7.0f;
-COMPILER_STRIP_GATE(80D04C58, &lit_3644);
+COMPILER_STRIP_GATE(0x80D04C58, &lit_3644);
 #pragma pop
 
 /* 80D04C5C-80D04C60 000024 0004+00 0/1 0/0 0/0 .rodata          @3645 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3645 = 1.0f / 25.0f;
-COMPILER_STRIP_GATE(80D04C5C, &lit_3645);
+COMPILER_STRIP_GATE(0x80D04C5C, &lit_3645);
 #pragma pop
 
 /* 80D04C60-80D04C64 000028 0004+00 0/1 0/0 0/0 .rodata          @3646 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3646 = 0.25f;
-COMPILER_STRIP_GATE(80D04C60, &lit_3646);
+COMPILER_STRIP_GATE(0x80D04C60, &lit_3646);
 #pragma pop
 
 /* 80D04360-80D04424 0000A0 00C4+00 1/1 0/0 0/0 .text rideActor__15daObjSZbridge_cFP10fopAc_ac_c
@@ -255,6 +255,12 @@ asm void daObjSZbridge_c::rideActor(fopAc_ac_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80D04C80-80D04C80 000048 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D04C80 = "S_Zbridge";
+#pragma pop
+
 /* 80D04C8C-80D04C90 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_szbridge__stringBase0;
 
@@ -293,42 +299,42 @@ asm void daObjSZbridge_c::CreateHeap() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3715 = 700.0f;
-COMPILER_STRIP_GATE(80D04C64, &lit_3715);
+COMPILER_STRIP_GATE(0x80D04C64, &lit_3715);
 #pragma pop
 
 /* 80D04C68-80D04C6C 000030 0004+00 0/1 0/0 0/0 .rodata          @3716 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3716 = -1000000000.0f;
-COMPILER_STRIP_GATE(80D04C68, &lit_3716);
+COMPILER_STRIP_GATE(0x80D04C68, &lit_3716);
 #pragma pop
 
 /* 80D04C6C-80D04C70 000034 0004+00 0/1 0/0 0/0 .rodata          @3717 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3717 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(80D04C6C, &lit_3717);
+COMPILER_STRIP_GATE(0x80D04C6C, &lit_3717);
 #pragma pop
 
 /* 80D04C70-80D04C74 000038 0004+00 0/1 0/0 0/0 .rodata          @3718 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3718 = 70.0f;
-COMPILER_STRIP_GATE(80D04C70, &lit_3718);
+COMPILER_STRIP_GATE(0x80D04C70, &lit_3718);
 #pragma pop
 
 /* 80D04C74-80D04C78 00003C 0004+00 0/1 0/0 0/0 .rodata          @3719 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3719 = 0x3F7C28F6;
-COMPILER_STRIP_GATE(80D04C74, &lit_3719);
+COMPILER_STRIP_GATE(0x80D04C74, &lit_3719);
 #pragma pop
 
 /* 80D04C78-80D04C7C 000040 0004+00 0/1 0/0 0/0 .rodata          @3720 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3720 = 5.0f;
-COMPILER_STRIP_GATE(80D04C78, &lit_3720);
+COMPILER_STRIP_GATE(0x80D04C78, &lit_3720);
 #pragma pop
 
 /* 80D04C90-80D04CB0 -00001 0020+00 1/0 0/0 0/0 .data            daObjSZbridge_METHODS */
@@ -423,7 +429,7 @@ SECTION_RODATA static u8 const lit_3739[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D04C7C, &lit_3739);
+COMPILER_STRIP_GATE(0x80D04C7C, &lit_3739);
 
 /* 80D048C4-80D04974 000604 00B0+00 1/0 0/0 0/0 .text            Create__15daObjSZbridge_cFv */
 #pragma push
@@ -595,9 +601,4 @@ static asm void func_80D04C28() {
 }
 #pragma pop
 
-/* 80D04C80-80D04C8A 000048 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D04C80 = "S_Zbridge";
-#pragma pop
+/* 80D04C80-80D04C80 000048 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

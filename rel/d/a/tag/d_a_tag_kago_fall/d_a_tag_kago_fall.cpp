@@ -69,9 +69,9 @@ struct cBgS {
     /* 800743B4 */ void LineCross(cBgS_LinChk*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -144,11 +144,11 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 /* ############################################################################################## */
 /* 80D5A6EC-80D5A6F0 000000 0004+00 3/3 0/0 0/0 .rodata          @3907 */
 SECTION_RODATA static f32 const lit_3907 = 75.0f;
-COMPILER_STRIP_GATE(80D5A6EC, &lit_3907);
+COMPILER_STRIP_GATE(0x80D5A6EC, &lit_3907);
 
 /* 80D5A6F0-80D5A6F4 000004 0004+00 1/1 0/0 0/0 .rodata          @3908 */
 SECTION_RODATA static f32 const lit_3908 = 150.0f;
-COMPILER_STRIP_GATE(80D5A6F0, &lit_3908);
+COMPILER_STRIP_GATE(0x80D5A6F0, &lit_3908);
 
 /* 80D5A710-80D5A714 000000 0004+00 3/3 0/0 0/0 .data            m_master_id */
 SECTION_DATA static u32 m_master_id = 0xFFFFFFFF;
@@ -188,21 +188,21 @@ asm void daTagKagoFall_c::setActionMode(u8 param_0, u8 param_1) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4022 = 1.0f;
-COMPILER_STRIP_GATE(80D5A6F4, &lit_4022);
+COMPILER_STRIP_GATE(0x80D5A6F4, &lit_4022);
 #pragma pop
 
 /* 80D5A6F8-80D5A6FC 00000C 0004+00 0/2 0/0 0/0 .rodata          @4023 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4023 = -1.0f;
-COMPILER_STRIP_GATE(80D5A6F8, &lit_4023);
+COMPILER_STRIP_GATE(0x80D5A6F8, &lit_4023);
 #pragma pop
 
 /* 80D5A6FC-80D5A700 000010 0004+00 0/2 0/0 0/0 .rodata          @4024 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4024 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(80D5A6FC, &lit_4024);
+COMPILER_STRIP_GATE(0x80D5A6FC, &lit_4024);
 #pragma pop
 
 /* 80D5A700-80D5A704 000014 0004+00 0/2 0/0 0/0 .rodata          @4025 */
@@ -214,7 +214,13 @@ SECTION_RODATA static u8 const lit_4025[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D5A700, &lit_4025);
+COMPILER_STRIP_GATE(0x80D5A700, &lit_4025);
+#pragma pop
+
+/* 80D5A708-80D5A708 00001C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D5A708 = "F_SP112";
 #pragma pop
 
 /* 80D59E24-80D5A218 000244 03F4+00 1/1 0/0 0/0 .text actionWaitRiver__15daTagKagoFall_cFv */
@@ -232,7 +238,7 @@ asm void daTagKagoFall_c::actionWaitRiver() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4118 = 3000.0f;
-COMPILER_STRIP_GATE(80D5A704, &lit_4118);
+COMPILER_STRIP_GATE(0x80D5A704, &lit_4118);
 #pragma pop
 
 /* 80D5A218-80D5A67C 000638 0464+00 1/1 0/0 0/0 .text            actionWaitFall__15daTagKagoFall_cFv
@@ -305,9 +311,4 @@ SECTION_DATA extern void* g_profile_Tag_KagoFall[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 80D5A708-80D5A710 00001C 0008+00 2/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D5A708 = "F_SP112";
-#pragma pop
+/* 80D5A708-80D5A708 00001C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

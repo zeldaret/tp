@@ -16,11 +16,11 @@ struct dMsgScrnLight_c {
     /* 80245C04 */ void draw(f32*, f32, f32, f32, f32, f32, u8);
 };
 
+struct J2DAnmColor {};
+
 struct J2DAnmTextureSRTKey {};
 
 struct JKRExpHeap {};
-
-struct J2DAnmColor {};
 
 struct dMsgScrnItem_c {
     /* 8023E79C */ dMsgScrnItem_c(u8, u8, JKRExpHeap*);
@@ -279,6 +279,18 @@ extern "C" extern u8 g_MsgObject_HIO_c[1040];
 //
 
 /* ############################################################################################## */
+/* 80399990-80399990 025FF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399990 = "zelda_item_get_window.blo";
+SECTION_DEAD static char const* const stringBase_803999AA = "zelda_item_get_window_text.blo";
+SECTION_DEAD static char const* const stringBase_803999C9 = "zelda_item_get_window.btk";
+SECTION_DEAD static char const* const stringBase_803999E3 = "zelda_item_get_window.bpk";
+SECTION_DEAD static char const* const stringBase_803999FD = "zelda_item_get_window_02.bpk";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80399A1A = "\0\0\0\0\0";
+#pragma pop
+
 /* 803C0F78-803C0FD0 01E098 0058+00 2/2 0/0 0/0 .data            __vt__14dMsgScrnItem_c */
 SECTION_DATA extern void* __vt__14dMsgScrnItem_c[22] = {
     (void*)NULL /* RTTI */,
@@ -593,15 +605,4 @@ asm void dMsgScrnItem_c::isOugiID() {
 }
 #pragma pop
 
-/* 80399990-80399A20 025FF0 008A+06 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80399990 = "zelda_item_get_window.blo";
-SECTION_DEAD static char const* const stringBase_803999AA = "zelda_item_get_window_text.blo";
-SECTION_DEAD static char const* const stringBase_803999C9 = "zelda_item_get_window.btk";
-SECTION_DEAD static char const* const stringBase_803999E3 = "zelda_item_get_window.bpk";
-SECTION_DEAD static char const* const stringBase_803999FD = "zelda_item_get_window_02.bpk";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80399A1A = "\0\0\0\0\0";
-#pragma pop
+/* 80399990-80399990 025FF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

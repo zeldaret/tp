@@ -715,7 +715,7 @@ asm void __sinit_d_save_HIO_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8025C5FC = (void*)__sinit_d_save_HIO_cpp;
+REGISTER_CTORS(0x8025C5FC, __sinit_d_save_HIO_cpp);
 #pragma pop
 
 /* 8025C6FC-8025C874 25703C 0178+00 2/1 0/0 0/0 .text            __dt__12dSvBit_HIO_cFv */

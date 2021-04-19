@@ -167,6 +167,13 @@ extern "C" extern u32 __float_nan;
 //
 
 /* ############################################################################################## */
+/* 80BD4048-80BD4048 000058 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BD4048 = "CrvFence";
+SECTION_DEAD static char const* const stringBase_80BD4051 = "CaravanPiece.bmd";
+#pragma pop
+
 /* 80BD4064-80BD4068 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_crvhahen__stringBase0;
 
@@ -203,27 +210,27 @@ static asm void daObjCRVHAHEN_Delete(daObjCRVHAHEN_c* param_0) {
 /* ############################################################################################## */
 /* 80BD3FF0-80BD3FF4 000000 0004+00 5/5 0/0 0/0 .rodata          @3703 */
 SECTION_RODATA static f32 const lit_3703 = 0.5f;
-COMPILER_STRIP_GATE(80BD3FF0, &lit_3703);
+COMPILER_STRIP_GATE(0x80BD3FF0, &lit_3703);
 
 /* 80BD3FF4-80BD3FF8 000004 0004+00 0/1 0/0 0/0 .rodata          @3704 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3704 = 1.0f;
-COMPILER_STRIP_GATE(80BD3FF4, &lit_3704);
+COMPILER_STRIP_GATE(0x80BD3FF4, &lit_3704);
 #pragma pop
 
 /* 80BD3FF8-80BD3FFC 000008 0004+00 0/1 0/0 0/0 .rodata          @3705 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3705 = 5000.0f;
-COMPILER_STRIP_GATE(80BD3FF8, &lit_3705);
+COMPILER_STRIP_GATE(0x80BD3FF8, &lit_3705);
 #pragma pop
 
 /* 80BD3FFC-80BD4000 00000C 0004+00 0/1 0/0 0/0 .rodata          @3706 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3706 = 65536.0f;
-COMPILER_STRIP_GATE(80BD3FFC, &lit_3706);
+COMPILER_STRIP_GATE(0x80BD3FFC, &lit_3706);
 #pragma pop
 
 /* 80BD342C-80BD3628 00016C 01FC+00 0/0 0/0 2/2 .text
@@ -263,28 +270,28 @@ asm cXyz::~cXyz() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3773 = -9.0f;
-COMPILER_STRIP_GATE(80BD4000, &lit_3773);
+COMPILER_STRIP_GATE(0x80BD4000, &lit_3773);
 #pragma pop
 
 /* 80BD4004-80BD4008 000014 0004+00 0/1 0/0 0/0 .rodata          @3774 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3774 = 13.0f;
-COMPILER_STRIP_GATE(80BD4004, &lit_3774);
+COMPILER_STRIP_GATE(0x80BD4004, &lit_3774);
 #pragma pop
 
 /* 80BD4008-80BD400C 000018 0004+00 0/1 0/0 0/0 .rodata          @3775 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3775 = -3.0f / 5.0f;
-COMPILER_STRIP_GATE(80BD4008, &lit_3775);
+COMPILER_STRIP_GATE(0x80BD4008, &lit_3775);
 #pragma pop
 
 /* 80BD400C-80BD4010 00001C 0004+00 0/1 0/0 0/0 .rodata          @3776 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3776 = 4.0f / 5.0f;
-COMPILER_STRIP_GATE(80BD400C, &lit_3776);
+COMPILER_STRIP_GATE(0x80BD400C, &lit_3776);
 #pragma pop
 
 /* 80BD3720-80BD38DC 000460 01BC+00 1/1 0/0 0/0 .text            Hahen_Hakai__15daObjCRVHAHEN_cFii
@@ -313,7 +320,7 @@ SECTION_RODATA static u8 const lit_3836[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BD4010, &lit_3836);
+COMPILER_STRIP_GATE(0x80BD4010, &lit_3836);
 #pragma pop
 
 /* 80BD4018-80BD4020 000028 0008+00 0/1 0/0 0/0 .rodata          @3837 */
@@ -322,7 +329,7 @@ COMPILER_STRIP_GATE(80BD4010, &lit_3836);
 SECTION_RODATA static u8 const lit_3837[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BD4018, &lit_3837);
+COMPILER_STRIP_GATE(0x80BD4018, &lit_3837);
 #pragma pop
 
 /* 80BD4020-80BD4028 000030 0008+00 0/1 0/0 0/0 .rodata          @3838 */
@@ -331,7 +338,7 @@ COMPILER_STRIP_GATE(80BD4018, &lit_3837);
 SECTION_RODATA static u8 const lit_3838[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BD4020, &lit_3838);
+COMPILER_STRIP_GATE(0x80BD4020, &lit_3838);
 #pragma pop
 
 /* 80BD4028-80BD4030 000038 0008+00 0/1 0/0 0/0 .rodata          @3839 */
@@ -340,7 +347,7 @@ COMPILER_STRIP_GATE(80BD4020, &lit_3838);
 SECTION_RODATA static u8 const lit_3839[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BD4028, &lit_3839);
+COMPILER_STRIP_GATE(0x80BD4028, &lit_3839);
 #pragma pop
 
 /* 80BD38DC-80BD3A9C 00061C 01C0+00 1/1 0/0 0/0 .text            CheckCull__15daObjCRVHAHEN_cFv */
@@ -358,14 +365,14 @@ asm void daObjCRVHAHEN_c::CheckCull() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3852 = 608.0f;
-COMPILER_STRIP_GATE(80BD4030, &lit_3852);
+COMPILER_STRIP_GATE(0x80BD4030, &lit_3852);
 #pragma pop
 
 /* 80BD4034-80BD4038 000044 0004+00 0/1 0/0 0/0 .rodata          @3853 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3853 = 448.0f;
-COMPILER_STRIP_GATE(80BD4034, &lit_3853);
+COMPILER_STRIP_GATE(0x80BD4034, &lit_3853);
 #pragma pop
 
 /* 80BD3A9C-80BD3B20 0007DC 0084+00 1/1 0/0 0/0 .text checkViewArea__15daObjCRVHAHEN_cFP4cXyz */
@@ -434,28 +441,28 @@ static asm void daObjCRVHAHEN_Execute(daObjCRVHAHEN_c* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3993 = -1000.0f;
-COMPILER_STRIP_GATE(80BD4038, &lit_3993);
+COMPILER_STRIP_GATE(0x80BD4038, &lit_3993);
 #pragma pop
 
 /* 80BD403C-80BD4040 00004C 0004+00 0/1 0/0 0/0 .rodata          @3994 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3994 = -500.0f;
-COMPILER_STRIP_GATE(80BD403C, &lit_3994);
+COMPILER_STRIP_GATE(0x80BD403C, &lit_3994);
 #pragma pop
 
 /* 80BD4040-80BD4044 000050 0004+00 0/1 0/0 0/0 .rodata          @3995 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3995 = 1000.0f;
-COMPILER_STRIP_GATE(80BD4040, &lit_3995);
+COMPILER_STRIP_GATE(0x80BD4040, &lit_3995);
 #pragma pop
 
 /* 80BD4044-80BD4048 000054 0004+00 0/1 0/0 0/0 .rodata          @3996 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3996 = 500.0f;
-COMPILER_STRIP_GATE(80BD4044, &lit_3996);
+COMPILER_STRIP_GATE(0x80BD4044, &lit_3996);
 #pragma pop
 
 /* 80BD3DBC-80BD3F9C 000AFC 01E0+00 1/1 0/0 0/0 .text            create__15daObjCRVHAHEN_cFv */
@@ -517,10 +524,4 @@ SECTION_DATA extern void* g_profile_Obj_CRVHAHEN[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 80BD4048-80BD4062 000058 001A+00 4/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BD4048 = "CrvFence";
-SECTION_DEAD static char const* const stringBase_80BD4051 = "CaravanPiece.bmd";
-#pragma pop
+/* 80BD4048-80BD4048 000058 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

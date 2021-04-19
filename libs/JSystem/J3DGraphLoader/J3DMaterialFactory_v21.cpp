@@ -96,7 +96,7 @@ extern "C" void newZMode__22J3DMaterialFactory_v21CFi();
 extern "C" void newZCompLoc__22J3DMaterialFactory_v21CFi();
 extern "C" void newDither__22J3DMaterialFactory_v21CFi();
 extern "C" void newNBTScale__22J3DMaterialFactory_v21CFi();
-extern "C" void func_80334118(void const*, void const*);
+extern "C" void func_80334118(void* _this, void const*, void const*);
 
 //
 // External References:
@@ -105,11 +105,11 @@ extern "C" void func_80334118(void const*, void const*);
 extern "C" void __ct__11J3DTevStageFv();
 extern "C" void __ct__11J3DTevStageFRC15J3DTevStageInfo();
 extern "C" void* __nw__FUl();
-extern "C" void func_802F41E8(void const*, void const*);
-extern "C" void func_802F4260(void const*, void const*);
-extern "C" void func_802F4278(void const*, void const*);
-extern "C" void func_802F4290(void const*, void const*);
-extern "C" void func_802F42C0(void const*, void const*);
+extern "C" void func_802F41E8(void* _this, void const*, void const*);
+extern "C" void func_802F4260(void* _this, void const*, void const*);
+extern "C" void func_802F4278(void* _this, void const*, void const*);
+extern "C" void func_802F4290(void* _this, void const*, void const*);
+extern "C" void func_802F42C0(void* _this, void const*, void const*);
 extern "C" void createColorBlock__11J3DMaterialFUl();
 extern "C" void createTexGenBlock__11J3DMaterialFUl();
 extern "C" void createTevBlock__11J3DMaterialFi();
@@ -118,19 +118,19 @@ extern "C" void createPEBlock__11J3DMaterialFUlUl();
 extern "C" void initialize__11J3DMaterialFv();
 extern "C" void __as__13J3DTexMtxInfoFRC13J3DTexMtxInfo();
 extern "C" void __as__10J3DFogInfoFRC10J3DFogInfo();
-extern "C" void func_80332C24(void const*, void const*);
-extern "C" void func_80332C3C(void const*, void const*);
-extern "C" void func_80332C54(void const*, void const*);
-extern "C" void func_80332C6C(void const*, void const*);
-extern "C" void func_80332C84(void const*, void const*);
-extern "C" void func_80332C9C(void const*, void const*);
-extern "C" void func_80332CB4(void const*, void const*);
-extern "C" void func_80332CCC(void const*, void const*);
-extern "C" void func_80332CE4(void const*, void const*);
-extern "C" void func_80332CFC(void const*, void const*);
-extern "C" void func_80332D14(void const*, void const*);
-extern "C" void func_80332D2C(void const*, void const*);
-extern "C" void func_80332D5C(void const*, void const*);
+extern "C" void func_80332C24(void* _this, void const*, void const*);
+extern "C" void func_80332C3C(void* _this, void const*, void const*);
+extern "C" void func_80332C54(void* _this, void const*, void const*);
+extern "C" void func_80332C6C(void* _this, void const*, void const*);
+extern "C" void func_80332C84(void* _this, void const*, void const*);
+extern "C" void func_80332C9C(void* _this, void const*, void const*);
+extern "C" void func_80332CB4(void* _this, void const*, void const*);
+extern "C" void func_80332CCC(void* _this, void const*, void const*);
+extern "C" void func_80332CE4(void* _this, void const*, void const*);
+extern "C" void func_80332CFC(void* _this, void const*, void const*);
+extern "C" void func_80332D14(void* _this, void const*, void const*);
+extern "C" void func_80332D2C(void* _this, void const*, void const*);
+extern "C" void func_80332D5C(void* _this, void const*, void const*);
 extern "C" void _savegpr_19();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_19();
@@ -438,7 +438,7 @@ asm void J3DMaterialFactory_v21::newNBTScale(int param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80334118(void const* param_0, void const* param_1) {
+extern "C" asm void func_80334118(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DMaterialFactory_v21/func_80334118.s"
 }

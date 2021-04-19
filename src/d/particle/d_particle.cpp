@@ -68,22 +68,13 @@ struct dPa_wbPcallBack_c {
     /* 8004FECC */ ~dPa_wbPcallBack_c();
 };
 
-struct dKy_tevstr_c {};
-
-struct _GXColor {};
-
 struct JPAParticleCallBack {
     /* 800183D4 */ void execute(JPABaseEmitter*, JPABaseParticle*);
     /* 800183D8 */ void draw(JPABaseEmitter*, JPABaseParticle*);
     /* 8027EFA4 */ ~JPAParticleCallBack();
 };
 
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
+struct JPADrawInfo {};
 
 struct JPAEmitterCallBack {
     /* 80050368 */ void execute(JPABaseEmitter*);
@@ -102,7 +93,12 @@ struct JPAResourceManager {
     /* 80273FCC */ void getResUserWork(u16) const;
 };
 
-struct JPADrawInfo {};
+struct JGeometry {
+    template <typename A1>
+    struct TVec3 {};
+    /* TVec3<f32> */
+    struct TVec3__template0 {};
+};
 
 struct JPAEmitterManager {
     /* 8027DCA0 */ JPAEmitterManager(u32, u32, JKRHeap*, u8, u8);
@@ -114,6 +110,10 @@ struct JPAEmitterManager {
     /* 8027E344 */ void entryResourceManager(JPAResourceManager*, u8);
     /* 8027E354 */ void clearResourceManager(u8);
 };
+
+struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct dPa_simpleEcallBack {
     /* 8004ADF4 */ dPa_simpleEcallBack();
@@ -1314,7 +1314,7 @@ static asm void dPa_setWindPower(JPABaseParticle* param_0) {
 SECTION_RODATA static u8 const lit_4065[12] = {
     0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8037A108, &lit_4065);
+COMPILER_STRIP_GATE(0x8037A108, &lit_4065);
 
 /* 80451F5C-80451F60 00055C 0004+00 3/3 0/0 0/0 .sdata2          @4090 */
 SECTION_SDATA2 static f32 lit_4090 = -0.0054931640625f;
@@ -1959,6 +1959,13 @@ asm void dPa_control_c::getRM_ID(u16 param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8037A12C-8037A12C 00678C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A12C = "dummy";
+#pragma pop
+
 /* 8004BB78-8004BCDC 0464B8 0164+00 0/0 1/1 0/0 .text            createCommon__13dPa_control_cFPCv
  */
 #pragma push
@@ -1982,6 +1989,12 @@ asm void dPa_control_c::createRoomScene() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037A12C-8037A12C 00678C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A132 = "/res/Particle/Pscene%03d.jpc";
+#pragma pop
+
 /* 804248A0-804248AC 0515C0 000C+00 0/1 0/0 0/0 .bss             @4742 */
 #pragma push
 #pragma force_active on
@@ -2197,6 +2210,18 @@ asm void dPa_control_c::setPoly(u16 param_0, cBgS_PolyInfo& param_1, cXyz const*
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8037A12C-8037A12C 00678C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A14F =
+    ""
+    "\x1B"
+    "[43;30m１エミッター登録数オーバー！！\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8037A177 = "";
+#pragma pop
+
 /* 8004D128-8004D1B8 047A68 0090+00 2/2 0/0 0/0 .text            newSimple__13dPa_control_cFUsUcPUl
  */
 #pragma push
@@ -2381,7 +2406,7 @@ void dPa_gen_d_light8PcallBack::execute(JPABaseEmitter* param_0, JPABaseParticle
 SECTION_RODATA static u8 const lit_5691[12] = {
     0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8037A114, &lit_5691);
+COMPILER_STRIP_GATE(0x8037A114, &lit_5691);
 
 /* 80451FD8-80451FDC 0005D8 0004+00 3/3 0/0 0/0 .sdata2          @6075 */
 SECTION_SDATA2 static f32 lit_6075 = 32.0f;
@@ -2432,7 +2457,7 @@ asm void dPa_gen_b_light8PcallBack::draw(JPABaseEmitter* param_0, JPABaseParticl
 SECTION_RODATA static u8 const lit_6363[12] = {
     0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8037A120, &lit_6363);
+COMPILER_STRIP_GATE(0x8037A120, &lit_6363);
 
 /* 8004ED44-8004F6B8 049684 0974+00 1/0 0/0 0/0 .text
  * draw__25dPa_gen_d_light8PcallBackFP14JPABaseEmitterP15JPABaseParticle */
@@ -2840,19 +2865,7 @@ asm void __sinit_d_particle_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80050480 = (void*)__sinit_d_particle_cpp;
+REGISTER_CTORS(0x80050480, __sinit_d_particle_cpp);
 #pragma pop
 
-/* 8037A12C-8037A178 00678C 004B+01 4/4 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8037A12C = "dummy";
-SECTION_DEAD static char const* const stringBase_8037A132 = "/res/Particle/Pscene%03d.jpc";
-SECTION_DEAD static char const* const stringBase_8037A14F =
-    ""
-    "\x1B"
-    "[43;30m１エミッター登録数オーバー！！\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037A177 = "";
-#pragma pop
+/* 8037A12C-8037A12C 00678C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

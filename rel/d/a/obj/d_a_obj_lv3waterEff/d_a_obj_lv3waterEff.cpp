@@ -24,16 +24,16 @@ struct daObjWaterEff_c {
 
 struct dPa_levelEcallBack {};
 
+struct dKy_tevstr_c {};
+
+struct csXyz {};
+
+struct _GXColor {};
+
 struct cXyz {
     /* 80C5C670 */ ~cXyz();
     /* 80C5C6AC */ cXyz();
 };
-
-struct dKy_tevstr_c {};
-
-struct _GXColor {};
-
-struct csXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -41,9 +41,9 @@ struct dPa_control_c {
                             cXyz const*, f32);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -95,52 +95,52 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 SECTION_RODATA static u8 const l_eff_id[8] = {
     0x86, 0xD2, 0x86, 0xD3, 0x86, 0xD4, 0x86, 0xD5,
 };
-COMPILER_STRIP_GATE(80C5C878, &l_eff_id);
+COMPILER_STRIP_GATE(0x80C5C878, &l_eff_id);
 
 /* 80C5C880-80C5C884 000008 0004+00 1/2 0/0 0/0 .rodata          @3637 */
 SECTION_RODATA static f32 const lit_3637 = 1.0f;
-COMPILER_STRIP_GATE(80C5C880, &lit_3637);
+COMPILER_STRIP_GATE(0x80C5C880, &lit_3637);
 
 /* 80C5C884-80C5C888 00000C 0004+00 0/1 0/0 0/0 .rodata          @3638 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3638 = 14420.0f;
-COMPILER_STRIP_GATE(80C5C884, &lit_3638);
+COMPILER_STRIP_GATE(0x80C5C884, &lit_3638);
 #pragma pop
 
 /* 80C5C888-80C5C88C 000010 0004+00 0/1 0/0 0/0 .rodata          @3639 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3639 = -1100.0f;
-COMPILER_STRIP_GATE(80C5C888, &lit_3639);
+COMPILER_STRIP_GATE(0x80C5C888, &lit_3639);
 #pragma pop
 
 /* 80C5C88C-80C5C890 000014 0004+00 0/1 0/0 0/0 .rodata          @3640 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3640 = -4950.0f;
-COMPILER_STRIP_GATE(80C5C88C, &lit_3640);
+COMPILER_STRIP_GATE(0x80C5C88C, &lit_3640);
 #pragma pop
 
 /* 80C5C890-80C5C894 000018 0004+00 0/1 0/0 0/0 .rodata          @3641 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3641 = 12585.0f;
-COMPILER_STRIP_GATE(80C5C890, &lit_3641);
+COMPILER_STRIP_GATE(0x80C5C890, &lit_3641);
 #pragma pop
 
 /* 80C5C894-80C5C898 00001C 0004+00 0/1 0/0 0/0 .rodata          @3642 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3642 = -550.0f;
-COMPILER_STRIP_GATE(80C5C894, &lit_3642);
+COMPILER_STRIP_GATE(0x80C5C894, &lit_3642);
 #pragma pop
 
 /* 80C5C898-80C5C89C 000020 0004+00 0/1 0/0 0/0 .rodata          @3643 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3643 = -2390.0f;
-COMPILER_STRIP_GATE(80C5C898, &lit_3643);
+COMPILER_STRIP_GATE(0x80C5C898, &lit_3643);
 #pragma pop
 
 /* 80C5C4F8-80C5C5DC 000078 00E4+00 1/1 0/0 0/0 .text            Create__15daObjWaterEff_cFv */
@@ -181,7 +181,7 @@ cXyz::cXyz() {
 /* ############################################################################################## */
 /* 80C5C89C-80C5C8A0 000024 0004+00 1/1 0/0 0/0 .rodata          @3710 */
 SECTION_RODATA static f32 const lit_3710 = -1.0f;
-COMPILER_STRIP_GATE(80C5C89C, &lit_3710);
+COMPILER_STRIP_GATE(0x80C5C89C, &lit_3710);
 
 /* 80C5C6B0-80C5C7B8 000230 0108+00 1/1 0/0 0/0 .text            execute__15daObjWaterEff_cFv */
 #pragma push

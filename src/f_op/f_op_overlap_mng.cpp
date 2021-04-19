@@ -4,9 +4,9 @@
 //
 
 #include "f_op/f_op_overlap_mng.h"
+#include "SSystem/SComponent/c_request.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "SSystem/SComponent/c_request.h"
 #include "f_op/f_op_overlap_req.h"
 #include "f_op/f_op_scene_pause.h"
 #include "f_pc/f_pc_executor.h"
@@ -108,8 +108,9 @@ int fopOvlpM_IsDoingReq(void) {
 
 /* 8001E5D0-8001E604 018F10 0034+00 0/0 1/1 0/0 .text            fopOvlpM_ClearOfReq__Fv */
 int fopOvlpM_ClearOfReq(void) {
-    return l_fopOvlpM_overlap[0] ? fopOvlpReq_OverlapClr((overlap_request_class*)l_fopOvlpM_overlap[0]) :
-                                0;
+    return l_fopOvlpM_overlap[0] ?
+               fopOvlpReq_OverlapClr((overlap_request_class*)l_fopOvlpM_overlap[0]) :
+               0;
 }
 
 /* ############################################################################################## */

@@ -148,9 +148,9 @@ struct Z2SeqMgr {
     /* 802AFEDC */ void bgmStreamStop(u32);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -216,7 +216,7 @@ extern "C" static void daObjTobyHouse_create1st__FP16daObjTobyHouse_c();
 extern "C" static void daObjTobyHouse_MoveBGDelete__FP16daObjTobyHouse_c();
 extern "C" static void daObjTobyHouse_MoveBGExecute__FP16daObjTobyHouse_c();
 extern "C" static void daObjTobyHouse_MoveBGDraw__FP16daObjTobyHouse_c();
-extern "C" void func_80D176E4(u8*);
+extern "C" void func_80D176E4(void* _this, u8*);
 extern "C" void __dt__4cXyzFv();
 extern "C" extern char const* const d_a_obj_tobyhouse__stringBase0;
 
@@ -327,13 +327,13 @@ extern "C" void __register_global_object();
 SECTION_RODATA static u8 const l_bmd[8] = {
     0x00, 0x00, 0x00, 0x0B, 0x00, 0x00, 0x00, 0x05,
 };
-COMPILER_STRIP_GATE(80D1774C, &l_bmd);
+COMPILER_STRIP_GATE(0x80D1774C, &l_bmd);
 
 /* 80D17754-80D1775C 000008 0008+00 1/1 0/0 0/0 .rodata          l_dzb */
 SECTION_RODATA static u8 const l_dzb[8] = {
     0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x08,
 };
-COMPILER_STRIP_GATE(80D17754, &l_dzb);
+COMPILER_STRIP_GATE(0x80D17754, &l_dzb);
 
 /* 80D1775C-80D17764 000010 0008+00 0/1 0/0 0/0 .rodata          l_LodBmd */
 #pragma push
@@ -341,7 +341,7 @@ COMPILER_STRIP_GATE(80D17754, &l_dzb);
 SECTION_RODATA static u8 const l_LodBmd[8] = {
     0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x04,
 };
-COMPILER_STRIP_GATE(80D1775C, &l_LodBmd);
+COMPILER_STRIP_GATE(0x80D1775C, &l_LodBmd);
 #pragma pop
 
 /* 80D17764-80D17770 000018 000C+00 0/1 0/0 0/0 .rodata          l_bck */
@@ -350,7 +350,7 @@ COMPILER_STRIP_GATE(80D1775C, &l_LodBmd);
 SECTION_RODATA static u8 const l_bck[12] = {
     0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x08,
 };
-COMPILER_STRIP_GATE(80D17764, &l_bck);
+COMPILER_STRIP_GATE(0x80D17764, &l_bck);
 #pragma pop
 
 /* 80D17770-80D17774 000024 0004+00 1/4 0/0 0/0 .rodata          @4046 */
@@ -360,7 +360,7 @@ SECTION_RODATA static u8 const lit_4046[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D17770, &lit_4046);
+COMPILER_STRIP_GATE(0x80D17770, &lit_4046);
 
 /* 80D17774-80D1777C 000028 0008+00 0/2 0/0 0/0 .rodata          @4047 */
 #pragma push
@@ -368,7 +368,7 @@ COMPILER_STRIP_GATE(80D17770, &lit_4046);
 SECTION_RODATA static u8 const lit_4047[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D17774, &lit_4047);
+COMPILER_STRIP_GATE(0x80D17774, &lit_4047);
 #pragma pop
 
 /* 80D1777C-80D17784 000030 0008+00 0/2 0/0 0/0 .rodata          @4048 */
@@ -377,7 +377,7 @@ COMPILER_STRIP_GATE(80D17774, &lit_4047);
 SECTION_RODATA static u8 const lit_4048[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D1777C, &lit_4048);
+COMPILER_STRIP_GATE(0x80D1777C, &lit_4048);
 #pragma pop
 
 /* 80D17784-80D1778C 000038 0008+00 0/2 0/0 0/0 .rodata          @4049 */
@@ -386,14 +386,14 @@ COMPILER_STRIP_GATE(80D1777C, &lit_4048);
 SECTION_RODATA static u8 const lit_4049[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D17784, &lit_4049);
+COMPILER_STRIP_GATE(0x80D17784, &lit_4049);
 #pragma pop
 
 /* 80D1778C-80D17790 000040 0004+00 0/1 0/0 0/0 .rodata          @4050 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4050 = 1000.0f;
-COMPILER_STRIP_GATE(80D1778C, &lit_4050);
+COMPILER_STRIP_GATE(0x80D1778C, &lit_4050);
 #pragma pop
 
 /* 80D15AAC-80D15DA8 0000EC 02FC+00 1/1 0/0 0/0 .text            s_b_sub__FPvPv */
@@ -450,11 +450,23 @@ asm void daObjTobyHouse_c::setBaseMtx() {
 /* ############################################################################################## */
 /* 80D17790-80D17794 000044 0004+00 1/1 0/0 0/0 .rodata          @4193 */
 SECTION_RODATA static f32 const lit_4193 = 10.0f;
-COMPILER_STRIP_GATE(80D17790, &lit_4193);
+COMPILER_STRIP_GATE(0x80D17790, &lit_4193);
 
 /* 80D17794-80D17798 000048 0004+00 1/1 0/0 0/0 .rodata          @4194 */
 SECTION_RODATA static f32 const lit_4194 = 200.0f;
-COMPILER_STRIP_GATE(80D17794, &lit_4194);
+COMPILER_STRIP_GATE(0x80D17794, &lit_4194);
+
+/* 80D177C0-80D177C0 000074 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D177C0 = "M_THouse";
+SECTION_DEAD static char const* const stringBase_80D177C9 = "U_THouse";
+SECTION_DEAD static char const* const stringBase_80D177D2 = "thouse";
+SECTION_DEAD static char const* const stringBase_80D177D9 = "TOBY_HOUSE_FIRE_TO_RAKKA";
+SECTION_DEAD static char const* const stringBase_80D177F2 = "TOBY_HOUSE_FIRE_TO_DESERT";
+SECTION_DEAD static char const* const stringBase_80D1780C = "Birl_P";
+SECTION_DEAD static char const* const stringBase_80D17813 = "Birl_Cannon";
+#pragma pop
 
 /* 80D17858-80D17864 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -504,7 +516,19 @@ asm void daObjTobyHouse_c::Create() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4251 = 1.0f;
-COMPILER_STRIP_GATE(80D17798, &lit_4251);
+COMPILER_STRIP_GATE(0x80D17798, &lit_4251);
+#pragma pop
+
+/* 80D177C0-80D177C0 000074 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D1781F = "WAIT";
+SECTION_DEAD static char const* const stringBase_80D17824 = "CLOSE";
+SECTION_DEAD static char const* const stringBase_80D1782A = "CHANGE";
+SECTION_DEAD static char const* const stringBase_80D17831 = "HLIGHT";
+SECTION_DEAD static char const* const stringBase_80D17838 = "ROTATE";
+SECTION_DEAD static char const* const stringBase_80D1783F = "SCENE_CHG";
+SECTION_DEAD static char const* const stringBase_80D17849 = "EFF_LINE";
 #pragma pop
 
 /* 80D1788C-80D17898 -00001 000C+00 0/1 0/0 0/0 .data            @4292 */
@@ -649,7 +673,7 @@ asm void daObjTobyHouse_c::create1st() {
 /* ############################################################################################## */
 /* 80D1779C-80D177A0 000050 0004+00 1/1 0/0 0/0 .rodata          @4287 */
 SECTION_RODATA static f32 const lit_4287 = 20.0f;
-COMPILER_STRIP_GATE(80D1779C, &lit_4287);
+COMPILER_STRIP_GATE(0x80D1779C, &lit_4287);
 
 /* 80D164C0-80D16560 000B00 00A0+00 1/0 0/0 0/0 .text Execute__16daObjTobyHouse_cFPPA3_A4_f */
 #pragma push
@@ -805,28 +829,34 @@ void daObjTobyHouse_c::actionDead() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4769 = 8.0f;
-COMPILER_STRIP_GATE(80D177A0, &lit_4769);
+COMPILER_STRIP_GATE(0x80D177A0, &lit_4769);
 #pragma pop
 
 /* 80D177A4-80D177A8 000058 0004+00 0/1 0/0 0/0 .rodata          @4770 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4770 = -600.0f;
-COMPILER_STRIP_GATE(80D177A4, &lit_4770);
+COMPILER_STRIP_GATE(0x80D177A4, &lit_4770);
 #pragma pop
 
 /* 80D177A8-80D177AC 00005C 0004+00 0/1 0/0 0/0 .rodata          @4771 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4771 = 70.0f;
-COMPILER_STRIP_GATE(80D177A8, &lit_4771);
+COMPILER_STRIP_GATE(0x80D177A8, &lit_4771);
 #pragma pop
 
 /* 80D177AC-80D177B0 000060 0004+00 0/1 0/0 0/0 .rodata          @4772 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4772 = 380.0f;
-COMPILER_STRIP_GATE(80D177AC, &lit_4772);
+COMPILER_STRIP_GATE(0x80D177AC, &lit_4772);
+#pragma pop
+
+/* 80D177C0-80D177C0 000074 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D17852 = "Timer";
 #pragma pop
 
 /* 80D17A00-80D17A10 000048 000C+04 0/1 0/0 0/0 .bss             @4351 */
@@ -877,7 +907,7 @@ asm void daObjTobyHouse_c::Draw() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4773 = -1.0f;
-COMPILER_STRIP_GATE(80D177B0, &lit_4773);
+COMPILER_STRIP_GATE(0x80D177B0, &lit_4773);
 #pragma pop
 
 /* 80D177B4-80D177BC 000068 0008+00 0/0 0/0 0/0 .rodata          @4776 */
@@ -886,14 +916,14 @@ COMPILER_STRIP_GATE(80D177B0, &lit_4773);
 SECTION_RODATA static u8 const lit_4776[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D177B4, &lit_4776);
+COMPILER_STRIP_GATE(0x80D177B4, &lit_4776);
 #pragma pop
 
 /* 80D177BC-80D177C0 000070 0004+00 0/1 0/0 0/0 .rodata          @4905 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4905 = 20000.0f;
-COMPILER_STRIP_GATE(80D177BC, &lit_4905);
+COMPILER_STRIP_GATE(0x80D177BC, &lit_4905);
 #pragma pop
 
 /* 80D17374-80D174F8 0019B4 0184+00 1/1 0/0 0/0 .text            checkLODModel__16daObjTobyHouse_cFv
@@ -980,7 +1010,7 @@ static asm void daObjTobyHouse_MoveBGDraw(daObjTobyHouse_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80D176E4(u8* param_0) {
+extern "C" asm void func_80D176E4(void* _this, u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_tobyhouse/d_a_obj_tobyhouse/func_80D176E4.s"
 }
@@ -1168,23 +1198,4 @@ static u8 data_80D17A78[4];
 static u8 data_80D17A7C[4];
 #pragma pop
 
-/* 80D177C0-80D17858 000074 0098+00 6/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D177C0 = "M_THouse";
-SECTION_DEAD static char const* const stringBase_80D177C9 = "U_THouse";
-SECTION_DEAD static char const* const stringBase_80D177D2 = "thouse";
-SECTION_DEAD static char const* const stringBase_80D177D9 = "TOBY_HOUSE_FIRE_TO_RAKKA";
-SECTION_DEAD static char const* const stringBase_80D177F2 = "TOBY_HOUSE_FIRE_TO_DESERT";
-SECTION_DEAD static char const* const stringBase_80D1780C = "Birl_P";
-SECTION_DEAD static char const* const stringBase_80D17813 = "Birl_Cannon";
-SECTION_DEAD static char const* const stringBase_80D1781F = "WAIT";
-SECTION_DEAD static char const* const stringBase_80D17824 = "CLOSE";
-SECTION_DEAD static char const* const stringBase_80D1782A = "CHANGE";
-SECTION_DEAD static char const* const stringBase_80D17831 = "HLIGHT";
-SECTION_DEAD static char const* const stringBase_80D17838 = "ROTATE";
-SECTION_DEAD static char const* const stringBase_80D1783F = "SCENE_CHG";
-SECTION_DEAD static char const* const stringBase_80D17849 = "EFF_LINE";
-SECTION_DEAD static char const* const stringBase_80D17852 = "Timer";
-#pragma pop
+/* 80D177C0-80D177C0 000074 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -68,6 +68,15 @@ static asm void dKyeff_Draw(dKyeff_c* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80394F38-80394F38 021598 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394F38 = "Name";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80394F3D = "\0\0";
+#pragma pop
+
 /* 801ADD5C-801ADDB4 1A869C 0058+00 1/1 0/0 0/0 .text            execute__8dKyeff_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -158,11 +167,4 @@ SECTION_DATA extern void* g_profile_KYEFF[10 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80394F38-80394F40 021598 0005+03 2/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80394F38 = "Name";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80394F3D = "\0\0";
-#pragma pop
+/* 80394F38-80394F38 021598 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

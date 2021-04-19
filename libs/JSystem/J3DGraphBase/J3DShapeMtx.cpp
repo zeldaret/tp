@@ -938,5 +938,5 @@ asm void __sinit_J3DShapeMtx_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_803147EC = (void*)__sinit_J3DShapeMtx_cpp;
+REGISTER_CTORS(0x803147EC, __sinit_J3DShapeMtx_cpp);
 #pragma pop

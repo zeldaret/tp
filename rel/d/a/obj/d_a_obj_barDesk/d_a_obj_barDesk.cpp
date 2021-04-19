@@ -74,9 +74,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -149,9 +149,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -425,6 +425,13 @@ asm void daBarDesk_c::setBaseMtx() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80BA9BB4-80BA9BB4 000044 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BA9BB4 = "KHdesk";
+#pragma pop
+
 /* 80BA9288-80BA92F4 0001E8 006C+00 1/0 0/0 0/0 .text            CreateHeap__11daBarDesk_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -522,11 +529,11 @@ SECTION_RODATA u8 const daBarDesk_c::mCcDObjInfo[48] = {
     0xD8, 0xFA, 0xFD, 0xBF, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BA9B70, &daBarDesk_c::mCcDObjInfo);
+COMPILER_STRIP_GATE(0x80BA9B70, &daBarDesk_c::mCcDObjInfo);
 
 /* 80BA9BA0-80BA9BA4 000030 0004+00 1/1 0/0 0/0 .rodata          @3839 */
 SECTION_RODATA static f32 const lit_3839 = 90.0f;
-COMPILER_STRIP_GATE(80BA9BA0, &lit_3839);
+COMPILER_STRIP_GATE(0x80BA9BA0, &lit_3839);
 
 /* 80BA968C-80BA973C 0005EC 00B0+00 1/0 0/0 0/0 .text            modeWait__11daBarDesk_cFv */
 #pragma push
@@ -541,13 +548,13 @@ asm void daBarDesk_c::modeWait() {
 /* ############################################################################################## */
 /* 80BA9BA4-80BA9BA8 000034 0004+00 1/2 0/0 0/0 .rodata          @3861 */
 SECTION_RODATA static f32 const lit_3861 = 1.0f;
-COMPILER_STRIP_GATE(80BA9BA4, &lit_3861);
+COMPILER_STRIP_GATE(0x80BA9BA4, &lit_3861);
 
 /* 80BA9BA8-80BA9BAC 000038 0004+00 0/1 0/0 0/0 .rodata          @3862 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3862 = -1.0f;
-COMPILER_STRIP_GATE(80BA9BA8, &lit_3862);
+COMPILER_STRIP_GATE(0x80BA9BA8, &lit_3862);
 #pragma pop
 
 /* 80BA9BAC-80BA9BB0 00003C 0004+00 0/1 0/0 0/0 .rodata          @3863 */
@@ -559,7 +566,7 @@ SECTION_RODATA static u8 const lit_3863[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BA9BAC, &lit_3863);
+COMPILER_STRIP_GATE(0x80BA9BAC, &lit_3863);
 #pragma pop
 
 /* 80BA973C-80BA9824 00069C 00E8+00 1/1 0/0 0/0 .text            init_modeBreak__11daBarDesk_cFv */
@@ -590,7 +597,7 @@ SECTION_RODATA static u8 const particle_id[4] = {
     0x85,
     0xF5,
 };
-COMPILER_STRIP_GATE(80BA9BB0, &particle_id);
+COMPILER_STRIP_GATE(0x80BA9BB0, &particle_id);
 
 /* 80BA9844-80BA98E8 0007A4 00A4+00 1/1 0/0 0/0 .text            setBreakEffect__11daBarDesk_cFv */
 #pragma push
@@ -696,12 +703,7 @@ asm void __sinit_d_a_obj_barDesk_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80BA9AEC = (void*)__sinit_d_a_obj_barDesk_cpp;
+REGISTER_CTORS(0x80BA9AEC, __sinit_d_a_obj_barDesk_cpp);
 #pragma pop
 
-/* 80BA9BB4-80BA9BBB 000044 0007+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BA9BB4 = "KHdesk";
-#pragma pop
+/* 80BA9BB4-80BA9BB4 000044 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -62,9 +62,9 @@ struct dEvLib_callback_c {
     /* 80C5DAC0 */ bool eventStart();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -358,11 +358,11 @@ asm void dalv4CandleTag_c::modeWatch() {
 /* ############################################################################################## */
 /* 80C5DB5C-80C5DB60 000000 0004+00 1/1 0/0 0/0 .rodata          @3727 */
 SECTION_RODATA static f32 const lit_3727 = 1.0f;
-COMPILER_STRIP_GATE(80C5DB5C, &lit_3727);
+COMPILER_STRIP_GATE(0x80C5DB5C, &lit_3727);
 
 /* 80C5DB60-80C5DB64 000004 0004+00 1/1 0/0 0/0 .rodata          @3728 */
 SECTION_RODATA static f32 const lit_3728 = -1.0f;
-COMPILER_STRIP_GATE(80C5DB60, &lit_3728);
+COMPILER_STRIP_GATE(0x80C5DB60, &lit_3728);
 
 /* 80C5D78C-80C5D814 00042C 0088+00 1/1 0/0 0/0 .text            init_modeNG__16dalv4CandleTag_cFv
  */
@@ -505,7 +505,7 @@ asm void __sinit_d_a_obj_lv4CandleTag_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80C5DA1C = (void*)__sinit_d_a_obj_lv4CandleTag_cpp;
+REGISTER_CTORS(0x80C5DA1C, __sinit_d_a_obj_lv4CandleTag_cpp);
 #pragma pop
 
 /* 80C5DA58-80C5DA60 0006F8 0008+00 1/0 0/0 0/0 .text @1392@eventStart__16dalv4CandleTag_cFv */

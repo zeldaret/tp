@@ -83,9 +83,9 @@ struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
 };
 
-struct dJntColData_c {};
-
 struct J3DModel {};
+
+struct dJntColData_c {};
 
 struct dJntCol_c {
     /* 80035C8C */ dJntCol_c();
@@ -196,9 +196,9 @@ struct cBgS_GndChk {
 
 struct _GXTexObj {};
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -354,6 +354,13 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80BBC518-80BBC518 0000A8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BBC518 = "";
+SECTION_DEAD static char const* const stringBase_80BBC519 = "H_BouMato";
+#pragma pop
+
 /* 80BBC52C-80BBC570 000000 0044+00 2/2 0/0 0/0 .data            l_ccDCyl */
 SECTION_DATA static u8 l_ccDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -489,7 +496,7 @@ SECTION_RODATA u8 const daObj_BouMato_Param_c::m[28] = {
     0x00, 0x00, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xC8,
     0x00, 0x00, 0x43, 0x96, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BBC470, &daObj_BouMato_Param_c::m);
+COMPILER_STRIP_GATE(0x80BBC470, &daObj_BouMato_Param_c::m);
 
 /* 80BBC48C-80BBC4BC 00001C 0030+00 1/1 0/0 0/0 .rodata          l_ccDObjData */
 SECTION_RODATA static u8 const l_ccDObjData[48] = {
@@ -497,34 +504,34 @@ SECTION_RODATA static u8 const l_ccDObjData[48] = {
     0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BBC48C, &l_ccDObjData);
+COMPILER_STRIP_GATE(0x80BBC48C, &l_ccDObjData);
 
 /* 80BBC4BC-80BBC4C0 00004C 0004+00 0/1 0/0 0/0 .rodata          @3956 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3956 = -300.0f;
-COMPILER_STRIP_GATE(80BBC4BC, &lit_3956);
+COMPILER_STRIP_GATE(0x80BBC4BC, &lit_3956);
 #pragma pop
 
 /* 80BBC4C0-80BBC4C4 000050 0004+00 0/1 0/0 0/0 .rodata          @3957 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3957 = -50.0f;
-COMPILER_STRIP_GATE(80BBC4C0, &lit_3957);
+COMPILER_STRIP_GATE(0x80BBC4C0, &lit_3957);
 #pragma pop
 
 /* 80BBC4C4-80BBC4C8 000054 0004+00 0/1 0/0 0/0 .rodata          @3958 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3958 = 300.0f;
-COMPILER_STRIP_GATE(80BBC4C4, &lit_3958);
+COMPILER_STRIP_GATE(0x80BBC4C4, &lit_3958);
 #pragma pop
 
 /* 80BBC4C8-80BBC4CC 000058 0004+00 0/1 0/0 0/0 .rodata          @3959 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3959 = 450.0f;
-COMPILER_STRIP_GATE(80BBC4C8, &lit_3959);
+COMPILER_STRIP_GATE(0x80BBC4C8, &lit_3959);
 #pragma pop
 
 /* 80BBB230-80BBB558 000330 0328+00 1/1 0/0 0/0 .text            create__15daObj_BouMato_cFv */
@@ -627,21 +634,21 @@ asm void daObj_BouMato_c::Delete() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4241 = 1.0f;
-COMPILER_STRIP_GATE(80BBC4CC, &lit_4241);
+COMPILER_STRIP_GATE(0x80BBC4CC, &lit_4241);
 #pragma pop
 
 /* 80BBC4D0-80BBC4D4 000060 0004+00 0/1 0/0 0/0 .rodata          @4242 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4242 = -1.0f;
-COMPILER_STRIP_GATE(80BBC4D0, &lit_4242);
+COMPILER_STRIP_GATE(0x80BBC4D0, &lit_4242);
 #pragma pop
 
 /* 80BBC4D4-80BBC4D8 000064 0004+00 0/2 0/0 0/0 .rodata          @4243 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4243 = -1000000000.0f;
-COMPILER_STRIP_GATE(80BBC4D4, &lit_4243);
+COMPILER_STRIP_GATE(0x80BBC4D4, &lit_4243);
 #pragma pop
 
 /* 80BBC4D8-80BBC4DC 000068 0004+00 0/1 0/0 0/0 .rodata          @4244 */
@@ -653,49 +660,55 @@ SECTION_RODATA static u8 const lit_4244[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BBC4D8, &lit_4244);
+COMPILER_STRIP_GATE(0x80BBC4D8, &lit_4244);
 #pragma pop
 
 /* 80BBC4DC-80BBC4E0 00006C 0004+00 0/1 0/0 0/0 .rodata          @4245 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4245 = 3.0f / 40.0f;
-COMPILER_STRIP_GATE(80BBC4DC, &lit_4245);
+COMPILER_STRIP_GATE(0x80BBC4DC, &lit_4245);
 #pragma pop
 
 /* 80BBC4E0-80BBC4E4 000070 0004+00 0/1 0/0 0/0 .rodata          @4246 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4246 = 50.0f;
-COMPILER_STRIP_GATE(80BBC4E0, &lit_4246);
+COMPILER_STRIP_GATE(0x80BBC4E0, &lit_4246);
 #pragma pop
 
 /* 80BBC4E4-80BBC4E8 000074 0004+00 0/1 0/0 0/0 .rodata          @4247 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4247 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80BBC4E4, &lit_4247);
+COMPILER_STRIP_GATE(0x80BBC4E4, &lit_4247);
 #pragma pop
 
 /* 80BBC4E8-80BBC4EC 000078 0004+00 0/1 0/0 0/0 .rodata          @4248 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4248 = 100.0f;
-COMPILER_STRIP_GATE(80BBC4E8, &lit_4248);
+COMPILER_STRIP_GATE(0x80BBC4E8, &lit_4248);
 #pragma pop
 
 /* 80BBC4EC-80BBC4F0 00007C 0004+00 0/1 0/0 0/0 .rodata          @4249 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4249 = 0.125f;
-COMPILER_STRIP_GATE(80BBC4EC, &lit_4249);
+COMPILER_STRIP_GATE(0x80BBC4EC, &lit_4249);
 #pragma pop
 
 /* 80BBC4F0-80BBC4F4 000080 0004+00 0/1 0/0 0/0 .rodata          @4250 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4250 = 125.0f;
-COMPILER_STRIP_GATE(80BBC4F0, &lit_4250);
+COMPILER_STRIP_GATE(0x80BBC4F0, &lit_4250);
+#pragma pop
+
+/* 80BBC518-80BBC518 0000A8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BBC523 = "BouMato";
 #pragma pop
 
 /* 80BBB834-80BBBD80 000934 054C+00 2/2 0/0 0/0 .text            Execute__15daObj_BouMato_cFv */
@@ -713,7 +726,7 @@ asm void daObj_BouMato_c::Execute() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4266 = 20.0f;
-COMPILER_STRIP_GATE(80BBC4F4, &lit_4266);
+COMPILER_STRIP_GATE(0x80BBC4F4, &lit_4266);
 #pragma pop
 
 /* 80BBBD80-80BBBE50 000E80 00D0+00 1/1 0/0 0/0 .text            Draw__15daObj_BouMato_cFv */
@@ -794,14 +807,14 @@ asm void daObj_BouMato_c::getResName() {
 SECTION_RODATA static u8 const lit_4327[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BBC4F8, &lit_4327);
+COMPILER_STRIP_GATE(0x80BBC4F8, &lit_4327);
 #pragma pop
 
 /* 80BBC504-80BBC508 000094 0004+00 0/1 0/0 0/0 .rodata          @4355 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4355 = 3.0f / 5.0f;
-COMPILER_STRIP_GATE(80BBC504, &lit_4355);
+COMPILER_STRIP_GATE(0x80BBC504, &lit_4355);
 #pragma pop
 
 /* 80BBC508-80BBC510 000098 0004+04 0/1 0/0 0/0 .rodata          @4356 */
@@ -812,7 +825,7 @@ SECTION_RODATA static u32 const lit_4356[1 + 1 /* padding */] = {
     /* padding */
     0x00000000,
 };
-COMPILER_STRIP_GATE(80BBC508, &lit_4356);
+COMPILER_STRIP_GATE(0x80BBC508, &lit_4356);
 #pragma pop
 
 /* 80BBC510-80BBC518 0000A0 0008+00 0/1 0/0 0/0 .rodata          @4359 */
@@ -821,7 +834,7 @@ COMPILER_STRIP_GATE(80BBC508, &lit_4356);
 SECTION_RODATA static u8 const lit_4359[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BBC510, &lit_4359);
+COMPILER_STRIP_GATE(0x80BBC510, &lit_4359);
 #pragma pop
 
 /* 80BBC008-80BBC19C 001108 0194+00 1/1 0/0 0/0 .text
@@ -947,7 +960,7 @@ asm void __sinit_d_a_obj_boumato_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80BBC390 = (void*)__sinit_d_a_obj_boumato_cpp;
+REGISTER_CTORS(0x80BBC390, __sinit_d_a_obj_boumato_cpp);
 #pragma pop
 
 /* 80BBC404-80BBC44C 001504 0048+00 2/1 0/0 0/0 .text            __dt__21daObj_BouMato_Param_cFv */
@@ -980,11 +993,4 @@ static asm void func_80BBC454() {
 }
 #pragma pop
 
-/* 80BBC518-80BBC52B 0000A8 0013+00 2/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BBC518 = "";
-SECTION_DEAD static char const* const stringBase_80BBC519 = "H_BouMato";
-SECTION_DEAD static char const* const stringBase_80BBC523 = "BouMato";
-#pragma pop
+/* 80BBC518-80BBC518 0000A8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

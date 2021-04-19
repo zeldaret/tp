@@ -68,9 +68,9 @@ struct dRes_control_c {
     /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -174,17 +174,23 @@ SECTION_RODATA u8 const daObjFlag_c::M_attr[52] = {
     0x03, 0xE8, 0x01, 0x90, 0x00, 0x00, 0x00, 0x00, 0x01, 0x2C, 0x01, 0x01, 0x00,
     0x00, 0x46, 0x3B, 0x80, 0x00, 0x45, 0x3B, 0x80, 0x00, 0x46, 0x3B, 0x80, 0x00,
 };
-COMPILER_STRIP_GATE(80BEC4EC, &daObjFlag_c::M_attr);
+COMPILER_STRIP_GATE(0x80BEC4EC, &daObjFlag_c::M_attr);
 
 /* 80BEC520-80BEC524 000034 0004+00 1/1 0/0 0/0 .rodata          @3637 */
 SECTION_RODATA static f32 const lit_3637 = 65535.0f;
-COMPILER_STRIP_GATE(80BEC520, &lit_3637);
+COMPILER_STRIP_GATE(0x80BEC520, &lit_3637);
 
 /* 80BEC524-80BEC52C 000038 0008+00 1/1 0/0 0/0 .rodata          @3639 */
 SECTION_RODATA static u8 const lit_3639[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BEC524, &lit_3639);
+COMPILER_STRIP_GATE(0x80BEC524, &lit_3639);
+
+/* 80BEC554-80BEC554 000068 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BEC554 = "spec.dat";
+#pragma pop
 
 /* 80BEB778-80BEB8F0 000078 0178+00 1/1 0/0 0/0 .text            create_init__11daObjFlag_cFv */
 #pragma push
@@ -226,35 +232,35 @@ SECTION_RODATA static u8 const lit_3759[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BEC52C, &lit_3759);
+COMPILER_STRIP_GATE(0x80BEC52C, &lit_3759);
 #pragma pop
 
 /* 80BEC530-80BEC534 000044 0004+00 0/1 0/0 0/0 .rodata          @3760 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3760 = 127.0f;
-COMPILER_STRIP_GATE(80BEC530, &lit_3760);
+COMPILER_STRIP_GATE(0x80BEC530, &lit_3760);
 #pragma pop
 
 /* 80BEC534-80BEC538 000048 0004+00 0/1 0/0 0/0 .rodata          @3761 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3761 = 1.0f;
-COMPILER_STRIP_GATE(80BEC534, &lit_3761);
+COMPILER_STRIP_GATE(0x80BEC534, &lit_3761);
 #pragma pop
 
 /* 80BEC538-80BEC53C 00004C 0004+00 0/1 0/0 0/0 .rodata          @3762 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3762 = -1.0f;
-COMPILER_STRIP_GATE(80BEC538, &lit_3762);
+COMPILER_STRIP_GATE(0x80BEC538, &lit_3762);
 #pragma pop
 
 /* 80BEC53C-80BEC544 000050 0008+00 1/4 0/0 0/0 .rodata          @3764 */
 SECTION_RODATA static u8 const lit_3764[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BEC53C, &lit_3764);
+COMPILER_STRIP_GATE(0x80BEC53C, &lit_3764);
 
 /* 80BEB9AC-80BEBC58 0002AC 02AC+00 1/1 0/0 0/0 .text            calcJointAngle__11daObjFlag_cFv */
 #pragma push
@@ -269,7 +275,7 @@ asm void daObjFlag_c::calcJointAngle() {
 /* ############################################################################################## */
 /* 80BEC544-80BEC548 000058 0004+00 1/1 0/0 0/0 .rodata          @3791 */
 SECTION_RODATA static f32 const lit_3791 = 7.0f / 10.0f;
-COMPILER_STRIP_GATE(80BEC544, &lit_3791);
+COMPILER_STRIP_GATE(0x80BEC544, &lit_3791);
 
 /* 80BEBC58-80BEBDAC 000558 0154+00 1/1 0/0 0/0 .text
  * calcAngleSwingZ__11daObjFlag_cFP11FlagJoint_cf               */
@@ -287,7 +293,7 @@ asm void daObjFlag_c::calcAngleSwingZ(FlagJoint_c* param_0, f32 param_1) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3803 = 16384.0f;
-COMPILER_STRIP_GATE(80BEC548, &lit_3803);
+COMPILER_STRIP_GATE(0x80BEC548, &lit_3803);
 #pragma pop
 
 /* 80BEBDAC-80BEBE64 0006AC 00B8+00 1/1 0/0 0/0 .text
@@ -306,14 +312,14 @@ asm void daObjFlag_c::calcAngleSwingX(FlagJoint_c* param_0, f32 param_1) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3832 = 0x45D05555;
-COMPILER_STRIP_GATE(80BEC54C, &lit_3832);
+COMPILER_STRIP_GATE(0x80BEC54C, &lit_3832);
 #pragma pop
 
 /* 80BEC550-80BEC554 000064 0004+00 0/1 0/0 0/0 .rodata          @3833 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3833 = 4000.0f;
-COMPILER_STRIP_GATE(80BEC550, &lit_3833);
+COMPILER_STRIP_GATE(0x80BEC550, &lit_3833);
 #pragma pop
 
 /* 80BEBE64-80BEBFC8 000764 0164+00 1/1 0/0 0/0 .text            getSwingY__11daObjFlag_cFf */
@@ -334,6 +340,15 @@ static asm void nodeCallBack(J3DJoint* param_0, int param_1) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_flag/d_a_obj_flag/nodeCallBack__FP8J3DJointi.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80BEC554-80BEC554 000068 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BEC55D = "flag%02d.bmd";
+SECTION_DEAD static char const* const stringBase_80BEC56A = "FlagObj";
+SECTION_DEAD static char const* const stringBase_80BEC572 = "model0.bmd";
 #pragma pop
 
 /* 80BEC0B8-80BEC234 0009B8 017C+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
@@ -432,12 +447,4 @@ SECTION_DATA extern void* g_profile_Obj_Flag[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 80BEC554-80BEC57D 000068 0029+00 4/4 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BEC554 = "spec.dat";
-SECTION_DEAD static char const* const stringBase_80BEC55D = "flag%02d.bmd";
-SECTION_DEAD static char const* const stringBase_80BEC56A = "FlagObj";
-SECTION_DEAD static char const* const stringBase_80BEC572 = "model0.bmd";
-#pragma pop
+/* 80BEC554-80BEC554 000068 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

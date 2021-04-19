@@ -100,9 +100,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -202,11 +202,11 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80C5E8DC-80C5E8E0 000000 0004+00 3/3 0/0 0/0 .rodata          @3634 */
 SECTION_RODATA static f32 const lit_3634 = 80.0f;
-COMPILER_STRIP_GATE(80C5E8DC, &lit_3634);
+COMPILER_STRIP_GATE(0x80C5E8DC, &lit_3634);
 
 /* 80C5E8E0-80C5E8E4 000004 0004+00 1/1 0/0 0/0 .rodata          @3635 */
 SECTION_RODATA static f32 const lit_3635 = 40.0f;
-COMPILER_STRIP_GATE(80C5E8E0, &lit_3635);
+COMPILER_STRIP_GATE(0x80C5E8E0, &lit_3635);
 
 /* 80C5E904-80C5E910 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -374,6 +374,13 @@ asm void daLv4EdShutter_c::setBaseMtx() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80C5E8FC-80C5E8FC 000020 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C5E8FC = "P_AShtr";
+#pragma pop
+
 /* 80C5DEC8-80C5DF34 000208 006C+00 1/0 0/0 0/0 .text            CreateHeap__16daLv4EdShutter_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -387,7 +394,7 @@ asm void daLv4EdShutter_c::CreateHeap() {
 /* ############################################################################################## */
 /* 80C5E8E4-80C5E8E8 000008 0004+00 1/2 0/0 0/0 .rodata          @3704 */
 SECTION_RODATA static f32 const lit_3704 = -300.0f;
-COMPILER_STRIP_GATE(80C5E8E4, &lit_3704);
+COMPILER_STRIP_GATE(0x80C5E8E4, &lit_3704);
 
 /* 80C5DF34-80C5E0A4 000274 0170+00 1/1 0/0 0/0 .text            create__16daLv4EdShutter_cFv */
 #pragma push
@@ -453,11 +460,11 @@ asm void daLv4EdShutter_c::modeWait() {
 /* ############################################################################################## */
 /* 80C5E8E8-80C5E8EC 00000C 0004+00 2/2 0/0 0/0 .rodata          @3787 */
 SECTION_RODATA static f32 const lit_3787 = 1.0f;
-COMPILER_STRIP_GATE(80C5E8E8, &lit_3787);
+COMPILER_STRIP_GATE(0x80C5E8E8, &lit_3787);
 
 /* 80C5E8EC-80C5E8F0 000010 0004+00 2/2 0/0 0/0 .rodata          @3788 */
 SECTION_RODATA static f32 const lit_3788 = -1.0f;
-COMPILER_STRIP_GATE(80C5E8EC, &lit_3788);
+COMPILER_STRIP_GATE(0x80C5E8EC, &lit_3788);
 
 /* 80C5E2E0-80C5E394 000620 00B4+00 1/1 0/0 0/0 .text            init_modeOpen__16daLv4EdShutter_cFv
  */
@@ -475,14 +482,14 @@ asm void daLv4EdShutter_c::init_modeOpen() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3816 = 3.0f / 10.0f;
-COMPILER_STRIP_GATE(80C5E8F0, &lit_3816);
+COMPILER_STRIP_GATE(0x80C5E8F0, &lit_3816);
 #pragma pop
 
 /* 80C5E8F4-80C5E8F8 000018 0004+00 0/2 0/0 0/0 .rodata          @3817 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3817 = 5.0f;
-COMPILER_STRIP_GATE(80C5E8F4, &lit_3817);
+COMPILER_STRIP_GATE(0x80C5E8F4, &lit_3817);
 #pragma pop
 
 /* 80C5E8F8-80C5E8FC 00001C 0004+00 0/2 0/0 0/0 .rodata          @3818 */
@@ -494,7 +501,7 @@ SECTION_RODATA static u8 const lit_3818[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C5E8F8, &lit_3818);
+COMPILER_STRIP_GATE(0x80C5E8F8, &lit_3818);
 #pragma pop
 
 /* 80C5E394-80C5E464 0006D4 00D0+00 1/0 0/0 0/0 .text            modeOpen__16daLv4EdShutter_cFv */
@@ -637,7 +644,7 @@ asm void __sinit_d_a_obj_lv4EdShutter_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80C5E788 = (void*)__sinit_d_a_obj_lv4EdShutter_cpp;
+REGISTER_CTORS(0x80C5E788, __sinit_d_a_obj_lv4EdShutter_cpp);
 #pragma pop
 
 /* 80C5E7C4-80C5E7CC 000B04 0008+00 1/0 0/0 0/0 .text @1448@eventStart__16daLv4EdShutter_cFv */
@@ -696,9 +703,4 @@ asm daLv4EdShutter_c::~daLv4EdShutter_c() {
 }
 #pragma pop
 
-/* 80C5E8FC-80C5E904 000020 0008+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C5E8FC = "P_AShtr";
-#pragma pop
+/* 80C5E8FC-80C5E8FC 000020 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

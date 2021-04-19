@@ -155,12 +155,12 @@ struct JMath {
 
 struct J3DModel {};
 
-struct J3DAnmTevRegKey {
-    /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
-};
-
 struct J3DAnmTextureSRTKey {
     /* 8032B1D4 */ void searchUpdateMaterialID(J3DModelData*);
+};
+
+struct J3DAnmTevRegKey {
+    /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
 };
 
 struct J3DMaterialTable {
@@ -284,17 +284,17 @@ extern "C" extern u8 data_804A4218[4];
 SECTION_RODATA static u8 const lit_3759[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(804A40EC, &lit_3759);
+COMPILER_STRIP_GATE(0x804A40EC, &lit_3759);
 
 /* 804A40F8-804A4104 00000C 000C+00 1/2 0/0 0/0 .rodata          l_localRodPos */
 SECTION_RODATA static u8 const l_localRodPos[12] = {
     0x42, 0xA2, 0x00, 0x00, 0xC1, 0x48, 0x00, 0x00, 0xC1, 0x40, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(804A40F8, &l_localRodPos);
+COMPILER_STRIP_GATE(0x804A40F8, &l_localRodPos);
 
 /* 804A4104-804A4108 000018 0004+00 2/3 0/0 0/0 .rodata          @4173 */
 SECTION_RODATA static f32 const lit_4173 = 1.0f;
-COMPILER_STRIP_GATE(804A4104, &lit_4173);
+COMPILER_STRIP_GATE(0x804A4104, &lit_4173);
 
 /* 804A2E38-804A2EF8 000078 00C0+00 1/1 0/0 0/0 .text            createHeap__8daCrod_cFv */
 #pragma push
@@ -502,14 +502,14 @@ asm void daCrod_c::setReturn() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4489 = 300.0f;
-COMPILER_STRIP_GATE(804A4108, &lit_4489);
+COMPILER_STRIP_GATE(0x804A4108, &lit_4489);
 #pragma pop
 
 /* 804A410C-804A4110 000020 0004+00 0/2 0/0 0/0 .rodata          @4490 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4490 = 50.0f;
-COMPILER_STRIP_GATE(804A410C, &lit_4490);
+COMPILER_STRIP_GATE(0x804A410C, &lit_4490);
 #pragma pop
 
 /* 804A4110-804A4114 000024 0004+00 0/2 0/0 0/0 .rodata          @4491 */
@@ -521,7 +521,7 @@ SECTION_RODATA static u8 const lit_4491[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(804A4110, &lit_4491);
+COMPILER_STRIP_GATE(0x804A4110, &lit_4491);
 #pragma pop
 
 /* 804A365C-804A36D8 00089C 007C+00 2/2 0/0 0/0 .text            setLightPower__8daCrod_cFv */
@@ -539,14 +539,14 @@ asm void daCrod_c::setLightPower() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4774 = 0x3D000000;
-COMPILER_STRIP_GATE(804A4114, &lit_4774);
+COMPILER_STRIP_GATE(0x804A4114, &lit_4774);
 #pragma pop
 
 /* 804A4118-804A411C 00002C 0004+00 0/1 0/0 0/0 .rodata          @4775 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4775 = 40.0f;
-COMPILER_STRIP_GATE(804A4118, &lit_4775);
+COMPILER_STRIP_GATE(0x804A4118, &lit_4775);
 #pragma pop
 
 /* 804A411C-804A4124 000030 0004+04 0/1 0/0 0/0 .rodata          @4776 */
@@ -557,7 +557,7 @@ SECTION_RODATA static f32 const lit_4776[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(804A411C, &lit_4776);
+COMPILER_STRIP_GATE(0x804A411C, &lit_4776);
 #pragma pop
 
 /* 804A4124-804A412C 000038 0008+00 0/1 0/0 0/0 .rodata          @4777 */
@@ -566,7 +566,7 @@ COMPILER_STRIP_GATE(804A411C, &lit_4776);
 SECTION_RODATA static u8 const lit_4777[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(804A4124, &lit_4777);
+COMPILER_STRIP_GATE(0x804A4124, &lit_4777);
 #pragma pop
 
 /* 804A412C-804A4134 000040 0008+00 0/1 0/0 0/0 .rodata          @4778 */
@@ -575,7 +575,7 @@ COMPILER_STRIP_GATE(804A4124, &lit_4777);
 SECTION_RODATA static u8 const lit_4778[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(804A412C, &lit_4778);
+COMPILER_STRIP_GATE(0x804A412C, &lit_4778);
 #pragma pop
 
 /* 804A4134-804A413C 000048 0008+00 0/1 0/0 0/0 .rodata          @4779 */
@@ -584,7 +584,7 @@ COMPILER_STRIP_GATE(804A412C, &lit_4778);
 SECTION_RODATA static u8 const lit_4779[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(804A4134, &lit_4779);
+COMPILER_STRIP_GATE(0x804A4134, &lit_4779);
 #pragma pop
 
 /* 804A36D8-804A3FB4 000918 08DC+00 1/1 0/0 0/0 .text            execute__8daCrod_cFv */

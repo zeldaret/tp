@@ -123,6 +123,15 @@ extern "C" extern u8 g_MsgObject_HIO_c[1040];
 //
 
 /* ############################################################################################## */
+/* 80399B98-80399B98 0261F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399B98 = "zelda_staff_roll.blo";
+SECTION_DEAD static char const* const stringBase_80399BAD = "";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80399BAE = "\0";
+#pragma pop
+
 /* 803C1340-803C1370 01E460 0030+00 1/1 0/0 0/0 .data            t_tag$3752 */
 SECTION_DATA static u8 t_tag[48] = {
     0x00, 0x72, 0x69, 0x67, 0x68, 0x74, 0x5F, 0x73, 0x00, 0x00, 0x00, 0x72, 0x69, 0x67, 0x68, 0x74,
@@ -233,12 +242,4 @@ void dMsgScrnStaff_c::fontAlpha(f32 param_0) {
     /* empty function */
 }
 
-/* 80399B98-80399BB0 0261F8 0016+02 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80399B98 = "zelda_staff_roll.blo";
-SECTION_DEAD static char const* const stringBase_80399BAD = "";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80399BAE = "\0";
-#pragma pop
+/* 80399B98-80399B98 0261F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -371,5 +371,5 @@ asm void func_8028D2B8() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8028D2B8 = (void*)func_8028D2B8;
+REGISTER_CTORS(0x8028D2B8, func_8028D2B8);
 #pragma pop

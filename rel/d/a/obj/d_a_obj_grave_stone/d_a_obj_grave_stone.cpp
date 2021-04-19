@@ -68,6 +68,8 @@ struct dPa_control_c {
     };
 };
 
+struct csXyz {};
+
 struct dBgS_AcchCir {
     /* 80075EAC */ dBgS_AcchCir();
     /* 80075F58 */ void SetWall(f32, f32);
@@ -79,8 +81,6 @@ struct dBgS {
     /* 80074BE8 */ void GetPolyColor(cBgS_PolyInfo const&);
     /* 80075100 */ void GetRoomId(cBgS_PolyInfo const&);
 };
-
-struct csXyz {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -158,9 +158,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -197,7 +197,7 @@ extern "C" static void daGraveStone_Execute__FP14daGraveStone_c();
 extern "C" static bool daGraveStone_IsDelete__FP14daGraveStone_c();
 extern "C" static void daGraveStone_Delete__FP14daGraveStone_c();
 extern "C" static void daGraveStone_create__FP10fopAc_ac_c();
-extern "C" void func_80C1321C(s16*);
+extern "C" void func_80C1321C(void* _this, s16*);
 extern "C" static void func_80C13238();
 extern "C" static void func_80C13240();
 extern "C" u8 const mCcDObjInfo__14daGraveStone_c[48];
@@ -295,7 +295,7 @@ SECTION_RODATA u8 const daGraveStone_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C13250, &daGraveStone_c::mCcDObjInfo);
+COMPILER_STRIP_GATE(0x80C13250, &daGraveStone_c::mCcDObjInfo);
 
 /* 80C13280-80C132C4 000030 0044+00 1/1 0/0 0/0 .rodata          mCcDCyl__14daGraveStone_c */
 SECTION_RODATA u8 const daGraveStone_c::mCcDCyl[68] = {
@@ -305,7 +305,7 @@ SECTION_RODATA u8 const daGraveStone_c::mCcDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C13280, &daGraveStone_c::mCcDCyl);
+COMPILER_STRIP_GATE(0x80C13280, &daGraveStone_c::mCcDCyl);
 
 /* 80C132C4-80C132C8 000074 0004+00 2/3 0/0 0/0 .rodata          @3717 */
 SECTION_RODATA static u8 const lit_3717[4] = {
@@ -314,48 +314,48 @@ SECTION_RODATA static u8 const lit_3717[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C132C4, &lit_3717);
+COMPILER_STRIP_GATE(0x80C132C4, &lit_3717);
 
 /* 80C132C8-80C132CC 000078 0004+00 0/1 0/0 0/0 .rodata          @3718 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3718 = 1.0f;
-COMPILER_STRIP_GATE(80C132C8, &lit_3718);
+COMPILER_STRIP_GATE(0x80C132C8, &lit_3718);
 #pragma pop
 
 /* 80C132CC-80C132D0 00007C 0004+00 0/1 0/0 0/0 .rodata          @3719 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3719 = -30.0f;
-COMPILER_STRIP_GATE(80C132CC, &lit_3719);
+COMPILER_STRIP_GATE(0x80C132CC, &lit_3719);
 #pragma pop
 
 /* 80C132D0-80C132D4 000080 0004+00 0/1 0/0 0/0 .rodata          @3720 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3720 = 30.0f;
-COMPILER_STRIP_GATE(80C132D0, &lit_3720);
+COMPILER_STRIP_GATE(0x80C132D0, &lit_3720);
 #pragma pop
 
 /* 80C132D4-80C132D8 000084 0004+00 0/1 0/0 0/0 .rodata          @3721 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3721 = 90.0f;
-COMPILER_STRIP_GATE(80C132D4, &lit_3721);
+COMPILER_STRIP_GATE(0x80C132D4, &lit_3721);
 #pragma pop
 
 /* 80C132D8-80C132DC 000088 0004+00 0/1 0/0 0/0 .rodata          @3722 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3722 = -90.0f;
-COMPILER_STRIP_GATE(80C132D8, &lit_3722);
+COMPILER_STRIP_GATE(0x80C132D8, &lit_3722);
 #pragma pop
 
 /* 80C132DC-80C132E0 00008C 0004+00 0/1 0/0 0/0 .rodata          @3723 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3723 = -1.0f;
-COMPILER_STRIP_GATE(80C132DC, &lit_3723);
+COMPILER_STRIP_GATE(0x80C132DC, &lit_3723);
 #pragma pop
 
 /* 80C1266C-80C12918 0000EC 02AC+00 1/1 0/0 0/0 .text            moveCalc__14daGraveStone_cFv */
@@ -371,7 +371,7 @@ asm void daGraveStone_c::moveCalc() {
 /* ############################################################################################## */
 /* 80C132E0-80C132E4 000090 0004+00 1/1 0/0 0/0 .rodata          @3771 */
 SECTION_RODATA static f32 const lit_3771 = 2.5f;
-COMPILER_STRIP_GATE(80C132E0, &lit_3771);
+COMPILER_STRIP_GATE(0x80C132E0, &lit_3771);
 
 /* 80C12918-80C12A38 000398 0120+00 1/1 0/0 0/0 .text            setPrtcl__14daGraveStone_cFv */
 #pragma push
@@ -415,6 +415,13 @@ asm void daGraveStone_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80C132E4-80C132E4 000094 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C132E4 = "H_Haka";
+SECTION_DEAD static char const* const stringBase_80C132EB = "H_Haka.bmd";
+#pragma pop
+
 /* 80C13304-80C13308 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_grave_stone__stringBase0;
 
@@ -429,6 +436,12 @@ asm void daGraveStone_c::CreateHeap() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80C132E4-80C132E4 000094 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C132F6 = "H_Haka.dzb";
+#pragma pop
+
 /* 80C13308-80C13328 -00001 0020+00 1/0 0/0 0/0 .data            l_daGraveStone_Method */
 SECTION_DATA static void* l_daGraveStone_Method[8] = {
     (void*)daGraveStone_create__FP10fopAc_ac_c,
@@ -630,7 +643,7 @@ static asm void daGraveStone_create(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80C1321C(s16* param_0) {
+extern "C" asm void func_80C1321C(void* _this, s16* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_grave_stone/d_a_obj_grave_stone/func_80C1321C.s"
 }
@@ -656,11 +669,4 @@ static asm void func_80C13240() {
 }
 #pragma pop
 
-/* 80C132E4-80C13301 000094 001D+00 3/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C132E4 = "H_Haka";
-SECTION_DEAD static char const* const stringBase_80C132EB = "H_Haka.bmd";
-SECTION_DEAD static char const* const stringBase_80C132F6 = "H_Haka.dzb";
-#pragma pop
+/* 80C132E4-80C132E4 000094 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

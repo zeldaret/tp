@@ -19,13 +19,13 @@ struct dSelect_icon_c {
     /* 80195B70 */ void setPos(J2DPane*, f32, f32);
 };
 
-struct JKRArchive {};
-
-struct J2DAnmTextureSRTKey {};
-
 struct J2DAnmTransformKey {
     /* 801959C0 */ ~J2DAnmTransformKey();
 };
+
+struct J2DAnmTextureSRTKey {};
+
+struct JKRArchive {};
 
 struct J2DAnmColor {};
 
@@ -151,6 +151,26 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 //
 
 /* ############################################################################################## */
+/* 80394AA0-80394AA0 021100 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394AA0 = "zelda_select_cursor_4parts.blo";
+SECTION_DEAD static char const* const stringBase_80394ABF = "zelda_store_select_icon.blo";
+SECTION_DEAD static char const* const stringBase_80394ADB = "zelda_map_screen_portal_icon.blo";
+SECTION_DEAD static char const* const stringBase_80394AFC = "zelda_map_screen_batsumark.blo";
+SECTION_DEAD static char const* const stringBase_80394B1B = "";
+SECTION_DEAD static char const* const stringBase_80394B1C = "zelda_store_select_icon.bck";
+SECTION_DEAD static char const* const stringBase_80394B38 = "zelda_select_cursor_4parts.bpk";
+SECTION_DEAD static char const* const stringBase_80394B57 = "zelda_store_select_icon.bpk";
+SECTION_DEAD static char const* const stringBase_80394B73 = "zelda_map_screen_portal_icon.bpk";
+SECTION_DEAD static char const* const stringBase_80394B94 = "zelda_map_screen_batsumark.bpk";
+SECTION_DEAD static char const* const stringBase_80394BB3 = "zelda_select_cursor_4parts.btk";
+SECTION_DEAD static char const* const stringBase_80394BD2 = "zelda_store_select_icon.btk";
+SECTION_DEAD static char const* const stringBase_80394BEE = "zelda_store_select_icon_02.btk";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80394C0D = "\0\0";
+#pragma pop
+
 /* 803BB700-803BB70C 018820 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -267,7 +287,7 @@ SECTION_RODATA static u8 const corner_tag[32] = {
     0x6C, 0x5F, 0x75, 0x5F, 0x6E, 0x75, 0x6C, 0x6C, 0x6C, 0x5F, 0x64, 0x5F, 0x6E, 0x75, 0x6C, 0x6C,
     0x72, 0x5F, 0x75, 0x5F, 0x6E, 0x75, 0x6C, 0x6C, 0x72, 0x5F, 0x64, 0x5F, 0x6E, 0x75, 0x6C, 0x6C,
 };
-COMPILER_STRIP_GATE(80394A10, &corner_tag);
+COMPILER_STRIP_GATE(0x80394A10, &corner_tag);
 
 /* 80453A50-80453A54 002050 0004+00 4/4 0/0 0/0 .sdata2          @3808 */
 SECTION_SDATA2 static u8 lit_3808[4] = {
@@ -400,7 +420,7 @@ SECTION_RODATA static u8 const tag_4181[32] = {
     0x00, 0x00, 0x00, 0x00, 0x6C, 0x5F, 0x6C, 0x64, 0x00, 0x00, 0x00, 0x00, 0x6C, 0x5F, 0x6C, 0x75,
     0x00, 0x00, 0x00, 0x00, 0x6C, 0x5F, 0x72, 0x64, 0x00, 0x00, 0x00, 0x00, 0x6C, 0x5F, 0x72, 0x75,
 };
-COMPILER_STRIP_GATE(80394A30, &tag_4181);
+COMPILER_STRIP_GATE(0x80394A30, &tag_4181);
 
 /* 80195460-801955F0 18FDA0 0190+00 1/1 0/0 0/0 .text
  * setBpkAnimation__16dSelect_cursor_cFP11J2DAnmColor           */
@@ -421,13 +441,13 @@ SECTION_RODATA static u8 const tag_4197[64] = {
     0x00, 0x69, 0x5F, 0x63, 0x5F, 0x72, 0x64, 0x31, 0x00, 0x69, 0x5F, 0x63, 0x5F, 0x72, 0x64, 0x32,
     0x00, 0x69, 0x5F, 0x63, 0x5F, 0x72, 0x75, 0x31, 0x00, 0x69, 0x5F, 0x63, 0x5F, 0x72, 0x75, 0x32,
 };
-COMPILER_STRIP_GATE(80394A50, &tag_4197);
+COMPILER_STRIP_GATE(0x80394A50, &tag_4197);
 
 /* 80394A90-80394AA0 0210F0 0010+00 1/1 0/0 0/0 .rodata          tag$4204 */
 SECTION_RODATA static u8 const tag_4204[16] = {
     0x00, 0x00, 0x67, 0x6F, 0x6C, 0x64, 0x30, 0x31, 0x00, 0x00, 0x67, 0x6F, 0x6C, 0x64, 0x30, 0x32,
 };
-COMPILER_STRIP_GATE(80394A90, &tag_4204);
+COMPILER_STRIP_GATE(0x80394A90, &tag_4204);
 
 /* 801955F0-80195724 18FF30 0134+00 1/1 0/0 0/0 .text
  * setBtk0Animation__16dSelect_cursor_cFP19J2DAnmTextureSRTKey  */
@@ -499,23 +519,4 @@ asm J2DAnmTransformKey::~J2DAnmTransformKey() {
 }
 #pragma pop
 
-/* 80394AA0-80394C10 021100 016D+03 6/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80394AA0 = "zelda_select_cursor_4parts.blo";
-SECTION_DEAD static char const* const stringBase_80394ABF = "zelda_store_select_icon.blo";
-SECTION_DEAD static char const* const stringBase_80394ADB = "zelda_map_screen_portal_icon.blo";
-SECTION_DEAD static char const* const stringBase_80394AFC = "zelda_map_screen_batsumark.blo";
-SECTION_DEAD static char const* const stringBase_80394B1B = "";
-SECTION_DEAD static char const* const stringBase_80394B1C = "zelda_store_select_icon.bck";
-SECTION_DEAD static char const* const stringBase_80394B38 = "zelda_select_cursor_4parts.bpk";
-SECTION_DEAD static char const* const stringBase_80394B57 = "zelda_store_select_icon.bpk";
-SECTION_DEAD static char const* const stringBase_80394B73 = "zelda_map_screen_portal_icon.bpk";
-SECTION_DEAD static char const* const stringBase_80394B94 = "zelda_map_screen_batsumark.bpk";
-SECTION_DEAD static char const* const stringBase_80394BB3 = "zelda_select_cursor_4parts.btk";
-SECTION_DEAD static char const* const stringBase_80394BD2 = "zelda_store_select_icon.btk";
-SECTION_DEAD static char const* const stringBase_80394BEE = "zelda_store_select_icon_02.btk";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80394C0D = "\0\0";
-#pragma pop
+/* 80394AA0-80394AA0 021100 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

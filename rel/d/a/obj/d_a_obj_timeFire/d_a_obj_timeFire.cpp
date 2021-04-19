@@ -46,13 +46,13 @@ struct dSv_info_c {
 
 struct dPa_levelEcallBack {};
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct csXyz {};
 
 struct _GXColor {};
 
-struct csXyz {};
+struct cXyz {};
 
 struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
@@ -60,9 +60,9 @@ struct dPa_control_c {
                             _GXColor const*, cXyz const*, f32);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -202,13 +202,13 @@ SECTION_RODATA static f32 const lit_3686[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80D0F0E4, &lit_3686);
+COMPILER_STRIP_GATE(0x80D0F0E4, &lit_3686);
 
 /* 80D0F0EC-80D0F0F4 000008 0008+00 1/1 0/0 0/0 .rodata          @3688 */
 SECTION_RODATA static u8 const lit_3688[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D0F0EC, &lit_3688);
+COMPILER_STRIP_GATE(0x80D0F0EC, &lit_3688);
 
 /* 80D0E9B0-80D0EACC 0001B0 011C+00 1/1 0/0 0/0 .text            create__12daTimeFire_cFv */
 #pragma push
@@ -225,12 +225,12 @@ asm void daTimeFire_c::create() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3707 = 500.0f;
-COMPILER_STRIP_GATE(80D0F0F4, &lit_3707);
+COMPILER_STRIP_GATE(0x80D0F0F4, &lit_3707);
 #pragma pop
 
 /* 80D0F0F8-80D0F0FC 000014 0004+00 2/3 0/0 0/0 .rodata          @3708 */
 SECTION_RODATA static f32 const lit_3708 = 1.0f;
-COMPILER_STRIP_GATE(80D0F0F8, &lit_3708);
+COMPILER_STRIP_GATE(0x80D0F0F8, &lit_3708);
 
 /* 80D0EACC-80D0EB40 0002CC 0074+00 1/1 0/0 0/0 .text            lightInit__12daTimeFire_cFv */
 #pragma push
@@ -265,7 +265,7 @@ asm void daTimeFire_c::cutLight() {
 /* ############################################################################################## */
 /* 80D0F0FC-80D0F100 000018 0004+00 2/2 0/0 0/0 .rodata          @3757 */
 SECTION_RODATA static f32 const lit_3757 = -1.0f;
-COMPILER_STRIP_GATE(80D0F0FC, &lit_3757);
+COMPILER_STRIP_GATE(0x80D0F0FC, &lit_3757);
 
 /* 80D0EB88-80D0ED68 000388 01E0+00 1/1 0/0 0/0 .text            Execute__12daTimeFire_cFv */
 #pragma push
@@ -374,5 +374,5 @@ asm void __sinit_d_a_obj_timeFire_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80D0F094 = (void*)__sinit_d_a_obj_timeFire_cpp;
+REGISTER_CTORS(0x80D0F094, __sinit_d_a_obj_timeFire_cpp);
 #pragma pop

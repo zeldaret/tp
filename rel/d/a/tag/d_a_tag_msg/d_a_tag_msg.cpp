@@ -160,6 +160,15 @@ static asm void createHeapCallBack(fopAc_ac_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 804901A4-804901A4 00002C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_804901A4 = "TagMsg";
+SECTION_DEAD static char const* const stringBase_804901AB = "SPEAK";
+SECTION_DEAD static char const* const stringBase_804901B1 = "Tag_ms";
+SECTION_DEAD static char const* const stringBase_804901B8 = "PAUSE";
+#pragma pop
+
 /* 804901C4-804901C8 -00001 0004+00 1/1 0/0 0/0 .data            l_resName */
 SECTION_DATA static void* l_resName = (void*)&d_a_tag_msg__stringBase0;
 
@@ -260,11 +269,11 @@ SECTION_RODATA u8 const daTag_Msg_Param_c::m[1 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80490178, &daTag_Msg_Param_c::m);
+COMPILER_STRIP_GATE(0x80490178, &daTag_Msg_Param_c::m);
 
 /* 8049017C-80490180 000004 0004+00 1/1 0/0 0/0 .rodata          @3757 */
 SECTION_RODATA static f32 const lit_3757 = 150.0f;
-COMPILER_STRIP_GATE(8049017C, &lit_3757);
+COMPILER_STRIP_GATE(0x8049017C, &lit_3757);
 
 /* 8048F9E8-8048FC68 000288 0280+00 1/1 0/0 0/0 .text            execute__11daTag_Msg_cFv */
 #pragma push
@@ -296,7 +305,7 @@ SECTION_RODATA static u8 const lit_3813[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80490180, &lit_3813);
+COMPILER_STRIP_GATE(0x80490180, &lit_3813);
 #pragma pop
 
 /* 80490188-80490190 000010 0008+00 0/1 0/0 0/0 .rodata          @3814 */
@@ -305,7 +314,7 @@ COMPILER_STRIP_GATE(80490180, &lit_3813);
 SECTION_RODATA static u8 const lit_3814[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80490188, &lit_3814);
+COMPILER_STRIP_GATE(0x80490188, &lit_3814);
 #pragma pop
 
 /* 80490190-80490198 000018 0008+00 0/1 0/0 0/0 .rodata          @3815 */
@@ -314,7 +323,7 @@ COMPILER_STRIP_GATE(80490188, &lit_3814);
 SECTION_RODATA static u8 const lit_3815[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80490190, &lit_3815);
+COMPILER_STRIP_GATE(0x80490190, &lit_3815);
 #pragma pop
 
 /* 80490198-804901A0 000020 0008+00 0/1 0/0 0/0 .rodata          @3816 */
@@ -323,7 +332,7 @@ COMPILER_STRIP_GATE(80490190, &lit_3815);
 SECTION_RODATA static u8 const lit_3816[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80490198, &lit_3816);
+COMPILER_STRIP_GATE(0x80490198, &lit_3816);
 #pragma pop
 
 /* 8048FC70-8048FE18 000510 01A8+00 1/1 0/0 0/0 .text            rangeCheck__11daTag_Msg_cFv */
@@ -359,7 +368,7 @@ asm void daTag_Msg_c::getResName() {
 /* ############################################################################################## */
 /* 804901A0-804901A4 000028 0004+00 1/1 0/0 0/0 .rodata          @3880 */
 SECTION_RODATA static f32 const lit_3880 = 100.0f;
-COMPILER_STRIP_GATE(804901A0, &lit_3880);
+COMPILER_STRIP_GATE(0x804901A0, &lit_3880);
 
 /* 8048FF9C-8049004C 00083C 00B0+00 1/1 0/0 0/0 .text            getParam__11daTag_Msg_cFv */
 #pragma push
@@ -436,13 +445,11 @@ asm daTag_Msg_Param_c::~daTag_Msg_Param_c() {
 }
 #pragma pop
 
-/* 804901A4-804901C4 00002C 0020+00 4/1 0/0 0/0 .rodata          @stringBase0 */
+/* ############################################################################################## */
+/* 804901BE-804901C4 000046 0006+00 0/0 0/0 0/0 .rodata          None */
 #pragma push
 #pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_804901A4 = "TagMsg";
-SECTION_DEAD static char const* const stringBase_804901AB = "SPEAK";
-SECTION_DEAD static char const* const stringBase_804901B1 = "Tag_ms";
-SECTION_DEAD static char const* const stringBase_804901B8 = "PAUSE";
 SECTION_DEAD static char const* const stringBase_804901BE = "Timer";
 #pragma pop
+
+/* 804901A4-804901A4 00002C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

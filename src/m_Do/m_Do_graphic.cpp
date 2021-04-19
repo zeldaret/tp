@@ -854,6 +854,16 @@ static asm void drawItem3D() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80373DD0-80373DD0 000430 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80373DD0 = "F_SP124";
+SECTION_DEAD static char const* const stringBase_80373DD8 = "D_MN08";
+SECTION_DEAD static char const* const stringBase_80373DDF = "F_SP127";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80373DE7 = "";
+#pragma pop
+
 /* 80451AD8-80451ADC 0000D8 0004+00 1/1 0/0 0/0 .sdata2          @5023 */
 SECTION_SDATA2 static f32 lit_5023 = -1.0f;
 
@@ -927,7 +937,7 @@ asm void __sinit_m_Do_graphic_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8000B1D0 = (void*)__sinit_m_Do_graphic_cpp;
+REGISTER_CTORS(0x8000B1D0, __sinit_m_Do_graphic_cpp);
 #pragma pop
 
 /* 8000B1E4-8000B1EC 005B24 0008+00 0/0 1/0 0/0 .text            getAtnActorID__9daPy_py_cCFv */
@@ -935,13 +945,4 @@ s32 daPy_py_c::getAtnActorID() const {
     return -1;
 }
 
-/* 80373DD0-80373DE8 000430 0017+01 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80373DD0 = "F_SP124";
-SECTION_DEAD static char const* const stringBase_80373DD8 = "D_MN08";
-SECTION_DEAD static char const* const stringBase_80373DDF = "F_SP127";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80373DE7 = "";
-#pragma pop
+/* 80373DD0-80373DD0 000430 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -36,12 +36,12 @@ template <typename A0>
 struct JSUList {};
 /* JSUList<JKRTask> */
 struct JSUList__template3 {
-    /* 802D1EFC */ void func_802D1EFC();
+    /* 802D1EFC */ void func_802D1EFC(void* _this);
 };
 
 /* JSUList<JKRThread> */
 struct JSUList__template4 {
-    /* 802D1F50 */ void func_802D1F50();
+    /* 802D1F50 */ void func_802D1F50(void* _this);
 };
 
 struct JKRHeap {
@@ -119,8 +119,8 @@ extern "C" bool run__9JKRThreadFv();
 extern "C" void draw__15JKRThreadSwitchFP14JKRThreadName_();
 extern "C" void __dt__15JKRThreadSwitchFv();
 extern "C" void __sinit_JKRThread_cpp();
-extern "C" void func_802D1EFC();
-extern "C" void func_802D1F50();
+extern "C" void func_802D1EFC(void* _this);
+extern "C" void func_802D1F50(void* _this);
 extern "C" extern char const* const JKRThread__stringBase0;
 extern "C" u8 sThreadList__9JKRThread[12];
 extern "C" u8 sTaskList__7JKRTask[12];
@@ -338,6 +338,17 @@ asm void JKRThreadSwitch::enter(JKRThread* param_0, int param_1) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8039CFA8-8039CFA8 029608 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039CFA8 = "on";
+SECTION_DEAD static char const* const stringBase_8039CFAB = "off";
+SECTION_DEAD static char const* const stringBase_8039CFAF =
+    "JKRThread:%x  OSThread:%x  Load:ID:%d  (%s)\n";
+SECTION_DEAD static char const* const stringBase_8039CFDC =
+    "JKRThreadSwitch: currentHeap destroyed.\n";
+#pragma pop
+
 /* 804513C0-804513C4 0008C0 0004+00 1/1 0/0 0/0 .sbss            mUserPreCallback__15JKRThreadSwitch
  */
 u8 JKRThreadSwitch::mUserPreCallback[4];
@@ -357,6 +368,18 @@ asm void JKRThreadSwitch::callback(OSThread* param_0, OSThread* param_1) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8039CFA8-8039CFA8 029608 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D005 = " total: switch:%3d  time:%d(%df)\n";
+SECTION_DEAD static char const* const stringBase_8039D027 =
+    " -------------------------------------\n";
+SECTION_DEAD static char const* const stringBase_8039D04F = "%d";
+SECTION_DEAD static char const* const stringBase_8039D052 = " [%10s] switch:%5d  cost:%2d.%d%%\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039D075 = "\0\0";
+#pragma pop
+
 /* 80455FC0-80455FC4 0045C0 0004+00 1/1 0/0 0/0 .sdata2          @934 */
 SECTION_SDATA2 static f32 lit_934 = 100.0f;
 
@@ -427,14 +450,14 @@ asm void __sinit_JKRThread_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_802D1E94 = (void*)__sinit_JKRThread_cpp;
+REGISTER_CTORS(0x802D1E94, __sinit_JKRThread_cpp);
 #pragma pop
 
 /* 802D1EFC-802D1F50 2CC83C 0054+00 1/1 0/0 0/0 .text            __dt__17JSUList<7JKRTask>Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802D1EFC() {
+extern "C" asm void func_802D1EFC(void* _this) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRThread/func_802D1EFC.s"
 }
@@ -444,7 +467,7 @@ extern "C" asm void func_802D1EFC() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802D1F50() {
+extern "C" asm void func_802D1F50(void* _this) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRThread/func_802D1F50.s"
 }
@@ -457,21 +480,4 @@ extern "C" asm void func_802D1F50() {
 u8 JKRTask::sEndMesgQueue[32];
 #pragma pop
 
-/* 8039CFA8-8039D078 029608 00CD+03 2/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039CFA8 = "on";
-SECTION_DEAD static char const* const stringBase_8039CFAB = "off";
-SECTION_DEAD static char const* const stringBase_8039CFAF =
-    "JKRThread:%x  OSThread:%x  Load:ID:%d  (%s)\n";
-SECTION_DEAD static char const* const stringBase_8039CFDC =
-    "JKRThreadSwitch: currentHeap destroyed.\n";
-SECTION_DEAD static char const* const stringBase_8039D005 = " total: switch:%3d  time:%d(%df)\n";
-SECTION_DEAD static char const* const stringBase_8039D027 =
-    " -------------------------------------\n";
-SECTION_DEAD static char const* const stringBase_8039D04F = "%d";
-SECTION_DEAD static char const* const stringBase_8039D052 = " [%10s] switch:%5d  cost:%2d.%d%%\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039D075 = "\0\0";
-#pragma pop
+/* 8039CFA8-8039CFA8 029608 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

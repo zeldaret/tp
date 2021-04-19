@@ -247,7 +247,15 @@ SECTION_RODATA static u8 const lit_3896[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(806555AC, &lit_3896);
+COMPILER_STRIP_GATE(0x806555AC, &lit_3896);
+
+/* 806555EC-806555EC 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_806555EC = "Balloon2D";
+SECTION_DEAD static char const* const stringBase_806555F6 = "zelda_balloon_game.blo";
+SECTION_DEAD static char const* const stringBase_8065560D = "";
+#pragma pop
 
 /* 80655610-806556D4 000000 00C4+00 1/1 0/0 0/0 .data
  * aParam$localstatic3$__ct__17daBalloon2D_HIO_cFv              */
@@ -418,28 +426,28 @@ asm void daBalloon2D_c::setScoreNum(int param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4064 = 1.0f;
-COMPILER_STRIP_GATE(806555B0, &lit_4064);
+COMPILER_STRIP_GATE(0x806555B0, &lit_4064);
 #pragma pop
 
 /* 806555B4-806555B8 000008 0004+00 0/2 0/0 0/0 .rodata          @4065 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4065 = 2.0f / 5.0f;
-COMPILER_STRIP_GATE(806555B4, &lit_4065);
+COMPILER_STRIP_GATE(0x806555B4, &lit_4065);
 #pragma pop
 
 /* 806555B8-806555BC 00000C 0004+00 0/3 0/0 0/0 .rodata          @4066 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4066 = 0.5f;
-COMPILER_STRIP_GATE(806555B8, &lit_4066);
+COMPILER_STRIP_GATE(0x806555B8, &lit_4066);
 #pragma pop
 
 /* 806555BC-806555C0 000010 0004+00 0/2 0/0 0/0 .rodata          @4067 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4067 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(806555BC, &lit_4067);
+COMPILER_STRIP_GATE(0x806555BC, &lit_4067);
 #pragma pop
 
 /* 80654440-8065464C 001060 020C+00 1/1 0/0 0/0 .text            setAllAlpha__13daBalloon2D_cFv */
@@ -467,63 +475,63 @@ asm void daBalloon2D_c::setComboAlpha() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4165 = 30.0f;
-COMPILER_STRIP_GATE(806555C0, &lit_4165);
+COMPILER_STRIP_GATE(0x806555C0, &lit_4165);
 #pragma pop
 
 /* 806555C4-806555C8 000018 0004+00 0/1 0/0 0/0 .rodata          @4166 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4166 = 3.0f / 10.0f;
-COMPILER_STRIP_GATE(806555C4, &lit_4166);
+COMPILER_STRIP_GATE(0x806555C4, &lit_4166);
 #pragma pop
 
 /* 806555C8-806555CC 00001C 0004+00 0/1 0/0 0/0 .rodata          @4167 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4167 = 10.0f;
-COMPILER_STRIP_GATE(806555C8, &lit_4167);
+COMPILER_STRIP_GATE(0x806555C8, &lit_4167);
 #pragma pop
 
 /* 806555CC-806555D0 000020 0004+00 0/1 0/0 0/0 .rodata          @4168 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4168 = 255.0f;
-COMPILER_STRIP_GATE(806555CC, &lit_4168);
+COMPILER_STRIP_GATE(0x806555CC, &lit_4168);
 #pragma pop
 
 /* 806555D0-806555D4 000024 0004+00 0/1 0/0 0/0 .rodata          @4169 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4169 = 6.0f;
-COMPILER_STRIP_GATE(806555D0, &lit_4169);
+COMPILER_STRIP_GATE(0x806555D0, &lit_4169);
 #pragma pop
 
 /* 806555D4-806555D8 000028 0004+00 0/1 0/0 0/0 .rodata          @4170 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4170 = 2.0f;
-COMPILER_STRIP_GATE(806555D4, &lit_4170);
+COMPILER_STRIP_GATE(0x806555D4, &lit_4170);
 #pragma pop
 
 /* 806555D8-806555DC 00002C 0004+00 0/1 0/0 0/0 .rodata          @4171 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4171 = 3.0f;
-COMPILER_STRIP_GATE(806555D8, &lit_4171);
+COMPILER_STRIP_GATE(0x806555D8, &lit_4171);
 #pragma pop
 
 /* 806555DC-806555E0 000030 0004+00 0/1 0/0 0/0 .rodata          @4172 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4172 = 4.0f;
-COMPILER_STRIP_GATE(806555DC, &lit_4172);
+COMPILER_STRIP_GATE(0x806555DC, &lit_4172);
 #pragma pop
 
 /* 806555E0-806555E4 000034 0004+00 0/1 0/0 0/0 .rodata          @4173 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4173 = 5.0f;
-COMPILER_STRIP_GATE(806555E0, &lit_4173);
+COMPILER_STRIP_GATE(0x806555E0, &lit_4173);
 #pragma pop
 
 /* 806555E4-806555EC 000038 0008+00 0/1 0/0 0/0 .rodata          @4175 */
@@ -532,7 +540,7 @@ COMPILER_STRIP_GATE(806555E0, &lit_4173);
 SECTION_RODATA static u8 const lit_4175[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(806555E4, &lit_4175);
+COMPILER_STRIP_GATE(0x806555E4, &lit_4175);
 #pragma pop
 
 /* 80654730-80654E8C 001350 075C+00 1/1 0/0 0/0 .text            drawAddScore__13daBalloon2D_cFv */
@@ -728,14 +736,7 @@ asm void __sinit_d_a_balloon_2D_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80655524 = (void*)__sinit_d_a_balloon_2D_cpp;
+REGISTER_CTORS(0x80655524, __sinit_d_a_balloon_2D_cpp);
 #pragma pop
 
-/* 806555EC-8065560E 000040 0022+00 2/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_806555EC = "Balloon2D";
-SECTION_DEAD static char const* const stringBase_806555F6 = "zelda_balloon_game.blo";
-SECTION_DEAD static char const* const stringBase_8065560D = "";
-#pragma pop
+/* 806555EC-806555EC 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

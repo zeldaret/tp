@@ -151,7 +151,18 @@ asm void daObjBoard_c::setBaseMtx() {
 /* ############################################################################################## */
 /* 8057BDD0-8057BDD4 000000 0004+00 1/1 0/0 0/0 .rodata          @3636 */
 SECTION_RODATA static f32 const lit_3636 = 10.0f;
-COMPILER_STRIP_GATE(8057BDD0, &lit_3636);
+COMPILER_STRIP_GATE(0x8057BDD0, &lit_3636);
+
+/* 8057BDD4-8057BDD4 000004 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8057BDD4 = "Obj_Board";
+SECTION_DEAD static char const* const stringBase_8057BDDE = "ClearB00.dzb";
+SECTION_DEAD static char const* const stringBase_8057BDEB = "ClearB01.dzb";
+SECTION_DEAD static char const* const stringBase_8057BDF8 = "ClearB02.dzb";
+SECTION_DEAD static char const* const stringBase_8057BE05 = "ClearB03.dzb";
+SECTION_DEAD static char const* const stringBase_8057BE12 = "ClearB04.dzb";
+#pragma pop
 
 /* 8057BE20-8057BE24 -00001 0004+00 2/2 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_cboard__stringBase0;
@@ -321,14 +332,4 @@ static asm void daObjBoard_MoveBGDraw(daObjBoard_c* param_0) {
 }
 #pragma pop
 
-/* 8057BDD4-8057BE1F 000004 004B+00 2/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8057BDD4 = "Obj_Board";
-SECTION_DEAD static char const* const stringBase_8057BDDE = "ClearB00.dzb";
-SECTION_DEAD static char const* const stringBase_8057BDEB = "ClearB01.dzb";
-SECTION_DEAD static char const* const stringBase_8057BDF8 = "ClearB02.dzb";
-SECTION_DEAD static char const* const stringBase_8057BE05 = "ClearB03.dzb";
-SECTION_DEAD static char const* const stringBase_8057BE12 = "ClearB04.dzb";
-#pragma pop
+/* 8057BDD4-8057BDD4 000004 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

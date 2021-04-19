@@ -294,6 +294,13 @@ extern "C" u8 sincosTable___5JMath[65536];
 //
 
 /* ############################################################################################## */
+/* 8059DF24-8059DF24 0000A8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8059DF24 = "J_Tobi";
+SECTION_DEAD static char const* const stringBase_8059DF2B = "J_Umak";
+#pragma pop
+
 /* 8059DF68-8059DF74 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -437,7 +444,7 @@ SECTION_RODATA u8 const daObjYobikusa_c::M_attr[64] = {
     0x43, 0xC8, 0x00, 0x00, 0x3C, 0xA3, 0xD7, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x45, 0x9C, 0x40, 0x00, 0x43, 0x16, 0x00, 0x00, 0x04, 0x00, 0x00, 0x40, 0x27, 0x10, 0x19, 0xB6,
 };
-COMPILER_STRIP_GATE(8059DE7C, &daObjYobikusa_c::M_attr);
+COMPILER_STRIP_GATE(0x8059DE7C, &daObjYobikusa_c::M_attr);
 
 /* 8059DEBC-8059DEC0 000040 0004+00 2/5 0/0 0/0 .rodata          @3699 */
 SECTION_RODATA static u8 const lit_3699[4] = {
@@ -446,7 +453,7 @@ SECTION_RODATA static u8 const lit_3699[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8059DEBC, &lit_3699);
+COMPILER_STRIP_GATE(0x8059DEBC, &lit_3699);
 
 /* 8059CA8C-8059CC54 00010C 01C8+00 1/0 0/0 0/0 .text executeSwingWind__15daObjYobikusa_cFv */
 #pragma push
@@ -472,7 +479,7 @@ asm void daObjYobikusa_c::initPushDown() {
 /* ############################################################################################## */
 /* 8059DEC0-8059DEC4 000044 0004+00 1/1 0/0 0/0 .rodata          @3724 */
 SECTION_RODATA static f32 const lit_3724 = 65.0f;
-COMPILER_STRIP_GATE(8059DEC0, &lit_3724);
+COMPILER_STRIP_GATE(0x8059DEC0, &lit_3724);
 
 /* 8059CC60-8059CD44 0002E0 00E4+00 1/0 0/0 0/0 .text executePushDown__15daObjYobikusa_cFv */
 #pragma push
@@ -510,46 +517,46 @@ asm void daObjYobikusa_c::executePickLeaf() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3773 = -50.0f;
-COMPILER_STRIP_GATE(8059DEC4, &lit_3773);
+COMPILER_STRIP_GATE(0x8059DEC4, &lit_3773);
 #pragma pop
 
 /* 8059DEC8-8059DECC 00004C 0004+00 0/1 0/0 0/0 .rodata          @3774 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3774 = -30.0f;
-COMPILER_STRIP_GATE(8059DEC8, &lit_3774);
+COMPILER_STRIP_GATE(0x8059DEC8, &lit_3774);
 #pragma pop
 
 /* 8059DECC-8059DED0 000050 0004+00 0/1 0/0 0/0 .rodata          @3775 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3775 = 50.0f;
-COMPILER_STRIP_GATE(8059DECC, &lit_3775);
+COMPILER_STRIP_GATE(0x8059DECC, &lit_3775);
 #pragma pop
 
 /* 8059DED0-8059DED4 000054 0004+00 0/1 0/0 0/0 .rodata          @3776 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3776 = 120.0f;
-COMPILER_STRIP_GATE(8059DED0, &lit_3776);
+COMPILER_STRIP_GATE(0x8059DED0, &lit_3776);
 #pragma pop
 
 /* 8059DED4-8059DED8 000058 0004+00 0/1 0/0 0/0 .rodata          @3777 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3777 = 30.0f;
-COMPILER_STRIP_GATE(8059DED4, &lit_3777);
+COMPILER_STRIP_GATE(0x8059DED4, &lit_3777);
 #pragma pop
 
 /* 8059DED8-8059DEDC 00005C 0004+00 1/4 0/0 0/0 .rodata          @3778 */
 SECTION_RODATA static f32 const lit_3778 = 1.0f;
-COMPILER_STRIP_GATE(8059DED8, &lit_3778);
+COMPILER_STRIP_GATE(0x8059DED8, &lit_3778);
 
 /* 8059DEDC-8059DEE0 000060 0004+00 0/1 0/0 0/0 .rodata          @3779 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3779 = 65535.0f;
-COMPILER_STRIP_GATE(8059DEDC, &lit_3779);
+COMPILER_STRIP_GATE(0x8059DEDC, &lit_3779);
 #pragma pop
 
 /* 8059E020-8059E040 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjYobikusa_Method */
@@ -712,7 +719,7 @@ SECTION_RODATA static u8 const ccCylSrc[68] = {
     0x00, 0x04, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0x42, 0xA0, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8059DEE0, &ccCylSrc);
+COMPILER_STRIP_GATE(0x8059DEE0, &ccCylSrc);
 
 /* 8059D320-8059D380 0009A0 0060+00 1/1 0/0 0/0 .text            initCcCylinder__15daObjYobikusa_cFv
  */
@@ -754,6 +761,16 @@ asm void daObjYobikusa_c::setNewLeaf() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/setNewLeaf__15daObjYobikusa_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8059DF24-8059DF24 0000A8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8059DF32 = "J_Tobi.bmd";
+SECTION_DEAD static char const* const stringBase_8059DF3D = "J_Tobi_c.bmd";
+SECTION_DEAD static char const* const stringBase_8059DF4A = "J_Umakusa.bmd";
+SECTION_DEAD static char const* const stringBase_8059DF58 = "J_Umakusa_c.bmd";
 #pragma pop
 
 /* 8059D520-8059D674 000BA0 0154+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
@@ -880,7 +897,7 @@ asm void __sinit_d_a_obj_yobikusa_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8059DDC0 = (void*)__sinit_d_a_obj_yobikusa_cpp;
+REGISTER_CTORS(0x8059DDC0, __sinit_d_a_obj_yobikusa_cpp);
 #pragma pop
 
 /* 8059DE60-8059DE68 0014E0 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
@@ -903,14 +920,4 @@ static asm void func_8059DE68() {
 }
 #pragma pop
 
-/* 8059DF24-8059DF68 0000A8 0044+00 3/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8059DF24 = "J_Tobi";
-SECTION_DEAD static char const* const stringBase_8059DF2B = "J_Umak";
-SECTION_DEAD static char const* const stringBase_8059DF32 = "J_Tobi.bmd";
-SECTION_DEAD static char const* const stringBase_8059DF3D = "J_Tobi_c.bmd";
-SECTION_DEAD static char const* const stringBase_8059DF4A = "J_Umakusa.bmd";
-SECTION_DEAD static char const* const stringBase_8059DF58 = "J_Umakusa_c.bmd";
-#pragma pop
+/* 8059DF24-8059DF24 0000A8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

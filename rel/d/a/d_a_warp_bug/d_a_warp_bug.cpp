@@ -105,7 +105,16 @@ void daWarpBug_c::create_init() {
 /* ############################################################################################## */
 /* 80D681DC-80D681E0 000000 0004+00 1/1 0/0 0/0 .rodata          @3709 */
 SECTION_RODATA static f32 const lit_3709 = 1.0f;
-COMPILER_STRIP_GATE(80D681DC, &lit_3709);
+COMPILER_STRIP_GATE(0x80D681DC, &lit_3709);
+
+/* 80D681E0-80D681E0 000004 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D681E0 = "WarpBug";
+SECTION_DEAD static char const* const stringBase_80D681E8 = "kisei.bmd";
+SECTION_DEAD static char const* const stringBase_80D681F2 = "kisei.brk";
+SECTION_DEAD static char const* const stringBase_80D681FC = "kisei.btk";
+#pragma pop
 
 /* 80D68208-80D6820C -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_warp_bug__stringBase0;
@@ -217,12 +226,4 @@ static asm void daWarpBug_Create(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 80D681E0-80D68206 000004 0026+00 2/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D681E0 = "WarpBug";
-SECTION_DEAD static char const* const stringBase_80D681E8 = "kisei.bmd";
-SECTION_DEAD static char const* const stringBase_80D681F2 = "kisei.brk";
-SECTION_DEAD static char const* const stringBase_80D681FC = "kisei.btk";
-#pragma pop
+/* 80D681E0-80D681E0 000004 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

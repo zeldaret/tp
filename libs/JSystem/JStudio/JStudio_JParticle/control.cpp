@@ -55,14 +55,14 @@ struct JStudio_JParticle {
 
 struct JPAParticleCallBack {};
 
+struct JPAEmitterCallBack {};
+
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
 };
-
-struct JPAEmitterCallBack {};
 
 struct JPAEmitterManager {
     /* 8027DEBC */ void createSimpleEmitterID(JGeometry::TVec3<f32> const&, u16, u8, u8,
@@ -161,7 +161,7 @@ SECTION_RODATA static u8 const lit_1172[12 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039ABA8, &lit_1172);
+COMPILER_STRIP_GATE(0x8039ABA8, &lit_1172);
 
 /* 8028E474-8028E4E4 288DB4 0070+00 1/0 0/0 0/0 .text
  * emitter_create__Q217JStudio_JParticle13TCreateObjectFUl      */

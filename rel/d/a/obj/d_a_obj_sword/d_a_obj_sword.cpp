@@ -69,7 +69,6 @@ struct dItem_data {
 
 struct dEvt_control_c {
     /* 80042468 */ void reset();
-    /* 800436EC */ void setPtI_Id(unsigned int);
 };
 
 struct dEvent_manager_c {
@@ -503,6 +502,13 @@ asm void daObjSword_c::actionOrderGetDemo() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80CFDE84-80CFDE84 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CFDE84 = "DEFAULT_GETITEM";
+#pragma pop
+
 /* 80CFDB80-80CFDC1C 0006A0 009C+00 1/0 0/0 0/0 .text            actionGetDemo__12daObjSword_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -616,9 +622,4 @@ static asm void func_80CFDE74() {
 }
 #pragma pop
 
-/* 80CFDE84-80CFDE94 000000 0010+00 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CFDE84 = "DEFAULT_GETITEM";
-#pragma pop
+/* 80CFDE84-80CFDE84 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

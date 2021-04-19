@@ -234,6 +234,16 @@ asm void JKRDvdArchive::fetchResource(void* param_0, u32 param_1, JKRArchive::SD
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039D1B0-8039D1B0 029810 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D1B0 = "JKRDvdArchive.cpp";
+SECTION_DEAD static char const* const stringBase_8039D1C2 = "%s";
+SECTION_DEAD static char const* const stringBase_8039D1C5 = "Sorry, not applied for SZP archive.\n";
+SECTION_DEAD static char const* const stringBase_8039D1EA = "??? bad sequence\n";
+#pragma pop
+
 /* 802D826C-802D8474 2D2BAC 0208+00 1/1 1/1 0/0 .text
  * fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUlii       */
 #pragma push
@@ -244,6 +254,15 @@ asm void JKRDvdArchive::fetchResource_subroutine(s32 param_0, u32 param_1, u32 p
     nofralloc
 #include "asm/JSystem/JKernel/JKRDvdArchive/fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUlii.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8039D1B0-8039D1B0 029810 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D1FC = "Sorry, not applied SZP archive.\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039D21D = "\0\0";
 #pragma pop
 
 /* 802D8474-802D8698 2D2DB4 0224+00 1/1 1/1 0/0 .text
@@ -269,15 +288,4 @@ asm void JKRDvdArchive::getExpandedResSize(void const* param_0) const {
 }
 #pragma pop
 
-/* 8039D1B0-8039D220 029810 006D+03 2/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039D1B0 = "JKRDvdArchive.cpp";
-SECTION_DEAD static char const* const stringBase_8039D1C2 = "%s";
-SECTION_DEAD static char const* const stringBase_8039D1C5 = "Sorry, not applied for SZP archive.\n";
-SECTION_DEAD static char const* const stringBase_8039D1EA = "??? bad sequence\n";
-SECTION_DEAD static char const* const stringBase_8039D1FC = "Sorry, not applied SZP archive.\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039D21D = "\0\0";
-#pragma pop
+/* 8039D1B0-8039D1B0 029810 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

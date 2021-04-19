@@ -286,6 +286,13 @@ static asm void daMirror_c_createHeap(fopAc_ac_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80872650-80872650 0000C4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80872650 = "Mirror";
+SECTION_DEAD static char const* const stringBase_80872657 = "MR-Table";
+#pragma pop
+
 /* 80872660-80872664 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_mirror__stringBase0;
 
@@ -388,7 +395,7 @@ asm void dMirror_packet_c::entryModel(J3DModel* param_0) {
 /* ############################################################################################## */
 /* 8087258C-80872590 000000 0004+00 3/3 0/0 0/0 .rodata          @3884 */
 SECTION_RODATA static u32 const lit_3884 = 0x000000FF;
-COMPILER_STRIP_GATE(8087258C, &lit_3884);
+COMPILER_STRIP_GATE(0x8087258C, &lit_3884);
 
 /* 80872590-80872598 000004 0008+00 0/1 0/0 0/0 .rodata          l_texCoord$3899 */
 #pragma push
@@ -396,7 +403,7 @@ COMPILER_STRIP_GATE(8087258C, &lit_3884);
 SECTION_RODATA static u8 const l_texCoord[8] = {
     0x00, 0x00, 0x01, 0x00, 0x01, 0x01, 0x00, 0x01,
 };
-COMPILER_STRIP_GATE(80872590, &l_texCoord);
+COMPILER_STRIP_GATE(0x80872590, &l_texCoord);
 #pragma pop
 
 /* 80872598-8087259C 00000C 0004+00 2/4 0/0 0/0 .rodata          @3945 */
@@ -406,27 +413,27 @@ SECTION_RODATA static u8 const lit_3945[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80872598, &lit_3945);
+COMPILER_STRIP_GATE(0x80872598, &lit_3945);
 
 /* 8087259C-808725A0 000010 0004+00 0/1 0/0 0/0 .rodata          @3946 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3946 = 100.0f;
-COMPILER_STRIP_GATE(8087259C, &lit_3946);
+COMPILER_STRIP_GATE(0x8087259C, &lit_3946);
 #pragma pop
 
 /* 808725A0-808725A4 000014 0004+00 0/3 0/0 0/0 .rodata          @3947 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3947 = 1.0f;
-COMPILER_STRIP_GATE(808725A0, &lit_3947);
+COMPILER_STRIP_GATE(0x808725A0, &lit_3947);
 #pragma pop
 
 /* 808725A4-808725A8 000018 0004+00 0/1 0/0 0/0 .rodata          @3948 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3948 = -100.0f;
-COMPILER_STRIP_GATE(808725A4, &lit_3948);
+COMPILER_STRIP_GATE(0x808725A4, &lit_3948);
 #pragma pop
 
 /* 80870D88-80871268 000248 04E0+00 1/1 0/0 0/0 .text mirrorZdraw__16dMirror_packet_cFPfPfffffff
@@ -449,7 +456,7 @@ SECTION_RODATA static u8 const lit_3956[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(808725A8, &lit_3956);
+COMPILER_STRIP_GATE(0x808725A8, &lit_3956);
 
 /* 80871268-8087146C 000728 0204+00 1/1 0/0 0/0 .text
  * modelDraw__16dMirror_packet_cFP8J3DModelPA4_f                */
@@ -467,56 +474,56 @@ asm void dMirror_packet_c::modelDraw(J3DModel* param_0, f32 (*param_1)[4]) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4345 = 0x3C8EFA35;
-COMPILER_STRIP_GATE(808725AC, &lit_4345);
+COMPILER_STRIP_GATE(0x808725AC, &lit_4345);
 #pragma pop
 
 /* 808725B0-808725B4 000024 0004+00 0/1 0/0 0/0 .rodata          @4346 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4346 = 0.5f;
-COMPILER_STRIP_GATE(808725B0, &lit_4346);
+COMPILER_STRIP_GATE(0x808725B0, &lit_4346);
 #pragma pop
 
 /* 808725B4-808725B8 000028 0004+00 0/1 0/0 0/0 .rodata          @4347 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4347 = 2.0f;
-COMPILER_STRIP_GATE(808725B4, &lit_4347);
+COMPILER_STRIP_GATE(0x808725B4, &lit_4347);
 #pragma pop
 
 /* 808725B8-808725BC 00002C 0004+00 0/1 0/0 0/0 .rodata          @4348 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4348 = 304.0f;
-COMPILER_STRIP_GATE(808725B8, &lit_4348);
+COMPILER_STRIP_GATE(0x808725B8, &lit_4348);
 #pragma pop
 
 /* 808725BC-808725C0 000030 0004+00 0/1 0/0 0/0 .rodata          @4349 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4349 = 608.0f;
-COMPILER_STRIP_GATE(808725BC, &lit_4349);
+COMPILER_STRIP_GATE(0x808725BC, &lit_4349);
 #pragma pop
 
 /* 808725C0-808725C4 000034 0004+00 0/1 0/0 0/0 .rodata          @4350 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4350 = 224.0f;
-COMPILER_STRIP_GATE(808725C0, &lit_4350);
+COMPILER_STRIP_GATE(0x808725C0, &lit_4350);
 #pragma pop
 
 /* 808725C4-808725C8 000038 0004+00 0/1 0/0 0/0 .rodata          @4351 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4351 = 448.0f;
-COMPILER_STRIP_GATE(808725C4, &lit_4351);
+COMPILER_STRIP_GATE(0x808725C4, &lit_4351);
 #pragma pop
 
 /* 808725C8-808725CC 00003C 0004+00 0/1 0/0 0/0 .rodata          @4352 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4352 = 8.0f;
-COMPILER_STRIP_GATE(808725C8, &lit_4352);
+COMPILER_STRIP_GATE(0x808725C8, &lit_4352);
 #pragma pop
 
 /* 808725CC-808725D4 000040 0004+04 0/2 0/0 0/0 .rodata          @4353 */
@@ -527,7 +534,7 @@ SECTION_RODATA static f32 const lit_4353[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(808725CC, &lit_4353);
+COMPILER_STRIP_GATE(0x808725CC, &lit_4353);
 #pragma pop
 
 /* 808725D4-808725DC 000048 0008+00 0/1 0/0 0/0 .rodata          @4355 */
@@ -536,7 +543,7 @@ COMPILER_STRIP_GATE(808725CC, &lit_4353);
 SECTION_RODATA static u8 const lit_4355[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(808725D4, &lit_4355);
+COMPILER_STRIP_GATE(0x808725D4, &lit_4355);
 #pragma pop
 
 /* 8087146C-80871D84 00092C 0918+00 1/1 0/0 0/1 .text            mainDraw__16dMirror_packet_cFv */
@@ -618,7 +625,7 @@ SECTION_RODATA static u8 const lit_4406[48] = {
     0x43, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x91, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0xC2, 0x91, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(808725DC, &lit_4406);
+COMPILER_STRIP_GATE(0x808725DC, &lit_4406);
 #pragma pop
 
 /* 8087260C-8087263C 000080 0030+00 1/1 0/0 0/0 .rodata
@@ -628,20 +635,20 @@ SECTION_RODATA static u8 const data_8087260C[48] = {
     0x42, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0xC2, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8087260C, &data_8087260C);
+COMPILER_STRIP_GATE(0x8087260C, &data_8087260C);
 
 /* 8087263C-80872648 0000B0 000C+00 1/1 0/0 0/0 .rodata
  * l_mirrorLook$localstatic4$create__10daMirror_cFv             */
 SECTION_RODATA static u8 const data_8087263C[12] = {
     0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8087263C, &data_8087263C);
+COMPILER_STRIP_GATE(0x8087263C, &data_8087263C);
 
 /* 80872648-8087264C 0000BC 0004+00 0/1 0/0 0/0 .rodata          @4544 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4544 = 10.0f;
-COMPILER_STRIP_GATE(80872648, &lit_4544);
+COMPILER_STRIP_GATE(0x80872648, &lit_4544);
 #pragma pop
 
 /* 8087206C-80872344 00152C 02D8+00 2/2 0/0 0/0 .text            create__10daMirror_cFv */
@@ -677,7 +684,7 @@ static asm void daMirror_execute(daMirror_c* param_0) {
 /* ############################################################################################## */
 /* 8087264C-80872650 0000C0 0004+00 1/1 0/0 0/0 .rodata          @4574 */
 SECTION_RODATA static f32 const lit_4574 = 40000.0f;
-COMPILER_STRIP_GATE(8087264C, &lit_4574);
+COMPILER_STRIP_GATE(0x8087264C, &lit_4574);
 
 /* 808723E4-808724C0 0018A4 00DC+00 1/1 0/0 0/0 .text            execute__10daMirror_cFv */
 #pragma push
@@ -710,10 +717,4 @@ asm void daMirror_c::entryModel(J3DModel* param_0) {
 }
 #pragma pop
 
-/* 80872650-80872660 0000C4 0010+00 2/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80872650 = "Mirror";
-SECTION_DEAD static char const* const stringBase_80872657 = "MR-Table";
-#pragma pop
+/* 80872650-80872650 0000C4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

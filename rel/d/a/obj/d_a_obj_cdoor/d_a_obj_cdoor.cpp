@@ -110,9 +110,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -234,19 +234,19 @@ extern "C" extern u8 struct_80BC7EB8[4];
 SECTION_RODATA static u8 const l_bmdIdx[8] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x09,
 };
-COMPILER_STRIP_GATE(80BC7D18, &l_bmdIdx);
+COMPILER_STRIP_GATE(0x80BC7D18, &l_bmdIdx);
 
 /* 80BC7D20-80BC7D28 000008 0008+00 1/1 0/0 0/0 .rodata          l_dzbIdx */
 SECTION_RODATA static u8 const l_dzbIdx[8] = {
     0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x0C,
 };
-COMPILER_STRIP_GATE(80BC7D20, &l_dzbIdx);
+COMPILER_STRIP_GATE(0x80BC7D20, &l_dzbIdx);
 
 /* 80BC7D28-80BC7D30 000010 0008+00 1/1 0/0 0/0 .rodata          l_attentionOffsetY */
 SECTION_RODATA static u8 const l_attentionOffsetY[8] = {
     0x42, 0x96, 0x00, 0x00, 0x42, 0x96, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BC7D28, &l_attentionOffsetY);
+COMPILER_STRIP_GATE(0x80BC7D28, &l_attentionOffsetY);
 
 /* 80BC7D30-80BC7D38 000018 0004+04 5/6 0/0 0/0 .rodata          @3783 */
 SECTION_RODATA static f32 const lit_3783[1 + 1 /* padding */] = {
@@ -254,7 +254,14 @@ SECTION_RODATA static f32 const lit_3783[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80BC7D30, &lit_3783);
+COMPILER_STRIP_GATE(0x80BC7D30, &lit_3783);
+
+/* 80BC7D48-80BC7D48 000030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BC7D48 = "Cdoor";
+SECTION_DEAD static char const* const stringBase_80BC7D4E = "J_Suimon";
+#pragma pop
 
 /* 80BC7D58-80BC7D64 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -305,7 +312,7 @@ static asm void daObjCdoor_searchChain(fopAc_ac_c* param_0, void* param_1) {
 SECTION_RODATA static u8 const lit_3909[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BC7D38, &lit_3909);
+COMPILER_STRIP_GATE(0x80BC7D38, &lit_3909);
 
 /* 80BC7D80-80BC7D88 000028 0008+00 2/2 0/0 0/0 .data            l_moveOffsetY */
 SECTION_DATA static u8 l_moveOffsetY[8] = {
@@ -522,13 +529,13 @@ asm void daObjCdoor_c::Execute(f32 (**param_0)[3][4]) {
 /* ############################################################################################## */
 /* 80BC7D40-80BC7D44 000028 0004+00 2/3 0/0 0/0 .rodata          @4014 */
 SECTION_RODATA static f32 const lit_4014 = -1.0f;
-COMPILER_STRIP_GATE(80BC7D40, &lit_4014);
+COMPILER_STRIP_GATE(0x80BC7D40, &lit_4014);
 
 /* 80BC7D44-80BC7D48 00002C 0004+00 0/1 0/0 0/0 .rodata          @4015 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4015 = 1.0f / 100.0f;
-COMPILER_STRIP_GATE(80BC7D44, &lit_4015);
+COMPILER_STRIP_GATE(0x80BC7D44, &lit_4015);
 #pragma pop
 
 /* 80BC7478-80BC7630 000738 01B8+00 1/1 0/0 0/0 .text            execCdoor__12daObjCdoor_cFv */
@@ -689,10 +696,4 @@ static asm void daObjCdoor_Draw(daObjCdoor_c* param_0) {
 }
 #pragma pop
 
-/* 80BC7D48-80BC7D57 000030 000F+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BC7D48 = "Cdoor";
-SECTION_DEAD static char const* const stringBase_80BC7D4E = "J_Suimon";
-#pragma pop
+/* 80BC7D48-80BC7D48 000030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

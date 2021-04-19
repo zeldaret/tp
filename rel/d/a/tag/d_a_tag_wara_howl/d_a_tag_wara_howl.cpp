@@ -143,7 +143,7 @@ asm void daTagWrHowl_c::execute() {
 /* ############################################################################################## */
 /* 80D64200-80D64204 000000 0004+00 1/1 0/0 0/0 .rodata          @3680 */
 SECTION_RODATA static f32 const lit_3680 = 50.0f;
-COMPILER_STRIP_GATE(80D64200, &lit_3680);
+COMPILER_STRIP_GATE(0x80D64200, &lit_3680);
 
 /* 80D64090-80D640B4 0001D0 0024+00 1/1 0/0 0/0 .text            init__13daTagWrHowl_cFv */
 #pragma push

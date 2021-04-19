@@ -42,14 +42,14 @@ template <typename A0>
 struct JASMemPool_MultiThreaded {};
 /* JASMemPool_MultiThreaded<JASTrack> */
 struct JASMemPool_MultiThreaded__template0 {
-    /* 802932E0 */ void func_802932E0();
+    /* 802932E0 */ void func_802932E0(void* _this);
 };
 
 template <typename A0>
 struct JASMemPool {};
 /* JASMemPool<JAISoundChild> */
 struct JASMemPool__template1 {
-    /* 802A1268 */ void func_802A1268();
+    /* 802A1268 */ void func_802A1268(void* _this);
 };
 
 struct JASGenericMemPool {
@@ -130,7 +130,7 @@ extern "C" void prepare_getSeqData___6JAISeqFv();
 extern "C" void prepare___6JAISeqFRC14JASSoundParams16JAISoundActivity();
 extern "C" void JAISeqMgr_calc___6JAISeqFv();
 extern "C" void die___6JAISeqFv();
-extern "C" void func_802A1268();
+extern "C" void func_802A1268(void* _this);
 extern "C" void JAISound_tryDie___6JAISeqFv();
 extern "C" void mixOut___6JAISeqFRC14JASSoundParams16JAISoundActivity();
 extern "C" void JAISeqMgr_mixOut___6JAISeqFRC14JASSoundParams16JAISoundActivity();
@@ -161,7 +161,7 @@ extern "C" void connectChild__8JASTrackFUlP8JASTrack();
 extern "C" void mute__8JASTrackFb();
 extern "C" void pause__8JASTrackFb();
 extern "C" void setTempoRate__8JASTrackFf();
-extern "C" void func_802932E0();
+extern "C" void func_802932E0(void* _this);
 extern "C" void mixOutAll__14JAISoundParamsFRC14JASSoundParamsP14JASSoundParamsf();
 extern "C" void __ct__8JAISoundFv();
 extern "C" void func_802A2328();
@@ -368,7 +368,7 @@ asm void JAISeq::die_() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802A1268() {
+extern "C" asm void func_802A1268(void* _this) {
     nofralloc
 #include "asm/JSystem/JAudio2/JAISeq/func_802A1268.s"
 }

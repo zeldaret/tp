@@ -118,9 +118,9 @@ extern "C" void draw__17JUTConsoleManagerCFv();
 extern "C" void drawDirect__17JUTConsoleManagerCFb();
 extern "C" void setDirectConsole__17JUTConsoleManagerFP10JUTConsole();
 extern "C" void JUTSetReportConsole();
-extern "C" static void JUTGetReportConsole();
+extern "C" u32 JUTGetReportConsole();
 extern "C" void JUTSetWarningConsole();
-extern "C" static void JUTGetWarningConsole();
+extern "C" u32 JUTGetWarningConsole();
 extern "C" static void JUTReportConsole_f_va();
 extern "C" void JUTReportConsole_f();
 extern "C" void JUTReportConsole();
@@ -337,6 +337,14 @@ asm void JUTConsole_print_f_va_() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039D9A8-8039D9A8 02A008 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D9A8 = "[%03d] %s\n";
+SECTION_DEAD static char const* const stringBase_8039D9B3 = "%s\n";
+#pragma pop
+
 /* 802E7F7C-802E80A8 2E28BC 012C+00 0/0 2/2 0/0 .text            dumpToTerminal__10JUTConsoleFUi */
 #pragma push
 #pragma optimization_level 0
@@ -453,7 +461,7 @@ asm void JUTConsoleManager::setDirectConsole(JUTConsole* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451574-80451578 000A74 0004+00 2/2 0/0 0/0 .sbss            sReportConsole */
+/* 80451574-80451578 000A74 0004+00 2/1 0/0 0/0 .sbss            sReportConsole */
 static u8 sReportConsole[4];
 
 /* 802E8520-802E8528 2E2E60 0008+00 1/1 1/1 0/0 .text            JUTSetReportConsole */
@@ -466,18 +474,13 @@ asm void JUTSetReportConsole() {
 }
 #pragma pop
 
-/* 802E8528-802E8530 2E2E68 0008+00 2/2 0/0 0/0 .text            JUTGetReportConsole */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void JUTGetReportConsole() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/JUTGetReportConsole.s"
+/* 802E8528-802E8530 -00001 0008+00 0/0 0/0 0/0 .text            JUTGetReportConsole */
+u32 JUTGetReportConsole() {
+    return *(u32*)(&sReportConsole);
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 80451578-80451580 000A78 0004+04 2/2 0/0 0/0 .sbss            sWarningConsole */
+/* 80451578-80451580 000A78 0004+04 2/1 0/0 0/0 .sbss            sWarningConsole */
 static u8 sWarningConsole[4 + 4 /* padding */];
 
 /* 802E8530-802E8538 2E2E70 0008+00 1/1 1/1 0/0 .text            JUTSetWarningConsole */
@@ -490,15 +493,10 @@ asm void JUTSetWarningConsole() {
 }
 #pragma pop
 
-/* 802E8538-802E8540 2E2E78 0008+00 1/1 0/0 0/0 .text            JUTGetWarningConsole */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void JUTGetWarningConsole() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/JUTGetWarningConsole.s"
+/* 802E8538-802E8540 -00001 0008+00 0/0 0/0 0/0 .text            JUTGetWarningConsole */
+u32 JUTGetWarningConsole() {
+    return *(u32*)(&sWarningConsole);
 }
-#pragma pop
 
 /* 802E8540-802E85C8 2E2E80 0088+00 2/2 0/0 0/0 .text            JUTReportConsole_f_va */
 #pragma push
@@ -518,6 +516,19 @@ asm void JUTReportConsole_f() {
     nofralloc
 #include "asm/JSystem/JUtility/JUTConsole/JUTReportConsole_f.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8039D9A8-8039D9A8 02A008 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D9B7 =
+    "\n:::dump of console[%x]----------------\n";
+SECTION_DEAD static char const* const stringBase_8039D9E0 =
+    ":::dump of console[%x] END------------\n";
+SECTION_DEAD static char const* const stringBase_8039DA08 = "%s";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039DA0B = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
 #pragma pop
 
 /* 802E8648-802E867C 2E2F88 0034+00 0/0 6/6 0/0 .text            JUTReportConsole */
@@ -550,17 +561,4 @@ asm void JUTWarningConsole() {
 }
 #pragma pop
 
-/* 8039D9A8-8039DA20 02A008 0063+15 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039D9A8 = "[%03d] %s\n";
-SECTION_DEAD static char const* const stringBase_8039D9B3 = "%s\n";
-SECTION_DEAD static char const* const stringBase_8039D9B7 =
-    "\n:::dump of console[%x]----------------\n";
-SECTION_DEAD static char const* const stringBase_8039D9E0 =
-    ":::dump of console[%x] END------------\n";
-SECTION_DEAD static char const* const stringBase_8039DA08 = "%s";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039DA0B = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
-#pragma pop
+/* 8039D9A8-8039D9A8 02A008 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

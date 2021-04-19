@@ -60,9 +60,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -136,9 +136,9 @@ struct cCcD_GStts {
     /* 80C1C3CC */ ~cCcD_GStts();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -245,6 +245,12 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
+/* 80C1C728-80C1C728 000130 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C1C728 = "H_Bombkoy";
+#pragma pop
+
 /* 80C1C734-80C1C738 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_hbombkoya__stringBase0;
 
@@ -271,7 +277,7 @@ asm void daObjHBombkoya_c::CreateHeap() {
 /* ############################################################################################## */
 /* 80C1C5F8-80C1C5FC 000000 0004+00 2/2 0/0 0/0 .rodata          @3699 */
 SECTION_RODATA static f32 const lit_3699 = 200.0f;
-COMPILER_STRIP_GATE(80C1C5F8, &lit_3699);
+COMPILER_STRIP_GATE(0x80C1C5F8, &lit_3699);
 
 /* 80C1C738-80C1C77C 000004 0044+00 1/1 0/0 0/0 .data            l_cc_cyl_src */
 SECTION_DATA static u8 l_cc_cyl_src[68] = {
@@ -418,7 +424,7 @@ asm cM3dGAab::~cM3dGAab() {
 /* ############################################################################################## */
 /* 80C1C5FC-80C1C600 000004 0004+00 1/2 0/0 0/0 .rodata          @3747 */
 SECTION_RODATA static f32 const lit_3747 = 1.0f;
-COMPILER_STRIP_GATE(80C1C5FC, &lit_3747);
+COMPILER_STRIP_GATE(0x80C1C5FC, &lit_3747);
 
 /* 80C1BB7C-80C1BCA0 00037C 0124+00 1/1 0/0 0/0 .text
  * setParticle__16daObjHBombkoya_cFPUsiPQ216daObjHBombkoya_c7PSetTblii */
@@ -440,7 +446,7 @@ asm void daObjHBombkoya_c::setParticle(u16* param_0, int param_1,
 SECTION_RODATA static u8 const lit_3758[16] = {
     0x85, 0x8D, 0x85, 0x8E, 0x85, 0x8F, 0x85, 0x90, 0x85, 0x91, 0x85, 0x92, 0x85, 0x93, 0x85, 0x94,
 };
-COMPILER_STRIP_GATE(80C1C600, &lit_3758);
+COMPILER_STRIP_GATE(0x80C1C600, &lit_3758);
 #pragma pop
 
 /* 80C1C610-80C1C6B0 000018 00A0+00 0/0 0/0 0/0 .rodata          @3759 */
@@ -458,7 +464,7 @@ SECTION_RODATA static u8 const lit_3759[160] = {
     0xC3, 0xE7, 0x00, 0x00, 0x00, 0x00, 0x00, 0x9B, 0x3F, 0x80, 0x00, 0x00, 0xC4, 0x7A, 0x00, 0x00,
     0x42, 0xE8, 0x00, 0x00, 0xC3, 0xEA, 0x80, 0x00, 0x00, 0x00, 0x00, 0xA0, 0x3F, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C1C610, &lit_3759);
+COMPILER_STRIP_GATE(0x80C1C610, &lit_3759);
 #pragma pop
 
 /* 80C1C6B0-80C1C6B8 0000B8 0006+02 0/1 0/0 0/0 .rodata          @3762 */
@@ -475,7 +481,7 @@ SECTION_RODATA static u8 const lit_3762[6 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C1C6B0, &lit_3762);
+COMPILER_STRIP_GATE(0x80C1C6B0, &lit_3762);
 #pragma pop
 
 /* 80C1C6B8-80C1C71C 0000C0 0064+00 0/0 0/0 0/0 .rodata          @3763 */
@@ -490,21 +496,21 @@ SECTION_RODATA static u8 const lit_3763[100] = {
     0x00, 0x3F, 0x99, 0x99, 0x9A, 0xC4, 0x66, 0x40, 0x00, 0x44, 0x7A, 0x00, 0x00, 0xC4, 0x31,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xA0, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C1C6B8, &lit_3763);
+COMPILER_STRIP_GATE(0x80C1C6B8, &lit_3763);
 #pragma pop
 
 /* 80C1C71C-80C1C720 000124 0004+00 0/1 0/0 0/0 .rodata          @3851 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3851 = -1.0f;
-COMPILER_STRIP_GATE(80C1C71C, &lit_3851);
+COMPILER_STRIP_GATE(0x80C1C71C, &lit_3851);
 #pragma pop
 
 /* 80C1C720-80C1C724 000128 0004+00 0/1 0/0 0/0 .rodata          @3852 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3852 = -500.0f;
-COMPILER_STRIP_GATE(80C1C720, &lit_3852);
+COMPILER_STRIP_GATE(0x80C1C720, &lit_3852);
 #pragma pop
 
 /* 80C1C724-80C1C728 00012C 0004+00 0/1 0/0 0/0 .rodata          @3853 */
@@ -516,7 +522,7 @@ SECTION_RODATA static u8 const lit_3853[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C1C724, &lit_3853);
+COMPILER_STRIP_GATE(0x80C1C724, &lit_3853);
 #pragma pop
 
 /* 80C1BCA0-80C1C098 0004A0 03F8+00 1/0 0/0 0/0 .text Execute__16daObjHBombkoya_cFPPA3_A4_f */
@@ -691,9 +697,4 @@ static asm void func_80C1C5E8() {
 }
 #pragma pop
 
-/* 80C1C728-80C1C732 000130 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C1C728 = "H_Bombkoy";
-#pragma pop
+/* 80C1C728-80C1C728 000130 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

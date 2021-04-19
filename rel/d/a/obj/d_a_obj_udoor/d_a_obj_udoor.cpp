@@ -95,9 +95,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -195,55 +195,55 @@ static asm void daObj_Udoor_Draw(obj_udoor_class* param_0) {
 /* ############################################################################################## */
 /* 80D20DE0-80D20DE4 000000 0004+00 2/2 0/0 0/0 .rodata          @3707 */
 SECTION_RODATA static f32 const lit_3707 = 2000.0f;
-COMPILER_STRIP_GATE(80D20DE0, &lit_3707);
+COMPILER_STRIP_GATE(0x80D20DE0, &lit_3707);
 
 /* 80D20DE4-80D20DE8 000004 0004+00 0/1 0/0 0/0 .rodata          @3708 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3708 = 1.0f;
-COMPILER_STRIP_GATE(80D20DE4, &lit_3708);
+COMPILER_STRIP_GATE(0x80D20DE4, &lit_3708);
 #pragma pop
 
 /* 80D20DE8-80D20DEC 000008 0004+00 0/1 0/0 0/0 .rodata          @3709 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3709 = -1.0f;
-COMPILER_STRIP_GATE(80D20DE8, &lit_3709);
+COMPILER_STRIP_GATE(0x80D20DE8, &lit_3709);
 #pragma pop
 
 /* 80D20DEC-80D20DF0 00000C 0004+00 0/1 0/0 0/0 .rodata          @3710 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3710 = -20066.0f;
-COMPILER_STRIP_GATE(80D20DEC, &lit_3710);
+COMPILER_STRIP_GATE(0x80D20DEC, &lit_3710);
 #pragma pop
 
 /* 80D20DF0-80D20DF4 000010 0004+00 0/1 0/0 0/0 .rodata          @3711 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3711 = -20428.0f;
-COMPILER_STRIP_GATE(80D20DF0, &lit_3711);
+COMPILER_STRIP_GATE(0x80D20DF0, &lit_3711);
 #pragma pop
 
 /* 80D20DF4-80D20DF8 000014 0004+00 0/1 0/0 0/0 .rodata          @3712 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3712 = 500.0f;
-COMPILER_STRIP_GATE(80D20DF4, &lit_3712);
+COMPILER_STRIP_GATE(0x80D20DF4, &lit_3712);
 #pragma pop
 
 /* 80D20DF8-80D20DFC 000018 0004+00 0/1 0/0 0/0 .rodata          @3713 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3713 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(80D20DF8, &lit_3713);
+COMPILER_STRIP_GATE(0x80D20DF8, &lit_3713);
 #pragma pop
 
 /* 80D20DFC-80D20E00 00001C 0004+00 0/1 0/0 0/0 .rodata          @3714 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3714 = 50.0f;
-COMPILER_STRIP_GATE(80D20DFC, &lit_3714);
+COMPILER_STRIP_GATE(0x80D20DFC, &lit_3714);
 #pragma pop
 
 /* 80D2079C-80D209BC 0000DC 0220+00 2/1 0/0 0/0 .text daObj_Udoor_Execute__FP15obj_udoor_class */
@@ -260,6 +260,13 @@ static asm void daObj_Udoor_Execute(obj_udoor_class* param_0) {
 static bool daObj_Udoor_IsDelete(obj_udoor_class* param_0) {
     return true;
 }
+
+/* ############################################################################################## */
+/* 80D20E10-80D20E10 000030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D20E10 = "Obj_udoor";
+#pragma pop
 
 /* 80D209C4-80D20A1C 000304 0058+00 1/0 0/0 0/0 .text daObj_Udoor_Delete__FP15obj_udoor_class */
 #pragma push
@@ -297,28 +304,28 @@ static asm void useHeapInit(fopAc_ac_c* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3828 = -300.0f;
-COMPILER_STRIP_GATE(80D20E00, &lit_3828);
+COMPILER_STRIP_GATE(0x80D20E00, &lit_3828);
 #pragma pop
 
 /* 80D20E04-80D20E08 000024 0004+00 0/1 0/0 0/0 .rodata          @3829 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3829 = -600.0f;
-COMPILER_STRIP_GATE(80D20E04, &lit_3829);
+COMPILER_STRIP_GATE(0x80D20E04, &lit_3829);
 #pragma pop
 
 /* 80D20E08-80D20E0C 000028 0004+00 0/1 0/0 0/0 .rodata          @3830 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3830 = 300.0f;
-COMPILER_STRIP_GATE(80D20E08, &lit_3830);
+COMPILER_STRIP_GATE(0x80D20E08, &lit_3830);
 #pragma pop
 
 /* 80D20E0C-80D20E10 00002C 0004+00 0/1 0/0 0/0 .rodata          @3831 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3831 = 600.0f;
-COMPILER_STRIP_GATE(80D20E0C, &lit_3831);
+COMPILER_STRIP_GATE(0x80D20E0C, &lit_3831);
 #pragma pop
 
 /* 80D20E2C-80D20E6C 000010 0040+00 1/1 0/0 0/0 .data            cc_sph_src$3768 */
@@ -396,9 +403,4 @@ asm cM3dGAab::~cM3dGAab() {
 }
 #pragma pop
 
-/* 80D20E10-80D20E1A 000030 000A+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D20E10 = "Obj_udoor";
-#pragma pop
+/* 80D20E10-80D20E10 000030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -15,11 +15,11 @@ struct jmessage_string_tControl {
     /* 8022FB5C */ jmessage_string_tControl();
 };
 
-struct COutFont_c {};
-
 struct J2DTextBox {};
 
 struct JUTFont {};
+
+struct COutFont_c {};
 
 struct jmessage_string_tReference {
     /* 8022F8C0 */ jmessage_string_tReference();
@@ -191,6 +191,13 @@ asm dMsgStringBase_c::~dMsgStringBase_c() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80399C98-80399C98 0262F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399C98 = "zel_00.bmg";
+#pragma pop
+
 /* 80249700-80249768 244040 0068+00 1/1 2/2 0/0 .text            getResource__16dMsgStringBase_cFv
  */
 #pragma push
@@ -311,14 +318,15 @@ void dMsgStringBase_c::drawOutFontLocal(J2DTextBox* param_0, f32 param_1) {
     /* empty function */
 }
 
-/* 80399C98-80399CB0 0262F8 0013+05 1/1 0/0 0/0 .rodata          @stringBase0 */
+/* ############################################################################################## */
+/* 80399CA3-80399CB0 026303 0008+05 0/0 0/0 0/0 .rodata          None */
 #pragma push
 #pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80399C98 = "zel_00.bmg";
 SECTION_DEAD static char const* const stringBase_80399CA3 = ""
                                                             "\x1B"
                                                             "CR[%d]";
 /* @stringBase0 padding */
 SECTION_DEAD static char const* const pad_80399CAB = "\0\0\0\0";
 #pragma pop
+
+/* 80399C98-80399C98 0262F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

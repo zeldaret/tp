@@ -15,11 +15,13 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DModelData {};
-
 struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
+
+struct J3DAnmTransform {};
+
+struct J3DModelData {};
 
 struct Vec {};
 
@@ -28,8 +30,6 @@ struct Z2Creature {
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
-
-struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -43,6 +43,8 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
+struct daNpcT_faceMotionAnmData_c {};
+
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -51,13 +53,11 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80B51A44 */ ~daNpcT_MotionSeqMngr_c();
 };
 
+struct daNpcT_evtData_c {};
+
 struct daNpcT_motionAnmData_c {};
 
 struct J3DJoint {};
-
-struct daNpcT_faceMotionAnmData_c {};
-
-struct daNpcT_evtData_c {};
 
 struct daNpc_Yelia_c {
     /* 80B4D30C */ ~daNpc_Yelia_c();
@@ -122,6 +122,8 @@ struct dCcD_GObjInf {
     /* 800840E4 */ ~dCcD_GObjInf();
 };
 
+struct _GXColorS10 {};
+
 struct J3DModel {};
 
 struct cXyz {
@@ -130,8 +132,6 @@ struct cXyz {
     /* 80B51368 */ ~cXyz();
     /* 80B51A40 */ cXyz();
 };
-
-struct _GXColorS10 {};
 
 struct daNpcT_c {
     /* 80147FA4 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
@@ -311,12 +311,12 @@ struct dBgS_AcchCir {
     /* 80B51A8C */ ~dBgS_AcchCir();
 };
 
-struct dBgS {};
-
 struct csXyz {
     /* 80B513A4 */ ~csXyz();
     /* 80B51940 */ csXyz();
 };
+
+struct dBgS {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -496,7 +496,7 @@ extern "C" void changeAnm__8daNpcT_cFPiPi();
 extern "C" void changeBck__8daNpcT_cFPiPi();
 extern "C" void changeBtp__8daNpcT_cFPiPi();
 extern "C" void changeBtk__8daNpcT_cFPiPi();
-extern "C" void func_80B52004(int*);
+extern "C" void func_80B52004(void* _this, int*);
 extern "C" void __sinit_d_a_npc_yelia_cpp();
 extern "C" void
 __ct__13daNpc_Yelia_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
@@ -690,6 +690,27 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80B52408-80B52408 000154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80B52408 = "";
+SECTION_DEAD static char const* const stringBase_80B52409 = "NO_RESPONSE";
+SECTION_DEAD static char const* const stringBase_80B52415 = "TW_RESISTANCE1";
+SECTION_DEAD static char const* const stringBase_80B52424 = "TW_RESISTANCE2";
+SECTION_DEAD static char const* const stringBase_80B52433 = "TAKE_WOODSTATUE";
+SECTION_DEAD static char const* const stringBase_80B52443 = "THANK_YOU";
+SECTION_DEAD static char const* const stringBase_80B5244D = "Yelia";
+SECTION_DEAD static char const* const stringBase_80B52453 = "Yelia0";
+SECTION_DEAD static char const* const stringBase_80B5245A = "Yelia1";
+SECTION_DEAD static char const* const stringBase_80B52461 = "Yelia2";
+SECTION_DEAD static char const* const stringBase_80B52468 = "Yelia3";
+SECTION_DEAD static char const* const stringBase_80B5246F = "Yelia4";
+SECTION_DEAD static char const* const stringBase_80B52476 = "yelB_TW";
+SECTION_DEAD static char const* const stringBase_80B5247E = "CONVERSATION_ABOUT_LOOPHOLE";
+SECTION_DEAD static char const* const stringBase_80B5249A = "TW_RESISTANCE";
+SECTION_DEAD static char const* const stringBase_80B524A8 = "CLOTH_TRY";
+#pragma pop
+
 /* 80B524DC-80B524E8 000000 000C+00 4/4 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1390,7 +1411,7 @@ SECTION_RODATA u8 const daNpc_Yelia_Param_c::m[140] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B522B4, &daNpc_Yelia_Param_c::m);
+COMPILER_STRIP_GATE(0x80B522B4, &daNpc_Yelia_Param_c::m);
 
 /* 80B52340-80B52368 00008C 0028+00 0/1 0/0 0/0 .rodata          heapSize$4085 */
 #pragma push
@@ -1400,42 +1421,42 @@ SECTION_RODATA static u8 const heapSize[40] = {
     0x44, 0xD0, 0x00, 0x00, 0x44, 0x10, 0x00, 0x00, 0x44, 0xD0, 0x00, 0x00, 0x44, 0xD0,
     0x00, 0x00, 0x44, 0xD0, 0x00, 0x00, 0x44, 0xD0, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B52340, &heapSize);
+COMPILER_STRIP_GATE(0x80B52340, &heapSize);
 #pragma pop
 
 /* 80B52368-80B5236C 0000B4 0004+00 0/1 0/0 0/0 .rodata          @4164 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4164 = -200.0f;
-COMPILER_STRIP_GATE(80B52368, &lit_4164);
+COMPILER_STRIP_GATE(0x80B52368, &lit_4164);
 #pragma pop
 
 /* 80B5236C-80B52370 0000B8 0004+00 0/1 0/0 0/0 .rodata          @4165 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4165 = -100.0f;
-COMPILER_STRIP_GATE(80B5236C, &lit_4165);
+COMPILER_STRIP_GATE(0x80B5236C, &lit_4165);
 #pragma pop
 
 /* 80B52370-80B52374 0000BC 0004+00 0/1 0/0 0/0 .rodata          @4166 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4166 = 200.0f;
-COMPILER_STRIP_GATE(80B52370, &lit_4166);
+COMPILER_STRIP_GATE(0x80B52370, &lit_4166);
 #pragma pop
 
 /* 80B52374-80B52378 0000C0 0004+00 0/1 0/0 0/0 .rodata          @4167 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4167 = 300.0f;
-COMPILER_STRIP_GATE(80B52374, &lit_4167);
+COMPILER_STRIP_GATE(0x80B52374, &lit_4167);
 #pragma pop
 
 /* 80B52378-80B5237C 0000C4 0004+00 0/1 0/0 0/0 .rodata          @4168 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4168 = -1000000000.0f;
-COMPILER_STRIP_GATE(80B52378, &lit_4168);
+COMPILER_STRIP_GATE(0x80B52378, &lit_4168);
 #pragma pop
 
 /* 80B4D458-80B4D754 000238 02FC+00 1/1 0/0 0/0 .text            create__13daNpc_Yelia_cFv */
@@ -1456,25 +1477,25 @@ SECTION_RODATA static u8 const lit_4330[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80B5237C, &lit_4330);
+COMPILER_STRIP_GATE(0x80B5237C, &lit_4330);
 
 /* 80B52380-80B52384 0000CC 0004+00 0/2 0/0 0/0 .rodata          @4331 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4331 = 65536.0f;
-COMPILER_STRIP_GATE(80B52380, &lit_4331);
+COMPILER_STRIP_GATE(0x80B52380, &lit_4331);
 #pragma pop
 
 /* 80B52384-80B52388 0000D0 0004+00 0/3 0/0 0/0 .rodata          @4332 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4332 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80B52384, &lit_4332);
+COMPILER_STRIP_GATE(0x80B52384, &lit_4332);
 #pragma pop
 
 /* 80B52388-80B5238C 0000D4 0004+00 2/5 0/0 0/0 .rodata          @4489 */
 SECTION_RODATA static f32 const lit_4489 = 1.0f;
-COMPILER_STRIP_GATE(80B52388, &lit_4489);
+COMPILER_STRIP_GATE(0x80B52388, &lit_4489);
 
 /* 80B4D754-80B4DA64 000534 0310+00 1/1 0/0 0/0 .text            CreateHeap__13daNpc_Yelia_cFv */
 #pragma push
@@ -1609,7 +1630,7 @@ asm void daNpc_Yelia_c::Execute() {
 /* ############################################################################################## */
 /* 80B5238C-80B52390 0000D8 0004+00 1/1 0/0 0/0 .rodata          @4538 */
 SECTION_RODATA static f32 const lit_4538 = 100.0f;
-COMPILER_STRIP_GATE(80B5238C, &lit_4538);
+COMPILER_STRIP_GATE(0x80B5238C, &lit_4538);
 
 /* 80B4DC74-80B4DD08 000A54 0094+00 1/1 0/0 0/0 .text            Draw__13daNpc_Yelia_cFv */
 #pragma push
@@ -1688,7 +1709,7 @@ asm void daNpc_Yelia_c::afterJntAnm(int param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4697 = 135.0f;
-COMPILER_STRIP_GATE(80B52390, &lit_4697);
+COMPILER_STRIP_GATE(0x80B52390, &lit_4697);
 #pragma pop
 
 /* 80B4E0F4-80B4E2C0 000ED4 01CC+00 1/0 0/0 0/0 .text            setParam__13daNpc_Yelia_cFv */
@@ -1704,7 +1725,7 @@ asm void daNpc_Yelia_c::setParam() {
 /* ############################################################################################## */
 /* 80B52394-80B52398 0000E0 0004+00 7/8 0/0 0/0 .rodata          @4778 */
 SECTION_RODATA static f32 const lit_4778 = -1.0f;
-COMPILER_STRIP_GATE(80B52394, &lit_4778);
+COMPILER_STRIP_GATE(0x80B52394, &lit_4778);
 
 /* 80B4E2C0-80B4E5BC 0010A0 02FC+00 1/0 0/0 0/0 .text            checkChangeEvt__13daNpc_Yelia_cFv
  */
@@ -1782,35 +1803,35 @@ asm void daNpc_Yelia_c::beforeMove() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4977 = 30.0f;
-COMPILER_STRIP_GATE(80B52398, &lit_4977);
+COMPILER_STRIP_GATE(0x80B52398, &lit_4977);
 #pragma pop
 
 /* 80B5239C-80B523A0 0000E8 0004+00 0/1 0/0 0/0 .rodata          @4978 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4978 = -5.0f;
-COMPILER_STRIP_GATE(80B5239C, &lit_4978);
+COMPILER_STRIP_GATE(0x80B5239C, &lit_4978);
 #pragma pop
 
 /* 80B523A0-80B523A4 0000EC 0004+00 0/1 0/0 0/0 .rodata          @4979 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4979 = 0x38C90FDB;
-COMPILER_STRIP_GATE(80B523A0, &lit_4979);
+COMPILER_STRIP_GATE(0x80B523A0, &lit_4979);
 #pragma pop
 
 /* 80B523A4-80B523A8 0000F0 0004+00 0/1 0/0 0/0 .rodata          @4980 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4980 = 150.0f;
-COMPILER_STRIP_GATE(80B523A4, &lit_4980);
+COMPILER_STRIP_GATE(0x80B523A4, &lit_4980);
 #pragma pop
 
 /* 80B523A8-80B523AC 0000F4 0004+00 0/1 0/0 0/0 .rodata          @4981 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4981 = 20.0f;
-COMPILER_STRIP_GATE(80B523A8, &lit_4981);
+COMPILER_STRIP_GATE(0x80B523A8, &lit_4981);
 #pragma pop
 
 /* 80B523AC-80B523B4 0000F8 0004+04 0/1 0/0 0/0 .rodata          @4982 */
@@ -1821,14 +1842,14 @@ SECTION_RODATA static f32 const lit_4982[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80B523AC, &lit_4982);
+COMPILER_STRIP_GATE(0x80B523AC, &lit_4982);
 #pragma pop
 
 /* 80B523B4-80B523BC 000100 0008+00 1/3 0/0 0/0 .rodata          @4984 */
 SECTION_RODATA static u8 const lit_4984[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B523B4, &lit_4984);
+COMPILER_STRIP_GATE(0x80B523B4, &lit_4984);
 
 /* 80B4EAEC-80B4EE4C 0018CC 0360+00 1/0 0/0 0/0 .text            setAttnPos__13daNpc_Yelia_cFv */
 #pragma push
@@ -1870,7 +1891,7 @@ asm void daNpc_Yelia_c::selectAction() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_Yelia_c::chkAction(int (daNpc_Yelia_c::*)(void*)) {
+asm void daNpc_Yelia_c::chkAction(int (daNpc_Yelia_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_yelia/d_a_npc_yelia/chkAction__13daNpc_Yelia_cFM13daNpc_Yelia_cFPCvPvPv_i.s"
 }
@@ -1881,10 +1902,18 @@ asm void daNpc_Yelia_c::chkAction(int (daNpc_Yelia_c::*)(void*)) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_Yelia_c::setAction(int (daNpc_Yelia_c::*)(void*)) {
+asm void daNpc_Yelia_c::setAction(int (daNpc_Yelia_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_yelia/d_a_npc_yelia/setAction__13daNpc_Yelia_cFM13daNpc_Yelia_cFPCvPvPv_i.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80B52408-80B52408 000154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80B524B2 = "prm";
+SECTION_DEAD static char const* const stringBase_80B524B6 = "msgNo";
 #pragma pop
 
 /* 80B4F128-80B4F3E0 001F08 02B8+00 1/0 0/0 0/0 .text
@@ -1905,7 +1934,7 @@ asm void daNpc_Yelia_c::cutConversationAboutLoopHole(int param_0) {
 SECTION_RODATA static u8 const lit_5042[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B523BC, &lit_5042);
+COMPILER_STRIP_GATE(0x80B523BC, &lit_5042);
 #pragma pop
 
 /* 80B523C4-80B523CC 000110 0008+00 0/1 0/0 0/0 .rodata          @5043 */
@@ -1914,7 +1943,7 @@ COMPILER_STRIP_GATE(80B523BC, &lit_5042);
 SECTION_RODATA static u8 const lit_5043[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B523C4, &lit_5043);
+COMPILER_STRIP_GATE(0x80B523C4, &lit_5043);
 #pragma pop
 
 /* 80B523CC-80B523D4 000118 0008+00 0/1 0/0 0/0 .rodata          @5044 */
@@ -1923,14 +1952,14 @@ COMPILER_STRIP_GATE(80B523C4, &lit_5043);
 SECTION_RODATA static u8 const lit_5044[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B523CC, &lit_5044);
+COMPILER_STRIP_GATE(0x80B523CC, &lit_5044);
 #pragma pop
 
 /* 80B523D4-80B523DC 000120 0008+00 1/1 0/0 0/0 .rodata          @5202 */
 SECTION_RODATA static u8 const lit_5202[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B523D4, &lit_5202);
+COMPILER_STRIP_GATE(0x80B523D4, &lit_5202);
 
 /* 80B4F3E0-80B4F534 0021C0 0154+00 1/0 0/0 0/0 .text            cutTWResistance__13daNpc_Yelia_cFi
  */
@@ -1950,7 +1979,7 @@ asm void daNpc_Yelia_c::cutTWResistance(int param_0) {
 SECTION_RODATA static u8 const lit_5237[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B523DC, &lit_5237);
+COMPILER_STRIP_GATE(0x80B523DC, &lit_5237);
 #pragma pop
 
 /* 80B523E4-80B523EC 000130 0008+00 0/1 0/0 0/0 .rodata          @5277 */
@@ -1959,21 +1988,21 @@ COMPILER_STRIP_GATE(80B523DC, &lit_5237);
 SECTION_RODATA static u8 const lit_5277[8] = {
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
 };
-COMPILER_STRIP_GATE(80B523E4, &lit_5277);
+COMPILER_STRIP_GATE(0x80B523E4, &lit_5277);
 #pragma pop
 
 /* 80B523EC-80B523F0 000138 0004+00 0/1 0/0 0/0 .rodata          @5490 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5490 = 11.0f / 20.0f;
-COMPILER_STRIP_GATE(80B523EC, &lit_5490);
+COMPILER_STRIP_GATE(0x80B523EC, &lit_5490);
 #pragma pop
 
 /* 80B523F0-80B523F4 00013C 0004+00 0/1 0/0 0/0 .rodata          @5491 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5491 = 110.0f;
-COMPILER_STRIP_GATE(80B523F0, &lit_5491);
+COMPILER_STRIP_GATE(0x80B523F0, &lit_5491);
 #pragma pop
 
 /* 80B523F4-80B523FC 000140 0008+00 0/1 0/0 0/0 .rodata          @5493 */
@@ -1982,7 +2011,15 @@ COMPILER_STRIP_GATE(80B523F0, &lit_5491);
 SECTION_RODATA static u8 const lit_5493[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B523F4, &lit_5493);
+COMPILER_STRIP_GATE(0x80B523F4, &lit_5493);
+#pragma pop
+
+/* 80B52408-80B52408 000154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80B524BC = "timer";
+SECTION_DEAD static char const* const stringBase_80B524C2 = "send";
+SECTION_DEAD static char const* const stringBase_80B524C7 = "@";
 #pragma pop
 
 /* 80B4F534-80B4FDD8 002314 08A4+00 1/0 0/0 0/0 .text cutTakeWoodStatue__13daNpc_Yelia_cFi */
@@ -2010,7 +2047,13 @@ asm void daNpc_Yelia_c::cutClothTry(int param_0) {
 SECTION_RODATA static u8 const lit_5534[12] = {
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
 };
-COMPILER_STRIP_GATE(80B523FC, &lit_5534);
+COMPILER_STRIP_GATE(0x80B523FC, &lit_5534);
+
+/* 80B52408-80B52408 000154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80B524C9 = "msgNo2";
+#pragma pop
 
 /* 80B4FE78-80B50084 002C58 020C+00 1/0 0/0 0/0 .text            cutThankYou__13daNpc_Yelia_cFi */
 #pragma push
@@ -2040,6 +2083,13 @@ asm void daNpc_Yelia_c::horseWait(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_yelia/d_a_npc_yelia/horseWait__13daNpc_Yelia_cFPv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80B52408-80B52408 000154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80B524D0 = "SMELL_1st";
 #pragma pop
 
 /* 80B50A0C-80B50B60 0037EC 0154+00 1/0 0/0 0/0 .text            reminiscence__13daNpc_Yelia_cFPv */
@@ -2428,7 +2478,7 @@ void daNpcT_c::changeBtk(int* param_0, int* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80B52004(int* param_0) {
+extern "C" asm void func_80B52004(void* _this, int* param_0) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_yelia/d_a_npc_yelia/func_80B52004.s"
 }
@@ -2460,7 +2510,7 @@ asm void __sinit_d_a_npc_yelia_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80B52020 = (void*)__sinit_d_a_npc_yelia_cpp;
+REGISTER_CTORS(0x80B52020, __sinit_d_a_npc_yelia_cpp);
 #pragma pop
 
 /* 80B52104-80B521E4 004EE4 00E0+00 1/1 0/0 0/0 .text
@@ -2569,31 +2619,4 @@ asm void daDitem_c::setOffsetPos(cXyz param_0) {
 }
 #pragma pop
 
-/* 80B52408-80B524DA 000154 00D2+00 10/7 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80B52408 = "";
-SECTION_DEAD static char const* const stringBase_80B52409 = "NO_RESPONSE";
-SECTION_DEAD static char const* const stringBase_80B52415 = "TW_RESISTANCE1";
-SECTION_DEAD static char const* const stringBase_80B52424 = "TW_RESISTANCE2";
-SECTION_DEAD static char const* const stringBase_80B52433 = "TAKE_WOODSTATUE";
-SECTION_DEAD static char const* const stringBase_80B52443 = "THANK_YOU";
-SECTION_DEAD static char const* const stringBase_80B5244D = "Yelia";
-SECTION_DEAD static char const* const stringBase_80B52453 = "Yelia0";
-SECTION_DEAD static char const* const stringBase_80B5245A = "Yelia1";
-SECTION_DEAD static char const* const stringBase_80B52461 = "Yelia2";
-SECTION_DEAD static char const* const stringBase_80B52468 = "Yelia3";
-SECTION_DEAD static char const* const stringBase_80B5246F = "Yelia4";
-SECTION_DEAD static char const* const stringBase_80B52476 = "yelB_TW";
-SECTION_DEAD static char const* const stringBase_80B5247E = "CONVERSATION_ABOUT_LOOPHOLE";
-SECTION_DEAD static char const* const stringBase_80B5249A = "TW_RESISTANCE";
-SECTION_DEAD static char const* const stringBase_80B524A8 = "CLOTH_TRY";
-SECTION_DEAD static char const* const stringBase_80B524B2 = "prm";
-SECTION_DEAD static char const* const stringBase_80B524B6 = "msgNo";
-SECTION_DEAD static char const* const stringBase_80B524BC = "timer";
-SECTION_DEAD static char const* const stringBase_80B524C2 = "send";
-SECTION_DEAD static char const* const stringBase_80B524C7 = "@";
-SECTION_DEAD static char const* const stringBase_80B524C9 = "msgNo2";
-SECTION_DEAD static char const* const stringBase_80B524D0 = "SMELL_1st";
-#pragma pop
+/* 80B52408-80B52408 000154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

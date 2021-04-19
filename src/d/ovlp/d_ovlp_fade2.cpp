@@ -73,7 +73,7 @@ extern "C" static void dOvlpFd2_Execute__FP10dOvlpFd2_c();
 extern "C" static bool dOvlpFd2_IsDelete__FP10dOvlpFd2_c();
 extern "C" static bool dOvlpFd2_Delete__FP10dOvlpFd2_c();
 extern "C" static void dOvlpFd2_Create__FPv();
-extern "C" void func_80252E70(s8*);
+extern "C" void func_80252E70(void* _this, s8*);
 extern "C" void __dt__15dOvlpFd2_dlst_cFv();
 
 //
@@ -357,7 +357,7 @@ static asm void dOvlpFd2_Create(void* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80252E70(s8* param_0) {
+extern "C" asm void func_80252E70(void* _this, s8* param_0) {
     nofralloc
 #include "asm/d/ovlp/d_ovlp_fade2/func_80252E70.s"
 }

@@ -35,8 +35,8 @@ struct JKRExpHeap {
 
 struct JASKernel {
     /* 802909B8 */ void setupRootHeap(JKRSolidHeap*, u32);
-    /* 80290AC0 */ void getSystemHeap();
-    /* 80290AC8 */ void getCommandHeap();
+    /* 80290AC0 */ u32 getSystemHeap();
+    /* 80290AC8 */ u32 getCommandHeap();
     /* 80290AD0 */ void setupAramHeap(u32, u32);
     /* 80290B08 */ void getAramHeap();
 
@@ -90,8 +90,8 @@ extern "C" void newMemPool__17JASGenericMemPoolFUli();
 extern "C" void alloc__17JASGenericMemPoolFUl();
 extern "C" void free__17JASGenericMemPoolFPvUl();
 extern "C" void setupRootHeap__9JASKernelFP12JKRSolidHeapUl();
-extern "C" void getSystemHeap__9JASKernelFv();
-extern "C" void getCommandHeap__9JASKernelFv();
+extern "C" u32 getSystemHeap__9JASKernelFv();
+extern "C" u32 getCommandHeap__9JASKernelFv();
 extern "C" void setupAramHeap__9JASKernelFUlUl();
 extern "C" void getAramHeap__9JASKernelFv();
 extern "C" void __sinit_JASHeapCtrl_cpp();
@@ -287,10 +287,10 @@ asm void JASGenericMemPool::free(void* param_0, u32 param_1) {
 /* 80451214-80451218 000714 0004+00 1/1 0/0 0/0 .sbss            sAramBase__9JASKernel */
 u8 JASKernel::sAramBase[4];
 
-/* 80451218-8045121C 000718 0004+00 2/2 0/0 0/0 .sbss            sSystemHeap__9JASKernel */
+/* 80451218-8045121C 000718 0004+00 2/1 0/0 0/0 .sbss            sSystemHeap__9JASKernel */
 u8 JASKernel::sSystemHeap[4];
 
-/* 8045121C-80451220 00071C 0004+00 2/2 0/0 0/0 .sbss            sCommandHeap__9JASKernel */
+/* 8045121C-80451220 00071C 0004+00 2/1 0/0 0/0 .sbss            sCommandHeap__9JASKernel */
 u8 JASKernel::sCommandHeap[4];
 
 /* 802909B8-80290AC0 28B2F8 0108+00 0/0 1/1 0/0 .text setupRootHeap__9JASKernelFP12JKRSolidHeapUl
@@ -304,25 +304,15 @@ asm void JASKernel::setupRootHeap(JKRSolidHeap* param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 80290AC0-80290AC8 28B400 0008+00 1/1 3/3 0/0 .text            getSystemHeap__9JASKernelFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASKernel::getSystemHeap() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASHeapCtrl/getSystemHeap__9JASKernelFv.s"
+/* 80290AC0-80290AC8 -00001 0008+00 0/0 0/0 0/0 .text            getSystemHeap__9JASKernelFv */
+u32 JASKernel::getSystemHeap() {
+    return *(u32*)(&JASKernel::sSystemHeap);
 }
-#pragma pop
 
-/* 80290AC8-80290AD0 28B408 0008+00 0/0 6/6 0/0 .text            getCommandHeap__9JASKernelFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASKernel::getCommandHeap() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASHeapCtrl/getCommandHeap__9JASKernelFv.s"
+/* 80290AC8-80290AD0 -00001 0008+00 0/0 0/0 0/0 .text            getCommandHeap__9JASKernelFv */
+u32 JASKernel::getCommandHeap() {
+    return *(u32*)(&JASKernel::sCommandHeap);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804315D0-804315DC 05E2F0 000C+00 1/1 0/0 0/0 .bss             @313 */
@@ -363,7 +353,7 @@ asm void __sinit_JASHeapCtrl_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80290B14 = (void*)__sinit_JASHeapCtrl_cpp;
+REGISTER_CTORS(0x80290B14, __sinit_JASHeapCtrl_cpp);
 #pragma pop
 
 /* 80290B54-80290BCC 28B494 0078+00 1/1 3/3 0/0 .text            __dt__7JASHeapFv */

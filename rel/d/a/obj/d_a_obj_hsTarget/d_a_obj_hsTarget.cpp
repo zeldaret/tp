@@ -134,6 +134,13 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80C1F8B0-80C1F8B0 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C1F8B0 = "hsMato";
+SECTION_DEAD static char const* const stringBase_80C1F8B7 = "L7HsMato";
+#pragma pop
+
 /* 80C1F8C0-80C1F8C8 -00001 0008+00 3/3 0/0 0/0 .data            l_resNameIdx */
 SECTION_DATA static void* l_resNameIdx[2] = {
     (void*)&d_a_obj_hsTarget__stringBase0,
@@ -225,7 +232,7 @@ asm void daHsTarget_c::setBaseMtx() {
 SECTION_RODATA static u8 const l_bmdIdx[8] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04,
 };
-COMPILER_STRIP_GATE(80C1F8A0, &l_bmdIdx);
+COMPILER_STRIP_GATE(0x80C1F8A0, &l_bmdIdx);
 
 /* 80C1F518-80C1F598 0001D8 0080+00 1/0 0/0 0/0 .text            CreateHeap__12daHsTarget_cFv */
 #pragma push
@@ -242,7 +249,7 @@ asm void daHsTarget_c::CreateHeap() {
 SECTION_RODATA static u8 const l_dzbIdx[8] = {
     0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x07,
 };
-COMPILER_STRIP_GATE(80C1F8A8, &l_dzbIdx);
+COMPILER_STRIP_GATE(0x80C1F8A8, &l_dzbIdx);
 
 /* 80C1F598-80C1F6B0 000258 0118+00 1/1 0/0 0/0 .text            create__12daHsTarget_cFv */
 #pragma push
@@ -357,13 +364,7 @@ asm void __sinit_d_a_obj_hsTarget_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80C1F850 = (void*)__sinit_d_a_obj_hsTarget_cpp;
+REGISTER_CTORS(0x80C1F850, __sinit_d_a_obj_hsTarget_cpp);
 #pragma pop
 
-/* 80C1F8B0-80C1F8C0 000010 0010+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C1F8B0 = "hsMato";
-SECTION_DEAD static char const* const stringBase_80C1F8B7 = "L7HsMato";
-#pragma pop
+/* 80C1F8B0-80C1F8B0 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

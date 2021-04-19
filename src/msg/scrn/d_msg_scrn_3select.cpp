@@ -11,12 +11,12 @@
 // Types:
 //
 
-struct JKRArchive {};
-
 struct J2DPane {
     /* 802F7100 */ void getBounds();
     /* 802F7FCC */ void animationTransform();
 };
+
+struct JKRArchive {};
 
 struct dSelect_cursor_c {
     /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
@@ -207,7 +207,19 @@ SECTION_RODATA static u8 const tag_name[288] = {
     0x77, 0x5F, 0x79, 0x65, 0x73, 0x5F, 0x31, 0x34, 0x73, 0x65, 0x6C, 0x5F, 0x70, 0x6F, 0x30, 0x32,
     0x00, 0x63, 0x5F, 0x6B, 0x61, 0x68, 0x65, 0x6E, 0x63, 0x5F, 0x63, 0x75, 0x72, 0x73, 0x6F, 0x72,
 };
-COMPILER_STRIP_GATE(80399708, &tag_name);
+COMPILER_STRIP_GATE(0x80399708, &tag_name);
+
+/* 80399840-80399840 025EA0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399840 = "zelda_window_3menu.blo";
+SECTION_DEAD static char const* const stringBase_80399857 = "zelda_window_3menu.bck";
+SECTION_DEAD static char const* const stringBase_8039986E = "zelda_window_3menu.bpk";
+SECTION_DEAD static char const* const stringBase_80399885 = "zelda_window_3menu.btk";
+SECTION_DEAD static char const* const stringBase_8039989C = "";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039989D = "\0\0";
+#pragma pop
 
 /* 803C0C00-803C0C0C 01DD20 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -675,7 +687,7 @@ asm void dMsgScrn3Select_c::getTextBoxGlobalPosY(int param_0) {
 SECTION_RODATA static u8 const lit_4497[12] = {
     0x43, 0x4C, 0x00, 0x00, 0x43, 0x98, 0x00, 0x00, 0x43, 0xCA, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80399828, &lit_4497);
+COMPILER_STRIP_GATE(0x80399828, &lit_4497);
 
 /* 8023AA04-8023AAF4 235344 00F0+00 1/0 0/0 0/0 .text            open1Proc__17dMsgScrn3Select_cFv */
 #pragma push
@@ -692,7 +704,7 @@ asm void dMsgScrn3Select_c::open1Proc() {
 SECTION_RODATA static u8 const lit_4520[12] = {
     0x43, 0x4C, 0x00, 0x00, 0x43, 0x98, 0x00, 0x00, 0x43, 0xCA, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80399834, &lit_4520);
+COMPILER_STRIP_GATE(0x80399834, &lit_4520);
 
 /* 8023AAF4-8023AC14 235434 0120+00 1/0 0/0 0/0 .text            open2Proc__17dMsgScrn3Select_cFv */
 #pragma push
@@ -808,18 +820,7 @@ asm void __sinit_d_msg_scrn_3select_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8023B914 = (void*)__sinit_d_msg_scrn_3select_cpp;
+REGISTER_CTORS(0x8023B914, __sinit_d_msg_scrn_3select_cpp);
 #pragma pop
 
-/* 80399840-803998A0 025EA0 005D+03 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80399840 = "zelda_window_3menu.blo";
-SECTION_DEAD static char const* const stringBase_80399857 = "zelda_window_3menu.bck";
-SECTION_DEAD static char const* const stringBase_8039986E = "zelda_window_3menu.bpk";
-SECTION_DEAD static char const* const stringBase_80399885 = "zelda_window_3menu.btk";
-SECTION_DEAD static char const* const stringBase_8039989C = "";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039989D = "\0\0";
-#pragma pop
+/* 80399840-80399840 025EA0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

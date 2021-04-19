@@ -52,19 +52,19 @@ struct mDoExt_baseAnm {
     /* 8000D428 */ void play();
 };
 
-struct J3DModelData {};
-
 struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
+
+struct J3DAnmTransform {};
+
+struct J3DModelData {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
-
-struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -94,9 +94,9 @@ struct daObj_SSItem_c {
     /* 80CE77F8 */ void getExchangeItemPtr();
 };
 
-struct J3DModel {};
-
 struct J3DAnmTransformKey {};
+
+struct J3DModel {};
 
 struct J3DFrameCtrl {
     /* 803283FC */ void init(s16);
@@ -422,8 +422,8 @@ extern "C" void __dt__12daMyna_HIO_cFv();
 extern "C" void __dt__14mDoHIO_entry_cFv();
 extern "C" void getHeadTopPos__9daPy_py_cCFv();
 extern "C" void __dt__8daMyna_cFv();
-extern "C" void func_8094ABAC(s16*);
-extern "C" void func_8094ABC8(int, int);
+extern "C" void func_8094ABAC(void* _this, s16*);
+extern "C" void func_8094ABC8(void* _this, int, int);
 extern "C" void __sinit_d_a_myna_cpp();
 extern "C" u8 const mCcDSph__8daMyna_c[64];
 extern "C" extern char const* const d_a_myna__stringBase0;
@@ -741,7 +741,7 @@ SECTION_RODATA u8 const daMyna_c::mCcDSph[64] = {
     0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x70, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8094B1B0, &daMyna_c::mCcDSph);
+COMPILER_STRIP_GATE(0x8094B1B0, &daMyna_c::mCcDSph);
 
 /* 8094B1F0-8094B1F4 000040 0004+00 25/32 0/0 0/0 .rodata          @3926 */
 SECTION_RODATA static u8 const lit_3926[4] = {
@@ -750,7 +750,7 @@ SECTION_RODATA static u8 const lit_3926[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8094B1F0, &lit_3926);
+COMPILER_STRIP_GATE(0x8094B1F0, &lit_3926);
 
 /* 80945E80-80945EC0 000300 0040+00 1/0 0/0 0/0 .text            baseMotion00__8daMyna_cFi */
 #pragma push
@@ -823,6 +823,28 @@ asm void daMyna_c::baseMotion06(int param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8094B24C-8094B24C 00009C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8094B24C = "MYNA_hovering.bck";
+SECTION_DEAD static char const* const stringBase_8094B25E = "MYNA_wait_a.bck";
+SECTION_DEAD static char const* const stringBase_8094B26E = "MYNA_pick_a.bck";
+SECTION_DEAD static char const* const stringBase_8094B27E = "MYNA_pick_b.bck";
+SECTION_DEAD static char const* const stringBase_8094B28E = "MYNA_jump.bck";
+SECTION_DEAD static char const* const stringBase_8094B29C = "MYNA_sidestepL.bck";
+SECTION_DEAD static char const* const stringBase_8094B2AF = "MYNA_sidestepR.bck";
+SECTION_DEAD static char const* const stringBase_8094B2C2 = "MYNA_lightup.bck";
+SECTION_DEAD static char const* const stringBase_8094B2D3 = "MYNA_attack.bck";
+SECTION_DEAD static char const* const stringBase_8094B2E3 = "MYNA_talk_a.bck";
+SECTION_DEAD static char const* const stringBase_8094B2F3 = "MYNA_talk_b.bck";
+SECTION_DEAD static char const* const stringBase_8094B303 = "MYNA_wait_b.bck";
+SECTION_DEAD static char const* const stringBase_8094B313 = "MYNA_wait_c.bck";
+SECTION_DEAD static char const* const stringBase_8094B323 = "MYNA_talk_c.bck";
+SECTION_DEAD static char const* const stringBase_8094B333 = "MYNA_wait_d.bck";
+SECTION_DEAD static char const* const stringBase_8094B343 = "MYNA.btp";
+SECTION_DEAD static char const* const stringBase_8094B34C = "Npc_myna";
+#pragma pop
+
 /* 8094B360-8094B36C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1609,11 +1631,11 @@ asm void daMyna_c::draw() {
 /* ############################################################################################## */
 /* 8094B1F4-8094B1F8 000044 0004+00 1/1 0/0 0/0 .rodata          @4207 */
 SECTION_RODATA static f32 const lit_4207 = 40.0f;
-COMPILER_STRIP_GATE(8094B1F4, &lit_4207);
+COMPILER_STRIP_GATE(0x8094B1F4, &lit_4207);
 
 /* 8094B1F8-8094B1FC 000048 0004+00 1/3 0/0 0/0 .rodata          @4208 */
 SECTION_RODATA static f32 const lit_4208 = 100.0f;
-COMPILER_STRIP_GATE(8094B1F8, &lit_4208);
+COMPILER_STRIP_GATE(0x8094B1F8, &lit_4208);
 
 /* 809464CC-809466D8 00094C 020C+00 2/2 0/0 0/0 .text            execute__8daMyna_cFv */
 #pragma push
@@ -1628,7 +1650,13 @@ asm void daMyna_c::execute() {
 /* ############################################################################################## */
 /* 8094B1FC-8094B200 00004C 0004+00 11/12 0/0 0/0 .rodata          @4270 */
 SECTION_RODATA static f32 const lit_4270 = 1.0f;
-COMPILER_STRIP_GATE(8094B1FC, &lit_4270);
+COMPILER_STRIP_GATE(0x8094B1FC, &lit_4270);
+
+/* 8094B24C-8094B24C 00009C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8094B355 = "MYNA.bmd";
+#pragma pop
 
 /* 809466D8-8094686C 000B58 0194+00 1/1 0/0 0/0 .text            createHeap__8daMyna_cFv */
 #pragma push
@@ -1765,7 +1793,7 @@ asm void daMyna_c::greet_wait_init() {
 /* ############################################################################################## */
 /* 8094B200-8094B204 000050 0004+00 1/1 0/0 0/0 .rodata          @4481 */
 SECTION_RODATA static f32 const lit_4481 = 350.0f;
-COMPILER_STRIP_GATE(8094B200, &lit_4481);
+COMPILER_STRIP_GATE(0x8094B200, &lit_4481);
 
 /* 80946EB0-80947030 001330 0180+00 1/0 0/0 0/0 .text            greet_wait_move__8daMyna_cFv */
 #pragma push
@@ -1810,7 +1838,7 @@ asm void daMyna_c::shopping_wait_init() {
 /* ############################################################################################## */
 /* 8094B204-8094B208 000054 0004+00 1/1 0/0 0/0 .rodata          @4655 */
 SECTION_RODATA static f32 const lit_4655 = 450.0f;
-COMPILER_STRIP_GATE(8094B204, &lit_4655);
+COMPILER_STRIP_GATE(0x8094B204, &lit_4655);
 
 /* 809471E8-809475B4 001668 03CC+00 1/0 0/0 0/0 .text            shopping_wait_move__8daMyna_cFv */
 #pragma push
@@ -1901,7 +1929,7 @@ SECTION_RODATA static f32 const lit_4828[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(8094B208, &lit_4828);
+COMPILER_STRIP_GATE(0x8094B208, &lit_4828);
 #pragma pop
 
 /* 8094B210-8094B218 000060 0008+00 0/6 0/0 0/0 .rodata          @4829 */
@@ -1910,7 +1938,7 @@ COMPILER_STRIP_GATE(8094B208, &lit_4828);
 SECTION_RODATA static u8 const lit_4829[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8094B210, &lit_4829);
+COMPILER_STRIP_GATE(0x8094B210, &lit_4829);
 #pragma pop
 
 /* 8094B218-8094B220 000068 0008+00 0/6 0/0 0/0 .rodata          @4830 */
@@ -1919,7 +1947,7 @@ COMPILER_STRIP_GATE(8094B210, &lit_4829);
 SECTION_RODATA static u8 const lit_4830[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8094B218, &lit_4830);
+COMPILER_STRIP_GATE(0x8094B218, &lit_4830);
 #pragma pop
 
 /* 8094B220-8094B228 000070 0008+00 0/6 0/0 0/0 .rodata          @4831 */
@@ -1928,7 +1956,7 @@ COMPILER_STRIP_GATE(8094B218, &lit_4830);
 SECTION_RODATA static u8 const lit_4831[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8094B220, &lit_4831);
+COMPILER_STRIP_GATE(0x8094B220, &lit_4831);
 #pragma pop
 
 /* 80947AA4-80947CD0 001F24 022C+00 1/0 0/0 0/0 .text            turn_on_start_move__8daMyna_cFv */
@@ -2149,7 +2177,7 @@ asm void daMyna_c::soldoutItem(unsigned int param_0) {
 /* ############################################################################################## */
 /* 8094B228-8094B22C 000078 0004+00 1/2 0/0 0/0 .rodata          @5221 */
 SECTION_RODATA static f32 const lit_5221 = 15.0f;
-COMPILER_STRIP_GATE(8094B228, &lit_5221);
+COMPILER_STRIP_GATE(0x8094B228, &lit_5221);
 
 /* 80948828-80948ADC 002CA8 02B4+00 2/2 0/0 0/0 .text            fly_attack_move__8daMyna_cFv */
 #pragma push
@@ -2166,21 +2194,21 @@ asm void daMyna_c::fly_attack_move() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_5317 = 0x3A83126F;
-COMPILER_STRIP_GATE(8094B22C, &lit_5317);
+COMPILER_STRIP_GATE(0x8094B22C, &lit_5317);
 #pragma pop
 
 /* 8094B230-8094B234 000080 0004+00 0/1 0/0 0/0 .rodata          @5318 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5318 = 25.0f;
-COMPILER_STRIP_GATE(8094B230, &lit_5318);
+COMPILER_STRIP_GATE(0x8094B230, &lit_5318);
 #pragma pop
 
 /* 8094B234-8094B238 000084 0004+00 0/1 0/0 0/0 .rodata          @5319 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5319 = 3.0f;
-COMPILER_STRIP_GATE(8094B234, &lit_5319);
+COMPILER_STRIP_GATE(0x8094B234, &lit_5319);
 #pragma pop
 
 /* 80948ADC-80948DFC 002F5C 0320+00 2/2 0/0 0/0 .text            fly_return_move__8daMyna_cFv */
@@ -2198,7 +2226,7 @@ asm void daMyna_c::fly_return_move() {
 SECTION_RODATA static u8 const lit_5332[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8094B238, &lit_5332);
+COMPILER_STRIP_GATE(0x8094B238, &lit_5332);
 
 /* 80948DFC-80948E84 00327C 0088+00 2/2 0/0 0/0 .text            fly_body_wave__8daMyna_cFv */
 #pragma push
@@ -2265,7 +2293,7 @@ asm void daMyna_c::deleteItem(unsigned int param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5455 = 200.0f;
-COMPILER_STRIP_GATE(8094B240, &lit_5455);
+COMPILER_STRIP_GATE(0x8094B240, &lit_5455);
 #pragma pop
 
 /* 80949190-80949408 003610 0278+00 1/1 0/0 0/0 .text            initiate__8daMyna_cFv */
@@ -2446,7 +2474,7 @@ asm void daMyna_c::chkPlayerInEvtArea(fopAc_ac_c* param_0, cXyz param_1) {
 /* ############################################################################################## */
 /* 8094B244-8094B248 000094 0004+00 2/3 0/0 0/0 .rodata          @5889 */
 SECTION_RODATA static f32 const lit_5889 = 6.0f;
-COMPILER_STRIP_GATE(8094B244, &lit_5889);
+COMPILER_STRIP_GATE(0x8094B244, &lit_5889);
 
 /* 80949EE8-8094A054 004368 016C+00 2/1 0/0 0/0 .text            animeControl__8daMyna_cFv */
 #pragma push
@@ -2484,7 +2512,7 @@ asm void daMyna_c::playDefaultWaitAnime() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_6108 = 0.25f;
-COMPILER_STRIP_GATE(8094B248, &lit_6108);
+COMPILER_STRIP_GATE(0x8094B248, &lit_6108);
 #pragma pop
 
 /* 8094A608-8094A890 004A88 0288+00 1/1 0/0 0/0 .text            setDefaultWaitAnime__8daMyna_cFUc
@@ -2612,7 +2640,7 @@ asm daMyna_c::~daMyna_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8094ABAC(s16* param_0) {
+extern "C" asm void func_8094ABAC(void* _this, s16* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_myna/d_a_myna/func_8094ABAC.s"
 }
@@ -2622,7 +2650,7 @@ extern "C" asm void func_8094ABAC(s16* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8094ABC8(int param_0, int param_1) {
+extern "C" asm void func_8094ABC8(void* _this, int param_0, int param_1) {
     nofralloc
 #include "asm/rel/d/a/d_a_myna/d_a_myna/func_8094ABC8.s"
 }
@@ -2640,7 +2668,7 @@ asm void __sinit_d_a_myna_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8094AC44 = (void*)__sinit_d_a_myna_cpp;
+REGISTER_CTORS(0x8094AC44, __sinit_d_a_myna_cpp);
 #pragma pop
 
 /* ############################################################################################## */
@@ -2815,26 +2843,4 @@ static u8 data_8094BB2C[4];
 static u8 data_8094BB30[4];
 #pragma pop
 
-/* 8094B24C-8094B35E 00009C 0112+00 7/5 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8094B24C = "MYNA_hovering.bck";
-SECTION_DEAD static char const* const stringBase_8094B25E = "MYNA_wait_a.bck";
-SECTION_DEAD static char const* const stringBase_8094B26E = "MYNA_pick_a.bck";
-SECTION_DEAD static char const* const stringBase_8094B27E = "MYNA_pick_b.bck";
-SECTION_DEAD static char const* const stringBase_8094B28E = "MYNA_jump.bck";
-SECTION_DEAD static char const* const stringBase_8094B29C = "MYNA_sidestepL.bck";
-SECTION_DEAD static char const* const stringBase_8094B2AF = "MYNA_sidestepR.bck";
-SECTION_DEAD static char const* const stringBase_8094B2C2 = "MYNA_lightup.bck";
-SECTION_DEAD static char const* const stringBase_8094B2D3 = "MYNA_attack.bck";
-SECTION_DEAD static char const* const stringBase_8094B2E3 = "MYNA_talk_a.bck";
-SECTION_DEAD static char const* const stringBase_8094B2F3 = "MYNA_talk_b.bck";
-SECTION_DEAD static char const* const stringBase_8094B303 = "MYNA_wait_b.bck";
-SECTION_DEAD static char const* const stringBase_8094B313 = "MYNA_wait_c.bck";
-SECTION_DEAD static char const* const stringBase_8094B323 = "MYNA_talk_c.bck";
-SECTION_DEAD static char const* const stringBase_8094B333 = "MYNA_wait_d.bck";
-SECTION_DEAD static char const* const stringBase_8094B343 = "MYNA.btp";
-SECTION_DEAD static char const* const stringBase_8094B34C = "Npc_myna";
-SECTION_DEAD static char const* const stringBase_8094B355 = "MYNA.bmd";
-#pragma pop
+/* 8094B24C-8094B24C 00009C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -37,14 +37,14 @@ struct mDoMtx_stack_c {
 
 struct fopAc_ac_c {};
 
-struct J3DModel {};
-
 struct cM3dGLin {
     /* 80036A5C */ ~cM3dGLin();
     /* 8026F2E8 */ void SetStartEnd(cXyz const&, cXyz const&);
 };
 
 struct dJntColData_c {};
+
+struct J3DModel {};
 
 struct dJntCol_c {
     /* 80035C8C */ dJntCol_c();

@@ -222,13 +222,13 @@ extern "C" extern u8 j3dSys[284];
 /* ############################################################################################## */
 /* 80D455C4-80D455C8 000000 0004+00 1/1 0/0 0/0 .rodata          @3814 */
 SECTION_RODATA static f32 const lit_3814 = 10.0f;
-COMPILER_STRIP_GATE(80D455C4, &lit_3814);
+COMPILER_STRIP_GATE(0x80D455C4, &lit_3814);
 
 /* 80D455C8-80D455CC 000004 0004+00 0/1 0/0 0/0 .rodata          @3815 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3815 = 0x43184CCD;
-COMPILER_STRIP_GATE(80D455C8, &lit_3815);
+COMPILER_STRIP_GATE(0x80D455C8, &lit_3815);
 #pragma pop
 
 /* 80D455CC-80D455D0 000008 0004+00 2/3 0/0 0/0 .rodata          @3816 */
@@ -238,7 +238,7 @@ SECTION_RODATA static u8 const lit_3816[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D455CC, &lit_3816);
+COMPILER_STRIP_GATE(0x80D455CC, &lit_3816);
 
 /* 80D44CB8-80D44D3C 000078 0084+00 1/1 0/0 0/0 .text            setAttnPos__14daObjZraRock_cFv */
 #pragma push
@@ -294,7 +294,13 @@ asm void daObjZraRock_c::Create() {
 /* ############################################################################################## */
 /* 80D455D0-80D455D4 00000C 0004+00 1/1 0/0 0/0 .rodata          @3903 */
 SECTION_RODATA static f32 const lit_3903 = 1.0f;
-COMPILER_STRIP_GATE(80D455D0, &lit_3903);
+COMPILER_STRIP_GATE(0x80D455D0, &lit_3903);
+
+/* 80D455D4-80D455D4 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D455D4 = "H_ZraRock";
+#pragma pop
 
 /* 80D455F0-80D455F4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_zra_rock__stringBase0;
@@ -310,6 +316,12 @@ asm void daObjZraRock_c::CreateHeap() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80D455D4-80D455D4 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D455DE = "H_ZoraRock.dzb";
+#pragma pop
+
 /* 80D455F4-80D45614 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjZraRock_Method */
 SECTION_DATA static void* l_daObjZraRock_Method[8] = {
     (void*)daObjZraRock_create__FP10fopAc_ac_c,
@@ -493,10 +505,4 @@ static asm void func_80D455B4() {
 }
 #pragma pop
 
-/* 80D455D4-80D455ED 000010 0019+00 2/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D455D4 = "H_ZraRock";
-SECTION_DEAD static char const* const stringBase_80D455DE = "H_ZoraRock.dzb";
-#pragma pop
+/* 80D455D4-80D455D4 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

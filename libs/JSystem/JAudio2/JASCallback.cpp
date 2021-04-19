@@ -47,7 +47,7 @@ extern "C" void _restgpr_29();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASCallbackMgr::regist(s32 (*)(void*), void* param_1) {
+asm void JASCallbackMgr::regist(s32 (*param_0)(void*), void* param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASCallback/regist__14JASCallbackMgrFPFPv_lPv.s"
 }
@@ -58,7 +58,7 @@ asm void JASCallbackMgr::regist(s32 (*)(void*), void* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASCallbackMgr::reject(s32 (*)(void*), void* param_1) {
+asm void JASCallbackMgr::reject(s32 (*param_0)(void*), void* param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASCallback/reject__14JASCallbackMgrFPFPv_lPv.s"
 }

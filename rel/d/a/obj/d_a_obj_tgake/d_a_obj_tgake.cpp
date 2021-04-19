@@ -181,6 +181,12 @@ asm void daObjGake_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80D0C13C-80D0C13C 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D0C13C = "A_TGake";
+#pragma pop
+
 /* 80D0C144-80D0C148 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_tgake__stringBase0;
 
@@ -311,9 +317,4 @@ static asm void daObjGake_MoveBGDraw(daObjGake_c* param_0) {
 }
 #pragma pop
 
-/* 80D0C13C-80D0C144 000000 0008+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D0C13C = "A_TGake";
-#pragma pop
+/* 80D0C13C-80D0C13C 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

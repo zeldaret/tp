@@ -139,12 +139,21 @@ class Symbol:
                 f"invalid reference addr 0x{addr:08X} for {type(self).__name__}\n{self}")
         return f"&{self.identifier.label}"
 
+    def cpp_load(self, accessor, addr):
+        if addr != self.addr:
+            raise Dol2ZelException(
+                f"invalid reference addr 0x{addr:08X} for {type(self).__name__}\n{self}")
+        return f"{self.identifier.label}"
+
     def asm_reference(self, addr):
         if addr != self.addr:
             return None
         return self.identifier.label
 
     def gather_references(self, context, valid_range):
+        pass
+
+    def get_reference_information(self, context, symbol_table):
         pass
 
     def types(self):

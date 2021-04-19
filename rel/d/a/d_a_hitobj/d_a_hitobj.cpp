@@ -117,6 +117,15 @@ static bool daHitobj_IsDelete(hitobj_class* param_0) {
     return true;
 }
 
+/* ############################################################################################## */
+/* 8046B5D4-8046B5D4 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8046B5D4 = "Hitobj";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8046B5DB = "";
+#pragma pop
+
 /* 8046B3D0-8046B400 0000F0 0030+00 1/0 0/0 0/0 .text            daHitobj_Delete__FP12hitobj_class
  */
 #pragma push
@@ -203,11 +212,4 @@ asm cM3dGAab::~cM3dGAab() {
 }
 #pragma pop
 
-/* 8046B5D4-8046B5DC 000000 0007+01 2/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8046B5D4 = "Hitobj";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8046B5DB = "";
-#pragma pop
+/* 8046B5D4-8046B5D4 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -50,7 +50,7 @@ template <typename A0>
 struct JASMemPool {};
 /* JASMemPool<Z2SoundHandlePool> */
 struct JASMemPool__template4 {
-    /* 802AB200 */ void func_802AB200();
+    /* 802AB200 */ void func_802AB200(void* _this);
 };
 
 struct JASGenericMemPool {
@@ -76,7 +76,7 @@ extern "C" void __ct__14Z2SoundHandlesFv();
 extern "C" void __dt__14Z2SoundHandlesFv();
 extern "C" void initHandlesPool__14Z2SoundHandlesFUc();
 extern "C" void deleteHandlesPool__14Z2SoundHandlesFv();
-extern "C" void func_802AB200();
+extern "C" void func_802AB200(void* _this);
 extern "C" void getHandleSoundID__14Z2SoundHandlesF10JAISoundID();
 extern "C" void getHandleUserData__14Z2SoundHandlesFUl();
 extern "C" void getFreeHandle__14Z2SoundHandlesFv();
@@ -134,15 +134,10 @@ asm Z2SoundHandles::~Z2SoundHandles() {
 }
 #pragma pop
 
-/* 802AB118-802AB120 2A5A58 0008+00 0/0 1/1 0/0 .text initHandlesPool__14Z2SoundHandlesFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2SoundHandles::initHandlesPool(u8 param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundHandles/initHandlesPool__14Z2SoundHandlesFUc.s"
+/* 802AB118-802AB120 -00001 0008+00 0/0 0/0 0/0 .text initHandlesPool__14Z2SoundHandlesFUc */
+void Z2SoundHandles::initHandlesPool(u8 param_0) {
+    *(u8*)(((u8*)this) + 12) /* this->field_0xc */ = (u8)(param_0);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804341B8-804341C4 060ED8 000C+00 3/3 0/0 0/0 .bss             @632 */
@@ -167,7 +162,7 @@ asm void Z2SoundHandles::deleteHandlesPool() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802AB200() {
+extern "C" asm void func_802AB200(void* _this) {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundHandles/func_802AB200.s"
 }

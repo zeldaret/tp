@@ -333,7 +333,7 @@ SECTION_RODATA u8 const dTres_c::typeToTypeGroup[34 + 6 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8037B0D8, &dTres_c::typeToTypeGroup);
+COMPILER_STRIP_GATE(0x8037B0D8, &dTres_c::typeToTypeGroup);
 
 /* 8009C49C-8009C4B0 096DDC 0014+00 0/0 1/1 0/0 .text            getTypeGroupNoToType__7dTres_cFUc
  */

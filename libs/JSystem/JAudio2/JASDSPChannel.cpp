@@ -149,7 +149,8 @@ asm void JASDSPChannel::initAll() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASDSPChannel::alloc(u8 param_0, s32 (*)(u32, JASDsp::TChannel*, void*), void* param_2) {
+asm void JASDSPChannel::alloc(u8 param_0, s32 (*param_1)(u32, JASDsp::TChannel*, void*),
+                              void* param_2) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASDSPChannel/alloc__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv.s"
 }
@@ -160,7 +161,7 @@ asm void JASDSPChannel::alloc(u8 param_0, s32 (*)(u32, JASDsp::TChannel*, void*)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASDSPChannel::allocForce(u8 param_0, s32 (*)(u32, JASDsp::TChannel*, void*),
+asm void JASDSPChannel::allocForce(u8 param_0, s32 (*param_1)(u32, JASDsp::TChannel*, void*),
                                    void* param_2) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASDSPChannel/allocForce__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv.s"

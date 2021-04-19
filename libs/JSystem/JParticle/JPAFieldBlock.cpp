@@ -13,14 +13,14 @@
 
 struct JPAEmitterWorkData {};
 
-struct JPABaseParticle {};
-
 struct JKRHeap {};
 
 struct JPAFieldBlock {
     /* 8027D088 */ JPAFieldBlock(u8 const*, JKRHeap*);
     /* 8027D0C0 */ void init(JKRHeap*);
 };
+
+struct JPABaseParticle {};
 
 struct JPAFieldVortex {
     /* 8027C56C */ void prepare(JPAEmitterWorkData*, JPAFieldBlock*);

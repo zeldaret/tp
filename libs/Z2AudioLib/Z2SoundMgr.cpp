@@ -15,18 +15,18 @@ struct Z2SpeechMgr2 {
     /* 802CC190 */ void speakOneWord(bool);
 };
 
-struct JAISound {};
-
-struct JAISoundHandle {};
-
-struct JAISoundID {};
-
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
 };
+
+struct JAISound {};
+
+struct JAISoundID {};
+
+struct JAISoundHandle {};
 
 struct Z2SoundMgr {
     /* 802A9E80 */ Z2SoundMgr();
@@ -274,6 +274,14 @@ asm Z2SoundMgr::Z2SoundMgr() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8039B9D0-8039B9D0 028030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039B9D0 = "Unknown Sound-Type id :%08x\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039B9ED = "\0\0";
+#pragma pop
+
 /* 80455840-80455844 003E40 0004+00 1/1 0/0 0/0 .sdata2          @3904 */
 SECTION_SDATA2 static f32 lit_3904 = 3.0f / 10.0f;
 
@@ -326,7 +334,7 @@ asm void Z2SoundMgr::setIIR(JAISound* param_0, s16 const* param_1) {
 SECTION_RODATA static u8 const cResetFilterTable[16] = {
     0x7F, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8039B9C0, &cResetFilterTable);
+COMPILER_STRIP_GATE(0x8039B9C0, &cResetFilterTable);
 
 /* 802AA33C-802AA430 2A4C7C 00F4+00 1/1 0/0 0/0 .text setFilterOff__10Z2SoundMgrFP8JAISound */
 #pragma push
@@ -449,11 +457,4 @@ asm void Z2SoundMgr::isPlayingSoundID(JAISoundID param_0) {
 }
 #pragma pop
 
-/* 8039B9D0-8039B9F0 028030 001D+03 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039B9D0 = "Unknown Sound-Type id :%08x\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039B9ED = "\0\0";
-#pragma pop
+/* 8039B9D0-8039B9D0 028030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

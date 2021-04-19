@@ -46,10 +46,10 @@ extern "C" void allocVcdVatCmdBuffer__15J3DShapeFactoryFUl();
 extern "C" void calcSize__15J3DShapeFactoryFiUl();
 extern "C" void calcSizeVcdVatCmdBuffer__15J3DShapeFactoryFUl();
 extern "C" void calcSizeShapeMtx__15J3DShapeFactoryCFUlii();
-extern "C" void func_80337AE0(void const*, u32);
-extern "C" void func_80337AF8(void const*, u32);
-extern "C" void func_80337B10(void const*, u32);
-extern "C" void func_80337B28(void const*, u32);
+extern "C" void func_80337AE0(void* _this, void const*, u32);
+extern "C" void func_80337AF8(void* _this, void const*, u32);
+extern "C" void func_80337B10(void* _this, void const*, u32);
+extern "C" void func_80337B28(void* _this, void const*, u32);
 extern "C" extern char const* const J3DShapeFactory__stringBase0;
 
 //
@@ -62,8 +62,8 @@ extern "C" void* __nwa__FUl();
 extern "C" void* __nwa__FUli();
 extern "C" void __ct__12J3DShapeDrawFPCUcUl();
 extern "C" void initialize__8J3DShapeFv();
-extern "C" void func_80336764(void const*, u32);
-extern "C" void func_8033677C(void const*, u32);
+extern "C" void func_80336764(void* _this, void const*, u32);
+extern "C" void func_8033677C(void* _this, void const*, u32);
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_26();
@@ -99,6 +99,16 @@ asm void J3DShapeFactory::create(int param_0, u32 param_1, _GXVtxDescList* param
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DShapeFactory/create__15J3DShapeFactoryFiUlP14_GXVtxDescList.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 803A2100-803A2100 02E760 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803A2100 =
+    "WRONG SHAPE MATRIX TYPE (J3DModelInit.cpp)\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_803A212C = "\0\0\0";
 #pragma pop
 
 /* 803375BC-8033784C 331EFC 0290+00 1/1 0/0 0/0 .text newShapeMtx__15J3DShapeFactoryCFUlii */
@@ -169,7 +179,7 @@ asm void J3DShapeFactory::calcSizeShapeMtx(u32 param_0, int param_1, int param_2
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80337AE0(void const* param_0, u32 param_1) {
+extern "C" asm void func_80337AE0(void* _this, void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DShapeFactory/func_80337AE0.s"
 }
@@ -180,7 +190,7 @@ extern "C" asm void func_80337AE0(void const* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80337AF8(void const* param_0, u32 param_1) {
+extern "C" asm void func_80337AF8(void* _this, void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DShapeFactory/func_80337AF8.s"
 }
@@ -191,7 +201,7 @@ extern "C" asm void func_80337AF8(void const* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80337B10(void const* param_0, u32 param_1) {
+extern "C" asm void func_80337B10(void* _this, void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DShapeFactory/func_80337B10.s"
 }
@@ -202,18 +212,10 @@ extern "C" asm void func_80337B10(void const* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80337B28(void const* param_0, u32 param_1) {
+extern "C" asm void func_80337B28(void* _this, void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DShapeFactory/func_80337B28.s"
 }
 #pragma pop
 
-/* 803A2100-803A2130 02E760 002C+04 2/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803A2100 =
-    "WRONG SHAPE MATRIX TYPE (J3DModelInit.cpp)\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803A212C = "\0\0\0";
-#pragma pop
+/* 803A2100-803A2100 02E760 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

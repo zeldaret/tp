@@ -23,10 +23,10 @@ extern "C" static void setVerticalRegs();
 extern "C" void VIConfigure();
 extern "C" void VIFlush();
 extern "C" void VISetNextFrameBuffer();
-extern "C" void VIGetNextFrameBuffer();
-extern "C" void VIGetCurrentFrameBuffer();
+extern "C" u32 VIGetNextFrameBuffer();
+extern "C" u32 VIGetCurrentFrameBuffer();
 extern "C" void VISetBlack();
-extern "C" void VIGetRetraceCount();
+extern "C" u32 VIGetRetraceCount();
 extern "C" static void GetCurrentDisplayPosition();
 extern "C" static void getCurrentFieldEvenOdd();
 extern "C" void VIGetNextField();
@@ -69,7 +69,7 @@ static u8 regs[118 + 2 /* padding */];
 /* 804517E0-804517E4 000CE0 0004+00 1/1 0/0 0/0 .sbss            IsInitialized */
 static u8 IsInitialized[4];
 
-/* 804517E4-804517E8 000CE4 0004+00 4/4 0/0 0/0 .sbss            retraceCount */
+/* 804517E4-804517E8 000CE4 0004+00 4/3 0/0 0/0 .sbss            retraceCount */
 static u8 retraceCount[4];
 
 /* 804517E8-804517EC 000CE8 0004+00 3/3 0/0 0/0 .sbss            flushFlag */
@@ -119,10 +119,10 @@ static u8 CurrTiming[4];
 /* 8045182C-80451830 000D2C 0004+00 3/3 0/0 0/0 .sbss            CurrTvMode */
 static u8 CurrTvMode[4];
 
-/* 80451830-80451834 000D30 0004+00 3/3 0/0 0/0 .sbss            NextBufAddr */
+/* 80451830-80451834 000D30 0004+00 3/2 0/0 0/0 .sbss            NextBufAddr */
 static u8 NextBufAddr[4];
 
-/* 80451834-80451838 000D34 0004+00 2/2 0/0 0/0 .sbss            CurrBufAddr */
+/* 80451834-80451838 000D34 0004+00 2/1 0/0 0/0 .sbss            CurrBufAddr */
 static u8 CurrBufAddr[4];
 
 /* 8034BF6C-8034C1E0 3468AC 0274+00 1/1 0/0 0/0 .text            __VIRetraceHandler */
@@ -798,25 +798,15 @@ asm void VISetNextFrameBuffer() {
 }
 #pragma pop
 
-/* 8034D830-8034D838 348170 0008+00 0/0 1/1 0/0 .text            VIGetNextFrameBuffer */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void VIGetNextFrameBuffer() {
-    nofralloc
-#include "asm/dolphin/vi/vi/VIGetNextFrameBuffer.s"
+/* 8034D830-8034D838 -00001 0008+00 0/0 0/0 0/0 .text            VIGetNextFrameBuffer */
+u32 VIGetNextFrameBuffer() {
+    return *(u32*)(&NextBufAddr);
 }
-#pragma pop
 
-/* 8034D838-8034D840 348178 0008+00 0/0 1/1 0/0 .text            VIGetCurrentFrameBuffer */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void VIGetCurrentFrameBuffer() {
-    nofralloc
-#include "asm/dolphin/vi/vi/VIGetCurrentFrameBuffer.s"
+/* 8034D838-8034D840 -00001 0008+00 0/0 0/0 0/0 .text            VIGetCurrentFrameBuffer */
+u32 VIGetCurrentFrameBuffer() {
+    return *(u32*)(&CurrBufAddr);
 }
-#pragma pop
 
 /* 8034D840-8034D8BC 348180 007C+00 0/0 7/7 0/0 .text            VISetBlack */
 #pragma push
@@ -828,15 +818,10 @@ asm void VISetBlack() {
 }
 #pragma pop
 
-/* 8034D8BC-8034D8C4 3481FC 0008+00 0/0 9/9 0/0 .text            VIGetRetraceCount */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void VIGetRetraceCount() {
-    nofralloc
-#include "asm/dolphin/vi/vi/VIGetRetraceCount.s"
+/* 8034D8BC-8034D8C4 -00001 0008+00 0/0 0/0 0/0 .text            VIGetRetraceCount */
+u32 VIGetRetraceCount() {
+    return *(u32*)(&retraceCount);
 }
-#pragma pop
 
 /* 8034D8C4-8034D900 348204 003C+00 1/1 0/0 0/0 .text            GetCurrentDisplayPosition */
 #pragma push

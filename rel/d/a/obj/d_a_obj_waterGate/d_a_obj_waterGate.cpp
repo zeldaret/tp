@@ -87,9 +87,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -179,7 +179,7 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80D2C46C-80D2C470 000000 0004+00 3/3 0/0 0/0 .rodata          @3625 */
 SECTION_RODATA static f32 const lit_3625 = 4.0f;
-COMPILER_STRIP_GATE(80D2C46C, &lit_3625);
+COMPILER_STRIP_GATE(0x80D2C46C, &lit_3625);
 
 /* 80D2C498-80D2C4A4 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -329,6 +329,13 @@ asm void daWtGate_c::setBaseMtx() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80D2C48C-80D2C48C 000020 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D2C48C = "S_Zsuimon";
+#pragma pop
+
 /* 80D2BC94-80D2BD00 0001F4 006C+00 1/0 0/0 0/0 .text            CreateHeap__10daWtGate_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -342,13 +349,13 @@ asm void daWtGate_c::CreateHeap() {
 /* ############################################################################################## */
 /* 80D2C470-80D2C474 000004 0004+00 1/1 0/0 0/0 .rodata          @3712 */
 SECTION_RODATA static f32 const lit_3712 = 10.0f;
-COMPILER_STRIP_GATE(80D2C470, &lit_3712);
+COMPILER_STRIP_GATE(0x80D2C470, &lit_3712);
 
 /* 80D2C474-80D2C47C 000008 0008+00 1/1 0/0 0/0 .rodata          @3714 */
 SECTION_RODATA static u8 const lit_3714[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D2C474, &lit_3714);
+COMPILER_STRIP_GATE(0x80D2C474, &lit_3714);
 
 /* 80D2BD00-80D2BE7C 000260 017C+00 1/1 0/0 0/0 .text            create__10daWtGate_cFv */
 #pragma push
@@ -425,14 +432,14 @@ asm void daWtGate_c::init_modeOpen() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3781 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80D2C47C, &lit_3781);
+COMPILER_STRIP_GATE(0x80D2C47C, &lit_3781);
 #pragma pop
 
 /* 80D2C480-80D2C484 000014 0004+00 0/2 0/0 0/0 .rodata          @3782 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3782 = 1.0f;
-COMPILER_STRIP_GATE(80D2C480, &lit_3782);
+COMPILER_STRIP_GATE(0x80D2C480, &lit_3782);
 #pragma pop
 
 /* 80D2C484-80D2C488 000018 0004+00 0/2 0/0 0/0 .rodata          @3783 */
@@ -444,14 +451,14 @@ SECTION_RODATA static u8 const lit_3783[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D2C484, &lit_3783);
+COMPILER_STRIP_GATE(0x80D2C484, &lit_3783);
 #pragma pop
 
 /* 80D2C488-80D2C48C 00001C 0004+00 0/2 0/0 0/0 .rodata          @3784 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3784 = -1.0f;
-COMPILER_STRIP_GATE(80D2C488, &lit_3784);
+COMPILER_STRIP_GATE(0x80D2C488, &lit_3784);
 #pragma pop
 
 /* 80D2C02C-80D2C134 00058C 0108+00 1/0 0/0 0/0 .text            modeOpen__10daWtGate_cFv */
@@ -581,12 +588,7 @@ asm void __sinit_d_a_obj_waterGate_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80D2C41C = (void*)__sinit_d_a_obj_waterGate_cpp;
+REGISTER_CTORS(0x80D2C41C, __sinit_d_a_obj_waterGate_cpp);
 #pragma pop
 
-/* 80D2C48C-80D2C496 000020 000A+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D2C48C = "S_Zsuimon";
-#pragma pop
+/* 80D2C48C-80D2C48C 000020 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

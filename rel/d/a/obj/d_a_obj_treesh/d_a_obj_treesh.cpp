@@ -164,6 +164,12 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80D1F8E8-80D1F8E8 000020 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D1F8E8 = "M_TreeSh";
+#pragma pop
+
 /* 80D1F8F4-80D1F8F8 -00001 0004+00 4/4 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_treesh__stringBase0;
 
@@ -310,27 +316,27 @@ asm void daTreeSh_c::create1st() {
 /* ############################################################################################## */
 /* 80D1F8C8-80D1F8CC 000000 0004+00 1/1 0/0 0/0 .rodata          @3767 */
 SECTION_RODATA static f32 const lit_3767 = 15.0f;
-COMPILER_STRIP_GATE(80D1F8C8, &lit_3767);
+COMPILER_STRIP_GATE(0x80D1F8C8, &lit_3767);
 
 /* 80D1F8CC-80D1F8D0 000004 0004+00 0/1 0/0 0/0 .rodata          @3768 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3768 = 30.0f;
-COMPILER_STRIP_GATE(80D1F8CC, &lit_3768);
+COMPILER_STRIP_GATE(0x80D1F8CC, &lit_3768);
 #pragma pop
 
 /* 80D1F8D0-80D1F8D4 000008 0004+00 0/1 0/0 0/0 .rodata          @3769 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3769 = 1.0f;
-COMPILER_STRIP_GATE(80D1F8D0, &lit_3769);
+COMPILER_STRIP_GATE(0x80D1F8D0, &lit_3769);
 #pragma pop
 
 /* 80D1F8D4-80D1F8D8 00000C 0004+00 0/1 0/0 0/0 .rodata          @3770 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3770 = 3.0f / 10.0f;
-COMPILER_STRIP_GATE(80D1F8D4, &lit_3770);
+COMPILER_STRIP_GATE(0x80D1F8D4, &lit_3770);
 #pragma pop
 
 /* 80D1F8D8-80D1F8E0 000010 0004+04 0/1 0/0 0/0 .rodata          @3771 */
@@ -341,7 +347,7 @@ SECTION_RODATA static f32 const lit_3771[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80D1F8D8, &lit_3771);
+COMPILER_STRIP_GATE(0x80D1F8D8, &lit_3771);
 #pragma pop
 
 /* 80D1F8E0-80D1F8E8 000018 0008+00 0/1 0/0 0/0 .rodata          @3774 */
@@ -350,7 +356,7 @@ COMPILER_STRIP_GATE(80D1F8D8, &lit_3771);
 SECTION_RODATA static u8 const lit_3774[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D1F8E0, &lit_3774);
+COMPILER_STRIP_GATE(0x80D1F8E0, &lit_3774);
 #pragma pop
 
 /* 80D1F990-80D1F99C 000008 000C+00 1/1 0/0 0/0 .bss             @3618 */
@@ -458,12 +464,7 @@ asm void __sinit_d_a_obj_treesh_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80D1F878 = (void*)__sinit_d_a_obj_treesh_cpp;
+REGISTER_CTORS(0x80D1F878, __sinit_d_a_obj_treesh_cpp);
 #pragma pop
 
-/* 80D1F8E8-80D1F8F1 000020 0009+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D1F8E8 = "M_TreeSh";
-#pragma pop
+/* 80D1F8E8-80D1F8E8 000020 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

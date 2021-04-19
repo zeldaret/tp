@@ -624,6 +624,13 @@ asm dGov_HIO_c::dGov_HIO_c() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80394C28-80394C28 021288 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394C28 = "Gover";
+SECTION_DEAD static char const* const stringBase_80394C2E = "D_MN10A";
+#pragma pop
+
 /* 803BBDA8-803BBDB8 018EC8 0010+00 2/2 0/0 0/0 .data            __vt__24dDlst_Gameover_CAPTURE_c */
 SECTION_DATA extern void* __vt__24dDlst_Gameover_CAPTURE_c[4] = {
     (void*)NULL /* RTTI */,
@@ -836,6 +843,15 @@ asm void dGameover_c::_delete() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80394C28-80394C28 021288 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394C36 = "zelda_game_over.blo";
+SECTION_DEAD static char const* const stringBase_80394C4A = "tt_block8x8.bti";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80394C5A = "\0\0\0\0\0";
+#pragma pop
+
 /* 80453BA0-80453BA4 0021A0 0004+00 1/1 0/0 0/0 .sdata2          @4290 */
 SECTION_SDATA2 static f32 lit_4290 = 486.0f;
 
@@ -1003,7 +1019,7 @@ asm void __sinit_d_gameover_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8019C0C8 = (void*)__sinit_d_gameover_cpp;
+REGISTER_CTORS(0x8019C0C8, __sinit_d_gameover_cpp);
 #pragma pop
 
 /* 8019C2CC-8019C314 196C0C 0048+00 1/0 0/0 0/0 .text            __dt__24dDlst_Gameover_CAPTURE_cFv
@@ -1027,14 +1043,4 @@ asm dMenu_save_c::~dMenu_save_c() {
 }
 #pragma pop
 
-/* 80394C28-80394C60 021288 0032+06 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80394C28 = "Gover";
-SECTION_DEAD static char const* const stringBase_80394C2E = "D_MN10A";
-SECTION_DEAD static char const* const stringBase_80394C36 = "zelda_game_over.blo";
-SECTION_DEAD static char const* const stringBase_80394C4A = "tt_block8x8.bti";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80394C5A = "\0\0\0\0\0";
-#pragma pop
+/* 80394C28-80394C28 021288 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -381,6 +381,13 @@ extern "C" void soldoutItem__8daMyna_cFUi();
 //
 
 /* ############################################################################################## */
+/* 80CE6990-80CE6990 000060 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CE6990 = "Obj_btl";
+SECTION_DEAD static char const* const stringBase_80CE6998 = "al_bottle.bmd";
+#pragma pop
+
 /* 80CE69C4-80CE69D0 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -613,11 +620,18 @@ SECTION_RODATA u8 const daObj_SSDrink_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CE6930, &daObj_SSDrink_c::mCcDObjInfo);
+COMPILER_STRIP_GATE(0x80CE6930, &daObj_SSDrink_c::mCcDObjInfo);
 
 /* 80CE6960-80CE6964 000030 0004+00 1/3 0/0 0/0 .rodata          @4000 */
 SECTION_RODATA static f32 const lit_4000 = 1.0f;
-COMPILER_STRIP_GATE(80CE6960, &lit_4000);
+COMPILER_STRIP_GATE(0x80CE6960, &lit_4000);
+
+/* 80CE6990-80CE6990 000060 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CE69A6 = "al_bottle.btp";
+SECTION_DEAD static char const* const stringBase_80CE69B4 = "al_bottle.brk";
+#pragma pop
 
 /* 80CE53EC-80CE55A8 0004EC 01BC+00 1/1 0/0 0/0 .text            CreateHeap__15daObj_SSDrink_cFv */
 #pragma push
@@ -654,21 +668,21 @@ asm void daObj_SSDrink_c::Delete() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4057 = -1000000000.0f;
-COMPILER_STRIP_GATE(80CE6964, &lit_4057);
+COMPILER_STRIP_GATE(0x80CE6964, &lit_4057);
 #pragma pop
 
 /* 80CE6968-80CE696C 000038 0004+00 0/2 0/0 0/0 .rodata          @4058 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4058 = 10.0f;
-COMPILER_STRIP_GATE(80CE6968, &lit_4058);
+COMPILER_STRIP_GATE(0x80CE6968, &lit_4058);
 #pragma pop
 
 /* 80CE696C-80CE6970 00003C 0004+00 0/2 0/0 0/0 .rodata          @4059 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4059 = 30.0f;
-COMPILER_STRIP_GATE(80CE696C, &lit_4059);
+COMPILER_STRIP_GATE(0x80CE696C, &lit_4059);
 #pragma pop
 
 /* 80CE5624-80CE5858 000724 0234+00 2/2 0/0 0/0 .text            Execute__15daObj_SSDrink_cFv */
@@ -798,35 +812,35 @@ asm void daObj_SSDrink_c::restart() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4204 = -30.0f;
-COMPILER_STRIP_GATE(80CE6970, &lit_4204);
+COMPILER_STRIP_GATE(0x80CE6970, &lit_4204);
 #pragma pop
 
 /* 80CE6974-80CE6978 000044 0004+00 0/1 0/0 0/0 .rodata          @4205 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4205 = -15.0f;
-COMPILER_STRIP_GATE(80CE6974, &lit_4205);
+COMPILER_STRIP_GATE(0x80CE6974, &lit_4205);
 #pragma pop
 
 /* 80CE6978-80CE697C 000048 0004+00 0/1 0/0 0/0 .rodata          @4206 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4206 = 45.0f;
-COMPILER_STRIP_GATE(80CE6978, &lit_4206);
+COMPILER_STRIP_GATE(0x80CE6978, &lit_4206);
 #pragma pop
 
 /* 80CE697C-80CE6980 00004C 0004+00 0/2 0/0 0/0 .rodata          @4207 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4207 = 24.0f;
-COMPILER_STRIP_GATE(80CE697C, &lit_4207);
+COMPILER_STRIP_GATE(0x80CE697C, &lit_4207);
 #pragma pop
 
 /* 80CE6980-80CE6984 000050 0004+00 0/2 0/0 0/0 .rodata          @4208 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4208 = 12.0f;
-COMPILER_STRIP_GATE(80CE6980, &lit_4208);
+COMPILER_STRIP_GATE(0x80CE6980, &lit_4208);
 #pragma pop
 
 /* 80CE5BF0-80CE5DB0 000CF0 01C0+00 1/1 0/0 0/0 .text            initialize__15daObj_SSDrink_cFv */
@@ -844,7 +858,7 @@ asm void daObj_SSDrink_c::initialize() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObj_SSDrink_c::checkProcess(int (daObj_SSDrink_c::*)(void*)) {
+asm void daObj_SSDrink_c::checkProcess(int (daObj_SSDrink_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_ss_drink/d_a_obj_ss_drink/checkProcess__15daObj_SSDrink_cFM15daObj_SSDrink_cFPCvPvPv_i.s"
 }
@@ -855,7 +869,7 @@ asm void daObj_SSDrink_c::checkProcess(int (daObj_SSDrink_c::*)(void*)) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObj_SSDrink_c::setProcess(int (daObj_SSDrink_c::*)(void*)) {
+asm void daObj_SSDrink_c::setProcess(int (daObj_SSDrink_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_ss_drink/d_a_obj_ss_drink/setProcess__15daObj_SSDrink_cFM15daObj_SSDrink_cFPCvPvPv_i.s"
 }
@@ -866,7 +880,7 @@ asm void daObj_SSDrink_c::setProcess(int (daObj_SSDrink_c::*)(void*)) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4257 = -5.0f;
-COMPILER_STRIP_GATE(80CE6984, &lit_4257);
+COMPILER_STRIP_GATE(0x80CE6984, &lit_4257);
 #pragma pop
 
 /* 80CE5EC8-80CE5FE4 000FC8 011C+00 1/1 0/0 0/0 .text            setParam__15daObj_SSDrink_cFv */
@@ -925,7 +939,7 @@ asm void daObj_SSDrink_c::setAttnPos() {
 SECTION_RODATA static u8 const lit_4320[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CE6988, &lit_4320);
+COMPILER_STRIP_GATE(0x80CE6988, &lit_4320);
 
 /* 80CE6170-80CE61E4 001270 0074+00 1/1 0/0 0/0 .text            animeEntry__15daObj_SSDrink_cFv */
 #pragma push
@@ -1059,7 +1073,7 @@ asm void __sinit_d_a_obj_ss_drink_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80CE66F4 = (void*)__sinit_d_a_obj_ss_drink_cpp;
+REGISTER_CTORS(0x80CE66F4, __sinit_d_a_obj_ss_drink_cpp);
 #pragma pop
 
 /* 80CE672C-80CE6734 00182C 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
@@ -1142,12 +1156,4 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 }
 #pragma pop
 
-/* 80CE6990-80CE69C2 000060 0032+00 3/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CE6990 = "Obj_btl";
-SECTION_DEAD static char const* const stringBase_80CE6998 = "al_bottle.bmd";
-SECTION_DEAD static char const* const stringBase_80CE69A6 = "al_bottle.btp";
-SECTION_DEAD static char const* const stringBase_80CE69B4 = "al_bottle.brk";
-#pragma pop
+/* 80CE6990-80CE6990 000060 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

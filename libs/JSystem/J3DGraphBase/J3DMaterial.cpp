@@ -30,11 +30,11 @@ struct J3DTexGenBlock4 {
     /* 80317674 */ void initialize();
 };
 
+struct J3DNBTScale {};
+
 struct J3DTexCoord {
     /* 8000E464 */ J3DTexCoord();
 };
-
-struct J3DNBTScale {};
 
 struct J3DTexGenBlock {
     /* 8000DFD8 */ bool getTexMtx(u32);
@@ -107,11 +107,11 @@ struct J3DPEBlockFogOff {
     /* 80317B34 */ void initialize();
 };
 
-struct J3DBlend {};
+struct J3DFog {};
 
 struct J3DAlphaComp {};
 
-struct J3DFog {};
+struct J3DBlend {};
 
 struct J3DPEBlock {
     /* 8000DBCC */ void patch();
@@ -542,7 +542,7 @@ extern "C" extern void* __vt__21J3DColorBlockLightOff[36 + 1 /* padding */];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u8 __GDCurrentDL[4];
 extern "C" extern u32 j3dDefaultBlendInfo;
-extern "C" extern u8 struct_804563F8[4];
+extern "C" extern u16 j3dDefaultAlphaCmpID;
 extern "C" extern u16 j3dDefaultZModeID[1 + 1 /* padding */];
 
 //

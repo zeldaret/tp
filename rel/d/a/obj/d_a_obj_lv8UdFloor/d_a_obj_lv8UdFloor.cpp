@@ -96,9 +96,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -199,7 +199,14 @@ SECTION_RODATA static u8 const lit_3628[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C8CBF0, &lit_3628);
+COMPILER_STRIP_GATE(0x80C8CBF0, &lit_3628);
+
+/* 80C8CC34-80C8CC34 000044 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C8CC34 = "L8Step";
+SECTION_DEAD static char const* const stringBase_80C8CC3B = "L8StepX";
+#pragma pop
 
 /* 80C8CC44-80C8CC50 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -371,7 +378,7 @@ asm void daUdFloor_c::setBaseMtx() {
 SECTION_RODATA static u8 const l_bmdIdx[8] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04,
 };
-COMPILER_STRIP_GATE(80C8CBF4, &l_bmdIdx);
+COMPILER_STRIP_GATE(0x80C8CBF4, &l_bmdIdx);
 
 /* 80C8BE64-80C8BEE4 000244 0080+00 1/0 0/0 0/0 .text            CreateHeap__11daUdFloor_cFv */
 #pragma push
@@ -390,7 +397,7 @@ asm void daUdFloor_c::CreateHeap() {
 SECTION_RODATA static u8 const l_dzbIdx[8] = {
     0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x07,
 };
-COMPILER_STRIP_GATE(80C8CBFC, &l_dzbIdx);
+COMPILER_STRIP_GATE(0x80C8CBFC, &l_dzbIdx);
 #pragma pop
 
 /* 80C8CC04-80C8CC0C 000014 0008+00 0/1 0/0 0/0 .rodata          l_heap_size */
@@ -399,14 +406,14 @@ COMPILER_STRIP_GATE(80C8CBFC, &l_dzbIdx);
 SECTION_RODATA static u8 const l_heap_size[8] = {
     0x00, 0x00, 0x12, 0x00, 0x00, 0x00, 0x14, 0x00,
 };
-COMPILER_STRIP_GATE(80C8CC04, &l_heap_size);
+COMPILER_STRIP_GATE(0x80C8CC04, &l_heap_size);
 #pragma pop
 
 /* 80C8CC0C-80C8CC10 00001C 0004+00 0/1 0/0 0/0 .rodata          @3718 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3718 = 50.0f;
-COMPILER_STRIP_GATE(80C8CC0C, &lit_3718);
+COMPILER_STRIP_GATE(0x80C8CC0C, &lit_3718);
 #pragma pop
 
 /* 80C8CC10-80C8CC18 000020 0008+00 0/1 0/0 0/0 .rodata          @3720 */
@@ -415,14 +422,14 @@ COMPILER_STRIP_GATE(80C8CC0C, &lit_3718);
 SECTION_RODATA static u8 const lit_3720[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C8CC10, &lit_3720);
+COMPILER_STRIP_GATE(0x80C8CC10, &lit_3720);
 #pragma pop
 
 /* 80C8CC18-80C8CC20 000028 0008+00 1/2 0/0 0/0 .rodata          @3722 */
 SECTION_RODATA static u8 const lit_3722[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C8CC18, &lit_3722);
+COMPILER_STRIP_GATE(0x80C8CC18, &lit_3722);
 
 /* 80C8CD80-80C8CD8C 000008 000C+00 1/1 0/0 0/0 .bss             @3622 */
 static u8 lit_3622[12];
@@ -482,11 +489,11 @@ void daUdFloor_c::modeWait() {
 /* ############################################################################################## */
 /* 80C8CC20-80C8CC24 000030 0004+00 4/6 0/0 0/0 .rodata          @3777 */
 SECTION_RODATA static f32 const lit_3777 = 1.0f;
-COMPILER_STRIP_GATE(80C8CC20, &lit_3777);
+COMPILER_STRIP_GATE(0x80C8CC20, &lit_3777);
 
 /* 80C8CC24-80C8CC28 000034 0004+00 3/5 0/0 0/0 .rodata          @3778 */
 SECTION_RODATA static f32 const lit_3778 = -1.0f;
-COMPILER_STRIP_GATE(80C8CC24, &lit_3778);
+COMPILER_STRIP_GATE(0x80C8CC24, &lit_3778);
 
 /* 80C8C274-80C8C310 000654 009C+00 1/1 0/0 0/0 .text init_modeUpMoveInit__11daUdFloor_cFv */
 #pragma push
@@ -533,14 +540,14 @@ asm void daUdFloor_c::init_modeUpMove() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3856 = 30.0f;
-COMPILER_STRIP_GATE(80C8CC28, &lit_3856);
+COMPILER_STRIP_GATE(0x80C8CC28, &lit_3856);
 #pragma pop
 
 /* 80C8CC2C-80C8CC30 00003C 0004+00 0/2 0/0 0/0 .rodata          @3857 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3857 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80C8CC2C, &lit_3857);
+COMPILER_STRIP_GATE(0x80C8CC2C, &lit_3857);
 #pragma pop
 
 /* 80C8C68C-80C8C7F8 000A6C 016C+00 1/0 0/0 0/0 .text            modeUpMove__11daUdFloor_cFv */
@@ -590,7 +597,7 @@ asm void daUdFloor_c::init_modeDownMove() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3892 = 3.0f / 10.0f;
-COMPILER_STRIP_GATE(80C8CC30, &lit_3892);
+COMPILER_STRIP_GATE(0x80C8CC30, &lit_3892);
 #pragma pop
 
 /* 80C8C8E4-80C8C994 000CC4 00B0+00 1/0 0/0 0/0 .text            modeDownMove__11daUdFloor_cFv */
@@ -687,13 +694,7 @@ asm void __sinit_d_a_obj_lv8UdFloor_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80C8CBA0 = (void*)__sinit_d_a_obj_lv8UdFloor_cpp;
+REGISTER_CTORS(0x80C8CBA0, __sinit_d_a_obj_lv8UdFloor_cpp);
 #pragma pop
 
-/* 80C8CC34-80C8CC43 000044 000F+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C8CC34 = "L8Step";
-SECTION_DEAD static char const* const stringBase_80C8CC3B = "L8StepX";
-#pragma pop
+/* 80C8CC34-80C8CC34 000044 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

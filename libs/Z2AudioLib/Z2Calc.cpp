@@ -49,7 +49,7 @@ extern "C" void pow();
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm f32 Z2Calc::linearTransform(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
-                                 bool param_5) {
+                                bool param_5) {
     nofralloc
 #include "asm/Z2AudioLib/Z2Calc/linearTransform__6Z2CalcFfffffb.s"
 }
@@ -79,7 +79,7 @@ SECTION_SDATA2 static f32 lit_381 = 1.0f;
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm f32 Z2Calc::getParamByExp(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
-                               f32 param_5, Z2Calc::CurveSign param_6) {
+                              f32 param_5, Z2Calc::CurveSign param_6) {
     nofralloc
 #include "asm/Z2AudioLib/Z2Calc/getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign.s"
 }

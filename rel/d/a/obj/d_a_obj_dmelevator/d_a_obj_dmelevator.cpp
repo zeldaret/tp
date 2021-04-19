@@ -222,7 +222,7 @@ extern "C" static void daObjDmElevator_create1st__FP17daObjDmElevator_c();
 extern "C" static void daObjDmElevator_MoveBGDelete__FP17daObjDmElevator_c();
 extern "C" static void daObjDmElevator_MoveBGExecute__FP17daObjDmElevator_c();
 extern "C" static void daObjDmElevator_MoveBGDraw__FP17daObjDmElevator_c();
-extern "C" void func_80BDF844(u8*);
+extern "C" void func_80BDF844(void* _this, u8*);
 extern "C" extern char const* const d_a_obj_dmelevator__stringBase0;
 
 //
@@ -312,13 +312,13 @@ extern "C" void __register_global_object();
 SECTION_RODATA static u8 const l_swOffset[12] = {
     0x00, 0x00, 0x00, 0x00, 0x43, 0x22, 0x00, 0x00, 0xC2, 0x9A, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BDF870, &l_swOffset);
+COMPILER_STRIP_GATE(0x80BDF870, &l_swOffset);
 
 /* 80BDF87C-80BDF880 00000C 0004+00 0/2 0/0 0/0 .rodata          @3718 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3718 = -50.0f;
-COMPILER_STRIP_GATE(80BDF87C, &lit_3718);
+COMPILER_STRIP_GATE(0x80BDF87C, &lit_3718);
 #pragma pop
 
 /* 80BDF880-80BDF884 000010 0004+00 5/13 0/0 0/0 .rodata          @3719 */
@@ -328,13 +328,13 @@ SECTION_RODATA static u8 const lit_3719[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BDF880, &lit_3719);
+COMPILER_STRIP_GATE(0x80BDF880, &lit_3719);
 
 /* 80BDF884-80BDF888 000014 0004+00 0/1 0/0 0/0 .rodata          @3720 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3720 = 50.0f;
-COMPILER_STRIP_GATE(80BDF884, &lit_3720);
+COMPILER_STRIP_GATE(0x80BDF884, &lit_3720);
 #pragma pop
 
 /* 80BDFB38-80BDFB3C 000008 0001+03 1/1 0/0 0/0 .bss             @1109 */
@@ -515,7 +515,7 @@ asm void daObjDmElevator_c::initBaseMtx() {
 /* ############################################################################################## */
 /* 80BDF888-80BDF88C 000018 0004+00 1/1 0/0 0/0 .rodata          @3821 */
 SECTION_RODATA static f32 const lit_3821 = -17.0f;
-COMPILER_STRIP_GATE(80BDF888, &lit_3821);
+COMPILER_STRIP_GATE(0x80BDF888, &lit_3821);
 
 /* 80BDDD90-80BDDEFC 000510 016C+00 2/2 0/0 0/0 .text            setBaseMtx__17daObjDmElevator_cFv
  */
@@ -533,35 +533,35 @@ asm void daObjDmElevator_c::setBaseMtx() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3875 = -24.0f;
-COMPILER_STRIP_GATE(80BDF88C, &lit_3875);
+COMPILER_STRIP_GATE(0x80BDF88C, &lit_3875);
 #pragma pop
 
 /* 80BDF890-80BDF894 000020 0004+00 0/1 0/0 0/0 .rodata          @3876 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3876 = -250.0f;
-COMPILER_STRIP_GATE(80BDF890, &lit_3876);
+COMPILER_STRIP_GATE(0x80BDF890, &lit_3876);
 #pragma pop
 
 /* 80BDF894-80BDF898 000024 0004+00 0/1 0/0 0/0 .rodata          @3877 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3877 = -350.0f;
-COMPILER_STRIP_GATE(80BDF894, &lit_3877);
+COMPILER_STRIP_GATE(0x80BDF894, &lit_3877);
 #pragma pop
 
 /* 80BDF898-80BDF89C 000028 0004+00 0/1 0/0 0/0 .rodata          @3878 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3878 = 250.0f;
-COMPILER_STRIP_GATE(80BDF898, &lit_3878);
+COMPILER_STRIP_GATE(0x80BDF898, &lit_3878);
 #pragma pop
 
 /* 80BDF89C-80BDF8A0 00002C 0004+00 0/1 0/0 0/0 .rodata          @3879 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3879 = 450.0f;
-COMPILER_STRIP_GATE(80BDF89C, &lit_3879);
+COMPILER_STRIP_GATE(0x80BDF89C, &lit_3879);
 #pragma pop
 
 /* 80BDF8A0-80BDF8A8 000030 0004+04 0/1 0/0 0/0 .rodata          @3880 */
@@ -572,7 +572,19 @@ SECTION_RODATA static f32 const lit_3880[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80BDF8A0, &lit_3880);
+COMPILER_STRIP_GATE(0x80BDF8A0, &lit_3880);
+#pragma pop
+
+/* 80BDF8EC-80BDF8EC 00007C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BDF8EC = "H_Elevato";
+SECTION_DEAD static char const* const stringBase_80BDF8F6 = "D_Hfsw00";
+SECTION_DEAD static char const* const stringBase_80BDF8FF = "ELEVATOR_MOVE";
+SECTION_DEAD static char const* const stringBase_80BDF90D = "ELEVATOR_MOVE2";
+SECTION_DEAD static char const* const stringBase_80BDF91C = "dmele";
+SECTION_DEAD static char const* const stringBase_80BDF922 = "F_SP110";
+SECTION_DEAD static char const* const stringBase_80BDF92A = "R_SP110";
 #pragma pop
 
 /* 80BDF944-80BDF950 000000 000C+00 4/4 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -628,7 +640,7 @@ asm void daObjDmElevator_c::Create() {
 SECTION_RODATA static u8 const lit_3936[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BDF8A8, &lit_3936);
+COMPILER_STRIP_GATE(0x80BDF8A8, &lit_3936);
 #pragma pop
 
 /* 80BDF8B0-80BDF8B8 000040 0008+00 0/2 0/0 0/0 .rodata          @3937 */
@@ -637,7 +649,7 @@ COMPILER_STRIP_GATE(80BDF8A8, &lit_3936);
 SECTION_RODATA static u8 const lit_3937[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BDF8B0, &lit_3937);
+COMPILER_STRIP_GATE(0x80BDF8B0, &lit_3937);
 #pragma pop
 
 /* 80BDF8B8-80BDF8C0 000048 0008+00 0/2 0/0 0/0 .rodata          @3938 */
@@ -646,21 +658,21 @@ COMPILER_STRIP_GATE(80BDF8B0, &lit_3937);
 SECTION_RODATA static u8 const lit_3938[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BDF8B8, &lit_3938);
+COMPILER_STRIP_GATE(0x80BDF8B8, &lit_3938);
 #pragma pop
 
 /* 80BDF8C0-80BDF8C4 000050 0004+00 0/1 0/0 0/0 .rodata          @3939 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3939 = 100.0f;
-COMPILER_STRIP_GATE(80BDF8C0, &lit_3939);
+COMPILER_STRIP_GATE(0x80BDF8C0, &lit_3939);
 #pragma pop
 
 /* 80BDF8C4-80BDF8C8 000054 0004+00 0/2 0/0 0/0 .rodata          @3940 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3940 = 200.0f;
-COMPILER_STRIP_GATE(80BDF8C4, &lit_3940);
+COMPILER_STRIP_GATE(0x80BDF8C4, &lit_3940);
 #pragma pop
 
 /* 80BDE0A4-80BDE2F8 000824 0254+00 1/1 0/0 0/0 .text            init__17daObjDmElevator_cFv */
@@ -697,11 +709,11 @@ asm void daObjDmElevator_c::create1st() {
 /* ############################################################################################## */
 /* 80BDF8C8-80BDF8CC 000058 0004+00 1/1 0/0 0/0 .rodata          @3987 */
 SECTION_RODATA static f32 const lit_3987 = 65535.0f;
-COMPILER_STRIP_GATE(80BDF8C8, &lit_3987);
+COMPILER_STRIP_GATE(0x80BDF8C8, &lit_3987);
 
 /* 80BDF8CC-80BDF8D0 00005C 0004+00 1/1 0/0 0/0 .rodata          @3988 */
 SECTION_RODATA static u32 const lit_3988 = 0x43FB53D2;
-COMPILER_STRIP_GATE(80BDF8CC, &lit_3988);
+COMPILER_STRIP_GATE(0x80BDF8CC, &lit_3988);
 
 /* 80BDE500-80BDE5F8 000C80 00F8+00 1/0 0/0 0/0 .text Execute__17daObjDmElevator_cFPPA3_A4_f */
 #pragma push
@@ -845,19 +857,19 @@ asm void daObjDmElevator_c::actionSwPause() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4090 = 9.0f / 10.0f;
-COMPILER_STRIP_GATE(80BDF8D0, &lit_4090);
+COMPILER_STRIP_GATE(0x80BDF8D0, &lit_4090);
 #pragma pop
 
 /* 80BDF8D4-80BDF8D8 000064 0004+00 0/1 0/0 0/0 .rodata          @4091 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4091 = 0.5f;
-COMPILER_STRIP_GATE(80BDF8D4, &lit_4091);
+COMPILER_STRIP_GATE(0x80BDF8D4, &lit_4091);
 #pragma pop
 
 /* 80BDF8D8-80BDF8DC 000068 0004+00 3/10 0/0 0/0 .rodata          @4092 */
 SECTION_RODATA static f32 const lit_4092 = 1.0f;
-COMPILER_STRIP_GATE(80BDF8D8, &lit_4092);
+COMPILER_STRIP_GATE(0x80BDF8D8, &lit_4092);
 
 /* 80BDE8D0-80BDE960 001050 0090+00 1/1 0/0 0/0 .text            calc_top_pos__17daObjDmElevator_cFv
  */
@@ -945,13 +957,13 @@ asm void daObjDmElevator_c::modeSwWaitLowerInit() {
 /* ############################################################################################## */
 /* 80BDF8DC-80BDF8E0 00006C 0004+00 1/5 0/0 0/0 .rodata          @4141 */
 SECTION_RODATA static f32 const lit_4141 = -1.0f;
-COMPILER_STRIP_GATE(80BDF8DC, &lit_4141);
+COMPILER_STRIP_GATE(0x80BDF8DC, &lit_4141);
 
 /* 80BDF8E0-80BDF8E4 000070 0004+00 0/1 0/0 0/0 .rodata          @4142 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4142 = 4.0f / 5.0f;
-COMPILER_STRIP_GATE(80BDF8E0, &lit_4142);
+COMPILER_STRIP_GATE(0x80BDF8E0, &lit_4142);
 #pragma pop
 
 /* 80BDEA44-80BDEB88 0011C4 0144+00 1/0 0/0 0/0 .text modeSwWaitLower__17daObjDmElevator_cFv */
@@ -1169,6 +1181,14 @@ void daObjDmElevator_c::actionDead() {
 }
 
 /* ############################################################################################## */
+/* 80BDF8EC-80BDF8EC 00007C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BDF932 = "WAIT";
+SECTION_DEAD static char const* const stringBase_80BDF937 = "MOVE";
+SECTION_DEAD static char const* const stringBase_80BDF93C = "Timer";
+#pragma pop
+
 /* 80BDFAB0-80BDFAB8 -00001 0008+00 1/1 0/0 0/0 .data            action_table$4279 */
 SECTION_DATA static void* action_table[2] = {
     (void*)(((char*)&d_a_obj_dmelevator__stringBase0) + 0x46),
@@ -1200,14 +1220,14 @@ asm void daObjDmElevator_c::moveInit() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4399 = 10.0f;
-COMPILER_STRIP_GATE(80BDF8E4, &lit_4399);
+COMPILER_STRIP_GATE(0x80BDF8E4, &lit_4399);
 #pragma pop
 
 /* 80BDF8E8-80BDF8EC 000078 0004+00 0/1 0/0 0/0 .rodata          @4400 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4400 = -10.0f;
-COMPILER_STRIP_GATE(80BDF8E8, &lit_4400);
+COMPILER_STRIP_GATE(0x80BDF8E8, &lit_4400);
 #pragma pop
 
 /* 80BDF3B8-80BDF618 001B38 0260+00 2/2 0/0 0/0 .text            moveProc__17daObjDmElevator_cFv */
@@ -1325,7 +1345,7 @@ static asm void daObjDmElevator_MoveBGDraw(daObjDmElevator_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80BDF844(u8* param_0) {
+extern "C" asm void func_80BDF844(void* _this, u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_dmelevator/d_a_obj_dmelevator/func_80BDF844.s"
 }
@@ -1503,18 +1523,4 @@ static u8 data_80BDFC3C[4];
 static u8 data_80BDFC40[4];
 #pragma pop
 
-/* 80BDF8EC-80BDF942 00007C 0056+00 8/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BDF8EC = "H_Elevato";
-SECTION_DEAD static char const* const stringBase_80BDF8F6 = "D_Hfsw00";
-SECTION_DEAD static char const* const stringBase_80BDF8FF = "ELEVATOR_MOVE";
-SECTION_DEAD static char const* const stringBase_80BDF90D = "ELEVATOR_MOVE2";
-SECTION_DEAD static char const* const stringBase_80BDF91C = "dmele";
-SECTION_DEAD static char const* const stringBase_80BDF922 = "F_SP110";
-SECTION_DEAD static char const* const stringBase_80BDF92A = "R_SP110";
-SECTION_DEAD static char const* const stringBase_80BDF932 = "WAIT";
-SECTION_DEAD static char const* const stringBase_80BDF937 = "MOVE";
-SECTION_DEAD static char const* const stringBase_80BDF93C = "Timer";
-#pragma pop
+/* 80BDF8EC-80BDF8EC 00007C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

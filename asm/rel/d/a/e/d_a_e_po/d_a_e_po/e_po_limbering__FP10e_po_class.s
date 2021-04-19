@@ -476,8 +476,8 @@ lbl_807509D4:
 /* 80750A1C  D8 01 00 68 */	stfd f0, 0x68(r1)
 /* 80750A20  80 01 00 6C */	lwz r0, 0x6c(r1)
 /* 80750A24  54 00 06 3E */	clrlwi r0, r0, 0x18
-/* 80750A28  3C 60 80 75 */	lis r3, struct_80757AD4+0x6@ha /* 0x80757ADA@ha */
-/* 80750A2C  B4 03 7A DA */	sthu r0, struct_80757AD4+0x6@l(r3)  /* 0x80757ADA@l */
+/* 80750A28  3C 60 80 75 */	lis r3, mAttackNo@ha /* 0x80757ADA@ha */
+/* 80750A2C  B4 03 7A DA */	sthu r0, mAttackNo@l(r3)  /* 0x80757ADA@l */
 /* 80750A30  2C 00 00 06 */	cmpwi r0, 6
 /* 80750A34  40 81 00 0C */	ble lbl_80750A40
 /* 80750A38  38 00 00 03 */	li r0, 3

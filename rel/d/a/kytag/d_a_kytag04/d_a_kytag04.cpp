@@ -64,13 +64,13 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct csXyz {};
 
 struct _GXColor {};
 
-struct csXyz {};
+struct cXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -86,9 +86,9 @@ struct dComIfG_play_c {
     /* 8002C97C */ void getLayerNo(int);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -178,13 +178,13 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 /* ############################################################################################## */
 /* 8046DA18-8046DA1C 000000 0004+00 2/2 0/0 0/0 .rodata          @3960 */
 SECTION_RODATA static f32 const lit_3960 = 20.0f;
-COMPILER_STRIP_GATE(8046DA18, &lit_3960);
+COMPILER_STRIP_GATE(0x8046DA18, &lit_3960);
 
 /* 8046DA1C-8046DA20 000004 0004+00 0/1 0/0 0/0 .rodata          @3961 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3961 = 6000.0f;
-COMPILER_STRIP_GATE(8046DA1C, &lit_3961);
+COMPILER_STRIP_GATE(0x8046DA1C, &lit_3961);
 #pragma pop
 
 /* 8046DA20-8046DA24 000008 0004+00 1/3 0/0 0/0 .rodata          @3962 */
@@ -194,49 +194,49 @@ SECTION_RODATA static u8 const lit_3962[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8046DA20, &lit_3962);
+COMPILER_STRIP_GATE(0x8046DA20, &lit_3962);
 
 /* 8046DA24-8046DA28 00000C 0004+00 1/2 0/0 0/0 .rodata          @3963 */
 SECTION_RODATA static f32 const lit_3963 = 999.0f;
-COMPILER_STRIP_GATE(8046DA24, &lit_3963);
+COMPILER_STRIP_GATE(0x8046DA24, &lit_3963);
 
 /* 8046DA28-8046DA2C 000010 0004+00 1/3 0/0 0/0 .rodata          @3964 */
 SECTION_RODATA static f32 const lit_3964 = 1.0f;
-COMPILER_STRIP_GATE(8046DA28, &lit_3964);
+COMPILER_STRIP_GATE(0x8046DA28, &lit_3964);
 
 /* 8046DA2C-8046DA30 000014 0004+00 0/1 0/0 0/0 .rodata          @3965 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3965 = 0.25f;
-COMPILER_STRIP_GATE(8046DA2C, &lit_3965);
+COMPILER_STRIP_GATE(0x8046DA2C, &lit_3965);
 #pragma pop
 
 /* 8046DA30-8046DA34 000018 0004+00 0/1 0/0 0/0 .rodata          @3966 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3966 = 1.0f / 80.0f;
-COMPILER_STRIP_GATE(8046DA30, &lit_3966);
+COMPILER_STRIP_GATE(0x8046DA30, &lit_3966);
 #pragma pop
 
 /* 8046DA34-8046DA38 00001C 0004+00 0/1 0/0 0/0 .rodata          @3967 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3967 = 0x38D1B717;
-COMPILER_STRIP_GATE(8046DA34, &lit_3967);
+COMPILER_STRIP_GATE(0x8046DA34, &lit_3967);
 #pragma pop
 
 /* 8046DA38-8046DA3C 000020 0004+00 0/1 0/0 0/0 .rodata          @3968 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3968 = 0.5f;
-COMPILER_STRIP_GATE(8046DA38, &lit_3968);
+COMPILER_STRIP_GATE(0x8046DA38, &lit_3968);
 #pragma pop
 
 /* 8046DA3C-8046DA40 000024 0004+00 0/1 0/0 0/0 .rodata          @3969 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3969 = 1.0f / 50.0f;
-COMPILER_STRIP_GATE(8046DA3C, &lit_3969);
+COMPILER_STRIP_GATE(0x8046DA3C, &lit_3969);
 #pragma pop
 
 /* 8046CB58-8046CFE8 000078 0490+00 1/0 0/0 0/0 .text            daKytag04_Draw__FP13kytag04_class
@@ -259,7 +259,14 @@ SECTION_RODATA static f32 const lit_4066[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(8046DA40, &lit_4066);
+COMPILER_STRIP_GATE(0x8046DA40, &lit_4066);
+#pragma pop
+
+/* 8046DA50-8046DA50 000038 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8046DA50 = "WITHWARP_OPEN";
+SECTION_DEAD static char const* const stringBase_8046DA5E = "F_SP104";
 #pragma pop
 
 /* 8046CFE8-8046D354 000508 036C+00 1/0 0/0 0/0 .text daKytag04_Execute__FP13kytag04_class */
@@ -276,6 +283,13 @@ static asm void daKytag04_Execute(kytag04_class* param_0) {
 static bool daKytag04_IsDelete(kytag04_class* param_0) {
     return true;
 }
+
+/* ############################################################################################## */
+/* 8046DA50-8046DA50 000038 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8046DA66 = "Kytag04";
+#pragma pop
 
 /* 8046D35C-8046D474 00087C 0118+00 1/0 0/0 0/0 .text            daKytag04_Delete__FP13kytag04_class
  */
@@ -303,7 +317,13 @@ static asm void useHeapInit(fopAc_ac_c* param_0) {
 SECTION_RODATA static u8 const lit_4326[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8046DA48, &lit_4326);
+COMPILER_STRIP_GATE(0x8046DA48, &lit_4326);
+
+/* 8046DA50-8046DA50 000038 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8046DA6E = "F_SP110";
+#pragma pop
 
 /* 8046DA78-8046DA98 -00001 0020+00 1/0 0/0 0/0 .data            l_daKytag04_Method */
 SECTION_DATA static void* l_daKytag04_Method[8] = {
@@ -354,12 +374,4 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 }
 #pragma pop
 
-/* 8046DA50-8046DA76 000038 0026+00 4/4 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8046DA50 = "WITHWARP_OPEN";
-SECTION_DEAD static char const* const stringBase_8046DA5E = "F_SP104";
-SECTION_DEAD static char const* const stringBase_8046DA66 = "Kytag04";
-SECTION_DEAD static char const* const stringBase_8046DA6E = "F_SP110";
-#pragma pop
+/* 8046DA50-8046DA50 000038 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

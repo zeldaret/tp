@@ -112,9 +112,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -151,7 +151,7 @@ extern "C" static void daDsh_Execute__FP7daDsh_c();
 extern "C" static bool daDsh_IsDelete__FP7daDsh_c();
 extern "C" static void daDsh_Delete__FP7daDsh_c();
 extern "C" static void daDsh_Create__FP10fopAc_ac_c();
-extern "C" void func_80467DF8(s16*);
+extern "C" void func_80467DF8(void* _this, s16*);
 extern "C" void __sinit_d_a_dshutter_cpp();
 extern "C" extern char const* const d_a_dshutter__stringBase0;
 
@@ -219,6 +219,15 @@ extern "C" f32 CLOSE_BOUND_RATIO__7daDsh_c;
 //
 
 /* ############################################################################################## */
+/* 80467F40-80467F40 00003C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80467F40 = "K_tetd";
+SECTION_DEAD static char const* const stringBase_80467F47 = "S_bsaku00";
+SECTION_DEAD static char const* const stringBase_80467F51 = "S_lv7saku";
+SECTION_DEAD static char const* const stringBase_80467F5B = "";
+#pragma pop
+
 /* 80467F5C-80467F68 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -382,7 +391,7 @@ asm daDsh_c::~daDsh_c() {
 SECTION_RODATA static u8 const l_bmd[12] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04,
 };
-COMPILER_STRIP_GATE(80467F04, &l_bmd);
+COMPILER_STRIP_GATE(0x80467F04, &l_bmd);
 
 /* 8046751C-8046759C 0000FC 0080+00 1/0 0/0 0/0 .text            CreateHeap__7daDsh_cFv */
 #pragma push
@@ -579,13 +588,13 @@ asm void daDsh_c::executeOpenWait() {
 SECTION_RODATA static u8 const l_dzb[12] = {
     0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x07,
 };
-COMPILER_STRIP_GATE(80467F10, &l_dzb);
+COMPILER_STRIP_GATE(0x80467F10, &l_dzb);
 
 /* 80467F1C-80467F28 000018 000C+00 1/1 0/0 0/0 .rodata          l_heap_size */
 SECTION_RODATA static u8 const l_heap_size[12] = {
     0x00, 0x00, 0x0C, 0x10, 0x00, 0x00, 0x0C, 0x10, 0x00, 0x00, 0x3D, 0x60,
 };
-COMPILER_STRIP_GATE(80467F1C, &l_heap_size);
+COMPILER_STRIP_GATE(0x80467F1C, &l_heap_size);
 
 /* 80467F28-80467F2C 000024 0004+00 1/2 0/0 0/0 .rodata          @3781 */
 SECTION_RODATA static u8 const lit_3781[4] = {
@@ -594,27 +603,27 @@ SECTION_RODATA static u8 const lit_3781[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80467F28, &lit_3781);
+COMPILER_STRIP_GATE(0x80467F28, &lit_3781);
 
 /* 80467F2C-80467F30 000028 0004+00 0/1 0/0 0/0 .rodata          @3782 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3782 = 100.0f;
-COMPILER_STRIP_GATE(80467F2C, &lit_3782);
+COMPILER_STRIP_GATE(0x80467F2C, &lit_3782);
 #pragma pop
 
 /* 80467F30-80467F34 00002C 0004+00 0/1 0/0 0/0 .rodata          @3783 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3783 = 1.0f;
-COMPILER_STRIP_GATE(80467F30, &lit_3783);
+COMPILER_STRIP_GATE(0x80467F30, &lit_3783);
 #pragma pop
 
 /* 80467F34-80467F38 000030 0004+00 0/1 0/0 0/0 .rodata          @3784 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3784 = -1.0f;
-COMPILER_STRIP_GATE(80467F34, &lit_3784);
+COMPILER_STRIP_GATE(0x80467F34, &lit_3784);
 #pragma pop
 
 /* 80467840-80467988 000420 0148+00 1/0 0/0 0/0 .text            initOpen__7daDsh_cFv */
@@ -630,11 +639,11 @@ asm void daDsh_c::initOpen() {
 /* ############################################################################################## */
 /* 80467F38-80467F3C 000034 0004+00 2/2 0/0 0/0 .rodata          @3802 */
 SECTION_RODATA static f32 const lit_3802 = 2.0f;
-COMPILER_STRIP_GATE(80467F38, &lit_3802);
+COMPILER_STRIP_GATE(0x80467F38, &lit_3802);
 
 /* 80467F3C-80467F40 000038 0004+00 2/2 0/0 0/0 .rodata          @3803 */
 SECTION_RODATA static f32 const lit_3803 = 8.0f;
-COMPILER_STRIP_GATE(80467F3C, &lit_3803);
+COMPILER_STRIP_GATE(0x80467F3C, &lit_3803);
 
 /* 804680E0-804680F8 000070 0018+00 2/3 0/0 0/0 .bss             l_closeWaitAction */
 static u8 l_closeWaitAction[24];
@@ -917,7 +926,7 @@ static asm void daDsh_Create(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80467DF8(s16* param_0) {
+extern "C" asm void func_80467DF8(void* _this, s16* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_dshutter/d_a_dshutter/func_80467DF8.s"
 }
@@ -935,15 +944,7 @@ asm void __sinit_d_a_dshutter_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80467E14 = (void*)__sinit_d_a_dshutter_cpp;
+REGISTER_CTORS(0x80467E14, __sinit_d_a_dshutter_cpp);
 #pragma pop
 
-/* 80467F40-80467F5C 00003C 001C+00 2/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80467F40 = "K_tetd";
-SECTION_DEAD static char const* const stringBase_80467F47 = "S_bsaku00";
-SECTION_DEAD static char const* const stringBase_80467F51 = "S_lv7saku";
-SECTION_DEAD static char const* const stringBase_80467F5B = "";
-#pragma pop
+/* 80467F40-80467F40 00003C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
