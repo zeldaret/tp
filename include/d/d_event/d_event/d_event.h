@@ -208,9 +208,41 @@ public:
     void searchMapEventData(u8 param_1);
 
 private:
-    u8 field_0x0[4];
-    dEvt_order_c event_order;
-    u8 field_0xc3;
+    /* 0x000 */ u8 field_0x0[4];
+    /* 0x004 */ dEvt_order_c event_order;
+    /* 0x0C4 */ int mPt1;
+    /* 0x0C8 */ int mPt2;
+    /* 0x0CC */ int mPtT;
+    /* 0x0D0 */ int mPtI;
+    /* 0x0D4 */ int mPtd;
+    /* 0x0D8 */ u16 mEventFlag;
+    /* 0x0DA */ u16 mFlag2;
+    /* 0x0DC */ u16 mHindFlag;
+    /* 0x0DE */ u16 field_0xde;
+    /* 0x0E0 */ u16 field_0xe0;
+    /* 0x0E2 */ u8 field_0xe2;
+    /* 0x0E3 */ u8 field_0xe3;
+    /* 0x0E4 */ u8 mMode;
+    /* 0x0E5 */ u8 field_0xe5;
+    /* 0x0E6 */ u8 field_0xe6;
+    /* 0x0E7 */ u8 field_0xe7;
+    /* 0x0E8 */ u8 field_0xe8;
+    /* 0x0E9 */ u8 mDebugStb;
+    /* 0x0EA */ u8 field_0xea;
+    /* 0x0EB */ u8 mMapToolId;
+    /* 0x0EC */ u8 field_0xec;
+    /* 0x0ED */ u8 field_0xed;
+    /* 0x0EE */ u8 mPreItemNo;
+    /* 0x0EF */ u8 mGtItm;
+    /* 0x0F0 */ float mCullRate;
+    /* 0x0F4 */ int mStageEventDt;
+    /* 0x0F8 */ int mChangeOK;
+    /* 0x0FC */ u8 field_0xfc[20];
+    /* 0x110 */ bool mSkipFade;
+    /* 0x114 */ char mSkipEventName[0x14];
+    /* 0x128 */ u8 mCompulsory;
+    /* 0x129 */ u8 field_0x129;
+    /* 0x12C */ int field_0x12c;
 };
 #pragma pack(pop)
 

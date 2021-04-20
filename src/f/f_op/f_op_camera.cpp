@@ -27,7 +27,7 @@ extern s8 lbl_80451124;
 s32 fopCam_Draw(camera_class* pCamera) {
     s32 tmp = 1;
 
-    if (g_dComIfG_gameInfo.getPlay().getField0x4f7d() == false) {
+    if (g_dComIfG_gameInfo.getPlay().isPauseFlag() == false) {
         tmp = fpcLf_DrawMethod(pCamera->pMthd, pCamera);
     }
     return tmp;
@@ -36,7 +36,7 @@ s32 fopCam_Draw(camera_class* pCamera) {
 // Matches, but wrong registers
 #ifdef NONMATCHING
 void fopCam_Execute(camera_class* pCamera) {
-    if (!g_dComIfG_gameInfo.getPlay().getField0x4f7d() && !lbl_80451124) {
+    if (!g_dComIfG_gameInfo.getPlay().isPauseFlag() && !lbl_80451124) {
         fpcMtd_Execute((process_method_class*)pCamera->pMthd, pCamera);
     }
 }

@@ -4,6 +4,7 @@
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 #include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap/JKRSolidHeap.h"
+#include "d/d_resource/d_resource.h"
 #include "global.h"
 #include "os/OS.h"
 
@@ -69,7 +70,7 @@ private:
     mDoExt_baseAnm base_anm;
     u8 field_0x14[4];
     u32 field_0x18;
-};
+};  // Size = 0x1C
 #pragma pack(pop)
 
 #pragma pack(push, 1)
@@ -79,5 +80,11 @@ private:
     void* vtable;
 };
 #pragma pack(pop)
+
+class mDoExt_AnmRatioPack {
+private:
+    /* 0x0 */ float mRatio;
+    /* 0x4 */ J3DAnmTransform* mAnmTransform;
+};  // Size = 0x8
 
 #endif

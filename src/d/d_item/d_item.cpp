@@ -33,10 +33,10 @@ extern f64 lbl_80452BE0;
 extern s8 lbl_80450D64;
 extern u8 lbl_8037B0D0[0x8];
 
-inline void dComIfGp_setItemLifeCount(float amount, u8 unk) {
-    g_dComIfG_gameInfo.getPlay().setItemLifeCount(amount, unk);
+inline void dComIfGp_setItemLifeCount(float amount, u8 type) {
+    g_dComIfG_gameInfo.getPlay().setItemLifeCount(amount, type);
 }
-inline void dComIfGp_setItemRupeeCount(long amount) {
+inline void dComIfGp_setItemRupeeCount(int amount) {
     g_dComIfG_gameInfo.getPlay().setItemRupeeCount(amount);
 }
 inline int dComIfGs_isItemFirstBit(u8 i_no) {

@@ -31,6 +31,8 @@ public:
     /* 0x534 */ f32 mMaxFallSpeed;
     const cXyz& getPosition() const { return mPosition; }
     const csXyz& getAngle() const { return mAngle; }
+    const f32& getGravity() const { return mGravity; }
+    const f32& getMaxFallSpeed() const { return mMaxFallSpeed; }
 };  // Size: unknown
 
 #endif

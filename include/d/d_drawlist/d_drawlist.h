@@ -31,10 +31,15 @@ public:
     // private:
     /* 0x00000 */ u8 field_0x00[0x1C];
     /* 0x0001C */ J3DPacket* mpPacket;
-    /* 0x00020 */ u8 field_0x20[0x16160];
+    /* 0x00020 */ u8 field_0x20[0x16170];
     /* 0x16180 */ dDlst_peekZ_c dlstPeekZ;
     /* 0x16184 */ u8 unk_0x16194[0x1F];
 };  // Size: 0x161A0
 #pragma pack(pop)
+
+class dDlst_base_c {
+public:
+    virtual void draw();
+};
 
 #endif D_DRAWLIST_H_

@@ -8,8 +8,8 @@ void __dl__FPv(void);
 
 // __ct__8cBgS_ChkFv
 cBgS_Chk::cBgS_Chk(void) {
-    unk_0x00 = 0;
-    unk_0x04 = 0;
+    mPolyPassChk = 0;
+    mGrpPassChk = 0;
     unk_0x0C = 1;
 }
 
@@ -18,17 +18,17 @@ cBgS_Chk::~cBgS_Chk(void) {}
 
 // SetExtChk__8cBgS_ChkFR8cBgS_Chk
 void cBgS_Chk::SetExtChk(cBgS_Chk& pOther) {
-    unk_0x00 = pOther.unk_0x00;
-    unk_0x04 = pOther.unk_0x04;
-    unk_0x08 = pOther.unk_0x08;
+    mPolyPassChk = pOther.mPolyPassChk;
+    mGrpPassChk = pOther.mGrpPassChk;
+    mActorPid = pOther.mActorPid;
     unk_0x0C = pOther.unk_0x0C;
 }
 
 // ChkSameActorPid__8cBgS_ChkCFUi
 bool cBgS_Chk::ChkSameActorPid(unsigned int pUint) const {
-    if (unk_0x08 == -1 || pUint == UINT32_MAX || unk_0x0C == 0) {
+    if (mActorPid == -1 || pUint == UINT32_MAX || unk_0x0C == 0) {
         return 0;
     } else {
-        return (unk_0x08 == pUint) ? 1 : 0;
+        return (mActorPid == pUint) ? 1 : 0;
     }
 }

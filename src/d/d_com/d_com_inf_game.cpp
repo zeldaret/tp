@@ -513,7 +513,7 @@ asm void setTimerPtr__14dComIfG_play_cFP8dTimer_c(void){nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CBD4.s"
 }
 
-u32 dComIfG_play_c::getTimerPtr(void) {
+dTimer_c* dComIfG_play_c::getTimerPtr(void) {
     return mTimerPtr;
 }
 

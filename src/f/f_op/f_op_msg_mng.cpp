@@ -137,7 +137,7 @@ fopAc_ac_c** createAppend(fopAc_ac_c* param_1, cXyz* pPosition, u32* param_3, u3
     } else {
         pActor = param_1;
 
-        if (g_dComIfG_gameInfo.getPlay().getField0x4e84()) {
+        if (g_dComIfG_gameInfo.getPlay().getMsgObjectClass()) {
             dMsgObject_c::setTalkActor(localpActor);
         }
 

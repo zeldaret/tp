@@ -79,20 +79,22 @@ class dAttDraw_c {
     u8 field_0x5;
     u8 field_0x6;
     u8 field_0x7;
-    mDoExt_bckAnm bckAnm;
-    u8 field_0x24[28];
-    mDoExt_bpkAnm bpkAnm;
-    u8 field_0x58[24];
-    mDoExt_brkAnm brkAnm;
-    u8 field_0x88[24];
-    mDoExt_brkAnm brkAnm2;
-    u8 field_0xb8[24];
-    mDoExt_btkAnm btkAnm;
-    u8 field_0xe8[24];
-    mDoExt_bckAnm bckAnm2;
-    mDoExt_bpkAnm bpkAnm2;
-    mDoExt_brkAnm brkAnm3;
-    mDoExt_btkAnm btkAnm2;
+    /* 0x008 */ mDoExt_bckAnm bckAnm[2];
+    /* 0x040 */ mDoExt_bpkAnm bpkAnm[2];
+    /* 0x070 */ mDoExt_brkAnm brkAnm[2];
+    /* 0x0A0 */ mDoExt_brkAnm brkAnm2[2];
+    /* 0x0D0 */ mDoExt_btkAnm btkAnm[2];
+    /* 0x100 */ mDoExt_bckAnm bckAnm2;
+    /* 0x11C */ mDoExt_bpkAnm bpkAnm2;
+    /* 0x134 */ mDoExt_brkAnm brkAnm3;
+    /* 0x14C */ mDoExt_btkAnm btkAnm2;
+    /* 0x164 */ u8 field_0x164[0xC];
+    /* 0x170 */ u8 field_0x170;
+    /* 0x171 */ u8 field_0x171;
+    /* 0x172 */ u8 field_0x172;
+    /* 0x173 */ u8 field_0x173;
+    /* 0x174 */ u8 field_0x174;
+    /* 0x175 */ u8 field_0x175;
 };
 #pragma pack(pop)
 
@@ -106,26 +108,22 @@ private:
     u8 field_0x0[4];
     u32 field_0x4;
     dAttDraw_CallBack_c dattdraw_callback;
-    u8 field_0xc[4];
+    u32 field_0xc;
     u32 field_0x10;
     u8 field_0x14[8];
     cXyz field_0x1c;
-    dAttDraw_c attention_draw;
-    u8 field_0x18c[396];
+    /* 0x028 */ dAttDraw_c attention_draw[2];
     int field_0x318;
     cXyz field_0x31c;
     u8 field_0x328[12];
     u32 field_0x334;
-    dAttList_c attention_list1;
-    u8 field_0x34c[140];
+    /* 0x0338 */ dAttList_c attention_list1[8];
     int* field_0x3d8;
     int* field_0x3dc;
-    dAttList_c attention_list2;
-    u8 field_0x3f4[60];
+    /* 0x03E0 */ dAttList_c attention_list2[4];
     int* field_0x430;
     int field_0x434;
-    dAttList_c attention_list3;
-    u8 field_0x44c[60];
+    /* 0x0438 */ dAttList_c attention_list3[4];
     int* field_0x488;
     int field_0x48c;
     dAttHint_c attention_hint;
@@ -145,7 +143,7 @@ private:
     u8 field_0x4cd;
     u8 field_0x4ce;
     u8 field_0x4cf;
-    dAttParam_c attention_param;
+    /* 0x04D0 */ dAttParam_c attention_param;
     u8 field_0x4e3;
     u8 field_0x4e4;
     u8 field_0x4e5;
@@ -156,7 +154,8 @@ private:
     u8 field_0x4ed;
     u8 field_0x4ee;
     u8 field_0x4ef;
-    u8 field_0x4f0;
+    u8 field_0x4f0[0x18];
+    /* 0x0508 */ void* vtable;
 };
 
 #endif
