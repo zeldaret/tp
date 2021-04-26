@@ -200,7 +200,7 @@ void Z2StatusMgr::talkIn() {
 /* 802B6104-802B613C 2B0A44 0038+00 0/0 1/1 0/0 .text            talkOut__11Z2StatusMgrFv */
 void Z2StatusMgr::talkOut() {
     u8 is_demo = isMovieDemo();
-    
+
     if (is_demo == false) {
         data_80450B84->talkOutBgm();
         data_80450B88->talkOutSe();
@@ -446,9 +446,7 @@ void Z2StatusMgr::setCameraPolygonPos(Vec* pPolygonPos) {
 }
 
 /* 802B6784-802B6788 2B10C4 0004+00 0/0 1/1 0/0 .text setCameraGroupInfo__11Z2StatusMgrFUc */
-void Z2StatusMgr::setCameraGroupInfo(u8 param_0) {
-
-}
+void Z2StatusMgr::setCameraGroupInfo(u8 param_0) {}
 
 /* ############################################################################################## */
 /* 80455A30-80455A34 004030 0004+00 1/1 0/0 0/0 .sdata2          @3798 */

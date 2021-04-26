@@ -1,8 +1,8 @@
 #ifndef Z2STATUSMGR_H
 #define Z2STATUSMGR_H
 
-#include "dolphin/types.h"
 #include "dolphin/mtx/vec.h"
+#include "dolphin/types.h"
 
 struct Z2StatusMgr {
     Z2StatusMgr();
@@ -41,6 +41,5 @@ struct Z2StatusMgr {
     u8 mHeartGaugeOn;
     u8 padding[2];
 };
-
 
 #endif /* Z2STATUSMGR_H */
