@@ -4,58 +4,42 @@
 //
 
 #include "f_pc/f_pc_draw.h"
+#include "SSystem/SComponent/c_API_graphic.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct layer_class {};
-
-struct base_process_class {};
-
-//
-// Forward References:
-//
-
-extern "C" void fpcDw_Execute__FP18base_process_class();
-extern "C" void fpcDw_Handler__FPFPFPvPv_i_iPFPvPv_i();
-
-//
-// External References:
-//
-
-extern "C" void fpcBs_Is_JustOfType__Fii();
-extern "C" void fpcLy_SetCurrentLayer__FP11layer_class();
-extern "C" void fpcLy_CurrentLayer__Fv();
-extern "C" void fpcPause_IsEnable__FPvUc();
-extern "C" void cAPIGph_BeforeOfDraw__Fv();
-extern "C" void cAPIGph_AfterOfDraw__Fv();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-extern "C" extern u8 g_fpcLf_type[4 + 4 /* padding */];
+#include "f_pc/f_pc_leaf.h"
+#include "f_pc/f_pc_pause.h"
 
 //
 // Declarations:
 //
 
-/* 80023954-800239F4 01E294 00A0+00 0/0 1/1 0/0 .text fpcDw_Execute__FP18base_process_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcDw_Execute(base_process_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_draw/fpcDw_Execute__FP18base_process_class.s"
+/* 80023954-800239F4 00A0+00 s=0 e=1 z=0  None .text      fpcDw_Execute__FP18base_process_class */
+s32 fpcDw_Execute(base_process_class* pProc) {
+    if (!fpcPause_IsEnable(pProc, 2)) {
+        layer_class* curLay;
+        s32 ret;
+        process_method_func func;
+        curLay = fpcLy_CurrentLayer();
+        if (fpcBs_Is_JustOfType(g_fpcLf_type, pProc->mSubType)) {
+            func = ((nodedraw_method_class*)pProc->mpPcMtd)->mNodedrawFunc;
+        } else {
+            func = ((nodedraw_method_class*)pProc->mpPcMtd)->mNodedrawFunc;
+        }
+        fpcLy_SetCurrentLayer(pProc->mLyTg.mpLayer);
+        ret = func(pProc);
+        fpcLy_SetCurrentLayer(curLay);
+        return ret;
+    } else {
+        return 0;
+    }
 }
-#pragma pop
 
-/* 800239F4-80023A48 01E334 0054+00 0/0 1/2 0/10 .text fpcDw_Handler__FPFPFPvPv_i_iPFPvPv_i */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcDw_Handler(int (*param_0)(int (*)(void*, void*)), int (*param_1)(void*, void*)) {
-    nofralloc
-#include "asm/f_pc/f_pc_draw/fpcDw_Handler__FPFPFPvPv_i_iPFPvPv_i.s"
+/* 800239F4-80023A48 0054+00 s=0 e=2 z=10  None .text      fpcDw_Handler__FPFPFPvPv_i_iPFPvPv_i */
+s32 fpcDw_Handler(fpcDw_HandlerFuncFunc param_1, fpcDw_HandlerFunc param_2) {
+    s32 ret;
+    cAPIGph_BeforeOfDraw();
+    ret = param_1(param_2);
+    cAPIGph_AfterOfDraw();
+    return ret;
 }
-#pragma pop

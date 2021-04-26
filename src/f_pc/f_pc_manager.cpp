@@ -6,18 +6,29 @@
 #include "f_pc/f_pc_manager.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_pc/f_pc_base.h"
+#include "f_pc/f_pc_create_iter.h"
+#include "f_pc/f_pc_creator.h"
+#include "f_pc/f_pc_delete_tag.h"
+#include "f_pc/f_pc_deletor.h"
+#include "f_pc/f_pc_draw.h"
+#include "f_pc/f_pc_executor.h"
+#include "f_pc/f_pc_fstcreate_req.h"
+#include "f_pc/f_pc_layer.h"
+#include "f_pc/f_pc_layer_iter.h"
+#include "f_pc/f_pc_layer_tag.h"
+#include "f_pc/f_pc_line.h"
+#include "f_pc/f_pc_line_iter.h"
+#include "f_pc/f_pc_line_tag.h"
+#include "f_pc/f_pc_method.h"
+#include "f_pc/f_pc_node_req.h"
+#include "f_pc/f_pc_pause.h"
+#include "f_pc/f_pc_priority.h"
+#include "f_pc/f_pc_profile.h"
 
 //
 // Types:
 //
-
-struct node_list_class {};
-
-struct mDoCPd_c {
-    static u8 m_gamePad[16];
-};
-
-struct layer_class {};
 
 struct dShutdownErrorMsg_c {
     /* 8009D790 */ void execute();
@@ -39,8 +50,6 @@ struct dDlst_peekZ_c {
 struct dComIfG_play_c {
     /* 8002CAC4 */ void drawSimpleModel();
 };
-
-struct base_process_class {};
 
 struct Z2SoundMgr {
     /* 802AA6B0 */ void pauseAllGameSound(bool);
@@ -106,7 +115,7 @@ extern "C" void pauseAllGameSound__10Z2SoundMgrFb();
 extern "C" void stopPatternedRumble__Q210JUTGamePad7CRumbleFs();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
-extern "C" u8 m_gamePad__8mDoCPd_c[16];
+extern "C" extern u8 m_gamePad__8mDoCPd_c[16];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 data_80450B60[4];
 extern "C" extern u8 struct_80450D38[8];
@@ -116,130 +125,90 @@ extern "C" extern u8 data_80450EC4[4];
 // Declarations:
 //
 
-/* 800220A0-800220C0 01C9E0 0020+00 1/1 1/1 0/0 .text            fpcM_Draw__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcM_Draw(void* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_manager/fpcM_Draw__FPv.s"
-}
-#pragma pop
+/* 80450D38-80450D40 0008+00 s=0 e=1 z=0  None .sbss      None */
+u8 struct_80450D38[8];
 
-/* 800220C0-800220F8 01CA00 0038+00 1/1 0/0 0/0 .text            fpcM_DrawIterater__FPFPvPv_i */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void fpcM_DrawIterater(int (*param_0)(void*, void*)) {
-    nofralloc
-#include "asm/f_pc/f_pc_manager/fpcM_DrawIterater__FPFPvPv_i.s"
+/* 800220A0-800220C0 0020+00 s=1 e=1 z=0  None .text      fpcM_Draw__FPv */
+void fpcM_Draw(void* pProc) {
+    fpcDw_Execute((base_process_class*)pProc);
 }
-#pragma pop
 
-/* 800220F8-80022118 01CA38 0020+00 1/1 0/0 1/1 .text            fpcM_Execute__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcM_Execute(void* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_manager/fpcM_Execute__FPv.s"
+/* 800220C0-800220F8 0038+00 s=1 e=0 z=0  None .text      fpcM_DrawIterater__FPFPvPv_i */
+s32 fpcM_DrawIterater(fpcM_DrawIteraterFunc pFunc) {
+    return fpcLyIt_OnlyHere(fpcLy_RootLayer(), (fpcLyIt_OnlyHereFunc)pFunc, NULL);
 }
-#pragma pop
 
-/* 80022118-80022138 01CA58 0020+00 0/0 7/7 0/0 .text            fpcM_Delete__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcM_Delete(void* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_manager/fpcM_Delete__FPv.s"
+/* 800220F8-80022118 0020+00 s=1 e=0 z=1  None .text      fpcM_Execute__FPv */
+void fpcM_Execute(void* pProc) {
+    fpcEx_Execute((base_process_class*)pProc);
 }
-#pragma pop
 
-/* 80022138-80022158 01CA78 0020+00 0/0 6/6 43/43 .text            fpcM_IsCreating__FUi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcM_IsCreating(unsigned int param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_manager/fpcM_IsCreating__FUi.s"
+/* 80022118-80022138 0020+00 s=0 e=7 z=0  None .text      fpcM_Delete__FPv */
+s32 fpcM_Delete(void* pProc) {
+    return fpcDt_Delete((base_process_class*)pProc);
 }
-#pragma pop
 
-/* 80022158-800222B8 01CA98 0160+00 0/0 1/1 0/0 .text            fpcM_Management__FPFv_vPFv_v */
+/* 80022138-80022158 0020+00 s=0 e=6 z=43  None .text      fpcM_IsCreating__FUi */
+BOOL fpcM_IsCreating(unsigned int pID) {
+    return fpcCt_IsCreatingByID(pID);
+}
+
+// TODO, uses a lot of functions outside f_pc/SSystem
+/* 80022158-800222B8 0160+00 s=0 e=1 z=0  None .text      fpcM_Management__FPFv_vPFv_v */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fpcM_Management(void (*param_0)(void), void (*param_1)(void)) {
+asm void fpcM_Management(fpcM_ManagementFunc, fpcM_ManagementFunc) {
     nofralloc
 #include "asm/f_pc/f_pc_manager/fpcM_Management__FPFv_vPFv_v.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803F4DB0-803F4DDC 021AD0 002C+00 1/1 0/0 0/0 .bss             rootlayer$3716 */
-static u8 rootlayer[44];
+/* 803F4DB0-803F4DDC 002C+00 s=1 e=0 z=0  None .bss       rootlayer$3716 */
+static layer_class rootlayer;
 
-/* 803F4DDC-803F4E58 021AFC 0078+04 1/1 0/0 0/0 .bss             queue$3717 */
-static u8 queue[120 + 4 /* padding */];
+/* 803F4DDC-803F4E58 0078+04 s=1 e=0 z=0  None .bss       queue$3717 */
+static node_list_class queue[10];
 
-/* 800222B8-800222F4 01CBF8 003C+00 0/0 1/1 0/0 .text            fpcM_Init__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcM_Init() {
-    nofralloc
-#include "asm/f_pc/f_pc_manager/fpcM_Init__Fv.s"
+/* 800222B8-800222F4 003C+00 s=0 e=1 z=0  None .text      fpcM_Init__Fv */
+void fpcM_Init(void) {
+    fpcLy_Create(&rootlayer, NULL, queue, 10);
+    fpcLn_Create();
 }
-#pragma pop
 
-/* 800222F4-80022348 01CC34 0054+00 0/0 3/3 0/0 .text            fpcM_FastCreate__FsPFPv_iPvPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcM_FastCreate(s16 param_0, int (*param_1)(void*), void* param_2, void* param_3) {
-    nofralloc
-#include "asm/f_pc/f_pc_manager/fpcM_FastCreate__FsPFPv_iPvPv.s"
+/* 800222F4-80022348 0054+00 s=0 e=3 z=0  None .text      fpcM_FastCreate__FsPFPv_iPvPv */
+base_process_class* fpcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3,
+                                    void* pData) {
+    return fpcFCtRq_Request(fpcLy_CurrentLayer(), pProcTypeID, (fstCreateFunc)param_2, param_3,
+                            pData);
 }
-#pragma pop
 
-/* 80022348-8002236C 01CC88 0024+00 0/0 1/1 0/0 .text            fpcM_IsPause__FPvUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcM_IsPause(void* param_0, u8 param_1) {
-    nofralloc
-#include "asm/f_pc/f_pc_manager/fpcM_IsPause__FPvUc.s"
+/* 80022348-8002236C 0024+00 s=0 e=1 z=0  None .text      fpcM_IsPause__FPvUc */
+s32 fpcM_IsPause(void* pProc, u8 param_2) {
+    return fpcPause_IsEnable((base_process_class*)pProc, param_2 & 0xFF);
 }
-#pragma pop
 
-/* 8002236C-80022390 01CCAC 0024+00 0/0 1/1 0/0 .text            fpcM_PauseEnable__FPvUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcM_PauseEnable(void* param_0, u8 param_1) {
-    nofralloc
-#include "asm/f_pc/f_pc_manager/fpcM_PauseEnable__FPvUc.s"
+/* 8002236C-80022390 0024+00 s=0 e=1 z=0  None .text      fpcM_PauseEnable__FPvUc */
+void fpcM_PauseEnable(void* pProc, u8 param_2) {
+    fpcPause_Enable((process_node_class*)pProc, param_2 & 0xFF);
 }
-#pragma pop
 
-/* 80022390-800223B4 01CCD0 0024+00 0/0 1/1 0/0 .text            fpcM_PauseDisable__FPvUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcM_PauseDisable(void* param_0, u8 param_1) {
-    nofralloc
-#include "asm/f_pc/f_pc_manager/fpcM_PauseDisable__FPvUc.s"
+/* 80022390-800223B4 0024+00 s=0 e=1 z=0  None .text      fpcM_PauseDisable__FPvUc */
+void fpcM_PauseDisable(void* pProc, u8 param_2) {
+    fpcPause_Disable((process_node_class*)pProc, param_2 & 0xFF);
 }
-#pragma pop
 
-/* 800223B4-80022428 01CCF4 0074+00 0/0 1/1 0/0 .text            fpcM_JudgeInLayer__FUiPFPvPv_PvPv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcM_JudgeInLayer(unsigned int param_0, void* (*param_1)(void*, void*), void* param_2) {
-    nofralloc
-#include "asm/f_pc/f_pc_manager/fpcM_JudgeInLayer__FUiPFPvPv_PvPv.s"
+/* 800223B4-80022428 0074+00 s=0 e=1 z=0  None .text      fpcM_JudgeInLayer__FUiPFPvPv_PvPv */
+void* fpcM_JudgeInLayer(unsigned int pLayerID, fpcCtIt_JudgeFunc pFunc, void* pUserData) {
+    layer_class* layer = fpcLy_Layer(pLayerID);
+    if (layer != NULL) {
+        void* ret = fpcCtIt_JudgeInLayer(pLayerID, pFunc, pUserData);
+        if (ret == NULL) {
+            ret = fpcLyIt_Judge(layer, pFunc, pUserData);
+        }
+        return ret;
+    } else {
+        return NULL;
+    }
 }
-#pragma pop

@@ -4,61 +4,37 @@
 //
 
 #include "SSystem/SComponent/c_tree_iter.h"
+#include "SSystem/SComponent/c_list_iter.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct node_lists_tree_class {};
-
-struct node_list_class {};
-
-struct node_class {};
-
-//
-// Forward References:
-//
-
-extern "C" void cTrIt_Method__FP21node_lists_tree_classPFP10node_classPv_iPv();
-extern "C" void cTrIt_Judge__FP21node_lists_tree_classPFP10node_classPv_PvPv();
-
-//
-// External References:
-//
-
-extern "C" void cLsIt_Method__FP15node_list_classPFP10node_classPv_iPv();
-extern "C" void cLsIt_Judge__FP15node_list_classPFP10node_classPv_PvPv();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
 
 //
 // Declarations:
 //
 
-/* 80266540-802665B4 260E80 0074+00 0/0 2/2 0/0 .text
+/* 80266540-802665B4 0074+00 s=0 e=2 z=0  None .text
  * cTrIt_Method__FP21node_lists_tree_classPFP10node_classPv_iPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cTrIt_Method(node_lists_tree_class* param_0, int (*param_1)(node_class*, void*),
-                      void* param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_tree_iter/cTrIt_Method__FP21node_lists_tree_classPFP10node_classPv_iPv.s"
+int cTrIt_Method(node_lists_tree_class* pTree, cNdIt_MethodFunc pMethod, void* pUserData) {
+    node_list_class* pList = pTree->mpLists;
+    int i = pTree->mNumLists;
+    int ret = 1;
+    while (i-- > 0) {
+        int sub = cLsIt_Method(pList++, pMethod, pUserData);
+        if (sub == 0)
+            ret = 0;
+    }
+    return ret;
 }
-#pragma pop
 
-/* 802665B4-80266624 260EF4 0070+00 0/0 2/2 0/0 .text
+/* 802665B4-80266624 0070+00 s=0 e=2 z=0  None .text
  * cTrIt_Judge__FP21node_lists_tree_classPFP10node_classPv_PvPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cTrIt_Judge(node_lists_tree_class* param_0, void* (*param_1)(node_class*, void*),
-                     void* param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_tree_iter/cTrIt_Judge__FP21node_lists_tree_classPFP10node_classPv_PvPv.s"
+void* cTrIt_Judge(node_lists_tree_class* pTree, cNdIt_JudgeFunc pJudge, void* pUserData) {
+    node_list_class* pList = pTree->mpLists;
+    int i = pTree->mNumLists;
+    while (i-- > 0) {
+        void* pJudgeRet = cLsIt_Judge(pList++, pJudge, pUserData);
+        if (pJudgeRet != NULL)
+            return pJudgeRet;
+    }
+    return NULL;
 }
-#pragma pop

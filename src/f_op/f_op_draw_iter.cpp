@@ -8,12 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct create_tag_class {};
-
-//
 // Forward References:
 //
 
@@ -39,7 +33,7 @@ static u8 l_fopDwTg_id[4 + 4 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void fopDwIt_GetTag() {
+static asm create_tag_class* fopDwIt_GetTag() {
     nofralloc
 #include "asm/f_op/f_op_draw_iter/fopDwIt_GetTag__Fv.s"
 }
@@ -49,7 +43,7 @@ static asm void fopDwIt_GetTag() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fopDwIt_Begin() {
+asm create_tag_class* fopDwIt_Begin() {
     nofralloc
 #include "asm/f_op/f_op_draw_iter/fopDwIt_Begin__Fv.s"
 }
@@ -60,7 +54,7 @@ asm void fopDwIt_Begin() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fopDwIt_Next(create_tag_class* param_0) {
+asm create_tag_class* fopDwIt_Next(create_tag_class* param_0) {
     nofralloc
 #include "asm/f_op/f_op_draw_iter/fopDwIt_Next__FP16create_tag_class.s"
 }

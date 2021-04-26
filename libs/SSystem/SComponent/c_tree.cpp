@@ -7,77 +7,35 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-//
-// Types:
-//
-
-struct node_lists_tree_class {};
-
-struct node_list_class {};
-
-struct node_class {};
-
-//
-// Forward References:
-//
-
-extern "C" void cTr_SingleCut__FP10node_class();
-extern "C" void cTr_Addition__FP21node_lists_tree_classiP10node_class();
-extern "C" void cTr_Insert__FP21node_lists_tree_classiP10node_classi();
-extern "C" void cTr_Create__FP21node_lists_tree_classP15node_list_classi();
-
-//
-// External References:
-//
-
-extern "C" void cLs_SingleCut__FP10node_class();
-extern "C" void cLs_Addition__FP15node_list_classP10node_class();
-extern "C" void cLs_Insert__FP15node_list_classiP10node_class();
-extern "C" void cLs_Create__FP15node_list_class();
-
-//
-// Declarations:
-//
-
-/* 80266440-80266460 260D80 0020+00 0/0 1/1 0/0 .text            cTr_SingleCut__FP10node_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cTr_SingleCut(node_class* param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_tree/cTr_SingleCut__FP10node_class.s"
+/* 80266440-80266460 0020+00 s=0 e=1 z=0  None .text      cTr_SingleCut__FP10node_class */
+int cTr_SingleCut(node_class* pNode) {
+    return cLs_SingleCut(pNode);
 }
-#pragma pop
 
-/* 80266460-802664A4 260DA0 0044+00 0/0 1/1 0/0 .text
+/* 80266460-802664A4 0044+00 s=0 e=1 z=0  None .text
  * cTr_Addition__FP21node_lists_tree_classiP10node_class        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cTr_Addition(node_lists_tree_class* param_0, int param_1, node_class* param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_tree/cTr_Addition__FP21node_lists_tree_classiP10node_class.s"
-}
-#pragma pop
+int cTr_Addition(node_lists_tree_class* pTree, int listIdx, node_class* pNode) {
+    if (listIdx >= pTree->mNumLists)
+        return 0;
 
-/* 802664A4-802664E8 260DE4 0044+00 0/0 1/1 0/0 .text
+    return cLs_Addition(&pTree->mpLists[listIdx], pNode);
+}
+
+/* 802664A4-802664E8 0044+00 s=0 e=1 z=0  None .text
  * cTr_Insert__FP21node_lists_tree_classiP10node_classi         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cTr_Insert(node_lists_tree_class* param_0, int param_1, node_class* param_2, int param_3) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_tree/cTr_Insert__FP21node_lists_tree_classiP10node_classi.s"
-}
-#pragma pop
+int cTr_Insert(node_lists_tree_class* pTree, int listIdx, node_class* pNode, int idx) {
+    if (listIdx >= pTree->mNumLists)
+        return 0;
 
-/* 802664E8-80266540 260E28 0058+00 0/0 2/2 0/0 .text
- * cTr_Create__FP21node_lists_tree_classP15node_list_classi     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cTr_Create(node_lists_tree_class* param_0, node_list_class* param_1, int param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_tree/cTr_Create__FP21node_lists_tree_classP15node_list_classi.s"
+    return cLs_Insert(&pTree->mpLists[listIdx], idx, pNode);
 }
-#pragma pop
+
+/* 802664E8-80266540 0058+00 s=0 e=2 z=0  None .text
+ * cTr_Create__FP21node_lists_tree_classP15node_list_classi     */
+void cTr_Create(node_lists_tree_class* pTree, node_list_class* pLists, int numLists) {
+    pTree->mpLists = pLists;
+    pTree->mNumLists = numLists;
+
+    while (numLists-- > 0)
+        cLs_Create(pLists++);
+}

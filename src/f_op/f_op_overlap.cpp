@@ -8,16 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct request_base_class {};
-
-struct process_method_class {};
-
-struct leafdraw_method_class {};
-
-//
 // Forward References:
 //
 

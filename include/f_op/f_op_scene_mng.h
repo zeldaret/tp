@@ -1,6 +1,14 @@
-#ifndef F_OP_F_OP_SCENE_MNG_H
-#define F_OP_F_OP_SCENE_MNG_H
+#ifndef F_F_OP_SCENE_MNG_H_
+#define F_F_OP_SCENE_MNG_H_
 
-#include "dolphin/types.h"
+#include "f_op/f_op_scene_pause.h"
 
-#endif /* F_OP_F_OP_SCENE_MNG_H */
+void* fopScnM_SearchByID(unsigned int id);
+int fopScnM_ChangeReq(scene_class*, s16, s16, u16);
+unsigned int fopScnM_DeleteReq(scene_class*);
+int fopScnM_CreateReq(s16, s16, u16, u32);
+u32 fopScnM_ReRequest(s16, u32);
+void fopScnM_Management(void);
+void fopScnM_Init(void);
+
+#endif

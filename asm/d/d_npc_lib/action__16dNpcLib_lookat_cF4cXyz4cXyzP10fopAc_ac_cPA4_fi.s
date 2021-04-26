@@ -392,7 +392,7 @@ lbl_80251AD8:
 lbl_80251AE8:
 /* 80251AE8  80 0D 8B E0 */	lwz r0, Zero__5csXyz(r13)
 /* 80251AEC  90 01 00 10 */	stw r0, 0x10(r1)
-/* 80251AF0  A0 0D 8B E4 */	lhz r0, data_80451164(r13)
+/* 80251AF0  A0 0D 8B E4 */	lhz r0, Zero__5csXyz+4(r13)
 /* 80251AF4  B0 01 00 14 */	sth r0, 0x14(r1)
 /* 80251AF8  3A C0 00 00 */	li r22, 0
 /* 80251AFC  3B 20 00 00 */	li r25, 0

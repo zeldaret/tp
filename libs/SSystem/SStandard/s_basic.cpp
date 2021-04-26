@@ -7,37 +7,16 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-//
-// Forward References:
-//
-
-extern "C" static void sBs_FillArea_s__FPvUls();
-extern "C" void sBs_ClearArea__FPvUl();
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
-
-/* 80271C8C-80271CAC 26C5CC 0020+00 1/1 0/0 0/0 .text            sBs_FillArea_s__FPvUls */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void sBs_FillArea_s(void* param_0, u32 param_1, s16 param_2) {
-    nofralloc
-#include "asm/SSystem/SStandard/s_basic/sBs_FillArea_s__FPvUls.s"
+/* 80271C8C-80271CAC 0020+00 s=1 e=0 z=0  None .text      sBs_FillArea_s__FPvUls */
+void sBs_FillArea_s(void* pPtr, u32 pNumBytes, s16 pValue) {
+    s16* castPtr = (s16*)pPtr;
+    for (int i = 0; i < pNumBytes / 2; i++) {
+        *castPtr = pValue;
+        castPtr++;
+    }
 }
-#pragma pop
 
-/* 80271CAC-80271CD0 26C5EC 0024+00 0/0 2/2 0/0 .text            sBs_ClearArea__FPvUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void sBs_ClearArea(void* param_0, u32 param_1) {
-    nofralloc
-#include "asm/SSystem/SStandard/s_basic/sBs_ClearArea__FPvUl.s"
+/* 80271CAC-80271CD0 0024+00 s=0 e=2 z=0  None .text      sBs_ClearArea__FPvUl */
+void sBs_ClearArea(void* pPtr, u32 pNumBytes) {
+    sBs_FillArea_s(pPtr, pNumBytes, 0);
 }
-#pragma pop

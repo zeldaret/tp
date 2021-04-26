@@ -7,49 +7,14 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-//
-// Types:
-//
-
-struct method_filter {};
-
-struct judge_filter {};
-
-struct create_tag_class {};
-
-//
-// Forward References:
-//
-
-extern "C" void cTgIt_MethodCall__FP16create_tag_classP13method_filter();
-extern "C" void cTgIt_JudgeFilter__FP16create_tag_classP12judge_filter();
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
-
-/* 80266A7C-80266AB0 2613BC 0034+00 0/0 4/4 0/0 .text
+/* 80266A7C-80266AB0 0034+00 s=0 e=4 z=0  None .text
  * cTgIt_MethodCall__FP16create_tag_classP13method_filter       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cTgIt_MethodCall(create_tag_class* param_0, method_filter* param_1) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_tag_iter/cTgIt_MethodCall__FP16create_tag_classP13method_filter.s"
+int cTgIt_MethodCall(create_tag_class* pTag, method_filter* pMethodFilter) {
+    return pMethodFilter->mpMethodFunc((node_class*)pTag->mpTagData, pMethodFilter->mpUserData);
 }
-#pragma pop
 
-/* 80266AB0-80266AE4 2613F0 0034+00 0/0 5/5 0/0 .text
+/* 80266AB0-80266AE4 0034+00 s=0 e=5 z=0  None .text
  * cTgIt_JudgeFilter__FP16create_tag_classP12judge_filter       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cTgIt_JudgeFilter(create_tag_class* param_0, judge_filter* param_1) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_tag_iter/cTgIt_JudgeFilter__FP16create_tag_classP12judge_filter.s"
+void* cTgIt_JudgeFilter(create_tag_class* pTag, judge_filter* pJudgeFilter) {
+    return pJudgeFilter->mpJudgeFunc((node_class*)pTag->mpTagData, pJudgeFilter->mpUserData);
 }
-#pragma pop

@@ -5,35 +5,7 @@
 
 #include "f_op/f_op_draw_tag.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct node_lists_tree_class {};
-
-struct node_list_class {};
-
-struct create_tag_class {};
-
-//
-// Forward References:
-//
-
-extern "C" void fopDwTg_ToDrawQ__FP16create_tag_classi();
-extern "C" void fopDwTg_DrawQTo__FP16create_tag_class();
-extern "C" void fopDwTg_Init__FP16create_tag_classPv();
-extern "C" void fopDwTg_CreateQueue__Fv();
-
-//
-// External References:
-//
-
-extern "C" void cTr_Create__FP21node_lists_tree_classP15node_list_classi();
-extern "C" void cTg_SingleCutFromTree__FP16create_tag_class();
-extern "C" void cTg_AdditionToTree__FP21node_lists_tree_classiP16create_tag_class();
-extern "C" void cTg_Create__FP16create_tag_classPv();
+#include "global.h"
 
 //
 // Declarations:
@@ -41,50 +13,29 @@ extern "C" void cTg_Create__FP16create_tag_classPv();
 
 /* ############################################################################################## */
 /* 804505D0-804505D8 000050 0008+00 2/2 2/2 0/0 .sdata           g_fopDwTg_Queue */
-SECTION_SDATA extern u8 g_fopDwTg_Queue[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+node_lists_tree_class g_fopDwTg_Queue = {NULL, 0};
 
 /* 800204AC-800204D4 01ADEC 0028+00 0/0 4/4 2/2 .text fopDwTg_ToDrawQ__FP16create_tag_classi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopDwTg_ToDrawQ(create_tag_class* param_0, int param_1) {
-    nofralloc
-#include "asm/f_op/f_op_draw_tag/fopDwTg_ToDrawQ__FP16create_tag_classi.s"
+void fopDwTg_ToDrawQ(create_tag_class* pCreateTagClass, int priority) {
+    cTg_AdditionToTree(&g_fopDwTg_Queue, priority, pCreateTagClass);
 }
-#pragma pop
 
 /* 800204D4-800204F4 01AE14 0020+00 0/0 8/8 3/3 .text fopDwTg_DrawQTo__FP16create_tag_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopDwTg_DrawQTo(create_tag_class* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_draw_tag/fopDwTg_DrawQTo__FP16create_tag_class.s"
+void fopDwTg_DrawQTo(create_tag_class* pCreateTagClass) {
+    cTg_SingleCutFromTree(pCreateTagClass);
 }
-#pragma pop
 
 /* 800204F4-80020518 01AE34 0024+00 0/0 4/4 0/0 .text fopDwTg_Init__FP16create_tag_classPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopDwTg_Init(create_tag_class* param_0, void* param_1) {
-    nofralloc
-#include "asm/f_op/f_op_draw_tag/fopDwTg_Init__FP16create_tag_classPv.s"
+bool fopDwTg_Init(create_tag_class* pCreateTagClass, void* pActor) {
+    cTg_Create(pCreateTagClass, pActor);
+    return true;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803F1E10-803F4CF0 01EB30 2EE0+00 1/1 0/0 0/0 .bss             lists$2216 */
-static u8 lists[12000];
+static node_list_class lists[1000];
 
 /* 80020518-80020548 01AE58 0030+00 0/0 1/1 0/0 .text            fopDwTg_CreateQueue__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopDwTg_CreateQueue() {
-    nofralloc
-#include "asm/f_op/f_op_draw_tag/fopDwTg_CreateQueue__Fv.s"
+void fopDwTg_CreateQueue(void) {
+    cTr_Create(&g_fopDwTg_Queue, lists, ARRAY_SIZE(lists));
 }
-#pragma pop

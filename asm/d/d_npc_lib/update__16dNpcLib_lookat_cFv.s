@@ -9,7 +9,7 @@ lbl_80251EF8:
 /* 80251F14  7C 7D 1B 78 */	mr r29, r3
 /* 80251F18  80 0D 8B E0 */	lwz r0, Zero__5csXyz(r13)
 /* 80251F1C  90 01 00 08 */	stw r0, 8(r1)
-/* 80251F20  A0 0D 8B E4 */	lhz r0, data_80451164(r13)
+/* 80251F20  A0 0D 8B E4 */	lhz r0, Zero__5csXyz+4(r13)
 /* 80251F24  B0 01 00 0C */	sth r0, 0xc(r1)
 /* 80251F28  3B C0 00 00 */	li r30, 0
 /* 80251F2C  3B 80 00 00 */	li r28, 0

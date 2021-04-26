@@ -8,91 +8,33 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct cXyz {};
-
-struct Vec {};
-
-struct cM3dGLin {
-    /* 8026F2A8 */ cM3dGLin(cXyz const&, cXyz const&);
-    /* 8026F2E8 */ void SetStartEnd(cXyz const&, cXyz const&);
-    /* 8026F31C */ void SetStartEnd(Vec const&, Vec const&);
-    /* 8026F350 */ void CalcPos(Vec*, f32) const;
-    /* 8026F3C0 */ void SetEnd(cXyz const&);
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__8cM3dGLinFRC4cXyzRC4cXyz();
-extern "C" void SetStartEnd__8cM3dGLinFRC4cXyzRC4cXyz();
-extern "C" void SetStartEnd__8cM3dGLinFRC3VecRC3Vec();
-extern "C" void CalcPos__8cM3dGLinCFP3Vecf();
-extern "C" void SetEnd__8cM3dGLinFRC4cXyz();
-
-//
-// External References:
-//
-
-extern "C" void PSVECAdd();
-extern "C" void PSVECSubtract();
-extern "C" void PSVECScale();
-extern "C" extern void* __vt__8cM3dGLin[3];
-
-//
 // Declarations:
 //
 
-/* 8026F2A8-8026F2E8 269BE8 0040+00 0/0 8/8 1/1 .text            __ct__8cM3dGLinFRC4cXyzRC4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cM3dGLin::cM3dGLin(cXyz const& param_0, cXyz const& param_1) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_lin/__ct__8cM3dGLinFRC4cXyzRC4cXyz.s"
-}
-#pragma pop
+/* 8026F2A8-8026F2E8 0040+00 s=0 e=8 z=1  None .text      __ct__8cM3dGLinFRC4cXyzRC4cXyz */
+cM3dGLin::cM3dGLin(const cXyz& pStart, const cXyz& pEnd) : mStart(pStart), mEnd(pEnd) {}
 
-/* 8026F2E8-8026F31C 269C28 0034+00 0/0 8/8 10/10 .text SetStartEnd__8cM3dGLinFRC4cXyzRC4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGLin::SetStartEnd(cXyz const& param_0, cXyz const& param_1) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_lin/SetStartEnd__8cM3dGLinFRC4cXyzRC4cXyz.s"
+/* 8026F2E8-8026F31C 0034+00 s=0 e=8 z=10  None .text      SetStartEnd__8cM3dGLinFRC4cXyzRC4cXyz */
+void cM3dGLin::SetStartEnd(const cXyz& pStart, const cXyz& pEnd) {
+    mStart = pStart;
+    mEnd = pEnd;
 }
-#pragma pop
 
-/* 8026F31C-8026F350 269C5C 0034+00 0/0 7/7 4/4 .text            SetStartEnd__8cM3dGLinFRC3VecRC3Vec
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGLin::SetStartEnd(Vec const& param_0, Vec const& param_1) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_lin/SetStartEnd__8cM3dGLinFRC3VecRC3Vec.s"
+/* 8026F31C-8026F350 0034+00 s=0 e=7 z=4  None .text      SetStartEnd__8cM3dGLinFRC3VecRC3Vec */
+void cM3dGLin::SetStartEnd(const Vec& pStart, const Vec& pEnd) {
+    mStart = pStart;
+    mEnd = pEnd;
 }
-#pragma pop
 
-/* 8026F350-8026F3C0 269C90 0070+00 0/0 3/3 0/0 .text            CalcPos__8cM3dGLinCFP3Vecf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGLin::CalcPos(Vec* param_0, f32 param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_lin/CalcPos__8cM3dGLinCFP3Vecf.s"
+/* 8026F350-8026F3C0 0070+00 s=0 e=3 z=0  None .text      CalcPos__8cM3dGLinCFP3Vecf */
+void cM3dGLin::CalcPos(Vec* pOut, f32 pScale) const {
+    Vec tmp;
+    PSVECSubtract(&mEnd, &mStart, &tmp);
+    PSVECScale(&tmp, &tmp, pScale);
+    PSVECAdd(&tmp, &mStart, pOut);
 }
-#pragma pop
 
-/* 8026F3C0-8026F3DC 269D00 001C+00 0/0 1/1 0/0 .text            SetEnd__8cM3dGLinFRC4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGLin::SetEnd(cXyz const& param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_lin/SetEnd__8cM3dGLinFRC4cXyz.s"
+/* 8026F3C0-8026F3DC 001C+00 s=0 e=1 z=0  None .text      SetEnd__8cM3dGLinFRC4cXyz */
+void cM3dGLin::SetEnd(const cXyz& pEnd) {
+    mEnd = pEnd;
 }
-#pragma pop

@@ -4,432 +4,168 @@
 //
 
 #include "SSystem/SComponent/c_xyz.h"
+#include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct Vec {};
-
-struct cXyz {
-    /* 80009184 */ ~cXyz();
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 80266BD0 */ void operator*(Vec const&) const;
-    /* 80266C18 */ void operator/(f32) const;
-    /* 80266C6C */ void getCrossProduct(Vec const&) const;
-    /* 80266CBC */ void outprod(Vec const&) const;
-    /* 80266CE4 */ void norm() const;
-    /* 80266D30 */ void normZP() const;
-    /* 80266DC4 */ void normZC() const;
-    /* 80266EF4 */ void normalize();
-    /* 80266F48 */ void normalizeZP();
-    /* 80266FDC */ void normalizeRS();
-    /* 8026702C */ bool operator==(Vec const&) const;
-    /* 8026706C */ bool operator!=(Vec const&) const;
-    /* 802670AC */ void isZero() const;
-    /* 80267128 */ void atan2sX_Z() const;
-    /* 80267150 */ void atan2sY_XZ() const;
-
-    static f32 Zero[3];
-    static u8 BaseX[12];
-    static u8 BaseY[12];
-    static u8 BaseZ[12];
-    static u8 BaseXY[12];
-    static u8 BaseXZ[12];
-    static u8 BaseYZ[12];
-    static u8 BaseXYZ[12];
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __pl__4cXyzCFRC3Vec();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void __ml__4cXyzCFf();
-extern "C" void __ml__4cXyzCFRC3Vec();
-extern "C" void __dv__4cXyzCFf();
-extern "C" void getCrossProduct__4cXyzCFRC3Vec();
-extern "C" void outprod__4cXyzCFRC3Vec();
-extern "C" void norm__4cXyzCFv();
-extern "C" void normZP__4cXyzCFv();
-extern "C" void normZC__4cXyzCFv();
-extern "C" void normalize__4cXyzFv();
-extern "C" void normalizeZP__4cXyzFv();
-extern "C" void normalizeRS__4cXyzFv();
-extern "C" bool __eq__4cXyzCFRC3Vec();
-extern "C" bool __ne__4cXyzCFRC3Vec();
-extern "C" void isZero__4cXyzCFv();
-extern "C" void atan2sX_Z__4cXyzCFv();
-extern "C" void atan2sY_XZ__4cXyzCFv();
-extern "C" void __sinit_c_xyz_cpp();
-extern "C" f32 Zero__4cXyz[3];
-extern "C" u8 BaseX__4cXyz[12];
-extern "C" u8 BaseY__4cXyz[12];
-extern "C" u8 BaseZ__4cXyz[12];
-extern "C" u8 BaseXY__4cXyz[12];
-extern "C" u8 BaseXZ__4cXyz[12];
-extern "C" u8 BaseYZ__4cXyz[12];
-extern "C" u8 BaseXYZ__4cXyz[12];
-
-//
-// External References:
-//
-
-extern "C" void __dt__4cXyzFv();
-extern "C" void cM_atan2s__Fff();
-extern "C" void PSVECAdd();
-extern "C" void PSVECSubtract();
-extern "C" void PSVECScale();
-extern "C" void PSVECNormalize();
-extern "C" void PSVECSquareMag();
-extern "C" void PSVECCrossProduct();
-extern "C" void __register_global_object();
-extern "C" extern u32 __float_nan;
-extern "C" extern u32 __float_epsilon;
+#include "global.h"
+#include "msl_c/math.h"
+#include "mtx_vec.h"
 
 //
 // Declarations:
 //
 
-/* 80266AE4-80266B34 261424 0050+00 0/0 103/103 300/300 .text            __pl__4cXyzCFRC3Vec */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cXyz::operator+(Vec const& param_0) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_xyz/__pl__4cXyzCFRC3Vec.s"
+/* 80266AE4-80266B34 0050+00 s=0 e=103 z=300  None .text      __pl__4cXyzCFRC3Vec */
+cXyz cXyz::operator+(const Vec& vec) const {
+    Vec ret;
+    PSVECAdd(this, &vec, &ret);
+    return cXyz(ret);
 }
-#pragma pop
 
-/* 80266B34-80266B84 261474 0050+00 0/0 196/196 1082/1082 .text            __mi__4cXyzCFRC3Vec */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cXyz::operator-(Vec const& param_0) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_xyz/__mi__4cXyzCFRC3Vec.s"
+/* 80266B34-80266B84 0050+00 s=0 e=196 z=1082  None .text      __mi__4cXyzCFRC3Vec */
+cXyz cXyz::operator-(const Vec& vec) const {
+    Vec ret;
+    PSVECSubtract(this, &vec, &ret);
+    return cXyz(ret);
 }
-#pragma pop
 
-/* 80266B84-80266BD0 2614C4 004C+00 1/1 99/99 158/158 .text            __ml__4cXyzCFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cXyz::operator*(f32 param_0) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_xyz/__ml__4cXyzCFf.s"
+/* 80266B84-80266BD0 004C+00 s=1 e=99 z=158  None .text      __ml__4cXyzCFf */
+cXyz cXyz::operator*(f32 scale) const {
+    Vec ret;
+    PSVECScale(this, &ret, scale);
+    return cXyz(ret);
 }
-#pragma pop
 
-/* 80266BD0-80266C18 261510 0048+00 0/0 7/7 0/0 .text            __ml__4cXyzCFRC3Vec */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cXyz::operator*(Vec const& param_0) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_xyz/__ml__4cXyzCFRC3Vec.s"
+inline void vecMul(const Vec* src1, const Vec* src2, Vec* dst) {
+    dst->x = src1->x * src2->x;
+    dst->y = src1->y * src2->y;
+    dst->z = src1->z * src2->z;
 }
-#pragma pop
 
-/* ############################################################################################## */
-/* 80455070-80455074 003670 0004+00 3/3 0/0 0/0 .sdata2          @2201 */
-SECTION_SDATA2 static f32 lit_2201 = 1.0f;
-
-/* 80266C18-80266C6C 261558 0054+00 0/0 3/3 12/12 .text            __dv__4cXyzCFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cXyz::operator/(f32 param_0) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_xyz/__dv__4cXyzCFf.s"
+/* 80266BD0-80266C18 0048+00 s=0 e=7 z=0  None .text      __ml__4cXyzCFRC3Vec */
+cXyz cXyz::operator*(const Vec& vec) const {
+    cXyz ret;
+    vecMul(this, &vec, &ret);
+    return cXyz(ret);
 }
-#pragma pop
 
-/* 80266C6C-80266CBC 2615AC 0050+00 1/1 0/0 0/0 .text            getCrossProduct__4cXyzCFRC3Vec */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cXyz::getCrossProduct(Vec const& param_0) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_xyz/getCrossProduct__4cXyzCFRC3Vec.s"
+/* 80266C18-80266C6C 0054+00 s=0 e=3 z=12  None .text      __dv__4cXyzCFf */
+cXyz cXyz::operator/(f32 scale) const {
+    Vec ret;
+    PSVECScale(this, &ret, 1.0f / scale);
+    return cXyz(ret);
 }
-#pragma pop
 
-/* 80266CBC-80266CE4 2615FC 0028+00 0/0 7/7 6/6 .text            outprod__4cXyzCFRC3Vec */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cXyz::outprod(Vec const& param_0) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_xyz/outprod__4cXyzCFRC3Vec.s"
+/* 80266C6C-80266CBC 0050+00 s=1 e=0 z=0  None .text      getCrossProduct__4cXyzCFRC3Vec */
+cXyz cXyz::getCrossProduct(const Vec& vec) const {
+    Vec ret;
+    PSVECCrossProduct(this, &vec, &ret);
+    return cXyz(ret);
 }
-#pragma pop
 
-/* 80266CE4-80266D30 261624 004C+00 0/0 10/10 1/1 .text            norm__4cXyzCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cXyz::norm() const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_xyz/norm__4cXyzCFv.s"
+/* 80266CBC-80266CE4 0028+00 s=0 e=7 z=6  None .text      outprod__4cXyzCFRC3Vec */
+cXyz cXyz::outprod(const Vec& vec) const {
+    return this->getCrossProduct(vec);
 }
-#pragma pop
 
-/* ############################################################################################## */
-/* 80430CE8-80430CF4 05DA08 000C+00 1/1 0/0 0/0 .bss             @2450 */
-static u8 lit_2450[12];
-
-/* 80430CF4-80430D00 05DA14 000C+00 2/3 50/50 42/42 .bss             Zero__4cXyz */
-f32 cXyz::Zero[3];
-
-/* 80455074-80455078 003674 0004+00 4/4 0/0 0/0 .sdata2          @2288 */
-SECTION_SDATA2 static f32 lit_2288 = 7.999999968033578e-11f;
-
-/* 80266D30-80266DC4 261670 0094+00 1/1 4/4 0/0 .text            normZP__4cXyzCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cXyz::normZP() const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_xyz/normZP__4cXyzCFv.s"
+/* 80266CE4-80266D30 004C+00 s=0 e=10 z=1  None .text      norm__4cXyzCFv */
+cXyz cXyz::norm(void) const {
+    Vec ret;
+    PSVECNormalize(this, &ret);
+    return cXyz(ret);
 }
-#pragma pop
 
-/* ############################################################################################## */
-/* 8039A868-8039A878 026EC8 000C+04 1/1 0/0 0/0 .rodata          @2299 */
-SECTION_RODATA static u8 const lit_2299[12 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x3F,
-    0x80,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x8039A868, &lit_2299);
-
-/* 80455078-8045507C 003678 0004+00 1/1 0/0 0/0 .sdata2          @2325 */
-SECTION_SDATA2 static f32 lit_2325 = 1.25f;
-
-/* 8045507C-80455080 00367C 0004+00 1/1 0/0 0/0 .sdata2          @2326 */
-SECTION_SDATA2 static f32 lit_2326 = 1000000.0f;
-
-/* 80455080-80455084 003680 0004+00 3/3 0/0 0/0 .sdata2          @2327 */
-SECTION_SDATA2 static u8 lit_2327[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80266DC4-80266EF4 261704 0130+00 0/0 0/0 2/2 .text            normZC__4cXyzCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cXyz::normZC() const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_xyz/normZC__4cXyzCFv.s"
+/* 80266D30-80266DC4 0094+00 s=1 e=4 z=0  None .text      normZP__4cXyzCFv */
+cXyz cXyz::normZP(void) const {
+    Vec vec;
+    if (this->isNearZeroSquare() == false) {
+        PSVECNormalize(this, &vec);
+    } else {
+        vec = cXyz::Zero;
+    }
+    return cXyz(vec);
 }
-#pragma pop
 
-/* 80266EF4-80266F48 261834 0054+00 0/0 13/13 17/17 .text            normalize__4cXyzFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cXyz::normalize() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_xyz/normalize__4cXyzFv.s"
+inline void normToUpZIfNearZero(Vec& vec) {
+    if (cXyz(vec).isNearZeroSquare()) {
+        vec.x = 0.0f;
+        vec.y = 0.0f;
+        vec.z = 1.0f;
+        const Vec v = {0, 0, 1};
+        vec = v;
+    }
 }
-#pragma pop
 
-/* 80266F48-80266FDC 261888 0094+00 0/0 19/19 59/59 .text            normalizeZP__4cXyzFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cXyz::normalizeZP() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_xyz/normalizeZP__4cXyzFv.s"
+/* 80266DC4-80266EF4 0130+00 s=0 e=0 z=2  None .text      normZC__4cXyzCFv */
+cXyz cXyz::normZC(void) const {
+    Vec outVec;
+    if (this->isNearZeroSquare() == false) {
+        PSVECNormalize(this, &outVec);
+    } else {
+        outVec = (*this * 1.25f * 1000000.0f).normZP();
+        normToUpZIfNearZero(outVec);
+    }
+    return outVec;
 }
-#pragma pop
 
-/* 80266FDC-8026702C 26191C 0050+00 0/0 2/2 3/3 .text            normalizeRS__4cXyzFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cXyz::normalizeRS() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_xyz/normalizeRS__4cXyzFv.s"
+/* 80266EF4-80266F48 0054+00 s=0 e=13 z=17  None .text      normalize__4cXyzFv */
+cXyz cXyz::normalize(void) {
+    PSVECNormalize(this, this);
+    return *this;
 }
-#pragma pop
 
-/* 8026702C-8026706C 26196C 0040+00 0/0 5/5 9/9 .text            __eq__4cXyzCFRC3Vec */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cXyz::operator==(Vec const& param_0) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_xyz/__eq__4cXyzCFRC3Vec.s"
+/* 80266F48-80266FDC 0094+00 s=0 e=19 z=59  None .text      normalizeZP__4cXyzFv */
+cXyz cXyz::normalizeZP(void) {
+    if (this->isNearZeroSquare() == false) {
+        PSVECNormalize(this, this);
+    } else {
+        *this = cXyz::Zero;
+    }
+    return *this;
 }
-#pragma pop
 
-/* 8026706C-802670AC 2619AC 0040+00 0/0 6/6 6/6 .text            __ne__4cXyzCFRC3Vec */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cXyz::operator!=(Vec const& param_0) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_xyz/__ne__4cXyzCFRC3Vec.s"
+/* 80266FDC-8026702C 0050+00 s=0 e=2 z=3  None .text      normalizeRS__4cXyzFv */
+bool cXyz::normalizeRS(void) {
+    if (this->isNearZeroSquare()) {
+        return false;
+    } else {
+        PSVECNormalize(this, this);
+        return true;
+    }
 }
-#pragma pop
 
-/* ############################################################################################## */
-/* 80455084-80455088 003684 0004+00 1/1 0/0 0/0 .sdata2          @2405 */
-SECTION_SDATA2 static f32 lit_2405 = 32.0f;
-
-/* 802670AC-80267128 2619EC 007C+00 0/0 4/4 7/7 .text            isZero__4cXyzCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cXyz::isZero() const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_xyz/isZero__4cXyzCFv.s"
+/* 8026702C-8026706C 0040+00 s=0 e=5 z=9  None .text      __eq__4cXyzCFRC3Vec */
+bool cXyz::operator==(const Vec& vec) const {
+    return this->x == vec.x && this->y == vec.y && this->z == vec.z;
 }
-#pragma pop
 
-/* 80267128-80267150 261A68 0028+00 0/0 81/81 85/85 .text            atan2sX_Z__4cXyzCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cXyz::atan2sX_Z() const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_xyz/atan2sX_Z__4cXyzCFv.s"
+/* 8026706C-802670AC 0040+00 s=0 e=6 z=6  None .text      __ne__4cXyzCFRC3Vec */
+bool cXyz::operator!=(const Vec& vec) const {
+    return !(this->x == vec.x && this->y == vec.y && this->z == vec.z);
 }
-#pragma pop
 
-/* ############################################################################################## */
-/* 80455088-80455090 003688 0008+00 1/1 0/0 0/0 .sdata2          @2446 */
-SECTION_SDATA2 static f64 lit_2446 = 0.5;
-
-/* 80455090-80455098 003690 0008+00 1/1 0/0 0/0 .sdata2          @2447 */
-SECTION_SDATA2 static f64 lit_2447 = 3.0;
-
-/* 80455098-804550A0 003698 0008+00 1/1 0/0 0/0 .sdata2          @2448 */
-SECTION_SDATA2 static u8 lit_2448[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80267150-80267290 261A90 0140+00 0/0 21/21 33/33 .text            atan2sY_XZ__4cXyzCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cXyz::atan2sY_XZ() const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_xyz/atan2sY_XZ__4cXyzCFv.s"
+/* 802670AC-80267128 007C+00 s=0 e=4 z=7  None .text      isZero__4cXyzCFv */
+bool cXyz::isZero(void) const {
+    return fabsf(this->x) < 32.0f * __float_epsilon[0] &&
+           fabsf(this->y) < 32.0f * __float_epsilon[0] &&
+           fabsf(this->z) < 32.0f * __float_epsilon[0];
 }
-#pragma pop
 
-/* ############################################################################################## */
-/* 80430D00-80430D0C 05DA20 000C+00 0/1 0/0 0/0 .bss             @2451 */
-#pragma push
-#pragma force_active on
-static u8 lit_2451[12];
-#pragma pop
-
-/* 80430D0C-80430D18 05DA2C 000C+00 0/1 3/3 9/9 .bss             BaseX__4cXyz */
-u8 cXyz::BaseX[12];
-
-/* 80430D18-80430D24 05DA38 000C+00 0/1 0/0 0/0 .bss             @2452 */
-#pragma push
-#pragma force_active on
-static u8 lit_2452[12];
-#pragma pop
-
-/* 80430D24-80430D30 05DA44 000C+00 0/1 14/14 8/8 .bss             BaseY__4cXyz */
-u8 cXyz::BaseY[12];
-
-/* 80430D30-80430D3C 05DA50 000C+00 0/1 0/0 0/0 .bss             @2453 */
-#pragma push
-#pragma force_active on
-static u8 lit_2453[12];
-#pragma pop
-
-/* 80430D3C-80430D48 05DA5C 000C+00 0/1 15/15 5/5 .bss             BaseZ__4cXyz */
-u8 cXyz::BaseZ[12];
-
-/* 80430D48-80430D54 05DA68 000C+00 0/1 0/0 0/0 .bss             @2454 */
-#pragma push
-#pragma force_active on
-static u8 lit_2454[12];
-#pragma pop
-
-/* 80430D54-80430D60 05DA74 000C+00 0/1 0/0 0/0 .bss             BaseXY__4cXyz */
-#pragma push
-#pragma force_active on
-u8 cXyz::BaseXY[12];
-#pragma pop
-
-/* 80430D60-80430D6C 05DA80 000C+00 0/1 0/0 0/0 .bss             @2455 */
-#pragma push
-#pragma force_active on
-static u8 lit_2455[12];
-#pragma pop
-
-/* 80430D6C-80430D78 05DA8C 000C+00 0/1 0/0 0/0 .bss             BaseXZ__4cXyz */
-#pragma push
-#pragma force_active on
-u8 cXyz::BaseXZ[12];
-#pragma pop
-
-/* 80430D78-80430D84 05DA98 000C+00 0/1 0/0 0/0 .bss             @2456 */
-#pragma push
-#pragma force_active on
-static u8 lit_2456[12];
-#pragma pop
-
-/* 80430D84-80430D90 05DAA4 000C+00 0/1 0/0 0/0 .bss             BaseYZ__4cXyz */
-#pragma push
-#pragma force_active on
-u8 cXyz::BaseYZ[12];
-#pragma pop
-
-/* 80430D90-80430D9C 05DAB0 000C+00 0/1 0/0 0/0 .bss             @2457 */
-#pragma push
-#pragma force_active on
-static u8 lit_2457[12];
-#pragma pop
-
-/* 80430D9C-80430DA8 05DABC 000C+00 0/1 0/0 0/0 .bss             BaseXYZ__4cXyz */
-#pragma push
-#pragma force_active on
-u8 cXyz::BaseXYZ[12];
-#pragma pop
-
-/* 80267290-802673F4 261BD0 0164+00 0/0 1/0 0/0 .text            __sinit_c_xyz_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_c_xyz_cpp() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_xyz/__sinit_c_xyz_cpp.s"
+/* 80267128-80267150 0028+00 s=0 e=81 z=85  None .text      atan2sX_Z__4cXyzCFv */
+s16 cXyz::atan2sX_Z(void) const {
+    return cM_atan2s(this->x, this->z);
 }
-#pragma pop
 
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80267290, __sinit_c_xyz_cpp);
-#pragma pop
+/* 80267150-80267290 0140+00 s=0 e=21 z=33  None .text      atan2sY_XZ__4cXyzCFv */
+s16 cXyz::atan2sY_XZ(void) const {
+    f32 mag = this->getMagXZ();
+    return cM_atan2s(-this->y, sqrtf(mag));
+}
+
+const cXyz cXyz::Zero(0, 0, 0);
+const cXyz cXyz::BaseX(1, 0, 0);
+const cXyz cXyz::BaseY(0, 1, 0);
+const cXyz cXyz::BaseZ(0, 0, 1);
+const cXyz cXyz::BaseXY(1, 1, 0);
+const cXyz cXyz::BaseXZ(1, 0, 1);
+const cXyz cXyz::BaseYZ(0, 1, 1);
+const cXyz cXyz::BaseXYZ(1, 1, 1);

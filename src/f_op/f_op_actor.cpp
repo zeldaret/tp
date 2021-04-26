@@ -11,12 +11,6 @@
 // Types:
 //
 
-struct process_method_class {};
-
-struct leafdraw_method_class {};
-
-struct leafdraw_class {};
-
 struct dKy_tevstr_c {};
 
 struct fopEn_enemy_c {
@@ -24,13 +18,6 @@ struct fopEn_enemy_c {
     /* 800194FC */ void checkBallModelDraw();
     /* 80019520 */ void setBallModelEffect(dKy_tevstr_c*);
     /* 800196A0 */ void drawBallModel(dKy_tevstr_c*);
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-
-    static u8 stopStatus[4];
 };
 
 struct daSus_c {
@@ -63,15 +50,7 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {
-    /* 80018BD0 */ ~csXyz();
-};
-
 struct _GXColor {};
-
-struct cXyz {
-    static f32 Zero[3];
-};
 
 struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
@@ -101,16 +80,14 @@ struct dDemo_actor_c {
     /* 8003815C */ void setActor(fopAc_ac_c*);
 };
 
-struct create_tag_class {};
-
 struct J3DModel {};
-
-struct J3DAnmTextureSRTKey {
-    /* 8032B1D4 */ void searchUpdateMaterialID(J3DModelData*);
-};
 
 struct J3DAnmTevRegKey {
     /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
+};
+
+struct J3DAnmTextureSRTKey {
+    /* 8032B1D4 */ void searchUpdateMaterialID(J3DModelData*);
 };
 
 struct J3DMaterialTable {
@@ -194,7 +171,6 @@ extern "C" void searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP12J3DModelData();
 extern "C" void searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData();
 extern "C" void entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey();
 extern "C" void entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
-extern "C" void PSMTXTrans();
 extern "C" void __construct_array();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
@@ -225,7 +201,8 @@ asm fopAc_ac_c::fopAc_ac_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm csXyz::~csXyz() {
+// asm csXyz::~csXyz() {
+extern "C" asm void __dt__5csXyzFv() {
     nofralloc
 #include "asm/f_op/f_op_actor/__dt__5csXyzFv.s"
 }
@@ -378,15 +355,6 @@ asm void dStage_roomDt_c::getFileListInfo() const {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80378878-80378878 004ED8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80378878 = "Alink";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037887E = "\0";
-#pragma pop
-
 /* 80019404-800194FC 013D44 00F8+00 0/0 0/0 2/2 .text            initBallModel__13fopEn_enemy_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -465,4 +433,11 @@ asm void fopEn_enemy_c::drawBallModel(dKy_tevstr_c* param_0) {
 extern u8 data_80450CC0[4 + 4 /* padding */];
 u8 data_80450CC0[4 + 4 /* padding */];
 
-/* 80378878-80378878 004ED8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+/* 80378878-80378880 004ED8 0006+02 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80378878 = "Alink";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8037887E = "\0";
+#pragma pop

@@ -25,16 +25,6 @@ struct Z2FxLineMgr {
     /* 802BA7FC */ void initDataArc(JKRArchive*, JKRHeap*);
 };
 
-struct JAUSection {};
-
-struct Z2AudioArcLoader {
-    /* 802A9A34 */ Z2AudioArcLoader(JAUSection*);
-    /* 802A9A70 */ void readCommandMore(u32);
-    /* 802A9AC8 */ void readBFCA(void const*);
-    /* 802A9B54 */ void readBSTN(void const*, u32);
-    /* 802A9B58 */ ~Z2AudioArcLoader();
-};
-
 struct JAUSectionHeap {
     /* 802A6094 */ void getOpenSection();
 };

@@ -8,119 +8,36 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct csXyz {
-    /* 80018BD0 */ ~csXyz();
-    /* 802673F4 */ csXyz(s16, s16, s16);
-    /* 80267404 */ void operator+(csXyz&);
-    /* 8026745C */ void operator+=(csXyz&);
-    /* 80267490 */ void operator-(csXyz&);
-    /* 802674E8 */ void operator*(f32);
-
-    static u8 Zero[4];
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__5csXyzFsss();
-extern "C" void __pl__5csXyzFR5csXyz();
-extern "C" void __apl__5csXyzFR5csXyz();
-extern "C" void __mi__5csXyzFR5csXyz();
-extern "C" void __ml__5csXyzFf();
-extern "C" void __sinit_c_sxyz_cpp();
-extern "C" u8 Zero__5csXyz[4];
-
-//
-// External References:
-//
-
-extern "C" void __dt__5csXyzFv();
-extern "C" void __register_global_object();
-
-//
 // Declarations:
 //
 
-/* 802673F4-80267404 261D34 0010+00 4/4 19/19 119/119 .text            __ct__5csXyzFsss */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm csXyz::csXyz(s16 param_0, s16 param_1, s16 param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_sxyz/__ct__5csXyzFsss.s"
+const csXyz csXyz::Zero = csXyz(0, 0, 0);
+
+/* 802673F4-80267404 0010+00 s=4 e=19 z=119  None .text      __ct__5csXyzFsss */
+csXyz::csXyz(s16 param_0, s16 param_1, s16 param_2) {
+    mX = param_0;
+    mY = param_1;
+    mZ = param_2;
 }
-#pragma pop
 
-/* 80267404-8026745C 261D44 0058+00 0/0 0/0 3/3 .text            __pl__5csXyzFR5csXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void csXyz::operator+(csXyz& param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_sxyz/__pl__5csXyzFR5csXyz.s"
+/* 80267404-8026745C 0058+00 s=0 e=0 z=3  None .text      __pl__5csXyzFR5csXyz */
+csXyz csXyz::operator+(csXyz& param_0) {
+    return csXyz(mX + param_0.mX, mY + param_0.mY, mZ + param_0.mZ);
 }
-#pragma pop
 
-/* 8026745C-80267490 261D9C 0034+00 0/0 2/2 11/11 .text            __apl__5csXyzFR5csXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void csXyz::operator+=(csXyz& param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_sxyz/__apl__5csXyzFR5csXyz.s"
+/* 8026745C-80267490 0034+00 s=0 e=2 z=11  None .text      __apl__5csXyzFR5csXyz */
+void csXyz::operator+=(csXyz& param_0) {
+    mX += param_0.mX;
+    mY += param_0.mY;
+    mZ += param_0.mZ;
 }
-#pragma pop
 
-/* 80267490-802674E8 261DD0 0058+00 0/0 0/0 1/1 .text            __mi__5csXyzFR5csXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void csXyz::operator-(csXyz& param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_sxyz/__mi__5csXyzFR5csXyz.s"
+/* 80267490-802674E8 0058+00 s=0 e=0 z=1  None .text      __mi__5csXyzFR5csXyz */
+csXyz csXyz::operator-(csXyz& param_0) {
+    return csXyz(mX - param_0.mX, mY - param_0.mY, mZ - param_0.mZ);
 }
-#pragma pop
 
-/* ############################################################################################## */
-/* 804550A0-804550A8 0036A0 0008+00 1/1 0/0 0/0 .sdata2          @151 */
-SECTION_SDATA2 static f64 lit_151 = 4503601774854144.0 /* cast s32 to float */;
-
-/* 802674E8-8026758C 261E28 00A4+00 0/0 0/0 1/1 .text            __ml__5csXyzFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void csXyz::operator*(f32 param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_sxyz/__ml__5csXyzFf.s"
+/* 802674E8-8026758C 00A4+00 s=0 e=0 z=1  None .text      __ml__5csXyzFf */
+csXyz csXyz::operator*(f32 param_0) {
+    return csXyz(mX * param_0, mY * param_0, mZ * param_0);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80430DA8-80430DB8 05DAC8 000C+04 1/1 0/0 0/0 .bss             @262 */
-static u8 lit_262[12 + 4 /* padding */];
-
-/* 80451160-80451164 000660 0004+00 1/1 13/13 3/3 .sbss            Zero__5csXyz */
-u8 csXyz::Zero[4];
-
-/* 80451164-80451168 000664 0004+00 1/1 6/13 0/2 .sbss            None */
-extern u8 data_80451164[4];
-u8 data_80451164[4];
-
-/* 8026758C-802675E4 261ECC 0058+00 0/0 1/0 0/0 .text            __sinit_c_sxyz_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_c_sxyz_cpp() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_sxyz/__sinit_c_sxyz_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x8026758C, __sinit_c_sxyz_cpp);
-#pragma pop

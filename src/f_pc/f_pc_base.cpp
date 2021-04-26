@@ -4,176 +4,132 @@
 //
 
 #include "f_pc/f_pc_base.h"
+#include "SSystem/SComponent/c_malloc.h"
+#include "SSystem/SComponent/c_phase.h"
+#include "SSystem/SStandard/s_basic.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct process_priority_class {};
-
-struct process_method_class {};
-
-struct line_tag {};
-
-struct layer_management_tag_class {};
-
-struct layer_class {};
-
-struct delete_tag_class {};
-
-struct cMl {
-    /* 80263228 */ void memalignB(int, u32);
-    /* 80263260 */ void free(void*);
-};
-
-struct base_process_class {};
-
-//
-// Forward References:
-//
-
-extern "C" void fpcBs_Is_JustOfType__Fii();
-extern "C" void fpcBs_MakeOfType__FPi();
-extern "C" void fpcBs_MakeOfId__Fv();
-extern "C" void fpcBs_Execute__FP18base_process_class();
-extern "C" static void fpcBs_DeleteAppend__FP18base_process_class();
-extern "C" void fpcBs_IsDelete__FP18base_process_class();
-extern "C" void fpcBs_Delete__FP18base_process_class();
-extern "C" void fpcBs_Create__FsUiPv();
-extern "C" void fpcBs_SubCreate__FP18base_process_class();
-
-//
-// External References:
-//
-
-extern "C" void fpcDtTg_Init__FP16delete_tag_classPv();
-extern "C" void fpcLy_SetCurrentLayer__FP11layer_class();
-extern "C" void fpcLy_CurrentLayer__Fv();
-extern "C" void fpcLyTg_Init__FP26layer_management_tag_classUiPv();
-extern "C" void fpcMtd_Execute__FP20process_method_classPv();
-extern "C" void fpcMtd_IsDelete__FP20process_method_classPv();
-extern "C" void fpcMtd_Delete__FP20process_method_classPv();
-extern "C" void fpcMtd_Create__FP20process_method_classPv();
-extern "C" void fpcPi_Init__FP22process_priority_classPvUiUsUs();
-extern "C" void fpcPf_Get__Fs();
-extern "C" void fpcLnTg_Init__FP8line_tagPv();
-extern "C" void fpcPause_Init__FPv();
-extern "C" void memalignB__3cMlFiUl();
-extern "C" void free__3cMlFPv();
-extern "C" void sBs_ClearArea__FPvUl();
-extern "C" void _savegpr_26();
-extern "C" void _restgpr_26();
+#include "f_pc/f_pc_pause.h"
+#include "global.h"
 
 //
 // Declarations:
 //
 
-/* 8002064C-8002065C 01AF8C 0010+00 0/0 14/14 0/0 .text            fpcBs_Is_JustOfType__Fii */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcBs_Is_JustOfType(int param_0, int param_1) {
-    nofralloc
-#include "asm/f_pc/f_pc_base/fpcBs_Is_JustOfType__Fii.s"
+/* 8002064C-8002065C 0010+00 s=0 e=14 z=0  None .text      fpcBs_Is_JustOfType__Fii */
+BOOL fpcBs_Is_JustOfType(int pType1, int pType2) {
+    return checkEqual(pType1, pType2);
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 80450D00-80450D04 000200 0004+00 1/1 0/0 0/0 .sbss            g_fpcBs_type */
-static u8 g_fpcBs_type[4];
+/* 80450D00-80450D04 0004+00 s=1 e=0 z=0  None .sbss      g_fpcBs_type */
+static int g_fpcBs_type;
 
-/* 80450D04-80450D08 000204 0004+00 1/1 0/0 0/0 .sbss            t_type$2207 */
-static u8 t_type[4];
-
-/* 80450D08-80450D0C 000208 0004+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_80450D08[4];
-
-/* 8002065C-8002069C 01AF9C 0040+00 1/1 5/5 0/0 .text            fpcBs_MakeOfType__FPi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcBs_MakeOfType(int* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_base/fpcBs_MakeOfType__FPi.s"
+/* 8002065C-8002069C 0040+00 s=1 e=5 z=0  None .text      fpcBs_MakeOfType__FPi */
+s32 fpcBs_MakeOfType(int* pType) {
+    static s32 t_type = 0x9130000;
+    if (*pType == 0) {
+        *pType = ++t_type;
+    }
+    return *pType;
 }
-#pragma pop
 
-/* ############################################################################################## */
-/* 80450D0C-80450D10 00020C 0004+00 1/1 0/0 0/0 .sbss            process_id$2216 */
-static u8 process_id[4];
-
-/* 80450D10-80450D18 000210 0008+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_80450D10[8];
-
-/* 8002069C-800206C4 01AFDC 0028+00 0/0 2/2 0/0 .text            fpcBs_MakeOfId__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcBs_MakeOfId() {
-    nofralloc
-#include "asm/f_pc/f_pc_base/fpcBs_MakeOfId__Fv.s"
+/* 8002069C-800206C4 0028+00 s=0 e=2 z=0  None .text      fpcBs_MakeOfId__Fv */
+s32 fpcBs_MakeOfId(void) {
+    static s32 process_id = 1;
+    return process_id++;
 }
-#pragma pop
 
-/* 800206C4-80020720 01B004 005C+00 0/0 1/1 0/0 .text fpcBs_Execute__FP18base_process_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcBs_Execute(base_process_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_base/fpcBs_Execute__FP18base_process_class.s"
+/* 800206C4-80020720 005C+00 s=0 e=1 z=0  None .text      fpcBs_Execute__FP18base_process_class */
+s32 fpcBs_Execute(base_process_class* pProc) {
+    s32 result;
+    layer_class* savedLayer = fpcLy_CurrentLayer();
+    fpcLy_SetCurrentLayer(pProc->mLyTg.mpLayer);
+    result = fpcMtd_Execute(pProc->mpPcMtd, pProc);
+    fpcLy_SetCurrentLayer(savedLayer);
+    return result;
 }
-#pragma pop
 
-/* 80020720-80020760 01B060 0040+00 2/2 0/0 0/0 .text fpcBs_DeleteAppend__FP18base_process_class
+/* 80020720-80020760 0040+00 s=2 e=0 z=0  None .text      fpcBs_DeleteAppend__FP18base_process_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void fpcBs_DeleteAppend(base_process_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_base/fpcBs_DeleteAppend__FP18base_process_class.s"
+void fpcBs_DeleteAppend(base_process_class* pProc) {
+    if (pProc->mpUserData != NULL) {
+        cMl::free(pProc->mpUserData);
+        pProc->mpUserData = NULL;
+    }
 }
-#pragma pop
 
-/* 80020760-800207BC 01B0A0 005C+00 0/0 1/1 0/0 .text fpcBs_IsDelete__FP18base_process_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcBs_IsDelete(base_process_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_base/fpcBs_IsDelete__FP18base_process_class.s"
+/* 80020760-800207BC 005C+00 s=0 e=1 z=0  None .text      fpcBs_IsDelete__FP18base_process_class */
+s32 fpcBs_IsDelete(base_process_class* pProc) {
+    s32 result;
+    layer_class* savedLayer = fpcLy_CurrentLayer();
+    fpcLy_SetCurrentLayer(pProc->mLyTg.mpLayer);
+    result = fpcMtd_IsDelete(pProc->mpPcMtd, pProc);
+    fpcLy_SetCurrentLayer(savedLayer);
+    return result;
 }
-#pragma pop
 
-/* 800207BC-80020820 01B0FC 0064+00 0/0 2/1 0/0 .text fpcBs_Delete__FP18base_process_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcBs_Delete(base_process_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_base/fpcBs_Delete__FP18base_process_class.s"
+/* 800207BC-80020820 0064+00 s=0 e=2 z=0  None .text      fpcBs_Delete__FP18base_process_class */
+s32 fpcBs_Delete(base_process_class* pProc) {
+    s32 deleteResult = fpcMtd_Delete(pProc->mpPcMtd, pProc);
+    if (deleteResult == 1) {
+        fpcBs_DeleteAppend(pProc);
+        pProc->mBsType = 0;
+        cMl::free(pProc);
+    }
+    return deleteResult;
 }
-#pragma pop
 
-/* 80020820-8002091C 01B160 00FC+00 0/0 2/2 0/0 .text            fpcBs_Create__FsUiPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcBs_Create(s16 param_0, unsigned int param_1, void* param_2) {
-    nofralloc
-#include "asm/f_pc/f_pc_base/fpcBs_Create__FsUiPv.s"
-}
-#pragma pop
+/* 80020820-8002091C 00FC+00 s=0 e=2 z=0  None .text      fpcBs_Create__FsUiPv */
+base_process_class* fpcBs_Create(s16 pProcTypeID, unsigned int pProcID, void* pData) {
+    process_profile_definition* procProfDef;
+    base_process_class* procClass;
+    u32 size;
 
-/* 8002091C-800209C8 01B25C 00AC+00 0/0 2/2 0/0 .text fpcBs_SubCreate__FP18base_process_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcBs_SubCreate(base_process_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_base/fpcBs_SubCreate__FP18base_process_class.s"
+    procProfDef = fpcPf_Get(pProcTypeID);
+    size = procProfDef->mSize + procProfDef->mSizeOther;
+    procClass = (base_process_class*)cMl::memalignB(-4, size);
+    if (procClass == NULL) {
+        return NULL;
+    } else {
+        sBs_ClearArea(procClass, size);
+        fpcLyTg_Init(&procClass->mLyTg, procProfDef->mLayerID, procClass);
+        fpcLnTg_Init(&procClass->mLnTg, procClass);
+        fpcDtTg_Init(&procClass->mDtTg, procClass);
+        fpcPi_Init(&procClass->mPi, procClass, procProfDef->mLayerID, procProfDef->mListID,
+                   procProfDef->mListPrio);
+        procClass->mInitState = 0;
+        procClass->mUnk0 = 0;
+        procClass->mBsPcId = pProcID;
+        procClass->mBsTypeId = pProcTypeID;
+        procClass->mBsType = fpcBs_MakeOfType(&g_fpcBs_type);
+        procClass->mProcName = procProfDef->mProcName;
+        fpcPause_Init(procClass);
+        procClass->mpPcMtd = procProfDef->mpPcMtd;
+        procClass->mpProf = procProfDef;
+        procClass->mpUserData = pData;
+        procClass->mParameters = procProfDef->mParameters;
+        return procClass;
+    }
 }
-#pragma pop
+
+s32 fpcBs_SubCreate(base_process_class* pProc) {
+    switch (fpcMtd_Create(pProc->mpPcMtd, pProc)) {
+    case 2:
+    case cPhs_COMPLEATE_e:
+        fpcBs_DeleteAppend(pProc);
+        pProc->mUnk2 = 2;
+        return 2;
+    case cPhs_ZERO_e:
+    case 1:
+        pProc->mInitState = 1;
+        pProc->mUnk2 = 0;
+        return cPhs_ZERO_e;
+    case 3:
+        pProc->mUnk2 = 3;
+        return 3;
+    case cPhs_ERROR_e:
+    default:
+        pProc->mUnk2 = 5;
+        return cPhs_ERROR_e;
+    }
+}

@@ -6,7 +6,7 @@ lbl_8001C174:
 /* 8001C184  7C E8 3B 78 */	mr r8, r7
 /* 8001C188  80 0D 8B E0 */	lwz r0, Zero__5csXyz(r13)
 /* 8001C18C  90 01 00 08 */	stw r0, 8(r1)
-/* 8001C190  A0 0D 8B E4 */	lhz r0, data_80451164(r13)
+/* 8001C190  A0 0D 8B E4 */	lhz r0, Zero__5csXyz+4(r13)
 /* 8001C194  B0 01 00 0C */	sth r0, 0xc(r1)
 /* 8001C198  7D 25 4B 78 */	mr r5, r9
 /* 8001C19C  38 E1 00 08 */	addi r7, r1, 8

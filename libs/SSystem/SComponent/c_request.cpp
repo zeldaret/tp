@@ -8,12 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct request_base_class {};
-
-//
 // Forward References:
 //
 
@@ -34,7 +28,7 @@ extern "C" void cReq_Create__FP18request_base_classUc();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cReq_Is_Done(request_base_class* param_0) {
+asm int cReq_Is_Done(request_base_class* param_0) {
     nofralloc
 #include "asm/SSystem/SComponent/c_request/cReq_Is_Done__FP18request_base_class.s"
 }
@@ -45,7 +39,7 @@ asm void cReq_Is_Done(request_base_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cReq_Done(request_base_class* param_0) {
+asm int cReq_Done(request_base_class* param_0) {
     nofralloc
 #include "asm/SSystem/SComponent/c_request/cReq_Done__FP18request_base_class.s"
 }
@@ -55,7 +49,7 @@ asm void cReq_Done(request_base_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cReq_Command(request_base_class* param_0, u8 param_1) {
+asm int cReq_Command(request_base_class* param_0, u8 param_1) {
     nofralloc
 #include "asm/SSystem/SComponent/c_request/cReq_Command__FP18request_base_classUc.s"
 }
@@ -65,7 +59,7 @@ asm void cReq_Command(request_base_class* param_0, u8 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cReq_Create(request_base_class* param_0, u8 param_1) {
+asm int cReq_Create(request_base_class* param_0, u8 param_1) {
     nofralloc
 #include "asm/SSystem/SComponent/c_request/cReq_Create__FP18request_base_classUc.s"
 }

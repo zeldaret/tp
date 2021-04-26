@@ -4,122 +4,55 @@
 //
 
 #include "SSystem/SComponent/c_m3d_g_sph.h"
+#include "SSystem/SComponent/c_m3d.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct cXyz {};
-
-struct cM3dGSphS {};
-
-struct cM3dGCyl {};
-
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 8026F664 */ void Set(cXyz const&, f32);
-    /* 8026F6A8 */ void Set(cM3dGSphS const&);
-    /* 8026F708 */ void SetR(f32);
-    /* 8026F710 */ void cross(cM3dGSph const*, cXyz*) const;
-    /* 8026F73C */ void cross(cM3dGCyl const*, cXyz*) const;
-    /* 8026F76C */ void GetMinMaxCube(cXyz&, cXyz&) const;
-};
-
-struct Vec {};
-
-//
-// Forward References:
-//
-
-extern "C" void SetC__8cM3dGSphFRC4cXyz();
-extern "C" void Set__8cM3dGSphFRC4cXyzf();
-extern "C" void Set__8cM3dGSphFRC9cM3dGSphS();
-extern "C" void SetR__8cM3dGSphFf();
-extern "C" void cross__8cM3dGSphCFPC8cM3dGSphP4cXyz();
-extern "C" void cross__8cM3dGSphCFPC8cM3dGCylP4cXyz();
-extern "C" void GetMinMaxCube__8cM3dGSphCFR4cXyzR4cXyz();
-
-//
-// External References:
-//
-
-extern "C" void cM3d_Cross_CylSph__FPC8cM3dGCylPC8cM3dGSphP3VecPf();
-extern "C" void cM3d_Cross_SphSph__FPC8cM3dGSphPC8cM3dGSphP3Vec();
 
 //
 // Declarations:
 //
 
 /* 8026F648-8026F664 269F88 001C+00 2/2 5/5 254/254 .text            SetC__8cM3dGSphFRC4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGSph::SetC(cXyz const& param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_sph/SetC__8cM3dGSphFRC4cXyz.s"
+void cM3dGSph::SetC(const cXyz& pCenter) {
+    mCenter = pCenter;
 }
-#pragma pop
 
 /* 8026F664-8026F6A8 269FA4 0044+00 0/0 3/3 2/2 .text            Set__8cM3dGSphFRC4cXyzf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGSph::Set(cXyz const& param_0, f32 param_1) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_sph/Set__8cM3dGSphFRC4cXyzf.s"
+void cM3dGSph::Set(const cXyz& pCenter, f32 pRadius) {
+    this->SetC(pCenter);
+    this->SetR(pRadius);
 }
-#pragma pop
 
 /* 8026F6A8-8026F708 269FE8 0060+00 0/0 2/2 0/0 .text            Set__8cM3dGSphFRC9cM3dGSphS */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGSph::Set(cM3dGSphS const& param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_sph/Set__8cM3dGSphFRC9cM3dGSphS.s"
+void cM3dGSph::Set(const cM3dGSphS& pOther) {
+    this->SetC(cXyz(pOther.mCenter));
+    this->SetR(pOther.mRadius);
 }
-#pragma pop
 
 /* 8026F708-8026F710 26A048 0008+00 2/2 10/10 197/197 .text            SetR__8cM3dGSphFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGSph::SetR(f32 param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_sph/SetR__8cM3dGSphFf.s"
+void cM3dGSph::SetR(f32 pRadius) {
+    mRadius = pRadius;
 }
-#pragma pop
 
 /* 8026F710-8026F73C 26A050 002C+00 0/0 1/1 0/0 .text            cross__8cM3dGSphCFPC8cM3dGSphP4cXyz
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGSph::cross(cM3dGSph const* param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_sph/cross__8cM3dGSphCFPC8cM3dGSphP4cXyz.s"
+bool cM3dGSph::cross(const cM3dGSph* pOther, cXyz* pOut) const {
+    return cM3d_Cross_SphSph(pOther, this, pOut);
 }
-#pragma pop
 
 /* 8026F73C-8026F76C 26A07C 0030+00 0/0 1/1 0/0 .text            cross__8cM3dGSphCFPC8cM3dGCylP4cXyz
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGSph::cross(cM3dGCyl const* param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_sph/cross__8cM3dGSphCFPC8cM3dGCylP4cXyz.s"
+bool cM3dGSph::cross(const cM3dGCyl* pCylinder, cXyz* pOut) const {
+    f32 f;
+    return cM3d_Cross_CylSph(pCylinder, this, pOut, &f);
 }
-#pragma pop
 
 /* 8026F76C-8026F7B0 26A0AC 0044+00 0/0 1/1 0/0 .text GetMinMaxCube__8cM3dGSphCFR4cXyzR4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGSph::GetMinMaxCube(cXyz& param_0, cXyz& param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_sph/GetMinMaxCube__8cM3dGSphCFR4cXyzR4cXyz.s"
+void cM3dGSph::GetMinMaxCube(cXyz& pMin, cXyz& pMax) const {
+    pMin.x = mCenter.x - mRadius;
+    pMin.y = mCenter.y - mRadius;
+    pMin.z = mCenter.z - mRadius;
+    pMax.x = mCenter.x + mRadius;
+    pMax.y = mCenter.y + mRadius;
+    pMax.z = mCenter.z + mRadius;
 }
-#pragma pop

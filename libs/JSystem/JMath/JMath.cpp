@@ -15,10 +15,6 @@ struct Vec {};
 
 struct Quaternion {};
 
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
 //
 // Forward References:
 //

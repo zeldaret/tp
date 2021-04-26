@@ -18,7 +18,7 @@ lbl_8001C240:
 lbl_8001C280:
 /* 8001C280  80 0D 8B E0 */	lwz r0, Zero__5csXyz(r13)
 /* 8001C284  90 01 00 08 */	stw r0, 8(r1)
-/* 8001C288  A0 0D 8B E4 */	lhz r0, data_80451164(r13)
+/* 8001C288  A0 0D 8B E4 */	lhz r0, Zero__5csXyz+4(r13)
 /* 8001C28C  B0 01 00 0C */	sth r0, 0xc(r1)
 /* 8001C290  28 1E 00 00 */	cmplwi r30, 0
 /* 8001C294  41 82 00 20 */	beq lbl_8001C2B4

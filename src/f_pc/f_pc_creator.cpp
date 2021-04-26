@@ -6,74 +6,29 @@
 #include "f_pc/f_pc_creator.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct create_request {};
-
-struct base_process_class {};
-
-//
-// Forward References:
-//
-
-extern "C" void fpcCt_IsCreatingByID__FUi();
-extern "C" void fpcCt_IsDoing__FP18base_process_class();
-extern "C" void fpcCt_Abort__FP18base_process_class();
-extern "C" void fpcCt_Handler__Fv();
-
-//
-// External References:
-//
-
-extern "C" void fpcCtRq_IsCreatingByID__FUi();
-extern "C" void fpcCtRq_Cancel__FP14create_request();
-extern "C" void fpcCtRq_IsDoing__FP14create_request();
-extern "C" void fpcCtRq_Handler__Fv();
+#include "f_pc/f_pc_base.h"
+#include "f_pc/f_pc_create_req.h"
 
 //
 // Declarations:
 //
 
-/* 80020EA8-80020EC8 01B7E8 0020+00 0/0 1/1 0/0 .text            fpcCt_IsCreatingByID__FUi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcCt_IsCreatingByID(unsigned int param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_creator/fpcCt_IsCreatingByID__FUi.s"
+/* 80020EA8-80020EC8 0020+00 s=0 e=1 z=0  None .text      fpcCt_IsCreatingByID__FUi */
+BOOL fpcCt_IsCreatingByID(unsigned int id) {
+    return fpcCtRq_IsCreatingByID(id);
 }
-#pragma pop
 
-/* 80020EC8-80020EEC 01B808 0024+00 0/0 1/1 0/0 .text fpcCt_IsDoing__FP18base_process_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcCt_IsDoing(base_process_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_creator/fpcCt_IsDoing__FP18base_process_class.s"
+/* 80020EC8-80020EEC 0024+00 s=0 e=1 z=0  None .text      fpcCt_IsDoing__FP18base_process_class */
+s32 fpcCt_IsDoing(base_process_class* pProc) {
+    return fpcCtRq_IsDoing(pProc->mpCtRq);
 }
-#pragma pop
 
-/* 80020EEC-80020F10 01B82C 0024+00 0/0 1/1 0/0 .text            fpcCt_Abort__FP18base_process_class
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcCt_Abort(base_process_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_creator/fpcCt_Abort__FP18base_process_class.s"
+/* 80020EEC-80020F10 0024+00 s=0 e=1 z=0  None .text      fpcCt_Abort__FP18base_process_class */
+BOOL fpcCt_Abort(base_process_class* pProc) {
+    return fpcCtRq_Cancel(pProc->mpCtRq);
 }
-#pragma pop
 
-/* 80020F10-80020F30 01B850 0020+00 0/0 1/1 0/0 .text            fpcCt_Handler__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcCt_Handler() {
-    nofralloc
-#include "asm/f_pc/f_pc_creator/fpcCt_Handler__Fv.s"
+/* 80020F10-80020F30 0020+00 s=0 e=1 z=0  None .text      fpcCt_Handler__Fv */
+void fpcCt_Handler(void) {
+    fpcCtRq_Handler();
 }
-#pragma pop

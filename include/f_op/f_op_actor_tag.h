@@ -1,6 +1,10 @@
-#ifndef F_OP_F_OP_ACTOR_TAG_H
-#define F_OP_F_OP_ACTOR_TAG_H
+#ifndef F_OP_ACTOR_TAG_H_
+#define F_OP_ACTOR_TAG_H_
 
+#include "SSystem/SComponent/c_tag.h"
 #include "dolphin/types.h"
 
-#endif /* F_OP_F_OP_ACTOR_TAG_H */
+// f_op_actor_tag::g_fopAcTg_Queue
+extern node_list_class g_fopAcTg_Queue;
+
+#endif

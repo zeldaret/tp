@@ -57,8 +57,8 @@ lbl_80022220:
 /* 80022220  3C 60 80 02 */	lis r3, fpcM_Execute__FPv@ha /* 0x800220F8@ha */
 /* 80022224  38 63 20 F8 */	addi r3, r3, fpcM_Execute__FPv@l /* 0x800220F8@l */
 /* 80022228  4B FF F3 41 */	bl fpcEx_Handler__FPFPvPv_i
-/* 8002222C  3C 60 80 02 */	lis r3, fpcM_DrawIterater__FPFPvPv_i@ha /* 0x800220C0@ha */
-/* 80022230  38 63 20 C0 */	addi r3, r3, fpcM_DrawIterater__FPFPvPv_i@l /* 0x800220C0@l */
+/* 8002222C  3C 60 80 02 */	lis r3, fpcM_DrawIterater@ha /* 0x800220C0@ha */
+/* 80022230  38 63 20 C0 */	addi r3, r3, fpcM_DrawIterater@l /* 0x800220C0@l */
 /* 80022234  3C 80 80 02 */	lis r4, fpcM_Draw__FPv@ha /* 0x800220A0@ha */
 /* 80022238  38 84 20 A0 */	addi r4, r4, fpcM_Draw__FPv@l /* 0x800220A0@l */
 /* 8002223C  48 00 17 B9 */	bl fpcDw_Handler__FPFPFPvPv_i_iPFPvPv_i

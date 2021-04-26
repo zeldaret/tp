@@ -8,93 +8,39 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct cBgW_BgId {
-    /* 802681C0 */ void Regist(int);
-    /* 802681C8 */ void Release();
-    /* 802681D4 */ void ChkUsed() const;
-};
-
-//
-// Forward References:
-//
-
-extern "C" void Regist__9cBgW_BgIdFi();
-extern "C" void Release__9cBgW_BgIdFv();
-extern "C" void ChkUsed__9cBgW_BgIdCFv();
-extern "C" void cBgW_CheckBGround__Ff();
-extern "C" void cBgW_CheckBRoof__Ff();
-extern "C" void cBgW_CheckBWall__Ff();
-
-//
-// External References:
-//
-
-//
 // Declarations:
 //
 
-/* 802681C0-802681C8 -00001 0008+00 0/0 0/0 0/0 .text            Regist__9cBgW_BgIdFi */
-void cBgW_BgId::Regist(int param_0) {
-    *(u16*)this = (u16)(param_0);
+/* 802681C0-802681C8 262B00 0008+00 0/0 1/1 0/0 .text            Regist__9cBgW_BgIdFi */
+void cBgW_BgId::Regist(int a1) {
+    mId = a1;
 }
 
 /* 802681C8-802681D4 262B08 000C+00 0/0 2/2 0/0 .text            Release__9cBgW_BgIdFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW_BgId::Release() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_w/Release__9cBgW_BgIdFv.s"
+void cBgW_BgId::Release() {
+    mId = 0x100;
 }
-#pragma pop
 
 /* 802681D4-802681E4 262B14 0010+00 0/0 7/7 121/121 .text            ChkUsed__9cBgW_BgIdCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW_BgId::ChkUsed() const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_w/ChkUsed__9cBgW_BgIdCFv.s"
+unsigned int cBgW_BgId::ChkUsed() const {
+    unsigned int temp = mId - 0x100;
+    return temp >> 0x1f;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804550E8-804550EC 0036E8 0004+00 1/1 0/0 0/0 .sdata2          @2242 */
-SECTION_SDATA2 static f32 lit_2242 = 0.5f;
 
 /* 802681E4-802681FC 262B24 0018+00 1/1 22/22 8/8 .text            cBgW_CheckBGround__Ff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW_CheckBGround(f32 param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_w/cBgW_CheckBGround__Ff.s"
+bool cBgW_CheckBGround(float a1) {
+    return a1 >= 0.5f;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804550EC-804550F0 0036EC 0004+00 1/1 0/0 0/0 .sdata2          @2249 */
-SECTION_SDATA2 static f32 lit_2249 = -4.0f / 5.0f;
 
 /* 802681FC-80268210 262B3C 0014+00 1/1 6/6 0/0 .text            cBgW_CheckBRoof__Ff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW_CheckBRoof(f32 param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_w/cBgW_CheckBRoof__Ff.s"
+bool cBgW_CheckBRoof(float a1) {
+    return a1 < (-4.0f / 5.0f);
 }
-#pragma pop
 
 /* 80268210-80268260 262B50 0050+00 0/0 16/16 4/4 .text            cBgW_CheckBWall__Ff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW_CheckBWall(f32 param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_w/cBgW_CheckBWall__Ff.s"
+bool cBgW_CheckBWall(float a1) {
+    if (!cBgW_CheckBGround(a1) && !cBgW_CheckBRoof(a1))
+        return true;
+
+    return false;
 }
-#pragma pop

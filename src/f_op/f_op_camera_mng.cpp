@@ -6,60 +6,26 @@
 #include "f_op/f_op_camera_mng.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct layer_class {};
-
-struct camera_class {};
-
-//
-// Forward References:
-//
-
-extern "C" void fopCamM_GetParam__FP12camera_class();
-extern "C" void fopCamM_Create__FisPv();
-extern "C" void fopCamM_Management__Fv();
-extern "C" void fopCamM_Init__Fv();
-
-//
-// External References:
-//
-
-extern "C" void fpcLy_CurrentLayer__Fv();
-extern "C" void fpcSCtRq_Request__FP11layer_classsPFPvPv_iPvPv();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
+#include "f_pc/f_pc_stdcreate_req.h"
 
 //
 // Declarations:
 //
 
-/* 8001E308-8001E310 018C48 0008+00 0/0 12/12 2/2 .text fopCamM_GetParam__FP12camera_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopCamM_GetParam(camera_class* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_camera_mng/fopCamM_GetParam__FP12camera_class.s"
-}
-#pragma pop
-
 /* ############################################################################################## */
 /* 803F1DD8-803F1DE8 01EAF8 0010+00 1/1 0/0 0/0 .bss             l_fopCamM_id */
-static u8 l_fopCamM_id[16];
+static u32 l_fopCamM_id[4];
+
+/* 8001E308-8001E310 018C48 0008+00 0/0 12/12 2/2 .text fopCamM_GetParam__FP12camera_class */
+u32 fopCamM_GetParam(camera_class* pCamera) {
+    return pCamera->parameter;
+}
 
 /* 8001E310-8001E374 018C50 0064+00 0/0 1/1 0/0 .text            fopCamM_Create__FisPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopCamM_Create(int param_0, s16 param_1, void* param_2) {
-    nofralloc
-#include "asm/f_op/f_op_camera_mng/fopCamM_Create__FisPv.s"
+u32 fopCamM_Create(int i_cameraIdx, s16 pProcName, void* param_3) {
+    l_fopCamM_id[i_cameraIdx] = fpcSCtRq_Request(fpcLy_CurrentLayer(), pProcName, 0, 0, param_3);
+    return l_fopCamM_id[i_cameraIdx];
 }
-#pragma pop
 
 /* 8001E374-8001E378 018CB4 0004+00 0/0 1/1 0/0 .text            fopCamM_Management__Fv */
 void fopCamM_Management() {

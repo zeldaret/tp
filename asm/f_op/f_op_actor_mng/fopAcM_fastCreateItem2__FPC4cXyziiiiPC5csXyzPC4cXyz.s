@@ -13,7 +13,7 @@ lbl_8001C3E0:
 /* 8001C40C  7D 3F 4B 78 */	mr r31, r9
 /* 8001C410  80 0D 8B E0 */	lwz r0, Zero__5csXyz(r13)
 /* 8001C414  90 01 00 10 */	stw r0, 0x10(r1)
-/* 8001C418  A0 0D 8B E4 */	lhz r0, data_80451164(r13)
+/* 8001C418  A0 0D 8B E4 */	lhz r0, Zero__5csXyz+4(r13)
 /* 8001C41C  B0 01 00 14 */	sth r0, 0x14(r1)
 /* 8001C420  2C 1C 00 FF */	cmpwi r28, 0xff
 /* 8001C424  40 82 00 0C */	bne lbl_8001C430

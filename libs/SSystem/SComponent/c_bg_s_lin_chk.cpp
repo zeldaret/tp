@@ -4,39 +4,10 @@
 //
 
 #include "SSystem/SComponent/c_bg_s_lin_chk.h"
+#include "SSystem/SComponent/c_bg_s_chk.h"
+#include "SSystem/SComponent/c_bg_s_poly_info.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct cXyz {
-    static f32 Zero[3];
-};
-
-struct cM3dGLin {
-    /* 8026F2E8 */ void SetStartEnd(cXyz const&, cXyz const&);
-};
-
-struct cBgS_PolyInfo {
-    /* 80268074 */ cBgS_PolyInfo();
-    /* 802680B0 */ ~cBgS_PolyInfo();
-    /* 80268120 */ void ClearPi();
-};
-
-struct cBgS_LinChk {
-    /* 80267D5C */ cBgS_LinChk();
-    /* 80267DBC */ ~cBgS_LinChk();
-    /* 80267E48 */ void ct();
-    /* 80267ED0 */ void Set2(cXyz const*, cXyz const*, unsigned int);
-    /* 80267F40 */ void PreCalc();
-};
-
-struct cBgS_Chk {
-    /* 80267B4C */ cBgS_Chk();
-    /* 80267B70 */ ~cBgS_Chk();
-};
 
 //
 // Forward References:

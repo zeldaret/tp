@@ -1,6 +1,34 @@
-#ifndef F_PC_F_PC_CREATE_ITER_H
-#define F_PC_F_PC_CREATE_ITER_H
 
+#ifndef F_PC_CREATE_ITER_H_
+#define F_PC_CREATE_ITER_H_
+
+#include "SSystem/SComponent/c_list_iter.h"
+#include "SSystem/SComponent/c_tag_iter.h"
 #include "dolphin/types.h"
+#include "f_pc/f_pc_create_tag.h"
 
-#endif /* F_PC_F_PC_CREATE_ITER_H */
+typedef int (*fpcCtIt_MethodFunc)(void*, void*);
+typedef void* (*fpcCtIt_JudgeFunc)(void*, void*);
+
+typedef struct node_method_data {
+    fpcCtIt_MethodFunc mFunc;
+    void* mpUserData;
+} node_method_data;
+
+typedef struct node_judge_data {
+    fpcCtIt_JudgeFunc mFunc;
+    void* mpUserData;
+} node_judge_data;
+
+typedef struct fpcCtIt_jilprm_c {
+    u32 mLayerID;
+    fpcCtIt_JudgeFunc mFunc;
+    void* mpUserData;
+} fpcCtIt_jilprm_c;
+
+s32 fpcCtIt_Method(fpcCtIt_MethodFunc pJudge, void* pUserData);
+void* fpcCtIt_Judge(fpcCtIt_JudgeFunc pJudge, void* pUserData);
+void* fpcCtIt_filter_JudgeInLayer(create_tag*, fpcCtIt_jilprm_c*);
+void* fpcCtIt_JudgeInLayer(unsigned int pUnk0, fpcCtIt_JudgeFunc pFunc, void* pUserData);
+
+#endif

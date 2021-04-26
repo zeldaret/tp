@@ -4,123 +4,67 @@
 //
 
 #include "SSystem/SComponent/c_m3d_g_pla.h"
+#include "SSystem/SComponent/c_m3d.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct cXyz {};
-
-struct Vec {};
-
-struct cM3dGPla {
-    /* 8026F3DC */ cM3dGPla(cXyz const*, f32);
-    /* 8026F408 */ void crossInfLin(cXyz const&, cXyz const&, cXyz&) const;
-    /* 8026F4C4 */ void SetupNP0(Vec const&, Vec const&);
-    /* 8026F52C */ void SetupNP(Vec const&, Vec const&);
-    /* 8026F57C */ void getCrossY(cXyz const&, f32*) const;
-    /* 8026F5D4 */ void getCrossYLessD(Vec const&, f32*) const;
-    /* 8026F624 */ void Set(cM3dGPla const*);
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__8cM3dGPlaFPC4cXyzf();
-extern "C" void crossInfLin__8cM3dGPlaCFRC4cXyzRC4cXyzR4cXyz();
-extern "C" void SetupNP0__8cM3dGPlaFRC3VecRC3Vec();
-extern "C" void SetupNP__8cM3dGPlaFRC3VecRC3Vec();
-extern "C" void getCrossY__8cM3dGPlaCFRC4cXyzPf();
-extern "C" void getCrossYLessD__8cM3dGPlaCFRC3VecPf();
-extern "C" void Set__8cM3dGPlaFPC8cM3dGPla();
-
-//
-// External References:
-//
-
-extern "C" void cM3d_InDivPos2__FPC3VecPC3VecfP3Vec();
-extern "C" void PSVECNormalize();
-extern "C" void PSVECDotProduct();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_28();
-extern "C" extern void* __vt__8cM3dGPla[3];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
+#include "msl_c/math.h"
 
 //
 // Declarations:
 //
 
 /* 8026F3DC-8026F408 269D1C 002C+00 0/0 3/3 0/0 .text            __ct__8cM3dGPlaFPC4cXyzf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cM3dGPla::cM3dGPla(cXyz const* param_0, f32 param_1) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_pla/__ct__8cM3dGPlaFPC4cXyzf.s"
-}
-#pragma pop
+cM3dGPla::cM3dGPla(const cXyz* pNormal, f32 pD) : mNormal(*pNormal), mD(pD) {}
 
 /* 8026F408-8026F4C4 269D48 00BC+00 0/0 3/3 0/0 .text crossInfLin__8cM3dGPlaCFRC4cXyzRC4cXyzR4cXyz
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGPla::crossInfLin(cXyz const& param_0, cXyz const& param_1, cXyz& param_2) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_pla/crossInfLin__8cM3dGPlaCFRC4cXyzRC4cXyzR4cXyz.s"
+bool cM3dGPla::crossInfLin(const cXyz& pStart, const cXyz& pEnd, cXyz& out) const {
+    f32 tmp1 = (mD + PSVECDotProduct(&mNormal, &pStart));
+    f32 tmp2 = tmp1 - (mD + PSVECDotProduct(&mNormal, &pEnd));
+    if (fabsf(tmp2) < G_CM3D_F_ABS_MIN) {
+        out = pEnd;
+        return false;
+    } else {
+        cM3d_InDivPos2(&pStart, &pEnd, (tmp1 / tmp2), &out);
+        return true;
+    }
 }
-#pragma pop
 
 /* 8026F4C4-8026F52C 269E04 0068+00 0/0 1/1 0/0 .text            SetupNP0__8cM3dGPlaFRC3VecRC3Vec */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGPla::SetupNP0(Vec const& param_0, Vec const& param_1) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_pla/SetupNP0__8cM3dGPlaFRC3VecRC3Vec.s"
+void cM3dGPla::SetupNP0(const Vec& pNormal, const Vec& pPoint) {
+    mNormal = pNormal;
+    PSVECNormalize(&mNormal, &mNormal);
+    mD = -PSVECDotProduct(&mNormal, &pPoint);
 }
-#pragma pop
 
 /* 8026F52C-8026F57C 269E6C 0050+00 0/0 2/2 0/0 .text            SetupNP__8cM3dGPlaFRC3VecRC3Vec */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGPla::SetupNP(Vec const& param_0, Vec const& param_1) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_pla/SetupNP__8cM3dGPlaFRC3VecRC3Vec.s"
+void cM3dGPla::SetupNP(const Vec& pNormal, const Vec& pPoint) {
+    mNormal = pNormal;
+    mD = -PSVECDotProduct(&mNormal, &pPoint);
 }
-#pragma pop
 
 /* 8026F57C-8026F5D4 269EBC 0058+00 0/0 2/2 0/0 .text            getCrossY__8cM3dGPlaCFRC4cXyzPf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGPla::getCrossY(cXyz const& param_0, f32* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_pla/getCrossY__8cM3dGPlaCFRC4cXyzPf.s"
+bool cM3dGPla::getCrossY(const cXyz& pPoint, f32* pOut) const {
+    if (fabsf(mNormal.y) < G_CM3D_F_ABS_MIN) {
+        return false;
+    } else {
+        *pOut = (-mNormal.x * pPoint.x - mNormal.z * pPoint.z - mD) / mNormal.y;
+        return true;
+    }
 }
-#pragma pop
 
 /* 8026F5D4-8026F624 269F14 0050+00 0/0 1/1 0/0 .text            getCrossYLessD__8cM3dGPlaCFRC3VecPf
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGPla::getCrossYLessD(Vec const& param_0, f32* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_pla/getCrossYLessD__8cM3dGPlaCFRC3VecPf.s"
+bool cM3dGPla::getCrossYLessD(const Vec& pPoint, f32* pOut) const {
+    if (fabsf(mNormal.y) < G_CM3D_F_ABS_MIN) {
+        return false;
+    } else {
+        *pOut = (-mNormal.x * pPoint.x - mNormal.z * pPoint.z) / mNormal.y;
+        return true;
+    }
 }
-#pragma pop
 
 /* 8026F624-8026F648 269F64 0024+00 0/0 1/1 0/0 .text            Set__8cM3dGPlaFPC8cM3dGPla */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGPla::Set(cM3dGPla const* param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_pla/Set__8cM3dGPlaFPC8cM3dGPla.s"
+void cM3dGPla::Set(const cM3dGPla* pOther) {
+    *this = *pOther;
 }
-#pragma pop

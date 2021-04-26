@@ -4,26 +4,13 @@
 //
 
 #include "SSystem/SComponent/c_lib.h"
+#include "JSystem/JMath/JMath.h"
+#include "SSystem/SComponent/c_math.h"
+#include "SSystem/SComponent/c_xyz.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 80266D30 */ void normZP() const;
-    /* 8026702C */ bool operator==(Vec const&) const;
-    /* 8026706C */ bool operator!=(Vec const&) const;
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
+#include "msl_c/math.h"
+#include "msl_c/string.h"
 
 //
 // Forward References:
@@ -62,50 +49,27 @@ extern "C" void MtxPull__Fv();
 // External References:
 //
 
-SECTION_INIT void memset();
-SECTION_INIT void memcpy();
 extern "C" void __mi__4cXyzCFRC3Vec();
 extern "C" void __ml__4cXyzCFf();
 extern "C" void normZP__4cXyzCFv();
 extern "C" bool __eq__4cXyzCFRC3Vec();
 extern "C" bool __ne__4cXyzCFRC3Vec();
 extern "C" void cM_atan2s__Fff();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXConcat();
-extern "C" void PSMTXTrans();
-extern "C" void PSMTXScale();
-extern "C" void PSMTXMultVec();
-extern "C" void PSVECSubtract();
-extern "C" void PSVECScale();
-extern "C" void PSVECSquareMag();
-extern "C" void PSVECSquareDistance();
-extern "C" void abs();
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
 
 //
 // Declarations:
 //
 
 /* 8026F93C-8026F95C 26A27C 0020+00 0/0 3/3 0/0 .text            cLib_memCpy__FPvPCvUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cLib_memCpy(void* param_0, void const* param_1, u32 param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/cLib_memCpy__FPvPCvUl.s"
+void cLib_memCpy(void* dst, const void* src, unsigned long size) {
+    memcpy(dst, src, size);
 }
-#pragma pop
 
 /* 8026F95C-8026F97C 26A29C 0020+00 0/0 4/4 0/0 .text            cLib_memSet__FPviUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cLib_memSet(void* param_0, int param_1, u32 param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/cLib_memSet__FPviUl.s"
+void cLib_memSet(void* ptr, int value, unsigned long size) {
+    memset(ptr, value, size);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804551E0-804551E8 0037E0 0004+04 9/9 0/0 0/0 .sdata2          @2262 */
@@ -119,7 +83,7 @@ SECTION_SDATA2 static f32 lit_2262[1 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cLib_addCalc(f32* param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4) {
+asm f32 cLib_addCalc(f32* param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4) {
     nofralloc
 #include "asm/SSystem/SComponent/c_lib/cLib_addCalc__FPfffff.s"
 }
@@ -168,8 +132,7 @@ SECTION_SDATA2 static f32 lit_2382[1 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cLib_addCalcPos(cXyz* param_0, cXyz const& param_1, f32 param_2, f32 param_3,
-                         f32 param_4) {
+asm f32 cLib_addCalcPos(cXyz* param_0, cXyz const& param_1, f32 param_2, f32 param_3, f32 param_4) {
     nofralloc
 #include "asm/SSystem/SComponent/c_lib/cLib_addCalcPos__FP4cXyzRC4cXyzfff.s"
 }
@@ -179,8 +142,8 @@ asm void cLib_addCalcPos(cXyz* param_0, cXyz const& param_1, f32 param_2, f32 pa
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cLib_addCalcPosXZ(cXyz* param_0, cXyz const& param_1, f32 param_2, f32 param_3,
-                           f32 param_4) {
+asm f32 cLib_addCalcPosXZ(cXyz* param_0, cXyz const& param_1, f32 param_2, f32 param_3,
+                          f32 param_4) {
     nofralloc
 #include "asm/SSystem/SComponent/c_lib/cLib_addCalcPosXZ__FP4cXyzRC4cXyzfff.s"
 }
@@ -211,7 +174,7 @@ asm void cLib_addCalcPosXZ2(cXyz* param_0, cXyz const& param_1, f32 param_2, f32
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cLib_addCalcAngleS(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 param_4) {
+asm s16 cLib_addCalcAngleS(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 param_4) {
     nofralloc
 #include "asm/SSystem/SComponent/c_lib/cLib_addCalcAngleS__FPsssss.s"
 }
@@ -231,7 +194,7 @@ asm void cLib_addCalcAngleS2(s16* param_0, s16 param_1, s16 param_2, s16 param_3
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cLib_chaseUC(u8* param_0, u8 param_1, u8 param_2) {
+asm int cLib_chaseUC(u8* param_0, u8 param_1, u8 param_2) {
     nofralloc
 #include "asm/SSystem/SComponent/c_lib/cLib_chaseUC__FPUcUcUc.s"
 }
@@ -241,7 +204,7 @@ asm void cLib_chaseUC(u8* param_0, u8 param_1, u8 param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cLib_chaseS(s16* param_0, s16 param_1, s16 param_2) {
+asm int cLib_chaseS(s16* param_0, s16 param_1, s16 param_2) {
     nofralloc
 #include "asm/SSystem/SComponent/c_lib/cLib_chaseS__FPsss.s"
 }
@@ -251,7 +214,7 @@ asm void cLib_chaseS(s16* param_0, s16 param_1, s16 param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cLib_chaseF(f32* param_0, f32 param_1, f32 param_2) {
+asm int cLib_chaseF(f32* param_0, f32 param_1, f32 param_2) {
     nofralloc
 #include "asm/SSystem/SComponent/c_lib/cLib_chaseF__FPfff.s"
 }
@@ -261,7 +224,7 @@ asm void cLib_chaseF(f32* param_0, f32 param_1, f32 param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cLib_chasePos(cXyz* param_0, cXyz const& param_1, f32 param_2) {
+asm int cLib_chasePos(cXyz* param_0, cXyz const& param_1, f32 param_2) {
     nofralloc
 #include "asm/SSystem/SComponent/c_lib/cLib_chasePos__FP4cXyzRC4cXyzf.s"
 }
@@ -272,7 +235,7 @@ asm void cLib_chasePos(cXyz* param_0, cXyz const& param_1, f32 param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cLib_chasePosXZ(cXyz* param_0, cXyz const& param_1, f32 param_2) {
+asm int cLib_chasePosXZ(cXyz* param_0, cXyz const& param_1, f32 param_2) {
     nofralloc
 #include "asm/SSystem/SComponent/c_lib/cLib_chasePosXZ__FP4cXyzRC4cXyzf.s"
 }
@@ -282,41 +245,40 @@ asm void cLib_chasePosXZ(cXyz* param_0, cXyz const& param_1, f32 param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cLib_chaseAngleS(s16* param_0, s16 param_1, s16 param_2) {
+asm int cLib_chaseAngleS(s16* param_0, s16 param_1, s16 param_2) {
     nofralloc
 #include "asm/SSystem/SComponent/c_lib/cLib_chaseAngleS__FPsss.s"
 }
 #pragma pop
 
 /* 80270C04-80270C3C 26B544 0038+00 0/0 39/39 454/454 .text cLib_targetAngleY__FPC3VecPC3Vec */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cLib_targetAngleY(Vec const* param_0, Vec const* param_1) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/cLib_targetAngleY__FPC3VecPC3Vec.s"
+s16 cLib_targetAngleY(const Vec* lhs, const Vec* rhs) {
+    return cM_atan2s(rhs->x - lhs->x, rhs->z - lhs->z);
 }
-#pragma pop
 
 /* 80270C3C-80270C74 26B57C 0038+00 0/0 0/0 7/7 .text            cLib_targetAngleY__FRC3VecRC3Vec */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cLib_targetAngleY(Vec const& param_0, Vec const& param_1) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/cLib_targetAngleY__FRC3VecRC3Vec.s"
+s16 cLib_targetAngleY(const Vec& lhs, const Vec& rhs) {
+    return cM_atan2s(rhs.x - lhs.x, rhs.z - lhs.z);
 }
-#pragma pop
 
 /* 80270C74-80270DC0 26B5B4 014C+00 0/0 2/2 109/109 .text cLib_targetAngleX__FPC4cXyzPC4cXyz */
+#ifdef NON_MATCHING
+s16 cLib_targetAngleX(cXyz const* param_0, cXyz const* param_1) {
+    // would match with all float literals
+    cXyz diff = *param_1 - *param_0;
+    f32 f1 = sqrtf(diff.getMagXZ());
+    return cM_atan2s(diff.GetY(), f1);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cLib_targetAngleX(cXyz const* param_0, cXyz const* param_1) {
+asm s16 cLib_targetAngleX(cXyz const* param_0, cXyz const* param_1) {
     nofralloc
 #include "asm/SSystem/SComponent/c_lib/cLib_targetAngleX__FPC4cXyzPC4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* 80270DC0-80270E24 26B700 0064+00 0/0 2/2 118/118 .text cLib_offsetPos__FP4cXyzPC4cXyzsPC4cXyz
  */
@@ -330,82 +292,58 @@ asm void cLib_offsetPos(cXyz* param_0, cXyz const* param_1, s16 param_2, cXyz co
 #pragma pop
 
 /* 80270E24-80270E4C 26B764 0028+00 0/0 48/48 71/71 .text            cLib_distanceAngleS__Fss */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cLib_distanceAngleS(s16 param_0, s16 param_1) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/cLib_distanceAngleS__Fss.s"
+s32 cLib_distanceAngleS(s16 x, s16 y) {
+    return abs(static_cast<s16>(x - y));
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80430DB8-80430F98 05DAD8 01E0+00 2/1 0/0 0/0 .bss             mtx */
-static u8 mtx[480];
+static Mtx mtx[10];
 
 /* 80450768-80450770 -00001 0004+04 6/6 2/2 695/695 .sdata           calc_mtx */
-SECTION_SDATA extern void* calc_mtx[1 + 1 /* padding */] = {
-    (void*)&mtx,
-    /* padding */
-    NULL,
-};
+Mtx* calc_mtx = mtx;
 
 /* 80270E4C-80270E5C 26B78C 0010+00 0/0 1/1 0/0 .text            MtxInit__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void MtxInit() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/MtxInit__Fv.s"
+void MtxInit() {
+    calc_mtx = mtx;
 }
-#pragma pop
 
 /* 80270E5C-80270EA4 26B79C 0048+00 0/0 0/0 43/43 .text            MtxTrans__FfffUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void MtxTrans(f32 param_0, f32 param_1, f32 param_2, u8 param_3) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/MtxTrans__FfffUc.s"
+void MtxTrans(f32 x_trans, f32 y_trans, f32 z_trans, u8 param_3) {
+    if (param_3 == 0) {
+        PSMTXTrans(*calc_mtx, x_trans, y_trans, z_trans);
+    } else {
+        Mtx mtx;
+        PSMTXTrans(mtx, x_trans, y_trans, z_trans);
+        PSMTXConcat(*calc_mtx, mtx, *calc_mtx);
+    }
 }
-#pragma pop
 
 /* 80270EA4-80270EEC 26B7E4 0048+00 0/0 0/0 46/46 .text            MtxScale__FfffUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void MtxScale(f32 param_0, f32 param_1, f32 param_2, u8 param_3) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/MtxScale__FfffUc.s"
+void MtxScale(f32 x_trans, f32 y_trans, f32 z_trans, u8 param_3) {
+    if (param_3 == 0) {
+        PSMTXScale(*calc_mtx, x_trans, y_trans, z_trans);
+    } else {
+        Mtx mtx;
+        PSMTXScale(mtx, x_trans, y_trans, z_trans);
+        PSMTXConcat(*calc_mtx, mtx, *calc_mtx);
+    }
 }
-#pragma pop
 
 /* 80270EEC-80270F1C 26B82C 0030+00 0/0 2/2 615/615 .text            MtxPosition__FP4cXyzP4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void MtxPosition(cXyz* param_0, cXyz* param_1) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/MtxPosition__FP4cXyzP4cXyz.s"
+void MtxPosition(cXyz* src, cXyz* dest) {
+    PSMTXMultVec(*calc_mtx, src, dest);
 }
-#pragma pop
 
 /* 80270F1C-80270F58 26B85C 003C+00 0/0 0/0 20/20 .text            MtxPush__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void MtxPush() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/MtxPush__Fv.s"
+void MtxPush() {
+    Mtx mtx;
+    PSMTXCopy(*calc_mtx, mtx);
+    calc_mtx++;
+    PSMTXCopy(mtx, *calc_mtx);
 }
-#pragma pop
 
 /* 80270F58-80270F68 26B898 0010+00 0/0 0/0 20/20 .text            MtxPull__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void MtxPull() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/MtxPull__Fv.s"
+Mtx* MtxPull() {
+    return calc_mtx--;
 }
-#pragma pop

@@ -6,20 +6,8 @@
 #include "f_op/f_op_camera.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct process_method_class {};
-
-struct leafdraw_method_class {};
-
-struct leafdraw_class {};
-
-struct create_tag_class {};
-
-struct camera_class {};
+#include "f_op/f_op_draw_tag.h"
+#include "f_pc/f_pc_leaf.h"
 
 //
 // Forward References:
@@ -53,16 +41,36 @@ extern "C" extern u8 struct_80451124[4];
 //
 
 /* 8001E140-8001E180 018A80 0040+00 1/0 0/0 0/0 .text            fopCam_Draw__FP12camera_class */
+#if 0
+// TODO: move dComIfG
+static s32 fopCam_Draw(camera_class* pCamera) {
+    s32 tmp = 1;
+
+    if (g_dComIfG_gameInfo.getPlay().isPauseFlag() == false) {
+        tmp = fpcLf_DrawMethod(pCamera->pMthd, pCamera);
+    }
+    return tmp;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void fopCam_Draw(camera_class* param_0) {
+static asm s32 fopCam_Draw(camera_class* param_0) {
     nofralloc
 #include "asm/f_op/f_op_camera/fopCam_Draw__FP12camera_class.s"
 }
 #pragma pop
+#endif
 
 /* 8001E180-8001E1C8 018AC0 0048+00 1/0 0/0 0/0 .text            fopCam_Execute__FP12camera_class */
+// Matches, but wrong registers
+#ifdef NONMATCHING
+static void fopCam_Execute(camera_class* pCamera) {
+    if (!g_dComIfG_gameInfo.getPlay().isPauseFlag() && !lbl_80451124) {
+        fpcMtd_Execute((process_method_class*)pCamera->pMthd, pCamera);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -71,27 +79,28 @@ static asm void fopCam_Execute(camera_class* param_0) {
 #include "asm/f_op/f_op_camera/fopCam_Execute__FP12camera_class.s"
 }
 #pragma pop
+#endif
 
 /* 8001E1C8-8001E21C 018B08 0054+00 1/0 0/0 0/0 .text            fopCam_IsDelete__FP12camera_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void fopCam_IsDelete(camera_class* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_camera/fopCam_IsDelete__FP12camera_class.s"
+int fopCam_IsDelete(camera_class* pCamera) {
+    int tmp = fpcMtd_IsDelete((process_method_class*)pCamera->pMthd, pCamera);
+    if (tmp == 1) {
+        fopDwTg_DrawQTo(&pCamera->pCreateTag);
+    }
+
+    return tmp;
 }
-#pragma pop
 
 /* 8001E21C-8001E270 018B5C 0054+00 1/0 0/0 0/0 .text            fopCam_Delete__FP12camera_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void fopCam_Delete(camera_class* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_camera/fopCam_Delete__FP12camera_class.s"
+int fopCam_Delete(camera_class* pCamera) {
+    int tmp = fpcMtd_Delete((process_method_class*)pCamera->pMthd, pCamera);
+    if (tmp == 1) {
+        fopDwTg_DrawQTo(&pCamera->pCreateTag);
+    }
+
+    return tmp;
 }
-#pragma pop
 
 /* 8001E270-8001E308 018BB0 0098+00 1/0 0/0 0/0 .text            fopCam_Create__FPv */
 #pragma push
@@ -106,11 +115,11 @@ static asm void fopCam_Create(void* param_0) {
 /* ############################################################################################## */
 /* 803A3860-803A3878 -00001 0014+04 0/0 2/0 0/0 .data            g_fopCam_Method */
 SECTION_DATA extern void* g_fopCam_Method[5 + 1 /* padding */] = {
-    (void*)fopCam_Create__FPv,
-    (void*)fopCam_Delete__FP12camera_class,
-    (void*)fopCam_Execute__FP12camera_class,
-    (void*)fopCam_IsDelete__FP12camera_class,
-    (void*)fopCam_Draw__FP12camera_class,
+    (void*)fopCam_Create,
+    (void*)fopCam_Delete,
+    (void*)fopCam_Execute,
+    (void*)fopCam_IsDelete,
+    (void*)fopCam_Draw,
     /* padding */
     NULL,
 };
