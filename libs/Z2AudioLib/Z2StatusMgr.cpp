@@ -11,26 +11,6 @@
 // Types:
 //
 
-struct Vec {};
-
-struct Z2StatusMgr {
-    /* 802B5F1C */ Z2StatusMgr();
-    /* 802B5F70 */ void heartGaugeOn();
-    /* 802B5F7C */ void processHeartGaugeSound();
-    /* 802B60CC */ void talkIn();
-    /* 802B6104 */ void talkOut();
-    /* 802B613C */ void menuIn();
-    /* 802B617C */ void menuOut();
-    /* 802B61BC */ void isMovieDemo();
-    /* 802B61E8 */ void setDemoName(char*);
-    /* 802B671C */ void processTime();
-    /* 802B6734 */ void checkDayTime();
-    /* 802B6758 */ void setEventBit(void*);
-    /* 802B6760 */ void setCameraPolygonPos(Vec*);
-    /* 802B6784 */ void setCameraGroupInfo(u8);
-    /* 802B6788 */ void setCameraInWaterDepth(f32);
-};
-
 struct Z2SeqMgr {
     /* 802AF49C */ void subBgmStart(u32);
     /* 802AF884 */ void subBgmStop();
@@ -87,10 +67,10 @@ extern "C" void talkIn__11Z2StatusMgrFv();
 extern "C" void talkOut__11Z2StatusMgrFv();
 extern "C" void menuIn__11Z2StatusMgrFv();
 extern "C" void menuOut__11Z2StatusMgrFv();
-extern "C" void isMovieDemo__11Z2StatusMgrFv();
+extern "C" bool isMovieDemo__11Z2StatusMgrFv();
 extern "C" void setDemoName__11Z2StatusMgrFPc();
 extern "C" void processTime__11Z2StatusMgrFv();
-extern "C" void checkDayTime__11Z2StatusMgrFv();
+extern "C" bool checkDayTime__11Z2StatusMgrFv();
 extern "C" void setEventBit__11Z2StatusMgrFPv();
 extern "C" void setCameraPolygonPos__11Z2StatusMgrFP3Vec();
 extern "C" void setCameraGroupInfo__11Z2StatusMgrFUc();
@@ -130,8 +110,8 @@ extern "C" extern u8 data_80450B40[4];
 extern "C" extern u8 data_80450B60[4];
 extern "C" extern u8 data_80450B7C[4];
 extern "C" extern u8 data_80450B80[4];
-extern "C" extern u8 data_80450B84[4];
-extern "C" extern u8 data_80450B88[4];
+extern "C" extern Z2SeqMgr* data_80450B84;
+extern "C" extern Z2SeMgr* data_80450B88;
 extern "C" extern u8 struct_80451124[4];
 extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 
@@ -152,6 +132,29 @@ SECTION_SDATA2 static u8 lit_3396[4] = {
 };
 
 /* 802B5F1C-802B5F70 2B085C 0054+00 0/0 1/1 0/0 .text            __ct__11Z2StatusMgrFv */
+// needs other functions decompiled first
+#ifdef NONMATCHING
+Z2StatusMgr::Z2StatusMgr() {
+    data_80450B7C = this;
+    mHour = 0;
+    mMinute = 0;
+    mWeekday = 0;
+    field_0x03 = 0;
+    mTime = 3072;
+    mEventBit = (void*)0;
+    mIsMenuIn = false;
+    mCameraMapInfo = 0;
+    float polygon_pos_init = lit_3395;
+    mPolygonPosition.x = polygon_pos_init;
+    mPolygonPosition.y = polygon_pos_init;
+    mPolygonPosition.z = polygon_pos_init;
+    float depth_init = 0.0f;
+    mUnderwaterDepth = depth_init;
+    mCameraInWaterDepthRatio = depth_init;
+    mDemoStatus = 0;
+    mHeartGaugeOn = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -160,16 +163,12 @@ asm Z2StatusMgr::Z2StatusMgr() {
 #include "asm/Z2AudioLib/Z2StatusMgr/__ct__11Z2StatusMgrFv.s"
 }
 #pragma pop
+#endif
 
 /* 802B5F70-802B5F7C 2B08B0 000C+00 0/0 1/1 0/0 .text            heartGaugeOn__11Z2StatusMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2StatusMgr::heartGaugeOn() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2StatusMgr/heartGaugeOn__11Z2StatusMgrFv.s"
+void Z2StatusMgr::heartGaugeOn() {
+    mHeartGaugeOn = 2;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80455A20-80455A24 004020 0004+00 3/3 0/0 0/0 .sdata2          @3467 */
@@ -189,54 +188,61 @@ asm void Z2StatusMgr::processHeartGaugeSound() {
 #pragma pop
 
 /* 802B60CC-802B6104 2B0A0C 0038+00 0/0 1/1 0/0 .text            talkIn__11Z2StatusMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2StatusMgr::talkIn() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2StatusMgr/talkIn__11Z2StatusMgrFv.s"
+void Z2StatusMgr::talkIn() {
+    u8 is_demo = isMovieDemo();
+
+    if (is_demo == false) {
+        data_80450B84->talkInBgm();
+        data_80450B88->talkInSe();
+    }
 }
-#pragma pop
 
 /* 802B6104-802B613C 2B0A44 0038+00 0/0 1/1 0/0 .text            talkOut__11Z2StatusMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2StatusMgr::talkOut() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2StatusMgr/talkOut__11Z2StatusMgrFv.s"
+void Z2StatusMgr::talkOut() {
+    u8 is_demo = isMovieDemo();
+    
+    if (is_demo == false) {
+        data_80450B84->talkOutBgm();
+        data_80450B88->talkOutSe();
+    }
 }
-#pragma pop
 
 /* 802B613C-802B617C 2B0A7C 0040+00 0/0 1/1 0/0 .text            menuIn__11Z2StatusMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2StatusMgr::menuIn() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2StatusMgr/menuIn__11Z2StatusMgrFv.s"
+void Z2StatusMgr::menuIn() {
+    data_80450B84->menuInBgm();
+    data_80450B88->menuInSe();
+
+    mIsMenuIn = true;
 }
-#pragma pop
 
 /* 802B617C-802B61BC 2B0ABC 0040+00 0/0 3/3 0/0 .text            menuOut__11Z2StatusMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2StatusMgr::menuOut() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2StatusMgr/menuOut__11Z2StatusMgrFv.s"
+void Z2StatusMgr::menuOut() {
+    data_80450B84->menuOutBgm();
+    data_80450B88->talkOutSe();
+
+    mIsMenuIn = false;
 }
-#pragma pop
 
 /* 802B61BC-802B61E8 2B0AFC 002C+00 2/2 1/1 0/0 .text            isMovieDemo__11Z2StatusMgrFv */
+#ifdef NONMATCHING
+bool Z2StatusMgr::isMovieDemo(void) {
+    bool isMovieDemo = false;
+
+    if (mDemoStatus == 2 || mDemoStatus == 8 || mDemoStatus == 9) {
+        isMovieDemo = true;
+    }
+    return isMovieDemo;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2StatusMgr::isMovieDemo() {
+asm bool Z2StatusMgr::isMovieDemo() {
     nofralloc
 #include "asm/Z2AudioLib/Z2StatusMgr/isMovieDemo__11Z2StatusMgrFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8039BC88-8039BC88 0282E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -409,43 +415,39 @@ asm void Z2StatusMgr::setDemoName(char* param_0) {
 #pragma pop
 
 /* 802B671C-802B6734 2B105C 0018+00 0/0 1/1 0/0 .text            processTime__11Z2StatusMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2StatusMgr::processTime() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2StatusMgr/processTime__11Z2StatusMgrFv.s"
+void Z2StatusMgr::processTime() {
+    u16 temp = mHour * 256;
+    mTime = temp + mMinute;
 }
-#pragma pop
 
 /* 802B6734-802B6758 2B1074 0024+00 0/0 5/5 0/0 .text            checkDayTime__11Z2StatusMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2StatusMgr::checkDayTime() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2StatusMgr/checkDayTime__11Z2StatusMgrFv.s"
+bool Z2StatusMgr::checkDayTime() {
+    if (mHour >= 6 && mHour < 19) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
 
 /* 802B6758-802B6760 -00001 0008+00 0/0 0/0 0/0 .text            setEventBit__11Z2StatusMgrFPv */
-void Z2StatusMgr::setEventBit(void* param_0) {
-    *(u32*)(((u8*)this) + 8) /* this->field_0x8 */ = (u32)(param_0);
+void Z2StatusMgr::setEventBit(void* pBit) {
+    mEventBit = pBit;
 }
 
 /* 802B6760-802B6784 2B10A0 0024+00 0/0 1/1 0/0 .text setCameraPolygonPos__11Z2StatusMgrFP3Vec */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2StatusMgr::setCameraPolygonPos(Vec* param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2StatusMgr/setCameraPolygonPos__11Z2StatusMgrFP3Vec.s"
+void Z2StatusMgr::setCameraPolygonPos(Vec* pPolygonPos) {
+    if (pPolygonPos == 0) {
+        return;
+    } else {
+        mPolygonPosition.x = pPolygonPos->x;
+        mPolygonPosition.y = pPolygonPos->y;
+        mPolygonPosition.z = pPolygonPos->z;
+    }
 }
-#pragma pop
 
 /* 802B6784-802B6788 2B10C4 0004+00 0/0 1/1 0/0 .text setCameraGroupInfo__11Z2StatusMgrFUc */
 void Z2StatusMgr::setCameraGroupInfo(u8 param_0) {
-    /* empty function */
+
 }
 
 /* ############################################################################################## */
