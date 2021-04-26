@@ -189,9 +189,7 @@ asm void Z2StatusMgr::processHeartGaugeSound() {
 
 /* 802B60CC-802B6104 2B0A0C 0038+00 0/0 1/1 0/0 .text            talkIn__11Z2StatusMgrFv */
 void Z2StatusMgr::talkIn() {
-    u8 is_demo = isMovieDemo();
-
-    if (is_demo == false) {
+    if (!isMovieDemo()) {
         data_80450B84->talkInBgm();
         data_80450B88->talkInSe();
     }
@@ -199,9 +197,7 @@ void Z2StatusMgr::talkIn() {
 
 /* 802B6104-802B613C 2B0A44 0038+00 0/0 1/1 0/0 .text            talkOut__11Z2StatusMgrFv */
 void Z2StatusMgr::talkOut() {
-    u8 is_demo = isMovieDemo();
-
-    if (is_demo == false) {
+    if (!isMovieDemo()) {
         data_80450B84->talkOutBgm();
         data_80450B88->talkOutSe();
     }
@@ -439,9 +435,7 @@ void Z2StatusMgr::setCameraPolygonPos(Vec* pPolygonPos) {
     if (pPolygonPos == 0) {
         return;
     } else {
-        mPolygonPosition.x = pPolygonPos->x;
-        mPolygonPosition.y = pPolygonPos->y;
-        mPolygonPosition.z = pPolygonPos->z;
+        mPolygonPosition = *pPolygonPos;
     }
 }
 
