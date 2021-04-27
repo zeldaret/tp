@@ -4,10 +4,10 @@
 //
 
 #include "Z2AudioLib/Z2Calc.h"
+#include "JSystem/JMath/random.h"
 #include "dol2asm.h"
 #include "global.h"
 #include "msl_c/math.h"
-#include "JSystem/JMath/random.h"
 
 //
 // Declarations:
@@ -16,7 +16,7 @@
 /* 802A968C-802A96F4 2A3FCC 0068+00 1/1 16/16 0/0 .text            linearTransform__6Z2CalcFfffffb
  */
 f32 Z2Calc::linearTransform(f32 param1, f32 param2, f32 param3, f32 param4, f32 param5,
-                              bool param6) {
+                            bool param6) {
     f32 temp;
 
     temp = param4 + (param1 - param2) * ((param5 - param4) / (param3 - param2));
@@ -49,8 +49,7 @@ SECTION_SDATA2 f32 Z2Calc::cEqualPSlope = 0.5f;
 
 /* 802A96F4-802A9814 2A4034 0120+00 0/0 29/29 0/0 .text
  * getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign             */
-f32 Z2Calc::getParamByExp(f32 f1, f32 f2, f32 f3, f32 f4, f32 f5, f32 f6,
-                            Z2Calc::CurveSign sign) {
+f32 Z2Calc::getParamByExp(f32 f1, f32 f2, f32 f3, f32 f4, f32 f5, f32 f6, Z2Calc::CurveSign sign) {
     f32 out;
     if (sign == Z2Calc::CURVE_SIGN_1) {
         f32 tmp = exp(Z2Calc::linearTransform(f1, f2, f3, 0.0f, f4, true));

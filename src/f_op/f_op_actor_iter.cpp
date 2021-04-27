@@ -10,8 +10,6 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_tag.h"
 
-extern node_list_class g_fopAcTg_Queue;
-
 //
 // Declarations:
 //

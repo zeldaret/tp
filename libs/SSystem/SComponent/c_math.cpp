@@ -193,8 +193,7 @@ float cM_rnd(void) {
     r0 = (r0 * 0xAB) % 0x763D;
     r1 = (r1 * 0xAC) % 0x7663;
     r2 = (r2 * 0xAA) % 0x7673;
-    return fabsf(
-        fmod(r0 / 30269.0f + r1 / 30307.0f + r2 / 30323.0f, 1.0));
+    return fabsf(fmod(r0 / 30269.0f + r1 / 30307.0f + r2 / 30323.0f, 1.0));
 }
 
 /* 80267954-8026798C 262294 0038+00 0/0 34/34 951/951 .text            cM_rndF__Ff */
@@ -229,8 +228,7 @@ float cM_rnd2(void) {
     r02 = (r02 * 0xAB) % 0x763D;
     r12 = (r12 * 0xAC) % 0x7663;
     r22 = (r22 * 0xAA) % 0x7673;
-    return fabsf(
-        fmod(r02 / 30269.0f + r12 / 30307.0f + r22 / 30323.0f, 1.0));
+    return fabsf(fmod(r02 / 30269.0f + r12 / 30307.0f + r22 / 30323.0f, 1.0));
 }
 
 /* 80267ACC-80267B04 26240C 0038+00 0/0 0/0 14/14 .text            cM_rndF2__Ff */
