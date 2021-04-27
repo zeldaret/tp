@@ -6,108 +6,75 @@
 #include "JSystem/JKernel/JKRAramBlock.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "JSystem/JKernel/JKRAramHeap.h"
 
-//
-// Types:
-//
-
-struct JSUPtrLink {
-    /* 802DBDFC */ JSUPtrLink(void*);
-    /* 802DBE14 */ ~JSUPtrLink();
-};
-
-struct JSUPtrList {
-    /* 802DC094 */ void insert(JSUPtrLink*, JSUPtrLink*);
-    /* 802DC15C */ void remove(JSUPtrLink*);
-};
-
-struct JKRHeap {};
-
-struct JKRAramHeap {};
-
-struct JKRAramBlock {
-    /* 802D3304 */ JKRAramBlock(u32, u32, u32, u8, bool);
-    /* 802D3378 */ ~JKRAramBlock();
-    /* 802D3434 */ void allocHead(u32, u8, JKRAramHeap*);
-    /* 802D34D0 */ void allocTail(u32, u8, JKRAramHeap*);
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__12JKRAramBlockFUlUlUlUcb();
-extern "C" void __dt__12JKRAramBlockFv();
-extern "C" void allocHead__12JKRAramBlockFUlUcP11JKRAramHeap();
-extern "C" void allocTail__12JKRAramBlockFUlUcP11JKRAramHeap();
-
-//
-// External References:
-//
-
-extern "C" void* __nw__FUlP7JKRHeapi();
-extern "C" void __dl__FPv();
-extern "C" void __ct__10JSUPtrLinkFPv();
-extern "C" void __dt__10JSUPtrLinkFv();
-extern "C" void insert__10JSUPtrListFP10JSUPtrLinkP10JSUPtrLink();
-extern "C" void remove__10JSUPtrListFP10JSUPtrLink();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
+// TODO: move to JKRHeap
+void* operator new(u32 size);
+void* operator new(u32 size, int alignment);
+void* operator new(u32 size, JKRHeap* heap, int alignment);
 
 //
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 803CC178-803CC188 029298 000C+04 2/2 0/0 0/0 .data            __vt__12JKRAramBlock */
-SECTION_DATA extern void* __vt__12JKRAramBlock[3 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12JKRAramBlockFv,
-    /* padding */
-    NULL,
-};
-
 /* 802D3304-802D3378 2CDC44 0074+00 2/2 1/1 0/0 .text            __ct__12JKRAramBlockFUlUlUlUcb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRAramBlock::JKRAramBlock(u32 param_0, u32 param_1, u32 param_2, u8 param_3, bool param_4) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAramBlock/__ct__12JKRAramBlockFUlUlUlUcb.s"
+JKRAramBlock::JKRAramBlock(u32 address, u32 size, u32 freeSize, u8 groupId, bool isTempMemory)
+    : mBlockLink(this) {
+    mAddress = address;
+    mSize = size;
+    mFreeSize = freeSize;
+    mGroupId = groupId;
+    mIsTempMemory = isTempMemory;
 }
-#pragma pop
 
 /* 802D3378-802D3434 2CDCB8 00BC+00 1/0 0/0 0/0 .text            __dt__12JKRAramBlockFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRAramBlock::~JKRAramBlock() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAramBlock/__dt__12JKRAramBlockFv.s"
+JKRAramBlock::~JKRAramBlock() {
+    JSUList<JKRAramBlock>* list = mBlockLink.getSupervisor();
+    JSULink<JKRAramBlock>* prev = mBlockLink.getPrev();
+    if (prev) {
+        JKRAramBlock* block = prev->getObject();
+        block->mFreeSize = mSize + mFreeSize + block->mFreeSize;
+        list->remove(&mBlockLink);
+    } else {
+        mFreeSize = mFreeSize + mSize;
+        mSize = 0;
+    }
 }
-#pragma pop
 
 /* 802D3434-802D34D0 2CDD74 009C+00 0/0 1/1 0/0 .text allocHead__12JKRAramBlockFUlUcP11JKRAramHeap
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRAramBlock::allocHead(u32 param_0, u8 param_1, JKRAramHeap* param_2) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAramBlock/allocHead__12JKRAramBlockFUlUcP11JKRAramHeap.s"
+JKRAramBlock* JKRAramBlock::allocHead(u32 size, u8 groupId, JKRAramHeap* aramHeap) {
+    u32 address = mAddress;
+    u32 usedSize = mSize;
+    u32 nextAddress = address + usedSize;
+    u32 freeSize = mFreeSize;
+    u32 nextFreeSize = freeSize - size;
+
+    JKRAramBlock* block = new (aramHeap->getMgrHeap(), 0)
+        JKRAramBlock(nextAddress, size, nextFreeSize, groupId, false);
+
+    mFreeSize = 0;
+    JSULink<JKRAramBlock>* next = mBlockLink.getNext();
+    JSUList<JKRAramBlock>* list = mBlockLink.getSupervisor();
+    list->insert(next, &block->mBlockLink);
+    return block;
 }
-#pragma pop
 
 /* 802D34D0-802D3574 2CDE10 00A4+00 0/0 1/1 0/0 .text allocTail__12JKRAramBlockFUlUcP11JKRAramHeap
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRAramBlock::allocTail(u32 param_0, u8 param_1, JKRAramHeap* param_2) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAramBlock/allocTail__12JKRAramBlockFUlUcP11JKRAramHeap.s"
+JKRAramBlock* JKRAramBlock::allocTail(u32 size, u8 groupId, JKRAramHeap* aramHeap) {
+    u32 freeSize = mFreeSize;
+    u32 address = mAddress;
+    u32 usedSize = mSize;
+    u32 endAddress = address + usedSize + freeSize;
+    u32 tailAddress = endAddress - size;
+
+    JKRAramBlock* block =
+        new (aramHeap->getMgrHeap(), 0) JKRAramBlock(tailAddress, size, 0, groupId, true);
+
+    mFreeSize -= size;
+    JSULink<JKRAramBlock>* next = mBlockLink.getNext();
+    JSUList<JKRAramBlock>* list = mBlockLink.getSupervisor();
+    list->insert(next, &block->mBlockLink);
+    return block;
 }
-#pragma pop

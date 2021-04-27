@@ -17,16 +17,9 @@ extern "C" static void PADOriginUpdateCallback();
 extern "C" static void PADProbeCallback();
 extern "C" static void PADTypeAndStatusCallback();
 extern "C" static void PADReceiveCheckCallback();
-extern "C" void PADReset();
-extern "C" void PADRecalibrate();
-extern "C" void PADInit();
-extern "C" void PADRead();
-extern "C" void PADControlMotor();
-extern "C" void PADSetSpec();
 extern "C" static void SPEC0_MakeStatus();
 extern "C" static void SPEC1_MakeStatus();
 extern "C" static void SPEC2_MakeStatus();
-extern "C" void PADSetAnalogMode();
 extern "C" static void OnReset();
 extern "C" static void SamplingHandler();
 extern "C" static void PADSetSamplingCallback();
@@ -265,7 +258,7 @@ static asm void PADReceiveCheckCallback() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PADReset() {
+asm s32 PADReset(PADMask mask) {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADReset.s"
 }
@@ -275,7 +268,7 @@ asm void PADReset() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PADRecalibrate() {
+asm s32 PADRecalibrate(PADMask mask) {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADRecalibrate.s"
 }
@@ -310,7 +303,7 @@ u8 __PADSpec[4 + 4 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PADInit() {
+asm u32 PADInit() {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADInit.s"
 }
@@ -320,7 +313,7 @@ asm void PADInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PADRead() {
+asm u32 PADRead(PADStatus*) {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADRead.s"
 }
@@ -330,7 +323,7 @@ asm void PADRead() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PADControlMotor() {
+asm void PADControlMotor(s32 channel, u32 command) {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADControlMotor.s"
 }
@@ -340,7 +333,7 @@ asm void PADControlMotor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PADSetSpec() {
+asm void PADSetSpec(int spec) {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADSetSpec.s"
 }
@@ -380,7 +373,7 @@ static asm void SPEC2_MakeStatus() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PADSetAnalogMode() {
+asm void PADSetAnalogMode(u32 mode) {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADSetAnalogMode.s"
 }

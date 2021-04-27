@@ -3,7 +3,7 @@ lbl_802E0C6C:
 /* 802E0C70  7C 08 02 A6 */	mflr r0
 /* 802E0C74  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802E0C78  80 0D 8F 78 */	lwz r0, sThreshold__Q210JUTGamePad13C3ButtonReset(r13)
-/* 802E0C7C  80 ED 8F 7C */	lwz r7, data_804514FC(r13)
+/* 802E0C7C  80 ED 8F 7C */	lwz r7, sThreshold__Q210JUTGamePad13C3ButtonReset+4(r13)
 /* 802E0C80  6C A5 80 00 */	xoris r5, r5, 0x8000
 /* 802E0C84  6C 04 80 00 */	xoris r4, r0, 0x8000
 /* 802E0C88  7C 07 30 10 */	subfc r0, r7, r6

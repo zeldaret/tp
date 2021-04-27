@@ -11,23 +11,8 @@
 // Types:
 //
 
-struct JSUPtrLink {
-    /* 802DBDFC */ JSUPtrLink(void*);
-    /* 802DBE14 */ ~JSUPtrLink();
-};
-
-struct JSUPtrList {
-    /* 802DBF4C */ void append(JSUPtrLink*);
-    /* 802DC15C */ void remove(JSUPtrLink*);
-};
-
 struct JKRHeap {
     /* 802CE83C */ void findFromRoot(void*);
-};
-
-struct JKRDisposer {
-    /* 802D147C */ JKRDisposer();
-    /* 802D14E4 */ ~JKRDisposer();
 };
 
 //
