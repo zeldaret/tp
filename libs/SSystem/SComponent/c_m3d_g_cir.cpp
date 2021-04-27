@@ -8,12 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// External References:
-//
-
-void operator delete(void*);
-
-//
 // Declarations:
 //
 
