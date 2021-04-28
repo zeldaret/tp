@@ -4,139 +4,10 @@
 //
 
 #include "d/meter/d_meter2_info.h"
+#include "d/save/d_save.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct fopAc_ac_c {};
-
-struct dSv_player_status_a_c {
-    /* 80032A5C */ void getSelectItemIndex(int) const;
-};
-
-struct dSv_player_item_record_c {
-    /* 80033F6C */ void setBombNum(u8, u8);
-    /* 80033F7C */ void getBombNum(u8) const;
-};
-
-struct dSv_player_item_c {
-    /* 80032FB8 */ void setItem(int, u8);
-    /* 80033030 */ void getItem(int, bool) const;
-};
-
-struct dSv_player_get_item_c {
-    /* 80033E94 */ void offFirstBit(u8);
-};
-
-struct dSv_light_drop_c {
-    /* 8003439C */ void isLightDropGetFlag(u8) const;
-};
-
-struct dSv_letter_info_c {
-    /* 80034428 */ void onLetterGetFlag(int);
-    /* 8003444C */ void isLetterGetFlag(int) const;
-};
-
-struct dSv_event_flag_c {
-    static u8 saveBitLabels[1644 + 4 /* padding */];
-};
-
-struct dSv_event_c {
-    /* 800349BC */ void isEventBit(u16) const;
-};
-
-struct dMsgObject_c {
-    /* 802384C4 */ void setLetterNameID(u16);
-};
-
-struct dMsgFlow_c {
-    /* 80249F00 */ dMsgFlow_c();
-    /* 80249F48 */ ~dMsgFlow_c();
-    /* 80249F90 */ void init(fopAc_ac_c*, int, int, fopAc_ac_c**);
-    /* 8024A2D8 */ void doFlow(fopAc_ac_c*, fopAc_ac_c**, int);
-    /* 8024A538 */ void getMsgNo();
-};
-
-struct dMeterMap_c {
-    /* 8020D900 */ void isMapOpenCheck();
-};
-
-struct J2DPicture {};
-
-struct JMSMesgEntry_c {};
-
-struct J2DTextBox {
-    /* 8021C7F4 */ void getFont() const;
-};
-
-struct JUTFont {};
-
-struct cXyz {};
-
-struct dMeter2Info_c {
-    /* 8021BDDC */ dMeter2Info_c();
-    /* 8021BE20 */ ~dMeter2Info_c();
-    /* 8021BE68 */ void init();
-    /* 8021C0E0 */ void setFloatingMessage(u16, s16, bool);
-    /* 8021C11C */ void setFloatingFlow(u16, s16, bool);
-    /* 8021C1DC */ void isFloatingMessageVisible();
-    /* 8021C1F0 */ void decFloatingMessageTimer();
-    /* 8021C218 */ void resetFloatingMessage();
-    /* 8021C238 */ void decMsgKeyWaitTimer();
-    /* 8021C250 */ void getString(u32, char*, JMSMesgEntry_c*);
-    /* 8021C370 */ void getStringKana(u32, char*, JMSMesgEntry_c*);
-    /* 8021C544 */ void getStringKanji(u32, char*, JMSMesgEntry_c*);
-    /* 8021C6A4 */ void getStringLength(J2DTextBox*, char*);
-    /* 8021C7FC */ void getStringLength(JUTFont*, f32, f32, char*);
-    /* 8021C934 */ void onDirectUseItem(int);
-    /* 8021C950 */ void isDirectUseItem(int);
-    /* 8021C970 */ void setMeterString(s32);
-    /* 8021C9DC */ void resetWarpStatus();
-    /* 8021CA04 */ void warpInProc();
-    /* 8021CA70 */ void warpOutProc();
-    /* 8021CC00 */ void resetMeterString();
-    /* 8021CC0C */ void setWarpInfo(char const*, cXyz const&, s16, u8, u8, u8);
-    /* 8021CC80 */ void getItemType(u8);
-    /* 8021CF08 */ void readItemTexture(u8, void*, J2DPicture*, void*, J2DPicture*, void*,
-                                        J2DPicture*, void*, J2DPicture*, int);
-    /* 8021D36C */ void setItemColor(u8, J2DPicture*, J2DPicture*, J2DPicture*, J2DPicture*);
-    /* 8021D44C */ void get2ndTexture(u8);
-    /* 8021D4B8 */ void get3rdTexture(u8);
-    /* 8021D4FC */ void get4thTexture(u8);
-    /* 8021D524 */ void set1stColor(u8, J2DPicture*);
-    /* 8021D644 */ void set2ndColor(u8, J2DPicture*);
-    /* 8021D764 */ void set3rdColor(u8, J2DPicture*);
-    /* 8021DB64 */ void set4thColor(u8, J2DPicture*);
-    /* 8021DCC4 */ void setHotSpringTimer(u8);
-    /* 8021DCE0 */ void decHotSpringTimer();
-    /* 8021DD5C */ void changeWater(u8);
-    /* 8021DE18 */ void setMiniGameItem(u8);
-    /* 8021E0C4 */ void resetMiniGameItem(bool);
-    /* 8021E268 */ void setMiniGameCount(s8);
-    /* 8021E290 */ void setSaveStageName(char const*);
-};
-
-struct dMenu_Letter {
-    static u8 letter_data[512];
-};
-
-struct dItem_data {
-    static void* item_resource[1530];
-};
-
-struct csXyz {
-    /* 802673F4 */ csXyz(s16, s16, s16);
-};
-
-struct ResTIMG {};
-
-struct JKRArchive {
-    /* 802D5B38 */ void getGlbResource(u32, char const*, JKRArchive*);
-    /* 802D5ECC */ void readIdxResource(void*, u32, u32);
-};
+#include "msl_c/string.h"
 
 //
 // Forward References:
@@ -208,7 +79,6 @@ extern "C" u8 letter_data__12dMenu_Letter[512];
 // External References:
 //
 
-SECTION_INIT void memcpy();
 extern "C" void dComIfGs_setSelectItemIndex__FiUc();
 extern "C" void dComIfGs_setMixItemIndex__FiUc();
 extern "C" void dComIfGs_getMixItemIndex__Fi();
@@ -253,8 +123,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strcmp();
-extern "C" void strcpy();
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" void* item_resource__10dItem_data[1530];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
@@ -335,17 +203,17 @@ SECTION_DATA static void* lit_4572[37] = {
 };
 
 /* 803BF7F4-803BF81C -00001 0028+00 1/1 0/0 0/0 .data            tex_name$5183 */
-SECTION_DATA static void* tex_name_5183[10] = {
-    (void*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x1A),
-    (void*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x43),
-    (void*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x6C),
-    (void*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x95),
-    (void*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0xBE),
-    (void*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0xE7),
-    (void*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x110),
-    (void*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x139),
-    (void*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x162),
-    (void*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x18B),
+SECTION_DATA static char* tex_name_5183[10] = {
+    (char*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x1A),
+    (char*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x43),
+    (char*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x6C),
+    (char*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x95),
+    (char*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0xBE),
+    (char*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0xE7),
+    (char*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x110),
+    (char*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x139),
+    (char*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x162),
+    (char*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x18B),
 };
 
 /* 803BF81C-803BFA1C 01C93C 0200+00 3/3 6/6 0/0 .data            letter_data__12dMenu_Letter */
@@ -392,14 +260,10 @@ SECTION_DATA extern void* __vt__13dMeter2Info_c[3] = {
 };
 
 /* 8021BDDC-8021BE20 21671C 0044+00 1/1 0/0 0/0 .text            __ct__13dMeter2Info_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMeter2Info_c::dMeter2Info_c() {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/__ct__13dMeter2Info_cFv.s"
+dMeter2Info_c::dMeter2Info_c() {
+    init();
+    mTempBits = 0;
 }
-#pragma pop
 
 /* 8021BE20-8021BE68 216760 0048+00 2/1 0/0 0/0 .text            __dt__13dMeter2Info_cFv */
 #pragma push
@@ -477,7 +341,7 @@ asm void dMeter2Info_c::setFloatingFlow(u16 param_0, s16 param_1, bool param_2) 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Info_c::isFloatingMessageVisible() {
+asm int dMeter2Info_c::isFloatingMessageVisible() {
     nofralloc
 #include "asm/d/meter/d_meter2_info/isFloatingMessageVisible__13dMeter2Info_cFv.s"
 }
@@ -485,34 +349,31 @@ asm void dMeter2Info_c::isFloatingMessageVisible() {
 
 /* 8021C1F0-8021C218 216B30 0028+00 0/0 1/1 0/0 .text decFloatingMessageTimer__13dMeter2Info_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_c::decFloatingMessageTimer() {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/decFloatingMessageTimer__13dMeter2Info_cFv.s"
+int dMeter2Info_c::decFloatingMessageTimer() {
+    if (mFloatingMessageTimer > 0) {
+        mFloatingMessageTimer--;
+    } else {
+        mFloatingMessageTimer = 0;
+    }
+    return mFloatingMessageTimer;
 }
-#pragma pop
 
 /* 8021C218-8021C238 216B58 0020+00 0/0 3/3 0/0 .text resetFloatingMessage__13dMeter2Info_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_c::resetFloatingMessage() {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/resetFloatingMessage__13dMeter2Info_cFv.s"
+void dMeter2Info_c::resetFloatingMessage() {
+    mFloatingFlowID = -1;
+    mFloatingMessageID = -1;
+    mFloatingMessageTimer = 0;
+    mFloatingMessageWakuVisible = 0;
 }
-#pragma pop
 
 /* 8021C238-8021C250 216B78 0018+00 0/0 2/2 0/0 .text decMsgKeyWaitTimer__13dMeter2Info_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_c::decMsgKeyWaitTimer() {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/decMsgKeyWaitTimer__13dMeter2Info_cFv.s"
+void dMeter2Info_c::decMsgKeyWaitTimer() {
+    if (mMsgKeyWaitTimer <= 0) {
+        return;
+    }
+
+    mMsgKeyWaitTimer--;
 }
-#pragma pop
 
 /* 8021C250-8021C370 216B90 0120+00 0/0 16/16 0/0 .text
  * getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c             */
@@ -556,7 +417,7 @@ SECTION_SDATA2 static f64 lit_4108 = 4503601774854144.0 /* cast s32 to float */;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Info_c::getStringLength(J2DTextBox* param_0, char* param_1) {
+asm double dMeter2Info_c::getStringLength(J2DTextBox* param_0, char* param_1) {
     nofralloc
 #include "asm/d/meter/d_meter2_info/getStringLength__13dMeter2Info_cFP10J2DTextBoxPc.s"
 }
@@ -577,7 +438,8 @@ asm void J2DTextBox::getFont() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Info_c::getStringLength(JUTFont* param_0, f32 param_1, f32 param_2, char* param_3) {
+asm dMeter2Info_c* dMeter2Info_c::getStringLength(JUTFont* param_0, f32 param_1, f32 param_2,
+                                                  char* param_3) {
     nofralloc
 #include "asm/d/meter/d_meter2_info/getStringLength__13dMeter2Info_cFP7JUTFontffPc.s"
 }
@@ -585,25 +447,15 @@ asm void dMeter2Info_c::getStringLength(JUTFont* param_0, f32 param_1, f32 param
 
 /* 8021C934-8021C950 217274 001C+00 0/0 2/2 0/0 .text            onDirectUseItem__13dMeter2Info_cFi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_c::onDirectUseItem(int param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/onDirectUseItem__13dMeter2Info_cFi.s"
+void dMeter2Info_c::onDirectUseItem(int param_0) {
+    mDirectUseItem |= (u8)(1 << param_0);
 }
-#pragma pop
 
 /* 8021C950-8021C970 217290 0020+00 0/0 4/4 0/0 .text            isDirectUseItem__13dMeter2Info_cFi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_c::isDirectUseItem(int param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/isDirectUseItem__13dMeter2Info_cFi.s"
+bool dMeter2Info_c::isDirectUseItem(int param_0) {
+    return (mDirectUseItem & (u8)(1 << param_0)) != 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80430178-80430188 05CE98 000C+04 1/1 0/0 0/0 .bss             @3846 */
@@ -618,7 +470,7 @@ u8 g_meter2_info[248];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Info_c::setMeterString(s32 param_0) {
+asm int dMeter2Info_c::setMeterString(s32 param_0) {
     nofralloc
 #include "asm/d/meter/d_meter2_info/setMeterString__13dMeter2Info_cFl.s"
 }
@@ -657,32 +509,27 @@ asm void dMeter2Info_c::warpOutProc() {
 
 /* 8021CC00-8021CC0C 217540 000C+00 0/0 1/1 1/1 .text            resetMeterString__13dMeter2Info_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_c::resetMeterString() {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/resetMeterString__13dMeter2Info_cFv.s"
+void dMeter2Info_c::resetMeterString() {
+    mMeterString = 0;
 }
-#pragma pop
 
 /* 8021CC0C-8021CC80 21754C 0074+00 1/1 1/1 0/0 .text
  * setWarpInfo__13dMeter2Info_cFPCcRC4cXyzsUcUcUc               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_c::setWarpInfo(char const* param_0, cXyz const& param_1, s16 param_2,
-                                    u8 param_3, u8 param_4, u8 param_5) {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/setWarpInfo__13dMeter2Info_cFPCcRC4cXyzsUcUcUc.s"
+void dMeter2Info_c::setWarpInfo(const char* i_stageName, const cXyz& i_position, s16 i_angle,
+                                u8 i_roomNo, u8 p5, u8 i_warpPlayerNo) {
+    strcpy(mWarpInfo.mStageName, i_stageName);
+    mWarpInfo.mPosition = i_position;
+    mWarpInfo.mAngle = i_angle;
+    mWarpInfo.mRoomNo = i_roomNo;
+    mWarpInfo.unk79 = p5;
+    mWarpInfo.mWarpPlayerNo = i_warpPlayerNo;
 }
-#pragma pop
 
 /* 8021CC80-8021CF08 2175C0 0288+00 2/2 0/0 0/0 .text            getItemType__13dMeter2Info_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Info_c::getItemType(u8 param_0) {
+asm u8 dMeter2Info_c::getItemType(u8 param_0) {
     nofralloc
 #include "asm/d/meter/d_meter2_info/getItemType__13dMeter2Info_cFUc.s"
 }
@@ -694,10 +541,9 @@ asm void dMeter2Info_c::getItemType(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Info_c::readItemTexture(u8 param_0, void* param_1, J2DPicture* param_2,
-                                        void* param_3, J2DPicture* param_4, void* param_5,
-                                        J2DPicture* param_6, void* param_7, J2DPicture* param_8,
-                                        int param_9) {
+asm u8 dMeter2Info_c::readItemTexture(u8 param_0, void* param_1, J2DPicture* param_2, void* param_3,
+                                      J2DPicture* param_4, void* param_5, J2DPicture* param_6,
+                                      void* param_7, J2DPicture* param_8, int param_9) {
     nofralloc
 #include "asm/d/meter/d_meter2_info/func_8021CF08.s"
 }
@@ -717,67 +563,179 @@ asm void dMeter2Info_c::setItemColor(u8 param_0, J2DPicture* param_1, J2DPicture
 
 /* 8021D44C-8021D4B8 217D8C 006C+00 2/1 0/0 0/0 .text            get2ndTexture__13dMeter2Info_cFUc
  */
+// switch label weirdness
+#ifdef NONMATCHING
+s8 dMeter2Info_c::get2ndTexture(u8 param_0) {
+    switch (param_0) {
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+        return 0x2e;
+    case 8:
+    case 9:
+    case 10:
+    case 11:
+    case 12:
+    case 13:
+    case 14:
+    case 15:
+    case 16:
+    case 17:
+    case 18:
+    case 19:
+    case 20:
+    case 21:
+    case 22:
+    case 23:
+    case 24:
+    case 25:
+    case 26:
+    case 31:
+        return 0xe;
+    case 27:
+        return 0x14;
+    case 28:
+        return 0x27;
+    case 29:
+        return 0xf;
+    case 30:
+        return 0x10;
+    case 33:
+    case 34:
+    case 35:
+        return 0x69;
+    case 36:
+        return 0x2a;
+    case 32:
+    default:
+        return -1;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Info_c::get2ndTexture(u8 param_0) {
+asm s8 dMeter2Info_c::get2ndTexture(u8 param_0) {
     nofralloc
 #include "asm/d/meter/d_meter2_info/get2ndTexture__13dMeter2Info_cFUc.s"
 }
 #pragma pop
+#endif
 
 /* 8021D4B8-8021D4FC 217DF8 0044+00 1/1 0/0 0/0 .text            get3rdTexture__13dMeter2Info_cFUc
  */
+// one instruction off
+#ifdef NONMATCHING
+s8 dMeter2Info_c::get3rdTexture(u8 p1) {
+    switch (p1) {
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+        return 0x2e;
+    case 8:
+    case 9:
+    case 10:
+    case 11:
+    case 12:
+    case 13:
+    case 14:
+    case 15:
+    case 16:
+    case 17:
+    case 18:
+    case 19:
+    case 20:
+    case 21:
+    case 22:
+    case 23:
+    case 24:
+    case 25:
+    case 26:
+    case 31:
+        return 0x0e;
+    default:
+        return -1;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Info_c::get3rdTexture(u8 param_0) {
+asm s8 dMeter2Info_c::get3rdTexture(u8 param_0) {
     nofralloc
 #include "asm/d/meter/d_meter2_info/get3rdTexture__13dMeter2Info_cFUc.s"
 }
 #pragma pop
+#endif
 
 /* 8021D4FC-8021D524 217E3C 0028+00 1/1 0/0 0/0 .text            get4thTexture__13dMeter2Info_cFUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_c::get4thTexture(u8 param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/get4thTexture__13dMeter2Info_cFUc.s"
+s8 dMeter2Info_c::get4thTexture(u8 p1) {
+    switch (p1) {
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+        return 0x2e;
+    default:
+        return -1;
+    }
 }
-#pragma pop
+
+struct TColor {
+    u8 r;
+    u8 g;
+    u8 b;
+    u8 a;
+};
 
 /* ############################################################################################## */
 /* 80398A78-80398B0C 0250D8 0094+00 2/2 0/0 0/0 .rodata          black_color$4634 */
-SECTION_RODATA static u8 const black_color_4634[148] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x60, 0x00, 0x00, 0x00, 0x00, 0xC0, 0x00, 0xA0, 0x60, 0x00,
-    0x00, 0xA0, 0x00, 0x00, 0x00, 0x40, 0x00, 0x60, 0x00, 0xE0, 0x00, 0x00, 0x00, 0x40, 0x40,
-    0x40, 0x00, 0x6E, 0x6E, 0x64, 0x00, 0x32, 0x00, 0x00, 0x00, 0x00, 0x7F, 0x00, 0x00, 0x00,
-    0x00, 0x7F, 0x00, 0xAF, 0x9B, 0x6E, 0x00, 0xAA, 0x9B, 0x6E, 0x00, 0x55, 0x37, 0x14, 0x00,
-    0x6E, 0x6E, 0x6E, 0x00, 0x6E, 0x6E, 0x6E, 0x00, 0xFF, 0x58, 0x00, 0x00, 0x6C, 0x3E, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x32, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7F, 0x00, 0x00, 0x7F,
-    0x00, 0x00, 0x55, 0x37, 0x14, 0x00, 0x00, 0x00, 0x22, 0x00, 0x2B, 0x18, 0x22, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x46, 0x46, 0x41, 0x00, 0x46, 0x46, 0x41, 0x00, 0x46, 0x46, 0x41, 0x00,
-    0x46, 0x46, 0x41, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_RODATA static TColor const black_color_4634[37] = {
+    {0x00, 0x00, 0x00, 0x00}, {0x00, 0x60, 0x00, 0x00}, {0x00, 0x00, 0xC0, 0x00},
+    {0xA0, 0x60, 0x00, 0x00}, {0xA0, 0x00, 0x00, 0x00}, {0x40, 0x00, 0x60, 0x00},
+    {0xE0, 0x00, 0x00, 0x00}, {0x40, 0x40, 0x40, 0x00}, {0x6E, 0x6E, 0x64, 0x00},
+    {0x32, 0x00, 0x00, 0x00}, {0x00, 0x7F, 0x00, 0x00}, {0x00, 0x00, 0x7F, 0x00},
+    {0xAF, 0x9B, 0x6E, 0x00}, {0xAA, 0x9B, 0x6E, 0x00}, {0x55, 0x37, 0x14, 0x00},
+    {0x6E, 0x6E, 0x6E, 0x00}, {0x6E, 0x6E, 0x6E, 0x00}, {0xFF, 0x58, 0x00, 0x00},
+    {0x6C, 0x3E, 0x00, 0x00}, {0x00, 0x00, 0x00, 0x00}, {0x32, 0x00, 0x00, 0x00},
+    {0x00, 0x00, 0x7F, 0x00}, {0x00, 0x7F, 0x00, 0x00}, {0x55, 0x37, 0x14, 0x00},
+    {0x00, 0x00, 0x22, 0x00}, {0x2B, 0x18, 0x22, 0x00}, {0x00, 0x00, 0x00, 0x00},
+    {0x46, 0x46, 0x41, 0x00}, {0x46, 0x46, 0x41, 0x00}, {0x46, 0x46, 0x41, 0x00},
+    {0x46, 0x46, 0x41, 0x00}, {0x00, 0x00, 0x00, 0x00}, {0x00, 0x00, 0x00, 0x00},
+    {0x00, 0x00, 0x00, 0x00}, {0x00, 0x00, 0x00, 0x00}, {0x00, 0x00, 0x00, 0x00},
+    {0x00, 0x00, 0x00, 0x00},
 };
 COMPILER_STRIP_GATE(0x80398A78, &black_color_4634);
 
 /* 80398B0C-80398BA0 02516C 0094+00 0/1 0/0 0/0 .rodata          white_color$4635 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const white_color_4635[148] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0x60, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00,
-    0xFF, 0xFF, 0x80, 0x80, 0xFF, 0xBE, 0x40, 0xFF, 0xFF, 0xFF, 0xC0, 0x00, 0xFF, 0xC0, 0xC0,
-    0xC0, 0xFF, 0xF5, 0xF5, 0xFF, 0xFF, 0xFF, 0xD2, 0xAA, 0xFF, 0xEF, 0xF5, 0xC9, 0xFF, 0xB0,
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xF0, 0xFF, 0xFF, 0xFF, 0xF0, 0xFF, 0xFF, 0xFF, 0xD7, 0xFF,
-    0xF5, 0xF5, 0xFF, 0xFF, 0xF5, 0xF5, 0xFF, 0xFF, 0xFF, 0xFF, 0xC2, 0xFF, 0xFF, 0x9D, 0x00,
-    0xFF, 0xC8, 0xC8, 0xC8, 0xFF, 0xFF, 0xD2, 0xAA, 0xFF, 0xB0, 0xFF, 0xFF, 0xFF, 0xEF, 0xF5,
-    0xC9, 0xFF, 0xFF, 0xFF, 0xD7, 0xFF, 0xD7, 0xCF, 0xF5, 0xFF, 0xFF, 0xFF, 0x33, 0xFF, 0xC8,
-    0xC8, 0xC8, 0xFF, 0xF5, 0xF5, 0xFF, 0xFF, 0xF5, 0xF5, 0xFF, 0xFF, 0xF5, 0xF5, 0xFF, 0xFF,
-    0xF5, 0xF5, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+SECTION_RODATA static TColor const white_color_4635[37] = {
+    {0xFF, 0xFF, 0xFF, 0xFF}, {0x60, 0xFF, 0x00, 0xFF}, {0x00, 0xFF, 0xFF, 0xFF},
+    {0xFF, 0xFF, 0x00, 0xFF}, {0xFF, 0x80, 0x80, 0xFF}, {0xBE, 0x40, 0xFF, 0xFF},
+    {0xFF, 0xC0, 0x00, 0xFF}, {0xC0, 0xC0, 0xC0, 0xFF}, {0xF5, 0xF5, 0xFF, 0xFF},
+    {0xFF, 0xD2, 0xAA, 0xFF}, {0xEF, 0xF5, 0xC9, 0xFF}, {0xB0, 0xFF, 0xFF, 0xFF},
+    {0xFF, 0xFF, 0xF0, 0xFF}, {0xFF, 0xFF, 0xF0, 0xFF}, {0xFF, 0xFF, 0xD7, 0xFF},
+    {0xF5, 0xF5, 0xFF, 0xFF}, {0xF5, 0xF5, 0xFF, 0xFF}, {0xFF, 0xFF, 0xC2, 0xFF},
+    {0xFF, 0x9D, 0x00, 0xFF}, {0xC8, 0xC8, 0xC8, 0xFF}, {0xFF, 0xD2, 0xAA, 0xFF},
+    {0xB0, 0xFF, 0xFF, 0xFF}, {0xEF, 0xF5, 0xC9, 0xFF}, {0xFF, 0xFF, 0xD7, 0xFF},
+    {0xD7, 0xCF, 0xF5, 0xFF}, {0xFF, 0xFF, 0x33, 0xFF}, {0xC8, 0xC8, 0xC8, 0xFF},
+    {0xF5, 0xF5, 0xFF, 0xFF}, {0xF5, 0xF5, 0xFF, 0xFF}, {0xF5, 0xF5, 0xFF, 0xFF},
+    {0xF5, 0xF5, 0xFF, 0xFF}, {0xFF, 0xFF, 0xFF, 0xFF}, {0xFF, 0xFF, 0xFF, 0xFF},
+    {0xFF, 0xFF, 0xFF, 0xFF}, {0xFF, 0xFF, 0xFF, 0xFF}, {0xFF, 0xFF, 0xFF, 0xFF},
+    {0xFF, 0xFF, 0xFF, 0xFF},
 };
 COMPILER_STRIP_GATE(0x80398B0C, &white_color_4635);
 #pragma pop
@@ -1008,24 +966,22 @@ asm void dMeter2Info_c::set4thColor(u8 param_0, J2DPicture* param_1) {
 #pragma pop
 
 /* 8021DCC4-8021DCE0 218604 001C+00 0/0 2/2 0/0 .text setHotSpringTimer__13dMeter2Info_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_c::setHotSpringTimer(u8 param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/setHotSpringTimer__13dMeter2Info_cFUc.s"
+void dMeter2Info_c::setHotSpringTimer(u8 p1) {
+    int i_bottleIdx = p1 - 11;
+    mHotSpringTimer[i_bottleIdx] = 900;
 }
-#pragma pop
 
 /* 8021DCE0-8021DD5C 218620 007C+00 0/0 1/1 0/0 .text decHotSpringTimer__13dMeter2Info_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_c::decHotSpringTimer() {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/decHotSpringTimer__13dMeter2Info_cFv.s"
+void dMeter2Info_c::decHotSpringTimer() {
+    for (int i = 0; i < 4; i++) {
+        if (mHotSpringTimer[i] != 0) {
+            mHotSpringTimer[i]--;
+            if (mHotSpringTimer[i] == 0) {
+                changeWater(i + 11);
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 8021DD5C-8021DE18 21869C 00BC+00 2/2 1/1 0/0 .text            changeWater__13dMeter2Info_cFUc */
 #pragma push
@@ -1059,24 +1015,20 @@ asm void dMeter2Info_c::resetMiniGameItem(bool param_0) {
 #pragma pop
 
 /* 8021E268-8021E290 218BA8 0028+00 0/0 0/0 5/5 .text setMiniGameCount__13dMeter2Info_cFSc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_c::setMiniGameCount(s8 param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/setMiniGameCount__13dMeter2Info_cFSc.s"
+void dMeter2Info_c::setMiniGameCount(s8 pCount) {
+    if (pCount < -99) {
+        pCount = -99;
+    }
+    if (pCount > 99) {
+        pCount = 99;
+    }
+    mMiniGameCount = pCount;
 }
-#pragma pop
 
 /* 8021E290-8021E2B4 218BD0 0024+00 1/1 2/2 0/0 .text setSaveStageName__13dMeter2Info_cFPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_c::setSaveStageName(char const* param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/setSaveStageName__13dMeter2Info_cFPCc.s"
+void dMeter2Info_c::setSaveStageName(const char* i_stageName) {
+    strcpy(mSaveStageName, i_stageName);
 }
-#pragma pop
 
 /* 8021E2B4-8021E2C8 218BF4 0014+00 0/0 0/0 1/1 .text            dMeter2Info_getNowLifeGauge__Fv */
 #pragma push
@@ -1089,38 +1041,23 @@ asm void dMeter2Info_getNowLifeGauge() {
 #pragma pop
 
 /* 8021E2C8-8021E2DC 218C08 0014+00 0/0 11/11 3/3 .text dMeter2Info_getNumberTextureName__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_getNumberTextureName(int param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/dMeter2Info_getNumberTextureName__Fi.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80399168-80399168 0257C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039931C = "im_plus_metal_24ｘ24_00.bti";
-#pragma pop
+char* dMeter2Info_getNumberTextureName(int pIndex) {
+    return tex_name_5183[pIndex];
+}  //
 
 /* 804510B8-804510BC 0005B8 0004+00 1/1 0/0 0/0 .sbss            tex_name$5188 */
-static u8 tex_name_5188[4];
+static char* tex_name_5188;
 
 /* 804510BC-804510C0 0005BC 0004+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_804510BC[4];
+static s8 data_804510BC;
 
-/* 8021E2DC-8021E308 218C1C 002C+00 0/0 0/0 1/1 .text            dMeter2Info_getPlusTextureName__Fv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_getPlusTextureName() {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/dMeter2Info_getPlusTextureName__Fv.s"
+char* dMeter2Info_getPlusTextureName() {
+    if (data_804510BC == 0) {
+        tex_name_5188 = "im_plus_metal_24ｘ24_00.bti";
+        data_804510BC = 1;
+    }
+    return tex_name_5188;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804549C0-804549C8 002FC0 0008+00 1/1 0/0 0/0 .sdata2          @5206 */
@@ -1174,6 +1111,11 @@ bool dMeter2Info_is2DActiveTouchArea() {
 }
 
 /* 8021E668-8021E688 218FA8 0020+00 0/0 1/1 0/0 .text            dMeter2Info_isMapOpenCheck__Fv */
+#ifdef NONMATCHING
+bool dMeter2Info_isMapOpenCheck() {
+    return dMeter2Info_getMeterMapClass()->isMapOpenCheck();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1182,8 +1124,19 @@ asm void dMeter2Info_isMapOpenCheck() {
 #include "asm/d/meter/d_meter2_info/dMeter2Info_isMapOpenCheck__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 8021E688-8021E6E4 218FC8 005C+00 0/0 2/2 0/0 .text            dMeter2Info_isItemOpenCheck__Fv */
+#ifdef NONMATCHING
+bool dMeter2Info_isItemOpenCheck() {
+    if (!daPy_getPlayerActorClass()->checkCanoeSlider()) {
+        if (!daPy_getPlayerActorClass()->getSumouMode() && !dMeter2Info_isSub2DStatus(1)) {
+            return true;
+        }
+    }
+    return false;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1192,6 +1145,7 @@ asm void dMeter2Info_isItemOpenCheck() {
 #include "asm/d/meter/d_meter2_info/dMeter2Info_isItemOpenCheck__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 8021E6E4-8021E754 219024 0070+00 1/1 2/2 0/0 .text            dMeter2Info_getRecieveLetterNum__Fv
  */
@@ -1236,15 +1190,11 @@ asm void dMeter2Info_recieveLetter() {
 #pragma pop
 
 /* 8021E9D0-8021E9D4 219310 0004+00 0/0 33/33 0/0 .text            dMeter2Info_set2DVibration__Fv */
-void dMeter2Info_set2DVibration() {
-    /* empty function */
-}
+void dMeter2Info_set2DVibration() {}
 
 /* 8021E9D4-8021E9D8 219314 0004+00 0/0 12/12 0/0 .text            dMeter2Info_set2DVibrationM__Fv
  */
-void dMeter2Info_set2DVibrationM() {
-    /* empty function */
-}
+void dMeter2Info_set2DVibrationM() {}
 
 /* 8021E9D8-8021EA14 219318 003C+00 0/0 1/0 0/0 .text            __sinit_d_meter2_info_cpp */
 #pragma push
