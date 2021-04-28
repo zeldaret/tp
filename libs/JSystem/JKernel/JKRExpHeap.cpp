@@ -12,77 +12,56 @@
 //
 
 struct JUTException {
-    /* 802E21FC */ void panic_f(char const*, int, char const*, ...);
+    /* 802E21FC */ static void panic_f(char const*, int, char const*, ...);
 };
 
-struct JKRHeap {
-    struct TState {};
+// struct JKRExpHeap {
+//     struct CMemBlock {
+//         /* 802D0810 */ void initiate(JKRExpHeap::CMemBlock*, JKRExpHeap::CMemBlock*, u32, u8, u8);
+//         /* 802D0830 */ void allocFore(u32, u8, u8, u8, u8);
+//         /* 802D0874 */ void allocBack(u32, u8, u8, u8, u8);
+//         /* 802D08CC */ void free(JKRExpHeap*);
+//         /* 802D091C */ void getHeapBlock(void*);
+//     };
 
-    /* 802CE138 */ JKRHeap(void*, u32, JKRHeap*, bool);
-    /* 802CE264 */ ~JKRHeap();
-    /* 802CE378 */ void initArena(char**, u32*, int);
-    /* 802CE474 */ void alloc(u32, int, JKRHeap*);
-    /* 802CE500 */ void free(void*, JKRHeap*);
-    /* 802CE574 */ void callAllDisposer();
-    /* 802CE784 */ void getTotalFreeSize();
-    /* 802CE7DC */ void getMaxAllocatableSize(int);
-    /* 802CE894 */ void find(void*) const;
-    /* 802CEAC0 */ void dispose();
-    /* 802CEA78 */ void dispose(void*, u32);
-    /* 802CEDA0 */ void state_dump(JKRHeap::TState const&) const;
-
-    static u8 sCurrentHeap[4];
-    static u8 sRootHeap[4];
-    static u8 mErrorHandler[4];
-};
-
-struct JKRExpHeap {
-    struct CMemBlock {
-        /* 802D0810 */ void initiate(JKRExpHeap::CMemBlock*, JKRExpHeap::CMemBlock*, u32, u8, u8);
-        /* 802D0830 */ void allocFore(u32, u8, u8, u8, u8);
-        /* 802D0874 */ void allocBack(u32, u8, u8, u8, u8);
-        /* 802D08CC */ void free(JKRExpHeap*);
-        /* 802D091C */ void getHeapBlock(void*);
-    };
-
-    /* 802CEDB4 */ void createRoot(int, bool);
-    /* 802CEF00 */ void create(void*, u32, JKRHeap*, bool);
-    /* 802CEE2C */ void create(u32, JKRHeap*, bool);
-    /* 802CEFAC */ void do_destroy();
-    /* 802CF030 */ JKRExpHeap(void*, u32, JKRHeap*, bool);
-    /* 802CF0C0 */ ~JKRExpHeap();
-    /* 802CF128 */ void do_alloc(u32, int);
-    /* 802CF490 */ void allocFromHead(u32);
-    /* 802CF234 */ void allocFromHead(u32, int);
-    /* 802CF6D4 */ void allocFromTail(u32);
-    /* 802CF574 */ void allocFromTail(u32, int);
-    /* 802CF7AC */ void do_free(void*);
-    /* 802CF820 */ void do_freeAll();
-    /* 802CF89C */ void do_freeTail();
-    /* 802CF924 */ void do_fillFreeArea();
-    /* 802CF928 */ void do_changeGroupID(u8);
-    /* 802CF978 */ void do_resize(void*, u32);
-    /* 802CFB24 */ void do_getSize(void*);
-    /* 802CFBA4 */ void do_getFreeSize();
-    /* 802CFC10 */ void do_getMaxFreeBlock();
-    /* 802CFC84 */ void do_getTotalFreeSize();
-    /* 802CFCE8 */ void getUsedSize(u8) const;
-    /* 802CFD64 */ void getTotalUsedSize() const;
-    /* 802CFDCC */ void appendUsedList(JKRExpHeap::CMemBlock*);
-    /* 802CFE68 */ void setFreeBlock(JKRExpHeap::CMemBlock*, JKRExpHeap::CMemBlock*,
-                                     JKRExpHeap::CMemBlock*);
-    /* 802CFEB4 */ void removeFreeBlock(JKRExpHeap::CMemBlock*);
-    /* 802CFEE8 */ void removeUsedBlock(JKRExpHeap::CMemBlock*);
-    /* 802CFF1C */ void recycleFreeBlock(JKRExpHeap::CMemBlock*);
-    /* 802D00B4 */ void joinTwoBlocks(JKRExpHeap::CMemBlock*);
-    /* 802D0190 */ void check();
-    /* 802D03B8 */ void dump();
-    /* 802D05CC */ void dump_sort();
-    /* 802D0938 */ void state_register(JKRHeap::TState*, u32) const;
-    /* 802D09E0 */ void state_compare(JKRHeap::TState const&, JKRHeap::TState const&) const;
-    /* 802D0A10 */ void getHeapType();
-    /* 802D0A1C */ void do_getCurrentGroupId();
-};
+//     /* 802CEDB4 */ void createRoot(int, bool);
+//     /* 802CEF00 */ void create(void*, u32, JKRHeap*, bool);
+//     /* 802CEE2C */ void create(u32, JKRHeap*, bool);
+//     /* 802CEFAC */ void do_destroy();
+//     /* 802CF030 */ JKRExpHeap(void*, u32, JKRHeap*, bool);
+//     /* 802CF0C0 */ ~JKRExpHeap();
+//     /* 802CF128 */ void do_alloc(u32, int);
+//     /* 802CF490 */ void allocFromHead(u32);
+//     /* 802CF234 */ void allocFromHead(u32, int);
+//     /* 802CF6D4 */ void allocFromTail(u32);
+//     /* 802CF574 */ void allocFromTail(u32, int);
+//     /* 802CF7AC */ void do_free(void*);
+//     /* 802CF820 */ void do_freeAll();
+//     /* 802CF89C */ void do_freeTail();
+//     /* 802CF924 */ void do_fillFreeArea();
+//     /* 802CF928 */ void do_changeGroupID(u8);
+//     /* 802CF978 */ void do_resize(void*, u32);
+//     /* 802CFB24 */ void do_getSize(void*);
+//     /* 802CFBA4 */ void do_getFreeSize();
+//     /* 802CFC10 */ void do_getMaxFreeBlock();
+//     /* 802CFC84 */ void do_getTotalFreeSize();
+//     /* 802CFCE8 */ void getUsedSize(u8) const;
+//     /* 802CFD64 */ void getTotalUsedSize() const;
+//     /* 802CFDCC */ void appendUsedList(JKRExpHeap::CMemBlock*);
+//     /* 802CFE68 */ void setFreeBlock(JKRExpHeap::CMemBlock*, JKRExpHeap::CMemBlock*,
+//                                      JKRExpHeap::CMemBlock*);
+//     /* 802CFEB4 */ void removeFreeBlock(JKRExpHeap::CMemBlock*);
+//     /* 802CFEE8 */ void removeUsedBlock(JKRExpHeap::CMemBlock*);
+//     /* 802CFF1C */ void recycleFreeBlock(JKRExpHeap::CMemBlock*);
+//     /* 802D00B4 */ void joinTwoBlocks(JKRExpHeap::CMemBlock*);
+//     /* 802D0190 */ void check();
+//     /* 802D03B8 */ void dump();
+//     /* 802D05CC */ void dump_sort();
+//     /* 802D0938 */ void state_register(JKRHeap::TState*, u32) const;
+//     /* 802D09E0 */ void state_compare(JKRHeap::TState const&, JKRHeap::TState const&) const;
+//     /* 802D0A10 */ void getHeapType();
+//     /* 802D0A1C */ void do_getCurrentGroupId();
+// };
 
 //
 // Forward References:
@@ -155,8 +134,6 @@ extern "C" void JUTReportConsole_f();
 extern "C" void JUTReportConsole();
 extern "C" void JUTWarningConsole_f();
 extern "C" void JUTWarningConsole();
-extern "C" void OSLockMutex();
-extern "C" void OSUnlockMutex();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
@@ -276,7 +253,7 @@ SECTION_DEAD static char const* const stringBase_8039CAF0 = ":::cannot alloc mem
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRExpHeap::do_alloc(u32 param_0, int param_1) {
+asm void *JKRExpHeap::do_alloc(u32 param_0, int param_1) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRExpHeap/do_alloc__10JKRExpHeapFUli.s"
 }
@@ -378,7 +355,7 @@ void JKRExpHeap::do_fillFreeArea() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRExpHeap::do_changeGroupID(u8 param_0) {
+asm u8 JKRExpHeap::do_changeGroupID(u8 param_0) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRExpHeap/do_changeGroupID__10JKRExpHeapFUc.s"
 }
@@ -388,7 +365,7 @@ asm void JKRExpHeap::do_changeGroupID(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRExpHeap::do_resize(void* param_0, u32 param_1) {
+asm s32 JKRExpHeap::do_resize(void* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRExpHeap/do_resize__10JKRExpHeapFPvUl.s"
 }
@@ -398,7 +375,7 @@ asm void JKRExpHeap::do_resize(void* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRExpHeap::do_getSize(void* param_0) {
+asm s32 JKRExpHeap::do_getSize(void* param_0) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRExpHeap/do_getSize__10JKRExpHeapFPv.s"
 }
@@ -408,7 +385,7 @@ asm void JKRExpHeap::do_getSize(void* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRExpHeap::do_getFreeSize() {
+asm s32 JKRExpHeap::do_getFreeSize() {
     nofralloc
 #include "asm/JSystem/JKernel/JKRExpHeap/do_getFreeSize__10JKRExpHeapFv.s"
 }
@@ -419,7 +396,7 @@ asm void JKRExpHeap::do_getFreeSize() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRExpHeap::do_getMaxFreeBlock() {
+asm void *JKRExpHeap::do_getMaxFreeBlock() {
     nofralloc
 #include "asm/JSystem/JKernel/JKRExpHeap/do_getMaxFreeBlock__10JKRExpHeapFv.s"
 }
@@ -430,7 +407,7 @@ asm void JKRExpHeap::do_getMaxFreeBlock() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRExpHeap::do_getTotalFreeSize() {
+asm s32 JKRExpHeap::do_getTotalFreeSize() {
     nofralloc
 #include "asm/JSystem/JKernel/JKRExpHeap/do_getTotalFreeSize__10JKRExpHeapFv.s"
 }
@@ -440,7 +417,7 @@ asm void JKRExpHeap::do_getTotalFreeSize() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRExpHeap::getUsedSize(u8 param_0) const {
+asm s32 JKRExpHeap::getUsedSize(u8 param_0) const {
     nofralloc
 #include "asm/JSystem/JKernel/JKRExpHeap/getUsedSize__10JKRExpHeapCFUc.s"
 }
@@ -451,7 +428,7 @@ asm void JKRExpHeap::getUsedSize(u8 param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRExpHeap::getTotalUsedSize() const {
+asm s32 JKRExpHeap::getTotalUsedSize() const {
     nofralloc
 #include "asm/JSystem/JKernel/JKRExpHeap/getTotalUsedSize__10JKRExpHeapCFv.s"
 }
@@ -565,7 +542,7 @@ SECTION_DEAD static char const* const stringBase_8039CC67 =
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRExpHeap::check() {
+asm bool JKRExpHeap::check() {
     nofralloc
 #include "asm/JSystem/JKernel/JKRExpHeap/check__10JKRExpHeapFv.s"
 }
@@ -606,7 +583,7 @@ SECTION_SDATA2 static f64 lit_1123 = 4503599627370496.0 /* cast u32 to float */;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRExpHeap::dump() {
+asm bool JKRExpHeap::dump() {
     nofralloc
 #include "asm/JSystem/JKernel/JKRExpHeap/dump__10JKRExpHeapFv.s"
 }
@@ -616,7 +593,7 @@ asm void JKRExpHeap::dump() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRExpHeap::dump_sort() {
+asm bool JKRExpHeap::dump_sort() {
     nofralloc
 #include "asm/JSystem/JKernel/JKRExpHeap/dump_sort__10JKRExpHeapFv.s"
 }
@@ -696,7 +673,7 @@ asm void JKRExpHeap::state_register(JKRHeap::TState* param_0, u32 param_1) const
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRExpHeap::state_compare(JKRHeap::TState const& param_0,
+asm bool JKRExpHeap::state_compare(JKRHeap::TState const& param_0,
                                    JKRHeap::TState const& param_1) const {
     nofralloc
 #include "asm/JSystem/JKernel/JKRExpHeap/state_compare__10JKRExpHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState.s"
@@ -707,7 +684,7 @@ asm void JKRExpHeap::state_compare(JKRHeap::TState const& param_0,
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRExpHeap::getHeapType() {
+asm u32 JKRExpHeap::getHeapType() {
     nofralloc
 #include "asm/JSystem/JKernel/JKRExpHeap/getHeapType__10JKRExpHeapFv.s"
 }
@@ -717,7 +694,7 @@ asm void JKRExpHeap::getHeapType() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRExpHeap::do_getCurrentGroupId() {
+asm u8 JKRExpHeap::do_getCurrentGroupId() {
     nofralloc
 #include "asm/JSystem/JKernel/JKRExpHeap/do_getCurrentGroupId__10JKRExpHeapFv.s"
 }

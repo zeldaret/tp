@@ -6,96 +6,16 @@
 #include "JSystem/JKernel/JKRThread.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 
 //
 // Types:
 //
 
-struct OSThread {};
-
 struct JUTConsole {
     /* 802E75EC */ void clear();
     /* 802E7BB8 */ void print_f(char const*, ...);
     /* 802E7C38 */ void print(char const*);
-};
-
-struct JSUPtrLink {
-    /* 802DBDFC */ JSUPtrLink(void*);
-    /* 802DBE14 */ ~JSUPtrLink();
-};
-
-struct JSUPtrList {
-    /* 802DBE74 */ JSUPtrList(bool);
-    /* 802DBEAC */ ~JSUPtrList();
-    /* 802DBF14 */ void initiate();
-    /* 802DBF4C */ void append(JSUPtrLink*);
-    /* 802DC15C */ void remove(JSUPtrLink*);
-};
-
-template <typename A0>
-struct JSUList {};
-/* JSUList<JKRTask> */
-struct JSUList__template3 {
-    /* 802D1EFC */ void func_802D1EFC(void* _this);
-};
-
-/* JSUList<JKRThread> */
-struct JSUList__template4 {
-    /* 802D1F50 */ void func_802D1F50(void* _this);
-};
-
-struct JKRHeap {
-    /* 802CE438 */ void becomeCurrentHeap();
-    /* 802CE474 */ void alloc(u32, int, JKRHeap*);
-    /* 802CE500 */ void free(void*, JKRHeap*);
-    /* 802CE83C */ void findFromRoot(void*);
-    /* 802CEBA8 */ void isSubHeap(JKRHeap*) const;
-
-    static u8 sSystemHeap[4];
-    static u8 sCurrentHeap[4];
-    static u8 sRootHeap[4];
-};
-
-struct JKRThread {
-    /* 802D1568 */ JKRThread(u32, int, int);
-    /* 802D16B8 */ JKRThread(OSThread*, int);
-    /* 802D1610 */ JKRThread(JKRHeap*, u32, int, int);
-    /* 802D1758 */ ~JKRThread();
-    /* 802D1830 */ void setCommon_mesgQueue(JKRHeap*, int);
-    /* 802D18A4 */ void setCommon_heapSpecified(JKRHeap*, u32, int);
-    /* 802D1934 */ void start(void*);
-    /* 802D1960 */ void searchThread(OSThread*);
-    /* 802D1E14 */ bool run();
-
-    static u8 sThreadList[12];
-};
-
-struct JKRThreadName_ {};
-
-struct JKRThreadSwitch {
-    /* 802D199C */ JKRThreadSwitch(JKRHeap*);
-    /* 802D1A14 */ void createManager(JKRHeap*);
-    /* 802D1A70 */ void enter(JKRThread*, int);
-    /* 802D1AE4 */ void callback(OSThread*, OSThread*);
-    /* 802D1C74 */ void draw(JKRThreadName_*, JUTConsole*);
-    /* 802D1E1C */ void draw(JKRThreadName_*);
-    /* 802D1E4C */ ~JKRThreadSwitch();
-
-    static u8 sManager[4];
-    static u8 sTotalCount[4];
-    static u8 sTotalStart[4];
-    static u8 mUserPreCallback[4];
-    static u8 mUserPostCallback[4];
-};
-
-struct JKRTask {
-    static u8 sTaskList[12];
-    static u8 sEndMesgQueue[32];
-};
-
-struct JKRDisposer {
-    /* 802D147C */ JKRDisposer();
-    /* 802D14E4 */ ~JKRDisposer();
 };
 
 //
@@ -155,13 +75,6 @@ extern "C" void clear__10JUTConsoleFv();
 extern "C" void print_f__10JUTConsoleFPCce();
 extern "C" void print__10JUTConsoleFPCc();
 extern "C" void JUTWarningConsole();
-extern "C" void OSInitMessageQueue();
-extern "C" void OSSetSwitchThreadCallback();
-extern "C" void OSIsThreadTerminated();
-extern "C" void OSCreateThread();
-extern "C" void OSCancelThread();
-extern "C" void OSDetachThread();
-extern "C" void OSGetTick();
 extern "C" void __register_global_object();
 extern "C" void __cvt_fp2unsigned();
 extern "C" void _savegpr_25();
@@ -177,120 +90,124 @@ extern "C" void sprintf();
 extern "C" u8 sSystemHeap__7JKRHeap[4];
 extern "C" u8 sCurrentHeap__7JKRHeap[4];
 extern "C" u8 sRootHeap__7JKRHeap[4];
+extern "C" void *__vt__15JKRThreadSwitch;
 
 //
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 803CC100-803CC114 029220 0014+00 2/2 0/0 0/0 .data            __vt__15JKRThreadSwitch */
-SECTION_DATA extern void* __vt__15JKRThreadSwitch[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__15JKRThreadSwitchFP14JKRThreadName_P10JUTConsole,
-    (void*)draw__15JKRThreadSwitchFP14JKRThreadName_,
-    (void*)__dt__15JKRThreadSwitchFv,
-};
-
-/* 803CC114-803CC128 029234 0010+04 4/4 0/0 0/0 .data            __vt__9JKRThread */
-SECTION_DATA extern void* __vt__9JKRThread[4 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__9JKRThreadFv,
-    (void*)run__9JKRThreadFv,
-    /* padding */
-    NULL,
-};
-
 /* 802D1568-802D1610 2CBEA8 00A8+00 0/0 4/4 0/0 .text            __ct__9JKRThreadFUlii */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRThread::JKRThread(u32 param_0, int param_1, int param_2) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRThread/__ct__9JKRThreadFUlii.s"
+JKRThread::JKRThread(u32 stack_size, int message_count, int param_3) : mThreadListLink(this) {
+    mSwitchCount = 0;
+    mCost = 0;
+    field_0x6c = 0;
+    field_0x60 = 0;
+    field_0x70 = 0;
+
+    JKRHeap* heap = JKRHeap::findFromRoot(this);
+    if (heap == NULL) {
+        heap = JKRHeap::getSystemHeap();
+    }
+
+    setCommon_heapSpecified(heap, stack_size, param_3);
+    setCommon_mesgQueue(mHeap, message_count);
 }
-#pragma pop
 
 /* 802D1610-802D16B8 2CBF50 00A8+00 0/0 2/2 0/0 .text            __ct__9JKRThreadFP7JKRHeapUlii */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRThread::JKRThread(JKRHeap* param_0, u32 param_1, int param_2, int param_3) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRThread/__ct__9JKRThreadFP7JKRHeapUlii.s"
+JKRThread::JKRThread(JKRHeap* heap, u32 stack_size, int message_count, int param_4)
+    : mThreadListLink(this) {
+    mSwitchCount = 0;
+    mCost = 0;
+    field_0x6c = 0;
+    field_0x60 = 0;
+    field_0x70 = 0;
+
+    if (heap == NULL) {
+        heap = JKRHeap::getCurrentHeap();
+    }
+
+    setCommon_heapSpecified(heap, stack_size, param_4);
+    setCommon_mesgQueue(mHeap, message_count);
 }
-#pragma pop
 
 /* 802D16B8-802D1758 2CBFF8 00A0+00 0/0 5/5 0/0 .text            __ct__9JKRThreadFP8OSThreadi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRThread::JKRThread(OSThread* param_0, int param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRThread/__ct__9JKRThreadFP8OSThreadi.s"
-}
-#pragma pop
+JKRThread::JKRThread(OSThread* thread, int message_count) : mThreadListLink(this) {
+    mSwitchCount = 0;
+    mCost = 0;
+    field_0x6c = 0;
+    field_0x60 = 0;
+    field_0x70 = 0;
+    mHeap = NULL;
+    mThreadRecord = thread;
+    mStackSize = (u32)thread->stack_end - (u32)thread->stack_base;
+    mStackMemory = thread->stack_base;
 
-/* ############################################################################################## */
-/* 80434280-8043428C 060FA0 000C+00 1/1 0/0 0/0 .bss             @481 */
-static u8 lit_481[12];
+    setCommon_mesgQueue(JKRHeap::getSystemHeap(), message_count);
+}
 
 /* 8043428C-80434298 060FAC 000C+00 5/6 0/0 0/0 .bss             sThreadList__9JKRThread */
-u8 JKRThread::sThreadList[12];
+JSUList<JKRThread> JKRThread::sThreadList(0);
 
 /* 802D1758-802D1830 2CC098 00D8+00 1/0 9/9 0/0 .text            __dt__9JKRThreadFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRThread::~JKRThread() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRThread/__dt__9JKRThreadFv.s"
+JKRThread::~JKRThread() {
+    getList().remove(&mThreadListLink);
+
+    if (mHeap) {
+        BOOL result = OSIsThreadTerminated(mThreadRecord);
+        if (result == FALSE) {
+            OSDetachThread(mThreadRecord);
+            OSCancelThread(mThreadRecord);
+        }
+        JKRFreeToHeap(mHeap, mStackMemory);
+        JKRFreeToHeap(mHeap, mThreadRecord);
+    }
+    JKRFree(mMessages);
 }
-#pragma pop
 
 /* 802D1830-802D18A4 2CC170 0074+00 3/3 0/0 0/0 .text setCommon_mesgQueue__9JKRThreadFP7JKRHeapi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRThread::setCommon_mesgQueue(JKRHeap* param_0, int param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRThread/setCommon_mesgQueue__9JKRThreadFP7JKRHeapi.s"
+void JKRThread::setCommon_mesgQueue(JKRHeap* heap, int message_count) {
+    mMessageCount = message_count;
+    mMessages = (OSMessage*)JKRHeap::alloc(mMessageCount * sizeof(OSMessage), 0, heap);
+
+    OSInitMessageQueue(&mMessageQueue, mMessages, mMessageCount);
+    getList().append(&mThreadListLink);
+
+    mCurrentHeap = NULL;
+    mCurrentHeapError = NULL;
 }
-#pragma pop
 
 /* 802D18A4-802D1934 2CC1E4 0090+00 2/2 0/0 0/0 .text
  * setCommon_heapSpecified__9JKRThreadFP7JKRHeapUli             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRThread::setCommon_heapSpecified(JKRHeap* param_0, u32 param_1, int param_2) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRThread/setCommon_heapSpecified__9JKRThreadFP7JKRHeapUli.s"
+void JKRThread::setCommon_heapSpecified(JKRHeap* heap, u32 stack_size, int param_3) {
+    mHeap = heap;
+    mStackSize = stack_size & 0xffffffe0;
+    mStackMemory = JKRAllocFromHeap(mHeap, mStackSize, 0x20);
+    mThreadRecord = (OSThread*)JKRAllocFromHeap(mHeap, sizeof(OSThread), 0x20);
+
+    void* stackBase = (void*)((int)mStackMemory + mStackSize);
+    OSCreateThread(mThreadRecord, start, this, stackBase, mStackSize, param_3, 1);
 }
-#pragma pop
 
 /* 802D1934-802D1960 2CC274 002C+00 1/1 0/0 0/0 .text            start__9JKRThreadFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRThread::start(void* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRThread/start__9JKRThreadFPv.s"
+void* JKRThread::start(void* param) {
+    JKRThread* thread = (JKRThread*)param;
+    return thread->run();
 }
-#pragma pop
 
 /* 802D1960-802D199C 2CC2A0 003C+00 1/1 0/0 0/0 .text            searchThread__9JKRThreadFP8OSThread
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRThread::searchThread(OSThread* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRThread/searchThread__9JKRThreadFP8OSThread.s"
+JKRThread* JKRThread::searchThread(OSThread* thread) {
+    JSUList<JKRThread>& threadList = getList();
+    JSUListIterator<JKRThread> iterator;
+    for (iterator = threadList.getFirst(); iterator != threadList.getEnd(); ++iterator) {
+        if (iterator->getThreadRecord() == thread) {
+            return iterator.getObject();
+        }
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804513B0-804513B4 0008B0 0004+00 2/2 1/1 0/0 .sbss            sManager__15JKRThreadSwitch */
@@ -321,7 +238,7 @@ asm JKRThreadSwitch::JKRThreadSwitch(JKRHeap* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRThreadSwitch::createManager(JKRHeap* param_0) {
+asm JKRThreadSwitch* JKRThreadSwitch::createManager(JKRHeap* param_0) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRThread/createManager__15JKRThreadSwitchFP7JKRHeap.s"
 }
@@ -331,7 +248,7 @@ asm void JKRThreadSwitch::createManager(JKRHeap* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRThreadSwitch::enter(JKRThread* param_0, int param_1) {
+asm JKRThread* JKRThreadSwitch::enter(JKRThread* param_0, int param_1) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRThread/enter__15JKRThreadSwitchFP9JKRThreadi.s"
 }
@@ -394,6 +311,7 @@ SECTION_SDATA2 static f64 lit_937 = 4503599627370496.0 /* cast u32 to float */;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
+#pragma force_active on
 asm void JKRThreadSwitch::draw(JKRThreadName_* param_0, JUTConsole* param_1) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRThread/draw__15JKRThreadSwitchFP14JKRThreadName_P10JUTConsole.s"
@@ -401,14 +319,15 @@ asm void JKRThreadSwitch::draw(JKRThreadName_* param_0, JUTConsole* param_1) {
 #pragma pop
 
 /* 802D1E14-802D1E1C 2CC754 0008+00 1/0 0/0 0/0 .text            run__9JKRThreadFv */
-bool JKRThread::run() {
-    return false;
+void *JKRThread::run() {
+    return NULL;
 }
 
 /* 802D1E1C-802D1E4C 2CC75C 0030+00 1/0 0/0 0/0 .text draw__15JKRThreadSwitchFP14JKRThreadName_ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
+#pragma force_active on
 asm void JKRThreadSwitch::draw(JKRThreadName_* param_0) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRThread/draw__15JKRThreadSwitchFP14JKRThreadName_.s"
@@ -427,50 +346,15 @@ asm JKRThreadSwitch::~JKRThreadSwitch() {
 
 /* ############################################################################################## */
 /* 80434298-804342A4 060FB8 000C+00 0/1 0/0 0/0 .bss             @989 */
-#pragma push
-#pragma force_active on
-static u8 lit_989[12];
-#pragma pop
+// #pragma push
+// #pragma force_active on
+// static u8 lit_989[12];
+// #pragma pop
 
 /* 804342A4-804342B0 060FC4 000C+00 0/1 0/0 0/0 .bss             sTaskList__7JKRTask */
 #pragma push
 #pragma force_active on
-u8 JKRTask::sTaskList[12];
-#pragma pop
-
-/* 802D1E94-802D1EFC 2CC7D4 0068+00 0/0 1/0 0/0 .text            __sinit_JKRThread_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_JKRThread_cpp() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRThread/__sinit_JKRThread_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x802D1E94, __sinit_JKRThread_cpp);
-#pragma pop
-
-/* 802D1EFC-802D1F50 2CC83C 0054+00 1/1 0/0 0/0 .text            __dt__17JSUList<7JKRTask>Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void func_802D1EFC(void* _this) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRThread/func_802D1EFC.s"
-}
-#pragma pop
-
-/* 802D1F50-802D1FA4 2CC890 0054+00 1/1 0/0 0/0 .text            __dt__19JSUList<9JKRThread>Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void func_802D1F50(void* _this) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRThread/func_802D1F50.s"
-}
+JSUList<JKRTask> JKRTask::sTaskList;
 #pragma pop
 
 /* ############################################################################################## */

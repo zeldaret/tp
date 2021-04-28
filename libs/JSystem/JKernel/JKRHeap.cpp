@@ -5,85 +5,14 @@
 
 #include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "global.h"
 
 //
 // Types:
 //
 
 struct JUTException {
-    /* 802E21FC */ void panic_f(char const*, int, char const*, ...);
-};
-
-struct JSUPtrLink {
-    /* 802DBDFC */ JSUPtrLink(void*);
-    /* 802DBE14 */ ~JSUPtrLink();
-};
-
-struct JSUPtrList {
-    /* 802DBEAC */ ~JSUPtrList();
-    /* 802DBF14 */ void initiate();
-    /* 802DBF4C */ void append(JSUPtrLink*);
-    /* 802DC15C */ void remove(JSUPtrLink*);
-};
-
-struct JKRHeap {
-    struct TState {};
-
-    /* 800065D8 */ bool dump_sort();
-    /* 802CE138 */ JKRHeap(void*, u32, JKRHeap*, bool);
-    /* 802CE264 */ ~JKRHeap();
-    /* 802CE378 */ void initArena(char**, u32*, int);
-    /* 802CE428 */ void becomeSystemHeap();
-    /* 802CE438 */ void becomeCurrentHeap();
-    /* 802CE448 */ void destroy();
-    /* 802CE4D4 */ void alloc(u32, int);
-    /* 802CE474 */ void alloc(u32, int, JKRHeap*);
-    /* 802CE500 */ void free(void*, JKRHeap*);
-    /* 802CE548 */ void free(void*);
-    /* 802CE574 */ void callAllDisposer();
-    /* 802CE5CC */ void freeAll();
-    /* 802CE5F8 */ void freeTail();
-    /* 802CE684 */ void resize(void*, u32);
-    /* 802CE624 */ void resize(void*, u32, JKRHeap*);
-    /* 802CE700 */ void getSize(void*);
-    /* 802CE6B0 */ void getSize(void*, JKRHeap*);
-    /* 802CE72C */ void getFreeSize();
-    /* 802CE758 */ void getMaxFreeBlock();
-    /* 802CE784 */ void getTotalFreeSize();
-    /* 802CE7B0 */ void changeGroupID(u8);
-    /* 802CE7DC */ void getMaxAllocatableSize(int);
-    /* 802CE83C */ void findFromRoot(void*);
-    /* 802CE894 */ void find(void*) const;
-    /* 802CE93C */ void findAllHeap(void*) const;
-    /* 802CE9E4 */ void dispose_subroutine(u32, u32);
-    /* 802CEAA0 */ void dispose(void*, void*);
-    /* 802CEA78 */ void dispose(void*, u32);
-    /* 802CEAC0 */ void dispose();
-    /* 802CEB18 */ void copyMemory(void*, void*, u32);
-    /* 802CEB78 */ void setErrorFlag(bool);
-    /* 802CEB88 */ void setErrorHandler(void (*)(void*, u32, int));
-    /* 802CEBA8 */ void isSubHeap(JKRHeap*) const;
-    /* 802CED84 */ void state_register(JKRHeap::TState*, u32) const;
-    /* 802CED88 */ void state_compare(JKRHeap::TState const&, JKRHeap::TState const&) const;
-    /* 802CEDA0 */ void state_dump(JKRHeap::TState const&) const;
-    /* 802CEDA4 */ bool do_changeGroupID(u8);
-    /* 802CEDAC */ bool do_getCurrentGroupId();
-
-    static u8 sSystemHeap[4];
-    static u8 sCurrentHeap[4];
-    static u8 sRootHeap[4];
-    static u8 mErrorHandler[4];
-    static u8 mCodeStart[4];
-    static u8 mCodeEnd[4];
-    static u8 mUserRamStart[4];
-    static u8 mUserRamEnd[4];
-    static u8 mMemorySize[4];
-};
-
-struct JKRDisposer {
-    /* 802D147C */ JKRDisposer();
-    /* 802D14E4 */ ~JKRDisposer();
+    /* 802E21FC */ static void panic_f(char const*, int, char const*, ...);
 };
 
 //
@@ -120,7 +49,7 @@ extern "C" void dispose__7JKRHeapFPvUl();
 extern "C" void dispose__7JKRHeapFPvPv();
 extern "C" void dispose__7JKRHeapFv();
 extern "C" void copyMemory__7JKRHeapFPvPvUl();
-extern "C" static void JKRDefaultMemoryErrorRoutine__FPvUli();
+extern "C" void JKRDefaultMemoryErrorRoutine__FPvUli();
 extern "C" void setErrorFlag__7JKRHeapFb();
 extern "C" void setErrorHandler__7JKRHeapFPFPvUli_v();
 extern "C" void isSubHeap__7JKRHeapCFP7JKRHeap();
@@ -162,12 +91,6 @@ extern "C" void initiate__10JSUPtrListFv();
 extern "C" void append__10JSUPtrListFP10JSUPtrLink();
 extern "C" void remove__10JSUPtrListFP10JSUPtrLink();
 extern "C" void panic_f__12JUTExceptionFPCciPCce();
-extern "C" void OSInitAlloc();
-extern "C" void OSGetArenaHi();
-extern "C" void OSGetArenaLo();
-extern "C" void OSSetArenaHi();
-extern "C" void OSSetArenaLo();
-extern "C" void OSInitMutex();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
@@ -176,67 +99,91 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 data_804508B0[8];
+extern "C" extern bool data_804508B0;
+extern "C" void* __vt__7JKRHeap;
 
 //
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 803CBF70-803CBFD0 029090 0060+00 2/2 0/0 0/0 .data            __vt__7JKRHeap */
-SECTION_DATA extern void* __vt__7JKRHeap[24] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__7JKRHeapFv,
-    (void*)callAllDisposer__7JKRHeapFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)dump_sort__7JKRHeapFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)do_changeGroupID__7JKRHeapFUc,
-    (void*)do_getCurrentGroupId__7JKRHeapFv,
-    (void*)state_register__7JKRHeapCFPQ27JKRHeap6TStateUl,
-    (void*)state_compare__7JKRHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState,
-    (void*)state_dump__7JKRHeapCFRCQ27JKRHeap6TState,
-};
-
 /* 80451370-80451374 000870 0004+00 3/3 44/44 0/0 .sbss            sSystemHeap__7JKRHeap */
-u8 JKRHeap::sSystemHeap[4];
+JKRHeap *JKRHeap::sSystemHeap;
 
 /* 80451374-80451378 000874 0004+00 4/4 23/22 0/0 .sbss            sCurrentHeap__7JKRHeap */
-u8 JKRHeap::sCurrentHeap[4];
+JKRHeap *JKRHeap::sCurrentHeap;
 
 /* 80451378-8045137C 000878 0004+00 3/3 10/10 0/0 .sbss            sRootHeap__7JKRHeap */
-u8 JKRHeap::sRootHeap[4];
+JKRHeap *JKRHeap::sRootHeap;
 
 /* 8045137C-80451380 00087C 0004+00 2/2 3/3 0/0 .sbss            mErrorHandler__7JKRHeap */
-u8 JKRHeap::mErrorHandler[4];
+JKRErrorHandler JKRHeap::mErrorHandler;
 
 /* 80451380-80451384 000880 0004+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_80451380[4];
+static bool data_80451380;
 
 /* 802CE138-802CE264 2C8A78 012C+00 0/0 3/3 0/0 .text            __ct__7JKRHeapFPvUlP7JKRHeapb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRHeap::JKRHeap(void* param_0, u32 param_1, JKRHeap* param_2, bool param_3) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/__ct__7JKRHeapFPvUlP7JKRHeapb.s"
+JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool errorFlag)
+    : JKRDisposer(), mChildTree(this), mDisposerList() {
+    OSInitMutex(&mMutex);
+    mSize = size;
+    mStart = (u8*)data;
+    mEnd = (u8*)data + size;
+
+    if (parent == NULL) {
+        becomeSystemHeap();
+        becomeCurrentHeap();
+    } else {
+        parent->mChildTree.appendChild(&mChildTree);
+
+        if (getSystemHeap() == getRootHeap()) {
+            becomeSystemHeap();
+        }
+        if (getCurrentHeap() == getRootHeap()) {
+            becomeCurrentHeap();
+        }
+    }
+
+    mErrorFlag = errorFlag;
+    if ((mErrorFlag == true) && (mErrorHandler == NULL)) {
+        mErrorHandler = JKRDefaultMemoryErrorRoutine;
+    }
+
+    mDebugFill = data_804508B0;
+    mCheckMemoryFilled = data_80451380;
+    mInitFlag = false;
 }
-#pragma pop
 
 /* 802CE264-802CE378 2C8BA4 0114+00 1/0 3/3 0/0 .text            __dt__7JKRHeapFv */
+// using the wrong register for storing the results
+#ifdef NONMATCHING
+JKRHeap::~JKRHeap() {
+    JSUTree<JKRHeap>* parent = mChildTree.getParent();
+    parent->removeChild(&mChildTree);
+
+    JSUTree<JKRHeap>* nextRootHeap = getRootHeap()->mChildTree.getFirstChild();
+
+    JKRHeap* rootHeap = getRootHeap();
+    JKRHeap* currentHeap = getCurrentHeap();
+    if (currentHeap == this) {
+        if (!nextRootHeap) {
+            currentHeap = rootHeap;
+        } else {
+            currentHeap = nextRootHeap->getObject();
+        }
+    }
+    setCurrentHeap(currentHeap);
+
+    JKRHeap* systemHeap = getSystemHeap();
+    if (systemHeap == this) {
+        if (!nextRootHeap) {
+            systemHeap = rootHeap;
+        } else {
+            systemHeap = nextRootHeap->getObject();
+        }
+    }
+    setSystemHeap(systemHeap);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -245,102 +192,103 @@ asm JKRHeap::~JKRHeap() {
 #include "asm/JSystem/JKernel/JKRHeap/__dt__7JKRHeapFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80451384-80451388 000884 0004+00 1/1 1/1 0/0 .sbss            mCodeStart__7JKRHeap */
-u8 JKRHeap::mCodeStart[4];
+void *JKRHeap::mCodeStart;
 
 /* 80451388-8045138C 000888 0004+00 1/1 1/1 0/0 .sbss            mCodeEnd__7JKRHeap */
-u8 JKRHeap::mCodeEnd[4];
+void *JKRHeap::mCodeEnd;
 
 /* 8045138C-80451390 00088C 0004+00 1/1 1/1 0/0 .sbss            mUserRamStart__7JKRHeap */
-u8 JKRHeap::mUserRamStart[4];
+void *JKRHeap::mUserRamStart;
 
 /* 80451390-80451394 000890 0004+00 1/1 1/1 0/0 .sbss            mUserRamEnd__7JKRHeap */
-u8 JKRHeap::mUserRamEnd[4];
+void *JKRHeap::mUserRamEnd;
 
 /* 80451394-80451398 000894 0004+00 1/1 2/2 0/0 .sbss            mMemorySize__7JKRHeap */
-u8 JKRHeap::mMemorySize[4];
+u32 JKRHeap::mMemorySize;
 
 /* 802CE378-802CE428 2C8CB8 00B0+00 0/0 1/1 0/0 .text            initArena__7JKRHeapFPPcPUli */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::initArena(char** param_0, u32* param_1, int param_2) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/initArena__7JKRHeapFPPcPUli.s"
+bool JKRHeap::initArena(char** memory, u32* size, int param_3) {
+    u32 ram_start;
+    u32 ram_end;
+    u32 ram;
+
+    u32 low = OSGetArenaLo();
+    u32 high = OSGetArenaHi();
+    if (low == high)
+        return false;
+
+    ram = OSInitAlloc(low, high, param_3);
+    ram_start = ALIGN_NEXT(ram, 0x20);
+    ram_end = ALIGN_PREV(high, 0x20);
+    GLOBAL_MEMORY* globalMemory = (GLOBAL_MEMORY*)OSPhysicalToCached(0);
+    mCodeStart = globalMemory;
+    mCodeEnd = (void*)ram_start;
+    mUserRamStart = (void*)ram_start;
+    mUserRamEnd = (void*)ram_end;
+    mMemorySize = globalMemory->memory_size;
+    OSSetArenaLo(ram_end);
+    OSSetArenaHi(ram_end);
+    *memory = (char*)ram_start;
+    *size = ram_end - ram_start;
+    return true;
 }
-#pragma pop
 
 /* 802CE428-802CE438 2C8D68 0010+00 1/1 0/0 0/0 .text            becomeSystemHeap__7JKRHeapFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::becomeSystemHeap() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/becomeSystemHeap__7JKRHeapFv.s"
+JKRHeap* JKRHeap::becomeSystemHeap() {
+    JKRHeap* prev = JKRHeap::getSystemHeap();
+    setSystemHeap(this);
+    return prev;
 }
-#pragma pop
 
 /* 802CE438-802CE448 2C8D78 0010+00 1/1 22/22 1/1 .text            becomeCurrentHeap__7JKRHeapFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::becomeCurrentHeap() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/becomeCurrentHeap__7JKRHeapFv.s"
+JKRHeap* JKRHeap::becomeCurrentHeap() {
+    JKRHeap* prev = getCurrentHeap();
+    setCurrentHeap(this);
+    return prev;
 }
-#pragma pop
 
 /* 802CE448-802CE474 2C8D88 002C+00 0/0 5/5 1/1 .text            destroy__7JKRHeapFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::destroy() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/destroy__7JKRHeapFv.s"
+void JKRHeap::destroy() {
+    do_destroy();
 }
-#pragma pop
 
 /* 802CE474-802CE4D4 2C8DB4 0060+00 6/6 23/23 0/0 .text            alloc__7JKRHeapFUliP7JKRHeap */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::alloc(u32 param_0, int param_1, JKRHeap* param_2) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/alloc__7JKRHeapFUliP7JKRHeap.s"
+void* JKRHeap::alloc(u32 size, int alignment, JKRHeap* heap) {
+    if (heap != NULL) {
+        return heap->alloc(size, alignment);
+    }
+
+    if (getCurrentHeap() != NULL) {
+        return getCurrentHeap()->alloc(size, alignment);
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 802CE4D4-802CE500 2C8E14 002C+00 1/1 30/30 1/1 .text            alloc__7JKRHeapFUli */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::alloc(u32 param_0, int param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/alloc__7JKRHeapFUli.s"
+void* JKRHeap::alloc(u32 size, int alignment) {
+    return do_alloc(size, alignment);
 }
-#pragma pop
 
 /* 802CE500-802CE548 2C8E40 0048+00 2/2 38/38 1/1 .text            free__7JKRHeapFPvP7JKRHeap */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::free(void* param_0, JKRHeap* param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/free__7JKRHeapFPvP7JKRHeap.s"
+void JKRHeap::free(void* ptr, JKRHeap* heap) {
+    if (!heap) {
+        heap = findFromRoot(ptr);
+        if (!heap)
+            return;
+    }
+
+    heap->free(ptr);
 }
-#pragma pop
 
 /* 802CE548-802CE574 2C8E88 002C+00 1/1 29/29 0/0 .text            free__7JKRHeapFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::free(void* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/free__7JKRHeapFPv.s"
+void JKRHeap::free(void* ptr) {
+    do_free(ptr);
 }
-#pragma pop
 
 /* 802CE574-802CE5CC 2C8EB4 0058+00 1/0 5/2 0/0 .text            callAllDisposer__7JKRHeapFv */
 #pragma push
@@ -353,178 +301,200 @@ asm void JKRHeap::callAllDisposer() {
 #pragma pop
 
 /* 802CE5CC-802CE5F8 2C8F0C 002C+00 0/0 12/12 0/0 .text            freeAll__7JKRHeapFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::freeAll() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/freeAll__7JKRHeapFv.s"
+void JKRHeap::freeAll() {
+    do_freeAll();
 }
-#pragma pop
 
 /* 802CE5F8-802CE624 2C8F38 002C+00 0/0 1/1 0/0 .text            freeTail__7JKRHeapFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::freeTail() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/freeTail__7JKRHeapFv.s"
+void JKRHeap::freeTail() {
+    do_freeTail();
 }
-#pragma pop
 
 /* 802CE624-802CE684 2C8F64 0060+00 0/0 1/1 0/0 .text            resize__7JKRHeapFPvUlP7JKRHeap */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::resize(void* param_0, u32 param_1, JKRHeap* param_2) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/resize__7JKRHeapFPvUlP7JKRHeap.s"
+s32 JKRHeap::resize(void* ptr, u32 size, JKRHeap* heap) {
+    if (!heap) {
+        heap = findFromRoot(ptr);
+        if (!heap)
+            return -1;
+    }
+
+    return heap->resize(ptr, size);
 }
-#pragma pop
 
 /* 802CE684-802CE6B0 2C8FC4 002C+00 1/1 1/1 0/0 .text            resize__7JKRHeapFPvUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::resize(void* param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/resize__7JKRHeapFPvUl.s"
+s32 JKRHeap::resize(void* ptr, u32 size) {
+    return do_resize(ptr, size);
 }
-#pragma pop
 
 /* 802CE6B0-802CE700 2C8FF0 0050+00 0/0 4/4 0/0 .text            getSize__7JKRHeapFPvP7JKRHeap */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::getSize(void* param_0, JKRHeap* param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/getSize__7JKRHeapFPvP7JKRHeap.s"
+s32 JKRHeap::getSize(void* ptr, JKRHeap* heap) {
+    if (!heap) {
+        heap = findFromRoot(ptr);
+        if (!heap)
+            return -1;
+    }
+
+    return heap->getSize(ptr);
 }
-#pragma pop
 
 /* 802CE700-802CE72C 2C9040 002C+00 1/1 1/1 0/0 .text            getSize__7JKRHeapFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::getSize(void* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/getSize__7JKRHeapFPv.s"
+s32 JKRHeap::getSize(void* ptr) {
+    return do_getSize(ptr);
 }
-#pragma pop
 
 /* 802CE72C-802CE758 2C906C 002C+00 1/1 18/18 0/0 .text            getFreeSize__7JKRHeapFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::getFreeSize() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/getFreeSize__7JKRHeapFv.s"
+s32 JKRHeap::getFreeSize() {
+    return do_getFreeSize();
 }
-#pragma pop
 
 /* 802CE758-802CE784 2C9098 002C+00 1/1 0/0 0/0 .text            getMaxFreeBlock__7JKRHeapFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::getMaxFreeBlock() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/getMaxFreeBlock__7JKRHeapFv.s"
+void* JKRHeap::getMaxFreeBlock() {
+    return do_getMaxFreeBlock();
 }
-#pragma pop
 
 /* 802CE784-802CE7B0 2C90C4 002C+00 0/0 32/32 0/0 .text            getTotalFreeSize__7JKRHeapFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::getTotalFreeSize() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/getTotalFreeSize__7JKRHeapFv.s"
+s32 JKRHeap::getTotalFreeSize() {
+    return do_getTotalFreeSize();
 }
-#pragma pop
 
 /* 802CE7B0-802CE7DC 2C90F0 002C+00 0/0 1/1 0/0 .text            changeGroupID__7JKRHeapFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::changeGroupID(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/changeGroupID__7JKRHeapFUc.s"
+u8 JKRHeap::changeGroupID(u8 param_1) {
+    return do_changeGroupID(param_1);
 }
-#pragma pop
 
 /* 802CE7DC-802CE83C 2C911C 0060+00 0/0 2/2 0/0 .text            getMaxAllocatableSize__7JKRHeapFi
  */
+// "not/nor" instruction in the wrong place
+#ifdef NONMATCHING
+s32 JKRHeap::getMaxAllocatableSize(int alignment) {
+    u32 maxFreeBlock = (u32)getMaxFreeBlock();
+    s32 freeSize = getFreeSize();
+
+    u32 mask = alignment - 1U;
+    s32 ptrOffset = mask & (alignment - (maxFreeBlock & 0xf));
+    s32 alignedSize = (freeSize - ptrOffset) & ~(alignment - 1U);
+    return alignedSize;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRHeap::getMaxAllocatableSize(int param_0) {
+asm u32 JKRHeap::getMaxAllocatableSize(int param_0) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRHeap/getMaxAllocatableSize__7JKRHeapFi.s"
 }
 #pragma pop
+#endif
 
 /* 802CE83C-802CE894 2C917C 0058+00 3/3 8/8 0/0 .text            findFromRoot__7JKRHeapFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::findFromRoot(void* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/findFromRoot__7JKRHeapFPv.s"
+JKRHeap* JKRHeap::findFromRoot(void* ptr) {
+    JKRHeap* rootHeap = getRootHeap();
+    if (rootHeap == NULL) {
+        return NULL;
+    }
+
+    if (rootHeap->getStartAddr() <= ptr && ptr < rootHeap->getEndAddr()) {
+        return rootHeap->find(ptr);
+    }
+
+    return rootHeap->findAllHeap(ptr);
 }
-#pragma pop
 
 /* 802CE894-802CE93C 2C91D4 00A8+00 1/1 1/1 0/0 .text            find__7JKRHeapCFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::find(void* param_0) const {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/find__7JKRHeapCFPv.s"
+JKRHeap* JKRHeap::find(void* ptr) const {
+    if (getStartAddr() <= ptr && ptr < getEndAddr()) {
+        const JSUTree<JKRHeap>& tree = mChildTree;
+        if (tree.getNumChildren() != 0) {
+            JSUTreeIterator<JKRHeap> iterator;
+            for (iterator = tree.getFirstChild(); iterator != tree.getEndChild(); iterator++) {
+                JKRHeap* child = iterator.getObject();
+                JKRHeap* result = child->find(ptr);
+                if (result) {
+                    return result;
+                }
+            }
+        }
+
+        // todo: not sure about this... casting away const for now.
+        return (JKRHeap*)this;
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 802CE93C-802CE9E4 2C927C 00A8+00 1/1 0/0 0/0 .text            findAllHeap__7JKRHeapCFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::findAllHeap(void* param_0) const {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/findAllHeap__7JKRHeapCFPv.s"
+JKRHeap* JKRHeap::findAllHeap(void* ptr) const {
+    const JSUTree<JKRHeap>& tree = mChildTree;
+    if (tree.getNumChildren() != 0) {
+        JSUTreeIterator<JKRHeap> iterator;
+        for (iterator = tree.getFirstChild(); iterator != tree.getEndChild(); iterator++) {
+            JKRHeap* child = iterator.getObject();
+            JKRHeap* result = child->findAllHeap(ptr);
+            if (result) {
+                return result;
+            }
+        }
+    }
+
+    if (getStartAddr() <= ptr && ptr < getEndAddr()) {
+        // todo: not sure about this... casting away const for now.
+        return (JKRHeap*)this;
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 802CE9E4-802CEA78 2C9324 0094+00 2/2 0/0 0/0 .text            dispose_subroutine__7JKRHeapFUlUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::dispose_subroutine(u32 param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/dispose_subroutine__7JKRHeapFUlUl.s"
+void JKRHeap::dispose_subroutine(u32 begin, u32 end) {
+    JSUListIterator<JKRDisposer> last_iterator;
+    JSUListIterator<JKRDisposer> next_iterator;
+    JSUListIterator<JKRDisposer> iterator;
+    for (iterator = mDisposerList.getFirst(); iterator != mDisposerList.getEnd();
+         iterator = next_iterator) {
+        JKRDisposer* disposer = iterator.getObject();
+
+        if ((void*)begin <= disposer && disposer < (void*)end) {
+            disposer->~JKRDisposer();
+            if (last_iterator == NULL) {
+                next_iterator = mDisposerList.getFirst();
+            } else {
+                next_iterator = last_iterator;
+                next_iterator++;
+            }
+        } else {
+            last_iterator = iterator;
+            next_iterator = iterator;
+            next_iterator++;
+        }
+    }
 }
-#pragma pop
 
 /* 802CEA78-802CEAA0 2C93B8 0028+00 0/0 1/1 0/0 .text            dispose__7JKRHeapFPvUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::dispose(void* param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/dispose__7JKRHeapFPvUl.s"
+bool JKRHeap::dispose(void* ptr, u32 size) {
+    u32 begin = (u32)ptr;
+    u32 end = (u32)ptr + size;
+    dispose_subroutine(begin, end);
+    return false;
 }
-#pragma pop
 
 /* 802CEAA0-802CEAC0 2C93E0 0020+00 0/0 1/1 0/0 .text            dispose__7JKRHeapFPvPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::dispose(void* param_0, void* param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/dispose__7JKRHeapFPvPv.s"
+void JKRHeap::dispose(void* begin, void* end) {
+    dispose_subroutine((u32)begin, (u32)end);
 }
-#pragma pop
 
 /* 802CEAC0-802CEB18 2C9400 0058+00 0/0 3/3 0/0 .text            dispose__7JKRHeapFv */
+// missing stack variable?
+#ifdef NONMATCHING
+void JKRHeap::dispose() {
+    const JSUList<JKRDisposer>& list = mDisposerList;
+    JSUListIterator<JKRDisposer> iterator;
+    while (list.getFirst() != list.getEnd()) {
+        iterator = list.getFirst();
+        iterator->~JKRDisposer();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -533,180 +503,141 @@ asm void JKRHeap::dispose() {
 #include "asm/JSystem/JKernel/JKRHeap/dispose__7JKRHeapFv.s"
 }
 #pragma pop
+#endif
 
 /* 802CEB18-802CEB40 2C9458 0028+00 0/0 4/4 0/0 .text            copyMemory__7JKRHeapFPvPvUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::copyMemory(void* param_0, void* param_1, u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/copyMemory__7JKRHeapFPvPvUl.s"
-}
-#pragma pop
+void JKRHeap::copyMemory(void* dst, void* src, u32 size) {
+    u32 count = (size + 3) / 4;
 
-/* ############################################################################################## */
-/* 8039CAD8-8039CAD8 029138 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039CAD8 = "JKRHeap.cpp";
-SECTION_DEAD static char const* const stringBase_8039CAE4 = "%s";
-SECTION_DEAD static char const* const stringBase_8039CAE7 = "abort\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039CAEE = "\0";
-#pragma pop
+    u32* dst_32 = (u32*)dst;
+    u32* src_32 = (u32*)src;
+    while (count > 0) {
+        *dst_32 = *src_32;
+        dst_32++;
+        src_32++;
+        count--;
+    }
+}
+
 
 /* 802CEB40-802CEB78 2C9480 0038+00 2/2 0/0 0/0 .text JKRDefaultMemoryErrorRoutine__FPvUli */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void JKRDefaultMemoryErrorRoutine(void* param_0, u32 param_1, int param_2) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/JKRDefaultMemoryErrorRoutine__FPvUli.s"
+void JKRDefaultMemoryErrorRoutine(void* heap, u32 size, int alignment) {
+    JUTException::panic_f("JKRHeap.cpp", 0x33f, "%s", "abort\n");
 }
-#pragma pop
 
 /* 802CEB78-802CEB88 2C94B8 0010+00 0/0 2/2 0/0 .text            setErrorFlag__7JKRHeapFb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::setErrorFlag(bool param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/setErrorFlag__7JKRHeapFb.s"
+bool JKRHeap::setErrorFlag(bool errorFlag) {
+    bool prev = mErrorFlag;
+    mErrorFlag = errorFlag;
+    return prev;
 }
-#pragma pop
 
 /* 802CEB88-802CEBA8 2C94C8 0020+00 0/0 1/1 0/0 .text            setErrorHandler__7JKRHeapFPFPvUli_v
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::setErrorHandler(void (*param_0)(void*, u32, int)) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/setErrorHandler__7JKRHeapFPFPvUli_v.s"
+JKRErrorHandler JKRHeap::setErrorHandler(JKRErrorHandler errorHandler) {
+    JKRErrorHandler prev = mErrorHandler;
+
+    if (!errorHandler) {
+        errorHandler = JKRDefaultMemoryErrorRoutine;
+    }
+
+    mErrorHandler = errorHandler;
+    return prev;
 }
-#pragma pop
 
 /* 802CEBA8-802CEC4C 2C94E8 00A4+00 0/0 1/1 0/0 .text            isSubHeap__7JKRHeapCFP7JKRHeap */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::isSubHeap(JKRHeap* param_0) const {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/isSubHeap__7JKRHeapCFP7JKRHeap.s"
+bool JKRHeap::isSubHeap(JKRHeap* heap) const {
+    if (!heap)
+        return false;
+
+    const JSUTree<JKRHeap>& tree = mChildTree;
+    if (tree.getNumChildren() != 0) {
+        JSUTreeIterator<JKRHeap> iterator;
+        for (iterator = tree.getFirstChild(); iterator != tree.getEndChild(); ++iterator) {
+            JKRHeap* child = iterator.getObject();
+            if (child == heap) {
+                return true;
+            }
+
+            bool is_sub_heap = child->isSubHeap(heap);
+            if (is_sub_heap) {
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 802CEC4C-802CEC74 2C958C 0028+00 0/0 278/278 377/377 .text            __nw__FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void* operator new(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/__nw__FUl.s"
+void* operator new(u32 size) {
+    return JKRHeap::alloc(size, 4, NULL);
 }
-#pragma pop
 
 /* 802CEC74-802CEC98 2C95B4 0024+00 0/0 15/15 0/0 .text            __nw__FUli */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void* operator new(u32 param_0, int param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/__nw__FUli.s"
+void* operator new(u32 size, int alignment) {
+    return JKRHeap::alloc(size, alignment, NULL);
 }
-#pragma pop
 
 /* 802CEC98-802CECC4 2C95D8 002C+00 0/0 47/47 0/0 .text            __nw__FUlP7JKRHeapi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void* operator new(u32 param_0, JKRHeap* param_1, int param_2) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/__nw__FUlP7JKRHeapi.s"
+void* operator new(u32 size, JKRHeap* heap, int alignment) {
+    return JKRHeap::alloc(size, alignment, heap);
 }
-#pragma pop
 
 /* 802CECC4-802CECEC 2C9604 0028+00 0/0 52/52 15/15 .text            __nwa__FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void* operator new[](u32 param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/__nwa__FUl.s"
+void* operator new[](u32 size) {
+    return JKRHeap::alloc(size, 4, NULL);
 }
-#pragma pop
 
 /* 802CECEC-802CED10 2C962C 0024+00 0/0 29/29 0/0 .text            __nwa__FUli */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void* operator new[](u32 param_0, int param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/__nwa__FUli.s"
+void* operator new[](u32 size, int alignment) {
+    return JKRHeap::alloc(size, alignment, NULL);
 }
-#pragma pop
 
 /* 802CED10-802CED3C 2C9650 002C+00 0/0 25/25 0/0 .text            __nwa__FUlP7JKRHeapi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void* operator new[](u32 param_0, JKRHeap* param_1, int param_2) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/__nwa__FUlP7JKRHeapi.s"
+void* operator new[](u32 size, JKRHeap* heap, int alignment) {
+    return JKRHeap::alloc(size, alignment, heap);
 }
-#pragma pop
 
 /* 802CED3C-802CED60 2C967C 0024+00 1/1 847/847 4665/4665 .text            __dl__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void operator delete(void* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/__dl__FPv.s"
+void operator delete(void* ptr) {
+    JKRHeap::free(ptr, NULL);
 }
-#pragma pop
 
 /* 802CED60-802CED84 2C96A0 0024+00 0/0 20/20 3/3 .text            __dla__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void operator delete[](void* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/__dla__FPv.s"
+void operator delete[](void* ptr) {
+    JKRHeap::free(ptr, NULL);
 }
-#pragma pop
 
 /* 802CED84-802CED88 2C96C4 0004+00 1/0 1/0 0/0 .text
  * state_register__7JKRHeapCFPQ27JKRHeap6TStateUl               */
-void JKRHeap::state_register(JKRHeap::TState* param_0, u32 param_1) const {
-    /* empty function */
+void JKRHeap::state_register(JKRHeap::TState* p, u32 id) const {
+    JUT_ASSERT(p != 0);
+    JUT_ASSERT(p->getHeap() == this);
 }
 
 /* 802CED88-802CEDA0 2C96C8 0018+00 1/0 1/0 0/0 .text
  * state_compare__7JKRHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::state_compare(JKRHeap::TState const& param_0,
-                                JKRHeap::TState const& param_1) const {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/state_compare__7JKRHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState.s"
+bool JKRHeap::state_compare(JKRHeap::TState const& r1, JKRHeap::TState const& r2) const {
+    JUT_ASSERT(r1.getHeap() == r2.getHeap());
+    return r1.getCheckCode() == r2.getCheckCode();
 }
-#pragma pop
 
 /* 802CEDA0-802CEDA4 2C96E0 0004+00 1/0 3/0 0/0 .text state_dump__7JKRHeapCFRCQ27JKRHeap6TState */
-void JKRHeap::state_dump(JKRHeap::TState const& param_0) const {
-    /* empty function */
+void JKRHeap::state_dump(JKRHeap::TState const& p) const {
+    LOGF("check-code : 0x%08x", p.getCheckCode());
+    LOGF("id         : 0x%08x", p.getId());
+    LOGF("used size  : %u", p.getUsedSize());
 }
 
 /* 802CEDA4-802CEDAC 2C96E4 0008+00 1/0 1/0 0/0 .text            do_changeGroupID__7JKRHeapFUc */
-bool JKRHeap::do_changeGroupID(u8 param_0) {
-    return false;
+u8 JKRHeap::do_changeGroupID(u8 param_0) {
+    return 0;
 }
 
 /* 802CEDAC-802CEDB4 2C96EC 0008+00 1/0 1/0 0/0 .text            do_getCurrentGroupId__7JKRHeapFv */
-bool JKRHeap::do_getCurrentGroupId() {
-    return false;
+u8 JKRHeap::do_getCurrentGroupId() {
+    return 0;
 }
 
 /* 8039CAD8-8039CAD8 029138 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
