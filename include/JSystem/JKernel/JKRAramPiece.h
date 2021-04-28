@@ -6,8 +6,6 @@
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 
-extern OSMutex lbl_80434330;  // mMutex
-
 class JKRAramBlock;
 class JKRDecompCommand;
 class JKRAMCommand {
@@ -42,6 +40,8 @@ public:
 class JKRAramPiece {
 public:
     static OSMutex mMutex;
+    // TODO: fix type
+    static JSUList<JKRAMCommand> sAramPieceCommandList;
 
 public:
     struct Message {
@@ -61,8 +61,8 @@ public:
     static void doneDMA(u32);
 
 private:
-    static void lock() { OSLockMutex(&lbl_80434330); }
-    static void unlock() { OSUnlockMutex(&lbl_80434330); }
+    static void lock() { OSLockMutex(&mMutex); }
+    static void unlock() { OSUnlockMutex(&mMutex); }
 };
 
 inline BOOL JKRAramPcs(int direction, u32 source, u32 destination, u32 length,

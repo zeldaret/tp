@@ -3,7 +3,7 @@
 // Translation Unit: JKRCompArchive
 //
 
-#include "JSystem/JKernel/JKRCompArchive.h"
+// #include "JSystem/JKernel/JKRCompArchive.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

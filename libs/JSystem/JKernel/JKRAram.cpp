@@ -5,86 +5,14 @@
 
 #include "JSystem/JKernel/JKRAram.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JUTException {
-    /* 802E21FC */ void panic_f(char const*, int, char const*, ...);
-};
-
-struct JSUPtrList {
-    /* 802DBEAC */ ~JSUPtrList();
-    /* 802DBF14 */ void initiate();
-};
-
-template <typename A0>
-struct JSUList {};
-/* JSUList<JKRAMCommand> */
-struct JSUList__template5 {
-    /* 802D2DF0 */ void func_802D2DF0(void* _this);
-};
-
-struct JKRThread {
-    /* 802D1568 */ JKRThread(u32, int, int);
-    /* 802D1758 */ ~JKRThread();
-};
-
-struct JKRHeap {
-    /* 802CE4D4 */ void alloc(u32, int);
-    /* 802CE474 */ void alloc(u32, int, JKRHeap*);
-    /* 802CE500 */ void free(void*, JKRHeap*);
-
-    static u8 sSystemHeap[4];
-    static u8 sCurrentHeap[4];
-};
-
-struct JKRExpandSwitch {};
-
-struct JKRDecomp {
-    /* 802DB680 */ void create(s32);
-    /* 802DB988 */ void orderSync(u8*, u8*, u32, u32);
-    /* 802DBCF8 */ void checkCompressed(u8*);
-};
-
-struct JKRAramStream {
-    /* 802D3B48 */ void create(s32);
-};
-
-struct JKRAMCommand {};
-
-struct JKRAramBlock {};
-
-struct JKRAramPiece {
-    /* 802D3838 */ void orderSync(int, u32, u32, u32, JKRAramBlock*);
-    /* 802D38CC */ void startDMA(JKRAMCommand*);
-};
-
-struct JKRAramHeap {
-    struct EAllocMode {};
-
-    /* 802D2E44 */ JKRAramHeap(u32, u32);
-    /* 802D2FBC */ void alloc(u32, JKRAramHeap::EAllocMode);
-};
-
-struct JKRAram {
-    /* 802D1FA4 */ void create(u32, u32, s32, s32, s32);
-    /* 802D2040 */ JKRAram(u32, u32, s32);
-    /* 802D214C */ ~JKRAram();
-    /* 802D21DC */ void run();
-    /* 802D2248 */ void checkOkAddress(u8*, u32, JKRAramBlock*, u32);
-    /* 802D22DC */ void changeGroupIdIfNeed(u8*, int);
-    /* 802D233C */ void mainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
-    /* 802D25B4 */ void aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
-
-    static u8 sMessageBuffer[16];
-    static u8 sMessageQueue[32];
-    static u8 sAramCommandList[12];
-    static u32 sSZSBufferSize[1 + 1 /* padding */];
-    static u8 sAramObject[4];
-};
+#include "global.h"
+#include "JSystem/JKernel/JKRAramBlock.h"
+#include "JSystem/JKernel/JKRAramHeap.h"
+#include "JSystem/JKernel/JKRAramPiece.h"
+#include "JSystem/JKernel/JKRAramStream.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "dolphin/ar/ar.h"
+#include "JSystem/JUtility/JUTException.h"
 
 //
 // Forward References:
@@ -135,17 +63,6 @@ extern "C" void __dt__10JSUPtrListFv();
 extern "C" void initiate__10JSUPtrListFv();
 extern "C" void panic_f__12JUTExceptionFPCciPCce();
 extern "C" void DCStoreRangeNoSync();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void OSInitMessageQueue();
-extern "C" void OSReceiveMessage();
-extern "C" void OSInitMutex();
-extern "C" void OSLockMutex();
-extern "C" void OSUnlockMutex();
-extern "C" void OSResumeThread();
-extern "C" void ARAlloc();
-extern "C" void ARInit();
-extern "C" void ARGetSize();
 extern "C" void ARQInit();
 extern "C" void __register_global_object();
 extern "C" void _savegpr_22();
@@ -169,98 +86,129 @@ extern "C" u8 sCurrentHeap__7JKRHeap[4];
 
 /* ############################################################################################## */
 /* 804513C8-804513CC 0008C8 0004+00 3/3 9/9 0/0 .sbss            sAramObject__7JKRAram */
-u8 JKRAram::sAramObject[4];
+JKRAram *JKRAram::sAramObject;
 
 /* 802D1FA4-802D2040 2CC8E4 009C+00 0/0 1/1 0/0 .text            create__7JKRAramFUlUllll */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRAram::create(u32 param_0, u32 param_1, s32 param_2, s32 param_3, s32 param_4) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAram/create__7JKRAramFUlUllll.s"
+JKRAram* JKRAram::create(u32 aram_audio_buffer_size, u32 aram_audio_graph_size,
+                         long stream_priority, long decomp_priority, long piece_priority) {
+    if (!sAramObject) {
+        sAramObject = new (JKRHeap::getSystemHeap(), 0)
+            JKRAram(aram_audio_buffer_size, aram_audio_graph_size, piece_priority);
+    }
+
+    JKRCreateAramStreamManager(stream_priority);
+    JKRCreateDecompManager(decomp_priority);
+    sAramObject->resume();
+    return sAramObject;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803CC128-803CC138 029248 0010+00 1/1 0/0 0/0 .data            sMessageBuffer__7JKRAram */
-SECTION_DATA u8 JKRAram::sMessageBuffer[16] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+OSMessage JKRAram::sMessageBuffer[4] = {
+    NULL, NULL, NULL, NULL,
 };
 
 /* 803CC138-803CC158 029258 0020+00 1/1 1/1 0/0 .data            sMessageQueue__7JKRAram */
-SECTION_DATA u8 JKRAram::sMessageQueue[32] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 803CC158-803CC168 029278 0010+00 2/2 0/0 0/0 .data            __vt__7JKRAram */
-SECTION_DATA extern void* __vt__7JKRAram[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__7JKRAramFv,
-    (void*)run__7JKRAramFv,
-};
+OSMessageQueue JKRAram::sMessageQueue = {0};
 
 /* 802D2040-802D214C 2CC980 010C+00 1/1 0/0 0/0 .text            __ct__7JKRAramFUlUll */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRAram::JKRAram(u32 param_0, u32 param_1, s32 param_2) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAram/__ct__7JKRAramFUlUll.s"
+JKRAram::JKRAram(u32 audio_buffer_size, u32 audio_graph_size, long priority)
+    : JKRThread(0xC00, 0x10, priority) {
+    u32 aramBase = ARInit(mStackArray, ARRAY_SIZE(mStackArray));
+    ARQInit();
+
+    u32 aramSize = ARGetSize();
+
+    mAudioMemorySize = audio_buffer_size;
+    if (audio_graph_size == 0xffffffff) {
+        mGraphMemorySize = (aramSize - audio_buffer_size) - aramBase;
+        mAramMemorySize = 0;
+    } else {
+        mGraphMemorySize = audio_graph_size;
+        mAramMemorySize = (aramSize - (audio_buffer_size + audio_graph_size)) - aramBase;
+    }
+
+    mAudioMemoryPtr = ARAlloc(mAudioMemorySize);
+    mGraphMemoryPtr = ARAlloc(mGraphMemorySize);
+
+    if (mAramMemorySize) {
+        mAramMemoryPtr = ARAlloc(mAramMemorySize);
+    } else {
+        mAramMemoryPtr = NULL;
+    }
+
+    mAramHeap = new (JKRHeap::getSystemHeap(), 0) JKRAramHeap(mGraphMemoryPtr, mGraphMemorySize);
 }
-#pragma pop
 
 /* 802D214C-802D21DC 2CCA8C 0090+00 1/0 0/0 0/0 .text            __dt__7JKRAramFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRAram::~JKRAram() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAram/__dt__7JKRAramFv.s"
+JKRAram::~JKRAram() {
+    sAramObject = NULL;
+    if (mAramHeap)
+        delete mAramHeap;
 }
-#pragma pop
 
 /* 802D21DC-802D2248 2CCB1C 006C+00 1/0 0/0 0/0 .text            run__7JKRAramFv */
+// almost full match
+#ifdef NONMATCHING
+void* JKRAram::run(void) {
+    int result;
+    JKRAMCommand* command;
+    JKRAMCommand::Message* message;
+    OSInitMessageQueue(&sMessageQueue, sMessageBuffer, 4);
+    do {
+        OSReceiveMessage(&sMessageQueue, &message, OS_MESSAGE_BLOCKING);
+        result = message->field_0x0;
+        command = message->command;
+        delete message;
+
+        if (result == 1) {
+            JKRAramPiece::startDMA(command);
+        }
+    } while (true);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRAram::run() {
+asm void *JKRAram::run() {
     nofralloc
 #include "asm/JSystem/JKernel/JKRAram/run__7JKRAramFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8039D078-8039D078 0296D8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D078 = "JKRAram.cpp";
-SECTION_DEAD static char const* const stringBase_8039D084 = "%s";
-SECTION_DEAD static char const* const stringBase_8039D087 = ":::address not 32Byte aligned.";
-#pragma pop
+// #pragma push
+// #pragma force_active on
+// SECTION_DEAD static char const* const stringBase_8039D078 = "JKRAram.cpp";
+// SECTION_DEAD static char const* const stringBase_8039D084 = "%s";
+// SECTION_DEAD static char const* const stringBase_8039D087 = ":::address not 32Byte aligned.";
+// #pragma pop
 
 /* 802D2248-802D22DC 2CCB88 0094+00 2/2 0/0 0/0 .text
  * checkOkAddress__7JKRAramFPUcUlP12JKRAramBlockUl              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRAram::checkOkAddress(u8* param_0, u32 param_1, JKRAramBlock* param_2, u32 param_3) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAram/checkOkAddress__7JKRAramFPUcUlP12JKRAramBlockUl.s"
+void JKRAram::checkOkAddress(u8* addr, u32 size, JKRAramBlock* block, u32 param_4) {
+    if (!IS_ALIGNED((u32)addr, 0x20) && !IS_ALIGNED(size, 0x20)) {
+        JUTException::panic_f("JKRAram.cpp", 0xdb, "%s",
+                                         ":::address not 32Byte aligned.");
+    }
+
+    if (block && !IS_ALIGNED((u32)block->getAddress() + param_4, 0x20)) {
+        JUTException::panic_f("JKRAram.cpp", 0xe3, "%s",
+                                         ":::address not 32Byte aligned.");
+    }
 }
-#pragma pop
 
 /* 802D22DC-802D233C 2CCC1C 0060+00 1/1 0/0 0/0 .text            changeGroupIdIfNeed__7JKRAramFPUci
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRAram::changeGroupIdIfNeed(u8* param_0, int param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAram/changeGroupIdIfNeed__7JKRAramFPUci.s"
+void JKRAram::changeGroupIdIfNeed(u8* data, int groupId) {
+    JKRHeap* currentHeap = JKRHeap::getCurrentHeap();
+    if (currentHeap->getHeapType() == 'EXPH' && groupId >= 0) {
+        JKRExpHeap::CMemBlock* block = JKRExpHeap::CMemBlock::getBlock(data);
+        block->newGroupId(groupId);
+    }
 }
-#pragma pop
 
 /* 802D233C-802D25B4 2CCC7C 0278+00 0/0 3/3 0/0 .text
  * mainRamToAram__7JKRAramFPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl */
@@ -286,28 +234,20 @@ asm void JKRAram::aramToMainRam(u32 param_0, u8* param_1, u32 param_2, JKRExpand
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 804342D0-804342DC 060FF0 000C+00 1/1 0/0 0/0 .bss             @492 */
-static u8 lit_492[12];
-
 /* 804342DC-804342E8 060FFC 000C+00 1/1 0/0 0/0 .bss             sAramCommandList__7JKRAram */
-u8 JKRAram::sAramCommandList[12];
+JSUList<JKRAMCommand> JKRAram::sAramCommandList;
 
 /* 804342E8-80434300 061008 0018+00 1/1 0/0 0/0 .bss             decompMutex */
-static u8 decompMutex[24];
+static OSMutex decompMutex;
 
 /* 804508B8-804508C0 000338 0004+04 1/1 1/1 0/0 .sdata           sSZSBufferSize__7JKRAram */
-SECTION_SDATA u32 JKRAram::sSZSBufferSize[1 + 1 /* padding */] = {
-    0x00000400,
-    /* padding */
-    0x00000000,
-};
+u32 JKRAram::sSZSBufferSize = 0x00000400;
 
 /* 804513CC-804513D0 0008CC 0004+00 3/3 0/0 0/0 .sbss            szpBuf */
-static u8 szpBuf[4];
+static u8 *szpBuf;
 
 /* 804513D0-804513D4 0008D0 0004+00 3/3 0/0 0/0 .sbss            szpEnd */
-static u8 szpEnd[4];
+static u8 *szpEnd;
 
 /* 804513D4-804513D8 0008D4 0004+00 2/2 0/0 0/0 .sbss            refBuf */
 static u8 refBuf[4];
@@ -319,16 +259,16 @@ static u8 refEnd[4];
 static u8 refCurrent[4];
 
 /* 804513E0-804513E4 0008E0 0004+00 3/3 0/0 0/0 .sbss            srcOffset */
-static u8 srcOffset[4];
+static u32 srcOffset;
 
 /* 804513E4-804513E8 0008E4 0004+00 4/4 0/0 0/0 .sbss            transLeft */
-static u8 transLeft[4];
+static u32 transLeft;
 
 /* 804513E8-804513EC 0008E8 0004+00 3/3 0/0 0/0 .sbss            srcLimit */
-static u8 srcLimit[4];
+static u32 srcLimit;
 
 /* 804513EC-804513F0 0008EC 0004+00 3/3 0/0 0/0 .sbss            srcAddress */
-static u8 srcAddress[4];
+static u32 srcAddress;
 
 /* 804513F0-804513F4 0008F0 0004+00 2/2 0/0 0/0 .sbss            fileOffset */
 static u8 fileOffset[4];
@@ -350,6 +290,70 @@ static u8 tsArea[4];
 
 /* 802D2830-802D29A0 2CD170 0170+00 1/1 0/0 0/0 .text
  * JKRDecompressFromAramToMainRam__FUlPvUlUlUlPUl               */
+#ifdef NONMATCHING
+// full match, except:
+//     tsPtr = &tsArea;
+// doesn't use r13
+void JKRDecompressFromAramToMainRam(u32 src, void* dst, u32 srcLength, u32 dstLength, u32 offset,
+                                    u32* resourceSize) {
+#define s_is_decompress_mutex_initialized lbl_804513FC
+#define decompMutex lbl_804343C0
+
+    // STATIC BEGIN
+    // This code is probably generated by the compiler for a static variable
+    BOOL enable = OSDisableInterrupts();
+    if (s_is_decompress_mutex_initialized == false) {
+        OSInitMutex(&decompMutex);
+        s_is_decompress_mutex_initialized = true;
+    }
+    OSRestoreInterrupts(enable);
+    // STATIC END
+
+    OSLockMutex(&decompMutex);
+    u32 szpSize = getSZSBufferSize();
+    szpBuf = (u8*)JKRAllocFromSysHeap(szpSize, 0x20);
+    ASSERT(szpBuf != 0);
+    szpEnd = szpBuf + szpSize;
+
+    if (offset != 0) {
+        refBuf = (u8*)JKRAllocFromSysHeap(0x1120, 0);
+        ASSERT(refBuf != 0);
+        refEnd = refBuf + 0x1120;
+        refCurrent = refBuf;
+    } else {
+        refBuf = NULL;
+    }
+
+    srcAddress = src;
+    srcOffset = 0;
+    if (srcLength == 0) {
+        transLeft = -1;
+    } else {
+        transLeft = srcLength;
+    }
+
+    fileOffset = offset;
+    readCount = 0;
+    maxDest = dstLength;
+    if (!resourceSize) {
+        tsPtr = &tsArea;
+    } else {
+        tsPtr = resourceSize;
+    }
+
+    *tsPtr = 0;
+
+    decompSZS_subroutine(firstSrcData(), (u8*)dst);
+    JKRFreeToSysHeap(szpBuf);
+    if (refBuf) {
+        JKRFreeToSysHeap(refBuf);
+    }
+    DCStoreRangeNoSync(dst, *tsPtr);
+    OSUnlockMutex(&decompMutex);
+#undef s_is_decompress_mutex_initialized
+#undef decompMutex
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -359,6 +363,7 @@ static asm void JKRDecompressFromAramToMainRam(u32 param_0, void* param_1, u32 p
 #include "asm/JSystem/JKernel/JKRAram/JKRDecompressFromAramToMainRam__FUlPvUlUlUlPUl.s"
 }
 #pragma pop
+#endif
 
 /* 802D29A0-802D2C40 2CD2E0 02A0+00 1/1 0/0 0/0 .text            decompSZS_subroutine__FPUcPUc */
 #pragma push
@@ -371,16 +376,66 @@ static asm void decompSZS_subroutine(u8* param_0, u8* param_1) {
 #pragma pop
 
 /* 802D2C40-802D2CE4 2CD580 00A4+00 1/1 0/0 0/0 .text            firstSrcData__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void firstSrcData() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAram/firstSrcData__Fv.s"
+static u8* firstSrcData(void) {
+    srcLimit = (u32)(szpEnd - 0x19);
+    u8* buffer = szpBuf;
+
+    u32 length;
+    u32 size = szpEnd - szpBuf;
+    if (transLeft < size) {
+        length = transLeft;
+    } else {
+        length = size;
+    }
+
+    u32 src = (u32)(srcAddress + srcOffset);
+    u32 dst = (u32)buffer;
+    u32 alignedLength = ALIGN_NEXT(length, 0x20);
+    JKRAramPcs(1, src, dst, alignedLength, NULL);
+
+    srcOffset += length;
+    transLeft -= length;
+    if (!transLeft) {
+        srcLimit = (u32)(buffer + length);
+    }
+
+    return buffer;
 }
-#pragma pop
 
 /* 802D2CE4-802D2DAC 2CD624 00C8+00 1/1 0/0 0/0 .text            nextSrcData__FPUc */
+// missing one add instruction
+#ifdef NONMATCHING
+inline u32 nextSrcData_MIN(u32 A, u32 B) {
+    if (A > B)
+        return B;
+    return A;
+}
+
+static u8* nextSrcData(u8* current) {
+    u8* dest;
+    u32 left = (u32)(szpEnd - current);
+    if (!IS_NOT_ALIGNED(left, 0x20)) {
+        dest = szpBuf;
+    } else {
+        dest = szpBuf + 0x20 - (left & 0x1f);
+    }
+
+    memcpy(dest, current, left);
+    u32 transSize = nextSrcData_MIN(transLeft, szpEnd - (dest + left));
+    ASSERT(transSize > 0);
+
+    JKRAramPcs(1, (u32)(srcAddress + srcOffset), (u32)(dest + left), ALIGN_NEXT(transSize, 0x20),
+               NULL);
+    srcOffset += transSize;
+    transLeft -= transSize;
+
+    if (transLeft == 0) {
+        srcLimit = (u32)(dest + left) + transSize;
+    }
+
+    return dest;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -389,32 +444,7 @@ static asm void nextSrcData(u8* param_0) {
 #include "asm/JSystem/JKernel/JKRAram/nextSrcData__FPUc.s"
 }
 #pragma pop
-
-/* 802D2DAC-802D2DF0 2CD6EC 0044+00 0/0 1/0 0/0 .text            __sinit_JKRAram_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_JKRAram_cpp() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAram/__sinit_JKRAram_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x802D2DAC, __sinit_JKRAram_cpp);
-#pragma pop
-
-/* 802D2DF0-802D2E44 2CD730 0054+00 1/1 1/1 0/0 .text            __dt__23JSUList<12JKRAMCommand>Fv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void func_802D2DF0(void* _this) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAram/func_802D2DF0.s"
-}
-#pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8039D0A6-8039D0B8 029706 000E+04 0/0 0/0 0/0 .rodata          None */

@@ -49,6 +49,10 @@ public:
     static void decodeSZP(u8*, u8*, u32, u32);
     static void decodeSZS(u8*, u8*, u32, u32);
     static JKRCompression checkCompressed(u8*);
+
+    static JKRDecomp *sDecompObject;
+    static OSMessage sMessageBuffer[8];
+    static OSMessageQueue sMessageQueue;
 };
 
 inline void JKRDecompress(u8* srcBuffer, u8* dstBuffer, u32 srcLength, u32 dstLength) {

@@ -3,123 +3,14 @@
 // Translation Unit: JKRAramPiece
 //
 
-// #include "JSystem/JKernel/JKRAramPiece.h"
+#include "JSystem/JKernel/JKRAramPiece.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JUTException {
-    /* 802E21FC */ void panic_f(char const*, int, char const*, ...);
-};
-
-struct JSUPtrLink {
-    /* 802DBDFC */ JSUPtrLink(void*);
-    /* 802DBE14 */ ~JSUPtrLink();
-};
-
-struct JSUPtrList {
-    /* 802DBF14 */ void initiate();
-    /* 802DBF4C */ void append(JSUPtrLink*);
-    /* 802DC15C */ void remove(JSUPtrLink*);
-};
-
-template <typename A0>
-struct JSUList {};
-/* JSUList<JKRAMCommand> */
-struct JSUList__template5 {
-    /* 802D2DF0 */ void func_802D2DF0(void* _this);
-};
-
-struct JKRHeap {
-    /* 802CE500 */ void free(void*, JKRHeap*);
-
-    static u8 sSystemHeap[4];
-};
-
-struct JKRDecompCommand {};
-
-struct JKRDecomp {
-    /* 802DB8D0 */ void sendCommand(JKRDecompCommand*);
-};
-
-struct JKRAMCommand {
-    /* 802D39EC */ JKRAMCommand();
-    /* 802D3A5C */ ~JKRAMCommand();
-};
-
-struct JKRAramBlock {};
-
-struct JKRAramPiece {
-    /* 802D3574 */ void prepareCommand(int, u32, u32, u32, JKRAramBlock*, void (*)(u32));
-    /* 802D35F4 */ void sendCommand(JKRAMCommand*);
-    /* 802D3614 */ void orderAsync(int, u32, u32, u32, JKRAramBlock*, void (*)(u32));
-    /* 802D3770 */ void sync(JKRAMCommand*, int);
-    /* 802D3838 */ void orderSync(int, u32, u32, u32, JKRAramBlock*);
-    /* 802D38CC */ void startDMA(JKRAMCommand*);
-    /* 802D3944 */ void doneDMA(u32);
-
-    static u8 sAramPieceCommandList[12];
-    static u8 mMutex[24];
-};
-
-struct JKRAram {
-    static u8 sMessageQueue[32];
-};
-
-//
-// Forward References:
-//
-
-extern "C" void prepareCommand__12JKRAramPieceFiUlUlUlP12JKRAramBlockPFUl_v();
-extern "C" void sendCommand__12JKRAramPieceFP12JKRAMCommand();
-extern "C" void orderAsync__12JKRAramPieceFiUlUlUlP12JKRAramBlockPFUl_v();
-extern "C" void sync__12JKRAramPieceFP12JKRAMCommandi();
-extern "C" void orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock();
-extern "C" void startDMA__12JKRAramPieceFP12JKRAMCommand();
-extern "C" void doneDMA__12JKRAramPieceFUl();
-extern "C" void __ct__12JKRAMCommandFv();
-extern "C" void __dt__12JKRAMCommandFv();
-extern "C" void __sinit_JKRAramPiece_cpp();
-extern "C" extern char const* const JKRAramPiece__stringBase0;
-extern "C" u8 sAramPieceCommandList__12JKRAramPiece[12];
-extern "C" u8 mMutex__12JKRAramPiece[24];
-
-//
-// External References:
-//
-
-extern "C" void OSReport();
-extern "C" void free__7JKRHeapFPvP7JKRHeap();
-extern "C" void* __nw__FUlP7JKRHeapi();
-extern "C" void __dl__FPv();
-extern "C" void func_802D2DF0(void* _this);
-extern "C" void sendCommand__9JKRDecompFP16JKRDecompCommand();
-extern "C" void __ct__10JSUPtrLinkFPv();
-extern "C" void __dt__10JSUPtrLinkFv();
-extern "C" void initiate__10JSUPtrListFv();
-extern "C" void append__10JSUPtrListFP10JSUPtrLink();
-extern "C" void remove__10JSUPtrListFP10JSUPtrLink();
-extern "C" void panic_f__12JUTExceptionFPCciPCce();
-extern "C" void DCInvalidateRange();
-extern "C" void DCStoreRange();
-extern "C" void OSInitMessageQueue();
-extern "C" void OSSendMessage();
-extern "C" void OSReceiveMessage();
-extern "C" void OSLockMutex();
-extern "C" void OSUnlockMutex();
-extern "C" void ARQPostRequest();
-extern "C" void __register_global_object();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" u8 sMessageQueue__7JKRAram[32];
-extern "C" u8 sSystemHeap__7JKRHeap[4];
+#include "JSystem/JKernel/JKRAram.h"
+#include "JSystem/JKernel/JKRDecomp.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JUtility/JUTException.h"
+#include "dolphin/os/OSCache.h"
 
 //
 // Declarations:
@@ -127,136 +18,154 @@ extern "C" u8 sSystemHeap__7JKRHeap[4];
 
 /* 802D3574-802D35F4 2CDEB4 0080+00 1/1 0/0 0/0 .text
  * prepareCommand__12JKRAramPieceFiUlUlUlP12JKRAramBlockPFUl_v  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRAramPiece::prepareCommand(int param_0, u32 param_1, u32 param_2, u32 param_3,
-                                      JKRAramBlock* param_4, void (*param_5)(u32)) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAramPiece/prepareCommand__12JKRAramPieceFiUlUlUlP12JKRAramBlockPFUl_v.s"
+JKRAMCommand* JKRAramPiece::prepareCommand(int direction, u32 src, u32 dst, u32 length,
+                                           JKRAramBlock* block,
+                                           JKRAMCommand::AsyncCallback callback) {
+    JKRAMCommand* command = new (JKRHeap::getSystemHeap(), -4) JKRAMCommand();
+    command->mTransferDirection = direction;
+    command->mSrc = src;
+    command->mDst = dst;
+    command->mAramBlock = block;
+    command->mDataLength = length;
+    command->mCallback = callback;
+    return command;
 }
-#pragma pop
 
 /* 802D35F4-802D3614 2CDF34 0020+00 0/0 1/1 0/0 .text sendCommand__12JKRAramPieceFP12JKRAMCommand
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRAramPiece::sendCommand(JKRAMCommand* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAramPiece/sendCommand__12JKRAramPieceFP12JKRAMCommand.s"
+void JKRAramPiece::sendCommand(JKRAMCommand* command) {
+    startDMA(command);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 8039D0B8-8039D0B8 029718 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D0B8 = "direction = %x\n";
-SECTION_DEAD static char const* const stringBase_8039D0C8 = "source = %x\n";
-SECTION_DEAD static char const* const stringBase_8039D0D5 = "destination = %x\n";
-SECTION_DEAD static char const* const stringBase_8039D0E7 = "length = %x\n";
-SECTION_DEAD static char const* const stringBase_8039D0F4 = "JKRAramPiece.cpp";
-SECTION_DEAD static char const* const stringBase_8039D105 = "%s";
-SECTION_DEAD static char const* const stringBase_8039D108 = "illegal address. abort.";
-#pragma pop
-
-/* 80434318-80434324 061038 000C+00 1/1 0/0 0/0 .bss             @492 */
-static u8 lit_492[12];
 
 /* 80434324-80434330 061044 000C+00 3/3 0/0 0/0 .bss sAramPieceCommandList__12JKRAramPiece */
-u8 JKRAramPiece::sAramPieceCommandList[12];
+// JSUList<JKRAMCommand> JKRAramPiece::sAramPieceCommandList;
+JSUList<JKRAMCommand> JKRAramPiece::sAramPieceCommandList;
 
 /* 80434330-80434348 061050 0018+00 3/3 0/0 0/0 .bss             mMutex__12JKRAramPiece */
-u8 JKRAramPiece::mMutex[24];
+OSMutex JKRAramPiece::mMutex;
 
 /* 802D3614-802D3770 2CDF54 015C+00 1/1 0/0 0/0 .text
  * orderAsync__12JKRAramPieceFiUlUlUlP12JKRAramBlockPFUl_v      */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRAramPiece::orderAsync(int param_0, u32 param_1, u32 param_2, u32 param_3,
-                                  JKRAramBlock* param_4, void (*param_5)(u32)) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAramPiece/orderAsync__12JKRAramPieceFiUlUlUlP12JKRAramBlockPFUl_v.s"
+JKRAMCommand* JKRAramPiece::orderAsync(int direction, u32 source, u32 destination, u32 length,
+                                       JKRAramBlock* block, JKRAMCommand::AsyncCallback callback) {
+    lock();
+    if (((source & 0x1f) != 0) || ((destination & 0x1f) != 0)) {
+        OSReport("direction = %x\n", direction);
+        OSReport("source = %x\n", source);
+        OSReport("destination = %x\n", destination);
+        OSReport("length = %x\n", length);
+        JUTException::panic_f("JKRAramPiece.cpp", 0x6c, "%s", "illegal address. abort.");
+    }
+
+    Message* message = new (JKRHeap::getSystemHeap(), -4) Message();
+    JKRAMCommand* command =
+        JKRAramPiece::prepareCommand(direction, source, destination, length, block, callback);
+    message->field_0x00 = 1;
+    message->command = command;
+
+    OSSendMessage(&JKRAram::sMessageQueue, message, OS_MESSAGE_BLOCKING);
+    if (command->mCallback != NULL) {
+        sAramPieceCommandList.append(&command->mPieceLink);
+    }
+
+    unlock();
+    return command;
 }
-#pragma pop
 
 /* 802D3770-802D3838 2CE0B0 00C8+00 1/1 0/0 0/0 .text sync__12JKRAramPieceFP12JKRAMCommandi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRAramPiece::sync(JKRAMCommand* param_0, int param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAramPiece/sync__12JKRAramPieceFP12JKRAMCommandi.s"
+BOOL JKRAramPiece::sync(JKRAMCommand* command, int is_non_blocking) {
+    OSMessage message;
+
+    lock();
+    if (is_non_blocking == 0) {
+        OSReceiveMessage(&command->mMessageQueue, &message, OS_MESSAGE_BLOCKING);
+        sAramPieceCommandList.remove(&command->mPieceLink);
+        unlock();
+        return TRUE;
+    }
+
+    BOOL result = OSReceiveMessage(&command->mMessageQueue, &message, OS_MESSAGE_NON_BLOCKING);
+    if (!result) {
+        unlock();
+        return FALSE;
+    }
+
+    sAramPieceCommandList.remove(&command->mPieceLink);
+    unlock();
+    return TRUE;
 }
-#pragma pop
 
 /* 802D3838-802D38CC 2CE178 0094+00 0/0 6/6 0/0 .text
  * orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRAramPiece::orderSync(int param_0, u32 param_1, u32 param_2, u32 param_3,
-                                 JKRAramBlock* param_4) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAramPiece/orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock.s"
+BOOL JKRAramPiece::orderSync(int direction, u32 source, u32 destination, u32 length,
+                             JKRAramBlock* block) {
+    lock();
+
+    JKRAMCommand* command =
+        JKRAramPiece::orderAsync(direction, source, destination, length, block, NULL);
+    BOOL result = JKRAramPiece::sync(command, 0);
+    delete command;
+
+    unlock();
+    return result;
 }
-#pragma pop
 
 /* 802D38CC-802D3944 2CE20C 0078+00 1/1 1/1 0/0 .text startDMA__12JKRAramPieceFP12JKRAMCommand */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRAramPiece::startDMA(JKRAMCommand* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAramPiece/startDMA__12JKRAramPieceFP12JKRAMCommand.s"
+void JKRAramPiece::startDMA(JKRAMCommand* command) {
+    if (command->mTransferDirection == 1) {
+        DCInvalidateRange((void*)command->mDst, command->mDataLength);
+    } else {
+        DCStoreRange((void*)command->mSrc, command->mDataLength);
+    }
+
+    ARQPostRequest(&command->mRequest, 0, command->mTransferDirection, 0, command->mSrc,
+                   command->mDst, command->mDataLength, JKRAramPiece::doneDMA);
 }
-#pragma pop
 
 /* 802D3944-802D39EC 2CE284 00A8+00 1/1 0/0 0/0 .text            doneDMA__12JKRAramPieceFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRAramPiece::doneDMA(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAramPiece/doneDMA__12JKRAramPieceFUl.s"
+void JKRAramPiece::doneDMA(u32 requestAddress) {
+    JKRAMCommand* command = (JKRAMCommand*)requestAddress;
+
+    if (command->mTransferDirection == 1) {
+        DCInvalidateRange((void*)command->mDst, command->mDataLength);
+    }
+
+    if (command->field_0x60 != 0) {
+        if (command->field_0x60 == 2) {
+            JKRDecomp::sendCommand(command->mDecompCommand);
+        }
+        return;
+    }
+
+    if (command->mCallback) {
+        (*command->mCallback)(requestAddress);
+    } else if (command->field_0x5C) {
+        OSSendMessage(command->field_0x5C, command, OS_MESSAGE_NON_BLOCKING);
+    } else {
+        OSSendMessage(&command->mMessageQueue, command, OS_MESSAGE_NON_BLOCKING);
+    }
 }
-#pragma pop
 
 /* 802D39EC-802D3A5C 2CE32C 0070+00 1/1 0/0 0/0 .text            __ct__12JKRAMCommandFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRAMCommand::JKRAMCommand() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAramPiece/__ct__12JKRAMCommandFv.s"
+JKRAMCommand::JKRAMCommand() : mPieceLink(this), field_0x30(this) {
+    OSInitMessageQueue(&mMessageQueue, &mMessage, 1);
+    mCallback = NULL;
+    field_0x5C = NULL;
+    field_0x60 = 0;
+    field_0x8C = NULL;
+    field_0x90 = NULL;
+    field_0x94 = NULL;
 }
-#pragma pop
 
 /* 802D3A5C-802D3B04 2CE39C 00A8+00 1/1 0/0 0/0 .text            __dt__12JKRAMCommandFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRAMCommand::~JKRAMCommand() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAramPiece/__dt__12JKRAMCommandFv.s"
-}
-#pragma pop
+JKRAMCommand::~JKRAMCommand() {
+    if (field_0x8C)
+        delete field_0x8C;
+    if (field_0x90)
+        delete field_0x90;
 
-/* 802D3B04-802D3B48 2CE444 0044+00 0/0 1/0 0/0 .text            __sinit_JKRAramPiece_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_JKRAramPiece_cpp() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAramPiece/__sinit_JKRAramPiece_cpp.s"
+    if (field_0x94)
+        JKRHeap::free(field_0x94, NULL);
 }
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x802D3B04, __sinit_JKRAramPiece_cpp);
-#pragma pop
 
 /* 8039D0B8-8039D0B8 029718 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -442,7 +442,7 @@ u32 JKRDvdArchive::fetchResource_subroutine(s32 entryNum, u32 offset, u32 size, 
 }
 
 /* 802D8698-802D87D4 2D2FD8 013C+00 1/0 0/0 0/0 .text getExpandedResSize__13JKRDvdArchiveCFPCv */
-u32 JKRDvdArchive::getExpandedResSize(const void* resource) {
+u32 JKRDvdArchive::getExpandedResSize(const void* resource) const {
     u32 resourceSize;
     if (!mExpandedSize) {
         return getResSize(resource);
@@ -472,7 +472,8 @@ u32 JKRDvdArchive::getExpandedResSize(const void* resource) {
     DCInvalidateRange(arcHeader, sizeof(*arcHeader));
 
     resourceSize = JKRDecompExpandSize(arcHeader);
-    setExpandSize(fileEntry, resourceSize);
+    // ???
+    ((JKRDvdArchive*)this)->setExpandSize(fileEntry, resourceSize);
 
     return resourceSize;
 }

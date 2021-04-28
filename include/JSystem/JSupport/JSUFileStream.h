@@ -12,7 +12,7 @@ public:
 
     // TODO: fix return values
     /* 802DC638 */ JSUFileInputStream(JKRFile*);
-    /* 802DC67C */ void readData(void*, s32);
+    /* 802DC67C */ s32 readData(void*, s32);
     /* 802DC74C */ void seekPos(s32, JSUStreamSeekFrom);
     /* 802DC82C */ s32 getLength() const;
     /* 802DC85C */ s32 getPosition() const;

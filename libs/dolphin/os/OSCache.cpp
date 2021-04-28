@@ -12,9 +12,7 @@
 //
 
 extern "C" static void DCEnable();
-extern "C" void DCInvalidateRange();
 extern "C" void DCFlushRange();
-extern "C" void DCStoreRange();
 extern "C" void DCFlushRangeNoSync();
 extern "C" void DCStoreRangeNoSync();
 extern "C" void DCZeroRange();
@@ -68,7 +66,7 @@ static asm void DCEnable() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void DCInvalidateRange() {
+asm void DCInvalidateRange(void*,u32) {
     nofralloc
 #include "asm/dolphin/os/OSCache/DCInvalidateRange.s"
 }
@@ -88,7 +86,7 @@ asm void DCFlushRange() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void DCStoreRange() {
+asm void DCStoreRange(void*, u32) {
     nofralloc
 #include "asm/dolphin/os/OSCache/DCStoreRange.s"
 }

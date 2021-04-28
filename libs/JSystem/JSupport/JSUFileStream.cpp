@@ -67,7 +67,7 @@ asm JSUFileInputStream::JSUFileInputStream(JKRFile* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JSUFileInputStream::readData(void* param_0, s32 param_1) {
+asm s32 JSUFileInputStream::readData(void* param_0, s32 param_1) {
     nofralloc
 #include "asm/JSystem/JSupport/JSUFileStream/readData__18JSUFileInputStreamFPvl.s"
 }

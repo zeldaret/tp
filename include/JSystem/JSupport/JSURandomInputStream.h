@@ -11,7 +11,7 @@ public:
 
     /* vt[3] */ virtual s32 getAvailable() const; /* override */
     /* vt[4] */ virtual s32 skip(s32);            /* override */
-    /* vt[5] */ virtual s32 readData() = 0;
+    /* vt[5] */ virtual s32 readData(void*, s32) = 0;
     /* vt[6] */ virtual s32 getLength() const = 0;
     /* vt[7] */ virtual s32 getPosition() const = 0;
     /* vt[7] */ virtual s32 seekPos() = 0;

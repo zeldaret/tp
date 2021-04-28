@@ -13,7 +13,7 @@ public:
 
     /* vt[3] */ virtual s32 getAvailable() const = 0;
     /* vt[4] */ virtual s32 skip(s32);
-    /* vt[5] */ virtual void readData(void*, s32) = 0;
+    /* vt[5] */ virtual s32 readData(void*, s32) = 0;
 
     // TODO: return value probably wrong
     /* 802DC298 */ void read(void*, s32);
