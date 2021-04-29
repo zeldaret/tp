@@ -4,13 +4,13 @@
 //
 
 #include "JSystem/JKernel/JKRAramPiece.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTException.h"
+#include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
+#include "dolphin/types.h"
 
 //
 // Declarations:

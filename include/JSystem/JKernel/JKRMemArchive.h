@@ -1,8 +1,8 @@
 #ifndef JKRMEMARCHIVE_H
 #define JKRMEMARCHIVE_H
 
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRArchive.h"
+#include "dolphin/types.h"
 
 enum JKRMemBreakFlag {
     JKRMEMBREAK_FLAG_UNKNOWN0 = 0,
@@ -21,7 +21,7 @@ public:
     /* vt[09] */ void removeResourceAll(void); /* override */
     /* vt[10] */ bool removeResource(void*);   /* override */
 
-    /* vt[15] */ u32 getExpandedResSize(const void*) const;                  /* override */
+    /* vt[15] */ u32 getExpandedResSize(const void*) const;            /* override */
     /* vt[16] */ void* fetchResource(SDIFileEntry*, u32*);             /* override */
     /* vt[17] */ void* fetchResource(void*, u32, SDIFileEntry*, u32*); /* override */
 

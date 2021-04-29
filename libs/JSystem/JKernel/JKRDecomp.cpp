@@ -4,10 +4,10 @@
 //
 
 #include "JSystem/JKernel/JKRDecomp.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRAramPiece.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "dol2asm.h"
+#include "dolphin/types.h"
 
 //
 // Forward References:
@@ -53,7 +53,7 @@ extern "C" u8 sSystemHeap__7JKRHeap[4];
 
 /* ############################################################################################## */
 /* 804514B0-804514B8 0009B0 0004+04 1/1 0/0 0/0 .sbss            sDecompObject__9JKRDecomp */
-JKRDecomp *JKRDecomp::sDecompObject;
+JKRDecomp* JKRDecomp::sDecompObject;
 
 JKRDecomp* JKRDecomp::create(long priority) {
     if (!sDecompObject) {

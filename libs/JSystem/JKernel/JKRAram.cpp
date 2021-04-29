@@ -4,15 +4,15 @@
 //
 
 #include "JSystem/JKernel/JKRAram.h"
-#include "dol2asm.h"
-#include "global.h"
 #include "JSystem/JKernel/JKRAramBlock.h"
 #include "JSystem/JKernel/JKRAramHeap.h"
 #include "JSystem/JKernel/JKRAramPiece.h"
 #include "JSystem/JKernel/JKRAramStream.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
-#include "dolphin/ar/ar.h"
 #include "JSystem/JUtility/JUTException.h"
+#include "dol2asm.h"
+#include "dolphin/ar/ar.h"
+#include "global.h"
 
 //
 // Forward References:
@@ -86,7 +86,7 @@ extern "C" u8 sCurrentHeap__7JKRHeap[4];
 
 /* ############################################################################################## */
 /* 804513C8-804513CC 0008C8 0004+00 3/3 9/9 0/0 .sbss            sAramObject__7JKRAram */
-JKRAram *JKRAram::sAramObject;
+JKRAram* JKRAram::sAramObject;
 
 /* 802D1FA4-802D2040 2CC8E4 009C+00 0/0 1/1 0/0 .text            create__7JKRAramFUlUllll */
 JKRAram* JKRAram::create(u32 aram_audio_buffer_size, u32 aram_audio_graph_size,
@@ -105,7 +105,10 @@ JKRAram* JKRAram::create(u32 aram_audio_buffer_size, u32 aram_audio_graph_size,
 /* ############################################################################################## */
 /* 803CC128-803CC138 029248 0010+00 1/1 0/0 0/0 .data            sMessageBuffer__7JKRAram */
 OSMessage JKRAram::sMessageBuffer[4] = {
-    NULL, NULL, NULL, NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
 };
 
 /* 803CC138-803CC158 029258 0020+00 1/1 1/1 0/0 .data            sMessageQueue__7JKRAram */
@@ -170,7 +173,7 @@ void* JKRAram::run(void) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void *JKRAram::run() {
+asm void* JKRAram::run() {
     nofralloc
 #include "asm/JSystem/JKernel/JKRAram/run__7JKRAramFv.s"
 }
@@ -190,13 +193,11 @@ asm void *JKRAram::run() {
  * checkOkAddress__7JKRAramFPUcUlP12JKRAramBlockUl              */
 void JKRAram::checkOkAddress(u8* addr, u32 size, JKRAramBlock* block, u32 param_4) {
     if (!IS_ALIGNED((u32)addr, 0x20) && !IS_ALIGNED(size, 0x20)) {
-        JUTException::panic_f("JKRAram.cpp", 0xdb, "%s",
-                                         ":::address not 32Byte aligned.");
+        JUTException::panic_f("JKRAram.cpp", 0xdb, "%s", ":::address not 32Byte aligned.");
     }
 
     if (block && !IS_ALIGNED((u32)block->getAddress() + param_4, 0x20)) {
-        JUTException::panic_f("JKRAram.cpp", 0xe3, "%s",
-                                         ":::address not 32Byte aligned.");
+        JUTException::panic_f("JKRAram.cpp", 0xe3, "%s", ":::address not 32Byte aligned.");
     }
 }
 
@@ -244,10 +245,10 @@ static OSMutex decompMutex;
 u32 JKRAram::sSZSBufferSize = 0x00000400;
 
 /* 804513CC-804513D0 0008CC 0004+00 3/3 0/0 0/0 .sbss            szpBuf */
-static u8 *szpBuf;
+static u8* szpBuf;
 
 /* 804513D0-804513D4 0008D0 0004+00 3/3 0/0 0/0 .sbss            szpEnd */
-static u8 *szpEnd;
+static u8* szpEnd;
 
 /* 804513D4-804513D8 0008D4 0004+00 2/2 0/0 0/0 .sbss            refBuf */
 static u8 refBuf[4];

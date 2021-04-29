@@ -4,9 +4,9 @@
 //
 
 #include "JSystem/JKernel/JKRFileFinder.h"
+#include "JSystem/JKernel/JKRArchive.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "JSystem/JKernel/JKRArchive.h"
 
 //
 // Forward References:
@@ -19,8 +19,8 @@ extern "C" void __dt__12JKRDvdFinderFv();
 extern "C" void findNextFile__12JKRDvdFinderFv();
 extern "C" void __dt__13JKRFileFinderFv();
 extern "C" void __dt__12JKRArcFinderFv();
-extern "C" void *__vt__12JKRDvdFinder;
-extern "C" void *__vt__13JKRFileFinder;
+extern "C" void* __vt__12JKRDvdFinder;
+extern "C" void* __vt__13JKRFileFinder;
 
 //
 // External References:

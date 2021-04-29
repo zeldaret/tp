@@ -1,8 +1,8 @@
 #ifndef JKRCOMPARCHIVE_H
 #define JKRCOMPARCHIVE_H
 
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRArchive.h"
+#include "dolphin/types.h"
 
 class JKRCompArchive : public JKRArchive {
 public:

@@ -3,17 +3,17 @@
 // Translation Unit: JKRArchivePub
 //
 
-#include "JSystem/JKernel/JKRArchive.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
+#include "JSystem/JKernel/JKRAramArchive.h"
 #include "JSystem/JKernel/JKRAramPiece.h"
+#include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRCompArchive.h"
 #include "JSystem/JKernel/JKRDvdArchive.h"
 #include "JSystem/JKernel/JKRFileFinder.h"
 #include "JSystem/JKernel/JKRFileLoader.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
-#include "JSystem/JKernel/JKRAramArchive.h"
+#include "dol2asm.h"
+#include "dolphin/types.h"
 
 //
 // Declarations:

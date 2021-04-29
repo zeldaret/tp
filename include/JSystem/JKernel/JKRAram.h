@@ -61,7 +61,7 @@ public:
     static void setSZSBufferSize(u32 size) { sSZSBufferSize = size; }
 
     static OSMessageQueue sMessageQueue;
-    
+
 private:
     static JKRAram* sAramObject;
     static u32 sSZSBufferSize;

@@ -66,7 +66,7 @@ static asm void DCEnable() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void DCInvalidateRange(void*,u32) {
+asm void DCInvalidateRange(void*, u32) {
     nofralloc
 #include "asm/dolphin/os/OSCache/DCInvalidateRange.s"
 }

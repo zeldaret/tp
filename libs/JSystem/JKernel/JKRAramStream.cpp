@@ -4,10 +4,10 @@
 //
 
 #include "JSystem/JKernel/JKRAramStream.h"
+#include "JSystem/JKernel/JKRAramPiece.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 #include "global.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JKernel/JKRAramPiece.h"
 
 //
 // Forward References:
@@ -61,7 +61,7 @@ extern "C" u8 sCurrentHeap__7JKRHeap[4];
 /* ############################################################################################## */
 /* 80451408-8045140C 000908 0004+00 1/1 0/0 0/0 .sbss            sAramStreamObject__13JKRAramStream
  */
-JKRAramStream *JKRAramStream::sAramStreamObject;
+JKRAramStream* JKRAramStream::sAramStreamObject;
 
 /* 802D3B48-802D3BB8 2CE488 0070+00 0/0 1/1 0/0 .text            create__13JKRAramStreamFl */
 JKRAramStream* JKRAramStream::create(long priority) {
@@ -75,8 +75,11 @@ JKRAramStream* JKRAramStream::create(long priority) {
 
 /* ############################################################################################## */
 /* 803CC188-803CC198 0292A8 0010+00 1/1 0/0 0/0 .data            sMessageBuffer__13JKRAramStream */
-void *JKRAramStream::sMessageBuffer[4] = {
-    NULL, NULL, NULL, NULL,
+void* JKRAramStream::sMessageBuffer[4] = {
+    NULL,
+    NULL,
+    NULL,
+    NULL,
 };
 
 /* 803CC198-803CC1B8 0292B8 0020+00 2/2 0/0 0/0 .data            sMessageQueue__13JKRAramStream */
@@ -228,13 +231,13 @@ asm s32 JKRAramStream::writeToAram(JKRAramStreamCommand* param_0) {
 
 /* ############################################################################################## */
 /* 8045140C-80451410 00090C 0004+00 2/2 0/0 0/0 .sbss            transBuffer__13JKRAramStream */
-u8 *JKRAramStream::transBuffer;
+u8* JKRAramStream::transBuffer;
 
 /* 80451410-80451414 000910 0004+00 2/2 0/0 0/0 .sbss            transSize__13JKRAramStream */
 u32 JKRAramStream::transSize;
 
 /* 80451414-80451418 000914 0004+00 2/2 0/0 0/0 .sbss            transHeap__13JKRAramStream */
-JKRHeap *JKRAramStream::transHeap;
+JKRHeap* JKRAramStream::transHeap;
 
 /* 802D3ED0-802D3FA0 2CE810 00D0+00 0/0 1/1 0/0 .text
  * write_StreamToAram_Async__13JKRAramStreamFP18JSUFileInputStreamUlUlUlPUl */

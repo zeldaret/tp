@@ -1,9 +1,9 @@
 #ifndef JKRDVDARAMRIPPER_H
 #define JKRDVDARAMRIPPER_H
 
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "JSystem/JSupport/JSUFileStream.h"
+#include "dolphin/types.h"
 
 class JKRADCommand {
 public:

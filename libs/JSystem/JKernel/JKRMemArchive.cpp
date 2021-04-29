@@ -4,12 +4,12 @@
 //
 
 #include "JSystem/JKernel/JKRMemArchive.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "msl_c/string.h"
 #include "JSystem/JUtility/JUTException.h"
+#include "dol2asm.h"
+#include "dolphin/types.h"
+#include "msl_c/string.h"
 
 //
 // Types:
