@@ -17,8 +17,6 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct fopAc_ac_c {};
-
 struct ResTIMG {};
 
 struct daPy_sightPacket_c {
@@ -28,78 +26,10 @@ struct daPy_sightPacket_c {
     /* 8015F384 */ void setSightImage(ResTIMG*);
 };
 
-struct cXyz {};
-
-struct daPy_py_c {
-    /* 8015EA0C */ void setParamData(int, int, int, int);
-    /* 8015EA20 */ void checkFishingRodItem(int);
-    /* 8015EA48 */ void checkBombItem(int);
-    /* 8015EA88 */ void checkBottleItem(int);
-    /* 8015EAD8 */ void checkDrinkBottleItem(int);
-    /* 8015EB40 */ void checkOilBottleItem(int);
-    /* 8015EB68 */ void checkOpenBottleItem(int);
-    /* 8015EB90 */ void checkBowItem(int);
-    /* 8015EBB8 */ void checkHookshotItem(int);
-    /* 8015EBD8 */ void checkTradeItem(int);
-    /* 8015EC28 */ void checkDungeonWarpItem(int);
-    /* 8015F398 */ void checkMasterSwordEquip();
-    /* 8015F3C4 */ void checkWoodShieldEquip();
-    /* 8015F3FC */ void getAttentionOffsetY();
-    /* 8015F424 */ void checkNowWolfEyeUp();
-    /* 8015F438 */ void forceRestartRoom(int, u32, int);
-    /* 8015F478 */ void setFmChainPos(fopAc_ac_c*, cXyz*, int);
-    /* 8015F4B8 */ void cancelFmChainGrab();
-    /* 8015F4F0 */ void setLookPos(cXyz*);
-    /* 8015F520 */ void setPlayerSe(u32);
-    /* 8015F55C */ void linkGrabSubjectNoDraw(fopAc_ac_c*);
-    /* 8015F60C */ void wolfGrabSubjectNoDraw(fopAc_ac_c*);
-    /* 8015F660 */ void checkRoomRestartStart();
-    /* 8015F698 */ void checkCarryStartLightBallA();
-    /* 8015F730 */ void checkCarryStartLightBallB();
-    /* 8015F7C8 */ void getSpinnerRideSpeed() const;
-    /* 8015F814 */ void checkSpinnerReflectEffect();
-    /* 8015F89C */ void checkBoomerangCharge();
-    /* 8015F8C8 */ bool checkBoomerangChargeTime();
-    /* 8015F8D0 */ void getThrowBoomerangActor();
-    /* 8015F8E4 */ void cancelBoomerangLockActor(fopAc_ac_c*);
-    /* 8015F914 */ void setPlayerDamage(int, int);
-    /* 8015F954 */ void setMidnaMotionNum(int);
-    /* 8015F968 */ void setMidnaFaceNum(int);
-
-    static u8 m_midnaActor[4];
-};
-
-struct daPy_frameCtrl_c {
-    /* 8015E4CC */ void checkAnmEnd();
-    /* 8015E510 */ void updateFrame();
-    /* 8015E544 */ void setFrameCtrl(u8, s16, s16, f32, f32);
-};
-
 struct daPy_boomerangMove_c {
     /* 8015E5B0 */ void initOffset(cXyz const*);
     /* 8015E654 */ void posMove(cXyz*, s16*, fopAc_ac_c*, s16);
     /* 8015E87C */ void bgCheckAfterOffset(cXyz const*);
-};
-
-struct daPy_anmHeap_c {
-    struct daAlinkHEAP_TYPE {};
-
-    /* 8015ED10 */ daPy_anmHeap_c(u32);
-    /* 8015ED50 */ ~daPy_anmHeap_c();
-    /* 8015EDAC */ void initData();
-    /* 8015EDC4 */ void mallocBuffer();
-    /* 8015EE00 */ void createHeap(daPy_anmHeap_c::daAlinkHEAP_TYPE);
-    /* 8015EF84 */ void loadData(u16);
-    /* 8015F068 */ void loadDataIdx(u16);
-    /* 8015F0D0 */ void loadDataPriIdx(u16);
-    /* 8015F118 */ void loadDataDemoRID(u16, u16);
-    /* 8015F168 */ void setAnimeHeap();
-};
-
-struct daPy_actorKeep_c {
-    /* 8015EC48 */ void setActor();
-    /* 8015ECB8 */ void setData(fopAc_ac_c*);
-    /* 8015ECFC */ void clearData();
 };
 
 struct daAlink_c {
@@ -129,17 +59,11 @@ struct dDlst_list_c {
     /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
 };
 
-struct Vec {};
-
 struct JMath {
     static u8 sincosTable_[65536];
 };
 
 struct JKRSolidHeap {};
-
-struct JKRHeap {
-    /* 802CE5CC */ void freeAll();
-};
 
 struct JKRArchive {
     /* 802D5ECC */ void readIdxResource(void*, u32, u32);
@@ -151,10 +75,6 @@ struct J3DSys {
 
 struct J3DShape {
     static u8 sOldVcdVatCmd[4];
-};
-
-struct J3DFrameCtrl {
-    /* 803289CC */ void update();
 };
 
 struct J3DAnmTransform {
@@ -276,9 +196,6 @@ extern "C" void __ct__15J3DAnmTransformFsPfPsPf();
 extern "C" void __ct__19J3DAnmTextureSRTKeyFv();
 extern "C" void __ct__16J3DAnmTexPatternFv();
 extern "C" void load__20J3DAnmLoaderDataBaseFPCv24J3DAnmLoaderDataBaseFlag();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
-extern "C" void PSVECSquareDistance();
 extern "C" void GXSetVtxDesc();
 extern "C" void GXClearVtxDesc();
 extern "C" void GXSetVtxAttrFmt();
@@ -317,32 +234,43 @@ SECTION_SDATA2 static f32 lit_4215[1 + 1 /* padding */] = {
     0.0f,
 };
 
-/* 8015E4CC-8015E510 158E0C 0044+00 0/0 235/235 6/6 .text checkAnmEnd__16daPy_frameCtrl_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daPy_frameCtrl_c::checkAnmEnd() {
-    nofralloc
-#include "asm/d/a/d_a_player/checkAnmEnd__16daPy_frameCtrl_cFv.s"
+bool daPy_frameCtrl_c::checkAnmEnd() {
+    if (getEndFlg() != 0 && getNowSetFlg() == 0) {
+        return true;
+    }
+    if (getRate() == lit_4215[0]) {
+        onEndFlg();
+        onNowSetFlg();
+    }
+    return false;
 }
-#pragma pop
 
-/* 8015E510-8015E544 158E50 0034+00 0/0 1/1 2/2 .text            updateFrame__16daPy_frameCtrl_cFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daPy_frameCtrl_c::updateFrame() {
-    nofralloc
-#include "asm/d/a/d_a_player/updateFrame__16daPy_frameCtrl_cFv.s"
+void daPy_frameCtrl_c::updateFrame() {
+    update();
+    offNowSetFlg();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80453608-80453610 001C08 0008+00 2/2 0/0 0/0 .sdata2          @4237 */
 SECTION_SDATA2 static f64 lit_4237 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8015E544-8015E5B0 158E84 006C+00 0/0 1/1 6/6 .text setFrameCtrl__16daPy_frameCtrl_cFUcssff */
+// compiler generated literal from short to float conversion
+#ifdef NONMATCHING
+void daPy_frameCtrl_c::setFrameCtrl(u8 pAttribute, s16 pStart, s16 pEnd, f32 pRate, f32 pFrame) {
+    setAttribute(pAttribute);
+    setEnd(pEnd);
+    setRate(pRate);
+    setStart(pStart);
+    setFrame(pFrame);
+    if (pRate >= lit_4215[0]) {
+        setLoop(pStart);
+    } else {
+        setLoop(pEnd);
+    }
+    offEndFlg();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -352,6 +280,7 @@ asm void daPy_frameCtrl_c::setFrameCtrl(u8 param_0, s16 param_1, s16 param_2, f3
 #include "asm/d/a/d_a_player/setFrameCtrl__16daPy_frameCtrl_cFUcssff.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80453610-80453614 001C10 0004+00 1/1 0/0 0/0 .sdata2          @4247 */
@@ -447,6 +376,17 @@ asm void daPy_py_c::setParamData(int param_0, int param_1, int param_2, int para
 
 /* 8015EA20-8015EA48 159360 0028+00 0/0 10/10 3/3 .text            checkFishingRodItem__9daPy_py_cFi
  */
+#ifdef NONMATCHING
+BOOL daPy_py_c::checkFishingRodItem(int i_item_id) {
+    bool is_fishing_item = false;
+
+    if (i_item_id == FISHING_ROD_1 || i_item_id < BEE_ROD || i_item_id <= JEWEL_WORM_ROD) {
+        is_fishing_item = true;
+    }
+
+    return is_fishing_item;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -455,6 +395,7 @@ asm void daPy_py_c::checkFishingRodItem(int param_0) {
 #include "asm/d/a/d_a_player/checkFishingRodItem__9daPy_py_cFi.s"
 }
 #pragma pop
+#endif
 
 /* 8015EA48-8015EA88 159388 0040+00 0/0 3/3 0/0 .text            checkBombItem__9daPy_py_cFi */
 #pragma push
@@ -541,14 +482,25 @@ asm void daPy_py_c::checkTradeItem(int param_0) {
 
 /* 8015EC28-8015EC48 159568 0020+00 0/0 2/2 0/0 .text            checkDungeonWarpItem__9daPy_py_cFi
  */
+// regalloc
+#ifdef NONMATCHING
+BOOL daPy_py_c::checkDungeonWarpItem(int i_item_id) {
+    bool isDungeonWarpItem = false;
+    if (i_item_id == DUNGEON_EXIT || i_item_id == DUNGEON_BACK) {
+        isDungeonWarpItem = true;
+    }
+    return isDungeonWarpItem;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::checkDungeonWarpItem(int param_0) {
+asm BOOL daPy_py_c::checkDungeonWarpItem(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_player/checkDungeonWarpItem__9daPy_py_cFi.s"
 }
 #pragma pop
+#endif
 
 /* 8015EC48-8015ECB8 159588 0070+00 0/0 10/10 3/3 .text            setActor__16daPy_actorKeep_cFv */
 #pragma push
@@ -571,26 +523,15 @@ asm void daPy_actorKeep_c::setData(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 8015ECFC-8015ED10 15963C 0014+00 2/2 41/41 12/12 .text            clearData__16daPy_actorKeep_cFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daPy_actorKeep_c::clearData() {
-    nofralloc
-#include "asm/d/a/d_a_player/clearData__16daPy_actorKeep_cFv.s"
+void daPy_actorKeep_c::clearData() {
+    mID = 0xffffffff;
+    mActor = NULL;
 }
-#pragma pop
 
-/* 8015ED10-8015ED50 159650 0040+00 0/0 2/2 2/2 .text            __ct__14daPy_anmHeap_cFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm daPy_anmHeap_c::daPy_anmHeap_c(u32 param_0) {
-    nofralloc
-#include "asm/d/a/d_a_player/__ct__14daPy_anmHeap_cFUl.s"
+daPy_anmHeap_c::daPy_anmHeap_c(u32 pBufferSize) {
+    initData();
+    mBufferSize = pBufferSize;
 }
-#pragma pop
 
 /* 8015ED50-8015EDAC 159690 005C+00 0/0 2/2 2/2 .text            __dt__14daPy_anmHeap_cFv */
 #pragma push
@@ -602,15 +543,11 @@ asm daPy_anmHeap_c::~daPy_anmHeap_c() {
 }
 #pragma pop
 
-/* 8015EDAC-8015EDC4 1596EC 0018+00 1/1 0/0 1/1 .text            initData__14daPy_anmHeap_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daPy_anmHeap_c::initData() {
-    nofralloc
-#include "asm/d/a/d_a_player/initData__14daPy_anmHeap_cFv.s"
+void daPy_anmHeap_c::initData() {
+    resetIdx();
+    resetPriIdx();
+    resetArcNo();
 }
-#pragma pop
 
 /* 8015EDC4-8015EE00 159704 003C+00 0/0 1/1 1/1 .text            mallocBuffer__14daPy_anmHeap_cFv */
 #pragma push
@@ -1153,16 +1090,15 @@ asm void daPy_py_c::checkCarryStartLightBallB() {
 }
 #pragma pop
 
-/* 8015F7C8-8015F814 15A108 004C+00 0/0 0/0 2/2 .text            getSpinnerRideSpeed__9daPy_py_cCFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daPy_py_c::getSpinnerRideSpeed() const {
-    nofralloc
-#include "asm/d/a/d_a_player/getSpinnerRideSpeed__9daPy_py_cCFv.s"
+float daPy_py_c::getSpinnerRideSpeed() const {
+    float rideSpeed;
+    if (checkSpinnerRide()) {
+        rideSpeed = mSpeedF;
+    } else {
+        rideSpeed = lit_4215[0];
+    }
+    return rideSpeed;
 }
-#pragma pop
 
 /* 8015F814-8015F89C 15A154 0088+00 0/0 0/0 1/1 .text checkSpinnerReflectEffect__9daPy_py_cFv */
 #pragma push
