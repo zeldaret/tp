@@ -89,11 +89,6 @@ asm JKRDvdFinder::~JKRDvdFinder() {
 #endif
 
 /* 802D4874-802D4910 2CF1B4 009C+00 1/0 0/0 0/0 .text            findNextFile__12JKRDvdFinderFv */
-#ifdef NONMATCHING
-// everything matches except:
-//       u16 flags = 1;
-//       if(mIsFileOrDirectory) flags = 2;
-//       mEntryTypeFlags = flags;
 bool JKRDvdFinder::findNextFile(void) {
     if (mIsAvailable) {
         DVDDirectoryEntry directoryEntry;
@@ -101,29 +96,22 @@ bool JKRDvdFinder::findNextFile(void) {
 
         if (mIsAvailable) {
             mIsFileOrDirectory = directoryEntry.is_directory != 0;
-            mEntryNameOffset = directoryEntry.name;
+            mEntryName = directoryEntry.name;
             mEntryFileIndex = directoryEntry.entry_number;
             mEntryId = 0;
 
-            u16 flags = 1;
-            if (mIsFileOrDirectory)
-                flags = 2;
-            mEntryTypeFlags = flags;
+            // only matches with enum
+            // TODO: placeholder
+            enum EntryTypeFlags {
+                EntryTypeFlags1 = 1,
+                EntryTypeFlags2 = 2,
+            };
+            mEntryTypeFlags = mIsFileOrDirectory ? EntryTypeFlags2 : EntryTypeFlags1;
         }
     }
 
     return mIsAvailable;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool JKRDvdFinder::findNextFile() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRFileFinder/findNextFile__12JKRDvdFinderFv.s"
-}
-#pragma pop
-#endif
 
 inline JKRFileFinder::~JKRFileFinder() {}
 
