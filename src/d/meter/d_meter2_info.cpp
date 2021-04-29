@@ -457,13 +457,8 @@ bool dMeter2Info_c::isDirectUseItem(int param_0) {
     return (mDirectUseItem & (u8)(1 << param_0)) != 0;
 }
 
-/* ############################################################################################## */
-/* 80430178-80430188 05CE98 000C+04 1/1 0/0 0/0 .bss             @3846 */
-static u8 lit_3846[12 + 4 /* padding */];
-
 /* 80430188-80430280 05CEA8 00F8+00 4/4 267/267 70/70 .bss             g_meter2_info */
-extern u8 g_meter2_info[248];
-u8 g_meter2_info[248];
+dMeter2Info_c g_meter2_info;
 
 /* 8021C970-8021C9DC 2172B0 006C+00 0/0 0/0 5/5 .text            setMeterString__13dMeter2Info_cFl
  */
@@ -1195,20 +1190,5 @@ void dMeter2Info_set2DVibration() {}
 /* 8021E9D4-8021E9D8 219314 0004+00 0/0 12/12 0/0 .text            dMeter2Info_set2DVibrationM__Fv
  */
 void dMeter2Info_set2DVibrationM() {}
-
-/* 8021E9D8-8021EA14 219318 003C+00 0/0 1/0 0/0 .text            __sinit_d_meter2_info_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_meter2_info_cpp() {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/__sinit_d_meter2_info_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x8021E9D8, __sinit_d_meter2_info_cpp);
-#pragma pop
 
 /* 80399168-80399168 0257C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

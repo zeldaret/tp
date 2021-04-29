@@ -3,6 +3,7 @@
 
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
+//#include "JSystem/JUtility/JUTFont.h"
 
 struct dSv_event_flag_c {
     static u8 saveBitLabels[1644 + 4 /* padding */];
@@ -22,7 +23,7 @@ struct dMsgFlow_c {
 
 class dMeterMap_c {
 public:
-    /* 8020D900 */ void isMapOpenCheck();
+    /* 8020D900 */ bool isMapOpenCheck();
 };
 
 struct J2DPicture {};
@@ -172,8 +173,7 @@ private:
     /* 0xCD */ u8 unk205;
     /* 0xCE */ u8 unk206;
     /* 0xCF */ u8 unk207;
-    /* 0xD0 */ u32 unk208;
-    /* 0xD4 */ u32 unk212;
+    /* 0xD0 */ f64 unk208;
     /* 0xD8 */ u8 unk216;
     /* 0xD9 */ u8 unk217;
     /* 0xDA */ u8 unk218;
@@ -195,10 +195,10 @@ private:
     /* 0xF3 */ u8 unk243[5];
 };
 
-// extern dMeter2Info_c g_meter2_info;
+extern dMeter2Info_c g_meter2_info;
 
-/* inline dMeterMap_c* dMeter2Info_getMeterMapClass() {
+inline dMeterMap_c* dMeter2Info_getMeterMapClass() {
     return g_meter2_info.getMeterMapClass();
-} */
+}
 
 #endif /* D_METER_D_METER2_INFO_H */
