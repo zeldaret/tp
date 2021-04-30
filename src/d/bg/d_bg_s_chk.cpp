@@ -8,27 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct dBgS_PolyPassChk {
-    /* 80078D64 */ dBgS_PolyPassChk();
-    /* 80078DB0 */ ~dBgS_PolyPassChk();
-};
-
-struct dBgS_GrpPassChk {
-    /* 80077BA0 */ dBgS_GrpPassChk();
-    /* 80077BC4 */ ~dBgS_GrpPassChk();
-};
-
-struct dBgS_Chk {
-    /* 8007749C */ dBgS_Chk();
-    /* 800774E8 */ ~dBgS_Chk();
-    /* 80077560 */ void GetPolyPassChkInfo();
-    /* 80077564 */ void GetGrpPassChkInfo();
-};
-
-//
 // Forward References:
 //
 

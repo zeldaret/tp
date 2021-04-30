@@ -8,153 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct fopAc_ac_c {};
-
-struct daPy_py_c {
-    /* 80077494 */ bool checkPlayerFly() const;
-};
-
-struct dBgS_WtrChk {
-    /* 80079164 */ dBgS_WtrChk();
-};
-
-struct cXyz {};
-
-struct dBgS_SplGrpChk {
-    /* 80078B90 */ void Set(cXyz&, f32);
-    /* 80078C78 */ ~dBgS_SplGrpChk();
-};
-
-struct dBgS_RoofChk {
-    /* 80078FF4 */ dBgS_RoofChk();
-    /* 80079090 */ ~dBgS_RoofChk();
-};
-
-struct dBgS_PolyPassChk {
-    /* 80078E0C */ void SetPassChkInfo(dBgS_PolyPassChk&);
-    /* 80078EEC */ void SetUnderwaterRoof();
-};
-
-struct dBgS_GndChk {
-    /* 8007757C */ dBgS_GndChk();
-    /* 800775F0 */ ~dBgS_GndChk();
-};
-
-struct dBgS_Chk {
-    /* 8007749C */ dBgS_Chk();
-    /* 800774E8 */ ~dBgS_Chk();
-    /* 80077560 */ void GetPolyPassChkInfo();
-    /* 80077564 */ void GetGrpPassChkInfo();
-};
-
-struct dBgS_AcchCir {
-    /* 80075EAC */ dBgS_AcchCir();
-    /* 80075F14 */ void ClrWallHit();
-    /* 80075F40 */ void SetWallR(f32);
-    /* 80075F48 */ void CalcWallRR();
-    /* 80075F58 */ void SetWall(f32, f32);
-    /* 80075F80 */ void SetWallHDirect(f32);
-    /* 80077414 */ ~dBgS_AcchCir();
-};
-
-struct csXyz {};
-
-struct Vec {};
-
-struct cBgS_PolyInfo {
-    /* 80268074 */ cBgS_PolyInfo();
-    /* 802680B0 */ ~cBgS_PolyInfo();
-    /* 80268120 */ void ClearPi();
-    /* 8026816C */ void SetActorInfo(int, void*, unsigned int);
-};
-
-struct dBgS_Acch;
-struct dBgS {
-    /* 8007524C */ void WallCorrect(dBgS_Acch*);
-    /* 80075374 */ void WallCorrectSort(dBgS_Acch*);
-    /* 8007549C */ void RoofChk(dBgS_RoofChk*);
-    /* 80075564 */ void SplGrpChk(dBgS_SplGrpChk*);
-    /* 80075774 */ void MoveBgCrrPos(cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*, bool, bool);
-    /* 80075B84 */ void RideCallBack(cBgS_PolyInfo const&, fopAc_ac_c*);
-};
-
-struct dBgS_Acch {
-    /* 80075F94 */ ~dBgS_Acch();
-    /* 800760A0 */ dBgS_Acch();
-    /* 800761CC */ void Init();
-    /* 80076288 */ void Set(fopAc_ac_c*, int, dBgS_AcchCir*);
-    /* 80076248 */ void Set(cXyz*, cXyz*, fopAc_ac_c*, int, dBgS_AcchCir*, cXyz*, csXyz*, csXyz*);
-    /* 800762D8 */ void GroundCheckInit(dBgS&);
-    /* 80076350 */ void GroundCheck(dBgS&);
-    /* 8007654C */ void GroundRoofProc(dBgS&);
-    /* 80076624 */ void LineCheck(dBgS&);
-    /* 80076AAC */ void CrrPos(dBgS&);
-    /* 80076F84 */ void GetWallAllR();
-    /* 80076FC0 */ void SetWallCir();
-    /* 8007703C */ void CalcWallBmdCyl();
-    /* 80077114 */ void SetGroundUpY(f32);
-    /* 80077128 */ void GetWallAllLowH();
-    /* 80077178 */ void GetWallAllLowH_R();
-    /* 800771E4 */ void GetSpeedY();
-    /* 80077200 */ void GetWallAddY(Vec&);
-    /* 80077278 */ void SetNowActorInfo(int, void*, unsigned int);
-    /* 80077288 */ void SetWallPolyIndex(int, int);
-    /* 800772E8 */ void CalcMovePosWork();
-    /* 8007732C */ void CalcWallRR();
-    /* 80077388 */ void SetMoveBGOnly();
-    /* 800773A4 */ void ClrMoveBGOnly();
-    /* 800773C0 */ void SetGndThinCellingOff();
-    /* 800773D0 */ void ClrGndThinCellingOff();
-    /* 800773E0 */ void ChkGndThinCellingOff();
-    /* 800773EC */ void OnWallSort();
-    /* 800773FC */ void ChkWallSort();
-    /* 80077408 */ void ChkLineDown();
-};
-
-struct cM3dGPla {
-    /* 8026F5D4 */ void getCrossYLessD(Vec const&, f32*) const;
-};
-
-struct cM3dGLin {
-    /* 8026F2E8 */ void SetStartEnd(cXyz const&, cXyz const&);
-};
-
-struct cM3dGCyl {
-    /* 8026F180 */ void Set(cXyz const&, f32, f32);
-};
-
-struct cM3dGCir {
-    /* 8026EEB4 */ cM3dGCir();
-    /* 8026EF18 */ ~cM3dGCir();
-    /* 8026EF74 */ void Set(f32, f32, f32, f32);
-};
-
-struct cBgS_LinChk {
-    /* 80267D5C */ cBgS_LinChk();
-    /* 80267DBC */ ~cBgS_LinChk();
-    /* 80267ED0 */ void Set2(cXyz const*, cXyz const*, unsigned int);
-};
-
-struct cBgS_GndChk {
-    /* 80267D28 */ void SetPos(cXyz const*);
-};
-
-struct cBgS_Chk {
-    /* 80267B4C */ cBgS_Chk();
-    /* 80267B70 */ ~cBgS_Chk();
-    /* 80267BB8 */ void SetExtChk(cBgS_Chk&);
-};
-
-struct cBgS {
-    /* 800743B4 */ void LineCross(cBgS_LinChk*);
-    /* 800744A0 */ void GroundCross(cBgS_GndChk*);
-    /* 80074744 */ void GetTriPla(cBgS_PolyInfo const&, cM3dGPla*) const;
-};
-
-//
 // Forward References:
 //
 
@@ -245,8 +98,6 @@ extern "C" void Set__8cM3dGCylFRC4cXyzff();
 extern "C" void SetStartEnd__8cM3dGLinFRC4cXyzRC4cXyz();
 extern "C" void getCrossYLessD__8cM3dGPlaCFRC3VecPf();
 extern "C" void __dl__FPv();
-extern "C" void PSVECAdd();
-extern "C" void PSVECSquareDistance();
 extern "C" void __register_global_object();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_29();
@@ -258,7 +109,7 @@ extern "C" extern void* __vt__8cM3dGCyl[3];
 extern "C" extern void* __vt__8cM3dGLin[3];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 data_80450F68[8];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
+extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];  //
 
 //
 // Declarations:

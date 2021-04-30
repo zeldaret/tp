@@ -8,18 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct dBgS_WtrChk {
-    /* 80079164 */ dBgS_WtrChk();
-};
-
-struct dBgS_SplGrpChk {
-    /* 80078BB0 */ dBgS_SplGrpChk();
-};
-
-//
 // Forward References:
 //
 
