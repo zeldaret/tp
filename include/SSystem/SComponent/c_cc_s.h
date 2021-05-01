@@ -1,8 +1,8 @@
 #ifndef C_CC_S_H
 #define C_CC_S_H
 
-#include "dolphin/types.h"
 #include "SSystem/SComponent/c_cc_d.h"
+#include "dolphin/types.h"
 
 class cCcS {
 public:

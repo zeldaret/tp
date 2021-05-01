@@ -1,12 +1,13 @@
 #ifndef C_CC_D_H
 #define C_CC_D_H
 
-#include "dolphin/types.h"
 #include "SSystem/SComponent/c_m3d_g_aab.h"
 #include "SSystem/SComponent/c_m3d_g_cps.h"
 #include "SSystem/SComponent/c_m3d_g_cyl.h"
 #include "SSystem/SComponent/c_m3d_g_sph.h"
 #include "SSystem/SComponent/c_m3d_g_tri.h"
+#include "dolphin/gx/GXTexture.h"
+#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
 class cCcD_ShapeAttr {
@@ -163,6 +164,8 @@ struct cCcD_SrcObj {};
 
 class cCcD_GStts {
 public:
+    /* 800837B0 */ ~cCcD_GStts();
+
 private:
     /* 0x00 */ void* vtable;
 };  // Size = 0x4
@@ -193,6 +196,7 @@ private:
 
 class cCcD_ObjCommonBase {
 public:
+    /* 8008409C */ ~cCcD_ObjCommonBase();
     /* 802639B0 */ void ct();
 
 private:
@@ -206,6 +210,7 @@ class cCcD_Obj;
 #pragma pack(push, 1)
 class cCcD_ObjAt : cCcD_ObjCommonBase {
 public:
+    /* 80084040 */ ~cCcD_ObjAt();
     /* 8026483C */ void SetHit(cCcD_Obj*);
     /* 8026484C */ void Set(cCcD_SrcObjAt const&);
     /* 80264868 */ void ClrHit();
@@ -218,6 +223,7 @@ private:
 
 class cCcD_ObjTg : cCcD_ObjCommonBase {
 public:
+    /* 80083FE4 */ ~cCcD_ObjTg();
     /* 80264880 */ void Set(cCcD_SrcObjTg const&);
     /* 80264894 */ void SetGrp(u32);
     /* 802648B0 */ void ClrHit();
@@ -229,6 +235,7 @@ private:
 
 class cCcD_ObjCo : cCcD_ObjCommonBase {
 public:
+    /* 80083F88 */ ~cCcD_ObjCo();
     /* 802648D8 */ void SetHit(cCcD_Obj*);
     /* 802648E8 */ void ClrHit();
     /* 80264900 */ void SetIGrp(u32);
@@ -237,6 +244,7 @@ public:
 
 class cCcD_ObjHitInf {
 public:
+    /* 80083EC8 */ ~cCcD_ObjHitInf();
     /* 802639C4 */ void Set(cCcD_SrcObjHitInf const&);
 
 private:
@@ -249,9 +257,15 @@ private:
 
 class cCcD_Obj : cCcD_ObjHitInf {
 public:
+    /* 80083DE0 */ ~cCcD_Obj();
+    /* 800851A4 */ bool GetGObjInf() const;
+    /* 800847C8 */ bool GetGObjInf();
+    /* 80084BE8 */ bool GetShapeAttr() const;
+    /* 80085130 */ bool GetShapeAttr();
+    /* 80084BF0 */ void Draw(_GXColor const&);
     /* 80263A10 */ void ct();
     /* 80263A1C */ void Set(cCcD_SrcObj const&);
-    /* 80263A48 */ void GetAc();
+    void GetAc();
 
 private:
     /* 0x040 */ int field_0x40;
@@ -259,6 +273,14 @@ private:
     /* 0x048 */ cCcD_DivideInfo mDivideInfo;
 };  // Size = 0x58
 
-class cCcD_GObjInf : cCcD_Obj {};
+class cCcD_GObjInf : cCcD_Obj {
+public:
+    /* 80083CE8 */ ~cCcD_GObjInf();
+    /* 800851A0 */ void GetGObjInf();
+    /* 80084BE4 */ void GetGObjInf() const;
+    /* 80085138 */ void ClrAtHit();
+    /* 80085158 */ void ClrTgHit();
+    /* 8008517C */ void ClrCoHit();
+};
 
 #endif /* C_CC_D_H */
