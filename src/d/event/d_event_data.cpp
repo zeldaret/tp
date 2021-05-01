@@ -20,10 +20,6 @@ struct mDoGph_gInf_c {
     static f32 mFadeRate;
 };
 
-struct fopAc_ac_c {};
-
-struct cXyz {};
-
 struct dVibration_c {
     /* 8006FA24 */ void StartShock(int, int, cXyz);
     /* 8006FB10 */ void StartQuake(int, int, cXyz);
@@ -37,16 +33,6 @@ struct dSv_event_tmp_flag_c {
 
 struct dSv_event_flag_c {
     static u8 saveBitLabels[1644 + 4 /* padding */];
-};
-
-struct dSv_event_c {
-    /* 8003498C */ void onEventBit(u16);
-    /* 800349A4 */ void offEventBit(u16);
-    /* 800349BC */ void isEventBit(u16) const;
-};
-
-struct dStage_roomControl_c {
-    /* 80024384 */ void getStatusRoomDt(int);
 };
 
 struct dMsgObject_c {
@@ -75,44 +61,8 @@ struct dEvent_manager_c {
     /* 8004817C */ void cutEnd(int);
 };
 
-struct dEvDtStaff_c {
-    /* 80043FD8 */ void specialProc_WaitStart(int);
-    /* 8004403C */ void specialProc_WaitProc(int);
-    /* 80044080 */ void specialProc();
-    /* 80044134 */ void init();
-    /* 80044170 */ void advanceCut(int);
-    /* 80044190 */ void specialProcLight();
-    /* 80044324 */ void specialProcMessage();
-    /* 80044A58 */ void specialProcSound();
-    /* 80044CB8 */ void specialProcCreate();
-    /* 80044EE4 */ void specialProcDirector();
-    /* 80045878 */ void specialProcPackage();
-    /* 80045AFC */ void specialProcTimekeeper();
-    /* 80045C34 */ void specialProcEffect();
-};
-
-struct dEvDtFlag_c {
-    /* 80043D60 */ void flagCheck(int);
-    /* 80043DC8 */ void flagSet(int);
-    /* 80043E30 */ void flagMaxCheck(int);
-    /* 80043E58 */ void init();
-};
-
-struct dEvDtEvent_c {
-    /* 80043E78 */ void finishCheck();
-    /* 80043EFC */ void forceFinish();
-    /* 80043F70 */ void specialStaffProc(dEvDtStaff_c*);
-};
-
 struct dEvDtCut_c {
     /* 800460A8 */ void startCheck();
-};
-
-struct dEvDtBase_c {
-    /* 80046138 */ void init();
-    /* 8004616C */ void init(char*, int);
-    /* 8004628C */ void advanceCut(dEvDtEvent_c*);
-    /* 800462FC */ void advanceCutLocal(dEvDtStaff_c*);
 };
 
 struct dDlst_list_c {
@@ -134,16 +84,12 @@ struct dCamera_c {
     /* 80181170 */ void StartBlure(int, fopAc_ac_c*, f32, f32);
 };
 
-struct csXyz {};
-
 struct Z2SeqMgr {
     /* 802AF408 */ void bgmStop(u32, s32);
     /* 802AFE18 */ void bgmStreamPlay();
 };
 
 struct JAISoundID {};
-
-struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);

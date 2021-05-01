@@ -9,6 +9,7 @@ public:
     void init(s16);
     void checkPass(f32);
     void update();
+    ~J3DFrameCtrl();
 
     float getRate() { return mRate; }
     void setAttribute(u8 pAttr) { mAttribute = pAttr; }

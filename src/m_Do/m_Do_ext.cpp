@@ -18,17 +18,6 @@ struct mDoExt_morf_c {
     /* 8000FBC0 */ void frameUpdate();
 };
 
-struct J3DModelData {};
-
-struct J3DModel {
-    /* 80327100 */ void initialize();
-    /* 80327184 */ void entryModelData(J3DModelData*, u32, u32);
-    /* 803275FC */ void newDifferedDisplayList(u32);
-    /* 8032767C */ void lock();
-    /* 803276B4 */ void unlock();
-    /* 803279A0 */ void diff();
-};
-
 struct Vec {};
 
 struct cXyz {
@@ -53,48 +42,9 @@ struct mDoExt_invJntPacket {
     /* 80012220 */ void draw();
 };
 
-struct J3DMaterialTable;
-struct J3DAnmTextureSRTKey {
-    /* 8032B0C0 */ void searchUpdateMaterialID(J3DMaterialTable*);
-};
-
-struct J3DAnmTexPattern {
-    /* 8032B004 */ void searchUpdateMaterialID(J3DMaterialTable*);
-};
-
-struct J3DAnmTevRegKey {
-    /* 8032B780 */ void searchUpdateMaterialID(J3DMaterialTable*);
-};
-
-struct J3DAnmColor {
-    /* 8032A8A4 */ void searchUpdateMaterialID(J3DMaterialTable*);
-};
-
-struct J3DMaterialTable {
-    /* 8032FAF4 */ void entryMatColorAnimator(J3DAnmColor*);
-    /* 8032FBC8 */ void entryTexNoAnimator(J3DAnmTexPattern*);
-    /* 8032FCC4 */ void entryTexMtxAnimator(J3DAnmTextureSRTKey*);
-    /* 8032FE70 */ void entryTevRegAnimator(J3DAnmTevRegKey*);
-};
-
 struct mDoExt_btpAnm {
     /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
     /* 8000D5E8 */ void entry(J3DMaterialTable*, s16);
-};
-
-struct mDoExt_btkAnm {
-    /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
-    /* 8000D6D8 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct mDoExt_brkAnm {
-    /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
-    /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct mDoExt_bpkAnm {
-    /* 8000D47C */ void init(J3DMaterialTable*, J3DAnmColor*, int, int, f32, s16, s16);
-    /* 8000D518 */ void entry(J3DMaterialTable*, f32);
 };
 
 struct J3DAnmCluster {};
@@ -105,20 +55,6 @@ struct J3DDeformData {
 
 struct mDoExt_blkAnm {
     /* 8000DA08 */ void init(J3DDeformData*, J3DAnmCluster*, int, int, f32, s16, s16);
-};
-
-struct J3DAnmTransform {};
-
-struct mDoExt_bckAnm {
-    /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
-    /* 8000D990 */ void changeBckOnly(J3DAnmTransform*);
-    /* 8000D9CC */ void entry(J3DModelData*, f32);
-    /* 8000D9E8 */ void entryJoint(J3DModelData*, u16, f32);
-};
-
-struct mDoExt_baseAnm {
-    /* 8000D320 */ void initPlay(s16, int, f32, s16, s16);
-    /* 8000D428 */ void play();
 };
 
 struct mDoExt_MtxCalcOldFrame {
@@ -139,8 +75,6 @@ struct mDoExt_MtxCalcAnmBlendTbl {
 struct J3DTransformInfo {};
 
 struct mDoExt_McaMorfCallBack2_c {};
-
-struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C0628 */ void initAnime(void*, bool, f32, f32);
@@ -527,12 +461,6 @@ struct J3DIndBlock {
     /* 8000E020 */ void setIndTexCoordScale(u32, J3DIndTexCoordScale);
     /* 8000E060 */ void setIndTexMtx(u32, J3DIndTexMtx);
     /* 8000E0A0 */ void setIndTexStageNum(u8);
-};
-
-struct J3DFrameCtrl {
-    /* 8000F9D8 */ ~J3DFrameCtrl();
-    /* 803283FC */ void init(s16);
-    /* 803289CC */ void update();
 };
 
 struct J3DDisplayListObj {

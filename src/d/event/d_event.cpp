@@ -19,37 +19,12 @@ struct mDoCPd_c {
     static u8 m_cpadInfo[256];
 };
 
-struct fopAc_ac_c {};
-
-struct daPy_py_c {
-    static u8 m_midnaActor[4];
-};
-
-struct daItemBase_c {
-    /* 80037AE4 */ void dead();
-};
-
 struct dVibration_c {
     /* 8006FD94 */ void StopQuake(int);
 };
 
-struct dSv_info_c {
-    /* 80035200 */ void onSwitch(int, int);
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
 struct dSv_event_tmp_flag_c {
     static u8 const tempBitLabels[370 + 2 /* padding */];
-};
-
-struct dSv_event_c {
-    /* 800349A4 */ void offEventBit(u16);
-};
-
-struct dStage_roomControl_c {
-    /* 80024384 */ void getStatusRoomDt(int);
-
-    static u8 mDemoArcName[10 + 2 /* padding */];
 };
 
 struct dRes_info_c {};
@@ -64,66 +39,11 @@ struct dMsgObject_c {
     /* 80238098 */ void endFlowGroup();
 };
 
-struct dEvt_order_c {
-    /* 80030154 */ ~dEvt_order_c();
-    /* 800415D4 */ dEvt_order_c();
-};
-
 struct dEvt_info_c {
     /* 800433F0 */ dEvt_info_c();
     /* 80043428 */ void setEventName(char*);
     /* 80043480 */ void getEventName();
     /* 800434CC */ void beforeProc();
-};
-
-struct dEvt_control_c {
-    /* 80041580 */ dEvt_control_c();
-    /* 800415D8 */ void orderOld(u16, u16, u16, u16, void*, void*, void const*);
-    /* 80041668 */ void order(u16, u16, u16, u16, void*, void*, s16, u8);
-    /* 80041804 */ void setParam(dEvt_order_c*);
-    /* 80041934 */ void beforeFlagProc(dEvt_order_c*);
-    /* 80041964 */ void afterFlagProc(dEvt_order_c*);
-    /* 800419A8 */ void commonCheck(dEvt_order_c*, u16, u16);
-    /* 80041A20 */ void talkCheck(dEvt_order_c*);
-    /* 80041B58 */ void talkXyCheck(dEvt_order_c*);
-    /* 80041C90 */ void catchCheck(dEvt_order_c*);
-    /* 80041D34 */ void talkEnd();
-    /* 80041DDC */ void demoCheck(dEvt_order_c*);
-    /* 80041F18 */ void demoEnd();
-    /* 80041FA0 */ void potentialCheck(dEvt_order_c*);
-    /* 80042014 */ void doorCheck(dEvt_order_c*);
-    /* 8004212C */ void itemCheck(dEvt_order_c*);
-    /* 800421C0 */ void endProc();
-    /* 80042254 */ void change();
-    /* 800422C0 */ void entry();
-    /* 80042518 */ void reset(void*);
-    /* 80042468 */ void reset();
-    /* 800425B4 */ void clearSkipSystem();
-    /* 8004290C */ void getSkipEventName();
-    /* 80042914 */ void setSkipProc(void*, int (*)(void*, int), int);
-    /* 80042958 */ void setSkipZev(void*, char*);
-    /* 800429A8 */ void onSkipFade();
-    /* 800429B4 */ void offSkipFade();
-    /* 800429D4 */ void skipper();
-    /* 80042BBC */ void Step();
-    /* 80042FA8 */ void moveApproval(void*);
-    /* 8004316C */ void compulsory(void*, char const*, u16);
-    /* 800431E8 */ void remove();
-    /* 80043278 */ void getStageEventDt();
-    /* 80043280 */ void sceneChange(int);
-    /* 800432C8 */ void getPId(void*);
-    /* 800432EC */ void convPId(unsigned int);
-    /* 8004331C */ void getStbDemoData(char*);
-    /* 80043500 */ void searchMapEventData(u8, s32);
-    /* 800434D8 */ void searchMapEventData(u8);
-    /* 8004360C */ void runningEventID(s16);
-    /* 8004362C */ void setPt1(void*);
-    /* 8004365C */ void setPt2(void*);
-    /* 8004368C */ void setPtT(void*);
-    /* 800436BC */ void setPtI(void*);
-    /* 800436EC */ void setPtI_Id(unsigned int);
-    /* 800436F4 */ void setPtD(void*);
-    /* 80043724 */ void setGtItm(u8);
 };
 
 struct dEvent_manager_c {
