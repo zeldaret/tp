@@ -8,28 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct JSUStreamSeekFrom {};
-
-struct JSURandomInputStream {
-    /* 802D4094 */ void getAvailable() const;
-    /* 802DC3FC */ void skip(s32);
-};
-
-struct JKRFile {};
-
-struct JSUFileInputStream {
-    /* 802DADD8 */ ~JSUFileInputStream();
-    /* 802DC638 */ JSUFileInputStream(JKRFile*);
-    /* 802DC67C */ void readData(void*, s32);
-    /* 802DC74C */ void seekPos(s32, JSUStreamSeekFrom);
-    /* 802DC82C */ void getLength() const;
-    /* 802DC85C */ void getPosition() const;
-};
-
-//
 // Forward References:
 //
 
@@ -111,7 +89,7 @@ asm void JSUFileInputStream::seekPos(s32 param_0, JSUStreamSeekFrom param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JSUFileInputStream::getLength() const {
+asm s32 JSUFileInputStream::getLength() const {
     nofralloc
 #include "asm/JSystem/JSupport/JSUFileStream/getLength__18JSUFileInputStreamCFv.s"
 }
@@ -121,7 +99,7 @@ asm void JSUFileInputStream::getLength() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JSUFileInputStream::getPosition() const {
+asm s32 JSUFileInputStream::getPosition() const {
     nofralloc
 #include "asm/JSystem/JSupport/JSUFileStream/getPosition__18JSUFileInputStreamCFv.s"
 }

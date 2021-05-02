@@ -47,15 +47,11 @@ extern "C" void DVDReadDiskID();
 extern "C" void DVDCancelStreamAsync();
 extern "C" void DVDInquiryAsync();
 extern "C" void DVDReset();
-extern "C" void DVDGetCommandBlockStatus();
-extern "C" void DVDGetDriveStatus();
 extern "C" void DVDSetAutoInvalidation();
 extern "C" void DVDResume();
 extern "C" static void DVDCancelAsync();
 extern "C" void DVDCancel();
 extern "C" static void cbForCancelSync();
-extern "C" void DVDGetCurrentDiskID();
-extern "C" void DVDCheckDisk();
 extern "C" void __DVDPrepareResetAsync();
 extern "C" void __DVDTestAlarm();
 
@@ -689,7 +685,7 @@ asm void DVDReset() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void DVDGetCommandBlockStatus() {
+asm int DVDGetCommandBlockStatus(DVDCommandBlock*) {
     nofralloc
 #include "asm/dolphin/dvd/dvd/DVDGetCommandBlockStatus.s"
 }
@@ -699,7 +695,7 @@ asm void DVDGetCommandBlockStatus() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void DVDGetDriveStatus() {
+asm DVDState DVDGetDriveStatus() {
     nofralloc
 #include "asm/dolphin/dvd/dvd/DVDGetDriveStatus.s"
 }
@@ -847,7 +843,7 @@ static asm void cbForCancelSync() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void DVDGetCurrentDiskID() {
+asm DVDDiskID* DVDGetCurrentDiskID() {
     nofralloc
 #include "asm/dolphin/dvd/dvd/DVDGetCurrentDiskID.s"
 }
@@ -877,7 +873,7 @@ SECTION_DATA static void* lit_1060[13 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void DVDCheckDisk() {
+asm s32 DVDCheckDisk() {
     nofralloc
 #include "asm/dolphin/dvd/dvd/DVDCheckDisk.s"
 }

@@ -8,18 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct JUTFont {
-    /* 802DECF8 */ JUTFont();
-    /* 802DED24 */ void initialize_state();
-    /* 802DED70 */ void setCharColor(JUtility::TColor);
-    /* 802DEDC4 */ void setGradColor(JUtility::TColor, JUtility::TColor);
-    /* 802DEE28 */ void drawString_size_scale(f32, f32, f32, f32, char const*, u32, bool);
-};
-
-//
 // Forward References:
 //
 
@@ -42,54 +30,64 @@ extern "C" extern void* __vt__7JUTFont[17];
 //
 
 /* 802DECF8-802DED24 2D9638 002C+00 0/0 2/2 0/0 .text            __ct__7JUTFontFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JUTFont::JUTFont() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTFont/__ct__7JUTFontFv.s"
+JUTFont::JUTFont() : mColor1(), mColor2(), mColor3(), mColor4() {
+    unk4 = 0;
 }
-#pragma pop
 
 /* 802DED24-802DED70 2D9664 004C+00 0/0 9/9 0/0 .text            initialize_state__7JUTFontFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTFont::initialize_state() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTFont/initialize_state__7JUTFontFv.s"
+void JUTFont::initialize_state() {
+    setCharColor(JUtility::TColor());
+    unk5 = false;
+    unk8 = 0;
+    unk4 = false;
 }
-#pragma pop
 
 /* 802DED70-802DEDC4 2D96B0 0054+00 1/1 3/3 0/0 .text setCharColor__7JUTFontFQ28JUtility6TColor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTFont::setCharColor(JUtility::TColor param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTFont/setCharColor__7JUTFontFQ28JUtility6TColor.s"
+void JUTFont::setCharColor(JUtility::TColor col1) {
+    mColor1 = col1;
+    mColor2 = col1;
+    mColor3 = col1;
+    mColor4 = col1;
 }
-#pragma pop
 
 /* 802DEDC4-802DEE28 2D9704 0064+00 0/0 2/2 0/0 .text
  * setGradColor__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTFont::setGradColor(JUtility::TColor param_0, JUtility::TColor param_1) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTFont/setGradColor__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor.s"
+void JUTFont::setGradColor(JUtility::TColor col1, JUtility::TColor col2) {
+    mColor1 = col1;
+    mColor2 = col1;
+    mColor3 = col2;
+    mColor4 = col2;
 }
-#pragma pop
 
 /* 802DEE28-802DEF48 2D9768 0120+00 0/0 3/3 0/0 .text drawString_size_scale__7JUTFontFffffPCcUlb
  */
+#ifdef NON_MATCHING
+f32 JUTFont::drawString_size_scale(f32 a1, f32 a2, f32 a3, f32 a4, const char* str, u32 usz,
+                                   bool a7) {
+    f32 temp = a1;
+
+    for (; usz > 0; usz--, str++) {
+        u32 b = *(u8*)str;
+        if (isLeadByte(b)) {
+            str++;
+            b = (b << 8 | *(u8*)str);
+            usz--;
+        }
+
+        a1 += drawChar_scale(temp, a2, a3, a4, b, a7);
+        a7 = 1;
+    }
+
+    return a1 - temp;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JUTFont::drawString_size_scale(f32 param_0, f32 param_1, f32 param_2, f32 param_3,
-                                        char const* param_4, u32 param_5, bool param_6) {
+asm f32 JUTFont::drawString_size_scale(f32 param_0, f32 param_1, f32 param_2, f32 param_3,
+                                       char const* param_4, u32 param_5, bool param_6) {
     nofralloc
 #include "asm/JSystem/JUtility/JUTFont/drawString_size_scale__7JUTFontFffffPCcUlb.s"
 }
 #pragma pop
+#endif

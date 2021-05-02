@@ -11,28 +11,8 @@
 // Types:
 //
 
-struct _GXRenderModeObj {};
-
 struct JUTXfb {
     static u8 sManager[4 + 4 /* padding */];
-};
-
-struct JUTVideo {
-    /* 802E4C54 */ void createManager(_GXRenderModeObj const*);
-    /* 802E4CAC */ void destroyManager();
-    /* 802E4CF4 */ JUTVideo(_GXRenderModeObj const*);
-    /* 802E4DE8 */ ~JUTVideo();
-    /* 802E4E50 */ void preRetraceProc(u32);
-    /* 802E5088 */ void drawDoneStart();
-    /* 802E50B0 */ void dummyNoDrawWait();
-    /* 802E50BC */ void drawDoneCallback();
-    /* 802E5144 */ void postRetraceProc(u32);
-    /* 802E5198 */ void setRenderMode(_GXRenderModeObj const*);
-    /* 802E5210 */ void waitRetraceIfNeed();
-
-    static u8 sManager[4];
-    static u8 sVideoLastTick[4];
-    static u8 sVideoInterval[4];
 };
 
 struct JUTDirectPrint {
@@ -67,9 +47,6 @@ extern "C" u8 sVideoInterval__8JUTVideo[4];
 extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();
 extern "C" void changeFrameBuffer__14JUTDirectPrintFPvUsUs();
-extern "C" void OSInitMessageQueue();
-extern "C" void OSSendMessage();
-extern "C" void OSGetTick();
 extern "C" void VISetPreRetraceCallback();
 extern "C" void VISetPostRetraceCallback();
 extern "C" void VIInit();
@@ -80,9 +57,7 @@ extern "C" void VISetNextFrameBuffer();
 extern "C" void VIGetNextFrameBuffer();
 extern "C" void VISetBlack();
 extern "C" void VIGetRetraceCount();
-extern "C" void GXFlush();
 extern "C" void GXSetDrawDone();
-extern "C" void GXSetDrawDoneCallback();
 extern "C" void GXCopyDisp();
 extern "C" u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
 extern "C" u8 sManager__6JUTXfb[4 + 4 /* padding */];
@@ -93,7 +68,7 @@ extern "C" u8 sManager__6JUTXfb[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 80451538-8045153C 000A38 0004+00 4/4 18/18 1/1 .sbss            sManager__8JUTVideo */
-u8 JUTVideo::sManager[4];
+JUTVideo* JUTVideo::sManager;
 
 /* 802E4C54-802E4CAC 2DF594 0058+00 0/0 1/1 0/0 .text
  * createManager__8JUTVideoFPC16_GXRenderModeObj                */

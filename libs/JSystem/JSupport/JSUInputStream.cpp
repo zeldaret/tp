@@ -4,29 +4,13 @@
 //
 
 #include "JSystem/JSupport/JSUInputStream.h"
+#include "JSystem/JSupport/JSURandomInputStream.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
 //
 // Types:
 //
-
-struct JSUStreamSeekFrom {};
-
-struct JSURandomInputStream {
-    /* 80255328 */ ~JSURandomInputStream();
-    /* 802D4094 */ void getAvailable() const;
-    /* 802DC370 */ void align(s32);
-    /* 802DC3FC */ void skip(s32);
-    /* 802DC458 */ void peek(void*, s32);
-    /* 802DC4DC */ void seek(s32, JSUStreamSeekFrom);
-};
-
-struct JSUInputStream {
-    /* 802DC23C */ ~JSUInputStream();
-    /* 802DC298 */ void read(void*, s32);
-    /* 802DC2F0 */ void skip(s32);
-};
 
 //
 // Forward References:
@@ -107,7 +91,7 @@ asm void JSUInputStream::read(void* param_0, s32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JSUInputStream::skip(s32 param_0) {
+asm s32 JSUInputStream::skip(s32 param_0) {
     nofralloc
 #include "asm/JSystem/JSupport/JSUInputStream/skip__14JSUInputStreamFl.s"
 }
@@ -127,7 +111,7 @@ asm void JSURandomInputStream::align(s32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JSURandomInputStream::skip(s32 param_0) {
+asm s32 JSURandomInputStream::skip(s32 param_0) {
     nofralloc
 #include "asm/JSystem/JSupport/JSUInputStream/skip__20JSURandomInputStreamFl.s"
 }

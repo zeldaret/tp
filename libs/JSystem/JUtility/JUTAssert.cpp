@@ -31,15 +31,6 @@ struct JUTDbPrint {
     static u8 sDebugPrint[4 + 4 /* padding */];
 };
 
-struct JUTAssertion {
-    /* 802E495C */ void create();
-    /* 802E4960 */ void flush_subroutine();
-    /* 802E499C */ void flushMessage();
-    /* 802E4A54 */ void flushMessage_dbPrint();
-    /* 802E4C34 */ void setVisible(bool);
-    /* 802E4C3C */ void setMessageCount(int);
-};
-
 //
 // Forward References:
 //

@@ -22,7 +22,6 @@ struct daBgObj_c {
 //
 
 extern "C" void __OSFPRInit();
-extern "C" void OSGetConsoleType();
 extern "C" static void InquiryCallback();
 extern "C" void OSInit();
 extern "C" static void OSExceptionInit();
@@ -45,7 +44,6 @@ extern "C" void OSRegisterVersion();
 
 SECTION_INIT void memset();
 SECTION_INIT void memcpy();
-extern "C" void OSReport();
 extern "C" void PPCMtmmcr0();
 extern "C" void PPCMtmmcr1();
 extern "C" void PPCMtpmc1();
@@ -57,10 +55,6 @@ extern "C" void PPCMthid2();
 extern "C" void PPCDisableSpeculation();
 extern "C" void PPCSetFpNonIEEEMode();
 extern "C" void OSInitAlarm();
-extern "C" void OSGetArenaHi();
-extern "C" void OSGetArenaLo();
-extern "C" void OSSetArenaHi();
-extern "C" void OSSetArenaLo();
 extern "C" void __OSInitAudioSystem();
 extern "C" void DCInvalidateRange();
 extern "C" void DCFlushRangeNoSync();
@@ -70,13 +64,10 @@ extern "C" void __OSCacheInit();
 extern "C" void __OSContextInit();
 extern "C" void __OSUnhandledException();
 extern "C" void __OSGetExecParams();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSEnableInterrupts();
 extern "C" void __OSSetInterruptHandler();
 extern "C" void __OSInterruptInit();
 extern "C" void __OSModuleInit();
 extern "C" void __OSInitMemoryProtection();
-extern "C" void OSGetResetCode();
 extern "C" void __OSResetSWInterruptHandler();
 extern "C" void __OSInitSram();
 extern "C" void __OSInitSystemCall();
@@ -132,7 +123,7 @@ asm void __OSFPRInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSGetConsoleType() {
+asm s32 OSGetConsoleType() {
     nofralloc
 #include "asm/dolphin/os/OS/OSGetConsoleType.s"
 }

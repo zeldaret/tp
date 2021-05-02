@@ -7,163 +7,158 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-//
-// Types:
-//
-
-struct JSUPtrLink {
-    /* 802DBDFC */ JSUPtrLink(void*);
-    /* 802DBE14 */ ~JSUPtrLink();
-};
-
-struct JSUPtrList {
-    /* 802DBE74 */ JSUPtrList(bool);
-    /* 802DBEAC */ ~JSUPtrList();
-    /* 802DBF14 */ void initiate();
-    /* 802DBF28 */ void setFirst(JSUPtrLink*);
-    /* 802DBF4C */ void append(JSUPtrLink*);
-    /* 802DBFF0 */ void prepend(JSUPtrLink*);
-    /* 802DC094 */ void insert(JSUPtrLink*, JSUPtrLink*);
-    /* 802DC15C */ void remove(JSUPtrLink*);
-    /* 802DC20C */ void getNthLink(u32) const;
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__10JSUPtrLinkFPv();
-extern "C" void __dt__10JSUPtrLinkFv();
-extern "C" void __ct__10JSUPtrListFb();
-extern "C" void __dt__10JSUPtrListFv();
-extern "C" void initiate__10JSUPtrListFv();
-extern "C" void setFirst__10JSUPtrListFP10JSUPtrLink();
-extern "C" void append__10JSUPtrListFP10JSUPtrLink();
-extern "C" void prepend__10JSUPtrListFP10JSUPtrLink();
-extern "C" void insert__10JSUPtrListFP10JSUPtrLinkP10JSUPtrLink();
-extern "C" void remove__10JSUPtrListFP10JSUPtrLink();
-extern "C" void getNthLink__10JSUPtrListCFUl();
-
-//
-// External References:
-//
-
-extern "C" void __dl__FPv();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-
-//
-// Declarations:
-//
-
-/* 802DBDFC-802DBE14 2D673C 0018+00 0/0 34/34 0/0 .text            __ct__10JSUPtrLinkFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JSUPtrLink::JSUPtrLink(void* param_0) {
-    nofralloc
-#include "asm/JSystem/JSupport/JSUList/__ct__10JSUPtrLinkFPv.s"
+JSUPtrLink::JSUPtrLink(void* object) {
+    this->mList = NULL;
+    this->mObject = object;
+    this->mPrev = NULL;
+    this->mNext = NULL;
 }
-#pragma pop
 
-/* 802DBE14-802DBE74 2D6754 0060+00 0/0 27/27 0/0 .text            __dt__10JSUPtrLinkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JSUPtrLink::~JSUPtrLink() {
-    nofralloc
-#include "asm/JSystem/JSupport/JSUList/__dt__10JSUPtrLinkFv.s"
+JSUPtrLink::~JSUPtrLink() {
+    if (this->mList != NULL) {
+        this->mList->remove(this);
+    }
 }
-#pragma pop
 
-/* 802DBE74-802DBEAC 2D67B4 0038+00 0/0 4/4 0/0 .text            __ct__10JSUPtrListFb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JSUPtrList::JSUPtrList(bool param_0) {
-    nofralloc
-#include "asm/JSystem/JSupport/JSUList/__ct__10JSUPtrListFb.s"
+JSUPtrList::JSUPtrList(bool init) {
+    if (init) {
+        this->initiate();
+    }
 }
-#pragma pop
 
-/* 802DBEAC-802DBF14 2D67EC 0068+00 0/0 25/25 0/0 .text            __dt__10JSUPtrListFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JSUPtrList::~JSUPtrList() {
-    nofralloc
-#include "asm/JSystem/JSupport/JSUList/__dt__10JSUPtrListFv.s"
+JSUPtrList::~JSUPtrList() {
+    JSUPtrLink* node = this->mHead;
+    s32 removed = 0;
+    while (this->mLength > removed) {
+        node->mList = NULL;
+        node = node->getNext();
+        removed += 1;
+    }
 }
-#pragma pop
 
-/* 802DBF14-802DBF28 2D6854 0014+00 1/1 27/27 0/0 .text            initiate__10JSUPtrListFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JSUPtrList::initiate() {
-    nofralloc
-#include "asm/JSystem/JSupport/JSUList/initiate__10JSUPtrListFv.s"
+void JSUPtrList::initiate() {
+    this->mHead = NULL;
+    this->mTail = NULL;
+    this->mLength = 0;
 }
-#pragma pop
 
-/* 802DBF28-802DBF4C 2D6868 0024+00 2/2 0/0 0/0 .text setFirst__10JSUPtrListFP10JSUPtrLink */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JSUPtrList::setFirst(JSUPtrLink* param_0) {
-    nofralloc
-#include "asm/JSystem/JSupport/JSUList/setFirst__10JSUPtrListFP10JSUPtrLink.s"
+void JSUPtrList::setFirst(JSUPtrLink* first) {
+    first->mList = this;
+    first->mPrev = NULL;
+    first->mNext = NULL;
+    this->mTail = first;
+    this->mHead = first;
+    this->mLength = 1;
 }
-#pragma pop
 
-/* 802DBF4C-802DBFF0 2D688C 00A4+00 1/1 29/29 0/0 .text append__10JSUPtrListFP10JSUPtrLink */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JSUPtrList::append(JSUPtrLink* param_0) {
-    nofralloc
-#include "asm/JSystem/JSupport/JSUList/append__10JSUPtrListFP10JSUPtrLink.s"
-}
-#pragma pop
+bool JSUPtrList::append(JSUPtrLink* ptr) {
+    JSUPtrList* list = ptr->mList;
+    bool result = (NULL == list);
+    if (!result) {
+        result = list->remove(ptr);
+    }
 
-/* 802DBFF0-802DC094 2D6930 00A4+00 1/1 8/8 0/0 .text            prepend__10JSUPtrListFP10JSUPtrLink
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JSUPtrList::prepend(JSUPtrLink* param_0) {
-    nofralloc
-#include "asm/JSystem/JSupport/JSUList/prepend__10JSUPtrListFP10JSUPtrLink.s"
-}
-#pragma pop
+    if (result) {
+        if (this->mLength == 0) {
+            this->setFirst(ptr);
+        } else {
+            ptr->mList = this;
+            ptr->mPrev = this->mTail;
+            ptr->mNext = NULL;
+            this->mTail->mNext = ptr;
+            this->mTail = ptr;
+            this->mLength++;
+        }
+    }
 
-/* 802DC094-802DC15C 2D69D4 00C8+00 0/0 4/4 0/0 .text
- * insert__10JSUPtrListFP10JSUPtrLinkP10JSUPtrLink              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JSUPtrList::insert(JSUPtrLink* param_0, JSUPtrLink* param_1) {
-    nofralloc
-#include "asm/JSystem/JSupport/JSUList/insert__10JSUPtrListFP10JSUPtrLinkP10JSUPtrLink.s"
+    return result;
 }
-#pragma pop
 
-/* 802DC15C-802DC20C 2D6A9C 00B0+00 4/4 31/31 0/0 .text remove__10JSUPtrListFP10JSUPtrLink */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JSUPtrList::remove(JSUPtrLink* param_0) {
-    nofralloc
-#include "asm/JSystem/JSupport/JSUList/remove__10JSUPtrListFP10JSUPtrLink.s"
-}
-#pragma pop
+bool JSUPtrList::prepend(JSUPtrLink* ptr) {
+    JSUPtrList* list = ptr->mList;
+    bool result = (NULL == list);
+    if (!result) {
+        result = list->remove(ptr);
+    }
 
-/* 802DC20C-802DC23C 2D6B4C 0030+00 0/0 3/3 0/0 .text            getNthLink__10JSUPtrListCFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JSUPtrList::getNthLink(u32 param_0) const {
-    nofralloc
-#include "asm/JSystem/JSupport/JSUList/getNthLink__10JSUPtrListCFUl.s"
+    if (result) {
+        if (this->mLength == 0) {
+            this->setFirst(ptr);
+        } else {
+            ptr->mList = this;
+            ptr->mPrev = NULL;
+            ptr->mNext = this->mHead;
+            this->mHead->mPrev = ptr;
+            this->mHead = ptr;
+            this->mLength++;
+        }
+    }
+
+    return result;
 }
-#pragma pop
+
+bool JSUPtrList::insert(JSUPtrLink* before, JSUPtrLink* ptr) {
+    if (before == this->mHead) {
+        return this->prepend(ptr);
+    } else if (before == NULL) {
+        return this->append(ptr);
+    }
+
+    if (before->mList != this) {
+        return false;
+    }
+
+    bool result = (NULL == ptr->mList);
+    if (!result) {
+        result = ptr->mList->remove(ptr);
+    }
+
+    if (result) {
+        JSUPtrLink* prev = before->mPrev;
+        ptr->mList = this;
+        ptr->mPrev = prev;
+        ptr->mNext = before;
+        prev->mNext = ptr;
+        before->mPrev = ptr;
+        this->mLength++;
+    }
+
+    return result;
+}
+
+bool JSUPtrList::remove(JSUPtrLink* ptr) {
+    bool is_parent = (ptr->mList == this);
+    if (is_parent) {
+        if (this->mLength == 1) {
+            this->mHead = NULL;
+            this->mTail = NULL;
+        } else if (ptr == this->mHead) {
+            ptr->mNext->mPrev = NULL;
+            this->mHead = ptr->mNext;
+        } else if (ptr == this->mTail) {
+            ptr->mPrev->mNext = NULL;
+            this->mTail = ptr->mPrev;
+        } else {
+            ptr->mPrev->mNext = ptr->mNext;
+            ptr->mNext->mPrev = ptr->mPrev;
+        }
+
+        ptr->mList = NULL;
+        this->mLength--;
+    }
+
+    return is_parent;
+}
+
+JSUPtrLink* JSUPtrList::getNthLink(u32 index) const {
+    if (index >= this->mLength) {
+        return NULL;
+    }
+
+    JSUPtrLink* node = this->mHead;
+    for (u32 i = 0; i < index; i++) {
+        node = node->getNext();
+    }
+
+    return node;
+}
