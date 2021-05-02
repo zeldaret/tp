@@ -5,6 +5,7 @@
 
 #include "d/bg/d_bg_s.h"
 #include "dol2asm.h"
+#include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 
 //

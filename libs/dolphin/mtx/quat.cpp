@@ -6,23 +6,7 @@
 #include "dolphin/mtx/quat.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Forward References:
-//
-
-extern "C" void PSQUATMultiply();
-extern "C" void C_QUATRotAxisRad();
-extern "C" void C_QUATSlerp();
-
-//
-// External References:
-//
-
-extern "C" void PSVECNormalize();
-extern "C" void sinf();
-extern "C" void cosf();
-extern "C" void acosf();
+#include "msl_c/math.h"
 
 //
 // Declarations:
@@ -32,7 +16,7 @@ extern "C" void acosf();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSQUATMultiply() {
+asm void PSQUATMultiply(const Quaternion* src_a, const Quaternion* src_b, Quaternion* dst) {
     nofralloc
 #include "asm/dolphin/mtx/quat/PSQUATMultiply.s"
 }
@@ -57,7 +41,7 @@ SECTION_SDATA2 static f32 lit_135 = 0.5f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void C_QUATRotAxisRad() {
+asm void C_QUATRotAxisRad(Quaternion* quat, const Vec* axis, float rad) {
     nofralloc
 #include "asm/dolphin/mtx/quat/C_QUATRotAxisRad.s"
 }
@@ -71,7 +55,7 @@ SECTION_SDATA2 static f32 lit_261 = 0.9999899864196777f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void C_QUATSlerp() {
+asm void C_QUATSlerp(const Quaternion* p, const Quaternion* q, Quaternion* r, float t) {
     nofralloc
 #include "asm/dolphin/mtx/quat/C_QUATSlerp.s"
 }

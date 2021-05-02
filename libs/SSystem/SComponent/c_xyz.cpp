@@ -8,7 +8,6 @@
 #include "dol2asm.h"
 #include "global.h"
 #include "msl_c/math.h"
-#include "mtx_vec.h"
 
 //
 // Declarations:

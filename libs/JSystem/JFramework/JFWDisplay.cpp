@@ -5,8 +5,8 @@
 
 #include "JSystem/JFramework/JFWDisplay.h"
 #include "dol2asm.h"
+#include "dolphin/mtx/mtx44.h"
 #include "dolphin/types.h"
-#include "mtx_vec.h"
 
 //
 // Types:

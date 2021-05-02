@@ -1,8 +1,8 @@
 #ifndef C_XYZ_H
 #define C_XYZ_H
 
+#include "dolphin/mtx/vec.h"
 #include "global.h"
-#include "mtx_vec.h"
 
 struct cXyz : Vec {
     static const cXyz Zero;

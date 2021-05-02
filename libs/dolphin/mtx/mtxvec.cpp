@@ -8,19 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" void PSMTXMultVec();
-extern "C" void PSMTXMultVecArray();
-extern "C" void PSMTXMultVecSR();
-extern "C" void PSMTXMultVecArraySR();
-
-//
-// External References:
-//
-
-//
 // Declarations:
 //
 
@@ -28,7 +15,7 @@ extern "C" void PSMTXMultVecArraySR();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSMTXMultVec() {
+asm void PSMTXMultVec(const Mtx matrix, const Vec* src, Vec* dst) {
     nofralloc
 #include "asm/dolphin/mtx/mtxvec/PSMTXMultVec.s"
 }
@@ -38,7 +25,7 @@ asm void PSMTXMultVec() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSMTXMultVecArray() {
+asm void PSMTXMultVecArray(const Mtx matrix, const Vec* src, Vec* dst, u32 count) {
     nofralloc
 #include "asm/dolphin/mtx/mtxvec/PSMTXMultVecArray.s"
 }
@@ -48,7 +35,7 @@ asm void PSMTXMultVecArray() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSMTXMultVecSR() {
+asm void PSMTXMultVecSR(const Mtx matrix, const Vec* src, Vec* dst) {
     nofralloc
 #include "asm/dolphin/mtx/mtxvec/PSMTXMultVecSR.s"
 }
@@ -58,7 +45,7 @@ asm void PSMTXMultVecSR() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSMTXMultVecArraySR() {
+asm void PSMTXMultVecArraySR(const Mtx matrix, const Vec* src, Vec* dst, u32 count) {
     nofralloc
 #include "asm/dolphin/mtx/mtxvec/PSMTXMultVecArraySR.s"
 }

@@ -5,6 +5,7 @@
 
 #include "d/a/d_a_player.h"
 #include "dol2asm.h"
+#include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 
 //
