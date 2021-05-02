@@ -11,10 +11,6 @@
 // Types:
 //
 
-struct JUtility {
-    struct TColor {};
-};
-
 struct JUTFont {
     /* 802DECF8 */ JUTFont();
     /* 802DED24 */ void initialize_state();

@@ -8,91 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct cXyz {
-    /* 80009184 */ ~cXyz();
-};
-
-struct cM3dGAab {
-    /* 8026ECF8 */ void ClearForMinMax();
-    /* 8026ED60 */ void SetMinMax(cM3dGAab const&);
-    /* 8026EE24 */ void CalcCenter(cXyz*) const;
-};
-
-struct cCcD_GStts {};
-
-struct cCcD_GObjInf {};
-
-struct cCcD_Obj {
-    /* 80263A48 */ void GetAc();
-};
-
-struct cCcD_Stts {
-    /* 80263934 */ void PlusCcMove(f32, f32, f32);
-    /* 8026395C */ void ClrCcMove();
-    /* 80263970 */ void PlusDmg(int);
-    /* 80263984 */ void GetWeightF() const;
-};
-
-struct cCcS {
-    /* 80030BDC */ ~cCcS();
-    /* 80264A6C */ cCcS();
-    /* 80264A94 */ void Ct();
-    /* 80264B60 */ void Dt();
-    /* 80264B80 */ void GetWt(u8) const;
-    /* 80264BA8 */ void Set(cCcD_Obj*);
-    /* 80264C5C */ void ClrCoHitInf();
-    /* 80264CF0 */ void ClrTgHitInf();
-    /* 80264D90 */ void ClrAtHitInf();
-    /* 80264E2C */ void ChkNoHitAtTg(cCcD_Obj*, cCcD_Obj*);
-    /* 80264F40 */ void ChkAtTg();
-    /* 8026515C */ void ChkNoHitCo(cCcD_Obj*, cCcD_Obj*);
-    /* 80265230 */ void ChkCo();
-    /* 802653A0 */ void CalcTgPlusDmg(cCcD_Obj*, cCcD_Obj*, cCcD_Stts*, cCcD_Stts*);
-    /* 802653C8 */ void SetAtTgCommonHitInf(cCcD_Obj*, cCcD_Obj*, cXyz*);
-    /* 802655E4 */ void SetCoCommonHitInf(cCcD_Obj*, cXyz*, cCcD_Obj*, cXyz*, f32);
-    /* 80265750 */ void SetPosCorrect(cCcD_Obj*, cXyz*, cCcD_Obj*, cXyz*, f32);
-    /* 80265BB4 */ void CalcArea();
-    /* 80265CCC */ void Move();
-    /* 80265D30 */ void DrawClear();
-    /* 80265DF4 */ void SetCoGCorrectProc(cCcD_Obj*, cCcD_Obj*);
-    /* 80265DF8 */ void SetCoGObjInf(bool, bool, cCcD_GObjInf*, cCcD_GObjInf*, cCcD_Stts*,
-                                     cCcD_Stts*, cCcD_GStts*, cCcD_GStts*);
-    /* 80265DFC */ void SetAtTgGObjInf(bool, bool, cCcD_Obj*, cCcD_Obj*, cCcD_GObjInf*,
-                                       cCcD_GObjInf*, cCcD_Stts*, cCcD_Stts*, cCcD_GStts*,
-                                       cCcD_GStts*, cXyz*);
-    /* 80265E00 */ bool ChkNoHitGAtTg(cCcD_GObjInf const*, cCcD_GObjInf const*, cCcD_GStts*,
-                                      cCcD_GStts*);
-    /* 80265E08 */ bool ChkAtTgHitAfterCross(bool, bool, cCcD_GObjInf const*, cCcD_GObjInf const*,
-                                             cCcD_Stts*, cCcD_Stts*, cCcD_GStts*, cCcD_GStts*);
-    /* 80265E10 */ bool ChkNoHitGCo(cCcD_Obj*, cCcD_Obj*);
-    /* 80265E18 */ void MoveAfterCheck();
-};
-
-struct cCcD_ObjTg {
-    /* 802648C8 */ void SetHit(cCcD_Obj*);
-};
-
-struct cCcD_ObjCo {
-    /* 802648D8 */ void SetHit(cCcD_Obj*);
-};
-
-struct cCcD_ObjAt {
-    /* 8026483C */ void SetHit(cCcD_Obj*);
-};
-
-struct cCcD_DivideInfo {
-    /* 80263368 */ void Chk(cCcD_DivideInfo const&) const;
-};
-
-struct cCcD_DivideArea {
-    /* 802633A8 */ void SetArea(cM3dGAab const&);
-    /* 802634D4 */ void CalcDivideInfo(cCcD_DivideInfo*, cM3dGAab const&, u32);
-};
-
-//
 // Forward References:
 //
 
@@ -146,10 +61,6 @@ extern "C" void SetHit__10cCcD_ObjCoFP8cCcD_Obj();
 extern "C" void ClearForMinMax__8cM3dGAabFv();
 extern "C" void SetMinMax__8cM3dGAabFRC8cM3dGAab();
 extern "C" void CalcCenter__8cM3dGAabCFP4cXyz();
-extern "C" void PSVECAdd();
-extern "C" void PSVECSubtract();
-extern "C" void PSVECScale();
-extern "C" void PSVECMag();
 extern "C" void __register_global_object();
 extern "C" void _savegpr_21();
 extern "C" void _savegpr_22();

@@ -1,5 +1,5 @@
 //
-// 
+//
 //
 
 #include "dol2asm.h"
@@ -15,16 +15,15 @@ extern void* const _ctors[];
 extern void* const _dtors[];
 
 extern "C" void _prolog() {
-	ModuleConstructorsX(_ctors);
-	ModuleProlog();
+    ModuleConstructorsX(_ctors);
+    ModuleProlog();
 }
 
 extern "C" void _epilog() {
-	ModuleEpilog();
-	ModuleDestructorsX(_dtors);
+    ModuleEpilog();
+    ModuleDestructorsX(_dtors);
 }
 
 extern "C" void _unresolved() {
-	ModuleUnresolved();
+    ModuleUnresolved();
 }
-
