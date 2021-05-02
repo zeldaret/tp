@@ -27,8 +27,6 @@ struct dSv_event_tmp_flag_c {
     static u8 const tempBitLabels[370 + 2 /* padding */];
 };
 
-struct dRes_info_c {};
-
 struct dRes_control_c {
     /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
 };
@@ -203,9 +201,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strcat();
-extern "C" void strncpy();
-extern "C" void strcpy();
 extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
 extern "C" extern void* __vt__11dEvt_info_c[3 + 1 /* padding */];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];

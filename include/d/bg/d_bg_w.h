@@ -4,6 +4,7 @@
 #include "SSystem/SComponent/c_bg_s_gnd_chk.h"
 #include "SSystem/SComponent/c_bg_s_lin_chk.h"
 #include "SSystem/SComponent/c_bg_s_poly_info.h"
+#include "SSystem/SComponent/c_m3d_g_tri.h"
 #include "d/bg/d_bg_s_acch.h"
 #include "d/bg/d_bg_s_grp_pass_chk.h"
 #include "d/bg/d_bg_s_poly_pass_chk.h"
@@ -13,23 +14,6 @@
 struct dBgS_CaptPoly {};
 
 struct dBgS_SphChk {};
-
-struct cM3dGTri {
-    /* 8007A344 */ ~cM3dGTri();
-    /* 8026F85C */ void setBg(Vec const*, Vec const*, Vec const*, cM3dGPla const*);
-};
-
-struct cM3dGSph {};
-
-struct cM3dGAab {
-    /* 8026EC88 */ void CrossY(cXyz const*) const;
-    /* 8026ECD0 */ void UnderPlaneYUnder(f32) const;
-    /* 8026ECE4 */ void TopPlaneYUnder(f32) const;
-    /* 8026ECF8 */ void ClearForMinMax();
-    /* 8026ED1C */ void SetMinMax(cXyz const&);
-    /* 8026EDA4 */ void SetMin(cXyz const&);
-    /* 8026EDE4 */ void SetMax(cXyz const&);
-};
 
 struct cBgW_TriElm {
     /* 800796F8 */ ~cBgW_TriElm();

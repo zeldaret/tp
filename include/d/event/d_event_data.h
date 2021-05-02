@@ -41,6 +41,7 @@ private:
 class dEvDtBase_c {
 public:
     dEvDtBase_c();
+    ~dEvDtBase_c();
     /* 80046138 */ void init();
     /* 8004616C */ void init(char*, int);
     /* 8004628C */ void advanceCut(dEvDtEvent_c*);

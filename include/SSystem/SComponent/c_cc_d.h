@@ -11,6 +11,9 @@
 #include "f_op/f_op_actor.h"
 
 class cCcD_ShapeAttr {
+private:
+    /* 0x00 */ cM3dGAab mAab;
+
 public:
     struct Shape {};
 
@@ -22,9 +25,6 @@ public:
     /* 80263A64 */ virtual void getShapeAccess(cCcD_ShapeAttr::Shape*) const;
 
     static f32 m_virtual_center[3];
-
-private:
-    /* 0x00 */ cM3dGAab mAab;
 };
 
 class cCcD_SphAttr;
@@ -132,26 +132,28 @@ class cCcD_TriAttr {
 };
 
 class cCcD_DivideInfo {
-public:
-    /* 80263358 */ void Set(u32, u32, u32);
-    /* 80263368 */ void Chk(cCcD_DivideInfo const&) const;
-
 private:
     /* 0x00 */ u32 field_0x0;
     /* 0x04 */ u32 field_0x4;
     /* 0x08 */ u32 field_0x8;
-    /* 0x0C */ void* vtable;
+
+public:
+    virtual void test();  // temp to build OK, remove later
+    virtual ~cCcD_DivideInfo();
+    /* 80263358 */ void Set(u32, u32, u32);
+    /* 80263368 */ void Chk(cCcD_DivideInfo const&) const;
 };
 
 class cCcD_DivideArea {
+private:
+    cM3dGAab mAab;
+
 public:
+    virtual void test();  // temp to build OK, remove later
+    virtual ~cCcD_DivideArea();
     /* 802633A8 */ void SetArea(cM3dGAab const&);
     /* 802634D4 */ void CalcDivideInfo(cCcD_DivideInfo*, cM3dGAab const&, u32);
     /* 802636A0 */ void CalcDivideInfoOverArea(cCcD_DivideInfo*, cM3dGAab const&);
-
-private:
-    cM3dGAab mAab;
-    void* vtable;
 };
 
 struct cCcD_SrcObjTg {};

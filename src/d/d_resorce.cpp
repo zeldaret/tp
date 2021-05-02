@@ -24,46 +24,8 @@ struct mDoExt_transAnmBas {
     /* 8003C784 */ ~mDoExt_transAnmBas();
 };
 
-struct JKRHeap {
-    /* 802CE6B0 */ void getSize(void*, JKRHeap*);
-    /* 802CE83C */ void findFromRoot(void*);
-
-    static u8 sCurrentHeap[4];
-};
-
 struct mDoDvdThd_mountArchive_c {
     /* 80015E14 */ void create(char const*, u8, JKRHeap*);
-};
-
-struct J3DModelData {
-    /* 80325E14 */ void newSharedDisplayList(u32);
-    /* 80325F94 */ void makeSharedDL();
-    /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
-};
-
-struct JKRArchive {
-    /* 802D5CE4 */ void getIdxResource(u32);
-    /* 802D625C */ void getFileAttribute(u32) const;
-    /* 802D6684 */ void findIdxResource(u32) const;
-    /* 802D66AC */ void findNameResource(char const*) const;
-};
-
-struct cXyz {};
-
-struct dRes_info_c {
-    /* 8003A260 */ dRes_info_c();
-    /* 8003A280 */ ~dRes_info_c();
-    /* 8003A348 */ void set(char const*, char const*, u8, JKRHeap*);
-    /* 8003AB30 */ void onWarpMaterial(J3DModelData*);
-    /* 8003AC1C */ void offWarpMaterial(J3DModelData*);
-    /* 8003AD08 */ void setWarpSRT(J3DModelData*, cXyz const&, f32, f32);
-    /* 8003AE14 */ void loaderBasicBmd(u32, void*);
-    /* 8003B30C */ void loadResource();
-    /* 8003B998 */ void deleteArchiveRes();
-    /* 8003BAC4 */ void setRes(JKRArchive*, JKRHeap*);
-    /* 8003BAF8 */ void setRes();
-    /* 8003BD2C */ void dump_long(dRes_info_c*, int);
-    /* 8003BE38 */ void dump(dRes_info_c*, int);
 };
 
 struct dRes_control_c {
@@ -161,8 +123,6 @@ struct J3DModelLoaderDataBase {
     /* 803346BC */ void load(void const*, u32);
 };
 
-struct J3DMaterialTable {};
-
 struct J3DMaterialAnm {
     /* 8032C320 */ void initialize();
 };
@@ -183,21 +143,7 @@ struct J3DAnmTransformKey {
     /* 80329A34 */ void calcTransform(f32, u16, J3DTransformInfo*) const;
 };
 
-struct J3DAnmTransform {
-    /* 8003B93C */ ~J3DAnmTransform();
-    /* 8003C77C */ bool getKind() const;
-    /* 80328E40 */ J3DAnmTransform(s16, f32*, s16*, f32*);
-};
-
-struct J3DAnmTexPattern {
-    /* 8032AF50 */ void getTexNo(u16, u16*) const;
-};
-
 struct J3DAnmLoaderDataBaseFlag {};
-
-struct J3DAnmBase {
-    /* 8003C734 */ ~J3DAnmBase();
-};
 
 struct J3DAnmLoaderDataBase {
     /* 80337B40 */ void load(void const*, J3DAnmLoaderDataBaseFlag);
@@ -313,8 +259,6 @@ extern "C" void setResource__20J3DAnmLoaderDataBaseFP10J3DAnmBasePCv();
 extern "C" void DCStoreRangeNoSync();
 extern "C" void OSLockMutex();
 extern "C" void OSUnlockMutex();
-extern "C" void PSMTXConcat();
-extern "C" void PSMTXTrans();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void _savegpr_20();

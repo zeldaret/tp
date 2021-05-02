@@ -4,6 +4,7 @@
 #include "d/save/d_save.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
+#include "msl_c/string.h"
 
 struct stage_vrboxcol_info_class {};
 
@@ -408,6 +409,14 @@ class dStage_startStage_c {
 public:
     void set(const char*, s8, s16, s8);
     inline char* getName() { return mStage; }
+    s8 getLayer() { return mLayer; }
+    void operator=(const dStage_startStage_c& other) {
+        strcpy(mStage, other.mStage);
+        mPoint = other.mPoint;
+        mRoomNo = other.mRoomNo;
+        mLayer = other.mLayer;
+        mDarkArea = other.mDarkArea;
+    }
 
 private:
     /* 0x0 */ char mStage[8];

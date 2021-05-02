@@ -46,8 +46,6 @@ struct dStage_roomControl_c {
     static u8 mDemoArcName[10 + 2 /* padding */];
 };
 
-struct dRes_info_c {};
-
 struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
     /* 8003C400 */ void getIDRes(char const*, u16, dRes_info_c*, int);
@@ -65,28 +63,12 @@ struct JMath {
 
 struct JKRSolidHeap {};
 
-struct JKRArchive {
-    /* 802D5ECC */ void readIdxResource(void*, u32, u32);
-};
-
 struct J3DSys {
     /* 8031073C */ void reinitGX();
 };
 
 struct J3DShape {
     static u8 sOldVcdVatCmd[4];
-};
-
-struct J3DAnmTransform {
-    /* 80328E40 */ J3DAnmTransform(s16, f32*, s16*, f32*);
-};
-
-struct J3DAnmTextureSRTKey {
-    /* 80329E5C */ J3DAnmTextureSRTKey();
-};
-
-struct J3DAnmTexPattern {
-    /* 8032AED8 */ J3DAnmTexPattern();
 };
 
 struct J3DAnmLoaderDataBaseFlag {};

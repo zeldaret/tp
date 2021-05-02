@@ -1,6 +1,7 @@
 #ifndef D_CC_D_CC_S_H
 #define D_CC_D_CC_S_H
 
+#include "SSystem/SComponent/c_cc_s.h"
 #include "d/cc/d_cc_d.h"
 #include "d/cc/d_cc_mass_s.h"
 #include "dolphin/types.h"
@@ -42,9 +43,9 @@ public:
     static u8 m_mtrl_hit_tbl[64];
 
 private:
-    /* 0x0000 */ cCcS cccs;
+    /* 0x0000 */ cCcS mCCcS;
     /* 0x2834 */ u8 field_0x2834[0x18];
-    /* 0x284C */ dCcMassS_Mng dccmass_mng;
+    /* 0x284C */ dCcMassS_Mng mMass_Mng;
 };
 
 #endif /* D_CC_D_CC_S_H */

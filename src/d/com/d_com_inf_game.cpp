@@ -4,16 +4,16 @@
 //
 
 #include "d/com/d_com_inf_game.h"
+#include "d/meter/d_meter2_info.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "msl_c/string.h"
 
 //
 // Types:
 //
 
 struct scene_class {};
-
-struct roomRead_class {};
 
 struct request_of_phase_process_class {};
 
@@ -27,175 +27,9 @@ struct mDoGph_gInf_c {
     static u8 mFader[4];
 };
 
-struct mDoExt_btkAnm {
-    /* 8003079C */ ~mDoExt_btkAnm();
-    /* 80030954 */ mDoExt_btkAnm();
-};
-
-struct mDoExt_brkAnm {
-    /* 80030748 */ ~mDoExt_brkAnm();
-    /* 8003099C */ mDoExt_brkAnm();
-};
-
-struct mDoExt_bpkAnm {
-    /* 800306F4 */ ~mDoExt_bpkAnm();
-    /* 800309E4 */ mDoExt_bpkAnm();
-};
-
-struct mDoExt_bckAnm {
-    /* 800306A0 */ ~mDoExt_bckAnm();
-    /* 80030A2C */ mDoExt_bckAnm();
-};
-
 struct mDoCPd_c {
     static u8 m_cpadInfo[256];
 };
-
-struct daAlink_c {
-    /* 800BDE48 */ void setLastSceneMode(u32*);
-};
-
-struct dTimer_c {
-    /* 8025D524 */ void deleteCheck();
-    /* 8025D618 */ void start(int, s16);
-    /* 8025D538 */ void start(int);
-    /* 8025D7E8 */ void stop(u8);
-    /* 8025D86C */ void restart(u8);
-    /* 8025D920 */ void end(int);
-    /* 8025D9E0 */ void deleteRequest();
-};
-
-struct dSv_zone_c {
-    /* 80030D74 */ dSv_zone_c();
-};
-
-struct dSv_zoneBit_c {
-    /* 80034D04 */ void onSwitch(int);
-    /* 80034D2C */ void offSwitch(int);
-    /* 80034D50 */ void isSwitch(int) const;
-    /* 80034DAC */ void onOneSwitch(int);
-    /* 80034DC8 */ void offOneSwitch(int);
-    /* 80034DE0 */ void isOneSwitch(int) const;
-    /* 80034E50 */ void isItem(int) const;
-    /* 80034E98 */ void isOneItem(int) const;
-};
-
-struct dSv_save_c {
-    /* 800350A8 */ void getSave2(int);
-};
-
-struct dSv_player_status_b_c {
-    /* 80032BB0 */ void isDarkClearLV(int) const;
-    /* 80032BEC */ void isTransformLV(int) const;
-};
-
-struct dSv_player_status_a_c {
-    /* 80032A48 */ void setSelectItemIndex(int, u8);
-    /* 80032A5C */ void getSelectItemIndex(int) const;
-    /* 80032A78 */ void setMixItemIndex(int, u8);
-    /* 80032A8C */ void getMixItemIndex(int) const;
-};
-
-struct cXyz {};
-
-struct dSv_player_last_mark_info_c {
-    /* 80032F2C */ void setWarpItemData(char const*, cXyz const&, s16, s8, u8, u8);
-};
-
-struct dSv_player_item_record_c {
-    /* 80033F6C */ void setBombNum(u8, u8);
-    /* 80033F7C */ void getBombNum(u8) const;
-    /* 80033F8C */ void setBottleNum(u8, u8);
-    /* 80033F9C */ void addBottleNum(u8, s16);
-    /* 80034030 */ void getBottleNum(u8) const;
-};
-
-struct dSv_player_item_max_c {
-    /* 800340F8 */ void getBombNum(u8) const;
-};
-
-struct dSv_player_item_c {
-    /* 80033030 */ void getItem(int, bool) const;
-};
-
-struct dSv_player_get_item_c {
-    /* 80033EC8 */ void isFirstBit(u8) const;
-};
-
-struct dSv_player_field_last_stay_info_c {
-    /* 80032DE0 */ void set(char const*, cXyz const&, s16, s8, u8);
-    /* 80032E4C */ void onRegionBit(int);
-    /* 80032E78 */ void isRegionBit(int) const;
-};
-
-struct dSv_player_config_c {
-    /* 80034694 */ void getVibration();
-};
-
-struct dSv_player_collect_c {
-    /* 800341E8 */ void setCollect(int, u8);
-};
-
-struct dSv_memory_c {
-    /* 80030DB0 */ dSv_memory_c();
-    /* 80034A64 */ void init();
-};
-
-struct dSv_memory2_c {
-    /* 80030D80 */ dSv_memory2_c();
-    /* 80034A84 */ void init();
-    /* 80034AA4 */ void onVisitedRoom(int);
-    /* 80034AC8 */ void offVisitedRoom(int);
-    /* 80034AEC */ void isVisitedRoom(int);
-};
-
-struct dSv_memBit_c {
-    /* 800347E8 */ void isTbox(int) const;
-    /* 80034810 */ void onSwitch(int);
-    /* 80034838 */ void offSwitch(int);
-    /* 80034860 */ void isSwitch(int) const;
-    /* 80034918 */ void onDungeonItem(int);
-    /* 80034934 */ void isDungeonItem(int) const;
-};
-
-struct dSv_light_drop_c {
-    /* 80034340 */ void getLightDropNum(u8) const;
-    /* 8003439C */ void isLightDropGetFlag(u8) const;
-};
-
-struct dSv_info_c {
-    /* 80035200 */ void onSwitch(int, int);
-    /* 800352B0 */ void offSwitch(int, int);
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dSv_event_flag_c {
-    static u8 saveBitLabels[1644 + 4 /* padding */];
-};
-
-struct dSv_event_c {
-    /* 8003498C */ void onEventBit(u16);
-    /* 800349A4 */ void offEventBit(u16);
-    /* 800349BC */ void isEventBit(u16) const;
-};
-
-struct dStage_startStage_c {};
-
-struct dStage_roomControl_c {
-    /* 80024338 */ void initZone();
-    /* 80024384 */ void getStatusRoomDt(int);
-    /* 8002D9B0 */ void getZoneNo(int);
-
-    static u8 mStatus[65792];
-};
-
-struct dStage_nextStage_c {
-    /* 80023E28 */ void set(char const*, s8, s16, s8, s8, u8);
-};
-
-struct J3DModel {};
-
-struct J3DModelData {};
 
 struct dSmplMdl_draw_c {
     /* 80048CB4 */ dSmplMdl_draw_c();
@@ -203,15 +37,6 @@ struct dSmplMdl_draw_c {
     /* 80048EBC */ void entry(J3DModel*, int);
     /* 80048F70 */ void addModel(J3DModelData*, int, u8);
     /* 80049058 */ void removeModel(J3DModelData*, int);
-};
-
-struct dRes_info_c {
-    /* 8003A260 */ dRes_info_c();
-    /* 8003A280 */ ~dRes_info_c();
-};
-
-struct JKRHeap {
-    /* 802CE784 */ void getTotalFreeSize();
 };
 
 struct dRes_control_c {
@@ -226,37 +51,11 @@ struct dPa_control_c {
     /* 8004BACC */ dPa_control_c();
 };
 
-struct dMeter2Info_c {
-    /* 8021BE68 */ void init();
-    /* 8021E290 */ void setSaveStageName(char const*);
-};
-
 struct dMapInfo_n {
     /* 8003EE5C */ void getMapPlayerPos();
 };
 
 struct dKy_tevstr_c {};
-
-struct dEvt_order_c {
-    /* 80030154 */ ~dEvt_order_c();
-};
-
-struct dEvt_control_c {
-    /* 80041580 */ dEvt_control_c();
-};
-
-struct dEvent_manager_c {
-    /* 80046688 */ dEvent_manager_c();
-};
-
-struct dEvDtBase_c {
-    /* 80030190 */ ~dEvDtBase_c();
-};
-
-struct dDlst_window_c {
-    /* 800301CC */ ~dDlst_window_c();
-    /* 800304CC */ dDlst_window_c();
-};
 
 struct _GXTexObj {};
 
@@ -265,137 +64,10 @@ struct dDlst_shadowControl_c {
     /* 80055F84 */ void setSimple(cXyz*, f32, f32, cXyz*, s16, f32, _GXTexObj*);
 };
 
-struct dDlst_list_c {
-    /* 800560F0 */ dDlst_list_c();
-    /* 8005648C */ ~dDlst_list_c();
-};
-
 struct dComIfG_resLoader_c {
     /* 8002F314 */ dComIfG_resLoader_c();
     /* 8002F328 */ ~dComIfG_resLoader_c();
     /* 8002F3B4 */ void load(char const**, JKRHeap*);
-};
-
-struct dComIfG_play_c {
-    /* 8002B1DC */ void ct();
-    /* 8002B22C */ void init();
-    /* 8002B2C8 */ void itemInit();
-    /* 8002B36C */ void setItemBombNumCount(u8, s16);
-    /* 8002B384 */ void getItemBombNumCount(u8);
-    /* 8002B394 */ void clearItemBombNumCount(u8);
-    /* 8002B3A8 */ void setNowVibration(u8);
-    /* 8002B3B0 */ void getNowVibration();
-    /* 8002B3B8 */ void setStartStage(dStage_startStage_c*);
-    /* 8002B434 */ void getLayerNo_common_common(char const*, int, int);
-    /* 8002C950 */ void getLayerNo_common(char const*, int, int);
-    /* 8002C97C */ void getLayerNo(int);
-    /* 8002C9D8 */ void createParticle();
-    /* 8002CA1C */ void createSimpleModel();
-    /* 8002CA70 */ void deleteSimpleModel();
-    /* 8002CAC4 */ void drawSimpleModel();
-    /* 8002CAF0 */ void addSimpleModel(J3DModelData*, int, u8);
-    /* 8002CB30 */ void removeSimpleModel(J3DModelData*, int);
-    /* 8002CB68 */ void entrySimpleModel(J3DModel*, int);
-    /* 8002CB94 */ void setTimerNowTimeMs(int);
-    /* 8002CB9C */ void getTimerNowTimeMs();
-    /* 8002CBA4 */ void setTimerLimitTimeMs(int);
-    /* 8002CBAC */ void getTimerLimitTimeMs();
-    /* 8002CBB4 */ void setTimerMode(int);
-    /* 8002CBBC */ void getTimerMode();
-    /* 8002CBC4 */ void setTimerType(u8);
-    /* 8002CBCC */ void getTimerType();
-    /* 8002CBD4 */ void setTimerPtr(dTimer_c*);
-    /* 8002CBDC */ void getTimerPtr();
-    /* 8002F128 */ void setWarpItemData(char const*, cXyz, s16, s8, u8, u8);
-    /* 8002FDE8 */ ~dComIfG_play_c();
-};
-
-struct dComIfG_inf_c {
-    /* 8002CBE4 */ void ct();
-    /* 8002FD74 */ ~dComIfG_inf_c();
-    /* 80030244 */ dComIfG_inf_c();
-};
-
-struct dComIfG_camera_info_class {
-    /* 80030208 */ ~dComIfG_camera_info_class();
-    /* 800304C8 */ dComIfG_camera_info_class();
-};
-
-struct dCcS {
-    /* 8002FF40 */ ~dCcS();
-};
-
-struct dCcMassS_Obj {
-    /* 800300F4 */ ~dCcMassS_Obj();
-};
-
-struct dCcMassS_Mng {
-    /* 80030A74 */ ~dCcMassS_Mng();
-    /* 80085350 */ dCcMassS_Mng();
-};
-
-struct dBgS {
-    /* 80030C50 */ ~dBgS();
-};
-
-struct dAttention_c {
-    /* 80070774 */ ~dAttention_c();
-};
-
-struct dAttList_c {
-    /* 800304D0 */ ~dAttList_c();
-    /* 8003050C */ dAttList_c();
-};
-
-struct dAttDraw_c {
-    /* 8003054C */ ~dAttDraw_c();
-    /* 800307F0 */ dAttDraw_c();
-};
-
-struct cSAngle {
-    /* 80030510 */ ~cSAngle();
-};
-
-struct cM3dGPla {};
-
-struct cM3dGCyl {
-    /* 80030E3C */ ~cM3dGCyl();
-};
-
-struct cM3dGCps {
-    /* 8026EFA4 */ ~cM3dGCps();
-};
-
-struct cM3dGAab {
-    /* 80030E84 */ ~cM3dGAab();
-};
-
-struct cCcS {
-    /* 80030BDC */ ~cCcS();
-    /* 80264A6C */ cCcS();
-};
-
-struct cCcD_DivideInfo {
-    /* 80030ECC */ ~cCcD_DivideInfo();
-};
-
-struct cCcD_DivideArea {
-    /* 80030DE0 */ ~cCcD_DivideArea();
-};
-
-struct cBgS_PolyInfo {
-    /* 802680F8 */ void ChkSetInfo() const;
-};
-
-struct cBgS_ChkElm {
-    /* 8002FEF8 */ ~cBgS_ChkElm();
-    /* 80030D38 */ cBgS_ChkElm();
-    /* 800740F4 */ void Init();
-};
-
-struct cBgS {
-    /* 80030CCC */ ~cBgS();
-    /* 80074744 */ void GetTriPla(cBgS_PolyInfo const&, cM3dGPla*) const;
 };
 
 struct Z2SeqMgr {
@@ -404,14 +76,6 @@ struct Z2SeqMgr {
 
 struct Z2AudioMgr {
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JKRExpHeap {
-    /* 802CEE2C */ void create(u32, JKRHeap*, bool);
-};
-
-struct J3DFrameCtrl {
-    /* 803283FC */ void init(s16);
 };
 
 //
@@ -505,7 +169,7 @@ extern "C" static void dComIfGp_checkEmptySubHeap2D__Fv();
 extern "C" static void dComIfGp_searchUseSubHeap2D__Fi();
 extern "C" void dComIfGp_getSubHeap2D__Fi();
 extern "C" void dComIfGs_checkGetInsectNum__Fv();
-extern "C" static void dComIfGs_checkGetItem__FUc();
+extern "C" static u8 dComIfGs_checkGetItem__FUc(u8);
 extern "C" s32 dComIfGs_getBottleMax__Fv();
 extern "C" void dComIfGp_getSelectItemNum__Fi();
 extern "C" void dComIfGp_getSelectItemMaxNum__Fi();
@@ -612,7 +276,6 @@ extern "C" extern u32 g_saftyWhiteColor;
 // External References:
 //
 
-SECTION_INIT void memset();
 extern "C" void OSReport_Error();
 extern "C" void mDoAud_setSceneName__FPCcll();
 extern "C" void mDoAud_resetProcess__Fv();
@@ -695,9 +358,9 @@ extern "C" void __dt__12dAttention_cFv();
 extern "C" void Init__11cBgS_ChkElmFv();
 extern "C" void GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla();
 extern "C" void __ct__12dCcMassS_MngFv();
-extern "C" void checkItemGet__FUci();
+extern "C" int checkItemGet__FUci(u8, int);
 extern "C" void setLastSceneMode__9daAlink_cFPUl();
-extern "C" void dKy_daynight_check__Fv();
+extern "C" int dKy_daynight_check__Fv();
 extern "C" void dKy_darkworld_stage_check__FPCci();
 extern "C" void dMenuFmap_getStartStageName__FPv();
 extern "C" void init__13dMeter2Info_cFv();
@@ -736,8 +399,6 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void sprintf();
-extern "C" void strcmp();
-extern "C" void strcpy();
 extern "C" extern void* __vt__12J3DFrameCtrl[3];
 extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" extern void* __vt__16dStage_stageDt_c[93];
@@ -756,7 +417,6 @@ extern "C" extern void* __vt__4cCcS[12];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" u8 mStatus__20dStage_roomControl_c[65792];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_meter2_info[248];
 extern "C" u8 mFader__13mDoGph_gInf_c[4];
 extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 extern "C" extern u8 struct_80450D64[4];
@@ -767,14 +427,14 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* 8002B1DC-8002B22C 025B1C 0050+00 2/2 0/0 0/0 .text            ct__14dComIfG_play_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_play_c::ct() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/ct__14dComIfG_play_cFv.s"
+void dComIfG_play_c::ct(void) {
+    mWindowNum = 0;
+    mParticle = NULL;
+    mLayerOld = 0;
+
+    memset(mLastPlayStageName, 0, 8);
+    init();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804061A0-804061B4 032EC0 0014+00 1/1 0/0 0/0 .bss             dComIfG_mTimerInfo */
@@ -789,6 +449,21 @@ extern u8 g_dComIfG_gameInfo[122384];
 u8 g_dComIfG_gameInfo[122384];
 
 /* 8002B22C-8002B2A8 025B6C 007C+00 1/1 1/1 0/0 .text            init__14dComIfG_play_cFv */
+#ifdef NONMATCHING
+void dComIfG_play_c::init() {
+    mPlayer = NULL;
+    mPlayerCameraID[0] = -1;
+    mCameraInfo = NULL;
+
+    for (int i = 0; i < 2; i++) {
+    }
+
+    if (mGameoverStatus == 2) {
+        g_dComIfG_gameInfo.getPlay().getRoomControl()->initZone();
+    }
+    mGameoverStatus = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -797,18 +472,35 @@ asm void dComIfG_play_c::init() {
 #include "asm/d/com/d_com_inf_game/init__14dComIfG_play_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8002B2A8-8002B2C8 025BE8 0020+00 0/0 1/1 0/0 .text            dComIfGp_checkItemGet__FUci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_checkItemGet(u8 param_0, int param_1) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_checkItemGet__FUci.s"
+void dComIfGp_checkItemGet(u8 param_0, int param_1) {
+    checkItemGet__FUci(param_0, param_1);
 }
-#pragma pop
 
 /* 8002B2C8-8002B36C 025C08 00A4+00 0/0 1/1 0/0 .text            itemInit__14dComIfG_play_cFv */
+#ifdef NONMATCHING
+void dComIfG_play_c::itemInit() {
+    dMeter2Info_Initialize();
+
+    JKRExpHeap* heap = mExpHeap2D;
+    memset(mMsgObjectClass, 0, 300);
+    mExpHeap2D = heap;
+    mOxygen = 600;
+    mNowOxygen = 600;
+    mMaxOxygen = 600;
+
+    if (dComIfGs_checkGetItem(0x3e) == 0) {
+        field_0x4f4b = 21;
+    } else {
+        field_0x4f4b = 0;
+    }
+    field_0x4f4c = 7;
+
+    mNowVibration = dComIfGs_getOptVibration();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -817,56 +509,43 @@ asm void dComIfG_play_c::itemInit() {
 #include "asm/d/com/d_com_inf_game/itemInit__14dComIfG_play_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8002B36C-8002B384 025CAC 0018+00 1/1 3/3 1/1 .text setItemBombNumCount__14dComIfG_play_cFUcs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_play_c::setItemBombNumCount(u8 param_0, s16 param_1) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/setItemBombNumCount__14dComIfG_play_cFUcs.s"
+void dComIfG_play_c::setItemBombNumCount(u8 i_item, s16 pCount) {
+    mItemBombNumCount[i_item] += pCount;
 }
-#pragma pop
 
 /* 8002B384-8002B394 025CC4 0010+00 0/0 1/1 0/0 .text getItemBombNumCount__14dComIfG_play_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_play_c::getItemBombNumCount(u8 param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/getItemBombNumCount__14dComIfG_play_cFUc.s"
+s16 dComIfG_play_c::getItemBombNumCount(u8 i_item) {
+    return mItemBombNumCount[i_item];
 }
-#pragma pop
 
 /* 8002B394-8002B3A8 025CD4 0014+00 0/0 1/1 0/0 .text clearItemBombNumCount__14dComIfG_play_cFUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_play_c::clearItemBombNumCount(u8 param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/clearItemBombNumCount__14dComIfG_play_cFUc.s"
+void dComIfG_play_c::clearItemBombNumCount(u8 i_item) {
+    mItemBombNumCount[i_item] = 0;
 }
-#pragma pop
 
 /* 8002B3A8-8002B3B0 -00001 0008+00 0/0 0/0 0/0 .text setNowVibration__14dComIfG_play_cFUc */
-void dComIfG_play_c::setNowVibration(u8 param_0) {
-    *(u8*)(((u8*)this) + 20314) /* this->field_0x4f5a */ = (u8)(param_0);
+void dComIfG_play_c::setNowVibration(u8 pStatus) {
+    mNowVibration = pStatus;
 }
 
 /* 8002B3B0-8002B3B8 025CF0 0008+00 0/0 2/2 0/0 .text            getNowVibration__14dComIfG_play_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_play_c::getNowVibration() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/getNowVibration__14dComIfG_play_cFv.s"
+u32 dComIfG_play_c::getNowVibration() {
+    return mNowVibration;
 }
-#pragma pop
 
 /* 8002B3B8-8002B3F4 025CF8 003C+00 0/0 1/1 0/0 .text
  * setStartStage__14dComIfG_play_cFP19dStage_startStage_c       */
+#ifdef NONMATCHING
+void dComIfG_play_c::setStartStage(dStage_startStage_c* pStartStage) {
+    mLayerOld = mStartStage.getLayer();
+    mStartStage = *pStartStage;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -875,16 +554,14 @@ asm void dComIfG_play_c::setStartStage(dStage_startStage_c* param_0) {
 #include "asm/d/com/d_com_inf_game/setStartStage__14dComIfG_play_cFP19dStage_startStage_c.s"
 }
 #pragma pop
+#endif
 
 /* 8002B3F4-8002B434 025D34 0040+00 1/1 0/0 0/0 .text            dComIfG_get_timelayer__FPi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dComIfG_get_timelayer(int* param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfG_get_timelayer__FPi.s"
+static void dComIfG_get_timelayer(int* pLayer) {
+    if (dKy_daynight_check__Fv()) {
+        *pLayer += 1;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80378F38-80378F38 005598 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -931,28 +608,29 @@ SECTION_DEAD static char const* const stringBase_8037903B = "D_MN08A";
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dComIfG_play_c::getLayerNo_common_common(char const* param_0, int param_1, int param_2) {
+asm int dComIfG_play_c::getLayerNo_common_common(char const* param_0, int param_1, int param_2) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/getLayerNo_common_common__14dComIfG_play_cFPCcii.s"
 }
 #pragma pop
 
 /* 8002C950-8002C97C 027290 002C+00 1/1 3/3 0/0 .text getLayerNo_common__14dComIfG_play_cFPCcii */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_play_c::getLayerNo_common(char const* param_0, int param_1, int param_2) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/getLayerNo_common__14dComIfG_play_cFPCcii.s"
+int dComIfG_play_c::getLayerNo_common(char const* i_stageName, int i_roomID, int i_layerOverride) {
+    int layer = getLayerNo_common_common(i_stageName, i_roomID, i_layerOverride);
+
+    if (layer < 0) {
+        layer = 0;
+    }
+
+    return layer;
 }
-#pragma pop
 
 /* 8002C97C-8002C9D8 0272BC 005C+00 1/1 22/22 68/68 .text            getLayerNo__14dComIfG_play_cFi
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dComIfG_play_c::getLayerNo(int param_0) {
+asm int dComIfG_play_c::getLayerNo(int param_0) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/getLayerNo__14dComIfG_play_cFi.s"
 }
@@ -973,7 +651,7 @@ asm void dComIfG_play_c::createParticle() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dComIfG_play_c::createSimpleModel() {
+asm u32 dComIfG_play_c::createSimpleModel() {
     nofralloc
 #include "asm/d/com/d_com_inf_game/createSimpleModel__14dComIfG_play_cFv.s"
 }
@@ -1005,7 +683,7 @@ asm void dComIfG_play_c::drawSimpleModel() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dComIfG_play_c::addSimpleModel(J3DModelData* param_0, int param_1, u8 param_2) {
+asm u32 dComIfG_play_c::addSimpleModel(J3DModelData* param_0, int param_1, u8 param_2) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/addSimpleModel__14dComIfG_play_cFP12J3DModelDataiUc.s"
 }
@@ -1016,7 +694,7 @@ asm void dComIfG_play_c::addSimpleModel(J3DModelData* param_0, int param_1, u8 p
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dComIfG_play_c::removeSimpleModel(J3DModelData* param_0, int param_1) {
+asm u32 dComIfG_play_c::removeSimpleModel(J3DModelData* param_0, int param_1) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/removeSimpleModel__14dComIfG_play_cFP12J3DModelDatai.s"
 }
@@ -1027,88 +705,54 @@ asm void dComIfG_play_c::removeSimpleModel(J3DModelData* param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dComIfG_play_c::entrySimpleModel(J3DModel* param_0, int param_1) {
+asm u32 dComIfG_play_c::entrySimpleModel(J3DModel* param_0, int param_1) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/entrySimpleModel__14dComIfG_play_cFP8J3DModeli.s"
 }
 #pragma pop
 
-/* 8002CB94-8002CB9C -00001 0008+00 0/0 0/0 0/0 .text setTimerNowTimeMs__14dComIfG_play_cFi */
-void dComIfG_play_c::setTimerNowTimeMs(int param_0) {
-    *(u32*)(((u8*)this) + 20476) /* this->field_0x4ffc */ = (u32)(param_0);
+void dComIfG_play_c::setTimerNowTimeMs(int time) {
+    mTimerNowTimeMs = time;
 }
 
-/* 8002CB9C-8002CBA4 0274DC 0008+00 0/0 2/2 3/3 .text getTimerNowTimeMs__14dComIfG_play_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_play_c::getTimerNowTimeMs() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/getTimerNowTimeMs__14dComIfG_play_cFv.s"
-}
-#pragma pop
-
-/* 8002CBA4-8002CBAC -00001 0008+00 0/0 0/0 0/0 .text setTimerLimitTimeMs__14dComIfG_play_cFi */
-void dComIfG_play_c::setTimerLimitTimeMs(int param_0) {
-    *(u32*)(((u8*)this) + 20480) /* this->field_0x5000 */ = (u32)(param_0);
+int dComIfG_play_c::getTimerNowTimeMs() {
+    return mTimerNowTimeMs;
 }
 
-/* 8002CBAC-8002CBB4 0274EC 0008+00 0/0 1/1 0/0 .text getTimerLimitTimeMs__14dComIfG_play_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_play_c::getTimerLimitTimeMs() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/getTimerLimitTimeMs__14dComIfG_play_cFv.s"
-}
-#pragma pop
-
-/* 8002CBB4-8002CBBC -00001 0008+00 0/0 0/0 0/0 .text            setTimerMode__14dComIfG_play_cFi */
-void dComIfG_play_c::setTimerMode(int param_0) {
-    *(u32*)(((u8*)this) + 20484) /* this->field_0x5004 */ = (u32)(param_0);
+void dComIfG_play_c::setTimerLimitTimeMs(int time) {
+    mTimerLimitTimeMs = time;
 }
 
-/* 8002CBBC-8002CBC4 0274FC 0008+00 6/6 8/8 7/7 .text            getTimerMode__14dComIfG_play_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_play_c::getTimerMode() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/getTimerMode__14dComIfG_play_cFv.s"
-}
-#pragma pop
-
-/* 8002CBC4-8002CBCC -00001 0008+00 0/0 0/0 0/0 .text            setTimerType__14dComIfG_play_cFUc
- */
-void dComIfG_play_c::setTimerType(u8 param_0) {
-    *(u8*)(((u8*)this) + 20488) /* this->field_0x5008 */ = (u8)(param_0);
+int dComIfG_play_c::getTimerLimitTimeMs() {
+    return mTimerLimitTimeMs;
 }
 
-/* 8002CBCC-8002CBD4 02750C 0008+00 0/0 1/1 0/0 .text            getTimerType__14dComIfG_play_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_play_c::getTimerType() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/getTimerType__14dComIfG_play_cFv.s"
+void dComIfG_play_c::setTimerMode(int mode) {
+    mTimerMode = mode;
 }
-#pragma pop
+
+int dComIfG_play_c::getTimerMode(void) {
+    return mTimerMode;
+}
+
+void dComIfG_play_c::setTimerType(u8 type) {
+    mTimerType = type;
+}
+
+u8 dComIfG_play_c::getTimerType(void) {
+    return mTimerType;
+}
 
 /* 8002CBD4-8002CBDC -00001 0008+00 0/0 0/0 0/0 .text setTimerPtr__14dComIfG_play_cFP8dTimer_c */
-void dComIfG_play_c::setTimerPtr(dTimer_c* param_0) {
-    *(u32*)(((u8*)this) + 20472) /* this->field_0x4ff8 */ = (u32)(param_0);
+void dComIfG_play_c::setTimerPtr(dTimer_c* pTimerPtr) {
+    mTimerPtr = pTimerPtr;
 }
 
 /* 8002CBDC-8002CBE4 02751C 0008+00 6/6 7/7 15/15 .text            getTimerPtr__14dComIfG_play_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_play_c::getTimerPtr() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/getTimerPtr__14dComIfG_play_cFv.s"
+dTimer_c* dComIfG_play_c::getTimerPtr() {
+    return mTimerPtr;
 }
-#pragma pop
 
 /* 8002CBE4-8002CC54 027524 0070+00 1/1 1/1 0/0 .text            ct__13dComIfG_inf_cFv */
 #pragma push
@@ -1485,7 +1129,7 @@ asm void dComIfGs_onZoneSwitch(int param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dStage_roomControl_c::getZoneNo(int param_0) {
+asm int dStage_roomControl_c::getZoneNo(int param_0) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/getZoneNo__20dStage_roomControl_cFi.s"
 }
@@ -1764,7 +1408,7 @@ asm void dComIfGs_checkGetInsectNum() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGs_checkGetItem(u8 param_0) {
+static asm u8 dComIfGs_checkGetItem(u8 param_0) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/dComIfGs_checkGetItem__FUc.s"
 }
@@ -2607,7 +2251,7 @@ dAttList_c::dAttList_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cSAngle::~cSAngle() {
+extern "C" void asm __dt__7cSAngleFv() {
     nofralloc
 #include "asm/d/com/d_com_inf_game/__dt__7cSAngleFv.s"
 }

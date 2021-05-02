@@ -34,27 +34,12 @@ struct mDoExt_3DlineMatSortPacket {
 
 struct dKy_tevstr_c {};
 
-struct dDlst_window_c {
-    /* 80051AC0 */ void setViewPort(f32, f32, f32, f32, f32, f32);
-    /* 80051ADC */ void setScissor(f32, f32, f32, f32);
-};
-
 struct dDlst_shadowTri_c {
     /* 80056270 */ ~dDlst_shadowTri_c();
     /* 80056344 */ dDlst_shadowTri_c();
 };
 
 struct _GXTexObj {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80009184 */ ~cXyz();
-    /* 800125DC */ cXyz();
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266EF4 */ void normalize();
-    /* 802670AC */ void isZero() const;
-};
 
 struct dDlst_shadowSimple_c {
     /* 8005520C */ void draw();
@@ -102,48 +87,6 @@ struct dDlst_shadowControl_c {
     /* 80055FE8 */ void setSimpleTex(ResTIMG const*);
 
     static u8 mSimpleTexObj[32];
-};
-
-struct dDlst_peekZ_c {
-    /* 80056018 */ void newData(s16, s16, u32*);
-    /* 80056080 */ void peekData();
-};
-
-struct J3DPacket {};
-
-struct J3DDrawBuffer {
-    /* 80324F08 */ void initialize();
-    /* 80324F70 */ void allocBuffer(u32);
-    /* 80325008 */ ~J3DDrawBuffer();
-    /* 80325068 */ void frameInit();
-    /* 8032548C */ void entryImm(J3DPacket*, u16);
-    /* 803254AC */ void draw() const;
-};
-
-struct _GXColor {};
-
-struct dDlst_base_c {};
-
-struct dDlst_list_c {
-    /* 800560F0 */ dDlst_list_c();
-    /* 80056390 */ void init();
-    /* 8005648C */ ~dDlst_list_c();
-    /* 80056538 */ void reset();
-    /* 800565EC */ void entryZSortXluDrawList(J3DDrawBuffer*, J3DPacket*, cXyz&);
-    /* 800566D4 */ void drawOpaDrawList(J3DDrawBuffer*);
-    /* 80056710 */ void drawXluDrawList(J3DDrawBuffer*);
-    /* 8005674C */ void drawOpaListItem3d();
-    /* 80056770 */ void drawXluListItem3d();
-    /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
-    /* 800567C4 */ void draw(dDlst_base_c**, dDlst_base_c**);
-    /* 8005681C */ void wipeIn(f32, _GXColor&);
-    /* 800568D8 */ void wipeIn(f32);
-    /* 80056900 */ void calcWipe();
-
-    static u8 mWipeDlst[72];
-    static u8 mWipeColor[4];
-    static f32 mWipeRate;
-    static f32 mWipeSpeed[1 + 1 /* padding */];
 };
 
 struct dDlst_effectLine_c {
@@ -410,15 +353,6 @@ extern "C" void __dt__13J3DDrawBufferFv();
 extern "C" void frameInit__13J3DDrawBufferFv();
 extern "C" void entryImm__13J3DDrawBufferFP9J3DPacketUs();
 extern "C" void draw__13J3DDrawBufferCFv();
-extern "C" void PSMTXConcat();
-extern "C" void PSMTXTrans();
-extern "C" void C_MTXLightOrtho();
-extern "C" void PSMTXMultVec();
-extern "C" void C_MTXOrtho();
-extern "C" void PSVECAdd();
-extern "C" void PSVECScale();
-extern "C" void PSVECSquareMag();
-extern "C" void PSVECDotProduct();
 extern "C" void GXSetVtxDesc();
 extern "C" void GXClearVtxDesc();
 extern "C" void GXSetVtxAttrFmt();

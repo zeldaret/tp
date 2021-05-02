@@ -2,14 +2,10 @@
 #define D_A_D_A_PLAYER_H
 
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
+#include "d/d_resorce.h"
 #include "d/save/d_save.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
-
-// todo: remove after moving JKernel
-struct JKRHeap {
-    /* 802CE5CC */ void freeAll();
-};
 
 class daPy_anmHeap_c {
 public:
