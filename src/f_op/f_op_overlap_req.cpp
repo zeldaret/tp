@@ -10,44 +10,6 @@
 #include "f_pc/f_pc_manager.h"
 #include "f_pc/f_pc_stdcreate_req.h"
 
-//
-// Forward References:
-//
-
-extern "C" static void fopOvlpReq_phase_Done__FP21overlap_request_class();
-extern "C" static void fopOvlpReq_phase_IsDone__FP21overlap_request_class();
-extern "C" static void fopOvlpReq_phase_IsWaitOfFadeout__FP21overlap_request_class();
-extern "C" static void fopOvlpReq_phase_WaitOfFadeout__FP21overlap_request_class();
-extern "C" static void fopOvlpReq_phase_IsComplete__FP21overlap_request_class();
-extern "C" static void fopOvlpReq_phase_IsCreated__FP21overlap_request_class();
-extern "C" static void fopOvlpReq_phase_Create__FP21overlap_request_class();
-extern "C" void fopOvlpReq_Request__FP21overlap_request_classsUs();
-extern "C" void fopOvlpReq_Handler__FP21overlap_request_class();
-extern "C" void fopOvlpReq_Cancel__FP21overlap_request_class();
-extern "C" static void fopOvlpReq_Is_PeektimeLimit__FP21overlap_request_class();
-extern "C" static void fopOvlpReq_SetPeektime__FP21overlap_request_classUs();
-extern "C" void fopOvlpReq_OverlapClr__FP21overlap_request_class();
-
-//
-// External References:
-//
-
-extern "C" void fpcEx_SearchByID__FUi();
-extern "C" void fpcLy_RootLayer__Fv();
-extern "C" void fpcLy_SetCurrentLayer__FP11layer_class();
-extern "C" void fpcLy_CurrentLayer__Fv();
-extern "C" void fpcM_Delete__FPv();
-extern "C" void fpcM_IsCreating__FUi();
-extern "C" void fpcSCtRq_Request__FP11layer_classsPFPvPv_iPvPv();
-extern "C" void cPhs_Set__FP30request_of_phase_process_classPPFPv_i();
-extern "C" void cPhs_Do__FP30request_of_phase_process_classPv();
-extern "C" void cReq_Is_Done__FP18request_base_class();
-extern "C" void cReq_Done__FP18request_base_class();
-extern "C" void cReq_Command__FP18request_base_classUc();
-extern "C" void cReq_Create__FP18request_base_classUc();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-
 void fopOvlpReq_SetPeektime(overlap_request_class*, u16);
 
 //

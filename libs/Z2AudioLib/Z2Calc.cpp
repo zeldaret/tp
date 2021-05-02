@@ -4,40 +4,10 @@
 //
 
 #include "Z2AudioLib/Z2Calc.h"
+#include "JSystem/JMath/random.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JMath {
-    struct TRandom_fast_ {
-        /* 80339AE4 */ TRandom_fast_(u32);
-    };
-};
-
-//
-// Forward References:
-//
-
-extern "C" void linearTransform__6Z2CalcFfffffb();
-extern "C" void getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign();
-extern "C" void getRandom__6Z2CalcFfff();
-extern "C" void getRandom_0_1__6Z2CalcFv();
-extern "C" void setParam__Q26Z2Calc8FNoise1fFfff();
-extern "C" void tau__Q26Z2Calc8FNoise1fFf();
-extern "C" void calcNoise1f__Q26Z2Calc8FNoise1fFv();
-extern "C" f32 cEqualCSlope__6Z2Calc;
-extern "C" f32 cEqualPSlope__6Z2Calc;
-
-//
-// External References:
-//
-
-extern "C" void __ct__Q25JMath13TRandom_fast_FUl();
-extern "C" void exp();
-extern "C" void pow();
+#include "global.h"
+#include "msl_c/math.h"
 
 //
 // Declarations:
@@ -45,15 +15,30 @@ extern "C" void pow();
 
 /* 802A968C-802A96F4 2A3FCC 0068+00 1/1 16/16 0/0 .text            linearTransform__6Z2CalcFfffffb
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 Z2Calc::linearTransform(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
-                                bool param_5) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Calc/linearTransform__6Z2CalcFfffffb.s"
+f32 Z2Calc::linearTransform(f32 param1, f32 param2, f32 param3, f32 param4, f32 param5,
+                            bool param6) {
+    f32 temp;
+
+    temp = param4 + (param1 - param2) * ((param5 - param4) / (param3 - param2));
+
+    if (param6) {
+        return temp;
+    } else if (param4 < param5) {
+        if (temp > param5) {
+            return param5;
+        } else if (temp < param4) {
+            return param4;
+        } else {
+            return temp;
+        }
+    } else if (temp > param4) {
+        return param4;
+    } else if (temp < param5) {
+        return param5;
+    } else {
+        return temp;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80455820-80455824 003E20 0004+00 0/0 1/1 0/0 .sdata2          cEqualCSlope__6Z2Calc */
@@ -62,90 +47,97 @@ SECTION_SDATA2 f32 Z2Calc::cEqualCSlope = 1.0f;
 /* 80455824-80455828 003E24 0004+00 0/0 1/1 0/0 .sdata2          cEqualPSlope__6Z2Calc */
 SECTION_SDATA2 f32 Z2Calc::cEqualPSlope = 0.5f;
 
-/* 80455828-8045582C 003E28 0004+00 1/1 0/0 0/0 .sdata2          @380 */
-SECTION_SDATA2 static u8 lit_380[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 8045582C-80455830 003E2C 0004+00 4/4 0/0 0/0 .sdata2          @381 */
-SECTION_SDATA2 static f32 lit_381 = 1.0f;
-
 /* 802A96F4-802A9814 2A4034 0120+00 0/0 29/29 0/0 .text
  * getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 Z2Calc::getParamByExp(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
-                              f32 param_5, Z2Calc::CurveSign param_6) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Calc/getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign.s"
+f32 Z2Calc::getParamByExp(f32 f1, f32 f2, f32 f3, f32 f4, f32 f5, f32 f6, Z2Calc::CurveSign sign) {
+    f32 out;
+    if (sign == Z2Calc::CURVE_SIGN_1) {
+        f32 tmp = exp(Z2Calc::linearTransform(f1, f2, f3, 0.0f, f4, true));
+        out = Z2Calc::linearTransform(tmp, 1.0f, exp(f4), f5, f6, true);
+    } else if (sign == Z2Calc::CURVE_SIGN_0) {
+        f32 tmp = exp(Z2Calc::linearTransform(f1, f2, f3, f4, 0.0f, true));
+        out = Z2Calc::linearTransform(tmp, exp(f4), 1.0f, f5, f6, true);
+    } else {
+        out = Z2Calc::linearTransform(f1, f2, f3, f5, f6, false);
+    }
+    if (out > f6) {
+        return f6;
+    }
+    if (out < f5) {
+        return f5;
+    }
+    return out;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80455830-80455834 003E30 0004+00 1/1 0/0 0/0 .sdata2          @396 */
-SECTION_SDATA2 static f32 lit_396 = 2.0f;
-
-/* 80455834-80455838 003E34 0004+00 1/1 0/0 0/0 .sdata2          @397 */
-SECTION_SDATA2 static f32 lit_397 = -2.0f;
 
 /* 802A9814-802A98D4 2A4154 00C0+00 0/0 2/2 0/0 .text            getRandom__6Z2CalcFfff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 Z2Calc::getRandom(f32 param_0, f32 param_1, f32 param_2) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Calc/getRandom__6Z2CalcFfff.s"
+f32 Z2Calc::getRandom(f32 f1, f32 f2, f32 f3) {
+    f32 tmp = 2.0f * f3;
+    f32 tmp2 = (1.0f - f3) * -2.0f;
+    f1 *= Z2Calc::getRandom_0_1() < f3 ? tmp : tmp2;
+    f32 tmp3 = pow(Z2Calc::getRandom_0_1(), f2);
+    return tmp3 * f1;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80451330-80451334 000830 0004+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_80451330[4];
-
-/* 80451334-80451338 000834 0004+00 1/1 0/0 0/0 .sbss            oRandom$401 */
-static u8 oRandom[4];
 
 /* 802A98D4-802A9944 2A4214 0070+00 1/1 1/1 0/0 .text            getRandom_0_1__6Z2CalcFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 Z2Calc::getRandom_0_1() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Calc/getRandom_0_1__6Z2CalcFv.s"
+f32 Z2Calc::getRandom_0_1(void) {
+    static JMath::TRandom_fast_ oRandom(0);
+    return oRandom.get_ufloat_1();
 }
-#pragma pop
 
 /* 802A9944-802A9958 2A4284 0014+00 0/0 1/1 0/0 .text            setParam__Q26Z2Calc8FNoise1fFfff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2Calc::FNoise1f::setParam(f32 param_0, f32 param_1, f32 param_2) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Calc/setParam__Q26Z2Calc8FNoise1fFfff.s"
+void Z2Calc::FNoise1f::setParam(f32 param1, f32 param2, f32 param3) {
+    this->unk0 = param1;
+    this->unk4 = param1;
+    this->unk12 = param2;
+    this->unk8 = param3;
 }
-#pragma pop
 
 /* 802A9958-802A99A0 2A4298 0048+00 1/1 0/0 0/0 .text            tau__Q26Z2Calc8FNoise1fFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 Z2Calc::FNoise1f::tau(f32 param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Calc/tau__Q26Z2Calc8FNoise1fFf.s"
+f32 Z2Calc::FNoise1f::tau(f32 param1) {
+    f32 temp1;
+    f32 temp2;
+
+    temp1 = param1;
+    temp2 = temp1 + (temp1 * temp1);
+
+    if (temp2 > 1.0f) {
+        temp2 = temp2 - 1.0f;
+
+        if (temp1 < this->unk12) {
+            temp2 = temp2 + this->unk12;
+        }
+
+        return temp2;
+    } else if (temp1 < this->unk12) {
+        temp2 = temp2 + this->unk12;
+    }
+    return temp2;
 }
-#pragma pop
 
 /* 802A99A0-802A9A34 2A42E0 0094+00 0/0 5/5 0/0 .text            calcNoise1f__Q26Z2Calc8FNoise1fFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 Z2Calc::FNoise1f::calcNoise1f() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Calc/calcNoise1f__Q26Z2Calc8FNoise1fFv.s"
+f32 Z2Calc::FNoise1f::calcNoise1f(void) {
+    f32 temp1;
+    f32 temp2;
+
+    temp1 = this->unk0;
+
+    if (this->unk0 < this->unk4) {
+        this->unk0 = temp1 + this->unk8;
+
+        if (this->unk0 < this->unk4) {
+            return this->unk0;
+        }
+    } else {
+        this->unk0 = temp1 - this->unk8;
+
+        if (this->unk0 > this->unk4) {
+            return this->unk0;
+        }
+    }
+    this->unk0 = this->unk4;
+    temp2 = tau(this->unk0);
+    this->unk4 = temp2;
+
+    return this->unk0;
 }
-#pragma pop

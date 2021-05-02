@@ -6,6 +6,7 @@
 #include "JSystem/JFramework/JFWDisplay.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "mtx_vec.h"
 
 //
 // Types:
@@ -210,7 +211,6 @@ extern "C" void OSResumeThread();
 extern "C" void OSSuspendThread();
 extern "C" void OSGetTime();
 extern "C" void OSGetTick();
-extern "C" void C_MTXOrtho();
 extern "C" void VIFlush();
 extern "C" void VIGetRetraceCount();
 extern "C" void GXInit();
@@ -313,7 +313,7 @@ asm void JFWDisplay::ctor_subroutine(bool param_0) {
 
 /* ############################################################################################## */
 /* 803C4020-803C4060 021140 0030+10 1/1 0/0 0/0 .data            e_mtx */
-SECTION_DATA static u8 e_mtx[48 + 16 /* padding */] = {
+SECTION_DATA static u8 e_mtx[48 + 16 /* padding */] ALIGN_DECL(32) = {
     0x3F,
     0x80,
     0x00,

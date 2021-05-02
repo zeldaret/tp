@@ -12,38 +12,6 @@
 #include "f_pc/f_pc_executor.h"
 
 //
-// Forward References:
-//
-
-extern "C" void fopOvlpM_SceneIsStop__Fv();
-extern "C" void fopOvlpM_SceneIsStart__Fv();
-extern "C" void fopOvlpM_IsOutReq__FP18overlap_task_class();
-extern "C" void fopOvlpM_Done__FP18overlap_task_class();
-extern "C" void fopOvlpM_ToldAboutID__FUi();
-extern "C" void fopOvlpM_IsPeek__Fv();
-extern "C" void fopOvlpM_IsDone__Fv();
-extern "C" void fopOvlpM_IsDoingReq__Fv();
-extern "C" void fopOvlpM_ClearOfReq__Fv();
-extern "C" void fopOvlpM_Request__FsUs();
-extern "C" void fopOvlpM_Management__Fv();
-extern "C" void fopOvlpM_Cancel__Fv();
-extern "C" void fopOvlpM_Init__Fv();
-
-//
-// External References:
-//
-
-extern "C" void fopOvlpReq_Request__FP21overlap_request_classsUs();
-extern "C" void fopOvlpReq_Handler__FP21overlap_request_class();
-extern "C" void fopOvlpReq_Cancel__FP21overlap_request_class();
-extern "C" void fopOvlpReq_OverlapClr__FP21overlap_request_class();
-extern "C" void fopScnPause_Enable__FP11scene_class();
-extern "C" void fopScnPause_Disable__FP11scene_class();
-extern "C" void fpcEx_SearchByID__FUi();
-extern "C" void cReq_Is_Done__FP18request_base_class();
-extern "C" void cReq_Done__FP18request_base_class();
-
-//
 // Declarations:
 //
 

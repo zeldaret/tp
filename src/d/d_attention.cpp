@@ -11,58 +11,8 @@
 // Types:
 //
 
-struct mDoMtx_stack_c {
-    static u8 now[48];
-};
-
-struct J3DMaterialTable {};
-
-struct J3DAnmTextureSRTKey {};
-
-struct mDoExt_btkAnm {
-    /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
-    /* 8000D6D8 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct J3DAnmTevRegKey {};
-
-struct mDoExt_brkAnm {
-    /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
-    /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct J3DAnmColor {};
-
-struct mDoExt_bpkAnm {
-    /* 8000D47C */ void init(J3DMaterialTable*, J3DAnmColor*, int, int, f32, s16, s16);
-    /* 8000D518 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct J3DModelData {};
-
-struct J3DAnmTransform {};
-
-struct mDoExt_bckAnm {
-    /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
-    /* 8000D9CC */ void entry(J3DModelData*, f32);
-};
-
-struct mDoExt_baseAnm {
-    /* 8000D428 */ void play();
-};
-
 struct mDoCPd_c {
     static u8 m_cpadInfo[256];
-};
-
-struct fopAc_ac_c {};
-
-struct daPy_py_c {
-    /* 8015F3FC */ void getAttentionOffsetY();
-};
-
-struct dSv_danBit_c {
-    /* 80034BE8 */ void isSwitch(int) const;
 };
 
 struct dRes_info_c {};
@@ -71,123 +21,9 @@ struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
 };
 
-struct cSAngle {
-    /* 80270F68 */ cSAngle(cSAngle const&);
-    /* 80270F98 */ cSAngle(s16);
-    /* 802710E8 */ void Inv() const;
-    /* 80271228 */ void operator-(s16) const;
-};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-};
-
-struct dAttention_c {
-    /* 80070198 */ dAttention_c(fopAc_ac_c*, u32);
-    /* 80070774 */ ~dAttention_c();
-    /* 80070844 */ void GetLockonList(s32);
-    /* 80070880 */ void getActionBtnB();
-    /* 80070974 */ void getActionBtnXY();
-    /* 80070A70 */ void chkAttMask(u32, u32);
-    /* 80070E90 */ void calcWeight(int, fopAc_ac_c*, f32, s16, s16, u32*);
-    /* 800710C0 */ void setList(int, fopAc_ac_c*, f32, f32, cSAngle, u32);
-    /* 80071240 */ void initList(u32);
-    /* 800713CC */ void makeList();
-    /* 80071424 */ void setOwnerAttentionPos();
-    /* 80071488 */ void SelectAttention(fopAc_ac_c*);
-    /* 800716B8 */ void sortList();
-    /* 800718A4 */ void stockAttention();
-    /* 80071960 */ void nextAttention();
-    /* 80071A68 */ void freeAttention();
-    /* 80071A98 */ void chaseAttention();
-    /* 80071CC0 */ void EnemyDistance(fopAc_ac_c*);
-    /* 80071DEC */ void runSoundProc();
-    /* 80071E84 */ void runDrawProc();
-    /* 800720F4 */ void runDebugDisp();
-    /* 800720F8 */ void checkButton();
-    /* 800722A0 */ void triggerProc();
-    /* 800722EC */ void lostCheck();
-    /* 80072344 */ void judgementStatus4Hold();
-    /* 800725F0 */ void judgementStatus4Switch();
-    /* 80072924 */ void Run();
-    /* 80072BD4 */ void Draw();
-    /* 80072D80 */ void lockSoundStart(u32);
-    /* 8007353C */ void LockonTarget(s32);
-    /* 800735DC */ void LockonReleaseDistanse();
-    /* 800736CC */ void LockonTargetPId(s32);
-    /* 80073734 */ void ActionTarget(s32);
-    /* 8007378C */ void CheckObjectTarget(s32);
-    /* 800737E4 */ void LockonTruth();
-    /* 80073838 */ void checkDistance(cXyz*, s16, cXyz*, f32, f32, f32, f32);
-
-    static u8 loc_type_tbl[12];
-    static u8 act_type_tbl[20];
-    static u8 dist_table[6552];
-    static u32 loc_type_num;
-    static u32 act_type_num;
-    static u32 chk_type_tbl;
-    static u32 chk_type_num;
-};
-
-struct dAttParam_c {
-    /* 80070038 */ dAttParam_c(s32);
-    /* 80070110 */ ~dAttParam_c();
-};
-
-struct dAttLook_c {
-    /* 80073CA4 */ void convPId(unsigned int);
-    /* 80073CD4 */ void init();
-    /* 80073CEC */ void proc();
-    /* 80073D08 */ void request(fopAc_ac_c*, f32, f32, f32, s16, int);
-};
-
-struct dAttList_c {
-    /* 800304D0 */ ~dAttList_c();
-    /* 8003050C */ dAttList_c();
-    /* 80073864 */ void getActor();
-    /* 80073898 */ void setActor(fopAc_ac_c*);
-};
-
-struct dAttHint_c {
-    /* 800738B4 */ void getPId(void*);
-    /* 800738CC */ void convPId(unsigned int);
-    /* 800738FC */ void request(fopAc_ac_c*, int);
-    /* 80073958 */ void init();
-    /* 80073970 */ void proc();
-};
-
-struct dAttDraw_c {
-    /* 8003054C */ ~dAttDraw_c();
-    /* 800307F0 */ dAttDraw_c();
-    /* 80072DD8 */ void setAnm(u8, f32);
-    /* 80072FE8 */ void setAlphaAnm(u8, u8);
-    /* 80073004 */ void alphaAnm();
-    /* 800732B0 */ void draw(cXyz&, f32 (*)[4]);
-};
-
-struct J3DTransformInfo {};
-
-struct dAttDraw_CallBack_c {
-    /* 80070178 */ void execute(u16, J3DTransformInfo*);
-};
-
 struct dAttDrawParam_c {
     /* 80070158 */ dAttDrawParam_c();
     /* 80073FC4 */ ~dAttDrawParam_c();
-};
-
-struct dAttCatch_c {
-    /* 8007398C */ void convPId(unsigned int);
-    /* 800739BC */ void init();
-    /* 800739DC */ void proc();
-    /* 80073A08 */ void request(fopAc_ac_c*, u8, f32, f32, f32, s16, int);
-};
-
-struct cSGlobe {
-    /* 8007167C */ ~cSGlobe();
-    /* 80271880 */ cSGlobe(cXyz const&);
 };
 
 struct Z2SeqMgr {
@@ -211,8 +47,6 @@ struct J3DGXColor {};
 struct J3DTevBlock {
     /* 800732AC */ void setTevKColor(u32, J3DGXColor const*);
 };
-
-struct J3DModel {};
 
 //
 // Forward References:
@@ -340,12 +174,6 @@ extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void bgmNowBattle__8Z2SeqMgrFf();
 extern "C" void __dl__FPv();
 extern "C" void DCStoreRangeNoSync();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXConcat();
-extern "C" void PSMTXInverse();
-extern "C" void PSMTXTrans();
-extern "C" void PSMTXMultVec();
-extern "C" void PSVECSquareMag();
 extern "C" void __register_global_object();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
