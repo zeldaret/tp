@@ -11,18 +11,6 @@
 // Types:
 //
 
-struct fopAc_ac_c {};
-
-struct dSv_info_c {
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dStage_roomControl_c {
-    /* 80024384 */ void getStatusRoomDt(int);
-
-    static u8 mDemoArcName[10 + 2 /* padding */];
-};
-
 struct dRes_info_c {};
 
 struct dRes_control_c {
@@ -41,88 +29,6 @@ struct dEvt_control_c {
     /* 8004365C */ void setPt2(void*);
     /* 800436BC */ void setPtI(void*);
     /* 800436F4 */ void setPtD(void*);
-};
-
-struct dEvDtStaff_c {
-    /* 80044134 */ void init();
-};
-
-struct dEvDtEvent_c {
-    /* 80043E78 */ void finishCheck();
-    /* 80043F70 */ void specialStaffProc(dEvDtStaff_c*);
-};
-
-struct dEvDtData_c {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-};
-
-struct dEvent_manager_c {
-    /* 800465E8 */ void getSubstance(dEvDtData_c*, int);
-    /* 80046688 */ dEvent_manager_c();
-    /* 80046710 */ void create();
-    /* 80046800 */ void setObjectArchive(char*);
-    /* 80046888 */ void demoInit();
-    /* 80046904 */ void roomInit(int);
-    /* 800469EC */ void roomFinish(int);
-    /* 80046A58 */ void orderStartDemo();
-    /* 80046C0C */ void remove();
-    /* 80046CB8 */ void startProc(dEvDtEvent_c*);
-    /* 80046DA0 */ void closeProc(dEvDtEvent_c*);
-    /* 80046DAC */ void endProc(s16, int);
-    /* 80046E64 */ void Sequencer();
-    /* 800473FC */ void Experts();
-    /* 800474BC */ void getEventData(s16);
-    /* 80047454 */ void getEventData(s16, int);
-    /* 80047514 */ void getEventIdx(char const*, u8, s32);
-    /* 80047698 */ void getEventIdx(fopAc_ac_c*, u8);
-    /* 80047758 */ void getEventIdx(fopAc_ac_c*, char const*, u8);
-    /* 80047930 */ void isMapToolCamera(u8, s32);
-    /* 80047984 */ void order(s16);
-    /* 800479F8 */ void startCheck(s16);
-    /* 80047A38 */ void startCheckOld(char const*);
-    /* 80047A78 */ void endCheck(s16);
-    /* 80047ADC */ void endCheckOld(char const*);
-    /* 80047B1C */ void getMyStaffId(char const*, fopAc_ac_c*, int);
-    /* 80047D4C */ void getIsAddvance(int);
-    /* 80047E10 */ void getMyActIdx(int, char const* const*, int, int, int);
-    /* 80047F5C */ void getMyNowCutName(int);
-    /* 80047FC8 */ void getMyDataP(int, char const*, int);
-    /* 800480EC */ void getMySubstanceP(int, char const*, int);
-    /* 80048144 */ void getMySubstanceNum(int, char const*);
-    /* 8004817C */ void cutEnd(int);
-    /* 800481F4 */ void getEventPrio(fopAc_ac_c*, s16);
-    /* 800482CC */ void issueStaff(char const*);
-    /* 80048348 */ void cancelStaff(char const*);
-    /* 800483C4 */ void setGoal(cXyz*);
-    /* 800483E0 */ void getGoal();
-    /* 800483E8 */ void getRunEventName();
-    /* 80048520 */ void specialCast_Shutter(s16, int);
-    /* 80048618 */ void specialCast(char const*, int);
-    /* 800487F0 */ void ChkPresentEnd();
-    /* 8004882C */ void checkStartDemo();
-};
-
-struct dEvent_exception_c {
-    /* 800463DC */ void init();
-    /* 800463F0 */ void setStartDemo(int);
-    /* 80046480 */ void getEventName();
-};
-
-struct dEvDtFlag_c {
-    /* 80043DC8 */ void flagSet(int);
-    /* 80043E58 */ void init();
-};
-
-struct dEvDtBase_c {
-    /* 80030190 */ ~dEvDtBase_c();
-    /* 8004616C */ void init(char*, int);
-    /* 80046138 */ void init();
-    /* 8004628C */ void advanceCut(dEvDtEvent_c*);
-    /* 800466E0 */ dEvDtBase_c();
 };
 
 struct dCamera_c {
@@ -250,7 +156,6 @@ extern "C" void Center__9dCamera_cFv();
 extern "C" void __mi__4cXyzCFRC3Vec();
 extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void setDemoName__11Z2StatusMgrFPc();
-extern "C" void PSVECSquareMag();
 extern "C" void __construct_array();
 extern "C" void _savegpr_20();
 extern "C" void _savegpr_22();

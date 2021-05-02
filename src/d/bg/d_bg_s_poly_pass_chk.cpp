@@ -8,38 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct dBgS_PolyPassChk {
-    /* 80078D64 */ dBgS_PolyPassChk();
-    /* 80078DB0 */ ~dBgS_PolyPassChk();
-    /* 80078E0C */ void SetPassChkInfo(dBgS_PolyPassChk&);
-    /* 80078E68 */ void SetObj();
-    /* 80078E74 */ void ClrObj();
-    /* 80078E80 */ void SetCam();
-    /* 80078E8C */ void ClrCam();
-    /* 80078E98 */ void SetLink();
-    /* 80078EA4 */ void ClrLink();
-    /* 80078EB0 */ void SetArrow();
-    /* 80078EBC */ void SetBomb();
-    /* 80078EC8 */ void ClrBomb();
-    /* 80078ED4 */ void SetBoomerang();
-    /* 80078EE0 */ void SetRope();
-    /* 80078EEC */ void SetUnderwaterRoof();
-    /* 80078EF8 */ void SetHorse();
-    /* 80078F04 */ void ChkNoHorse();
-    /* 80078F7C */ void SetStatue();
-    /* 80078F88 */ void ClrStatue();
-    /* 80078F94 */ void SetIronBall();
-    /* 80078FA0 */ void ClrIronBall();
-};
-
-struct cBgS_PolyPassChk {
-    /* 80078FAC */ ~cBgS_PolyPassChk();
-};
-
-//
 // Forward References:
 //
 
@@ -258,7 +226,7 @@ asm void dBgS_PolyPassChk::SetHorse() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgS_PolyPassChk::ChkNoHorse() {
+asm bool dBgS_PolyPassChk::ChkNoHorse() {
     nofralloc
 #include "asm/d/bg/d_bg_s_poly_pass_chk/ChkNoHorse__16dBgS_PolyPassChkFv.s"
 }

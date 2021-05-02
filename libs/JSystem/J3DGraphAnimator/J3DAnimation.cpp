@@ -29,12 +29,6 @@ struct J3DModelData {};
 
 struct J3DMaterialTable {};
 
-struct J3DFrameCtrl {
-    /* 803283FC */ void init(s16);
-    /* 8032842C */ void checkPass(f32);
-    /* 803289CC */ void update();
-};
-
 struct J3DAnmVtxColorKey {
     /* 8032A4E0 */ J3DAnmVtxColorKey();
     /* 8032A53C */ void getColor(u8, u16, _GXColor*) const;
@@ -255,6 +249,18 @@ SECTION_SDATA2 static u8 lit_853[4] = {
 };
 
 /* 803283FC-8032842C 322D3C 0030+00 0/0 25/25 285/285 .text            init__12J3DFrameCtrlFs */
+// zero-initialized literal
+#ifdef NONMATCHING
+void J3DFrameCtrl::init(s16 pEnd) {
+    mAttribute = 2;
+    mState = false;
+    mStart = 0;
+    mEnd = pEnd;
+    mLoop = 0;
+    mRate = 1.0f;
+    mFrame = 0.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -263,6 +269,7 @@ asm void J3DFrameCtrl::init(s16 param_0) {
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/init__12J3DFrameCtrlFs.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80456438-80456440 004A38 0004+04 2/2 0/0 0/0 .sdata2          @973 */

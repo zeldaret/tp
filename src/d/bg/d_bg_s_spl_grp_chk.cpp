@@ -8,37 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct cXyz {};
-
-struct dBgS_SplGrpChk {
-    /* 80078B90 */ void Set(cXyz&, f32);
-    /* 80078BB0 */ dBgS_SplGrpChk();
-    /* 80078C78 */ ~dBgS_SplGrpChk();
-    /* 80078D0C */ void Init();
-};
-
-struct dBgS_Chk {
-    /* 8007749C */ dBgS_Chk();
-    /* 800774E8 */ ~dBgS_Chk();
-    /* 80077560 */ void GetPolyPassChkInfo();
-    /* 80077564 */ void GetGrpPassChkInfo();
-};
-
-struct cBgS_PolyInfo {
-    /* 80268074 */ cBgS_PolyInfo();
-    /* 802680B0 */ ~cBgS_PolyInfo();
-    /* 80268120 */ void ClearPi();
-};
-
-struct cBgS_Chk {
-    /* 80267B4C */ cBgS_Chk();
-    /* 80267B70 */ ~cBgS_Chk();
-};
-
-//
 // Forward References:
 //
 

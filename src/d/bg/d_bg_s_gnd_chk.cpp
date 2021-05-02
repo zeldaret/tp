@@ -11,11 +11,6 @@
 // Types:
 //
 
-struct dBgS_PolyPassChk {
-    /* 80078E68 */ void SetObj();
-    /* 80078E80 */ void SetCam();
-};
-
 struct dBgS_ObjGndChk_Wtr {
     /* 80077678 */ dBgS_ObjGndChk_Wtr();
     /* 80077710 */ ~dBgS_ObjGndChk_Wtr();
@@ -30,18 +25,6 @@ struct dBgS_ObjGndChk_All {
     /* 800778E8 */ ~dBgS_ObjGndChk_All();
 };
 
-struct dBgS_GndChk {
-    /* 8007757C */ dBgS_GndChk();
-    /* 800775F0 */ ~dBgS_GndChk();
-};
-
-struct dBgS_Chk {
-    /* 8007749C */ dBgS_Chk();
-    /* 800774E8 */ ~dBgS_Chk();
-    /* 80077560 */ void GetPolyPassChkInfo();
-    /* 80077564 */ void GetGrpPassChkInfo();
-};
-
 struct dBgS_CamGndChk_Wtr {
     /* 80077A00 */ dBgS_CamGndChk_Wtr();
     /* 80077A98 */ ~dBgS_CamGndChk_Wtr();
@@ -49,11 +32,6 @@ struct dBgS_CamGndChk_Wtr {
 
 struct dBgS_CamGndChk {
     /* 80077988 */ ~dBgS_CamGndChk();
-};
-
-struct cBgS_GndChk {
-    /* 80267C1C */ cBgS_GndChk();
-    /* 80267C94 */ ~cBgS_GndChk();
 };
 
 //
