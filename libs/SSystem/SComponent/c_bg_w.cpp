@@ -23,8 +23,7 @@ void cBgW_BgId::Release() {
 
 /* 802681D4-802681E4 262B14 0010+00 0/0 7/7 121/121 .text            ChkUsed__9cBgW_BgIdCFv */
 unsigned int cBgW_BgId::ChkUsed() const {
-    unsigned int temp = mId - 0x100;
-    return temp >> 0x1f;
+    return mId < 0x100;
 }
 
 /* 802681E4-802681FC 262B24 0018+00 1/1 22/22 8/8 .text            cBgW_CheckBGround__Ff */

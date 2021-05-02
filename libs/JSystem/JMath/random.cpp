@@ -8,30 +8,10 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct JMath {
-    struct TRandom_fast_ {
-        /* 80339AE4 */ TRandom_fast_(u32);
-    };
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__Q25JMath13TRandom_fast_FUl();
-
-//
-// External References:
-//
-
-//
 // Declarations:
 //
 
 /* 80339AE4-80339AEC -00001 0008+00 0/0 0/0 0/0 .text            __ct__Q25JMath13TRandom_fast_FUl */
 JMath::TRandom_fast_::TRandom_fast_(u32 param_0) {
-    *(u32*)this = (u32)(param_0);
+    value = param_0;
 }
