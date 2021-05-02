@@ -14,7 +14,8 @@ And will eventually build all the [RELs](./docs/rels_sha1.md).
 2. Run the executable located at `devkitPro\msys2\msys2.exe`
 3. Update pacman by running the following command: `pacman -Syu`
 4. Install the necessary dependencies by running the following command: `pacman -S python3-pip base-devel gcc vim cmake`
-5. Change to the directory of where you cloned this repository and you are ready to build!
+5. Change to the directory of where you cloned this repository
+6. Install the required python dependencies with `python3 -mpip install -r tools/requirements.txt`
 
 ## Build Instructions
 
