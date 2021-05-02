@@ -115,7 +115,10 @@ extern "C" extern u32 __float_nan;
 /* ############################################################################################## */
 /* 803CC5F0-803CC600 029710 0010+00 3/3 0/0 0/0 .data sChannelMask__Q210JUTGamePad7CRumble */
 SECTION_DATA PADMask JUTGamePad::CRumble::sChannelMask[4] = {
-    PAD_CHAN0_BIT, PAD_CHAN1_BIT, PAD_CHAN2_BIT, PAD_CHAN3_BIT,
+    PAD_CHAN0_BIT,
+    PAD_CHAN1_BIT,
+    PAD_CHAN2_BIT,
+    PAD_CHAN3_BIT,
 };
 
 /* 803CC600-803CC610 029720 0010+00 2/2 0/0 0/0 .data            channel_mask */
@@ -287,7 +290,7 @@ callbackFn JUTGamePad::C3ButtonReset::sCallback;
 
 /* 804514F0-804514F8 0009F0 0004+04 2/2 4/4 0/0 .sbss sCallbackArg__Q210JUTGamePad13C3ButtonReset
  */
-void *JUTGamePad::C3ButtonReset::sCallbackArg;
+void* JUTGamePad::C3ButtonReset::sCallbackArg;
 
 /* 804514F8-80451500 0009F8 0008+00 2/2 0/0 0/0 .sbss sThreshold__Q210JUTGamePad13C3ButtonReset */
 OSTime JUTGamePad::C3ButtonReset::sThreshold;
@@ -312,7 +315,8 @@ void JUTGamePad::checkResetCallback(OSTime unk) {
     struct_80451501 = true;
     JUTGamePad::C3ButtonReset::sResetOccurredPort = this->pad_port;
     if (JUTGamePad::C3ButtonReset::sCallback != NULL) {
-        JUTGamePad::C3ButtonReset::sCallback(this->pad_port, JUTGamePad::C3ButtonReset::sCallbackArg);
+        JUTGamePad::C3ButtonReset::sCallback(this->pad_port,
+                                             JUTGamePad::C3ButtonReset::sCallbackArg);
     }
 }
 
@@ -446,7 +450,7 @@ SECTION_SDATA2 static f32 lit_1121 = 10430.37890625f;
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm u32 JUTGamePad::CStick::update(s8 param_0, s8 param_1, JUTGamePad::EStickMode param_2,
-                                    JUTGamePad::EWhichStick param_3, u32 param_4) {
+                                   JUTGamePad::EWhichStick param_3, u32 param_4) {
     nofralloc
 #include "asm/JSystem/JUtility/JUTGamePad/func_802E1238.s"
 }
@@ -574,7 +578,7 @@ asm void JUTGamePad::CRumble::stopPatternedRumbleAtThePeriod() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JUTGamePad *JUTGamePad::getGamePad(int param_0) {
+asm JUTGamePad* JUTGamePad::getGamePad(int param_0) {
     nofralloc
 #include "asm/JSystem/JUtility/JUTGamePad/getGamePad__10JUTGamePadFi.s"
 }

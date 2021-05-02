@@ -4,16 +4,9 @@
 //
 
 #include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "dol2asm.h"
 #include "global.h"
-
-//
-// Types:
-//
-
-struct JUTException {
-    /* 802E21FC */ static void panic_f(char const*, int, char const*, ...);
-};
 
 //
 // Forward References:
@@ -107,13 +100,13 @@ extern "C" void* __vt__7JKRHeap;
 //
 
 /* 80451370-80451374 000870 0004+00 3/3 44/44 0/0 .sbss            sSystemHeap__7JKRHeap */
-JKRHeap *JKRHeap::sSystemHeap;
+JKRHeap* JKRHeap::sSystemHeap;
 
 /* 80451374-80451378 000874 0004+00 4/4 23/22 0/0 .sbss            sCurrentHeap__7JKRHeap */
-JKRHeap *JKRHeap::sCurrentHeap;
+JKRHeap* JKRHeap::sCurrentHeap;
 
 /* 80451378-8045137C 000878 0004+00 3/3 10/10 0/0 .sbss            sRootHeap__7JKRHeap */
-JKRHeap *JKRHeap::sRootHeap;
+JKRHeap* JKRHeap::sRootHeap;
 
 /* 8045137C-80451380 00087C 0004+00 2/2 3/3 0/0 .sbss            mErrorHandler__7JKRHeap */
 JKRErrorHandler JKRHeap::mErrorHandler;
@@ -196,16 +189,16 @@ asm JKRHeap::~JKRHeap() {
 
 /* ############################################################################################## */
 /* 80451384-80451388 000884 0004+00 1/1 1/1 0/0 .sbss            mCodeStart__7JKRHeap */
-void *JKRHeap::mCodeStart;
+void* JKRHeap::mCodeStart;
 
 /* 80451388-8045138C 000888 0004+00 1/1 1/1 0/0 .sbss            mCodeEnd__7JKRHeap */
-void *JKRHeap::mCodeEnd;
+void* JKRHeap::mCodeEnd;
 
 /* 8045138C-80451390 00088C 0004+00 1/1 1/1 0/0 .sbss            mUserRamStart__7JKRHeap */
-void *JKRHeap::mUserRamStart;
+void* JKRHeap::mUserRamStart;
 
 /* 80451390-80451394 000890 0004+00 1/1 1/1 0/0 .sbss            mUserRamEnd__7JKRHeap */
-void *JKRHeap::mUserRamEnd;
+void* JKRHeap::mUserRamEnd;
 
 /* 80451394-80451398 000894 0004+00 1/1 2/2 0/0 .sbss            mMemorySize__7JKRHeap */
 u32 JKRHeap::mMemorySize;
@@ -518,7 +511,6 @@ void JKRHeap::copyMemory(void* dst, void* src, u32 size) {
         count--;
     }
 }
-
 
 /* 802CEB40-802CEB78 2C9480 0038+00 2/2 0/0 0/0 .text JKRDefaultMemoryErrorRoutine__FPvUli */
 void JKRDefaultMemoryErrorRoutine(void* heap, u32 size, int alignment) {

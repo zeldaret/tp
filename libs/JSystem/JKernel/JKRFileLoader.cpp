@@ -5,48 +5,8 @@
 
 #include "JSystem/JKernel/JKRFileLoader.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JSUPtrList {
-    /* 802DBEAC */ ~JSUPtrList();
-    /* 802DBF14 */ void initiate();
-};
-
-struct JSUPtrLink {
-    /* 802DBDFC */ JSUPtrLink(void*);
-    /* 802DBE14 */ ~JSUPtrLink();
-};
-
-template <typename A0>
-struct JSUList {};
-/* JSUList<JKRFileLoader> */
-struct JSUList__template7 {
-    /* 802D45E4 */ void func_802D45E4(void* _this);
-};
-
-struct JKRFileLoader {
-    /* 802D40F0 */ JKRFileLoader();
-    /* 802D4148 */ ~JKRFileLoader();
-    /* 802D41D4 */ void unmount();
-    /* 802D4224 */ void getGlbResource(char const*);
-    /* 802D4270 */ void getGlbResource(char const*, JKRFileLoader*);
-    /* 802D4308 */ void removeResource(void*, JKRFileLoader*);
-    /* 802D43A0 */ void detachResource(void*, JKRFileLoader*);
-    /* 802D4438 */ void findVolume(char const**);
-    /* 802D44C4 */ void fetchVolumeName(char*, s32, char const*);
-
-    static u8 sVolumeList[12];
-    static u8 sCurrentVolume[4 + 4 /* padding */];
-};
-
-struct JKRDisposer {
-    /* 802D147C */ JKRDisposer();
-    /* 802D14E4 */ ~JKRDisposer();
-};
+#include "global.h"
+#include "msl_c/string.h"
 
 //
 // Forward References:
@@ -81,8 +41,6 @@ extern "C" void initiate__10JSUPtrListFv();
 extern "C" void __register_global_object();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
-extern "C" void strcmp();
-extern "C" void strcpy();
 extern "C" extern u8 __lower_map[256];
 
 //
@@ -90,121 +48,124 @@ extern "C" extern u8 __lower_map[256];
 //
 
 /* ############################################################################################## */
-/* 803CC1C8-803CC208 0292E8 003C+04 2/2 0/0 0/0 .data            __vt__13JKRFileLoader */
-SECTION_DATA extern void* __vt__13JKRFileLoader[15 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__13JKRFileLoaderFv,
-    (void*)unmount__13JKRFileLoaderFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    /* padding */
-    NULL,
-};
+/* 80451418-80451420 000918 0004+04 2/2 3/3 0/0 .sbss            sCurrentVolume__13JKRFileLoader */
+JKRFileLoader* JKRFileLoader::sCurrentVolume;
+/* 80434354-80434360 061074 000C+00 5/5 14/14 0/0 .bss             sVolumeList__13JKRFileLoader */
+JSUList<JKRFileLoader> JKRFileLoader::sVolumeList;
 
 /* 802D40F0-802D4148 2CEA30 0058+00 0/0 2/2 0/0 .text            __ct__13JKRFileLoaderFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRFileLoader::JKRFileLoader() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRFileLoader/__ct__13JKRFileLoaderFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80451418-80451420 000918 0004+04 2/2 3/3 0/0 .sbss            sCurrentVolume__13JKRFileLoader */
-u8 JKRFileLoader::sCurrentVolume[4 + 4 /* padding */];
+JKRFileLoader::JKRFileLoader(void)
+    : mFileLoaderLink(this), mVolumeName(NULL), mVolumeType(0), mMountCount(0) {}
 
 /* 802D4148-802D41D4 2CEA88 008C+00 1/0 2/2 0/0 .text            __dt__13JKRFileLoaderFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRFileLoader::~JKRFileLoader() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRFileLoader/__dt__13JKRFileLoaderFv.s"
+JKRFileLoader::~JKRFileLoader() {
+    if (getCurrentVolume() == this) {
+        setCurrentVolume(NULL);
+    }
 }
-#pragma pop
 
 /* 802D41D4-802D4224 2CEB14 0050+00 1/0 6/0 0/0 .text            unmount__13JKRFileLoaderFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRFileLoader::unmount() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRFileLoader/unmount__13JKRFileLoaderFv.s"
+void JKRFileLoader::unmount(void) {
+    s32 count = mMountCount;
+    if (mMountCount != 0) {
+        count--;
+        mMountCount = count;
+        if (count == 0) {
+            delete this;
+        }
+    }
 }
-#pragma pop
 
 /* 802D4224-802D4270 2CEB64 004C+00 0/0 2/2 0/0 .text            getGlbResource__13JKRFileLoaderFPCc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRFileLoader::getGlbResource(char const* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRFileLoader/getGlbResource__13JKRFileLoaderFPCc.s"
+void* JKRFileLoader::getGlbResource(const char* name) {
+    const char* name_reference[1];
+    name_reference[0] = name;
+
+    JKRFileLoader* fileLoader = findVolume(name_reference);
+    void* resource;
+    if (fileLoader == NULL) {
+        resource = NULL;
+    } else {
+        resource = fileLoader->getResource(name_reference[0]);
+    }
+
+    return resource;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80434348-80434354 061068 000C+00 1/1 0/0 0/0 .bss             @2182 */
-static u8 lit_2182[12];
-
-/* 80434354-80434360 061074 000C+00 5/5 14/14 0/0 .bss             sVolumeList__13JKRFileLoader */
-u8 JKRFileLoader::sVolumeList[12];
 
 /* 802D4270-802D4308 2CEBB0 0098+00 0/0 29/29 1/1 .text
  * getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRFileLoader::getGlbResource(char const* param_0, JKRFileLoader* param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRFileLoader/getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader.s"
+void* JKRFileLoader::getGlbResource(const char* name, JKRFileLoader* fileLoader) {
+    void* resource = NULL;
+    if (fileLoader) {
+        return fileLoader->getResource(0, name);
+    }
+
+    JSUList<JKRFileLoader>& volumeList = getVolumeList();
+    JSUListIterator<JKRFileLoader> iterator;
+    for (iterator = volumeList.getFirst(); iterator != volumeList.getEnd(); ++iterator) {
+        resource = iterator->getResource(0, name);
+        if (resource)
+            break;
+    }
+    return resource;
 }
-#pragma pop
 
 /* 802D4308-802D43A0 2CEC48 0098+00 0/0 1/1 0/0 .text
  * removeResource__13JKRFileLoaderFPvP13JKRFileLoader           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRFileLoader::removeResource(void* param_0, JKRFileLoader* param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRFileLoader/removeResource__13JKRFileLoaderFPvP13JKRFileLoader.s"
+bool JKRFileLoader::removeResource(void* resource, JKRFileLoader* fileLoader) {
+    if (fileLoader) {
+        return fileLoader->removeResource(resource);
+    }
+
+    JSUList<JKRFileLoader>& volumeList = getVolumeList();
+    JSUListIterator<JKRFileLoader> iterator;
+    for (iterator = volumeList.getFirst(); iterator != volumeList.getEnd(); ++iterator) {
+        if (iterator->removeResource(resource)) {
+            return true;
+        }
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 802D43A0-802D4438 2CECE0 0098+00 0/0 2/2 0/0 .text
  * detachResource__13JKRFileLoaderFPvP13JKRFileLoader           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRFileLoader::detachResource(void* param_0, JKRFileLoader* param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRFileLoader/detachResource__13JKRFileLoaderFPvP13JKRFileLoader.s"
+bool JKRFileLoader::detachResource(void* resource, JKRFileLoader* fileLoader) {
+    if (fileLoader) {
+        return fileLoader->detachResource(resource);
+    }
+
+    JSUList<JKRFileLoader>& volumeList = getVolumeList();
+    JSUListIterator<JKRFileLoader> iterator;
+    for (iterator = volumeList.getFirst(); iterator != volumeList.getEnd(); ++iterator) {
+        if (iterator->detachResource(resource)) {
+            return true;
+        }
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 802D4438-802D44C4 2CED78 008C+00 1/1 0/0 0/0 .text            findVolume__13JKRFileLoaderFPPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRFileLoader::findVolume(char const** param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRFileLoader/findVolume__13JKRFileLoaderFPPCc.s"
+JKRFileLoader* JKRFileLoader::findVolume(const char** volumeName) {
+    if (*volumeName[0] != '/') {
+        return getCurrentVolume();
+    }
+
+    char volumeNameBuffer[0x101];
+    *volumeName = fetchVolumeName(volumeNameBuffer, ARRAY_SIZE(volumeNameBuffer), *volumeName);
+
+    JSUList<JKRFileLoader>& volumeList = getVolumeList();
+    JSUListIterator<JKRFileLoader> iterator;
+    for (iterator = volumeList.getFirst(); iterator != volumeList.getEnd(); ++iterator) {
+        if (strcmp(volumeNameBuffer, iterator->mVolumeName) == 0) {
+            return iterator.getObject();
+        }
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039D150-8039D150 0297B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -229,39 +190,53 @@ SECTION_SDATA static u8 rootPath[2 + 6 /* padding */] = {
 };
 
 /* 802D44C4-802D45A0 2CEE04 00DC+00 1/1 0/0 0/0 .text fetchVolumeName__13JKRFileLoaderFPclPCc */
+// matches, but lbl_804508C0 is accessed through r13
+#ifdef NONMATCHING
+const char* JKRFileLoader::fetchVolumeName(char* buffer, long bufferSize, const char* path) {
+    // lbl_803D2D18 = MSL_C.PPCEABI.bare.H::__lower_map
+    // lbl_8039D150 = JKernel::@stringBase0 "/"
+    // lbl_804508C0 = JKernel::rootPath$2498 "/"
+    // lbl_803D2D18 = MSL_C.PPCEABI.bare.H::__lower_map
+
+    if (strcmp(path, lbl_8039D150) == 0) {
+        strcpy(buffer, lbl_804508C0);
+        return lbl_804508C0;
+    }
+
+    path++;
+    while (*path != 0 && *path != '/') {
+        if (1 < bufferSize) {
+            u8 lower_char;
+            int ch = (int)*path;
+            if (ch == -1) {
+                lower_char = -1;
+            } else {
+                lower_char = lbl_803D2D18[ch & 0xFF];
+            }
+
+            *buffer = lower_char;
+            buffer++;
+            bufferSize--;
+        }
+        path++;
+    }
+
+    *buffer = '\0';
+    if (*path == '\0') {
+        path = lbl_804508C0;
+    }
+
+    return path;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRFileLoader::fetchVolumeName(char* param_0, s32 param_1, char const* param_2) {
+asm const char* JKRFileLoader::fetchVolumeName(char* param_0, s32 param_1, char const* param_2) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRFileLoader/fetchVolumeName__13JKRFileLoaderFPclPCc.s"
 }
 #pragma pop
-
-/* 802D45A0-802D45E4 2CEEE0 0044+00 0/0 1/0 0/0 .text            __sinit_JKRFileLoader_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_JKRFileLoader_cpp() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRFileLoader/__sinit_JKRFileLoader_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x802D45A0, __sinit_JKRFileLoader_cpp);
-#pragma pop
-
-/* 802D45E4-802D4638 2CEF24 0054+00 1/1 0/0 0/0 .text            __dt__24JSUList<13JKRFileLoader>Fv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void func_802D45E4(void* _this) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRFileLoader/func_802D45E4.s"
-}
-#pragma pop
+#endif
 
 /* 8039D150-8039D150 0297B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

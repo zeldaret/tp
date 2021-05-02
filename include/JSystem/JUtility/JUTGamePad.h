@@ -1,11 +1,11 @@
 #ifndef JUTGAMEPAD_H
 #define JUTGAMEPAD_H
 
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/pad/Pad.h"
+#include "dolphin/types.h"
 
 typedef void (*callbackFn)(int, void*);
 
@@ -93,7 +93,7 @@ public:
         static u32 sResetPattern;
         static u32 sResetMaskPattern;
         static callbackFn sCallback;
-        static void *sCallbackArg;
+        static void* sCallbackArg;
         static OSTime sThreshold;
         static s32 sResetOccurredPort;
     };

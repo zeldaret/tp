@@ -223,7 +223,7 @@ void* JKRSolidHeap::allocFromHead(u32 size, int alignment) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void *JKRSolidHeap::allocFromHead(u32 param_0, int param_1) {
+asm void* JKRSolidHeap::allocFromHead(u32 param_0, int param_1) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRSolidHeap/allocFromHead__12JKRSolidHeapFUli.s"
 }
@@ -243,7 +243,7 @@ SECTION_DEAD static char const* const stringBase_8039CE81 =
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void *JKRSolidHeap::allocFromTail(u32 param_0, int param_1) {
+asm void* JKRSolidHeap::allocFromTail(u32 param_0, int param_1) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRSolidHeap/allocFromTail__12JKRSolidHeapFUli.s"
 }

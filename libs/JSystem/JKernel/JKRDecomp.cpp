@@ -3,7 +3,7 @@
 // Translation Unit: JKRDecomp
 //
 
-#include "JSystem/JKernel/JKRDecomp.h"
+// #include "JSystem/JKernel/JKRDecomp.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

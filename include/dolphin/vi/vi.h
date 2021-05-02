@@ -5,4 +5,6 @@
 
 typedef void (*VIRetraceCallback)(u32);
 
+extern "C" void VIWaitForRetrace(void);
+
 #endif /* VI_H */

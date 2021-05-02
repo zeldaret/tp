@@ -4,16 +4,9 @@
 //
 
 #include "JSystem/JKernel/JKRAramHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 #include "global.h"
-
-//
-// Types:
-//
-
-struct JKRHeap {
-    /* 802CE83C */ static JKRHeap *findFromRoot(void*);
-};
 
 //
 // Forward References:
@@ -36,7 +29,6 @@ extern "C" void* __vt__11JKRAramHeap;
 //
 // External References:
 //
-
 
 // TODO: move to JKRHeap
 void* operator new(u32 size);

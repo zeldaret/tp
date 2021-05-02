@@ -2,7 +2,6 @@
 #define JUTFONT_H
 
 #include "dolphin/gx/GX.h"
-#include "dolphin/gx/GXTexture.h"
 #include "dolphin/types.h"
 
 namespace JUtility {

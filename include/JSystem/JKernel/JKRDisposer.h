@@ -16,5 +16,4 @@ public:
     /* 0x08 */ JSULink<JKRDisposer> mLink;
 };
 
-
 #endif /* JKRDISPOSER_H */

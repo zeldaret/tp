@@ -4,9 +4,9 @@
 //
 
 #include "JSystem/JKernel/JKRThread.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "JSystem/JKernel/JKRExpHeap.h"
 
 //
 // Types:
@@ -90,7 +90,7 @@ extern "C" void sprintf();
 extern "C" u8 sSystemHeap__7JKRHeap[4];
 extern "C" u8 sCurrentHeap__7JKRHeap[4];
 extern "C" u8 sRootHeap__7JKRHeap[4];
-extern "C" void *__vt__15JKRThreadSwitch;
+extern "C" void* __vt__15JKRThreadSwitch;
 
 //
 // Declarations:
@@ -319,7 +319,7 @@ asm void JKRThreadSwitch::draw(JKRThreadName_* param_0, JUTConsole* param_1) {
 #pragma pop
 
 /* 802D1E14-802D1E1C 2CC754 0008+00 1/0 0/0 0/0 .text            run__9JKRThreadFv */
-void *JKRThread::run() {
+void* JKRThread::run() {
     return NULL;
 }
 

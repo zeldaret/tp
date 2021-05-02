@@ -15,7 +15,6 @@ extern "C" void __ARQServiceQueueLo();
 extern "C" void __ARQCallbackHack();
 extern "C" void __ARQInterruptServiceRoutine();
 extern "C" void ARQInit();
-extern "C" void ARQPostRequest();
 
 //
 // External References:
@@ -186,7 +185,8 @@ asm void ARQInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void ARQPostRequest() {
+asm void ARQPostRequest(ARQRequest* task, u32 owner, u32 type, u32 priority, u32 source,
+                        u32 destination, u32 length, ARQCallback callback) {
     nofralloc
 #include "asm/dolphin/ar/arq/ARQPostRequest.s"
 }

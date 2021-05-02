@@ -1,9 +1,9 @@
 #ifndef JKRHEAP_H
 #define JKRHEAP_H
 
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "dolphin/os/OS.h"
+#include "dolphin/types.h"
 
 class JKRHeap;
 typedef void (*JKRErrorHandler)(void*, u32, int);

@@ -1,10 +1,10 @@
 #ifndef JKRTHREAD_H
 #define JKRTHREAD_H
 
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRDisposer.h"
-#include "dolphin/os/OS.h"
 #include "JSystem/JSupport/JSUList.h"
+#include "dolphin/os/OS.h"
+#include "dolphin/types.h"
 
 class JKRThreadName_;
 class JUTConsole;

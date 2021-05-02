@@ -1,10 +1,10 @@
 #ifndef JKRARAMHEAP_H
 #define JKRARAMHEAP_H
 
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRAramBlock.h"
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "dolphin/os/OS.h"
+#include "dolphin/types.h"
 
 class JKRAramHeap : public JKRDisposer {
 public:

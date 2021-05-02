@@ -4,64 +4,9 @@
 //
 
 #include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JUTException {
-    /* 802E21FC */ static void panic_f(char const*, int, char const*, ...);
-};
-
-// struct JKRExpHeap {
-//     struct CMemBlock {
-//         /* 802D0810 */ void initiate(JKRExpHeap::CMemBlock*, JKRExpHeap::CMemBlock*, u32, u8, u8);
-//         /* 802D0830 */ void allocFore(u32, u8, u8, u8, u8);
-//         /* 802D0874 */ void allocBack(u32, u8, u8, u8, u8);
-//         /* 802D08CC */ void free(JKRExpHeap*);
-//         /* 802D091C */ void getHeapBlock(void*);
-//     };
-
-//     /* 802CEDB4 */ void createRoot(int, bool);
-//     /* 802CEF00 */ void create(void*, u32, JKRHeap*, bool);
-//     /* 802CEE2C */ void create(u32, JKRHeap*, bool);
-//     /* 802CEFAC */ void do_destroy();
-//     /* 802CF030 */ JKRExpHeap(void*, u32, JKRHeap*, bool);
-//     /* 802CF0C0 */ ~JKRExpHeap();
-//     /* 802CF128 */ void do_alloc(u32, int);
-//     /* 802CF490 */ void allocFromHead(u32);
-//     /* 802CF234 */ void allocFromHead(u32, int);
-//     /* 802CF6D4 */ void allocFromTail(u32);
-//     /* 802CF574 */ void allocFromTail(u32, int);
-//     /* 802CF7AC */ void do_free(void*);
-//     /* 802CF820 */ void do_freeAll();
-//     /* 802CF89C */ void do_freeTail();
-//     /* 802CF924 */ void do_fillFreeArea();
-//     /* 802CF928 */ void do_changeGroupID(u8);
-//     /* 802CF978 */ void do_resize(void*, u32);
-//     /* 802CFB24 */ void do_getSize(void*);
-//     /* 802CFBA4 */ void do_getFreeSize();
-//     /* 802CFC10 */ void do_getMaxFreeBlock();
-//     /* 802CFC84 */ void do_getTotalFreeSize();
-//     /* 802CFCE8 */ void getUsedSize(u8) const;
-//     /* 802CFD64 */ void getTotalUsedSize() const;
-//     /* 802CFDCC */ void appendUsedList(JKRExpHeap::CMemBlock*);
-//     /* 802CFE68 */ void setFreeBlock(JKRExpHeap::CMemBlock*, JKRExpHeap::CMemBlock*,
-//                                      JKRExpHeap::CMemBlock*);
-//     /* 802CFEB4 */ void removeFreeBlock(JKRExpHeap::CMemBlock*);
-//     /* 802CFEE8 */ void removeUsedBlock(JKRExpHeap::CMemBlock*);
-//     /* 802CFF1C */ void recycleFreeBlock(JKRExpHeap::CMemBlock*);
-//     /* 802D00B4 */ void joinTwoBlocks(JKRExpHeap::CMemBlock*);
-//     /* 802D0190 */ void check();
-//     /* 802D03B8 */ void dump();
-//     /* 802D05CC */ void dump_sort();
-//     /* 802D0938 */ void state_register(JKRHeap::TState*, u32) const;
-//     /* 802D09E0 */ void state_compare(JKRHeap::TState const&, JKRHeap::TState const&) const;
-//     /* 802D0A10 */ void getHeapType();
-//     /* 802D0A1C */ void do_getCurrentGroupId();
-// };
 
 //
 // Forward References:
@@ -253,7 +198,7 @@ SECTION_DEAD static char const* const stringBase_8039CAF0 = ":::cannot alloc mem
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void *JKRExpHeap::do_alloc(u32 param_0, int param_1) {
+asm void* JKRExpHeap::do_alloc(u32 param_0, int param_1) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRExpHeap/do_alloc__10JKRExpHeapFUli.s"
 }
@@ -396,7 +341,7 @@ asm s32 JKRExpHeap::do_getFreeSize() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void *JKRExpHeap::do_getMaxFreeBlock() {
+asm void* JKRExpHeap::do_getMaxFreeBlock() {
     nofralloc
 #include "asm/JSystem/JKernel/JKRExpHeap/do_getMaxFreeBlock__10JKRExpHeapFv.s"
 }

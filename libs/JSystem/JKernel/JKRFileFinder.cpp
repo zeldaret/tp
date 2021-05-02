@@ -3,9 +3,11 @@
 // Translation Unit: JKRFileFinder
 //
 
-#include "JSystem/JKernel/JKRFileFinder.h"
+// #include "JSystem/JKernel/JKRFileFinder.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+
+// some problems regarding destructor inlining or vtable ordering
 
 //
 // Types:

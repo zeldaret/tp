@@ -4,14 +4,10 @@
 //
 
 #include "JSystem/JKernel/JKRAramBlock.h"
+#include "JSystem/JKernel/JKRAramHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "JSystem/JKernel/JKRAramHeap.h"
-
-// TODO: move to JKRHeap
-void* operator new(u32 size);
-void* operator new(u32 size, int alignment);
-void* operator new(u32 size, JKRHeap* heap, int alignment);
 
 //
 // Declarations:
