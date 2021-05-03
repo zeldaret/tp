@@ -5,6 +5,8 @@
 
 #include "d/d_drawlist.h"
 #include "dol2asm.h"
+#include "dolphin/mtx/mtx44.h"
+#include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 
 //

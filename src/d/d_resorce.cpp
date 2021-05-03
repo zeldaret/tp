@@ -5,6 +5,7 @@
 
 #include "d/d_resorce.h"
 #include "dol2asm.h"
+#include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 
 //
