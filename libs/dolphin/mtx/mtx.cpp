@@ -5,38 +5,9 @@
 
 #include "dolphin/mtx/mtx.h"
 #include "dol2asm.h"
+#include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
-
-//
-// Forward References:
-//
-
-extern "C" void PSMTXIdentity();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXConcat();
-extern "C" void PSMTXInverse();
-extern "C" void PSMTXRotRad();
-extern "C" static void PSMTXRotTrig();
-extern "C" void __PSMTXRotAxisRadInternal();
-extern "C" void PSMTXRotAxisRad();
-extern "C" void PSMTXTrans();
-extern "C" void PSMTXTransApply();
-extern "C" void PSMTXScale();
-extern "C" void PSMTXScaleApply();
-extern "C" void PSMTXQuat();
-extern "C" void C_MTXLookAt();
-extern "C" void C_MTXLightPerspective();
-extern "C" void C_MTXLightOrtho();
-
-//
-// External References:
-//
-
-extern "C" void PSVECNormalize();
-extern "C" void PSVECCrossProduct();
-extern "C" void tanf();
-extern "C" void sinf();
-extern "C" void cosf();
+#include "msl_c/math.h"
 
 //
 // Declarations:
@@ -58,7 +29,7 @@ SECTION_SDATA2 static u8 lit_97[4] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSMTXIdentity() {
+asm void PSMTXIdentity(Mtx matrix) {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXIdentity.s"
 }
@@ -68,7 +39,7 @@ asm void PSMTXIdentity() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSMTXCopy() {
+asm void PSMTXCopy(const Mtx src, Mtx dst) {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXCopy.s"
 }
@@ -84,7 +55,7 @@ SECTION_SDATA static u8 Unit01[8] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSMTXConcat() {
+asm void PSMTXConcat(const Mtx src_a, const Mtx src_b, Mtx dst) {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXConcat.s"
 }
@@ -94,7 +65,7 @@ asm void PSMTXConcat() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSMTXInverse() {
+asm u32 PSMTXInverse(const Mtx src, Mtx dst) {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXInverse.s"
 }
@@ -104,7 +75,7 @@ asm void PSMTXInverse() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSMTXRotRad() {
+asm void PSMTXRotRad(Mtx matrix, u8 axis, float rad) {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXRotRad.s"
 }
@@ -114,7 +85,7 @@ asm void PSMTXRotRad() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void PSMTXRotTrig() {
+asm void PSMTXRotTrig(Mtx matrix, u8 axis, float sin, float cos) {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXRotTrig.s"
 }
@@ -131,7 +102,7 @@ SECTION_SDATA2 static f32 lit_191 = 3.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __PSMTXRotAxisRadInternal() {
+asm double __PSMTXRotAxisRadInternal(double param_1, double param_2, int param_3, int param_4) {
     nofralloc
 #include "asm/dolphin/mtx/mtx/__PSMTXRotAxisRadInternal.s"
 }
@@ -141,7 +112,7 @@ asm void __PSMTXRotAxisRadInternal() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSMTXRotAxisRad() {
+asm void PSMTXRotAxisRad(Mtx matrix, const Vec* axis, float rad) {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXRotAxisRad.s"
 }
@@ -151,7 +122,7 @@ asm void PSMTXRotAxisRad() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSMTXTrans() {
+asm void PSMTXTrans(Mtx matrix, float x_trans, float y_trans, float z_trans) {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXTrans.s"
 }
@@ -161,7 +132,7 @@ asm void PSMTXTrans() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSMTXTransApply() {
+asm void PSMTXTransApply(const Mtx src, Mtx dst, float x, float y, float z) {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXTransApply.s"
 }
@@ -171,7 +142,7 @@ asm void PSMTXTransApply() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSMTXScale() {
+asm void PSMTXScale(Mtx matrix, float x_scale, float y_scale, float z_scale) {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXScale.s"
 }
@@ -181,7 +152,7 @@ asm void PSMTXScale() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSMTXScaleApply() {
+asm void PSMTXScaleApply(const Mtx src, Mtx dst, float x_scale, float y_scale, float z_scale) {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXScaleApply.s"
 }
@@ -191,7 +162,7 @@ asm void PSMTXScaleApply() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSMTXQuat() {
+asm void PSMTXQuat(Mtx matrix, const Quaternion* quat) {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXQuat.s"
 }
@@ -201,7 +172,7 @@ asm void PSMTXQuat() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void C_MTXLookAt() {
+asm void C_MTXLookAt(Mtx param_1, const Vec* param_2, const Vec* param_3, const Vec* param_4) {
     nofralloc
 #include "asm/dolphin/mtx/mtx/C_MTXLookAt.s"
 }
@@ -225,7 +196,8 @@ SECTION_SDATA2 static f32 lit_230[1 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void C_MTXLightPerspective() {
+asm void C_MTXLightPerspective(Mtx matrix, float fov_y, float aspect, float scale_s, float scale_t,
+                               float trans_s, float trans_t) {
     nofralloc
 #include "asm/dolphin/mtx/mtx/C_MTXLightPerspective.s"
 }
@@ -235,7 +207,8 @@ asm void C_MTXLightPerspective() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void C_MTXLightOrtho() {
+asm void C_MTXLightOrtho(Mtx matrix, float top, float bottom, float left, float right,
+                         float scale_s, float scale_t, float trans_s, float trans_t) {
     nofralloc
 #include "asm/dolphin/mtx/mtx/C_MTXLightOrtho.s"
 }

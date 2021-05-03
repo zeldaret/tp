@@ -3,166 +3,17 @@
 // Translation Unit: JKRArchivePub
 //
 
-#include "JSystem/JKernel/JKRArchivePub.h"
+#include "JSystem/JKernel/JKRAramArchive.h"
+#include "JSystem/JKernel/JKRAramPiece.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JKernel/JKRCompArchive.h"
+#include "JSystem/JKernel/JKRDvdArchive.h"
+#include "JSystem/JKernel/JKRFileFinder.h"
+#include "JSystem/JKernel/JKRFileLoader.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRMemArchive.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JKRMemBreakFlag {};
-
-struct JKRHeap {
-    /* 802CE500 */ void free(void*, JKRHeap*);
-
-    static u8 sSystemHeap[4];
-    static u8 sCurrentHeap[4];
-};
-
-struct JKRArchive {
-    struct EMountMode {};
-
-    struct EMountDirection {};
-
-    struct SDirEntry {};
-
-    struct SDIFileEntry {};
-
-    /* 801CC284 */ void getExpandedResSize(void const*) const;
-    /* 802D5778 */ void check_mount_already(s32, JKRHeap*);
-    /* 802D5840 */ void mount(void*, JKRHeap*, JKRArchive::EMountDirection);
-    /* 802D58C8 */ void mount(s32, JKRArchive::EMountMode, JKRHeap*, JKRArchive::EMountDirection);
-    /* 802D57E4 */ void mount(char const*, JKRArchive::EMountMode, JKRHeap*,
-                              JKRArchive::EMountDirection);
-    /* 802D5A38 */ void becomeCurrent(char const*);
-    /* 802D5AC0 */ void getDirEntry(JKRArchive::SDirEntry*, u32) const;
-    /* 802D5B38 */ void getGlbResource(u32, char const*, JKRArchive*);
-    /* 802D5D38 */ void getResource(u16);
-    /* 802D5C64 */ void getResource(u32, char const*);
-    /* 802D5BE8 */ void getResource(char const*);
-    /* 802D5CE4 */ void getIdxResource(u32);
-    /* 802D5D8C */ void readResource(void*, u32, u32, char const*);
-    /* 802D5E30 */ void readResource(void*, u32, char const*);
-    /* 802D5F40 */ void readResource(void*, u32, u16);
-    /* 802D5ECC */ void readIdxResource(void*, u32, u32);
-    /* 802D5FB4 */ void removeResourceAll();
-    /* 802D603C */ void removeResource(void*);
-    /* 802D609C */ void detachResource(void*);
-    /* 802D60D8 */ void getResSize(void const*) const;
-    /* 802D610C */ void countResource() const;
-    /* 802D6150 */ void countFile(char const*) const;
-    /* 802D61B0 */ void getFirstFile(char const*) const;
-    /* 802D625C */ void getFileAttribute(u32) const;
-    /* 802D6334 */ ~JKRArchive();
-    /* 802D641C */ void findDirectory(char const*, u32) const;
-    /* 802D64F4 */ void findTypeResource(u32, char const*) const;
-    /* 802D65A4 */ void findFsResource(char const*, u32) const;
-    /* 802D6684 */ void findIdxResource(u32) const;
-    /* 802D66AC */ void findNameResource(char const*) const;
-    /* 802D6734 */ void findPtrResource(void const*) const;
-    /* 802D6770 */ void findIdResource(u16) const;
-    /* 802D693C */ void setExpandSize(JKRArchive::SDIFileEntry*, u32);
-    /* 802D6978 */ void getExpandSize(JKRArchive::SDIFileEntry*) const;
-
-    static u8 sCurrentDirID[4 + 4 /* padding */];
-};
-
-struct JKRMemArchive {
-    /* 802D69B8 */ JKRMemArchive(s32, JKRArchive::EMountDirection);
-    /* 802D6A6C */ JKRMemArchive(void*, u32, JKRMemBreakFlag);
-};
-
-struct JKRFileLoader {
-    /* 802D41D4 */ void unmount();
-
-    static u8 sVolumeList[12];
-    static u8 sCurrentVolume[4 + 4 /* padding */];
-};
-
-struct JKRDvdArchive {
-    /* 802D7BF0 */ JKRDvdArchive(s32, JKRArchive::EMountDirection);
-};
-
-struct JKRCompArchive {
-    /* 802D87D4 */ JKRCompArchive(s32, JKRArchive::EMountDirection);
-};
-
-struct JKRArcFinder {
-    /* 802D4638 */ JKRArcFinder(JKRArchive*, s32, s32);
-};
-
-struct JKRAramArchive {
-    /* 802D70C0 */ JKRAramArchive(s32, JKRArchive::EMountDirection);
-};
-
-//
-// Forward References:
-//
-
-extern "C" void check_mount_already__10JKRArchiveFlP7JKRHeap();
-extern "C" void
-mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection();
-extern "C" void mount__10JKRArchiveFPvP7JKRHeapQ210JKRArchive15EMountDirection();
-extern "C" void
-mount__10JKRArchiveFlQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection();
-extern "C" void becomeCurrent__10JKRArchiveFPCc();
-extern "C" void getDirEntry__10JKRArchiveCFPQ210JKRArchive9SDirEntryUl();
-extern "C" void getGlbResource__10JKRArchiveFUlPCcP10JKRArchive();
-extern "C" void getResource__10JKRArchiveFPCc();
-extern "C" void getResource__10JKRArchiveFUlPCc();
-extern "C" void getIdxResource__10JKRArchiveFUl();
-extern "C" void getResource__10JKRArchiveFUs();
-extern "C" void readResource__10JKRArchiveFPvUlUlPCc();
-extern "C" void readResource__10JKRArchiveFPvUlPCc();
-extern "C" void readIdxResource__10JKRArchiveFPvUlUl();
-extern "C" void readResource__10JKRArchiveFPvUlUs();
-extern "C" void removeResourceAll__10JKRArchiveFv();
-extern "C" void removeResource__10JKRArchiveFPv();
-extern "C" void detachResource__10JKRArchiveFPv();
-extern "C" void getResSize__10JKRArchiveCFPCv();
-extern "C" void countResource__10JKRArchiveCFv();
-extern "C" void countFile__10JKRArchiveCFPCc();
-extern "C" void getFirstFile__10JKRArchiveCFPCc();
-extern "C" void getFileAttribute__10JKRArchiveCFUl();
-extern "C" extern void* __vt__10JKRArchive[20];
-
-//
-// External References:
-//
-
-extern "C" void getExpandedResSize__10JKRArchiveCFPCv();
-extern "C" void free__7JKRHeapFPvP7JKRHeap();
-extern "C" void* __nw__FUlP7JKRHeapi();
-extern "C" void unmount__13JKRFileLoaderFv();
-extern "C" void __ct__12JKRArcFinderFP10JKRArchivell();
-extern "C" void __dt__10JKRArchiveFv();
-extern "C" void findDirectory__10JKRArchiveCFPCcUl();
-extern "C" void findTypeResource__10JKRArchiveCFUlPCc();
-extern "C" void findFsResource__10JKRArchiveCFPCcUl();
-extern "C" void findIdxResource__10JKRArchiveCFUl();
-extern "C" void findNameResource__10JKRArchiveCFPCc();
-extern "C" void findPtrResource__10JKRArchiveCFPCv();
-extern "C" void findIdResource__10JKRArchiveCFUs();
-extern "C" void setExpandSize__10JKRArchiveFPQ210JKRArchive12SDIFileEntryUl();
-extern "C" void getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry();
-extern "C" void __ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection();
-extern "C" void __ct__13JKRMemArchiveFPvUl15JKRMemBreakFlag();
-extern "C" void __ct__14JKRAramArchiveFlQ210JKRArchive15EMountDirection();
-extern "C" void __ct__13JKRDvdArchiveFlQ210JKRArchive15EMountDirection();
-extern "C" void __ct__14JKRCompArchiveFlQ210JKRArchive15EMountDirection();
-extern "C" void DVDConvertPathToEntrynum();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 sVolumeList__13JKRFileLoader[12];
-extern "C" u8 sSystemHeap__7JKRHeap[4];
-extern "C" u8 sCurrentHeap__7JKRHeap[4];
-extern "C" u8 sCurrentVolume__13JKRFileLoader[4 + 4 /* padding */];
-extern "C" u8 sCurrentDirID__10JKRArchive[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -170,267 +21,370 @@ extern "C" u8 sCurrentDirID__10JKRArchive[4 + 4 /* padding */];
 
 /* 802D5778-802D57E4 2D00B8 006C+00 2/2 0/0 0/0 .text check_mount_already__10JKRArchiveFlP7JKRHeap
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::check_mount_already(s32 param_0, JKRHeap* param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePub/check_mount_already__10JKRArchiveFlP7JKRHeap.s"
+JKRArchive* JKRArchive::check_mount_already(s32 entryNum, JKRHeap* heap) {
+    if (heap == NULL) {
+        heap = JKRHeap::getCurrentHeap();
+    }
+
+    JSUList<JKRFileLoader>& volumeList = getVolumeList();
+    JSUListIterator<JKRFileLoader> iterator;
+    for (iterator = volumeList.getFirst(); iterator != volumeList.getEnd(); ++iterator) {
+        if (iterator->getVolumeType() == 'RARC') {
+            JKRArchive* archive = (JKRArchive*)iterator.getObject();
+            if (archive->mEntryNum == entryNum && archive->mHeap == heap) {
+                archive->mMountCount++;
+                return archive;
+            }
+        }
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 802D57E4-802D5840 2D0124 005C+00 0/0 1/1 0/0 .text
  * mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::mount(char const* param_0, JKRArchive::EMountMode param_1, JKRHeap* param_2,
-                           JKRArchive::EMountDirection param_3) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePub/func_802D57E4.s"
+JKRArchive* JKRArchive::mount(const char* path, JKRArchive::EMountMode mountMode, JKRHeap* heap,
+                              JKRArchive::EMountDirection mountDirection) {
+    s32 entryNum = DVDConvertPathToEntrynum(path);
+    if (entryNum < 0)
+        return NULL;
+
+    return mount(entryNum, mountMode, heap, mountDirection);
 }
-#pragma pop
 
 /* 802D5840-802D58C8 2D0180 0088+00 0/0 1/1 0/0 .text
  * mount__10JKRArchiveFPvP7JKRHeapQ210JKRArchive15EMountDirection */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::mount(void* param_0, JKRHeap* param_1, JKRArchive::EMountDirection param_2) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePub/mount__10JKRArchiveFPvP7JKRHeapQ210JKRArchive15EMountDirection.s"
+JKRArchive* JKRArchive::mount(void* ptr, JKRHeap* heap,
+                              JKRArchive::EMountDirection mountDirection) {
+    JKRArchive* archive = check_mount_already((s32)ptr, heap);
+    if (archive)
+        return archive;
+
+    int alignment;
+    if (mountDirection == JKRArchive::MOUNT_DIRECTION_HEAD) {
+        alignment = 4;
+    } else {
+        alignment = -4;
+    }
+
+    archive = new (heap, alignment) JKRMemArchive(ptr, 0xFFFF, JKRMEMBREAK_FLAG_UNKNOWN0);
+    return archive;
 }
-#pragma pop
 
 /* 802D58C8-802D5A38 2D0208 0170+00 1/1 1/1 0/0 .text
  * mount__10JKRArchiveFlQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::mount(s32 param_0, JKRArchive::EMountMode param_1, JKRHeap* param_2,
-                           JKRArchive::EMountDirection param_3) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePub/func_802D58C8.s"
+JKRArchive* JKRArchive::mount(s32 entryNum, JKRArchive::EMountMode mountMode, JKRHeap* heap,
+                              JKRArchive::EMountDirection mountDirection) {
+    JKRArchive* archive = check_mount_already(entryNum, heap);
+    if (archive != NULL) {
+        return archive;
+    } else {
+        int alignment;
+        if (mountDirection == JKRArchive::MOUNT_DIRECTION_HEAD) {
+            alignment = 4;
+        } else {
+            alignment = -4;
+        }
+
+        JKRArchive* archive;
+        switch (mountMode) {
+        case JKRArchive::MOUNT_MEM:
+            archive = new (heap, alignment) JKRMemArchive(entryNum, mountDirection);
+            break;
+        case JKRArchive::MOUNT_ARAM:
+            archive = new (heap, alignment) JKRAramArchive(entryNum, mountDirection);
+            break;
+        case JKRArchive::MOUNT_DVD:
+            archive = new (heap, alignment) JKRDvdArchive(entryNum, mountDirection);
+            break;
+        case JKRArchive::MOUNT_COMP:
+            archive = new (heap, alignment) JKRCompArchive(entryNum, mountDirection);
+            break;
+        }
+
+        if (archive && archive->getMountMode() == JKRArchive::UNKNOWN_MOUNT_MODE) {
+            delete archive;
+            archive = NULL;
+        }
+
+        return archive;
+    }
 }
-#pragma pop
 
 /* 802D5A38-802D5AC0 2D0378 0088+00 1/0 4/0 0/0 .text            becomeCurrent__10JKRArchiveFPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::becomeCurrent(char const* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePub/becomeCurrent__10JKRArchiveFPCc.s"
+bool JKRArchive::becomeCurrent(const char* path) {
+    SDirEntry* dirEntry;
+    if (*path == '/') {
+        path++;
+
+        if (*path == '\0')
+            path = NULL;
+        dirEntry = findDirectory(path, 0);
+    } else {
+        dirEntry = findDirectory(path, getCurrentDirID());
+    }
+
+    bool found = dirEntry != NULL;
+    if (found) {
+        setCurrentVolume(this);
+        setCurrentDirID(dirEntry - mNodes);
+    }
+
+    return found;
 }
-#pragma pop
 
 /* 802D5AC0-802D5B38 2D0400 0078+00 0/0 1/1 0/0 .text
  * getDirEntry__10JKRArchiveCFPQ210JKRArchive9SDirEntryUl       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::getDirEntry(JKRArchive::SDirEntry* param_0, u32 param_1) const {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePub/getDirEntry__10JKRArchiveCFPQ210JKRArchive9SDirEntryUl.s"
+bool JKRArchive::getDirEntry(SDirEntry* dirEntry, u32 index) const {
+    SDIFileEntry* fileEntry = findIdxResource(index);
+    if (!fileEntry)
+        return false;
+
+    dirEntry->other.flags = fileEntry->getFlags();
+    dirEntry->other.id = fileEntry->getFileID();
+    dirEntry->name = mStringTable + fileEntry->getNameOffset();
+    return true;
 }
-#pragma pop
 
 /* 802D5B38-802D5BE8 2D0478 00B0+00 0/0 9/9 0/0 .text
  * getGlbResource__10JKRArchiveFUlPCcP10JKRArchive              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::getGlbResource(u32 param_0, char const* param_1, JKRArchive* param_2) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePub/getGlbResource__10JKRArchiveFUlPCcP10JKRArchive.s"
+void* JKRArchive::getGlbResource(u32 param_1, const char* path, JKRArchive* archive) {
+    void* resource = NULL;
+    if (archive) {
+        return archive->getResource(param_1, path);
+    }
+
+    JSUList<JKRFileLoader>& volumeList = getVolumeList();
+    JSUListIterator<JKRFileLoader> iterator;
+    for (iterator = volumeList.getFirst(); iterator != volumeList.getEnd(); ++iterator) {
+        if (iterator->getVolumeType() == 'RARC') {
+            resource = iterator->getResource(param_1, path);
+            if (resource)
+                break;
+        }
+    }
+
+    return resource;
 }
-#pragma pop
 
 /* 802D5BE8-802D5C64 2D0528 007C+00 1/0 4/0 0/0 .text            getResource__10JKRArchiveFPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::getResource(char const* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePub/getResource__10JKRArchiveFPCc.s"
+void* JKRArchive::getResource(const char* path) {
+    SDIFileEntry* fileEntry;
+    if (*path == '/') {
+        fileEntry = findFsResource(path + 1, 0);
+    } else {
+        fileEntry = findFsResource(path, getCurrentDirID());
+    }
+
+    if (fileEntry) {
+        return fetchResource(fileEntry, NULL);
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 802D5C64-802D5CE4 2D05A4 0080+00 1/0 4/0 0/0 .text            getResource__10JKRArchiveFUlPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::getResource(u32 param_0, char const* param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePub/getResource__10JKRArchiveFUlPCc.s"
+void* JKRArchive::getResource(u32 type, const char* path) {
+    SDIFileEntry* fileEntry;
+    if (type == 0 || type == '????') {
+        fileEntry = findNameResource(path);
+    } else {
+        fileEntry = findTypeResource(type, path);
+    }
+
+    if (fileEntry) {
+        return fetchResource(fileEntry, NULL);
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 802D5CE4-802D5D38 2D0624 0054+00 0/0 1/1 0/0 .text            getIdxResource__10JKRArchiveFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::getIdxResource(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePub/getIdxResource__10JKRArchiveFUl.s"
+void* JKRArchive::getIdxResource(u32 index) {
+    SDIFileEntry* fileEntry = findIdxResource(index);
+    if (fileEntry) {
+        return fetchResource(fileEntry, NULL);
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 802D5D38-802D5D8C 2D0678 0054+00 0/0 1/1 0/0 .text            getResource__10JKRArchiveFUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::getResource(u16 param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePub/getResource__10JKRArchiveFUs.s"
+void* JKRArchive::getResource(u16 id) {
+    SDIFileEntry* fileEntry = findIdResource(id);
+    if (fileEntry) {
+        return fetchResource(fileEntry, NULL);
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 802D5D8C-802D5E30 2D06CC 00A4+00 1/0 4/0 0/0 .text readResource__10JKRArchiveFPvUlUlPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::readResource(void* param_0, u32 param_1, u32 param_2, char const* param_3) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePub/readResource__10JKRArchiveFPvUlUlPCc.s"
+u32 JKRArchive::readResource(void* buffer, u32 bufferSize, u32 type, const char* path) {
+    SDIFileEntry* fileEntry;
+    if (type == 0 || type == '????') {
+        fileEntry = findNameResource(path);
+    } else {
+        fileEntry = findTypeResource(type, path);
+    }
+
+    if (fileEntry) {
+        u32 resourceSize;
+        fetchResource(buffer, bufferSize, fileEntry, &resourceSize);
+        return resourceSize;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 802D5E30-802D5ECC 2D0770 009C+00 1/0 4/0 0/0 .text            readResource__10JKRArchiveFPvUlPCc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::readResource(void* param_0, u32 param_1, char const* param_2) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePub/readResource__10JKRArchiveFPvUlPCc.s"
+u32 JKRArchive::readResource(void* buffer, u32 bufferSize, const char* path) {
+    SDIFileEntry* fileEntry;
+    if (*path == '/') {
+        fileEntry = findFsResource(path + 1, 0);
+    } else {
+        fileEntry = findFsResource(path, getCurrentDirID());
+    }
+
+    if (fileEntry) {
+        u32 resourceSize;
+        fetchResource(buffer, bufferSize, fileEntry, &resourceSize);
+        return resourceSize;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 802D5ECC-802D5F40 2D080C 0074+00 0/0 7/7 1/1 .text readIdxResource__10JKRArchiveFPvUlUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::readIdxResource(void* param_0, u32 param_1, u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePub/readIdxResource__10JKRArchiveFPvUlUl.s"
+u32 JKRArchive::readIdxResource(void* buffer, u32 bufferSize, u32 index) {
+    SDIFileEntry* fileEntry = findIdxResource(index);
+    if (fileEntry) {
+        u32 resourceSize;
+        fetchResource(buffer, bufferSize, fileEntry, &resourceSize);
+        return resourceSize;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 802D5F40-802D5FB4 2D0880 0074+00 0/0 1/1 0/0 .text            readResource__10JKRArchiveFPvUlUs
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::readResource(void* param_0, u32 param_1, u16 param_2) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePub/readResource__10JKRArchiveFPvUlUs.s"
+u32 JKRArchive::readResource(void* buffer, u32 bufferSize, u16 id) {
+    SDIFileEntry* fileEntry = findIdResource(id);
+    if (fileEntry) {
+        u32 resourceSize;
+        fetchResource(buffer, bufferSize, fileEntry, &resourceSize);
+        return resourceSize;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 802D5FB4-802D603C 2D08F4 0088+00 1/0 2/0 0/0 .text            removeResourceAll__10JKRArchiveFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::removeResourceAll() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePub/removeResourceAll__10JKRArchiveFv.s"
+void JKRArchive::removeResourceAll(void) {
+    if (mArcInfoBlock && mMountMode != MOUNT_MEM) {
+        SDIFileEntry* fileEntry = mFiles;
+        for (int i = 0; i < mArcInfoBlock->num_file_entries; fileEntry++, i++) {
+            if (fileEntry->data) {
+                JKRFreeToHeap(mHeap, fileEntry->data);
+                fileEntry->data = NULL;
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 802D603C-802D609C 2D097C 0060+00 1/0 2/0 0/0 .text            removeResource__10JKRArchiveFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::removeResource(void* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePub/removeResource__10JKRArchiveFPv.s"
+bool JKRArchive::removeResource(void* resource) {
+    SDIFileEntry* fileEntry = findPtrResource(resource);
+    if (fileEntry == NULL)
+        return false;
+
+    fileEntry->data = NULL;
+    JKRFreeToHeap(mHeap, resource);
+    return true;
 }
-#pragma pop
 
 /* 802D609C-802D60D8 2D09DC 003C+00 1/0 4/0 0/0 .text            detachResource__10JKRArchiveFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::detachResource(void* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePub/detachResource__10JKRArchiveFPv.s"
+bool JKRArchive::detachResource(void* resource) {
+    SDIFileEntry* fileEntry = findPtrResource(resource);
+    if (fileEntry == NULL)
+        return false;
+
+    fileEntry->data = NULL;
+    return true;
 }
-#pragma pop
 
 /* 802D60D8-802D610C 2D0A18 0034+00 1/0 4/0 0/0 .text            getResSize__10JKRArchiveCFPCv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::getResSize(void const* param_0) const {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePub/getResSize__10JKRArchiveCFPCv.s"
+u32 JKRArchive::getResSize(const void* resource) const {
+    SDIFileEntry* fileEntry = findPtrResource(resource);
+    if (fileEntry == NULL)
+        return -1;
+
+    return fileEntry->data_size;
 }
-#pragma pop
 
 /* 802D610C-802D6150 2D0A4C 0044+00 0/0 1/1 0/0 .text            countResource__10JKRArchiveCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::countResource() const {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePub/countResource__10JKRArchiveCFv.s"
+u32 JKRArchive::countResource(void) const {
+    u32 count = 0;
+    for (int i = 0; i < mArcInfoBlock->num_file_entries; i++) {
+        if (mFiles[i].isUnknownFlag1()) {
+            count++;
+        }
+    }
+    return count;
 }
-#pragma pop
 
 /* 802D6150-802D61B0 2D0A90 0060+00 1/0 4/0 0/0 .text            countFile__10JKRArchiveCFPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::countFile(char const* param_0) const {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePub/countFile__10JKRArchiveCFPCc.s"
+u32 JKRArchive::countFile(const char* path) const {
+    SDirEntry* dirEntry;
+    if (*path == '/') {
+        path++;
+
+        if (*path == '\0')
+            path = NULL;
+        dirEntry = findDirectory(path, 0);
+    } else {
+        dirEntry = findDirectory(path, getCurrentDirID());
+    }
+
+    if (dirEntry) {
+        return dirEntry->num_entries;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 802D61B0-802D625C 2D0AF0 00AC+00 1/0 4/0 0/0 .text            getFirstFile__10JKRArchiveCFPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::getFirstFile(char const* param_0) const {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePub/getFirstFile__10JKRArchiveCFPCc.s"
+JKRFileFinder* JKRArchive::getFirstFile(const char* path) const {
+    SDirEntry* dirEntry;
+    if (*path == '/') {
+        path++;
+
+        if (*path == '\0')
+            path = NULL;
+        dirEntry = findDirectory(path, 0);
+    } else {
+        dirEntry = findDirectory(path, getCurrentDirID());
+    }
+
+    if (dirEntry) {
+        // don't know what is correct here... for now we're casting away const
+        return new (JKRHeap::getSystemHeap(), 0)
+            JKRArcFinder((JKRArchive*)this, dirEntry->first_file_index, (u32)dirEntry->num_entries);
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 802D625C-802D6294 2D0B9C 0038+00 0/0 2/2 0/0 .text            getFileAttribute__10JKRArchiveCFUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::getFileAttribute(u32 param_0) const {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePub/getFileAttribute__10JKRArchiveCFUl.s"
-}
-#pragma pop
+u32 JKRArchive::getFileAttribute(u32 index) const {
+    SDIFileEntry* fileEntry = findIdxResource(index);
+    if (fileEntry) {
+        return fileEntry->getFlags();
+    }
 
-/* ############################################################################################## */
-/* 803CC288-803CC2D8 0293A8 0050+00 0/0 2/2 0/0 .data            __vt__10JKRArchive */
-SECTION_DATA extern void* __vt__10JKRArchive[20] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10JKRArchiveFv,
-    (void*)unmount__13JKRFileLoaderFv,
-    (void*)becomeCurrent__10JKRArchiveFPCc,
-    (void*)getResource__10JKRArchiveFPCc,
-    (void*)getResource__10JKRArchiveFUlPCc,
-    (void*)readResource__10JKRArchiveFPvUlPCc,
-    (void*)readResource__10JKRArchiveFPvUlUlPCc,
-    (void*)removeResourceAll__10JKRArchiveFv,
-    (void*)removeResource__10JKRArchiveFPv,
-    (void*)detachResource__10JKRArchiveFPv,
-    (void*)getResSize__10JKRArchiveCFPCv,
-    (void*)countFile__10JKRArchiveCFPCc,
-    (void*)getFirstFile__10JKRArchiveCFPCc,
-    (void*)getExpandedResSize__10JKRArchiveCFPCv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)setExpandSize__10JKRArchiveFPQ210JKRArchive12SDIFileEntryUl,
-    (void*)getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry,
-};
+    return 0;
+}

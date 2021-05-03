@@ -45,7 +45,7 @@ lbl_802E1B60:
 /* 802E1C0C  7C 64 19 D6 */	mullw r3, r4, r3
 /* 802E1C10  1C 85 00 1E */	mulli r4, r5, 0x1e
 /* 802E1C14  7C 00 1A 14 */	add r0, r0, r3
-/* 802E1C18  90 8D 8F 7C */	stw r4, data_804514FC(r13)
+/* 802E1C18  90 8D 8F 7C */	stw r4, sThreshold__Q210JUTGamePad13C3ButtonReset+4(r13)
 /* 802E1C1C  90 0D 8F 78 */	stw r0, sThreshold__Q210JUTGamePad13C3ButtonReset(r13)
 /* 802E1C20  38 7F 01 94 */	addi r3, r31, 0x194
 /* 802E1C24  38 80 00 00 */	li r4, 0

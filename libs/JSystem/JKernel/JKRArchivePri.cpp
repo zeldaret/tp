@@ -3,94 +3,11 @@
 // Translation Unit: JKRArchivePri
 //
 
-#include "JSystem/JKernel/JKRArchivePri.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JKRHeap {
-    /* 802CE83C */ void findFromRoot(void*);
-
-    static u8 sCurrentHeap[4];
-};
-
-struct JKRFileLoader {
-    /* 802D40F0 */ JKRFileLoader();
-    /* 802D4148 */ ~JKRFileLoader();
-
-    static u8 sCurrentVolume[4 + 4 /* padding */];
-};
-
-struct JKRArchive {
-    struct EMountMode {};
-
-    struct CArcName {
-        /* 802D6884 */ void store(char const*, char);
-        /* 802D67F4 */ void store(char const*);
-    };
-
-    struct SDIFileEntry {};
-
-    /* 802D6294 */ JKRArchive(s32, JKRArchive::EMountMode);
-    /* 802D6334 */ ~JKRArchive();
-    /* 802D6394 */ void isSameName(JKRArchive::CArcName&, u32, u16) const;
-    /* 802D63E0 */ void findResType(u32) const;
-    /* 802D641C */ void findDirectory(char const*, u32) const;
-    /* 802D64F4 */ void findTypeResource(u32, char const*) const;
-    /* 802D65A4 */ void findFsResource(char const*, u32) const;
-    /* 802D6684 */ void findIdxResource(u32) const;
-    /* 802D66AC */ void findNameResource(char const*) const;
-    /* 802D6734 */ void findPtrResource(void const*) const;
-    /* 802D6770 */ void findIdResource(u16) const;
-    /* 802D693C */ void setExpandSize(JKRArchive::SDIFileEntry*, u32);
-    /* 802D6978 */ void getExpandSize(JKRArchive::SDIFileEntry*) const;
-
-    static u8 sCurrentDirID[4 + 4 /* padding */];
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__10JKRArchiveFlQ210JKRArchive10EMountMode();
-extern "C" void __dt__10JKRArchiveFv();
-extern "C" void isSameName__10JKRArchiveCFRQ210JKRArchive8CArcNameUlUs();
-extern "C" void findResType__10JKRArchiveCFUl();
-extern "C" void findDirectory__10JKRArchiveCFPCcUl();
-extern "C" void findTypeResource__10JKRArchiveCFUlPCc();
-extern "C" void findFsResource__10JKRArchiveCFPCcUl();
-extern "C" void findIdxResource__10JKRArchiveCFUl();
-extern "C" void findNameResource__10JKRArchiveCFPCc();
-extern "C" void findPtrResource__10JKRArchiveCFPCv();
-extern "C" void findIdResource__10JKRArchiveCFUs();
-extern "C" void store__Q210JKRArchive8CArcNameFPCc();
-extern "C" void store__Q210JKRArchive8CArcNameFPCcc();
-extern "C" void setExpandSize__10JKRArchiveFPQ210JKRArchive12SDIFileEntryUl();
-extern "C" void getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry();
-extern "C" u8 sCurrentDirID__10JKRArchive[4 + 4 /* padding */];
-
-//
-// External References:
-//
-
-extern "C" void findFromRoot__7JKRHeapFPv();
-extern "C" void __dl__FPv();
-extern "C" void __ct__13JKRFileLoaderFv();
-extern "C" void __dt__13JKRFileLoaderFv();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" void tolower();
-extern "C" void strcmp();
-extern "C" extern void* __vt__10JKRArchive[20];
-extern "C" u8 sCurrentHeap__7JKRHeap[4];
-extern "C" u8 sCurrentVolume__13JKRFileLoader[4 + 4 /* padding */];
+#include "msl_c/string.h"
 
 //
 // Declarations:
@@ -98,165 +15,239 @@ extern "C" u8 sCurrentVolume__13JKRFileLoader[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 80451420-80451428 000920 0004+04 1/1 5/5 0/0 .sbss            sCurrentDirID__10JKRArchive */
-u8 JKRArchive::sCurrentDirID[4 + 4 /* padding */];
+u32 JKRArchive::sCurrentDirID;
 
 /* 802D6294-802D6334 2D0BD4 00A0+00 0/0 5/5 0/0 .text
  * __ct__10JKRArchiveFlQ210JKRArchive10EMountMode               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRArchive::JKRArchive(s32 param_0, JKRArchive::EMountMode param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePri/__ct__10JKRArchiveFlQ210JKRArchive10EMountMode.s"
+JKRArchive::JKRArchive(long entryNumber, JKRArchive::EMountMode mountMode) {
+    mIsMounted = false;
+    mMountMode = mountMode;
+    mMountCount = 1;
+    field_0x58 = 1;
+
+    mHeap = JKRHeap::findFromRoot(this);
+    if (mHeap == NULL) {
+        mHeap = JKRHeap::getCurrentHeap();
+    }
+
+    mEntryNum = entryNumber;
+    if (getCurrentVolume() == NULL) {
+        setCurrentVolume(this);
+        setCurrentDirID(0);
+    }
 }
-#pragma pop
 
 /* 802D6334-802D6394 2D0C74 0060+00 0/0 5/4 0/0 .text            __dt__10JKRArchiveFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRArchive::~JKRArchive() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePri/__dt__10JKRArchiveFv.s"
-}
-#pragma pop
+JKRArchive::~JKRArchive() {}
 
 /* 802D6394-802D63E0 2D0CD4 004C+00 4/4 0/0 0/0 .text
  * isSameName__10JKRArchiveCFRQ210JKRArchive8CArcNameUlUs       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::isSameName(JKRArchive::CArcName& param_0, u32 param_1, u16 param_2) const {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePri/isSameName__10JKRArchiveCFRQ210JKRArchive8CArcNameUlUs.s"
+bool JKRArchive::isSameName(JKRArchive::CArcName& name, u32 nameOffset, u16 nameHash) const {
+    u16 hash = name.getHash();
+    if (hash != nameHash)
+        return false;
+    return strcmp(mStringTable + nameOffset, name.getString()) == 0;
 }
-#pragma pop
 
 /* 802D63E0-802D641C 2D0D20 003C+00 1/1 0/0 0/0 .text            findResType__10JKRArchiveCFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::findResType(u32 param_0) const {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePri/findResType__10JKRArchiveCFUl.s"
+JKRArchive::SDirEntry* JKRArchive::findResType(u32 type) const {
+    SDirEntry* node = mNodes;
+    u32 count = 0;
+    while (count < mArcInfoBlock->num_nodes) {
+        if (node->type == type) {
+            return node;
+        }
+
+        node++;
+        count++;
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 802D641C-802D64F4 2D0D5C 00D8+00 0/0 3/3 0/0 .text            findDirectory__10JKRArchiveCFPCcUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::findDirectory(char const* param_0, u32 param_1) const {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePri/findDirectory__10JKRArchiveCFPCcUl.s"
+JKRArchive::SDirEntry* JKRArchive::findDirectory(const char* name, u32 directoryId) const {
+    if (name == NULL) {
+        return mNodes + directoryId;
+    }
+
+    CArcName arcName(&name, '/');
+    SDirEntry* dirEntry = mNodes + directoryId;
+    SDIFileEntry* fileEntry = mFiles + dirEntry->first_file_index;
+
+    for (int i = 0; i < dirEntry->num_entries; fileEntry++, i++) {
+        // regalloc doesn't like fileEntry->getNameHash()
+        if (isSameName(arcName, fileEntry->getNameOffset(), fileEntry->name_hash)) {
+            if (fileEntry->isDirectory()) {
+                return findDirectory(name, fileEntry->data_offset);
+            }
+            break;
+        }
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 802D64F4-802D65A4 2D0E34 00B0+00 0/0 2/2 0/0 .text findTypeResource__10JKRArchiveCFUlPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::findTypeResource(u32 param_0, char const* param_1) const {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePri/findTypeResource__10JKRArchiveCFUlPCc.s"
+JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(u32 type, const char* name) const {
+    if (type) {
+        CArcName arcName(name);
+        SDirEntry* dirEntry = findResType(type);
+        if (dirEntry) {
+            SDIFileEntry* fileEntry = mFiles + dirEntry->first_file_index;
+            for (int i = 0; i < dirEntry->num_entries; fileEntry++, i++) {
+                if (isSameName(arcName, fileEntry->getNameOffset(), fileEntry->getNameHash())) {
+                    return fileEntry;
+                }
+            }
+        }
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 802D65A4-802D6684 2D0EE4 00E0+00 0/0 4/4 0/0 .text            findFsResource__10JKRArchiveCFPCcUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::findFsResource(char const* param_0, u32 param_1) const {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePri/findFsResource__10JKRArchiveCFPCcUl.s"
+JKRArchive::SDIFileEntry* JKRArchive::findFsResource(const char* name, u32 directoryId) const {
+    if (name) {
+        CArcName arcName(&name, '/');
+        SDirEntry* dirEntry = mNodes + directoryId;
+        SDIFileEntry* fileEntry = mFiles + dirEntry->first_file_index;
+        for (int i = 0; i < dirEntry->num_entries; fileEntry++, i++) {
+            // regalloc doesn't like fileEntry->getNameHash()
+            if (isSameName(arcName, fileEntry->getNameOffset(), fileEntry->name_hash)) {
+                if (fileEntry->isDirectory()) {
+                    return findFsResource(name, fileEntry->data_offset);
+                }
+
+                if (name == NULL) {
+                    return fileEntry;
+                }
+
+                return NULL;
+            }
+        }
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 802D6684-802D66AC 2D0FC4 0028+00 0/0 7/7 0/0 .text            findIdxResource__10JKRArchiveCFUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::findIdxResource(u32 param_0) const {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePri/findIdxResource__10JKRArchiveCFUl.s"
+JKRArchive::SDIFileEntry* JKRArchive::findIdxResource(u32 fileIndex) const {
+    if (fileIndex < mArcInfoBlock->num_file_entries) {
+        return mFiles + fileIndex;
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 802D66AC-802D6734 2D0FEC 0088+00 0/0 4/4 0/0 .text            findNameResource__10JKRArchiveCFPCc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::findNameResource(char const* param_0) const {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePri/findNameResource__10JKRArchiveCFPCc.s"
+JKRArchive::SDIFileEntry* JKRArchive::findNameResource(const char* name) const {
+    SDIFileEntry* fileEntry = mFiles;
+
+    CArcName arcName(name);
+    for (int i = 0; i < mArcInfoBlock->num_file_entries; fileEntry++, i++) {
+        if (isSameName(arcName, fileEntry->getNameOffset(), fileEntry->getNameHash())) {
+            return fileEntry;
+        }
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 802D6734-802D6770 2D1074 003C+00 0/0 9/9 0/0 .text            findPtrResource__10JKRArchiveCFPCv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::findPtrResource(void const* param_0) const {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePri/findPtrResource__10JKRArchiveCFPCv.s"
+JKRArchive::SDIFileEntry* JKRArchive::findPtrResource(const void* resource) const {
+    SDIFileEntry* fileEntry = mFiles;
+    for (int i = 0; i < mArcInfoBlock->num_file_entries; fileEntry++, i++) {
+        if (fileEntry->data == resource) {
+            return fileEntry;
+        }
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 802D6770-802D67F4 2D10B0 0084+00 0/0 4/4 0/0 .text            findIdResource__10JKRArchiveCFUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::findIdResource(u16 param_0) const {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePri/findIdResource__10JKRArchiveCFUs.s"
+JKRArchive::SDIFileEntry* JKRArchive::findIdResource(u16 id) const {
+    if (id != 0xFFFF) {
+        if (id < mArcInfoBlock->num_file_entries) {
+            SDIFileEntry* fileEntry = mFiles + id;
+            if (fileEntry->file_id == id && fileEntry->isUnknownFlag1()) {
+                return fileEntry;
+            }
+        }
+
+        SDIFileEntry* fileEntry = mFiles;
+        for (int i = 0; i < mArcInfoBlock->num_file_entries; fileEntry++, i++) {
+            if (fileEntry->file_id == id && fileEntry->isUnknownFlag1()) {
+                return fileEntry;
+            }
+        }
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 802D67F4-802D6884 2D1134 0090+00 2/2 0/0 0/0 .text            store__Q210JKRArchive8CArcNameFPCc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::CArcName::store(char const* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePri/store__Q210JKRArchive8CArcNameFPCc.s"
+void JKRArchive::CArcName::store(const char* name) {
+    mHash = 0;
+    s32 length = 0;
+    while (*name) {
+        s32 ch = tolower(*name);
+        mHash = ch + mHash * 3;
+        if (length < (s32)ARRAY_SIZE(mData)) {
+            mData[length++] = ch;
+        }
+        name++;
+    }
+
+    mLength = (u16)length;
+    mData[length] = 0;
 }
-#pragma pop
 
 /* 802D6884-802D693C 2D11C4 00B8+00 2/2 0/0 0/0 .text            store__Q210JKRArchive8CArcNameFPCcc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::CArcName::store(char const* param_0, char param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePri/store__Q210JKRArchive8CArcNameFPCcc.s"
+const char* JKRArchive::CArcName::store(const char* name, char endChar) {
+    mHash = 0;
+    s32 length = 0;
+    while (*name && *name != endChar) {
+        s32 lch = tolower((int)*name);
+        mHash = lch + mHash * 3;
+        if (length < (s32)ARRAY_SIZE(mData)) {
+            mData[length++] = lch;
+        }
+        name++;
+    }
+
+    mLength = (u16)length;
+    mData[length] = 0;
+
+    if (*name == 0)
+        return NULL;
+    return name + 1;
 }
-#pragma pop
 
 /* 802D693C-802D6978 2D127C 003C+00 0/0 5/0 0/0 .text
  * setExpandSize__10JKRArchiveFPQ210JKRArchive12SDIFileEntryUl  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::setExpandSize(JKRArchive::SDIFileEntry* param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePri/setExpandSize__10JKRArchiveFPQ210JKRArchive12SDIFileEntryUl.s"
+void JKRArchive::setExpandSize(SDIFileEntry* fileEntry, u32 expandSize) {
+    int index = fileEntry - mFiles;
+    if (!mExpandedSize || index >= mArcInfoBlock->num_file_entries)
+        return;
+
+    mExpandedSize[index] = expandSize;
 }
-#pragma pop
 
 /* 802D6978-802D69B8 2D12B8 0040+00 0/0 5/0 0/0 .text
  * getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry   */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRArchive::getExpandSize(JKRArchive::SDIFileEntry* param_0) const {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRArchivePri/getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry.s"
+u32 JKRArchive::getExpandSize(SDIFileEntry* fileEntry) const {
+    int index = fileEntry - mFiles;
+    if (!mExpandedSize || index >= mArcInfoBlock->num_file_entries)
+        return 0;
+
+    return mExpandedSize[index];
 }
-#pragma pop

@@ -6,19 +6,7 @@
 #include "dolphin/mtx/mtx44.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Forward References:
-//
-
-extern "C" void C_MTXPerspective();
-extern "C" void C_MTXOrtho();
-
-//
-// External References:
-//
-
-extern "C" void tanf();
+#include "msl_c/math.h"
 
 //
 // Declarations:
@@ -52,7 +40,7 @@ SECTION_SDATA2 static f32 lit_106 = 0.01745329238474369f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void C_MTXPerspective() {
+asm void C_MTXPerspective(Mtx44 matrix, float fov_y, float aspect, float near, float far) {
     nofralloc
 #include "asm/dolphin/mtx/mtx44/C_MTXPerspective.s"
 }
@@ -62,7 +50,8 @@ asm void C_MTXPerspective() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void C_MTXOrtho() {
+asm void C_MTXOrtho(Mtx44 matrix, float top, float bottom, float left, float right, float near,
+                    float far) {
     nofralloc
 #include "asm/dolphin/mtx/mtx44/C_MTXOrtho.s"
 }

@@ -8,6 +8,7 @@
 #include "SSystem/SComponent/c_math.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dol2asm.h"
+#include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 #include "msl_c/math.h"
 #include "msl_c/string.h"

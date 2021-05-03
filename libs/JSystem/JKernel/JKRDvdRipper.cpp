@@ -8,63 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct JUTException {
-    /* 802E21FC */ void panic_f(char const*, int, char const*, ...);
-};
-
-struct JSUPtrList {
-    /* 802DBEAC */ ~JSUPtrList();
-    /* 802DBF14 */ void initiate();
-};
-
-template <typename A0>
-struct JSUList {};
-/* JSUList<JKRDMCommand> */
-struct JSUList__template9 {
-    /* 802DA820 */ void func_802DA820(void* _this);
-};
-
-struct JKRHeap {
-    /* 802CE4D4 */ void alloc(u32, int);
-    /* 802CE474 */ void alloc(u32, int, JKRHeap*);
-    /* 802CE500 */ void free(void*, JKRHeap*);
-
-    static u8 sSystemHeap[4];
-};
-
-struct JKRExpandSwitch {};
-
-struct JKRDvdFile {
-    /* 802D9584 */ JKRDvdFile();
-    /* 802D9748 */ ~JKRDvdFile();
-    /* 802D9850 */ void open(char const*);
-    /* 802D98C4 */ void open(s32);
-};
-
-struct JKRDvdRipper {
-    struct EAllocDirection {};
-
-    /* 802D9D10 */ void loadToMainRAM(JKRDvdFile*, u8*, JKRExpandSwitch, u32, JKRHeap*,
-                                      JKRDvdRipper::EAllocDirection, u32, int*, u32*);
-    /* 802D9C54 */ void loadToMainRAM(s32, u8*, JKRExpandSwitch, u32, JKRHeap*,
-                                      JKRDvdRipper::EAllocDirection, u32, int*, u32*);
-    /* 802D9B98 */ void loadToMainRAM(char const*, u8*, JKRExpandSwitch, u32, JKRHeap*,
-                                      JKRDvdRipper::EAllocDirection, u32, int*, u32*);
-    /* 802DA7D4 */ u8 isErrorRetry();
-
-    static u8 sDvdAsyncList[12];
-    static u32 sSZSBufferSize;
-};
-
-struct JKRDecomp {
-    /* 802DB988 */ void orderSync(u8*, u8*, u32, u32);
-    /* 802DBCF8 */ void checkCompressed(u8*);
-};
-
-//
 // Forward References:
 //
 
@@ -105,12 +48,6 @@ extern "C" void initiate__10JSUPtrListFv();
 extern "C" void panic_f__12JUTExceptionFPCciPCce();
 extern "C" void DCInvalidateRange();
 extern "C" void DCStoreRangeNoSync();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void OSInitMutex();
-extern "C" void OSLockMutex();
-extern "C" void OSUnlockMutex();
-extern "C" void DVDReadPrio();
 extern "C" void VIWaitForRetrace();
 extern "C" void __register_global_object();
 extern "C" void _savegpr_18();
@@ -135,10 +72,10 @@ extern "C" u8 sSystemHeap__7JKRHeap[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRDvdRipper::loadToMainRAM(char const* param_0, u8* param_1, JKRExpandSwitch param_2,
-                                     u32 param_3, JKRHeap* param_4,
-                                     JKRDvdRipper::EAllocDirection param_5, u32 param_6,
-                                     int* param_7, u32* param_8) {
+asm void* JKRDvdRipper::loadToMainRAM(char const* param_0, u8* param_1, JKRExpandSwitch param_2,
+                                      u32 param_3, JKRHeap* param_4,
+                                      JKRDvdRipper::EAllocDirection param_5, u32 param_6,
+                                      int* param_7, u32* param_8) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRDvdRipper/func_802D9B98.s"
 }
@@ -150,9 +87,10 @@ asm void JKRDvdRipper::loadToMainRAM(char const* param_0, u8* param_1, JKRExpand
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRDvdRipper::loadToMainRAM(s32 param_0, u8* param_1, JKRExpandSwitch param_2, u32 param_3,
-                                     JKRHeap* param_4, JKRDvdRipper::EAllocDirection param_5,
-                                     u32 param_6, int* param_7, u32* param_8) {
+asm void* JKRDvdRipper::loadToMainRAM(s32 param_0, u8* param_1, JKRExpandSwitch param_2,
+                                      u32 param_3, JKRHeap* param_4,
+                                      JKRDvdRipper::EAllocDirection param_5, u32 param_6,
+                                      int* param_7, u32* param_8) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRDvdRipper/func_802D9C54.s"
 }
@@ -179,10 +117,10 @@ SECTION_SDATA static u32 data_804508C8 = 0x01000000;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRDvdRipper::loadToMainRAM(JKRDvdFile* param_0, u8* param_1, JKRExpandSwitch param_2,
-                                     u32 param_3, JKRHeap* param_4,
-                                     JKRDvdRipper::EAllocDirection param_5, u32 param_6,
-                                     int* param_7, u32* param_8) {
+asm void* JKRDvdRipper::loadToMainRAM(JKRDvdFile* param_0, u8* param_1, JKRExpandSwitch param_2,
+                                      u32 param_3, JKRHeap* param_4,
+                                      JKRDvdRipper::EAllocDirection param_5, u32 param_6,
+                                      int* param_7, u32* param_8) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRDvdRipper/func_802D9D10.s"
 }
@@ -272,7 +210,7 @@ static asm void decompSZS_subroutine(u8* param_0, u8* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void firstSrcData() {
+static asm u8* firstSrcData() {
     nofralloc
 #include "asm/JSystem/JKernel/JKRDvdRipper/firstSrcData__Fv.s"
 }

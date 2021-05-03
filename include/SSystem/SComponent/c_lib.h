@@ -2,6 +2,7 @@
 #define C_LIB_H_
 
 #include "SSystem/SComponent/c_xyz.h"
+#include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 
 void cLib_memCpy(void* dst, const void* src, unsigned long size);

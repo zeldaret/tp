@@ -14,9 +14,6 @@
 extern "C" void ARRegisterDMACallback();
 extern "C" void ARGetDMAStatus();
 extern "C" void ARStartDMA();
-extern "C" void ARAlloc();
-extern "C" void ARInit();
-extern "C" u32 ARGetSize();
 extern "C" void __ARHandler();
 extern "C" void __ARClearInterrupt();
 extern "C" void __ARGetInterruptStatus();
@@ -99,7 +96,7 @@ static u8 __AR_BlockLength[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void ARAlloc() {
+asm u32 ARAlloc(u32) {
     nofralloc
 #include "asm/dolphin/ar/ar/ARAlloc.s"
 }
@@ -197,7 +194,7 @@ static u8 __AR_init_flag[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void ARInit() {
+asm u32 ARInit(u32*, u32) {
     nofralloc
 #include "asm/dolphin/ar/ar/ARInit.s"
 }

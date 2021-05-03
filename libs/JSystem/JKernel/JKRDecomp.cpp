@@ -4,52 +4,10 @@
 //
 
 #include "JSystem/JKernel/JKRDecomp.h"
+#include "JSystem/JKernel/JKRAramPiece.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JKRThread {
-    /* 802D1568 */ JKRThread(u32, int, int);
-    /* 802D1758 */ ~JKRThread();
-};
-
-struct JKRHeap {
-    static u8 sSystemHeap[4];
-};
-
-struct JKRDecompCommand {
-    /* 802DBD70 */ JKRDecompCommand();
-    /* 802DBDC0 */ ~JKRDecompCommand();
-};
-
-struct JKRDecomp {
-    /* 802DB680 */ void create(s32);
-    /* 802DB6E0 */ JKRDecomp(s32);
-    /* 802DB730 */ ~JKRDecomp();
-    /* 802DB790 */ void run();
-    /* 802DB858 */ void prepareCommand(u8*, u8*, u32, u32, void (*)(u32));
-    /* 802DB8D0 */ void sendCommand(JKRDecompCommand*);
-    /* 802DB900 */ void orderAsync(u8*, u8*, u32, u32, void (*)(u32));
-    /* 802DB934 */ void sync(JKRDecompCommand*, int);
-    /* 802DB988 */ void orderSync(u8*, u8*, u32, u32);
-    /* 802DB9DC */ void decode(u8*, u8*, u32, u32);
-    /* 802DBA58 */ void decodeSZP(u8*, u8*, u32, u32);
-    /* 802DBC14 */ void decodeSZS(u8*, u8*, u32, u32);
-    /* 802DBCF8 */ void checkCompressed(u8*);
-
-    static u8 sMessageBuffer[32];
-    static u8 sMessageQueue[32];
-    static u8 sDecompObject[4 + 4 /* padding */];
-};
-
-struct JKRAMCommand {};
-
-struct JKRAramPiece {
-    /* 802D35F4 */ void sendCommand(JKRAMCommand*);
-};
 
 //
 // Forward References:
@@ -83,10 +41,6 @@ extern "C" void __dl__FPv();
 extern "C" void __ct__9JKRThreadFUlii();
 extern "C" void __dt__9JKRThreadFv();
 extern "C" void sendCommand__12JKRAramPieceFP12JKRAMCommand();
-extern "C" void OSInitMessageQueue();
-extern "C" void OSSendMessage();
-extern "C" void OSReceiveMessage();
-extern "C" void OSResumeThread();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_27();
@@ -99,134 +53,207 @@ extern "C" u8 sSystemHeap__7JKRHeap[4];
 
 /* ############################################################################################## */
 /* 804514B0-804514B8 0009B0 0004+04 1/1 0/0 0/0 .sbss            sDecompObject__9JKRDecomp */
-u8 JKRDecomp::sDecompObject[4 + 4 /* padding */];
+JKRDecomp* JKRDecomp::sDecompObject;
 
-/* 802DB680-802DB6E0 2D5FC0 0060+00 0/0 1/1 0/0 .text            create__9JKRDecompFl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRDecomp::create(s32 param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRDecomp/create__9JKRDecompFl.s"
+JKRDecomp* JKRDecomp::create(long priority) {
+    if (!sDecompObject) {
+        sDecompObject = new (JKRHeap::getSystemHeap(), 0) JKRDecomp(priority);
+    }
+
+    return sDecompObject;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803CC460-803CC480 029580 0020+00 1/1 0/0 0/0 .data            sMessageBuffer__9JKRDecomp */
-SECTION_DATA u8 JKRDecomp::sMessageBuffer[32] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+OSMessage JKRDecomp::sMessageBuffer[8] = {0};
 
 /* 803CC480-803CC4A0 0295A0 0020+00 2/2 0/0 0/0 .data            sMessageQueue__9JKRDecomp */
-SECTION_DATA u8 JKRDecomp::sMessageQueue[32] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 803CC4A0-803CC4B0 0295C0 0010+00 2/2 0/0 0/0 .data            __vt__9JKRDecomp */
-SECTION_DATA extern void* __vt__9JKRDecomp[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__9JKRDecompFv,
-    (void*)run__9JKRDecompFv,
-};
+OSMessageQueue JKRDecomp::sMessageQueue = {0};
 
 /* 802DB6E0-802DB730 2D6020 0050+00 1/1 0/0 0/0 .text            __ct__9JKRDecompFl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRDecomp::JKRDecomp(s32 param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRDecomp/__ct__9JKRDecompFl.s"
+JKRDecomp::JKRDecomp(long priority) : JKRThread(0x800, 0x10, priority) {
+    resume();
 }
-#pragma pop
 
 /* 802DB730-802DB790 2D6070 0060+00 1/0 0/0 0/0 .text            __dt__9JKRDecompFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRDecomp::~JKRDecomp() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRDecomp/__dt__9JKRDecompFv.s"
-}
-#pragma pop
+JKRDecomp::~JKRDecomp() {}
 
 /* 802DB790-802DB858 2D60D0 00C8+00 1/0 0/0 0/0 .text            run__9JKRDecompFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRDecomp::run() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRDecomp/run__9JKRDecompFv.s"
+void* JKRDecomp::run(void) {
+    OSInitMessageQueue(&sMessageQueue, sMessageBuffer, 8);
+    for (;;) {
+        OSMessage message;
+        OSReceiveMessage(&sMessageQueue, &message, OS_MESSAGE_BLOCKING);
+
+        JKRDecompCommand* command = (JKRDecompCommand*)message;
+        decode(command->mSrcBuffer, command->mDstBuffer, command->mSrcLength, command->mDstLength);
+
+        if (command->field_0x20 != 0) {
+            if (command->field_0x20 == 1) {
+                JKRAramPiece::sendCommand(command->mAMCommand);
+            }
+            continue;
+        }
+
+        if (command->mCallback) {
+            (*command->mCallback)((u32)command);
+            continue;
+        }
+
+        if (command->field_0x1c) {
+            OSSendMessage(command->field_0x1c, (OSMessage)1, OS_MESSAGE_NON_BLOCKING);
+        } else {
+            OSSendMessage(&command->mMessageQueue, (OSMessage)1, OS_MESSAGE_NON_BLOCKING);
+        }
+    }
 }
-#pragma pop
 
 /* 802DB858-802DB8D0 2D6198 0078+00 1/1 0/0 0/0 .text prepareCommand__9JKRDecompFPUcPUcUlUlPFUl_v
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRDecomp::prepareCommand(u8* param_0, u8* param_1, u32 param_2, u32 param_3,
-                                   void (*param_4)(u32)) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRDecomp/prepareCommand__9JKRDecompFPUcPUcUlUlPFUl_v.s"
+JKRDecompCommand* JKRDecomp::prepareCommand(u8* srcBuffer, u8* dstBuffer, u32 srcLength,
+                                            u32 dstLength,
+                                            JKRDecompCommand::AsyncCallback callback) {
+    JKRDecompCommand* command = new (JKRHeap::getSystemHeap(), -4) JKRDecompCommand();
+    command->mSrcBuffer = srcBuffer;
+    command->mDstBuffer = dstBuffer;
+    command->mSrcLength = srcLength;
+    command->mDstLength = dstLength;
+    command->mCallback = callback;
+    return command;
 }
-#pragma pop
 
 /* 802DB8D0-802DB900 2D6210 0030+00 1/1 1/1 0/0 .text sendCommand__9JKRDecompFP16JKRDecompCommand
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRDecomp::sendCommand(JKRDecompCommand* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRDecomp/sendCommand__9JKRDecompFP16JKRDecompCommand.s"
+void JKRDecomp::sendCommand(JKRDecompCommand* command) {
+    OSSendMessage(&sMessageQueue, command, OS_MESSAGE_NON_BLOCKING);
 }
-#pragma pop
 
 /* 802DB900-802DB934 2D6240 0034+00 1/1 0/0 0/0 .text orderAsync__9JKRDecompFPUcPUcUlUlPFUl_v */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRDecomp::orderAsync(u8* param_0, u8* param_1, u32 param_2, u32 param_3,
-                               void (*param_4)(u32)) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRDecomp/orderAsync__9JKRDecompFPUcPUcUlUlPFUl_v.s"
+JKRDecompCommand* JKRDecomp::orderAsync(u8* srcBuffer, u8* dstBuffer, u32 srcLength, u32 dstLength,
+                                        JKRDecompCommand::AsyncCallback callback) {
+    JKRDecompCommand* command =
+        prepareCommand(srcBuffer, dstBuffer, srcLength, dstLength, callback);
+    sendCommand(command);
+    return command;
 }
-#pragma pop
 
 /* 802DB934-802DB988 2D6274 0054+00 1/1 0/0 0/0 .text sync__9JKRDecompFP16JKRDecompCommandi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRDecomp::sync(JKRDecompCommand* param_0, int param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRDecomp/sync__9JKRDecompFP16JKRDecompCommandi.s"
+bool JKRDecomp::sync(JKRDecompCommand* command, int isNonBlocking) {
+    OSMessage message;
+    bool result;
+    if (isNonBlocking == JKRDECOMP_SYNC_BLOCKING) {
+        OSReceiveMessage(&command->mMessageQueue, &message, OS_MESSAGE_BLOCKING);
+        result = true;
+    } else {
+        result =
+            OSReceiveMessage(&command->mMessageQueue, &message, OS_MESSAGE_NON_BLOCKING) != FALSE;
+    }
+
+    return result;
 }
-#pragma pop
 
 /* 802DB988-802DB9DC 2D62C8 0054+00 0/0 5/5 0/0 .text            orderSync__9JKRDecompFPUcPUcUlUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRDecomp::orderSync(u8* param_0, u8* param_1, u32 param_2, u32 param_3) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRDecomp/orderSync__9JKRDecompFPUcPUcUlUl.s"
+bool JKRDecomp::orderSync(u8* srcBuffer, u8* dstBuffer, u32 srcLength, u32 dstLength) {
+    JKRDecompCommand* command = orderAsync(srcBuffer, dstBuffer, srcLength, dstLength, NULL);
+    bool result = sync(command, JKRDECOMP_SYNC_BLOCKING);
+    delete command;
+    return result;
 }
-#pragma pop
 
 /* 802DB9DC-802DBA58 2D631C 007C+00 1/1 0/0 0/0 .text            decode__9JKRDecompFPUcPUcUlUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRDecomp::decode(u8* param_0, u8* param_1, u32 param_2, u32 param_3) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRDecomp/decode__9JKRDecompFPUcPUcUlUl.s"
+void JKRDecomp::decode(u8* srcBuffer, u8* dstBuffer, u32 srcLength, u32 dstLength) {
+    JKRCompression compression = checkCompressed(srcBuffer);
+    if (compression == COMPRESSION_YAY0) {
+        decodeSZP(srcBuffer, dstBuffer, srcLength, dstLength);
+    } else if (compression == COMPRESSION_YAZ0) {
+        decodeSZS(srcBuffer, dstBuffer, srcLength, dstLength);
+    }
 }
-#pragma pop
 
 /* 802DBA58-802DBC14 2D6398 01BC+00 1/1 0/0 0/0 .text            decodeSZP__9JKRDecompFPUcPUcUlUl */
+// All instructions match. Wrong registers are used.
+#ifdef NONMATCHING
+void JKRDecomp::decodeSZP(u8* src, u8* dst, u32 srcLength, u32 dstLength) {
+    u32 decodedSize;
+    s32 srcChunkOffset;
+    s32 count;
+    s32 dstOffset;
+    u32 length;
+    u32 counter;
+    u32 srcDataOffset;
+    u32 linkTableOffset;
+    s32 offset;
+    s32 i;
+
+    decodedSize = read_big_endian_u32(src + 4);
+    linkTableOffset = read_big_endian_u32(src + 8);
+    srcDataOffset = read_big_endian_u32(src + 12);
+
+    dstOffset = 0;
+    counter = 0;
+    srcChunkOffset = 16;
+
+    u32 chunkBits;
+    if (srcLength == 0)
+        return;
+    if (dstLength > decodedSize)
+        return;
+
+    length = srcLength;
+    do {
+        if (counter == 0) {
+            chunkBits = read_big_endian_u32(src + srcChunkOffset);
+            srcChunkOffset += 4;
+            counter = 32;
+        }
+
+        if (chunkBits & 0x80000000) {
+            if (dstLength == 0) {
+                dst[dstOffset] = src[srcDataOffset];
+                length--;
+                if (length == 0) {
+                    return;
+                }
+            } else {
+                dstLength--;
+            }
+            dstOffset++;
+            srcDataOffset++;
+        } else {
+            u32 linkInfo = read_big_endian_u16(src + linkTableOffset);
+            linkTableOffset += 2;
+
+            offset = dstOffset - (linkInfo & 0xFFF);
+            count = ((s32)linkInfo) >> 12;
+            if (count == 0) {
+                count = (u32)src[srcDataOffset] + 0x12;
+                srcDataOffset++;
+            } else {
+                count += 2;
+            }
+
+            if (count > decodedSize - dstOffset) {
+                count = decodedSize - dstOffset;
+            }
+
+            for (i = 0; i < count; i++, dstOffset++, offset++) {
+                if (dstLength == 0) {
+                    dst[dstOffset] = dst[offset - 1];
+                    length--;
+                    if (length == 0) {
+                        return;
+                    }
+                } else {
+                    dstLength--;
+                }
+            }
+        }
+
+        chunkBits <<= 1;
+        counter--;
+    } while ((s32)dstLength < decodedSize);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -235,6 +262,7 @@ asm void JKRDecomp::decodeSZP(u8* param_0, u8* param_1, u32 param_2, u32 param_3
 #include "asm/JSystem/JKernel/JKRDecomp/decodeSZP__9JKRDecompFPUcPUcUlUl.s"
 }
 #pragma pop
+#endif
 
 /* 802DBC14-802DBCF8 2D6554 00E4+00 1/1 0/0 0/0 .text            decodeSZS__9JKRDecompFPUcPUcUlUl */
 #pragma push
@@ -247,31 +275,29 @@ asm void JKRDecomp::decodeSZS(u8* param_0, u8* param_1, u32 param_2, u32 param_3
 #pragma pop
 
 /* 802DBCF8-802DBD70 2D6638 0078+00 1/1 4/4 0/0 .text            checkCompressed__9JKRDecompFPUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRDecomp::checkCompressed(u8* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRDecomp/checkCompressed__9JKRDecompFPUc.s"
+JKRCompression JKRDecomp::checkCompressed(u8* src) {
+    if ((src[0] == 'Y') && (src[1] == 'a') && (src[3] == '0')) {
+        if (src[2] == 'y') {
+            return COMPRESSION_YAY0;
+        }
+        if (src[2] == 'z') {
+            return COMPRESSION_YAZ0;
+        }
+    }
+    if ((src[0] == 'A') && (src[1] == 'S') && (src[2] == 'R')) {
+        return COMPRESSION_ASR;
+    }
+    return COMPRESSION_NONE;
 }
-#pragma pop
 
 /* 802DBD70-802DBDC0 2D66B0 0050+00 1/1 0/0 0/0 .text            __ct__16JKRDecompCommandFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRDecompCommand::JKRDecompCommand() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRDecomp/__ct__16JKRDecompCommandFv.s"
+JKRDecompCommand::JKRDecompCommand() {
+    OSInitMessageQueue(&mMessageQueue, &mMessage, 1);
+    mCallback = NULL;
+    field_0x1c = NULL;
+    mThis = this;
+    field_0x20 = 0;
 }
-#pragma pop
 
 /* 802DBDC0-802DBDFC 2D6700 003C+00 1/1 0/0 0/0 .text            __dt__16JKRDecompCommandFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRDecompCommand::~JKRDecompCommand() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRDecomp/__dt__16JKRDecompCommandFv.s"
-}
-#pragma pop
+JKRDecompCommand::~JKRDecompCommand() {}

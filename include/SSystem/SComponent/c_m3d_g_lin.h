@@ -2,8 +2,8 @@
 #define C_M3D_G_LIN_H
 
 #include "SSystem/SComponent/c_xyz.h"
+#include "dolphin/mtx/vec.h"
 #include "dolphin/types.h"
-#include "mtx_vec.h"
 
 // Line
 class cM3dGLin {

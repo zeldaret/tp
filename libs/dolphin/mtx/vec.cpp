@@ -8,27 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" void PSVECAdd();
-extern "C" void PSVECSubtract();
-extern "C" void PSVECScale();
-extern "C" void PSVECNormalize();
-extern "C" void PSVECSquareMag();
-extern "C" void PSVECMag();
-extern "C" void PSVECDotProduct();
-extern "C" void PSVECCrossProduct();
-extern "C" void C_VECHalfAngle();
-extern "C" void C_VECReflect();
-extern "C" void PSVECSquareDistance();
-extern "C" void PSVECDistance();
-
-//
-// External References:
-//
-
-//
 // Declarations:
 //
 
@@ -36,7 +15,7 @@ extern "C" void PSVECDistance();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSVECAdd() {
+asm void PSVECAdd(const Vec* src_a, const Vec* src_b, Vec* dst) {
     nofralloc
 #include "asm/dolphin/mtx/vec/PSVECAdd.s"
 }
@@ -46,7 +25,7 @@ asm void PSVECAdd() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSVECSubtract() {
+asm void PSVECSubtract(const Vec* a, const Vec* b, Vec* dst) {
     nofralloc
 #include "asm/dolphin/mtx/vec/PSVECSubtract.s"
 }
@@ -56,7 +35,7 @@ asm void PSVECSubtract() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSVECScale() {
+asm void PSVECScale(const Vec* src, Vec* dst, float scale) {
     nofralloc
 #include "asm/dolphin/mtx/vec/PSVECScale.s"
 }
@@ -81,7 +60,7 @@ SECTION_SDATA2 static f32 lit_119 = 3.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSVECNormalize() {
+asm void PSVECNormalize(const Vec* src, Vec* dst) {
     nofralloc
 #include "asm/dolphin/mtx/vec/PSVECNormalize.s"
 }
@@ -91,7 +70,7 @@ asm void PSVECNormalize() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSVECSquareMag() {
+asm float PSVECSquareMag(const Vec* vec) {
     nofralloc
 #include "asm/dolphin/mtx/vec/PSVECSquareMag.s"
 }
@@ -101,7 +80,7 @@ asm void PSVECSquareMag() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSVECMag() {
+asm float PSVECMag(const Vec* data) {
     nofralloc
 #include "asm/dolphin/mtx/vec/PSVECMag.s"
 }
@@ -111,7 +90,7 @@ asm void PSVECMag() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSVECDotProduct() {
+asm float PSVECDotProduct(const Vec* a, const Vec* b) {
     nofralloc
 #include "asm/dolphin/mtx/vec/PSVECDotProduct.s"
 }
@@ -121,7 +100,7 @@ asm void PSVECDotProduct() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSVECCrossProduct() {
+asm void PSVECCrossProduct(const Vec* src_a, const Vec* src_b, Vec* dst) {
     nofralloc
 #include "asm/dolphin/mtx/vec/PSVECCrossProduct.s"
 }
@@ -131,7 +110,7 @@ asm void PSVECCrossProduct() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void C_VECHalfAngle() {
+asm void C_VECHalfAngle(const Vec* incident, const Vec* line_of_sight, Vec* out_half) {
     nofralloc
 #include "asm/dolphin/mtx/vec/C_VECHalfAngle.s"
 }
@@ -145,7 +124,7 @@ SECTION_SDATA2 static f32 lit_161 = 2.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void C_VECReflect() {
+asm void C_VECReflect(const Vec* src, const Vec* surface_normal, Vec* dst) {
     nofralloc
 #include "asm/dolphin/mtx/vec/C_VECReflect.s"
 }
@@ -155,7 +134,7 @@ asm void C_VECReflect() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSVECSquareDistance() {
+asm float PSVECSquareDistance(const Vec* a, const Vec* b) {
     nofralloc
 #include "asm/dolphin/mtx/vec/PSVECSquareDistance.s"
 }
@@ -165,7 +144,7 @@ asm void PSVECSquareDistance() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PSVECDistance() {
+asm float PSVECDistance(const Vec* a, const Vec* b) {
     nofralloc
 #include "asm/dolphin/mtx/vec/PSVECDistance.s"
 }

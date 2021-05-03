@@ -1,0 +1,213 @@
+#ifndef JKRARCHIVE_H
+#define JKRARCHIVE_H
+
+#include "JSystem/JKernel/JKRCompression.h"
+#include "JSystem/JKernel/JKRDecomp.h"
+#include "JSystem/JKernel/JKRFileLoader.h"
+#include "global.h"
+
+struct SArcHeader {
+    u32 signature;
+    u32 file_length;
+    u32 header_length;
+    u32 file_data_offset;
+    u32 file_data_length;
+    u32 field_0x14;
+    u32 field_0x18;
+    u32 field_0x1c;
+};
+
+struct SArcDataInfo {
+    u32 num_nodes;
+    u32 node_offset;
+    u32 num_file_entries;
+    u32 file_entry_offset;
+    u32 string_table_length;
+    u32 string_table_offset;
+    u16 next_free_file_id;
+    bool sync_file_ids_and_indices;
+    u8 field_1b[5];
+};
+
+inline u32 read_big_endian_u32(void* ptr) {
+    u8* uptr = (u8*)ptr;
+    return ((u32)uptr[0] << 0x18) | ((u32)uptr[1] << 0x10) | ((u32)uptr[2] << 8) | (u32)uptr[3];
+}
+
+inline u16 read_big_endian_u16(void* ptr) {
+    u8* uptr = (u8*)ptr;
+    return ((u16)uptr[0] << 8) | ((u16)uptr[1]);
+}
+
+inline u32 JKRDecompExpandSize(SArcHeader* header) {
+    u8* fileLength = (u8*)&header->file_length;
+    return read_big_endian_u32(fileLength);
+}
+
+extern u32 sCurrentDirID__10JKRArchive;  // JKRArchive::sCurrentDirID
+
+class JKRHeap;
+class JKRDvdFile;
+class JKRArchive : public JKRFileLoader {
+public:
+    struct SDirEntry {
+        union {
+            u32 type;
+            struct {
+                u8 flags;
+                u8 padding;
+                u16 id;
+            } other;
+        };
+
+        const char* name;
+        u16 field_0x8;
+        u16 num_entries;
+        s32 first_file_index;
+    };
+
+    struct SDIFileEntry {
+        u16 file_id;
+        u16 name_hash;
+        u32 type_flags_and_name_offset;
+        u32 data_offset;
+        u32 data_size;
+        void* data;
+
+        u32 getNameOffset() const { return type_flags_and_name_offset & 0xFFFFFF; }
+        u16 getNameHash() const { return name_hash; }
+        u32 getFlags() const { return type_flags_and_name_offset >> 24; }
+        u32 getAttr() const { return getFlags(); }
+        u16 getFileID() const { return file_id; }
+        bool isDirectory() const { return (getFlags() & 0x02) != 0; }
+        bool isUnknownFlag1() const { return (getFlags() & 0x01) != 0; }
+        bool isCompressed() const { return (getFlags() & 0x04) != 0; }
+        bool isYAZ0Compressed() const { return (getFlags() & 0x80) != 0; }
+    };
+
+    enum EMountMode {
+        UNKNOWN_MOUNT_MODE = 0,
+        MOUNT_MEM = 1,
+        MOUNT_ARAM = 2,
+        MOUNT_DVD = 3,
+        MOUNT_COMP = 4,
+    };
+
+    enum EMountDirection {
+        UNKNOWN_MOUNT_DIRECTION = 0,
+        MOUNT_DIRECTION_HEAD = 1,
+        MOUNT_DIRECTION_TAIL = 2,
+    };
+
+    class CArcName {
+    public:
+        CArcName() {}
+        CArcName(char const* data) { this->store(data); }
+        CArcName(char const** data, char endChar) { *data = this->store(*data, endChar); }
+
+        void store(char const* data);
+        const char* store(char const* data, char endChar);
+
+        u16 getHash() const { return mHash; }
+
+        const char* getString() const { return mData; }
+
+    private:
+        u16 mHash;
+        u16 mLength;
+        char mData[256];
+    };
+
+protected:
+    JKRArchive();
+    JKRArchive(long, EMountMode);
+    virtual ~JKRArchive();
+
+public:
+    bool getDirEntry(SDirEntry*, u32) const;
+    void* getIdxResource(u32);
+    void* getResource(u16);
+    u32 readIdxResource(void*, u32, u32);
+    u32 readResource(void*, u32, u16);
+    u32 countResource(void) const;
+    u32 getFileAttribute(u32) const;
+
+    u32 getMountMode() const { return mMountMode; }
+
+protected:
+    bool isSameName(CArcName&, u32, u16) const;
+    SDirEntry* findResType(u32) const;
+    SDirEntry* findDirectory(const char*, u32) const;
+    SDIFileEntry* findTypeResource(u32, const char*) const;
+    SDIFileEntry* findFsResource(const char*, u32) const;
+    SDIFileEntry* findIdxResource(u32) const;
+    SDIFileEntry* findNameResource(const char*) const;
+    SDIFileEntry* findPtrResource(const void*) const;
+    SDIFileEntry* findIdResource(u16) const;
+
+public:
+    /* vt[04] */ virtual bool becomeCurrent(const char*);                /* override */
+    /* vt[05] */ virtual void* getResource(const char*);                 /* override */
+    /* vt[06] */ virtual void* getResource(u32, const char*);            /* override */
+    /* vt[07] */ virtual u32 readResource(void*, u32, const char*);      /* override */
+    /* vt[08] */ virtual u32 readResource(void*, u32, u32, const char*); /* override */
+    /* vt[09] */ virtual void removeResourceAll(void);                   /* override */
+    /* vt[10] */ virtual bool removeResource(void*);                     /* override */
+    /* vt[11] */ virtual bool detachResource(void*);                     /* override */
+    /* vt[12] */ virtual u32 getResSize(const void*) const;              /* override */
+    /* vt[13] */ virtual u32 countFile(const char*) const;               /* override */
+    /* vt[14] */ virtual JKRFileFinder* getFirstFile(const char*) const; /* override */
+    /* vt[15] */ virtual u32 getExpandedResSize(const void*) const;
+    /* vt[16] */ virtual void* fetchResource(SDIFileEntry*, u32*) = 0;
+    /* vt[17] */ virtual void* fetchResource(void*, u32, SDIFileEntry*, u32*) = 0;
+    /* vt[18] */ virtual void setExpandSize(SDIFileEntry*, u32);
+    /* vt[19] */ virtual u32 getExpandSize(SDIFileEntry*) const;
+
+protected:
+    /* 0x00 */  // vtable
+    /* 0x04 */  // JKRFileLoader
+    /* 0x38 */ JKRHeap* mHeap;
+    /* 0x3C */ u8 mMountMode;
+    /* 0x3D */ u8 field_0x3d[3];
+    /* 0x40 */ s32 mEntryNum;
+    /* 0x44 */ SArcDataInfo* mArcInfoBlock;
+    /* 0x48 */ SDirEntry* mNodes;
+    /* 0x4C */ SDIFileEntry* mFiles;
+    /* 0x50 */ s32* mExpandedSize;
+    /* 0x54 */ char* mStringTable;
+    /* 0x58 */ u32 field_0x58;
+
+public:
+    static JKRArchive* check_mount_already(s32, JKRHeap*);
+    static JKRArchive* mount(const char*, EMountMode, JKRHeap*, EMountDirection);
+    static JKRArchive* mount(void*, JKRHeap*, EMountDirection);
+    static JKRArchive* mount(s32, EMountMode, JKRHeap*, EMountDirection);
+    static void* getGlbResource(u32, const char*, JKRArchive*);
+
+    static JKRCompression convertAttrToCompressionType(u32 attr) {
+#define JKRARCHIVE_ATTR_COMPRESSION 0x04
+#define JKRARCHIVE_ATTR_YAY0 0x80
+
+        JKRCompression compression;
+        if (FLAG_ON(attr, JKRARCHIVE_ATTR_COMPRESSION)) {
+            compression = COMPRESSION_NONE;
+        } else if (!FLAG_ON(attr, JKRARCHIVE_ATTR_YAY0)) {
+            compression = COMPRESSION_YAZ0;
+        } else {
+            compression = COMPRESSION_YAY0;
+        }
+        return compression;
+    }
+
+    static u32 getCurrentDirID() { return sCurrentDirID; }
+    static void setCurrentDirID(u32 dirID) { sCurrentDirID = dirID; }
+
+private:
+    static u32 sCurrentDirID;
+};
+
+inline JKRCompression JKRConvertAttrToCompressionType(u32 attr) {
+    return JKRArchive::convertAttrToCompressionType(attr);
+}
+
+#endif

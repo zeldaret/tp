@@ -5,59 +5,7 @@
 
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JKRHeap {
-    struct TState {};
-
-    /* 800065D8 */ bool dump_sort();
-    /* 802CE138 */ JKRHeap(void*, u32, JKRHeap*, bool);
-    /* 802CE264 */ ~JKRHeap();
-    /* 802CE474 */ void alloc(u32, int, JKRHeap*);
-    /* 802CE500 */ void free(void*, JKRHeap*);
-    /* 802CE574 */ void callAllDisposer();
-    /* 802CE684 */ void resize(void*, u32);
-    /* 802CE72C */ void getFreeSize();
-    /* 802CE784 */ void getTotalFreeSize();
-    /* 802CE7DC */ void getMaxAllocatableSize(int);
-    /* 802CEAA0 */ void dispose(void*, void*);
-    /* 802CEAC0 */ void dispose();
-    /* 802CEDA0 */ void state_dump(JKRHeap::TState const&) const;
-    /* 802CEDA4 */ bool do_changeGroupID(u8);
-    /* 802CEDAC */ bool do_getCurrentGroupId();
-
-    static u8 sRootHeap[4];
-    static u8 mErrorHandler[4];
-};
-
-struct JKRSolidHeap {
-    /* 802D0A24 */ void create(u32, JKRHeap*, bool);
-    /* 802D0AD0 */ void do_destroy();
-    /* 802D0B30 */ JKRSolidHeap(void*, u32, JKRHeap*, bool);
-    /* 802D0B8C */ ~JKRSolidHeap();
-    /* 802D0BF4 */ void adjustSize();
-    /* 802D0CB0 */ void do_alloc(u32, int);
-    /* 802D0D58 */ void allocFromHead(u32, int);
-    /* 802D0E20 */ void allocFromTail(u32, int);
-    /* 802D0EE4 */ void do_free(void*);
-    /* 802D0F14 */ void do_freeAll();
-    /* 802D0F74 */ void do_freeTail();
-    /* 802D1000 */ void do_fillFreeArea();
-    /* 802D1004 */ void do_resize(void*, u32);
-    /* 802D1038 */ void do_getSize(void*);
-    /* 802D106C */ void check();
-    /* 802D10FC */ void dump();
-    /* 802D11FC */ void state_register(JKRHeap::TState*, u32) const;
-    /* 802D1258 */ void state_compare(JKRHeap::TState const&, JKRHeap::TState const&) const;
-    /* 802D1288 */ void getHeapType();
-    /* 802D1294 */ void do_getFreeSize();
-    /* 802D129C */ void do_getMaxFreeBlock();
-    /* 802D12A4 */ void do_getTotalFreeSize();
-};
+#include "global.h"
 
 //
 // Forward References:
@@ -107,10 +55,8 @@ extern "C" void __dl__FPv();
 extern "C" void state_dump__7JKRHeapCFRCQ27JKRHeap6TState();
 extern "C" bool do_changeGroupID__7JKRHeapFUc();
 extern "C" bool do_getCurrentGroupId__7JKRHeapFv();
-extern "C" void JUTReportConsole_f();
-extern "C" void JUTWarningConsole_f();
-extern "C" void OSLockMutex();
-extern "C" void OSUnlockMutex();
+extern "C" void JUTReportConsole_f(const char*, ...);
+extern "C" void JUTWarningConsole_f(const char*, ...);
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();
@@ -124,94 +70,119 @@ extern "C" u8 mErrorHandler__7JKRHeap[4];
 
 /* 802D0A24-802D0AD0 2CB364 00AC+00 0/0 4/4 1/1 .text            create__12JKRSolidHeapFUlP7JKRHeapb
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRSolidHeap::create(u32 param_0, JKRHeap* param_1, bool param_2) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRSolidHeap/create__12JKRSolidHeapFUlP7JKRHeapb.s"
+JKRSolidHeap* JKRSolidHeap::create(u32 size, JKRHeap* heap, bool useErrorHandler) {
+    if (!heap) {
+        heap = getRootHeap();
+    }
+
+    if (size == 0xffffffff) {
+        size = heap->getMaxAllocatableSize(0x10);
+    }
+
+    u32 alignedSize = ALIGN_PREV(size, 0x10);
+    u32 solidHeapSize = ALIGN_NEXT(sizeof(JKRSolidHeap), 0x10);
+    if (alignedSize < solidHeapSize)
+        return NULL;
+
+    JKRSolidHeap* solidHeap = (JKRSolidHeap*)JKRAllocFromHeap(heap, alignedSize, 0x10);
+    void* dataPtr = (u8*)solidHeap + solidHeapSize;
+    if (!solidHeap)
+        return NULL;
+
+    solidHeap =
+        new (solidHeap) JKRSolidHeap(dataPtr, alignedSize - solidHeapSize, heap, useErrorHandler);
+    return solidHeap;
 }
-#pragma pop
 
 /* 802D0AD0-802D0B30 2CB410 0060+00 1/0 0/0 0/0 .text            do_destroy__12JKRSolidHeapFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRSolidHeap::do_destroy() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRSolidHeap/do_destroy__12JKRSolidHeapFv.s"
+void JKRSolidHeap::do_destroy(void) {
+    JKRHeap* parent = getParent();
+    if (parent) {
+        this->~JKRSolidHeap();
+        JKRFreeToHeap(parent, this);
+    }
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 803CC030-803CC090 029150 0060+00 2/2 0/0 0/0 .data            __vt__12JKRSolidHeap */
-SECTION_DATA extern void* __vt__12JKRSolidHeap[24] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12JKRSolidHeapFv,
-    (void*)callAllDisposer__7JKRHeapFv,
-    (void*)getHeapType__12JKRSolidHeapFv,
-    (void*)check__12JKRSolidHeapFv,
-    (void*)dump_sort__7JKRHeapFv,
-    (void*)dump__12JKRSolidHeapFv,
-    (void*)do_destroy__12JKRSolidHeapFv,
-    (void*)do_alloc__12JKRSolidHeapFUli,
-    (void*)do_free__12JKRSolidHeapFPv,
-    (void*)do_freeAll__12JKRSolidHeapFv,
-    (void*)do_freeTail__12JKRSolidHeapFv,
-    (void*)do_fillFreeArea__12JKRSolidHeapFv,
-    (void*)do_resize__12JKRSolidHeapFPvUl,
-    (void*)do_getSize__12JKRSolidHeapFPv,
-    (void*)do_getFreeSize__12JKRSolidHeapFv,
-    (void*)do_getMaxFreeBlock__12JKRSolidHeapFv,
-    (void*)do_getTotalFreeSize__12JKRSolidHeapFv,
-    (void*)do_changeGroupID__7JKRHeapFUc,
-    (void*)do_getCurrentGroupId__7JKRHeapFv,
-    (void*)state_register__12JKRSolidHeapCFPQ27JKRHeap6TStateUl,
-    (void*)state_compare__12JKRSolidHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState,
-    (void*)state_dump__7JKRHeapCFRCQ27JKRHeap6TState,
-};
 
 /* 802D0B30-802D0B8C 2CB470 005C+00 1/1 0/0 0/0 .text            __ct__12JKRSolidHeapFPvUlP7JKRHeapb
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRSolidHeap::JKRSolidHeap(void* param_0, u32 param_1, JKRHeap* param_2, bool param_3) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRSolidHeap/__ct__12JKRSolidHeapFPvUlP7JKRHeapb.s"
+JKRSolidHeap::JKRSolidHeap(void* start, u32 size, JKRHeap* parent, bool useErrorHandler)
+    : JKRHeap(start, size, parent, useErrorHandler) {
+    mFreeSize = mSize;
+    mSolidHead = (u8*)mStart;
+    mSolidTail = (u8*)mEnd;
+    field_0x78 = NULL;
 }
-#pragma pop
 
 /* 802D0B8C-802D0BF4 2CB4CC 0068+00 1/0 0/0 0/0 .text            __dt__12JKRSolidHeapFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRSolidHeap::~JKRSolidHeap() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRSolidHeap/__dt__12JKRSolidHeapFv.s"
+JKRSolidHeap::~JKRSolidHeap(void) {
+    dispose();
 }
-#pragma pop
 
 /* 802D0BF4-802D0CB0 2CB534 00BC+00 0/0 5/5 1/1 .text            adjustSize__12JKRSolidHeapFv */
+#ifdef NONMATCHING
+s32 JKRSolidHeap::adjustSize(void) {
+    JKRHeap* parent = getParent();
+    if (parent) {
+        lock();
+        s32 start = mStart;
+        s32 newSize = (s32)this->mSolidHead - ALIGN_NEXT(start, 0x20);
+        s32 newSizeThis = newSize + (start - (s32)this);
+        s32 actualSize = parent->resize(this, newSizeThis);
+        if (actualSize != -1) {
+            mFreeSize = 0;
+            mSize = newSize;
+            mEnd = mStart + mSize;
+            mSolidHead = (void*)mEnd;
+            mSolidTail = (void*)mEnd;
+        }
+
+        unlock();
+
+        return newSizeThis;
+    }
+
+    return -1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRSolidHeap::adjustSize() {
+asm s32 JKRSolidHeap::adjustSize() {
     nofralloc
 #include "asm/JSystem/JKernel/JKRSolidHeap/adjustSize__12JKRSolidHeapFv.s"
 }
 #pragma pop
+#endif
 
 /* 802D0CB0-802D0D58 2CB5F0 00A8+00 1/0 0/0 0/0 .text            do_alloc__12JKRSolidHeapFUli */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRSolidHeap::do_alloc(u32 param_0, int param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRSolidHeap/do_alloc__12JKRSolidHeapFUli.s"
+void* JKRSolidHeap::do_alloc(u32 size, int alignment) {
+    if (alignment != 0) {
+        JUT_ASSERT(abs(alignment));
+        JUT_ASSERT(isPower2(alignment));
+    }
+
+    lock();
+
+    if (size < 4) {
+        size = 4;
+    }
+
+    void* ptr;
+    if (alignment >= 0) {
+        ptr = allocFromHead(size, alignment < 4 ? 4 : alignment);
+    } else {
+        if (-alignment < 4) {
+            alignment = 4;
+        } else {
+            alignment = -alignment;
+        }
+
+        ptr = allocFromTail(size, alignment);
+    }
+
+    unlock();
+    return ptr;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039CE50-8039CE50 0294B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -223,14 +194,41 @@ SECTION_DEAD static char const* const stringBase_8039CE50 =
 
 /* 802D0D58-802D0E20 2CB698 00C8+00 1/1 0/0 0/0 .text            allocFromHead__12JKRSolidHeapFUli
  */
+#ifdef NONMATCHING
+void* JKRSolidHeap::allocFromHead(u32 size, int alignment) {
+    void* ptr;
+    u32 offset;
+    u32 alignedSize;
+    u32 alignedStart;
+    u32 totalSize;
+    alignedSize = ALIGN_NEXT(size, 0x4);
+    ptr = NULL;
+    alignedStart = (alignment - 1 + (u32)mSolidHead) & ~(alignment - 1);
+    offset = alignedStart - (u32)mSolidHead;
+    totalSize = alignedSize + offset;
+    if (totalSize <= mFreeSize) {
+        ptr = (void*)alignedStart;
+        mSolidHead += totalSize;
+        mFreeSize -= totalSize;
+    } else {
+        JUTWarningConsole_f("allocFromHead: cannot alloc memory (0x%x byte).\n", totalSize);
+        if (getErrorFlag() == true) {
+            callErrorHandler(this, alignedSize, alignment);
+        }
+    }
+
+    return ptr;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRSolidHeap::allocFromHead(u32 param_0, int param_1) {
+asm void* JKRSolidHeap::allocFromHead(u32 param_0, int param_1) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRSolidHeap/allocFromHead__12JKRSolidHeapFUli.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8039CE50-8039CE50 0294B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -245,146 +243,120 @@ SECTION_DEAD static char const* const stringBase_8039CE81 =
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRSolidHeap::allocFromTail(u32 param_0, int param_1) {
+asm void* JKRSolidHeap::allocFromTail(u32 param_0, int param_1) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRSolidHeap/allocFromTail__12JKRSolidHeapFUli.s"
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 8039CE50-8039CE50 0294B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039CEB2 =
-    "free: cannot free memory block (%08x)\n";
-#pragma pop
-
 /* 802D0EE4-802D0F14 2CB824 0030+00 1/0 0/0 0/0 .text            do_free__12JKRSolidHeapFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRSolidHeap::do_free(void* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRSolidHeap/do_free__12JKRSolidHeapFPv.s"
+void JKRSolidHeap::do_free(void* ptr) {
+    JUTWarningConsole_f("free: cannot free memory block (%08x)\n", ptr);
 }
-#pragma pop
 
 /* 802D0F14-802D0F74 2CB854 0060+00 1/0 0/0 0/0 .text            do_freeAll__12JKRSolidHeapFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRSolidHeap::do_freeAll() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRSolidHeap/do_freeAll__12JKRSolidHeapFv.s"
+void JKRSolidHeap::do_freeAll(void) {
+    lock();
+
+    this->JKRHeap::callAllDisposer();
+    mFreeSize = mSize;
+    mSolidHead = (u8*)mStart;
+    mSolidTail = (u8*)mEnd;
+    field_0x78 = NULL;
+
+    unlock();
 }
-#pragma pop
 
 /* 802D0F74-802D1000 2CB8B4 008C+00 1/0 0/0 0/0 .text            do_freeTail__12JKRSolidHeapFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRSolidHeap::do_freeTail() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRSolidHeap/do_freeTail__12JKRSolidHeapFv.s"
+void JKRSolidHeap::do_freeTail(void) {
+    lock();
+
+    if (mSolidTail != mEnd) {
+        dispose(mSolidTail, mEnd);
+    }
+
+    this->mFreeSize = ((u32)mEnd - (u32)mSolidTail + mFreeSize);
+    this->mSolidTail = mEnd;
+
+    JKRSolidHeap::Unknown* unknown = field_0x78;
+    while (unknown) {
+        unknown->field_0xc = mEnd;
+        unknown = unknown->mNext;
+    }
+
+    unlock();
 }
-#pragma pop
 
 /* 802D1000-802D1004 2CB940 0004+00 1/0 0/0 0/0 .text            do_fillFreeArea__12JKRSolidHeapFv
  */
 void JKRSolidHeap::do_fillFreeArea() {
-    /* empty function */
+#if DEBUG
+    fillMemory(mSolidHead, mEnd - mSolidHead, (uint)DAT_8074a8ba);
+#endif
 }
-
-/* ############################################################################################## */
-/* 8039CE50-8039CE50 0294B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039CED9 =
-    "resize: cannot resize memory block (%08x: %d)\n";
-#pragma pop
 
 /* 802D1004-802D1038 2CB944 0034+00 1/0 0/0 0/0 .text            do_resize__12JKRSolidHeapFPvUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRSolidHeap::do_resize(void* param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRSolidHeap/do_resize__12JKRSolidHeapFPvUl.s"
+s32 JKRSolidHeap::do_resize(void* ptr, u32 newSize) {
+    JUTWarningConsole_f("resize: cannot resize memory block (%08x: %d)\n", ptr, newSize);
+    return -1;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 8039CE50-8039CE50 0294B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039CF08 =
-    "getSize: cannot get memory block size (%08x)\n";
-#pragma pop
 
 /* 802D1038-802D106C 2CB978 0034+00 1/0 0/0 0/0 .text            do_getSize__12JKRSolidHeapFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRSolidHeap::do_getSize(void* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRSolidHeap/do_getSize__12JKRSolidHeapFPv.s"
+s32 JKRSolidHeap::do_getSize(void* ptr) {
+    JUTWarningConsole_f("getSize: cannot get memory block size (%08x)\n", ptr);
+    return -1;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 8039CE50-8039CE50 0294B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039CF36 =
-    "check: bad total memory block size (%08X, %08X)\n";
-#pragma pop
 
 /* 802D106C-802D10FC 2CB9AC 0090+00 1/0 0/0 0/0 .text            check__12JKRSolidHeapFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRSolidHeap::check() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRSolidHeap/check__12JKRSolidHeapFv.s"
+bool JKRSolidHeap::check(void) {
+    lock();
+
+    bool result = true;
+    u32 calculatedSize =
+        ((u32)mSolidHead - (u32)mStart) + mFreeSize + ((u32)mEnd - (u32)mSolidTail);
+    u32 availableSize = mSize;
+    if (calculatedSize != availableSize) {
+        result = false;
+        JUTWarningConsole_f("check: bad total memory block size (%08X, %08X)\n", availableSize,
+                            calculatedSize);
+    }
+
+    unlock();
+    return result;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 8039CE50-8039CE50 0294B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039CF67 = "head %08x: %08x\n";
-SECTION_DEAD static char const* const stringBase_8039CF78 = "tail %08x: %08x\n";
-SECTION_DEAD static char const* const stringBase_8039CF89 = "%d / %d bytes (%6.2f%%) used\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039CFA7 = "";
-#pragma pop
-
-/* 80455FA8-80455FB0 0045A8 0004+04 1/1 0/0 0/0 .sdata2          @693 */
-SECTION_SDATA2 static f32 lit_693[1 + 1 /* padding */] = {
-    100.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80455FB0-80455FB8 0045B0 0008+00 1/1 0/0 0/0 .sdata2          @695 */
-SECTION_SDATA2 static f64 lit_695 = 4503601774854144.0 /* cast s32 to float */;
-
-/* 80455FB8-80455FC0 0045B8 0008+00 1/1 0/0 0/0 .sdata2          @697 */
-SECTION_SDATA2 static f64 lit_697 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802D10FC-802D11FC 2CBA3C 0100+00 1/0 0/0 0/0 .text            dump__12JKRSolidHeapFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRSolidHeap::dump() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRSolidHeap/dump__12JKRSolidHeapFv.s"
-}
-#pragma pop
+bool JKRSolidHeap::dump(void) {
+    bool result = check();
 
+    lock();
+    u32 headSize = ((u32)mSolidHead - (u32)mStart);
+    u32 tailSize = ((u32)mEnd - (u32)mSolidTail);
+    s32 htSize = headSize + tailSize;
+    JUTReportConsole_f("head %08x: %08x\n", mStart, headSize);
+    JUTReportConsole_f("tail %08x: %08x\n", mSolidTail, ((u32)mEnd - (u32)mSolidTail));
+
+    u32 totalSize = mSize;
+    float percentage = (float)htSize / (float)totalSize * 100.0f;
+    JUTReportConsole_f("%d / %d bytes (%6.2f%%) used\n", htSize, totalSize, percentage);
+    unlock();
+
+    return result;
+}
 /* 802D11FC-802D1258 2CBB3C 005C+00 1/0 0/0 0/0 .text
  * state_register__12JKRSolidHeapCFPQ27JKRHeap6TStateUl         */
+// full match expect using the wrong register
+#ifdef NONMATCHING
+void JKRSolidHeap::state_register(JKRHeap::TState* p, u32 id) const {
+    JUT_ASSERT(p != 0);
+    JUT_ASSERT(p->getHeap() == this);
+
+    getState_(p);
+    setState_u32ID_(p, id);
+    setState_uUsedSize_(p, getUsedSize());
+    setState_u32CheckCode_(p, (u32)mSolidHead + (u32)mSolidTail * 3);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -393,57 +365,43 @@ asm void JKRSolidHeap::state_register(JKRHeap::TState* param_0, u32 param_1) con
 #include "asm/JSystem/JKernel/JKRSolidHeap/state_register__12JKRSolidHeapCFPQ27JKRHeap6TStateUl.s"
 }
 #pragma pop
+#endif
 
 /* 802D1258-802D1288 2CBB98 0030+00 1/0 0/0 0/0 .text
  * state_compare__12JKRSolidHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRSolidHeap::state_compare(JKRHeap::TState const& param_0,
-                                     JKRHeap::TState const& param_1) const {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRSolidHeap/state_compare__12JKRSolidHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState.s"
+bool JKRSolidHeap::state_compare(JKRHeap::TState const& r1, JKRHeap::TState const& r2) const {
+    JUT_ASSERT(r1.getHeap() == r2.getHeap());
+
+    bool result = true;
+    if (r1.getCheckCode() != r2.getCheckCode()) {
+        result = false;
+    }
+
+    if (r1.getUsedSize() != r2.getUsedSize()) {
+        result = false;
+    }
+
+    return result;
 }
-#pragma pop
 
 /* 802D1288-802D1294 2CBBC8 000C+00 1/0 0/0 0/0 .text            getHeapType__12JKRSolidHeapFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRSolidHeap::getHeapType() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRSolidHeap/getHeapType__12JKRSolidHeapFv.s"
+u32 JKRSolidHeap::getHeapType(void) {
+    return 'SLID';
 }
-#pragma pop
 
 /* 802D1294-802D129C 2CBBD4 0008+00 1/0 0/0 0/0 .text            do_getFreeSize__12JKRSolidHeapFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRSolidHeap::do_getFreeSize() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRSolidHeap/do_getFreeSize__12JKRSolidHeapFv.s"
+s32 JKRSolidHeap::do_getFreeSize(void) {
+    return mFreeSize;
 }
-#pragma pop
 
 /* 802D129C-802D12A4 2CBBDC 0008+00 1/0 0/0 0/0 .text do_getMaxFreeBlock__12JKRSolidHeapFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRSolidHeap::do_getMaxFreeBlock() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRSolidHeap/do_getMaxFreeBlock__12JKRSolidHeapFv.s"
+void* JKRSolidHeap::do_getMaxFreeBlock(void) {
+    return mSolidHead;
 }
-#pragma pop
 
 /* 802D12A4-802D12C4 2CBBE4 0020+00 1/0 0/0 0/0 .text do_getTotalFreeSize__12JKRSolidHeapFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRSolidHeap::do_getTotalFreeSize() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRSolidHeap/do_getTotalFreeSize__12JKRSolidHeapFv.s"
+s32 JKRSolidHeap::do_getTotalFreeSize(void) {
+    return getFreeSize();
 }
-#pragma pop
 
 /* 8039CE50-8039CE50 0294B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

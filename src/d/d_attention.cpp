@@ -5,6 +5,7 @@
 
 #include "d/d_attention.h"
 #include "dol2asm.h"
+#include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 
 //
