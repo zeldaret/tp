@@ -1,8 +1,8 @@
 #ifndef J3DDRAWBUFFER_H
 #define J3DDRAWBUFFER_H
 
-#include "dolphin/types.h"
 #include "JSystem/J3DGraphBase/J3DPacket.h"
+#include "dolphin/types.h"
 
 class J3DPacket;
 class J3DMatPacket;

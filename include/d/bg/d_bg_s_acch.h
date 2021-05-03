@@ -69,6 +69,9 @@ public:
     /* 800773EC */ void OnWallSort();
     /* 800773FC */ void ChkWallSort();
     /* 80077408 */ void ChkLineDown();
+    /* 800D00D0 */ void ChkRoofHit() const;
+    /* 800D00DC */ void ClrGroundHit();
+    /* 80141404 */ void ChkGroundHit() const;
 
 private:
     /* 0x000 */ cBgS_Chk field_0x000;
@@ -108,6 +111,8 @@ private:
     /* 0x1D4 */ u8 mWtrChkMode;
 };
 
-class dBgS_LinkAcch : public dBgS_Acch {};
+class dBgS_LinkAcch : public dBgS_Acch {
+    /* 80140F30 */ ~dBgS_LinkAcch();
+};
 
 #endif /* D_BG_D_BG_S_ACCH_H */

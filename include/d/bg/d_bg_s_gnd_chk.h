@@ -15,7 +15,9 @@ private:
     /* 0x3C */ dBgS_Chk mChk;
 };  // Size = 0x54
 
-class dBgS_LinkGndChk : dBgS_GndChk {};
+class dBgS_LinkGndChk : dBgS_GndChk {
+    /* 80140EB8 */ virtual ~dBgS_LinkGndChk();
+};
 
 class dBgS_ObjGndChk : dBgS_GndChk {};
 

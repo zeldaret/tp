@@ -12,6 +12,7 @@ public:
     /* 80078FF4 */ dBgS_RoofChk();
     /* 80079090 */ ~dBgS_RoofChk();
     /* 80079124 */ void Init();
+    /* 800B146C */ void SetPos(cXyz const&);
 
 private:
     /* 0x00 */ cBgS_PolyInfo field_0x00;
@@ -22,6 +23,9 @@ private:
     /* 0x4C */ float mNowY;
 };  // Size = 0x50
 
-class dBgS_LinkRoofChk : dBgS_RoofChk {};
+class dBgS_LinkRoofChk : dBgS_RoofChk {
+public:
+    /* 80140E40 */ ~dBgS_LinkRoofChk();
+};
 
 #endif /* D_BG_D_BG_S_ROOF_CHK_H */

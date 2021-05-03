@@ -17,7 +17,9 @@ struct daAlink_c {
     /* 800BDE48 */ void setLastSceneMode(u32*);
 };
 
-struct daHorse_c {};
+struct daHorse_c {
+    /* 80141944 */ void getZeldaActor();
+};
 
 struct dTimer_c {
     /* 8025D524 */ void deleteCheck();

@@ -1,12 +1,12 @@
 #ifndef D_D_DRAWLIST_H
 #define D_D_DRAWLIST_H
 
-#include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/types.h"
-#include "dolphin/mtx/mtxvec.h"
-#include "dolphin/mtx/mtx44.h"
-#include "dolphin/gx/GXTexture.h"
 #include "JSystem/J3DGraphBase/J3DPacket.h"
+#include "SSystem/SComponent/c_xyz.h"
+#include "dolphin/gx/GXTexture.h"
+#include "dolphin/mtx/mtx44.h"
+#include "dolphin/mtx/mtxvec.h"
+#include "dolphin/types.h"
 
 class dDlst_FileInfo_c {
 public:

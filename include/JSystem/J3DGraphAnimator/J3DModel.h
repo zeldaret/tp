@@ -1,9 +1,9 @@
 #ifndef J3DMODEL_H
 #define J3DMODEL_H
 
-#include "dolphin/types.h"
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "dolphin/mtx/mtxvec.h"
+#include "dolphin/types.h"
 
 class J3DModel;
 struct J3DSkinDeform {
@@ -37,11 +37,12 @@ public:
     /* 0x00 */ void* mJointTree;
     /* 0x04 */ u32 field_0x4;
     /* 0x08 */ u32 field_0x8;
-    /* 0x0C */ Mtx* mMatrices[5];  
+    /* 0x0C */ Mtx* mMatrices[5];
 };
 
 class J3DModel {
 public:
+    /* 800CFFF4 */ void setBaseTRMtx(f32 (*)[4]);
     /* 80327100 */ void initialize();
     /* 80327184 */ void entryModelData(J3DModelData*, u32, u32);
     /* 80327300 */ void createShapePacket(J3DModelData*);
@@ -65,8 +66,9 @@ public:
     /* 803282B8 */ void calcBBoardMtx();
     /* 803282EC */ void prepareShapePackets();
     /* 80328350 */ ~J3DModel();
+    Mtx* getAnmMtx(int p1);
 
-    Mtx* getAnmMtx(int p1) { return mMtxBuffer->getAnmMtx(p1); }
+    // Mtx* getAnmMtx(int p1) { return mMtxBuffer->getAnmMtx(p1); }
 
     /* 0x04 */ J3DModelData* mModelData;
     /* 0x08 */ u32 mFlags;

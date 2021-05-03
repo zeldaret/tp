@@ -9,6 +9,7 @@ class cM3dGPla {
 public:
     cXyz mNormal;
     f32 mD;
+    cM3dGPla();
     cM3dGPla(const cXyz*, f32);
     virtual ~cM3dGPla();
     bool crossInfLin(const cXyz&, const cXyz&, cXyz&) const;

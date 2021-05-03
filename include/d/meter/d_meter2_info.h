@@ -1,10 +1,10 @@
 #ifndef D_METER_D_METER2_INFO_H
 #define D_METER_D_METER2_INFO_H
 
+#include "JSystem/JUtility/JUTTexture.h"
 #include "d/d_resorce.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
-#include "JSystem/JUtility/JUTTexture.h"
 //#include "JSystem/JUtility/JUTFont.h"
 
 struct dSv_event_flag_c {

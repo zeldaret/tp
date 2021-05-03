@@ -2,9 +2,9 @@
 #define D_D_RESORCE_H
 
 #include "SSystem/SComponent/c_xyz.h"
+#include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
-#include "dolphin/mtx/mtx.h"
 
 struct JKRArchive {
     /* 802D5CE4 */ void getIdxResource(u32);
