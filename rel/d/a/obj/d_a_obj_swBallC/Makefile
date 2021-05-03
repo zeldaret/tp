@@ -43,7 +43,7 @@ $(M640_TARGET): $(M640_O_FILES) $(M640_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallC/%.o: rel/d/a/obj/d_a_obj_swBallC/%.cpp
 	@echo [640] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M640_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -43,7 +43,7 @@ $(M405_TARGET): $(M405_O_FILES) $(M405_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bed/%.o: rel/d/a/obj/d_a_obj_bed/%.cpp
 	@echo [405] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M405_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -41,7 +41,7 @@ $(M747_TARGET): $(M747_O_FILES) $(M747_LIBS)
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_stream/%.o: rel/d/a/tag/d_a_tag_stream/%.cpp
 	@echo [747] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M747_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -41,7 +41,7 @@ $(M503_TARGET): $(M503_O_FILES) $(M503_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kjgjs/%.o: rel/d/a/obj/d_a_obj_kjgjs/%.cpp
 	@echo [503] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M503_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

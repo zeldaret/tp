@@ -41,7 +41,7 @@ $(M58_TARGET): $(M58_O_FILES) $(M58_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_alldie/%.o: rel/d/a/d_a_alldie/%.cpp
 	@echo [ 58] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M58_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

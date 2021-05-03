@@ -43,7 +43,7 @@ $(M506_TARGET): $(M506_O_FILES) $(M506_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kshutter/%.o: rel/d/a/obj/d_a_obj_kshutter/%.cpp
 	@echo [506] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M506_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

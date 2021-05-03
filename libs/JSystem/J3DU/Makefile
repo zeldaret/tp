@@ -26,6 +26,6 @@ $(BUILD_DIR)/libJ3DU.a: $(LIBJ3DU_A_O_FILES)
 $(BUILD_DIR)/libs/JSystem/J3DU/%.o: libs/JSystem/J3DU/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(LIBJ3DU_A_CFLAGS) -c -o $@ $@.iconv.cpp
 

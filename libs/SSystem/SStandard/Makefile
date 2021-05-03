@@ -24,6 +24,6 @@ $(BUILD_DIR)/libSStandard.a: $(LIBSSTANDARD_A_O_FILES)
 $(BUILD_DIR)/libs/SSystem/SStandard/%.o: libs/SSystem/SStandard/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(LIBSSTANDARD_A_CFLAGS) -c -o $@ $@.iconv.cpp
 

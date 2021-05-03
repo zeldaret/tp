@@ -41,7 +41,7 @@ $(M695_TARGET): $(M695_O_FILES) $(M695_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zcloth/%.o: rel/d/a/obj/d_a_obj_zcloth/%.cpp
 	@echo [695] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M695_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

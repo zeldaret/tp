@@ -41,7 +41,7 @@ $(M739_TARGET): $(M739_O_FILES) $(M739_LIBS)
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_setBall/%.o: rel/d/a/tag/d_a_tag_setBall/%.cpp
 	@echo [739] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M739_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

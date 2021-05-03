@@ -41,7 +41,7 @@ $(M450_TARGET): $(M450_O_FILES) $(M450_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag2/%.o: rel/d/a/obj/d_a_obj_flag2/%.cpp
 	@echo [450] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M450_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

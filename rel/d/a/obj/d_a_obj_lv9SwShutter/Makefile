@@ -43,7 +43,7 @@ $(M564_TARGET): $(M564_O_FILES) $(M564_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv9SwShutter/%.o: rel/d/a/obj/d_a_obj_lv9SwShutter/%.cpp
 	@echo [564] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M564_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

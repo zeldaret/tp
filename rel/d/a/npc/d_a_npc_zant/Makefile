@@ -43,7 +43,7 @@ $(M386_TARGET): $(M386_O_FILES) $(M386_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zant/%.o: rel/d/a/npc/d_a_npc_zant/%.cpp
 	@echo [386] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M386_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

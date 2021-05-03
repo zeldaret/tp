@@ -41,7 +41,7 @@ $(M576_TARGET): $(M576_O_FILES) $(M576_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_table/%.o: rel/d/a/obj/mirror/d_a_obj_mirror_table/%.cpp
 	@echo [576] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M576_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

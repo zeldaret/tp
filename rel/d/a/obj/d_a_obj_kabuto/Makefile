@@ -43,7 +43,7 @@ $(M488_TARGET): $(M488_O_FILES) $(M488_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kabuto/%.o: rel/d/a/obj/d_a_obj_kabuto/%.cpp
 	@echo [488] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M488_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

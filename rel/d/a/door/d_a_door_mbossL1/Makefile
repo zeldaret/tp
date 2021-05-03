@@ -43,7 +43,7 @@ $(M168_TARGET): $(M168_O_FILES) $(M168_LIBS)
 $(BUILD_DIR)/rel/d/a/door/d_a_door_mbossL1/%.o: rel/d/a/door/d_a_door_mbossL1/%.cpp
 	@echo [168] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M168_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

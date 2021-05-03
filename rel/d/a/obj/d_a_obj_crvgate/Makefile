@@ -41,7 +41,7 @@ $(M427_TARGET): $(M427_O_FILES) $(M427_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvgate/%.o: rel/d/a/obj/d_a_obj_crvgate/%.cpp
 	@echo [427] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M427_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -41,7 +41,7 @@ $(M198_TARGET): $(M198_O_FILES) $(M198_LIBS)
 $(BUILD_DIR)/rel/d/a/e/d_a_e_hb_leaf/%.o: rel/d/a/e/d_a_e_hb_leaf/%.cpp
 	@echo [198] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M198_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

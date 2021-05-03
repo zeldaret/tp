@@ -72,6 +72,6 @@ $(BUILD_DIR)/libJKernel.a: $(LIBJKERNEL_A_O_FILES)
 $(BUILD_DIR)/libs/JSystem/JKernel/%.o: libs/JSystem/JKernel/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(LIBJKERNEL_A_CFLAGS) -c -o $@ $@.iconv.cpp
 

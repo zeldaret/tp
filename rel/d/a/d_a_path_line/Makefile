@@ -41,7 +41,7 @@ $(M23_TARGET): $(M23_O_FILES) $(M23_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_path_line/%.o: rel/d/a/d_a_path_line/%.cpp
 	@echo [ 23] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M23_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

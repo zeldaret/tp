@@ -43,7 +43,7 @@ $(M605_TARGET): $(M605_O_FILES) $(M605_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rotBridge/%.o: rel/d/a/obj/d_a_obj_rotBridge/%.cpp
 	@echo [605] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M605_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

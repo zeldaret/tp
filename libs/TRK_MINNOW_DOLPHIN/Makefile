@@ -80,6 +80,6 @@ $(BUILD_DIR)/libTRK_MINNOW_DOLPHIN.a: $(LIBTRK_MINNOW_DOLPHIN_A_O_FILES)
 $(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/%.o: libs/TRK_MINNOW_DOLPHIN/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(LIBTRK_MINNOW_DOLPHIN_A_CFLAGS) -c -o $@ $@.iconv.cpp
 

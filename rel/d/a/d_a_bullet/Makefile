@@ -43,7 +43,7 @@ $(M160_TARGET): $(M160_O_FILES) $(M160_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_bullet/%.o: rel/d/a/d_a_bullet/%.cpp
 	@echo [160] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M160_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

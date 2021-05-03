@@ -41,7 +41,7 @@ $(M512_TARGET): $(M512_O_FILES) $(M512_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_laundry_rope/%.o: rel/d/a/obj/d_a_obj_laundry_rope/%.cpp
 	@echo [512] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M512_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

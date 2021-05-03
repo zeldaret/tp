@@ -41,7 +41,7 @@ $(M404_TARGET): $(M404_O_FILES) $(M404_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bbox/%.o: rel/d/a/obj/d_a_obj_bbox/%.cpp
 	@echo [404] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M404_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

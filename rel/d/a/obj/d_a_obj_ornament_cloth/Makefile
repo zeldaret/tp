@@ -41,7 +41,7 @@ $(M109_TARGET): $(M109_O_FILES) $(M109_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ornament_cloth/%.o: rel/d/a/obj/d_a_obj_ornament_cloth/%.cpp
 	@echo [109] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M109_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

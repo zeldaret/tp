@@ -41,7 +41,7 @@ $(M726_TARGET): $(M726_O_FILES) $(M726_LIBS)
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv5soup/%.o: rel/d/a/tag/d_a_tag_lv5soup/%.cpp
 	@echo [726] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M726_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

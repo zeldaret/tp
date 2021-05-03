@@ -43,7 +43,7 @@ $(M416_TARGET): $(M416_O_FILES) $(M416_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bubblePilar/%.o: rel/d/a/obj/d_a_obj_bubblePilar/%.cpp
 	@echo [416] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M416_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -41,7 +41,7 @@ $(M25_TARGET): $(M25_O_FILES) $(M25_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_set_bgobj/%.o: rel/d/a/d_a_set_bgobj/%.cpp
 	@echo [ 25] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M25_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -43,7 +43,7 @@ $(M64_TARGET): $(M64_O_FILES) $(M64_LIBS)
 $(BUILD_DIR)/rel/d/a/door/d_a_door_bossl1/%.o: rel/d/a/door/d_a_door_bossl1/%.cpp
 	@echo [ 64] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M64_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

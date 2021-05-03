@@ -32,6 +32,6 @@ $(BUILD_DIR)/libJMessage.a: $(LIBJMESSAGE_A_O_FILES)
 $(BUILD_DIR)/libs/JSystem/JMessage/%.o: libs/JSystem/JMessage/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(LIBJMESSAGE_A_CFLAGS) -c -o $@ $@.iconv.cpp
 
