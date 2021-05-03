@@ -18,21 +18,6 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct ResTIMG {};
-
-struct daPy_sightPacket_c {
-    /* 80140CDC */ ~daPy_sightPacket_c();
-    /* 8015F1A0 */ void draw();
-    /* 8015F2FC */ void setSight();
-    /* 8015F384 */ void setSightImage(ResTIMG*);
-};
-
-struct daPy_boomerangMove_c {
-    /* 8015E5B0 */ void initOffset(cXyz const*);
-    /* 8015E654 */ void posMove(cXyz*, s16*, fopAc_ac_c*, s16);
-    /* 8015E87C */ void bgCheckAfterOffset(cXyz const*);
-};
-
 struct daAlink_c {
     /* 800A0744 */ void setLookPosFromOut(cXyz*);
     /* 800BDF60 */ void startRestartRoom(u32, int, int, int);
@@ -43,26 +28,14 @@ struct daAlink_c {
     /* 800E7AEC */ void setFmChainPosFromOut(fopAc_ac_c*, cXyz*, int);
 };
 
-struct dStage_roomControl_c {
-    static u8 mDemoArcName[10 + 2 /* padding */];
-};
-
 struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
     /* 8003C400 */ void getIDRes(char const*, u16, dRes_info_c*, int);
 };
 
-struct dDlst_base_c {};
-
-struct dDlst_list_c {
-    /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
-};
-
 struct JMath {
     static u8 sincosTable_[65536];
 };
-
-struct JKRSolidHeap {};
 
 struct J3DSys {
     /* 8031073C */ void reinitGX();

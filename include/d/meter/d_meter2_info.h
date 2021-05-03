@@ -4,6 +4,7 @@
 #include "d/d_resorce.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
+#include "JSystem/JUtility/JUTTexture.h"
 //#include "JSystem/JUtility/JUTFont.h"
 
 struct dSv_event_flag_c {
@@ -50,8 +51,6 @@ struct CPaneMgr {};
 class dMeter2_c {};
 
 class dMw_c {};
-
-struct ResTIMG {};
 
 class dMeter2Info_c {
 public:

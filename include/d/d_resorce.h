@@ -4,15 +4,7 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
-
-struct JKRHeap {
-    /* 802CE6B0 */ void getSize(void*, JKRHeap*);
-    /* 802CE784 */ void getTotalFreeSize();
-    /* 802CE5CC */ void freeAll();
-    /* 802CE83C */ void findFromRoot(void*);
-
-    static u8 sCurrentHeap[4];
-};
+#include "dolphin/mtx/mtx.h"
 
 struct JKRArchive {
     /* 802D5CE4 */ void getIdxResource(u32);

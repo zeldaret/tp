@@ -13,10 +13,6 @@
 #include "d/save/d_save.h"
 #include "dolphin/types.h"
 
-struct JKRExpHeap {
-    /* 802CEE2C */ void create(u32, JKRHeap*, bool);
-};
-
 struct daAlink_c {
     /* 800BDE48 */ void setLastSceneMode(u32*);
 };

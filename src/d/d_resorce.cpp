@@ -62,8 +62,6 @@ struct JUTNameTab {
     /* 802DEAF8 */ void getName(u16) const;
 };
 
-struct JKRSolidHeap {};
-
 struct JKRMemBreakFlag {};
 
 struct JKRMemArchive {
@@ -215,8 +213,6 @@ extern "C" extern char const* const d_d_resorce__stringBase0;
 // External References:
 //
 
-extern "C" void OSReport_Error();
-extern "C" void OSReport_Warning();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void setTevStageInfo__11J3DTevStageFRC15J3DTevStageInfo();
 extern "C" void mDoExt_getGameHeap__Fv();
@@ -257,8 +253,6 @@ extern "C" void load__22J3DModelLoaderDataBaseFPCvUl();
 extern "C" void load__20J3DAnmLoaderDataBaseFPCv24J3DAnmLoaderDataBaseFlag();
 extern "C" void setResource__20J3DAnmLoaderDataBaseFP10J3DAnmBasePCv();
 extern "C" void DCStoreRangeNoSync();
-extern "C" void OSLockMutex();
-extern "C" void OSUnlockMutex();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void _savegpr_20();

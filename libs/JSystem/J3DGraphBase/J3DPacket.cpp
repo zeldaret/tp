@@ -15,46 +15,14 @@ struct J3DVertexBuffer {
     /* 8031106C */ void setArray() const;
 };
 
-struct J3DShapePacket {
-    /* 80312B20 */ J3DShapePacket();
-    /* 80312B74 */ ~J3DShapePacket();
-    /* 80312BD4 */ void calcDifferedBufferSize(u32);
-    /* 80312DBC */ void newDifferedDisplayList(u32);
-    /* 80312E08 */ void prepareDraw() const;
-    /* 80312F24 */ void draw();
-    /* 80312FBC */ void drawFast();
-};
-
 struct J3DShape {
     /* 80315300 */ void loadPreDrawSetting() const;
 
     static u8 sOldVcdVatCmd[4];
 };
 
-struct J3DDrawBuffer {
-    static u8 sortFuncTable[72];
-};
-
-struct J3DPacket {
-    /* 8000E680 */ ~J3DPacket();
-    /* 80312750 */ bool entry(J3DDrawBuffer*);
-    /* 80312758 */ void addChildPacket(J3DPacket*);
-    /* 80313044 */ void draw();
-};
-
 struct J3DModelData {
     /* 803260F8 */ void syncJ3DSysFlags() const;
-};
-
-struct J3DMatPacket {
-    /* 80312948 */ J3DMatPacket();
-    /* 803129A4 */ ~J3DMatPacket();
-    /* 80312A04 */ void addShapePacket(J3DShapePacket*);
-    /* 80312A24 */ void beginDiff();
-    /* 80312A4C */ void endDiff();
-    /* 80312A74 */ void isSame(J3DMatPacket*) const;
-    /* 80312A9C */ void draw();
-    /* 80313048 */ void entry(J3DDrawBuffer*);
 };
 
 struct J3DDrawPacket {

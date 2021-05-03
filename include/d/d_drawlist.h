@@ -3,18 +3,10 @@
 
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
-
-struct J3DPacket {};
-struct _GXColor;
-
-struct J3DDrawBuffer {
-    /* 80324F08 */ void initialize();
-    /* 80324F70 */ void allocBuffer(u32);
-    /* 80325008 */ ~J3DDrawBuffer();
-    /* 80325068 */ void frameInit();
-    /* 8032548C */ void entryImm(J3DPacket*, u16);
-    /* 803254AC */ void draw() const;
-};
+#include "dolphin/mtx/mtxvec.h"
+#include "dolphin/mtx/mtx44.h"
+#include "dolphin/gx/GXTexture.h"
+#include "JSystem/J3DGraphBase/J3DPacket.h"
 
 class dDlst_FileInfo_c {
 public:

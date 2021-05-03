@@ -8,42 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct J3DShapePacket {};
-
-struct J3DPacket {
-    /* 80312758 */ void addChildPacket(J3DPacket*);
-};
-
-struct J3DMatPacket {
-    /* 80312A04 */ void addShapePacket(J3DShapePacket*);
-    /* 80312A74 */ void isSame(J3DMatPacket*) const;
-};
-
-struct J3DDrawBuffer {
-    /* 80324F08 */ void initialize();
-    /* 80324F70 */ void allocBuffer(u32);
-    /* 80325008 */ ~J3DDrawBuffer();
-    /* 80325068 */ void frameInit();
-    /* 8032509C */ void entryMatSort(J3DMatPacket*);
-    /* 803251E4 */ void entryMatAnmSort(J3DMatPacket*);
-    /* 8032529C */ void entryZSort(J3DMatPacket*);
-    /* 803253B4 */ void entryModelSort(J3DMatPacket*);
-    /* 80325404 */ void entryInvalidSort(J3DMatPacket*);
-    /* 80325458 */ void entryNonSort(J3DMatPacket*);
-    /* 8032548C */ void entryImm(J3DPacket*, u16);
-    /* 803254AC */ void draw() const;
-    /* 80325500 */ void drawHead() const;
-    /* 80325578 */ void drawTail() const;
-
-    static u8 sortFuncTable[72];
-    static u8 drawFuncTable[24];
-    static u8 entryNum[4 + 4 /* padding */];
-};
-
-//
 // Forward References:
 //
 

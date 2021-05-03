@@ -2,10 +2,26 @@
 #define D_A_D_A_PLAYER_H
 
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
+#include "JSystem/JUtility/JUTTexture.h"
 #include "d/d_resorce.h"
+#include "d/d_drawlist.h"
 #include "d/save/d_save.h"
+#include "d/d_stage.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
+
+struct daPy_sightPacket_c {
+    /* 80140CDC */ ~daPy_sightPacket_c();
+    /* 8015F1A0 */ void draw();
+    /* 8015F2FC */ void setSight();
+    /* 8015F384 */ void setSightImage(ResTIMG*);
+};
+
+struct daPy_boomerangMove_c {
+    /* 8015E5B0 */ void initOffset(cXyz const*);
+    /* 8015E654 */ void posMove(cXyz*, s16*, fopAc_ac_c*, s16);
+    /* 8015E87C */ void bgCheckAfterOffset(cXyz const*);
+};
 
 class daPy_anmHeap_c {
 public:
