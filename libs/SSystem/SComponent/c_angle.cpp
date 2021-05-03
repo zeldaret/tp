@@ -9,8 +9,6 @@
 #include "msl_c/math.h"
 
 extern f32 cM_atan2f(f32, f32);
-extern "C" void Xyz__7cSGlobeCFv();
-extern "C" void __ct__7cSGlobeFfRC7cSAngleRC7cSAngle();
 
 //
 // Declarations:
@@ -347,22 +345,10 @@ void cSGlobe::Polar(cSPolar* csp) const {
 SECTION_SDATA2 static f32 lit_2744 = 1.0f;
 
 /* 80271B30-80271B7C 004C+00 s=0 e=3 z=0  None .text      Norm__7cSGlobeCFv */
-// adding the dtor to class members made this stop matching, idk why
-#ifdef NONMATCHING
 cXyz cSGlobe::Norm(void) const {
     cSGlobe glob(1.0f, mAzimuth, mInclination);
     return glob.Xyz();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cXyz cSGlobe::Norm() const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_angle/Norm__7cSGlobeCFv.s"
-}
-#pragma pop
-#endif
 
 /* 80271B7C-80271BA8 002C+00 s=0 e=2 z=0  None .text      Invert__7cSGlobeFv */
 cSGlobe& cSGlobe::Invert(void) {

@@ -93,7 +93,7 @@ public:
     cSGlobe(float, short, short);
     cSGlobe(float, const cSAngle&, const cSAngle&);
     cSGlobe(const cXyz&);
-    ~cSGlobe();
+    ~cSGlobe() {}
     cSGlobe& Formal(void);
     void Val(const cSGlobe&);
     void Val(float, short, short);

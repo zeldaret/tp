@@ -6,6 +6,9 @@
 
 class dCcMassS_Obj {
 public:
+    dCcMassS_Obj();
+    ~dCcMassS_Obj();
+
 private:
     u8 field_0x0[12];
     cCcD_DivideInfo cccd_divideinfo;
@@ -15,6 +18,7 @@ private:
 class dCcMassS_Mng {
 public:
     dCcMassS_Mng(void);
+    ~dCcMassS_Mng();
 
 private:
     /* 0x0000 */ cCcD_DivideArea cccd_dividearea;

@@ -15,36 +15,6 @@ struct mDoCPd_c {
     static u8 m_gamePad[16];
 };
 
-struct Vec {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266CE4 */ void norm() const;
-};
-
-struct dVibration_c {
-    /* 8006F268 */ void Run();
-    /* 8006FA24 */ void StartShock(int, int, cXyz);
-    /* 8006FC0C */ void StartQuake(u8 const*, int, int, cXyz);
-    /* 8006FB10 */ void StartQuake(int, int, cXyz);
-    /* 8006FD94 */ void StopQuake(int);
-    /* 8006FE00 */ void Kill();
-    /* 8006FE5C */ void CheckQuake();
-    /* 8006FE84 */ void setDefault();
-    /* 8006FF04 */ void Init();
-    /* 8006FF38 */ void Pause();
-    /* 8006FFF8 */ void Remove();
-
-    static u8 const MS_patt[88];
-    static u8 const CS_patt[88];
-    static u8 const MQ_patt[80];
-    static u8 const CQ_patt[80];
-};
-
-struct dSv_player_config_c {
-    /* 80034644 */ void checkVibration() const;
-};
-
 struct dCamera_c {
     /* 80181000 */ void StartShake(s32, u8*, s32, cXyz);
     /* 80181158 */ void StopShake();

@@ -16,8 +16,6 @@ struct mDoCPd_c {
     static u8 m_cpadInfo[256];
 };
 
-struct dRes_info_c {};
-
 struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
 };
@@ -637,7 +635,7 @@ asm void dAttention_c::SelectAttention(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cSGlobe::~cSGlobe() {
+extern "C" asm void __dt__7cSGlobeFv() {
     nofralloc
 #include "asm/d/d_attention/__dt__7cSGlobeFv.s"
 }

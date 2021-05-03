@@ -9,6 +9,7 @@
 class cM3dGTri {
     // private:
 public:
+    ~cM3dGTri();
     cM3dGPla mPlane;
     cXyz mA;
     cXyz mB;

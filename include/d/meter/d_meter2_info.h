@@ -1,6 +1,7 @@
 #ifndef D_METER_D_METER2_INFO_H
 #define D_METER_D_METER2_INFO_H
 
+#include "d/d_resorce.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 //#include "JSystem/JUtility/JUTFont.h"
@@ -51,11 +52,6 @@ class dMeter2_c {};
 class dMw_c {};
 
 struct ResTIMG {};
-
-struct JKRArchive {
-    /* 802D5B38 */ void getGlbResource(u32, char const*, JKRArchive*);
-    /* 802D5ECC */ void readIdxResource(void*, u32, u32);
-};
 
 class dMeter2Info_c {
 public:
@@ -199,6 +195,10 @@ extern dMeter2Info_c g_meter2_info;
 
 inline dMeterMap_c* dMeter2Info_getMeterMapClass() {
     return g_meter2_info.getMeterMapClass();
+}
+
+inline void dMeter2Info_Initialize() {
+    g_meter2_info.init();
 }
 
 #endif /* D_METER_D_METER2_INFO_H */
