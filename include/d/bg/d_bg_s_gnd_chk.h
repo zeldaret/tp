@@ -16,6 +16,7 @@ private:
 };  // Size = 0x54
 
 class dBgS_LinkGndChk : dBgS_GndChk {
+    virtual void temp();  // temp to build OK
     /* 80140EB8 */ virtual ~dBgS_LinkGndChk();
 };
 

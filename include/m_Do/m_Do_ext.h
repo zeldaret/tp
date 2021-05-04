@@ -118,4 +118,15 @@ private:
 };
 #pragma pack(pop)
 
+class mDoExt_AnmRatioPack {
+public:
+    /* 80140DF0 */ ~mDoExt_AnmRatioPack();
+    /* 80140E2C */ mDoExt_AnmRatioPack();
+
+private:
+    /* 0x0 */ float mRatio;
+    /* 0x4 */ J3DAnmTransform* mAnmTransform;
+};  // Size = 0x8
+
+
 #endif /* M_DO_M_DO_EXT_H */

@@ -51,6 +51,7 @@ private:
 
 class dDlst_base_c {
 public:
+    virtual void temp();  // temp to build OK, remove later
     virtual void draw();
 };
 

@@ -10,7 +10,7 @@
 //
 // Types:
 //
-
+//
 struct request_of_phase_process_class {};
 
 struct mDoMtx_stack_c {
@@ -37,11 +37,6 @@ struct mDoExt_MtxCalcOldFrame {
 
 struct mDoExt_MtxCalcAnmBlendTbl {
     /* 800D00BC */ void getAnm(int);
-};
-
-struct mDoExt_AnmRatioPack {
-    /* 80140DF0 */ ~mDoExt_AnmRatioPack();
-    /* 80140E2C */ mDoExt_AnmRatioPack();
 };
 
 struct mDoCPd_c {
@@ -133,13 +128,6 @@ struct daCrod_c {
     /* 80141A94 */ void setControllActorData();
 };
 
-struct daAlink_sight_c {
-    /* 800CFDF4 */ ~daAlink_sight_c();
-    /* 80126650 */ void create();
-    /* 801266C0 */ void draw();
-    /* 80126710 */ void onLockFlg();
-};
-
 struct J3DMaterial {};
 
 struct daAlink_matAnm_c {
@@ -149,34 +137,7 @@ struct daAlink_matAnm_c {
     /* 800D0B8C */ ~daAlink_matAnm_c();
 };
 
-struct daAlink_lockCursor_c {
-    /* 800CFE68 */ ~daAlink_lockCursor_c();
-    /* 80125F14 */ void create();
-    /* 80126358 */ void update();
-    /* 80126424 */ void draw();
-};
-
-struct daAlink_footData_c {
-    /* 800CFCB8 */ ~daAlink_footData_c();
-    /* 800CFCF4 */ daAlink_footData_c();
-};
-
 struct _GXColorS10 {};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-    /* 800842C0 */ void ChkAtHit();
-    /* 80084318 */ void ResetAtHit();
-    /* 800843A8 */ void GetAtHitGObj();
-    /* 80084460 */ void ChkTgHit();
-    /* 800844B8 */ void ResetTgHit();
-    /* 80084548 */ void GetTgHitGObj();
-    /* 8008457C */ void GetTgHitObjSe();
-    /* 800845B0 */ void getHitSeID(u8, int);
-    /* 80084658 */ void ChkCoHit();
-    /* 800846B0 */ void ResetCoHit();
-};
 
 struct J3DGXColorS10 {
     /* 8000E460 */ J3DGXColorS10();
@@ -184,36 +145,11 @@ struct J3DGXColorS10 {
 
 struct daAlinkHIO_anm_c {};
 
-struct dAttList_c {
-    /* 80073864 */ void getActor();
-};
-
-struct cM3dGPla {
-    /* 8001DB90 */ ~cM3dGPla();
-    /* 801411F0 */ cM3dGPla();
-    /* 8026F3DC */ cM3dGPla(cXyz const*, f32);
-    /* 8026F408 */ void crossInfLin(cXyz const&, cXyz const&, cXyz&) const;
-};
-
-struct dBgS_LinChk {
-    /* 80077D64 */ void Set(cXyz const*, cXyz const*, fopAc_ac_c const*);
-};
-
-struct JPABaseEmitter {};
-
 struct dCcG_At_Spl {};
 
 struct dDemo_actor_c {
     /* 8003819C */ void getPrm_Morf();
     /* 80038338 */ void getDemoIDData(int*, int*, int*, u16*, u8*);
-};
-
-struct daAlink_blur_c {
-    /* 800CFD58 */ ~daAlink_blur_c();
-    /* 801256EC */ void initBlur(f32, int, cXyz const*, cXyz const*, cXyz const*);
-    /* 8012589C */ void copyBlur(cXyz const*, cXyz const*, cXyz const*);
-    /* 80125B0C */ void traceBlur(cXyz const*, cXyz const*, s16);
-    /* 80125BF4 */ void draw();
 };
 
 struct daAlinkHIO_zwLight_c0 {
@@ -733,58 +669,6 @@ struct dPa_control_c {
     static u8 mParticleTracePCB[4 + 4 /* padding */];
 };
 
-struct dBgS_AcchCir {
-    /* 80075EAC */ dBgS_AcchCir();
-    /* 80075F40 */ void SetWallR(f32);
-    /* 80075F58 */ void SetWall(f32, f32);
-    /* 80077414 */ ~dBgS_AcchCir();
-};
-
-struct dBgS_RoofChk {
-    /* 80078FF4 */ dBgS_RoofChk();
-    /* 80079090 */ ~dBgS_RoofChk();
-    /* 800B146C */ void SetPos(cXyz const&);
-};
-
-struct dBgS {
-    /* 80074ABC */ void ChkMoveBG(cBgS_PolyInfo const&);
-    /* 80074B40 */ void ChkMoveBG_NoDABg(cBgS_PolyInfo const&);
-    /* 80074B98 */ void GetExitId(cBgS_PolyInfo const&);
-    /* 80074BE8 */ void GetPolyColor(cBgS_PolyInfo const&);
-    /* 80074C6C */ void GetHorseNoEntry(cBgS_PolyInfo const&);
-    /* 80074CBC */ void GetSpecialCode(cBgS_PolyInfo const&);
-    /* 80074D0C */ void GetMagnetCode(cBgS_PolyInfo const&);
-    /* 80074D5C */ void GetMonkeyBarsCode(cBgS_PolyInfo const&);
-    /* 80074E00 */ void GetWallCode(cBgS_PolyInfo const&);
-    /* 80074E50 */ void GetPolyAtt0(cBgS_PolyInfo const&);
-    /* 80074EA0 */ void GetPolyAtt1(cBgS_PolyInfo const&);
-    /* 80074EF0 */ void GetGroundCode(cBgS_PolyInfo const&);
-    /* 80074FE0 */ void GetRoomPathId(cBgS_PolyInfo const&);
-    /* 80075080 */ void GetGrpSoundId(cBgS_PolyInfo const&);
-    /* 80075100 */ void GetRoomId(cBgS_PolyInfo const&);
-    /* 8007519C */ void GetPolyAttackThrough(cBgS_PolyInfo const&);
-    /* 800751F8 */ void ChkPolyHSStick(cBgS_PolyInfo const&);
-    /* 8007549C */ void RoofChk(dBgS_RoofChk*);
-    /* 80075774 */ void MoveBgCrrPos(cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*, bool, bool);
-    /* 80075880 */ void MoveBgTransPos(cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
-    /* 80075C6C */ void PushPullCallBack(cBgS_PolyInfo const&, fopAc_ac_c*, s16,
-                                         dBgW_Base::PushPullLabel);
-};
-
-struct dBgS_Acch {
-    /* 80075F94 */ ~dBgS_Acch();
-    /* 800760A0 */ dBgS_Acch();
-    /* 80076248 */ void Set(cXyz*, cXyz*, fopAc_ac_c*, int, dBgS_AcchCir*, cXyz*, csXyz*, csXyz*);
-    /* 80076288 */ void Set(fopAc_ac_c*, int, dBgS_AcchCir*);
-    /* 80076AAC */ void CrrPos(dBgS&);
-    /* 800773C0 */ void SetGndThinCellingOff();
-    /* 800773D0 */ void ClrGndThinCellingOff();
-    /* 800773EC */ void OnWallSort();
-    /* 800D00D0 */ void ChkRoofHit() const;
-    /* 800D00DC */ void ClrGroundHit();
-    /* 80141404 */ void ChkGroundHit() const;
-};
-
 struct dPaPo_c {
     /* 80050C9C */ void init(dBgS_Acch*, f32, f32);
     /* 80051008 */ void setEffectCenter(dKy_tevstr_c const*, cXyz const*, u32, u32, cXyz const*,
@@ -811,12 +695,6 @@ struct dJntCol_c {
 
 struct dInsect_c {
     /* 80110648 */ void Insect_Release();
-};
-
-struct dEyeHL_c {
-    /* 8009C964 */ void entry(J3DModelData*, char const*);
-    /* 8009CA28 */ void remove();
-    /* 80140C80 */ ~dEyeHL_c();
 };
 
 struct dEvt_info_c {
@@ -876,51 +754,6 @@ struct dComIfG_play_c {
     /* 8002C97C */ void getLayerNo(int);
 };
 
-struct cCcD_Obj {};
-
-struct dCcMassS_Mng {
-    /* 80085D98 */ void Set(cCcD_Obj*, u8);
-};
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_SrcCps {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-    /* 80084A78 */ void StartCAt(cXyz&);
-    /* 80084AC4 */ void MoveCAt(cXyz&);
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80083830 */ void Move();
-};
-
-struct dCcD_GAtTgCoCommonBase {
-    /* 80083688 */ void GetAc();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-    /* 80084908 */ void StartCAt(cXyz&);
-    /* 80084954 */ void MoveCAt(cXyz&);
-    /* 80084D60 */ ~dCcD_Cyl();
-    /* 80141020 */ dCcD_Cyl();
-};
-
-struct dCcD_Cps {
-    /* 800847D0 */ void Set(dCcD_SrcCps const&);
-    /* 8008506C */ ~dCcD_Cps();
-    /* 80140FA0 */ dCcD_Cps();
-};
-
 struct dCamera_c {
     /* 80088A7C */ void StartEventCamera(int, int, ...);
     /* 80088BBC */ void EndEventCamera(int);
@@ -932,141 +765,15 @@ struct dCamera_c {
     /* 80181500 */ void GetForceLockOnActor();
 };
 
-struct dBgS_RopeLinChk {
-    /* 8007838C */ dBgS_RopeLinChk();
-    /* 800783E8 */ ~dBgS_RopeLinChk();
-};
-
-struct dBgS_PolyPassChk {
-    /* 80078E68 */ void SetObj();
-    /* 80078E74 */ void ClrObj();
-    /* 80078E98 */ void SetLink();
-    /* 80078EA4 */ void ClrLink();
-    /* 80078EBC */ void SetBomb();
-    /* 80078EC8 */ void ClrBomb();
-    /* 80078F7C */ void SetStatue();
-    /* 80078F88 */ void ClrStatue();
-    /* 80078F94 */ void SetIronBall();
-};
-
-struct dBgS_ObjLinChk {
-    /* 80077F5C */ dBgS_ObjLinChk();
-    /* 80077FB8 */ ~dBgS_ObjLinChk();
-};
-
 struct dBgS_ObjAcch {
     /* 800D0C6C */ ~dBgS_ObjAcch();
 };
 
-struct dBgS_LinkRoofChk {
-    /* 80140E40 */ ~dBgS_LinkRoofChk();
-};
-
-struct dBgS_LinkLinChk {
-    /* 80078030 */ dBgS_LinkLinChk();
-    /* 8007808C */ ~dBgS_LinkLinChk();
-};
-
-struct dBgS_LinkGndChk {
-    /* 80140EB8 */ ~dBgS_LinkGndChk();
-};
-
-struct dBgS_LinkAcch {
-    /* 80140F30 */ ~dBgS_LinkAcch();
-};
-
-struct dBgS_GndChk {
-    /* 8007757C */ dBgS_GndChk();
-    /* 800775F0 */ ~dBgS_GndChk();
-};
-
-struct dBgS_BoomerangLinChk {
-    /* 800782B8 */ dBgS_BoomerangLinChk();
-    /* 80078314 */ ~dBgS_BoomerangLinChk();
-};
-
-struct dBgS_ArrowLinChk {
-    /* 800781D8 */ dBgS_ArrowLinChk();
-    /* 80078240 */ ~dBgS_ArrowLinChk();
-};
-
-struct dAttention_c {
-    /* 80070844 */ void GetLockonList(s32);
-    /* 80070880 */ void getActionBtnB();
-    /* 80070974 */ void getActionBtnXY();
-    /* 8007353C */ void LockonTarget(s32);
-    /* 800737E4 */ void LockonTruth();
-};
-
-struct dAttLook_c {
-    /* 80073CA4 */ void convPId(unsigned int);
-};
-
-struct dAttHint_c {
-    /* 800738CC */ void convPId(unsigned int);
-};
-
-struct dAttCatch_c {
-    /* 8007398C */ void convPId(unsigned int);
-};
-
-struct JPABaseParticle {};
-
-struct dAlink_bottleWaterPcallBack_c {
-    /* 800CFCF8 */ ~dAlink_bottleWaterPcallBack_c();
-    /* 80124A2C */ void execute(JPABaseEmitter*, JPABaseParticle*);
-};
 
 struct camera_class {};
 
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 8026F708 */ void SetR(f32);
-};
-
-struct cM3dGLin {
-    /* 8026F2E8 */ void SetStartEnd(cXyz const&, cXyz const&);
-};
-
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 8026F1F8 */ void SetH(f32);
-    /* 8026F200 */ void SetR(f32);
-};
-
-struct cM3dGCps {
-    /* 8026EF88 */ cM3dGCps();
-    /* 8026EFA4 */ ~cM3dGCps();
-};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_Stts {
-    /* 801410A4 */ ~cCcD_Stts();
-    /* 8026395C */ void ClrCcMove();
-};
-
-struct cCcD_ObjCo {
-    /* 80264900 */ void SetIGrp(u32);
-    /* 8026491C */ void SetVsGrp(u32);
-};
-
-struct cBgS_LinChk {};
-
-struct cBgS_GndChk {
-    /* 80267D28 */ void SetPos(cXyz const*);
-};
-
-struct cBgS {
-    /* 800743B4 */ void LineCross(cBgS_LinChk*);
-    /* 800744A0 */ void GroundCross(cBgS_GndChk*);
-    /* 80074618 */ void GetActorPointer(int) const;
-    /* 80074628 */ void GetBgWBasePointer(cBgS_PolyInfo const&) const;
-    /* 80074660 */ void ChkPolySafe(cBgS_PolyInfo const&);
-    /* 80074744 */ void GetTriPla(cBgS_PolyInfo const&, cM3dGPla*) const;
-    /* 800747F0 */ void GetTriPnt(cBgS_PolyInfo const&, cXyz*, cXyz*, cXyz*) const;
 };
 
 struct _GXTexObj {};
@@ -1079,7 +786,7 @@ struct Z2WolfHowlMgr {
     /* 802CB100 */ void setCorrectData(s8, Z2WolfHowlData*);
     /* 802CBB58 */ void skipCorrectDemo();
 };
-
+//
 struct Z2SoundObjSimple {
     /* 802BE844 */ Z2SoundObjSimple();
 };
@@ -1158,11 +865,6 @@ struct data {
 };  // namespace stb
 
 };  // namespace JStudio
-
-struct JPAParticleCallBack {
-    /* 800183D8 */ void draw(JPABaseEmitter*, JPABaseParticle*);
-    /* 8027EFA4 */ ~JPAParticleCallBack();
-};
 
 struct JPAEmitterCallBack {
     /* 8027E6A4 */ ~JPAEmitterCallBack();

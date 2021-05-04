@@ -9,6 +9,7 @@
 #include "d/a/d_a_player.h"
 #include "d/bg/d_bg_s_gnd_chk.h"
 #include "d/bg/d_bg_s_roof_chk.h"
+#include "d/bg/d_bg_s_lin_chk.h"
 #include "d/bg/d_bg_s_wtr_chk.h"
 #include "dolphin/types.h"
 //#include "d/bg/d_bg_s.h"

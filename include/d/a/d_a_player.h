@@ -13,7 +13,7 @@
 
 class daPy_sightPacket_c {
     /* 80140CDC */ ~daPy_sightPacket_c();
-    virtual void test();
+    virtual void test();  // temp to build OK, remove later
     /* 8015F1A0 */ virtual void draw();
     /* 8015F2FC */ void setSight();
     /* 8015F384 */ void setSightImage(ResTIMG*);

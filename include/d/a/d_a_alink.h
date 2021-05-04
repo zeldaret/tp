@@ -2,26 +2,116 @@
 #define D_A_D_A_ALINK_H
 
 #include "d/a/d_a_player.h"
+#include "d/d_attention.h"
 #include "d/meter/d_meter2_info.h"
 #include "dolphin/types.h"
-//#include "d/bg/d_bg_s.h"
+#include "d/d_drawlist.h"
+#include "d/cc/d_cc_d.h"
+#include "d/cc/d_cc_mass_s.h"
+#include "d/bg/d_bg_s.h"
+#include "d/d_eye_hl.h"
+#include "d/msg/d_msg_flow.h"
+#include "JSystem/JParticle/JPAParticle.h"
 
 class fopEn_enemy_c;
-class dCcD_GObjInf;
 class daAlink_footData_c;
 class J3DAnmBase;
 class daAlinkHIO_anm_c;
-class cM3dGPla;
 class dAttList_c;
 struct J3DGXColorS10;
 class dBgS_LinChk;
-struct dBgW_Base {
-    struct PushPullLabel {};
-};
 class J3DAnmTevRegKey;
 class JPABaseEmitter;
 class dCcG_At_Spl;
 class dDemo_actor_c;
+
+class J2DScreen;
+class J2DPane;
+class J2DAnmBase;
+
+class daAlink_lockCursor_c : public dDlst_base_c {
+public:
+    /* 80125F14 */ void create();
+    /* 80126358 */ void update();
+    virtual void temp(); // temp to build OK, remove later
+    /* 80126424 */ virtual void draw();
+    /* 800CFE68 */ virtual ~daAlink_lockCursor_c();
+
+private:
+    /* 0x04 */ bool field_0x4;
+    /* 0x05 */ u8 field_0x5[3];
+    /* 0x08 */ J2DScreen* field_0x8;
+    /* 0x0C */ J2DPane* field_0xc;
+    /* 0x10 */ J2DPane* field_0x10;
+    /* 0x14 */ J2DPane* field_0x14;
+    /* 0x18 */ J2DPane* field_0x18;
+    /* 0x1C */ J2DAnmBase* field_0x1c;
+    /* 0x20 */ J2DAnmBase* field_0x20;
+    /* 0x24 */ J2DAnmBase* field_0x24;
+    /* 0x28 */ J2DAnmBase* field_0x28;
+    /* 0x2C */ float field_0x2c;
+    /* 0x30 */ float field_0x30;
+    /* 0x34 */ float field_0x34;
+    /* 0x38 */ float field_0x38;
+};
+
+class daAlink_sight_c : public daPy_sightPacket_c {
+public:
+    /* 80126650 */ void create();
+    virtual void test(); // temp to build OK, remove later
+    /* 801266C0 */ virtual void draw();
+    /* 800CFDF4 */ virtual ~daAlink_sight_c();
+    /* 80126710 */ void onLockFlg();
+
+private:
+    /* 0x4C */ bool mLockFlag;
+    /* 0x4D */ u8 field_0x4d[3];
+    /* 0x50 */ daAlink_lockCursor_c field_0x50;
+};
+
+class daAlink_blur_c : public J3DPacket {
+public:
+    /* 801256EC */ void initBlur(f32, int, cXyz const*, cXyz const*, cXyz const*);
+    /* 8012589C */ void copyBlur(cXyz const*, cXyz const*, cXyz const*);
+    /* 80125B0C */ void traceBlur(cXyz const*, cXyz const*, s16);
+    virtual void temp(); // temp to build OK, remove later
+    /* 80125BF4 */ virtual void draw();
+    /* 800CFD58 */ virtual ~daAlink_blur_c();
+
+private:
+    /* 0x010 */ u8 field_0x10[4];
+    /* 0x014 */ int field_0x14;
+    /* 0x018 */ u8 field_0x18[4];
+    /* 0x01C */ int field_0x1c;
+    /* 0x020 */ u8 field_0x20[4];
+    /* 0x024 */ float field_0x24;
+    /* 0x028 */ u8 field_0x28[4];
+    /* 0x02C */ cXyz field_0x2c;
+    /* 0x038 */ cXyz field_0x38[0x3C];
+    /* 0x308 */ cXyz field_0x308[0x3C];
+};  // Size = 0x5D8
+
+class dAlink_bottleWaterPcallBack_c : public JPAParticleCallBack {
+public:
+    virtual void temp();  // temp to build OK, remove later
+    /* 800CFCF8 */ virtual ~dAlink_bottleWaterPcallBack_c();
+    /* 80124A2C */ virtual void execute(JPABaseEmitter*, JPABaseParticle*);
+
+private:
+    /* 0x04 */ s16 mHitFlg;
+    /* 0x06 */ s16 mAppearFlg;
+    /* 0x08 */ float mKeepMinY;
+    /* 0x0C */ cXyz mHitPos;
+};  // Size = 0x18
+
+class daAlink_footData_c {
+public:
+    /* 800CFCB8 */ ~daAlink_footData_c();
+    /* 800CFCF4 */ daAlink_footData_c();
+
+private:
+    u8 field_0x00[0xa4];
+};
 
 class daAlink_c : public daPy_py_c {
 public:
@@ -1925,7 +2015,6 @@ public:
     static u8 m_demoInitTable[1140];
     static u8 m_fEffParamProc[72];
 
-#ifdef NONMATCHING
 private:
     /* 0x0062C */ void* field_0x062C;
     /* 0x00630 */ void* field_0x0630;
@@ -2086,6 +2175,7 @@ private:
     /* 0x02C18 */ Mtx field_0x2c18;
     /* 0x02C48 */ Mtx field_0x2c48;
     /* 0x02C78 */ Mtx field_0x2c78;
+#ifdef NONMATCHING
     /* 0x02CA8 */ Z2CreatureLink mZ2Link;
     /* 0x02D75 */ u8 field_0x2d75[3];  // padding?
     /* 0x02D78 */ void* field_0x2d78;
