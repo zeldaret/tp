@@ -3466,7 +3466,7 @@ extern "C" void onNoServiceWait__9daMidna_cFv();
 extern "C" void setControllActorData__8daCrod_cFv();
 extern "C" void func_80141ACC(void* _this, fopAc_ac_c const*, daObjMovebox::Act_c::Prm_e,
                               daObjMovebox::Act_c::Prm_e);
-extern "C" void func_80141AE8(void* _this, u8*);
+extern "C" int func_80141AE8(u8*);
 extern "C" void __sinit_d_a_alink_cpp();
 extern "C" static void func_801446D4();
 extern "C" static void func_801446DC();
@@ -7178,7 +7178,7 @@ asm void daAlink_c::setNeckAngle() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getStickAngleFromPlayerShape(s16* param_0) const {
+asm bool daAlink_c::getStickAngleFromPlayerShape(s16* param_0) const {
     nofralloc
 #include "asm/d/a/d_a_alink/getStickAngleFromPlayerShape__9daAlink_cCFPs.s"
 }
@@ -15462,7 +15462,7 @@ asm void daAlink_c::setBodyPartPos() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::setRollJump(f32 param_0, f32 param_1, s16 param_2) {
+asm bool daAlink_c::setRollJump(f32 param_0, f32 param_1, s16 param_2) {
     nofralloc
 #include "asm/d/a/d_a_alink/setRollJump__9daAlink_cFffs.s"
 }
@@ -15895,7 +15895,7 @@ asm void daAlink_c::setCollision() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getBaseAnimeFrame() const {
+asm float daAlink_c::getBaseAnimeFrame() const {
     nofralloc
 #include "asm/d/a/d_a_alink/getBaseAnimeFrame__9daAlink_cCFv.s"
 }
@@ -17708,7 +17708,7 @@ asm void daAlink_c::checkMagicArmorHeavy() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkBootsOrArmorHeavy() const {
+asm bool daAlink_c::checkBootsOrArmorHeavy() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkBootsOrArmorHeavy__9daAlink_cCFv.s"
 }
@@ -18460,7 +18460,7 @@ asm void daAlink_c::setFrontRollCrashShock(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getModelJointMtx(u16 param_0) {
+asm bool daAlink_c::getModelJointMtx(u16 param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/getModelJointMtx__9daAlink_cFUs.s"
 }
@@ -19701,7 +19701,7 @@ asm void daAlink_c::procCoPeepSubjectivity() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkBoardRide() const {
+asm bool daAlink_c::checkBoardRide() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkBoardRide__9daAlink_cCFv.s"
 }
@@ -19711,7 +19711,7 @@ asm void daAlink_c::checkBoardRide() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkCanoeRide() const {
+asm bool daAlink_c::checkCanoeRide() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkCanoeRide__9daAlink_cCFv.s"
 }
@@ -19721,7 +19721,7 @@ asm void daAlink_c::checkCanoeRide() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkHorseRide() const {
+asm bool daAlink_c::checkHorseRide() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkHorseRide__9daAlink_cCFv.s"
 }
@@ -19731,7 +19731,7 @@ asm void daAlink_c::checkHorseRide() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getLeftItemMatrix() {
+asm Mtx* daAlink_c::getLeftItemMatrix() {
     nofralloc
 #include "asm/d/a/d_a_alink/getLeftItemMatrix__9daAlink_cFv.s"
 }
@@ -19741,7 +19741,7 @@ asm void daAlink_c::getLeftItemMatrix() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkBoarRide() const {
+asm bool daAlink_c::checkBoarRide() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkBoarRide__9daAlink_cCFv.s"
 }
@@ -19751,7 +19751,7 @@ asm void daAlink_c::checkBoarRide() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkSpinnerRide() const {
+asm u32 daAlink_c::checkSpinnerRide() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkSpinnerRide__9daAlink_cCFv.s"
 }
@@ -19761,7 +19761,7 @@ asm void daAlink_c::checkSpinnerRide() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getLeftHandMatrix() {
+asm Mtx* daAlink_c::getLeftHandMatrix() {
     nofralloc
 #include "asm/d/a/d_a_alink/getLeftHandMatrix__9daAlink_cFv.s"
 }
@@ -19771,7 +19771,7 @@ asm void daAlink_c::getLeftHandMatrix() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getRightHandMatrix() {
+asm Mtx* daAlink_c::getRightHandMatrix() {
     nofralloc
 #include "asm/d/a/d_a_alink/getRightHandMatrix__9daAlink_cFv.s"
 }
@@ -19792,7 +19792,7 @@ asm void daAlink_c::onSceneChangeArea(u8 param_0, u8 param_1, fopAc_ac_c* param_
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getRightItemMatrix() {
+asm Mtx* daAlink_c::getRightItemMatrix() {
     nofralloc
 #include "asm/d/a/d_a_alink/getRightItemMatrix__9daAlink_cFv.s"
 }
@@ -19802,7 +19802,7 @@ asm void daAlink_c::getRightItemMatrix() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkPlayerNoDraw() {
+asm bool daAlink_c::checkPlayerNoDraw() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkPlayerNoDraw__9daAlink_cFv.s"
 }
@@ -20144,7 +20144,7 @@ asm void daAlink_c::checkModeFlg(u32 param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getShieldChangeWaitTimer() const {
+asm bool daAlink_c::getShieldChangeWaitTimer() const {
     nofralloc
 #include "asm/d/a/d_a_alink/getShieldChangeWaitTimer__9daAlink_cCFv.s"
 }
@@ -20154,7 +20154,7 @@ asm void daAlink_c::getShieldChangeWaitTimer() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getClothesChangeWaitTimer() const {
+asm bool daAlink_c::getClothesChangeWaitTimer() const {
     nofralloc
 #include "asm/d/a/d_a_alink/getClothesChangeWaitTimer__9daAlink_cCFv.s"
 }
@@ -20164,7 +20164,7 @@ asm void daAlink_c::getClothesChangeWaitTimer() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkHorseStart() {
+asm bool daAlink_c::checkHorseStart() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkHorseStart__9daAlink_cFv.s"
 }
@@ -20175,7 +20175,7 @@ asm void daAlink_c::checkHorseStart() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkCutTurnCharge() const {
+asm bool daAlink_c::checkCutTurnCharge() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkCutTurnCharge__9daAlink_cCFv.s"
 }
@@ -20185,7 +20185,7 @@ asm void daAlink_c::checkCutTurnCharge() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkAcceptDungeonWarpAlink(int param_0) {
+asm bool daAlink_c::checkAcceptDungeonWarpAlink(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/checkAcceptDungeonWarpAlink__9daAlink_cFi.s"
 }
@@ -20195,7 +20195,7 @@ asm void daAlink_c::checkAcceptDungeonWarpAlink(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getSpinnerActor() {
+asm bool daAlink_c::getSpinnerActor() {
     nofralloc
 #include "asm/d/a/d_a_alink/getSpinnerActor__9daAlink_cFv.s"
 }
@@ -20205,7 +20205,7 @@ asm void daAlink_c::getSpinnerActor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getSumouCounter() const {
+asm bool daAlink_c::getSumouCounter() const {
     nofralloc
 #include "asm/d/a/d_a_alink/getSumouCounter__9daAlink_cCFv.s"
 }
@@ -20216,7 +20216,7 @@ asm void daAlink_c::getSumouCounter() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkSumouWithstand() const {
+asm bool daAlink_c::checkSumouWithstand() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkSumouWithstand__9daAlink_cCFv.s"
 }
@@ -20237,7 +20237,7 @@ asm void daAlink_c::setMidnaMsgNum(fopAc_ac_c* param_0, u16 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getModelMtx() {
+asm Mtx* daAlink_c::getModelMtx() {
     nofralloc
 #include "asm/d/a/d_a_alink/getModelMtx__9daAlink_cFv.s"
 }
@@ -20247,7 +20247,7 @@ asm void daAlink_c::getModelMtx() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getInvMtx() {
+asm Mtx* daAlink_c::getInvMtx() {
     nofralloc
 #include "asm/d/a/d_a_alink/getInvMtx__9daAlink_cFv.s"
 }
@@ -20257,7 +20257,7 @@ asm void daAlink_c::getInvMtx() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getLinkBackBone1Matrix() {
+asm Mtx* daAlink_c::getLinkBackBone1Matrix() {
     nofralloc
 #include "asm/d/a/d_a_alink/getLinkBackBone1Matrix__9daAlink_cFv.s"
 }
@@ -20267,7 +20267,7 @@ asm void daAlink_c::getLinkBackBone1Matrix() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getWolfMouthMatrix() {
+asm Mtx* daAlink_c::getWolfMouthMatrix() {
     nofralloc
 #include "asm/d/a/d_a_alink/getWolfMouthMatrix__9daAlink_cFv.s"
 }
@@ -20277,7 +20277,7 @@ asm void daAlink_c::getWolfMouthMatrix() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getWolfBackbone2Matrix() {
+asm Mtx* daAlink_c::getWolfBackbone2Matrix() {
     nofralloc
 #include "asm/d/a/d_a_alink/getWolfBackbone2Matrix__9daAlink_cFv.s"
 }
@@ -20287,7 +20287,7 @@ asm void daAlink_c::getWolfBackbone2Matrix() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getBottleMtx() {
+asm bool daAlink_c::getBottleMtx() {
     nofralloc
 #include "asm/d/a/d_a_alink/getBottleMtx__9daAlink_cFv.s"
 }
@@ -20297,7 +20297,7 @@ asm void daAlink_c::getBottleMtx() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getHeadMtx() {
+asm bool daAlink_c::getHeadMtx() {
     nofralloc
 #include "asm/d/a/d_a_alink/getHeadMtx__9daAlink_cFv.s"
 }
@@ -20307,7 +20307,7 @@ asm void daAlink_c::getHeadMtx() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getGroundY() {
+asm float daAlink_c::getGroundY() {
     nofralloc
 #include "asm/d/a/d_a_alink/getGroundY__9daAlink_cFv.s"
 }
@@ -20317,7 +20317,7 @@ asm void daAlink_c::getGroundY() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getBaseAnimeFrameRate() const {
+asm float daAlink_c::getBaseAnimeFrameRate() const {
     nofralloc
 #include "asm/d/a/d_a_alink/getBaseAnimeFrameRate__9daAlink_cCFv.s"
 }
@@ -20327,7 +20327,7 @@ asm void daAlink_c::getBaseAnimeFrameRate() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getAtnActorID() const {
+asm bool daAlink_c::getAtnActorID() const {
     nofralloc
 #include "asm/d/a/d_a_alink/getAtnActorID__9daAlink_cCFv.s"
 }
@@ -20337,7 +20337,7 @@ asm void daAlink_c::getAtnActorID() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getItemID() const {
+asm s32 daAlink_c::getItemID() const {
     nofralloc
 #include "asm/d/a/d_a_alink/getItemID__9daAlink_cCFv.s"
 }
@@ -20347,7 +20347,7 @@ asm void daAlink_c::getItemID() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getGrabActorID() const {
+asm bool daAlink_c::getGrabActorID() const {
     nofralloc
 #include "asm/d/a/d_a_alink/getGrabActorID__9daAlink_cCFv.s"
 }
@@ -20368,7 +20368,7 @@ asm void daAlink_c::setForcePutPos(cXyz const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkPlayerFly() const {
+asm bool daAlink_c::checkPlayerFly() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkPlayerFly__9daAlink_cCFv.s"
 }
@@ -20378,7 +20378,7 @@ asm void daAlink_c::checkPlayerFly() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkFrontRoll() const {
+asm bool daAlink_c::checkFrontRoll() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkFrontRoll__9daAlink_cCFv.s"
 }
@@ -20388,7 +20388,7 @@ asm void daAlink_c::checkFrontRoll() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkWolfDash() const {
+asm bool daAlink_c::checkWolfDash() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkWolfDash__9daAlink_cCFv.s"
 }
@@ -20398,7 +20398,7 @@ asm void daAlink_c::checkWolfDash() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkAutoJump() const {
+asm bool daAlink_c::checkAutoJump() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkAutoJump__9daAlink_cCFv.s"
 }
@@ -20408,7 +20408,7 @@ asm void daAlink_c::checkAutoJump() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkSideStep() const {
+asm bool daAlink_c::checkSideStep() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkSideStep__9daAlink_cCFv.s"
 }
@@ -20419,7 +20419,7 @@ asm void daAlink_c::checkSideStep() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkWolfTriggerJump() const {
+asm bool daAlink_c::checkWolfTriggerJump() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkWolfTriggerJump__9daAlink_cCFv.s"
 }
@@ -20430,7 +20430,7 @@ asm void daAlink_c::checkWolfTriggerJump() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkGuardBreakMode() const {
+asm bool daAlink_c::checkGuardBreakMode() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkGuardBreakMode__9daAlink_cCFv.s"
 }
@@ -20440,7 +20440,7 @@ asm void daAlink_c::checkGuardBreakMode() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkLv3Slide() const {
+asm bool daAlink_c::checkLv3Slide() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkLv3Slide__9daAlink_cCFv.s"
 }
@@ -20450,7 +20450,7 @@ asm void daAlink_c::checkLv3Slide() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkWolfHowlDemoMode() const {
+asm bool daAlink_c::checkWolfHowlDemoMode() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkWolfHowlDemoMode__9daAlink_cCFv.s"
 }
@@ -20460,7 +20460,7 @@ asm void daAlink_c::checkWolfHowlDemoMode() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkElecDamage() const {
+asm bool daAlink_c::checkElecDamage() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkElecDamage__9daAlink_cCFv.s"
 }
@@ -20470,7 +20470,7 @@ asm void daAlink_c::checkElecDamage() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkEmptyBottleSwing() const {
+asm bool daAlink_c::checkEmptyBottleSwing() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkEmptyBottleSwing__9daAlink_cCFv.s"
 }
@@ -20481,7 +20481,7 @@ asm void daAlink_c::checkEmptyBottleSwing() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkBottleSwingMode() const {
+asm bool daAlink_c::checkBottleSwingMode() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkBottleSwingMode__9daAlink_cCFv.s"
 }
@@ -20491,7 +20491,7 @@ asm void daAlink_c::checkBottleSwingMode() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkHawkWait() const {
+asm bool daAlink_c::checkHawkWait() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkHawkWait__9daAlink_cCFv.s"
 }
@@ -20501,7 +20501,7 @@ asm void daAlink_c::checkHawkWait() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkGoatThrow() const {
+asm bool daAlink_c::checkGoatThrow() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkGoatThrow__9daAlink_cCFv.s"
 }
@@ -20512,7 +20512,7 @@ asm void daAlink_c::checkGoatThrow() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkGoatThrowAfter() const {
+asm bool daAlink_c::checkGoatThrowAfter() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkGoatThrowAfter__9daAlink_cCFv.s"
 }
@@ -20523,7 +20523,7 @@ asm void daAlink_c::checkGoatThrowAfter() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkWolfTagLockJump() const {
+asm bool daAlink_c::checkWolfTagLockJump() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkWolfTagLockJump__9daAlink_cCFv.s"
 }
@@ -20533,7 +20533,7 @@ asm void daAlink_c::checkWolfTagLockJump() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkWolfTagLockJumpLand() const {
+asm bool daAlink_c::checkWolfTagLockJumpLand() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkWolfTagLockJumpLand__9daAlink_cCFv.s"
 }
@@ -20543,7 +20543,7 @@ asm void daAlink_c::checkWolfTagLockJumpLand() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkWolfRopeHang() const {
+asm bool daAlink_c::checkWolfRopeHang() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkWolfRopeHang__9daAlink_cCFv.s"
 }
@@ -20553,7 +20553,7 @@ asm void daAlink_c::checkWolfRopeHang() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkRollJump() const {
+asm bool daAlink_c::checkRollJump() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkRollJump__9daAlink_cCFv.s"
 }
@@ -20564,7 +20564,7 @@ asm void daAlink_c::checkRollJump() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkGoronRideWait() const {
+asm bool daAlink_c::checkGoronRideWait() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkGoronRideWait__9daAlink_cCFv.s"
 }
@@ -20574,7 +20574,7 @@ asm void daAlink_c::checkGoronRideWait() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkWolfChain() const {
+asm bool daAlink_c::checkWolfChain() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkWolfChain__9daAlink_cCFv.s"
 }
@@ -20584,7 +20584,7 @@ asm void daAlink_c::checkWolfChain() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkWolfWait() const {
+asm bool daAlink_c::checkWolfWait() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkWolfWait__9daAlink_cCFv.s"
 }
@@ -20595,7 +20595,7 @@ asm void daAlink_c::checkWolfWait() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkWolfJumpAttack() const {
+asm bool daAlink_c::checkWolfJumpAttack() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkWolfJumpAttack__9daAlink_cCFv.s"
 }
@@ -20605,7 +20605,7 @@ asm void daAlink_c::checkWolfJumpAttack() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkWolfRSit() const {
+asm bool daAlink_c::checkWolfRSit() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkWolfRSit__9daAlink_cCFv.s"
 }
@@ -20616,7 +20616,7 @@ asm void daAlink_c::checkWolfRSit() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkBottleDrinkEnd() const {
+asm bool daAlink_c::checkBottleDrinkEnd() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkBottleDrinkEnd__9daAlink_cCFv.s"
 }
@@ -20626,7 +20626,7 @@ asm void daAlink_c::checkBottleDrinkEnd() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkWolfDig() const {
+asm bool daAlink_c::checkWolfDig() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkWolfDig__9daAlink_cCFv.s"
 }
@@ -20636,7 +20636,7 @@ asm void daAlink_c::checkWolfDig() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkCutCharge() const {
+asm bool daAlink_c::checkCutCharge() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkCutCharge__9daAlink_cCFv.s"
 }
@@ -20646,7 +20646,7 @@ asm void daAlink_c::checkCutCharge() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkCutLargeJumpCharge() const {
+asm bool daAlink_c::checkCutLargeJumpCharge() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkCutLargeJumpCharge__9daAlink_cCFv.s"
 }
@@ -20656,7 +20656,7 @@ asm void daAlink_c::checkCutLargeJumpCharge() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkComboCutTurn() const {
+asm bool daAlink_c::checkComboCutTurn() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkComboCutTurn__9daAlink_cCFv.s"
 }
@@ -20666,7 +20666,7 @@ asm void daAlink_c::checkComboCutTurn() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkClimbMove() const {
+asm bool daAlink_c::checkClimbMove() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkClimbMove__9daAlink_cCFv.s"
 }
@@ -20676,7 +20676,7 @@ asm void daAlink_c::checkClimbMove() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkGrassWhistle() const {
+asm bool daAlink_c::checkGrassWhistle() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkGrassWhistle__9daAlink_cCFv.s"
 }
@@ -20686,7 +20686,7 @@ asm void daAlink_c::checkGrassWhistle() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkBoarRun() const {
+asm bool daAlink_c::checkBoarRun() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkBoarRun__9daAlink_cCFv.s"
 }
@@ -20696,7 +20696,7 @@ asm void daAlink_c::checkBoarRun() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkHorseRideNotReady() const {
+asm bool daAlink_c::checkHorseRideNotReady() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkHorseRideNotReady__9daAlink_cCFv.s"
 }
@@ -20717,7 +20717,7 @@ asm void daAlink_c::getSearchBallScale() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkFastShotTime() {
+asm bool daAlink_c::checkFastShotTime() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkFastShotTime__9daAlink_cFv.s"
 }
@@ -20738,7 +20738,7 @@ asm void daAlink_c::checkCutJumpCancelTurn() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkSingleBoarBattleSecondBowReady() const {
+asm bool daAlink_c::checkSingleBoarBattleSecondBowReady() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkSingleBoarBattleSecondBowReady__9daAlink_cCFv.s"
 }
@@ -20780,7 +20780,7 @@ asm void daAlink_c::onSceneChangeDead(u8 param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkNoEquipItem() const {
+asm bool daAlink_c::checkNoEquipItem() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkNoEquipItem__9daAlink_cCFv.s"
 }
@@ -20791,7 +20791,7 @@ asm void daAlink_c::checkNoEquipItem() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getBoardCutTurnOffsetAngleY() const {
+asm bool daAlink_c::getBoardCutTurnOffsetAngleY() const {
     nofralloc
 #include "asm/d/a/d_a_alink/getBoardCutTurnOffsetAngleY__9daAlink_cCFv.s"
 }
@@ -20802,7 +20802,7 @@ asm void daAlink_c::getBoardCutTurnOffsetAngleY() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getMagneBootsTopVec() {
+asm cXyz* daAlink_c::getMagneBootsTopVec() {
     nofralloc
 #include "asm/d/a/d_a_alink/getMagneBootsTopVec__9daAlink_cFv.s"
 }
@@ -20864,7 +20864,7 @@ asm void daAlink_c::setSumouLoseHeadUp() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkPriActorOwn(fopAc_ac_c const* param_0) const {
+asm bool daAlink_c::checkPriActorOwn(fopAc_ac_c const* param_0) const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkPriActorOwn__9daAlink_cCFPC10fopAc_ac_c.s"
 }
@@ -20875,7 +20875,7 @@ asm void daAlink_c::checkPriActorOwn(fopAc_ac_c const* param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkWolfEnemyBiteAllOwn(fopAc_ac_c const* param_0) const {
+asm bool daAlink_c::checkWolfEnemyBiteAllOwn(fopAc_ac_c const* param_0) const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkWolfEnemyBiteAllOwn__9daAlink_cCFPC10fopAc_ac_c.s"
 }
@@ -20906,7 +20906,7 @@ asm void daAlink_c::setSumouGraspCancelCount(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkItemSwordEquip() const {
+asm bool daAlink_c::checkItemSwordEquip() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkItemSwordEquip__9daAlink_cCFv.s"
 }
@@ -20917,7 +20917,7 @@ asm void daAlink_c::checkItemSwordEquip() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getSinkShapeOffset() const {
+asm float daAlink_c::getSinkShapeOffset() const {
     nofralloc
 #include "asm/d/a/d_a_alink/getSinkShapeOffset__9daAlink_cCFv.s"
 }
@@ -20927,7 +20927,7 @@ asm void daAlink_c::getSinkShapeOffset() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkSinkDead() const {
+asm bool daAlink_c::checkSinkDead() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkSinkDead__9daAlink_cCFv.s"
 }
@@ -20937,7 +20937,7 @@ asm void daAlink_c::checkSinkDead() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkCutJumpMode() const {
+asm bool daAlink_c::checkCutJumpMode() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkCutJumpMode__9daAlink_cCFv.s"
 }
@@ -20947,7 +20947,7 @@ asm void daAlink_c::checkCutJumpMode() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getGiantPuzzleAimAngle() const {
+asm s16 daAlink_c::getGiantPuzzleAimAngle() const {
     nofralloc
 #include "asm/d/a/d_a_alink/getGiantPuzzleAimAngle__9daAlink_cCFv.s"
 }
@@ -20957,7 +20957,7 @@ asm void daAlink_c::getGiantPuzzleAimAngle() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getSwordChangeWaitTimer() const {
+asm bool daAlink_c::getSwordChangeWaitTimer() const {
     nofralloc
 #include "asm/d/a/d_a_alink/getSwordChangeWaitTimer__9daAlink_cCFv.s"
 }
@@ -20967,7 +20967,7 @@ asm void daAlink_c::getSwordChangeWaitTimer() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkMetamorphose() const {
+asm bool daAlink_c::checkMetamorphose() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkMetamorphose__9daAlink_cCFv.s"
 }
@@ -20977,7 +20977,7 @@ asm void daAlink_c::checkMetamorphose() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkWolfDownAttackPullOut() const {
+asm bool daAlink_c::checkWolfDownAttackPullOut() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkWolfDownAttackPullOut__9daAlink_cCFv.s"
 }
@@ -20987,7 +20987,7 @@ asm void daAlink_c::checkWolfDownAttackPullOut() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getMidnaAtnPos() const {
+asm bool daAlink_c::getMidnaAtnPos() const {
     nofralloc
 #include "asm/d/a/d_a_alink/getMidnaAtnPos__9daAlink_cCFv.s"
 }
@@ -20997,7 +20997,7 @@ asm void daAlink_c::getMidnaAtnPos() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkCopyRodEquip() const {
+asm bool daAlink_c::checkCopyRodEquip() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkCopyRodEquip__9daAlink_cCFv.s"
 }
@@ -21007,7 +21007,7 @@ asm void daAlink_c::checkCopyRodEquip() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkCanoeFishingGetLeft() const {
+asm bool daAlink_c::checkCanoeFishingGetLeft() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkCanoeFishingGetLeft__9daAlink_cCFv.s"
 }
@@ -21017,7 +21017,7 @@ asm void daAlink_c::checkCanoeFishingGetLeft() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkCanoeFishingGetRight() const {
+asm bool daAlink_c::checkCanoeFishingGetRight() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkCanoeFishingGetRight__9daAlink_cCFv.s"
 }
@@ -21028,7 +21028,7 @@ asm void daAlink_c::checkCanoeFishingGetRight() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkBeeChildDrink() const {
+asm bool daAlink_c::checkBeeChildDrink() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkBeeChildDrink__9daAlink_cCFv.s"
 }
@@ -21038,7 +21038,7 @@ asm void daAlink_c::checkBeeChildDrink() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getWolfHowlMgrP() {
+asm bool daAlink_c::getWolfHowlMgrP() {
     nofralloc
 #include "asm/d/a/d_a_alink/getWolfHowlMgrP__9daAlink_cFv.s"
 }
@@ -21048,7 +21048,7 @@ asm void daAlink_c::getWolfHowlMgrP() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkWolfHowlSuccessAnime() const {
+asm bool daAlink_c::checkWolfHowlSuccessAnime() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkWolfHowlSuccessAnime__9daAlink_cCFv.s"
 }
@@ -21058,7 +21058,7 @@ asm void daAlink_c::checkWolfHowlSuccessAnime() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkOctaIealHang() const {
+asm bool daAlink_c::checkOctaIealHang() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkOctaIealHang__9daAlink_cCFv.s"
 }
@@ -21100,7 +21100,7 @@ asm void daAlink_c::setOctaIealWildHang() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkDragonHangRide() const {
+asm bool daAlink_c::checkDragonHangRide() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkDragonHangRide__9daAlink_cCFv.s"
 }
@@ -22141,7 +22141,7 @@ asm void daAlink_c::checkCaughtEscapeCutTurn() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::setThrowDamage(s16 param_0, f32 param_1, f32 param_2, int param_3, int param_4,
+asm bool daAlink_c::setThrowDamage(s16 param_0, f32 param_1, f32 param_2, int param_3, int param_4,
                                    int param_5) {
     nofralloc
 #include "asm/d/a/d_a_alink/setThrowDamage__9daAlink_cFsffiii.s"
@@ -22684,7 +22684,7 @@ asm void daAlink_c::checkUpperGuardAnime() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkPlayerGuard() const {
+asm bool daAlink_c::checkPlayerGuard() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkPlayerGuard__9daAlink_cCFv.s"
 }
@@ -22919,7 +22919,7 @@ asm void daAlink_c::checkBowCameraArrowPosP(s16* param_0, s16* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkArrowChargeEnd() const {
+asm bool daAlink_c::checkArrowChargeEnd() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkArrowChargeEnd__9daAlink_cCFv.s"
 }
@@ -23555,7 +23555,7 @@ asm void daAlink_c::checkForestOldCentury() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkCopyRodTopUse() {
+asm bool daAlink_c::checkCopyRodTopUse() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkCopyRodTopUse__9daAlink_cFv.s"
 }
@@ -24093,7 +24093,7 @@ asm void daAlink_c::setGrabCollisionOffset(f32 param_0, f32 param_1, cBgS_PolyIn
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::exchangeGrabActor(fopAc_ac_c* param_0) {
+asm bool daAlink_c::exchangeGrabActor(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/exchangeGrabActor__9daAlink_cFP10fopAc_ac_c.s"
 }
@@ -24103,7 +24103,7 @@ asm void daAlink_c::exchangeGrabActor(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::setForceGrab(fopAc_ac_c* param_0, int param_1, int param_2) {
+asm bool daAlink_c::setForceGrab(fopAc_ac_c* param_0, int param_1, int param_2) {
     nofralloc
 #include "asm/d/a/d_a_alink/setForceGrab__9daAlink_cFP10fopAc_ac_cii.s"
 }
@@ -24673,7 +24673,7 @@ asm void daAlink_c::setFmChainPosFromOut(fopAc_ac_c* param_0, cXyz* param_1, int
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkChainBlockPushPull() {
+asm bool daAlink_c::checkChainBlockPushPull() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkChainBlockPushPull__9daAlink_cFv.s"
 }
@@ -28993,7 +28993,7 @@ static asm void daAlink_hookshotAtHitCallBack(fopAc_ac_c* param_0, dCcD_GObjInf*
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getHookshotTopPos() {
+asm bool daAlink_c::getHookshotTopPos() {
     nofralloc
 #include "asm/d/a/d_a_alink/getHookshotTopPos__9daAlink_cFv.s"
 }
@@ -29003,7 +29003,7 @@ asm void daAlink_c::getHookshotTopPos() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkHookshotReturnMode() const {
+asm bool daAlink_c::checkHookshotReturnMode() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkHookshotReturnMode__9daAlink_cCFv.s"
 }
@@ -29014,7 +29014,7 @@ asm void daAlink_c::checkHookshotReturnMode() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkHookshotShootReturnMode() const {
+asm bool daAlink_c::checkHookshotShootReturnMode() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkHookshotShootReturnMode__9daAlink_cCFv.s"
 }
@@ -29151,7 +29151,7 @@ asm void daAlink_c::setHookshotCatchNow() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::setHookshotCarryOffset(unsigned int param_0, cXyz const* param_1) {
+asm bool daAlink_c::setHookshotCarryOffset(unsigned int param_0, cXyz const* param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/setHookshotCarryOffset__9daAlink_cFUiPC4cXyz.s"
 }
@@ -29693,7 +29693,7 @@ asm void daAlink_c::onSpinnerPathForceRemove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkSpinnerPathMove() {
+asm bool daAlink_c::checkSpinnerPathMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkSpinnerPathMove__9daAlink_cFv.s"
 }
@@ -29713,7 +29713,7 @@ asm void daAlink_c::checkLv4BossRoom() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkSpinnerTriggerAttack() {
+asm bool daAlink_c::checkSpinnerTriggerAttack() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkSpinnerTriggerAttack__9daAlink_cFv.s"
 }
@@ -29807,7 +29807,7 @@ static asm void daAlink_bottleModelCallBack(J3DJoint* param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getBottleOpenAppearItem() const {
+asm s32 daAlink_c::getBottleOpenAppearItem() const {
     nofralloc
 #include "asm/d/a/d_a_alink/getBottleOpenAppearItem__9daAlink_cCFv.s"
 }
@@ -30015,7 +30015,7 @@ asm void daAlink_c::offKandelaarModel() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkUseKandelaar(int param_0) {
+asm bool daAlink_c::checkUseKandelaar(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/checkUseKandelaar__9daAlink_cFi.s"
 }
@@ -30026,7 +30026,7 @@ asm void daAlink_c::checkUseKandelaar(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkKandelaarSwing(int param_0) const {
+asm bool daAlink_c::checkKandelaarSwing(int param_0) const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkKandelaarSwing__9daAlink_cCFi.s"
 }
@@ -30058,7 +30058,7 @@ static asm void daAlink_kandelaarModelCallBack(J3DJoint* param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getKandelaarFlamePos() {
+asm bool daAlink_c::getKandelaarFlamePos() {
     nofralloc
 #include "asm/d/a/d_a_alink/getKandelaarFlamePos__9daAlink_cFv.s"
 }
@@ -30343,7 +30343,7 @@ asm void daAlink_c::procHawkSubject() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getIronBallCenterPos() {
+asm bool daAlink_c::getIronBallCenterPos() {
     nofralloc
 #include "asm/d/a/d_a_alink/getIronBallCenterPos__9daAlink_cFv.s"
 }
@@ -30353,7 +30353,7 @@ asm void daAlink_c::getIronBallCenterPos() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getIronBallBgHit() const {
+asm bool daAlink_c::getIronBallBgHit() const {
     nofralloc
 #include "asm/d/a/d_a_alink/getIronBallBgHit__9daAlink_cCFv.s"
 }
@@ -30385,7 +30385,7 @@ asm void daAlink_c::checkIronBallThrowReturnMode() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkIronBallReturn() const {
+asm bool daAlink_c::checkIronBallReturn() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkIronBallReturn__9daAlink_cCFv.s"
 }
@@ -30395,7 +30395,7 @@ asm void daAlink_c::checkIronBallReturn() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkIronBallGroundStop() const {
+asm bool daAlink_c::checkIronBallGroundStop() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkIronBallGroundStop__9daAlink_cCFv.s"
 }
@@ -30663,7 +30663,7 @@ asm void daAlink_c::createNpcTks(cXyz* param_0, int param_1, u32 param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkSetNpcTks(cXyz* param_0, int param_1, int param_2) {
+asm bool daAlink_c::checkSetNpcTks(cXyz* param_0, int param_1, int param_2) {
     nofralloc
 #include "asm/d/a/d_a_alink/checkSetNpcTks__9daAlink_cFP4cXyzii.s"
 }
@@ -31121,7 +31121,7 @@ asm void daAlink_c::setGetSubBgm(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkTreasureRupeeReturn(int param_0) const {
+asm bool daAlink_c::checkTreasureRupeeReturn(int param_0) const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkTreasureRupeeReturn__9daAlink_cCFi.s"
 }
@@ -33751,7 +33751,7 @@ asm void daObj_Sekizoa_c::setWolfHowling() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkWolfRope() {
+asm bool daAlink_c::checkWolfRope() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkWolfRope__9daAlink_cFv.s"
 }
@@ -34495,7 +34495,7 @@ asm void daAlink_c::procWolfSwimEndWait() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::onWolfEnemyBiteAll(fopAc_ac_c* param_0, daPy_py_c::daPy_FLG2 param_1) {
+asm bool daAlink_c::onWolfEnemyBiteAll(fopAc_ac_c* param_0, daPy_py_c::daPy_FLG2 param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/onWolfEnemyBiteAll__9daAlink_cFP10fopAc_ac_cQ29daPy_py_c9daPy_FLG2.s"
 }
@@ -34567,7 +34567,7 @@ asm void daAlink_c::checkWolfLockData() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkWolfLock(fopAc_ac_c* param_0) const {
+asm bool daAlink_c::checkWolfLock(fopAc_ac_c* param_0) const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkWolfLock__9daAlink_cCFP10fopAc_ac_c.s"
 }
@@ -34577,7 +34577,7 @@ asm void daAlink_c::checkWolfLock(fopAc_ac_c* param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::cancelWolfLock(fopAc_ac_c* param_0) {
+asm bool daAlink_c::cancelWolfLock(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/cancelWolfLock__9daAlink_cFP10fopAc_ac_c.s"
 }
@@ -35882,14 +35882,9 @@ asm void dComIfGs_isEventBit(u16 param_0) {
 #pragma pop
 
 /* 801413CC-801413D8 13BD0C 000C+00 1/1 0/0 0/0 .text            checkWolf__9daPy_py_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daPy_py_c::checkWolf() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkWolf__9daPy_py_cCFv.s"
+int daPy_py_c::checkWolf() const {
+    return i_checkNoResetFlg1(Wolf);
 }
-#pragma pop
 
 /* 801413D8-801413F8 13BD18 0020+00 1/1 0/0 0/0 .text            checkSwordGet__9daPy_py_cFv */
 #pragma push
@@ -35903,14 +35898,9 @@ asm void daPy_py_c::checkSwordGet() {
 
 /* 801413F8-80141404 13BD38 000C+00 1/1 0/0 0/0 .text
  * checkResetFlg0__9daPy_py_cCFQ29daPy_py_c10daPy_RFLG0         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daPy_py_c::checkResetFlg0(daPy_py_c::daPy_RFLG0 param_0) const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkResetFlg0__9daPy_py_cCFQ29daPy_py_c10daPy_RFLG0.s"
+int daPy_py_c::checkResetFlg0(daPy_RFLG0 pFlag) const {
+    return mResetFlg0 & pFlag;
 }
-#pragma pop
 
 /* 80141404-80141410 13BD44 000C+00 1/1 0/0 0/0 .text            ChkGroundHit__9dBgS_AcchCFv */
 #pragma push
@@ -35982,24 +35972,14 @@ static asm void dComIfGp_event_runCheck() {
 
 /* 801414C0-801414CC 13BE00 000C+00 1/1 0/0 0/0 .text
  * checkNoResetFlg2__9daPy_py_cCFQ29daPy_py_c9daPy_FLG2         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daPy_py_c::checkNoResetFlg2(daPy_py_c::daPy_FLG2 param_0) const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkNoResetFlg2__9daPy_py_cCFQ29daPy_py_c9daPy_FLG2.s"
+int daPy_py_c::checkNoResetFlg2(daPy_FLG2 pFlag) const {
+    return mNoResetFlg2 & pFlag;
 }
-#pragma pop
 
 /* 801414CC-801414D8 13BE0C 000C+00 1/1 2/2 0/0 .text            checkMagneBootsOn__9daPy_py_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daPy_py_c::checkMagneBootsOn() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkMagneBootsOn__9daPy_py_cCFv.s"
+int daPy_py_c::checkMagneBootsOn() const {
+    return i_checkNoResetFlg0(MagneBootsOn);
 }
-#pragma pop
 
 /* 801414D8-801414E8 13BE18 0010+00 1/1 2/2 0/0 .text            dComIfGp_getHorseActor__Fv */
 #pragma push
@@ -36012,25 +35992,15 @@ asm void dComIfGp_getHorseActor() {
 #pragma pop
 
 /* 801414E8-801414F4 13BE28 000C+00 1/1 0/0 0/0 .text checkBoarSingleBattle__9daPy_py_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 daPy_py_c::checkBoarSingleBattle() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkBoarSingleBattle__9daPy_py_cCFv.s"
+int daPy_py_c::checkBoarSingleBattle() const {
+    return i_checkNoResetFlg2(BoarSingleBattle);
 }
-#pragma pop
 
 /* 801414F4-80141500 13BE34 000C+00 1/1 0/0 0/0 .text
  * checkEndResetFlg0__9daPy_py_cCFQ29daPy_py_c11daPy_ERFLG0     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 daPy_py_c::checkEndResetFlg0(daPy_py_c::daPy_ERFLG0 param_0) const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkEndResetFlg0__9daPy_py_cCFQ29daPy_py_c11daPy_ERFLG0.s"
+int daPy_py_c::checkEndResetFlg0(daPy_ERFLG0 pFlag) const {
+    return mEndResetFlg0 & pFlag;
 }
-#pragma pop
 
 /* 80141500-80141508 13BE40 0008+00 1/0 0/0 0/0 .text            getMidnaAtnPos__9daPy_py_cCFv */
 bool daPy_py_c::getMidnaAtnPos() const {
@@ -36044,105 +36014,55 @@ void daPy_py_c::setMidnaMsgNum(fopAc_ac_c* param_0, u16 param_1) {
 }
 
 /* 8014150C-80141514 13BE4C 0008+00 1/0 0/0 0/0 .text            getModelMtx__9daPy_py_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 daPy_py_c::getModelMtx() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getModelMtx__9daPy_py_cFv.s"
+Mtx* daPy_py_c::getModelMtx() {
+    return unk_0x504;
 }
-#pragma pop
 
 /* 80141514-8014151C 13BE54 0008+00 1/0 0/0 0/0 .text            getInvMtx__9daPy_py_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 daPy_py_c::getInvMtx() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getInvMtx__9daPy_py_cFv.s"
+Mtx* daPy_py_c::getInvMtx() {
+    return unk_0x504;
 }
-#pragma pop
 
 /* 8014151C-80141524 13BE5C 0008+00 1/0 0/0 0/0 .text            getShadowTalkAtnPos__9daPy_py_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cXyz* daPy_py_c::getShadowTalkAtnPos() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getShadowTalkAtnPos__9daPy_py_cFv.s"
+cXyz* daPy_py_c::getShadowTalkAtnPos() {
+    return &mPosition;
 }
-#pragma pop
 
 /* 80141524-8014152C 13BE64 0008+00 1/0 0/0 0/0 .text            getLeftItemMatrix__9daPy_py_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 daPy_py_c::getLeftItemMatrix() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getLeftItemMatrix__9daPy_py_cFv.s"
+Mtx* daPy_py_c::getLeftItemMatrix() {
+    return unk_0x504;
 }
-#pragma pop
 
 /* 8014152C-80141534 13BE6C 0008+00 1/0 0/0 0/0 .text            getRightItemMatrix__9daPy_py_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 daPy_py_c::getRightItemMatrix() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getRightItemMatrix__9daPy_py_cFv.s"
+Mtx* daPy_py_c::getRightItemMatrix() {
+    return unk_0x504;
 }
-#pragma pop
 
 /* 80141534-8014153C 13BE74 0008+00 1/0 0/0 0/0 .text            getLeftHandMatrix__9daPy_py_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 daPy_py_c::getLeftHandMatrix() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getLeftHandMatrix__9daPy_py_cFv.s"
+Mtx* daPy_py_c::getLeftHandMatrix() {
+    return unk_0x504;
 }
-#pragma pop
 
 /* 8014153C-80141544 13BE7C 0008+00 1/0 0/0 0/0 .text            getRightHandMatrix__9daPy_py_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 daPy_py_c::getRightHandMatrix() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getRightHandMatrix__9daPy_py_cFv.s"
+Mtx* daPy_py_c::getRightHandMatrix() {
+    return unk_0x504;
 }
-#pragma pop
 
 /* 80141544-8014154C 13BE84 0008+00 1/0 0/0 0/0 .text getLinkBackBone1Matrix__9daPy_py_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 daPy_py_c::getLinkBackBone1Matrix() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getLinkBackBone1Matrix__9daPy_py_cFv.s"
+Mtx* daPy_py_c::getLinkBackBone1Matrix() {
+    return unk_0x504;
 }
-#pragma pop
 
 /* 8014154C-80141554 13BE8C 0008+00 1/0 0/0 0/0 .text            getWolfMouthMatrix__9daPy_py_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 daPy_py_c::getWolfMouthMatrix() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getWolfMouthMatrix__9daPy_py_cFv.s"
+Mtx* daPy_py_c::getWolfMouthMatrix() {
+    return unk_0x504;
 }
-#pragma pop
 
 /* 80141554-8014155C 13BE94 0008+00 1/0 0/0 0/0 .text getWolfBackbone2Matrix__9daPy_py_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 daPy_py_c::getWolfBackbone2Matrix() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getWolfBackbone2Matrix__9daPy_py_cFv.s"
+Mtx* daPy_py_c::getWolfBackbone2Matrix() {
+    return unk_0x504;
 }
-#pragma pop
 
 /* 8014155C-80141564 13BE9C 0008+00 1/0 0/0 0/0 .text            getBottleMtx__9daPy_py_cFv */
 bool daPy_py_c::getBottleMtx() {
@@ -36346,14 +36266,9 @@ bool daPy_py_c::checkHorseElecDamage() const {
 }
 
 /* 8014168C-80141694 13BFCC 0008+00 1/0 0/0 0/0 .text getBaseAnimeFrameRate__9daPy_py_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm float daPy_py_c::getBaseAnimeFrameRate() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/getBaseAnimeFrameRate__9daPy_py_cCFv.s"
+float daPy_py_c::getBaseAnimeFrameRate() const {
+    return lit_6040;
 }
-#pragma pop
 
 /* 80141694-8014169C 13BFD4 0008+00 1/0 0/0 0/0 .text            getBaseAnimeFrame__9daPy_py_cCFv */
 #pragma push
@@ -36614,25 +36529,15 @@ bool daPy_py_c::getBoardCutTurnOffsetAngleY() const {
 }
 
 /* 801417B8-801417C0 13C0F8 0008+00 2/0 0/0 0/0 .text            getMagneHitPos__9daPy_py_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daPy_py_c::getMagneHitPos() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getMagneHitPos__9daPy_py_cFv.s"
+cXyz* daPy_py_c::getMagneHitPos() {
+    return &mSwordTopPos;
 }
-#pragma pop
 
 /* 801417C0-801417C8 13C100 0008+00 1/0 0/0 0/0 .text            getMagneBootsTopVec__9daPy_py_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daPy_py_c::getMagneBootsTopVec() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getMagneBootsTopVec__9daPy_py_cFv.s"
+cXyz* daPy_py_c::getMagneBootsTopVec() {
+    return &mPosition;
 }
-#pragma pop
 
 /* 801417C8-801417D0 13C108 0008+00 1/0 0/0 0/0 .text            checkUseKandelaar__9daPy_py_cFi */
 bool daPy_py_c::checkUseKandelaar(int param_0) {
@@ -36780,14 +36685,9 @@ void daPy_py_c::setSumouLoseHeadUp() {
 }
 
 /* 80141874-8014187C 13C1B4 0008+00 1/0 0/0 0/0 .text getGiantPuzzleAimAngle__9daPy_py_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s16 daPy_py_c::getGiantPuzzleAimAngle() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/getGiantPuzzleAimAngle__9daPy_py_cCFv.s"
+s16 daPy_py_c::getGiantPuzzleAimAngle() const {
+    return mXRot;
 }
-#pragma pop
 
 /* 8014187C-80141880 13C1BC 0004+00 1/0 0/0 0/0 .text setGoronSideMove__9daPy_py_cFP10fopAc_ac_c
  */
@@ -36967,14 +36867,9 @@ extern "C" asm void __ct__4cXyzFfff(f32 param_0, f32 param_1, f32 param_2) {
 #pragma pop
 
 /* 8014196C-80141988 13C2AC 001C+00 1/1 0/0 0/0 .text            dMeter2Info_offUseButton__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dMeter2Info_offUseButton(int param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/dMeter2Info_offUseButton__Fi.s"
+static void dMeter2Info_offUseButton(int pButton) {
+    g_meter2_info.offUseButton(pButton);
 }
-#pragma pop
 
 /* 80141988-80141990 -00001 0008+00 0/0 0/0 0/0 .text            setLinkState__14Z2CreatureLinkFUc
  */
@@ -37064,14 +36959,12 @@ extern "C" asm void func_80141ACC(void* _this, fopAc_ac_c const* param_0,
 #pragma pop
 
 /* 80141AE8-80141B04 13C428 001C+00 1/1 4/4 0/0 .text            cLib_calcTimer<Uc>__FPUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void func_80141AE8(void* _this, u8* param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/func_80141AE8.s"
+extern "C" int func_80141AE8(u8* pTimer) {
+    if (*pTimer != 0) {
+        *pTimer -= 1;
+    }
+    return *pTimer;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80453344-80453348 001944 0004+00 1/1 0/0 0/0 .sdata2          @77808 */

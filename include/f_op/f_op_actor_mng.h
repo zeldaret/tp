@@ -62,6 +62,10 @@ inline s32 fopAcM_GetRoomNo(const fopAc_ac_c* pActor) {
     return pActor->mRoomNo;
 }
 
+inline u32 fopAcM_GetID(const void* pActor) {
+    return fpcM_GetID(pActor);
+}
+
 void* fopAcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3, void* pData);
 void fopAcM_setStageLayer(void*);
 int fopAcM_setRoomLayer(void*, int);

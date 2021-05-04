@@ -3,6 +3,7 @@
 
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
+#include "dolphin/mtx/mtx.h"
 #include "f_pc/f_pc_base.h"
 
 struct JKRSolidHeap;
@@ -20,10 +21,10 @@ public:
     /* 0x4DC */ csXyz mAngle;
     /* 0x4E2 */ s8 mRoomNo;
     /* 0x4E3 */ u8 unk_0x4E3[0x4E6 - 0x4E3];
-    /* 0x4E6 */ s16 unk_0x4E6;
+    /* 0x4E6 */ s16 mXRot;
     /* 0x4E8 */ u8 unk_0x4E8[0x4F8 - 0x4E8];
     /* 0x4F8 */ cXyz mSpeed;
-    /* 0x504 */ u8 unk_0x504[4];
+    /* 0x504 */ Mtx* unk_0x504;
     /* 0x508 */ cXyz mCullMin;
     /* 0x514 */ cXyz mCullMax;
     /* 0x520 */ u8 unk_0x520[0xC];

@@ -43,10 +43,10 @@ public:
     void initData();
     void mallocBuffer();
     void createHeap(daPy_anmHeap_c::daAlinkHEAP_TYPE);
-    void loadData(u16);
-    void loadDataIdx(u16);
-    void loadDataPriIdx(u16);
-    void loadDataDemoRID(u16, u16);
+    J3DAnmBase* loadData(u16);
+    J3DAnmBase* loadDataIdx(u16);
+    J3DAnmBase* loadDataPriIdx(u16);
+    J3DAnmBase* loadDataDemoRID(u16, u16);
     void setAnimeHeap();
 
     u16 getIdx() const { return mIdx; }
@@ -159,11 +159,11 @@ public:
     enum daPy_RFLG0 {};
 
     void setParamData(int, int, int, int);
-    void checkFishingRodItem(int);
+    int checkFishingRodItem(int);
     void checkBombItem(int);
     void checkBottleItem(int);
     void checkDrinkBottleItem(int);
-    void checkOilBottleItem(int);
+    int checkOilBottleItem(int);
     void checkOpenBottleItem(int);
     void checkBowItem(int);
     void checkHookshotItem(int);
@@ -194,8 +194,8 @@ public:
     void setMidnaFaceNum(int);
     int checkNoResetFlg0(daPy_FLG0) const;
     int checkEquipHeavyBoots() const;
-    u32 checkBoarSingleBattle(void) const;
-    u32 checkEndResetFlg0(daPy_ERFLG0) const;
+    int checkBoarSingleBattle(void) const;
+    int checkEndResetFlg0(daPy_ERFLG0) const;
     void onNoResetFlg2(daPy_py_c::daPy_FLG2);
     void offNoResetFlg0(daPy_py_c::daPy_FLG0);
     int checkEndResetFlg2(daPy_py_c::daPy_ERFLG2) const;
@@ -206,28 +206,26 @@ public:
     int checkEndResetFlg1(daPy_py_c::daPy_ERFLG1) const;
     void offNoResetFlg1(daPy_py_c::daPy_FLG1);
     void offNoResetFlg2(daPy_py_c::daPy_FLG2);
-    void checkWolf() const;
+    int checkWolf() const;
     void checkSwordGet();
-    void checkResetFlg0(daPy_py_c::daPy_RFLG0) const;
-    void checkNoResetFlg2(daPy_py_c::daPy_FLG2) const;
-    void checkMagneBootsOn() const;
-    bool getModelJointMtx(u16);
-    bool checkPointSubWindowMode() const;
+    int checkResetFlg0(daPy_py_c::daPy_RFLG0) const;
+    int checkNoResetFlg2(daPy_py_c::daPy_FLG2) const;
+    int checkMagneBootsOn() const;
 
     virtual void unk();
     virtual bool getMidnaAtnPos(void) const;
     virtual void setMidnaMsgNum(fopAc_ac_c*, u16);
-    virtual u32 getModelMtx(void);
-    virtual u32 getInvMtx(void);
+    virtual Mtx* getModelMtx(void);
+    virtual Mtx* getInvMtx(void);
     virtual cXyz* getShadowTalkAtnPos(void);
     virtual float getGroundY();
-    virtual u32 getLeftItemMatrix(void);
-    virtual u32 getRightItemMatrix(void);
-    virtual u32 getLeftHandMatrix(void);
-    virtual u32 getRightHandMatrix(void);
-    virtual u32 getLinkBackBone1Matrix(void);
-    virtual u32 getWolfMouthMatrix(void);
-    virtual u32 getWolfBackbone2Matrix(void);
+    virtual Mtx* getLeftItemMatrix(void);
+    virtual Mtx* getRightItemMatrix(void);
+    virtual Mtx* getLeftHandMatrix(void);
+    virtual Mtx* getRightHandMatrix(void);
+    virtual Mtx* getLinkBackBone1Matrix(void);
+    virtual Mtx* getWolfMouthMatrix(void);
+    virtual Mtx* getWolfBackbone2Matrix(void);
     virtual bool getBottleMtx(void);
     virtual bool checkPlayerGuard(void) const;
     virtual bool checkPlayerFly() const;
@@ -288,14 +286,14 @@ public:
     virtual void setOutPower(float, short, int);
     virtual void setGrabCollisionOffset(float, float, cBgS_PolyInfo*);
     virtual void onMagneGrab(float, float);
-    virtual void onFrollCrashFlg(u8, bool);
-    virtual bool getModelJoboolMtx(u16);
+    virtual void onFrollCrashFlg(u8, int);
+    virtual bool getModelJointMtx(u16);
     virtual bool getHeadMtx(void);
     virtual bool setHookshotCarryOffset(unsigned int, cXyz const*);
     virtual bool checkIronBallReturn(void) const;
     virtual bool checkIronBallGroundStop(void) const;
     virtual bool checkSingleBoarBattleSecondBowReady(void) const;
-    virtual bool checkPoboolSubWindowMode(void) const;
+    virtual bool checkPointSubWindowMode(void) const;
     virtual void setClothesChange(int);
     virtual void setPlayerPosAndAngle(float (*)[4]);
     virtual void setPlayerPosAndAngle(cXyz const*, csXyz const*);
@@ -324,8 +322,8 @@ public:
     virtual bool checkFireMaterial(void) const;
     virtual bool checkKandelaarSwing(int) const;
     virtual bool getBoardCutTurnOffsetAngleY(void) const;
-    virtual void getMagneHitPos(void);
-    virtual void getMagneBootsTopVec(void);
+    virtual cXyz* getMagneHitPos(void);
+    virtual cXyz* getMagneBootsTopVec(void);
     virtual bool getKandelaarFlamePos();
     virtual bool checkUseKandelaar(int);
     virtual void setDkCaught(fopAc_ac_c*);
@@ -396,10 +394,12 @@ public:
         return sumouCameraMode;
     }
 
-    // some functions use this function as an inline
+    // some functions use these function as an inline
     // is there a better way to handle this?
     int i_checkNoResetFlg0(daPy_FLG0 pFlag) const { return mNoResetFlg0 & pFlag; }
-
+    int i_checkNoResetFlg1(daPy_FLG1 pFlag) const { return mNoResetFlg1 & pFlag; }
+    int i_checkNoResetFlg2(daPy_FLG2 pFlag) const { return mNoResetFlg2 & pFlag; }
+    
     static u8 m_midnaActor[4];
 };
 

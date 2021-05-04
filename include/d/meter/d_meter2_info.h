@@ -104,8 +104,10 @@ public:
     void resetMiniGameItem(bool);
     void setMiniGameCount(s8);
     void setSaveStageName(const char*);
+
     u8& getDirectUseItem() { return mDirectUseItem; }
     dMeterMap_c* getMeterMapClass() { return mMeterMap; }
+    void offUseButton(int pButton) { mUseButton &= ~(u16)pButton; }
 
 private:
     /* 0x04 */ u8 unk4[4];

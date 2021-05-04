@@ -6,6 +6,7 @@
 #include "d/a/d_a_player.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx.h"
+#include "f_op/f_op_actor_mng.h"
 #include "dolphin/types.h"
 
 //
@@ -346,7 +347,7 @@ BOOL daPy_py_c::checkFishingRodItem(int i_item_id) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::checkFishingRodItem(int param_0) {
+asm BOOL daPy_py_c::checkFishingRodItem(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_player/checkFishingRodItem__9daPy_py_cFi.s"
 }
@@ -388,7 +389,7 @@ asm void daPy_py_c::checkDrinkBottleItem(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::checkOilBottleItem(int param_0) {
+asm BOOL daPy_py_c::checkOilBottleItem(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_player/checkOilBottleItem__9daPy_py_cFi.s"
 }
@@ -470,14 +471,14 @@ asm void daPy_actorKeep_c::setActor() {
 
 /* 8015ECB8-8015ECFC 1595F8 0044+00 0/0 59/59 4/4 .text setData__16daPy_actorKeep_cFP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daPy_actorKeep_c::setData(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/a/d_a_player/setData__16daPy_actorKeep_cFP10fopAc_ac_c.s"
+void daPy_actorKeep_c::setData(fopAc_ac_c* pActor) {
+    if (pActor != NULL) {
+        mActor = pActor;
+        mID = fopAcM_GetID(pActor);
+    } else {
+        clearData();
+    }
 }
-#pragma pop
 
 void daPy_actorKeep_c::clearData() {
     mID = 0xffffffff;
@@ -653,42 +654,57 @@ SECTION_SDATA2 static u8 pigGanonArcName[6 + 2 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_anmHeap_c::loadData(u16 param_0) {
+asm J3DAnmBase* daPy_anmHeap_c::loadData(u16 param_0) {
     nofralloc
 #include "asm/d/a/d_a_player/loadData__14daPy_anmHeap_cFUs.s"
 }
 #pragma pop
 
 /* 8015F068-8015F0D0 1599A8 0068+00 0/0 9/9 5/5 .text            loadDataIdx__14daPy_anmHeap_cFUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daPy_anmHeap_c::loadDataIdx(u16 param_0) {
-    nofralloc
-#include "asm/d/a/d_a_player/loadDataIdx__14daPy_anmHeap_cFUs.s"
+J3DAnmBase* daPy_anmHeap_c::loadDataIdx(u16 pID) {
+    J3DAnmBase* tmp;
+
+    if (pID == mIdx && mArcNo == 0xffff) {
+        tmp = NULL;
+    } else {
+        mIdx = pID;
+        mArcNo = 0xffff;
+        if (mPriIdx == 0xffff) {
+            tmp = loadData(pID);
+        } else {
+            tmp = NULL;
+        }
+    }
+    return tmp;
 }
-#pragma pop
 
 /* 8015F0D0-8015F118 159A10 0048+00 0/0 3/3 0/0 .text            loadDataPriIdx__14daPy_anmHeap_cFUs
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daPy_anmHeap_c::loadDataPriIdx(u16 param_0) {
-    nofralloc
-#include "asm/d/a/d_a_player/loadDataPriIdx__14daPy_anmHeap_cFUs.s"
+J3DAnmBase* daPy_anmHeap_c::loadDataPriIdx(u16 pID) {
+    J3DAnmBase* tmp;
+
+    if (pID == mPriIdx || mArcNo != 0xffff) {
+        tmp = NULL;
+    } else {
+        mPriIdx = pID;
+        tmp = loadData(pID);
+    }
+    return tmp;
 }
-#pragma pop
 
 /* 8015F118-8015F168 159A58 0050+00 0/0 5/5 5/5 .text loadDataDemoRID__14daPy_anmHeap_cFUsUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daPy_anmHeap_c::loadDataDemoRID(u16 param_0, u16 param_1) {
-    nofralloc
-#include "asm/d/a/d_a_player/loadDataDemoRID__14daPy_anmHeap_cFUsUs.s"
+J3DAnmBase* daPy_anmHeap_c::loadDataDemoRID(u16 pID, u16 pArcNo) {
+    J3DAnmBase* tmp;
+
+    if (pID == mIdx && pArcNo == mArcNo) {
+        tmp = NULL;
+    } else {
+        mIdx = pID;
+        mArcNo = pArcNo;
+        tmp = loadData(pID);
+    }
+    return tmp;
 }
-#pragma pop
 
 /* 8015F168-8015F1A0 159AA8 0038+00 1/1 4/4 0/0 .text            setAnimeHeap__14daPy_anmHeap_cFv */
 #pragma push
