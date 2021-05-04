@@ -3,25 +3,26 @@
 // Translation Unit: JMATrigonometric
 //
 
-#include "JSystem/JMath/JMATrigonometric.h"
+// don't include header until this "zero" mess is figured out
+// #include "JSystem/JMath/JMATrigonometric.h"
 #include "dol2asm.h"
 #include "global.h"
 #include "msl_c/math.h"
 
 namespace std {
-    template <typename A1, typename B1>
-    struct pair {
-        A1 a1;
-        B1 b1;
-        pair() {
-            f32 tmp = FLOAT_LABEL(zero);
-            a1 = tmp;
-            b1 = tmp;
-            // a1 = A1();
-            // b1 = B1();
-        }
-    };
-}
+template <typename A1, typename B1>
+struct pair {
+    A1 a1;
+    B1 b1;
+    pair() {
+        f32 tmp = FLOAT_LABEL(zero);
+        a1 = tmp;
+        b1 = tmp;
+        // a1 = A1();
+        // b1 = B1();
+    }
+};
+}  // namespace std
 
 // fake, but couldn't find another way to make 0.0f go first in sdata2 in this TU
 SECTION_SDATA2 static f32 zero[1 + 1] = {0.0f, 0.0f};
@@ -48,16 +49,16 @@ struct TAtanTable {
     f32 table[1025];
     u8 pad[0x1C];
     TAtanTable() {
+        // (u32) cast needed for cmplwi instead of cmpwi
         for (int i = 0; i < (u32)1024; i++) {
             table[i] = atan(getConst2() * i);
         }
         table[0] = FLOAT_LABEL(zero);
-        table[1024] = 0.7853982;
+        table[1024] = 0.7853982;  // 0.25 * PI
     }
 };
 
-struct TAsinAcosTable
-{
+struct TAsinAcosTable {
     f32 table[1025];
     u8 pad[0x1C];
     TAsinAcosTable() {
@@ -65,27 +66,24 @@ struct TAsinAcosTable
             table[i] = asin(getConst2() * i);
         }
         table[0] = FLOAT_LABEL(zero);
-        table[1024] = 0.7853982;
+        table[1024] = 0.7853982;  // 0.25 * PI
     }
-};
-
-
-struct JMath {
-    static TSinCosTable sincosTable_;
-    static TAtanTable atanTable_;
-    static TAsinAcosTable asinAcosTable_;
 };
 
 //
 // Declarations:
 //
 
+namespace JMath {
+
 /* ############################################################################################## */
 /* 80439A20-80449A20 066740 10000+00 1/1 265/265 705/705 .bss             sincosTable___5JMath */
-TSinCosTable JMath::sincosTable_;
+TSinCosTable sincosTable_;
 
 /* 80449A20-8044AA40 076740 1020+00 1/1 0/0 0/0 .bss             atanTable___5JMath */
-TAtanTable JMath::atanTable_;
+TAtanTable atanTable_;
 
 /* 8044AA40-8044BA60 077760 1020+00 1/1 1/1 0/0 .bss             asinAcosTable___5JMath */
-TAsinAcosTable JMath::asinAcosTable_;
+TAsinAcosTable asinAcosTable_;
+
+}  // namespace JMath

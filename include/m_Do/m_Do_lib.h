@@ -1,8 +1,8 @@
 #ifndef M_DO_M_DO_LIB_H
 #define M_DO_M_DO_LIB_H
 
-#include "dolphin/types.h"
 #include "JSystem/J3DU/J3DUClipper.h"
+#include "dolphin/types.h"
 
 struct mDoLib_clipper {
     /* 8001528C */ void setup(f32, f32, f32, f32);
