@@ -2,12 +2,7 @@
 #define C_MALLOC_H
 
 #include "dolphin/types.h"
-
-// TODO: move to correct include
-struct JKRHeap {
-    /* 802CE4D4 */ void* alloc(u32, int);
-    /* 802CE548 */ void free(void*);
-};
+#include "JSystem/JKernel/JKRHeap.h"
 
 struct cMl {
     static JKRHeap* Heap;

@@ -66,7 +66,7 @@ void J3DUClipper::calcViewFrustum() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DUClipper::clip(f32 const (*param_0)[4], Vec param_1, f32 param_2) const {
+asm u32 J3DUClipper::clip(f32 const (*param_0)[4], Vec param_1, f32 param_2) const {
     nofralloc
 #include "asm/JSystem/J3DU/J3DUClipper/clip__11J3DUClipperCFPA4_Cf3Vecf.s"
 }
@@ -84,7 +84,7 @@ SECTION_SDATA2 static f32 lit_991[1 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DUClipper::clip(f32 const (*param_0)[4], Vec* param_1, Vec* param_2) const {
+asm u32 J3DUClipper::clip(f32 const (*param_0)[4], Vec* param_1, Vec* param_2) const {
     nofralloc
 #include "asm/JSystem/J3DU/J3DUClipper/clip__11J3DUClipperCFPA4_CfP3VecP3Vec.s"
 }

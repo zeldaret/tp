@@ -18,6 +18,9 @@ public:
     /* 8026745C */ void operator+=(csXyz&);
     /* 80267490 */ csXyz operator-(csXyz&);
     /* 802674E8 */ csXyz operator*(f32);
+    s16 GetX() const { return mX; }
+    s16 GetY() const { return mY; }
+    s16 GetZ() const { return mZ; }
 };
 
 #endif /* C_SXYZ_H */
