@@ -5,49 +5,76 @@
 
 #include "JSystem/JMath/JMATrigonometric.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
+#include "global.h"
+#include "msl_c/math.h"
 
 namespace std {
-template <typename A1, typename B1>
-struct pair {};
-/* pair<f32, f32> */
-struct pair__template0 {
-    /* 80339CB0 */ void func_80339CB0(void* _this);
+    template <typename A1, typename B1>
+    struct pair {
+        A1 a1;
+        B1 b1;
+        pair() {
+            f32 tmp = FLOAT_LABEL(zero);
+            a1 = tmp;
+            b1 = tmp;
+            // a1 = A1();
+            // b1 = B1();
+        }
+    };
+}
+
+// fake, but couldn't find another way to make 0.0f go first in sdata2 in this TU
+SECTION_SDATA2 static f32 zero[1 + 1] = {0.0f, 0.0f};
+
+inline f64 getConst() {
+    return 6.2831854820251465;
+}
+
+struct TSinCosTable {
+    std::pair<f32, f32> table[0x2000];
+    TSinCosTable() {
+        for (int i = 0; i < 0x2000; i++) {
+            table[i].a1 = sin((i * getConst()) / 8192.0);
+            table[i].b1 = cos((i * getConst()) / 8192.0);
+        }
+    }
 };
 
-};  // namespace std
+inline f64 getConst2() {
+    return 9.765625E-4;
+}
+
+struct TAtanTable {
+    f32 table[1025];
+    u8 pad[0x1C];
+    TAtanTable() {
+        for (int i = 0; i < (u32)1024; i++) {
+            table[i] = atan(getConst2() * i);
+        }
+        table[0] = FLOAT_LABEL(zero);
+        table[1024] = 0.7853982;
+    }
+};
+
+struct TAsinAcosTable
+{
+    f32 table[1025];
+    u8 pad[0x1C];
+    TAsinAcosTable() {
+        for (int i = 0; i < 1024; i++) {
+            table[i] = asin(getConst2() * i);
+        }
+        table[0] = FLOAT_LABEL(zero);
+        table[1024] = 0.7853982;
+    }
+};
+
 
 struct JMath {
-    static u8 sincosTable_[65536];
-    static f32 atanTable_[1032];
-    static f32 asinAcosTable_[1032];
+    static TSinCosTable sincosTable_;
+    static TAtanTable atanTable_;
+    static TAsinAcosTable asinAcosTable_;
 };
-
-//
-// Forward References:
-//
-
-extern "C" void __sinit_JMATrigonometric_cpp();
-extern "C" void func_80339CB0(void* _this);
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" f32 atanTable___5JMath[1032];
-extern "C" f32 asinAcosTable___5JMath[1032];
-
-//
-// External References:
-//
-
-extern "C" void __construct_array();
-extern "C" void _savegpr_27();
-extern "C" void _restgpr_27();
-extern "C" void atan();
-extern "C" void cos();
-extern "C" void sin();
-extern "C" void asin();
 
 //
 // Declarations:
@@ -55,61 +82,10 @@ extern "C" void asin();
 
 /* ############################################################################################## */
 /* 80439A20-80449A20 066740 10000+00 1/1 265/265 705/705 .bss             sincosTable___5JMath */
-u8 JMath::sincosTable_[65536];
+TSinCosTable JMath::sincosTable_;
 
 /* 80449A20-8044AA40 076740 1020+00 1/1 0/0 0/0 .bss             atanTable___5JMath */
-f32 JMath::atanTable_[1032];
+TAtanTable JMath::atanTable_;
 
 /* 8044AA40-8044BA60 077760 1020+00 1/1 1/1 0/0 .bss             asinAcosTable___5JMath */
-f32 JMath::asinAcosTable_[1032];
-
-/* 804564D8-804564E0 004AD8 0004+04 2/2 0/0 0/0 .sdata2          @326 */
-SECTION_SDATA2 static f32 lit_326[1 + 1 /* padding */] = {
-    0.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 804564E0-804564E8 004AE0 0008+00 1/1 0/0 0/0 .sdata2          @436 */
-SECTION_SDATA2 static f64 lit_436 = 6.2831854820251465;
-
-/* 804564E8-804564F0 004AE8 0008+00 1/1 0/0 0/0 .sdata2          @437 */
-SECTION_SDATA2 static f64 lit_437 = 8192.0;
-
-/* 804564F0-804564F8 004AF0 0008+00 1/1 0/0 0/0 .sdata2          @438 */
-SECTION_SDATA2 static f64 lit_438 = 0.0009765625;
-
-/* 804564F8-80456500 004AF8 0004+04 1/1 0/0 0/0 .sdata2          @439 */
-SECTION_SDATA2 static f32 lit_439[1 + 1 /* padding */] = {
-    0.7853981852531433f,
-    /* padding */
-    0.0f,
-};
-
-/* 80456500-80456508 004B00 0008+00 1/1 0/0 0/0 .sdata2          @441 */
-SECTION_SDATA2 static f64 lit_441 = 4503601774854144.0 /* cast s32 to float */;
-
-/* 80339AEC-80339CB0 33442C 01C4+00 0/0 1/0 0/0 .text            __sinit_JMATrigonometric_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_JMATrigonometric_cpp() {
-    nofralloc
-#include "asm/JSystem/JMath/JMATrigonometric/__sinit_JMATrigonometric_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80339AEC, __sinit_JMATrigonometric_cpp);
-#pragma pop
-
-/* 80339CB0-80339CC0 3345F0 0010+00 1/1 0/0 0/0 .text            __ct__Q23std9pair<f,f>Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void func_80339CB0(void* _this) {
-    nofralloc
-#include "asm/JSystem/JMath/JMATrigonometric/func_80339CB0.s"
-}
-#pragma pop
+TAsinAcosTable JMath::asinAcosTable_;

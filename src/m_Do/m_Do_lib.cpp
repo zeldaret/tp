@@ -4,21 +4,12 @@
 //
 
 #include "m_Do/m_Do_lib.h"
-#include "JSystem/J3DU/J3DUClipper.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
 //
 // Types:
 //
-
-struct mDoLib_clipper {
-    /* 8001528C */ void setup(f32, f32, f32, f32);
-
-    static J3DUClipper mClipper;
-    static f32 mSystemFar;
-    static f32 mFovyRate;
-};
 
 struct _GXTlutObj {};
 
