@@ -11,41 +11,6 @@
 // Types:
 //
 
-struct JAISoundID {};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
-
-struct Z2SoundHandles {
-    /* 802AB07C */ Z2SoundHandles();
-    /* 802AB0B4 */ ~Z2SoundHandles();
-    /* 802AB118 */ void initHandlesPool(u8);
-    /* 802AB120 */ void deleteHandlesPool();
-    /* 802AB254 */ void getHandleSoundID(JAISoundID);
-    /* 802AB2A0 */ void getHandleUserData(u32);
-    /* 802AB2D8 */ void getFreeHandle();
-    /* 802AB3D0 */ void getLowPrioSound(JAISoundID);
-    /* 802AB4A0 */ void stopAllSounds(u32);
-    /* 802AB504 */ void isActive() const;
-    /* 802AB538 */ void setPos(JGeometry::TVec3<f32> const&);
-};
-
-struct JSUPtrLink {
-    /* 802DBDFC */ JSUPtrLink(void*);
-    /* 802DBE14 */ ~JSUPtrLink();
-};
-
-struct JSUPtrList {
-    /* 802DBEAC */ ~JSUPtrList();
-    /* 802DBF14 */ void initiate();
-    /* 802DBF4C */ void append(JSUPtrLink*);
-    /* 802DC15C */ void remove(JSUPtrLink*);
-};
-
 template <typename A0>
 struct JASMemPool {};
 /* JASMemPool<Z2SoundHandlePool> */
@@ -58,14 +23,6 @@ struct JASGenericMemPool {
     /* 80290860 */ ~JASGenericMemPool();
     /* 80290948 */ void alloc(u32);
     /* 80290994 */ void free(void*, u32);
-};
-
-struct JAISoundHandle {
-    /* 802A2184 */ void releaseSound();
-};
-
-struct JAISound {
-    /* 802A24DC */ void stop(u32);
 };
 
 //
@@ -173,7 +130,7 @@ extern "C" asm void func_802AB200(void* _this) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2SoundHandles::getHandleSoundID(JAISoundID param_0) {
+asm JAISoundHandle* Z2SoundHandles::getHandleSoundID(JAISoundID param_0) {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundHandles/getHandleSoundID__14Z2SoundHandlesF10JAISoundID.s"
 }
@@ -183,7 +140,7 @@ asm void Z2SoundHandles::getHandleSoundID(JAISoundID param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2SoundHandles::getHandleUserData(u32 param_0) {
+asm JAISoundHandle* Z2SoundHandles::getHandleUserData(u32 param_0) {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundHandles/getHandleUserData__14Z2SoundHandlesFUl.s"
 }
@@ -226,7 +183,7 @@ asm void Z2SoundHandles::stopAllSounds(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2SoundHandles::isActive() const {
+asm bool Z2SoundHandles::isActive() const {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundHandles/isActive__14Z2SoundHandlesCFv.s"
 }

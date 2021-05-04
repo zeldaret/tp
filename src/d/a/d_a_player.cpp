@@ -6,8 +6,8 @@
 #include "d/a/d_a_player.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx.h"
-#include "f_op/f_op_actor_mng.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Types:

@@ -1,27 +1,27 @@
 #ifndef D_A_D_A_ALINK_H
 #define D_A_D_A_ALINK_H
 
+#include "JSystem/J3DGraphBase/J3DMatBlock.h"
+#include "Z2AudioLib/Z2Creature.h"
+#include "Z2AudioLib/Z2WolfHowlMgr.h"
 #include "d/a/d_a_player.h"
-#include "d/d_attention.h"
-#include "d/meter/d_meter2_info.h"
-#include "dolphin/types.h"
-#include "d/d_drawlist.h"
+#include "d/bg/d_bg_s.h"
 #include "d/cc/d_cc_d.h"
 #include "d/cc/d_cc_mass_s.h"
-#include "d/bg/d_bg_s.h"
+#include "d/d_attention.h"
+#include "d/d_drawlist.h"
 #include "d/d_eye_hl.h"
+#include "d/d_jnt_col.h"
+#include "d/kankyo/d_kankyo.h"
+#include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_flow.h"
-#include "JSystem/JParticle/JPAParticle.h"
+#include "d/particle/d_particle.h"
+#include "d/particle/d_particle_copoly.h"
+#include "dolphin/types.h"
 
 class fopEn_enemy_c;
-class daAlink_footData_c;
-class J3DAnmBase;
 class daAlinkHIO_anm_c;
-class dAttList_c;
-struct J3DGXColorS10;
-class dBgS_LinChk;
 class J3DAnmTevRegKey;
-class JPABaseEmitter;
 class dCcG_At_Spl;
 class dDemo_actor_c;
 
@@ -33,7 +33,7 @@ class daAlink_lockCursor_c : public dDlst_base_c {
 public:
     /* 80125F14 */ void create();
     /* 80126358 */ void update();
-    virtual void temp(); // temp to build OK, remove later
+    virtual void temp();  // temp to build OK, remove later
     /* 80126424 */ virtual void draw();
     /* 800CFE68 */ virtual ~daAlink_lockCursor_c();
 
@@ -58,7 +58,7 @@ private:
 class daAlink_sight_c : public daPy_sightPacket_c {
 public:
     /* 80126650 */ void create();
-    virtual void test(); // temp to build OK, remove later
+    virtual void test();  // temp to build OK, remove later
     /* 801266C0 */ virtual void draw();
     /* 800CFDF4 */ virtual ~daAlink_sight_c();
     /* 80126710 */ void onLockFlg();
@@ -74,7 +74,7 @@ public:
     /* 801256EC */ void initBlur(f32, int, cXyz const*, cXyz const*, cXyz const*);
     /* 8012589C */ void copyBlur(cXyz const*, cXyz const*, cXyz const*);
     /* 80125B0C */ void traceBlur(cXyz const*, cXyz const*, s16);
-    virtual void temp(); // temp to build OK, remove later
+    virtual void temp();  // temp to build OK, remove later
     /* 80125BF4 */ virtual void draw();
     /* 800CFD58 */ virtual ~daAlink_blur_c();
 
@@ -279,10 +279,10 @@ public:
     /* 800B1B28 */ void checkNotJumpSinkLimit();
     /* 800B1B68 */ void checkNotItemSinkLimit();
     /* 800B1BAC */ void setSandShapeOffset();
-    /* 800B1FB8 */ void checkLv2MiddleBossBgRide(s16);
+    /* 800B1FB8 */ bool checkLv2MiddleBossBgRide(s16);
     /* 800B1FD8 */ void getSlidePolygon(cM3dGPla*);
     /* 800B21EC */ void checkSlope() const;
-    /* 800B25CC */ void itemTriggerCheck(u8);
+    /* 800B25CC */ int itemTriggerCheck(u8);
     /* 800B25E8 */ void itemButtonCheck(u8);
     /* 800B2604 */ void itemButton();
     /* 800B2634 */ void itemTrigger();
@@ -2175,7 +2175,6 @@ private:
     /* 0x02C18 */ Mtx field_0x2c18;
     /* 0x02C48 */ Mtx field_0x2c48;
     /* 0x02C78 */ Mtx field_0x2c78;
-#ifdef NONMATCHING
     /* 0x02CA8 */ Z2CreatureLink mZ2Link;
     /* 0x02D75 */ u8 field_0x2d75[3];  // padding?
     /* 0x02D78 */ void* field_0x2d78;
@@ -2618,7 +2617,6 @@ private:
     /* 0x03844 */ csXyz* mIronBallChainAngle;
     /* 0x03848 */ void* field_0x3848;
     /* 0x0384C */ float* field_0x384c;
-#endif
 };
 
 class daHorse_c {

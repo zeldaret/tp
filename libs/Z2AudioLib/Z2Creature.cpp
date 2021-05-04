@@ -15,22 +15,6 @@ struct Z2SpeechMgr2 {
     /* 802CCF88 */ void isMidnaSpeak();
 };
 
-struct Z2SoundStarter {};
-
-struct Z2SoundObjSimple {
-    /* 8015BA3C */ ~Z2SoundObjSimple();
-    /* 802BE844 */ Z2SoundObjSimple();
-};
-
-template <typename A0>
-struct JSULink {};
-/* JSULink<Z2CreatureEnemy> */
-struct JSULink__template2 {};
-
-struct JAISoundID {};
-
-struct Vec {};
-
 struct Z2CreatureEnemy {
     /* 802C0F64 */ Z2CreatureEnemy();
     /* 802C0FC4 */ void deleteObject();
@@ -58,33 +42,6 @@ struct Z2SoundObjBeeGroup {
     /* 802C1D4C */ void init(Vec*, u8);
     /* 802C1D6C */ void playBeeGroupSound(JAISoundID, u8);
 };
-
-struct Z2SoundHandlePool {};
-
-struct Z2SoundObjBase {
-    /* 802BDEF0 */ Z2SoundObjBase();
-    /* 802BDF48 */ ~Z2SoundObjBase();
-    /* 802BDFB0 */ void init(Vec*, u8);
-    /* 802BDFF8 */ void deleteObject();
-    /* 802BE038 */ void framework(u32, s8);
-    /* 802BE070 */ void dispose();
-    /* 802BE104 */ void stopOK(Z2SoundHandlePool&);
-    /* 802BE144 */ void startSound(JAISoundID, u32, s8);
-    /* 802BE2D4 */ void startLevelSound(JAISoundID, u32, s8);
-    /* 802BE4A4 */ void startCollisionSE(u32, u32, Z2SoundObjBase*);
-};
-
-struct Z2SoundObjAnime {
-    /* 802BEB94 */ Z2SoundObjAnime();
-    /* 802BEBFC */ void initAnime(void*, bool, f32, f32);
-    /* 802BEED4 */ void updateAnime(f32, f32);
-};
-
-struct Z2SoundHandles {
-    /* 802AB254 */ void getHandleSoundID(JAISoundID);
-};
-
-struct JAISoundHandle {};
 
 struct Z2SeqMgr {
     /* 802AF49C */ void subBgmStart(u32);
@@ -141,26 +98,6 @@ struct Z2CreatureCitizen {
     /* 802C0ED8 */ void startCreatureVoice(JAISoundID, s8);
 };
 
-struct Z2Creature {
-    /* 802C03C8 */ Z2Creature();
-    /* 802C0420 */ ~Z2Creature();
-    /* 802C04E8 */ void deleteObject();
-    /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
-    /* 802C05B0 */ void init(Vec*, Vec*, Vec*, u8, u8, u8);
-    /* 802C0618 */ void setSoundStarter(Z2SoundStarter*);
-    /* 802C0628 */ void initAnime(void*, bool, f32, f32);
-    /* 802C064C */ void framework(u32, s8);
-    /* 802C06D0 */ void updateAnime(f32, f32);
-    /* 802C06F4 */ void stopAnime();
-    /* 802C0720 */ void startCreatureSound(JAISoundID, u32, s8);
-    /* 802C087C */ void startCreatureSoundLevel(JAISoundID, u32, s8);
-    /* 802C0A4C */ void startCreatureVoice(JAISoundID, s8);
-    /* 802C0AF8 */ void startCreatureVoiceLevel(JAISoundID, s8);
-    /* 802C0B70 */ void startCreatureExtraSound(JAISoundID, u32, s8);
-    /* 802C0BAC */ void startCreatureExtraSoundLevel(JAISoundID, u32, s8);
-    /* 802C0BE8 */ void startCollisionSE(u32, u32);
-};
-
 struct Z2Calc {
     struct CurveSign {};
 
@@ -178,16 +115,6 @@ struct Z2Audience {
     /* 802BD95C */ void calcRelPosVolume(Vec const&, f32, int);
     /* 802BDA44 */ void calcRelPosPan(Vec const&, int);
     /* 802BDB44 */ void calcRelPosDolby(Vec const&, int);
-};
-
-struct JSUPtrLink {
-    /* 802DBDFC */ JSUPtrLink(void*);
-    /* 802DBE14 */ ~JSUPtrLink();
-};
-
-struct JSUPtrList {
-    /* 802DBF4C */ void append(JSUPtrLink*);
-    /* 802DC15C */ void remove(JSUPtrLink*);
 };
 
 struct JAISoundParamsMove {

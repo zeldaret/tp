@@ -7,7 +7,7 @@
 class J3DDrawBuffer;
 class J3DPacket {
 public:
-    virtual void temp(); // temp to build OK, remove later
+    virtual void temp();  // temp to build OK, remove later
     virtual bool entry(J3DDrawBuffer*);
     virtual void draw();
     virtual ~J3DPacket();

@@ -11,44 +11,12 @@
 // Types:
 //
 
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
-
-struct JAISoundID {};
-
-struct JAISoundHandle {};
-
-struct Z2SoundStarter {
-    /* 802AAB94 */ Z2SoundStarter(bool);
-    /* 802AAC3C */ void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*, u32,
-                                   f32, f32, f32, f32, f32, u32);
-    /* 802AABF4 */ void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
-    /* 802AAEDC */ void setPortData(JAISoundHandle*, u32, u16, s8);
-    /* 802AAF74 */ void getPortData(JAISoundHandle*, u32, s8);
-    /* 802AAFF0 */ ~Z2SoundStarter();
-};
-
 struct Z2EnvSeMgr {
     /* 802C93E4 */ void getFogDensity();
 };
 
 struct Z2AudioMgr {
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JASTrack {
-    /* 80291C30 */ void openChild(u32);
-    /* 80292918 */ void writePort(u32, u16);
-    /* 8029297C */ void readPort(u32);
-};
-
-struct JAISoundStarter {
-    /* 802A2F6C */ JAISoundStarter(bool);
-    /* 802A2F88 */ ~JAISoundStarter();
 };
 
 struct JAISoundParamsMove {

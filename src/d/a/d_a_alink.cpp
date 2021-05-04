@@ -137,12 +137,6 @@ struct daAlink_matAnm_c {
     /* 800D0B8C */ ~daAlink_matAnm_c();
 };
 
-struct _GXColorS10 {};
-
-struct J3DGXColorS10 {
-    /* 8000E460 */ J3DGXColorS10();
-};
-
 struct daAlinkHIO_anm_c {};
 
 struct dCcG_At_Spl {};
@@ -623,8 +617,6 @@ struct dSv_event_tmp_flag_c {
     static u8 const tempBitLabels[370 + 2 /* padding */];
 };
 
-struct dKy_tevstr_c {};
-
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
     /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
@@ -635,12 +627,6 @@ struct dRes_control_c {
     /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
     /* 8003C400 */ void getIDRes(char const*, u16, dRes_info_c*, int);
-};
-
-struct dPa_levelEcallBack {};
-
-struct dPa_hermiteEcallBack_c {
-    /* 8004F6B8 */ void setOldPosP(cXyz const*, cXyz const*);
 };
 
 struct dPa_control_c {
@@ -669,12 +655,6 @@ struct dPa_control_c {
     static u8 mParticleTracePCB[4 + 4 /* padding */];
 };
 
-struct dPaPo_c {
-    /* 80050C9C */ void init(dBgS_Acch*, f32, f32);
-    /* 80051008 */ void setEffectCenter(dKy_tevstr_c const*, cXyz const*, u32, u32, cXyz const*,
-                                        csXyz const*, cXyz const*, s8, f32, f32);
-};
-
 struct dPaPoF_c {
     /* 800512E8 */ void setEffectFour(dKy_tevstr_c const*, cXyz const*, u32, u32, cXyz const*,
                                       cXyz const*, cXyz const*, cXyz const*, cXyz const*,
@@ -683,14 +663,6 @@ struct dPaPoF_c {
 
     static u8 m_typeFourData[60];
     static u8 m_emitterFourData[60 + 28 /* padding */];
-};
-
-struct dJntColData_c {};
-
-struct dJntCol_c {
-    /* 80035C8C */ dJntCol_c();
-    /* 80035CA0 */ void init(fopAc_ac_c*, dJntColData_c const*, J3DModel*, int);
-    /* 80036C44 */ void getHitmarkPosAndAngle(cXyz const*, csXyz const*, cXyz*, csXyz*, int) const;
 };
 
 struct dInsect_c {
@@ -769,7 +741,6 @@ struct dBgS_ObjAcch {
     /* 800D0C6C */ ~dBgS_ObjAcch();
 };
 
-
 struct camera_class {};
 
 struct cCcS {
@@ -777,23 +748,6 @@ struct cCcS {
 };
 
 struct _GXTexObj {};
-
-struct Z2WolfHowlData {};
-
-struct Z2WolfHowlMgr {
-    /* 802CAAC0 */ Z2WolfHowlMgr();
-    /* 802CAED4 */ void startWolfHowlSound(f32, f32, bool, f32);
-    /* 802CB100 */ void setCorrectData(s8, Z2WolfHowlData*);
-    /* 802CBB58 */ void skipCorrectDemo();
-};
-//
-struct Z2SoundObjSimple {
-    /* 802BE844 */ Z2SoundObjSimple();
-};
-
-struct Z2SoundObjBase {
-    /* 802BDFF8 */ void deleteObject();
-};
 
 struct Z2SeqMgr {
     /* 802AF010 */ void bgmStart(u32, u32, s32);
@@ -806,50 +760,13 @@ struct Z2SeqMgr {
     /* 802B5ED4 */ void taktModeMuteOff();
 };
 
-struct JAISoundID {};
-
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
-struct Z2CreatureLink {
-    /* 80141988 */ void setLinkState(u8);
-    /* 802C321C */ void setLinkGroupInfo(u8);
-    /* 802C3228 */ void setLinkSwordType(s32, s32);
-    /* 802C328C */ void setLinkShieldType(s32, s32);
-    /* 802C32F0 */ void setLinkBootsType(s32);
-    /* 802C333C */ Z2CreatureLink();
-    /* 802C3500 */ ~Z2CreatureLink();
-    /* 802C3638 */ void init(Vec*, Vec*, Vec*);
-    /* 802C3710 */ void initKantera(Vec*);
-    /* 802C374C */ void deleteKantera();
-    /* 802C3A6C */ void setRiding(bool);
-    /* 802C3AEC */ void setMagnetized(bool);
-    /* 802C3AFC */ void setWolfEyeOpen(bool);
-    /* 802C3BD4 */ void startLinkSound(JAISoundID, u32, s8);
-    /* 802C3E68 */ void startLinkSoundLevel(JAISoundID, u32, s8);
-    /* 802C4320 */ void startLinkVoice(JAISoundID, s8);
-    /* 802C45B0 */ void startLinkVoiceLevel(JAISoundID, s8);
-    /* 802C46F0 */ void startLinkSwordSound(JAISoundID, u32, s8);
-    /* 802C4814 */ void startHitItemSE(u32, u32, Z2SoundObjBase*, f32);
-    /* 802C48D8 */ void setResumeAttack(bool);
-
-    static u8 mLinkPtr[4 + 4 /* padding */];
-};
-
-struct Z2Creature {
-    /* 802C0628 */ void initAnime(void*, bool, f32, f32);
-    /* 802C06D0 */ void updateAnime(f32, f32);
-    /* 802C0BE8 */ void startCollisionSE(u32, u32);
-};
-
 struct Z2AudioMgr {
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct LIGHT_INFLUENCE {
-    /* 800CFC7C */ ~LIGHT_INFLUENCE();
 };
 
 namespace JStudio {
@@ -866,23 +783,12 @@ struct data {
 
 };  // namespace JStudio
 
-struct JPAEmitterCallBack {
-    /* 8027E6A4 */ ~JPAEmitterCallBack();
-};
-
 struct JMath {
     static u8 sincosTable_[65536];
 };
 
 struct JKRFileLoader {
     /* 802D4270 */ void getGlbResource(char const*, JKRFileLoader*);
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
 };
 
 struct JASKernel {
@@ -893,10 +799,6 @@ template <typename A0>
 struct JAISoundStrategyMgr {};
 /* JAISoundStrategyMgr<JAISeq> */
 struct JAISoundStrategyMgr__template1 {};
-
-struct JAISoundHandle {
-    /* 802A2184 */ void releaseSound();
-};
 
 struct JAISeqMgr {};
 
@@ -16311,14 +16213,27 @@ asm void daAlink_c::setSandShapeOffset() {
 #pragma pop
 
 /* 800B1FB8-800B1FD8 0AC8F8 0020+00 2/2 0/0 0/0 .text checkLv2MiddleBossBgRide__9daAlink_cFs */
+#ifdef NONMATCHING
+bool daAlink_c::checkLv2MiddleBossBgRide(short param1) {
+    bool check = false;
+
+    // beqlr needs to be beq
+    if (param1 != 0x7B && param1 == 0x7D) {
+        check = true;
+    }
+
+    return check;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkLv2MiddleBossBgRide(s16 param_0) {
+asm bool daAlink_c::checkLv2MiddleBossBgRide(s16 param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/checkLv2MiddleBossBgRide__9daAlink_cFs.s"
 }
 #pragma pop
+#endif
 
 /* 800B1FD8-800B21EC 0AC918 0214+00 11/11 0/0 0/0 .text getSlidePolygon__9daAlink_cFP8cM3dGPla */
 #pragma push
@@ -16374,14 +16289,10 @@ asm void daAlink_c::setPlayerPosAndAngle(f32 (*param_0)[4]) {
 
 /* 800B25CC-800B25E8 0ACF0C 001C+00 16/16 0/0 0/0 .text            itemTriggerCheck__9daAlink_cFUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::itemTriggerCheck(u8 param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/itemTriggerCheck__9daAlink_cFUc.s"
+int daAlink_c::itemTriggerCheck(u8 param1) {
+    field_0x2fae |= param1;
+    return mItemTrigger & param1;
 }
-#pragma pop
 
 /* 800B25E8-800B2604 0ACF28 001C+00 11/11 0/0 0/0 .text            itemButtonCheck__9daAlink_cFUc */
 #pragma push

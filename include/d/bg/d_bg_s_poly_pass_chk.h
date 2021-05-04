@@ -6,6 +6,8 @@
 class cBgS_PolyPassChk {
 public:
     ~cBgS_PolyPassChk();
+
+    void* vtable;
 };
 
 class dBgS_PolyPassChk : public cBgS_PolyPassChk {

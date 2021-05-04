@@ -138,6 +138,7 @@ public:
     static u8 mEventList[516];
 
 private:
+    /* 0x00 */ void* vtable;
     /* 0x04 */ void* field_0x04;
     /* 0x08 */ void* field_0x08;
     /* 0x0C */ void* field_0x0c;

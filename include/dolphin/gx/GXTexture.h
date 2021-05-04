@@ -17,7 +17,7 @@ struct _GXColor {
     u8 a;
 };
 
-struct GXColorS10 {
+struct _GXColorS10 {
     s16 r;
     s16 g;
     s16 b;

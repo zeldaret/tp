@@ -11,55 +11,12 @@
 // Types:
 //
 
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
-
-struct JASSoundParams {};
-
-struct JASTrack {
-    /* 80291444 */ void setChannelMgrCount(u32);
-    /* 802919F4 */ void assignExtBuffer(u32, JASSoundParams*);
-};
-
 struct JAISoundStatus_ {
     /* 802A2220 */ void lockWhenPrepared();
     /* 802A2244 */ void unlockIfLocked();
 };
 
-struct JAISoundParams {
-    /* 802A2280 */ void mixOutAll(JASSoundParams const&, JASSoundParams*, f32);
-};
-
-struct JAISoundID {};
-
-struct JAISoundHandle {
-    /* 802A2184 */ void releaseSound();
-};
-
 struct JAIAudience {};
-
-struct JAISound {
-    /* 802A21A0 */ void releaseHandle();
-    /* 802A21BC */ void attachHandle(JAISoundHandle*);
-    /* 802A22F8 */ JAISound();
-    /* 802A2328 */ void start_JAISound_(JAISoundID, JGeometry::TVec3<f32> const*, JAIAudience*);
-    /* 802A244C */ void acceptsNewAudible() const;
-    /* 802A2474 */ void newAudible(JGeometry::TVec3<f32> const&, JGeometry::TVec3<f32> const*, u32,
-                                   JAIAudience*);
-    /* 802A2598 */ void stop();
-    /* 802A24DC */ void stop(u32);
-    /* 802A25D8 */ bool asSe();
-    /* 802A25E0 */ bool asSeq();
-    /* 802A25E8 */ bool asStream();
-    /* 802A25F0 */ void die_JAISound_();
-    /* 802A266C */ void increasePrepareCount_JAISound_();
-    /* 802A26B8 */ void calc_JAISound_();
-    /* 802A29DC */ void initTrack_JAISound_(JASTrack*);
-};
 
 //
 // Forward References:

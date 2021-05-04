@@ -1,9 +1,9 @@
 #ifndef D_BG_D_BG_S_LIN_CHK_H
 #define D_BG_D_BG_S_LIN_CHK_H
 
-#include "dolphin/types.h"
-#include "d/bg/d_bg_s_chk.h"
 #include "SSystem/SComponent/c_bg_s_lin_chk.h"
+#include "d/bg/d_bg_s_chk.h"
+#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
 class dBgS_LinChk {

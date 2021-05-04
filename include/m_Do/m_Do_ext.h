@@ -128,5 +128,4 @@ private:
     /* 0x4 */ J3DAnmTransform* mAnmTransform;
 };  // Size = 0x8
 
-
 #endif /* M_DO_M_DO_EXT_H */

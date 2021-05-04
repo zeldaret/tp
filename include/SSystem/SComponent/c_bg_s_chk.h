@@ -5,9 +5,9 @@
 
 class cBgS_Chk {
 private:
-    /* 0x0 */ u32 unk_0x00;
-    /* 0x4 */ u32 unk_0x04;
-    /* 0x8 */ u32 unk_0x08;
+    /* 0x0 */ u32 mPolyPassChk;
+    /* 0x4 */ u32 mGrpPassChk;
+    /* 0x8 */ u32 mActorPid;
     /* 0xC */ u8 unk_0x0C;
     /* 0x10 */  // __vtable__
 public:

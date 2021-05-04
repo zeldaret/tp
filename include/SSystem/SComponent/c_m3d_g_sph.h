@@ -16,6 +16,8 @@ public:
     cXyz mCenter;
     f32 mRadius;
 
+    virtual void test();  // temp to build OK, remove later
+    virtual ~cM3dGSph();
     void SetC(const cXyz&);
     void Set(const cXyz&, f32);
     void Set(const cM3dGSphS&);
