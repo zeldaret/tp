@@ -68,8 +68,10 @@ public:
     /* 80328350 */ ~J3DModel();
     Mtx* getAnmMtx(int p1);
 
-    // Mtx* getAnmMtx(int p1) { return mMtxBuffer->getAnmMtx(p1); }
+    // better way to handle inlines with same name as non-inlines?
+    Mtx* i_getAnmMtx(int p1) { return mMtxBuffer->getAnmMtx(p1); }
 
+    /* 0x00 */ void* vtable;
     /* 0x04 */ J3DModelData* mModelData;
     /* 0x08 */ u32 mFlags;
     /* 0x0C */ u32 field_0x0c;

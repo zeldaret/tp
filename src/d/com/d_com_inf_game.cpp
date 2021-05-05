@@ -55,8 +55,6 @@ struct dMapInfo_n {
     /* 8003EE5C */ void getMapPlayerPos();
 };
 
-struct dKy_tevstr_c {};
-
 struct _GXTexObj {};
 
 struct dDlst_shadowControl_c {

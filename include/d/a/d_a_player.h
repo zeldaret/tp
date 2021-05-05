@@ -149,7 +149,12 @@ private:
     /* 0x0604 */ daPy_demo_c mDemo;
 
 public:
-    enum daPy_FLG0 { EquipHeavyBoots = 0x2000000, MagneBootsOn = 0x1000 };
+    enum daPy_FLG0 {
+        EquipHeavyBoots = 0x2000000,
+        MagneBootsOn = 0x1000,
+        UnkFrollCrashFlg2 = 0x10,
+        UnkFrollCrashFlg1 = 0x8
+    };
     enum daPy_FLG1 { Wolf = 0x2000000, ThrowDamage = 0x4000 };
     enum daPy_FLG2 { BoarSingleBattle = 0x1800000, UnkArmor = 0x80000, Unk = 1 };
     enum daPy_FLG3 { CopyRodThrowAfter = 0x40000 };
@@ -382,10 +387,6 @@ public:
     virtual bool checkCopyRodEquip(void) const;
     virtual bool checkCutJumpMode(void) const;
 
-    // inline void onNoResetFlg0(int pFlg) { mNoResetFlg0 |= pFlg; }
-    // inline void onNoResetFlg3(int pFlg) { mNoResetFlg3 |= pFlg; }
-    // inline void offNoResetFlg3(int pFlg) { mNoResetFlg3 &= ~pFlg; }
-    // inline fopAc_ac_c& getActor() { return mActor; }
     inline bool getSumouCameraMode() const {
         bool sumouCameraMode = false;
         if (field_0x56a != 0 && field_0x56a < 0x26) {
@@ -399,6 +400,7 @@ public:
     int i_checkNoResetFlg0(daPy_FLG0 pFlag) const { return mNoResetFlg0 & pFlag; }
     int i_checkNoResetFlg1(daPy_FLG1 pFlag) const { return mNoResetFlg1 & pFlag; }
     int i_checkNoResetFlg2(daPy_FLG2 pFlag) const { return mNoResetFlg2 & pFlag; }
+    void i_onNoResetFlg0(int pFlg) { mNoResetFlg0 |= pFlg; }
 
     static u8 m_midnaActor[4];
 };

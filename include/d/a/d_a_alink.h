@@ -120,8 +120,154 @@ public:
     enum daAlink_UNDER {};
     enum daAlink_FTANM {};
     enum daAlink_WARP_MAT_MODE {};
-    enum daAlink_PROC {};
     enum daAlink_WANM {};
+
+    enum daAlink_PROC {
+        PREACTION_UNEQUIP,
+        SERVICE_WAIT,
+        HUMAN_WAIT = 3,
+        HUMAN_SIDESTEP = 10,
+        HUMAN_SIDESTEP_LAND,
+        HUMAN_SLIDE,
+        FRONT_ROLL = 14,
+        FRONT_ROLL_CRASH,
+        HUMAN_KNOCKBACK,
+        SIDE_ROLL,
+        BACK_JUMP,
+        BACK_JUMP_LAND,
+        SLIP,
+        HUMAN_AUTOJUMP,
+        DIVE_JUMP,
+        ROLL_JUMP,
+        FALL,
+        LAND,
+        SMALL_JUMP,
+        STEP_MOVE,
+        GUARD_SLIP = 29,
+        GUARD_ATTACK,
+        GUARD_BREAK,
+        TURN_MOVE,
+        CUT_NORMAL,
+        CUT_FINISH,
+        CUT_FINISH_JUMP_UP,
+        CUT_FINISH_JUMP_UP_LAND,
+        CUT_REVERSE,
+        CUT_JUMP,
+        CUT_JUMP_LAND,
+        COMBO_CUT_TURN,
+        CUT_CHARGE,
+        CUT_TURN_MOVE,
+        CUT_DOWN,
+        CUT_DOWN_LAND,
+        CUT_HEAD,
+        CUT_HEAD_LAND,
+        CUT_LARGE_JUMP_CHARGE,
+        CUT_LARGE_JUMP,
+        CUT_LARGE_JUMP_LAND,
+        DAMAGE,
+        LAND_DAMAGE = 52,
+        CRAWL_START,
+        CRAWL_MOVE,
+        CRAWL_AUTOMOVE,
+        CRAWL_END,
+        PULL_MOVE,
+        HORSE_RIDE,
+        HORSE_GETOFF,
+        HORSE_TURN = 61,
+        HORSE_JUMP,
+        HORSE_LAND,
+        HORSE_SUBJECTIVITY,
+        HORSE_CUT,
+        HORSE_CUT_CHARGE_READY,
+        HORSE_CUT_TURN,
+        HORSE_DAMAGE,
+        RIDE_BOW_READY,
+        HORSE_BOTTLE_DRINK = 76,
+        HORSE_KANDELAAR_POUR = 78,
+        HORSE_RUN,
+        HORSE_HANG,
+        BOAR_RUN = 83,
+        HANG_START = 85,
+        HANG_FALL_START,
+        HANG_UP,
+        HANG_WAIT,
+        HANG_MOVE,
+        COPY_ROD_SWING = 101,
+        GRAB_READY = 108,
+        GRAB_UP,
+        GRAB_THROW = 111,
+        GRAB_DOWN,
+        GRAB_REBOUND = 114,
+        GRAB_STAND,
+        INSECT_CATCH,
+        PICK_UP,
+        PICK_PUT,
+        HUMAN_ST_ESCAPE,
+        CLIMB_MOVE_VERTICAL = 130,
+        CLIMB_MOVE_HORIZONTAL,
+        CANOE_RIDE = 140,
+        CANOE_JUMP_RIDE,
+        CANOE_GETOFF,
+        CANOE_ROW = 144,
+        CANOE_PADDLE_SHIFT,
+        CANOE_PADDLE_PUT,
+        CANOE_PADDLE_GRAB,
+        CANOE_ROD_GRAB,
+        CANOE_FISHING_REEL = 150,
+        CANOE_FISHING_GET,
+        CANOE_SUBJECTIVITY,
+        CANOE_BOTTLE_DRINK = 160,
+        CANOE_KANDELAAR_POUR,
+        FISHING_FOOD = 163,
+        BOARD_CUT_TURN = 173,
+        FM_CHAIN_UP,
+        BOTTLE_DRINK = 179,
+        EMPTY_BOTTLE_SWING = 181,
+        GRASS_WHISTLE = 186,
+        HAWK_WAIT = 188,
+        FLOOR_DOWN_REBOUND = 189,
+        GORON_RIDE_WAIT,
+        GOAT_THROW = 192,
+        GOAT_STROKE,
+        MAGNE_BOOTS_FLY = 204,
+        BOOTS_EQUIP,
+        SUMOU_PUSH = 207,
+        SUMOU_SIDE_MOVE,
+        SUMOU_ACTION,
+        SUMOU_STAGGER,
+        SUMOU_WIN_LOSE,
+        BOSS_ENEMY_HANG = 220,
+        SCREAM_WAIT = 222,
+        DUNGEON_WARP_READY = 234,
+        WOLF_HOWL = 237,
+        WOLF_WAIT = 241,
+        WOLF_DASH = 243,
+        WOLF_KNOCKBACK = 244,
+        WOLF_SIDESTEP = 247,
+        WOLF_AUTOJUMP = 252,
+        WOLF_RSIT = 255,
+        WOLF_DAMAGE = 263,
+        WOLF_SLIDE = 271,
+        WOLF_ROPE_HANG = 275,
+        WOLF_TAGLOCK_JUMP = 280,
+        WOLF_TAGLOCK_LAND,
+        WOLF_DOWNATTACK_PULLOUT = 291,
+        WOLF_JUMPATTACK = 284,
+        WOLF_ST_ESCAPE = 289,
+        WOLF_CHAIN = 305,
+        WOLF_DIG,
+        WOLF_ENEMY_HANG_BITE = 310,
+        SUBJECTIVITY = 318,
+        POLY_DAMAGE = 321,
+        ELEC_DAMAGE,
+        PUSH_PULL_WAIT,
+        PUSH_MOVE,
+        TRESURE_STAND = 328,
+        METAMORPHOSE = 333,
+        DEAD = 336,
+        LARGE_DAMAGE = 345,
+        LARGE_DAMAGE_WALL,
+    };
 
     class firePointEff_c {
         /* 800CFC3C */ ~firePointEff_c();
@@ -333,7 +479,7 @@ public:
     /* 800B5F6C */ void checkSlideAction();
     /* 800B607C */ void checkAutoJumpAction();
     /* 800B69CC */ void checkCutJumpInFly();
-    /* 800B6A30 */ void checkFrontWallTypeAction();
+    /* 800B6A30 */ BOOL checkFrontWallTypeAction();
     /* 800B6F28 */ void checkItemActionInitStart();
     /* 800B7090 */ void checkItemChangeAutoAction();
     /* 800B7168 */ void setFastShotTimer();
@@ -369,7 +515,7 @@ public:
     /* 800B9D2C */ void checkNextActionFromButton();
     /* 800B9F50 */ void checkGroundSpecialMode();
     /* 800BA09C */ void commonCheckNextAction(int);
-    /* 800BA0D0 */ void checkNextAction(int);
+    /* 800BA0D0 */ int checkNextAction(int);
     /* 800BA6A0 */ void commonChangeItem();
     /* 800BA914 */ void setItemAction();
     /* 800BAF08 */ void checkNextActionFromCrouch(int);
@@ -440,10 +586,10 @@ public:
     /* 800C1CEC */ void setFrontRollCrashShock(u8);
     /* 800C1E0C */ void changeWarpMaterial(daAlink_c::daAlink_WARP_MAT_MODE);
     /* 800C1F6C */ void commonProcInit(daAlink_c::daAlink_PROC);
-    /* 800C2DA4 */ void commonProcInitNotSameProc(daAlink_c::daAlink_PROC);
+    /* 800C2DA4 */ BOOL commonProcInitNotSameProc(daAlink_PROC);
     /* 800C2DDC */ void procPreActionUnequipInit(int, fopAc_ac_c*);
     /* 800C2EAC */ void procPreActionUnequip();
-    /* 800C3098 */ void procServiceWaitInit();
+    /* 800C3098 */ bool procServiceWaitInit();
     /* 800C30F0 */ void procServiceWait();
     /* 800C3224 */ void procTiredWaitInit();
     /* 800C3338 */ void procTiredWait();
@@ -452,7 +598,7 @@ public:
     /* 800C36CC */ void procMoveInit();
     /* 800C3730 */ void procMove();
     /* 800C3810 */ void procAtnMoveInit();
-    /* 800C3868 */ void procAtnMove();
+    /* 800C3868 */ bool procAtnMove();
     /* 800C38CC */ void procAtnActorWaitInit();
     /* 800C397C */ void procAtnActorWait();
     /* 800C39EC */ void procAtnActorMoveInit();
@@ -1912,7 +2058,7 @@ public:
     virtual void setOutPower(float, short, int);
     virtual void setGrabCollisionOffset(float, float, cBgS_PolyInfo*);
     virtual void onFrollCrashFlg(u8, int);
-    virtual bool getModelJointMtx(u16);
+    virtual Mtx* getModelJointMtx(u16);
     virtual bool getHeadMtx(void);
     virtual bool setHookshotCarryOffset(unsigned int, cXyz const*);
     virtual bool checkIronBallReturn(void) const;

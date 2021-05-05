@@ -8,6 +8,13 @@
 
 struct JKRSolidHeap;
 
+struct actor_place {
+    cXyz mPosition;
+    csXyz mAngle;
+    u8 mRoomNo;
+    u8 field_0x13;
+};
+
 class fopAc_ac_c : public base_process_class {
 public:
     /* 0x0B8 */ u8 unk_0x0B8[0xF0 - 0xB8];
@@ -16,13 +23,12 @@ public:
     /* 0x496 */ u8 unk_0x496;
     /* 0x497 */ u8 unk_0x497[0x499 - 0x497];
     /* 0x499 */ s8 unk_0x499;
-    /* 0x497 */ u8 unk_0x49A[0x4D0 - 0x49A];
-    /* 0x4D0 */ cXyz mPosition;
-    /* 0x4DC */ csXyz mAngle;
-    /* 0x4E2 */ s8 mRoomNo;
-    /* 0x4E3 */ u8 unk_0x4E3[0x4E6 - 0x4E3];
-    /* 0x4E6 */ s16 mXRot;
-    /* 0x4E8 */ u8 unk_0x4E8[0x4F8 - 0x4E8];
+    /* 0x49A */ u8 unk_0x49A[0x4A8 - 0x49A];
+    /* 0x4A8 */ actor_place mOrig;
+    /* 0x4BC */ actor_place mNext;
+    /* 0x4D0 */ actor_place mCurrent;
+    /* 0x4E4 */ csXyz mCollisionRot;
+    /* 0x4EA */ u8 unk_0x4EA[0x4F8 - 0x4EA];
     /* 0x4F8 */ cXyz mSpeed;
     /* 0x504 */ Mtx* unk_0x504;
     /* 0x508 */ cXyz mCullMin;
@@ -37,8 +43,8 @@ public:
 
     static u8 stopStatus[4];
 
-    const cXyz& getPosition() const { return mPosition; }
-    const csXyz& getAngle() const { return mAngle; }
+    const cXyz& getPosition() const { return mCurrent.mPosition; }
+    const csXyz& getAngle() const { return mCurrent.mAngle; }
 };  // Size: unknown
 
 #endif

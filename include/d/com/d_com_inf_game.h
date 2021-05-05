@@ -1,6 +1,7 @@
 #ifndef D_COM_D_COM_INF_GAME_H
 #define D_COM_D_COM_INF_GAME_H
 
+#include "d/a/d_a_alink.h"
 #include "d/bg/d_bg_s.h"
 #include "d/cc/d_cc_s.h"
 #include "d/d_attention.h"
@@ -12,14 +13,6 @@
 #include "d/event/d_event_manager.h"
 #include "d/save/d_save.h"
 #include "dolphin/types.h"
-
-struct daAlink_c {
-    /* 800BDE48 */ void setLastSceneMode(u32*);
-};
-
-struct daHorse_c {
-    /* 80141944 */ void getZeldaActor();
-};
 
 struct dTimer_c {
     /* 8025D524 */ void deleteCheck();
