@@ -75,8 +75,9 @@ public:
     /* vt[22] */ virtual bool state_compare(JKRHeap::TState const&,
                                             JKRHeap::TState const&) const; /* override */
 
+    u8 field_0x6c;
+
 private:
-    u32 field_0x6c;
     u32 field_0x70;
     u32 field_0x74;
     CMemBlock* mHeadFreeList;
@@ -85,9 +86,9 @@ private:
     CMemBlock* mTailUsedList;
 
 public:
-    static void createRoot(int, bool);
-    static void create(u32, JKRHeap*, bool);
-    static void create(void*, u32, JKRHeap*, bool);
+    static JKRExpHeap* createRoot(int, bool);
+    static JKRExpHeap* create(u32, JKRHeap*, bool);
+    static JKRExpHeap* create(void*, u32, JKRHeap*, bool);
 };
 
 #endif /* JKREXPHEAP_H */

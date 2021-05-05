@@ -2,6 +2,7 @@
 #define F_OP_ACTOR_MNG_H_
 
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_m3d_g_pla.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
@@ -12,9 +13,8 @@
 #include "f_pc/f_pc_manager.h"
 #include "f_pc/f_pc_searcher.h"
 #include "f_pc/f_pc_stdcreate_req.h"
-#include "JSystem/JKernel/JKRHeap.h"
 
-class J3DModelData; // placeholder
+class J3DModelData;  // placeholder
 
 struct fopAcM_prm_class {
     /* 0x00 */ u32 unk_0x00;

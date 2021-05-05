@@ -4,6 +4,8 @@
 //
 
 #include "d/a/d_a_player.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
+#include "JSystem/JMath/JMATrigonometric.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
@@ -57,12 +59,6 @@ struct dDlst_base_c {};
 struct dDlst_list_c {
     /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
 };
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-struct JKRSolidHeap {};
 
 struct J3DSys {
     /* 8031073C */ void reinitGX();

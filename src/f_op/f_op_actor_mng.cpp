@@ -4,22 +4,23 @@
 //
 
 #include "f_op/f_op_actor_mng.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
+#include "SSystem/SComponent/c_lib.h"
+#include "SSystem/SComponent/c_malloc.h"
 #include "dol2asm.h"
 #include "global.h"
 #include "msl_c/math.h"
-#include "SSystem/SComponent/c_lib.h"
-#include "SSystem/SComponent/c_malloc.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JKernel/JKRSolidHeap.h"
 // #include "d/com/d_com_inf_game.h"
 // #include "d/d_stage.h"
-#include "f_op/f_op_actor_iter.h"
-#include "msl_c/math.h"
-#include "msl_c/string.h"
+#include "JSystem/J3DU/J3DUClipper.h"
 #include "SSystem/SComponent/c_math.h"
 #include "f_op/f_op_actor.h"
-#include "JSystem/J3DU/J3DUClipper.h"
+#include "f_op/f_op_actor_iter.h"
+#include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_lib.h"
+#include "msl_c/math.h"
+#include "msl_c/string.h"
 
 //
 // Types:
@@ -170,8 +171,6 @@ struct cBgS {
 struct J3DTexMtxInfo {
     /* 80325794 */ void setEffectMtx(f32 (*)[4]);
 };
-
-struct J3DModelData {};
 
 //
 // Forward References:
@@ -570,19 +569,13 @@ enum ItemTable {
     NO_ITEM
 };
 
-extern "C" void *calc_mtx;
+extern "C" void* calc_mtx;
 
 //
 // External References:
 //
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
-// extern "C" JKRHeap *mDoExt_getGameHeap__Fv();
-// extern "C" JKRSolidHeap* mDoExt_createSolidHeapFromGame__FUlUl(u32, u32);
-// extern "C" void mDoExt_adjustSolidHeap__FP12JKRSolidHeap(JKRSolidHeap*);
-// extern "C" void mDoExt_destroySolidHeap__FP12JKRSolidHeap(JKRSolidHeap*);
-// extern "C" JKRHeap* mDoExt_setCurrentHeap__FP7JKRHeap(JKRHeap*);
-// extern "C" BOOL fopAc_IsActor__FPv(void*);
 extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
 extern "C" void fopScnM_SearchByID__FUi();
 extern "C" void fpcBs_Is_JustOfType__Fii();
@@ -682,7 +675,7 @@ extern "C" extern J3Dsys j3dSys;
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" f32 mSystemFar__14mDoLib_clipper;
 extern "C" u8 mProcID__20dStage_roomControl_c[4];
-extern "C" void *mClipper__14mDoLib_clipper;
+extern "C" void* mClipper__14mDoLib_clipper;
 extern "C" extern u8 struct_80450D64[4];
 extern "C" u8 m_top__13daTagStream_c[4];
 extern "C" u8 mData__12dEnemyItem_c[4 + 4 /* padding */];
@@ -966,8 +959,6 @@ SECTION_DEAD static char const* const stringBase_803788EE = "fopAcM_createHeap �
 SECTION_DEAD static char const* const stringBase_8037890A = "アクターのヒープの破壊";
 #pragma pop
 
-void mDoExt_destroySolidHeap(JKRSolidHeap*); // TODO: move
-
 /* 8001A138-8001A188 014A78 0050+00 0/0 1/1 1/1 .text            fopAcM_DeleteHeap__FP10fopAc_ac_c
  */
 void fopAcM_DeleteHeap(fopAc_ac_c* pActor) {
@@ -977,8 +968,6 @@ void fopAcM_DeleteHeap(fopAc_ac_c* pActor) {
         pActor->unk_0x0F0 = NULL;
     }
 }
-
-JKRHeap *mDoExt_setCurrentHeap(JKRHeap*); // TODO: move
 
 /* 8001A188-8001A1E8 014AC8 0060+00 1/1 0/0 0/0 .text
  * fopAcM_callCallback__FP10fopAc_ac_cPFP10fopAc_ac_c_iP7JKRHeap */
@@ -1001,9 +990,9 @@ s32 fopAcM_callCallback(fopAc_ac_c* pActor, heapCallbackFunc pCallbackFunc, JKRH
 //     "最大空きヒープサイズで確保失敗。[%s]\n";
 // SECTION_DEAD static char const* const stringBase_803789B1 =
 //     "最大空きヒープサイズで登録失敗。%08x[%s]\n";
-// SECTION_DEAD static char const* const stringBase_803789DB = "ぴったりサイズで、登録失敗？(バグ)\n";
-// SECTION_DEAD static char const* const stringBase_803789FF = "ばぐばぐです\n";
-// SECTION_DEAD static char const* const stringBase_80378A0D = "緊急回避措置\n";
+// SECTION_DEAD static char const* const stringBase_803789DB =
+// "ぴったりサイズで、登録失敗？(バグ)\n"; SECTION_DEAD static char const* const stringBase_803789FF
+// = "ばぐばぐです\n"; SECTION_DEAD static char const* const stringBase_80378A0D = "緊急回避措置\n";
 // SECTION_DEAD static char const* const stringBase_80378A1B =
 //     "fopAcM_entrySolidHeap だめでした [%s]\n";
 // #pragma pop
@@ -1013,11 +1002,6 @@ s32 fopAcM_callCallback(fopAc_ac_c* pActor, heapCallbackFunc pCallbackFunc, JKRH
 /* 80450CC9 0003+00 data_80450CC9 None */
 static u8 lbl_80450CC8;
 static u8 lbl_80450CC9;
-
-JKRSolidHeap* mDoExt_createSolidHeapFromGame(u32, u32); // TODO: move
-void mDoExt_destroySolidHeap(JKRSolidHeap*);
-void mDoExt_adjustSolidHeap(JKRSolidHeap*);
-JKRHeap *mDoExt_getGameHeap();
 
 /* 8001A1E8-8001A4B0 014B28 02C8+00 1/1 0/0 0/0 .text
  * fopAcM_entrySolidHeap___FP10fopAc_ac_cPFP10fopAc_ac_c_iUl    */
@@ -1292,8 +1276,7 @@ inline f32 local_sqrtf(f32 mag) {
         f64 tmpd = __frsqrte(mag);
         tmpd = DOUBLE_LABEL(lit_4745) * tmpd * (DOUBLE_LABEL(lit_4746) - tmpd * tmpd * mag);
         tmpd = DOUBLE_LABEL(lit_4745) * tmpd * (DOUBLE_LABEL(lit_4746) - tmpd * tmpd * mag);
-        return DOUBLE_LABEL(lit_4745) * tmpd *
-               (DOUBLE_LABEL(lit_4746) - tmpd * tmpd * mag) * mag;
+        return DOUBLE_LABEL(lit_4745) * tmpd * (DOUBLE_LABEL(lit_4746) - tmpd * tmpd * mag) * mag;
     } else if (mag < DOUBLE_LABEL(lit_4747)) {
         return __float_nan[0];
     } else if (fpclassify(mag) == 1) {
@@ -1370,7 +1353,7 @@ SECTION_SDATA2 static f32 lit_4923 = 55.0f;
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm s32 fopAcM_rollPlayerCrash(fopAc_ac_c const* param_0, f32 param_1, u32 param_2, f32 param_3,
-                                f32 param_4, int param_5, f32 param_6) {
+                               f32 param_4, int param_5, f32 param_6) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_rollPlayerCrash__FPC10fopAc_ac_cfUlffif.s"
 }
@@ -1473,7 +1456,7 @@ asm s32 fopAcM_orderTalkEvent(fopAc_ac_c* param_0, fopAc_ac_c* param_1, u16 para
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm s32 fopAcM_orderTalkItemBtnEvent(u16 param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2,
-                                      u16 param_3, u16 param_4) {
+                                     u16 param_3, u16 param_4) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_orderTalkItemBtnEvent__FUsP10fopAc_ac_cP10fopAc_ac_cUsUs.s"
 }
@@ -1506,8 +1489,7 @@ asm s32 fopAcM_orderDoorEvent(fopAc_ac_c* param_0, fopAc_ac_c* param_1, u16 para
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm s32 fopAcM_orderCatchEvent(fopAc_ac_c* param_0, fopAc_ac_c* param_1, u16 param_2,
-                                u16 param_3) {
+asm s32 fopAcM_orderCatchEvent(fopAc_ac_c* param_0, fopAc_ac_c* param_1, u16 param_2, u16 param_3) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_orderCatchEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs.s"
 }
@@ -1519,7 +1501,7 @@ asm s32 fopAcM_orderCatchEvent(fopAc_ac_c* param_0, fopAc_ac_c* param_1, u16 par
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm s32 fopAcM_orderOtherEvent(fopAc_ac_c* param_0, char const* param_1, u16 param_2, u16 param_3,
-                                u16 param_4) {
+                               u16 param_4) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_orderOtherEvent__FP10fopAc_ac_cPCcUsUsUs.s"
 }
@@ -1531,7 +1513,7 @@ asm s32 fopAcM_orderOtherEvent(fopAc_ac_c* param_0, char const* param_1, u16 par
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm s32 fopAcM_orderOtherEvent(fopAc_ac_c* param_0, fopAc_ac_c* param_1, char const* param_2,
-                                u16 param_3, u16 param_4, u16 param_5) {
+                               u16 param_3, u16 param_4, u16 param_5) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_orderOtherEvent__FP10fopAc_ac_cP10fopAc_ac_cPCcUsUsUs.s"
 }
@@ -1554,7 +1536,7 @@ asm s32 fopAcM_orderChangeEventId(fopAc_ac_c* param_0, s16 param_1, u16 param_2,
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm s32 fopAcM_orderOtherEventId(fopAc_ac_c* param_0, s16 param_1, u8 param_2, u16 param_3,
-                                  u16 param_4, u16 param_5) {
+                                 u16 param_4, u16 param_5) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs.s"
 }
@@ -1566,7 +1548,7 @@ asm s32 fopAcM_orderOtherEventId(fopAc_ac_c* param_0, s16 param_1, u8 param_2, u
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm s32 fopAcM_orderMapToolEvent(fopAc_ac_c* param_0, u8 param_1, s16 param_2, u16 param_3,
-                                  u16 param_4, u16 param_5) {
+                                 u16 param_4, u16 param_5) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_orderMapToolEvent__FP10fopAc_ac_cUcsUsUsUs.s"
 }
@@ -1578,7 +1560,7 @@ asm s32 fopAcM_orderMapToolEvent(fopAc_ac_c* param_0, u8 param_1, s16 param_2, u
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm s32 fopAcM_orderMapToolAutoNextEvent(fopAc_ac_c* param_0, u8 param_1, s16 param_2, u16 param_3,
-                                          u16 param_4, u16 param_5) {
+                                         u16 param_4, u16 param_5) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_orderMapToolAutoNextEvent__FP10fopAc_ac_cUcsUsUsUs.s"
 }
@@ -1612,7 +1594,7 @@ asm s32 fopAcM_orderItemEvent(fopAc_ac_c* param_0, u16 param_1, u16 param_2) {
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm s32 fopAcM_orderTreasureEvent(fopAc_ac_c* param_0, fopAc_ac_c* param_1, u16 param_2,
-                                   u16 param_3) {
+                                  u16 param_3) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_orderTreasureEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs.s"
 }
@@ -1656,7 +1638,7 @@ asm s32 fopAcM_getEventPartner(fopAc_ac_c const* param_0) {
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm s32 fopAcM_createItemForPresentDemo(cXyz const* param_0, int param_1, u8 param_2, int param_3,
-                                         int param_4, csXyz const* param_5, cXyz const* param_6) {
+                                        int param_4, csXyz const* param_5, cXyz const* param_6) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_createItemForPresentDemo__FPC4cXyziUciiPC5csXyzPC4cXyz.s"
 }
@@ -1668,7 +1650,7 @@ asm s32 fopAcM_createItemForPresentDemo(cXyz const* param_0, int param_1, u8 par
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm s32 fopAcM_createItemForTrBoxDemo(cXyz const* param_0, int param_1, int param_2, int param_3,
-                                       csXyz const* param_4, cXyz const* param_5) {
+                                      csXyz const* param_4, cXyz const* param_5) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_createItemForTrBoxDemo__FPC4cXyziiiPC5csXyzPC4cXyz.s"
 }
@@ -1694,8 +1676,8 @@ asm s32 fopAcM_getItemNoFromTableNo(u8 param_0) {
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm s32 fopAcM_createItemFromEnemyID(u8 param_0, cXyz const* param_1, int param_2, int param_3,
-                                      csXyz const* param_4, cXyz const* param_5, f32* param_6,
-                                      f32* param_7) {
+                                     csXyz const* param_4, cXyz const* param_5, f32* param_6,
+                                     f32* param_7) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_createItemFromEnemyID__FUcPC4cXyziiPC5csXyzPC4cXyzPfPf.s"
 }
@@ -1707,8 +1689,8 @@ asm s32 fopAcM_createItemFromEnemyID(u8 param_0, cXyz const* param_1, int param_
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm s32 fopAcM_createItemFromTable(cXyz const* param_0, int param_1, int param_2, int param_3,
-                                    csXyz const* param_4, int param_5, cXyz const* param_6,
-                                    f32* param_7, f32* param_8, bool param_9) {
+                                   csXyz const* param_4, int param_5, cXyz const* param_6,
+                                   f32* param_7, f32* param_8, bool param_9) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_createItemFromTable__FPC4cXyziiiPC5csXyziPC4cXyzPfPfb.s"
 }
@@ -1806,7 +1788,7 @@ s32 fopAcM_createItem(const cXyz* pPos, int param_2, int param_3, int param_4, c
     if (pRot != NULL) {
         tmps = *pRot;
     } else {
-        tmps.mY = cM_rndFX(FLOAT_LABEL(/* 32767.0f */lit_5711));
+        tmps.mY = cM_rndFX(FLOAT_LABEL(/* 32767.0f */ lit_5711));
     }
     tmps.mZ = 0xFF;
     u32 itemActorParams = makeItemParams(check_itemno(param_2), param_3, 0xFF, param_7);
@@ -1883,9 +1865,9 @@ SECTION_SDATA2 static f32 lit_5812 = 1.0f / 5.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void *fopAcM_fastCreateItem(cXyz const* param_0, int param_1, int param_2, csXyz const* param_3,
-                               cXyz const* param_4, f32* param_5, f32* param_6, int param_7,
-                               int param_8, int (*param_9)(void*)) {
+asm void* fopAcM_fastCreateItem(cXyz const* param_0, int param_1, int param_2, csXyz const* param_3,
+                                cXyz const* param_4, f32* param_5, f32* param_6, int param_7,
+                                int param_8, int (*param_9)(void*)) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_fastCreateItem__FPC4cXyziiPC5csXyzPC4cXyzPfPfiiPFPv_i.s"
 }
@@ -1894,7 +1876,6 @@ asm void *fopAcM_fastCreateItem(cXyz const* param_0, int param_1, int param_2, c
 /* ############################################################################################## */
 /* 80451C44-80451C48 000244 0004+00 1/1 0/0 0/0 .sdata2          @5845 */
 SECTION_SDATA2 static f32 lit_5845 = 2048.0f;
-
 
 inline void make_prm_bokkuri(u32* pActorParams, csXyz* pRot, u8 param_2, u8 param_3, u8 param_4,
                              u8 param_5, u8 param_6) {
@@ -2097,7 +2078,7 @@ f32 fopAcM_gc_c::mGroundY;
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm s32 fopAcM_effSmokeSet1(u32* param_0, u32* param_1, cXyz const* param_2, csXyz const* param_3,
-                             f32 param_4, dKy_tevstr_c const* param_5, int param_6) {
+                            f32 param_4, dKy_tevstr_c const* param_5, int param_6) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci.s"
 }
@@ -2299,7 +2280,7 @@ asm void fpoAcM_relativePos(fopAc_ac_c const* param_0, cXyz const* param_1, cXyz
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm s32 fopAcM_getWaterStream(cXyz const* param_0, cBgS_PolyInfo const& param_1, cXyz* param_2,
-                               int* param_3, int param_4) {
+                              int* param_3, int param_4) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_getWaterStream__FPC4cXyzRC13cBgS_PolyInfoP4cXyzPii.s"
 }

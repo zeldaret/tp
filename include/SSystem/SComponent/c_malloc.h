@@ -1,8 +1,8 @@
 #ifndef C_MALLOC_H
 #define C_MALLOC_H
 
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "dolphin/types.h"
 
 struct cMl {
     static JKRHeap* Heap;

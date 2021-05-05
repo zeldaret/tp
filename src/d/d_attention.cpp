@@ -39,8 +39,6 @@ struct Z2AudioMgr {
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
-struct JKRSolidHeap {};
-
 struct J3DGXColor {};
 
 struct J3DTevBlock {

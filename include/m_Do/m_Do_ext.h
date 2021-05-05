@@ -2,6 +2,7 @@
 #define M_DO_M_DO_EXT_H
 
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
 #include "dolphin/types.h"
 
 struct J3DModelData {
@@ -129,5 +130,13 @@ private:
     void* vtable;
 };
 #pragma pack(pop)
+
+JKRSolidHeap* mDoExt_createSolidHeapFromGame(u32, u32);
+void mDoExt_destroySolidHeap(JKRSolidHeap*);
+u32 mDoExt_adjustSolidHeap(JKRSolidHeap*);
+void mDoExt_restoreCurrentHeap();
+JKRHeap* mDoExt_getGameHeap();
+void mDoExt_destroySolidHeap(JKRSolidHeap*);
+JKRHeap* mDoExt_setCurrentHeap(JKRHeap*);
 
 #endif /* M_DO_M_DO_EXT_H */
