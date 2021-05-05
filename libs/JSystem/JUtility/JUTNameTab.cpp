@@ -3,10 +3,10 @@
 // Translation Unit: JUTNameTab
 //
 
-#include "msl_c/string.h"
 #include "JSystem/JUtility/JUTNameTab.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "msl_c/string.h"
 
 JUTNameTab::JUTNameTab() {
     setResource(NULL);
@@ -21,7 +21,7 @@ void JUTNameTab::setResource(const ResNTAB* pNameTable) {
 
     if (pNameTable != NULL) {
         mNameNum = pNameTable->mEntryNum;
-        mpStrData = (const char*) (pNameTable->mEntries + mNameNum);
+        mpStrData = (const char*)(pNameTable->mEntries + mNameNum);
     } else {
         mNameNum = 0;
         mpStrData = 0;
@@ -29,11 +29,12 @@ void JUTNameTab::setResource(const ResNTAB* pNameTable) {
 }
 
 s32 JUTNameTab::getIndex(const char* pName) const {
-    const ResNTAB::Entry *pEntry = mpNameTable->mEntries;
+    const ResNTAB::Entry* pEntry = mpNameTable->mEntries;
     u16 keyCode = calcKeyCode(pName);
 
     for (u16 i = 0; i < mNameNum; pEntry++, i++)
-        if (pEntry->mKeyCode == keyCode && strcmp((mpNameTable->mEntries[i].mOffs + ((const char *)mpNameTable)), pName) == 0)
+        if (pEntry->mKeyCode == keyCode &&
+            strcmp((mpNameTable->mEntries[i].mOffs + ((const char*)mpNameTable)), pName) == 0)
             return i;
 
     return -1;

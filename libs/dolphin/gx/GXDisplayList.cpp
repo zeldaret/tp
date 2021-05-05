@@ -23,7 +23,7 @@ extern "C" extern void* __GXData;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXCallDisplayList(const void *pDL, u32 size) {
+asm void GXCallDisplayList(const void* pDL, u32 size) {
     nofralloc
 #include "asm/dolphin/gx/GXDisplayList/GXCallDisplayList.s"
 }

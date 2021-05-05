@@ -6,11 +6,11 @@
 #include "JSystem/J3DGraphBase/J3DPacket.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-#include "dolphin/os/OSCache.h"
 #include "dolphin/gx/GX.h"
-#include "msl_c/string.h"
+#include "dolphin/os/OSCache.h"
+#include "dolphin/types.h"
 #include "global.h"
+#include "msl_c/string.h"
 
 //
 // Types:
@@ -149,7 +149,7 @@ void J3DDisplayListObj::setSingleDisplayList(void* pDLData, u32 size) {
 }
 
 void J3DDisplayListObj::swapBuffer() {
-    void *pTmp = mpData[0];
+    void* pTmp = mpData[0];
     mpData[0] = mpData[1];
     mpData[1] = pTmp;
 }

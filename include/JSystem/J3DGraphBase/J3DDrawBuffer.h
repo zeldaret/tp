@@ -1,9 +1,9 @@
 #ifndef J3DDRAWBUFFER_H
 #define J3DDRAWBUFFER_H
 
-#include "dolphin/types.h"
-#include "dolphin/mtx/mtx.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
+#include "dolphin/mtx/mtx.h"
+#include "dolphin/types.h"
 
 class J3DDrawBuffer;
 class J3DPacket;
@@ -11,7 +11,7 @@ class J3DDrawPacket;
 class J3DMatPacket;
 class J3DShapePacket;
 
-typedef void (*J3DDrawBuffer_DrawFunc)(const J3DDrawBuffer *this_);
+typedef void (*J3DDrawBuffer_DrawFunc)(const J3DDrawBuffer* this_);
 
 class J3DDrawBuffer {
 public:

@@ -1,9 +1,9 @@
 #ifndef J3DPACKET_H
 #define J3DPACKET_H
 
+#include "JSystem/J3DGraphBase/J3DSys.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
-#include "JSystem/J3DGraphBase/J3DSys.h"
 
 class J3DMatPacket;
 
