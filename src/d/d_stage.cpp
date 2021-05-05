@@ -1862,7 +1862,7 @@ static asm void dStage_getName(s16 param_0, s8 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dStage_getName2(s16 param_0, s8 param_1) {
+asm const char *dStage_getName2(s16 param_0, s8 param_1) {
     nofralloc
 #include "asm/d/d_stage/dStage_getName2__FsSc.s"
 }

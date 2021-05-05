@@ -12,9 +12,10 @@
 #include "global.h"
 #include "msl_c/math.h"
 // #include "d/com/d_com_inf_game.h"
-// #include "d/d_stage.h"
+#include "JSystem/J3DGraphBase/J3DSys.h"
 #include "JSystem/J3DU/J3DUClipper.h"
 #include "SSystem/SComponent/c_math.h"
+#include "d/d_stage.h"
 #include "f_op/f_op_actor.h"
 #include "f_op/f_op_actor_iter.h"
 #include "m_Do/m_Do_ext.h"
@@ -25,18 +26,6 @@
 //
 // Types:
 //
-
-// unknown name
-struct objectNameInfo {
-    char mName[8];
-    s16 mProcTypeID;
-    s8 unkA;
-};  // Size: 0xC
-
-class J3Dsys {
-public:
-    Mtx mtx;
-};
 
 struct mDoMtx_stack_c {
     static u8 now[48];
@@ -58,15 +47,6 @@ struct daPy_py_c {
     /* 8001E128 */ bool checkFrontRoll() const;
     /* 8001E130 */ bool checkHorseRide() const;
     /* 8001E138 */ s32 getGrabActorID() const;
-};
-
-struct dSv_info_c {
-    /* 80035644 */ void onActor(int, int);
-};
-
-struct dStage_roomControl_c {
-    static u8 mStatus[65792];
-    static u8 mProcID[4];
 };
 
 struct dPa_levelEcallBack {};
@@ -310,264 +290,6 @@ extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
 // TODO: move
 
 u32 check_itemno(int param1);
-enum ItemTable {
-    HEART,
-    GREEN_RUPEE,
-    BLUE_RUPEE,
-    YELLOW_RUPEE,
-    RED_RUPEE,
-    PURPLE_RUPEE,
-    ORANGE_RUPEE,
-    SILVER_RUPEE,
-    S_MAGIC,
-    L_MAGIC,
-    BOMB_5,
-    BOMB_10,
-    BOMB_20,
-    BOMB_30,
-    ARROW_10,
-    ARROW_20,
-    ARROW_30,
-    ARROW_1,
-    PACHINKO_SHOT,
-    noentry1,
-    noentry2,
-    noentry3,
-    WATER_BOMB_5,
-    WATER_BOMB_10,
-    WATER_BOMB_20,
-    WATER_BOMB_30,
-    BOMB_INSECT_5,
-    BOMB_INSECT_10,
-    BOMB_INSECT_20,
-    BOMB_INSECT_30,
-    RECOVERY_FAILY,
-    TRIPLE_HEART,
-    SMALL_KEY,
-    KAKERA_HEART,
-    UTAWA_HEART,
-    MAP,
-    COMPUS,
-    DUNGEON_EXIT,
-    BOSS_KEY,
-    DUNGEON_BACK,
-    SWORD,
-    MASTER_SWORD,
-    WOOD_SHIELD,
-    SHIELD,
-    HYLIA_SHIELD,
-    TKS_LETTER,
-    WEARS_CASUAL,
-    WEAR_KOKIRI,
-    ARMOR,
-    WEAR_ZORA,
-    MAGIC_LV1,
-    DUNGEON_EXIT_2,
-    WALLET_LV1,
-    WALLET_LV2,
-    WALLET_LV3,
-    noentry4,
-    noentry5,
-    noentry6,
-    noentry7,
-    noentry8,
-    noentry9,
-    ZORAS_JEWEL,
-    HAWK_EYE,
-    WOOD_STICK,
-    BOOMERANG,
-    SPINNER,
-    IRONBALL,
-    BOW,
-    HOOKSHOT,
-    HVY_BOOTS,
-    COPY_ROD,
-    W_HOOKSHOT,
-    KANTERA,
-    LIGHT_SWORD,
-    FISHING_ROD_1,
-    PACHINKO,
-    COPY_ROD_2,
-    noentry10,
-    noentry11,
-    BOMB_BAG_LV2,
-    BOMB_BAG_LV1,
-    BOMB_IN_BAG,
-    noentry12,
-    LIGHT_ARROW,
-    ARROW_LV1,
-    ARROW_LV2,
-    ARROW_LV3,
-    noentry13,
-    LURE_ROD,
-    BOMB_ARROW,
-    HAWK_ARROW,
-    BEE_ROD,
-    JEWEL_ROD,
-    WORM_ROD,
-    JEWEL_BEE_ROD,
-    JEWEL_WORM_ROD,
-    EMPTY_BOTTLE,
-    RED_BOTTLE,
-    GREEN_BOTTLE,
-    BLUE_BOTTLE,
-    MILK_BOTTLE,
-    HALF_MILK_BOTTLE,
-    OIL_BOTTLE,
-    WATER_BOTTLE,
-    OIL_BOTTLE_2,
-    RED_BOTTLE_2,
-    UGLY_SOUP,
-    HOT_SPRING,
-    FAIRY,
-    HOT_SPRING_2,
-    OIL2,
-    OIL,
-    NORMAL_BOMB,
-    WATER_BOMB,
-    POKE_BOMB,
-    FAIRY_DROP,
-    WORM,
-    DROP_BOTTLE,
-    BEE_CHILD,
-    CHUCHU_RARE,
-    CHUCHU_RED,
-    CHUCHU_BLUE,
-    CHUCHU_GREEN,
-    CHUCHU_YELLOW,
-    CHUCHU_PURPLE,
-    LV1_SOUP,
-    LV2_SOUP,
-    LV3_SOUP,
-    LETTER,
-    BILL,
-    WOOD_STATUE,
-    IRIAS_PENDANT,
-    HORSE_FLUTE,
-    noentry14,
-    noentry15,
-    noentry16,
-    noentry17,
-    noentry18,
-    noentry19,
-    noentry20,
-    noentry21,
-    noentry22,
-    noentry23,
-    noentry24,
-    RAFRELS_MEMO,
-    ASHS_SCRIBBLING,
-    noentry25,
-    noentry26,
-    noentry27,
-    noentry28,
-    noentry29,
-    noentry30,
-    noentry31,
-    noentry32,
-    noentry33,
-    noentry34,
-    CHUCHU_YELLOW2,
-    OIL_BOTTLE3,
-    SHOP_BEE_CHILD,
-    CHUCHU_BLACK,
-    LIGHT_DROP,
-    DROP_CONTAINER,
-    DROP_CONTAINER02,
-    DROP_CONTAINER03,
-    FILLED_CONTAINER,
-    MIRROR_PIECE_2,
-    MIRROR_PIECE_3,
-    MIRROR_PIECE_4,
-    noentry35,
-    noentry36,
-    noentry37,
-    noentry38,
-    noentry39,
-    noentry40,
-    noentry41,
-    noentry42,
-    SMELL_YELIA_POUCH,
-    SMELL_PUMPKIN,
-    SMELL_POH,
-    SMELL_FISH,
-    SMELL_CHILDREN,
-    SMELL_MEDICINE,
-    noentry43,
-    noentry44,
-    noentry45,
-    noentry46,
-    noentry47,
-    noentry48,
-    noentry49,
-    noentry50,
-    noentry51,
-    noentry52,
-    M_BEETLE,
-    F_BEETLE,
-    M_BUTTERFLY,
-    F_BUTTERFLY,
-    M_STAG_BEETLE,
-    F_STAG_BEETLE,
-    M_GRASSHOPPER,
-    F_GRASSHOPPER,
-    M_NANAFUSHI,
-    F_NANAFUSHI,
-    M_DANGOMUSHI,
-    F_DANGOMUSHI,
-    M_MANTIS,
-    F_MANTIS,
-    M_LADYBUG,
-    F_LADYBUG,
-    M_SNAIL,
-    F_SNAIL,
-    M_DRAGONFLY,
-    F_DRAGONFLY,
-    M_ANT,
-    F_ANT,
-    M_MAYFLY,
-    F_MAYFLY,
-    noentry53,
-    noentry54,
-    noentry55,
-    noentry56,
-    noentry57,
-    noentry58,
-    noentry59,
-    noentry60,
-    POU_SPIRIT,
-    noentry61,
-    noentry62,
-    noentry63,
-    noentry64,
-    noentry65,
-    noentry66,
-    noentry67,
-    noentry68,
-    ANCIENT_DOCUMENT,
-    AIR_LETTER,
-    ANCIENT_DOCUMENT2,
-    LV7_DUNGEON_EXIT,
-    LINKS_SAVINGS,
-    SMALL_KEY2,
-    POU_FIRE1,
-    POU_FIRE2,
-    POU_FIRE3,
-    POU_FIRE4,
-    BOSSRIDER_KEY,
-    TOMATO_PUREE,
-    TASTE,
-    LV5_BOSS_KEY,
-    SURFBOARD,
-    KANTERA2,
-    L2_KEY_PIECES1,
-    L2_KEY_PIECES2,
-    L2_KEY_PIECES3,
-    KEY_OF_CARAVAN,
-    LV2_BOSS_KEY,
-    KEY_OF_FILONE,
-    NO_ITEM
-};
 
 extern "C" void* calc_mtx;
 
@@ -671,7 +393,6 @@ extern "C" u8 mStatus__20dStage_roomControl_c[65792];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" f32 Zero__4cXyz[3];
 extern "C" u8 BaseY__4cXyz[12];
-extern "C" extern J3Dsys j3dSys;
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" f32 mSystemFar__14mDoLib_clipper;
 extern "C" u8 mProcID__20dStage_roomControl_c[4];
@@ -1377,7 +1098,7 @@ s32 fopAcM_checkCullingBox(Mtx pMtx, f32 pX1, f32 pY1, f32 pZ1, f32 pX2, f32 pY2
     Vec tmp1 = {pX1, pY1, pZ1};
     Vec tmp2 = {pX2, pY2, pZ2};
     Mtx tmpMtx;
-    PSMTXConcat(j3dSys.mtx, pMtx, tmpMtx);
+    PSMTXConcat(j3dSys.mMtx, pMtx, tmpMtx);
     return mDoLib_clipper::mClipper.clip(tmpMtx, &tmp2, &tmp1) != 0;
 }
 
@@ -2125,31 +1846,35 @@ asm s32 fopAcM_carryOffRevise(fopAc_ac_c* param_0) {
 
 /* 8001D32C-8001D3D4 017C6C 00A8+00 1/1 0/0 0/0 .text            vectle_calc__FPC10DOUBLE_POSP4cXyz
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm s32 vectle_calc(DOUBLE_POS const* param_0, cXyz* param_1) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/vectle_calc__FPC10DOUBLE_POSP4cXyz.s"
+static void vectle_calc(const DOUBLE_POS* pDpos, cXyz* pOut) {
+    f64 len = sqrt(pDpos->x * pDpos->x + pDpos->y * pDpos->y + pDpos->z * pDpos->z);
+    if (DOUBLE_LABEL(/* 0.0 */ lit_4747) != len) {
+        pOut->x = pDpos->x / len;
+        pOut->y = pDpos->y / len;
+        pOut->z = pDpos->z / len;
+    } else {
+        f32 tmp0 = FLOAT_LABEL(/* 0.0f */ lit_4645);  // temp not needed when data is moved
+        pOut->x = tmp0;
+        pOut->y = tmp0;
+        pOut->z = tmp0;
+    }
 }
-#pragma pop
 
 /* 8001D3D4-8001D42C 017D14 0058+00 1/1 0/0 0/0 .text get_vectle_calc__FPC4cXyzPC4cXyzP4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void get_vectle_calc(cXyz const* param_0, cXyz const* param_1, cXyz* param_2) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/get_vectle_calc__FPC4cXyzPC4cXyzP4cXyz.s"
+static void get_vectle_calc(const cXyz* pXyzA, const cXyz* pXyzB, cXyz* pOut) {
+    DOUBLE_POS dPos;
+    dPos.x = pXyzB->x - pXyzA->x;
+    dPos.y = pXyzB->y - pXyzA->y;
+    dPos.z = pXyzB->z - pXyzA->z;
+    vectle_calc(&dPos, pOut);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80378898-803788C8 004EF8 0030+00 1/1 0/0 0/0 .rodata          mtx_adj$6195 */
-SECTION_RODATA static u8 const mtx_adj[48] = {
-    0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0xBF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_RODATA static Mtx const mtx_adj = {
+    {0.5f, 0.0f, 0.0f, 0.5f},
+    {0.0f, -0.5f, 0.0f, 0.5f},
+    {0.0f, 0.0f, 1.0f, 0.0f},
 };
 COMPILER_STRIP_GATE(0x80378898, &mtx_adj);
 
@@ -2164,24 +1889,11 @@ asm void fopAcM_setEffectMtx(fopAc_ac_c const* param_0, J3DModelData const* para
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 803788C8-803788C8 004F28 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80378A42 = "UNKOWN";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80378A49 = "\0\0\0\0\0\0";
-#pragma pop
-
 /* 8001D5A4-8001D5EC 017EE4 0048+00 1/1 0/0 0/0 .text fopAcM_getProcNameString__FPC10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm const char* fopAcM_getProcNameString(fopAc_ac_c const* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_getProcNameString__FPC10fopAc_ac_c.s"
+static const char* fopAcM_getProcNameString(const fopAc_ac_c* pActor) {
+    const char* name = dStage_getName2(pActor->mBsTypeId, pActor->unk_0x499);
+    return name != NULL ? name : "UNKOWN";
 }
-#pragma pop
 
 /* 8001D5EC-8001D698 017F2C 00AC+00 1/1 0/0 0/0 .text fopAcM_findObjectCB__FPC10fopAc_ac_cPv */
 #pragma push
