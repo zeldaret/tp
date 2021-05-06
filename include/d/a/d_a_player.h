@@ -110,6 +110,7 @@ public:
     void setSpecialDemoType();
 
     void setDemoType(u16 pType) { mDemoType = pType; }
+    u16 getDemoType() const { return mDemoType; }
 
 private:
     /* 0x00 */ u16 mDemoType;
@@ -124,7 +125,7 @@ private:
 };  // Size = 0x24
 
 class daPy_py_c : public fopAc_ac_c {
-private:
+public:
     /* 0x0538 */ u8 field_0x538[0x32];
     /* 0x056A */ u8 field_0x56a;
     /* 0x056B */ u8 field_0x56b[5];
@@ -159,7 +160,7 @@ public:
     enum daPy_FLG2 { BoarSingleBattle = 0x1800000, UnkArmor = 0x80000, Unk = 1 };
     enum daPy_FLG3 { CopyRodThrowAfter = 0x40000 };
     enum daPy_ERFLG0 {};
-    enum daPy_ERFLG1 { UnkForcePutPos = 0x2000 };
+    enum daPy_ERFLG1 { GanonFinish = 0x80000000, UnkForcePutPos = 0x2000 };
     enum daPy_ERFLG2 {};
     enum daPy_RFLG0 {};
 
@@ -401,6 +402,7 @@ public:
     int i_checkNoResetFlg1(daPy_FLG1 pFlag) const { return mNoResetFlg1 & pFlag; }
     int i_checkNoResetFlg2(daPy_FLG2 pFlag) const { return mNoResetFlg2 & pFlag; }
     void i_onNoResetFlg0(int pFlg) { mNoResetFlg0 |= pFlg; }
+    void i_onEndResetFlg1(daPy_ERFLG1 pFlg) { mEndResetFlg1 |= pFlg; }
 
     static u8 m_midnaActor[4];
 };

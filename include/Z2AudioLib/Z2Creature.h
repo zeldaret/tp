@@ -37,6 +37,8 @@ private:
 struct Z2LinkSoundStarter : public Z2SoundStarter {
     Z2LinkSoundStarter(void);
     ~Z2LinkSoundStarter();
+    /* 802C4928 */ void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*, u32,
+                                   f32, f32, f32, f32, f32, u32);
 };
 
 #pragma pack(push, 1)
@@ -70,6 +72,8 @@ public:
     int startHitItemSE(u32, u32, Z2SoundObjBase*, float);
     void setResumeAttack(bool);
 
+    static Z2CreatureLink* mLinkPtr;
+
 private:
     /* 0x90 */ Z2LinkSoundStarter mLinkSoundStarter;
     /* 0x94 */ Z2SoundObjSimple mSoundObjSimple;
@@ -87,8 +91,6 @@ private:
     /* 0xCA */ u8 mSinkDepth;
     /* 0xCB */ u8 flags1;
     /* 0xCC */ u8 flags2;
-
-    static u8 mLinkPtr[4 + 4 /* padding */];
 };
 #pragma pack(pop)
 

@@ -74,6 +74,8 @@ public:
     /* 800D00DC */ void ClrGroundHit();
     /* 80141404 */ void ChkGroundHit() const;
 
+    float GetGroundH() const { return mGroundH; }
+
 private:
     /* 0x000 */ cBgS_Chk field_0x000;
     /* 0x014 */ dBgS_Chk field_0x014;

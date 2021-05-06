@@ -115,12 +115,24 @@ private:
 
 class daAlink_c : public daPy_py_c {
 public:
-    enum daAlink_ANM {};
-    enum daAlink_UPPER {};
+    enum daAlink_ANM {
+        GANON_FINISH = 408  // name probably wrong, fix later
+    };
+
+    enum daAlink_UPPER {
+        Unk0,
+        Unk1,
+        UPPER_NOW  // needs better name. main upper anmheap idx checked for actions
+    };
+
     enum daAlink_UNDER {};
     enum daAlink_FTANM {};
     enum daAlink_WARP_MAT_MODE {};
     enum daAlink_WANM {};
+
+    enum MODE_FLG {
+        PLAYER_FLY = 0x70852,
+    };
 
     enum daAlink_PROC {
         PREACTION_UNEQUIP,
@@ -267,6 +279,15 @@ public:
         DEAD = 336,
         LARGE_DAMAGE = 345,
         LARGE_DAMAGE_WALL,
+    };
+
+    // this might be one of the above enums, but not clear yet
+    enum UPPER_ANM {
+        ANM_SMALL_GUARD = 22,
+        ANM_HUMAN_CHAIN_GRAB = 98,
+        ANM_WOLF_CHAIN_GRAB = 672,
+        ANM_WOLF_ENEMY_THROW_LEFT = 701,
+        ANM_WOLF_ENEMY_THROW_RIGHT,
     };
 
     class firePointEff_c {
@@ -685,16 +706,16 @@ public:
     /* 800CF100 */ void procCoPeepSubjectivityInit();
     /* 800CF1B8 */ void procCoPeepSubjectivity();
     /* 800CF380 */ daAlink_c();
-    /* 800CFEB0 */ void checkRideOn() const;
-    /* 800CFF4C */ void checkAttentionLock();
-    /* 800D0020 */ void checkFmChainGrabAnime() const;
-    /* 800D0048 */ void checkSmallUpperGuardAnime() const;
-    /* 800D00EC */ void checkReinRide() const;
-    /* 800D0110 */ void checkWolfEnemyThrowAnime() const;
-    /* 800D0138 */ void checkSpecialDemoMode() const;
+    /* 800CFEB0 */ BOOL checkRideOn() const;
+    /* 800CFF4C */ BOOL checkAttentionLock();
+    /* 800D0020 */ BOOL checkFmChainGrabAnime() const;
+    /* 800D0048 */ BOOL checkSmallUpperGuardAnime() const;
+    /* 800D00EC */ BOOL checkReinRide() const;
+    /* 800D0110 */ BOOL checkWolfEnemyThrowAnime() const;
+    /* 800D0138 */ u16 checkSpecialDemoMode() const;
     /* 800D014C */ void setMidnaTalkStatus(u8);
     /* 800D0164 */ void set3DStatus(u8, u8);
-    /* 800D018C */ void checkModeFlg(u32) const;
+    /* 800D018C */ u32 checkModeFlg(u32) const;
     /* 800D2684 */ void checkCutTurnCharge();
     /* 800D07A4 */ void checkCutJumpCancelTurn() const;
     /* 800D0E08 */ void checkLightSwordMtrl();
@@ -1659,12 +1680,12 @@ public:
     /* 8011E8E0 */ void procSwordPushInit();
     /* 8011E960 */ void procSwordPush();
     /* 8011E9F8 */ void procGanonFinishInit();
-    /* 8011EA78 */ void procGanonFinish();
+    /* 8011EA78 */ bool procGanonFinish();
     /* 8011EAE8 */ void procCutFastReadyInit();
     /* 8011EB8C */ void procCutFastReady();
     /* 8011EBDC */ void procMasterSwordStickInit();
     /* 8011EC60 */ void procMasterSwordStick();
-    /* 8011ED18 */ void procMasterSwordPullInit();
+    /* 8011ED18 */ bool procMasterSwordPullInit();
     /* 8011ED8C */ void procMasterSwordPull();
     /* 8011EE40 */ void checkLv7DungeonShop();
     /* 8011EE94 */ void procDungeonWarpReadyInit();
@@ -2005,8 +2026,8 @@ public:
     virtual Mtx* getWolfBackbone2Matrix(void);
     virtual bool getBottleMtx(void);
     virtual bool checkPlayerGuard(void) const;
-    virtual bool checkPlayerFly() const;
-    virtual bool checkFrontRoll() const;
+    virtual u32 checkPlayerFly() const;
+    virtual BOOL checkFrontRoll() const;
     virtual bool checkWolfDash() const;
     virtual bool checkAutoJump(void) const;
     virtual bool checkSideStep(void) const;
@@ -2034,7 +2055,7 @@ public:
     virtual bool checkBottleDrinkEnd(void) const;
     virtual bool checkWolfDig(void) const;
     virtual bool checkCutCharge(void) const;
-    virtual bool checkCutTurnCharge(void) const;
+    virtual BOOL checkCutTurnCharge(void) const;
     virtual bool checkCutLargeJumpCharge(void) const;
     virtual bool checkComboCutTurn(void) const;
     virtual bool checkClimbMove(void) const;
@@ -2045,9 +2066,9 @@ public:
     virtual void setAnimeFrame(float);
     virtual bool checkWolfLock(fopAc_ac_c*) const;
     virtual bool cancelWolfLock(fopAc_ac_c*);
-    virtual bool getAtnActorID(void) const;
+    virtual s32 getAtnActorID(void) const;
     virtual s32 getItemID(void) const;
-    virtual bool getGrabActorID(void) const;
+    virtual s32 getGrabActorID(void) const;
     virtual bool exchangeGrabActor(fopAc_ac_c*);
     virtual bool setForceGrab(fopAc_ac_c*, int, int);
     virtual void setForcePutPos(cXyz const&);
@@ -2076,12 +2097,12 @@ public:
     virtual void onSceneChangeArea(u8, u8, fopAc_ac_c*);
     virtual void onSceneChangeAreaJump(u8, u8, fopAc_ac_c*);
     virtual void onSceneChangeDead(u8, int);
-    virtual bool checkHorseRide() const;
-    virtual bool checkBoarRide() const;
-    virtual bool checkCanoeRide() const;
-    virtual bool checkBoardRide() const;
+    virtual u32 checkHorseRide() const;
+    virtual u32 checkBoarRide() const;
+    virtual u32 checkCanoeRide() const;
+    virtual u32 checkBoardRide() const;
     virtual u32 checkSpinnerRide() const;
-    virtual bool getSpinnerActor(void);
+    virtual fopAc_ac_c* getSpinnerActor(void);
     virtual bool checkHorseRideNotReady(void) const;
     virtual bool checkArrowChargeEnd(void) const;
     virtual void getSearchBallScale(void) const;
@@ -2111,9 +2132,9 @@ public:
     virtual void skipPortalObjWarp(void);
     virtual bool checkTreasureRupeeReturn(int) const;
     virtual void setSumouReady(fopAc_ac_c*);
-    virtual bool checkAcceptDungeonWarpAlink(int);
-    virtual bool getSumouCounter(void) const;
-    virtual bool checkSumouWithstand(void) const;
+    virtual void checkAcceptDungeonWarpAlink(int);
+    virtual s16 getSumouCounter(void) const;
+    virtual s16 checkSumouWithstand(void) const;
     virtual void cancelGoronThrowEvent(void);
     virtual void setSumouGraspCancelCount(int);
     virtual void setSumouPushBackDirection(short);
@@ -2130,8 +2151,8 @@ public:
     virtual void setOctaIealWildHang(void);
     virtual bool checkDragonHangRide(void) const;
     virtual void changeDragonActor(fopAc_ac_c*);
-    virtual bool getClothesChangeWaitTimer(void) const;
-    virtual bool getShieldChangeWaitTimer(void) const;
+    virtual u8 getClothesChangeWaitTimer(void) const;
+    virtual u8 getShieldChangeWaitTimer(void) const;
     virtual bool getSwordChangeWaitTimer(void) const;
     virtual bool checkMetamorphose(void) const;
     virtual bool checkWolfDownAttackPullOut(void) const;
@@ -2146,6 +2167,10 @@ public:
     virtual bool checkCopyRodTopUse(void);
     virtual bool checkCopyRodEquip(void) const;
     virtual bool checkCutJumpMode(void) const;
+
+    // inlined version of checkModeFlg
+    u32 i_checkModeFlg(u32 pFlag) const { return mModeFlg & pFlag; }
+    bool checkUpperAnime(u16 pIdx) const { return mUpperAnime[UPPER_NOW].getIdx() == pIdx; }
 
     static u8 const m_mainBckShield[80];
     static u8 const m_mainBckSword[20];
@@ -2258,8 +2283,8 @@ private:
     /* 0x01F20 */ u8 field_0x1f20[8];
     /* 0x01F28 */ mDoExt_AnmRatioPack field_0x1f28[3];
     /* 0x01F40 */ mDoExt_AnmRatioPack field_0x1f40[3];
-    /* 0x01F58 */ daPy_anmHeap_c mAnmHeap1[3];
-    /* 0x01F94 */ daPy_anmHeap_c mAnmHeap2[3];
+    /* 0x01F58 */ daPy_anmHeap_c mUnderAnime[3];
+    /* 0x01F94 */ daPy_anmHeap_c mUpperAnime[3];
     /* 0x01FD0 */ daPy_frameCtrl_c mFrameCtrl1[3];
     /* 0x02018 */ daPy_frameCtrl_c mFrameCtrl2[3];
     /* 0x02060 */ void* field_0x2060;  // mDoExt_MtxCalcOldFrame*
@@ -2292,7 +2317,7 @@ private:
     /* 0x0280C */ daPy_actorKeep_c field_0x280c;
     /* 0x02814 */ daPy_actorKeep_c mRideActor;  // daspinnerc?
     /* 0x0281C */ daPy_actorKeep_c field_0x281c;
-    /* 0x02824 */ daPy_actorKeep_c field_0x2824;
+    /* 0x02824 */ daPy_actorKeep_c mItemActor;  // name might be wrong
     /* 0x0282C */ daPy_actorKeep_c field_0x282c;
     /* 0x02834 */ daPy_actorKeep_c field_0x2834;
     /* 0x0283C */ daPy_actorKeep_c field_0x283c;
@@ -2303,7 +2328,7 @@ private:
     /* 0x02864 */ dMsgFlow_c mMsgFlow;
     /* 0x028B0 */ u8 field_0x28b0[0x40];
     /* 0x028F0 */ int field_0x28f0;
-    /* 0x028F4 */ int field_0x28f4;
+    /* 0x028F4 */ int mAtnActorID;
     /* 0x028F8 */ int field_0x28f8;
     /* 0x028FC */ int field_0x28fc;
     /* 0x02900 */ void* field_0x2900;
@@ -2389,7 +2414,7 @@ private:
     /* 0x02FBC */ u8 field_0x2fbc;
     /* 0x02FBD */ u8 field_0x2fbd;
     /* 0x02FBE */ u8 field_0x2fbe;
-    /* 0x02FBF */ u8 field_0x2fbf;
+    /* 0x02FBF */ u8 mClothesChangeWaitTimer;
     /* 0x02FC0 */ u8 field_0x2fc0;
     /* 0x02FC1 */ u8 field_0x2fc1;
     /* 0x02FC2 */ u8 field_0x2fc2;
@@ -2407,7 +2432,7 @@ private:
     /* 0x02FCE */ u8 field_0x2fce;
     /* 0x02FCF */ u8 field_0x2fcf;
     /* 0x02FD0 */ u8 field_0x2fd0;
-    /* 0x02FD1 */ u8 mShieldChange;
+    /* 0x02FD1 */ u8 mShieldChangeWaitTimer;
     /* 0x02FD2 */ u8 field_0x2fd2;
     /* 0x02FD3 */ u8 field_0x2fd3;
     /* 0x02FD4 */ u8 field_0x2fd4;
@@ -2440,7 +2465,7 @@ private:
     /* 0x03006 */ s16 field_0x3006;
     /* 0x03008 */ s16 field_0x3008;
     /* 0x0300A */ s16 field_0x300a;
-    /* 0x0300C */ s16 field_0x300c;
+    /* 0x0300C */ s16 mCommonCounter;  // might need more accurate name
     /* 0x0300E */ s16 field_0x300e;
     /* 0x03010 */ s16 field_0x3010;
     /* 0x03012 */ s16 field_0x3012;
@@ -2555,6 +2580,7 @@ private:
     /* 0x03108 */ s16 field_0x3108;
     /* 0x0310A */ s16 field_0x310a;
     /* 0x0310C */ s16 field_0x310c;
+    /* 0x0310E */ s16 field_0x310e;
     /* 0x03110 */ s16 field_0x3110;
     /* 0x03112 */ u16 field_0x3112;
     /* 0x03114 */ s16 field_0x3114;

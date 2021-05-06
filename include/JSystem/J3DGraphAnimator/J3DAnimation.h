@@ -11,7 +11,7 @@ public:
     void update();
     ~J3DFrameCtrl();
 
-    float getRate() { return mRate; }
+    float getRate() const { return mRate; }
     void setAttribute(u8 pAttr) { mAttribute = pAttr; }
     void setEnd(s16 pEnd) { mEnd = pEnd; }
     void setRate(float pRate) { mRate = pRate; }

@@ -4,7 +4,7 @@
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/mtx/mtx.h"
-#include "f_pc/f_pc_base.h"
+#include "f_pc/f_pc_leaf.h"
 
 struct JKRSolidHeap;
 
@@ -15,9 +15,12 @@ struct actor_place {
     u8 field_0x13;
 };
 
-class fopAc_ac_c : public base_process_class {
+class fopAc_ac_c : public leafdraw_class {
 public:
-    /* 0x0B8 */ u8 unk_0x0B8[0xF0 - 0xB8];
+    /* 0x0C0 */ int mAcType;
+    /* 0x0C4 */ create_tag_class mAcTg;
+    /* 0x0D8 */ create_tag_class mDwTg;
+    /* 0x0EC */ profile_method_class* mSubMtd;
     /* 0x0F0 */ JKRSolidHeap* unk_0x0F0;
     /* 0x0F4 */ u8 unk_0x0F4[0x496 - 0xF4];
     /* 0x496 */ u8 unk_0x496;
@@ -28,9 +31,9 @@ public:
     /* 0x4BC */ actor_place mNext;
     /* 0x4D0 */ actor_place mCurrent;
     /* 0x4E4 */ csXyz mCollisionRot;
-    /* 0x4EA */ u8 unk_0x4EA[0x4F8 - 0x4EA];
+    /* 0x4EC */ cXyz mScale;
     /* 0x4F8 */ cXyz mSpeed;
-    /* 0x504 */ Mtx* unk_0x504;
+    /* 0x504 */ Mtx* mCullMtx;
     /* 0x508 */ cXyz mCullMin;
     /* 0x514 */ cXyz mCullMax;
     /* 0x520 */ u8 unk_0x520[0xC];
