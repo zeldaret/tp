@@ -15,6 +15,10 @@ typedef int (*fpcM_DrawIteraterFunc)(void*, void*);
 inline u32 fpcM_GetID(const void* pProc) {
     return pProc != NULL ? ((base_process_class*)pProc)->mBsPcId : 0xFFFFFFFF;
 }
+inline s16 fpcM_GetName(const void* pActor) {
+    return ((base_process_class*)pActor)->mProcName;
+}
+
 void fpcM_Draw(void* pProc);
 s32 fpcM_DrawIterater(fpcM_DrawIteraterFunc pFunc);
 void fpcM_Execute(void* pProc);

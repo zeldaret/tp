@@ -94,4 +94,16 @@ private:
 };
 #pragma pack(pop)
 
+class Z2CreatureRide {
+public:
+    void setLinkRiding(bool);
+
+private:
+    /* 0x00 */ void* vtable;
+    /* 0x04 */ u8 Z2Creature_members[140];
+    /* 0x90 */ u8 Z2RideSoundStarter[8];
+    /* 0x98 */ bool mLinkRiding;
+    /* 0x99 */ u8 padding[3];
+};
+
 #endif /* Z2CREATURE_H */

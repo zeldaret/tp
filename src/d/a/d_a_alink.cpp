@@ -6,12 +6,12 @@
 #include "d/a/d_a_alink.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Types:
 //
 //
-struct request_of_phase_process_class {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -44,26 +44,6 @@ struct mDoCPd_c {
 };
 
 struct fopEn_enemy_c {};
-
-struct fopAcM_wt_c {
-    /* 8001DD84 */ void waterCheck(cXyz const*);
-
-    static u8 mWaterCheck[84 + 4 /* padding */];
-    static f32 mWaterY[1 + 1 /* padding */];
-};
-
-struct fopAcM_lc_c {
-    /* 8001DC68 */ void lineCheck(cXyz const*, cXyz const*, fopAc_ac_c const*);
-
-    static u8 mLineCheck[112];
-};
-
-struct fopAcM_gc_c {
-    /* 8001DCBC */ void gndCheck(cXyz const*);
-
-    static u8 mGndCheck[84];
-    static f32 mGroundY;
-};
 
 struct e_wb_class {
     /* 80037C7C */ void checkWait();
@@ -589,10 +569,6 @@ struct daAlinkHIO_bomb_c0 {
 
 struct daAlinkHIO_board_c0 {
     static u8 const m[156];
-};
-
-struct daAlinkHIO_basic_c0 {
-    static u8 const m[88];
 };
 
 struct daAlinkHIO_backJump_c0 {
@@ -4153,7 +4129,7 @@ asm void daAlink_matAnm_c::calc(J3DMaterial* param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkStageName(char const* param_0) {
+asm bool daAlink_c::checkStageName(char const* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/checkStageName__9daAlink_cFPCc.s"
 }
@@ -5455,15 +5431,9 @@ SECTION_RODATA static u8 const lit_3757[12] = {
 COMPILER_STRIP_GATE(0x8038D658, &lit_3757);
 
 /* 8038D664-8038D6BC 019CC4 0058+00 41/50 0/0 0/0 .rodata          m__19daAlinkHIO_basic_c0 */
-SECTION_RODATA u8 const daAlinkHIO_basic_c0::m[88] = {
-    0x00, 0x00, 0x4E, 0x20, 0xD8, 0xF0, 0x1F, 0x40, 0x00, 0x01, 0x00, 0x1E, 0x01, 0x90, 0x02,
-    0x58, 0x40, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00, 0x3F, 0x33,
-    0x33, 0x33, 0x40, 0x40, 0x00, 0x00, 0x42, 0x70, 0x00, 0x00, 0x42, 0xAA, 0x00, 0x00, 0x43,
-    0x96, 0x00, 0x00, 0x43, 0x48, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
-    0x41, 0xB8, 0x00, 0x00, 0x42, 0x24, 0x00, 0x00, 0x3F, 0x33, 0x33, 0x33, 0x3F, 0x00, 0x00,
-    0x00, 0x3F, 0x33, 0x33, 0x33, 0x43, 0xC8, 0x00, 0x00, 0x45, 0x9C, 0x40, 0x00,
-};
-COMPILER_STRIP_GATE(0x8038D664, &daAlinkHIO_basic_c0::m);
+daAlinkHIO_basic_c1 const daAlinkHIO_basic_c0::m = {
+    0,     20000, -10000, 8000,   1,     30,    400,   600,   16384, 1.0f, 4.0f, 0.7f,   3.0f,
+    60.0f, 85.0f, 300.0f, 200.0f, 20.0f, 30.0f, 23.0f, 41.0f, 0.7f,  0.5f, 0.7f, 400.0f, 5000.0f};
 
 /* 8038D6BC-8038D714 019D1C 0058+00 34/47 0/0 0/0 .rodata          m__18daAlinkHIO_move_c0 */
 SECTION_RODATA u8 const daAlinkHIO_move_c0::m[88] = {
@@ -7088,9 +7058,8 @@ SECTION_RODATA static u8 const l_wolfFootOnFrame[96] = {
 COMPILER_STRIP_GATE(0x8038FB5C, &l_wolfFootOnFrame);
 
 /* 8038FBBC-8038FBD4 01C21C 0018+00 1/1 0/0 0/0 .rodata          l_insectNameList */
-SECTION_RODATA static u8 const l_insectNameList[24] = {
-    0x01, 0x40, 0x01, 0x41, 0x01, 0x42, 0x01, 0x49, 0x01, 0x43, 0x01, 0x44,
-    0x01, 0x45, 0x01, 0x46, 0x01, 0x4B, 0x01, 0x4A, 0x01, 0x47, 0x01, 0x48,
+SECTION_RODATA static s16 const l_insectNameList[12] = {
+    0x0140, 0x0141, 0x0142, 0x0149, 0x0143, 0x0144, 0x0145, 0x0146, 0x014B, 0x014A, 0x0147, 0x0148,
 };
 COMPILER_STRIP_GATE(0x8038FBBC, &l_insectNameList);
 
@@ -16293,100 +16262,50 @@ asm void daAlink_c::setPlayerPosAndAngle(f32 (*param_0)[4]) {
 
 /* 800B25CC-800B25E8 0ACF0C 001C+00 16/16 0/0 0/0 .text            itemTriggerCheck__9daAlink_cFUc
  */
-int daAlink_c::itemTriggerCheck(u8 param1) {
-    field_0x2fae |= param1;
-    return mItemTrigger & param1;
+u32 daAlink_c::itemTriggerCheck(u8 pTrigger) {
+    field_0x2fae |= pTrigger;
+    return mItemTrigger & pTrigger;
 }
 
 /* 800B25E8-800B2604 0ACF28 001C+00 11/11 0/0 0/0 .text            itemButtonCheck__9daAlink_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::itemButtonCheck(u8 param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/itemButtonCheck__9daAlink_cFUc.s"
+u32 daAlink_c::itemButtonCheck(u8 pButton) {
+    field_0x2fae |= pButton;
+    return mItemButton & pButton;
 }
-#pragma pop
 
-/* 800B2604-800B2634 0ACF44 0030+00 13/13 0/0 0/0 .text            itemButton__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::itemButton() {
-    nofralloc
-#include "asm/d/a/d_a_alink/itemButton__9daAlink_cFv.s"
+void daAlink_c::itemButton() {
+    itemButtonCheck(1 << mSelectItemId);
 }
-#pragma pop
 
-/* 800B2634-800B2664 0ACF74 0030+00 5/5 0/0 0/0 .text            itemTrigger__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::itemTrigger() {
-    nofralloc
-#include "asm/d/a/d_a_alink/itemTrigger__9daAlink_cFv.s"
+void daAlink_c::itemTrigger() {
+    itemTriggerCheck(1 << mSelectItemId);
 }
-#pragma pop
 
-/* 800B2664-800B2688 0ACFA4 0024+00 5/5 0/0 0/0 .text            spActionButton__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::spActionButton() {
-    nofralloc
-#include "asm/d/a/d_a_alink/spActionButton__9daAlink_cFv.s"
+void daAlink_c::spActionButton() {
+    itemButtonCheck(64);
 }
-#pragma pop
 
-/* 800B2688-800B26AC 0ACFC8 0024+00 2/2 0/0 0/0 .text            spActionTrigger__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::spActionTrigger() {
-    nofralloc
-#include "asm/d/a/d_a_alink/spActionTrigger__9daAlink_cFv.s"
+void daAlink_c::spActionTrigger() {
+    itemTriggerCheck(64);
 }
-#pragma pop
 
-/* 800B26AC-800B26B8 0ACFEC 000C+00 1/1 0/0 0/0 .text            midnaTalkTrigger__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::midnaTalkTrigger() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/midnaTalkTrigger__9daAlink_cCFv.s"
+u32 daAlink_c::midnaTalkTrigger() const {
+    return mItemTrigger & 4;
 }
-#pragma pop
 
-/* 800B26B8-800B26DC 0ACFF8 0024+00 9/9 0/0 0/0 .text            swordSwingTrigger__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::swordSwingTrigger() {
-    nofralloc
-#include "asm/d/a/d_a_alink/swordSwingTrigger__9daAlink_cFv.s"
+void daAlink_c::swordSwingTrigger() {
+    itemTriggerCheck(8);
 }
-#pragma pop
 
 /* 800B26DC-800B26FC 0AD01C 0020+00 2/2 0/0 0/0 .text setItemActionButtonStatus__9daAlink_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setItemActionButtonStatus(u8 param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setItemActionButtonStatus__9daAlink_cFUc.s"
+void daAlink_c::setItemActionButtonStatus(u8 param_0) {
+    setRStatusEmphasys(param_0);
 }
-#pragma pop
 
 /* 800B26FC-800B271C 0AD03C 0020+00 2/2 0/0 1/1 .text            itemActionTrigger__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::itemActionTrigger() {
-    nofralloc
-#include "asm/d/a/d_a_alink/itemActionTrigger__9daAlink_cFv.s"
+void daAlink_c::itemActionTrigger() {
+    spActionTrigger();
 }
-#pragma pop
 
 /* 800B271C-800B2EA4 0AD05C 0788+00 1/1 0/0 0/0 .text            setStickData__9daAlink_cFv */
 #pragma push
@@ -16636,34 +16555,19 @@ asm void daAlink_c::setJumpMode() {
 #pragma pop
 
 /* 800B4908-800B4918 0AF248 0010+00 0/0 0/0 1/1 .text getMetamorphoseNearDis__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getMetamorphoseNearDis() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/getMetamorphoseNearDis__9daAlink_cCFv.s"
+float daAlink_c::getMetamorphoseNearDis() const {
+    return daAlinkHIO_basic_c0::m.mMetamorphoseNearDis;
 }
-#pragma pop
 
 /* 800B4918-800B4928 0AF258 0010+00 0/0 0/0 1/1 .text getMetamorphoseFarDis__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getMetamorphoseFarDis() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/getMetamorphoseFarDis__9daAlink_cCFv.s"
+float daAlink_c::getMetamorphoseFarDis() const {
+    return daAlinkHIO_basic_c0::m.mMetamorphoseFarDis;
 }
-#pragma pop
 
 /* 800B4928-800B4938 0AF268 0010+00 0/0 0/0 1/1 .text getMetamorphoseFarAngle__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getMetamorphoseFarAngle() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/getMetamorphoseFarAngle__9daAlink_cCFv.s"
+s16 daAlink_c::getMetamorphoseFarAngle() const {
+    return daAlinkHIO_basic_c0::m.mMetamorphoseFarAngle;
 }
-#pragma pop
 
 /* 800B4938-800B4950 0AF278 0018+00 0/0 1/1 0/0 .text            setMidnaMsg__9daAlink_cFv */
 #pragma push
@@ -24066,14 +23970,16 @@ asm void daAlink_c::procGrabStand() {
 
 /* 800E70C0-800E70FC 0E1A00 003C+00 1/1 0/0 0/0 .text
  * checkInsectActorName__9daAlink_cFP10fopAc_ac_c               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkInsectActorName(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkInsectActorName__9daAlink_cFP10fopAc_ac_c.s"
+bool daAlink_c::checkInsectActorName(fopAc_ac_c* insectActor) {
+    s16 insectName = fopAcM_GetName(insectActor);
+
+    for (int i = 0; i < 12; i++) {
+        if (insectName == l_insectNameList[i]) {
+            return true;
+        }
+    }
+    return false;
 }
-#pragma pop
 
 /* 800E70FC-800E71D4 0E1A3C 00D8+00 2/2 0/0 0/0 .text            procInsectCatchInit__9daAlink_cFv
  */
@@ -24087,14 +23993,21 @@ asm void daAlink_c::procInsectCatchInit() {
 #pragma pop
 
 /* 800E71D4-800E7254 0E1B14 0080+00 1/0 0/0 0/0 .text            procInsectCatch__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procInsectCatch() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procInsectCatch__9daAlink_cFv.s"
+bool daAlink_c::procInsectCatch() {
+    daPy_frameCtrl_c* tmp = &mFrameCtrl1[0];
+
+    if (tmp->checkAnmEnd()) {
+        checkNextAction(0);
+    } else {
+        if (tmp->checkPass(field_0x3478)) {
+            fopAc_ac_c* tmp2 = field_0x280c.getActor();
+            if (tmp2 != NULL) {
+                fopAcM_setCarryNow(tmp2, 0);
+            }
+        }
+    }
+    return true;
 }
-#pragma pop
 
 /* 800E7254-800E7460 0E1B94 020C+00 2/2 0/0 0/0 .text            procPickUpInit__9daAlink_cFv */
 #pragma push
@@ -24148,14 +24061,28 @@ asm void daAlink_c::checkSetChainPullAnime(s16 param_0) {
 
 /* 800E794C-800E7994 0E228C 0048+00 3/3 0/0 0/0 .text            getChainStickAngleY__9daAlink_cCFs
  */
+// one instruction off
+#ifdef NONMATCHING
+s16 daAlink_c::getChainStickAngleY(s16 param_0) const {
+    s16 tmp = field_0x2fe2 - param_0;
+
+    if (tmp >= 14336 && tmp < 32640) {
+        return param_0 + 32640;
+    } else if (tmp <= -14336 && tmp <= -32640) {
+        return field_0x2fe2;
+    }
+    return param_0 - 32640;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getChainStickAngleY(s16 param_0) const {
+asm s16 daAlink_c::getChainStickAngleY(s16 param_0) const {
     nofralloc
 #include "asm/d/a/d_a_alink/getChainStickAngleY__9daAlink_cCFs.s"
 }
 #pragma pop
+#endif
 
 /* 800E7994-800E79F8 0E22D4 0064+00 1/1 0/0 0/0 .text            checkChainEmphasys__9daAlink_cFv */
 #pragma push
@@ -24261,24 +24188,14 @@ asm void daAlink_c::getWallGrabStatus() {
 #pragma pop
 
 /* 800E7EF4-800E7F18 0E2834 0024+00 1/1 0/0 0/0 .text            wallGrabTrigger__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::wallGrabTrigger() {
-    nofralloc
-#include "asm/d/a/d_a_alink/wallGrabTrigger__9daAlink_cFv.s"
+void daAlink_c::wallGrabTrigger() {
+    itemTriggerCheck(64);
 }
-#pragma pop
 
 /* 800E7F18-800E7F3C 0E2858 0024+00 4/4 0/0 0/0 .text            wallGrabButton__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::wallGrabButton() {
-    nofralloc
-#include "asm/d/a/d_a_alink/wallGrabButton__9daAlink_cFv.s"
+void daAlink_c::wallGrabButton() {
+    itemButtonCheck(64);
 }
-#pragma pop
 
 /* 800E7F3C-800E80A4 0E287C 0168+00 4/4 0/0 0/0 .text
  * setPushPullKeepData__9daAlink_cFQ29dBgW_Base13PushPullLabeli */
@@ -24313,46 +24230,53 @@ asm void daAlink_c::checkPullBehindWall() {
 #pragma pop
 
 /* 800E8298-800E82B0 0E2BD8 0018+00 3/3 0/0 0/0 .text            offGoatStopGame__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::offGoatStopGame() {
-    nofralloc
-#include "asm/d/a/d_a_alink/offGoatStopGame__9daAlink_cFv.s"
+void daAlink_c::offGoatStopGame() {
+    if (field_0x56a != 0x2a) {
+        return;
+    } else {
+        field_0x56a = 0;
+    }
 }
-#pragma pop
 
 /* 800E82B0-800E8314 0E2BF0 0064+00 4/4 0/0 0/0 .text
  * checkGoatCatchActor__9daAlink_cFP10fopAc_ac_c                */
+#ifdef NONMATCHING
+BOOL daAlink_c::checkGoatCatchActor(fopAc_ac_c* param_0) {
+    s16 name = fopAcM_GetName(param_0);
+    bool check = false;
+
+    if (name == 0x1b1 || name == 0x21) {
+        if (checkSpecialNpc(param_0) || name == 0x106) {
+            check = true;
+        }
+    }
+
+    return check;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkGoatCatchActor(fopAc_ac_c* param_0) {
+asm BOOL daAlink_c::checkGoatCatchActor(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/checkGoatCatchActor__9daAlink_cFP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* 800E8314-800E8334 0E2C54 0020+00 2/2 0/0 0/0 .text            getGoatCatchDistance2__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getGoatCatchDistance2() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getGoatCatchDistance2__9daAlink_cFv.s"
+float daAlink_c::getGoatCatchDistance2() {
+    if (field_0x27f4->mBase.mProcName == 0x216) {
+        return lit_16066;
+    }
+    return lit_16067;
 }
-#pragma pop
 
 /* 800E8334-800E8354 0E2C74 0020+00 3/3 0/0 0/0 .text            endPushPull__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::endPushPull() {
-    nofralloc
-#include "asm/d/a/d_a_alink/endPushPull__9daAlink_cFv.s"
+void daAlink_c::endPushPull() {
+    checkWaitAction();
 }
-#pragma pop
 
 /* 800E8354-800E8428 0E2C94 00D4+00 2/2 0/0 0/0 .text            getPushPullAnimeSpeed__9daAlink_cFv
  */
@@ -24427,14 +24351,12 @@ asm void daAlink_c::procPullMove() {
 #pragma pop
 
 /* 800E91B0-800E91C4 0E3AF0 0014+00 1/1 0/0 0/0 .text daAlink_searchGoat__FP10fopAc_ac_cPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daAlink_searchGoat(fopAc_ac_c* param_0, void* param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/daAlink_searchGoat__FP10fopAc_ac_cPv.s"
+static fopAc_ac_c* daAlink_searchGoat(fopAc_ac_c* param_0, void* param_1) {
+    if (fopAcM_GetName(param_0) == 0x106) {
+        return param_0;
+    }
+    return NULL;
 }
-#pragma pop
 
 /* 800E91C4-800E9210 0E3B04 004C+00 1/0 0/0 0/0 .text            cancelGoronThrowEvent__9daAlink_cFv
  */
@@ -24550,35 +24472,21 @@ asm void daAlink_c::checkSumouVsActor() {
 #pragma pop
 
 /* 800EA8D0-800EA908 0E5210 0038+00 5/5 0/0 0/0 .text            cancelSumouMode__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::cancelSumouMode() {
-    nofralloc
-#include "asm/d/a/d_a_alink/cancelSumouMode__9daAlink_cFv.s"
+void daAlink_c::cancelSumouMode() {
+    field_0x2854.clearData();
+    field_0x56a = 0;
 }
-#pragma pop
 
 /* 800EA908-800EA92C 0E5248 0024+00 2/2 0/0 0/0 .text            sumouPunchTrigger__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::sumouPunchTrigger() {
-    nofralloc
-#include "asm/d/a/d_a_alink/sumouPunchTrigger__9daAlink_cFv.s"
+void daAlink_c::sumouPunchTrigger() {
+    itemTriggerCheck(8);
 }
-#pragma pop
 
 /* 800EA92C-800EA950 0E526C 0024+00 5/5 0/0 0/0 .text            setSumouPunchStatus__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setSumouPunchStatus() {
-    nofralloc
-#include "asm/d/a/d_a_alink/setSumouPunchStatus__9daAlink_cFv.s"
+void daAlink_c::setSumouPunchStatus() {
+    setBStatus(0x44);
 }
-#pragma pop
 
 /* 800EA950-800EAA28 0E5290 00D8+00 4/4 0/0 0/0 .text            procSumouReadyInit__9daAlink_cFv */
 #pragma push
@@ -24770,7 +24678,7 @@ asm void daAlink_c::setHorseZeldaDamage() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkHorseDashAccept() {
+asm bool daAlink_c::checkHorseDashAccept() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkHorseDashAccept__9daAlink_cFv.s"
 }
@@ -31485,14 +31393,13 @@ asm void daAlink_c::procCoWarp() {
 #pragma pop
 
 /* 80120440-80120474 11AD80 0034+00 1/0 0/0 0/0 .text            commonWaitTurnInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::commonWaitTurnInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/commonWaitTurnInit__9daAlink_cFv.s"
+void daAlink_c::commonWaitTurnInit() {
+    if (i_checkWolf()) {
+        procWolfWaitTurnInit();
+    } else {
+        procWaitTurnInit();
+    }
 }
-#pragma pop
 
 /* 80120474-80120500 11ADB4 008C+00 2/1 0/0 0/0 .text            commonGrabPutInit__9daAlink_cFv */
 #pragma push
@@ -31505,16 +31412,25 @@ asm void daAlink_c::commonGrabPutInit() {
 #pragma pop
 
 /* 80120500-80120534 11AE40 0034+00 3/3 0/0 0/0 .text commonLargeDamageUpInit__9daAlink_cFiiss */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::commonLargeDamageUpInit(int param_0, int param_1, s16 param_2, s16 param_3) {
-    nofralloc
-#include "asm/d/a/d_a_alink/commonLargeDamageUpInit__9daAlink_cFiiss.s"
+void daAlink_c::commonLargeDamageUpInit(int param_0, int param_1, s16 param_2, s16 param_3) {
+    if (i_checkWolf()) {
+        procWolfLargeDamageUpInit(param_0, param_1, param_2, param_3);
+    } else {
+        procLargeDamageUpInit(param_0, param_1, param_2, param_3);
+    }
 }
-#pragma pop
 
 /* 80120534-80120580 11AE74 004C+00 4/4 0/0 0/0 .text            commonFallInit__9daAlink_cFi */
+// need to setup HIO data
+#ifdef NONMATCHING
+void daAlink_c::commonFallInit(int param_0) {
+    if (i_checkWolf()) {
+        procWolfFallInit(param_0, daAlinkHIO_wlAutoJump_c0::m.);
+    } else {
+        procFallInit(param_0, daAlinkHIO_autoJump_c0::m.);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -31523,6 +31439,7 @@ asm void daAlink_c::commonFallInit(int param_0) {
 #include "asm/d/a/d_a_alink/commonFallInit__9daAlink_cFi.s"
 }
 #pragma pop
+#endif
 
 /* 80120580-80120634 11AEC0 00B4+00 21/21 0/0 0/0 .text
  * setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz                  */
@@ -32231,14 +32148,9 @@ asm void daAlink_c::offWolfEyeUp() {
 #pragma pop
 
 /* 80127CF0-80127D14 122630 0024+00 1/1 0/0 0/0 .text            wolfSenseTrigger__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::wolfSenseTrigger() {
-    nofralloc
-#include "asm/d/a/d_a_alink/wolfSenseTrigger__9daAlink_cFv.s"
+void daAlink_c::wolfSenseTrigger() {
+    itemTriggerCheck(1);
 }
-#pragma pop
 
 /* 80127D14-80127D2C 122654 0018+00 1/1 0/0 0/0 .text            setWolfSenceStatus__9daAlink_cFUc
  */
@@ -32252,14 +32164,9 @@ asm void daAlink_c::setWolfSenceStatus(u8 param_0) {
 #pragma pop
 
 /* 80127D2C-80127D50 12266C 0024+00 1/1 0/0 0/0 .text            wolfClawTrigger__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::wolfClawTrigger() {
-    nofralloc
-#include "asm/d/a/d_a_alink/wolfClawTrigger__9daAlink_cFv.s"
+void daAlink_c::wolfClawTrigger() {
+    itemTriggerCheck(2);
 }
-#pragma pop
 
 /* 80127D50-80127D68 122690 0018+00 2/2 0/0 0/0 .text            setWolfDigStatus__9daAlink_cFUc */
 #pragma push
@@ -32275,7 +32182,7 @@ asm void daAlink_c::setWolfDigStatus(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkWolfShapeReverse() const {
+asm BOOL daAlink_c::checkWolfShapeReverse() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkWolfShapeReverse__9daAlink_cCFv.s"
 }
@@ -36404,8 +36311,8 @@ static void dMeter2Info_offUseButton(int pButton) {
 
 /* 80141988-80141990 -00001 0008+00 0/0 0/0 0/0 .text            setLinkState__14Z2CreatureLinkFUc
  */
-void Z2CreatureLink::setLinkState(u8 param_0) {
-    *(u8*)(((u8*)this) + 192) /* this->field_0xc0 */ = (u8)(param_0);
+void Z2CreatureLink::setLinkState(u8 pState) {
+    mLinkState = pState;
 }
 
 /* 80141990-801419A0 13C2D0 0010+00 1/1 0/0 0/0 .text            dComIfGs_getRupee__Fv */

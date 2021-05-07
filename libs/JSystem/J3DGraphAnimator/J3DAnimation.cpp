@@ -287,7 +287,7 @@ SECTION_SDATA2 static f64 lit_975 = 4503601774854144.0 /* cast s32 to float */;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DFrameCtrl::checkPass(f32 param_0) {
+asm int J3DFrameCtrl::checkPass(f32 param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/checkPass__12J3DFrameCtrlFf.s"
 }

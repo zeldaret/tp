@@ -32,6 +32,8 @@ struct fopAcM_prm_class {
 class fopAcM_lc_c {
 public:
     static bool lineCheck(const cXyz*, const cXyz*, const fopAc_ac_c*);
+
+    static u8 mLineCheck[112];
 };
 
 class fopAcM_rc_c {
@@ -42,11 +44,17 @@ public:
 class fopAcM_gc_c {
 public:
     static bool gndCheck(const cXyz*);
+
+    static u8 mGndCheck[84];
+    static f32 mGroundY;
 };
 
 class fopAcM_wt_c {
 public:
     static bool waterCheck(const cXyz*);
+
+    static u8 mWaterCheck[84 + 4 /* padding */];
+    static f32 mWaterY[1 + 1 /* padding */];
 };
 
 struct dKy_tevstr_c;
@@ -64,6 +72,10 @@ inline s32 fopAcM_GetRoomNo(const fopAc_ac_c* pActor) {
 
 inline u32 fopAcM_GetID(const void* pActor) {
     return fpcM_GetID(pActor);
+}
+
+inline s16 fopAcM_GetName(fopAc_ac_c* pActor) {
+    return fpcM_GetName(pActor);
 }
 
 void* fopAcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3, void* pData);

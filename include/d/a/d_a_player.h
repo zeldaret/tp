@@ -403,6 +403,7 @@ public:
     int i_checkNoResetFlg2(daPy_FLG2 pFlag) const { return mNoResetFlg2 & pFlag; }
     void i_onNoResetFlg0(int pFlg) { mNoResetFlg0 |= pFlg; }
     void i_onEndResetFlg1(daPy_ERFLG1 pFlg) { mEndResetFlg1 |= pFlg; }
+    int i_checkWolf() { return i_checkNoResetFlg1(Wolf); }
 
     static u8 m_midnaActor[4];
 };
