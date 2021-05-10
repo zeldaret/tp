@@ -43,7 +43,7 @@ $(M538_TARGET): $(M538_O_FILES) $(M538_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4sand/%.o: rel/d/a/obj/d_a_obj_lv4sand/%.cpp
 	@echo [538] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M538_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

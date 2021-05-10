@@ -43,7 +43,7 @@ $(M293_TARGET): $(M293_O_FILES) $(M293_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_clerka/%.o: rel/d/a/npc/d_a_npc_clerka/%.cpp
 	@echo [293] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M293_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

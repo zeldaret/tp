@@ -41,7 +41,7 @@ $(M653_TARGET): $(M653_O_FILES) $(M653_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tatigi/%.o: rel/d/a/obj/d_a_obj_tatigi/%.cpp
 	@echo [653] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M653_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

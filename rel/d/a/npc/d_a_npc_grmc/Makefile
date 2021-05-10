@@ -43,7 +43,7 @@ $(M309_TARGET): $(M309_O_FILES) $(M309_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_grmc/%.o: rel/d/a/npc/d_a_npc_grmc/%.cpp
 	@echo [309] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M309_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

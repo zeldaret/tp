@@ -41,7 +41,7 @@ $(M740_TARGET): $(M740_O_FILES) $(M740_LIBS)
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_setrestart/%.o: rel/d/a/tag/d_a_tag_setrestart/%.cpp
 	@echo [740] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M740_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -43,7 +43,7 @@ $(M686_TARGET): $(M686_O_FILES) $(M686_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_well_cover/%.o: rel/d/a/obj/d_a_obj_well_cover/%.cpp
 	@echo [686] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M686_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -43,7 +43,7 @@ $(M402_TARGET): $(M402_O_FILES) $(M402_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_barDesk/%.o: rel/d/a/obj/d_a_obj_barDesk/%.cpp
 	@echo [402] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M402_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

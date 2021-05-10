@@ -43,7 +43,7 @@ $(M549_TARGET): $(M549_O_FILES) $(M549_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Tenbin/%.o: rel/d/a/obj/d_a_obj_lv6Tenbin/%.cpp
 	@echo [549] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M549_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

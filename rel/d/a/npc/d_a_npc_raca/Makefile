@@ -43,7 +43,7 @@ $(M350_TARGET): $(M350_O_FILES) $(M350_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_raca/%.o: rel/d/a/npc/d_a_npc_raca/%.cpp
 	@echo [350] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M350_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -43,7 +43,7 @@ $(M486_TARGET): $(M486_O_FILES) $(M486_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ita/%.o: rel/d/a/obj/d_a_obj_ita/%.cpp
 	@echo [486] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M486_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

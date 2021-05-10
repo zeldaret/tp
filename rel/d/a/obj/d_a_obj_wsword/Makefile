@@ -41,7 +41,7 @@ $(M692_TARGET): $(M692_O_FILES) $(M692_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wsword/%.o: rel/d/a/obj/d_a_obj_wsword/%.cpp
 	@echo [692] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M692_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -41,7 +41,7 @@ $(M377_TARGET): $(M377_O_FILES) $(M377_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_worm/%.o: rel/d/a/npc/d_a_npc_worm/%.cpp
 	@echo [377] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M377_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

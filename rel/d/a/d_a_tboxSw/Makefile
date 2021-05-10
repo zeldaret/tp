@@ -41,7 +41,7 @@ $(M755_TARGET): $(M755_O_FILES) $(M755_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_tboxSw/%.o: rel/d/a/d_a_tboxSw/%.cpp
 	@echo [755] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M755_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

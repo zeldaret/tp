@@ -41,7 +41,7 @@ $(M273_TARGET): $(M273_O_FILES) $(M273_LIBS)
 $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag12/%.o: rel/d/a/kytag/d_a_kytag12/%.cpp
 	@echo [273] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M273_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

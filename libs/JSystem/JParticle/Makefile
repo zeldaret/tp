@@ -52,6 +52,6 @@ $(BUILD_DIR)/libJParticle.a: $(LIBJPARTICLE_A_O_FILES)
 $(BUILD_DIR)/libs/JSystem/JParticle/%.o: libs/JSystem/JParticle/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(LIBJPARTICLE_A_CFLAGS) -c -o $@ $@.iconv.cpp
 

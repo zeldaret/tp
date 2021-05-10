@@ -41,7 +41,7 @@ $(M625_TARGET): $(M625_O_FILES) $(M625_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_smw_stone/%.o: rel/d/a/obj/d_a_obj_smw_stone/%.cpp
 	@echo [625] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M625_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -41,7 +41,7 @@ $(M631_TARGET): $(M631_O_FILES) $(M631_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ss_item/%.o: rel/d/a/obj/d_a_obj_ss_item/%.cpp
 	@echo [631] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M631_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

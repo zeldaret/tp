@@ -43,7 +43,7 @@ $(M563_TARGET): $(M563_O_FILES) $(M563_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8UdFloor/%.o: rel/d/a/obj/d_a_obj_lv8UdFloor/%.cpp
 	@echo [563] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M563_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

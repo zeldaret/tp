@@ -41,7 +41,7 @@ $(M326_TARGET): $(M326_O_FILES) $(M326_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kdk/%.o: rel/d/a/npc/d_a_npc_kdk/%.cpp
 	@echo [326] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M326_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

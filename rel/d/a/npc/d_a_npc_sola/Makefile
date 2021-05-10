@@ -43,7 +43,7 @@ $(M364_TARGET): $(M364_O_FILES) $(M364_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_sola/%.o: rel/d/a/npc/d_a_npc_sola/%.cpp
 	@echo [364] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M364_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

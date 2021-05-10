@@ -43,7 +43,7 @@ $(M550_TARGET): $(M550_O_FILES) $(M550_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6TogeRoll/%.o: rel/d/a/obj/d_a_obj_lv6TogeRoll/%.cpp
 	@echo [550] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M550_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

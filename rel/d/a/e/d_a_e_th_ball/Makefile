@@ -41,7 +41,7 @@ $(M237_TARGET): $(M237_O_FILES) $(M237_LIBS)
 $(BUILD_DIR)/rel/d/a/e/d_a_e_th_ball/%.o: rel/d/a/e/d_a_e_th_ball/%.cpp
 	@echo [237] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M237_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -6,102 +6,49 @@
 #include "JSystem/JUtility/JUTNameTab.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "msl_c/string.h"
 
-//
-// Types:
-//
-
-struct ResNTAB {};
-
-struct JUTNameTab {
-    /* 802DE9A0 */ JUTNameTab();
-    /* 802DE9E0 */ JUTNameTab(ResNTAB const*);
-    /* 802DEA1C */ void setResource(ResNTAB const*);
-    /* 802DEA58 */ void getIndex(char const*) const;
-    /* 802DEAF8 */ void getName(u16) const;
-    /* 802DEB28 */ void calcKeyCode(char const*) const;
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__10JUTNameTabFv();
-extern "C" void __ct__10JUTNameTabFPC7ResNTAB();
-extern "C" void setResource__10JUTNameTabFPC7ResNTAB();
-extern "C" void getIndex__10JUTNameTabCFPCc();
-extern "C" void getName__10JUTNameTabCFUs();
-extern "C" void calcKeyCode__10JUTNameTabCFPCc();
-
-//
-// External References:
-//
-
-extern "C" void _savegpr_26();
-extern "C" void _restgpr_26();
-extern "C" void strcmp();
-extern "C" extern void* __vt__10JUTNameTab[3];
-
-//
-// Declarations:
-//
-
-/* 802DE9A0-802DE9E0 2D92E0 0040+00 0/0 5/5 0/0 .text            __ct__10JUTNameTabFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JUTNameTab::JUTNameTab() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTNameTab/__ct__10JUTNameTabFv.s"
+JUTNameTab::JUTNameTab() {
+    setResource(NULL);
 }
-#pragma pop
 
-/* 802DE9E0-802DEA1C 2D9320 003C+00 0/0 12/12 0/0 .text            __ct__10JUTNameTabFPC7ResNTAB */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JUTNameTab::JUTNameTab(ResNTAB const* param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTNameTab/__ct__10JUTNameTabFPC7ResNTAB.s"
+JUTNameTab::JUTNameTab(const ResNTAB* pNameTable) {
+    setResource(pNameTable);
 }
-#pragma pop
 
-/* 802DEA1C-802DEA58 2D935C 003C+00 2/2 10/10 0/0 .text setResource__10JUTNameTabFPC7ResNTAB */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTNameTab::setResource(ResNTAB const* param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTNameTab/setResource__10JUTNameTabFPC7ResNTAB.s"
-}
-#pragma pop
+void JUTNameTab::setResource(const ResNTAB* pNameTable) {
+    mpNameTable = pNameTable;
 
-/* 802DEA58-802DEAF8 2D9398 00A0+00 0/0 9/9 2/2 .text            getIndex__10JUTNameTabCFPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTNameTab::getIndex(char const* param_0) const {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTNameTab/getIndex__10JUTNameTabCFPCc.s"
+    if (pNameTable != NULL) {
+        mNameNum = pNameTable->mEntryNum;
+        mpStrData = (const char*)(pNameTable->mEntries + mNameNum);
+    } else {
+        mNameNum = 0;
+        mpStrData = 0;
+    }
 }
-#pragma pop
 
-/* 802DEAF8-802DEB28 2D9438 0030+00 0/0 14/14 23/23 .text            getName__10JUTNameTabCFUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTNameTab::getName(u16 param_0) const {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTNameTab/getName__10JUTNameTabCFUs.s"
-}
-#pragma pop
+s32 JUTNameTab::getIndex(const char* pName) const {
+    const ResNTAB::Entry* pEntry = mpNameTable->mEntries;
+    u16 keyCode = calcKeyCode(pName);
 
-/* 802DEB28-802DEB58 2D9468 0030+00 1/1 0/0 0/0 .text            calcKeyCode__10JUTNameTabCFPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTNameTab::calcKeyCode(char const* param_0) const {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTNameTab/calcKeyCode__10JUTNameTabCFPCc.s"
+    for (u16 i = 0; i < mNameNum; pEntry++, i++)
+        if (pEntry->mKeyCode == keyCode &&
+            strcmp((mpNameTable->mEntries[i].mOffs + ((const char*)mpNameTable)), pName) == 0)
+            return i;
+
+    return -1;
 }
-#pragma pop
+
+const char* JUTNameTab::getName(u16 index) const {
+    if (index < mNameNum)
+        return mpNameTable->getName(index);
+    return NULL;
+}
+
+u16 JUTNameTab::calcKeyCode(const char* pName) const {
+    u32 keyCode = 0;
+    while (*pName)
+        keyCode = (keyCode * 3) + *pName++;
+    return keyCode;
+}

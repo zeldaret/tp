@@ -41,7 +41,7 @@ $(M393_TARGET): $(M393_O_FILES) $(M393_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_Lv5Key/%.o: rel/d/a/obj/d_a_obj_Lv5Key/%.cpp
 	@echo [393] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M393_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

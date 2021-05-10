@@ -43,7 +43,7 @@ $(M258_TARGET): $(M258_O_FILES) $(M258_LIBS)
 $(BUILD_DIR)/rel/d/a/e/d_a_e_zm/%.o: rel/d/a/e/d_a_e_zm/%.cpp
 	@echo [258] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M258_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

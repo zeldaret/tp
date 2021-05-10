@@ -41,7 +41,7 @@ $(M475_TARGET): $(M475_O_FILES) $(M475_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hbombkoya/%.o: rel/d/a/obj/d_a_obj_hbombkoya/%.cpp
 	@echo [475] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M475_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

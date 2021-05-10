@@ -61,7 +61,7 @@ async def create_library(library: Library):
         await builder.write(f"{o_path}/%.o: {cpp_path}/%.cpp")
         await builder.write(f"\t@mkdir -p $(@D)")
         await builder.write(f"\t@echo building... $<")
-        await builder.write(f"\t@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<")
+        await builder.write(f"\t@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp")
         await builder.write(f"\t@$(CC) $(CFLAGS) $({prefix}_CFLAGS) -c -o $@ $@.iconv.cpp")
         await builder.write("")
     
@@ -149,7 +149,7 @@ async def create_rel(module: Module, rel_path: Path):
         await builder.write(f"{o_path}/%.o: {cpp_path}/%.cpp")
         await builder.write(f"\t@echo [{module.index:>3}] building $@")
         await builder.write(f"\t@mkdir -p $(@D)")
-        await builder.write(f"\t@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<")
+        await builder.write(f"\t@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp")
         await builder.write(f"\t@$(CC) $(CFLAGS) $({prefix}_CFLAGS) -c -o $@ $@.iconv.cpp")
         await builder.write("")
 

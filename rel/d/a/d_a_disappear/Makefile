@@ -41,7 +41,7 @@ $(M49_TARGET): $(M49_O_FILES) $(M49_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_disappear/%.o: rel/d/a/d_a_disappear/%.cpp
 	@echo [ 49] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M49_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

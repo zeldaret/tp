@@ -41,7 +41,7 @@ $(M279_TARGET): $(M279_O_FILES) $(M279_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_mirror/%.o: rel/d/a/d_a_mirror/%.cpp
 	@echo [279] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M279_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

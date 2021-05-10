@@ -9,7 +9,7 @@ def apply(config, args):
     config['build_dir'] = "build/" # only needed for mw map format
     config['expected_build_dir'] = 'expected/build/'
     config['myimg'] = 'build/dolzel2/main.elf'
-    config['baseimg'] = 'baserom.elf'
+    config['baseimg'] = 'expected/build/dolzel2/main.elf'
     config['makeflags'] = []
     if args.source:
         config['makeflags'].append('DEBUG=1')

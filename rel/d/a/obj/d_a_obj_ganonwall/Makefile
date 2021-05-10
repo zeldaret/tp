@@ -41,7 +41,7 @@ $(M455_TARGET): $(M455_O_FILES) $(M455_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ganonwall/%.o: rel/d/a/obj/d_a_obj_ganonwall/%.cpp
 	@echo [455] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M455_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

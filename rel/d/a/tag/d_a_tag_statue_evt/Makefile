@@ -43,7 +43,7 @@ $(M133_TARGET): $(M133_O_FILES) $(M133_LIBS)
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_statue_evt/%.o: rel/d/a/tag/d_a_tag_statue_evt/%.cpp
 	@echo [133] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M133_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

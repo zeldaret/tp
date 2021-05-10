@@ -28,6 +28,6 @@ $(BUILD_DIR)/libJMath.a: $(LIBJMATH_A_O_FILES)
 $(BUILD_DIR)/libs/JSystem/JMath/%.o: libs/JSystem/JMath/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(LIBJMATH_A_CFLAGS) -c -o $@ $@.iconv.cpp
 
