@@ -305,7 +305,7 @@ public:
     };
 
     /* 8009D87C */ bool getE3Zhint();
-    /* 8009D884 */ void getAlinkArcName();
+    /* 8009D884 */ char* getAlinkArcName();
     /* 8009DA60 */ bool checkStageName(char const*);
     /* 8009DA98 */ void tgHitCallback(fopAc_ac_c*, dCcD_GObjInf*, dCcD_GObjInf*);
     /* 8009DB64 */ void coHitCallback(fopAc_ac_c*, dCcD_GObjInf*);
@@ -2791,6 +2791,14 @@ private:
     /* 0x0384C */ float* field_0x384c;
 };
 
+struct daAlinkHIO_anm_c {
+    /* 0x00 */ s16 field_0x00;
+    /* 0x04 */ f32 field_0x04;
+    /* 0x08 */ f32 field_0x08;
+    /* 0x0C */ f32 field_0x0c;
+    /* 0x10 */ f32 field_0x10;
+};  // size = 0x14
+
 struct daAlinkHIO_basic_c1 {
     /* 0x00 */ s16 field_0x00;
     /* 0x02 */ s16 mNeckAimAngleX;
@@ -2823,6 +2831,76 @@ struct daAlinkHIO_basic_c1 {
 class daAlinkHIO_basic_c0 {
 public:
     static daAlinkHIO_basic_c1 const m;
+};
+
+class daAlinkHIO_autoJump_c1 {
+public:
+    /* 0x00 */ daAlinkHIO_anm_c field_0x00;
+    /* 0x14 */ daAlinkHIO_anm_c field_0x14;
+    /* 0x28 */ daAlinkHIO_anm_c field_0x28;
+    /* 0x3C */ daAlinkHIO_anm_c field_0x3c;
+    /* 0x50 */ u8 field_0x50;
+    /* 0x52 */ s16 field_0x52;
+    /* 0x54 */ s16 field_0x54;
+    /* 0x56 */ s16 field_0x56;
+    /* 0x58 */ s16 field_0x58;
+    /* 0x5C */ f32 field_0x5c;
+    /* 0x60 */ f32 field_0x60;
+    /* 0x64 */ f32 field_0x64;
+    /* 0x68 */ f32 field_0x68;
+    /* 0x6C */ f32 field_0x6c;
+    /* 0x70 */ f32 field_0x70;
+    /* 0x74 */ f32 field_0x74;
+    /* 0x78 */ f32 field_0x78;
+    /* 0x7C */ f32 field_0x7c;
+    /* 0x80 */ f32 field_0x80;
+    /* 0x84 */ f32 field_0x84;
+    /* 0x88 */ f32 field_0x88;
+    /* 0x8C */ f32 field_0x8c;
+    /* 0x90 */ f32 field_0x90;
+    /* 0x94 */ f32 field_0x94;
+    /* 0x98 */ f32 field_0x98;
+    /* 0x9C */ f32 field_0x9c;
+    /* 0xA0 */ f32 field_0xa0;
+    /* 0xA4 */ f32 field_0xa4;
+    /* 0xA8 */ f32 field_0xa8;
+    /* 0xAC */ f32 field_0xac;
+    /* 0xB0 */ f32 field_0xb0;
+};  // size = 0xB4
+
+class daAlinkHIO_autoJump_c0 {
+public:
+    static daAlinkHIO_autoJump_c1 const m;
+};
+
+class daAlinkHIO_wlAutoJump_c1 {
+public:
+    /* 0x00 */ daAlinkHIO_anm_c field_0x00;
+    /* 0x14 */ daAlinkHIO_anm_c field_0x14;
+    /* 0x28 */ daAlinkHIO_anm_c field_0x28;
+    /* 0x3C */ u8 field_0x3c;
+    /* 0x3E */ s16 field_0x3e;
+    /* 0x40 */ s16 field_0x40;
+    /* 0x42 */ s16 field_0x42;
+    /* 0x44 */ f32 field_0x44;
+    /* 0x48 */ f32 field_0x48;
+    /* 0x4C */ f32 field_0x4c;
+    /* 0x50 */ f32 field_0x50;
+    /* 0x54 */ f32 field_0x54;
+    /* 0x58 */ f32 field_0x58;
+    /* 0x5C */ f32 field_0x5c;
+    /* 0x60 */ f32 field_0x60;
+    /* 0x64 */ f32 field_0x64;
+    /* 0x68 */ f32 field_0x68;
+    /* 0x6C */ f32 field_0x6c;
+    /* 0x70 */ f32 field_0x70;
+    /* 0x74 */ f32 field_0x74;
+    /* 0x78 */ f32 field_0x78;
+};  // size = 0x7C
+
+class daAlinkHIO_wlAutoJump_c0 {
+public:
+    static daAlinkHIO_wlAutoJump_c1 const m;
 };
 
 class daHorse_c {

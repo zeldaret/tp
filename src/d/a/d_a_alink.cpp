@@ -117,8 +117,6 @@ struct daAlink_matAnm_c {
     /* 800D0B8C */ ~daAlink_matAnm_c();
 };
 
-struct daAlinkHIO_anm_c {};
-
 struct dCcG_At_Spl {};
 
 struct dDemo_actor_c {
@@ -224,10 +222,6 @@ struct daAlinkHIO_wlBall_c0 {
 
 struct daAlinkHIO_wlBackJump_c0 {
     static u8 const m[56];
-};
-
-struct daAlinkHIO_wlAutoJump_c0 {
-    static u8 const m[124];
 };
 
 struct daAlinkHIO_wlAttack_c0 {
@@ -573,10 +567,6 @@ struct daAlinkHIO_board_c0 {
 
 struct daAlinkHIO_backJump_c0 {
     static u8 const m[56];
-};
-
-struct daAlinkHIO_autoJump_c0 {
-    static u8 const m[180];
 };
 
 struct daAlinkHIO_atnMove_c0 {
@@ -3904,131 +3894,36 @@ bool daAlink_c::getE3Zhint() {
 
 /* ############################################################################################## */
 /* 80452C50-80452C58 001250 0005+03 2/2 0/0 0/0 .sdata2          l_wArcName */
-SECTION_SDATA2 static char l_wArcName[5 + 3 /* padding */] = {
-    0x57,
-    0x6D,
-    0x64,
-    0x6C,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_SDATA2 static char l_wArcName[8] = "Wmdl";
 
 /* 80452C58-80452C60 001258 0005+03 2/2 0/0 0/0 .sdata2          l_bArcName */
-SECTION_SDATA2 static u8 l_bArcName[5 + 3 /* padding */] = {
-    0x42,
-    0x6D,
-    0x64,
-    0x6C,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_SDATA2 static char l_bArcName[8] = "Bmdl";
 
 /* 80452C60-80452C68 001260 0005+03 2/2 0/0 0/0 .sdata2          l_kArcName */
-SECTION_SDATA2 static u8 l_kArcName[5 + 3 /* padding */] = {
-    0x4B,
-    0x6D,
-    0x64,
-    0x6C,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_SDATA2 static char l_kArcName[8] = "Kmdl";
 
 /* 80452C68-80452C70 001268 0005+03 2/2 0/0 0/0 .sdata2          l_zArcName */
-SECTION_SDATA2 static u8 l_zArcName[5 + 3 /* padding */] = {
-    0x5A,
-    0x6D,
-    0x64,
-    0x6C,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_SDATA2 static char l_zArcName[8] = "Zmdl";
 
 /* 80452C70-80452C78 001270 0005+03 3/3 0/0 0/0 .sdata2          l_mArcName */
-SECTION_SDATA2 static u8 l_mArcName[5 + 3 /* padding */] = {
-    0x4D,
-    0x6D,
-    0x64,
-    0x6C,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_SDATA2 static char l_mArcName[8] = "Mmdl";
 
 /* 80452C78-80452C80 001278 0006+02 1/1 0/0 0/0 .sdata2          l_hyShdArcName */
-SECTION_SDATA2 static u8 l_hyShdArcName[6 + 2 /* padding */] = {
-    0x48,
-    0x79,
-    0x53,
-    0x68,
-    0x64,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-};
+SECTION_SDATA2 static char l_hyShdArcName[8] = "HyShd";
 
 /* 80452C80-80452C88 001280 0006+02 1/1 0/0 0/0 .sdata2          l_cWShdArcName */
-SECTION_SDATA2 static u8 l_cWShdArcName[6 + 2 /* padding */] = {
-    0x43,
-    0x57,
-    0x53,
-    0x68,
-    0x64,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-};
+SECTION_SDATA2 static char l_cWShdArcName[8] = "CWShd";
 
 /* 80452C88-80452C90 001288 0006+02 1/1 0/0 0/0 .sdata2          l_sWShdArcName */
-SECTION_SDATA2 static u8 l_sWShdArcName[6 + 2 /* padding */] = {
-    0x53,
-    0x57,
-    0x53,
-    0x68,
-    0x64,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-};
+SECTION_SDATA2 static char l_sWShdArcName[8] = "SWShd";
 
 /* 80452C90-80452C98 001290 0006+02 7/7 0/0 0/0 .sdata2          l_arcName */
-SECTION_SDATA2 static u8 l_arcName[6 + 2 /* padding */] = {
-    0x41,
-    0x6C,
-    0x69,
-    0x6E,
-    0x6B,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-};
+SECTION_SDATA2 static char l_arcName[8] = "Alink";
 
 /* 8009D884-8009D88C 0981C4 0008+00 0/0 0/0 13/13 .text            getAlinkArcName__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getAlinkArcName() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getAlinkArcName__9daAlink_cFv.s"
+char* daAlink_c::getAlinkArcName() {
+    return l_arcName;
 }
-#pragma pop
 
 /* 8009D88C-8009D8B8 0981CC 002C+00 1/1 0/0 0/0 .text
  * daAlink_tgHitCallback__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
@@ -5850,21 +5745,37 @@ SECTION_RODATA u8 const daAlinkHIO_crouch_c0::m[76] = {
 COMPILER_STRIP_GATE(0x8038E01C, &daAlinkHIO_crouch_c0::m);
 
 /* 8038E068-8038E11C 01A6C8 00B4+00 26/32 0/0 0/0 .rodata          m__22daAlinkHIO_autoJump_c0 */
-SECTION_RODATA u8 const daAlinkHIO_autoJump_c0::m[180] = {
-    0x00, 0x06, 0x00, 0x00, 0x3F, 0x99, 0x99, 0x9A, 0x40, 0x40, 0x00, 0x00, 0x40, 0xC0, 0x00,
-    0x00, 0x40, 0xE0, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x3F, 0x66, 0x66, 0x66, 0x3F, 0x80,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0xA0, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x3F,
-    0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0x40, 0xA0, 0x00, 0x00,
-    0x00, 0x0A, 0x00, 0x00, 0x3F, 0x19, 0x99, 0x9A, 0x00, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00,
-    0x00, 0x41, 0x30, 0x00, 0x00, 0x01, 0x00, 0x23, 0xC6, 0x2F, 0xFF, 0x00, 0x08, 0x40, 0x00,
-    0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0x3F, 0xA6, 0x66, 0x66, 0x40,
-    0xA0, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0x40, 0x40, 0x00, 0x00, 0xC0, 0x59, 0x99, 0x9A,
-    0xC3, 0x48, 0x00, 0x00, 0x41, 0xD0, 0x00, 0x00, 0x40, 0x40, 0x00, 0x00, 0x40, 0x80, 0x00,
-    0x00, 0x41, 0x20, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0x2A, 0x00, 0x00, 0x42, 0xC8,
-    0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0xC0,
-    0x59, 0x99, 0x9A, 0x41, 0x60, 0x00, 0x00, 0xC0, 0xA0, 0x00, 0x00, 0x41, 0xB8, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8038E068, &daAlinkHIO_autoJump_c0::m);
+daAlinkHIO_autoJump_c1 const daAlinkHIO_autoJump_c0::m = {{6, 1.2f, 3.0f, 6.0f, 7.0f},
+                                                          {7, 0.9f, 1.0f, 0.0f, 5.0f},
+                                                          {4, 0.75f, 0.0f, 2.0f, 5.0f},
+                                                          {10, 0.6f, 0.0f, 2.0f, 11.0f},
+                                                          1,
+                                                          9158,
+                                                          12287,
+                                                          8,
+                                                          16384,
+                                                          10.0f,
+                                                          10.0f,
+                                                          1.3f,
+                                                          5.0f,
+                                                          10.0f,
+                                                          3.0f,
+                                                          -3.4f,
+                                                          -200.0f,
+                                                          26.0f,
+                                                          3.0f,
+                                                          4.0f,
+                                                          10.0f,
+                                                          1.0f,
+                                                          170.0f,
+                                                          100.0f,
+                                                          20.0f,
+                                                          30.0f,
+                                                          20.0f,
+                                                          -3.4f,
+                                                          14.0f,
+                                                          -5.0f,
+                                                          23.0f};
 
 /* 8038E11C-8038E164 01A77C 0048+00 7/7 0/0 0/0 .rodata          m__23daAlinkHIO_smallJump_c0 */
 SECTION_RODATA u8 const daAlinkHIO_smallJump_c0::m[72] = {
@@ -6379,17 +6290,27 @@ SECTION_RODATA u8 const daAlinkHIO_wlHowl_c0::m[96] = {
 COMPILER_STRIP_GATE(0x8038F048, &daAlinkHIO_wlHowl_c0::m);
 
 /* 8038F0A8-8038F124 01B708 007C+00 8/13 0/0 0/0 .rodata          m__24daAlinkHIO_wlAutoJump_c0 */
-SECTION_RODATA u8 const daAlinkHIO_wlAutoJump_c0::m[124] = {
-    0x00, 0x03, 0x00, 0x00, 0x3F, 0x99, 0x99, 0x9A, 0x3F, 0x80, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00,
-    0x40, 0x80, 0x00, 0x00, 0x00, 0x18, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-    0x40, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00,
-    0x40, 0x00, 0x00, 0x00, 0x40, 0xA0, 0x00, 0x00, 0x40, 0xE0, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
-    0x1D, 0x4C, 0x20, 0x08, 0x41, 0x20, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0x3F, 0x8C, 0xCC, 0xCD,
-    0x41, 0x20, 0x00, 0x00, 0x40, 0xA0, 0x00, 0x00, 0xC0, 0x66, 0x66, 0x66, 0xC2, 0xC8, 0x00, 0x00,
-    0x3F, 0x99, 0x99, 0x9A, 0x41, 0x20, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0x3F, 0x82, 0x8F, 0x5C,
-    0x42, 0x18, 0x00, 0x00, 0x41, 0xF8, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8038F0A8, &daAlinkHIO_wlAutoJump_c0::m);
+daAlinkHIO_wlAutoJump_c1 const daAlinkHIO_wlAutoJump_c0::m = {{3, 1.2f, 1.0f, 2.0f, 4.0f},
+                                                              {24, 1.0f, 1.0f, 2.0f, 2.0f},
+                                                              {5, 0.5f, 2.0f, 5.0f, 7.0f},
+                                                              1,
+                                                              0,
+                                                              7500,
+                                                              8200,
+                                                              10.0f,
+                                                              10.0f,
+                                                              1.1f,
+                                                              10.0f,
+                                                              5.0f,
+                                                              -3.6f,
+                                                              -100.0f,
+                                                              1.2f,
+                                                              10.0f,
+                                                              10.0f,
+                                                              1.02f,
+                                                              38.0f,
+                                                              31.0f,
+                                                              100.0f};
 
 /* 8038F124-8038F138 01B784 0014+00 4/4 0/0 0/0 .rodata          m__20daAlinkHIO_wlPush_c0 */
 SECTION_RODATA u8 const daAlinkHIO_wlPush_c0::m[20] = {
@@ -6812,60 +6733,28 @@ asm void daAlink_c::setMoveSlantAngle() {
 /* 8038FA10-8038FA20 01C070 0010+00 0/0 0/0 0/0 .rodata          l_worldChangeEventName */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const l_worldChangeEventName[16] = {
-    0x57, 0x4F, 0x52, 0x4C, 0x44, 0x5F, 0x43, 0x48, 0x41, 0x4E, 0x47, 0x45, 0x5F, 0x49, 0x4E, 0x00,
-};
+SECTION_RODATA static char const l_worldChangeEventName[16] = "WORLD_CHANGE_IN";
 COMPILER_STRIP_GATE(0x8038FA10, &l_worldChangeEventName);
 #pragma pop
 
 /* 8038FA20-8038FA38 01C080 0015+03 0/0 0/0 0/0 .rodata          l_wolfWorldChangeEventName */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const l_wolfWorldChangeEventName[21 + 3 /* padding */] = {
-    0x57,
-    0x4F,
-    0x4C,
-    0x46,
-    0x5F,
-    0x57,
-    0x4F,
-    0x52,
-    0x4C,
-    0x44,
-    0x5F,
-    0x43,
-    0x48,
-    0x41,
-    0x4E,
-    0x47,
-    0x45,
-    0x5F,
-    0x49,
-    0x4E,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_RODATA static char const l_wolfWorldChangeEventName[24] = "WOLF_WORLD_CHANGE_IN";
 COMPILER_STRIP_GATE(0x8038FA20, &l_wolfWorldChangeEventName);
 #pragma pop
 
 /* 8038FA38-8038FA48 01C098 0010+00 0/1 0/0 0/0 .rodata          l_defaultGetEventName */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const l_defaultGetEventName[16] = {
-    0x44, 0x45, 0x46, 0x41, 0x55, 0x4C, 0x54, 0x5F, 0x47, 0x45, 0x54, 0x49, 0x54, 0x45, 0x4D, 0x00,
-};
+SECTION_RODATA static char const l_defaultGetEventName[16] = "DEFAULT_GETITEM";
 COMPILER_STRIP_GATE(0x8038FA38, &l_defaultGetEventName);
 #pragma pop
 
 /* 8038FA48-8038FA54 01C0A8 000C+00 0/0 0/0 0/0 .rodata          l_crawlStartFrontOffset */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const l_crawlStartFrontOffset[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0x42, 0xE0, 0x00, 0x00,
-};
+SECTION_RODATA static float const l_crawlStartFrontOffset[3] = {0.0f, 30.0f, 112.0f};
 COMPILER_STRIP_GATE(0x8038FA48, &l_crawlStartFrontOffset);
 #pragma pop
 
@@ -31421,25 +31310,13 @@ void daAlink_c::commonLargeDamageUpInit(int param_0, int param_1, s16 param_2, s
 }
 
 /* 80120534-80120580 11AE74 004C+00 4/4 0/0 0/0 .text            commonFallInit__9daAlink_cFi */
-// need to setup HIO data
-#ifdef NONMATCHING
 void daAlink_c::commonFallInit(int param_0) {
     if (i_checkWolf()) {
-        procWolfFallInit(param_0, daAlinkHIO_wlAutoJump_c0::m.);
+        procWolfFallInit(param_0, daAlinkHIO_wlAutoJump_c0::m.field_0x54);
     } else {
-        procFallInit(param_0, daAlinkHIO_autoJump_c0::m.);
+        procFallInit(param_0, daAlinkHIO_autoJump_c0::m.field_0x70);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::commonFallInit(int param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/commonFallInit__9daAlink_cFi.s"
-}
-#pragma pop
-#endif
 
 /* 80120580-80120634 11AEC0 00B4+00 21/21 0/0 0/0 .text
  * setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz                  */

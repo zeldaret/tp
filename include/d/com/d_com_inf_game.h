@@ -383,23 +383,17 @@ public:
     u8 setWorldDark() { return mWorldDark; }
 
     dSv_player_c& getPlayer() { return info.getPlayer(); }
-    dSv_save_c& getSaveFile() { return info.getSaveFile(); }
+    dSv_save_c& getSaveFile() { return info.getSavedata(); }
     u32 getNowVibration() { return play.getNowVibration(); }
     dDlst_peekZ_c& getdlstPeekZ() { return draw_list_list.dlstPeekZ; }
     dComIfG_play_c& getPlay() { return play; }
     dSv_memory_c& getMemory() { return info.getMemory(); }
-    dSv_event_c& getEvent() { return info.getEvent(); }
+    dSv_event_c& getEvent() { return info.getTmp(); }
     dSv_info_c& getInfo() { return info; }
     inline dDlst_list_c& getDrawlist() { return draw_list_list; }
 
 private:
     /* 0x00000 */ dSv_info_c info;
-    /* 0x00EEC */ u8 field_0xeec[0x38];
-    /* 0x00F24 */ u32 saveTotalTime;
-    /* 0x00F28 */ u32 saveStartTime;
-    /* 0x00F2C */ u32 field_0xf2c;
-    /* 0x00F30 */ u32 field_0xf30;
-    /* 0x00F34 */ u32 field_0xf34;
     /* 0x00F38 */ dComIfG_play_c play;
     /* 0x05F64 */ dDlst_list_c draw_list_list;
     /* 0x1C110 */ u8 field_0x1C114[0x1E8];
