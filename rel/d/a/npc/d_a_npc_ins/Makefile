@@ -43,7 +43,7 @@ $(M321_TARGET): $(M321_O_FILES) $(M321_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ins/%.o: rel/d/a/npc/d_a_npc_ins/%.cpp
 	@echo [321] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M321_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

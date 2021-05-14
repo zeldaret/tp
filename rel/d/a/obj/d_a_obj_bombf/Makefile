@@ -41,7 +41,7 @@ $(M412_TARGET): $(M412_O_FILES) $(M412_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bombf/%.o: rel/d/a/obj/d_a_obj_bombf/%.cpp
 	@echo [412] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M412_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

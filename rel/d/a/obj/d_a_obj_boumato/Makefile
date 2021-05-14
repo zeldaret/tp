@@ -43,7 +43,7 @@ $(M413_TARGET): $(M413_O_FILES) $(M413_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_boumato/%.o: rel/d/a/obj/d_a_obj_boumato/%.cpp
 	@echo [413] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M413_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -43,7 +43,7 @@ $(M647_TARGET): $(M647_O_FILES) $(M647_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swturn/%.o: rel/d/a/obj/d_a_obj_swturn/%.cpp
 	@echo [647] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M647_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

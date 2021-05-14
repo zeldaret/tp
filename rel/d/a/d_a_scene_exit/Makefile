@@ -41,7 +41,7 @@ $(M24_TARGET): $(M24_O_FILES) $(M24_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_scene_exit/%.o: rel/d/a/d_a_scene_exit/%.cpp
 	@echo [ 24] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M24_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

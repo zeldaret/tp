@@ -43,7 +43,7 @@ $(M117_TARGET): $(M117_O_FILES) $(M117_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_scene_exit2/%.o: rel/d/a/d_a_scene_exit2/%.cpp
 	@echo [117] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M117_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

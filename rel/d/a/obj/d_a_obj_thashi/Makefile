@@ -41,7 +41,7 @@ $(M657_TARGET): $(M657_O_FILES) $(M657_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_thashi/%.o: rel/d/a/obj/d_a_obj_thashi/%.cpp
 	@echo [657] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M657_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

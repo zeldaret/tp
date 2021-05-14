@@ -41,7 +41,7 @@ $(M704_TARGET): $(M704_O_FILES) $(M704_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_ppolamp/%.o: rel/d/a/d_a_ppolamp/%.cpp
 	@echo [704] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M704_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

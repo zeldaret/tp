@@ -43,7 +43,7 @@ $(M19_TARGET): $(M19_O_FILES) $(M19_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ito/%.o: rel/d/a/obj/d_a_obj_ito/%.cpp
 	@echo [ 19] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M19_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

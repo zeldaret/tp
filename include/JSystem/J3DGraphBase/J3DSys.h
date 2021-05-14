@@ -4,6 +4,12 @@
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 
+// Perhaps move to a new J3DEnum.h?
+enum J3DError {
+    kJ3DError_Success = 0,
+    kJ3DError_Alloc = 4,
+};
+
 struct _GXTexCacheSize {};
 
 struct J3DSys {

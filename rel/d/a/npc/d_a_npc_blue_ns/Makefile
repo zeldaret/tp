@@ -43,7 +43,7 @@ $(M287_TARGET): $(M287_O_FILES) $(M287_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_blue_ns/%.o: rel/d/a/npc/d_a_npc_blue_ns/%.cpp
 	@echo [287] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M287_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

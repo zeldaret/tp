@@ -4,44 +4,11 @@
 //
 
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-//
-// Types:
-//
-
-struct J3DShapePacket {};
-
-struct J3DPacket {
-    /* 80312758 */ void addChildPacket(J3DPacket*);
-};
-
-struct J3DMatPacket {
-    /* 80312A04 */ void addShapePacket(J3DShapePacket*);
-    /* 80312A74 */ void isSame(J3DMatPacket*) const;
-};
-
-struct J3DDrawBuffer {
-    /* 80324F08 */ void initialize();
-    /* 80324F70 */ void allocBuffer(u32);
-    /* 80325008 */ ~J3DDrawBuffer();
-    /* 80325068 */ void frameInit();
-    /* 8032509C */ void entryMatSort(J3DMatPacket*);
-    /* 803251E4 */ void entryMatAnmSort(J3DMatPacket*);
-    /* 8032529C */ void entryZSort(J3DMatPacket*);
-    /* 803253B4 */ void entryModelSort(J3DMatPacket*);
-    /* 80325404 */ void entryInvalidSort(J3DMatPacket*);
-    /* 80325458 */ void entryNonSort(J3DMatPacket*);
-    /* 8032548C */ void entryImm(J3DPacket*, u16);
-    /* 803254AC */ void draw() const;
-    /* 80325500 */ void drawHead() const;
-    /* 80325578 */ void drawTail() const;
-
-    static u8 sortFuncTable[72];
-    static u8 drawFuncTable[24];
-    static u8 entryNum[4 + 4 /* padding */];
-};
+#include "JSystem/J3DGraphBase/J3DPacket.h"
 
 //
 // Forward References:
@@ -82,7 +49,6 @@ extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
-extern "C" extern u8 j3dSys[284];
 
 //
 // Declarations:
@@ -98,35 +64,51 @@ SECTION_SDATA2 static f32 lit_782 = 10000.0f;
 /* 80456408-80456410 004A08 0008+00 2/2 0/0 0/0 .sdata2          @784 */
 SECTION_SDATA2 static f64 lit_784 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 80324F08-80324F70 31F848 0068+00 0/0 1/1 0/0 .text            initialize__13J3DDrawBufferFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DDrawBuffer::initialize() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DDrawBuffer/initialize__13J3DDrawBufferFv.s"
+void J3DDrawBuffer::calcZRatio() {
+    mZRatio = (mZFar - mZNear) / (f32)mBufSize;
 }
-#pragma pop
 
-/* 80324F70-80325008 31F8B0 0098+00 0/0 1/1 0/0 .text            allocBuffer__13J3DDrawBufferFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DDrawBuffer::allocBuffer(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DDrawBuffer/allocBuffer__13J3DDrawBufferFUl.s"
+void J3DDrawBuffer::initialize() {
+    mDrawType = 0;
+    mSortType = 0;
+    mZNear = lit_781;
+    mZFar = lit_782;
+    mpZMtx = NULL;
+    mpCallBackPacket = NULL;
+    mBufSize = 0x20;
+    calcZRatio();
 }
-#pragma pop
 
-/* 80325008-80325068 31F948 0060+00 0/0 2/2 0/0 .text            __dt__13J3DDrawBufferFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DDrawBuffer::~J3DDrawBuffer() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DDrawBuffer/__dt__13J3DDrawBufferFv.s"
+J3DError J3DDrawBuffer::allocBuffer(u32 bufSize) {
+    mpBuf = new (0x20) J3DPacket*[bufSize];
+    if (mpBuf == NULL)
+        return kJ3DError_Alloc;
+
+    mBufSize = bufSize;
+    frameInit();
+    calcZRatio();
+    return kJ3DError_Success;
 }
-#pragma pop
+
+J3DDrawBuffer::~J3DDrawBuffer() {
+    frameInit();
+
+    delete[] mpBuf;
+    mpBuf = NULL;
+}
+
+#if NON_MATCHING
+
+/* 80325068-8032509C 31F9A8 0034+00 2/2 1/1 0/0 .text            frameInit__13J3DDrawBufferFv */
+void J3DDrawBuffer::frameInit() {
+    // can't make mwcc not generate "mtctr" for this loop
+    for (int i = 0; i < mBufSize; i++)
+        mpBuf[i] = NULL;
+
+    mpCallBackPacket = NULL;
+}
+
+#else
 
 /* 80325068-8032509C 31F9A8 0034+00 2/2 1/1 0/0 .text            frameInit__13J3DDrawBufferFv */
 #pragma push
@@ -137,6 +119,8 @@ asm void J3DDrawBuffer::frameInit() {
 #include "asm/JSystem/J3DGraphBase/J3DDrawBuffer/frameInit__13J3DDrawBufferFv.s"
 }
 #pragma pop
+
+#endif
 
 /* 8032509C-803251E4 31F9DC 0148+00 2/1 0/0 0/0 .text
  * entryMatSort__13J3DDrawBufferFP12J3DMatPacket                */
@@ -193,26 +177,21 @@ asm void J3DDrawBuffer::entryInvalidSort(J3DMatPacket* param_0) {
 }
 #pragma pop
 
-/* 80325458-8032548C 31FD98 0034+00 1/0 0/0 0/0 .text
- * entryNonSort__13J3DDrawBufferFP12J3DMatPacket                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DDrawBuffer::entryNonSort(J3DMatPacket* param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DDrawBuffer/entryNonSort__13J3DDrawBufferFP12J3DMatPacket.s"
-}
-#pragma pop
+bool J3DDrawBuffer::entryNonSort(J3DMatPacket* pMat) {
+    pMat->clear();
+    pMat->mpFirstShapePacket->clear();
 
-/* 8032548C-803254AC 31FDCC 0020+00 0/0 8/8 9/9 .text entryImm__13J3DDrawBufferFP9J3DPacketUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DDrawBuffer::entryImm(J3DPacket* param_0, u16 param_1) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DDrawBuffer/entryImm__13J3DDrawBufferFP9J3DPacketUs.s"
+    // inlined copy of entryImm, add to start of buf
+    pMat->mpNextSibling = mpBuf[0];
+    mpBuf[0] = pMat;
+    return true;
 }
-#pragma pop
+
+bool J3DDrawBuffer::entryImm(J3DPacket* pPacket, u16 index) {
+    pPacket->mpNextSibling = mpBuf[index];
+    mpBuf[index] = pPacket;
+    return true;
+}
 
 /* ############################################################################################## */
 /* 803CEBE8-803CEBF4 -00001 000C+00 1/1 0/0 0/0 .data            @992 */

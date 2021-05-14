@@ -41,7 +41,7 @@ $(M56_TARGET): $(M56_O_FILES) $(M56_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_suspend/%.o: rel/d/a/d_a_suspend/%.cpp
 	@echo [ 56] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M56_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

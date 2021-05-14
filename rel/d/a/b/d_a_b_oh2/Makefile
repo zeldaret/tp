@@ -41,7 +41,7 @@ $(M151_TARGET): $(M151_O_FILES) $(M151_LIBS)
 $(BUILD_DIR)/rel/d/a/b/d_a_b_oh2/%.o: rel/d/a/b/d_a_b_oh2/%.cpp
 	@echo [151] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M151_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -127,7 +127,7 @@ $(ELF): $(LIBS) $(O_FILES)
 $(BUILD_DIR)/%.o: %.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) -c -o $@ $@.iconv.cpp
 
 # shared cpp files for RELs

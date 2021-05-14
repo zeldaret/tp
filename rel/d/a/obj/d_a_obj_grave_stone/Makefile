@@ -41,7 +41,7 @@ $(M466_TARGET): $(M466_O_FILES) $(M466_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_grave_stone/%.o: rel/d/a/obj/d_a_obj_grave_stone/%.cpp
 	@echo [466] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M466_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

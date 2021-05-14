@@ -43,7 +43,7 @@ $(M622_TARGET): $(M622_O_FILES) $(M622_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_smgdoor/%.o: rel/d/a/obj/d_a_obj_smgdoor/%.cpp
 	@echo [622] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M622_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

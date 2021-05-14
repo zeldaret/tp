@@ -41,7 +41,7 @@ $(M132_TARGET): $(M132_O_FILES) $(M132_LIBS)
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_spring/%.o: rel/d/a/tag/d_a_tag_spring/%.cpp
 	@echo [132] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M132_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

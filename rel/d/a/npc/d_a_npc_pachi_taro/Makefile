@@ -43,7 +43,7 @@ $(M344_TARGET): $(M344_O_FILES) $(M344_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_pachi_taro/%.o: rel/d/a/npc/d_a_npc_pachi_taro/%.cpp
 	@echo [344] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M344_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

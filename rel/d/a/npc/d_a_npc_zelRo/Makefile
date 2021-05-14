@@ -43,7 +43,7 @@ $(M388_TARGET): $(M388_O_FILES) $(M388_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelRo/%.o: rel/d/a/npc/d_a_npc_zelRo/%.cpp
 	@echo [388] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M388_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

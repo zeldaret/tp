@@ -41,7 +41,7 @@ $(M81_TARGET): $(M81_O_FILES) $(M81_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fish/%.o: rel/d/a/npc/d_a_npc_fish/%.cpp
 	@echo [ 81] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M81_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

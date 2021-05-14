@@ -43,7 +43,7 @@ $(M110_TARGET): $(M110_O_FILES) $(M110_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rope_bridge/%.o: rel/d/a/obj/d_a_obj_rope_bridge/%.cpp
 	@echo [110] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M110_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

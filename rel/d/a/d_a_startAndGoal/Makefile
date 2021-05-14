@@ -41,7 +41,7 @@ $(M706_TARGET): $(M706_O_FILES) $(M706_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_startAndGoal/%.o: rel/d/a/d_a_startAndGoal/%.cpp
 	@echo [706] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M706_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -41,7 +41,7 @@ $(M118_TARGET): $(M118_O_FILES) $(M118_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_shop_item/%.o: rel/d/a/d_a_shop_item/%.cpp
 	@echo [118] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M118_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

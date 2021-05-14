@@ -1,6 +1,7 @@
 #ifndef GX_H_
 #define GX_H_
 
+#include "dolphin/gx/GXDisplayList.h"
 #include "dolphin/gx/GXTexture.h"
 #include "dolphin/types.h"
 

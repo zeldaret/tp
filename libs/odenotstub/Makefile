@@ -24,6 +24,6 @@ $(BUILD_DIR)/libodenotstub.a: $(LIBODENOTSTUB_A_O_FILES)
 $(BUILD_DIR)/libs/odenotstub/%.o: libs/odenotstub/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(LIBODENOTSTUB_A_CFLAGS) -c -o $@ $@.iconv.cpp
 

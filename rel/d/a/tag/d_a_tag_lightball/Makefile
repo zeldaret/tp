@@ -41,7 +41,7 @@ $(M725_TARGET): $(M725_O_FILES) $(M725_LIBS)
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lightball/%.o: rel/d/a/tag/d_a_tag_lightball/%.cpp
 	@echo [725] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M725_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

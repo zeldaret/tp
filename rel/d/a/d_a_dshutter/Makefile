@@ -41,7 +41,7 @@ $(M10_TARGET): $(M10_O_FILES) $(M10_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_dshutter/%.o: rel/d/a/d_a_dshutter/%.cpp
 	@echo [ 10] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M10_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

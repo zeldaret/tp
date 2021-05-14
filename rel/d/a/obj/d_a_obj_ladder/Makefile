@@ -41,7 +41,7 @@ $(M103_TARGET): $(M103_O_FILES) $(M103_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ladder/%.o: rel/d/a/obj/d_a_obj_ladder/%.cpp
 	@echo [103] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M103_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

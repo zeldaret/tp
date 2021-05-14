@@ -41,7 +41,7 @@ $(M710_TARGET): $(M710_O_FILES) $(M710_LIBS)
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_Lv6Gate/%.o: rel/d/a/tag/d_a_tag_Lv6Gate/%.cpp
 	@echo [710] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M710_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

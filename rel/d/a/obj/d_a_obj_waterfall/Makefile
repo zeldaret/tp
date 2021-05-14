@@ -41,7 +41,7 @@ $(M681_TARGET): $(M681_O_FILES) $(M681_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_waterfall/%.o: rel/d/a/obj/d_a_obj_waterfall/%.cpp
 	@echo [681] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M681_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

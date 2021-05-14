@@ -41,7 +41,7 @@ $(M432_TARGET): $(M432_O_FILES) $(M432_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crystal/%.o: rel/d/a/obj/d_a_obj_crystal/%.cpp
 	@echo [432] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M432_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

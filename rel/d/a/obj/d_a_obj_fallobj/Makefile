@@ -41,7 +41,7 @@ $(M442_TARGET): $(M442_O_FILES) $(M442_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fallobj/%.o: rel/d/a/obj/d_a_obj_fallobj/%.cpp
 	@echo [442] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M442_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -38,6 +38,6 @@ $(BUILD_DIR)/libdvd.a: $(LIBDVD_A_O_FILES)
 $(BUILD_DIR)/libs/dolphin/dvd/%.o: libs/dolphin/dvd/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(LIBDVD_A_CFLAGS) -c -o $@ $@.iconv.cpp
 
