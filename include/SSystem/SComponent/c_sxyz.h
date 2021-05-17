@@ -4,9 +4,8 @@
 #include "dolphin/types.h"
 
 struct SVec {
-    s16 mX, mY, mZ;
+    s16 x, y, z;
 };
-
 class csXyz : public SVec {
 public:
     static const csXyz Zero;
@@ -18,9 +17,9 @@ public:
     /* 8026745C */ void operator+=(csXyz&);
     /* 80267490 */ csXyz operator-(csXyz&);
     /* 802674E8 */ csXyz operator*(f32);
-    s16 GetX() const { return mX; }
-    s16 GetY() const { return mY; }
-    s16 GetZ() const { return mZ; }
+    s16 GetX() const { return x; }
+    s16 GetY() const { return y; }
+    s16 GetZ() const { return z; }
 };
 
 #endif /* C_SXYZ_H */

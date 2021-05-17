@@ -657,7 +657,7 @@ s32 fopAcM_createChildFromOffset(s16 pProcTypeID, unsigned int pParentProcID, u3
     }
     cXyz parentPos = parentActor->getPosition();
     csXyz tmpRotCopy(tmpRot);
-    tmpRotCopy.mY += parentRotY;
+    tmpRotCopy.y += parentRotY;
     parentPos.x += tmpPos.z * cM_ssin(parentRotY) + tmpPos.x * cM_scos(parentRotY);
     parentPos.y += tmpPos.y;
     parentPos.z += tmpPos.z * cM_scos(parentRotY) - tmpPos.x * cM_ssin(parentRotY);
@@ -868,7 +868,7 @@ asm void fopAcM_setCullSizeBox2(fopAc_ac_c* param_0, J3DModelData* param_1) {
 /* 8001A5DC-8001A60C 014F1C 0030+00 0/0 0/0 1/1 .text            fopAcM_addAngleY__FP10fopAc_ac_css
  */
 bool fopAcM_addAngleY(fopAc_ac_c* pActor, s16 pTarget, s16 pStep) {
-    return cLib_chaseAngleS(&fopAcM_GetAngle_p(pActor).mY, pTarget, pStep);
+    return cLib_chaseAngleS(&fopAcM_GetAngle_p(pActor).y, pTarget, pStep);
 }
 
 inline void fopAcM_SetSpeed(fopAc_ac_c* pActor, f32 pSpeedX, f32 pSpeedY, f32 pSpeedZ) {
@@ -1509,9 +1509,9 @@ s32 fopAcM_createItem(const cXyz* pPos, int param_2, int param_3, int param_4, c
     if (pRot != NULL) {
         tmps = *pRot;
     } else {
-        tmps.mY = cM_rndFX(FLOAT_LABEL(/* 32767.0f */ lit_5711));
+        tmps.y = cM_rndFX(FLOAT_LABEL(/* 32767.0f */ lit_5711));
     }
-    tmps.mZ = 0xFF;
+    tmps.z = 0xFF;
     u32 itemActorParams = makeItemParams(check_itemno(param_2), param_3, 0xFF, param_7);
     switch (param_2) {
     case RECOVERY_FAILY:
@@ -1522,7 +1522,7 @@ s32 fopAcM_createItem(const cXyz* pPos, int param_2, int param_3, int param_4, c
     case TRIPLE_HEART:
         for (int i = 0; i < 2; i++) {
             fopAcM_create(0x218, itemActorParams, pPos, param_4, &tmps, param_6, -1);
-            tmps.mY = cM_rndFX(FLOAT_LABEL(lit_5711));
+            tmps.y = cM_rndFX(FLOAT_LABEL(lit_5711));
         }
     default:
         return fopAcM_create(0x218, itemActorParams, pPos, param_4, &tmps, param_6, -1);
@@ -1540,9 +1540,9 @@ void* fopAcM_fastCreateItem2(const cXyz* pPos, int param_2, int param_3, int par
     if (pRot != NULL) {
         tmps = *pRot;
     } else {
-        tmps.mY = cM_rndFX(FLOAT_LABEL(/* 32767.0f */ lit_5711));
+        tmps.y = cM_rndFX(FLOAT_LABEL(/* 32767.0f */ lit_5711));
     }
-    tmps.mZ = 0xFF;
+    tmps.z = 0xFF;
     int tmpItemNo = check_itemno(param_2);
     u32 itemActorParams =
         (param_3 & 0xFF) << 0x8 | (tmpItemNo & 0xFF) | 0xFF << 0x10 | ((param_5 & 0xF) << 0x18);
@@ -1557,7 +1557,7 @@ void* fopAcM_fastCreateItem2(const cXyz* pPos, int param_2, int param_3, int par
         for (int i = 0; i < 2; i++) {
             fopAcM_fastCreate(0x218, itemActorParams, pPos, param_4, &tmps, param_7, -1, NULL,
                               NULL);
-            tmps.mY = cM_rndFX(FLOAT_LABEL(lit_5711));
+            tmps.y = cM_rndFX(FLOAT_LABEL(lit_5711));
         }
     default:
         return fopAcM_fastCreate(0x218, itemActorParams, pPos, param_4, &tmps, param_7, -1, NULL,
@@ -1600,8 +1600,8 @@ SECTION_SDATA2 static f32 lit_5845 = 2048.0f;
 
 inline void make_prm_bokkuri(u32* pActorParams, csXyz* pRot, u8 param_2, u8 param_3, u8 param_4,
                              u8 param_5, u8 param_6) {
-    pRot->mX = (param_4 << 0x8) | (param_3 & 0xFF);
-    pRot->mZ = (param_6 << 0xD) | (param_2 << 0x1) | param_5;
+    pRot->x = (param_4 << 0x8) | (param_3 & 0xFF);
+    pRot->z = (param_6 << 0xD) | (param_2 << 0x1) | param_5;
 }
 
 /* 8001C870-8001C95C 0171B0 00EC+00 0/0 0/0 1/1 .text fopAcM_createBokkuri__FUsPC4cXyziiiPC4cXyzii
@@ -1610,8 +1610,8 @@ s32 fopAcM_createBokkuri(u16 param_1, const cXyz* pPos, int param_3, int param_4
                          const cXyz* param_6, int param_7, int param_8) {
     csXyz tmps(0, 0, 0);
     if (param_6 != NULL) {
-        tmps.mY = param_6->atan2sX_Z();
-        tmps.mY += static_cast<s16>(FLOAT_LABEL(/* 2048.0f */ lit_5845) *
+        tmps.y = param_6->atan2sX_Z();
+        tmps.y += static_cast<s16>(FLOAT_LABEL(/* 2048.0f */ lit_5845) *
                                     cM_rndFX(FLOAT_LABEL(/* 1.0f */ lit_5810)));
         param_8 = 1;
     }
