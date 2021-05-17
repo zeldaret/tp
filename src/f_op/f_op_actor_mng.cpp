@@ -468,13 +468,13 @@ fopAcM_prm_class* fopAcM_CreateAppend(void) {
         static_cast<fopAcM_prm_class*>(cMl::memalignB(-4, sizeof(fopAcM_prm_class)));
     if (params != NULL) {
         cLib_memSet(params, 0, sizeof(fopAcM_prm_class));
-        params->unk_0x16 = 0xFFFF;
-        params->unk_0x21 = -1;
-        params->unk_0x18 = 0xA;
-        params->unk_0x19 = 0xA;
-        params->unk_0x1A = 0xA;
-        params->unk_0x1C = -1;
-        params->unk_0x20 = -1;
+        params->mEnemyNo = 0xFFFF;
+        params->mRoomNo = -1;
+        params->mScale[0] = 0xA;
+        params->mScale[1] = 0xA;
+        params->mScale[2] = 0xA;
+        params->mParentPId = -1;
+        params->mSubtype = -1;
     }
     return params;
 }
@@ -485,38 +485,38 @@ SECTION_SDATA2 static f32 lit_4263 = 10.0f;
 
 /* 80019B1C-80019C78 01445C 015C+00 4/4 0/0 0/0 .text
  * createAppend__FUsUlPC4cXyziPC5csXyzPC4cXyzScUi               */
-fopAcM_prm_class* createAppend(u16 param_1, u32 param_2, const cXyz* param_3, int param_4,
-                               const csXyz* param_5, const cXyz* param_6, s8 param_7,
-                               unsigned int param_8) {
+fopAcM_prm_class* createAppend(u16 pEnemyNo, u32 pParameter, const cXyz* pPos, int pRoomNo,
+                               const csXyz* pAngle, const cXyz* pScale, s8 pSubType,
+                               unsigned int pParentPId) {
     fopAcM_prm_class* params = fopAcM_CreateAppend();
     if (params == NULL) {
         return NULL;
     } else {
-        params->unk_0x16 = param_1;
-        if (param_3 != NULL) {
-            params->unk_0x04 = *param_3;
+        params->mEnemyNo = pEnemyNo;
+        if (pPos != NULL) {
+            params->mPos = *pPos;
         } else {
-            params->unk_0x04 = cXyz::Zero;
+            params->mPos = cXyz::Zero;
         }
-        params->unk_0x21 = param_4;
-        if (param_5 != NULL) {
-            params->unk_0x10 = *param_5;
+        params->mRoomNo = pRoomNo;
+        if (pAngle != NULL) {
+            params->mAngle = *pAngle;
         } else {
-            params->unk_0x10 = csXyz::Zero;
+            params->mAngle = csXyz::Zero;
         }
-        if (param_6 != NULL) {
+        if (pScale != NULL) {
             f32 ten = FLOAT_LABEL(lit_4263);  // temp not necessary when using literal
-            params->unk_0x18 = ten * param_6->x;
-            params->unk_0x19 = ten * param_6->y;
-            params->unk_0x1A = ten * param_6->z;
+            params->mScale[0] = ten * pScale->x;
+            params->mScale[1] = ten * pScale->y;
+            params->mScale[2] = ten * pScale->z;
         } else {
-            params->unk_0x18 = 0xA;
-            params->unk_0x19 = 0xA;
-            params->unk_0x1A = 0xA;
+            params->mScale[0] = 0xA;
+            params->mScale[1] = 0xA;
+            params->mScale[2] = 0xA;
         }
-        params->unk_0x00 = param_2;
-        params->unk_0x1C = param_8;
-        params->unk_0x20 = param_7;
+        params->mParameter = pParameter;
+        params->mParentPId = pParentPId;
+        params->mSubtype = pSubType;
         return params;
     }
 }
@@ -567,10 +567,10 @@ asm s32 fopAcM_delete(unsigned int param_0) {
 
 /* 80019D18-80019D98 014658 0080+00 2/2 0/0 0/0 .text
  * fopAcM_create__FsUsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i         */
-s32 fopAcM_create(s16 pProcName, u16 param_2, u32 param_3, const cXyz* pPos, int param_5,
-                  const csXyz* pRot, const cXyz* param_7, s8 param_8, createFunc pCreateFunc) {
+s32 fopAcM_create(s16 pProcName, u16 pEnemyNo, u32 pParameter, const cXyz* pPos, int pRoomNo,
+                  const csXyz* pRot, const cXyz* pScale, s8 pSubType, createFunc pCreateFunc) {
     fopAcM_prm_class* params =
-        createAppend(param_2, param_3, pPos, param_5, pRot, param_7, param_8, 0xFFFFFFFF);
+        createAppend(pEnemyNo, pParameter, pPos, pRoomNo, pRot, pScale, pSubType, 0xFFFFFFFF);
     if (params == NULL) {
         return 0xFFFFFFFF;
     } else {
@@ -581,18 +581,19 @@ s32 fopAcM_create(s16 pProcName, u16 param_2, u32 param_3, const cXyz* pPos, int
 
 /* 80019D98-80019E04 0146D8 006C+00 3/3 11/11 70/70 .text
  * fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc                 */
-s32 fopAcM_create(s16 pProcName, u32 param_2, const cXyz* pPos, int param_4, const csXyz* pRot,
-                  const cXyz* param_6, s8 param_7) {
-    return fopAcM_create(pProcName, 0xFFFF, param_2, pPos, param_4, pRot, param_6, param_7, NULL);
+s32 fopAcM_create(s16 pProcName, u32 pParameter, const cXyz* pPos, int pRoomNo, const csXyz* pRot,
+                  const cXyz* pScale, s8 pSubType) {
+    return fopAcM_create(pProcName, 0xFFFF, pParameter, pPos, pRoomNo, pRot, pScale, pSubType,
+                         NULL);
 }
 
 /* 80019E04-80019E6C 014744 0068+00 5/5 6/6 18/18 .text
  * fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv     */
-void* fopAcM_fastCreate(s16 pProcTypeID, u32 param_2, const cXyz* param_3, int param_4,
-                        const csXyz* param_5, const cXyz* param_6, s8 param_7, createFunc param_8,
+void* fopAcM_fastCreate(s16 pProcTypeID, u32 pParameter, const cXyz* pPos, int pRoomNo,
+                        const csXyz* pRot, const cXyz* pScale, s8 pSubType, createFunc param_8,
                         void* param_9) {
     fopAcM_prm_class* prmClass =
-        createAppend(0xFFFF, param_2, param_3, param_4, param_5, param_6, param_7, 0xFFFFFFFF);
+        createAppend(0xFFFF, pParameter, pPos, pRoomNo, pRot, pScale, pSubType, 0xFFFFFFFF);
     if (prmClass == NULL) {
         return NULL;
     } else {
@@ -604,25 +605,25 @@ objectNameInfo* dStage_searchName(const char*);
 
 /* 80019E6C-80019EF0 0147AC 0084+00 0/0 1/1 0/0 .text
  * fopAcM_fastCreate__FPCcUlPC4cXyziPC5csXyzPC4cXyzPFPv_iPv     */
-void* fopAcM_fastCreate(const char* pActorName, u32 pActorParams, const cXyz* pActorPos,
-                        int param_4, const csXyz* pActorRot, const cXyz* param_6,
-                        createFunc param_7, void* param_8) {
+void* fopAcM_fastCreate(const char* pActorName, u32 pParameter, const cXyz* pActorPos, int pRoomNo,
+                        const csXyz* pActorRot, const cXyz* pScale, createFunc param_7,
+                        void* param_8) {
     objectNameInfo* nameInfo = dStage_searchName(pActorName);
     if (nameInfo == NULL) {
         return NULL;
     } else {
-        return fopAcM_fastCreate(nameInfo->mProcTypeID, pActorParams, pActorPos, param_4, pActorRot,
-                                 param_6, nameInfo->unkA, param_7, param_8);
+        return fopAcM_fastCreate(nameInfo->mProcTypeID, pParameter, pActorPos, pRoomNo, pActorRot,
+                                 pScale, nameInfo->unkA, param_7, param_8);
     }
 }
 
 /* 80019EF0-80019F78 014830 0088+00 0/0 1/1 105/105 .text
  * fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i    */
-s32 fopAcM_createChild(s16 pProcTypeID, unsigned int param_2, u32 pActorParams,
-                       const cXyz* pActorPos, int param_5, const csXyz* pActorRot,
-                       const cXyz* param_7, s8 param_8, createFunc param_9) {
-    fopAcM_prm_class* paramClass = createAppend(0xFFFF, pActorParams, pActorPos, param_5, pActorRot,
-                                                param_7, param_8, param_2);
+s32 fopAcM_createChild(s16 pProcTypeID, unsigned int pParentPId, u32 pParameter, const cXyz* pPos,
+                       int pRoomNo, const csXyz* pAngle, const cXyz* pScale, s8 pSubType,
+                       createFunc param_9) {
+    fopAcM_prm_class* paramClass =
+        createAppend(0xFFFF, pParameter, pPos, pRoomNo, pAngle, pScale, pSubType, pParentPId);
     if (paramClass == NULL) {
         return -1;
     } else {
@@ -634,8 +635,8 @@ s32 fopAcM_createChild(s16 pProcTypeID, unsigned int param_2, u32 pActorParams,
 /* 80019F78-8001A138 0148B8 01C0+00 0/0 0/0 6/6 .text
  * fopAcM_createChildFromOffset__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i */
 s32 fopAcM_createChildFromOffset(s16 pProcTypeID, unsigned int pParentProcID, u32 pActorParams,
-                                 const cXyz* pActorPos, int param_5, const csXyz* pActorRot,
-                                 const cXyz* param_7, s8 param_8, createFunc param_9) {
+                                 const cXyz* pActorPos, int pRoomNo, const csXyz* pActorRot,
+                                 const cXyz* pScale, s8 pSubType, createFunc param_9) {
     struct {
         s32 procID;
     } searchParams;
@@ -661,8 +662,8 @@ s32 fopAcM_createChildFromOffset(s16 pProcTypeID, unsigned int pParentProcID, u3
     parentPos.x += tmpPos.z * cM_ssin(parentRotY) + tmpPos.x * cM_scos(parentRotY);
     parentPos.y += tmpPos.y;
     parentPos.z += tmpPos.z * cM_scos(parentRotY) - tmpPos.x * cM_ssin(parentRotY);
-    fopAcM_prm_class* prmClass = createAppend(0xFFFF, pActorParams, &parentPos, param_5,
-                                              &tmpRotCopy, param_7, param_8, pParentProcID);
+    fopAcM_prm_class* prmClass = createAppend(0xFFFF, pActorParams, &parentPos, pRoomNo,
+                                              &tmpRotCopy, pScale, pSubType, pParentProcID);
     if (prmClass == NULL) {
         return -1;
     } else {
@@ -831,27 +832,27 @@ bool fopAcM_entrySolidHeap(fopAc_ac_c* pActor, heapCallbackFunc pHeapCallback, u
 
 /* 8001A528-8001A538 014E68 0010+00 0/0 0/0 136/136 .text fopAcM_SetMin__FP10fopAc_ac_cfff */
 void fopAcM_SetMin(fopAc_ac_c* pActor, f32 pMinX, f32 pMinY, f32 pMinZ) {
-    pActor->mCullMin.set(pMinX, pMinY, pMinZ);
+    pActor->mCull.mBox.mMin.set(pMinX, pMinY, pMinZ);
 }
 
 /* 8001A538-8001A548 014E78 0010+00 0/0 0/0 136/136 .text fopAcM_SetMax__FP10fopAc_ac_cfff */
 void fopAcM_SetMax(fopAc_ac_c* pActor, f32 pMaxX, f32 pMaxY, f32 pMaxZ) {
-    pActor->mCullMax.set(pMaxX, pMaxY, pMaxZ);
+    pActor->mCull.mBox.mMax.set(pMaxX, pMaxY, pMaxZ);
 }
 
 /* 8001A548-8001A564 014E88 001C+00 1/1 0/0 260/260 .text
  * fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff                  */
 void fopAcM_setCullSizeBox(fopAc_ac_c* pActor, f32 pMinX, f32 pMinY, f32 pMinZ, f32 pMaxX,
                            f32 pMaxY, f32 pMaxZ) {
-    pActor->mCullMin.set(pMinX, pMinY, pMinZ);
-    pActor->mCullMax.set(pMaxX, pMaxY, pMaxZ);
+    pActor->mCull.mBox.mMin.set(pMinX, pMinY, pMinZ);
+    pActor->mCull.mBox.mMax.set(pMaxX, pMaxY, pMaxZ);
 }
 
 /* 8001A564-8001A578 014EA4 0014+00 0/0 0/0 4/4 .text fopAcM_setCullSizeSphere__FP10fopAc_ac_cffff
  */
 void fopAcM_setCullSizeSphere(fopAc_ac_c* pActor, f32 pMinX, f32 pMinY, f32 pMinZ, f32 pMaxX) {
-    pActor->mCullMin.set(pMinX, pMinY, pMinZ);
-    pActor->mCullMax.x = pMaxX;
+    pActor->mCull.mSphere.mCenter.set(pMinX, pMinY, pMinZ);
+    pActor->mCull.mSphere.mRadius = pMaxX;
 }
 
 /* 8001A578-8001A5DC 014EB8 0064+00 0/0 0/0 123/123 .text
@@ -1612,7 +1613,7 @@ s32 fopAcM_createBokkuri(u16 param_1, const cXyz* pPos, int param_3, int param_4
     if (param_6 != NULL) {
         tmps.y = param_6->atan2sX_Z();
         tmps.y += static_cast<s16>(FLOAT_LABEL(/* 2048.0f */ lit_5845) *
-                                    cM_rndFX(FLOAT_LABEL(/* 1.0f */ lit_5810)));
+                                   cM_rndFX(FLOAT_LABEL(/* 1.0f */ lit_5810)));
         param_8 = 1;
     }
     u32 actorParams = 0;
