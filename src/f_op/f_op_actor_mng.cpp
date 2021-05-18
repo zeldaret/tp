@@ -290,6 +290,7 @@ extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
 // TODO: move
 
 u32 check_itemno(int param1);
+BOOL isHeart(u8);
 
 extern "C" void* calc_mtx;
 
@@ -1457,10 +1458,6 @@ inline u32 makeItemParams(int iNo, int p8, int unk, int p9) {
            maskShift(p9, 4, 0x18);
 }
 
-inline u32 makeItemParams2(int iNo, int p8, int unk, int p9) {
-    return makeItemParams(check_itemno(iNo), p8, unk, p9);
-}
-
 /* ############################################################################################## */
 /* 80451C2C-80451C30 00022C 0004+00 2/2 0/0 0/0 .sdata2          @5711 */
 SECTION_SDATA2 static f32 lit_5711 = 32767.0f;
@@ -1549,6 +1546,73 @@ SECTION_SDATA2 static f32 lit_5812 = 1.0f / 5.0f;
 
 /* 8001C5B0-8001C870 016EF0 02C0+00 3/3 0/0 4/4 .text
  * fopAcM_fastCreateItem__FPC4cXyziiPC5csXyzPC4cXyzPfPfiiPFPv_i */
+#ifdef NON_MATCHING
+void* fopAcM_fastCreateItem(const cXyz* pPos, int param_2, int param_3, const csXyz* pRot,
+                            const cXyz* param_5, f32* param_6, f32* param_7, int param_8,
+                            int param_9, createFunc param_10) {
+    // regalloc: r30 -> r29, r31 -> r30, r29 -> r31
+    if (param_2 == 0xFF) {
+        return NULL;
+    }
+    csXyz tmps;
+    u32 tmpItemNo = check_itemno(param_2);
+    // u32 itemActorParams;
+    // make_prm_item(&itemActorParams, tmpItemNo, param_8, param_9);
+    u32 itemActorParams =
+        makeItemParams(tmpItemNo, param_8, 0xFF, param_9);  // uses r0 instead of r3
+    if (param_6 != NULL && isHeart(param_2) != false) {
+        *param_6 = FLOAT_LABEL(/* 2.0f */ lit_5808) * *param_6;
+    }
+    switch (param_2) {
+    case RECOVERY_FAILY:
+        return fopAcM_fastCreate(0x13f, 0xFFFFFFFF, pPos, param_3, pRot, param_5, -1, NULL, NULL);
+    case KAKERA_HEART:
+    case UTAWA_HEART:
+        return fopAcM_fastCreate(0x21b, itemActorParams, pPos, param_3, pRot, param_5, -1, NULL,
+                                 NULL);
+    case TRIPLE_HEART:
+        for (int i = 0; i < 2; i++) {
+            if (pRot != NULL) {
+                tmps = *pRot;
+            } else {
+                tmps = csXyz::Zero;
+            }
+            tmps.z = 0xFF;
+            tmps.y += (s16)cM_rndFX(FLOAT_LABEL(/* 8192.0f */ lit_5809));
+            fopAc_ac_c* actor = static_cast<fopAc_ac_c*>(fopAcM_fastCreate(
+                0x218, itemActorParams, pPos, param_3, &tmps, param_5, -1, param_10, NULL));
+            if (actor != NULL) {
+                if (param_6 != NULL) {
+                    actor->mSpeedF = *param_6 * (FLOAT_LABEL(/* 1.0f */ lit_5810) +
+                                                 cM_rndFX(FLOAT_LABEL(/* 0.3f */ lit_5811)));
+                }
+                if (param_7 != NULL) {
+                    actor->mSpeed.y = *param_7 * (FLOAT_LABEL(/* 1.0f */ lit_5810) +
+                                                  cM_rndFX(FLOAT_LABEL(/* 0.2f */ lit_5812)));
+                }
+            }
+        }
+    default:
+        if (pRot != NULL) {
+            tmps = *pRot;
+        } else {
+            tmps = csXyz::Zero;
+        }
+        tmps.z = 0xFF;
+        fopAc_ac_c* actor = static_cast<fopAc_ac_c*>(fopAcM_fastCreate(
+            0x218, itemActorParams, pPos, param_3, &tmps, param_5, -1, param_10, NULL));
+        if (actor != NULL) {
+            if (param_6 != NULL) {
+                actor->mSpeedF = *param_6;
+            }
+            if (param_7 != NULL) {
+                actor->mSpeed.y = *param_7;
+            }
+        }
+        return actor;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1559,6 +1623,7 @@ asm void* fopAcM_fastCreateItem(cXyz const* param_0, int param_1, int param_2, c
 #include "asm/f_op/f_op_actor_mng/fopAcM_fastCreateItem__FPC4cXyziiPC5csXyzPC4cXyzPfPfiiPFPv_i.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80451C44-80451C48 000244 0004+00 1/1 0/0 0/0 .sdata2          @5845 */
