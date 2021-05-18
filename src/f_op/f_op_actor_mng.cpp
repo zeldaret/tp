@@ -485,20 +485,20 @@ SECTION_SDATA2 static f32 lit_4263 = 10.0f;
 
 /* 80019B1C-80019C78 01445C 015C+00 4/4 0/0 0/0 .text
  * createAppend__FUsUlPC4cXyziPC5csXyzPC4cXyzScUi               */
-fopAcM_prm_class* createAppend(u16 pEnemyNo, u32 pParameter, const cXyz* pPos, int pRoomNo,
-                               const csXyz* pAngle, const cXyz* pScale, s8 pSubType,
-                               unsigned int pParentPId) {
+fopAcM_prm_class* createAppend(u16 enemyNo, u32 parameter, const cXyz* pPos, int roomNo,
+                               const csXyz* pAngle, const cXyz* pScale, s8 subType,
+                               unsigned int parentPId) {
     fopAcM_prm_class* params = fopAcM_CreateAppend();
     if (params == NULL) {
         return NULL;
     } else {
-        params->mEnemyNo = pEnemyNo;
+        params->mEnemyNo = enemyNo;
         if (pPos != NULL) {
             params->mPos = *pPos;
         } else {
             params->mPos = cXyz::Zero;
         }
-        params->mRoomNo = pRoomNo;
+        params->mRoomNo = roomNo;
         if (pAngle != NULL) {
             params->mAngle = *pAngle;
         } else {
@@ -514,9 +514,9 @@ fopAcM_prm_class* createAppend(u16 pEnemyNo, u32 pParameter, const cXyz* pPos, i
             params->mScale[1] = 0xA;
             params->mScale[2] = 0xA;
         }
-        params->mParameter = pParameter;
-        params->mParentPId = pParentPId;
-        params->mSubtype = pSubType;
+        params->mParameter = parameter;
+        params->mParentPId = parentPId;
+        params->mSubtype = subType;
         return params;
     }
 }
@@ -567,37 +567,36 @@ asm s32 fopAcM_delete(unsigned int param_0) {
 
 /* 80019D18-80019D98 014658 0080+00 2/2 0/0 0/0 .text
  * fopAcM_create__FsUsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i         */
-s32 fopAcM_create(s16 pProcName, u16 pEnemyNo, u32 pParameter, const cXyz* pPos, int pRoomNo,
-                  const csXyz* pRot, const cXyz* pScale, s8 pSubType, createFunc pCreateFunc) {
+s32 fopAcM_create(s16 procName, u16 enemyNo, u32 parameter, const cXyz* pPos, int roomNo,
+                  const csXyz* pRot, const cXyz* pScale, s8 subType, createFunc pCreateFunc) {
     fopAcM_prm_class* params =
-        createAppend(pEnemyNo, pParameter, pPos, pRoomNo, pRot, pScale, pSubType, 0xFFFFFFFF);
+        createAppend(enemyNo, parameter, pPos, roomNo, pRot, pScale, subType, 0xFFFFFFFF);
     if (params == NULL) {
         return 0xFFFFFFFF;
     } else {
-        return fpcSCtRq_Request(fpcLy_CurrentLayer(), pProcName, (stdCreateFunc)pCreateFunc, NULL,
+        return fpcSCtRq_Request(fpcLy_CurrentLayer(), procName, (stdCreateFunc)pCreateFunc, NULL,
                                 params);
     }
 }
 
 /* 80019D98-80019E04 0146D8 006C+00 3/3 11/11 70/70 .text
  * fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc                 */
-s32 fopAcM_create(s16 pProcName, u32 pParameter, const cXyz* pPos, int pRoomNo, const csXyz* pRot,
-                  const cXyz* pScale, s8 pSubType) {
-    return fopAcM_create(pProcName, 0xFFFF, pParameter, pPos, pRoomNo, pRot, pScale, pSubType,
-                         NULL);
+s32 fopAcM_create(s16 procName, u32 parameter, const cXyz* pPos, int roomNo, const csXyz* pRot,
+                  const cXyz* pScale, s8 subType) {
+    return fopAcM_create(procName, 0xFFFF, parameter, pPos, roomNo, pRot, pScale, subType, NULL);
 }
 
 /* 80019E04-80019E6C 014744 0068+00 5/5 6/6 18/18 .text
  * fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv     */
-void* fopAcM_fastCreate(s16 pProcTypeID, u32 pParameter, const cXyz* pPos, int pRoomNo,
-                        const csXyz* pRot, const cXyz* pScale, s8 pSubType, createFunc param_8,
-                        void* param_9) {
+void* fopAcM_fastCreate(s16 procTypeID, u32 parameter, const cXyz* pPos, int roomNo,
+                        const csXyz* pRot, const cXyz* pScale, s8 subType, createFunc pCreateFunc,
+                        void* pCreateFuncData) {
     fopAcM_prm_class* prmClass =
-        createAppend(0xFFFF, pParameter, pPos, pRoomNo, pRot, pScale, pSubType, 0xFFFFFFFF);
+        createAppend(0xFFFF, parameter, pPos, roomNo, pRot, pScale, subType, 0xFFFFFFFF);
     if (prmClass == NULL) {
         return NULL;
     } else {
-        return fpcM_FastCreate(pProcTypeID, param_8, param_9, prmClass);
+        return fpcM_FastCreate(procTypeID, pCreateFunc, pCreateFuncData, prmClass);
     }
 }
 
@@ -605,15 +604,15 @@ objectNameInfo* dStage_searchName(const char*);
 
 /* 80019E6C-80019EF0 0147AC 0084+00 0/0 1/1 0/0 .text
  * fopAcM_fastCreate__FPCcUlPC4cXyziPC5csXyzPC4cXyzPFPv_iPv     */
-void* fopAcM_fastCreate(const char* pActorName, u32 pParameter, const cXyz* pActorPos, int pRoomNo,
-                        const csXyz* pActorRot, const cXyz* pScale, createFunc param_7,
-                        void* param_8) {
+void* fopAcM_fastCreate(const char* pActorName, u32 parameter, const cXyz* pActorPos, int roomNo,
+                        const csXyz* pActorRot, const cXyz* pScale, createFunc pCreateFunc,
+                        void* pCreateFuncData) {
     objectNameInfo* nameInfo = dStage_searchName(pActorName);
     if (nameInfo == NULL) {
         return NULL;
     } else {
-        return fopAcM_fastCreate(nameInfo->mProcTypeID, pParameter, pActorPos, pRoomNo, pActorRot,
-                                 pScale, nameInfo->unkA, param_7, param_8);
+        return fopAcM_fastCreate(nameInfo->mProcTypeID, parameter, pActorPos, roomNo, pActorRot,
+                                 pScale, nameInfo->unkA, pCreateFunc, pCreateFuncData);
     }
 }
 
@@ -634,13 +633,13 @@ s32 fopAcM_createChild(s16 pProcTypeID, unsigned int pParentPId, u32 pParameter,
 
 /* 80019F78-8001A138 0148B8 01C0+00 0/0 0/0 6/6 .text
  * fopAcM_createChildFromOffset__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i */
-s32 fopAcM_createChildFromOffset(s16 pProcTypeID, unsigned int pParentProcID, u32 pActorParams,
-                                 const cXyz* pActorPos, int pRoomNo, const csXyz* pActorRot,
-                                 const cXyz* pScale, s8 pSubType, createFunc param_9) {
+s32 fopAcM_createChildFromOffset(s16 procTypeID, unsigned int parentProcID, u32 actorParams,
+                                 const cXyz* pActorPos, int roomNo, const csXyz* pActorRot,
+                                 const cXyz* pScale, s8 subType, createFunc pCreateFunc) {
     struct {
         s32 procID;
     } searchParams;
-    searchParams.procID = pParentProcID;
+    searchParams.procID = parentProcID;
     fopAc_ac_c* parentActor =
         static_cast<fopAc_ac_c*>(fopAcIt_Judge((fopAcIt_JudgeFunc)fpcSch_JudgeByID, &searchParams));
     s16 parentRotY = parentActor->getAngle().GetY();
@@ -662,12 +661,12 @@ s32 fopAcM_createChildFromOffset(s16 pProcTypeID, unsigned int pParentProcID, u3
     parentPos.x += tmpPos.z * cM_ssin(parentRotY) + tmpPos.x * cM_scos(parentRotY);
     parentPos.y += tmpPos.y;
     parentPos.z += tmpPos.z * cM_scos(parentRotY) - tmpPos.x * cM_ssin(parentRotY);
-    fopAcM_prm_class* prmClass = createAppend(0xFFFF, pActorParams, &parentPos, pRoomNo,
-                                              &tmpRotCopy, pScale, pSubType, pParentProcID);
+    fopAcM_prm_class* prmClass = createAppend(0xFFFF, actorParams, &parentPos, roomNo, &tmpRotCopy,
+                                              pScale, subType, parentProcID);
     if (prmClass == NULL) {
         return -1;
     } else {
-        return fpcSCtRq_Request(fpcLy_CurrentLayer(), pProcTypeID, (stdCreateFunc)param_9, NULL,
+        return fpcSCtRq_Request(fpcLy_CurrentLayer(), procTypeID, (stdCreateFunc)pCreateFunc, NULL,
                                 prmClass);
     }
 }
@@ -699,25 +698,6 @@ s32 fopAcM_callCallback(fopAc_ac_c* pActor, heapCallbackFunc pCallbackFunc, JKRH
     mDoExt_setCurrentHeap(oldHeap);
     return ret;
 }
-
-/* ############################################################################################## */
-/* 803788C8-803788C8 004F28 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DEAD static char const* const stringBase_80378921 =
-//     "見積もりヒープサイズ(%08x)で登録失敗しました。%08x[%s]\n";
-// SECTION_DEAD static char const* const stringBase_80378959 =
-//     "見積もりヒープが確保できませんでした。 %08x [%s]\n";
-// SECTION_DEAD static char const* const stringBase_8037898B =
-//     "最大空きヒープサイズで確保失敗。[%s]\n";
-// SECTION_DEAD static char const* const stringBase_803789B1 =
-//     "最大空きヒープサイズで登録失敗。%08x[%s]\n";
-// SECTION_DEAD static char const* const stringBase_803789DB =
-// "ぴったりサイズで、登録失敗？(バグ)\n"; SECTION_DEAD static char const* const stringBase_803789FF
-// = "ばぐばぐです\n"; SECTION_DEAD static char const* const stringBase_80378A0D = "緊急回避措置\n";
-// SECTION_DEAD static char const* const stringBase_80378A1B =
-//     "fopAcM_entrySolidHeap だめでした [%s]\n";
-// #pragma pop
 
 /* 80450CC8-80450CCC -00001 0004+00 2/2 0/0 0/0 .sbss            None */
 /* 80450CC8 0001+00 data_80450CC8 None */
@@ -813,46 +793,46 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* pActor, heapCallbackFunc pHeapCallback, 
 
 /* 8001A4B0-8001A528 014DF0 0078+00 0/0 4/4 446/446 .text
  * fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl     */
-bool fopAcM_entrySolidHeap(fopAc_ac_c* pActor, heapCallbackFunc pHeapCallback, u32 pSize) {
+bool fopAcM_entrySolidHeap(fopAc_ac_c* pActor, heapCallbackFunc pHeapCallback, u32 size) {
     u8 oldCC9 = lbl_80450CC9;
-    if (pSize & 0x80000000) {
+    if (size & 0x80000000) {
         lbl_80450CC9 = 1;
     }
     u8 oldCC8 = lbl_80450CC8;
-    if (pSize & 0x20000000) {
+    if (size & 0x20000000) {
         lbl_80450CC8 = 0;
-    } else if (pSize & 0x10000000) {
+    } else if (size & 0x10000000) {
         lbl_80450CC8 = 1;
     }
-    bool result = fopAcM_entrySolidHeap_(pActor, pHeapCallback, pSize & 0xFFFFFF);
+    bool result = fopAcM_entrySolidHeap_(pActor, pHeapCallback, size & 0xFFFFFF);
     lbl_80450CC9 = oldCC9;
     lbl_80450CC8 = oldCC8;
     return result;
 }
 
 /* 8001A528-8001A538 014E68 0010+00 0/0 0/0 136/136 .text fopAcM_SetMin__FP10fopAc_ac_cfff */
-void fopAcM_SetMin(fopAc_ac_c* pActor, f32 pMinX, f32 pMinY, f32 pMinZ) {
-    pActor->mCull.mBox.mMin.set(pMinX, pMinY, pMinZ);
+void fopAcM_SetMin(fopAc_ac_c* pActor, f32 minX, f32 minY, f32 minZ) {
+    pActor->mCull.mBox.mMin.set(minX, minY, minZ);
 }
 
 /* 8001A538-8001A548 014E78 0010+00 0/0 0/0 136/136 .text fopAcM_SetMax__FP10fopAc_ac_cfff */
-void fopAcM_SetMax(fopAc_ac_c* pActor, f32 pMaxX, f32 pMaxY, f32 pMaxZ) {
-    pActor->mCull.mBox.mMax.set(pMaxX, pMaxY, pMaxZ);
+void fopAcM_SetMax(fopAc_ac_c* pActor, f32 maxX, f32 maxY, f32 maxZ) {
+    pActor->mCull.mBox.mMax.set(maxX, maxY, maxZ);
 }
 
 /* 8001A548-8001A564 014E88 001C+00 1/1 0/0 260/260 .text
  * fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff                  */
-void fopAcM_setCullSizeBox(fopAc_ac_c* pActor, f32 pMinX, f32 pMinY, f32 pMinZ, f32 pMaxX,
-                           f32 pMaxY, f32 pMaxZ) {
-    pActor->mCull.mBox.mMin.set(pMinX, pMinY, pMinZ);
-    pActor->mCull.mBox.mMax.set(pMaxX, pMaxY, pMaxZ);
+void fopAcM_setCullSizeBox(fopAc_ac_c* pActor, f32 minX, f32 minY, f32 minZ, f32 maxX, f32 maxY,
+                           f32 maxZ) {
+    pActor->mCull.mBox.mMin.set(minX, minY, minZ);
+    pActor->mCull.mBox.mMax.set(maxX, maxY, maxZ);
 }
 
 /* 8001A564-8001A578 014EA4 0014+00 0/0 0/0 4/4 .text fopAcM_setCullSizeSphere__FP10fopAc_ac_cffff
  */
-void fopAcM_setCullSizeSphere(fopAc_ac_c* pActor, f32 pMinX, f32 pMinY, f32 pMinZ, f32 pMaxX) {
-    pActor->mCull.mSphere.mCenter.set(pMinX, pMinY, pMinZ);
-    pActor->mCull.mSphere.mRadius = pMaxX;
+void fopAcM_setCullSizeSphere(fopAc_ac_c* pActor, f32 minX, f32 minY, f32 minZ, f32 radius) {
+    pActor->mCull.mSphere.mCenter.set(minX, minY, minZ);
+    pActor->mCull.mSphere.mRadius = radius;
 }
 
 /* 8001A578-8001A5DC 014EB8 0064+00 0/0 0/0 123/123 .text
@@ -868,12 +848,12 @@ asm void fopAcM_setCullSizeBox2(fopAc_ac_c* param_0, J3DModelData* param_1) {
 
 /* 8001A5DC-8001A60C 014F1C 0030+00 0/0 0/0 1/1 .text            fopAcM_addAngleY__FP10fopAc_ac_css
  */
-bool fopAcM_addAngleY(fopAc_ac_c* pActor, s16 pTarget, s16 pStep) {
-    return cLib_chaseAngleS(&fopAcM_GetAngle_p(pActor).y, pTarget, pStep);
+bool fopAcM_addAngleY(fopAc_ac_c* pActor, s16 target, s16 step) {
+    return cLib_chaseAngleS(&fopAcM_GetAngle_p(pActor).y, target, step);
 }
 
-inline void fopAcM_SetSpeed(fopAc_ac_c* pActor, f32 pSpeedX, f32 pSpeedY, f32 pSpeedZ) {
-    pActor->mSpeed.set(pSpeedX, pSpeedY, pSpeedZ);
+inline void fopAcM_SetSpeed(fopAc_ac_c* pActor, f32 speedX, f32 speedY, f32 speedZ) {
+    pActor->mSpeed.set(speedX, speedY, speedZ);
 }
 
 inline f32 fopAcM_GetSpeedF(const fopAc_ac_c* pActor) {
@@ -1081,23 +1061,10 @@ asm s32 fopAcM_rollPlayerCrash(fopAc_ac_c const* param_0, f32 param_1, u32 param
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80378880-8037888C 004EE0 000C+00 1/1 0/0 0/0 .rodata          @4932 */
-// SECTION_RODATA static u8 const lit_4932[12] = {
-//     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-// };
-// COMPILER_STRIP_GATE(0x80378880, &lit_4932);
-
-// /* 8037888C-80378898 004EEC 000C+00 1/1 0/0 0/0 .rodata          @4933 */
-// SECTION_RODATA static u8 const lit_4933[12] = {
-//     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-// };
-// COMPILER_STRIP_GATE(0x8037888C, &lit_4933);
-
 /* 8001AC40-8001ACEC 015580 00AC+00 0/0 0/0 2/2 .text fopAcM_checkCullingBox__FPA4_fffffff */
-s32 fopAcM_checkCullingBox(Mtx pMtx, f32 pX1, f32 pY1, f32 pZ1, f32 pX2, f32 pY2, f32 pZ2) {
-    Vec tmp1 = {pX1, pY1, pZ1};
-    Vec tmp2 = {pX2, pY2, pZ2};
+s32 fopAcM_checkCullingBox(Mtx pMtx, f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2) {
+    Vec tmp1 = {x1, y1, z1};
+    Vec tmp2 = {x2, y2, z2};
     Mtx tmpMtx;
     PSMTXConcat(j3dSys.mMtx, pMtx, tmpMtx);
     return mDoLib_clipper::mClipper.clip(tmpMtx, &tmp2, &tmp1) != 0;
@@ -1420,28 +1387,27 @@ asm s32 fopAcM_createItemFromTable(cXyz const* param_0, int param_1, int param_2
 
 /* 8001C078-8001C0D4 0169B8 005C+00 2/2 0/0 0/0 .text
  * fopAcM_createDemoItem__FPC4cXyziiPC5csXyziPC4cXyzUc          */
-s32 fopAcM_createDemoItem(const cXyz* pPos, int pItemNo, int pItemBitNo, const csXyz* pRot,
-                          int param_5, const cXyz* param_6, u8 param_7) {
-    if (pItemNo == 0xFF) {
+s32 fopAcM_createDemoItem(const cXyz* pPos, int itemNo, int itemBitNo, const csXyz* pRot,
+                          int roomNo, const cXyz* scale, u8 param_7) {
+    if (itemNo == 0xFF) {
         return -1;
     } else {
         // TODO: actor enum
-        return fopAcM_create(0x21d,
-                             (pItemNo & 0xFF) | (pItemBitNo & 0x7F) << 0x8 | (param_7 << 0x10),
-                             pPos, param_5, pRot, param_6, -1);
+        return fopAcM_create(0x21d, (itemNo & 0xFF) | (itemBitNo & 0x7F) << 0x8 | (param_7 << 0x10),
+                             pPos, roomNo, pRot, scale, -1);
     }
 }
 
 /* 8001C0D4-8001C174 016A14 00A0+00 0/0 0/0 18/18 .text
  * fopAcM_createItemForBoss__FPC4cXyziiPC5csXyzPC4cXyzffi       */
-s32 fopAcM_createItemForBoss(const cXyz* pPos, int param_2, int param_3, const csXyz* pRot,
-                             const cXyz* param_5, f32 param_6, f32 param_7, int param_8) {
+s32 fopAcM_createItemForBoss(const cXyz* pPos, int param_2, int roomNo, const csXyz* pRot,
+                             const cXyz* pScale, f32 speed, f32 speedY, int param_8) {
     fopAc_ac_c* actor = static_cast<fopAc_ac_c*>(
-        fopAcM_fastCreate(0x21b, 0xFFFF0000 | param_8 << 0x8 | (param_2 & 0xFF), pPos, param_3,
-                          pRot, param_5, -1, NULL, NULL));
+        fopAcM_fastCreate(0x21b, 0xFFFF0000 | param_8 << 0x8 | (param_2 & 0xFF), pPos, roomNo, pRot,
+                          pScale, -1, NULL, NULL));
     if (actor != NULL) {
-        actor->mSpeedF = param_6;
-        actor->mSpeed.y = param_7;
+        actor->mSpeedF = speed;
+        actor->mSpeed.y = speedY;
     }
     return fopAcM_GetID(actor);
 }
@@ -1501,9 +1467,9 @@ SECTION_SDATA2 static f32 lit_5711 = 32767.0f;
 
 /* 8001C240-8001C3E0 016B80 01A0+00 1/1 1/1 17/17 .text
  * fopAcM_createItem__FPC4cXyziiiPC5csXyzPC4cXyzi               */
-s32 fopAcM_createItem(const cXyz* pPos, int param_2, int param_3, int param_4, const csXyz* pRot,
-                      const cXyz* param_6, int param_7) {
-    if (param_2 == 0xFF) {
+s32 fopAcM_createItem(const cXyz* pPos, int itemNo, int param_3, int roomNo, const csXyz* pRot,
+                      const cXyz* pScale, int param_7) {
+    if (itemNo == 0xFF) {
         return 0xFFFFFFFF;
     }
     csXyz tmps(csXyz::Zero);
@@ -1513,29 +1479,29 @@ s32 fopAcM_createItem(const cXyz* pPos, int param_2, int param_3, int param_4, c
         tmps.y = cM_rndFX(FLOAT_LABEL(/* 32767.0f */ lit_5711));
     }
     tmps.z = 0xFF;
-    u32 itemActorParams = makeItemParams(check_itemno(param_2), param_3, 0xFF, param_7);
-    switch (param_2) {
+    u32 itemActorParams = makeItemParams(check_itemno(itemNo), param_3, 0xFF, param_7);
+    switch (itemNo) {
     case RECOVERY_FAILY:
-        return fopAcM_create(0x13f, 0xFFFFFFFF, pPos, param_4, pRot, param_6, -1);
+        return fopAcM_create(0x13f, 0xFFFFFFFF, pPos, roomNo, pRot, pScale, -1);
     case KAKERA_HEART:
     case UTAWA_HEART:
-        return fopAcM_create(0x21b, itemActorParams, pPos, param_4, pRot, param_6, -1);
+        return fopAcM_create(0x21b, itemActorParams, pPos, roomNo, pRot, pScale, -1);
     case TRIPLE_HEART:
         for (int i = 0; i < 2; i++) {
-            fopAcM_create(0x218, itemActorParams, pPos, param_4, &tmps, param_6, -1);
+            fopAcM_create(0x218, itemActorParams, pPos, roomNo, &tmps, pScale, -1);
             tmps.y = cM_rndFX(FLOAT_LABEL(lit_5711));
         }
     default:
-        return fopAcM_create(0x218, itemActorParams, pPos, param_4, &tmps, param_6, -1);
+        return fopAcM_create(0x218, itemActorParams, pPos, roomNo, &tmps, pScale, -1);
     }
 }
 
 /* 8001C3E0-8001C5B0 016D20 01D0+00 1/1 0/0 0/0 .text
  * fopAcM_fastCreateItem2__FPC4cXyziiiiPC5csXyzPC4cXyz          */
-void* fopAcM_fastCreateItem2(const cXyz* pPos, int param_2, int param_3, int param_4, int param_5,
-                             const csXyz* pRot, const cXyz* param_7) {
+void* fopAcM_fastCreateItem2(const cXyz* pPos, int itemNo, int param_3, int roomNo, int param_5,
+                             const csXyz* pRot, const cXyz* pScale) {
     csXyz tmps(csXyz::Zero);
-    if (param_2 == 0xFF) {
+    if (itemNo == 0xFF) {
         return NULL;
     }
     if (pRot != NULL) {
@@ -1544,24 +1510,23 @@ void* fopAcM_fastCreateItem2(const cXyz* pPos, int param_2, int param_3, int par
         tmps.y = cM_rndFX(FLOAT_LABEL(/* 32767.0f */ lit_5711));
     }
     tmps.z = 0xFF;
-    int tmpItemNo = check_itemno(param_2);
+    int tmpItemNo = check_itemno(itemNo);
     u32 itemActorParams =
         (param_3 & 0xFF) << 0x8 | (tmpItemNo & 0xFF) | 0xFF << 0x10 | ((param_5 & 0xF) << 0x18);
-    switch (param_2) {
+    switch (itemNo) {
     case RECOVERY_FAILY:
-        return fopAcM_fastCreate(0x13f, 0xFFFFFFFF, pPos, param_4, pRot, param_7, -1, NULL, NULL);
+        return fopAcM_fastCreate(0x13f, 0xFFFFFFFF, pPos, roomNo, pRot, pScale, -1, NULL, NULL);
     case KAKERA_HEART:
     case UTAWA_HEART:
-        return fopAcM_fastCreate(0x21b, itemActorParams, pPos, param_4, pRot, param_7, -1, NULL,
+        return fopAcM_fastCreate(0x21b, itemActorParams, pPos, roomNo, pRot, pScale, -1, NULL,
                                  NULL);
     case TRIPLE_HEART:
         for (int i = 0; i < 2; i++) {
-            fopAcM_fastCreate(0x218, itemActorParams, pPos, param_4, &tmps, param_7, -1, NULL,
-                              NULL);
+            fopAcM_fastCreate(0x218, itemActorParams, pPos, roomNo, &tmps, pScale, -1, NULL, NULL);
             tmps.y = cM_rndFX(FLOAT_LABEL(lit_5711));
         }
     default:
-        return fopAcM_fastCreate(0x218, itemActorParams, pPos, param_4, &tmps, param_7, -1, NULL,
+        return fopAcM_fastCreate(0x218, itemActorParams, pPos, roomNo, &tmps, pScale, -1, NULL,
                                  NULL);
     }
 }
@@ -1607,7 +1572,7 @@ inline void make_prm_bokkuri(u32* pActorParams, csXyz* pRot, u8 param_2, u8 para
 
 /* 8001C870-8001C95C 0171B0 00EC+00 0/0 0/0 1/1 .text fopAcM_createBokkuri__FUsPC4cXyziiiPC4cXyzii
  */
-s32 fopAcM_createBokkuri(u16 param_1, const cXyz* pPos, int param_3, int param_4, int param_5,
+s32 fopAcM_createBokkuri(u16 enemyNo, const cXyz* pPos, int param_3, int param_4, int roomNo,
                          const cXyz* param_6, int param_7, int param_8) {
     csXyz tmps(0, 0, 0);
     if (param_6 != NULL) {
@@ -1618,7 +1583,7 @@ s32 fopAcM_createBokkuri(u16 param_1, const cXyz* pPos, int param_3, int param_4
     }
     u32 actorParams = 0;
     make_prm_bokkuri(&actorParams, &tmps, 6, param_3, param_4, param_7, param_8);
-    return fopAcM_create(0x2fc, param_1, actorParams, pPos, param_5, &tmps, NULL, 0xFF, NULL);
+    return fopAcM_create(0x2fc, enemyNo, actorParams, pPos, roomNo, &tmps, NULL, 0xFF, NULL);
 }
 
 inline void make_prm_warp_hole(u32* actorParams, u8 p1, u8 p2, u8 p3) {
@@ -1630,14 +1595,14 @@ inline void make_prm_warp_hole(u32* actorParams, u8 p1, u8 p2, u8 p3) {
 
 /* 8001C95C-8001C9CC 01729C 0070+00 0/0 0/0 12/12 .text
  * fopAcM_createWarpHole__FPC4cXyzPC5csXyziUcUcUc               */
-s32 fopAcM_createWarpHole(const cXyz* pPos, const csXyz* pRot, int param_3, u8 param_4, u8 param_5,
+s32 fopAcM_createWarpHole(const cXyz* pPos, const csXyz* pRot, int roomNo, u8 param_4, u8 param_5,
                           u8 param_6) {
     if (param_6 == 0xFF) {
         param_6 = param_4;
     }
     u32 actorParams;
     make_prm_warp_hole(&actorParams, param_5, param_6, param_4);
-    return fopAcM_create(0x163, actorParams, pPos, param_3, pRot, NULL, -1);
+    return fopAcM_create(0x163, actorParams, pPos, roomNo, pRot, NULL, -1);
 }
 
 s32 fopAc_IsActor(void*);
