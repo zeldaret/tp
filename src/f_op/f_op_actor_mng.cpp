@@ -527,13 +527,6 @@ void fopAcM_Log(fopAc_ac_c const* param_0, char const* param_1) {
     /* empty function */
 }
 
-/* ############################################################################################## */
-/* 803788C8-803788C8 004F28 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DEAD static char const* const stringBase_803788C8 = "アクターの削除";
-// #pragma pop
-
 /* 80019C7C-80019CB8 0145BC 003C+00 0/0 10/10 483/483 .text            fopAcM_delete__FP10fopAc_ac_c
  */
 void fopAcM_delete(fopAc_ac_c* pActor) {
@@ -671,15 +664,6 @@ s32 fopAcM_createChildFromOffset(s16 procTypeID, unsigned int parentProcID, u32 
                                 prmClass);
     }
 }
-
-/* ############################################################################################## */
-/* 803788C8-803788C8 004F28 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803788D7 = "アクターのヒープの生成";
-SECTION_DEAD static char const* const stringBase_803788EE = "fopAcM_createHeap 確保失敗\n";
-SECTION_DEAD static char const* const stringBase_8037890A = "アクターのヒープの破壊";
-#pragma pop
 
 /* 8001A138-8001A188 014A78 0050+00 0/0 1/1 1/1 .text            fopAcM_DeleteHeap__FP10fopAc_ac_c
  */
