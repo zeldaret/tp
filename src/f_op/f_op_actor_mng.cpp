@@ -665,6 +665,15 @@ s32 fopAcM_createChildFromOffset(s16 procTypeID, unsigned int parentProcID, u32 
     }
 }
 
+/* ############################################################################################## */
+/* 803788C8-803788C8 004F28 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803788D7 = "アクターのヒープの生成";
+SECTION_DEAD static char const* const stringBase_803788EE = "fopAcM_createHeap 確保失敗\n";
+SECTION_DEAD static char const* const stringBase_8037890A = "アクターのヒープの破壊";
+#pragma pop
+
 /* 8001A138-8001A188 014A78 0050+00 0/0 1/1 1/1 .text            fopAcM_DeleteHeap__FP10fopAc_ac_c
  */
 void fopAcM_DeleteHeap(fopAc_ac_c* pActor) {
