@@ -41,7 +41,7 @@ $(M667_TARGET): $(M667_O_FILES) $(M667_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado/%.o: rel/d/a/obj/d_a_obj_tornado/%.cpp
 	@echo [667] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M667_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

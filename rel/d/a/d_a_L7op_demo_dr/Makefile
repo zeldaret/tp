@@ -41,7 +41,7 @@ $(M137_TARGET): $(M137_O_FILES) $(M137_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_L7op_demo_dr/%.o: rel/d/a/d_a_L7op_demo_dr/%.cpp
 	@echo [137] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M137_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

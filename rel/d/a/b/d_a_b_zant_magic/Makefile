@@ -41,7 +41,7 @@ $(M156_TARGET): $(M156_O_FILES) $(M156_LIBS)
 $(BUILD_DIR)/rel/d/a/b/d_a_b_zant_magic/%.o: rel/d/a/b/d_a_b_zant_magic/%.cpp
 	@echo [156] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M156_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

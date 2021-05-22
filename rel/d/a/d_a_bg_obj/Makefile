@@ -41,7 +41,7 @@ $(M4_TARGET): $(M4_O_FILES) $(M4_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_bg_obj/%.o: rel/d/a/d_a_bg_obj/%.cpp
 	@echo [  4] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M4_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

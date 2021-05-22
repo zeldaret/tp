@@ -41,7 +41,7 @@ $(M492_TARGET): $(M492_O_FILES) $(M492_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kaisou/%.o: rel/d/a/obj/d_a_obj_kaisou/%.cpp
 	@echo [492] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M492_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

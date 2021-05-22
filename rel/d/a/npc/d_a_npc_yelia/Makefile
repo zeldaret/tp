@@ -43,7 +43,7 @@ $(M382_TARGET): $(M382_O_FILES) $(M382_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_yelia/%.o: rel/d/a/npc/d_a_npc_yelia/%.cpp
 	@echo [382] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M382_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

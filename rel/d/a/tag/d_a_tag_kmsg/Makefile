@@ -41,7 +41,7 @@ $(M35_TARGET): $(M35_O_FILES) $(M35_LIBS)
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_kmsg/%.o: rel/d/a/tag/d_a_tag_kmsg/%.cpp
 	@echo [ 35] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M35_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

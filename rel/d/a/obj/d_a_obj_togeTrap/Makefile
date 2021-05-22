@@ -43,7 +43,7 @@ $(M665_TARGET): $(M665_O_FILES) $(M665_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_togeTrap/%.o: rel/d/a/obj/d_a_obj_togeTrap/%.cpp
 	@echo [665] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M665_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

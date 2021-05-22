@@ -41,7 +41,7 @@ $(M1_TARGET): $(M1_O_FILES) $(M1_LIBS)
 $(BUILD_DIR)/rel/f_pc/f_pc_profile_lst/%.o: rel/f_pc/f_pc_profile_lst/%.cpp
 	@echo [  1] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M1_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

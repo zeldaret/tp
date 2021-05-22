@@ -43,7 +43,7 @@ $(M507_TARGET): $(M507_O_FILES) $(M507_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kuwagata/%.o: rel/d/a/obj/d_a_obj_kuwagata/%.cpp
 	@echo [507] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M507_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -41,7 +41,7 @@ $(M722_TARGET): $(M722_O_FILES) $(M722_LIBS)
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_guard/%.o: rel/d/a/tag/d_a_tag_guard/%.cpp
 	@echo [722] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M722_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

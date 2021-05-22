@@ -41,7 +41,7 @@ $(M636_TARGET): $(M636_O_FILES) $(M636_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_suisya/%.o: rel/d/a/obj/d_a_obj_suisya/%.cpp
 	@echo [636] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M636_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

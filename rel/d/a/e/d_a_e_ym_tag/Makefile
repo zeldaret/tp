@@ -41,7 +41,7 @@ $(M254_TARGET): $(M254_O_FILES) $(M254_LIBS)
 $(BUILD_DIR)/rel/d/a/e/d_a_e_ym_tag/%.o: rel/d/a/e/d_a_e_ym_tag/%.cpp
 	@echo [254] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M254_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

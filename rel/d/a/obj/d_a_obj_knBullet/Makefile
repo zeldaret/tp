@@ -41,7 +41,7 @@ $(M505_TARGET): $(M505_O_FILES) $(M505_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_knBullet/%.o: rel/d/a/obj/d_a_obj_knBullet/%.cpp
 	@echo [505] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M505_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

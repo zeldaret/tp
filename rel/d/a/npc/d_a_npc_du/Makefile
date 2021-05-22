@@ -43,7 +43,7 @@ $(M301_TARGET): $(M301_O_FILES) $(M301_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_du/%.o: rel/d/a/npc/d_a_npc_du/%.cpp
 	@echo [301] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M301_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

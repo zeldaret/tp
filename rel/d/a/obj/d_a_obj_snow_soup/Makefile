@@ -41,7 +41,7 @@ $(M627_TARGET): $(M627_O_FILES) $(M627_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_snow_soup/%.o: rel/d/a/obj/d_a_obj_snow_soup/%.cpp
 	@echo [627] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M627_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

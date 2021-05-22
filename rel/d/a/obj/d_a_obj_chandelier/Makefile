@@ -41,7 +41,7 @@ $(M421_TARGET): $(M421_O_FILES) $(M421_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_chandelier/%.o: rel/d/a/obj/d_a_obj_chandelier/%.cpp
 	@echo [421] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M421_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

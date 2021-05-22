@@ -41,7 +41,7 @@ $(M700_TARGET): $(M700_O_FILES) $(M700_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zra_freeze/%.o: rel/d/a/obj/d_a_obj_zra_freeze/%.cpp
 	@echo [700] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M700_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

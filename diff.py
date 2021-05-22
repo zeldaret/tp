@@ -640,7 +640,7 @@ def dump_binary() -> Tuple[str, ObjdumpCommand, ObjdumpCommand]:
         end_addr = eval_int(args.end, "End address must be an integer expression.")
     else:
         end_addr = start_addr + MAX_FUNCTION_SIZE_BYTES
-    objdump_flags = ["-Dz", "-bbinary", "-EB"]
+    objdump_flags = ["-Dz", "-EB"]
     flags1 = [
         f"--start-address={start_addr + base_shift}",
         f"--stop-address={end_addr + base_shift}",

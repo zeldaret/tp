@@ -4,8 +4,13 @@
 //
 
 #include "JSystem/J3DGraphBase/J3DPacket.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
+#include "dolphin/gx/GX.h"
+#include "dolphin/os/OSCache.h"
 #include "dolphin/types.h"
+#include "global.h"
+#include "msl_c/string.h"
 
 //
 // Types:
@@ -21,32 +26,12 @@ struct J3DShape {
     static u8 sOldVcdVatCmd[4];
 };
 
+struct J3DDrawBuffer {
+    static u8 sortFuncTable[72];
+};
+
 struct J3DModelData {
     /* 803260F8 */ void syncJ3DSysFlags() const;
-};
-
-struct J3DDrawPacket {
-    /* 80312778 */ J3DDrawPacket();
-    /* 803127B0 */ ~J3DDrawPacket();
-    /* 8031280C */ void newDisplayList(u32);
-    /* 80312898 */ void newSingleDisplayList(u32);
-    /* 80312924 */ void draw();
-};
-
-struct J3DDisplayListObj {
-    /* 80312488 */ void newDisplayList(u32);
-    /* 80312508 */ void newSingleDisplayList(u32);
-    /* 8031256C */ void single_To_Double();
-    /* 803125E4 */ void setSingleDisplayList(void*, u32);
-    /* 80312604 */ void swapBuffer();
-    /* 80312618 */ void callDL() const;
-    /* 80312644 */ void beginDL();
-    /* 80312698 */ void endDL();
-    /* 803126F4 */ void beginPatch();
-    /* 80312714 */ void endPatch();
-
-    static u8 sGDLObj[16];
-    static u8 sInterruptFlag[4 + 4 /* padding */];
 };
 
 struct J3DDifferedTexMtx {
@@ -98,7 +83,6 @@ extern "C" u8 sInterruptFlag__17J3DDisplayListObj[4 + 4 /* padding */];
 // External References:
 //
 
-SECTION_INIT void memcpy();
 extern "C" void __dt__9J3DPacketFv();
 extern "C" void* __nw__FUl();
 extern "C" void* __nwa__FUli();
@@ -106,10 +90,6 @@ extern "C" void __dl__FPv();
 extern "C" void setArray__15J3DVertexBufferCFv();
 extern "C" void loadPreDrawSetting__8J3DShapeCFv();
 extern "C" void syncJ3DSysFlags__12J3DModelDataCFv();
-extern "C" void DCStoreRange();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void GXCallDisplayList();
 extern "C" void GDInitGDLObj();
 extern "C" void GDFlushCurrToMem();
 extern "C" void GDPadCurr32();
@@ -128,68 +108,55 @@ extern "C" extern u8 __GDCurrentDL[4];
 // Declarations:
 //
 
-/* 80312488-80312508 30CDC8 0080+00 1/1 1/1 0/0 .text newDisplayList__17J3DDisplayListObjFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DDisplayListObj::newDisplayList(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/newDisplayList__17J3DDisplayListObjFUl.s"
+J3DError J3DDisplayListObj::newDisplayList(u32 capacity) {
+    mCapacity = ALIGN_NEXT(capacity, 0x20);
+    mpData[0] = new (0x20) char[mCapacity];
+    mpData[1] = new (0x20) char[mCapacity];
+    mSize = 0;
+    if (mpData[0] == NULL || mpData[1] == NULL)
+        return kJ3DError_Alloc;
+    return kJ3DError_Success;
 }
-#pragma pop
 
-/* 80312508-8031256C 30CE48 0064+00 1/1 1/1 0/0 .text newSingleDisplayList__17J3DDisplayListObjFUl
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DDisplayListObj::newSingleDisplayList(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/newSingleDisplayList__17J3DDisplayListObjFUl.s"
+J3DError J3DDisplayListObj::newSingleDisplayList(u32 capacity) {
+    mCapacity = ALIGN_NEXT(capacity, 0x20);
+    mpData[0] = new (0x20) char[mCapacity];
+    mpData[1] = mpData[0];
+    mSize = 0;
+    if (mpData[0] == NULL)
+        return kJ3DError_Alloc;
+    return kJ3DError_Success;
 }
-#pragma pop
 
 /* 8031256C-803125E4 30CEAC 0078+00 0/0 1/1 0/0 .text single_To_Double__17J3DDisplayListObjFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DDisplayListObj::single_To_Double() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/single_To_Double__17J3DDisplayListObjFv.s"
-}
-#pragma pop
+J3DError J3DDisplayListObj::single_To_Double() {
+    if (mpData[0] == mpData[1]) {
+        mpData[1] = new (0x20) char[mCapacity];
+        if (mpData[1] == NULL)
+            return kJ3DError_Alloc;
+        memcpy(mpData[1], mpData[0], mCapacity);
+        DCStoreRange(mpData[1], mCapacity);
+    }
 
-/* 803125E4-80312604 30CF24 0020+00 0/0 1/1 0/0 .text
- * setSingleDisplayList__17J3DDisplayListObjFPvUl               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DDisplayListObj::setSingleDisplayList(void* param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/setSingleDisplayList__17J3DDisplayListObjFPvUl.s"
+    return kJ3DError_Success;
 }
-#pragma pop
 
-/* 80312604-80312618 30CF44 0014+00 1/1 0/0 0/0 .text            swapBuffer__17J3DDisplayListObjFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DDisplayListObj::swapBuffer() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/swapBuffer__17J3DDisplayListObjFv.s"
+void J3DDisplayListObj::setSingleDisplayList(void* pDLData, u32 size) {
+    mCapacity = ALIGN_NEXT(size, 0x20);
+    mpData[0] = pDLData;
+    mpData[1] = mpData[0];
+    mSize = size;
 }
-#pragma pop
 
-/* 80312618-80312644 30CF58 002C+00 3/3 4/4 1/1 .text            callDL__17J3DDisplayListObjCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DDisplayListObj::callDL() const {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/callDL__17J3DDisplayListObjCFv.s"
+void J3DDisplayListObj::swapBuffer() {
+    void* pTmp = mpData[0];
+    mpData[0] = mpData[1];
+    mpData[1] = pTmp;
 }
-#pragma pop
+
+void J3DDisplayListObj::callDL() const {
+    GXCallDisplayList(mpData[0], mSize);
+}
 
 /* ############################################################################################## */
 /* 80434C70-80434C80 061990 0010+00 2/2 3/3 0/0 .bss             sGDLObj__17J3DDisplayListObj */
@@ -245,15 +212,14 @@ bool J3DPacket::entry(J3DDrawBuffer* param_0) {
     return true;
 }
 
-/* 80312758-80312778 30D098 0020+00 0/0 2/2 0/0 .text addChildPacket__9J3DPacketFP9J3DPacket */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DPacket::addChildPacket(J3DPacket* param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/addChildPacket__9J3DPacketFP9J3DPacket.s"
+void J3DPacket::addChildPacket(J3DPacket* pPacket) {
+    if (mpFirstChild == NULL) {
+        mpFirstChild = pPacket;
+    } else {
+        pPacket->mpNextSibling = mpFirstChild;
+        mpFirstChild = pPacket;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803CD900-803CD920 02AA20 0020+00 1/1 0/0 0/0 .data            sDifferedRegister */
@@ -329,7 +295,7 @@ asm J3DDrawPacket::~J3DDrawPacket() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DDrawPacket::newDisplayList(u32 param_0) {
+asm J3DError J3DDrawPacket::newDisplayList(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DPacket/newDisplayList__13J3DDrawPacketFUl.s"
 }
@@ -339,21 +305,15 @@ asm void J3DDrawPacket::newDisplayList(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DDrawPacket::newSingleDisplayList(u32 param_0) {
+asm J3DError J3DDrawPacket::newSingleDisplayList(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DPacket/newSingleDisplayList__13J3DDrawPacketFUl.s"
 }
 #pragma pop
 
-/* 80312924-80312948 30D264 0024+00 1/0 0/0 0/0 .text            draw__13J3DDrawPacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DDrawPacket::draw() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/draw__13J3DDrawPacketFv.s"
+void J3DDrawPacket::draw() {
+    mpDisplayListObj->callDL();
 }
-#pragma pop
 
 /* 80312948-803129A4 30D288 005C+00 0/0 1/1 0/0 .text            __ct__12J3DMatPacketFv */
 #pragma push
@@ -375,36 +335,22 @@ asm J3DMatPacket::~J3DMatPacket() {
 }
 #pragma pop
 
-/* 80312A04-80312A24 30D344 0020+00 0/0 3/3 0/0 .text
- * addShapePacket__12J3DMatPacketFP14J3DShapePacket             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMatPacket::addShapePacket(J3DShapePacket* param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/addShapePacket__12J3DMatPacketFP14J3DShapePacket.s"
+void J3DMatPacket::addShapePacket(J3DShapePacket* pShape) {
+    if (mpFirstShapePacket == NULL) {
+        mpFirstShapePacket = pShape;
+    } else {
+        pShape->mpNextSibling = mpFirstShapePacket;
+        mpFirstShapePacket = pShape;
+    }
 }
-#pragma pop
 
-/* 80312A24-80312A4C 30D364 0028+00 0/0 1/1 0/0 .text            beginDiff__12J3DMatPacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMatPacket::beginDiff() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/beginDiff__12J3DMatPacketFv.s"
+void J3DMatPacket::beginDiff() {
+    mpShapePacket->mpDisplayListObj->beginDL();
 }
-#pragma pop
 
-/* 80312A4C-80312A74 30D38C 0028+00 0/0 1/1 0/0 .text            endDiff__12J3DMatPacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMatPacket::endDiff() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/endDiff__12J3DMatPacketFv.s"
+void J3DMatPacket::endDiff() {
+    mpShapePacket->mpDisplayListObj->endDL();
 }
-#pragma pop
 
 /* 80312A74-80312A9C 30D3B4 0028+00 0/0 1/1 0/0 .text isSame__12J3DMatPacketCFP12J3DMatPacket */
 #pragma push
@@ -507,7 +453,7 @@ void J3DPacket::draw() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DMatPacket::entry(J3DDrawBuffer* param_0) {
+asm bool J3DMatPacket::entry(J3DDrawBuffer* param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DPacket/entry__12J3DMatPacketFP13J3DDrawBuffer.s"
 }

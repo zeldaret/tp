@@ -26,6 +26,6 @@ $(BUILD_DIR)/libar.a: $(LIBAR_A_O_FILES)
 $(BUILD_DIR)/libs/dolphin/ar/%.o: libs/dolphin/ar/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(LIBAR_A_CFLAGS) -c -o $@ $@.iconv.cpp
 

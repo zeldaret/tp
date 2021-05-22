@@ -36,6 +36,6 @@ $(BUILD_DIR)/libJStudio_JStage.a: $(LIBJSTUDIO_JSTAGE_A_O_FILES)
 $(BUILD_DIR)/libs/JSystem/JStudio/JStudio_JStage/%.o: libs/JSystem/JStudio/JStudio_JStage/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(LIBJSTUDIO_JSTAGE_A_CFLAGS) -c -o $@ $@.iconv.cpp
 

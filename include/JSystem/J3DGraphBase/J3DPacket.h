@@ -1,44 +1,114 @@
 #ifndef J3DPACKET_H
 #define J3DPACKET_H
 
-#include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
+#include "JSystem/J3DGraphBase/J3DSys.h"
+#include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 
+class J3DMatPacket;
+
 class J3DDrawBuffer;
+class J3DMaterial;
+class J3DMaterialAnm;
+class J3DModel;
+class J3DMtxBuffer;
+class J3DShape;
+class J3DTexMtx;
+class J3DTexture;
+
+class J3DDisplayListObj {
+public:
+    J3DError newDisplayList(u32);
+    J3DError newSingleDisplayList(u32);
+    J3DError single_To_Double();
+    void setSingleDisplayList(void*, u32);
+    void swapBuffer();
+    void callDL() const;
+    void beginDL();
+    void endDL();
+    void beginPatch();
+    void endPatch();
+
+    static u8 sGDLObj[16];
+    static u8 sInterruptFlag[4 + 4 /* padding */];
+
+    void* mpData[2];
+    u32 mSize;
+    u32 mCapacity;
+};
+
 class J3DPacket {
 public:
-    virtual void temp();  // temp to build OK, remove later
-    virtual bool entry(J3DDrawBuffer*);
+    void addChildPacket(J3DPacket* pChild);
+
+    inline void clear() {
+        mpNextSibling = NULL;
+        mpFirstChild = NULL;
+    }
+
+    virtual bool entry(J3DDrawBuffer* pDrawBuffer);
     virtual void draw();
     virtual ~J3DPacket();
 
-    void addChildPacket(J3DPacket*);
-
-private:
-    /* 0x04 */ J3DPacket* mNextPacket;
-    /* 0x08 */ J3DPacket* mChildPacket;
-    /* 0x0C */ u32 mUserArea;
+public:
+    /* 0x04 */ J3DPacket* mpNextSibling;
+    /* 0x08 */ J3DPacket* mpFirstChild;
+    /* 0x0C */ void* mpUserData;
 };  // Size = 0x10
 
-class J3DShapePacket {
-    /* 80312B20 */ J3DShapePacket();
-    /* 80312B74 */ ~J3DShapePacket();
-    /* 80312BD4 */ void calcDifferedBufferSize(u32);
-    /* 80312DBC */ void newDifferedDisplayList(u32);
-    /* 80312E08 */ void prepareDraw() const;
-    /* 80312F24 */ void draw();
-    /* 80312FBC */ void drawFast();
+class J3DDrawPacket : public J3DPacket {
+public:
+    J3DDrawPacket();
+    ~J3DDrawPacket();
+    J3DError newDisplayList(u32);
+    J3DError newSingleDisplayList(u32);
+    virtual void draw();
+
+public:
+    int mFlags;
+    char mPad0[0x0C];  // unk
+    J3DDisplayListObj* mpDisplayListObj;
+    J3DTexMtx* mpTexMtx;
 };
 
-class J3DMatPacket {
-    /* 80312948 */ J3DMatPacket();
-    /* 803129A4 */ ~J3DMatPacket();
-    /* 80312A04 */ void addShapePacket(J3DShapePacket*);
-    /* 80312A24 */ void beginDiff();
-    /* 80312A4C */ void endDiff();
-    /* 80312A74 */ void isSame(J3DMatPacket*) const;
-    /* 80312A9C */ void draw();
-    /* 80313048 */ void entry(J3DDrawBuffer*);
+class J3DShapePacket : public J3DDrawPacket {
+public:
+    J3DShapePacket();
+    void calcDifferedBufferSize(u32);
+    void newDifferedDisplayList(u32);
+    void prepareDraw() const;
+    void drawFast();
+
+    virtual ~J3DShapePacket();
+    virtual void draw();
+
+public:
+    J3DShape* mpShape;
+    J3DMtxBuffer* mpMtxBuffer;
+    Mtx* mpViewMtx;
+    u32 mDiffFlag;
+    J3DModel* mpModel;
+};
+
+class J3DMatPacket : public J3DDrawPacket {
+public:
+    J3DMatPacket();
+    void addShapePacket(J3DShapePacket*);
+    void beginDiff();
+    void endDiff();
+    void isSame(J3DMatPacket*) const;
+
+    virtual ~J3DMatPacket();
+    virtual bool entry(J3DDrawBuffer* pDrawBuffer);
+    virtual void draw();
+
+public:
+    J3DShapePacket* mpShapePacket;
+    J3DShapePacket* mpFirstShapePacket;
+    J3DMaterial* mpMaterial;
+    s32 mSortFlags;
+    J3DTexture* mpTexture;
+    J3DMaterialAnm* mpMaterialAnm;
 };
 
 #endif /* J3DPACKET_H */

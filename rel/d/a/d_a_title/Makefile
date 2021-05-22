@@ -43,7 +43,7 @@ $(M756_TARGET): $(M756_O_FILES) $(M756_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_title/%.o: rel/d/a/d_a_title/%.cpp
 	@echo [756] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M756_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

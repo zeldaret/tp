@@ -43,7 +43,7 @@ $(M61_TARGET): $(M61_O_FILES) $(M61_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_canoe/%.o: rel/d/a/d_a_canoe/%.cpp
 	@echo [ 61] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M61_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

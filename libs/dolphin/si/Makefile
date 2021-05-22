@@ -26,6 +26,6 @@ $(BUILD_DIR)/libsi.a: $(LIBSI_A_O_FILES)
 $(BUILD_DIR)/libs/dolphin/si/%.o: libs/dolphin/si/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(LIBSI_A_CFLAGS) -c -o $@ $@.iconv.cpp
 

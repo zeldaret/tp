@@ -41,7 +41,7 @@ $(M673_TARGET): $(M673_O_FILES) $(M673_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_usaku/%.o: rel/d/a/obj/d_a_obj_usaku/%.cpp
 	@echo [673] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M673_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

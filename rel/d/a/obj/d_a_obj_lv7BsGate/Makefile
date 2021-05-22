@@ -43,7 +43,7 @@ $(M557_TARGET): $(M557_O_FILES) $(M557_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7BsGate/%.o: rel/d/a/obj/d_a_obj_lv7BsGate/%.cpp
 	@echo [557] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M557_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

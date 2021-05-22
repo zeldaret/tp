@@ -43,7 +43,7 @@ $(M360_TARGET): $(M360_O_FILES) $(M360_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shaman/%.o: rel/d/a/npc/d_a_npc_shaman/%.cpp
 	@echo [360] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) $(M360_CFLAGS) -c -o $@ $@.iconv.cpp
 
 
