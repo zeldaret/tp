@@ -6,6 +6,8 @@
 class cBgS_GrpPassChk {
 public:
     ~cBgS_GrpPassChk();
+
+    void* vtable;
 };
 
 class dBgS_GrpPassChk : public cBgS_GrpPassChk {

@@ -31,10 +31,6 @@ struct _GXFogType {};
 
 struct _GXFogAdjTable {};
 
-struct _GXColorS10 {};
-
-struct _GXColor {};
-
 struct _GXChannelID {};
 
 struct J3DZMode {};
@@ -114,8 +110,6 @@ struct J3DTevSwapModeInfo {};
 struct J3DTevStage {};
 
 struct J3DTevOrder {};
-
-struct J3DGXColorS10 {};
 
 struct J3DIndTevStage {};
 

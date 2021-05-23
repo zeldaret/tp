@@ -65,7 +65,15 @@ struct DOUBLE_POS {
 };
 
 inline s32 fopAcM_GetRoomNo(const fopAc_ac_c* pActor) {
-    return pActor->mRoomNo;
+    return pActor->mCurrent.mRoomNo;
+}
+
+inline u32 fopAcM_GetID(const void* pActor) {
+    return fpcM_GetID(pActor);
+}
+
+inline s16 fopAcM_GetName(fopAc_ac_c* pActor) {
+    return fpcM_GetName(pActor);
 }
 
 void* fopAcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3, void* pData);
@@ -100,7 +108,7 @@ void fopAcM_setCullSizeSphere(fopAc_ac_c*, f32, f32, f32, f32);
 void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
 bool fopAcM_addAngleY(fopAc_ac_c*, s16, s16);
 inline csXyz& fopAcM_GetAngle_p(fopAc_ac_c* pActor) {
-    return pActor->mAngle;
+    return pActor->mCurrent.mAngle;
 }
 void fopAcM_calcSpeed(fopAc_ac_c*);
 void fopAcM_posMove(fopAc_ac_c*, const cXyz*);

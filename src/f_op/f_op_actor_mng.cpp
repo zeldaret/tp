@@ -408,10 +408,6 @@ extern "C" extern u8 data_80451164[4];
 // Declarations:
 //
 
-inline u32 fopAcM_GetID(const void* pProc) {
-    return fpcM_GetID(pProc);
-}
-
 /* 800198A4-800198C4 0141E4 0020+00 0/0 1/1 0/0 .text            fopAcM_FastCreate__FsPFPv_iPvPv */
 void* fopAcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3, void* pData) {
     return fpcM_FastCreate(pProcTypeID, param_2, param_3, pData);
@@ -867,7 +863,7 @@ inline const cXyz& fopAcM_GetSpeed_p(const fopAc_ac_c* pActor) {
 }
 
 inline const cXyz& fopAcM_GetPosition_p(const fopAc_ac_c* pActor) {
-    return pActor->mPosition;
+    return pActor->mCurrent.mPosition;
 }
 
 inline void clampMin(f32& val, f32 min) {
@@ -889,9 +885,9 @@ void fopAcM_calcSpeed(fopAc_ac_c* pActor) {
 
 /* 8001A660-8001A6CC 014FA0 006C+00 1/1 1/1 17/17 .text fopAcM_posMove__FP10fopAc_ac_cPC4cXyz */
 void fopAcM_posMove(fopAc_ac_c* pActor, const cXyz* pXyz) {
-    pActor->mPosition += pActor->mSpeed;
+    pActor->mCurrent.mPosition += pActor->mSpeed;
     if (pXyz != NULL) {
-        pActor->mPosition += *pXyz;
+        pActor->mCurrent.mPosition += *pXyz;
     }
 }
 
@@ -905,7 +901,7 @@ void fopAcM_posMoveF(fopAc_ac_c* pActor, const cXyz* pXyz) {
 /* 8001A710-8001A738 015050 0028+00 1/1 26/26 596/596 .text
  * fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c      */
 s16 fopAcM_searchActorAngleY(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActorB) {
-    return cLib_targetAngleY(&pActorA->mPosition, &pActorB->mPosition);
+    return cLib_targetAngleY(&pActorA->mCurrent.mPosition, &pActorB->mCurrent.mPosition);
 }
 
 /* ############################################################################################## */
@@ -951,8 +947,8 @@ asm s16 fopAcM_searchActorAngleX(fopAc_ac_c const* param_0, fopAc_ac_c const* pa
 /* 8001A79C-8001A7E0 0150DC 0044+00 0/0 3/3 15/15 .text
  * fopAcM_seenActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c        */
 s32 fopAcM_seenActorAngleY(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActorB) {
-    return abs(static_cast<s16>(cLib_targetAngleY(&pActorA->mPosition, &pActorB->mPosition) -
-                                pActorA->unk_0x4E6));
+    return abs(static_cast<s16>(cLib_targetAngleY(&pActorA->mCurrent.mPosition, &pActorB->mCurrent.mPosition) -
+                                pActorA->mCollisionRot.y));
 }
 
 /* ############################################################################################## */
@@ -985,14 +981,14 @@ inline f32 local_sqrtf(f32 mag) {
 /* 8001A7E0-8001A914 015120 0134+00 0/0 5/5 188/188 .text
  * fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c    */
 f32 fopAcM_searchActorDistance(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActorB) {
-    cXyz tmp = (pActorB->mPosition - pActorA->mPosition);
+    cXyz tmp = (pActorB->mCurrent.mPosition - pActorA->mCurrent.mPosition);
     return local_sqrtf(tmp.abs2());
 }
 
 /* 8001A914-8001A964 015254 0050+00 0/0 0/0 2/2 .text
  * fopAcM_searchActorDistance2__FPC10fopAc_ac_cPC10fopAc_ac_c   */
 f32 fopAcM_searchActorDistance2(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActorB) {
-    cXyz tmp = (pActorB->mPosition - pActorA->mPosition);
+    cXyz tmp = (pActorB->mCurrent.mPosition - pActorA->mCurrent.mPosition);
     return tmp.abs2();
 }
 
@@ -1689,9 +1685,9 @@ asm s32 fopAcM_myRoomSearchEnemy(s8 param_0) {
  * fopAcM_createDisappear__FPC10fopAc_ac_cPC4cXyzUcUcUc         */
 s32 fopAcM_createDisappear(const fopAc_ac_c* pActor, const cXyz* pPos, u8 param_3, u8 param_4,
                            u8 param_5) {
-    s8 roomNo = pActor->mRoomNo;
+    s8 roomNo = pActor->mCurrent.mRoomNo;
     return fopAcM_GetID(fopAcM_fastCreate(0x139, (param_5 << 0x10) | (param_3 << 0x8) | param_4,
-                                          pPos, roomNo, &pActor->mAngle, NULL, 0xFF, NULL, NULL));
+                                          pPos, roomNo, &pActor->mCurrent.mAngle, NULL, 0xFF, NULL, NULL));
 }
 
 /* 8001CB48-8001CBA0 017488 0058+00 0/0 6/6 7/7 .text            fopAcM_setCarryNow__FP10fopAc_ac_ci
@@ -1915,7 +1911,7 @@ asm void fopAcM_setEffectMtx(fopAc_ac_c const* param_0, J3DModelData const* para
 
 /* 8001D5A4-8001D5EC 017EE4 0048+00 1/1 0/0 0/0 .text fopAcM_getProcNameString__FPC10fopAc_ac_c */
 static const char* fopAcM_getProcNameString(const fopAc_ac_c* pActor) {
-    const char* name = dStage_getName2(pActor->mBsTypeId, pActor->unk_0x499);
+    const char* name = dStage_getName2(pActor->mBase.mBsTypeId, pActor->unk_0x499);
     return name != NULL ? name : "UNKOWN";
 }
 

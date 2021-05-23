@@ -17,8 +17,6 @@ struct _GXTlut {};
 
 struct _GXTexMapID {};
 
-struct ResTIMG {};
-
 struct JUTTransparency {};
 
 struct JUTPalette {

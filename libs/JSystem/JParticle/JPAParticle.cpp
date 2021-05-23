@@ -15,11 +15,6 @@ struct Vec {};
 
 struct JPAEmitterWorkData {};
 
-struct JPABaseParticle;
-struct JPABaseEmitter {
-    /* 8027EB60 */ void createChild(JPABaseParticle*);
-};
-
 struct JPABaseParticle {
     /* 8027EFEC */ void init_p(JPAEmitterWorkData*);
     /* 8027F8C8 */ void init_c(JPAEmitterWorkData*, JPABaseParticle*);
@@ -34,10 +29,6 @@ struct JPAResource {
     /* 8027658C */ void calc_p(JPAEmitterWorkData*, JPABaseParticle*);
     /* 80276608 */ void calc_c(JPAEmitterWorkData*, JPABaseParticle*);
     /* 80276684 */ void calcField(JPAEmitterWorkData*, JPABaseParticle*);
-};
-
-struct JPAParticleCallBack {
-    /* 8027EFA4 */ ~JPAParticleCallBack();
 };
 
 //

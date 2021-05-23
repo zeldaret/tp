@@ -11,52 +11,6 @@
 // Types:
 //
 
-struct Vec {};
-
-struct J3DModel;
-struct J3DModelData {
-    /* 803260F8 */ void syncJ3DSysFlags() const;
-};
-
-struct J3DSkinDeform {
-    /* 8032C9B0 */ void initSkinInfo(J3DModelData*);
-    /* 8032CF44 */ void initMtxIndexArray(J3DModelData*);
-    /* 8032D378 */ void changeFastSkinDL(J3DModelData*);
-    /* 8032D738 */ void transformVtxPosNrm(J3DModelData*);
-    /* 8032DFDC */ void deform(J3DModel*);
-};
-
-struct J3DDeformData {
-    /* 8032E230 */ void offAllFlag(u32);
-    /* 8032E274 */ void deform(J3DModel*);
-};
-
-struct J3DModel {
-    /* 80327100 */ void initialize();
-    /* 80327184 */ void entryModelData(J3DModelData*, u32, u32);
-    /* 80327300 */ void createShapePacket(J3DModelData*);
-    /* 803273CC */ void createMatPacket(J3DModelData*, u32);
-    /* 803275FC */ void newDifferedDisplayList(u32);
-    /* 8032767C */ void lock();
-    /* 803276B4 */ void unlock();
-    /* 803276EC */ void calcMaterial();
-    /* 80327858 */ void calcDiffTexMtx();
-    /* 803279A0 */ void diff();
-    /* 80327A2C */ void setDeformData(J3DDeformData*, u32);
-    /* 80327AA0 */ void setSkinDeform(J3DSkinDeform*, u32);
-    /* 80327BD4 */ void calcAnmMtx();
-    /* 80327C58 */ void calcWeightEnvelopeMtx();
-    /* 80327CA4 */ void update();
-    /* 80327CF0 */ void calc();
-    /* 80327E4C */ void entry();
-    /* 80327F40 */ void viewCalc();
-    /* 80328190 */ void calcNrmMtx();
-    /* 803281B4 */ void calcBumpMtx();
-    /* 803282B8 */ void calcBBoardMtx();
-    /* 803282EC */ void prepareShapePackets();
-    /* 80328350 */ ~J3DModel();
-};
-
 struct J3DVtxColorCalc {
     /* 8032E180 */ void calc(J3DModel*);
 };
@@ -79,16 +33,6 @@ struct J3DShapePacket {
 
 struct J3DShape {
     /* 80314DA8 */ void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
-};
-
-struct J3DMtxBuffer {
-    /* 80326214 */ void initialize();
-    /* 80326258 */ void create(J3DModelData*, u32);
-    /* 803268D4 */ void calcWeightEnvelopeMtx();
-    /* 80326ACC */ void calcDrawMtx(u32, Vec const&, f32 const (&)[3][4]);
-    /* 80326D3C */ void calcNrmMtx();
-    /* 80326EF0 */ void calcBBoardMtx();
-    /* 803283B4 */ ~J3DMtxBuffer();
 };
 
 struct J3DMaterial {
@@ -189,8 +133,6 @@ extern "C" void deform__13J3DDeformDataFP8J3DModel();
 extern "C" void entryIn__8J3DJointFv();
 extern "C" void DCStoreRange();
 extern "C" void DCStoreRangeNoSync();
-extern "C" void PSMTXIdentity();
-extern "C" void PSMTXCopy();
 extern "C" void __construct_new_array();
 extern "C" void _savegpr_23();
 extern "C" void _savegpr_25();

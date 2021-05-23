@@ -42,10 +42,6 @@ struct mDoExt_btpAnm {
 
 struct J3DAnmCluster {};
 
-struct J3DDeformData {
-    /* 8032E364 */ void setAnm(J3DAnmCluster*);
-};
-
 struct mDoExt_blkAnm {
     /* 8000DA08 */ void init(J3DDeformData*, J3DAnmCluster*, int, int, f32, s16, s16);
 };

@@ -180,14 +180,6 @@ struct J3DUClipper {
     /* 80273A44 */ void clip(f32 const (*)[4], Vec*, Vec*) const;
 };
 
-struct J3DSys {
-    /* 8031073C */ void reinitGX();
-};
-
-struct J3DShapePacket {
-    /* 80312FBC */ void drawFast();
-};
-
 struct J3DShape {
     /* 80315300 */ void loadPreDrawSetting() const;
 
@@ -439,7 +431,6 @@ extern "C" u8 mClipper__14mDoLib_clipper[92];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_envHIO[68];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" u8 mBackColor__13mDoGph_gInf_c[4];
 extern "C" extern u8 g_clearColor[4];
