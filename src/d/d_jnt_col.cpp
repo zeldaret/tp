@@ -11,49 +11,12 @@
 // Types:
 //
 
-struct csXyz {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 80266C18 */ void operator/(f32) const;
-    /* 80266F48 */ void normalizeZP();
-    /* 80267128 */ void atan2sX_Z() const;
-    /* 80267150 */ void atan2sY_XZ() const;
-
-    static u8 BaseZ[12];
-};
-
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CF0C */ void ZXYrotS(csXyz const&);
 
     static u8 now[48];
-};
-
-struct fopAc_ac_c {};
-
-struct cM3dGLin {
-    /* 80036A5C */ ~cM3dGLin();
-    /* 8026F2E8 */ void SetStartEnd(cXyz const&, cXyz const&);
-};
-
-struct dJntColData_c {};
-
-struct J3DModel {};
-
-struct dJntCol_c {
-    /* 80035C8C */ dJntCol_c();
-    /* 80035CA0 */ void init(fopAc_ac_c*, dJntColData_c const*, J3DModel*, int);
-    /* 80035CC8 */ void setNowLine(cM3dGLin*, cXyz const*, csXyz const*, cXyz*);
-    /* 80035DC8 */ void searchNearPos(cM3dGLin const*, cXyz const*, cXyz*, int) const;
-    /* 80036AEC */ void getArrowOffsetPosAndAngle(cXyz const*, csXyz const*, cXyz*, cXyz*) const;
-    /* 80036C44 */ void getHitmarkPosAndAngle(cXyz const*, csXyz const*, cXyz*, csXyz*, int) const;
-    /* 80036FA8 */ void setArrowPosAndAngle(cXyz const*, cXyz const*, int, cXyz*, csXyz*);
 };
 
 struct cM3dGSph {
@@ -113,13 +76,6 @@ extern "C" void crossInfLin__8cM3dGPlaCFRC4cXyzRC4cXyzR4cXyz();
 extern "C" void SetupNP0__8cM3dGPlaFRC3VecRC3Vec();
 extern "C" void Set__8cM3dGSphFRC4cXyzf();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXInverse();
-extern "C" void PSMTXMultVec();
-extern "C" void PSMTXMultVecSR();
-extern "C" void PSVECSquareMag();
-extern "C" void PSVECDotProduct();
-extern "C" void PSVECSquareDistance();
 extern "C" void _savegpr_19();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
@@ -241,7 +197,7 @@ asm void dJntCol_c::searchNearPos(cM3dGLin const* param_0, cXyz const* param_1, 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGLin::~cM3dGLin() {
+extern "C" asm void __dt__8cM3dGLinFv() {
     nofralloc
 #include "asm/d/d_jnt_col/__dt__8cM3dGLinFv.s"
 }

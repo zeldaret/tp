@@ -7,117 +7,60 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-//
-// Types:
-//
-
-struct e_wb_class {
-    /* 80037C7C */ void checkWait();
-    /* 80037C90 */ void setPlayerRideNow();
-    /* 80037CB0 */ void setPlayerRide();
-    /* 80037CF4 */ void getOff();
-    /* 80037D68 */ void checkDownDamage();
-    /* 80037D94 */ void checkNormalRideMode() const;
-    /* 80037DBC */ void setRunRideMode();
-};
-
-struct daTagHstop_c {
-    static u8 m_top[4 + 4 /* padding */];
-};
-
-//
-// Forward References:
-//
-
-extern "C" void checkWait__10e_wb_classFv();
-extern "C" void setPlayerRideNow__10e_wb_classFv();
-extern "C" void setPlayerRide__10e_wb_classFv();
-extern "C" void getOff__10e_wb_classFv();
-extern "C" void checkDownDamage__10e_wb_classFv();
-extern "C" void checkNormalRideMode__10e_wb_classCFv();
-extern "C" void setRunRideMode__10e_wb_classFv();
-extern "C" u8 m_top__12daTagHstop_c[4 + 4 /* padding */];
-
-//
-// External References:
-//
-
-extern "C" void setLinkRiding__14Z2CreatureRideFb();
-
-//
-// Declarations:
-//
-
-/* 80037C7C-80037C90 0325BC 0014+00 0/0 1/1 0/0 .text            checkWait__10e_wb_classFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void e_wb_class::checkWait() {
-    nofralloc
-#include "asm/d/a/d_a_horse_static/checkWait__10e_wb_classFv.s"
+BOOL e_wb_class::checkWait() {
+    return unk1460 == 0x2A;
 }
-#pragma pop
 
-/* 80037C90-80037CB0 0325D0 0020+00 0/0 2/2 0/0 .text            setPlayerRideNow__10e_wb_classFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void e_wb_class::setPlayerRideNow() {
-    nofralloc
-#include "asm/d/a/d_a_horse_static/setPlayerRideNow__10e_wb_classFv.s"
+void e_wb_class::setPlayerRideNow() {
+    unk1680 = 0x67;
+    unk1460 = 0;
+    unk1726 |= 3;
 }
-#pragma pop
 
-/* 80037CB0-80037CF4 0325F0 0044+00 0/0 3/3 0/0 .text            setPlayerRide__10e_wb_classFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void e_wb_class::setPlayerRide() {
-    nofralloc
-#include "asm/d/a/d_a_horse_static/setPlayerRide__10e_wb_classFv.s"
+void e_wb_class::setPlayerRide() {
+    unk1680 = 0x65;
+    unk1460 = 0;
+    unk1726 |= 3;
+
+    mZ2Ride.setLinkRiding(true);
 }
-#pragma pop
 
-/* 80037CF4-80037D68 032634 0074+00 0/0 1/1 0/0 .text            getOff__10e_wb_classFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void e_wb_class::getOff() {
-    nofralloc
-#include "asm/d/a/d_a_horse_static/getOff__10e_wb_classFv.s"
+void e_wb_class::getOff() {
+    if (!checkDownDamage() || unk1680 == 0x67) {
+        unk1680 = 0;
+    } else {
+        unk1682 = 0;
+    }
+    unk1460 = 0;
+    unk1726 &= 0xfffc;
+    mZ2Ride.setLinkRiding(false);
 }
-#pragma pop
 
-/* 80037D68-80037D94 0326A8 002C+00 1/1 2/2 0/0 .text            checkDownDamage__10e_wb_classFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void e_wb_class::checkDownDamage() {
-    nofralloc
-#include "asm/d/a/d_a_horse_static/checkDownDamage__10e_wb_classFv.s"
+BOOL e_wb_class::checkDownDamage() {
+    bool downDamage = false;
+    s16 tmp = unk1680;
+
+    if (tmp != 0x65 && tmp != 0x66 && tmp != 0x15) {
+        downDamage = true;
+    }
+    return downDamage;
 }
-#pragma pop
 
-/* 80037D94-80037DBC 0326D4 0028+00 0/0 2/2 0/0 .text checkNormalRideMode__10e_wb_classCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void e_wb_class::checkNormalRideMode() const {
-    nofralloc
-#include "asm/d/a/d_a_horse_static/checkNormalRideMode__10e_wb_classCFv.s"
+u8 e_wb_class::checkNormalRideMode() const {
+    bool normalRideMode = false;
+
+    if (unk1680 != 0x66 || unk1460 < 1) {
+        normalRideMode = 1;
+    }
+    return normalRideMode;
 }
-#pragma pop
 
-/* 80037DBC-80037DE4 0326FC 0028+00 0/0 1/1 0/0 .text            setRunRideMode__10e_wb_classFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void e_wb_class::setRunRideMode() {
-    nofralloc
-#include "asm/d/a/d_a_horse_static/setRunRideMode__10e_wb_classFv.s"
+void e_wb_class::setRunRideMode() {
+    if (unk1680 == 0x65) {
+        unk1460 = 0;
+        unk1680 = 0x15;
+        unk1682 = 0x65;
+    }
 }
-#pragma pop
 
-/* ############################################################################################## */
-/* 80450DF8-80450E00 0002F8 0004+04 0/0 1/1 3/3 .sbss            m_top__12daTagHstop_c */
-u8 daTagHstop_c::m_top[4 + 4 /* padding */];
+daTagHstop_c* daTagHstop_c::m_top;

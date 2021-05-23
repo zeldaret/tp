@@ -11,52 +11,9 @@
 // Types:
 //
 
-struct fopAc_ac_c {};
-
-struct dBgS_RopeLinChk {
-    /* 8007838C */ dBgS_RopeLinChk();
-    /* 800783E8 */ ~dBgS_RopeLinChk();
-};
-
-struct dBgS_PolyPassChk {
-    /* 80078E68 */ void SetObj();
-    /* 80078E80 */ void SetCam();
-    /* 80078E98 */ void SetLink();
-    /* 80078EB0 */ void SetArrow();
-    /* 80078EBC */ void SetBomb();
-    /* 80078ED4 */ void SetBoomerang();
-    /* 80078EE0 */ void SetRope();
-    /* 80078EF8 */ void SetHorse();
-};
-
-struct dBgS_ObjLinChk {
-    /* 80077F5C */ dBgS_ObjLinChk();
-    /* 80077FB8 */ ~dBgS_ObjLinChk();
-};
-
-struct dBgS_LinkLinChk {
-    /* 80078030 */ dBgS_LinkLinChk();
-    /* 8007808C */ ~dBgS_LinkLinChk();
-};
-
-struct cXyz {};
-
-struct dBgS_LinChk {
-    /* 80077C68 */ dBgS_LinChk();
-    /* 80077CDC */ ~dBgS_LinChk();
-    /* 80077D64 */ void Set(cXyz const*, cXyz const*, fopAc_ac_c const*);
-};
-
 struct dBgS_HorseLinChk {
     /* 80078460 */ dBgS_HorseLinChk();
     /* 800784BC */ ~dBgS_HorseLinChk();
-};
-
-struct dBgS_Chk {
-    /* 8007749C */ dBgS_Chk();
-    /* 800774E8 */ ~dBgS_Chk();
-    /* 80077560 */ void GetPolyPassChkInfo();
-    /* 80077564 */ void GetGrpPassChkInfo();
 };
 
 struct dBgS_CamLinChk_NorWtr {
@@ -69,25 +26,9 @@ struct dBgS_CamLinChk {
     /* 80077E00 */ ~dBgS_CamLinChk();
 };
 
-struct dBgS_BoomerangLinChk {
-    /* 800782B8 */ dBgS_BoomerangLinChk();
-    /* 80078314 */ ~dBgS_BoomerangLinChk();
-};
-
 struct dBgS_BombLinChk {
     /* 80078104 */ dBgS_BombLinChk();
     /* 80078160 */ ~dBgS_BombLinChk();
-};
-
-struct dBgS_ArrowLinChk {
-    /* 800781D8 */ dBgS_ArrowLinChk();
-    /* 80078240 */ ~dBgS_ArrowLinChk();
-};
-
-struct cBgS_LinChk {
-    /* 80267D5C */ cBgS_LinChk();
-    /* 80267DBC */ ~cBgS_LinChk();
-    /* 80267ED0 */ void Set2(cXyz const*, cXyz const*, unsigned int);
 };
 
 //

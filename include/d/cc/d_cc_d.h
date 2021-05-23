@@ -152,6 +152,7 @@ public:
     /* 80084954 */ void MoveCAt(cXyz&);
     /* 800849C4 */ void MoveCTg(cXyz&);
     /* 80084D60 */ ~dCcD_Cyl();
+    dCcD_Cyl();
 
 private:
     /* 0x104 */ cCcD_CylAttr mCylAttr;
@@ -176,6 +177,7 @@ public:
     /* 80084824 */ void CalcAtVec();
     /* 80084854 */ void CalcTgVec();
     /* 8008506C */ ~dCcD_Cps();
+    dCcD_Cps();
 
 private:
     /* 0x104 */ cCcD_CpsAttr mCpsAttr;

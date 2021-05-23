@@ -18,8 +18,6 @@ struct mDoExt_morf_c {
     /* 8000FBC0 */ void frameUpdate();
 };
 
-struct Vec {};
-
 struct cXyz {
     /* 80009184 */ ~cXyz();
     /* 800125DC */ cXyz();
@@ -48,10 +46,6 @@ struct mDoExt_btpAnm {
 };
 
 struct J3DAnmCluster {};
-
-struct J3DDeformData {
-    /* 8032E364 */ void setAnm(J3DAnmCluster*);
-};
 
 struct mDoExt_blkAnm {
     /* 8000DA08 */ void init(J3DDeformData*, J3DAnmCluster*, int, int, f32, s16, s16);
@@ -213,19 +207,8 @@ struct Z2SoundObjAnime {
 
 struct ResFONT {};
 
-struct Quaternion {};
-
 struct JUtility {
     struct TColor {};
-};
-
-struct JKRHeap {
-    /* 802CE438 */ void becomeCurrentHeap();
-    /* 802CE448 */ void destroy();
-    /* 802CE500 */ void free(void*, JKRHeap*);
-    /* 802CEB78 */ void setErrorFlag(bool);
-
-    static u8 sCurrentHeap[4];
 };
 
 struct JUTResFont {
@@ -247,17 +230,8 @@ struct JUTCacheFont {
     /* 802DD188 */ JUTCacheFont(ResFONT const*, u32, JKRHeap*);
 };
 
-struct JKRSolidHeap {
-    /* 802D0A24 */ void create(u32, JKRHeap*, bool);
-    /* 802D0BF4 */ void adjustSize();
-};
-
 struct JKRFileLoader {
     /* 802D4308 */ void removeResource(void*, JKRFileLoader*);
-};
-
-struct JKRExpHeap {
-    /* 802CEE2C */ void create(u32, JKRHeap*, bool);
 };
 
 struct JKRAssertHeap {
@@ -727,8 +701,6 @@ extern "C" extern char const* const m_Do_m_Do_ext__stringBase0;
 // External References:
 //
 
-extern "C" void OSReport_FatalError();
-extern "C" void OSReport_Error();
 extern "C" void __dt__4cXyzFv();
 extern "C" void dComIfG_getStageRes__FPCc();
 extern "C" void entryZSortXluDrawList__12dDlst_list_cFP13J3DDrawBufferP9J3DPacketR4cXyz();
@@ -806,15 +778,6 @@ extern "C" void entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
 extern "C" void JMAEulerToQuat__FsssP10Quaternion();
 extern "C" void JMAQuatLerp__FPC10QuaternionPC10QuaternionfP10Quaternion();
 extern "C" void DCStoreRangeNoSync();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void OSGetCurrentThread();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXConcat();
-extern "C" void PSMTXQuat();
-extern "C" void PSVECAdd();
-extern "C" void PSVECScale();
-extern "C" void PSVECSquareMag();
 extern "C" void GXSetVtxDesc();
 extern "C" void GXClearVtxDesc();
 extern "C" void GXSetVtxAttrFmt();

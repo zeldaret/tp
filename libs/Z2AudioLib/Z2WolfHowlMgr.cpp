@@ -11,34 +11,10 @@
 // Types:
 //
 
-struct Z2WolfHowlData {};
-
-struct Vec {};
-
-struct Z2WolfHowlMgr {
-    /* 802CAAC0 */ Z2WolfHowlMgr();
-    /* 802CAB8C */ void resetState();
-    /* 802CABEC */ void calcVolumeMod(f32);
-    /* 802CACB0 */ void getNowPitch();
-    /* 802CACCC */ void getNowInputValue();
-    /* 802CACD4 */ void calcPitchMod(f32, f32);
-    /* 802CAED4 */ void startWolfHowlSound(f32, f32, bool, f32);
-    /* 802CB100 */ void setCorrectData(s8, Z2WolfHowlData*);
-    /* 802CB320 */ void getCorrectLine(u8);
-    /* 802CB370 */ void getCorrectLineNum();
-    /* 802CB38C */ void checkLine();
-    /* 802CB650 */ void getOnLineNum();
-    /* 802CB6EC */ void startWindStoneSound(s8, Vec*);
-    /* 802CBA88 */ void startGuideMelody(bool);
-    /* 802CBB58 */ void skipCorrectDemo();
-};
-
 struct Z2SeqMgr {
     /* 802AF49C */ void subBgmStart(u32);
     /* 802B327C */ void stopWolfHowlSong();
 };
-
-struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -55,27 +31,9 @@ struct Z2Calc {
     /* 802A96F4 */ void getParamByExp(f32, f32, f32, f32, f32, f32, Z2Calc::CurveSign);
 };
 
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
-
-struct JAISoundHandle {};
-
-struct JAISoundStarter {
-    /* 802A2FEC */ void startLevelSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
-};
-
 struct JAISoundParamsMove {
     /* 802A2DB4 */ void moveVolume(f32, u32);
     /* 802A2E0C */ void movePitch(f32, u32);
-};
-
-struct JAISound {
-    /* 802A2598 */ void stop();
-    /* 802A24DC */ void stop(u32);
 };
 
 //
@@ -113,7 +71,6 @@ extern "C" void getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign();
 extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void subBgmStart__8Z2SeqMgrFUl();
 extern "C" void stopWolfHowlSong__8Z2SeqMgrFv();
-extern "C" void PSVECSquareDistance();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();

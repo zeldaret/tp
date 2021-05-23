@@ -39,8 +39,6 @@ struct Z2AudioMgr {
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
-struct JKRSolidHeap {};
-
 struct J3DGXColor {};
 
 struct J3DTevBlock {
@@ -136,7 +134,6 @@ extern "C" extern u8 data_80450688[8];
 // External References:
 //
 
-SECTION_INIT void memcpy();
 extern "C" void play__14mDoExt_baseAnmFv();
 extern "C" void init__13mDoExt_bpkAnmFP16J3DMaterialTableP11J3DAnmColoriifss();
 extern "C" void entry__13mDoExt_bpkAnmFP16J3DMaterialTablef();
@@ -190,7 +187,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strcmp();
 extern "C" void tan();
 extern "C" extern void* __vt__25mDoExt_McaMorfCallBack1_c[3];
 extern "C" u8 dist_table__12dAttention_c[6552];

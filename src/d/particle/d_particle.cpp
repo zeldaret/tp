@@ -27,13 +27,6 @@ struct mDoDvdThd_toMainRam_c {
     /* 80016394 */ void create(char const*, u8, JKRHeap*);
 };
 
-struct fopAc_ac_c {};
-
-struct cXyz {
-    /* 80266B84 */ void operator*(f32) const;
-    /* 80267128 */ void atan2sX_Z() const;
-};
-
 struct fopAcM_wt_c {
     /* 8001DD84 */ void waterCheck(cXyz const*);
 
@@ -42,15 +35,6 @@ struct fopAcM_wt_c {
 
 struct daPy_py_c {
     /* 8015F424 */ void checkNowWolfEyeUp();
-};
-
-struct _GXTexMapID {};
-
-struct JPABaseEmitter {
-    /* 8027EA40 */ void createParticle();
-    /* 8027EF30 */ void getCurrentCreateNumber() const;
-    /* 8027EF40 */ void getDrawCount() const;
-    /* 8027EF50 */ void loadTexture(u8, _GXTexMapID);
 };
 
 struct JPABaseParticle {
@@ -68,21 +52,7 @@ struct dPa_wbPcallBack_c {
     /* 8004FECC */ ~dPa_wbPcallBack_c();
 };
 
-struct JPAParticleCallBack {
-    /* 800183D4 */ void execute(JPABaseEmitter*, JPABaseParticle*);
-    /* 800183D8 */ void draw(JPABaseEmitter*, JPABaseParticle*);
-    /* 8027EFA4 */ ~JPAParticleCallBack();
-};
-
 struct JPADrawInfo {};
-
-struct JPAEmitterCallBack {
-    /* 80050368 */ void execute(JPABaseEmitter*);
-    /* 8005036C */ void draw(JPABaseEmitter*);
-    /* 80050370 */ void drawAfter(JPABaseEmitter*);
-    /* 80050374 */ void executeAfter(JPABaseEmitter*);
-    /* 8027E6A4 */ ~JPAEmitterCallBack();
-};
 
 struct ResTIMG {};
 
@@ -130,8 +100,6 @@ struct dPa_simpleData_c {
     /* 8004B024 */ ~dPa_simpleData_c();
     /* 8004B060 */ dPa_simpleData_c();
 };
-
-struct csXyz {};
 
 struct dPa_setColorEcallBack {
     /* 800502B0 */ void draw(JPABaseEmitter*);
@@ -206,18 +174,6 @@ struct dPa_light8EcallBack {
     /* 8004A340 */ void draw(JPABaseEmitter*);
     /* 8005015C */ ~dPa_light8EcallBack();
     /* 800501E0 */ void drawAfter(JPABaseEmitter*);
-};
-
-struct dPa_levelEcallBack {
-    /* 8004FB18 */ ~dPa_levelEcallBack();
-    /* 8004FB8C */ void cleanup();
-};
-
-struct dPa_hermiteEcallBack_c {
-    /* 8004F6B8 */ void setOldPosP(cXyz const*, cXyz const*);
-    /* 8004F6C4 */ void executeAfter(JPABaseEmitter*);
-    /* 8004FABC */ void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
-    /* 8004FCC8 */ ~dPa_hermiteEcallBack_c();
 };
 
 struct dPa_gen_d_light8PcallBack {
@@ -354,8 +310,6 @@ struct cBgS {
     /* 80074660 */ void ChkPolySafe(cBgS_PolyInfo const&);
     /* 80074744 */ void GetTriPla(cBgS_PolyInfo const&, cM3dGPla*) const;
 };
-
-struct Vec {};
 
 struct JMath {
     static u8 sincosTable_[65536];
@@ -665,15 +619,7 @@ extern "C" void removeTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern();
 extern "C" void removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
 extern "C" void entryTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern();
 extern "C" void entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
-extern "C" void PSMTXIdentity();
-extern "C" void PSMTXConcat();
-extern "C" void PSMTXRotRad();
-extern "C" void PSMTXRotAxisRad();
-extern "C" void PSMTXScale();
 extern "C" void PSMTXMultVec();
-extern "C" void PSVECSquareMag();
-extern "C" void PSVECCrossProduct();
-extern "C" void PSVECSquareDistance();
 extern "C" void GXSetVtxDesc();
 extern "C" void GXClearVtxDesc();
 extern "C" void GXSetVtxAttrFmt();

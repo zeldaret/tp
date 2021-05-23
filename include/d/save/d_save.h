@@ -13,6 +13,8 @@
 #define LETTER_INFO_BIT 64
 #define BOMB_BAG_MAX 3
 #define BOTTLE_MAX 4
+#define TBOX_MAX 64
+#define DSV_MEMBIT_ENUM_MAX 8
 
 enum Wallets { WALLET, BIG_WALLET, GIANT_WALLET };
 
@@ -302,7 +304,7 @@ enum ItemTable {
     NO_ITEM
 };
 
-enum EquipmentBits { CLOTHING_BITFIELD, SWORD_BITFIELD, SHIELD_BITFIELD };
+enum CollectItem { COLLECT_CLOTHING, COLLECT_SWORD, COLLECT_SHIELD, COLLECT_SMELL, B_BUTTON_ITEM };
 
 enum Swords { ORDON_SWORD_FLAG, MASTER_SWORD_FLAG, WOODEN_SWORD_FLAG, LIGHT_SWORD_FLAG };
 
@@ -310,9 +312,9 @@ enum Shields { ORDON_SHIELD_FLAG, HYLIAN_SHIELD_FLAG, WOODEN_SHIELD_FLAG };
 
 enum Armors { KOKIRI_CLOTHES_FLAG };
 
-enum DungeonItem { MAP_FLAG, COMPASS_FLAG, BOSS_KEY_FLAG, OOCCOO_NOTE_FLAG = 6 };
+enum LightDropStages { FARON_VESSEL, ELDIN_VESSEL, LANAYRU_VESSEL };
 
-enum AreaVessel { FARON_VESSEL, ELDIN_VESSEL, LANAYRU_VESSEL };
+enum ItemMax { ARROW_MAX, NORMAL_BOMB_MAX, WATER_BOMB_MAX, POKE_BOMB_MAX = 6 };
 
 class dSv_player_status_a_c {
 public:
@@ -324,42 +326,42 @@ public:
     u16 getRupeeMax(void) const;
     int isMagicFlag(u8) const;
 
-    u16& getMaxLife() { return mMaxHealth; }
-    u16& getLife() { return mCurrentHealth; }
-    u16& getRupee() { return mCurrentRupees; }
-    u16& getOil() { return mCurrentLanternOil; }
-    u8 getSelectEquip(int item) const { return mEquipment[item]; }
-    void setWalletLV(u8 lv) { mCurrentWallet = lv; }
-    void setOil(u16 oil) { mCurrentLanternOil = oil; }
-    void setMaxOil(u16 max) { mMaxLanternOil = max; }
-    void setWalletSize(u8 size) { mCurrentWallet = size; }
-    void setMagic(u8 magic) { mCurrentMagic = magic; }
+    u16& getMaxLife() { return mMaxLife; }
+    u16& getLife() { return mLife; }
+    u16& getRupee() { return mRupee; }
+    u16& getOil() { return mOil; }
+    u8 getSelectEquip(int item) const { return mSelectEquip[item]; }
+    void setWalletLV(u8 lv) { mWalletSize = lv; }
+    void setOil(u16 oil) { mOil = oil; }
+    void setMaxOil(u16 max) { mMaxOil = max; }
+    void setWalletSize(u8 size) { mWalletSize = size; }
+    void setMagic(u8 magic) { mMagic = magic; }
     void setMaxMagic(u8 max) { mMaxMagic = max; }
-    void setRupee(u16 rupees) { mCurrentRupees = rupees; }
-    void setLife(u16 life) { mCurrentHealth = life; }
-    void setMaxLife(u8 max) { mMaxHealth = max; }
-    void setSelectEquip(int item_index, u8 item) { mEquipment[item_index] = item; }
+    void setRupee(u16 rupees) { mRupee = rupees; }
+    void setLife(u16 life) { mLife = life; }
+    void setMaxLife(u8 max) { mMaxLife = max; }
+    void setSelectEquip(int item_index, u8 item) { mSelectEquip[item_index] = item; }
 
 private:
-    u16 mMaxHealth;
-    u16 mCurrentHealth;
-    u16 mCurrentRupees;
-    u16 mMaxLanternOil;
-    u16 mCurrentLanternOil;
-    u8 unk10;
-    u8 mSelectItem[3];
-    u8 mMixItem[3];
-    u8 unk17;
-    u8 unk18;
-    u8 mEquipment[6];
-    u8 mCurrentWallet;
-    u8 mMaxMagic;
-    u8 mCurrentMagic;
-    u8 mMagicFlag;
-    u8 unk29;
-    u8 unk30;
-    u8 unk31[3];
-    u8 padding[6];
+    /* 0x00 */ u16 mMaxLife;
+    /* 0x02 */ u16 mLife;
+    /* 0x04 */ u16 mRupee;
+    /* 0x06 */ u16 mMaxOil;
+    /* 0x08 */ u16 mOil;
+    /* 0x0A */ u8 unk10;
+    /* 0x0B */ u8 mSelectItem[3];
+    /* 0x0E */ u8 mMixItem[3];
+    /* 0x11 */ u8 unk17;
+    /* 0x12 */ u8 unk18;
+    /* 0x13 */ u8 mSelectEquip[6];
+    /* 0x19 */ u8 mWalletSize;
+    /* 0x1A */ u8 mMaxMagic;
+    /* 0x1B */ u8 mMagic;
+    /* 0x1C */ u8 mMagicFlag;
+    /* 0x1D */ u8 unk29;
+    /* 0x1E */ u8 mTransformStatus;
+    /* 0x1F */ u8 unk31[3];
+    /* 0x22 */ u8 padding[6];
 };
 
 class dSv_player_status_b_c {
@@ -371,14 +373,13 @@ public:
     BOOL isTransformLV(int) const;
 
 private:
-    u32 unk0;
-    u32 unk4;
+    u64 mDateIpl;
     u8 mTransformLevelFlag;
     u8 mDarkClearLevelFlag;
     u8 unk10;
     u8 unk11;
-    float mTimeOfDay;
-    u16 unk16;
+    float mTime;
+    u16 mDate;
     u8 unk18[3];
     u8 padding[3];
 };
@@ -417,13 +418,13 @@ public:
     void set(const char*, const cXyz&, s16, s8, u8);
 
 private:
-    cXyz mLastPosition;
-    s16 mLastAngle;
-    char mLastStage[8];
+    cXyz mPos;
+    s16 mAngleY;
+    char mName[8];
     u8 mLastSpawnId;
-    u8 mLastRoomId;
-    u8 unk24;
-    u8 mLastRegion;
+    u8 mRegionNo;
+    bool mFieldDataExistFlag;
+    u8 mRegion;
     u8 unk26[2];
 };
 
@@ -501,13 +502,13 @@ public:
     u8 addBottleNum(u8, s16);
     u8 getBottleNum(u8) const;
 
-    void setArrowNum(u8 amount) { mBow = amount; }
+    void setArrowNum(u8 amount) { mArrowNum = amount; }
 
 private:
-    u8 mBow;
-    u8 mBombBags[3];
-    u8 mBottles[4];
-    u8 mSlingshot;
+    u8 mArrowNum;
+    u8 mBombNum[3];
+    u8 mBottleNum[4];
+    u8 mPachinkoNum;
     u8 unk5[3];
 };
 
@@ -517,11 +518,11 @@ public:
     void setBombNum(u8, u8);
     u8 getBombNum(u8) const;
 
-    void setArrowNum(u8 max) { mItemCapacities[0] = max; }
-    u8 getArrowNum() { return mItemCapacities[0]; }
+    void setArrowNum(u8 max) { mItemMax[ARROW_MAX] = max; }
+    u8 getArrowNum() { return mItemMax[ARROW_MAX]; }
 
 private:
-    u8 mItemCapacities[8];
+    u8 mItemMax[8];
 };
 
 class dSv_player_collect_c {
@@ -534,15 +535,15 @@ public:
     void onCollectMirror(u8);
     BOOL isCollectMirror(u8) const;
 
-    u8 getPohNum() { return mPoeCount; }
+    u8 getPohNum() { return mPohNum; }
 
 private:
-    u8 unk0[8];
+    u8 mItem[8];
     u8 unk8;
     u8 mCrystal;
     u8 mMirror;
     u8 unk11;
-    u8 mPoeCount;
+    u8 mPohNum;
     u8 padding[3];
 };
 
@@ -564,7 +565,7 @@ public:
     BOOL isLightDropGetFlag(u8) const;
 
 private:
-    u8 mLightDropCounts[4];
+    u8 mLightDropNum[4];
     u8 mLightDropGetFlag;
     u8 unk5[3];
 };
@@ -586,31 +587,30 @@ private:
 class dSv_fishing_info_c {
 public:
     void init(void);
-    void addFishCount(u8);  // merged with init in the assembly
+    void addFishCount(u8);
 
 private:
     u16 mFishCount[16];
-    u8 unk32[16];
+    u8 mMaxSize[16];
     u8 padding[4];
 };
 
 class dSv_player_info_c {
 public:
     void init(void);
-    char* getLinkName() { return (char*)link_name; }
+    char* getLinkName() { return (char*)mPlayerName; }
 
 private:
     u32 unk0;
     u32 unk4;
-    u32 unk8;
-    u32 unk12;
+    u64 mTotalTime;
     u16 unk16;
-    u16 unk18;
-    u8 link_name[16];
+    u16 mDeathCount;
+    u8 mPlayerName[16];
     u8 unk36;
-    u8 epona_name[16];
+    u8 mHorseName[16];
     u8 unk53;
-    u8 unk54;
+    u8 mClearCount;
     u8 unk55[5];
     u8 padding[4];
 };
@@ -627,15 +627,15 @@ public:
 private:
     u8 unk0;
     u8 mSoundMode;
-    u8 unk2;
-    u8 mVibrationStatus;
+    u8 mAttentionType;
+    u8 mVibration;
     u8 unk4;
     u8 unk5;
-    u16 unk6;
-    u8 unk8;
-    u8 unk9;
-    u8 unk10;
-    u8 unk11;
+    u16 mCalibrateDist;
+    u8 mCalValue;
+    u8 mShortCut;
+    u8 mCameraControl;
+    u8 mPointer;
     u8 padding[4];
 };
 
@@ -651,8 +651,6 @@ public:
     dSv_player_last_mark_info_c& getPlayerLastMarkInfo() { return player_last_mark; }
     dSv_light_drop_c& getLightDrop() { return light_drop; }
     dSv_player_get_item_c& getPlayerGetItem() { return player_get_item; }
-
-    void setPlayerStatusAWalletLV(u8 lv) { player_status_a.setWalletLV(lv); }
 
 private:
     dSv_player_status_a_c player_status_a;
@@ -677,6 +675,17 @@ private:
 #pragma pack(push, 1)
 class dSv_memBit_c {
 public:
+    enum {
+        MAP_FLAG,
+        COMPASS_FLAG,
+        BOSS_KEY_FLAG,
+        STAGE_BOSS_ENEMY,
+        STAGE_LIFE,
+        STAGE_BOSS_DEMO,
+        OOCCOO_NOTE_FLAG,
+        STAGE_BOSS_ENEMY_2
+    };
+
     void init(void);
     void onTbox(int);
     void offTbox(int);
@@ -690,7 +699,7 @@ public:
     void onDungeonItem(int);
     bool isDungeonItem(int) const;
 
-    u8 getKeyNum() { return small_key_flags; }
+    u8 getKeyNum() { return mKeyNum; }
     void onDungeonItemMap() { onDungeonItem(MAP_FLAG); }
     bool isDungeonItemMap() const { return isDungeonItem(MAP_FLAG); }
     void onDungeonItemCompass() { onDungeonItem(COMPASS_FLAG); }
@@ -699,11 +708,11 @@ public:
     bool isDungeonItemBossKey() const { return isDungeonItem(BOSS_KEY_FLAG); }
 
 private:
-    u32 area_flags_bitfields1[2];
-    u32 area_flags_bitfields2[4];
-    u32 rupee_flags_bitfields;
-    u8 small_key_flags;
-    u8 dungeons_flags;
+    /* 0x00 */ u32 mTbox[2];
+    /* 0x08 */ u32 mSwitch[4];
+    /* 0x18 */ u32 mItem[1];  // not sure if this is right
+    /* 0x1C */ u8 mKeyNum;
+    /* 0x1D */ u8 mDungeonItem;
 };
 #pragma pack(pop)
 
@@ -717,7 +726,7 @@ public:
     u8 getEventReg(u16) const;
 
 private:
-    u8 events[256];
+    u8 mEvent[256];
 };
 
 class dSv_MiniGame_c {
@@ -728,34 +737,34 @@ private:
     u8 unk0;
     u8 unk1[3];
     u32 unk4;
-    u32 unk8;
-    u32 unk12;
+    u32 mBalloonScore;
+    u32 mRaceGameTime;
     u32 unk16;
     u32 unk20;
 };
 
 class dSv_memory_c {
 public:
-    dSv_memory_c(void);  // the assembly for this is in d_com_inf_game.s
+    dSv_memory_c(void);
     void init(void);
-    dSv_memBit_c& getTempFlags() { return temp_flags; }
-    const dSv_memBit_c& getTempFlagsConst() const { return temp_flags; }
+    dSv_memBit_c& getMemBit() { return mMemBit; }
+    const dSv_memBit_c& getMemBitConst() const { return mMemBit; }
 
 private:
-    dSv_memBit_c temp_flags;
+    dSv_memBit_c mMemBit;
     u8 padding30[2];
 };
 
 class dSv_memory2_c {
 public:
-    dSv_memory2_c(void);  // the assembly for this is in d_com_inf_game.s
+    dSv_memory2_c(void);
     void init(void);
     void onVisitedRoom(int);
     void offVisitedRoom(int);
     BOOL isVisitedRoom(int);
 
 private:
-    u32 unk0[2];
+    u32 mVisitedRoom[2];
 };
 
 class dSv_danBit_c {
@@ -769,11 +778,11 @@ public:
     BOOL isItem(int) const;
 
 private:
-    s8 mStageNum;
+    s8 mStageNo;
     u8 unk1;
     u8 unk2[2];
-    u32 switch_bitfield[2];
-    u32 item_bitfield[4];
+    u32 mSwitch[2];
+    u32 mItem[4];
     s16 unk28[16];
 };
 
@@ -796,10 +805,10 @@ public:
     BOOL isOneItem(int) const;
 
 private:
-    u16 switch_bitfield[2];
-    u16 room_switch;
-    u16 item_bitfield[2];
-    u16 room_item;
+    u16 mSwitch[2];
+    u16 mRoomSwitch;
+    u16 mItem[2];
+    u16 mRoomItem;
     u16 unk12;
 };
 
@@ -820,18 +829,18 @@ class dSv_zone_c {
 public:
     dSv_zone_c(void);  // the assembly for this is in d_com_inf_game.s
     void init(int);
-    dSv_zoneBit_c& getZoneBit() { return zone_bit; }
-    const dSv_zoneBit_c& getZoneBitConst() const { return zone_bit; }
-    dSv_zoneActor_c& getZoneActor() { return zone_actor; }
-    const dSv_zoneActor_c& getZoneActorConst() const { return zone_actor; }
+    dSv_zoneBit_c& getZoneBit() { return mBit; }
+    const dSv_zoneBit_c& getZoneBitConst() const { return mBit; }
+    dSv_zoneActor_c& getZoneActor() { return mActor; }
+    const dSv_zoneActor_c& getZoneActorConst() const { return mActor; }
 
-    s8& getUnk0() { return unk0; }
+    s8& getRoomNo() { return mRoomNo; }
 
 private:
-    s8 unk0;
+    s8 mRoomNo;
     u8 unk1;
-    dSv_zoneBit_c zone_bit;
-    dSv_zoneActor_c zone_actor;
+    dSv_zoneBit_c mBit;
+    dSv_zoneActor_c mActor;
 };
 
 class dSv_restart_c {
@@ -839,22 +848,34 @@ public:
     void setRoom(const cXyz&, s16, s8);
 
 private:
-    u8 unk0;
-    u8 unk1[5];
-    s16 mXRotation;
-    cXyz mPosition;
-    u8 padding20[16];
+    /* 0x00 */ s8 mRoomNo;
+    /* 0x01 */ u8 field_0x01[3];
+    /* 0x04 */ s16 mStartPoint;
+    /* 0x06 */ s16 mRoomAngleY;
+    /* 0x08 */ cXyz mRoomPos;
+    /* 0x14 */ u32 mRoomParam;
+    /* 0x18 */ f32 mLastSpeedF;
+    /* 0x1C */ u32 mLastMode;
+    /* 0x20 */ s16 mLastAngleY;
 };
 
 class dSv_turnRestart_c {
 public:
+    class dSv_turnRestart_camera_c {
+        cXyz mCameraCtr;
+        cXyz mCameraEye;
+        cXyz mCameraUp;
+    };
+
     void set(const cXyz&, s16, s8, u32);
 
 private:
-    cXyz mPosition;
-    u32 unk12;
-    s16 mXRotation;
-    s8 unk18;
+    /* 0x00 */ cXyz mPosition;
+    /* 0x0C */ u32 mParam;
+    /* 0x10 */ s16 mAngleY;
+    /* 0x12 */ s8 unk18;
+    /* 0x14 */ dSv_turnRestart_camera_c mCamera;
+    /* 0x38 */ f32 mCameraFvy;
 };
 
 class dSv_reserve_c {
@@ -867,28 +888,27 @@ class dSv_save_c {
 public:
     void init(void);
     dSv_memory2_c* getSave2(int);
-    dSv_player_c& getPlayer() { return player; }
-    dSv_player_status_a_c& getPlayerStatusA() { return player.getPlayerStatusA(); }
-    dSv_player_get_item_c& getPlayerGetItem() { return player.getPlayerGetItem(); }
-    dSv_player_item_record_c& getPlayerItemRecord() { return player.getPlayerItemRecord(); }
-    dSv_player_item_max_c& getPlayerItemMax() { return player.getPlayerItemMax(); }
-    dSv_player_last_mark_info_c& getPlayerLastMarkInfo() { return player.getPlayerLastMarkInfo(); }
-    dSv_player_item_c& getPlayerItem() { return player.getPlayerItem(); }
-    dSv_player_collect_c& getPlayerCollect() { return player.getPlayerCollect(); }
-    dSv_light_drop_c& getLightDrop() { return player.getLightDrop(); }
-    dSv_event_c& getEventFlags() { return event_flags; }
+    dSv_player_c& getPlayer() { return mPlayer; }
+    dSv_player_status_a_c& getPlayerStatusA() { return mPlayer.getPlayerStatusA(); }
+    dSv_player_get_item_c& getPlayerGetItem() { return mPlayer.getPlayerGetItem(); }
+    dSv_player_item_record_c& getPlayerItemRecord() { return mPlayer.getPlayerItemRecord(); }
+    dSv_player_item_max_c& getPlayerItemMax() { return mPlayer.getPlayerItemMax(); }
+    dSv_player_last_mark_info_c& getPlayerLastMarkInfo() { return mPlayer.getPlayerLastMarkInfo(); }
+    dSv_player_item_c& getPlayerItem() { return mPlayer.getPlayerItem(); }
+    dSv_player_collect_c& getPlayerCollect() { return mPlayer.getPlayerCollect(); }
+    dSv_light_drop_c& getLightDrop() { return mPlayer.getLightDrop(); }
+    dSv_event_c& getEvent() { return mEvent; }
 
-    void setPlayerStatusAWallet(u8 lv) { player.setPlayerStatusAWalletLV(lv); }
-
-    static const int STAGE_MAX = 4;
+    static const int STAGE_MAX = 32;
+    static const int STAGE2_MAX = 64;
 
 private:
-    dSv_player_c player;
-    dSv_memory_c area_flags[32];
-    dSv_memory2_c unk_flags[64];
-    dSv_event_c event_flags;
+    dSv_player_c mPlayer;
+    dSv_memory_c mSave[STAGE_MAX];
+    dSv_memory2_c mSave2[STAGE2_MAX];
+    dSv_event_c mEvent;
     dSv_reserve_c reserve;
-    dSv_MiniGame_c minigame_flags;
+    dSv_MiniGame_c mMiniGame;
 };
 #pragma pack(push, 1)
 class dSv_info_c {
@@ -911,20 +931,27 @@ public:
     void card_to_memory(char*, int);
     void initdata_to_card(char*, int);
 
-    dSv_save_c& getSaveFile() { return save_file; }
-    dSv_memory_c& getMemory() { return memory; }
-    dSv_zone_c* getZones() { return zones; }
-    dSv_player_c& getPlayer() { return save_file.getPlayer(); }
-    dSv_event_c& getEvent() { return events; }
+    dSv_save_c& getSavedata() { return mSavedata; }
+    dSv_memory_c& getMemory() { return mMemory; }
+    dSv_zone_c* getZones() { return mZone; }
+    dSv_player_c& getPlayer() { return mSavedata.getPlayer(); }
+    dSv_event_c& getTmp() { return mTmp; }
 
 private:
-    /* 0x000 */ dSv_save_c save_file;
-    /* 0x958 */ dSv_memory_c memory;
-    /* 0x978 */ dSv_danBit_c dungeon_bit;
-    /* 0x9B4 */ dSv_zone_c zones[32];
-    /* 0xDB4 */ dSv_restart_c restart;
-    /* 0xDD8 */ dSv_event_c events;
-    /* 0xED8 */ dSv_turnRestart_c turn_restart;
+    /* 0x000 */ dSv_save_c mSavedata;
+    /* 0x958 */ dSv_memory_c mMemory;
+    /* 0x978 */ dSv_danBit_c mDan;
+    /* 0x9B4 */ dSv_zone_c mZone[32];
+    /* 0xDB4 */ dSv_restart_c mRestart;
+    /* 0xDD8 */ dSv_event_c mTmp;
+    /* 0xED8 */ dSv_turnRestart_c mTurnRestart;
+    /* 0xF14 */ u8 field_0xf14[4];
+    /* 0xF18 */ u8 mDataNum;
+    /* 0xF19 */ u8 mNewFile;
+    /* 0xF1A */ u8 mNoFile;
+    /* 0xF1B */ u8 field_0xf1b[13];
+    /* 0xF28 */ u64 mStartTime;
+    /* 0xF30 */ u64 mSaveTotalTime;
 };
 #pragma pack(pop)
 

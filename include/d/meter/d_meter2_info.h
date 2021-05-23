@@ -1,7 +1,9 @@
 #ifndef D_METER_D_METER2_INFO_H
 #define D_METER_D_METER2_INFO_H
 
+#include "JSystem/JUtility/JUTTexture.h"
 #include "d/d_resorce.h"
+#include "d/msg/d_msg_flow.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 //#include "JSystem/JUtility/JUTFont.h"
@@ -12,14 +14,6 @@ struct dSv_event_flag_c {
 
 struct dMsgObject_c {
     /* 802384C4 */ void setLetterNameID(u16);
-};
-
-struct dMsgFlow_c {
-    /* 80249F00 */ dMsgFlow_c();
-    /* 80249F48 */ ~dMsgFlow_c();
-    /* 80249F90 */ void init(fopAc_ac_c*, int, int, fopAc_ac_c**);
-    /* 8024A2D8 */ void doFlow(fopAc_ac_c*, fopAc_ac_c**, int);
-    /* 8024A538 */ void getMsgNo();
 };
 
 class dMeterMap_c {
@@ -50,8 +44,6 @@ struct CPaneMgr {};
 class dMeter2_c {};
 
 class dMw_c {};
-
-struct ResTIMG {};
 
 class dMeter2Info_c {
 public:
@@ -105,8 +97,10 @@ public:
     void resetMiniGameItem(bool);
     void setMiniGameCount(s8);
     void setSaveStageName(const char*);
+
     u8& getDirectUseItem() { return mDirectUseItem; }
     dMeterMap_c* getMeterMapClass() { return mMeterMap; }
+    void offUseButton(int pButton) { mUseButton &= ~(u16)pButton; }
 
 private:
     /* 0x04 */ u8 unk4[4];

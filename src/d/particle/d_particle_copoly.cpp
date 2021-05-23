@@ -11,14 +11,6 @@
 // Types:
 //
 
-struct dKy_tevstr_c {};
-
-struct cBgS_PolyInfo {};
-
-struct csXyz {};
-
-struct cXyz {};
-
 struct dPa_control_c {
     struct level_c {
         /* 8004B918 */ void getEmitter(u32);
@@ -29,20 +21,6 @@ struct dPa_control_c {
     /* 8004D770 */ void setStopContinue(u32);
     /* 8004D988 */ void setCommonPoly(u32*, cBgS_PolyInfo*, cXyz const*, cXyz const*,
                                       dKy_tevstr_c const*, u32, u32, csXyz const*, cXyz const*, s8);
-};
-
-struct dBgS_Acch {};
-
-struct dPaPo_c {
-    /* 80050C9C */ void init(dBgS_Acch*, f32, f32);
-    /* 80050CC4 */ void checkWaterIn(cXyz*, cXyz const*, dKy_tevstr_c const*, u32, s8, f32, f32);
-    /* 80050E7C */ void setEffect(u32*, int, dKy_tevstr_c const*, cXyz const*, u32, u32,
-                                  cXyz const*, csXyz const*, s8, u8*, u8*);
-    /* 80051008 */ void setEffectCenter(dKy_tevstr_c const*, cXyz const*, u32, u32, cXyz const*,
-                                        csXyz const*, cXyz const*, s8, f32, f32);
-    /* 8005113C */ void clearID(u32*, u8*);
-    /* 80051488 */ void getCenterEffType(int) const;
-    /* 80051524 */ void getCenterEmitter(int, int);
 };
 
 struct dPaPoT_c {

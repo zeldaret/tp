@@ -11,21 +11,6 @@
 // Types:
 //
 
-struct J3DModelData {};
-
-struct dEyeHL_c {
-    /* 8009C964 */ void entry(J3DModelData*, char const*);
-    /* 8009CA28 */ void remove();
-};
-
-struct dEyeHL_mng_c {
-    /* 8009CA48 */ void update();
-    /* 8009CB14 */ void entry(dEyeHL_c*);
-    /* 8009CB34 */ void remove(dEyeHL_c*);
-
-    static u8 m_obj[4 + 4 /* padding */];
-};
-
 struct JUTNameTab {
     /* 802DEAF8 */ void getName(u16) const;
 };

@@ -2,22 +2,10 @@
 #define M_DO_M_DO_EXT_H
 
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
+#include "JSystem/J3DGraphAnimator/J3DModel.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
 #include "dolphin/types.h"
-
-struct J3DModelData {
-    /* 80325E14 */ void newSharedDisplayList(u32);
-    /* 80325F94 */ void makeSharedDL();
-    /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
-};
-
-struct J3DModel {
-    /* 80327100 */ void initialize();
-    /* 80327184 */ void entryModelData(J3DModelData*, u32, u32);
-    /* 803275FC */ void newDifferedDisplayList(u32);
-    /* 8032767C */ void lock();
-    /* 803276B4 */ void unlock();
-    /* 803279A0 */ void diff();
-};
 
 struct J3DMaterialTable;
 struct J3DAnmTextureSRTKey {
@@ -129,5 +117,15 @@ private:
     void* vtable;
 };
 #pragma pack(pop)
+
+class mDoExt_AnmRatioPack {
+public:
+    /* 80140DF0 */ ~mDoExt_AnmRatioPack();
+    /* 80140E2C */ mDoExt_AnmRatioPack();
+
+private:
+    /* 0x0 */ float mRatio;
+    /* 0x4 */ J3DAnmTransform* mAnmTransform;
+};  // Size = 0x8
 
 #endif /* M_DO_M_DO_EXT_H */

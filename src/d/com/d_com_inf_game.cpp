@@ -55,8 +55,6 @@ struct dMapInfo_n {
     /* 8003EE5C */ void getMapPlayerPos();
 };
 
-struct dKy_tevstr_c {};
-
 struct _GXTexObj {};
 
 struct dDlst_shadowControl_c {
@@ -276,7 +274,6 @@ extern "C" extern u32 g_saftyWhiteColor;
 // External References:
 //
 
-extern "C" void OSReport_Error();
 extern "C" void mDoAud_setSceneName__FPCcll();
 extern "C" void mDoAud_resetProcess__Fv();
 extern "C" void mDoExt_destroyExpHeap__FP10JKRExpHeap();

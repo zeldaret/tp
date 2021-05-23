@@ -51,9 +51,10 @@ public:
     virtual ~J3DPacket();
 
 public:
-    J3DPacket* mpNextSibling;
-    J3DPacket* mpFirstChild;
-};
+    /* 0x04 */ J3DPacket* mpNextSibling;
+    /* 0x08 */ J3DPacket* mpFirstChild;
+    /* 0x0C */ void* mpUserData;
+};  // Size = 0x10
 
 class J3DDrawPacket : public J3DPacket {
 public:
@@ -64,7 +65,6 @@ public:
     virtual void draw();
 
 public:
-    void* mpUserData;
     int mFlags;
     char mPad0[0x0C];  // unk
     J3DDisplayListObj* mpDisplayListObj;

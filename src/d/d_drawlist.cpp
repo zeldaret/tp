@@ -184,10 +184,6 @@ struct J3DSys {
     /* 8031073C */ void reinitGX();
 };
 
-struct J3DShapePacket {
-    /* 80312FBC */ void drawFast();
-};
-
 struct J3DShape {
     /* 80315300 */ void loadPreDrawSetting() const;
 

@@ -1,20 +1,12 @@
 #ifndef D_D_DRAWLIST_H
 #define D_D_DRAWLIST_H
 
+#include "JSystem/J3DGraphBase/J3DPacket.h"
 #include "SSystem/SComponent/c_xyz.h"
+#include "dolphin/gx/GXTexture.h"
+#include "dolphin/mtx/mtx44.h"
+#include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
-
-struct J3DPacket {};
-struct _GXColor;
-
-struct J3DDrawBuffer {
-    /* 80324F08 */ void initialize();
-    /* 80324F70 */ void allocBuffer(u32);
-    /* 80325008 */ ~J3DDrawBuffer();
-    /* 80325068 */ void frameInit();
-    /* 8032548C */ void entryImm(J3DPacket*, u16);
-    /* 803254AC */ void draw() const;
-};
 
 class dDlst_FileInfo_c {
 public:
@@ -59,6 +51,7 @@ private:
 
 class dDlst_base_c {
 public:
+    virtual void temp();  // temp to build OK, remove later
     virtual void draw();
 };
 

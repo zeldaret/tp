@@ -11,105 +11,23 @@
 // Types:
 //
 
-struct JAISoundHandle {
-    /* 802A2184 */ void releaseSound();
-};
-
-struct Z2SoundStarter {
-    /* 802AAEDC */ void setPortData(JAISoundHandle*, u32, u16, s8);
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SoundObjSimple {
-    /* 802BE844 */ Z2SoundObjSimple();
-    /* 802BE880 */ void init(Vec*, u8);
-    /* 802BE8A0 */ void startSound(JAISoundID, u32, s8);
-    /* 802BE9B0 */ void startLevelSound(JAISoundID, u32, s8);
-};
-
-struct Z2SoundHandlePool {};
-
-struct Z2SoundObjBase {
-    /* 802BDEF0 */ Z2SoundObjBase();
-    /* 802BDF48 */ ~Z2SoundObjBase();
-    /* 802BDFB0 */ void init(Vec*, u8);
-    /* 802BDFF8 */ void deleteObject();
-    /* 802BE038 */ void framework(u32, s8);
-    /* 802BE070 */ void dispose();
-    /* 802BE104 */ void stopOK(Z2SoundHandlePool&);
-    /* 802BE144 */ void startSound(JAISoundID, u32, s8);
-    /* 802BE2D4 */ void startLevelSound(JAISoundID, u32, s8);
-    /* 802BE4A4 */ void startCollisionSE(u32, u32, Z2SoundObjBase*);
-};
-
 struct Z2SoundObjArrow {
     /* 802BEB38 */ Z2SoundObjArrow();
     /* 802BEB74 */ void init(Vec*, u8);
-};
-
-struct JAUSoundAnimationSound {};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
-
-struct Z2SoundObjAnime {
-    /* 802BEB94 */ Z2SoundObjAnime();
-    /* 802BEBDC */ void init(Vec*, u8);
-    /* 802BEBFC */ void initAnime(void*, bool, f32, f32);
-    /* 802BED68 */ void ageSounds_();
-    /* 802BEED4 */ void updateAnime(f32, f32);
-    /* 802BF304 */ void updateSoundLifeTime_(f32, f32);
-    /* 802BF660 */ void startSoundInner(JGeometry::TVec3<f32> const&, f32, Z2SoundStarter*, u32,
-                                        s8);
-    /* 802BF890 */ void getSoundID(JAUSoundAnimationSound const*, JGeometry::TVec3<f32> const&,
-                                   f32);
-    /* 802BF898 */ void playsSound(JAUSoundAnimationSound const*, JGeometry::TVec3<f32> const&,
-                                   f32);
 };
 
 struct Z2SoundInfo {
     /* 802BBAC8 */ void getSwBit(JAISoundID) const;
 };
 
-struct Z2SoundHandles {
-    /* 802AB07C */ Z2SoundHandles();
-    /* 802AB0B4 */ ~Z2SoundHandles();
-    /* 802AB120 */ void deleteHandlesPool();
-    /* 802AB254 */ void getHandleSoundID(JAISoundID);
-    /* 802AB2A0 */ void getHandleUserData(u32);
-    /* 802AB2D8 */ void getFreeHandle();
-    /* 802AB3D0 */ void getLowPrioSound(JAISoundID);
-    /* 802AB538 */ void setPos(JGeometry::TVec3<f32> const&);
-};
-
 struct Z2SeMgr {
     /* 802AE5B0 */ void isSoundCulling(JAISoundID);
-};
-
-struct Z2DopplerSoundObjBase {
-    /* 802BE5A0 */ Z2DopplerSoundObjBase();
-    /* 802BE5FC */ ~Z2DopplerSoundObjBase();
-    /* 802BE65C */ void init(Vec*, u8);
-    /* 802BE6B8 */ void framework(u32, s8);
-    /* 802BE714 */ void startSound(JAISoundID, u32, s8);
-    /* 802BE7AC */ void startLevelSound(JAISoundID, u32, s8);
 };
 
 struct Z2Calc {
     struct CurveSign {};
 
     /* 802A96F4 */ void getParamByExp(f32, f32, f32, f32, f32, f32, Z2Calc::CurveSign);
-};
-
-struct JSUPtrList {
-    /* 802DC20C */ void getNthLink(u32) const;
 };
 
 struct JAUSoundAnimation {
@@ -124,13 +42,6 @@ struct JAISoundParamsMove {
 };
 
 struct JAIAudience {};
-
-struct JAISound {
-    /* 802A244C */ void acceptsNewAudible() const;
-    /* 802A2474 */ void newAudible(JGeometry::TVec3<f32> const&, JGeometry::TVec3<f32> const*, u32,
-                                   JAIAudience*);
-    /* 802A2598 */ void stop();
-};
 
 //
 // Forward References:
@@ -339,7 +250,7 @@ asm void Z2SoundObjBase::dispose() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2SoundObjBase::stopOK(Z2SoundHandlePool& param_0) {
+asm bool Z2SoundObjBase::stopOK(Z2SoundHandlePool& param_0) {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundObject/stopOK__14Z2SoundObjBaseFR17Z2SoundHandlePool.s"
 }

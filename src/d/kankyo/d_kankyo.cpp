@@ -79,17 +79,6 @@ struct J3DModelData {
     /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
 };
 
-struct Vec {};
-
-struct cXyz {
-    /* 80009184 */ ~cXyz();
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-};
-
-struct _GXColorS10 {};
-
 struct dScnKy_env_light_c {
     /* 8019F2E8 */ dScnKy_env_light_c();
     /* 8019F4FC */ void setDaytime();
@@ -127,8 +116,6 @@ struct dRes_control_c {
 struct dPa_levelEcallBack {};
 
 struct csXyz {};
-
-struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -192,11 +179,6 @@ struct Z2AudioMgr {
 struct WIND_INF_ENTITY {
     /* 8019F4B8 */ ~WIND_INF_ENTITY();
     /* 8019F4F4 */ WIND_INF_ENTITY();
-};
-
-struct LIGHT_INFLUENCE {
-    /* 800CFC7C */ ~LIGHT_INFLUENCE();
-    /* 8019F4F8 */ LIGHT_INFLUENCE();
 };
 
 struct JUTNameTab {
@@ -547,8 +529,6 @@ extern "C" void PSMTXConcat();
 extern "C" void PSMTXTrans();
 extern "C" void C_MTXLightPerspective();
 extern "C" void PSMTXMultVec();
-extern "C" void PSVECSquareMag();
-extern "C" void PSVECSquareDistance();
 extern "C" void GXInitLightAttn();
 extern "C" void GXInitLightSpot();
 extern "C" void GXInitLightDistAttn();
