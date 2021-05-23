@@ -947,8 +947,9 @@ asm s16 fopAcM_searchActorAngleX(fopAc_ac_c const* param_0, fopAc_ac_c const* pa
 /* 8001A79C-8001A7E0 0150DC 0044+00 0/0 3/3 15/15 .text
  * fopAcM_seenActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c        */
 s32 fopAcM_seenActorAngleY(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActorB) {
-    return abs(static_cast<s16>(cLib_targetAngleY(&pActorA->mCurrent.mPosition, &pActorB->mCurrent.mPosition) -
-                                pActorA->mCollisionRot.y));
+    return abs(static_cast<s16>(
+        cLib_targetAngleY(&pActorA->mCurrent.mPosition, &pActorB->mCurrent.mPosition) -
+        pActorA->mCollisionRot.y));
 }
 
 /* ############################################################################################## */
@@ -1687,7 +1688,8 @@ s32 fopAcM_createDisappear(const fopAc_ac_c* pActor, const cXyz* pPos, u8 param_
                            u8 param_5) {
     s8 roomNo = pActor->mCurrent.mRoomNo;
     return fopAcM_GetID(fopAcM_fastCreate(0x139, (param_5 << 0x10) | (param_3 << 0x8) | param_4,
-                                          pPos, roomNo, &pActor->mCurrent.mAngle, NULL, 0xFF, NULL, NULL));
+                                          pPos, roomNo, &pActor->mCurrent.mAngle, NULL, 0xFF, NULL,
+                                          NULL));
 }
 
 /* 8001CB48-8001CBA0 017488 0058+00 0/0 6/6 7/7 .text            fopAcM_setCarryNow__FP10fopAc_ac_ci
