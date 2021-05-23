@@ -15,6 +15,7 @@ public:
     virtual ~cBgS_Chk(void);
     void SetExtChk(cBgS_Chk&);
     bool ChkSameActorPid(unsigned int) const;
+    void setActorPid(u32 pid) { mActorPid = pid; }
 };
 
 #endif /* C_BG_S_CHK_H */

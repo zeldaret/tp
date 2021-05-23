@@ -6,20 +6,18 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
 
-class cBgS_GndChk : public cBgS_Chk {
+class cBgS_GndChk : public cBgS_Chk, public cBgS_PolyInfo {
+    /* 80267C1C */ cBgS_GndChk();
+    /* 80267C94 */ virtual ~cBgS_GndChk();
+    /* 80267D28 */ void SetPos(cXyz const*);
+    /* 80267D0C */ void SetPos(Vec const*);
+    /* 80267D44 */ void PreCheck();
 private:
-    /* 0x14 */ cBgS_PolyInfo mPolyInfo;
-    /* 0x24 */ cXyz m_pos;
-    /* 0x30 */ int field_0x30;
-    /* 0x34 */ float mNowY;
-    /* 0x38 */ void* mWallPrecheck;
+    /* 0x24 */ cXyz mPosition;
+    /* 0x30 */ s32 _30;
+    /* 0x34 */ f32 mNowY;
+    /* 0x38 */ u32 mWallPrecheck;
 
-public:
-    cBgS_GndChk(void);
-    virtual ~cBgS_GndChk(void);
-    void SetPos(const Vec*);
-    void SetPos(const cXyz*);
-    void PreCheck(void);
 };
 
 #endif /* C_BG_S_GND_CHK_H */
