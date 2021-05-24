@@ -16,6 +16,6 @@ public:
     void SetExtChk(cBgS_Chk&);
     bool ChkSameActorPid(unsigned int) const;
     void setActorPid(u32 pid) { mActorPid = pid; }
-};
+};  // Size = 0x14
 
 #endif /* C_BG_S_CHK_H */

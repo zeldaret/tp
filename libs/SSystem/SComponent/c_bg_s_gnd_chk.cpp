@@ -4,9 +4,9 @@
 //
 
 #include "SSystem/SComponent/c_bg_s_gnd_chk.h"
+#include "SSystem/SComponent/c_xyz.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "SSystem/SComponent/c_xyz.h"
 
 //
 // Types:

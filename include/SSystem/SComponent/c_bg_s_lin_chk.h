@@ -7,22 +7,20 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
 
-class cBgS_LinChk {
+class cBgS_LinChk : public cBgS_Chk, public cBgS_PolyInfo {
 private:
-    /* 0x000 */ cBgS_Chk mChk;
-    /* 0x014 */ cBgS_PolyInfo mPolyInfo;
     /* 0x024 */ cM3dGLin mLin;
     /* 0x040 */ cXyz field_0x40;
     /* 0x04C */ int field_0x4c;
-    /* 0x050 */ u8 mPreWallChk;
-    /* 0x051 */ u8 mPreGroundChk;
-    /* 0x052 */ u8 mPreRoofChk;
+    /* 0x050 */ bool mPreWallChk;
+    /* 0x051 */ bool mPreGroundChk;
+    /* 0x052 */ bool mPreRoofChk;
     /* 0x053 */ u8 mFrontFlag;
     /* 0x054 */ u8 mBackFlag;
 
 public:
     cBgS_LinChk(void);
-    ~cBgS_LinChk(void);
+    virtual ~cBgS_LinChk(void);
     void ct(void);
     void Set2(const cXyz*, const cXyz*, unsigned int);
     void PreCalc(void);
