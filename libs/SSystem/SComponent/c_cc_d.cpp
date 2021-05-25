@@ -6,6 +6,7 @@
 #include "SSystem/SComponent/c_cc_d.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "SSystem/SComponent/c_m3d.h"
 
 //
 // Forward References:
@@ -165,107 +166,204 @@ extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" extern void* __vt__8cM3dGAab[3];
 extern "C" extern void* __vt__8cM3dGTri[3];
 extern "C" f32 Zero__4cXyz[3];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 //
 // Declarations:
 //
 
 /* 80263358-80263368 25DC98 0010+00 2/2 1/1 0/0 .text            Set__15cCcD_DivideInfoFUlUlUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_DivideInfo::Set(u32 param_0, u32 param_1, u32 param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/Set__15cCcD_DivideInfoFUlUlUl.s"
+void cCcD_DivideInfo::Set(u32 param_0, u32 param_1, u32 param_2) {
+    field_0x0 = param_0;
+    field_0x4 = param_1;
+    field_0x8 = param_2;
 }
-#pragma pop
 
 /* 80263368-802633A8 25DCA8 0040+00 0/0 5/5 0/0 .text Chk__15cCcD_DivideInfoCFRC15cCcD_DivideInfo
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_DivideInfo::Chk(cCcD_DivideInfo const& param_0) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/Chk__15cCcD_DivideInfoCFRC15cCcD_DivideInfo.s"
+bool cCcD_DivideInfo::Chk(cCcD_DivideInfo const& param_0) const {
+    if ((field_0x0 & param_0.field_0x0) == 0
+        || (field_0x8 & param_0.field_0x8) == 0
+        || (field_0x4 & param_0.field_0x4) == 0) {
+            return false;
+        } else {
+            return true;
+        }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80455018-8045501C 003618 0004+00 1/1 0/0 0/0 .sdata2          @2305 */
-SECTION_SDATA2 static f32 lit_2305 = 0.03125f;
+SECTION_SDATA2 static f32 lit_2305 = 1.0f / 32.0f;
 
 /* 8045501C-80455020 00361C 0004+00 2/2 0/0 0/0 .sdata2          @2306 */
 SECTION_SDATA2 static f32 lit_2306 = 1.0f;
 
 /* 802633A8-802634D4 25DCE8 012C+00 0/0 2/2 0/0 .text SetArea__15cCcD_DivideAreaFRC8cM3dGAab */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_DivideArea::SetArea(cM3dGAab const& param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/SetArea__15cCcD_DivideAreaFRC8cM3dGAab.s"
+void cCcD_DivideArea::SetArea(cM3dGAab const& pM3dGAab) {
+    Set(&pM3dGAab.mMin, &pM3dGAab.mMax);
+    mScaledXDiff = FLOAT_LABEL(lit_2305) * (mMax.x - mMin.x);
+    mXDiffIsZero = cM3d_IsZero(mScaledXDiff);
+    if (!mXDiffIsZero) {
+        mInvScaledXDiff = FLOAT_LABEL(lit_2306) / mScaledXDiff;
+    }
+    mScaledYDiff = FLOAT_LABEL(lit_2305) * (mMax.y - mMin.y);
+    mYDiffIsZero = cM3d_IsZero(mScaledYDiff);
+    if (!mYDiffIsZero) {
+        mInvScaledYDiff = FLOAT_LABEL(lit_2306) / mScaledYDiff;
+    }
+    mScaledZDiff = FLOAT_LABEL(lit_2305) * (mMax.z - mMin.z);
+    mZDiffIsZero = cM3d_IsZero(mScaledZDiff);
+    if (!mZDiffIsZero) {
+        mInvScaledZDiff = FLOAT_LABEL(lit_2306) / mScaledZDiff;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039A7E8-8039A868 026E48 0080+00 2/2 0/0 0/0 .rodata          l_base */
-SECTION_RODATA static u8 const l_base[128] = {
-    0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x0F,
-    0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x7F, 0x00, 0x00, 0x00, 0xFF,
-    0x00, 0x00, 0x01, 0xFF, 0x00, 0x00, 0x03, 0xFF, 0x00, 0x00, 0x07, 0xFF, 0x00, 0x00, 0x0F, 0xFF,
-    0x00, 0x00, 0x1F, 0xFF, 0x00, 0x00, 0x3F, 0xFF, 0x00, 0x00, 0x7F, 0xFF, 0x00, 0x00, 0xFF, 0xFF,
-    0x00, 0x01, 0xFF, 0xFF, 0x00, 0x03, 0xFF, 0xFF, 0x00, 0x07, 0xFF, 0xFF, 0x00, 0x0F, 0xFF, 0xFF,
-    0x00, 0x1F, 0xFF, 0xFF, 0x00, 0x3F, 0xFF, 0xFF, 0x00, 0x7F, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF,
-    0x01, 0xFF, 0xFF, 0xFF, 0x03, 0xFF, 0xFF, 0xFF, 0x07, 0xFF, 0xFF, 0xFF, 0x0F, 0xFF, 0xFF, 0xFF,
-    0x1F, 0xFF, 0xFF, 0xFF, 0x3F, 0xFF, 0xFF, 0xFF, 0x7F, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+static u32 const l_base[32] = {
+    0x00000001, 0x00000003, 0x00000007, 0x0000000F,
+    0x0000001F, 0x0000003F, 0x0000007F, 0x000000FF,
+    0x000001FF, 0x000003FF, 0x000007FF, 0x00000FFF,
+    0x00001FFF, 0x00003FFF, 0x00007FFF, 0x0000FFFF,
+    0x0001FFFF, 0x0003FFFF, 0x0007FFFF, 0x000FFFFF,
+    0x001FFFFF, 0x003FFFFF, 0x007FFFFF, 0x00FFFFFF,
+    0x01FFFFFF, 0x03FFFFFF, 0x07FFFFFF, 0x0FFFFFFF,
+    0x1FFFFFFF, 0x3FFFFFFF, 0x7FFFFFFF, 0xFFFFFFFF,
 };
-COMPILER_STRIP_GATE(0x8039A7E8, &l_base);
 
 /* 802634D4-802636A0 25DE14 01CC+00 0/0 2/2 0/0 .text
  * CalcDivideInfo__15cCcD_DivideAreaFP15cCcD_DivideInfoRC8cM3dGAabUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_DivideArea::CalcDivideInfo(cCcD_DivideInfo* param_0, cM3dGAab const& param_1,
+void cCcD_DivideArea::CalcDivideInfo(cCcD_DivideInfo* pDivideInfo, cM3dGAab const& pM3dGAab,
                                          u32 param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CalcDivideInfo__15cCcD_DivideAreaFP15cCcD_DivideInfoRC8cM3dGAabUl.s"
+    if (param_2 != 0) {
+        pDivideInfo->Set(0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF);
+    } else {
+        u32 xDivInfo, yDivInfo, zDivInfo;
+        if (!mXDiffIsZero) {
+            s32 var1 = mInvScaledXDiff * (pM3dGAab.mMin.x - mMin.x);
+            s32 var3 = mInvScaledXDiff * (pM3dGAab.mMax.x - mMin.x);
+            if (0x1F < var3) {
+                var3 = 0x1F;
+            }
+            xDivInfo = l_base[var3];
+            if (0 < var1) {
+                var1--;
+                xDivInfo &= ~l_base[var1];
+            }
+        } else {
+            xDivInfo = 0xFFFFFFFF;
+        }
+        if (!mYDiffIsZero) {
+            s32 var1 = mInvScaledYDiff * (pM3dGAab.mMin.y - mMin.y);
+            s32 var3 = mInvScaledYDiff * (pM3dGAab.mMax.y - mMin.y);
+            if (0x1F < var3) {
+                var3 = 0x1F;
+            }
+            yDivInfo = l_base[var3];
+            if (0 < var1) {
+                var1--;
+                yDivInfo &= ~l_base[var1];
+            }
+        } else {
+            yDivInfo = 0xFFFFFFFF;
+        }
+        if (!mZDiffIsZero) {
+            s32 var1 = mInvScaledZDiff * (pM3dGAab.mMin.z - mMin.z);
+            s32 var3 = mInvScaledZDiff * (pM3dGAab.mMax.z - mMin.z);
+            if (0x1F < var3) {
+                var3 = 0x1F;
+            }
+            zDivInfo = l_base[var3];
+            if (0 < var1) {
+                var1--;
+                zDivInfo &= ~l_base[var1];
+            }
+        } else {
+            zDivInfo = 0xFFFFFFFF;
+        }
+        pDivideInfo->Set(xDivInfo, yDivInfo, zDivInfo);
+    }
 }
-#pragma pop
 
 /* 802636A0-80263894 25DFE0 01F4+00 0/0 3/3 0/0 .text
  * CalcDivideInfoOverArea__15cCcD_DivideAreaFP15cCcD_DivideInfoRC8cM3dGAab */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_DivideArea::CalcDivideInfoOverArea(cCcD_DivideInfo* param_0,
-                                                 cM3dGAab const& param_1) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CalcDivideInfoOverArea__15cCcD_DivideAreaFP15cCcD_DivideInfoRC8cM3dGAab.s"
+void cCcD_DivideArea::CalcDivideInfoOverArea(cCcD_DivideInfo* pDivideInfo,
+                                                 cM3dGAab const& pM3dGAab) {
+    u32 xDivInfo, yDivInfo, zDivInfo;
+    if (!mXDiffIsZero) {
+        s32 var1 = mInvScaledXDiff * (pM3dGAab.mMin.x - mMin.x);
+        s32 var3 = mInvScaledXDiff * (pM3dGAab.mMax.x - mMin.x);
+        if (var3 < 0 || 0x1F < var1) {
+            xDivInfo = 0;
+        } else {
+            if (0x1F < var3) {
+                var3 = 0x1F;
+            }
+            xDivInfo = l_base[var3];
+            if (0 < var1) {
+                var1--;
+                xDivInfo &= ~l_base[var1];
+            }
+        }
+    } else {
+        xDivInfo = 0xFFFFFFFF;
+    }
+    if (!mYDiffIsZero) {
+        s32 var1 = mInvScaledYDiff * (pM3dGAab.mMin.y - mMin.y);
+        s32 var3 = mInvScaledYDiff * (pM3dGAab.mMax.y - mMin.y);
+        if (var3 < 0 || 0x1F < var1) {
+            yDivInfo = 0;
+        } else {
+            if (0x1F < var3) {
+                var3 = 0x1F;
+            }
+            yDivInfo = l_base[var3];
+            if (0 < var1) {
+                var1--;
+                yDivInfo &= ~l_base[var1];
+            }
+        }
+    } else {
+        yDivInfo = 0xFFFFFFFF;
+    }
+    if (!mZDiffIsZero) {
+        s32 var1 = mInvScaledZDiff * (pM3dGAab.mMin.z - mMin.z);
+        s32 var3 = mInvScaledZDiff * (pM3dGAab.mMax.z - mMin.z);
+        if (var3 < 0 || 0x1F < var1) {
+            zDivInfo = 0;
+        } else {
+            if (0x1F < var3) {
+                var3 = 0x1F;
+            }
+            zDivInfo = l_base[var3];
+            if (0 < var1) {
+                var1--;
+                zDivInfo &= ~l_base[var1];
+            }
+        }
+    } else {
+        zDivInfo = 0xFFFFFFFF;
+    }
+    pDivideInfo->Set(xDivInfo, yDivInfo, zDivInfo);
 }
-#pragma pop
 
 /* 80263894-8026389C 25E1D4 0008+00 1/0 1/0 0/0 .text            GetGStts__9cCcD_SttsCFv */
-bool cCcD_Stts::GetGStts() const {
-    return false;
+const cCcD_GStts* cCcD_Stts::GetGStts() const {
+    return NULL;
 }
 
 /* 8026389C-802638A4 25E1DC 0008+00 1/0 0/0 0/0 .text            GetGStts__9cCcD_SttsFv */
-bool cCcD_Stts::GetGStts() {
-    return false;
+cCcD_GStts* cCcD_Stts::GetGStts() {
+    return NULL;
 }
 
 /* 802638A4-80263904 25E1E4 0060+00 0/0 1/1 0/0 .text            Init__9cCcD_SttsFiiPvUi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_Stts::Init(int param_0, int param_1, void* param_2, unsigned int param_3) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/Init__9cCcD_SttsFiiPvUi.s"
+void cCcD_Stts::Init(int param_0, int param_1, void* param_2, unsigned int param_3) {
+    this->Ct();
+    mWeight = param_0;
+    field_0x15 = param_1;
+    mActor = static_cast<fopAc_ac_c*>(param_2);
+    mApid = param_3;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80455020-80455028 003620 0004+04 13/13 0/0 0/0 .sdata2          @2431 */
@@ -276,58 +374,61 @@ SECTION_SDATA2 static f32 lit_2431[1 + 1 /* padding */] = {
 };
 
 /* 80263904-80263934 25E244 0030+00 1/0 1/1 0/0 .text            Ct__9cCcD_SttsFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_Stts::Ct() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/Ct__9cCcD_SttsFv.s"
+void cCcD_Stts::Ct() {
+    f32 zero = FLOAT_LABEL(lit_2431);
+    mXyz.x = zero;
+    mXyz.y = zero;
+    mXyz.z = zero;
+    mActor = 0;
+    mApid = 0xFFFFFFFF;
+    mWeight = 0;
+    field_0x15 = 0;
+    mTg = 0;
 }
-#pragma pop
 
 /* 80263934-8026395C 25E274 0028+00 0/0 3/3 0/0 .text            PlusCcMove__9cCcD_SttsFfff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_Stts::PlusCcMove(f32 param_0, f32 param_1, f32 param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/PlusCcMove__9cCcD_SttsFfff.s"
+void cCcD_Stts::PlusCcMove(f32 x, f32 y, f32 z) {
+    mXyz.x += x;
+    mXyz.y += y;
+    mXyz.z += z;
 }
-#pragma pop
 
 /* 8026395C-80263970 25E29C 0014+00 0/0 10/10 23/23 .text            ClrCcMove__9cCcD_SttsFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_Stts::ClrCcMove() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/ClrCcMove__9cCcD_SttsFv.s"
+void cCcD_Stts::ClrCcMove() {
+    f32 zero = FLOAT_LABEL(lit_2431);
+    mXyz.z = zero;
+    mXyz.y = zero;
+    mXyz.x = zero;
 }
-#pragma pop
 
 /* 80263970-80263984 25E2B0 0014+00 0/0 2/2 0/0 .text            PlusDmg__9cCcD_SttsFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_Stts::PlusDmg(int param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/PlusDmg__9cCcD_SttsFi.s"
+void cCcD_Stts::PlusDmg(int dmg) {
+    if (mTg >= dmg) {
+        return;
+    }
+    mTg = dmg;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80455028-80455030 003628 0008+00 1/1 0/0 0/0 .sdata2          @2472 */
 SECTION_SDATA2 static f64 lit_2472 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80263984-802639B0 25E2C4 002C+00 0/0 1/1 0/0 .text            GetWeightF__9cCcD_SttsCFv */
+#ifdef NON_MATCHING
+// data for s32 -> f32 cast
+f32 cCcD_Stts::GetWeightF() const {
+    return (s32)mWeight;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_Stts::GetWeightF() const {
+asm f32 cCcD_Stts::GetWeightF() const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/GetWeightF__9cCcD_SttsCFv.s"
 }
 #pragma pop
+#endif
 
 /* 802639B0-802639C4 25E2F0 0014+00 0/0 1/1 0/0 .text            ct__18cCcD_ObjCommonBaseFv */
 #pragma push

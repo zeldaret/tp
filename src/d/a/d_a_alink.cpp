@@ -34905,7 +34905,8 @@ asm dCcD_Cyl::dCcD_Cyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_Stts::~cCcD_Stts() {
+// asm cCcD_Stts::~cCcD_Stts() {
+extern "C" asm void __dt__9cCcD_SttsFv() {
     nofralloc
 #include "asm/d/a/d_a_alink/__dt__9cCcD_SttsFv.s"
 }

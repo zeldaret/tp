@@ -39,9 +39,10 @@ private:
     /* 0x1C */ int field_0x1C;
 };  // Size = 0x20
 
-class dCcD_Stts : cCcD_Stts {
+// class dCcD_Stts : cCcD_Stts {
+class dCcD_Stts { // TODO: vtables get messed up :(
 public:
-    /* 80083850 */ void GetGStts();
+    /* 80083850 */ cCcD_GStts* GetGStts();
     /* 80083860 */ void Init(int, int, fopAc_ac_c*);
     /* 800838F4 */ void Ct();
     /* 80083928 */ void ClrAt();
@@ -49,6 +50,7 @@ public:
     /* 800851AC */ ~dCcD_Stts();
 
 private:
+    /* 0x00 */ u8 _0[0x1C]; // TODO, should be covered by inheritance
     /* 0x1C */ dCcD_GStts mGStts;
 };  // Size = 0x3C
 

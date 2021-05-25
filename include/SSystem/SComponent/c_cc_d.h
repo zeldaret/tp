@@ -146,30 +146,35 @@ private:
     /* 0x04 */ u32 field_0x4;
     /* 0x08 */ u32 field_0x8;
     /* 0x0C vtable */
-
 public:
     virtual void test();  // temp to build OK, remove later
     virtual ~cCcD_DivideInfo();
     /* 80263358 */ void Set(u32, u32, u32);
-    /* 80263368 */ void Chk(cCcD_DivideInfo const&) const;
+    /* 80263368 */ bool Chk(cCcD_DivideInfo const&) const;
 }; // Size = 0x10
 
 STATIC_ASSERT(0x10 == sizeof(cCcD_DivideInfo));
 
-class cCcD_DivideArea {
+class cCcD_DivideArea : public cM3dGAab {
 private:
-    /* 0x00 */ cM3dGAab mAab;
-    /* 0x1C vtable */
-
+    /* 0x1C */ bool mXDiffIsZero;
+    /* 0x20 */ f32 mScaledXDiff;
+    /* 0x24 */ f32 mInvScaledXDiff;
+    /* 0x28 */ bool mYDiffIsZero;
+    /* 0x2C */ f32 mScaledYDiff;
+    /* 0x30 */ f32 mInvScaledYDiff;
+    /* 0x34 */ bool mZDiffIsZero;
+    /* 0x38 */ f32 mScaledZDiff;
+    /* 0x3C */ f32 mInvScaledZDiff;
 public:
     virtual void test();  // temp to build OK, remove later
     virtual ~cCcD_DivideArea();
     /* 802633A8 */ void SetArea(cM3dGAab const&);
     /* 802634D4 */ void CalcDivideInfo(cCcD_DivideInfo*, cM3dGAab const&, u32);
     /* 802636A0 */ void CalcDivideInfoOverArea(cCcD_DivideInfo*, cM3dGAab const&);
-}; // Size = 0x20
+}; // Size = 0x40
 
-STATIC_ASSERT(0x20 == sizeof(cCcD_DivideArea));
+STATIC_ASSERT(0x40 == sizeof(cCcD_DivideArea));
 
 struct cCcD_SrcObjTg {};
 
@@ -188,27 +193,28 @@ private:
 };  // Size = 0x4
 
 class cCcD_Stts {
-public:
-    /* 801410A4 */ ~cCcD_Stts();
-    /* 80263894 */ bool GetGStts() const;
-    /* 8026389C */ bool GetGStts();
-    /* 802638A4 */ void Init(int, int, void*, unsigned int);
-    /* 80263904 */ void Ct();
-    /* 80263934 */ void PlusCcMove(f32, f32, f32);
-    /* 8026395C */ void ClrCcMove();
-    /* 80263970 */ void PlusDmg(int);
-    /* 80263984 */ void GetWeightF() const;
-    /* 802649E8 */ void ClrAt();
-    /* 802649EC */ void ClrTg();
-
 private:
-    /* 0x00 */ cXyz field_0x00;
+    /* 0x00 */ cXyz mXyz;
     /* 0x0C */ fopAc_ac_c* mActor;
     /* 0x10 */ int mApid;
     /* 0x14 */ u8 mWeight;
     /* 0x15 */ u8 field_0x15;
     /* 0x16 */ u8 mTg;
-    /* 0x18 */ void* vtable;
+
+public:
+    /* 801410A4 vt[3] */ virtual ~cCcD_Stts();
+    /* 80263894 vt[4] */ virtual const cCcD_GStts* GetGStts() const;
+    /* 8026389C vt[5] */ virtual cCcD_GStts* GetGStts();
+    /* 802638A4 */ void Init(int, int, void*, unsigned int);
+    /* 80263904 vt[6] */ virtual void Ct();
+    /* 80263934 */ void PlusCcMove(f32, f32, f32);
+    /* 8026395C */ void ClrCcMove();
+    /* 80263970 */ void PlusDmg(int);
+    /* 80263984 */ f32 GetWeightF() const;
+    /* 802649E8 vt[7] */ virtual void ClrAt();
+    /* 802649EC vt[8] */ virtual void ClrTg();
+    u8 GetWeightUc() const { return mWeight; }
+    void SetWeight(u8 weight) { mWeight = weight; }
 };  // Size = 0x1C
 
 STATIC_ASSERT(0x1C == sizeof(cCcD_Stts));

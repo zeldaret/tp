@@ -129,7 +129,6 @@ public:
 public:
     /* 0x00000 */ dBgS mDBgS;
     /* 0x01404 */ dCcS mDCcS;
-    /* 0x03EC4 */ u8 field_0x3ec4[4];  // might be part of dCcS
     /* 0x03EC8 */ dStage_startStage_c mStartStage;
     /* 0x03ED5 */ u8 field_0x3ed5;  // probably padding
     /* 0x03ED6 */ dStage_nextStage_c mNextStage;

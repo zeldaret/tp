@@ -142,10 +142,6 @@ f32 cM3d_Len2dSq(f32 pX1, f32 pY1, f32 pX2, f32 pY2) {
 /* 80451180-80451188 000680 0004+04 29/29 44/44 65/65 .sbss            G_CM3D_F_ABS_MIN */
 extern f32 G_CM3D_F_ABS_MIN;
 
-inline bool cM3d_IsZero(f32 pF) {
-    return fabsf(pF) < G_CM3D_F_ABS_MIN;
-}
-
 /* 80455118-80455120 003718 0004+04 28/28 0/0 0/0 .sdata2          @2256 */
 SECTION_SDATA2 static f32 lit_2256[1 + 1 /* padding */] = {
     0.0f,
