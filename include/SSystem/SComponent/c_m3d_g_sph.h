@@ -13,8 +13,9 @@ struct cM3dGSphS {
 class cM3dGSph {
 private:
 public:
-    cXyz mCenter;
-    f32 mRadius;
+    /* 0x00 */ cXyz mCenter;
+    /* 0x0C */ f32 mRadius;
+    /* 0x10 vtable */
 
     virtual void test();  // temp to build OK, remove later
     virtual ~cM3dGSph();
@@ -30,7 +31,9 @@ public:
     f32 GetCX(void) const { return mCenter.GetX(); }
     f32 GetCY(void) const { return mCenter.GetY(); }
     f32 GetCZ(void) const { return mCenter.GetZ(); }
-};
+}; // Size = 0x14
+
+STATIC_ASSERT(0x14 == sizeof(cM3dGSph));
 
 // additional symbols needed for cM3dGSph
 extern "C" {

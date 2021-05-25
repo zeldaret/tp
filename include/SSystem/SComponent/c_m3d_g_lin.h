@@ -3,14 +3,15 @@
 
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/mtx/vec.h"
-#include "dolphin/types.h"
+#include "global.h"
 
 // Line
 class cM3dGLin {
     // private:
 public:
-    cXyz mStart;
-    cXyz mEnd;
+    /* 0x00 */ cXyz mStart;
+    /* 0x0C */ cXyz mEnd;
+    /* 0x18 vtable */
 
     cM3dGLin() {}
     cM3dGLin(const cXyz&, const cXyz&);
@@ -24,6 +25,8 @@ public:
     cXyz& GetStartP(void) { return mStart; }
     const cXyz& GetEndP(void) const { return mEnd; }
     cXyz& GetEndP(void) { return mEnd; }
-};
+}; // Size = 0x1C
+
+STATIC_ASSERT(0x1C == sizeof(cM3dGLin));
 
 #endif /* C_M3D_G_LIN_H */

@@ -35,4 +35,6 @@ public:
     const f32 GetMinZ(void) const { return mMin.GetZ(); }
 };  // Size = 0x1C
 
+STATIC_ASSERT(0x1C == sizeof(cM3dGAab));
+
 #endif /* C_M3D_G_AAB_H */

@@ -7,12 +7,13 @@
 #include "SSystem/SComponent/c_m3d_g_sph.h"
 #include "SSystem/SComponent/c_m3d_g_tri.h"
 #include "dolphin/gx/GXTexture.h"
-#include "dolphin/types.h"
+#include "global.h"
 #include "f_op/f_op_actor.h"
 
 class cCcD_ShapeAttr {
 private:
     /* 0x00 */ cM3dGAab mAab;
+    /* 0x1C vtable */
 
 public:
     struct Shape {};
@@ -26,6 +27,8 @@ public:
 
     static f32 m_virtual_center[3];
 };
+
+STATIC_ASSERT(0x20 == sizeof(cCcD_ShapeAttr));
 
 class cCcD_SphAttr;
 class cCcD_CylAttr;
@@ -57,6 +60,8 @@ private:
     /* 0x20 */ cM3dGCps mCps;
 };
 
+STATIC_ASSERT(0x40 == sizeof(cCcD_CpsAttr));
+
 class cCcD_SphAttr : public cCcD_ShapeAttr {
 public:
     /* 8008721C */ virtual ~cCcD_SphAttr();
@@ -82,7 +87,9 @@ public:
 
 private:
     /* 0x20 */ cM3dGSph mSph;
-};  // Size = 0x30
+};  // Size = 0x34
+
+STATIC_ASSERT(0x34 == sizeof(cCcD_SphAttr));
 
 class cCcD_CylAttr : public cCcD_ShapeAttr {
 public:
@@ -109,7 +116,9 @@ public:
 
 private:
     /* 0x20 */ cM3dGCyl mCyl;
-};  // Size = 0x34
+};  // Size = 0x38
+
+STATIC_ASSERT(0x38 == sizeof(cCcD_CylAttr));
 
 class cCcD_TriAttr {
     /* 80084E44 */ bool CrossAtTg(cCcD_AabAttr const&, cXyz*) const;
@@ -136,17 +145,21 @@ private:
     /* 0x00 */ u32 field_0x0;
     /* 0x04 */ u32 field_0x4;
     /* 0x08 */ u32 field_0x8;
+    /* 0x0C vtable */
 
 public:
     virtual void test();  // temp to build OK, remove later
     virtual ~cCcD_DivideInfo();
     /* 80263358 */ void Set(u32, u32, u32);
     /* 80263368 */ void Chk(cCcD_DivideInfo const&) const;
-};
+}; // Size = 0x10
+
+STATIC_ASSERT(0x10 == sizeof(cCcD_DivideInfo));
 
 class cCcD_DivideArea {
 private:
-    cM3dGAab mAab;
+    /* 0x00 */ cM3dGAab mAab;
+    /* 0x1C vtable */
 
 public:
     virtual void test();  // temp to build OK, remove later
@@ -154,7 +167,9 @@ public:
     /* 802633A8 */ void SetArea(cM3dGAab const&);
     /* 802634D4 */ void CalcDivideInfo(cCcD_DivideInfo*, cM3dGAab const&, u32);
     /* 802636A0 */ void CalcDivideInfoOverArea(cCcD_DivideInfo*, cM3dGAab const&);
-};
+}; // Size = 0x20
+
+STATIC_ASSERT(0x20 == sizeof(cCcD_DivideArea));
 
 struct cCcD_SrcObjTg {};
 
@@ -196,6 +211,8 @@ private:
     /* 0x18 */ void* vtable;
 };  // Size = 0x1C
 
+STATIC_ASSERT(0x1C == sizeof(cCcD_Stts));
+
 class cCcD_ObjCommonBase {
 public:
     /* 8008409C */ ~cCcD_ObjCommonBase();
@@ -207,6 +224,8 @@ private:
     /* 0x08 */ void* mHitObj;  // cCcD_Obj* type
     /* 0x0C */ void* vtable;
 };
+
+STATIC_ASSERT(0x10 == sizeof(cCcD_ObjCommonBase));
 
 class cCcD_Obj;
 #pragma pack(push, 1)
@@ -223,6 +242,8 @@ private:
 };
 #pragma pack(pop)
 
+STATIC_ASSERT(0x15 == sizeof(cCcD_ObjAt));
+
 class cCcD_ObjTg : cCcD_ObjCommonBase {
 public:
     /* 80083FE4 */ ~cCcD_ObjTg();
@@ -235,6 +256,8 @@ private:
     /* 0x10 */ int mType;
 };
 
+STATIC_ASSERT(0x14 == sizeof(cCcD_ObjTg));
+
 class cCcD_ObjCo : cCcD_ObjCommonBase {
 public:
     /* 80083F88 */ ~cCcD_ObjCo();
@@ -243,6 +266,8 @@ public:
     /* 80264900 */ void SetIGrp(u32);
     /* 8026491C */ void SetVsGrp(u32);
 };
+
+STATIC_ASSERT(0x10 == sizeof(cCcD_ObjCo));
 
 class cCcD_ObjHitInf {
 public:
@@ -256,6 +281,8 @@ private:
     /* 0x02C */ cCcD_ObjCo mObjCo;
     /* 0x03C */ void* vtable;
 };  // Size = 0x40
+
+STATIC_ASSERT(0x40 == sizeof(cCcD_ObjHitInf));
 
 class cCcD_Obj : cCcD_ObjHitInf {
 public:
@@ -275,6 +302,8 @@ private:
     /* 0x048 */ cCcD_DivideInfo mDivideInfo;
 };  // Size = 0x58
 
+STATIC_ASSERT(0x58 == sizeof(cCcD_Obj));
+
 class cCcD_GObjInf : cCcD_Obj {
 public:
     /* 80083CE8 */ ~cCcD_GObjInf();
@@ -284,5 +313,7 @@ public:
     /* 80085158 */ void ClrTgHit();
     /* 8008517C */ void ClrCoHit();
 };
+
+STATIC_ASSERT(0x58 == sizeof(cCcD_GObjInf));
 
 #endif /* C_CC_D_H */

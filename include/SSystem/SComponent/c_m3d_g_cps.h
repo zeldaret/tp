@@ -13,7 +13,7 @@ struct cM3dGCpsS {
 
 class cM3dGCps : public cM3dGLin {
 private:
-    f32 unk_0x1c;
+    /* 0x1C */ f32 unk_0x1c;
 
 public:
     cM3dGCps(void);
@@ -21,6 +21,8 @@ public:
     void Set(const cXyz&, const cXyz&, f32);
     void Set(const cM3dGCpsS&);
     void SetCps(const cM3dGCps&);
-};
+}; // Size = 0x20
+
+STATIC_ASSERT(0x20 == sizeof(cM3dGCps));
 
 #endif /* C_M3D_G_CPS_H */
