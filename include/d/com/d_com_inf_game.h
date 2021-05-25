@@ -431,6 +431,8 @@ public:
     u32 field_0x10;
 };
 
+STATIC_ASSERT(122384 == sizeof(dComIfG_inf_c));
+
 // extern dComIfG_inf_c g_dComIfG_gameInfo;
 
 /* void dComIfGp_setItemLifeCount(float, u8);

@@ -15,6 +15,8 @@ private:
     void* vtable;
 };
 
+STATIC_ASSERT(0x20 == sizeof(dCcMassS_Obj));
+
 class dCcMassS_Mng {
 public:
     dCcMassS_Mng(void);
