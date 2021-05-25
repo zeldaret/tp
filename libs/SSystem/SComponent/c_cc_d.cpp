@@ -431,25 +431,19 @@ asm f32 cCcD_Stts::GetWeightF() const {
 #endif
 
 /* 802639B0-802639C4 25E2F0 0014+00 0/0 1/1 0/0 .text            ct__18cCcD_ObjCommonBaseFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_ObjCommonBase::ct() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/ct__18cCcD_ObjCommonBaseFv.s"
+void cCcD_ObjCommonBase::ct() {
+    mSPrm = 0;
+    mRPrm = 0;
+    mHitObj = NULL;
 }
-#pragma pop
 
 /* 802639C4-80263A10 25E304 004C+00 1/1 0/0 0/0 .text Set__14cCcD_ObjHitInfFRC17cCcD_SrcObjHitInf
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_ObjHitInf::Set(cCcD_SrcObjHitInf const& param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/Set__14cCcD_ObjHitInfFRC17cCcD_SrcObjHitInf.s"
+void cCcD_ObjHitInf::Set(cCcD_SrcObjHitInf const& pSrc) {
+    mObjAt.Set(pSrc.mObjAt);
+    mObjTg.Set(pSrc.mObjTg);
+    mObjCo.setSPrm(pSrc.mSPrm);
 }
-#pragma pop
 
 /* 80263A10-80263A1C 25E350 000C+00 0/0 1/1 0/0 .text            ct__8cCcD_ObjFv */
 #pragma push
@@ -878,116 +872,73 @@ asm void cCcD_SphAttr::getShapeAccess(cCcD_ShapeAttr::Shape* param_0) const {
 #pragma pop
 
 /* 8026483C-8026484C 25F17C 0010+00 0/0 1/1 0/0 .text            SetHit__10cCcD_ObjAtFP8cCcD_Obj */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_ObjAt::SetHit(cCcD_Obj* param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/SetHit__10cCcD_ObjAtFP8cCcD_Obj.s"
+void cCcD_ObjAt::SetHit(cCcD_Obj* pObj) {
+    mRPrm = 1;
+    mHitObj = pObj;
 }
-#pragma pop
 
 /* 8026484C-80264868 25F18C 001C+00 1/1 0/0 0/0 .text            Set__10cCcD_ObjAtFRC13cCcD_SrcObjAt
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_ObjAt::Set(cCcD_SrcObjAt const& param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/Set__10cCcD_ObjAtFRC13cCcD_SrcObjAt.s"
+void cCcD_ObjAt::Set(cCcD_SrcObjAt const& pSrc) {
+    mSPrm = pSrc.mSPrm;
+    mType = pSrc.mType;
+    mAtp = pSrc.mAtp;
 }
-#pragma pop
 
 /* 80264868-80264880 25F1A8 0018+00 0/0 2/2 0/0 .text            ClrHit__10cCcD_ObjAtFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_ObjAt::ClrHit() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/ClrHit__10cCcD_ObjAtFv.s"
+void cCcD_ObjAt::ClrHit() {
+    mRPrm &= ~1;
+    mHitObj = NULL;
 }
-#pragma pop
 
 /* 80264880-80264894 25F1C0 0014+00 1/1 0/0 0/0 .text            Set__10cCcD_ObjTgFRC13cCcD_SrcObjTg
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_ObjTg::Set(cCcD_SrcObjTg const& param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/Set__10cCcD_ObjTgFRC13cCcD_SrcObjTg.s"
+void cCcD_ObjTg::Set(cCcD_SrcObjTg const& pSrc) {
+    mSPrm = pSrc.mSPrm;
+    mType = pSrc.mType;
 }
-#pragma pop
 
 /* 80264894-802648B0 25F1D4 001C+00 0/0 0/0 2/2 .text            SetGrp__10cCcD_ObjTgFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_ObjTg::SetGrp(u32 param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/SetGrp__10cCcD_ObjTgFUl.s"
+void cCcD_ObjTg::SetGrp(u32 grp) {
+    mSPrm &= ~0x1E;
+    mSPrm |= grp;
 }
-#pragma pop
 
 /* 802648B0-802648C8 25F1F0 0018+00 0/0 2/2 0/0 .text            ClrHit__10cCcD_ObjTgFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_ObjTg::ClrHit() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/ClrHit__10cCcD_ObjTgFv.s"
+void cCcD_ObjTg::ClrHit() {
+    mRPrm &= ~1;
+    mHitObj = NULL;
 }
-#pragma pop
 
 /* 802648C8-802648D8 25F208 0010+00 0/0 1/1 0/0 .text            SetHit__10cCcD_ObjTgFP8cCcD_Obj */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_ObjTg::SetHit(cCcD_Obj* param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/SetHit__10cCcD_ObjTgFP8cCcD_Obj.s"
+void cCcD_ObjTg::SetHit(cCcD_Obj* pObj) {
+    mRPrm = 1;
+    mHitObj = pObj;
 }
-#pragma pop
 
 /* 802648D8-802648E8 25F218 0010+00 0/0 1/1 0/0 .text            SetHit__10cCcD_ObjCoFP8cCcD_Obj */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_ObjCo::SetHit(cCcD_Obj* param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/SetHit__10cCcD_ObjCoFP8cCcD_Obj.s"
+void cCcD_ObjCo::SetHit(cCcD_Obj* pObj) {
+    mRPrm = 1;
+    mHitObj = pObj;
 }
-#pragma pop
 
 /* 802648E8-80264900 25F228 0018+00 0/0 2/2 0/0 .text            ClrHit__10cCcD_ObjCoFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_ObjCo::ClrHit() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/ClrHit__10cCcD_ObjCoFv.s"
+void cCcD_ObjCo::ClrHit() {
+    mRPrm &= ~1;
+    mHitObj = NULL;
 }
-#pragma pop
 
 /* 80264900-8026491C 25F240 001C+00 0/0 1/1 1/1 .text            SetIGrp__10cCcD_ObjCoFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_ObjCo::SetIGrp(u32 param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/SetIGrp__10cCcD_ObjCoFUl.s"
+void cCcD_ObjCo::SetIGrp(u32 grp) {
+    mSPrm &= ~0xE;
+    mSPrm |= grp;
 }
-#pragma pop
 
 /* 8026491C-80264938 25F25C 001C+00 0/0 1/1 7/7 .text            SetVsGrp__10cCcD_ObjCoFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_ObjCo::SetVsGrp(u32 param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/SetVsGrp__10cCcD_ObjCoFUl.s"
+void cCcD_ObjCo::SetVsGrp(u32 grp) {
+    mSPrm &= ~0x70;
+    mSPrm |= grp;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803C3540-803C35A4 020660 0064+00 0/0 5/5 332/332 .data            __vt__12cCcD_SphAttr */

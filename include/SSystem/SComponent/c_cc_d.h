@@ -176,11 +176,22 @@ public:
 
 STATIC_ASSERT(0x40 == sizeof(cCcD_DivideArea));
 
-struct cCcD_SrcObjTg {};
+struct cCcD_SrcObjTg {
+    s32 mType;
+    s32 mSPrm;
+};
 
-struct cCcD_SrcObjHitInf {};
+struct cCcD_SrcObjAt {
+    s32 mType;
+    u8 mAtp;
+    s32 mSPrm;
+};
 
-struct cCcD_SrcObjAt {};
+struct cCcD_SrcObjHitInf {
+    cCcD_SrcObjAt mObjAt;
+    cCcD_SrcObjTg mObjTg;
+    s32 mSPrm;
+};
 
 struct cCcD_SrcObj {};
 
@@ -219,23 +230,25 @@ public:
 
 STATIC_ASSERT(0x1C == sizeof(cCcD_Stts));
 
+class cCcD_Obj; // placeholder
+
 class cCcD_ObjCommonBase {
 public:
     /* 8008409C */ ~cCcD_ObjCommonBase();
     /* 802639B0 */ void ct();
+    void setSPrm(s32 sprm) { mSPrm = sprm; }
+    s32 getSPrm() { return mSPrm; }
 
-private:
+protected:
     /* 0x00 */ int mSPrm;
     /* 0x04 */ int mRPrm;
-    /* 0x08 */ void* mHitObj;  // cCcD_Obj* type
+    /* 0x08 */ cCcD_Obj* mHitObj;
     /* 0x0C */ void* vtable;
 };
 
 STATIC_ASSERT(0x10 == sizeof(cCcD_ObjCommonBase));
 
-class cCcD_Obj;
-#pragma pack(push, 1)
-class cCcD_ObjAt : cCcD_ObjCommonBase {
+class cCcD_ObjAt : public cCcD_ObjCommonBase {
 public:
     /* 80084040 */ ~cCcD_ObjAt();
     /* 8026483C */ void SetHit(cCcD_Obj*);
@@ -246,11 +259,10 @@ private:
     /* 0x10 */ int mType;
     /* 0x14 */ u8 mAtp;
 };
-#pragma pack(pop)
 
-STATIC_ASSERT(0x15 == sizeof(cCcD_ObjAt));
+STATIC_ASSERT(0x18 == sizeof(cCcD_ObjAt));
 
-class cCcD_ObjTg : cCcD_ObjCommonBase {
+class cCcD_ObjTg : public cCcD_ObjCommonBase {
 public:
     /* 80083FE4 */ ~cCcD_ObjTg();
     /* 80264880 */ void Set(cCcD_SrcObjTg const&);
@@ -264,7 +276,7 @@ private:
 
 STATIC_ASSERT(0x14 == sizeof(cCcD_ObjTg));
 
-class cCcD_ObjCo : cCcD_ObjCommonBase {
+class cCcD_ObjCo : public cCcD_ObjCommonBase {
 public:
     /* 80083F88 */ ~cCcD_ObjCo();
     /* 802648D8 */ void SetHit(cCcD_Obj*);
@@ -282,7 +294,6 @@ public:
 
 private:
     /* 0x000 */ cCcD_ObjAt mObjAt;
-    /* 0x015 */ u8 field_0x15[3];  // padding?
     /* 0x018 */ cCcD_ObjTg mObjTg;
     /* 0x02C */ cCcD_ObjCo mObjCo;
     /* 0x03C */ void* vtable;
@@ -290,7 +301,7 @@ private:
 
 STATIC_ASSERT(0x40 == sizeof(cCcD_ObjHitInf));
 
-class cCcD_Obj : cCcD_ObjHitInf {
+class cCcD_Obj : public cCcD_ObjHitInf {
 public:
     /* 80083DE0 */ ~cCcD_Obj();
     /* 800851A4 */ bool GetGObjInf() const;
@@ -310,7 +321,7 @@ private:
 
 STATIC_ASSERT(0x58 == sizeof(cCcD_Obj));
 
-class cCcD_GObjInf : cCcD_Obj {
+class cCcD_GObjInf : public cCcD_Obj {
 public:
     /* 80083CE8 */ ~cCcD_GObjInf();
     /* 800851A0 */ void GetGObjInf();
