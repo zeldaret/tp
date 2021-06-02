@@ -11,30 +11,14 @@
 // Types:
 //
 
-struct mDoLib_clipper {
-    /* 8001528C */ void setup(f32, f32, f32, f32);
-
-    static u8 mClipper[92];
-    static f32 mSystemFar;
-    static f32 mFovyRate;
-};
-
 struct _GXTlutObj {};
 
 struct _GXTexObj {};
-
-struct Vec {};
 
 struct ResTIMG {};
 
 struct JMath {
     static u8 sincosTable_[65536];
-};
-
-struct J3DUClipper {
-    /* 80015590 */ ~J3DUClipper();
-    /* 80273778 */ void init();
-    /* 8027378C */ void calcViewFrustum();
 };
 
 //
@@ -95,12 +79,8 @@ asm void mDoLib_setResTimgObj(ResTIMG const* param_0, _GXTexObj* param_1, u32 pa
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 803DD8D8-803DD8E4 00A5F8 000C+00 1/1 0/0 0/0 .bss             @3727 */
-static u8 lit_3727[12];
-
 /* 803DD8E4-803DD940 00A604 005C+00 2/2 5/5 5/5 .bss             mClipper__14mDoLib_clipper */
-u8 mDoLib_clipper::mClipper[92];
+J3DUClipper mDoLib_clipper::mClipper;
 
 /* 80450C70-80450C74 000170 0004+00 1/1 2/2 4/4 .sbss            mSystemFar__14mDoLib_clipper */
 f32 mDoLib_clipper::mSystemFar;
@@ -172,40 +152,5 @@ asm void mDoLib_project(Vec* param_0, Vec* param_1) {
 asm void mDoLib_pos2camera(Vec* param_0, Vec* param_1) {
     nofralloc
 #include "asm/m_Do/m_Do_lib/mDoLib_pos2camera__FP3VecP3Vec.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 803A3498-803A34A8 0005B8 000C+04 2/2 0/0 0/0 .data            __vt__11J3DUClipper */
-SECTION_DATA extern void* __vt__11J3DUClipper[3 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__11J3DUClipperFv,
-    /* padding */
-    NULL,
-};
-
-/* 80015544-80015590 00FE84 004C+00 0/0 1/0 0/0 .text            __sinit_m_Do_lib_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_m_Do_lib_cpp() {
-    nofralloc
-#include "asm/m_Do/m_Do_lib/__sinit_m_Do_lib_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80015544, __sinit_m_Do_lib_cpp);
-#pragma pop
-
-/* 80015590-800155D8 00FED0 0048+00 2/1 0/0 0/0 .text            __dt__11J3DUClipperFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DUClipper::~J3DUClipper() {
-    nofralloc
-#include "asm/m_Do/m_Do_lib/__dt__11J3DUClipperFv.s"
 }
 #pragma pop

@@ -38,10 +38,6 @@ struct JMath {
     static u8 sincosTable_[65536];
 };
 
-struct J3DSys {
-    /* 8031073C */ void reinitGX();
-};
-
 struct J3DShape {
     static u8 sOldVcdVatCmd[4];
 };
@@ -174,7 +170,6 @@ extern "C" extern void* __vt__18J3DAnmTransformKey[5];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 extern "C" u8 sOldVcdVatCmd__8J3DShape[4];

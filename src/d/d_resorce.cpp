@@ -4,6 +4,7 @@
 //
 
 #include "d/d_resorce.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
