@@ -2,6 +2,7 @@
 #define C_M3D_G_SPH_H_
 
 #include "SSystem/SComponent/c_m3d_g_cyl.h"
+#include "SSystem/SComponent/c_m3d.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
 
@@ -31,6 +32,13 @@ public:
     f32 GetCX(void) const { return mCenter.GetX(); }
     f32 GetCY(void) const { return mCenter.GetY(); }
     f32 GetCZ(void) const { return mCenter.GetZ(); }
+
+    bool Cross(const cM3dGSph* other, f32* f) const {
+        return cM3d_Cross_SphSph(this, other, f);
+    }
+    bool Cross(const cM3dGCps* cps, cXyz* xyz) const {
+        return cM3d_Cross_CpsSph(*cps, *this, xyz);
+    }
 }; // Size = 0x14
 
 STATIC_ASSERT(0x14 == sizeof(cM3dGSph));

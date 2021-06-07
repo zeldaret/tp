@@ -477,92 +477,69 @@ void cCcD_ShapeAttr::getShapeAccess(cCcD_ShapeAttr::Shape* shape) const {
     shape->_4 = tmp;
 }
 
+inline bool inlineCross(cCcD_TriAttr const& tri, cCcD_CpsAttr const& cps, cXyz* xyz) {
+    return cM3d_Cross_CpsTri(cps, tri, xyz);
+}
+
 /* 80263A88-80263B58 25E3C8 00D0+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_TriAttrCFRC12cCcD_CpsAttrP4cXyz            */
-#ifdef NON_MATCHING
 bool cCcD_TriAttr::CrossAtTg(cCcD_CpsAttr const& cpsAttr, cXyz* xyz) const {
-    return !!cpsAttr.Cross(*this, xyz);
+    if (inlineCross(*this, cpsAttr, xyz)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_TriAttr::CrossAtTg(cCcD_CpsAttr const& param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_TriAttrCFRC12cCcD_CpsAttrP4cXyz.s"
+
+inline bool inlineCross(cM3dGTri const& tri, cM3dGCyl const& cyl, cXyz* xyz) {
+    return tri.cross(&cyl, xyz);
 }
-#pragma pop
-#endif
 
 /* 80263B58-80263B90 25E498 0038+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_TriAttrCFRC12cCcD_CylAttrP4cXyz            */
-#ifdef NON_MATCHING
 bool cCcD_TriAttr::CrossAtTg(cCcD_CylAttr const& cylAttr, cXyz* xyz) const {
-    return !!this->Cross(cylAttr, xyz);
+    if (inlineCross(*this, cylAttr, xyz)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_TriAttr::CrossAtTg(cCcD_CylAttr const& param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_TriAttrCFRC12cCcD_CylAttrP4cXyz.s"
+
+inline bool inlineCross(cM3dGTri const& tri, cM3dGSph const& sph, cXyz* xyz) {
+    return cM3d_Cross_SphTri(&sph, &tri, xyz);
 }
-#pragma pop
-#endif
 
 /* 80263B90-80263BCC 25E4D0 003C+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_TriAttrCFRC12cCcD_SphAttrP4cXyz            */
-#ifdef NON_MATCHING
-bool cCcD_TriAttr::CrossAtTg(cCcD_SphAttr const& param_0, cXyz* param_1) const {
-    return !!param_0.Cross(*this, param_1);
+bool cCcD_TriAttr::CrossAtTg(cCcD_SphAttr const& sph, cXyz* xyz) const {
+    if (inlineCross(*this, sph, xyz)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_TriAttr::CrossAtTg(cCcD_SphAttr const& param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_TriAttrCFRC12cCcD_SphAttrP4cXyz.s"
+
+inline bool inlineCross(cM3dGTri const& tri, cM3dGTri const& other, cXyz* xyz) {
+    return cM3d_Cross_TriTri(tri, other, xyz);
 }
-#pragma pop
-#endif
 
 /* 80263BCC-80263C04 25E50C 0038+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_TriAttrCFRC12cCcD_TriAttrP4cXyz            */
-#ifdef NON_MATCHING
 bool cCcD_TriAttr::CrossAtTg(cCcD_TriAttr const& param_0, cXyz* param_1) const {
-    return !!this->Cross(param_0, param_1);
+    if (inlineCross(*this, param_0, param_1)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_TriAttr::CrossAtTg(cCcD_TriAttr const& param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_TriAttrCFRC12cCcD_TriAttrP4cXyz.s"
-}
-#pragma pop
-#endif
 
 /* 80263C04-80263C9C 25E544 0098+00 1/0 1/0 0/0 .text            CalcAabBox__12cCcD_TriAttrFv */
-#ifdef NON_MATCHING
 void cCcD_TriAttr::CalcAabBox() {
     mAab.ClearForMinMax();
     mAab.SetMinMax(mA);
     mAab.SetMinMax(mB);
     mAab.SetMinMax(mC);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_TriAttr::CalcAabBox() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CalcAabBox__12cCcD_TriAttrFv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80455030-80455038 003630 0004+04 1/1 0/0 0/0 .sdata2          @2632 */
@@ -573,7 +550,6 @@ SECTION_SDATA2 static f32 lit_2632[1 + 1 /* padding */] = {
 };
 
 /* 80263C9C-80263D38 25E5DC 009C+00 1/0 1/0 0/0 .text GetNVec__12cCcD_TriAttrCFRC4cXyzP4cXyz */
-#ifdef NON_MATCHING
 bool cCcD_TriAttr::GetNVec(cXyz const& param_0, cXyz* pOut) const {
     if (this->getPlaneFunc(&param_0) >= FLOAT_LABEL(/* 0.0f */ lit_2431)) {
         *pOut = mNormal;
@@ -583,315 +559,367 @@ bool cCcD_TriAttr::GetNVec(cXyz const& param_0, cXyz* pOut) const {
     }
     return true;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_TriAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/GetNVec__12cCcD_TriAttrCFRC4cXyzP4cXyz.s"
+
+inline bool inlineCross(cM3dGCps const& cps, cM3dGCps const* other, cXyz* xyz) {
+    return cM3d_Cross_CpsCps(cps, *other, xyz);
 }
-#pragma pop
-#endif
 
 /* 80263D38-80263D7C 25E678 0044+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_CpsAttrP4cXyz            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_CpsAttr::CrossAtTg(cCcD_CpsAttr const& param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_CpsAttrP4cXyz.s"
+bool cCcD_CpsAttr::CrossAtTg(cCcD_CpsAttr const& other, cXyz* xyz) const {
+    if (inlineCross(*this, &other, xyz)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
+
+inline bool inlineCross(cM3dGCps const& cps, cM3dGCyl const* cyl, cXyz* xyz) {
+    return cM3d_Cross_CpsCyl(cps, *cyl, xyz);
+}
 
 /* 80263D7C-80263DC0 25E6BC 0044+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_CylAttrP4cXyz            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_CpsAttr::CrossAtTg(cCcD_CylAttr const& param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_CylAttrP4cXyz.s"
+bool cCcD_CpsAttr::CrossAtTg(cCcD_CylAttr const& param_0, cXyz* param_1) const {
+    if (inlineCross(*this, &param_0, param_1)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
+
+inline bool inlineCross(cM3dGCps const& cps, cM3dGSph const* sph, cXyz* xyz) {
+    return cM3d_Cross_CpsSph(cps, *sph, xyz);
+}
 
 /* 80263DC0-80263E04 25E700 0044+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_SphAttrP4cXyz            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_CpsAttr::CrossAtTg(cCcD_SphAttr const& param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_SphAttrP4cXyz.s"
+bool cCcD_CpsAttr::CrossAtTg(cCcD_SphAttr const& param_0, cXyz* param_1) const {
+    if (inlineCross(*this, &param_0, param_1)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
 
 /* 80263E04-80263ED4 25E744 00D0+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_TriAttrP4cXyz            */
-#ifdef NON_MATCHING
 bool cCcD_CpsAttr::CrossAtTg(cCcD_TriAttr const& triAttr, cXyz* xyz) const {
-    return !!this->Cross(triAttr, xyz);
+    if (inlineCross(triAttr, *this, xyz)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_CpsAttr::CrossAtTg(cCcD_TriAttr const& param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_TriAttrP4cXyz.s"
-}
-#pragma pop
-#endif
 
 /* 80263ED4-80263F24 25E814 0050+00 1/0 1/0 0/0 .text CrossCo__12cCcD_CpsAttrCFRC12cCcD_CpsAttrPf
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_CpsAttr::CrossCo(cCcD_CpsAttr const& param_0, f32* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossCo__12cCcD_CpsAttrCFRC12cCcD_CpsAttrPf.s"
+bool cCcD_CpsAttr::CrossCo(cCcD_CpsAttr const& param_0, f32* param_1) const {
+    *param_1 = FLOAT_LABEL(/* 0.0f */ lit_2431);
+    cXyz xyz;
+    if (inlineCross(*this, &param_0, &xyz)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
 
 /* 80263F24-80263F74 25E864 0050+00 1/0 1/0 0/0 .text CrossCo__12cCcD_CpsAttrCFRC12cCcD_CylAttrPf
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_CpsAttr::CrossCo(cCcD_CylAttr const& param_0, f32* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossCo__12cCcD_CpsAttrCFRC12cCcD_CylAttrPf.s"
+bool cCcD_CpsAttr::CrossCo(cCcD_CylAttr const& param_0, f32* param_1) const {
+    *param_1 = FLOAT_LABEL(/* 0.0f */ lit_2431);
+    cXyz xyz;
+    if (inlineCross(*this, &param_0, &xyz)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
 
 /* 80263F74-80263FC4 25E8B4 0050+00 1/0 1/0 0/0 .text CrossCo__12cCcD_CpsAttrCFRC12cCcD_SphAttrPf
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_CpsAttr::CrossCo(cCcD_SphAttr const& param_0, f32* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossCo__12cCcD_CpsAttrCFRC12cCcD_SphAttrPf.s"
+bool cCcD_CpsAttr::CrossCo(cCcD_SphAttr const& param_0, f32* param_1) const {
+    *param_1 = FLOAT_LABEL(/* 0.0f */ lit_2431);
+    cXyz xyz;
+    if (inlineCross(*this, &param_0, &xyz)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
 
 /* 80263FC4-80264014 25E904 0050+00 1/0 2/1 0/0 .text            CalcAabBox__12cCcD_CpsAttrFv */
-#ifdef NON_MATCHING
 void cCcD_CpsAttr::CalcAabBox() {
     mAab.ClearForMinMax();
     mAab.SetMinMax(mStart);
     mAab.SetMinMax(mEnd);
     mAab.PlusR(unk_0x1c);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_CpsAttr::CalcAabBox() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CalcAabBox__12cCcD_CpsAttrFv.s"
-}
-#pragma pop
-#endif
 
 /* 80264014-8026417C 25E954 0168+00 1/0 1/0 0/0 .text GetNVec__12cCcD_CpsAttrCFRC4cXyzP4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_CpsAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/GetNVec__12cCcD_CpsAttrCFRC4cXyzP4cXyz.s"
+bool cCcD_CpsAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
+    Vec diff;
+    const cXyz& endP = GetEndP();
+    PSVECSubtract(&endP, &mStart, &diff);
+    f32 diffLen = PSVECDotProduct(&diff, &diff);
+    if (cM3d_IsZero(diffLen)) {
+        return false;
+    } else {
+        Vec vec1, vec2;
+        PSVECSubtract(&param_0, &mStart, &vec1);
+        f32 vec1Len = PSVECDotProduct(&vec1, &diff) / diffLen;
+        if (vec1Len < FLOAT_LABEL(/* 0.0f */ lit_2431)) {
+            vec2 = mStart;
+        } else {
+            if (vec1Len > FLOAT_LABEL(/* 1.0f */ lit_2306)) {
+                vec2 = endP;
+            } else {
+                PSVECScale(&diff, &diff, vec1Len);
+                PSVECAdd(&diff, &mStart, &vec2);
+            }
+        }
+        PSVECSubtract(&param_0, &vec2, param_1);
+        if (cM3d_IsZero(PSVECMag(param_1))) {
+            f32 zero = FLOAT_LABEL(/* 0.0f */ lit_2431);
+            param_1->set(zero, zero, zero);
+            return false;
+        } else {
+            PSVECNormalize(param_1, param_1);
+            return true;
+        }
+    }
 }
-#pragma pop
+
+inline bool inlineCross(cM3dGCyl const& cyl, cM3dGCps const* cps, cXyz* xyz) {
+    return cM3d_Cross_CpsCyl(*cps, cyl, xyz);
+}
 
 /* 8026417C-802641C8 25EABC 004C+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CylAttrCFRC12cCcD_CpsAttrP4cXyz            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_CylAttr::CrossAtTg(cCcD_CpsAttr const& param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_CylAttrCFRC12cCcD_CpsAttrP4cXyz.s"
+bool cCcD_CylAttr::CrossAtTg(cCcD_CpsAttr const& cps, cXyz* xyz) const {
+    if(inlineCross(*this, &cps, xyz)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
 
 /* 802641C8-8026420C 25EB08 0044+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CylAttrCFRC12cCcD_CylAttrP4cXyz            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_CylAttr::CrossAtTg(cCcD_CylAttr const& param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_CylAttrCFRC12cCcD_CylAttrP4cXyz.s"
+bool cCcD_CylAttr::CrossAtTg(cCcD_CylAttr const& other, cXyz* xyz) const {
+    if (this->cross(&other, xyz)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
 
 /* 8026420C-80264250 25EB4C 0044+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CylAttrCFRC12cCcD_SphAttrP4cXyz            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_CylAttr::CrossAtTg(cCcD_SphAttr const& param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_CylAttrCFRC12cCcD_SphAttrP4cXyz.s"
+bool cCcD_CylAttr::CrossAtTg(cCcD_SphAttr const& sph, cXyz* xyz) const {
+    if (this->cross(&sph, xyz)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
+
+inline bool inlineCross(cM3dGCyl const& cyl, cM3dGTri const& tri, cXyz* xyz) {
+    return cM3d_Cross_CylTri(&cyl, &tri, xyz);
+}
 
 /* 80264250-80264288 25EB90 0038+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CylAttrCFRC12cCcD_TriAttrP4cXyz            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_CylAttr::CrossAtTg(cCcD_TriAttr const& param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_CylAttrCFRC12cCcD_TriAttrP4cXyz.s"
+bool cCcD_CylAttr::CrossAtTg(cCcD_TriAttr const& tri, cXyz* xyz) const {
+    return !!inlineCross(*this, tri, xyz);
 }
-#pragma pop
+
+inline bool inlineCross(cM3dGCyl const& cyl, cM3dGCyl const* other, f32* f) {
+    return cM3d_Cross_CylCyl(&cyl, other, f);
+}
 
 /* 80264288-802642CC 25EBC8 0044+00 1/0 1/0 0/0 .text CrossCo__12cCcD_CylAttrCFRC12cCcD_CylAttrPf
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_CylAttr::CrossCo(cCcD_CylAttr const& param_0, f32* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossCo__12cCcD_CylAttrCFRC12cCcD_CylAttrPf.s"
+bool cCcD_CylAttr::CrossCo(cCcD_CylAttr const& other, f32* f) const {
+    if (inlineCross(*this, &other, f)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
+
+inline bool inlineCross(cM3dGCyl const& cyl, cM3dGSph const* sph, f32* f) {
+    return cM3d_Cross_CylSph(&cyl, sph, f);
+}
 
 /* 802642CC-80264310 25EC0C 0044+00 1/0 1/0 0/0 .text CrossCo__12cCcD_CylAttrCFRC12cCcD_SphAttrPf
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_CylAttr::CrossCo(cCcD_SphAttr const& param_0, f32* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossCo__12cCcD_CylAttrCFRC12cCcD_SphAttrPf.s"
+bool cCcD_CylAttr::CrossCo(cCcD_SphAttr const& sph, f32* f) const {
+    if (inlineCross(*this, &sph, f)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
 
 /* 80264310-80264368 25EC50 0058+00 1/0 1/0 0/0 .text CrossCo__12cCcD_CylAttrCFRC12cCcD_CpsAttrPf
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_CylAttr::CrossCo(cCcD_CpsAttr const& param_0, f32* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossCo__12cCcD_CylAttrCFRC12cCcD_CpsAttrPf.s"
+bool cCcD_CylAttr::CrossCo(cCcD_CpsAttr const& cps, f32* f) const {
+    *f = FLOAT_LABEL(/* 0.0f */ lit_2431);
+    cXyz xyz;
+    if (inlineCross(*this, &cps, &xyz)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
 
 /* 80264368-802643D0 25ECA8 0068+00 1/0 1/0 0/0 .text            CalcAabBox__12cCcD_CylAttrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_CylAttr::CalcAabBox() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CalcAabBox__12cCcD_CylAttrFv.s"
+void cCcD_CylAttr::CalcAabBox() {
+    cXyz min;
+    cXyz max;
+    min.x = mCenter.x - mRadius;
+    min.y = mCenter.y;
+    min.z = mCenter.z - mRadius;
+    max.x = mCenter.x + mRadius;
+    max.y = mCenter.y + mHeight;
+    max.z = mCenter.z + mRadius;
+    mAab.Set(&min, &max);
 }
-#pragma pop
 
 /* 802643D0-802644B8 25ED10 00E8+00 1/0 1/0 0/0 .text GetNVec__12cCcD_CylAttrCFRC4cXyzP4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_CylAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/GetNVec__12cCcD_CylAttrCFRC4cXyzP4cXyz.s"
+bool cCcD_CylAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
+    Vec vec;
+    if (mCenter.y > param_0.y) {
+        vec = mCenter;
+    } else {
+        if (mCenter.y + mHeight < param_0.y) {
+            vec.x = mCenter.x;
+            vec.y = mCenter.y;
+            vec.z = mCenter.z;
+            vec.y = mCenter.y + mHeight;
+        } else {
+            vec = mCenter;
+            vec.y = param_0.y;
+        }
+    }
+    PSVECSubtract(&param_0, &vec, param_1);
+    if (cM3d_IsZero(PSVECMag(param_1))) {
+        f32 zero = FLOAT_LABEL(/* 0.0f */ lit_2431);
+        param_1->set(zero, zero, zero);
+        return false;
+    } else {
+        PSVECNormalize(param_1, param_1);
+        return true;
+    }
+    return false;
 }
-#pragma pop
 
 /* 802644B8-802644EC 25EDF8 0034+00 1/0 1/0 0/0 .text
  * getShapeAccess__12cCcD_CylAttrCFPQ214cCcD_ShapeAttr5Shape    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_CylAttr::getShapeAccess(cCcD_ShapeAttr::Shape* param_0) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/getShapeAccess__12cCcD_CylAttrCFPQ214cCcD_ShapeAttr5Shape.s"
+void cCcD_CylAttr::getShapeAccess(cCcD_ShapeAttr::Shape* shape) const {
+    shape->_0 = 1;
+    shape->_4 = mCenter.x;
+    shape->_8 = mCenter.y;
+    shape->_C = mCenter.z;
+    shape->_10 = mRadius;
+    shape->_14 = mHeight;
 }
-#pragma pop
+
+inline bool inlineCross(cM3dGSph const& sph, cM3dGCps const* cps, cXyz* xyz) {
+    return cM3d_Cross_CpsSph(*cps, sph, xyz);
+}
 
 /* 802644EC-80264538 25EE2C 004C+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_SphAttrCFRC12cCcD_CpsAttrP4cXyz            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_SphAttr::CrossAtTg(cCcD_CpsAttr const& param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_SphAttrCFRC12cCcD_CpsAttrP4cXyz.s"
+bool cCcD_SphAttr::CrossAtTg(cCcD_CpsAttr const& cps, cXyz* xyz) const {
+    if (inlineCross(*this, &cps, xyz)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
 
 /* 80264538-8026457C 25EE78 0044+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_SphAttrCFRC12cCcD_CylAttrP4cXyz            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_SphAttr::CrossAtTg(cCcD_CylAttr const& param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_SphAttrCFRC12cCcD_CylAttrP4cXyz.s"
+bool cCcD_SphAttr::CrossAtTg(cCcD_CylAttr const& cyl, cXyz* xyz) const {
+    if (this->cross(&cyl, xyz)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
 
 /* 8026457C-802645C0 25EEBC 0044+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_SphAttrCFRC12cCcD_SphAttrP4cXyz            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_SphAttr::CrossAtTg(cCcD_SphAttr const& param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_SphAttrCFRC12cCcD_SphAttrP4cXyz.s"
+bool cCcD_SphAttr::CrossAtTg(cCcD_SphAttr const& sph, cXyz* xyz) const {
+    if (this->cross(&sph, xyz)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
 
 /* 802645C0-802645F8 25EF00 0038+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_SphAttrCFRC12cCcD_TriAttrP4cXyz            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_SphAttr::CrossAtTg(cCcD_TriAttr const& param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_SphAttrCFRC12cCcD_TriAttrP4cXyz.s"
+bool cCcD_SphAttr::CrossAtTg(cCcD_TriAttr const& tri, cXyz* xyz) const {
+    if (inlineCross(tri, *this, xyz)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
+
+inline bool inlineCross(cM3dGSph const& sph, cM3dGCyl const* cyl, f32* f) {
+    return cM3d_Cross_CylSph(cyl, &sph, f);
+}
 
 /* 802645F8-80264644 25EF38 004C+00 1/0 1/0 0/0 .text CrossCo__12cCcD_SphAttrCFRC12cCcD_CylAttrPf
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_SphAttr::CrossCo(cCcD_CylAttr const& param_0, f32* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossCo__12cCcD_SphAttrCFRC12cCcD_CylAttrPf.s"
+bool cCcD_SphAttr::CrossCo(cCcD_CylAttr const& cyl, f32* f) const {
+    if (inlineCross(*this, &cyl, f)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
 
 /* 80264644-80264688 25EF84 0044+00 1/0 1/0 0/0 .text CrossCo__12cCcD_SphAttrCFRC12cCcD_SphAttrPf
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_SphAttr::CrossCo(cCcD_SphAttr const& param_0, f32* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossCo__12cCcD_SphAttrCFRC12cCcD_SphAttrPf.s"
+bool cCcD_SphAttr::CrossCo(cCcD_SphAttr const& sph, f32* f) const {
+    if (this->cM3dGSph::Cross(&sph, f)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
 
 /* 80264688-802646E0 25EFC8 0058+00 1/0 1/0 0/0 .text CrossCo__12cCcD_SphAttrCFRC12cCcD_CpsAttrPf
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_SphAttr::CrossCo(cCcD_CpsAttr const& param_0, f32* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CrossCo__12cCcD_SphAttrCFRC12cCcD_CpsAttrPf.s"
+bool cCcD_SphAttr::CrossCo(cCcD_CpsAttr const& cps, f32* f) const {
+    *f = FLOAT_LABEL(/* 0.0f */ lit_2431);
+    cXyz xyz;
+    if (this->cM3dGSph::Cross(&cps, &xyz)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
 
 /* 802646E0-8026476C 25F020 008C+00 1/0 2/1 0/0 .text            CalcAabBox__12cCcD_SphAttrFv */
+// weird codegen
+#ifdef NON_MATCHING
+void cCcD_SphAttr::CalcAabBox() {
+    cXyz min;
+    cXyz max;
+
+    min = max = mCenter;
+
+    min -= mRadius;
+    max += mRadius;
+    mAab.Set(&min, &max);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -900,27 +928,37 @@ asm void cCcD_SphAttr::CalcAabBox() {
 #include "asm/SSystem/SComponent/c_cc_d/CalcAabBox__12cCcD_SphAttrFv.s"
 }
 #pragma pop
+#endif
 
 /* 8026476C-80264808 25F0AC 009C+00 1/0 1/0 0/0 .text GetNVec__12cCcD_SphAttrCFRC4cXyzP4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cCcD_SphAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/GetNVec__12cCcD_SphAttrCFRC4cXyzP4cXyz.s"
+bool cCcD_SphAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
+    param_1->x = param_0.x - mCenter.x;
+    param_1->y = param_0.y - mCenter.y;
+    param_1->z = param_0.z - mCenter.z;
+
+    if (cM3d_IsZero(PSVECMag(param_1))) {
+        f32 zero = FLOAT_LABEL(/* 0.0f */ lit_2431);
+        param_1->x = zero;
+        param_1->y = zero;
+        param_1->z = zero;
+        return false;
+    } else {
+        PSVECNormalize(param_1, param_1);
+        return true;
+    }
+
 }
-#pragma pop
 
 /* 80264808-8026483C 25F148 0034+00 1/0 1/0 0/0 .text
  * getShapeAccess__12cCcD_SphAttrCFPQ214cCcD_ShapeAttr5Shape    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_SphAttr::getShapeAccess(cCcD_ShapeAttr::Shape* param_0) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/getShapeAccess__12cCcD_SphAttrCFPQ214cCcD_ShapeAttr5Shape.s"
+void cCcD_SphAttr::getShapeAccess(cCcD_ShapeAttr::Shape* shape) const {
+    shape->_0 = 0;
+    shape->_4 = mCenter.x;
+    shape->_8 = mCenter.y;
+    shape->_C = mCenter.z;
+    shape->_10 = mRadius;
+    shape->_14 = FLOAT_LABEL(/* 0.0f */ lit_2431);
 }
-#pragma pop
 
 /* 8026483C-8026484C 25F17C 0010+00 0/0 1/1 0/0 .text            SetHit__10cCcD_ObjAtFP8cCcD_Obj */
 void cCcD_ObjAt::SetHit(cCcD_Obj* pObj) {
