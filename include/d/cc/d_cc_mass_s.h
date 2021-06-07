@@ -13,7 +13,7 @@ private:
     u8 field_0x0[12];
     cCcD_DivideInfo cccd_divideinfo;
     void* vtable;
-}; // Size = 0x20
+};  // Size = 0x20
 
 STATIC_ASSERT(0x20 == sizeof(dCcMassS_Obj));
 
@@ -22,11 +22,11 @@ public:
     dCcMassS_Mng(void);
     ~dCcMassS_Mng();
 
-public: // TODO: offsets/padding sizes are messed up!
+public:  // TODO: offsets/padding sizes are messed up!
     /* 0x0000 */ cCcD_DivideArea cccd_dividearea;
-    /* 0x0040 */ u8 field_0x40[4]; // might be part of divide area?
+    /* 0x0040 */ u8 field_0x40[4];  // might be part of divide area?
     /* 0x0044 */ dCcMassS_Obj dccmasss_obj;
-    /* 0x0064 */ u8 field_0x64[278+20-0x24];
+    /* 0x0064 */ u8 field_0x64[278 + 20 - 0x24];
     /* 0x0188 */ dCcMassS_Obj dccmasss_obj2;
     /* 0x01A8 */ u8 field_0x1a8[32];
     /* 0x01C8 */ cCcD_CylAttr cccd_cylattr;

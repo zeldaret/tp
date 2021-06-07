@@ -20,7 +20,7 @@ public:
     void Set(const cXyz&, const cXyz&, f32);
     void Set(const cM3dGCpsS&);
     void SetCps(const cM3dGCps&);
-}; // Size = 0x20
+};  // Size = 0x20
 
 STATIC_ASSERT(0x20 == sizeof(cM3dGCps));
 

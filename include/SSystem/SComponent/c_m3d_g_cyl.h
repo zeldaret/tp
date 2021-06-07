@@ -9,7 +9,7 @@ struct cM3dGCylS {
     /* 0x00 */ cXyz mCenter;
     /* 0x0C */ f32 mRadius;
     /* 0x10 */ f32 mHeight;
-}; // Size = 0x14
+};  // Size = 0x14
 class cM3dGSph;
 
 class cM3dGCyl : public cM3dGCylS {
@@ -29,7 +29,7 @@ public:
     const cXyz& GetCP(void) const { return mCenter; }
     f32 GetR(void) const { return mRadius; }
     f32 GetH(void) const { return mHeight; }
-}; // Size = 0x18
+};  // Size = 0x18
 
 STATIC_ASSERT(0x18 == sizeof(cM3dGCyl));
 

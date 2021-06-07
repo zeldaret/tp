@@ -4,9 +4,9 @@
 //
 
 #include "SSystem/SComponent/c_cc_d.h"
+#include "SSystem/SComponent/c_m3d.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "SSystem/SComponent/c_m3d.h"
 
 //
 // Forward References:
@@ -181,13 +181,12 @@ void cCcD_DivideInfo::Set(u32 param_0, u32 param_1, u32 param_2) {
 /* 80263368-802633A8 25DCA8 0040+00 0/0 5/5 0/0 .text Chk__15cCcD_DivideInfoCFRC15cCcD_DivideInfo
  */
 bool cCcD_DivideInfo::Chk(cCcD_DivideInfo const& param_0) const {
-    if ((field_0x0 & param_0.field_0x0) == 0
-        || (field_0x8 & param_0.field_0x8) == 0
-        || (field_0x4 & param_0.field_0x4) == 0) {
-            return false;
-        } else {
-            return true;
-        }
+    if ((field_0x0 & param_0.field_0x0) == 0 || (field_0x8 & param_0.field_0x8) == 0 ||
+        (field_0x4 & param_0.field_0x4) == 0) {
+        return false;
+    } else {
+        return true;
+    }
 }
 
 /* ############################################################################################## */
@@ -220,20 +219,16 @@ void cCcD_DivideArea::SetArea(cM3dGAab const& pM3dGAab) {
 /* ############################################################################################## */
 /* 8039A7E8-8039A868 026E48 0080+00 2/2 0/0 0/0 .rodata          l_base */
 static u32 const l_base[32] = {
-    0x00000001, 0x00000003, 0x00000007, 0x0000000F,
-    0x0000001F, 0x0000003F, 0x0000007F, 0x000000FF,
-    0x000001FF, 0x000003FF, 0x000007FF, 0x00000FFF,
-    0x00001FFF, 0x00003FFF, 0x00007FFF, 0x0000FFFF,
-    0x0001FFFF, 0x0003FFFF, 0x0007FFFF, 0x000FFFFF,
-    0x001FFFFF, 0x003FFFFF, 0x007FFFFF, 0x00FFFFFF,
-    0x01FFFFFF, 0x03FFFFFF, 0x07FFFFFF, 0x0FFFFFFF,
-    0x1FFFFFFF, 0x3FFFFFFF, 0x7FFFFFFF, 0xFFFFFFFF,
+    0x00000001, 0x00000003, 0x00000007, 0x0000000F, 0x0000001F, 0x0000003F, 0x0000007F, 0x000000FF,
+    0x000001FF, 0x000003FF, 0x000007FF, 0x00000FFF, 0x00001FFF, 0x00003FFF, 0x00007FFF, 0x0000FFFF,
+    0x0001FFFF, 0x0003FFFF, 0x0007FFFF, 0x000FFFFF, 0x001FFFFF, 0x003FFFFF, 0x007FFFFF, 0x00FFFFFF,
+    0x01FFFFFF, 0x03FFFFFF, 0x07FFFFFF, 0x0FFFFFFF, 0x1FFFFFFF, 0x3FFFFFFF, 0x7FFFFFFF, 0xFFFFFFFF,
 };
 
 /* 802634D4-802636A0 25DE14 01CC+00 0/0 2/2 0/0 .text
  * CalcDivideInfo__15cCcD_DivideAreaFP15cCcD_DivideInfoRC8cM3dGAabUl */
 void cCcD_DivideArea::CalcDivideInfo(cCcD_DivideInfo* pDivideInfo, cM3dGAab const& pM3dGAab,
-                                         u32 param_2) {
+                                     u32 param_2) {
     if (param_2 != 0) {
         pDivideInfo->Set(0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF);
     } else {
@@ -287,7 +282,7 @@ void cCcD_DivideArea::CalcDivideInfo(cCcD_DivideInfo* pDivideInfo, cM3dGAab cons
 /* 802636A0-80263894 25DFE0 01F4+00 0/0 3/3 0/0 .text
  * CalcDivideInfoOverArea__15cCcD_DivideAreaFP15cCcD_DivideInfoRC8cM3dGAab */
 void cCcD_DivideArea::CalcDivideInfoOverArea(cCcD_DivideInfo* pDivideInfo,
-                                                 cM3dGAab const& pM3dGAab) {
+                                             cM3dGAab const& pM3dGAab) {
     u32 xDivInfo, yDivInfo, zDivInfo;
     if (!mXDiffIsZero) {
         s32 var1 = mInvScaledXDiff * (pM3dGAab.mMin.x - mMin.x);
@@ -469,7 +464,8 @@ fopAc_ac_c* cCcD_Obj::GetAc() {
  * getShapeAccess__14cCcD_ShapeAttrCFPQ214cCcD_ShapeAttr5Shape  */
 void cCcD_ShapeAttr::getShapeAccess(cCcD_ShapeAttr::Shape* shape) const {
     shape->_0 = 2;
-    f32 tmp = FLOAT_LABEL(/* 0.0f */ lit_2431); // can use 0.0f literal everywhere when data is fixed
+    f32 tmp =
+        FLOAT_LABEL(/* 0.0f */ lit_2431);  // can use 0.0f literal everywhere when data is fixed
     shape->_14 = tmp;
     shape->_10 = tmp;
     shape->_C = tmp;
@@ -555,7 +551,7 @@ bool cCcD_TriAttr::GetNVec(cXyz const& param_0, cXyz* pOut) const {
         *pOut = mNormal;
     } else {
         *pOut = mNormal;
-        PSVECScale(pOut, pOut, FLOAT_LABEL(/* -1.0f */lit_2632));
+        PSVECScale(pOut, pOut, FLOAT_LABEL(/* -1.0f */ lit_2632));
     }
     return true;
 }
@@ -697,7 +693,7 @@ inline bool inlineCross(cM3dGCyl const& cyl, cM3dGCps const* cps, cXyz* xyz) {
 /* 8026417C-802641C8 25EABC 004C+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CylAttrCFRC12cCcD_CpsAttrP4cXyz            */
 bool cCcD_CylAttr::CrossAtTg(cCcD_CpsAttr const& cps, cXyz* xyz) const {
-    if(inlineCross(*this, &cps, xyz)) {
+    if (inlineCross(*this, &cps, xyz)) {
         return true;
     } else {
         return false;
@@ -946,7 +942,6 @@ bool cCcD_SphAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
         PSVECNormalize(param_1, param_1);
         return true;
     }
-
 }
 
 /* 80264808-8026483C 25F148 0034+00 1/0 1/0 0/0 .text

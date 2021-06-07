@@ -1,15 +1,15 @@
 #ifndef C_CC_D_H
 #define C_CC_D_H
 
+#include "SSystem/SComponent/c_m3d.h"
 #include "SSystem/SComponent/c_m3d_g_aab.h"
 #include "SSystem/SComponent/c_m3d_g_cps.h"
 #include "SSystem/SComponent/c_m3d_g_cyl.h"
 #include "SSystem/SComponent/c_m3d_g_sph.h"
 #include "SSystem/SComponent/c_m3d_g_tri.h"
-#include "SSystem/SComponent/c_m3d.h"
 #include "dolphin/gx/GXTexture.h"
-#include "global.h"
 #include "f_op/f_op_actor.h"
+#include "global.h"
 
 class cCcD_PntAttr;
 class cCcD_CpsAttr;
@@ -50,7 +50,7 @@ public:
     /* 80084E38 vt[17]*/ virtual const cXyz& GetCoCP() const;
     /* 80084E2C vt[18]*/ virtual cXyz& GetCoCP();
     /*          vt[19]*/ virtual void CalcAabBox() = 0;
-    /*          vt[20]*/ virtual bool GetNVec(cXyz const&, cXyz *) const = 0;
+    /*          vt[20]*/ virtual bool GetNVec(cXyz const&, cXyz*) const = 0;
     /* 80263A64 vt[21]*/ virtual void getShapeAccess(cCcD_ShapeAttr::Shape*) const;
 
     static f32 m_virtual_center[3];
@@ -177,7 +177,7 @@ public:
     virtual ~cCcD_DivideInfo();
     /* 80263358 */ void Set(u32, u32, u32);
     /* 80263368 */ bool Chk(cCcD_DivideInfo const&) const;
-}; // Size = 0x10
+};  // Size = 0x10
 
 STATIC_ASSERT(0x10 == sizeof(cCcD_DivideInfo));
 
@@ -192,13 +192,14 @@ private:
     /* 0x34 */ bool mZDiffIsZero;
     /* 0x38 */ f32 mScaledZDiff;
     /* 0x3C */ f32 mInvScaledZDiff;
+
 public:
     virtual void test();  // temp to build OK, remove later
     virtual ~cCcD_DivideArea();
     /* 802633A8 */ void SetArea(cM3dGAab const&);
     /* 802634D4 */ void CalcDivideInfo(cCcD_DivideInfo*, cM3dGAab const&, u32);
     /* 802636A0 */ void CalcDivideInfoOverArea(cCcD_DivideInfo*, cM3dGAab const&);
-}; // Size = 0x40
+};  // Size = 0x40
 
 STATIC_ASSERT(0x40 == sizeof(cCcD_DivideArea));
 
@@ -260,7 +261,7 @@ public:
 
 STATIC_ASSERT(0x1C == sizeof(cCcD_Stts));
 
-class cCcD_Obj; // placeholder
+class cCcD_Obj;  // placeholder
 
 class cCcD_ObjCommonBase {
 public:
@@ -341,7 +342,7 @@ public:
     /* 80084BF0 */ void Draw(_GXColor const&);
     /* 80263A10 */ void ct();
     /* 80263A1C */ void Set(cCcD_SrcObj const&);
-    fopAc_ac_c *GetAc();
+    fopAc_ac_c* GetAc();
 
 private:
     /* 0x040 */ int field_0x40;
