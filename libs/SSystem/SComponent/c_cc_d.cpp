@@ -578,7 +578,7 @@ void cCcD_CpsAttr::CalcAabBox() {
     mAab.ClearForMinMax();
     mAab.SetMinMax(mStart);
     mAab.SetMinMax(mEnd);
-    mAab.PlusR(unk_0x1c);
+    mAab.PlusR(mRadius);
 }
 
 /* 80264014-8026417C 25E954 0168+00 1/0 1/0 0/0 .text GetNVec__12cCcD_CpsAttrCFRC4cXyzP4cXyz */

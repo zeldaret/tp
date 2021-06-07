@@ -9,12 +9,12 @@
 struct cM3dGCpsS {
     Vec mStart;
     Vec mEnd;
-    f32 unk_0x1c;
+    f32 mRadius;
 };
 
 class cM3dGCps : public cM3dGLin {
 public:
-    /* 0x1C */ f32 unk_0x1c;
+    /* 0x1C */ f32 mRadius;
 
     cM3dGCps(void);
     virtual ~cM3dGCps(void);
