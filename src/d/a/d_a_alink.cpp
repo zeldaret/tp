@@ -753,10 +753,6 @@ struct JMath {
     static u8 sincosTable_[65536];
 };
 
-struct JKRFileLoader {
-    /* 802D4270 */ void getGlbResource(char const*, JKRFileLoader*);
-};
-
 struct JASKernel {
     /* 80290B08 */ void getAramHeap();
 };
@@ -794,12 +790,6 @@ struct J3DTevColorAnm {
 
 struct J3DTevBlock {
     /* 80110E80 */ void setTevColor(u32, J3DGXColorS10 const*);
-};
-
-struct J3DSys {
-    /* 8031073C */ void reinitGX();
-
-    static u8 mCurrentMtx[48];
 };
 
 struct J3DShape {
@@ -3853,7 +3843,6 @@ extern "C" f32 Zero__4cXyz[3];
 extern "C" u8 BaseX__4cXyz[12];
 extern "C" u8 BaseY__4cXyz[12];
 extern "C" u8 BaseZ__4cXyz[12];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 g_whiteColor;
@@ -17979,7 +17968,7 @@ bool daAlink_c::procServiceWaitInit() {
     commonProcInit(SERVICE_WAIT);
     setSingleAnimeBase(0x90);
     mNormalSpeed = 0.0f;
-    mNext.mAngle.mY = mCollisionRot.mY;
+    mNext.mAngle.y = mCollisionRot.y;
     field_0x2f98 = 4;
     return true;
 }
@@ -35999,7 +35988,7 @@ void daPy_py_c::setSumouLoseHeadUp() {
 
 /* 80141874-8014187C 13C1B4 0008+00 1/0 0/0 0/0 .text getGiantPuzzleAimAngle__9daPy_py_cCFv */
 s16 daPy_py_c::getGiantPuzzleAimAngle() const {
-    return mCollisionRot.mY;
+    return mCollisionRot.y;
 }
 
 /* 8014187C-80141880 13C1BC 0004+00 1/0 0/0 0/0 .text setGoronSideMove__9daPy_py_cFP10fopAc_ac_c

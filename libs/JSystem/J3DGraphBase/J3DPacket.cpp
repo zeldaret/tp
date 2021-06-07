@@ -97,7 +97,6 @@ extern "C" void __ptmf_scall();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
 extern "C" u8 sortFuncTable__13J3DDrawBuffer[72];
-extern "C" extern u8 j3dSys[284];
 extern "C" extern u8 struct_804515B0[4];
 extern "C" u8 sTexGenBlock__17J3DDifferedTexMtx[4];
 extern "C" u8 sTexMtxObj__17J3DDifferedTexMtx[4];

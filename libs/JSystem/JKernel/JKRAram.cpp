@@ -156,15 +156,16 @@ JKRAram::~JKRAram() {
 void* JKRAram::run(void) {
     int result;
     JKRAMCommand* command;
-    JKRAMCommand::Message* message;
+    JKRAramPiece::Message* message;
     OSInitMessageQueue(&sMessageQueue, sMessageBuffer, 4);
     do {
-        OSReceiveMessage(&sMessageQueue, &message, OS_MESSAGE_BLOCKING);
-        result = message->field_0x0;
+        OSReceiveMessage(&sMessageQueue, (OSMessage*)&message, OS_MESSAGE_BLOCKING);
+        result = message->field_0x00;
         command = message->command;
         delete message;
 
-        if (result == 1) {
+        if (result != 1) {
+        } else {
             JKRAramPiece::startDMA(command);
         }
     } while (true);

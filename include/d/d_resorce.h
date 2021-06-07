@@ -1,19 +1,11 @@
 #ifndef D_D_RESORCE_H
 #define D_D_RESORCE_H
 
+#include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
-
-struct JKRArchive {
-    /* 802D5CE4 */ void getIdxResource(u32);
-    /* 802D625C */ void getFileAttribute(u32) const;
-    /* 802D6684 */ void findIdxResource(u32) const;
-    /* 802D66AC */ void findNameResource(char const*) const;
-    /* 802D5ECC */ void readIdxResource(void*, u32, u32);
-    /* 802D5B38 */ void getGlbResource(u32, char const*, JKRArchive*);
-};
 
 #pragma pack(push, 1)
 class dRes_info_c {

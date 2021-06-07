@@ -2,6 +2,7 @@
 #define F_OP_ACTOR_MNG_H_
 
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_m3d_g_pla.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
@@ -13,38 +14,36 @@
 #include "f_pc/f_pc_searcher.h"
 #include "f_pc/f_pc_stdcreate_req.h"
 
+class J3DModelData;  // placeholder
+
 struct fopAcM_prm_class {
-    /* 0x00 */ u32 unk_0x00;
-    /* 0x04 */ cXyz unk_0x04;
-    /* 0x10 */ csXyz unk_0x10;
-    /* 0x16 */ u16 unk_0x16;
-    /* 0x18 */ u8 unk_0x18;
-    /* 0x19 */ u8 unk_0x19;
-    /* 0x1A */ u8 unk_0x1A;
-    /* 0x1B */ u8 unk_0x1B;
-    /* 0x1C */ s32 unk_0x1C;
-    /* 0x20 */ s8 unk_0x20;
-    /* 0x21 */ s8 unk_0x21;
-    /* 0x22 */ u8 unk_0x22;
-    /* 0x23 */ u8 unk_0x23;
+    /* 0x00 */ u32 mParameter;  // single U32 Parameter
+    /* 0x04 */ cXyz mPos;
+    /* 0x10 */ csXyz mAngle;  // rotation
+    /* 0x16 */ u16 mEnemyNo;
+    /* 0x18 */ u8 mScale[3];
+    /* 0x1B */ u8 mGbaName;     // from WW, maybe a different parameter here
+    /* 0x1C */ s32 mParentPId;  // parent process ID
+    /* 0x20 */ s8 mSubtype;
+    /* 0x21 */ s8 mRoomNo;
 };
 
 class fopAcM_lc_c {
 public:
     static bool lineCheck(const cXyz*, const cXyz*, const fopAc_ac_c*);
-
     static u8 mLineCheck[112];
 };
 
 class fopAcM_rc_c {
 public:
     static bool roofCheck(const cXyz*);
+    static u8 mRoofCheck[80];
+    static f32 mRoofY;
 };
 
 class fopAcM_gc_c {
 public:
     static bool gndCheck(const cXyz*);
-
     static u8 mGndCheck[84];
     static f32 mGroundY;
 };
@@ -52,7 +51,6 @@ public:
 class fopAcM_wt_c {
 public:
     static bool waterCheck(const cXyz*);
-
     static u8 mWaterCheck[84 + 4 /* padding */];
     static f32 mWaterY[1 + 1 /* padding */];
 };
@@ -145,7 +143,7 @@ s32 fopAcM_getItemEventPartner(const fopAc_ac_c*);
 s32 fopAcM_getEventPartner(const fopAc_ac_c*);
 s32 fopAcM_createItemForPresentDemo(const cXyz*, int, u8, int, int, const csXyz*, const cXyz*);
 s32 fopAcM_createItemForTrBoxDemo(const cXyz*, int, int, int, const csXyz*, const cXyz*);
-s32 fopAcM_getItemNoFromTableNo(u8);
+// s32 fopAcM_getItemNoFromTableNo(u8);
 s32 fopAcM_createItemFromEnemyID(u8, const cXyz*, int, int, const csXyz*, const cXyz*, f32*, f32*);
 s32 fopAcM_createItemFromTable(const cXyz*, int, int, int, const csXyz*, int, const cXyz*, f32*,
                                f32*, bool);
@@ -172,11 +170,11 @@ s32 fopAcM_effSmokeSet1(u32*, u32*, const cXyz*, const csXyz*, f32, const dKy_te
 s32 fopAcM_effHamonSet(u32*, const cXyz*, f32, f32);
 s32 fopAcM_riverStream(cXyz*, s16*, f32*, f32);
 s32 fopAcM_carryOffRevise(fopAc_ac_c*);
-void vectle_calc(const DOUBLE_POS*, cXyz*);
-void get_vectle_calc(const cXyz*, const cXyz*, cXyz*);
+// void vectle_calc(const DOUBLE_POS*, cXyz*);
+// void get_vectle_calc(const cXyz*, const cXyz*, cXyz*);
 void fopAcM_setEffectMtx(const fopAc_ac_c*, const J3DModelData*);
-const char* fopAcM_getProcNameString(const fopAc_ac_c*);
-s32 fopAcM_findObjectCB(const fopAc_ac_c*, void*);
+static const char* fopAcM_getProcNameString(const fopAc_ac_c*);
+// s32 fopAcM_findObjectCB(const fopAc_ac_c*, void*);
 s32 fopAcM_searchFromName(const char*, u32, u32);
 s32 fopAcM_findObject4EventCB(fopAc_ac_c*, void*);
 s32 fopAcM_searchFromName4Event(const char*, s16);

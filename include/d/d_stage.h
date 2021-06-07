@@ -447,4 +447,6 @@ struct objectNameInfo {
     s8 unkA;
 };  // Size: 0xC
 
+const char* dStage_getName2(s16, s8);
+
 #endif /* D_D_STAGE_H */

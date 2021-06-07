@@ -7,6 +7,8 @@ typedef int (*cPhs__Handler)(void*);
 
 enum cPhs__Step {
     cPhs_ZERO_e = 0x00,
+    cPhs_UNK_1 = 0x01,
+    cPhs_UNK_2 = 0x02,
     // names from Wind Waker debug strings
     cPhs_COMPLEATE_e = 0x04,
     cPhs_ERROR_e = 0x05,
