@@ -77,10 +77,6 @@ public:
     /* 80263C04 */ virtual void CalcAabBox();
     /* 80263C9C */ virtual bool GetNVec(cXyz const&, cXyz*) const;
     /* 80264938 */ virtual ~cCcD_TriAttr();
-    inline bool Cross(const cCcD_CylAttr&, cXyz*) const;
-    bool Cross(const cCcD_TriAttr& other, cXyz* xyz) const {
-        return cM3d_Cross_TriTri(*this, other, xyz);
-    }
 };
 
 class cCcD_CpsAttr : public cCcD_ShapeAttr, public cM3dGCps {
@@ -102,9 +98,6 @@ public:
     /* 80085034 */ virtual bool CrossCo(cCcD_ShapeAttr const&, f32*) const;
     /* 80263FC4 */ virtual void CalcAabBox();
     /* 80264014 */ virtual bool GetNVec(cXyz const&, cXyz*) const;
-    bool Cross(const cCcD_TriAttr& tri, cXyz* xyz) const {
-        return cM3d_Cross_CpsTri(*this, tri, xyz);
-    }
 };
 
 STATIC_ASSERT(0x40 == sizeof(cCcD_CpsAttr));
@@ -131,9 +124,6 @@ public:
     /* 802646E0 */ virtual void CalcAabBox();
     /* 8026476C */ virtual bool GetNVec(cXyz const&, cXyz*) const;
     /* 80264808 */ virtual void getShapeAccess(cCcD_ShapeAttr::Shape*) const;
-    bool Cross(const cCcD_TriAttr& triAttr, cXyz* xyz) const {
-        return cM3d_Cross_SphTri(this, &triAttr, xyz);
-    }
 
 };  // Size = 0x34
 
@@ -363,9 +353,5 @@ public:
 };
 
 STATIC_ASSERT(0x58 == sizeof(cCcD_GObjInf));
-
-inline bool cCcD_TriAttr::Cross(const cCcD_CylAttr& cylAttr, cXyz* xyz) const {
-    return this->cross(&cylAttr, xyz);
-}
 
 #endif /* C_CC_D_H */
