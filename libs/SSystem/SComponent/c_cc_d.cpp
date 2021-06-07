@@ -189,30 +189,23 @@ bool cCcD_DivideInfo::Chk(cCcD_DivideInfo const& param_0) const {
     }
 }
 
-/* ############################################################################################## */
-/* 80455018-8045501C 003618 0004+00 1/1 0/0 0/0 .sdata2          @2305 */
-SECTION_SDATA2 static f32 lit_2305 = 1.0f / 32.0f;
-
-/* 8045501C-80455020 00361C 0004+00 2/2 0/0 0/0 .sdata2          @2306 */
-SECTION_SDATA2 static f32 lit_2306 = 1.0f;
-
 /* 802633A8-802634D4 25DCE8 012C+00 0/0 2/2 0/0 .text SetArea__15cCcD_DivideAreaFRC8cM3dGAab */
 void cCcD_DivideArea::SetArea(cM3dGAab const& pM3dGAab) {
     Set(&pM3dGAab.mMin, &pM3dGAab.mMax);
-    mScaledXDiff = FLOAT_LABEL(lit_2305) * (mMax.x - mMin.x);
+    mScaledXDiff = 1.0f / 32.0f * (mMax.x - mMin.x);
     mXDiffIsZero = cM3d_IsZero(mScaledXDiff);
     if (!mXDiffIsZero) {
-        mInvScaledXDiff = FLOAT_LABEL(lit_2306) / mScaledXDiff;
+        mInvScaledXDiff = 1.0f / mScaledXDiff;
     }
-    mScaledYDiff = FLOAT_LABEL(lit_2305) * (mMax.y - mMin.y);
+    mScaledYDiff = 1.0f / 32.0f * (mMax.y - mMin.y);
     mYDiffIsZero = cM3d_IsZero(mScaledYDiff);
     if (!mYDiffIsZero) {
-        mInvScaledYDiff = FLOAT_LABEL(lit_2306) / mScaledYDiff;
+        mInvScaledYDiff = 1.0f / mScaledYDiff;
     }
-    mScaledZDiff = FLOAT_LABEL(lit_2305) * (mMax.z - mMin.z);
+    mScaledZDiff = 1.0f / 32.0f * (mMax.z - mMin.z);
     mZDiffIsZero = cM3d_IsZero(mScaledZDiff);
     if (!mZDiffIsZero) {
-        mInvScaledZDiff = FLOAT_LABEL(lit_2306) / mScaledZDiff;
+        mInvScaledZDiff = 1.0f / mScaledZDiff;
     }
 }
 
@@ -360,20 +353,11 @@ void cCcD_Stts::Init(int param_0, int param_1, void* param_2, unsigned int param
     mApid = param_3;
 }
 
-/* ############################################################################################## */
-/* 80455020-80455028 003620 0004+04 13/13 0/0 0/0 .sdata2          @2431 */
-SECTION_SDATA2 static f32 lit_2431[1 + 1 /* padding */] = {
-    0.0f,
-    /* padding */
-    0.0f,
-};
-
 /* 80263904-80263934 25E244 0030+00 1/0 1/1 0/0 .text            Ct__9cCcD_SttsFv */
 void cCcD_Stts::Ct() {
-    f32 zero = FLOAT_LABEL(lit_2431);
-    mXyz.x = zero;
-    mXyz.y = zero;
-    mXyz.z = zero;
+    mXyz.x = 0.0f;
+    mXyz.y = 0.0f;
+    mXyz.z = 0.0f;
     mActor = 0;
     mApid = 0xFFFFFFFF;
     mWeight = 0;
@@ -390,10 +374,9 @@ void cCcD_Stts::PlusCcMove(f32 x, f32 y, f32 z) {
 
 /* 8026395C-80263970 25E29C 0014+00 0/0 10/10 23/23 .text            ClrCcMove__9cCcD_SttsFv */
 void cCcD_Stts::ClrCcMove() {
-    f32 zero = FLOAT_LABEL(lit_2431);
-    mXyz.z = zero;
-    mXyz.y = zero;
-    mXyz.x = zero;
+    mXyz.z = 0.0f;
+    mXyz.y = 0.0f;
+    mXyz.x = 0.0f;
 }
 
 /* 80263970-80263984 25E2B0 0014+00 0/0 2/2 0/0 .text            PlusDmg__9cCcD_SttsFi */
@@ -404,26 +387,10 @@ void cCcD_Stts::PlusDmg(int dmg) {
     mTg = dmg;
 }
 
-/* ############################################################################################## */
-/* 80455028-80455030 003628 0008+00 1/1 0/0 0/0 .sdata2          @2472 */
-SECTION_SDATA2 static f64 lit_2472 = 4503601774854144.0 /* cast s32 to float */;
-
 /* 80263984-802639B0 25E2C4 002C+00 0/0 1/1 0/0 .text            GetWeightF__9cCcD_SttsCFv */
-#ifdef NON_MATCHING
-// data for s32 -> f32 cast
 f32 cCcD_Stts::GetWeightF() const {
     return (s32)mWeight;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 cCcD_Stts::GetWeightF() const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/GetWeightF__9cCcD_SttsCFv.s"
-}
-#pragma pop
-#endif
 
 /* 802639B0-802639C4 25E2F0 0014+00 0/0 1/1 0/0 .text            ct__18cCcD_ObjCommonBaseFv */
 void cCcD_ObjCommonBase::ct() {
@@ -464,13 +431,11 @@ fopAc_ac_c* cCcD_Obj::GetAc() {
  * getShapeAccess__14cCcD_ShapeAttrCFPQ214cCcD_ShapeAttr5Shape  */
 void cCcD_ShapeAttr::getShapeAccess(cCcD_ShapeAttr::Shape* shape) const {
     shape->_0 = 2;
-    f32 tmp =
-        FLOAT_LABEL(/* 0.0f */ lit_2431);  // can use 0.0f literal everywhere when data is fixed
-    shape->_14 = tmp;
-    shape->_10 = tmp;
-    shape->_C = tmp;
-    shape->_8 = tmp;
-    shape->_4 = tmp;
+    shape->_14 = 0.0f;
+    shape->_10 = 0.0f;
+    shape->_C = 0.0f;
+    shape->_8 = 0.0f;
+    shape->_4 = 0.0f;
 }
 
 inline bool inlineCross(cCcD_TriAttr const& tri, cCcD_CpsAttr const& cps, cXyz* xyz) {
@@ -537,21 +502,13 @@ void cCcD_TriAttr::CalcAabBox() {
     mAab.SetMinMax(mC);
 }
 
-/* ############################################################################################## */
-/* 80455030-80455038 003630 0004+04 1/1 0/0 0/0 .sdata2          @2632 */
-SECTION_SDATA2 static f32 lit_2632[1 + 1 /* padding */] = {
-    -1.0f,
-    /* padding */
-    0.0f,
-};
-
 /* 80263C9C-80263D38 25E5DC 009C+00 1/0 1/0 0/0 .text GetNVec__12cCcD_TriAttrCFRC4cXyzP4cXyz */
 bool cCcD_TriAttr::GetNVec(cXyz const& param_0, cXyz* pOut) const {
-    if (this->getPlaneFunc(&param_0) >= FLOAT_LABEL(/* 0.0f */ lit_2431)) {
+    if (this->getPlaneFunc(&param_0) >= 0.0f) {
         *pOut = mNormal;
     } else {
         *pOut = mNormal;
-        PSVECScale(pOut, pOut, FLOAT_LABEL(/* -1.0f */ lit_2632));
+        PSVECScale(pOut, pOut, -1.0f);
     }
     return true;
 }
@@ -611,7 +568,7 @@ bool cCcD_CpsAttr::CrossAtTg(cCcD_TriAttr const& triAttr, cXyz* xyz) const {
 /* 80263ED4-80263F24 25E814 0050+00 1/0 1/0 0/0 .text CrossCo__12cCcD_CpsAttrCFRC12cCcD_CpsAttrPf
  */
 bool cCcD_CpsAttr::CrossCo(cCcD_CpsAttr const& param_0, f32* param_1) const {
-    *param_1 = FLOAT_LABEL(/* 0.0f */ lit_2431);
+    *param_1 = 0.0f;
     cXyz xyz;
     if (inlineCross(*this, &param_0, &xyz)) {
         return true;
@@ -623,7 +580,7 @@ bool cCcD_CpsAttr::CrossCo(cCcD_CpsAttr const& param_0, f32* param_1) const {
 /* 80263F24-80263F74 25E864 0050+00 1/0 1/0 0/0 .text CrossCo__12cCcD_CpsAttrCFRC12cCcD_CylAttrPf
  */
 bool cCcD_CpsAttr::CrossCo(cCcD_CylAttr const& param_0, f32* param_1) const {
-    *param_1 = FLOAT_LABEL(/* 0.0f */ lit_2431);
+    *param_1 = 0.0f;
     cXyz xyz;
     if (inlineCross(*this, &param_0, &xyz)) {
         return true;
@@ -635,7 +592,7 @@ bool cCcD_CpsAttr::CrossCo(cCcD_CylAttr const& param_0, f32* param_1) const {
 /* 80263F74-80263FC4 25E8B4 0050+00 1/0 1/0 0/0 .text CrossCo__12cCcD_CpsAttrCFRC12cCcD_SphAttrPf
  */
 bool cCcD_CpsAttr::CrossCo(cCcD_SphAttr const& param_0, f32* param_1) const {
-    *param_1 = FLOAT_LABEL(/* 0.0f */ lit_2431);
+    *param_1 = 0.0f;
     cXyz xyz;
     if (inlineCross(*this, &param_0, &xyz)) {
         return true;
@@ -664,10 +621,10 @@ bool cCcD_CpsAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
         Vec vec1, vec2;
         PSVECSubtract(&param_0, &mStart, &vec1);
         f32 vec1Len = PSVECDotProduct(&vec1, &diff) / diffLen;
-        if (vec1Len < FLOAT_LABEL(/* 0.0f */ lit_2431)) {
+        if (vec1Len < 0.0f) {
             vec2 = mStart;
         } else {
-            if (vec1Len > FLOAT_LABEL(/* 1.0f */ lit_2306)) {
+            if (vec1Len > 1.0f) {
                 vec2 = endP;
             } else {
                 PSVECScale(&diff, &diff, vec1Len);
@@ -676,8 +633,7 @@ bool cCcD_CpsAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
         }
         PSVECSubtract(&param_0, &vec2, param_1);
         if (cM3d_IsZero(PSVECMag(param_1))) {
-            f32 zero = FLOAT_LABEL(/* 0.0f */ lit_2431);
-            param_1->set(zero, zero, zero);
+            param_1->set(0.0f, 0.0f, 0.0f);
             return false;
         } else {
             PSVECNormalize(param_1, param_1);
@@ -761,7 +717,7 @@ bool cCcD_CylAttr::CrossCo(cCcD_SphAttr const& sph, f32* f) const {
 /* 80264310-80264368 25EC50 0058+00 1/0 1/0 0/0 .text CrossCo__12cCcD_CylAttrCFRC12cCcD_CpsAttrPf
  */
 bool cCcD_CylAttr::CrossCo(cCcD_CpsAttr const& cps, f32* f) const {
-    *f = FLOAT_LABEL(/* 0.0f */ lit_2431);
+    *f = 0.0f;
     cXyz xyz;
     if (inlineCross(*this, &cps, &xyz)) {
         return true;
@@ -801,8 +757,7 @@ bool cCcD_CylAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
     }
     PSVECSubtract(&param_0, &vec, param_1);
     if (cM3d_IsZero(PSVECMag(param_1))) {
-        f32 zero = FLOAT_LABEL(/* 0.0f */ lit_2431);
-        param_1->set(zero, zero, zero);
+        param_1->set(0.0f, 0.0f, 0.0f);
         return false;
     } else {
         PSVECNormalize(param_1, param_1);
@@ -893,7 +848,7 @@ bool cCcD_SphAttr::CrossCo(cCcD_SphAttr const& sph, f32* f) const {
 /* 80264688-802646E0 25EFC8 0058+00 1/0 1/0 0/0 .text CrossCo__12cCcD_SphAttrCFRC12cCcD_CpsAttrPf
  */
 bool cCcD_SphAttr::CrossCo(cCcD_CpsAttr const& cps, f32* f) const {
-    *f = FLOAT_LABEL(/* 0.0f */ lit_2431);
+    *f = 0.0f;
     cXyz xyz;
     if (this->cM3dGSph::Cross(&cps, &xyz)) {
         return true;
@@ -933,10 +888,9 @@ bool cCcD_SphAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
     param_1->z = param_0.z - mCenter.z;
 
     if (cM3d_IsZero(PSVECMag(param_1))) {
-        f32 zero = FLOAT_LABEL(/* 0.0f */ lit_2431);
-        param_1->x = zero;
-        param_1->y = zero;
-        param_1->z = zero;
+        param_1->x = 0.0f;
+        param_1->y = 0.0f;
+        param_1->z = 0.0f;
         return false;
     } else {
         PSVECNormalize(param_1, param_1);
@@ -952,7 +906,7 @@ void cCcD_SphAttr::getShapeAccess(cCcD_ShapeAttr::Shape* shape) const {
     shape->_8 = mCenter.y;
     shape->_C = mCenter.z;
     shape->_10 = mRadius;
-    shape->_14 = FLOAT_LABEL(/* 0.0f */ lit_2431);
+    shape->_14 = 0.0f;
 }
 
 /* 8026483C-8026484C 25F17C 0010+00 0/0 1/1 0/0 .text            SetHit__10cCcD_ObjAtFP8cCcD_Obj */
@@ -1175,7 +1129,7 @@ cCcD_TriAttr::~cCcD_TriAttr() {}
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm cCcD_TriAttr::~cCcD_TriAttr() {
-// extern "C" asm void __dt__12cCcD_TriAttrFv() {
+    // extern "C" asm void __dt__12cCcD_TriAttrFv() {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/__dt__12cCcD_TriAttrFv.s"
 }
