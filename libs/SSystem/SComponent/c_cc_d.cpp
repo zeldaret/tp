@@ -1168,15 +1168,19 @@ SECTION_DATA extern void* __vt__14cCcD_ShapeAttr[22] = {
 };
 
 /* 80264938-802649D8 25F278 00A0+00 2/1 0/0 0/0 .text            __dt__12cCcD_TriAttrFv */
+#ifndef NM
+cCcD_TriAttr::~cCcD_TriAttr() {}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-// asm cCcD_TriAttr::~cCcD_TriAttr() {
-extern "C" asm void __dt__12cCcD_TriAttrFv() {
+asm cCcD_TriAttr::~cCcD_TriAttr() {
+// extern "C" asm void __dt__12cCcD_TriAttrFv() {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/__dt__12cCcD_TriAttrFv.s"
 }
 #pragma pop
+#endif
 
 /* 802649D8-802649E0 25F318 0008+00 1/0 0/0 0/0 .text
  * CrossAtTg__14cCcD_ShapeAttrCFRC14cCcD_ShapeAttrP4cXyz        */

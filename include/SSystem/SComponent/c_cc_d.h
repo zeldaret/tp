@@ -32,7 +32,7 @@ public:
         /* 0x14 */ f32 _14;
     };
 
-    /* 8008556C vt[2] */ virtual ~cCcD_ShapeAttr();
+    /* 8008556C vt[2] */ virtual ~cCcD_ShapeAttr() {}
     /* 802649D8 vt[3] */ virtual bool CrossAtTg(cCcD_ShapeAttr const&, cXyz*) const;
     /*          vt[4] */ virtual bool CrossAtTg(cCcD_PntAttr const&, cXyz*) const = 0;
     /*          vt[5] */ virtual bool CrossAtTg(cCcD_CpsAttr const&, cXyz*) const = 0;
@@ -243,7 +243,7 @@ private:
     /* 0x16 */ u8 mTg;
 
 public:
-    /* 801410A4 vt[3] */ virtual ~cCcD_Stts();
+    /* 801410A4 vt[3] */ virtual ~cCcD_Stts() {}
     /* 80263894 vt[4] */ virtual const cCcD_GStts* GetGStts() const;
     /* 8026389C vt[5] */ virtual cCcD_GStts* GetGStts();
     /* 802638A4 */ void Init(int, int, void*, unsigned int);
