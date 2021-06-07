@@ -35,6 +35,7 @@ public:
 
     bool Cross(const cM3dGSph* other, f32* f) const { return cM3d_Cross_SphSph(this, other, f); }
     bool Cross(const cM3dGCps* cps, cXyz* xyz) const { return cM3d_Cross_CpsSph(*cps, *this, xyz); }
+    bool Cross(const cM3dGCyl* cyl, f32* f) const { return cM3d_Cross_CylSph(cyl, this, f); }
 };  // Size = 0x14
 
 STATIC_ASSERT(0x14 == sizeof(cM3dGSph));

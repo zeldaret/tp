@@ -438,56 +438,40 @@ void cCcD_ShapeAttr::getShapeAccess(cCcD_ShapeAttr::Shape* shape) const {
     shape->_4 = 0.0f;
 }
 
-inline bool inlineCross(cCcD_TriAttr const& tri, cCcD_CpsAttr const& cps, cXyz* xyz) {
-    return cM3d_Cross_CpsTri(cps, tri, xyz);
-}
-
 /* 80263A88-80263B58 25E3C8 00D0+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_TriAttrCFRC12cCcD_CpsAttrP4cXyz            */
 bool cCcD_TriAttr::CrossAtTg(cCcD_CpsAttr const& cpsAttr, cXyz* xyz) const {
-    if (inlineCross(*this, cpsAttr, xyz)) {
+    if (this->cM3dGTri::Cross(cpsAttr, xyz)) {
         return true;
     } else {
         return false;
     }
-}
-
-inline bool inlineCross(cM3dGTri const& tri, cM3dGCyl const& cyl, cXyz* xyz) {
-    return tri.cross(&cyl, xyz);
 }
 
 /* 80263B58-80263B90 25E498 0038+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_TriAttrCFRC12cCcD_CylAttrP4cXyz            */
 bool cCcD_TriAttr::CrossAtTg(cCcD_CylAttr const& cylAttr, cXyz* xyz) const {
-    if (inlineCross(*this, cylAttr, xyz)) {
+    if (this->cM3dGTri::Cross(cylAttr, xyz)) {
         return true;
     } else {
         return false;
     }
-}
-
-inline bool inlineCross(cM3dGTri const& tri, cM3dGSph const& sph, cXyz* xyz) {
-    return cM3d_Cross_SphTri(&sph, &tri, xyz);
 }
 
 /* 80263B90-80263BCC 25E4D0 003C+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_TriAttrCFRC12cCcD_SphAttrP4cXyz            */
 bool cCcD_TriAttr::CrossAtTg(cCcD_SphAttr const& sph, cXyz* xyz) const {
-    if (inlineCross(*this, sph, xyz)) {
+    if (this->cM3dGTri::Cross(sph, xyz)) {
         return true;
     } else {
         return false;
     }
 }
 
-inline bool inlineCross(cM3dGTri const& tri, cM3dGTri const& other, cXyz* xyz) {
-    return cM3d_Cross_TriTri(tri, other, xyz);
-}
-
 /* 80263BCC-80263C04 25E50C 0038+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_TriAttrCFRC12cCcD_TriAttrP4cXyz            */
-bool cCcD_TriAttr::CrossAtTg(cCcD_TriAttr const& param_0, cXyz* param_1) const {
-    if (inlineCross(*this, param_0, param_1)) {
+bool cCcD_TriAttr::CrossAtTg(cCcD_TriAttr const& other, cXyz* xyz) const {
+    if (this->cM3dGTri::Cross(other, xyz)) {
         return true;
     } else {
         return false;
@@ -513,42 +497,30 @@ bool cCcD_TriAttr::GetNVec(cXyz const& param_0, cXyz* pOut) const {
     return true;
 }
 
-inline bool inlineCross(cM3dGCps const& cps, cM3dGCps const* other, cXyz* xyz) {
-    return cM3d_Cross_CpsCps(cps, *other, xyz);
-}
-
 /* 80263D38-80263D7C 25E678 0044+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_CpsAttrP4cXyz            */
 bool cCcD_CpsAttr::CrossAtTg(cCcD_CpsAttr const& other, cXyz* xyz) const {
-    if (inlineCross(*this, &other, xyz)) {
+    if (this->cM3dGCps::Cross(&other, xyz)) {
         return true;
     } else {
         return false;
     }
-}
-
-inline bool inlineCross(cM3dGCps const& cps, cM3dGCyl const* cyl, cXyz* xyz) {
-    return cM3d_Cross_CpsCyl(cps, *cyl, xyz);
 }
 
 /* 80263D7C-80263DC0 25E6BC 0044+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_CylAttrP4cXyz            */
-bool cCcD_CpsAttr::CrossAtTg(cCcD_CylAttr const& param_0, cXyz* param_1) const {
-    if (inlineCross(*this, &param_0, param_1)) {
+bool cCcD_CpsAttr::CrossAtTg(cCcD_CylAttr const& cyl, cXyz* xyz) const {
+    if (this->cM3dGCps::Cross(&cyl, xyz)) {
         return true;
     } else {
         return false;
     }
 }
 
-inline bool inlineCross(cM3dGCps const& cps, cM3dGSph const* sph, cXyz* xyz) {
-    return cM3d_Cross_CpsSph(cps, *sph, xyz);
-}
-
 /* 80263DC0-80263E04 25E700 0044+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_SphAttrP4cXyz            */
-bool cCcD_CpsAttr::CrossAtTg(cCcD_SphAttr const& param_0, cXyz* param_1) const {
-    if (inlineCross(*this, &param_0, param_1)) {
+bool cCcD_CpsAttr::CrossAtTg(cCcD_SphAttr const& sph, cXyz* xyz) const {
+    if (this->cM3dGCps::Cross(&sph, xyz)) {
         return true;
     } else {
         return false;
@@ -558,7 +530,7 @@ bool cCcD_CpsAttr::CrossAtTg(cCcD_SphAttr const& param_0, cXyz* param_1) const {
 /* 80263E04-80263ED4 25E744 00D0+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_TriAttrP4cXyz            */
 bool cCcD_CpsAttr::CrossAtTg(cCcD_TriAttr const& triAttr, cXyz* xyz) const {
-    if (inlineCross(triAttr, *this, xyz)) {
+    if (triAttr.cM3dGTri::Cross(*this, xyz)) {
         return true;
     } else {
         return false;
@@ -567,10 +539,10 @@ bool cCcD_CpsAttr::CrossAtTg(cCcD_TriAttr const& triAttr, cXyz* xyz) const {
 
 /* 80263ED4-80263F24 25E814 0050+00 1/0 1/0 0/0 .text CrossCo__12cCcD_CpsAttrCFRC12cCcD_CpsAttrPf
  */
-bool cCcD_CpsAttr::CrossCo(cCcD_CpsAttr const& param_0, f32* param_1) const {
+bool cCcD_CpsAttr::CrossCo(cCcD_CpsAttr const& other, f32* param_1) const {
     *param_1 = 0.0f;
     cXyz xyz;
-    if (inlineCross(*this, &param_0, &xyz)) {
+    if (this->cM3dGCps::Cross(&other, &xyz)) {
         return true;
     } else {
         return false;
@@ -582,7 +554,7 @@ bool cCcD_CpsAttr::CrossCo(cCcD_CpsAttr const& param_0, f32* param_1) const {
 bool cCcD_CpsAttr::CrossCo(cCcD_CylAttr const& param_0, f32* param_1) const {
     *param_1 = 0.0f;
     cXyz xyz;
-    if (inlineCross(*this, &param_0, &xyz)) {
+    if (this->cM3dGCps::Cross(&param_0, &xyz)) {
         return true;
     } else {
         return false;
@@ -591,10 +563,10 @@ bool cCcD_CpsAttr::CrossCo(cCcD_CylAttr const& param_0, f32* param_1) const {
 
 /* 80263F74-80263FC4 25E8B4 0050+00 1/0 1/0 0/0 .text CrossCo__12cCcD_CpsAttrCFRC12cCcD_SphAttrPf
  */
-bool cCcD_CpsAttr::CrossCo(cCcD_SphAttr const& param_0, f32* param_1) const {
+bool cCcD_CpsAttr::CrossCo(cCcD_SphAttr const& sph, f32* param_1) const {
     *param_1 = 0.0f;
     cXyz xyz;
-    if (inlineCross(*this, &param_0, &xyz)) {
+    if (this->cM3dGCps::Cross(&sph, &xyz)) {
         return true;
     } else {
         return false;
@@ -642,14 +614,10 @@ bool cCcD_CpsAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
     }
 }
 
-inline bool inlineCross(cM3dGCyl const& cyl, cM3dGCps const* cps, cXyz* xyz) {
-    return cM3d_Cross_CpsCyl(*cps, cyl, xyz);
-}
-
 /* 8026417C-802641C8 25EABC 004C+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CylAttrCFRC12cCcD_CpsAttrP4cXyz            */
 bool cCcD_CylAttr::CrossAtTg(cCcD_CpsAttr const& cps, cXyz* xyz) const {
-    if (inlineCross(*this, &cps, xyz)) {
+    if (this->cM3dGCyl::Cross(&cps, xyz)) {
         return true;
     } else {
         return false;
@@ -676,38 +644,30 @@ bool cCcD_CylAttr::CrossAtTg(cCcD_SphAttr const& sph, cXyz* xyz) const {
     }
 }
 
-inline bool inlineCross(cM3dGCyl const& cyl, cM3dGTri const& tri, cXyz* xyz) {
-    return cM3d_Cross_CylTri(&cyl, &tri, xyz);
-}
-
 /* 80264250-80264288 25EB90 0038+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CylAttrCFRC12cCcD_TriAttrP4cXyz            */
 bool cCcD_CylAttr::CrossAtTg(cCcD_TriAttr const& tri, cXyz* xyz) const {
-    return !!inlineCross(*this, tri, xyz);
-}
-
-inline bool inlineCross(cM3dGCyl const& cyl, cM3dGCyl const* other, f32* f) {
-    return cM3d_Cross_CylCyl(&cyl, other, f);
-}
-
-/* 80264288-802642CC 25EBC8 0044+00 1/0 1/0 0/0 .text CrossCo__12cCcD_CylAttrCFRC12cCcD_CylAttrPf
- */
-bool cCcD_CylAttr::CrossCo(cCcD_CylAttr const& other, f32* f) const {
-    if (inlineCross(*this, &other, f)) {
+    if (this->cM3dGCyl::Cross(tri, xyz)) {
         return true;
     } else {
         return false;
     }
 }
 
-inline bool inlineCross(cM3dGCyl const& cyl, cM3dGSph const* sph, f32* f) {
-    return cM3d_Cross_CylSph(&cyl, sph, f);
+/* 80264288-802642CC 25EBC8 0044+00 1/0 1/0 0/0 .text CrossCo__12cCcD_CylAttrCFRC12cCcD_CylAttrPf
+ */
+bool cCcD_CylAttr::CrossCo(cCcD_CylAttr const& other, f32* f) const {
+    if (this->cM3dGCyl::Cross(&other, f)) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 /* 802642CC-80264310 25EC0C 0044+00 1/0 1/0 0/0 .text CrossCo__12cCcD_CylAttrCFRC12cCcD_SphAttrPf
  */
 bool cCcD_CylAttr::CrossCo(cCcD_SphAttr const& sph, f32* f) const {
-    if (inlineCross(*this, &sph, f)) {
+    if (this->cM3dGCyl::Cross(&sph, f)) {
         return true;
     } else {
         return false;
@@ -719,7 +679,7 @@ bool cCcD_CylAttr::CrossCo(cCcD_SphAttr const& sph, f32* f) const {
 bool cCcD_CylAttr::CrossCo(cCcD_CpsAttr const& cps, f32* f) const {
     *f = 0.0f;
     cXyz xyz;
-    if (inlineCross(*this, &cps, &xyz)) {
+    if (this->cM3dGCyl::Cross(&cps, &xyz)) {
         return true;
     } else {
         return false;
@@ -814,21 +774,17 @@ bool cCcD_SphAttr::CrossAtTg(cCcD_SphAttr const& sph, cXyz* xyz) const {
 /* 802645C0-802645F8 25EF00 0038+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_SphAttrCFRC12cCcD_TriAttrP4cXyz            */
 bool cCcD_SphAttr::CrossAtTg(cCcD_TriAttr const& tri, cXyz* xyz) const {
-    if (inlineCross(tri, *this, xyz)) {
+    if (tri.cM3dGTri::Cross(*this, xyz)) {
         return true;
     } else {
         return false;
     }
 }
 
-inline bool inlineCross(cM3dGSph const& sph, cM3dGCyl const* cyl, f32* f) {
-    return cM3d_Cross_CylSph(cyl, &sph, f);
-}
-
 /* 802645F8-80264644 25EF38 004C+00 1/0 1/0 0/0 .text CrossCo__12cCcD_SphAttrCFRC12cCcD_CylAttrPf
  */
 bool cCcD_SphAttr::CrossCo(cCcD_CylAttr const& cyl, f32* f) const {
-    if (inlineCross(*this, &cyl, f)) {
+    if (this->cM3dGSph::Cross(&cyl, f)) {
         return true;
     } else {
         return false;

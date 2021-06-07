@@ -219,7 +219,6 @@ extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" extern void* __vt__8cM3dGAab[3];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 //
 // Declarations:
