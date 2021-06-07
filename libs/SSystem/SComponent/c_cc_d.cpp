@@ -446,91 +446,114 @@ void cCcD_ObjHitInf::Set(cCcD_SrcObjHitInf const& pSrc) {
 }
 
 /* 80263A10-80263A1C 25E350 000C+00 0/0 1/1 0/0 .text            ct__8cCcD_ObjFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_Obj::ct() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/ct__8cCcD_ObjFv.s"
+void cCcD_Obj::ct() {
+    field_0x40 = 0;
 }
-#pragma pop
 
 /* 80263A1C-80263A48 25E35C 002C+00 0/0 1/1 0/0 .text            Set__8cCcD_ObjFRC11cCcD_SrcObj */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_Obj::Set(cCcD_SrcObj const& param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/Set__8cCcD_ObjFRC11cCcD_SrcObj.s"
+void cCcD_Obj::Set(cCcD_SrcObj const& param_0) {
+    field_0x40 = param_0.field_0x0;
+    this->cCcD_ObjHitInf::Set(param_0.mSrcObjHitInf);
 }
-#pragma pop
 
 /* 80263A48-80263A64 25E388 001C+00 0/0 9/9 87/87 .text            GetAc__8cCcD_ObjFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_Obj::GetAc() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/GetAc__8cCcD_ObjFv.s"
+fopAc_ac_c* cCcD_Obj::GetAc() {
+    if (this->mStts == NULL) {
+        return NULL;
+    } else {
+        return this->mStts->GetAc();
+    }
 }
-#pragma pop
 
 /* 80263A64-80263A88 25E3A4 0024+00 3/0 2/0 0/0 .text
  * getShapeAccess__14cCcD_ShapeAttrCFPQ214cCcD_ShapeAttr5Shape  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_ShapeAttr::getShapeAccess(cCcD_ShapeAttr::Shape* param_0) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/getShapeAccess__14cCcD_ShapeAttrCFPQ214cCcD_ShapeAttr5Shape.s"
+void cCcD_ShapeAttr::getShapeAccess(cCcD_ShapeAttr::Shape* shape) const {
+    shape->_0 = 2;
+    f32 tmp = FLOAT_LABEL(/* 0.0f */ lit_2431); // can use 0.0f literal everywhere when data is fixed
+    shape->_14 = tmp;
+    shape->_10 = tmp;
+    shape->_C = tmp;
+    shape->_8 = tmp;
+    shape->_4 = tmp;
 }
-#pragma pop
 
 /* 80263A88-80263B58 25E3C8 00D0+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_TriAttrCFRC12cCcD_CpsAttrP4cXyz            */
+#ifdef NON_MATCHING
+bool cCcD_TriAttr::CrossAtTg(cCcD_CpsAttr const& cpsAttr, cXyz* xyz) const {
+    return !!cpsAttr.Cross(*this, xyz);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_TriAttr::CrossAtTg(cCcD_CpsAttr const& param_0, cXyz* param_1) const {
+asm bool cCcD_TriAttr::CrossAtTg(cCcD_CpsAttr const& param_0, cXyz* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_TriAttrCFRC12cCcD_CpsAttrP4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* 80263B58-80263B90 25E498 0038+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_TriAttrCFRC12cCcD_CylAttrP4cXyz            */
+#ifdef NON_MATCHING
+bool cCcD_TriAttr::CrossAtTg(cCcD_CylAttr const& cylAttr, cXyz* xyz) const {
+    return !!this->Cross(cylAttr, xyz);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_TriAttr::CrossAtTg(cCcD_CylAttr const& param_0, cXyz* param_1) const {
+asm bool cCcD_TriAttr::CrossAtTg(cCcD_CylAttr const& param_0, cXyz* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_TriAttrCFRC12cCcD_CylAttrP4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* 80263B90-80263BCC 25E4D0 003C+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_TriAttrCFRC12cCcD_SphAttrP4cXyz            */
+#ifdef NON_MATCHING
+bool cCcD_TriAttr::CrossAtTg(cCcD_SphAttr const& param_0, cXyz* param_1) const {
+    return !!param_0.Cross(*this, param_1);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_TriAttr::CrossAtTg(cCcD_SphAttr const& param_0, cXyz* param_1) const {
+asm bool cCcD_TriAttr::CrossAtTg(cCcD_SphAttr const& param_0, cXyz* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_TriAttrCFRC12cCcD_SphAttrP4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* 80263BCC-80263C04 25E50C 0038+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_TriAttrCFRC12cCcD_TriAttrP4cXyz            */
+#ifdef NON_MATCHING
+bool cCcD_TriAttr::CrossAtTg(cCcD_TriAttr const& param_0, cXyz* param_1) const {
+    return !!this->Cross(param_0, param_1);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_TriAttr::CrossAtTg(cCcD_TriAttr const& param_0, cXyz* param_1) const {
+asm bool cCcD_TriAttr::CrossAtTg(cCcD_TriAttr const& param_0, cXyz* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_TriAttrCFRC12cCcD_TriAttrP4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* 80263C04-80263C9C 25E544 0098+00 1/0 1/0 0/0 .text            CalcAabBox__12cCcD_TriAttrFv */
+#ifdef NON_MATCHING
+void cCcD_TriAttr::CalcAabBox() {
+    mAab.ClearForMinMax();
+    mAab.SetMinMax(mA);
+    mAab.SetMinMax(mB);
+    mAab.SetMinMax(mC);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -539,6 +562,7 @@ asm void cCcD_TriAttr::CalcAabBox() {
 #include "asm/SSystem/SComponent/c_cc_d/CalcAabBox__12cCcD_TriAttrFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80455030-80455038 003630 0004+04 1/1 0/0 0/0 .sdata2          @2632 */
@@ -549,21 +573,33 @@ SECTION_SDATA2 static f32 lit_2632[1 + 1 /* padding */] = {
 };
 
 /* 80263C9C-80263D38 25E5DC 009C+00 1/0 1/0 0/0 .text GetNVec__12cCcD_TriAttrCFRC4cXyzP4cXyz */
+#ifdef NON_MATCHING
+bool cCcD_TriAttr::GetNVec(cXyz const& param_0, cXyz* pOut) const {
+    if (this->getPlaneFunc(&param_0) >= FLOAT_LABEL(/* 0.0f */ lit_2431)) {
+        *pOut = mNormal;
+    } else {
+        *pOut = mNormal;
+        PSVECScale(pOut, pOut, FLOAT_LABEL(/* -1.0f */lit_2632));
+    }
+    return true;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_TriAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
+asm bool cCcD_TriAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/GetNVec__12cCcD_TriAttrCFRC4cXyzP4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* 80263D38-80263D7C 25E678 0044+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_CpsAttrP4cXyz            */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_CpsAttr::CrossAtTg(cCcD_CpsAttr const& param_0, cXyz* param_1) const {
+asm bool cCcD_CpsAttr::CrossAtTg(cCcD_CpsAttr const& param_0, cXyz* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_CpsAttrP4cXyz.s"
 }
@@ -574,7 +610,7 @@ asm void cCcD_CpsAttr::CrossAtTg(cCcD_CpsAttr const& param_0, cXyz* param_1) con
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_CpsAttr::CrossAtTg(cCcD_CylAttr const& param_0, cXyz* param_1) const {
+asm bool cCcD_CpsAttr::CrossAtTg(cCcD_CylAttr const& param_0, cXyz* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_CylAttrP4cXyz.s"
 }
@@ -585,7 +621,7 @@ asm void cCcD_CpsAttr::CrossAtTg(cCcD_CylAttr const& param_0, cXyz* param_1) con
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_CpsAttr::CrossAtTg(cCcD_SphAttr const& param_0, cXyz* param_1) const {
+asm bool cCcD_CpsAttr::CrossAtTg(cCcD_SphAttr const& param_0, cXyz* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_SphAttrP4cXyz.s"
 }
@@ -593,21 +629,27 @@ asm void cCcD_CpsAttr::CrossAtTg(cCcD_SphAttr const& param_0, cXyz* param_1) con
 
 /* 80263E04-80263ED4 25E744 00D0+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_TriAttrP4cXyz            */
+#ifdef NON_MATCHING
+bool cCcD_CpsAttr::CrossAtTg(cCcD_TriAttr const& triAttr, cXyz* xyz) const {
+    return !!this->Cross(triAttr, xyz);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_CpsAttr::CrossAtTg(cCcD_TriAttr const& param_0, cXyz* param_1) const {
+asm bool cCcD_CpsAttr::CrossAtTg(cCcD_TriAttr const& param_0, cXyz* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_TriAttrP4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* 80263ED4-80263F24 25E814 0050+00 1/0 1/0 0/0 .text CrossCo__12cCcD_CpsAttrCFRC12cCcD_CpsAttrPf
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_CpsAttr::CrossCo(cCcD_CpsAttr const& param_0, f32* param_1) const {
+asm bool cCcD_CpsAttr::CrossCo(cCcD_CpsAttr const& param_0, f32* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossCo__12cCcD_CpsAttrCFRC12cCcD_CpsAttrPf.s"
 }
@@ -618,7 +660,7 @@ asm void cCcD_CpsAttr::CrossCo(cCcD_CpsAttr const& param_0, f32* param_1) const 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_CpsAttr::CrossCo(cCcD_CylAttr const& param_0, f32* param_1) const {
+asm bool cCcD_CpsAttr::CrossCo(cCcD_CylAttr const& param_0, f32* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossCo__12cCcD_CpsAttrCFRC12cCcD_CylAttrPf.s"
 }
@@ -629,13 +671,21 @@ asm void cCcD_CpsAttr::CrossCo(cCcD_CylAttr const& param_0, f32* param_1) const 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_CpsAttr::CrossCo(cCcD_SphAttr const& param_0, f32* param_1) const {
+asm bool cCcD_CpsAttr::CrossCo(cCcD_SphAttr const& param_0, f32* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossCo__12cCcD_CpsAttrCFRC12cCcD_SphAttrPf.s"
 }
 #pragma pop
 
 /* 80263FC4-80264014 25E904 0050+00 1/0 2/1 0/0 .text            CalcAabBox__12cCcD_CpsAttrFv */
+#ifdef NON_MATCHING
+void cCcD_CpsAttr::CalcAabBox() {
+    mAab.ClearForMinMax();
+    mAab.SetMinMax(mStart);
+    mAab.SetMinMax(mEnd);
+    mAab.PlusR(unk_0x1c);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -644,12 +694,13 @@ asm void cCcD_CpsAttr::CalcAabBox() {
 #include "asm/SSystem/SComponent/c_cc_d/CalcAabBox__12cCcD_CpsAttrFv.s"
 }
 #pragma pop
+#endif
 
 /* 80264014-8026417C 25E954 0168+00 1/0 1/0 0/0 .text GetNVec__12cCcD_CpsAttrCFRC4cXyzP4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_CpsAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
+asm bool cCcD_CpsAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/GetNVec__12cCcD_CpsAttrCFRC4cXyzP4cXyz.s"
 }
@@ -660,7 +711,7 @@ asm void cCcD_CpsAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_CylAttr::CrossAtTg(cCcD_CpsAttr const& param_0, cXyz* param_1) const {
+asm bool cCcD_CylAttr::CrossAtTg(cCcD_CpsAttr const& param_0, cXyz* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_CylAttrCFRC12cCcD_CpsAttrP4cXyz.s"
 }
@@ -671,7 +722,7 @@ asm void cCcD_CylAttr::CrossAtTg(cCcD_CpsAttr const& param_0, cXyz* param_1) con
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_CylAttr::CrossAtTg(cCcD_CylAttr const& param_0, cXyz* param_1) const {
+asm bool cCcD_CylAttr::CrossAtTg(cCcD_CylAttr const& param_0, cXyz* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_CylAttrCFRC12cCcD_CylAttrP4cXyz.s"
 }
@@ -682,7 +733,7 @@ asm void cCcD_CylAttr::CrossAtTg(cCcD_CylAttr const& param_0, cXyz* param_1) con
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_CylAttr::CrossAtTg(cCcD_SphAttr const& param_0, cXyz* param_1) const {
+asm bool cCcD_CylAttr::CrossAtTg(cCcD_SphAttr const& param_0, cXyz* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_CylAttrCFRC12cCcD_SphAttrP4cXyz.s"
 }
@@ -693,7 +744,7 @@ asm void cCcD_CylAttr::CrossAtTg(cCcD_SphAttr const& param_0, cXyz* param_1) con
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_CylAttr::CrossAtTg(cCcD_TriAttr const& param_0, cXyz* param_1) const {
+asm bool cCcD_CylAttr::CrossAtTg(cCcD_TriAttr const& param_0, cXyz* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_CylAttrCFRC12cCcD_TriAttrP4cXyz.s"
 }
@@ -704,7 +755,7 @@ asm void cCcD_CylAttr::CrossAtTg(cCcD_TriAttr const& param_0, cXyz* param_1) con
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_CylAttr::CrossCo(cCcD_CylAttr const& param_0, f32* param_1) const {
+asm bool cCcD_CylAttr::CrossCo(cCcD_CylAttr const& param_0, f32* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossCo__12cCcD_CylAttrCFRC12cCcD_CylAttrPf.s"
 }
@@ -715,7 +766,7 @@ asm void cCcD_CylAttr::CrossCo(cCcD_CylAttr const& param_0, f32* param_1) const 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_CylAttr::CrossCo(cCcD_SphAttr const& param_0, f32* param_1) const {
+asm bool cCcD_CylAttr::CrossCo(cCcD_SphAttr const& param_0, f32* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossCo__12cCcD_CylAttrCFRC12cCcD_SphAttrPf.s"
 }
@@ -726,7 +777,7 @@ asm void cCcD_CylAttr::CrossCo(cCcD_SphAttr const& param_0, f32* param_1) const 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_CylAttr::CrossCo(cCcD_CpsAttr const& param_0, f32* param_1) const {
+asm bool cCcD_CylAttr::CrossCo(cCcD_CpsAttr const& param_0, f32* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossCo__12cCcD_CylAttrCFRC12cCcD_CpsAttrPf.s"
 }
@@ -746,7 +797,7 @@ asm void cCcD_CylAttr::CalcAabBox() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_CylAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
+asm bool cCcD_CylAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/GetNVec__12cCcD_CylAttrCFRC4cXyzP4cXyz.s"
 }
@@ -768,7 +819,7 @@ asm void cCcD_CylAttr::getShapeAccess(cCcD_ShapeAttr::Shape* param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_SphAttr::CrossAtTg(cCcD_CpsAttr const& param_0, cXyz* param_1) const {
+asm bool cCcD_SphAttr::CrossAtTg(cCcD_CpsAttr const& param_0, cXyz* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_SphAttrCFRC12cCcD_CpsAttrP4cXyz.s"
 }
@@ -779,7 +830,7 @@ asm void cCcD_SphAttr::CrossAtTg(cCcD_CpsAttr const& param_0, cXyz* param_1) con
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_SphAttr::CrossAtTg(cCcD_CylAttr const& param_0, cXyz* param_1) const {
+asm bool cCcD_SphAttr::CrossAtTg(cCcD_CylAttr const& param_0, cXyz* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_SphAttrCFRC12cCcD_CylAttrP4cXyz.s"
 }
@@ -790,7 +841,7 @@ asm void cCcD_SphAttr::CrossAtTg(cCcD_CylAttr const& param_0, cXyz* param_1) con
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_SphAttr::CrossAtTg(cCcD_SphAttr const& param_0, cXyz* param_1) const {
+asm bool cCcD_SphAttr::CrossAtTg(cCcD_SphAttr const& param_0, cXyz* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_SphAttrCFRC12cCcD_SphAttrP4cXyz.s"
 }
@@ -801,7 +852,7 @@ asm void cCcD_SphAttr::CrossAtTg(cCcD_SphAttr const& param_0, cXyz* param_1) con
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_SphAttr::CrossAtTg(cCcD_TriAttr const& param_0, cXyz* param_1) const {
+asm bool cCcD_SphAttr::CrossAtTg(cCcD_TriAttr const& param_0, cXyz* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossAtTg__12cCcD_SphAttrCFRC12cCcD_TriAttrP4cXyz.s"
 }
@@ -812,7 +863,7 @@ asm void cCcD_SphAttr::CrossAtTg(cCcD_TriAttr const& param_0, cXyz* param_1) con
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_SphAttr::CrossCo(cCcD_CylAttr const& param_0, f32* param_1) const {
+asm bool cCcD_SphAttr::CrossCo(cCcD_CylAttr const& param_0, f32* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossCo__12cCcD_SphAttrCFRC12cCcD_CylAttrPf.s"
 }
@@ -823,7 +874,7 @@ asm void cCcD_SphAttr::CrossCo(cCcD_CylAttr const& param_0, f32* param_1) const 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_SphAttr::CrossCo(cCcD_SphAttr const& param_0, f32* param_1) const {
+asm bool cCcD_SphAttr::CrossCo(cCcD_SphAttr const& param_0, f32* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossCo__12cCcD_SphAttrCFRC12cCcD_SphAttrPf.s"
 }
@@ -834,7 +885,7 @@ asm void cCcD_SphAttr::CrossCo(cCcD_SphAttr const& param_0, f32* param_1) const 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_SphAttr::CrossCo(cCcD_CpsAttr const& param_0, f32* param_1) const {
+asm bool cCcD_SphAttr::CrossCo(cCcD_CpsAttr const& param_0, f32* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/CrossCo__12cCcD_SphAttrCFRC12cCcD_CpsAttrPf.s"
 }
@@ -854,7 +905,7 @@ asm void cCcD_SphAttr::CalcAabBox() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_SphAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
+asm bool cCcD_SphAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/GetNVec__12cCcD_SphAttrCFRC4cXyzP4cXyz.s"
 }
@@ -1087,7 +1138,8 @@ SECTION_DATA extern void* __vt__14cCcD_ShapeAttr[22] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_TriAttr::~cCcD_TriAttr() {
+// asm cCcD_TriAttr::~cCcD_TriAttr() {
+extern "C" asm void __dt__12cCcD_TriAttrFv() {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_d/__dt__12cCcD_TriAttrFv.s"
 }

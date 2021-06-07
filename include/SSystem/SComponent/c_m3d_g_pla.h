@@ -11,7 +11,7 @@ public:
     f32 mD;
     cM3dGPla();
     cM3dGPla(const cXyz*, f32);
-    virtual ~cM3dGPla();
+    virtual ~cM3dGPla() {}
     bool crossInfLin(const cXyz&, const cXyz&, cXyz&) const;
     void SetupNP0(const Vec&, const Vec&);
     void SetupNP(const Vec&, const Vec&);

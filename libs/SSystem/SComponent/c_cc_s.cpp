@@ -76,9 +76,7 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern void* __vt__15cCcD_DivideArea[3];
 extern "C" extern void* __vt__8cM3dGAab[3];
-extern "C" extern u32 __float_nan;
 extern "C" extern u8 data_80451158[8];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 //
 // Declarations:

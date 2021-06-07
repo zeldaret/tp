@@ -6,15 +6,15 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
 
-class cM3dGTri {
+class cM3dGTri : public cM3dGPla {
     // private:
 public:
-    ~cM3dGTri();
-    cM3dGPla mPlane;
-    cXyz mA;
-    cXyz mB;
-    cXyz mC;
+    // cM3dGPla mPlane;
+    Vec mA;
+    Vec mB;
+    Vec mC;
 
+    virtual ~cM3dGTri() {}
     bool cross(const cM3dGCyl*, Vec*) const;
     void setPos(const Vec*, const Vec*, const Vec*);
     void setBg(const Vec*, const Vec*, const Vec*, const cM3dGPla*);

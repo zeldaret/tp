@@ -12,10 +12,9 @@ struct cM3dGCpsS {
 };
 
 class cM3dGCps : public cM3dGLin {
-private:
+public:
     /* 0x1C */ f32 unk_0x1c;
 
-public:
     cM3dGCps(void);
     virtual ~cM3dGCps(void);
     void Set(const cXyz&, const cXyz&, f32);

@@ -689,7 +689,8 @@ asm void cBgW::RwgLineCheck(u16 param_0, cBgS_LinChk* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGTri::~cM3dGTri() {
+// asm cM3dGTri::~cM3dGTri() {
+extern "C" asm void __dt__8cM3dGTriFv() {
     nofralloc
 #include "asm/d/bg/d_bg_w/__dt__8cM3dGTriFv.s"
 }
