@@ -635,13 +635,6 @@ struct dInsect_c {
     /* 80110648 */ void Insect_Release();
 };
 
-struct dEvt_info_c {
-    /* 801411E0 */ void onCondition(u16);
-    /* 80141200 */ void offCondition(u16);
-    /* 80141388 */ void checkCommandCatch();
-    /* 80141450 */ void checkCommandDoor();
-};
-
 struct dEvt_control_c {
     /* 80042468 */ void reset();
     /* 80042518 */ void reset(void*);
@@ -35180,7 +35173,7 @@ void daPy_demo_c::setSpecialDemoType() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_info_c::checkCommandCatch() {
+asm bool dEvt_info_c::checkCommandCatch() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkCommandCatch__11dEvt_info_cFv.s"
 }
@@ -35258,7 +35251,7 @@ static asm void dComIfGp_event_chkEventFlag(u16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_info_c::checkCommandDoor() {
+asm bool dEvt_info_c::checkCommandDoor() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkCommandDoor__11dEvt_info_cFv.s"
 }

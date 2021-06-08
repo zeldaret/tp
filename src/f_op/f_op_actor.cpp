@@ -59,12 +59,6 @@ struct dPa_control_c {
                             _GXColor const*, cXyz const*, f32);
 };
 
-struct dEvt_info_c {
-    /* 80018C44 */ ~dEvt_info_c();
-    /* 800433F0 */ dEvt_info_c();
-    /* 800434CC */ void beforeProc();
-};
-
 struct dEvt_control_c {
     /* 80042FA8 */ void moveApproval(void*);
 };

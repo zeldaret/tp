@@ -61,10 +61,6 @@ struct dEvent_manager_c {
     /* 8004817C */ void cutEnd(int);
 };
 
-struct dEvDtCut_c {
-    /* 800460A8 */ void startCheck();
-};
-
 struct dDlst_list_c {
     /* 800568D8 */ void wipeIn(f32);
 

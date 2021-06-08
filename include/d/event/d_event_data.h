@@ -5,6 +5,14 @@
 #include "d/save/d_save.h"
 #include "dolphin/types.h"
 
+struct event_binary_data_header {};
+
+struct dEvDtData_c {};
+
+struct dEvDtCut_c {
+    void startCheck();
+};
+
 struct dEvDtStaff_c {
     /* 80043FD8 */ void specialProc_WaitStart(int);
     /* 8004403C */ void specialProc_WaitProc(int);
@@ -21,43 +29,51 @@ struct dEvDtStaff_c {
     /* 80045C34 */ void specialProcEffect();
 };
 
-struct dEvDtEvent_c {
-    /* 80043E78 */ void finishCheck();
-    /* 80043EFC */ void forceFinish();
-    /* 80043F70 */ void specialStaffProc(dEvDtStaff_c*);
+class dEvDtEvent_c {
+public:
+    void finishCheck();
+    void forceFinish();
+    void specialStaffProc(dEvDtStaff_c*);
+
+    /* 0x00 */ s32 mEventNum;
 };
 
 class dEvDtFlag_c {
 public:
-    /* 80043D60 */ void flagCheck(int);
-    /* 80043DC8 */ void flagSet(int);
-    /* 80043E30 */ void flagMaxCheck(int);
-    /* 80043E58 */ void init();
+    dEvDtFlag_c() {}
+    void flagCheck(int);
+    void flagSet(int);
+    void flagMaxCheck(int);
+    void init();
 
 private:
-    u8 field_0x0[320];
+    u32 mFlags[320];
 };
 #pragma pack(push, 1)
 class dEvDtBase_c {
 public:
     dEvDtBase_c();
     ~dEvDtBase_c();
-    /* 80046138 */ void init();
-    /* 8004616C */ void init(char*, int);
-    /* 8004628C */ void advanceCut(dEvDtEvent_c*);
-    /* 800462FC */ void advanceCutLocal(dEvDtStaff_c*);
+    void init();
+    void init(char*, int);
+    void advanceCut(dEvDtEvent_c*);
+    void advanceCutLocal(dEvDtStaff_c*);
+
+    event_binary_data_header* getHeaderP() { return mHeaderP; }
+    s32 getEventNum() { return mEventP->mEventNum; }
+    s32 roomNo() { return mRoomNo; }
 
 private:
-    u32 field_0x0;
-    u32 field_0x4;
-    u32 field_0x8;
-    u32 field_0xc;
-    u32 field_0x10;
-    u32 field_0x14;
-    u32 field_0x18;
-    u32 field_0x1c;
-    u32 field_0x20;
-};
+    /* 0x00 */ event_binary_data_header* mHeaderP;
+    /* 0x04 */ dEvDtEvent_c* mEventP;
+    /* 0x08 */ dEvDtStaff_c* mStaffP;
+    /* 0x0C */ dEvDtCut_c* mCutP;
+    /* 0x10 */ dEvDtData_c* mDataP;
+    /* 0x14 */ float* mFDataP;
+    /* 0x18 */ s32* mIDataP;
+    /* 0x1C */ char* mSDataP;
+    /* 0x20 */ s32 mRoomNo;
+}; // Size = 0x24
 #pragma pack(pop)
 
 #endif /* D_EVENT_D_EVENT_DATA_H */
