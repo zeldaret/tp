@@ -67,7 +67,7 @@ public:
     void getStbDemoData(char*);
     void searchMapEventData(u8, s32);
     void searchMapEventData(u8);
-    void runningEventID(s16);
+    s32 runningEventID(s16);
     void setPt1(void*);
     void setPt2(void*);
     void setPtT(void*);
@@ -81,16 +81,16 @@ public:
 public:
     /* 0x000 */ u8 field_0x0[4];
     /* 0x004 */ dEvt_order_c mOrder[8];
-    /* 0x0C4 */ int mPt1;
-    /* 0x0C8 */ int mPt2;
-    /* 0x0CC */ int mPtT;
-    /* 0x0D0 */ int mPtI;
-    /* 0x0D4 */ int mPtd;
+    /* 0x0C4 */ u32 mPt1;
+    /* 0x0C8 */ u32 mPt2;
+    /* 0x0CC */ u32 mPtT;
+    /* 0x0D0 */ u32 mPtI;
+    /* 0x0D4 */ u32 mPtd;
     /* 0x0D8 */ u16 mEventFlag;
     /* 0x0DA */ u16 mFlag2;
     /* 0x0DC */ u16 mHindFlag;
-    /* 0x0DE */ u16 mSpecifiedEvent; // name maybe wrong
-    /* 0x0E0 */ u16 field_0xe0;
+    /* 0x0DE */ s16 mSpecifiedEvent; // name maybe wrong
+    /* 0x0E0 */ s16 field_0xe0;
     /* 0x0E2 */ u8 mNum;
     /* 0x0E3 */ u8 field_0xe3;
     /* 0x0E4 */ u8 mMode;

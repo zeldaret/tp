@@ -15,8 +15,6 @@ struct mDoRst {
     static u8 mResetData[4 + 4 /* padding */];
 };
 
-struct interface_of_controller_pad {};
-
 struct JUTGamePad {
     struct EPadPort {};
 
@@ -35,17 +33,6 @@ struct JUTGamePad {
     /* 802E199C */ void getGamePad(int);
 
     static u8 sAnalogMode[4];
-};
-
-struct mDoCPd_c {
-    /* 80007954 */ void create();
-    /* 80007A94 */ void read();
-    /* 80007B7C */ void convert(interface_of_controller_pad*, JUTGamePad*);
-    /* 80007CD0 */ void LRlockCheck(interface_of_controller_pad*);
-    /* 80007D74 */ void recalibrate();
-
-    static u8 m_gamePad[16];
-    static u8 m_cpadInfo[256];
 };
 
 //
@@ -92,7 +79,7 @@ extern "C" extern u8 struct_80451500[4];
 u8 mDoCPd_c::m_gamePad[16];
 
 /* 803DD2E8-803DD3E8 00A008 0100+00 2/2 84/84 37/37 .bss             m_cpadInfo__8mDoCPd_c */
-u8 mDoCPd_c::m_cpadInfo[256];
+interface_of_controller_pad mDoCPd_c::m_cpadInfo[4];
 
 /* 80007954-80007A94 002294 0140+00 0/0 1/1 0/0 .text            create__8mDoCPd_cFv */
 #pragma push

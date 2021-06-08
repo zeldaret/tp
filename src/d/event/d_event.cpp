@@ -746,73 +746,51 @@ asm void dEvt_control_c::searchMapEventData(u8 param_0, s32 param_1) {
 
 /* 8004360C-8004362C 03DF4C 0020+00 0/0 1/1 0/0 .text            runningEventID__14dEvt_control_cFs
  */
+#ifdef NONMATCHING
+// regalloc
+s32 dEvt_control_c::runningEventID(s16 param_0) {
+    if (param_0 == field_0xe0) {
+        return mSpecifiedEvent;
+    }
+    return param_0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_control_c::runningEventID(s16 param_0) {
+asm s32 dEvt_control_c::runningEventID(s16 param_0) {
     nofralloc
 #include "asm/d/event/d_event/runningEventID__14dEvt_control_cFs.s"
 }
 #pragma pop
+#endif
 
-/* 8004362C-8004365C 03DF6C 0030+00 1/1 0/0 0/0 .text            setPt1__14dEvt_control_cFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvt_control_c::setPt1(void* param_0) {
-    nofralloc
-#include "asm/d/event/d_event/setPt1__14dEvt_control_cFPv.s"
+void dEvt_control_c::setPt1(void* param_0) {
+    mPt1 = getPId(param_0);
 }
-#pragma pop
 
-/* 8004365C-8004368C 03DF9C 0030+00 1/1 2/2 28/28 .text            setPt2__14dEvt_control_cFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvt_control_c::setPt2(void* param_0) {
-    nofralloc
-#include "asm/d/event/d_event/setPt2__14dEvt_control_cFPv.s"
+void dEvt_control_c::setPt2(void* param_0) {
+    mPt2 = getPId(param_0);
 }
-#pragma pop
 
-/* 8004368C-800436BC 03DFCC 0030+00 1/1 4/4 21/21 .text            setPtT__14dEvt_control_cFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvt_control_c::setPtT(void* param_0) {
-    nofralloc
-#include "asm/d/event/d_event/setPtT__14dEvt_control_cFPv.s"
+void dEvt_control_c::setPtT(void* param_0) {
+    mPtT = getPId(param_0);
 }
-#pragma pop
 
-/* 800436BC-800436EC 03DFFC 0030+00 1/1 2/2 3/3 .text            setPtI__14dEvt_control_cFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvt_control_c::setPtI(void* param_0) {
-    nofralloc
-#include "asm/d/event/d_event/setPtI__14dEvt_control_cFPv.s"
+void dEvt_control_c::setPtI(void* param_0) {
+    mPtI = getPId(param_0);
 }
-#pragma pop
 
-/* 800436EC-800436F4 -00001 0008+00 0/0 0/0 0/0 .text            setPtI_Id__14dEvt_control_cFUi */
 void dEvt_control_c::setPtI_Id(unsigned int param_0) {
-    *(u32*)(((u8*)this) + 208) /* this->field_0xd0 */ = (u32)(param_0);
+    mPtI = param_0;
 }
 
-/* 800436F4-80043724 03E034 0030+00 0/0 4/4 0/0 .text            setPtD__14dEvt_control_cFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvt_control_c::setPtD(void* param_0) {
-    nofralloc
-#include "asm/d/event/d_event/setPtD__14dEvt_control_cFPv.s"
+void dEvt_control_c::setPtD(void* param_0) {
+    mPtd = getPId(param_0);
 }
-#pragma pop
 
-/* 80043724-8004372C -00001 0008+00 0/0 0/0 0/0 .text            setGtItm__14dEvt_control_cFUc */
 void dEvt_control_c::setGtItm(u8 param_0) {
-    *(u8*)(((u8*)this) + 239) /* this->field_0xef */ = (u8)(param_0);
+    mGtItm = param_0;
 }
 
 /* ############################################################################################## */
