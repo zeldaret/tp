@@ -39,10 +39,6 @@ struct mDoExt_MtxCalcAnmBlendTbl {
     /* 800D00BC */ void getAnm(int);
 };
 
-struct mDoCPd_c {
-    static u8 m_cpadInfo[256];
-};
-
 struct fopEn_enemy_c {};
 
 struct e_wb_class {

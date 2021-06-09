@@ -19,139 +19,6 @@ struct mDoGph_gInf_c {
     static u8 mFrameBufferTex[4];
 };
 
-struct mDoCPd_c {
-    static u8 m_cpadInfo[256];
-};
-
-struct dMw_c {
-    /* 801FA13C */ void key_wait_init(u8);
-    /* 801FA220 */ void ring_open_init(u8);
-    /* 801FA23C */ void ring_move_init(u8);
-    /* 801FA240 */ void ring_close_init(u8);
-    /* 801FA244 */ void collect_open_init(u8);
-    /* 801FA2D0 */ void collect_move_init(u8);
-    /* 801FA46C */ void collect_close_init(u8);
-    /* 801FA538 */ void fmap_open_init(u8);
-    /* 801FA55C */ void fmap_move_init(u8);
-    /* 801FA560 */ void fmap_close_init(u8);
-    /* 801FA564 */ void dmap_open_init(u8);
-    /* 801FA588 */ void dmap_move_init(u8);
-    /* 801FA58C */ void dmap_close_init(u8);
-    /* 801FA590 */ void collect_save_open_init(u8);
-    /* 801FA5E4 */ void collect_save_move_init(u8);
-    /* 801FA5E8 */ void collect_save_close_init(u8);
-    /* 801FA608 */ void collect_option_open_init(u8);
-    /* 801FA65C */ void collect_option_move_init(u8);
-    /* 801FA660 */ void collect_option_close_init(u8);
-    /* 801FA680 */ void collect_letter_open_init(u8);
-    /* 801FA6DC */ void collect_letter_move_init(u8);
-    /* 801FA6E0 */ void collect_letter_close_init(u8);
-    /* 801FA738 */ void collect_fishing_open_init(u8);
-    /* 801FA794 */ void collect_fishing_move_init(u8);
-    /* 801FA798 */ void collect_fishing_close_init(u8);
-    /* 801FA7F0 */ void collect_skill_open_init(u8);
-    /* 801FA84C */ void collect_skill_move_init(u8);
-    /* 801FA850 */ void collect_skill_close_init(u8);
-    /* 801FA8A8 */ void collect_insect_open_init(u8);
-    /* 801FA908 */ void collect_insect_move_init(u8);
-    /* 801FA90C */ void collect_insect_close_init(u8);
-    /* 801FA964 */ void insect_open_init(u8);
-    /* 801FA9E8 */ void insect_open2_init(u8);
-    /* 801FA9EC */ void insect_move_init(u8);
-    /* 801FA9F0 */ void insect_close_init(u8);
-    /* 801FAA48 */ void key_wait_proc();
-    /* 801FAFDC */ void ring_open_proc();
-    /* 801FB01C */ void ring_move_proc();
-    /* 801FB064 */ void ring_close_proc();
-    /* 801FB0B8 */ void collect_open_proc();
-    /* 801FB110 */ void collect_move_proc();
-    /* 801FB1A0 */ void collect_close_proc();
-    /* 801FB240 */ void fmap_open_proc();
-    /* 801FB298 */ void fmap_move_proc();
-    /* 801FB36C */ void fmap_close_proc();
-    /* 801FB3AC */ void dmap_open_proc();
-    /* 801FB404 */ void dmap_move_proc();
-    /* 801FB5DC */ void dmap_close_proc();
-    /* 801FB61C */ void collect_save_open_proc();
-    /* 801FB67C */ void collect_save_move_proc();
-    /* 801FB6D8 */ void collect_save_close_proc();
-    /* 801FB73C */ void collect_option_open_proc();
-    /* 801FB7AC */ void collect_option_move_proc();
-    /* 801FB800 */ void collect_option_close_proc();
-    /* 801FB81C */ void collect_letter_open_proc();
-    /* 801FB8AC */ void collect_letter_move_proc();
-    /* 801FB900 */ void collect_letter_close_proc();
-    /* 801FB91C */ void collect_fishing_open_proc();
-    /* 801FB9AC */ void collect_fishing_move_proc();
-    /* 801FBA00 */ void collect_fishing_close_proc();
-    /* 801FBA1C */ void collect_skill_open_proc();
-    /* 801FBAAC */ void collect_skill_move_proc();
-    /* 801FBB00 */ void collect_skill_close_proc();
-    /* 801FBB1C */ void collect_insect_open_proc();
-    /* 801FBBAC */ void collect_insect_move_proc();
-    /* 801FBC00 */ void collect_insect_close_proc();
-    /* 801FBC1C */ void insect_open_proc();
-    /* 801FBC78 */ void insect_open2_proc();
-    /* 801FBD08 */ void insect_move_proc();
-    /* 801FBD64 */ void insect_close_proc();
-    /* 801FBD80 */ void dMw_capture_create();
-    /* 801FBE14 */ void dMw_capture_delete();
-    /* 801FBE94 */ void dMw_ring_create(u8);
-    /* 801FBF60 */ void dMw_ring_delete();
-    /* 801FBFF8 */ void dMw_collect_create();
-    /* 801FC090 */ void dMw_collect_delete(bool);
-    /* 801FC0FC */ void dMw_fmap_create();
-    /* 801FC264 */ void dMw_fmap_delete(bool);
-    /* 801FC350 */ void dMw_dmap_create();
-    /* 801FC46C */ void dMw_dmap_delete(bool);
-    /* 801FC520 */ void dMw_save_create();
-    /* 801FC5D0 */ void dMw_save_delete();
-    /* 801FC668 */ void dMw_option_create();
-    /* 801FC70C */ void dMw_option_delete();
-    /* 801FC7BC */ void dMw_letter_create();
-    /* 801FC85C */ void dMw_letter_delete();
-    /* 801FC904 */ void dMw_fishing_create();
-    /* 801FC9A4 */ void dMw_fishing_delete();
-    /* 801FCA4C */ void dMw_skill_create();
-    /* 801FCAEC */ void dMw_skill_delete();
-    /* 801FCB94 */ void dMw_insect_create(u8);
-    /* 801FCC44 */ void dMw_insect_delete();
-    /* 801FCCEC */ void dMw_onButtonBit(u8);
-    /* 801FCCFC */ void dMw_offButtonBit(u8);
-    /* 801FCD0C */ void dMw_isButtonBit(u8);
-    /* 801FCD24 */ void dMw_isPush_S_Button();
-    /* 801FCDD8 */ void isPauseReady();
-    /* 801FCE08 */ void dMw_fade_out();
-    /* 801FCE78 */ void dMw_fade_in();
-    /* 801FCEE8 */ void checkCStickTrigger();
-    /* 801FCF84 */ void isEventCheck();
-    /* 801FD094 */ void markMemSize();
-    /* 801FD0D4 */ void checkMemSize();
-    /* 801FD140 */ void _create();
-    /* 801FD2D8 */ void _execute();
-    /* 801FD450 */ void _draw();
-    /* 801FD67C */ void _delete();
-};
-
-struct dMsgObject_c {
-    /* 802379AC */ void setKillMessageFlag();
-    /* 8023822C */ void getStatus();
-};
-
-struct dMeterMap_c {
-    /* 8020D650 */ void isEnableDispMapAndMapDispSizeTypeNo();
-    /* 8020D874 */ void setDispPosInsideFlg_SE_On();
-    /* 8020D8BC */ void setDispPosOutsideFlg_SE_On();
-};
-
-struct dMeter2_c {
-    /* 8021F6EC */ void emphasisButtonDelete();
-};
-
-struct dMeter2Info_c {
-    /* 8021C9DC */ void resetWarpStatus();
-};
-
 struct dMenu_save_c {
     /* 801EF6A0 */ dMenu_save_c();
     /* 801EF7AC */ void _create();
@@ -170,8 +37,6 @@ struct STControl {
 
 struct CSTControl {};
 
-struct JKRExpHeap {};
-
 struct dMenu_Skill_c {
     /* 801F7224 */ dMenu_Skill_c(JKRExpHeap*, STControl*, CSTControl*);
     /* 801F7718 */ void _move();
@@ -188,8 +53,6 @@ struct dMenu_Ring_c {
     /* 801EB2B4 */ void isMoveEnd();
     /* 801EB3CC */ void isClose();
 };
-
-struct JKRArchive {};
 
 struct dMenu_Option_c {
     /* 801E1F10 */ dMenu_Option_c(JKRArchive*, STControl*);
@@ -272,19 +135,12 @@ struct dDlst_MENU_CAPTURE_c {
 
 struct JAISoundID {};
 
-struct Vec {};
-
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
 struct Z2AudioMgr {
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JKRHeap {
-    /* 802CE5CC */ void freeAll();
-    /* 802CE784 */ void getTotalFreeSize();
 };
 
 struct JFWDisplay {
@@ -307,7 +163,7 @@ extern "C" void dMw_onPauseWindow__Fv();
 extern "C" void dMw_offPauseWindow__Fv();
 extern "C" void dMw_onMenuRing__Fv();
 extern "C" void dMw_offMenuRing__Fv();
-extern "C" static void dMw_isMenuRing__Fv();
+extern "C" static bool dMw_isMenuRing__Fv();
 extern "C" void key_wait_init__5dMw_cFUc();
 extern "C" void ring_open_init__5dMw_cFUc();
 extern "C" void ring_move_init__5dMw_cFUc();
@@ -429,7 +285,6 @@ extern "C" extern char const* const d_menu_d_menu_window__stringBase0;
 // External References:
 //
 
-extern "C" void OSReport_Error();
 extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
 extern "C" void mDoExt_getCurrentHeap__Fv();
 extern "C" void mDoExt_removeMesgFont__Fv();
@@ -565,7 +420,6 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_mwHIO[304];
 extern "C" extern u8 g_mwDHIO[520];
 extern "C" extern u8 g_fmapHIO[1188];
-extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 g_clearColor[4];
 extern "C" extern u32 g_blackColor;
 extern "C" u8 mFader__13mDoGph_gInf_c[4];
@@ -579,135 +433,86 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 801F9F84-801F9F98 1F48C4 0014+00 3/3 2/2 0/0 .text            dMw_UP_TRIGGER__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMw_UP_TRIGGER() {
-    nofralloc
-#include "asm/d/menu/d_menu_window/dMw_UP_TRIGGER__Fv.s"
+BOOL dMw_UP_TRIGGER() {
+    return (bool)mDoCPd_c::getTrigUp(mDoCPd_c::PAD_0);
 }
-#pragma pop
 
-/* 801F9F98-801F9FAC 1F48D8 0014+00 1/1 2/2 0/0 .text            dMw_DOWN_TRIGGER__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMw_DOWN_TRIGGER() {
-    nofralloc
-#include "asm/d/menu/d_menu_window/dMw_DOWN_TRIGGER__Fv.s"
+bool dMw_DOWN_TRIGGER() {
+    return mDoCPd_c::getTrigDown(mDoCPd_c::PAD_0);
 }
-#pragma pop
 
-/* 801F9FAC-801F9FF4 1F48EC 0048+00 1/1 6/6 0/0 .text            dMw_LEFT_TRIGGER__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMw_LEFT_TRIGGER() {
-    nofralloc
-#include "asm/d/menu/d_menu_window/dMw_LEFT_TRIGGER__Fv.s"
+bool dMw_LEFT_TRIGGER() {
+    if (mDoCPd_c::getTrigLeft(mDoCPd_c::PAD_0) && !dMw_UP_TRIGGER()) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
 
-/* 801F9FF4-801FA03C 1F4934 0048+00 1/1 6/6 0/0 .text            dMw_RIGHT_TRIGGER__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMw_RIGHT_TRIGGER() {
-    nofralloc
-#include "asm/d/menu/d_menu_window/dMw_RIGHT_TRIGGER__Fv.s"
+bool dMw_RIGHT_TRIGGER() {
+    if (mDoCPd_c::getTrigRight(mDoCPd_c::PAD_0) && !dMw_UP_TRIGGER()) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
 
-/* 801FA03C-801FA050 1F497C 0014+00 1/1 7/7 0/0 .text            dMw_A_TRIGGER__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMw_A_TRIGGER() {
-    nofralloc
-#include "asm/d/menu/d_menu_window/dMw_A_TRIGGER__Fv.s"
+bool dMw_A_TRIGGER() {
+    return mDoCPd_c::getTrigA(mDoCPd_c::PAD_0);
 }
-#pragma pop
 
-/* 801FA050-801FA064 1F4990 0014+00 1/1 8/8 0/0 .text            dMw_B_TRIGGER__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMw_B_TRIGGER() {
-    nofralloc
-#include "asm/d/menu/d_menu_window/dMw_B_TRIGGER__Fv.s"
+bool dMw_B_TRIGGER() {
+    return mDoCPd_c::getTrigB(mDoCPd_c::PAD_0);
 }
-#pragma pop
 
-/* 801FA064-801FA078 1F49A4 0014+00 0/0 5/5 0/0 .text            dMw_Z_TRIGGER__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMw_Z_TRIGGER() {
-    nofralloc
-#include "asm/d/menu/d_menu_window/dMw_Z_TRIGGER__Fv.s"
+bool dMw_Z_TRIGGER() {
+    return mDoCPd_c::getTrigZ(mDoCPd_c::PAD_0);
 }
-#pragma pop
 
-/* 801FA078-801FA08C 1F49B8 0014+00 2/2 1/1 0/0 .text            dMw_START_TRIGGER__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMw_START_TRIGGER() {
-    nofralloc
-#include "asm/d/menu/d_menu_window/dMw_START_TRIGGER__Fv.s"
+bool dMw_START_TRIGGER() {
+    return mDoCPd_c::getTrigStart(mDoCPd_c::PAD_0);
 }
-#pragma pop
 
-/* 801FA08C-801FA0AC 1F49CC 0020+00 0/0 0/0 1/1 .text            dMw_onPauseWindow__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMw_onPauseWindow() {
-    nofralloc
-#include "asm/d/menu/d_menu_window/dMw_onPauseWindow__Fv.s"
-}
-#pragma pop
+void dMw_onPauseWindow() {
+    dMw_c* menu_window = dMeter2Info_getMenuWindowClass();
 
-/* 801FA0AC-801FA0CC 1F49EC 0020+00 0/0 0/0 1/1 .text            dMw_offPauseWindow__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMw_offPauseWindow() {
-    nofralloc
-#include "asm/d/menu/d_menu_window/dMw_offPauseWindow__Fv.s"
+    if (menu_window) {
+        menu_window->onPauseWindow();
+    }
 }
-#pragma pop
 
-/* 801FA0CC-801FA0F0 1F4A0C 0024+00 0/0 0/0 4/4 .text            dMw_onMenuRing__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMw_onMenuRing() {
-    nofralloc
-#include "asm/d/menu/d_menu_window/dMw_onMenuRing__Fv.s"
-}
-#pragma pop
+void dMw_offPauseWindow() {
+    dMw_c* menu_window = dMeter2Info_getMenuWindowClass();
 
-/* 801FA0F0-801FA114 1F4A30 0024+00 0/0 0/0 2/2 .text            dMw_offMenuRing__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMw_offMenuRing() {
-    nofralloc
-#include "asm/d/menu/d_menu_window/dMw_offMenuRing__Fv.s"
+    if (menu_window) {
+        menu_window->offPauseWindow();
+    }
 }
-#pragma pop
 
-/* 801FA114-801FA13C 1F4A54 0028+00 1/1 0/0 0/0 .text            dMw_isMenuRing__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dMw_isMenuRing() {
-    nofralloc
-#include "asm/d/menu/d_menu_window/dMw_isMenuRing__Fv.s"
+void dMw_onMenuRing() {
+    dMw_c* menu_window = dMeter2Info_getMenuWindowClass();
+
+    if (menu_window) {
+        menu_window->onShowFlag();
+    }
 }
-#pragma pop
+
+void dMw_offMenuRing() {
+    dMw_c* menu_window = dMeter2Info_getMenuWindowClass();
+
+    if (menu_window) {
+        menu_window->offShowFlag();
+    }
+}
+
+static bool dMw_isMenuRing() {
+    dMw_c* menu_window = dMeter2Info_getMenuWindowClass();
+
+    if (menu_window) {
+        return menu_window->isShowFlag();
+    }
+    return false;
+}
 
 /* ############################################################################################## */
 /* 803BE8F8-803BE904 01BA18 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -1523,22 +1328,14 @@ asm void dMw_c::key_wait_init(u8 param_0) {
 }
 #pragma pop
 
-/* 801FA220-801FA23C 1F4B60 001C+00 1/0 0/0 0/0 .text            ring_open_init__5dMw_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMw_c::ring_open_init(u8 param_0) {
-    nofralloc
-#include "asm/d/menu/d_menu_window/ring_open_init__5dMw_cFUc.s"
+void dMw_c::ring_open_init(u8 param_0) {
+    dMeter2Info_setWindowStatus(2);
 }
-#pragma pop
 
-/* 801FA23C-801FA240 1F4B7C 0004+00 1/0 0/0 0/0 .text            ring_move_init__5dMw_cFUc */
 void dMw_c::ring_move_init(u8 param_0) {
     /* empty function */
 }
 
-/* 801FA240-801FA244 1F4B80 0004+00 1/0 0/0 0/0 .text            ring_close_init__5dMw_cFUc */
 void dMw_c::ring_close_init(u8 param_0) {
     /* empty function */
 }
