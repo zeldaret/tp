@@ -16,10 +16,6 @@ struct Z2StatusMgr {
     /* 802B6734 */ void checkDayTime();
 };
 
-struct JAISoundHandle {
-    /* 802A2184 */ void releaseSound();
-};
-
 struct Z2SoundStarter {
     /* 802AAEDC */ void setPortData(JAISoundHandle*, u32, u16, s8);
     /* 802AAF74 */ void getPortData(JAISoundHandle*, u32, s8);
@@ -31,56 +27,6 @@ struct Z2SoundObjMgr {
     /* 802C0100 */ void setBattleInit();
     /* 802C0120 */ void checkBattleFinish();
     /* 802C01E4 */ void isTwilightBattle();
-};
-
-struct Z2SeqMgr {
-    /* 802AEEA0 */ Z2SeqMgr();
-    /* 802AF010 */ void bgmStart(u32, u32, s32);
-    /* 802AF408 */ void bgmStop(u32, s32);
-    /* 802AF49C */ void subBgmStart(u32);
-    /* 802AF884 */ void subBgmStop();
-    /* 802AF9D0 */ void subBgmStopInner();
-    /* 802AFB94 */ void bgmStreamPrepare(u32);
-    /* 802AFDEC */ void bgmStreamCheckReady();
-    /* 802AFE18 */ void bgmStreamPlay();
-    /* 802AFEDC */ void bgmStreamStop(u32);
-    /* 802AFF8C */ void changeBgmStatus(s32);
-    /* 802B1DF4 */ void changeSubBgmStatus(s32);
-    /* 802B299C */ void onVariantBgmJumpEnd(bool);
-    /* 802B2A88 */ void changeFishingBgm(s32);
-    /* 802B2CA4 */ void talkInBgm();
-    /* 802B2D64 */ void talkOutBgm();
-    /* 802B2DAC */ void menuInBgm();
-    /* 802B2DF4 */ void menuOutBgm();
-    /* 802B2E3C */ void fanfareFramework();
-    /* 802B327C */ void stopWolfHowlSong();
-    /* 802B3318 */ void setHeightVolMod(bool, u32);
-    /* 802B3398 */ void setTimeProcVolMod(bool, u32);
-    /* 802B33A8 */ void processBgmFramework();
-    /* 802B3EAC */ void checkBgmIDPlaying(u32);
-    /* 802B3F40 */ void getChildTrackVolume(JAISoundHandle*, int);
-    /* 802B3FEC */ void setChildTrackVolume(JAISoundHandle*, int, f32, u32, f32, f32);
-    /* 802B4128 */ void resetBattleBgmParams();
-    /* 802B4164 */ void setBattleBgmOff(bool);
-    /* 802B421C */ void setBattleSearched(bool);
-    /* 802B43D0 */ void setBattleDistIgnore(bool);
-    /* 802B43E0 */ void setBattleGhostMute(bool);
-    /* 802B4498 */ void setBattleDistState(u8);
-    /* 802B4844 */ void setBattleSeqState(u8);
-    /* 802B4AFC */ void setBattleLastHit(u8);
-    /* 802B4BD0 */ void battleBgmFramework();
-    /* 802B4EB0 */ void startBattleBgm(bool);
-    /* 802B5204 */ void stopBattleBgm(u8, u8);
-    /* 802B545C */ void fieldBgmStart();
-    /* 802B556C */ void fieldRidingMute();
-    /* 802B5750 */ void onFieldBgmJumpStart();
-    /* 802B579C */ void onFieldBgmJumpEnd();
-    /* 802B594C */ void fieldBgmFramework();
-    /* 802B5E80 */ void mbossBgmMuteProcess();
-    /* 802B5E84 */ void bgmSetSwordUsing(s32);
-    /* 802B5E88 */ void bgmNowBattle(f32);
-    /* 802B5E8C */ void taktModeMute();
-    /* 802B5ED4 */ void taktModeMuteOff();
 };
 
 struct Z2SceneMgr {
@@ -118,12 +64,6 @@ struct JAISoundParamsMove {
     /* 802A2DB4 */ void moveVolume(f32, u32);
     /* 802A2EBC */ void movePan(f32, u32);
     /* 802A2F14 */ void moveDolby(f32, u32);
-};
-
-struct JAISound {
-    /* 802A21A0 */ void releaseHandle();
-    /* 802A24DC */ void stop(u32);
-    /* 802A2598 */ void stop();
 };
 
 struct JAISeqMgr {
@@ -764,7 +704,7 @@ asm void Z2SeqMgr::bgmStreamPrepare(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2SeqMgr::bgmStreamCheckReady() {
+asm int Z2SeqMgr::bgmStreamCheckReady() {
     nofralloc
 #include "asm/Z2AudioLib/Z2SeqMgr/bgmStreamCheckReady__8Z2SeqMgrFv.s"
 }

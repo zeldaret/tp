@@ -1,7 +1,81 @@
 #ifndef Z2SEMGR_H
 #define Z2SEMGR_H
 
+#include "JSystem/JAudio2/JAISound.h"
+#include "dolphin/mtx/vec.h"
 #include "dolphin/types.h"
+
+struct Z2MultiSeMgr {
+    Z2MultiSeMgr();
+    ~Z2MultiSeMgr();
+    void registMultiSePos(Vec*);
+    void resetMultiSePos();
+    void getPanPower();
+    void getDolbyPower();
+
+    /* 0x00 */ float mVolumeScale;
+    /* 0x04 */ float mMaxVolume;
+    /* 0x08 */ float mMaxPowL;
+    /* 0x0C */ float mMaxPowR;
+    /* 0x10 */ float mMaxPowB;
+    /* 0x14 */ float mMaxPowF;
+    /* 0x18 */ u8 mPosCount;
+};  // Size = 0x1C
+
+struct Z2MultiSeObj : Z2MultiSeMgr {
+    Z2MultiSeObj();
+    ~Z2MultiSeObj();
+
+    /* 0x1C */ u32 field_0x1c;
+    /* 0x20 */ u8 field_0x20;
+};  // Size = 0x24
+
+class Z2SeMgr {
+public:
+    /* 802AB64C */ Z2SeMgr();
+    /* 802AB750 */ void initSe();
+    /* 802AB80C */ void resetModY();
+    /* 802AB830 */ void modHeightAtCamera(Vec const**);
+    /* 802AB93C */ void incrCrowdSize();
+    /* 802AB960 */ void decrCrowdSize();
+    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+    /* 802AD8B0 */ void seStop(JAISoundID, u32);
+    /* 802AD94C */ void seStopAll(u32);
+    /* 802AD9F4 */ void seMoveVolumeAll(f32, u32);
+    /* 802ADB14 */ void messageSePlay(u16, Vec*, s8);
+    /* 802ADB50 */ void talkInSe();
+    /* 802ADC54 */ void talkOutSe();
+    /* 802ADD58 */ void menuInSe();
+    /* 802ADE5C */ void setLevObjSE(u32, Vec*, s8);
+    /* 802ADFF4 */ void setMultiTriggerSE(u32, Vec*, s8);
+    /* 802AE184 */ void processSeFramework();
+    /* 802AE524 */ void isLevelSe(JAISoundID);
+    /* 802AE5B0 */ void isSoundCulling(JAISoundID);
+
+private:
+    /* 0x000 */ JAISoundHandle mSoundHandle[24];
+    /* 0x060 */ JAISoundHandles field_0x60;
+    /* 0x068 */ Z2MultiSeObj mLevelObjSe[10];
+    /* 0x1D0 */ u8 mLevelObjectSeCount;
+    /* 0x1D4 */ Z2MultiSeObj mMultiTriggerSe[10];
+    /* 0x33C */ u8 mMultiTriggerSeCount;
+    /* 0x33D */ u8 field_0x33d[0x64];
+    /* 0x3A0 */ u32 mModY[8];
+    /* 0x3C0 */ u8 field_0x3c0;
+    /* 0x3C1 */ u8 field_0x3c1;
+    /* 0x3C2 */ u8 field_0x3c2;
+    /* 0x3C3 */ u8 field_0x3c3;
+    /* 0x3C4 */ u8 field_0x3c4;
+    /* 0x3C5 */ u8 field_0x3c5;
+    /* 0x3C6 */ u8 field_0x3c6;
+    /* 0x3C7 */ u8 field_0x3c7;
+    /* 0x3C8 */ u8 field_0x3c8;
+    /* 0x3C9 */ u8 field_0x3c9;
+    /* 0x3CA */ u8 field_0x3ca;
+    /* 0x3CB */ u8 field_0x3cb;
+    /* 0x3CC */ u8 mCrowdSize;
+};  // Size = 0x3D0
 
 // JAISoundID's for sound effects
 enum Z2SoundID {

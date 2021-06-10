@@ -69,36 +69,6 @@ struct Z2SeMgr {
     /* 802B9AC4 */ void resetCrowdSize();
 };
 
-struct JAISoundID {
-    /* 802B9B60 */ JAISoundID(u32);
-    /* 802B995C */ JAISoundID(JAISoundID const&);
-    /* 802B9A88 */ void operator=(JAISoundID const&);
-};
-
-struct Z2SceneMgr {
-    /* 802B6840 */ Z2SceneMgr();
-    /* 802B68B0 */ void setInDarkness(bool);
-    /* 802B68E0 */ void setSceneExist(bool);
-    /* 802B697C */ void setFadeOutStart(u8);
-    /* 802B6A18 */ void setFadeInStart(u8);
-    /* 802B6AF8 */ void setSceneName(char*, s32, s32);
-    /* 802B9B68 */ void sceneChange(JAISoundID, u8, u8, u8, u8, u8, bool);
-    /* 802B9C50 */ void framework();
-    /* 802B9D40 */ void load1stDynamicWave();
-    /* 802B9D98 */ void _load1stWaveInner_1();
-    /* 802B9FC8 */ void _load1stWaveInner_2();
-    /* 802BA09C */ void check1stDynamicWave();
-    /* 802BA120 */ void load2ndDynamicWave();
-    /* 802BA294 */ void sceneBgmStart();
-    /* 802BA56C */ void loadStaticWaves();
-    /* 802BA5C0 */ bool checkFirstWaves();
-    /* 802BA5C8 */ void eraseSeWave(u32);
-    /* 802BA630 */ void eraseBgmWave(u32);
-    /* 802BA698 */ void getWaveLoadStatus(u32, u32);
-    /* 802BA704 */ void loadSeWave(u32);
-    /* 802BA770 */ void loadBgmWave(u32);
-};
-
 struct Z2FxLineMgr {
     /* 802BAEB8 */ void setSceneFx(s32);
 };
@@ -133,11 +103,6 @@ struct JAIStreamMgr {
 
 struct JAISoundParamsMove {
     /* 802A2DB4 */ void moveVolume(f32, u32);
-};
-
-struct JAISound {
-    /* 802A24DC */ void stop(u32);
-    /* 802B9988 */ void getID() const;
 };
 
 //
@@ -760,7 +725,7 @@ asm void JAIStreamMgr::isActive() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JAISound::getID() const {
+asm JAISoundID JAISound::getID() const {
     nofralloc
 #include "asm/Z2AudioLib/Z2SceneMgr/getID__8JAISoundCFv.s"
 }
@@ -859,8 +824,8 @@ asm void Z2SeqMgr::setWindStoneVol(f32 param_0, u32 param_1) {
 #pragma pop
 
 /* 802B9B60-802B9B68 -00001 0008+00 0/0 0/0 0/0 .text            __ct__10JAISoundIDFUl */
-JAISoundID::JAISoundID(u32 param_0) {
-    *(u32*)this = (u32)(param_0);
+JAISoundID::JAISoundID(u32 id) {
+    mId = id;
 }
 
 /* 802B9B68-802B9C50 2B44A8 00E8+00 1/1 0/0 0/0 .text

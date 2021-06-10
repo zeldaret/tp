@@ -23,23 +23,20 @@ struct Z2StatusMgr {
 
     //! @todo there are a number of inlines only called from rels: see CHN_debug
 
-    u8 mHour;
-    u8 mMinute;
-    u8 mWeekday;
-    u8 field_0x03;
-    s16 mTime;
-    u8 field_0x6[2];
-    void* mEventBit;
-    bool mIsMenuIn;
-    u8 field_0xd[3];
-    u32 mCameraMapInfo;
-    u32 field_0x14;
-    float mUnderwaterDepth;
-    float mCameraInWaterDepthRatio;
-    Vec mPolygonPosition;
-    u8 mDemoStatus;
-    u8 mHeartGaugeOn;
-    u8 padding[2];
-};
+    /* 0x00 */ u8 mHour;
+    /* 0x01 */ u8 mMinute;
+    /* 0x02 */ u8 mWeekday;
+    /* 0x03 */ u8 field_0x03;
+    /* 0x04 */ s16 mTime;
+    /* 0x08 */ void* mEventBit;
+    /* 0x0C */ bool mIsMenuIn;
+    /* 0x10 */ u32 mCameraMapInfo;
+    /* 0x14 */ u32 field_0x14;
+    /* 0x18 */ float mUnderwaterDepth;
+    /* 0x1C */ float mCameraInWaterDepthRatio;
+    /* 0x20 */ Vec mPolygonPosition;
+    /* 0x2C */ u8 mDemoStatus;
+    /* 0x2D */ u8 mHeartGaugeOn;
+};  // Size = 0x30
 
 #endif /* Z2STATUSMGR_H */

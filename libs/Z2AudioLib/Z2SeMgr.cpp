@@ -17,23 +17,9 @@ struct Z2StatusMgr {
     /* 802B61BC */ void isMovieDemo();
 };
 
-struct Vec {};
-
 struct Z2SpeechMgr2 {
     /* 802CCA18 */ void playOneShotVoice(u8, u16, Vec*, s8);
 };
-
-struct JAISoundHandle {
-    /* 80007838 */ ~JAISoundHandle();
-    /* 802A2184 */ void releaseSound();
-    /* 802A4AC4 */ JAISoundHandle();
-};
-
-struct Z2SoundStarter {
-    /* 802AAEDC */ void setPortData(JAISoundHandle*, u32, u16, s8);
-};
-
-struct JAISoundID {};
 
 struct Z2SoundMgr {
     /* 802AA7DC */ void stopSoundID(JAISoundID);
@@ -42,29 +28,6 @@ struct Z2SoundMgr {
 
 struct Z2SeqMgr {
     /* 802AF010 */ void bgmStart(u32, u32, s32);
-};
-
-struct Z2SeMgr {
-    /* 802AB64C */ Z2SeMgr();
-    /* 802AB750 */ void initSe();
-    /* 802AB80C */ void resetModY();
-    /* 802AB830 */ void modHeightAtCamera(Vec const**);
-    /* 802AB93C */ void incrCrowdSize();
-    /* 802AB960 */ void decrCrowdSize();
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-    /* 802AD8B0 */ void seStop(JAISoundID, u32);
-    /* 802AD94C */ void seStopAll(u32);
-    /* 802AD9F4 */ void seMoveVolumeAll(f32, u32);
-    /* 802ADB14 */ void messageSePlay(u16, Vec*, s8);
-    /* 802ADB50 */ void talkInSe();
-    /* 802ADC54 */ void talkOutSe();
-    /* 802ADD58 */ void menuInSe();
-    /* 802ADE5C */ void setLevObjSE(u32, Vec*, s8);
-    /* 802ADFF4 */ void setMultiTriggerSE(u32, Vec*, s8);
-    /* 802AE184 */ void processSeFramework();
-    /* 802AE524 */ void isLevelSe(JAISoundID);
-    /* 802AE5B0 */ void isSoundCulling(JAISoundID);
 };
 
 struct Z2Param {
@@ -94,20 +57,6 @@ struct Z2Param {
     static f32 VOL_SE_ATMOSPHERE_PAUSING;
 };
 
-struct Z2MultiSeObj {
-    /* 80007888 */ ~Z2MultiSeObj();
-    /* 802AB710 */ Z2MultiSeObj();
-};
-
-struct Z2MultiSeMgr {
-    /* 802AEB04 */ Z2MultiSeMgr();
-    /* 802AEB34 */ ~Z2MultiSeMgr();
-    /* 802AEB70 */ void registMultiSePos(Vec*);
-    /* 802AECBC */ void resetMultiSePos();
-    /* 802AECE0 */ void getPanPower();
-    /* 802AEDC0 */ void getDolbyPower();
-};
-
 struct Z2CreatureLink {
     static u8 mLinkPtr[4 + 4 /* padding */];
 };
@@ -133,15 +82,6 @@ struct JAISoundParamsMove {
     /* 802A2E64 */ void moveFxMix(f32, u32);
     /* 802A2EBC */ void movePan(f32, u32);
     /* 802A2F14 */ void moveDolby(f32, u32);
-};
-
-struct JAISoundHandles {
-    /* 802A2C98 */ void getHandleSoundID(JAISoundID);
-    /* 802A2CF4 */ void getFreeHandle();
-};
-
-struct JAISound {
-    /* 802A24DC */ void stop(u32);
 };
 
 struct JAISeCategoryMgr {
@@ -213,7 +153,6 @@ extern "C" void calcRelPosPan__10Z2AudienceFRC3Veci();
 extern "C" void calcRelPosDolby__10Z2AudienceFRC3Veci();
 extern "C" void playOneShotVoice__12Z2SpeechMgr2FUcUsP3VecSc();
 extern "C" void __dl__FPv();
-extern "C" void PSVECSquareDistance();
 extern "C" void __construct_array();
 extern "C" void __cvt_fp2unsigned();
 extern "C" void _savegpr_26();
