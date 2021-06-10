@@ -18,6 +18,9 @@ inline u32 fpcM_GetID(const void* pProc) {
 inline s16 fpcM_GetName(const void* pActor) {
     return ((base_process_class*)pActor)->mProcName;
 }
+inline u32 fpcM_GetParam(const void* pActor) {
+    return ((base_process_class*)pActor)->mParameters;
+}
 
 void fpcM_Draw(void* pProc);
 s32 fpcM_DrawIterater(fpcM_DrawIteraterFunc pFunc);

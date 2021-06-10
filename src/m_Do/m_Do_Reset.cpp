@@ -6,16 +6,11 @@
 #include "m_Do/m_Do_Reset.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "dolphin/gx/GX.h"
 
 //
 // Types:
 //
-
-struct mDoRst {
-    /* 800157F4 */ u32 getResetData();
-
-    static u8 mResetData[4 + 4 /* padding */];
-};
 
 struct Z2AudioMgr {
     /* 802CDA6C */ void hasReset() const;
@@ -55,7 +50,7 @@ extern "C" void mDoRst_resetCallBack__FiPv();
 extern "C" u32 getResetData__6mDoRstFv();
 extern "C" extern char const* const m_Do_m_Do_Reset__stringBase0;
 extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 struct_80450C80[8];
+extern "C" extern u64 struct_80450C80;
 extern "C" extern u8 data_80450C88[8];
 
 //
@@ -83,13 +78,10 @@ extern "C" void DVDGetDriveStatus();
 extern "C" void DVDCheckDisk();
 extern "C" void VIWaitForRetrace();
 extern "C" void VIFlush();
-extern "C" void VISetBlack();
-extern "C" void GXSetCurrentGXThread();
-extern "C" void GXGetCurrentGXThread();
+extern "C" void VISetBlack(s32);
 extern "C" void GXFlush();
 extern "C" void GXAbortFrame();
 extern "C" void GXDrawDone();
-extern "C" void GXSetDrawDoneCallback();
 extern "C" void _savegpr_27();
 extern "C" extern u8 g_mDoMemCd_control[8192];
 extern "C" extern u8 struct_80450BB8[4];
@@ -103,20 +95,18 @@ extern "C" u8 sManager__6JUTXfb[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 800155D8-800155DC 00FF18 0004+00 1/1 0/0 0/0 .text            my_OSCancelAlarmAll__Fv */
 static void my_OSCancelAlarmAll() {
     /* empty function */
 }
 
-/* 800155DC-80015614 00FF1C 0038+00 1/1 0/0 0/0 .text            destroyVideo__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void destroyVideo() {
-    nofralloc
-#include "asm/m_Do/m_Do_Reset/destroyVideo__Fv.s"
+static void destroyVideo() {
+    destroyManager__8JUTVideoFv();
+    GXSetDrawDoneCallback(NULL);
+    VISetBlack(1);
+    VIFlush();
+    VIWaitForRetrace();
+    return;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80374198-80374198 0007F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -126,9 +116,70 @@ SECTION_DEAD static char const* const stringBase_80374198 = "DVD_STATE_BUSY\n";
 #pragma pop
 
 /* 80450C78-80450C80 000178 0004+04 3/2 42/42 2/2 .sbss            mResetData__6mDoRst */
-u8 mDoRst::mResetData[4 + 4 /* padding */];
+mDoRstData* mDoRst::mResetData;
 
 /* 80015614-8001574C 00FF54 0138+00 0/0 3/3 0/0 .text            mDoRst_reset__FiUli */
+#ifdef NONMATCHING
+void mDoRst_reset(int p1, u32 p2, int p3) {
+    mDoCPd_c* pmVar1;
+    u32 uVar2;
+    DVDState DVar3;
+    OSThread* thread;
+    s32 enable;
+    /* sManager */ lbl_80451550->clearIndex();
+    mDoDvdErr_ThdCleanup__Fv();
+    cAPICPad_recalibrate__Fv();
+    if (lbl_80450BB8 != false) {
+        do {
+            uVar2 = lbl_80451368->hasReset();
+        } while ((uVar2 & 0xff) == 0);
+    }
+
+    if ((s32)DVDGetDriveStatus() == (s32)DVD_STATE_BUSY) {
+        OSAttention(lbl_80374198);
+    }
+    JASTaskThread* task_thread = getThreadPointer__6JASDvdFv();
+    if (task_thread != NULL) {
+        pause__13JASTaskThreadFb(task_thread, true);
+        thread = task_thread->thread;
+        if (thread != NULL) {
+            OSSuspendThread(thread);
+            OSDetachThread(thread);
+            OSCancelThread(thread);
+        }
+    }
+
+    VIWaitForRetrace();
+    VIWaitForRetrace();
+
+    thread = GXGetCurrentGXThread();
+    enable = OSDisableInterrupts();
+    OSThread* ourThread = OSGetCurrentThread();
+    if (thread != ourThread) {
+        OSCancelThread(thread);
+        GXSetCurrentGXThread();
+    }
+    GXFlush();
+    GXAbortFrame();
+    GXDrawDone();
+
+    OSRestoreInterrupts(enable);
+    destroyVideo();
+
+    while (mDoMemCd_isCardCommNone() != 0) {
+        VIWaitForRetrace();
+    }
+
+    my_OSCancelAlarmAll();
+    LCDisable();
+    // probably false match; check out 80015728 or thereabouts in Ghidra
+    OSSetSaveRegion(mDoRst::mResetData, (u8*)(&mDoRst::getResetData()) + 0x18);
+    OSResetSystem(p1, p2, p3);
+    do {
+        VIWaitForRetrace();
+    } while (true);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -137,8 +188,34 @@ asm void mDoRst_reset(int param_0, u32 param_1, int param_2) {
 #include "asm/m_Do/m_Do_Reset/mDoRst_reset__FiUli.s"
 }
 #pragma pop
+#endif
 
 /* 8001574C-800157F4 01008C 00A8+00 0/0 3/3 0/0 .text            mDoRst_resetCallBack__FiPv */
+// fix JUTGamePad data
+#ifdef NONMATCHING
+void mDoRst_resetCallBack(int port, void* p2) {
+    if (!mDoRst::isReset()) {
+        if (port == -1) {
+            cAPICPad_recalibrate__Fv();
+        } else {
+            if (mDoRst::is3ButtonReset() != 0) {
+                lbl_80451501 = false;
+                /* sCallback */ lbl_804514EC = &mDoRst_resetCallBack;
+                /* sCallbackArg */ lbl_804514F0 = 0;
+                return;
+            }
+            mDoRst::on3ButtonReset();
+            mDoRst::set3ButtonResetPort(port);
+            cAPICPad_recalibrate__Fv();
+        }
+
+        if ((DVDCheckDisk() == 0) && (DVDGetDriveStatus() != DVD_STATE_FATAL_ERROR)) {
+            mDoRst::onReturnToMenu();
+        }
+        mDoRst::onReset();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -147,18 +224,20 @@ asm void mDoRst_resetCallBack(int param_0, void* param_1) {
 #include "asm/m_Do/m_Do_Reset/mDoRst_resetCallBack__FiPv.s"
 }
 #pragma pop
+#endif
 
 /* 800157F4-800157FC -00001 0008+00 0/0 0/0 0/0 .text            getResetData__6mDoRstFv */
-u32 mDoRst::getResetData() {
-    return *(u32*)(&mDoRst::mResetData);
+mDoRstData* mDoRst::getResetData() {
+    return mResetData;
 }
 
 /* ############################################################################################## */
 /* 80450C80-80450C88 -00001 0008+00 0/0 6/6 0/0 .sbss            None */
 /* 80450C80 0001+00 data_80450C80 None */
 /* 80450C81 0007+00 data_80450C81 None */
-extern u8 struct_80450C80[8];
-u8 struct_80450C80[8];
+// type might be fake, used for now to align to 8
+extern u64 struct_80450C80;
+u64 struct_80450C80;
 
 /* 80450C88-80450C90 000188 0008+00 0/0 2/2 0/0 .sbss            None */
 extern u8 data_80450C88[8];

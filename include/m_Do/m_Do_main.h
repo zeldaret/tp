@@ -32,8 +32,8 @@ private:
 struct mDoMain {
     static u8 COPYDATE_STRING[18 + 2 /* padding */];
     static u32 memMargin;
-    static u8 sPowerOnTime[4]; // should be u64
-    static u8 sHungUpTime[4]; // should be u64
+    static u8 sPowerOnTime[4]; // should be OSTime
+    static u8 sHungUpTime[4]; // should be OSTime
 };
 
 #endif /* M_DO_M_DO_MAIN_H */

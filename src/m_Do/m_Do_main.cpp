@@ -433,13 +433,13 @@ SECTION_SDATA static u8 data_80450588[8] = {
 static u8 data_80450B00[8];
 
 /* 80450B08-80450B0C 000008 0004+00 1/1 1/1 0/0 .sbss            sPowerOnTime__7mDoMain */
-// should be u64
+// should be OSTime
 u8 mDoMain::sPowerOnTime[4];
 extern u8 data_80450B0C[4];
 u8 data_80450B0C[4];
 
 /* 80450B10-80450B14 000010 0004+00 0/0 2/2 0/0 .sbss            sHungUpTime__7mDoMain */
-// should be u64
+// should be OSTime
 u8 mDoMain::sHungUpTime[4];
 extern u8 data_80450B14[4];
 u8 data_80450B14[4];

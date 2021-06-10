@@ -78,6 +78,22 @@ inline s16 fopAcM_GetName(fopAc_ac_c* pActor) {
     return fpcM_GetName(pActor);
 }
 
+inline u32 fopAcM_checkStatus(fopAc_ac_c* pActor, u32 status) {
+    return pActor->field_0x49c & status;
+}
+
+inline u32 fopAcM_checkCarryNow(fopAc_ac_c* pActor) {
+    return pActor->field_0x49c & 0x2000;
+}
+
+inline u32 fopAcM_checkHookCarryNow(fopAc_ac_c* pActor) {
+    return fopAcM_checkStatus(pActor, 0x100000);
+}
+
+inline u32 fopAcM_GetParam(const void* pActor) {
+    return fpcM_GetParam(pActor);
+}
+
 void* fopAcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3, void* pData);
 void fopAcM_setStageLayer(void*);
 int fopAcM_setRoomLayer(void*, int);

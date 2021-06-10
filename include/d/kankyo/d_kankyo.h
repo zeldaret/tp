@@ -16,4 +16,13 @@ struct LIGHT_INFLUENCE {
     /* 0x1C */ int field_0x1c;
 };
 
+struct WIND_INFLUENCE {
+    /* 0x00 */ cXyz field_0x00;
+    /* 0x0C */ cXyz field_0x0c;
+    /* 0x18 */ u8 field_0x18[0xC];
+    /* 0x24 */ int field_0x24;
+    /* 0x28 */ u8 field_0x28;
+    /* 0x29 */ u8 field_0x29;
+};
+
 #endif /* D_KANKYO_D_KANKYO_H */
