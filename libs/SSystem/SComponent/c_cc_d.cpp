@@ -814,28 +814,23 @@ bool cCcD_SphAttr::CrossCo(cCcD_CpsAttr const& cps, f32* f) const {
 }
 
 /* 802646E0-8026476C 25F020 008C+00 1/0 2/1 0/0 .text            CalcAabBox__12cCcD_SphAttrFv */
-// weird codegen
-#ifdef NON_MATCHING
 void cCcD_SphAttr::CalcAabBox() {
     cXyz min;
     cXyz max;
 
     min = max = mCenter;
 
-    min -= mRadius;
-    max += mRadius;
+    // min -= mRadius; doesn't work :(
+    min.x -= mRadius;
+    min.y -= mRadius;
+    min.z -= mRadius;
+
+    max.x += mRadius;
+    max.y += mRadius;
+    max.z += mRadius;
+
     mAab.Set(&min, &max);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_SphAttr::CalcAabBox() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/CalcAabBox__12cCcD_SphAttrFv.s"
-}
-#pragma pop
-#endif
 
 /* 8026476C-80264808 25F0AC 009C+00 1/0 1/0 0/0 .text GetNVec__12cCcD_SphAttrCFRC4cXyzP4cXyz */
 bool cCcD_SphAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
