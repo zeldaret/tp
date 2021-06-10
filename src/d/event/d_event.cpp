@@ -744,26 +744,9 @@ asm void dEvt_control_c::searchMapEventData(u8 param_0, s32 param_1) {
 }
 #pragma pop
 
-/* 8004360C-8004362C 03DF4C 0020+00 0/0 1/1 0/0 .text            runningEventID__14dEvt_control_cFs
- */
-#ifdef NONMATCHING
-// regalloc
-s32 dEvt_control_c::runningEventID(s16 param_0) {
-    if (param_0 == field_0xe0) {
-        return mSpecifiedEvent;
-    }
-    return param_0;
+s16 dEvt_control_c::runningEventID(s16 param_0) {
+    return param_0 == field_0xe0 ? mSpecifiedEvent : param_0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 dEvt_control_c::runningEventID(s16 param_0) {
-    nofralloc
-#include "asm/d/event/d_event/runningEventID__14dEvt_control_cFs.s"
-}
-#pragma pop
-#endif
 
 void dEvt_control_c::setPt1(void* param_0) {
     mPt1 = getPId(param_0);

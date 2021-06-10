@@ -67,7 +67,7 @@ public:
     void getStbDemoData(char*);
     void searchMapEventData(u8, s32);
     void searchMapEventData(u8);
-    s32 runningEventID(s16);
+    s16 runningEventID(s16);
     void setPt1(void*);
     void setPt2(void*);
     void setPtT(void*);

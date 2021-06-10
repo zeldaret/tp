@@ -356,25 +356,13 @@ asm void dEvDtFlag_c::flagSet(int param_0) {
 }
 #pragma pop
 
-/* 80043E30-80043E58 03E770 0028+00 2/2 0/0 0/0 .text            flagMaxCheck__11dEvDtFlag_cFi */
-#ifdef NONMATCHING
 bool dEvDtFlag_c::flagMaxCheck(int flag_id) {
     if (flag_id == -1) {
-        return 1;
+        return true;
     }
 
-    return FlagMax < flag_id;
+    return FlagMax <= flag_id;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dEvDtFlag_c::flagMaxCheck(int param_0) {
-    nofralloc
-#include "asm/d/event/d_event_data/flagMaxCheck__11dEvDtFlag_cFi.s"
-}
-#pragma pop
-#endif
 
 void dEvDtFlag_c::init() {
     for (int i = 0; i < 320; i++) {
