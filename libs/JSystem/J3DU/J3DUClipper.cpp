@@ -5,20 +5,9 @@
 
 #include "JSystem/J3DU/J3DUClipper.h"
 #include "dol2asm.h"
+#include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct Vec {};
-
-struct J3DUClipper {
-    /* 80273778 */ void init();
-    /* 8027378C */ void calcViewFrustum();
-    /* 802738FC */ void clip(f32 const (*)[4], Vec, f32) const;
-    /* 80273A44 */ void clip(f32 const (*)[4], Vec*, Vec*) const;
-};
+#include "msl_c/math.h"
 
 //
 // Forward References:
@@ -34,33 +23,18 @@ extern "C" extern char const* const J3DUClipper__stringBase0;
 // External References:
 //
 
-extern "C" void PSMTXMultVec();
-extern "C" void PSVECNormalize();
-extern "C" void PSVECCrossProduct();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
-extern "C" void tan();
 
 //
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 80455278-8045527C 003878 0004+00 1/1 0/0 0/0 .sdata2          @893 */
-SECTION_SDATA2 static f32 lit_893 = 1.0f;
-
-/* 8045527C-80455280 00387C 0004+00 1/1 0/0 0/0 .sdata2          @894 */
-SECTION_SDATA2 static f32 lit_894 = 100000.0f;
-
 /* 80273778-8027378C 26E0B8 0014+00 0/0 1/1 0/0 .text            init__11J3DUClipperFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DUClipper::init() {
-    nofralloc
-#include "asm/JSystem/J3DU/J3DUClipper/init__11J3DUClipperFv.s"
+void J3DUClipper::init() {
+    mNear = 1.0f;
+    mFar = 100000.0f;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039A948-8039A954 026FA8 000C+00 1/1 0/0 0/0 .rodata          @898 */
@@ -69,63 +43,30 @@ SECTION_RODATA static u8 const lit_898[12] = {
 };
 COMPILER_STRIP_GATE(0x8039A948, &lit_898);
 
-/* 8039A954-8039A960 026FB4 000C+00 0/1 0/0 0/0 .rodata          @899 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_899[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8039A954, &lit_899);
-#pragma pop
-
-/* 8039A960-8039A96C 026FC0 000C+00 0/1 0/0 0/0 .rodata          @900 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_900[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8039A960, &lit_900);
-#pragma pop
-
-/* 8039A96C-8039A978 026FCC 000C+00 0/1 0/0 0/0 .rodata          @901 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_901[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8039A96C, &lit_901);
-#pragma pop
-
-/* 8039A978-8039A984 026FD8 000C+00 0/1 0/0 0/0 .rodata          @902 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_902[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8039A978, &lit_902);
-#pragma pop
-
-/* 80455280-80455284 003880 0004+00 1/1 0/0 0/0 .sdata2          @913 */
-SECTION_SDATA2 static f32 lit_913 = 0.01745329238474369f;
-
-/* 80455284-80455288 003884 0004+00 1/1 0/0 0/0 .sdata2          @914 */
-SECTION_SDATA2 static f32 lit_914 = 0.5f;
-
 /* 8027378C-802738FC 26E0CC 0170+00 0/0 3/3 4/4 .text            calcViewFrustum__11J3DUClipperFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DUClipper::calcViewFrustum() {
-    nofralloc
-#include "asm/JSystem/J3DU/J3DUClipper/calcViewFrustum__11J3DUClipperFv.s"
+void J3DUClipper::calcViewFrustum() {
+    f32 f0 = tan(0.5f * mFovY * 0.01745329238474369f);
+    f32 f4 = mNear * f0;
+    f32 f5 = mAspect * f4;
+    Vec tmp1 = {-f5, -f4, -mNear};
+    Vec tmp2 = {-f5, f4, -mNear};
+    Vec tmp3 = {f5, f4, -mNear};
+    Vec tmp4 = {f5, -f4, -mNear};
+    PSVECCrossProduct(&tmp2, &tmp1, &_04);
+    PSVECCrossProduct(&tmp3, &tmp2, &_10);
+    PSVECCrossProduct(&tmp4, &tmp3, &_1C);
+    PSVECCrossProduct(&tmp1, &tmp4, &_28);
+    PSVECNormalize(&_04, &_04);
+    PSVECNormalize(&_10, &_10);
+    PSVECNormalize(&_1C, &_1C);
+    PSVECNormalize(&_28, &_28);
 }
-#pragma pop
 
 /* 802738FC-80273A44 26E23C 0148+00 0/0 3/3 2/2 .text            clip__11J3DUClipperCFPA4_Cf3Vecf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DUClipper::clip(f32 const (*param_0)[4], Vec param_1, f32 param_2) const {
+asm u32 J3DUClipper::clip(f32 const (*param_0)[4], Vec param_1, f32 param_2) const {
     nofralloc
 #include "asm/JSystem/J3DU/J3DUClipper/clip__11J3DUClipperCFPA4_Cf3Vecf.s"
 }
@@ -143,7 +84,7 @@ SECTION_SDATA2 static f32 lit_991[1 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DUClipper::clip(f32 const (*param_0)[4], Vec* param_1, Vec* param_2) const {
+asm u32 J3DUClipper::clip(f32 const (*param_0)[4], Vec* param_1, Vec* param_2) const {
     nofralloc
 #include "asm/JSystem/J3DU/J3DUClipper/clip__11J3DUClipperCFPA4_CfP3VecP3Vec.s"
 }

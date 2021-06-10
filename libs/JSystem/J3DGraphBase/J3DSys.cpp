@@ -13,29 +13,6 @@
 
 struct _GXTexMapID {};
 
-struct _GXTexCacheSize {};
-
-struct J3DSys {
-    /* 8030FDE8 */ J3DSys();
-    /* 8030FEC0 */ void loadPosMtxIndx(int, u16) const;
-    /* 8030FEE4 */ void loadNrmMtxIndx(int, u16) const;
-    /* 8030FF0C */ void setTexCacheRegion(_GXTexCacheSize);
-    /* 803100BC */ void drawInit();
-    /* 8031073C */ void reinitGX();
-    /* 8031079C */ void reinitGenMode();
-    /* 803107E8 */ void reinitLighting();
-    /* 80310894 */ void reinitTransform();
-    /* 80310998 */ void reinitTexture();
-    /* 80310A3C */ void reinitTevStages();
-    /* 80310D44 */ void reinitIndStages();
-    /* 80310E3C */ void reinitPixelProc();
-
-    static u8 mCurrentMtx[48];
-    static f32 mCurrentS[3];
-    static f32 mParentS[3];
-    static u8 sTexCoordScaleTable[64 + 4 /* padding */];
-};
-
 //
 // Forward References:
 //
@@ -69,7 +46,6 @@ extern "C" void makeTexCoordTable__Fv();
 extern "C" void makeAlphaCmpTable__Fv();
 extern "C" void makeZModeTable__Fv();
 extern "C" void makeTevSwapTable__Fv();
-extern "C" void PSMTXIdentity();
 extern "C" void GXSetVtxAttrFmt();
 extern "C" void GXInvalidateVtxCache();
 extern "C" void GXSetTexCoordGen2();
@@ -132,8 +108,7 @@ extern "C" extern u32 j3dDefaultTevKColor;
 
 /* ############################################################################################## */
 /* 80434AC8-80434BE4 0617E8 011C+00 1/1 151/151 486/486 .bss             j3dSys */
-extern u8 j3dSys[284];
-u8 j3dSys[284];
+J3DSys j3dSys;
 
 /* 80434BE4-80434C14 061904 0030+00 0/0 17/17 154/154 .bss             mCurrentMtx__6J3DSys */
 u8 J3DSys::mCurrentMtx[48];
@@ -347,21 +322,6 @@ asm void J3DSys::reinitPixelProc() {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DSys/reinitPixelProc__6J3DSysFv.s"
 }
-#pragma pop
-
-/* 80310ED0-80310EF8 30B810 0028+00 0/0 1/0 0/0 .text            __sinit_J3DSys_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_J3DSys_cpp() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DSys/__sinit_J3DSys_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80310ED0, __sinit_J3DSys_cpp);
 #pragma pop
 
 /* ############################################################################################## */

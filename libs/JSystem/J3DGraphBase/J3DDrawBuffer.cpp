@@ -49,7 +49,6 @@ extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
-extern "C" extern u8 j3dSys[284];
 
 //
 // Declarations:

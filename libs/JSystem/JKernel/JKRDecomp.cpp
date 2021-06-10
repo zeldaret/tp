@@ -265,6 +265,72 @@ asm void JKRDecomp::decodeSZP(u8* param_0, u8* param_1, u32 param_2, u32 param_3
 #endif
 
 /* 802DBC14-802DBCF8 2D6554 00E4+00 1/1 0/0 0/0 .text            decodeSZS__9JKRDecompFPUcPUcUlUl */
+#ifdef NON_MATCHING
+void JKRDecomp::decodeSZS(u8* src_buffer, u8* dst_buffer, u32 param_3, u32 param_4) {
+    int copyByteCount;
+    u8* decompEnd;
+    u8* copyStart;
+    int chunkBitsLeft = 0;
+    int chunkBits;
+    decompEnd = dst_buffer + *(int*)(src_buffer + 4) - param_4;
+    if (param_3 == 0) {
+        return;
+    }
+    if (param_4 > *(u32*)src_buffer) {
+        return;
+    }
+    u8* curSrcPos = src_buffer + 0x10;
+    do {
+        if (chunkBitsLeft == 0) {
+            chunkBits = *curSrcPos;
+            chunkBitsLeft = 8;
+            curSrcPos++;
+        }
+        if ((chunkBits & 0x80) != 0) {
+            if (param_4 == 0) {
+                *dst_buffer = *curSrcPos;
+                param_3--;
+                dst_buffer++;
+                if (param_3 == 0) {
+                    return;
+                }
+            } else {
+                param_4--;
+            }
+            curSrcPos++;
+        } else {
+            int curVal = *curSrcPos;
+            // load is inversed
+            copyStart = dst_buffer - ((curVal & 0xF) << 8 | curSrcPos[1]);
+            // copyByteCount = ;
+            curSrcPos += 2;
+            // instruction order differences
+            if (curVal >> 4 == 0) {
+                copyByteCount = *curSrcPos + 0x12;
+                curSrcPos++;
+            } else {
+                copyByteCount = (curVal >> 4) + 2;
+            }
+            do {
+                if (param_4 == 0) {
+                    *dst_buffer = *(copyStart - 1);
+                    param_3--;
+                    dst_buffer++;
+                    if (param_3 == 0) {
+                        return;
+                    }
+                } else {
+                    param_4--;
+                }
+                copyByteCount--;
+                copyStart++;
+            } while (copyByteCount != 0);
+        }
+        chunkBits <<= 1;
+        chunkBitsLeft--;
+    } while (dst_buffer != decompEnd);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -273,6 +339,7 @@ asm void JKRDecomp::decodeSZS(u8* param_0, u8* param_1, u32 param_2, u32 param_3
 #include "asm/JSystem/JKernel/JKRDecomp/decodeSZS__9JKRDecompFPUcPUcUlUl.s"
 }
 #pragma pop
+#endif
 
 /* 802DBCF8-802DBD70 2D6638 0078+00 1/1 4/4 0/0 .text            checkCompressed__9JKRDecompFPUc */
 JKRCompression JKRDecomp::checkCompressed(u8* src) {

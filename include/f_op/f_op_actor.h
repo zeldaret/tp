@@ -78,8 +78,16 @@ public:
     /* 0x4EC */ cXyz mScale;
     /* 0x4F8 */ cXyz mSpeed;
     /* 0x504 */ Mtx* mCullMtx;
-    /* 0x508 */ cXyz mCullMin;
-    /* 0x514 */ cXyz mCullMax;
+    union {
+        struct {
+            /* 0x508 */ cXyz mMin;
+            /* 0x514 */ cXyz mMax;
+        } mBox;
+        struct {
+            /* 0x508 */ cXyz mCenter;
+            /* 0x514 */ f32 mRadius;
+        } mSphere;
+    } mCull;
     /* 0x520 */ u8 unk_0x520[0xC];
     /* 0x52C */ f32 mSpeedF;
     /* 0x530 */ f32 mGravity;

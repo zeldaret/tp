@@ -128,4 +128,12 @@ private:
     /* 0x4 */ J3DAnmTransform* mAnmTransform;
 };  // Size = 0x8
 
+JKRSolidHeap* mDoExt_createSolidHeapFromGame(u32, u32);
+void mDoExt_destroySolidHeap(JKRSolidHeap*);
+u32 mDoExt_adjustSolidHeap(JKRSolidHeap*);
+void mDoExt_restoreCurrentHeap();
+JKRHeap* mDoExt_getGameHeap();
+void mDoExt_destroySolidHeap(JKRSolidHeap*);
+JKRHeap* mDoExt_setCurrentHeap(JKRHeap*);
+
 #endif /* M_DO_M_DO_EXT_H */
