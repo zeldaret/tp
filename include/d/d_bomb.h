@@ -1,11 +1,11 @@
 #ifndef D_D_BOMB_H
 #define D_D_BOMB_H
 
-#include "f_op/f_op_actor.h"
+#include "Z2AudioLib/Z2SoundObject.h"
 #include "d/bg/d_bg_s_acch.h"
 #include "d/cc/d_cc_d.h"
 #include "d/kankyo/d_kankyo.h"
-#include "Z2AudioLib/Z2SoundObject.h"
+#include "f_op/f_op_actor.h"
 
 class daNbomb_c {
 public:
@@ -15,7 +15,7 @@ public:
     u32 checkWaterBomb() const { return checkStateFlg0(WATER_BOMB); }
 
     /* 0x000 */ fopAc_ac_c mActor;
-    /* 0x538 */ u8 field_0x538[0x32]; // 538-570 might be part of fopAc_ac_c
+    /* 0x538 */ u8 field_0x538[0x32];  // 538-570 might be part of fopAc_ac_c
     /* 0x56A */ u8 field_0x56a;
     /* 0x56B */ u8 field_0x56b[13];
     /* 0x578 */ dBgS_Acch mAcch;

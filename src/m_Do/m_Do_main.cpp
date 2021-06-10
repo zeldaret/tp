@@ -4,11 +4,11 @@
 //
 
 #include "m_Do/m_Do_main.h"
+#include "JSystem/JUtility/JUTReport.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "msl_c/string.h"
-#include "JSystem/JUtility/JUTReport.h"
 #include "m_Do/m_Do_controller_pad.h"
+#include "msl_c/string.h"
 
 //
 // Types:
@@ -262,9 +262,8 @@ SECTION_DATA u8 mDoMain::COPYDATE_STRING[18 + 2 /* padding */] = {
 
 /* 803A2EF4-803A2F14 -00001 0020+00 1/2 0/0 0/0 .data            HeapCheckTable */
 SECTION_DATA static HeapCheck* HeapCheckTable[8] = {
-    &RootHeapCheck,   &SystemHeapCheck,  &ZeldaHeapCheck,
-    &GameHeapCheck,   &ArchiveHeapCheck, &J2dHeapCheck,
-    &HostioHeapCheck, &CommandHeapCheck,
+    &RootHeapCheck,    &SystemHeapCheck, &ZeldaHeapCheck,  &GameHeapCheck,
+    &ArchiveHeapCheck, &J2dHeapCheck,    &HostioHeapCheck, &CommandHeapCheck,
 };
 
 /* 803D32E0-803D3308 000000 0028+00 3/2 0/0 0/0 .bss             RootHeapCheck */
@@ -371,7 +370,6 @@ void HeapCheck::heapDisplay() const {
     used_count = countUsed(mHeap);
     JUTReport(0x64, 0x165, "UsedCount             %3ld%", used_count);
 }
-
 
 /* ############################################################################################## */
 /* 803739A0-803739A0 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

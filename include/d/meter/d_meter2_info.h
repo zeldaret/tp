@@ -3,8 +3,8 @@
 
 #include "JSystem/JUtility/JUTTexture.h"
 #include "d/d_resorce.h"
-#include "d/msg/d_msg_flow.h"
 #include "d/menu/d_menu_window.h"
+#include "d/msg/d_msg_flow.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 //#include "JSystem/JUtility/JUTFont.h"
@@ -107,7 +107,10 @@ public:
     void setMiniGameCount(s8);
     void setSaveStageName(const char*);
 
-    void setWindowStatus(u8 status) { unk186 = mWindowStatus; mWindowStatus = status; }
+    void setWindowStatus(u8 status) {
+        unk186 = mWindowStatus;
+        mWindowStatus = status;
+    }
     u8& getDirectUseItem() { return mDirectUseItem; }
     dMeterMap_c* getMeterMapClass() { return mMeterMap; }
     dMw_c* getMenuWindowClass() { return mMenuWindowClass; }

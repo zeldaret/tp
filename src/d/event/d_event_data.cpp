@@ -362,7 +362,7 @@ bool dEvDtFlag_c::flagMaxCheck(int flag_id) {
     if (flag_id == -1) {
         return 1;
     }
-    
+
     return FlagMax < flag_id;
 }
 #else

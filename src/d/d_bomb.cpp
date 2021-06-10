@@ -9,7 +9,8 @@
 #include "f_op/f_op_actor_mng.h"
 
 bool dBomb_c::checkStateCarry() {
-    return (fopAcM_checkCarryNow(&mActor) || fopAcM_checkHookCarryNow(&mActor) || fopAcM_GetParam(&mActor) == 2 || fopAcM_GetParam(&mActor) == 1);
+    return (fopAcM_checkCarryNow(&mActor) || fopAcM_checkHookCarryNow(&mActor) ||
+            fopAcM_GetParam(&mActor) == 2 || fopAcM_GetParam(&mActor) == 1);
 }
 
 bool dBomb_c::checkFlowerBombWait(fopAc_ac_c* param_1) {

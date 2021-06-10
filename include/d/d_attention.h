@@ -40,7 +40,7 @@ private:
     u8 field_0xf;
     u32 field_0x10;
     u8 mChangeItem;
-}; // Size = 0x14
+};  // Size = 0x14
 
 class dAttParam_c {
 public:
@@ -70,7 +70,7 @@ private:
     /* 0x40 */ float field_0x40;
     /* 0x44 */ u32 field_0x44;
     /* 0x48 */ u32 field_0x48;
-}; // Size = 0x4C
+};  // Size = 0x4C
 
 class dAttLook_c {
 public:
@@ -84,7 +84,7 @@ private:
     u32 field_0x4;
     float field_0x8;
     u32 field_0xc;
-}; // Size = 0x10
+};  // Size = 0x10
 
 #pragma pack(push, 1)
 class dAttList_c {
@@ -237,6 +237,6 @@ public:
     /* 0x4CE */ u8 field_0x4ce;
     /* 0x4CF */ u8 field_0x4cf;
     /* 0x4D0 */ dAttParam_c attention_param;
-}; // Size = 0x51C
+};  // Size = 0x51C
 
 #endif /* D_D_ATTENTION_H */

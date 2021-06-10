@@ -344,7 +344,7 @@ void dEvent_manager_c::roomFinish(int param_0) {
     for (int i = 4; i <= 9; i++) {
         if (mEventList[i].getHeaderP() != NULL && param_0 == mEventList[i].roomNo()) {
             mEventList[i].init();
-        } 
+        }
     }
 }
 

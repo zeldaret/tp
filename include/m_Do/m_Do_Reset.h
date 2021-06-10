@@ -14,7 +14,7 @@ struct mDoRstData {
     /* 0x13 */ u8 mProgSeqFlag;
     /* 0x14 */ u8 mProgChgFlag;
     /* 0x15 */ u8 mWarningDispFlag;
-}; // Size = 0x18
+};  // Size = 0x18
 
 class mDoRst {
 public:

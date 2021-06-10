@@ -20,7 +20,7 @@ public:
     bool checkCommandCatch();
     bool checkCommandDoor();
     bool checkCommandDemoAccrpt();
-    
+
     void setCommand(u16 command) { mCommand = command; }
     void setMapToolId(u8 id) { mMapToolId = id; }
     void setEventId(s16 id) { mEventId = id; }
@@ -46,7 +46,7 @@ public:
     /*  0x0C */ char* mArchiveName;
     /*  0x10 */ void* field_0x10;
     /*  0x14 */ void* field_0x14;
-}; // Size = 0x18
+};  // Size = 0x18
 
 struct actor_place {
     cXyz mPosition;
@@ -63,7 +63,7 @@ public:
     /* 0x0EC */ profile_method_class* mSubMtd;
     /* 0x0F0 */ JKRSolidHeap* mHeap;
     /* 0x0F4 */ dEvt_info_c mEvtInfo;
-    /* 0x10C */ u8 unk_0x10c[0x496 - 0x10C]; // dKy_tevstr_c
+    /* 0x10C */ u8 unk_0x10c[0x496 - 0x10C];  // dKy_tevstr_c
     /* 0x496 */ u8 unk_0x496;
     /* 0x497 */ u8 unk_0x497;
     /* 0x498 */ u8 mDemoActorId;

@@ -1,8 +1,8 @@
 #ifndef M_DO_M_DO_MAIN_H
 #define M_DO_M_DO_MAIN_H
 
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
+#include "dolphin/types.h"
 
 class HeapCheck {
 public:
@@ -32,8 +32,8 @@ private:
 struct mDoMain {
     static u8 COPYDATE_STRING[18 + 2 /* padding */];
     static u32 memMargin;
-    static u8 sPowerOnTime[4]; // should be OSTime
-    static u8 sHungUpTime[4]; // should be OSTime
+    static u8 sPowerOnTime[4];  // should be OSTime
+    static u8 sHungUpTime[4];   // should be OSTime
 };
 
 #endif /* M_DO_M_DO_MAIN_H */

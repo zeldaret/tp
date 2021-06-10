@@ -6,8 +6,8 @@
 #include "d/event/d_event.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_actor_iter.h"
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Types:

@@ -5,8 +5,8 @@
 
 #include "m_Do/m_Do_Reset.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "dolphin/gx/GX.h"
+#include "dolphin/types.h"
 
 //
 // Types:

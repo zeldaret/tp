@@ -4,9 +4,9 @@
 #include "d/a/d_a_itembase.h"
 #include "d/a/d_a_player.h"
 #include "d/d_stage.h"
+#include "d/event/d_event_manager.h"
 #include "d/save/d_save.h"
 #include "dolphin/types.h"
-#include "d/event/d_event_manager.h"
 
 class dEvt_order_c {
 public:
@@ -22,7 +22,7 @@ public:
     /*  0x12 */ s16 mPriority;
     /*  0x14 */ u8 mNextOrderIdx;
     /*  0x15 */ u8 mEventInfoIdx;
-}; // Size = 0x18
+};  // Size = 0x18
 
 typedef int (*SkipFunc)(void*, int);
 
@@ -60,7 +60,7 @@ public:
     void moveApproval(void*);
     void compulsory(void*, char const*, u16);
     void remove();
-    void* getStageEventDt(); // ret type probably wrong, fix later
+    void* getStageEventDt();  // ret type probably wrong, fix later
     void sceneChange(int);
     u32 getPId(void*);
     void convPId(unsigned int);
@@ -89,7 +89,7 @@ public:
     /* 0x0D8 */ u16 mEventFlag;
     /* 0x0DA */ u16 mFlag2;
     /* 0x0DC */ u16 mHindFlag;
-    /* 0x0DE */ s16 mSpecifiedEvent; // name maybe wrong
+    /* 0x0DE */ s16 mSpecifiedEvent;  // name maybe wrong
     /* 0x0E0 */ s16 field_0xe0;
     /* 0x0E2 */ u8 mNum;
     /* 0x0E3 */ u8 field_0xe3;
@@ -118,6 +118,6 @@ public:
     /* 0x128 */ u8 mCompulsory;
     /* 0x129 */ bool field_0x129;
     /* 0x12C */ int field_0x12c;
-}; // Size = 0x130
+};  // Size = 0x130
 
 #endif /* D_EVENT_D_EVENT_H */

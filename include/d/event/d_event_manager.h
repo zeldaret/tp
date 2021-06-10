@@ -6,9 +6,7 @@
 
 class dEvent_exception_c {
 public:
-    dEvent_exception_c() {
-        mEventInfoIdx = -1;
-    }
+    dEvent_exception_c() { mEventInfoIdx = -1; }
     void init();
     void setStartDemo(int);
     void getEventName();

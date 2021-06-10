@@ -83,7 +83,7 @@ public:
 
 private:
     u32 mFlags[320];
-}; // Size = 0x500
+};  // Size = 0x500
 
 #pragma pack(push, 1)
 class dEvDtBase_c {
@@ -109,7 +109,7 @@ private:
     /* 0x18 */ s32* mIDataP;
     /* 0x1C */ char* mSDataP;
     /* 0x20 */ s32 mRoomNo;
-}; // Size = 0x24
+};  // Size = 0x24
 #pragma pack(pop)
 
 #endif /* D_EVENT_D_EVENT_DATA_H */

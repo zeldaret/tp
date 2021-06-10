@@ -1,18 +1,13 @@
 #ifndef M_DO_M_DO_CONTROLLER_PAD_H
 #define M_DO_M_DO_CONTROLLER_PAD_H
 
-#include "dolphin/types.h"
-#include "SSystem/SComponent/c_API_controller_pad.h"
 #include "JSystem/JUtility/JUTGamePad.h"
+#include "SSystem/SComponent/c_API_controller_pad.h"
+#include "dolphin/types.h"
 
 class mDoCPd_c {
 public:
-    enum {
-        PAD_0,
-        PAD_1,
-        PAD_2,
-        PAD_3
-    };
+    enum { PAD_0, PAD_1, PAD_2, PAD_3 };
 
     void create();
     void read();

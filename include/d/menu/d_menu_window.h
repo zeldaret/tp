@@ -1,9 +1,9 @@
 #ifndef D_MENU_D_MENU_WINDOW_H
 #define D_MENU_D_MENU_WINDOW_H
 
+#include "d/meter/d_meter2_info.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_controller_pad.h"
-#include "d/meter/d_meter2_info.h"
 
 struct STControl;
 struct CSTControl;
