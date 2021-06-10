@@ -1105,14 +1105,9 @@ void cCcD_Stts::ClrAt() {
 }
 
 /* 802649EC-802649F8 25F32C 000C+00 1/0 0/0 0/0 .text            ClrTg__9cCcD_SttsFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcD_Stts::ClrTg() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_d/ClrTg__9cCcD_SttsFv.s"
+void cCcD_Stts::ClrTg() {
+    mTg = 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80430CA8-80430CB4 05D9C8 000C+00 1/1 0/0 0/0 .bss             @2414 */
