@@ -526,6 +526,7 @@ void fopAcM_Log(fopAc_ac_c const* param_0, char const* param_1) {
 /* 80019C7C-80019CB8 0145BC 003C+00 0/0 10/10 483/483 .text            fopAcM_delete__FP10fopAc_ac_c
  */
 void fopAcM_delete(fopAc_ac_c* pActor) {
+    // "Deleting Actor"
     fopAcM_Log(pActor, "アクターの削除");
     fpcM_Delete(pActor);
 }
@@ -538,6 +539,7 @@ s32 fopAcM_delete(unsigned int pID) {
     // original moves r3 -> r0, then r0 -> r31 for 0 check
     // this generates r3 -> r31 with 0 check directly
     if (searchResult != NULL) {
+        // "Deleting Actor"
         fopAcM_Log(actor, "アクターの削除");
         return fpcM_Delete(searchResult);
     } else {
@@ -673,10 +675,11 @@ SECTION_DEAD static char const* const stringBase_8037890A = "アクターのヒ�
 /* 8001A138-8001A188 014A78 0050+00 0/0 1/1 1/1 .text            fopAcM_DeleteHeap__FP10fopAc_ac_c
  */
 void fopAcM_DeleteHeap(fopAc_ac_c* pActor) {
+    // "Destroying actor's heap"
     fopAcM_Log(pActor, "アクターのヒープの破壊");
-    if (pActor->unk_0x0F0 != NULL) {
-        mDoExt_destroySolidHeap(pActor->unk_0x0F0);
-        pActor->unk_0x0F0 = NULL;
+    if (pActor->mHeap != NULL) {
+        mDoExt_destroySolidHeap(pActor->mHeap);
+        pActor->mHeap = NULL;
     }
 }
 
@@ -709,12 +712,14 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* pActor, heapCallbackFunc pHeapCallback, 
             if (heap00 != NULL) {
                 bool status = fopAcM_callCallback(pActor, pHeapCallback, heap00) != 0;
                 if (!status) {
+                    // "Entry for estimated heap size(%08x) failed. %08x[%s]\n"
                     OSReport_Error("見積もりヒープサイズ(%08x)で登録失敗しました。%08x[%s]\n",
                                    pSize, heap00->getFreeSize(), procNameString);
                     mDoExt_destroySolidHeap(heap00);
                     heap00 = NULL;
                 }
             } else {
+                // "Could not allocate estimated heap. %08x [%s]\n"
                 OSReport_Error("見積もりヒープが確保できませんでした。 %08x [%s]\n", pSize,
                                procNameString);
             }
@@ -722,11 +727,13 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* pActor, heapCallbackFunc pHeapCallback, 
         if (heap00 == NULL) {
             heap00 = mDoExt_createSolidHeapFromGame(0xFFFFFFFF, 0x20);
             if (heap00 == NULL) {
+                // "Failed to allocate maximum heap size. [%s]\n"
                 OSReport_Error("最大空きヒープサイズで確保失敗。[%s]\n", procNameString);
                 return false;
             }
             bool status = fopAcM_callCallback(pActor, pHeapCallback, heap00) != 0;
             if (!status) {
+                // "Entry failed for maximum heap size. %08x[%s]\n"
                 OSReport_Error("最大空きヒープサイズで登録失敗。%08x[%s]\n", heap00->getFreeSize(),
                                procNameString);
                 mDoExt_destroySolidHeap(heap00);
@@ -738,7 +745,7 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* pActor, heapCallbackFunc pHeapCallback, 
         }
         if (lbl_80450CC8 == 0) {
             mDoExt_adjustSolidHeap(heap00);
-            pActor->unk_0x0F0 = heap00;
+            pActor->mHeap = heap00;
             return true;
         } else {
             JKRSolidHeap* heap = NULL;
@@ -753,6 +760,7 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* pActor, heapCallbackFunc pHeapCallback, 
                     heap00 = NULL;
                     bool status = fopAcM_callCallback(pActor, pHeapCallback, heap) != 0;
                     if (!status) {
+                        // "Entry fails at exact size? (Bug)\n"
                         OSReport_Error("ぴったりサイズで、登録失敗？(バグ)\n");
                         mDoExt_destroySolidHeap(heap);
                         heap = NULL;
@@ -764,19 +772,20 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* pActor, heapCallbackFunc pHeapCallback, 
             }
             if (heap != NULL) {
                 mDoExt_adjustSolidHeap(heap);
-                pActor->unk_0x0F0 = heap;
+                pActor->mHeap = heap;
                 return true;
             }
             if (heap00 != NULL) {
                 mDoExt_adjustSolidHeap(heap00);
-                pActor->unk_0x0F0 = heap00;
+                pActor->mHeap = heap00;
                 return true;
             }
-            OSReport_Error("ばぐばぐです\n");
-            OSReport_Error("緊急回避措置\n");
+            OSReport_Error("ばぐばぐです\n");  // "There's a big bug\n"
+            OSReport_Error("緊急回避措置\n");  // "Emergency action\n"
             lbl_80450CC8 = 0;
         }
     }
+    // "fopAcM_entrySolidHeap didn't work [%s]\n"
     OSReport_Error("fopAcM_entrySolidHeap だめでした [%s]\n", procNameString);
     return false;
 }
