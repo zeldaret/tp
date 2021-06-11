@@ -209,6 +209,35 @@ extern "C" extern u8 data_80450CC0[4 + 4 /* padding */];
 //
 
 /* 802B6840-802B68B0 2B1180 0070+00 0/0 1/1 0/0 .text            __ct__10Z2SceneMgrFv */
+// Missing 2 instructions (beginning and end)
+#ifdef NONMATCHING
+Z2SceneMgr::Z2SceneMgr(void) {
+    lbl_80450B80 = this;
+    sceneNum = -1;
+    timer = -1;
+    BGM_ID = -1;
+    roomNum = -1;
+    SeWave_1 = 0;
+    SeWaveToErase_1 = 0;
+    SeWave_2 = 0;
+    SeWaveToErase_2 = 0;
+    BgmWave_1 = 0;
+    BgmWaveToErase_1 = 0;
+    BgmWave_2 = 0;
+    BgmWaveToErase_2 = 0;
+    SeWave_3 = 0;
+    SeWaveToErase_3 = 0;
+    field_0x18 = 0;
+    field_0x19 = 0;
+    field_0x1a = 0;
+    field_0x1b = 0;
+    sceneExist = 0;
+    inGame = 0;
+    inDarkness = false;
+    field_0x17 = 0;
+    return;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -217,6 +246,7 @@ asm Z2SceneMgr::Z2SceneMgr() {
 #include "asm/Z2AudioLib/Z2SceneMgr/__ct__10Z2SceneMgrFv.s"
 }
 #pragma pop
+#endif
 
 /* 802B68B0-802B68E0 2B11F0 0030+00 0/0 1/1 0/0 .text            setInDarkness__10Z2SceneMgrFb */
 #pragma push
@@ -241,6 +271,29 @@ SECTION_SDATA2 static u8 lit_3511[4] = {
 SECTION_SDATA2 static f32 lit_3512 = 1.0f;
 
 /* 802B68E0-802B697C 2B1220 009C+00 3/3 2/2 2/2 .text            setSceneExist__10Z2SceneMgrFb */
+#ifdef NONMATCHING
+void Z2SceneMgr::setSceneExist(bool param_1) {
+    Z2SoundMgr* Z2soundMgrPtr;
+    sceneExist = param_1;
+    timer = 0;
+    Z2soundMgrPtr = lbl_80450B60;
+    if (param_1 == false) {
+        Z2soundMgrPtr->JAISoundParamsMove->moveVolume(FLOAT_LABEL(lit_3511), 0xb4);
+    } else {
+        inGame = 1;
+        if (SeWave_3 == 0x85) {
+            Z2soundMgrPtr->JAISoundParamsMove->moveVolume(FLOAT_LABEL(lit_3511), 0);
+        } else {
+            if (SeWave_3 == 0x7f) {
+                lbl_80450B88->seMoveVolumeAll(FLOAT_LABEL(lit_3511), 0);
+            } else {
+                Z2soundMgrPtr->JAISoundParamsMove->moveVolume(lit_3512, 0x21);
+            }
+        }
+    }
+    return;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -249,6 +302,7 @@ asm void Z2SceneMgr::setSceneExist(bool param_0) {
 #include "asm/Z2AudioLib/Z2SceneMgr/setSceneExist__10Z2SceneMgrFb.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80455A40-80455A48 004040 0004+04 1/1 0/0 0/0 .sdata2          @3529 */
@@ -690,18 +744,18 @@ asm void Z2SceneMgr::setSceneName(char* param_0, s32 param_1, s32 param_2) {
 }
 #pragma pop
 
-/* 802B995C-802B9968 2B429C 000C+00 1/1 0/0 0/0 .text            __ct__10JAISoundIDFRC10JAISoundID
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JAISoundID::JAISoundID(JAISoundID const& param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SceneMgr/__ct__10JAISoundIDFRC10JAISoundID.s"
+//! @meme this looks to be non-inlined here because @ref setSceneName is too large
+JAISoundID::JAISoundID(JAISoundID const& soundIdToSet) {
+    mId = soundIdToSet.mId;
 }
-#pragma pop
 
 /* 802B9968-802B9978 2B42A8 0010+00 1/1 0/0 0/0 .text            setFieldBgmPlay__8Z2SeqMgrFb */
+// 1 Instruction off
+#ifdef NONMATCHING
+void Z2SeqMgr::setFieldBgmPlay(bool param_1) {
+    unk_1 = (param_1 & 1U) << 2 | unk_1 & 0xfb;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -710,6 +764,7 @@ asm void Z2SeqMgr::setFieldBgmPlay(bool param_0) {
 #include "asm/Z2AudioLib/Z2SceneMgr/setFieldBgmPlay__8Z2SeqMgrFb.s"
 }
 #pragma pop
+#endif
 
 /* 802B9978-802B9988 2B42B8 0010+00 1/1 0/0 0/0 .text            isActive__12JAIStreamMgrCFv */
 #pragma push

@@ -15,23 +15,6 @@ struct Z2SpeechMgr2 {
     /* 802CCF88 */ void isMidnaSpeak();
 };
 
-struct Z2CreatureEnemy {
-    /* 802C0F64 */ Z2CreatureEnemy();
-    /* 802C0FC4 */ void deleteObject();
-    /* 802C1094 */ void init(Vec*, Vec*, u8, u8);
-    /* 802C10B4 */ void init(Vec*, Vec*, Vec*, u8, u8, u8);
-    /* 802C10D4 */ void framework(u32, s8);
-    /* 802C110C */ void startCreatureSound(JAISoundID, u32, s8);
-    /* 802C136C */ void startCreatureSoundLevel(JAISoundID, u32, s8);
-    /* 802C168C */ void startCreatureVoice(JAISoundID, s8);
-    /* 802C1948 */ void startCreatureVoiceLevel(JAISoundID, s8);
-    /* 802C199C */ void startCreatureExtraSound(JAISoundID, u32, s8);
-    /* 802C19D8 */ void startCreatureExtraSoundLevel(JAISoundID, u32, s8);
-    /* 802C1A14 */ void startCollisionSE(u32, u32);
-    /* 802C1B7C */ void setLinkSearch(bool);
-    /* 802C1B90 */ void setEnemyName(char const*);
-};
-
 struct Z2SoundObjMgr {
     /* 802C0074 */ void getEnemyID(char const*, JSULink<Z2CreatureEnemy>*);
     /* 802C0190 */ void removeEnemy(JSULink<Z2CreatureEnemy>*);

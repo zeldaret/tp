@@ -19,7 +19,7 @@ struct Z2MultiSeMgr {
     /* 0x0C */ float mMaxPowR;
     /* 0x10 */ float mMaxPowB;
     /* 0x14 */ float mMaxPowF;
-    /* 0x18 */ u8 mPosCount;
+    /* 0x18 */ s8 mPosCount;
 };  // Size = 0x1C
 
 struct Z2MultiSeObj : Z2MultiSeMgr {
@@ -60,7 +60,7 @@ private:
     /* 0x1D0 */ u8 mLevelObjectSeCount;
     /* 0x1D4 */ Z2MultiSeObj mMultiTriggerSe[10];
     /* 0x33C */ u8 mMultiTriggerSeCount;
-    /* 0x33D */ u8 field_0x33d[0x64];
+    /* 0x33D */ u8 field_0x33d[0x60];
     /* 0x3A0 */ u32 mModY[8];
     /* 0x3C0 */ u8 field_0x3c0;
     /* 0x3C1 */ u8 field_0x3c1;

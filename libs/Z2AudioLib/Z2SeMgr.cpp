@@ -193,7 +193,7 @@ extern "C" extern u8 data_80450B74[4];
 extern "C" extern u8 data_80450B7C[4];
 extern "C" extern u8 data_80450B80[4];
 extern "C" extern u8 data_80450B84[4];
-extern "C" extern u8 data_80450B88[4];
+extern "C" extern Z2SeMgr* data_80450B88;  // JASGlobalInstance<Z2SeMgr>::sInstance
 extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 
 //
@@ -201,6 +201,23 @@ extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 //
 
 /* 802AB64C-802AB710 2A5F8C 00C4+00 0/0 1/1 0/0 .text            __ct__7Z2SeMgrFv */
+// almost matches, JASGlobalInstance stuff needs to be setup properly
+#ifdef NONMATCHING
+Z2SeMgr::Z2SeMgr() : field_0x60(&mSoundHandle[0], 0x18) {
+    // data_80450B88 = this;
+    field_0x3c0 = 0;
+    field_0x3c1 = 0;
+    field_0x3c2 = 0;
+    field_0x3c3 = 0;
+    field_0x3c4 = 0;
+    field_0x3c5 = 0;
+
+    field_0x3c9 = 0;
+    field_0x3ca = 0;
+    field_0x3cb = 0;
+    mCrowdSize = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -209,18 +226,32 @@ asm Z2SeMgr::Z2SeMgr() {
 #include "asm/Z2AudioLib/Z2SeMgr/__ct__7Z2SeMgrFv.s"
 }
 #pragma pop
+#endif
 
-/* 802AB710-802AB750 2A6050 0040+00 1/1 0/0 0/0 .text            __ct__12Z2MultiSeObjFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm Z2MultiSeObj::Z2MultiSeObj() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SeMgr/__ct__12Z2MultiSeObjFv.s"
+Z2MultiSeObj::Z2MultiSeObj() {
+    field_0x1c = 0xffffffff;
+    field_0x20 = 0;
 }
-#pragma pop
 
 /* 802AB750-802AB80C 2A6090 00BC+00 0/0 1/1 0/0 .text            initSe__7Z2SeMgrFv */
+#ifdef NONMATCHING
+void Z2SeMgr::initSe() {
+    for (int i = 0; i < 10; i++) {
+        mLevelObjSe[i].resetMultiSePos();
+        mLevelObjSe[i].field_0x1c = 0xffffffff;
+        mLevelObjSe[i].field_0x20 = 0;
+    }
+    mLevelObjectSeCount = 0;
+
+    for (int i = 0; i < 10; i++) {
+        mMultiTriggerSe[i].resetMultiSePos();
+        mMultiTriggerSe[i].field_0x1c = 0xffffffff;
+        mMultiTriggerSe[i].field_0x20 = 0;
+    }
+    mMultiTriggerSeCount = 0;
+    resetModY();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -229,16 +260,13 @@ asm void Z2SeMgr::initSe() {
 #include "asm/Z2AudioLib/Z2SeMgr/initSe__7Z2SeMgrFv.s"
 }
 #pragma pop
+#endif
 
-/* 802AB80C-802AB830 2A614C 0024+00 1/1 1/1 0/0 .text            resetModY__7Z2SeMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2SeMgr::resetModY() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SeMgr/resetModY__7Z2SeMgrFv.s"
+void Z2SeMgr::resetModY() {
+    for (int i = 0; i < 8; i++) {
+        mModY[i] = 0;
+    }
 }
-#pragma pop
 
 /* 802AB830-802AB93C 2A6170 010C+00 1/1 0/0 0/0 .text            modHeightAtCamera__7Z2SeMgrFPPC3Vec
  */
@@ -251,25 +279,21 @@ asm void Z2SeMgr::modHeightAtCamera(Vec const** param_0) {
 }
 #pragma pop
 
-/* 802AB93C-802AB960 2A627C 0024+00 0/0 1/1 0/0 .text            incrCrowdSize__7Z2SeMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2SeMgr::incrCrowdSize() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SeMgr/incrCrowdSize__7Z2SeMgrFv.s"
-}
-#pragma pop
+void Z2SeMgr::incrCrowdSize() {
+    mCrowdSize++;
 
-/* 802AB960-802AB984 2A62A0 0024+00 0/0 3/3 0/0 .text            decrCrowdSize__7Z2SeMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2SeMgr::decrCrowdSize() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SeMgr/decrCrowdSize__7Z2SeMgrFv.s"
+    if (mCrowdSize > 100)
+        mCrowdSize = 100;
 }
-#pragma pop
+
+void Z2SeMgr::decrCrowdSize() {
+    mCrowdSize--;
+
+    //! @bug probably copypasta from incrCrowdSize(), but semantically it's still correct:
+    //! mCrowdSize is a u8, so an underflow would result in mCrowdSize > 100, triggering the clamp.
+    if (mCrowdSize > 100)
+        mCrowdSize = 0;
+}
 
 /* ############################################################################################## */
 /* 80455870-80455874 003E70 0004+00 1/1 0/0 0/0 .sdata2          @4038 */
@@ -655,25 +679,11 @@ asm void Z2SeMgr::isSoundCulling(JAISoundID param_0) {
 }
 #pragma pop
 
-/* 802AEB04-802AEB34 2A9444 0030+00 1/1 1/1 0/0 .text            __ct__12Z2MultiSeMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm Z2MultiSeMgr::Z2MultiSeMgr() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SeMgr/__ct__12Z2MultiSeMgrFv.s"
+Z2MultiSeMgr::Z2MultiSeMgr() {
+    resetMultiSePos();
 }
-#pragma pop
 
-/* 802AEB34-802AEB70 2A9474 003C+00 0/0 2/2 0/0 .text            __dt__12Z2MultiSeMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm Z2MultiSeMgr::~Z2MultiSeMgr() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SeMgr/__dt__12Z2MultiSeMgrFv.s"
-}
-#pragma pop
+Z2MultiSeMgr::~Z2MultiSeMgr() {}
 
 /* 802AEB70-802AECBC 2A94B0 014C+00 2/2 6/6 0/0 .text registMultiSePos__12Z2MultiSeMgrFP3Vec */
 #pragma push
@@ -685,16 +695,15 @@ asm void Z2MultiSeMgr::registMultiSePos(Vec* param_0) {
 }
 #pragma pop
 
-/* 802AECBC-802AECE0 2A95FC 0024+00 3/3 6/6 0/0 .text            resetMultiSePos__12Z2MultiSeMgrFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2MultiSeMgr::resetMultiSePos() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SeMgr/resetMultiSePos__12Z2MultiSeMgrFv.s"
+void Z2MultiSeMgr::resetMultiSePos(void) {
+    mPosCount = -1;
+    f32 _0 = FLOAT_LABEL(lit_4040);
+    mMaxPowL = _0;
+    mMaxPowR = _0;
+    mMaxPowB = _0;
+    mMaxPowF = _0;
+    mMaxVolume = _0;
 }
-#pragma pop
 
 /* 802AECE0-802AEDC0 2A9620 00E0+00 1/1 8/8 0/0 .text            getPanPower__12Z2MultiSeMgrFv */
 #pragma push

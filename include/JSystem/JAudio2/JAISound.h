@@ -11,7 +11,6 @@ public:
     void operator=(JAISoundID const&);
 
     JAISoundID(u32 pId);
-    // JAISoundID(u32 pId) : mId(pId) {}
 
     JAISoundID(JAISoundID const& other);
 
@@ -65,7 +64,6 @@ public:
     /* 802A29DC */ void initTrack_JAISound_(JASTrack*);
 
     JAISoundID getID() const;
-    // JAISoundID getID() const { return JAISoundID((u32)this->sound_id); }
     u32 getUserData() const { return user_data; }
 
     // TODO: do proper struct later

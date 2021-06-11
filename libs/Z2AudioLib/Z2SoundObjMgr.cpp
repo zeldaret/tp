@@ -4,6 +4,7 @@
 //
 
 #include "Z2AudioLib/Z2SoundObjMgr.h"
+#include "Z2AudioLib/Z2SeqMgr.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -11,51 +12,10 @@
 // Types:
 //
 
-template <typename A0>
-struct JSULink {};
-/* JSULink<Z2CreatureEnemy> */
-struct JSULink__template2 {};
-
-struct Z2CreatureEnemy {};
-
-struct Z2SoundObjMgr {
-    /* 802BF920 */ Z2SoundObjMgr();
-    /* 802BF980 */ void setForceBattleArea(bool, u16, u16, u16);
-    /* 802BF994 */ void searchEnemy();
-    /* 802BFFEC */ void setGhostEnemyState(u8);
-    /* 802C0074 */ void getEnemyID(char const*, JSULink<Z2CreatureEnemy>*);
-    /* 802C0100 */ void setBattleInit();
-    /* 802C0120 */ void checkBattleFinish();
-    /* 802C013C */ void deleteEnemyAll();
-    /* 802C0190 */ void removeEnemy(JSULink<Z2CreatureEnemy>*);
-    /* 802C01E4 */ void isTwilightBattle();
-};
-
-struct Z2SeqMgr {
-    /* 802AFF8C */ void changeBgmStatus(s32);
-    /* 802B1DF4 */ void changeSubBgmStatus(s32);
-    /* 802B421C */ void setBattleSearched(bool);
-    /* 802B43E0 */ void setBattleGhostMute(bool);
-    /* 802B4498 */ void setBattleDistState(u8);
-    /* 802B5204 */ void stopBattleBgm(u8, u8);
-};
-
-struct Z2CreatureLink {
-    static u8 mLinkPtr[4 + 4 /* padding */];
-};
-
 struct Z2Calc {
     struct CurveSign {};
 
     /* 802A96F4 */ void getParamByExp(f32, f32, f32, f32, f32, f32, Z2Calc::CurveSign);
-};
-
-struct JSUPtrLink {};
-
-struct JSUPtrList {
-    /* 802DBF14 */ void initiate();
-    /* 802DBF4C */ void append(JSUPtrLink*);
-    /* 802DC15C */ void remove(JSUPtrLink*);
 };
 
 //
@@ -88,8 +48,6 @@ extern "C" void stopBattleBgm__8Z2SeqMgrFUcUc();
 extern "C" void initiate__10JSUPtrListFv();
 extern "C" void append__10JSUPtrListFP10JSUPtrLink();
 extern "C" void remove__10JSUPtrListFP10JSUPtrLink();
-extern "C" void PSVECSubtract();
-extern "C" void PSVECMag();
 extern "C" void _savegpr_23();
 extern "C" void _savegpr_27();
 extern "C" void _restgpr_23();
@@ -97,7 +55,7 @@ extern "C" void _restgpr_27();
 extern "C" void strcmp();
 extern "C" extern u8 data_80450B48[4];
 extern "C" extern u8 data_80450B80[4];
-extern "C" extern u8 data_80450B84[4];
+extern "C" extern Z2SeqMgr* data_80450B84;
 extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 
 //
@@ -105,6 +63,16 @@ extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 //
 
 /* 802BF920-802BF980 2BA260 0060+00 0/0 1/1 0/0 .text            __ct__13Z2SoundObjMgrFv */
+#ifdef NONMATCHING
+// order wrong because this needs to inherit from JASGlobalInstance<T>
+Z2SoundObjMgr::Z2SoundObjMgr() {
+    data_80450B84 = this;
+    mGhostEnemyState = 0;
+    mIsTwilightBattle = false;
+    setBattleInit();
+    setForceBattleArea(false, 700, 1100, 1500);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -113,6 +81,7 @@ asm Z2SoundObjMgr::Z2SoundObjMgr() {
 #include "asm/Z2AudioLib/Z2SoundObjMgr/__ct__13Z2SoundObjMgrFv.s"
 }
 #pragma pop
+#endif
 
 /* 802BF980-802BF994 2BA2C0 0014+00 1/1 3/3 3/3 .text setForceBattleArea__13Z2SoundObjMgrFbUsUsUs
  */
@@ -346,15 +315,20 @@ asm void Z2SoundObjMgr::searchEnemy() {
 }
 #pragma pop
 
-/* 802BFFEC-802C0074 2BA92C 0088+00 1/1 2/2 0/0 .text setGhostEnemyState__13Z2SoundObjMgrFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2SoundObjMgr::setGhostEnemyState(u8 param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundObjMgr/setGhostEnemyState__13Z2SoundObjMgrFUc.s"
+void Z2SoundObjMgr::setGhostEnemyState(u8 p1) {
+    if (p1 == 0x20) {
+        if (field_0x1a >= field_0x16) {
+            data_80450B84->setBattleGhostMute(true);
+        }
+    } else {
+        if (field_0x1a == false) {
+            mGhostEnemyState = 0;
+            return;
+        }
+    }
+
+    mGhostEnemyState = p1 + (mGhostEnemyState & 1);
 }
-#pragma pop
 
 /* 802C0074-802C0100 2BA9B4 008C+00 0/0 1/1 0/0 .text
  * getEnemyID__13Z2SoundObjMgrFPCcP26JSULink<15Z2CreatureEnemy> */
@@ -389,14 +363,22 @@ asm void Z2SoundObjMgr::checkBattleFinish() {
 
 /* 802C013C-802C0190 2BAA7C 0054+00 0/0 1/1 0/0 .text            deleteEnemyAll__13Z2SoundObjMgrFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2SoundObjMgr::deleteEnemyAll() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundObjMgr/deleteEnemyAll__13Z2SoundObjMgrFv.s"
+void Z2SoundObjMgr::deleteEnemyAll() {
+    JSULink<Z2CreatureEnemy>* link;
+
+    // not moving the link pointer forward looks like a bug, but deleteObject() actually unlinks the
+    // enemy from its owning list
+    while (link = this->getFirst(), link != NULL) {
+        Z2CreatureEnemy* enemy = link->getObject();
+        if (enemy == NULL) {
+            // setWarningMessage_f((JUTAssertion *)0x1,(ulong)"Z2SoundObjMgr.cpp",(char
+            // *)0x16f,(int)&*fill*,
+            //                     "[Z2SoundObjMgr::searchEnemy] remain remove enemy\n",in_r8);
+        } else {
+            enemy->deleteObject();
+        }
+    }
 }
-#pragma pop
 
 /* 802C0190-802C01E4 2BAAD0 0054+00 0/0 2/2 0/0 .text
  * removeEnemy__13Z2SoundObjMgrFP26JSULink<15Z2CreatureEnemy>   */
@@ -414,7 +396,7 @@ asm void Z2SoundObjMgr::removeEnemy(JSULink<Z2CreatureEnemy>* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2SoundObjMgr::isTwilightBattle() {
+asm bool Z2SoundObjMgr::isTwilightBattle() {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundObjMgr/isTwilightBattle__13Z2SoundObjMgrFv.s"
 }

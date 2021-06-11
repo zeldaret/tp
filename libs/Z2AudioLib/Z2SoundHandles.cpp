@@ -71,29 +71,22 @@ extern "C" extern u8 data_80451348[8];
 // Declarations:
 //
 
-/* 802AB07C-802AB0B4 2A59BC 0038+00 0/0 1/1 0/0 .text            __ct__14Z2SoundHandlesFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm Z2SoundHandles::Z2SoundHandles() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundHandles/__ct__14Z2SoundHandlesFv.s"
-}
-#pragma pop
+inline JAISoundID::JAISoundID(u32 pId) : mId(pId) {}
 
-/* 802AB0B4-802AB118 2A59F4 0064+00 0/0 1/1 0/0 .text            __dt__14Z2SoundHandlesFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm Z2SoundHandles::~Z2SoundHandles() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundHandles/__dt__14Z2SoundHandlesFv.s"
+inline JAISoundID JAISound::getID() const {
+    return JAISoundID((u32)sound_id);
 }
-#pragma pop
 
-/* 802AB118-802AB120 -00001 0008+00 0/0 0/0 0/0 .text initHandlesPool__14Z2SoundHandlesFUc */
-void Z2SoundHandles::initHandlesPool(u8 param_0) {
-    *(u8*)(((u8*)this) + 12) /* this->field_0xc */ = (u8)(param_0);
+Z2SoundHandles::Z2SoundHandles() {
+    mNumHandles = 0;
+}
+
+Z2SoundHandles::~Z2SoundHandles() {
+    deleteHandlesPool();
+}
+
+void Z2SoundHandles::initHandlesPool(u8 pNumHandles) {
+    mNumHandles = pNumHandles;
 }
 
 /* ############################################################################################## */
@@ -125,26 +118,33 @@ extern "C" asm void func_802AB200(void* _this) {
 }
 #pragma pop
 
-/* 802AB254-802AB2A0 2A5B94 004C+00 0/0 6/6 0/0 .text
- * getHandleSoundID__14Z2SoundHandlesF10JAISoundID              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JAISoundHandle* Z2SoundHandles::getHandleSoundID(JAISoundID param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundHandles/getHandleSoundID__14Z2SoundHandlesF10JAISoundID.s"
-}
-#pragma pop
+JAISoundHandle* Z2SoundHandles::getHandleSoundID(JAISoundID pSoundId) {
+    JSULink<Z2SoundHandlePool>* link;
+    for (link = getFirst(); link != NULL; link = link->getNext()) {
+        JAISoundHandle* handle = link->getObject();
+        if (handle->isSoundAttached()) {
+            if ((*handle)->getID() == pSoundId) {
+                return handle;
+            }
+        }
+    }
 
-/* 802AB2A0-802AB2D8 2A5BE0 0038+00 0/0 1/1 0/0 .text getHandleUserData__14Z2SoundHandlesFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JAISoundHandle* Z2SoundHandles::getHandleUserData(u32 param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundHandles/getHandleUserData__14Z2SoundHandlesFUl.s"
+    return NULL;
 }
-#pragma pop
+
+JAISoundHandle* Z2SoundHandles::getHandleUserData(u32 pUserData) {
+    JSULink<Z2SoundHandlePool>* link;
+    for (link = getFirst(); link != NULL; link = link->getNext()) {
+        JAISoundHandle* handle = link->getObject();
+        if (handle->isSoundAttached()) {
+            if ((*handle)->getUserData() == pUserData) {
+                return handle;
+            }
+        }
+    }
+
+    return NULL;
+}
 
 /* 802AB2D8-802AB3D0 2A5C18 00F8+00 0/0 3/3 0/0 .text            getFreeHandle__14Z2SoundHandlesFv
  */
@@ -168,26 +168,29 @@ asm void Z2SoundHandles::getLowPrioSound(JAISoundID param_0) {
 }
 #pragma pop
 
-/* 802AB4A0-802AB504 2A5DE0 0064+00 0/0 1/1 0/0 .text            stopAllSounds__14Z2SoundHandlesFUl
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2SoundHandles::stopAllSounds(u32 param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundHandles/stopAllSounds__14Z2SoundHandlesFUl.s"
+void Z2SoundHandles::stopAllSounds(u32 fadeout) {
+    JSULink<Z2SoundHandlePool>* link;
+    for (link = getFirst(); link != NULL; link = link->getNext()) {
+        JAISoundHandle* handle = link->getObject();
+        //! @meme: explicit operator bool call required to match and be similar
+        //!        to CHN_debug; could more concisely write handle->isSoundAttached
+        //!        (for some reason cast-to-bool doesn't work?)
+        if (handle && handle->operator bool()) {
+            (*handle)->stop(fadeout);
+        }
+    }
 }
-#pragma pop
 
-/* 802AB504-802AB538 2A5E44 0034+00 0/0 1/1 0/0 .text            isActive__14Z2SoundHandlesCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool Z2SoundHandles::isActive() const {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundHandles/isActive__14Z2SoundHandlesCFv.s"
+bool Z2SoundHandles::isActive() const {
+    JSULink<Z2SoundHandlePool>* link;
+    for (link = getFirst(); link != NULL; link = link->getNext()) {
+        if (link->getObject()->isSoundAttached()) {
+            return true;
+        }
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 802AB538-802AB64C 2A5E78 0114+00 0/0 1/1 0/0 .text
  * setPos__14Z2SoundHandlesFRCQ29JGeometry8TVec3<f>             */

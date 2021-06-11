@@ -116,7 +116,7 @@ extern "C" void _restgpr_29();
 extern "C" extern u32 __float_max;
 extern "C" extern u8 data_80450B4C[4];
 extern "C" extern u8 data_80450B60[4];
-extern "C" extern u8 data_80450B74[4];
+extern "C" extern Z2SoundStarter* data_80450B74;
 extern "C" extern u8 data_80450B88[4];
 
 //
@@ -184,38 +184,35 @@ SECTION_DATA extern void* __vt__14Z2SoundObjBase[8] = {
     (void*)startLevelSound__14Z2SoundObjBaseF10JAISoundIDUlSc,
 };
 
-/* 802BDEF0-802BDF48 2B8830 0058+00 3/3 2/2 0/0 .text            __ct__14Z2SoundObjBaseFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm Z2SoundObjBase::Z2SoundObjBase() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundObject/__ct__14Z2SoundObjBaseFv.s"
+Z2SoundObjBase::Z2SoundObjBase() {
+    //! @note initializer list doesn't work since fields were initialized out of
+    //! structure layout order, indicating original code didn't use initializer list.
+    mSoundPos = NULL;
+    mIsInitialized = false;
+    mSoundStarter = data_80450B74;  // sInstance
+    field_0x1c = 0;
+    field_0x1e = 0;
 }
-#pragma pop
 
-/* 802BDF48-802BDFB0 2B8888 0068+00 1/1 3/3 15/15 .text            __dt__14Z2SoundObjBaseFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm Z2SoundObjBase::~Z2SoundObjBase() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundObject/__dt__14Z2SoundObjBaseFv.s"
+Z2SoundObjBase::~Z2SoundObjBase() {
+    deleteObject();
 }
-#pragma pop
 
-/* 802BDFB0-802BDFF8 2B88F0 0048+00 5/4 2/2 0/0 .text            init__14Z2SoundObjBaseFP3VecUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2SoundObjBase::init(Vec* param_0, u8 param_1) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundObject/init__14Z2SoundObjBaseFP3VecUc.s"
+void Z2SoundObjBase::init(Vec* pSoundPos, u8 pNumHandles) {
+    initHandlesPool(pNumHandles);
+    mSoundPos = pSoundPos;
+    mIsInitialized = true;
 }
-#pragma pop
 
 /* 802BDFF8-802BE038 2B8938 0040+00 1/1 8/8 61/61 .text            deleteObject__14Z2SoundObjBaseFv
  */
+// issue from using temp virtuals i think
+#ifdef NONMATCHING
+void Z2SoundObjBase::deleteObject() {
+    dispose();
+    deleteHandlesPool();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -224,18 +221,37 @@ asm void Z2SoundObjBase::deleteObject() {
 #include "asm/Z2AudioLib/Z2SoundObject/deleteObject__14Z2SoundObjBaseFv.s"
 }
 #pragma pop
+#endif
 
-/* 802BE038-802BE070 2B8978 0038+00 4/1 3/0 0/0 .text            framework__14Z2SoundObjBaseFUlSc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2SoundObjBase::framework(u32 param_0, s8 param_1) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundObject/framework__14Z2SoundObjBaseFUlSc.s"
+void Z2SoundObjBase::framework(u32 p1, s8 p2) {
+    if (mIsInitialized) {
+        field_0x1c = p1;
+        field_0x1e = p2;
+        setPos(*(JGeometry::TVec3<f32>*)mSoundPos);
+    }
 }
-#pragma pop
 
 /* 802BE070-802BE104 2B89B0 0094+00 5/0 3/0 0/0 .text            dispose__14Z2SoundObjBaseFv */
+// sInstance stuff
+#ifdef NONMATCHING
+void Z2SoundObjBase::dispose() {
+    JAISoundHandle* handle;
+    JSULink<Z2SoundHandlePool>* link;
+    for (link = getFirst(); link != NULL; link = link->getNext()) {
+        handle = link->getObject();
+        if (handle != NULL && (bool)*handle) {
+            u32 swBit = lbl_80450B4C->getSwBit((*handle)->getID());
+            if ((swBit & 0x8000) != 0) {
+                handle->releaseSound();
+            } else {
+                (*handle)->stop();
+            }
+        }
+    }
+
+    mIsInitialized = false;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -244,9 +260,17 @@ asm void Z2SoundObjBase::dispose() {
 #include "asm/Z2AudioLib/Z2SoundObject/dispose__14Z2SoundObjBaseFv.s"
 }
 #pragma pop
+#endif
 
 /* 802BE104-802BE144 2B8A44 0040+00 5/0 3/0 0/0 .text
  * stopOK__14Z2SoundObjBaseFR17Z2SoundHandlePool                */
+
+// sInstance stuff
+#ifdef NONMATCHING
+bool Z2SoundObjBase::stopOK(Z2SoundHandlePool& pSoundHandlePool) {
+    return !(lbl_80450B4C->getSwBit(pSoundHandlePool->getID()) & 0x8000);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -255,6 +279,7 @@ asm bool Z2SoundObjBase::stopOK(Z2SoundHandlePool& param_0) {
 #include "asm/Z2AudioLib/Z2SoundObject/stopOK__14Z2SoundObjBaseFR17Z2SoundHandlePool.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80455B38-80455B3C 004138 0004+00 5/5 0/0 0/0 .sdata2          @3559 */
@@ -401,15 +426,9 @@ asm Z2SoundObjSimple::Z2SoundObjSimple() {
 }
 #pragma pop
 
-/* 802BE880-802BE8A0 2B91C0 0020+00 1/0 0/0 0/0 .text            init__16Z2SoundObjSimpleFP3VecUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2SoundObjSimple::init(Vec* param_0, u8 param_1) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundObject/init__16Z2SoundObjSimpleFP3VecUc.s"
+void Z2SoundObjSimple::init(Vec* pSoundPos, u8 pNumHandles) {
+    Z2SoundObjBase::init(pSoundPos, pNumHandles);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80455B50-80455B54 004150 0004+00 4/4 0/0 0/0 .sdata2          @3821 */
