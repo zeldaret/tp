@@ -81,10 +81,6 @@ struct JPAEmitterManager {
     /* 8027E354 */ void clearResourceManager(u8);
 };
 
-struct dKy_tevstr_c {};
-
-struct _GXColor {};
-
 struct dPa_simpleEcallBack {
     /* 8004ADF4 */ dPa_simpleEcallBack();
     /* 8004AE1C */ void executeAfter(JPABaseEmitter*);
@@ -352,14 +348,6 @@ struct J3DMaterialTable {
     /* 8032F880 */ void removeTevRegAnimator(J3DAnmTevRegKey*);
     /* 8032FBC8 */ void entryTexNoAnimator(J3DAnmTexPattern*);
     /* 8032FE70 */ void entryTevRegAnimator(J3DAnmTevRegKey*);
-};
-
-struct J3DLightObj {
-    /* 80018C0C */ J3DLightObj();
-};
-
-struct J3DLightInfo {
-    /* 803256C4 */ void operator=(J3DLightInfo const&);
 };
 
 //

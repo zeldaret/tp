@@ -126,9 +126,6 @@ private:
 
 class daPy_py_c : public fopAc_ac_c {
 public:
-    /* 0x0538 */ u8 field_0x538[0x32];
-    /* 0x056A */ u8 field_0x56a;
-    /* 0x056B */ u8 field_0x56b[5];
     /* 0x0570 */ int mNoResetFlg0;
     /* 0x0574 */ int mNoResetFlg1;
     /* 0x0578 */ int mNoResetFlg2;
@@ -390,7 +387,7 @@ public:
 
     inline bool getSumouCameraMode() const {
         bool sumouCameraMode = false;
-        if (field_0x56a != 0 && field_0x56a < 0x26) {
+        if (field_0x560[0xA] != 0 && field_0x560[0xA] < 0x26) {
             sumouCameraMode = true;
         }
         return sumouCameraMode;

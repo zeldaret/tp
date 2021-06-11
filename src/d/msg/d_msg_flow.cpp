@@ -11,8 +11,6 @@
 // Types:
 //
 
-struct _GXColor {};
-
 struct mDoGph_gInf_c {
     /* 80007FD8 */ void fadeOut(f32, _GXColor&);
 };

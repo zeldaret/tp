@@ -51,11 +51,7 @@ struct daPy_py_c {
 
 struct dPa_levelEcallBack {};
 
-struct dKy_tevstr_c {};
-
 struct cBgS_PolyInfo {};
-
-struct _GXColor {};
 
 struct dPa_control_c {
     struct level_c {
@@ -1673,8 +1669,7 @@ s32 fopAc_IsActor(void*);
 
 /* 8001C9CC-8001CA1C 01730C 0050+00 1/1 0/0 0/0 .text            enemySearchJugge__FPvPv */
 void* enemySearchJugge(void* pActor, void* pData) {
-    if (pActor != NULL && fopAc_IsActor(pActor) &&
-        static_cast<fopAc_ac_c*>(pActor)->unk_0x496 == 2) {
+    if (pActor != NULL && fopAc_IsActor(pActor) && static_cast<fopAc_ac_c*>(pActor)->mGroup == 2) {
         return pActor;
     } else {
         return NULL;
@@ -1922,7 +1917,7 @@ asm void fopAcM_setEffectMtx(fopAc_ac_c const* param_0, J3DModelData const* para
 
 /* 8001D5A4-8001D5EC 017EE4 0048+00 1/1 0/0 0/0 .text fopAcM_getProcNameString__FPC10fopAc_ac_c */
 static const char* fopAcM_getProcNameString(const fopAc_ac_c* pActor) {
-    const char* name = dStage_getName2(pActor->mBase.mBsTypeId, pActor->unk_0x499);
+    const char* name = dStage_getName2(pActor->mBase.mBsTypeId, pActor->mSubtype);
     return name != NULL ? name : "UNKOWN";
 }
 

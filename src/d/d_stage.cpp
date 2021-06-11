@@ -90,14 +90,6 @@ struct JKRExpHeap {
 
 struct JKRAramArchive {};
 
-struct J3DLightObj {
-    /* 80018C0C */ J3DLightObj();
-};
-
-struct J3DLightInfo {
-    /* 803256C4 */ void operator=(J3DLightInfo const&);
-};
-
 struct FuncTable {};
 
 //

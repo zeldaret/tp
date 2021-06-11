@@ -24098,10 +24098,10 @@ asm void daAlink_c::checkPullBehindWall() {
 
 /* 800E8298-800E82B0 0E2BD8 0018+00 3/3 0/0 0/0 .text            offGoatStopGame__9daAlink_cFv */
 void daAlink_c::offGoatStopGame() {
-    if (field_0x56a != 0x2a) {
+    if (field_0x560[0xA] != 0x2a) {
         return;
     } else {
-        field_0x56a = 0;
+        field_0x560[0xA] = 0;
     }
 }
 
@@ -24341,7 +24341,7 @@ asm void daAlink_c::checkSumouVsActor() {
 /* 800EA8D0-800EA908 0E5210 0038+00 5/5 0/0 0/0 .text            cancelSumouMode__9daAlink_cFv */
 void daAlink_c::cancelSumouMode() {
     field_0x2854.clearData();
-    field_0x56a = 0;
+    field_0x560[0xA] = 0;
 }
 
 /* 800EA908-800EA92C 0E5248 0024+00 2/2 0/0 0/0 .text            sumouPunchTrigger__9daAlink_cFv */

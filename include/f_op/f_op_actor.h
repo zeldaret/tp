@@ -3,6 +3,7 @@
 
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
+#include "d/kankyo/d_kankyo.h"
 #include "dolphin/mtx/mtx.h"
 #include "f_pc/f_pc_leaf.h"
 
@@ -52,8 +53,17 @@ struct actor_place {
     cXyz mPosition;
     csXyz mAngle;
     u8 mRoomNo;
-    u8 field_0x13;
 };
+
+struct actor_attention_types {
+    /* 0x00 */ u32 mDistance1;
+    /* 0x04 */ u32 mDistance2;
+    /* 0x08 */ u32 mDistance3;
+    /* 0x0C */ cXyz mPosition;
+    /* 0x18 */ u32 mFlags;
+};  // Size = 0x1C
+
+class dJntCol_c;
 
 class fopAc_ac_c : public leafdraw_class {
 public:
@@ -63,14 +73,15 @@ public:
     /* 0x0EC */ profile_method_class* mSubMtd;
     /* 0x0F0 */ JKRSolidHeap* mHeap;
     /* 0x0F4 */ dEvt_info_c mEvtInfo;
-    /* 0x10C */ u8 unk_0x10c[0x496 - 0x10C];  // dKy_tevstr_c
-    /* 0x496 */ u8 unk_0x496;
-    /* 0x497 */ u8 unk_0x497;
+    /* 0x10C */ dKy_tevstr_c mTevStr;
+    /* 0x494 */ s16 mSetID;
+    /* 0x496 */ u8 mGroup;
+    /* 0x497 */ u8 mCullType;
     /* 0x498 */ u8 mDemoActorId;
-    /* 0x499 */ s8 unk_0x499;
-    /* 0x49C */ u32 field_0x49c;
-    /* 0x4A0 */ u32 field_0x4a0;
-    /* 0x4A4 */ u32 field_0x4a4;
+    /* 0x499 */ s8 mSubtype;
+    /* 0x49C */ u32 mStatus;
+    /* 0x4A0 */ u32 mCondition;
+    /* 0x4A4 */ u32 mParentPcId;
     /* 0x4A8 */ actor_place mOrig;
     /* 0x4BC */ actor_place mNext;
     /* 0x4D0 */ actor_place mCurrent;
@@ -88,18 +99,23 @@ public:
             /* 0x514 */ f32 mRadius;
         } mSphere;
     } mCull;
-    /* 0x520 */ u8 unk_0x520[0xC];
+    /* 0x520 */ float mCullSizeFar;
+    /* 0x524 */ void* field_0x524;  // possibly J3DModel*
+    /* 0x528 */ dJntCol_c* mJntCol;
     /* 0x52C */ f32 mSpeedF;
     /* 0x530 */ f32 mGravity;
     /* 0x534 */ f32 mMaxFallSpeed;
+    /* 0x538 */ cXyz mEyePos;
+    /* 0x544 */ actor_attention_types mAttentionInfo;
+    /* 0x560 */ u8 field_0x560[0x10];  // not 100% sure on this
 
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
+    fopAc_ac_c();
+    ~fopAc_ac_c();
 
-    static u8 stopStatus[4];
+    static u32 stopStatus;
 
     const cXyz& getPosition() const { return mCurrent.mPosition; }
     const csXyz& getAngle() const { return mCurrent.mAngle; }
-};  // Size: unknown
+};  // Size: 0x570?
 
 #endif

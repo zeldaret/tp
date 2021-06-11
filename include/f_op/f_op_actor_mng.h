@@ -77,11 +77,11 @@ inline s16 fopAcM_GetName(fopAc_ac_c* pActor) {
 }
 
 inline u32 fopAcM_checkStatus(fopAc_ac_c* pActor, u32 status) {
-    return pActor->field_0x49c & status;
+    return pActor->mStatus & status;
 }
 
 inline u32 fopAcM_checkCarryNow(fopAc_ac_c* pActor) {
-    return pActor->field_0x49c & 0x2000;
+    return pActor->mStatus & 0x2000;
 }
 
 inline u32 fopAcM_checkHookCarryNow(fopAc_ac_c* pActor) {
