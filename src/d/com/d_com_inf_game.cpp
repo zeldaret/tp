@@ -2157,7 +2157,8 @@ asm dCcS::~dCcS() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcMassS_Obj::~dCcMassS_Obj() {
+// asm dCcMassS_Obj::~dCcMassS_Obj() {
+extern "C" asm void __dt__12dCcMassS_ObjFv() {
     nofralloc
 #include "asm/d/com/d_com_inf_game/__dt__12dCcMassS_ObjFv.s"
 }
@@ -2354,7 +2355,8 @@ asm mDoExt_bckAnm::mDoExt_bckAnm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcMassS_Mng::~dCcMassS_Mng() {
+// asm dCcMassS_Mng::~dCcMassS_Mng() {
+extern "C" asm void __dt__12dCcMassS_MngFv() {
     nofralloc
 #include "asm/d/com/d_com_inf_game/__dt__12dCcMassS_MngFv.s"
 }

@@ -16,9 +16,9 @@ class cM3dGSph;
 class cM3dGCyl : public cM3dGCylS {
     /* 0x14 vtable */
 public:
+    cM3dGCyl() {}
     cM3dGCyl(const cXyz*, f32, f32);
-    virtual void test();  // temp to build OK, remove later
-    virtual ~cM3dGCyl();
+    virtual ~cM3dGCyl() {}
     void Set(const cM3dGCylS&);
     void Set(const cXyz&, f32, f32);
     void SetC(const cXyz&);

@@ -18,7 +18,6 @@ public:
     /* 0x0C */ f32 mRadius;
     /* 0x10 vtable */
 
-    virtual void test();  // temp to build OK, remove later
     virtual ~cM3dGSph();
     void SetC(const cXyz&);
     void Set(const cXyz&, f32);
