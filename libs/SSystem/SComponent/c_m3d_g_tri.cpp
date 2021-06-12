@@ -23,7 +23,7 @@ void cM3dGTri::setPos(const Vec* pA, const Vec* pB, const Vec* pC) {
     mA = *pA;
     mB = *pB;
     mC = *pC;
-    cM3d_CalcPla(&mA, &mB, &mC, &mPlane.mNormal, &mPlane.mD);
+    cM3d_CalcPla(&mA, &mB, &mC, &mNormal, &mD);
 }
 
 /* 8026F85C-8026F8C8 26A19C 006C+00 0/0 2/2 0/0 .text
@@ -32,7 +32,7 @@ void cM3dGTri::setBg(const Vec* pA, const Vec* pB, const Vec* pC, const cM3dGPla
     mA = *pA;
     mB = *pB;
     mC = *pC;
-    mPlane.Set(pPlane);
+    Set(pPlane);
 }
 
 /* 8026F8C8-8026F93C 26A208 0074+00 0/0 1/1 0/0 .text set__8cM3dGTriFPC3VecPC3VecPC3VecPC3Vec */
@@ -40,5 +40,5 @@ void cM3dGTri::set(const Vec* pA, const Vec* pB, const Vec* pC, const Vec* pNorm
     mA = *pA;
     mB = *pB;
     mC = *pC;
-    mPlane.SetupNP(*pNormal, *pA);
+    SetupNP(*pNormal, *pA);
 }

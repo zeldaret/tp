@@ -219,7 +219,6 @@ extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" extern void* __vt__8cM3dGAab[3];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 //
 // Declarations:
@@ -689,7 +688,8 @@ asm void cBgW::RwgLineCheck(u16 param_0, cBgS_LinChk* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGTri::~cM3dGTri() {
+// asm cM3dGTri::~cM3dGTri() {
+extern "C" asm void __dt__8cM3dGTriFv() {
     nofralloc
 #include "asm/d/bg/d_bg_w/__dt__8cM3dGTriFv.s"
 }

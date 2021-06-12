@@ -39,9 +39,10 @@ private:
     /* 0x1C */ int field_0x1C;
 };  // Size = 0x20
 
-class dCcD_Stts : cCcD_Stts {
+// class dCcD_Stts : cCcD_Stts {
+class dCcD_Stts {  // TODO: vtables get messed up :(
 public:
-    /* 80083850 */ void GetGStts();
+    /* 80083850 */ cCcD_GStts* GetGStts();
     /* 80083860 */ void Init(int, int, fopAc_ac_c*);
     /* 800838F4 */ void Ct();
     /* 80083928 */ void ClrAt();
@@ -49,6 +50,7 @@ public:
     /* 800851AC */ ~dCcD_Stts();
 
 private:
+    /* 0x00 */ u8 _0[0x1C];  // TODO, should be covered by inheritance
     /* 0x1C */ dCcD_GStts mGStts;
 };  // Size = 0x3C
 
@@ -116,7 +118,7 @@ class dCcD_GObjInf : cCcD_GObjInf {
 public:
     /* 80083A28 */ dCcD_GObjInf();
     /* 800840E4 */ ~dCcD_GObjInf();
-    /* 80084268 */ void GetGObjInf();
+    /* 80084268 */ cCcD_GObjInf* GetGObjInf();
     /* 8008426C */ void ClrAtHit();
     /* 800842C0 */ void ChkAtHit();
     /* 80084318 */ void ResetAtHit();
@@ -147,7 +149,7 @@ private:
 class dCcD_Cyl : dCcD_GObjInf {
 public:
     /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-    /* 800848F8 */ void GetShapeAttr();
+    /* 800848F8 */ cCcD_ShapeAttr* GetShapeAttr();
     /* 80084908 */ void StartCAt(cXyz&);
     /* 80084954 */ void MoveCAt(cXyz&);
     /* 800849C4 */ void MoveCTg(cXyz&);
@@ -163,7 +165,7 @@ public:
     /* 80084A34 */ void Set(dCcD_SrcSph const&);
     /* 80084A78 */ void StartCAt(cXyz&);
     /* 80084AC4 */ void MoveCAt(cXyz&);
-    /* 80084B34 */ void GetShapeAttr();
+    /* 80084B34 */ cCcD_ShapeAttr* GetShapeAttr();
     /* 80084BF4 */ ~dCcD_Sph();
 
 private:
@@ -173,7 +175,7 @@ private:
 class dCcD_Cps : dCcD_GObjInf {
 public:
     /* 800847D0 */ void Set(dCcD_SrcCps const&);
-    /* 80084814 */ void GetShapeAttr();
+    /* 80084814 */ cCcD_ShapeAttr* GetShapeAttr();
     /* 80084824 */ void CalcAtVec();
     /* 80084854 */ void CalcTgVec();
     /* 8008506C */ ~dCcD_Cps();
@@ -186,7 +188,7 @@ private:
 class dCcD_Tri {
 public:
     /* 80084884 */ void Set(dCcD_SrcTri const&);
-    /* 800848A4 */ void GetShapeAttr();
+    /* 800848A4 */ cCcD_ShapeAttr* GetShapeAttr();
     /* 80084EF4 */ ~dCcD_Tri();
 };
 

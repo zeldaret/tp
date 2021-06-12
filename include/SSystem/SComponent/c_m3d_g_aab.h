@@ -8,11 +8,12 @@
 class cM3dGAab {
 private:
 public:
-    cXyz mMin;
-    cXyz mMax;
+    /* 0x00 */ cXyz mMin;
+    /* 0x0C */ cXyz mMax;
+    /* 0x18 vtable */
 
     virtual void test();  // temp to build OK, remove later
-    virtual ~cM3dGAab();
+    virtual ~cM3dGAab() {}
     void Set(const cXyz*, const cXyz*);
     bool CrossY(const cXyz*) const;
     bool UnderPlaneYUnder(f32) const;
@@ -32,6 +33,8 @@ public:
     const f32 GetMinX(void) const { return mMin.GetX(); }
     const f32 GetMinY(void) const { return mMin.GetY(); }
     const f32 GetMinZ(void) const { return mMin.GetZ(); }
-};
+};  // Size = 0x1C
+
+STATIC_ASSERT(0x1C == sizeof(cM3dGAab));
 
 #endif /* C_M3D_G_AAB_H */

@@ -5,7 +5,7 @@
 
 #include "SSystem/SComponent/c_cc_s.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "global.h"
 
 //
 // Forward References:
@@ -76,9 +76,7 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern void* __vt__15cCcD_DivideArea[3];
 extern "C" extern void* __vt__8cM3dGAab[3];
-extern "C" extern u32 __float_nan;
 extern "C" extern u8 data_80451158[8];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 //
 // Declarations:
@@ -88,115 +86,134 @@ extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 /* 80451158-80451160 0008+00 s=0 e=1 z=0  None .sbss      None */
 u8 data_80451158[8];
 
-/* ############################################################################################## */
-/* 803C3748-803C3778 020868 0030+00 1/1 2/2 0/0 .data            __vt__4cCcS */
-SECTION_DATA extern void* __vt__4cCcS[12] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)CalcTgPlusDmg__4cCcSFP8cCcD_ObjP8cCcD_ObjP9cCcD_SttsP9cCcD_Stts,
-    (void*)SetPosCorrect__4cCcSFP8cCcD_ObjP4cXyzP8cCcD_ObjP4cXyzf,
-    (void*)
-        SetCoGObjInf__4cCcSFbbP12cCcD_GObjInfP12cCcD_GObjInfP9cCcD_SttsP9cCcD_SttsP10cCcD_GSttsP10cCcD_GStts,
-    (void*)
-        SetAtTgGObjInf__4cCcSFbbP8cCcD_ObjP8cCcD_ObjP12cCcD_GObjInfP12cCcD_GObjInfP9cCcD_SttsP9cCcD_SttsP10cCcD_GSttsP10cCcD_GSttsP4cXyz,
-    (void*)ChkNoHitGAtTg__4cCcSFPC12cCcD_GObjInfPC12cCcD_GObjInfP10cCcD_GSttsP10cCcD_GStts,
-    (void*)
-        ChkAtTgHitAfterCross__4cCcSFbbPC12cCcD_GObjInfPC12cCcD_GObjInfP9cCcD_SttsP9cCcD_SttsP10cCcD_GSttsP10cCcD_GStts,
-    (void*)ChkNoHitGCo__4cCcSFP8cCcD_ObjP8cCcD_Obj,
-    (void*)__dt__4cCcSFv,
-    (void*)MoveAfterCheck__4cCcSFv,
-    (void*)SetCoGCorrectProc__4cCcSFP8cCcD_ObjP8cCcD_Obj,
-};
-
 /* 80264A6C-80264A94 25F3AC 0028+00 0/0 1/1 0/0 .text            __ct__4cCcSFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cCcS::cCcS() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_s/__ct__4cCcSFv.s"
-}
-#pragma pop
+cCcS::cCcS() {}
 
 /* 80264A94-80264B60 25F3D4 00CC+00 1/1 1/1 0/0 .text            Ct__4cCcSFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcS::Ct() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_s/Ct__4cCcSFv.s"
+void cCcS::Ct() {
+    for (cCcD_Obj** obj = this->mpObjAt; obj < this->mpObjAt + ARRAY_SIZE(this->mpObjAt); ++obj) {
+        *obj = NULL;
+    }
+    this->mObjAtCount = 0;
+    for (cCcD_Obj** obj = this->mpObjTg; obj < this->mpObjTg + ARRAY_SIZE(this->mpObjTg); ++obj) {
+        *obj = NULL;
+    }
+    this->mObjTgCount = 0;
+    for (cCcD_Obj** obj = this->mpObjCo; obj < this->mpObjCo + ARRAY_SIZE(this->mpObjCo); ++obj) {
+        *obj = NULL;
+    }
+    this->mObjCoCount = 0;
+    for (cCcD_Obj** obj = this->mpObj; obj < this->mpObj + ARRAY_SIZE(this->mpObj); ++obj) {
+        *obj = NULL;
+    }
+    this->mObjCount = 0;
 }
-#pragma pop
 
 /* 80264B60-80264B80 25F4A0 0020+00 0/0 1/1 0/0 .text            Dt__4cCcSFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcS::Dt() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_s/Dt__4cCcSFv.s"
+void cCcS::Dt() {
+    this->Ct();
 }
-#pragma pop
 
 /* 80264B80-80264BA8 25F4C0 0028+00 1/1 0/0 0/0 .text            GetWt__4cCcSCFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcS::GetWt(u8 param_0) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_s/GetWt__4cCcSCFUc.s"
+WeightType cCcS::GetWt(u8 param_0) const {
+    if (param_0 == 0xFF) {
+        return WeightType_0;
+    }
+    if (param_0 == 0xFE) {
+        return WeightType_1;
+    }
+    return WeightType_2;
 }
-#pragma pop
 
 /* 80264BA8-80264C5C 25F4E8 00B4+00 0/0 7/7 454/454 .text            Set__4cCcSFP8cCcD_Obj */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcS::Set(cCcD_Obj* param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_s/Set__4cCcSFP8cCcD_Obj.s"
+void cCcS::Set(cCcD_Obj* obj) {
+    if (obj->GetObjAt().getSPrm() & 1) {
+        if (mObjAtCount < ARRAY_SIZE(mpObjAt)) {
+            mpObjAt[mObjAtCount] = obj;
+            mObjAtCount++;
+        }
+    }
+    if (obj->GetObjTg().getSPrm() & 1) {
+        if (mObjTgCount < ARRAY_SIZE(mpObjTg)) {
+            mpObjTg[mObjTgCount] = obj;
+            mObjTgCount++;
+        }
+    }
+    if (obj->GetObjCo().getSPrm() & 1) {
+        if (mObjCoCount < ARRAY_SIZE(mpObjCo)) {
+            mpObjCo[mObjCoCount] = obj;
+            mObjCoCount++;
+        }
+    }
+    if (mObjCount < ARRAY_SIZE(mpObj)) {
+        mpObj[mObjCount] = obj;
+        mObjCount++;
+    }
 }
-#pragma pop
 
 /* 80264C5C-80264CF0 25F59C 0094+00 1/1 0/0 0/0 .text            ClrCoHitInf__4cCcSFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcS::ClrCoHitInf() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_s/ClrCoHitInf__4cCcSFv.s"
+void cCcS::ClrCoHitInf() {
+    for (cCcD_Obj** obj = this->mpObjCo; obj < this->mpObjCo + this->mObjCoCount; ++obj) {
+        if (*obj != NULL) {
+            (*obj)->GetGObjInf()->ClrCoHit();
+            cCcD_Stts* stts = (*obj)->GetStts();
+            if (stts != NULL) {
+                stts->ClrCcMove();
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 80264CF0-80264D90 25F630 00A0+00 1/1 0/0 0/0 .text            ClrTgHitInf__4cCcSFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcS::ClrTgHitInf() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_s/ClrTgHitInf__4cCcSFv.s"
+void cCcS::ClrTgHitInf() {
+    for (cCcD_Obj** obj = this->mpObjTg; obj < this->mpObjTg + this->mObjTgCount; ++obj) {
+        if (*obj != NULL) {
+            (*obj)->GetGObjInf()->ClrTgHit();
+            cCcD_Stts* stts = (*obj)->GetStts();
+            if (stts != NULL) {
+                stts->ClrTg();
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 80264D90-80264E2C 25F6D0 009C+00 1/1 0/0 0/0 .text            ClrAtHitInf__4cCcSFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcS::ClrAtHitInf() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_s/ClrAtHitInf__4cCcSFv.s"
+void cCcS::ClrAtHitInf() {
+    for (cCcD_Obj** obj = this->mpObjAt; obj < this->mpObjAt + this->mObjAtCount; ++obj) {
+        if (*obj != NULL) {
+            (*obj)->GetGObjInf()->ClrAtHit();
+            cCcD_Stts* stts = (*obj)->GetStts();
+            if (stts != NULL) {
+                stts->ClrAt();
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 80264E2C-80264F40 25F76C 0114+00 1/1 0/0 0/0 .text ChkNoHitAtTg__4cCcSFP8cCcD_ObjP8cCcD_Obj */
+#ifdef NON_MATCHING
+int cCcS::ChkNoHitAtTg(cCcD_Obj* obj1, cCcD_Obj* obj2) {
+    fopAc_ac_c* ac1 = obj1->GetAc();
+    fopAc_ac_c* ac2 = obj2->GetAc();
+    if (((ac1 != NULL && ac2 != NULL) && ac1 == ac2) ||
+        (obj1->GetObjAt().getSPrm() & 0x1E & obj2->GetObjTg().getSPrm() & 0x1E) == 0 ||
+        (obj1->GetObjAt().GetType() & obj2->GetObjTg().GetType()) == 0) {
+        return 1;
+    } else {
+        return this->ChkNoHitGAtTg(obj1->GetGObjInf(), obj2->GetGObjInf(),
+                                   obj1->GetStts()->GetGStts(), obj2->GetStts()->GetGStts());
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcS::ChkNoHitAtTg(cCcD_Obj* param_0, cCcD_Obj* param_1) {
+asm int cCcS::ChkNoHitAtTg(cCcD_Obj* param_0, cCcD_Obj* param_1) {
     nofralloc
 #include "asm/SSystem/SComponent/c_cc_s/ChkNoHitAtTg__4cCcSFP8cCcD_ObjP8cCcD_Obj.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80430CC0-80430CCC 05D9E0 000C+00 1/1 0/0 0/0 .bss             @2492 */
@@ -336,14 +353,16 @@ asm void cCcS::CalcArea() {
 #pragma pop
 
 /* 80265CCC-80265D30 26060C 0064+00 0/0 1/1 0/0 .text            Move__4cCcSFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcS::Move() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_s/Move__4cCcSFv.s"
+void cCcS::Move() {
+    this->CalcArea();
+    this->ChkAtTg();
+    this->ChkCo();
+    this->MoveAfterCheck();
+    mObjAtCount = 0;
+    mObjTgCount = 0;
+    mObjCoCount = 0;
+    mObjCount = 0;
 }
-#pragma pop
 
 /* 80265D30-80265DF4 260670 00C4+00 0/0 1/1 0/0 .text            DrawClear__4cCcSFv */
 #pragma push

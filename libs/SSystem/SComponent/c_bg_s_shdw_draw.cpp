@@ -11,72 +11,23 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" void __ct__13cBgS_ShdwDrawFv();
-extern "C" void __dt__13cBgS_ShdwDrawFv();
-extern "C" void Set__13cBgS_ShdwDrawFR4cXyzR4cXyz();
-extern "C" void SetCallback__13cBgS_ShdwDrawFPFP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP8cM3dGPla_i();
-
-//
-// External References:
-//
-
-extern "C" void __ct__8cBgS_ChkFv();
-extern "C" void __dt__8cBgS_ChkFv();
-extern "C" void Set__8cM3dGAabFPC4cXyzPC4cXyz();
-extern "C" void __dl__FPv();
-extern "C" extern void* __vt__8cM3dGAab[3];
-
-//
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 803C3FC0-803C3FD0 0210E0 000C+04 2/2 0/0 0/0 .data            __vt__13cBgS_ShdwDraw */
-SECTION_DATA extern void* __vt__13cBgS_ShdwDraw[3 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__13cBgS_ShdwDrawFv,
-    /* padding */
-    NULL,
-};
-
 /* 80267F88-80267FD0 2628C8 0048+00 0/0 1/1 0/0 .text            __ct__13cBgS_ShdwDrawFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cBgS_ShdwDraw::cBgS_ShdwDraw() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_s_shdw_draw/__ct__13cBgS_ShdwDrawFv.s"
-}
-#pragma pop
+cBgS_ShdwDraw::cBgS_ShdwDraw() {}
 
 /* 80267FD0-80268048 262910 0078+00 1/0 2/2 0/0 .text            __dt__13cBgS_ShdwDrawFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cBgS_ShdwDraw::~cBgS_ShdwDraw() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_s_shdw_draw/__dt__13cBgS_ShdwDrawFv.s"
-}
-#pragma pop
+cBgS_ShdwDraw::~cBgS_ShdwDraw() {}
 
 /* 80268048-8026806C 262988 0024+00 0/0 1/1 0/0 .text            Set__13cBgS_ShdwDrawFR4cXyzR4cXyz
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgS_ShdwDraw::Set(cXyz& param_0, cXyz& param_1) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_s_shdw_draw/Set__13cBgS_ShdwDrawFR4cXyzR4cXyz.s"
+void cBgS_ShdwDraw::Set(cXyz& param_0, cXyz& param_1) {
+    mM3dGAab.Set(&param_0, &param_1);
 }
-#pragma pop
 
 /* 8026806C-80268074 -00001 0008+00 0/0 0/0 0/0 .text
  * SetCallback__13cBgS_ShdwDrawFPFP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP8cM3dGPla_i */
-void cBgS_ShdwDraw::SetCallback(int (*param_0)(cBgS_ShdwDraw*, cBgD_Vtx_t*, int, int, int,
-                                               cM3dGPla*)) {
-    *(u32*)(((u8*)this) + 48) /* this->field_0x30 */ = (u32)(param_0);
+void cBgS_ShdwDraw::SetCallback(cBgS_ShdwDraw_Callback pCallback) {
+    mCallbackFun = pCallback;
 }

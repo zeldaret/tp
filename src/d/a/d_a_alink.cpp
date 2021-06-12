@@ -3793,7 +3793,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void abs();
 extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
 extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
 extern "C" extern void* __vt__12J3DFrameCtrl[3];
@@ -3848,7 +3847,6 @@ extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 g_whiteColor;
 extern "C" u16 m_branchId__7dDemo_c[1 + 3 /* padding */];
-extern "C" extern u32 __float_nan;
 extern "C" extern u32 __float_max;
 extern "C" extern u8 data_80450B38[4];
 extern "C" f32 mGroundY__11fopAcM_gc_c;
@@ -3863,7 +3861,6 @@ extern "C" extern u8 struct_80450FBC[4];
 extern "C" u8 m_midnaActor__9daPy_py_c[4];
 extern "C" extern u8 struct_8045101C[4];
 extern "C" u8 Zero__5csXyz[4];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
@@ -34894,7 +34891,8 @@ asm dCcD_Cyl::dCcD_Cyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_Stts::~cCcD_Stts() {
+// asm cCcD_Stts::~cCcD_Stts() {
+extern "C" asm void __dt__9cCcD_SttsFv() {
     nofralloc
 #include "asm/d/a/d_a_alink/__dt__9cCcD_SttsFv.s"
 }

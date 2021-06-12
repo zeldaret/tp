@@ -109,7 +109,6 @@ extern "C" extern void* __vt__8cM3dGCyl[3];
 extern "C" extern void* __vt__8cM3dGLin[3];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 data_80450F68[8];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];  //
 
 //
 // Declarations:
