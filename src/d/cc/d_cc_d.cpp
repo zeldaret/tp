@@ -6,6 +6,8 @@
 #include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_iter.h"
+#include "f_pc/f_pc_searcher.h"
 
 //
 // Forward References:
@@ -223,6 +225,12 @@ extern "C" f32 Zero__4cXyz[3];
 //
 
 /* 8008364C-80083660 07DF8C 0014+00 3/3 0/0 0/0 .text ClrActorInfo__22dCcD_GAtTgCoCommonBaseFv */
+#ifndef NM
+void dCcD_GAtTgCoCommonBase::ClrActorInfo() {
+    mApid = 0xFFFFFFFF;
+    mAc = NULL;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -231,8 +239,17 @@ asm void dCcD_GAtTgCoCommonBase::ClrActorInfo() {
 #include "asm/d/cc/d_cc_d/ClrActorInfo__22dCcD_GAtTgCoCommonBaseFv.s"
 }
 #pragma pop
+#endif
 
 /* 80083660-80083678 07DFA0 0018+00 1/1 0/0 0/0 .text            ct__22dCcD_GAtTgCoCommonBaseFv */
+#ifndef NM
+void dCcD_GAtTgCoCommonBase::ct() {
+    mGFlag = NULL;
+    mRPrm = 0;
+    field_0x08 = 0;
+    mEffCounter = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -241,8 +258,15 @@ asm void dCcD_GAtTgCoCommonBase::ct() {
 #include "asm/d/cc/d_cc_d/ct__22dCcD_GAtTgCoCommonBaseFv.s"
 }
 #pragma pop
+#endif
 
 /* 80083678-80083688 07DFB8 0010+00 0/0 2/2 0/0 .text SetHitApid__22dCcD_GAtTgCoCommonBaseFUi */
+#ifndef NM
+void dCcD_GAtTgCoCommonBase::SetHitApid(unsigned int hitApid) {
+    mApid = hitApid;
+    mAc = NULL;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -251,8 +275,25 @@ asm void dCcD_GAtTgCoCommonBase::SetHitApid(unsigned int param_0) {
 #include "asm/d/cc/d_cc_d/SetHitApid__22dCcD_GAtTgCoCommonBaseFUi.s"
 }
 #pragma pop
+#endif
 
 /* 80083688-80083704 07DFC8 007C+00 6/6 17/17 43/43 .text GetAc__22dCcD_GAtTgCoCommonBaseFv */
+#ifndef NM
+fopAc_ac_c *dCcD_GAtTgCoCommonBase::GetAc() {
+    if (mApid == 0xFFFFFFFF) {
+        return NULL;
+    } else {
+        if (mAc == NULL) {
+            u32 apid = mApid;
+            mAc = static_cast<fopAc_ac_c*>(fopAcIt_Judge(fpcSch_JudgeByID, &apid));
+            if (mAc == NULL) {
+                mApid = 0xFFFFFFFF;
+            }
+        }
+        return mAc;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -261,9 +302,16 @@ asm void dCcD_GAtTgCoCommonBase::GetAc() {
 #include "asm/d/cc/d_cc_d/GetAc__22dCcD_GAtTgCoCommonBaseFv.s"
 }
 #pragma pop
+#endif
 
 /* 80083704-80083718 07E044 0014+00 3/3 0/0 0/0 .text
  * Set__22dCcD_GAtTgCoCommonBaseFRC25dCcD_SrcGAtTgCoCommonBase  */
+#ifndef NM
+void dCcD_GAtTgCoCommonBase::Set(dCcD_SrcGAtTgCoCommonBase const& src) {
+    mGFlag = src.mGFlag;
+    mEffCounter = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -272,9 +320,15 @@ asm void dCcD_GAtTgCoCommonBase::Set(dCcD_SrcGAtTgCoCommonBase const& param_0) {
 #include "asm/d/cc/d_cc_d/Set__22dCcD_GAtTgCoCommonBaseFRC25dCcD_SrcGAtTgCoCommonBase.s"
 }
 #pragma pop
+#endif
 
 /* 80083718-80083724 07E058 000C+00 0/0 1/1 0/0 .text
  * SetEffCounterTimer__22dCcD_GAtTgCoCommonBaseFv               */
+#ifndef NM
+void dCcD_GAtTgCoCommonBase::SetEffCounterTimer() {
+    mEffCounter = 5;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -283,9 +337,18 @@ asm void dCcD_GAtTgCoCommonBase::SetEffCounterTimer() {
 #include "asm/d/cc/d_cc_d/SetEffCounterTimer__22dCcD_GAtTgCoCommonBaseFv.s"
 }
 #pragma pop
+#endif
 
 /* 80083724-80083748 07E064 0024+00 3/3 0/0 0/0 .text
  * SubtractEffCounter__22dCcD_GAtTgCoCommonBaseFv               */
+#ifndef NM
+void dCcD_GAtTgCoCommonBase::SubtractEffCounter() {
+    mEffCounter--;
+    if (mEffCounter < 0) {
+        mEffCounter = 0;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -294,8 +357,14 @@ asm void dCcD_GAtTgCoCommonBase::SubtractEffCounter() {
 #include "asm/d/cc/d_cc_d/SubtractEffCounter__22dCcD_GAtTgCoCommonBaseFv.s"
 }
 #pragma pop
+#endif
 
 /* 80083748-80083760 07E088 0018+00 0/0 1/1 0/0 .text ChkEffCounter__22dCcD_GAtTgCoCommonBaseFv */
+#ifndef NM
+bool dCcD_GAtTgCoCommonBase::ChkEffCounter() {
+    return mEffCounter > 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -304,6 +373,7 @@ asm void dCcD_GAtTgCoCommonBase::ChkEffCounter() {
 #include "asm/d/cc/d_cc_d/ChkEffCounter__22dCcD_GAtTgCoCommonBaseFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803ABFC0-803AC050 0090E0 0090+00 1/1 2/2 332/332 .data            __vt__8dCcD_Sph */

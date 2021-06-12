@@ -14,7 +14,9 @@ struct dCcD_SrcGObjInf {};
 
 struct dCcD_SrcGObjAt {};
 
-struct dCcD_SrcGAtTgCoCommonBase {};
+struct dCcD_SrcGAtTgCoCommonBase {
+    /* 0x00 */ u32 mGFlag;
+};
 
 struct dCcD_SrcCyl {};
 
@@ -59,18 +61,18 @@ public:
     /* 8008364C */ void ClrActorInfo();
     /* 80083660 */ void ct();
     /* 80083678 */ void SetHitApid(unsigned int);
-    /* 80083688 */ void GetAc();
+    /* 80083688 */ fopAc_ac_c *GetAc();
     /* 80083704 */ void Set(dCcD_SrcGAtTgCoCommonBase const&);
     /* 80083718 */ void SetEffCounterTimer();
     /* 80083724 */ void SubtractEffCounter();
-    /* 80083748 */ void ChkEffCounter();
+    /* 80083748 */ bool ChkEffCounter();
     /* 80083CA0 */ ~dCcD_GAtTgCoCommonBase();
 
 private:
-    /* 0x00 */ void* mBase;  // type dCcD_SrcGAtTgCoCommonBase*
+    /* 0x00 */ u32 mGFlag;
     /* 0x04 */ u32 mRPrm;
     /* 0x08 */ u32 field_0x08;
-    /* 0x0C */ u32 field_0x0C;
+    /* 0x0C */ u32 mApid;
     /* 0x10 */ fopAc_ac_c* mAc;
     /* 0x14 */ s8 mEffCounter;
     /* 0x15 */ u8 field_0x15[3];
@@ -146,18 +148,15 @@ private:
     /* 0x0E8 */ dCcD_GObjCo mGObjCo;
 };  // Size = 0x104
 
-class dCcD_Cyl : dCcD_GObjInf {
+class dCcD_Cyl : dCcD_GObjInf, cCcD_CylAttr {
 public:
     /* 800848B4 */ void Set(dCcD_SrcCyl const&);
     /* 800848F8 */ cCcD_ShapeAttr* GetShapeAttr();
     /* 80084908 */ void StartCAt(cXyz&);
     /* 80084954 */ void MoveCAt(cXyz&);
     /* 800849C4 */ void MoveCTg(cXyz&);
-    /* 80084D60 */ ~dCcD_Cyl();
+    /* 80084D60 */ ~dCcD_Cyl() {}
     dCcD_Cyl();
-
-private:
-    /* 0x104 */ cCcD_CylAttr mCylAttr;
 };  // Size = 0x13C
 
 class dCcD_Sph : dCcD_GObjInf {
