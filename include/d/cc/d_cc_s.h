@@ -44,8 +44,9 @@ public:
 
 private:
     /* 0x0000 */ cCcS mCCcS;
-    /* 0x2834 */ u8 field_0x2834[0x18];
     /* 0x284C */ dCcMassS_Mng mMass_Mng;
-};
+};  // Size = 0x2AC4
+
+STATIC_ASSERT(sizeof(dCcS) == 0x2AC4);
 
 #endif /* D_CC_D_CC_S_H */

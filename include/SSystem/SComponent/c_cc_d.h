@@ -275,6 +275,7 @@ public:
     /* 8026483C */ void SetHit(cCcD_Obj*);
     /* 8026484C */ void Set(cCcD_SrcObjAt const&);
     /* 80264868 */ void ClrHit();
+    int GetType() const { return mType; }
 
 private:
     /* 0x10 */ int mType;
@@ -290,6 +291,7 @@ public:
     /* 80264894 */ void SetGrp(u32);
     /* 802648B0 */ void ClrHit();
     /* 802648C8 */ void SetHit(cCcD_Obj*);
+    int GetType() const { return mType; }
 
 private:
     /* 0x10 */ int mType;
@@ -309,30 +311,38 @@ public:
 STATIC_ASSERT(0x10 == sizeof(cCcD_ObjCo));
 
 class cCcD_ObjHitInf {
-public:
-    /* 80083EC8 */ ~cCcD_ObjHitInf();
-    /* 802639C4 */ void Set(cCcD_SrcObjHitInf const&);
-
 private:
     /* 0x000 */ cCcD_ObjAt mObjAt;
     /* 0x018 */ cCcD_ObjTg mObjTg;
     /* 0x02C */ cCcD_ObjCo mObjCo;
-    /* 0x03C */ void* vtable;
+    /* 0x03C vtable */
+public:
+    /* 80083EC8 */ virtual ~cCcD_ObjHitInf();
+    /* 802639C4 */ void Set(cCcD_SrcObjHitInf const&);
+    cCcD_ObjAt& GetObjAt() { return mObjAt; }
+    cCcD_ObjTg& GetObjTg() { return mObjTg; }
+    cCcD_ObjCo& GetObjCo() { return mObjCo; }
+
 };  // Size = 0x40
 
 STATIC_ASSERT(0x40 == sizeof(cCcD_ObjHitInf));
 
+class cCcD_GObjInf;
+
 class cCcD_Obj : public cCcD_ObjHitInf {
 public:
-    /* 80083DE0 */ ~cCcD_Obj();
-    /* 800851A4 */ bool GetGObjInf() const;
-    /* 800847C8 */ bool GetGObjInf();
-    /* 80084BE8 */ bool GetShapeAttr() const;
-    /* 80085130 */ bool GetShapeAttr();
-    /* 80084BF0 */ void Draw(_GXColor const&);
+    /* 80083DE0 */ virtual ~cCcD_Obj();
+    /* 800851A4 */ virtual cCcD_GObjInf const* GetGObjInf() const;
+    /* 800847C8 */ virtual cCcD_GObjInf* GetGObjInf();
+    /* 80084BE8 */ virtual cCcD_ShapeAttr const* GetShapeAttr() const;
+    /* 80085130 */ virtual cCcD_ShapeAttr* GetShapeAttr();
+    /* 80084BF0 */ virtual void Draw(_GXColor const&);
     /* 80263A10 */ void ct();
     /* 80263A1C */ void Set(cCcD_SrcObj const&);
     fopAc_ac_c* GetAc();
+
+    cCcD_Stts* GetStts() { return mStts; }
+    cCcD_DivideInfo& GetDivideInfo() { return mDivideInfo; }
 
 private:
     /* 0x040 */ int field_0x40;
@@ -344,12 +354,12 @@ STATIC_ASSERT(0x58 == sizeof(cCcD_Obj));
 
 class cCcD_GObjInf : public cCcD_Obj {
 public:
-    /* 80083CE8 */ ~cCcD_GObjInf();
-    /* 800851A0 */ void GetGObjInf();
-    /* 80084BE4 */ void GetGObjInf() const;
-    /* 80085138 */ void ClrAtHit();
-    /* 80085158 */ void ClrTgHit();
-    /* 8008517C */ void ClrCoHit();
+    /* 80083CE8 */ virtual ~cCcD_GObjInf();
+    /* 800851A0 */ virtual cCcD_GObjInf* GetGObjInf();
+    /* 80084BE4 */ virtual cCcD_GObjInf const* GetGObjInf() const;
+    /* 80085138 */ virtual void ClrAtHit();
+    /* 80085158 */ virtual void ClrTgHit();
+    /* 8008517C */ virtual void ClrCoHit();
 };
 
 STATIC_ASSERT(0x58 == sizeof(cCcD_GObjInf));
