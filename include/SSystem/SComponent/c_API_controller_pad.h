@@ -4,32 +4,32 @@
 #include "dolphin/types.h"
 
 struct interface_of_controller_pad {
-    f32 mMainStickPosX;
-    f32 mMainStickPosY;
-    f32 mMainStickValue;
-    s16 mMainStickAngle;
-    u8 field_0xe;
-    u8 field_0xf;
-    f32 mCStickPosX;
-    f32 mCStickPosY;
-    f32 mCStickValue;
-    s16 mCStickAngle;
-    u8 field_0x1e;
-    u8 field_0x1f;
-    f32 mAnalogA;
-    f32 mAnalogB;
-    f32 mTriggerLeft;
-    f32 mTriggerRight;
-    u32 mButtonFlags;
-    u32 mPressedButtonFlags;
-    s8 mGamepadErrorFlags;
-    u8 field_0x39;
-    u8 field_0x3a;
-    u8 field_0x3b;
-    u8 field_0x3c;
-    u8 field_0x3d;
-    u8 field_0x3e;
-    u8 field_0x3f;
+    /* 0x00 */ f32 mMainStickPosX;
+    /* 0x04 */ f32 mMainStickPosY;
+    /* 0x08 */ f32 mMainStickValue;
+    /* 0x0C */ s16 mMainStickAngle;
+    /* 0x0E */ u8 field_0xe;
+    /* 0x0F */ u8 field_0xf;
+    /* 0x10 */ f32 mCStickPosX;
+    /* 0x14 */ f32 mCStickPosY;
+    /* 0x18 */ f32 mCStickValue;
+    /* 0x1C */ s16 mCStickAngle;
+    /* 0x1E */ u8 field_0x1e;
+    /* 0x1F */ u8 field_0x1f;
+    /* 0x20 */ f32 mAnalogA;
+    /* 0x24 */ f32 mAnalogB;
+    /* 0x28 */ f32 mTriggerLeft;
+    /* 0x2C */ f32 mTriggerRight;
+    /* 0x30 */ u32 mButtonFlags;
+    /* 0x34 */ u32 mPressedButtonFlags;
+    /* 0x38 */ s8 mGamepadErrorFlags;
+    /* 0x39 */ u8 mHoldLockL;
+    /* 0x3A */ u8 mTrigLockL;
+    /* 0x3B */ u8 mHoldLockR;
+    /* 0x3C */ u8 mTrigLockR;
+    /* 0x3D */ u8 field_0x3d;
+    /* 0x3E */ u8 field_0x3e;
+    /* 0x3F */ u8 field_0x3f;
 };
 
 void cAPICPad_recalibrate(void);

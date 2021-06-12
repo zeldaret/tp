@@ -11,8 +11,6 @@
 // Types:
 //
 
-struct _GXColor {};
-
 struct mDoGph_gInf_c {
     /* 80007FD8 */ void fadeOut(f32, _GXColor&);
     /* 800080D0 */ void fadeOut(f32);
@@ -59,10 +57,6 @@ struct dEvent_manager_c {
     /* 800480EC */ void getMySubstanceP(int, char const*, int);
     /* 80048144 */ void getMySubstanceNum(int, char const*);
     /* 8004817C */ void cutEnd(int);
-};
-
-struct dEvDtCut_c {
-    /* 800460A8 */ void startCheck();
 };
 
 struct dDlst_list_c {
@@ -360,25 +354,19 @@ asm void dEvDtFlag_c::flagSet(int param_0) {
 }
 #pragma pop
 
-/* 80043E30-80043E58 03E770 0028+00 2/2 0/0 0/0 .text            flagMaxCheck__11dEvDtFlag_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvDtFlag_c::flagMaxCheck(int param_0) {
-    nofralloc
-#include "asm/d/event/d_event_data/flagMaxCheck__11dEvDtFlag_cFi.s"
-}
-#pragma pop
+bool dEvDtFlag_c::flagMaxCheck(int flag_id) {
+    if (flag_id == -1) {
+        return true;
+    }
 
-/* 80043E58-80043E78 03E798 0020+00 0/0 3/3 0/0 .text            init__11dEvDtFlag_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvDtFlag_c::init() {
-    nofralloc
-#include "asm/d/event/d_event_data/init__11dEvDtFlag_cFv.s"
+    return FlagMax <= flag_id;
 }
-#pragma pop
+
+void dEvDtFlag_c::init() {
+    for (int i = 0; i < 320; i++) {
+        mFlags[i] = 0;
+    }
+}
 
 /* 80043E78-80043EFC 03E7B8 0084+00 0/0 1/1 0/0 .text            finishCheck__12dEvDtEvent_cFv */
 #pragma push

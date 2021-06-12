@@ -137,9 +137,7 @@ public:
     /* 0x03F8C */ dStage_roomControl_c* mRoomControl;
     /* 0x03F90 */ dEvt_control_c mEvent;
     /* 0x040C0 */ dEvent_manager_c mEvtManager;
-    /* 0x0477C */ u8 field_0x477C[4];
     /* 0x04780 */ dAttention_c mAttention;
-    /* 0x04C88 */ u8 field_0x4c88[0x14];
     /* 0x04C9C */ dVibration_c mVibration;
     /* 0x04D2C */ u8 field_0x4d2c[4];
     /* 0x04D30 */ JKRArchive* mFieldMapArchive2;
@@ -258,18 +256,18 @@ public:
     /* 0x04F07 */ u8 mCStickStatusForce;
     /* 0x04F08 */ u8 mSButtonStatusForce;
     /* 0x04F09 */ u8 mZStatusForce;
-    /* 0x04F0A */ u8 mRSetFlag;  // related to RStatus
-    /* 0x04F0B */ u8 mASetFlag;  // related to AStatus
+    /* 0x04F0A */ u8 mRSetFlag;
+    /* 0x04F0B */ u8 mASetFlag;
     /* 0x04F0C */ u8 field_0x4f0c;
-    /* 0x04F0D */ u8 mNunSetFlag;      // related to NunStatus
-    /* 0x04F0E */ u8 mBottleSetFlag;   // related to BottleStatus
-    /* 0x04F0F */ u8 mRemoConSetFlag;  // related to RemoConStatus
+    /* 0x04F0D */ u8 mNunSetFlag;
+    /* 0x04F0E */ u8 mBottleSetFlag;
+    /* 0x04F0F */ u8 mRemoConSetFlag;
     /* 0x04F10 */ u8 field_0x4f10[2];
-    /* 0x04F12 */ u8 mDoSetFlag;       // related to DoStatus
-    /* 0x04F13 */ u8 m3DSetFlag;       // related to 3DStatus
-    /* 0x04F14 */ u8 mCStickSetFlag;   // related to CStickStatus
-    /* 0x04F15 */ u8 mSButtonSetFlag;  // related to SButtonStatus
-    /* 0x04F16 */ u8 mZSetFlag;        // related to ZStatus
+    /* 0x04F12 */ u8 mDoSetFlag;
+    /* 0x04F13 */ u8 m3DSetFlag;
+    /* 0x04F14 */ u8 mCStickSetFlag;
+    /* 0x04F15 */ u8 mSButtonSetFlag;
+    /* 0x04F16 */ u8 mZSetFlag;
     /* 0x04F17 */ u8 mRSetFlagForce;
     /* 0x04F18 */ u8 mASetFlagForce;
     /* 0x04F19 */ u8 field_0x4f19;
@@ -288,14 +286,14 @@ public:
     /* 0x04F27 */ u8 mXSetFlagForce;
     /* 0x04F28 */ u8 mYStatus;
     /* 0x04F29 */ u8 mYStatusForce;
-    /* 0x04F2A */ u8 mYSetFlag;  // related to YStatus
+    /* 0x04F2A */ u8 mYSetFlag;
     /* 0x04F2B */ u8 mYSetFlagForce;
     /* 0x04F2C */ u8 mNunZStatus;
-    /* 0x04F2D */ u8 mNunZSetFlag;  // related to NunZStatus
+    /* 0x04F2D */ u8 mNunZSetFlag;
     /* 0x04F2E */ u8 field_0x4fc6;  // related to NunZStatusForce
     /* 0x04F2F */ u8 field_0x4fc7;  // related to NunZStatusForce
     /* 0x04F30 */ u8 mNunCStatus;
-    /* 0x04F31 */ u8 mNunCSetFlag;  // related to NunCStatus
+    /* 0x04F31 */ u8 mNunCSetFlag;
     /* 0x04F32 */ u8 field_0x4fca;  // related to NunCStatusForce
     /* 0x04F33 */ u8 field_0x4fcb;  // related to NunCStatusForce
     /* 0x04F34 */ u8 mSelectItem[8];

@@ -3,6 +3,7 @@
 
 #include "JSystem/JUtility/JUTTexture.h"
 #include "d/d_resorce.h"
+#include "d/menu/d_menu_window.h"
 #include "d/msg/d_msg_flow.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
@@ -14,11 +15,16 @@ struct dSv_event_flag_c {
 
 struct dMsgObject_c {
     /* 802384C4 */ void setLetterNameID(u16);
+    /* 802379AC */ void setKillMessageFlag();
+    /* 8023822C */ void getStatus();
 };
 
 class dMeterMap_c {
 public:
     /* 8020D900 */ bool isMapOpenCheck();
+    /* 8020D650 */ void isEnableDispMapAndMapDispSizeTypeNo();
+    /* 8020D874 */ void setDispPosInsideFlg_SE_On();
+    /* 8020D8BC */ void setDispPosOutsideFlg_SE_On();
 };
 
 struct J2DPicture {};
@@ -41,9 +47,12 @@ struct dItem_data {
 
 struct CPaneMgr {};
 
-class dMeter2_c {};
+class dMw_c;
 
-class dMw_c {};
+class dMeter2_c {
+public:
+    /* 8021F6EC */ void emphasisButtonDelete();
+};
 
 class dMeter2Info_c {
 public:
@@ -98,8 +107,13 @@ public:
     void setMiniGameCount(s8);
     void setSaveStageName(const char*);
 
+    void setWindowStatus(u8 status) {
+        unk186 = mWindowStatus;
+        mWindowStatus = status;
+    }
     u8& getDirectUseItem() { return mDirectUseItem; }
     dMeterMap_c* getMeterMapClass() { return mMeterMap; }
+    dMw_c* getMenuWindowClass() { return mMenuWindowClass; }
     void offUseButton(int pButton) { mUseButton &= ~(u16)pButton; }
 
 private:
@@ -187,12 +201,20 @@ private:
 
 extern dMeter2Info_c g_meter2_info;
 
+inline void dMeter2Info_Initialize() {
+    g_meter2_info.init();
+}
+
 inline dMeterMap_c* dMeter2Info_getMeterMapClass() {
     return g_meter2_info.getMeterMapClass();
 }
 
-inline void dMeter2Info_Initialize() {
-    g_meter2_info.init();
+inline dMw_c* dMeter2Info_getMenuWindowClass() {
+    return g_meter2_info.getMenuWindowClass();
+}
+
+inline void dMeter2Info_setWindowStatus(u8 status) {
+    g_meter2_info.setWindowStatus(status);
 }
 
 #endif /* D_METER_D_METER2_INFO_H */

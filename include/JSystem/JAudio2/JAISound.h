@@ -8,8 +8,9 @@
 class JAISoundID {
 public:
     operator u32() const { return this->mId; }
+    void operator=(JAISoundID const&);
 
-    JAISoundID(u32 pId) : mId(pId) {}
+    JAISoundID(u32 pId);
 
     JAISoundID(JAISoundID const& other);
 
@@ -62,7 +63,7 @@ public:
     /* 802A26B8 */ void calc_JAISound_();
     /* 802A29DC */ void initTrack_JAISound_(JASTrack*);
 
-    JAISoundID getID() const { return JAISoundID((u32)this->sound_id); }
+    JAISoundID getID() const;
     u32 getUserData() const { return user_data; }
 
     // TODO: do proper struct later
@@ -165,6 +166,21 @@ public:
 
 private:
     JAISound* mSound;
+};
+
+class JAISoundHandles {
+public:
+    JAISoundHandles(JAISoundHandle* pHandle, int param_1) {
+        mSoundHandle = pHandle;
+        field_0x04 = param_1;
+    };
+
+    void getHandleSoundID(JAISoundID);
+    void getFreeHandle();
+
+private:
+    JAISoundHandle* mSoundHandle;
+    int field_0x04;
 };
 
 #endif /* JAISOUND_H */

@@ -73,8 +73,6 @@ struct dStage_roomControl_c {
     static u8 mStatus[65792];
 };
 
-struct dKy_tevstr_c {};
-
 struct J3DModelData {
     /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
 };
@@ -202,12 +200,6 @@ struct J3DTexMtxInfo {
 struct J3DModel {};
 
 struct J3DMaterial {};
-
-struct J3DLightObj {};
-
-struct J3DLightInfo {
-    /* 803256C4 */ void operator=(J3DLightInfo const&);
-};
 
 struct J3DGXColor {};
 

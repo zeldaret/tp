@@ -20,10 +20,6 @@ struct J3DNBTScaleInfo {
     /* 8032587C */ void operator=(J3DNBTScaleInfo const&);
 };
 
-struct J3DLightInfo {
-    /* 803256C4 */ void operator=(J3DLightInfo const&);
-};
-
 struct J3DIndTexMtxInfo {
     /* 803257DC */ void operator=(J3DIndTexMtxInfo const&);
 };

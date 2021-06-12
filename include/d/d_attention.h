@@ -25,10 +25,10 @@ private:
 
 class dAttCatch_c {
 public:
-    /* 8007398C */ void convPId(unsigned int);
-    /* 800739BC */ void init();
-    /* 800739DC */ void proc();
-    /* 80073A08 */ void request(fopAc_ac_c*, u8, f32, f32, f32, s16, int);
+    void convPId(unsigned int);
+    void init();
+    void proc();
+    void request(fopAc_ac_c*, u8, f32, f32, f32, s16, int);
 
 private:
     void* field_0x0;
@@ -38,8 +38,9 @@ private:
     u8 field_0xd;
     u8 field_0xe;
     u8 field_0xf;
-    void* field_0x10;
-};
+    u32 field_0x10;
+    u8 mChangeItem;
+};  // Size = 0x14
 
 class dAttParam_c {
 public:
@@ -47,26 +48,29 @@ public:
     /* 80070110 */ ~dAttParam_c();
 
 private:
-    u8 field_0x0;
-    u8 field_0x1;
-    u8 field_0x2;
-    u8 field_0x3;
-    u8 field_0x4;
-    u8 field_0x5;
-    u8 field_0x6;
-    u8 field_0x7;
-    u8 field_0x8;
-    u8 field_0x9;
-    u8 field_0xa;
-    u8 field_0xb;
-    u8 field_0xc;
-    u8 field_0xd;
-    u8 field_0xe;
-    u8 field_0xf;
-    u8 field_0x10;
-    u8 field_0x11;
-    u8 field_0x12;
-};
+    /* 0x00 */ void* vtable;
+    /* 0x04 */ u8 field_0x4;
+    /* 0x05 */ u8 field_0x5;
+    /* 0x06 */ u16 mFlag;
+    /* 0x08 */ float field_0x8;
+    /* 0x0C */ float field_0xc;
+    /* 0x10 */ float field_0x10;
+    /* 0x14 */ float field_0x14;
+    /* 0x18 */ float field_0x18;
+    /* 0x1C */ float field_0x1c;
+    /* 0x20 */ float field_0x20;
+    /* 0x24 */ float field_0x24;
+    /* 0x28 */ float field_0x28;
+    /* 0x2C */ float field_0x2c;
+    /* 0x30 */ float field_0x30;
+    /* 0x34 */ float field_0x34;
+    /* 0x38 */ u8 field_0x38;
+    /* 0x39 */ u8 field_0x39;
+    /* 0x3C */ float field_0x3c;
+    /* 0x40 */ float field_0x40;
+    /* 0x44 */ u32 field_0x44;
+    /* 0x48 */ u32 field_0x48;
+};  // Size = 0x4C
 
 class dAttLook_c {
 public:
@@ -79,7 +83,8 @@ private:
     u32 field_0x0;
     u32 field_0x4;
     float field_0x8;
-};
+    u32 field_0xc;
+};  // Size = 0x10
 
 #pragma pack(push, 1)
 class dAttList_c {
@@ -96,7 +101,6 @@ private:
 };
 #pragma pack(pop)
 
-#pragma pack(push, 1)
 class dAttDraw_c {
 public:
     /* 8003054C */ ~dAttDraw_c();
@@ -123,7 +127,7 @@ public:
     /* 0x11C */ mDoExt_bpkAnm bpkAnm2;
     /* 0x134 */ mDoExt_brkAnm brkAnm3;
     /* 0x14C */ mDoExt_btkAnm btkAnm2;
-    /* 0x164 */ u8 field_0x164[0xC];
+    /* 0x164 */ cXyz field_0x164;
     /* 0x170 */ u8 field_0x170;
     /* 0x171 */ u8 field_0x171;
     /* 0x172 */ u8 field_0x172;
@@ -131,7 +135,6 @@ public:
     /* 0x174 */ u8 field_0x174;
     /* 0x175 */ u8 field_0x175;
 };
-#pragma pack(pop)
 
 class dAttDraw_CallBack_c {
 public:
@@ -187,58 +190,53 @@ public:
     static u32 chk_type_tbl;
     static u32 chk_type_num;
 
-private:
-    u8 field_0x0[4];
-    u32 field_0x4;
-    dAttDraw_CallBack_c dattdraw_callback;
-    u32 field_0xc;
-    u32 field_0x10;
-    u8 field_0x14[8];
-    cXyz field_0x1c;
-    /* 0x028 */ dAttDraw_c attention_draw[2];
-    int field_0x318;
-    cXyz field_0x31c;
-    u8 field_0x328[12];
-    u32 field_0x334;
-    /* 0x0338 */ dAttList_c attention_list1[8];
-    int* field_0x3d8;
-    int* field_0x3dc;
-    /* 0x03E0 */ dAttList_c attention_list2[4];
-    int* field_0x430;
-    int field_0x434;
-    /* 0x0438 */ dAttList_c attention_list3[4];
-    int* field_0x488;
-    int field_0x48c;
-    dAttHint_c attention_hint;
-    dAttCatch_c attention_catch;
-    u8 field_0x4b0[4];
-    dAttLook_c attention_look;
-    u8 field_0x4c0;
-    u8 field_0x4c1;
-    u8 field_0x4c2;
-    u8 field_0x4c3;
-    int* field_0x4c4;
-    u8 field_0x4c8;
-    u8 field_0x4c9;
-    u8 field_0x4ca;
-    u8 field_0x4cb;
-    u8 field_0x4cc;
-    u8 field_0x4cd;
-    u8 field_0x4ce;
-    u8 field_0x4cf;
-    /* 0x04D0 */ dAttParam_c attention_param;
-    u8 field_0x4e3;
-    u8 field_0x4e4;
-    u8 field_0x4e5;
-    int* field_0x4e6;
-    u8 field_0x4ea;
-    u8 field_0x4eb;
-    u8 field_0x4ec;
-    u8 field_0x4ed;
-    u8 field_0x4ee;
-    u8 field_0x4ef;
-    u8 field_0x4f0[0x18];
-    /* 0x0508 */ void* vtable;
-};
+public:
+    /* 0x000 */ fopAc_ac_c* field_0x0;
+    /* 0x004 */ u32 field_0x4;
+    /* 0x008 */ dAttDraw_CallBack_c dattdraw_callback;
+    /* 0x00C */ u32 field_0xc;
+    /* 0x010 */ u32 field_0x10;
+    /* 0x014 */ u8 field_0x14[4];
+    /* 0x018 */ JKRSolidHeap* heap;
+    /* 0x01C */ cXyz field_0x1c;
+    /* 0x028 */ dAttDraw_c draw[2];
+    /* 0x318 */ int field_0x318;
+    /* 0x31C */ cXyz field_0x31c;
+    /* 0x328 */ u8 field_0x328;
+    /* 0x329 */ u8 field_0x329;
+    /* 0x32A */ u8 field_0x32a;
+    /* 0x32B */ u8 field_0x32b;
+    /* 0x32C */ u8 field_0x32c;
+    /* 0x32D */ u8 field_0x32d;
+    /* 0x32E */ u8 field_0x32e;
+    /* 0x32F */ u8 field_0x32f;
+    /* 0x330 */ u8 field_0x330;
+    /* 0x331 */ u8 field_0x331;
+    /* 0x332 */ u8 field_0x332;
+    /* 0x333 */ u8 field_0x333;
+    /* 0x334 */ u32 mFlags;
+    /* 0x338 */ dAttList_c mLockOnList[8];
+    /* 0x3D8 */ int mLockonCount;
+    /* 0x3DC */ int field_0x3dc;
+    /* 0x3E0 */ dAttList_c mActionList[4];
+    /* 0x430 */ int mActionCount;
+    /* 0x434 */ int field_0x434;
+    /* 0x438 */ dAttList_c attention_list3[4];
+    /* 0x488 */ int mCheckObjectCount;
+    /* 0x48C */ int field_0x48c;
+    /* 0x490 */ dAttHint_c mZHintTarget;
+    /* 0x49C */ dAttCatch_c mCatghTarget;
+    /* 0x4B4 */ dAttLook_c mLookTarget;
+    /* 0x4C4 */ int field_0x4c4;
+    /* 0x4C8 */ u8 field_0x4c8;
+    /* 0x4C9 */ u8 field_0x4c9;
+    /* 0x4CA */ u8 field_0x4ca;
+    /* 0x4CB */ u8 field_0x4cb;
+    /* 0x4CC */ u8 field_0x4cc;
+    /* 0x4CD */ u8 field_0x4cd;
+    /* 0x4CE */ u8 field_0x4ce;
+    /* 0x4CF */ u8 field_0x4cf;
+    /* 0x4D0 */ dAttParam_c attention_param;
+};  // Size = 0x51C
 
 #endif /* D_D_ATTENTION_H */

@@ -43,4 +43,9 @@ class dBgS_ObjLinChk : dBgS_LinChk {
     /* 80077FB8 */ ~dBgS_ObjLinChk();
 };
 
+class dBgS_BombLinChk : dBgS_LinChk {
+    /* 80078104 */ dBgS_BombLinChk();
+    /* 80078160 */ ~dBgS_BombLinChk();
+};
+
 #endif /* D_BG_D_BG_S_LIN_CHK_H */

@@ -27,10 +27,6 @@ struct mDoGph_gInf_c {
     static u8 mFader[4];
 };
 
-struct mDoCPd_c {
-    static u8 m_cpadInfo[256];
-};
-
 struct dSmplMdl_draw_c {
     /* 80048CB4 */ dSmplMdl_draw_c();
     /* 80048E0C */ void draw();

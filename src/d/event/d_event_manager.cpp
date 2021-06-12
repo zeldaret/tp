@@ -183,15 +183,10 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 800463DC-800463F0 040D1C 0014+00 2/2 0/0 0/0 .text            init__18dEvent_exception_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvent_exception_c::init() {
-    nofralloc
-#include "asm/d/event/d_event_manager/init__18dEvent_exception_cFv.s"
+void dEvent_exception_c::init() {
+    mEventInfoIdx = -1;
+    mState = 0;
 }
-#pragma pop
 
 /* 800463F0-80046480 040D30 0090+00 0/0 2/2 0/0 .text setStartDemo__18dEvent_exception_cFi */
 #pragma push
@@ -267,25 +262,13 @@ asm void dEvent_manager_c::getSubstance(dEvDtData_c* param_0, int param_1) {
 }
 #pragma pop
 
-/* 80046688-800466E0 040FC8 0058+00 0/0 1/1 0/0 .text            __ct__16dEvent_manager_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dEvent_manager_c::dEvent_manager_c() {
-    nofralloc
-#include "asm/d/event/d_event_manager/__ct__16dEvent_manager_cFv.s"
+dEvent_manager_c::dEvent_manager_c() {
+    mDataLoaded = false;
 }
-#pragma pop
 
-/* 800466E0-80046710 041020 0030+00 1/1 0/0 0/0 .text            __ct__11dEvDtBase_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dEvDtBase_c::dEvDtBase_c() {
-    nofralloc
-#include "asm/d/event/d_event_manager/__ct__11dEvDtBase_cFv.s"
+dEvDtBase_c::dEvDtBase_c() {
+    init();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80379F50-80379F60 0065B0 000F+01 6/6 0/0 0/0 .rodata
@@ -357,15 +340,13 @@ asm void dEvent_manager_c::roomInit(int param_0) {
 }
 #pragma pop
 
-/* 800469EC-80046A58 04132C 006C+00 0/0 1/1 0/0 .text            roomFinish__16dEvent_manager_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvent_manager_c::roomFinish(int param_0) {
-    nofralloc
-#include "asm/d/event/d_event_manager/roomFinish__16dEvent_manager_cFi.s"
+void dEvent_manager_c::roomFinish(int param_0) {
+    for (int i = 4; i <= 9; i++) {
+        if (mEventList[i].getHeaderP() != NULL && param_0 == mEventList[i].roomNo()) {
+            mEventList[i].init();
+        }
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80379F60-80379F60 0065C0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -385,15 +366,14 @@ asm void dEvent_manager_c::orderStartDemo() {
 }
 #pragma pop
 
-/* 80046C0C-80046C74 04154C 0068+00 0/0 1/1 0/0 .text            remove__16dEvent_manager_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvent_manager_c::remove() {
-    nofralloc
-#include "asm/d/event/d_event_manager/remove__16dEvent_manager_cFv.s"
+void dEvent_manager_c::remove() {
+    for (int i = 0; i < 11; i++) {
+        mEventList[i].init();
+    }
+    mCameraPlay = 0;
+    mEventException.init();
+    mFlags.init();
 }
-#pragma pop
 
 /* 80046C74-80046C88 0415B4 0014+00 1/1 0/0 0/0 .text extraOnObjectCallBack__FP10fopAc_ac_cPv */
 #pragma push
@@ -514,14 +494,35 @@ asm void dEvent_manager_c::Experts() {
 
 /* 80047454-800474BC 041D94 0068+00 1/1 0/0 0/0 .text            getEventData__16dEvent_manager_cFsi
  */
+#ifdef NONMATCHING
+dEvDtEvent_c* dEvent_manager_c::getEventData(s16 param_0, int param_1) {
+    dEvDtBase_c* baseptr;
+    dEvDtEvent_c* eventptr;
+
+    if (param_1 < 1 || param_1 > 12) {
+        eventptr = NULL;
+    } else {
+        baseptr = &mEventList[param_1];
+        if (baseptr == NULL || baseptr->getHeaderP() == NULL) {
+            eventptr = NULL;
+        } else if (param_0 < 0 || baseptr->getEventNum() <= param_0) {
+            eventptr = NULL;
+        } else {
+            eventptr = baseptr->getEventP(param_1);
+        }
+    }
+    return eventptr;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvent_manager_c::getEventData(s16 param_0, int param_1) {
+asm dEvDtEvent_c* dEvent_manager_c::getEventData(s16 param_0, int param_1) {
     nofralloc
 #include "asm/d/event/d_event_manager/getEventData__16dEvent_manager_cFsi.s"
 }
 #pragma pop
+#endif
 
 /* 800474BC-80047514 041DFC 0058+00 9/9 3/3 4/4 .text            getEventData__16dEvent_manager_cFs
  */

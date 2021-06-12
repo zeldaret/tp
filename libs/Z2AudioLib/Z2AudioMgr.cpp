@@ -11,20 +11,9 @@
 // Types:
 //
 
-struct Z2StatusMgr {
-    /* 802B5F1C */ Z2StatusMgr();
-    /* 802B5F7C */ void processHeartGaugeSound();
-    /* 802B617C */ void menuOut();
-    /* 802B671C */ void processTime();
-};
-
 struct Z2SpeechMgr2 {
     /* 802CBC60 */ Z2SpeechMgr2();
     /* 802CC9D0 */ void framework();
-};
-
-struct Z2SoundStarter {
-    /* 802AAB94 */ Z2SoundStarter(bool);
 };
 
 struct Z2SoundObjMgr {
@@ -36,22 +25,6 @@ struct Z2SoundMgr {
     /* 802AA67C */ void framework();
     /* 802AA84C */ void stopSync();
     /* 802AA908 */ void initParams();
-};
-
-struct Z2SeqMgr {
-    /* 802AEEA0 */ Z2SeqMgr();
-    /* 802B33A8 */ void processBgmFramework();
-};
-
-struct Z2SeMgr {
-    /* 802AB64C */ Z2SeMgr();
-    /* 802AB750 */ void initSe();
-    /* 802AE184 */ void processSeFramework();
-};
-
-struct Z2SceneMgr {
-    /* 802B6840 */ Z2SceneMgr();
-    /* 802B9C50 */ void framework();
 };
 
 struct Z2Param {
@@ -70,35 +43,6 @@ struct Z2FxLineMgr {
     /* 802BA7DC */ Z2FxLineMgr();
 };
 
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
-
-struct JKRSolidHeap {};
-
-struct JAISoundID {};
-
-struct JKRArchive {};
-
-struct JAISoundHandle {};
-
-struct Z2AudioMgr {
-    /* 802CD248 */ Z2AudioMgr();
-    /* 802CD34C */ void init(JKRSolidHeap*, u32, void*, JKRArchive*);
-    /* 802CD888 */ void setOutputMode(u32);
-    /* 802CD8B4 */ void zeldaGFrameWork();
-    /* 802CD904 */ void gframeProcess();
-    /* 802CD974 */ void resetProcess(u32, bool);
-    /* 802CD9CC */ void resetRecover();
-    /* 802CDA6C */ void hasReset() const;
-    /* 802CDB1C */ void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
-
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
 struct JAUSection {
     /* 802A50F8 */ void finishBuild();
 };
@@ -110,8 +54,6 @@ struct Z2AudioArcLoader {
 struct Z2Audience {
     /* 802BD130 */ Z2Audience();
 };
-
-struct JKRHeap {};
 
 struct JAU_JASInitializer {
     /* 802A4AD0 */ JAU_JASInitializer();
@@ -151,8 +93,6 @@ struct JAUAudioArcLoader {
 struct JAUAudioArcInterpreter {
     /* 802A4260 */ ~JAUAudioArcInterpreter();
 };
-
-struct JASTrack {};
 
 struct JASSeqParser {
     static u8 sCallBackFunc[4];
@@ -361,7 +301,7 @@ SECTION_DATA extern void* __vt__10Z2AudioMgr[3] = {
 
 /* 80451368-80451370 000868 0004+04 1/1 251/251 900/900 .sbss            mAudioMgrPtr__10Z2AudioMgr
  */
-u8 Z2AudioMgr::mAudioMgrPtr[4 + 4 /* padding */];
+Z2AudioMgr* Z2AudioMgr::mAudioMgrPtr;
 
 /* 802CD248-802CD34C 2C7B88 0104+00 0/0 1/1 0/0 .text            __ct__10Z2AudioMgrFv */
 #pragma push

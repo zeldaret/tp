@@ -39,10 +39,6 @@ struct mDoExt_MtxCalcAnmBlendTbl {
     /* 800D00BC */ void getAnm(int);
 };
 
-struct mDoCPd_c {
-    static u8 m_cpadInfo[256];
-};
-
 struct fopEn_enemy_c {};
 
 struct e_wb_class {
@@ -633,13 +629,6 @@ struct dPaPoF_c {
 
 struct dInsect_c {
     /* 80110648 */ void Insect_Release();
-};
-
-struct dEvt_info_c {
-    /* 801411E0 */ void onCondition(u16);
-    /* 80141200 */ void offCondition(u16);
-    /* 80141388 */ void checkCommandCatch();
-    /* 80141450 */ void checkCommandDoor();
 };
 
 struct dEvt_control_c {
@@ -24106,10 +24095,10 @@ asm void daAlink_c::checkPullBehindWall() {
 
 /* 800E8298-800E82B0 0E2BD8 0018+00 3/3 0/0 0/0 .text            offGoatStopGame__9daAlink_cFv */
 void daAlink_c::offGoatStopGame() {
-    if (field_0x56a != 0x2a) {
+    if (field_0x560[0xA] != 0x2a) {
         return;
     } else {
-        field_0x56a = 0;
+        field_0x560[0xA] = 0;
     }
 }
 
@@ -24349,7 +24338,7 @@ asm void daAlink_c::checkSumouVsActor() {
 /* 800EA8D0-800EA908 0E5210 0038+00 5/5 0/0 0/0 .text            cancelSumouMode__9daAlink_cFv */
 void daAlink_c::cancelSumouMode() {
     field_0x2854.clearData();
-    field_0x56a = 0;
+    field_0x560[0xA] = 0;
 }
 
 /* 800EA908-800EA92C 0E5248 0024+00 2/2 0/0 0/0 .text            sumouPunchTrigger__9daAlink_cFv */
@@ -35167,7 +35156,7 @@ void daPy_demo_c::setSpecialDemoType() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_info_c::checkCommandCatch() {
+asm bool dEvt_info_c::checkCommandCatch() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkCommandCatch__11dEvt_info_cFv.s"
 }
@@ -35245,7 +35234,7 @@ static asm void dComIfGp_event_chkEventFlag(u16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_info_c::checkCommandDoor() {
+asm bool dEvt_info_c::checkCommandDoor() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkCommandDoor__11dEvt_info_cFv.s"
 }

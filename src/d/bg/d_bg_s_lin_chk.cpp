@@ -26,11 +26,6 @@ struct dBgS_CamLinChk {
     /* 80077E00 */ ~dBgS_CamLinChk();
 };
 
-struct dBgS_BombLinChk {
-    /* 80078104 */ dBgS_BombLinChk();
-    /* 80078160 */ ~dBgS_BombLinChk();
-};
-
 //
 // Forward References:
 //

@@ -4,7 +4,7 @@
 #include "d/bg/d_bg_s_acch.h"
 #include "dolphin/types.h"
 
-struct dKy_tevstr_c {};
+struct dKy_tevstr_c;
 
 class dPaPo_c {
 public:

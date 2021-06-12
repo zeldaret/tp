@@ -12,8 +12,6 @@
 // Types:
 //
 
-struct dKy_tevstr_c {};
-
 struct fopEn_enemy_c {
     /* 80019404 */ void initBallModel();
     /* 800194FC */ void checkBallModelDraw();
@@ -51,18 +49,10 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
                             cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
                             _GXColor const*, cXyz const*, f32);
-};
-
-struct dEvt_info_c {
-    /* 80018C44 */ ~dEvt_info_c();
-    /* 800433F0 */ dEvt_info_c();
-    /* 800434CC */ void beforeProc();
 };
 
 struct dEvt_control_c {
@@ -94,14 +84,6 @@ struct J3DAnmTextureSRTKey {
 struct J3DMaterialTable {
     /* 8032FCC4 */ void entryTexMtxAnimator(J3DAnmTextureSRTKey*);
     /* 8032FE70 */ void entryTevRegAnimator(J3DAnmTevRegKey*);
-};
-
-struct J3DLightObj {
-    /* 80018C0C */ J3DLightObj();
-};
-
-struct J3DLightInfo {
-    /* 803256C4 */ void operator=(J3DLightInfo const&);
 };
 
 //
@@ -277,7 +259,7 @@ asm void fopAc_IsActor(void* param_0) {
 
 /* ############################################################################################## */
 /* 80450CBC-80450CC0 0001BC 0004+00 2/2 1/1 0/0 .sbss            stopStatus__10fopAc_ac_c */
-u8 fopAc_ac_c::stopStatus[4];
+u32 fopAc_ac_c::stopStatus;
 
 /* 80018D0C-80018DD8 01364C 00CC+00 1/0 0/0 0/0 .text            fopAc_Draw__FPv */
 #pragma push
