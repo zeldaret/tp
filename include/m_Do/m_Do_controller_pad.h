@@ -48,8 +48,12 @@ public:
     static u32 getHoldX(u32 pad) { return getHold(pad) & CButton::X; }
     static f32 getStickX(u32 pad) { return getCpadInfo(pad).mMainStickPosX; }
     static f32 getStickY(u32 pad) { return getCpadInfo(pad).mMainStickPosY; }
+    static f32 getStickValue(u32 pad) { return getCpadInfo(pad).mMainStickValue; }
+    static s16 getStickAngle(u32 pad) { return getCpadInfo(pad).mMainStickAngle; }
     static f32 getSubStickX(u32 pad) { return getCpadInfo(pad).mCStickPosX; }
     static f32 getSubStickY(u32 pad) { return getCpadInfo(pad).mCStickPosY; }
+    static f32 getSubStickValue(u32 pad) { return getCpadInfo(pad).mCStickValue; }
+    static s16 getSubStickAngle(u32 pad) { return getCpadInfo(pad).mCStickAngle; }
     static f32 getAnalogR(u32 pad) { return getCpadInfo(pad).mTriggerRight; }
     static f32 getAnalogL(u32 pad) { return getCpadInfo(pad).mTriggerLeft; }
 

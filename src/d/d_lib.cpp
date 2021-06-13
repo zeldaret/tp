@@ -6,6 +6,8 @@
 #include "d/d_lib.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor.h"
+#include "m_Do/m_Do_controller_pad.h"
 
 //
 // Types:
@@ -15,44 +17,8 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct mDoCPd_c {
-    static u8 m_cpadInfo[256];
-};
-
-struct fopAc_ac_c {};
-
-struct dLib_time_c {
-    /* 80032804 */ void getTime();
-    /* 80032880 */ void stopTime();
-    /* 800328BC */ void startTime();
-
-    static u8 m_diffTime[4];
-    static u8 m_stopTime[4];
-};
-
 struct dEvt_control_c {
     /* 800434D8 */ void searchMapEventData(u8);
-};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-};
-
-struct STControl {
-    /* 80032044 */ STControl(s16, s16, s16, s16, f32, f32, s16, s16);
-    /* 80032088 */ void setWaitParm(s16, s16, s16, s16, f32, f32, s16, s16);
-    /* 800320AC */ void init();
-    /* 800320FC */ void Xinit();
-    /* 8003212C */ void Yinit();
-    /* 8003215C */ void getValueStick();
-    /* 8003216C */ void getAngleStick();
-    /* 8003219C */ void checkTrigger();
-    /* 8003242C */ void checkLeftTrigger();
-    /* 800324A8 */ void checkRightTrigger();
-    /* 80032524 */ void checkUpTrigger();
-    /* 800325A0 */ void checkDownTrigger();
 };
 
 struct JKRHeap {};
@@ -69,11 +35,6 @@ struct JKRAramArchive {
 
 struct JKRAram {
     /* 802D25B4 */ void aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
-};
-
-struct CSTControl {
-    /* 8003217C */ void getValueStick();
-    /* 8003218C */ void getAngleStick();
 };
 
 //
@@ -114,7 +75,6 @@ extern "C" void __mi__4cXyzCFRC3Vec();
 extern "C" void aramToMainRam__7JKRAramFUlPUcUl15JKRExpandSwitchUlP7JKRHeapiPUl();
 extern "C" void findFsResource__10JKRArchiveCFPCcUl();
 extern "C" void getAramAddress__14JKRAramArchiveFPCc();
-extern "C" void OSGetTime();
 extern "C" void PSMTXMultVec();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
@@ -148,49 +108,57 @@ SECTION_DATA extern void* __vt__9STControl[4] = {
     (void*)getAngleStick__9STControlFv,
 };
 
-/* 80032044-80032088 02C984 0044+00 0/0 6/6 0/0 .text            __ct__9STControlFssssffss */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm STControl::STControl(s16 param_0, s16 param_1, s16 param_2, s16 param_3, f32 param_4,
+STControl::STControl(s16 param_0, s16 param_1, s16 param_2, s16 param_3, f32 param_4,
                          f32 param_5, s16 param_6, s16 param_7) {
-    nofralloc
-#include "asm/d/d_lib/__ct__9STControlFssssffss.s"
+    setWaitParm(param_0, param_1, param_2, param_3, param_4, param_5, param_6, param_7);
+    init();
 }
-#pragma pop
 
-/* 80032088-800320AC 02C9C8 0024+00 1/1 3/3 0/0 .text            setWaitParm__9STControlFssssffss */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void STControl::setWaitParm(s16 param_0, s16 param_1, s16 param_2, s16 param_3, f32 param_4,
+void STControl::setWaitParm(s16 param_0, s16 param_1, s16 param_2, s16 param_3, f32 param_4,
                                 f32 param_5, s16 param_6, s16 param_7) {
-    nofralloc
-#include "asm/d/d_lib/setWaitParm__9STControlFssssffss.s"
+    field_0x12 = param_0;
+    field_0x14 = param_1;
+    field_0x16 = param_2;
+    field_0x1c = param_3;
+    field_0x04 = param_4;
+    field_0x08 = param_5;
+    field_0x24 = param_6;
+    field_0x26 = param_7;
 }
-#pragma pop
 
-/* 800320AC-800320FC 02C9EC 0050+00 1/1 1/1 0/0 .text            init__9STControlFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void STControl::init() {
-    nofralloc
-#include "asm/d/d_lib/init__9STControlFv.s"
+void STControl::init() {
+    field_0x0e = 0;
+    field_0x10 = 0;
+    field_0x0d = 0;
+    field_0x0c = 0;
+    field_0x22 = 0;
+    mXwaitTimer = field_0x12;
+    mYwaitTimer = field_0x12;
+    field_0x1e = field_0x1c;
+    field_0x20 = field_0x1c;
+    mFirstWaitTime = 0;
+    field_0x2a = mFirstWaitTime;
+    field_0x2c = mFirstWaitTime;
 }
-#pragma pop
 
-/* 800320FC-8003212C 02CA3C 0030+00 1/1 0/0 0/0 .text            Xinit__9STControlFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void STControl::Xinit() {
-    nofralloc
-#include "asm/d/d_lib/Xinit__9STControlFv.s"
+void STControl::Xinit() {
+    field_0x0e = 0;
+    field_0x0c &= 0xfc;
+    mXwaitTimer = field_0x12;
+    field_0x1e = field_0x1c;
+    field_0x2a = mFirstWaitTime;
 }
-#pragma pop
 
 /* 8003212C-8003215C 02CA6C 0030+00 1/1 0/0 0/0 .text            Yinit__9STControlFv */
+#ifdef NONMATCHING
+void STControl::Yinit() {
+    field_0x10 = 0;
+    field_0x0c &= 0xf3;
+    mYwaitTimer = field_0x12;
+    field_0x20 = field_0x1c;
+    field_0x2c = mFirstWaitTime;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -199,46 +167,23 @@ asm void STControl::Yinit() {
 #include "asm/d/d_lib/Yinit__9STControlFv.s"
 }
 #pragma pop
+#endif
 
-/* 8003215C-8003216C 02CA9C 0010+00 1/0 0/0 0/0 .text            getValueStick__9STControlFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void STControl::getValueStick() {
-    nofralloc
-#include "asm/d/d_lib/getValueStick__9STControlFv.s"
+f32 STControl::getValueStick() {
+    return mDoCPd_c::getStickValue(mDoCPd_c::PAD_0);
 }
-#pragma pop
 
-/* 8003216C-8003217C 02CAAC 0010+00 1/0 0/0 0/0 .text            getAngleStick__9STControlFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void STControl::getAngleStick() {
-    nofralloc
-#include "asm/d/d_lib/getAngleStick__9STControlFv.s"
+s16 STControl::getAngleStick() {
+    return mDoCPd_c::getStickAngle(mDoCPd_c::PAD_0);
 }
-#pragma pop
 
-/* 8003217C-8003218C 02CABC 0010+00 1/0 0/0 0/0 .text            getValueStick__10CSTControlFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CSTControl::getValueStick() {
-    nofralloc
-#include "asm/d/d_lib/getValueStick__10CSTControlFv.s"
+f32 CSTControl::getValueStick() {
+    return mDoCPd_c::getSubStickValue(mDoCPd_c::PAD_0);
 }
-#pragma pop
 
-/* 8003218C-8003219C 02CACC 0010+00 1/0 0/0 0/0 .text            getAngleStick__10CSTControlFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CSTControl::getAngleStick() {
-    nofralloc
-#include "asm/d/d_lib/getAngleStick__10CSTControlFv.s"
+s16 CSTControl::getAngleStick() {
+    return mDoCPd_c::getSubStickAngle(mDoCPd_c::PAD_0);
 }
-#pragma pop
 
 /* 8003219C-8003242C 02CADC 0290+00 0/0 24/24 0/0 .text            checkTrigger__9STControlFv */
 #pragma push
@@ -250,46 +195,73 @@ asm void STControl::checkTrigger() {
 }
 #pragma pop
 
-/* 8003242C-800324A8 02CD6C 007C+00 0/0 14/14 0/0 .text            checkLeftTrigger__9STControlFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void STControl::checkLeftTrigger() {
-    nofralloc
-#include "asm/d/d_lib/checkLeftTrigger__9STControlFv.s"
+bool STControl::checkLeftTrigger() {
+    if ((field_0x0e == 0) && ((field_0x0c & 1) != 0)) {
+        field_0x0e = mXwaitTimer + field_0x2a;
+        field_0x2a = 0;
+        if ((int)field_0x1e == 0) {
+            mXwaitTimer -= field_0x16;
+            if (mXwaitTimer < field_0x14) {
+                mXwaitTimer = field_0x14;
+            }
+        } else {
+            field_0x1e--;
+        }
+        return true;
+    }
+    return false;
 }
-#pragma pop
 
-/* 800324A8-80032524 02CDE8 007C+00 0/0 14/14 0/0 .text            checkRightTrigger__9STControlFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void STControl::checkRightTrigger() {
-    nofralloc
-#include "asm/d/d_lib/checkRightTrigger__9STControlFv.s"
+bool STControl::checkRightTrigger() {
+    if ((field_0x0e == 0) && ((field_0x0c & 2) != 0)) {
+        field_0x0e = mXwaitTimer + field_0x2a;
+        field_0x2a = 0;
+        if ((int)field_0x1e == 0) {
+            mXwaitTimer -= field_0x16;
+            if (mXwaitTimer < field_0x14) {
+                mXwaitTimer = field_0x14;
+            }
+        } else {
+            field_0x1e--;
+        }
+        return true;
+    }
+    return false;
 }
-#pragma pop
 
-/* 80032524-800325A0 02CE64 007C+00 0/0 20/20 0/0 .text            checkUpTrigger__9STControlFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void STControl::checkUpTrigger() {
-    nofralloc
-#include "asm/d/d_lib/checkUpTrigger__9STControlFv.s"
+bool STControl::checkUpTrigger() {
+    if ((field_0x10 == 0) && ((field_0x0c & 4) != 0)) {
+        field_0x10 = mYwaitTimer + field_0x2c;
+        field_0x2c = 0;
+        if ((int)field_0x20 == 0) {
+            mYwaitTimer -= field_0x16;
+            if (mYwaitTimer < field_0x14) {
+                mYwaitTimer = field_0x14;
+            }
+        } else {
+            field_0x20--;
+        }
+        return true;
+    }
+    return false;
 }
-#pragma pop
 
-/* 800325A0-8003261C 02CEE0 007C+00 0/0 21/21 0/0 .text            checkDownTrigger__9STControlFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void STControl::checkDownTrigger() {
-    nofralloc
-#include "asm/d/d_lib/checkDownTrigger__9STControlFv.s"
+bool STControl::checkDownTrigger() {
+    if ((field_0x10 == 0) && ((field_0x0c & 8) != 0)) {
+        field_0x10 = mYwaitTimer + field_0x2c;
+        field_0x2c = 0;
+        if ((int)field_0x20 == 0) {
+            mYwaitTimer -= field_0x16;
+            if (mYwaitTimer < field_0x14) {
+                mYwaitTimer = field_0x14;
+            }
+        } else {
+            field_0x20--;
+        }
+        return true;
+    }
+    return false;
 }
-#pragma pop
 
 /* 8003261C-80032654 02CF5C 0038+00 0/0 0/0 1/1 .text            dLib_getEventSwitchNo__Fi */
 #pragma push
