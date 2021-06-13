@@ -7,10 +7,10 @@
 #include "global.h"
 
 #define DEFAULT_SELECT_ITEM_INDEX 0
-#define MAX_SELECT_ITEM 3
+#define MAX_SELECT_ITEM 4
+#define MAX_EQUIPMENT 6
 #define MAX_EVENTS 256
 #define MAX_ITEM_SLOTS 24
-#define ITEM_XY_MAX_DUMMY 8
 #define LIGHT_DROP_STAGE 4
 #define LETTER_INFO_BIT 64
 #define BOMB_BAG_MAX 3
@@ -349,11 +349,9 @@ private:
     u16 mMaxLanternOil;
     u16 mCurrentLanternOil;
     u8 unk10;
-    u8 mSelectItem[3];
-    u8 mMixItem[3];
-    u8 unk17;
-    u8 unk18;
-    u8 mEquipment[6];
+    u8 mSelectItem[MAX_SELECT_ITEM]; // For GC: first 2 are X & Y, others unused; For Wii (in order): Left, Right, Down, B
+    u8 mMixItem[MAX_SELECT_ITEM]; // Combo items; For GC: first 2 are X & Y, others unused; For Wii (in order): Left, Right, Down, B
+    u8 mEquipment[MAX_EQUIPMENT];
     u8 mCurrentWallet;
     u8 mMaxMagic;
     u8 mCurrentMagic;
@@ -623,21 +621,33 @@ public:
     u32 checkVibration(void) const;
     u8 getSound(void);
     void setSound(u8);
+    u8 getLockonType(void);
+    void setLockonType(u8);
     u8 getVibration(void);
     void setVibration(u8);
+    u16 getPointerXCalibration(void);
+    void setPointerXCalibration(u16);
+    u8 getPointerYCalibration(void);
+    void setPointerYCalibration(u8);
+    BOOL getIconShortcut(void);
+    void setIconShortcut(BOOL);
+    u8 getCameraControl(void);
+    void setCameraControl(u8);
+    BOOL getPointer(void);
+    void setPointer(BOOL);
 
 private:
     u8 unk0;
     u8 mSoundMode;
-    u8 unk2;
+    u8 mLockonType; // 0 : hold, 1 : switch
     u8 mVibrationStatus;
     u8 unk4;
     u8 unk5;
-    u16 unk6;
-    u8 unk8;
-    u8 unk9;
-    u8 unk10;
-    u8 unk11;
+    u16 mPointerXCalib; // Wii pointer horizontal calibration. Default is 0x015E
+    u8 mPointerYCalib; // Wii pointer vertical calibration. Default is 0x00
+    u8 mIconShortcut; // Wii icon shortcut enabled/disabled.
+    u8 mCameraControl; // 0 : normal, 1 : inverted
+    u8 mPointer; // Wii pointer enabled/disabled.
     u8 padding[4];
 };
 

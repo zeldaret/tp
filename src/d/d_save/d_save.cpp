@@ -74,13 +74,13 @@ void dSv_player_status_a_c::init() {
     mCurrentLanternOil = 0;
     unk10 = 0;
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < MAX_SELECT_ITEM; i++) {
         mSelectItem[i] = NO_ITEM;
-        mMixItem[i + 1] = NO_ITEM;
+        mMixItem[i] = NO_ITEM;
         dComIfGp_setSelectItem__Fi(i);
     }
 
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < MAX_EQUIPMENT; i++) {
         mEquipment[i] = 0;
     }
 
@@ -102,27 +102,27 @@ void dSv_player_status_a_c::init() {
 }
 
 void dSv_player_status_a_c::setSelectItemIndex(signed int i_no, u8 item_index) {
-    if (i_no < ITEM_XY_MAX_DUMMY / 2) {
+    if (i_no < MAX_SELECT_ITEM) {
         mSelectItem[i_no] = item_index;
     }
 }
 
 u8 dSv_player_status_a_c::getSelectItemIndex(signed int i_no) const {
-    if (i_no < ITEM_XY_MAX_DUMMY / 2) {
+    if (i_no < MAX_SELECT_ITEM) {
         return mSelectItem[i_no];
     }
     return 0;
 }
 
 void dSv_player_status_a_c::setMixItemIndex(signed int i_no, u8 item_index) {
-    if (i_no < ITEM_XY_MAX_DUMMY / 2) {
-        mMixItem[i_no + 1] = item_index;
+    if (i_no < MAX_SELECT_ITEM) {
+        mMixItem[i_no] = item_index;
     }
 }
 
 u8 dSv_player_status_a_c::getMixItemIndex(signed int i_no) const {
-    if (i_no < ITEM_XY_MAX_DUMMY / 2) {
-        return mMixItem[i_no + 1];
+    if (i_no < MAX_SELECT_ITEM) {
+        return mMixItem[i_no];
     }
     return 0;
 }
@@ -313,7 +313,7 @@ void dSv_player_item_c::setItem(int item_slot, u8 item_id) {
             dComIfGp_setSelectItem__Fi(select_item_index);
         }
         select_item_index++;
-    } while (select_item_index < MAX_SELECT_ITEM);
+    } while (select_item_index < MAX_SELECT_ITEM - 1);
 }
 
 #ifdef NONMATCHING
@@ -954,15 +954,15 @@ void dSv_player_config_c::init(void) {
         lbl_80451368->setOutputMode(SOUND_MODE_STEREO);
     }
 
-    unk2 = 0;
+    mLockonType = 0;
     mVibrationStatus = 1;
     unk4 = 0;
     unk5 = 0;
-    unk9 = 0;
-    unk6 = 0x15e;
-    unk8 = 0;
-    unk10 = 0;
-    unk11 = 1;
+    mIconShortcut = 0;
+    mPointerXCalib = 0x15e;
+    mPointerYCalib = 0;
+    mCameraControl = 0;
+    mPointer = 1;
 }
 
 u32 dSv_player_config_c::checkVibration(void) const {
@@ -977,12 +977,60 @@ void dSv_player_config_c::setSound(u8 i_mSoundMode) {
     mSoundMode = i_mSoundMode;
 }
 
+u8 dSv_player_config_c::getLockonType(void) {
+    return mLockonType;
+}
+
+void dSv_player_config_c::setLockonType(u8 i_mLockonType) {
+    mLockonType = i_mLockonType;
+}
+
 u8 dSv_player_config_c::getVibration(void) {
     return mVibrationStatus;
 }
 
 void dSv_player_config_c::setVibration(u8 i_mVibrationStatus) {
     mVibrationStatus = i_mVibrationStatus;
+}
+
+u16 dSv_player_config_c::getPointerXCalibration(void) {
+    return mPointerXCalib;
+}
+
+void dSv_player_config_c::setPointerXCalibration(u16 i_mPointerXCalib) {
+    mPointerXCalib = i_mPointerXCalib;
+}
+
+u8 dSv_player_config_c::getPointerYCalibration(void) {
+    return mPointerYCalib;
+}
+
+void dSv_player_config_c::setPointerYCalibration(u8 i_mPointerYCalib) {
+    mPointerYCalib = i_mPointerYCalib;
+}
+
+BOOL dSv_player_config_c::getIconShortcut(void) {
+    return mIconShortcut;
+}
+
+void dSv_player_config_c::setIconShortcut(BOOL i_mIconShortcut) {
+    mIconShortcut = i_mIconShortcut;
+}
+
+u8 dSv_player_config_c::getCameraControl(void) {
+    return mCameraControl;
+}
+
+void dSv_player_config_c::setCameraControl(u8 i_mCameraControl) {
+    mCameraControl = i_mCameraControl;
+}
+
+BOOL dSv_player_config_c::getPointer(void) {
+    return mPointer;
+}
+
+void dSv_player_config_c::setPointer(BOOL i_mPointer) {
+    mPointer = i_mPointer;
 }
 
 void dSv_player_c::init(void) {
