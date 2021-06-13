@@ -57,14 +57,15 @@ else
 	SHA1SUM := sha1sum
 endif
 
-AS      := $(DEVKITPPC)/bin/powerpc-eabi-as
-OBJCOPY := $(DEVKITPPC)/bin/powerpc-eabi-objcopy
-STRIP   := $(DEVKITPPC)/bin/powerpc-eabi-strip
-CC      := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc.exe
-LD      := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwldeppc.exe
-ELF2DOL := tools/elf2dol
-PYTHON  := python3
-DOXYGEN := doxygen
+AS        := $(DEVKITPPC)/bin/powerpc-eabi-as
+OBJCOPY   := $(DEVKITPPC)/bin/powerpc-eabi-objcopy
+STRIP     := $(DEVKITPPC)/bin/powerpc-eabi-strip
+CC        := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc.exe
+LD        := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwldeppc.exe
+ELF2DOL   := tools/elf2dol
+PYTHON    := python3
+DOXYGEN   := doxygen
+IMAGENAME := gz2e01.iso
 
 POSTPROC := tools/postprocess.py
 
@@ -110,6 +111,9 @@ clean:
 
 tools:
 	@$(MAKE) -C tools
+
+assets:
+	@cd game; python3 ../tools/extract_game_assets.py ../$(IMAGENAME)
 
 docs:
 	$(DOXYGEN) Doxyfile

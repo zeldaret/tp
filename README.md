@@ -21,7 +21,24 @@ And will eventually build all the [RELs](./docs/rels_sha1.md).
 
 1. Obtain a clean DOL of TP (GCN USA) and place it at the root of the repo and name it `baserom.dol`.
 2. Obtain a copy of the MWCC PowerPC compiler (version 2.7 to be exact). See below for a link to our Discord server which has the CodeWarrior compilers pinned in the #tp-decomp channel.
-3. Run `make` at the root of the repo.
+3. Replace `tools/mwcc_compiler/2.7/mwcceppc.exe` with the custom one also pinned in the #tp-decomp channel.
+4. Run `make` at the root of the repo.
+
+## Dump Assets
+
+1. Place a vanilla copy of the NTSC-U version at the root of the folder and call it `gz2e01.iso`.
+2. Make the game directory.
+
+```bash
+mkdir game
+```
+
+3. Run make assets.
+
+```bash
+make assets
+````
+
 
 ## Contributions
 

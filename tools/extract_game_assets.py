@@ -20,8 +20,7 @@ def getFstInfo(handler, fstOffsetPosition):
 
 """
 Parses the fst.bin into a list of dictionaries containing
-the file name, file offset into the ISO, the file size,
-and the folder structure
+the file entry type, the file/folder name, the ISO file offset/parent file entry, the file size/last file entry
 """
 def parseFstBin(fstBinBytes):
     currentByte = 0
