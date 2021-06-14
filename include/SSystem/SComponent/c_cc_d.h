@@ -31,57 +31,58 @@ public:
         /* 0x10 */ f32 _10;
         /* 0x14 */ f32 _14;
     };
-
+    cCcD_ShapeAttr() {}
     /* 8008556C vt[2] */ virtual ~cCcD_ShapeAttr() {}
-    /* 802649D8 vt[3] */ virtual bool CrossAtTg(cCcD_ShapeAttr const&, cXyz*) const;
+    /* 802649D8 vt[3] */ virtual bool CrossAtTg(cCcD_ShapeAttr const&, cXyz*) const { return false; }
     /*          vt[4] */ virtual bool CrossAtTg(cCcD_PntAttr const&, cXyz*) const = 0;
     /*          vt[5] */ virtual bool CrossAtTg(cCcD_CpsAttr const&, cXyz*) const = 0;
     /*          vt[6] */ virtual bool CrossAtTg(cCcD_TriAttr const&, cXyz*) const = 0;
     /*          vt[7] */ virtual bool CrossAtTg(cCcD_AabAttr const&, cXyz*) const = 0;
     /*          vt[8] */ virtual bool CrossAtTg(cCcD_CylAttr const&, cXyz*) const = 0;
     /*          vt[9] */ virtual bool CrossAtTg(cCcD_SphAttr const&, cXyz*) const = 0;
-    /* 802649E0 vt[10]*/ virtual bool CrossCo(cCcD_ShapeAttr const&, f32*) const;
+    /* 802649E0 vt[10]*/ virtual bool CrossCo(cCcD_ShapeAttr const&, f32*) const { return false; }
     /*          vt[11]*/ virtual bool CrossCo(cCcD_PntAttr const&, f32*) const = 0;
     /*          vt[12]*/ virtual bool CrossCo(cCcD_CpsAttr const&, f32*) const = 0;
     /*          vt[13]*/ virtual bool CrossCo(cCcD_TriAttr const&, f32*) const = 0;
     /*          vt[14]*/ virtual bool CrossCo(cCcD_AabAttr const&, f32*) const = 0;
     /*          vt[15]*/ virtual bool CrossCo(cCcD_CylAttr const&, f32*) const = 0;
     /*          vt[16]*/ virtual bool CrossCo(cCcD_SphAttr const&, f32*) const = 0;
-    /* 80084E38 vt[17]*/ virtual const cXyz& GetCoCP() const;
-    /* 80084E2C vt[18]*/ virtual cXyz& GetCoCP();
+    /* 80084E38 vt[17]*/ virtual const cXyz& GetCoCP() const { return m_virtual_center; }
+    /* 80084E2C vt[18]*/ virtual cXyz& GetCoCP() { return m_virtual_center; }
     /*          vt[19]*/ virtual void CalcAabBox() = 0;
     /*          vt[20]*/ virtual bool GetNVec(cXyz const&, cXyz*) const = 0;
     /* 80263A64 vt[21]*/ virtual void getShapeAccess(cCcD_ShapeAttr::Shape*) const;
 
-    static f32 m_virtual_center[3];
+    static cXyz m_virtual_center;
 };
 
 STATIC_ASSERT(0x20 == sizeof(cCcD_ShapeAttr));
 
 class cCcD_TriAttr : public cCcD_ShapeAttr, public cM3dGTri {
 public:
-    /* 80084E44 */ virtual bool CrossAtTg(cCcD_AabAttr const&, cXyz*) const;
+    cCcD_TriAttr() {}
+    /* 80264938 */ virtual ~cCcD_TriAttr() {}
+    /* 80084E44 */ virtual bool CrossAtTg(cCcD_AabAttr const&, cXyz*) const { return false; }
     /* 80263A88 */ virtual bool CrossAtTg(cCcD_CpsAttr const&, cXyz*) const;
     /* 80263BCC */ virtual bool CrossAtTg(cCcD_TriAttr const&, cXyz*) const;
-    /* 80084E4C */ virtual bool CrossAtTg(cCcD_PntAttr const&, cXyz*) const;
+    /* 80084E4C */ virtual bool CrossAtTg(cCcD_PntAttr const&, cXyz*) const { return false; }
     /* 80263B90 */ virtual bool CrossAtTg(cCcD_SphAttr const&, cXyz*) const;
-    /* 80084E54 */ virtual bool CrossAtTg(cCcD_ShapeAttr const&, cXyz*) const;
+    /* 80084E54 */ virtual bool CrossAtTg(cCcD_ShapeAttr const& shape, cXyz* xyz) const { return shape.CrossAtTg(*this, xyz); }
     /* 80263B58 */ virtual bool CrossAtTg(cCcD_CylAttr const&, cXyz*) const;
-    /* 80084E9C */ virtual bool CrossCo(cCcD_AabAttr const&, f32*) const;
-    /* 80084EBC */ virtual bool CrossCo(cCcD_ShapeAttr const&, f32*) const;
-    /* 80084EA4 */ virtual bool CrossCo(cCcD_TriAttr const&, f32*) const;
-    /* 80084E8C */ virtual bool CrossCo(cCcD_SphAttr const&, f32*) const;
-    /* 80084EAC */ virtual bool CrossCo(cCcD_CpsAttr const&, f32*) const;
-    /* 80084E94 */ virtual bool CrossCo(cCcD_CylAttr const&, f32*) const;
-    /* 80084EB4 */ virtual bool CrossCo(cCcD_PntAttr const&, f32*) const;
+    /* 80084E9C */ virtual bool CrossCo(cCcD_AabAttr const&, f32*) const { return false; }
+    /* 80084EBC */ virtual bool CrossCo(cCcD_ShapeAttr const& shape, f32* f) const { return shape.CrossCo(*this, f); }
+    /* 80084EA4 */ virtual bool CrossCo(cCcD_TriAttr const&, f32*) const { return false; }
+    /* 80084E8C */ virtual bool CrossCo(cCcD_SphAttr const&, f32*) const { return false; }
+    /* 80084EAC */ virtual bool CrossCo(cCcD_CpsAttr const&, f32*) const { return false; }
+    /* 80084E94 */ virtual bool CrossCo(cCcD_CylAttr const&, f32*) const { return false; }
+    /* 80084EB4 */ virtual bool CrossCo(cCcD_PntAttr const&, f32*) const { return false; }
     /* 80263C04 */ virtual void CalcAabBox();
     /* 80263C9C */ virtual bool GetNVec(cXyz const&, cXyz*) const;
-    /* 80264938 */ virtual ~cCcD_TriAttr();
 };
 
 class cCcD_CpsAttr : public cCcD_ShapeAttr, public cM3dGCps {
 public:
-    /* 80085450 */ virtual ~cCcD_CpsAttr();
+    /* 80085450 */ virtual ~cCcD_CpsAttr() {}
     /* 80263DC0 */ virtual bool CrossAtTg(cCcD_SphAttr const&, cXyz*) const;
     /* 80263E04 */ virtual bool CrossAtTg(cCcD_TriAttr const&, cXyz*) const;
     /* 80084FE4 */ virtual bool CrossAtTg(cCcD_ShapeAttr const&, cXyz*) const;
@@ -104,7 +105,7 @@ STATIC_ASSERT(0x40 == sizeof(cCcD_CpsAttr));
 
 class cCcD_SphAttr : public cCcD_ShapeAttr, public cM3dGSph {
 public:
-    /* 8008721C */ virtual ~cCcD_SphAttr();
+    /* 8008721C */ virtual ~cCcD_SphAttr() {}
     /* 80264538 */ virtual bool CrossAtTg(cCcD_CylAttr const&, cXyz*) const;
     /* 802645C0 */ virtual bool CrossAtTg(cCcD_TriAttr const&, cXyz*) const;
     /* 80084B4C */ virtual bool CrossAtTg(cCcD_AabAttr const&, cXyz*) const;
@@ -131,7 +132,7 @@ STATIC_ASSERT(0x34 == sizeof(cCcD_SphAttr));
 
 class cCcD_CylAttr : public cCcD_ShapeAttr, public cM3dGCyl {
 public:
-    /* 800854E0 */ virtual ~cCcD_CylAttr();
+    /* 800854E0 */ virtual ~cCcD_CylAttr() {}
     /* 8026420C */ virtual bool CrossAtTg(cCcD_SphAttr const&, cXyz*) const;
     /* 802641C8 */ virtual bool CrossAtTg(cCcD_CylAttr const&, cXyz*) const;
     /* 80084CC8 */ virtual bool CrossAtTg(cCcD_AabAttr const&, cXyz*) const;
@@ -242,8 +243,8 @@ public:
     /* 8026395C */ void ClrCcMove();
     /* 80263970 */ void PlusDmg(int);
     /* 80263984 */ f32 GetWeightF() const;
-    /* 802649E8 vt[7] */ virtual void ClrAt();
-    /* 802649EC vt[8] */ virtual void ClrTg();
+    /* 802649E8 vt[7] */ virtual void ClrAt() {}
+    /* 802649EC vt[8] */ virtual void ClrTg() { mTg = 0; }
     u8 GetWeightUc() const { return mWeight; }
     void SetWeight(u8 weight) { mWeight = weight; }
     fopAc_ac_c* GetAc() { return mActor; }

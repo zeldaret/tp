@@ -1454,7 +1454,8 @@ extern "C" asm void __dt__8dCcD_CylFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz& cCcD_ShapeAttr::GetCoCP() {
+// asm cXyz& cCcD_ShapeAttr::GetCoCP() {
+extern "C" asm void GetCoCP__14cCcD_ShapeAttrFv() {
     nofralloc
 #include "asm/d/cc/d_cc_d/GetCoCP__14cCcD_ShapeAttrFv.s"
 }
@@ -1464,7 +1465,8 @@ asm cXyz& cCcD_ShapeAttr::GetCoCP() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm const cXyz& cCcD_ShapeAttr::GetCoCP() const {
+// asm const cXyz& cCcD_ShapeAttr::GetCoCP() const {
+extern "C" asm void GetCoCP__14cCcD_ShapeAttrCFv() {
     nofralloc
 #include "asm/d/cc/d_cc_d/GetCoCP__14cCcD_ShapeAttrCFv.s"
 }
@@ -1489,7 +1491,8 @@ extern "C" bool CrossAtTg__12cCcD_TriAttrCFRC12cCcD_PntAttrP4cXyz() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool cCcD_TriAttr::CrossAtTg(cCcD_ShapeAttr const& param_0, cXyz* param_1) const {
+// asm bool cCcD_TriAttr::CrossAtTg(cCcD_ShapeAttr const& param_0, cXyz* param_1) const {
+extern "C" asm void CrossAtTg__12cCcD_TriAttrCFRC14cCcD_ShapeAttrP4cXyz() {
     nofralloc
 #include "asm/d/cc/d_cc_d/CrossAtTg__12cCcD_TriAttrCFRC14cCcD_ShapeAttrP4cXyz.s"
 }
@@ -1542,7 +1545,8 @@ extern "C" bool CrossCo__12cCcD_TriAttrCFRC12cCcD_PntAttrPf() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool cCcD_TriAttr::CrossCo(cCcD_ShapeAttr const& param_0, f32* param_1) const {
+// asm bool cCcD_TriAttr::CrossCo(cCcD_ShapeAttr const& param_0, f32* param_1) const {
+extern "C" asm void CrossCo__12cCcD_TriAttrCFRC14cCcD_ShapeAttrPf() {
     nofralloc
 #include "asm/d/cc/d_cc_d/CrossCo__12cCcD_TriAttrCFRC14cCcD_ShapeAttrPf.s"
 }

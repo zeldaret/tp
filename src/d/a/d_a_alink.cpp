@@ -34968,7 +34968,8 @@ asm void dEvt_info_c::onCondition(u16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGPla::cM3dGPla() {
+// asm cM3dGPla::cM3dGPla() {
+extern "C" asm void __ct__8cM3dGPlaFv() {
     nofralloc
 #include "asm/d/a/d_a_alink/__ct__8cM3dGPlaFv.s"
 }
