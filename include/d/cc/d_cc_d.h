@@ -27,7 +27,7 @@ public:
     /* 80083760 */ dCcD_GStts();
     /* 800837F8 */ void Ct();
     /* 80083830 */ void Move();
-    /* 8008523C */ ~dCcD_GStts();
+    /* 8008523C */ virtual ~dCcD_GStts();
 
 private:
     /* 0x04 */ u8 mAt;
@@ -41,18 +41,16 @@ private:
     /* 0x1C */ int field_0x1C;
 };  // Size = 0x20
 
-// class dCcD_Stts : cCcD_Stts {
-class dCcD_Stts {  // TODO: vtables get messed up :(
+class dCcD_Stts : cCcD_Stts {
 public:
     /* 80083850 */ cCcD_GStts* GetGStts();
     /* 80083860 */ void Init(int, int, fopAc_ac_c*);
     /* 800838F4 */ void Ct();
     /* 80083928 */ void ClrAt();
     /* 80083934 */ void ClrTg();
-    /* 800851AC */ ~dCcD_Stts();
+    /* 800851AC */ virtual ~dCcD_Stts();
 
 private:
-    /* 0x00 */ u8 _0[0x1C];  // TODO, should be covered by inheritance
     /* 0x1C */ dCcD_GStts mGStts;
 };  // Size = 0x3C
 
