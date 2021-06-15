@@ -108,14 +108,14 @@ SECTION_DATA extern void* __vt__9STControl[4] = {
     (void*)getAngleStick__9STControlFv,
 };
 
-STControl::STControl(s16 param_0, s16 param_1, s16 param_2, s16 param_3, f32 param_4,
-                         f32 param_5, s16 param_6, s16 param_7) {
+STControl::STControl(s16 param_0, s16 param_1, s16 param_2, s16 param_3, f32 param_4, f32 param_5,
+                     s16 param_6, s16 param_7) {
     setWaitParm(param_0, param_1, param_2, param_3, param_4, param_5, param_6, param_7);
     init();
 }
 
 void STControl::setWaitParm(s16 param_0, s16 param_1, s16 param_2, s16 param_3, f32 param_4,
-                                f32 param_5, s16 param_6, s16 param_7) {
+                            f32 param_5, s16 param_6, s16 param_7) {
     field_0x12 = param_0;
     field_0x14 = param_1;
     field_0x16 = param_2;

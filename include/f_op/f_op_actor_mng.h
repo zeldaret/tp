@@ -16,6 +16,13 @@
 
 class J3DModelData;  // placeholder
 
+struct fopAcM_prmBase_class {
+    /* 0x00 */ u32 field_0x00;
+    /* 0x04 */ cXyz field_0x04;
+    /* 0x10 */ csXyz field_0x10;
+    /* 0x16 */ u16 field_0x16;
+};  // Size = 0x18
+
 struct fopAcM_prm_class {
     /* 0x00 */ u32 mParameter;  // single U32 Parameter
     /* 0x04 */ cXyz mPos;

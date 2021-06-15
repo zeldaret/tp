@@ -588,19 +588,17 @@ void* fopAcM_fastCreate(s16 procTypeID, u32 parameter, const cXyz* pPos, int roo
     }
 }
 
-objectNameInfo* dStage_searchName(const char*);
-
 /* 80019E6C-80019EF0 0147AC 0084+00 0/0 1/1 0/0 .text
  * fopAcM_fastCreate__FPCcUlPC4cXyziPC5csXyzPC4cXyzPFPv_iPv     */
 void* fopAcM_fastCreate(const char* pActorName, u32 parameter, const cXyz* pActorPos, int roomNo,
                         const csXyz* pActorRot, const cXyz* pScale, createFunc pCreateFunc,
                         void* pCreateFuncData) {
-    objectNameInfo* nameInfo = dStage_searchName(pActorName);
+    dStage_objectNameInf* nameInfo = dStage_searchName(pActorName);
     if (nameInfo == NULL) {
         return NULL;
     } else {
-        return fopAcM_fastCreate(nameInfo->mProcTypeID, parameter, pActorPos, roomNo, pActorRot,
-                                 pScale, nameInfo->unkA, pCreateFunc, pCreateFuncData);
+        return fopAcM_fastCreate(nameInfo->mProcName, parameter, pActorPos, roomNo, pActorRot,
+                                 pScale, nameInfo->mSubtype, pCreateFunc, pCreateFuncData);
     }
 }
 
