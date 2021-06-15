@@ -6,6 +6,7 @@
 #include "d/d_stage.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "m_Do/m_Do_ext.h"
 
 //
 // Types:
@@ -1180,7 +1181,7 @@ stage_stag_info_class* dStage_stageDt_c::getStagInfo() const {
 
 JKRExpHeap* dStage_roomControl_c::createMemoryBlock(int param_0, u32 param_1) {
     if (mMemoryBlock[param_0] == NULL) {
-        JKRHeap* tmp = mDoExt_getArchiveHeap__Fv();
+        JKRHeap* tmp = mDoExt_getArchiveHeap();
         mMemoryBlock[param_0] = JKRExpHeap::create(param_1, tmp, false);
     }
     return mMemoryBlock[param_0];
@@ -1189,7 +1190,7 @@ JKRExpHeap* dStage_roomControl_c::createMemoryBlock(int param_0, u32 param_1) {
 void dStage_roomControl_c::destroyMemoryBlock() {
     for (int i = 0; i < 19; i++) {
         if (mMemoryBlock[i] != NULL) {
-            mDoExt_destroyExpHeap__FP10JKRExpHeap(mMemoryBlock[i]);
+            mDoExt_destroyExpHeap(mMemoryBlock[i]);
             mMemoryBlock[i] = NULL;
         }
     }

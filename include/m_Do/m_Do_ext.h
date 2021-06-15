@@ -135,5 +135,7 @@ void mDoExt_restoreCurrentHeap();
 JKRHeap* mDoExt_getGameHeap();
 void mDoExt_destroySolidHeap(JKRSolidHeap*);
 JKRHeap* mDoExt_setCurrentHeap(JKRHeap*);
+JKRExpHeap* mDoExt_getArchiveHeap();
+void mDoExt_destroyExpHeap(JKRExpHeap*);
 
 #endif /* M_DO_M_DO_EXT_H */
