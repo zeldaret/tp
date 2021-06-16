@@ -5,15 +5,14 @@
 
 class cBgS_PolyPassChk {
 public:
-    ~cBgS_PolyPassChk();
-
-    void* vtable;
+    virtual ~cBgS_PolyPassChk();
 };
 
 class dBgS_PolyPassChk : public cBgS_PolyPassChk {
 public:
     dBgS_PolyPassChk();
-    ~dBgS_PolyPassChk();
+    virtual void temp();  // temp to build OK, remove later
+    virtual ~dBgS_PolyPassChk();
 
     bool ChkArrow() { return mArrow; }
     bool ChkBomb() { return mBomb; }
