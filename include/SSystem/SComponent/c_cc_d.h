@@ -58,30 +58,31 @@ public:
 
 STATIC_ASSERT(0x20 == sizeof(cCcD_ShapeAttr));
 
-class cCcD_TriAttr : public cCcD_ShapeAttr, public cM3dGTri {
+class cCcD_TriAttr : public cCcD_ShapeAttr, protected cM3dGTri {
 public:
-    cCcD_TriAttr() {}
-    /* 80264938 */ virtual ~cCcD_TriAttr() {}
-    /* 80084E44 */ virtual bool CrossAtTg(cCcD_AabAttr const&, cXyz*) const { return false; }
-    /* 80263A88 */ virtual bool CrossAtTg(cCcD_CpsAttr const&, cXyz*) const;
-    /* 80263BCC */ virtual bool CrossAtTg(cCcD_TriAttr const&, cXyz*) const;
-    /* 80084E4C */ virtual bool CrossAtTg(cCcD_PntAttr const&, cXyz*) const { return false; }
-    /* 80263B90 */ virtual bool CrossAtTg(cCcD_SphAttr const&, cXyz*) const;
-    /* 80084E54 */ virtual bool CrossAtTg(cCcD_ShapeAttr const& shape, cXyz* xyz) const { return shape.CrossAtTg(*this, xyz); }
-    /* 80263B58 */ virtual bool CrossAtTg(cCcD_CylAttr const&, cXyz*) const;
-    /* 80084E9C */ virtual bool CrossCo(cCcD_AabAttr const&, f32*) const { return false; }
-    /* 80084EBC */ virtual bool CrossCo(cCcD_ShapeAttr const& shape, f32* f) const { return shape.CrossCo(*this, f); }
-    /* 80084EA4 */ virtual bool CrossCo(cCcD_TriAttr const&, f32*) const { return false; }
-    /* 80084E8C */ virtual bool CrossCo(cCcD_SphAttr const&, f32*) const { return false; }
-    /* 80084EAC */ virtual bool CrossCo(cCcD_CpsAttr const&, f32*) const { return false; }
-    /* 80084E94 */ virtual bool CrossCo(cCcD_CylAttr const&, f32*) const { return false; }
-    /* 80084EB4 */ virtual bool CrossCo(cCcD_PntAttr const&, f32*) const { return false; }
     /* 80263C04 */ virtual void CalcAabBox();
     /* 80263C9C */ virtual bool GetNVec(cXyz const&, cXyz*) const;
+    /* 80263A88 */ virtual bool CrossAtTg(cCcD_CpsAttr const&, cXyz*) const;
+    /* 80263BCC */ virtual bool CrossAtTg(cCcD_TriAttr const&, cXyz*) const;
+    /* 80263B90 */ virtual bool CrossAtTg(cCcD_SphAttr const&, cXyz*) const;
+    /* 80084E54 */ virtual bool CrossAtTg(cCcD_ShapeAttr const& shape, cXyz* xyz) const { return shape.CrossAtTg(*this, xyz); }
+    /* 80084E4C */ virtual bool CrossAtTg(cCcD_PntAttr const&, cXyz*) const { return false; }
+    /* 80084E44 */ virtual bool CrossAtTg(cCcD_AabAttr const&, cXyz*) const { return false; }
+    /* 80263B58 */ virtual bool CrossAtTg(cCcD_CylAttr const&, cXyz*) const;
+    /* 80084EBC */ virtual bool CrossCo(cCcD_ShapeAttr const& shape, f32* f) const { return shape.CrossCo(*this, f); }
+    /* 80084EB4 */ virtual bool CrossCo(cCcD_PntAttr const&, f32*) const { return false; }
+    /* 80084EAC */ virtual bool CrossCo(cCcD_CpsAttr const&, f32*) const { return false; }
+    /* 80084EA4 */ virtual bool CrossCo(cCcD_TriAttr const&, f32*) const { return false; }
+    /* 80084E9C */ virtual bool CrossCo(cCcD_AabAttr const&, f32*) const { return false; }
+    /* 80084E94 */ virtual bool CrossCo(cCcD_CylAttr const&, f32*) const { return false; }
+    /* 80084E8C */ virtual bool CrossCo(cCcD_SphAttr const&, f32*) const { return false; }
+    /* 80264938 */ virtual ~cCcD_TriAttr() {}
+    cCcD_TriAttr() {}
 };
 
 class cCcD_CpsAttr : public cCcD_ShapeAttr, public cM3dGCps {
 public:
+    cCcD_CpsAttr() {}
     /* 80085450 */ virtual ~cCcD_CpsAttr() {}
     /* 80263DC0 */ virtual bool CrossAtTg(cCcD_SphAttr const&, cXyz*) const;
     /* 80263E04 */ virtual bool CrossAtTg(cCcD_TriAttr const&, cXyz*) const;
@@ -91,12 +92,12 @@ public:
     /* 80263D38 */ virtual bool CrossAtTg(cCcD_CpsAttr const&, cXyz*) const;
     /* 80263D7C */ virtual bool CrossAtTg(cCcD_CylAttr const&, cXyz*) const;
     /* 80263F24 */ virtual bool CrossCo(cCcD_CylAttr const&, f32*) const;
-    /* 80085024 */ virtual bool CrossCo(cCcD_TriAttr const&, f32*) const { return false; }
-    /* 8008502C */ virtual bool CrossCo(cCcD_PntAttr const&, f32*) const { return false; }
-    /* 8008501C */ virtual bool CrossCo(cCcD_AabAttr const&, f32*) const { return false; }
     /* 80263ED4 */ virtual bool CrossCo(cCcD_CpsAttr const&, f32*) const;
     /* 80263F74 */ virtual bool CrossCo(cCcD_SphAttr const&, f32*) const;
     /* 80085034 */ virtual bool CrossCo(cCcD_ShapeAttr const& shape, f32* f) const { return shape.CrossCo(*this, f); }
+    /* 8008502C */ virtual bool CrossCo(cCcD_PntAttr const&, f32*) const { return false; }
+    /* 80085024 */ virtual bool CrossCo(cCcD_TriAttr const&, f32*) const { return false; }
+    /* 8008501C */ virtual bool CrossCo(cCcD_AabAttr const&, f32*) const { return false; }
     /* 80263FC4 */ virtual void CalcAabBox();
     /* 80264014 */ virtual bool GetNVec(cXyz const&, cXyz*) const;
 };
@@ -105,23 +106,24 @@ STATIC_ASSERT(0x40 == sizeof(cCcD_CpsAttr));
 
 class cCcD_SphAttr : public cCcD_ShapeAttr, public cM3dGSph {
 public:
+    cCcD_SphAttr() {}
     /* 8008721C */ virtual ~cCcD_SphAttr() {}
+    /* 80084B44 */ virtual const cXyz& GetCoCP() const { return mCenter; }
+    /* 80037A54 */ virtual cXyz& GetCoCP() { return mCenter; }
+    /* 80084B5C */ virtual bool CrossAtTg(cCcD_ShapeAttr const& shape, cXyz* xyz) const { return shape.CrossAtTg(*this, xyz); }
+    /* 80084B54 */ virtual bool CrossAtTg(cCcD_PntAttr const&, cXyz*) const { return false; }
+    /* 80084B4C */ virtual bool CrossAtTg(cCcD_AabAttr const&, cXyz*) const { return false; }
+    /* 80084BAC */ virtual bool CrossCo(cCcD_ShapeAttr const& shape, f32* f) const { return shape.CrossCo(*this, f); }
+    /* 80084BA4 */ virtual bool CrossCo(cCcD_PntAttr const&, f32*) const { return false; }
+    /* 80084B9C */ virtual bool CrossCo(cCcD_TriAttr const&, f32*) const { return false; }
+    /* 80084B94 */ virtual bool CrossCo(cCcD_AabAttr const&, f32*) const { return false; }
     /* 80264538 */ virtual bool CrossAtTg(cCcD_CylAttr const&, cXyz*) const;
     /* 802645C0 */ virtual bool CrossAtTg(cCcD_TriAttr const&, cXyz*) const;
-    /* 80084B4C */ virtual bool CrossAtTg(cCcD_AabAttr const&, cXyz*) const { return false; }
-    /* 80084B54 */ virtual bool CrossAtTg(cCcD_PntAttr const&, cXyz*) const { return false; }
-    /* 80084B5C */ virtual bool CrossAtTg(cCcD_ShapeAttr const& shape, cXyz* xyz) const { return shape.CrossAtTg(*this, xyz); }
     /* 802644EC */ virtual bool CrossAtTg(cCcD_CpsAttr const&, cXyz*) const;
     /* 8026457C */ virtual bool CrossAtTg(cCcD_SphAttr const&, cXyz*) const;
     /* 80264688 */ virtual bool CrossCo(cCcD_CpsAttr const&, f32*) const;
-    /* 80084B94 */ virtual bool CrossCo(cCcD_AabAttr const&, f32*) const { return false; }
-    /* 80084B9C */ virtual bool CrossCo(cCcD_TriAttr const&, f32*) const { return false; }
-    /* 80084BA4 */ virtual bool CrossCo(cCcD_PntAttr const&, f32*) const { return false; }
-    /* 80084BAC */ virtual bool CrossCo(cCcD_ShapeAttr const& shape, f32* f) const { return shape.CrossCo(*this, f); }
     /* 80264644 */ virtual bool CrossCo(cCcD_SphAttr const&, f32*) const;
     /* 802645F8 */ virtual bool CrossCo(cCcD_CylAttr const&, f32*) const;
-    /* 80084B44 */ virtual const cXyz& GetCoCP() const { return mCenter; }
-    /* 80037A54 */ virtual cXyz& GetCoCP() { return mCenter; }
     /* 802646E0 */ virtual void CalcAabBox();
     /* 8026476C */ virtual bool GetNVec(cXyz const&, cXyz*) const;
     /* 80264808 */ virtual void getShapeAccess(cCcD_ShapeAttr::Shape*) const;
@@ -132,22 +134,23 @@ STATIC_ASSERT(0x34 == sizeof(cCcD_SphAttr));
 
 class cCcD_CylAttr : public cCcD_ShapeAttr, public cM3dGCyl {
 public:
+    cCcD_CylAttr() {}
     /* 800854E0 */ virtual ~cCcD_CylAttr() {}
+    /* 80084CC0 */ virtual const cXyz& GetCoCP() const { return mCenter; }
     /* 8026420C */ virtual bool CrossAtTg(cCcD_SphAttr const&, cXyz*) const;
     /* 802641C8 */ virtual bool CrossAtTg(cCcD_CylAttr const&, cXyz*) const;
-    /* 80084CC8 */ virtual bool CrossAtTg(cCcD_AabAttr const&, cXyz*) const { return false; }
     /* 80264250 */ virtual bool CrossAtTg(cCcD_TriAttr const&, cXyz*) const;
-    /* 80084CD0 */ virtual bool CrossAtTg(cCcD_PntAttr const&, cXyz*) const { return false; }
     /* 80084CD8 */ virtual bool CrossAtTg(cCcD_ShapeAttr const& shape, cXyz* xyz) const { return shape.CrossAtTg(*this, xyz); }
+    /* 80084CD0 */ virtual bool CrossAtTg(cCcD_PntAttr const&, cXyz*) const { return false; }
+    /* 80084CC8 */ virtual bool CrossAtTg(cCcD_AabAttr const&, cXyz*) const { return false; }
     /* 8026417C */ virtual bool CrossAtTg(cCcD_CpsAttr const&, cXyz*) const;
     /* 80264288 */ virtual bool CrossCo(cCcD_CylAttr const&, f32*) const;
     /* 80264310 */ virtual bool CrossCo(cCcD_CpsAttr const&, f32*) const;
-    /* 80084D10 */ virtual bool CrossCo(cCcD_AabAttr const&, f32*) const { return false; }
-    /* 80084D18 */ virtual bool CrossCo(cCcD_TriAttr const&, f32*) const { return false; }
-    /* 80084D20 */ virtual bool CrossCo(cCcD_PntAttr const&, f32*) const { return false; }
     /* 80084D28 */ virtual bool CrossCo(cCcD_ShapeAttr const& shape, f32* f) const { return shape.CrossCo(*this, f); }
+    /* 80084D20 */ virtual bool CrossCo(cCcD_PntAttr const&, f32*) const { return false; }
+    /* 80084D18 */ virtual bool CrossCo(cCcD_TriAttr const&, f32*) const { return false; }
+    /* 80084D10 */ virtual bool CrossCo(cCcD_AabAttr const&, f32*) const { return false; }
     /* 802642CC */ virtual bool CrossCo(cCcD_SphAttr const&, f32*) const;
-    /* 80084CC0 */ virtual const cXyz& GetCoCP() const { return mCenter; }
     /* 80037A4C */ virtual cXyz& GetCoCP() { return mCenter; }
     /* 80264368 */ virtual void CalcAabBox();
     /* 802643D0 */ virtual bool GetNVec(cXyz const&, cXyz*) const;
@@ -164,8 +167,7 @@ private:
     /* 0x08 */ u32 field_0x8;
     /* 0x0C vtable */
 public:
-    virtual void test();  // temp to build OK, remove later
-    virtual ~cCcD_DivideInfo();
+    virtual ~cCcD_DivideInfo() {}
     /* 80263358 */ void Set(u32, u32, u32);
     /* 80263368 */ bool Chk(cCcD_DivideInfo const&) const;
 };  // Size = 0x10
@@ -185,8 +187,7 @@ private:
     /* 0x3C */ f32 mInvScaledZDiff;
 
 public:
-    virtual void test();  // temp to build OK, remove later
-    virtual ~cCcD_DivideArea();
+    virtual ~cCcD_DivideArea() {}
     /* 802633A8 */ void SetArea(cM3dGAab const&);
     /* 802634D4 */ void CalcDivideInfo(cCcD_DivideInfo*, cM3dGAab const&, u32);
     /* 802636A0 */ void CalcDivideInfoOverArea(cCcD_DivideInfo*, cM3dGAab const&);
@@ -218,7 +219,7 @@ struct cCcD_SrcObj {
 
 class cCcD_GStts {
 public:
-    /* 800837B0 */ virtual ~cCcD_GStts();
+    /* 800837B0 */ virtual ~cCcD_GStts() {}
 
 private:
     /* 0x00 vtable */
@@ -234,6 +235,7 @@ private:
     /* 0x16 */ u8 mTg;
 
 public:
+    cCcD_Stts() {}
     /* 801410A4 vt[3] */ virtual ~cCcD_Stts() {}
     /* 80263894 vt[4] */ virtual const cCcD_GStts* GetGStts() const;
     /* 8026389C vt[5] */ virtual cCcD_GStts* GetGStts();
@@ -255,30 +257,34 @@ STATIC_ASSERT(0x1C == sizeof(cCcD_Stts));
 class cCcD_Obj;  // placeholder
 
 class cCcD_ObjCommonBase {
-public:
-    /* 8008409C */ ~cCcD_ObjCommonBase();
-    /* 802639B0 */ void ct();
-    void setSPrm(s32 sprm) { mSPrm = sprm; }
-    s32 getSPrm() { return mSPrm; }
-
 protected:
     /* 0x00 */ int mSPrm;
     /* 0x04 */ int mRPrm;
     /* 0x08 */ cCcD_Obj* mHitObj;
-    /* 0x0C */ void* vtable;
+    /* 0x0C vtable */
+public:
+    cCcD_ObjCommonBase() { ct(); }
+    /* 8008409C */ virtual ~cCcD_ObjCommonBase() {}
+    /* 802639B0 */ void ct();
+    void setSPrm(s32 sprm) { mSPrm = sprm; }
+    s32 getSPrm() { return mSPrm; }
+    void setRPrm(s32 rprm) { mRPrm = rprm; }
+    s32 getRPrm() { return mRPrm; }
+    cCcD_Obj* getHitObj() { return mHitObj; }
 };
 
 STATIC_ASSERT(0x10 == sizeof(cCcD_ObjCommonBase));
 
 class cCcD_ObjAt : public cCcD_ObjCommonBase {
 public:
-    /* 80084040 */ ~cCcD_ObjAt();
+    cCcD_ObjAt() { mType = 0; }
+    /* 80084040 */ virtual ~cCcD_ObjAt() {}
     /* 8026483C */ void SetHit(cCcD_Obj*);
     /* 8026484C */ void Set(cCcD_SrcObjAt const&);
     /* 80264868 */ void ClrHit();
     int GetType() const { return mType; }
 
-private:
+protected:
     /* 0x10 */ int mType;
     /* 0x14 */ u8 mAtp;
 };
@@ -287,7 +293,8 @@ STATIC_ASSERT(0x18 == sizeof(cCcD_ObjAt));
 
 class cCcD_ObjTg : public cCcD_ObjCommonBase {
 public:
-    /* 80083FE4 */ ~cCcD_ObjTg();
+    cCcD_ObjTg() { ct(); }
+    /* 80083FE4 */ virtual ~cCcD_ObjTg() {}
     /* 80264880 */ void Set(cCcD_SrcObjTg const&);
     /* 80264894 */ void SetGrp(u32);
     /* 802648B0 */ void ClrHit();
@@ -302,7 +309,7 @@ STATIC_ASSERT(0x14 == sizeof(cCcD_ObjTg));
 
 class cCcD_ObjCo : public cCcD_ObjCommonBase {
 public:
-    /* 80083F88 */ ~cCcD_ObjCo();
+    /* 80083F88 */ virtual ~cCcD_ObjCo() {}
     /* 802648D8 */ void SetHit(cCcD_Obj*);
     /* 802648E8 */ void ClrHit();
     /* 80264900 */ void SetIGrp(u32);
@@ -312,13 +319,13 @@ public:
 STATIC_ASSERT(0x10 == sizeof(cCcD_ObjCo));
 
 class cCcD_ObjHitInf {
-private:
+protected:
     /* 0x000 */ cCcD_ObjAt mObjAt;
     /* 0x018 */ cCcD_ObjTg mObjTg;
     /* 0x02C */ cCcD_ObjCo mObjCo;
     /* 0x03C vtable */
 public:
-    /* 80083EC8 */ virtual ~cCcD_ObjHitInf();
+    /* 80083EC8 */ virtual ~cCcD_ObjHitInf() {}
     /* 802639C4 */ void Set(cCcD_SrcObjHitInf const&);
     cCcD_ObjAt& GetObjAt() { return mObjAt; }
     cCcD_ObjTg& GetObjTg() { return mObjTg; }
@@ -332,6 +339,7 @@ class cCcD_GObjInf;
 
 class cCcD_Obj : public cCcD_ObjHitInf {
 public:
+    cCcD_Obj() { ct(); }
     /* 80083DE0 */ virtual ~cCcD_Obj() {}
     /* 800851A4 */ virtual cCcD_GObjInf const* GetGObjInf() const { return NULL; }
     /* 800847C8 */ virtual cCcD_GObjInf* GetGObjInf() { return NULL; }
@@ -355,12 +363,13 @@ STATIC_ASSERT(0x58 == sizeof(cCcD_Obj));
 
 class cCcD_GObjInf : public cCcD_Obj {
 public:
+    cCcD_GObjInf() {}
     /* 80083CE8 */ virtual ~cCcD_GObjInf() {}
-    /* 800851A0 */ virtual cCcD_GObjInf* GetGObjInf() { return this; }
+    /* 80085138 */ virtual void ClrAtHit() { mObjAt.ClrHit(); }
+    /* 80085158 */ virtual void ClrTgHit() { mObjTg.ClrHit(); }
+    /* 8008517C */ virtual void ClrCoHit() { mObjCo.ClrHit(); }
     /* 80084BE4 */ virtual cCcD_GObjInf const* GetGObjInf() const { return this; }
-    /* 80085138 */ virtual void ClrAtHit();
-    /* 80085158 */ virtual void ClrTgHit();
-    /* 8008517C */ virtual void ClrCoHit();
+    /* 800851A0 */ virtual cCcD_GObjInf* GetGObjInf() { return this; }
 };
 
 STATIC_ASSERT(0x58 == sizeof(cCcD_GObjInf));
