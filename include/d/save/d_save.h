@@ -349,8 +349,10 @@ private:
     /* 0x06 */ u16 mMaxOil;
     /* 0x08 */ u16 mOil;
     /* 0x0A */ u8 unk10;
-    /* 0x0B */ u8 mSelectItem[MAX_SELECT_ITEM]; // For GC: first 2 are X & Y, others unused; For Wii (in order): Left, Right, Down, B
-    /* 0x0F */ u8 mMixItem[MAX_SELECT_ITEM]; // Combo items; For GC: first 2 are X & Y, others unused; For Wii (in order): Left, Right, Down, B
+    /* 0x0B */ u8 mSelectItem[MAX_SELECT_ITEM];  // For GC: first 2 are X & Y, others unused; For
+                                                 // Wii (in order): Left, Right, Down, B
+    /* 0x0F */ u8 mMixItem[MAX_SELECT_ITEM];     // Combo items; For GC: first 2 are X & Y, others
+                                                 // unused; For Wii (in order): Left, Right, Down, B
     /* 0x13 */ u8 mSelectEquip[MAX_EQUIPMENT];
     /* 0x19 */ u8 mWalletSize;
     /* 0x1A */ u8 mMaxMagic;
@@ -637,15 +639,15 @@ public:
 private:
     u8 unk0;
     u8 mSoundMode;
-    u8 mLockonType; // 0 : hold, 1 : switch
+    u8 mLockonType;  // 0 : hold, 1 : switch
     u8 mVibration;
     u8 unk4;
     u8 unk5;
-    u16 mPointerXCalib; // Wii pointer horizontal calibration. Default is 0x015E
-    u8 mPointerYCalib; // Wii pointer vertical calibration. Default is 0x00
-    bool mIconShortcut; // Wii icon shortcut enabled/disabled.
-    u8 mCameraControl; // 0 : normal, 1 : inverted
-    bool mPointer; // Wii pointer enabled/disabled.
+    u16 mPointerXCalib;  // Wii pointer horizontal calibration. Default is 0x015E
+    u8 mPointerYCalib;   // Wii pointer vertical calibration. Default is 0x00
+    bool mIconShortcut;  // Wii icon shortcut enabled/disabled.
+    u8 mCameraControl;   // 0 : normal, 1 : inverted
+    bool mPointer;       // Wii pointer enabled/disabled.
     u8 padding[4];
 };
 
