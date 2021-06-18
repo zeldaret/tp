@@ -12,6 +12,10 @@ vtable.lcf
 # Game Assets
 game/
 
+# Disk Images
+*.iso
+*.gcm
+
 # Generated documentation
 docs/doxygen/
 
