@@ -1188,7 +1188,7 @@ JKRExpHeap* dStage_roomControl_c::createMemoryBlock(int param_0, u32 param_1) {
 }
 
 void dStage_roomControl_c::destroyMemoryBlock() {
-    for (int i = 0; i < 19; i++) {
+    for (int i = 0; i < (int)ARRAY_SIZE(mMemoryBlock); i++) {
         if (mMemoryBlock[i] != NULL) {
             mDoExt_destroyExpHeap(mMemoryBlock[i]);
             mMemoryBlock[i] = NULL;
@@ -1399,7 +1399,7 @@ roomRead_class* dStage_stageDt_c::getRoom() const {
 dStage_objectNameInf* dStage_searchName(char const* objName) {
     dStage_objectNameInf* obj = &l_objectName[0];
 
-    for (u32 i = 0; i < 0x38F; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(l_objectName); i++) {
         if (!strcmp(obj->mName, objName)) {
             return obj;
         }
@@ -1412,7 +1412,7 @@ static const char* dStage_getName(s16 procName, s8 subtype) {
     dStage_objectNameInf* obj = &l_objectName[0];
     char* tmp = NULL;
 
-    for (int i = 0; i < 0x38F; i++) {
+    for (int i = 0; i < ARRAY_SIZE(l_objectName); i++) {
         if (obj->mProcName == procName) {
             if (obj->mSubtype == subtype) {
                 return obj->mName;
