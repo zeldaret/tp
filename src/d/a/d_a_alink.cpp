@@ -3996,6 +3996,12 @@ asm void daAlink_matAnm_c::calc(J3DMaterial* param_0) const {
 #pragma pop
 
 /* 8009DA60-8009DA98 0983A0 0038+00 48/48 0/0 5/5 .text            checkStageName__9daAlink_cFPCc */
+// need gameinfo setup
+#ifdef NONMATCHING
+bool daAlink_c::checkStageName(const char* stage) {
+    return strcmp(dComIfGp_getStartStageName(), stage) == 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4004,6 +4010,7 @@ asm bool daAlink_c::checkStageName(char const* param_0) {
 #include "asm/d/a/d_a_alink/checkStageName__9daAlink_cFPCc.s"
 }
 #pragma pop
+#endif
 
 /* 8009DA98-8009DB64 0983D8 00CC+00 1/1 0/0 0/0 .text
  * tgHitCallback__9daAlink_cFP10fopAc_ac_cP12dCcD_GObjInfP12dCcD_GObjInf */

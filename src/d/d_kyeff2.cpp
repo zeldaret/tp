@@ -4,6 +4,7 @@
 //
 
 #include "d/d_kyeff2.h"
+#include "d/kankyo/d_kankyo_wether.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -12,10 +13,6 @@
 //
 
 struct kankyo_class {};
-
-struct dKyeff2_c {
-    /* 801ADEC4 */ void execute();
-};
 
 //
 // Forward References:
@@ -44,60 +41,33 @@ extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 // Declarations:
 //
 
-/* 801ADEA0-801ADEC4 1A87E0 0024+00 1/0 0/0 0/0 .text            dKyeff2_Draw__FP9dKyeff2_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyeff2_Draw(dKyeff2_c* param_0) {
-    nofralloc
-#include "asm/d/d_kyeff2/dKyeff2_Draw__FP9dKyeff2_c.s"
-}
-#pragma pop
-
-/* 801ADEC4-801ADEE8 1A8804 0024+00 1/1 0/0 0/0 .text            execute__9dKyeff2_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKyeff2_c::execute() {
-    nofralloc
-#include "asm/d/d_kyeff2/execute__9dKyeff2_cFv.s"
-}
-#pragma pop
-
-/* 801ADEE8-801ADF08 1A8828 0020+00 1/0 0/0 0/0 .text            dKyeff2_Execute__FP9dKyeff2_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyeff2_Execute(dKyeff2_c* param_0) {
-    nofralloc
-#include "asm/d/d_kyeff2/dKyeff2_Execute__FP9dKyeff2_c.s"
-}
-#pragma pop
-
-/* 801ADF08-801ADF10 1A8848 0008+00 1/0 0/0 0/0 .text            dKyeff2_IsDelete__FP9dKyeff2_c */
-static bool dKyeff2_IsDelete(dKyeff2_c* param_0) {
+static bool dKyeff2_Draw(dKyeff2_c* ptr) {
+    dKyw_wether_draw2();
     return true;
 }
 
-/* 801ADF10-801ADF34 1A8850 0024+00 1/0 0/0 0/0 .text            dKyeff2_Delete__FP9dKyeff2_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyeff2_Delete(dKyeff2_c* param_0) {
-    nofralloc
-#include "asm/d/d_kyeff2/dKyeff2_Delete__FP9dKyeff2_c.s"
+bool dKyeff2_c::execute() {
+    dKyw_wether_move_draw2();
+    return true;
 }
-#pragma pop
 
-/* 801ADF34-801ADF58 1A8874 0024+00 1/0 0/0 0/0 .text            dKyeff2_Create__FP12kankyo_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyeff2_Create(kankyo_class* param_0) {
-    nofralloc
-#include "asm/d/d_kyeff2/dKyeff2_Create__FP12kankyo_class.s"
+static bool dKyeff2_Execute(dKyeff2_c* ptr) {
+    return ptr->execute();
 }
-#pragma pop
+
+static bool dKyeff2_IsDelete(dKyeff2_c* ptr) {
+    return true;
+}
+
+static bool dKyeff2_Delete(dKyeff2_c* ptr) {
+    dKyw_wether_delete2();
+    return true;
+}
+
+static int dKyeff2_Create(kankyo_class* ptr) {
+    dKyw_wether_init2();
+    return 4;
+}
 
 /* ############################################################################################## */
 /* 803BC198-803BC1AC -00001 0014+00 1/0 0/0 0/0 .data            l_dKyeff2_Method */
