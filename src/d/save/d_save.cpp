@@ -3071,13 +3071,13 @@ void dSv_player_config_c::init(void) {
         lbl_80451368->setOutputMode(SOUND_MODE_STEREO);
     }
 
-    mLockonType = 0;
+    mAttentionType = 0;
     mVibration = 1;
     unk4 = 0;
     unk5 = 0;
-    mIconShortcut = 0;
-    mPointerXCalib = 0x15e;
-    mPointerYCalib = 0;
+    mShortCut = 0;
+    mCalibrateDist = 0x15e;
+    mCalValue = 0;
     mCameraControl = 0;
     mPointer = 1;
 }

@@ -623,14 +623,14 @@ public:
     void setSound(u8);
     u8 getVibration(void);
     void setVibration(u8);
-    inline u8 getLockonType(void) { return mLockonType; }
-    inline void setLockonType(u8 i_mLockonType) { mLockonType = i_mLockonType; }
-    inline u16 getPointerXCalibration(void) { return mPointerXCalib; }
-    inline void setPointerXCalibration(u16 i_mPointerXCalib) { mPointerXCalib = i_mPointerXCalib; }
-    inline u8 getPointerYCalibration(void) { return mPointerYCalib; }
-    inline void setPointerYCalibration(u8 i_mPointerYCalib) { mPointerYCalib = i_mPointerYCalib; }
-    inline bool getIconShortcut(void) { return mIconShortcut; }
-    inline void setIconShortcut(bool i_mIconShortcut) { mIconShortcut = i_mIconShortcut; }
+    inline u8 getAttentionType(void) { return mAttentionType; }
+    inline void setAttentionType(u8 i_mAttentionType) { mAttentionType = i_mAttentionType; }
+    inline u16 getCalibrateDist(void) { return mCalibrateDist; }
+    inline void setCalibrateDist(u16 i_mCalibrateDist) { mCalibrateDist = i_mCalibrateDist; }
+    inline u8 getCalValue(void) { return mCalValue; }
+    inline void setCalValue(u8 i_mCalValue) { mCalValue = i_mCalValue; }
+    inline bool getShortCut(void) { return mShortCut; }
+    inline void setShortCut(bool i_mShortCut) { mShortCut = i_mShortCut; }
     inline u8 getCameraControl(void) { return mCameraControl; }
     inline void setCameraControl(u8 i_mCameraControl) { mCameraControl = i_mCameraControl; }
     inline bool getPointer(void) { return mPointer; }
@@ -639,13 +639,13 @@ public:
 private:
     u8 unk0;
     u8 mSoundMode;
-    u8 mLockonType;  // 0 : hold, 1 : switch
+    u8 mAttentionType;   // 0 : hold, 1 : switch
     u8 mVibration;
     u8 unk4;
     u8 unk5;
-    u16 mPointerXCalib;  // Wii pointer horizontal calibration. Default is 0x015E
-    u8 mPointerYCalib;   // Wii pointer vertical calibration. Default is 0x00
-    bool mIconShortcut;  // Wii icon shortcut enabled/disabled.
+    u16 mCalibrateDist;  // Wii pointer horizontal calibration. Default is 0x015E
+    u8 mCalValue;        // Wii pointer vertical calibration. Default is 0x00
+    bool mShortCut;      // Wii icon shortcut enabled/disabled.
     u8 mCameraControl;   // 0 : normal, 1 : inverted
     bool mPointer;       // Wii pointer enabled/disabled.
     u8 padding[4];
