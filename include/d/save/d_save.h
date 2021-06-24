@@ -5,10 +5,10 @@
 #include "dolphin/types.h"
 
 #define DEFAULT_SELECT_ITEM_INDEX 0
-#define MAX_SELECT_ITEM 3
+#define MAX_SELECT_ITEM 4
+#define MAX_EQUIPMENT 6
 #define MAX_EVENTS 256
 #define MAX_ITEM_SLOTS 24
-#define ITEM_XY_MAX_DUMMY 8
 #define LIGHT_DROP_STAGE 4
 #define LETTER_INFO_BIT 64
 #define BOMB_BAG_MAX 3
@@ -349,11 +349,11 @@ private:
     /* 0x06 */ u16 mMaxOil;
     /* 0x08 */ u16 mOil;
     /* 0x0A */ u8 unk10;
-    /* 0x0B */ u8 mSelectItem[3];
-    /* 0x0E */ u8 mMixItem[3];
-    /* 0x11 */ u8 unk17;
-    /* 0x12 */ u8 unk18;
-    /* 0x13 */ u8 mSelectEquip[6];
+    /* 0x0B */ u8 mSelectItem[MAX_SELECT_ITEM];  // For GC: first 2 are X & Y, others unused; For
+                                                 // Wii (in order): Left, Right, Down, B
+    /* 0x0F */ u8 mMixItem[MAX_SELECT_ITEM];     // Combo items; For GC: first 2 are X & Y, others
+                                                 // unused; For Wii (in order): Left, Right, Down, B
+    /* 0x13 */ u8 mSelectEquip[MAX_EQUIPMENT];
     /* 0x19 */ u8 mWalletSize;
     /* 0x1A */ u8 mMaxMagic;
     /* 0x1B */ u8 mMagic;
@@ -623,19 +623,31 @@ public:
     void setSound(u8);
     u8 getVibration(void);
     void setVibration(u8);
+    inline u8 getAttentionType(void) { return mAttentionType; }
+    inline void setAttentionType(u8 i_mAttentionType) { mAttentionType = i_mAttentionType; }
+    inline u16 getCalibrateDist(void) { return mCalibrateDist; }
+    inline void setCalibrateDist(u16 i_mCalibrateDist) { mCalibrateDist = i_mCalibrateDist; }
+    inline u8 getCalValue(void) { return mCalValue; }
+    inline void setCalValue(u8 i_mCalValue) { mCalValue = i_mCalValue; }
+    inline bool getShortCut(void) { return mShortCut; }
+    inline void setShortCut(bool i_mShortCut) { mShortCut = i_mShortCut; }
+    inline u8 getCameraControl(void) { return mCameraControl; }
+    inline void setCameraControl(u8 i_mCameraControl) { mCameraControl = i_mCameraControl; }
+    inline bool getPointer(void) { return mPointer; }
+    inline void setPointer(bool i_mPointer) { mPointer = i_mPointer; }
 
 private:
     u8 unk0;
     u8 mSoundMode;
-    u8 mAttentionType;
+    u8 mAttentionType;   // 0 : hold, 1 : switch
     u8 mVibration;
     u8 unk4;
     u8 unk5;
-    u16 mCalibrateDist;
-    u8 mCalValue;
-    u8 mShortCut;
-    u8 mCameraControl;
-    u8 mPointer;
+    u16 mCalibrateDist;  // Wii pointer horizontal calibration. Default is 0x015E
+    u8 mCalValue;        // Wii pointer vertical calibration. Default is 0x00
+    bool mShortCut;      // Wii icon shortcut enabled/disabled.
+    u8 mCameraControl;   // 0 : normal, 1 : inverted
+    bool mPointer;       // Wii pointer enabled/disabled.
     u8 padding[4];
 };
 
