@@ -639,7 +639,7 @@ public:
 private:
     u8 unk0;
     u8 mSoundMode;
-    u8 mAttentionType;   // 0 : hold, 1 : switch
+    u8 mAttentionType;  // 0 : hold, 1 : switch
     u8 mVibration;
     u8 unk4;
     u8 unk5;
