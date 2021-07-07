@@ -126,7 +126,7 @@ public:
     /* 80083B8C */ virtual ~dCcD_GObjCo() {}
 };  // Size = 0x1C ?
 
-class dCcD_GObjInf : cCcD_GObjInf {
+class dCcD_GObjInf : public cCcD_GObjInf {
 public:
     /* 80083A28 */ dCcD_GObjInf();
     /* 800840E4 */ virtual ~dCcD_GObjInf();
@@ -138,12 +138,12 @@ public:
     /* 800843A8 */ cCcD_GObjInf * GetAtHitGObj();
     /* 800843DC */ bool ChkAtNoGuard();
     /* 800843FC */ void ClrTgHit();
-    /* 80084460 */ void ChkTgHit();
+    /* 80084460 */ bool ChkTgHit();
     /* 800844B8 */ void ResetTgHit();
-    /* 800844F8 */ void GetTgHitObj();
-    /* 80084548 */ void GetTgHitGObj();
-    /* 8008457C */ void GetTgHitObjSe();
-    /* 800845B0 */ void getHitSeID(u8, int);
+    /* 800844F8 */ cCcD_Obj* GetTgHitObj();
+    /* 80084548 */ dCcD_GObjInf* GetTgHitGObj();
+    /* 8008457C */ u8 GetTgHitObjSe();
+    /* 800845B0 */ static u32 getHitSeID(u8, int);
     /* 8008460C */ void ClrCoHit();
     /* 80084658 */ void ChkCoHit();
     /* 800846B0 */ void ResetCoHit();
@@ -152,7 +152,7 @@ public:
 
     void SetAtVec(cXyz& vec) { mGObjAt.SetVec(vec); }
 
-    static u8 const m_hitSeID[96];
+    static u32 const m_hitSeID[24];
 
 private:
     /* 0x058 */ dCcD_GObjAt mGObjAt;
@@ -199,6 +199,6 @@ public:
     dCcD_Tri() {}
 };
 
-cCcD_GObjInf *dCcD_GetGObjInf(cCcD_Obj* param_0);
+dCcD_GObjInf *dCcD_GetGObjInf(cCcD_Obj* param_0);
 
 #endif /* D_CC_D_CC_D_H */

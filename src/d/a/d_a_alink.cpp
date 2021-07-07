@@ -34860,7 +34860,8 @@ asm dBgS_LinkAcch::~dBgS_LinkAcch() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Cps::dCcD_Cps() {
+// asm dCcD_Cps::dCcD_Cps() {
+extern "C" asm void __ct__8dCcD_CpsFv() {
     nofralloc
 #include "asm/d/a/d_a_alink/__ct__8dCcD_CpsFv.s"
 }
@@ -34870,7 +34871,8 @@ asm dCcD_Cps::dCcD_Cps() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Cyl::dCcD_Cyl() {
+// asm dCcD_Cyl::dCcD_Cyl() {
+extern "C" asm void __ct__8dCcD_CylFv() {
     nofralloc
 #include "asm/d/a/d_a_alink/__ct__8dCcD_CylFv.s"
 }

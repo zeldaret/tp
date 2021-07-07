@@ -58,7 +58,7 @@ public:
 
 STATIC_ASSERT(0x20 == sizeof(cCcD_ShapeAttr));
 
-class cCcD_TriAttr : public cCcD_ShapeAttr, protected cM3dGTri {
+class cCcD_TriAttr : public cCcD_ShapeAttr, public cM3dGTri {
 public:
     /* 80263C04 */ virtual void CalcAabBox();
     /* 80263C9C */ virtual bool GetNVec(cXyz const&, cXyz*) const;

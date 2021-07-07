@@ -1038,6 +1038,17 @@ asm void dCcD_GObjInf::ClrTgHit() {
 #endif
 
 /* 80084460-800844B8 07EDA0 0058+00 0/0 6/6 305/305 .text            ChkTgHit__12dCcD_GObjInfFv */
+#ifndef NM
+bool dCcD_GObjInf::ChkTgHit() {
+    if ((mObjTg.getRPrm() & 1) == 0) {
+        return false;
+    } else if ((mGObjTg.mRPrm & 1) == 0 && mGObjTg.GetAc() == NULL) {
+        return false;
+    } else {
+        return true;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1046,8 +1057,15 @@ asm void dCcD_GObjInf::ChkTgHit() {
 #include "asm/d/cc/d_cc_d/ChkTgHit__12dCcD_GObjInfFv.s"
 }
 #pragma pop
+#endif
 
 /* 800844B8-800844F8 07EDF8 0040+00 0/0 1/1 5/5 .text            ResetTgHit__12dCcD_GObjInfFv */
+#ifndef NM
+void dCcD_GObjInf::ResetTgHit() {
+    this->ClrTgHit();
+    mGObjTg.mEffCounter = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1056,9 +1074,19 @@ asm void dCcD_GObjInf::ResetTgHit() {
 #include "asm/d/cc/d_cc_d/ResetTgHit__12dCcD_GObjInfFv.s"
 }
 #pragma pop
+#endif
 
 /* 800844F8-80084548 07EE38 0050+00 1/1 3/3 228/228 .text            GetTgHitObj__12dCcD_GObjInfFv
  */
+#ifndef NM
+cCcD_Obj* dCcD_GObjInf::GetTgHitObj() {
+    if ((mGObjTg.mRPrm & 1) == 0 && mGObjTg.GetAc() == NULL) {
+        return NULL;
+    } else {
+        return mObjTg.getHitObj();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1067,8 +1095,19 @@ asm void dCcD_GObjInf::GetTgHitObj() {
 #include "asm/d/cc/d_cc_d/GetTgHitObj__12dCcD_GObjInfFv.s"
 }
 #pragma pop
+#endif
 
 /* 80084548-8008457C 07EE88 0034+00 1/1 5/5 63/63 .text            GetTgHitGObj__12dCcD_GObjInfFv */
+#ifndef NM
+dCcD_GObjInf* dCcD_GObjInf::GetTgHitGObj() {
+    cCcD_Obj* obj = this->GetTgHitObj();
+    if(obj == NULL) {
+        return NULL;
+    } else {
+        return dCcD_GetGObjInf(obj);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1077,9 +1116,20 @@ asm void dCcD_GObjInf::GetTgHitGObj() {
 #include "asm/d/cc/d_cc_d/GetTgHitGObj__12dCcD_GObjInfFv.s"
 }
 #pragma pop
+#endif
 
 /* 8008457C-800845B0 07EEBC 0034+00 0/0 2/2 18/18 .text            GetTgHitObjSe__12dCcD_GObjInfFv
  */
+#ifndef NM
+u8 dCcD_GObjInf::GetTgHitObjSe() {
+    dCcD_GObjInf* objInf = this->GetTgHitGObj();
+    if (objInf == NULL) {
+        return NULL;
+    } else {
+        return objInf->mGObjAt.mSe;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1088,20 +1138,37 @@ asm void dCcD_GObjInf::GetTgHitObjSe() {
 #include "asm/d/cc/d_cc_d/GetTgHitObjSe__12dCcD_GObjInfFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8037A780-8037A7E0 006DE0 0060+00 1/1 0/0 0/0 .rodata          m_hitSeID__12dCcD_GObjInf */
-SECTION_RODATA u8 const dCcD_GObjInf::m_hitSeID[96] = {
-    0x00, 0x04, 0x00, 0x0F, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04, 0x00, 0x02, 0x00, 0x04, 0x00, 0x04,
-    0x00, 0x04, 0x00, 0x03, 0x00, 0x04, 0x00, 0x05, 0x00, 0x04, 0x00, 0x06, 0x00, 0x04, 0x00, 0x07,
-    0x00, 0x04, 0x00, 0x09, 0x00, 0x04, 0x00, 0x0B, 0x00, 0x04, 0x00, 0x0C, 0x00, 0x04, 0x00, 0x0D,
-    0x00, 0x04, 0x00, 0x0E, 0x00, 0x04, 0x00, 0x0F, 0x00, 0x04, 0x00, 0x01, 0x00, 0x04, 0x00, 0x04,
-    0x00, 0x04, 0x00, 0x10, 0x00, 0x04, 0x00, 0x11, 0x00, 0x04, 0x00, 0x12, 0x00, 0x04, 0x00, 0x13,
-    0x00, 0x04, 0x00, 0x14, 0x00, 0x04, 0x00, 0x15, 0x00, 0x04, 0x00, 0x18, 0x00, 0x04, 0x00, 0x16,
+u32 const dCcD_GObjInf::m_hitSeID[24] = {
+    0x0004000F, 0x00040000, 0x00040002, 0x00040004,
+    0x00040009, 0x0004000B, 0x0004000C, 0x0004000D,
+    0x0004000E, 0x0004000F, 0x00040001, 0x00040004,
+    0x00040010, 0x00040011, 0x00040012, 0x00040013,
+    0x00040014, 0x00040015, 0x00040018, 0x00040016,
+    0x00040003, 0x00040005, 0x00040006, 0x00040007,
 };
 COMPILER_STRIP_GATE(0x8037A780, &dCcD_GObjInf::m_hitSeID);
 
 /* 800845B0-8008460C 07EEF0 005C+00 0/0 3/3 32/32 .text            getHitSeID__12dCcD_GObjInfFUci */
+#ifndef NM
+u32 dCcD_GObjInf::getHitSeID(u8 param_0, int param_1) {
+    if (param_1 != 0) {
+        if (param_0 == 0x17) {
+            return 0x40017;
+        }
+        if (param_0 == 7) {
+            return 0x40008;
+        }
+        if (param_0 == 8) {
+            return 0x4000A;
+        }
+    }
+    return m_hitSeID[param_0];
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1110,8 +1177,17 @@ asm void dCcD_GObjInf::getHitSeID(u8 param_0, int param_1) {
 #include "asm/d/cc/d_cc_d/getHitSeID__12dCcD_GObjInfFUci.s"
 }
 #pragma pop
+#endif
 
 /* 8008460C-80084658 07EF4C 004C+00 5/0 0/0 0/0 .text            ClrCoHit__12dCcD_GObjInfFv */
+#ifndef NM
+void dCcD_GObjInf::ClrCoHit() {
+    mObjCo.ClrHit();
+    mGObjCo.ClrActorInfo();
+    mGObjCo.mRPrm &= ~1;
+    mGObjCo.SubtractEffCounter();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1120,6 +1196,7 @@ asm void dCcD_GObjInf::ClrCoHit() {
 #include "asm/d/cc/d_cc_d/ClrCoHit__12dCcD_GObjInfFv.s"
 }
 #pragma pop
+#endif
 
 /* 80084658-800846B0 07EF98 0058+00 0/0 5/5 74/74 .text            ChkCoHit__12dCcD_GObjInfFv */
 #pragma push
@@ -1163,8 +1240,8 @@ asm void dCcD_GObjInf::Set(dCcD_SrcGObjInf const& param_0) {
 
 /* 8008479C-800847C8 07F0DC 002C+00 2/2 1/1 3/3 .text            dCcD_GetGObjInf__FP8cCcD_Obj */
 #ifndef NM
-cCcD_GObjInf *dCcD_GetGObjInf(cCcD_Obj* obj) {
-    return obj->GetGObjInf();
+dCcD_GObjInf *dCcD_GetGObjInf(cCcD_Obj* obj) {
+    return (dCcD_GObjInf *)obj->GetGObjInf();
 }
 #else
 #pragma push
