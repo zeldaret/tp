@@ -1199,16 +1199,34 @@ asm void dCcD_GObjInf::ClrCoHit() {
 #endif
 
 /* 80084658-800846B0 07EF98 0058+00 0/0 5/5 74/74 .text            ChkCoHit__12dCcD_GObjInfFv */
+#ifndef NM
+bool dCcD_GObjInf::ChkCoHit() {
+    if ((mObjCo.getRPrm() & 1) == 0) {
+        return false;
+    } else if ((mGObjCo.mRPrm & 1) == 0 && mGObjCo.GetAc() == NULL) {
+        return false;
+    } else {
+        return true;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCcD_GObjInf::ChkCoHit() {
+asm bool dCcD_GObjInf::ChkCoHit() {
     nofralloc
 #include "asm/d/cc/d_cc_d/ChkCoHit__12dCcD_GObjInfFv.s"
 }
 #pragma pop
+#endif
 
 /* 800846B0-800846F0 07EFF0 0040+00 0/0 1/1 2/2 .text            ResetCoHit__12dCcD_GObjInfFv */
+#ifndef NM
+void dCcD_GObjInf::ResetCoHit() {
+    ClrCoHit();
+    mGObjCo.ResetEffCounter();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1217,18 +1235,37 @@ asm void dCcD_GObjInf::ResetCoHit() {
 #include "asm/d/cc/d_cc_d/ResetCoHit__12dCcD_GObjInfFv.s"
 }
 #pragma pop
+#endif
 
 /* 800846F0-80084740 07F030 0050+00 0/0 0/0 36/36 .text            GetCoHitObj__12dCcD_GObjInfFv */
+#ifndef NM
+cCcD_Obj *dCcD_GObjInf::GetCoHitObj() {
+    if ((mGObjCo.mRPrm & 1) == 0 && mGObjCo.GetAc() == NULL) {
+        return NULL;
+    } else {
+        return mObjCo.getHitObj();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCcD_GObjInf::GetCoHitObj() {
+asm cCcD_Obj *dCcD_GObjInf::GetCoHitObj() {
     nofralloc
 #include "asm/d/cc/d_cc_d/GetCoHitObj__12dCcD_GObjInfFv.s"
 }
 #pragma pop
+#endif
 
 /* 80084740-8008479C 07F080 005C+00 4/4 0/0 0/0 .text Set__12dCcD_GObjInfFRC15dCcD_SrcGObjInf */
+#ifndef NM
+void dCcD_GObjInf::Set(dCcD_SrcGObjInf const& param_0) {
+    this->cCcD_Obj::Set(param_0.mObj);
+    mGObjAt.Set(param_0.mGObjAt);
+    mGObjTg.Set(param_0.mGObjTg);
+    mGObjCo.Set(param_0.mGObjCo);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1237,6 +1274,7 @@ asm void dCcD_GObjInf::Set(dCcD_SrcGObjInf const& param_0) {
 #include "asm/d/cc/d_cc_d/Set__12dCcD_GObjInfFRC15dCcD_SrcGObjInf.s"
 }
 #pragma pop
+#endif
 
 /* 8008479C-800847C8 07F0DC 002C+00 2/2 1/1 3/3 .text            dCcD_GetGObjInf__FP8cCcD_Obj */
 #ifndef NM
@@ -1261,6 +1299,12 @@ asm dCcD_GObjInf *dCcD_GetGObjInf(cCcD_Obj* param_0) {
 // }
 
 /* 800847D0-80084814 07F110 0044+00 0/0 1/1 20/20 .text            Set__8dCcD_CpsFRC11dCcD_SrcCps */
+#ifndef NM
+void dCcD_Cps::Set(dCcD_SrcCps const& param_0) {
+    this->dCcD_GObjInf::Set(param_0.mObjInf);
+    this->cCcD_CpsAttr::Set(param_0.mCps);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1269,8 +1313,14 @@ asm void dCcD_Cps::Set(dCcD_SrcCps const& param_0) {
 #include "asm/d/cc/d_cc_d/Set__8dCcD_CpsFRC11dCcD_SrcCps.s"
 }
 #pragma pop
+#endif
 
 /* 80084814-80084824 07F154 0010+00 1/0 0/0 0/0 .text            GetShapeAttr__8dCcD_CpsFv */
+#ifndef NM
+cCcD_ShapeAttr *dCcD_Cps::GetShapeAttr() {
+    return this;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1280,8 +1330,15 @@ asm cCcD_ShapeAttr *dCcD_Cps::GetShapeAttr() {
 #include "asm/d/cc/d_cc_d/GetShapeAttr__8dCcD_CpsFv.s"
 }
 #pragma pop
+#endif
 
 /* 80084824-80084854 07F164 0030+00 0/0 0/0 6/6 .text            CalcAtVec__8dCcD_CpsFv */
+#ifndef NM
+void dCcD_Cps::CalcAtVec() {
+    cXyz& dest = mGObjAt.GetVec();
+    PSVECSubtract(&this->GetEndP(), &this->GetStartP(), &dest);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1290,8 +1347,15 @@ asm void dCcD_Cps::CalcAtVec() {
 #include "asm/d/cc/d_cc_d/CalcAtVec__8dCcD_CpsFv.s"
 }
 #pragma pop
+#endif
 
 /* 80084854-80084884 07F194 0030+00 0/0 0/0 2/2 .text            CalcTgVec__8dCcD_CpsFv */
+#ifndef NM
+void dCcD_Cps::CalcTgVec() {
+    cXyz& dest = mGObjTg.GetVec();
+    PSVECSubtract(&this->GetEndP(), &this->GetStartP(), &dest);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1300,8 +1364,14 @@ asm void dCcD_Cps::CalcTgVec() {
 #include "asm/d/cc/d_cc_d/CalcTgVec__8dCcD_CpsFv.s"
 }
 #pragma pop
+#endif
 
 /* 80084884-800848A4 07F1C4 0020+00 0/0 0/0 5/5 .text            Set__8dCcD_TriFRC11dCcD_SrcTri */
+#ifndef NM
+void dCcD_Tri::Set(dCcD_SrcTri const& param_0) {
+    this->dCcD_GObjInf::Set(param_0.mObjInf);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1310,8 +1380,14 @@ asm void dCcD_Tri::Set(dCcD_SrcTri const& param_0) {
 #include "asm/d/cc/d_cc_d/Set__8dCcD_TriFRC11dCcD_SrcTri.s"
 }
 #pragma pop
+#endif
 
 /* 800848A4-800848B4 07F1E4 0010+00 1/0 0/0 0/0 .text            GetShapeAttr__8dCcD_TriFv */
+#ifndef NM
+cCcD_ShapeAttr *dCcD_Tri::GetShapeAttr() {
+    return this;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1321,9 +1397,16 @@ asm cCcD_ShapeAttr *dCcD_Tri::GetShapeAttr() {
 #include "asm/d/cc/d_cc_d/GetShapeAttr__8dCcD_TriFv.s"
 }
 #pragma pop
+#endif
 
 /* 800848B4-800848F8 07F1F4 0044+00 0/0 2/2 245/245 .text            Set__8dCcD_CylFRC11dCcD_SrcCyl
  */
+#ifndef NM
+void dCcD_Cyl::Set(dCcD_SrcCyl const& param_0) {
+    this->dCcD_GObjInf::Set(param_0.mObjInf);
+    this->cCcD_CylAttr::Set(param_0.mCyl);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1332,8 +1415,14 @@ asm void dCcD_Cyl::Set(dCcD_SrcCyl const& param_0) {
 #include "asm/d/cc/d_cc_d/Set__8dCcD_CylFRC11dCcD_SrcCyl.s"
 }
 #pragma pop
+#endif
 
 /* 800848F8-80084908 07F238 0010+00 1/0 0/0 0/0 .text            GetShapeAttr__8dCcD_CylFv */
+#ifndef NM
+cCcD_ShapeAttr *dCcD_Cyl::GetShapeAttr() {
+    return this;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1343,8 +1432,16 @@ asm cCcD_ShapeAttr *dCcD_Cyl::GetShapeAttr() {
 #include "asm/d/cc/d_cc_d/GetShapeAttr__8dCcD_CylFv.s"
 }
 #pragma pop
+#endif
 
 /* 80084908-80084954 07F248 004C+00 0/0 3/3 3/3 .text            StartCAt__8dCcD_CylFR4cXyz */
+#ifndef NM
+void dCcD_Cyl::StartCAt(cXyz& param_0) {
+    cXyz zero = cXyz::Zero;
+    mGObjAt.SetVec(zero);
+    this->SetC(param_0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1353,8 +1450,21 @@ asm void dCcD_Cyl::StartCAt(cXyz& param_0) {
 #include "asm/d/cc/d_cc_d/StartCAt__8dCcD_CylFR4cXyz.s"
 }
 #pragma pop
+#endif
+
+inline void vecDiff(cXyz& out, const cXyz& a, const cXyz& b) {
+    out = a - b;
+}
 
 /* 80084954-800849C4 07F294 0070+00 0/0 3/3 4/4 .text            MoveCAt__8dCcD_CylFR4cXyz */
+#ifndef NM
+void dCcD_Cyl::MoveCAt(cXyz& param_0) {
+    cXyz diff;
+    vecDiff(diff, param_0, this->GetCP());
+    mGObjAt.SetVec(diff);
+    this->SetC(param_0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1363,8 +1473,17 @@ asm void dCcD_Cyl::MoveCAt(cXyz& param_0) {
 #include "asm/d/cc/d_cc_d/MoveCAt__8dCcD_CylFR4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* 800849C4-80084A34 07F304 0070+00 0/0 0/0 1/1 .text            MoveCTg__8dCcD_CylFR4cXyz */
+#ifndef NM
+void dCcD_Cyl::MoveCTg(cXyz& param_0) {
+    cXyz diff;
+    vecDiff(diff, param_0, this->GetCP());
+    mGObjTg.SetVec(diff);
+    this->SetC(param_0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1373,9 +1492,16 @@ asm void dCcD_Cyl::MoveCTg(cXyz& param_0) {
 #include "asm/d/cc/d_cc_d/MoveCTg__8dCcD_CylFR4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* 80084A34-80084A78 07F374 0044+00 0/0 2/2 196/196 .text            Set__8dCcD_SphFRC11dCcD_SrcSph
  */
+#ifndef NM
+void dCcD_Sph::Set(dCcD_SrcSph const& param_0) {
+    this->dCcD_GObjInf::Set(param_0.mObjInf);
+    this->cCcD_SphAttr::Set(param_0.mSph);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1384,6 +1510,7 @@ asm void dCcD_Sph::Set(dCcD_SrcSph const& param_0) {
 #include "asm/d/cc/d_cc_d/Set__8dCcD_SphFRC11dCcD_SrcSph.s"
 }
 #pragma pop
+#endif
 
 /* 80084A78-80084AC4 07F3B8 004C+00 0/0 3/3 25/25 .text            StartCAt__8dCcD_SphFR4cXyz */
 #ifndef NM
@@ -1404,6 +1531,15 @@ asm void dCcD_Sph::StartCAt(cXyz& param_0) {
 #endif
 
 /* 80084AC4-80084B34 07F404 0070+00 0/0 2/2 23/23 .text            MoveCAt__8dCcD_SphFR4cXyz */
+#ifndef NM
+// reordered instructions
+void dCcD_Sph::MoveCAt(cXyz& param_0) {
+    cXyz diff;
+    vecDiff(diff, param_0, GetC());
+    mGObjAt.SetVec(diff);
+    this->SetC(param_0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1412,6 +1548,7 @@ asm void dCcD_Sph::MoveCAt(cXyz& param_0) {
 #include "asm/d/cc/d_cc_d/MoveCAt__8dCcD_SphFR4cXyz.s"
 }
 #pragma pop
+#endif
 
 cCcD_ShapeAttr* dCcD_Sph::GetShapeAttr() {
     return this;

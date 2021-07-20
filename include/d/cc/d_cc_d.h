@@ -4,12 +4,6 @@
 #include "SSystem/SComponent/c_cc_d.h"
 #include "dolphin/types.h"
 
-struct dCcD_SrcTri {};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_SrcGObjInf {};
-
 struct dCcD_SrcGAtTgCoCommonBase {
     /* 0x00 */ u32 mGFlag;
 };
@@ -30,9 +24,31 @@ struct dCcD_SrcGObjTg {
     dCcD_SrcGAtTgCoCommonBase mBase;
 };
 
-struct dCcD_SrcCyl {};
+struct dCcD_SrcGObjInf {
+    cCcD_SrcObj mObj;
+    dCcD_SrcGObjAt mGObjAt;
+    dCcD_SrcGObjTg mGObjTg;
+    dCcD_SrcGAtTgCoCommonBase mGObjCo;
+};
 
-struct dCcD_SrcCps {};
+struct dCcD_SrcSph {
+    dCcD_SrcGObjInf mObjInf;
+    cM3dGSphS mSph;
+};
+
+struct dCcD_SrcTri {
+    dCcD_SrcGObjInf mObjInf;
+};
+
+struct dCcD_SrcCyl {
+    dCcD_SrcGObjInf mObjInf;
+    cM3dGCylS mCyl;
+};
+
+struct dCcD_SrcCps {
+    dCcD_SrcGObjInf mObjInf;
+    cM3dGCpsS mCps;
+};
 
 class dCcD_GStts : cCcD_GStts {
 public:
@@ -88,6 +104,9 @@ public:
     /* 80083724 */ void SubtractEffCounter();
     /* 80083748 */ bool ChkEffCounter();
     /* 80083CA0 */ virtual ~dCcD_GAtTgCoCommonBase() {}
+    void ResetEffCounter() { mEffCounter = 0; }
+    u32 GetGFlag() const { return mGFlag; }
+    u32 GetRPrm() const { return mRPrm; }
 };  // Size = 0x1C
 
 class dCcD_GObjAt : public dCcD_GAtTgCoCommonBase {
@@ -95,6 +114,7 @@ public:
     /* 80083944 */ void Set(dCcD_SrcGObjAt const&);
     /* 80083C44 */ virtual ~dCcD_GObjAt() {}
     void SetVec(cXyz& vec) { mVec = vec; }
+    cXyz& GetVec() { return mVec; }
 
 // private:
     /* 0x1C */ u8 mSe;
@@ -109,6 +129,8 @@ class dCcD_GObjTg : public dCcD_GAtTgCoCommonBase {
 public:
     /* 800839A0 */ void Set(dCcD_SrcGObjTg const&);
     /* 80083BE8 */ virtual ~dCcD_GObjTg() {}
+    void SetVec(cXyz& vec) { mVec = vec; }
+    cXyz& GetVec() { return mVec; }
 
 private:
     /* 0x1C */ u8 mSe;
@@ -121,7 +143,7 @@ private:
     /* 0x44 */ s16* mShieldFrontRangeYAngle;
     /* 0x48 */ s16 mShieldRange;
 };  // Size = 0x4A ?
-class dCcD_GObjCo : dCcD_GAtTgCoCommonBase {
+class dCcD_GObjCo : public dCcD_GAtTgCoCommonBase {
 public:
     /* 80083B8C */ virtual ~dCcD_GObjCo() {}
 };  // Size = 0x1C ?
@@ -145,16 +167,16 @@ public:
     /* 8008457C */ u8 GetTgHitObjSe();
     /* 800845B0 */ static u32 getHitSeID(u8, int);
     /* 8008460C */ void ClrCoHit();
-    /* 80084658 */ void ChkCoHit();
+    /* 80084658 */ bool ChkCoHit();
     /* 800846B0 */ void ResetCoHit();
-    /* 800846F0 */ void GetCoHitObj();
+    /* 800846F0 */ cCcD_Obj *GetCoHitObj();
     /* 80084740 */ void Set(dCcD_SrcGObjInf const&);
 
     void SetAtVec(cXyz& vec) { mGObjAt.SetVec(vec); }
 
     static u32 const m_hitSeID[24];
 
-private:
+protected:
     /* 0x058 */ dCcD_GObjAt mGObjAt;
     /* 0x09C */ dCcD_GObjTg mGObjTg;
     /* 0x0E8 */ dCcD_GObjCo mGObjCo;
