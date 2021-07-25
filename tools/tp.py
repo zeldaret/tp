@@ -324,6 +324,21 @@ def find_function_ranges(asm_files):
 
     return function_ranges
 
+@tp.command(name="remove-unused-asm", help="remove all of the asm that is decompiled and not used anymore")
+def remove_unused_asm_cmd():
+    remove_unused_asm()
+
+def remove_unused_asm():
+    unused_files, error_files = find_unused_asm_files(False)
+
+    for unused_file in unused_files:
+        unused_file.unlink()
+        CONSOLE.print(f"removed '{unused_file}'")
+
+    text = Text("    OK")
+    text.stylize("bold green")
+    CONSOLE.print(text)
+
 @tp.command(name="pull-request")
 @click.option('--debug/--no-debug')
 @click.option('--thread-count', '-j', 'thread_count', help="This option is passed forward to all 'make' commands.", default=4)
@@ -339,20 +354,7 @@ def pull_request(debug, thread_count, game_path, build_path):
     text.stylize("bold")
     CONSOLE.print(text)
 
-    #
-    text = Text("--- Removing Unused '.s' Files")
-    text.stylize("bold magenta")
-    CONSOLE.print(text)
-
-    unused_files, error_files = find_unused_asm_files(False)
-
-    for unused_file in unused_files:
-        unused_file.unlink()
-        CONSOLE.print(f"removed '{unused_file}'")
-
-    text = Text("    OK")
-    text.stylize("bold green")
-    CONSOLE.print(text)
+    remove_unused_asm()
 
     #
     text = Text("--- Full Rebuild")

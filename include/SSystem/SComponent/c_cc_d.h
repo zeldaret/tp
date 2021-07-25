@@ -53,6 +53,8 @@ public:
     /*          vt[20]*/ virtual bool GetNVec(cXyz const&, cXyz*) const = 0;
     /* 80263A64 vt[21]*/ virtual void getShapeAccess(cCcD_ShapeAttr::Shape*) const;
 
+    cM3dGAab& GetWorkAab() { return mAab; }
+
     static cXyz m_virtual_center;
 };
 
@@ -267,10 +269,11 @@ public:
     /* 8008409C */ virtual ~cCcD_ObjCommonBase() {}
     /* 802639B0 */ void ct();
     void setSPrm(s32 sprm) { mSPrm = sprm; }
-    s32 getSPrm() { return mSPrm; }
+    s32 getSPrm() const { return mSPrm; }
     void setRPrm(s32 rprm) { mRPrm = rprm; }
-    s32 getRPrm() { return mRPrm; }
+    s32 getRPrm() const { return mRPrm; }
     cCcD_Obj* getHitObj() { return mHitObj; }
+    u32 MskSPrm(u32 mask) const { return mSPrm & mask; }
 };
 
 STATIC_ASSERT(0x10 == sizeof(cCcD_ObjCommonBase));
@@ -283,6 +286,8 @@ public:
     /* 8026484C */ void Set(cCcD_SrcObjAt const&);
     /* 80264868 */ void ClrHit();
     int GetType() const { return mType; }
+    u32 GetGrp() const { return MskSPrm(0x1E); }
+    bool ChkSet() const { return MskSPrm(1); }
 
 protected:
     /* 0x10 */ int mType;
@@ -300,6 +305,8 @@ public:
     /* 802648B0 */ void ClrHit();
     /* 802648C8 */ void SetHit(cCcD_Obj*);
     int GetType() const { return mType; }
+    u32 GetGrp() const { return MskSPrm(0x1E); }
+    bool ChkSet() const { return MskSPrm(1); }
 
 private:
     /* 0x10 */ int mType;
@@ -314,6 +321,7 @@ public:
     /* 802648E8 */ void ClrHit();
     /* 80264900 */ void SetIGrp(u32);
     /* 8026491C */ void SetVsGrp(u32);
+    u32 GetGrp() const { return MskSPrm(0x1E); }
 };
 
 STATIC_ASSERT(0x10 == sizeof(cCcD_ObjCo));
@@ -330,6 +338,13 @@ public:
     cCcD_ObjAt& GetObjAt() { return mObjAt; }
     cCcD_ObjTg& GetObjTg() { return mObjTg; }
     cCcD_ObjCo& GetObjCo() { return mObjCo; }
+    u32 GetTgGrp() const { return mObjTg.GetGrp(); }
+    u32 GetAtGrp() const { return mObjAt.GetGrp(); }
+    u32 GetCoGrp() const { return mObjCo.GetGrp(); }
+    int GetTgType() const { return mObjTg.GetType(); }
+    int GetAtType() const { return mObjAt.GetType(); }
+    bool ChkTgSet() const { return mObjTg.ChkSet(); }
+    bool ChkAtSet() const { return mObjAt.ChkSet(); }
 
 };  // Size = 0x40
 
@@ -352,6 +367,7 @@ public:
 
     cCcD_Stts* GetStts() { return mStts; }
     cCcD_DivideInfo& GetDivideInfo() { return mDivideInfo; }
+    int ChkBsRevHit() const { return field_0x40 & 2; }
 
 private:
     /* 0x040 */ int field_0x40;

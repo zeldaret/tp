@@ -50,7 +50,7 @@ struct dCcD_SrcCps {
     cM3dGCpsS mCps;
 };
 
-class dCcD_GStts : cCcD_GStts {
+class dCcD_GStts : public cCcD_GStts {
 public:
     /* 80083760 */ dCcD_GStts();
     /* 800837F8 */ void Ct();

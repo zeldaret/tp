@@ -82,9 +82,6 @@ extern "C" extern u8 data_80451158[8];
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 80451158-80451160 0008+00 s=0 e=1 z=0  None .sbss      None */
-u8 data_80451158[8];
 
 /* 80264A6C-80264A94 25F3AC 0028+00 0/0 1/1 0/0 .text            __ct__4cCcSFv */
 cCcS::cCcS() {}
@@ -191,13 +188,13 @@ void cCcS::ClrAtHitInf() {
 }
 
 /* 80264E2C-80264F40 25F76C 0114+00 1/1 0/0 0/0 .text ChkNoHitAtTg__4cCcSFP8cCcD_ObjP8cCcD_Obj */
-#ifdef NON_MATCHING
-int cCcS::ChkNoHitAtTg(cCcD_Obj* obj1, cCcD_Obj* obj2) {
+#ifndef NON_MATCHING
+bool cCcS::ChkNoHitAtTg(cCcD_Obj* obj1, cCcD_Obj* obj2) {
     fopAc_ac_c* ac1 = obj1->GetAc();
     fopAc_ac_c* ac2 = obj2->GetAc();
     if (((ac1 != NULL && ac2 != NULL) && ac1 == ac2) ||
-        (obj1->GetObjAt().getSPrm() & 0x1E & obj2->GetObjTg().getSPrm() & 0x1E) == 0 ||
-        (obj1->GetObjAt().GetType() & obj2->GetObjTg().GetType()) == 0) {
+        (obj1->GetAtGrp() & obj2->GetTgGrp()) == 0 ||
+        (obj1->GetAtType() & obj2->GetTgType()) == 0) {
         return 1;
     } else {
         return this->ChkNoHitGAtTg(obj1->GetGObjInf(), obj2->GetGObjInf(),
@@ -215,13 +212,6 @@ asm int cCcS::ChkNoHitAtTg(cCcD_Obj* param_0, cCcD_Obj* param_1) {
 #pragma pop
 #endif
 
-/* ############################################################################################## */
-/* 80430CC0-80430CCC 05D9E0 000C+00 1/1 0/0 0/0 .bss             @2492 */
-static u8 lit_2492[12];
-
-/* 80430CCC-80430CD8 05D9EC 000C+00 1/1 0/0 0/0 .bss             cross$2491 */
-static u8 cross[12];
-
 /* 80455038-8045503C 003638 0004+00 2/2 0/0 0/0 .sdata2          @2532 */
 SECTION_SDATA2 static u8 lit_2532[4] = {
     0x00,
@@ -231,6 +221,44 @@ SECTION_SDATA2 static u8 lit_2532[4] = {
 };
 
 /* 80264F40-8026515C 25F880 021C+00 1/1 0/0 0/0 .text            ChkAtTg__4cCcSFv */
+#ifndef NM
+void cCcS::ChkAtTg() {
+    cCcD_Obj** objTgEnd = mpObjTg + mObjTgCount;
+    this->ClrAtHitInf();
+    this->ClrTgHitInf();
+    for(cCcD_Obj** pObjAt = mpObjAt; pObjAt < mpObjAt + mObjAtCount; pObjAt++) {
+        if (*pObjAt == NULL || !(*pObjAt)->ChkAtSet()) {
+            continue;
+        }
+        cCcD_ShapeAttr *atShapeAttr = (*pObjAt)->GetShapeAttr();
+        for (cCcD_Obj** pObjTg = mpObjTg; pObjTg < objTgEnd; pObjTg++) {
+            if (*pObjTg == NULL || !(*pObjTg)->ChkTgSet()) {
+                continue;
+            }
+            if (!(*pObjAt)->GetDivideInfo().Chk((*pObjTg)->GetDivideInfo())) continue;
+            if (this->ChkNoHitAtTg(*pObjAt, *pObjTg)) continue;
+            cCcD_ShapeAttr *tgShapeAttr = (*pObjTg)->GetShapeAttr();
+            static cXyz cross;
+            bool didCross = atShapeAttr->CrossAtTg(*tgShapeAttr, &cross);
+            bool tmpB = (*pObjAt)->ChkBsRevHit() != 0 || (*pObjTg)->ChkBsRevHit() != 0;
+            if (!tmpB && didCross) {
+                this->SetAtTgCommonHitInf(*pObjAt, *pObjTg, &cross);
+            } else {
+                if (tmpB && !didCross) {
+                    cCcD_ShapeAttr * atShape2 = (*pObjAt)->GetShapeAttr();
+                    if (atShape2 == NULL) {
+                        f32 zero = FLOAT_LABEL(lit_2532);
+                        cross.set(zero, zero, zero);
+                    } else {
+                        atShape2->GetWorkAab().CalcCenter(&cross);
+                    }
+                    this->SetAtTgCommonHitInf(*pObjAt, *pObjTg, &cross);
+                }
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -239,6 +267,7 @@ asm void cCcS::ChkAtTg() {
 #include "asm/SSystem/SComponent/c_cc_s/ChkAtTg__4cCcSFv.s"
 }
 #pragma pop
+#endif
 
 /* 8026515C-80265230 25FA9C 00D4+00 1/1 0/0 0/0 .text ChkNoHitCo__4cCcSFP8cCcD_ObjP8cCcD_Obj */
 #pragma push

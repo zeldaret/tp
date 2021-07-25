@@ -32,7 +32,7 @@ public:
     /* 80264C5C */ void ClrCoHitInf();
     /* 80264CF0 */ void ClrTgHitInf();
     /* 80264D90 */ void ClrAtHitInf();
-    /* 80264E2C */ int ChkNoHitAtTg(cCcD_Obj*, cCcD_Obj*);
+    /* 80264E2C */ bool ChkNoHitAtTg(cCcD_Obj*, cCcD_Obj*);
     /* 80264F40 */ void ChkAtTg();
     /* 8026515C */ void ChkNoHitCo(cCcD_Obj*, cCcD_Obj*);
     /* 80265230 */ void ChkCo();
