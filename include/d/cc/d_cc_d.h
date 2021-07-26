@@ -58,7 +58,7 @@ public:
     /* 8008523C */ virtual ~dCcD_GStts() {}
     void ClrTg() { mTg = 0; }
 
-// private:
+    // private:
     /* 0x04 */ u8 mAt;
     /* 0x05 */ u8 mTg;
     /* 0x06 */ u8 mRoomId;
@@ -98,7 +98,7 @@ public:
     /* 8008364C */ void ClrActorInfo();
     /* 80083660 */ void ct();
     /* 80083678 */ void SetHitApid(unsigned int);
-    /* 80083688 */ fopAc_ac_c *GetAc();
+    /* 80083688 */ fopAc_ac_c* GetAc();
     /* 80083704 */ void Set(dCcD_SrcGAtTgCoCommonBase const&);
     /* 80083718 */ void SetEffCounterTimer();
     /* 80083724 */ void SubtractEffCounter();
@@ -116,7 +116,7 @@ public:
     void SetVec(cXyz& vec) { mVec = vec; }
     cXyz& GetVec() { return mVec; }
 
-// private:
+    // private:
     /* 0x1C */ u8 mSe;
     /* 0x1D */ u8 mMtrl;
     /* 0x1E */ u8 mHitMark;
@@ -156,8 +156,8 @@ public:
     /* 8008426C */ virtual void ClrAtHit();
     /* 800842C0 */ s32 ChkAtHit();
     /* 80084318 */ void ResetAtHit();
-    /* 80084358 */ cCcD_Obj * GetAtHitObj();
-    /* 800843A8 */ cCcD_GObjInf * GetAtHitGObj();
+    /* 80084358 */ cCcD_Obj* GetAtHitObj();
+    /* 800843A8 */ cCcD_GObjInf* GetAtHitGObj();
     /* 800843DC */ bool ChkAtNoGuard();
     /* 800843FC */ void ClrTgHit();
     /* 80084460 */ bool ChkTgHit();
@@ -169,7 +169,7 @@ public:
     /* 8008460C */ void ClrCoHit();
     /* 80084658 */ bool ChkCoHit();
     /* 800846B0 */ void ResetCoHit();
-    /* 800846F0 */ cCcD_Obj *GetCoHitObj();
+    /* 800846F0 */ cCcD_Obj* GetCoHitObj();
     /* 80084740 */ void Set(dCcD_SrcGObjInf const&);
 
     void SetAtVec(cXyz& vec) { mGObjAt.SetVec(vec); }
@@ -221,6 +221,6 @@ public:
     dCcD_Tri() {}
 };
 
-dCcD_GObjInf *dCcD_GetGObjInf(cCcD_Obj* param_0);
+dCcD_GObjInf* dCcD_GetGObjInf(cCcD_Obj* param_0);
 
 #endif /* D_CC_D_CC_D_H */

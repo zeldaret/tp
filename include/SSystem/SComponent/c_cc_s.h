@@ -34,7 +34,7 @@ public:
     /* 80264D90 */ void ClrAtHitInf();
     /* 80264E2C */ bool ChkNoHitAtTg(cCcD_Obj*, cCcD_Obj*);
     /* 80264F40 */ void ChkAtTg();
-    /* 8026515C */ void ChkNoHitCo(cCcD_Obj*, cCcD_Obj*);
+    /* 8026515C */ bool ChkNoHitCo(cCcD_Obj*, cCcD_Obj*);
     /* 80265230 */ void ChkCo();
     /* 802653A0 vt[2] */ virtual void CalcTgPlusDmg(cCcD_Obj*, cCcD_Obj*, cCcD_Stts*, cCcD_Stts*);
     /* 802653C8 */ void SetAtTgCommonHitInf(cCcD_Obj*, cCcD_Obj*, cXyz*);

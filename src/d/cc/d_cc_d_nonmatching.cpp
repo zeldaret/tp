@@ -7,8 +7,8 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_iter.h"
-#include "f_pc/f_pc_searcher.h"
 #include "f_op/f_op_actor_mng.h"
+#include "f_pc/f_pc_searcher.h"
 
 //
 // Declarations:
@@ -35,7 +35,7 @@ void dCcD_GAtTgCoCommonBase::SetHitApid(unsigned int hitApid) {
 }
 
 /* 80083688-80083704 07DFC8 007C+00 6/6 17/17 43/43 .text GetAc__22dCcD_GAtTgCoCommonBaseFv */
-fopAc_ac_c *dCcD_GAtTgCoCommonBase::GetAc() {
+fopAc_ac_c* dCcD_GAtTgCoCommonBase::GetAc() {
     if (mApid == 0xFFFFFFFF) {
         return NULL;
     } else {
@@ -213,7 +213,7 @@ void dCcD_GObjInf::ResetAtHit() {
 }
 
 /* 80084358-800843A8 07EC98 0050+00 1/1 0/0 31/31 .text            GetAtHitObj__12dCcD_GObjInfFv */
-cCcD_Obj *dCcD_GObjInf::GetAtHitObj() {
+cCcD_Obj* dCcD_GObjInf::GetAtHitObj() {
     if ((mGObjAt.mRPrm & 2) == 0 && mGObjAt.GetAc() == NULL) {
         return NULL;
     } else {
@@ -222,8 +222,8 @@ cCcD_Obj *dCcD_GObjInf::GetAtHitObj() {
 }
 
 /* 800843A8-800843DC 07ECE8 0034+00 0/0 2/2 3/3 .text            GetAtHitGObj__12dCcD_GObjInfFv */
-cCcD_GObjInf *dCcD_GObjInf::GetAtHitGObj() {
-    cCcD_Obj *obj = this->GetAtHitObj();
+cCcD_GObjInf* dCcD_GObjInf::GetAtHitGObj() {
+    cCcD_Obj* obj = this->GetAtHitObj();
     if (obj == NULL) {
         return NULL;
     } else {
@@ -287,7 +287,7 @@ cCcD_Obj* dCcD_GObjInf::GetTgHitObj() {
 /* 80084548-8008457C 07EE88 0034+00 1/1 5/5 63/63 .text            GetTgHitGObj__12dCcD_GObjInfFv */
 dCcD_GObjInf* dCcD_GObjInf::GetTgHitGObj() {
     cCcD_Obj* obj = this->GetTgHitObj();
-    if(obj == NULL) {
+    if (obj == NULL) {
         return NULL;
     } else {
         return dCcD_GetGObjInf(obj);
@@ -308,12 +308,9 @@ u8 dCcD_GObjInf::GetTgHitObjSe() {
 /* ############################################################################################## */
 /* 8037A780-8037A7E0 006DE0 0060+00 1/1 0/0 0/0 .rodata          m_hitSeID__12dCcD_GObjInf */
 u32 const dCcD_GObjInf::m_hitSeID[24] = {
-    0x0004000F, 0x00040000, 0x00040002, 0x00040004,
-    0x00040009, 0x0004000B, 0x0004000C, 0x0004000D,
-    0x0004000E, 0x0004000F, 0x00040001, 0x00040004,
-    0x00040010, 0x00040011, 0x00040012, 0x00040013,
-    0x00040014, 0x00040015, 0x00040018, 0x00040016,
-    0x00040003, 0x00040005, 0x00040006, 0x00040007,
+    0x0004000F, 0x00040000, 0x00040002, 0x00040004, 0x00040009, 0x0004000B, 0x0004000C, 0x0004000D,
+    0x0004000E, 0x0004000F, 0x00040001, 0x00040004, 0x00040010, 0x00040011, 0x00040012, 0x00040013,
+    0x00040014, 0x00040015, 0x00040018, 0x00040016, 0x00040003, 0x00040005, 0x00040006, 0x00040007,
 };
 
 /* 800845B0-8008460C 07EEF0 005C+00 0/0 3/3 32/32 .text            getHitSeID__12dCcD_GObjInfFUci */
@@ -358,7 +355,7 @@ void dCcD_GObjInf::ResetCoHit() {
 }
 
 /* 800846F0-80084740 07F030 0050+00 0/0 0/0 36/36 .text            GetCoHitObj__12dCcD_GObjInfFv */
-cCcD_Obj *dCcD_GObjInf::GetCoHitObj() {
+cCcD_Obj* dCcD_GObjInf::GetCoHitObj() {
     if ((mGObjCo.mRPrm & 1) == 0 && mGObjCo.GetAc() == NULL) {
         return NULL;
     } else {
@@ -375,8 +372,8 @@ void dCcD_GObjInf::Set(dCcD_SrcGObjInf const& param_0) {
 }
 
 /* 8008479C-800847C8 07F0DC 002C+00 2/2 1/1 3/3 .text            dCcD_GetGObjInf__FP8cCcD_Obj */
-dCcD_GObjInf *dCcD_GetGObjInf(cCcD_Obj* obj) {
-    return (dCcD_GObjInf *)obj->GetGObjInf();
+dCcD_GObjInf* dCcD_GetGObjInf(cCcD_Obj* obj) {
+    return (dCcD_GObjInf*)obj->GetGObjInf();
 }
 
 /* 800847D0-80084814 07F110 0044+00 0/0 1/1 20/20 .text            Set__8dCcD_CpsFRC11dCcD_SrcCps */
@@ -386,7 +383,7 @@ void dCcD_Cps::Set(dCcD_SrcCps const& param_0) {
 }
 
 /* 80084814-80084824 07F154 0010+00 1/0 0/0 0/0 .text            GetShapeAttr__8dCcD_CpsFv */
-cCcD_ShapeAttr *dCcD_Cps::GetShapeAttr() {
+cCcD_ShapeAttr* dCcD_Cps::GetShapeAttr() {
     return this;
 }
 
@@ -408,7 +405,7 @@ void dCcD_Tri::Set(dCcD_SrcTri const& param_0) {
 }
 
 /* 800848A4-800848B4 07F1E4 0010+00 1/0 0/0 0/0 .text            GetShapeAttr__8dCcD_TriFv */
-cCcD_ShapeAttr *dCcD_Tri::GetShapeAttr() {
+cCcD_ShapeAttr* dCcD_Tri::GetShapeAttr() {
     return this;
 }
 
@@ -420,7 +417,7 @@ void dCcD_Cyl::Set(dCcD_SrcCyl const& param_0) {
 }
 
 /* 800848F8-80084908 07F238 0010+00 1/0 0/0 0/0 .text            GetShapeAttr__8dCcD_CylFv */
-cCcD_ShapeAttr *dCcD_Cyl::GetShapeAttr() {
+cCcD_ShapeAttr* dCcD_Cyl::GetShapeAttr() {
     return this;
 }
 
