@@ -8,77 +8,6 @@
 #include "global.h"
 
 //
-// Forward References:
-//
-
-extern "C" void __ct__4cCcSFv();
-extern "C" void Ct__4cCcSFv();
-extern "C" void Dt__4cCcSFv();
-extern "C" void GetWt__4cCcSCFUc();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void ClrCoHitInf__4cCcSFv();
-extern "C" void ClrTgHitInf__4cCcSFv();
-extern "C" void ClrAtHitInf__4cCcSFv();
-extern "C" void ChkNoHitAtTg__4cCcSFP8cCcD_ObjP8cCcD_Obj();
-extern "C" void ChkAtTg__4cCcSFv();
-extern "C" void ChkNoHitCo__4cCcSFP8cCcD_ObjP8cCcD_Obj();
-extern "C" void ChkCo__4cCcSFv();
-extern "C" void CalcTgPlusDmg__4cCcSFP8cCcD_ObjP8cCcD_ObjP9cCcD_SttsP9cCcD_Stts();
-extern "C" void SetAtTgCommonHitInf__4cCcSFP8cCcD_ObjP8cCcD_ObjP4cXyz();
-extern "C" void SetCoCommonHitInf__4cCcSFP8cCcD_ObjP4cXyzP8cCcD_ObjP4cXyzf();
-extern "C" void SetPosCorrect__4cCcSFP8cCcD_ObjP4cXyzP8cCcD_ObjP4cXyzf();
-extern "C" void CalcArea__4cCcSFv();
-extern "C" void Move__4cCcSFv();
-extern "C" void DrawClear__4cCcSFv();
-extern "C" void SetCoGCorrectProc__4cCcSFP8cCcD_ObjP8cCcD_Obj();
-extern "C" void
-SetCoGObjInf__4cCcSFbbP12cCcD_GObjInfP12cCcD_GObjInfP9cCcD_SttsP9cCcD_SttsP10cCcD_GSttsP10cCcD_GStts();
-extern "C" void
-SetAtTgGObjInf__4cCcSFbbP8cCcD_ObjP8cCcD_ObjP12cCcD_GObjInfP12cCcD_GObjInfP9cCcD_SttsP9cCcD_SttsP10cCcD_GSttsP10cCcD_GSttsP4cXyz();
-extern "C" bool ChkNoHitGAtTg__4cCcSFPC12cCcD_GObjInfPC12cCcD_GObjInfP10cCcD_GSttsP10cCcD_GStts();
-extern "C" bool
-ChkAtTgHitAfterCross__4cCcSFbbPC12cCcD_GObjInfPC12cCcD_GObjInfP9cCcD_SttsP9cCcD_SttsP10cCcD_GSttsP10cCcD_GStts();
-extern "C" bool ChkNoHitGCo__4cCcSFP8cCcD_ObjP8cCcD_Obj();
-extern "C" void MoveAfterCheck__4cCcSFv();
-
-//
-// External References:
-//
-
-extern "C" void __dt__4cXyzFv();
-extern "C" void __dt__4cCcSFv();
-extern "C" void Chk__15cCcD_DivideInfoCFRC15cCcD_DivideInfo();
-extern "C" void SetArea__15cCcD_DivideAreaFRC8cM3dGAab();
-extern "C" void CalcDivideInfo__15cCcD_DivideAreaFP15cCcD_DivideInfoRC8cM3dGAabUl();
-extern "C" void PlusCcMove__9cCcD_SttsFfff();
-extern "C" void ClrCcMove__9cCcD_SttsFv();
-extern "C" void PlusDmg__9cCcD_SttsFi();
-extern "C" void GetWeightF__9cCcD_SttsCFv();
-extern "C" void GetAc__8cCcD_ObjFv();
-extern "C" void SetHit__10cCcD_ObjAtFP8cCcD_Obj();
-extern "C" void SetHit__10cCcD_ObjTgFP8cCcD_Obj();
-extern "C" void SetHit__10cCcD_ObjCoFP8cCcD_Obj();
-extern "C" void ClearForMinMax__8cM3dGAabFv();
-extern "C" void SetMinMax__8cM3dGAabFRC8cM3dGAab();
-extern "C" void CalcCenter__8cM3dGAabCFP4cXyz();
-extern "C" void __register_global_object();
-extern "C" void _savegpr_21();
-extern "C" void _savegpr_22();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_21();
-extern "C" void _restgpr_22();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__15cCcD_DivideArea[3];
-extern "C" extern void* __vt__8cM3dGAab[3];
-extern "C" extern u8 data_80451158[8];
-
-//
 // Declarations:
 //
 
@@ -435,7 +364,6 @@ void cCcS::SetPosCorrect(cCcD_Obj* obj1, cXyz* xyz1, cCcD_Obj* obj2, cXyz* xyz2,
 }
 
 /* 80265BB4-80265CCC 2604F4 0118+00 1/1 0/0 0/0 .text            CalcArea__4cCcSFv */
-#ifdef NON_MATCHING
 void cCcS::CalcArea() {
     cM3dGAab aab;
     aab.ClearForMinMax();
@@ -450,22 +378,11 @@ void cCcS::CalcArea() {
     for (cCcD_Obj** pObj = mpObj; pObj < mpObj + mObjCount; pObj++) {
         if (*pObj != NULL) {
             const cCcD_ShapeAttr* objShape = (*pObj)->GetShapeAttr();
-            // instruction reordering
-            mDivideArea.CalcDivideInfo(&(*pObj)->GetDivideInfo(), objShape->GetWorkAab(),
-                                       (*pObj)->ChkBsRevHit());
+            cCcD_DivideInfo* divideInfo = &(*pObj)->GetDivideInfo();
+            mDivideArea.CalcDivideInfo(divideInfo, objShape->GetWorkAab(), (*pObj)->ChkBsRevHit());
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCcS::CalcArea() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_cc_s/CalcArea__4cCcSFv.s"
-}
-#pragma pop
-#endif
 
 /* 80265CCC-80265D30 26060C 0064+00 0/0 1/1 0/0 .text            Move__4cCcSFv */
 void cCcS::Move() {
