@@ -107,6 +107,8 @@ public:
     void ResetEffCounter() { mEffCounter = 0; }
     u32 GetGFlag() const { return mGFlag; }
     u32 GetRPrm() const { return mRPrm; }
+    u32 MskSPrm(u32 mask) const { return mGFlag & mask; }
+    bool ChkSPrm(u32 mask) const { return MskSPrm(mask); }
 };  // Size = 0x1C
 
 class dCcD_GObjAt : public dCcD_GAtTgCoCommonBase {
@@ -173,6 +175,7 @@ public:
     /* 80084740 */ void Set(dCcD_SrcGObjInf const&);
 
     void SetAtVec(cXyz& vec) { mGObjAt.SetVec(vec); }
+    bool ChkAtNoMass() const { return mGObjAt.ChkSPrm(8); }
 
     static u32 const m_hitSeID[24];
 

@@ -3,154 +3,11 @@
 // Translation Unit: d/cc/d_cc_mass_s
 //
 
-//#include "d/cc/d_cc_mass_s.h"
+#include "d/cc/d_cc_mass_s.h"
+#include "SSystem/SComponent/c_math.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct fopAc_ac_c {};
-
-struct cXyz {};
-
-struct cCcD_Obj {};
-
-struct dCcMassS_Obj {
-    /* 800300F4 */ ~dCcMassS_Obj();
-    /* 800852E0 */ void Set(cCcD_Obj*, u8, void (*)(fopAc_ac_c*, cXyz*, u32));
-    /* 800852F0 */ void Clear();
-    /* 800855C8 */ dCcMassS_Obj();
-};
-
-struct cM3dGCps {
-    /* 8026EF88 */ cM3dGCps();
-    /* 8026EFA4 */ ~cM3dGCps();
-    /* 8026F080 */ void SetCps(cM3dGCps const&);
-};
-
-struct Vec {};
-
-struct dCcMassS_HitInf {
-    /* 80085334 */ void ClearPointer();
-};
-
-struct dCcMassS_Mng {
-    /* 80085350 */ dCcMassS_Mng();
-    /* 800855E4 */ void Ct();
-    /* 80085630 */ void SetAttr(f32, f32, u8, u8);
-    /* 80085690 */ void Prepare();
-    /* 800858AC */ void Chk(cXyz*, fopAc_ac_c**, dCcMassS_HitInf*);
-    /* 80085CF0 */ void Clear();
-    /* 80085D98 */ void Set(cCcD_Obj*, u8);
-    /* 80085E6C */ void SetCam(cM3dGCps const&);
-    /* 80085EB0 */ void GetResultCam() const;
-    /* 80085EB8 */ void GetCamTopPos(Vec*);
-};
-
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 8026F1F8 */ void SetH(f32);
-    /* 8026F200 */ void SetR(f32);
-};
-
-struct cM3dGAab {
-    /* 8026ECF8 */ void ClearForMinMax();
-    /* 8026ED60 */ void SetMinMax(cM3dGAab const&);
-};
-
-struct cCcD_Stts {
-    /* 80263934 */ void PlusCcMove(f32, f32, f32);
-};
-
-struct cCcD_ShapeAttr {
-    /* 8008556C */ ~cCcD_ShapeAttr();
-};
-
-struct cCcD_DivideInfo {
-    /* 80263358 */ void Set(u32, u32, u32);
-    /* 80263368 */ void Chk(cCcD_DivideInfo const&) const;
-};
-
-struct cCcD_DivideArea {
-    /* 802633A8 */ void SetArea(cM3dGAab const&);
-    /* 802634D4 */ void CalcDivideInfo(cCcD_DivideInfo*, cM3dGAab const&, u32);
-    /* 802636A0 */ void CalcDivideInfoOverArea(cCcD_DivideInfo*, cM3dGAab const&);
-};
-
-struct cCcD_CylAttr {
-    /* 800854E0 */ ~cCcD_CylAttr();
-};
-
-struct cCcD_CpsAttr {
-    /* 80085450 */ ~cCcD_CpsAttr();
-};
-
-//
-// Forward References:
-//
-
-extern "C" void Set__12dCcMassS_ObjFP8cCcD_ObjUcPFP10fopAc_ac_cP4cXyzUl_v();
-extern "C" void Clear__12dCcMassS_ObjFv();
-extern "C" void ClearPointer__15dCcMassS_HitInfFv();
-extern "C" void __ct__12dCcMassS_MngFv();
-extern "C" void __dt__12cCcD_CpsAttrFv();
-extern "C" void __dt__12cCcD_CylAttrFv();
-extern "C" void __dt__14cCcD_ShapeAttrFv();
-extern "C" void __ct__12dCcMassS_ObjFv();
-extern "C" void Ct__12dCcMassS_MngFv();
-extern "C" void SetAttr__12dCcMassS_MngFffUcUc();
-extern "C" void Prepare__12dCcMassS_MngFv();
-extern "C" void Chk__12dCcMassS_MngFP4cXyzPP10fopAc_ac_cP15dCcMassS_HitInf();
-extern "C" void Clear__12dCcMassS_MngFv();
-extern "C" void Set__12dCcMassS_MngFP8cCcD_ObjUc();
-extern "C" void SetCam__12dCcMassS_MngFRC8cM3dGCps();
-extern "C" void GetResultCam__12dCcMassS_MngCFv();
-extern "C" void GetCamTopPos__12dCcMassS_MngFP3Vec();
-
-//
-// External References:
-//
-
-extern "C" void __dt__12dCcMassS_ObjFv();
-extern "C" void Set__15cCcD_DivideInfoFUlUlUl();
-extern "C" void Chk__15cCcD_DivideInfoCFRC15cCcD_DivideInfo();
-extern "C" void SetArea__15cCcD_DivideAreaFRC8cM3dGAab();
-extern "C" void CalcDivideInfo__15cCcD_DivideAreaFP15cCcD_DivideInfoRC8cM3dGAabUl();
-extern "C" void CalcDivideInfoOverArea__15cCcD_DivideAreaFP15cCcD_DivideInfoRC8cM3dGAab();
-extern "C" void PlusCcMove__9cCcD_SttsFfff();
-extern "C" void cM_rndF__Ff();
-extern "C" void ClearForMinMax__8cM3dGAabFv();
-extern "C" void SetMinMax__8cM3dGAabFRC8cM3dGAab();
-extern "C" void __ct__8cM3dGCpsFv();
-extern "C" void __dt__8cM3dGCpsFv();
-extern "C" void SetCps__8cM3dGCpsFRC8cM3dGCps();
-extern "C" void SetC__8cM3dGCylFRC4cXyz();
-extern "C" void SetH__8cM3dGCylFf();
-extern "C" void SetR__8cM3dGCylFf();
-extern "C" void __dl__FPv();
-extern "C" void PSVECSubtract();
-extern "C" void PSVECScale();
-extern "C" void PSVECMag();
-extern "C" void PSVECSquareDistance();
-extern "C" void __construct_array();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__12dCcMassS_Obj[3];
-extern "C" extern void* __vt__15cCcD_DivideArea[3];
-extern "C" extern void* __vt__8cM3dGCyl[3];
-extern "C" extern void* __vt__8cM3dGAab[3];
-extern "C" extern void* __vt__15cCcD_DivideInfo[3];
-extern "C" extern void* __vt__12dCcMassS_Mng[3 + 1 /* padding */];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__12cCcD_CpsAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 //
 // Declarations:
@@ -158,204 +15,234 @@ extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 /* 800852E0-800852F0 07FC20 0010+00 1/1 0/0 0/0 .text
  * Set__12dCcMassS_ObjFP8cCcD_ObjUcPFP10fopAc_ac_cP4cXyzUl_v    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCcMassS_Obj::Set(cCcD_Obj* param_0, u8 param_1,
-                           void (*param_2)(fopAc_ac_c*, cXyz*, u32)) {
-    nofralloc
-#include "asm/d/cc/d_cc_mass_s/Set__12dCcMassS_ObjFP8cCcD_ObjUcPFP10fopAc_ac_cP4cXyzUl_v.s"
+void dCcMassS_Obj::Set(cCcD_Obj* obj, u8 priority, dCcMassS_ObjCallback callback) {
+    mpObj = obj;
+    mPriority = priority;
+    mpCallback = callback;
 }
-#pragma pop
 
 /* 800852F0-80085334 07FC30 0044+00 1/1 0/0 0/0 .text            Clear__12dCcMassS_ObjFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCcMassS_Obj::Clear() {
-    nofralloc
-#include "asm/d/cc/d_cc_mass_s/Clear__12dCcMassS_ObjFv.s"
+void dCcMassS_Obj::Clear() {
+    mpObj = NULL;
+    mPriority = 5;
+    mpCallback = NULL;
+    mDivideInfo.Set(0, 0, 0);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80452760-80452764 000D60 0004+00 5/5 0/0 0/0 .sdata2          @3627 */
-SECTION_SDATA2 static u8 lit_3627[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
 
 /* 80085334-80085350 07FC74 001C+00 1/1 0/0 0/0 .text            ClearPointer__15dCcMassS_HitInfFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCcMassS_HitInf::ClearPointer() {
-    nofralloc
-#include "asm/d/cc/d_cc_mass_s/ClearPointer__15dCcMassS_HitInfFv.s"
+void dCcMassS_HitInf::ClearPointer() {
+    mpArea = NULL;
+    mpAtObj = NULL;
+    mpCoObj = NULL;
+    mCoHitLen = 0.0f;
 }
-#pragma pop
 
 /* 80085350-80085450 07FC90 0100+00 0/0 1/1 0/0 .text            __ct__12dCcMassS_MngFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dCcMassS_Mng::dCcMassS_Mng() {
-    nofralloc
-#include "asm/d/cc/d_cc_mass_s/__ct__12dCcMassS_MngFv.s"
+dCcMassS_Mng::dCcMassS_Mng() {
+    this->Ct();
 }
-#pragma pop
-
-/* 80085450-800854E0 07FD90 0090+00 0/0 2/1 0/0 .text            __dt__12cCcD_CpsAttrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cCcD_CpsAttr::~cCcD_CpsAttr() {
-    nofralloc
-#include "asm/d/cc/d_cc_mass_s/__dt__12cCcD_CpsAttrFv.s"
-}
-#pragma pop
-
-/* 800854E0-8008556C 07FE20 008C+00 0/0 2/1 0/0 .text            __dt__12cCcD_CylAttrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cCcD_CylAttr::~cCcD_CylAttr() {
-    nofralloc
-#include "asm/d/cc/d_cc_mass_s/__dt__12cCcD_CylAttrFv.s"
-}
-#pragma pop
-
-/* 8008556C-800855C8 07FEAC 005C+00 0/0 1/0 0/0 .text            __dt__14cCcD_ShapeAttrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cCcD_ShapeAttr::~cCcD_ShapeAttr() {
-    nofralloc
-#include "asm/d/cc/d_cc_mass_s/__dt__14cCcD_ShapeAttrFv.s"
-}
-#pragma pop
 
 /* 800855C8-800855E4 07FF08 001C+00 1/1 0/0 0/0 .text            __ct__12dCcMassS_ObjFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dCcMassS_Obj::dCcMassS_Obj() {
-    nofralloc
-#include "asm/d/cc/d_cc_mass_s/__ct__12dCcMassS_ObjFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80452764-80452768 000D64 0004+00 2/2 0/0 0/0 .sdata2          @3724 */
-SECTION_SDATA2 static f32 lit_3724 = -1000000000.0f;
+dCcMassS_Obj::dCcMassS_Obj() {}
 
 /* 800855E4-80085630 07FF24 004C+00 1/1 1/1 0/0 .text            Ct__12dCcMassS_MngFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCcMassS_Mng::Ct() {
-    nofralloc
-#include "asm/d/cc/d_cc_mass_s/Ct__12dCcMassS_MngFv.s"
+void dCcMassS_Mng::Ct() {
+    field_0x202 = 0;
+    mResultCam = 0;
+    mCamTopPos.set(0, -1000000000.0f, 0);
+    mCamBottomPos.set(0, -1000000000.0f, 0);
+    this->Clear();
 }
-#pragma pop
 
 /* 80085630-80085690 07FF70 0060+00 0/0 0/0 2/2 .text            SetAttr__12dCcMassS_MngFffUcUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCcMassS_Mng::SetAttr(f32 param_0, f32 param_1, u8 param_2, u8 param_3) {
-    nofralloc
-#include "asm/d/cc/d_cc_mass_s/SetAttr__12dCcMassS_MngFffUcUc.s"
+void dCcMassS_Mng::SetAttr(f32 param_0, f32 param_1, u8 param_2, u8 param_3) {
+    mCylAttr.SetR(param_0);
+    mCylAttr.SetH(param_1);
+    field_0x200 = param_2;
+    field_0x201 = param_3;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80452768-8045276C 000D68 0004+00 1/1 0/0 0/0 .sdata2          @3780 */
-SECTION_SDATA2 static f32 lit_3780 = 1000000000.0f;
 
 /* 80085690-800858AC 07FFD0 021C+00 0/0 1/1 1/1 .text            Prepare__12dCcMassS_MngFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCcMassS_Mng::Prepare() {
-    nofralloc
-#include "asm/d/cc/d_cc_mass_s/Prepare__12dCcMassS_MngFv.s"
+void dCcMassS_Mng::Prepare() {
+    cM3dGAab aab;
+    aab.ClearForMinMax();
+    for (dCcMassS_Obj* pObj = mMassObjs; pObj < mMassObjs + mMassObjCount; ++pObj) {
+        cCcD_ShapeAttr* objShape = pObj->GetObj()->GetShapeAttr();
+        objShape->CalcAabBox();
+        aab.SetMinMax(objShape->GetWorkAab());
+    }
+    for (dCcMassS_Obj* pObj = mMassAreas; pObj < mMassAreas + mMassAreaCount; ++pObj) {
+        cCcD_ShapeAttr* objShape = pObj->GetObj()->GetShapeAttr();
+        objShape->CalcAabBox();
+        aab.SetMinMax(objShape->GetWorkAab());
+    }
+    if (field_0x202 & 1) {
+        mCpsAttr.CalcAabBox();
+        aab.SetMinMax(mCpsAttr.GetWorkAab());
+    }
+    mDivideArea.SetArea(aab);
+    for (dCcMassS_Obj* pObj = mMassObjs; pObj < mMassObjs + mMassObjCount; ++pObj) {
+        cCcD_ShapeAttr* objShape = pObj->GetObj()->GetShapeAttr();
+        cCcD_DivideInfo* divideInfo = &pObj->GetDivideInfo();
+        mDivideArea.CalcDivideInfo(divideInfo, objShape->GetWorkAab(), 0);
+    }
+    for (dCcMassS_Obj* pObj = mMassAreas; pObj < mMassAreas + mMassAreaCount; ++pObj) {
+        cCcD_ShapeAttr* objShape = pObj->GetObj()->GetShapeAttr();
+        cCcD_DivideInfo* divideInfo = &pObj->GetDivideInfo();
+        mDivideArea.CalcDivideInfo(divideInfo, objShape->GetWorkAab(), 0);
+    }
+    if (field_0x202 & 1) {
+        mDivideArea.CalcDivideInfo(&mDivideInfo, mCpsAttr.GetWorkAab(), 0);
+    }
+    mCamTopPos.set(0, -1000000000.0f, 0);
+    mCamTopDist = 1000000000.0f;
+    mCamBottomPos.set(0, -1000000000.0f, 0);
+    mCamBottomDist = 1000000000.0f;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 8045276C-80452770 000D6C 0004+00 2/2 0/0 0/0 .sdata2          @3899 */
-SECTION_SDATA2 static f32 lit_3899 = 1.0f;
-
-/* 80452770-80452774 000D70 0004+00 1/1 0/0 0/0 .sdata2          @3900 */
-SECTION_SDATA2 static f32 lit_3900 = 20.0f;
 
 /* 800858AC-80085CF0 0801EC 0444+00 0/0 0/0 2/2 .text
  * Chk__12dCcMassS_MngFP4cXyzPP10fopAc_ac_cP15dCcMassS_HitInf   */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCcMassS_Mng::Chk(cXyz* param_0, fopAc_ac_c** param_1, dCcMassS_HitInf* param_2) {
-    nofralloc
-#include "asm/d/cc/d_cc_mass_s/Chk__12dCcMassS_MngFP4cXyzPP10fopAc_ac_cP15dCcMassS_HitInf.s"
+u32 dCcMassS_Mng::Chk(cXyz* xyz, fopAc_ac_c** pActor, dCcMassS_HitInf* hitInf) {
+    cCcD_DivideInfo divideInfo;
+    u32 flagsMaybe = 0;
+    *pActor = NULL;
+    mCylAttr.SetC(*xyz);
+    mCylAttr.CalcAabBox();
+    mDivideArea.CalcDivideInfoOverArea(&divideInfo, mCylAttr.GetWorkAab());
+    hitInf->ClearPointer();
+    if (field_0x200 & 8) {
+        for (dCcMassS_Obj* massObj = mMassAreas; massObj < mMassAreas + mMassAreaCount; ++massObj) {
+            if (massObj->GetDivideInfo().Chk(divideInfo)) {
+                cCcD_Obj* obj = massObj->GetObj();
+                cCcD_ShapeAttr* objShape = obj->GetShapeAttr();
+                f32 f;
+                if (obj->ChkCoSet() && mCylAttr.CrossCo(*objShape, &f)) {
+                    flagsMaybe |= 4;
+                    *pActor = obj->GetStts()->GetAc();
+                    if (hitInf != NULL) {
+                        hitInf->SetAreaHitObj(obj);
+                    }
+                    if (massObj->GetCallback() != NULL) {
+                        massObj->GetCallback()(obj->GetStts()->GetAc(), xyz, field_0x201);
+                    }
+                }
+            }
+        }
+    }
+    for (dCcMassS_Obj* massObj = mMassObjs; massObj < mMassObjs + mMassObjCount; ++massObj) {
+        if (massObj->GetDivideInfo().Chk(divideInfo)) {
+            cCcD_Obj* obj = massObj->GetObj();
+            dCcD_GObjInf* gobjInf = (dCcD_GObjInf*)obj->GetGObjInf();
+            cCcD_ShapeAttr* objShape = obj->GetShapeAttr();
+            cXyz unusedVec;
+            if (obj->ChkAtSet() && !gobjInf->ChkAtNoMass() &&
+                mCylAttr.CrossAtTg(*objShape, &unusedVec) && (field_0x200 & 1)) {
+                flagsMaybe |= 1;
+                *pActor = obj->GetStts()->GetAc();
+                if (hitInf != NULL) {
+                    hitInf->SetAtHitObj(obj);
+                }
+            }
+            f32 f;
+            if (obj->ChkCoSet() && mCylAttr.CrossCo(*objShape, &f) && (field_0x200 & 2)) {
+                flagsMaybe |= 2;
+                *pActor = obj->GetStts()->GetAc();
+                if (field_0x200 & 0x10) {
+                    Vec vec;
+                    PSVECSubtract(&(*pActor)->mCurrent.mPosition, xyz, &vec);
+                    vec.y = 0;
+                    f32 vecMag = PSVECMag(&vec);
+                    if (cM3d_IsZero(vecMag)) {
+                        vec.x = 1;
+                    } else {
+                        PSVECScale(&vec, &vec, f / vecMag);
+                    }
+                    obj->GetStts()->PlusCcMove(vec.x, vec.y, vec.z);
+                }
+                if (hitInf != NULL) {
+                    hitInf->SetCoHitObj(obj);
+                    hitInf->SetCoHitLen(f);
+                }
+            }
+        }
+    }
+    f32 f;
+    if ((field_0x202 & 1) && mDivideInfo.Chk(divideInfo) && mCylAttr.CrossCo(mCpsAttr, &f)) {
+        mResultCam |= 1;
+        mResultCam |= 1 << (field_0x201 + 1);
+        if ((mResultCam & 2) || (mResultCam & 8)) {
+            cXyz tmpVec;
+            f32 plusH = xyz->y + mCylAttr.GetH();
+            tmpVec.x = xyz->x;
+            tmpVec.y = plusH;
+            tmpVec.z = xyz->z;
+            if (mCamTopPos.y < (20.0f + plusH)) {
+                f32 newCamTopDist = PSVECSquareDistance(&tmpVec, &mCpsAttr.GetStartP());
+                if (mCamTopDist > newCamTopDist) {
+                    mCamTopDist = newCamTopDist;
+                    mCamTopPos = tmpVec;
+                }
+            }
+            if (mCamBottomPos.y < (20.0f + plusH)) {
+                f32 newCamBottomDist = PSVECSquareDistance(&tmpVec, &mCpsAttr.GetEndP());
+                if (mCamBottomDist > newCamBottomDist) {
+                    mCamBottomDist = newCamBottomDist;
+                    mCamBottomPos = tmpVec;
+                }
+            }
+        }
+    }
+    return flagsMaybe;
 }
-#pragma pop
 
 /* 80085CF0-80085D98 080630 00A8+00 1/1 2/2 0/0 .text            Clear__12dCcMassS_MngFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCcMassS_Mng::Clear() {
-    nofralloc
-#include "asm/d/cc/d_cc_mass_s/Clear__12dCcMassS_MngFv.s"
+void dCcMassS_Mng::Clear() {
+    mMassObjCount = 0;
+    mMassAreaCount = 0;
+    for (int i = 0; i < (s32)ARRAY_SIZE(mMassObjs); ++i) {
+        mMassObjs[i].Clear();
+    }
+    for (int i = 0; i < (s32)ARRAY_SIZE(mMassAreas); ++i) {
+        mMassAreas[i].Clear();
+    }
+    mCylAttr.SetR(0.0f);
+    mCylAttr.SetH(0.0f);
+    field_0x200 = 0;
+    field_0x201 = 4;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80452774-80452778 000D74 0004+00 1/1 0/0 0/0 .sdata2          @3941 */
-SECTION_SDATA2 static f32 lit_3941 = 0.5f;
 
 /* 80085D98-80085E6C 0806D8 00D4+00 0/0 4/4 7/7 .text            Set__12dCcMassS_MngFP8cCcD_ObjUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCcMassS_Mng::Set(cCcD_Obj* param_0, u8 param_1) {
-    nofralloc
-#include "asm/d/cc/d_cc_mass_s/Set__12dCcMassS_MngFP8cCcD_ObjUc.s"
+void dCcMassS_Mng::Set(cCcD_Obj* obj, u8 priority) {
+    if (mMassObjCount >= (s32)ARRAY_SIZE(mMassObjs)) {
+        for (int i = 0; i < (s32)ARRAY_SIZE(mMassObjs); ++i) {
+            int prevPrio = mMassObjs[i].GetPriority();
+            if (prevPrio > priority || (prevPrio == priority && cM_rndF(1.0f) < 0.5f)) {
+                mMassObjs[i].Set(obj, priority, NULL);
+                break;
+            }
+        }
+    } else {
+        mMassObjs[mMassObjCount].Set(obj, priority, NULL);
+        mMassObjCount++;
+    }
 }
-#pragma pop
 
 /* 80085E6C-80085EB0 0807AC 0044+00 0/0 1/1 0/0 .text            SetCam__12dCcMassS_MngFRC8cM3dGCps
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCcMassS_Mng::SetCam(cM3dGCps const& param_0) {
-    nofralloc
-#include "asm/d/cc/d_cc_mass_s/SetCam__12dCcMassS_MngFRC8cM3dGCps.s"
+void dCcMassS_Mng::SetCam(cM3dGCps const& cps) {
+    mCpsAttr.SetCps(cps);
+    field_0x202 |= 1;
+    mResultCam = 0;
 }
-#pragma pop
 
 /* 80085EB0-80085EB8 0807F0 0008+00 0/0 1/1 0/0 .text            GetResultCam__12dCcMassS_MngCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCcMassS_Mng::GetResultCam() const {
-    nofralloc
-#include "asm/d/cc/d_cc_mass_s/GetResultCam__12dCcMassS_MngCFv.s"
+u8 dCcMassS_Mng::GetResultCam() const {
+    return mResultCam;
 }
-#pragma pop
 
 /* 80085EB8-80085ED4 0807F8 001C+00 0/0 1/1 0/0 .text            GetCamTopPos__12dCcMassS_MngFP3Vec
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCcMassS_Mng::GetCamTopPos(Vec* param_0) {
-    nofralloc
-#include "asm/d/cc/d_cc_mass_s/GetCamTopPos__12dCcMassS_MngFP3Vec.s"
+void dCcMassS_Mng::GetCamTopPos(Vec* out) {
+    *out = mCamTopPos;
 }
-#pragma pop
