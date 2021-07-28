@@ -3,6 +3,7 @@
 
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
+#include "JSystem/JKernel/JKRAssertHeap.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "dolphin/types.h"
@@ -136,6 +137,11 @@ JKRHeap* mDoExt_getGameHeap();
 void mDoExt_destroySolidHeap(JKRSolidHeap*);
 JKRHeap* mDoExt_setCurrentHeap(JKRHeap*);
 JKRExpHeap* mDoExt_getArchiveHeap();
+JKRExpHeap* mDoExt_getArchiveHeapPtr();
 void mDoExt_destroyExpHeap(JKRExpHeap*);
+JKRAssertHeap* mDoExt_getAssertHeap();
+JKRExpHeap* mDoExt_getCommandHeap();
+JKRExpHeap* mDoExt_getZeldaHeap();
+JKRExpHeap* mDoExt_getJ2dHeap();
 
 #endif /* M_DO_M_DO_EXT_H */
