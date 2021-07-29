@@ -16,22 +16,22 @@ cCcS::cCcS() {}
 
 /* 80264A94-80264B60 25F3D4 00CC+00 1/1 1/1 0/0 .text            Ct__4cCcSFv */
 void cCcS::Ct() {
-    for (cCcD_Obj** obj = this->mpObjAt; obj < this->mpObjAt + ARRAY_SIZE(this->mpObjAt); ++obj) {
+    for (cCcD_Obj** obj = mpObjAt; obj < mpObjAt + ARRAY_SIZE(mpObjAt); ++obj) {
         *obj = NULL;
     }
-    this->mObjAtCount = 0;
-    for (cCcD_Obj** obj = this->mpObjTg; obj < this->mpObjTg + ARRAY_SIZE(this->mpObjTg); ++obj) {
+    mObjAtCount = 0;
+    for (cCcD_Obj** obj = mpObjTg; obj < mpObjTg + ARRAY_SIZE(mpObjTg); ++obj) {
         *obj = NULL;
     }
-    this->mObjTgCount = 0;
-    for (cCcD_Obj** obj = this->mpObjCo; obj < this->mpObjCo + ARRAY_SIZE(this->mpObjCo); ++obj) {
+    mObjTgCount = 0;
+    for (cCcD_Obj** obj = mpObjCo; obj < mpObjCo + ARRAY_SIZE(mpObjCo); ++obj) {
         *obj = NULL;
     }
-    this->mObjCoCount = 0;
-    for (cCcD_Obj** obj = this->mpObj; obj < this->mpObj + ARRAY_SIZE(this->mpObj); ++obj) {
+    mObjCoCount = 0;
+    for (cCcD_Obj** obj = mpObj; obj < mpObj + ARRAY_SIZE(mpObj); ++obj) {
         *obj = NULL;
     }
-    this->mObjCount = 0;
+    mObjCount = 0;
 }
 
 /* 80264B60-80264B80 25F4A0 0020+00 0/0 1/1 0/0 .text            Dt__4cCcSFv */
@@ -52,19 +52,19 @@ WeightType cCcS::GetWt(u8 param_0) const {
 
 /* 80264BA8-80264C5C 25F4E8 00B4+00 0/0 7/7 454/454 .text            Set__4cCcSFP8cCcD_Obj */
 void cCcS::Set(cCcD_Obj* obj) {
-    if (obj->GetObjAt().getSPrm() & 1) {
+    if (obj->ChkAtSet()) {
         if (mObjAtCount < ARRAY_SIZE(mpObjAt)) {
             mpObjAt[mObjAtCount] = obj;
             mObjAtCount++;
         }
     }
-    if (obj->GetObjTg().getSPrm() & 1) {
+    if (obj->ChkTgSet()) {
         if (mObjTgCount < ARRAY_SIZE(mpObjTg)) {
             mpObjTg[mObjTgCount] = obj;
             mObjTgCount++;
         }
     }
-    if (obj->GetObjCo().getSPrm() & 1) {
+    if (obj->ChkCoSet()) {
         if (mObjCoCount < ARRAY_SIZE(mpObjCo)) {
             mpObjCo[mObjCoCount] = obj;
             mObjCoCount++;
@@ -119,8 +119,7 @@ void cCcS::ClrAtHitInf() {
 bool cCcS::ChkNoHitAtTg(cCcD_Obj* obj1, cCcD_Obj* obj2) {
     fopAc_ac_c* ac1 = obj1->GetAc();
     fopAc_ac_c* ac2 = obj2->GetAc();
-    if (((ac1 != NULL && ac2 != NULL) && ac1 == ac2) ||
-        (obj1->GetAtGrp() & obj2->GetTgGrp()) == 0 ||
+    if ((ac1 != NULL && ac2 != NULL && ac1 == ac2) || (obj1->GetAtGrp() & obj2->GetTgGrp()) == 0 ||
         (obj1->GetAtType() & obj2->GetTgType()) == 0) {
         return 1;
     } else {
@@ -134,15 +133,13 @@ void cCcS::ChkAtTg() {
     cCcD_Obj** objTgEnd = mpObjTg + mObjTgCount;
     this->ClrAtHitInf();
     this->ClrTgHitInf();
-    for (cCcD_Obj** pObjAt = mpObjAt; pObjAt < mpObjAt + mObjAtCount; pObjAt++) {
-        if (*pObjAt == NULL || !(*pObjAt)->ChkAtSet()) {
+    for (cCcD_Obj** pObjAt = mpObjAt; pObjAt < mpObjAt + mObjAtCount; ++pObjAt) {
+        if (*pObjAt == NULL || !(*pObjAt)->ChkAtSet())
             continue;
-        }
         cCcD_ShapeAttr* atShapeAttr = (*pObjAt)->GetShapeAttr();
-        for (cCcD_Obj** pObjTg = mpObjTg; pObjTg < objTgEnd; pObjTg++) {
-            if (*pObjTg == NULL || !(*pObjTg)->ChkTgSet()) {
+        for (cCcD_Obj** pObjTg = mpObjTg; pObjTg < objTgEnd; ++pObjTg) {
+            if (*pObjTg == NULL || !(*pObjTg)->ChkTgSet())
                 continue;
-            }
             if (!(*pObjAt)->GetDivideInfo().Chk((*pObjTg)->GetDivideInfo()))
                 continue;
             if (this->ChkNoHitAtTg(*pObjAt, *pObjTg))
@@ -150,19 +147,17 @@ void cCcS::ChkAtTg() {
             cCcD_ShapeAttr* tgShapeAttr = (*pObjTg)->GetShapeAttr();
             static cXyz cross;
             bool didCross = atShapeAttr->CrossAtTg(*tgShapeAttr, &cross);
-            bool tmpB = (*pObjAt)->ChkBsRevHit() != 0 || (*pObjTg)->ChkBsRevHit() != 0;
-            if (!tmpB && didCross) {
+            bool anyBsRevHit = (*pObjAt)->ChkBsRevHit() || (*pObjTg)->ChkBsRevHit();
+            if (!anyBsRevHit && didCross) {
                 this->SetAtTgCommonHitInf(*pObjAt, *pObjTg, &cross);
-            } else {
-                if (tmpB && !didCross) {
-                    cCcD_ShapeAttr* atShape2 = (*pObjAt)->GetShapeAttr();
-                    if (atShape2 == NULL) {
-                        cross.set(0.0f, 0.0f, 0.0f);
-                    } else {
-                        atShape2->GetWorkAab().CalcCenter(&cross);
-                    }
-                    this->SetAtTgCommonHitInf(*pObjAt, *pObjTg, &cross);
+            } else if (anyBsRevHit && !didCross) {
+                cCcD_ShapeAttr* atShape2 = (*pObjAt)->GetShapeAttr();
+                if (atShape2 == NULL) {
+                    cross.set(0.0f, 0.0f, 0.0f);
+                } else {
+                    atShape2->GetWorkAab().CalcCenter(&cross);
                 }
+                this->SetAtTgCommonHitInf(*pObjAt, *pObjTg, &cross);
             }
         }
     }
@@ -172,8 +167,8 @@ void cCcS::ChkAtTg() {
 bool cCcS::ChkNoHitCo(cCcD_Obj* obj1, cCcD_Obj* obj2) {
     fopAc_ac_c* ac1 = obj1->GetAc();
     fopAc_ac_c* ac2 = obj2->GetAc();
-    if (!(((ac1 == NULL || ac2 == NULL) || ac1 != ac2 || obj1->ChkCoSameActorHit() != 0 ||
-           obj2->ChkCoSameActorHit() != 0) &&
+    if (!(((ac1 == NULL || ac2 == NULL) || ac1 != ac2 || obj1->ChkCoSameActorHit() ||
+           obj2->ChkCoSameActorHit()) &&
           (obj1->GetCoIGrp() & (obj2->GetCoVsGrp() >> 3)) &&
           ((obj1->GetCoVsGrp() >> 3) & obj2->GetCoIGrp() && !this->ChkNoHitGCo(obj1, obj2)))) {
         return true;
@@ -200,11 +195,11 @@ void cCcS::ChkCo() {
             if (this->ChkNoHitCo(*objCo1, *objCo2))
                 continue;
             cCcD_ShapeAttr* co2ShapeAttr = (*objCo2)->GetShapeAttr();
-            f32 f;
-            if (co1ShapeAttr->CrossCo(*co2ShapeAttr, &f)) {
+            f32 crossLen;
+            if (co1ShapeAttr->CrossCo(*co2ShapeAttr, &crossLen)) {
                 cXyz& obj2CoCP = co2ShapeAttr->GetCoCP();
                 cXyz& obj1CoCP = co1ShapeAttr->GetCoCP();
-                this->SetCoCommonHitInf(*objCo1, &obj1CoCP, *objCo2, &obj2CoCP, f);
+                this->SetCoCommonHitInf(*objCo1, &obj1CoCP, *objCo2, &obj2CoCP, crossLen);
             }
         }
     }
@@ -241,7 +236,7 @@ void cCcS::SetAtTgCommonHitInf(cCcD_Obj* obj1, cCcD_Obj* obj2, cXyz* pXyz) {
 
 /* 802655E4-80265750 25FF24 016C+00 1/1 0/0 0/0 .text
  * SetCoCommonHitInf__4cCcSFP8cCcD_ObjP4cXyzP8cCcD_ObjP4cXyzf   */
-void cCcS::SetCoCommonHitInf(cCcD_Obj* obj1, cXyz* xyz1, cCcD_Obj* obj2, cXyz* xyz2, f32 f) {
+void cCcS::SetCoCommonHitInf(cCcD_Obj* obj1, cXyz* xyz1, cCcD_Obj* obj2, cXyz* xyz2, f32 crossLen) {
     bool obj2CoHitInfSet = !obj2->ChkCoNoCoHitInfSet();
     bool obj1CoHitInfSet = !obj1->ChkCoNoCoHitInfSet();
     if (obj2CoHitInfSet) {
@@ -251,7 +246,7 @@ void cCcS::SetCoCommonHitInf(cCcD_Obj* obj1, cXyz* xyz1, cCcD_Obj* obj2, cXyz* x
         obj2->SetCoHit(obj1);
     }
     if (obj2CoHitInfSet && obj1CoHitInfSet) {
-        this->SetPosCorrect(obj1, xyz1, obj2, xyz2, f);
+        this->SetPosCorrect(obj1, xyz1, obj2, xyz2, crossLen);
     }
     cCcD_Stts* obj1Stts = obj1->GetStts();
     cCcD_Stts* obj2Stts = obj2->GetStts();
@@ -262,24 +257,22 @@ void cCcS::SetCoCommonHitInf(cCcD_Obj* obj1, cXyz* xyz1, cCcD_Obj* obj2, cXyz* x
 /* 80265750-80265BB4 260090 0464+00 1/0 0/0 0/0 .text
  * SetPosCorrect__4cCcSFP8cCcD_ObjP4cXyzP8cCcD_ObjP4cXyzf       */
 void cCcS::SetPosCorrect(cCcD_Obj* obj1, cXyz* xyz1, cCcD_Obj* obj2, cXyz* xyz2, f32 crossLen) {
-    if (obj1->ChkCoNoCrr() || obj2->ChkCoNoCrr()) {
+    if (obj1->ChkCoNoCrr() || obj2->ChkCoNoCrr())
         return;
-    }
-    if (obj1->GetStts() == NULL || obj2->GetStts() == NULL) {
+    if (obj1->GetStts() == NULL || obj2->GetStts() == NULL)
         return;
-    }
-    if (obj1->GetStts()->GetAc() != NULL && obj1->GetStts()->GetAc() == obj2->GetStts()->GetAc()) {
+    if (obj1->GetStts()->GetAc() != NULL && obj1->GetStts()->GetAc() == obj2->GetStts()->GetAc())
         return;
-    }
     if (!(fabsf(crossLen) < (1.0f / 125.0f))) {
         this->SetCoGCorrectProc(obj1, obj2);
-        bool tmpB = obj1->ChkCoSph3DCrr() && obj2->ChkCoSph3DCrr();
+        bool bothCoSph3DCrr = obj1->ChkCoSph3DCrr() && obj2->ChkCoSph3DCrr();
         WeightType obj1WeightType = this->GetWt(obj1->GetStts()->GetWeightUc());
         WeightType obj2WeightType = this->GetWt(obj2->GetStts()->GetWeightUc());
-        f32 obj2Weight, obj1Weight, combinedWeight;
         f32 obj1SrcWeight = obj1->GetStts()->GetWeightF();
         f32 obj2SrcWeight = obj2->GetStts()->GetWeightF();
-        combinedWeight = obj1SrcWeight + obj2SrcWeight;
+        f32 combinedWeight = obj1SrcWeight + obj2SrcWeight;
+
+        f32 obj2Weight, obj1Weight;
         if (cM3d_IsZero(combinedWeight)) {
             obj1SrcWeight = 1;
             obj2SrcWeight = 1;
@@ -313,53 +306,53 @@ void cCcS::SetPosCorrect(cCcD_Obj* obj1, cXyz* xyz1, cCcD_Obj* obj2, cXyz* xyz2,
                 obj1Weight = 0;
             }
         }
-        f32 unkF;
-        Vec vec1;
-        Vec vec2;
-        Vec vec3;
-        if (tmpB) {
-            PSVECSubtract(xyz2, xyz1, &vec3);
-            unkF = PSVECMag(&vec3);
+        f32 objDistLen;
+        Vec obj1Move;
+        Vec obj2Move;
+        Vec objsDist;
+        if (bothCoSph3DCrr) {
+            PSVECSubtract(xyz2, xyz1, &objsDist);
+            objDistLen = PSVECMag(&objsDist);
         } else {
-            vec3.x = xyz2->x - xyz1->x;
-            vec3.y = 0;
-            vec3.z = xyz2->z - xyz1->z;
-            unkF = sqrtf(vec3.x * vec3.x + vec3.z * vec3.z);
+            objsDist.x = xyz2->x - xyz1->x;
+            objsDist.y = 0;
+            objsDist.z = xyz2->z - xyz1->z;
+            objDistLen = sqrtf(objsDist.x * objsDist.x + objsDist.z * objsDist.z);
         }
-        if (!cM3d_IsZero(unkF)) {
-            if (tmpB) {
-                PSVECScale(&vec3, &vec3, crossLen / unkF);
+        if (!cM3d_IsZero(objDistLen)) {
+            if (bothCoSph3DCrr) {
+                PSVECScale(&objsDist, &objsDist, crossLen / objDistLen);
                 obj2Weight *= -1;
-                PSVECScale(&vec3, &vec1, obj2Weight);
-                PSVECScale(&vec3, &vec2, obj1Weight);
+                PSVECScale(&objsDist, &obj1Move, obj2Weight);
+                PSVECScale(&objsDist, &obj2Move, obj1Weight);
             } else {
-                f32 tmp = crossLen / unkF;
-                vec3.x *= tmp;
-                vec3.z *= tmp;
-                vec1.x = -vec3.x * obj2Weight;
-                vec1.y = 0;
-                vec1.z = -vec3.z * obj2Weight;
-                vec2.x = vec3.x * obj1Weight;
-                vec2.y = 0;
-                vec2.z = vec3.z * obj1Weight;
+                f32 pushFactor = crossLen / objDistLen;
+                objsDist.x *= pushFactor;
+                objsDist.z *= pushFactor;
+                obj1Move.x = -objsDist.x * obj2Weight;
+                obj1Move.y = 0;
+                obj1Move.z = -objsDist.z * obj2Weight;
+                obj2Move.x = objsDist.x * obj1Weight;
+                obj2Move.y = 0;
+                obj2Move.z = objsDist.z * obj1Weight;
             }
         } else {
-            vec1.y = 0;
-            vec1.z = 0;
-            vec2.y = 0;
-            vec2.z = 0;
+            obj1Move.y = 0;
+            obj1Move.z = 0;
+            obj2Move.y = 0;
+            obj2Move.z = 0;
             if (!cM3d_IsZero(crossLen)) {
-                vec1.x = -crossLen * obj2Weight;
-                vec2.x = crossLen * obj1Weight;
+                obj1Move.x = -crossLen * obj2Weight;
+                obj2Move.x = crossLen * obj1Weight;
             } else {
-                vec1.x = -obj2Weight;
-                vec2.x = obj1Weight;
+                obj1Move.x = -obj2Weight;
+                obj2Move.x = obj1Weight;
             }
         }
-        obj1->GetStts()->PlusCcMove(vec1.x, vec1.y, vec1.z);
-        obj2->GetStts()->PlusCcMove(vec2.x, vec2.y, vec2.z);
-        PSVECAdd(xyz1, &vec1, xyz1);
-        PSVECAdd(xyz2, &vec2, xyz2);
+        obj1->GetStts()->PlusCcMove(obj1Move.x, obj1Move.y, obj1Move.z);
+        obj2->GetStts()->PlusCcMove(obj2Move.x, obj2Move.y, obj2Move.z);
+        PSVECAdd(xyz1, &obj1Move, xyz1);
+        PSVECAdd(xyz2, &obj2Move, xyz2);
     }
 }
 
@@ -367,7 +360,7 @@ void cCcS::SetPosCorrect(cCcD_Obj* obj1, cXyz* xyz1, cCcD_Obj* obj2, cXyz* xyz2,
 void cCcS::CalcArea() {
     cM3dGAab aab;
     aab.ClearForMinMax();
-    for (cCcD_Obj** pObj = mpObj; pObj < mpObj + mObjCount; pObj++) {
+    for (cCcD_Obj** pObj = mpObj; pObj < mpObj + mObjCount; ++pObj) {
         if (*pObj != NULL) {
             cCcD_ShapeAttr* objShape = (*pObj)->GetShapeAttr();
             objShape->CalcAabBox();
@@ -375,7 +368,7 @@ void cCcS::CalcArea() {
         }
     }
     mDivideArea.SetArea(aab);
-    for (cCcD_Obj** pObj = mpObj; pObj < mpObj + mObjCount; pObj++) {
+    for (cCcD_Obj** pObj = mpObj; pObj < mpObj + mObjCount; ++pObj) {
         if (*pObj != NULL) {
             const cCcD_ShapeAttr* objShape = (*pObj)->GetShapeAttr();
             cCcD_DivideInfo* divideInfo = &(*pObj)->GetDivideInfo();

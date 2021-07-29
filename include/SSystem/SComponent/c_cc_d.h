@@ -183,9 +183,9 @@ STATIC_ASSERT(0x38 == sizeof(cCcD_CylAttr));
 
 class cCcD_DivideInfo {
 private:
-    /* 0x00 */ u32 field_0x0;
-    /* 0x04 */ u32 field_0x4;
-    /* 0x08 */ u32 field_0x8;
+    /* 0x00 */ u32 mXDivInfo;
+    /* 0x04 */ u32 mYDivInfo;
+    /* 0x08 */ u32 mZDivInfo;
     /* 0x0C vtable */
 public:
     virtual ~cCcD_DivideInfo() {}

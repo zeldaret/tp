@@ -17,17 +17,17 @@
 cXyz cCcD_ShapeAttr::m_virtual_center = cXyz::Zero;
 
 /* 80263358-80263368 25DC98 0010+00 2/2 1/1 0/0 .text            Set__15cCcD_DivideInfoFUlUlUl */
-void cCcD_DivideInfo::Set(u32 param_0, u32 param_1, u32 param_2) {
-    field_0x0 = param_0;
-    field_0x4 = param_1;
-    field_0x8 = param_2;
+void cCcD_DivideInfo::Set(u32 xDivInfo, u32 yDivInfo, u32 zDivInfo) {
+    mXDivInfo = xDivInfo;
+    mYDivInfo = yDivInfo;
+    mZDivInfo = zDivInfo;
 }
 
 /* 80263368-802633A8 25DCA8 0040+00 0/0 5/5 0/0 .text Chk__15cCcD_DivideInfoCFRC15cCcD_DivideInfo
  */
 bool cCcD_DivideInfo::Chk(cCcD_DivideInfo const& param_0) const {
-    if ((field_0x0 & param_0.field_0x0) == 0 || (field_0x8 & param_0.field_0x8) == 0 ||
-        (field_0x4 & param_0.field_0x4) == 0) {
+    if ((mXDivInfo & param_0.mXDivInfo) == 0 || (mZDivInfo & param_0.mZDivInfo) == 0 ||
+        (mYDivInfo & param_0.mYDivInfo) == 0) {
         return false;
     } else {
         return true;
@@ -190,12 +190,12 @@ cCcD_GStts* cCcD_Stts::GetGStts() {
 }
 
 /* 802638A4-80263904 25E1E4 0060+00 0/0 1/1 0/0 .text            Init__9cCcD_SttsFiiPvUi */
-void cCcD_Stts::Init(int param_0, int param_1, void* param_2, unsigned int param_3) {
+void cCcD_Stts::Init(int weight, int param_1, void* pActor, unsigned int apid) {
     this->Ct();
-    mWeight = param_0;
+    mWeight = weight;
     field_0x15 = param_1;
-    mActor = static_cast<fopAc_ac_c*>(param_2);
-    mApid = param_3;
+    mActor = static_cast<fopAc_ac_c*>(pActor);
+    mApid = apid;
 }
 
 /* 80263904-80263934 25E244 0030+00 1/0 1/1 0/0 .text            Ct__9cCcD_SttsFv */
