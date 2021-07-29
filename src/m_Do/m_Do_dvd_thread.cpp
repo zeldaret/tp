@@ -143,7 +143,7 @@ void mDoDvdThd_param_c::mainLoop() {
 
 /* 80015B74-80015BB8 0104B4 0044+00 4/4 0/0 0/0 .text            __ct__19mDoDvdThd_command_cFv */
 mDoDvdThd_command_c::mDoDvdThd_command_c() {
-    _0xC = false;
+    mIsDone = false;
     cNd_ForcedClear(this);
 }
 
@@ -171,7 +171,7 @@ mDoDvdThd_callback_c* mDoDvdThd_callback_c::create(mDoDvdThd_callback_func pFunc
  */
 s32 mDoDvdThd_callback_c::execute() {
     mResult = mFunction(mData);
-    _0xC = true;
+    mIsDone = true;
     return mResult != NULL;
 }
 
@@ -200,7 +200,7 @@ mDoDvdThd_mountArchive_c* mDoDvdThd_mountArchive_c::create(char const* pArchiveP
     if (mountArcCmd != NULL) {
         mountArcCmd->mEntryNumber = my_DVDConvertPathToEntrynum(pArchivePath);
         if (mountArcCmd->mEntryNumber == -1) {
-            mountArcCmd->_0xC = true;
+            mountArcCmd->mIsDone = true;
             delete mountArcCmd;
             mountArcCmd = NULL;
         } else {
@@ -261,7 +261,7 @@ s32 mDoDvdThd_mountArchive_c::execute() {
             break;
         }
     }
-    _0xC = true;
+    mIsDone = true;
     return mArchive != NULL;
 }
 
@@ -293,7 +293,7 @@ mDoDvdThd_mountXArchive_c* mDoDvdThd_mountXArchive_c::create(char const* pArchiv
     if (mountXArcCmd != NULL) {
         mountXArcCmd->mEntryNum = my_DVDConvertPathToEntrynum(pArchivePath);
         if (mountXArcCmd->mEntryNum == -1) {
-            mountXArcCmd->_0xC = true;
+            mountXArcCmd->mIsDone = true;
             delete mountXArcCmd;
             mountXArcCmd = NULL;
         } else {
@@ -311,7 +311,7 @@ s32 mDoDvdThd_mountXArchive_c::execute() {
     JKRHeap* heap = mHeap != NULL ? mHeap : mDoExt_getArchiveHeap();
     mArchive = JKRArchive::mount(mEntryNum, mMountMode, heap, mountDirection);
     s32 result = mArchive != NULL;
-    _0xC = true;
+    mIsDone = true;
     return result;
 }
 
@@ -332,7 +332,7 @@ mDoDvdThd_toMainRam_c* mDoDvdThd_toMainRam_c::create(char const* pArchivePath, u
     if (toMainRAMCmd != NULL) {
         toMainRAMCmd->mEntryNum = my_DVDConvertPathToEntrynum(pArchivePath);
         if (toMainRAMCmd->mEntryNum == -1) {
-            toMainRAMCmd->_0xC = true;
+            toMainRAMCmd->mIsDone = true;
             delete toMainRAMCmd;
             toMainRAMCmd = NULL;
         } else {
@@ -363,7 +363,7 @@ s32 mDoDvdThd_toMainRam_c::execute() {
     if (mData != NULL) {
         mDataSize = heap->getSize(mData);
     }
-    _0xC = true;
+    mIsDone = true;
     return mData != NULL;
 }
 

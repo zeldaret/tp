@@ -11,7 +11,7 @@ typedef void* (*mDoDvdThd_callback_func)(void*);
 
 class mDoDvdThd_command_c : public node_class {
 protected:
-    /* 0x0C */ bool _0xC;
+    /* 0x0C */ bool mIsDone;
     /* 0x10  vtable*/
 public:
     /* 800158FC */ virtual ~mDoDvdThd_command_c();
@@ -84,8 +84,8 @@ private:
 class mDoDvdThd_callback_c : public mDoDvdThd_command_c {
 public:
     /* 80015BB8 */ virtual ~mDoDvdThd_callback_c();
-    /* 80015C18 */ mDoDvdThd_callback_c(void* (*)(void*), void*);
-    /* 80015C74 */ static mDoDvdThd_callback_c* create(void* (*)(void*), void*);
+    /* 80015C18 */ mDoDvdThd_callback_c(mDoDvdThd_callback_func, void*);
+    /* 80015C74 */ static mDoDvdThd_callback_c* create(mDoDvdThd_callback_func, void*);
     /* 80015CF0 */ virtual s32 execute();
 
 private:
