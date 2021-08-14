@@ -49,9 +49,6 @@ private:
     cXyz field_0xc;
     cXyz field_0x18;
     u8 field_0x24[0x14];
-    // u8 field_0x0[0x38];
-    // cXyz field_0xc;
-    // cXyz field_0x18;
 };
 STATIC_ASSERT(sizeof(dComIfG_camera_info_class) == 0x38);
 
