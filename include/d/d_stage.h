@@ -563,6 +563,13 @@ struct dStage_objectNameInf {
     s8 mSubtype;
 };  // Size: 0xC
 
+class dStage_KeepDoorInfo {
+public:
+    /* 80028418 */ ~dStage_KeepDoorInfo() {}
+    /* 0x000 */ u8 unk_0x0[4];
+    /* 0x004 */ stage_tgsc_data_class unk_0x4[0x40];
+}; // Size = 0x904
+
 typedef void (*dStage_Func)(dStage_dt_c*, void*, int, void*);
 
 struct FuncTable {

@@ -56,7 +56,6 @@ private:
 };
 STATIC_ASSERT(sizeof(dComIfG_camera_info_class) == 0x38);
 
-#pragma pack(push, 1)
 class dComIfG_play_c {
 public:
     dComIfG_play_c() {
@@ -195,19 +194,6 @@ public:
     /* 0x04E0E */ u16 mStatus;
     /* 0x04E10 */ dDlst_window_c mWindow[1];
     /* 0x04E3C */ dComIfG_camera_info_class mCameraInfo[1];
-    // /* 0x04E40 */ s8 mCameraWinID;
-    // /* 0x04E41 */ s8 mCameraPlayer1ID;
-    // /* 0x04E42 */ s8 mCameraPlayer2ID;
-    // /* 0x04E43 */ u8 field_0x4e43;
-    // /* 0x04E44 */ int mCameraAttentionStatus;
-    // /* 0x04E48 */ float mCameraZoomScale;
-    // /* 0x04E4C */ float mCameraZoomForcus;
-    // /* 0x04E50 */ void* mCameraParamFileName;
-    // /* 0x04E54 */ cXyz mCameraPos;
-    // /* 0x04E60 */ cXyz mCameraTarget;
-    // /* 0x04E6C */ float mCameraUnk1;
-    // /* 0x04E70 */ s16 mCameraUnk2;
-    // /* 0x04E72 */ s16 field_0x4e72;
     /* 0x04E74 */ daAlink_c* mPlayer;
     /* 0x04E78 */ s8 mPlayerCameraID[4];
     /* 0x04E7C */ daAlink_c* mPlayerPtr;
@@ -382,7 +368,6 @@ public:
     /* 0x0501D */ u8 field_0x501d[4];
     /* 0x05024 */ char mLastPlayStageName[8];
 };
-// #pragma pack(pop)
 
 class dRes_control_c {
 public:
