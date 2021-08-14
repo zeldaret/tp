@@ -294,13 +294,13 @@ void dSv_player_status_a_c::init() {
     mOil = 0;
     unk10 = 0;
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < MAX_SELECT_ITEM; i++) {
         mSelectItem[i] = NO_ITEM;
-        mMixItem[i + 1] = NO_ITEM;
+        mMixItem[i] = NO_ITEM;
         dComIfGp_setSelectItem__Fi(i);
     }
 
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < MAX_EQUIPMENT; i++) {
         mSelectEquip[i] = 0;
     }
 
@@ -322,27 +322,27 @@ void dSv_player_status_a_c::init() {
 }
 
 void dSv_player_status_a_c::setSelectItemIndex(signed int i_no, u8 item_index) {
-    if (i_no < ITEM_XY_MAX_DUMMY / 2) {
+    if (i_no < MAX_SELECT_ITEM) {
         mSelectItem[i_no] = item_index;
     }
 }
 
 u8 dSv_player_status_a_c::getSelectItemIndex(signed int i_no) const {
-    if (i_no < ITEM_XY_MAX_DUMMY / 2) {
+    if (i_no < MAX_SELECT_ITEM) {
         return mSelectItem[i_no];
     }
     return 0;
 }
 
 void dSv_player_status_a_c::setMixItemIndex(signed int i_no, u8 item_index) {
-    if (i_no < ITEM_XY_MAX_DUMMY / 2) {
-        mMixItem[i_no + 1] = item_index;
+    if (i_no < MAX_SELECT_ITEM) {
+        mMixItem[i_no] = item_index;
     }
 }
 
 u8 dSv_player_status_a_c::getMixItemIndex(signed int i_no) const {
-    if (i_no < ITEM_XY_MAX_DUMMY / 2) {
-        return mMixItem[i_no + 1];
+    if (i_no < MAX_SELECT_ITEM) {
+        return mMixItem[i_no];
     }
     return 0;
 }
@@ -598,7 +598,7 @@ void dSv_player_item_c::setItem(int item_slot, u8 item_id) {
             dComIfGp_setSelectItem__Fi(select_item_index);
         }
         select_item_index++;
-    } while (select_item_index < MAX_SELECT_ITEM);
+    } while (select_item_index < MAX_SELECT_ITEM - 1);
 }
 #else
 #pragma push
