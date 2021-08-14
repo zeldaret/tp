@@ -188,6 +188,7 @@ private:
     /* 0x08 */ u32 mZDivInfo;
     /* 0x0C vtable */
 public:
+    cCcD_DivideInfo() {}
     virtual ~cCcD_DivideInfo() {}
     /* 80263358 */ void Set(u32, u32, u32);
     /* 80263368 */ bool Chk(cCcD_DivideInfo const&) const;
@@ -208,6 +209,7 @@ private:
     /* 0x3C */ f32 mInvScaledZDiff;
 
 public:
+    cCcD_DivideArea() {}
     virtual ~cCcD_DivideArea() {}
     /* 802633A8 */ void SetArea(cM3dGAab const&);
     /* 802634D4 */ void CalcDivideInfo(cCcD_DivideInfo*, cM3dGAab const&, u32);

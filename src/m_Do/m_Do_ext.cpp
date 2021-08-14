@@ -2714,7 +2714,8 @@ asm mDoExt_morf_c::mDoExt_morf_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DFrameCtrl::~J3DFrameCtrl() {
+// asm J3DFrameCtrl::~J3DFrameCtrl() {
+extern "C" asm void __dt__12J3DFrameCtrlFv() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/__dt__12J3DFrameCtrlFv.s"
 }

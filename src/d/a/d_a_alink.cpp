@@ -34780,7 +34780,8 @@ asm daPy_sightPacket_c::~daPy_sightPacket_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm daPy_frameCtrl_c::~daPy_frameCtrl_c() {
+// asm daPy_frameCtrl_c::~daPy_frameCtrl_c() {
+extern "C" asm void __dt__16daPy_frameCtrl_cFv() {
     nofralloc
 #include "asm/d/a/d_a_alink/__dt__16daPy_frameCtrl_cFv.s"
 }
@@ -34790,7 +34791,8 @@ asm daPy_frameCtrl_c::~daPy_frameCtrl_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm daPy_frameCtrl_c::daPy_frameCtrl_c() {
+// asm daPy_frameCtrl_c::daPy_frameCtrl_c() {
+extern "C" asm void __ct__16daPy_frameCtrl_cFv() {
     nofralloc
 #include "asm/d/a/d_a_alink/__ct__16daPy_frameCtrl_cFv.s"
 }

@@ -4,7 +4,6 @@
 #include "d/save/d_save.h"
 #include "dolphin/types.h"
 
-#pragma pack(push, 1)
 class dVibration_c {
 public:
     /* 8006F268 */ void Run();
@@ -62,6 +61,5 @@ private:
     u32 field_0x88;
     u32 field_0x8c;
 };
-#pragma pack(pop)
 
 #endif /* D_D_VIBRATION_H */

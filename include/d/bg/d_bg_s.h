@@ -13,30 +13,37 @@ struct cBgW_BgId {
     /* 802681D4 */ void ChkUsed() const;
 };
 
-#pragma pack(push, 1)
 class cBgS_ChkElm {
-    cBgS_ChkElm(void);
-    ~cBgS_ChkElm();
-    void Init();
-    void Regist2(dBgW_Base*, unsigned int, void*);
-    void Release();
-
+private:
     /* 0x00 */ dBgW_Base* bgw_base_pointer;
     /* 0x04 */ u8 used;
     /* 0x05 */ u8 padding[3];
     /* 0x08 */ u32 field_0x8;
     /* 0x0C */ void* actor_pointer;
-    /* 0x10 */ u32 field_0x10;
-};
-#pragma pack(pop)
+    /* 0x10 vtable */
+public:
+    cBgS_ChkElm(void) {
+        this->Init();
+    }
+    virtual ~cBgS_ChkElm() {}
+    void Init();
+    virtual void Regist2(dBgW_Base*, unsigned int, void*);
+    void Release();
+}; // Size = 0x14
 
-#pragma pack(push, 1)
+STATIC_ASSERT(sizeof(cBgS_ChkElm) == 0x14);
+
 class cBgS {
-    ~cBgS();
+private:
+    /* 0x0000 */ cBgS_ChkElm cbgs_elements[256];
+    /* 0x1400 vtable */
+public:
+    cBgS() {}
+    virtual ~cBgS() {}
     void Regist(dBgW_Base*, unsigned int, void*);
     void Release(dBgW_Base*);
-    void Ct();
-    void Dt();
+    virtual void Ct();
+    virtual void Dt();
     void LineCross(cBgS_LinChk*);
     void GroundCross(cBgS_GndChk*);
     void ConvDzb(void*);
@@ -48,10 +55,7 @@ class cBgS {
     void GetTriPnt(cBgS_PolyInfo const&, cXyz*, cXyz*, cXyz*) const;
     void ShdwDraw(cBgS_ShdwDraw*);
     void GetGrpInf(cBgS_PolyInfo const&) const;
-
-    /* 0x0000 */ cBgS_ChkElm cbgs_elements[256];
-};
-#pragma pack(pop)
+}; // Size = 0x1404
 
 class dBgS_HIO {
     /* 0x00 */ u8 vtable[4];
@@ -66,10 +70,11 @@ class dBgS_HIO {
 };
 
 class dBgS_Acch;
-#pragma pack(push, 1)
-class dBgS {
+
+class dBgS : public cBgS {
 public:
-    ~dBgS();
+    dBgS() {}
+    ~dBgS() {}
     void Ct();
     void Dt();
     void ClrMoveFlag();
@@ -110,9 +115,8 @@ public:
     void PushPullCallBack(cBgS_PolyInfo const&, fopAc_ac_c*, s16, dBgW_Base::PushPullLabel);
 
 private:
-    /* 0x0000 */ cBgS cbgs;
-    /* 0x1400 */ void* vtable;
+    // /* 0x0000 */ cBgS cbgs;
+    // /* 0x1400 */ void* vtable;
 };
-#pragma pack(pop)
 
 #endif /* D_BG_D_BG_S_H */

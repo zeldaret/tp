@@ -32,8 +32,6 @@ struct dSvBit_HIO_c {
     /* 8025C1F8 */ void init();
 };
 
-struct dStage_dt_c {};
-
 struct dStage_KeepDoorInfo {
     /* 80028418 */ ~dStage_KeepDoorInfo();
 };

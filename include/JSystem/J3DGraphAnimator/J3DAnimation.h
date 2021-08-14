@@ -3,13 +3,15 @@
 
 #include "dolphin/types.h"
 
-#pragma pack(push, 1)
 class J3DFrameCtrl {
 public:
+    J3DFrameCtrl() {
+        this->init(0);
+    }
     void init(s16);
     BOOL checkPass(f32);
     void update();
-    ~J3DFrameCtrl();
+    virtual ~J3DFrameCtrl() {}
 
     float getRate() const { return mRate; }
     void setAttribute(u8 pAttr) { mAttribute = pAttr; }
@@ -23,7 +25,7 @@ public:
     void setLoop(s16 pLoop) { mLoop = pLoop; }
 
 private:
-    void* vtable;
+    /* vtable */;
     u8 mAttribute;
     bool mState;
     s16 mStart;
@@ -32,6 +34,5 @@ private:
     float mRate;
     float mFrame;
 };
-#pragma pack(pop)
 
 #endif /* J3DANIMATION_H */

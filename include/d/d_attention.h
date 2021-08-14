@@ -11,6 +11,7 @@ struct J3DTransformInfo {};
 
 class dAttHint_c {
 public:
+    dAttHint_c() {}
     /* 800738B4 */ void getPId(void*);
     /* 800738CC */ void convPId(unsigned int);
     /* 800738FC */ void request(fopAc_ac_c*, int);
@@ -25,6 +26,7 @@ private:
 
 class dAttCatch_c {
 public:
+    dAttCatch_c() {}
     void convPId(unsigned int);
     void init();
     void proc();
@@ -43,12 +45,9 @@ private:
 };  // Size = 0x14
 
 class dAttParam_c {
-public:
-    /* 80070038 */ dAttParam_c(s32);
-    /* 80070110 */ ~dAttParam_c();
 
 private:
-    /* 0x00 */ void* vtable;
+    /* 0x00 vtable */
     /* 0x04 */ u8 field_0x4;
     /* 0x05 */ u8 field_0x5;
     /* 0x06 */ u16 mFlag;
@@ -66,6 +65,11 @@ private:
     /* 0x34 */ float field_0x34;
     /* 0x38 */ u8 field_0x38;
     /* 0x39 */ u8 field_0x39;
+public:
+    dAttParam_c() {}
+    /* 80070038 */ dAttParam_c(s32);
+    /* 80070110 */ virtual ~dAttParam_c();
+private:
     /* 0x3C */ float field_0x3c;
     /* 0x40 */ float field_0x40;
     /* 0x44 */ u32 field_0x44;
@@ -89,8 +93,8 @@ private:
 #pragma pack(push, 1)
 class dAttList_c {
 public:
-    /* 800304D0 */ ~dAttList_c();
-    /* 8003050C */ dAttList_c();
+    /* 800304D0 */ ~dAttList_c() {}
+    /* 8003050C */ dAttList_c() {}
     /* 80073864 */ void getActor();
     /* 80073898 */ void setActor(fopAc_ac_c*);
 
@@ -98,13 +102,13 @@ private:
     u8 field_0x0[8];
     cSAngle angle;
     u8 field_0xa[10];
-};
+}; // Size = 0x14
 #pragma pack(pop)
 
 class dAttDraw_c {
 public:
-    /* 8003054C */ ~dAttDraw_c();
-    /* 800307F0 */ dAttDraw_c();
+    /* 8003054C */ ~dAttDraw_c() {}
+    /* 800307F0 */ dAttDraw_c() {}
     /* 80072DD8 */ void setAnm(u8, f32);
     /* 80072FE8 */ void setAlphaAnm(u8, u8);
     /* 80073004 */ void alphaAnm();
@@ -136,15 +140,17 @@ public:
     /* 0x175 */ u8 field_0x175;
 };
 
-class dAttDraw_CallBack_c {
-public:
-    /* 80070178 */ void execute(u16, J3DTransformInfo*);
+STATIC_ASSERT(sizeof(dAttDraw_c) == 0x178);
 
-    mDoExt_McaMorfCallBack1_c mDoExt_McaMorfCallback;
+class dAttDraw_CallBack_c : public mDoExt_McaMorfCallBack1_c {
+public:
+    /* 80070178 */ virtual void execute(u16, J3DTransformInfo*);
+
 };
 
 class dAttention_c {
 public:
+    dAttention_c() {}
     /* 80070198 */ dAttention_c(fopAc_ac_c*, u32);
     /* 80070774 */ ~dAttention_c();
     /* 80070844 */ void GetLockonList(s32);

@@ -15,7 +15,7 @@ private:
     /* 0x1C vtable */
 public:
     dCcMassS_Obj();
-    virtual ~dCcMassS_Obj();
+    virtual ~dCcMassS_Obj() {}
     /* 800852E0 */ void Set(cCcD_Obj*, u8, void (*)(fopAc_ac_c*, cXyz*, u32));
     /* 800852F0 */ void Clear();
     cCcD_Obj* GetObj() { return mpObj; }
@@ -53,16 +53,16 @@ public:
     /* 0x0200 */ u8 field_0x201;
     /* 0x0202 */ u8 field_0x202;
     /* 0x0203 */ u8 mResultCam;
-    /* 0x0204 */ cXyz mCamTopPos;
+    /* 0x0204 */ Vec mCamTopPos;
     /* 0x0210 */ f32 mCamTopDist;
-    /* 0x0214 */ cXyz mCamBottomPos;
+    /* 0x0214 */ Vec mCamBottomPos;
     /* 0x0220 */ f32 mCamBottomDist;
     /* 0x0224 */ cCcD_CpsAttr mCpsAttr;
     /* 0x0264 */ cCcD_DivideInfo mDivideInfo;
     /* 0x0274 vtable */
 public:
     dCcMassS_Mng(void);
-    virtual ~dCcMassS_Mng();
+    virtual ~dCcMassS_Mng() {}
     /* 800855E4 */ void Ct();
     /* 80085630 */ void SetAttr(f32, f32, u8, u8);
     /* 80085690 */ void Prepare();

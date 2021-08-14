@@ -55,7 +55,7 @@ public:
                                                            cCcD_GObjInf const*, cCcD_Stts*,
                                                            cCcD_Stts*, cCcD_GStts*, cCcD_GStts*);
     /* 80265E10 vt[8] */ virtual bool ChkNoHitGCo(cCcD_Obj*, cCcD_Obj*);
-    /* 80030BDC vt[9] */ virtual ~cCcS();
+    /* 80030BDC vt[9] */ virtual ~cCcS() {}
     /* 80265E18 vt[10] */ virtual void MoveAfterCheck();
     /* 80265DF4 vt[11] */ virtual void SetCoGCorrectProc(cCcD_Obj*, cCcD_Obj*);
 };  // Size = 0x284C
