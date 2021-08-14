@@ -4,10 +4,10 @@
 //
 
 #include "f_op/f_op_actor.h"
+#include "d/d_stage.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
-#include "d/d_stage.h"
 
 //
 // Types:

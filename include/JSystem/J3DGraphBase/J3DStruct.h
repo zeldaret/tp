@@ -7,9 +7,7 @@
 
 class J3DLightInfo {
 public:
-    J3DLightInfo(J3DLightInfo const& other) {
-        *this = other;
-    }
+    J3DLightInfo(J3DLightInfo const& other) { *this = other; }
     /* 803256C4 */ void operator=(J3DLightInfo const&);
 
     /* 0x00 */ Vec mLightPosition;
@@ -27,9 +25,7 @@ extern "C" extern J3DLightInfo const j3dDefaultLightInfo;
 
 class J3DLightObj {
 public:
-    /* 80018C0C */ J3DLightObj() : mInfo(j3dDefaultLightInfo) {
-
-    }
+    /* 80018C0C */ J3DLightObj() : mInfo(j3dDefaultLightInfo) {}
 
     /* 0x00 */ J3DLightInfo mInfo;
     /* 0x34 */ u8 field_0x34[64];

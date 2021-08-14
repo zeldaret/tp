@@ -5,9 +5,7 @@
 
 class J3DFrameCtrl {
 public:
-    J3DFrameCtrl() {
-        this->init(0);
-    }
+    J3DFrameCtrl() { this->init(0); }
     void init(s16);
     BOOL checkPass(f32);
     void update();

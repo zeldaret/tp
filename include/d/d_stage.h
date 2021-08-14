@@ -1,12 +1,12 @@
 #ifndef D_D_STAGE_H
 #define D_D_STAGE_H
 
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "d/kankyo/d_kankyo.h"
 #include "d/save/d_save.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 #include "msl_c/string.h"
-#include "JSystem/JKernel/JKRExpHeap.h"
-#include "d/kankyo/d_kankyo.h"
 
 struct stage_vrboxcol_info_class {};
 
@@ -18,7 +18,7 @@ struct stage_tgsc_data_class {
     /* 8002847C */ ~stage_tgsc_data_class() {}
     /* 800284B8 */ stage_tgsc_data_class() {}
     u8 unk_0[0x24];
-}; // Size = 0x24
+};  // Size = 0x24
 
 STATIC_ASSERT(sizeof(stage_tgsc_data_class) == 0x24);
 
@@ -177,6 +177,7 @@ public:
     /* vt[90] */ virtual int getMapPath(void) = 0;
     /* vt[91] */ virtual void setElst(dStage_Elst_c*) = 0;
     /* vt[92] */ virtual dStage_Elst_c* getElst(void) = 0;
+
 private:
     /* 0x04 */ s8 mRoomNo;
 };
@@ -452,7 +453,6 @@ private:
     int mVrboxcolNumInfo;
 };  // Size: 0x6C
 
-
 class dStage_roomStatus_c {
 private:
     /* 0x000 */ dStage_roomDt_c mRoomDt;
@@ -473,9 +473,7 @@ class dStage_roomControl_c {
 public:
     class roomDzs_c {
     public:
-        roomDzs_c() {
-            m_num = 0;
-        }
+        roomDzs_c() { m_num = 0; }
         /* 80024A34 */ void create(u8);
         /* 80024ABC */ void remove();
         /* 80024B44 */ void add(u8, u8);
@@ -519,7 +517,7 @@ private:
 class dStage_nextStage_c {
 public:
     dStage_nextStage_c() {
-        enabled = 0; // TODO: maybe wrong
+        enabled = 0;  // TODO: maybe wrong
     }
     void set(const char*, s8, s16, s8, s8, u8);
 
@@ -568,7 +566,7 @@ public:
     /* 80028418 */ ~dStage_KeepDoorInfo() {}
     /* 0x000 */ u8 unk_0x0[4];
     /* 0x004 */ stage_tgsc_data_class unk_0x4[0x40];
-}; // Size = 0x904
+};  // Size = 0x904
 
 typedef void (*dStage_Func)(dStage_dt_c*, void*, int, void*);
 

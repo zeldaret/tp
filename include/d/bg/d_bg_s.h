@@ -22,14 +22,12 @@ private:
     /* 0x0C */ void* actor_pointer;
     /* 0x10 vtable */
 public:
-    cBgS_ChkElm(void) {
-        this->Init();
-    }
+    cBgS_ChkElm(void) { this->Init(); }
     virtual ~cBgS_ChkElm() {}
     void Init();
     virtual void Regist2(dBgW_Base*, unsigned int, void*);
     void Release();
-}; // Size = 0x14
+};  // Size = 0x14
 
 STATIC_ASSERT(sizeof(cBgS_ChkElm) == 0x14);
 
@@ -55,7 +53,7 @@ public:
     void GetTriPnt(cBgS_PolyInfo const&, cXyz*, cXyz*, cXyz*) const;
     void ShdwDraw(cBgS_ShdwDraw*);
     void GetGrpInf(cBgS_PolyInfo const&) const;
-}; // Size = 0x1404
+};  // Size = 0x1404
 
 class dBgS_HIO {
     /* 0x00 */ u8 vtable[4];

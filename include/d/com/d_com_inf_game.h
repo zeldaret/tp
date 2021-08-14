@@ -13,7 +13,6 @@
 #include "d/event/d_event_manager.h"
 #include "d/save/d_save.h"
 #include "dolphin/types.h"
-#include "d/d_resorce.h"
 
 struct dTimer_c {
     /* 8025D524 */ void deleteCheck();
@@ -33,7 +32,7 @@ public:
         mTimerNowTimeMs = 0;
         mTimerPtr = NULL;
     }
-    dTimer_c *mTimerPtr;
+    dTimer_c* mTimerPtr;
     s32 mTimerNowTimeMs;
     s32 mTimerLimitTimeMs;
     s32 mTimerMode;
@@ -58,9 +57,7 @@ STATIC_ASSERT(sizeof(dComIfG_camera_info_class) == 0x38);
 
 class dComIfG_play_c {
 public:
-    dComIfG_play_c() {
-        this->ct();
-    }
+    dComIfG_play_c() { this->ct(); }
     void ct(void);
     void init(void);
     void itemInit(void);
@@ -377,17 +374,16 @@ public:
     /* 8003C160 */ void syncRes(char const*, dRes_info_c*, int);
     /* 8003C194 */ void deleteRes(char const*, dRes_info_c*, int);
     /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
+
 private:
     /* 0x0000 */ dRes_info_c mResInfos1[0x80];
     /* 0x1200 */ dRes_info_c mResInfos2[0x40];
-}; // Size: 0x1B00
+};  // Size: 0x1B00
 
 #pragma pack(push, 1)
 class dComIfG_inf_c {
 public:
-    dComIfG_inf_c(void) {
-        this->ct();
-    }
+    dComIfG_inf_c(void) { this->ct(); }
     ~dComIfG_inf_c() {}
     void ct(void);
 
@@ -411,7 +407,7 @@ private:
     /* 0x00000 */ dSv_info_c info;
     /* 0x00F38 */ dComIfG_play_c play;
     /* 0x05F64 */ dDlst_list_c draw_list_list;
-    /* 0x1C110 */ u8 field_0x1C114[0x1E8-0xA];
+    /* 0x1C110 */ u8 field_0x1C114[0x1E8 - 0xA];
     /* 0x1C2F8 */ dRes_control_c mResControl;
     /* 0x1DDF8 */ u8 field_0x1ddf8;
     /* 0x1DDF9 */ u8 mWorldDark;

@@ -45,7 +45,6 @@ private:
 };  // Size = 0x14
 
 class dAttParam_c {
-
 private:
     /* 0x00 vtable */
     /* 0x04 */ u8 field_0x4;
@@ -65,10 +64,12 @@ private:
     /* 0x34 */ float field_0x34;
     /* 0x38 */ u8 field_0x38;
     /* 0x39 */ u8 field_0x39;
+
 public:
     dAttParam_c() {}
     /* 80070038 */ dAttParam_c(s32);
     /* 80070110 */ virtual ~dAttParam_c();
+
 private:
     /* 0x3C */ float field_0x3c;
     /* 0x40 */ float field_0x40;
@@ -102,7 +103,7 @@ private:
     u8 field_0x0[8];
     cSAngle angle;
     u8 field_0xa[10];
-}; // Size = 0x14
+};  // Size = 0x14
 #pragma pack(pop)
 
 class dAttDraw_c {
@@ -145,7 +146,6 @@ STATIC_ASSERT(sizeof(dAttDraw_c) == 0x178);
 class dAttDraw_CallBack_c : public mDoExt_McaMorfCallBack1_c {
 public:
     /* 80070178 */ virtual void execute(u16, J3DTransformInfo*);
-
 };
 
 class dAttention_c {

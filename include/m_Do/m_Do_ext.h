@@ -52,9 +52,7 @@ private:
 
 class mDoExt_btkAnm {
 public:
-    mDoExt_btkAnm(void) {
-        field_0x14 = 0;
-    }
+    mDoExt_btkAnm(void) { field_0x14 = 0; }
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
     /* 8000D6D8 */ void entry(J3DMaterialTable*, f32);
 
@@ -67,9 +65,7 @@ STATIC_ASSERT(sizeof(mDoExt_btkAnm) == 0x18);
 
 class mDoExt_brkAnm {
 public:
-    mDoExt_brkAnm(void) {
-        field_0x14 = 0;
-    }
+    mDoExt_brkAnm(void) { field_0x14 = 0; }
     /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
     /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
 
@@ -82,9 +78,7 @@ STATIC_ASSERT(sizeof(mDoExt_brkAnm) == 0x18);
 
 class mDoExt_bpkAnm {
 public:
-    mDoExt_bpkAnm(void) {
-        field_0x14 = 0;
-    }
+    mDoExt_bpkAnm(void) { field_0x14 = 0; }
     /* 8000D47C */ void init(J3DMaterialTable*, J3DAnmColor*, int, int, f32, s16, s16);
     /* 8000D518 */ void entry(J3DMaterialTable*, f32);
 
@@ -97,9 +91,7 @@ STATIC_ASSERT(sizeof(mDoExt_bpkAnm) == 0x18);
 
 class mDoExt_bckAnm {
 public:
-    mDoExt_bckAnm(void) {
-        field_0x18 = 0;
-    }
+    mDoExt_bckAnm(void) { field_0x18 = 0; }
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
     /* 8000D990 */ void changeBckOnly(J3DAnmTransform*);
     /* 8000D9CC */ void entry(J3DModelData*, f32);
@@ -109,7 +101,7 @@ private:
     mDoExt_baseAnm base_anm;
     u8 field_0x14[4];
     u32 field_0x18;
-}; // Size = 0x1C
+};  // Size = 0x1C
 
 STATIC_ASSERT(sizeof(mDoExt_bckAnm) == 0x1C);
 
