@@ -306,7 +306,7 @@ public:
 
     /* 8009D87C */ bool getE3Zhint();
     /* 8009D884 */ char* getAlinkArcName();
-    /* 8009DA60 */ bool checkStageName(char const*);
+    /* 8009DA60 */ static bool checkStageName(char const*);
     /* 8009DA98 */ void tgHitCallback(fopAc_ac_c*, dCcD_GObjInf*, dCcD_GObjInf*);
     /* 8009DB64 */ void coHitCallback(fopAc_ac_c*, dCcD_GObjInf*);
     /* 8009DC6C */ void setMatrixWorldAxisRot(f32 (*)[4], s16, s16, s16, int, cXyz const*);

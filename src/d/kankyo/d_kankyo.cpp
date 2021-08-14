@@ -568,7 +568,6 @@ extern "C" void cos();
 extern "C" void sin();
 extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
 extern "C" extern u8 const j3dDefaultMtx[48];
-extern "C" extern u8 const j3dDefaultLightInfo[52];
 extern "C" extern void* __vt__12J3DFrameCtrl[3];
 extern "C" extern void* g_fopKy_Method[5 + 1 /* padding */];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];

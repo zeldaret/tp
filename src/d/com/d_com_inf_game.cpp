@@ -2041,7 +2041,7 @@ asm void dComIfGs_staffroll_next_go_check() {
 //     return sizeof(dComIfG_inf_c);
 // }
 // int asdf(dComIfG_play_c* play) {
-//     return (int)&play->mCurrentWindow;
+//     return (int)&play->mEvent;
 // }
 
 
