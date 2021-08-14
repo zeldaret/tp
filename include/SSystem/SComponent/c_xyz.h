@@ -81,6 +81,12 @@ struct cXyz : Vec {
         z = pZ;
     }
 
+    void set(const Vec& other) {
+        x = other.x;
+        y = other.y;
+        z = other.z;
+    }
+
     void setMin(const cXyz& other) {
         if (x > other.x) {
             x = other.x;

@@ -2,6 +2,7 @@
 #define D_SAVE_D_SAVE_H
 
 #include "SSystem/SComponent/c_xyz.h"
+#include "msl_c/string.h"
 #include "dolphin/types.h"
 
 #define DEFAULT_SELECT_ITEM_INDEX 0
@@ -15,6 +16,11 @@
 #define BOTTLE_MAX 4
 #define TBOX_MAX 64
 #define DSV_MEMBIT_ENUM_MAX 8
+#define ITEM_MAX_DAN 128
+#define SWITCH_ZONE_MAX 0x20
+#define SWITCH_ONE_ZONE_MAX 0x10
+#define ITEM_ZONE_MAX 0x20
+#define ITEM_ONE_ZONE_MAX 0x10
 
 enum Wallets { WALLET, BIG_WALLET, GIANT_WALLET };
 
@@ -599,6 +605,8 @@ class dSv_player_info_c {
 public:
     void init(void);
     char* getLinkName() { return (char*)mPlayerName; }
+    void setPlayerName(const char* name) { strcpy((char*)mPlayerName, name); }
+    void setHorseName(const char* name) { strcpy((char*)mHorseName, name); }
 
 private:
     u32 unk0;
@@ -672,7 +680,6 @@ private:
     dSv_player_config_c player_config;
 };
 
-#pragma pack(push, 1)
 class dSv_memBit_c {
 public:
     enum {
@@ -714,7 +721,6 @@ private:
     /* 0x1C */ u8 mKeyNum;
     /* 0x1D */ u8 mDungeonItem;
 };
-#pragma pack(pop)
 
 class dSv_event_c {
 public:
@@ -748,11 +754,10 @@ public:
     dSv_memory_c(void);
     void init(void);
     dSv_memBit_c& getMemBit() { return mMemBit; }
-    const dSv_memBit_c& getMemBitConst() const { return mMemBit; }
+    const dSv_memBit_c& getBit() const { return mMemBit; }
 
 private:
     dSv_memBit_c mMemBit;
-    u8 padding30[2];
 };
 
 class dSv_memory2_c {
@@ -830,9 +835,9 @@ public:
     dSv_zone_c(void);  // the assembly for this is in d_com_inf_game.s
     void init(int);
     dSv_zoneBit_c& getZoneBit() { return mBit; }
-    const dSv_zoneBit_c& getZoneBitConst() const { return mBit; }
-    dSv_zoneActor_c& getZoneActor() { return mActor; }
-    const dSv_zoneActor_c& getZoneActorConst() const { return mActor; }
+    const dSv_zoneBit_c& getBit() const { return mBit; }
+    dSv_zoneActor_c& getActor() { return mActor; }
+    const dSv_zoneActor_c& getActor() const { return mActor; }
 
     s8& getRoomNo() { return mRoomNo; }
 
@@ -888,6 +893,7 @@ class dSv_save_c {
 public:
     void init(void);
     dSv_memory2_c* getSave2(int);
+
     dSv_player_c& getPlayer() { return mPlayer; }
     dSv_player_status_a_c& getPlayerStatusA() { return mPlayer.getPlayerStatusA(); }
     dSv_player_get_item_c& getPlayerGetItem() { return mPlayer.getPlayerGetItem(); }
@@ -898,6 +904,8 @@ public:
     dSv_player_collect_c& getPlayerCollect() { return mPlayer.getPlayerCollect(); }
     dSv_light_drop_c& getLightDrop() { return mPlayer.getLightDrop(); }
     dSv_event_c& getEvent() { return mEvent; }
+    dSv_memory_c& getSave(int i_stageNo) { return mSave[i_stageNo]; }
+    void putSave(int i_stageNo, dSv_memory_c mem) { mSave[i_stageNo] = mem; }
 
     static const int STAGE_MAX = 32;
     static const int STAGE2_MAX = 64;
@@ -936,6 +944,7 @@ public:
     dSv_zone_c* getZones() { return mZone; }
     dSv_player_c& getPlayer() { return mSavedata.getPlayer(); }
     dSv_event_c& getTmp() { return mTmp; }
+    void initDan(s8 param_0) { mDan.init(param_0); }
 
 private:
     /* 0x000 */ dSv_save_c mSavedata;

@@ -4,9 +4,10 @@
 //
 
 #include "d/save/d_save.h"
+#include "d/meter/d_meter2_info.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "msl_c/string.h"
+#include "Z2AudioLib/Z2AudioMgr.h"
 
 //
 // Types:
@@ -21,34 +22,12 @@ struct dSv_event_tmp_flag_c {
     static u8 const tempBitLabels[370 + 2 /* padding */];
 };
 
-struct dSv_event_flag_c {
-    static u8 saveBitLabels[1644 + 4 /* padding */];
-};
-
 struct dStage_roomControl_c {
     /* 8002D9B0 */ static int getZoneNo(int);
 };
 
-struct JMSMesgEntry_c {};
-
-struct dMeter2Info_c {
-    /* 8021C250 */ void getString(u32, char*, JMSMesgEntry_c*);
-    /* 8021DCC4 */ void setHotSpringTimer(u8);
-    /* 8021E290 */ void setSaveStageName(char const*);
-};
-
 struct dComIfG_play_c {
     /* 8002B3B0 */ void getNowVibration();
-};
-
-struct Z2AudioMgr {
-    /* 802CD888 */ void setOutputMode(u32);
-
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JUTGamePad {
-    static u8 sRumbleSupported[4];
 };
 
 //
@@ -223,7 +202,6 @@ extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 // External References:
 //
 
-extern "C" void OSReport_Error();
 extern "C" void setNowVibration__14dComIfG_play_cFUc();
 extern "C" void getNowVibration__14dComIfG_play_cFv();
 extern "C" void getZoneNo__20dStage_roomControl_cFi();
@@ -242,8 +220,6 @@ extern "C" void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c();
 extern "C" void setHotSpringTimer__13dMeter2Info_cFUc();
 extern "C" void setSaveStageName__13dMeter2Info_cFPCc();
 extern "C" void setOutputMode__10Z2AudioMgrFUl();
-extern "C" void OSGetSoundMode();
-extern "C" void OSGetTime();
 extern "C" void __construct_array();
 extern "C" void _savegpr_22();
 extern "C" void _savegpr_26();
@@ -258,7 +234,6 @@ extern "C" void _restgpr_29();
 extern "C" void __div2i();
 extern "C" void printf();
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" u8 sRumbleSupported__10JUTGamePad[4];
 
@@ -347,7 +322,7 @@ u8 dSv_player_status_a_c::getMixItemIndex(signed int i_no) const {
     return 0;
 }
 
-u16 dSv_player_status_a_c::getRupeeMax(void) const {
+u16 dSv_player_status_a_c::getRupeeMax() const {
     if (mWalletSize < 3) {  // if you make this a default, it wont match. Compiler, pls.
         switch (mWalletSize) {
         case WALLET:
@@ -393,20 +368,20 @@ void dSv_player_status_b_c::init() {
     }
 }
 
-void dSv_player_status_b_c::onDarkClearLV(int flagOnOff) {
-    mDarkClearLevelFlag |= (u8)(1 << flagOnOff);
+void dSv_player_status_b_c::onDarkClearLV(int i_no) {
+    mDarkClearLevelFlag |= (u8)(1 << i_no);
 }
 
-BOOL dSv_player_status_b_c::isDarkClearLV(int unk) const {
-    return mDarkClearLevelFlag & (u8)(1 << unk) ? TRUE : FALSE;
+BOOL dSv_player_status_b_c::isDarkClearLV(int i_no) const {
+    return mDarkClearLevelFlag & (u8)(1 << i_no) ? TRUE : FALSE;
 }
 
-void dSv_player_status_b_c::onTransformLV(int flagOnOff) {
-    mTransformLevelFlag |= (u8)(1 << flagOnOff);
+void dSv_player_status_b_c::onTransformLV(int i_no) {
+    mTransformLevelFlag |= (u8)(1 << i_no);
 }
 
-BOOL dSv_player_status_b_c::isTransformLV(int unk) const {
-    return mTransformLevelFlag & (u8)(1 << unk) ? TRUE : FALSE;
+BOOL dSv_player_status_b_c::isTransformLV(int i_no) const {
+    return mTransformLevelFlag & (u8)(1 << i_no) ? TRUE : FALSE;
 }
 
 /* ############################################################################################## */
@@ -424,32 +399,13 @@ SECTION_SDATA2 static u8 lit_3813[4] = {
     0x00,
 };
 
-/* 80032C0C-80032C64 02D54C 0058+00 1/1 0/0 0/0 .text            init__17dSv_horse_place_cFv */
-#ifdef NONMATCHING
-// zero-initialized literal
-void dSv_horse_place_c::init(void) {
-    f32 position_val;
-    char* default_stage;
-
-    default_stage = strcpy(mCurrentStage, (char*)lbl_80379234);
-    position_val = lbl_80451D5C;
-    mPosition.x = lbl_80451D5C;
-    mPosition.y = position_val;
-    mPosition.z = position_val;
+void dSv_horse_place_c::init() {
+    strcpy(mCurrentStage, "");
+    mPosition.set(FLOAT_LABEL(lit_3813), FLOAT_LABEL(lit_3813), FLOAT_LABEL(lit_3813));
     mXRotation = 0;
     mSpawnId = 0;
     mRoomId = 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSv_horse_place_c::init() {
-    nofralloc
-#include "asm/d/save/d_save/init__17dSv_horse_place_cFv.s"
-}
-#pragma pop
-#endif
 
 void dSv_horse_place_c::set(const char* i_name, const cXyz& i_position, s16 i_x_rot,
                             signed char i_room_id) {
@@ -459,8 +415,8 @@ void dSv_horse_place_c::set(const char* i_name, const cXyz& i_position, s16 i_x_
     mRoomId = i_room_id;
 }
 
-void dSv_player_return_place_c::init(void) {
-    strcpy(mCurrentStage, (char*)"F_SP108");
+void dSv_player_return_place_c::init() {
+    strcpy(mCurrentStage, "F_SP108");
     mRoomId = 1;
     mSpawnId = 0;
     unk10 = 21;
@@ -473,19 +429,9 @@ void dSv_player_return_place_c::set(const char* i_name, s8 i_room_id, u8 i_spawn
     mSpawnId = i_spawn_id;
 }
 
-/* 80032D60-80032DE0 02D6A0 0080+00 1/1 0/0 0/0 .text init__33dSv_player_field_last_stay_info_cFv
- */
-// zero-initialized literal
-#ifdef NONMATCHING
 void dSv_player_field_last_stay_info_c::init() {
-    f32 position_val;
-
-    strcpy(mName, (char*)lbl_80379234);
-    position_val = lbl_80451D5C;
-
-    mPos.x = lbl_80451D5C;
-    mPos.y = position_val;
-    mPos.z = position_val;
+    strcpy(mName, "");
+    mPos.set(FLOAT_LABEL(lit_3813), FLOAT_LABEL(lit_3813), FLOAT_LABEL(lit_3813));
     mAngleY = 0;
     mLastSpawnId = 0;
     mRegionNo = 1;
@@ -496,16 +442,6 @@ void dSv_player_field_last_stay_info_c::init() {
         unk26[i] = 0;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSv_player_field_last_stay_info_c::init() {
-    nofralloc
-#include "asm/d/save/d_save/init__33dSv_player_field_last_stay_info_cFv.s"
-}
-#pragma pop
-#endif
 
 void dSv_player_field_last_stay_info_c::set(const char* i_name, const cXyz& i_last_position,
                                             s16 i_last_angle, signed char i_last_spawn_id,
@@ -528,24 +464,16 @@ void dSv_player_field_last_stay_info_c::onRegionBit(int i_region_bit) {
     mRegion |= (u8)(1 << i_region_bit);
 }
 
-BOOL dSv_player_field_last_stay_info_c::isRegionBit(int param_1) const {
-    if ((param_1 >= 0) && (param_1 < 8)) {
-        return (mRegion & (u8)(1 << param_1)) ? TRUE : FALSE;
+BOOL dSv_player_field_last_stay_info_c::isRegionBit(int i_region_bit) const {
+    if ((i_region_bit >= 0) && (i_region_bit < 8)) {
+        return (mRegion & (u8)(1 << i_region_bit)) ? TRUE : FALSE;
     }
     return false;
 }
 
-/* 80032EB0-80032F2C 02D7F0 007C+00 1/1 0/0 0/0 .text init__27dSv_player_last_mark_info_cFv */
-// zero-initialized literal
-#ifdef NONMATCHING
-void dSv_player_last_mark_info_c::init(void) {
-    f32 position;
-
-    strcpy(mOoccooStage, (char*)lbl_80379234);
-    position = lbl_80451D5C;
-    mOoccooPosition.x = lbl_80451D5C;
-    mOoccooPosition.y = position;
-    mOoccooPosition.z = position;
+void dSv_player_last_mark_info_c::init() {
+    strcpy(mOoccooStage, "");
+    mOoccooPosition.set(FLOAT_LABEL(lit_3813), FLOAT_LABEL(lit_3813), FLOAT_LABEL(lit_3813));
     mOoccooXRotation = 0;
     mOoccooRoomId = 0;
     mOoccooSpawnId = 0;
@@ -555,27 +483,17 @@ void dSv_player_last_mark_info_c::init(void) {
         unk25[i] = 0;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSv_player_last_mark_info_c::init() {
-    nofralloc
-#include "asm/d/save/d_save/init__27dSv_player_last_mark_info_cFv.s"
-}
-#pragma pop
-#endif
 
 void dSv_player_last_mark_info_c::setWarpItemData(const char* i_ooccoo_stage,
                                                   const cXyz& i_ooccoo_position, s16 i_ooccoo_angle,
                                                   s8 i_ooccoo_room_id, u8 unk1, u8 unk2) {
     strcpy(mOoccooStage, i_ooccoo_stage);
-    mOoccooPosition = i_ooccoo_position;
+    mOoccooPosition.set(i_ooccoo_position);
     mOoccooXRotation = i_ooccoo_angle;
     mOoccooRoomId = i_ooccoo_room_id;
 }
 
-void dSv_player_item_c::init(void) {
+void dSv_player_item_c::init() {
     for (int i = 0; i < 24; i++) {
         mItems[i] = NO_ITEM;
         mItemSlots[i] = NO_ITEM;
@@ -683,7 +601,7 @@ u8 dSv_player_item_c::getItem(int item_idx, bool isComboItem) const {
                     }
                     // 合成アイテム不定＝＝＝＞%d, %d\n
                     // Uncertain combination item＝＝＝＞%d, %d\n
-                    OSReport_Error(lbl_80379234 + 9, item_id_2, item_id_1);
+                    OSReport_Error("合成アイテム不定＝＝＝＞%d, %d\n", item_id_2, item_id_1);
                 }
             }
         }
@@ -709,7 +627,7 @@ static u8 i_item_lst[23] = {0x0A, 0x08, 0x06, 0x02, 0x09, 0x04, 0x03, 0x00, 0x01
 /* 800332F8-80033354 02DC38 005C+00 2/2 0/0 0/0 .text setLineUpItem__17dSv_player_item_cFv */
 // this is close
 #ifdef NONMATCHING
-void dSv_player_item_c::setLineUpItem(void) {
+void dSv_player_item_c::setLineUpItem() {
     for (int i = 0; i < 24; i++) {
         mItemSlots[i] = NO_ITEM;
     }
@@ -755,7 +673,7 @@ void dSv_player_item_c::setBottleItemIn(u8 i_item_id_1, u8 i_item_id_2) {
             setItem(i + 11, new_item_index);
             // if hotsprings water, turn on the timer
             if (new_item_index == 107) {
-                setHotSpringTimer(i + 11);
+                dMeter2Info_setHotSpringTimer(i + 11);
             }
             for (int j = 0; j < 4; j++) {
                 j = getSelectItemIndex(i);
@@ -799,7 +717,7 @@ asm void dSv_player_item_c::setEmptyBottleItemIn(u8 param_0) {
 /* 80033494-80033514 02DDD4 0080+00 0/0 1/1 1/1 .text setEmptyBottle__17dSv_player_item_cFv */
 // inline
 #ifdef NONMATCHING
-void dSv_player_item_c::setEmptyBottle(void) {
+void dSv_player_item_c::setEmptyBottle() {
     for (int i = 0; i < 4; i++) {
         if (dComIfGs_getItem((u8)(i + 11), true) == NO_ITEM) {
             dComIfGs_setItem((u8)(i + 11), EMPTY_BOTTLE);
@@ -2547,7 +2465,7 @@ asm int dSv_player_item_c::checkInsectBottle() {
 #pragma pop
 #endif
 
-u8 dSv_player_item_c::checkEmptyBottle(void) {
+u8 dSv_player_item_c::checkEmptyBottle() {
     u8 num = 0;
 
     for (int i = 0; i < BOTTLE_MAX; i++) {
@@ -2592,7 +2510,7 @@ void dSv_player_item_c::setEmptyBombBagItemIn(u8 param_1, u8 param_2, bool param
 /* 80033A88-80033B08 02E3C8 0080+00 0/0 2/2 0/0 .text setEmptyBombBag__17dSv_player_item_cFv */
 // this is a few instructions off
 #ifdef NONMATCHING
-void dSv_player_item_c::setEmptyBombBag(void) {
+void dSv_player_item_c::setEmptyBombBag() {
     int current_item_index;
     u8 uVar1;
 
@@ -2669,7 +2587,7 @@ asm void dSv_player_item_c::setWarashibeItem(u8 param_0) {
 #pragma pop
 #endif
 
-void dSv_player_item_c::setRodTypeLevelUp(void) {
+void dSv_player_item_c::setRodTypeLevelUp() {
     int current_fishing_rod_item_id = mItems[SLOT_20];
 
     switch (current_fishing_rod_item_id) {
@@ -2730,7 +2648,7 @@ asm void dSv_player_item_c::setBaitItem(u8 param_0) {
 #pragma pop
 #endif
 
-void dSv_player_get_item_c::init(void) {
+void dSv_player_get_item_c::init() {
     for (int i = 0; i < 8; i++) {
         mPauseMenuBitFields[i] = 0;
     }
@@ -2776,7 +2694,7 @@ asm int dSv_player_get_item_c::isFirstBit(u8 param_0) const {
 }
 #pragma pop
 
-void dSv_player_item_record_c::init(void) {
+void dSv_player_item_record_c::init() {
     mArrowNum = 0;
 
     for (int i = 0; i < 3; i++) {
@@ -2839,7 +2757,7 @@ u8 dSv_player_item_record_c::getBottleNum(u8 i_bottleIdx) const {
     return mBottleNum[i_bottleIdx];
 }
 
-void dSv_player_item_max_c::init(void) {
+void dSv_player_item_max_c::init() {
     for (int i = 0; i < 7; i++) {
         mItemMax[i] = 30;
     }
@@ -2896,7 +2814,7 @@ asm u8 dSv_player_item_max_c::getBombNum(u8 param_0) const {
 #pragma pop
 #endif
 
-void dSv_player_collect_c::init(void) {
+void dSv_player_collect_c::init() {
     for (int i = 0; i < 8; i++) {
         mItem[i] = 0;
     }
@@ -2932,7 +2850,7 @@ BOOL dSv_player_collect_c::isCollectMirror(u8 i_item) const {
     return mMirror & (u8)(1 << i_item) ? TRUE : FALSE;
 }
 
-void dSv_player_wolf_c::init(void) {
+void dSv_player_wolf_c::init() {
     for (int i = 0; i < 3; i++) {
         unk0[i] = 0;
     }
@@ -2940,7 +2858,7 @@ void dSv_player_wolf_c::init(void) {
     unk3 = 0;
 }
 
-void dSv_light_drop_c::init(void) {
+void dSv_light_drop_c::init() {
     for (int i = 0; i < 4; i++) {
         mLightDropNum[i] = 0;
     }
@@ -2978,7 +2896,7 @@ BOOL dSv_light_drop_c::isLightDropGetFlag(u8 i_nowLevel) const {
     return mLightDropGetFlag & (u8)(1 << i_nowLevel) ? TRUE : FALSE;
 }
 
-void dSv_letter_info_c::init(void) {
+void dSv_letter_info_c::init() {
     for (int i = 0; i < 2; i++) {
         mLetterGetBitfields[i] = 0;
         mLetterReadBitfields[i] = 0;
@@ -3005,7 +2923,7 @@ BOOL dSv_letter_info_c::isLetterReadFlag(int i_no) const {
     return mLetterReadBitfields[i_no >> 5] & 1 << (i_no & 0x1F) ? TRUE : FALSE;
 }
 
-void dSv_fishing_info_c::init(void) {
+void dSv_fishing_info_c::init() {
     for (int i = 0; i < 16; i++) {
         mFishCount[i] = 0;
         mMaxSize[i] = 0;
@@ -3018,20 +2936,9 @@ void dSv_fishing_info_c::addFishCount(u8 fish_index) {
     }
 }
 
-/* 80034518-800345AC 02EE58 0094+00 1/1 0/0 0/0 .text            init__17dSv_player_info_cFv */
-// a few instructions off
-#ifdef NONMATCHING
-void dSv_player_info_c::init(void) {
-    unsigned long a = 0x382;
-    unsigned long b = 0x383;
-
-    JMSMesgEntry_c* c = 0;
-    JMSMesgEntry_c* d = 0;
-
-    d_meter2_info::dMeter2Info_c ok;
-
-    ok.getString(a, (char*)mPlayerName, c);
-    ok.getString(b, (char*)mHorseName, d);
+void dSv_player_info_c::init() {
+    dMeter2Info_getString(0x382, (char*)mPlayerName, NULL);
+    dMeter2Info_getString(0x383, (char*)mHorseName, NULL);
 
     unk4 = 0;
     unk0 = 0;
@@ -3044,31 +2951,18 @@ void dSv_player_info_c::init(void) {
         unk55[i] = 0;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSv_player_info_c::init() {
-    nofralloc
-#include "asm/d/save/d_save/init__17dSv_player_info_cFv.s"
-}
-#pragma pop
-#endif
 
-/* 800345AC-80034644 02EEEC 0098+00 1/1 0/0 0/0 .text            init__19dSv_player_config_cFv */
-// needs mAudioMgrPtr setup
-#ifdef NONMATCHING
-void dSv_player_config_c::init(void) {
+void dSv_player_config_c::init() {
     u32 os_mSoundMode;
 
     unk0 = 1;
     os_mSoundMode = OSGetSoundMode();
     if (os_mSoundMode == SOUND_MODE_MONO) {
         mSoundMode = SOUND_MODE_MONO;
-        lbl_80451368->setOutputMode(SOUND_MODE_MONO);
+        Z2AudioMgr::mAudioMgrPtr->setOutputMode(SOUND_MODE_MONO);
     } else {
         mSoundMode = SOUND_MODE_STEREO;
-        lbl_80451368->setOutputMode(SOUND_MODE_STEREO);
+        Z2AudioMgr::mAudioMgrPtr->setOutputMode(SOUND_MODE_STEREO);
     }
 
     mAttentionType = 0;
@@ -3076,26 +2970,16 @@ void dSv_player_config_c::init(void) {
     unk4 = 0;
     unk5 = 0;
     mShortCut = 0;
-    mCalibrateDist = 0x15e;
+    mCalibrateDist = 350;
     mCalValue = 0;
     mCameraControl = 0;
     mPointer = 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSv_player_config_c::init() {
-    nofralloc
-#include "asm/d/save/d_save/init__19dSv_player_config_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80034644-80034684 02EF84 0040+00 0/0 4/4 0/0 .text checkVibration__19dSv_player_config_cCFv */
 // need gameinfo inline
 #ifdef NONMATCHING
-u32 dSv_player_config_c::checkVibration(void) const {
+u32 dSv_player_config_c::checkVibration() const {
     return _sRumbleSupported & 0x80000000 ? dComIfGp_getNowVibration() : 0;
 }
 #else
@@ -3109,23 +2993,23 @@ asm u32 dSv_player_config_c::checkVibration() const {
 #pragma pop
 #endif
 
-u8 dSv_player_config_c::getSound(void) {
+u8 dSv_player_config_c::getSound() {
     return mSoundMode;
 }
 
-void dSv_player_config_c::setSound(u8 i_mSoundMode) {
-    mSoundMode = i_mSoundMode;
+void dSv_player_config_c::setSound(u8 i_mode) {
+    mSoundMode = i_mode;
 }
 
-u8 dSv_player_config_c::getVibration(void) {
+u8 dSv_player_config_c::getVibration() {
     return mVibration;
 }
 
-void dSv_player_config_c::setVibration(u8 i_mVibrationStatus) {
-    mVibration = i_mVibrationStatus;
+void dSv_player_config_c::setVibration(u8 i_status) {
+    mVibration = i_status;
 }
 
-void dSv_player_c::init(void) {
+void dSv_player_c::init() {
     player_status_a.init();
     player_status_b.init();
     horse_place.init();
@@ -3145,7 +3029,7 @@ void dSv_player_c::init(void) {
     player_config.init();
 }
 
-void dSv_memBit_c::init(void) {
+void dSv_memBit_c::init() {
     for (int i = 0; i < 2; i++) {
         mTbox[i] = 0;
     }
@@ -3217,7 +3101,7 @@ bool dSv_memBit_c::isDungeonItem(int i_no) const {
     return mDungeonItem & (u8)(1 << i_no) ? true : false;
 }
 
-void dSv_event_c::init(void) {
+void dSv_event_c::init() {
     for (int i = 0; i < MAX_EVENTS; i++) {
         mEvent[i] = 0;
     }
@@ -3246,7 +3130,7 @@ u8 dSv_event_c::getEventReg(u16 param_1) const {
     return (u8)param_1 & mEvent[param_1 >> 8];
 }
 
-void dSv_MiniGame_c::init(void) {
+void dSv_MiniGame_c::init() {
     unk0 = 0;
     for (int i = 0; i < 3; i++) {
         unk1[i] = 0;
@@ -3258,11 +3142,11 @@ void dSv_MiniGame_c::init(void) {
     unk20 = 0;
 }
 
-void dSv_memory_c::init(void) {
+void dSv_memory_c::init() {
     mMemBit.init();
 }
 
-void dSv_memory2_c::init(void) {
+void dSv_memory2_c::init() {
     for (int i = 0; i < 2; i++) {
         mVisitedRoom[i] = 0;
     }
@@ -3330,7 +3214,7 @@ BOOL dSv_danBit_c::isItem(int i_no) const {
     return mItem[i_no >> 5] & 1 << (i_no & 0x1F) ? TRUE : FALSE;
 }
 
-void dSv_zoneBit_c::init(void) {
+void dSv_zoneBit_c::init() {
     for (int i = 0; i < 2; i++) {
         mSwitch[i] = 0;
     }
@@ -3343,11 +3227,11 @@ void dSv_zoneBit_c::init(void) {
     mRoomItem = 0;
 }
 
-void dSv_zoneBit_c::clearRoomSwitch(void) {
+void dSv_zoneBit_c::clearRoomSwitch() {
     mRoomSwitch = 0;
 }
 
-void dSv_zoneBit_c::clearRoomItem(void) {
+void dSv_zoneBit_c::clearRoomItem() {
     mRoomItem = 0;
 }
 
@@ -3416,7 +3300,7 @@ BOOL dSv_zoneBit_c::isOneItem(int i_no) const {
     return mRoomItem & 1 << i_no ? TRUE : FALSE;
 }
 
-void dSv_zoneActor_c::init(void) {
+void dSv_zoneActor_c::init() {
     for (int i = 0; i < 4; i++) {
         actor_bitfield[i] = 0;
     }
@@ -3453,15 +3337,15 @@ void dSv_turnRestart_c::set(const cXyz& i_position, s16 i_angleY, s8 param_3, u3
     mParam = i_param;
 }
 
-void dSv_info_c::init(void) {
+void dSv_info_c::init() {
     mSavedata.init();
     mMemory.init();
-    mDan.init(-1);
+    initDan(-1);
     initZone();
     mTmp.init();
 }
 
-void dSv_save_c::init(void) {
+void dSv_save_c::init() {
     mPlayer.init();
     for (int i = 0; i < STAGE_MAX; i++) {
         mSave[i].init();
@@ -3479,27 +3363,15 @@ dSv_memory2_c* dSv_save_c::getSave2(int i_stage2No) {
     return &mSave2[i_stage2No];
 }
 
-/* 800350BC-800350F0 02F9FC 0034+00 0/0 1/1 0/0 .text            getSave__10dSv_info_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSv_info_c::getSave(int param_0) {
-    nofralloc
-#include "asm/d/save/d_save/getSave__10dSv_info_cFi.s"
+void dSv_info_c::getSave(int i_stageNo) {
+    mMemory = mSavedata.getSave(i_stageNo);
 }
-#pragma pop
 
-/* 800350F0-8003514C 02FA30 005C+00 0/0 2/2 0/0 .text            putSave__10dSv_info_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSv_info_c::putSave(int param_0) {
-    nofralloc
-#include "asm/d/save/d_save/putSave__10dSv_info_cFi.s"
+void dSv_info_c::putSave(int i_stageNo) {
+    mSavedata.putSave(i_stageNo, mMemory);
 }
-#pragma pop
 
-void dSv_info_c::initZone(void) {
+void dSv_info_c::initZone() {
     for (int i = 0; i < 0x20; i++) {
         mZone[i].init(-1);
     }
@@ -3561,7 +3433,7 @@ BOOL dSv_info_c::isSwitch(int i_no, int i_roomNo) const {
     }
 
     if (i_no < 0x80) {
-        value = mMemory.getMemBitConst().isSwitch(i_no);
+        value = mMemory.getBit().isSwitch(i_no);
     } else if (i_no < 0xc0) {
         value = mDan.isSwitch(i_no - 0x80);
     } else {
@@ -3570,9 +3442,9 @@ BOOL dSv_info_c::isSwitch(int i_no, int i_roomNo) const {
             value = FALSE;
         } else {
             if (i_no < 0xE0) {
-                value = mZone[zoneId].getZoneBitConst().isSwitch(i_no - 0xC0);
+                value = mZone[zoneId].getBit().isSwitch(i_no - 0xC0);
             } else {
-                value = mZone[zoneId].getZoneBitConst().isOneSwitch(i_no - 0xE0);
+                value = mZone[zoneId].getBit().isOneSwitch(i_no - 0xE0);
             }
         }
     }
@@ -3629,13 +3501,13 @@ BOOL dSv_info_c::isItem(int i_no, int i_roomNo) const {
     if (i_no < 0x80) {
         value = mDan.isItem(i_no);
     } else if (i_no < 0xA0) {
-        value = mMemory.getMemBitConst().isItem(i_no - 0x80);
+        value = mMemory.getBit().isItem(i_no - 0x80);
     } else {
         int zoneNo = dStage_roomControl_c::getZoneNo(i_roomNo);
         if (i_no < 0xC0) {
-            value = mZone[zoneNo].getZoneBitConst().isItem(i_no - 0xA0);
+            value = mZone[zoneNo].getBit().isItem(i_no - 0xA0);
         } else {
-            value = mZone[zoneNo].getZoneBitConst().isOneItem(i_no - 0xC0);
+            value = mZone[zoneNo].getBit().isOneItem(i_no - 0xC0);
         }
     }
 
@@ -3648,7 +3520,7 @@ void dSv_info_c::onActor(int i_id, int i_roomNo) {
     }
 
     int zoneNo = dStage_roomControl_c::getZoneNo(i_roomNo);
-    mZone[zoneNo].getZoneActor().on(i_id);
+    mZone[zoneNo].getActor().on(i_id);
 }
 
 void dSv_info_c::offActor(int i_id, int i_roomNo) {
@@ -3657,7 +3529,7 @@ void dSv_info_c::offActor(int i_id, int i_roomNo) {
     }
 
     int zoneNo = dStage_roomControl_c::getZoneNo(i_roomNo);
-    mZone[zoneNo].getZoneActor().off(i_id);
+    mZone[zoneNo].getActor().off(i_id);
 }
 
 BOOL dSv_info_c::isActor(int i_id, int i_roomNo) const {
@@ -3665,8 +3537,8 @@ BOOL dSv_info_c::isActor(int i_id, int i_roomNo) const {
         return FALSE;
     }
 
-    int ActorZoneNo = dStage_roomControl_c::getZoneNo(i_roomNo);
-    return mZone[ActorZoneNo].getZoneActorConst().is(i_id);
+    int zoneNo = dStage_roomControl_c::getZoneNo(i_roomNo);
+    return mZone[zoneNo].getActor().is(i_id);
 }
 
 /* ############################################################################################## */
@@ -3761,6 +3633,17 @@ SECTION_DEAD static char const* const pad_80379296 = "\0";
 
 /* 80035BD0-80035C88 030510 00B8+00 0/0 3/3 0/0 .text            initdata_to_card__10dSv_info_cFPci
  */
+#ifdef NONMATCHING
+void dSv_info_c::initdata_to_card(char* param_0, int fileNo) {
+    dSv_save_c tmp;
+
+    tmp.init();
+    tmp.getPlayer().getPlayerInfo().setPlayerName("");
+    tmp.getPlayer().getPlayerInfo().setHorseName("");
+    memcpy(&param_0 + fileNo * 0xa94, &tmp, 0x958);
+    printf("INIT size:%d\n", 0x958);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3769,6 +3652,7 @@ asm void dSv_info_c::initdata_to_card(char* param_0, int param_1) {
 #include "asm/d/save/d_save/initdata_to_card__10dSv_info_cFPci.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803790C0-80379234 005720 0172+02 0/0 17/17 7/7 .rodata tempBitLabels__20dSv_event_tmp_flag_c */

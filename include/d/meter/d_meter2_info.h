@@ -217,4 +217,12 @@ inline void dMeter2Info_setWindowStatus(u8 status) {
     g_meter2_info.setWindowStatus(status);
 }
 
+inline void dMeter2Info_getString(u32 param_0, char* param_1, JMSMesgEntry_c* param_2) {
+    g_meter2_info.getString(param_0, param_1, param_2);
+}
+
+inline void dMeter2Info_setHotSpringTimer(u8 time) {
+    g_meter2_info.setHotSpringTimer(time);
+}
+
 #endif /* D_METER_D_METER2_INFO_H */
