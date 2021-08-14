@@ -400,33 +400,33 @@ SECTION_SDATA2 static u8 lit_3813[4] = {
 };
 
 void dSv_horse_place_c::init() {
-    strcpy(mCurrentStage, "");
-    mPosition.set(FLOAT_LABEL(lit_3813), FLOAT_LABEL(lit_3813), FLOAT_LABEL(lit_3813));
-    mXRotation = 0;
+    strcpy(mName, "");
+    mPos.set(FLOAT_LABEL(lit_3813), FLOAT_LABEL(lit_3813), FLOAT_LABEL(lit_3813));
+    mAngleY = 0;
     mSpawnId = 0;
-    mRoomId = 0;
+    mRoomNo = 0;
 }
 
 void dSv_horse_place_c::set(const char* i_name, const cXyz& i_position, s16 i_x_rot,
                             signed char i_room_id) {
-    strcpy(mCurrentStage, i_name);
-    mPosition = i_position;
-    mXRotation = i_x_rot;
-    mRoomId = i_room_id;
+    strcpy(mName, i_name);
+    mPos = i_position;
+    mAngleY = i_x_rot;
+    mRoomNo = i_room_id;
 }
 
 void dSv_player_return_place_c::init() {
-    strcpy(mCurrentStage, "F_SP108");
-    mRoomId = 1;
-    mSpawnId = 0;
+    strcpy(mName, "F_SP108");
+    mRoomNo = 1;
+    mPlayerStatus = 0;
     unk10 = 21;
     unk11 = 0;
 }
 
 void dSv_player_return_place_c::set(const char* i_name, s8 i_room_id, u8 i_spawn_id) {
-    strcpy(mCurrentStage, i_name);
-    mRoomId = i_room_id;
-    mSpawnId = i_spawn_id;
+    strcpy(mName, i_name);
+    mRoomNo = i_room_id;
+    mPlayerStatus = i_spawn_id;
 }
 
 void dSv_player_field_last_stay_info_c::init() {
@@ -472,11 +472,11 @@ BOOL dSv_player_field_last_stay_info_c::isRegionBit(int i_region_bit) const {
 }
 
 void dSv_player_last_mark_info_c::init() {
-    strcpy(mOoccooStage, "");
-    mOoccooPosition.set(FLOAT_LABEL(lit_3813), FLOAT_LABEL(lit_3813), FLOAT_LABEL(lit_3813));
-    mOoccooXRotation = 0;
-    mOoccooRoomId = 0;
-    mOoccooSpawnId = 0;
+    strcpy(mName, "");
+    mPos.set(FLOAT_LABEL(lit_3813), FLOAT_LABEL(lit_3813), FLOAT_LABEL(lit_3813));
+    mAngleY = 0;
+    mRoomNo = 0;
+    mSpawnId = 0;
     mWarpAcceptStage = -1;
 
     for (int i = 0; i < 3; i++) {
@@ -487,10 +487,10 @@ void dSv_player_last_mark_info_c::init() {
 void dSv_player_last_mark_info_c::setWarpItemData(const char* i_ooccoo_stage,
                                                   const cXyz& i_ooccoo_position, s16 i_ooccoo_angle,
                                                   s8 i_ooccoo_room_id, u8 unk1, u8 unk2) {
-    strcpy(mOoccooStage, i_ooccoo_stage);
-    mOoccooPosition.set(i_ooccoo_position);
-    mOoccooXRotation = i_ooccoo_angle;
-    mOoccooRoomId = i_ooccoo_room_id;
+    strcpy(mName, i_ooccoo_stage);
+    mPos.set(i_ooccoo_position);
+    mAngleY = i_ooccoo_angle;
+    mRoomNo = i_ooccoo_room_id;
 }
 
 void dSv_player_item_c::init() {
@@ -2650,7 +2650,7 @@ asm void dSv_player_item_c::setBaitItem(u8 param_0) {
 
 void dSv_player_get_item_c::init() {
     for (int i = 0; i < 8; i++) {
-        mPauseMenuBitFields[i] = 0;
+        mItemFlags[i] = 0;
     }
 }
 
@@ -2661,7 +2661,7 @@ void dSv_player_get_item_c::onFirstBit(u8 i_itemno) {
     int tmp = (int)i_itemno;
     int tmp2 = (i_itemno >> 3) & 0xE0;
     // int uVar1 = ;
-    mPauseMenuBitFields[tmp2] |= 1 << (tmp & 0x1F);
+    mItemFlags[tmp2] |= 1 << (tmp & 0x1F);
 }
 #else
 #pragma push
@@ -2898,29 +2898,29 @@ BOOL dSv_light_drop_c::isLightDropGetFlag(u8 i_nowLevel) const {
 
 void dSv_letter_info_c::init() {
     for (int i = 0; i < 2; i++) {
-        mLetterGetBitfields[i] = 0;
-        mLetterReadBitfields[i] = 0;
+        mLetterGetFlags[i] = 0;
+        mLetterReadFlags[i] = 0;
     }
 
     for (int i = 0; i < LETTER_INFO_BIT; i++) {
-        unk16[i] = 0;
+        mGetNumber[i] = 0;
     }
 }
 
 void dSv_letter_info_c::onLetterGetFlag(int i_no) {
-    mLetterGetBitfields[i_no >> 0x5] |= 0x1 << (i_no & 0x1F);
+    mLetterGetFlags[i_no >> 0x5] |= 0x1 << (i_no & 0x1F);
 }
 
 BOOL dSv_letter_info_c::isLetterGetFlag(int i_no) const {
-    return mLetterGetBitfields[i_no >> 0x5] & (1 << (i_no & 0x1F)) ? TRUE : FALSE;
+    return mLetterGetFlags[i_no >> 0x5] & (1 << (i_no & 0x1F)) ? TRUE : FALSE;
 }
 
 void dSv_letter_info_c::onLetterReadFlag(int i_no) {
-    mLetterReadBitfields[i_no >> 0x5] |= 0x1 << (i_no & 0x1F);
+    mLetterReadFlags[i_no >> 0x5] |= 0x1 << (i_no & 0x1F);
 }
 
 BOOL dSv_letter_info_c::isLetterReadFlag(int i_no) const {
-    return mLetterReadBitfields[i_no >> 5] & 1 << (i_no & 0x1F) ? TRUE : FALSE;
+    return mLetterReadFlags[i_no >> 5] & 1 << (i_no & 0x1F) ? TRUE : FALSE;
 }
 
 void dSv_fishing_info_c::init() {
@@ -2953,11 +2953,11 @@ void dSv_player_info_c::init() {
 }
 
 void dSv_player_config_c::init() {
-    u32 os_mSoundMode;
+    u32 os_soundMode;
 
     unk0 = 1;
-    os_mSoundMode = OSGetSoundMode();
-    if (os_mSoundMode == SOUND_MODE_MONO) {
+    os_soundMode = OSGetSoundMode();
+    if (os_soundMode == SOUND_MODE_MONO) {
         mSoundMode = SOUND_MODE_MONO;
         Z2AudioMgr::mAudioMgrPtr->setOutputMode(SOUND_MODE_MONO);
     } else {
@@ -3010,23 +3010,23 @@ void dSv_player_config_c::setVibration(u8 i_status) {
 }
 
 void dSv_player_c::init() {
-    player_status_a.init();
-    player_status_b.init();
-    horse_place.init();
-    player_return.init();
-    player_last_field.init();
-    player_last_mark.init();
-    player_item.init();
-    player_get_item.init();
-    player_item_record.init();
-    player_item_max.init();
-    player_collect.init();
-    player_wolf.init();
-    light_drop.init();
-    letter_info.init();
-    fishing_info.init();
+    mPlayerStatusA.init();
+    mPlayerStatusB.init();
+    mHorsePlace.init();
+    mPlayerReturnPlace.init();
+    mPlayerFieldLastStayInfo.init();
+    mPlayerLastMarkInfo.init();
+    mItem.init();
+    mGetItem.init();
+    mItemRecord.init();
+    mItemMax.init();
+    mCollect.init();
+    mWolf.init();
+    mLightDrop.init();
+    mLetterInfo.init();
+    mFishingInfo.init();
     mPlayerInfo.init();
-    player_config.init();
+    mConfig.init();
 }
 
 void dSv_memBit_c::init() {
@@ -3135,7 +3135,7 @@ void dSv_MiniGame_c::init() {
     for (int i = 0; i < 3; i++) {
         unk1[i] = 0;
     }
-    unk4 = 120000;
+    mStarTime = 120000;
     mBalloonScore = 0;
     mRaceGameTime = 0;
     unk16 = 0;
@@ -3143,7 +3143,7 @@ void dSv_MiniGame_c::init() {
 }
 
 void dSv_memory_c::init() {
-    mMemBit.init();
+    mBit.init();
 }
 
 void dSv_memory2_c::init() {
@@ -3302,20 +3302,20 @@ BOOL dSv_zoneBit_c::isOneItem(int i_no) const {
 
 void dSv_zoneActor_c::init() {
     for (int i = 0; i < 4; i++) {
-        actor_bitfield[i] = 0;
+        mActorFlags[i] = 0;
     }
 }
 
 void dSv_zoneActor_c::on(int i_id) {
-    actor_bitfield[i_id >> 5] |= 1 << (i_id & 0x1F);
+    mActorFlags[i_id >> 5] |= 1 << (i_id & 0x1F);
 }
 
 void dSv_zoneActor_c::off(int i_id) {
-    actor_bitfield[i_id >> 5] &= ~(1 << (i_id & 0x1F));
+    mActorFlags[i_id >> 5] &= ~(1 << (i_id & 0x1F));
 }
 
 BOOL dSv_zoneActor_c::is(int i_id) const {
-    return actor_bitfield[i_id >> 5] & 1 << (i_id & 0x1F) ? TRUE : FALSE;
+    return mActorFlags[i_id >> 5] & 1 << (i_id & 0x1F) ? TRUE : FALSE;
 }
 
 void dSv_zone_c::init(int i_roomNo) {
@@ -3394,7 +3394,7 @@ void dSv_info_c::onSwitch(int i_no, int i_roomNo) {
     }
 
     if (i_no < 0x80) {
-        mMemory.getMemBit().onSwitch(i_no);
+        mMemory.getBit().onSwitch(i_no);
     } else if (i_no < 0xc0) {
         mDan.onSwitch(i_no - 0x80);
     } else {
@@ -3413,7 +3413,7 @@ void dSv_info_c::offSwitch(int i_no, int i_roomNo) {
     }
 
     if (i_no < 0x80) {
-        mMemory.getMemBit().offSwitch(i_no);
+        mMemory.getBit().offSwitch(i_no);
     } else if (i_no < 0xc0) {
         mDan.offSwitch(i_no - 0x80);
     } else {
@@ -3458,7 +3458,7 @@ BOOL dSv_info_c::revSwitch(int i_no, int i_roomNo) {
     }
 
     if (i_no < 0x80) {
-        value = mMemory.getMemBit().revSwitch(i_no);
+        value = mMemory.getBit().revSwitch(i_no);
     } else if (i_no < 0xC0) {
         value = mDan.revSwitch(i_no - 0x80);
     } else {
@@ -3481,7 +3481,7 @@ void dSv_info_c::onItem(int i_no, int i_roomNo) {
     if (i_no < 0x80) {
         mDan.onItem(i_no);
     } else if (i_no < 0xA0) {
-        mMemory.getMemBit().onItem(i_no - 0x80);
+        mMemory.getBit().onItem(i_no - 0x80);
     } else {
         int zoneNo = dStage_roomControl_c::getZoneNo(i_roomNo);
         if (i_no < 0xC0) {
