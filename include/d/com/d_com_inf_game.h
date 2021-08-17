@@ -24,22 +24,37 @@ struct dTimer_c {
     /* 8025D9E0 */ void deleteRequest();
 };
 
-#pragma pack(push, 1)
+class __d_timer_info_c {
+public:
+    __d_timer_info_c() {
+        mTimerMode = -1;
+        mTimerLimitTimeMs = 0;
+        mTimerNowTimeMs = 0;
+        mTimerPtr = NULL;
+    }
+    dTimer_c* mTimerPtr;
+    s32 mTimerNowTimeMs;
+    s32 mTimerLimitTimeMs;
+    s32 mTimerMode;
+    u8 mTimerType;
+};
+
 class dComIfG_camera_info_class {
 public:
-    dComIfG_camera_info_class(void);
-    /* 80030208 */ ~dComIfG_camera_info_class();
+    dComIfG_camera_info_class(void) {}
+    /* 80030208 */ ~dComIfG_camera_info_class() {}
 
 private:
     u8 field_0x0[12];
     cXyz field_0xc;
     cXyz field_0x18;
+    u8 field_0x24[0x14];
 };
-#pragma pack(pop)
+STATIC_ASSERT(sizeof(dComIfG_camera_info_class) == 0x38);
 
-#pragma pack(push, 1)
 class dComIfG_play_c {
 public:
+    dComIfG_play_c() { this->ct(); }
     void ct(void);
     void init(void);
     void itemInit(void);
@@ -72,12 +87,12 @@ public:
     void setWarpItemData(const char*, cXyz, s16, s8, u8, u8);
     void setSelectItem(int, u8);
     void setSelectItemTest(int, u8);
-    ~dComIfG_play_c();
+    ~dComIfG_play_c() {}
 
     // inlines
     bool& isPauseFlag() { return mPauseFlag; }
     void* getMsgObjectClass() { return mMsgObjectClass; }
-    dStage_roomControl_c* getRoomControl() { return mRoomControl; }
+    dStage_roomControl_c* getRoomControl() { return &mRoomControl; }
     dEvt_control_c getEvent() { return mEvent; }
     daHorse_c* getHorseActor() { return mHorseActor; }
     u8& getItemLifeCountType() { return mItemLifeCountType; }
@@ -134,7 +149,7 @@ public:
     /* 0x03ED6 */ dStage_nextStage_c mNextStage;
     /* 0x03EE7 */ u8 field_0x3ee7;  // probably padding
     /* 0x03EE8 */ dStage_stageDt_c mStageData;
-    /* 0x03F8C */ dStage_roomControl_c* mRoomControl;
+    /* 0x03F8C */ dStage_roomControl_c mRoomControl;
     /* 0x03F90 */ dEvt_control_c mEvent;
     /* 0x040C0 */ dEvent_manager_c mEvtManager;
     /* 0x04780 */ dAttention_c mAttention;
@@ -171,21 +186,8 @@ public:
     /* 0x04E0C */ u8 mWindowNum;
     /* 0x04E0D */ u8 mLayerOld;
     /* 0x04E0E */ u16 mStatus;
-    /* 0x04E10 */ dDlst_window_c mWindow;
-    /* 0x04E3C */ dComIfG_camera_info_class* mCameraInfo;
-    /* 0x04E40 */ s8 mCameraWinID;
-    /* 0x04E41 */ s8 mCameraPlayer1ID;
-    /* 0x04E42 */ s8 mCameraPlayer2ID;
-    /* 0x04E43 */ u8 field_0x4e43;
-    /* 0x04E44 */ int mCameraAttentionStatus;
-    /* 0x04E48 */ float mCameraZoomScale;
-    /* 0x04E4C */ float mCameraZoomForcus;
-    /* 0x04E50 */ void* mCameraParamFileName;
-    /* 0x04E54 */ cXyz mCameraPos;
-    /* 0x04E60 */ cXyz mCameraTarget;
-    /* 0x04E6C */ float mCameraUnk1;
-    /* 0x04E70 */ s16 mCameraUnk2;
-    /* 0x04E72 */ s16 field_0x4e72;
+    /* 0x04E10 */ dDlst_window_c mWindow[1];
+    /* 0x04E3C */ dComIfG_camera_info_class mCameraInfo[1];
     /* 0x04E74 */ daAlink_c* mPlayer;
     /* 0x04E78 */ s8 mPlayerCameraID[4];
     /* 0x04E7C */ daAlink_c* mPlayerPtr;
@@ -351,26 +353,35 @@ public:
     /* 0x04FDC */ fopAc_ac_c* mMesgCamInfoActor10;
     /* 0x04FE0 */ int mPlayerStatus;
     /* 0x04FE4 */ u8 field_0x4fe4[0x14];
-    /* 0x04FF8 */ dTimer_c* mTimerPtr;
-    /* 0x04FFC */ int mTimerNowTimeMs;
-    /* 0x05000 */ int mTimerLimitTimeMs;
-    /* 0x05004 */ int mTimerMode;
-    /* 0x05008 */ u8 mTimerType;
+    /* 0x04FF8 */ __d_timer_info_c mTimerInfo;
     /* 0x0500C */ dDlst_window_c* mCurrentWindow;
     /* 0x05010 */ void* mCurrentView;
     /* 0x05014 */ void* mCurrentViewport;
     /* 0x05018 */ void* mCurrentGrafPort;
     /* 0x0501C */ void* mItemTable;
-    /* 0x0501D */ u8 field_0x501d[7];
+    /* 0x0501D */ u8 field_0x501d[4];
     /* 0x05024 */ char mLastPlayStageName[8];
 };
-#pragma pack(pop)
+
+class dRes_control_c {
+public:
+    dRes_control_c() {}
+    /* 8003BFB0 */ ~dRes_control_c();
+    /* 8003C078 */ void setRes(char const*, dRes_info_c*, int, char const*, u8, JKRHeap*);
+    /* 8003C160 */ void syncRes(char const*, dRes_info_c*, int);
+    /* 8003C194 */ void deleteRes(char const*, dRes_info_c*, int);
+    /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
+
+private:
+    /* 0x0000 */ dRes_info_c mResInfos1[0x80];
+    /* 0x1200 */ dRes_info_c mResInfos2[0x40];
+};  // Size: 0x1B00
 
 #pragma pack(push, 1)
 class dComIfG_inf_c {
 public:
-    dComIfG_inf_c(void);
-    ~dComIfG_inf_c();
+    dComIfG_inf_c(void) { this->ct(); }
+    ~dComIfG_inf_c() {}
     void ct(void);
 
     // temp for setWarashibeItem
@@ -393,11 +404,8 @@ private:
     /* 0x00000 */ dSv_info_c info;
     /* 0x00F38 */ dComIfG_play_c play;
     /* 0x05F64 */ dDlst_list_c draw_list_list;
-    /* 0x1C110 */ u8 field_0x1C114[0x1E8];
-    /* 0x1C2F8 */ dRes_info_c resource_info1;
-    /* 0x1C31C */ u8 unk19[0x11DC];
-    /* 0x1D4F8 */ dRes_info_c resource_info2;
-    /* 0x1D51C */ u8 unk20[0x8DA];
+    /* 0x1C110 */ u8 field_0x1C114[0x1E8 - 0xA];
+    /* 0x1C2F8 */ dRes_control_c mResControl;
     /* 0x1DDF8 */ u8 field_0x1ddf8;
     /* 0x1DDF9 */ u8 mWorldDark;
     /* 0x1DDFA */ u8 field_0x1ddfa;
@@ -408,29 +416,15 @@ private:
     /* 0x1DE08 */ u8 field_0x1de08;
     /* 0x1DE09 */ u8 field_0x1de09;
     /* 0x1DE0A */ u8 field_0x1de0a;
+    u8 _pad[8];
 
-    static u8 dComIfG_mTimerInfo[20];
+    static __d_timer_info_c dComIfG_mTimerInfo;
 };
 #pragma pack(pop)
 
-class __d_timer_info_c {
-public:
-    __d_timer_info_c() {
-        field_0xc = -1;
-        field_0x8 = 0;
-        field_0x4 = 0;
-        field_0x0 = 0;
-    }
-    u32 field_0x0;
-    u32 field_0x4;
-    u32 field_0x8;
-    u32 field_0xc;
-    u32 field_0x10;
-};
-
 STATIC_ASSERT(122384 == sizeof(dComIfG_inf_c));
 
-// extern dComIfG_inf_c g_dComIfG_gameInfo;
+extern dComIfG_inf_c g_dComIfG_gameInfo;
 
 /* void dComIfGp_setItemLifeCount(float, u8);
 void dComIfGp_setItemRupeeCount(long);

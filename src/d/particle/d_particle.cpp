@@ -670,7 +670,6 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void sprintf();
-extern "C" extern u8 const j3dDefaultLightInfo[52];
 extern "C" extern void* __vt__19JPAParticleCallBack[5];
 extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" u8 j_o_id__8dPa_name[10 + 2 /* padding */];

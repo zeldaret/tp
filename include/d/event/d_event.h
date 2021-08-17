@@ -10,7 +10,7 @@
 
 class dEvt_order_c {
 public:
-    ~dEvt_order_c();
+    ~dEvt_order_c() {}
     dEvt_order_c();
 
     /*  0x00 */ u16 mEventType;
@@ -23,6 +23,8 @@ public:
     /*  0x14 */ u8 mNextOrderIdx;
     /*  0x15 */ u8 mEventInfoIdx;
 };  // Size = 0x18
+
+STATIC_ASSERT(sizeof(dEvt_order_c) == 0x18);
 
 typedef int (*SkipFunc)(void*, int);
 

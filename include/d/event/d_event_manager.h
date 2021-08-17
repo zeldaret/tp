@@ -24,6 +24,7 @@ class dEvent_manager_c {
 public:
     void getSubstance(dEvDtData_c*, int);
     dEvent_manager_c();
+    ~dEvent_manager_c() {}
     void create();
     void setObjectArchive(char*);
     void demoInit();

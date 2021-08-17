@@ -12,7 +12,6 @@ public:
     /* 0x0C */ cXyz mMax;
     /* 0x18 vtable */
 
-    virtual void test();  // temp to build OK, remove later
     virtual ~cM3dGAab() {}
     void Set(const cXyz*, const cXyz*);
     bool CrossY(const cXyz*) const;

@@ -6,15 +6,15 @@
 #include "d/cc/d_cc_mass_s.h"
 #include "dolphin/types.h"
 
-class dCcS {
+class dCcS : public cCcS {
 public:
-    /* 8002FF40 */ ~dCcS();
+    dCcS() {}
     /* 80085ED4 */ void Ct();
     /* 80085F08 */ void Dt();
     /* 80085F28 */ void ChkShieldFrontRange(cCcD_Obj*, cCcD_Obj*, int, cXyz const*);
     /* 800860F8 */ void ChkShield(cCcD_Obj*, cCcD_Obj*, dCcD_GObjInf*, dCcD_GObjInf*, cXyz const*);
     /* 800861B0 */ void CalcTgPlusDmg(cCcD_Obj*, cCcD_Obj*, cCcD_Stts*, cCcD_Stts*);
-    /* 800861B4 */ void ChkAtTgHitAfterCross(bool, bool, cCcD_GObjInf const*, cCcD_GObjInf const*,
+    /* 800861B4 */ bool ChkAtTgHitAfterCross(bool, bool, cCcD_GObjInf const*, cCcD_GObjInf const*,
                                              cCcD_Stts*, cCcD_Stts*, cCcD_GStts*, cCcD_GStts*);
     /* 80086240 */ void SetCoGObjInf(bool, bool, cCcD_GObjInf*, cCcD_GObjInf*, cCcD_Stts*,
                                      cCcD_Stts*, cCcD_GStts*, cCcD_GStts*);
@@ -37,13 +37,14 @@ public:
     /* 800872D0 */ void Draw();
     /* 8008730C */ void MassClear();
     /* 80087330 */ void ChkAtTgMtrlHit(u8, u8);
-    /* 8008734C */ void ChkNoHitGAtTg(cCcD_GObjInf const*, cCcD_GObjInf const*, cCcD_GStts*,
+    /* 8008734C */ bool ChkNoHitGAtTg(cCcD_GObjInf const*, cCcD_GObjInf const*, cCcD_GStts*,
                                       cCcD_GStts*);
+    /* 8002FF40 */ virtual ~dCcS() {}
 
     static u8 m_mtrl_hit_tbl[64];
 
 private:
-    /* 0x0000 */ cCcS mCCcS;
+    // /* 0x0000 */ cCcS mCCcS;
     /* 0x284C */ dCcMassS_Mng mMass_Mng;
 };  // Size = 0x2AC4
 

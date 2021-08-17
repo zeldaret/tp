@@ -757,7 +757,7 @@ private:
 
 class dSv_memory_c {
 public:
-    dSv_memory_c(void);
+    dSv_memory_c(void) { this->init(); }
     void init(void);
     dSv_memBit_c& getMemBit() { return mMemBit; }
     const dSv_memBit_c& getMemBitConst() const { return mMemBit; }
@@ -767,9 +767,11 @@ private:
     u8 padding30[2];
 };
 
+STATIC_ASSERT(sizeof(dSv_memory_c) == 0x20);
+
 class dSv_memory2_c {
 public:
-    dSv_memory2_c(void);
+    dSv_memory2_c(void) { this->init(); }
     void init(void);
     void onVisitedRoom(int);
     void offVisitedRoom(int);
@@ -778,6 +780,8 @@ public:
 private:
     u32 mVisitedRoom[2];
 };
+
+STATIC_ASSERT(sizeof(dSv_memory2_c) == 8);
 
 class dSv_danBit_c {
 public:
@@ -839,7 +843,7 @@ private:
 
 class dSv_zone_c {
 public:
-    dSv_zone_c(void);  // the assembly for this is in d_com_inf_game.s
+    dSv_zone_c(void) { mRoomNo = -1; }  // the assembly for this is in d_com_inf_game.s
     void init(int);
     dSv_zoneBit_c& getZoneBit() { return mBit; }
     const dSv_zoneBit_c& getZoneBitConst() const { return mBit; }
@@ -854,6 +858,8 @@ private:
     dSv_zoneBit_c mBit;
     dSv_zoneActor_c mActor;
 };
+
+STATIC_ASSERT(sizeof(dSv_zone_c) == 0x20);
 
 class dSv_restart_c {
 public:
@@ -914,7 +920,7 @@ public:
     static const int STAGE_MAX = 32;
     static const int STAGE2_MAX = 64;
 
-private:
+    // private:
     dSv_player_c mPlayer;
     dSv_memory_c mSave[STAGE_MAX];
     dSv_memory2_c mSave2[STAGE2_MAX];
@@ -925,6 +931,8 @@ private:
 #pragma pack(push, 1)
 class dSv_info_c {
 public:
+    dSv_info_c() {}
+    ~dSv_info_c() {}
     void init(void);
     void getSave(int);
     void putSave(int);

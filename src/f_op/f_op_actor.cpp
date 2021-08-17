@@ -4,6 +4,7 @@
 //
 
 #include "f_op/f_op_actor.h"
+#include "d/d_stage.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
@@ -21,18 +22,6 @@ struct fopEn_enemy_c {
 
 struct daSus_c {
     /* 800314D4 */ void check(fopAc_ac_c*);
-};
-
-struct dSv_info_c {
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dStage_roomDt_c {
-    /* 800193FC */ void getFileListInfo() const;
-};
-
-struct dStage_roomControl_c {
-    /* 80024384 */ void getStatusRoomDt(int);
 };
 
 struct J3DModelData {};
@@ -157,7 +146,6 @@ extern "C" void entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
 extern "C" void __construct_array();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
-extern "C" extern u8 const j3dDefaultLightInfo[52];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" f32 Zero__4cXyz[3];
@@ -195,7 +183,8 @@ extern "C" asm void __dt__5csXyzFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DLightObj::J3DLightObj() {
+// asm J3DLightObj::J3DLightObj() {
+extern "C" asm void __ct__11J3DLightObjFv() {
     nofralloc
 #include "asm/f_op/f_op_actor/__ct__11J3DLightObjFv.s"
 }
@@ -330,9 +319,11 @@ static asm void fopAc_Create(void* param_0) {
 
 /* 800193FC-80019404 013D3C 0008+00 0/0 1/0 0/0 .text getFileListInfo__15dStage_roomDt_cCFv */
 #pragma push
+#pragma force_active on
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dStage_roomDt_c::getFileListInfo() const {
+// asm void dStage_roomDt_c::getFileListInfo() const {
+extern "C" asm void getFileListInfo__15dStage_roomDt_cCFv() {
     nofralloc
 #include "asm/f_op/f_op_actor/getFileListInfo__15dStage_roomDt_cCFv.s"
 }

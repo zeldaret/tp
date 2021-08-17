@@ -32,9 +32,9 @@ public:
     /* 80264C5C */ void ClrCoHitInf();
     /* 80264CF0 */ void ClrTgHitInf();
     /* 80264D90 */ void ClrAtHitInf();
-    /* 80264E2C */ int ChkNoHitAtTg(cCcD_Obj*, cCcD_Obj*);
+    /* 80264E2C */ bool ChkNoHitAtTg(cCcD_Obj*, cCcD_Obj*);
     /* 80264F40 */ void ChkAtTg();
-    /* 8026515C */ void ChkNoHitCo(cCcD_Obj*, cCcD_Obj*);
+    /* 8026515C */ bool ChkNoHitCo(cCcD_Obj*, cCcD_Obj*);
     /* 80265230 */ void ChkCo();
     /* 802653A0 vt[2] */ virtual void CalcTgPlusDmg(cCcD_Obj*, cCcD_Obj*, cCcD_Stts*, cCcD_Stts*);
     /* 802653C8 */ void SetAtTgCommonHitInf(cCcD_Obj*, cCcD_Obj*, cXyz*);
@@ -55,7 +55,7 @@ public:
                                                            cCcD_GObjInf const*, cCcD_Stts*,
                                                            cCcD_Stts*, cCcD_GStts*, cCcD_GStts*);
     /* 80265E10 vt[8] */ virtual bool ChkNoHitGCo(cCcD_Obj*, cCcD_Obj*);
-    /* 80030BDC vt[9] */ virtual ~cCcS();
+    /* 80030BDC vt[9] */ virtual ~cCcS() {}
     /* 80265E18 vt[10] */ virtual void MoveAfterCheck();
     /* 80265DF4 vt[11] */ virtual void SetCoGCorrectProc(cCcD_Obj*, cCcD_Obj*);
 };  // Size = 0x284C
