@@ -15,7 +15,7 @@ public:
     u32 checkWaterBomb() const { return checkStateFlg0(WATER_BOMB); }
 
     /* 0x000 */ fopAc_ac_c mActor;
-    /* 0x570 */ u8 field_0x570[8];
+    /* 0x568 */ u8 field_0x568[0x10];
     /* 0x578 */ dBgS_Acch mAcch;
     /* 0x750 */ dBgS_AcchCir mAcchCir;
     /* 0x790 */ dCcD_Stts mStts;

@@ -126,6 +126,7 @@ private:
 
 class daPy_py_c : public fopAc_ac_c {
 public:
+    /* 0x0568 */ u8 field_0x568[8];
     /* 0x0570 */ int mNoResetFlg0;
     /* 0x0574 */ int mNoResetFlg1;
     /* 0x0578 */ int mNoResetFlg2;

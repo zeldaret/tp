@@ -2909,7 +2909,7 @@ public:
 
 private:
     /* 0x0000 */ fopAc_ac_c mActor;
-    /* 0x0570 */ u8 field_0x570[0xCE4];
+    /* 0x0568 */ u8 field_0x568[0xCEC];
     /* 0x1254 */ daPy_actorKeep_c mZeldaActorKeep;
 };
 
@@ -2932,7 +2932,7 @@ public:
 
 private:
     /* 0x0000 */ fopAc_ac_c mActor;
-    /* 0x0570 */ u8 field_0x570[0x324];
+    /* 0x0568 */ u8 field_0x568[0x32C];
     /* 0x0894 */ u32 mStateFlg1;
     /* 0x0898 */ u32 mEndResetStateFlg0;
 };
