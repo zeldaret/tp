@@ -26,11 +26,10 @@ public:
 };  // actual size unknown!!!
 #pragma pack(pop)
 
-#pragma pack(push, 1)
 class dDlst_window_c {
 public:
-    dDlst_window_c(void);
-    ~dDlst_window_c();
+    dDlst_window_c(void) {}
+    ~dDlst_window_c() {}
     /* 80051AC0 */ void setViewPort(f32, f32, f32, f32, f32, f32);
     /* 80051ADC */ void setScissor(f32, f32, f32, f32);
 
@@ -47,7 +46,8 @@ private:
     float scissor4;
     int camera_id;
 };
-#pragma pack(pop)
+
+STATIC_ASSERT(sizeof(dDlst_window_c) == 0x2C);
 
 class dDlst_base_c {
 public:

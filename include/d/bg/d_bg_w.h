@@ -95,7 +95,6 @@ struct cBgW {
     /* 8007B964 */ void ChkMoveBg() const;
 };
 
-#pragma pack(push, 1)
 class dBgW_Base {
 public:
     enum PushPullLabel {};
@@ -118,7 +117,6 @@ private:
     s16 field_0xc;
     s16 field_0xe;
 };
-#pragma pack(pop)
 
 class dBgW {
 public:

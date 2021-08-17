@@ -315,7 +315,8 @@ SECTION_SDATA2 static f32 lit_4073 = 1.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dAttParam_c::dAttParam_c(s32 param_0) {
+// asm dAttParam_c::dAttParam_c(s32 param_0) {
+extern "C" asm void __ct__11dAttParam_cFl() {
     nofralloc
 #include "asm/d/d_attention/__ct__11dAttParam_cFl.s"
 }
@@ -325,7 +326,8 @@ asm dAttParam_c::dAttParam_c(s32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dAttParam_c::~dAttParam_c() {
+// asm dAttParam_c::~dAttParam_c() {
+extern "C" asm void __dt__11dAttParam_cFv() {
     nofralloc
 #include "asm/d/d_attention/__dt__11dAttParam_cFv.s"
 }
@@ -342,7 +344,8 @@ SECTION_SDATA2 static f32 lit_4085 = 2.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dAttDrawParam_c::dAttDrawParam_c() {
+// asm dAttDrawParam_c::dAttDrawParam_c() {
+extern "C" asm void __ct__15dAttDrawParam_cFv() {
     nofralloc
 #include "asm/d/d_attention/__ct__15dAttDrawParam_cFv.s"
 }
@@ -357,7 +360,8 @@ SECTION_SDATA2 static f32 lit_4092 = 3.0f / 5.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dAttDraw_CallBack_c::execute(u16 param_0, J3DTransformInfo* param_1) {
+// asm void dAttDraw_CallBack_c::execute(u16 param_0, J3DTransformInfo* param_1) {
+extern "C" asm void execute__19dAttDraw_CallBack_cFUsP16J3DTransformInfo() {
     nofralloc
 #include "asm/d/d_attention/execute__19dAttDraw_CallBack_cFUsP16J3DTransformInfo.s"
 }

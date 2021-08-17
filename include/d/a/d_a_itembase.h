@@ -57,7 +57,7 @@ private:
 #endif
 
     u8 unk0[0x92a];
-    u8 m_itemNo;
+    u8 mItemNo;
     u8 unk2347;
 };
 

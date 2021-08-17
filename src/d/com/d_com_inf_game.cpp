@@ -35,14 +35,6 @@ struct dSmplMdl_draw_c {
     /* 80049058 */ void removeModel(J3DModelData*, int);
 };
 
-struct dRes_control_c {
-    /* 8003BFB0 */ ~dRes_control_c();
-    /* 8003C078 */ void setRes(char const*, dRes_info_c*, int, char const*, u8, JKRHeap*);
-    /* 8003C160 */ void syncRes(char const*, dRes_info_c*, int);
-    /* 8003C194 */ void deleteRes(char const*, dRes_info_c*, int);
-    /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
-};
-
 struct dPa_control_c {
     /* 8004BACC */ dPa_control_c();
 };
@@ -431,15 +423,15 @@ void dComIfG_play_c::ct(void) {
 
 /* ############################################################################################## */
 /* 804061A0-804061B4 032EC0 0014+00 1/1 0/0 0/0 .bss             dComIfG_mTimerInfo */
-static u8 dComIfG_mTimerInfo[20];
+static __d_timer_info_c dComIfG_mTimerInfo;
 
 /* 804061B4-804061C0 032ED4 000C+00 1/1 0/0 0/0 .bss             @5065 */
-static u8 lit_5065[12];
+// static u8 lit_5065[12];
 
 /* 804061C0-80423FD0 032EE0 1DE10+00 99/99 2264/2264 7115/7115 .bss             g_dComIfG_gameInfo
  */
-extern u8 g_dComIfG_gameInfo[122384];
-u8 g_dComIfG_gameInfo[122384];
+// extern u8 g_dComIfG_gameInfo[122384];
+dComIfG_inf_c g_dComIfG_gameInfo;
 
 /* 8002B22C-8002B2A8 025B6C 007C+00 1/1 1/1 0/0 .text            init__14dComIfG_play_cFv */
 #ifdef NONMATCHING
@@ -705,46 +697,46 @@ asm u32 dComIfG_play_c::entrySimpleModel(J3DModel* param_0, int param_1) {
 #pragma pop
 
 void dComIfG_play_c::setTimerNowTimeMs(int time) {
-    mTimerNowTimeMs = time;
+    mTimerInfo.mTimerNowTimeMs = time;
 }
 
 int dComIfG_play_c::getTimerNowTimeMs() {
-    return mTimerNowTimeMs;
+    return mTimerInfo.mTimerNowTimeMs;
 }
 
 void dComIfG_play_c::setTimerLimitTimeMs(int time) {
-    mTimerLimitTimeMs = time;
+    mTimerInfo.mTimerLimitTimeMs = time;
 }
 
 int dComIfG_play_c::getTimerLimitTimeMs() {
-    return mTimerLimitTimeMs;
+    return mTimerInfo.mTimerLimitTimeMs;
 }
 
 void dComIfG_play_c::setTimerMode(int mode) {
-    mTimerMode = mode;
+    mTimerInfo.mTimerMode = mode;
 }
 
 int dComIfG_play_c::getTimerMode(void) {
-    return mTimerMode;
+    return mTimerInfo.mTimerMode;
 }
 
 void dComIfG_play_c::setTimerType(u8 type) {
-    mTimerType = type;
+    mTimerInfo.mTimerType = type;
 }
 
 u8 dComIfG_play_c::getTimerType(void) {
-    return mTimerType;
+    return mTimerInfo.mTimerType;
 }
 
 /* 8002CBD4-8002CBDC -00001 0008+00 0/0 0/0 0/0 .text setTimerPtr__14dComIfG_play_cFP8dTimer_c */
 void dComIfG_play_c::setTimerPtr(dTimer_c* pTimerPtr) {
-    mTimerPtr = pTimerPtr;
+    mTimerInfo.mTimerPtr = pTimerPtr;
 }
 
 /* 8002CBDC-8002CBE4 02751C 0008+00 6/6 7/7 15/15 .text            getTimerPtr__14dComIfG_play_cFv
  */
 dTimer_c* dComIfG_play_c::getTimerPtr() {
-    return mTimerPtr;
+    return mTimerInfo.mTimerPtr;
 }
 
 /* 8002CBE4-8002CC54 027524 0070+00 1/1 1/1 0/0 .text            ct__13dComIfG_inf_cFv */
@@ -2042,433 +2034,6 @@ asm void dComIfGs_staffroll_next_go() {
 asm void dComIfGs_staffroll_next_go_check() {
     nofralloc
 #include "asm/d/com/d_com_inf_game/dComIfGs_staffroll_next_go_check__Fv.s"
-}
-#pragma pop
-
-/* 8002FD18-8002FD74 02A658 005C+00 0/0 1/0 0/0 .text            __sinit_d_com_inf_game_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_com_inf_game_cpp() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__sinit_d_com_inf_game_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x8002FD18, __sinit_d_com_inf_game_cpp);
-#pragma pop
-
-/* 8002FD74-8002FDE8 02A6B4 0074+00 1/1 0/0 0/0 .text            __dt__13dComIfG_inf_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dComIfG_inf_c::~dComIfG_inf_c() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__13dComIfG_inf_cFv.s"
-}
-#pragma pop
-
-/* 8002FDE8-8002FEF8 02A728 0110+00 1/1 0/0 0/0 .text            __dt__14dComIfG_play_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dComIfG_play_c::~dComIfG_play_c() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__14dComIfG_play_cFv.s"
-}
-#pragma pop
-
-/* 8002FEF8-8002FF40 02A838 0048+00 4/4 1/0 0/0 .text            __dt__11cBgS_ChkElmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cBgS_ChkElm::~cBgS_ChkElm() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__11cBgS_ChkElmFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 803A71E8-803A71F4 004308 000C+00 1/1 1/1 0/0 .data            __vt__25mDoExt_McaMorfCallBack1_c
- */
-SECTION_DATA extern void* __vt__25mDoExt_McaMorfCallBack1_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)NULL,
-};
-
-/* 803A71F4-803A7200 004314 000C+00 1/1 1/1 0/0 .data            __vt__12dCcMassS_Obj */
-SECTION_DATA extern void* __vt__12dCcMassS_Obj[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dCcMassS_ObjFv,
-};
-
-/* 803A7200-803A720C 004320 000C+00 4/4 2/2 0/0 .data            __vt__15cCcD_DivideArea */
-SECTION_DATA extern void* __vt__15cCcD_DivideArea[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__15cCcD_DivideAreaFv,
-};
-
-/* 803A720C-803A7218 00432C 000C+00 3/3 11/11 0/0 .data            __vt__8cM3dGCyl */
-SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGCylFv,
-};
-
-/* 803A7218-803A7224 004338 000C+00 5/5 28/28 0/0 .data            __vt__8cM3dGAab */
-SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGAabFv,
-};
-
-/* 803A7224-803A7230 004344 000C+00 4/4 9/9 0/0 .data            __vt__15cCcD_DivideInfo */
-SECTION_DATA extern void* __vt__15cCcD_DivideInfo[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__15cCcD_DivideInfoFv,
-};
-
-/* 803A7230-803A7240 004350 000C+04 2/2 1/1 0/0 .data            __vt__12dCcMassS_Mng */
-SECTION_DATA extern void* __vt__12dCcMassS_Mng[3 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dCcMassS_MngFv,
-    /* padding */
-    NULL,
-};
-
-/* 8002FF40-800300F4 02A880 01B4+00 1/1 1/0 0/0 .text            __dt__4dCcSFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dCcS::~dCcS() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__4dCcSFv.s"
-}
-#pragma pop
-
-/* 800300F4-80030154 02AA34 0060+00 3/2 1/1 0/0 .text            __dt__12dCcMassS_ObjFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dCcMassS_Obj::~dCcMassS_Obj() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__12dCcMassS_ObjFv.s"
-}
-#pragma pop
-
-/* 80030154-80030190 02AA94 003C+00 1/1 1/1 0/0 .text            __dt__12dEvt_order_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dEvt_order_c::~dEvt_order_c() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__12dEvt_order_cFv.s"
-}
-#pragma pop
-
-/* 80030190-800301CC 02AAD0 003C+00 1/1 1/1 0/0 .text            __dt__11dEvDtBase_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dEvDtBase_c::~dEvDtBase_c() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__11dEvDtBase_cFv.s"
-}
-#pragma pop
-
-/* 800301CC-80030208 02AB0C 003C+00 2/2 0/0 0/0 .text            __dt__14dDlst_window_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dDlst_window_c::~dDlst_window_c() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__14dDlst_window_cFv.s"
-}
-#pragma pop
-
-/* 80030208-80030244 02AB48 003C+00 2/2 0/0 0/0 .text            __dt__25dComIfG_camera_info_classFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dComIfG_camera_info_class::~dComIfG_camera_info_class() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__25dComIfG_camera_info_classFv.s"
-}
-#pragma pop
-
-/* 80030244-800304C8 02AB84 0284+00 1/1 0/0 0/0 .text            __ct__13dComIfG_inf_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dComIfG_inf_c::dComIfG_inf_c() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__ct__13dComIfG_inf_cFv.s"
-}
-#pragma pop
-
-/* 800304C8-800304CC 02AE08 0004+00 1/1 0/0 0/0 .text            __ct__25dComIfG_camera_info_classFv
- */
-dComIfG_camera_info_class::dComIfG_camera_info_class() {
-    /* empty function */
-}
-
-/* 800304CC-800304D0 02AE0C 0004+00 1/1 0/0 0/0 .text            __ct__14dDlst_window_cFv */
-dDlst_window_c::dDlst_window_c() {
-    /* empty function */
-}
-
-/* 800304D0-8003050C 02AE10 003C+00 1/1 2/2 0/0 .text            __dt__10dAttList_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dAttList_c::~dAttList_c() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__10dAttList_cFv.s"
-}
-#pragma pop
-
-/* 8003050C-80030510 02AE4C 0004+00 1/1 1/1 0/0 .text            __ct__10dAttList_cFv */
-dAttList_c::dAttList_c() {
-    /* empty function */
-}
-
-/* 80030510-8003054C 02AE50 003C+00 0/0 9/9 0/0 .text            __dt__7cSAngleFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" void asm __dt__7cSAngleFv() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__7cSAngleFv.s"
-}
-#pragma pop
-
-/* 8003054C-800306A0 02AE8C 0154+00 1/1 2/2 0/0 .text            __dt__10dAttDraw_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dAttDraw_c::~dAttDraw_c() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__10dAttDraw_cFv.s"
-}
-#pragma pop
-
-/* 800306A0-800306F4 02AFE0 0054+00 2/2 0/0 0/0 .text            __dt__13mDoExt_bckAnmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm mDoExt_bckAnm::~mDoExt_bckAnm() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__13mDoExt_bckAnmFv.s"
-}
-#pragma pop
-
-/* 800306F4-80030748 02B034 0054+00 2/2 0/0 0/0 .text            __dt__13mDoExt_bpkAnmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm mDoExt_bpkAnm::~mDoExt_bpkAnm() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__13mDoExt_bpkAnmFv.s"
-}
-#pragma pop
-
-/* 80030748-8003079C 02B088 0054+00 2/2 0/0 0/0 .text            __dt__13mDoExt_brkAnmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm mDoExt_brkAnm::~mDoExt_brkAnm() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__13mDoExt_brkAnmFv.s"
-}
-#pragma pop
-
-/* 8003079C-800307F0 02B0DC 0054+00 2/2 0/0 0/0 .text            __dt__13mDoExt_btkAnmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm mDoExt_btkAnm::~mDoExt_btkAnm() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__13mDoExt_btkAnmFv.s"
-}
-#pragma pop
-
-/* 800307F0-80030954 02B130 0164+00 1/1 1/1 0/0 .text            __ct__10dAttDraw_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dAttDraw_c::dAttDraw_c() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__ct__10dAttDraw_cFv.s"
-}
-#pragma pop
-
-/* 80030954-8003099C 02B294 0048+00 1/1 0/0 0/0 .text            __ct__13mDoExt_btkAnmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm mDoExt_btkAnm::mDoExt_btkAnm() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__ct__13mDoExt_btkAnmFv.s"
-}
-#pragma pop
-
-/* 8003099C-800309E4 02B2DC 0048+00 1/1 0/0 0/0 .text            __ct__13mDoExt_brkAnmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm mDoExt_brkAnm::mDoExt_brkAnm() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__ct__13mDoExt_brkAnmFv.s"
-}
-#pragma pop
-
-/* 800309E4-80030A2C 02B324 0048+00 1/1 0/0 0/0 .text            __ct__13mDoExt_bpkAnmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm mDoExt_bpkAnm::mDoExt_bpkAnm() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__ct__13mDoExt_bpkAnmFv.s"
-}
-#pragma pop
-
-/* 80030A2C-80030A74 02B36C 0048+00 1/1 0/0 0/0 .text            __ct__13mDoExt_bckAnmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm mDoExt_bckAnm::mDoExt_bckAnm() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__ct__13mDoExt_bckAnmFv.s"
-}
-#pragma pop
-
-/* 80030A74-80030BDC 02B3B4 0168+00 1/0 0/0 0/0 .text            __dt__12dCcMassS_MngFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dCcMassS_Mng::~dCcMassS_Mng() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__12dCcMassS_MngFv.s"
-}
-#pragma pop
-
-/* 80030BDC-80030C50 02B51C 0074+00 0/0 1/0 0/0 .text            __dt__4cCcSFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cCcS::~cCcS() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__4cCcSFv.s"
-}
-#pragma pop
-
-/* 80030C50-80030CCC 02B590 007C+00 0/0 1/0 0/0 .text            __dt__4dBgSFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dBgS::~dBgS() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__4dBgSFv.s"
-}
-#pragma pop
-
-/* 80030CCC-80030D38 02B60C 006C+00 0/0 1/0 0/0 .text            __dt__4cBgSFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cBgS::~cBgS() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__4cBgSFv.s"
-}
-#pragma pop
-
-/* 80030D38-80030D74 02B678 003C+00 1/1 0/0 0/0 .text            __ct__11cBgS_ChkElmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cBgS_ChkElm::cBgS_ChkElm() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__ct__11cBgS_ChkElmFv.s"
-}
-#pragma pop
-
-/* 80030D74-80030D80 02B6B4 000C+00 1/1 0/0 0/0 .text            __ct__10dSv_zone_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dSv_zone_c::dSv_zone_c() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__ct__10dSv_zone_cFv.s"
-}
-#pragma pop
-
-/* 80030D80-80030DB0 02B6C0 0030+00 1/1 1/1 0/0 .text            __ct__13dSv_memory2_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dSv_memory2_c::dSv_memory2_c() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__ct__13dSv_memory2_cFv.s"
-}
-#pragma pop
-
-/* 80030DB0-80030DE0 02B6F0 0030+00 1/1 1/1 0/0 .text            __ct__12dSv_memory_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dSv_memory_c::dSv_memory_c() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__ct__12dSv_memory_cFv.s"
-}
-#pragma pop
-
-/* 80030DE0-80030E3C 02B720 005C+00 1/0 0/0 0/0 .text            __dt__15cCcD_DivideAreaFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cCcD_DivideArea::~cCcD_DivideArea() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__15cCcD_DivideAreaFv.s"
-}
-#pragma pop
-
-/* 80030E3C-80030E84 02B77C 0048+00 1/0 1/1 0/0 .text            __dt__8cM3dGCylFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm cM3dGCyl::~cM3dGCyl() {
-extern "C" asm void __dt__8cM3dGCylFv(void) {  // should be autogenerated eventually
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__8cM3dGCylFv.s"
-}
-#pragma pop
-
-/* 80030E84-80030ECC 02B7C4 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm cM3dGAab::~cM3dGAab() {
-extern "C" asm void __dt__8cM3dGAabFv(void) {  // should be autogenerated eventually
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__8cM3dGAabFv.s"
-}
-#pragma pop
-
-/* 80030ECC-80030F14 02B80C 0048+00 1/0 0/0 0/0 .text            __dt__15cCcD_DivideInfoFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cCcD_DivideInfo::~cCcD_DivideInfo() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/__dt__15cCcD_DivideInfoFv.s"
 }
 #pragma pop
 

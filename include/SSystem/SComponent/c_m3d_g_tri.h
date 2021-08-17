@@ -15,6 +15,7 @@ public:
     Vec mB;
     Vec mC;
 
+    cM3dGTri() {}
     virtual ~cM3dGTri() {}
     bool cross(const cM3dGCyl*, Vec*) const;
     void setPos(const Vec*, const Vec*, const Vec*);

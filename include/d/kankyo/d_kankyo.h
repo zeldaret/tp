@@ -61,4 +61,6 @@ private:
     /* 0x385 */ u8 field_0x385;
 };  // Size = 0x388?
 
+STATIC_ASSERT(sizeof(dKy_tevstr_c) == 0x388);
+
 #endif /* D_KANKYO_D_KANKYO_H */

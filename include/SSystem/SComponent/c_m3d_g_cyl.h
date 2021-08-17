@@ -13,12 +13,15 @@ struct cM3dGCylS {
 };  // Size = 0x14
 class cM3dGSph;
 
-class cM3dGCyl : public cM3dGCylS {
-    /* 0x14 vtable */
+class cM3dGCyl {
 public:
+    /* 0x00 */ cXyz mCenter;
+    /* 0x0C */ f32 mRadius;
+    /* 0x10 */ f32 mHeight;
+    /* 0x14 vtable */
+    cM3dGCyl() {}
     cM3dGCyl(const cXyz*, f32, f32);
-    virtual void test();  // temp to build OK, remove later
-    virtual ~cM3dGCyl();
+    virtual ~cM3dGCyl() {}
     void Set(const cM3dGCylS&);
     void Set(const cXyz&, f32, f32);
     void SetC(const cXyz&);

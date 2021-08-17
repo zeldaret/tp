@@ -11,6 +11,16 @@ struct Vec {
     float getXDiff(const Vec* other) const { return x - other->x; }
     float getYDiff(const Vec* other) const { return y - other->y; }
     float getZDiff(const Vec* other) const { return z - other->z; }
+    void set(f32 pX, f32 pY, f32 pZ) {
+        x = pX;
+        y = pY;
+        z = pZ;
+    }
+    void set(const Vec& other) {
+        x = other.x;
+        y = other.y;
+        z = other.z;
+    }
 };
 
 extern "C" {

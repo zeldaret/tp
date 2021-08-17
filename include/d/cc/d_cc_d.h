@@ -4,30 +4,61 @@
 #include "SSystem/SComponent/c_cc_d.h"
 #include "dolphin/types.h"
 
-struct dCcD_SrcTri {};
+struct dCcD_SrcGAtTgCoCommonBase {
+    /* 0x00 */ u32 mGFlag;
+};
 
-struct dCcD_SrcSph {};
+struct dCcD_SrcGObjAt {
+    u8 mSe;
+    u8 mHitMark;
+    u8 mSpl;
+    u8 mMtrl;
+    dCcD_SrcGAtTgCoCommonBase mBase;
+};
 
-struct dCcD_SrcGObjTg {};
+struct dCcD_SrcGObjTg {
+    u8 mSe;
+    u8 mHitMark;
+    u8 mSpl;
+    u8 mMtrl;
+    dCcD_SrcGAtTgCoCommonBase mBase;
+};
 
-struct dCcD_SrcGObjInf {};
+struct dCcD_SrcGObjInf {
+    cCcD_SrcObj mObj;
+    dCcD_SrcGObjAt mGObjAt;
+    dCcD_SrcGObjTg mGObjTg;
+    dCcD_SrcGAtTgCoCommonBase mGObjCo;
+};
 
-struct dCcD_SrcGObjAt {};
+struct dCcD_SrcSph {
+    dCcD_SrcGObjInf mObjInf;
+    cM3dGSphS mSph;
+};
 
-struct dCcD_SrcGAtTgCoCommonBase {};
+struct dCcD_SrcTri {
+    dCcD_SrcGObjInf mObjInf;
+};
 
-struct dCcD_SrcCyl {};
+struct dCcD_SrcCyl {
+    dCcD_SrcGObjInf mObjInf;
+    cM3dGCylS mCyl;
+};
 
-struct dCcD_SrcCps {};
+struct dCcD_SrcCps {
+    dCcD_SrcGObjInf mObjInf;
+    cM3dGCpsS mCps;
+};
 
-class dCcD_GStts : cCcD_GStts {
+class dCcD_GStts : public cCcD_GStts {
 public:
     /* 80083760 */ dCcD_GStts();
     /* 800837F8 */ void Ct();
     /* 80083830 */ void Move();
-    /* 8008523C */ ~dCcD_GStts();
+    /* 8008523C */ virtual ~dCcD_GStts() {}
+    void ClrTg() { mTg = 0; }
 
-private:
+    // private:
     /* 0x04 */ u8 mAt;
     /* 0x05 */ u8 mTg;
     /* 0x06 */ u8 mRoomId;
@@ -39,50 +70,55 @@ private:
     /* 0x1C */ int field_0x1C;
 };  // Size = 0x20
 
-// class dCcD_Stts : cCcD_Stts {
-class dCcD_Stts {  // TODO: vtables get messed up :(
+class dCcD_Stts : public cCcD_Stts, public dCcD_GStts {
 public:
+    dCcD_Stts() {}
     /* 80083850 */ cCcD_GStts* GetGStts();
     /* 80083860 */ void Init(int, int, fopAc_ac_c*);
     /* 800838F4 */ void Ct();
     /* 80083928 */ void ClrAt();
     /* 80083934 */ void ClrTg();
-    /* 800851AC */ ~dCcD_Stts();
+    /* 800851AC */ virtual ~dCcD_Stts() {}
 
-private:
-    /* 0x00 */ u8 _0[0x1C];  // TODO, should be covered by inheritance
-    /* 0x1C */ dCcD_GStts mGStts;
 };  // Size = 0x3C
 
 class dCcD_GAtTgCoCommonBase {
 public:
-    /* 8008364C */ void ClrActorInfo();
-    /* 80083660 */ void ct();
-    /* 80083678 */ void SetHitApid(unsigned int);
-    /* 80083688 */ void GetAc();
-    /* 80083704 */ void Set(dCcD_SrcGAtTgCoCommonBase const&);
-    /* 80083718 */ void SetEffCounterTimer();
-    /* 80083724 */ void SubtractEffCounter();
-    /* 80083748 */ void ChkEffCounter();
-    /* 80083CA0 */ ~dCcD_GAtTgCoCommonBase();
-
-private:
-    /* 0x00 */ void* mBase;  // type dCcD_SrcGAtTgCoCommonBase*
+    /* 0x00 */ u32 mGFlag;
     /* 0x04 */ u32 mRPrm;
     /* 0x08 */ u32 field_0x08;
-    /* 0x0C */ u32 field_0x0C;
+    /* 0x0C */ u32 mApid;
     /* 0x10 */ fopAc_ac_c* mAc;
     /* 0x14 */ s8 mEffCounter;
     /* 0x15 */ u8 field_0x15[3];
-    /* 0x18 */ void* vtable;
+    /* 0x18 vtable */
+
+public:
+    dCcD_GAtTgCoCommonBase() { ct(); }
+    /* 8008364C */ void ClrActorInfo();
+    /* 80083660 */ void ct();
+    /* 80083678 */ void SetHitApid(unsigned int);
+    /* 80083688 */ fopAc_ac_c* GetAc();
+    /* 80083704 */ void Set(dCcD_SrcGAtTgCoCommonBase const&);
+    /* 80083718 */ void SetEffCounterTimer();
+    /* 80083724 */ void SubtractEffCounter();
+    /* 80083748 */ bool ChkEffCounter();
+    /* 80083CA0 */ virtual ~dCcD_GAtTgCoCommonBase() {}
+    void ResetEffCounter() { mEffCounter = 0; }
+    u32 GetGFlag() const { return mGFlag; }
+    u32 GetRPrm() const { return mRPrm; }
+    u32 MskSPrm(u32 mask) const { return mGFlag & mask; }
+    bool ChkSPrm(u32 mask) const { return MskSPrm(mask); }
 };  // Size = 0x1C
 
-class dCcD_GObjAt : dCcD_GAtTgCoCommonBase {
+class dCcD_GObjAt : public dCcD_GAtTgCoCommonBase {
 public:
     /* 80083944 */ void Set(dCcD_SrcGObjAt const&);
-    /* 80083C44 */ ~dCcD_GObjAt();
+    /* 80083C44 */ virtual ~dCcD_GObjAt() {}
+    void SetVec(cXyz& vec) { mVec = vec; }
+    cXyz& GetVec() { return mVec; }
 
-private:
+    // private:
     /* 0x1C */ u8 mSe;
     /* 0x1D */ u8 mMtrl;
     /* 0x1E */ u8 mHitMark;
@@ -91,10 +127,12 @@ private:
     /* 0x2C */ cXyz mVec;
     /* 0x38 */ cXyz mRVec;
 };  // Size = 0x44
-class dCcD_GObjTg : dCcD_GAtTgCoCommonBase {
+class dCcD_GObjTg : public dCcD_GAtTgCoCommonBase {
 public:
     /* 800839A0 */ void Set(dCcD_SrcGObjTg const&);
-    /* 80083BE8 */ ~dCcD_GObjTg();
+    /* 80083BE8 */ virtual ~dCcD_GObjTg() {}
+    void SetVec(cXyz& vec) { mVec = vec; }
+    cXyz& GetVec() { return mVec; }
 
 private:
     /* 0x1C */ u8 mSe;
@@ -107,89 +145,85 @@ private:
     /* 0x44 */ s16* mShieldFrontRangeYAngle;
     /* 0x48 */ s16 mShieldRange;
 };  // Size = 0x4A ?
-class dCcD_GObjCo : dCcD_GAtTgCoCommonBase {
+class dCcD_GObjCo : public dCcD_GAtTgCoCommonBase {
 public:
-    /* 80083B8C */ ~dCcD_GObjCo();
-
-private:
+    /* 80083B8C */ virtual ~dCcD_GObjCo() {}
 };  // Size = 0x1C ?
 
-class dCcD_GObjInf : cCcD_GObjInf {
+class dCcD_GObjInf : public cCcD_GObjInf {
 public:
     /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
+    /* 800840E4 */ virtual ~dCcD_GObjInf();
     /* 80084268 */ cCcD_GObjInf* GetGObjInf();
-    /* 8008426C */ void ClrAtHit();
-    /* 800842C0 */ void ChkAtHit();
+    /* 8008426C */ virtual void ClrAtHit();
+    /* 800842C0 */ s32 ChkAtHit();
     /* 80084318 */ void ResetAtHit();
-    /* 80084358 */ void GetAtHitObj();
-    /* 800843A8 */ void GetAtHitGObj();
-    /* 800843DC */ void ChkAtNoGuard();
+    /* 80084358 */ cCcD_Obj* GetAtHitObj();
+    /* 800843A8 */ cCcD_GObjInf* GetAtHitGObj();
+    /* 800843DC */ bool ChkAtNoGuard();
     /* 800843FC */ void ClrTgHit();
-    /* 80084460 */ void ChkTgHit();
+    /* 80084460 */ bool ChkTgHit();
     /* 800844B8 */ void ResetTgHit();
-    /* 800844F8 */ void GetTgHitObj();
-    /* 80084548 */ void GetTgHitGObj();
-    /* 8008457C */ void GetTgHitObjSe();
-    /* 800845B0 */ void getHitSeID(u8, int);
+    /* 800844F8 */ cCcD_Obj* GetTgHitObj();
+    /* 80084548 */ dCcD_GObjInf* GetTgHitGObj();
+    /* 8008457C */ u8 GetTgHitObjSe();
+    /* 800845B0 */ static u32 getHitSeID(u8, int);
     /* 8008460C */ void ClrCoHit();
-    /* 80084658 */ void ChkCoHit();
+    /* 80084658 */ bool ChkCoHit();
     /* 800846B0 */ void ResetCoHit();
-    /* 800846F0 */ void GetCoHitObj();
+    /* 800846F0 */ cCcD_Obj* GetCoHitObj();
     /* 80084740 */ void Set(dCcD_SrcGObjInf const&);
 
-    static u8 const m_hitSeID[96];
+    void SetAtVec(cXyz& vec) { mGObjAt.SetVec(vec); }
+    bool ChkAtNoMass() const { return mGObjAt.ChkSPrm(8); }
 
-private:
+    static u32 const m_hitSeID[24];
+
+protected:
     /* 0x058 */ dCcD_GObjAt mGObjAt;
     /* 0x09C */ dCcD_GObjTg mGObjTg;
     /* 0x0E8 */ dCcD_GObjCo mGObjCo;
 };  // Size = 0x104
 
-class dCcD_Cyl : dCcD_GObjInf {
+class dCcD_Cyl : public dCcD_GObjInf, public cCcD_CylAttr {
 public:
     /* 800848B4 */ void Set(dCcD_SrcCyl const&);
     /* 800848F8 */ cCcD_ShapeAttr* GetShapeAttr();
     /* 80084908 */ void StartCAt(cXyz&);
     /* 80084954 */ void MoveCAt(cXyz&);
     /* 800849C4 */ void MoveCTg(cXyz&);
-    /* 80084D60 */ ~dCcD_Cyl();
-    dCcD_Cyl();
-
-private:
-    /* 0x104 */ cCcD_CylAttr mCylAttr;
+    /* 80084D60 */ virtual ~dCcD_Cyl() {}
+    dCcD_Cyl() {}
 };  // Size = 0x13C
 
-class dCcD_Sph : dCcD_GObjInf {
+class dCcD_Sph : public dCcD_GObjInf, public cCcD_SphAttr {
 public:
+    dCcD_Sph() {}
     /* 80084A34 */ void Set(dCcD_SrcSph const&);
     /* 80084A78 */ void StartCAt(cXyz&);
     /* 80084AC4 */ void MoveCAt(cXyz&);
-    /* 80084B34 */ cCcD_ShapeAttr* GetShapeAttr();
-    /* 80084BF4 */ ~dCcD_Sph();
-
-private:
-    /* 0x104 */ cCcD_SphAttr mSphAttr;
+    /* 80084B34 */ virtual cCcD_ShapeAttr* GetShapeAttr();
+    /* 80084BF4 */ virtual ~dCcD_Sph() {}
 };  // Size = 0x138
 
-class dCcD_Cps : dCcD_GObjInf {
+class dCcD_Cps : public dCcD_GObjInf, public cCcD_CpsAttr {
 public:
     /* 800847D0 */ void Set(dCcD_SrcCps const&);
     /* 80084814 */ cCcD_ShapeAttr* GetShapeAttr();
     /* 80084824 */ void CalcAtVec();
     /* 80084854 */ void CalcTgVec();
-    /* 8008506C */ ~dCcD_Cps();
-    dCcD_Cps();
-
-private:
-    /* 0x104 */ cCcD_CpsAttr mCpsAttr;
+    /* 8008506C */ virtual ~dCcD_Cps() {}
+    dCcD_Cps() {}
 };  // Size = 0x144
 
-class dCcD_Tri {
+class dCcD_Tri : public dCcD_GObjInf, public cCcD_TriAttr {
 public:
     /* 80084884 */ void Set(dCcD_SrcTri const&);
     /* 800848A4 */ cCcD_ShapeAttr* GetShapeAttr();
-    /* 80084EF4 */ ~dCcD_Tri();
+    /* 80084EF4 */ virtual ~dCcD_Tri() {}
+    dCcD_Tri() {}
 };
+
+dCcD_GObjInf* dCcD_GetGObjInf(cCcD_Obj* param_0);
 
 #endif /* D_CC_D_CC_D_H */

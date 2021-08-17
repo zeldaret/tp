@@ -34787,7 +34787,8 @@ asm daPy_sightPacket_c::~daPy_sightPacket_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm daPy_frameCtrl_c::~daPy_frameCtrl_c() {
+// asm daPy_frameCtrl_c::~daPy_frameCtrl_c() {
+extern "C" asm void __dt__16daPy_frameCtrl_cFv() {
     nofralloc
 #include "asm/d/a/d_a_alink/__dt__16daPy_frameCtrl_cFv.s"
 }
@@ -34797,7 +34798,8 @@ asm daPy_frameCtrl_c::~daPy_frameCtrl_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm daPy_frameCtrl_c::daPy_frameCtrl_c() {
+// asm daPy_frameCtrl_c::daPy_frameCtrl_c() {
+extern "C" asm void __ct__16daPy_frameCtrl_cFv() {
     nofralloc
 #include "asm/d/a/d_a_alink/__ct__16daPy_frameCtrl_cFv.s"
 }
@@ -34867,7 +34869,8 @@ asm dBgS_LinkAcch::~dBgS_LinkAcch() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Cps::dCcD_Cps() {
+// asm dCcD_Cps::dCcD_Cps() {
+extern "C" asm void __ct__8dCcD_CpsFv() {
     nofralloc
 #include "asm/d/a/d_a_alink/__ct__8dCcD_CpsFv.s"
 }
@@ -34877,7 +34880,8 @@ asm dCcD_Cps::dCcD_Cps() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Cyl::dCcD_Cyl() {
+// asm dCcD_Cyl::dCcD_Cyl() {
+extern "C" asm void __ct__8dCcD_CylFv() {
     nofralloc
 #include "asm/d/a/d_a_alink/__ct__8dCcD_CylFv.s"
 }
@@ -34975,7 +34979,8 @@ asm void dEvt_info_c::onCondition(u16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGPla::cM3dGPla() {
+// asm cM3dGPla::cM3dGPla() {
+extern "C" asm void __ct__8cM3dGPlaFv() {
     nofralloc
 #include "asm/d/a/d_a_alink/__ct__8cM3dGPlaFv.s"
 }

@@ -5,11 +5,13 @@
 #include "dolphin/gx/GXTexture.h"
 #include "dolphin/types.h"
 
-struct J3DLightInfo {
+class J3DLightInfo {
+public:
+    J3DLightInfo(J3DLightInfo const& other) { *this = other; }
     /* 803256C4 */ void operator=(J3DLightInfo const&);
 
-    /* 0x00 */ cXyz mLightPosition;
-    /* 0x0C */ cXyz mLightDirection;
+    /* 0x00 */ Vec mLightPosition;
+    /* 0x0C */ Vec mLightDirection;
     /* 0x18 */ _GXColor mColor;
     /* 0x1C */ f32 mA0;
     /* 0x20 */ f32 mA1;
@@ -19,8 +21,11 @@ struct J3DLightInfo {
     /* 0x30 */ f32 mK2;
 };  // Size = 0x34
 
-struct J3DLightObj {
-    /* 80018C0C */ J3DLightObj();
+extern "C" extern J3DLightInfo const j3dDefaultLightInfo;
+
+class J3DLightObj {
+public:
+    /* 80018C0C */ J3DLightObj() : mInfo(j3dDefaultLightInfo) {}
 
     /* 0x00 */ J3DLightInfo mInfo;
     /* 0x34 */ u8 field_0x34[64];

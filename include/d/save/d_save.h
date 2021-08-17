@@ -6,10 +6,10 @@
 #include "dolphin/types.h"
 
 #define DEFAULT_SELECT_ITEM_INDEX 0
-#define MAX_SELECT_ITEM 3
+#define MAX_SELECT_ITEM 4
+#define MAX_EQUIPMENT 6
 #define MAX_EVENTS 256
 #define MAX_ITEM_SLOTS 24
-#define ITEM_XY_MAX_DUMMY 8
 #define LIGHT_DROP_STAGE 4
 #define LETTER_INFO_BIT 64
 #define BOMB_BAG_MAX 3
@@ -354,11 +354,11 @@ private:
     /* 0x06 */ u16 mMaxOil;
     /* 0x08 */ u16 mOil;
     /* 0x0A */ u8 unk10;
-    /* 0x0B */ u8 mSelectItem[3];
-    /* 0x0E */ u8 mMixItem[3];
-    /* 0x11 */ u8 unk17;
-    /* 0x12 */ u8 unk18;
-    /* 0x13 */ u8 mSelectEquip[6];
+    /* 0x0B */ u8 mSelectItem[MAX_SELECT_ITEM];  // For GC: first 2 are X & Y, others unused; For
+                                                 // Wii (in order): Left, Right, Down, B
+    /* 0x0F */ u8 mMixItem[MAX_SELECT_ITEM];     // Combo items; For GC: first 2 are X & Y, others
+                                                 // unused; For Wii (in order): Left, Right, Down, B
+    /* 0x13 */ u8 mSelectEquip[MAX_EQUIPMENT];
     /* 0x19 */ u8 mWalletSize;
     /* 0x1A */ u8 mMaxMagic;
     /* 0x1B */ u8 mMagic;
@@ -625,19 +625,31 @@ public:
     void setSound(u8);
     u8 getVibration();
     void setVibration(u8);
+    inline u8 getAttentionType(void) { return mAttentionType; }
+    inline void setAttentionType(u8 i_mAttentionType) { mAttentionType = i_mAttentionType; }
+    inline u16 getCalibrateDist(void) { return mCalibrateDist; }
+    inline void setCalibrateDist(u16 i_mCalibrateDist) { mCalibrateDist = i_mCalibrateDist; }
+    inline u8 getCalValue(void) { return mCalValue; }
+    inline void setCalValue(u8 i_mCalValue) { mCalValue = i_mCalValue; }
+    inline bool getShortCut(void) { return mShortCut; }
+    inline void setShortCut(bool i_mShortCut) { mShortCut = i_mShortCut; }
+    inline u8 getCameraControl(void) { return mCameraControl; }
+    inline void setCameraControl(u8 i_mCameraControl) { mCameraControl = i_mCameraControl; }
+    inline bool getPointer(void) { return mPointer; }
+    inline void setPointer(bool i_mPointer) { mPointer = i_mPointer; }
 
 private:
     /* 0x0 */ u8 unk0;
     /* 0x1 */ u8 mSoundMode;
-    /* 0x2 */ u8 mAttentionType;  // Lock-On Type
-    /* 0x3 */ u8 mVibration;  // Rumble Status
+    /* 0x2 */ u8 mAttentionType;  // Lock-On Type; 0 : hold, 1 : switch
+    /* 0x3 */ u8 mVibration;  // Rumble status
     /* 0x4 */ u8 unk4;
     /* 0x5 */ u8 unk5;
-    /* 0x6 */ u16 mCalibrateDist;
-    /* 0x8 */ u8 mCalValue;
-    /* 0x9 */ u8 mShortCut;
-    /* 0xA */ u8 mCameraControl;
-    /* 0xB */ u8 mPointer;
+    /* 0x6 */ u16 mCalibrateDist;  // Wii pointer horizontal calibration. Default is 0x015E
+    /* 0x8 */ u8 mCalValue;        // Wii pointer vertical calibration. Default is 0x00
+    /* 0x9 */ bool mShortCut;      // Wii icon shortcut enabled/disabled.
+    /* 0xA */ u8 mCameraControl;   // 0 : normal, 1 : inverted
+    /* 0xB */ bool mPointer;       // Wii pointer enabled/disabled.
 };  // Size: 0xC
 
 class dSv_player_c {
@@ -744,7 +756,7 @@ private:
 
 class dSv_memory_c {
 public:
-    dSv_memory_c();
+    dSv_memory_c() { this->init(); }
     void init();
     dSv_memBit_c& getBit() { return mBit; }
     const dSv_memBit_c& getBit() const { return mBit; }
@@ -753,9 +765,11 @@ private:
     /* 0x0 */ dSv_memBit_c mBit;
 };  // Size: 0x20
 
+STATIC_ASSERT(sizeof(dSv_memory_c) == 0x20);
+
 class dSv_memory2_c {
 public:
-    dSv_memory2_c();
+    dSv_memory2_c() { this->init(); }
     void init();
     void onVisitedRoom(int);
     void offVisitedRoom(int);
@@ -764,6 +778,8 @@ public:
 private:
     /* 0x0 */ u32 mVisitedRoom[2];
 };  // Size: 0x8
+
+STATIC_ASSERT(sizeof(dSv_memory2_c) == 8);
 
 class dSv_danBit_c {
 public:
@@ -825,7 +841,7 @@ private:
 
 class dSv_zone_c {
 public:
-    dSv_zone_c();  // the assembly for this is in d_com_inf_game.s
+    dSv_zone_c(void) { mRoomNo = -1; }  // the assembly for this is in d_com_inf_game.s
     void init(int);
     dSv_zoneBit_c& getZoneBit() { return mBit; }
     const dSv_zoneBit_c& getBit() const { return mBit; }
@@ -840,6 +856,8 @@ private:
     /* 0x02 */ dSv_zoneBit_c mBit;
     /* 0x10 */ dSv_zoneActor_c mActor;
 };  // Size: 0x20
+
+STATIC_ASSERT(sizeof(dSv_zone_c) == 0x20);
 
 class dSv_restart_c {
 public:
@@ -895,7 +913,7 @@ public:
     static const int STAGE_MAX = 32;
     static const int STAGE2_MAX = 64;
 
-private:
+// private:
     /* 0x000 */ dSv_player_c mPlayer;
     /* 0x1F0 */ dSv_memory_c mSave[STAGE_MAX];
     /* 0x5F0 */ dSv_memory2_c mSave2[STAGE2_MAX];

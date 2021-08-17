@@ -85,11 +85,10 @@ private:
     u32 mFlags[320];
 };  // Size = 0x500
 
-#pragma pack(push, 1)
 class dEvDtBase_c {
 public:
     dEvDtBase_c();
-    ~dEvDtBase_c();
+    ~dEvDtBase_c() {}
     void init();
     void init(char*, int);
     void advanceCut(dEvDtEvent_c*);
@@ -110,6 +109,7 @@ private:
     /* 0x1C */ char* mSDataP;
     /* 0x20 */ s32 mRoomNo;
 };  // Size = 0x24
-#pragma pack(pop)
+
+STATIC_ASSERT(sizeof(dEvDtBase_c) == 0x24);
 
 #endif /* D_EVENT_D_EVENT_DATA_H */
