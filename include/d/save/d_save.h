@@ -718,21 +718,21 @@ public:
     void onItem(int);
     BOOL isItem(int) const;
     void onDungeonItem(int);
-    bool isDungeonItem(int) const;
+    s32 isDungeonItem(int) const;
 
     u8 getKeyNum() { return mKeyNum; }
     void setKeyNum(u8 keyNum) { mKeyNum = keyNum; }
     void onDungeonItemMap() { onDungeonItem(MAP); }
-    bool isDungeonItemMap() const { return isDungeonItem(MAP); }
+    s32 isDungeonItemMap() const { return isDungeonItem(MAP); }
     void onDungeonItemCompass() { onDungeonItem(COMPASS); }
     void onDungeonItemWarp() { onDungeonItem(OOCCOO_NOTE); }
     void onDungeonItemBossKey() { onDungeonItem(BOSS_KEY); }
-    bool isDungeonItemBossKey() const { return isDungeonItem(BOSS_KEY); }
+    s32 isDungeonItemBossKey() const { return isDungeonItem(BOSS_KEY); }
     void onStageBossEnemy() {
         onDungeonItem(STAGE_BOSS_ENEMY);
         onDungeonItem(OOCCOO_NOTE);
     }
-    bool isDungeonItemWarp() const { return isDungeonItem(OOCCOO_NOTE); }
+    s32 isDungeonItemWarp() const { return isDungeonItem(OOCCOO_NOTE); }
 
 private:
     /* 0x00 */ u32 mTbox[2];

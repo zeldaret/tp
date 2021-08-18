@@ -1020,7 +1020,7 @@ void dComIfGs_onStageBossEnemy(int i_stageNo) {
     g_dComIfG_gameInfo.info.getSavedata().getSave(i_stageNo).getBit().onStageBossEnemy();
 }
 
-bool dComIfGs_isDungeonItemWarp(int i_stageNo) {
+s32 dComIfGs_isDungeonItemWarp(int i_stageNo) {
     stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
 
     if (i_stageNo == dStage_stagInfo_GetSaveTbl(stag_info)) {

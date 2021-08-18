@@ -1343,8 +1343,8 @@ void dSv_memBit_c::onDungeonItem(int i_no) {
     mDungeonItem |= (u8)(1 << i_no);
 }
 
-bool dSv_memBit_c::isDungeonItem(int i_no) const {
-    return mDungeonItem & (u8)(1 << i_no) ? true : false;
+s32 dSv_memBit_c::isDungeonItem(int i_no) const {
+    return mDungeonItem & (u8)(1 << i_no) ? 1 : 0;
 }
 
 void dSv_event_c::init() {

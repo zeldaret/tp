@@ -74,7 +74,7 @@ public:
     void setStartStage(dStage_startStage_c*);
     int getLayerNo_common_common(char const*, int, int);
     int getLayerNo_common(char const*, int, int);
-    int getLayerNo(int);
+    static int getLayerNo(int);
     void createParticle();
     u32 createSimpleModel();
     void deleteSimpleModel();
@@ -614,11 +614,11 @@ inline BOOL dComIfGs_isSwitch(int param1, int param2) {
     return g_dComIfG_gameInfo.info.isSwitch(param1, param2);
 }
 
-inline bool dComIfGs_isDungeonItemMap() {
+inline s32 dComIfGs_isDungeonItemMap() {
     return g_dComIfG_gameInfo.info.getMemory().getBit().isDungeonItemMap();
 }
 
-inline bool dComIfGs_isDungeonItemBossKey() {
+inline s32 dComIfGs_isDungeonItemBossKey() {
     return g_dComIfG_gameInfo.info.getMemory().getBit().isDungeonItemBossKey();
 }
 
@@ -779,7 +779,7 @@ inline void dComIfGs_onStageBossEnemy() {
     g_dComIfG_gameInfo.info.getMemory().getBit().onStageBossEnemy();
 }
 
-inline bool dComIfGs_isDungeonItemWarp() {
+inline s32 dComIfGs_isDungeonItemWarp() {
     return g_dComIfG_gameInfo.info.getMemory().getBit().isDungeonItemWarp();
 }
 
@@ -859,6 +859,10 @@ inline void dComIfGs_setLineUpItem() {
 
 inline void dComIfGp_setNowVibration(u8 status) {
     g_dComIfG_gameInfo.play.setNowVibration(status);
+}
+
+inline s32 dComIfGs_isGetMagicUseFlag() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().isMagicFlag(0);
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */
