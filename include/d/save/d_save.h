@@ -2,8 +2,8 @@
 #define D_SAVE_D_SAVE_H
 
 #include "SSystem/SComponent/c_xyz.h"
-#include "msl_c/string.h"
 #include "dolphin/types.h"
+#include "msl_c/string.h"
 
 #define DEFAULT_SELECT_ITEM_INDEX 0
 #define MAX_SELECT_ITEM 4
@@ -648,7 +648,7 @@ private:
     /* 0x0 */ u8 unk0;
     /* 0x1 */ u8 mSoundMode;
     /* 0x2 */ u8 mAttentionType;  // Lock-On Type; 0 : hold, 1 : switch
-    /* 0x3 */ u8 mVibration;  // Rumble status
+    /* 0x3 */ u8 mVibration;      // Rumble status
     /* 0x4 */ u8 unk4;
     /* 0x5 */ u8 unk5;
     /* 0x6 */ u16 mCalibrateDist;  // Wii pointer horizontal calibration. Default is 0x015E
@@ -656,7 +656,7 @@ private:
     /* 0x9 */ bool mShortCut;      // Wii icon shortcut enabled/disabled.
     /* 0xA */ u8 mCameraControl;   // 0 : normal, 1 : inverted
     /* 0xB */ bool mPointer;       // Wii pointer enabled/disabled.
-};  // Size: 0xC
+};                                 // Size: 0xC
 
 class dSv_player_c {
 public:
@@ -728,7 +728,10 @@ public:
     void onDungeonItemWarp() { onDungeonItem(OOCCOO_NOTE); }
     void onDungeonItemBossKey() { onDungeonItem(BOSS_KEY); }
     bool isDungeonItemBossKey() const { return isDungeonItem(BOSS_KEY); }
-    void onStageBossEnemy() { onDungeonItem(STAGE_BOSS_ENEMY); onDungeonItem(OOCCOO_NOTE); }
+    void onStageBossEnemy() {
+        onDungeonItem(STAGE_BOSS_ENEMY);
+        onDungeonItem(OOCCOO_NOTE);
+    }
     bool isDungeonItemWarp() const { return isDungeonItem(OOCCOO_NOTE); }
 
 private:
@@ -925,7 +928,7 @@ public:
     static const int STAGE_MAX = 32;
     static const int STAGE2_MAX = 64;
 
-// private:
+    // private:
     /* 0x000 */ dSv_player_c mPlayer;
     /* 0x1F0 */ dSv_memory_c mSave[STAGE_MAX];
     /* 0x5F0 */ dSv_memory2_c mSave2[STAGE2_MAX];

@@ -108,13 +108,9 @@ public:
         mItemID = i_no;
     }
 
-    void setSelectItem(int idx, u8 itemId) {
-        mSelectItem[idx] = itemId;
-    }
+    void setSelectItem(int idx, u8 itemId) { mSelectItem[idx] = itemId; }
 
-    u8 getSelectItem(int idx) {
-        return mSelectItem[idx];
-    }
+    u8 getSelectItem(int idx) { return mSelectItem[idx]; }
 
     void setZStatus(u8 status, u8 flag) {
         mZStatus = status;
@@ -610,12 +606,12 @@ inline void dComIfGs_onSwitch(int param1, int param2) {
     g_dComIfG_gameInfo.info.onSwitch(param1, param2);
 }
 
-inline void dComIfGs_offSwitch(int param1, int param2) { 
-   g_dComIfG_gameInfo.info.offSwitch(param1, param2);
+inline void dComIfGs_offSwitch(int param1, int param2) {
+    g_dComIfG_gameInfo.info.offSwitch(param1, param2);
 }
 
-inline BOOL dComIfGs_isSwitch(int param1, int param2) { 
-   return g_dComIfG_gameInfo.info.isSwitch(param1, param2);
+inline BOOL dComIfGs_isSwitch(int param1, int param2) {
+    return g_dComIfG_gameInfo.info.isSwitch(param1, param2);
 }
 
 inline bool dComIfGs_isDungeonItemMap() {
@@ -636,7 +632,7 @@ inline BOOL dComIfGs_isCollectSword(u8 sword_id) {
 
 inline BOOL dComIfGs_isCollectClothing(u8 clothing_id) {
     return g_dComIfG_gameInfo.info.getPlayer().getCollect().isCollect(COLLECT_CLOTHING,
-                                                                         clothing_id);
+                                                                      clothing_id);
 }
 
 inline u8 dComIfGs_checkBottle(u8 type) {

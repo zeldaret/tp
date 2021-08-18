@@ -176,7 +176,8 @@ extern "C" void dComIfGs_setKeyNum__FiUc();
 extern "C" static void dComIfGs_setWarpItemData__FiPCc4cXyzsScUcUc();
 extern "C" void setWarpItemData__14dComIfG_play_cFPCc4cXyzsScUcUc();
 extern "C" void dComIfGs_setWarpItemData__FPCc4cXyzsScUcUc();
-extern "C" static void dComIfGs_setLastWarpMarkItemData__FPCc4cXyzsScUcUc(const char*, cXyz, s16, s8, u8, u8);
+extern "C" static void dComIfGs_setLastWarpMarkItemData__FPCc4cXyzsScUcUc(const char*, cXyz, s16,
+                                                                          s8, u8, u8);
 extern "C" void dComIfGs_getWarpStageName__Fv();
 extern "C" void dComIfGs_getWarpPlayerPos__Fv();
 extern "C" void dComIfGs_getWarpPlayerAngleY__Fv();
@@ -443,7 +444,6 @@ void dComIfG_play_c::init() {
     }
     mGameoverStatus = 0;
 }
-
 
 void dComIfGp_checkItemGet(u8 param_0, int param_1) {
     checkItemGet__FUci(param_0, param_1);
@@ -887,7 +887,8 @@ asm void dComIfG_resDelete(request_of_phase_process_class* param_0, char const* 
 #pragma pop
 
 u8 dComIfGp_getReverb(int param_0) {
-    return dStage_roomRead_dt_c_GetReverbStage__FR14roomRead_classi(*dComIfGp_getStageRoom(), param_0);
+    return dStage_roomRead_dt_c_GetReverbStage__FR14roomRead_classi(*dComIfGp_getStageRoom(),
+                                                                    param_0);
 }
 
 /* ############################################################################################## */
@@ -965,7 +966,8 @@ SECTION_SDATA2 static u8 lit_5226[4] = {
 };
 
 void dComIfGp_setNextStage(char const* param_0, s16 param_1, s8 param_2, s8 param_3) {
-    dComIfGp_setNextStage(param_0, param_1, param_2, param_3, FLOAT_LABEL(lit_5226), 0, 1, 0, 0, 1, 0);
+    dComIfGp_setNextStage(param_0, param_1, param_2, param_3, FLOAT_LABEL(lit_5226), 0, 1, 0, 0, 1,
+                          0);
 }
 
 BOOL dComIfGs_isStageTbox(int i_stageNo, int i_no) {
@@ -1024,7 +1026,10 @@ bool dComIfGs_isDungeonItemWarp(int i_stageNo) {
     if (i_stageNo == dStage_stagInfo_GetSaveTbl(stag_info)) {
         return dComIfGs_isDungeonItemWarp();
     } else {
-        return g_dComIfG_gameInfo.info.getSavedata().getSave(i_stageNo).getBit().isDungeonItemWarp();
+        return g_dComIfG_gameInfo.info.getSavedata()
+            .getSave(i_stageNo)
+            .getBit()
+            .isDungeonItemWarp();
     }
 }
 
@@ -1316,8 +1321,10 @@ JKRExpHeap* dComIfGp_getSubHeap2D(int param_0) {
 }
 
 static u8 l_itemno[24] = {
-    M_BEETLE, F_BEETLE, M_BUTTERFLY, F_BUTTERFLY, M_STAG_BEETLE, F_STAG_BEETLE, M_GRASSHOPPER, F_GRASSHOPPER, M_NANAFUSHI, F_NANAFUSHI, M_DANGOMUSHI, F_DANGOMUSHI,
-    M_MANTIS, F_MANTIS, M_LADYBUG, F_LADYBUG, M_SNAIL, F_SNAIL, M_DRAGONFLY, F_DRAGONFLY, M_ANT, F_ANT, M_MAYFLY, F_MAYFLY,
+    M_BEETLE,      F_BEETLE,      M_BUTTERFLY, F_BUTTERFLY, M_STAG_BEETLE, F_STAG_BEETLE,
+    M_GRASSHOPPER, F_GRASSHOPPER, M_NANAFUSHI, F_NANAFUSHI, M_DANGOMUSHI,  F_DANGOMUSHI,
+    M_MANTIS,      F_MANTIS,      M_LADYBUG,   F_LADYBUG,   M_SNAIL,       F_SNAIL,
+    M_DRAGONFLY,   F_DRAGONFLY,   M_ANT,       F_ANT,       M_MAYFLY,      F_MAYFLY,
 };
 
 /* 8002E428-8002E4CC 028D68 00A4+00 0/0 4/4 0/0 .text            dComIfGs_checkGetInsectNum__Fv */
@@ -1527,13 +1534,13 @@ void dComIfGs_setKeyNum(int i_stageNo, u8 keyNum) {
 
 /* 8002F0E0-8002F128 029A20 0048+00 1/1 0/0 0/0 .text dComIfGs_setWarpItemData__FiPCc4cXyzsScUcUc
  */
-static void dComIfGs_setWarpItemData(int param_0, char const* param_1, cXyz param_2,
-                                         s16 param_3, s8 param_4, u8 param_5, u8 param_6) {
+static void dComIfGs_setWarpItemData(int param_0, char const* param_1, cXyz param_2, s16 param_3,
+                                     s8 param_4, u8 param_5, u8 param_6) {
     g_dComIfG_gameInfo.play.setWarpItemData(param_1, param_2, param_3, param_4, param_5, param_6);
 }
 
 void dComIfG_play_c::setWarpItemData(char const* param_0, cXyz param_1, s16 param_2, s8 param_3,
-                                         u8 param_4, u8 param_5) {
+                                     u8 param_4, u8 param_5) {
     strcpy(field_0x4F94, param_0);
     field_0x4f9c.set(param_1);
     field_0x4fa8 = param_2;
@@ -1543,15 +1550,16 @@ void dComIfG_play_c::setWarpItemData(char const* param_0, cXyz param_1, s16 para
 }
 
 void dComIfGs_setWarpItemData(char const* param_0, cXyz param_1, s16 param_2, s8 param_3,
-                                  u8 param_4, u8 param_5) {
+                              u8 param_4, u8 param_5) {
     dComIfGs_setWarpItemData(0, param_0, param_1, param_2, param_3, param_4, param_5);
-    dComIfGs_setLastWarpMarkItemData__FPCc4cXyzsScUcUc(param_0, param_1, param_2, param_3, param_4, param_5);
+    dComIfGs_setLastWarpMarkItemData__FPCc4cXyzsScUcUc(param_0, param_1, param_2, param_3, param_4,
+                                                       param_5);
 }
 
-static void dComIfGs_setLastWarpMarkItemData(const char* stage, cXyz pos, s16 angle, s8 room, u8 unk1,
-                                      u8 unk2) {
+static void dComIfGs_setLastWarpMarkItemData(const char* stage, cXyz pos, s16 angle, s8 room,
+                                             u8 unk1, u8 unk2) {
     g_dComIfG_gameInfo.info.getPlayer().getPlayerLastMarkInfo().setWarpItemData(stage, pos, angle,
-                                                                             room, unk1, unk2);
+                                                                                room, unk1, unk2);
 }
 
 const char* dComIfGs_getWarpStageName() {
@@ -1687,7 +1695,7 @@ int dComIfG_TimerStart(int param_0, s16 param_1) {
             }
             uvar2 = 1;
         } else {
-            uvar2 = 0;  
+            uvar2 = 0;
         }
     } else {
         uvar2 = 0;
@@ -1704,7 +1712,7 @@ int dComIfG_TimerStop(int param_0) {
             timer->stop(4);
             uvar2 = 1;
         } else {
-            uvar2 = 0;  
+            uvar2 = 0;
         }
     } else {
         uvar2 = 0;
@@ -1721,7 +1729,7 @@ int dComIfG_TimerReStart(int param_0) {
             timer->restart(4);
             uvar2 = 1;
         } else {
-            uvar2 = 0;  
+            uvar2 = 0;
         }
     } else {
         uvar2 = 0;
@@ -1738,7 +1746,7 @@ int dComIfG_TimerEnd(int param_0, int param_1) {
             timer->end(param_1);
             uvar2 = 1;
         } else {
-            uvar2 = 0;  
+            uvar2 = 0;
         }
     } else {
         uvar2 = 0;
@@ -1772,7 +1780,7 @@ int dComIfG_TimerDeleteRequest(int param_0) {
             timer->deleteRequest();
             uvar2 = 1;
         } else {
-            uvar2 = 0;  
+            uvar2 = 0;
         }
     } else {
         uvar2 = 0;
@@ -1847,7 +1855,8 @@ u8 dComIfGp_SelectWarpPt_get() {
 
 BOOL dComIfGp_TransportWarp_check() {
     BOOL check = false;
-    if (g_dComIfG_gameInfo.field_0x1de09 != 0xFF && g_dComIfG_gameInfo.field_0x1de0a != 0xFF && g_dComIfG_gameInfo.field_0x1de09 == g_dComIfG_gameInfo.field_0x1de0a) {
+    if (g_dComIfG_gameInfo.field_0x1de09 != 0xFF && g_dComIfG_gameInfo.field_0x1de0a != 0xFF &&
+        g_dComIfG_gameInfo.field_0x1de09 == g_dComIfG_gameInfo.field_0x1de0a) {
         check = true;
     }
     return check;

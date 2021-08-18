@@ -516,9 +516,7 @@ public:
     /* 80024954 */ void resetArchiveBank(int);
     /* 80024DB0 */ static void SetTimePass(int);
 
-    inline static s8 getStayNo() {
-        return struct_80450D64;
-    }
+    inline static s8 getStayNo() { return struct_80450D64; }
 
     static JKRExpHeap* mMemoryBlock[19];
     static u8 mArcBank[320];
