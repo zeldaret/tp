@@ -3840,7 +3840,6 @@ extern "C" extern u32 __float_max;
 extern "C" extern u8 data_80450B38[4];
 extern "C" f32 mGroundY__11fopAcM_gc_c;
 extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
-extern "C" extern u8 struct_80450D64[4];
 extern "C" u8 m_top__12daTagHstop_c[4 + 4 /* padding */];
 extern "C" u8 m_object__7dDemo_c[4];
 extern "C" u8 mWaterBubblePcallBack__13dPa_control_c[4];
@@ -35032,7 +35031,7 @@ static asm void dComIfGs_isItemFirstBit(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
+static asm u8 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/dStage_stagInfo_GetSaveTbl__FP21stage_stag_info_class.s"
 }

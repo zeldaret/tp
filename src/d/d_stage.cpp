@@ -631,7 +631,6 @@ u32 dStage_roomControl_c::mProcID;
 /* 80450D65 0001+00 data_80450D65 None */
 /* 80450D66 0001+00 data_80450D66 None */
 /* 80450D67 0001+00 data_80450D67 None */
-extern s8 struct_80450D64;  // sStayNo
 s8 struct_80450D64;
 
 extern s8 sLastStayNo;

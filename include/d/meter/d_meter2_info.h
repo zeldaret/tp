@@ -10,7 +10,7 @@
 //#include "JSystem/JUtility/JUTFont.h"
 
 struct dSv_event_flag_c {
-    static u8 saveBitLabels[1644 + 4 /* padding */];
+    static u16 saveBitLabels[822];
 };
 
 struct dMsgObject_c {
@@ -115,6 +115,7 @@ public:
     dMeterMap_c* getMeterMapClass() { return mMeterMap; }
     dMw_c* getMenuWindowClass() { return mMenuWindowClass; }
     void offUseButton(int pButton) { mUseButton &= ~(u16)pButton; }
+    u16 getOilGaugeBackUp() { return mOilGaugeBackUp; }
 
 private:
     /* 0x04 */ u8 unk4[4];
@@ -223,6 +224,14 @@ inline void dMeter2Info_getString(u32 param_0, char* param_1, JMSMesgEntry_c* pa
 
 inline void dMeter2Info_setHotSpringTimer(u8 time) {
     g_meter2_info.setHotSpringTimer(time);
+}
+
+inline u16 dMeter2Info_getOilGaugeBackUp() {
+    return g_meter2_info.getOilGaugeBackUp();
+}
+
+inline void dMeter2Info_setSaveStageName(const char* name) {
+    g_meter2_info.setSaveStageName(name);
 }
 
 #endif /* D_METER_D_METER2_INFO_H */

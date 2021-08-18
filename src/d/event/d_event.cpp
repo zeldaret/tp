@@ -180,7 +180,6 @@ extern "C" extern void* __vt__11dEvt_info_c[3 + 1 /* padding */];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 struct_80450D64[4];
 extern "C" u8 m_mode__7dDemo_c[4];
 extern "C" u8 m_midnaActor__9daPy_py_c[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];

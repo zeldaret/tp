@@ -200,7 +200,6 @@ extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" f32 mFadeRate__13mDoGph_gInf_c;
 extern "C" extern u8 struct_80450BE4[4];
-extern "C" extern u8 struct_80450D64[4];
 extern "C" u8 m_control__7dDemo_c[4];
 extern "C" u8 m_frameNoMsg__7dDemo_c[4];
 extern "C" u8 m_mode__7dDemo_c[4];

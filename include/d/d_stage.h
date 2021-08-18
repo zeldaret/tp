@@ -24,7 +24,21 @@ STATIC_ASSERT(sizeof(stage_tgsc_data_class) == 0x24);
 
 struct stage_tgsc_class {};
 
-struct stage_stag_info_class {};
+struct stage_stag_info_class {
+    /* 0x00 */ u8 field_0x00[8];
+    /* 0x08 */ u8 mCameraType;
+    /* 0x09 */ u8 field_0x09;
+    /* 0x0A */ u16 field_0x0a;
+    /* 0x0C */ u32 field_0x0c;
+    /* 0x10 */ u32 field_0x10;
+    /* 0x14 */ u8 field_0x14[6];
+    /* 0x1A */ s16 mGapLevel;
+    /* 0x1C */ s16 mRangeUp;
+    /* 0x1E */ s16 mRangeDown;
+    /* 0x20 */ u8 field_0x20[8];
+    /* 0x28 */ u8 mMsgGroup;
+    /* 0x2A */ u16 mStageTitleNo;
+};  // Size: Unknown
 
 struct stage_scls_info_dummy_class {};
 
@@ -469,6 +483,8 @@ public:
 
 STATIC_ASSERT(sizeof(dStage_roomStatus_c) == 0x404);
 
+extern s8 struct_80450D64;  // sStayNo
+
 class dStage_roomControl_c {
 public:
     class roomDzs_c {
@@ -500,6 +516,10 @@ public:
     /* 80024954 */ void resetArchiveBank(int);
     /* 80024DB0 */ static void SetTimePass(int);
 
+    inline static s8 getStayNo() {
+        return struct_80450D64;
+    }
+
     static JKRExpHeap* mMemoryBlock[19];
     static u8 mArcBank[320];
     static dStage_roomStatus_c mStatus[0x40];
@@ -520,6 +540,7 @@ public:
         enabled = 0;  // TODO: maybe wrong
     }
     void set(const char*, s8, s16, s8, s8, u8);
+    void offEnable() { enabled = 0; }
 
 private:
     char mStage[8];
@@ -538,13 +559,7 @@ public:
     void set(const char*, s8, s16, s8);
     inline char* getName() { return mStage; }
     s8 getLayer() { return mLayer; }
-    void operator=(const dStage_startStage_c& other) {
-        strcpy(mStage, other.mStage);
-        mPoint = other.mPoint;
-        mRoomNo = other.mRoomNo;
-        mLayer = other.mLayer;
-        mDarkArea = other.mDarkArea;
-    }
+    s8 getRoomNo() { return mRoomNo; }
 
 private:
     /* 0x0 */ char mStage[8];

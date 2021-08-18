@@ -40,7 +40,7 @@ public:
     static u8 mPadAssign[4];
     static u8 sSuppressPadReset[4];
     static s32 sAnalogMode;
-    static u8 sRumbleSupported[4];
+    static u32 sRumbleSupported;
 
     enum EStickMode {};
     enum EWhichStick {};

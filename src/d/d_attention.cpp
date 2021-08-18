@@ -195,7 +195,6 @@ extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u32 __float_nan;
 extern "C" extern u32 __float_max;
-extern "C" extern u8 struct_80450D64[4];
 extern "C" extern u8 data_80450F58[8];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 

@@ -376,8 +376,10 @@ public:
     void onTransformLV(int);
     BOOL isTransformLV(int) const;
 
+    void setDateIpl(s64 time) { mDateIpl = time; }
+
 private:
-    /* 0x00 */ u64 mDateIpl;
+    /* 0x00 */ s64 mDateIpl;
     /* 0x08 */ u8 mTransformLevelFlag;
     /* 0x09 */ u8 mDarkClearLevelFlag;
     /* 0x0A */ u8 unk10;
@@ -404,11 +406,14 @@ class dSv_player_return_place_c {
 public:
     void init();
     void set(const char*, s8, u8);
+    u8 getRoomNo() { return mRoomNo; }
+    u8 getPlayerStatus() { return mPlayerStatus; }
+    char* getName() { return mName; }
 
 private:
     /* 0x00 */ char mName[8];
     /* 0x08 */ u8 mPlayerStatus;
-    /* 0x09 */ u8 mRoomNo;
+    /* 0x09 */ s8 mRoomNo;
     /* 0x0A */ u8 unk10;
     /* 0x0B */ u8 unk11;
 };  // Size: 0xC
@@ -602,6 +607,7 @@ public:
     char* getLinkName() { return (char*)mPlayerName; }
     void setPlayerName(const char* name) { strcpy((char*)mPlayerName, name); }
     void setHorseName(const char* name) { strcpy((char*)mHorseName, name); }
+    void setTotalTime(s64 time) { mTotalTime = time; }
 
 private:
     /* 0x00 */ u32 unk0;
@@ -657,13 +663,16 @@ public:
     void init();
     dSv_player_info_c& getPlayerInfo() { return mPlayerInfo; }
     dSv_player_status_a_c& getPlayerStatusA() { return mPlayerStatusA; }
+    dSv_player_status_b_c& getPlayerStatusB() { return mPlayerStatusB; }
     dSv_player_item_c& getItem() { return mItem; }
     dSv_player_collect_c& getCollect() { return mCollect; }
     dSv_player_item_record_c& getItemRecord() { return mItemRecord; }
     dSv_player_item_max_c& getItemMax() { return mItemMax; }
     dSv_player_last_mark_info_c& getPlayerLastMarkInfo() { return mPlayerLastMarkInfo; }
+    dSv_player_return_place_c& getPlayerReturnPlace() { return mPlayerReturnPlace; }
     dSv_light_drop_c& getLightDrop() { return mLightDrop; }
     dSv_player_get_item_c& getGetItem() { return mGetItem; }
+    dSv_player_config_c& getConfig() { return mConfig; }
 
 private:
     /* 0x000 */ dSv_player_status_a_c mPlayerStatusA;
@@ -712,12 +721,15 @@ public:
     bool isDungeonItem(int) const;
 
     u8 getKeyNum() { return mKeyNum; }
+    void setKeyNum(u8 keyNum) { mKeyNum = keyNum; }
     void onDungeonItemMap() { onDungeonItem(MAP); }
     bool isDungeonItemMap() const { return isDungeonItem(MAP); }
     void onDungeonItemCompass() { onDungeonItem(COMPASS); }
     void onDungeonItemWarp() { onDungeonItem(OOCCOO_NOTE); }
     void onDungeonItemBossKey() { onDungeonItem(BOSS_KEY); }
     bool isDungeonItemBossKey() const { return isDungeonItem(BOSS_KEY); }
+    void onStageBossEnemy() { onDungeonItem(STAGE_BOSS_ENEMY); onDungeonItem(OOCCOO_NOTE); }
+    bool isDungeonItemWarp() const { return isDungeonItem(OOCCOO_NOTE); }
 
 private:
     /* 0x00 */ u32 mTbox[2];
@@ -938,8 +950,8 @@ public:
     void onActor(int, int);
     void offActor(int, int);
     BOOL isActor(int, int) const;
-    void memory_to_card(char*, int);
-    void card_to_memory(char*, int);
+    int memory_to_card(char*, int);
+    int card_to_memory(char*, int);
     void initdata_to_card(char*, int);
 
     dSv_save_c& getSavedata() { return mSavedata; }
@@ -947,6 +959,8 @@ public:
     dSv_zone_c* getZones() { return mZone; }
     dSv_player_c& getPlayer() { return mSavedata.getPlayer(); }
     dSv_event_c& getTmp() { return mTmp; }
+    s64 getStartTime() { return mStartTime; }
+    s64 getSaveTotalTime() { return mSaveTotalTime; }
     void initDan(s8 param_0) { mDan.init(param_0); }
 
 private:
@@ -962,8 +976,8 @@ private:
     /* 0xF19 */ u8 mNewFile;
     /* 0xF1A */ u8 mNoFile;
     /* 0xF1B */ u8 field_0xf1b[13];
-    /* 0xF28 */ u64 mStartTime;
-    /* 0xF30 */ u64 mSaveTotalTime;
+    /* 0xF28 */ s64 mStartTime;
+    /* 0xF30 */ s64 mSaveTotalTime;
 };  // Size: 0xF38
 
 #endif /* D_SAVE_D_SAVE_H */
