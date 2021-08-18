@@ -415,6 +415,10 @@ inline u8 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
     return param_0->field_0x09 >> 1 & 0x1f;
 }
 
+inline BOOL dComIfGs_isEventBit(u16 id) {
+    return g_dComIfG_gameInfo.info.getSavedata().getEvent().isEventBit(id);
+}
+
 void dComIfG_play_c::ct() {
     mWindowNum = 0;
     mParticle = NULL;

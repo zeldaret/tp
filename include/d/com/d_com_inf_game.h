@@ -594,10 +594,6 @@ inline void dComIfGs_onEventBit(u16 id) {
     g_dComIfG_gameInfo.info.getSavedata().getEvent().onEventBit(id);
 }
 
-inline BOOL dComIfGs_isEventBit(u16 id) {
-    return g_dComIfG_gameInfo.info.getSavedata().getEvent().isEventBit(id);
-}
-
 inline void dComIfGs_onLightDropFlag(u8 area_id) {
     g_dComIfG_gameInfo.info.getPlayer().getLightDrop().onLightDropGetFlag(area_id);
 }

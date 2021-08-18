@@ -233,6 +233,10 @@ inline int dComIfGs_isItemFirstBit(u8 i_no) {
     return g_dComIfG_gameInfo.info.getPlayer().getGetItem().isFirstBit(i_no);
 }
 
+inline BOOL dComIfGs_isEventBit(u16 id) {
+    return g_dComIfG_gameInfo.info.getSavedata().getEvent().isEventBit(id);
+}
+
 static u8 dSv_item_rename(u8 item_id) {
     switch (item_id) {
     case OIL_BOTTLE_2:

@@ -2562,17 +2562,17 @@ bool isInsect(u8 item_no) {
 
 u8 check_itemno(int i_itemId) {
     if (!dComIfGs_isGetMagicUseFlag() && (i_itemId == S_MAGIC || i_itemId == L_MAGIC)) {
-        return TRUE;
+        return GREEN_RUPEE;
     }
 
     if (i_itemId == ARROW_1) {
         if (!dComIfGs_isItemFirstBit(BOW)) {
-            return TRUE;
+            return GREEN_RUPEE;
         }
     } else {
         if (isArrow(i_itemId)) {
             if (!dComIfGs_isItemFirstBit(BOW)) {
-                return TRUE;
+                return GREEN_RUPEE;
             }
 
             if (g_dComIfG_gameInfo.play.getLayerNo(0) == 0xD ||
@@ -2580,23 +2580,23 @@ u8 check_itemno(int i_itemId) {
                 char* tmp = dComIfGp_getStartStageName();
                 // D_MN08: Palace of Twilight
                 if (strncmp(tmp, "D_MN08", 6)) {
-                    return TRUE;
+                    return GREEN_RUPEE;
                 }
             }
         }
     }
 
     if (!dComIfGs_isItemFirstBit(BOMB_BAG_LV1) && isBomb(i_itemId)) {
-        return TRUE;
+        return GREEN_RUPEE;
     } else {
         if (i_itemId == TRIPLE_HEART) {
-            i_itemId = FALSE;
+            i_itemId = HEART;
         }
         if (!checkItemGet(PACHINKO, 1) && i_itemId == PACHINKO_SHOT) {
-            i_itemId = TRUE;
+            i_itemId = GREEN_RUPEE;
         }
         if (i_itemId == S_MAGIC || i_itemId == L_MAGIC) {
-            i_itemId = TRUE;
+            i_itemId = GREEN_RUPEE;
         }
     }
     return i_itemId;
