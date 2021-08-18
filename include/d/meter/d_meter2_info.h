@@ -9,10 +9,6 @@
 #include "f_op/f_op_actor.h"
 //#include "JSystem/JUtility/JUTFont.h"
 
-struct dSv_event_flag_c {
-    static u16 saveBitLabels[822];
-};
-
 struct dMsgObject_c {
     /* 802384C4 */ void setLetterNameID(u16);
     /* 802379AC */ void setKillMessageFlag();

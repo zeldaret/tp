@@ -983,4 +983,14 @@ private:
     /* 0xF30 */ s64 mSaveTotalTime;
 };  // Size: 0xF38
 
+class dSv_event_flag_c {
+public:
+    static u16 saveBitLabels[822];
+};
+
+class dSv_event_tmp_flag_c {
+public:
+    static u16 const tempBitLabels[185];
+};
+
 #endif /* D_SAVE_D_SAVE_H */
