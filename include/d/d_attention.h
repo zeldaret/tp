@@ -27,10 +27,12 @@ private:
 class dAttCatch_c {
 public:
     dAttCatch_c() {}
-    void convPId(unsigned int);
+    s32 convPId(unsigned int);
     void init();
     void proc();
     void request(fopAc_ac_c*, u8, f32, f32, f32, s16, int);
+
+    s32 getCatghTarget() { return convPId(field_0x10); }
 
 private:
     void* field_0x0;
@@ -187,6 +189,8 @@ public:
     /* 8007378C */ void CheckObjectTarget(s32);
     /* 800737E4 */ void LockonTruth();
     /* 80073838 */ void checkDistance(cXyz*, s16, cXyz*, f32, f32, f32, f32);
+
+    dAttCatch_c& getCatghTarget() { return mCatghTarget; }
 
     static u8 loc_type_tbl[12];
     static u8 act_type_tbl[20];

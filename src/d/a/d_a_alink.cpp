@@ -19197,6 +19197,11 @@ BOOL daAlink_c::checkRideOn() const {
 }
 
 /* 800CFEC4-800CFEF4 0CA804 0030+00 1/1 0/0 0/0 .text            dComIfGp_att_getCatghTarget__Fv */
+#ifdef NONMATCHING
+static s32 dComIfGp_att_getCatghTarget() {
+    return dComIfGp_getAttention().getCatghTarget().getCatghTarget();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -19205,6 +19210,7 @@ static asm void dComIfGp_att_getCatghTarget() {
 #include "asm/d/a/d_a_alink/dComIfGp_att_getCatghTarget__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 800CFEF4-800CFF2C 0CA834 0038+00 1/1 0/0 0/0 .text            mDoAud_setLinkHp__Fll */
 static void mDoAud_setLinkHp(s32 param_0, s32 param_1) {
@@ -19214,14 +19220,9 @@ static void mDoAud_setLinkHp(s32 param_0, s32 param_1) {
 }
 
 /* 800CFF2C-800CFF3C 0CA86C 0010+00 1/1 0/0 0/0 .text            dComIfGs_getLife__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dComIfGs_getLife() {
-    nofralloc
-#include "asm/d/a/d_a_alink/dComIfGs_getLife__Fv.s"
+static u16 dComIfGs_getLife() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getLife();
 }
-#pragma pop
 
 /* 800CFF3C-800CFF4C 0CA87C 0010+00 1/1 0/0 0/0 .text            dComIfGp_getRStatus__Fv */
 #pragma push
@@ -19244,14 +19245,9 @@ asm BOOL daAlink_c::checkAttentionLock() {
 #pragma pop
 
 /* 800CFFA4-800CFFC0 0CA8E4 001C+00 1/1 0/0 0/0 .text            dComIfGp_setItemLifeCount__FfUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_setItemLifeCount(f32 param_0, u8 param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/dComIfGp_setItemLifeCount__FfUc.s"
+void dComIfGp_setItemLifeCount(f32 amount, u8 type) {
+    g_dComIfG_gameInfo.play.setItemLifeCount(amount, type);
 }
-#pragma pop
 
 /* 800CFFC0-800CFFE0 0CA900 0020+00 1/1 0/0 0/0 .text            cMtx_multVec__FPA4_CfPC3VecP3Vec */
 #pragma push
@@ -34941,14 +34937,9 @@ static asm void fopAcM_onSwitch(fopAc_ac_c const* param_0, int param_1) {
 #pragma pop
 
 /* 80141264-80141294 13BBA4 0030+00 1/1 0/0 0/0 .text            dComIfGs_isItemFirstBit__FUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dComIfGs_isItemFirstBit(u8 param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/dComIfGs_isItemFirstBit__FUc.s"
+int dComIfGs_isItemFirstBit(u8 i_no) {
+    return g_dComIfG_gameInfo.info.getPlayer().getGetItem().isFirstBit(i_no);
 }
-#pragma pop
 
 /* 80141294-801412A0 13BBD4 000C+00 1/1 0/0 0/0 .text
  * dStage_stagInfo_GetSaveTbl__FP21stage_stag_info_class        */
@@ -35042,14 +35033,9 @@ int daPy_py_c::checkEndResetFlg1(daPy_ERFLG1 pFlag) const {
 }
 
 /* 8014134C-8014135C 13BC8C 0010+00 1/1 0/0 0/0 .text            dComIfGp_getEventManager__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dComIfGp_getEventManager() {
-    nofralloc
-#include "asm/d/a/d_a_alink/dComIfGp_getEventManager__Fv.s"
+static dEvent_manager_c& dComIfGp_getEventManager() {
+    return g_dComIfG_gameInfo.play.getEvtManager();
 }
-#pragma pop
 
 /* 8014135C-8014136C 13BC9C 0010+00 1/1 0/0 0/0 .text
  * offNoResetFlg1__9daPy_py_cFQ29daPy_py_c9daPy_FLG1            */

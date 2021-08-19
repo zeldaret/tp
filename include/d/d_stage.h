@@ -6,6 +6,7 @@
 #include "d/save/d_save.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
+#include "f_op/f_op_actor_mng.h"
 #include "msl_c/string.h"
 
 struct stage_vrboxcol_info_class {};
@@ -17,7 +18,11 @@ struct stage_tresure_class {};
 struct stage_tgsc_data_class {
     /* 8002847C */ ~stage_tgsc_data_class() {}
     /* 800284B8 */ stage_tgsc_data_class() {}
-    u8 unk_0[0x24];
+    /* 0x00 */ u32 field_0x0;
+    /* 0x04 */ u32 field_0x4;
+    /* 0x08 */ fopAcM_prmBase_class field_0x8;
+    /* 0x20 */ u16 field_0x20;
+    /* 0x22 */ u8 field_0x22;
 };  // Size = 0x24
 
 STATIC_ASSERT(sizeof(stage_tgsc_data_class) == 0x24);
@@ -341,102 +346,101 @@ private:
 class dStage_roomDt_c : public dStage_dt_c {
 public:
     dStage_roomDt_c() {}
-    stage_pure_lightvec_info_class* getLightVecInfo(void) const;
-    int getLightVecInfoNum(void) const;
-    stage_map_info_class* getMapInfo(void) const;
-    stage_map_info_dummy_class* getMapInfoBase(void) const;
-    int getMapPath(void);
-    stage_vrbox_info_class* getVrboxInfo(void) const;
-    stage_vrboxcol_info_class* getVrboxcolInfo(void) const;
-    dStage_FileList2_dt_c* getFileList2Info(void) const;
-    dStage_FileList_dt_c* getFileListInfo(void) const;
-    stage_actor_class* getPlayer(void) const;
-    dStage_dPnt_c* getPnt2Inf(void) const;
-    dStage_dPath_c* getPath2Inf(void) const;
-    stage_camera_class* getCamera(void) const;
-    stage_arrow_class* getArrow(void) const;
-    dStage_MapEventInfo_c* getMapEventInfo(void) const;
-    dStage_SoundInfo_c* getSoundInf(void) const;
-    dStage_SoundInfo_c* getSoundInfCL(void) const;
-    stage_scls_info_dummy_class* getSclsInfo(void) const;
-    dStage_Lbnk_c* getLbnk(void) const;
-    stage_tresure_class* getTresure(void) const;
-    stage_tgsc_class* getDrTg(void) const;
-    stage_tgsc_class* getDoor(void) const;
-    dStage_FloorInfo_c* getFloorInfo(void) const;
-    u16 getPlayerNum(void) const;
-    int getEnvrNumInfo(void) const;
-    int getVrboxNumInfo(void) const;
-    int getVrboxcolNumInfo(void) const;
-    int getMapInfo2(int) const;
-    int getPlightNumInfo(void) const;
-    stage_stag_info_class* getStagInfo(void) const;
-    dStage_dPnt_c* getPntInf(void) const;
-    dStage_dPath_c* getPathInf(void) const;
-    dStage_MemoryConfig_c* getMemoryConfig(void) const;
-    dStage_MemoryMap_c* getMemoryMap(void) const;
-    dStage_Multi_c* getMulti(void) const;
-    dStage_Multi_c* getOldMulti(void) const;
-    dStage_DMap_c* getDMap(void) const;
-    dStage_Elst_c* getElst(void);
-    roomRead_class* getRoom(void) const;
-    stage_palette_info_class* getPaletteInfo(void) const;
-    stage_pselect_info_class* getPselectInfo(void) const;
-    stage_envr_info_class* getEnvrInfo(void) const;
-    stage_plight_info_class* getPlightInfo(void) const;
-    int getPaletteNumInfo(void) const;
-    int getPselectNumInfo(void) const;
-
     void initFileList2(void);
-    void init(void);
-
-    void setLightVecInfo(stage_pure_lightvec_info_class*);
-    void setLightVecInfoNum(int);
-    void setMapInfo(stage_map_info_class*);
-    void setMapInfoBase(stage_map_info_dummy_class*);
-    void setVrboxInfo(stage_vrbox_info_class*);
-    void setVrboxcolInfo(stage_vrboxcol_info_class*);
-    void setFileList2Info(dStage_FileList2_dt_c*);
-    void setFileListInfo(dStage_FileList_dt_c*);
-    void setPlayer(stage_actor_class*);
     void setPnt2Inf(dStage_dPnt_c*);
-    void setPath2Info(dStage_dPath_c*);
-    void setCamera(stage_camera_class*);
-    void setArrow(stage_arrow_class*);
-    void setMapEventInfo(dStage_MapEventInfo_c*);
-    void setSoundInf(dStage_SoundInfo_c*);
-    void setSoundInfCL(dStage_SoundInfo_c*);
-    void setSclsInfo(stage_scls_info_dummy_class*);
-    void setLbnk(dStage_Lbnk_c*);
     void setTreasure(stage_tresure_class*);
-    void setDrTg(stage_tgsc_class*);
-    void setDoor(stage_tgsc_class*);
-    void setFloorInfo(dStage_FloorInfo_c*);
-    void setPlayerNum(u16);
-    void setVrboxNumInfo(int);
-    void setVrboxcolNumInfo(int);
-    void setStagInfo(stage_stag_info_class*);
-    void setPntInfo(dStage_dPnt_c*);
-    void setPathInfo(dStage_dPath_c*);
-    void setPnt2Info(dStage_dPnt_c*);
-    void setPlightNumInfo(int);
-    void setMemoryConfig(dStage_MemoryConfig_c*);
-    void setMemoryMap(dStage_MemoryMap_c*);
-    void setMulti(dStage_Multi_c*);
-    void setOldMulti(void);
-    void resetOldMulti(void);
-    void setTresure(stage_tresure_class*);
-    void setDMap(dStage_DMap_c*);
-    void setMapPath(void*);
-    void setElst(dStage_Elst_c*);
-    void setRoom(roomRead_class*);
-    void setPaletteInfo(stage_palette_info_class*);
-    void setPselectInfo(stage_pselect_info_class*);
-    void setEnvrInfo(stage_envr_info_class*);
-    void setPlightInfo(stage_plight_info_class*);
-    void setPaletteNumInfo(int);
-    void setPselectNumInfo(int);
-    void setEnvrNumInfo(int);
+
+    virtual void init(void);
+    virtual void setCamera(stage_camera_class*);
+    virtual stage_camera_class* getCamera(void) const;
+    virtual void setArrow(stage_arrow_class*);
+    virtual stage_arrow_class* getArrow(void) const;
+    virtual void setPlayer(stage_actor_class*);
+    virtual stage_actor_class* getPlayer(void) const;
+    virtual void setPlayerNum(u16);
+    virtual u16 getPlayerNum(void) const;
+    virtual void setRoom(roomRead_class*);
+    virtual roomRead_class* getRoom(void) const;
+    virtual void setMapInfo(stage_map_info_class*);
+    virtual stage_map_info_class* getMapInfo(void) const;
+    virtual int getMapInfo2(int) const;
+    virtual void setMapInfoBase(stage_map_info_dummy_class*);
+    virtual stage_map_info_dummy_class* getMapInfoBase(void) const;
+    virtual void setPaletteInfo(stage_palette_info_class*);
+    virtual stage_palette_info_class* getPaletteInfo(void) const;
+    virtual void setPselectInfo(stage_pselect_info_class*);
+    virtual stage_pselect_info_class* getPselectInfo(void) const;
+    virtual void setEnvrInfo(stage_envr_info_class*);
+    virtual stage_envr_info_class* getEnvrInfo(void) const;
+    virtual void setVrboxInfo(stage_vrbox_info_class*);
+    virtual stage_vrbox_info_class* getVrboxInfo(void) const;
+    virtual void setVrboxcolInfo(stage_vrboxcol_info_class*);
+    virtual stage_vrboxcol_info_class* getVrboxcolInfo(void) const;
+    virtual void setPlightInfo(stage_plight_info_class*);
+    virtual stage_plight_info_class* getPlightInfo(void) const;
+    virtual void setPaletteNumInfo(int);
+    virtual int getPaletteNumInfo(void) const;
+    virtual void setPselectNumInfo(int);
+    virtual int getPselectNumInfo(void) const;
+    virtual void setEnvrNumInfo(int);
+    virtual int getEnvrNumInfo(void) const;
+    virtual void setVrboxNumInfo(int);
+    virtual int getVrboxNumInfo(void) const;
+    virtual void setVrboxcolNumInfo(int);
+    virtual int getVrboxcolNumInfo(void) const;
+    virtual void setPlightNumInfo(int);
+    virtual int getPlightNumInfo(void) const;
+    virtual void setLightVecInfo(stage_pure_lightvec_info_class*);
+    virtual stage_pure_lightvec_info_class* getLightVecInfo(void) const;
+    virtual void setLightVecInfoNum(int);
+    virtual int getLightVecInfoNum(void) const;
+    virtual void setStagInfo(stage_stag_info_class*);
+    virtual stage_stag_info_class* getStagInfo(void) const;
+    virtual void setSclsInfo(stage_scls_info_dummy_class*);
+    virtual stage_scls_info_dummy_class* getSclsInfo(void) const;
+    virtual void setPntInfo(dStage_dPnt_c*);
+    virtual dStage_dPnt_c* getPntInf(void) const;
+    virtual void setPathInfo(dStage_dPath_c*);
+    virtual dStage_dPath_c* getPathInf(void) const;
+    virtual void setPnt2Info(dStage_dPnt_c*);
+    virtual dStage_dPnt_c* getPnt2Inf(void) const;
+    virtual void setPath2Info(dStage_dPath_c*);
+    virtual dStage_dPath_c* getPath2Inf(void) const;
+    virtual void setSoundInf(dStage_SoundInfo_c*);
+    virtual dStage_SoundInfo_c* getSoundInf(void) const;
+    virtual void setSoundInfCL(dStage_SoundInfo_c*);
+    virtual dStage_SoundInfo_c* getSoundInfCL(void) const;
+    virtual void setMapEventInfo(dStage_MapEventInfo_c*);
+    virtual dStage_MapEventInfo_c* getMapEventInfo(void) const;
+    virtual void setFileList2Info(dStage_FileList2_dt_c*);
+    virtual dStage_FileList2_dt_c* getFileList2Info(void) const;
+    virtual void setFileListInfo(dStage_FileList_dt_c*);
+    virtual dStage_FileList_dt_c* getFileListInfo(void) const;
+    virtual void setFloorInfo(dStage_FloorInfo_c*);
+    virtual dStage_FloorInfo_c* getFloorInfo(void) const;
+    virtual void setMemoryConfig(dStage_MemoryConfig_c*);
+    virtual dStage_MemoryConfig_c* getMemoryConfig(void) const;
+    virtual void setMemoryMap(dStage_MemoryMap_c*);
+    virtual dStage_MemoryMap_c* getMemoryMap(void) const;
+    virtual void setMulti(dStage_Multi_c*);
+    virtual dStage_Multi_c* getMulti(void) const;
+    virtual void setOldMulti(void);
+    virtual void resetOldMulti(void);
+    virtual dStage_Multi_c* getOldMulti(void) const;
+    virtual void setLbnk(dStage_Lbnk_c*);
+    virtual dStage_Lbnk_c* getLbnk(void) const;
+    virtual void setTresure(stage_tresure_class*);
+    virtual stage_tresure_class* getTresure(void) const;
+    virtual void setDMap(dStage_DMap_c*);
+    virtual dStage_DMap_c* getDMap(void) const;
+    virtual void setDrTg(stage_tgsc_class*);
+    virtual stage_tgsc_class* getDrTg(void) const;
+    virtual void setDoor(stage_tgsc_class*);
+    virtual stage_tgsc_class* getDoor(void) const;
+    virtual void setMapPath(void*);
+    virtual int getMapPath(void);
+    virtual void setElst(dStage_Elst_c*);
+    virtual dStage_Elst_c* getElst(void);
 
 private:
     stage_pure_lightvec_info_class* mLightVecInfo;
@@ -468,14 +472,13 @@ private:
 };  // Size: 0x6C
 
 class dStage_roomStatus_c {
-private:
+public:
     /* 0x000 */ dStage_roomDt_c mRoomDt;
     /* 0x06C */ dKy_tevstr_c mKyTevStr;
     /* 0x3F4 */ u8 unk_0x3F4[3];
     /* 0x3F7 */ s8 mZoneNo;
     /* 0x3F8 */ u8 unk_3F8[0x404 - 0x3F8];
 
-public:
     int getZoneNo() const { return mZoneNo; }
     /* 80028360 */ ~dStage_roomStatus_c() {}
     /* 8002839C */ dStage_roomStatus_c() {}
@@ -523,34 +526,13 @@ public:
     static dStage_roomStatus_c mStatus[0x40];
     static u8 mDemoArcName[10 + 2 /* padding */];
     static u32 mProcID;
-    static u8 mArcBankName[4];
-    static u8 mArcBankData[4];
+    static char* mArcBankName;
+    static char* mArcBankData;
     static roomDzs_c m_roomDzs;
 
 private:
     u8 field_0x0[4];
 };
-
-#pragma pack(push, 1)
-class dStage_nextStage_c {
-public:
-    dStage_nextStage_c() {
-        enabled = 0;  // TODO: maybe wrong
-    }
-    void set(const char*, s8, s16, s8, s8, u8);
-    void offEnable() { enabled = 0; }
-
-private:
-    char mStage[8];
-    s16 mPoint;
-    u8 mRoomNo;
-    u8 mLayer;
-    u8 field_0xc;
-    s8 enabled;
-    u8 wipe;
-    u8 wipe_speed;
-};
-#pragma pack(pop)
 
 class dStage_startStage_c {
 public:
@@ -567,6 +549,20 @@ private:
     /* 0xC */ s8 mDarkArea;
 };
 
+class dStage_nextStage_c : public dStage_startStage_c {
+public:
+    dStage_nextStage_c() {
+        enabled = 0;  // TODO: maybe wrong
+    }
+    void set(const char*, s8, s16, s8, s8, u8);
+    void offEnable() { enabled = 0; }
+
+private:
+    s8 enabled;
+    u8 wipe;
+    u8 wipe_speed;
+};
+
 // unknown name
 struct dStage_objectNameInf {
     char mName[8];
@@ -577,7 +573,7 @@ struct dStage_objectNameInf {
 class dStage_KeepDoorInfo {
 public:
     /* 80028418 */ ~dStage_KeepDoorInfo() {}
-    /* 0x000 */ u8 unk_0x0[4];
+    /* 0x000 */ stage_tgsc_class* unk_0x0;
     /* 0x004 */ stage_tgsc_data_class unk_0x4[0x40];
 };  // Size = 0x904
 
@@ -640,6 +636,10 @@ static void dStage_fieldMapMapPathInit(dStage_dt_c*, void*, int, void*);
 
 inline u8 dStage_roomRead_dt_c_GetLoadRoomIndex(u8 param_0) {
     return param_0 & 0x3f;
+}
+
+inline u32 dStage_stagInfo_GetSTType(stage_stag_info_class* pstag) {
+    return pstag->field_0x0c >> 0x10 & 7;
 }
 
 #endif /* D_D_STAGE_H */

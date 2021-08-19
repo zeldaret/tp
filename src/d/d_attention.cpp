@@ -1038,7 +1038,7 @@ asm void dAttHint_c::proc() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dAttCatch_c::convPId(unsigned int param_0) {
+asm s32 dAttCatch_c::convPId(unsigned int param_0) {
     nofralloc
 #include "asm/d/d_attention/convPId__11dAttCatch_cFUi.s"
 }

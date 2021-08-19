@@ -39,7 +39,7 @@ public:
     void Experts();
     void getEventData(s16);
     dEvDtEvent_c* getEventData(s16, int);
-    void getEventIdx(char const*, u8, s32);
+    int getEventIdx(char const*, u8, s32);
     void getEventIdx(fopAc_ac_c*, u8);
     void getEventIdx(fopAc_ac_c*, char const*, u8);
     void isMapToolCamera(u8, s32);

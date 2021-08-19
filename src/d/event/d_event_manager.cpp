@@ -548,7 +548,7 @@ static u8 map_tool_name_4449[17 + 3 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvent_manager_c::getEventIdx(char const* param_0, u8 param_1, s32 param_2) {
+asm int dEvent_manager_c::getEventIdx(char const* param_0, u8 param_1, s32 param_2) {
     nofralloc
 #include "asm/d/event/d_event_manager/getEventIdx__16dEvent_manager_cFPCcUcl.s"
 }

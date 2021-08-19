@@ -159,14 +159,14 @@ public:
     inline void setSubExpHeap2D(int idx, void* heap) { mSubExpHeap2D[idx] = (JKRExpHeap*)heap; }
     inline void offEnableNextStage() { mNextStage.offEnable(); }
     inline JKRHeap* getExpHeap2D() { return mExpHeap2D; }
+    inline dEvent_manager_c& getEvtManager() { return mEvtManager; }
+    inline dAttention_c& getAttention() { return mAttention; }
 
 public:
     /* 0x00000 */ dBgS mDBgS;
     /* 0x01404 */ dCcS mDCcS;
     /* 0x03EC8 */ dStage_startStage_c mStartStage;
-    /* 0x03ED5 */ u8 field_0x3ed5;  // probably padding
     /* 0x03ED6 */ dStage_nextStage_c mNextStage;
-    /* 0x03EE7 */ u8 field_0x3ee7;  // probably padding
     /* 0x03EE8 */ dStage_stageDt_c mStageData;
     /* 0x03F8C */ dStage_roomControl_c mRoomControl;
     /* 0x03F90 */ dEvt_control_c mEvent;
@@ -859,6 +859,14 @@ inline void dComIfGp_setNowVibration(u8 status) {
 
 inline s32 dComIfGs_isGetMagicUseFlag() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().isMagicFlag(0);
+}
+
+inline void dComIfGs_offTmpBit(u16 flag) {
+    g_dComIfG_gameInfo.info.getTmp().offEventBit(flag);
+}
+
+inline dAttention_c& dComIfGp_getAttention() {
+    return g_dComIfG_gameInfo.play.getAttention();
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

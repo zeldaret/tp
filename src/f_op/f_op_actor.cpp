@@ -24,8 +24,6 @@ struct daSus_c {
     /* 800314D4 */ void check(fopAc_ac_c*);
 };
 
-struct J3DModelData {};
-
 struct dScnKy_env_light_c {
     /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
 };

@@ -15,8 +15,6 @@
 
 struct scene_class {};
 
-struct request_of_phase_process_class {};
-
 struct phaseParam_c {};
 
 struct mDoRst {
@@ -417,6 +415,10 @@ inline u8 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
 
 inline BOOL dComIfGs_isEventBit(u16 id) {
     return g_dComIfG_gameInfo.info.getSavedata().getEvent().isEventBit(id);
+}
+
+inline int dComIfGs_isItemFirstBit(u8 i_no) {
+    return g_dComIfG_gameInfo.info.getPlayer().getGetItem().isFirstBit(i_no);
 }
 
 void dComIfG_play_c::ct() {
@@ -1331,15 +1333,21 @@ static u8 l_itemno[24] = {
     M_DRAGONFLY,   F_DRAGONFLY,   M_ANT,       F_ANT,       M_MAYFLY,      F_MAYFLY,
 };
 
-/* 8002E428-8002E4CC 028D68 00A4+00 0/0 4/4 0/0 .text            dComIfGs_checkGetInsectNum__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_checkGetInsectNum() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_checkGetInsectNum__Fv.s"
+int dComIfGs_checkGetInsectNum() {
+    int insectCount = 0;
+    u8* insectList = &l_itemno[0];
+    u8 insectId;
+
+    for (int i = 0; i < ARRAY_SIZE(l_itemno); i++) {
+        insectId = *insectList;
+        insectList++;
+        if (dComIfGs_isItemFirstBit(insectId) &&
+            dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x191 + i])) {
+            insectCount++;
+        }
+    }
+    return insectCount;
 }
-#pragma pop
 
 static u8 dComIfGs_checkGetItem(u8 i_no) {
     u8 count = 0;
