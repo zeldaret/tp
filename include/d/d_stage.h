@@ -634,6 +634,8 @@ static void dStage_fieldMapTresureInit(dStage_dt_c*, void*, int, void*);
 static void dStage_fieldMapFiliInfo2Init(dStage_dt_c*, void*, int, void*);
 static void dStage_fieldMapMapPathInit(dStage_dt_c*, void*, int, void*);
 
+u8 dStage_roomRead_dt_c_GetReverbStage(roomRead_class&, int);
+
 inline u8 dStage_roomRead_dt_c_GetLoadRoomIndex(u8 param_0) {
     return param_0 & 0x3f;
 }

@@ -221,7 +221,6 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void __div2i();
-extern "C" int printf(char*, ...);
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" u8 sRumbleSupported__10JUTGamePad[4];
 
@@ -261,7 +260,7 @@ void dSv_player_status_a_c::init() {
     for (int i = 0; i < MAX_SELECT_ITEM; i++) {
         mSelectItem[i] = NO_ITEM;
         mMixItem[i] = NO_ITEM;
-        dComIfGp_setSelectItem__Fi(i);
+        dComIfGp_setSelectItem(i);
     }
 
     for (int i = 0; i < MAX_EQUIPMENT; i++) {
@@ -361,17 +360,9 @@ BOOL dSv_player_status_b_c::isTransformLV(int i_no) const {
     return mTransformLevelFlag & (u8)(1 << i_no) ? TRUE : FALSE;
 }
 
-/* 80451D5C-80451D60 00035C 0004+00 3/3 0/0 0/0 .sdata2          @3813 */
-SECTION_SDATA2 static u8 lit_3813[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
 void dSv_horse_place_c::init() {
     strcpy(mName, "");
-    mPos.set(FLOAT_LABEL(lit_3813), FLOAT_LABEL(lit_3813), FLOAT_LABEL(lit_3813));
+    mPos.set(0.0f, 0.0f, 0.0f);
     mAngleY = 0;
     mSpawnId = 0;
     mRoomNo = 0;
@@ -401,7 +392,7 @@ void dSv_player_return_place_c::set(const char* i_name, s8 i_room_id, u8 i_spawn
 
 void dSv_player_field_last_stay_info_c::init() {
     strcpy(mName, "");
-    mPos.set(FLOAT_LABEL(lit_3813), FLOAT_LABEL(lit_3813), FLOAT_LABEL(lit_3813));
+    mPos.set(0.0f, 0.0f, 0.0f);
     mAngleY = 0;
     mLastSpawnId = 0;
     mRegionNo = 1;
@@ -443,7 +434,7 @@ BOOL dSv_player_field_last_stay_info_c::isRegionBit(int i_region_bit) const {
 
 void dSv_player_last_mark_info_c::init() {
     strcpy(mName, "");
-    mPos.set(FLOAT_LABEL(lit_3813), FLOAT_LABEL(lit_3813), FLOAT_LABEL(lit_3813));
+    mPos.set(0.0f, 0.0f, 0.0f);
     mAngleY = 0;
     mRoomNo = 0;
     mSpawnId = 0;
@@ -480,7 +471,7 @@ void dSv_player_item_c::setItem(int item_slot, u8 item_id) {
 
     do {
         if (item_slot == dComIfGs_getSelectItemIndex(select_item_index)) {
-            dComIfGp_setSelectItem__Fi(select_item_index);
+            dComIfGp_setSelectItem(select_item_index);
         }
         select_item_index++;
     } while (select_item_index < MAX_SELECT_ITEM - 1);
@@ -491,10 +482,10 @@ u8 dSv_player_item_c::getItem(int item_idx, bool isComboItem) const {
         if (isComboItem) {
             for (int i = 0; i < 2; i++) {
                 if ((dComIfGs_getSelectItemIndex(i) == item_idx ||
-                     item_idx == dComIfGs_getMixItemIndex__Fi(i)) &&
-                    dComIfGs_getMixItemIndex__Fi(i) != NO_ITEM) {
+                     item_idx == dComIfGs_getMixItemIndex(i)) &&
+                    dComIfGs_getMixItemIndex(i) != NO_ITEM) {
                     u8 item_id_2 = mItems[dComIfGs_getSelectItemIndex(i)];
-                    u8 item_id_1 = mItems[dComIfGs_getMixItemIndex__Fi(i)];
+                    u8 item_id_1 = mItems[dComIfGs_getMixItemIndex(i)];
 
                     // Get Bomb arrow check: Bow + Normal Bombs
                     if ((item_id_2 == BOW && item_id_1 == NORMAL_BOMB) ||
@@ -540,9 +531,9 @@ u8 dSv_player_item_c::getItem(int item_idx, bool isComboItem) const {
 
                     if (i == 3) {
                         if (dComIfGs_getSelectItemIndex(i) == 0 &&
-                            dComIfGs_getMixItemIndex__Fi(i) == 0) {
-                            dComIfGs_setSelectItemIndex__FiUc(i, 0xFF);
-                            dComIfGs_setMixItemIndex__FiUc(i, 0xFF);
+                            dComIfGs_getMixItemIndex(i) == 0) {
+                            dComIfGs_setSelectItemIndex(i, 0xFF);
+                            dComIfGs_setMixItemIndex(i, 0xFF);
                             return 0xFF;
                         }
                     }
@@ -773,14 +764,11 @@ u16 dSv_event_flag_c::saveBitLabels[822] = {
 };
 
 BOOL dSv_player_item_c::checkInsectBottle() {
-    int i = 0;
-    int j = 0;
-    for (; i < 24; i++) {
+    for (int i = 0; i < 24; i++) {
         if (dComIfGs_isItemFirstBit(M_BEETLE + i) &&
             !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x191 + i])) {
             return TRUE;
         }
-        j += 1;
     }
     return FALSE;
 }
@@ -886,7 +874,7 @@ void dSv_player_item_c::setWarashibeItem(u8 i_item_id) {
     for (int i = 0; i < 4; i++) {
         select_item_index = dComIfGs_getSelectItemIndex((u8)i);
         if (select_item_index == SLOT_21) {
-            dComIfGp_setSelectItem__Fi((u8)i);
+            dComIfGp_setSelectItem((u8)i);
         }
     }
 }
@@ -910,7 +898,7 @@ void dSv_player_item_c::setRodTypeLevelUp() {
     }
 
     for (int i = 0; i < 4; i++) {
-        dComIfGp_setSelectItem__Fi(i);
+        dComIfGp_setSelectItem(i);
     }
 }
 
@@ -934,7 +922,7 @@ void dSv_player_item_c::setBaitItem(u8 param_1) {
     }
 
     for (int i = 0; i < 4; i++) {
-        dComIfGp_setSelectItem__Fi(i);
+        dComIfGp_setSelectItem(i);
     }
 }
 
@@ -1021,8 +1009,8 @@ u8 dSv_player_item_record_c::addBottleNum(u8 i_bottleIdx, s16 param_2) {
 
     if (iVar3 < 0) {
         mBottleNum[i_bottleIdx] = 0;
-    } else if (iVar3 > dComIfGs_getBottleMax__Fv()) {
-        mBottleNum[i_bottleIdx] = dComIfGs_getBottleMax__Fv();
+    } else if (iVar3 > dComIfGs_getBottleMax()) {
+        mBottleNum[i_bottleIdx] = dComIfGs_getBottleMax();
     } else {
         mBottleNum[i_bottleIdx] = iVar3;
     }

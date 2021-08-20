@@ -4,6 +4,7 @@
 //
 
 #include "d/d_item.h"
+#include "d/meter/d_meter2_info.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -1045,19 +1046,19 @@ void item_func_L_MAGIC() {
 }
 
 void item_func_BOMB_5() {
-    addBombCount__FUcUc(NORMAL_BOMB, 5);
+    addBombCount(NORMAL_BOMB, 5);
 }
 
 void item_func_BOMB_10() {
-    addBombCount__FUcUc(NORMAL_BOMB, 10);
+    addBombCount(NORMAL_BOMB, 10);
 }
 
 void item_func_BOMB_20() {
-    addBombCount__FUcUc(NORMAL_BOMB, 20);
+    addBombCount(NORMAL_BOMB, 20);
 }
 
 void item_func_BOMB_30() {
-    addBombCount__FUcUc(NORMAL_BOMB, 30);
+    addBombCount(NORMAL_BOMB, 30);
 }
 
 void item_func_ARROW_10() {
@@ -1081,31 +1082,31 @@ void item_func_PACHINKO_SHOT() {
 }
 
 void item_func_WATER_BOMB_5() {
-    addBombCount__FUcUc(WATER_BOMB, 5);
+    addBombCount(WATER_BOMB, 5);
 }
 
 void item_func_WATER_BOMB_10() {
-    addBombCount__FUcUc(WATER_BOMB, 10);
+    addBombCount(WATER_BOMB, 10);
 }
 
 void item_func_WATER_BOMB_20() {
-    addBombCount__FUcUc(WATER_BOMB, 15);
+    addBombCount(WATER_BOMB, 15);
 }
 
 void item_func_WATER_BOMB_30() {
-    addBombCount__FUcUc(WATER_BOMB, 3);
+    addBombCount(WATER_BOMB, 3);
 }
 
 void item_func_BOMB_INSECT_5() {
-    addBombCount__FUcUc(POKE_BOMB, 5);
+    addBombCount(POKE_BOMB, 5);
 }
 
 void item_func_BOMB_INSECT_10() {
-    addBombCount__FUcUc(POKE_BOMB, 10);
+    addBombCount(POKE_BOMB, 10);
 }
 
 void item_func_BOMB_INSECT_20() {
-    addBombCount__FUcUc(POKE_BOMB, 3);
+    addBombCount(POKE_BOMB, 3);
 }
 
 void item_func_BOMB_INSECT_30() {}
@@ -1183,12 +1184,12 @@ void item_func_TKS_LETTER() {
 }
 
 void item_func_WEAR_CASUAL() {
-    dComIfGs_setSelectEquipClothes__FUc(WEARS_CASUAL);
+    dComIfGs_setSelectEquipClothes(WEARS_CASUAL);
 }
 
 void item_func_WEAR_KOKIRI() {
     dComIfGs_setCollectClothes(KOKIRI_CLOTHES_FLAG);
-    dComIfGs_setSelectEquipClothes__FUc(WEAR_KOKIRI);
+    dComIfGs_setSelectEquipClothes(WEAR_KOKIRI);
 }
 
 void item_func_ARMOR() {}
@@ -1295,7 +1296,7 @@ void item_func_KANTERA() {
 
 void item_func_LIGHT_SWORD() {
     dComIfGs_setCollectSword(LIGHT_SWORD_FLAG);
-    dMeter2Info_setSword__FUcb(LIGHT_SWORD, 0);
+    dMeter2Info_setSword(LIGHT_SWORD, false);
 }
 
 void item_func_FISHING_ROD_1() {
@@ -2648,7 +2649,7 @@ static u8 addBombCount(u8 param_0, u8 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void addBombCount(u8 param_0, u8 param_1) {
+asm void addBombCount(u8 param_0, u8 param_1) {
     nofralloc
 #include "asm/d/d_item/addBombCount__FUcUc.s"
 }

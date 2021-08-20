@@ -449,7 +449,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void sprintf();
 extern "C" void snprintf(char*, u32, char*, ...);
 extern "C" extern J3DLightInfo const j3dDefaultLightInfo;
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
@@ -1810,7 +1809,7 @@ static asm void dStage_roomReadInit(dStage_dt_c* param_0, void* param_1, int par
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dStage_roomRead_dt_c_GetReverbStage(roomRead_class& param_0, int param_1) {
+asm u8 dStage_roomRead_dt_c_GetReverbStage(roomRead_class& param_0, int param_1) {
     nofralloc
 #include "asm/d/d_stage/dStage_roomRead_dt_c_GetReverbStage__FR14roomRead_classi.s"
 }

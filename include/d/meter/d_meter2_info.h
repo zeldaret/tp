@@ -198,6 +198,8 @@ private:
 
 extern dMeter2Info_c g_meter2_info;
 
+void dMeter2Info_setSword(u8, bool);
+
 inline void dMeter2Info_Initialize() {
     g_meter2_info.init();
 }

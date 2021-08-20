@@ -4,6 +4,7 @@
 //
 
 #include "d/com/d_com_inf_game.h"
+#include "d/d_item.h"
 #include "d/meter/d_meter2_info.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
@@ -76,7 +77,7 @@ extern "C" void clearItemBombNumCount__14dComIfG_play_cFUc();
 extern "C" void setNowVibration__14dComIfG_play_cFUc();
 extern "C" void getNowVibration__14dComIfG_play_cFv();
 extern "C" void setStartStage__14dComIfG_play_cFP19dStage_startStage_c();
-extern "C" static void dComIfG_get_timelayer__FPi();
+extern "C" void dComIfG_get_timelayer__FPi();
 extern "C" void getLayerNo_common_common__14dComIfG_play_cFPCcii();
 extern "C" void getLayerNo_common__14dComIfG_play_cFPCcii();
 extern "C" void getLayerNo__14dComIfG_play_cFi();
@@ -382,7 +383,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" int sprintf(char*, char*, ...);
 extern "C" extern void* __vt__12J3DFrameCtrl[3];
 extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" extern void* __vt__16dStage_stageDt_c[93];
@@ -452,7 +452,7 @@ void dComIfG_play_c::init() {
 }
 
 void dComIfGp_checkItemGet(u8 param_0, int param_1) {
-    checkItemGet__FUci(param_0, param_1);
+    checkItemGet(param_0, param_1);
 }
 
 void dComIfG_play_c::itemInit() {
@@ -465,7 +465,7 @@ void dComIfG_play_c::itemInit() {
     mNowOxygen = 600;
     mMaxOxygen = 600;
 
-    if (dComIfGs_checkGetItem__FUc(HAWK_EYE)) {
+    if (dComIfGs_checkGetItem(HAWK_EYE)) {
         field_0x4f4b = 0;
     } else {
         field_0x4f4b = 21;
@@ -501,7 +501,7 @@ void dComIfG_play_c::setStartStage(dStage_startStage_c* pStartStage) {
 }
 
 /* 8002B3F4-8002B434 025D34 0040+00 1/1 0/0 0/0 .text            dComIfG_get_timelayer__FPi */
-static void dComIfG_get_timelayer(int* pLayer) {
+void dComIfG_get_timelayer(int* pLayer) {
     if (dKy_daynight_check__Fv()) {
         *pLayer += 1;
     }
@@ -778,16 +778,7 @@ static int phase_1(char* arc_name) {
     return ret;
 }
 
-/* ############################################################################################## */
-/* 80378F38-80378F38 005598 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8037906E = "%s.arc Sync Read Error !!\n";
-#pragma pop
-
 /* 8002CE38-8002CEB4 027778 007C+00 1/0 0/0 0/0 .text            phase_2__FPc */
-// weird pattern in else statement
-#ifdef NONMATCHING
 static int phase_2(char* arc_name) {
     int tmp = dComIfG_syncObjectRes(arc_name);
 
@@ -795,20 +786,10 @@ static int phase_2(char* arc_name) {
         OSReport_Error("%s.arc Sync Read Error !!\n", arc_name);
         tmp = 5;
     } else {
-        tmp = ~((-tmp & ~tmp) >> 0x1f) & 2;
+        tmp = tmp > 0 ? 0 : 2;
     }
     return tmp;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int phase_2(char* param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/phase_2__FPc.s"
-}
-#pragma pop
-#endif
 
 /* 8002CEB4-8002CEBC 0277F4 0008+00 1/0 0/0 0/0 .text            phase_3__FPc */
 static int phase_3(char* param_0) {
@@ -893,8 +874,7 @@ asm void dComIfG_resDelete(request_of_phase_process_class* param_0, char const* 
 #pragma pop
 
 u8 dComIfGp_getReverb(int param_0) {
-    return dStage_roomRead_dt_c_GetReverbStage__FR14roomRead_classi(*dComIfGp_getStageRoom(),
-                                                                    param_0);
+    return dStage_roomRead_dt_c_GetReverbStage(*dComIfGp_getStageRoom(), param_0);
 }
 
 /* ############################################################################################## */
@@ -1145,7 +1125,7 @@ u16 dComIfGs_getMaxLifeGauge() {
 
 void dComIfGs_setSelectItemIndex(int i_no, u8 item_index) {
     g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setSelectItemIndex(i_no, item_index);
-    dComIfGp_setSelectItem__Fi(i_no);
+    dComIfGp_setSelectItem(i_no);
 }
 
 void dComIfGs_setMixItemIndex(int i_no, u8 item_index) {
@@ -1156,7 +1136,7 @@ void dComIfGs_setMixItemIndex(int i_no, u8 item_index) {
 #ifdef NONMATCHING
 u8 dComIfGs_getSelectMixItemNoArrowIndex(int p1) {
     u8 item_index = dComIfGs_getSelectItemIndex(p1);
-    u8 mix_index = dComIfGs_getMixItemIndex__Fi(p1);
+    u8 mix_index = dComIfGs_getMixItemIndex(p1);
 
     if (item_index < 0xf || item_index < 0x12) {
         return item_index;
@@ -1235,17 +1215,17 @@ bool dComIfGp_checkMapShow() {
 s32 dComIfGp_setHeapLockFlag(u8 param_0) {
     if (param_0 == 7 || param_0 == 8) {
         if (!dComIfGp_isHeapLockFlag()) {
-            dComIfGp_createSubExpHeap2D__Fv();
+            dComIfGp_createSubExpHeap2D();
         }
         g_dComIfG_gameInfo.play.setHeapLockFlag(5);
 
-        int check = dComIfGp_checkEmptySubHeap2D__Fv();
+        int check = dComIfGp_checkEmptySubHeap2D();
         if (check >= 0) {
             dComIfGp_setSubHeapLockFlag(check, param_0);
         }
     } else {
         if (param_0 == 0) {
-            dComIfGp_offHeapLockFlag__Fi(0);
+            dComIfGp_offHeapLockFlag(0);
         } else {
             g_dComIfG_gameInfo.play.setHeapLockFlag(param_0);
         }
@@ -1256,13 +1236,13 @@ s32 dComIfGp_setHeapLockFlag(u8 param_0) {
 s32 dComIfGp_offHeapLockFlag(int param_0) {
     if (dComIfGp_isHeapLockFlag() == 5) {
         if (param_0 == 7 || param_0 == 8) {
-            int check = dComIfGp_searchUseSubHeap2D__Fi(param_0);
+            int check = dComIfGp_searchUseSubHeap2D(param_0);
             if (check >= 0) {
                 dComIfGp_setSubHeapLockFlag(check, 0);
             }
 
             if (!dComIfGp_getSubHeapLockFlag(0) && !dComIfGp_getSubHeapLockFlag(1)) {
-                dComIfGp_destroySubExpHeap2D__Fv();
+                dComIfGp_destroySubExpHeap2D();
                 g_dComIfG_gameInfo.play.offHeapLockFlag();
             }
         }
@@ -1272,7 +1252,7 @@ s32 dComIfGp_offHeapLockFlag(int param_0) {
     return 1;
 }
 
-static void dComIfGp_createSubExpHeap2D() {
+void dComIfGp_createSubExpHeap2D() {
     u32 size = dComIfGp_getExpHeap2D()->getTotalFreeSize() * (2.0f / 5.0f);
 
     for (int i = 0; i < 2; i++) {
@@ -1283,7 +1263,7 @@ static void dComIfGp_createSubExpHeap2D() {
     }
 }
 
-static void dComIfGp_destroySubExpHeap2D() {
+void dComIfGp_destroySubExpHeap2D() {
     for (int i = 0; i < 2; i++) {
         JKRExpHeap* heap = dComIfGp_getSubExpHeap2D(i);
         if (heap != NULL) {
@@ -1293,7 +1273,7 @@ static void dComIfGp_destroySubExpHeap2D() {
     }
 }
 
-static int dComIfGp_checkEmptySubHeap2D() {
+int dComIfGp_checkEmptySubHeap2D() {
     if (dComIfGp_isHeapLockFlag() == 5) {
         for (int i = 0; i < 2; i++) {
             if (dComIfGp_getSubHeapLockFlag(i) == 0) {
@@ -1304,7 +1284,7 @@ static int dComIfGp_checkEmptySubHeap2D() {
     return -1;
 }
 
-static int dComIfGp_searchUseSubHeap2D(int param_0) {
+int dComIfGp_searchUseSubHeap2D(int param_0) {
     if (dComIfGp_isHeapLockFlag() == 5) {
         for (int i = 0; i < 2; i++) {
             if (param_0 == dComIfGp_getSubHeapLockFlag(i)) {
@@ -1349,7 +1329,7 @@ int dComIfGs_checkGetInsectNum() {
     return insectCount;
 }
 
-static u8 dComIfGs_checkGetItem(u8 i_no) {
+u8 dComIfGs_checkGetItem(u8 i_no) {
     u8 count = 0;
 
     for (int i = 0; i < 60; i++) {
@@ -1370,7 +1350,7 @@ static u8 dComIfGs_checkGetItem(u8 i_no) {
     return count;
 }
 
-s32 dComIfGs_getBottleMax() {
+u8 dComIfGs_getBottleMax() {
     return 10;
 }
 
@@ -1564,12 +1544,11 @@ void dComIfG_play_c::setWarpItemData(char const* param_0, cXyz param_1, s16 para
 void dComIfGs_setWarpItemData(char const* param_0, cXyz param_1, s16 param_2, s8 param_3,
                               u8 param_4, u8 param_5) {
     dComIfGs_setWarpItemData(0, param_0, param_1, param_2, param_3, param_4, param_5);
-    dComIfGs_setLastWarpMarkItemData__FPCc4cXyzsScUcUc(param_0, param_1, param_2, param_3, param_4,
-                                                       param_5);
+    dComIfGs_setLastWarpMarkItemData(param_0, param_1, param_2, param_3, param_4, param_5);
 }
 
-static void dComIfGs_setLastWarpMarkItemData(const char* stage, cXyz pos, s16 angle, s8 room,
-                                             u8 unk1, u8 unk2) {
+void dComIfGs_setLastWarpMarkItemData(const char* stage, cXyz pos, s16 angle, s8 room, u8 unk1,
+                                      u8 unk2) {
     g_dComIfG_gameInfo.info.getPlayer().getPlayerLastMarkInfo().setWarpItemData(stage, pos, angle,
                                                                                 room, unk1, unk2);
 }

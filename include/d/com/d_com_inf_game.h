@@ -414,7 +414,7 @@ public:
     /* 0x05F64 */ dDlst_list_c draw_list_list;
     /* 0x1C110 */ u8 field_0x1C114[0x1E8 - 0xA];
     /* 0x1C2F8 */ dRes_control_c mResControl;
-    /* 0x1DDF8 */ u8 field_0x1ddf8;
+    /* 0x1DDF8 */ u8 field_0x1ddf8;  // related to fade, controls brightness
     /* 0x1DDF9 */ u8 mWorldDark;
     /* 0x1DDFA */ s8 field_0x1ddfa;
     /* 0x1DDFB */ s8 field_0x1ddfb;
@@ -437,6 +437,21 @@ extern dComIfG_inf_c g_dComIfG_gameInfo;
 void dComIfGp_setItemLifeCount(float, u8);
 void dComIfGp_setItemRupeeCount(long);
 int dComIfGs_isItemFirstBit(u8);
+u16 dComIfGs_getRupee();
+void dComIfGp_setSelectItem(int);
+u8 dComIfGs_getMixItemIndex(int);
+void dComIfGs_setSelectItemIndex(int, u8);
+void dComIfGs_setMixItemIndex(int, u8);
+u8 dComIfGs_getBottleMax();
+u8 dComIfGs_checkGetItem(u8);
+void dComIfGs_setSelectEquipClothes(u8);
+void dComIfG_get_timelayer(int*);
+s32 dComIfGp_offHeapLockFlag(int);
+void dComIfGp_createSubExpHeap2D();
+void dComIfGp_destroySubExpHeap2D();
+int dComIfGp_checkEmptySubHeap2D();
+int dComIfGp_searchUseSubHeap2D(int);
+void dComIfGs_setLastWarpMarkItemData(const char*, cXyz, s16, s8, u8, u8);
 
 inline void dComIfGp_setRStatus(u8 status, u8 flag) {
     g_dComIfG_gameInfo.play.setRStatus(status, flag);

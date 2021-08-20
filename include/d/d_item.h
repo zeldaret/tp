@@ -382,7 +382,9 @@ s32 item_getcheck_func_LV2_BOSS_KEY();
 s32 item_getcheck_func_KEY_OF_FILONE();
 s32 item_getcheck_func_noentry();
 
+s32 checkItemGet(u8, int);
 s32 isBomb(u8);
 s32 isArrow(u8);
+void addBombCount(u8, u8);
 
 #endif /* D_D_ITEM_H */

@@ -2942,7 +2942,7 @@ extern "C" static void dComIfGp_getDoStatus__Fv();
 extern "C" void __ct__4cXyzFfff(f32, f32, f32);
 extern "C" static void dMeter2Info_offUseButton__Fi();
 extern "C" void setLinkState__14Z2CreatureLinkFUc();
-extern "C" static void dComIfGs_getRupee__Fv();
+extern "C" void dComIfGs_getRupee__Fv();
 extern "C" void dComIfGp_setItemRupeeCount__Fl(s32);
 extern "C" static void dMeter2Info_setFloatingMessage__FUssb();
 extern "C" void onForcePanic__9daMidna_cFv();
@@ -16122,65 +16122,35 @@ asm void daAlink_c::setAtnList() {
 #pragma pop
 
 /* 800B3220-800B3238 0ADB60 0018+00 5/5 0/0 0/0 .text            setRStatus__9daAlink_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setRStatus(u8 param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setRStatus__9daAlink_cFUc.s"
+void daAlink_c::setRStatus(u8 status) {
+    dComIfGp_setRStatus(status, 0);
 }
-#pragma pop
 
 /* 800B3238-800B3250 0ADB78 0018+00 1/1 0/0 0/0 .text            setRStatusEmphasys__9daAlink_cFUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setRStatusEmphasys(u8 param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setRStatusEmphasys__9daAlink_cFUc.s"
+void daAlink_c::setRStatusEmphasys(u8 status) {
+    dComIfGp_setRStatus(status, 2);
 }
-#pragma pop
 
 /* 800B3250-800B3268 0ADB90 0018+00 61/61 0/0 0/0 .text            setDoStatus__9daAlink_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setDoStatus(u8 param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setDoStatus__9daAlink_cFUc.s"
+void daAlink_c::setDoStatus(u8 status) {
+    dComIfGp_setDoStatus(status, 0);
 }
-#pragma pop
 
 /* 800B3268-800B3280 0ADBA8 0018+00 19/19 0/0 0/0 .text setDoStatusEmphasys__9daAlink_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setDoStatusEmphasys(u8 param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setDoStatusEmphasys__9daAlink_cFUc.s"
+void daAlink_c::setDoStatusEmphasys(u8 status) {
+    dComIfGp_setDoStatus(status, 2);
 }
-#pragma pop
 
 /* 800B3280-800B3298 0ADBC0 0018+00 2/2 0/0 0/0 .text setDoStatusContinuation__9daAlink_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setDoStatusContinuation(u8 param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setDoStatusContinuation__9daAlink_cFUc.s"
+void daAlink_c::setDoStatusContinuation(u8 status) {
+    dComIfGp_setDoStatus(status, 4);
 }
-#pragma pop
 
 /* 800B3298-800B32B0 0ADBD8 0018+00 8/8 0/0 0/0 .text            setBStatus__9daAlink_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setBStatus(u8 param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setBStatus__9daAlink_cFUc.s"
+void daAlink_c::setBStatus(u8 status) {
+    dComIfGp_setAStatus(status, 0);
 }
-#pragma pop
 
 /* 800B32B0-800B3358 0ADBF0 00A8+00 2/2 0/0 0/0 .text            checkAtnWaitAnime__9daAlink_cFv */
 #pragma push
@@ -17008,26 +16978,32 @@ asm void daAlink_c::setMagicArmorBrk(int param_0) {
 }
 #pragma pop
 
+inline u16 i_dComIfGs_getRupee() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getRupee();
+}
+
 /* 800BB408-800BB458 0B5D48 0050+00 6/6 0/0 0/0 .text            checkMagicArmorHeavy__9daAlink_cCFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkMagicArmorHeavy() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkMagicArmorHeavy__9daAlink_cCFv.s"
+BOOL daAlink_c::checkMagicArmorHeavy() const {
+    bool check = false;
+
+    if (checkMagicArmorWearAbility() && i_dComIfGs_getRupee() == 0) {
+        check = true;
+    }
+
+    return check;
 }
-#pragma pop
 
 /* 800BB458-800BB4B8 0B5D98 0060+00 1/0 0/0 0/0 .text checkBootsOrArmorHeavy__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool daAlink_c::checkBootsOrArmorHeavy() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkBootsOrArmorHeavy__9daAlink_cCFv.s"
+BOOL daAlink_c::checkBootsOrArmorHeavy() const {
+    bool check = false;
+
+    if (i_checkEquipHeavyBoots() || checkMagicArmorHeavy() || checkIronBallWaitAnime()) {
+        check = true;
+    }
+
+    return check;
 }
-#pragma pop
 
 /* 800BB4B8-800BB560 0B5DF8 00A8+00 29/29 0/0 0/0 .text            checkHeavyStateOn__9daAlink_cFii
  */
@@ -17062,14 +17038,15 @@ asm void daAlink_c::initGravity() {
 
 /* 800BB770-800BB7A0 0B60B0 0030+00 64/64 0/0 0/0 .text            setSpecialGravity__9daAlink_cFffi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setSpecialGravity(f32 param_0, f32 param_1, int param_2) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setSpecialGravity__9daAlink_cFffi.s"
+void daAlink_c::setSpecialGravity(f32 gravity, f32 speed, int param_2) {
+    if (param_2 != 0) {
+        i_offNoResetFlg3(0x4000);
+    } else {
+        i_onNoResetFlg3(0x4000);
+    }
+    mGravity = gravity;
+    mMaxFallSpeed = speed;
 }
-#pragma pop
 
 /* 800BB7A0-800BBD40 0B60E0 05A0+00 1/1 0/0 0/0 .text            transAnimeProc__9daAlink_cFP4cXyzff
  */
@@ -17434,7 +17411,7 @@ asm void daAlink_c::checkZoraWearAbility() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkMagicArmorWearAbility() const {
+asm BOOL daAlink_c::checkMagicArmorWearAbility() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkMagicArmorWearAbility__9daAlink_cCFv.s"
 }
@@ -19225,14 +19202,9 @@ static u16 dComIfGs_getLife() {
 }
 
 /* 800CFF3C-800CFF4C 0CA87C 0010+00 1/1 0/0 0/0 .text            dComIfGp_getRStatus__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dComIfGp_getRStatus() {
-    nofralloc
-#include "asm/d/a/d_a_alink/dComIfGp_getRStatus__Fv.s"
+static u8 dComIfGp_getRStatus() {
+    return g_dComIfG_gameInfo.play.getRStatus();
 }
-#pragma pop
 
 /* 800CFF4C-800CFFA4 0CA88C 0058+00 1/1 0/0 0/0 .text            checkAttentionLock__9daAlink_cFv */
 #pragma push
@@ -19381,14 +19353,9 @@ u16 daAlink_c::checkSpecialDemoMode() const {
 
 /* 800D014C-800D0164 0CAA8C 0018+00 1/1 0/0 0/0 .text            setMidnaTalkStatus__9daAlink_cFUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setMidnaTalkStatus(u8 param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setMidnaTalkStatus__9daAlink_cFUc.s"
+void daAlink_c::setMidnaTalkStatus(u8 status) {
+    dComIfGp_setZStatus(status, 0);
 }
-#pragma pop
 
 /* 800D0164-800D0180 0CAAA4 001C+00 1/1 0/0 0/0 .text            set3DStatus__9daAlink_cFUcUc */
 #pragma push
@@ -36093,7 +36060,7 @@ void Z2CreatureLink::setLinkState(u8 pState) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGs_getRupee() {
+asm u16 dComIfGs_getRupee() {
     nofralloc
 #include "asm/d/a/d_a_alink/dComIfGs_getRupee__Fv.s"
 }

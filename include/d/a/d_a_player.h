@@ -400,8 +400,11 @@ public:
     int i_checkNoResetFlg1(daPy_FLG1 pFlag) const { return mNoResetFlg1 & pFlag; }
     int i_checkNoResetFlg2(daPy_FLG2 pFlag) const { return mNoResetFlg2 & pFlag; }
     void i_onNoResetFlg0(int pFlg) { mNoResetFlg0 |= pFlg; }
+    void i_onNoResetFlg3(int pFlg) { mNoResetFlg3 |= pFlg; }
+    void i_offNoResetFlg3(int pFlg) { mNoResetFlg3 &= ~pFlg; }
     void i_onEndResetFlg1(daPy_ERFLG1 pFlg) { mEndResetFlg1 |= pFlg; }
     int i_checkWolf() { return i_checkNoResetFlg1(Wolf); }
+    BOOL i_checkEquipHeavyBoots() const { return i_checkNoResetFlg0(EquipHeavyBoots); }
 
     static u8 m_midnaActor[4];
 };

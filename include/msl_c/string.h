@@ -15,6 +15,8 @@ char* strncpy(char* dest, const char* source, u32 n);
 char* strcpy(char* dest, const char* source);
 u32 strlen(const char* s);
 int tolower(int);
+int sprintf(char*, const char*, ...);
+int printf(const char*, ...);
 }
 
 #endif
