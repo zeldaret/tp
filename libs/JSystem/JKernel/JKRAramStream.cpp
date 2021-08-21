@@ -23,7 +23,7 @@ extern "C" void write_StreamToAram_Async__13JKRAramStreamFP18JSUFileInputStreamU
 extern "C" void sync__13JKRAramStreamFP20JKRAramStreamCommandi();
 extern "C" void setTransBuffer__13JKRAramStreamFPUcUlP7JKRHeap();
 extern "C" void __ct__20JKRAramStreamCommandFv();
-extern "C" void getAvailable__20JSURandomInputStreamCFv();
+extern "C" s32 getAvailable__20JSURandomInputStreamCFv(JSURandomInputStream*);
 extern "C" extern char const* const JKRAramStream__stringBase0;
 extern "C" u8 sMessageBuffer__13JKRAramStream[16];
 extern "C" u8 sMessageQueue__13JKRAramStream[32];
@@ -317,8 +317,10 @@ JKRAramStreamCommand::JKRAramStreamCommand() {
 }
 
 /* 802D4094-802D40F0 2CE9D4 005C+00 0/0 3/0 0/0 .text getAvailable__20JSURandomInputStreamCFv */
-s32 JSURandomInputStream::getAvailable() const {
-    return getLength() - getPosition();
+// s32 JSURandomInputStream::getAvailable() const {
+// should be an inline function
+extern "C" s32 getAvailable__20JSURandomInputStreamCFv(JSURandomInputStream* self) {
+    return self->getLength() - self->getPosition();
 }
 
 /* 8039D120-8039D120 029780 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

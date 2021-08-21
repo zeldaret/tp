@@ -3,6 +3,7 @@
 
 #include "dolphin/types.h"
 
+#include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "dolphin/types.h"
 
@@ -15,7 +16,7 @@ public:
     JKRAramBlock* allocHead(u32, u8, JKRAramHeap*);
     JKRAramBlock* allocTail(u32, u8, JKRAramHeap*);
 
-    void* getAddress() const { return (void*)mAddress; }
+    u32 getAddress() const { return mAddress; }
 
     u32 getSize() const { return mSize; }
 
