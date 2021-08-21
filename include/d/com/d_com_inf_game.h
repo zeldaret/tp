@@ -884,4 +884,16 @@ inline dAttention_c& dComIfGp_getAttention() {
     return g_dComIfG_gameInfo.play.getAttention();
 }
 
+inline BOOL dComIfGs_isDarkClearLV(int param_0) {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusB().isDarkClearLV(param_0);
+}
+
+inline BOOL dComIfGs_isTmpBit(u16 flag) {
+    return g_dComIfG_gameInfo.info.getTmp().isEventBit(flag);
+}
+
+inline BOOL dComIfGs_isTransformLV(int param_0) {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusB().isTransformLV(param_0);
+}
+
 #endif /* D_COM_D_COM_INF_GAME_H */
