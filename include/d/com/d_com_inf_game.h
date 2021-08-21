@@ -72,8 +72,8 @@ public:
     void setNowVibration(u8);
     u32 getNowVibration();
     void setStartStage(dStage_startStage_c*);
-    int getLayerNo_common_common(char const*, int, int);
-    int getLayerNo_common(char const*, int, int);
+    static int getLayerNo_common_common(char const*, int, int);
+    static int getLayerNo_common(char const*, int, int);
     static int getLayerNo(int);
     void createParticle();
     u32 createSimpleModel();

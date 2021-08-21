@@ -578,8 +578,11 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                 else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[162])) {
                     layer = 1;
                 }
-            } else if (!strcmp(stageName, "F_SP108")) {
-                // Cleared SPR
+            }
+
+            // Stage is Faron Woods
+            else if (!strcmp(stageName, "F_SP108")) {
+                // Cleared Snowpeak Ruins
                 if (dComIfGs_isEventBit(0x2008)) {
                     layer = 5;
                 }
@@ -598,7 +601,10 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                 else if (!dComIfGs_isEventBit(0x4510)) {
                     layer = 1;
                 }
-            } else if (!strcmp(stageName, "R_SP108")) {
+            }
+
+            // Stage is Faron Woods Interiors
+            else if (!strcmp(stageName, "R_SP108")) {
                 // Cleared Forest Temple
                 if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[55])) {
                     layer = 2;
@@ -608,7 +614,10 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                 else if (!dComIfGs_isEventBit(0x4510)) {
                     layer = 1;
                 }
-            } else if (!strcmp(stageName, "F_SP109") || !strcmp(stageName, "F_SP111")) {
+            }
+
+            // Stage is Kakariko Village or Kakariko Graveyard
+            else if (!strcmp(stageName, "F_SP109") || !strcmp(stageName, "F_SP111")) {
                 // Obtained Zora's Armor
                 if (dComIfGs_isEventBit(0x0804)) {
                     layer = 2;
@@ -643,7 +652,7 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                 }
             }
 
-            // if stage is Kakariko Village interiors (main or graveyard)
+            // Stage is Kakariko Village Interiors or Graveyard Interiors
             else if (!strcmp(stageName, "R_SP109") || !strcmp(stageName, "R_SP209")) {
                 // Stage is Kakariko Interiors and room is Barnes shop and Cleared Lakebed Temple
                 if (!strcmp(stageName, "R_SP109") && roomId == 1 && dComIfGs_isEventBit(0x0904)) {
@@ -1041,7 +1050,7 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                 }
             }
 
-            // if stage is Hidden Village
+            // Stage is Hidden Village
             else if (!strcmp(stageName, "F_SP128")) {
                 if (dComIfGs_isEventBit(0x2320)) {
                     layer = 1;
@@ -1163,7 +1172,7 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                     layer = 11;
                 }
             }
-            // Stage is Zant Throne Room
+            // Stage and room is Zant Throne Room
             else if (!strcmp(stageName, "D_MN08A") && roomId == 10) {
                 // Defeated Zant
                 if (dComIfGs_isEventBit(0x5410)) {
@@ -1203,13 +1212,13 @@ int dComIfG_play_c::getLayerNo_common(char const* i_stageName, int i_roomID, int
  */
 #ifdef NONMATCHING
 int dComIfG_play_c::getLayerNo(int param_0) {
-    s8 roomNo = dComIfGp_roomControl_getStayNo();
+    int roomNo = dComIfGp_roomControl_getStayNo();
 
-    if (roomNo < 0) {
+    if (roomNo <= -1) {
         roomNo = dComIfGp_getStartStageRoomNo();
     }
 
-    s8 layer = dComIfGp_getStartStageLayer();
+    int layer = dComIfGp_getStartStageLayer();
     char* stage = dComIfGp_getStartStageName();
 
     return getLayerNo_common(stage, roomNo, layer);
