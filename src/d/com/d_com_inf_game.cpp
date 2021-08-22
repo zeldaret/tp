@@ -1777,19 +1777,21 @@ u8 dComIfGs_getSelectMixItemNoArrowIndex(int p1) {
     u8 item_index = dComIfGs_getSelectItemIndex(p1);
     u8 mix_index = dComIfGs_getMixItemIndex(p1);
 
-    if (item_index < 0xf || item_index < 0x12) {
+    if (item_index >= 0xf && item_index < 0x12) {
         return item_index;
     }
-    if (mix_index == 255 || mix_index < 0xf || mix_index < 0x12) {
-        item_index = 255;
-        return item_index;
+
+    else if (mix_index != 255 && (mix_index >= 0xf && mix_index < 0x12)) {
+        return 255;
     }
+
+    // return p1;
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dComIfGs_getSelectMixItemNoArrowIndex(int param_0) {
+asm u8 dComIfGs_getSelectMixItemNoArrowIndex(int param_0) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/dComIfGs_getSelectMixItemNoArrowIndex__Fi.s"
 }
@@ -1832,7 +1834,7 @@ void dComIfGp_setSelectItem(int idx) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dComIfGp_getSelectItem(int param_0) {
+asm u8 dComIfGp_getSelectItem(int param_0) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/dComIfGp_getSelectItem__Fi.s"
 }
@@ -1994,26 +1996,71 @@ u8 dComIfGs_getBottleMax() {
 }
 
 /* 8002E5C0-8002E688 028F00 00C8+00 0/0 11/11 0/0 .text            dComIfGp_getSelectItemNum__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_getSelectItemNum(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_getSelectItemNum__Fi.s"
+int dComIfGp_getSelectItemNum(int param_0) {
+    u8 selectItem = dComIfGp_getSelectItem(param_0);
+    int itemNum = 0;
+
+    if (selectItem == NORMAL_BOMB || selectItem == WATER_BOMB || selectItem == POKE_BOMB ||
+        selectItem == BOMB_ARROW) {
+        selectItem = dComIfGs_getSelectMixItemNoArrowIndex(param_0) - SLOT_15;
+        itemNum = dComIfGs_getBombNum(selectItem);
+    } else if (selectItem == PACHINKO) {
+        itemNum = dComIfGs_getPachinkoNum();
+    } else if (selectItem == BEE_CHILD) {
+        selectItem = dComIfGs_getSelectItemIndex(param_0);
+        itemNum = dComIfGs_getBottleNum(selectItem - SLOT_11);
+    }
+
+    return itemNum;
 }
-#pragma pop
 
 /* 8002E688-8002E714 028FC8 008C+00 0/0 5/5 0/0 .text            dComIfGp_getSelectItemMaxNum__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_getSelectItemMaxNum(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_getSelectItemMaxNum__Fi.s"
+int dComIfGp_getSelectItemMaxNum(int param_0) {
+    u8 selectItem = dComIfGp_getSelectItem(param_0);
+    int itemNum = 0;
+
+    if (selectItem == BOMB_BAG_LV1) {
+        itemNum = 1;
+    } else if ((u8)(selectItem - NORMAL_BOMB) <= 2 || selectItem == BOMB_ARROW) {
+        itemNum = dComIfGs_getBombMax(selectItem);
+    } else if (selectItem == PACHINKO) {
+        itemNum = dComIfGs_getPachinkoMax();
+    } else if (selectItem == BEE_CHILD) {
+        itemNum = dComIfGs_getBottleMax();
+    }
+
+    return itemNum;
 }
-#pragma pop
 
 /* 8002E714-8002E83C 029054 0128+00 0/0 2/2 0/0 .text            dComIfGp_setSelectItemNum__Fis */
+// two swapped instructions
+#ifdef NONMATCHING
+void dComIfGp_setSelectItemNum(int param_0, s16 param_1) {
+    u8 selectItem = dComIfGp_getSelectItem(param_0);
+    u8 selectMixItem;
+    int itemNum;
+
+    if ((u8)(selectItem - NORMAL_BOMB) <= 2 || selectItem == BOMB_ARROW) {
+        selectMixItem = dComIfGs_getSelectMixItemNoArrowIndex(param_0) - SLOT_15;
+        itemNum = dComIfGs_getBombMax(selectItem);
+
+        if (itemNum > param_1) {
+            param_1 = dComIfGs_getBombMax(selectItem);
+        }
+        dComIfGs_setBombNum(selectMixItem, param_1);
+    } else if (selectItem == PACHINKO) {
+        dComIfGs_setPachinkoNum(param_1);
+    } else if (selectItem == BEE_CHILD) {
+        selectItem = dComIfGs_getSelectItemIndex(param_0) - SLOT_11;
+        itemNum = dComIfGs_getBottleMax();
+
+        if (itemNum > param_1) {
+            param_1 = dComIfGs_getBottleMax();
+        }
+        dComIfGs_setBottleNum(selectItem, param_1);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2022,16 +2069,24 @@ asm void dComIfGp_setSelectItemNum(int param_0, s16 param_1) {
 #include "asm/d/com/d_com_inf_game/dComIfGp_setSelectItemNum__Fis.s"
 }
 #pragma pop
+#endif
 
 /* 8002E83C-8002E910 02917C 00D4+00 0/0 5/5 0/0 .text            dComIfGp_addSelectItemNum__Fis */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_addSelectItemNum(int param_0, s16 param_1) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_addSelectItemNum__Fis.s"
+void dComIfGp_addSelectItemNum(int param_0, s16 param_1) {
+    u8 selectItem = dComIfGp_getSelectItem(param_0);
+    u8 selectMixItem;
+    int itemNum;
+
+    if ((u8)(selectItem - NORMAL_BOMB) <= 2 || selectItem == BOMB_ARROW) {
+        selectMixItem = dComIfGs_getSelectMixItemNoArrowIndex(param_0) - SLOT_15;
+        dComIfGp_setItemBombNumCount(selectMixItem, param_1);
+    } else if (selectItem == PACHINKO) {
+        dComIfGp_setItemPachinkoNumCount(param_1);
+    } else if (selectItem == BEE_CHILD) {
+        selectItem = dComIfGs_getSelectItemIndex(param_0);
+        dComIfGs_addBottleNum(selectItem - SLOT_11, param_1);
+    }
 }
-#pragma pop
 
 /* 8002E910-8002E974 029250 0064+00 0/0 5/5 137/137 .text
  * dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj */
@@ -2131,25 +2186,42 @@ void dComIfGs_setSelectEquipClothes(u8 item) {
 
 /* 8002EEC0-8002EF94 029800 00D4+00 0/0 4/4 1/1 .text            dComIfGs_setSelectEquipSword__FUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_setSelectEquipSword(u8 param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_setSelectEquipSword__FUc.s"
+void dComIfGs_setSelectEquipSword(u8 i_itemId) {
+    switch (i_itemId) {
+    case SWORD:
+        dComIfGs_setCollectSword(COLLECT_ORDON_SWORD);
+        break;
+    case MASTER_SWORD:
+        dComIfGs_setCollectSword(COLLECT_MASTER_SWORD);
+        break;
+    case WOOD_STICK:
+        dComIfGs_setCollectSword(COLLECT_WOODEN_SWORD);
+        break;
+    case LIGHT_SWORD:
+        dComIfGs_setCollectSword(COLLECT_LIGHT_SWORD);
+        break;
+    }
+
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setSelectEquip(1, i_itemId);
 }
-#pragma pop
 
 /* 8002EF94-8002F040 0298D4 00AC+00 0/0 2/2 0/0 .text            dComIfGs_setSelectEquipShield__FUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_setSelectEquipShield(u8 param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_setSelectEquipShield__FUc.s"
+void dComIfGs_setSelectEquipShield(u8 i_itemId) {
+    switch (i_itemId) {
+    case WOOD_SHIELD:
+        dComIfGs_setCollectShield(COLLECT_WOODEN_SHIELD);
+        break;
+    case SHIELD:
+        dComIfGs_setCollectShield(COLLECT_ORDON_SHIELD);
+        break;
+    case HYLIA_SHIELD:
+        dComIfGs_setCollectShield(COLLECT_HYLIAN_SHIELD);
+        break;
+    }
+
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setSelectEquip(2, i_itemId);
 }
-#pragma pop
 
 void dComIfGs_setKeyNum(int i_stageNo, u8 keyNum) {
     if (dComIfGp_getStageStagInfo()) {

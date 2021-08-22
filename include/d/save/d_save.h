@@ -312,9 +312,14 @@ enum ItemTable {
 
 enum CollectItem { COLLECT_CLOTHING, COLLECT_SWORD, COLLECT_SHIELD, COLLECT_SMELL, B_BUTTON_ITEM };
 
-enum Swords { ORDON_SWORD_FLAG, MASTER_SWORD_FLAG, WOODEN_SWORD_FLAG, LIGHT_SWORD_FLAG };
+enum Swords {
+    COLLECT_ORDON_SWORD,
+    COLLECT_MASTER_SWORD,
+    COLLECT_WOODEN_SWORD,
+    COLLECT_LIGHT_SWORD
+};
 
-enum Shields { ORDON_SHIELD_FLAG, HYLIAN_SHIELD_FLAG, WOODEN_SHIELD_FLAG };
+enum Shields { COLLECT_WOODEN_SHIELD, COLLECT_ORDON_SHIELD, COLLECT_HYLIAN_SHIELD };
 
 enum Armors { KOKIRI_CLOTHES_FLAG };
 
@@ -510,6 +515,8 @@ public:
     u8 getBottleNum(u8) const;
 
     void setArrowNum(u8 amount) { mArrowNum = amount; }
+    u8 getPachinkoNum() const { return mPachinkoNum; }
+    void setPachinkoNum(u8 num) { mPachinkoNum = num; }
 
 private:
     /* 0x0 */ u8 mArrowNum;
@@ -733,6 +740,7 @@ public:
         onDungeonItem(OOCCOO_NOTE);
     }
     s32 isDungeonItemWarp() const { return isDungeonItem(OOCCOO_NOTE); }
+    void onStageLife() { onDungeonItem(STAGE_LIFE); }
 
 private:
     /* 0x00 */ u32 mTbox[2];

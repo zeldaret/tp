@@ -663,6 +663,29 @@ void dSv_player_item_c::setEmptyBottle(u8 item_id) {
 
 /* 80033598-800336BC 02DED8 0124+00 1/1 3/3 0/0 .text
  * setEquipBottleItemIn__17dSv_player_item_cFUcUc               */
+// one instruction
+#ifdef NONMATCHING
+void dSv_player_item_c::setEquipBottleItemIn(u8 param_0, u8 param_1) {
+    u8 item = dSv_item_rename(param_1);
+    u8 selectItemIdx;
+    if (dComIfGs_getSelectItemIndex(param_0) >= 11 && dComIfGs_getSelectItemIndex(param_0) <= 14) {
+        if (item == HOT_SPRING) {
+            selectItemIdx = dComIfGs_getSelectItemIndex(param_0);
+            dMeter2Info_setHotSpringTimer(selectItemIdx);
+        }
+
+        selectItemIdx = dComIfGs_getSelectItemIndex(param_0);
+        setItem(selectItemIdx, item);
+
+        selectItemIdx = dComIfGs_getSelectItemIndex(param_0);
+        dComIfGs_setItem(selectItemIdx, item);
+
+        selectItemIdx = dComIfGs_getSelectItemIndex(param_0);
+        dComIfGp_setItem(selectItemIdx, item);
+        dComIfGp_setSelectItem(param_0);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -671,6 +694,7 @@ asm void dSv_player_item_c::setEquipBottleItemIn(u8 param_0, u8 param_1) {
 #include "asm/d/save/d_save/setEquipBottleItemIn__17dSv_player_item_cFUcUc.s"
 }
 #pragma pop
+#endif
 
 void dSv_player_item_c::setEquipBottleItemEmpty(u8 selected_index) {
     setEquipBottleItemIn(selected_index, EMPTY_BOTTLE);
@@ -785,27 +809,52 @@ u8 dSv_player_item_c::checkEmptyBottle() {
     return num;
 }
 
-/* 80033828-80033910 02E168 00E8+00 1/1 0/0 0/0 .text setBombBagItemIn__17dSv_player_item_cFUcUcb
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSv_player_item_c::setBombBagItemIn(u8 param_0, u8 param_1, bool param_2) {
-    nofralloc
-#include "asm/d/save/d_save/setBombBagItemIn__17dSv_player_item_cFUcUcb.s"
-}
-#pragma pop
+void dSv_player_item_c::setBombBagItemIn(u8 param_0, u8 param_1, bool param_2) {
+    int i = 0;
+    for (; i < 3; i++) {
+        if (param_0 == mItems[i + SLOT_15]) {
+            setItem(i + SLOT_15, param_1);
 
-/* 80033910-80033A20 02E250 0110+00 1/1 0/0 0/0 .text
- * setBombBagItemIn__17dSv_player_item_cFUcUcUcb                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSv_player_item_c::setBombBagItemIn(u8 param_0, u8 param_1, u8 param_2, bool param_3) {
-    nofralloc
-#include "asm/d/save/d_save/setBombBagItemIn__17dSv_player_item_cFUcUcUcb.s"
+            if (param_2 == 1 && param_1 != BOMB_BAG_LV1) {
+                u8 bombMax = dComIfGs_getBombMax(param_1);
+                dComIfGs_setBombNum(i, bombMax);
+            }
+
+            for (int j = 0; j < 3; j++) {
+                u8 selectItem = dComIfGs_getSelectItemIndex(j);
+                if (i + SLOT_15 == selectItem) {
+                    dComIfGp_setSelectItem(j);
+                }
+            }
+            break;
+        }
+    }
 }
-#pragma pop
+
+void dSv_player_item_c::setBombBagItemIn(u8 param_0, u8 param_1, u8 param_2, bool param_3) {
+    int i = 0;
+    for (; i < 3; i++) {
+        if (param_0 == mItems[i + SLOT_15]) {
+            setItem(i + SLOT_15, param_1);
+
+            if (param_3 == 1 && param_1 != BOMB_BAG_LV1) {
+                u8 bombMax = dComIfGs_getBombMax(param_1);
+                if (param_2 > bombMax) {
+                    param_2 = dComIfGs_getBombMax(param_1);
+                }
+                dComIfGs_setBombNum(i, param_2);
+            }
+
+            for (int j = 0; j < 3; j++) {
+                u8 selectItem = dComIfGs_getSelectItemIndex(j);
+                if (i + SLOT_15 == selectItem) {
+                    dComIfGp_setSelectItem(j);
+                }
+            }
+            break;
+        }
+    }
+}
 
 void dSv_player_item_c::setEmptyBombBagItemIn(u8 param_1, bool param_2) {
     setBombBagItemIn(BOMB_BAG_LV1, param_1, param_2);
@@ -815,43 +864,33 @@ void dSv_player_item_c::setEmptyBombBagItemIn(u8 param_1, u8 param_2, bool param
     setBombBagItemIn(BOMB_BAG_LV1, param_1, param_2, param_3);
 }
 
-/* 80033A88-80033B08 02E3C8 0080+00 0/0 2/2 0/0 .text setEmptyBombBag__17dSv_player_item_cFv */
-// this is a few instructions off
-#ifdef NONMATCHING
 void dSv_player_item_c::setEmptyBombBag() {
-    int current_item_index;
-    u8 uVar1;
-
     for (int i = 0; i < 3; i++) {
-        current_item_index = (u8)(i + 15);
-        uVar1 = getItem(current_item_index, true);
-
-        if (uVar1 == 0xff) {
-            setItem(current_item_index, 80);
+        if (dComIfGs_getItem((u8)(i + SLOT_15), true) == 0xff) {
+            dComIfGs_setItem((u8)(i + SLOT_15), BOMB_BAG_LV1);
             return;
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSv_player_item_c::setEmptyBombBag() {
-    nofralloc
-#include "asm/d/save/d_save/setEmptyBombBag__17dSv_player_item_cFv.s"
-}
-#pragma pop
-#endif
 
-/* 80033B08-80033BEC 02E448 00E4+00 0/0 3/3 0/0 .text setEmptyBombBag__17dSv_player_item_cFUcUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSv_player_item_c::setEmptyBombBag(u8 param_0, u8 param_1) {
-    nofralloc
-#include "asm/d/save/d_save/setEmptyBombBag__17dSv_player_item_cFUcUc.s"
+void dSv_player_item_c::setEmptyBombBag(u8 param_0, u8 param_1) {
+    for (int i = 0; i < 3; i++) {
+        if (dComIfGs_getItem((u8)(i + SLOT_15), true) == 0xff) {
+            dComIfGs_setItem((u8)(i + SLOT_15), param_0);
+
+            if (param_0 == BOMB_BAG_LV1) {
+                return;
+            }
+
+            if (param_1 > dComIfGs_getBombMax(param_0)) {
+                param_1 = dComIfGs_getBombMax(param_0);
+            }
+
+            dComIfGs_setBombNum(i, param_1);
+            return;
+        }
+    }
 }
-#pragma pop
 
 u8 dSv_player_item_c::checkBombBag(u8 param_1) {
     u8 counter = 0;

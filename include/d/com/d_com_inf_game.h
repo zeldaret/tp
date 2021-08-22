@@ -452,6 +452,7 @@ void dComIfGp_destroySubExpHeap2D();
 int dComIfGp_checkEmptySubHeap2D();
 int dComIfGp_searchUseSubHeap2D(int);
 void dComIfGs_setLastWarpMarkItemData(const char*, cXyz, s16, s8, u8, u8);
+u16 dComIfGs_getMaxLifeGauge();
 
 inline void dComIfGp_setRStatus(u8 status, u8 flag) {
     g_dComIfG_gameInfo.play.setRStatus(status, flag);
@@ -483,6 +484,10 @@ inline void dComIfGp_setItemArrowNumCount(s16 amount) {
 
 inline void dComIfGp_setItemPachinkoNumCount(s16 amount) {
     g_dComIfG_gameInfo.play.setItemPachinkoNumCount(amount);
+}
+
+inline void dComIfGp_setItemBombNumCount(u8 param_0, s16 amount) {
+    g_dComIfG_gameInfo.play.setItemBombNumCount(param_0, amount);
 }
 
 inline void dComIfGp_setItemKeyNumCount(s16 amount) {
@@ -603,6 +608,10 @@ inline void dComIfGs_setEmptyBottle(u8 type) {
 
 inline void dComIfGs_setEmptyBottleItemIn(u8 type) {
     g_dComIfG_gameInfo.info.getPlayer().getItem().setEmptyBottleItemIn(type);
+}
+
+inline void dComIfGs_setBottleNum(u8 param_0, u8 param_1) {
+    g_dComIfG_gameInfo.info.getPlayer().getItemRecord().setBottleNum(param_0, param_1);
 }
 
 inline void dComIfGs_onEventBit(u16 id) {
@@ -894,6 +903,38 @@ inline BOOL dComIfGs_isTmpBit(u16 flag) {
 
 inline BOOL dComIfGs_isTransformLV(int param_0) {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusB().isTransformLV(param_0);
+}
+
+inline void dComIfGs_onStageLife() {
+    g_dComIfG_gameInfo.info.getMemory().getBit().onStageLife();
+}
+
+inline u8 dComIfGs_getBombNum(u8 param_0) {
+    return g_dComIfG_gameInfo.info.getPlayer().getItemRecord().getBombNum(param_0);
+}
+
+inline u8 dComIfGs_getPachinkoNum() {
+    return g_dComIfG_gameInfo.info.getPlayer().getItemRecord().getPachinkoNum();
+}
+
+inline u8 dComIfGs_getBottleNum(u8 param_0) {
+    return g_dComIfG_gameInfo.info.getPlayer().getItemRecord().getBottleNum(param_0);
+}
+
+inline u8 dComIfGs_getBombMax(u8 param_0) {
+    return g_dComIfG_gameInfo.info.getPlayer().getItemMax().getBombNum(param_0);
+}
+
+inline void dComIfGs_setBombNum(u8 param_0, u8 param_1) {
+    g_dComIfG_gameInfo.info.getPlayer().getItemRecord().setBombNum(param_0, param_1);
+}
+
+inline void dComIfGs_setPachinkoNum(u8 param_0) {
+    g_dComIfG_gameInfo.info.getPlayer().getItemRecord().setPachinkoNum(param_0);
+}
+
+inline void dComIfGs_addBottleNum(u8 param_0, s16 param_1) {
+    g_dComIfG_gameInfo.info.getPlayer().getItemRecord().addBottleNum(param_0, param_1);
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

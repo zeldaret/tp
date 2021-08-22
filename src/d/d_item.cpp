@@ -414,7 +414,7 @@ extern "C" u8 mData__12dEnemyItem_c[4 + 4 /* padding */];
 
 extern "C" void setItemBombNumCount__14dComIfG_play_cFUcs();
 extern "C" void getLayerNo__14dComIfG_play_cFi();
-extern "C" void dComIfGs_getMaxLifeGauge__Fv();
+extern "C" u16 dComIfGs_getMaxLifeGauge__Fv();
 extern "C" void dComIfGs_setSelectEquipClothes__FUc(u8);
 extern "C" void dComIfGs_setSelectEquipSword__FUc(u8);
 extern "C" void dComIfGs_setSelectEquipShield__FUc(u8);
@@ -724,6 +724,10 @@ static void (*item_func_ptr[256])() = {
     item_func_KEY_OF_FILONE,
     item_func_noentry,
 };
+
+inline u8 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
+    return param_0->field_0x09 >> 1 & 0x1f;
+}
 
 inline void getItemFunc(u8 i_no) {
     dComIfGs_onItemFirstBit(i_no);
@@ -1125,19 +1129,16 @@ void item_func_KAKERA_HEART() {
     dComIfGp_setItemMaxLifeCount(1);
 }
 
-/* ############################################################################################## */
-/* 80452BE0-80452BE8 0011E0 0008+00 1/1 0/0 0/0 .sdata2          @3828 */
-SECTION_SDATA2 static f64 lit_3828 = 4503599627370496.0 /* cast u32 to float */;
+void item_func_UTUWA_HEART() {
+    dComIfGp_setItemMaxLifeCount(5);
 
-/* 800982B4-80098344 092BF4 0090+00 1/0 0/0 0/0 .text            item_func_UTUWA_HEART__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void item_func_UTUWA_HEART() {
-    nofralloc
-#include "asm/d/d_item/item_func_UTUWA_HEART__Fv.s"
+    f32 max_life = dComIfGs_getMaxLifeGauge();
+    dComIfGp_setItemLifeCount(max_life, 0);
+
+    stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
+    int tmp = dStage_stagInfo_GetSaveTbl(stag_info);
+    dComIfGs_onStageLife();
 }
-#pragma pop
 
 void item_func_MAP() {
     dComIfGs_onDungeonItemMap();
@@ -1161,17 +1162,17 @@ void item_func_DUNGEON_BACK() {
 }
 
 void item_func_SWORD() {
-    dComIfGs_setCollectSword(ORDON_SWORD_FLAG);
+    dComIfGs_setCollectSword(COLLECT_ORDON_SWORD);
     dComIfGs_setSelectEquipSword__FUc(SWORD);
 }
 
 void item_func_MASTER_SWORD() {
-    dComIfGs_setCollectSword(MASTER_SWORD_FLAG);
+    dComIfGs_setCollectSword(COLLECT_MASTER_SWORD);
     dComIfGs_setSelectEquipSword__FUc(MASTER_SWORD);
 }
 
 void item_func_WOOD_SHIELD() {
-    dComIfGs_setCollectShield(ORDON_SHIELD_FLAG);
+    dComIfGs_setCollectShield(COLLECT_WOODEN_SHIELD);
     dComIfGs_setSelectEquipShield__FUc(WOOD_SHIELD);
 }
 
@@ -1236,7 +1237,7 @@ void item_func_HAWK_EYE() {
 // load instructions are switched
 #ifdef NONMATCHING
 void item_func_WOOD_STICK() {
-    dComIfGs_setCollectSword(WOODEN_SWORD_FLAG);
+    dComIfGs_setCollectSword(COLLECT_WOODEN_SWORD);
     dComIfGs_setSelectEquipSword__FUc(WOOD_STICK);
 
     s8 stayNo = dComIfGp_roomControl_getStayNo();
@@ -1295,7 +1296,7 @@ void item_func_KANTERA() {
 }
 
 void item_func_LIGHT_SWORD() {
-    dComIfGs_setCollectSword(LIGHT_SWORD_FLAG);
+    dComIfGs_setCollectSword(COLLECT_LIGHT_SWORD);
     dMeter2Info_setSword(LIGHT_SWORD, false);
 }
 
@@ -1442,15 +1443,24 @@ void item_func_DROP_BOTTLE() {
     dComIfGs_setEmptyBottle(FAIRY_DROP);
 }
 
-/* 80098EE4-80098F80 093824 009C+00 2/1 0/0 0/0 .text            item_func_BEE_CHILD__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void item_func_BEE_CHILD() {
-    nofralloc
-#include "asm/d/d_item/item_func_BEE_CHILD__Fv.s"
+void item_func_BEE_CHILD() {
+    int bottleIdx;
+    int i;
+
+    for (bottleIdx = 0xFF, i = 0; i < 4; i++) {
+        u8 getItem = dComIfGs_getItem(i + SLOT_11, true);
+
+        if (getItem == EMPTY_BOTTLE) {
+            bottleIdx = i;
+            break;
+        }
+    }
+
+    if (bottleIdx != 0xff) {
+        dComIfGs_setBottleNum(bottleIdx, 10);
+        dComIfGs_setEmptyBottleItemIn(BEE_CHILD);
+    }
 }
-#pragma pop
 
 void item_func_CHUCHU_RARE() {
     dComIfGs_setEmptyBottleItemIn(CHUCHU_RARE);
@@ -1834,11 +1844,11 @@ s32 item_getcheck_func_DUNGEON_BACK() {
 }
 
 s32 item_getcheck_func_SWORD() {
-    return dComIfGs_isCollectSword(ORDON_SWORD_FLAG);
+    return dComIfGs_isCollectSword(COLLECT_ORDON_SWORD);
 }
 
 s32 item_getcheck_func_MASTER_SWORD() {
-    return dComIfGs_isCollectSword(MASTER_SWORD_FLAG);
+    return dComIfGs_isCollectSword(COLLECT_MASTER_SWORD);
 }
 
 s32 item_getcheck_func_WOOD_SHIELD() {
@@ -1942,7 +1952,7 @@ s32 item_getcheck_func_KANTERA() {
 }
 
 s32 item_getcheck_func_LIGHT_SWORD() {
-    return dComIfGs_isCollectSword(LIGHT_SWORD_FLAG);
+    return dComIfGs_isCollectSword(COLLECT_LIGHT_SWORD);
 }
 
 /* 8009A0C8-8009A1FC 094A08 0134+00 7/6 0/0 0/0 .text item_getcheck_func_FISHING_ROD_1__Fv */
