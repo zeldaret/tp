@@ -2021,7 +2021,8 @@ int dComIfGp_getSelectItemMaxNum(int param_0) {
 
     if (selectItem == BOMB_BAG_LV1) {
         itemNum = 1;
-    } else if ((u8)(selectItem - NORMAL_BOMB) <= 2 || selectItem == BOMB_ARROW) {
+    } else if (selectItem == NORMAL_BOMB || selectItem == WATER_BOMB || selectItem == POKE_BOMB ||
+               selectItem == BOMB_ARROW) {
         itemNum = dComIfGs_getBombMax(selectItem);
     } else if (selectItem == PACHINKO) {
         itemNum = dComIfGs_getPachinkoMax();
@@ -2040,7 +2041,8 @@ void dComIfGp_setSelectItemNum(int param_0, s16 param_1) {
     u8 selectMixItem;
     int itemNum;
 
-    if ((u8)(selectItem - NORMAL_BOMB) <= 2 || selectItem == BOMB_ARROW) {
+    if (selectItem == NORMAL_BOMB || selectItem == WATER_BOMB || selectItem == POKE_BOMB ||
+        selectItem == BOMB_ARROW) {
         selectMixItem = dComIfGs_getSelectMixItemNoArrowIndex(param_0) - SLOT_15;
         itemNum = dComIfGs_getBombMax(selectItem);
 
@@ -2077,7 +2079,8 @@ void dComIfGp_addSelectItemNum(int param_0, s16 param_1) {
     u8 selectMixItem;
     int itemNum;
 
-    if ((u8)(selectItem - NORMAL_BOMB) <= 2 || selectItem == BOMB_ARROW) {
+    if (selectItem == NORMAL_BOMB || selectItem == WATER_BOMB || selectItem == POKE_BOMB ||
+        selectItem == BOMB_ARROW) {
         selectMixItem = dComIfGs_getSelectMixItemNoArrowIndex(param_0) - SLOT_15;
         dComIfGp_setItemBombNumCount(selectMixItem, param_1);
     } else if (selectItem == PACHINKO) {
