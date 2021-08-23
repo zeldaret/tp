@@ -15,7 +15,7 @@
 #include "dolphin/types.h"
 
 struct dTimer_c {
-    /* 8025D524 */ void deleteCheck();
+    /* 8025D524 */ int deleteCheck();
     /* 8025D618 */ void start(int, s16);
     /* 8025D538 */ void start(int);
     /* 8025D7E8 */ void stop(u8);
@@ -39,70 +39,78 @@ public:
     u8 mTimerType;
 };
 
+struct camera_class {};
+
 class dComIfG_camera_info_class {
 public:
-    dComIfG_camera_info_class(void) {}
-    /* 80030208 */ ~dComIfG_camera_info_class() {}
+    dComIfG_camera_info_class() {}
+    ~dComIfG_camera_info_class() {}
 
-private:
-    u8 field_0x0[12];
-    cXyz field_0xc;
-    cXyz field_0x18;
-    u8 field_0x24[0x14];
+    /* 0x00 */ camera_class* mCamera;
+    /* 0x04 */ u8 field_0x4;
+    /* 0x05 */ u8 field_0x5[3];
+    /* 0x08 */ u32 mCameraAttentionStatus;
+    /* 0x0C */ f32 mCameraZoomScale;
+    /* 0x10 */ f32 mCameraZoomForcus;
+    /* 0x14 */ char* mCameraParamFileName;
+    /* 0x18 */ cXyz mCameraPos;
+    /* 0x24 */ cXyz mCameraTarget;
+    /* 0x30 */ f32 field_0x30;
+    /* 0x34 */ s16 field_0x34;
 };
 STATIC_ASSERT(sizeof(dComIfG_camera_info_class) == 0x38);
 
 class dComIfG_play_c {
 public:
     dComIfG_play_c() { this->ct(); }
-    void ct(void);
-    void init(void);
-    void itemInit(void);
+    void ct();
+    void init();
+    void itemInit();
     void setItemBombNumCount(u8, s16);
     s16 getItemBombNumCount(u8);
     void clearItemBombNumCount(u8);
     void setNowVibration(u8);
-    u32 getNowVibration(void);
+    u32 getNowVibration();
     void setStartStage(dStage_startStage_c*);
-    int getLayerNo_common_common(char const*, int, int);
-    int getLayerNo_common(char const*, int, int);
-    int getLayerNo(int);
-    void createParticle(void);
-    u32 createSimpleModel(void);
-    void deleteSimpleModel(void);
-    void drawSimpleModel(void);
+    static int getLayerNo_common_common(char const*, int, int);
+    static int getLayerNo_common(char const*, int, int);
+    static int getLayerNo(int);
+    void createParticle();
+    u32 createSimpleModel();
+    void deleteSimpleModel();
+    void drawSimpleModel();
     u32 addSimpleModel(J3DModelData*, int, u8);
     u32 removeSimpleModel(J3DModelData*, int);
     u32 entrySimpleModel(J3DModel*, int);
     void setTimerNowTimeMs(int);
-    int getTimerNowTimeMs(void);
+    int getTimerNowTimeMs();
     void setTimerLimitTimeMs(int);
-    int getTimerLimitTimeMs(void);
+    int getTimerLimitTimeMs();
     void setTimerMode(int);
-    int getTimerMode(void);
+    int getTimerMode();
     void setTimerType(u8);
-    u8 getTimerType(void);
+    u8 getTimerType();
     void setTimerPtr(dTimer_c*);
-    dTimer_c* getTimerPtr(void);
+    dTimer_c* getTimerPtr();
     void setWarpItemData(const char*, cXyz, s16, s8, u8, u8);
-    void setSelectItem(int, u8);
-    void setSelectItemTest(int, u8);
     ~dComIfG_play_c() {}
 
     // inlines
     bool& isPauseFlag() { return mPauseFlag; }
     void* getMsgObjectClass() { return mMsgObjectClass; }
     dStage_roomControl_c* getRoomControl() { return &mRoomControl; }
+    dStage_stageDt_c& getStage() { return mStageData; }
     dEvt_control_c getEvent() { return mEvent; }
-    daHorse_c* getHorseActor() { return mHorseActor; }
+    daHorse_c* getHorseActor() { return (daHorse_c*)mPlayerPtr[1]; }
     u8& getItemLifeCountType() { return mItemLifeCountType; }
     void setItem(u8 slot, u8 i_no) {
         mItemSlot = slot;
         mItemID = i_no;
     }
 
-    void setUnkWarashibe1(u8 num) { mItemSlot = num; }
-    void setUnkWarashibe2(u8 num) { mItemID = num; }
+    void setSelectItem(int idx, u8 itemId) { mSelectItem[idx] = itemId; }
+
+    u8 getSelectItem(int idx) { return mSelectItem[idx]; }
 
     void setZStatus(u8 status, u8 flag) {
         mZStatus = status;
@@ -137,17 +145,28 @@ public:
     void setItemMaxLifeCount(s16 max) { mItemMaxLifeCount += max; }
     void setOxygen(int oxygen) { mOxygen = oxygen; }
     void setMaxOxygen(int max) { mMaxOxygen = max; }
-    u8 getDoStatus(void) { return mDoStatus; }
-    u8 getRStatus(void) { return mRStatus; }
+    u8 getDoStatus() { return mDoStatus; }
+    u8 getRStatus() { return mRStatus; }
     inline char* getStartStageName() { return mStartStage.getName(); }
+    inline s8 getStartStageRoomNo() { return mStartStage.getRoomNo(); }
+    inline s8 getStartStageLayer() { return mStartStage.getLayer(); }
+    inline u8 isHeapLockFlag() { return mHeapLockFlag; }
+    inline void setHeapLockFlag(u8 status) { mHeapLockFlag = status; }
+    inline void setSubHeapLockFlag(int idx, u8 status) { mSubHeapLockFlag[idx] = status; }
+    inline u8 getSubHeapLockFlag(int idx) { return mSubHeapLockFlag[idx]; }
+    inline void offHeapLockFlag() { mHeapLockFlag = 0; }
+    inline JKRExpHeap* getSubExpHeap2D(int idx) { return mSubExpHeap2D[idx]; }
+    inline void setSubExpHeap2D(int idx, void* heap) { mSubExpHeap2D[idx] = (JKRExpHeap*)heap; }
+    inline void offEnableNextStage() { mNextStage.offEnable(); }
+    inline JKRHeap* getExpHeap2D() { return mExpHeap2D; }
+    inline dEvent_manager_c& getEvtManager() { return mEvtManager; }
+    inline dAttention_c& getAttention() { return mAttention; }
 
 public:
     /* 0x00000 */ dBgS mDBgS;
     /* 0x01404 */ dCcS mDCcS;
     /* 0x03EC8 */ dStage_startStage_c mStartStage;
-    /* 0x03ED5 */ u8 field_0x3ed5;  // probably padding
     /* 0x03ED6 */ dStage_nextStage_c mNextStage;
-    /* 0x03EE7 */ u8 field_0x3ee7;  // probably padding
     /* 0x03EE8 */ dStage_stageDt_c mStageData;
     /* 0x03F8C */ dStage_roomControl_c mRoomControl;
     /* 0x03F90 */ dEvt_control_c mEvent;
@@ -188,10 +207,9 @@ public:
     /* 0x04E0E */ u16 mStatus;
     /* 0x04E10 */ dDlst_window_c mWindow[1];
     /* 0x04E3C */ dComIfG_camera_info_class mCameraInfo[1];
-    /* 0x04E74 */ daAlink_c* mPlayer;
+    /* 0x04E74 */ daAlink_c* mPlayer[1];
     /* 0x04E78 */ s8 mPlayerCameraID[4];
-    /* 0x04E7C */ daAlink_c* mPlayerPtr;
-    /* 0x04E80 */ daHorse_c* mHorseActor;
+    /* 0x04E7C */ void* mPlayerPtr[2];  // 0: Player, 1: Horse ; type may be wrong
     /* 0x04E84 */ void* mMsgObjectClass;
     /* 0x04E88 */ float mItemLifeCount;
     /* 0x04E8C */ int mItemRupeeCount;
@@ -334,8 +352,8 @@ public:
     /* 0x04F90 */ JKRExpHeap* mMsgExpHeap;
     /* 0x04F94 */ char field_0x4F94[8];  // related to setWarpItemData
     /* 0x04F9C */ cXyz field_0x4f9c;     // related to setWarpItemData
-    /* 0x04FA8 */ u8 field_0x4fa8[2];
-    /* 0x04FAA */ u8 field_0x4faa;  // related to setWarpItemData
+    /* 0x04FA8 */ s16 field_0x4fa8;
+    /* 0x04FAA */ s8 field_0x4faa;  // related to setWarpItemData
     /* 0x04FAB */ u8 field_0x4fab;  // related to setWarpItemData
     /* 0x04FAC */ u8 field_0x4fac;  // related to setWarpItemData
     /* 0x04FAD */ u8 field_0x4fad[3];
@@ -367,279 +385,556 @@ class dRes_control_c {
 public:
     dRes_control_c() {}
     /* 8003BFB0 */ ~dRes_control_c();
-    /* 8003C078 */ void setRes(char const*, dRes_info_c*, int, char const*, u8, JKRHeap*);
-    /* 8003C160 */ void syncRes(char const*, dRes_info_c*, int);
+    /* 8003C078 */ static int setRes(char const*, dRes_info_c*, int, char const*, u8, JKRHeap*);
+    /* 8003C160 */ static int syncRes(char const*, dRes_info_c*, int);
     /* 8003C194 */ void deleteRes(char const*, dRes_info_c*, int);
     /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
+
+    int setObjectRes(const char* name, u8 param_1, JKRHeap* heap) {
+        return setRes(name, &mResInfos1[0], ARRAY_SIZE(mResInfos1), "/res/Object/", param_1, heap);
+    }
+
+    int syncObjectRes(const char* name) {
+        return syncRes(name, &mResInfos1[0], ARRAY_SIZE(mResInfos1));
+    }
 
 private:
     /* 0x0000 */ dRes_info_c mResInfos1[0x80];
     /* 0x1200 */ dRes_info_c mResInfos2[0x40];
 };  // Size: 0x1B00
 
-#pragma pack(push, 1)
 class dComIfG_inf_c {
 public:
-    dComIfG_inf_c(void) { this->ct(); }
+    dComIfG_inf_c() { this->ct(); }
     ~dComIfG_inf_c() {}
-    void ct(void);
+    void ct();
 
-    // temp for setWarashibeItem
-    void setPlayUnkWarashibe1(u8 num) { play.setUnkWarashibe1(num); }
-    void setPlayUnkWarashibe2(u8 num) { play.setUnkWarashibe2(num); }
-    void setWorldDark(u8 state) { mWorldDark = state; }
-    u8 setWorldDark() { return mWorldDark; }
-
-    dSv_player_c& getPlayer() { return info.getPlayer(); }
-    dSv_save_c& getSaveFile() { return info.getSavedata(); }
-    u32 getNowVibration() { return play.getNowVibration(); }
-    dDlst_peekZ_c& getdlstPeekZ() { return draw_list_list.dlstPeekZ; }
-    dComIfG_play_c& getPlay() { return play; }
-    dSv_memory_c& getMemory() { return info.getMemory(); }
-    dSv_event_c& getEvent() { return info.getTmp(); }
-    dSv_info_c& getInfo() { return info; }
-    inline dDlst_list_c& getDrawlist() { return draw_list_list; }
-
-private:
     /* 0x00000 */ dSv_info_c info;
     /* 0x00F38 */ dComIfG_play_c play;
     /* 0x05F64 */ dDlst_list_c draw_list_list;
     /* 0x1C110 */ u8 field_0x1C114[0x1E8 - 0xA];
     /* 0x1C2F8 */ dRes_control_c mResControl;
-    /* 0x1DDF8 */ u8 field_0x1ddf8;
+    /* 0x1DDF8 */ u8 field_0x1ddf8;  // related to fade, controls brightness
     /* 0x1DDF9 */ u8 mWorldDark;
-    /* 0x1DDFA */ u8 field_0x1ddfa;
-    /* 0x1DDFB */ u8 field_0x1ddfb;
-    /* 0x1DDFC */ u8 field_0x1ddfc;
+    /* 0x1DDFA */ s8 field_0x1ddfa;
+    /* 0x1DDFB */ s8 field_0x1ddfb;
+    /* 0x1DDFC */ s8 field_0x1ddfc;
     /* 0x1DE00 */ u32 field_0x1de00;
     /* 0x1DE04 */ u32 field_0x1de04;
     /* 0x1DE08 */ u8 field_0x1de08;
     /* 0x1DE09 */ u8 field_0x1de09;
     /* 0x1DE0A */ u8 field_0x1de0a;
-    u8 _pad[8];
+    /* 0x1DE0B */ u8 field_0x1de0b;
+    /* 0x1DE0C */ u8 field_0x1de0c;
 
     static __d_timer_info_c dComIfG_mTimerInfo;
 };
-#pragma pack(pop)
 
 STATIC_ASSERT(122384 == sizeof(dComIfG_inf_c));
 
 extern dComIfG_inf_c g_dComIfG_gameInfo;
 
-/* void dComIfGp_setItemLifeCount(float, u8);
+void dComIfGp_setItemLifeCount(float, u8);
 void dComIfGp_setItemRupeeCount(long);
 int dComIfGs_isItemFirstBit(u8);
+u16 dComIfGs_getRupee();
+void dComIfGp_setSelectItem(int);
+u8 dComIfGs_getMixItemIndex(int);
+void dComIfGs_setSelectItemIndex(int, u8);
+void dComIfGs_setMixItemIndex(int, u8);
+u8 dComIfGs_getBottleMax();
+u8 dComIfGs_checkGetItem(u8);
+void dComIfGs_setSelectEquipClothes(u8);
+void dComIfG_get_timelayer(int*);
+s32 dComIfGp_offHeapLockFlag(int);
+void dComIfGp_createSubExpHeap2D();
+void dComIfGp_destroySubExpHeap2D();
+int dComIfGp_checkEmptySubHeap2D();
+int dComIfGp_searchUseSubHeap2D(int);
+void dComIfGs_setLastWarpMarkItemData(const char*, cXyz, s16, s8, u8, u8);
+u16 dComIfGs_getMaxLifeGauge();
 
 inline void dComIfGp_setRStatus(u8 status, u8 flag) {
-    g_dComIfG_gameInfo.getPlay().setRStatus(status, flag);
+    g_dComIfG_gameInfo.play.setRStatus(status, flag);
 }
+
 inline void dComIfGp_setDoStatus(u8 status, u8 flag) {
-    g_dComIfG_gameInfo.getPlay().setDoStatus(status, flag);
+    g_dComIfG_gameInfo.play.setDoStatus(status, flag);
 }
+
 inline void dComIfGp_setAStatus(u8 status, u8 flag) {
-    g_dComIfG_gameInfo.getPlay().setAStatus(status, flag);
+    g_dComIfG_gameInfo.play.setAStatus(status, flag);
 }
+
 inline void dComIfGp_setZStatus(u8 status, u8 flag) {
-    g_dComIfG_gameInfo.getPlay().setZStatus(status, flag);
+    g_dComIfG_gameInfo.play.setZStatus(status, flag);
 }
+
 inline void dComIfGp_setItemMagicCount(s16 amount) {
-    g_dComIfG_gameInfo.getPlay().setItemMagicCount(amount);
+    g_dComIfG_gameInfo.play.setItemMagicCount(amount);
 }
+
 inline void dComIfGp_setItemMaxMagicCount(s16 max) {
-    g_dComIfG_gameInfo.getPlay().setItemMaxMagicCount(max);
+    g_dComIfG_gameInfo.play.setItemMaxMagicCount(max);
 }
+
 inline void dComIfGp_setItemArrowNumCount(s16 amount) {
-    g_dComIfG_gameInfo.getPlay().setItemArrowNumCount(amount);
+    g_dComIfG_gameInfo.play.setItemArrowNumCount(amount);
 }
+
 inline void dComIfGp_setItemPachinkoNumCount(s16 amount) {
-    g_dComIfG_gameInfo.getPlay().setItemPachinkoNumCount(amount);
+    g_dComIfG_gameInfo.play.setItemPachinkoNumCount(amount);
 }
+
+inline void dComIfGp_setItemBombNumCount(u8 param_0, s16 amount) {
+    g_dComIfG_gameInfo.play.setItemBombNumCount(param_0, amount);
+}
+
 inline void dComIfGp_setItemKeyNumCount(s16 amount) {
-    g_dComIfG_gameInfo.getPlay().setItemKeyNumCount(amount);
+    g_dComIfG_gameInfo.play.setItemKeyNumCount(amount);
 }
+
 inline void dComIfGp_setItemMaxLifeCount(s16 max) {
-    g_dComIfG_gameInfo.getPlay().setItemMaxLifeCount(max);
+    g_dComIfG_gameInfo.play.setItemMaxLifeCount(max);
 }
-inline void dComIfGs_onDungeonItemMap(void) {
-    g_dComIfG_gameInfo.getMemory().getTempFlags().onDungeonItemMap();
+
+inline void dComIfGs_onDungeonItemMap() {
+    g_dComIfG_gameInfo.info.getMemory().getBit().onDungeonItemMap();
 }
-inline void dComIfGs_onDungeonItemCompass(void) {
-    g_dComIfG_gameInfo.getMemory().getTempFlags().onDungeonItemCompass();
+
+inline void dComIfGs_onDungeonItemCompass() {
+    g_dComIfG_gameInfo.info.getMemory().getBit().onDungeonItemCompass();
 }
-inline void dComIfGs_onDungeonItemWarp(void) {
-    g_dComIfG_gameInfo.getMemory().getTempFlags().onDungeonItemWarp();
+
+inline void dComIfGs_onDungeonItemWarp() {
+    g_dComIfG_gameInfo.info.getMemory().getBit().onDungeonItemWarp();
 }
+
 inline void dComIfGs_setItem(int slot, u8 i_no) {
-    g_dComIfG_gameInfo.getSaveFile().getPlayerItem().setItem(slot, i_no);
+    g_dComIfG_gameInfo.info.getPlayer().getItem().setItem(slot, i_no);
 }
+
 inline void dComIfGs_setOxygen(int amount) {
-    g_dComIfG_gameInfo.getPlay().setOxygen(amount);
+    g_dComIfG_gameInfo.play.setOxygen(amount);
 }
+
 inline void dComIfGs_setMaxOxygen(int max) {
-    g_dComIfG_gameInfo.getPlay().setMaxOxygen(max);
+    g_dComIfG_gameInfo.play.setMaxOxygen(max);
 }
+
 inline void dComIfGs_setOil(u16 amount) {
-    g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().setOil(amount);
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setOil(amount);
 }
+
 inline void dComIfGs_setMaxOil(u16 max) {
-    g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().setMaxOil(max);
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setMaxOil(max);
 }
+
 inline void dComIfGs_setWalletSize(u8 size) {
-    g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().setWalletSize(size);
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setWalletSize(size);
 }
+
 inline void dComIfGs_setMagic(u8 amount) {
-    g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().setMagic(amount);
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setMagic(amount);
 }
+
 inline void dComIfGs_setMaxMagic(u8 max) {
-    g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().setMaxMagic(max);
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setMaxMagic(max);
 }
+
 inline void dComIfGs_setRupee(u16 amount) {
-    g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().setRupee(amount);
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setRupee(amount);
 }
+
 inline void dComIfGs_setLife(u16 amount) {
-    g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().setLife(amount);
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setLife(amount);
 }
+
 inline void dComIfGs_setMaxLife(u8 max) {
-    g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().setMaxLife(max);
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setMaxLife(max);
 }
-inline void dComIfGs_onDungeonItemBossKey(void) {
-    g_dComIfG_gameInfo.getMemory().getTempFlags().onDungeonItemBossKey();
+
+inline void dComIfGs_onDungeonItemBossKey() {
+    g_dComIfG_gameInfo.info.getMemory().getBit().onDungeonItemBossKey();
 }
+
 inline void dComIfGs_setCollectSword(u8 sword_id) {
-    g_dComIfG_gameInfo.getSaveFile().getPlayerCollect().setCollect(SWORD_BITFIELD, sword_id);
+    g_dComIfG_gameInfo.info.getPlayer().getCollect().setCollect(COLLECT_SWORD, sword_id);
 }
+
 inline void dComIfGs_setCollectShield(u8 shield_id) {
-    g_dComIfG_gameInfo.getSaveFile().getPlayerCollect().setCollect(SHIELD_BITFIELD, shield_id);
+    g_dComIfG_gameInfo.info.getPlayer().getCollect().setCollect(COLLECT_SHIELD, shield_id);
 }
+
 inline void dComIfGs_setCollectClothes(u8 clothes_id) {
-    g_dComIfG_gameInfo.getSaveFile().getPlayerCollect().setCollect(CLOTHING_BITFIELD, clothes_id);
+    g_dComIfG_gameInfo.info.getPlayer().getCollect().setCollect(COLLECT_CLOTHING, clothes_id);
 }
-inline void dComIfGs_setRodTypeLevelUp(void) {
-    g_dComIfG_gameInfo.getSaveFile().getPlayerItem().setRodTypeLevelUp();
+
+inline void dComIfGs_setRodTypeLevelUp() {
+    g_dComIfG_gameInfo.info.getPlayer().getItem().setRodTypeLevelUp();
 }
+
 inline void dComIfGs_setArrowNum(u8 amount) {
-    g_dComIfG_gameInfo.getSaveFile().getPlayerItemRecord().setArrowNum(amount);
+    g_dComIfG_gameInfo.info.getPlayer().getItemRecord().setArrowNum(amount);
 }
+
 inline void dComIfGs_setArrowMax(u8 max) {
-    g_dComIfG_gameInfo.getSaveFile().getPlayerItemMax().setArrowNum(max);
+    g_dComIfG_gameInfo.info.getPlayer().getItemMax().setArrowNum(max);
 }
-inline u8 dComIfGs_getPachinkoMax(void) {
+
+inline u8 dComIfGs_getPachinkoMax() {
     return 50;
 }
-inline void dComIfGs_setEmptyBombBag(void) {
-    g_dComIfG_gameInfo.getSaveFile().getPlayerItem().setEmptyBombBag();
+
+inline void dComIfGs_setEmptyBombBag() {
+    g_dComIfG_gameInfo.info.getPlayer().getItem().setEmptyBombBag();
 }
+
 inline void dComIfGs_setEmptyBombBag(u8 type, u8 amount) {
-    g_dComIfG_gameInfo.getSaveFile().getPlayerItem().setEmptyBombBag(type, amount);
+    g_dComIfG_gameInfo.info.getPlayer().getItem().setEmptyBombBag(type, amount);
 }
+
 inline void dComIfGs_setEmptyBombBagItemIn(u8 type, bool unk) {
-    g_dComIfG_gameInfo.getSaveFile().getPlayerItem().setEmptyBombBagItemIn(type, unk);
+    g_dComIfG_gameInfo.info.getPlayer().getItem().setEmptyBombBagItemIn(type, unk);
 }
-inline void dComIfGs_setEmptyBottle(void) {
-    g_dComIfG_gameInfo.getSaveFile().getPlayerItem().setEmptyBottle();
+
+inline void dComIfGs_setEmptyBottle() {
+    g_dComIfG_gameInfo.info.getPlayer().getItem().setEmptyBottle();
 }
+
 inline void dComIfGs_setEmptyBottle(u8 type) {
-    g_dComIfG_gameInfo.getSaveFile().getPlayerItem().setEmptyBottle(type);
+    g_dComIfG_gameInfo.info.getPlayer().getItem().setEmptyBottle(type);
 }
+
 inline void dComIfGs_setEmptyBottleItemIn(u8 type) {
-    g_dComIfG_gameInfo.getSaveFile().getPlayerItem().setEmptyBottleItemIn(type);
+    g_dComIfG_gameInfo.info.getPlayer().getItem().setEmptyBottleItemIn(type);
 }
+
+inline void dComIfGs_setBottleNum(u8 param_0, u8 param_1) {
+    g_dComIfG_gameInfo.info.getPlayer().getItemRecord().setBottleNum(param_0, param_1);
+}
+
 inline void dComIfGs_onEventBit(u16 id) {
-    g_dComIfG_gameInfo.getSaveFile().getEventFlags().onEventBit(id);
+    g_dComIfG_gameInfo.info.getSavedata().getEvent().onEventBit(id);
 }
+
 inline void dComIfGs_onLightDropFlag(u8 area_id) {
-    g_dComIfG_gameInfo.getSaveFile().getLightDrop().onLightDropGetFlag(area_id);
+    g_dComIfG_gameInfo.info.getPlayer().getLightDrop().onLightDropGetFlag(area_id);
 }
+
 inline void dComIfGs_onSwitch(int param1, int param2) {
-    g_dComIfG_gameInfo.getInfo().onSwitch(param1, param2);
+    g_dComIfG_gameInfo.info.onSwitch(param1, param2);
 }
-inline bool dComIfGs_isDungeonItemMap(void) {
-    return g_dComIfG_gameInfo.getMemory().getTempFlags().isDungeonItemMap();
+
+inline void dComIfGs_offSwitch(int param1, int param2) {
+    g_dComIfG_gameInfo.info.offSwitch(param1, param2);
 }
-inline bool dComIfGs_isDungeonItemBossKey(void) {
-    return g_dComIfG_gameInfo.getMemory().getTempFlags().isDungeonItemBossKey();
+
+inline BOOL dComIfGs_isSwitch(int param1, int param2) {
+    return g_dComIfG_gameInfo.info.isSwitch(param1, param2);
 }
+
+inline s32 dComIfGs_isDungeonItemMap() {
+    return g_dComIfG_gameInfo.info.getMemory().getBit().isDungeonItemMap();
+}
+
+inline s32 dComIfGs_isDungeonItemBossKey() {
+    return g_dComIfG_gameInfo.info.getMemory().getBit().isDungeonItemBossKey();
+}
+
 inline u8 dComIfGs_getItem(int slot, bool unk) {
-    return g_dComIfG_gameInfo.getSaveFile().getPlayerItem().getItem(slot, unk);
+    return g_dComIfG_gameInfo.info.getPlayer().getItem().getItem(slot, unk);
 }
+
 inline BOOL dComIfGs_isCollectSword(u8 sword_id) {
-    return g_dComIfG_gameInfo.getSaveFile().getPlayerCollect().isCollect(SWORD_BITFIELD, sword_id);
+    return g_dComIfG_gameInfo.info.getPlayer().getCollect().isCollect(COLLECT_SWORD, sword_id);
 }
+
 inline BOOL dComIfGs_isCollectClothing(u8 clothing_id) {
-    return g_dComIfG_gameInfo.getSaveFile().getPlayerCollect().isCollect(CLOTHING_BITFIELD,
-                                                                         clothing_id);
+    return g_dComIfG_gameInfo.info.getPlayer().getCollect().isCollect(COLLECT_CLOTHING,
+                                                                      clothing_id);
 }
+
 inline u8 dComIfGs_checkBottle(u8 type) {
-    return g_dComIfG_gameInfo.getSaveFile().getPlayerItem().checkBottle(type);
+    return g_dComIfG_gameInfo.info.getPlayer().getItem().checkBottle(type);
 }
+
 inline BOOL dComIfGs_isLightDropGetFlag(u8 area_id) {
-    return g_dComIfG_gameInfo.getSaveFile().getLightDrop().isLightDropGetFlag(area_id);
+    return g_dComIfG_gameInfo.info.getPlayer().getLightDrop().isLightDropGetFlag(area_id);
 }
-inline u8 dComIfGs_getArrowMax(void) {
-    return g_dComIfG_gameInfo.getSaveFile().getPlayer().getPlayerItemMax().getArrowNum();
+
+inline u8 dComIfGs_getArrowMax() {
+    return g_dComIfG_gameInfo.info.getPlayer().getItemMax().getArrowNum();
 }
-inline u8 dComIfGs_getCollectSmell(void) {
-    return g_dComIfG_gameInfo.getSaveFile().getPlayer().getPlayerStatusA().getSelectEquip(3);
+
+inline u8 dComIfGs_getCollectSmell() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getSelectEquip(3);
 }
-inline u8 dComIfGs_getPohSpiritNum(void) {
-    return g_dComIfG_gameInfo.getSaveFile().getPlayer().getPlayerCollect().getPohNum();
+
+inline u8 dComIfGs_getPohSpiritNum() {
+    return g_dComIfG_gameInfo.info.getPlayer().getCollect().getPohNum();
 }
-inline u8 dComIfGs_getKeyNum(void) {
-    return g_dComIfG_gameInfo.getMemory().getTempFlags().getKeyNum();
+
+inline u8 dComIfGs_getKeyNum() {
+    return g_dComIfG_gameInfo.info.getMemory().getBit().getKeyNum();
 }
+
 inline void dComIfGs_onItemFirstBit(u8 i_no) {
-    g_dComIfG_gameInfo.getSaveFile().getPlayerGetItem().onFirstBit(i_no);
+    g_dComIfG_gameInfo.info.getPlayer().getGetItem().onFirstBit(i_no);
 }
-inline u16 dComIfGs_getMaxLife(void) {
-    return g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().getMaxLife();
+
+inline u16 dComIfGs_getMaxLife() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getMaxLife();
 }
+
 inline void dComIfGs_offEventBit(u16 event) {
-    g_dComIfG_gameInfo.getSaveFile().getEventFlags().offEventBit(event);
+    g_dComIfG_gameInfo.info.getSavedata().getEvent().offEventBit(event);
 }
+
 // inline int dComIfGs_isEventBit__FUs(u16 event) {
-//     return g_dComIfG_gameInfo.getSaveFile().getEventFlags().isEventBit(event);
+//     return g_dComIfG_gameInfo.getSaveFile().getTmp().isEventBit(event);
 // }
-inline const char* dComIfGs_getLastWarpMarkStageName(void) {
-    return g_dComIfG_gameInfo.getSaveFile().getPlayerLastMarkInfo().getName();
+
+inline const char* dComIfGs_getLastWarpMarkStageName() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerLastMarkInfo().getName();
 }
-inline cXyz dComIfGs_getLastWarpMarkPlayerPos(void) {
-    return g_dComIfG_gameInfo.getSaveFile().getPlayerLastMarkInfo().getPos();
+
+inline cXyz dComIfGs_getLastWarpMarkPlayerPos() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerLastMarkInfo().getPos();
 }
-inline s16 dComIfGs_getLastWarpMarkPlayerAngleY(void) {
-    return g_dComIfG_gameInfo.getSaveFile().getPlayerLastMarkInfo().getAngleY();
+
+inline s16 dComIfGs_getLastWarpMarkPlayerAngleY() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerLastMarkInfo().getAngleY();
 }
-inline s8 dComIfGs_getLastWarpMarkRoomNo(void) {
-    return g_dComIfG_gameInfo.getSaveFile().getPlayerLastMarkInfo().getRoomNo();
+
+inline s8 dComIfGs_getLastWarpMarkRoomNo() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerLastMarkInfo().getRoomNo();
 }
-inline char dComIfGs_getLastWarpAcceptStage(void) {
-    return g_dComIfG_gameInfo.getSaveFile().getPlayerLastMarkInfo().getWarpAcceptStage();
+
+inline char dComIfGs_getLastWarpAcceptStage() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerLastMarkInfo().getWarpAcceptStage();
 }
-inline u8 dComIfGs_getSelectEquipClothes(void) {
-    return g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().getSelectEquip(CLOTHING_BITFIELD);
+
+inline u8 dComIfGs_getSelectEquipClothes() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getSelectEquip(COLLECT_CLOTHING);
 }
-inline u8 dComIfGs_getSelectEquipSword(void) {
-    return g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().getSelectEquip(SWORD_BITFIELD);
+
+inline u8 dComIfGs_getSelectEquipSword() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getSelectEquip(COLLECT_SWORD);
 }
-inline u8 dComIfGs_getSelectEquipShield(void) {
-    return g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().getSelectEquip(SHIELD_BITFIELD);
+
+inline u8 dComIfGs_getSelectEquipShield() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getSelectEquip(COLLECT_SHIELD);
 }
+
 inline u8 dComIfGs_getLightDropNum(u8 area_id) {
-    return g_dComIfG_gameInfo.getSaveFile().getLightDrop().getLightDropNum(area_id);
+    return g_dComIfG_gameInfo.info.getPlayer().getLightDrop().getLightDropNum(area_id);
 }
+
 inline u8 dComIfGs_getSelectItemIndex(int idx) {
-    return g_dComIfG_gameInfo.getPlayer().getPlayerStatusA().getSelectItemIndex(idx);
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getSelectItemIndex(idx);
 }
+
 inline void dComIfGp_setItem(u8 slot, u8 i_no) {
-    g_dComIfG_gameInfo.getPlay().setItem(slot, i_no);
+    g_dComIfG_gameInfo.play.setItem(slot, i_no);
 }
-inline u32 dComIfGp_getNowVibration(void) {
-    return g_dComIfG_gameInfo.getPlay().getNowVibration();
+
+inline u32 dComIfGp_getNowVibration() {
+    return g_dComIfG_gameInfo.play.getNowVibration();
 }
-inline char* dComIfGp_getStartStageName(void) {
-    return g_dComIfG_gameInfo.getPlay().getStartStageName();
+
+inline char* dComIfGp_getStartStageName() {
+    return g_dComIfG_gameInfo.play.getStartStageName();
 }
-inline void dComIfGd_reset(void) {
-    g_dComIfG_gameInfo.getDrawlist().reset();
-} */
+
+inline void dComIfGd_reset() {
+    g_dComIfG_gameInfo.draw_list_list.reset();
+}
+
+inline u8 dComIfGs_getOptVibration() {
+    return g_dComIfG_gameInfo.info.getPlayer().getConfig().getVibration();
+}
+
+inline s8 dComIfGp_roomControl_getStayNo() {
+    return dStage_roomControl_c::getStayNo();
+}
+
+inline s8 dComIfGp_getStartStageRoomNo() {
+    return g_dComIfG_gameInfo.play.getStartStageRoomNo();
+}
+
+inline s8 dComIfGp_getStartStageLayer() {
+    return g_dComIfG_gameInfo.play.getStartStageLayer();
+}
+
+inline roomRead_class* dComIfGp_getStageRoom() {
+    return g_dComIfG_gameInfo.play.getStage().getRoom();
+}
+
+inline stage_stag_info_class* dComIfGp_getStageStagInfo() {
+    return g_dComIfG_gameInfo.play.getStage().getStagInfo();
+}
+
+inline BOOL dComIfGs_isTbox(int i_no) {
+    return g_dComIfG_gameInfo.info.getMemory().getBit().isTbox(i_no);
+}
+
+inline BOOL dComIfGs_isSaveTbox(int i_stageNo, int i_no) {
+    return g_dComIfG_gameInfo.info.getSavedata().getSave(i_stageNo).getBit().isTbox(i_no);
+}
+
+inline void dComIfGs_onSaveSwitch(int i_stageNo, int i_no) {
+    g_dComIfG_gameInfo.info.getSavedata().getSave(i_stageNo).getBit().onSwitch(i_no);
+}
+
+inline void dComIfGs_offSaveSwitch(int i_stageNo, int i_no) {
+    g_dComIfG_gameInfo.info.getSavedata().getSave(i_stageNo).getBit().offSwitch(i_no);
+}
+
+inline BOOL dComIfGs_isSaveSwitch(int i_stageNo, int i_no) {
+    return g_dComIfG_gameInfo.info.getSavedata().getSave(i_stageNo).getBit().isSwitch(i_no);
+}
+
+inline void dComIfGs_onStageBossEnemy() {
+    g_dComIfG_gameInfo.info.getMemory().getBit().onStageBossEnemy();
+}
+
+inline s32 dComIfGs_isDungeonItemWarp() {
+    return g_dComIfG_gameInfo.info.getMemory().getBit().isDungeonItemWarp();
+}
+
+inline u8 dComIfGp_isHeapLockFlag() {
+    return g_dComIfG_gameInfo.play.isHeapLockFlag();
+}
+
+inline void dComIfGp_setSubHeapLockFlag(int idx, u8 status) {
+    g_dComIfG_gameInfo.play.setSubHeapLockFlag(idx, status);
+}
+
+inline u8 dComIfGp_getSubHeapLockFlag(int idx) {
+    return g_dComIfG_gameInfo.play.getSubHeapLockFlag(idx);
+}
+
+inline JKRExpHeap* dComIfGp_getSubExpHeap2D(int idx) {
+    return g_dComIfG_gameInfo.play.getSubExpHeap2D(idx);
+}
+
+inline void dComIfGp_setSubExpHeap2D(int idx, void* heap) {
+    g_dComIfG_gameInfo.play.setSubExpHeap2D(idx, heap);
+}
+
+inline void dComIfGp_offEnableNextStage() {
+    g_dComIfG_gameInfo.play.offEnableNextStage();
+}
+
+inline void dComIfGs_setKeyNum(u8 keyNum) {
+    g_dComIfG_gameInfo.info.getMemory().getBit().setKeyNum(keyNum);
+}
+
+void dComIfGs_setKeyNum(int i_stageNo, u8 keyNum);
+
+inline int dComIfG_getTimerMode() {
+    return g_dComIfG_gameInfo.play.getTimerMode();
+}
+
+inline dTimer_c* dComIfG_getTimerPtr() {
+    return g_dComIfG_gameInfo.play.getTimerPtr();
+}
+
+inline void dComIfGp_roomControl_initZone() {
+    g_dComIfG_gameInfo.play.getRoomControl()->initZone();
+}
+
+inline bool dComIfG_setObjectRes(const char* name, u8 param_1, JKRHeap* heap) {
+    return g_dComIfG_gameInfo.mResControl.setObjectRes(name, param_1, heap);
+}
+
+inline int dComIfG_syncObjectRes(const char* name) {
+    return g_dComIfG_gameInfo.mResControl.syncObjectRes(name);
+}
+
+inline JKRHeap* dComIfGp_getExpHeap2D() {
+    return g_dComIfG_gameInfo.play.getExpHeap2D();
+}
+
+inline u16 dComIfGs_getOil() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getOil();
+}
+
+inline s64 dComIfGs_getSaveStartTime() {
+    return g_dComIfG_gameInfo.info.getStartTime();
+}
+
+inline s64 dComIfGs_getSaveTotalTime() {
+    return g_dComIfG_gameInfo.info.getSaveTotalTime();
+}
+
+inline dSv_save_c& dComIfGs_getSaveData() {
+    return g_dComIfG_gameInfo.info.getSavedata();
+}
+
+inline void dComIfGs_setLineUpItem() {
+    g_dComIfG_gameInfo.info.getPlayer().getItem().setLineUpItem();
+}
+
+inline void dComIfGp_setNowVibration(u8 status) {
+    g_dComIfG_gameInfo.play.setNowVibration(status);
+}
+
+inline s32 dComIfGs_isGetMagicUseFlag() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().isMagicFlag(0);
+}
+
+inline void dComIfGs_offTmpBit(u16 flag) {
+    g_dComIfG_gameInfo.info.getTmp().offEventBit(flag);
+}
+
+inline dAttention_c& dComIfGp_getAttention() {
+    return g_dComIfG_gameInfo.play.getAttention();
+}
+
+inline BOOL dComIfGs_isDarkClearLV(int param_0) {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusB().isDarkClearLV(param_0);
+}
+
+inline BOOL dComIfGs_isTmpBit(u16 flag) {
+    return g_dComIfG_gameInfo.info.getTmp().isEventBit(flag);
+}
+
+inline BOOL dComIfGs_isTransformLV(int param_0) {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusB().isTransformLV(param_0);
+}
+
+inline void dComIfGs_onStageLife() {
+    g_dComIfG_gameInfo.info.getMemory().getBit().onStageLife();
+}
+
+inline u8 dComIfGs_getBombNum(u8 param_0) {
+    return g_dComIfG_gameInfo.info.getPlayer().getItemRecord().getBombNum(param_0);
+}
+
+inline u8 dComIfGs_getPachinkoNum() {
+    return g_dComIfG_gameInfo.info.getPlayer().getItemRecord().getPachinkoNum();
+}
+
+inline u8 dComIfGs_getBottleNum(u8 param_0) {
+    return g_dComIfG_gameInfo.info.getPlayer().getItemRecord().getBottleNum(param_0);
+}
+
+inline u8 dComIfGs_getBombMax(u8 param_0) {
+    return g_dComIfG_gameInfo.info.getPlayer().getItemMax().getBombNum(param_0);
+}
+
+inline void dComIfGs_setBombNum(u8 param_0, u8 param_1) {
+    g_dComIfG_gameInfo.info.getPlayer().getItemRecord().setBombNum(param_0, param_1);
+}
+
+inline void dComIfGs_setPachinkoNum(u8 param_0) {
+    g_dComIfG_gameInfo.info.getPlayer().getItemRecord().setPachinkoNum(param_0);
+}
+
+inline void dComIfGs_addBottleNum(u8 param_0, s16 param_1) {
+    g_dComIfG_gameInfo.info.getPlayer().getItemRecord().addBottleNum(param_0, param_1);
+}
 
 #endif /* D_COM_D_COM_INF_GAME_H */

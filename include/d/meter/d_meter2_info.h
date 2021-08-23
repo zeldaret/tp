@@ -9,10 +9,6 @@
 #include "f_op/f_op_actor.h"
 //#include "JSystem/JUtility/JUTFont.h"
 
-struct dSv_event_flag_c {
-    static u8 saveBitLabels[1644 + 4 /* padding */];
-};
-
 struct dMsgObject_c {
     /* 802384C4 */ void setLetterNameID(u16);
     /* 802379AC */ void setKillMessageFlag();
@@ -115,6 +111,7 @@ public:
     dMeterMap_c* getMeterMapClass() { return mMeterMap; }
     dMw_c* getMenuWindowClass() { return mMenuWindowClass; }
     void offUseButton(int pButton) { mUseButton &= ~(u16)pButton; }
+    u16 getOilGaugeBackUp() { return mOilGaugeBackUp; }
 
 private:
     /* 0x04 */ u8 unk4[4];
@@ -201,6 +198,8 @@ private:
 
 extern dMeter2Info_c g_meter2_info;
 
+void dMeter2Info_setSword(u8, bool);
+
 inline void dMeter2Info_Initialize() {
     g_meter2_info.init();
 }
@@ -215,6 +214,22 @@ inline dMw_c* dMeter2Info_getMenuWindowClass() {
 
 inline void dMeter2Info_setWindowStatus(u8 status) {
     g_meter2_info.setWindowStatus(status);
+}
+
+inline void dMeter2Info_getString(u32 param_0, char* param_1, JMSMesgEntry_c* param_2) {
+    g_meter2_info.getString(param_0, param_1, param_2);
+}
+
+inline void dMeter2Info_setHotSpringTimer(u8 time) {
+    g_meter2_info.setHotSpringTimer(time);
+}
+
+inline u16 dMeter2Info_getOilGaugeBackUp() {
+    return g_meter2_info.getOilGaugeBackUp();
+}
+
+inline void dMeter2Info_setSaveStageName(const char* name) {
+    g_meter2_info.setSaveStageName(name);
 }
 
 #endif /* D_METER_D_METER2_INFO_H */

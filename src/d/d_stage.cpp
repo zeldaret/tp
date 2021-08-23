@@ -7,16 +7,11 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
+#include "m_Do/m_Do_reset.h"
 
 //
 // Types:
 //
-
-struct mDoRst {
-    static u8 mResetData[4 + 4 /* padding */];
-};
-
-struct fopAcM_prm_class {};
 
 struct daSus_c {
     /* 80031434 */ void check(s8, cXyz const&);
@@ -454,7 +449,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void sprintf();
 extern "C" void snprintf(char*, u32, char*, ...);
 extern "C" extern J3DLightInfo const j3dDefaultLightInfo;
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
@@ -466,23 +460,18 @@ extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80378A50 = "OPENING";
-#pragma pop
-
-/* 80023E28-80023E94 01E768 006C+00 0/0 1/1 0/3 .text set__18dStage_nextStage_cFPCcScsScScUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_nextStage_c::set(char const* param_0, s8 param_1, s16 param_2, s8 param_3,
-                                 s8 param_4, u8 param_5) {
-    nofralloc
-#include "asm/d/d_stage/set__18dStage_nextStage_cFPCcScsScScUc.s"
+void dStage_nextStage_c::set(const char* i_stage, s8 i_roomId, s16 i_point, s8 i_layer, s8 i_wipe,
+                             u8 i_speed) {
+    if (!enabled) {
+        enabled = true;
+        wipe = i_wipe;
+        wipe_speed = i_speed;
+        dStage_startStage_c::set(i_stage, i_roomId, i_point, i_layer);
+        if (!strcmp(i_stage, "OPENING")) {
+            mDoRst::onReset();
+        }
+    }
 }
-#pragma pop
 
 static void dStage_SetErrorRoom() {
     // "Room information might be corrupted. \nPlease try to re-convert. \n"
@@ -494,43 +483,31 @@ static void dStage_SetErrorStage() {
     OSReport_Error("ステージ情報が、多分ですが壊れています。\n変換し直してみてください。");
 }
 
-/* ############################################################################################## */
-/* 803F4E68-803F4E74 021B88 000C+00 1/1 0/0 0/0 .bss             @3926 */
-// static u8 lit_3926[12];
-
 /* 803F4E74-803F5778 021B94 0904+00 3/4 0/0 0/0 .bss             DoorInfo */
 static dStage_KeepDoorInfo DoorInfo;
 
-/* 80023EF4-80023F00 01E834 000C+00 0/0 1/1 0/0 .text            dStage_GetKeepDoorInfo__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_GetKeepDoorInfo() {
-    nofralloc
-#include "asm/d/d_stage/dStage_GetKeepDoorInfo__Fv.s"
+dStage_KeepDoorInfo* dStage_GetKeepDoorInfo() {
+    return &DoorInfo;
 }
-#pragma pop
 
-/* 80023F00-80023F50 01E840 0050+00 2/2 0/0 0/3 .text            dStage_isBossStage__FP11dStage_dt_c
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dStage_isBossStage(dStage_dt_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/dStage_isBossStage__FP11dStage_dt_c.s"
+static u8 dStage_isBossStage(dStage_dt_c* param_0) {
+    u8 isBossStg;
+    stage_stag_info_class* pstag = param_0->getStagInfo();
+
+    if (pstag == 0) {
+        isBossStg = false;
+    } else {
+        isBossStg = dStage_stagInfo_GetSTType(pstag) == 3;
+    }
+    return isBossStg;
 }
-#pragma pop
 
 /* 80023F50-80023F84 01E890 0034+00 1/1 0/0 0/1 .text dStage_KeepDoorInfoInit__FP11dStage_dt_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dStage_KeepDoorInfoInit(dStage_dt_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/dStage_KeepDoorInfoInit__FP11dStage_dt_c.s"
+static void dStage_KeepDoorInfoInit(dStage_dt_c* param_0) {
+    if (dStage_isBossStage(param_0) == 0) {
+        DoorInfo.unk_0x0 = NULL;
+    }
 }
-#pragma pop
 
 /* 80023F84-8002405C 01E8C4 00D8+00 1/1 0/0 0/3 .text
  * dStage_KeepDoorInfoProc__FP11dStage_dt_cP16stage_tgsc_class  */
@@ -553,25 +530,13 @@ static asm void dStage_KeepDoorInfoProc(dStage_dt_c* param_0, stage_tgsc_class* 
 /* 803F5784-803F6088 0224A4 0904+00 3/4 0/0 0/0 .bss             l_RoomKeepDoorInfo */
 static dStage_KeepDoorInfo l_RoomKeepDoorInfo;
 
-/* 8002405C-80024068 01E99C 000C+00 0/0 1/1 0/0 .text            dStage_GetRoomKeepDoorInfo__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_GetRoomKeepDoorInfo() {
-    nofralloc
-#include "asm/d/d_stage/dStage_GetRoomKeepDoorInfo__Fv.s"
+dStage_KeepDoorInfo* dStage_GetRoomKeepDoorInfo() {
+    return &l_RoomKeepDoorInfo;
 }
-#pragma pop
 
-/* 80024068-80024078 01E9A8 0010+00 1/1 0/0 0/0 .text            dStage_initRoomKeepDoorInfo__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dStage_initRoomKeepDoorInfo() {
-    nofralloc
-#include "asm/d/d_stage/dStage_initRoomKeepDoorInfo__Fv.s"
+static void dStage_initRoomKeepDoorInfo() {
+    l_RoomKeepDoorInfo.unk_0x0 = NULL;
 }
-#pragma pop
 
 /* 80024078-80024174 01E9B8 00FC+00 1/1 0/0 0/0 .text
  * dStage_RoomKeepDoorInfoProc__FP11dStage_dt_cP16stage_tgsc_class */
@@ -586,6 +551,13 @@ static asm void dStage_RoomKeepDoorInfoProc(dStage_dt_c* param_0, stage_tgsc_cla
 
 /* 80024174-8002419C 01EAB4 0028+00 2/0 0/0 0/0 .text
  * dStage_RoomKeepDoorInit__FP11dStage_dt_cPviPv                */
+#ifdef NONMATCHING
+static int dStage_RoomKeepDoorInit(dStage_dt_c* param_0, void* param_1, int param_2,
+                                   void* param_3) {
+    dStage_RoomKeepDoorInfoProc(param_0, (stage_tgsc_class*)param_1);
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -595,6 +567,7 @@ static asm void dStage_RoomKeepDoorInit(dStage_dt_c* param_0, void* param_1, int
 #include "asm/d/d_stage/dStage_RoomKeepDoorInit__FP11dStage_dt_cPviPv.s"
 }
 #pragma pop
+#endif
 
 void dStage_startStage_c::set(const char* i_Stage, s8 i_RoomNo, s16 i_Point, s8 i_Layer) {
     strcpy(mStage, i_Stage);
@@ -611,12 +584,6 @@ SECTION_DEAD static char const* const stringBase_80378ADD = "name.bin";
 SECTION_DEAD static char const* const stringBase_80378AE6 = "bank.bin";
 #pragma pop
 
-// /* 803F6088-803F6094 022DA8 000C+00 0/1 0/0 0/0 .bss             @5376 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_5376[12];
-// #pragma pop
-
 /* 803F6094-80406194 022DB4 10100+00 12/12 31/31 16/16 .bss mStatus__20dStage_roomControl_c */
 dStage_roomStatus_c dStage_roomControl_c::mStatus[0x40];
 
@@ -631,7 +598,6 @@ u32 dStage_roomControl_c::mProcID;
 /* 80450D65 0001+00 data_80450D65 None */
 /* 80450D66 0001+00 data_80450D66 None */
 /* 80450D67 0001+00 data_80450D67 None */
-extern s8 struct_80450D64;  // sStayNo
 s8 struct_80450D64;
 
 extern s8 sLastStayNo;
@@ -648,12 +614,28 @@ extern u8 data_80450D68[4];
 u8 data_80450D68[4];
 
 /* 80450D6C-80450D70 00026C 0004+00 1/1 2/2 0/0 .sbss mArcBankName__20dStage_roomControl_c */
-u8 dStage_roomControl_c::mArcBankName[4];
+char* dStage_roomControl_c::mArcBankName;
 
 /* 80450D70-80450D74 000270 0004+00 1/1 1/1 0/0 .sbss mArcBankData__20dStage_roomControl_c */
-u8 dStage_roomControl_c::mArcBankData[4];
+char* dStage_roomControl_c::mArcBankData;
 
 /* 800241E8-80024338 01EB28 0150+00 1/1 0/0 0/4 .text            init__20dStage_roomControl_cFv */
+#ifdef NONMATCHING
+void dStage_roomControl_c::init() {
+    if (-1 < dComIfGp_getStartStagePoint()) {
+        dComIfGs_initZone();
+    }
+
+    dStage_roomStatus_c* status = &mStatus[0];
+
+    for (int i = 0; i < 0x40; i++) {
+        status->mRoomDt.init();
+        status->mRoomDt.initFileList2();
+        status->unk_0x3F4[0] = 0;
+        status->unk_0x3F4[1] = 0;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -662,6 +644,7 @@ asm void dStage_roomControl_c::init() {
 #include "asm/d/d_stage/init__20dStage_roomControl_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80024338-80024384 01EC78 004C+00 1/1 1/1 0/7 .text            initZone__20dStage_roomControl_cFv
  */
@@ -1095,6 +1078,18 @@ asm void dStage_roomControl_c::getMemoryBlock(int param_0) {
 
 /* 800243E8-80024424 01ED28 003C+00 2/2 0/0 0/0 .text            setStayNo__20dStage_roomControl_cFi
  */
+#ifdef NONMATCHING
+void dStage_roomControl_c::setStayNo(int param_0) {
+    sLastStayNo = struct_80450D64;
+    struct_80450D64 = param_0;
+
+    if (struct_80450D64 > -1) {
+        sNextStayNo = struct_80450D64;
+    }
+    sNextStayNo = struct_80450D64;
+    mStatus[struct_80450D64].unk_0x3F4[1] = 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1103,6 +1098,7 @@ asm void dStage_roomControl_c::setStayNo(int param_0) {
 #include "asm/d/d_stage/setStayNo__20dStage_roomControl_cFi.s"
 }
 #pragma pop
+#endif
 
 /* 80024424-8002442C 01ED64 0008+00 0/0 0/0 1/1 .text setNextStayNo__20dStage_roomControl_cFi */
 // matches but need to fix data
@@ -1813,7 +1809,7 @@ static asm void dStage_roomReadInit(dStage_dt_c* param_0, void* param_1, int par
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dStage_roomRead_dt_c_GetReverbStage(roomRead_class& param_0, int param_1) {
+asm u8 dStage_roomRead_dt_c_GetReverbStage(roomRead_class& param_0, int param_1) {
     nofralloc
 #include "asm/d/d_stage/dStage_roomRead_dt_c_GetReverbStage__FR14roomRead_classi.s"
 }

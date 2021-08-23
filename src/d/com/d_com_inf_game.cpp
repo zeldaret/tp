@@ -4,6 +4,8 @@
 //
 
 #include "d/com/d_com_inf_game.h"
+#include "d/d_item.h"
+#include "d/kankyo/d_kankyo.h"
 #include "d/meter/d_meter2_info.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
@@ -14,8 +16,6 @@
 //
 
 struct scene_class {};
-
-struct request_of_phase_process_class {};
 
 struct phaseParam_c {};
 
@@ -78,7 +78,7 @@ extern "C" void clearItemBombNumCount__14dComIfG_play_cFUc();
 extern "C" void setNowVibration__14dComIfG_play_cFUc();
 extern "C" void getNowVibration__14dComIfG_play_cFv();
 extern "C" void setStartStage__14dComIfG_play_cFP19dStage_startStage_c();
-extern "C" static void dComIfG_get_timelayer__FPi();
+extern "C" void dComIfG_get_timelayer__FPi();
 extern "C" void getLayerNo_common_common__14dComIfG_play_cFPCcii();
 extern "C" void getLayerNo_common__14dComIfG_play_cFPCcii();
 extern "C" void getLayerNo__14dComIfG_play_cFi();
@@ -142,17 +142,17 @@ extern "C" void dComIfGs_setSelectItemIndex__FiUc();
 extern "C" void dComIfGs_setMixItemIndex__FiUc();
 extern "C" void dComIfGs_getSelectMixItemNoArrowIndex__Fi();
 extern "C" void dComIfGs_getMixItemIndex__Fi();
-extern "C" void dComIfGp_setSelectItem__Fi();
+extern "C" void dComIfGp_setSelectItem__Fi(int);
 extern "C" void dComIfGp_getSelectItem__Fi();
 extern "C" void dComIfGp_mapShow__Fv();
 extern "C" void dComIfGp_mapHide__Fv();
 extern "C" void dComIfGp_checkMapShow__Fv();
 extern "C" void dComIfGp_setHeapLockFlag__FUc();
-extern "C" void dComIfGp_offHeapLockFlag__Fi();
+extern "C" s32 dComIfGp_offHeapLockFlag__Fi(int);
 extern "C" static void dComIfGp_createSubExpHeap2D__Fv();
 extern "C" static void dComIfGp_destroySubExpHeap2D__Fv();
-extern "C" static void dComIfGp_checkEmptySubHeap2D__Fv();
-extern "C" static void dComIfGp_searchUseSubHeap2D__Fi();
+extern "C" static int dComIfGp_checkEmptySubHeap2D__Fv();
+extern "C" static int dComIfGp_searchUseSubHeap2D__Fi(int);
 extern "C" void dComIfGp_getSubHeap2D__Fi();
 extern "C" void dComIfGs_checkGetInsectNum__Fv();
 extern "C" static u8 dComIfGs_checkGetItem__FUc(u8);
@@ -176,7 +176,8 @@ extern "C" void dComIfGs_setKeyNum__FiUc();
 extern "C" static void dComIfGs_setWarpItemData__FiPCc4cXyzsScUcUc();
 extern "C" void setWarpItemData__14dComIfG_play_cFPCc4cXyzsScUcUc();
 extern "C" void dComIfGs_setWarpItemData__FPCc4cXyzsScUcUc();
-extern "C" static void dComIfGs_setLastWarpMarkItemData__FPCc4cXyzsScUcUc();
+extern "C" static void dComIfGs_setLastWarpMarkItemData__FPCc4cXyzsScUcUc(const char*, cXyz, s16,
+                                                                          s8, u8, u8);
 extern "C" void dComIfGs_getWarpStageName__Fv();
 extern "C" void dComIfGs_getWarpPlayerPos__Fv();
 extern "C" void dComIfGs_getWarpPlayerAngleY__Fv();
@@ -270,7 +271,7 @@ extern "C" void fopScnM_ReRequest__FsUl();
 extern "C" void set__18dStage_nextStage_cFPCcScsScScUc();
 extern "C" void initZone__20dStage_roomControl_cFv();
 extern "C" void getStatusRoomDt__20dStage_roomControl_cFi();
-extern "C" void dStage_roomRead_dt_c_GetReverbStage__FR14roomRead_classi();
+extern "C" u8 dStage_roomRead_dt_c_GetReverbStage__FR14roomRead_classi(roomRead_class&, int);
 extern "C" void setSelectItemIndex__21dSv_player_status_a_cFiUc();
 extern "C" void getSelectItemIndex__21dSv_player_status_a_cCFi();
 extern "C" void setMixItemIndex__21dSv_player_status_a_cFiUc();
@@ -383,7 +384,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void sprintf();
 extern "C" extern void* __vt__12J3DFrameCtrl[3];
 extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" extern void* __vt__16dStage_stageDt_c[93];
@@ -404,15 +404,25 @@ extern "C" u8 mStatus__20dStage_roomControl_c[65792];
 extern "C" extern u8 g_env_light[4880];
 extern "C" u8 mFader__13mDoGph_gInf_c[4];
 extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 struct_80450D64[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
 //
 
-/* 8002B1DC-8002B22C 025B1C 0050+00 2/2 0/0 0/0 .text            ct__14dComIfG_play_cFv */
-void dComIfG_play_c::ct(void) {
+inline u8 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
+    return param_0->field_0x09 >> 1 & 0x1f;
+}
+
+inline BOOL dComIfGs_isEventBit(u16 id) {
+    return g_dComIfG_gameInfo.info.getSavedata().getEvent().isEventBit(id);
+}
+
+inline int dComIfGs_isItemFirstBit(u8 i_no) {
+    return g_dComIfG_gameInfo.info.getPlayer().getGetItem().isFirstBit(i_no);
+}
+
+void dComIfG_play_c::ct() {
     mWindowNum = 0;
     mParticle = NULL;
     mLayerOld = 0;
@@ -421,128 +431,78 @@ void dComIfG_play_c::ct(void) {
     init();
 }
 
-/* ############################################################################################## */
-/* 804061A0-804061B4 032EC0 0014+00 1/1 0/0 0/0 .bss             dComIfG_mTimerInfo */
 static __d_timer_info_c dComIfG_mTimerInfo;
 
-/* 804061B4-804061C0 032ED4 000C+00 1/1 0/0 0/0 .bss             @5065 */
-// static u8 lit_5065[12];
-
-/* 804061C0-80423FD0 032EE0 1DE10+00 99/99 2264/2264 7115/7115 .bss             g_dComIfG_gameInfo
- */
-// extern u8 g_dComIfG_gameInfo[122384];
 dComIfG_inf_c g_dComIfG_gameInfo;
 
-/* 8002B22C-8002B2A8 025B6C 007C+00 1/1 1/1 0/0 .text            init__14dComIfG_play_cFv */
-#ifdef NONMATCHING
 void dComIfG_play_c::init() {
-    mPlayer = NULL;
-    mPlayerCameraID[0] = -1;
-    mCameraInfo = NULL;
+    for (int i = 0; i < 1; i++) {
+        mPlayer[i] = NULL;
+        mPlayerCameraID[i] = -1;
+    }
+    mCameraInfo[0].mCamera = NULL;
 
     for (int i = 0; i < 2; i++) {
+        mPlayerPtr[i] = NULL;
     }
 
     if (mGameoverStatus == 2) {
-        g_dComIfG_gameInfo.getPlay().getRoomControl()->initZone();
+        dComIfGp_roomControl_initZone();
     }
     mGameoverStatus = 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_play_c::init() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/init__14dComIfG_play_cFv.s"
-}
-#pragma pop
-#endif
 
-/* 8002B2A8-8002B2C8 025BE8 0020+00 0/0 1/1 0/0 .text            dComIfGp_checkItemGet__FUci */
 void dComIfGp_checkItemGet(u8 param_0, int param_1) {
-    checkItemGet__FUci(param_0, param_1);
+    checkItemGet(param_0, param_1);
 }
 
-/* 8002B2C8-8002B36C 025C08 00A4+00 0/0 1/1 0/0 .text            itemInit__14dComIfG_play_cFv */
-#ifdef NONMATCHING
 void dComIfG_play_c::itemInit() {
     dMeter2Info_Initialize();
 
     JKRExpHeap* heap = mExpHeap2D;
-    memset(mMsgObjectClass, 0, 300);
+    memset(&mMsgObjectClass, 0, 300);
     mExpHeap2D = heap;
     mOxygen = 600;
     mNowOxygen = 600;
     mMaxOxygen = 600;
 
-    if (dComIfGs_checkGetItem(0x3e) == 0) {
-        field_0x4f4b = 21;
-    } else {
+    if (dComIfGs_checkGetItem(HAWK_EYE)) {
         field_0x4f4b = 0;
+    } else {
+        field_0x4f4b = 21;
     }
     field_0x4f4c = 7;
 
     mNowVibration = dComIfGs_getOptVibration();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_play_c::itemInit() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/itemInit__14dComIfG_play_cFv.s"
-}
-#pragma pop
-#endif
 
-/* 8002B36C-8002B384 025CAC 0018+00 1/1 3/3 1/1 .text setItemBombNumCount__14dComIfG_play_cFUcs */
 void dComIfG_play_c::setItemBombNumCount(u8 i_item, s16 pCount) {
     mItemBombNumCount[i_item] += pCount;
 }
 
-/* 8002B384-8002B394 025CC4 0010+00 0/0 1/1 0/0 .text getItemBombNumCount__14dComIfG_play_cFUc */
 s16 dComIfG_play_c::getItemBombNumCount(u8 i_item) {
     return mItemBombNumCount[i_item];
 }
 
-/* 8002B394-8002B3A8 025CD4 0014+00 0/0 1/1 0/0 .text clearItemBombNumCount__14dComIfG_play_cFUc
- */
 void dComIfG_play_c::clearItemBombNumCount(u8 i_item) {
     mItemBombNumCount[i_item] = 0;
 }
 
-/* 8002B3A8-8002B3B0 -00001 0008+00 0/0 0/0 0/0 .text setNowVibration__14dComIfG_play_cFUc */
 void dComIfG_play_c::setNowVibration(u8 pStatus) {
     mNowVibration = pStatus;
 }
 
-/* 8002B3B0-8002B3B8 025CF0 0008+00 0/0 2/2 0/0 .text            getNowVibration__14dComIfG_play_cFv
- */
 u32 dComIfG_play_c::getNowVibration() {
     return mNowVibration;
 }
 
-/* 8002B3B8-8002B3F4 025CF8 003C+00 0/0 1/1 0/0 .text
- * setStartStage__14dComIfG_play_cFP19dStage_startStage_c       */
-#ifdef NONMATCHING
 void dComIfG_play_c::setStartStage(dStage_startStage_c* pStartStage) {
     mLayerOld = mStartStage.getLayer();
     mStartStage = *pStartStage;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_play_c::setStartStage(dStage_startStage_c* param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/setStartStage__14dComIfG_play_cFP19dStage_startStage_c.s"
-}
-#pragma pop
-#endif
 
 /* 8002B3F4-8002B434 025D34 0040+00 1/1 0/0 0/0 .text            dComIfG_get_timelayer__FPi */
-static void dComIfG_get_timelayer(int* pLayer) {
+void dComIfG_get_timelayer(int* pLayer) {
     if (dKy_daynight_check__Fv()) {
         *pLayer += 1;
     }
@@ -590,6 +550,643 @@ SECTION_DEAD static char const* const stringBase_8037903B = "D_MN08A";
 
 /* 8002B434-8002C950 025D74 151C+00 1/1 1/1 0/0 .text
  * getLayerNo_common_common__14dComIfG_play_cFPCcii             */
+// only issue should be regalloc
+#ifdef NONMATCHING
+int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, int layer) {
+    if (layer < 0) {
+        layer = -1;
+
+        // Stage is in a Twilight state
+        if (dKy_darkworld_stage_check(stageName, roomId) == 1) {
+            layer = 14;
+        }
+
+        if (layer < 13) {
+            // Stage is Snowpeak Ruins or Snowpeak
+            if (!strcmp(stageName, "D_MN11") || !strcmp(stageName, "F_SP114")) {
+                // Cleared Snowpeak Ruins
+                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[266])) {
+                    layer = 3;
+                }
+
+                // Talked with Yeta after giving Cheese
+                else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[163])) {
+                    layer = 2;
+                }
+
+                // Talked with Yeta after giving Pumpkin
+                else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[162])) {
+                    layer = 1;
+                }
+            }
+
+            // Stage is Faron Woods
+            else if (!strcmp(stageName, "F_SP108")) {
+                // Cleared Snowpeak Ruins
+                if (dComIfGs_isEventBit(0x2008)) {
+                    layer = 5;
+                }
+
+                // Completed Midna's Desperate Hour
+                else if (dComIfGs_isEventBit(0x1E08)) {
+                    layer = 3;
+                }
+
+                // Cleared Forest Temple
+                else if (dComIfGs_isEventBit(0x0602)) {
+                    layer = 2;
+                }
+
+                // Haven't finished Ordon Day 2
+                else if (!dComIfGs_isEventBit(0x4510)) {
+                    layer = 1;
+                }
+            }
+
+            // Stage is Faron Woods Interiors
+            else if (!strcmp(stageName, "R_SP108")) {
+                // Cleared Forest Temple
+                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[55])) {
+                    layer = 2;
+                }
+
+                // Haven't finished Ordon Day 2
+                else if (!dComIfGs_isEventBit(0x4510)) {
+                    layer = 1;
+                }
+            }
+
+            // Stage is Kakariko Village or Kakariko Graveyard
+            else if (!strcmp(stageName, "F_SP109") || !strcmp(stageName, "F_SP111")) {
+                // Obtained Zora's Armor
+                if (dComIfGs_isEventBit(0x0804)) {
+                    layer = 2;
+                    dComIfG_get_timelayer(&layer);
+                }
+
+                // Finished Telma Wagon Escort
+                else if (dComIfGs_isEventBit(0x0810)) {
+                    layer = 4;
+                }
+
+                // Watched cutscene after leaving Goron Mines
+                else if (dComIfGs_isEventBit(0x1320)) {
+                    layer = 2;
+                    dComIfG_get_timelayer(&layer);
+                }
+
+                // Cleared Goron Mines
+                else if (dComIfGs_isEventBit(0x0701)) {
+                    layer = 12;
+                }
+
+                // Defeated King Bulblin 1
+                else if (dComIfGs_isEventBit(0x0A08)) {
+                    layer = 2;
+                    dComIfG_get_timelayer(&layer);
+                }
+
+                // King Bulblin 1 trigger activated
+                else if (dComIfGs_isEventBit(0x0608)) {
+                    layer = 1;
+                }
+            }
+
+            // Stage is Kakariko Village Interiors or Graveyard Interiors
+            else if (!strcmp(stageName, "R_SP109") || !strcmp(stageName, "R_SP209")) {
+                // Stage is Kakariko Interiors and room is Barnes shop and Cleared Lakebed Temple
+                if (!strcmp(stageName, "R_SP109") && roomId == 1 && dComIfGs_isEventBit(0x0904)) {
+                    layer = 4;
+                    dComIfG_get_timelayer(&layer);
+
+                } else {
+                    // Defeated King Bulblin 1
+                    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[85])) {
+                        layer = 2;
+                        dComIfG_get_timelayer(&layer);
+                    }
+
+                    // King Bulblin 1 trigger activated
+                    else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[53])) {
+                        layer = 1;
+                    }
+                }
+            }
+
+            // Stage is Death Mountain
+            else if (!strcmp(stageName, "F_SP110")) {
+                // Cleared Goron Mines
+                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[64])) {
+                    layer = 2;
+                }
+            }
+
+            // Stage is Death Mountain Interiors
+            else if (!strcmp(stageName, "R_SP110")) {
+                // Returned Wood Statue to Ilia
+                if (dComIfGs_isEventBit(0x2320)) {
+                    layer = 3;
+                }
+
+                // Cleared Temple of Time
+                else if (dComIfGs_isEventBit(0x2004)) {
+                    layer = 4;
+                }
+
+                // Obtained Master Sword
+                else if (dComIfGs_isEventBit(0x2020)) {
+                    layer = 2;
+                }
+
+                // Cleared Goron Mines
+                else if (dComIfGs_isEventBit(0x0701)) {
+                    layer = 1;
+                }
+            }
+
+            // Stage is Lake Hylia, Castle Town, Telma's Bar, or R_SP115 (removed)
+            else if (!strcmp(stageName, "F_SP115") || !strcmp(stageName, "F_SP116") ||
+                     (!strcmp(stageName, "R_SP116") && roomId == 5) ||
+                     !strcmp(stageName, "R_SP115")) {
+                // Stage is Lake Hylia and room is Lake
+                if (!strcmp(stageName, "F_SP115") && roomId == 0) {
+                    // Repaired Sky Cannon
+                    if (dComIfGs_isEventBit(0x3B08)) {
+                        layer = 3;
+                    }
+
+                    // Warped Sky Cannon to Lake Hylia
+                    else if (dComIfGs_isEventBit(0x3120)) {
+                        layer = 1;
+                    }
+
+                    // Cleared Lakebed Temple
+                    else if (dComIfGs_isEventBit(0x0904)) {
+                        layer = 2;
+                    }
+                }
+
+                // Stage is Telma's Bar and room is Bar and Obtained Master Sword
+                else if (!strcmp(stageName, "R_SP116") && roomId == 5 &&
+                         dComIfGs_isEventBit(0x2020)) {
+                    layer = 4;
+                }
+
+                // Completed Midna's Desperate Hour and Stage is Castle Town
+                else if (dComIfGs_isEventBit(0x1E08) && !strcmp(stageName, "F_SP116")) {
+                    // Room is not East, South, or North Castle Town
+                    if (roomId != 4 && roomId != 3 && roomId != 1) {
+                        layer = 0;
+                    } else {
+                        layer = 1;
+                    }
+                } else {
+                    // Cleared Lakebed Temple
+                    if (dComIfGs_isEventBit(0x0904)) {
+                        // Stage is Lake Hylia and room is Fountain and haven't started Midna's
+                        // Desperate Hour
+                        if ((!strcmp(stageName, "F_SP115") && roomId == 1) &&
+                            !dComIfGs_isEventBit(0x0C01)) {
+                            layer = 9;
+                        } else {
+                            layer = 2;
+                        }
+                    } else {
+                        // Stage is Castle Town and room is South Castle Town and Finished Telma
+                        // Wagon Escort
+                        if ((!strcmp(stageName, "F_SP116") && roomId == 3) &&
+                            dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[68])) {
+                            layer = 1;
+                        }
+                    }
+                }
+            }
+
+            // Stage is Zora's Domain
+            else if (!strcmp(stageName, "F_SP113")) {
+                // Cleared Snowpeak Ruins
+                if (dComIfGs_isEventBit(0x2008)) {
+                    layer = 2;
+                }
+            }
+
+            // Stage is Upper Zora's River
+            else if (!strcmp(stageName, "F_SP126")) {
+                // Unlocked Iza's River Ride (1)
+                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[95])) {
+                    layer = 1;
+                }
+            }
+
+            // Stage is Gerudo Desert and room is Desert
+            else if (!strcmp(stageName, "F_SP124") && roomId == 0) {
+                layer = 8;
+
+                // Used Sky Cannon to go to Desert
+                if (dComIfGs_isEventBit(0x4008)) {
+                    layer = 0;
+                }
+            }
+
+            // Stage is Zora's River
+            else if (!strcmp(stageName, "F_SP112")) {
+                // Unlocked Iza's River Ride (1)
+                if (dComIfGs_isEventBit(0x0B01)) {
+                    layer = 1;
+                }
+
+                // Started Iza's River Ride (1)
+                else if (dComIfGs_isEventBit(0x0902)) {
+                    layer = 2;
+                }
+            }
+
+            // Stage is Ordon Village
+            else if (!strcmp(stageName, "F_SP103")) {
+                // Room is Main Village
+                if (roomId == 0) {
+                    // Tamed Epona
+                    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[56])) {
+                        layer = 4;
+                        dComIfG_get_timelayer(&layer);
+                    }
+
+                    // Cleared Faron Twilight
+                    else if (dComIfGs_isDarkClearLV(0)) {
+                        layer = 2;
+                        dComIfG_get_timelayer(&layer);
+                    }
+
+                    // Escaped Hyrule Castle Sewers (1st Time)
+                    else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[47])) {
+                        layer = 1;
+                    }
+
+                    // Finished Ordon Day 2
+                    else if (dComIfGs_isEventBit(0x4510)) {
+                        layer = 7;
+                    }
+
+                    // Finished Ordon Day 1
+                    else if (dComIfGs_isEventBit(0x4A40)) {
+                        layer = 0;
+                    } else {
+                        layer = 6;
+                    }
+                }
+
+                // Room is Outside Link's House
+                else if (roomId == 1) {
+                    // Cleared Faron Twilight
+                    if (dComIfGs_isDarkClearLV(0)) {
+                        layer = 2;
+                    }
+
+                    // Escaped Hyrule Castle Sewers (1st Time)
+                    else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[47])) {
+                        layer = 1;
+                    }
+
+                    // Finished Ordon Day 2
+                    else if (dComIfGs_isEventBit(0x4510)) {
+                        layer = 0;
+                    }
+
+                    // Finished Ordon Day 1
+                    else if (dComIfGs_isEventBit(0x4A40)) {
+                        layer = 4;
+                    } else {
+                        layer = 3;
+                    }
+                }
+            }
+
+            // Stage is Ordon Village Interiors
+            else if (!strcmp(stageName, "R_SP01")) {
+                // Room is Sera's Shop
+                if (roomId == 1) {
+                    // Cleared Faron Twilight
+                    if (dComIfGs_isDarkClearLV(0)) {
+                        layer = 2;
+                    }
+                }
+
+                // Room is Shield house
+                else if (roomId == 2) {
+                    // Watched cutscene after defeating King Bulblin 1
+                    if (dComIfGs_isEventBit(0x0780)) {
+                        layer = 3;
+                    }
+
+                    // Cleared Faron Twilight
+                    else if (dComIfGs_isDarkClearLV(0)) {
+                        layer = 2;
+                    }
+
+                    // Escaped Hyrule Castle Sewers (1st Time)
+                    else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[47])) {
+                        layer = 1;
+                    }
+                }
+
+                // Room is Rusl and Uli's house
+                else if (roomId == 5) {
+                    // Tamed Epona
+                    if (dComIfGs_isEventBit(0x0601)) {
+                        layer = 4;
+                    }
+
+                    // Cleared Faron Twilight
+                    else if (dComIfGs_isDarkClearLV(0)) {
+                        layer = 2;
+                    }
+                }
+            }
+
+            // Stage is Ordon Spring
+            else if (!strcmp(stageName, "F_SP104")) {
+                // Room is Ordon Spring
+                if (roomId == 1) {
+                    // Cleared Faron Twilight
+                    if (dComIfGs_isDarkClearLV(0)) {
+                        layer = 2;
+                    }
+
+                    // Escaped Hyrule Castle Sewers (1st Time)
+                    else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[47])) {
+                        layer = 4;
+                    }
+
+                    // Finished Ordon Day 2
+                    else if (dComIfGs_isEventBit(0x4510)) {
+                        layer = 0;
+                    }
+
+                    // Finished Ordon Day 1
+                    else if (dComIfGs_isEventBit(0x4A20)) {
+                        layer = 3;
+                    } else {
+                        layer = 1;
+                    }
+                }
+
+                // Cleared Faron Twilight
+                else if (dComIfGs_isDarkClearLV(0)) {
+                    layer = 2;
+                }
+
+                // Escaped Hyrule Castle Sewers (1st Time)
+                else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[47])) {
+                    layer = 4;
+                }
+            }
+
+            // Stage is Ordon Ranch
+            else if (!strcmp(stageName, "F_SP00")) {
+                // Cleared Faron Twilight
+                if (dComIfGs_isDarkClearLV(0)) {
+                    layer = 2;
+                    dComIfG_get_timelayer(&layer);
+                }
+
+                // Escaped Hyrule Castle Sewers (1st Time)
+                else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[47])) {
+                    layer = 1;
+                }
+
+                // Watched cutscene after herding goats on Ordon Day 3
+                else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[169])) {
+                    layer = 10;
+                }
+
+                // Finished Ordon Day 2
+                else if (dComIfGs_isEventBit(0x4510)) {
+                    layer = 9;
+                }
+
+                // Finished Ordon Day 1
+                else if (dComIfGs_isEventBit(0x4A40)) {
+                    layer = 11;
+                } else {
+                    layer = 12;
+                }
+            }
+
+            // Stage is Hyrule Field
+            else if (!strcmp(stageName, "F_SP121")) {
+                // Completed Midna's Desperate Hour
+                if (dComIfGs_isEventBit(0x1E08)) {
+                    layer = 6;
+                }
+
+                // Started Midna's Desperate Hour
+                else if (dComIfGs_isEventBit(0x0C01)) {
+                    layer = 4;
+                }
+
+                // Finished Telma Wagon Escort
+                else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[68])) {
+                    layer = 0;
+                }
+
+                else if (dComIfGs_isTmpBit(0x0601)) {
+                    if (dComIfGs_isTmpBit(0x0602)) {
+                        layer = 2;
+                    }
+                } else {
+                    layer = 3;
+                }
+            }
+
+            // Stage is Outside Castle Town
+            else if (!strcmp(stageName, "F_SP122")) {
+                // Room is Outside Castle Town - West
+                if (roomId == 8) {
+                    // Completed Midna's Desperate Hour
+                    if (dComIfGs_isEventBit(0x1E08)) {
+                        layer = 6;
+                    }
+
+                    // Started Midna's Desperate Hour
+                    else if (dComIfGs_isEventBit(0x0C01)) {
+                        layer = 4;
+                    }
+                }
+
+                // Room is Outside Castle Town - South
+                else if (roomId == 16) {
+                    // Obtained Wood Statue
+                    if (dComIfGs_isEventBit(0x2204)) {
+                        layer = 6;
+                    }
+
+                    // Talked to Louise after getting Medicine Scent
+                    else if (dComIfGs_isEventBit(0x2102)) {
+                        layer = 1;
+                    }
+
+                    // Completed Midna's Desperate Hour
+                    else if (dComIfGs_isEventBit(0x1E08)) {
+                        layer = 6;
+                    }
+
+                    // Started Midna's Desperate Hour
+                    else if (dComIfGs_isEventBit(0x0C01)) {
+                        layer = 4;
+                    }
+                }
+
+                // Room is Outside Castle Town - East
+                else if (roomId == 17) {
+                    // Completed Midna's Desperate Hour
+                    if (dComIfGs_isEventBit(0x1E08)) {
+                        layer = 0;
+                    }
+
+                    // Started Midna's Desperate Hour
+                    else if (dComIfGs_isEventBit(0x0C01)) {
+                        layer = 4;
+                    }
+                }
+            }
+
+            // Stage is Hidden Village
+            else if (!strcmp(stageName, "F_SP128")) {
+                if (dComIfGs_isEventBit(0x2320)) {
+                    layer = 1;
+                }
+            }
+
+            // Stage is Castle Town Interiors
+            else if (!strcmp(stageName, "R_SP160")) {
+                // Room is Jovani's house
+                if (roomId == 5) {
+                    // Completed Midna's Desperate Hour
+                    if (dComIfGs_isEventBit(0x1E08)) {
+                        layer = 0;
+                    } else {
+                        layer = 1;
+                    }
+                }
+
+                // Fundraised Malo Mart Castle Town branch
+                else if (dComIfGs_isEventBit(0x2210)) {
+                    layer = 1;
+                }
+            }
+
+            // Stage is Sacred Grove
+            else if (!strcmp(stageName, "F_SP117")) {
+                // Cleared Snowpeak Ruins
+                if (dComIfGs_isEventBit(0x2008)) {
+                    layer = 2;
+                }
+            }
+
+            // Stage is Bulblin Camp
+            else if (!strcmp(stageName, "F_SP118")) {
+                // Fixed the Mirror of Twilight
+                if (dComIfGs_isEventBit(0x2B08)) {
+                    layer = 3;
+                }
+
+                // Cleared Arbiter's Grounds
+                else if (dComIfGs_isEventBit(0x2010)) {
+                    layer = 2;
+                }
+
+                // Escaped the burning tent
+                else if (dComIfGs_isEventBit(0x0B40)) {
+                    layer = 1;
+                }
+            }
+
+            // Stage is Faron Woods Cave
+            else if (!strcmp(stageName, "D_SB10")) {
+                // Finished Ordon Day 2
+                if (dComIfGs_isEventBit(0x4510)) {
+                    layer = 1;
+                }
+            }
+
+            // Stage is Hyrule Castle Sewers
+            else if (!strcmp(stageName, "R_SP107")) {
+                if (dComIfGs_isTransformLV(3)) {
+                    layer = 13;
+                }
+            }
+
+            // Stage is Hyrule Castle
+            else if (!strcmp(stageName, "D_MN09")) {
+                // Room is not Entrance, Outside Left Wing, or Outside Right Wing
+                if (roomId != 11 && roomId != 13 && roomId != 14) {
+                    layer = 1;
+                }
+            }
+
+            // Stage is Fishing Pond or Hena's Hut
+            else if (!strcmp(stageName, "F_SP127") || !strcmp(stageName, "R_SP127")) {
+                switch (g_env_light[0x12fe]) {
+                case 1:
+                    layer = 0;
+                    break;
+                case 2:
+                    layer = 1;
+                    break;
+                case 3:
+                    layer = 2;
+                    break;
+                case 4:
+                    layer = 3;
+                    break;
+                }
+            }
+        }
+    }
+
+    if (layer == 14) {
+        int tmp = layer;
+        // Warped meteor to Zora's Domain
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[65])) {
+            // Stage is Zora's River, Zora's Domain, Lake Hylia, Castle Town, Telma's Bar, R_SP115,
+            // Hyrule Field, Upper Zora's River, or Outside Castle Town
+            if (!strcmp(stageName, "F_SP112") || !strcmp(stageName, "F_SP113") ||
+                !strcmp(stageName, "F_SP115") || !strcmp(stageName, "F_SP116") ||
+                (!strcmp(stageName, "R_SP116") && roomId == 5) || !strcmp(stageName, "R_SP115") ||
+                !strcmp(stageName, "F_SP121") || !strcmp(stageName, "F_SP126") ||
+                !strcmp(stageName, "F_SP122")) {
+                // Stage is Hyrule Field
+                if (!strcmp(stageName, "F_SP121")) {
+                    if (tmp >= 9 && tmp <= 14) {
+                        layer = 13;
+                    }
+                } else {
+                    layer = 13;
+                }
+            }
+
+            // Stage is Hyrule Castle Sewers and room is Prison Cell
+            if (!strcmp(stageName, "R_SP107") && roomId == 0) {
+                // Haven't been to Hyrule Castle Sewers
+                if (!dComIfGs_isEventBit(0x4D08)) {
+                    layer = 11;
+                }
+            }
+            // Stage and room is Zant Throne Room
+            else if (!strcmp(stageName, "D_MN08A") && roomId == 10) {
+                // Defeated Zant
+                if (dComIfGs_isEventBit(0x5410)) {
+                    layer = 1;
+                } else {
+                    layer = 0;
+                }
+            }
+        }
+    }
+
+    return layer;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -598,6 +1195,7 @@ asm int dComIfG_play_c::getLayerNo_common_common(char const* param_0, int param_
 #include "asm/d/com/d_com_inf_game/getLayerNo_common_common__14dComIfG_play_cFPCcii.s"
 }
 #pragma pop
+#endif
 
 /* 8002C950-8002C97C 027290 002C+00 1/1 3/3 0/0 .text getLayerNo_common__14dComIfG_play_cFPCcii */
 int dComIfG_play_c::getLayerNo_common(char const* i_stageName, int i_roomID, int i_layerOverride) {
@@ -612,6 +1210,20 @@ int dComIfG_play_c::getLayerNo_common(char const* i_stageName, int i_roomID, int
 
 /* 8002C97C-8002C9D8 0272BC 005C+00 1/1 22/22 68/68 .text            getLayerNo__14dComIfG_play_cFi
  */
+#ifdef NONMATCHING
+int dComIfG_play_c::getLayerNo(int param_0) {
+    int roomNo = dComIfGp_roomControl_getStayNo();
+
+    if (roomNo <= -1) {
+        roomNo = dComIfGp_getStartStageRoomNo();
+    }
+
+    int layer = dComIfGp_getStartStageLayer();
+    char* stage = dComIfGp_getStartStageName();
+
+    return getLayerNo_common(stage, roomNo, layer);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -620,6 +1232,7 @@ asm int dComIfG_play_c::getLayerNo(int param_0) {
 #include "asm/d/com/d_com_inf_game/getLayerNo__14dComIfG_play_cFi.s"
 }
 #pragma pop
+#endif
 
 /* 8002C9D8-8002CA1C 027318 0044+00 0/0 1/1 0/0 .text            createParticle__14dComIfG_play_cFv
  */
@@ -716,7 +1329,7 @@ void dComIfG_play_c::setTimerMode(int mode) {
     mTimerInfo.mTimerMode = mode;
 }
 
-int dComIfG_play_c::getTimerMode(void) {
+int dComIfG_play_c::getTimerMode() {
     return mTimerInfo.mTimerMode;
 }
 
@@ -724,7 +1337,7 @@ void dComIfG_play_c::setTimerType(u8 type) {
     mTimerInfo.mTimerType = type;
 }
 
-u8 dComIfG_play_c::getTimerType(void) {
+u8 dComIfG_play_c::getTimerType() {
     return mTimerInfo.mTimerType;
 }
 
@@ -739,15 +1352,19 @@ dTimer_c* dComIfG_play_c::getTimerPtr() {
     return mTimerInfo.mTimerPtr;
 }
 
-/* 8002CBE4-8002CC54 027524 0070+00 1/1 1/1 0/0 .text            ct__13dComIfG_inf_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_inf_c::ct() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/ct__13dComIfG_inf_cFv.s"
+void dComIfG_inf_c::ct() {
+    field_0x1ddf8 = 0xFF;
+    play.ct();
+    mWorldDark = 0;
+    field_0x1ddfa = -1;
+    field_0x1ddfb = 0;
+    field_0x1de00 = 0;
+    field_0x1de04 = 0;
+    field_0x1de08 = 0;
+    field_0x1ddfc = 0;
+    field_0x1de09 = 0xFF;
+    field_0x1de0a = 0xFF;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80378F38-80378F38 005598 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -788,52 +1405,44 @@ asm void dComIfG_resetToOpening(scene_class* param_0) {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80378F38-80378F38 005598 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8037904B = "/res/Object/";
-SECTION_DEAD static char const* const stringBase_80379058 = "%s.arc Read Error !!\n";
-#pragma pop
+static int phase_1(char* arc_name) {
+    int ret;
 
-/* 8002CDB8-8002CE38 0276F8 0080+00 1/0 0/0 0/0 .text            phase_1__FPc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void phase_1(char* param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/phase_1__FPc.s"
+    if (!dComIfG_setObjectRes(arc_name, 0, NULL)) {
+        OSReport_Error("%s.arc Read Error !!\n", arc_name);
+        ret = 5;
+    } else {
+        ret = 2;
+    }
+    return ret;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80378F38-80378F38 005598 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8037906E = "%s.arc Sync Read Error !!\n";
-#pragma pop
 
 /* 8002CE38-8002CEB4 027778 007C+00 1/0 0/0 0/0 .text            phase_2__FPc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void phase_2(char* param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/phase_2__FPc.s"
+static int phase_2(char* arc_name) {
+    int tmp = dComIfG_syncObjectRes(arc_name);
+
+    if (tmp < 0) {
+        OSReport_Error("%s.arc Sync Read Error !!\n", arc_name);
+        tmp = 5;
+    } else {
+        tmp = tmp > 0 ? 0 : 2;
+    }
+    return tmp;
 }
-#pragma pop
 
 /* 8002CEB4-8002CEBC 0277F4 0008+00 1/0 0/0 0/0 .text            phase_3__FPc */
-static s32 phase_3(char* param_0) {
+static int phase_3(char* param_0) {
     return 4;
 }
 
+typedef int (*dComIfG_phaseMethod)(char*);
+
 /* ############################################################################################## */
 /* 803A71B8-803A71C4 -00001 000C+00 1/1 0/0 0/0 .data            l_method$5017 */
-SECTION_DATA static void* l_method_5017[3] = {
-    (void*)phase_1__FPc,
-    (void*)phase_2__FPc,
-    (void*)phase_3__FPc,
+SECTION_DATA static dComIfG_phaseMethod l_method_5017[3] = {
+    phase_1,
+    phase_2,
+    phase_3,
 };
 
 /* 8002CEBC-8002CEFC 0277FC 0040+00 0/0 7/7 550/550 .text
@@ -903,15 +1512,9 @@ asm void dComIfG_resDelete(request_of_phase_process_class* param_0, char const* 
 }
 #pragma pop
 
-/* 8002D06C-8002D0B4 0279AC 0048+00 0/0 14/14 596/596 .text            dComIfGp_getReverb__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_getReverb(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_getReverb__Fi.s"
+u8 dComIfGp_getReverb(int param_0) {
+    return dStage_roomRead_dt_c_GetReverbStage(*dComIfGp_getStageRoom(), param_0);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451D00-80451D04 000300 0004+00 2/2 0/0 0/0 .sdata2          @5090 */
@@ -987,118 +1590,89 @@ SECTION_SDATA2 static u8 lit_5226[4] = {
     0x00,
 };
 
-/* 8002D554-8002D598 027E94 0044+00 1/1 1/1 9/9 .text            dComIfGp_setNextStage__FPCcsScSc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_setNextStage(char const* param_0, s16 param_1, s8 param_2, s8 param_3) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_setNextStage__FPCcsScSc.s"
+void dComIfGp_setNextStage(char const* param_0, s16 param_1, s8 param_2, s8 param_3) {
+    dComIfGp_setNextStage(param_0, param_1, param_2, param_3, FLOAT_LABEL(lit_5226), 0, 1, 0, 0, 1,
+                          0);
 }
-#pragma pop
 
-/* 8002D598-8002D628 027ED8 0090+00 0/0 1/1 0/0 .text            dComIfGs_isStageTbox__Fii */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_isStageTbox(int param_0, int param_1) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_isStageTbox__Fii.s"
-}
-#pragma pop
+BOOL dComIfGs_isStageTbox(int i_stageNo, int i_no) {
+    stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
 
-/* 8002D628-8002D6B4 027F68 008C+00 0/0 1/1 1/1 .text            dComIfGs_onStageSwitch__Fii */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_onStageSwitch(int param_0, int param_1) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_onStageSwitch__Fii.s"
+    if (i_stageNo == dStage_stagInfo_GetSaveTbl(stag_info)) {
+        return dComIfGs_isTbox(i_no);
+    } else {
+        return dComIfGs_isSaveTbox(i_stageNo, i_no);
+    }
 }
-#pragma pop
 
-/* 8002D6B4-8002D740 027FF4 008C+00 0/0 1/1 2/2 .text            dComIfGs_offStageSwitch__Fii */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_offStageSwitch(int param_0, int param_1) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_offStageSwitch__Fii.s"
-}
-#pragma pop
+void dComIfGs_onStageSwitch(int i_stageNo, int i_no) {
+    stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
 
-/* 8002D740-8002D7D0 028080 0090+00 0/0 6/6 5/5 .text            dComIfGs_isStageSwitch__Fii */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_isStageSwitch(int param_0, int param_1) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_isStageSwitch__Fii.s"
-}
-#pragma pop
+    if (i_stageNo == dStage_stagInfo_GetSaveTbl(stag_info)) {
+        dComIfGs_onSwitch(i_no, -1);
+    }
 
-/* 8002D7D0-8002D878 028110 00A8+00 0/0 0/0 2/2 .text            dComIfGs_onStageBossEnemy__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_onStageBossEnemy(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_onStageBossEnemy__Fi.s"
+    dComIfGs_onSaveSwitch(i_stageNo, i_no);
 }
-#pragma pop
 
-/* 8002D878-8002D8FC 0281B8 0084+00 0/0 1/1 0/0 .text            dComIfGs_isDungeonItemWarp__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_isDungeonItemWarp(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_isDungeonItemWarp__Fi.s"
-}
-#pragma pop
+void dComIfGs_offStageSwitch(int i_stageNo, int i_no) {
+    stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
 
-/* 8002D8FC-8002D910 02823C 0014+00 0/0 1/1 6/6 .text            dComIfGs_BossLife_public_Set__FSc
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_BossLife_public_Set(s8 param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_BossLife_public_Set__FSc.s"
-}
-#pragma pop
+    if (i_stageNo == dStage_stagInfo_GetSaveTbl(stag_info)) {
+        dComIfGs_offSwitch(i_no, -1);
+    }
 
-/* 8002D910-8002D924 028250 0014+00 0/0 0/0 4/4 .text            dComIfGs_BossLife_public_Get__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_BossLife_public_Get() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_BossLife_public_Get__Fv.s"
+    dComIfGs_offSaveSwitch(i_stageNo, i_no);
 }
-#pragma pop
 
-/* 8002D924-8002D938 028264 0014+00 0/0 0/0 2/2 .text            dComIfGs_sense_type_change_Set__FSc
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_sense_type_change_Set(s8 param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_sense_type_change_Set__FSc.s"
-}
-#pragma pop
+BOOL dComIfGs_isStageSwitch(int i_stageNo, int i_no) {
+    stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
 
-/* 8002D938-8002D94C 028278 0014+00 0/0 1/1 0/0 .text            dComIfGs_sense_type_change_Get__Fv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_sense_type_change_Get() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_sense_type_change_Get__Fv.s"
+    if (i_stageNo == dStage_stagInfo_GetSaveTbl(stag_info)) {
+        return dComIfGs_isSwitch(i_no, -1);
+    } else {
+        return dComIfGs_isSaveSwitch(i_stageNo, i_no);
+    }
 }
-#pragma pop
+
+void dComIfGs_onStageBossEnemy(int i_stageNo) {
+    stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
+
+    if (i_stageNo == dStage_stagInfo_GetSaveTbl(stag_info)) {
+        dComIfGs_onStageBossEnemy();
+    }
+
+    g_dComIfG_gameInfo.info.getSavedata().getSave(i_stageNo).getBit().onStageBossEnemy();
+}
+
+s32 dComIfGs_isDungeonItemWarp(int i_stageNo) {
+    stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
+
+    if (i_stageNo == dStage_stagInfo_GetSaveTbl(stag_info)) {
+        return dComIfGs_isDungeonItemWarp();
+    } else {
+        return g_dComIfG_gameInfo.info.getSavedata()
+            .getSave(i_stageNo)
+            .getBit()
+            .isDungeonItemWarp();
+    }
+}
+
+void dComIfGs_BossLife_public_Set(s8 param_0) {
+    g_dComIfG_gameInfo.field_0x1ddfa = param_0;
+}
+
+s8 dComIfGs_BossLife_public_Get() {
+    return g_dComIfG_gameInfo.field_0x1ddfa;
+}
+
+void dComIfGs_sense_type_change_Set(s8 param_0) {
+    g_dComIfG_gameInfo.field_0x1ddfa = param_0;
+}
+
+s8 dComIfGs_sense_type_change_Get() {
+    return g_dComIfG_gameInfo.field_0x1ddfa;
+}
 
 /* 8002D94C-8002D9B0 02828C 0064+00 0/0 1/1 17/17 .text            dComIfGs_onZoneSwitch__Fii */
 #pragma push
@@ -1110,15 +1684,9 @@ asm void dComIfGs_onZoneSwitch(int param_0, int param_1) {
 }
 #pragma pop
 
-/* 8002D9B0-8002D9CC 0282F0 001C+00 8/8 11/11 0/0 .text getZoneNo__20dStage_roomControl_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dStage_roomControl_c::getZoneNo(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/getZoneNo__20dStage_roomControl_cFi.s"
+int dStage_roomControl_c::getZoneNo(int i_roomNo) {
+    return mStatus[i_roomNo].getZoneNo();
 }
-#pragma pop
 
 /* 8002D9CC-8002DA30 02830C 0064+00 0/0 1/1 1/1 .text            dComIfGs_offZoneSwitch__Fii */
 #pragma push
@@ -1190,241 +1758,311 @@ asm void dComIfGs_isOneZoneItem(int param_0, int param_1) {
 }
 #pragma pop
 
-/* 8002DCA8-8002DCC4 0285E8 001C+00 0/0 5/5 3/3 .text            dComIfGs_getMaxLifeGauge__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_getMaxLifeGauge() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_getMaxLifeGauge__Fv.s"
+u16 dComIfGs_getMaxLifeGauge() {
+    return (dComIfGs_getMaxLife() / 5) * 4;
 }
-#pragma pop
 
-/* 8002DCC4-8002DD08 028604 0044+00 1/1 7/7 0/0 .text            dComIfGs_setSelectItemIndex__FiUc
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_setSelectItemIndex(int param_0, u8 param_1) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_setSelectItemIndex__FiUc.s"
+void dComIfGs_setSelectItemIndex(int i_no, u8 item_index) {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setSelectItemIndex(i_no, item_index);
+    dComIfGp_setSelectItem(i_no);
 }
-#pragma pop
 
-/* 8002DD08-8002DD3C 028648 0034+00 0/0 6/6 0/0 .text            dComIfGs_setMixItemIndex__FiUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_setMixItemIndex(int param_0, u8 param_1) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_setMixItemIndex__FiUc.s"
+void dComIfGs_setMixItemIndex(int i_no, u8 item_index) {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setMixItemIndex(i_no, item_index);
 }
-#pragma pop
 
 /* 8002DD3C-8002DDC8 02867C 008C+00 3/3 1/1 0/0 .text dComIfGs_getSelectMixItemNoArrowIndex__Fi */
+#ifdef NONMATCHING
+u8 dComIfGs_getSelectMixItemNoArrowIndex(int p1) {
+    u8 item_index = dComIfGs_getSelectItemIndex(p1);
+    u8 mix_index = dComIfGs_getMixItemIndex(p1);
+
+    if (item_index >= 0xf && item_index < 0x12) {
+        return item_index;
+    }
+
+    else if (mix_index != 255 && (mix_index >= 0xf && mix_index < 0x12)) {
+        return 255;
+    }
+
+    // return p1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dComIfGs_getSelectMixItemNoArrowIndex(int param_0) {
+asm u8 dComIfGs_getSelectMixItemNoArrowIndex(int param_0) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/dComIfGs_getSelectMixItemNoArrowIndex__Fi.s"
 }
 #pragma pop
+#endif
 
-/* 8002DDC8-8002DDF4 028708 002C+00 2/2 11/11 0/0 .text            dComIfGs_getMixItemIndex__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_getMixItemIndex(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_getMixItemIndex__Fi.s"
+u8 dComIfGs_getMixItemIndex(int i_no) {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getMixItemIndex(i_no);
 }
-#pragma pop
 
 /* 8002DDF4-8002DF1C 028734 0128+00 1/1 13/13 0/0 .text            dComIfGp_setSelectItem__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_setSelectItem(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_setSelectItem__Fi.s"
+void dComIfGp_setSelectItem(int idx) {
+    if (idx == 2) {
+        if (dComIfGs_getSelectItemIndex(idx) != 0xFF) {
+            u8 selectItemIdx = dComIfGs_getSelectItemIndex(idx);
+            g_dComIfG_gameInfo.play.setSelectItem(idx, selectItemIdx);
+
+            if (selectItemIdx == 0xFF) {
+                dComIfGs_setSelectItemIndex(idx, -1);
+            }
+        } else {
+            g_dComIfG_gameInfo.play.setSelectItem(idx, -1);
+        }
+    } else {
+        if (dComIfGs_getSelectItemIndex(idx) != 0xFF) {
+            u8 selectItemIdx = dComIfGs_getSelectItemIndex(idx);
+            u8 item = dComIfGs_getItem(selectItemIdx, 0);
+            g_dComIfG_gameInfo.play.setSelectItem(idx, item);
+
+            if (item == 0xFF) {
+                dComIfGs_setSelectItemIndex(idx, -1);
+            }
+        } else {
+            g_dComIfG_gameInfo.play.setSelectItem(idx, -1);
+        }
+    }
 }
-#pragma pop
 
 /* 8002DF1C-8002E048 02885C 012C+00 4/4 19/19 0/0 .text            dComIfGp_getSelectItem__Fi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dComIfGp_getSelectItem(int param_0) {
+asm u8 dComIfGp_getSelectItem(int param_0) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/dComIfGp_getSelectItem__Fi.s"
 }
 #pragma pop
 
-/* 8002E048-8002E078 028988 0030+00 0/0 2/2 0/0 .text            dComIfGp_mapShow__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_mapShow() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_mapShow__Fv.s"
+void dComIfGp_mapShow() {
+    dComIfGs_offEventBit(0x1D01);
 }
-#pragma pop
 
-/* 8002E078-8002E0A8 0289B8 0030+00 0/0 2/2 0/0 .text            dComIfGp_mapHide__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_mapHide() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_mapHide__Fv.s"
+void dComIfGp_mapHide() {
+    dComIfGs_onEventBit(0x1D01);
 }
-#pragma pop
 
-/* 8002E0A8-8002E0E0 0289E8 0038+00 0/0 1/1 0/0 .text            dComIfGp_checkMapShow__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_checkMapShow() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_checkMapShow__Fv.s"
+bool dComIfGp_checkMapShow() {
+    return !dComIfGs_isEventBit(0x1D01);
 }
-#pragma pop
 
 /* 8002E0E0-8002E188 028A20 00A8+00 0/0 9/9 0/0 .text            dComIfGp_setHeapLockFlag__FUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_setHeapLockFlag(u8 param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_setHeapLockFlag__FUc.s"
-}
-#pragma pop
+s32 dComIfGp_setHeapLockFlag(u8 param_0) {
+    if (param_0 == 7 || param_0 == 8) {
+        if (!dComIfGp_isHeapLockFlag()) {
+            dComIfGp_createSubExpHeap2D();
+        }
+        g_dComIfG_gameInfo.play.setHeapLockFlag(5);
 
-/* 8002E188-8002E22C 028AC8 00A4+00 1/1 7/7 0/0 .text            dComIfGp_offHeapLockFlag__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_offHeapLockFlag(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_offHeapLockFlag__Fi.s"
+        int check = dComIfGp_checkEmptySubHeap2D();
+        if (check >= 0) {
+            dComIfGp_setSubHeapLockFlag(check, param_0);
+        }
+    } else {
+        if (param_0 == 0) {
+            dComIfGp_offHeapLockFlag(0);
+        } else {
+            g_dComIfG_gameInfo.play.setHeapLockFlag(param_0);
+        }
+    }
+    return 1;
 }
-#pragma pop
 
-/* ############################################################################################## */
-/* 80451D08-80451D10 000308 0004+04 1/1 0/0 0/0 .sdata2          @6335 */
-SECTION_SDATA2 static f32 lit_6335[1 + 1 /* padding */] = {
-    2.0f / 5.0f,
-    /* padding */
-    0.0f,
+s32 dComIfGp_offHeapLockFlag(int param_0) {
+    if (dComIfGp_isHeapLockFlag() == 5) {
+        if (param_0 == 7 || param_0 == 8) {
+            int check = dComIfGp_searchUseSubHeap2D(param_0);
+            if (check >= 0) {
+                dComIfGp_setSubHeapLockFlag(check, 0);
+            }
+
+            if (!dComIfGp_getSubHeapLockFlag(0) && !dComIfGp_getSubHeapLockFlag(1)) {
+                dComIfGp_destroySubExpHeap2D();
+                g_dComIfG_gameInfo.play.offHeapLockFlag();
+            }
+        }
+    } else {
+        g_dComIfG_gameInfo.play.offHeapLockFlag();
+    }
+    return 1;
+}
+
+void dComIfGp_createSubExpHeap2D() {
+    u32 size = dComIfGp_getExpHeap2D()->getTotalFreeSize() * (2.0f / 5.0f);
+
+    for (int i = 0; i < 2; i++) {
+        if (dComIfGp_getSubExpHeap2D(i) == NULL) {
+            JKRExpHeap* i_heap = JKRExpHeap::create(size, dComIfGp_getExpHeap2D(), false);
+            dComIfGp_setSubExpHeap2D(i, i_heap);
+        }
+    }
+}
+
+void dComIfGp_destroySubExpHeap2D() {
+    for (int i = 0; i < 2; i++) {
+        JKRExpHeap* heap = dComIfGp_getSubExpHeap2D(i);
+        if (heap != NULL) {
+            mDoExt_destroyExpHeap(heap);
+            dComIfGp_setSubExpHeap2D(i, NULL);
+        }
+    }
+}
+
+int dComIfGp_checkEmptySubHeap2D() {
+    if (dComIfGp_isHeapLockFlag() == 5) {
+        for (int i = 0; i < 2; i++) {
+            if (dComIfGp_getSubHeapLockFlag(i) == 0) {
+                return i;
+            }
+        }
+    }
+    return -1;
+}
+
+int dComIfGp_searchUseSubHeap2D(int param_0) {
+    if (dComIfGp_isHeapLockFlag() == 5) {
+        for (int i = 0; i < 2; i++) {
+            if (param_0 == dComIfGp_getSubHeapLockFlag(i)) {
+                return i;
+            }
+        }
+    }
+    return -1;
+}
+
+JKRExpHeap* dComIfGp_getSubHeap2D(int param_0) {
+    if (dComIfGp_isHeapLockFlag() == 5) {
+        for (int i = 0; i < 2; i++) {
+            if (param_0 == dComIfGp_getSubHeapLockFlag(i)) {
+                return dComIfGp_getSubExpHeap2D(i);
+            }
+        }
+    }
+    return NULL;
+}
+
+static u8 l_itemno[24] = {
+    M_BEETLE,      F_BEETLE,      M_BUTTERFLY, F_BUTTERFLY, M_STAG_BEETLE, F_STAG_BEETLE,
+    M_GRASSHOPPER, F_GRASSHOPPER, M_NANAFUSHI, F_NANAFUSHI, M_DANGOMUSHI,  F_DANGOMUSHI,
+    M_MANTIS,      F_MANTIS,      M_LADYBUG,   F_LADYBUG,   M_SNAIL,       F_SNAIL,
+    M_DRAGONFLY,   F_DRAGONFLY,   M_ANT,       F_ANT,       M_MAYFLY,      F_MAYFLY,
 };
 
-/* 80451D10-80451D18 000310 0008+00 1/1 0/0 0/0 .sdata2          @6337 */
-SECTION_SDATA2 static f64 lit_6337 = 4503601774854144.0 /* cast s32 to float */;
+int dComIfGs_checkGetInsectNum() {
+    int insectCount = 0;
+    u8* insectList = &l_itemno[0];
+    u8 insectId;
 
-/* 8002E22C-8002E2DC 028B6C 00B0+00 1/1 0/0 0/0 .text            dComIfGp_createSubExpHeap2D__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dComIfGp_createSubExpHeap2D() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_createSubExpHeap2D__Fv.s"
+    for (int i = 0; i < ARRAY_SIZE(l_itemno); i++) {
+        insectId = *insectList;
+        insectList++;
+        if (dComIfGs_isItemFirstBit(insectId) &&
+            dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x191 + i])) {
+            insectCount++;
+        }
+    }
+    return insectCount;
 }
-#pragma pop
 
-/* 8002E2DC-8002E348 028C1C 006C+00 1/1 0/0 0/0 .text            dComIfGp_destroySubExpHeap2D__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dComIfGp_destroySubExpHeap2D() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_destroySubExpHeap2D__Fv.s"
+u8 dComIfGs_checkGetItem(u8 i_no) {
+    u8 count = 0;
+
+    for (int i = 0; i < 60; i++) {
+        if (i_no == dComIfGs_getItem(i, true)) {
+            count++;
+        }
+    }
+    if (dComIfGs_getSelectEquipClothes() == i_no) {
+        count++;
+    }
+    if (dComIfGs_getSelectEquipSword() == i_no) {
+        count++;
+    }
+    if (dComIfGs_getSelectEquipShield() == i_no) {
+        count++;
+    }
+
+    return count;
 }
-#pragma pop
 
-/* 8002E348-8002E388 028C88 0040+00 1/1 0/0 0/0 .text            dComIfGp_checkEmptySubHeap2D__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dComIfGp_checkEmptySubHeap2D() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_checkEmptySubHeap2D__Fv.s"
-}
-#pragma pop
-
-/* 8002E388-8002E3D0 028CC8 0048+00 1/1 0/0 0/0 .text            dComIfGp_searchUseSubHeap2D__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dComIfGp_searchUseSubHeap2D(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_searchUseSubHeap2D__Fi.s"
-}
-#pragma pop
-
-/* 8002E3D0-8002E428 028D10 0058+00 0/0 9/9 0/0 .text            dComIfGp_getSubHeap2D__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_getSubHeap2D(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_getSubHeap2D__Fi.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 803A71D0-803A71E8 0042F0 0018+00 1/1 0/0 0/0 .data            l_itemno$6402 */
-SECTION_DATA static u8 l_itemno[24] = {
-    0xC0, 0xC1, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6, 0xC7, 0xC8, 0xC9, 0xCA, 0xCB,
-    0xCC, 0xCD, 0xCE, 0xCF, 0xD0, 0xD1, 0xD2, 0xD3, 0xD4, 0xD5, 0xD6, 0xD7,
-};
-
-/* 8002E428-8002E4CC 028D68 00A4+00 0/0 4/4 0/0 .text            dComIfGs_checkGetInsectNum__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_checkGetInsectNum() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_checkGetInsectNum__Fv.s"
-}
-#pragma pop
-
-/* 8002E4CC-8002E5B8 028E0C 00EC+00 1/1 0/0 0/0 .text            dComIfGs_checkGetItem__FUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm u8 dComIfGs_checkGetItem(u8 param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_checkGetItem__FUc.s"
-}
-#pragma pop
-
-/* 8002E5B8-8002E5C0 028EF8 0008+00 2/2 3/3 0/0 .text            dComIfGs_getBottleMax__Fv */
-s32 dComIfGs_getBottleMax() {
+u8 dComIfGs_getBottleMax() {
     return 10;
 }
 
 /* 8002E5C0-8002E688 028F00 00C8+00 0/0 11/11 0/0 .text            dComIfGp_getSelectItemNum__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_getSelectItemNum(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_getSelectItemNum__Fi.s"
+int dComIfGp_getSelectItemNum(int param_0) {
+    u8 selectItem = dComIfGp_getSelectItem(param_0);
+    int itemNum = 0;
+
+    if (selectItem == NORMAL_BOMB || selectItem == WATER_BOMB || selectItem == POKE_BOMB ||
+        selectItem == BOMB_ARROW) {
+        selectItem = dComIfGs_getSelectMixItemNoArrowIndex(param_0) - SLOT_15;
+        itemNum = dComIfGs_getBombNum(selectItem);
+    } else if (selectItem == PACHINKO) {
+        itemNum = dComIfGs_getPachinkoNum();
+    } else if (selectItem == BEE_CHILD) {
+        selectItem = dComIfGs_getSelectItemIndex(param_0);
+        itemNum = dComIfGs_getBottleNum(selectItem - SLOT_11);
+    }
+
+    return itemNum;
 }
-#pragma pop
 
 /* 8002E688-8002E714 028FC8 008C+00 0/0 5/5 0/0 .text            dComIfGp_getSelectItemMaxNum__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_getSelectItemMaxNum(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_getSelectItemMaxNum__Fi.s"
+int dComIfGp_getSelectItemMaxNum(int param_0) {
+    u8 selectItem = dComIfGp_getSelectItem(param_0);
+    int itemNum = 0;
+
+    if (selectItem == BOMB_BAG_LV1) {
+        itemNum = 1;
+    } else if (selectItem == NORMAL_BOMB || selectItem == WATER_BOMB || selectItem == POKE_BOMB ||
+               selectItem == BOMB_ARROW) {
+        itemNum = dComIfGs_getBombMax(selectItem);
+    } else if (selectItem == PACHINKO) {
+        itemNum = dComIfGs_getPachinkoMax();
+    } else if (selectItem == BEE_CHILD) {
+        itemNum = dComIfGs_getBottleMax();
+    }
+
+    return itemNum;
 }
-#pragma pop
 
 /* 8002E714-8002E83C 029054 0128+00 0/0 2/2 0/0 .text            dComIfGp_setSelectItemNum__Fis */
+// two swapped instructions
+#ifdef NONMATCHING
+void dComIfGp_setSelectItemNum(int param_0, s16 param_1) {
+    u8 selectItem = dComIfGp_getSelectItem(param_0);
+    u8 selectMixItem;
+    int itemNum;
+
+    if (selectItem == NORMAL_BOMB || selectItem == WATER_BOMB || selectItem == POKE_BOMB ||
+        selectItem == BOMB_ARROW) {
+        selectMixItem = dComIfGs_getSelectMixItemNoArrowIndex(param_0) - SLOT_15;
+        itemNum = dComIfGs_getBombMax(selectItem);
+
+        if (itemNum > param_1) {
+            param_1 = dComIfGs_getBombMax(selectItem);
+        }
+        dComIfGs_setBombNum(selectMixItem, param_1);
+    } else if (selectItem == PACHINKO) {
+        dComIfGs_setPachinkoNum(param_1);
+    } else if (selectItem == BEE_CHILD) {
+        selectItem = dComIfGs_getSelectItemIndex(param_0) - SLOT_11;
+        itemNum = dComIfGs_getBottleMax();
+
+        if (itemNum > param_1) {
+            param_1 = dComIfGs_getBottleMax();
+        }
+        dComIfGs_setBottleNum(selectItem, param_1);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1433,16 +2071,25 @@ asm void dComIfGp_setSelectItemNum(int param_0, s16 param_1) {
 #include "asm/d/com/d_com_inf_game/dComIfGp_setSelectItemNum__Fis.s"
 }
 #pragma pop
+#endif
 
 /* 8002E83C-8002E910 02917C 00D4+00 0/0 5/5 0/0 .text            dComIfGp_addSelectItemNum__Fis */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_addSelectItemNum(int param_0, s16 param_1) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_addSelectItemNum__Fis.s"
+void dComIfGp_addSelectItemNum(int param_0, s16 param_1) {
+    u8 selectItem = dComIfGp_getSelectItem(param_0);
+    u8 selectMixItem;
+    int itemNum;
+
+    if (selectItem == NORMAL_BOMB || selectItem == WATER_BOMB || selectItem == POKE_BOMB ||
+        selectItem == BOMB_ARROW) {
+        selectMixItem = dComIfGs_getSelectMixItemNoArrowIndex(param_0) - SLOT_15;
+        dComIfGp_setItemBombNumCount(selectMixItem, param_1);
+    } else if (selectItem == PACHINKO) {
+        dComIfGp_setItemPachinkoNumCount(param_1);
+    } else if (selectItem == BEE_CHILD) {
+        selectItem = dComIfGs_getSelectItemIndex(param_0);
+        dComIfGs_addBottleNum(selectItem - SLOT_11, param_1);
+    }
 }
-#pragma pop
 
 /* 8002E910-8002E974 029250 0064+00 0/0 5/5 137/137 .text
  * dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj */
@@ -1459,6 +2106,17 @@ asm void dComIfGd_setShadow(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* pa
 #pragma pop
 
 /* 8002E974-8002E9D4 0292B4 0060+00 0/0 1/1 0/0 .text            dComIfGs_gameStart__Fv */
+// instruction in wrong place
+#ifdef NONMATCHING
+void dComIfGs_gameStart() {
+    dComIfGp_offEnableNextStage();
+
+    s8 roomNo = g_dComIfG_gameInfo.info.getPlayer().getPlayerReturnPlace().getRoomNo();
+    u8 status = g_dComIfG_gameInfo.info.getPlayer().getPlayerReturnPlace().getPlayerStatus();
+    char* name = g_dComIfG_gameInfo.info.getPlayer().getPlayerReturnPlace().getName();
+    dComIfGp_setNextStage(name, status, roomNo, -1, FLOAT_LABEL(lit_5226), 0, 1, 0, 0, 0, 0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1467,16 +2125,11 @@ asm void dComIfGs_gameStart() {
 #include "asm/d/com/d_com_inf_game/dComIfGs_gameStart__Fv.s"
 }
 #pragma pop
+#endif
 
-/* 8002E9D4-8002E9F0 029314 001C+00 0/0 0/0 1/1 .text            dComIfG_getTrigA__FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_getTrigA(u32 param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfG_getTrigA__FUl.s"
+u32 dComIfG_getTrigA(u32 pad) {
+    return mDoCPd_c::getTrigA(pad);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80378F38-80378F38 005598 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -1511,16 +2164,14 @@ static asm void dComIfG_getNowCalcRegion() {
 }
 #pragma pop
 
-/* 8002EDE0-8002EE60 029720 0080+00 0/0 4/4 0/0 .text            dComIfGp_isLightDropMapVisible__Fv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_isLightDropMapVisible() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_isLightDropMapVisible__Fv.s"
+BOOL dComIfGp_isLightDropMapVisible() {
+    for (int i = 0; i < 3; i++) {
+        if (dComIfGs_isLightDropGetFlag(i) != FALSE && dComIfGs_getLightDropNum(i) < 16) {
+            return TRUE;
+        }
+    }
+    return FALSE;
 }
-#pragma pop
 
 /* 8002EE60-8002EEB0 0297A0 0050+00 1/1 11/11 0/0 .text            dComIfGp_getNowLevel__Fv */
 #pragma push
@@ -1532,108 +2183,100 @@ asm void dComIfGp_getNowLevel() {
 }
 #pragma pop
 
-/* 8002EEB0-8002EEC0 0297F0 0010+00 0/0 4/4 0/0 .text            dComIfGs_setSelectEquipClothes__FUc
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_setSelectEquipClothes(u8 param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_setSelectEquipClothes__FUc.s"
+void dComIfGs_setSelectEquipClothes(u8 item) {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setSelectEquip(COLLECT_CLOTHING, item);
 }
-#pragma pop
 
 /* 8002EEC0-8002EF94 029800 00D4+00 0/0 4/4 1/1 .text            dComIfGs_setSelectEquipSword__FUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_setSelectEquipSword(u8 param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_setSelectEquipSword__FUc.s"
+void dComIfGs_setSelectEquipSword(u8 i_itemId) {
+    switch (i_itemId) {
+    case SWORD:
+        dComIfGs_setCollectSword(COLLECT_ORDON_SWORD);
+        break;
+    case MASTER_SWORD:
+        dComIfGs_setCollectSword(COLLECT_MASTER_SWORD);
+        break;
+    case WOOD_STICK:
+        dComIfGs_setCollectSword(COLLECT_WOODEN_SWORD);
+        break;
+    case LIGHT_SWORD:
+        dComIfGs_setCollectSword(COLLECT_LIGHT_SWORD);
+        break;
+    }
+
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setSelectEquip(1, i_itemId);
 }
-#pragma pop
 
 /* 8002EF94-8002F040 0298D4 00AC+00 0/0 2/2 0/0 .text            dComIfGs_setSelectEquipShield__FUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_setSelectEquipShield(u8 param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_setSelectEquipShield__FUc.s"
-}
-#pragma pop
+void dComIfGs_setSelectEquipShield(u8 i_itemId) {
+    switch (i_itemId) {
+    case WOOD_SHIELD:
+        dComIfGs_setCollectShield(COLLECT_WOODEN_SHIELD);
+        break;
+    case SHIELD:
+        dComIfGs_setCollectShield(COLLECT_ORDON_SHIELD);
+        break;
+    case HYLIA_SHIELD:
+        dComIfGs_setCollectShield(COLLECT_HYLIAN_SHIELD);
+        break;
+    }
 
-/* 8002F040-8002F0E0 029980 00A0+00 1/1 1/1 0/0 .text            dComIfGs_setKeyNum__FiUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_setKeyNum(int param_0, u8 param_1) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_setKeyNum__FiUc.s"
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setSelectEquip(2, i_itemId);
 }
-#pragma pop
+
+void dComIfGs_setKeyNum(int i_stageNo, u8 keyNum) {
+    if (dComIfGp_getStageStagInfo()) {
+        stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
+
+        if (i_stageNo == dStage_stagInfo_GetSaveTbl(stag_info)) {
+            dComIfGs_setKeyNum(keyNum);
+        }
+    }
+
+    g_dComIfG_gameInfo.info.getSavedata().getSave(i_stageNo).getBit().setKeyNum(keyNum);
+}
 
 /* 8002F0E0-8002F128 029A20 0048+00 1/1 0/0 0/0 .text dComIfGs_setWarpItemData__FiPCc4cXyzsScUcUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dComIfGs_setWarpItemData(int param_0, char const* param_1, cXyz param_2,
-                                         s16 param_3, s8 param_4, u8 param_5, u8 param_6) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_setWarpItemData__FiPCc4cXyzsScUcUc.s"
+static void dComIfGs_setWarpItemData(int param_0, char const* param_1, cXyz param_2, s16 param_3,
+                                     s8 param_4, u8 param_5, u8 param_6) {
+    g_dComIfG_gameInfo.play.setWarpItemData(param_1, param_2, param_3, param_4, param_5, param_6);
 }
-#pragma pop
 
-/* 8002F128-8002F19C 029A68 0074+00 1/1 0/0 0/0 .text
- * setWarpItemData__14dComIfG_play_cFPCc4cXyzsScUcUc            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_play_c::setWarpItemData(char const* param_0, cXyz param_1, s16 param_2, s8 param_3,
-                                         u8 param_4, u8 param_5) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/setWarpItemData__14dComIfG_play_cFPCc4cXyzsScUcUc.s"
+void dComIfG_play_c::setWarpItemData(char const* param_0, cXyz param_1, s16 param_2, s8 param_3,
+                                     u8 param_4, u8 param_5) {
+    strcpy(field_0x4F94, param_0);
+    field_0x4f9c.set(param_1);
+    field_0x4fa8 = param_2;
+    field_0x4faa = param_3;
+    field_0x4fac = param_5;
+    field_0x4fab = param_4;
 }
-#pragma pop
 
-/* 8002F19C-8002F24C 029ADC 00B0+00 0/0 1/1 0/0 .text dComIfGs_setWarpItemData__FPCc4cXyzsScUcUc
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_setWarpItemData(char const* param_0, cXyz param_1, s16 param_2, s8 param_3,
-                                  u8 param_4, u8 param_5) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_setWarpItemData__FPCc4cXyzsScUcUc.s"
+void dComIfGs_setWarpItemData(char const* param_0, cXyz param_1, s16 param_2, s8 param_3,
+                              u8 param_4, u8 param_5) {
+    dComIfGs_setWarpItemData(0, param_0, param_1, param_2, param_3, param_4, param_5);
+    dComIfGs_setLastWarpMarkItemData(param_0, param_1, param_2, param_3, param_4, param_5);
 }
-#pragma pop
 
-/* 8002F24C-8002F2AC 029B8C 0060+00 1/1 0/0 0/0 .text
- * dComIfGs_setLastWarpMarkItemData__FPCc4cXyzsScUcUc           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dComIfGs_setLastWarpMarkItemData(char const* param_0, cXyz param_1, s16 param_2,
-                                                 s8 param_3, u8 param_4, u8 param_5) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_setLastWarpMarkItemData__FPCc4cXyzsScUcUc.s"
+void dComIfGs_setLastWarpMarkItemData(const char* stage, cXyz pos, s16 angle, s8 room, u8 unk1,
+                                      u8 unk2) {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerLastMarkInfo().setWarpItemData(stage, pos, angle,
+                                                                                room, unk1, unk2);
 }
-#pragma pop
 
-/* 8002F2AC-8002F2BC 029BEC 0010+00 0/0 2/2 0/0 .text            dComIfGs_getWarpStageName__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_getWarpStageName() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_getWarpStageName__Fv.s"
+const char* dComIfGs_getWarpStageName() {
+    return dComIfGs_getLastWarpMarkStageName();
 }
-#pragma pop
 
 /* 8002F2BC-8002F2CC 029BFC 0010+00 0/0 1/1 0/0 .text            dComIfGs_getWarpPlayerPos__Fv */
+#ifdef NONMATCHING
+cXyz dComIfGs_getWarpPlayerPos() {
+    return dComIfGs_getLastWarpMarkPlayerPos();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1642,38 +2285,20 @@ asm void dComIfGs_getWarpPlayerPos() {
 #include "asm/d/com/d_com_inf_game/dComIfGs_getWarpPlayerPos__Fv.s"
 }
 #pragma pop
+#endif
 
-/* 8002F2CC-8002F2DC 029C0C 0010+00 0/0 1/1 0/0 .text            dComIfGs_getWarpPlayerAngleY__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_getWarpPlayerAngleY() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_getWarpPlayerAngleY__Fv.s"
+s16 dComIfGs_getWarpPlayerAngleY() {
+    return dComIfGs_getLastWarpMarkPlayerAngleY();
 }
-#pragma pop
 
-/* 8002F2DC-8002F2F0 029C1C 0014+00 0/0 1/1 0/0 .text            dComIfGs_getWarpRoomNo__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_getWarpRoomNo() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_getWarpRoomNo__Fv.s"
+int dComIfGs_getWarpRoomNo() {
+    return dComIfGs_getLastWarpMarkRoomNo();
 }
-#pragma pop
 
-/* 8002F2F0-8002F310 029C30 0020+00 0/0 1/1 0/0 .text            dComIfGs_getWarpMarkFlag__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_getWarpMarkFlag() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_getWarpMarkFlag__Fv.s"
+BOOL dComIfGs_getWarpMarkFlag() {
+    return dComIfGs_getLastWarpAcceptStage() >= 0;
 }
-#pragma pop
 
-/* 8002F310-8002F314 029C50 0004+00 0/0 1/1 0/0 .text            dComIfGs_setWarpMarkFlag__FUc */
 void dComIfGs_setWarpMarkFlag(u8 param_0) {
     /* empty function */
 }
@@ -1742,112 +2367,131 @@ asm void dComIfG_getOldStageRes(char const* param_0) {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80378F38-80378F38 005598 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803790A6 = "R%02d_00";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803790AF = "";
-#pragma pop
+static char buf[32];
 
-/* 80423FD0-80423FF0 050CF0 0020+00 1/1 0/0 0/0 .bss             buf$7371 */
-static u8 buf[32];
-
-/* 8002F4BC-8002F500 029DFC 0044+00 0/0 5/5 1/1 .text            dComIfG_getRoomArcName__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_getRoomArcName(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfG_getRoomArcName__Fi.s"
+char* dComIfG_getRoomArcName(int param_0) {
+    sprintf((char*)buf, (char*)"R%02d_00", param_0);
+    return buf;
 }
-#pragma pop
 
 /* 8002F500-8002F504 029E40 0004+00 0/0 1/1 0/0 .text            dComIfGp_ret_wp_set__FSc */
 void dComIfGp_ret_wp_set(s8 param_0) {
     /* empty function */
 }
 
-/* 8002F504-8002F518 029E44 0014+00 0/0 1/1 0/0 .text            dComIfGp_world_dark_set__FUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_world_dark_set(u8 param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_world_dark_set__FUc.s"
+void dComIfGp_world_dark_set(u8 param_0) {
+    g_dComIfG_gameInfo.mWorldDark = param_0;
 }
-#pragma pop
 
-/* 8002F518-8002F52C 029E58 0014+00 0/0 1/1 0/0 .text            dComIfGp_world_dark_get__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_world_dark_get() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_world_dark_get__Fv.s"
+u8 dComIfGp_world_dark_get() {
+    return g_dComIfG_gameInfo.mWorldDark;
 }
-#pragma pop
 
-/* 8002F52C-8002F5C0 029E6C 0094+00 0/0 0/0 8/8 .text            dComIfG_TimerStart__Fis */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_TimerStart(int param_0, s16 param_1) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfG_TimerStart__Fis.s"
-}
-#pragma pop
+int dComIfG_TimerStart(int param_0, s16 param_1) {
+    int uvar2;
 
-/* 8002F5C0-8002F638 029F00 0078+00 0/0 0/0 2/2 .text            dComIfG_TimerStop__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_TimerStop(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfG_TimerStop__Fi.s"
+    if (param_0 == dComIfG_getTimerMode()) {
+        dTimer_c* timer = dComIfG_getTimerPtr();
+        if (timer != NULL) {
+            if (param_1 == 0) {
+                timer->start(param_0);
+            } else {
+                timer->start(param_0, param_1);
+            }
+            uvar2 = 1;
+        } else {
+            uvar2 = 0;
+        }
+    } else {
+        uvar2 = 0;
+    }
+    return uvar2;
 }
-#pragma pop
 
-/* 8002F638-8002F6B0 029F78 0078+00 0/0 0/0 3/3 .text            dComIfG_TimerReStart__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_TimerReStart(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfG_TimerReStart__Fi.s"
-}
-#pragma pop
+int dComIfG_TimerStop(int param_0) {
+    int uvar2;
 
-/* 8002F6B0-8002F72C 029FF0 007C+00 0/0 0/0 4/4 .text            dComIfG_TimerEnd__Fii */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_TimerEnd(int param_0, int param_1) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfG_TimerEnd__Fii.s"
+    if (param_0 == dComIfG_getTimerMode()) {
+        dTimer_c* timer = dComIfG_getTimerPtr();
+        if (timer != NULL) {
+            timer->stop(4);
+            uvar2 = 1;
+        } else {
+            uvar2 = 0;
+        }
+    } else {
+        uvar2 = 0;
+    }
+    return uvar2;
 }
-#pragma pop
+
+int dComIfG_TimerReStart(int param_0) {
+    int uvar2;
+
+    if (param_0 == dComIfG_getTimerMode()) {
+        dTimer_c* timer = dComIfG_getTimerPtr();
+        if (timer != NULL) {
+            timer->restart(4);
+            uvar2 = 1;
+        } else {
+            uvar2 = 0;
+        }
+    } else {
+        uvar2 = 0;
+    }
+    return uvar2;
+}
+
+int dComIfG_TimerEnd(int param_0, int param_1) {
+    int uvar2;
+
+    if (param_0 == dComIfG_getTimerMode()) {
+        dTimer_c* timer = dComIfG_getTimerPtr();
+        if (timer != NULL) {
+            timer->end(param_1);
+            uvar2 = 1;
+        } else {
+            uvar2 = 0;
+        }
+    } else {
+        uvar2 = 0;
+    }
+    return uvar2;
+}
 
 /* 8002F72C-8002F79C 02A06C 0070+00 0/0 0/0 2/2 .text            dComIfG_TimerDeleteCheck__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_TimerDeleteCheck(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfG_TimerDeleteCheck__Fi.s"
-}
-#pragma pop
+int dComIfG_TimerDeleteCheck(int param_0) {
+    int uvar2;
 
-/* 8002F79C-8002F810 02A0DC 0074+00 0/0 1/1 17/17 .text            dComIfG_TimerDeleteRequest__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_TimerDeleteRequest(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfG_TimerDeleteRequest__Fi.s"
+    if (param_0 == dComIfG_getTimerMode()) {
+        dTimer_c* timer = dComIfG_getTimerPtr();
+        if (timer != NULL) {
+            uvar2 = timer->deleteCheck();
+        } else {
+            uvar2 = 0;
+        }
+    } else {
+        uvar2 = 0;
+    }
+    return uvar2;
 }
-#pragma pop
+
+int dComIfG_TimerDeleteRequest(int param_0) {
+    int uvar2;
+
+    if (param_0 == dComIfG_getTimerMode()) {
+        dTimer_c* timer = dComIfG_getTimerPtr();
+        if (timer != NULL) {
+            timer->deleteRequest();
+            uvar2 = 1;
+        } else {
+            uvar2 = 0;
+        }
+    } else {
+        uvar2 = 0;
+    }
+    return uvar2;
+}
 
 /* 8002F810-8002F9F0 02A150 01E0+00 0/0 1/1 0/0 .text            dComIfGs_Wolf_Change_Check__Fv */
 #pragma push
@@ -1859,46 +2503,25 @@ asm void dComIfGs_Wolf_Change_Check() {
 }
 #pragma pop
 
-/* 8002F9F0-8002FA04 02A330 0014+00 0/0 2/2 0/0 .text            dComIfGs_PolyDamageOff_Set__FSc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_PolyDamageOff_Set(s8 param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_PolyDamageOff_Set__FSc.s"
+void dComIfGs_PolyDamageOff_Set(s8 param_0) {
+    g_dComIfG_gameInfo.field_0x1ddfb = param_0;
 }
-#pragma pop
 
-/* 8002FA04-8002FA18 02A344 0014+00 0/0 1/1 0/0 .text            dComIfGs_PolyDamageOff_Check__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_PolyDamageOff_Check() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_PolyDamageOff_Check__Fv.s"
+u8 dComIfGs_PolyDamageOff_Check() {
+    return g_dComIfG_gameInfo.field_0x1ddfb;
 }
-#pragma pop
 
-/* 8002FA18-8002FA30 02A358 0018+00 0/0 0/0 1/1 .text            dComIfGs_shake_kandelaar__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_shake_kandelaar() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_shake_kandelaar__Fv.s"
+void dComIfGs_shake_kandelaar() {
+    g_dComIfG_gameInfo.field_0x1ddfa = 1;
 }
-#pragma pop
 
-/* 8002FA30-8002FA54 02A370 0024+00 0/0 0/0 1/1 .text            dComIfGs_shake_kandelaar_check__Fv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_shake_kandelaar_check() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_shake_kandelaar_check__Fv.s"
+bool dComIfGs_shake_kandelaar_check() {
+    bool check = false;
+    if (g_dComIfG_gameInfo.field_0x1ddfa == 2) {
+        check = true;
+    }
+    return check;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451D20-80451D28 000320 0008+00 1/1 0/0 0/0 .sdata2          @7580 */
@@ -1915,65 +2538,34 @@ asm void dComIfGs_wolfeye_effect_check() {
 }
 #pragma pop
 
-/* 8002FA84-8002FA98 02A3C4 0014+00 0/0 0/0 1/1 .text            dComIfGs_Grass_hide_Set__FSc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_Grass_hide_Set(s8 param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_Grass_hide_Set__FSc.s"
+void dComIfGs_Grass_hide_Set(s8 param_0) {
+    g_dComIfG_gameInfo.field_0x1ddfc = param_0;
 }
-#pragma pop
 
-/* 8002FA98-8002FAAC 02A3D8 0014+00 0/0 1/1 8/8 .text            dComIfGp_TargetWarpPt_set__FUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_TargetWarpPt_set(u8 param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_TargetWarpPt_set__FUc.s"
+void dComIfGp_TargetWarpPt_set(u8 param_0) {
+    g_dComIfG_gameInfo.field_0x1de09 = param_0;
 }
-#pragma pop
 
-/* 8002FAAC-8002FAC0 02A3EC 0014+00 0/0 1/1 0/0 .text            dComIfGp_SelectWarpPt_set__FUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_SelectWarpPt_set(u8 param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_SelectWarpPt_set__FUc.s"
+void dComIfGp_SelectWarpPt_set(u8 param_0) {
+    g_dComIfG_gameInfo.field_0x1de0a = param_0;
 }
-#pragma pop
 
-/* 8002FAC0-8002FAD4 02A400 0014+00 0/0 3/3 0/0 .text            dComIfGp_TargetWarpPt_get__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_TargetWarpPt_get() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_TargetWarpPt_get__Fv.s"
+u8 dComIfGp_TargetWarpPt_get() {
+    return g_dComIfG_gameInfo.field_0x1de09;
 }
-#pragma pop
 
-/* 8002FAD4-8002FAE8 02A414 0014+00 0/0 1/1 0/0 .text            dComIfGp_SelectWarpPt_get__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_SelectWarpPt_get() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_SelectWarpPt_get__Fv.s"
+u8 dComIfGp_SelectWarpPt_get() {
+    return g_dComIfG_gameInfo.field_0x1de0a;
 }
-#pragma pop
 
-/* 8002FAE8-8002FB20 02A428 0038+00 0/0 2/2 6/6 .text            dComIfGp_TransportWarp_check__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_TransportWarp_check() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_TransportWarp_check__Fv.s"
+BOOL dComIfGp_TransportWarp_check() {
+    BOOL check = false;
+    if (g_dComIfG_gameInfo.field_0x1de09 != 0xFF && g_dComIfG_gameInfo.field_0x1de0a != 0xFF &&
+        g_dComIfG_gameInfo.field_0x1de09 == g_dComIfG_gameInfo.field_0x1de0a) {
+        check = true;
+    }
+    return check;
 }
-#pragma pop
 
 /* 8002FB20-8002FB80 02A460 0060+00 2/2 6/6 0/0 .text
  * dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv */

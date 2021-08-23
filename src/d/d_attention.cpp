@@ -195,7 +195,6 @@ extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u32 __float_nan;
 extern "C" extern u32 __float_max;
-extern "C" extern u8 struct_80450D64[4];
 extern "C" extern u8 data_80450F58[8];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
@@ -1039,7 +1038,7 @@ asm void dAttHint_c::proc() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dAttCatch_c::convPId(unsigned int param_0) {
+asm s32 dAttCatch_c::convPId(unsigned int param_0) {
     nofralloc
 #include "asm/d/d_attention/convPId__11dAttCatch_cFUi.s"
 }

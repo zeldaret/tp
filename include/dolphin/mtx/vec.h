@@ -16,6 +16,11 @@ struct Vec {
         y = pY;
         z = pZ;
     }
+    void set(const Vec& other) {
+        x = other.x;
+        y = other.y;
+        z = other.z;
+    }
 };
 
 extern "C" {

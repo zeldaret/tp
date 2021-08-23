@@ -25,14 +25,6 @@ struct dVibration_c {
     /* 8006FD94 */ void StopQuake(int);
 };
 
-struct dSv_event_tmp_flag_c {
-    static u8 const tempBitLabels[370 + 2 /* padding */];
-};
-
-struct dSv_event_flag_c {
-    static u8 saveBitLabels[1644 + 4 /* padding */];
-};
-
 struct dMsgObject_c {
     /* 8023806C */ void demoMessageGroup();
 };
@@ -200,7 +192,6 @@ extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" f32 mFadeRate__13mDoGph_gInf_c;
 extern "C" extern u8 struct_80450BE4[4];
-extern "C" extern u8 struct_80450D64[4];
 extern "C" u8 m_control__7dDemo_c[4];
 extern "C" u8 m_frameNoMsg__7dDemo_c[4];
 extern "C" u8 m_mode__7dDemo_c[4];

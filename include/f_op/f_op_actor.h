@@ -107,7 +107,7 @@ public:
     /* 0x534 */ f32 mMaxFallSpeed;
     /* 0x538 */ cXyz mEyePos;
     /* 0x544 */ actor_attention_types mAttentionInfo;
-    /* 0x560 */ u8 field_0x560[0x10];  // not 100% sure on this
+    /* 0x560 */ u8 field_0x560[0x8];  // not 100% sure on this
 
     fopAc_ac_c();
     ~fopAc_ac_c();
@@ -116,6 +116,6 @@ public:
 
     const cXyz& getPosition() const { return mCurrent.mPosition; }
     const csXyz& getAngle() const { return mCurrent.mAngle; }
-};  // Size: 0x570?
+};  // Size: 0x568
 
 #endif

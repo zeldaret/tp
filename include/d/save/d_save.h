@@ -3,6 +3,7 @@
 
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
+#include "msl_c/string.h"
 
 #define DEFAULT_SELECT_ITEM_INDEX 0
 #define MAX_SELECT_ITEM 4
@@ -15,6 +16,11 @@
 #define BOTTLE_MAX 4
 #define TBOX_MAX 64
 #define DSV_MEMBIT_ENUM_MAX 8
+#define ITEM_MAX_DAN 128
+#define SWITCH_ZONE_MAX 0x20
+#define SWITCH_ONE_ZONE_MAX 0x10
+#define ITEM_ZONE_MAX 0x20
+#define ITEM_ONE_ZONE_MAX 0x10
 
 enum Wallets { WALLET, BIG_WALLET, GIANT_WALLET };
 
@@ -306,9 +312,14 @@ enum ItemTable {
 
 enum CollectItem { COLLECT_CLOTHING, COLLECT_SWORD, COLLECT_SHIELD, COLLECT_SMELL, B_BUTTON_ITEM };
 
-enum Swords { ORDON_SWORD_FLAG, MASTER_SWORD_FLAG, WOODEN_SWORD_FLAG, LIGHT_SWORD_FLAG };
+enum Swords {
+    COLLECT_ORDON_SWORD,
+    COLLECT_MASTER_SWORD,
+    COLLECT_WOODEN_SWORD,
+    COLLECT_LIGHT_SWORD
+};
 
-enum Shields { ORDON_SHIELD_FLAG, HYLIAN_SHIELD_FLAG, WOODEN_SHIELD_FLAG };
+enum Shields { COLLECT_WOODEN_SHIELD, COLLECT_ORDON_SHIELD, COLLECT_HYLIAN_SHIELD };
 
 enum Armors { KOKIRI_CLOTHES_FLAG };
 
@@ -318,12 +329,12 @@ enum ItemMax { ARROW_MAX, NORMAL_BOMB_MAX, WATER_BOMB_MAX, POKE_BOMB_MAX = 6 };
 
 class dSv_player_status_a_c {
 public:
-    void init(void);
+    void init();
     void setSelectItemIndex(signed int, u8);
     u8 getSelectItemIndex(signed int) const;
     void setMixItemIndex(signed int, u8);
     u8 getMixItemIndex(signed int) const;
-    u16 getRupeeMax(void) const;
+    u16 getRupeeMax() const;
     int isMagicFlag(u8) const;
 
     u16& getMaxLife() { return mMaxLife; }
@@ -331,7 +342,6 @@ public:
     u16& getRupee() { return mRupee; }
     u16& getOil() { return mOil; }
     u8 getSelectEquip(int item) const { return mSelectEquip[item]; }
-    void setWalletLV(u8 lv) { mWalletSize = lv; }
     void setOil(u16 oil) { mOil = oil; }
     void setMaxOil(u16 max) { mMaxOil = max; }
     void setWalletSize(u8 size) { mWalletSize = size; }
@@ -361,141 +371,143 @@ private:
     /* 0x1D */ u8 unk29;
     /* 0x1E */ u8 mTransformStatus;
     /* 0x1F */ u8 unk31[3];
-    /* 0x22 */ u8 padding[6];
-};
+};  // Size: 0x28
 
 class dSv_player_status_b_c {
 public:
-    void init(void);
+    void init();
     void onDarkClearLV(int);
     BOOL isDarkClearLV(int) const;
     void onTransformLV(int);
     BOOL isTransformLV(int) const;
 
+    void setDateIpl(s64 time) { mDateIpl = time; }
+
 private:
-    u64 mDateIpl;
-    u8 mTransformLevelFlag;
-    u8 mDarkClearLevelFlag;
-    u8 unk10;
-    u8 unk11;
-    float mTime;
-    u16 mDate;
-    u8 unk18[3];
-    u8 padding[3];
-};
+    /* 0x00 */ s64 mDateIpl;
+    /* 0x08 */ u8 mTransformLevelFlag;
+    /* 0x09 */ u8 mDarkClearLevelFlag;
+    /* 0x0A */ u8 unk10;
+    /* 0x0B */ u8 unk11;
+    /* 0x0C */ float mTime;
+    /* 0x10 */ u16 mDate;
+    /* 0x12 */ u8 unk18[3];
+};  // Size: 0x18
 
 class dSv_horse_place_c {
 public:
-    void init(void);
+    void init();
     void set(const char*, const cXyz&, s16, s8);
 
 private:
-    cXyz mPosition;
-    u16 mXRotation;
-    char mCurrentStage[8];
-    u8 mSpawnId;
-    u8 mRoomId;
-};
+    /* 0x00 */ cXyz mPos;
+    /* 0x0C */ u16 mAngleY;
+    /* 0x0E */ char mName[8];
+    /* 0x16 */ u8 mSpawnId;
+    /* 0x17 */ u8 mRoomNo;
+};  // Size: 0x18
 
 class dSv_player_return_place_c {
 public:
-    void init(void);
+    void init();
     void set(const char*, s8, u8);
+    u8 getRoomNo() { return mRoomNo; }
+    u8 getPlayerStatus() { return mPlayerStatus; }
+    char* getName() { return mName; }
 
 private:
-    char mCurrentStage[8];
-    u8 mSpawnId;
-    u8 mRoomId;
-    u8 unk10;
-    u8 unk11;
-};
+    /* 0x00 */ char mName[8];
+    /* 0x08 */ u8 mPlayerStatus;
+    /* 0x09 */ s8 mRoomNo;
+    /* 0x0A */ u8 unk10;
+    /* 0x0B */ u8 unk11;
+};  // Size: 0xC
 
 class dSv_player_field_last_stay_info_c {
 public:
-    void init(void);
+    void init();
     BOOL isRegionBit(int unk) const;
     void onRegionBit(int unk);
     void set(const char*, const cXyz&, s16, s8, u8);
 
 private:
-    cXyz mPos;
-    s16 mAngleY;
-    char mName[8];
-    u8 mLastSpawnId;
-    u8 mRegionNo;
-    bool mFieldDataExistFlag;
-    u8 mRegion;
-    u8 unk26[2];
-};
+    /* 0x00 */ cXyz mPos;
+    /* 0x0C */ s16 mAngleY;
+    /* 0x0E */ char mName[8];
+    /* 0x16 */ u8 mLastSpawnId;
+    /* 0x17 */ u8 mRegionNo;
+    /* 0x18 */ bool mFieldDataExistFlag;
+    /* 0x19 */ u8 mRegion;
+    /* 0x1A */ u8 unk26[2];
+};  // Size: 0x1C
 
 class dSv_player_last_mark_info_c {
 public:
-    void init(void);
+    void init();
     void setWarpItemData(const char*, const cXyz&, s16, s8, u8, u8);
 
-    const char* getName(void) { return mOoccooStage; }
-    cXyz getPos(void) { return mOoccooPosition; }
-    s16 getAngleY(void) { return mOoccooXRotation; }
-    s8 getRoomNo(void) { return mOoccooRoomId; }
-    char getWarpAcceptStage(void) { return mWarpAcceptStage; }
+    const char* getName() { return mName; }
+    cXyz getPos() { return mPos; }
+    s16 getAngleY() { return mAngleY; }
+    s8 getRoomNo() { return mRoomNo; }
+    char getWarpAcceptStage() { return mWarpAcceptStage; }
 
 private:
-    cXyz mOoccooPosition;
-    s16 mOoccooXRotation;
-    char mOoccooStage[8];
-    u8 mOoccooSpawnId;
-    s8 mOoccooRoomId;
-    char mWarpAcceptStage;
-    u8 unk25[3];
-};
+    /* 0x00 */ cXyz mPos;
+    /* 0x0C */ s16 mAngleY;
+    /* 0x0E */ char mName[8];
+    /* 0x16 */ u8 mSpawnId;
+    /* 0x17 */ s8 mRoomNo;
+    /* 0x18 */ char mWarpAcceptStage;
+    /* 0x19 */ u8 unk25[3];
+};  // Size: 0x1C
 
 class dSv_player_item_c {
 public:
-    void init(void);
+    void init();
     void setItem(int, u8);
     u8 getItem(int, bool) const;
-    void setLineUpItem(void);
+    void setLineUpItem();
     u8 getLineUpItem(int) const;
     void setBottleItemIn(u8, u8);
     void setEmptyBottleItemIn(u8);
-    void setEmptyBottle(void);
+    void setEmptyBottle();
     void setEmptyBottle(u8);
     void setEquipBottleItemIn(u8, u8);
     void setEquipBottleItemEmpty(u8);
     u8 checkBottle(u8);
-    int checkInsectBottle(void);
-    u8 checkEmptyBottle(void);
+    int checkInsectBottle();
+    u8 checkEmptyBottle();
     void setBombBagItemIn(u8, u8, bool);
     void setBombBagItemIn(u8, u8, u8, bool);
     void setEmptyBombBagItemIn(u8, bool);
     void setEmptyBombBagItemIn(u8, u8, bool);
-    void setEmptyBombBag(void);
+    void setEmptyBombBag();
     void setEmptyBombBag(u8, u8);
     u8 checkBombBag(u8);
     void setWarashibeItem(u8);
-    void setRodTypeLevelUp(void);
+    void setRodTypeLevelUp();
     void setBaitItem(u8);
 
 private:
-    u8 mItems[24];
-    u8 mItemSlots[24];
-};
+    /* 0x00 */ u8 mItems[24];
+    /* 0x18 */ u8 mItemSlots[24];
+};  // Size: 0x30
 
 class dSv_player_get_item_c {
 public:
-    void init(void);
+    void init();
     void onFirstBit(u8);
     void offFirstBit(u8);
     int isFirstBit(u8) const;
 
 private:
-    u32 mPauseMenuBitFields[4];
-    u8 padding[16];
-};
+    /* 0x0 */ u32 mItemFlags[8];
+};  // Size: 0x20
 
 class dSv_player_item_record_c {
 public:
-    void init(void);
+    void init();
     void setBombNum(u8, u8);
     u8 getBombNum(u8) const;
     void setBottleNum(u8, u8);
@@ -503,18 +515,20 @@ public:
     u8 getBottleNum(u8) const;
 
     void setArrowNum(u8 amount) { mArrowNum = amount; }
+    u8 getPachinkoNum() const { return mPachinkoNum; }
+    void setPachinkoNum(u8 num) { mPachinkoNum = num; }
 
 private:
-    u8 mArrowNum;
-    u8 mBombNum[3];
-    u8 mBottleNum[4];
-    u8 mPachinkoNum;
-    u8 unk5[3];
-};
+    /* 0x0 */ u8 mArrowNum;
+    /* 0x1 */ u8 mBombNum[3];
+    /* 0x4 */ u8 mBottleNum[4];
+    /* 0x8 */ u8 mPachinkoNum;
+    /* 0x9 */ u8 unk5[3];
+};  // Size: 0xC
 
 class dSv_player_item_max_c {
 public:
-    void init(void);
+    void init();
     void setBombNum(u8, u8);
     u8 getBombNum(u8) const;
 
@@ -522,12 +536,12 @@ public:
     u8 getArrowNum() { return mItemMax[ARROW_MAX]; }
 
 private:
-    u8 mItemMax[8];
-};
+    /* 0x0 */ u8 mItemMax[8];
+};  // Size: 0x8
 
 class dSv_player_collect_c {
 public:
-    void init(void);
+    void init();
     void setCollect(int, u8);
     BOOL isCollect(int, u8) const;
     void onCollectCrystal(u8);
@@ -538,90 +552,91 @@ public:
     u8 getPohNum() { return mPohNum; }
 
 private:
-    u8 mItem[8];
-    u8 unk8;
-    u8 mCrystal;
-    u8 mMirror;
-    u8 unk11;
-    u8 mPohNum;
-    u8 padding[3];
-};
+    /* 0x0 */ u8 mItem[8];
+    /* 0x8 */ u8 unk8;
+    /* 0x9 */ u8 mCrystal;
+    /* 0xA */ u8 mMirror;
+    /* 0xB */ u8 unk11;
+    /* 0xC */ u8 mPohNum;
+    /* 0xD */ u8 padding[3];
+};  // Size: 0x10
 
 class dSv_player_wolf_c {
 public:
-    void init(void);
+    void init();
 
 private:
-    u8 unk0[3];
-    u8 unk3;
-};
+    /* 0x0 */ u8 unk0[3];
+    /* 0x3 */ u8 unk3;
+};  // Size: 0x4
 
 class dSv_light_drop_c {
 public:
-    void init(void);
+    void init();
     void setLightDropNum(u8, u8);
     u8 getLightDropNum(u8) const;
     void onLightDropGetFlag(u8);
     BOOL isLightDropGetFlag(u8) const;
 
 private:
-    u8 mLightDropNum[4];
-    u8 mLightDropGetFlag;
-    u8 unk5[3];
-};
+    /* 0x0 */ u8 mLightDropNum[4];
+    /* 0x4 */ u8 mLightDropGetFlag;
+    /* 0x5 */ u8 unk5[3];
+};  // Size: 0x8
 
 class dSv_letter_info_c {
 public:
-    void init(void);
+    void init();
     void onLetterGetFlag(int);
     BOOL isLetterGetFlag(int) const;
     void onLetterReadFlag(int);
     int isLetterReadFlag(int) const;
 
 private:
-    u32 mLetterGetBitfields[2];
-    u32 mLetterReadBitfields[2];
-    u8 unk16[64];
-};
+    /* 0x00 */ u32 mLetterGetFlags[2];
+    /* 0x08 */ u32 mLetterReadFlags[2];
+    /* 0x10 */ u8 mGetNumber[64];
+};  // Size: 0x50
 
 class dSv_fishing_info_c {
 public:
-    void init(void);
+    void init();
     void addFishCount(u8);
 
 private:
-    u16 mFishCount[16];
-    u8 mMaxSize[16];
-    u8 padding[4];
-};
+    /* 0x00 */ u16 mFishCount[16];
+    /* 0x20 */ u8 mMaxSize[16];
+};  // Size: 0x34
 
 class dSv_player_info_c {
 public:
-    void init(void);
+    void init();
     char* getLinkName() { return (char*)mPlayerName; }
+    void setPlayerName(const char* name) { strcpy((char*)mPlayerName, name); }
+    void setHorseName(const char* name) { strcpy((char*)mHorseName, name); }
+    void setTotalTime(s64 time) { mTotalTime = time; }
 
 private:
-    u32 unk0;
-    u32 unk4;
-    u64 mTotalTime;
-    u16 unk16;
-    u16 mDeathCount;
-    u8 mPlayerName[16];
-    u8 unk36;
-    u8 mHorseName[16];
-    u8 unk53;
-    u8 mClearCount;
-    u8 unk55[5];
-    u8 padding[4];
-};
+    /* 0x00 */ u32 unk0;
+    /* 0x04 */ u32 unk4;
+    /* 0x08 */ u64 mTotalTime;
+    /* 0x10 */ u16 unk16;
+    /* 0x12 */ u16 mDeathCount;
+    /* 0x14 */ u8 mPlayerName[16];
+    /* 0x24 */ u8 unk36;
+    /* 0x25 */ u8 mHorseName[16];
+    /* 0x35 */ u8 unk53;
+    /* 0x36 */ u8 mClearCount;
+    /* 0x37 */ u8 unk55[5];
+};  // Size: 0x40
 
 class dSv_player_config_c {
 public:
-    void init(void);
-    u32 checkVibration(void) const;
-    u8 getSound(void);
+    void init();
+    u32 checkVibration() const;
+    u8 getSound();
     void setSound(u8);
-    u8 getVibration(void);
+    u8 getVibration();
     void setVibration(u8);
     inline u8 getAttentionType(void) { return mAttentionType; }
     inline void setAttentionType(u8 i_mAttentionType) { mAttentionType = i_mAttentionType; }
@@ -637,68 +652,69 @@ public:
     inline void setPointer(bool i_mPointer) { mPointer = i_mPointer; }
 
 private:
-    u8 unk0;
-    u8 mSoundMode;
-    u8 mAttentionType;  // 0 : hold, 1 : switch
-    u8 mVibration;
-    u8 unk4;
-    u8 unk5;
-    u16 mCalibrateDist;  // Wii pointer horizontal calibration. Default is 0x015E
-    u8 mCalValue;        // Wii pointer vertical calibration. Default is 0x00
-    bool mShortCut;      // Wii icon shortcut enabled/disabled.
-    u8 mCameraControl;   // 0 : normal, 1 : inverted
-    bool mPointer;       // Wii pointer enabled/disabled.
-    u8 padding[4];
-};
+    /* 0x0 */ u8 unk0;
+    /* 0x1 */ u8 mSoundMode;
+    /* 0x2 */ u8 mAttentionType;  // Lock-On Type; 0 : hold, 1 : switch
+    /* 0x3 */ u8 mVibration;      // Rumble status
+    /* 0x4 */ u8 unk4;
+    /* 0x5 */ u8 unk5;
+    /* 0x6 */ u16 mCalibrateDist;  // Wii pointer horizontal calibration. Default is 0x015E
+    /* 0x8 */ u8 mCalValue;        // Wii pointer vertical calibration. Default is 0x00
+    /* 0x9 */ bool mShortCut;      // Wii icon shortcut enabled/disabled.
+    /* 0xA */ u8 mCameraControl;   // 0 : normal, 1 : inverted
+    /* 0xB */ bool mPointer;       // Wii pointer enabled/disabled.
+};                                 // Size: 0xC
 
 class dSv_player_c {
 public:
-    void init(void);
+    void init();
     dSv_player_info_c& getPlayerInfo() { return mPlayerInfo; }
-    dSv_player_status_a_c& getPlayerStatusA() { return player_status_a; }
-    dSv_player_item_c& getPlayerItem() { return player_item; }
-    dSv_player_collect_c& getPlayerCollect() { return player_collect; }
-    dSv_player_item_record_c& getPlayerItemRecord() { return player_item_record; }
-    dSv_player_item_max_c& getPlayerItemMax() { return player_item_max; }
-    dSv_player_last_mark_info_c& getPlayerLastMarkInfo() { return player_last_mark; }
-    dSv_light_drop_c& getLightDrop() { return light_drop; }
-    dSv_player_get_item_c& getPlayerGetItem() { return player_get_item; }
+    dSv_player_status_a_c& getPlayerStatusA() { return mPlayerStatusA; }
+    dSv_player_status_b_c& getPlayerStatusB() { return mPlayerStatusB; }
+    dSv_player_item_c& getItem() { return mItem; }
+    dSv_player_collect_c& getCollect() { return mCollect; }
+    dSv_player_item_record_c& getItemRecord() { return mItemRecord; }
+    dSv_player_item_max_c& getItemMax() { return mItemMax; }
+    dSv_player_last_mark_info_c& getPlayerLastMarkInfo() { return mPlayerLastMarkInfo; }
+    dSv_player_return_place_c& getPlayerReturnPlace() { return mPlayerReturnPlace; }
+    dSv_light_drop_c& getLightDrop() { return mLightDrop; }
+    dSv_player_get_item_c& getGetItem() { return mGetItem; }
+    dSv_player_config_c& getConfig() { return mConfig; }
 
 private:
-    dSv_player_status_a_c player_status_a;
-    dSv_player_status_b_c player_status_b;
-    dSv_horse_place_c horse_place;
-    dSv_player_return_place_c player_return;
-    dSv_player_field_last_stay_info_c player_last_field;
-    dSv_player_last_mark_info_c player_last_mark;
-    dSv_player_item_c player_item;
-    dSv_player_get_item_c player_get_item;
-    dSv_player_item_record_c player_item_record;
-    dSv_player_item_max_c player_item_max;
-    dSv_player_collect_c player_collect;
-    dSv_player_wolf_c player_wolf;
-    dSv_light_drop_c light_drop;
-    dSv_letter_info_c letter_info;
-    dSv_fishing_info_c fishing_info;
-    dSv_player_info_c mPlayerInfo;
-    dSv_player_config_c player_config;
-};
+    /* 0x000 */ dSv_player_status_a_c mPlayerStatusA;
+    /* 0x028 */ dSv_player_status_b_c mPlayerStatusB;
+    /* 0x040 */ dSv_horse_place_c mHorsePlace;
+    /* 0x058 */ dSv_player_return_place_c mPlayerReturnPlace;
+    /* 0x064 */ dSv_player_field_last_stay_info_c mPlayerFieldLastStayInfo;
+    /* 0x080 */ dSv_player_last_mark_info_c mPlayerLastMarkInfo;
+    /* 0x09C */ dSv_player_item_c mItem;
+    /* 0x0CC */ dSv_player_get_item_c mGetItem;
+    /* 0x0EC */ dSv_player_item_record_c mItemRecord;
+    /* 0x0F8 */ dSv_player_item_max_c mItemMax;
+    /* 0x100 */ dSv_player_collect_c mCollect;
+    /* 0x110 */ dSv_player_wolf_c mWolf;
+    /* 0x114 */ dSv_light_drop_c mLightDrop;
+    /* 0x11C */ dSv_letter_info_c mLetterInfo;
+    /* 0x16C */ dSv_fishing_info_c mFishingInfo;
+    /* 0x1A0 */ dSv_player_info_c mPlayerInfo;
+    /* 0x1E0 */ dSv_player_config_c mConfig;
+};  // Size: 0x1EC
 
-#pragma pack(push, 1)
 class dSv_memBit_c {
 public:
     enum {
-        MAP_FLAG,
-        COMPASS_FLAG,
-        BOSS_KEY_FLAG,
+        MAP,
+        COMPASS,
+        BOSS_KEY,
         STAGE_BOSS_ENEMY,
         STAGE_LIFE,
         STAGE_BOSS_DEMO,
-        OOCCOO_NOTE_FLAG,
+        OOCCOO_NOTE,
         STAGE_BOSS_ENEMY_2
     };
 
-    void init(void);
+    void init();
     void onTbox(int);
     void offTbox(int);
     BOOL isTbox(int) const;
@@ -709,28 +725,34 @@ public:
     void onItem(int);
     BOOL isItem(int) const;
     void onDungeonItem(int);
-    bool isDungeonItem(int) const;
+    s32 isDungeonItem(int) const;
 
     u8 getKeyNum() { return mKeyNum; }
-    void onDungeonItemMap() { onDungeonItem(MAP_FLAG); }
-    bool isDungeonItemMap() const { return isDungeonItem(MAP_FLAG); }
-    void onDungeonItemCompass() { onDungeonItem(COMPASS_FLAG); }
-    void onDungeonItemWarp() { onDungeonItem(OOCCOO_NOTE_FLAG); }
-    void onDungeonItemBossKey() { onDungeonItem(BOSS_KEY_FLAG); }
-    bool isDungeonItemBossKey() const { return isDungeonItem(BOSS_KEY_FLAG); }
+    void setKeyNum(u8 keyNum) { mKeyNum = keyNum; }
+    void onDungeonItemMap() { onDungeonItem(MAP); }
+    s32 isDungeonItemMap() const { return isDungeonItem(MAP); }
+    void onDungeonItemCompass() { onDungeonItem(COMPASS); }
+    void onDungeonItemWarp() { onDungeonItem(OOCCOO_NOTE); }
+    void onDungeonItemBossKey() { onDungeonItem(BOSS_KEY); }
+    s32 isDungeonItemBossKey() const { return isDungeonItem(BOSS_KEY); }
+    void onStageBossEnemy() {
+        onDungeonItem(STAGE_BOSS_ENEMY);
+        onDungeonItem(OOCCOO_NOTE);
+    }
+    s32 isDungeonItemWarp() const { return isDungeonItem(OOCCOO_NOTE); }
+    void onStageLife() { onDungeonItem(STAGE_LIFE); }
 
 private:
     /* 0x00 */ u32 mTbox[2];
     /* 0x08 */ u32 mSwitch[4];
-    /* 0x18 */ u32 mItem[1];  // not sure if this is right
+    /* 0x18 */ u32 mItem[1];
     /* 0x1C */ u8 mKeyNum;
     /* 0x1D */ u8 mDungeonItem;
-};
-#pragma pack(pop)
+};  // Size: 0x20
 
 class dSv_event_c {
 public:
-    void init(void);
+    void init();
     void onEventBit(u16);
     void offEventBit(u16);
     int isEventBit(u16) const;
@@ -738,48 +760,47 @@ public:
     u8 getEventReg(u16) const;
 
 private:
-    u8 mEvent[256];
-};
+    /* 0x0 */ u8 mEvent[256];
+};  // Size: 0x100
 
 class dSv_MiniGame_c {
 public:
-    void init(void);
+    void init();
 
 private:
-    u8 unk0;
-    u8 unk1[3];
-    u32 unk4;
-    u32 mBalloonScore;
-    u32 mRaceGameTime;
-    u32 unk16;
-    u32 unk20;
-};
+    /* 0x00 */ u8 unk0;
+    /* 0x01 */ u8 unk1[3];
+    /* 0x04 */ u32 mStarTime;
+    /* 0x08 */ u32 mBalloonScore;
+    /* 0x0C */ u32 mRaceGameTime;
+    /* 0x10 */ u32 unk16;
+    /* 0x14 */ u32 unk20;
+};  // Size: 0x18
 
 class dSv_memory_c {
 public:
-    dSv_memory_c(void) { this->init(); }
-    void init(void);
-    dSv_memBit_c& getMemBit() { return mMemBit; }
-    const dSv_memBit_c& getMemBitConst() const { return mMemBit; }
+    dSv_memory_c() { this->init(); }
+    void init();
+    dSv_memBit_c& getBit() { return mBit; }
+    const dSv_memBit_c& getBit() const { return mBit; }
 
 private:
-    dSv_memBit_c mMemBit;
-    u8 padding30[2];
-};
+    /* 0x0 */ dSv_memBit_c mBit;
+};  // Size: 0x20
 
 STATIC_ASSERT(sizeof(dSv_memory_c) == 0x20);
 
 class dSv_memory2_c {
 public:
-    dSv_memory2_c(void) { this->init(); }
-    void init(void);
+    dSv_memory2_c() { this->init(); }
+    void init();
     void onVisitedRoom(int);
     void offVisitedRoom(int);
     BOOL isVisitedRoom(int);
 
 private:
-    u32 mVisitedRoom[2];
-};
+    /* 0x0 */ u32 mVisitedRoom[2];
+};  // Size: 0x8
 
 STATIC_ASSERT(sizeof(dSv_memory2_c) == 8);
 
@@ -794,19 +815,19 @@ public:
     BOOL isItem(int) const;
 
 private:
-    s8 mStageNo;
-    u8 unk1;
-    u8 unk2[2];
-    u32 mSwitch[2];
-    u32 mItem[4];
-    s16 unk28[16];
-};
+    /* 0x00 */ s8 mStageNo;
+    /* 0x01 */ u8 unk1;
+    /* 0x02 */ u8 unk2[2];
+    /* 0x04 */ u32 mSwitch[2];
+    /* 0x0C */ u32 mItem[4];
+    /* 0x1C */ s16 unk28[16];
+};  // Size: 0x3C
 
 class dSv_zoneBit_c {
 public:
-    void init(void);
-    void clearRoomSwitch(void);
-    void clearRoomItem(void);
+    void init();
+    void clearRoomSwitch();
+    void clearRoomItem();
     void onSwitch(int);
     void offSwitch(int);
     BOOL isSwitch(int) const;
@@ -821,16 +842,16 @@ public:
     BOOL isOneItem(int) const;
 
 private:
-    u16 mSwitch[2];
-    u16 mRoomSwitch;
-    u16 mItem[2];
-    u16 mRoomItem;
-    u16 unk12;
-};
+    /* 0x00 */ u16 mSwitch[2];
+    /* 0x04 */ u16 mRoomSwitch;
+    /* 0x06 */ u16 mItem[2];
+    /* 0x0A */ u16 mRoomItem;
+    /* 0x0C */ u16 unk12;
+};  // Size: 0xE
 
 class dSv_zoneActor_c {
 public:
-    void init(void);
+    void init();
     void on(int);
     void off(int);
     BOOL is(int) const;
@@ -838,26 +859,26 @@ public:
     static const int ACTOR_MAX = 0xFFFF;
 
 private:
-    u32 actor_bitfield[4];
-};
+    /* 0x00 */ u32 mActorFlags[4];
+};  // Size: 0x10
 
 class dSv_zone_c {
 public:
     dSv_zone_c(void) { mRoomNo = -1; }  // the assembly for this is in d_com_inf_game.s
     void init(int);
     dSv_zoneBit_c& getZoneBit() { return mBit; }
-    const dSv_zoneBit_c& getZoneBitConst() const { return mBit; }
-    dSv_zoneActor_c& getZoneActor() { return mActor; }
-    const dSv_zoneActor_c& getZoneActorConst() const { return mActor; }
+    const dSv_zoneBit_c& getBit() const { return mBit; }
+    dSv_zoneActor_c& getActor() { return mActor; }
+    const dSv_zoneActor_c& getActor() const { return mActor; }
 
     s8& getRoomNo() { return mRoomNo; }
 
 private:
-    s8 mRoomNo;
-    u8 unk1;
-    dSv_zoneBit_c mBit;
-    dSv_zoneActor_c mActor;
-};
+    /* 0x00 */ s8 mRoomNo;
+    /* 0x01 */ u8 unk1;
+    /* 0x02 */ dSv_zoneBit_c mBit;
+    /* 0x10 */ dSv_zoneActor_c mActor;
+};  // Size: 0x20
 
 STATIC_ASSERT(sizeof(dSv_zone_c) == 0x20);
 
@@ -875,15 +896,15 @@ private:
     /* 0x18 */ f32 mLastSpeedF;
     /* 0x1C */ u32 mLastMode;
     /* 0x20 */ s16 mLastAngleY;
-};
+};  // Size: 0x24
 
 class dSv_turnRestart_c {
 public:
     class dSv_turnRestart_camera_c {
-        cXyz mCameraCtr;
-        cXyz mCameraEye;
-        cXyz mCameraUp;
-    };
+        /* 0x00 */ cXyz mCameraCtr;
+        /* 0x0C */ cXyz mCameraEye;
+        /* 0x18 */ cXyz mCameraUp;
+    };  // Size: 0x24
 
     void set(const cXyz&, s16, s8, u32);
 
@@ -894,7 +915,7 @@ private:
     /* 0x12 */ s8 unk18;
     /* 0x14 */ dSv_turnRestart_camera_c mCamera;
     /* 0x38 */ f32 mCameraFvy;
-};
+};  // Size: 0x3C
 
 class dSv_reserve_c {
 public:
@@ -904,39 +925,32 @@ private:
 
 class dSv_save_c {
 public:
-    void init(void);
+    void init();
     dSv_memory2_c* getSave2(int);
+
     dSv_player_c& getPlayer() { return mPlayer; }
-    dSv_player_status_a_c& getPlayerStatusA() { return mPlayer.getPlayerStatusA(); }
-    dSv_player_get_item_c& getPlayerGetItem() { return mPlayer.getPlayerGetItem(); }
-    dSv_player_item_record_c& getPlayerItemRecord() { return mPlayer.getPlayerItemRecord(); }
-    dSv_player_item_max_c& getPlayerItemMax() { return mPlayer.getPlayerItemMax(); }
-    dSv_player_last_mark_info_c& getPlayerLastMarkInfo() { return mPlayer.getPlayerLastMarkInfo(); }
-    dSv_player_item_c& getPlayerItem() { return mPlayer.getPlayerItem(); }
-    dSv_player_collect_c& getPlayerCollect() { return mPlayer.getPlayerCollect(); }
-    dSv_light_drop_c& getLightDrop() { return mPlayer.getLightDrop(); }
     dSv_event_c& getEvent() { return mEvent; }
+    dSv_memory_c& getSave(int i_stageNo) { return mSave[i_stageNo]; }
+    void putSave(int i_stageNo, dSv_memory_c mem) { mSave[i_stageNo] = mem; }
 
     static const int STAGE_MAX = 32;
     static const int STAGE2_MAX = 64;
 
     // private:
-    dSv_player_c mPlayer;
-    dSv_memory_c mSave[STAGE_MAX];
-    dSv_memory2_c mSave2[STAGE2_MAX];
-    dSv_event_c mEvent;
-    dSv_reserve_c reserve;
-    dSv_MiniGame_c mMiniGame;
-};
-#pragma pack(push, 1)
+    /* 0x000 */ dSv_player_c mPlayer;
+    /* 0x1F0 */ dSv_memory_c mSave[STAGE_MAX];
+    /* 0x5F0 */ dSv_memory2_c mSave2[STAGE2_MAX];
+    /* 0x7F0 */ dSv_event_c mEvent;
+    /* 0x8F0 */ dSv_reserve_c reserve;
+    /* 0x940 */ dSv_MiniGame_c mMiniGame;
+};  // Size: 0x958
+
 class dSv_info_c {
 public:
-    dSv_info_c() {}
-    ~dSv_info_c() {}
-    void init(void);
+    void init();
     void getSave(int);
     void putSave(int);
-    void initZone(void);
+    void initZone();
     u32 createZone(int);
     void onSwitch(int, int);
     void offSwitch(int, int);
@@ -947,8 +961,8 @@ public:
     void onActor(int, int);
     void offActor(int, int);
     BOOL isActor(int, int) const;
-    void memory_to_card(char*, int);
-    void card_to_memory(char*, int);
+    int memory_to_card(char*, int);
+    int card_to_memory(char*, int);
     void initdata_to_card(char*, int);
 
     dSv_save_c& getSavedata() { return mSavedata; }
@@ -956,6 +970,9 @@ public:
     dSv_zone_c* getZones() { return mZone; }
     dSv_player_c& getPlayer() { return mSavedata.getPlayer(); }
     dSv_event_c& getTmp() { return mTmp; }
+    s64 getStartTime() { return mStartTime; }
+    s64 getSaveTotalTime() { return mSaveTotalTime; }
+    void initDan(s8 param_0) { mDan.init(param_0); }
 
 private:
     /* 0x000 */ dSv_save_c mSavedata;
@@ -970,9 +987,18 @@ private:
     /* 0xF19 */ u8 mNewFile;
     /* 0xF1A */ u8 mNoFile;
     /* 0xF1B */ u8 field_0xf1b[13];
-    /* 0xF28 */ u64 mStartTime;
-    /* 0xF30 */ u64 mSaveTotalTime;
+    /* 0xF28 */ s64 mStartTime;
+    /* 0xF30 */ s64 mSaveTotalTime;
+};  // Size: 0xF38
+
+class dSv_event_flag_c {
+public:
+    static u16 saveBitLabels[822];
 };
-#pragma pack(pop)
+
+class dSv_event_tmp_flag_c {
+public:
+    static u16 const tempBitLabels[185];
+};
 
 #endif /* D_SAVE_D_SAVE_H */

@@ -394,7 +394,6 @@ extern "C" u8 sincosTable___5JMath[65536];
 extern "C" f32 mSystemFar__14mDoLib_clipper;
 extern "C" u8 mProcID__20dStage_roomControl_c[4];
 extern "C" void* mClipper__14mDoLib_clipper;
-extern "C" extern u8 struct_80450D64[4];
 extern "C" u8 m_top__13daTagStream_c[4];
 extern "C" u8 mData__12dEnemyItem_c[4 + 4 /* padding */];
 extern "C" u8 Zero__5csXyz[4];

@@ -91,4 +91,8 @@ public:
     static JKRExpHeap* create(void*, u32, JKRHeap*, bool);
 };
 
+inline JKRExpHeap* JKRCreateExpHeap(u32 param_0, JKRHeap* param_1, bool param_2) {
+    return JKRExpHeap::create(param_0, param_1, param_2);
+}
+
 #endif /* JKREXPHEAP_H */

@@ -4,6 +4,7 @@
 //
 
 #include "d/event/d_event.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_iter.h"
@@ -15,28 +16,6 @@
 
 struct mDoGph_gInf_c {
     /* 800080D0 */ void fadeOut(f32);
-};
-
-struct mDoCPd_c {
-    static u8 m_cpadInfo[256];
-};
-
-struct dVibration_c {
-    /* 8006FD94 */ void StopQuake(int);
-};
-
-struct dSv_event_tmp_flag_c {
-    static u8 const tempBitLabels[370 + 2 /* padding */];
-};
-
-struct dRes_control_c {
-    /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
-};
-
-struct dMsgObject_c {
-    /* 80237994 */ void onKillMessageFlag();
-    /* 802379AC */ void setKillMessageFlag();
-    /* 80238098 */ void endFlowGroup();
 };
 
 struct dDemo_c {
@@ -179,8 +158,6 @@ extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */]
 extern "C" extern void* __vt__11dEvt_info_c[3 + 1 /* padding */];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 struct_80450D64[4];
 extern "C" u8 m_mode__7dDemo_c[4];
 extern "C" u8 m_midnaActor__9daPy_py_c[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
@@ -188,6 +165,10 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 // Declarations:
 //
+
+inline dEvent_manager_c& dComIfGp_getEventManager() {
+    return g_dComIfG_gameInfo.play.getEvtManager();
+}
 
 /* 80041480-80041488 03BDC0 0008+00 1/1 0/0 0/0 .text event_debug_evnt__21@unnamed@d_event_cpp@Fv
  */
@@ -197,14 +178,18 @@ static bool func_80041480() {
 
 /* 80041488-80041580 03BDC8 00F8+00 1/1 0/0 0/0 .text
  * clear_tmpflag_for_message__21@unnamed@d_event_cpp@Fv         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_80041488() {
-    nofralloc
-#include "asm/d/event/d_event/func_80041488.s"
+static void func_80041488() {
+    dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[11]);
+    dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[12]);
+    dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[13]);
+    dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[14]);
+    dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[15]);
+    dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[51]);
+    dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[52]);
+    dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[53]);
+    dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[54]);
+    dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[55]);
 }
-#pragma pop
 
 dEvt_control_c::dEvt_control_c() {
     remove();
@@ -216,15 +201,11 @@ dEvt_order_c::dEvt_order_c() {
 
 /* 800415D8-80041668 03BF18 0090+00 1/1 0/0 0/0 .text orderOld__14dEvt_control_cFUsUsUsUsPvPvPCv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvt_control_c::orderOld(u16 param_0, u16 param_1, u16 param_2, u16 param_3, void* param_4,
-                                  void* param_5, void const* param_6) {
-    nofralloc
-#include "asm/d/event/d_event/orderOld__14dEvt_control_cFUsUsUsUsPvPvPCv.s"
+void dEvt_control_c::orderOld(u16 param_0, u16 param_1, u16 param_2, u16 param_3, void* param_4,
+                              void* param_5, void const* param_6) {
+    s16 eventIdx = dComIfGp_getEventManager().getEventIdx((char*)param_6, -1, -1);
+    order(param_0, param_1, param_2, param_3, param_4, param_5, eventIdx, -1);
 }
-#pragma pop
 
 /* 80041668-80041804 03BFA8 019C+00 3/3 13/13 0/0 .text order__14dEvt_control_cFUsUsUsUsPvPvsUc */
 #pragma push

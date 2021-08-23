@@ -234,7 +234,7 @@ SECTION_SDATA u32 JUTGamePad::sStickMode = 0x00000001;
 SECTION_SDATA u32 JUTGamePad::sClampMode = 0x00000001;
 
 /* 804514E0-804514E4 0009E0 0004+00 1/1 2/2 0/0 .sbss            sRumbleSupported__10JUTGamePad */
-u8 JUTGamePad::sRumbleSupported[4];
+u32 JUTGamePad::sRumbleSupported;
 
 /* 802E08E4-802E0BBC 2DB224 02D8+00 0/0 2/2 0/0 .text            read__10JUTGamePadFv */
 #pragma push

@@ -545,7 +545,7 @@ public:
     /* 800BB084 */ void getBodyAngleXAtnActor(int);
     /* 800BB2B0 */ void setBodyAngleXReadyAnime(int);
     /* 800BB324 */ void setMagicArmorBrk(int);
-    /* 800BB408 */ void checkMagicArmorHeavy() const;
+    /* 800BB408 */ BOOL checkMagicArmorHeavy() const;
     /* 800BB4B8 */ void checkHeavyStateOn(int, int);
     /* 800BB644 */ void initGravity();
     /* 800BB770 */ void setSpecialGravity(f32, f32, int);
@@ -577,7 +577,7 @@ public:
     /* 800BF9F0 */ void setItemActor();
     /* 800BFD74 */ void makeItemType();
     /* 800BFDB0 */ void checkZoraWearAbility() const;
-    /* 800BFDFC */ void checkMagicArmorWearAbility() const;
+    /* 800BFDFC */ BOOL checkMagicArmorWearAbility() const;
     /* 800BFE48 */ void loadAramBmd(u16, u32);
     /* 800BFF04 */ void loadAram(u16, u32);
     /* 800BFF70 */ void loadAramItemBrk(u16, J3DModel*);
@@ -2156,7 +2156,7 @@ public:
     virtual bool getSwordChangeWaitTimer(void) const;
     virtual bool checkMetamorphose(void) const;
     virtual bool checkWolfDownAttackPullOut(void) const;
-    virtual bool checkBootsOrArmorHeavy(void) const;
+    virtual BOOL checkBootsOrArmorHeavy(void) const;
     virtual s32 getBottleOpenAppearItem(void) const;
     virtual bool checkItemSwordEquip(void) const;
     virtual float getSinkShapeOffset(void) const;
@@ -2171,6 +2171,7 @@ public:
     // inlined version of checkModeFlg
     u32 i_checkModeFlg(u32 pFlag) const { return mModeFlg & pFlag; }
     bool checkUpperAnime(u16 pIdx) const { return mUpperAnime[UPPER_NOW].getIdx() == pIdx; }
+    bool checkIronBallWaitAnime() const { return checkUpperAnime(0x19C); }
 
     static u8 const m_mainBckShield[80];
     static u8 const m_mainBckSword[20];
@@ -2909,7 +2910,7 @@ public:
 
 private:
     /* 0x0000 */ fopAc_ac_c mActor;
-    /* 0x0570 */ u8 field_0x570[0xCE4];
+    /* 0x0568 */ u8 field_0x568[0xCEC];
     /* 0x1254 */ daPy_actorKeep_c mZeldaActorKeep;
 };
 
@@ -2932,7 +2933,7 @@ public:
 
 private:
     /* 0x0000 */ fopAc_ac_c mActor;
-    /* 0x0570 */ u8 field_0x570[0x324];
+    /* 0x0568 */ u8 field_0x568[0x32C];
     /* 0x0894 */ u32 mStateFlg1;
     /* 0x0898 */ u32 mEndResetStateFlg0;
 };

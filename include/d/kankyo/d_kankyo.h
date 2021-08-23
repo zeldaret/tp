@@ -63,4 +63,6 @@ private:
 
 STATIC_ASSERT(sizeof(dKy_tevstr_c) == 0x388);
 
+BOOL dKy_darkworld_stage_check(char const*, int);
+
 #endif /* D_KANKYO_D_KANKYO_H */

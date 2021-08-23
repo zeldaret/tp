@@ -77,6 +77,7 @@ public:
     void setPtI_Id(unsigned int);
     void setPtD(void*);
     void setGtItm(u8);
+    void isOrderOK();
 
     u16 chkFlag2(u16 flag) { return flag & mFlag2; }
 

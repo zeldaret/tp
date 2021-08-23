@@ -171,12 +171,10 @@ extern "C" void _restgpr_25();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void sprintf();
 extern "C" u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80450D64[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
@@ -549,7 +547,7 @@ static u8 map_tool_name_4449[17 + 3 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvent_manager_c::getEventIdx(char const* param_0, u8 param_1, s32 param_2) {
+asm int dEvent_manager_c::getEventIdx(char const* param_0, u8 param_1, s32 param_2) {
     nofralloc
 #include "asm/d/event/d_event_manager/getEventIdx__16dEvent_manager_cFPCcUcl.s"
 }

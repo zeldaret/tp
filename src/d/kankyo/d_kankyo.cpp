@@ -3407,7 +3407,7 @@ static asm void dKy_F_SP121Check(char const* param_0, int param_1, u8* param_2, 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dKy_darkworld_stage_check(char const* param_0, int param_1) {
+asm BOOL dKy_darkworld_stage_check(char const* param_0, int param_1) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_darkworld_stage_check__FPCci.s"
 }
