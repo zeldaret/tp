@@ -110,6 +110,8 @@ public:
 
     void setSelectItem(int idx, u8 itemId) { mSelectItem[idx] = itemId; }
 
+    void setSelectEquip(int idx, u8 item_id) { mSelectEquip[idx] = item_id; }
+
     u8 getSelectItem(int idx) { return mSelectItem[idx]; }
 
     void setZStatus(u8 status, u8 flag) {
@@ -161,6 +163,7 @@ public:
     inline JKRHeap* getExpHeap2D() { return mExpHeap2D; }
     inline dEvent_manager_c& getEvtManager() { return mEvtManager; }
     inline dAttention_c& getAttention() { return mAttention; }
+    JKRArchive* getMsgDtArchive(int idx) { return mMsgDtArchive[idx]; }
 
 public:
     /* 0x00000 */ dBgS mDBgS;
@@ -453,6 +456,9 @@ int dComIfGp_checkEmptySubHeap2D();
 int dComIfGp_searchUseSubHeap2D(int);
 void dComIfGs_setLastWarpMarkItemData(const char*, cXyz, s16, s8, u8, u8);
 u16 dComIfGs_getMaxLifeGauge();
+void dComIfGs_setWarpMarkFlag(u8);
+void dComIfGs_setSelectEquipSword(u8);
+void dComIfGs_setSelectEquipShield(u8);
 
 inline void dComIfGp_setRStatus(u8 status, u8 flag) {
     g_dComIfG_gameInfo.play.setRStatus(status, flag);
@@ -935,6 +941,38 @@ inline void dComIfGs_setPachinkoNum(u8 param_0) {
 
 inline void dComIfGs_addBottleNum(u8 param_0, s16 param_1) {
     g_dComIfG_gameInfo.info.getPlayer().getItemRecord().addBottleNum(param_0, param_1);
+}
+
+inline void dComIfGs_resetLastWarpAcceptStage() {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerLastMarkInfo().resetWarpAcceptStage();
+}
+
+inline void dComIfGp_setSelectEquipClothes(u8 i_clothId) {
+    g_dComIfG_gameInfo.play.setSelectEquip(COLLECT_CLOTHING, i_clothId);
+}
+
+inline void dComIfGp_setSelectEquipSword(u8 i_swordId) {
+    g_dComIfG_gameInfo.play.setSelectEquip(COLLECT_SWORD, i_swordId);
+}
+
+inline void dComIfGp_setSelectEquipShield(u8 i_shieldId) {
+    g_dComIfG_gameInfo.play.setSelectEquip(COLLECT_SHIELD, i_shieldId);
+}
+
+inline void dComIfGs_offItemFirstBit(u8 param_0) {
+    g_dComIfG_gameInfo.info.getPlayer().getGetItem().offFirstBit(param_0);
+}
+
+inline BOOL dComIfGs_isLetterGetFlag(int param_0) {
+    return g_dComIfG_gameInfo.info.getPlayer().getLetterInfo().isLetterGetFlag(param_0);
+}
+
+inline JKRArchive* dComIfGp_getMsgDtArchive(int idx) {
+    return g_dComIfG_gameInfo.play.getMsgDtArchive(idx);
+}
+
+inline u8 dComIfGs_getArrowNum() {
+    return g_dComIfG_gameInfo.info.getPlayer().getItemRecord().getArrowNum();
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

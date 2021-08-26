@@ -80,11 +80,6 @@ struct dMeter_drawEmpButtonHIO_c {
     /* 80200DA0 */ ~dMeter_drawEmpButtonHIO_c();
 };
 
-struct dMeter_drawCollectHIO_c {
-    /* 801FE348 */ dMeter_drawCollectHIO_c();
-    /* 80200FE0 */ ~dMeter_drawCollectHIO_c();
-};
-
 struct dMeter_drawCalibrationHIO_c {
     /* 801FE954 */ dMeter_drawCalibrationHIO_c();
     /* 80200E78 */ ~dMeter_drawCalibrationHIO_c();
@@ -93,17 +88,6 @@ struct dMeter_drawCalibrationHIO_c {
 struct dMeter_cursorHIO_c {
     /* 80200CD4 */ dMeter_cursorHIO_c();
     /* 80201098 */ ~dMeter_cursorHIO_c();
-};
-
-struct cXyz {
-    /* 80009184 */ ~cXyz();
-    /* 800125DC */ cXyz();
-};
-
-struct JUtility {
-    struct TColor {
-        /* 80193960 */ TColor();
-    };
 };
 
 struct JKRHeap {
@@ -353,6 +337,47 @@ SECTION_SDATA2 static f32 lit_3802 = 26.0f;
 
 /* 801FE348-801FE4EC 1F8C88 01A4+00 1/1 0/0 0/0 .text            __ct__23dMeter_drawCollectHIO_cFv
  */
+#ifdef NONMATCHING
+dMeter_drawCollectHIO_c::dMeter_drawCollectHIO_c() {
+    mItemScaleSmall = lit_3787;
+    mItemScaleLarge = lit_3788;
+    mSaveOptionItemScaleSmall = lit_3787;
+    mSaveOptionItemScaleLarge = lit_3789;
+    mBlueFuzzPosX = lit_3790;
+    mBlueFuzzPosY = lit_3791;
+    mBlueFuzzScale = lit_3791;
+    mBlueFuzzAlpha = lit_3792;
+    mMaskMirrorPos.set(FLOAT_LABEL(lit_3793), FLOAT_LABEL(lit_3793), FLOAT_LABEL(lit_3793));
+    mMaskMirrorAngle.set(0, 0, 0);
+    field_0x9a = false;
+    mMaskMirrorScale = FLOAT_LABEL(lit_3793);
+    mMaskMirrorAnimation = lit_3787;
+    mHeartVesselPosX = lit_3794;
+    mHeartVesselPosY = lit_3795;
+    mHeartVesselScale = lit_3796;
+    mHeartPiecePosX = FLOAT_LABEL(lit_3793);
+    mHeartPiecePosY = FLOAT_LABEL(lit_3793);
+    mHeartPieceScale = lit_3787;
+    mButtonDebugON = false;
+    mAButtonPosX = lit_3797;
+    mAButtonPosY = lit_3798;
+    mAButtonScale = lit_3791;
+    mBButtonPosX = lit_3797;
+    mBButtonPosY = lit_3799;
+    mBButtonScale = lit_3791;
+    mAButtonTextPosX = lit_3800;
+    mAButtonTextPosY = lit_3798;
+    mAButtonTextScale = lit_3789;
+    mBButtonTextPosX = lit_3801;
+    mBButtonTextPosY = lit_3802;
+    mBButtonTextScale = lit_3789;
+    mColorDebugON = false;
+    mBasBlack[0].set(0, 0, 0, 0);
+    mBasWhite[0].set(250, 250, 210, 220);
+    mBasBlack[1].set(200, 190, 100, 0);
+    mBasWhite[1].set(200, 190, 100, 175);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -361,6 +386,7 @@ asm dMeter_drawCollectHIO_c::dMeter_drawCollectHIO_c() {
 #include "asm/d/meter/d_meter_HIO/__ct__23dMeter_drawCollectHIO_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80454520-80454524 002B20 0004+00 3/3 0/0 0/0 .sdata2          @3828 */
@@ -1251,7 +1277,8 @@ asm dMeter_drawOptionHIO_c::~dMeter_drawOptionHIO_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMeter_drawCollectHIO_c::~dMeter_drawCollectHIO_c() {
+// asm dMeter_drawCollectHIO_c::~dMeter_drawCollectHIO_c() {
+extern "C" asm void __dt__23dMeter_drawCollectHIO_cFv() {
     nofralloc
 #include "asm/d/meter/d_meter_HIO/__dt__23dMeter_drawCollectHIO_cFv.s"
 }

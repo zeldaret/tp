@@ -640,8 +640,6 @@ struct dBgS_ObjAcch {
     /* 800D0C6C */ ~dBgS_ObjAcch();
 };
 
-struct _GXTexObj {};
-
 struct Z2SeqMgr {
     /* 802AF010 */ void bgmStart(u32, u32, s32);
     /* 802AF49C */ void subBgmStart(u32);
@@ -742,24 +740,6 @@ struct J3DAnmLoaderDataBaseFlag {};
 
 struct J3DAnmLoaderDataBase {
     /* 80337B40 */ void load(void const*, J3DAnmLoaderDataBaseFlag);
-};
-
-struct J2DGrafContext {};
-
-struct J2DScreen {
-    /* 802F8498 */ J2DScreen();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-    /* 802F9690 */ void animation();
-};
-
-struct J2DAnmTevRegKey {};
-
-struct J2DAnmColor {};
-
-struct J2DPane {
-    /* 80126350 */ void setAnimation(J2DAnmTevRegKey*);
-    /* 80126354 */ void setAnimation(J2DAnmColor*);
 };
 
 struct J2DAnmLoaderDataBase {
@@ -3659,30 +3639,14 @@ extern "C" void entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey()
 extern "C" void entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
 extern "C" void load__20J3DAnmLoaderDataBaseFPCv24J3DAnmLoaderDataBaseFlag();
 extern "C" void JMAEulerToQuat__FsssP10Quaternion();
-extern "C" void GXSetVtxDesc();
 extern "C" void GXClearVtxDesc();
-extern "C" void GXSetVtxAttrFmt();
 extern "C" void GXSetTexCoordGen2();
-extern "C" void GXSetNumTexGens();
-extern "C" void GXBegin();
 extern "C" void GXSetCullMode();
 extern "C" void GXLoadLightObjImm();
 extern "C" void GXSetChanAmbColor();
 extern "C" void GXSetChanMatColor();
-extern "C" void GXSetNumChans();
-extern "C" void GXInitTexObj();
-extern "C" void GXInitTexObjLOD();
-extern "C" void GXLoadTexObj();
 extern "C" void GXSetNumIndStages();
-extern "C" void GXSetTevColorIn();
-extern "C" void GXSetTevAlphaIn();
-extern "C" void GXSetTevColorOp();
-extern "C" void GXSetTevAlphaOp();
-extern "C" void GXSetTevColor();
 extern "C" void GXSetAlphaCompare();
-extern "C" void GXSetTevOrder();
-extern "C" void GXSetNumTevStages();
-extern "C" void GXSetBlendMode();
 extern "C" void GXSetZMode();
 extern "C" void GXLoadPosMtxImm();
 extern "C" void GXLoadNrmMtxImm();

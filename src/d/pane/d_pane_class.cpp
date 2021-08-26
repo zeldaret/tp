@@ -11,44 +11,12 @@
 // Types:
 //
 
-struct JUtility {
-    struct TColor {};
-};
-
-struct JSURandomInputStream {
-    /* 80255328 */ ~JSURandomInputStream();
-};
-
 struct JSUMemoryInputStream {
     /* 802552B8 */ ~JSUMemoryInputStream();
     /* 802DC520 */ void setBuffer(void const*, s32);
 };
 
-struct JSUIosBase {
-    /* 80255388 */ ~JSUIosBase();
-};
-
-struct JSUInputStream {
-    /* 802DC23C */ ~JSUInputStream();
-};
-
-struct JKRHeap {
-    /* 802CE4D4 */ void alloc(u32, int);
-    /* 802CE548 */ void free(void*);
-};
-
-struct JKRExpHeap {};
-
-struct JKRArchive {};
-
 struct JKRAramArchive {};
-
-struct JGeometry {
-    template <typename A1>
-    struct TBox2 {};
-    /* TBox2<f32> */
-    struct TBox2__template0 {};
-};
 
 struct J2DWindow {
     /* 80254000 */ void getBlack() const;
@@ -62,54 +30,9 @@ struct J2DTextBox {
     /* 80254408 */ void setBlack(JUtility::TColor);
 };
 
-struct J2DScreen {
-    /* 802F8748 */ void setPriority(JSURandomInputStream*, u32, JKRArchive*);
-};
-
-struct J2DRotateAxis {};
-
-struct J2DPane {
-    /* 802F7100 */ void getBounds();
-    /* 802F71DC */ void rotate(f32, f32, J2DRotateAxis, f32);
-    /* 802F7A8C */ void getFirstChildPane();
-    /* 802F7AC4 */ void getNextChildPane();
-    /* 802F7AFC */ void getParentPane();
-};
-
 struct J2DOrthoGraph {
     /* 802E96D0 */ J2DOrthoGraph(f32, f32, f32, f32, f32, f32);
     /* 802E980C */ void setOrtho(JGeometry::TBox2<f32> const&, f32, f32);
-};
-
-struct CPaneMgrAlpha {
-    /* 802553EC */ CPaneMgrAlpha();
-    /* 8025546C */ ~CPaneMgrAlpha();
-    /* 80255658 */ void rateCalc(s16, s16, u8);
-    /* 80255A60 */ void childPaneCount(J2DPane*);
-    /* 80255ACC */ void childPaneGetAlpha(J2DPane*);
-    /* 80255B5C */ void childPaneSetAlpha(J2DPane*, u8);
-};
-
-struct CPaneMgr {
-    /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 80253930 */ CPaneMgr();
-    /* 80253A18 */ ~CPaneMgr();
-    /* 80253AB4 */ void setAlpha(u8);
-    /* 80253B2C */ void reinit();
-    /* 80253C08 */ void initiate(J2DPane*, JKRExpHeap*);
-    /* 80254018 */ void childPaneGetSize(J2DPane*);
-    /* 80254134 */ void childPaneSetSize(J2DPane*, f32, f32);
-    /* 802542E8 */ void getGlobalPosX();
-    /* 80254364 */ void getGlobalPosY();
-    /* 80254458 */ void setBlackWhite(JUtility::TColor, JUtility::TColor);
-    /* 802545B0 */ void paneTrans(f32, f32);
-    /* 80254638 */ void paneScale(f32, f32);
-    /* 802547CC */ void scaleAnime(s16, f32, f32, u8);
-    /* 802548BC */ void colorAnime(s16, JUtility::TColor, JUtility::TColor, JUtility::TColor,
-                                   JUtility::TColor, u8);
-    /* 80254C90 */ void getGlobalVtx(J2DPane*, f32 (*)[3][4], u8, bool, s16);
-    /* 80254EBC */ void getGlobalVtxCenter(J2DPane*, bool, s16);
-    /* 80254FB8 */ void getBounds(J2DPane*);
 };
 
 //
@@ -174,8 +97,6 @@ extern "C" void getFirstChildPane__7J2DPaneFv();
 extern "C" void getNextChildPane__7J2DPaneFv();
 extern "C" void getParentPane__7J2DPaneFv();
 extern "C" void setPriority__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXConcat();
 extern "C" void _savegpr_24();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_26();
@@ -543,7 +464,8 @@ asm void dPaneClass_setPriority(void** param_0, JKRHeap* param_1, J2DScreen* par
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JSUMemoryInputStream::~JSUMemoryInputStream() {
+// asm JSUMemoryInputStream::~JSUMemoryInputStream() {
+extern "C" asm void __dt__20JSUMemoryInputStreamFv() {
     nofralloc
 #include "asm/d/pane/d_pane_class/__dt__20JSUMemoryInputStreamFv.s"
 }
@@ -553,7 +475,8 @@ asm JSUMemoryInputStream::~JSUMemoryInputStream() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JSURandomInputStream::~JSURandomInputStream() {
+// asm JSURandomInputStream::~JSURandomInputStream() {
+extern "C" asm void __dt__20JSURandomInputStreamFv() {
     nofralloc
 #include "asm/d/pane/d_pane_class/__dt__20JSURandomInputStreamFv.s"
 }
@@ -563,7 +486,8 @@ asm JSURandomInputStream::~JSURandomInputStream() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JSUIosBase::~JSUIosBase() {
+// asm JSUIosBase::~JSUIosBase() {
+extern "C" asm void __dt__10JSUIosBaseFv() {
     nofralloc
 #include "asm/d/pane/d_pane_class/__dt__10JSUIosBaseFv.s"
 }

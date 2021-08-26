@@ -11,101 +11,8 @@
 // Types:
 //
 
-struct _GXCullMode {};
-
-struct ResTIMG {};
-
-struct ResNTAB {};
-
-struct ResFONT {};
-
-struct JUTNameTab {
-    /* 802DE9E0 */ JUTNameTab(ResNTAB const*);
-};
-
-struct JSUStreamSeekFrom {};
-
-struct JSURandomInputStream {
-    /* 802DC458 */ void peek(void*, s32);
-    /* 802DC4DC */ void seek(s32, JSUStreamSeekFrom);
-};
-
 struct JSUMemoryInputStream {
     /* 802DC520 */ void setBuffer(void const*, s32);
-};
-
-struct JSUInputStream {
-    /* 802DC23C */ ~JSUInputStream();
-    /* 802DC298 */ void read(void*, s32);
-};
-
-struct JKRFileLoader {
-    /* 802D4270 */ void getGlbResource(char const*, JKRFileLoader*);
-};
-
-struct JKRArchive {};
-
-struct JGeometry {
-    template <typename A1>
-    struct TBox2 {};
-    /* TBox2<f32> */
-    struct TBox2__template0 {};
-};
-
-struct J2DAnmVisibilityFull {};
-
-struct J2DAnmBase {};
-
-struct J2DGrafContext {};
-
-struct J2DAnmTransform {};
-
-struct J2DAnmVtxColor {};
-
-struct J2DPane {
-    /* 80053C00 */ void makeMatrix(f32, f32);
-    /* 802F7540 */ void makeMatrix(f32, f32, f32, f32);
-    /* 802F5F9C */ J2DPane(J2DPane*, JSURandomInputStream*, u8);
-    /* 802F5D40 */ J2DPane(J2DPane*, bool, u64, JGeometry::TBox2<f32> const&);
-    /* 802F658C */ ~J2DPane();
-    /* 802F67E0 */ void draw(f32, f32, J2DGrafContext const*, bool, bool);
-    /* 802F6D18 */ void place(JGeometry::TBox2<f32> const&);
-    /* 802F6F60 */ void move(f32, f32);
-    /* 802F6FB4 */ void add(f32, f32);
-    /* 802F6FF8 */ void resize(f32, f32);
-    /* 802F72E0 */ void search(u64);
-    /* 802F7388 */ void searchUserInfo(u64);
-    /* 802F7430 */ void isUsed(ResTIMG const*);
-    /* 802F74B8 */ void isUsed(ResFONT const*);
-    /* 802F7680 */ void setCullBack(_GXCullMode);
-    /* 802F8428 */ void setCullBack(bool);
-    /* 802F7EF4 */ void setAnimation(J2DAnmBase*);
-    /* 802F8080 */ void animationTransform(J2DAnmTransform const*);
-    /* 802F8118 */ void setVisibileAnimation(J2DAnmVisibilityFull*);
-    /* 802F81A0 */ void setVtxColorAnimation(J2DAnmVtxColor*);
-    /* 802F8228 */ void animationPane(J2DAnmTransform const*);
-    /* 802F83CC */ void rewriteAlpha();
-    /* 802F8464 */ void setConnectParent(bool);
-    /* 802F8474 */ void update();
-    /* 802F8478 */ void drawSelf(f32, f32);
-};
-
-struct J2DAnmTexPattern {};
-
-struct J2DAnmTevRegKey {};
-
-struct J2DAnmTextureSRTKey {};
-
-struct J2DAnmColor {};
-
-struct J2DMaterial {
-    /* 802EA1AC */ J2DMaterial();
-    /* 802EA2CC */ ~J2DMaterial();
-    /* 802EAA2C */ void setAnimation(J2DAnmTexPattern*);
-    /* 802EA94C */ void setAnimation(J2DAnmTextureSRTKey*);
-    /* 802EAB0C */ void setAnimation(J2DAnmTevRegKey*);
-    /* 802EA89C */ void setAnimation(J2DAnmColor*);
-    /* 802EAC78 */ void animation();
 };
 
 struct J2DWindowEx {
@@ -125,50 +32,6 @@ struct J2DTextBox {
     /* 802FF6D8 */ J2DTextBox(J2DPane*, JSURandomInputStream*, JKRArchive*);
     /* 802FF75C */ J2DTextBox(J2DPane*, JSURandomInputStream*, u32, J2DMaterial*);
 };
-
-struct J2DScrnBlockHeader {};
-
-struct J2DScreen {
-    /* 80053BA0 */ void clearAnmTransform();
-    /* 802F9704 */ void setAnimation(J2DAnmColor*);
-    /* 80192414 */ void setAnimation(J2DAnmTransform*);
-    /* 802F9798 */ void setAnimation(J2DAnmTextureSRTKey*);
-    /* 802F99A8 */ void setAnimation(J2DAnmVtxColor*);
-    /* 802F9838 */ void setAnimation(J2DAnmTexPattern*);
-    /* 802F99C8 */ void setAnimation(J2DAnmVisibilityFull*);
-    /* 802F98CC */ void setAnimation(J2DAnmTevRegKey*);
-    /* 802F9A54 */ void setAnimation(J2DAnmBase*);
-    /* 802F8498 */ J2DScreen();
-    /* 802F8540 */ ~J2DScreen();
-    /* 802F85A8 */ void clean();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
-    /* 802F8748 */ void setPriority(JSURandomInputStream*, u32, JKRArchive*);
-    /* 802F8778 */ void private_set(JSURandomInputStream*, u32, JKRArchive*);
-    /* 802F8834 */ void checkSignature(JSURandomInputStream*);
-    /* 802F8894 */ void getScreenInformation(JSURandomInputStream*);
-    /* 802F8990 */ void makeHierarchyPanes(J2DPane*, JSURandomInputStream*, u32, JKRArchive*);
-    /* 802F8B98 */ void createPane(J2DScrnBlockHeader const&, JSURandomInputStream*, J2DPane*, u32,
-                                   JKRArchive*);
-    /* 802F99E8 */ void createPane(J2DScrnBlockHeader const&, JSURandomInputStream*, J2DPane*, u32);
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-    /* 802F90A0 */ void search(u64);
-    /* 802F90E0 */ void searchUserInfo(u64);
-    /* 802F9120 */ void drawSelf(f32, f32, f32 (*)[3][4]);
-    /* 802F9280 */ void getResReference(JSURandomInputStream*, u32);
-    /* 802F937C */ void createMaterial(JSURandomInputStream*, u32, JKRArchive*);
-    /* 802F9600 */ void isUsed(ResTIMG const*);
-    /* 802F9620 */ void isUsed(ResFONT const*);
-    /* 802F9640 */ void getNameResource(char const*);
-    /* 802F9690 */ void animation();
-    /* 802F9A18 */ s32 getTypeID() const;
-    /* 802F9A20 */ void calcMtx();
-    /* 802F9A74 */ void setAnimationVF(J2DAnmVisibilityFull*);
-    /* 802F9A78 */ void setAnimationVC(J2DAnmVtxColor*);
-
-    static u8 mDataManage[4 + 4 /* padding */];
-};
-
-struct J2DResReference {};
 
 struct J2DPictureEx {
     /* 803036EC */ J2DPictureEx(J2DPane*, JSURandomInputStream*, u32, J2DMaterial*);
@@ -301,19 +164,9 @@ extern "C" void __ct__11J2DWindowExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMate
 extern "C" void __ct__12J2DPictureExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial();
 extern "C" void __ct__12J2DTextBoxExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial();
 extern "C" void get__13J2DDataManageFPCc();
-extern "C" void GXSetVtxDesc();
-extern "C" void GXSetVtxAttrFmt();
-extern "C" void GXSetNumTexGens();
-extern "C" void GXBegin();
-extern "C" void GXSetCullMode();
-extern "C" void GXSetChanCtrl();
 extern "C" void GXSetNumIndStages();
 extern "C" void GXSetTevDirect();
-extern "C" void GXSetTevOp();
 extern "C" void GXSetTevSwapModeTable();
-extern "C" void GXSetTevOrder();
-extern "C" void GXSetNumTevStages();
-extern "C" void GXSetBlendMode();
 extern "C" void GXSetScissor();
 extern "C" void GXGetScissor();
 extern "C" void __destroy_new_array();
@@ -416,7 +269,8 @@ asm J2DScreen::J2DScreen() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DScreen::~J2DScreen() {
+// asm J2DScreen::~J2DScreen() {
+extern "C" asm void __dt__9J2DScreenFv() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DScreen/__dt__9J2DScreenFv.s"
 }
@@ -589,7 +443,7 @@ asm void J2DScreen::createMaterial(JSURandomInputStream* param_0, u32 param_1,
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DScreen::isUsed(ResTIMG const* param_0) {
+asm bool J2DScreen::isUsed(ResTIMG const* param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DScreen/isUsed__9J2DScreenFPC7ResTIMG.s"
 }
@@ -599,7 +453,7 @@ asm void J2DScreen::isUsed(ResTIMG const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DScreen::isUsed(ResFONT const* param_0) {
+asm bool J2DScreen::isUsed(ResFONT const* param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DScreen/isUsed__9J2DScreenFPC7ResFONT.s"
 }

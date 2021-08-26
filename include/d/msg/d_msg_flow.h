@@ -4,9 +4,15 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
-struct mesg_flow_node_branch {};
+struct mesg_flow_node_branch {
+    /* 0x00 */ int field_0x0;
+    /* 0x04 */ u16 param;
+};
 
-struct mesg_flow_node_event {};
+struct mesg_flow_node_event {
+    /* 0x00 */ int field_0x0;
+    /* 0x04 */ u8 param;
+};
 
 struct mesg_flow_node {};
 
@@ -34,9 +40,9 @@ public:
     /* 8024AD54 */ void branchNodeProc(fopAc_ac_c*, fopAc_ac_c**);
     /* 8024ADEC */ void eventNodeProc(fopAc_ac_c*, fopAc_ac_c**);
     /* 8024AFF8 */ void nodeProc(fopAc_ac_c*, fopAc_ac_c**);
-    /* 8024B0F0 */ void getParam(u16*, u16*, u8*);
+    /* 8024B0F0 */ int getParam(u16*, u16*, u8*);
     /* 8024B108 */ void getParam(u8*, u8*);
-    /* 8024B130 */ void getParam(u8*);
+    /* 8024B130 */ int getParam(u8*);
     /* 8024B138 */ void query001(mesg_flow_node_branch*, fopAc_ac_c*, int);
     /* 8024B180 */ void query002(mesg_flow_node_branch*, fopAc_ac_c*, int);
     /* 8024B208 */ void query003(mesg_flow_node_branch*, fopAc_ac_c*, int);
@@ -90,11 +96,11 @@ public:
     /* 8024C340 */ void query051(mesg_flow_node_branch*, fopAc_ac_c*, int);
     /* 8024C3A0 */ void query052(mesg_flow_node_branch*, fopAc_ac_c*, int);
     /* 8024C3D4 */ void query053(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024C3FC */ void event000(mesg_flow_node_event*, fopAc_ac_c*);
-    /* 8024C488 */ void event001(mesg_flow_node_event*, fopAc_ac_c*);
-    /* 8024C514 */ void event002(mesg_flow_node_event*, fopAc_ac_c*);
-    /* 8024C550 */ void event003(mesg_flow_node_event*, fopAc_ac_c*);
-    /* 8024C590 */ void event004(mesg_flow_node_event*, fopAc_ac_c*);
+    /* 8024C3FC */ int event000(mesg_flow_node_event*, fopAc_ac_c*);
+    /* 8024C488 */ int event001(mesg_flow_node_event*, fopAc_ac_c*);
+    /* 8024C514 */ int event002(mesg_flow_node_event*, fopAc_ac_c*);
+    /* 8024C550 */ int event003(mesg_flow_node_event*, fopAc_ac_c*);
+    /* 8024C590 */ int event004(mesg_flow_node_event*, fopAc_ac_c*);
     /* 8024C5F0 */ void event005(mesg_flow_node_event*, fopAc_ac_c*);
     /* 8024C654 */ void event006(mesg_flow_node_event*, fopAc_ac_c*);
     /* 8024C694 */ void event007(mesg_flow_node_event*, fopAc_ac_c*);

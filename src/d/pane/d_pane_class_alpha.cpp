@@ -8,53 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct JKRHeap {
-    /* 802CE4D4 */ void alloc(u32, int);
-    /* 802CE548 */ void free(void*);
-};
-
-struct JKRExpHeap {};
-
-struct J2DScreen {};
-
-struct J2DPane {
-    /* 802F7A8C */ void getFirstChildPane();
-    /* 802F7AC4 */ void getNextChildPane();
-};
-
-struct CPaneMgrAlphaMorf {
-    /* 80255C68 */ CPaneMgrAlphaMorf(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 80255CAC */ ~CPaneMgrAlphaMorf();
-    /* 80255D48 */ void initiateAlphaMorf();
-    /* 80255DD0 */ void setBackupAlpha();
-    /* 80255E28 */ void setAlphaMorfRate(f32);
-    /* 80255E98 */ void childPaneBackupAlpha(J2DPane*);
-    /* 80255F28 */ void childPaneSetAlphaMorf(J2DPane*, f32);
-};
-
-struct CPaneMgrAlpha {
-    /* 802553EC */ CPaneMgrAlpha();
-    /* 802553FC */ CPaneMgrAlpha(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 8025546C */ ~CPaneMgrAlpha();
-    /* 802554E0 */ void initiateAlpha(J2DPane*, JKRExpHeap*);
-    /* 802555C8 */ void show();
-    /* 80255608 */ void hide();
-    /* 8025564C */ void isVisible();
-    /* 80255658 */ void rateCalc(s16, s16, u8);
-    /* 80255758 */ void setAlpha(u8);
-    /* 802557D0 */ void setAlphaRate(f32);
-    /* 80255828 */ void getAlphaRate();
-    /* 80255878 */ void alphaAnime(s16, u8, u8, u8);
-    /* 80255964 */ void alphaAnimeLoop(s16, u8, u8, u8);
-    /* 80255A60 */ void childPaneCount(J2DPane*);
-    /* 80255ACC */ void childPaneGetAlpha(J2DPane*);
-    /* 80255B5C */ void childPaneSetAlpha(J2DPane*, u8);
-};
-
-//
 // Forward References:
 //
 

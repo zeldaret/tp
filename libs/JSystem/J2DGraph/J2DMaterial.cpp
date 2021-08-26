@@ -13,10 +13,6 @@
 
 struct _GXTlut {};
 
-struct _GXColorS10 {};
-
-struct _GXColor {};
-
 struct ResTIMG {};
 
 struct JUtility {
@@ -80,43 +76,6 @@ struct J2DTevBlock {
 struct J2DPEBlock {
     /* 802F17FC */ void initialize();
     /* 802F1840 */ void setGX();
-};
-
-struct J2DAnmTexPattern {
-    /* 8030BEE8 */ void getTexNo(u16, u16*) const;
-    /* 8030BF9C */ void getResTIMG(u16) const;
-    /* 8030BFF0 */ void getPalette(u16) const;
-};
-
-struct J2DAnmTevRegKey {
-    /* 8030C0F0 */ void getTevColorReg(u16, _GXColorS10*) const;
-    /* 8030C3B4 */ void getTevKonstReg(u16, _GXColor*) const;
-};
-
-struct J2DAnmTextureSRTKey {
-    /* 8030B9F0 */ void calcTransform(f32, u16, J3DTextureSRTInfo*) const;
-};
-
-struct J2DAnmColor {
-    /* 802EB390 */ void getColor(u16, _GXColor*) const;
-};
-
-struct J2DMaterial {
-    struct J2DMaterialAnmPointer {
-        /* 802EA79C */ J2DMaterialAnmPointer();
-    };
-
-    /* 802EA1AC */ J2DMaterial();
-    /* 802EA2CC */ ~J2DMaterial();
-    /* 802EA38C */ void setGX();
-    /* 802EA410 */ void createTevBlock(int, bool);
-    /* 802EA5C4 */ void createIndBlock(int, bool);
-    /* 802EA84C */ void makeAnmPointer();
-    /* 802EA94C */ void setAnimation(J2DAnmTextureSRTKey*);
-    /* 802EAA2C */ void setAnimation(J2DAnmTexPattern*);
-    /* 802EAB0C */ void setAnimation(J2DAnmTevRegKey*);
-    /* 802EA89C */ void setAnimation(J2DAnmColor*);
-    /* 802EAC78 */ void animation();
 };
 
 struct J2DIndTexOrder {

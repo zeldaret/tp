@@ -5,6 +5,12 @@
 
 struct SVec {
     s16 x, y, z;
+
+    void set(s16 oX, s16 oY, s16 oZ) {
+        x = oX;
+        y = oY;
+        z = oZ;
+    }
 };
 class csXyz : public SVec {
 public:
