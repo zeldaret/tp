@@ -98,7 +98,7 @@ public:
 
     static f32 static_mBounds[4];
 
-private:
+public:
     /* 0x04 */ u16 _4;
     /* 0x06 */ u8 _6[2];
     /* 0x08 */ int id;

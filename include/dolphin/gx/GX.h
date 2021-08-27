@@ -313,6 +313,12 @@ struct _GXTexObj {
     u8 texture_flags;
 };
 
+struct _GXTlutObj {
+    u32 format;
+    u32 address;
+    u32 numEntries;
+};
+
 typedef enum GXTexFmt8 { /* 8-bit version of GXTexFmt for use in structures */
                          GX_CTF_A8 = 39,
                          GX_CTF_B8 = 42,
@@ -341,11 +347,45 @@ typedef enum GXTexFmt8 { /* 8-bit version of GXTexFmt for use in structures */
                          GX_TF_Z8 = 17
 } GXTexFmt8;
 
+typedef enum GXTexFmt {
+    _GX_TF_I4,
+    _GX_TF_I8,
+    _GX_TF_IA4,
+    _GX_TF_IA8,
+    _GX_TF_RGB565,
+    _GX_TF_TGB5A3,
+    _GX_TF_RGBA8,
+    _GX_TF_CMPR = 14,
+    _GX_TF_Z8 = 17,
+    _GX_TF_Z16 = 19,
+    _GX_TF_Z24X8 = 22,
+    _GX_CTF_R4 = 32,
+    _GX_CTF_RA4 = 34,
+    _GX_CTF_RA8,
+    _GX_CTF_YUVA8 = 38,
+    _GX_CTF_A8,
+    _GX_CTF_R8,
+    _GX_CTF_G8,
+    _GX_CTF_B8,
+    _GX_CTF_RG8,
+    _GX_CTF_GB8,
+    _GX_CTF_Z4 = 48,
+    _GX_CTF_Z8M = 57,
+    _GX_CTF_Z8L,
+    _GX_CTF_Z16L = 60
+} GXTexFmt;
+
 typedef enum GXTexWrapMode8 { /* Same as GXTexWrapMode, but as 1 byte for use inside structures */
                               GX_CLAMP = 0,
                               GX_MIRROR = 2,
                               GX_REPEAT = 1
 } GXTexWrapMode8;
+
+typedef enum GXTexWrapMode {
+    _GX_CLAMP,
+    _GX_REPEAT,
+    _GX_MIRROR,
+} GXTexWrapMode;
 
 typedef enum GXTexFilter8 { /* Same as GXTexFilter, but as 1 byte for use within structures that
                                store the value as a byte */
@@ -357,14 +397,37 @@ typedef enum GXTexFilter8 { /* Same as GXTexFilter, but as 1 byte for use within
                             GX_NEAR_MIP_NEAR = 2
 } GXTexFilter8;
 
+typedef enum GXTexFilter {
+    _GX_NEAR,
+    _GX_LINEAR,
+    _GX_NEAR_MIP_NEAR,
+    _GX_LIN_MIP_NEAR,
+    _GX_NEAR_MIP_LIN,
+    _GX_LIN_MIP_LIN,
+} GXTexFilter;
+
+typedef enum GXAnisotropy {
+    GX_ANISO_1,
+    GX_ANISO_2,
+    GX_ANISO_4,
+} GXAnisotropy;
+
+typedef enum GXTlutFmt {
+    GX_TL_IA8,
+    GX_TL_RGB565,
+    GX_TL_RGB5A3,
+} GXTlutFmt;
+
 extern "C" {
 f32 GXGetYScaleFactor(u16 efb_height, u16 xfb_height);
 u16 GXGetNumXfbLines(u32 efb_height, f32 y_scale);
 
 void GXBegin(u8, u8, u16);
-void GXLoadTexObj(u32*, s32);
-void GXInitTexObjLOD(f32, f32, f32, u32*, s32, s32, u32, u8, u32);
-void GXInitTexObj(u32*, u32, u32, u32, u32, u32, u8);
+void GXLoadTexObj(_GXTexObj*, _GXTexMapID);
+void GXInitTexObjLOD(_GXTexObj, GXTexFilter, GXTexFilter, f32, f32, f32, s32, s32, GXAnisotropy);
+void GXInitTexObj(_GXTexObj, void*, u16, u16, GXTexFmt, GXTexWrapMode, GXTexWrapMode, s32);
+void GXInitTlutObj(_GXTlutObj*, void*, GXTlutFmt, u16);
+void GXLoadTlut(_GXTlutObj*, u32);
 
 void GXSetNumChans(u32);
 void GXSetNumTevStages(u32);

@@ -55,10 +55,6 @@ struct J2DMaterialFactory {
                                JKRArchive*) const;
 };
 
-struct J2DDataManage {
-    /* 8030CE18 */ void get(char const*);
-};
-
 //
 // Forward References:
 //
@@ -277,14 +273,23 @@ extern "C" asm void __dt__9J2DScreenFv() {
 #pragma pop
 
 /* 802F85A8-802F8648 2F2EE8 00A0+00 3/3 0/0 0/0 .text            clean__9J2DScreenFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DScreen::clean() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DScreen/clean__9J2DScreenFv.s"
+void J2DScreen::clean() {
+    delete[] mMaterials;
+    mMaterialNum = 0;
+    mMaterials = NULL;
+
+    delete[] field_0x108;
+    field_0x108 = NULL;
+
+    delete[] field_0x10c;
+    field_0x10c = NULL;
+
+    if (mNameTable != NULL) {
+        delete[] mNameTable->getResNameTable();
+        delete mNameTable;
+        mNameTable = NULL;
+    }
 }
-#pragma pop
 
 /* 802F8648-802F8748 2F2F88 0100+00 0/0 58/58 4/4 .text setPriority__9J2DScreenFPCcUlP10JKRArchive
  */
@@ -299,21 +304,20 @@ asm void J2DScreen::setPriority(char const* param_0, u32 param_1, JKRArchive* pa
 
 /* 802F8748-802F8778 2F3088 0030+00 1/1 1/1 0/0 .text
  * setPriority__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DScreen::setPriority(JSURandomInputStream* param_0, u32 param_1, JKRArchive* param_2) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DScreen/setPriority__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive.s"
+bool J2DScreen::setPriority(JSURandomInputStream* param_0, u32 param_1, JKRArchive* param_2) {
+    if (param_2 == NULL) {
+        return false;
+    } else {
+        return private_set(param_0, param_1, param_2);
+    }
 }
-#pragma pop
 
 /* 802F8778-802F8834 2F30B8 00BC+00 1/1 0/0 0/0 .text
  * private_set__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DScreen::private_set(JSURandomInputStream* param_0, u32 param_1, JKRArchive* param_2) {
+asm bool J2DScreen::private_set(JSURandomInputStream* param_0, u32 param_1, JKRArchive* param_2) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DScreen/private_set__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive.s"
 }
@@ -321,14 +325,27 @@ asm void J2DScreen::private_set(JSURandomInputStream* param_0, u32 param_1, JKRA
 
 /* 802F8834-802F8894 2F3174 0060+00 1/1 0/0 0/0 .text
  * checkSignature__9J2DScreenFP20JSURandomInputStream           */
+#ifdef NONMATCHING
+bool J2DScreen::checkSignature(JSURandomInputStream* param_0) {
+    int tag;
+    param_0->read(&tag, 32);
+
+    if (tag == 'SCRN' && (tag2 == 'blo1' || tag2 == 'blo2')) {
+        return true;
+    } else {
+        return false;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DScreen::checkSignature(JSURandomInputStream* param_0) {
+asm bool J2DScreen::checkSignature(JSURandomInputStream* param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DScreen/checkSignature__9J2DScreenFP20JSURandomInputStream.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80456230-80456238 004830 0008+00 1/1 0/0 0/0 .sdata2          @1705 */
@@ -390,7 +407,7 @@ asm void J2DScreen::draw(f32 param_0, f32 param_1, J2DGrafContext const* param_2
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DScreen::search(u64 param_0) {
+asm const J2DPane* J2DScreen::search(u64 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DScreen/search__9J2DScreenFUx.s"
 }
@@ -400,7 +417,7 @@ asm void J2DScreen::search(u64 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DScreen::searchUserInfo(u64 param_0) {
+asm const J2DPane* J2DScreen::searchUserInfo(u64 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DScreen/searchUserInfo__9J2DScreenFUx.s"
 }
@@ -440,34 +457,24 @@ asm void J2DScreen::createMaterial(JSURandomInputStream* param_0, u32 param_1,
 #pragma pop
 
 /* 802F9600-802F9620 2F3F40 0020+00 1/0 0/0 0/0 .text            isUsed__9J2DScreenFPC7ResTIMG */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DScreen::isUsed(ResTIMG const* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DScreen/isUsed__9J2DScreenFPC7ResTIMG.s"
+bool J2DScreen::isUsed(ResTIMG const* param_0) {
+    return J2DPane::isUsed(param_0);
 }
-#pragma pop
 
 /* 802F9620-802F9640 2F3F60 0020+00 1/0 0/0 0/0 .text            isUsed__9J2DScreenFPC7ResFONT */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DScreen::isUsed(ResFONT const* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DScreen/isUsed__9J2DScreenFPC7ResFONT.s"
+bool J2DScreen::isUsed(ResFONT const* param_0) {
+    return J2DPane::isUsed(param_0);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451590-80451598 000A90 0004+04 1/1 3/3 0/0 .sbss            mDataManage__9J2DScreen */
-u8 J2DScreen::mDataManage[4 + 4 /* padding */];
+J2DDataManage* J2DScreen::mDataManage;
 
 /* 802F9640-802F9690 2F3F80 0050+00 0/0 6/6 0/0 .text            getNameResource__9J2DScreenFPCc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DScreen::getNameResource(char const* param_0) {
+asm void* J2DScreen::getNameResource(char const* param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DScreen/getNameResource__9J2DScreenFPCc.s"
 }
@@ -528,37 +535,22 @@ asm void J2DScreen::setAnimation(J2DAnmTevRegKey* param_0) {
 
 /* 802F99A8-802F99C8 2F42E8 0020+00 1/0 0/0 0/0 .text setAnimation__9J2DScreenFP14J2DAnmVtxColor
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DScreen::setAnimation(J2DAnmVtxColor* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DScreen/setAnimation__9J2DScreenFP14J2DAnmVtxColor.s"
+void J2DScreen::setAnimation(J2DAnmVtxColor* param_0) {
+    J2DPane::setVtxColorAnimation(param_0);
 }
-#pragma pop
 
 /* 802F99C8-802F99E8 2F4308 0020+00 1/0 0/0 0/0 .text
  * setAnimation__9J2DScreenFP20J2DAnmVisibilityFull             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DScreen::setAnimation(J2DAnmVisibilityFull* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DScreen/setAnimation__9J2DScreenFP20J2DAnmVisibilityFull.s"
+void J2DScreen::setAnimation(J2DAnmVisibilityFull* param_0) {
+    J2DPane::setVisibileAnimation(param_0);
 }
-#pragma pop
 
 /* 802F99E8-802F9A18 2F4328 0030+00 1/0 0/0 0/0 .text
  * createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DScreen::createPane(J2DScrnBlockHeader const& param_0, JSURandomInputStream* param_1,
-                               J2DPane* param_2, u32 param_3) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DScreen/createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl.s"
+void J2DScreen::createPane(J2DScrnBlockHeader const& param_0, JSURandomInputStream* param_1,
+                           J2DPane* param_2, u32 param_3) {
+    createPane(param_0, param_1, param_2, param_3, NULL);
 }
-#pragma pop
 
 /* 802F9A18-802F9A20 2F4358 0008+00 1/0 0/0 0/0 .text            getTypeID__9J2DScreenCFv */
 s32 J2DScreen::getTypeID() const {
@@ -566,24 +558,14 @@ s32 J2DScreen::getTypeID() const {
 }
 
 /* 802F9A20-802F9A54 2F4360 0034+00 1/0 0/0 0/0 .text            calcMtx__9J2DScreenFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DScreen::calcMtx() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DScreen/calcMtx__9J2DScreenFv.s"
+void J2DScreen::calcMtx() {
+    makeMatrix(mTranslateX, mTranslateY);
 }
-#pragma pop
 
 /* 802F9A54-802F9A74 2F4394 0020+00 1/0 0/0 0/0 .text setAnimation__9J2DScreenFP10J2DAnmBase */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DScreen::setAnimation(J2DAnmBase* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DScreen/setAnimation__9J2DScreenFP10J2DAnmBase.s"
+void J2DScreen::setAnimation(J2DAnmBase* param_0) {
+    J2DPane::setAnimation(param_0);
 }
-#pragma pop
 
 /* 802F9A74-802F9A78 2F43B4 0004+00 1/0 0/0 0/0 .text
  * setAnimationVF__9J2DScreenFP20J2DAnmVisibilityFull           */

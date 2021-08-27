@@ -8,24 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct JSUInputStream {
-    /* 802DC298 */ void read(void*, s32);
-};
-
-struct J2DResReference {
-    /* 8030CF10 */ void getResReference(u16) const;
-    /* 8030CF44 */ void getName(u16) const;
-};
-
-struct J2DDataManage {
-    /* 8030CE18 */ void get(char const*);
-    /* 8030CE7C */ void get(JSUInputStream*);
-};
-
-//
 // Forward References:
 //
 

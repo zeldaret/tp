@@ -332,7 +332,6 @@ extern "C" void GXGetTexObjHeight();
 extern "C" void GXGetTexObjWrapS();
 extern "C" void GXGetTexObjWrapT();
 extern "C" void GXGetTexObjTlut();
-extern "C" void GXLoadTlut();
 extern "C" void GXSetNumIndStages();
 extern "C" void GXSetTevSwapModeTable();
 extern "C" void GXSetAlphaCompare();
