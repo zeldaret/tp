@@ -27,19 +27,6 @@ struct mDoGph_gInf_c {
     static u8 m_bloom[20];
 };
 
-struct J3DMaterialTable {};
-
-struct J3DAnmTextureSRTKey {};
-
-struct mDoExt_btkAnm {
-    /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
-    /* 8000D6D8 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct mDoExt_baseAnm {
-    /* 8000D428 */ void play();
-};
-
 struct daPy_py_c {
     /* 8015F424 */ void checkNowWolfEyeUp();
 };
@@ -73,38 +60,6 @@ struct dStage_roomControl_c {
     static u8 mStatus[65792];
 };
 
-struct J3DModelData {
-    /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
-};
-
-struct dScnKy_env_light_c {
-    /* 8019F2E8 */ dScnKy_env_light_c();
-    /* 8019F4FC */ void setDaytime();
-    /* 8019F788 */ void setSunpos();
-    /* 8019FA08 */ void getDaytime();
-    /* 8019FBCC */ void getDarkDaytime();
-    /* 8019FBD4 */ void setLight_palno_get(u8*, u8*, u8*, u8*, u8*, u8*, u8*, u8*, f32*, int*, int*,
-                                           f32*, u8*);
-    /* 801A040C */ void setLight();
-    /* 801A133C */ void setLight_bg(dKy_tevstr_c*, _GXColorS10*, _GXColorS10*, f32*, f32*);
-    /* 801A16C0 */ void setLight_actor(dKy_tevstr_c*, _GXColorS10*, f32*, f32*);
-    /* 801A1D64 */ void settingTevStruct_colget_actor(cXyz*, dKy_tevstr_c*, _GXColorS10*,
-                                                      _GXColorS10*, f32*, f32*);
-    /* 801A1F58 */ void settingTevStruct_colget_player(dKy_tevstr_c*);
-    /* 801A2128 */ void settingTevStruct_plightcol_plus(cXyz*, dKy_tevstr_c*, _GXColorS10,
-                                                        _GXColorS10, u8);
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A441C */ void setLightTevColorType(J3DModelData*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-    /* 801A4E90 */ void CalcTevColor();
-    /* 801A4F24 */ void Sndpos();
-    /* 801A4F64 */ void Eflight_flush_proc();
-    /* 801A516C */ void SetBaseLight();
-    /* 801A5288 */ void exeKankyo();
-    /* 801A56DC */ void drawKankyo();
-    /* 801ADBBC */ ~dScnKy_env_light_c();
-};
-
 struct dRes_info_c {};
 
 struct dRes_control_c {
@@ -112,8 +67,6 @@ struct dRes_control_c {
 };
 
 struct dPa_levelEcallBack {};
-
-struct csXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -174,58 +127,25 @@ struct Z2AudioMgr {
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
-struct WIND_INF_ENTITY {
-    /* 8019F4B8 */ ~WIND_INF_ENTITY();
-    /* 8019F4F4 */ WIND_INF_ENTITY();
-};
-
 struct JUTNameTab {
     /* 802DEAF8 */ void getName(u16) const;
-};
-
-struct JPABaseEmitter {
-    /* 8027EC60 */ void deleteAllParticle();
 };
 
 struct JMath {
     static u8 sincosTable_[65536];
 };
 
-struct JKRSolidHeap {};
-
 struct J3DTexMtxInfo {
     /* 80325794 */ void setEffectMtx(f32 (*)[4]);
 };
-
-struct J3DModel {};
 
 struct J3DMaterial {};
 
 struct J3DGXColor {};
 
-struct J3DFrameCtrl {
-    /* 803283FC */ void init(s16);
-};
-
 struct J3DColorBlock {
     /* 801A4C08 */ void setLight(u32, J3DLightObj*);
     /* 801A4C0C */ void setAmbColor(u32, J3DGXColor const*);
-};
-
-struct GB_MAPLE_COL_CHANGE {
-    /* 8019F400 */ GB_MAPLE_COL_CHANGE();
-};
-
-struct DUNGEON_LIGHT {
-    /* 8019F478 */ ~DUNGEON_LIGHT();
-    /* 8019F4B4 */ DUNGEON_LIGHT();
-};
-
-struct DALKMIST_INFLUENCE {};
-
-struct BOSS_LIGHT {
-    /* 8019F438 */ ~BOSS_LIGHT();
-    /* 8019F474 */ BOSS_LIGHT();
 };
 
 //
@@ -435,7 +355,6 @@ extern "C" extern u8 struct_80451070[8];
 
 SECTION_INIT void memset();
 SECTION_INIT void memcpy();
-extern "C" void OSReport_Warning();
 extern "C" void mDoAud_setSceneName__FPCcll();
 extern "C" void __dt__4cXyzFv();
 extern "C" void create__Q213mDoGph_gInf_c7bloom_cFv();
@@ -516,11 +435,6 @@ extern "C" void __as__12J3DLightInfoFRC12J3DLightInfo();
 extern "C" void setEffectMtx__13J3DTexMtxInfoFPA4_f();
 extern "C" void simpleCalcMaterial__12J3DModelDataFUsPA4_f();
 extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXConcat();
-extern "C" void PSMTXTrans();
-extern "C" void C_MTXLightPerspective();
-extern "C" void PSMTXMultVec();
 extern "C" void GXInitLightAttn();
 extern "C" void GXInitLightSpot();
 extern "C" void GXInitLightDistAttn();
@@ -577,7 +491,6 @@ extern "C" u8 mStatus__20dStage_roomControl_c[65792];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 g_Counter[12 + 4 /* padding */];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 extern "C" extern u8 struct_80450D64[4];
@@ -1714,14 +1627,9 @@ asm void dScnKy_env_light_c::setSunpos() {
 
 /* 8019FA08-8019FA10 19A348 0008+00 3/3 5/5 1/1 .text            getDaytime__18dScnKy_env_light_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dScnKy_env_light_c::getDaytime() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/getDaytime__18dScnKy_env_light_cFv.s"
+f32 dScnKy_env_light_c::getDaytime() {
+    return mDaytime;
 }
-#pragma pop
 
 /* 8019FA10-8019FA3C 19A350 002C+00 2/2 2/2 32/32 .text            dKy_getdaytime_hour__Fv */
 #pragma push
@@ -3596,7 +3504,8 @@ asm void dKy_bg_MAxx_proc(void* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dScnKy_env_light_c::~dScnKy_env_light_c() {
+// asm dScnKy_env_light_c::~dScnKy_env_light_c() {
+extern "C" asm void __dt__18dScnKy_env_light_cFv() {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/__dt__18dScnKy_env_light_cFv.s"
 }

@@ -7,6 +7,7 @@
 class JPABaseParticle;
 
 struct JPABaseEmitter {
+    /* 8027EC60 */ void deleteAllParticle();
     /* 8027EB60 */ void createChild(JPABaseParticle*);
     /* 8027EA40 */ void createParticle();
     /* 8027EF30 */ void getCurrentCreateNumber() const;

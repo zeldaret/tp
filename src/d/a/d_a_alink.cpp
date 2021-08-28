@@ -563,11 +563,6 @@ struct daAlinkHIO_atnMove_c0 {
     static u8 const m[84];
 };
 
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
 struct dPa_control_c {
     struct level_c {
         /* 8004B8B4 */ void forceOnEventMove(u32);

@@ -96,6 +96,10 @@ private:
 
 class Z2CreatureRide {
 public:
+    Z2CreatureRide();
+    ~Z2CreatureRide();
+    void deleteObject();
+    void init(Vec*, Vec*, u8, u8);
     void setLinkRiding(bool);
 
 private:

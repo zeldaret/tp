@@ -19,10 +19,6 @@ struct mDoGph_gInf_c {
     static u8 mFrameBufferTimg[4];
 };
 
-struct JKRHeap {
-    /* 802CE500 */ void free(void*, JKRHeap*);
-};
-
 struct mDoDvdThd_toMainRam_c {
     /* 80016394 */ void create(char const*, u8, JKRHeap*);
 };
@@ -122,11 +118,6 @@ struct dPa_name {
 struct dPa_modelPcallBack {
     /* 8004A460 */ void draw(JPABaseEmitter*, JPABaseParticle*);
     /* 80050038 */ ~dPa_modelPcallBack();
-};
-
-struct J3DModelData {
-    /* 803260CC */ void syncJ3DSysPointers() const;
-    /* 803260F8 */ void syncJ3DSysFlags() const;
 };
 
 struct dPa_modelEcallBack {
@@ -311,12 +302,6 @@ struct JMath {
     static u8 sincosTable_[65536];
 };
 
-struct JKRSolidHeap {};
-
-struct JKRExpHeap {
-    /* 802CEE2C */ void create(u32, JKRHeap*, bool);
-};
-
 struct J3DUClipper {
     /* 802738FC */ void clip(f32 const (*)[4], Vec, f32) const;
 };
@@ -325,29 +310,10 @@ struct J3DTexture {
     /* 8031204C */ void loadGX(u16, _GXTexMapID) const;
 };
 
-struct J3DSys {
-    /* 8031073C */ void reinitGX();
-};
-
 struct J3DShape {
     /* 80315300 */ void loadPreDrawSetting() const;
 
     static u8 sOldVcdVatCmd[4];
-};
-
-struct J3DAnmTexPattern {
-    /* 8032B09C */ void searchUpdateMaterialID(J3DModelData*);
-};
-
-struct J3DAnmTevRegKey {
-    /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
-};
-
-struct J3DMaterialTable {
-    /* 8032F6F8 */ void removeTexNoAnimator(J3DAnmTexPattern*);
-    /* 8032F880 */ void removeTevRegAnimator(J3DAnmTevRegKey*);
-    /* 8032FBC8 */ void entryTexNoAnimator(J3DAnmTexPattern*);
-    /* 8032FE70 */ void entryTevRegAnimator(J3DAnmTevRegKey*);
 };
 
 //
@@ -524,7 +490,6 @@ extern "C" u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
 // External References:
 //
 
-extern "C" void OSReport();
 extern "C" void mDoExt_getArchiveHeap__Fv();
 extern "C" void mDoExt_createSolidHeapFromGame__FUlUl();
 extern "C" void mDoExt_createSolidHeapFromSystem__FUlUl();
@@ -607,7 +572,6 @@ extern "C" void removeTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern();
 extern "C" void removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
 extern "C" void entryTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern();
 extern "C" void entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
-extern "C" void PSMTXMultVec();
 extern "C" void GXClearVtxDesc();
 extern "C" void GXInvalidateVtxCache();
 extern "C" void GXSetTexCoordGen2();
@@ -663,7 +627,6 @@ extern "C" u8 s_o_id__8dPa_name[28];
 extern "C" u8 mClipper__14mDoLib_clipper[92];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 g_whiteColor;
 extern "C" extern u32 __float_nan;

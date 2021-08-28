@@ -21,8 +21,6 @@ struct dEvt_control_c {
     /* 800434D8 */ void searchMapEventData(u8);
 };
 
-struct JKRHeap {};
-
 struct JKRExpandSwitch {};
 
 struct JKRArchive {
@@ -75,7 +73,6 @@ extern "C" void __mi__4cXyzCFRC3Vec();
 extern "C" void aramToMainRam__7JKRAramFUlPUcUl15JKRExpandSwitchUlP7JKRHeapiPUl();
 extern "C" void findFsResource__10JKRArchiveCFPCcUl();
 extern "C" void getAramAddress__14JKRAramArchiveFPCc();
-extern "C" void PSMTXMultVec();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];

@@ -16,10 +16,6 @@ struct Z2SpeechMgr2 {
     /* 802CC9D0 */ void framework();
 };
 
-struct Z2SoundObjMgr {
-    /* 802BF920 */ Z2SoundObjMgr();
-};
-
 struct Z2SoundMgr {
     /* 802A9E80 */ Z2SoundMgr();
     /* 802AA67C */ void framework();
@@ -132,13 +128,6 @@ struct JASGenericMemPool {
 
 struct JASDriver {
     /* 8029E178 */ void setOutputMode(u32);
-};
-
-struct JASAudioReseter {
-    /* 8029D0B4 */ JASAudioReseter();
-    /* 8029D138 */ void start(u32, bool);
-    /* 8029D1D4 */ void resume();
-    /* 8029D1F8 */ void checkDone() const;
 };
 
 struct JASAramStream {
