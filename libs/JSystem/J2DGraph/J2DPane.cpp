@@ -11,143 +11,8 @@
 // Types:
 //
 
-struct _GXCullMode {};
-
-struct ResTIMG {};
-
-struct ResFONT {};
-
-struct JSUInputStream {
-    /* 802DC298 */ void read(void*, s32);
-};
-
-struct JKRArchive {};
-
 struct JUTResReference {
     /* 802DE078 */ void getResource(JSUInputStream*, u32, JKRArchive*);
-};
-
-struct JSUStreamSeekFrom {};
-
-struct JSURandomInputStream {
-    /* 802DC370 */ void align(s32);
-    /* 802DC458 */ void peek(void*, s32);
-    /* 802DC4DC */ void seek(s32, JSUStreamSeekFrom);
-};
-
-struct JSUPtrLink {
-    /* 802DBDFC */ JSUPtrLink(void*);
-    /* 802DBE14 */ ~JSUPtrLink();
-};
-
-struct JSUPtrList {
-    /* 802DBEAC */ ~JSUPtrList();
-    /* 802DBF14 */ void initiate();
-    /* 802DBF4C */ void append(JSUPtrLink*);
-    /* 802DC094 */ void insert(JSUPtrLink*, JSUPtrLink*);
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TBox2 {};
-    /* TBox2<f32> */
-    struct TBox2__template0 {};
-};
-
-struct J2DScreen {
-    static u8 mDataManage[4 + 4 /* padding */];
-};
-
-struct J2DRotateAxis {};
-
-struct J2DAnmVisibilityFull {};
-
-struct J2DAnmBase {};
-
-struct J2DAnmTexPattern {};
-
-struct J2DAnmColor {};
-
-struct J2DAnmTevRegKey {};
-
-struct J2DGrafContext {
-    /* 802E8E20 */ void setScissor();
-    /* 802E90C0 */ void scissor(JGeometry::TBox2<f32> const&);
-};
-
-struct J2DBasePosition {};
-
-struct J2DAnmTextureSRTKey {};
-
-struct J2DAnmVtxColor {};
-
-struct J2DAnmTransform {};
-
-struct J2DPane {
-    /* 80053BC0 */ void calcMtx();
-    /* 80053C00 */ void makeMatrix(f32, f32);
-    /* 802F7540 */ void makeMatrix(f32, f32, f32, f32);
-    /* 80053C3C */ s32 getTypeID() const;
-    /* 80256018 */ void setAnimation(J2DAnmVtxColor*);
-    /* 8025601C */ void setAnimation(J2DAnmVisibilityFull*);
-    /* 80256020 */ void setAnimation(J2DAnmTexPattern*);
-    /* 8018BF28 */ void setAnimation(J2DAnmTextureSRTKey*);
-    /* 802F7FC4 */ void setAnimation(J2DAnmTransform*);
-    /* 80126350 */ void setAnimation(J2DAnmTevRegKey*);
-    /* 80126354 */ void setAnimation(J2DAnmColor*);
-    /* 802F7EF4 */ void setAnimation(J2DAnmBase*);
-    /* 802F5E88 */ J2DPane(u64, JGeometry::TBox2<f32> const&);
-    /* 802F5F9C */ J2DPane(J2DPane*, JSURandomInputStream*, u8);
-    /* 802F5BF8 */ J2DPane();
-    /* 802F5D40 */ J2DPane(J2DPane*, bool, u64, JGeometry::TBox2<f32> const&);
-    /* 802F5CB8 */ void initiate();
-    /* 802F5F08 */ void initialize(u64, JGeometry::TBox2<f32> const&);
-    /* 802F5DD0 */ void initialize(J2DPane*, bool, u64, JGeometry::TBox2<f32> const&);
-    /* 802F60C4 */ void makePaneStream(J2DPane*, JSURandomInputStream*);
-    /* 802F63F8 */ void changeUseTrans(J2DPane*);
-    /* 802F658C */ ~J2DPane();
-    /* 802F666C */ void appendChild(J2DPane*);
-    /* 802F6714 */ void insertChild(J2DPane*, J2DPane*);
-    /* 802F67E0 */ void draw(f32, f32, J2DGrafContext const*, bool, bool);
-    /* 802F6D18 */ void place(JGeometry::TBox2<f32> const&);
-    /* 802F6F60 */ void move(f32, f32);
-    /* 802F6FB4 */ void add(f32, f32);
-    /* 802F6FF8 */ void resize(f32, f32);
-    /* 802F7100 */ void getBounds();
-    /* 802F720C */ void rotate(f32);
-    /* 802F71DC */ void rotate(f32, f32, J2DRotateAxis, f32);
-    /* 802F7264 */ void clip(JGeometry::TBox2<f32> const&);
-    /* 802F72E0 */ void search(u64);
-    /* 802F7388 */ void searchUserInfo(u64);
-    /* 802F7430 */ void isUsed(ResTIMG const*);
-    /* 802F74B8 */ void isUsed(ResFONT const*);
-    /* 802F7680 */ void setCullBack(_GXCullMode);
-    /* 802F8428 */ void setCullBack(bool);
-    /* 802F76F8 */ void setBasePosition(J2DBasePosition);
-    /* 802F77D0 */ void setInfluencedAlpha(bool, bool);
-    /* 802F79A8 */ void getGlbVtx(u8) const;
-    /* 802F7A8C */ void getFirstChildPane();
-    /* 802F7AC4 */ void getNextChildPane();
-    /* 802F7AFC */ void getParentPane();
-    /* 802F7B18 */ void makePaneExStream(J2DPane*, JSURandomInputStream*);
-    /* 802F7D00 */ void J2DCast_F32_to_S16(f32, u8);
-    /* 802F7DB8 */ void getPointer(JSURandomInputStream*, u32, JKRArchive*);
-    /* 802F8080 */ void animationTransform(J2DAnmTransform const*);
-    /* 802F7FCC */ void animationTransform();
-    /* 802F8004 */ void clearAnmTransform();
-    /* 802F8118 */ void setVisibileAnimation(J2DAnmVisibilityFull*);
-    /* 802F81A0 */ void setVtxColorAnimation(J2DAnmVtxColor*);
-    /* 802F8228 */ void animationPane(J2DAnmTransform const*);
-    /* 802F82C0 */ void updateTransform(J2DAnmTransform const*);
-    /* 802F83C8 */ void drawSelf(f32, f32, f32 (*)[3][4]);
-    /* 802F8478 */ void drawSelf(f32, f32);
-    /* 802F83CC */ void rewriteAlpha();
-    /* 802F83D0 */ void setAnimationVF(J2DAnmVisibilityFull*);
-    /* 802F83FC */ void setAnimationVC(J2DAnmVtxColor*);
-    /* 802F8464 */ void setConnectParent(bool);
-    /* 802F8474 */ void update();
-
-    static f32 static_mBounds[4];
 };
 
 struct J2DOrthoGraph {
@@ -248,12 +113,6 @@ extern "C" void setScissor__14J2DGrafContextFv();
 extern "C" void func_802E90C0();
 extern "C" void func_802E987C();
 extern "C" void get__13J2DDataManageFP14JSUInputStream();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXConcat();
-extern "C" void PSMTXRotRad();
-extern "C" void PSMTXTrans();
-extern "C" void PSMTXTransApply();
-extern "C" void PSMTXScaleApply();
 extern "C" void GXSetCullMode();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_27();
@@ -335,28 +194,38 @@ SECTION_SDATA2 static u8 lit_1469[4] = {
 };
 
 /* 802F5BF8-802F5CB8 2F0538 00C0+00 0/0 10/10 0/0 .text            __ct__7J2DPaneFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J2DPane::J2DPane() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/__ct__7J2DPaneFv.s"
+J2DPane::J2DPane() : mBounds(), mGlobalBounds(), mClipRect(), mPaneTree(this) {
+    mTransform = NULL;
+    id = 'PAN1';
+    mVisible = true;
+    mInfoTag = 0;
+    mUserInfoTag = 0;
+    mBounds.set(FLOAT_LABEL(lit_1469), FLOAT_LABEL(lit_1469), FLOAT_LABEL(lit_1469),
+                FLOAT_LABEL(lit_1469));
+    initiate();
+    changeUseTrans(NULL);
+    calcMtx();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804561F4-804561F8 0047F4 0004+00 3/3 0/0 0/0 .sdata2          @1489 */
 SECTION_SDATA2 static f32 lit_1489 = 1.0f;
 
 /* 802F5CB8-802F5D40 2F05F8 0088+00 3/3 0/0 0/0 .text            initiate__7J2DPaneFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::initiate() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/initiate__7J2DPaneFv.s"
+void J2DPane::initiate() {
+    _4 = -1;
+    mRotateOffsetY = mRotateOffsetX = mRotateZ = mRotateY = mRotateX = FLOAT_LABEL(lit_1469);
+    mBasePosition = 0;
+    mRotAxis = ROTATE_Z;
+    mScaleY = mScaleX = lit_1489;
+    mCullMode = GX_CULL_NONE;
+    mAlpha = 0xFF;
+    mIsInfluencedAlpha = true;
+    mColorAlpha = 0xFF;
+    mConnected = false;
+
+    calcMtx();
 }
-#pragma pop
 
 /* 802F5D40-802F5DD0 2F0680 0090+00 0/0 1/1 0/0 .text
  * __ct__7J2DPaneFP7J2DPanebUxRCQ29JGeometry8TBox2<f>           */
@@ -394,6 +263,18 @@ asm J2DPane::J2DPane(u64 param_0, JGeometry::TBox2<f32> const& param_1) {
 
 /* 802F5F08-802F5F9C 2F0848 0094+00 1/1 0/0 0/0 .text
  * initialize__7J2DPaneFUxRCQ29JGeometry8TBox2<f>               */
+#ifdef NONMATCHING  // templating..... again
+void J2DPane::initialize(u64 tag, const TBox2<f32>& dim) {
+    id = 'PAN1';
+    mVisible = true;
+    mInfoTag = tag;
+    mUserInfoTag = tag;
+    mBounds.set(dim);
+    initiate();
+    changeUseTrans(NULL);
+    calcMtx();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -402,6 +283,7 @@ asm void J2DPane::initialize(u64 param_0, JGeometry::TBox2<f32> const& param_1) 
 #include "asm/JSystem/J2DGraph/J2DPane/func_802F5F08.s"
 }
 #pragma pop
+#endif
 
 /* 802F5F9C-802F60C4 2F08DC 0128+00 0/0 1/1 0/0 .text
  * __ct__7J2DPaneFP7J2DPaneP20JSURandomInputStreamUc            */
@@ -451,31 +333,56 @@ asm void J2DPane::changeUseTrans(J2DPane* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DPane::~J2DPane() {
+// asm J2DPane::~J2DPane() {
+extern "C" asm void __dt__7J2DPaneFv() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DPane/__dt__7J2DPaneFv.s"
 }
 #pragma pop
 
 /* 802F666C-802F6714 2F0FAC 00A8+00 0/0 2/2 0/0 .text            appendChild__7J2DPaneFP7J2DPane */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::appendChild(J2DPane* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/appendChild__7J2DPaneFP7J2DPane.s"
+bool J2DPane::appendChild(J2DPane* pChild) {
+    if (pChild == NULL)
+        return false;
+
+    const J2DPane* parent = pChild->getParentPane();
+    bool result = mPaneTree.appendChild(&pChild->mPaneTree);
+
+    if (result && parent == NULL) {
+        pChild->add(mBounds.i.x, mBounds.i.y);
+        pChild->calcMtx();
+    }
+
+    return result;
 }
-#pragma pop
 
 /* 802F6714-802F67E0 2F1054 00CC+00 0/0 1/1 0/0 .text insertChild__7J2DPaneFP7J2DPaneP7J2DPane */
+#ifdef NONMATCHING
+bool J2DPane::insertChild(J2DPane* before, J2DPane* child) {
+    if (child == NULL)
+        return false;
+
+    const J2DPane* parent = child->getParentPane();
+
+    bool result = mPaneTree.insertChild(&before->mPaneTree, &child->mPaneTree);
+
+    if (result && parent == NULL) {
+        child->add(mBounds.i.x, mBounds.i.y);
+        child->calcMtx();
+    }
+
+    return result;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DPane::insertChild(J2DPane* param_0, J2DPane* param_1) {
+asm bool J2DPane::insertChild(J2DPane* param_0, J2DPane* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DPane/insertChild__7J2DPaneFP7J2DPaneP7J2DPane.s"
 }
 #pragma pop
+#endif
 
 /* 802F67E0-802F6D18 2F1120 0538+00 0/0 1/1 0/0 .text draw__7J2DPaneFffPC14J2DGrafContextbb */
 #pragma push
@@ -499,6 +406,11 @@ asm void J2DPane::place(JGeometry::TBox2<f32> const& param_0) {
 #pragma pop
 
 /* 802F6F60-802F6FB4 2F18A0 0054+00 1/0 7/0 0/0 .text            move__7J2DPaneFff */
+#ifdef NONMATCHING
+void J2DPane::move(f32 x, f32 y) {
+    place(TBox2<f32>(x, y, x + getWidth(), y + getHeight()));
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -507,18 +419,32 @@ asm void J2DPane::move(f32 param_0, f32 param_1) {
 #include "asm/JSystem/J2DGraph/J2DPane/move__7J2DPaneFff.s"
 }
 #pragma pop
+#endif
 
 /* 802F6FB4-802F6FF8 2F18F4 0044+00 1/0 7/0 0/0 .text            add__7J2DPaneFff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::add(f32 param_0, f32 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/add__7J2DPaneFff.s"
+void J2DPane::add(f32 x, f32 y) {
+    mTranslateX += x;
+    mTranslateY += y;
+    calcMtx();
 }
-#pragma pop
 
 /* 802F6FF8-802F7100 2F1938 0108+00 1/0 5/2 0/0 .text            resize__7J2DPaneFff */
+#ifdef NONMATCHING
+void J2DPane::resize(f32 x, f32 y) {
+    TBox2<f32> box = mBounds;
+
+    box.addPos(TVec2<f32>(mTranslateX, mTranslateY));
+
+    const J2DPane* parent = getParentPane();
+    if (parent != NULL) {
+        box.addPos(TVec2<f32>(-parent->mBounds.i.x, -parent->mBounds.i.y));
+    }
+
+    box.f.x = box.i.x + x;
+    box.f.y = box.i.y + y;
+    place(box);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -527,40 +453,56 @@ asm void J2DPane::resize(f32 param_0, f32 param_1) {
 #include "asm/JSystem/J2DGraph/J2DPane/resize__7J2DPaneFff.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804349B0-804349C0 0616D0 0010+00 2/2 0/0 0/0 .bss             static_mBounds__7J2DPane */
 f32 J2DPane::static_mBounds[4];
 
 /* 802F7100-802F71DC 2F1A40 00DC+00 0/0 25/25 1/1 .text            getBounds__7J2DPaneFv */
+#ifdef NONMATCHING  // close ish
+TBox2<f32>& J2DPane::getBounds() {
+    lbl_804349B0 = mBounds;
+    lbl_804349B0.addPos(TVec2<f32>(mTranslateX, mTranslateY));
+
+    const J2DPane* parent = getParentPane();
+    if (parent != NULL) {
+        lbl_804349B0.addPos(TVec2<f32>(-parent->mBounds.i.x, -parent->mBounds.i.y));
+    }
+
+    return lbl_804349B0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DPane::getBounds() {
+asm JGeometry::TBox2<f32>& J2DPane::getBounds() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DPane/getBounds__7J2DPaneFv.s"
 }
 #pragma pop
+#endif
 
 /* 802F71DC-802F720C 2F1B1C 0030+00 0/0 12/12 0/0 .text rotate__7J2DPaneFff13J2DRotateAxisf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::rotate(f32 param_0, f32 param_1, J2DRotateAxis param_2, f32 param_3) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/rotate__7J2DPaneFff13J2DRotateAxisf.s"
+void J2DPane::rotate(f32 offsetX, f32 offsetY, J2DRotateAxis axis, f32 angle) {
+    mRotateOffsetX = offsetX;
+    mRotateOffsetY = offsetY;
+    mRotAxis = axis;
+    rotate(angle);
 }
-#pragma pop
 
 /* 802F720C-802F7264 2F1B4C 0058+00 1/1 0/0 0/0 .text            rotate__7J2DPaneFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::rotate(f32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/rotate__7J2DPaneFf.s"
+void J2DPane::rotate(f32 angle) {
+    if (mRotAxis == ROTATE_X) {
+        mRotateX = angle;
+    } else if (mRotAxis == ROTATE_Y) {
+        mRotateY = angle;
+    } else {
+        mRotateZ = angle;
+    }
+
+    calcMtx();
 }
-#pragma pop
 
 /* 802F7264-802F72E0 2F1BA4 007C+00 0/0 2/2 0/0 .text clip__7J2DPaneFRCQ29JGeometry8TBox2<f> */
 #pragma push
@@ -573,44 +515,54 @@ asm void J2DPane::clip(JGeometry::TBox2<f32> const& param_0) {
 #pragma pop
 
 /* 802F72E0-802F7388 2F1C20 00A8+00 1/0 7/1 0/0 .text            search__7J2DPaneFUx */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::search(u64 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/search__7J2DPaneFUx.s"
+const J2DPane* J2DPane::search(u64 tag) {
+    if (tag == mInfoTag) {
+        return this;
+    }
+
+    JSUTreeIterator<J2DPane> iter;
+    for (iter = mPaneTree.getFirstChild(); iter != mPaneTree.getEndChild(); ++iter) {
+        if (const J2DPane* result = iter.getObject()->search(tag)) {
+            return result;
+        }
+    }
+    return NULL;
 }
-#pragma pop
 
 /* 802F7388-802F7430 2F1CC8 00A8+00 1/0 7/1 0/0 .text            searchUserInfo__7J2DPaneFUx */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::searchUserInfo(u64 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/searchUserInfo__7J2DPaneFUx.s"
+const J2DPane* J2DPane::searchUserInfo(u64 tag) {
+    if (tag == mUserInfoTag) {
+        return this;
+    }
+
+    JSUTreeIterator<J2DPane> iter;
+    for (iter = mPaneTree.getFirstChild(); iter != mPaneTree.getEndChild(); ++iter) {
+        if (const J2DPane* result = iter.getObject()->searchUserInfo(tag)) {
+            return result;
+        }
+    }
+    return NULL;
 }
-#pragma pop
 
 /* 802F7430-802F74B8 2F1D70 0088+00 1/0 7/7 0/0 .text            isUsed__7J2DPaneFPC7ResTIMG */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::isUsed(ResTIMG const* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/isUsed__7J2DPaneFPC7ResTIMG.s"
+bool J2DPane::isUsed(const ResTIMG* timg) {
+    JSUTreeIterator<J2DPane> iter;
+    for (iter = mPaneTree.getFirstChild(); iter != mPaneTree.getEndChild(); ++iter) {
+        if (iter.getObject()->isUsed(timg))
+            return true;
+    }
+    return false;
 }
-#pragma pop
 
 /* 802F74B8-802F7540 2F1DF8 0088+00 1/0 7/7 0/0 .text            isUsed__7J2DPaneFPC7ResFONT */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::isUsed(ResFONT const* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/isUsed__7J2DPaneFPC7ResFONT.s"
+bool J2DPane::isUsed(const ResFONT* font) {
+    JSUTreeIterator<J2DPane> iter;
+    for (iter = mPaneTree.getFirstChild(); iter != mPaneTree.getEndChild(); ++iter) {
+        if (iter.getObject()->isUsed(font))
+            return true;
+    }
+    return false;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8045620C-80456210 00480C 0004+00 1/1 0/0 0/0 .sdata2          @2466 */
@@ -628,25 +580,42 @@ asm void J2DPane::makeMatrix(f32 param_0, f32 param_1, f32 param_2, f32 param_3)
 
 /* 802F7680-802F76F8 2F1FC0 0078+00 1/0 7/3 0/0 .text            setCullBack__7J2DPaneF11_GXCullMode
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::setCullBack(_GXCullMode param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/setCullBack__7J2DPaneF11_GXCullMode.s"
+void J2DPane::setCullBack(_GXCullMode mode) {
+    mCullMode = mode;
+
+    JSUTreeIterator<J2DPane> iter;
+    for (iter = mPaneTree.getFirstChild(); iter != mPaneTree.getEndChild(); ++iter) {
+        iter.getObject()->setCullBack(mode);
+    }
 }
-#pragma pop
 
 /* 802F76F8-802F77D0 2F2038 00D8+00 0/0 8/8 0/0 .text setBasePosition__7J2DPaneF15J2DBasePosition
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::setBasePosition(J2DBasePosition param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/setBasePosition__7J2DPaneF15J2DBasePosition.s"
+void J2DPane::setBasePosition(J2DBasePosition position) {
+    mBasePosition = position;
+    mRotAxis = ROTATE_Z;
+
+    mRotateOffsetX = FLOAT_LABEL(lit_1469);
+
+    if (position % 3 == 1) {
+        f32 width = getWidth();
+        mRotateOffsetX = width * lit_1725;
+    } else if (position % 3 == 2) {
+        f32 width = getWidth();
+        mRotateOffsetX = width;
+    }
+
+    mRotateOffsetY = FLOAT_LABEL(lit_1469);
+    if (position / 3 == 1) {
+        f32 height = getHeight();
+        mRotateOffsetY = height * lit_1725;
+    } else if (position / 3 == 2) {
+        f32 height = getHeight();
+        mRotateOffsetY = height;
+    }
+
+    calcMtx();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80456210-80456214 004810 0004+00 1/1 0/0 0/0 .sdata2          @2547 */
@@ -673,34 +642,39 @@ asm void J2DPane::getGlbVtx(u8 param_0) const {
 #pragma pop
 
 /* 802F7A8C-802F7AC4 2F23CC 0038+00 1/1 15/15 0/0 .text            getFirstChildPane__7J2DPaneFv */
+#ifdef NONMATCHING  // probably an issue with JSUTree
+const J2DPane* J2DPane::getFirstChildPane() {
+    if (!getFirstChild())
+        return NULL;
+
+    return getFirstChild()->getObject();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DPane::getFirstChildPane() {
+asm const J2DPane* J2DPane::getFirstChildPane() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DPane/getFirstChildPane__7J2DPaneFv.s"
 }
 #pragma pop
+#endif
 
 /* 802F7AC4-802F7AFC 2F2404 0038+00 1/1 8/8 0/0 .text            getNextChildPane__7J2DPaneFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::getNextChildPane() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/getNextChildPane__7J2DPaneFv.s"
+const J2DPane* J2DPane::getNextChildPane() {
+    if (getPaneTree()->getNextChild() == NULL)
+        return NULL;
+
+    return getPaneTree()->getNextChild()->getObject();
 }
-#pragma pop
 
 /* 802F7AFC-802F7B18 2F243C 001C+00 6/6 11/11 0/0 .text            getParentPane__7J2DPaneFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::getParentPane() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/getParentPane__7J2DPaneFv.s"
+const J2DPane* J2DPane::getParentPane() {
+    if (getPaneTree()->getParent() == NULL)
+        return NULL;
+
+    return getPaneTree()->getParent()->getObject();
 }
-#pragma pop
 
 /* 802F7B18-802F7D00 2F2458 01E8+00 1/1 6/6 0/0 .text
  * makePaneExStream__7J2DPaneFP7J2DPaneP20JSURandomInputStream  */
@@ -714,27 +688,92 @@ asm void J2DPane::makePaneExStream(J2DPane* param_0, JSURandomInputStream* param
 #pragma pop
 
 /* 802F7D00-802F7DB8 2F2640 00B8+00 0/0 1/1 0/0 .text            J2DCast_F32_to_S16__7J2DPaneFfUc */
+#ifdef NONMATCHING  // not happening
+s16 J2DPane::J2DCast_F32_to_S16(f32 value, u8 arg2) {
+    f32 temp;
+    s32 temp2;
+    s16 result;
+
+    if (arg2 < 0xf) {
+        temp = value;
+        if (temp < lbl_804561F0)
+            temp = -value;
+
+        temp2 = value;
+
+        if (temp2 < 0x8000) {
+            if (value >= lbl_804561F0) {
+                result = temp2;
+            } else {
+                result = ~temp2 + 1;
+            }
+        } else {
+            if (value >= lbl_804561F0) {
+                result = 0x7fff;
+            } else {
+                result = -0x8000;
+            }
+        }
+    } else {
+        result = 0;
+    }
+
+    return result;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DPane::J2DCast_F32_to_S16(f32 param_0, u8 param_1) {
+asm s16 J2DPane::J2DCast_F32_to_S16(f32 param_0, u8 param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DPane/J2DCast_F32_to_S16__7J2DPaneFfUc.s"
 }
 #pragma pop
+#endif
 
 /* 802F7DB8-802F7EF4 2F26F8 013C+00 0/0 3/3 0/0 .text
  * getPointer__7J2DPaneFP20JSURandomInputStreamUlP10JKRArchive  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DPane::getPointer(JSURandomInputStream* param_0, u32 param_1, JKRArchive* param_2) {
+asm void* J2DPane::getPointer(JSURandomInputStream* param_0, u32 param_1, JKRArchive* param_2) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DPane/getPointer__7J2DPaneFP20JSURandomInputStreamUlP10JKRArchive.s"
 }
 #pragma pop
 
 /* 802F7EF4-802F7FC4 2F2834 00D0+00 2/0 7/4 0/0 .text setAnimation__7J2DPaneFP10J2DAnmBase */
+#ifdef NONMATCHING  // matching in diff.py, what gives?
+void J2DPane::setAnimation(J2DAnmBase* anm) {
+    if (anm != NULL) {
+        switch (anm->getKind()) {
+        default:
+            break;
+        case 0:
+            setAnimation(static_cast<J2DAnmTransform*>(anm));
+            break;
+        case 1:
+            setAnimation(static_cast<J2DAnmColor*>(anm));
+            break;
+        case 2:
+            setAnimation(static_cast<J2DAnmVtxColor*>(anm));
+            break;
+        case 4:
+            setAnimation(static_cast<J2DAnmTextureSRTKey*>(anm));
+            break;
+        case 5:
+            setAnimation(static_cast<J2DAnmTexPattern*>(anm));
+            break;
+        case 6:
+            setAnimation(static_cast<J2DAnmVisibilityFull*>(anm));
+            break;
+        case 7:
+            setAnimation(static_cast<J2DAnmTevRegKey*>(anm));
+            break;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -743,75 +782,83 @@ asm void J2DPane::setAnimation(J2DAnmBase* param_0) {
 #include "asm/JSystem/J2DGraph/J2DPane/setAnimation__7J2DPaneFP10J2DAnmBase.s"
 }
 #pragma pop
+#endif
 
 /* 802F7FC4-802F7FCC -00001 0008+00 0/0 0/0 0/0 .text setAnimation__7J2DPaneFP15J2DAnmTransform */
-void J2DPane::setAnimation(J2DAnmTransform* param_0) {
-    *(u32*)(((u8*)this) + 248) /* this->field_0xf8 */ = (u32)(param_0);
+void J2DPane::setAnimation(J2DAnmTransform* anm) {
+    mTransform = anm;
 }
 
 /* 802F7FCC-802F8004 2F290C 0038+00 0/0 57/57 0/0 .text            animationTransform__7J2DPaneFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::animationTransform() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/animationTransform__7J2DPaneFv.s"
+void J2DPane::animationTransform() {
+    if (mTransform != NULL)
+        animationTransform(mTransform);
 }
-#pragma pop
 
 /* 802F8004-802F8080 2F2944 007C+00 1/0 7/1 0/0 .text            clearAnmTransform__7J2DPaneFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::clearAnmTransform() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/clearAnmTransform__7J2DPaneFv.s"
+void J2DPane::clearAnmTransform() {
+    J2DAnmTransform* none = NULL;
+    setAnimation(none);
+
+    JSUTreeIterator<J2DPane> iter;
+    for (iter = mPaneTree.getFirstChild(); iter != mPaneTree.getEndChild(); ++iter) {
+        iter.getObject()->clearAnmTransform();
+    }
 }
-#pragma pop
 
 /* 802F8080-802F8118 2F29C0 0098+00 1/0 7/0 0/0 .text
  * animationTransform__7J2DPaneFPC15J2DAnmTransform             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::animationTransform(J2DAnmTransform const* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/animationTransform__7J2DPaneFPC15J2DAnmTransform.s"
+const J2DAnmTransform* J2DPane::animationTransform(const J2DAnmTransform* transform) {
+    const J2DAnmTransform* p = transform;
+    if (mTransform != NULL)
+        p = mTransform;
+
+    JSUTreeIterator<J2DPane> iter;
+    for (iter = mPaneTree.getFirstChild(); iter != mPaneTree.getEndChild(); ++iter) {
+        iter.getObject()->animationTransform(p);
+    }
+
+    updateTransform(p);
+    return p;
 }
-#pragma pop
 
 /* 802F8118-802F81A0 2F2A58 0088+00 1/0 8/1 0/0 .text
  * setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::setVisibileAnimation(J2DAnmVisibilityFull* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull.s"
+void J2DPane::setVisibileAnimation(J2DAnmVisibilityFull* visibility) {
+    setAnimationVF(visibility);
+
+    JSUTreeIterator<J2DPane> iter;
+    for (iter = mPaneTree.getFirstChild(); iter != mPaneTree.getEndChild(); ++iter) {
+        iter.getObject()->setVisibileAnimation(visibility);
+    }
 }
-#pragma pop
 
 /* 802F81A0-802F8228 2F2AE0 0088+00 1/0 8/1 0/0 .text
  * setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::setVtxColorAnimation(J2DAnmVtxColor* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor.s"
+void J2DPane::setVtxColorAnimation(J2DAnmVtxColor* vtx_color) {
+    setAnimationVC(vtx_color);
+
+    JSUTreeIterator<J2DPane> iter;
+    for (iter = mPaneTree.getFirstChild(); iter != mPaneTree.getEndChild(); ++iter) {
+        iter.getObject()->setVtxColorAnimation(vtx_color);
+    }
 }
-#pragma pop
 
 /* 802F8228-802F82C0 2F2B68 0098+00 1/0 7/3 0/0 .text animationPane__7J2DPaneFPC15J2DAnmTransform
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::animationPane(J2DAnmTransform const* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/animationPane__7J2DPaneFPC15J2DAnmTransform.s"
+const J2DAnmTransform* J2DPane::animationPane(const J2DAnmTransform* transform) {
+    const J2DAnmTransform* p = transform;
+    if (mTransform != NULL)
+        p = mTransform;
+
+    JSUTreeIterator<J2DPane> iter;
+    for (iter = mPaneTree.getFirstChild(); iter != mPaneTree.getEndChild(); ++iter) {
+        iter.getObject()->animationPane(p);
+    }
+
+    updateTransform(p);
+    return p;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80456214-80456218 004814 0004+00 1/1 0/0 0/0 .sdata2          @2890 */
@@ -847,45 +894,33 @@ void J2DPane::rewriteAlpha() {
 
 /* 802F83D0-802F83FC 2F2D10 002C+00 1/0 6/0 0/0 .text
  * setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::setAnimationVF(J2DAnmVisibilityFull* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull.s"
+void J2DPane::setAnimationVF(J2DAnmVisibilityFull* visibility) {
+    setAnimation(visibility);
 }
-#pragma pop
 
 /* 802F83FC-802F8428 2F2D3C 002C+00 1/0 6/0 0/0 .text setAnimationVC__7J2DPaneFP14J2DAnmVtxColor
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::setAnimationVC(J2DAnmVtxColor* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/setAnimationVC__7J2DPaneFP14J2DAnmVtxColor.s"
+void J2DPane::setAnimationVC(J2DAnmVtxColor* vtx_color) {
+    setAnimation(vtx_color);
 }
-#pragma pop
 
 /* 802F8428-802F8464 2F2D68 003C+00 1/0 4/0 0/0 .text            setCullBack__7J2DPaneFb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::setCullBack(bool param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/setCullBack__7J2DPaneFb.s"
+void J2DPane::setCullBack(bool cull) {
+    GXCullMode mode;
+
+    if (!cull)
+        mode = GX_CULL_NONE;
+    else
+        mode = GX_CULL_BACK;
+
+    setCullBack(mode);
 }
-#pragma pop
 
 /* 802F8464-802F8474 2F2DA4 0010+00 1/0 5/0 0/0 .text            setConnectParent__7J2DPaneFb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::setConnectParent(bool param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/setConnectParent__7J2DPaneFb.s"
+bool J2DPane::setConnectParent(bool connected) {
+    mConnected = false;
+    return false;
 }
-#pragma pop
 
 /* 802F8474-802F8478 2F2DB4 0004+00 1/0 7/0 0/0 .text            update__7J2DPaneFv */
 void J2DPane::update() {

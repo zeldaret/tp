@@ -4,6 +4,7 @@
 //
 
 // #include "f_op/f_op_msg_mng.h"
+#include "JSystem/J2DGraph/J2DPane.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -49,10 +50,6 @@ struct JMath {
     static u8 sincosTable_[65536];
 };
 
-struct JKRHeap {
-    /* 802CE448 */ void destroy();
-};
-
 struct JKRExpHeap {
     /* 802CEE2C */ void create(u32, JKRHeap*, bool);
 };
@@ -61,10 +58,6 @@ struct J2DPicture {
     /* 800202CC */ void setBlendRatio(f32, f32);
     /* 80020338 */ void append(char const*, f32);
     /* 80020368 */ void insert(char const*, u8, f32);
-};
-
-struct J2DPane {
-    /* 80020158 */ void setAlpha(u8);
 };
 
 //

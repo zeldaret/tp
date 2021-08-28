@@ -5,19 +5,19 @@
 #include "d/d_resorce.h"
 #include "d/menu/d_menu_window.h"
 #include "d/msg/d_msg_flow.h"
+#include "d/pane/d_pane_class.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
-//#include "JSystem/JUtility/JUTFont.h"
 
 struct dMsgObject_c {
-    /* 802384C4 */ void setLetterNameID(u16);
+    /* 802384C4 */ static void setLetterNameID(u16);
     /* 802379AC */ void setKillMessageFlag();
     /* 8023822C */ void getStatus();
 };
 
 class dMeterMap_c {
 public:
-    /* 8020D900 */ bool isMapOpenCheck();
+    /* 8020D900 */ static bool isMapOpenCheck();
     /* 8020D650 */ void isEnableDispMapAndMapDispSizeTypeNo();
     /* 8020D874 */ void setDispPosInsideFlg_SE_On();
     /* 8020D8BC */ void setDispPosOutsideFlg_SE_On();
@@ -31,17 +31,25 @@ struct J2DTextBox {
     /* 8021C7F4 */ void getFont() const;
 };
 
-struct JUTFont {};
+struct dMenu_LetterData {
+    u16 mSubject;
+    u16 mName;
+    u16 mText;
+    u16 mEventFlag;
+};
 
 struct dMenu_Letter {
-    static u8 letter_data[512];
+    static u16 getLetterSubject(int idx) { return letter_data[idx].mSubject; }
+    static u16 getLetterName(int idx) { return letter_data[idx].mName; }
+    static u16 getLetterText(int idx) { return letter_data[idx].mText; }
+    static u16 getLetterEventFlag(int idx) { return letter_data[idx].mEventFlag; }
+
+    static dMenu_LetterData letter_data[64];
 };
 
 struct dItem_data {
     static void* item_resource[1530];
 };
-
-struct CPaneMgr {};
 
 class dMw_c;
 
@@ -65,7 +73,7 @@ public:
     dMeter2Info_c();
     virtual ~dMeter2Info_c();
     void init(void);
-    void setFloatingMessage(u16, s16, bool);
+    int setFloatingMessage(u16, s16, bool);
     void setFloatingFlow(u16, s16, bool);
     int isFloatingMessageVisible(void);
     int decFloatingMessageTimer(void);
@@ -115,8 +123,7 @@ public:
 
 private:
     /* 0x04 */ u8 unk4[4];
-    /* 0x08 */ u32 unk8;
-    /* 0x0C */ u32 unk12;
+    /* 0x08 */ u64 unk8;
     /* 0x10 */ void* mMsgResource;
     /* 0x14 */ void* mStageMsgResource;
     /* 0x18 */ void* mMsgUnitResource;
@@ -161,26 +168,27 @@ private:
     /* 0xBA */ u8 unk186;
     /* 0xBB */ u8 mMaxCount;
     /* 0xBC */ u8 mNowCount;
-    /* 0xBD */ u8 mShopTalkFlag;
+    /* 0xBD */ bool mShopTalkFlag;
     /* 0xBE */ u8 unk190;
     /* 0xBF */ u8 mMapStatus;
     /* 0xC0 */ u8 mWarpStatus;
     /* 0xC1 */ u8 mPauseStatus;
     /* 0xC2 */ u8 mGameOverType;
     /* 0xC3 */ u8 mInsectSelectType;
-    /* 0xC4 */ u32 unk196;
-    /* 0xC8 */ u32 unk200;
+    /* 0xC4 */ u8 unk196[4];
+    /* 0xC8 */ u8 unk200[4];
     /* 0xCC */ u8 unk204;
-    /* 0xCD */ u8 unk205;
-    /* 0xCE */ u8 unk206;
-    /* 0xCF */ u8 unk207;
-    /* 0xD0 */ f64 unk208;
-    /* 0xD8 */ u8 unk216;
-    /* 0xD9 */ u8 unk217;
-    /* 0xDA */ u8 unk218;
-    /* 0xDB */ u8 unk219;
+    /* 0xCD */ u8 unk205;  // arrow num
+    /* 0xCE */ u8 unk206;  // item 1
+    /* 0xCF */ u8 unk207;  // item 2
+    /* 0xD0 */ u8 unk208[4];
+    /* 0xD4 */ u8 unk212[4];
+    /* 0xD8 */ u8 unk216;  // bomb num
+    /* 0xD9 */ u8 unk217;  // arrow num?
+    /* 0xDA */ u8 unk218;  // item 1?
+    /* 0xDB */ u8 unk219;  // item 2
     /* 0xDC */ u8 mRentalBombBag;
-    /* 0xDD */ u8 mMiniGameItemSetFlag;
+    /* 0xDD */ u8 mMiniGameItemSetFlag;  // 1: rented in game, 3: rented not in game
     /* 0xDE */ u8 mMiniGameCount;
     /* 0xDF */ u8 mCollectCursorPosX;
     /* 0xE0 */ u8 mCollectCursorPosY;
@@ -191,7 +199,7 @@ private:
     /* 0xE7 */ u8 unk231;
     /* 0xE8 */ u8 mItemExplainWindowStatus;
     /* 0xE9 */ char mSaveStageName[8];
-    /* 0xF1 */ u8 mFloatingMessageWakuVisible;
+    /* 0xF1 */ bool mFloatingMessageWakuVisible;
     /* 0xF2 */ u8 mMapDrugFlag;
     /* 0xF3 */ u8 unk243[5];
 };

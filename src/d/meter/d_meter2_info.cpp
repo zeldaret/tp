@@ -4,6 +4,7 @@
 //
 
 #include "d/meter/d_meter2_info.h"
+#include "d/com/d_com_inf_game.h"
 #include "d/save/d_save.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
@@ -125,11 +126,18 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" void* item_resource__10dItem_data[1530];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
 // Declarations:
 //
+
+inline BOOL dComIfGs_isEventBit(u16 id) {
+    return g_dComIfG_gameInfo.info.getSavedata().getEvent().isEventBit(id);
+}
+
+inline s8 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
+    return param_0->field_0x09 >> 1 & 0x1f;
+}
 
 /* ############################################################################################## */
 /* 80399168-80399168 0257C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -217,46 +225,39 @@ SECTION_DATA static char* tex_name_5183[10] = {
 };
 
 /* 803BF81C-803BFA1C 01C93C 0200+00 3/3 6/6 0/0 .data            letter_data__12dMenu_Letter */
-SECTION_DATA u8 dMenu_Letter::letter_data[512] = {
-    0x09, 0xC5, 0x0A, 0x29, 0x0A, 0x8D, 0x01, 0x0B, 0x09, 0xC6, 0x0A, 0x2A, 0x0A, 0x8E, 0x02, 0x37,
-    0x09, 0xC7, 0x0A, 0x2B, 0x0A, 0x8F, 0x02, 0x36, 0x09, 0xC8, 0x0A, 0x2C, 0x0A, 0x90, 0x00, 0x37,
-    0x09, 0xC9, 0x0A, 0x2D, 0x0A, 0x91, 0x00, 0x39, 0x09, 0xCA, 0x0A, 0x2E, 0x0A, 0x92, 0x00, 0x67,
-    0x09, 0xCB, 0x0A, 0x2F, 0x0A, 0x93, 0x01, 0x09, 0x09, 0xCC, 0x0A, 0x30, 0x0A, 0x94, 0x00, 0x4D,
-    0x09, 0xCD, 0x0A, 0x31, 0x0A, 0x95, 0x01, 0x19, 0x09, 0xCE, 0x0A, 0x32, 0x0A, 0x96, 0x01, 0x08,
-    0x09, 0xCF, 0x0A, 0x33, 0x0A, 0x97, 0x01, 0x0C, 0x09, 0xD4, 0x0A, 0x38, 0x0A, 0x9E, 0x01, 0x0C,
-    0x09, 0xD1, 0x0A, 0x35, 0x0A, 0x9B, 0x00, 0xB6, 0x09, 0xD2, 0x0A, 0x36, 0x0A, 0x9C, 0x00, 0x67,
-    0x09, 0xD5, 0x0A, 0x39, 0x0A, 0xA0, 0x03, 0x1C, 0x09, 0xD6, 0x0A, 0x3A, 0x0A, 0xA1, 0x01, 0x0A,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 803BFA1C-803BFA28 01CB3C 000C+00 2/2 0/0 0/0 .data            __vt__13dMeter2Info_c */
-SECTION_DATA extern void* __vt__13dMeter2Info_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__13dMeter2Info_cFv,
+SECTION_DATA dMenu_LetterData dMenu_Letter::letter_data[64] = {
+    {0x09C5, 0x0A29, 0x0A8D, 0x010B}, {0x09C6, 0x0A2A, 0x0A8E, 0x0237},
+    {0x09C7, 0x0A2B, 0x0A8F, 0x0236}, {0x09C8, 0x0A2C, 0x0A90, 0x0037},
+    {0x09C9, 0x0A2D, 0x0A91, 0x0039}, {0x09CA, 0x0A2E, 0x0A92, 0x0067},
+    {0x09CB, 0x0A2F, 0x0A93, 0x0109}, {0x09CC, 0x0A30, 0x0A94, 0x004D},
+    {0x09CD, 0x0A31, 0x0A95, 0x0119}, {0x09CE, 0x0A32, 0x0A96, 0x0108},
+    {0x09CF, 0x0A33, 0x0A97, 0x010C}, {0x09D4, 0x0A38, 0x0A9E, 0x010C},
+    {0x09D1, 0x0A35, 0x0A9B, 0x00B6}, {0x09D2, 0x0A36, 0x0A9C, 0x0067},
+    {0x09D5, 0x0A39, 0x0AA0, 0x031C}, {0x09D6, 0x0A3A, 0x0AA1, 0x010A},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
 };
 
 /* 8021BDDC-8021BE20 21671C 0044+00 1/1 0/0 0/0 .text            __ct__13dMeter2Info_cFv */
@@ -265,15 +266,7 @@ dMeter2Info_c::dMeter2Info_c() {
     mTempBits = 0;
 }
 
-/* 8021BE20-8021BE68 216760 0048+00 2/1 0/0 0/0 .text            __dt__13dMeter2Info_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMeter2Info_c::~dMeter2Info_c() {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/__dt__13dMeter2Info_cFv.s"
-}
-#pragma pop
+dMeter2Info_c::~dMeter2Info_c() {}
 
 /* ############################################################################################## */
 /* 80454998-8045499C 002F98 0004+00 4/4 0/0 0/0 .sdata2          @3916 */
@@ -307,6 +300,108 @@ SECTION_SDATA2 static f32 lit_3922[1 + 1 /* padding */] = {
 };
 
 /* 8021BE68-8021C0E0 2167A8 0278+00 1/1 1/1 0/0 .text            init__13dMeter2Info_cFv */
+// just some float issues
+#ifdef NONMATCHING
+void dMeter2Info_c::init() {
+    mMsgResource = NULL;
+    mStageMsgResource = NULL;
+    mMsgUnitResource = NULL;
+    mMeterClass = NULL;
+    mMeterMap = NULL;
+    mMenuWindowClass = NULL;
+
+    for (int i = 0; i < 4; i++) {
+        mMeterItemPanePtr[i] = NULL;
+    }
+
+    unk8 = 0;
+    mSub2DStatus = 0;
+    mHorseLifeCount = 0;
+    mMsgKeyWaitTimer = 0;
+    unk152 = 0;
+    mWindowStatus = 0;
+    unk186 = 0;
+
+    unk84 = FLOAT_LABEL(lit_3916);
+    unk88 = FLOAT_LABEL(lit_3916);
+    unk92 = FLOAT_LABEL(lit_3916);
+    unk96 = 1.0f;
+    unk100 = 30.0f;
+    unk104 = 304.0f;
+    unk108 = 224.0f;
+    m2DWidth = 608.0f;
+    m2DHeight = 448.0f;
+    m2DPosH = FLOAT_LABEL(lit_3916);
+    m2DPosV = FLOAT_LABEL(lit_3916);
+    unk128 = FLOAT_LABEL(lit_3916);
+    mTimeMs = 0;
+    mMsgTimeMs = 0;
+    mNowCount = 0;
+    mMaxCount = 0;
+    mShopTalkFlag = false;
+    mMapStatus = 0;
+    mMapKeyDirection = 0;
+    mBlinkButton = 0;
+    mOilGaugeBackUp = 0;
+    mUseButton = -1;
+    mDirectUseItem = 0;
+    mGameStatus = 0;
+    mTouchKeyCheck = 0;
+    mWindowAccept = -1;
+    mMeterString = 0;
+    mFloatingFlowID = 0;
+    mFloatingMessageID = 0;
+    mFloatingMessageTimer = 0;
+    mFloatingMessageWakuVisible = 0;
+    resetWarpStatus();
+    mPauseStatus = 0;
+    mGameOverType = 0;
+    mInsectSelectType = 0xFF;
+
+    cXyz tmp(FLOAT_LABEL(lit_3916), FLOAT_LABEL(lit_3916), FLOAT_LABEL(lit_3916));
+    setWarpInfo("", tmp, 0, 0, 0, 0);
+
+    for (int i = 0; i < 4; i++) {
+        changeWater(i + SLOT_11);
+    }
+
+    for (int i = 0; i < 4; i++) {
+        unk196[i] = 0;
+        unk200[i] = 0;
+        unk208[i] = 0;
+        unk212[i] = 0;
+    }
+
+    unk204 = 0;
+    unk205 = 0;
+    unk206 = 0;
+    unk207 = 0;
+    unk216 = 0;
+    unk217 = 0;
+    unk218 = 0;
+    unk219 = 0;
+    mRentalBombBag = 0xFF;
+    mMiniGameItemSetFlag = 0;
+    mMiniGameCount = 0;
+    setSaveStageName("");
+    mCollectCursorPosX = 0;
+    mCollectCursorPosY = 0;
+    mTableMapRegionNo = 0xFF;
+    mGoldWolfMapType = 0;
+    unk231 = 0;
+    mItemExplainWindowStatus = 0;
+    mLifeGaugeSE = 0;
+    mMapDrugFlag = 0;
+
+    for (int i = 0; i < 3; i++) {
+        if (dComIfGs_isLightDropGetFlag(i)) {
+            mLightDropGetFlag[i] = 0xFF;
+        } else {
+            mLightDropGetFlag[i] = 0;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -315,12 +410,13 @@ asm void dMeter2Info_c::init() {
 #include "asm/d/meter/d_meter2_info/init__13dMeter2Info_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8021C0E0-8021C11C 216A20 003C+00 0/0 1/1 2/2 .text setFloatingMessage__13dMeter2Info_cFUssb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Info_c::setFloatingMessage(u16 param_0, s16 param_1, bool param_2) {
+asm int dMeter2Info_c::setFloatingMessage(u16 param_0, s16 param_1, bool param_2) {
     nofralloc
 #include "asm/d/meter/d_meter2_info/setFloatingMessage__13dMeter2Info_cFUssb.s"
 }
@@ -338,14 +434,9 @@ asm void dMeter2Info_c::setFloatingFlow(u16 param_0, s16 param_1, bool param_2) 
 
 /* 8021C1DC-8021C1F0 216B1C 0014+00 0/0 4/4 0/0 .text isFloatingMessageVisible__13dMeter2Info_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMeter2Info_c::isFloatingMessageVisible() {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/isFloatingMessageVisible__13dMeter2Info_cFv.s"
+int dMeter2Info_c::isFloatingMessageVisible() {
+    return mFloatingMessageTimer > 0;
 }
-#pragma pop
 
 /* 8021C1F0-8021C218 216B30 0028+00 0/0 1/1 0/0 .text decFloatingMessageTimer__13dMeter2Info_cFv
  */
@@ -473,24 +564,22 @@ asm int dMeter2Info_c::setMeterString(s32 param_0) {
 
 /* 8021C9DC-8021CA04 21731C 0028+00 1/1 3/3 0/0 .text            resetWarpStatus__13dMeter2Info_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_c::resetWarpStatus() {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/resetWarpStatus__13dMeter2Info_cFv.s"
+void dMeter2Info_c::resetWarpStatus() {
+    if (mWarpStatus == 2) {
+        dComIfGs_resetLastWarpAcceptStage();
+    }
+    mWarpStatus = 0;
 }
-#pragma pop
 
 /* 8021CA04-8021CA70 217344 006C+00 0/0 2/2 3/3 .text            warpInProc__13dMeter2Info_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_c::warpInProc() {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/warpInProc__13dMeter2Info_cFv.s"
+void dMeter2Info_c::warpInProc() {
+    dComIfGs_setWarpMarkFlag(0);
+    dComIfGs_resetLastWarpAcceptStage();
+
+    if (dComIfGs_getItem(SLOT_18, true) != LV7_DUNGEON_EXIT) {
+        dComIfGs_setItem(SLOT_18, DUNGEON_EXIT);
+    }
 }
-#pragma pop
 
 /* 8021CA70-8021CC00 2173B0 0190+00 0/0 1/1 0/0 .text            warpOutProc__13dMeter2Info_cFv */
 #pragma push
@@ -979,35 +1068,123 @@ void dMeter2Info_c::decHotSpringTimer() {
 }
 
 /* 8021DD5C-8021DE18 21869C 00BC+00 2/2 1/1 0/0 .text            changeWater__13dMeter2Info_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_c::changeWater(u8 param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/changeWater__13dMeter2Info_cFUc.s"
+void dMeter2Info_c::changeWater(u8 i_slotNo) {
+    int i_bottleIdx = i_slotNo - SLOT_11;
+    mHotSpringTimer[i_bottleIdx] = 0;
+
+    if (dComIfGs_getItem(i_slotNo, true) == HOT_SPRING) {
+        dComIfGs_setItem(i_slotNo, WATER_BOTTLE);
+
+        for (int i = 0; i < 3; i++) {
+            if (i_slotNo == dComIfGs_getSelectItemIndex(i)) {
+                dComIfGp_setSelectItem(i);
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 8021DE18-8021E0C4 218758 02AC+00 0/0 3/3 3/3 .text            setMiniGameItem__13dMeter2Info_cFUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_c::setMiniGameItem(u8 param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/setMiniGameItem__13dMeter2Info_cFUc.s"
+void dMeter2Info_c::setMiniGameItem(u8 param_0) {
+    bool bvar1 = false;
+
+    if (mMiniGameItemSetFlag) {
+        bvar1 = true;
+    }
+
+    if (mRentalBombBag == 0xFF) {
+        bool bvar2 = false;
+
+        for (int bagIdx = 0; bagIdx < 3; bagIdx++) {
+            if (!bvar2 && dComIfGs_getItem((u8)(bagIdx + SLOT_15), true) == 0xFF) {
+                mRentalBombBag = bagIdx;
+                bvar2 = true;
+            }
+        }
+        if (!bvar2) {
+            mRentalBombBag = 2;
+        }
+    }
+
+    mMiniGameItemSetFlag = param_0;
+
+    for (int i = 0; i < 2; i++) {
+        unk200[i] = dComIfGs_getMixItemIndex(i);
+        unk196[i] = dComIfGs_getSelectItemIndex(i);
+    }
+
+    unk204 = dComIfGs_getBombNum(mRentalBombBag);
+    unk205 = dComIfGs_getArrowNum();
+    unk206 = dComIfGs_getItem(SLOT_4, false);
+    unk207 = dComIfGs_getItem((u8)(mRentalBombBag + SLOT_15), false);
+
+    if (bvar1) {
+        for (int i = 0; i < 2; i++) {
+            dComIfGs_setMixItemIndex(i, unk212[i]);
+            dComIfGs_setSelectItemIndex(i, unk208[i]);
+        }
+        dComIfGs_setItem(SLOT_4, unk218);
+        dComIfGp_setItem(SLOT_4, unk218);
+        dComIfGs_setItem((u8)(mRentalBombBag + SLOT_15), unk219);
+        dComIfGp_setItem((u8)(mRentalBombBag + SLOT_15), unk219);
+        dComIfGs_setBombNum(mRentalBombBag, unk216);
+        dComIfGs_setArrowNum(unk217);
+    }
+
+    dComIfGs_setItem((u8)(mRentalBombBag + SLOT_15), NORMAL_BOMB);
+    dComIfGp_setItem((u8)(mRentalBombBag + SLOT_15), NORMAL_BOMB);
+
+    if (mMiniGameItemSetFlag != 3) {
+        dComIfGs_setItem(SLOT_4, BOW);
+        dComIfGp_setItem(SLOT_4, BOW);
+        dComIfGs_setMixItemIndex(1, 0xFF);
+        dComIfGs_setSelectItemIndex(1, 0xFF);
+        dComIfGs_setMixItemIndex(0, 4);
+        dComIfGs_setSelectItemIndex(0, (u8)(mRentalBombBag + SLOT_15));
+    }
+
+    if (!bvar1) {
+        dComIfGs_setBombNum(mRentalBombBag, 30);
+        u8 arrow_max = dComIfGs_getArrowMax();
+        dComIfGs_setArrowNum(arrow_max);
+    }
 }
-#pragma pop
 
 /* 8021E0C4-8021E268 218A04 01A4+00 0/0 3/3 4/4 .text resetMiniGameItem__13dMeter2Info_cFb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_c::resetMiniGameItem(bool param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/resetMiniGameItem__13dMeter2Info_cFb.s"
+void dMeter2Info_c::resetMiniGameItem(bool param_0) {
+    if (mMiniGameItemSetFlag) {
+        if (param_0) {
+            for (int i = 0; i < 2; i++) {
+                unk212[i] = dComIfGs_getMixItemIndex(i);
+                unk208[i] = dComIfGs_getSelectItemIndex(i);
+            }
+
+            unk216 = dComIfGs_getBombNum(mRentalBombBag);
+            unk217 = dComIfGs_getArrowNum();
+            unk218 = dComIfGs_getItem(SLOT_4, false);
+            unk219 = dComIfGs_getItem((u8)(mRentalBombBag + SLOT_15), false);
+        }
+
+        for (int i = 0; i < 2; i++) {
+            dComIfGs_setMixItemIndex(i, unk200[i]);
+            dComIfGs_setSelectItemIndex(i, unk196[i]);
+        }
+
+        dComIfGs_setItem(SLOT_4, unk206);
+        dComIfGp_setItem(SLOT_4, unk206);
+
+        dComIfGs_setItem((u8)(mRentalBombBag + SLOT_15), unk207);
+        dComIfGp_setItem((u8)(mRentalBombBag + SLOT_15), unk207);
+
+        dComIfGs_setBombNum(mRentalBombBag, unk204);
+        dComIfGs_setArrowNum(unk205);
+
+        if (!param_0) {
+            mMiniGameItemSetFlag = 0;
+            mRentalBombBag = 0xFF;
+        }
+    }
 }
-#pragma pop
 
 /* 8021E268-8021E290 218BA8 0028+00 0/0 0/0 5/5 .text setMiniGameCount__13dMeter2Info_cFSc */
 void dMeter2Info_c::setMiniGameCount(s8 pCount) {
@@ -1038,7 +1215,7 @@ asm void dMeter2Info_getNowLifeGauge() {
 /* 8021E2C8-8021E2DC 218C08 0014+00 0/0 11/11 3/3 .text dMeter2Info_getNumberTextureName__Fi */
 char* dMeter2Info_getNumberTextureName(int pIndex) {
     return tex_name_5183[pIndex];
-}  //
+}
 
 /* 804510B8-804510BC 0005B8 0004+00 1/1 0/0 0/0 .sbss            tex_name$5188 */
 static char* tex_name_5188;
@@ -1070,34 +1247,62 @@ asm void dMeter2Info_getPixel(f32 param_0, f32 param_1, f32 param_2, f32 param_3
 #pragma pop
 
 /* 8021E4B0-8021E530 218DF0 0080+00 0/0 2/2 1/1 .text            dMeter2Info_setCloth__FUcb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_setCloth(u8 param_0, bool param_1) {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/dMeter2Info_setCloth__FUcb.s"
+void dMeter2Info_setCloth(u8 i_clothId, bool param_1) {
+    if ((int)i_clothId >= MAGIC_LV1 || (int)i_clothId < WEARS_CASUAL) {
+        i_clothId = WEARS_CASUAL;
+        param_1 = false;
+    }
+
+    if (param_1 && dComIfGs_getSelectEquipClothes() != NO_ITEM) {
+        u8 equip_cloth = dComIfGs_getSelectEquipClothes();
+        dComIfGs_offItemFirstBit(equip_cloth);
+    }
+    dComIfGs_setSelectEquipClothes(i_clothId);
+    dComIfGp_setSelectEquipClothes(i_clothId);
 }
-#pragma pop
 
 /* 8021E530-8021E5D4 218E70 00A4+00 0/0 3/3 3/3 .text            dMeter2Info_setSword__FUcb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_setSword(u8 param_0, bool param_1) {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/dMeter2Info_setSword__FUcb.s"
+void dMeter2Info_setSword(u8 i_itemId, bool param_1) {
+    switch (i_itemId) {
+    case NO_ITEM:
+    case WOOD_STICK:
+    case SWORD:
+    case MASTER_SWORD:
+    case LIGHT_SWORD:
+        break;
+    default:
+        i_itemId = NO_ITEM;
+        param_1 = false;
+    }
+
+    if (param_1 && dComIfGs_getSelectEquipSword() != 0xFF) {
+        u8 tmp = dComIfGs_getSelectEquipSword();
+        dComIfGs_offItemFirstBit(tmp);
+    }
+    dComIfGs_setSelectEquipSword(i_itemId);
+    dComIfGp_setSelectEquipSword(i_itemId);
 }
-#pragma pop
 
 /* 8021E5D4-8021E660 218F14 008C+00 0/0 3/3 0/0 .text            dMeter2Info_setShield__FUcb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_setShield(u8 param_0, bool param_1) {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/dMeter2Info_setShield__FUcb.s"
+void dMeter2Info_setShield(u8 i_itemId, bool param_1) {
+    switch (i_itemId) {
+    case NO_ITEM:
+    case WOOD_SHIELD:
+    case SHIELD:
+    case HYLIA_SHIELD:
+        break;
+    default:
+        i_itemId = NO_ITEM;
+        param_1 = false;
+    }
+
+    if (param_1 && dComIfGs_getSelectEquipShield() != 0xFF) {
+        u8 tmp = dComIfGs_getSelectEquipShield();
+        dComIfGs_offItemFirstBit(tmp);
+    }
+    dComIfGs_setSelectEquipShield(i_itemId);
+    dComIfGp_setSelectEquipShield(i_itemId);
 }
-#pragma pop
 
 /* 8021E660-8021E668 218FA0 0008+00 0/0 1/1 0/0 .text            dMeter2Info_is2DActiveTouchArea__Fv
  */
@@ -1106,20 +1311,9 @@ bool dMeter2Info_is2DActiveTouchArea() {
 }
 
 /* 8021E668-8021E688 218FA8 0020+00 0/0 1/1 0/0 .text            dMeter2Info_isMapOpenCheck__Fv */
-#ifdef NONMATCHING
 bool dMeter2Info_isMapOpenCheck() {
     return dMeter2Info_getMeterMapClass()->isMapOpenCheck();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_isMapOpenCheck() {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/dMeter2Info_isMapOpenCheck__Fv.s"
-}
-#pragma pop
-#endif
 
 /* 8021E688-8021E6E4 218FC8 005C+00 0/0 2/2 0/0 .text            dMeter2Info_isItemOpenCheck__Fv */
 #ifdef NONMATCHING
@@ -1144,27 +1338,57 @@ asm void dMeter2Info_isItemOpenCheck() {
 
 /* 8021E6E4-8021E754 219024 0070+00 1/1 2/2 0/0 .text            dMeter2Info_getRecieveLetterNum__Fv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_getRecieveLetterNum() {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/dMeter2Info_getRecieveLetterNum__Fv.s"
+u8 dMeter2Info_getRecieveLetterNum() {
+    u8 letterNum = 0;
+
+    for (int i = 0; i < 0x40; i++) {
+        if (dComIfGs_isLetterGetFlag(i)) {
+            letterNum++;
+        }
+    }
+    return letterNum;
 }
-#pragma pop
 
 /* 8021E754-8021E804 219094 00B0+00 0/0 4/4 2/2 .text            dMeter2Info_getNewLetterNum__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_getNewLetterNum() {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/dMeter2Info_getNewLetterNum__Fv.s"
+u8 dMeter2Info_getNewLetterNum() {
+    u8 letterNum = 0;
+
+    for (int i = 0; i < 0x40; i++) {
+        if (!dComIfGs_isLetterGetFlag(i) && dMenu_Letter::getLetterName(i) != 0) {
+            u16 letterEvent = dMenu_Letter::getLetterEventFlag(i);
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[letterEvent])) {
+                letterNum++;
+            }
+        }
+    }
+    return letterNum;
 }
-#pragma pop
 
 /* 8021E804-8021E8DC 219144 00D8+00 0/0 1/1 0/0 .text            dMeter2Info_setNewLetterSender__Fv
  */
+// regalloc
+#ifdef NONMATCHING
+int dMeter2Info_setNewLetterSender() {
+    u8 check = 0;
+
+    for (int i = 0; i < 0x40; i++) {
+        if (!dComIfGs_isLetterGetFlag(i) && dMenu_Letter::getLetterName(i) != 0) {
+            u16 letterEvent = dMenu_Letter::getLetterEventFlag(i);
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[letterEvent])) {
+                if (check == 0) {
+                    u16 letterName = dMenu_Letter::getLetterName(i);
+                    dMsgObject_c::setLetterNameID(letterName);
+                } else {
+                    dMsgObject_c::setLetterNameID(0);
+                    return 0;
+                }
+                check++;
+            }
+        }
+    }
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1173,6 +1397,7 @@ asm void dMeter2Info_setNewLetterSender() {
 #include "asm/d/meter/d_meter2_info/dMeter2Info_setNewLetterSender__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 8021E8DC-8021E9D0 21921C 00F4+00 0/0 1/1 0/0 .text            dMeter2Info_recieveLetter__Fv */
 #pragma push

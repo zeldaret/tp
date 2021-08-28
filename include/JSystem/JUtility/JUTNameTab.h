@@ -26,6 +26,7 @@ public:
     s32 getIndex(char const*) const;
     const char* getName(u16 index) const;
     u16 calcKeyCode(char const* pName) const;
+    const ResNTAB* getResNameTable() const { return mpNameTable; }
 
 private:
     const ResNTAB* mpNameTable;

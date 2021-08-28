@@ -24,10 +24,6 @@ struct daSus_c {
     /* 800314D4 */ void check(fopAc_ac_c*);
 };
 
-struct dScnKy_env_light_c {
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
 struct dRes_info_c {};
 
 struct dRes_control_c {
@@ -56,21 +52,6 @@ struct dDemo_c {
 
 struct dDemo_actor_c {
     /* 8003815C */ void setActor(fopAc_ac_c*);
-};
-
-struct J3DModel {};
-
-struct J3DAnmTevRegKey {
-    /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
-};
-
-struct J3DAnmTextureSRTKey {
-    /* 8032B1D4 */ void searchUpdateMaterialID(J3DModelData*);
-};
-
-struct J3DMaterialTable {
-    /* 8032FCC4 */ void entryTexMtxAnimator(J3DAnmTextureSRTKey*);
-    /* 8032FE70 */ void entryTevRegAnimator(J3DAnmTevRegKey*);
 };
 
 //

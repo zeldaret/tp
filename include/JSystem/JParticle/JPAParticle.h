@@ -1,12 +1,13 @@
 #ifndef JPAPARTICLE_H
 #define JPAPARTICLE_H
 
+#include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 
 class JPABaseParticle;
-struct _GXTexMapID {};
 
 struct JPABaseEmitter {
+    /* 8027EC60 */ void deleteAllParticle();
     /* 8027EB60 */ void createChild(JPABaseParticle*);
     /* 8027EA40 */ void createParticle();
     /* 8027EF30 */ void getCurrentCreateNumber() const;

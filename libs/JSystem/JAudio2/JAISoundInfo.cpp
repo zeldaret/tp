@@ -8,15 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct JAISoundInfo {
-    /* 802A2D34 */ JAISoundInfo(bool);
-    /* 802A2D50 */ ~JAISoundInfo();
-};
-
-//
 // Forward References:
 //
 

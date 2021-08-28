@@ -4,6 +4,7 @@
 //
 
 #include "d/msg/d_msg_flow.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -15,130 +16,9 @@ struct mDoGph_gInf_c {
     /* 80007FD8 */ void fadeOut(f32, _GXColor&);
 };
 
-struct daPy_py_c {
-    /* 8015F3FC */ void getAttentionOffsetY();
-    /* 8015F954 */ void setMidnaMotionNum(int);
-    /* 8015F968 */ void setMidnaFaceNum(int);
-
-    static u8 m_midnaActor[4];
-};
-
-struct daAlink_c {
-    /* 800B4938 */ void setMidnaMsg();
-};
-
-struct dSv_player_status_a_c {
-    /* 80032A5C */ void getSelectItemIndex(int) const;
-    /* 80032AA8 */ void getRupeeMax() const;
-};
-
-struct dSv_player_item_record_c {
-    /* 80033F6C */ void setBombNum(u8, u8);
-    /* 80033F7C */ void getBombNum(u8) const;
-};
-
-struct dSv_player_item_max_c {
-    /* 800340F8 */ void getBombNum(u8) const;
-};
-
-struct dSv_player_item_c {
-    /* 80032FB8 */ void setItem(int, u8);
-    /* 80033030 */ void getItem(int, bool) const;
-    /* 80033370 */ void setBottleItemIn(u8, u8);
-    /* 80033450 */ void setEmptyBottleItemIn(u8);
-    /* 80033754 */ void checkInsectBottle();
-    /* 800337EC */ void checkEmptyBottle();
-    /* 80033BEC */ void checkBombBag(u8);
-    /* 80033C2C */ void setWarashibeItem(u8);
-};
-
-struct dSv_player_get_item_c {
-    /* 80033E94 */ void offFirstBit(u8);
-};
-
-struct dSv_memBit_c {
-    /* 800347E8 */ void isTbox(int) const;
-    /* 80034810 */ void onSwitch(int);
-    /* 80034838 */ void offSwitch(int);
-    /* 80034860 */ void isSwitch(int) const;
-    /* 800348EC */ void isItem(int) const;
-};
-
-struct dSv_light_drop_c {
-    /* 80034340 */ void getLightDropNum(u8) const;
-    /* 80034368 */ void onLightDropGetFlag(u8);
-};
-
-struct dSv_event_tmp_flag_c {
-    static u8 const tempBitLabels[370 + 2 /* padding */];
-};
-
-struct dSv_event_flag_c {
-    static u8 saveBitLabels[1644 + 4 /* padding */];
-};
-
-struct dSv_event_c {
-    /* 8003498C */ void onEventBit(u16);
-    /* 800349A4 */ void offEventBit(u16);
-    /* 800349BC */ void isEventBit(u16) const;
-    /* 800349E0 */ void setEventReg(u16, u8);
-    /* 80034A04 */ void getEventReg(u16) const;
-};
-
-struct dSv_danBit_c {
-    /* 80034B98 */ void onSwitch(int);
-    /* 80034BC0 */ void offSwitch(int);
-    /* 80034BE8 */ void isSwitch(int) const;
-    /* 80034C74 */ void isItem(int) const;
-};
-
-struct dStage_roomControl_c {
-    /* 80024384 */ void getStatusRoomDt(int);
-};
-
 struct dShopSystem_c {
     /* 801975F8 */ void isFlag(int);
     /* 8019A354 */ void setSoldOutFlag();
-};
-
-struct dMsgObject_c {
-    /* 802370FC */ void isMidonaMessage();
-    /* 80237980 */ void isKillMessageFlag();
-    /* 80237994 */ void onKillMessageFlag();
-    /* 80237A74 */ void setTalkPartner(fopAc_ac_c*);
-    /* 80237A88 */ void setNowTalkFlowNo(s16);
-    /* 8023803C */ void changeFlowGroup(s32);
-    /* 80238098 */ void endFlowGroup();
-    /* 80238174 */ void getMsgDtPtr();
-    /* 8023822C */ void getStatus();
-    /* 8023846C */ void setSelectCursorPos(u8);
-    /* 802384D8 */ void setArrowNum(u8);
-    /* 80238544 */ void setSelectWordFlag(u8);
-    /* 802385B4 */ void getSelectBombBagID();
-    /* 802385E0 */ void getSelectBombPrice();
-    /* 8023860C */ void setEquipBombInfo();
-    /* 8023864C */ void setSelectCancelPos(u8);
-};
-
-struct dMeter2Info_c {
-    /* 8021E0C4 */ void resetMiniGameItem(bool);
-};
-
-struct dComIfG_play_c {
-    /* 8002B36C */ void setItemBombNumCount(u8, s16);
-};
-
-struct dAttention_c {
-    /* 80073838 */ void checkDistance(cXyz*, s16, cXyz*, f32, f32, f32, f32);
-    /* 8014B010 */ void getDistTable(int);
-};
-
-struct cSGlobe {
-    /* 80271880 */ cSGlobe(cXyz const&);
-};
-
-struct cSAngle {
-    /* 80271228 */ void operator-(s16) const;
 };
 
 struct Z2SeMgr {
@@ -284,7 +164,6 @@ extern "C" u8 mEventList__10dMsgFlow_c[516];
 // External References:
 //
 
-SECTION_INIT void memcpy();
 extern "C" void fadeOut__13mDoGph_gInf_cFfR8_GXColor();
 extern "C" void fopMsgM_SearchByID__FUi();
 extern "C" void fopMsgM_messageSet__FUlP10fopAc_ac_cUl();
@@ -389,21 +268,25 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strcmp();
 extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 g_MsgObject_HIO_c[1040];
 extern "C" extern u32 g_saftyWhiteColor;
-extern "C" extern u8 struct_80450D64[4];
 extern "C" u8 m_midnaActor__9daPy_py_c[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
 //
+
+inline void dComIfGp_setItemRupeeCount(int amount) {
+    g_dComIfG_gameInfo.play.setItemRupeeCount(amount);
+}
+
+inline void dComIfGp_setItemLifeCount(float amount, u8 type) {
+    g_dComIfG_gameInfo.play.setItemLifeCount(amount, type);
+}
 
 /* ############################################################################################## */
 /* 803C14B8-803C14C4 01E5D8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -1839,14 +1722,15 @@ asm void dMsgFlow_c::nodeProc(fopAc_ac_c* param_0, fopAc_ac_c** param_1) {
 
 /* 8024B0F0-8024B108 245A30 0018+00 16/16 0/0 0/0 .text            getParam__10dMsgFlow_cFPUsPUsPUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgFlow_c::getParam(u16* param_0, u16* param_1, u8* param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/getParam__10dMsgFlow_cFPUsPUsPUc.s"
+// might be fake match
+int dMsgFlow_c::getParam(u16* param_0, u16* param_1, u8* param_2) {
+    u16* tmp = (u16*)param_2;
+    *param_0 = *tmp;
+    *param_1 = *(tmp + 1);
+
+    int* tmp2 = (int*)param_2;
+    return *tmp2;
 }
-#pragma pop
 
 /* 8024B108-8024B130 245A48 0028+00 3/3 0/0 0/0 .text            getParam__10dMsgFlow_cFPUcPUc */
 #pragma push
@@ -1859,14 +1743,10 @@ asm void dMsgFlow_c::getParam(u8* param_0, u8* param_1) {
 #pragma pop
 
 /* 8024B130-8024B138 245A70 0008+00 20/20 0/0 0/0 .text            getParam__10dMsgFlow_cFPUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgFlow_c::getParam(u8* param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/getParam__10dMsgFlow_cFPUc.s"
+int dMsgFlow_c::getParam(u8* param_0) {
+    int* tmp2 = (int*)param_0;
+    return *tmp2;
 }
-#pragma pop
 
 /* 8024B138-8024B180 245A78 0048+00 1/0 0/0 0/0 .text
  * query001__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
@@ -2467,47 +2347,65 @@ asm void dMsgFlow_c::query053(mesg_flow_node_branch* param_0, fopAc_ac_c* param_
 
 /* 8024C3FC-8024C488 246D3C 008C+00 1/0 0/0 0/0 .text
  * event000__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgFlow_c::event000(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/event000__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c.s"
+int dMsgFlow_c::event000(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
+    u16 prm1;
+    u16 prm0;
+
+    int tmp = getParam(&prm0, &prm1, &param_0->param);
+    if (prm0 != 0) {
+        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[prm0]);
+    }
+    if (prm1 != 0) {
+        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[prm1]);
+    }
+    return 1;
 }
-#pragma pop
 
 /* 8024C488-8024C514 246DC8 008C+00 1/0 0/0 0/0 .text
  * event001__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgFlow_c::event001(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/event001__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c.s"
+int dMsgFlow_c::event001(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
+    u16 prm1;
+    u16 prm0;
+
+    int tmp = getParam(&prm0, &prm1, &param_0->param);
+    if (prm0 != 0) {
+        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[prm0]);
+    }
+    if (prm1 != 0) {
+        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[prm1]);
+    }
+    return 1;
 }
-#pragma pop
 
 /* 8024C514-8024C550 246E54 003C+00 1/0 0/0 0/0 .text
  * event002__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgFlow_c::event002(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/event002__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c.s"
+int dMsgFlow_c::event002(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
+    int prm0 = getParam(&param_0->param);
+
+    dComIfGp_setItemRupeeCount(prm0);
+    return 1;
 }
-#pragma pop
 
 /* 8024C550-8024C590 246E90 0040+00 1/0 0/0 0/0 .text
  * event003__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
+// wrong instruction
+#ifdef NONMATCHING
+int dMsgFlow_c::event003(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
+    int prm0 = getParam(&param_0->param);
+
+    dComIfGp_setItemRupeeCount(-prm0);
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgFlow_c::event003(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
+asm int dMsgFlow_c::event003(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
     nofralloc
 #include "asm/d/msg/d_msg_flow/event003__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80454DA0-80454DA8 0033A0 0008+00 3/3 0/0 0/0 .sdata2          @6040 */
@@ -2515,17 +2413,34 @@ SECTION_SDATA2 static f64 lit_6040 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8024C590-8024C5F0 246ED0 0060+00 1/0 0/0 0/0 .text
  * event004__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
+#ifdef NONMATCHING
+int dMsgFlow_c::event004(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
+    f32 prm0 = getParam(&param_0->param);
+
+    dComIfGp_setItemLifeCount(prm0, 0);
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgFlow_c::event004(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
+asm int dMsgFlow_c::event004(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
     nofralloc
 #include "asm/d/msg/d_msg_flow/event004__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* 8024C5F0-8024C654 246F30 0064+00 1/0 0/0 0/0 .text
  * event005__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
+#ifdef NONMATCHING
+int dMsgFlow_c::event005(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
+    f32 prm0 = getParam(&param_0->param);
+
+    dComIfGp_setItemLifeCount(-prm0, 0);
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2534,6 +2449,7 @@ asm void dMsgFlow_c::event005(mesg_flow_node_event* param_0, fopAc_ac_c* param_1
 #include "asm/d/msg/d_msg_flow/event005__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* 8024C654-8024C694 246F94 0040+00 1/0 0/0 0/0 .text
  * event006__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */

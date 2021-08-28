@@ -31,15 +31,15 @@ extern "C" extern void* __vt__7JUTFont[17];
 
 /* 802DECF8-802DED24 2D9638 002C+00 0/0 2/2 0/0 .text            __ct__7JUTFontFv */
 JUTFont::JUTFont() : mColor1(), mColor2(), mColor3(), mColor4() {
-    unk4 = 0;
+    mValid = false;
 }
 
 /* 802DED24-802DED70 2D9664 004C+00 0/0 9/9 0/0 .text            initialize_state__7JUTFontFv */
 void JUTFont::initialize_state() {
     setCharColor(JUtility::TColor());
-    unk5 = false;
-    unk8 = 0;
-    unk4 = false;
+    mFixed = false;
+    mFixedWidth = 0;
+    mValid = false;
 }
 
 /* 802DED70-802DEDC4 2D96B0 0054+00 1/1 3/3 0/0 .text setCharColor__7JUTFontFQ28JUtility6TColor */

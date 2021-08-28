@@ -4,6 +4,7 @@
 //
 
 #include "d/d_drawlist.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx44.h"
 #include "dolphin/mtx/mtxvec.h"
@@ -41,8 +42,6 @@ struct dDlst_shadowTri_c {
     /* 80056344 */ dDlst_shadowTri_c();
 };
 
-struct _GXTexObj {};
-
 struct dDlst_shadowSimple_c {
     /* 8005520C */ void draw();
     /* 800553EC */ void set(cXyz*, f32, f32, cXyz*, s16, f32, _GXTexObj*);
@@ -75,8 +74,6 @@ struct dDlst_shadowPoly_c {
     /* 80054288 */ void set(cBgD_Vtx_t*, u16, u16, u16, cM3dGPla*);
     /* 800543B4 */ void draw();
 };
-
-struct ResTIMG {};
 
 struct dDlst_shadowControl_c {
     /* 80055684 */ void init();
@@ -157,22 +154,12 @@ struct cBgS {
     /* 80074840 */ void ShdwDraw(cBgS_ShdwDraw*);
 };
 
-struct _GXTlutObj {};
-
 struct ShdwDrawPoly_c {
     /* 80054A6C */ ~ShdwDrawPoly_c();
 };
 
-struct JUtility {
-    struct TColor {};
-};
-
 struct JMath {
     static u8 sincosTable_[65536];
-};
-
-struct JKRArchive {
-    /* 802D5B38 */ void getGlbResource(u32, char const*, JKRArchive*);
 };
 
 struct J3DUClipper {
@@ -186,30 +173,11 @@ struct J3DShape {
     static u8 sOldVcdVatCmd[4];
 };
 
-struct J2DGrafContext {};
-
-struct J2DScreen {
-    /* 80053BA0 */ void clearAnmTransform();
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-};
-
 struct J2DPicture {
     /* 800539DC */ void getTexture(u8) const;
     /* 80053C44 */ void setWhite(JUtility::TColor);
     /* 80053C6C */ void setBlack(JUtility::TColor);
     /* 802FC050 */ J2DPicture();
-};
-
-struct J2DPane {
-    /* 80053BC0 */ void calcMtx();
-    /* 80053C00 */ void makeMatrix(f32, f32);
-    /* 80053C3C */ s32 getTypeID() const;
-    /* 802F8004 */ void clearAnmTransform();
-};
-
-struct J2DAnmBase {
-    /* 80053C94 */ ~J2DAnmBase();
-    /* 800569B0 */ void searchUpdateMaterialID(J2DScreen*);
 };
 
 //
@@ -347,15 +315,11 @@ extern "C" void __dt__13J3DDrawBufferFv();
 extern "C" void frameInit__13J3DDrawBufferFv();
 extern "C" void entryImm__13J3DDrawBufferFP9J3DPacketUs();
 extern "C" void draw__13J3DDrawBufferCFv();
-extern "C" void GXSetVtxDesc();
 extern "C" void GXClearVtxDesc();
-extern "C" void GXSetVtxAttrFmt();
 extern "C" void GXSetArray();
 extern "C" void GXSetTexCoordGen2();
-extern "C" void GXSetNumTexGens();
 extern "C" void GXPixModeSync();
 extern "C" void GXPeekZ();
-extern "C" void GXBegin();
 extern "C" void GXSetLineWidth();
 extern "C" void GXSetPointSize();
 extern "C" void GXSetCullMode();
@@ -363,37 +327,20 @@ extern "C" void GXSetTexCopySrc();
 extern "C" void GXSetTexCopyDst();
 extern "C" void GXCopyTex();
 extern "C" void GXSetChanMatColor();
-extern "C" void GXSetNumChans();
-extern "C" void GXSetChanCtrl();
-extern "C" void GXGetTexBufferSize();
-extern "C" void GXInitTexObj();
-extern "C" void GXInitTexObjLOD();
 extern "C" void GXGetTexObjWidth();
 extern "C" void GXGetTexObjHeight();
 extern "C" void GXGetTexObjWrapS();
 extern "C" void GXGetTexObjWrapT();
 extern "C" void GXGetTexObjTlut();
-extern "C" void GXLoadTexObj();
-extern "C" void GXLoadTlut();
 extern "C" void GXSetNumIndStages();
-extern "C" void GXSetTevOp();
-extern "C" void GXSetTevColorIn();
-extern "C" void GXSetTevAlphaIn();
-extern "C" void GXSetTevColorOp();
-extern "C" void GXSetTevAlphaOp();
-extern "C" void GXSetTevColor();
 extern "C" void GXSetTevSwapModeTable();
 extern "C" void GXSetAlphaCompare();
-extern "C" void GXSetTevOrder();
-extern "C" void GXSetNumTevStages();
 extern "C" void GXSetFog();
-extern "C" void GXSetBlendMode();
 extern "C" void GXSetColorUpdate();
 extern "C" void GXSetAlphaUpdate();
 extern "C" void GXSetZMode();
 extern "C" void GXSetZCompLoc();
 extern "C" void GXSetDither();
-extern "C" void GXCallDisplayList();
 extern "C" void GXSetProjection();
 extern "C" void GXLoadPosMtxImm();
 extern "C" void GXSetCurrentMtx();
