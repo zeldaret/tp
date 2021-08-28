@@ -69,6 +69,15 @@ private:
     static JSUList<JKRAMCommand> sAramCommandList;
 };
 
+inline void* JKRAllocFromAram(u32 size, JKRAramHeap::EAllocMode allocMode) {
+    return JKRAram::getAramHeap()->alloc(size, allocMode);
+}
+
+inline void JKRAramToMainRam(u32 p1, u8* p2, u32 p3, JKRExpandSwitch p4, u32 p5, JKRHeap* p6,
+                             int p7, u32* p8) {
+    JKRAram::aramToMainRam(p1, p2, p3, p4, p5, p6, p7, p8);
+}
+
 // void JKRDecompressFromAramToMainRam(u32, void*, u32, u32, u32, u32*);
 
 #endif /* JKRARAM_H */

@@ -3,18 +3,20 @@
 
 #include "JSystem/JKernel/JKRCompression.h"
 #include "JSystem/JKernel/JKRDecomp.h"
+#include "JSystem/JKernel/JKRDvdFile.h"
 #include "JSystem/JKernel/JKRFileLoader.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "global.h"
 
 struct SArcHeader {
-    u32 signature;
-    u32 file_length;
-    u32 header_length;
-    u32 file_data_offset;
-    u32 file_data_length;
-    u32 field_0x14;
-    u32 field_0x18;
-    u32 field_0x1c;
+    /* 0x00 */ u32 signature;
+    /* 0x04 */ u32 file_length;
+    /* 0x08 */ u32 header_length;
+    /* 0x0C */ u32 file_data_offset;
+    /* 0x10 */ u32 file_data_length;
+    /* 0x14 */ u32 field_0x14;
+    /* 0x18 */ u32 field_0x18;
+    /* 0x1C */ u32 field_0x1c;
 };
 
 struct SArcDataInfo {
@@ -46,8 +48,6 @@ inline u32 JKRDecompExpandSize(SArcHeader* header) {
 
 extern u32 sCurrentDirID__10JKRArchive;  // JKRArchive::sCurrentDirID
 
-class JKRHeap;
-class JKRDvdFile;
 class JKRArchive : public JKRFileLoader {
 public:
     struct SDirEntry {
@@ -82,6 +82,8 @@ public:
         bool isDirectory() const { return (getFlags() & 0x02) != 0; }
         bool isUnknownFlag1() const { return (getFlags() & 0x01) != 0; }
         bool isCompressed() const { return (getFlags() & 0x04) != 0; }
+        // was needed for open__14JKRAramArchiveFl
+        u8 getCompressFlag() const { return (getFlags() & 0x04); }
         bool isYAZ0Compressed() const { return (getFlags() & 0x80) != 0; }
     };
 

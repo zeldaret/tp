@@ -6,114 +6,61 @@
 #include "JSystem/JSupport/JSUMemoryStream.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JSUStreamSeekFrom {};
-
-struct JSURandomInputStream {
-    /* 802D4094 */ void getAvailable() const;
-    /* 802DC3FC */ void skip(s32);
-};
-
-struct JSUMemoryInputStream {
-    /* 802552B8 */ ~JSUMemoryInputStream();
-    /* 802DC520 */ void setBuffer(void const*, s32);
-    /* 802DC534 */ void readData(void*, s32);
-    /* 802DC5AC */ void seekPos(s32, JSUStreamSeekFrom);
-    /* 802DC628 */ void getLength() const;
-    /* 802DC630 */ void getPosition() const;
-};
-
-//
-// Forward References:
-//
-
-extern "C" void setBuffer__20JSUMemoryInputStreamFPCvl();
-extern "C" void readData__20JSUMemoryInputStreamFPvl();
-extern "C" void seekPos__20JSUMemoryInputStreamFl17JSUStreamSeekFrom();
-extern "C" void getLength__20JSUMemoryInputStreamCFv();
-extern "C" void getPosition__20JSUMemoryInputStreamCFv();
-extern "C" extern void* __vt__20JSUMemoryInputStream[9 + 1 /* padding */];
-
-//
-// External References:
-//
-
-SECTION_INIT void memcpy();
-extern "C" void __dt__20JSUMemoryInputStreamFv();
-extern "C" void getAvailable__20JSURandomInputStreamCFv();
-extern "C" void skip__20JSURandomInputStreamFl();
+#include "msl_c/string.h"
 
 //
 // Declarations:
 //
 
 /* 802DC520-802DC534 2D6E60 0014+00 0/0 3/3 0/0 .text setBuffer__20JSUMemoryInputStreamFPCvl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JSUMemoryInputStream::setBuffer(void const* param_0, s32 param_1) {
-    nofralloc
-#include "asm/JSystem/JSupport/JSUMemoryStream/setBuffer__20JSUMemoryInputStreamFPCvl.s"
+void JSUMemoryInputStream::setBuffer(void const* pBuffer, s32 length) {
+    mBuffer = pBuffer;
+    mLength = length;
+    mPosition = 0;
 }
-#pragma pop
 
 /* 802DC534-802DC5AC 2D6E74 0078+00 1/0 0/0 0/0 .text readData__20JSUMemoryInputStreamFPvl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JSUMemoryInputStream::readData(void* param_0, s32 param_1) {
-    nofralloc
-#include "asm/JSystem/JSupport/JSUMemoryStream/readData__20JSUMemoryInputStreamFPvl.s"
+u32 JSUMemoryInputStream::readData(void* pData, s32 length) {
+    if (mPosition + length > mLength) {
+        length = mLength - mPosition;
+    }
+    if (length > 0) {
+        memcpy(pData, (void*)((s32)mBuffer + mPosition), length);
+        mPosition += length;
+    }
+    return length;
 }
-#pragma pop
 
 /* 802DC5AC-802DC628 2D6EEC 007C+00 1/0 0/0 0/0 .text
  * seekPos__20JSUMemoryInputStreamFl17JSUStreamSeekFrom         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JSUMemoryInputStream::seekPos(s32 param_0, JSUStreamSeekFrom param_1) {
-    nofralloc
-#include "asm/JSystem/JSupport/JSUMemoryStream/seekPos__20JSUMemoryInputStreamFl17JSUStreamSeekFrom.s"
+s32 JSUMemoryInputStream::seekPos(s32 pos, JSUStreamSeekFrom seekFrom) {
+    s32 oldPos = mPosition;
+    switch (seekFrom) {
+    case JSUStreamSeekFrom_SET:
+        mPosition = pos;
+        break;
+    case JSUStreamSeekFrom_END:
+        mPosition = mLength - pos;
+        break;
+    case JSUStreamSeekFrom_CUR:
+        mPosition += pos;
+        break;
+    }
+    if (mPosition < 0) {
+        mPosition = 0;
+    }
+    if (mPosition > mLength) {
+        mPosition = mLength;
+    }
+    return mPosition - oldPos;
 }
-#pragma pop
 
 /* 802DC628-802DC630 2D6F68 0008+00 1/0 0/0 0/0 .text getLength__20JSUMemoryInputStreamCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JSUMemoryInputStream::getLength() const {
-    nofralloc
-#include "asm/JSystem/JSupport/JSUMemoryStream/getLength__20JSUMemoryInputStreamCFv.s"
+s32 JSUMemoryInputStream::getLength() const {
+    return mLength;
 }
-#pragma pop
 
 /* 802DC630-802DC638 2D6F70 0008+00 1/0 0/0 0/0 .text getPosition__20JSUMemoryInputStreamCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JSUMemoryInputStream::getPosition() const {
-    nofralloc
-#include "asm/JSystem/JSupport/JSUMemoryStream/getPosition__20JSUMemoryInputStreamCFv.s"
+s32 JSUMemoryInputStream::getPosition() const {
+    return mPosition;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 803CC4F0-803CC518 029610 0024+04 0/0 4/4 0/0 .data            __vt__20JSUMemoryInputStream */
-SECTION_DATA extern void* __vt__20JSUMemoryInputStream[9 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__20JSUMemoryInputStreamFv,
-    (void*)getAvailable__20JSURandomInputStreamCFv,
-    (void*)skip__20JSURandomInputStreamFl,
-    (void*)readData__20JSUMemoryInputStreamFPvl,
-    (void*)getLength__20JSUMemoryInputStreamCFv,
-    (void*)getPosition__20JSUMemoryInputStreamCFv,
-    (void*)seekPos__20JSUMemoryInputStreamFl17JSUStreamSeekFrom,
-    /* padding */
-    NULL,
-};

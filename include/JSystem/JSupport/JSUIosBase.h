@@ -11,7 +11,7 @@ class JSUIosBase {
 public:
     JSUIosBase() { mState = false; }
 
-    virtual ~JSUIosBase();
+    virtual ~JSUIosBase() {}
 
     bool isGood() const { return mState == 0; }
     void clrState(EIoState state) { mState &= ~state; }
@@ -19,6 +19,6 @@ public:
 
 private:
     u8 mState;
-};
+};  // Size = 0x8
 
 #endif
