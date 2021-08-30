@@ -39,6 +39,12 @@ public:
     u8 mTimerType;
 };
 
+class phaseParam_c {
+public:
+    /* 0x0 */ char* field_0x0;
+    /* 0x4 */ JKRHeap* heap;
+};
+
 struct camera_class {};
 
 class dComIfG_camera_info_class {
@@ -164,6 +170,7 @@ public:
     inline dEvent_manager_c& getEvtManager() { return mEvtManager; }
     inline dAttention_c& getAttention() { return mAttention; }
     JKRArchive* getMsgDtArchive(int idx) { return mMsgDtArchive[idx]; }
+    s16 getStartStagePoint() { return mStartStage.getPoint(); }
 
 public:
     /* 0x00000 */ dBgS mDBgS;
@@ -384,28 +391,6 @@ public:
     /* 0x05024 */ char mLastPlayStageName[8];
 };
 
-class dRes_control_c {
-public:
-    dRes_control_c() {}
-    /* 8003BFB0 */ ~dRes_control_c();
-    /* 8003C078 */ static int setRes(char const*, dRes_info_c*, int, char const*, u8, JKRHeap*);
-    /* 8003C160 */ static int syncRes(char const*, dRes_info_c*, int);
-    /* 8003C194 */ void deleteRes(char const*, dRes_info_c*, int);
-    /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
-
-    int setObjectRes(const char* name, u8 param_1, JKRHeap* heap) {
-        return setRes(name, &mResInfos1[0], ARRAY_SIZE(mResInfos1), "/res/Object/", param_1, heap);
-    }
-
-    int syncObjectRes(const char* name) {
-        return syncRes(name, &mResInfos1[0], ARRAY_SIZE(mResInfos1));
-    }
-
-private:
-    /* 0x0000 */ dRes_info_c mResInfos1[0x80];
-    /* 0x1200 */ dRes_info_c mResInfos2[0x40];
-};  // Size: 0x1B00
-
 class dComIfG_inf_c {
 public:
     dComIfG_inf_c() { this->ct(); }
@@ -459,6 +444,8 @@ u16 dComIfGs_getMaxLifeGauge();
 void dComIfGs_setWarpMarkFlag(u8);
 void dComIfGs_setSelectEquipSword(u8);
 void dComIfGs_setSelectEquipShield(u8);
+void* dComIfG_getStageRes(char const*);
+void dComLbG_PhaseHandler(request_of_phase_process_class*, int (**param_1)(void*), void*);
 
 inline void dComIfGp_setRStatus(u8 status, u8 flag) {
     g_dComIfG_gameInfo.play.setRStatus(status, flag);
@@ -851,7 +838,7 @@ inline void dComIfGp_roomControl_initZone() {
     g_dComIfG_gameInfo.play.getRoomControl()->initZone();
 }
 
-inline bool dComIfG_setObjectRes(const char* name, u8 param_1, JKRHeap* heap) {
+inline int dComIfG_setObjectRes(const char* name, u8 param_1, JKRHeap* heap) {
     return g_dComIfG_gameInfo.mResControl.setObjectRes(name, param_1, heap);
 }
 
@@ -973,6 +960,26 @@ inline JKRArchive* dComIfGp_getMsgDtArchive(int idx) {
 
 inline u8 dComIfGs_getArrowNum() {
     return g_dComIfG_gameInfo.info.getPlayer().getItemRecord().getArrowNum();
+}
+
+inline s16 dComIfGp_getStartStagePoint() {
+    return g_dComIfG_gameInfo.play.getStartStagePoint();
+}
+
+inline void dComIfGs_initZone() {
+    g_dComIfG_gameInfo.info.initZone();
+}
+
+inline int dComIfG_deleteObjectResMain(const char* res) {
+    return g_dComIfG_gameInfo.mResControl.deleteObjectRes(res);
+}
+
+inline void dComIfGp_roomControl_init() {
+    g_dComIfG_gameInfo.play.getRoomControl()->init();
+}
+
+inline void* dComIfG_getStageRes(const char* arcName, const char* resName) {
+    return g_dComIfG_gameInfo.mResControl.getStageRes(arcName, resName);
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

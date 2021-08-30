@@ -139,5 +139,8 @@ JKRAssertHeap* mDoExt_getAssertHeap();
 JKRExpHeap* mDoExt_getCommandHeap();
 JKRExpHeap* mDoExt_getZeldaHeap();
 JKRExpHeap* mDoExt_getJ2dHeap();
+JKRSolidHeap* mDoExt_createSolidHeapToCurrent(JKRHeap**, u32, JKRHeap*, u32);
+JKRSolidHeap* mDoExt_createSolidHeapToCurrent(u32, JKRHeap*, u32);
+JKRSolidHeap* mDoExt_createSolidHeapFromGameToCurrent(u32, u32);
 
 #endif /* M_DO_M_DO_EXT_H */

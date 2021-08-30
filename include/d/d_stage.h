@@ -2,6 +2,7 @@
 #define D_D_STAGE_H
 
 #include "JSystem/JKernel/JKRExpHeap.h"
+#include "SSystem/SComponent/c_lib.h"
 #include "d/kankyo/d_kankyo.h"
 #include "d/save/d_save.h"
 #include "dolphin/types.h"
@@ -475,9 +476,11 @@ class dStage_roomStatus_c {
 public:
     /* 0x000 */ dStage_roomDt_c mRoomDt;
     /* 0x06C */ dKy_tevstr_c mKyTevStr;
-    /* 0x3F4 */ u8 unk_0x3F4[3];
+    /* 0x3F4 */ u8 unk_0x3F4;
+    /* 0x3F5 */ u8 unk_0x3F5[2];
     /* 0x3F7 */ s8 mZoneNo;
-    /* 0x3F8 */ u8 unk_3F8[0x404 - 0x3F8];
+    /* 0x3F8 */ s8 mMemBlockID;
+    /* 0x3F9 */ s8 unk_3F9[0x404 - 0x3F9];
 
     int getZoneNo() const { return mZoneNo; }
     /* 80028360 */ ~dStage_roomStatus_c() {}
@@ -505,24 +508,28 @@ public:
     void init(void);
     static int getZoneNo(int room);
     /* 80024338 */ void initZone();
-    /* 80024384 */ void getStatusRoomDt(int);
-    /* 800243B0 */ void getMemoryBlock(int);
+    /* 80024384 */ dStage_roomStatus_c* getStatusRoomDt(int);
+    /* 800243B0 */ JKRExpHeap* getMemoryBlock(int);
     /* 800243E8 */ static void setStayNo(int);
     /* 80024424 */ static void setNextStayNo(int);
-    /* 800244E8 */ void checkRoomDisp(int) const;
+    /* 800244E8 */ bool checkRoomDisp(int) const;
     /* 8002451C */ void loadRoom(int, u8*, bool);
     /* 8002471C */ void zoneCountCheck(int) const;
     /* 80024844 */ static JKRExpHeap* createMemoryBlock(int, u32);
     /* 800248A8 */ void destroyMemoryBlock();
-    /* 8002490C */ void setArcBank(int, char const*);
-    /* 80024940 */ void getArcBank(int);
-    /* 80024954 */ void resetArchiveBank(int);
+    /* 8002490C */ static void setArcBank(int, char const*);
+    /* 80024940 */ static char* getArcBank(int);
+    /* 80024954 */ static int resetArchiveBank(int);
     /* 80024DB0 */ static void SetTimePass(int);
 
     inline static s8 getStayNo() { return struct_80450D64; }
+    s8 getMemoryBlockID(int i_roomNo) { return mStatus[i_roomNo].mMemBlockID; }
+    bool checkStatusFlag(int i_roomNo, u8 flag) const {
+        return cLib_checkBit(mStatus[i_roomNo].unk_0x3F4, flag);
+    }
 
     static JKRExpHeap* mMemoryBlock[19];
-    static u8 mArcBank[320];
+    static char mArcBank[32][10];
     static dStage_roomStatus_c mStatus[0x40];
     static u8 mDemoArcName[10 + 2 /* padding */];
     static u32 mProcID;
@@ -540,6 +547,7 @@ public:
     inline char* getName() { return mStage; }
     s8 getLayer() { return mLayer; }
     s8 getRoomNo() { return mRoomNo; }
+    s16 getPoint() { return mPoint; }
 
 private:
     /* 0x0 */ char mStage[8];
@@ -577,7 +585,7 @@ public:
     /* 0x004 */ stage_tgsc_data_class unk_0x4[0x40];
 };  // Size = 0x904
 
-typedef void (*dStage_Func)(dStage_dt_c*, void*, int, void*);
+typedef int (*dStage_Func)(dStage_dt_c*, void*, int, void*);
 
 struct FuncTable {
     char identifier[8];
@@ -586,53 +594,53 @@ struct FuncTable {
 
 const char* dStage_getName2(s16, s8);
 dStage_objectNameInf* dStage_searchName(const char*);
-static void dStage_stageKeepTresureInit(dStage_dt_c*, void*, int, void*);
-static void dStage_filiInfo2Init(dStage_dt_c*, void*, int, void*);
-static void dStage_mapPathInitCommonLayer(dStage_dt_c*, void*, int, void*);
-static void dStage_mapPathInit(dStage_dt_c*, void*, int, void*);
-static void dStage_memaInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_mecoInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_stagInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_soundInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_lgtvInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_envrInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_pselectInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_paletteInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_vrboxcolInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_roomDrtgInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_tgscInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_actorInit(dStage_dt_c*, void*, int, void*);
-static void dStage_layerTresureInit(dStage_dt_c*, void*, int, void*);
-static void dStage_elstInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_rppnInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_rpatInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_multInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_playerInit(dStage_dt_c*, void*, int, void*);
-static void dStage_cameraInit(dStage_dt_c*, void*, int, void*);
-static void dStage_actorInit_always(dStage_dt_c*, void*, int, void*);
-static void dStage_roomReadInit(dStage_dt_c*, void*, int, void*);
-static void dStage_arrowInit(dStage_dt_c*, void*, int, void*);
-static void dStage_vrboxInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_sclsInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_tgscInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_plightInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_ppntInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_pathInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_filiInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_stageDrtgInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_floorInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_dmapInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_stEventInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_soundInfoInitCL(dStage_dt_c*, void*, int, void*);
-static void dStage_RoomCameraInit(dStage_dt_c*, void*, int, void*);
-static void dStage_lbnkInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_actorCommonLayerInit(dStage_dt_c*, void*, int, void*);
-static void dStage_roomTresureInit(dStage_dt_c*, void*, int, void*);
-static void dStage_tgscCommonLayerInit(dStage_dt_c*, void*, int, void*);
-static void dStage_mapEventInfoInit(dStage_dt_c*, void*, int, void*);
-static void dStage_fieldMapTresureInit(dStage_dt_c*, void*, int, void*);
-static void dStage_fieldMapFiliInfo2Init(dStage_dt_c*, void*, int, void*);
-static void dStage_fieldMapMapPathInit(dStage_dt_c*, void*, int, void*);
+static int dStage_stageKeepTresureInit(dStage_dt_c*, void*, int, void*);
+static int dStage_filiInfo2Init(dStage_dt_c*, void*, int, void*);
+static int dStage_mapPathInitCommonLayer(dStage_dt_c*, void*, int, void*);
+static int dStage_mapPathInit(dStage_dt_c*, void*, int, void*);
+static int dStage_memaInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_mecoInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_stagInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_soundInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_lgtvInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_envrInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_pselectInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_paletteInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_vrboxcolInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_roomDrtgInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_tgscInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_actorInit(dStage_dt_c*, void*, int, void*);
+static int dStage_layerTresureInit(dStage_dt_c*, void*, int, void*);
+static int dStage_elstInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_rppnInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_rpatInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_multInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_playerInit(dStage_dt_c*, void*, int, void*);
+static int dStage_cameraInit(dStage_dt_c*, void*, int, void*);
+static int dStage_actorInit_always(dStage_dt_c*, void*, int, void*);
+static int dStage_roomReadInit(dStage_dt_c*, void*, int, void*);
+static int dStage_arrowInit(dStage_dt_c*, void*, int, void*);
+static int dStage_vrboxInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_sclsInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_tgscInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_plightInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_ppntInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_pathInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_filiInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_stageDrtgInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_floorInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_dmapInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_stEventInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_soundInfoInitCL(dStage_dt_c*, void*, int, void*);
+static int dStage_RoomCameraInit(dStage_dt_c*, void*, int, void*);
+static int dStage_lbnkInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_actorCommonLayerInit(dStage_dt_c*, void*, int, void*);
+static int dStage_roomTresureInit(dStage_dt_c*, void*, int, void*);
+static int dStage_tgscCommonLayerInit(dStage_dt_c*, void*, int, void*);
+static int dStage_mapEventInfoInit(dStage_dt_c*, void*, int, void*);
+static int dStage_fieldMapTresureInit(dStage_dt_c*, void*, int, void*);
+static int dStage_fieldMapFiliInfo2Init(dStage_dt_c*, void*, int, void*);
+static int dStage_fieldMapMapPathInit(dStage_dt_c*, void*, int, void*);
 
 u8 dStage_roomRead_dt_c_GetReverbStage(roomRead_class&, int);
 

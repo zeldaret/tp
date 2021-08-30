@@ -2540,8 +2540,8 @@ JKRSolidHeap* mDoExt_createSolidHeapFromSystem(u32 pSize, u32 pAlignment) {
 
 /* 8000EF68-8000EFBC 0098A8 0054+00 2/2 0/0 0/0 .text
  * mDoExt_createSolidHeapToCurrent__FPP7JKRHeapUlP7JKRHeapUl    */
-static JKRSolidHeap* mDoExt_createSolidHeapToCurrent(JKRHeap** pOutHeap, u32 pSize,
-                                                     JKRHeap* pParentHeap, u32 pAlignment) {
+JKRSolidHeap* mDoExt_createSolidHeapToCurrent(JKRHeap** pOutHeap, u32 pSize, JKRHeap* pParentHeap,
+                                              u32 pAlignment) {
     if (pOutHeap != NULL) {
         *pOutHeap = JKRHeap::getCurrentHeap();
     }
