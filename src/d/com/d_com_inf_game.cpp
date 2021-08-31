@@ -41,11 +41,6 @@ struct dMapInfo_n {
     /* 8003EE5C */ void getMapPlayerPos();
 };
 
-struct dDlst_shadowControl_c {
-    /* 80055C74 */ void setReal(u32, s8, J3DModel*, cXyz*, f32, f32, dKy_tevstr_c*);
-    /* 80055F84 */ void setSimple(cXyz*, f32, f32, cXyz*, s16, f32, _GXTexObj*);
-};
-
 struct dComIfG_resLoader_c {
     /* 8002F314 */ dComIfG_resLoader_c();
     /* 8002F328 */ ~dComIfG_resLoader_c();

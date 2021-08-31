@@ -75,9 +75,20 @@ struct J2DAnmColor {
     /* 8030AF24 */ void searchUpdateMaterialID(J2DScreen*);
 };
 
-struct J2DAnmBase {
-    /* 80053C94 */ ~J2DAnmBase();
-    /* 800569B0 */ void searchUpdateMaterialID(J2DScreen*);
+class J2DAnmBase {
+public:
+    /* 80053C94 */ virtual ~J2DAnmBase();
+    /* 800569B0 */ virtual void searchUpdateMaterialID(J2DScreen*);
+
+    s16 getFrameMax() const { return mFrameMax; }
+    void setFrame(f32 frame) { mFrame = frame; }
+
+private:
+    /* 0x0 */  // vtable
+    /* 0x4 */ u8 field_0x4[2];
+    /* 0x6 */ s16 mFrameMax;
+    /* 0x8 */ f32 mFrame;
+    /* 0xC */ int mKind;
 };
 
 struct J2DAnmVtxColor {};

@@ -70,6 +70,12 @@ public:
     f32 getWidth() const { return mBounds.getWidth(); }
     JSUTree<J2DPane>* getFirstChild() { return mPaneTree.getFirstChild(); }
     const JSUTree<J2DPane>* getPaneTree() { return &mPaneTree; }
+    u8 getAlpha() const { return mAlpha; }
+    void translate(f32 transX, f32 transY) {
+        mTranslateX = transX;
+        mTranslateY = transY;
+        calcMtx();
+    }
 
     void initiate();
     void initialize(J2DPane*, bool, u64, const JGeometry::TBox2<f32>&);

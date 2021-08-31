@@ -4,7 +4,6 @@
 //
 
 #include "d/d_drawlist.h"
-#include "JSystem/J2DGraph/J2DScreen.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx44.h"
 #include "dolphin/mtx/mtxvec.h"
@@ -28,64 +27,6 @@ struct mDoLib_clipper {
 
 struct mDoGph_gInf_c {
     static u8 mBackColor[4];
-};
-
-struct mDoExt_3DlineMatSortPacket {
-    /* 80014E20 */ ~mDoExt_3DlineMatSortPacket();
-    /* 800561C8 */ mDoExt_3DlineMatSortPacket();
-};
-
-struct dKy_tevstr_c {};
-
-struct dDlst_shadowTri_c {
-    /* 80056270 */ ~dDlst_shadowTri_c();
-    /* 80056344 */ dDlst_shadowTri_c();
-};
-
-struct dDlst_shadowSimple_c {
-    /* 8005520C */ void draw();
-    /* 800553EC */ void set(cXyz*, f32, f32, cXyz*, s16, f32, _GXTexObj*);
-    /* 8005638C */ dDlst_shadowSimple_c();
-};
-
-struct J3DModel {};
-
-struct dDlst_shadowReal_c {
-    /* 800544F0 */ void reset();
-    /* 80054500 */ void imageDraw(f32 (*)[4]);
-    /* 800545D4 */ void draw();
-    /* 80054BD0 */ void setShadowRealMtx(cXyz*, cXyz*, f32, f32, f32, dKy_tevstr_c*);
-    /* 80055028 */ void set(u32, J3DModel*, cXyz*, f32, f32, dKy_tevstr_c*, f32, f32);
-    /* 800551D4 */ void add(J3DModel*);
-    /* 800561F8 */ ~dDlst_shadowReal_c();
-    /* 800562D0 */ dDlst_shadowReal_c();
-};
-
-struct dDlst_shadowRealPoly_c {
-    /* 800569A0 */ void getTri();
-    /* 800569A8 */ s32 getTriMax();
-};
-
-struct cM3dGPla {};
-
-struct cBgD_Vtx_t {};
-
-struct dDlst_shadowPoly_c {
-    /* 80054288 */ void set(cBgD_Vtx_t*, u16, u16, u16, cM3dGPla*);
-    /* 800543B4 */ void draw();
-};
-
-struct dDlst_shadowControl_c {
-    /* 80055684 */ void init();
-    /* 80055768 */ void reset();
-    /* 800557C8 */ void imageDraw(f32 (*)[4]);
-    /* 80055A14 */ void draw(f32 (*)[4]);
-    /* 80055C74 */ void setReal(u32, s8, J3DModel*, cXyz*, f32, f32, dKy_tevstr_c*);
-    /* 80055F1C */ void addReal(u32, J3DModel*);
-    /* 80055F84 */ void setSimple(cXyz*, f32, f32, cXyz*, s16, f32, _GXTexObj*);
-    /* 80055FE8 */ void setSimpleTex(ResTIMG const*);
-
-    static u8 mSimpleTexObj[32];
 };
 
 struct dDlst_effectLine_c {
@@ -395,26 +336,24 @@ extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 //
 
 /* 80051AC0-80051ADC 04C400 001C+00 0/0 3/3 0/0 .text setViewPort__14dDlst_window_cFffffff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_window_c::setViewPort(f32 param_0, f32 param_1, f32 param_2, f32 param_3,
-                                     f32 param_4, f32 param_5) {
-    nofralloc
-#include "asm/d/d_drawlist/setViewPort__14dDlst_window_cFffffff.s"
+void dDlst_window_c::setViewPort(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
+                                 f32 param_5) {
+    mViewport = param_0;
+    field_0x04 = param_1;
+    field_0x08 = param_2;
+    field_0x0C = param_3;
+    field_0x10 = param_4;
+    field_0x14 = param_5;
 }
-#pragma pop
 
 /* 80051ADC-80051AF0 04C41C 0014+00 0/0 4/4 0/0 .text            setScissor__14dDlst_window_cFffff
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_window_c::setScissor(f32 param_0, f32 param_1, f32 param_2, f32 param_3) {
-    nofralloc
-#include "asm/d/d_drawlist/setScissor__14dDlst_window_cFffff.s"
+void dDlst_window_c::setScissor(f32 param_0, f32 param_1, f32 param_2, f32 param_3) {
+    mScissor = param_0;
+    field_0x1c = param_1;
+    field_0x20 = param_2;
+    field_0x24 = param_3;
 }
-#pragma pop
 
 /* 80051AF0-80051CF0 04C430 0200+00 1/0 0/0 0/0 .text            draw__13dDlst_2DTri_cFv */
 #pragma push
@@ -2332,7 +2271,8 @@ asm void J2DPicture::setBlack(JUtility::TColor param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DAnmBase::~J2DAnmBase() {
+// asm J2DAnmBase::~J2DAnmBase() {
+extern "C" asm void __dt__10J2DAnmBaseFv() {
     nofralloc
 #include "asm/d/d_drawlist/__dt__10J2DAnmBaseFv.s"
 }
@@ -2455,24 +2395,23 @@ asm void dDlst_shadowPoly_c::draw() {
 #pragma pop
 
 /* 80054478-800544F0 04EDB8 0078+00 1/1 0/0 0/0 .text            J3DDrawBuffer__create__FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void J3DDrawBuffer__create(u32 param_0) {
-    nofralloc
-#include "asm/d/d_drawlist/J3DDrawBuffer__create__FUl.s"
+static J3DDrawBuffer* J3DDrawBuffer__create(u32 size) {
+    J3DDrawBuffer* buffer = new J3DDrawBuffer();
+
+    if (buffer) {
+        if (buffer->allocBuffer(size) == kJ3DError_Success) {
+            return buffer;
+        }
+        delete buffer;
+    }
+    return NULL;
 }
-#pragma pop
 
 /* 800544F0-80054500 04EE30 0010+00 2/2 0/0 0/0 .text            reset__18dDlst_shadowReal_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_shadowReal_c::reset() {
-    nofralloc
-#include "asm/d/d_drawlist/reset__18dDlst_shadowReal_cFv.s"
+void dDlst_shadowReal_c::reset() {
+    mState = 0;
+    mModelNum = 0;
 }
-#pragma pop
 
 /* 80054500-800545D4 04EE40 00D4+00 1/1 0/0 0/0 .text imageDraw__18dDlst_shadowReal_cFPA4_f */
 #pragma push
@@ -2634,14 +2573,16 @@ asm void dDlst_shadowReal_c::set(u32 param_0, J3DModel* param_1, cXyz* param_2, 
 #pragma pop
 
 /* 800551D4-8005520C 04FB14 0038+00 1/1 0/0 0/0 .text add__18dDlst_shadowReal_cFP8J3DModel */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_shadowReal_c::add(J3DModel* param_0) {
-    nofralloc
-#include "asm/d/d_drawlist/add__18dDlst_shadowReal_cFP8J3DModel.s"
+bool dDlst_shadowReal_c::add(J3DModel* pModel) {
+    u8 curModelNum = mModelNum;
+
+    if (curModelNum == 0 || pModel == NULL) {
+        return false;
+    }
+    mModelNum++;
+    mpModels[curModelNum] = pModel;
+    return true;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450650-80450654 0000D0 0004+00 1/1 0/0 0/0 .sdata           l_color$5326 */
@@ -2707,14 +2648,17 @@ asm void dDlst_shadowControl_c::init() {
 #pragma pop
 
 /* 80055768-800557C8 0500A8 0060+00 1/1 0/0 0/0 .text            reset__21dDlst_shadowControl_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_shadowControl_c::reset() {
-    nofralloc
-#include "asm/d/d_drawlist/reset__21dDlst_shadowControl_cFv.s"
+void dDlst_shadowControl_c::reset() {
+    dDlst_shadowReal_c* shadowReal = &mReal[0];
+
+    for (int i = 0; i < 8; i++) {
+        shadowReal->reset();
+        shadowReal++;
+    }
+    mSimpleNum = 0;
+    mRealNum = 0;
+    field_0x4 = NULL;
 }
-#pragma pop
 
 /* 800557C8-80055A14 050108 024C+00 0/0 1/1 0/0 .text imageDraw__21dDlst_shadowControl_cFPA4_f */
 #pragma push
@@ -3046,37 +2990,37 @@ asm void dDlst_list_c::drawXluDrawList(J3DDrawBuffer* param_0) {
 
 /* 8005674C-80056770 05108C 0024+00 0/0 1/1 0/0 .text            drawOpaListItem3d__12dDlst_list_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_list_c::drawOpaListItem3d() {
-    nofralloc
-#include "asm/d/d_drawlist/drawOpaListItem3d__12dDlst_list_cFv.s"
+void dDlst_list_c::drawOpaListItem3d() {
+    drawOpaDrawList(mOpaListItem3d);
 }
-#pragma pop
 
 /* 80056770-80056794 0510B0 0024+00 0/0 1/1 0/0 .text            drawXluListItem3d__12dDlst_list_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_list_c::drawXluListItem3d() {
-    nofralloc
-#include "asm/d/d_drawlist/drawXluListItem3d__12dDlst_list_cFv.s"
+void dDlst_list_c::drawXluListItem3d() {
+    drawXluDrawList(mXluListItem3d);
 }
-#pragma pop
 
 /* 80056794-800567C4 0510D4 0030+00 2/2 35/35 6/6 .text
  * set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c */
+#ifdef NONMATCHING
+int dDlst_list_c::set(dDlst_base_c**& param_0, dDlst_base_c**& param_1, dDlst_base_c* param_2) {
+    if (*param_0 >= *param_1) {
+        return 0;
+    }
+    *param_0 = param_2;
+    *param_0++;
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dDlst_list_c::set(dDlst_base_c**& param_0, dDlst_base_c**& param_1,
-                           dDlst_base_c* param_2) {
+asm int dDlst_list_c::set(dDlst_base_c**& param_0, dDlst_base_c**& param_1, dDlst_base_c* param_2) {
     nofralloc
 #include "asm/d/d_drawlist/set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c.s"
 }
 #pragma pop
+#endif
 
 /* 800567C4-8005681C 051104 0058+00 0/0 1/1 0/0 .text
  * draw__12dDlst_list_cFPP12dDlst_base_cPP12dDlst_base_c        */

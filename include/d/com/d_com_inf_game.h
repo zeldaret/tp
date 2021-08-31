@@ -155,20 +155,20 @@ public:
     void setMaxOxygen(int max) { mMaxOxygen = max; }
     u8 getDoStatus() { return mDoStatus; }
     u8 getRStatus() { return mRStatus; }
-    inline char* getStartStageName() { return mStartStage.getName(); }
-    inline s8 getStartStageRoomNo() { return mStartStage.getRoomNo(); }
-    inline s8 getStartStageLayer() { return mStartStage.getLayer(); }
-    inline u8 isHeapLockFlag() { return mHeapLockFlag; }
-    inline void setHeapLockFlag(u8 status) { mHeapLockFlag = status; }
-    inline void setSubHeapLockFlag(int idx, u8 status) { mSubHeapLockFlag[idx] = status; }
-    inline u8 getSubHeapLockFlag(int idx) { return mSubHeapLockFlag[idx]; }
-    inline void offHeapLockFlag() { mHeapLockFlag = 0; }
-    inline JKRExpHeap* getSubExpHeap2D(int idx) { return mSubExpHeap2D[idx]; }
-    inline void setSubExpHeap2D(int idx, void* heap) { mSubExpHeap2D[idx] = (JKRExpHeap*)heap; }
-    inline void offEnableNextStage() { mNextStage.offEnable(); }
-    inline JKRHeap* getExpHeap2D() { return mExpHeap2D; }
-    inline dEvent_manager_c& getEvtManager() { return mEvtManager; }
-    inline dAttention_c& getAttention() { return mAttention; }
+    char* getStartStageName() { return mStartStage.getName(); }
+    s8 getStartStageRoomNo() { return mStartStage.getRoomNo(); }
+    s8 getStartStageLayer() { return mStartStage.getLayer(); }
+    u8 isHeapLockFlag() { return mHeapLockFlag; }
+    void setHeapLockFlag(u8 status) { mHeapLockFlag = status; }
+    void setSubHeapLockFlag(int idx, u8 status) { mSubHeapLockFlag[idx] = status; }
+    u8 getSubHeapLockFlag(int idx) { return mSubHeapLockFlag[idx]; }
+    void offHeapLockFlag() { mHeapLockFlag = 0; }
+    JKRExpHeap* getSubExpHeap2D(int idx) { return mSubExpHeap2D[idx]; }
+    void setSubExpHeap2D(int idx, void* heap) { mSubExpHeap2D[idx] = (JKRExpHeap*)heap; }
+    void offEnableNextStage() { mNextStage.offEnable(); }
+    JKRHeap* getExpHeap2D() { return mExpHeap2D; }
+    dEvent_manager_c& getEvtManager() { return mEvtManager; }
+    dAttention_c& getAttention() { return mAttention; }
     JKRArchive* getMsgDtArchive(int idx) { return mMsgDtArchive[idx]; }
     s16 getStartStagePoint() { return mStartStage.getPoint(); }
 
@@ -399,8 +399,8 @@ public:
 
     /* 0x00000 */ dSv_info_c info;
     /* 0x00F38 */ dComIfG_play_c play;
-    /* 0x05F64 */ dDlst_list_c draw_list_list;
-    /* 0x1C110 */ u8 field_0x1C114[0x1E8 - 0xA];
+    /* 0x05F64 */ dDlst_list_c drawlist;
+    /* 0x1C104 */ u8 field_0x1C104[0x1F4];
     /* 0x1C2F8 */ dRes_control_c mResControl;
     /* 0x1DDF8 */ u8 field_0x1ddf8;  // related to fade, controls brightness
     /* 0x1DDF9 */ u8 mWorldDark;
@@ -416,7 +416,7 @@ public:
     /* 0x1DE0C */ u8 field_0x1de0c;
 
     static __d_timer_info_c dComIfG_mTimerInfo;
-};
+};  // Size: 0x1DE10
 
 STATIC_ASSERT(122384 == sizeof(dComIfG_inf_c));
 
@@ -741,7 +741,7 @@ inline char* dComIfGp_getStartStageName() {
 }
 
 inline void dComIfGd_reset() {
-    g_dComIfG_gameInfo.draw_list_list.reset();
+    g_dComIfG_gameInfo.drawlist.reset();
 }
 
 inline u8 dComIfGs_getOptVibration() {

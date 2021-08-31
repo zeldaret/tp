@@ -35,10 +35,13 @@ public:
     /* 80255ACC */ void childPaneGetAlpha(J2DPane*);
     /* 80255B5C */ void childPaneSetAlpha(J2DPane*, u8);
 
+    u8 getAlpha() { return mPanePtr->getAlpha(); }
+    J2DPane* getPanePtr() { return mPanePtr; }
+
 private:
     /* 0x04 */ J2DPane* mPanePtr;
     /* 0x08 */ JKRHeap* heap;
-    /* 0x0C */ void* field_0x0c;
+    /* 0x0C */ void* mpFirstStackAlpha;
     /* 0x10 */ int field_0x10;
     /* 0x14 */ s16 mChildPaneCount;
     /* 0x16 */ s16 mAlphaTimer;

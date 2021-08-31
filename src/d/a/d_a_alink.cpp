@@ -603,12 +603,6 @@ struct dInsect_c {
     /* 80110648 */ void Insect_Release();
 };
 
-struct dDlst_shadowControl_c {
-    /* 80055F1C */ void addReal(u32, J3DModel*);
-
-    static u8 mSimpleTexObj[32];
-};
-
 struct dDemo_object_c {
     /* 80039088 */ void getActor(u8);
 };
