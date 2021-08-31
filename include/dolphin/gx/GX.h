@@ -284,7 +284,7 @@ typedef enum _GXTevAlphaArg {
     /* 0x6 */ GX_CA_ZERO,
 } GXTevAlphaArg;
 
-struct GXRenderModeObj {
+struct _GXRenderModeObj {
     s32 vi_tv_mode;
     u16 fb_width;
     u16 efb_height;

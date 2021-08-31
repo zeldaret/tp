@@ -2172,6 +2172,7 @@ public:
     u32 i_checkModeFlg(u32 pFlag) const { return mModeFlg & pFlag; }
     bool checkUpperAnime(u16 pIdx) const { return mUpperAnime[UPPER_NOW].getIdx() == pIdx; }
     bool checkIronBallWaitAnime() const { return checkUpperAnime(0x19C); }
+    s16 checkWolfEyeUp() const { return mWolfEyeUp; }
 
     static u8 const m_mainBckShield[80];
     static u8 const m_mainBckSword[20];
@@ -2541,7 +2542,7 @@ private:
     /* 0x030A6 */ s16 field_0x30a6;
     /* 0x030A8 */ u16 field_0x30a8;
     /* 0x030AA */ u16 field_0x30aa;
-    /* 0x030AC */ s16 field_0x30ac;
+    /* 0x030AC */ s16 mWolfEyeUp;
     /* 0x030AE */ u16 field_0x30ae;
     /* 0x030B0 */ s16 field_0x30b0;
     /* 0x030B2 */ s16 field_0x30b2;

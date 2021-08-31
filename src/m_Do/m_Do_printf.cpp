@@ -18,7 +18,7 @@ struct __va_list_struct {};
 //
 
 extern "C" static void OSSwitchFiberEx__FUlUlUlUlUlUl();
-extern "C" static void my_PutString__FPCc();
+extern "C" void my_PutString__FPCc();
 extern "C" static void OSVAttention__FPCcP16__va_list_struct();
 extern "C" void OSAttention();
 extern "C" void OSReportDisable();
@@ -50,10 +50,8 @@ extern "C" void OSDisableInterrupts();
 extern "C" void OSRestoreInterrupts();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
-extern "C" void fputs();
 extern "C" void fflush();
 extern "C" void vprintf();
-extern "C" extern void* __files[80];
 extern "C" extern u8 struct_80450B98[4];
 extern "C" extern u8 data_80450B9C[4];
 
@@ -73,14 +71,9 @@ static asm void OSSwitchFiberEx(u32 param_0, u32 param_1, u32 param_2, u32 param
 #pragma pop
 
 /* 800067C8-800067F4 001108 002C+00 3/3 0/0 0/0 .text            my_PutString__FPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void my_PutString(char const* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/my_PutString__FPCc.s"
+void my_PutString(const char* string) {
+    fputs(string, &__files.stdout);
 }
-#pragma pop
 
 /* 800067F4-80006814 001134 0020+00 3/3 0/0 0/0 .text OSVAttention__FPCcP16__va_list_struct */
 #pragma push

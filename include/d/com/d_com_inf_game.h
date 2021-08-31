@@ -66,6 +66,8 @@ public:
 };
 STATIC_ASSERT(sizeof(dComIfG_camera_info_class) == 0x38);
 
+enum PlayerPtr { LINK_PTR, HORSE_PTR };
+
 class dComIfG_play_c {
 public:
     dComIfG_play_c() { this->ct(); }
@@ -106,7 +108,7 @@ public:
     void* getMsgObjectClass() { return mMsgObjectClass; }
     dStage_roomControl_c* getRoomControl() { return &mRoomControl; }
     dStage_stageDt_c& getStage() { return mStageData; }
-    dEvt_control_c getEvent() { return mEvent; }
+    dEvt_control_c& getEvent() { return mEvent; }
     daHorse_c* getHorseActor() { return (daHorse_c*)mPlayerPtr[1]; }
     u8& getItemLifeCountType() { return mItemLifeCountType; }
     void setItem(u8 slot, u8 i_no) {
@@ -171,6 +173,7 @@ public:
     dAttention_c& getAttention() { return mAttention; }
     JKRArchive* getMsgDtArchive(int idx) { return mMsgDtArchive[idx]; }
     s16 getStartStagePoint() { return mStartStage.getPoint(); }
+    void* getPlayerPtr(int ptrIdx) { return mPlayerPtr[ptrIdx]; }
 
 public:
     /* 0x00000 */ dBgS mDBgS;
@@ -980,6 +983,18 @@ inline void dComIfGp_roomControl_init() {
 
 inline void* dComIfG_getStageRes(const char* arcName, const char* resName) {
     return g_dComIfG_gameInfo.mResControl.getStageRes(arcName, resName);
+}
+
+inline void* dComIfG_getObjectRes(const char* arcName, const char* resName) {
+    return g_dComIfG_gameInfo.mResControl.getObjectRes(arcName, resName);
+}
+
+inline daPy_py_c* dComIfGp_getLinkPlayer() {
+    return (daPy_py_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR);
+}
+
+inline daAlink_c* daAlink_getAlinkActorClass() {
+    return (daAlink_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR);
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

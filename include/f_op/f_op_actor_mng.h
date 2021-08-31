@@ -8,6 +8,7 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
+#include "f_op/f_op_actor_iter.h"
 #include "f_pc/f_pc_executor.h"
 #include "f_pc/f_pc_fstcreate_req.h"
 #include "f_pc/f_pc_manager.h"
@@ -97,6 +98,18 @@ inline u32 fopAcM_checkHookCarryNow(fopAc_ac_c* pActor) {
 
 inline u32 fopAcM_GetParam(const void* pActor) {
     return fpcM_GetParam(pActor);
+}
+
+inline void fopAcM_OnStatus(fopAc_ac_c* pActor, u32 flag) {
+    pActor->mStatus |= flag;
+}
+
+inline void fopAcM_OffStatus(fopAc_ac_c* pActor, u32 flag) {
+    pActor->mStatus &= ~flag;
+}
+
+inline fopAc_ac_c* fopAcM_SearchByID(unsigned int id) {
+    return (fopAc_ac_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)fpcSch_JudgeByID, &id);
 }
 
 void* fopAcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3, void* pData);

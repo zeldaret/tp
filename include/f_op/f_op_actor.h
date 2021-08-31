@@ -14,7 +14,7 @@ public:
     dEvt_info_c();
     virtual ~dEvt_info_c();
     void setEventName(char*);
-    void getEventName();
+    s16 getEventName();
     void beforeProc();
     void onCondition(u16);
     void offCondition(u16);

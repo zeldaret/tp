@@ -71,6 +71,10 @@ public:
                       heap);
     }
 
+    void* getObjectRes(const char* arcName, const char* resName) {
+        return getRes(arcName, resName, &mObjectInfo[0], ARRAY_SIZE(mObjectInfo));
+    }
+
     int syncObjectRes(const char* name) {
         return syncRes(name, &mObjectInfo[0], ARRAY_SIZE(mObjectInfo));
     }
