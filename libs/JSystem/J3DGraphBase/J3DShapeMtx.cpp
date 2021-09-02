@@ -11,8 +11,6 @@
 // Types:
 //
 
-struct Vec {};
-
 struct J3DTextureSRTInfo {};
 
 struct J3DSys {
@@ -66,26 +64,6 @@ struct J3DShapeMtxBBoardConcatView {
     /* 803142D4 */ void load() const;
     /* 803145A4 */ ~J3DShapeMtxBBoardConcatView();
     /* 80314610 */ void getType() const;
-};
-
-struct J3DShapeMtx {
-    /* 80273E08 */ bool getUseMtxNum() const;
-    /* 803130A8 */ void resetMtxLoadCache();
-    /* 803130E4 */ void loadMtxIndx_PNGP(int, u16) const;
-    /* 80313128 */ void loadMtxIndx_PCPU(int, u16) const;
-    /* 80313188 */ void loadMtxIndx_NCPU(int, u16) const;
-    /* 803131D4 */ void loadMtxIndx_PNCPU(int, u16) const;
-    /* 80313B94 */ void load() const;
-    /* 80313BF0 */ void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
-    /* 8031459C */ void getUseMtxIndex(u16) const;
-    /* 80314798 */ ~J3DShapeMtx();
-    /* 803147E0 */ void getType() const;
-
-    static u8 sMtxLoadPipeline[48];
-    static u8 sMtxLoadCache[20 + 4 /* padding */];
-    static u8 sCurrentPipeline[4];
-    static u8 sCurrentScaleFlag[4];
-    static u8 sTexMtxLoadType[4];
 };
 
 struct J3DDifferedTexMtx {
@@ -174,9 +152,6 @@ extern "C" void J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f();
 extern "C" void J3DScaleNrmMtx__FPA4_fRC3Vec();
 extern "C" void J3DScaleNrmMtx33__FPA3_fRC3Vec();
 extern "C" void J3DMtxProjConcat__FPA4_fPA4_fPA4_f();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXConcat();
-extern "C" void PSMTXInverse();
 extern "C" void GXSetArray();
 extern "C" void GXLoadTexMtxImm();
 extern "C" void __ptmf_scall();

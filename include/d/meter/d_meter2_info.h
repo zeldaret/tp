@@ -25,7 +25,23 @@ public:
 
 struct J2DPicture {};
 
-struct JMSMesgEntry_c {};
+struct JMSMesgEntry_c {
+    /* 0x00 */ u32 mStringOffset;
+    /* 0x04 */ u16 mStringId;
+    /* 0x06 */ u16 field_0x04;
+    /* 0x08 */ u8 field_0x08;
+    /* 0x09 */ u8 field_0x09;
+    /* 0x0A */ u8 field_0x0a;
+    /* 0x0B */ u8 field_0x0b;
+    /* 0x0C */ u8 field_0x0c;
+    /* 0x0D */ u8 field_0x0d;
+    /* 0x0E */ u8 field_0x0e;
+    /* 0x0F */ u8 field_0x0f;
+    /* 0x10 */ u8 field_0x10;
+    /* 0x11 */ u8 field_0x11;
+    /* 0x12 */ u8 field_0x12;
+    /* 0x13 */ u8 field_0x13;
+};  // Size: 0x14
 
 struct J2DTextBox {
     /* 8021C7F4 */ void getFont() const;

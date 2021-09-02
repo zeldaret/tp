@@ -111,7 +111,7 @@ extern "C" extern u32 j3dDefaultTevKColor;
 J3DSys j3dSys;
 
 /* 80434BE4-80434C14 061904 0030+00 0/0 17/17 154/154 .bss             mCurrentMtx__6J3DSys */
-u8 J3DSys::mCurrentMtx[48];
+Mtx J3DSys::mCurrentMtx;
 
 /* 80434C14-80434C20 061934 000C+00 0/0 6/6 0/0 .bss             mCurrentS__6J3DSys */
 f32 J3DSys::mCurrentS[3];
@@ -120,7 +120,7 @@ f32 J3DSys::mCurrentS[3];
 f32 J3DSys::mParentS[3];
 
 /* 80434C2C-80434C70 06194C 0040+04 1/1 17/17 0/0 .bss             sTexCoordScaleTable__6J3DSys */
-u8 J3DSys::sTexCoordScaleTable[64 + 4 /* padding */];
+u16 J3DSys::sTexCoordScaleTable[34];
 
 /* 8030FDE8-8030FEC0 30A728 00D8+00 1/1 0/0 0/0 .text            __ct__6J3DSysFv */
 #pragma push

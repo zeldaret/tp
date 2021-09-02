@@ -468,6 +468,32 @@ void dMeter2Info_c::decMsgKeyWaitTimer() {
 
 /* 8021C250-8021C370 216B90 0120+00 0/0 16/16 0/0 .text
  * getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c             */
+#ifdef NONMATCHING
+void dMeter2Info_c::getString(u32 param_0, char* param_1, JMSMesgEntry_c* param_2) {
+    strcpy(param_1, "");
+    
+    bmgHeader* res;
+    if (mMsgResource == NULL) {
+        JKRArchive* msgDtArc = dComIfGp_getMsgDtArchive(0); 
+        res = (bmgHeader*)JKRArchive::getGlbResource('ROOT', "zel_00.bmg", msgDtArc);
+        if (res == NULL) {
+            return;
+        }
+    } else {
+        for (u16 i = bmgHeader->unk1; i < bmgHeader->entrycount; i++) {
+            JMSMesgEntry_c* entry = (JMSMesgEntry_c*)res + 0x20 + i;
+            if (param_0 == entry->mStringId) {
+                strcpy(param_1, (char*)&res + 0x20 + 0x24 + 8 + 0x14);
+            }
+        }
+    }
+
+    
+    if (mMsgResource == NULL) {
+        dComIfGp_getMsgDtArchive(0)->removeResourceAll();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -476,6 +502,7 @@ asm void dMeter2Info_c::getString(u32 param_0, char* param_1, JMSMesgEntry_c* pa
 #include "asm/d/meter/d_meter2_info/getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c.s"
 }
 #pragma pop
+#endif
 
 /* 8021C370-8021C544 216CB0 01D4+00 0/0 1/1 0/0 .text
  * getStringKana__13dMeter2Info_cFUlPcP14JMSMesgEntry_c         */

@@ -14,7 +14,7 @@ public:
     virtual ~JUTVideo();
 
     // TODO: return types not confirmed
-    /* 802E4C54 */ void createManager(_GXRenderModeObj const*);
+    /* 802E4C54 */ static JUTVideo* createManager(_GXRenderModeObj const*);
     /* 802E4CAC */ void destroyManager();
     /* 802E4E50 */ void preRetraceProc(u32);
     /* 802E5088 */ void drawDoneStart();
@@ -42,9 +42,9 @@ private:
     /* 0x20 */ VIRetraceCallback mPostRetraceCallback;
     /* 0x24 */ CallbackFn unknown_callback_1;
     /* 0x28 */ CallbackFn unknown_callback_2;
-    /* 0x2C */ bool mBlack;
-    /* 0x30 */ s32 set_black_frame_counter;
-    /* 0x34 */ OSMessage message;
+    /* 0x2C */ bool mSetBlack;
+    /* 0x30 */ s32 mSetBlackFrameCount;
+    /* 0x34 */ OSMessage mMessage;
     /* 0x38 */ OSMessageQueue mMessageQueue;
 };
 

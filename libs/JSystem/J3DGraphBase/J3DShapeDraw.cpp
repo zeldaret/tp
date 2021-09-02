@@ -8,18 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct J3DShapeDraw {
-    /* 80314924 */ void countVertex(u32);
-    /* 80314974 */ void addTexMtxIndexInDL(u32, u32, u32);
-    /* 80314ABC */ J3DShapeDraw(u8 const*, u32);
-    /* 80314AD4 */ void draw() const;
-    /* 80314B00 */ ~J3DShapeDraw();
-};
-
-//
 // Forward References:
 //
 

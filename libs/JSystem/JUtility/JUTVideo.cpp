@@ -51,12 +51,12 @@ extern "C" void VISetPreRetraceCallback(VIRetraceCallback);
 extern "C" void VISetPostRetraceCallback(VIRetraceCallback);
 extern "C" void VIInit();
 extern "C" void VIWaitForRetrace();
-extern "C" void VIConfigure();
+extern "C" void VIConfigure(_GXRenderModeObj*);
 extern "C" void VIFlush();
 extern "C" void VISetNextFrameBuffer();
 extern "C" void VIGetNextFrameBuffer();
-extern "C" void VISetBlack();
-extern "C" void VIGetRetraceCount();
+extern "C" void VISetBlack(s32);
+extern "C" u32 VIGetRetraceCount();
 extern "C" void GXSetDrawDone();
 extern "C" void GXCopyDisp();
 extern "C" u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
@@ -72,14 +72,12 @@ JUTVideo* JUTVideo::sManager;
 
 /* 802E4C54-802E4CAC 2DF594 0058+00 0/0 1/1 0/0 .text
  * createManager__8JUTVideoFPC16_GXRenderModeObj                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTVideo::createManager(_GXRenderModeObj const* param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTVideo/createManager__8JUTVideoFPC16_GXRenderModeObj.s"
+JUTVideo* JUTVideo::createManager(_GXRenderModeObj const* param_0) {
+    if (sManager == NULL) {
+        sManager = new JUTVideo(param_0);
+    }
+    return sManager;
 }
-#pragma pop
 
 /* 802E4CAC-802E4CF4 2DF5EC 0048+00 0/0 2/2 0/0 .text            destroyManager__8JUTVideoFv */
 void JUTVideo::destroyManager() {
@@ -106,6 +104,29 @@ u32 JUTVideo::sVideoLastTick;
 u32 JUTVideo::sVideoInterval;
 
 /* 802E4CF4-802E4DE8 2DF634 00F4+00 1/1 0/0 0/0 .text __ct__8JUTVideoFPC16_GXRenderModeObj */
+#ifdef NONMATCHING
+JUTVideo::JUTVideo(_GXRenderModeObj const* param_0) {
+    mRenderObj = NULL;
+    VIInit();
+    mSetBlack = true;
+    mSetBlackFrameCount = 2;
+    setRenderMode(param_0);
+    VISetBlack(1);
+    VIFlush();
+    field_0x8 = 0;
+    mRetraceCount = VIGetRetraceCount();
+    field_0x10 = 1;
+    field_0x18 = 0;
+    sVideoLastTick = OSGetTick();
+    sVideoInterval = 670000;
+    mPreRetraceCallback = VISetPreRetraceCallback(preRetraceProc);
+    mPostRetraceCallback = VISetPreRetraceCallback(postRetraceProc);
+    unknown_callback_1 = NULL;
+    unknown_callback_2 = NULL;
+    OSInitMessageQueue(mMessageQueue, mMessage, 1);
+    GXSetDrawDoneCallback(drawDoneCallback);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -114,6 +135,7 @@ asm JUTVideo::JUTVideo(_GXRenderModeObj const* param_0) {
 #include "asm/JSystem/JUtility/JUTVideo/__ct__8JUTVideoFPC16_GXRenderModeObj.s"
 }
 #pragma pop
+#endif
 
 /* 802E4DE8-802E4E50 2DF728 0068+00 1/0 0/0 0/0 .text            __dt__8JUTVideoFv */
 JUTVideo::~JUTVideo() {
@@ -163,6 +185,18 @@ asm void JUTVideo::drawDoneCallback() {
 #pragma pop
 
 /* 802E5144-802E5198 2DFA84 0054+00 1/1 0/0 0/0 .text            postRetraceProc__8JUTVideoFUl */
+#ifdef NONMATCHING
+void JUTVideo::postRetraceProc(u32 param_0) {
+    void* message;
+    if (sManager != NULL) {
+        if (sManager->unknown_callback_2 != NULL) {
+            sManager->unknown_callback_2();
+        }
+        message = (void*)VIGetRetraceCount();
+        OSSendMessage(&sManager->mMessageQueue, message, OS_MESSAGE_NON_BLOCKING);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -171,17 +205,24 @@ asm void JUTVideo::postRetraceProc(u32 param_0) {
 #include "asm/JSystem/JUtility/JUTVideo/postRetraceProc__8JUTVideoFUl.s"
 }
 #pragma pop
+#endif
 
 /* 802E5198-802E5210 2DFAD8 0078+00 1/1 2/2 0/0 .text
  * setRenderMode__8JUTVideoFPC16_GXRenderModeObj                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTVideo::setRenderMode(_GXRenderModeObj const* param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTVideo/setRenderMode__8JUTVideoFPC16_GXRenderModeObj.s"
+void JUTVideo::setRenderMode(_GXRenderModeObj const* pObj) {
+    if (mRenderObj != NULL && pObj->vi_tv_mode != mRenderObj->vi_tv_mode) {
+        mSetBlack = true;
+        mSetBlackFrameCount = 4;
+    }
+    mRenderObj = (_GXRenderModeObj*)pObj;
+    VIConfigure(mRenderObj);
+    VIFlush();
+
+    if (mSetBlack) {
+        VIWaitForRetrace();
+        VIWaitForRetrace();
+    }
 }
-#pragma pop
 
 /* 802E5210-802E5214 2DFB50 0004+00 0/0 1/1 0/0 .text            waitRetraceIfNeed__8JUTVideoFv */
 void JUTVideo::waitRetraceIfNeed() {

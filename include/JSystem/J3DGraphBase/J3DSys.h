@@ -12,9 +12,28 @@ enum J3DError {
 
 struct _GXTexCacheSize {};
 
+class J3DMtxCalc;
+class J3DModel;
+class J3DMatPacket;
+class J3DShapePacket;
+class J3DShape;
+class J3DDrawBuffer;
+class J3DTexture;
+
 struct J3DSys {
-    Mtx mMtx;
-    u8 _30[0x11C - 0x30];
+    /* 0x00 */ Mtx mMtx;
+    /* 0x30 */ J3DMtxCalc* mMtxCalc;
+    /* 0x34 */ u32 mFlags;
+    /* 0x38 */ J3DModel* mModel;
+    /* 0x3C */ J3DMatPacket* mMatPacket;
+    /* 0x40 */ J3DShapePacket* mShapePacket;
+    /* 0x44 */ J3DShape* mShape;
+    /* 0x48 */ J3DDrawBuffer* mDrawBuffer[2];
+    /* 0x50 */ u32 mDrawMode;
+    /* 0x54 */ u32 mMaterialMode;
+    /* 0x58 */ J3DTexture* mTexture;
+
+    u8 field_0x5c[0x11C - 0x5C];
     /* 8030FDE8 */ J3DSys();
     /* 8030FEC0 */ void loadPosMtxIndx(int, u16) const;
     /* 8030FEE4 */ void loadNrmMtxIndx(int, u16) const;
@@ -29,10 +48,10 @@ struct J3DSys {
     /* 80310D44 */ void reinitIndStages();
     /* 80310E3C */ void reinitPixelProc();
 
-    static u8 mCurrentMtx[48];
+    static Mtx mCurrentMtx;
     static f32 mCurrentS[3];
     static f32 mParentS[3];
-    static u8 sTexCoordScaleTable[64 + 4 /* padding */];
+    static u16 sTexCoordScaleTable[34];
 };
 
 extern J3DSys j3dSys;
