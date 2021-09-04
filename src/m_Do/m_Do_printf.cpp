@@ -168,7 +168,7 @@ asm void OSReportInit() {
 
 /* ############################################################################################## */
 /* 803DB740-803DBF40 008460 0800+00 1/1 0/0 0/0 .bss             mDoPrintf_FiberStack */
-static u8 mDoPrintf_FiberStack[2048];
+static u8 mDoPrintf_FiberStack[2048] ALIGN_DECL(32);
 
 /* 800068DC-80006964 00121C 0088+00 1/1 0/0 0/0 .text
  * mDoPrintf_vprintf_Interrupt__FPCcP16__va_list_struct         */

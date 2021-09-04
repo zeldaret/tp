@@ -1,8 +1,8 @@
 #ifndef J3DSHAPEMTX_H
 #define J3DSHAPEMTX_H
 
-#include "dolphin/types.h"
 #include "dolphin/mtx/mtxvec.h"
+#include "dolphin/types.h"
 
 class J3DShapeMtx {
 public:

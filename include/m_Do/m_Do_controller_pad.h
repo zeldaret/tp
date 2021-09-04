@@ -4,14 +4,15 @@
 #include "JSystem/JUtility/JUTGamePad.h"
 #include "SSystem/SComponent/c_API_controller_pad.h"
 #include "dolphin/types.h"
+#include "m_Do/m_Do_Reset.h"
 
 class mDoCPd_c {
 public:
     enum { PAD_0, PAD_1, PAD_2, PAD_3 };
 
-    void create();
-    void read();
-    void convert(interface_of_controller_pad*, JUTGamePad*);
+    static void create();
+    static void read();
+    static void convert(interface_of_controller_pad*, JUTGamePad*);
     void LRlockCheck(interface_of_controller_pad*);
     void recalibrate();
 
@@ -60,5 +61,19 @@ public:
     static JUTGamePad* m_gamePad[4];
     static interface_of_controller_pad m_cpadInfo[4];
 };
+
+inline void mDoCPd_ANALOG_CONV(u8 analog, f32& param_1) {
+    param_1 = analog * (1.0f / 15.0f);
+    if (param_1 > 1.0f) {
+        param_1 = 1.0f;
+    }
+}
+
+inline void mDoCPd_TRIGGER_CONV(u8 analog, f32& param_1) {
+    param_1 = analog * 0.0071428571827709675f;
+    if (param_1 > 1.0f) {
+        param_1 = 1.0f;
+    }
+}
 
 #endif /* M_DO_M_DO_CONTROLLER_PAD_H */

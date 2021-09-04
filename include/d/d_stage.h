@@ -546,7 +546,7 @@ public:
     void set(const char*, s8, s16, s8);
     inline char* getName() { return mStage; }
     s8 getLayer() { return mLayer; }
-    s8 getRoomNo() { return mRoomNo; }
+    s8 getRoomNo() const { return mRoomNo; }
     s16 getPoint() { return mPoint; }
 
 private:

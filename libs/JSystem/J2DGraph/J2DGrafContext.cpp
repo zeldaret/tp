@@ -33,7 +33,6 @@ extern "C" void setLookat__14J2DGrafContextFv();
 // External References:
 //
 
-
 extern "C" void __dl__FPv();
 extern "C" void GXSetVtxDesc();
 extern "C" void GXClearVtxDesc();
@@ -68,7 +67,6 @@ extern "C" void ceil();
 // Declarations:
 //
 
-
 /* ############################################################################################## */
 /* 803CC9B8-803CC9E0 029AD8 0028+00 2/2 13/13 0/0 .data            __vt__14J2DGrafContext */
 SECTION_DATA extern void* __vt__14J2DGrafContext[10] = {
@@ -87,7 +85,10 @@ SECTION_DATA extern void* __vt__14J2DGrafContext[10] = {
 /* 802E8B08-802E8BB4 2E3448 00AC+00 0/0 2/2 0/0 .text            __ct__14J2DGrafContextFffff */
 // reversed stack
 #ifdef NONMATCHING
-J2DGrafContext::J2DGrafContext(f32 left, f32 top, f32 right, f32 bottom) : mBounds(left, top, left + right, top + bottom), mScissorBounds(left, top, left + right, top + bottom), field_0x24(-1), field_0x28(-1), field_0x2c(-1), field_0x30(-1) {
+J2DGrafContext::J2DGrafContext(f32 left, f32 top, f32 right, f32 bottom)
+    : mBounds(left, top, left + right, top + bottom),
+      mScissorBounds(left, top, left + right, top + bottom), field_0x24(-1), field_0x28(-1),
+      field_0x2c(-1), field_0x30(-1) {
     JUtility::TColor color(-1);
     setColor(color, color, color, color);
     setLineWidth(6);

@@ -1,8 +1,8 @@
 #ifndef J2DORTHOGRAPH_H
 #define J2DORTHOGRAPH_H
 
-#include "dolphin/types.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
+#include "dolphin/types.h"
 
 class J2DOrthoGraph : public J2DGrafContext {
 public:
@@ -10,7 +10,7 @@ public:
     /* 802E96D0 */ J2DOrthoGraph(f32, f32, f32, f32, f32, f32);
     /* 802E980C */ void setOrtho(JGeometry::TBox2<f32> const&, f32, f32);
     /* 802E987C */ void scissorBounds(JGeometry::TBox2<f32>*, JGeometry::TBox2<f32> const*);
-    
+
     /* 8000B118 */ virtual ~J2DOrthoGraph();
     /* 802E97B4 */ virtual void setPort();
     /* 802E9C88 */ virtual bool getGrafType() const;

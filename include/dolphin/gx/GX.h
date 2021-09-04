@@ -418,16 +418,24 @@ typedef enum GXTlutFmt {
     GX_TL_RGB5A3,
 } GXTlutFmt;
 
+enum GXCITexFmt {
+    /* 0x8 */ GX_TF_C4 = 8,
+    /* 0x8 */ GX_TF_C8,
+    /* 0xA */ GX_TF_C14X2
+};
+
 extern "C" {
 f32 GXGetYScaleFactor(u16 efb_height, u16 xfb_height);
 u16 GXGetNumXfbLines(u32 efb_height, f32 y_scale);
 
 void GXBegin(u8, u8, u16);
 void GXLoadTexObj(_GXTexObj*, _GXTexMapID);
-void GXInitTexObjLOD(_GXTexObj, GXTexFilter, GXTexFilter, f32, f32, f32, s32, s32, GXAnisotropy);
-void GXInitTexObj(_GXTexObj, void*, u16, u16, GXTexFmt, GXTexWrapMode, GXTexWrapMode, s32);
+void GXInitTexObjLOD(_GXTexObj*, GXTexFilter, GXTexFilter, f32, f32, f32, s32, s32, GXAnisotropy);
+void GXInitTexObj(_GXTexObj*, void*, u16, u16, GXTexFmt, GXTexWrapMode, GXTexWrapMode, s32);
 void GXInitTlutObj(_GXTlutObj*, void*, GXTlutFmt, u16);
 void GXLoadTlut(_GXTlutObj*, u32);
+void GXInitTexObjCI(_GXTexObj*, void*, u16, u16, GXCITexFmt, GXTexWrapMode, GXTexWrapMode, s32,
+                    u32);
 
 void GXSetNumChans(u32);
 void GXSetNumTevStages(u32);

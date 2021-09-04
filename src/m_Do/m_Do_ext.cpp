@@ -2427,7 +2427,7 @@ JKRExpHeap* mDoExt_createGameHeap(u32 param_0, JKRHeap* param_1) {
 }
 
 /* 8000ED50-8000ED58 -00001 0008+00 0/0 0/0 0/0 .text            mDoExt_getGameHeap__Fv */
-JKRHeap* mDoExt_getGameHeap() {
+JKRExpHeap* mDoExt_getGameHeap() {
     return gameHeap;
 }
 

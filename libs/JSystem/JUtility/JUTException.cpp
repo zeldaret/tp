@@ -11,15 +11,6 @@
 // Types:
 //
 
-struct JUTGamePad {
-    struct EPadPort {};
-
-    /* 802E06DC */ JUTGamePad(JUTGamePad::EPadPort);
-    /* 802E07B0 */ ~JUTGamePad();
-    /* 802E08E4 */ void read();
-    /* 802E0C6C */ void checkResetCallback(s64);
-};
-
 struct JUTDirectFile {
     /* 802E87F8 */ JUTDirectFile();
     /* 802E881C */ ~JUTDirectFile();
@@ -43,28 +34,6 @@ struct JUTConsoleManager {
     /* 802E84C4 */ void setDirectConsole(JUTConsole*);
 
     static u8 sManager[4];
-};
-
-struct JSUPtrLink {
-    /* 802DBDFC */ JSUPtrLink(void*);
-};
-
-struct JSUPtrList {
-    /* 802DBE74 */ JSUPtrList(bool);
-    /* 802DBEAC */ ~JSUPtrList();
-    /* 802DBF4C */ void append(JSUPtrLink*);
-};
-
-template <typename A0>
-struct JSUList {};
-/* JSUList<JUTException::JUTExMapFile> */
-struct JSUList__template13 {
-    /* 802E4194 */ void func_802E4194(void* _this);
-};
-
-struct JKRThread {
-    /* 802D1568 */ JKRThread(u32, int, int);
-    /* 802D1758 */ ~JKRThread();
 };
 
 struct JKRHeap {
@@ -265,7 +234,7 @@ SECTION_DATA extern void* __vt__12JUTException[4 + 1 /* padding */] = {
 };
 
 /* 80451508-8045150C 000A08 0004+00 4/4 3/3 0/0 .sbss            sErrorManager__12JUTException */
-u8 JUTException::sErrorManager[4];
+JUTException* JUTException::sErrorManager;
 
 /* 8045150C-80451510 000A0C 0004+00 4/4 0/0 0/0 .sbss            sPreUserCallback__12JUTException */
 u8 JUTException::sPreUserCallback[4];
@@ -641,7 +610,7 @@ asm void JUTException::isEnablePad() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JUTException::readPad(u32* param_0, u32* param_1) {
+asm bool JUTException::readPad(u32* param_0, u32* param_1) {
     nofralloc
 #include "asm/JSystem/JUtility/JUTException/readPad__12JUTExceptionFPUlPUl.s"
 }

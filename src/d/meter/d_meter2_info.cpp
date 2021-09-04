@@ -471,10 +471,10 @@ void dMeter2Info_c::decMsgKeyWaitTimer() {
 #ifdef NONMATCHING
 void dMeter2Info_c::getString(u32 param_0, char* param_1, JMSMesgEntry_c* param_2) {
     strcpy(param_1, "");
-    
+
     bmgHeader* res;
     if (mMsgResource == NULL) {
-        JKRArchive* msgDtArc = dComIfGp_getMsgDtArchive(0); 
+        JKRArchive* msgDtArc = dComIfGp_getMsgDtArchive(0);
         res = (bmgHeader*)JKRArchive::getGlbResource('ROOT', "zel_00.bmg", msgDtArc);
         if (res == NULL) {
             return;
@@ -488,7 +488,6 @@ void dMeter2Info_c::getString(u32 param_0, char* param_1, JMSMesgEntry_c* param_
         }
     }
 
-    
     if (mMsgResource == NULL) {
         dComIfGp_getMsgDtArchive(0)->removeResourceAll();
     }

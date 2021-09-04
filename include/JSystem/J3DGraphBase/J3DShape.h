@@ -1,10 +1,10 @@
 #ifndef J3DSHAPE_H
 #define J3DSHAPE_H
 
-#include "dolphin/types.h"
-#include "dolphin/mtx/mtxvec.h"
 #include "JSystem/J3DGraphBase/J3DShapeDraw.h"
 #include "JSystem/J3DGraphBase/J3DShapeMtx.h"
+#include "dolphin/mtx/mtxvec.h"
+#include "dolphin/types.h"
 
 class J3DCurrentMtxInfo {
 public:

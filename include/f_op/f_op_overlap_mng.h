@@ -22,5 +22,6 @@ int fopOvlpM_IsDoingReq(void);
 int fopOvlpM_ClearOfReq(void);
 request_base_class* fopOvlpM_Request(s16 param_1, u16 param_2);
 int fopOvlpM_Cancel(void);
+void fopOvlpM_Init();
 
 #endif

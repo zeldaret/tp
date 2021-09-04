@@ -75,7 +75,6 @@ public:
     /* 80327F40 */ void viewCalc();
     /* 80328350 */ ~J3DModel();
 
-
     // is there a better way to handle inlines with same name as non-inlines?
     Mtx* i_getAnmMtx(int p1) { return mMtxBuffer->getAnmMtx(p1); }
 

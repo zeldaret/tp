@@ -17,10 +17,6 @@
 
 struct scene_class {};
 
-struct mDoRst {
-    static u8 mResetData[4 + 4 /* padding */];
-};
-
 struct mDoGph_gInf_c {
     static u8 mFader[4];
 };

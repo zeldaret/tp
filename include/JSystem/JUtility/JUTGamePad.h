@@ -26,6 +26,9 @@ enum {
 };
 }
 
+extern bool struct_80451500;
+extern bool struct_80451501;  // sResetOccured
+
 struct JUTGamePad : public JKRDisposer {
 public:
     // TODO: fix types
@@ -44,49 +47,98 @@ public:
 
     enum EStickMode {};
     enum EWhichStick {};
-    // typedef u32 EPadPort;
-    enum EPadPort { Port_1 = 0, Port_2 = 0, Port_3 = 0, Port_4 = 0 };
+    enum EPadPort { Port_1, Port_2, Port_3, Port_4 };
     JUTGamePad(JUTGamePad::EPadPort port);
     virtual ~JUTGamePad();
 
     void initList();
     static s32 init();
     void clear();
-    void read();
+    static void read();
     void assign();
     void checkResetCallback(OSTime unk);  // todo: weird arg
     void update();
-    void stopPatternedRumble() { this->rumble.stopPatternedRumble(this->pad_port); }
+    void stopPatternedRumble() { mRumble.stopPatternedRumble(mPortNum); }
     static void checkResetSwitch();
     static void clearForReset();
     static JUTGamePad* getGamePad(int pad_index);
     static bool recalibrate(/*PADMask*/ u32 pad_mask);
 
+    static void setAnalogMode(u32 mode) {
+        sAnalogMode = mode;
+        PADSetAnalogMode(mode);
+    }
+
+    static void clearResetOccurred() { struct_80451501 = false; }
+
+    static void setResetCallback(callbackFn callback, void* param_0) {
+        C3ButtonReset::sCallback = callback;
+        C3ButtonReset::sCallbackArg = param_0;
+    }
+
+    u32 getButton() const { return mButton.mButton; }
+
+    u32 getTrigger() const { return mButton.mTrigger; }
+
+    f32 getMainStickX() const { return mMainStick.mPosX; }
+
+    f32 getMainStickY() const { return mMainStick.mPosY; }
+
+    f32 getMainStickValue() const { return mMainStick.mValue; }
+
+    s16 getMainStickAngle() const { return mMainStick.mAngle; }
+
+    f32 getSubStickX() const { return mSubStick.mPosX; }
+
+    f32 getSubStickY() const { return mSubStick.mPosY; }
+
+    f32 getSubStickValue() const { return mSubStick.mValue; }
+
+    s16 getSubStickAngle() const { return mSubStick.mAngle; }
+
+    u8 getAnalogA() const { return mButton.mAnalogA; }
+
+    u8 getAnalogB() const { return mButton.mAnalogB; }
+
+    u8 getAnalogL() const { return mButton.mAnalogL; }
+
+    u8 getAnalogR() const { return mButton.mAnalogR; }
+
+    s8 getErrorStatus() const { return mErrorStatus; }
+
+    u32 testTrigger(u32 button) const { return mButton.mTrigger & button; }
+
+    bool isPushing3ButtonReset() const {
+        bool isPushingReset = false;
+
+        if (mPortNum != -1 && mButtonReset.mReset != false) {
+            isPushingReset = true;
+        }
+        return isPushingReset;
+    }
+
     struct CButton {
-        CButton();
+        CButton();  // inline
         void clear();
         u32 update(PADStatus const*, u32 unk);
         void setRepeat(u32 unk0, u32 unk1, u32 unk2);
 
-        u32 mButtonFlags;
-
-        u32 mPressedButtonFlags;
-        u32 mReleasedButtonFlags;
-
-        u8 mAnalogARaw;
-        u8 mAnalogBRaw;
-        u8 mTriggerLeftRaw;
-        u8 mTriggerRightRaw;
-        f32 mTriggerLeft;
-        f32 mTriggerRight;
-
-        u32 field_0x18;  // padding?
-        u32 field_0x1c;
-        u32 field_0x20;
-        u32 field_0x24;
-        u32 field_0x28;
-        u32 field_0x2c;
-    };
+        /* 0x00 */ u32 mButton;
+        /* 0x04 */ u32 mTrigger;  // Pressed Buttons
+        /* 0x08 */ u32 mRelease;  // Released Buttons
+        /* 0x0C */ u8 mAnalogA;
+        /* 0x0D */ u8 mAnalogB;
+        /* 0x0E */ u8 mAnalogL;
+        /* 0x0F */ u8 mAnalogR;
+        /* 0x10 */ f32 mAnalogLf;
+        /* 0x14 */ f32 mAnalogRf;
+        /* 0x18 */ u32 mRepeat;
+        /* 0x1C */ u32 field_0x1c;
+        /* 0x20 */ u32 field_0x20;
+        /* 0x24 */ u32 field_0x24;
+        /* 0x28 */ u32 field_0x28;
+        /* 0x2C */ u32 field_0x2c;
+    };  // Size: 0x30
 
     struct C3ButtonReset {
         // TODO: fix types
@@ -96,26 +148,28 @@ public:
         static void* sCallbackArg;
         static OSTime sThreshold;
         static s32 sResetOccurredPort;
-    };
+
+        /* 0x0 */ bool mReset;
+    };  // Size: 0x4
 
     struct CStick {
         static f32 sPressPoint;
         static f32 sReleasePoint;
 
-        CStick();
+        CStick();  // inline
         void clear();
         void clear(JUTGamePad* pad);
         u32 update(s8 unk0, s8 unk1, JUTGamePad::EStickMode mode, JUTGamePad::EWhichStick stick,
                    u32 unk2);
         u32 getButton(u32 unk);
 
-        float mPosX;
-        float mPosY;
-        float mValue;
-        s16 mAngle;
-        s8 field_0xe;
-        s8 field_0xf;
-    };
+        /* 0x0 */ f32 mPosX;
+        /* 0x4 */ f32 mPosY;
+        /* 0x8 */ f32 mValue;
+        /* 0xC */ s16 mAngle;
+        /* 0xE */ s8 field_0xe;
+        /* 0xF */ s8 field_0xf;
+    };  // Size: 0x10
 
     struct CRumble {
         static PADMask sChannelMask[4];
@@ -137,30 +191,28 @@ public:
         void startPatternedRumble(void* unk0, ERumble rumble, u32 unk1);
         void stopPatternedRumble(s16 pad_port);
         void stopPatternedRumbleAtThePeriod();
-        static void setEnabled(/*PADMask*/ u32 pad_mask);
+        static void setEnabled(u32 pad_mask);
 
-        u32 field_0x0;
-        u32 field_0x4;
-        u8* field_0x8;
-        u32 field_0xc;
-        u8* field_0x10;
-    };
+        /* 0x00 */ u32 field_0x0;
+        /* 0x04 */ u32 field_0x4;
+        /* 0x08 */ u8* field_0x8;
+        /* 0x0C */ u32 field_0xc;
+        /* 0x10 */ u8* field_0x10;
+    };  // Size: 0x14
 
-    CButton buttons;
-    CStick control_stick;
-    CStick c_stick;
-    CRumble rumble;
-    s16 pad_port;
-    s8 error_value;
-    u8 pad0;
-    JSUPtrLink ptr_link;
-    u8 unk0[8];
-    u8 field_0x98;
-    u8 unk1[3];
-    u8 reset_flag;
-    u8 pad1[3];
-    OSTime reset_time;
-    u8 field_0xa8;
+    /* 0x18 */ CButton mButton;
+    /* 0x48 */ CStick mMainStick;
+    /* 0x58 */ CStick mSubStick;
+    /* 0x68 */ CRumble mRumble;
+    /* 0x7C */ s16 mPortNum;
+    /* 0x7E */ s8 mErrorStatus;
+    /* 0x80 */ JSULink<JUTGamePad> mLink;
+    /* 0x90 */ u32 mPadRecord;
+    /* 0x94 */ u32 mPadReplay;
+    /* 0x98 */ C3ButtonReset mButtonReset;
+    /* 0x9C */ u8 field_0x9c[4];
+    /* 0xA0 */ OSTime mResetTime;
+    /* 0xA8 */ u8 field_0xa8;
 
     friend class CRumble;
 };

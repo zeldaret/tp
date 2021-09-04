@@ -11,10 +11,6 @@
 // Types:
 //
 
-struct _GXRenderModeObj {};
-
-struct ResFONT {};
-
 struct OSThread {};
 
 struct JUTVideo {
@@ -37,8 +33,6 @@ struct JUTGamePad {
     /* 802E0898 */ void init();
 };
 
-struct JUTFont {};
-
 struct JUTDirectPrint {
     /* 802E4240 */ void start();
 };
@@ -57,10 +51,6 @@ struct JUTConsoleManager {
     /* 802E81F4 */ void createManager(JKRHeap*);
 };
 
-struct JUTConsole {
-    /* 802E7354 */ void create(unsigned int, unsigned int, JKRHeap*);
-};
-
 struct JUTAssertion {
     /* 802E495C */ void create();
 };
@@ -76,33 +66,6 @@ struct JKRExpHeap {
 
 struct JKRAram {
     /* 802D1FA4 */ void create(u32, u32, s32, s32, s32);
-};
-
-struct JFWSystem {
-    struct CSetUpParam {
-        static u32 maxStdHeaps;
-        static u32 sysHeapSize;
-        static u32 fifoBufSize;
-        static u32 aramAudioBufSize;
-        static u32 aramGraphBufSize;
-        static u32 streamPriority;
-        static u32 decompPriority;
-        static u32 aPiecePriority;
-        static void* systemFontRes;
-        static void* renderMode;
-        static u32 exConsoleBufferSize[1 + 1 /* padding */];
-    };
-
-    /* 80271CD0 */ void firstInit();
-    /* 80271D18 */ void init();
-
-    static u8 rootHeap[4];
-    static u8 systemHeap[4];
-    static u8 mainThread[4];
-    static u8 debugPrint[4];
-    static u8 systemFont[4];
-    static u8 systemConsoleManager[4];
-    static u8 systemConsole[4];
 };
 
 //
@@ -238,7 +201,7 @@ u8 JFWSystem::systemFont[4];
 u8 JFWSystem::systemConsoleManager[4];
 
 /* 804511B8-804511BC 0006B8 0004+00 1/1 7/7 0/0 .sbss            systemConsole__9JFWSystem */
-u8 JFWSystem::systemConsole[4];
+JUTConsole* JFWSystem::systemConsole;
 
 /* 804511BC-804511C0 0006BC 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_804511BC[4];

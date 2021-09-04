@@ -15,7 +15,7 @@ public:
 
     // TODO: return types not confirmed
     /* 802E4C54 */ static JUTVideo* createManager(_GXRenderModeObj const*);
-    /* 802E4CAC */ void destroyManager();
+    /* 802E4CAC */ static void destroyManager();
     /* 802E4E50 */ void preRetraceProc(u32);
     /* 802E5088 */ void drawDoneStart();
     /* 802E50B0 */ void dummyNoDrawWait();

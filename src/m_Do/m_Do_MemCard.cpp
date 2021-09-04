@@ -15,32 +15,6 @@ struct mDoRst {
     static u8 mResetData[4 + 4 /* padding */];
 };
 
-struct mDoMemCd_Ctrl_c {
-    /* 8001672C */ mDoMemCd_Ctrl_c();
-    /* 80016730 */ void ThdInit();
-    /* 800167D0 */ void main();
-    /* 80016894 */ void update();
-    /* 800169B4 */ void load();
-    /* 80016A0C */ void restore();
-    /* 80016AB0 */ void LoadSync(void*, u32, u32);
-    /* 80016B58 */ void save(void*, u32, u32);
-    /* 80016BD4 */ void store();
-    /* 80016CE0 */ void SaveSync();
-    /* 80016D74 */ void getStatus(u32);
-    /* 80016E58 */ void command_format();
-    /* 80016EA8 */ void format();
-    /* 80016F2C */ void FormatSync();
-    /* 80016FB8 */ void attach();
-    /* 800170B8 */ void command_attach();
-    /* 80017110 */ void detach();
-    /* 80017148 */ void mount();
-    /* 80017274 */ void loadfile();
-    /* 800172D4 */ void checkspace();
-    /* 80017360 */ void setCardState(s32);
-};
-
-struct OSThread {};
-
 struct JKRThread {
     /* 802D16B8 */ JKRThread(OSThread*, int);
     /* 802D1758 */ ~JKRThread();
@@ -92,17 +66,9 @@ extern "C" void mDoMemCdRWm_Restore__FP12CARDFileInfoPvUl();
 extern "C" void becomeCurrentHeap__7JKRHeapFv();
 extern "C" void __ct__9JKRThreadFP8OSThreadi();
 extern "C" void __dt__9JKRThreadFv();
-extern "C" void OSInitMutex();
-extern "C" void OSLockMutex();
-extern "C" void OSUnlockMutex();
-extern "C" void OSTryLockMutex();
 extern "C" void OSInitCond();
 extern "C" void OSWaitCond();
 extern "C" void OSSignalCond();
-extern "C" void OSGetCurrentThread();
-extern "C" void OSCreateThread();
-extern "C" void OSResumeThread();
-extern "C" void OSGetThreadPriority();
 extern "C" void CARDInit();
 extern "C" void CARDFreeBlocks();
 extern "C" void CARDCheck();
@@ -392,8 +358,7 @@ asm void mDoMemCd_Ctrl_c::setCardState(s32 param_0) {
 
 /* ############################################################################################## */
 /* 803EAF40-803ECF40 017C60 2000+00 2/2 27/27 0/0 .bss             g_mDoMemCd_control */
-extern u8 g_mDoMemCd_control[8192];
-u8 g_mDoMemCd_control[8192];
+mDoMemCd_Ctrl_c g_mDoMemCd_control;
 
 /* 8001741C-80017470 011D5C 0054+00 1/1 0/0 0/0 .text            mDoMemCd_main__FPv */
 #pragma push
@@ -403,21 +368,6 @@ static asm void mDoMemCd_main(void* param_0) {
     nofralloc
 #include "asm/m_Do/m_Do_MemCard/mDoMemCd_main__FPv.s"
 }
-#pragma pop
-
-/* 80017470-80017498 011DB0 0028+00 0/0 1/0 0/0 .text            __sinit_m_Do_MemCard_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_m_Do_MemCard_cpp() {
-    nofralloc
-#include "asm/m_Do/m_Do_MemCard/__sinit_m_Do_MemCard_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80017470, __sinit_m_Do_MemCard_cpp);
 #pragma pop
 
 /* 803743F8-803743F8 000A58 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
