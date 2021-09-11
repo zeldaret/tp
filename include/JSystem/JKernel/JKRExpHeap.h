@@ -7,21 +7,24 @@
 class JKRExpHeap : public JKRHeap {
 public:
     class CMemBlock {
+        friend class JKRExpHeap;
+
     public:
         void initiate(CMemBlock*, CMemBlock*, u32, u8, u8);
-        void allocFore(u32, u8, u8, u8, u8);
-        void allocBack(u32, u8, u8, u8, u8);
-        void free(JKRExpHeap*);
-        void getHeapBlock(void*);
+        JKRExpHeap::CMemBlock* allocFore(u32, u8, u8, u8, u8);
+        JKRExpHeap::CMemBlock* allocBack(u32, u8, u8, u8, u8);
+        int free(JKRExpHeap*);
+        static CMemBlock* getHeapBlock(void*);
 
         void newGroupId(u8 groupId) { this->mGroupId = groupId; }
-        bool isValid() const { return this->mMagic == 0x484d; }
+        bool isValid() const { return this->mMagic == 'HM'; }
         bool _isTempMemBlock() const { return (this->mFlags & 0x80) ? true : false; }
         int getAlignment() const { return this->mFlags & 0x7f; }
         void* getContent() const { return (void*)(this + 1); }
         CMemBlock* getPrevBlock() const { return this->mPrev; }
         CMemBlock* getNextBlock() const { return this->mNext; }
         u32 getSize() const { return this->size; }
+        u8 getGroupId() const { return this->mGroupId; }
         static CMemBlock* getBlock(void* data) { return (CMemBlock*)((u32)data + -0x10); }
 
     private:
@@ -32,15 +35,16 @@ public:
         CMemBlock* mPrev;
         CMemBlock* mNext;
     };
+    friend class CMemBlock;
 
 protected:
     JKRExpHeap(void*, u32, JKRHeap*, bool);
     virtual ~JKRExpHeap();
 
-    void allocFromHead(u32, int);
-    void allocFromHead(u32);
-    void allocFromTail(u32, int);
-    void allocFromTail(u32);
+    void* allocFromHead(u32, int);
+    void* allocFromHead(u32);
+    void* allocFromTail(u32, int);
+    void* allocFromTail(u32);
     void appendUsedList(CMemBlock*);
     void setFreeBlock(CMemBlock*, CMemBlock*, CMemBlock*);
     void removeFreeBlock(CMemBlock*);
@@ -76,9 +80,11 @@ public:
                                             JKRHeap::TState const&) const; /* override */
 
     u8 field_0x6c;
+    u8 mCurrentGroupId;
+    bool field_0x6e;
 
 private:
-    u32 field_0x70;
+    void* field_0x70;
     u32 field_0x74;
     CMemBlock* mHeadFreeList;
     CMemBlock* mTailFreeList;
@@ -91,8 +97,8 @@ public:
     static JKRExpHeap* create(void*, u32, JKRHeap*, bool);
 };
 
-inline JKRExpHeap* JKRCreateExpHeap(u32 param_0, JKRHeap* param_1, bool param_2) {
-    return JKRExpHeap::create(param_0, param_1, param_2);
+inline JKRExpHeap* JKRCreateExpHeap(u32 size, JKRHeap* parent, bool errorFlag) {
+    return JKRExpHeap::create(size, parent, errorFlag);
 }
 
 #endif /* JKREXPHEAP_H */
