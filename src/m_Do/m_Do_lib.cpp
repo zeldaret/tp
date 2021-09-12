@@ -6,6 +6,7 @@
 #include "m_Do/m_Do_lib.h"
 #include "JSystem/JMath/JMATrigonometric.h"
 #include "JSystem/JUtility/JUTTexture.h"
+#include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -98,8 +99,6 @@ f32 mDoLib_clipper::mFovyRate;
 SECTION_SDATA2 static f32 lit_3739 = 182.04444885253906f;
 
 /* 8001528C-80015310 00FBCC 0084+00 0/0 1/1 0/0 .text            setup__14mDoLib_clipperFffff */
-// matches except for wrong rotate values
-#ifdef NONMATCHING
 void mDoLib_clipper::setup(f32 fovy, f32 aspect, f32 near, f32 far) {
     mClipper.setFovy(fovy);
     mClipper.setAspect(aspect);
@@ -108,20 +107,10 @@ void mDoLib_clipper::setup(f32 fovy, f32 aspect, f32 near, f32 far) {
     mSystemFar = far;
     mClipper.calcViewFrustum();
 
-    int tmp = param_0 * 182.04444885253906f;
+    s16 tmp = fovy * 182.04444885253906f;
 
-    mFovyRate = (JMath::sincosTable_.table[tmp].b1) / (JMath::sincosTable_.table[tmp].a1);
+    mFovyRate = cM_scos(tmp) / cM_ssin(tmp);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoLib_clipper::setup(f32 param_0, f32 param_1, f32 param_2, f32 param_3) {
-    nofralloc
-#include "asm/m_Do/m_Do_lib/setup__14mDoLib_clipperFffff.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80451B84-80451B88 000184 0004+00 2/2 0/0 0/0 .sdata2          @3784 */
