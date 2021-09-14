@@ -791,6 +791,10 @@ inline BOOL dComIfGs_isSaveSwitch(int i_stageNo, int i_no) {
     return g_dComIfG_gameInfo.info.getSavedata().getSave(i_stageNo).getBit().isSwitch(i_no);
 }
 
+inline BOOL dComIfGs_isSaveSwitch(int i_no) {
+    return g_dComIfG_gameInfo.info.getMemory().getBit().isSwitch(i_no);
+}
+
 inline void dComIfGs_onStageBossEnemy() {
     g_dComIfG_gameInfo.info.getMemory().getBit().onStageBossEnemy();
 }
