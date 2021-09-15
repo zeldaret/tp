@@ -143,6 +143,7 @@ JKRExpHeap* mDoExt_getHostIOHeap();
 JKRSolidHeap* mDoExt_createSolidHeapToCurrent(JKRHeap**, u32, JKRHeap*, u32);
 JKRSolidHeap* mDoExt_createSolidHeapToCurrent(u32, JKRHeap*, u32);
 JKRSolidHeap* mDoExt_createSolidHeapFromGameToCurrent(u32, u32);
+JKRHeap* mDoExt_getCurrentHeap();
 
 extern JKRExpHeap* zeldaHeap;
 extern JKRExpHeap* gameHeap;

@@ -8,150 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct _GXTlut {};
-
-struct _GXTexMapID {};
-
-struct _GXCullMode {};
-
-struct ResTLUT {};
-
-struct ResTIMG {};
-
-struct ResFONT {};
-
-struct JUtility {
-    struct TColor {};
-};
-
-struct JUTTexture {
-    /* 802DE234 */ ~JUTTexture();
-    /* 802DE2A8 */ void storeTIMG(ResTIMG const*, u8);
-    /* 802DE840 */ void load(_GXTexMapID);
-};
-
-struct JUTPalette {
-    /* 802DE890 */ void storeTLUT(_GXTlut, ResTLUT*);
-};
-
-struct JSUStreamSeekFrom {};
-
-struct JSURandomInputStream {
-    /* 802DC458 */ void peek(void*, s32);
-    /* 802DC4DC */ void seek(s32, JSUStreamSeekFrom);
-};
-
-struct JSUInputStream {
-    /* 802DC298 */ void read(void*, s32);
-};
-
-struct JKRArchive {};
-
-struct JGeometry {
-    template <typename A1>
-    struct TBox2 {};
-    /* TBox2<f32> */
-    struct TBox2__template0 {};
-};
-
-struct J2DAnmTexPattern {};
-
-struct J2DAnmVisibilityFull {};
-
-struct J2DAnmBase {};
-
-struct J2DAnmColor {};
-
-struct J2DAnmTevRegKey {};
-
-struct J2DAnmTextureSRTKey {};
-
-struct J2DAnmTransform {};
-
-struct J2DAnmVtxColor {};
-
-struct J2DPane {
-    /* 80053BC0 */ void calcMtx();
-    /* 80053C00 */ void makeMatrix(f32, f32);
-    /* 802F7540 */ void makeMatrix(f32, f32, f32, f32);
-    /* 80256018 */ void setAnimation(J2DAnmVtxColor*);
-    /* 8025601C */ void setAnimation(J2DAnmVisibilityFull*);
-    /* 80256020 */ void setAnimation(J2DAnmTexPattern*);
-    /* 8018BF28 */ void setAnimation(J2DAnmTextureSRTKey*);
-    /* 80126350 */ void setAnimation(J2DAnmTevRegKey*);
-    /* 80126354 */ void setAnimation(J2DAnmColor*);
-    /* 802F7EF4 */ void setAnimation(J2DAnmBase*);
-    /* 802F5BF8 */ J2DPane();
-    /* 802F60C4 */ void makePaneStream(J2DPane*, JSURandomInputStream*);
-    /* 802F658C */ ~J2DPane();
-    /* 802F6F60 */ void move(f32, f32);
-    /* 802F6FB4 */ void add(f32, f32);
-    /* 802F6FF8 */ void resize(f32, f32);
-    /* 802F7264 */ void clip(JGeometry::TBox2<f32> const&);
-    /* 802F72E0 */ void search(u64);
-    /* 802F7388 */ void searchUserInfo(u64);
-    /* 802F7430 */ void isUsed(ResTIMG const*);
-    /* 802F74B8 */ void isUsed(ResFONT const*);
-    /* 802F7680 */ void setCullBack(_GXCullMode);
-    /* 802F8428 */ void setCullBack(bool);
-    /* 802F7B18 */ void makePaneExStream(J2DPane*, JSURandomInputStream*);
-    /* 802F7DB8 */ void getPointer(JSURandomInputStream*, u32, JKRArchive*);
-    /* 802F8004 */ void clearAnmTransform();
-    /* 802F8080 */ void animationTransform(J2DAnmTransform const*);
-    /* 802F8118 */ void setVisibileAnimation(J2DAnmVisibilityFull*);
-    /* 802F81A0 */ void setVtxColorAnimation(J2DAnmVtxColor*);
-    /* 802F8228 */ void animationPane(J2DAnmTransform const*);
-    /* 802F83D0 */ void setAnimationVF(J2DAnmVisibilityFull*);
-    /* 802F83FC */ void setAnimationVC(J2DAnmVtxColor*);
-    /* 802F8464 */ void setConnectParent(bool);
-    /* 802F8474 */ void update();
-};
-
-struct J2DMaterial {};
-
-struct J2DWindow {
-    struct TMaterial {};
-
-    /* 80254000 */ void getBlack() const;
-    /* 8025400C */ void getWhite() const;
-    /* 802543E0 */ void setWhite(JUtility::TColor);
-    /* 80254430 */ void setBlack(JUtility::TColor);
-    /* 80254568 */ void setBlackWhite(JUtility::TColor, JUtility::TColor);
-    /* 802F9C10 */ J2DWindow(J2DPane*, JSURandomInputStream*, J2DMaterial*);
-    /* 802F9B74 */ J2DWindow(J2DPane*, JSURandomInputStream*, JKRArchive*);
-    /* 802F9A7C */ J2DWindow();
-    /* 802FA118 */ void private_readStream(J2DPane*, JSURandomInputStream*, JKRArchive*);
-    /* 802FA604 */ void initinfo2();
-    /* 802FA880 */ ~J2DWindow();
-    /* 802FBFA0 */ void draw(f32, f32, f32, f32);
-    /* 802FA928 */ void draw(JGeometry::TBox2<f32> const&);
-    /* 802FAED0 */ void draw(JGeometry::TBox2<f32> const&, JGeometry::TBox2<f32> const&);
-    /* 802FAA5C */ void draw_private(JGeometry::TBox2<f32> const&, JGeometry::TBox2<f32> const&);
-    /* 802FB000 */ void resize(f32, f32);
-    /* 802FB12C */ void setContentsColor(JUtility::TColor, JUtility::TColor, JUtility::TColor,
-                                         JUtility::TColor);
-    /* 802FB240 */ void drawSelf(f32, f32, f32 (*)[3][4]);
-    /* 802FB1D8 */ void drawSelf(f32, f32);
-    /* 802FB338 */ void drawContents(JGeometry::TBox2<f32> const&);
-    /* 802FB634 */ void drawFrameTexture(JUTTexture*, f32, f32, f32, f32, u16, u16, u16, u16, bool);
-    /* 802FB7C8 */ void drawFrameTexture(JUTTexture*, f32, f32, bool, bool, bool);
-    /* 802FB868 */ void drawContentsTexture(f32, f32, f32, f32);
-    /* 802FBB90 */ void setTevMode(JUTTexture*, JUtility::TColor, JUtility::TColor);
-    /* 802FBE60 */ void getFrameTexture(u8, u8) const;
-    /* 802FC02C */ void isUsed(ResFONT const*);
-    /* 802FBEDC */ void isUsed(ResTIMG const*);
-    /* 802FBF98 */ s32 getTypeID() const;
-    /* 802FBFE8 */ void getContentsTexture(u8) const;
-    /* 802FC000 */ void getMaterial(J2DWindow::TMaterial&) const;
-    /* 802FC01C */ bool getFrameMaterial(u8) const;
-    /* 802FC024 */ bool getContentsMaterial() const;
-    /* 802FC04C */ void rewriteAlpha();
-};
-
-//
 // Forward References:
 //
 
@@ -239,27 +95,10 @@ extern "C" void setAnimationVC__7J2DPaneFP14J2DAnmVtxColor();
 extern "C" void setCullBack__7J2DPaneFb();
 extern "C" void setConnectParent__7J2DPaneFb();
 extern "C" void update__7J2DPaneFv();
-extern "C" void PSMTXIdentity();
-extern "C" void PSMTXConcat();
-extern "C" void GXSetVtxDesc();
 extern "C" void GXClearVtxDesc();
-extern "C" void GXSetVtxAttrFmt();
 extern "C" void GXSetTexCoordGen2();
-extern "C" void GXSetNumTexGens();
-extern "C" void GXBegin();
-extern "C" void GXSetNumChans();
-extern "C" void GXSetChanCtrl();
 extern "C" void GXSetNumIndStages();
 extern "C" void GXSetTevDirect();
-extern "C" void GXSetTevOp();
-extern "C" void GXSetTevColorIn();
-extern "C" void GXSetTevAlphaIn();
-extern "C" void GXSetTevColorOp();
-extern "C" void GXSetTevAlphaOp();
-extern "C" void GXSetTevColor();
-extern "C" void GXSetTevOrder();
-extern "C" void GXSetNumTevStages();
-extern "C" void GXSetBlendMode();
 extern "C" void GXLoadPosMtxImm();
 extern "C" void GXSetCurrentMtx();
 extern "C" void _savegpr_25();
@@ -624,7 +463,7 @@ COMPILER_STRIP_GATE(0x803A1C40, &lit_3037);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DWindow::isUsed(ResTIMG const* param_0) {
+asm bool J2DWindow::isUsed(ResTIMG const* param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DWindow/isUsed__9J2DWindowFPC7ResTIMG.s"
 }
@@ -682,7 +521,7 @@ bool J2DWindow::getContentsMaterial() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DWindow::isUsed(ResFONT const* param_0) {
+asm bool J2DWindow::isUsed(ResFONT const* param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DWindow/isUsed__9J2DWindowFPC7ResFONT.s"
 }

@@ -3,6 +3,7 @@
 
 #include "JSystem/J3DGraphBase/J3DShapeDraw.h"
 #include "JSystem/J3DGraphBase/J3DShapeMtx.h"
+#include "dolphin/gx/GX.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 
@@ -17,8 +18,6 @@ public:
     u32 getMtxIdxRegA() const { return mMtxIdxRegA; }
     u32 getMtxIdxRegB() const { return mMtxIdxRegB; }
 };
-
-struct _GXAttr {};
 
 class J3DMaterial;
 class J3DVertexData;
@@ -42,6 +41,8 @@ public:
     /* 8031544C */ virtual void drawFast() const;
     /* 80315628 */ virtual void simpleDraw() const;
     /* 803156AC */ virtual void simpleDrawCache() const;
+
+    static void resetVcdVatCache() { sOldVcdVatCmd = NULL; }
 
     static void* sOldVcdVatCmd;
 

@@ -48,6 +48,15 @@ struct J3DSys {
     /* 80310D44 */ void reinitIndStages();
     /* 80310E3C */ void reinitPixelProc();
 
+    enum DrawMode {
+        /* 0x3 */ OPA_TEX_EDGE = 3,
+        /* 0x4 */ XLU,
+    };
+
+    void setDrawModeOpaTexEdge() { mDrawMode = OPA_TEX_EDGE; }
+
+    void setDrawModeXlu() { mDrawMode = XLU; }
+
     static Mtx mCurrentMtx;
     static f32 mCurrentS[3];
     static f32 mParentS[3];

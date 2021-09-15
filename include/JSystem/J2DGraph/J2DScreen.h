@@ -15,8 +15,8 @@ public:
     /* 802F9A18 */ virtual s32 getTypeID() const;
     /* 802F9A20 */ virtual void calcMtx();
     /* 802F9120 */ virtual void drawSelf(f32, f32, Mtx*);
-    /* 802F90A0 */ virtual const J2DPane* search(u64);
-    /* 802F90E0 */ virtual const J2DPane* searchUserInfo(u64);
+    /* 802F90A0 */ virtual J2DPane* search(u64);
+    /* 802F90E0 */ virtual J2DPane* searchUserInfo(u64);
     /* 802F9600 */ virtual bool isUsed(ResTIMG const*);
     /* 802F9620 */ virtual bool isUsed(ResFONT const*);
     /* 80053BA0 */ virtual void clearAnmTransform();

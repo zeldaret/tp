@@ -577,18 +577,17 @@ u32 dStage_roomControl_c::mProcID;
 /* 80450D67 0001+00 data_80450D67 None */
 s8 struct_80450D64;
 
-extern s8 sLastStayNo;
+#pragma push
+#pragma force_active on
 s8 sLastStayNo;
 
-extern s8 sNextStayNo;
 s8 sNextStayNo;
+#pragma pop
 
-extern bool sTimePass;
-bool sTimePass;
+s8 sTimePass;
 
 /* 80450D68-80450D6C 000268 0004+00 2/2 2/2 1/1 .sbss            None */
-extern u8 data_80450D68[4];
-u8 data_80450D68[4];
+u8 data_80450D68;
 
 /* 80450D6C-80450D70 00026C 0004+00 1/1 2/2 0/0 .sbss mArcBankName__20dStage_roomControl_c */
 char* dStage_roomControl_c::mArcBankName;
@@ -1088,21 +1087,9 @@ asm void dStage_roomControl_c::setStayNo(int param_0) {
 #endif
 
 /* 80024424-8002442C 01ED64 0008+00 0/0 0/0 1/1 .text setNextStayNo__20dStage_roomControl_cFi */
-// matches but need to fix data
-#ifdef NONMATCHING
-void dStage_roomControl_c::setNextStayNo(int param_0) {
-    sNextStayNo = param_0;
+void dStage_roomControl_c::setNextStayNo(int nextStayNo) {
+    sNextStayNo = nextStayNo;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomControl_c::setNextStayNo(int param_0) {
-    nofralloc
-#include "asm/d/d_stage/setNextStayNo__20dStage_roomControl_cFi.s"
-}
-#pragma pop
-#endif
 
 static int stayRoomCheck(int param_0, u8* param_1, int param_2) {
     for (; param_0 > 0; param_0--) {
@@ -1383,21 +1370,9 @@ static asm void dStage_roomInit(int param_0) {
 #pragma pop
 
 /* 80024DB0-80024DB8 01F6F0 0008+00 2/2 0/0 0/0 .text SetTimePass__20dStage_roomControl_cFi */
-// matches but need to fix data
-#ifdef NONMATCHING
 void dStage_roomControl_c::SetTimePass(int isPassing) {
     sTimePass = isPassing;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomControl_c::SetTimePass(int param_0) {
-    nofralloc
-#include "asm/d/d_stage/SetTimePass__20dStage_roomControl_cFi.s"
-}
-#pragma pop
-#endif
 
 roomRead_class* dStage_stageDt_c::getRoom() const {
     return mRoom;

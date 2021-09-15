@@ -174,6 +174,8 @@ public:
     JKRArchive* getMsgDtArchive(int idx) { return mMsgDtArchive[idx]; }
     s16 getStartStagePoint() { return mStartStage.getPoint(); }
     void* getPlayerPtr(int ptrIdx) { return mPlayerPtr[ptrIdx]; }
+    JKRArchive* getMain2DArchive() { return mMain2DArchive; }
+    J2DGrafContext* getCurrentGrafPort() { return mCurrentGrafPort; }
 
 public:
     /* 0x00000 */ dBgS mDBgS;
@@ -388,7 +390,7 @@ public:
     /* 0x0500C */ dDlst_window_c* mCurrentWindow;
     /* 0x05010 */ void* mCurrentView;
     /* 0x05014 */ void* mCurrentViewport;
-    /* 0x05018 */ void* mCurrentGrafPort;
+    /* 0x05018 */ J2DGrafContext* mCurrentGrafPort;
     /* 0x0501C */ void* mItemTable;
     /* 0x0501D */ u8 field_0x501d[4];
     /* 0x05024 */ char mLastPlayStageName[8];
@@ -999,6 +1001,14 @@ inline daPy_py_c* dComIfGp_getLinkPlayer() {
 
 inline daAlink_c* daAlink_getAlinkActorClass() {
     return (daAlink_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR);
+}
+
+inline JKRArchive* dComIfGp_getMain2DArchive() {
+    return g_dComIfG_gameInfo.play.getMain2DArchive();
+}
+
+inline J2DGrafContext* dComIfGp_getCurrentGrafPort() {
+    return g_dComIfG_gameInfo.play.getCurrentGrafPort();
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

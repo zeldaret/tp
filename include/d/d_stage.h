@@ -490,6 +490,10 @@ public:
 STATIC_ASSERT(sizeof(dStage_roomStatus_c) == 0x404);
 
 extern s8 struct_80450D64;  // sStayNo
+extern s8 sLastStayNo;
+extern s8 sNextStayNo;
+extern s8 sTimePass;
+extern u8 data_80450D68;
 
 class dStage_roomControl_c {
 public:
@@ -521,6 +525,7 @@ public:
     /* 80024940 */ static char* getArcBank(int);
     /* 80024954 */ static int resetArchiveBank(int);
     /* 80024DB0 */ static void SetTimePass(int);
+    static s8 GetTimePass();
 
     inline static s8 getStayNo() { return struct_80450D64; }
     s8 getMemoryBlockID(int i_roomNo) { return mStatus[i_roomNo].mMemBlockID; }

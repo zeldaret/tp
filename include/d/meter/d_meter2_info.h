@@ -43,10 +43,6 @@ struct JMSMesgEntry_c {
     /* 0x13 */ u8 field_0x13;
 };  // Size: 0x14
 
-struct J2DTextBox {
-    /* 8021C7F4 */ void getFont() const;
-};
-
 struct dMenu_LetterData {
     u16 mSubject;
     u16 mName;

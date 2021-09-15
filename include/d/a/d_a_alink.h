@@ -29,7 +29,7 @@ class J2DScreen;
 class J2DPane;
 class J2DAnmBase;
 
-class daAlink_lockCursor_c : public dDlst_base_c {
+class daAlink_lockCursor_c {
 public:
     /* 80125F14 */ void create();
     /* 80126358 */ void update();
@@ -2300,7 +2300,7 @@ private:
     /* 0x02170 */ u8 field_0x2170[0x18];
     /* 0x02188 */ dEyeHL_c mEyeHL1;
     /* 0x0219C */ dEyeHL_c mEyeHL2;
-    /* 0x021B0 */ daPy_anmHeap_c mAnmHeap8[2];
+    /* 0x021B0 */ daPy_anmHeap_c mItemHeap[2];
     /* 0x021D8 */ daPy_anmHeap_c mAnmHeap9;
     /* 0x021EC */ u8 field_0x21ec[4];
     /* 0x021F0 */ daAlink_blur_c mBlur;
@@ -2802,32 +2802,32 @@ struct daAlinkHIO_anm_c {
 };  // size = 0x14
 
 struct daAlinkHIO_basic_c1 {
-    /* 0x00 */ s16 field_0x00;
-    /* 0x02 */ s16 mNeckAimAngleX;
-    /* 0x04 */ s16 mNeckAimAngleY;
-    /* 0x06 */ s16 mNeckAimAngleZ;
+    /* 0x00 */ bool mOneHitKill;
+    /* 0x02 */ s16 mNeckMaxHorizontal;
+    /* 0x04 */ s16 mNeckMaxUp;
+    /* 0x06 */ s16 mNeckMaxDown;
     /* 0x08 */ s16 field_0x08;
-    /* 0x0A */ s16 field_0x0a;
-    /* 0x0C */ s16 field_0x0c;
-    /* 0x0E */ s16 field_0x0e;
-    /* 0x10 */ s16 mMetamorphoseFarAngle;
+    /* 0x0A */ s16 mHotspringRecoverTime;
+    /* 0x0C */ s16 mWiiCamSpeedV;
+    /* 0x0E */ s16 mWiiCamSpeedH;
+    /* 0x10 */ s16 mTransformBlockFarAngle;
     /* 0x14 */ f32 field_0x14;
     /* 0x18 */ f32 mAnmBlendFactor;
     /* 0x1C */ f32 mWaitTurnSpeed;
-    /* 0x20 */ f32 field_0x20;
-    /* 0x24 */ f32 field_0x24;
-    /* 0x28 */ f32 field_0x28;
-    /* 0x2C */ f32 field_0x2c;
-    /* 0x30 */ f32 field_0x30;
-    /* 0x34 */ f32 field_0x34;
-    /* 0x38 */ f32 field_0x38;
-    /* 0x3C */ f32 field_0x3c;
-    /* 0x40 */ f32 field_0x40;
-    /* 0x44 */ f32 field_0x44;
-    /* 0x48 */ f32 field_0x48;
-    /* 0x4C */ f32 field_0x4c;
-    /* 0x50 */ f32 mMetamorphoseNearDis;
-    /* 0x54 */ f32 mMetamorphoseFarDis;
+    /* 0x20 */ f32 mStandDefenseBlend;
+    /* 0x24 */ f32 mWaterSurfaceEffectHeight;
+    /* 0x28 */ f32 mWolfWaterSurfaceEffectHeight;
+    /* 0x2C */ f32 mMaxWindInfluenceDist;
+    /* 0x30 */ f32 mNoWindInfluenceDist;
+    /* 0x34 */ f32 mMaxWindSpeed;
+    /* 0x38 */ f32 mLavaDeathDepth;
+    /* 0x3C */ f32 mLinkWolfTransformSpeed;
+    /* 0x40 */ f32 mWolfLinkTransformSpeed;
+    /* 0x44 */ f32 mIndoorSpeedFactor;
+    /* 0x48 */ f32 mSandSinkSpeed;
+    /* 0x4C */ f32 mSandSurfaceSpeed;
+    /* 0x50 */ f32 mTransformBlockNearDis;
+    /* 0x54 */ f32 mTransformBlockFarDis;
 };
 
 class daAlinkHIO_basic_c0 {
@@ -2837,10 +2837,10 @@ public:
 
 class daAlinkHIO_autoJump_c1 {
 public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x00;
-    /* 0x14 */ daAlinkHIO_anm_c field_0x14;
-    /* 0x28 */ daAlinkHIO_anm_c field_0x28;
-    /* 0x3C */ daAlinkHIO_anm_c field_0x3c;
+    /* 0x00 */ daAlinkHIO_anm_c mJump;
+    /* 0x14 */ daAlinkHIO_anm_c mLand;
+    /* 0x28 */ daAlinkHIO_anm_c mDive;
+    /* 0x3C */ daAlinkHIO_anm_c mDiveUnk;
     /* 0x50 */ u8 field_0x50;
     /* 0x52 */ s16 field_0x52;
     /* 0x54 */ s16 field_0x54;
@@ -2852,8 +2852,8 @@ public:
     /* 0x68 */ f32 field_0x68;
     /* 0x6C */ f32 field_0x6c;
     /* 0x70 */ f32 field_0x70;
-    /* 0x74 */ f32 field_0x74;
-    /* 0x78 */ f32 field_0x78;
+    /* 0x74 */ f32 mGravity;
+    /* 0x78 */ f32 mMaxFallSpeed;
     /* 0x7C */ f32 field_0x7c;
     /* 0x80 */ f32 field_0x80;
     /* 0x84 */ f32 field_0x84;

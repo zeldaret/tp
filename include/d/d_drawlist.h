@@ -15,14 +15,14 @@
 
 struct mDoExt_3DlineMat_c {};
 
-struct mDoExt_3DlineMatSortPacket {
-    /* 80014E20 */ ~mDoExt_3DlineMatSortPacket();
-    /* 800561C8 */ mDoExt_3DlineMatSortPacket();
+class mDoExt_3DlineMatSortPacket : public J3DPacket {
+public:
+    mDoExt_3DlineMatSortPacket();
 
-    /* 0x00 */ int field_0x0;
-    /* 0x04 */ int field_0x4;
-    /* 0x08 */ int field_0x8;
-    /* 0x0C */ int field_0xc;
+    virtual void draw();
+    virtual ~mDoExt_3DlineMatSortPacket();
+
+private:
     /* 0x10 */ mDoExt_3DlineMat_c* mp3DlineMat;
 };
 
@@ -36,6 +36,7 @@ private:
 
 class dDlst_peekZ_c {
 public:
+    dDlst_peekZ_c() { field_0x0 = 0; }
     /* 80056018 */ void newData(s16, s16, u32*);
     /* 80056080 */ void peekData();
 
@@ -114,6 +115,7 @@ private:
 
 class dDlst_shadowControl_c {
 public:
+    dDlst_shadowControl_c() { field_0x0 = 0; }
     /* 80055684 */ void init();
     /* 80055768 */ void reset();
     /* 800557C8 */ void imageDraw(f32 (*)[4]);
@@ -169,7 +171,6 @@ struct view_class {};
 
 class dDlst_base_c {
 public:
-    virtual void temp();  // temp to build OK, remove later
     virtual void draw();
 };
 
@@ -219,19 +220,19 @@ private:
     /* 0x00050 */ J3DDrawBuffer* mList3Dlast;
     /* 0x00054 */ dDlst_list_c** field_0x54;  // array?
     /* 0x00058 */ u8 field_0x58[0xC];
-    /* 0x00064 */ dDlst_list_c** field_0x64;
+    /* 0x00064 */ dDlst_list_c* field_0x64;
     /* 0x00068 */ dDlst_list_c** field_0x68;
     /* 0x0006C */ dDlst_list_c** field_0x6c;  // array?
     /* 0x00070 */ u8 field_0x70[0x3C];
-    /* 0x000AC */ dDlst_list_c** field_0xac;
+    /* 0x000AC */ dDlst_list_c* field_0xac;
     /* 0x000B0 */ dDlst_list_c** field_0xb0;
     /* 0x000B4 */ dDlst_list_c** field_0xb4;  // array?
     /* 0x000B8 */ u8 field_0xb8[0xFC];
-    /* 0x001B4 */ dDlst_list_c** field_0x1b4;
+    /* 0x001B4 */ dDlst_list_c* field_0x1b4;
     /* 0x001B8 */ dDlst_list_c** field_0x1b8;
     /* 0x001BC */ dDlst_list_c** field_0x1bc;  // array?
     /* 0x001C0 */ u8 field_0x1c0[0x7C];
-    /* 0x0023C */ dDlst_list_c** field_0x23c;
+    /* 0x0023C */ dDlst_list_c* field_0x23c;
     /* 0x00240 */ dDlst_list_c** field_0x240;
     /* 0x00244 */ dDlst_window_c* mWindow;
     /* 0x00248 */ view_port_class* mViewport;

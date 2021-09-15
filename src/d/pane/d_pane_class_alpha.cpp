@@ -158,7 +158,7 @@ SECTION_SDATA2 static f64 lit_3694 = 4503601774854144.0 /* cast s32 to float */;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void CPaneMgrAlpha::rateCalc(s16 param_0, s16 param_1, u8 param_2) {
+asm f32 CPaneMgrAlpha::rateCalc(s16 param_0, s16 param_1, u8 param_2) {
     nofralloc
 #include "asm/d/pane/d_pane_class_alpha/rateCalc__13CPaneMgrAlphaFssUc.s"
 }

@@ -43,8 +43,8 @@ public:
     /* 0x30 */ virtual void update();
     /* 0x34 */ virtual void drawSelf(f32 arg1, f32 arg2);
     /* 0x38 */ virtual void drawSelf(f32 arg1, f32 arg2, Mtx* mtx);
-    /* 0x3c */ virtual const J2DPane* search(u64 tag);
-    /* 0x40 */ virtual const J2DPane* searchUserInfo(u64 tag);
+    /* 0x3c */ virtual J2DPane* search(u64 tag);
+    /* 0x40 */ virtual J2DPane* searchUserInfo(u64 tag);
     /* 0x44 */ virtual void makeMatrix(f32, f32);
     /* 0x48 */ virtual void makeMatrix(f32 a, f32 b, f32 c, f32 d);
     /* 0x4c */ virtual bool isUsed(const ResTIMG* timg);
@@ -71,11 +71,38 @@ public:
     JSUTree<J2DPane>* getFirstChild() { return mPaneTree.getFirstChild(); }
     const JSUTree<J2DPane>* getPaneTree() { return &mPaneTree; }
     u8 getAlpha() const { return mAlpha; }
+
+    f32 getScaleX() const { return mScaleX; }
+
+    f32 getScaleY() const { return mScaleY; }
+
+    f32 getTranslateX() const { return mTranslateX; }
+
+    f32 getTranslateY() const { return mTranslateY; }
+
+    f32 getRotateZ() const { return mRotateZ; }
+
+    f32 getRotOffsetX() const { return mRotateOffsetX; }
+
+    f32 getRotOffsetY() const { return mRotateOffsetY; }
+
     void translate(f32 transX, f32 transY) {
         mTranslateX = transX;
         mTranslateY = transY;
         calcMtx();
     }
+
+    void scale(f32 scaleH, f32 scaleV) {
+        mScaleX = scaleH;
+        mScaleY = scaleV;
+        calcMtx();
+    }
+
+    int getKind() const { return id; }
+
+    bool isVisible() const { return mVisible; }
+
+    void show() { mVisible = true; }
 
     void initiate();
     void initialize(J2DPane*, bool, u64, const JGeometry::TBox2<f32>&);
@@ -93,9 +120,9 @@ public:
     void setBasePosition(J2DBasePosition position);
     void setInfluencedAlpha(bool arg1, bool arg2);
     void getGlbVtx(u8 arg1) const;
-    const J2DPane* getFirstChildPane();
-    const J2DPane* getNextChildPane();
-    const J2DPane* getParentPane();
+    J2DPane* getFirstChildPane();
+    J2DPane* getNextChildPane();
+    J2DPane* getParentPane();
     void makePaneExStream(J2DPane* other, JSURandomInputStream* stream);
     static s16 J2DCast_F32_to_S16(f32 value, u8 arg2);
     void* getPointer(JSURandomInputStream* stream, u32 size, JKRArchive* archive);

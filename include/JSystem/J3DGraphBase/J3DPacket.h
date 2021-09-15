@@ -39,6 +39,12 @@ public:
 
 class J3DPacket {
 public:
+    J3DPacket() {
+        mpNextSibling = NULL;
+        mpFirstChild = NULL;
+        mpUserData = NULL;
+    }
+
     void addChildPacket(J3DPacket* pChild);
 
     inline void clear() {

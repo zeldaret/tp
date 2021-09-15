@@ -11,8 +11,6 @@
 // Types:
 //
 
-struct _GXVtxFmt {};
-
 struct _GXVtxAttrFmtList {};
 
 //
@@ -55,7 +53,6 @@ extern "C" void OSRestoreInterrupts();
 extern "C" void OSDisableScheduler();
 extern "C" void OSEnableScheduler();
 extern "C" void GXSetArray();
-extern "C" void GXCallDisplayList();
 extern "C" void GDInitGDLObj();
 extern "C" void GDFlushCurrToMem();
 extern "C" void GDPadCurr32();

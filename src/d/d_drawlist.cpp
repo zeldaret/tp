@@ -4,6 +4,8 @@
 //
 
 #include "d/d_drawlist.h"
+#include "JSystem/J3DGraphBase/J3DShape.h"
+#include "JSystem/J3DGraphBase/J3DSys.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx44.h"
 #include "dolphin/mtx/mtxvec.h"
@@ -77,12 +79,17 @@ struct dDlst_2DM_c {
     /* 80052C58 */ void draw();
 };
 
-struct cM_rnd_c {
+class cM_rnd_c {
+public:
     /* 80053CDC */ void init(int, int, int);
-    /* 80053CEC */ void get();
-    /* 80053DE0 */ void getF(f32);
-    /* 80053E18 */ void getFX(f32);
-    /* 80053E60 */ void getValue(f32, f32);
+    /* 80053CEC */ f32 get();
+    /* 80053DE0 */ f32 getF(f32);
+    /* 80053E18 */ f32 getFX(f32);
+    /* 80053E60 */ f32 getValue(f32, f32);
+
+    /* 0x0 */ int seed0;
+    /* 0x4 */ int seed1;
+    /* 0x8 */ int seed2;
 };
 
 struct cBgS_ShdwDraw {
@@ -106,12 +113,6 @@ struct JMath {
 struct J3DUClipper {
     /* 8027378C */ void calcViewFrustum();
     /* 80273A44 */ void clip(f32 const (*)[4], Vec*, Vec*) const;
-};
-
-struct J3DShape {
-    /* 80315300 */ void loadPreDrawSetting() const;
-
-    static u8 sOldVcdVatCmd[4];
 };
 
 struct J2DPicture {
@@ -387,7 +388,7 @@ asm void dDlst_2DPoint_c::draw() {
 
 /* ############################################################################################## */
 /* 80450648-8045064C 0000C8 0004+00 1/1 0/0 0/0 .sdata           l_color$4033 */
-SECTION_SDATA static u8 l_color_4033[4] = {
+SECTION_SDATA static _GXColor l_color_4033 = {
     0xFF,
     0xFF,
     0xFF,
@@ -2001,16 +2002,16 @@ SECTION_DATA static u8 l_matDL[123 + 1 /* padding */] = {
 };
 
 /* 803A8D7C-803A8D8C 005E9C 0010+00 1/1 0/0 0/0 .data            l_imageDrawColor$5405 */
-SECTION_DATA static u8 l_imageDrawColor[16] = {
-    0xFF, 0x00, 0x00, 0x00, 0x00, 0xFF, 0x00, 0x00, 0x00, 0x00, 0xFF, 0x00, 0x00, 0x00, 0x00, 0xFF,
-};
+SECTION_DATA static _GXColor l_imageDrawColor[4] = {{0xFF, 0x00, 0x00, 0x00},
+                                                    {0x00, 0xFF, 0x00, 0x00},
+                                                    {0x00, 0x00, 0xFF, 0x00},
+                                                    {0x00, 0x00, 0x00, 0xFF}};
 
 /* 803A8D8C-803A8D9C 005EAC 0010+00 0/1 0/0 0/0 .data            l_tevColorChan$5438 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tevColorChan[16] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x03,
-};
+SECTION_DATA static GXTevColor l_tevColorChan[4] = {GX_CH_RED, GX_CH_BLUE, GX_CH_GREEN,
+                                                    GX_CH_ALPHA};
 #pragma pop
 
 /* 803A8D9C-803A8DCC 005EBC 0030+00 0/0 0/0 0/0 .data            mtx_adj$5842 */
@@ -2279,14 +2280,11 @@ extern "C" asm void __dt__10J2DAnmBaseFv() {
 #pragma pop
 
 /* 80053CDC-80053CEC 04E61C 0010+00 0/0 2/2 0/0 .text            init__8cM_rnd_cFiii */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM_rnd_c::init(int param_0, int param_1, int param_2) {
-    nofralloc
-#include "asm/d/d_drawlist/init__8cM_rnd_cFiii.s"
+void cM_rnd_c::init(int s0, int s1, int s2) {
+    seed0 = s0;
+    seed1 = s1;
+    seed2 = s2;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80452034-80452038 000634 0004+00 1/1 0/0 0/0 .sdata2          @4791 */
@@ -2302,48 +2300,45 @@ SECTION_SDATA2 static f32 lit_4793 = 30307.0f;
 SECTION_SDATA2 static f64 lit_4794 = 1.0;
 
 /* 80053CEC-80053DE0 04E62C 00F4+00 2/2 0/0 0/0 .text            get__8cM_rnd_cFv */
+// reg swap
+#ifdef NONMATCHING
+f32 cM_rnd_c::get() {
+    seed0 = seed0 * 171 % 30269;
+    seed1 = seed1 * 172 % 30307;
+    seed2 = seed2 * 170 % 30323;
+    f32 rm = fmod((seed0 / 30269.0f) + (seed1 / 30307.0f) + (seed2 / 30323.0f), 1.0f);
+
+    return __fabs(rm);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cM_rnd_c::get() {
+asm f32 cM_rnd_c::get() {
     nofralloc
 #include "asm/d/d_drawlist/get__8cM_rnd_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80053DE0-80053E18 04E720 0038+00 1/1 0/0 0/0 .text            getF__8cM_rnd_cFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM_rnd_c::getF(f32 param_0) {
-    nofralloc
-#include "asm/d/d_drawlist/getF__8cM_rnd_cFf.s"
+f32 cM_rnd_c::getF(f32 param_0) {
+    return get() * param_0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80452048-8045204C 000648 0004+00 5/5 0/0 0/0 .sdata2          @4806 */
 SECTION_SDATA2 static f32 lit_4806 = 2.0f;
 
 /* 80053E18-80053E60 04E758 0048+00 1/1 0/0 0/0 .text            getFX__8cM_rnd_cFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM_rnd_c::getFX(f32 param_0) {
-    nofralloc
-#include "asm/d/d_drawlist/getFX__8cM_rnd_cFf.s"
+f32 cM_rnd_c::getFX(f32 param_0) {
+    return ((get() - lit_4072) * param_0) * lit_4806;
 }
-#pragma pop
 
 /* 80053E60-80053E9C 04E7A0 003C+00 1/1 0/0 0/0 .text            getValue__8cM_rnd_cFff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM_rnd_c::getValue(f32 param_0, f32 param_1) {
-    nofralloc
-#include "asm/d/d_drawlist/getValue__8cM_rnd_cFff.s"
+f32 cM_rnd_c::getValue(f32 param_0, f32 param_1) {
+    return param_0 + getF(param_1);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8045204C-80452050 00064C 0004+00 1/1 0/0 0/0 .sdata2          @4876 */
@@ -2774,6 +2769,18 @@ asm void dDlst_peekZ_c::peekData() {
 #pragma pop
 
 /* 800560F0-800561C8 050A30 00D8+00 0/0 1/1 0/0 .text            __ct__12dDlst_list_cFv */
+#ifdef NONMATCHING
+dDlst_list_c::dDlst_list_c() {
+    field_0x68 = &field_0x64;
+    field_0xb0 = &field_0xac;
+    field_0x1b8 = &field_0x1b4;
+    field_0x240 = &field_0x23c;
+    J3DDrawBuffer** tmp = &mOpaListSky;
+    for (int i = 0; i < 0x15; i++) {
+        *(tmp + i) = NULL;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2782,6 +2789,7 @@ asm dDlst_list_c::dDlst_list_c() {
 #include "asm/d/d_drawlist/__ct__12dDlst_list_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 800561C8-800561F8 050B08 0030+00 1/1 0/0 0/0 .text __ct__26mDoExt_3DlineMatSortPacketFv */
 #pragma push
@@ -2968,25 +2976,19 @@ asm void dDlst_list_c::entryZSortXluDrawList(J3DDrawBuffer* param_0, J3DPacket* 
 
 /* 800566D4-80056710 051014 003C+00 1/1 1/1 0/0 .text
  * drawOpaDrawList__12dDlst_list_cFP13J3DDrawBuffer             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_list_c::drawOpaDrawList(J3DDrawBuffer* param_0) {
-    nofralloc
-#include "asm/d/d_drawlist/drawOpaDrawList__12dDlst_list_cFP13J3DDrawBuffer.s"
+void dDlst_list_c::drawOpaDrawList(J3DDrawBuffer* pDrawBuf) {
+    J3DShape::resetVcdVatCache();
+    j3dSys.setDrawModeOpaTexEdge();
+    pDrawBuf->draw();
 }
-#pragma pop
 
 /* 80056710-8005674C 051050 003C+00 1/1 1/1 0/0 .text
  * drawXluDrawList__12dDlst_list_cFP13J3DDrawBuffer             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_list_c::drawXluDrawList(J3DDrawBuffer* param_0) {
-    nofralloc
-#include "asm/d/d_drawlist/drawXluDrawList__12dDlst_list_cFP13J3DDrawBuffer.s"
+void dDlst_list_c::drawXluDrawList(J3DDrawBuffer* pDrawBuf) {
+    J3DShape::resetVcdVatCache();
+    j3dSys.setDrawModeXlu();
+    pDrawBuf->draw();
 }
-#pragma pop
 
 /* 8005674C-80056770 05108C 0024+00 0/0 1/1 0/0 .text            drawOpaListItem3d__12dDlst_list_cFv
  */
@@ -3024,14 +3026,12 @@ asm int dDlst_list_c::set(dDlst_base_c**& param_0, dDlst_base_c**& param_1, dDls
 
 /* 800567C4-8005681C 051104 0058+00 0/0 1/1 0/0 .text
  * draw__12dDlst_list_cFPP12dDlst_base_cPP12dDlst_base_c        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_list_c::draw(dDlst_base_c** param_0, dDlst_base_c** param_1) {
-    nofralloc
-#include "asm/d/d_drawlist/draw__12dDlst_list_cFPP12dDlst_base_cPP12dDlst_base_c.s"
+void dDlst_list_c::draw(dDlst_base_c** pStart, dDlst_base_c** pEnd) {
+    for (; pStart < pEnd; pStart++) {
+        dDlst_base_c* base = *pStart;
+        base->draw();
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037A1B0-8037A1B0 006810 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -11,6 +11,8 @@
 #include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
 
+void dKankyo_DayProc();
+
 struct LIGHT_INFLUENCE {
     /* 800CFC7C */ ~LIGHT_INFLUENCE();
     /* 8019F4F8 */ LIGHT_INFLUENCE();

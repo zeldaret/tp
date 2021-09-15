@@ -515,14 +515,14 @@ asm void J2DPane::clip(JGeometry::TBox2<f32> const& param_0) {
 #pragma pop
 
 /* 802F72E0-802F7388 2F1C20 00A8+00 1/0 7/1 0/0 .text            search__7J2DPaneFUx */
-const J2DPane* J2DPane::search(u64 tag) {
+J2DPane* J2DPane::search(u64 tag) {
     if (tag == mInfoTag) {
         return this;
     }
 
     JSUTreeIterator<J2DPane> iter;
     for (iter = mPaneTree.getFirstChild(); iter != mPaneTree.getEndChild(); ++iter) {
-        if (const J2DPane* result = iter.getObject()->search(tag)) {
+        if (J2DPane* result = iter.getObject()->search(tag)) {
             return result;
         }
     }
@@ -530,14 +530,14 @@ const J2DPane* J2DPane::search(u64 tag) {
 }
 
 /* 802F7388-802F7430 2F1CC8 00A8+00 1/0 7/1 0/0 .text            searchUserInfo__7J2DPaneFUx */
-const J2DPane* J2DPane::searchUserInfo(u64 tag) {
+J2DPane* J2DPane::searchUserInfo(u64 tag) {
     if (tag == mUserInfoTag) {
         return this;
     }
 
     JSUTreeIterator<J2DPane> iter;
     for (iter = mPaneTree.getFirstChild(); iter != mPaneTree.getEndChild(); ++iter) {
-        if (const J2DPane* result = iter.getObject()->searchUserInfo(tag)) {
+        if (J2DPane* result = iter.getObject()->searchUserInfo(tag)) {
             return result;
         }
     }
@@ -653,7 +653,7 @@ const J2DPane* J2DPane::getFirstChildPane() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm const J2DPane* J2DPane::getFirstChildPane() {
+asm J2DPane* J2DPane::getFirstChildPane() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DPane/getFirstChildPane__7J2DPaneFv.s"
 }
@@ -661,7 +661,7 @@ asm const J2DPane* J2DPane::getFirstChildPane() {
 #endif
 
 /* 802F7AC4-802F7AFC 2F2404 0038+00 1/1 8/8 0/0 .text            getNextChildPane__7J2DPaneFv */
-const J2DPane* J2DPane::getNextChildPane() {
+J2DPane* J2DPane::getNextChildPane() {
     if (getPaneTree()->getNextChild() == NULL)
         return NULL;
 
@@ -669,7 +669,7 @@ const J2DPane* J2DPane::getNextChildPane() {
 }
 
 /* 802F7AFC-802F7B18 2F243C 001C+00 6/6 11/11 0/0 .text            getParentPane__7J2DPaneFv */
-const J2DPane* J2DPane::getParentPane() {
+J2DPane* J2DPane::getParentPane() {
     if (getPaneTree()->getParent() == NULL)
         return NULL;
 

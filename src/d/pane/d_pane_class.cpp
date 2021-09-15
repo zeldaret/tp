@@ -6,6 +6,7 @@
 #include "d/pane/d_pane_class.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "m_Do/m_Do_ext.h"
 
 //
 // Types:
@@ -17,18 +18,6 @@ struct JSUMemoryInputStream {
 };
 
 struct JKRAramArchive {};
-
-struct J2DWindow {
-    /* 80254000 */ void getBlack() const;
-    /* 8025400C */ void getWhite() const;
-    /* 802543E0 */ void setWhite(JUtility::TColor);
-    /* 80254430 */ void setBlack(JUtility::TColor);
-    /* 80254568 */ void setBlackWhite(JUtility::TColor, JUtility::TColor);
-};
-
-struct J2DTextBox {
-    /* 80254408 */ void setBlack(JUtility::TColor);
-};
 
 struct J2DOrthoGraph {
     /* 802E96D0 */ J2DOrthoGraph(f32, f32, f32, f32, f32, f32);
@@ -65,7 +54,7 @@ extern "C" void getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbs();
 extern "C" void getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs();
 extern "C" void getBounds__8CPaneMgrFP7J2DPane();
 extern "C" void dPaneClass_showNullPane__FP9J2DScreen();
-extern "C" static void dPaneClass_showNullPane__FP7J2DPane();
+extern "C" void dPaneClass_showNullPane__FP7J2DPane();
 extern "C" void dPaneClass_setPriority__FPPvP7JKRHeapP9J2DScreenPCcUlP10JKRArchive();
 extern "C" void __dt__20JSUMemoryInputStreamFv();
 extern "C" void __dt__20JSURandomInputStreamFv();
@@ -138,58 +127,156 @@ SECTION_DATA extern void* __vt__8CPaneMgr[4 + 1 /* padding */] = {
 };
 
 /* 80253930-80253984 24E270 0054+00 0/0 11/11 0/0 .text            __ct__8CPaneMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm CPaneMgr::CPaneMgr() {
-    nofralloc
-#include "asm/d/pane/d_pane_class/__ct__8CPaneMgrFv.s"
+CPaneMgr::CPaneMgr() {
+    mpFirstStackAlpha = NULL;
+    mpFirstStackSize = NULL;
 }
-#pragma pop
 
 /* 80253984-80253A18 24E2C4 0094+00 0/0 58/58 2/2 .text
  * __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap                 */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm CPaneMgr::CPaneMgr(J2DScreen* param_0, u64 param_1, u8 param_2, JKRExpHeap* param_3) {
-    nofralloc
-#include "asm/d/pane/d_pane_class/__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap.s"
+CPaneMgr::CPaneMgr(J2DScreen* pScrn, u64 tag, u8 flags, JKRExpHeap* pHeap) {
+    J2DPane* pane = pScrn->search(tag);
+    mFlags = flags;
+    initiate(pane, pHeap);
 }
-#pragma pop
 
 /* 80253A18-80253AB4 24E358 009C+00 1/0 11/11 0/0 .text            __dt__8CPaneMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm CPaneMgr::~CPaneMgr() {
-    nofralloc
-#include "asm/d/pane/d_pane_class/__dt__8CPaneMgrFv.s"
+CPaneMgr::~CPaneMgr() {
+    if (mpFirstStackSize) {
+        heap->free(mpFirstStackSize);
+        mpFirstStackSize = NULL;
+    }
+    if (mpFirstStackAlpha) {
+        heap->free(mpFirstStackAlpha);
+        mpFirstStackAlpha = NULL;
+    }
 }
-#pragma pop
 
 /* 80253AB4-80253B2C 24E3F4 0078+00 1/0 0/0 0/0 .text            setAlpha__8CPaneMgrFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgr::setAlpha(u8 param_0) {
-    nofralloc
-#include "asm/d/pane/d_pane_class/setAlpha__8CPaneMgrFUc.s"
+void CPaneMgr::setAlpha(u8 alpha) {
+    if (mFlags & 2) {
+        field_0x10 = mpFirstStackAlpha;
+        childPaneSetAlpha(getPanePtr()->getFirstChildPane(), alpha);
+    }
+    getPanePtr()->setAlpha(alpha);
 }
-#pragma pop
 
 /* 80253B2C-80253C08 24E46C 00DC+00 0/0 3/3 0/0 .text            reinit__8CPaneMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgr::reinit() {
-    nofralloc
-#include "asm/d/pane/d_pane_class/reinit__8CPaneMgrFv.s"
+void CPaneMgr::reinit() {
+    mInitPos.x = getPanePtr()->getBounds().i.x;
+    mInitPos.y = getPanePtr()->getBounds().i.y;
+
+    mGlobalPos.x = getGlobalPosX();
+    mGlobalPos.y = getGlobalPosY();
+
+    mInitSize.x = getPanePtr()->getWidth();
+    mInitSize.y = getPanePtr()->getHeight();
+
+    mInitScale.x = getPanePtr()->getScaleX();
+    mInitScale.y = getPanePtr()->getScaleY();
+
+    mInitTrans.x = getPanePtr()->getTranslateX();
+    mInitTrans.y = getPanePtr()->getTranslateY();
+
+    mRotateZ = getPanePtr()->getRotateZ();
+    mRotateOffset.x = getPanePtr()->getRotOffsetX();
+    mRotateOffset.y = getPanePtr()->getRotOffsetY();
 }
-#pragma pop
 
 /* 80253C08-80254000 24E548 03F8+00 1/1 0/0 0/0 .text initiate__8CPaneMgrFP7J2DPaneP10JKRExpHeap
  */
+// switch issues
+#ifdef NONMATCHING
+void CPaneMgr::initiate(J2DPane* pPane, JKRExpHeap* pHeap) {
+    (J2DPane*)mWindow = pPane;
+    if (pHeap) {
+        heap = pHeap;
+    } else {
+        heap = (JKRExpHeap*)mDoExt_getCurrentHeap();
+    }
+
+    mpFirstStackAlpha = NULL;
+    field_0x10 = NULL;
+    mpFirstStackSize = NULL;
+    field_0x20 = NULL;
+    mChildPaneCount = 0;
+
+    if (mFlags) {
+        childPaneCount(getPanePtr()->getFirstChildPane());
+        if (mFlags & 1) {
+            mpFirstStackSize = heap->alloc(mChildPaneCount * 12, 0x20);
+            field_0x20 = mpFirstStackSize;
+            childPaneGetSize(getPanePtr()->getFirstChildPane());
+        }
+        if (mFlags & 2) {
+            mpFirstStackAlpha = heap->alloc(mChildPaneCount, 0x20);
+            field_0x10 = mpFirstStackAlpha;
+            childPaneGetSize(getPanePtr()->getFirstChildPane());
+        }
+    }
+
+    mInitPos.x = pPane->getBounds().i.x;
+    mInitPos.y = pPane->getBounds().i.y;
+
+    mGlobalPos.x = getGlobalPosX();
+    mGlobalPos.y = getGlobalPosY();
+
+    mInitSize.x = pPane->getWidth();
+    mInitSize.y = pPane->getHeight();
+
+    mInitScale.x = getPanePtr()->getScaleX();
+    mInitScale.y = getPanePtr()->getScaleY();
+
+    mInitTrans.x = getPanePtr()->getTranslateX();
+    mInitTrans.y = getPanePtr()->getTranslateY();
+
+    mRotateZ = pPane->getRotateZ();
+    mRotateOffset.x = pPane->getRotOffsetX();
+    mRotateOffset.y = pPane->getRotOffsetY();
+
+    if (pPane->getKind() == 'PAN2') {
+        mInitAlpha = 255;
+    } else {
+        mInitAlpha = pPane->getAlpha();
+    }
+    field_0x60 = 0;
+    field_0x62 = 0;
+    mScaleAnime = 0;
+    field_0x66 = 0;
+    field_0x68 = 0;
+    mColorAnime = 0;
+    mAlphaTimer = 0;
+
+    switch (getPanePtr()->getKind()) {
+    case 'TBX3':
+    case 'TBX4':
+    case 'WIN3':
+        JUtility::TColor white = mWindow->getWhite();
+        mInitWhite.set(white.r, white.g, white.b, white.a);
+
+        JUtility::TColor black = mWindow->getBlack();
+        mInitBlack.set(black.r, black.g, black.b, black.a);
+        break;
+    case 'PIC1':
+    case 'PIC2':
+        JUtility::TColor white2 = mWindow->getWhite();
+        mInitWhite.set(white2.r, white2.g, white2.b, white2.a);
+
+        JUtility::TColor black2 = mWindow->getBlack();
+        mInitBlack.set(black2.r, black2.g, black2.b, black2.a);
+        break;
+    case 'WIN1':
+        JUtility::TColor white3 = mWindow->getWhite();
+        mInitWhite.set(white3.r, white3.g, white3.b, white3.a);
+
+        JUtility::TColor black3 = mWindow->getBlack();
+        mInitBlack.set(black3.r, black3.g, black3.b, black3.a);
+        break;
+    }
+    mInitWhite.set(255, 255, 255, 255);
+    mInitBlack.set(0, 0, 0, 0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -198,26 +285,17 @@ asm void CPaneMgr::initiate(J2DPane* param_0, JKRExpHeap* param_1) {
 #include "asm/d/pane/d_pane_class/initiate__8CPaneMgrFP7J2DPaneP10JKRExpHeap.s"
 }
 #pragma pop
+#endif
 
 /* 80254000-8025400C 24E940 000C+00 0/0 1/0 0/0 .text            getBlack__9J2DWindowCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DWindow::getBlack() const {
-    nofralloc
-#include "asm/d/pane/d_pane_class/getBlack__9J2DWindowCFv.s"
+JUtility::TColor J2DWindow::getBlack() const {
+    return mBlack;
 }
-#pragma pop
 
 /* 8025400C-80254018 24E94C 000C+00 0/0 1/0 0/0 .text            getWhite__9J2DWindowCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DWindow::getWhite() const {
-    nofralloc
-#include "asm/d/pane/d_pane_class/getWhite__9J2DWindowCFv.s"
+JUtility::TColor J2DWindow::getWhite() const {
+    return mWhite;
 }
-#pragma pop
 
 /* 80254018-80254134 24E958 011C+00 1/1 0/0 0/0 .text childPaneGetSize__8CPaneMgrFP7J2DPane */
 #pragma push
@@ -251,54 +329,42 @@ asm void CPaneMgr::childPaneSetSize(J2DPane* param_0, f32 param_1, f32 param_2) 
 #pragma pop
 
 /* 802542E8-80254364 24EC28 007C+00 2/2 18/18 0/0 .text            getGlobalPosX__8CPaneMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgr::getGlobalPosX() {
-    nofralloc
-#include "asm/d/pane/d_pane_class/getGlobalPosX__8CPaneMgrFv.s"
+f32 CPaneMgr::getGlobalPosX() {
+    f32 posX = getPosX();
+    for (J2DPane* pane = getPanePtr()->getParentPane(); pane != NULL;
+         pane = pane->getParentPane()) {
+        posX += pane->getBounds().i.x;
+    }
+    return posX;
 }
-#pragma pop
 
 /* 80254364-802543E0 24ECA4 007C+00 2/2 15/15 0/0 .text            getGlobalPosY__8CPaneMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgr::getGlobalPosY() {
-    nofralloc
-#include "asm/d/pane/d_pane_class/getGlobalPosY__8CPaneMgrFv.s"
+f32 CPaneMgr::getGlobalPosY() {
+    f32 posY = getPosY();
+    for (J2DPane* pane = getPanePtr()->getParentPane(); pane != NULL;
+         pane = pane->getParentPane()) {
+        posY += pane->getBounds().i.y;
+    }
+    return posY;
 }
-#pragma pop
 
 /* 802543E0-80254408 24ED20 0028+00 0/0 1/0 0/0 .text setWhite__9J2DWindowFQ28JUtility6TColor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DWindow::setWhite(JUtility::TColor param_0) {
-    nofralloc
-#include "asm/d/pane/d_pane_class/setWhite__9J2DWindowFQ28JUtility6TColor.s"
+bool J2DWindow::setWhite(JUtility::TColor white) {
+    mWhite = white;
+    return true;
 }
-#pragma pop
 
 /* 80254408-80254430 24ED48 0028+00 0/0 1/0 0/0 .text setBlack__10J2DTextBoxFQ28JUtility6TColor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTextBox::setBlack(JUtility::TColor param_0) {
-    nofralloc
-#include "asm/d/pane/d_pane_class/setBlack__10J2DTextBoxFQ28JUtility6TColor.s"
+bool J2DTextBox::setBlack(JUtility::TColor black) {
+    mBlackColor = black;
+    return true;
 }
-#pragma pop
 
 /* 80254430-80254458 24ED70 0028+00 0/0 1/0 0/0 .text setBlack__9J2DWindowFQ28JUtility6TColor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DWindow::setBlack(JUtility::TColor param_0) {
-    nofralloc
-#include "asm/d/pane/d_pane_class/setBlack__9J2DWindowFQ28JUtility6TColor.s"
+bool J2DWindow::setBlack(JUtility::TColor black) {
+    mBlack = black;
+    return true;
 }
-#pragma pop
 
 /* 80254458-80254568 24ED98 0110+00 1/1 7/7 0/0 .text
  * setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor */
@@ -313,14 +379,11 @@ asm void CPaneMgr::setBlackWhite(JUtility::TColor param_0, JUtility::TColor para
 
 /* 80254568-802545B0 24EEA8 0048+00 0/0 1/0 0/0 .text
  * setBlackWhite__9J2DWindowFQ28JUtility6TColorQ28JUtility6TColor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DWindow::setBlackWhite(JUtility::TColor param_0, JUtility::TColor param_1) {
-    nofralloc
-#include "asm/d/pane/d_pane_class/setBlackWhite__9J2DWindowFQ28JUtility6TColorQ28JUtility6TColor.s"
+bool J2DWindow::setBlackWhite(JUtility::TColor black, JUtility::TColor white) {
+    mBlack = black;
+    mWhite = white;
+    return true;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80454E98-80454EA0 003498 0004+04 3/3 0/0 0/0 .sdata2          @4046 */
@@ -331,6 +394,14 @@ SECTION_SDATA2 static f32 lit_4046[1 + 1 /* padding */] = {
 };
 
 /* 802545B0-80254638 24EEF0 0088+00 0/0 51/51 3/3 .text            paneTrans__8CPaneMgrFff */
+// matches with literals
+#ifdef NONMATCHING
+void CPaneMgr::paneTrans(f32 x, f32 y) {
+    f32 moveX = x + getInitCenterPosX() - getSizeX() * 0.5f;
+    f32 moveY = y + getInitCenterPosY() - getSizeY() * 0.5f;
+    getPanePtr()->move(moveX, moveY);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -339,8 +410,28 @@ asm void CPaneMgr::paneTrans(f32 param_0, f32 param_1) {
 #include "asm/d/pane/d_pane_class/paneTrans__8CPaneMgrFff.s"
 }
 #pragma pop
+#endif
 
 /* 80254638-802547CC 24EF78 0194+00 0/0 5/5 0/0 .text            paneScale__8CPaneMgrFff */
+// swapped float reg
+#ifdef NONMATCHING
+void CPaneMgr::paneScale(f32 x, f32 y) {
+    f32 moveX = getPosX() + getSizeX() * 0.5f;
+    f32 moveY = getPosY() + getSizeY() * 0.5f;
+
+    getPanePtr()->resize(mInitSize.x * x, mInitSize.y * y);
+    getPanePtr()->move(moveX - getSizeY() * 0.5f, moveY - getSizeX() * 0.5f);
+
+    if (mRotateZ != 0.0f) {
+        getPanePtr()->rotate(mRotateOffset.x * x, mRotateOffset.y * y, ROTATE_Z, getRotateZ());
+    }
+
+    if (mFlags & 1) {
+        field_0x20 = mpFirstStackSize;
+        childPaneSetSize(getPanePtr()->getFirstChildPane(), x, y);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -349,16 +440,22 @@ asm void CPaneMgr::paneScale(f32 param_0, f32 param_1) {
 #include "asm/d/pane/d_pane_class/paneScale__8CPaneMgrFff.s"
 }
 #pragma pop
+#endif
 
 /* 802547CC-802548BC 24F10C 00F0+00 0/0 10/10 0/0 .text            scaleAnime__8CPaneMgrFsffUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgr::scaleAnime(s16 param_0, f32 param_1, f32 param_2, u8 param_3) {
-    nofralloc
-#include "asm/d/pane/d_pane_class/scaleAnime__8CPaneMgrFsffUc.s"
+bool CPaneMgr::scaleAnime(s16 param_0, f32 param_1, f32 param_2, u8 param_3) {
+    if (mScaleAnime < param_0 - 1) {
+        mScaleAnime++;
+        f32 rate = rateCalc(param_0, mScaleAnime, param_3);
+        f32 tmp = param_1 + rate * (param_2 - param_1);
+        getPanePtr()->scale(mInitScale.x * tmp, mInitScale.y * tmp);
+    } else {
+        mScaleAnime = param_0;
+        getPanePtr()->scale(mInitScale.x * param_2, mInitScale.y * param_2);
+        return true;
+    }
+    return false;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80454EA0-80454EA8 0034A0 0008+00 1/1 0/0 0/0 .sdata2          @4349 */
@@ -428,25 +525,23 @@ asm void CPaneMgr::getBounds(J2DPane* param_0) {
 #pragma pop
 
 /* 802550E8-8025512C 24FA28 0044+00 0/0 54/54 3/3 .text dPaneClass_showNullPane__FP9J2DScreen */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dPaneClass_showNullPane(J2DScreen* param_0) {
-    nofralloc
-#include "asm/d/pane/d_pane_class/dPaneClass_showNullPane__FP9J2DScreen.s"
+void dPaneClass_showNullPane(J2DScreen* pScrn) {
+    if (pScrn) {
+        dPaneClass_showNullPane(pScrn->search('ROOT'));
+    }
 }
-#pragma pop
 
 /* 8025512C-80255184 24FA6C 0058+00 1/1 0/0 0/0 .text            dPaneClass_showNullPane__FP7J2DPane
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dPaneClass_showNullPane(J2DPane* param_0) {
-    nofralloc
-#include "asm/d/pane/d_pane_class/dPaneClass_showNullPane__FP7J2DPane.s"
+void dPaneClass_showNullPane(J2DPane* pPane) {
+    if (pPane) {
+        if (!pPane->isVisible()) {
+            pPane->show();
+        }
+        dPaneClass_showNullPane(pPane->getFirstChildPane());
+        dPaneClass_showNullPane(pPane->getNextChildPane());
+    }
 }
-#pragma pop
 
 /* 80255184-802552B8 24FAC4 0134+00 0/0 1/1 0/0 .text
  * dPaneClass_setPriority__FPPvP7JKRHeapP9J2DScreenPCcUlP10JKRArchive */
