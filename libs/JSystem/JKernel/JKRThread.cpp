@@ -74,7 +74,7 @@ extern "C" void remove__10JSUPtrListFP10JSUPtrLink();
 extern "C" void clear__10JUTConsoleFv();
 extern "C" void print_f__10JUTConsoleFPCce();
 extern "C" void print__10JUTConsoleFPCc();
-extern "C" void JUTWarningConsole();
+extern "C" void JUTWarningConsole(const char*);
 extern "C" void __register_global_object();
 extern "C" void __cvt_fp2unsigned();
 extern "C" void _savegpr_25();
@@ -235,7 +235,7 @@ JKRThreadSwitch::JKRThreadSwitch(JKRHeap* param_0) {
     sTotalStart = 0;
     this->field_0x20 = 0;
     this->field_0x24 = 0;
-    this->field_0x8[0] = 1;
+    this->field_0x8 = true;
 }
 
 /* 802D1A14-802D1A70 2CC354 005C+00 0/0 1/1 0/0 .text createManager__15JKRThreadSwitchFP7JKRHeap
@@ -282,21 +282,82 @@ SECTION_DEAD static char const* const stringBase_8039CFDC =
 
 /* 804513C0-804513C4 0008C0 0004+00 1/1 0/0 0/0 .sbss            mUserPreCallback__15JKRThreadSwitch
  */
-u8 JKRThreadSwitch::mUserPreCallback[4];
+JKRThreadSwitch_PreCallback JKRThreadSwitch::mUserPreCallback;
 
 /* 804513C4-804513C8 0008C4 0004+00 1/1 0/0 0/0 .sbss mUserPostCallback__15JKRThreadSwitch */
-u8 JKRThreadSwitch::mUserPostCallback[4];
+JKRThreadSwitch_PostCallback JKRThreadSwitch::mUserPostCallback;
 
 /* 802D1AE4-802D1C74 2CC424 0190+00 1/1 0/0 0/0 .text
  * callback__15JKRThreadSwitchFP8OSThreadP8OSThread             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRThreadSwitch::callback(OSThread* param_0, OSThread* param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRThread/callback__15JKRThreadSwitchFP8OSThreadP8OSThread.s"
+void JKRThreadSwitch::callback(OSThread* current, OSThread* next) {
+    if (mUserPreCallback) {
+        (*mUserPreCallback)(current, next);
+    }
+
+    sTotalCount = sTotalCount + 1;
+
+    JKRHeap* next_heap = NULL;
+    JSUList<JKRThread>& threadList = JKRThread::getList();
+    JSUListIterator<JKRThread> iterator;
+    for (iterator = threadList.getFirst(); iterator != threadList.getEnd(); ++iterator) {
+        JKRThread* thread = iterator.getObject();
+
+        if (thread->getThreadRecord() == current) {
+            thread->setCurrentHeap(JKRHeap::getCurrentHeap());
+            if (thread->field_0x60) {
+                thread->mCost += (OSGetTick() - thread->mLastTick);
+            }
+        }
+
+        if (thread->getThreadRecord() == next) {
+            if (thread->field_0x60 != false) {
+                thread->mLastTick = OSGetTick();
+                thread->mSwitchCount += 1;
+            }
+
+            if (sManager->field_0x8) {
+                next_heap = thread->getCurrentHeap();
+                if (!next_heap) {
+                    next_heap = JKRHeap::getCurrentHeap();
+                } else if (JKRHeap::getRootHeap()->isSubHeap(next_heap)) {
+                    continue;
+#if DEBUG
+                } else if (!JKRHeap::getRootHeap2()->isSubHeap(next_heap)) {
+                    continue;
+#endif
+                } else {
+                    switch (thread->getCurrentHeapError()) {
+                    case 0:
+#if DEBUG
+                        JUTAssertion::showAssert(JUTAssertion::getSDevice(), "JKRThread.cpp", 0x1fc,
+                                                 "JKRThreadSwitch: currentHeap destroyed.");
+                        OSPanic("JKRThread.cpp", 0x1fc, "Halt");
+#endif
+                        break;
+                    case 1:
+                        JUTWarningConsole("JKRThreadSwitch: currentHeap destroyed.\n");
+                        next_heap = JKRHeap::getCurrentHeap();
+                        break;
+                    case 2:
+                        next_heap = JKRHeap::getCurrentHeap();
+                        break;
+                    case 3:
+                        next_heap = JKRHeap::getSystemHeap();
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    if (next_heap) {
+        next_heap->becomeCurrentHeap();
+    }
+
+    if (mUserPostCallback) {
+        (*mUserPostCallback)(current, next);
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039CFA8-8039CFA8 029608 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

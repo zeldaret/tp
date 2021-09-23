@@ -3,6 +3,7 @@
 
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JSupport/JSUList.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 
@@ -27,7 +28,15 @@ public:
     void* getStack() const { return mStackMemory; }
     u8 getLoadInfo() const { return field_0x60; }
     JKRHeap* getCurrentHeap() const { return mCurrentHeap; }
-    JKRHeap* getCurrentHeapError() const { return mCurrentHeapError; }
+    s32 getCurrentHeapError() const { return mCurrentHeapError; }
+
+    void setCurrentHeap(JKRHeap* heap) {
+        if (!heap) {
+            heap = JKRHeap::getCurrentHeap();
+        }
+
+        mCurrentHeap = heap;
+    }
 
 protected:
     void resume() { OSResumeThread(mThreadRecord); }
@@ -62,14 +71,14 @@ private:
     /* 0x54 */ s32 mMessageCount;
     /* 0x58 */ void* mStackMemory;
     /* 0x5C */ u32 mStackSize;
-    /* 0x60 */ u8 field_0x60;
+    /* 0x60 */ bool field_0x60;
     /* 0x61 */ u8 padding_0x61[3];
     /* 0x64 */ u32 mCost;
     /* 0x68 */ u32 mSwitchCount;
     /* 0x6C */ u32 mLastTick;
     /* 0x70 */ u32 mThreadId;
     /* 0x74 */ JKRHeap* mCurrentHeap;
-    /* 0x78 */ JKRHeap* mCurrentHeapError;
+    /* 0x78 */ s32 mCurrentHeapError;
 
 public:
     static void* start(void* param_1);
@@ -79,6 +88,9 @@ public:
     static JSUList<JKRThread> sThreadList;
     // static u8 sThreadList[12];
 };
+
+typedef void (*JKRThreadSwitch_PreCallback)(OSThread* current, OSThread* next);
+typedef void (*JKRThreadSwitch_PostCallback)(OSThread* current, OSThread* next);
 
 class JKRThreadSwitch {
 public:
@@ -96,13 +108,14 @@ public:
     static JKRThreadSwitch* sManager;
     static u32 sTotalCount;
     static u32 sTotalStart;
-    static u8 mUserPreCallback[4];
-    static u8 mUserPostCallback[4];
+    static JKRThreadSwitch_PreCallback mUserPreCallback;
+    static JKRThreadSwitch_PostCallback mUserPostCallback;
 
 public:
     /* 0x00 */  // vtable
     /* 0x04 */ JKRHeap* mHeap;
-    /* 0x08 */ u8 field_0x8[4];
+    /* 0x08 */ bool field_0x8;
+    /* 0x09 */ u8 field_0x9[3];
     /* 0x0C */ u32 field_0xC;
     /* 0x10 */ u32 field_0x10;
     /* 0x14 */ u8 field_0x14[4];
