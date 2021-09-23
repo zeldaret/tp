@@ -11,6 +11,8 @@ class JUTConsole;
 class JKRHeap;
 class JKRThread : JKRDisposer {
 public:
+    friend class JKRThreadSwitch;
+
     JKRThread(u32 stack_size, int message_count, int param_3);
     JKRThread(JKRHeap* heap, u32 stack_size, int message_count, int param_4);
     JKRThread(OSThread* thread, int message_count);
@@ -64,8 +66,8 @@ private:
     /* 0x61 */ u8 padding_0x61[3];
     /* 0x64 */ u32 mCost;
     /* 0x68 */ u32 mSwitchCount;
-    /* 0x6C */ u32 field_0x6c;
-    /* 0x70 */ u32 field_0x70;
+    /* 0x6C */ u32 mLastTick;
+    /* 0x70 */ u32 mThreadId;
     /* 0x74 */ JKRHeap* mCurrentHeap;
     /* 0x78 */ JKRHeap* mCurrentHeapError;
 

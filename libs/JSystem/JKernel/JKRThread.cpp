@@ -100,9 +100,9 @@ extern "C" void* __vt__15JKRThreadSwitch;
 JKRThread::JKRThread(u32 stack_size, int message_count, int param_3) : mThreadListLink(this) {
     mSwitchCount = 0;
     mCost = 0;
-    field_0x6c = 0;
+    mLastTick = 0;
     field_0x60 = 0;
-    field_0x70 = 0;
+    mThreadId = 0;
 
     JKRHeap* heap = JKRHeap::findFromRoot(this);
     if (heap == NULL) {
@@ -118,9 +118,9 @@ JKRThread::JKRThread(JKRHeap* heap, u32 stack_size, int message_count, int param
     : mThreadListLink(this) {
     mSwitchCount = 0;
     mCost = 0;
-    field_0x6c = 0;
+    mLastTick = 0;
     field_0x60 = 0;
-    field_0x70 = 0;
+    mThreadId = 0;
 
     if (heap == NULL) {
         heap = JKRHeap::getCurrentHeap();
@@ -134,9 +134,9 @@ JKRThread::JKRThread(JKRHeap* heap, u32 stack_size, int message_count, int param
 JKRThread::JKRThread(OSThread* thread, int message_count) : mThreadListLink(this) {
     mSwitchCount = 0;
     mCost = 0;
-    field_0x6c = 0;
+    mLastTick = 0;
     field_0x60 = 0;
-    field_0x70 = 0;
+    mThreadId = 0;
     mHeap = NULL;
     mThreadRecord = thread;
     mStackSize = (u32)thread->stack_end - (u32)thread->stack_base;
@@ -250,14 +250,23 @@ JKRThreadSwitch* JKRThreadSwitch::createManager(JKRHeap* heap) {
 }
 
 /* 802D1A70-802D1AE4 2CC3B0 0074+00 0/0 1/1 0/0 .text enter__15JKRThreadSwitchFP9JKRThreadi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRThread* JKRThreadSwitch::enter(JKRThread* param_0, int param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRThread/enter__15JKRThreadSwitchFP9JKRThreadi.s"
+JKRThread* JKRThreadSwitch::enter(JKRThread* thread, int thread_id) {
+    if (!thread) {
+        return NULL;
+    }
+
+    JKRThread* found_thread = JKRThread::searchThread(thread->getThreadRecord());
+    if (found_thread) {
+        thread = found_thread;
+    }
+
+    thread->mSwitchCount = 0;
+    thread->mCost = 0;
+    thread->mLastTick = 0;
+    thread->field_0x60 = true;
+    thread->mThreadId = thread_id;
+    return thread;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039CFA8-8039CFA8 029608 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
