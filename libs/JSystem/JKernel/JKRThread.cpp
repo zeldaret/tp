@@ -211,7 +211,7 @@ JKRThread* JKRThread::searchThread(OSThread* thread) {
 
 /* ############################################################################################## */
 /* 804513B0-804513B4 0008B0 0004+00 2/2 1/1 0/0 .sbss            sManager__15JKRThreadSwitch */
-u8 JKRThreadSwitch::sManager[4];
+JKRThreadSwitch* JKRThreadSwitch::sManager;
 
 /* 804513B4-804513B8 0008B4 0004+00 3/3 0/0 0/0 .sbss            sTotalCount__15JKRThreadSwitch */
 u32 JKRThreadSwitch::sTotalCount;
@@ -240,14 +240,14 @@ JKRThreadSwitch::JKRThreadSwitch(JKRHeap* param_0) {
 
 /* 802D1A14-802D1A70 2CC354 005C+00 0/0 1/1 0/0 .text createManager__15JKRThreadSwitchFP7JKRHeap
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRThreadSwitch* JKRThreadSwitch::createManager(JKRHeap* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRThread/createManager__15JKRThreadSwitchFP7JKRHeap.s"
+JKRThreadSwitch* JKRThreadSwitch::createManager(JKRHeap* heap) {
+    if (!heap) {
+        heap = JKRHeap::getCurrentHeap();
+    }
+
+    sManager = new (heap, 0) JKRThreadSwitch(heap);
+    return sManager;
 }
-#pragma pop
 
 /* 802D1A70-802D1AE4 2CC3B0 0074+00 0/0 1/1 0/0 .text enter__15JKRThreadSwitchFP9JKRThreadi */
 #pragma push

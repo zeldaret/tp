@@ -91,7 +91,7 @@ public:
     static void callback(OSThread* param_1, OSThread* param_2);
 
     // TODO: fix types
-    static u8 sManager[4];
+    static JKRThreadSwitch* sManager;
     static u32 sTotalCount;
     static u32 sTotalStart;
     static u8 mUserPreCallback[4];
