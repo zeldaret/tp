@@ -92,20 +92,21 @@ public:
 
     // TODO: fix types
     static u8 sManager[4];
-    static u8 sTotalCount[4];
-    static u8 sTotalStart[4];
+    static u32 sTotalCount;
+    static u32 sTotalStart;
     static u8 mUserPreCallback[4];
     static u8 mUserPostCallback[4];
 
 public:
-    JKRHeap* heap;
-    u8 field_0x8[4];
-    u32 field_0xC[2];
-    u8 field_0x14[4];
-    u32 field_0x18;
-    u32 field_0x1C;
-    u32 field_0x20;
-    u32 field_0x24;
+    /* 0x00 */  // vtable
+    /* 0x04 */ JKRHeap* mHeap;
+    /* 0x08 */ u8 field_0x8[4];
+    /* 0x0C */ u32 field_0xC;
+    /* 0x10 */ u32 field_0x10;
+    /* 0x14 */ u8 field_0x14[4];
+    /* 0x18 */ s64 field_0x18;
+    /* 0x20 */ u32 field_0x20;
+    /* 0x24 */ u32 field_0x24;
 };
 
 struct JKRTask {

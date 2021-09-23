@@ -214,24 +214,29 @@ JKRThread* JKRThread::searchThread(OSThread* thread) {
 u8 JKRThreadSwitch::sManager[4];
 
 /* 804513B4-804513B8 0008B4 0004+00 3/3 0/0 0/0 .sbss            sTotalCount__15JKRThreadSwitch */
-u8 JKRThreadSwitch::sTotalCount[4];
+u32 JKRThreadSwitch::sTotalCount;
 
 /* 804513B8-804513BC 0008B8 0004+00 1/1 0/0 0/0 .sbss            sTotalStart__15JKRThreadSwitch */
-u8 JKRThreadSwitch::sTotalStart[4];
+u32 JKRThreadSwitch::sTotalStart;
 
 /* 804513BC-804513C0 0008BC 0004+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_804513BC[4];
+static u32 data_804513BC;
 
 /* 802D199C-802D1A14 2CC2DC 0078+00 1/1 0/0 0/0 .text            __ct__15JKRThreadSwitchFP7JKRHeap
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRThreadSwitch::JKRThreadSwitch(JKRHeap* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRThread/__ct__15JKRThreadSwitchFP7JKRHeap.s"
+JKRThreadSwitch::JKRThreadSwitch(JKRHeap* param_0) {
+    mHeap = param_0;
+    OSSetSwitchThreadCallback(JKRThreadSwitch::callback);
+    this->field_0xC = 0;
+    this->field_0x10 = 1;
+    this->field_0x18 = 0;
+    sTotalCount = 0;
+    data_804513BC = 0;
+    sTotalStart = 0;
+    this->field_0x20 = 0;
+    this->field_0x24 = 0;
+    this->field_0x8[0] = 1;
 }
-#pragma pop
 
 /* 802D1A14-802D1A70 2CC354 005C+00 0/0 1/1 0/0 .text createManager__15JKRThreadSwitchFP7JKRHeap
  */

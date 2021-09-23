@@ -141,7 +141,7 @@ s32 OSResumeThread(OSThread* thread);
 void OSExitThread(void* exit_val);
 bool OSIsThreadSuspended(OSThread* thread);
 BOOL OSIsThreadTerminated(OSThread* thread);
-OSSwitchThreadCallback OSSetSwitchThreadCallback(OSSwitchThreadCallback* callback);
+OSSwitchThreadCallback OSSetSwitchThreadCallback(OSSwitchThreadCallback callback);
 
 void OSInitMessageQueue(OSMessageQueue* queue, OSMessage* messages, int message_count);
 BOOL OSReceiveMessage(OSMessageQueue* queue, OSMessage* message, int flags);
