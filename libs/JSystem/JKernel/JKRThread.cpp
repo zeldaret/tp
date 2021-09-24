@@ -346,7 +346,7 @@ void JKRThreadSwitch::callback(OSThread* current, OSThread* next) {
 
 /* 802D1C74-802D1E14 2CC5B4 01A0+00 1/0 0/0 0/0 .text
  * draw__15JKRThreadSwitchFP14JKRThreadName_P10JUTConsole       */
-void JKRThreadSwitch::draw(JKRThreadName_* thread_names, JUTConsole* console) {
+void JKRThreadSwitch::draw(JKRThreadName_* thread_name_list, JUTConsole* console) {
     const char* print_0 = " total: switch:%3d  time:%d(%df)\n";
     const char* print_1 = " -------------------------------------\n";
 
@@ -369,8 +369,8 @@ void JKRThreadSwitch::draw(JKRThreadName_* thread_names, JUTConsole* console) {
 
         if (loadInfo->isValid()) {
             char* thread_print_name = NULL;
-            if (thread_names) {
-                JKRThreadName_* thread_name = thread_names;
+            if (thread_name_list) {
+                JKRThreadName_* thread_name = thread_name_list;
                 for (; thread_name->name; thread_name++) {
                     if (thread_name->id == loadInfo->getId()) {
                         thread_print_name = thread_name->name;
@@ -409,15 +409,9 @@ void* JKRThread::run() {
 }
 
 /* 802D1E1C-802D1E4C 2CC75C 0030+00 1/0 0/0 0/0 .text draw__15JKRThreadSwitchFP14JKRThreadName_ */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-#pragma force_active on
-asm void JKRThreadSwitch::draw(JKRThreadName_* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRThread/draw__15JKRThreadSwitchFP14JKRThreadName_.s"
+void JKRThreadSwitch::draw(JKRThreadName_* thread_name_list) {
+    draw(thread_name_list, NULL);
 }
-#pragma pop
 
 /* 802D1E4C-802D1E94 2CC78C 0048+00 1/0 0/0 0/0 .text            __dt__15JKRThreadSwitchFv */
 #pragma push
