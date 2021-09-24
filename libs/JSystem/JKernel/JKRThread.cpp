@@ -21,81 +21,37 @@ struct JUTConsole {
 };
 
 //
-// Forward References:
-//
-
-extern "C" void __ct__9JKRThreadFUlii();
-extern "C" void __ct__9JKRThreadFP7JKRHeapUlii();
-extern "C" void __ct__9JKRThreadFP8OSThreadi();
-extern "C" void __dt__9JKRThreadFv();
-extern "C" void setCommon_mesgQueue__9JKRThreadFP7JKRHeapi();
-extern "C" void setCommon_heapSpecified__9JKRThreadFP7JKRHeapUli();
-extern "C" void start__9JKRThreadFPv();
-extern "C" void searchThread__9JKRThreadFP8OSThread();
-extern "C" void __ct__15JKRThreadSwitchFP7JKRHeap();
-extern "C" void createManager__15JKRThreadSwitchFP7JKRHeap();
-extern "C" void enter__15JKRThreadSwitchFP9JKRThreadi();
-extern "C" void callback__15JKRThreadSwitchFP8OSThreadP8OSThread();
-extern "C" void draw__15JKRThreadSwitchFP14JKRThreadName_P10JUTConsole();
-extern "C" bool run__9JKRThreadFv();
-extern "C" void draw__15JKRThreadSwitchFP14JKRThreadName_();
-extern "C" void __dt__15JKRThreadSwitchFv();
-extern "C" void __sinit_JKRThread_cpp();
-extern "C" void func_802D1EFC(void* _this);
-extern "C" void func_802D1F50(void* _this);
-extern "C" extern char const* const JKRThread__stringBase0;
-extern "C" u8 sThreadList__9JKRThread[12];
-extern "C" u8 sTaskList__7JKRTask[12];
-extern "C" u8 sEndMesgQueue__7JKRTask[32];
-extern "C" u8 sManager__15JKRThreadSwitch[4];
-extern "C" u8 sTotalCount__15JKRThreadSwitch[4];
-extern "C" u8 sTotalStart__15JKRThreadSwitch[4];
-extern "C" u8 mUserPreCallback__15JKRThreadSwitch[4];
-extern "C" u8 mUserPostCallback__15JKRThreadSwitch[4];
-
-//
 // External References:
 //
 
-extern "C" void becomeCurrentHeap__7JKRHeapFv();
-extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
-extern "C" void free__7JKRHeapFPvP7JKRHeap();
-extern "C" void findFromRoot__7JKRHeapFPv();
-extern "C" void isSubHeap__7JKRHeapCFP7JKRHeap();
-extern "C" void* __nw__FUlP7JKRHeapi();
-extern "C" void __dl__FPv();
-extern "C" void __ct__11JKRDisposerFv();
-extern "C" void __dt__11JKRDisposerFv();
-extern "C" void __ct__10JSUPtrLinkFPv();
-extern "C" void __dt__10JSUPtrLinkFv();
-extern "C" void __ct__10JSUPtrListFb();
-extern "C" void __dt__10JSUPtrListFv();
-extern "C" void initiate__10JSUPtrListFv();
-extern "C" void append__10JSUPtrListFP10JSUPtrLink();
-extern "C" void remove__10JSUPtrListFP10JSUPtrLink();
-extern "C" void clear__10JUTConsoleFv();
-extern "C" void print_f__10JUTConsoleFPCce();
-extern "C" void print__10JUTConsoleFPCc();
 extern "C" void JUTWarningConsole(const char*);
-extern "C" void __register_global_object();
-extern "C" u32 __cvt_fp2unsigned(f64);
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" f64 __cvt_sll_flt(s64);
-extern "C" u8 sSystemHeap__7JKRHeap[4];
-extern "C" u8 sCurrentHeap__7JKRHeap[4];
-extern "C" u8 sRootHeap__7JKRHeap[4];
-extern "C" void* __vt__15JKRThreadSwitch;
 
 //
 // Declarations:
 //
+
+/* 8043428C-80434298 060FAC 000C+00 5/6 0/0 0/0 .bss             sThreadList__9JKRThread */
+JSUList<JKRThread> JKRThread::sThreadList(0);
+
+/* 804513B0-804513B4 0008B0 0004+00 2/2 1/1 0/0 .sbss            sManager__15JKRThreadSwitch */
+JKRThreadSwitch* JKRThreadSwitch::sManager;
+
+/* 804513B4-804513B8 0008B4 0004+00 3/3 0/0 0/0 .sbss            sTotalCount__15JKRThreadSwitch */
+u32 JKRThreadSwitch::sTotalCount;
+
+/* 804513B8-804513BC 0008B8 0004+00 1/1 0/0 0/0 .sbss            sTotalStart__15JKRThreadSwitch */
+u32 JKRThreadSwitch::sTotalStart;
+
+/* 804513BC-804513C0 0008BC 0004+00 1/1 0/0 0/0 .sbss            None */
+static u32 data_804513BC;
+
+/* 804513C0-804513C4 0008C0 0004+00 1/1 0/0 0/0 .sbss            mUserPreCallback__15JKRThreadSwitch
+ */
+JKRThreadSwitch_PreCallback JKRThreadSwitch::mUserPreCallback;
+
+/* 804513C4-804513C8 0008C4 0004+00 1/1 0/0 0/0 .sbss mUserPostCallback__15JKRThreadSwitch */
+JKRThreadSwitch_PostCallback JKRThreadSwitch::mUserPostCallback;
+
 
 /* 802D1568-802D1610 2CBEA8 00A8+00 0/0 4/4 0/0 .text            __ct__9JKRThreadFUlii */
 JKRThread::JKRThread(u32 stack_size, int message_count, int param_3) : mThreadListLink(this) {
@@ -128,9 +84,6 @@ JKRThread::JKRThread(OSThread* thread, int message_count) : mThreadListLink(this
 
     setCommon_mesgQueue(JKRHeap::getSystemHeap(), message_count);
 }
-
-/* 8043428C-80434298 060FAC 000C+00 5/6 0/0 0/0 .bss             sThreadList__9JKRThread */
-JSUList<JKRThread> JKRThread::sThreadList(0);
 
 /* 802D1758-802D1830 2CC098 00D8+00 1/0 9/9 0/0 .text            __dt__9JKRThreadFv */
 JKRThread::~JKRThread() {
@@ -193,19 +146,6 @@ JKRThread* JKRThread::searchThread(OSThread* thread) {
     return NULL;
 }
 
-/* ############################################################################################## */
-/* 804513B0-804513B4 0008B0 0004+00 2/2 1/1 0/0 .sbss            sManager__15JKRThreadSwitch */
-JKRThreadSwitch* JKRThreadSwitch::sManager;
-
-/* 804513B4-804513B8 0008B4 0004+00 3/3 0/0 0/0 .sbss            sTotalCount__15JKRThreadSwitch */
-u32 JKRThreadSwitch::sTotalCount;
-
-/* 804513B8-804513BC 0008B8 0004+00 1/1 0/0 0/0 .sbss            sTotalStart__15JKRThreadSwitch */
-u32 JKRThreadSwitch::sTotalStart;
-
-/* 804513BC-804513C0 0008BC 0004+00 1/1 0/0 0/0 .sbss            None */
-static u32 data_804513BC;
-
 /* 802D199C-802D1A14 2CC2DC 0078+00 1/1 0/0 0/0 .text            __ct__15JKRThreadSwitchFP7JKRHeap
  */
 JKRThreadSwitch::JKRThreadSwitch(JKRHeap* param_0) {
@@ -259,16 +199,7 @@ SECTION_DEAD static char const* const stringBase_8039CFA8 = "on";
 SECTION_DEAD static char const* const stringBase_8039CFAB = "off";
 SECTION_DEAD static char const* const stringBase_8039CFAF =
     "JKRThread:%x  OSThread:%x  Load:ID:%d  (%s)\n";
-SECTION_DEAD static char const* const stringBase_8039CFDC =
-    "JKRThreadSwitch: currentHeap destroyed.\n";
 #pragma pop
-
-/* 804513C0-804513C4 0008C0 0004+00 1/1 0/0 0/0 .sbss            mUserPreCallback__15JKRThreadSwitch
- */
-JKRThreadSwitch_PreCallback JKRThreadSwitch::mUserPreCallback;
-
-/* 804513C4-804513C8 0008C4 0004+00 1/1 0/0 0/0 .sbss mUserPostCallback__15JKRThreadSwitch */
-JKRThreadSwitch_PostCallback JKRThreadSwitch::mUserPostCallback;
 
 /* 802D1AE4-802D1C74 2CC424 0190+00 1/1 0/0 0/0 .text
  * callback__15JKRThreadSwitchFP8OSThreadP8OSThread             */
