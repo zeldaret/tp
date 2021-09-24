@@ -5,36 +5,8 @@
 
 #include "JSystem/JUtility/JUTXfb.h"
 #include "dol2asm.h"
+#include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct _GXRenderModeObj {};
-
-struct JKRHeap {
-    static u8 sSystemHeap[4];
-};
-
-struct JUTXfb {
-    struct EXfbNumber {};
-
-    /* 802E5214 */ void clearIndex();
-    /* 802E5228 */ void common_init(int);
-    /* 802E5260 */ JUTXfb(_GXRenderModeObj const*, JKRHeap*, JUTXfb::EXfbNumber);
-    /* 802E5308 */ ~JUTXfb();
-    /* 802E5378 */ void delXfb(int);
-    /* 802E53B8 */ void createManager(JKRHeap*, JUTXfb::EXfbNumber);
-    /* 802E5424 */ void destroyManager();
-    /* 802E5454 */ void initiate(u16, u16, JKRHeap*, JUTXfb::EXfbNumber);
-
-    static u8 sManager[4 + 4 /* padding */];
-};
-
-struct JUTVideo {
-    static u8 sManager[4];
-};
 
 //
 // Forward References:
@@ -57,8 +29,6 @@ extern "C" u8 sManager__6JUTXfb[4 + 4 /* padding */];
 extern "C" void* __nw__FUl();
 extern "C" void* __nwa__FUlP7JKRHeapi();
 extern "C" void __dl__FPv();
-extern "C" void GXGetNumXfbLines();
-extern "C" void GXGetYScaleFactor();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
@@ -72,28 +42,37 @@ extern "C" u8 sManager__8JUTVideo[4];
 // Declarations:
 //
 
-/* 802E5214-802E5228 2DFB54 0014+00 1/1 1/1 0/0 .text            clearIndex__6JUTXfbFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTXfb::clearIndex() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTXfb/clearIndex__6JUTXfbFv.s"
+void JUTXfb::clearIndex() {
+    mDrawingXfbIndex = -1;
+    mDrawnXfbIndex = -1;
+    mDisplayingXfbIndex = -1;
 }
-#pragma pop
 
-/* 802E5228-802E5260 2DFB68 0038+00 1/1 0/0 0/0 .text            common_init__6JUTXfbFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTXfb::common_init(int param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTXfb/common_init__6JUTXfbFi.s"
+void JUTXfb::common_init(int bufNum) {
+    mBufferNum = bufNum;
+    clearIndex();
+    mSDrawingFlag = 99;
 }
-#pragma pop
 
 /* 802E5260-802E5308 2DFBA0 00A8+00 1/1 0/0 0/0 .text
  * __ct__6JUTXfbFPC16_GXRenderModeObjP7JKRHeapQ26JUTXfb10EXfbNumber */
+#ifdef NONMATCHING
+JUTXfb::JUTXfb(_GXRenderModeObj const* pObj, JKRHeap* pHeap, JUTXfb::EXfbNumber xfbNum) {
+    common_init(xfbNum);
+
+    if (pObj) {
+        initiate(pObj->fb_width, pObj->xfb_height, pHeap, xfbNum);
+    } else {
+        //_GXRenderModeObj* renderObj = JUTVideo::getManager()->getRenderMode();
+        u16 fb_width = JUTVideo::getManager()->getRenderMode()->fb_width;
+        u16 efb_height = JUTVideo::getManager()->getRenderMode()->efb_height;
+        u16 xfb_height = JUTVideo::getManager()->getRenderMode()->xfb_height;
+        f32 scale_factor = GXGetYScaleFactor(efb_height, xfb_height);
+
+        initiate(fb_width, GXGetNumXfbLines(efb_height, scale_factor), pHeap, xfbNum);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -102,59 +81,61 @@ asm JUTXfb::JUTXfb(_GXRenderModeObj const* param_0, JKRHeap* param_1, JUTXfb::EX
 #include "asm/JSystem/JUtility/JUTXfb/__ct__6JUTXfbFPC16_GXRenderModeObjP7JKRHeapQ26JUTXfb10EXfbNumber.s"
 }
 #pragma pop
+#endif
 
-/* ############################################################################################## */
-/* 80451550-80451558 000A50 0004+04 3/3 13/13 0/0 .sbss            sManager__6JUTXfb */
-u8 JUTXfb::sManager[4 + 4 /* padding */];
+JUTXfb* JUTXfb::sManager;
 
-/* 802E5308-802E5378 2DFC48 0070+00 1/1 0/0 0/0 .text            __dt__6JUTXfbFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JUTXfb::~JUTXfb() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTXfb/__dt__6JUTXfbFv.s"
+JUTXfb::~JUTXfb() {
+    for (int i = 0; i < 3; i++) {
+        delXfb(i);
+    }
+    sManager = NULL;
 }
-#pragma pop
 
-/* 802E5378-802E53B8 2DFCB8 0040+00 1/1 0/0 0/0 .text            delXfb__6JUTXfbFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTXfb::delXfb(int param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTXfb/delXfb__6JUTXfbFi.s"
+void JUTXfb::delXfb(int xfbIdx) {
+    if (mXfbAllocated[xfbIdx] && mBuffer[xfbIdx]) {
+        delete mBuffer[xfbIdx];
+    }
 }
-#pragma pop
 
-/* 802E53B8-802E5424 2DFCF8 006C+00 0/0 1/1 0/0 .text
- * createManager__6JUTXfbFP7JKRHeapQ26JUTXfb10EXfbNumber        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTXfb::createManager(JKRHeap* param_0, JUTXfb::EXfbNumber param_1) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTXfb/createManager__6JUTXfbFP7JKRHeapQ26JUTXfb10EXfbNumber.s"
+JUTXfb* JUTXfb::createManager(JKRHeap* pHeap, JUTXfb::EXfbNumber xfbNum) {
+    if (sManager == NULL) {
+        sManager = new JUTXfb(NULL, pHeap, xfbNum);
+    }
+    return sManager;
 }
-#pragma pop
 
-/* 802E5424-802E5454 2DFD64 0030+00 0/0 1/1 0/0 .text            destroyManager__6JUTXfbFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTXfb::destroyManager() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTXfb/destroyManager__6JUTXfbFv.s"
+void JUTXfb::destroyManager() {
+    delete sManager;
+    sManager = NULL;
 }
-#pragma pop
 
-/* 802E5454-802E5530 2DFD94 00DC+00 1/1 0/0 0/0 .text
- * initiate__6JUTXfbFUsUsP7JKRHeapQ26JUTXfb10EXfbNumber         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTXfb::initiate(u16 param_0, u16 param_1, JKRHeap* param_2, JUTXfb::EXfbNumber param_3) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTXfb/initiate__6JUTXfbFUsUsP7JKRHeapQ26JUTXfb10EXfbNumber.s"
+void JUTXfb::initiate(u16 width, u16 height, JKRHeap* pHeap, JUTXfb::EXfbNumber xfbNum) {
+    if (pHeap == NULL) {
+        pHeap = JKRHeap::getSystemHeap();
+    }
+
+    int size = ((u32)width + 0xf & 0xfff0) * (u32)height * 2;
+
+    void* buf = ::operator new[](size, pHeap, 0x20);
+    mBuffer[0] = buf;
+    mXfbAllocated[0] = true;
+
+    if (xfbNum >= 2) {
+        buf = ::operator new[](size, pHeap, 0x20);
+        mBuffer[1] = buf;
+        mXfbAllocated[1] = true;
+    } else {
+        mBuffer[1] = NULL;
+        mXfbAllocated[1] = false;
+    }
+
+    if (xfbNum >= 3) {
+        buf = ::operator new[](size, pHeap, 0x20);
+        mBuffer[2] = buf;
+        mXfbAllocated[2] = true;
+    } else {
+        mBuffer[2] = NULL;
+        mXfbAllocated[2] = false;
+    }
 }
-#pragma pop

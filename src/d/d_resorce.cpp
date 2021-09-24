@@ -5,8 +5,10 @@
 
 #include "d/d_resorce.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx.h"
+#include "dolphin/os/OSCache.h"
 #include "dolphin/types.h"
 
 //
@@ -26,51 +28,9 @@ struct mDoExt_transAnmBas {
     /* 8003C784 */ ~mDoExt_transAnmBas();
 };
 
-struct mDoDvdThd_mountArchive_c {
-    /* 80015E14 */ void create(char const*, u8, JKRHeap*);
-};
-
-struct dRes_control_c {
-    /* 8003BFB0 */ ~dRes_control_c();
-    /* 8003C078 */ void setRes(char const*, dRes_info_c*, int, char const*, u8, JKRHeap*);
-    /* 8003C160 */ void syncRes(char const*, dRes_info_c*, int);
-    /* 8003C194 */ void deleteRes(char const*, dRes_info_c*, int);
-    /* 8003C1E4 */ void getResInfo(char const*, dRes_info_c*, int);
-    /* 8003C260 */ void newResInfo(dRes_info_c*, int);
-    /* 8003C288 */ void getResInfoLoaded(char const*, dRes_info_c*, int);
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-    /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
-    /* 8003C400 */ void getIDRes(char const*, u16, dRes_info_c*, int);
-    /* 8003C470 */ void syncAllRes(dRes_info_c*, int);
-    /* 8003C4E4 */ void setObjectRes(char const*, void*, u32, JKRHeap*);
-    /* 8003C5BC */ void setStageRes(char const*, JKRHeap*);
-    /* 8003C638 */ void dump();
-    /* 8003C6B8 */ void getObjectResName2Index(char const*, char const*);
-};
-
 struct dBgWKCol {
     /* 8007E7D0 */ void initKCollision(void*);
 };
-
-struct cBgS {
-    /* 80074578 */ void ConvDzb(void*);
-};
-
-struct _GXAttr {};
-
-struct ResTIMG {};
-
-struct JUTNameTab {
-    /* 802DEAF8 */ void getName(u16) const;
-};
-
-struct JKRMemBreakFlag {};
-
-struct JKRMemArchive {
-    /* 802D6A6C */ JKRMemArchive(void*, u32, JKRMemBreakFlag);
-};
-
-struct J3DTransformInfo {};
 
 struct J3DTexture {
     /* 8031221C */ void addResTIMG(u16, ResTIMG const*);
@@ -210,6 +170,7 @@ extern "C" s32 getKind__18J3DAnmTransformKeyCFv();
 extern "C" void getTransform__18J3DAnmTransformKeyCFUsP16J3DTransformInfo();
 extern "C" void calc__11J3DTexNoAnmCFPUs();
 extern "C" extern char const* const d_d_resorce__stringBase0;
+extern "C" void DCStoreRangeNoSync(void*, u32);
 
 //
 // External References:
@@ -238,7 +199,7 @@ extern "C" void findIdxResource__10JKRArchiveCFUl();
 extern "C" void findNameResource__10JKRArchiveCFPCc();
 extern "C" void __ct__13JKRMemArchiveFPvUl15JKRMemBreakFlag();
 extern "C" void getName__10JUTNameTabCFUs();
-extern "C" void JUTReportConsole_f();
+extern "C" void JUTReportConsole_f(const char*, ...);
 extern "C" void addResTIMG__10J3DTextureFUsPC7ResTIMG();
 extern "C" void addTexMtxIndexInDL__8J3DShapeF7_GXAttrUl();
 extern "C" void addTexMtxIndexInVcd__8J3DShapeF7_GXAttr();
@@ -254,7 +215,6 @@ extern "C" void load__24J3DClusterLoaderDataBaseFPCv();
 extern "C" void load__22J3DModelLoaderDataBaseFPCvUl();
 extern "C" void load__20J3DAnmLoaderDataBaseFPCv24J3DAnmLoaderDataBaseFlag();
 extern "C" void setResource__20J3DAnmLoaderDataBaseFP10J3DAnmBasePCv();
-extern "C" void DCStoreRangeNoSync();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void _savegpr_20();
@@ -272,14 +232,9 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void memcmp();
-extern "C" void snprintf();
-extern "C" void strncpy();
-extern "C" void strlen();
-extern "C" void stricmp();
 extern "C" extern u8 const j3dDefaultMtx[48];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
 extern "C" u8 mZbufferTimg__13mDoGph_gInf_c[4];
@@ -291,41 +246,47 @@ extern "C" extern u8 j3dDefaultTevSwapMode[4];
 //
 
 /* 8003A260-8003A280 034BA0 0020+00 0/0 1/1 0/0 .text            __ct__11dRes_info_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dRes_info_c::dRes_info_c() {
-    nofralloc
-#include "asm/d/d_resorce/__ct__11dRes_info_cFv.s"
+dRes_info_c::dRes_info_c() {
+    mCount = 0;
+    mDMCommand = NULL;
+    mArchive = NULL;
+    heap = NULL;
+    mDataHeap = NULL;
+    mRes = NULL;
 }
-#pragma pop
 
 /* 8003A280-8003A348 034BC0 00C8+00 3/3 1/1 0/0 .text            __dt__11dRes_info_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dRes_info_c::~dRes_info_c() {
-    nofralloc
-#include "asm/d/d_resorce/__dt__11dRes_info_cFv.s"
+dRes_info_c::~dRes_info_c() {
+    if (mDMCommand != NULL) {
+        delete mDMCommand;
+        mDMCommand = NULL;
+    } else if (mArchive != NULL) {
+        deleteArchiveRes();
+        if (mDataHeap != NULL) {
+            mDoExt_destroySolidHeap(mDataHeap);
+            mDataHeap = NULL;
+            mArchive->unmount();
+        }
+        mRes = NULL;
+        mArchive = NULL;
+    }
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803798B8 = "%s%s.arc";
-#pragma pop
 
 /* 8003A348-8003A3F0 034C88 00A8+00 1/1 0/0 0/0 .text set__11dRes_info_cFPCcPCcUcP7JKRHeap */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dRes_info_c::set(char const* param_0, char const* param_1, u8 param_2, JKRHeap* param_3) {
-    nofralloc
-#include "asm/d/d_resorce/set__11dRes_info_cFPCcPCcUcP7JKRHeap.s"
+int dRes_info_c::set(char const* pArcName, char const* pArcPath, u8 param_2, JKRHeap* pHeap) {
+    char path[40];
+
+    if (*pArcPath != NULL) {
+        snprintf(path, 40, "%s%s.arc", pArcPath, pArcName);
+        mDMCommand = mDoDvdThd_mountArchive_c::create(path, param_2, pHeap);
+
+        if (mDMCommand == NULL) {
+            return false;
+        }
+    }
+    strncpy(mArchiveName, pArcName, 10);
+    return true;
 }
-#pragma pop
 
 /* 8003A3F0-8003A490 034D30 00A0+00 1/1 0/0 0/0 .text            setAlpha__FP16J3DMaterialTable */
 #pragma push
@@ -653,7 +614,7 @@ SECTION_DEAD static char const* const stringBase_80379912 = "<%s> res == NULL !!
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dRes_info_c::loadResource() {
+asm int dRes_info_c::loadResource() {
     nofralloc
 #include "asm/d/d_resorce/loadResource__11dRes_info_cFv.s"
 }
@@ -694,7 +655,7 @@ asm void dRes_info_c::deleteArchiveRes() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void getArcHeader(JKRArchive* param_0) {
+static asm void* getArcHeader(JKRArchive* param_0) {
     nofralloc
 #include "asm/d/d_resorce/getArcHeader__FP10JKRArchive.s"
 }
@@ -702,54 +663,86 @@ static asm void getArcHeader(JKRArchive* param_0) {
 
 /* 8003BAC4-8003BAF8 036404 0034+00 1/1 0/0 0/0 .text setRes__11dRes_info_cFP10JKRArchiveP7JKRHeap
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dRes_info_c::setRes(JKRArchive* param_0, JKRHeap* param_1) {
-    nofralloc
-#include "asm/d/d_resorce/setRes__11dRes_info_cFP10JKRArchiveP7JKRHeap.s"
+int dRes_info_c::setRes(JKRArchive* pArchive, JKRHeap* pHeap) {
+    mArchive = pArchive;
+    heap = pHeap;
+    mDataHeap = NULL;
+    return loadResource() >> 0x1F;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80379927 =
-    "<%s.arc> setRes: archive mount error !!\n";
-SECTION_DEAD static char const* const stringBase_80379950 =
-    "<%s.arc> mDMCommandsetRes: can't alloc memory\n";
-#pragma pop
 
 /* 8003BAF8-8003BC98 036438 01A0+00 2/2 0/0 0/0 .text            setRes__11dRes_info_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dRes_info_c::setRes() {
-    nofralloc
-#include "asm/d/d_resorce/setRes__11dRes_info_cFv.s"
+int dRes_info_c::setRes() {
+    if (mArchive == NULL) {
+        if (mDMCommand == NULL) {
+            return -1;
+        }
+        if ((int)mDMCommand->mIsDone == 0) {
+            return 1;
+        }
+
+        mArchive = mDMCommand->getArchive();
+        heap = mDMCommand->getHeap();
+
+        delete mDMCommand;
+        mDMCommand = NULL;
+
+        if (mArchive == NULL) {
+            OSReport_Error("<%s.arc> setRes: archive mount error !!\n", mArchiveName);
+            return -1;
+        }
+        if (heap != NULL) {
+            heap->lock();
+            mDataHeap = mDoExt_createSolidHeapToCurrent(0, heap, 0x20);
+
+            int rt = loadResource();
+            mDoExt_restoreCurrentHeap();
+            mDoExt_adjustSolidHeap(mDataHeap);
+            heap->unlock();
+
+            if (rt < 0) {
+                return -1;
+            }
+        } else {
+            mDataHeap = mDoExt_createSolidHeapFromGameToCurrent(0, 0);
+            if (mDataHeap == NULL) {
+                OSReport_Error("<%s.arc> mDMCommandsetRes: can't alloc memory\n", mArchiveName);
+                return -1;
+            }
+            int rt = loadResource();
+            mDoExt_restoreCurrentHeap();
+            mDoExt_adjustSolidHeap(mDataHeap);
+
+            if (rt < 0) {
+                return -1;
+            }
+        }
+        u32 heapSize = mDataHeap->getHeapSize();
+        void* heapStartAddr = mDataHeap->getStartAddr();
+        DCStoreRangeNoSync(heapStartAddr, heapSize);
+    }
+    return 0;
 }
-#pragma pop
 
 /* 8003BC98-8003BD00 0365D8 0068+00 1/1 0/0 0/0 .text            myGetMemBlockSize__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void myGetMemBlockSize(void* param_0) {
-    nofralloc
-#include "asm/d/d_resorce/myGetMemBlockSize__FPv.s"
+static s32 myGetMemBlockSize(void* param_0) {
+    JKRHeap* heap = JKRHeap::findFromRoot(param_0);
+
+    if (heap->getHeapType() == 'EXPH') {
+        return JKRHeap::getSize(param_0, heap);
+    } else {
+        return -1;
+    }
 }
-#pragma pop
 
 /* 8003BD00-8003BD2C 036640 002C+00 1/1 0/0 0/0 .text            myGetMemBlockSize0__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void myGetMemBlockSize0(void* param_0) {
-    nofralloc
-#include "asm/d/d_resorce/myGetMemBlockSize0__FPv.s"
+static s32 myGetMemBlockSize0(void* param_0) {
+    s32 size = myGetMemBlockSize(param_0);
+
+    if (size < 0) {
+        size = 0;
+    }
+    return size;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -765,6 +758,41 @@ SECTION_DEAD static char const* const stringBase_80379A09 =
 #pragma pop
 
 /* 8003BD2C-8003BE38 03666C 010C+00 1/1 0/0 0/0 .text dump_long__11dRes_info_cFP11dRes_info_ci */
+#ifdef NONMATCHING
+void dRes_info_c::dump_long(dRes_info_c* param_0, int param_1) {
+    void* header;
+    int blockSize1;
+    int blockSize2;
+
+    JUTReportConsole_f("dRes_info_c::dump_long %08x %d\n", param_0, param_1);
+    JUTReportConsole_f(
+        "No Command Archive  ArcHeader(size) SolidHeap(size) Resource Cnt ArchiveName\n");
+
+    for (int i = 0; i < param_1; i++) {
+        if (getCount() != 0) {
+            JKRArchive* archive = getArchive();
+            header = NULL;
+            blockSize1 = 0;
+
+            if (archive != NULL) {
+                header = getArcHeader(archive);
+                blockSize1 = myGetMemBlockSize0(header);
+            }
+
+            JKRSolidHeap* dataHeap = mDataHeap;
+            blockSize2 = 0;
+            if (dataHeap != NULL) {
+                blockSize2 = myGetMemBlockSize0((void*)dataHeap);
+            }
+
+            JUTReportConsole_f("%2d %08x %08x %08x(%6x) %08x(%5x) %08x %3d %s\n", i, getDMCommand(),
+                               archive, header, blockSize1, &mDataHeap, blockSize2, mRes,
+                               getArchiveName());
+        }
+        param_0++;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -773,6 +801,7 @@ asm void dRes_info_c::dump_long(dRes_info_c* param_0, int param_1) {
 #include "asm/d/d_resorce/dump_long__11dRes_info_cFP11dRes_info_ci.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -837,78 +866,128 @@ SECTION_DEAD static char const* const stringBase_80379B40 =
 
 /* 8003C078-8003C160 0369B8 00E8+00 2/2 8/8 0/0 .text
  * setRes__14dRes_control_cFPCcP11dRes_info_ciPCcUcP7JKRHeap    */
+// matches except resInfo destructor issues?
+#ifdef NONMATCHING
+int dRes_control_c::setRes(char const* arcName, dRes_info_c* pInfo, int infoSize,
+                           char const* arcPath, u8 param_4, JKRHeap* pHeap) {
+    dRes_info_c* resInfo = getResInfo(arcName, pInfo, infoSize);
+
+    if (resInfo == NULL) {
+        resInfo = newResInfo(pInfo, infoSize);
+
+        if (resInfo == NULL) {
+            // "<%s.arc> dRes_control_c::setRes: 空きリソース情報ポインタがありません\n"
+            // "<%s.arc> dRes_control_c::setRes: There isn't a free Resource Info pointer\n"
+            OSReport_Error(
+                "\x3C\x25\x73\x2E\x61\x72\x63\x3E\x20\x64\x52\x65\x73\x5F\x63\x6F\x6E\x74\x72\x6F"
+                "\x6C\x5F\x63\x3A\x3A\x73\x65\x74\x52\x65\x73\x3A\x20\x8B\xF3\x82\xAB\x83\x8A\x83"
+                "\x5C\x81\x5B\x83\x58\x8F\xEE\x95\xF1\x83\x7C\x83\x43\x83\x93\x83\x5E\x82\xAA\x82"
+                "\xA0\x82\xE8\x82\xDC\x82\xB9\x82\xF1\x0A",
+                arcName);
+            delete resInfo;
+            return 0;
+        }
+
+        int resStatus = resInfo->set(arcName, arcPath, param_4, pHeap);
+        if (resStatus == 0) {
+            OSReport_Error("<%s.arc> dRes_control_c::setRes: res info set error !!\n", arcName);
+            delete resInfo;
+            return 0;
+        }
+    }
+    resInfo->incCount();
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dRes_control_c::setRes(char const* param_0, dRes_info_c* param_1, int param_2,
-                                char const* param_3, u8 param_4, JKRHeap* param_5) {
+asm int dRes_control_c::setRes(char const* param_0, dRes_info_c* param_1, int param_2,
+                               char const* param_3, u8 param_4, JKRHeap* param_5) {
     nofralloc
 #include "asm/d/d_resorce/setRes__14dRes_control_cFPCcP11dRes_info_ciPCcUcP7JKRHeap.s"
 }
 #pragma pop
+#endif
 
 /* 8003C160-8003C194 036AA0 0034+00 0/0 10/10 1/1 .text
  * syncRes__14dRes_control_cFPCcP11dRes_info_ci                 */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dRes_control_c::syncRes(char const* param_0, dRes_info_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/d_resorce/syncRes__14dRes_control_cFPCcP11dRes_info_ci.s"
+int dRes_control_c::syncRes(char const* arcName, dRes_info_c* pInfo, int infoSize) {
+    dRes_info_c* resInfo = getResInfo(arcName, pInfo, infoSize);
+
+    if (resInfo == NULL) {
+        return -1;
+    } else {
+        return resInfo->setRes();
+    }
 }
-#pragma pop
 
 /* 8003C194-8003C1E4 036AD4 0050+00 1/1 7/7 0/0 .text
  * deleteRes__14dRes_control_cFPCcP11dRes_info_ci               */
+#ifdef NONMATCHING
+int dRes_control_c::deleteRes(char const* arcName, dRes_info_c* pInfo, int infoSize) {
+    dRes_info_c* resInfo = getResInfo(arcName, pInfo, infoSize);
+
+    if (resInfo == NULL) {
+        return 0;
+    } else {
+        if (resInfo->decCount() == 0) {
+            delete resInfo;
+        }
+        return 1;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dRes_control_c::deleteRes(char const* param_0, dRes_info_c* param_1, int param_2) {
+asm int dRes_control_c::deleteRes(char const* param_0, dRes_info_c* param_1, int param_2) {
     nofralloc
 #include "asm/d/d_resorce/deleteRes__14dRes_control_cFPCcP11dRes_info_ci.s"
 }
 #pragma pop
+#endif
 
 /* 8003C1E4-8003C260 036B24 007C+00 5/5 5/5 3/3 .text
  * getResInfo__14dRes_control_cFPCcP11dRes_info_ci              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dRes_control_c::getResInfo(char const* param_0, dRes_info_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/d_resorce/getResInfo__14dRes_control_cFPCcP11dRes_info_ci.s"
+dRes_info_c* dRes_control_c::getResInfo(char const* pArcName, dRes_info_c* pResInfo, int infoSize) {
+    for (int i = 0; i < infoSize; i++) {
+        if (pResInfo->getCount() != 0) {
+            if (!stricmp(pArcName, pResInfo->getArchiveName())) {
+                return pResInfo;
+            }
+        }
+        pResInfo++;
+    }
+    return NULL;
 }
-#pragma pop
 
 /* 8003C260-8003C288 036BA0 0028+00 1/1 0/0 0/0 .text newResInfo__14dRes_control_cFP11dRes_info_ci
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dRes_control_c::newResInfo(dRes_info_c* param_0, int param_1) {
-    nofralloc
-#include "asm/d/d_resorce/newResInfo__14dRes_control_cFP11dRes_info_ci.s"
+dRes_info_c* dRes_control_c::newResInfo(dRes_info_c* pResInfo, int infoSize) {
+    for (int i = 0; i < infoSize; i++) {
+        if (pResInfo->getCount() == 0) {
+            return pResInfo;
+        }
+        pResInfo++;
+    }
+    return NULL;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80379B78 =
-    "<%s.arc> getRes: res during reading !!\n";
-#pragma pop
 
 /* 8003C288-8003C2EC 036BC8 0064+00 4/4 0/0 0/0 .text
  * getResInfoLoaded__14dRes_control_cFPCcP11dRes_info_ci        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dRes_control_c::getResInfoLoaded(char const* param_0, dRes_info_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/d_resorce/getResInfoLoaded__14dRes_control_cFPCcP11dRes_info_ci.s"
+dRes_info_c* dRes_control_c::getResInfoLoaded(char const* arcName, dRes_info_c* pResInfo,
+                                              int infoSize) {
+    dRes_info_c* resInfo = getResInfo(arcName, pResInfo, infoSize);
+
+    if (resInfo == NULL) {
+        resInfo = NULL;
+    } else if (resInfo->getArchive() == NULL) {
+        OSReport_Warning("<%s.arc> getRes: res during reading !!\n", arcName);
+        resInfo = NULL;
+    }
+    return resInfo;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -921,27 +1000,65 @@ SECTION_DEAD static char const* const stringBase_80379BA0 =
 
 /* 8003C2EC-8003C37C 036C2C 0090+00 1/1 54/54 894/894 .text
  * getRes__14dRes_control_cFPCclP11dRes_info_ci                 */
+// weird branching
+#ifdef NONMATCHING
+void* dRes_control_c::getRes(char const* arcName, s32 resIdx, dRes_info_c* pInfo, int infoSize) {
+    dRes_info_c* resInfo = getResInfoLoaded(arcName, pInfo, infoSize);
+
+    if (resInfo == NULL) {
+        JKRArchive* archive = resInfo->getArchive();
+        u32 fileCount = archive->countFile();
+
+        if (resIdx >= (int)fileCount) {
+            OSReport_Error("<%s.arc> getRes: res index over !! index=%d count=%d\n", arcName,
+                           resIdx, fileCount);
+            return NULL;
+        }
+    }
+    return resInfo->getRes(resIdx);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dRes_control_c::getRes(char const* param_0, s32 param_1, dRes_info_c* param_2,
-                                int param_3) {
+asm void* dRes_control_c::getRes(char const* param_0, s32 param_1, dRes_info_c* param_2,
+                                 int param_3) {
     nofralloc
 #include "asm/d/d_resorce/getRes__14dRes_control_cFPCclP11dRes_info_ci.s"
 }
 #pragma pop
+#endif
 
 /* 8003C37C-8003C400 036CBC 0084+00 0/0 18/18 109/109 .text
  * getRes__14dRes_control_cFPCcPCcP11dRes_info_ci               */
+// same weird branch issue
+#ifdef NONMATCHING
+void* dRes_control_c::getRes(char const* arcName, char const* resName, dRes_info_c* pInfo,
+                             int infoSize) {
+    dRes_info_c* resInfo = getResInfoLoaded(arcName, pInfo, infoSize);
+
+    if (resInfo == NULL) {
+        JKRArchive* archive = resInfo->getArchive();
+        JKRArchive::SDIFileEntry* entry = archive->findNameResource(resName);
+
+        if (entry != NULL) {
+            return resInfo->getRes(entry - archive->mFiles);
+        } else {
+            return NULL;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dRes_control_c::getRes(char const* param_0, char const* param_1, dRes_info_c* param_2,
-                                int param_3) {
+asm void* dRes_control_c::getRes(char const* param_0, char const* param_1, dRes_info_c* param_2,
+                                 int param_3) {
     nofralloc
 #include "asm/d/d_resorce/getRes__14dRes_control_cFPCcPCcP11dRes_info_ci.s"
 }
 #pragma pop
+#endif
 
 /* 8003C400-8003C470 036D40 0070+00 0/0 7/7 4/4 .text
  * getIDRes__14dRes_control_cFPCcUsP11dRes_info_ci              */
@@ -957,82 +1074,76 @@ asm void dRes_control_c::getIDRes(char const* param_0, u16 param_1, dRes_info_c*
 
 /* 8003C470-8003C4E4 036DB0 0074+00 0/0 3/3 0/0 .text syncAllRes__14dRes_control_cFP11dRes_info_ci
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dRes_control_c::syncAllRes(dRes_info_c* param_0, int param_1) {
-    nofralloc
-#include "asm/d/d_resorce/syncAllRes__14dRes_control_cFP11dRes_info_ci.s"
+int dRes_control_c::syncAllRes(dRes_info_c* pInfo, int infoSize) {
+    for (int i = 0; i < infoSize; i++) {
+        if (pInfo->getDMCommand() != NULL && pInfo->setRes() > 0) {
+            return 1;
+        }
+        pInfo++;
+    }
+    return 0;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80379BD6 = "";
-#pragma pop
 
 /* 8003C4E4-8003C5BC 036E24 00D8+00 1/1 0/0 0/0 .text
  * setObjectRes__14dRes_control_cFPCcPvUlP7JKRHeap              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dRes_control_c::setObjectRes(char const* param_0, void* param_1, u32 param_2,
-                                      JKRHeap* param_3) {
-    nofralloc
-#include "asm/d/d_resorce/setObjectRes__14dRes_control_cFPCcPvUlP7JKRHeap.s"
-}
-#pragma pop
+int dRes_control_c::setObjectRes(char const* arcName, void* i_archiveRes, u32 param_2,
+                                 JKRHeap* param_3) {
+    if (!setRes(arcName, &mObjectInfo[0], 0x80, "", 0, NULL)) {
+        return 0;
+    } else {
+        JKRMemArchive* memArchive =
+            new JKRMemArchive(i_archiveRes, param_2, JKRMEMBREAK_FLAG_UNKNOWN0);
 
-/* ############################################################################################## */
-/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80379BD7 = "/res/Stage/%s/";
-#pragma pop
+        if (memArchive == NULL || !memArchive->isMounted()) {
+            return 0;
+        } else {
+            dRes_info_c* info = getResInfo(arcName, &mObjectInfo[0], 0x80);
+            int resStatus = info->setRes(memArchive, param_3);
+            return resStatus == 0 ? 1 : 0;
+        }
+    }
+}
 
 /* 8003C5BC-8003C638 036EFC 007C+00 0/0 2/2 0/0 .text setStageRes__14dRes_control_cFPCcP7JKRHeap
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dRes_control_c::setStageRes(char const* param_0, JKRHeap* param_1) {
-    nofralloc
-#include "asm/d/d_resorce/setStageRes__14dRes_control_cFPCcP7JKRHeap.s"
-}
-#pragma pop
+int dRes_control_c::setStageRes(char const* arcName, JKRHeap* pHeap) {
+    char path[20];
 
-/* ############################################################################################## */
-/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80379BE6 = "\ndRes_control_c::dump mObjectInfo\n";
-SECTION_DEAD static char const* const stringBase_80379C09 = "\ndRes_control_c::dump mStageInfo\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80379C2B = "\0\0\0\0";
-#pragma pop
+    snprintf(path, 20, "/res/Stage/%s/", dComIfGp_getStartStageName());
+    return setRes(arcName, &mStageInfo[0], 0x40, path, 1, pHeap);
+}
 
 /* 8003C638-8003C6B8 036F78 0080+00 0/0 2/2 0/0 .text            dump__14dRes_control_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dRes_control_c::dump() {
-    nofralloc
-#include "asm/d/d_resorce/dump__14dRes_control_cFv.s"
+void dRes_control_c::dump() {
+    JUTReportConsole_f("\ndRes_control_c::dump mObjectInfo\n");
+    dRes_info_c::dump(&mObjectInfo[0], ARRAY_SIZE(mObjectInfo));
+    dRes_info_c::dump_long(&mObjectInfo[0], ARRAY_SIZE(mObjectInfo));
+
+    JUTReportConsole_f("\ndRes_control_c::dump mStageInfo\n");
+    dRes_info_c::dump(&mStageInfo[0], ARRAY_SIZE(mStageInfo));
+    dRes_info_c::dump_long(&mStageInfo[0], ARRAY_SIZE(mStageInfo));
 }
-#pragma pop
 
 /* 8003C6B8-8003C734 036FF8 007C+00 0/0 0/0 32/32 .text
  * getObjectResName2Index__14dRes_control_cFPCcPCc              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dRes_control_c::getObjectResName2Index(char const* param_0, char const* param_1) {
-    nofralloc
-#include "asm/d/d_resorce/getObjectResName2Index__14dRes_control_cFPCcPCc.s"
+int dRes_control_c::getObjectResName2Index(char const* arcName, char const* param_1) {
+    dRes_info_c* info = getResInfoLoaded(arcName, &mObjectInfo[0], ARRAY_SIZE(mObjectInfo));
+
+    if (info == NULL) {
+        return -1;
+    } else if (param_1 == NULL) {
+        return -1;
+    } else {
+        JKRArchive* archive = info->getArchive();
+        JKRArchive::SDIFileEntry* entry = archive->findNameResource(param_1);
+
+        if (entry != NULL) {
+            return entry->file_id;
+        } else {
+            return -1;
+        }
+    }
 }
-#pragma pop
 
 /* 8003C734-8003C77C 037074 0048+00 1/0 0/0 0/0 .text            __dt__10J3DAnmBaseFv */
 #pragma push

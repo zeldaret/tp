@@ -4,45 +4,9 @@
 //
 
 #include "JSystem/JUtility/JUTFader.h"
+#include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JUtility {
-    struct TColor {};
-};
-
-struct JUTFader {
-    struct EStatus {};
-
-    /* 802E5530 */ JUTFader(int, int, int, int, JUtility::TColor);
-    /* 802E55DC */ void control();
-    /* 802E56DC */ void draw();
-    /* 802E576C */ void startFadeIn(int);
-    /* 802E579C */ void startFadeOut(int);
-    /* 802E57D0 */ void setStatus(JUTFader::EStatus, int);
-    /* 802E5840 */ ~JUTFader();
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TBox2 {};
-    /* TBox2<f32> */
-    struct TBox2__template0 {};
-};
-
-struct J2DOrthoGraph {
-    /* 802E9670 */ J2DOrthoGraph();
-};
-
-struct J2DGrafContext {
-    /* 802E9118 */ void setColor(JUtility::TColor, JUtility::TColor, JUtility::TColor,
-                                 JUtility::TColor);
-    /* 802E9260 */ void fillBox(JGeometry::TBox2<f32> const&);
-};
 
 //
 // Forward References:
@@ -72,29 +36,50 @@ extern "C" extern void* __vt__13J2DOrthoGraph[10];
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 803CC990-803CC9A8 029AB0 0018+00 2/2 0/0 0/0 .data            __vt__8JUTFader */
-SECTION_DATA extern void* __vt__8JUTFader[6] = {
-    (void*)NULL /* RTTI */,           (void*)NULL,
-    (void*)__dt__8JUTFaderFv,         (void*)startFadeIn__8JUTFaderFi,
-    (void*)startFadeOut__8JUTFaderFi, (void*)draw__8JUTFaderFv,
-};
-
-/* 804560D0-804560D8 0046D0 0008+00 1/1 0/0 0/0 .sdata2          @2196 */
-SECTION_SDATA2 static f64 lit_2196 = 4503601774854144.0 /* cast s32 to float */;
-
 /* 802E5530-802E55DC 2DFE70 00AC+00 0/0 1/1 0/0 .text __ct__8JUTFaderFiiiiQ28JUtility6TColor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JUTFader::JUTFader(int param_0, int param_1, int param_2, int param_3,
-                       JUtility::TColor param_4) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTFader/__ct__8JUTFaderFiiiiQ28JUtility6TColor.s"
+JUTFader::JUTFader(int x, int y, int width, int height, JUtility::TColor pColor)
+    : mColor(pColor), mBox(x, y, x + width, y + height) {
+    mStatus = 0;
+    field_0x8 = 0;
+    field_0xa = 0;
+    field_0x24 = 0;
+    mEStatus = UNKSTATUS_M1;
 }
-#pragma pop
 
 /* 802E55DC-802E56DC 2DFF1C 0100+00 0/0 1/1 0/0 .text            control__8JUTFaderFv */
+#ifdef NONMATCHING
+void JUTFader::control() {
+    s32 tmp = mEStatus;
+    if (mEStatus >= 0) {
+        mEStatus--;
+        if (tmp == 0) {
+            mStatus = field_0x24;
+        }
+    }
+    switch (mStatus) {
+    case 0:
+        mColor.a = -1;
+    case 1:
+        break;
+    case 2:
+        field_0xa++;
+        mColor.a = (255 - (255 / field_0x8));
+        if (field_0xa >= field_0x8) {
+            mStatus = 1;
+        }
+        break;
+    case 3:
+        field_0xa++;
+        mColor.a = (255 / field_0x8);
+        if (field_0xa >= field_0x8) {
+            mStatus = 0;
+        }
+    default:
+        draw();
+        break;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -103,8 +88,19 @@ asm void JUTFader::control() {
 #include "asm/JSystem/JUtility/JUTFader/control__8JUTFaderFv.s"
 }
 #pragma pop
+#endif
 
 /* 802E56DC-802E576C 2E001C 0090+00 1/0 0/0 0/0 .text            draw__8JUTFaderFv */
+#ifdef NONMATCHING
+void JUTFader::draw() {
+    if (mColor.a != 0) {
+        J2DOrthoGraph ortho;
+        JUtility::TColor tmp = mColor;
+        ortho.setColor(tmp, tmp, tmp, tmp);
+        ortho.fillBox(mBox);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -113,26 +109,29 @@ asm void JUTFader::draw() {
 #include "asm/JSystem/JUtility/JUTFader/draw__8JUTFaderFv.s"
 }
 #pragma pop
+#endif
 
 /* 802E576C-802E579C 2E00AC 0030+00 1/0 0/0 0/0 .text            startFadeIn__8JUTFaderFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTFader::startFadeIn(int param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTFader/startFadeIn__8JUTFaderFi.s"
+bool JUTFader::startFadeIn(int param_0) {
+    bool statusCheck = mStatus == 0;
+    if (statusCheck) {
+        mStatus = 2;
+        field_0xa = 0;
+        field_0x8 = param_0;
+    }
+    return statusCheck;
 }
-#pragma pop
 
 /* 802E579C-802E57D0 2E00DC 0034+00 1/0 0/0 0/0 .text            startFadeOut__8JUTFaderFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTFader::startFadeOut(int param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTFader/startFadeOut__8JUTFaderFi.s"
+bool JUTFader::startFadeOut(int param_0) {
+    bool statusCheck = mStatus == 1;
+    if (statusCheck) {
+        mStatus = 3;
+        field_0xa = 0;
+        field_0x8 = param_0;
+    }
+    return statusCheck;
 }
-#pragma pop
 
 /* 802E57D0-802E5840 2E0110 0070+00 0/0 1/1 0/0 .text setStatus__8JUTFaderFQ28JUTFader7EStatusi */
 #pragma push
@@ -145,11 +144,4 @@ asm void JUTFader::setStatus(JUTFader::EStatus param_0, int param_1) {
 #pragma pop
 
 /* 802E5840-802E5888 2E0180 0048+00 1/0 0/0 0/0 .text            __dt__8JUTFaderFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JUTFader::~JUTFader() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTFader/__dt__8JUTFaderFv.s"
-}
-#pragma pop
+JUTFader::~JUTFader() {}

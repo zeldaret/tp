@@ -69,6 +69,8 @@ public:
     void specialStaffProc(dEvDtStaff_c*);
 
     /* 0x00 */ s32 mEventNum;
+    /* 0x04 */ u8 field_0x4[0xA0];
+    /* 0xA4 */ int field_0xa4;
 };
 
 class dEvDtFlag_c {

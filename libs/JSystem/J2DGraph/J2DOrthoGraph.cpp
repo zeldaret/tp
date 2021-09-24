@@ -8,52 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct JUtility {
-    struct TColor {};
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TBox2 {};
-    /* TBox2<f32> */
-    struct TBox2__template0 {};
-
-    template <typename A1>
-    struct TVec2 {};
-    /* TVec2<f32> */
-    struct TVec2__template1 {};
-};
-
-struct J2DOrthoGraph {
-    /* 8000B118 */ ~J2DOrthoGraph();
-    /* 802E9670 */ J2DOrthoGraph();
-    /* 802E96D0 */ J2DOrthoGraph(f32, f32, f32, f32, f32, f32);
-    /* 802E97B4 */ void setPort();
-    /* 802E980C */ void setOrtho(JGeometry::TBox2<f32> const&, f32, f32);
-    /* 802E9840 */ void setLookat();
-    /* 802E987C */ void scissorBounds(JGeometry::TBox2<f32>*, JGeometry::TBox2<f32> const*);
-    /* 802E9C88 */ bool getGrafType() const;
-};
-
-struct J2DGrafContext {
-    /* 802E8B08 */ J2DGrafContext(f32, f32, f32, f32);
-    /* 802E8BB4 */ void setPort();
-    /* 802E8C44 */ void setup2D();
-    /* 802E8E20 */ void setScissor();
-    /* 802E90E4 */ void place(JGeometry::TBox2<f32> const&);
-    /* 802E961C */ void place(f32, f32, f32, f32);
-    /* 802E9118 */ void setColor(JUtility::TColor, JUtility::TColor, JUtility::TColor,
-                                 JUtility::TColor);
-    /* 802E9234 */ void setLineWidth(u8);
-    /* 802E9260 */ void fillBox(JGeometry::TBox2<f32> const&);
-    /* 802E9368 */ void drawFrame(JGeometry::TBox2<f32> const&);
-    /* 802E9564 */ void lineTo(JGeometry::TVec2<f32>);
-};
-
-//
 // Forward References:
 //
 
@@ -87,7 +41,6 @@ extern "C" void func_802E9260();
 extern "C" void func_802E9368();
 extern "C" void func_802E9564();
 extern "C" void place__14J2DGrafContextFffff();
-extern "C" void PSMTXIdentity();
 extern "C" void C_MTXOrtho();
 extern "C" void GXSetProjection();
 extern "C" void GXLoadPosMtxImm();

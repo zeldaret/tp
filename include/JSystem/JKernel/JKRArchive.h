@@ -20,15 +20,15 @@ struct SArcHeader {
 };
 
 struct SArcDataInfo {
-    u32 num_nodes;
-    u32 node_offset;
-    u32 num_file_entries;
-    u32 file_entry_offset;
-    u32 string_table_length;
-    u32 string_table_offset;
-    u16 next_free_file_id;
-    bool sync_file_ids_and_indices;
-    u8 field_1b[5];
+    /* 0x00 */ u32 num_nodes;
+    /* 0x04 */ u32 node_offset;
+    /* 0x08 */ u32 num_file_entries;
+    /* 0x0C */ u32 file_entry_offset;
+    /* 0x10 */ u32 string_table_length;
+    /* 0x14 */ u32 string_table_offset;
+    /* 0x18 */ u16 next_free_file_id;
+    /* 0x1A */ bool sync_file_ids_and_indices;
+    /* 0x1B */ u8 field_1b[5];
 };
 
 inline u32 read_big_endian_u32(void* ptr) {
@@ -135,6 +135,7 @@ public:
     u32 getFileAttribute(u32) const;
 
     u32 getMountMode() const { return mMountMode; }
+    SDIFileEntry* findNameResource(const char*) const;
 
 protected:
     bool isSameName(CArcName&, u32, u16) const;
@@ -143,7 +144,6 @@ protected:
     SDIFileEntry* findTypeResource(u32, const char*) const;
     SDIFileEntry* findFsResource(const char*, u32) const;
     SDIFileEntry* findIdxResource(u32) const;
-    SDIFileEntry* findNameResource(const char*) const;
     SDIFileEntry* findPtrResource(const void*) const;
     SDIFileEntry* findIdResource(u16) const;
 
@@ -165,6 +165,8 @@ public:
     /* vt[18] */ virtual void setExpandSize(SDIFileEntry*, u32);
     /* vt[19] */ virtual u32 getExpandSize(SDIFileEntry*) const;
 
+    u32 countFile() const { return mArcInfoBlock->num_file_entries; }
+
 protected:
     /* 0x00 */  // vtable
     /* 0x04 */  // JKRFileLoader
@@ -174,7 +176,11 @@ protected:
     /* 0x40 */ s32 mEntryNum;
     /* 0x44 */ SArcDataInfo* mArcInfoBlock;
     /* 0x48 */ SDirEntry* mNodes;
+
+public:
     /* 0x4C */ SDIFileEntry* mFiles;
+
+protected:
     /* 0x50 */ s32* mExpandedSize;
     /* 0x54 */ char* mStringTable;
     /* 0x58 */ u32 field_0x58;

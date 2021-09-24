@@ -4,6 +4,7 @@
 //
 
 #include "d/kankyo/d_kankyo.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -12,8 +13,6 @@
 //
 
 struct sub_kankyo__class {};
-
-struct stage_pure_lightvec_info_class {};
 
 struct mDoMtx_stack_c {
     static u8 now[48];
@@ -27,60 +26,10 @@ struct mDoGph_gInf_c {
     static u8 m_bloom[20];
 };
 
-struct daPy_py_c {
-    /* 8015F424 */ void checkNowWolfEyeUp();
-};
-
-struct dSv_player_status_b_c {
-    /* 80032BB0 */ void isDarkClearLV(int) const;
-};
-
-struct dSv_memBit_c {
-    /* 80034860 */ void isSwitch(int) const;
-    /* 80034934 */ void isDungeonItem(int) const;
-};
-
-struct dSv_info_c {
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dSv_event_tmp_flag_c {
-    static u8 const tempBitLabels[370 + 2 /* padding */];
-};
-
-struct dSv_event_c {
-    /* 800349A4 */ void offEventBit(u16);
-    /* 800349BC */ void isEventBit(u16) const;
-};
-
-struct dStage_roomControl_c {
-    /* 80024384 */ void getStatusRoomDt(int);
-    /* 8019F780 */ void GetTimePass();
-
-    static u8 mStatus[65792];
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dPa_levelEcallBack {};
-
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
                             u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
                             cXyz const*, f32);
-};
-
-struct dMsgObject_c {
-    /* 8023819C */ void getActor();
-};
-
-struct dComIfG_play_c {
-    /* 8002C950 */ void getLayerNo_common(char const*, int, int);
-    /* 8002C97C */ void getLayerNo(int);
 };
 
 struct dBgS_CamGndChk_Wtr {
@@ -88,26 +37,9 @@ struct dBgS_CamGndChk_Wtr {
     /* 80077A98 */ ~dBgS_CamGndChk_Wtr();
 };
 
-struct cBgS_PolyInfo {};
-
-struct dBgS {
-    /* 80074E50 */ void GetPolyAtt0(cBgS_PolyInfo const&);
-    /* 80074EA0 */ void GetPolyAtt1(cBgS_PolyInfo const&);
-};
-
 struct color_RGB_class {};
 
-struct cBgS_GndChk {
-    /* 80267D28 */ void SetPos(cXyz const*);
-};
-
-struct cBgS {
-    /* 800744A0 */ void GroundCross(cBgS_GndChk*);
-};
-
 struct _GXFogType {};
-
-struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -125,10 +57,6 @@ struct Z2EnvSeMgr {
 
 struct Z2AudioMgr {
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JUTNameTab {
-    /* 802DEAF8 */ void getName(u16) const;
 };
 
 struct JMath {
@@ -345,7 +273,7 @@ extern "C" void dKy_shadow_mode_check__FUc();
 extern "C" void dKy_bg_MAxx_proc__FPv();
 extern "C" void __dt__18dScnKy_env_light_cFv();
 extern "C" void __sinit_d_kankyo_cpp();
-extern "C" static void dKankyo_DayProc__Fv();
+extern "C" void dKankyo_DayProc__Fv();
 extern "C" extern char const* const d_kankyo_d_kankyo__stringBase0;
 extern "C" extern u8 struct_80451070[8];
 
@@ -353,8 +281,6 @@ extern "C" extern u8 struct_80451070[8];
 // External References:
 //
 
-SECTION_INIT void memset();
-SECTION_INIT void memcpy();
 extern "C" void mDoAud_setSceneName__FPCcll();
 extern "C" void __dt__4cXyzFv();
 extern "C" void create__Q213mDoGph_gInf_c7bloom_cFv();
@@ -475,11 +401,7 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void abs();
 extern "C" void memcmp();
-extern "C" void strcmp();
-extern "C" void cos();
-extern "C" void sin();
 extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
 extern "C" extern u8 const j3dDefaultMtx[48];
 extern "C" extern void* __vt__12J3DFrameCtrl[3];
@@ -488,12 +410,8 @@ extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 m_bloom__13mDoGph_gInf_c[20];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 g_Counter[12 + 4 /* padding */];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80450D64[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
@@ -1583,7 +1501,7 @@ asm void dScnKy_env_light_c::setDaytime() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dStage_roomControl_c::GetTimePass() {
+asm s8 dStage_roomControl_c::GetTimePass() {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/GetTimePass__20dStage_roomControl_cFv.s"
 }
@@ -3527,14 +3445,9 @@ REGISTER_CTORS(0x801ADCA4, __sinit_d_kankyo_cpp);
 #pragma pop
 
 /* 801ADD00-801ADD38 1A8640 0038+00 2/2 0/0 0/0 .text            dKankyo_DayProc__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKankyo_DayProc() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKankyo_DayProc__Fv.s"
+void dKankyo_DayProc() {
+    dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[91]);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451070-80451078 -00001 0008+00 0/0 1/1 0/0 .sbss            None */

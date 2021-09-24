@@ -25,8 +25,8 @@ public:
     void getSubstance(dEvDtData_c*, int);
     dEvent_manager_c();
     ~dEvent_manager_c() {}
-    void create();
-    void setObjectArchive(char*);
+    int create();
+    bool setObjectArchive(char*);
     void demoInit();
     void roomInit(int);
     void roomFinish(int);
@@ -37,7 +37,7 @@ public:
     void endProc(s16, int);
     void Sequencer();
     void Experts();
-    void getEventData(s16);
+    dEvDtEvent_c* getEventData(s16);
     dEvDtEvent_c* getEventData(s16, int);
     int getEventIdx(char const*, u8, s32);
     void getEventIdx(fopAc_ac_c*, u8);
@@ -67,13 +67,15 @@ public:
     void ChkPresentEnd();
     void checkStartDemo();
 
+    void setStartDemo(int param_0) { mEventException.setStartDemo(param_0); }
+
 private:
     /* 0x0000 */ dEvDtBase_c mEventList[11];
     /* 0x018C */ s32 mCameraPlay;
     /* 0x0190 */ dEvent_exception_c mEventException;
     /* 0x019C */ cXyz mGoal;
     /* 0x01A8 */ u8 field_0x1a8[2];
-    /* 0x01AA */ u16 field_0x1aa;
+    /* 0x01AA */ s16 field_0x1aa;
     /* 0x01AC */ u8 field_0x1ac[4];
     /* 0x01B0 */ u32 field_0x1b0;
     /* 0x01B4 */ u32 field_0x1b4;

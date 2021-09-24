@@ -15,6 +15,7 @@ typedef void (*J3DDrawBuffer_DrawFunc)(const J3DDrawBuffer* this_);
 
 class J3DDrawBuffer {
 public:
+    J3DDrawBuffer() { initialize(); }
     ~J3DDrawBuffer();
     void initialize();
     J3DError allocBuffer(u32);

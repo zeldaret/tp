@@ -40,6 +40,12 @@ public:
     /* 0x0C */ Mtx* mMatrices[5];
 };
 
+class J3DMtxBuffer;
+class J3DVertexBuffer;
+class J3DMatPacket;
+class J3DShapePacket;
+class J3DVtxColorCalc;
+
 class J3DModel {
 public:
     /* 800CFFF4 */ void setBaseTRMtx(f32 (*)[4]);
@@ -50,25 +56,26 @@ public:
     /* 803275FC */ void newDifferedDisplayList(u32);
     /* 8032767C */ void lock();
     /* 803276B4 */ void unlock();
-    /* 803276EC */ void calcMaterial();
-    /* 80327858 */ void calcDiffTexMtx();
     /* 803279A0 */ void diff();
     /* 80327A2C */ void setDeformData(J3DDeformData*, u32);
     /* 80327AA0 */ void setSkinDeform(J3DSkinDeform*, u32);
     /* 80327BD4 */ void calcAnmMtx();
     /* 80327C58 */ void calcWeightEnvelopeMtx();
-    /* 80327CA4 */ void update();
-    /* 80327CF0 */ void calc();
-    /* 80327E4C */ void entry();
-    /* 80327F40 */ void viewCalc();
     /* 80328190 */ void calcNrmMtx();
     /* 803281B4 */ void calcBumpMtx();
     /* 803282B8 */ void calcBBoardMtx();
     /* 803282EC */ void prepareShapePackets();
-    /* 80328350 */ ~J3DModel();
-    Mtx* getAnmMtx(int p1);
+    Mtx* getAnmMtx(int);
 
-    // better way to handle inlines with same name as non-inlines?
+    /* 80327CA4 */ void update();
+    /* 80327E4C */ void entry();
+    /* 80327CF0 */ void calc();
+    /* 803276EC */ void calcMaterial();
+    /* 80327858 */ void calcDiffTexMtx();
+    /* 80327F40 */ void viewCalc();
+    /* 80328350 */ ~J3DModel();
+
+    // is there a better way to handle inlines with same name as non-inlines?
     Mtx* i_getAnmMtx(int p1) { return mMtxBuffer->getAnmMtx(p1); }
 
     /* 0x00 */ void* vtable;
@@ -76,17 +83,17 @@ public:
     /* 0x08 */ u32 mFlags;
     /* 0x0C */ u32 field_0x0c;
     /* 0x10 */ int field_0x10;
-    /* 0x14 */ int mUserData;
-    /* 0x18 */ Vec mPosition;
+    /* 0x14 */ void* mUserArea;
+    /* 0x18 */ Vec mBaseScale;
     /* 0x24 */ Mtx mBaseTransformMtx;
     /* 0x54 */ Mtx mInternalView;
     /* 0x84 */ J3DMtxBuffer* mMtxBuffer;
-    /* 0x88 */ void* mVertexBuffer;
-    /* 0xC0 */ void* mMaterialPacket;
-    /* 0xC4 */ void* mShapePacket;
-    /* 0xC8 */ void* mDeformData;
-    /* 0xCC */ void* mSkinDeform;
-    /* 0xD0 */ void* mVtxColorCalc;
+    /* 0x88 */ J3DVertexBuffer* mVertexBuffer;
+    /* 0xC0 */ J3DMatPacket* mMatPacket;
+    /* 0xC4 */ J3DShapePacket* mShapePacket;
+    /* 0xC8 */ J3DDeformData* mDeformData;
+    /* 0xCC */ J3DSkinDeform* mSkinDeform;
+    /* 0xD0 */ J3DVtxColorCalc* mVtxColorCalc;
     /* 0xD4 */ u8 field_0xd4[8];
 };
 

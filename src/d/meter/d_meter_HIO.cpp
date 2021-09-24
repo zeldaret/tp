@@ -4,95 +4,9 @@
 //
 
 #include "d/meter/d_meter_HIO.h"
+#include "d/save/d_save.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct dMeter_ringHIO_c {
-    /* 802001AC */ dMeter_ringHIO_c();
-    /* 802010E0 */ ~dMeter_ringHIO_c();
-};
-
-struct dMeter_menuHIO_c {
-    /* 801FE330 */ dMeter_menuHIO_c();
-    /* 8020123C */ ~dMeter_menuHIO_c();
-};
-
-struct dMeter_mapIconHIO_c {
-    /* 802004B4 */ dMeter_mapIconHIO_c();
-    /* 80201028 */ ~dMeter_mapIconHIO_c();
-};
-
-struct dMeter_fmapHIO_c {
-    struct MapBlinkAnime {
-        /* 80201070 */ MapBlinkAnime();
-    };
-
-    /* 802006C8 */ dMeter_fmapHIO_c();
-    /* 80200BCC */ ~dMeter_fmapHIO_c();
-};
-
-struct dMeter_drawSkillHIO_c {
-    /* 801FE990 */ dMeter_drawSkillHIO_c();
-    /* 80200E30 */ ~dMeter_drawSkillHIO_c();
-};
-
-struct dMeter_drawOptionHIO_c {
-    /* 801FE4EC */ dMeter_drawOptionHIO_c();
-    /* 80200F98 */ ~dMeter_drawOptionHIO_c();
-};
-
-struct dMeter_drawMiniGameHIO_c {
-    /* 801FEFF0 */ dMeter_drawMiniGameHIO_c();
-    /* 80200DE8 */ ~dMeter_drawMiniGameHIO_c();
-};
-
-struct dMeter_drawLightDropHIO_c {
-    /* 801FF31C */ dMeter_drawLightDropHIO_c();
-    /* 80200D58 */ ~dMeter_drawLightDropHIO_c();
-};
-
-struct dMeter_drawLetterHIO_c {
-    /* 801FE5CC */ dMeter_drawLetterHIO_c();
-    /* 80200F50 */ ~dMeter_drawLetterHIO_c();
-};
-
-struct dMeter_drawInsectHIO_c {
-    /* 801FE8DC */ dMeter_drawInsectHIO_c();
-    /* 80200EC0 */ ~dMeter_drawInsectHIO_c();
-};
-
-struct dMeter_drawHIO_c {
-    /* 801FF5B8 */ dMeter_drawHIO_c();
-    /* 80201128 */ ~dMeter_drawHIO_c();
-};
-
-struct dMeter_drawFishingHIO_c {
-    /* 801FE730 */ dMeter_drawFishingHIO_c();
-    /* 80200F08 */ ~dMeter_drawFishingHIO_c();
-};
-
-struct dMeter_drawEmpButtonHIO_c {
-    /* 801FEAF0 */ dMeter_drawEmpButtonHIO_c();
-    /* 80200DA0 */ ~dMeter_drawEmpButtonHIO_c();
-};
-
-struct dMeter_drawCalibrationHIO_c {
-    /* 801FE954 */ dMeter_drawCalibrationHIO_c();
-    /* 80200E78 */ ~dMeter_drawCalibrationHIO_c();
-};
-
-struct dMeter_cursorHIO_c {
-    /* 80200CD4 */ dMeter_cursorHIO_c();
-    /* 80201098 */ ~dMeter_cursorHIO_c();
-};
-
-struct JKRHeap {
-    /* 802CE548 */ void free(void*);
-};
 
 //
 // Forward References:
@@ -272,918 +186,1536 @@ SECTION_DATA extern void* __vt__16dMeter_menuHIO_c[3] = {
 };
 
 /* 801FE330-801FE348 1F8C70 0018+00 1/1 0/0 0/0 .text            __ct__16dMeter_menuHIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMeter_menuHIO_c::dMeter_menuHIO_c() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__ct__16dMeter_menuHIO_cFv.s"
+dMeter_menuHIO_c::dMeter_menuHIO_c() {
+    mGameover = 70;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804544E0-804544E4 002AE0 0004+00 12/12 0/0 0/0 .sdata2          @3787 */
-SECTION_SDATA2 static f32 lit_3787 = 1.0f;
-
-/* 804544E4-804544E8 002AE4 0004+00 5/5 0/0 0/0 .sdata2          @3788 */
-SECTION_SDATA2 static f32 lit_3788 = 1.5f;
-
-/* 804544E8-804544EC 002AE8 0004+00 6/6 0/0 0/0 .sdata2          @3789 */
-SECTION_SDATA2 static f32 lit_3789 = 11.0f / 10.0f;
-
-/* 804544EC-804544F0 002AEC 0004+00 2/2 0/0 0/0 .sdata2          @3790 */
-SECTION_SDATA2 static f32 lit_3790 = -12.0f;
-
-/* 804544F0-804544F4 002AF0 0004+00 4/4 0/0 0/0 .sdata2          @3791 */
-SECTION_SDATA2 static f32 lit_3791 = 13.0f / 10.0f;
-
-/* 804544F4-804544F8 002AF4 0004+00 5/5 0/0 0/0 .sdata2          @3792 */
-SECTION_SDATA2 static f32 lit_3792 = 4.0f / 5.0f;
-
-/* 804544F8-804544FC 002AF8 0004+00 11/11 0/0 0/0 .sdata2          @3793 */
-SECTION_SDATA2 static u8 lit_3793[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 804544FC-80454500 002AFC 0004+00 2/2 0/0 0/0 .sdata2          @3794 */
-SECTION_SDATA2 static f32 lit_3794 = -5.0f;
-
-/* 80454500-80454504 002B00 0004+00 3/3 0/0 0/0 .sdata2          @3795 */
-SECTION_SDATA2 static f32 lit_3795 = 4.0f;
-
-/* 80454504-80454508 002B04 0004+00 6/6 0/0 0/0 .sdata2          @3796 */
-SECTION_SDATA2 static f32 lit_3796 = 9.0f / 10.0f;
-
-/* 80454508-8045450C 002B08 0004+00 1/1 0/0 0/0 .sdata2          @3797 */
-SECTION_SDATA2 static f32 lit_3797 = -22.299999237060547f;
-
-/* 8045450C-80454510 002B0C 0004+00 1/1 0/0 0/0 .sdata2          @3798 */
-SECTION_SDATA2 static f32 lit_3798 = 24.899999618530273f;
-
-/* 80454510-80454514 002B10 0004+00 4/4 0/0 0/0 .sdata2          @3799 */
-SECTION_SDATA2 static f32 lit_3799 = 25.0f;
-
-/* 80454514-80454518 002B14 0004+00 1/1 0/0 0/0 .sdata2          @3800 */
-SECTION_SDATA2 static f32 lit_3800 = -24.899999618530273f;
-
-/* 80454518-8045451C 002B18 0004+00 1/1 0/0 0/0 .sdata2          @3801 */
-SECTION_SDATA2 static f32 lit_3801 = -27.5f;
-
-/* 8045451C-80454520 002B1C 0004+00 1/1 0/0 0/0 .sdata2          @3802 */
-SECTION_SDATA2 static f32 lit_3802 = 26.0f;
 
 /* 801FE348-801FE4EC 1F8C88 01A4+00 1/1 0/0 0/0 .text            __ct__23dMeter_drawCollectHIO_cFv
  */
-#ifdef NONMATCHING
 dMeter_drawCollectHIO_c::dMeter_drawCollectHIO_c() {
-    mItemScaleSmall = lit_3787;
-    mItemScaleLarge = lit_3788;
-    mSaveOptionItemScaleSmall = lit_3787;
-    mSaveOptionItemScaleLarge = lit_3789;
-    mBlueFuzzPosX = lit_3790;
-    mBlueFuzzPosY = lit_3791;
-    mBlueFuzzScale = lit_3791;
-    mBlueFuzzAlpha = lit_3792;
-    mMaskMirrorPos.set(FLOAT_LABEL(lit_3793), FLOAT_LABEL(lit_3793), FLOAT_LABEL(lit_3793));
+    mUnselectItemScale = 1.0f;
+    mSelectItemScale = 1.5f;
+    mUnselectSaveOptionScale = 1.0f;
+    mSelectSaveOptionScale = 1.1f;
+    mBlueSmokePosX = -12.0f;
+    mBlueSmokePosY = 1.3f;
+    mBlueSmokeScale = 1.3f;
+    mBlueSmokeAlpha = 0.8f;
+    mMaskMirrorPos.set(0.0f, 0.0f, 0.0f);
     mMaskMirrorAngle.set(0, 0, 0);
     field_0x9a = false;
-    mMaskMirrorScale = FLOAT_LABEL(lit_3793);
-    mMaskMirrorAnimation = lit_3787;
-    mHeartVesselPosX = lit_3794;
-    mHeartVesselPosY = lit_3795;
-    mHeartVesselScale = lit_3796;
-    mHeartPiecePosX = FLOAT_LABEL(lit_3793);
-    mHeartPiecePosY = FLOAT_LABEL(lit_3793);
-    mHeartPieceScale = lit_3787;
+    mMaskMirrorScale = 0.0f;
+    mMaskMirrorAnimSpeed = 1.0f;
+    mHeartVesselPosX = -5.0f;
+    mHeartVesselPosY = 4.0f;
+    mHeartVesselScale = 0.9f;
+    mHeartPiecePosX = 0.0f;
+    mHeartPiecePosY = 0.0f;
+    mHeartPieceScale = 1.0f;
     mButtonDebugON = false;
-    mAButtonPosX = lit_3797;
-    mAButtonPosY = lit_3798;
-    mAButtonScale = lit_3791;
-    mBButtonPosX = lit_3797;
-    mBButtonPosY = lit_3799;
-    mBButtonScale = lit_3791;
-    mAButtonTextPosX = lit_3800;
-    mAButtonTextPosY = lit_3798;
-    mAButtonTextScale = lit_3789;
-    mBButtonTextPosX = lit_3801;
-    mBButtonTextPosY = lit_3802;
-    mBButtonTextScale = lit_3789;
+    mAButtonPosX = -22.3f;
+    mAButtonPosY = 24.9f;
+    mAButtonScale = 1.3f;
+    mBButtonPosX = -22.3f;
+    mBButtonPosY = 25.0f;
+    mBButtonScale = 1.3f;
+    mAButtonTextPosX = -24.9f;
+    mAButtonTextPosY = 24.9f;
+    mAButtonTextScale = 1.1f;
+    mBButtonTextPosX = -27.5f;
+    mBButtonTextPosY = 26.0f;
+    mBButtonTextScale = 1.1f;
     mColorDebugON = false;
-    mBasBlack[0].set(0, 0, 0, 0);
-    mBasWhite[0].set(250, 250, 210, 220);
-    mBasBlack[1].set(200, 190, 100, 0);
-    mBasWhite[1].set(200, 190, 100, 175);
+    mVesselBack[VESSEL_HEART].set(0, 0, 0, 0);
+    mVesselFront[VESSEL_HEART].set(250, 250, 210, 220);
+    mVesselBack[VESSEL_DECOR].set(200, 190, 100, 0);
+    mVesselFront[VESSEL_DECOR].set(200, 190, 100, 175);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMeter_drawCollectHIO_c::dMeter_drawCollectHIO_c() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__ct__23dMeter_drawCollectHIO_cFv.s"
-}
-#pragma pop
-#endif
-
-/* ############################################################################################## */
-/* 80454520-80454524 002B20 0004+00 3/3 0/0 0/0 .sdata2          @3828 */
-SECTION_SDATA2 static f32 lit_3828 = 51.0f / 50.0f;
-
-/* 80454524-80454528 002B24 0004+00 3/3 0/0 0/0 .sdata2          @3829 */
-SECTION_SDATA2 static f32 lit_3829 = 49.0f / 50.0f;
-
-/* 80454528-8045452C 002B28 0004+00 4/4 0/0 0/0 .sdata2          @3830 */
-SECTION_SDATA2 static f32 lit_3830 = 3.0f / 10.0f;
-
-/* 8045452C-80454530 002B2C 0004+00 1/1 0/0 0/0 .sdata2          @3831 */
-SECTION_SDATA2 static f32 lit_3831 = 45.0f;
-
-/* 80454530-80454534 002B30 0004+00 1/1 0/0 0/0 .sdata2          @3832 */
-SECTION_SDATA2 static f32 lit_3832 = 38.0f;
 
 /* 801FE4EC-801FE5CC 1F8E2C 00E0+00 1/1 0/0 0/0 .text            __ct__22dMeter_drawOptionHIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMeter_drawOptionHIO_c::dMeter_drawOptionHIO_c() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__ct__22dMeter_drawOptionHIO_cFv.s"
-}
-#pragma pop
+dMeter_drawOptionHIO_c::dMeter_drawOptionHIO_c() {
+    mSelectBarScale = 1.02f;
+    mUnselectBarScale = 0.98f;
+    mArrowSize = 0.3f;
 
-/* ############################################################################################## */
-/* 80454534-80454538 002B34 0004+00 4/4 0/0 0/0 .sdata2          @3867 */
-SECTION_SDATA2 static f32 lit_3867 = -20.0f;
+    mSelectNameColor.set(255, 255, 255, 255);
+    mSelectColor.set(255, 200, 0, 255);
+    mUnselectColor.set(180, 180, 150, 255);
+
+    mWindowPosX = 0.0f;
+    mWindowPosY = 0.0f;
+    mWindowScale = 1.0f;
+
+    for (int i = 0; i < 4; i++) {
+        mOptionTypeBGPosX[i] = 0.0f;
+        mOptionTypeBGPosY[i] = 0.0f;
+    }
+
+    mOpenFrames = 10;
+    mCloseFrames = 10;
+
+    mDebug = false;
+    mBackgroundAlpha = 150;
+    mBackgroundPosY = 45.0f;
+
+    mArrowOffsetX = 38.0f;
+    mArrowOffsetX_4x3 = 4.0f;
+}
 
 /* 801FE5CC-801FE730 1F8F0C 0164+00 1/1 0/0 0/0 .text            __ct__22dMeter_drawLetterHIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMeter_drawLetterHIO_c::dMeter_drawLetterHIO_c() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__ct__22dMeter_drawLetterHIO_cFv.s"
+dMeter_drawLetterHIO_c::dMeter_drawLetterHIO_c() {
+    for (int i = 0; i < 2; i++) {
+        mOpenFrame[i] = 10;
+        mCloseFrame[i] = 10;
+    }
+
+    mLetterNum = 0;
+    mDebugON = false;
+
+    mUnselectPageIconAlpha = 255;
+
+    mSelectBarScale = 1.02f;
+    mUnselectBarScale = 0.98f;
+
+    mWindowPosX = 0.0f;
+    mWindowPosY = -20.0f;
+    mWindowScale = 1.0f;
+
+    mLetterWindowPosX = 0.0f;
+    mLetterWindowPosY = 0.0f;
+    mLetterWindowScale = 1.0f;
+    mWindowBGAlpha = 150;
+
+    mLetterLinePosX = 0.0f;
+    mLetterLinePosY = 0.0f;
+    mLetterLineAlpha = 130;
+
+    mSelectPageIconBack.set(0, 0, 0, 0);
+    mSelectPageIconFront.set(255, 255, 255, 255);
+    mSelectBarBack.set(105, 95, 55, 255);
+    mSelectBarFront.set(200, 180, 135, 255);
+    mSelectTextBack.set(31, 24, 12, 0);
+    mSelectTextFront.set(255, 255, 200, 255);
+    mLetterTextBack.set(0, 0, 0, 0);
+    mLetterTextFront.set(65, 55, 30, 255);
 }
-#pragma pop
 
-/* ############################################################################################## */
-/* 80397E50-80397E68 0244B0 0018+00 1/1 0/0 0/0 .rodata          fipaScale$3871 */
-SECTION_RODATA static u8 const fipaScale[24] = {
-    0x3F, 0x7A, 0xE1, 0x48, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-    0x3F, 0x80, 0x00, 0x00, 0x3F, 0x73, 0x33, 0x33, 0x3F, 0x8C, 0xCC, 0xCD,
-};
-COMPILER_STRIP_GATE(0x80397E50, &fipaScale);
+static f32 const fipaScale[6] = {0.98f, 1.0f, 1.0f, 1.0f, 0.95f, 1.1f};
 
-/* 80397E68-80397E80 0244C8 0018+00 0/1 0/0 0/0 .rodata          fipaPosX$3872 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const fipaPosX[24] = {
-    0x3F, 0xA6, 0x66, 0x66, 0x40, 0xD3, 0x33, 0x33, 0x00, 0x00, 0x00, 0x00,
-    0x40, 0x7D, 0x70, 0xA4, 0x40, 0x80, 0x00, 0x00, 0x41, 0xDC, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80397E68, &fipaPosX);
-#pragma pop
+static f32 const fipaPosX[6] = {1.3f, 6.6f, 0.0f, 3.96f, 4.0f, 27.5f};
 
-/* 80397E80-80397E98 0244E0 0018+00 0/1 0/0 0/0 .rodata          fipaPosY$3873 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const fipaPosY[24] = {
-    0xC1, 0x13, 0x33, 0x33, 0xC1, 0xDC, 0x00, 0x00, 0xC1, 0x3B, 0x33, 0x33,
-    0xC1, 0x13, 0x33, 0x33, 0xC1, 0xF0, 0xCC, 0xCD, 0xC1, 0x8F, 0x33, 0x33,
-};
-COMPILER_STRIP_GATE(0x80397E80, &fipaPosY);
-#pragma pop
+static f32 const fipaPosY[6] = {-9.2f, -27.5f, -11.7f, -9.2f, -30.1f, -17.9f};
 
-/* 80397E98-80397EB0 0244F8 0018+00 0/1 0/0 0/0 .rodata          finaScale$3874 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const finaScale[24] = {
-    0x3F, 0x66, 0x66, 0x66, 0x3F, 0x66, 0x66, 0x66, 0x3F, 0x66, 0x66, 0x66,
-    0x3F, 0x66, 0x66, 0x66, 0x3F, 0x66, 0x66, 0x66, 0x3F, 0x66, 0x66, 0x66,
-};
-COMPILER_STRIP_GATE(0x80397E98, &finaScale);
-#pragma pop
+static f32 const finaScale[6] = {0.9f, 0.9f, 0.9f, 0.9f, 0.9f, 0.9f};
 
-/* 80397EB0-80397EC8 024510 0018+00 0/1 0/0 0/0 .rodata          finaPosX$3875 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const finaPosX[24] = {
-    0xC1, 0xC8, 0x00, 0x00, 0xC0, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC0, 0x80, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80397EB0, &finaPosX);
-#pragma pop
+static f32 const finaPosX[6] = {-25.0f, -4.0f, 0.0f, 0.0f, 0.0f, -4.0f};
 
-/* 80397EC8-80397EE0 024528 0018+00 0/1 0/0 0/0 .rodata          finaPosY$3876 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const finaPosY[24] = {
-    0xC1, 0x80, 0x00, 0x00, 0xC2, 0x22, 0x66, 0x66, 0xC1, 0xC0, 0x00, 0x00,
-    0xC1, 0x3B, 0x33, 0x33, 0xC2, 0x17, 0x99, 0x9A, 0xC1, 0x50, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80397EC8, &finaPosY);
-#pragma pop
+static f32 const finaPosY[6] = {-16.0f, -40.6, -24.0f, -11.7f, -37.9f, -13.0f};
 
-/* 80397EE0-80397EF8 024540 0018+00 0/1 0/0 0/0 .rodata          filiScale$3877 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const filiScale[24] = {
-    0x3F, 0x26, 0x66, 0x66, 0x3F, 0x26, 0x66, 0x66, 0x3F, 0x26, 0x66, 0x66,
-    0x3F, 0x26, 0x66, 0x66, 0x3F, 0x26, 0x66, 0x66, 0x3F, 0x26, 0x66, 0x66,
-};
-COMPILER_STRIP_GATE(0x80397EE0, &filiScale);
-#pragma pop
+static f32 const filiScale[6] = {0.65f, 0.65f, 0.65f, 0.65f, 0.65f, 0.65f};
 
-/* 80397EF8-80397F10 024558 0018+00 0/1 0/0 0/0 .rodata          filiPosX$3878 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const filiPosX[24] = {
-    0xC1, 0xE0, 0x00, 0x00, 0xC1, 0x00, 0x00, 0x00, 0x41, 0x13, 0x33, 0x33,
-    0x41, 0x13, 0x33, 0x33, 0x41, 0x13, 0x33, 0x33, 0xC1, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80397EF8, &filiPosX);
-#pragma pop
+static f32 const filiPosX[6] = {-28.0f, -8.0f, 9.2f, 9.2f, 9.2f, -8.0f};
 
-/* 80397F10-80397F28 024570 0018+00 0/1 0/0 0/0 .rodata          filiPosY$3879 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const filiPosY[24] = {
-    0xC0, 0xD3, 0x33, 0x33, 0xC1, 0x60, 0x00, 0x00, 0xC1, 0x66, 0x66, 0x66,
-    0x41, 0xC7, 0x33, 0x33, 0xC1, 0x3B, 0x33, 0x33, 0x41, 0xC7, 0x33, 0x33,
-};
-COMPILER_STRIP_GATE(0x80397F10, &filiPosY);
-#pragma pop
+static f32 const filiPosY[6] = {-6.6f, -14.0f, -14.4f, 24.9f, -11.7f, 24.9f};
 
-/* 80397F28-80397F40 024588 0018+00 0/1 0/0 0/0 .rodata          bboxScale$3880 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const bboxScale[24] = {
-    0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-    0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80397F28, &bboxScale);
-#pragma pop
+static f32 const bboxScale[6] = {1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f};
 
-/* 80397F40-80397F58 0245A0 0018+00 0/0 0/0 0/0 .rodata          bboxPosX$3881 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const bboxPosX[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80397F40, &bboxPosX);
-#pragma pop
+static f32 const bboxPosX[6] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
 
-/* 80397F58-80397F70 0245B8 0018+00 0/0 0/0 0/0 .rodata          bboxPosY$3882 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const bboxPosY[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80397F58, &bboxPosY);
-#pragma pop
+static f32 const bboxPosY[6] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
 
-/* 80397F70-80397F88 0245D0 0018+00 0/1 0/0 0/0 .rodata          rboxScale$3883 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const rboxScale[24] = {
-    0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-    0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80397F70, &rboxScale);
-#pragma pop
+static f32 const rboxScale[6] = {1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f};
 
-/* 80397F88-80397FA0 0245E8 0018+00 0/1 0/0 0/0 .rodata          rboxPosX$3884 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const rboxPosX[24] = {
-    0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80397F88, &rboxPosX);
-#pragma pop
+static f32 const rboxPosX[6] = {1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
 
-/* 80397FA0-80397FB8 024600 0018+00 0/1 0/0 0/0 .rodata          rboxPosY$3885 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const rboxPosY[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80397FA0, &rboxPosY);
-#pragma pop
+static f32 const rboxPosY[6] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
 
-/* 80397FB8-80397FD0 024618 0018+00 0/1 0/0 0/0 .rodata          finfoScale$3886 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const finfoScale[24] = {
-    0x3F, 0x5E, 0xB8, 0x52, 0x3F, 0x5E, 0xB8, 0x52, 0x3F, 0x61, 0x47, 0xAE,
-    0x3F, 0x5E, 0xB8, 0x52, 0x3F, 0x5E, 0xB8, 0x52, 0x3F, 0x5E, 0xB8, 0x52,
-};
-COMPILER_STRIP_GATE(0x80397FB8, &finfoScale);
-#pragma pop
+static f32 const finfoScale[6] = {0.87f, 0.87f, 0.88f, 0.87f, 0.87f, 0.87f};
 
-/* 80397FD0-80397FE8 024630 0018+00 0/1 0/0 0/0 .rodata          finfoPosX$3887 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const finfoPosX[24] = {
-    0xC1, 0x88, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC1, 0x60, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0xC1, 0x40, 0x00, 0x00, 0xC2, 0x03, 0x33, 0x33,
-};
-COMPILER_STRIP_GATE(0x80397FD0, &finfoPosX);
-#pragma pop
+static f32 const finfoPosX[6] = {-17.0f, 0.0f, -14.0f, 0.0f, -12.0f, -32.8f};
 
-/* 80397FE8-80398000 024648 0018+00 0/1 0/0 0/0 .rodata          finfoPosY$3888 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const finfoPosY[24] = {
-    0x40, 0xD3, 0x33, 0x33, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x3F, 0xA6, 0x66, 0x66, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80397FE8, &finfoPosY);
-#pragma pop
+static f32 const finfoPosY[6] = {6.6f, 0.0f, 0.0f, 0.0f, 1.3f, 0.0f};
 
-/* 80398000-80398018 024660 0018+00 0/1 0/0 0/0 .rodata          fishnScale$3889 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const fishnScale[24] = {
-    0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-    0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80398000, &fishnScale);
-#pragma pop
+static f32 const fishnScale[6] = {1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f};
 
-/* 80398018-80398030 024678 0018+00 0/1 0/0 0/0 .rodata          fishnPosX$3890 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const fishnPosX[24] = {
-    0x40, 0x80, 0x00, 0x00, 0xC1, 0xA0, 0x00, 0x00, 0x3F, 0xA6, 0x66, 0x66,
-    0x40, 0xD3, 0x33, 0x33, 0x3F, 0xA6, 0x66, 0x66, 0x41, 0x13, 0x33, 0x33,
-};
-COMPILER_STRIP_GATE(0x80398018, &fishnPosX);
-#pragma pop
+static f32 const fishnPosX[6] = {4.0f, -20.0f, 1.3f, 6.6f, 1.3f, 9.2f};
 
-/* 80398030-80398048 024690 0018+00 0/1 0/0 0/0 .rodata          fishnPosY$3891 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const fishnPosY[24] = {
-    0xC2, 0x90, 0x33, 0x33, 0x43, 0x01, 0x99, 0x9A, 0x00, 0x00, 0x00, 0x00,
-    0x40, 0xD3, 0x33, 0x33, 0x42, 0x03, 0x33, 0x33, 0x41, 0x3B, 0x33, 0x33,
-};
-COMPILER_STRIP_GATE(0x80398030, &fishnPosY);
-#pragma pop
-
-/* 80454538-8045453C 002B38 0004+00 1/1 0/0 0/0 .sdata2          @3902 */
-SECTION_SDATA2 static f32 lit_3902 = 83.0f / 100.0f;
-
-/* 8045453C-80454540 002B3C 0004+00 3/3 0/0 0/0 .sdata2          @3903 */
-SECTION_SDATA2 static f32 lit_3903 = 5.0f;
-
-/* 80454540-80454544 002B40 0004+00 1/1 0/0 0/0 .sdata2          @3904 */
-SECTION_SDATA2 static f32 lit_3904 = -111.0f / 5.0f;
-
-/* 80454544-80454548 002B44 0004+00 1/1 0/0 0/0 .sdata2          @3905 */
-SECTION_SDATA2 static f32 lit_3905 = -189.5f;
-
-/* 80454548-8045454C 002B48 0004+00 1/1 0/0 0/0 .sdata2          @3906 */
-SECTION_SDATA2 static f32 lit_3906 = -79.0f / 20.0f;
-
-/* 8045454C-80454550 002B4C 0004+00 1/1 0/0 0/0 .sdata2          @3907 */
-SECTION_SDATA2 static f32 lit_3907 = -188.0f;
+static f32 const fishnPosY[6] = {-72.1f, 129.6f, 0.0f, 6.6f, 32.8f, 11.7f};
 
 /* 801FE730-801FE8DC 1F9070 01AC+00 1/1 0/0 0/0 .text            __ct__23dMeter_drawFishingHIO_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMeter_drawFishingHIO_c::dMeter_drawFishingHIO_c() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__ct__23dMeter_drawFishingHIO_cFv.s"
+dMeter_drawFishingHIO_c::dMeter_drawFishingHIO_c() {
+    mOpenFrames = 10;
+    mCloseFrames = 10;
+    mDebug = false;
+
+    for (int i = 0; i < 6; i++) {
+        mFishNum[i] = 0;
+        mFishSize[i] = 0;
+        mFishIconScale[i] = fipaScale[i];
+        mFishIconPosX[i] = fipaPosX[i];
+        mFishIconPosY[i] = fipaPosY[i];
+        mFishNameScale[i] = finaScale[i];
+        mFishNamePosX[i] = finaPosX[i];
+        mFishNamePosY[i] = finaPosY[i];
+        mFishLineScale[i] = filiScale[i];
+        mFishLinePosX[i] = filiPosX[i];
+        mFishLinePosY[i] = filiPosY[i];
+        mFishSizeScale[i] = bboxScale[i];
+        mFishSizePosX[i] = rboxPosX[i];
+        mFishSizePosY[i] = rboxPosY[i];
+        mFishCountScale[i] = rboxScale[i];
+        mFishCountPosX[i] = rboxPosX[i];
+        mFishCountPosY[i] = rboxPosY[i];
+        mFishCountSizeScale[i] = finfoScale[i];
+        mFishCountSizePosX[i] = finfoPosX[i];
+        mFishCountSizePosY[i] = finfoPosY[i];
+        mFishInfoScale[i] = fishnScale[i];
+        mFishInfoPosX[i] = fishnPosX[i];
+        mFishInfoPosY[i] = fishnPosY[i];
+    }
+    mMaxSizeScale = 0.83f;
+    mMaxSizePosX = 5.0f;
+    mMaxSizePosY = -22.2f;
+
+    mCaughtNumScale = 0.83f;
+    mCaughtNumPosX = -189.5f;
+    mCaughtNumPosY = -3.95f;
+    mCaughtNumPosX_4x3 = -188.0f;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80454550-80454554 002B50 0004+00 1/1 0/0 0/0 .sdata2          @3912 */
-SECTION_SDATA2 static f32 lit_3912 = 77.0f;
-
-/* 80454554-80454558 002B54 0004+00 1/1 0/0 0/0 .sdata2          @3913 */
-SECTION_SDATA2 static f32 lit_3913 = 43.0f;
-
-/* 80454558-8045455C 002B58 0004+00 1/1 0/0 0/0 .sdata2          @3914 */
-SECTION_SDATA2 static f32 lit_3914 = 119.0f;
-
-/* 8045455C-80454560 002B5C 0004+00 5/5 0/0 0/0 .sdata2          @3915 */
-SECTION_SDATA2 static f32 lit_3915 = 20.0f;
-
-/* 80454560-80454564 002B60 0004+00 1/1 0/0 0/0 .sdata2          @3916 */
-SECTION_SDATA2 static f32 lit_3916 = -34.0f;
 
 /* 801FE8DC-801FE954 1F921C 0078+00 1/1 0/0 0/0 .text            __ct__22dMeter_drawInsectHIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMeter_drawInsectHIO_c::dMeter_drawInsectHIO_c() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__ct__22dMeter_drawInsectHIO_cFv.s"
-}
-#pragma pop
+dMeter_drawInsectHIO_c::dMeter_drawInsectHIO_c() {
+    mOpenFrame = 10;
+    mCloseFrame = 10;
 
-/* ############################################################################################## */
-/* 80454564-80454568 002B64 0004+00 3/3 0/0 0/0 .sdata2          @3921 */
-SECTION_SDATA2 static f32 lit_3921 = 0.75f;
+    mType = DEFAULT;
+    mDebugON = false;
+
+    mUnselectInsectScale = 1.0f;
+    mSelectInsectScale = 1.5f;
+
+    mDescWindowPosX = 0.0f;
+    mDescWindowPosY = 77.0f;
+
+    mGiveOptionPosX_4x3 = 0.0f;
+    mGiveOptionPosY_4x3 = 43.0f;
+
+    mConfirmOptionPosX_4x3 = 0.0f;
+    mConfirmOptionPosY_4x3 = 119.0f;
+
+    mGiveOptionPosX = 20.0f;
+    mGiveOptionPosY = 43.0f;
+
+    mConfirmOptionPosX = -34.0f;
+    mConfirmOptionPosY = 119.0f;
+}
 
 /* 801FE954-801FE990 1F9294 003C+00 1/1 0/0 0/0 .text __ct__27dMeter_drawCalibrationHIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMeter_drawCalibrationHIO_c::dMeter_drawCalibrationHIO_c() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__ct__27dMeter_drawCalibrationHIO_cFv.s"
+dMeter_drawCalibrationHIO_c::dMeter_drawCalibrationHIO_c() {
+    mOpenFrames = 10;
+    mCloseFrames = 10;
+    mDebug = false;
+    mFlashFrameNum = 30;
+    mCircleScale = 1.0f;
+    mCircleScale2 = 0.75f;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80454568-8045456C 002B68 0004+00 1/1 0/0 0/0 .sdata2          @3956 */
-SECTION_SDATA2 static f32 lit_3956 = 80.0f;
-
-/* 8045456C-80454570 002B6C 0004+00 5/5 0/0 0/0 .sdata2          @3957 */
-SECTION_SDATA2 static f32 lit_3957 = 19.0f / 20.0f;
 
 /* 801FE990-801FEAF0 1F92D0 0160+00 1/1 0/0 0/0 .text            __ct__21dMeter_drawSkillHIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMeter_drawSkillHIO_c::dMeter_drawSkillHIO_c() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__ct__21dMeter_drawSkillHIO_cFv.s"
+dMeter_drawSkillHIO_c::dMeter_drawSkillHIO_c() {
+    for (int i = 0; i < 2; i++) {
+        mOpenFrame[i] = 10;
+        mCloseFrame[i] = 10;
+    }
+
+    mDebug = false;
+    field_0x58 = 0xFF;
+
+    mSelectBarScale = 1.02f;
+    mUnselectBarScale = 0.98f;
+
+    mSkillDescPosX = 0.0f;
+    mSkillDescPosY = 80.0f;
+    mSkillDescScale = 0.95f;
+    mWindowBGalpha = 150;
+
+    mWindowLinePosX = 0.0f;
+    mWindowLinePosY = 0.0f;
+    mWindowLineAlpha = 130;
+
+    mSelectScrollIconBlack.set(0, 0, 0, 0);
+    mSelectScrollIconWhite.set(255, 255, 255, 255);
+    mUnselectScrollIconBlack.set(0, 0, 0, 0);
+    mUnselectScrollIconWhite.set(180, 180, 180, 100);
+    mSelectBarBlack.set(105, 95, 55, 255);
+    mSelectBarWhite.set(200, 180, 135, 255);
+    mSelectTextBlack.set(31, 24, 12, 0);
+    mSelectTextWhite.set(255, 255, 200, 255);
+
+    mSkillTitlePosX = 0.0f;
+    mSkillTitlePosY = 0.0f;
+    mSkillTitleScale = 1.1f;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80454570-80454574 002B70 0004+00 5/5 0/0 0/0 .sdata2          @4028 */
-SECTION_SDATA2 static f32 lit_4028 = 2.5f;
-
-/* 80454574-80454578 002B74 0004+00 2/2 0/0 0/0 .sdata2          @4029 */
-SECTION_SDATA2 static f32 lit_4029 = 0.7727050185203552f;
-
-/* 80454578-8045457C 002B78 0004+00 3/3 0/0 0/0 .sdata2          @4030 */
-SECTION_SDATA2 static f32 lit_4030 = 3.0f;
-
-/* 8045457C-80454580 002B7C 0004+00 1/1 0/0 0/0 .sdata2          @4031 */
-SECTION_SDATA2 static f32 lit_4031 = 2.0f;
-
-/* 80454580-80454584 002B80 0004+00 1/1 0/0 0/0 .sdata2          @4032 */
-SECTION_SDATA2 static f32 lit_4032 = 23.0f / 20.0f;
-
-/* 80454584-80454588 002B84 0004+00 1/1 0/0 0/0 .sdata2          @4033 */
-SECTION_SDATA2 static f32 lit_4033 = 35.0f;
-
-/* 80454588-8045458C 002B88 0004+00 2/2 0/0 0/0 .sdata2          @4034 */
-SECTION_SDATA2 static f32 lit_4034 = 175.0f;
-
-/* 8045458C-80454590 002B8C 0004+00 1/1 0/0 0/0 .sdata2          @4035 */
-SECTION_SDATA2 static f32 lit_4035 = -392.0f;
-
-/* 80454590-80454594 002B90 0004+00 2/2 0/0 0/0 .sdata2          @4036 */
-SECTION_SDATA2 static f32 lit_4036 = -26.0f;
-
-/* 80454594-80454598 002B94 0004+00 1/1 0/0 0/0 .sdata2          @4037 */
-SECTION_SDATA2 static f32 lit_4037 = 67.0f;
-
-/* 80454598-8045459C 002B98 0004+00 3/3 0/0 0/0 .sdata2          @4038 */
-SECTION_SDATA2 static f32 lit_4038 = 12.0f;
-
-/* 8045459C-804545A0 002B9C 0004+00 3/3 0/0 0/0 .sdata2          @4039 */
-SECTION_SDATA2 static f32 lit_4039 = 17.0f;
-
-/* 804545A0-804545A4 002BA0 0004+00 1/1 0/0 0/0 .sdata2          @4040 */
-SECTION_SDATA2 static f32 lit_4040 = -17.0f;
-
-/* 804545A4-804545A8 002BA4 0004+00 2/2 0/0 0/0 .sdata2          @4041 */
-SECTION_SDATA2 static f32 lit_4041 = -6.0f;
-
-/* 804545A8-804545AC 002BA8 0004+00 3/3 0/0 0/0 .sdata2          @4042 */
-SECTION_SDATA2 static f32 lit_4042 = -8.0f;
 
 /* 801FEAF0-801FEFF0 1F9430 0500+00 1/1 0/0 0/0 .text            __ct__25dMeter_drawEmpButtonHIO_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMeter_drawEmpButtonHIO_c::dMeter_drawEmpButtonHIO_c() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__ct__25dMeter_drawEmpButtonHIO_cFv.s"
+dMeter_drawEmpButtonHIO_c::dMeter_drawEmpButtonHIO_c() {
+    mHighlightScale = 2.5f;
+    mHighlightFrontInner.set(255, 255, 255, 185);
+    mHighlightFrontOuter.set(0, 155, 0, 0);
+    mHighlightBackInner.set(255, 255, 255, 87);
+    mHighlightBackOuter.set(0, 115, 0, 0);
+    mHighlightAnimSpeed = 0.772705f;
+
+    mHighlightFastScale = 3.0f;
+    mHighlightFastFrontInner.set(255, 255, 255, 255);
+    mHighlightFastFrontOuter.set(220, 220, 215, 0);
+    mHighlightFastBackInner.set(255, 255, 190, 255);
+    mHighlightFastBackOuter.set(200, 200, 210, 0);
+    mHighlightFastAnimSpeed = 2.0f;
+
+    mHighlightListenScale = 1.0f;
+    mHighlightListenFrontInner.set(255, 255, 255, 185);
+    mHighlightListenFrontOuter.set(0, 155, 0, 0);
+    mHighlightListenBackInner.set(255, 255, 255, 87);
+    mHighlightListenBackOuter.set(0, 115, 0, 0);
+    mHighlightListenAnimSpeed = 0.3f;
+
+    mHighlightRepeatHitScale = 2.5f;
+    mHighlightRepeatHitFrontInner.set(255, 255, 255, 185);
+    mHighlightRepeatHitFrontOuter.set(0, 155, 0, 0);
+    mHighlightRepeatHitBackInner.set(255, 255, 255, 87);
+    mHighlightRepeatHitBackOuter.set(0, 115, 0, 0);
+    mHighlightRepeatHitAnimSpeed = 1.1f;
+    mRepeatHitScale = 1.15f;
+    mRepeatHitFrameNum = 4;
+
+    for (int i = 0; i < 17; i++) {
+        mDebugDisplayButton[0] = 0;
+    }
+
+    mDisplaySpace = 35.0f;
+    mEmpButtonPosX = 0.0f;
+    mEmpButtonPosY = 175.0f;
+    mEmpButtonScale = 1.0f;
+
+    mAButtonPosX = 0.0f;
+    mAButtonPosY = 0.0f;
+    mAButtonScale = 1.0f;
+
+    mBButtonPosX = 0.0f;
+    mBButtonPosY = 0.0f;
+    mBButtonScale = 1.0f;
+
+    mRButtonPosX = 0.0f;
+    mRButtonPosY = 0.0f;
+    mRButtonScale = 1.0f;
+
+    mZButtonPosX = 0.0f;
+    mZButtonPosY = 0.0f;
+    mZButtonScale = 1.0f;
+
+    m3DButtonPosX = 0.0f;
+    m3DButtonPosY = 0.0f;
+    m3DButtonScale = 1.0f;
+
+    mCButtonPosX = 0.0f;
+    mCButtonPosY = 0.0f;
+    mCButtonScale = 1.0f;
+
+    mSButtonPosX = 0.0f;
+    mSButtonPosY = -392.0f;
+    mSButtonScale = 0.9f;
+
+    mXButtonPosX = 0.0f;
+    mXButtonPosY = 0.0f;
+    mXButtonScale = 1.0f;
+
+    mYButtonPosX = 0.0f;
+    mYButtonPosY = 0.0f;
+    mYButtonScale = 1.0f;
+
+    mNunchukPosX = 0.0f;
+    mNunchukPosY = 0.0f;
+    mNunchukScale = 1.0f;
+
+    mWiimotePosX = 0.0f;
+    mWiimotePosY = 0.0f;
+    mWiimoteScale = 1.0f;
+
+    mWiimoteLRPosX = 0.0f;
+    mWiimoteLRPosY = 0.0f;
+    mWiimoteLRScale = 1.0f;
+
+    mWiimoteAPosX = 0.0f;
+    mWiimoteAPosY = 0.0f;
+    mWiimoteAScale = 1.0f;
+
+    m3DBButtonPosX = 0.0f;
+    m3DBButtonPosY = 0.0f;
+    m3DBButtonScale = 1.0f;
+
+    mNunchukWiimotePosX = 0.0f;
+    mNunchukWiimotePosY = 0.0f;
+    mNunchukWiimoteScale = 1.0f;
+
+    mNunchukWiimoteRealPosX = 0.0f;
+    mNunchukWiimoteRealPosY = 0.0f;
+    mNunchukWiimoteRealScale = 1.0f;
+
+    mNunchukRealPosX = 0.0f;
+    mNunchukRealPosY = 0.0f;
+    mNunchukRealScale = 1.0f;
+
+    mNunchukAttackPosX = 0.0f;
+    mNunchukAttackPosY = 0.0f;
+    mNunchukAttackScale = 1.0f;
+
+    mABButtonPosX = 0.0f;
+    mABButtonPosY = 0.0f;
+    mABButtonScale = 1.0f;
+
+    mNunchukZButtonPosX = 0.0f;
+    mNunchukZButtonPosY = 0.0f;
+    mNunchukZButtonScale = 1.0f;
+
+    mNunchukCButtonPosX = 0.0f;
+    mNunchukCButtonPosY = 0.0f;
+    mNunchukCButtonScale = 1.0f;
+
+    mBottleIconPosX = 0.0f;
+    mBottleIconPosY = 0.0f;
+    mBottleIconScale = 1.0f;
+
+    mViewChangePosX = -26.0f;
+    mViewChangePosY = 67.0f;
+    mViewChangeScale = 1.0f;
+
+    mText2PosX = 2.0f;
+    mText1PosX = 2.0f;
+    mText2PosY = 3.0f;
+    mText1PosY = 3.0f;
+    mText2Scale = 1.0f;
+    mText1Scale = 1.0f;
+
+    mItemPosX = 12.0f;
+    mItemPosY = 0.0f;
+    mItemScale = 1.0f;
+
+    mMidnaIconPosX = 0.0f;
+    mMidnaIconPosY = 0.0f;
+    mMidnaIconScale = 1.0f;
+
+    mHawkeyeDebugON = false;
+    mHawkeyePosX = 0.0f;
+    mHawkeyePosY = 0.0f;
+    for (int i = 0; i < 3; i++) {
+        mHawkeyeTextPosY[i] = 0.0f;
+    }
+    mHawkeyeTextPosX = 0.0f;
+    mHawkeyePlusPosX = 17.0f;
+    mHawkeyeMinusPosX = -17.0f;
+
+    mHawkeyeZoomDebugON = false;
+    mHawkeyeZoomPosX = 0.0f;
+    mHawkeyeZoomPosY = 25.0f;
+    mHawkeyeZoomScale = 0.8f;
+    mHawkeyeZoomScale_4x3 = 0.9f;
+    // fake match, fix later
+    for (int i = 0; i < 3; i++) {
+        int* tmp = (int*)this + i;
+        *(f32*)(tmp + 0x62) = 0.0f;
+        *(f32*)(tmp + 0x6B) = 1.0f;
+    }
+    mHawkeyeTextIconPosY = -6.0f;
+    mHawkeyeZoomTextPosY = -8.0f;
+    mHawkeyeIconPosY = 0.0f;
+    mHawkeyeTextIconPosY_4x3 = 12.0f;
+    mHawkeyeTextPosY_4x3 = -8.0f;
+    mHawkeyeIconPosY_4x3 = 0.0f;
+
+    mPointerONBlack[0].set(200, 200, 200, 0);
+    mPointerONWhite[0].set(255, 255, 0, 255);
+    mPointerONBlack[1].set(255, 145, 100, 0);
+    mPointerONWhite[1].set(255, 145, 100, 255);
+    mPointerOFFBlack.set(0, 0, 0, 0);
+    mPointerOFFWhite.set(0, 0, 0, 0);
+
+    mPointerONScale = 1.1f;
+    mPointerOFFScale = 0.9f;
+    mPointerONAnimFrame = 30;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804545AC-804545B0 002BAC 0004+00 4/4 0/0 0/0 .sdata2          @4071 */
-SECTION_SDATA2 static f32 lit_4071 = 6.0f / 5.0f;
-
-/* 804545B0-804545B4 002BB0 0004+00 1/1 0/0 0/0 .sdata2          @4072 */
-SECTION_SDATA2 static f32 lit_4072 = 207.0f;
-
-/* 804545B4-804545B8 002BB4 0004+00 1/1 0/0 0/0 .sdata2          @4073 */
-SECTION_SDATA2 static f32 lit_4073 = -43.0f;
-
-/* 804545B8-804545BC 002BB8 0004+00 5/5 0/0 0/0 .sdata2          @4074 */
-SECTION_SDATA2 static f32 lit_4074 = 0.5f;
-
-/* 804545BC-804545C0 002BBC 0004+00 1/1 0/0 0/0 .sdata2          @4075 */
-SECTION_SDATA2 static f32 lit_4075 = 317.0f;
-
-/* 804545C0-804545C4 002BC0 0004+00 5/5 0/0 0/0 .sdata2          @4076 */
-SECTION_SDATA2 static f32 lit_4076 = 7.0f / 10.0f;
-
-/* 804545C4-804545C8 002BC4 0004+00 1/1 0/0 0/0 .sdata2          @4077 */
-SECTION_SDATA2 static f32 lit_4077 = -275.0f;
-
-/* 804545C8-804545CC 002BC8 0004+00 2/2 0/0 0/0 .sdata2          @4078 */
-SECTION_SDATA2 static f32 lit_4078 = 76.0f;
-
-/* 804545CC-804545D0 002BCC 0004+00 2/2 0/0 0/0 .sdata2          @4079 */
-SECTION_SDATA2 static f32 lit_4079 = -22.0f;
-
-/* 804545D0-804545D4 002BD0 0004+00 2/2 0/0 0/0 .sdata2          @4080 */
-SECTION_SDATA2 static f32 lit_4080 = -30.0f;
-
-/* 804545D4-804545D8 002BD4 0004+00 4/4 0/0 0/0 .sdata2          @4081 */
-SECTION_SDATA2 static f32 lit_4081 = 7.0f / 5.0f;
-
-/* 804545D8-804545DC 002BD8 0004+00 1/1 0/0 0/0 .sdata2          @4082 */
-SECTION_SDATA2 static f32 lit_4082 = 198.0f;
-
-/* 804545DC-804545E0 002BDC 0004+00 2/2 0/0 0/0 .sdata2          @4083 */
-SECTION_SDATA2 static f32 lit_4083 = 160.0f;
-
-/* 804545E0-804545E4 002BE0 0004+00 2/2 0/0 0/0 .sdata2          @4084 */
-SECTION_SDATA2 static f32 lit_4084 = 28.0f;
-
-/* 804545E4-804545E8 002BE4 0004+00 3/3 0/0 0/0 .sdata2          @4085 */
-SECTION_SDATA2 static f32 lit_4085 = -18.0f;
-
-/* 804545E8-804545EC 002BE8 0004+00 1/1 0/0 0/0 .sdata2          @4086 */
-SECTION_SDATA2 static f32 lit_4086 = 23.0f;
-
-/* 804545EC-804545F0 002BEC 0004+00 1/1 0/0 0/0 .sdata2          @4087 */
-SECTION_SDATA2 static f32 lit_4087 = -16.0f;
-
-/* 804545F0-804545F4 002BF0 0004+00 1/1 0/0 0/0 .sdata2          @4088 */
-SECTION_SDATA2 static f32 lit_4088 = 267.0f;
-
-/* 804545F4-804545F8 002BF4 0004+00 1/1 0/0 0/0 .sdata2          @4089 */
-SECTION_SDATA2 static f32 lit_4089 = 288.0f;
-
-/* 804545F8-804545FC 002BF8 0004+00 1/1 0/0 0/0 .sdata2          @4090 */
-SECTION_SDATA2 static f32 lit_4090 = -29.0f;
-
-/* 804545FC-80454600 002BFC 0004+00 1/1 0/0 0/0 .sdata2          @4091 */
-SECTION_SDATA2 static f32 lit_4091 = 50.0f;
-
-/* 80454600-80454604 002C00 0004+00 1/1 0/0 0/0 .sdata2          @4092 */
-SECTION_SDATA2 static f32 lit_4092 = 9.0f / 5.0f;
-
-/* 80454604-80454608 002C04 0004+00 3/3 0/0 0/0 .sdata2          @4093 */
-SECTION_SDATA2 static f32 lit_4093 = 3.0f / 5.0f;
 
 /* 801FEFF0-801FF31C 1F9930 032C+00 1/1 0/0 0/0 .text            __ct__24dMeter_drawMiniGameHIO_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMeter_drawMiniGameHIO_c::dMeter_drawMiniGameHIO_c() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__ct__24dMeter_drawMiniGameHIO_cFv.s"
+dMeter_drawMiniGameHIO_c::dMeter_drawMiniGameHIO_c() {
+    field_0x8 = 1.0f;
+    field_0x14 = 0.0f;
+    field_0x20 = 0.0f;
+    field_0x2c = 1.0f;
+
+    mGoatTimerSizeX = 1.2f;
+    mGoatTimerSizeY = 0.9f;
+    mGoatTimerPosX = 207.0f;
+    mGoatTimerPosY = -43.0f;
+    mGoatTimerAlpha = 0.5f;
+    mGoatTimerSizeX_4x3 = 1.2f;
+    mGoatTimerSizeY_4x3 = 0.9f;
+    mGoatTimerPosX_4x3 = 207.0f;
+    mGoatTimerPosY_4x3 = -43.0f;
+
+    mGoatCounterSizeX = 1.1f;
+    mGoatCounterSizeY = 0.9f;
+    mGoatCounterPosX = 17.0f;
+    mGoatCounterPosY = 317.0f;
+    mGoatCounterAlpha = 0.7f;
+
+    mGoatIconSizeX = 0.75f;
+    mGoatIconSizeY = 0.75f;
+    mGoatIconPosX = -275.0f;
+    mGoatIconPosX_4x3 = -275.0f;
+    mGoatIconPosY = 76.0f;
+    mGoatIconAlpha = 0.9f;
+
+    mRiverRideTargetCounterSizeY = 1.0f;
+    mRiverRideTargetCounterPosX = -22.0f;
+    mRiverRideIconPosX_4x3 = -30.0f;
+    mRiverRideTargetCounterPosY = 0.0f;
+    mRiverRideTargetCounterAlpha = 1.0f;
+
+    field_0x3c = 1.4f;
+    field_0x48 = 1.0f;
+    field_0x54 = 198.0f;
+    field_0x60 = 160.0f;
+    field_0x6c = 0.5f;
+
+    mRiverRideCounterSizeX = 1.1f;
+    mRiverRideCounterSizeY = 0.95f;
+    mRiverRideCounterPosX = 28.0f;
+    mRiverRideCounterPosY = -18.0f;
+    mRiverRideCounterAlpha = 0.7f;
+
+    mRiverRideTargetIconSizeX = 0.9f;
+    mRiverRideTargetIconSizeY = 0.9f;
+    mRiverRideTargetIconPosX = 23.0f;
+    mRiverRideTargetIconPosY = -16.0f;
+    mRiverRideTargetIconAlpha = 0.9f;
+
+    field_0x10 = 1.0f;
+    field_0x1c = 0.0f;
+    field_0x28 = 0.0f;
+    field_0x34 = 1.0f;
+    field_0x40 = 1.4f;
+    field_0x4c = 1.0f;
+    field_0x58 = 198.0f;
+    field_0x64 = -30.0f;
+    field_0x70 = 0.5f;
+
+    mRiderGameCounterSizeX = 1.1f;
+    mRiderGameCounterSizeY = 0.95f;
+    mRiderGameCounterPosX = 267.0f;
+    mRiderGameCounterPosY = 288.0f;
+    mRiderGameCounterAlpha = 0.7f;
+
+    mRiderGameIconSizeX = 0.75f;
+    mRiderGameIconSizeY = 0.75f;
+    mRiderGameIconPosX = -29.0f;
+    mRiderGameIconPosX_4x3 = -26.0f;
+    mRiderGameIconPosY = 50.0f;
+    mRiderGameIconAlpha = 0.9f;
+
+    mReadyGo = 60;
+    field_0x15a = 10;
+
+    mGetInTextSizeX = 1.0f;
+    mGetInTextSizeY = 1.0f;
+    mGetInTextPosX = 0.0f;
+    mGetInTextPosY = 0.0f;
+    mGetInTextAnimSpeed = 1.0f;
+    mGetInTextWaitFrames = 10;
+    mGetInTextAlphaFrames = 10;
+    mGetInHighlightAppearFrames = 30;
+    mGetInHighlightScale = 1.8f;
+    mGetInHighlightFrontInner.set(255, 255, 167, 80);
+    mGetInHighlightFrontOuter.set(220, 110, 30, 0);
+    mGetInHighlightBackInner.set(255, 255, 190, 90);
+    mGetInHighlightBackOuter.set(170, 110, 0, 0);
+    mGetInHighlightAnimSpeed = 0.6f;
+    mGetInTextLocation = 0;
+
+    mStartHighlightAppearFrames = 30;
+    mStartHighlightScale = 1.8f;
+    mStartHighlightFrontInner.set(255, 255, 167, 80);
+    mStartHighlightFrontOuter.set(220, 110, 30, 0);
+    mStartHighlightBackInner.set(255, 255, 190, 90);
+    mStartHighlightBackOuter.set(170, 110, 0, 0);
+    mStartHighlightAnimSpeed = 0.6f;
+    mStartHighlightDisplayFrames = 30;
+
+    mReadyFightTextSizeX = 1.0f;
+    mReadyFightTextSizeY = 1.0f;
+    mReadyFightTextPosX = 0.0f;
+    mReadyFightTextPosY = 0.0f;
+    mReadyFightTextAnimSpeed = 1.0f;
+    mReadyFightTextWaitFrames = 10;
+    field_0x172 = 10;
+    mReadyFightHighlightAppearFrames = 30;
+    mReadyFightHighlightScale = 1.8f;
+    mReadyFightHighlightFrontInner.set(255, 255, 167, 80);
+    mReadyFightHighlightFrontOuter.set(220, 110, 30, 0);
+    mReadyFightHighlightBackInner.set(255, 255, 190, 90);
+    mReadyFightHighlightBackOuter.set(170, 110, 0, 0);
+    mReadyFightHighlightAnimSpeed = 0.6f;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80454608-8045460C 002C08 0004+00 1/1 0/0 0/0 .sdata2          @4126 */
-SECTION_SDATA2 static f32 lit_4126 = 19.0f / 25.0f;
-
-/* 8045460C-80454610 002C0C 0004+00 1/1 0/0 0/0 .sdata2          @4127 */
-SECTION_SDATA2 static f32 lit_4127 = 11.0f;
-
-/* 80454610-80454614 002C10 0004+00 3/3 0/0 0/0 .sdata2          @4128 */
-SECTION_SDATA2 static f32 lit_4128 = 33.0f / 5.0f;
-
-/* 80454614-80454618 002C14 0004+00 1/1 0/0 0/0 .sdata2          @4129 */
-SECTION_SDATA2 static f32 lit_4129 = -35.0f;
-
-/* 80454618-8045461C 002C18 0004+00 3/3 0/0 0/0 .sdata2          @4130 */
-SECTION_SDATA2 static f32 lit_4130 = 1.0f / 5.0f;
-
-/* 8045461C-80454620 002C1C 0004+00 1/1 0/0 0/0 .sdata2          @4131 */
-SECTION_SDATA2 static f32 lit_4131 = 19.0f;
-
-/* 80454620-80454624 002C20 0004+00 1/1 0/0 0/0 .sdata2          @4132 */
-SECTION_SDATA2 static f32 lit_4132 = 1.0f / 10.0f;
 
 /* 801FF31C-801FF5B8 1F9C5C 029C+00 1/1 0/0 0/0 .text            __ct__25dMeter_drawLightDropHIO_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMeter_drawLightDropHIO_c::dMeter_drawLightDropHIO_c() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__ct__25dMeter_drawLightDropHIO_cFv.s"
+dMeter_drawLightDropHIO_c::dMeter_drawLightDropHIO_c() {
+    mVesselScale = 0.76f;
+    mVesselPosX = -18.0f;
+    mVesselPosY = 11.0f;
+    mVesselPosX_4x3 = -20.0f;
+    mVesselPosY_4x3 = 6.6f;
+    mVesselAlpha = 1.0f;
+
+    mVesselTalkScale = 0.76f;
+    mVesselTalkPosX = 20.0f;
+    mVesselTalkPosY = -35.0f;
+    mVesselTalkAlpha = 0.5f;
+
+    mDropGetScale = 2.5f;
+    mDropGetScaleAnimFrameNum = 20;
+    mDropScale = 1.0f;
+    mHighlightInterval = 1;
+    field_0x54 = 0xFFF1;
+    mVesselDecorAlpha = 0.5f;
+    mDropAlpha = 1.0f;
+
+    mDropOnColorBlack.set(30, 255, 255, 0);
+    mDropOnColorWhite.set(255, 255, 255, 255);
+    mDropOffColorBlack.set(0, 0, 0, 0);
+    mDropOffColorWhite.set(255, 255, 255, 255);
+
+    mHighlightLoopScale = 0.6f;
+    mHighlightLoopFrontInner[0].set(255, 255, 255, 255);
+    mHighlightLoopFrontOuter[0].set(0, 0, 0, 0);
+    mHighlightLoopBackInner[0].set(255, 255, 255, 255);
+    mHighlightLoopBackOuter[0].set(126, 238, 218, 0);
+    mHighlightLoopAnimSpeed = 0.2f;
+
+    mHighlightLoopBackScale = 0.7f;
+    mHighlightLoopFrontInner[1].set(255, 255, 255, 255);
+    mHighlightLoopFrontOuter[1].set(0, 0, 0, 0);
+    mHighlightLoopBackInner[1].set(255, 255, 255, 255);
+    mHighlightLoopBackOuter[1].set(126, 238, 218, 0);
+    mHighlightLoopBackStopFrame = 19.0f;
+
+    mDropHighlightFrontInner.set(255, 255, 255, 255);
+    mDropHighlightFrontOuter.set(0, 0, 0, 0);
+    mDropHighlightBackInner.set(255, 255, 255, 255);
+    mDropHighlightBackOuter.set(126, 238, 218, 0);
+    mDropHighlightAnimSpeed = 0.1f;
+    mDropHighlightAnimSpeed_Completed = 0.6f;
+    mHighlightScaleNormal = 1.3f;
+    mHighlightScaleComplete = 0.3f;
+    mAnimDebug = 0;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80454624-80454628 002C24 0004+00 1/1 0/0 0/0 .sdata2          @4257 */
-SECTION_SDATA2 static f32 lit_4257 = 40.0f;
-
-/* 80454628-8045462C 002C28 0004+00 1/1 0/0 0/0 .sdata2          @4258 */
-SECTION_SDATA2 static f32 lit_4258 = -28.0f / 5.0f;
-
-/* 8045462C-80454630 002C2C 0004+00 1/1 0/0 0/0 .sdata2          @4259 */
-SECTION_SDATA2 static f32 lit_4259 = -15.0f;
-
-/* 80454630-80454634 002C30 0004+00 3/3 0/0 0/0 .sdata2          @4260 */
-SECTION_SDATA2 static f32 lit_4260 = 2.0f / 5.0f;
-
-/* 80454634-80454638 002C34 0004+00 2/2 0/0 0/0 .sdata2          @4261 */
-SECTION_SDATA2 static f32 lit_4261 = 18.0f;
-
-/* 80454638-8045463C 002C38 0004+00 2/2 0/0 0/0 .sdata2          @4262 */
-SECTION_SDATA2 static f32 lit_4262 = 11.0f / 20.0f;
-
-/* 8045463C-80454640 002C3C 0004+00 1/1 0/0 0/0 .sdata2          @4263 */
-SECTION_SDATA2 static f32 lit_4263 = -42.0f;
-
-/* 80454640-80454644 002C40 0004+00 2/2 0/0 0/0 .sdata2          @4264 */
-SECTION_SDATA2 static f32 lit_4264 = 8.0f;
-
-/* 80454644-80454648 002C44 0004+00 2/2 0/0 0/0 .sdata2          @4265 */
-SECTION_SDATA2 static f32 lit_4265 = 23.0f / 25.0f;
-
-/* 80454648-8045464C 002C48 0004+00 1/1 0/0 0/0 .sdata2          @4266 */
-SECTION_SDATA2 static f32 lit_4266 = -63.0f;
-
-/* 8045464C-80454650 002C4C 0004+00 1/1 0/0 0/0 .sdata2          @4267 */
-SECTION_SDATA2 static f32 lit_4267 = -49.0f;
-
-/* 80454650-80454654 002C50 0004+00 1/1 0/0 0/0 .sdata2          @4268 */
-SECTION_SDATA2 static f32 lit_4268 = -62.0f;
-
-/* 80454654-80454658 002C54 0004+00 1/1 0/0 0/0 .sdata2          @4269 */
-SECTION_SDATA2 static f32 lit_4269 = -48.0f;
-
-/* 80454658-8045465C 002C58 0004+00 1/1 0/0 0/0 .sdata2          @4270 */
-SECTION_SDATA2 static f32 lit_4270 = -11.0f / 5.0f;
-
-/* 8045465C-80454660 002C5C 0004+00 2/2 0/0 0/0 .sdata2          @4271 */
-SECTION_SDATA2 static f32 lit_4271 = -13.0f / 10.0f;
-
-/* 80454660-80454664 002C60 0004+00 1/1 0/0 0/0 .sdata2          @4272 */
-SECTION_SDATA2 static f32 lit_4272 = -46.0f / 5.0f;
-
-/* 80454664-80454668 002C64 0004+00 1/1 0/0 0/0 .sdata2          @4273 */
-SECTION_SDATA2 static f32 lit_4273 = -65.0f;
-
-/* 80454668-8045466C 002C68 0004+00 1/1 0/0 0/0 .sdata2          @4274 */
-SECTION_SDATA2 static f32 lit_4274 = 23.0f / 10.0f;
-
-/* 8045466C-80454670 002C6C 0004+00 1/1 0/0 0/0 .sdata2          @4275 */
-SECTION_SDATA2 static f32 lit_4275 = 22.0f;
-
-/* 80454670-80454674 002C70 0004+00 1/1 0/0 0/0 .sdata2          @4276 */
-SECTION_SDATA2 static f32 lit_4276 = 21.0f / 10.0f;
-
-/* 80454674-80454678 002C74 0004+00 2/2 0/0 0/0 .sdata2          @4277 */
-SECTION_SDATA2 static f32 lit_4277 = -14.0f;
-
-/* 80454678-8045467C 002C78 0004+00 1/1 0/0 0/0 .sdata2          @4278 */
-SECTION_SDATA2 static f32 lit_4278 = -13.0f;
-
-/* 8045467C-80454680 002C7C 0004+00 2/2 0/0 0/0 .sdata2          @4279 */
-SECTION_SDATA2 static f32 lit_4279 = -1.0f;
-
-/* 80454680-80454684 002C80 0004+00 1/1 0/0 0/0 .sdata2          @4280 */
-SECTION_SDATA2 static f32 lit_4280 = 14.0f;
-
-/* 80454684-80454688 002C84 0004+00 2/2 0/0 0/0 .sdata2          @4281 */
-SECTION_SDATA2 static f32 lit_4281 = 6.0f;
-
-/* 80454688-8045468C 002C88 0004+00 1/1 0/0 0/0 .sdata2          @4282 */
-SECTION_SDATA2 static f32 lit_4282 = -47.0f / 10.0f;
-
-/* 8045468C-80454690 002C8C 0004+00 2/2 0/0 0/0 .sdata2          @4283 */
-SECTION_SDATA2 static f32 lit_4283 = 46.0f / 5.0f;
-
-/* 80454690-80454694 002C90 0004+00 1/1 0/0 0/0 .sdata2          @4284 */
-SECTION_SDATA2 static f32 lit_4284 = -4.0f;
-
-/* 80454694-80454698 002C94 0004+00 2/2 0/0 0/0 .sdata2          @4285 */
-SECTION_SDATA2 static f32 lit_4285 = 11.0f / 5.0f;
-
-/* 80454698-8045469C 002C98 0004+00 2/2 0/0 0/0 .sdata2          @4286 */
-SECTION_SDATA2 static f32 lit_4286 = 17.0f / 20.0f;
-
-/* 8045469C-804546A0 002C9C 0004+00 1/1 0/0 0/0 .sdata2          @4287 */
-SECTION_SDATA2 static f32 lit_4287 = 200.0f;
-
-/* 804546A0-804546A4 002CA0 0004+00 1/1 0/0 0/0 .sdata2          @4288 */
-SECTION_SDATA2 static f32 lit_4288 = 150.0f;
-
-/* 804546A4-804546A8 002CA4 0004+00 1/1 0/0 0/0 .sdata2          @4289 */
-SECTION_SDATA2 static f32 lit_4289 = 208.0f;
-
-/* 804546A8-804546AC 002CA8 0004+00 1/1 0/0 0/0 .sdata2          @4290 */
-SECTION_SDATA2 static f32 lit_4290 = -100.0f;
 
 /* 801FF5B8-802001AC 1F9EF8 0BF4+00 1/1 0/0 0/0 .text            __ct__16dMeter_drawHIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMeter_drawHIO_c::dMeter_drawHIO_c() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__ct__16dMeter_drawHIO_cFv.s"
+dMeter_drawHIO_c::dMeter_drawHIO_c() {
+    mLifeTopPosX = 40.0f;
+    mLifeTopPosY = -5.6f;
+
+    mNoMagicPosY = -15.0f;
+
+    mHUDScale = 1.0f;
+    mHUDAlpha = 1.0f;
+
+    mLifeGaugeScale = 1.0f;
+    mLifeGaugeHeartAlpha = 1.0f;
+    mLifeGaugeBaseAlpha = 0.4f;
+    mLifeGaugePosX = 5.0f;
+    mLifeGaugePosY = 18.0f;
+
+    mHeartScale = 1.0f;
+    mHeartAlpha = 0.7f;
+    mLargeHeartScale = 1.0f;
+    mLargeHeartAlpha = 1.0f;
+
+    mMagicMeterScale = 0.7f;
+    mMagicMeterAlpha = 1.0f;
+    mMagicMeterFrameAlpha = 0.55f;
+    mMagicMeterPosX = -42.0f;
+    mMagicMeterPosY = 0.0f;
+
+    mLanternMeterScale = 0.7f;
+    mLanternMeterAlpha = 1.0f;
+    mLanternMeterFrameAlpha = 0.55f;
+    mLanternMeterPosX = 8.0f;
+    mLanternMeterPosY = 20.0f;
+
+    mOxygenMeterScale = 0.7f;
+    mOxygenMeterAlpha = 1.0f;
+    mOxygenMeterFrameAlpha = 0.55f;
+    mOxygenMeterPosX = 8.0f;
+    mOxygenMeterPosY = 20.0f;
+
+    mMainHUDButtonsScale = 0.92f;
+    mMainHUDButtonsAlpha = 1.0f;
+    mMainHUDButtonsPosX = -15.0f;
+    mMainHUDButtonsPosY = 8.0f;
+
+    mRingHUDButtonsScale = 0.92f;
+    mRingHUDButtonsAlpha = 1.0f;
+    mRingHUDButtonsPosX = -15.0f;
+    mRingHUDButtonsPosY = 8.0f;
+
+    mButtonDisplayBackScale = 1.0f;
+    mButtonDisplayBackAlpha = 1.0f;
+
+    mAButtonScale = 1.1f;
+    mAButtonAlpha = 1.0f;
+    mAButtonPosX = 0.0f;
+    mAButtonPosY = 0.0f;
+    mAButtonTalkScale = 1.0f;
+    mAButtonTalkPosX = 0.0f;
+    mAButtonTalkPosY = -63.0f;
+    mAButtonTalkAScale = 1.0f;
+    mAButtonTalkAPosX = 0.0f;
+    mAButtonTalkAPosY = -49.0f;
+
+    mAButtonFontTalkScale = 1.0f;
+    mAButtonFontTalkPosX = -20.0f;
+    mAButtonFontTalkPosY = -62.0f;
+    mAButtonFontTalkAScale = 1.0f;
+    mAButtonFontTalkAPosX = -20.0f;
+    mAButtonFontTalkAPosY = -48.0f;
+
+    mAButtonVesselPosX = 0.0f;
+    mAButtonVesselPosY = 0.0f;
+
+    mBButtonScale = 1.1f;
+    mBButtonAlpha = 1.0f;
+    mBButtonPosX = -2.2f;
+    mBButtonPosY = -1.3f;
+    mBButtonTalkScale = 1.0f;
+    mBButtonTalkPosX = 0.0f;
+    mBButtonTalkPosY = -62.0f;
+
+    mBButtonFontTalkScale = 1.0f;
+    mBButtonFontTalkPosX = -9.2f;
+    mBButtonFontTalkPosY = -65.0f;
+
+    mBButtonWolfPosX = 0.0f;
+    mBButtonWolfPosY = 0.0f;
+
+    mBButtonVesselPosX = 0.0f;
+    mBButtonVesselPosY = 0.0f;
+
+    mMidnaIconScale = 1.1f;
+    mMidnaIconAlpha = 1.0f;
+    mMidnaIconPosX = 0.0f;
+    mMidnaIconPosY = 0.0f;
+
+    field_0x134 = 1.1f;
+    field_0x138 = 1.0f;
+    field_0x13c = 0.0f;
+    field_0x140 = 0.0f;
+
+    mXButtonScale = 1.0f;
+    mXButtonAlpha = 0.9f;
+    mXButtonPosX = 0.0f;
+    mXButtonPosY = 0.0f;
+
+    mYButtonScale = 1.0f;
+    mYButtonAlpha = 0.9f;
+    mYButtonPosX = 0.0f;
+    mYButtonPosY = 0.0f;
+
+    field_0x164 = 1.5f;
+    field_0x168 = 1.0f;
+    field_0x16c = 0.0f;
+    field_0x170 = 0.0f;
+
+    field_0x304 = 1.0f;
+    field_0x308 = 0.0f;
+    field_0x30c = 0.0f;
+
+    field_0x314 = 1.0f;
+    field_0x318 = 0.0f;
+    field_0x31c = 0.0f;
+
+    field_0x320 = 1.0f;
+    field_0x324 = 0.0f;
+    field_0x328 = 0.0f;
+
+    mZButtonScale = 1.0f;
+    mZButtonAlpha = 0.9f;
+    mZButtonPosX = 0.0f;
+    mZButtonPosY = 0.0f;
+
+    mBButtonItemPosX = 3.0f;
+    mBButtonItemPosY = 18.0f;
+    mBButtonItemRotation = 0.0f;
+    mBButtonItemScale = 1.4f;
+
+    mBButtonSwordPosX = 17.0f;
+    mBButtonSwordPosY = 25.0f;
+    mBButtonSwordRotation = 76.0f;
+    mBButtonSwordScale = 2.3f;
+
+    mBButtonFishingPosX = 4.0f;
+    mBButtonFishingPosY = 22.0f;
+    mBButtonFishingRotation = 20.0f;
+    mBButtonFishingScale = 2.1f;
+
+    mXButtonItemPosX = 4.0f;
+    mXButtonItemPosY = -14.0f;
+    mXButtonItemScale = 1.5f;
+
+    mYButtonItemPosX = 0.0f;
+    mYButtonItemPosY = 0.0f;
+    mYButtonItemScale = 1.5f;
+
+    field_0x1cc = 0.0f;
+    field_0x1d0 = 0.0f;
+    field_0x1d4 = 1.0f;
+
+    mXItemNumPosX = -13.0f;
+    mXItemNumPosY = -12.0f;
+    mXItemNumScale = 0.95f;
+
+    mYItemNumPosX = -1.0f;
+    mYItemNumPosY = -18.0f;
+    mYItemNumScale = 0.95f;
+
+    field_0x1f8 = 0.0f;
+    field_0x208 = 0.0f;
+    field_0x218 = 1.0f;
+
+    mBItemNumPosX = 0.0f;
+    mBItemNumPosY = 0.0f;
+    mBItemNumScale = 1.0f;
+
+    for (int i = 0; i < 3; i++) {
+        mButtonItemRotation[i] = 0.0f;
+    }
+
+    mZButtonItemPosX = 0.0f;
+    mZButtonItemPosY = 0.0f;
+    mZButtonItemScale = 1.0f;
+
+    for (int i = 0; i < 2; i++) {
+        mBItemBaseScale[i] = 1.0f;
+        mBItemBasePosX[i] = 0.0f;
+        mBItemBasePosY[i] = 0.0f;
+    }
+
+    mBItemBaseAlpha = 0.5f;
+    field_0x23c = 0.5f;
+
+    mXButtonItemBaseScale = 1.5f;
+    mXButtonItemBasePosX = 14.0f;
+    mXButtonItemBasePosY = -12.0f;
+    mXButtonItemBaseAlpha = 0.5f;
+
+    mXButtonItemBaseNoItemScale = 1.5f;
+    mXButtonItemBaseNoItemPosX = 0.0f;
+    mXButtonItemBaseNoItemPosY = 0.0f;
+    mXButtonItemBaseNoItemAlpha = 1.0f;
+
+    mYButtonItemBaseScale = 1.5f;
+    mYButtonItemBasePosX = -15.0f;
+    mYButtonItemBasePosY = -12.0f;
+    mYButtonItemBaseAlpha = 0.5f;
+
+    mYButtonItemBaseNoItemScale = 1.5f;
+    mYButtonItemBaseNoItemPosX = 0.0f;
+    mYButtonItemBaseNoItemPosY = 0.0f;
+    mYButtonItemBaseNoItemAlpha = 0.5f;
+
+    field_0x280 = 1.5f;
+    field_0x288 = 0.0f;
+    field_0x290 = 6.0f;
+    field_0x298 = 0.5f;
+
+    field_0x284 = 1.0f;
+    field_0x28c = 0.0f;
+    field_0x294 = 4.0f;
+    field_0x29c = 1.0f;
+
+    mZButtonItemBaseScale = 1.0f;
+    mZButtonItemBasePosX = 0.0f;
+    mZButtonItemBasePosY = 0.0f;
+    mZButtonItemBaseAlpha = 0.5f;
+
+    mButtonBaseAlpha = 0.55f;
+
+    mAButtonFontActionID = 1001;
+    field_0x2cc = 1001;
+    mAButtonTextDebug = false;
+
+    mAButtonFontSpacing = 1.0f;
+    mAButtonFontScale = 1.0f;
+    mAButtonFontPosX = 0.0f;
+    mAButtonFontPosY = 0.0f;
+    mAButtonFontColor.set(255, 255, 255, 255);
+
+    mBButtonFontScale = 1.0f;
+    mBButtonFontPosX = -8.0f;
+    mBButtonFontPosY = 4.0f;
+    mBButtonFontColor.set(255, 255, 255, 255);
+
+    field_0x2e4 = 1.0f;
+    field_0x2e8 = 0.0f;
+    field_0x2ec = 0.0f;
+    field_0x2f0.set(255, 255, 255, 255);
+
+    mXYButtonFontScale = 1.0f;
+    mXYButtonFontPosX = 0.0f;
+    mXYButtonFontPosY = 0.0f;
+    mXYButtonFontColor.set(255, 255, 255, 255);
+
+    mZButtonFontScale = 1.0f;
+    mZButtonFontPosX = 0.0f;
+    mZButtonFontPosY = -4.7f;
+    mZButtonFontColor.set(255, 255, 255, 255);
+
+    mRupeeKeyScale = 1.0f;
+    mRupeeKeyPosX = 9.2f;
+    mRupeeKeyPosY = -4.0f;
+    mRupeeKeyAlpha = 0.8f;
+
+    mRupeeScale = 0.8f;
+    mRupeePosX = 0.0f;
+    mRupeePosY = 0.0f;
+    mRupeeAlpha = 1.0f;
+
+    mKeyScale = 0.7f;
+    mKeyPosX = -14.0f;
+    mKeyPosY = 1.3f;
+    mKeyAlpha = 1.0f;
+
+    mRupeeFrameScale = 0.0f;
+    mRupeeFramePosX = 0.0f;
+    mRupeeFramePosY = 1.0f;
+    mRupeeFrameAlpha = 1.0f;
+
+    mRupeeCountScale = 1.0f;
+    mRupeeCountPosX = 0.0f;
+    mRupeeCountPosY = 0.0f;
+    mRupeeCountAlpha = 1.0f;
+
+    mKeyNumScale = 1.0f;
+    mKeyNumPosX = 0.0f;
+    mKeyNumPosY = 0.0f;
+    mKeyNumAlpha = 1.0f;
+
+    mSpurDebug = false;
+    mSpurIconScale = 1.0f;
+    mSpurIconAlpha = 1.0f;
+    mUsedSpurIconScale = 1.0f;
+    mUsedSpurIconAlpha = 1.0f;
+    mSpurBarScale = 0.95f;
+    mSpurBarPosX = 6.6f;
+    mSpurBarPosY = -1.3f;
+
+    mAButtonHorsePosX = 2.2f;
+    mAButtonHorsePosY = 0.0f;
+    mAButtonHorseScale = 0.85f;
+
+    mAButtonHighlightScale = 1.5f;
+    mBButtonHighlightScale = 0.7f;
+    field_0x3cc = 1.0f;
+    mZButtonHighlightScale = 1.2f;
+    mXYButtonHighlightScale = 1.2f;
+    mMidnaIconHighlightScale = 1.0f;
+    mSpurIconHighlightScale = 2.5f;
+    mSpurIconReviveHighlightScale = 1.3f;
+    field_0x3f0 = 0.0f;
+    field_0x3f4 = 0.0f;
+    field_0x3f8 = 1.0f;
+
+    mDPadButtonScale = 0.9f;
+    mDPadButtonOFFPosX = 12.0f;
+    mDPadButtonOFFPosY = 0.0f;
+    mDPadButtonONPosX = 12.0f;
+    mDPadButtonONPosY = 0.0f;
+    mDPadButtonLetterSpacing = 0.9f;
+    mDPadButtonAlpha = 1.0f;
+    mDPadButtonITEMAlpha = 1.0f;
+    mDPadButtonMAPAlpha = 1.0f;
+    mDPadButtonMoveFrame = 5;
+    field_0x422 = 10;
+    field_0x424 = 20;
+
+    mXYButtonsItemDimAlpha = 128;
+    mXYButtonsBaseDimAlpha = 128;
+    field_0x42c = 128;
+
+    for (int i = 0; i < 4; i++) {
+        mButtonDebug[i] = false;
+    }
+
+    mMaxSpurAmount = 6;
+
+    mSpurIconHighlightFrontInner.set(255, 255, 255, 255);
+    mSpurIconHighlightFrontOuter.set(140, 232, 228, 0);
+    mSpurIconHighlightBackInner.set(255, 255, 190, 255);
+    mSpurIconHighlightBackOuter.set(55, 215, 90, 0);
+    mSpurIconHighlightAnimSpeed = 1.5f;
+
+    mSpurIconReviveHighlightFrontInner.set(255, 255, 255, 255);
+    mSpurIconReviveHighlightFrontOuter.set(220, 110, 30, 0);
+    mSpurIconReviveHighlightBackInner.set(255, 255, 190, 255);
+    mSpurIconReviveHighlightBackOuter.set(170, 110, 0, 0);
+    mSpurIconReviveHighlightAnimSpeed = 0.5f;
+
+    mZButtonHighlightFrontInner.set(255, 255, 255, 255);
+    mZButtonHighlightFrontOuter.set(0, 0, 0, 0);
+    mZButtonHighlightBackInner.set(255, 255, 255, 255);
+    mZButtonHighlightBackOuter.set(160, 160, 110, 0);
+    mZButtonHighlightAnimSpeed = 0.4f;
+
+    mXYButtonHighlightFrontInner.set(255, 255, 255, 255);
+    mXYButtonHighlightFrontOuter.set(0, 0, 0, 0);
+    mXYButtonHighlightBackInner.set(255, 255, 255, 255);
+    mXYButtonHighlightBackOuter.set(160, 160, 110, 0);
+    mXYButtonHighlightAnimSpeed = 0.4f;
+
+    mAButtonHighlightFrontInner.set(255, 255, 255, 160);
+    mAButtonHighlightFrontOuter.set(0, 0, 0, 0);
+    mAButtonHighlightBackInner.set(255, 255, 255, 128);
+    mAButtonHighlightBackOuter.set(0, 255, 0, 0);
+    mAButtonHighlightAnimSpeed = 0.4f;
+
+    mBButtonHighlightFrontInner.set(255, 180, 180, 160);
+    mBButtonHighlightFrontOuter.set(0, 0, 0, 0);
+    mBButtonHighlightBackInner.set(255, 255, 255, 128);
+    mBButtonHighlightBackOuter.set(255, 0, 0, 0);
+    mBButtonHighlightAnimSpeed = 0.4f;
+
+    field_0x4a8.set(255, 180, 180, 160);
+    field_0x4ac.set(0, 0, 0, 0);
+    field_0x4b0.set(255, 255, 255, 128);
+    field_0x4b4.set(255, 0, 0, 0);
+    field_0x4b8 = 0.4f;
+
+    field_0x4bc.set(255, 180, 180, 160);
+    field_0x4c0.set(0, 0, 0, 0);
+    field_0x4c4.set(255, 255, 255, 128);
+    field_0x4c8.set(255, 255, 255, 0);
+    field_0x4cc = 0.4f;
+    field_0x3d0 = 0.7f;
+
+    field_0x4d0.set(255, 180, 180, 160);
+    field_0x4d4.set(0, 0, 0, 0);
+    field_0x4d8.set(255, 255, 255, 128);
+    field_0x4dc.set(255, 255, 255, 0);
+    field_0x4e0 = 0.4f;
+    field_0x3d4 = 0.7f;
+
+    mMidnaIconHighlightFrontInner.set(200, 235, 255, 255);
+    mMidnaIconHighlightFrontOuter.set(0, 0, 0, 0);
+    mMidnaIconHighlightBackInner.set(255, 255, 255, 255);
+    mMidnaIconHighlightBackOuter.set(140, 200, 125, 0);
+    mMidnaIconHighlightAnimSpeed = 0.5f;
+    mMidnaIconFlashRate = 50;
+
+    mScrollArrowScaleX = 1.0f;
+    mScrollArrowScaleY = 1.0f;
+    mScrollArrowBCKAnimSpeed = 1.0f;
+    mScrollArrowBPKAnimSpeed = 1.0f;
+    mScrollArrowBTKAnimSpeed = 1.0f;
+    mScrollArrowTopBottomPosX = 0.0f;
+    mScrollArrowTopBottomPosY = 200.0f;
+    mScrollArrowLeftRightPosX = 200.0f;
+    mScrollArrowLeftRightPosY = 0.0f;
+    mScrollArrowCenterPosX = 0.0f;
+    mScrollArrowCenterPosY = 0.0f;
+    mScrollArrowDisplayAll = false;
+
+    mWiiLockArrowScaleX = 0.5f;
+    mWiiLockArrowScaleY = 0.5f;
+    mWiiLockArrowBCKAnimSpeed = 1.0f;
+    mWiiLockArrowBPKAnimSpeed = 1.0f;
+    mWiiLockArrowBTKAnimSpeed = 1.0f;
+    mWiiLockArrowTopBottomPosX = 0.0f;
+    mWiiLockArrowTopBottomPosY = 150.0f;
+    mWiiLockArrowLeftRightPosX = 208.0f;
+    mWiiLockArrowLeftRightPosY = 0.0f;
+    mWiiLockArrowDisplayAll = false;
+
+    field_0x54c = 1.0f;
+    mItemScaleAdjustON = false;
+    mItemScalePercent = 100;
+
+    mFloatingMessagePosX = 0.0f;
+    mFloatingMessagePosY = -100.0f;
+    mMessageID = 395;
+    mFlowID = 3003;
+    mMessageDuration = 150;
+    mMessageDebug = false;
+    mFlowDebug = false;
+
+    mTouchAreaSelectBlack[0].set(0, 0, 0, 0);
+    mTouchAreaSelectWhite[0].set(255, 145, 100, 255);
+    mTouchAreaSelectBlack[1].set(0, 0, 0, 0);
+    mTouchAreaSelectWhite[1].set(255, 255, 0, 255);
+    mTouchAreaSelectBlack[2].set(0, 0, 0, 0);
+    mTouchAreaSelectWhite[2].set(230, 205, 180, 255);
+    mTouchAreaSelectFrameNum = 10;
+
+    for (int i = 0; i < 5; i++) {
+        mTouchAreaUnselectScale[i] = 1.0f;
+        mTouchAreaSelectScale[i] = 1.0f;
+        mTouchAreaScale[i] = 1.0f;
+        mTouchAreaAlpha[i] = 1.0f;
+        mTouchAreaPosX[i] = 0.0f;
+        mTouchAreaPosY[i] = 0.0f;
+    }
+
+    mDpadMAPScale = 1.0f;
+    mDpadMAPPosX = 0.0f;
+    mDpadMAPPosY = 0.0f;
+    field_0x60a = false;
+
+    mLanternIconMeterPosX = 0.0f;
+    mLanternIconMeterPosY = 0.0f;
+    mLanternIconMeterSize = 1.0f;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804546AC-804546B0 002CAC 0004+00 1/1 0/0 0/0 .sdata2          @4334 */
-SECTION_SDATA2 static f32 lit_4334 = 125.0f;
-
-/* 804546B0-804546B4 002CB0 0004+00 1/1 0/0 0/0 .sdata2          @4335 */
-SECTION_SDATA2 static f32 lit_4335 = 173.0f;
-
-/* 804546B4-804546B8 002CB4 0004+00 1/1 0/0 0/0 .sdata2          @4336 */
-SECTION_SDATA2 static f32 lit_4336 = 7.0f / 20.0f;
-
-/* 804546B8-804546BC 002CB8 0004+00 1/1 0/0 0/0 .sdata2          @4337 */
-SECTION_SDATA2 static f32 lit_4337 = -59.0f;
-
-/* 804546BC-804546C0 002CBC 0004+00 1/1 0/0 0/0 .sdata2          @4338 */
-SECTION_SDATA2 static f32 lit_4338 = -64.0f;
-
-/* 804546C0-804546C4 002CC0 0004+00 1/1 0/0 0/0 .sdata2          @4339 */
-SECTION_SDATA2 static f32 lit_4339 = 90.0f;
-
-/* 804546C4-804546C8 002CC4 0004+00 1/1 0/0 0/0 .sdata2          @4340 */
-SECTION_SDATA2 static f32 lit_4340 = -124.0f;
-
-/* 804546C8-804546CC 002CC8 0004+00 1/1 0/0 0/0 .sdata2          @4341 */
-SECTION_SDATA2 static f32 lit_4341 = 118.0f;
-
-/* 804546CC-804546D0 002CCC 0004+00 1/1 0/0 0/0 .sdata2          @4342 */
-SECTION_SDATA2 static f32 lit_4342 = -127.0f;
-
-/* 804546D0-804546D4 002CD0 0004+00 1/1 0/0 0/0 .sdata2          @4343 */
-SECTION_SDATA2 static f32 lit_4343 = 46.0f;
-
-/* 804546D4-804546D8 002CD4 0004+00 1/1 0/0 0/0 .sdata2          @4344 */
-SECTION_SDATA2 static f32 lit_4344 = 9.0f;
-
-/* 804546D8-804546DC 002CD8 0004+00 1/1 0/0 0/0 .sdata2          @4345 */
-SECTION_SDATA2 static f32 lit_4345 = -60.0f;
-
-/* 804546DC-804546E0 002CDC 0004+00 1/1 0/0 0/0 .sdata2          @4346 */
-SECTION_SDATA2 static f32 lit_4346 = -58.0f;
-
-/* 804546E0-804546E4 002CE0 0004+00 1/1 0/0 0/0 .sdata2          @4347 */
-SECTION_SDATA2 static f32 lit_4347 = 120.0f;
 
 /* 802001AC-802004B4 1FAAEC 0308+00 1/1 0/0 0/0 .text            __ct__16dMeter_ringHIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMeter_ringHIO_c::dMeter_ringHIO_c() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__ct__16dMeter_ringHIO_cFv.s"
+dMeter_ringHIO_c::dMeter_ringHIO_c() {
+    mRingRadiusH = 175.0f;
+    mRingRadiusV = 160.0f;
+
+    mOpenFrames = 5;
+    mCloseFrames = 5;
+
+    mSelectItemScale = 1.4f;
+    mUnselectItemScale = 0.9f;
+    mSelectButtonScale = 1.4f;
+    mUnselectButtonScale = 1.0f;
+    mCursorScale = 1.2f;
+
+    mItemNum = 8;
+
+    mInactiveItemScale = 0.4f;
+    mItemAlphaFlashDuration = 300;
+    mItemAlphaMin = 255;
+    mItemAlphaMax = 255;
+
+    mOffsetLineDisplay = 0;
+
+    mItemIconAlpha = 255;
+    mItemIconAlpha_Wolf = 110;
+
+    mItemFrame[SELECT_FRAME].set(255, 255, 255, 0);
+    mItemFrame[UNSELECT_FRAME].set(255, 255, 140, 0);
+
+    mItemNamePosX = 125.0f;
+    mItemNamePosY = 173.0f;
+    mItemNameScale = 1.2f;
+
+    mCenterPosX = 0.0f;
+    mCenterPosY = 0.0f;
+    mCenterScale = 1.0f;
+    mOverlayAlpha = 0.35f;
+
+    mGuidePosX[SET_ITEM] = -59.0f;
+    mGuidePosY[SET_ITEM] = -64.0f;
+    mGuideScale[SET_ITEM] = 0.8f;
+
+    mGuidePosX[DIRECT_SELECT] = 90.0f;
+    mGuidePosY[DIRECT_SELECT] = -124.0f;
+    mGuideScale[DIRECT_SELECT] = 0.8f;
+
+    mGuidePosX[2] = 0.0f;
+    mGuidePosY[2] = 0.0f;
+    mGuideScale[2] = 1.0f;
+
+    mGuidePosX[ROTATE] = 118.0f;
+    mGuidePosY[ROTATE] = -127.0f;
+    mGuideScale[ROTATE] = 0.8f;
+
+    mGuidePosX[COMBO_ITEM] = -1.3f;
+    mGuidePosY[COMBO_ITEM] = -14.0f;
+    mGuideScale[COMBO_ITEM] = 0.85f;
+
+    for (int i = 5; i < 10; i++) {
+        mGuidePosX[i] = 0.0f;
+        mGuidePosY[i] = 18.0f;
+        mGuideScale[i] = 0.85f;
+    }
+
+    mSelectPosX = 2.2f;
+    mSelectPosY = 3.0f;
+    mSelectScaleX = 0.8f;
+    mSelectScaleY = 0.85f;
+
+    mItemDescPosX = 0.0f;
+    mItemDescPosY = 46.0f;
+    mItemDescScale = 0.95f;
+    mItemDescAlpha = 1.0f;
+
+    mItemDescTitlePosX = 9.0f;
+    mItemDescTitlePosY = 0.0f;
+    mItemDescTitleScale = 1.1f;
+
+    mItemRingPosX = -60.0f;
+    mItemRingPosY = -5.0f;
+    mRingPosX = -58.0f;
+    mRingPosY = -8.0f;
+    mRingAlpha = 0.75f;
+    mRingAlpha_Wolf = 0.35f;
+    mRingScaleH = 1.5f;
+    mRingScaleV = 1.5f;
+
+    mHighlightScale = 2.5f;
+    mHighlightFrontInner.set(255, 255, 255, 185);
+    mHighlightFrontOuter.set(0, 155, 0, 0);
+    mHighlightBackInner.set(255, 255, 255, 87);
+    mHighlightBackOuter.set(0, 115, 0, 0);
+    mHighlightAnimSpeed = 0.772705f;
+
+    mCursorInitSpeed = 5000;
+    mCursorMax = 10000;
+    mCursorAccel = 0;
+    mCursorChangeWaitFrames = 2;
+
+    field_0x10 = 120.0f;
+    field_0x13e = 12;
+    field_0x140 = 2048;
+    field_0x142 = 128;
+
+    field_0x44 = 0.0f;
+    field_0x48 = 0.0f;
+    field_0x4c = 1.0f;
+    field_0x154 = 255;
+
+    mDirectSelectWaitFrames = 4;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804546E4-804546E8 002CE4 0004+00 1/1 0/0 0/0 .sdata2          @4357 */
-SECTION_SDATA2 static f32 lit_4357 = 13.0f / 20.0f;
-
-/* 804546E8-804546EC 002CE8 0004+00 1/1 0/0 0/0 .sdata2          @4358 */
-SECTION_SDATA2 static f32 lit_4358 = 32.0f / 25.0f;
-
-/* 804546EC-804546F0 002CEC 0004+00 1/1 0/0 0/0 .sdata2          @4359 */
-SECTION_SDATA2 static f32 lit_4359 = 8.0f / 5.0f;
-
-/* 804546F0-804546F4 002CF0 0004+00 1/1 0/0 0/0 .sdata2          @4360 */
-SECTION_SDATA2 static f32 lit_4360 = 0.25f;
 
 /* 802004B4-802006C8 1FADF4 0214+00 1/1 0/0 0/0 .text            __ct__19dMeter_mapIconHIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMeter_mapIconHIO_c::dMeter_mapIconHIO_c() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__ct__19dMeter_mapIconHIO_cFv.s"
+dMeter_mapIconHIO_c::dMeter_mapIconHIO_c() {
+    mPortalCursorScale = 0.5f;
+    mPortalIconScale = 0.65f;
+    mDestinationScale = 0.5f;
+    mDestinationZoomScale = 0.8f;
+    mLinkScale = 0.5f;
+    mLinkZoomScale = 0.6f;
+    mYetoScale = 0.3f;
+    mYetoZoomScale = 1.2f;
+    mYetaScale = 0.3f;
+    mYetaZoomScale = 1.2f;
+    mGoldWolfScale = 0.2f;
+    mGoldWolfZoomScale = 1.28f;
+    field_0xa0 = 0.2f;
+    field_0xa8 = 1.6f;
+    field_0xb0 = 0.2f;
+    field_0xb8 = 1.6f;
+    field_0xc0 = 0.2f;
+    field_0xc8 = 1.6f;
+    field_0xd0 = 0.2f;
+    field_0xd8 = 1.6f;
+    mWagonScale = 0.2f;
+    mWagonZoomScale = 1.0f;
+    field_0x60 = 0.2f;
+    field_0x68 = 1.6f;
+    field_0x50 = 0.2f;
+    field_0x58 = 1.4f;
+    mDungeonEntranceScale = 0.4f;
+    mDungeonEntranceZoomScale = 0.6f;
+    field_0x20 = 0.2f;
+    field_0x28 = 1.6f;
+    field_0x30 = 0.2f;
+    field_0x38 = 1.6f;
+    mRoomEntranceScale = 0.5f;
+    mRoomEntranceZoomScale = 0.6f;
+    mLV8EntranceScale = 0.5f;
+    mLV8EntranceZoomScale = 0.6f;
+    field_0x120 = 0.2f;
+    field_0x128 = 1.6f;
+    mLightDropScale = 0.25f;
+    mLightDropZoomScale = 0.55f;
+    field_0x140 = 0.2f;
+    field_0x148 = 1.6f;
+    field_0x150 = 0.2f;
+    field_0x158 = 1.6f;
+    mDungeonDestScale = 0.5f;
+    mDungeonDestZoomScale = 0.8f;
+    mDungeonLinkScale = 0.4f;
+    mDungeonLinkZoomScale = 0.5f;
+    field_0x74 = 0.2f;
+    field_0x7c = 0.8f;
+    field_0x84 = 0.2f;
+    field_0x8c = 0.8f;
+    field_0x94 = 0.2f;
+    field_0x9c = 0.8f;
+    mMonkeyScale = 0.2f;
+    mMonkeyZoomScale = 0.8f;
+    mOoccooScale = 0.2f;
+    mOoccooZoomScale = 0.8f;
+    mOoccooPotScale = 0.2f;
+    mOoccooPotZoomScale = 0.8f;
+    mCopyRodStatueScale = 0.2f;
+    mCopyRodStatueZoomScale = 0.8f;
+    field_0xe4 = 0.2f;
+    field_0xec = 0.5f;
+    mChestScale = 0.2f;
+    mChestZoomScale = 0.8f;
+    mSmallKeyScale = 0.2f;
+    mSmallKeyZoomScale = 0.7f;
+    mDungeonExitScale = 0.3f;
+    mDungeonExitZoomScale = 0.6f;
+    mBossScale = 0.2f;
+    mBossZoomScale = 0.8f;
+    mGanonScale = 0.2f;
+    mGanonZoomScale = 0.8f;
+    mDungeonSpawnScale = 0.4f;
+    mDungeonSpawnZoomScale = 0.5f;
+    field_0x114 = 0.4f;
+    field_0x11c = 0.5f;
+    mDungeonWarpScale = 0.2f;
+    mDungeonWarpZoomScale = 0.8f;
+    field_0x134 = 0.25f;
+    field_0x13c = 0.3f;
+    mLightOrbScale = 0.2f;
+    mLightOrbZoomScale = 0.8f;
+    mCannonBallScale = 0.2f;
+    mCannonBallZoomScale = 0.8f;
+
+    mLV5DungeonItemDebug = false;
+    mLV5DungeonItem = NO_ITEM;
+    mIconDebug = false;
+
+    for (int i = 0; i < ARRAY_SIZE(mIconDisplay); i++) {
+        mIconDisplay[i] = true;
+    }
+
+    mLightDropFlashStartScaleOut = 1.2f;
+    mLightDropFlashEndScaleOut = 1.5f;
+    mLightDropFlashStartAlphaOut = 255;
+    mLightDropFlashEndAlphaOut = 255;
+    mLightDropFlashStartScaleIn = 1.0f;
+    mLightDropFlashEndScaleIn = 1.3f;
+    mLightDropFlashStartAlphaIn = 255;
+    mLightDropFlashEndAlphaIn = 255;
+    mLightDropFlashFrameNum = 10;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804546F4-804546F8 002CF4 0004+00 1/1 0/0 0/0 .sdata2          @4416 */
-SECTION_SDATA2 static f32 lit_4416 = 50000.0f;
-
-/* 804546F8-804546FC 002CF8 0004+00 1/1 0/0 0/0 .sdata2          @4417 */
-SECTION_SDATA2 static f32 lit_4417 = 10000.0f;
-
-/* 804546FC-80454700 002CFC 0004+00 1/1 0/0 0/0 .sdata2          @4418 */
-SECTION_SDATA2 static f32 lit_4418 = -300000.0f;
-
-/* 80454700-80454704 002D00 0004+00 1/1 0/0 0/0 .sdata2          @4419 */
-SECTION_SDATA2 static f32 lit_4419 = 300000.0f;
-
-/* 80454704-80454708 002D04 0004+00 1/1 0/0 0/0 .sdata2          @4420 */
-SECTION_SDATA2 static f32 lit_4420 = 142.0f;
-
-/* 80454708-8045470C 002D08 0004+00 1/1 0/0 0/0 .sdata2          @4421 */
-SECTION_SDATA2 static f32 lit_4421 = 61.0f;
-
-/* 8045470C-80454710 002D0C 0004+00 1/1 0/0 0/0 .sdata2          @4422 */
-SECTION_SDATA2 static f32 lit_4422 = 329.0f;
-
-/* 80454710-80454714 002D10 0004+00 1/1 0/0 0/0 .sdata2          @4423 */
-SECTION_SDATA2 static f32 lit_4423 = 10.0f;
-
-/* 80454714-80454718 002D14 0004+00 1/1 0/0 0/0 .sdata2          @4424 */
-SECTION_SDATA2 static f32 lit_4424 = 7.0f;
-
-/* 80454718-8045471C 002D18 0004+00 1/1 0/0 0/0 .sdata2          @4425 */
-SECTION_SDATA2 static f32 lit_4425 = 0.8649899959564209f;
-
-/* 8045471C-80454720 002D1C 0004+00 1/1 0/0 0/0 .sdata2          @4426 */
-SECTION_SDATA2 static f32 lit_4426 = 4.5f;
-
-/* 80454720-80454724 002D20 0004+00 1/1 0/0 0/0 .sdata2          @4427 */
-SECTION_SDATA2 static f32 lit_4427 = -0.5f;
-
-/* 80454724-80454728 002D24 0004+00 2/2 0/0 0/0 .sdata2          @4428 */
-SECTION_SDATA2 static f32 lit_4428 = 21.0f / 20.0f;
-
-/* 80454728-8045472C 002D28 0004+00 1/1 0/0 0/0 .sdata2          @4429 */
-SECTION_SDATA2 static f32 lit_4429 = -7.5f;
-
-/* 8045472C-80454730 002D2C 0004+00 1/1 0/0 0/0 .sdata2          @4430 */
-SECTION_SDATA2 static f32 lit_4430 = -7.0f;
 
 /* 802006C8-80200BCC 1FB008 0504+00 1/1 0/0 0/0 .text            __ct__16dMeter_fmapHIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMeter_fmapHIO_c::dMeter_fmapHIO_c() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__ct__16dMeter_fmapHIO_cFv.s"
+dMeter_fmapHIO_c::dMeter_fmapHIO_c() {
+    field_0xc = NULL;
+    field_0x10 = NULL;
+    field_0x8 = NULL;
+
+    mDisplayFrameNum = 8;
+    mUndisplayFrameNum = 6;
+    mMapType = TYPE_DEFAULT;
+
+    mRegionZoomRange = 50000.0f;
+    mStageZoomScale = 20.0f;
+    mRegionGridWidth = 10000.0f;
+    mWorldGridWidth = 50000.0f;
+    mRangeCheck = false;
+    mRangeCheckDrawPriority = false;
+    mPortalWarpON = false;
+    mDisplayWorldOrigin = false;
+    mDisplayRegionOrigin = false;
+    mDisplayStageOrigin = false;
+    mDisplayWorldGrid = false;
+    mDisplayRegionGrid = false;
+
+    mScrollSpeedWorldSlow = 0.5f;
+    mScrollSpeedRegionSlow = 0.5f;
+    mScrollSpeedRegionZoomSlow = 1.0f;
+    mScrollSpeedDungeonMapSlow = 0.5f;
+
+    mScrollSpeedWorldFast = 2.5f;
+    mScrollSpeedRegionFast = 2.5f;
+    mScrollSpeedRegionZoomFast = 5.0f;
+    mScrollSpeedDungeonMapFast = 2.5f;
+
+    mScrollSpeedSlowBound = 0.2f;
+    mScrollSpeedFastBound = 1.0f;
+
+    // fake match
+    for (int i = 0; i < 8; i++) {
+        int* tmp = (int*)this + i;
+        *(f32*)(tmp + 0x5B) = 0.0f;
+        *(f32*)(tmp + 0x63) = 0.0f;
+        *(f32*)(tmp + 0x6B) = 0.0f;
+        *(f32*)(tmp + 0x73) = -300000.0f;
+        *(f32*)(tmp + 0x7B) = -300000.0f;
+        *(f32*)(tmp + 0x83) = 300000.0f;
+        *(f32*)(tmp + 0x8B) = 300000.0f;
+    }
+    mScrollRangeDebugON = false;
+    mScrollRangeDisplay = false;
+    field_0x308 = true;
+    mRegionImageDebug = false;
+
+    mMapTopLeftPosX = 142.0f;
+    mMapTopLeftPosY = 61.0f;
+    mMapScale = 329.0f;
+    mDisplayReferenceArea = false;
+
+    mBackgroundAlpha = 1.0f;
+    mBackgroundFrontAlpha = 0.7f;
+
+    field_0x2f9 = 0;
+    mTerminalOutput = false;
+    mPortalDataTerminalOutput = false;
+    mRegionBitTerminalOutput = false;
+    mAllRegionsUnlocked = false;
+    mDrawBackground = true;
+
+    mCursorScale = 1.0f;
+    mCursorSpeed = 10.0f;
+    mCursorWhite.set(255, 255, 255, 255);
+    mCursorBlack.set(0, 182, 255, 0);
+    mCursorDebugON = false;
+
+    mDisplayAllPaths = false;
+    mRegionPrintGlobalScroll = false;
+    field_0x303 = 0;
+    mRangeCheckInterval = 0;
+    field_0x305 = 1;
+
+    mTitlePosX = 6.6f;
+    mTitlePosY = 7.0f;
+    mTitleScale = 0.86499f;
+    mSubTitlePosX = -22.0f;
+    mSubTitlePosY = 4.5f;
+    mSubTitleScale = 0.9f;
+
+    mAreaMovementPosX = 6.0f;
+    mAreaMovementPosY = -20.0f;
+    mAreaMovementScale = 1.0f;
+
+    mClosingPosX = 9.2f;
+    mClosingPosY = -20.0f;
+    mClosingScale = 0.9f;
+
+    mDoIconPosX = 6.0f;
+    mDoIconPosY = -6.0f;
+    mDoIconScale = 0.9f;
+    mButtonDebugON = false;
+
+    mZButtonPosX = 25.0f;
+    mZButtonPosY = 25.0f;
+    mZButtonScale = 0.92f;
+
+    mAButtonPosX = -0.5f;
+    mAButtonPosY = 1.0f;
+    mAButtonScale = 0.92f;
+
+    mBButtonPosX = -1.0f;
+    mBButtonPosY = -1.0f;
+    mBButtonScale = 1.05f;
+
+    mZButtonTextPosX = 20.0f;
+    mZButtonTextPosY = 12.0f;
+    mZButtonTextScale = 0.95f;
+
+    mAButtonTextPosX = -7.5f;
+    mAButtonTextPosY = 8.0f;
+    mAButtonTextScale = 0.95f;
+
+    mBButtonTextPosX = -7.0f;
+    mBButtonTextPosY = 5.0f;
+    mBButtonTextScale = 0.95f;
+
+    mMapBlink[WORLD_VIEW].mSelectedRegion.mBlack.set(29, 24, 0, 0);
+    mMapBlink[WORLD_VIEW].mSelectedRegion.mWhite.set(255, 255, 255, 255);
+    mMapBlink[WORLD_VIEW].mSelectedRegion.mMax = 255;
+    mMapBlink[WORLD_VIEW].mSelectedRegion.mMin = 200;
+    mMapBlink[WORLD_VIEW].mSelectedRegion.mBlinkSpeed = 60;
+
+    mMapBlink[WORLD_VIEW].mUnselectedRegion.mBlack.set(0, 0, 0, 0);
+    mMapBlink[WORLD_VIEW].mUnselectedRegion.mWhite.set(170, 170, 170, 255);
+    mMapBlink[WORLD_VIEW].mUnselectedRegion.mMax = 255;
+    mMapBlink[WORLD_VIEW].mUnselectedRegion.mMin = 255;
+    mMapBlink[WORLD_VIEW].mUnselectedRegion.mBlinkSpeed = 0;
+
+    mMapBlink[WORLD_VIEW].mUnreachedRegionBlack.set(0, 20, 80, 0);
+    mMapBlink[WORLD_VIEW].mUnreachedRegionWhite.set(30, 95, 190, 0);
+    mMapBlink[WORLD_VIEW].field_0x20.set(0, 0, 0, 0);
+    mMapBlink[WORLD_VIEW].field_0x24.set(0, 0, 0, 255);
+
+    mMapBlink[REGION_VIEW].mSelectedRegion.mBlack.set(0, 0, 0, 0);
+    mMapBlink[REGION_VIEW].mSelectedRegion.mWhite.set(255, 255, 255, 255);
+    mMapBlink[REGION_VIEW].mSelectedRegion.mMax = 84;
+    mMapBlink[REGION_VIEW].mSelectedRegion.mMin = 84;
+    mMapBlink[REGION_VIEW].mSelectedRegion.mBlinkSpeed = 60;
+
+    mMapBlink[REGION_VIEW].mUnselectedRegion.mBlack.set(0, 0, 0, 0);
+    mMapBlink[REGION_VIEW].mUnselectedRegion.mWhite.set(48, 48, 48, 255);
+    mMapBlink[REGION_VIEW].mUnselectedRegion.mMax = 255;
+    mMapBlink[REGION_VIEW].mUnselectedRegion.mMin = 255;
+    mMapBlink[REGION_VIEW].mUnselectedRegion.mBlinkSpeed = 0;
+
+    mMapBlink[REGION_VIEW].mUnreachedRegionBlack.set(0, 20, 80, 0);
+    mMapBlink[REGION_VIEW].mUnreachedRegionWhite.set(30, 95, 190, 0);
+    mMapBlink[REGION_VIEW].field_0x20.set(0, 0, 0, 0);
+    mMapBlink[REGION_VIEW].field_0x24.set(0, 0, 0, 255);
+
+    mMapBlink[ZOOM_VIEW].mSelectedRegion.mBlack.set(0, 0, 0, 0);
+    mMapBlink[ZOOM_VIEW].mSelectedRegion.mWhite.set(255, 255, 255, 255);
+    mMapBlink[ZOOM_VIEW].mSelectedRegion.mMax = 40;
+    mMapBlink[ZOOM_VIEW].mSelectedRegion.mMin = 40;
+    mMapBlink[ZOOM_VIEW].mSelectedRegion.mBlinkSpeed = 60;
+
+    mMapBlink[ZOOM_VIEW].mUnselectedRegion.mBlack.set(0, 0, 0, 0);
+    mMapBlink[ZOOM_VIEW].mUnselectedRegion.mWhite.set(22, 22, 22, 255);
+    mMapBlink[ZOOM_VIEW].mUnselectedRegion.mMax = 255;
+    mMapBlink[ZOOM_VIEW].mUnselectedRegion.mMin = 255;
+    mMapBlink[ZOOM_VIEW].mUnselectedRegion.mBlinkSpeed = 0;
+
+    mMapBlink[ZOOM_VIEW].mUnreachedRegionBlack.set(0, 20, 80, 0);
+    mMapBlink[ZOOM_VIEW].mUnreachedRegionWhite.set(30, 95, 190, 0);
+    mMapBlink[ZOOM_VIEW].field_0x20.set(0, 0, 0, 0);
+    mMapBlink[ZOOM_VIEW].field_0x24.set(0, 0, 0, 255);
+
+    for (int i = 0; i < ARRAY_SIZE(mDebugRegionBits); i++) {
+        mDebugRegionBits[i] = 0;
+    }
 }
-#pragma pop
 
 /* 80200BCC-80200CD4 1FB50C 0108+00 2/1 0/0 0/0 .text            __dt__16dMeter_fmapHIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMeter_fmapHIO_c::~dMeter_fmapHIO_c() {
+// asm dMeter_fmapHIO_c::~dMeter_fmapHIO_c() {
+extern "C" asm void __dt__16dMeter_fmapHIO_cFv() {
     nofralloc
 #include "asm/d/meter/d_meter_HIO/__dt__16dMeter_fmapHIO_cFv.s"
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80454730-80454734 002D30 0004+00 1/1 0/0 0/0 .sdata2          @4485 */
-SECTION_SDATA2 static f32 lit_4485 = 13.0f;
-
-/* 80454734-80454738 002D34 0004+00 1/1 0/0 0/0 .sdata2          @4486 */
-SECTION_SDATA2 static f32 lit_4486 = -102.0f;
-
-/* 80454738-8045473C 002D38 0004+00 1/1 0/0 0/0 .sdata2          @4487 */
-SECTION_SDATA2 static f32 lit_4487 = 100.0f;
-
-/* 8045473C-80454740 002D3C 0004+00 1/1 0/0 0/0 .sdata2          @4488 */
-SECTION_SDATA2 static f32 lit_4488 = 145.0f;
-
-/* 80454740-80454748 002D40 0004+04 1/1 0/0 0/0 .sdata2          @4489 */
-SECTION_SDATA2 static f32 lit_4489[1 + 1 /* padding */] = {
-    -155.0f,
-    /* padding */
-    0.0f,
-};
-
 /* 80200CD4-80200D58 1FB614 0084+00 1/1 0/0 0/0 .text            __ct__18dMeter_cursorHIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMeter_cursorHIO_c::dMeter_cursorHIO_c() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__ct__18dMeter_cursorHIO_cFv.s"
+dMeter_cursorHIO_c::dMeter_cursorHIO_c() {
+    mShopCursorScale = 1.05f;
+    mShopCursorOffsetY = -30.0f;
+    mMagicArmorCursorOffsetX = 13.0f;
+    mMagicArmorCursorOffsetY = -102.0f;
+    mSeraShopObjZoom.set(100.0f, 145.0f, -155.0f);
+    mSeraShopObjZoomAngleX = 3000;
+    mObjZoom.set(0.0f, 0.0f, 0.0f);
+    mShopObjZoomAngleX = 5000;
+    mMagicArmorObjZoom.set(0.0f, 20.0f, 28.0f);
+    mMagicArmorObjZoomAngleX = -500;
 }
-#pragma pop
 
 /* 80200D58-80200DA0 1FB698 0048+00 1/0 0/0 0/0 .text            __dt__25dMeter_drawLightDropHIO_cFv
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMeter_drawLightDropHIO_c::~dMeter_drawLightDropHIO_c() {
+// asm dMeter_drawLightDropHIO_c::~dMeter_drawLightDropHIO_c() {
+extern "C" asm void __dt__25dMeter_drawLightDropHIO_cFv() {
     nofralloc
 #include "asm/d/meter/d_meter_HIO/__dt__25dMeter_drawLightDropHIO_cFv.s"
 }
@@ -1194,7 +1726,8 @@ asm dMeter_drawLightDropHIO_c::~dMeter_drawLightDropHIO_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMeter_drawEmpButtonHIO_c::~dMeter_drawEmpButtonHIO_c() {
+// asm dMeter_drawEmpButtonHIO_c::~dMeter_drawEmpButtonHIO_c() {
+extern "C" asm void __dt__25dMeter_drawEmpButtonHIO_cFv() {
     nofralloc
 #include "asm/d/meter/d_meter_HIO/__dt__25dMeter_drawEmpButtonHIO_cFv.s"
 }
@@ -1205,7 +1738,8 @@ asm dMeter_drawEmpButtonHIO_c::~dMeter_drawEmpButtonHIO_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMeter_drawMiniGameHIO_c::~dMeter_drawMiniGameHIO_c() {
+// asm dMeter_drawMiniGameHIO_c::~dMeter_drawMiniGameHIO_c() {
+extern "C" asm void __dt__24dMeter_drawMiniGameHIO_cFv() {
     nofralloc
 #include "asm/d/meter/d_meter_HIO/__dt__24dMeter_drawMiniGameHIO_cFv.s"
 }
@@ -1215,7 +1749,8 @@ asm dMeter_drawMiniGameHIO_c::~dMeter_drawMiniGameHIO_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMeter_drawSkillHIO_c::~dMeter_drawSkillHIO_c() {
+// asm dMeter_drawSkillHIO_c::~dMeter_drawSkillHIO_c() {
+extern "C" asm void __dt__21dMeter_drawSkillHIO_cFv() {
     nofralloc
 #include "asm/d/meter/d_meter_HIO/__dt__21dMeter_drawSkillHIO_cFv.s"
 }
@@ -1225,7 +1760,8 @@ asm dMeter_drawSkillHIO_c::~dMeter_drawSkillHIO_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMeter_drawCalibrationHIO_c::~dMeter_drawCalibrationHIO_c() {
+// asm dMeter_drawCalibrationHIO_c::~dMeter_drawCalibrationHIO_c() {
+extern "C" asm void __dt__27dMeter_drawCalibrationHIO_cFv() {
     nofralloc
 #include "asm/d/meter/d_meter_HIO/__dt__27dMeter_drawCalibrationHIO_cFv.s"
 }
@@ -1235,7 +1771,8 @@ asm dMeter_drawCalibrationHIO_c::~dMeter_drawCalibrationHIO_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMeter_drawInsectHIO_c::~dMeter_drawInsectHIO_c() {
+// asm dMeter_drawInsectHIO_c::~dMeter_drawInsectHIO_c() {
+extern "C" asm void __dt__22dMeter_drawInsectHIO_cFv() {
     nofralloc
 #include "asm/d/meter/d_meter_HIO/__dt__22dMeter_drawInsectHIO_cFv.s"
 }
@@ -1246,7 +1783,8 @@ asm dMeter_drawInsectHIO_c::~dMeter_drawInsectHIO_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMeter_drawFishingHIO_c::~dMeter_drawFishingHIO_c() {
+// asm dMeter_drawFishingHIO_c::~dMeter_drawFishingHIO_c() {
+extern "C" asm void __dt__23dMeter_drawFishingHIO_cFv() {
     nofralloc
 #include "asm/d/meter/d_meter_HIO/__dt__23dMeter_drawFishingHIO_cFv.s"
 }
@@ -1256,7 +1794,8 @@ asm dMeter_drawFishingHIO_c::~dMeter_drawFishingHIO_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMeter_drawLetterHIO_c::~dMeter_drawLetterHIO_c() {
+// asm dMeter_drawLetterHIO_c::~dMeter_drawLetterHIO_c() {
+extern "C" asm void __dt__22dMeter_drawLetterHIO_cFv() {
     nofralloc
 #include "asm/d/meter/d_meter_HIO/__dt__22dMeter_drawLetterHIO_cFv.s"
 }
@@ -1266,7 +1805,8 @@ asm dMeter_drawLetterHIO_c::~dMeter_drawLetterHIO_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMeter_drawOptionHIO_c::~dMeter_drawOptionHIO_c() {
+// asm dMeter_drawOptionHIO_c::~dMeter_drawOptionHIO_c() {
+extern "C" asm void __dt__22dMeter_drawOptionHIO_cFv() {
     nofralloc
 #include "asm/d/meter/d_meter_HIO/__dt__22dMeter_drawOptionHIO_cFv.s"
 }
@@ -1288,7 +1828,8 @@ extern "C" asm void __dt__23dMeter_drawCollectHIO_cFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMeter_mapIconHIO_c::~dMeter_mapIconHIO_c() {
+// asm dMeter_mapIconHIO_c::~dMeter_mapIconHIO_c() {
+extern "C" asm void __dt__19dMeter_mapIconHIO_cFv() {
     nofralloc
 #include "asm/d/meter/d_meter_HIO/__dt__19dMeter_mapIconHIO_cFv.s"
 }
@@ -1296,20 +1837,14 @@ asm dMeter_mapIconHIO_c::~dMeter_mapIconHIO_c() {
 
 /* 80201070-80201098 1FB9B0 0028+00 1/1 0/0 0/0 .text __ct__Q216dMeter_fmapHIO_c13MapBlinkAnimeFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMeter_fmapHIO_c::MapBlinkAnime::MapBlinkAnime() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__ct__Q216dMeter_fmapHIO_c13MapBlinkAnimeFv.s"
-}
-#pragma pop
+dMeter_fmapHIO_c::MapBlinkAnime::MapBlinkAnime() {}
 
 /* 80201098-802010E0 1FB9D8 0048+00 2/1 0/0 0/0 .text            __dt__18dMeter_cursorHIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMeter_cursorHIO_c::~dMeter_cursorHIO_c() {
+// asm dMeter_cursorHIO_c::~dMeter_cursorHIO_c() {
+extern "C" asm void __dt__18dMeter_cursorHIO_cFv() {
     nofralloc
 #include "asm/d/meter/d_meter_HIO/__dt__18dMeter_cursorHIO_cFv.s"
 }
@@ -1319,7 +1854,8 @@ asm dMeter_cursorHIO_c::~dMeter_cursorHIO_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMeter_ringHIO_c::~dMeter_ringHIO_c() {
+// asm dMeter_ringHIO_c::~dMeter_ringHIO_c() {
+extern "C" asm void __dt__16dMeter_ringHIO_cFv() {
     nofralloc
 #include "asm/d/meter/d_meter_HIO/__dt__16dMeter_ringHIO_cFv.s"
 }
@@ -1329,21 +1865,15 @@ asm dMeter_ringHIO_c::~dMeter_ringHIO_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMeter_drawHIO_c::~dMeter_drawHIO_c() {
+// asm dMeter_drawHIO_c::~dMeter_drawHIO_c() {
+extern "C" asm void __dt__16dMeter_drawHIO_cFv() {
     nofralloc
 #include "asm/d/meter/d_meter_HIO/__dt__16dMeter_drawHIO_cFv.s"
 }
 #pragma pop
 
 /* 8020123C-80201284 1FBB7C 0048+00 2/1 0/0 0/0 .text            __dt__16dMeter_menuHIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMeter_menuHIO_c::~dMeter_menuHIO_c() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__dt__16dMeter_menuHIO_cFv.s"
-}
-#pragma pop
+dMeter_menuHIO_c::~dMeter_menuHIO_c() {}
 
 /* ############################################################################################## */
 /* 8042EBB0-8042EBBC 05B8D0 000C+00 1/1 0/0 0/0 .bss             @3766 */

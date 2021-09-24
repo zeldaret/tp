@@ -6,5 +6,6 @@
 extern node_lists_tree_class g_fopDwTg_Queue;
 
 void fopDwTg_DrawQTo(create_tag_class* pTag);
+void fopDwTg_CreateQueue();
 
 #endif

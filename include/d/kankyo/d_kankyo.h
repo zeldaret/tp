@@ -11,6 +11,8 @@
 #include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
 
+void dKankyo_DayProc();
+
 struct LIGHT_INFLUENCE {
     /* 800CFC7C */ ~LIGHT_INFLUENCE();
     /* 8019F4F8 */ LIGHT_INFLUENCE();
@@ -611,7 +613,7 @@ public:
     /* 0x12C2 */ u8 field_0x12c2;
     /* 0x12C3 */ u8 field_0x12c3;
     /* 0x12C4 */ u8 field_0x12c4;
-    /* 0x12C5 */ u8 field_0x12c5;
+    /* 0x12C5 */ u8 mWeatherPalette;
     /* 0x12C6 */ u8 field_0x12c6;
     /* 0x12C7 */ u8 field_0x12c7;
     /* 0x12C8 */ u8 field_0x12c8;

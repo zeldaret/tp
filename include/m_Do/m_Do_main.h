@@ -2,13 +2,18 @@
 #define M_DO_M_DO_MAIN_H
 
 #include "JSystem/JKernel/JKRExpHeap.h"
+#include "dolphin/dvd/dvd.h"
 #include "dolphin/types.h"
+
+void version_check();
+void* LOAD_COPYDATE(void*);
 
 class HeapCheck {
 public:
     void CheckHeap1(void);
     s32 getUsedCount(void) const;
     void heapDisplay(void) const;
+
     u32& getUsedCountRef() { return mUsedCount; }
     u32& getTotalUsedSizeRef() { return mTotalUsedSize; }
     JKRExpHeap* getHeap() { return mHeap; }
@@ -16,6 +21,11 @@ public:
     void setHeapSize(u32 i_size) { mTargetHeapSize = i_size; }
     s32 getMaxTotalUsedSize() { return mMaxTotalUsedSize; }
     s32 getMaxTotalFreeSize() { return mMaxTotalFreeSize; }
+    char* getName() const { return mName; }
+    void saveRelBase() {
+        mUsedCount = getUsedCount();
+        mTotalUsedSize = mHeap->getTotalUsedSize();
+    }
 
 private:
     /* 0x00 */ char* mName;
@@ -30,10 +40,13 @@ private:
 };
 
 struct mDoMain {
-    static u8 COPYDATE_STRING[18 + 2 /* padding */];
+    static char COPYDATE_STRING[18];
     static u32 memMargin;
-    static u8 sPowerOnTime[4];  // should be OSTime
-    static u8 sHungUpTime[4];   // should be OSTime
+    static u8 mHeapBriefType;
+    static OSTime sPowerOnTime;
+    static OSTime sHungUpTime;
 };
+
+extern s8 data_80450580;
 
 #endif /* M_DO_M_DO_MAIN_H */

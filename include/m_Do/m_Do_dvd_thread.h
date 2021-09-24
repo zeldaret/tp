@@ -10,7 +10,7 @@
 typedef void* (*mDoDvdThd_callback_func)(void*);
 
 class mDoDvdThd_command_c : public node_class {
-protected:
+public:
     /* 0x0C */ bool mIsDone;
     /* 0x10  vtable*/
 public:
@@ -73,6 +73,9 @@ public:
     /* 80015DA4 */ mDoDvdThd_mountArchive_c(u8);
     /* 80015E14 */ static mDoDvdThd_mountArchive_c* create(char const*, u8, JKRHeap*);
     /* 80015EDC */ virtual s32 execute();
+
+    JKRMemArchive* getArchive() const { return mArchive; }
+    JKRHeap* getHeap() const { return mHeap; }
 
 private:
     /* 0x14 */ u8 mMountDirection;

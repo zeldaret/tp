@@ -13,6 +13,11 @@ public:
     /* 802738FC */ u32 clip(f32 const (*)[4], Vec, f32) const;
     /* 80273A44 */ u32 clip(f32 const (*)[4], Vec*, Vec*) const;
 
+    void setFovy(f32 fovy) { mFovY = fovy; }
+    void setAspect(f32 aspect) { mAspect = aspect; }
+    void setNear(f32 near) { mNear = near; }
+    void setFar(f32 far) { mFar = far; }
+
 private:
     Vec _04;
     Vec _10;

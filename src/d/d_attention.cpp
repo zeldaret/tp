@@ -16,10 +16,6 @@ struct mDoCPd_c {
     static u8 m_cpadInfo[256];
 };
 
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
 struct dAttDrawParam_c {
     /* 80070158 */ dAttDrawParam_c();
     /* 80073FC4 */ ~dAttDrawParam_c();

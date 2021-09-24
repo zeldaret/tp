@@ -603,12 +603,6 @@ struct dInsect_c {
     /* 80110648 */ void Insect_Release();
 };
 
-struct dDlst_shadowControl_c {
-    /* 80055F1C */ void addReal(u32, J3DModel*);
-
-    static u8 mSimpleTexObj[32];
-};
-
 struct dDemo_object_c {
     /* 80039088 */ void getActor(u8);
 };
@@ -5191,7 +5185,7 @@ COMPILER_STRIP_GATE(0x8038D658, &lit_3757);
 
 /* 8038D664-8038D6BC 019CC4 0058+00 41/50 0/0 0/0 .rodata          m__19daAlinkHIO_basic_c0 */
 daAlinkHIO_basic_c1 const daAlinkHIO_basic_c0::m = {
-    0,     20000, -10000, 8000,   1,     30,    400,   600,   16384, 1.0f, 4.0f, 0.7f,   3.0f,
+    false, 20000, -10000, 8000,   1,     30,    400,   600,   16384, 1.0f, 4.0f, 0.7f,   3.0f,
     60.0f, 85.0f, 300.0f, 200.0f, 20.0f, 30.0f, 23.0f, 41.0f, 0.7f,  0.5f, 0.7f, 400.0f, 5000.0f};
 
 /* 8038D6BC-8038D714 019D1C 0058+00 34/47 0/0 0/0 .rodata          m__18daAlinkHIO_move_c0 */
@@ -16279,17 +16273,17 @@ asm void daAlink_c::setJumpMode() {
 
 /* 800B4908-800B4918 0AF248 0010+00 0/0 0/0 1/1 .text getMetamorphoseNearDis__9daAlink_cCFv */
 float daAlink_c::getMetamorphoseNearDis() const {
-    return daAlinkHIO_basic_c0::m.mMetamorphoseNearDis;
+    return daAlinkHIO_basic_c0::m.mTransformBlockNearDis;
 }
 
 /* 800B4918-800B4928 0AF258 0010+00 0/0 0/0 1/1 .text getMetamorphoseFarDis__9daAlink_cCFv */
 float daAlink_c::getMetamorphoseFarDis() const {
-    return daAlinkHIO_basic_c0::m.mMetamorphoseFarDis;
+    return daAlinkHIO_basic_c0::m.mTransformBlockFarDis;
 }
 
 /* 800B4928-800B4938 0AF268 0010+00 0/0 0/0 1/1 .text getMetamorphoseFarAngle__9daAlink_cCFv */
 s16 daAlink_c::getMetamorphoseFarAngle() const {
-    return daAlinkHIO_basic_c0::m.mMetamorphoseFarAngle;
+    return daAlinkHIO_basic_c0::m.mTransformBlockFarAngle;
 }
 
 /* 800B4938-800B4950 0AF278 0018+00 0/0 1/1 0/0 .text            setMidnaMsg__9daAlink_cFv */

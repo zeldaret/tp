@@ -34,7 +34,6 @@ extern "C" void setLookat__14J2DGrafContextFv();
 //
 
 extern "C" void __dl__FPv();
-extern "C" void PSMTXIdentity();
 extern "C" void GXSetVtxDesc();
 extern "C" void GXClearVtxDesc();
 extern "C" void GXSetVtxAttrFmt();
@@ -57,7 +56,7 @@ extern "C" void GXSetZCompLoc();
 extern "C" void GXLoadPosMtxImm();
 extern "C" void GXSetCurrentMtx();
 extern "C" void GXLoadTexMtxImm();
-extern "C" void GXSetViewport();
+extern "C" void GXSetViewport(f32, f32, f32, f32, f32, f32);
 extern "C" void GXSetScissor();
 extern "C" void __cvt_fp2unsigned();
 extern "C" void _savegpr_29();
@@ -84,6 +83,17 @@ SECTION_DATA extern void* __vt__14J2DGrafContext[10] = {
 };
 
 /* 802E8B08-802E8BB4 2E3448 00AC+00 0/0 2/2 0/0 .text            __ct__14J2DGrafContextFffff */
+// reversed stack
+#ifdef NONMATCHING
+J2DGrafContext::J2DGrafContext(f32 left, f32 top, f32 right, f32 bottom)
+    : mBounds(left, top, left + right, top + bottom),
+      mScissorBounds(left, top, left + right, top + bottom), field_0x24(-1), field_0x28(-1),
+      field_0x2c(-1), field_0x30(-1) {
+    JUtility::TColor color(-1);
+    setColor(color, color, color, color);
+    setLineWidth(6);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -92,6 +102,7 @@ asm J2DGrafContext::J2DGrafContext(f32 param_0, f32 param_1, f32 param_2, f32 pa
 #include "asm/JSystem/J2DGraph/J2DGrafContext/__ct__14J2DGrafContextFffff.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80456148-8045614C 004748 0004+00 5/5 0/0 0/0 .sdata2          @627 */
@@ -106,6 +117,26 @@ SECTION_SDATA2 static u8 lit_627[4] = {
 SECTION_SDATA2 static f32 lit_628 = 1.0f;
 
 /* 802E8BB4-802E8C44 2E34F4 0090+00 1/0 1/1 0/0 .text            setPort__14J2DGrafContextFv */
+// matches with literal
+#ifdef NONMATCHING
+void J2DGrafContext::setPort() {
+    setScissor();
+    setup2D();
+
+    f32 x_origin = mBounds.i.x;
+    f32 y_origin = mBounds.i.y;
+    f32 width = mBounds.f.x;
+    f32 height = mBounds.f.y;
+
+    if (x_origin < 0.0f) {
+        x_origin = 0.0f;
+    }
+    if (y_origin < 0.0f) {
+        y_origin = 0.0f;
+    }
+    GXSetViewport(x_origin, y_origin, width - x_origin, height - y_origin, 0.0f, 1.0f);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -114,6 +145,7 @@ asm void J2DGrafContext::setPort() {
 #include "asm/JSystem/J2DGraph/J2DGrafContext/setPort__14J2DGrafContextFv.s"
 }
 #pragma pop
+#endif
 
 /* 802E8C44-802E8E20 2E3584 01DC+00 1/0 1/0 0/0 .text            setup2D__14J2DGrafContextFv */
 #pragma push

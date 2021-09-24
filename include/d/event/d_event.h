@@ -31,12 +31,12 @@ typedef int (*SkipFunc)(void*, int);
 class dEvt_control_c {
 public:
     dEvt_control_c();
-    void orderOld(u16, u16, u16, u16, void*, void*, void const*);
-    void order(u16, u16, u16, u16, void*, void*, s16, u8);
+    bool orderOld(u16, u16, u16, u16, void*, void*, void const*);
+    bool order(u16, u16, u16, u16, void*, void*, s16, u8);
     void setParam(dEvt_order_c*);
     s32 beforeFlagProc(dEvt_order_c*);
     void afterFlagProc(dEvt_order_c*);
-    void commonCheck(dEvt_order_c*, u16, u16);
+    int commonCheck(dEvt_order_c*, u16, u16);
     void talkCheck(dEvt_order_c*);
     void talkXyCheck(dEvt_order_c*);
     void catchCheck(dEvt_order_c*);
@@ -45,8 +45,8 @@ public:
     void demoEnd();
     s32 potentialCheck(dEvt_order_c*);
     void doorCheck(dEvt_order_c*);
-    void itemCheck(dEvt_order_c*);
-    void endProc();
+    int itemCheck(dEvt_order_c*);
+    int endProc();
     void change();
     void entry();
     void reset(void*);
@@ -60,15 +60,15 @@ public:
     void skipper();
     void Step();
     void moveApproval(void*);
-    void compulsory(void*, char const*, u16);
+    bool compulsory(void*, char const*, u16);
     void remove();
     void* getStageEventDt();  // ret type probably wrong, fix later
     void sceneChange(int);
     u32 getPId(void*);
     void convPId(unsigned int);
     void getStbDemoData(char*);
-    void searchMapEventData(u8, s32);
-    void searchMapEventData(u8);
+    static void searchMapEventData(u8, s32);
+    static void searchMapEventData(u8);
     s16 runningEventID(s16);
     void setPt1(void*);
     void setPt2(void*);

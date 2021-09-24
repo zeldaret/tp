@@ -4,22 +4,11 @@
 //
 
 #include "m_Do/m_Do_lib.h"
+#include "JSystem/JMath/JMATrigonometric.h"
+#include "JSystem/JUtility/JUTTexture.h"
+#include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct _GXTlutObj {};
-
-struct _GXTexObj {};
-
-struct ResTIMG {};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
 
 //
 // Forward References:
@@ -43,10 +32,6 @@ extern "C" void init__11J3DUClipperFv();
 extern "C" void calcViewFrustum__11J3DUClipperFv();
 extern "C" void __dl__FPv();
 extern "C" void PSMTXMultVec();
-extern "C" void GXInitTexObj();
-extern "C" void GXInitTexObjCI();
-extern "C" void GXInitTexObjLOD();
-extern "C" void GXInitTlutObj();
 extern "C" void __register_global_object();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
@@ -69,6 +54,27 @@ SECTION_SDATA2 static f64 lit_3638 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8001513C-8001528C 00FA7C 0150+00 0/0 3/3 2/2 .text
  * mDoLib_setResTimgObj__FPC7ResTIMGP9_GXTexObjUlP10_GXTlutObj  */
+#ifdef NONMATCHING
+bool mDoLib_setResTimgObj(ResTIMG const* res, _GXTexObj* o_texObj, u32 param_2,
+                          _GXTlutObj* o_tlutObj) {
+    if (res->palettesEnabled) {
+        GXInitTlutObj(o_tlutObj, (void*)(res + res->paletteOffset), (GXTlutFmt)res->paletteFormat,
+                      res->paletteCount);
+        GXInitTexObjCI(o_texObj, (void*)(res + res->texDataOffset), res->width, res->height,
+                       (GXCITexFmt)res->format, (GXTexWrapMode)res->wrapS,
+                       (GXTexWrapMode)res->wrapT, 1 - res->mipmapCount, param_2);
+    } else {
+        GXInitTexObj(o_texObj, (void*)(res + res->texDataOffset), res->width, res->height,
+                     (GXTexFmt)res->format, (GXTexWrapMode)res->wrapS, (GXTexWrapMode)res->wrapT,
+                     (s32)1 - res->mipmapCount);
+    }
+    GXInitTexObjLOD(o_texObj, (GXTexFilter)res->minFilter, (GXTexFilter)res->magFilter,
+                    (f32)res->minLOD * 0.125f, (f32)res->maxLOD * 0.125f, (f32)res->LODBias * 0.01f,
+                    (s32)res->biasClamp, (s32)res->doEdgeLOD, (GXAnisotropy)res->maxAnisotropy);
+
+    return res->palettesEnabled;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -78,6 +84,7 @@ asm void mDoLib_setResTimgObj(ResTIMG const* param_0, _GXTexObj* param_1, u32 pa
 #include "asm/m_Do/m_Do_lib/mDoLib_setResTimgObj__FPC7ResTIMGP9_GXTexObjUlP10_GXTlutObj.s"
 }
 #pragma pop
+#endif
 
 /* 803DD8E4-803DD940 00A604 005C+00 2/2 5/5 5/5 .bss             mClipper__14mDoLib_clipper */
 J3DUClipper mDoLib_clipper::mClipper;
@@ -92,14 +99,18 @@ f32 mDoLib_clipper::mFovyRate;
 SECTION_SDATA2 static f32 lit_3739 = 182.04444885253906f;
 
 /* 8001528C-80015310 00FBCC 0084+00 0/0 1/1 0/0 .text            setup__14mDoLib_clipperFffff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoLib_clipper::setup(f32 param_0, f32 param_1, f32 param_2, f32 param_3) {
-    nofralloc
-#include "asm/m_Do/m_Do_lib/setup__14mDoLib_clipperFffff.s"
+void mDoLib_clipper::setup(f32 fovy, f32 aspect, f32 near, f32 far) {
+    mClipper.setFovy(fovy);
+    mClipper.setAspect(aspect);
+    mClipper.setNear(near);
+    mClipper.setFar(far);
+    mSystemFar = far;
+    mClipper.calcViewFrustum();
+
+    s16 tmp = fovy * 182.04444885253906f;
+
+    mFovyRate = cM_scos(tmp) / cM_ssin(tmp);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451B84-80451B88 000184 0004+00 2/2 0/0 0/0 .sdata2          @3784 */

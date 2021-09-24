@@ -3,6 +3,9 @@
 
 #include "dolphin/types.h"
 
+void mDoRst_reset(int, u32, int);
+void mDoRst_resetCallBack(int, void*);
+
 struct mDoRstData {
     /* 0x00 */ int mReset;
     /* 0x04 */ int mResetPrepare;
@@ -27,7 +30,10 @@ public:
     static void set3ButtonResetPort(int port) { mResetData->m3ButtonResetPort = port; }
     static void off3ButtonReset() { mResetData->m3ButtonReset = 0; }
     static void offResetPrepare() { mResetData->mResetPrepare = 0; }
-    static void offReset() { mResetData->mReset = 0; }
+    static void offReset() {
+        mResetData->mReset = 0;
+        mResetData->mResetPrepare = 0;
+    }
     static u8 getLogoScnFlag() { return mResetData->mLogoScnFlag; }
     static bool isReturnToMenu() { return mResetData->mReturnToMenu; }
     static bool isShutdown() { return mResetData->mShutdown; }
@@ -40,6 +46,7 @@ public:
     static void onShutdown() { mResetData->mShutdown = true; }
 
     static mDoRstData* getResetData();
+    static mDoRstData* i_getResetData() { return mResetData; }
     static void setResetData(mDoRstData* rstData) { mResetData = rstData; }
 
     static mDoRstData* mResetData;

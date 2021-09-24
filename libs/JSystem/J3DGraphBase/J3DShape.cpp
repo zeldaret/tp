@@ -11,46 +11,7 @@
 // Types:
 //
 
-struct _GXVtxFmt {};
-
 struct _GXVtxAttrFmtList {};
-
-struct _GXAttr {};
-
-struct Vec {};
-
-struct J3DShapeMtx {
-    /* 803130A8 */ void resetMtxLoadCache();
-
-    static u8 sCurrentPipeline[4];
-    static u8 sCurrentScaleFlag[4];
-    static u8 sTexMtxLoadType[4];
-};
-
-struct J3DShapeDraw {
-    /* 80314974 */ void addTexMtxIndexInDL(u32, u32, u32);
-    /* 80314AD4 */ void draw() const;
-};
-
-struct J3DShape {
-    /* 80314B48 */ void initialize();
-    /* 80314BB8 */ void addTexMtxIndexInDL(_GXAttr, u32);
-    /* 80314CBC */ void addTexMtxIndexInVcd(_GXAttr);
-    /* 80314DA8 */ void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
-    /* 80314E28 */ void countBumpMtxNum() const;
-    /* 80314EEC */ void loadVtxArray() const;
-    /* 80314F5C */ void isSameVcdVatCmd(J3DShape*);
-    /* 80314F98 */ void makeVtxArrayCmd();
-    /* 80315260 */ void makeVcdVatCmd();
-    /* 80315300 */ void loadPreDrawSetting() const;
-    /* 80315398 */ void setArrayAndBindPipeline() const;
-    /* 8031544C */ void drawFast() const;
-    /* 803155E0 */ void draw() const;
-    /* 80315628 */ void simpleDraw() const;
-    /* 803156AC */ void simpleDrawCache() const;
-
-    static u8 sOldVcdVatCmd[4];
-};
 
 //
 // Forward References:
@@ -92,7 +53,6 @@ extern "C" void OSRestoreInterrupts();
 extern "C" void OSDisableScheduler();
 extern "C" void OSEnableScheduler();
 extern "C" void GXSetArray();
-extern "C" void GXCallDisplayList();
 extern "C" void GDInitGDLObj();
 extern "C" void GDFlushCurrToMem();
 extern "C" void GDPadCurr32();
@@ -252,7 +212,7 @@ asm void J3DShape::makeVcdVatCmd() {
 
 /* ############################################################################################## */
 /* 804515D0-804515D4 000AD0 0004+00 5/5 25/25 9/9 .sbss            sOldVcdVatCmd__8J3DShape */
-u8 J3DShape::sOldVcdVatCmd[4];
+void* J3DShape::sOldVcdVatCmd;
 
 /* 80315300-80315398 30FC40 0098+00 2/2 6/6 3/3 .text            loadPreDrawSetting__8J3DShapeCFv */
 #pragma push

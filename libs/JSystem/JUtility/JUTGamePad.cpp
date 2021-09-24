@@ -12,10 +12,6 @@
 #define mPadListHack (*(JSUList<JUTGamePad>*)&mPadList)
 
 //
-// Types:
-//
-
-//
 // Forward References:
 //
 
@@ -122,9 +118,7 @@ SECTION_DATA PADMask JUTGamePad::CRumble::sChannelMask[4] = {
 };
 
 /* 803CC600-803CC610 029720 0010+00 2/2 0/0 0/0 .data            channel_mask */
-SECTION_DATA static u8 channel_mask[16] = {
-    0x80, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00,
-};
+SECTION_DATA static u32 channel_mask[4] = {0x80000000, 0x40000000, 0x20000000, 0x10000000};
 
 /* 803CC610-803CC620 029730 000C+04 2/2 0/0 0/0 .data            __vt__10JUTGamePad */
 SECTION_DATA extern void* __vt__10JUTGamePad[3 + 1 /* padding */] = {
@@ -204,8 +198,8 @@ s32 JUTGamePad::init() {
 
 /* 802E08D0-802E08E4 2DB210 0014+00 1/1 0/0 0/0 .text            clear__10JUTGamePadFv */
 void JUTGamePad::clear() {
-    this->field_0x98 = 0;
-    this->field_0xa8 = 1;
+    mButtonReset.mReset = false;
+    field_0xa8 = 1;
 }
 
 /* ############################################################################################## */
@@ -255,7 +249,7 @@ void JUTGamePad::assign() {
     for (s32 i = 4; i > 0; i--) {
         if ((/* mPadStatus */ lbl_804343F0[iVar3].error == 0) &&
             (/* *puVar2 */ lbl_804514D4[iVar3] == 0)) {
-            this->pad_port = iVar3;
+            mPortNum = iVar3;
             /* JUTGamePad::mPadAssign[iVar3] */ /* *puVar2 */ lbl_804514D4[iVar3] = 1;
             /* JUTGamePad::mPadButton */ lbl_80434420[iVar3].setRepeat(
                 this->buttons.field_0x24, this->buttons.field_0x28, this->buttons.field_0x2c);
@@ -298,7 +292,6 @@ OSTime JUTGamePad::C3ButtonReset::sThreshold;
 /* 80451500-80451504 -00001 0004+00 3/3 6/6 0/0 .sbss            None */
 /* 80451500 0001+00 data_80451500 None */
 /* 80451501 0003+00 data_80451501 None */
-extern bool struct_80451500;
 bool struct_80451500;
 bool struct_80451501;
 
@@ -313,10 +306,9 @@ void JUTGamePad::checkResetCallback(OSTime unk) {
         return;
 
     struct_80451501 = true;
-    JUTGamePad::C3ButtonReset::sResetOccurredPort = this->pad_port;
+    JUTGamePad::C3ButtonReset::sResetOccurredPort = mPortNum;
     if (JUTGamePad::C3ButtonReset::sCallback != NULL) {
-        JUTGamePad::C3ButtonReset::sCallback(this->pad_port,
-                                             JUTGamePad::C3ButtonReset::sCallbackArg);
+        JUTGamePad::C3ButtonReset::sCallback(mPortNum, JUTGamePad::C3ButtonReset::sCallbackArg);
     }
 }
 

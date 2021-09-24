@@ -101,6 +101,7 @@ public:
     void removeDisposer(JKRDisposer* disposer) { mDisposerList.remove(&disposer->mLink); }
     void lock() { OSLockMutex(&mMutex); }
     void unlock() { OSUnlockMutex(&mMutex); }
+    u32 getHeapSize() { return mSize; }
 
 protected:
     /* 0x00 */  // vtable

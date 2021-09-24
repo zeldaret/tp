@@ -407,7 +407,7 @@ asm void J2DScreen::draw(f32 param_0, f32 param_1, J2DGrafContext const* param_2
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm const J2DPane* J2DScreen::search(u64 param_0) {
+asm J2DPane* J2DScreen::search(u64 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DScreen/search__9J2DScreenFUx.s"
 }
@@ -417,7 +417,7 @@ asm const J2DPane* J2DScreen::search(u64 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm const J2DPane* J2DScreen::searchUserInfo(u64 param_0) {
+asm J2DPane* J2DScreen::searchUserInfo(u64 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DScreen/searchUserInfo__9J2DScreenFUx.s"
 }

@@ -4,98 +4,35 @@
 //
 
 #include "m_Do/m_Do_machine_exception.h"
+#include "JSystem/JFramework/JFWSystem.h"
+#include "JSystem/JKernel/JKRAram.h"
+#include "JSystem/JUtility/JUTConsole.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "m_Do/m_Do_ext.h"
+#include "m_Do/m_Do_main.h"
 
 //
 // Types:
 //
-
-struct mDoMain {
-    static u8 COPYDATE_STRING[18 + 2 /* padding */];
-    static u8 sPowerOnTime[4];
-    static u8 sHungUpTime[4];
-};
-
-struct dRes_control_c {
-    /* 8003C638 */ void dump();
-};
-
-struct JUTConsole {
-    /* 802E7C38 */ void print(char const*);
-    /* 802E7F7C */ void dumpToTerminal(unsigned int);
-};
-
-struct JKRHeap {
-    /* 802CE72C */ void getFreeSize();
-    /* 802CE784 */ void getTotalFreeSize();
-};
-
-struct JKRAramHeap {
-    /* 802D3218 */ void dump();
-};
-
-struct JKRAram {
-    static u8 sAramObject[4];
-};
-
-struct JFWSystem {
-    static u8 systemConsole[4];
-};
 
 struct DynamicModuleControlBase {
     /* 80262470 */ void dump();
 };
 
 //
-// Forward References:
-//
-
-extern "C" static void print_f__FPCce();
-extern "C" static void print__FPCc();
-extern "C" static void dispHeapInfo__Fv();
-extern "C" static void dispGameInfo__Fv();
-extern "C" static void dispDateInfo__Fv();
-extern "C" static void dispConsoleToTerminal__Fv();
-extern "C" void exception_addition__FP10JUTConsole();
-extern "C" extern char const* const m_Do_m_Do_machine_exception__stringBase0;
-extern "C" extern u8 struct_80450C98[4];
-extern "C" extern u8 struct_80450C9C[4];
-
-//
 // External References:
 //
 
-extern "C" void dump__14dRes_control_cFv();
 extern "C" void dump__24DynamicModuleControlBaseFv();
-extern "C" void getFreeSize__7JKRHeapFv();
-extern "C" void getTotalFreeSize__7JKRHeapFv();
-extern "C" void dump__11JKRAramHeapFv();
-extern "C" void print__10JUTConsoleFPCc();
 extern "C" void JUTConsole_print_f_va_();
-extern "C" void dumpToTerminal__10JUTConsoleFUi();
-extern "C" void OSTicksToCalendarTime();
-extern "C" void _savegpr_23();
-extern "C" void _restgpr_23();
-extern "C" u8 COPYDATE_STRING__7mDoMain[18 + 2 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" u8 sPowerOnTime__7mDoMain[4];
-extern "C" extern u8 data_80450B0C[4];
-extern "C" u8 sHungUpTime__7mDoMain[4];
-extern "C" extern u8 data_80450B14[4];
-extern "C" extern u8 gameHeap[4];
-extern "C" extern u8 zeldaHeap[4];
-extern "C" extern u8 archiveHeap[4];
-extern "C" u8 systemConsole__9JFWSystem[4];
-extern "C" u8 sAramObject__7JKRAram[4];
 
 //
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 80450C90-80450C98 000190 0004+04 3/3 0/0 0/0 .sbss            sConsole */
-static u8 sConsole[4 + 4 /* padding */];
+static JUTConsole* sConsole;
 
 /* 80017D7C-80017E08 0126BC 008C+00 3/3 0/0 0/0 .text            print_f__FPCce */
 #pragma push
@@ -107,107 +44,80 @@ static asm void print_f(char const* param_0, ...) {
 }
 #pragma pop
 
-/* 80017E08-80017E30 012748 0028+00 2/2 0/0 0/0 .text            print__FPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void print(char const* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_machine_exception/print__FPCc.s"
+void print(char const* string) {
+    sConsole->print(string);
 }
-#pragma pop
 
-/* ############################################################################################## */
-/* 80374460-80374460 000AC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80374460 =
-    "--------------------------------------\n";
-SECTION_DEAD static char const* const stringBase_80374488 = "-- Heap Free / TotalFree (KB) --\n";
-SECTION_DEAD static char const* const stringBase_803744AA = "  Zelda %5d / %5d\n";
-SECTION_DEAD static char const* const stringBase_803744BD = "   Game %5d / %5d\n";
-SECTION_DEAD static char const* const stringBase_803744D0 = "Archive %5d / %5d\n";
-SECTION_DEAD static char const* const stringBase_803744E3 = "--------------------------------\n";
-#pragma pop
+const char* stringBase_80374460 = "--------------------------------------\n";
 
-/* 80017E30-80017F8C 012770 015C+00 1/1 0/0 0/0 .text            dispHeapInfo__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dispHeapInfo() {
-    nofralloc
-#include "asm/m_Do/m_Do_machine_exception/dispHeapInfo__Fv.s"
+void dispHeapInfo() {
+    JKRExpHeap* zelda = zeldaHeap;
+    JKRExpHeap* game = gameHeap;
+    JKRExpHeap* archive = archiveHeap;
+
+    u32 zeldaFree = zelda->getFreeSize();
+    u32 gameFree = game->getFreeSize();
+    u32 archiveFree = archive->getFreeSize();
+    u32 zeldaTotal = zelda->getTotalFreeSize();
+    u32 gameTotal = game->getTotalFreeSize();
+    u32 archiveTotal = archive->getTotalFreeSize();
+
+    print("-- Heap Free / TotalFree (KB) --\n");
+    print_f("  Zelda %5d / %5d\n", zeldaFree >> 10, zeldaTotal >> 10);
+    print_f("   Game %5d / %5d\n", gameFree >> 10, gameTotal >> 10);
+    print_f("Archive %5d / %5d\n", archiveFree >> 10, archiveTotal >> 10);
+    print("--------------------------------\n");
+
+    if (JKRAram::getAramHeap()) {
+        JKRAram::getAramHeap()->dump();
+    }
+    dump__24DynamicModuleControlBaseFv();
+    g_dComIfG_gameInfo.mResControl.dump();
+
+    zelda->dump_sort();
+    game->dump_sort();
+    archive->dump_sort();
 }
-#pragma pop
 
-/* ############################################################################################## */
-/* 80374460-80374460 000AC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80374505 = "Start StageName:RoomNo [%s:%d]\n";
-#pragma pop
-
-/* 80017F8C-80017FD0 0128CC 0044+00 1/1 0/0 0/0 .text            dispGameInfo__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dispGameInfo() {
-    nofralloc
-#include "asm/m_Do/m_Do_machine_exception/dispGameInfo__Fv.s"
+void dispGameInfo() {
+    print_f("Start StageName:RoomNo [%s:%d]\n", dComIfGp_getStartStageName(),
+            dComIfGp_getStartStageRoomNo());
 }
-#pragma pop
 
-/* ############################################################################################## */
-/* 80374460-80374460 000AC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80374525 =
-    "------------- Date Infomation ---------\n";
-SECTION_DEAD static char const* const stringBase_8037454E = " FINAL VERSION\n";
-SECTION_DEAD static char const* const stringBase_8037455E = "COMPILE USER: FINAL\n";
-SECTION_DEAD static char const* const stringBase_80374573 = "COPYDATE   : %17s\n";
-SECTION_DEAD static char const* const stringBase_80374586 =
-    "PowerOnTime: %04d/%2d/%2d %2d:%2d:%2d`%03d\"%03d\n";
-SECTION_DEAD static char const* const stringBase_803745B7 =
-    "HungUpTime : %04d/%2d/%2d %2d:%2d:%2d`%03d\"%03d\n";
-SECTION_DEAD static char const* const stringBase_803745E8 =
-    "PlayTime   : %4d days, %2d:%2d:%2d`%03d\"%03d\n";
-SECTION_DEAD static char const* const stringBase_80374616 =
-    "---------------------------------------\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037463F = "";
-#pragma pop
+void dispDateInfo() {
+    print("------------- Date Infomation ---------\n");
+    print(" FINAL VERSION\n");
+    print("COMPILE USER: FINAL\n");
+    print_f("COPYDATE   : %17s\n", mDoMain::COPYDATE_STRING);
 
-/* 80017FD0-80018124 012910 0154+00 1/1 0/0 0/0 .text            dispDateInfo__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dispDateInfo() {
-    nofralloc
-#include "asm/m_Do/m_Do_machine_exception/dispDateInfo__Fv.s"
+    OSCalendarTime time;
+    OSTicksToCalendarTime(mDoMain::sPowerOnTime, &time);
+    print_f("PowerOnTime: %04d/%2d/%2d %2d:%2d:%2d`%03d\"%03d\n", time.year, time.month,
+            time.day_of_month, time.hours, time.minutes, time.seconds, time.milliseconds,
+            time.microseconds);
+
+    OSTicksToCalendarTime(mDoMain::sHungUpTime, &time);
+    print_f("HungUpTime : %04d/%2d/%2d %2d:%2d:%2d`%03d\"%03d\n", time.year, time.month,
+            time.day_of_month, time.hours, time.minutes, time.seconds, time.milliseconds,
+            time.microseconds);
+
+    OSTicksToCalendarTime(mDoMain::sHungUpTime - mDoMain::sPowerOnTime, &time);
+    print_f("PlayTime   : %4d days, %2d:%2d:%2d`%03d\"%03d\n", time.year_day, time.hours,
+            time.minutes, time.seconds, time.milliseconds, time.microseconds);
+    print("---------------------------------------\n");
 }
-#pragma pop
 
-/* 80018124-8001814C 012A64 0028+00 1/1 0/0 0/0 .text            dispConsoleToTerminal__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dispConsoleToTerminal() {
-    nofralloc
-#include "asm/m_Do/m_Do_machine_exception/dispConsoleToTerminal__Fv.s"
+void dispConsoleToTerminal() {
+    JFWSystem::getSystemConsole()->dumpToTerminal(0xFFFFFFFF);
 }
-#pragma pop
 
-/* 8001814C-8001817C 012A8C 0030+00 0/0 1/1 0/0 .text            exception_addition__FP10JUTConsole
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void exception_addition(JUTConsole* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_machine_exception/exception_addition__FP10JUTConsole.s"
+void exception_addition(JUTConsole* pConsole) {
+    sConsole = pConsole;
+    dispHeapInfo();
+    dispDateInfo();
+    dispConsoleToTerminal();
+    dispGameInfo();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450C98-80450C9C -00001 0004+00 0/0 0/0 50/50 .sbss            None */

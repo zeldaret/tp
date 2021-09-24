@@ -11,7 +11,6 @@
 // Forward References:
 //
 
-extern "C" void fputs();
 extern "C" void __put_char();
 
 //
@@ -34,7 +33,7 @@ extern "C" void fwide();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fputs() {
+asm int fputs(const char*, FILE*) {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/char_io/fputs.s"
 }

@@ -17,12 +17,6 @@
 
 struct scene_class {};
 
-struct phaseParam_c {};
-
-struct mDoRst {
-    static u8 mResetData[4 + 4 /* padding */];
-};
-
 struct mDoGph_gInf_c {
     static u8 mFader[4];
 };
@@ -41,11 +35,6 @@ struct dPa_control_c {
 
 struct dMapInfo_n {
     /* 8003EE5C */ void getMapPlayerPos();
-};
-
-struct dDlst_shadowControl_c {
-    /* 80055C74 */ void setReal(u32, s8, J3DModel*, cXyz*, f32, f32, dKy_tevstr_c*);
-    /* 80055F84 */ void setSimple(cXyz*, f32, f32, cXyz*, s16, f32, _GXTexObj*);
 };
 
 struct dComIfG_resLoader_c {
@@ -1417,15 +1406,14 @@ static int phase_1(char* arc_name) {
 
 /* 8002CE38-8002CEB4 027778 007C+00 1/0 0/0 0/0 .text            phase_2__FPc */
 static int phase_2(char* arc_name) {
-    int tmp = dComIfG_syncObjectRes(arc_name);
+    int syncStatus = dComIfG_syncObjectRes(arc_name);
 
-    if (tmp < 0) {
+    if (syncStatus < 0) {
         OSReport_Error("%s.arc Sync Read Error !!\n", arc_name);
-        tmp = 5;
+        return 5;
     } else {
-        tmp = tmp > 0 ? 0 : 2;
+        return syncStatus > 0 ? 0 : 2;
     }
-    return tmp;
 }
 
 /* 8002CEB4-8002CEBC 0277F4 0008+00 1/0 0/0 0/0 .text            phase_3__FPc */
@@ -1434,6 +1422,7 @@ static int phase_3(char* param_0) {
 }
 
 typedef int (*dComIfG_phaseMethod)(char*);
+typedef int (*dComIfG_phaseMethod0)(phaseParam_c*);
 
 /* ############################################################################################## */
 /* 803A71B8-803A71C4 -00001 000C+00 1/1 0/0 0/0 .data            l_method$5017 */
@@ -1445,6 +1434,16 @@ SECTION_DATA static dComIfG_phaseMethod l_method_5017[3] = {
 
 /* 8002CEBC-8002CEFC 0277FC 0040+00 0/0 7/7 550/550 .text
  * dComIfG_resLoad__FP30request_of_phase_process_classPCc       */
+#ifdef NONMATCHING
+int dComIfG_resLoad(request_of_phase_process_class* param_0, char const* param_1) {
+    if (param_0->mPhaseStep == 2) {
+        return 4;
+    } else {
+        dComLbG_PhaseHandler(param_0, &l_method_5017[0], (void*)param_1);
+    }
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1453,38 +1452,38 @@ asm void dComIfG_resLoad(request_of_phase_process_class* param_0, char const* pa
 #include "asm/d/com/d_com_inf_game/dComIfG_resLoad__FP30request_of_phase_process_classPCc.s"
 }
 #pragma pop
+#endif
 
 /* 8002CEFC-8002CF5C 02783C 0060+00 1/0 0/0 0/0 .text            phase_01__FP12phaseParam_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void phase_01(phaseParam_c* param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/phase_01__FP12phaseParam_c.s"
+static int phase_01(phaseParam_c* param_0) {
+    if (dComIfG_setObjectRes(param_0->field_0x0, 0, param_0->heap) == 0) {
+        return 5;
+    } else {
+        return 2;
+    }
 }
-#pragma pop
 
 /* 8002CF5C-8002CFB8 02789C 005C+00 1/0 0/0 0/0 .text            phase_02__FP12phaseParam_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void phase_02(phaseParam_c* param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/phase_02__FP12phaseParam_c.s"
+static int phase_02(phaseParam_c* param_0) {
+    int syncStatus = dComIfG_syncObjectRes(param_0->field_0x0);
+    if (syncStatus < 0) {
+        return 5;
+    } else {
+        return syncStatus > 0 ? 0 : 2;
+    }
 }
-#pragma pop
 
 /* 8002CFB8-8002CFC0 0278F8 0008+00 1/0 0/0 0/0 .text            phase_03__FP12phaseParam_c */
-static bool phase_03(phaseParam_c* param_0) {
+static int phase_03(phaseParam_c* param_0) {
     return false;
 }
 
 /* ############################################################################################## */
 /* 803A71C4-803A71D0 -00001 000C+00 1/1 0/0 0/0 .data            l_method$5051 */
-SECTION_DATA static void* l_method_5051[3] = {
-    (void*)phase_01__FP12phaseParam_c,
-    (void*)phase_02__FP12phaseParam_c,
-    (void*)phase_03__FP12phaseParam_c,
+SECTION_DATA static dComIfG_phaseMethod0 l_method_5051[3] = {
+    phase_01,
+    phase_02,
+    phase_03,
 };
 
 /* 8002CFC0-8002D008 027900 0048+00 1/1 3/3 0/0 .text
@@ -2331,39 +2330,15 @@ asm void dComIfG_resLoader_c::load(char const** param_0, JKRHeap* param_1) {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80378F38-80378F38 005598 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80379098 = "Stg_00";
-#pragma pop
-
 /* 8002F434-8002F478 029D74 0044+00 0/0 12/12 12/12 .text            dComIfG_getStageRes__FPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_getStageRes(char const* param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfG_getStageRes__FPCc.s"
+void* dComIfG_getStageRes(char const* resName) {
+    return dComIfG_getStageRes("Stg_00", resName);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80378F38-80378F38 005598 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8037909F = "Xtg_00";
-#pragma pop
 
 /* 8002F478-8002F4BC 029DB8 0044+00 0/0 1/1 0/0 .text            dComIfG_getOldStageRes__FPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfG_getOldStageRes(char const* param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfG_getOldStageRes__FPCc.s"
+void* dComIfG_getOldStageRes(char const* resName) {
+    return dComIfG_getStageRes("Xtg_00", resName);
 }
-#pragma pop
 
 static char buf[32];
 

@@ -30,7 +30,6 @@ extern "C" void __dl__FPv();
 extern "C" void __dla__FPv();
 extern "C" void storeTLUT__10JUTPaletteF7_GXTlut10_GXTlutFmt15JUTTransparencyUsPv();
 extern "C" void load__10JUTPaletteFv();
-extern "C" void GXInitTexObjCI();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
 

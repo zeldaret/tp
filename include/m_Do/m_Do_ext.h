@@ -129,7 +129,7 @@ JKRSolidHeap* mDoExt_createSolidHeapFromGame(u32, u32);
 void mDoExt_destroySolidHeap(JKRSolidHeap*);
 u32 mDoExt_adjustSolidHeap(JKRSolidHeap*);
 void mDoExt_restoreCurrentHeap();
-JKRHeap* mDoExt_getGameHeap();
+JKRExpHeap* mDoExt_getGameHeap();
 void mDoExt_destroySolidHeap(JKRSolidHeap*);
 JKRHeap* mDoExt_setCurrentHeap(JKRHeap*);
 JKRExpHeap* mDoExt_getArchiveHeap();
@@ -139,5 +139,14 @@ JKRAssertHeap* mDoExt_getAssertHeap();
 JKRExpHeap* mDoExt_getCommandHeap();
 JKRExpHeap* mDoExt_getZeldaHeap();
 JKRExpHeap* mDoExt_getJ2dHeap();
+JKRExpHeap* mDoExt_getHostIOHeap();
+JKRSolidHeap* mDoExt_createSolidHeapToCurrent(JKRHeap**, u32, JKRHeap*, u32);
+JKRSolidHeap* mDoExt_createSolidHeapToCurrent(u32, JKRHeap*, u32);
+JKRSolidHeap* mDoExt_createSolidHeapFromGameToCurrent(u32, u32);
+JKRHeap* mDoExt_getCurrentHeap();
+
+extern JKRExpHeap* zeldaHeap;
+extern JKRExpHeap* gameHeap;
+extern JKRExpHeap* archiveHeap;
 
 #endif /* M_DO_M_DO_EXT_H */

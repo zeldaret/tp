@@ -41,7 +41,7 @@ public:
     daPy_anmHeap_c(u32);
     ~daPy_anmHeap_c();
     void initData();
-    void mallocBuffer();
+    void* mallocBuffer();
     void createHeap(daPy_anmHeap_c::daAlinkHEAP_TYPE);
     J3DAnmBase* loadData(u16);
     J3DAnmBase* loadDataIdx(u16);
@@ -59,9 +59,9 @@ private:
     /* 0x02 */ u16 mPriIdx;
     /* 0x04 */ u16 mArcNo;
     /* 0x06 */ u16 field_0x06;
-    /* 0x08 */ int mBufferSize;
+    /* 0x08 */ u32 mBufferSize;
     /* 0x0C */ void* mBuffer;
-    /* 0x10 */ JKRHeap* mAnimeHeap;
+    /* 0x10 */ JKRSolidHeap* mAnimeHeap;
 };  // Size = 0x14
 
 class daPy_actorKeep_c {
@@ -167,16 +167,16 @@ public:
     void checkBombItem(int);
     void checkBottleItem(int);
     void checkDrinkBottleItem(int);
-    int checkOilBottleItem(int);
-    void checkOpenBottleItem(int);
-    void checkBowItem(int);
-    void checkHookshotItem(int);
-    void checkTradeItem(int);
-    BOOL checkDungeonWarpItem(int);
-    void checkMasterSwordEquip();
+    static BOOL checkOilBottleItem(int);
+    static BOOL checkOpenBottleItem(int);
+    static BOOL checkBowItem(int);
+    static BOOL checkHookshotItem(int);
+    static BOOL checkTradeItem(int);
+    static BOOL checkDungeonWarpItem(int);
+    BOOL checkMasterSwordEquip();
     void checkWoodShieldEquip();
-    void getAttentionOffsetY();
-    void checkNowWolfEyeUp();
+    f32 getAttentionOffsetY();
+    s16 checkNowWolfEyeUp();
     void forceRestartRoom(int, u32, int);
     void setFmChainPos(fopAc_ac_c*, cXyz*, int);
     void cancelFmChainGrab();
@@ -386,7 +386,7 @@ public:
     virtual bool checkCopyRodEquip(void) const;
     virtual bool checkCutJumpMode(void) const;
 
-    inline bool getSumouCameraMode() const {
+    bool getSumouCameraMode() const {
         bool sumouCameraMode = false;
         if (field_0x560[0xA] != 0 && field_0x560[0xA] < 0x26) {
             sumouCameraMode = true;
@@ -405,6 +405,7 @@ public:
     void i_onEndResetFlg1(daPy_ERFLG1 pFlg) { mEndResetFlg1 |= pFlg; }
     int i_checkWolf() { return i_checkNoResetFlg1(Wolf); }
     BOOL i_checkEquipHeavyBoots() const { return i_checkNoResetFlg0(EquipHeavyBoots); }
+    inline BOOL checkNowWolf();
 
     static u8 m_midnaActor[4];
 };

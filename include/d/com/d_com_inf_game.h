@@ -39,6 +39,12 @@ public:
     u8 mTimerType;
 };
 
+class phaseParam_c {
+public:
+    /* 0x0 */ char* field_0x0;
+    /* 0x4 */ JKRHeap* heap;
+};
+
 struct camera_class {};
 
 class dComIfG_camera_info_class {
@@ -59,6 +65,8 @@ public:
     /* 0x34 */ s16 field_0x34;
 };
 STATIC_ASSERT(sizeof(dComIfG_camera_info_class) == 0x38);
+
+enum PlayerPtr { LINK_PTR, HORSE_PTR };
 
 class dComIfG_play_c {
 public:
@@ -100,7 +108,7 @@ public:
     void* getMsgObjectClass() { return mMsgObjectClass; }
     dStage_roomControl_c* getRoomControl() { return &mRoomControl; }
     dStage_stageDt_c& getStage() { return mStageData; }
-    dEvt_control_c getEvent() { return mEvent; }
+    dEvt_control_c& getEvent() { return mEvent; }
     daHorse_c* getHorseActor() { return (daHorse_c*)mPlayerPtr[1]; }
     u8& getItemLifeCountType() { return mItemLifeCountType; }
     void setItem(u8 slot, u8 i_no) {
@@ -149,21 +157,25 @@ public:
     void setMaxOxygen(int max) { mMaxOxygen = max; }
     u8 getDoStatus() { return mDoStatus; }
     u8 getRStatus() { return mRStatus; }
-    inline char* getStartStageName() { return mStartStage.getName(); }
-    inline s8 getStartStageRoomNo() { return mStartStage.getRoomNo(); }
-    inline s8 getStartStageLayer() { return mStartStage.getLayer(); }
-    inline u8 isHeapLockFlag() { return mHeapLockFlag; }
-    inline void setHeapLockFlag(u8 status) { mHeapLockFlag = status; }
-    inline void setSubHeapLockFlag(int idx, u8 status) { mSubHeapLockFlag[idx] = status; }
-    inline u8 getSubHeapLockFlag(int idx) { return mSubHeapLockFlag[idx]; }
-    inline void offHeapLockFlag() { mHeapLockFlag = 0; }
-    inline JKRExpHeap* getSubExpHeap2D(int idx) { return mSubExpHeap2D[idx]; }
-    inline void setSubExpHeap2D(int idx, void* heap) { mSubExpHeap2D[idx] = (JKRExpHeap*)heap; }
-    inline void offEnableNextStage() { mNextStage.offEnable(); }
-    inline JKRHeap* getExpHeap2D() { return mExpHeap2D; }
-    inline dEvent_manager_c& getEvtManager() { return mEvtManager; }
-    inline dAttention_c& getAttention() { return mAttention; }
+    char* getStartStageName() { return mStartStage.getName(); }
+    s8 getStartStageRoomNo() { return mStartStage.getRoomNo(); }
+    s8 getStartStageLayer() { return mStartStage.getLayer(); }
+    u8 isHeapLockFlag() { return mHeapLockFlag; }
+    void setHeapLockFlag(u8 status) { mHeapLockFlag = status; }
+    void setSubHeapLockFlag(int idx, u8 status) { mSubHeapLockFlag[idx] = status; }
+    u8 getSubHeapLockFlag(int idx) { return mSubHeapLockFlag[idx]; }
+    void offHeapLockFlag() { mHeapLockFlag = 0; }
+    JKRExpHeap* getSubExpHeap2D(int idx) { return mSubExpHeap2D[idx]; }
+    void setSubExpHeap2D(int idx, void* heap) { mSubExpHeap2D[idx] = (JKRExpHeap*)heap; }
+    void offEnableNextStage() { mNextStage.offEnable(); }
+    JKRHeap* getExpHeap2D() { return mExpHeap2D; }
+    dEvent_manager_c& getEvtManager() { return mEvtManager; }
+    dAttention_c& getAttention() { return mAttention; }
     JKRArchive* getMsgDtArchive(int idx) { return mMsgDtArchive[idx]; }
+    s16 getStartStagePoint() { return mStartStage.getPoint(); }
+    void* getPlayerPtr(int ptrIdx) { return mPlayerPtr[ptrIdx]; }
+    JKRArchive* getMain2DArchive() { return mMain2DArchive; }
+    J2DGrafContext* getCurrentGrafPort() { return mCurrentGrafPort; }
 
 public:
     /* 0x00000 */ dBgS mDBgS;
@@ -378,33 +390,11 @@ public:
     /* 0x0500C */ dDlst_window_c* mCurrentWindow;
     /* 0x05010 */ void* mCurrentView;
     /* 0x05014 */ void* mCurrentViewport;
-    /* 0x05018 */ void* mCurrentGrafPort;
+    /* 0x05018 */ J2DGrafContext* mCurrentGrafPort;
     /* 0x0501C */ void* mItemTable;
     /* 0x0501D */ u8 field_0x501d[4];
     /* 0x05024 */ char mLastPlayStageName[8];
 };
-
-class dRes_control_c {
-public:
-    dRes_control_c() {}
-    /* 8003BFB0 */ ~dRes_control_c();
-    /* 8003C078 */ static int setRes(char const*, dRes_info_c*, int, char const*, u8, JKRHeap*);
-    /* 8003C160 */ static int syncRes(char const*, dRes_info_c*, int);
-    /* 8003C194 */ void deleteRes(char const*, dRes_info_c*, int);
-    /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
-
-    int setObjectRes(const char* name, u8 param_1, JKRHeap* heap) {
-        return setRes(name, &mResInfos1[0], ARRAY_SIZE(mResInfos1), "/res/Object/", param_1, heap);
-    }
-
-    int syncObjectRes(const char* name) {
-        return syncRes(name, &mResInfos1[0], ARRAY_SIZE(mResInfos1));
-    }
-
-private:
-    /* 0x0000 */ dRes_info_c mResInfos1[0x80];
-    /* 0x1200 */ dRes_info_c mResInfos2[0x40];
-};  // Size: 0x1B00
 
 class dComIfG_inf_c {
 public:
@@ -414,8 +404,8 @@ public:
 
     /* 0x00000 */ dSv_info_c info;
     /* 0x00F38 */ dComIfG_play_c play;
-    /* 0x05F64 */ dDlst_list_c draw_list_list;
-    /* 0x1C110 */ u8 field_0x1C114[0x1E8 - 0xA];
+    /* 0x05F64 */ dDlst_list_c drawlist;
+    /* 0x1C104 */ u8 field_0x1C104[0x1F4];
     /* 0x1C2F8 */ dRes_control_c mResControl;
     /* 0x1DDF8 */ u8 field_0x1ddf8;  // related to fade, controls brightness
     /* 0x1DDF9 */ u8 mWorldDark;
@@ -431,7 +421,7 @@ public:
     /* 0x1DE0C */ u8 field_0x1de0c;
 
     static __d_timer_info_c dComIfG_mTimerInfo;
-};
+};  // Size: 0x1DE10
 
 STATIC_ASSERT(122384 == sizeof(dComIfG_inf_c));
 
@@ -459,6 +449,8 @@ u16 dComIfGs_getMaxLifeGauge();
 void dComIfGs_setWarpMarkFlag(u8);
 void dComIfGs_setSelectEquipSword(u8);
 void dComIfGs_setSelectEquipShield(u8);
+void* dComIfG_getStageRes(char const*);
+void dComLbG_PhaseHandler(request_of_phase_process_class*, int (**param_1)(void*), void*);
 
 inline void dComIfGp_setRStatus(u8 status, u8 flag) {
     g_dComIfG_gameInfo.play.setRStatus(status, flag);
@@ -754,7 +746,7 @@ inline char* dComIfGp_getStartStageName() {
 }
 
 inline void dComIfGd_reset() {
-    g_dComIfG_gameInfo.draw_list_list.reset();
+    g_dComIfG_gameInfo.drawlist.reset();
 }
 
 inline u8 dComIfGs_getOptVibration() {
@@ -799,6 +791,10 @@ inline void dComIfGs_offSaveSwitch(int i_stageNo, int i_no) {
 
 inline BOOL dComIfGs_isSaveSwitch(int i_stageNo, int i_no) {
     return g_dComIfG_gameInfo.info.getSavedata().getSave(i_stageNo).getBit().isSwitch(i_no);
+}
+
+inline BOOL dComIfGs_isSaveSwitch(int i_no) {
+    return g_dComIfG_gameInfo.info.getMemory().getBit().isSwitch(i_no);
 }
 
 inline void dComIfGs_onStageBossEnemy() {
@@ -851,7 +847,7 @@ inline void dComIfGp_roomControl_initZone() {
     g_dComIfG_gameInfo.play.getRoomControl()->initZone();
 }
 
-inline bool dComIfG_setObjectRes(const char* name, u8 param_1, JKRHeap* heap) {
+inline int dComIfG_setObjectRes(const char* name, u8 param_1, JKRHeap* heap) {
     return g_dComIfG_gameInfo.mResControl.setObjectRes(name, param_1, heap);
 }
 
@@ -973,6 +969,46 @@ inline JKRArchive* dComIfGp_getMsgDtArchive(int idx) {
 
 inline u8 dComIfGs_getArrowNum() {
     return g_dComIfG_gameInfo.info.getPlayer().getItemRecord().getArrowNum();
+}
+
+inline s16 dComIfGp_getStartStagePoint() {
+    return g_dComIfG_gameInfo.play.getStartStagePoint();
+}
+
+inline void dComIfGs_initZone() {
+    g_dComIfG_gameInfo.info.initZone();
+}
+
+inline int dComIfG_deleteObjectResMain(const char* res) {
+    return g_dComIfG_gameInfo.mResControl.deleteObjectRes(res);
+}
+
+inline void dComIfGp_roomControl_init() {
+    g_dComIfG_gameInfo.play.getRoomControl()->init();
+}
+
+inline void* dComIfG_getStageRes(const char* arcName, const char* resName) {
+    return g_dComIfG_gameInfo.mResControl.getStageRes(arcName, resName);
+}
+
+inline void* dComIfG_getObjectRes(const char* arcName, const char* resName) {
+    return g_dComIfG_gameInfo.mResControl.getObjectRes(arcName, resName);
+}
+
+inline daPy_py_c* dComIfGp_getLinkPlayer() {
+    return (daPy_py_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR);
+}
+
+inline daAlink_c* daAlink_getAlinkActorClass() {
+    return (daAlink_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR);
+}
+
+inline JKRArchive* dComIfGp_getMain2DArchive() {
+    return g_dComIfG_gameInfo.play.getMain2DArchive();
+}
+
+inline J2DGrafContext* dComIfGp_getCurrentGrafPort() {
+    return g_dComIfG_gameInfo.play.getCurrentGrafPort();
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

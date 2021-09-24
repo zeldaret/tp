@@ -11,17 +11,8 @@
 // Types:
 //
 
-struct JUtility {
-    struct TColor {};
-};
-
 struct JUTVideo {
     static u8 sManager[4];
-};
-
-struct JUTFont {
-    /* 802DED70 */ void setCharColor(JUtility::TColor);
-    /* 802DEE28 */ void drawString_size_scale(f32, f32, f32, f32, char const*, u32, bool);
 };
 
 struct JUTDirectPrint {
@@ -38,25 +29,6 @@ struct JKRHeap {
     static u8 sCurrentHeap[4];
 };
 
-struct JUTConsole {
-    struct EConsoleType {};
-
-    /* 802E73E4 */ void create(unsigned int, void*, u32);
-    /* 802E7354 */ void create(unsigned int, unsigned int, JKRHeap*);
-    /* 802E746C */ JUTConsole(unsigned int, unsigned int, bool);
-    /* 802E755C */ ~JUTConsole();
-    /* 802E75CC */ void getObjectSizeFromBufferSize(unsigned int, unsigned int);
-    /* 802E75DC */ void getLineFromObjectSize(u32, unsigned int);
-    /* 802E75EC */ void clear();
-    /* 802E7648 */ void doDraw(JUTConsole::EConsoleType) const;
-    /* 802E7BB8 */ void print_f(char const*, ...);
-    /* 802E7C38 */ void print(char const*);
-    /* 802E7F7C */ void dumpToTerminal(unsigned int);
-    /* 802E80A8 */ void scroll(int);
-    /* 802E8184 */ void getUsedLine() const;
-    /* 802E81A8 */ void getLineOffset() const;
-};
-
 struct JUTConsoleManager {
     /* 802E81CC */ JUTConsoleManager();
     /* 802E81F4 */ void createManager(JKRHeap*);
@@ -68,23 +40,6 @@ struct JUTConsoleManager {
 
     static u8 sManager[4];
 };
-
-struct JKRDisposer {
-    /* 802D147C */ JKRDisposer();
-    /* 802D14E4 */ ~JKRDisposer();
-};
-
-namespace JGadget {
-struct TLinkListNode {};
-
-struct TNodeLinkList {
-    struct iterator {};
-
-    /* 802DCBA8 */ void Insert(JGadget::TNodeLinkList::iterator, JGadget::TLinkListNode*);
-    /* 802DCBF8 */ void Remove(JGadget::TLinkListNode*);
-};
-
-};  // namespace JGadget
 
 struct J2DOrthoGraph {
     /* 802E96D0 */ J2DOrthoGraph(f32, f32, f32, f32, f32, f32);
@@ -379,7 +334,7 @@ asm void JUTConsole::getUsedLine() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JUTConsole::getLineOffset() const {
+asm int JUTConsole::getLineOffset() const {
     nofralloc
 #include "asm/JSystem/JUtility/JUTConsole/getLineOffset__10JUTConsoleCFv.s"
 }

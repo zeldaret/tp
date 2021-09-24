@@ -23,8 +23,8 @@ struct ResTIMG { /* Acts as the header to image data. Usually texture data immed
     u8 maxAnisotropy;
     u8 minFilter;
     u8 magFilter;
-    u8 minLOD;
-    u8 maxLOD;
+    s8 minLOD;
+    s8 maxLOD;
     u8 mipmapCount;
     u8 unknown;
     s16 LODBias;

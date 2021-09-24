@@ -68,7 +68,7 @@ void JUTAssertion::create() {
 /* ############################################################################################## */
 /* 80451530-80451538 000A30 0004+04 2/2 0/0 0/0 .sbss
  * sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@      */
-static u8 data_80451530[4 + 4 /* padding */];
+static s32 data_80451530;
 
 /* 802E4960-802E499C 2DF2A0 003C+00 2/2 0/0 0/0 .text            flush_subroutine__12JUTAssertionFv
  */
