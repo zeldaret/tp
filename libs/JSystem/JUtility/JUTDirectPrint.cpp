@@ -77,14 +77,31 @@ JUTDirectPrint* JUTDirectPrint::start() {
 }
 
 /* 802E4288-802E431C 2DEBC8 0094+00 1/1 1/1 0/0 .text            erase__14JUTDirectPrintFiiii */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTDirectPrint::erase(int param_0, int param_1, int param_2, int param_3) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTDirectPrint/erase__14JUTDirectPrintFiiii.s"
+void JUTDirectPrint::erase(int x, int y, int width, int height) {
+    if (!this->field_0x00) {
+        return;
+    }
+
+    if (400 < mFrameBufferWidth) { 
+        x = x << 1;
+        width = width << 1;
+    }
+
+    if (300 < mFrameBufferHeight) {
+        y = y << 1;
+        height = height << 1;
+    }
+
+    u16* pixel = mFrameBuffer + mWidthStride * y + x;
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            *pixel = 0x1080;
+            pixel = pixel + 1;
+        }
+
+        pixel += mWidthStride - width;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803CC6B8-803CC738 0297D8 0080+00 2/2 0/0 0/0 .data            sAsciiTable__14JUTDirectPrint */
