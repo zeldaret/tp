@@ -64,17 +64,17 @@ JUTDirectPrint::JUTDirectPrint() {
 
 /* ############################################################################################## */
 /* 80451528-80451530 000A28 0004+04 1/1 4/4 0/0 .sbss            sDirectPrint__14JUTDirectPrint */
-u8 JUTDirectPrint::sDirectPrint[4 + 4 /* padding */];
+JUTDirectPrint* JUTDirectPrint::sDirectPrint;
+u8 JUTDirectPrint::sDirectPrint_padding[4 /* padding */];
 
 /* 802E4240-802E4288 2DEB80 0048+00 0/0 1/1 0/0 .text            start__14JUTDirectPrintFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTDirectPrint::start() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTDirectPrint/start__14JUTDirectPrintFv.s"
+JUTDirectPrint* JUTDirectPrint::start() {
+    if (!sDirectPrint) {
+        sDirectPrint = new JUTDirectPrint();
+    }
+
+    return sDirectPrint;
 }
-#pragma pop
 
 /* 802E4288-802E431C 2DEBC8 0094+00 1/1 1/1 0/0 .text            erase__14JUTDirectPrintFiiii */
 #pragma push

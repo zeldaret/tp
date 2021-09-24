@@ -11,7 +11,7 @@ struct __va_list_struct {};
 class JUTDirectPrint {
 public:
     /* 802E41E8 */ JUTDirectPrint();
-    /* 802E4240 */ void start();
+    /* 802E4240 */ JUTDirectPrint* start();
     /* 802E4288 */ void erase(int, int, int, int);
     /* 802E431C */ void drawChar(int, int, int);
     /* 802E456C */ void changeFrameBuffer(void*, u16, u16);
@@ -24,7 +24,8 @@ public:
     static u8 sAsciiTable[128];
     static void* sFontData[64];
     static void* sFontData2[77];
-    static u8 sDirectPrint[4 + 4 /* padding */];
+    static JUTDirectPrint* sDirectPrint;
+    static u8 sDirectPrint_padding[4 /* padding */];
 
 private:
     /* 0x00 */ void* field_0x00;
