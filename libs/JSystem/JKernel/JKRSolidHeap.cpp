@@ -4,8 +4,10 @@
 //
 
 #include "JSystem/JKernel/JKRSolidHeap.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "dol2asm.h"
 #include "global.h"
+#include "msl_c/math.h"
 
 //
 // Forward References:
@@ -156,10 +158,14 @@ asm s32 JKRSolidHeap::adjustSize() {
 
 /* 802D0CB0-802D0D58 2CB5F0 00A8+00 1/0 0/0 0/0 .text            do_alloc__12JKRSolidHeapFUli */
 void* JKRSolidHeap::do_alloc(u32 size, int alignment) {
+#if DEBUG
+    // TODO(Julgodis): JUTAssertion::setConfirmMessage
     if (alignment != 0) {
-        JUT_ASSERT(abs(alignment));
-        JUT_ASSERT(isPower2(alignment));
+        int u = abs(alignment);
+        JUT_ASSERT("JKRSolidHeap.cpp", 0xdb, u < 0x80);
+        JUT_ASSERT("JKRSolidHeap.cpp", 0xdc, JGadget::binary::isPower2(u));
     }
+#endif
 
     lock();
 
@@ -348,8 +354,8 @@ bool JKRSolidHeap::dump(void) {
 // full match expect using the wrong register
 #ifdef NONMATCHING
 void JKRSolidHeap::state_register(JKRHeap::TState* p, u32 id) const {
-    JUT_ASSERT(p != 0);
-    JUT_ASSERT(p->getHeap() == this);
+    JUT_ASSERT("JKRSolidHeap.cpp", 0x25c, p != 0);
+    JUT_ASSERT("JKRSolidHeap.cpp", 0x25d, p->getHeap() == this);
 
     getState_(p);
     setState_u32ID_(p, id);
@@ -370,7 +376,7 @@ asm void JKRSolidHeap::state_register(JKRHeap::TState* param_0, u32 param_1) con
 /* 802D1258-802D1288 2CBB98 0030+00 1/0 0/0 0/0 .text
  * state_compare__12JKRSolidHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState */
 bool JKRSolidHeap::state_compare(JKRHeap::TState const& r1, JKRHeap::TState const& r2) const {
-    JUT_ASSERT(r1.getHeap() == r2.getHeap());
+    JUT_ASSERT("JKRSolidHeap.cpp", 0x278, r1.getHeap() == r2.getHeap());
 
     bool result = true;
     if (r1.getCheckCode() != r2.getCheckCode()) {

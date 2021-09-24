@@ -2,15 +2,58 @@
 #define JKRTHREAD_H
 
 #include "JSystem/JKernel/JKRDisposer.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 
-class JKRThreadName_;
+struct JKRThreadName_ {
+    s32 id;
+    char* name;
+};
+
 class JUTConsole;
 class JKRHeap;
 class JKRThread : JKRDisposer {
 public:
+    class TLoad {
+    public:
+        TLoad() {
+            clear();
+            mValid = false;
+            mThreadId = 0;
+        }
+
+        bool isValid() const { return mValid; }
+        u32 getCost() const { return mCost; }
+        u32 getCount() const { return mSwitchCount; }
+        s32 getId() const { return mThreadId; }
+
+        void setValid(bool valid) { mValid = valid; }
+        void setId(s32 id) { mThreadId = id; }
+        void setCurrentTime() { mLastTick = OSGetTick(); }
+
+        void resetCost() { mCost = 0; }
+        void resetCount() { mSwitchCount = 0; }
+
+        void incCount() { mSwitchCount++; }
+        void addCurrentCost() { mCost = mCost + (OSGetTick() - mLastTick); }
+
+        void clear() {
+            resetCount();
+            resetCost();
+            mLastTick = 0;
+        }
+
+    private:
+        /* 0x00 */ bool mValid;
+        /* 0x01 */ u8 padding_0x61[3];
+        /* 0x04 */ u32 mCost;
+        /* 0x08 */ u32 mSwitchCount;
+        /* 0x0C */ OSTick mLastTick;
+        /* 0x10 */ s32 mThreadId;
+    };
+
     JKRThread(u32 stack_size, int message_count, int param_3);
     JKRThread(JKRHeap* heap, u32 stack_size, int message_count, int param_4);
     JKRThread(OSThread* thread, int message_count);
@@ -23,9 +66,17 @@ public:
 
     OSThread* getThreadRecord() const { return mThreadRecord; }
     void* getStack() const { return mStackMemory; }
-    u8 getLoadInfo() const { return field_0x60; }
+    TLoad* getLoadInfo() { return &mLoadInfo; }
     JKRHeap* getCurrentHeap() const { return mCurrentHeap; }
-    JKRHeap* getCurrentHeapError() const { return mCurrentHeapError; }
+    s32 getCurrentHeapError() const { return mCurrentHeapError; }
+
+    void setCurrentHeap(JKRHeap* heap) {
+        if (!heap) {
+            heap = JKRHeap::getCurrentHeap();
+        }
+
+        mCurrentHeap = heap;
+    }
 
 protected:
     void resume() { OSResumeThread(mThreadRecord); }
@@ -60,14 +111,9 @@ private:
     /* 0x54 */ s32 mMessageCount;
     /* 0x58 */ void* mStackMemory;
     /* 0x5C */ u32 mStackSize;
-    /* 0x60 */ u8 field_0x60;
-    /* 0x61 */ u8 padding_0x61[3];
-    /* 0x64 */ u32 mCost;
-    /* 0x68 */ u32 mSwitchCount;
-    /* 0x6C */ u32 field_0x6c;
-    /* 0x70 */ u32 field_0x70;
+    /* 0x60 */ TLoad mLoadInfo;
     /* 0x74 */ JKRHeap* mCurrentHeap;
-    /* 0x78 */ JKRHeap* mCurrentHeapError;
+    /* 0x78 */ s32 mCurrentHeapError;
 
 public:
     static void* start(void* param_1);
@@ -77,6 +123,9 @@ public:
     static JSUList<JKRThread> sThreadList;
     // static u8 sThreadList[12];
 };
+
+typedef void (*JKRThreadSwitch_PreCallback)(OSThread* current, OSThread* next);
+typedef void (*JKRThreadSwitch_PostCallback)(OSThread* current, OSThread* next);
 
 class JKRThreadSwitch {
 public:
@@ -90,22 +139,26 @@ public:
     JKRThread* enter(JKRThread* param_1, int param_2);
     static void callback(OSThread* param_1, OSThread* param_2);
 
-    // TODO: fix types
-    static u8 sManager[4];
-    static u8 sTotalCount[4];
-    static u8 sTotalStart[4];
-    static u8 mUserPreCallback[4];
-    static u8 mUserPostCallback[4];
+    static u32 getTotalCount() { return sTotalCount; }
 
-public:
-    JKRHeap* heap;
-    u8 field_0x8[4];
-    u32 field_0xC[2];
-    u8 field_0x14[4];
-    u32 field_0x18;
-    u32 field_0x1C;
-    u32 field_0x20;
-    u32 field_0x24;
+private:
+    static JKRThreadSwitch* sManager;
+    static u32 sTotalCount;
+    static u32 sTotalStart;
+    static JKRThreadSwitch_PreCallback mUserPreCallback;
+    static JKRThreadSwitch_PostCallback mUserPostCallback;
+
+private:
+    /* 0x00 */  // vtable
+    /* 0x04 */ JKRHeap* mHeap;
+    /* 0x08 */ bool mSetNextHeap;
+    /* 0x09 */ u8 field_0x9[3];
+    /* 0x0C */ u32 field_0xC;
+    /* 0x10 */ u32 field_0x10;
+    /* 0x14 */ u8 field_0x14[4];
+    /* 0x18 */ s64 field_0x18;
+    /* 0x20 */ u32 field_0x20;
+    /* 0x24 */ u32 field_0x24;
 };
 
 struct JKRTask {

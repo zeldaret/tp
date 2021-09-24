@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "dol2asm.h"
 #include "global.h"
@@ -604,14 +605,14 @@ void operator delete[](void* ptr) {
 /* 802CED84-802CED88 2C96C4 0004+00 1/0 1/0 0/0 .text
  * state_register__7JKRHeapCFPQ27JKRHeap6TStateUl               */
 void JKRHeap::state_register(JKRHeap::TState* p, u32 id) const {
-    JUT_ASSERT(p != 0);
-    JUT_ASSERT(p->getHeap() == this);
+    JUT_ASSERT("JKRHeap.cpp", 0x4bd, p != 0);
+    JUT_ASSERT("JKRHeap.cpp", 0x4be, p->getHeap() == this);
 }
 
 /* 802CED88-802CEDA0 2C96C8 0018+00 1/0 1/0 0/0 .text
  * state_compare__7JKRHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState */
 bool JKRHeap::state_compare(JKRHeap::TState const& r1, JKRHeap::TState const& r2) const {
-    JUT_ASSERT(r1.getHeap() == r2.getHeap());
+    JUT_ASSERT("JKRHeap.cpp", 0x4c6, r1.getHeap() == r2.getHeap());
     return r1.getCheckCode() == r2.getCheckCode();
 }
 

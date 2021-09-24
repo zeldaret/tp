@@ -412,7 +412,7 @@ def pull_request(debug, thread_count, game_path, build_path):
     text.stylize("bold magenta")
     CONSOLE.print(text)
 
-    calculate_progress(True, "FANCY")
+    calculate_progress(True, "FANCY", False)
 
 
 def find_all_asm_files():
@@ -649,9 +649,9 @@ class CheckException(Exception):
 
 def check_sha1(game_path, build_path):
 
-    dol_path = game_path.joinpath("main.dol")
-    if not dol_path.exists():
-        raise CheckException(f"File not found: '{dol_path}'")
+    #dol_path = game_path.joinpath("main.dol")
+    #if not dol_path.exists():
+    #    raise CheckException(f"File not found: '{dol_path}'")
 
     rel_path = game_path.joinpath("rel/Final/Release")
     if not rel_path.exists():
@@ -662,14 +662,15 @@ def check_sha1(game_path, build_path):
     if not rels_archive_path.exists():
         raise CheckException(f"File not found: '{rels_archive_path}'")
 
-    LOG.debug(f"DOL Path: '{dol_path}'")
+    #LOG.debug(f"DOL Path: '{dol_path}'")
     LOG.debug(f"RELs Path: '{rel_path}' (found {len(rels_path)} RELs)")
     LOG.debug(f"RELs Archive Path: '{rels_archive_path}'")
 
     EXPECTED = {}
-    with dol_path.open('rb') as file:
-        data = file.read()
-        EXPECTED[0] = (str(dol_path), sha1_from_data(data),sha1_from_data(data),)
+    #with dol_path.open('rb') as file:
+    #    data = file.read()
+    #    EXPECTED[0] = (str(dol_path), sha1_from_data(data),sha1_from_data(data),)
+    EXPECTED[0] = ("", "4997D93B9692620C40E90374A0F1DBF0E4889395", "4997D93B9692620C40E90374A0F1DBF0E4889395",)
 
     for rel_filepath in rels_path:
         with rel_filepath.open('rb') as file:

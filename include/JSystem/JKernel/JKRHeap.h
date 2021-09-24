@@ -140,6 +140,10 @@ public:
     static void* getUserRamEnd(void) { return mUserRamEnd; }
     static u32 getMemorySize(void) { return mMemorySize; }
     static JKRHeap* getRootHeap() { return sRootHeap; }
+#if DEBUG
+    static JKRHeap* getRootHeap2() { return sRootHeap2; }
+#endif
+
     static JKRHeap* getSystemHeap() { return sSystemHeap; }
     static JKRHeap* getCurrentHeap() { return sCurrentHeap; }
     static void setSystemHeap(JKRHeap* heap) { sSystemHeap = heap; }
@@ -160,6 +164,10 @@ public:
     static u32 mMemorySize;
 
     static JKRHeap* sRootHeap;
+#if DEBUG
+    static JKRHeap* sRootHeap2;
+#endif
+
     static JKRHeap* sSystemHeap;
     static JKRHeap* sCurrentHeap;
 

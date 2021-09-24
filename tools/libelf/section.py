@@ -77,6 +77,7 @@ RELOCATION_NAMES = {
     0x6: "R_PPC_ADDR16_HA",
     0xA: "R_PPC_REL24",
     0xB: "R_PPC_REL14",
+    0x18: "R_PPC_UADDR32",
     0x6D: "R_PPC_EMB_SDA21",
 }
 

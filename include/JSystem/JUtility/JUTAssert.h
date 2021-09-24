@@ -3,6 +3,26 @@
 
 #include "dolphin/types.h"
 
+#if DEBUG
+#define JUT_ASSERT(FILE, LINE, COND)                                                               \
+    if (!COND) {                                                                                   \
+        JUTAssertion::showAssert(JUTAssertion::getSDevice(), FILE, LINE, #COND);                   \
+        OSPanic(FILE, LINE, "Halt");                                                               \
+    }
+
+#else
+#define JUT_ASSERT(...)
+#endif
+
+#if DEBUG
+#define JUT_PANIC(FILE, LINE, TEXT)                                                                \
+    JUTAssertion::showAssert(JUTAssertion::getSDevice(), FILE, LINE, TEXT);                        \
+    OSPanic(FILE, LINE, "Halt");
+
+#else
+#define JUT_PANIC(...)
+#endif
+
 // TODO: make it a namespace
 struct JUTAssertion {
     /* 802E495C */ static void create();
