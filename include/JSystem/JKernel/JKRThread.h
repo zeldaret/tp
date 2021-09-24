@@ -153,7 +153,7 @@ public:
 public:
     /* 0x00 */  // vtable
     /* 0x04 */ JKRHeap* mHeap;
-    /* 0x08 */ bool field_0x8;
+    /* 0x08 */ bool mSetNextHeap;
     /* 0x09 */ u8 field_0x9[3];
     /* 0x0C */ u32 field_0xC;
     /* 0x10 */ u32 field_0x10;

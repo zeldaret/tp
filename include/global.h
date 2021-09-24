@@ -12,7 +12,6 @@
 #define IS_ALIGNED(X, N) (((X) & ((N)-1)) == 0)
 #define IS_NOT_ALIGNED(X, N) (((X) & ((N)-1)) != 0)
 
-#define JUT_ASSERT(...)
 #define JUT_EXPECT(...)
 #define ASSERT(...)
 #define LOGF(FMT, ...)

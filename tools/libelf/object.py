@@ -215,7 +215,10 @@ def load_object_from_file(path, name, file) -> Object:
                 relocation = R_PPC_REL14(type, symbol, modify, rela.r_offset, rela.r_addend)
             elif type == 109:
                 relocation = R_PPC_EMB_SDA21(type, symbol, modify, rela.r_offset, rela.r_addend)
-
+            else:
+                print("unsupported relocation type: 0x%02X \"%s\" (in '%s')" % (type, RELOCATION_NAMES[type], path), file = sys.stderr)
+                continue
+            
             assert relocation
             section_relocations.append(relocation)
             obj.relocations.append(relocation)

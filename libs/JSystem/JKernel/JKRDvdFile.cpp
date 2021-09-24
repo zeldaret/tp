@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/JKernel/JKRDvdFile.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "dol2asm.h"
 #include "global.h"
@@ -100,7 +101,12 @@ void JKRDvdFile::close() {
 
 /* 802D99B4-802D9A68 2D42F4 00B4+00 1/0 0/0 0/0 .text            readData__10JKRDvdFileFPvll */
 s32 JKRDvdFile::readData(void* param_1, long length, long param_3) {
-    JUT_ASSERT((length & 0x1f) == 0);
+    /* clang-format off */
+    // The assert condition gets stringified as "( length & 0x1f ) == 0", 
+    // with out disabling clang-format the spaces in the condition will  
+    // get removed and the string will be incorrect.
+    JUT_ASSERT("JKRDvdFile.cpp", 0xee, ( length & 0x1f ) == 0);
+    /* clang-format on */
 
     OSLockMutex(&mMutex1);
     if (mOSThread) {

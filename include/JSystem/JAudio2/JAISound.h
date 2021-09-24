@@ -2,6 +2,7 @@
 #define JAISOUND_H
 
 #include "JSystem/JGeometry.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "dolphin/types.h"
 #include "global.h"
 
@@ -153,11 +154,11 @@ public:
     JAISoundHandle();  // noninline in JAUClusterSound.cpp
     ~JAISoundHandle();
 
-    bool isSoundAttached() const { return mSound != NULL; }
+    bool isSoundAttached() const { return sound_ != NULL; }
 
     JAISound* operator->() const {
-        JUT_ASSERT(mSound != NULL);
-        return mSound;
+        JUT_ASSERT("JAISound.h", 0x3a, sound_ != 0);
+        return sound_;
     }
 
     operator bool() const { return isSoundAttached(); }
@@ -165,7 +166,7 @@ public:
     void releaseSound();
 
 private:
-    JAISound* mSound;
+    JAISound* sound_;  // member from assert in operator->()
 };
 
 class JAISoundHandles {

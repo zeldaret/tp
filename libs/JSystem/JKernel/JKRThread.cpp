@@ -5,9 +5,9 @@
 
 #include "JSystem/JKernel/JKRThread.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
 #include "msl_c/string.h"
 
 //
@@ -51,7 +51,6 @@ JKRThreadSwitch_PreCallback JKRThreadSwitch::mUserPreCallback;
 
 /* 804513C4-804513C8 0008C4 0004+00 1/1 0/0 0/0 .sbss mUserPostCallback__15JKRThreadSwitch */
 JKRThreadSwitch_PostCallback JKRThreadSwitch::mUserPostCallback;
-
 
 /* 802D1568-802D1610 2CBEA8 00A8+00 0/0 4/4 0/0 .text            __ct__9JKRThreadFUlii */
 JKRThread::JKRThread(u32 stack_size, int message_count, int param_3) : mThreadListLink(this) {
@@ -159,14 +158,16 @@ JKRThreadSwitch::JKRThreadSwitch(JKRHeap* param_0) {
     sTotalStart = 0;
     this->field_0x20 = 0;
     this->field_0x24 = 0;
-    this->field_0x8 = true;
+    mSetNextHeap = true;
 }
 
 /* 802D1A14-802D1A70 2CC354 005C+00 0/0 1/1 0/0 .text createManager__15JKRThreadSwitchFP7JKRHeap
  */
 JKRThreadSwitch* JKRThreadSwitch::createManager(JKRHeap* heap) {
+    JUT_ASSERT("JKRThread.cpp", 0x157, sManager == 0);
+
     if (!heap) {
-        heap = JKRHeap::getCurrentHeap();
+        heap = JKRGetCurrentHeap();
     }
 
     sManager = new (heap, 0) JKRThreadSwitch(heap);
@@ -231,7 +232,7 @@ void JKRThreadSwitch::callback(OSThread* current, OSThread* next) {
                 loadInfo->incCount();
             }
 
-            if (sManager->field_0x8) {
+            if (sManager->mSetNextHeap) {
                 next_heap = thread->getCurrentHeap();
                 if (!next_heap) {
                     next_heap = JKRHeap::getCurrentHeap();
@@ -244,11 +245,8 @@ void JKRThreadSwitch::callback(OSThread* current, OSThread* next) {
                 } else {
                     switch (thread->getCurrentHeapError()) {
                     case 0:
-#if DEBUG
-                        JUTAssertion::showAssert(JUTAssertion::getSDevice(), "JKRThread.cpp", 0x1fc,
-                                                 "JKRThreadSwitch: currentHeap destroyed.");
-                        OSPanic("JKRThread.cpp", 0x1fc, "Halt");
-#endif
+                        JUT_PANIC("JKRThread.cpp", 0x1fc,
+                                  "JKRThreadSwitch: currentHeap destroyed.");
                         break;
                     case 1:
                         JUTWarningConsole("JKRThreadSwitch: currentHeap destroyed.\n");
