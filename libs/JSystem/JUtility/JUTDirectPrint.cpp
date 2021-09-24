@@ -57,14 +57,10 @@ extern "C" void vsnprintf();
 //
 
 /* 802E41E8-802E4240 2DEB28 0058+00 1/1 0/0 0/0 .text            __ct__14JUTDirectPrintFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JUTDirectPrint::JUTDirectPrint() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTDirectPrint/__ct__14JUTDirectPrintFv.s"
+JUTDirectPrint::JUTDirectPrint() {
+    changeFrameBuffer(NULL, 0, 0);
+    setCharColor(0xff, 0xff, 0xff);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451528-80451530 000A28 0004+04 1/1 4/4 0/0 .sbss            sDirectPrint__14JUTDirectPrint */
