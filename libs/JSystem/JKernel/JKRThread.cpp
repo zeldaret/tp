@@ -414,14 +414,7 @@ void JKRThreadSwitch::draw(JKRThreadName_* thread_name_list) {
 }
 
 /* 802D1E4C-802D1E94 2CC78C 0048+00 1/0 0/0 0/0 .text            __dt__15JKRThreadSwitchFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRThreadSwitch::~JKRThreadSwitch() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRThread/__dt__15JKRThreadSwitchFv.s"
-}
-#pragma pop
+JKRThreadSwitch::~JKRThreadSwitch() {}
 
 /* ############################################################################################## */
 /* 80434298-804342A4 060FB8 000C+00 0/1 0/0 0/0 .bss             @989 */
