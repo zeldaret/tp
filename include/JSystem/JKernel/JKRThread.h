@@ -16,8 +16,6 @@ class JUTConsole;
 class JKRHeap;
 class JKRThread : JKRDisposer {
 public:
-    friend class JKRThreadSwitch;
-
     class TLoad {
     public:
         TLoad() {
@@ -143,14 +141,14 @@ public:
 
     static u32 getTotalCount() { return sTotalCount; }
 
-    // TODO: fix types
+private:
     static JKRThreadSwitch* sManager;
     static u32 sTotalCount;
     static u32 sTotalStart;
     static JKRThreadSwitch_PreCallback mUserPreCallback;
     static JKRThreadSwitch_PostCallback mUserPostCallback;
 
-public:
+private:
     /* 0x00 */  // vtable
     /* 0x04 */ JKRHeap* mHeap;
     /* 0x08 */ bool mSetNextHeap;
