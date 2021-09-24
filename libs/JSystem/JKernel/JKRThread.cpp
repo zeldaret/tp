@@ -8,6 +8,8 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
+#include "msl_c/string.h"
+
 //
 // Types:
 //
@@ -76,7 +78,7 @@ extern "C" void print_f__10JUTConsoleFPCce();
 extern "C" void print__10JUTConsoleFPCc();
 extern "C" void JUTWarningConsole(const char*);
 extern "C" void __register_global_object();
-extern "C" void __cvt_fp2unsigned();
+extern "C" u32 __cvt_fp2unsigned(f64);
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
@@ -85,8 +87,7 @@ extern "C" void _restgpr_25();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void __cvt_sll_flt();
-extern "C" void sprintf();
+extern "C" f64 __cvt_sll_flt(s64);
 extern "C" u8 sSystemHeap__7JKRHeap[4];
 extern "C" u8 sCurrentHeap__7JKRHeap[4];
 extern "C" u8 sRootHeap__7JKRHeap[4];
@@ -98,12 +99,6 @@ extern "C" void* __vt__15JKRThreadSwitch;
 
 /* 802D1568-802D1610 2CBEA8 00A8+00 0/0 4/4 0/0 .text            __ct__9JKRThreadFUlii */
 JKRThread::JKRThread(u32 stack_size, int message_count, int param_3) : mThreadListLink(this) {
-    mSwitchCount = 0;
-    mCost = 0;
-    mLastTick = 0;
-    field_0x60 = 0;
-    mThreadId = 0;
-
     JKRHeap* heap = JKRHeap::findFromRoot(this);
     if (heap == NULL) {
         heap = JKRHeap::getSystemHeap();
@@ -116,12 +111,6 @@ JKRThread::JKRThread(u32 stack_size, int message_count, int param_3) : mThreadLi
 /* 802D1610-802D16B8 2CBF50 00A8+00 0/0 2/2 0/0 .text            __ct__9JKRThreadFP7JKRHeapUlii */
 JKRThread::JKRThread(JKRHeap* heap, u32 stack_size, int message_count, int param_4)
     : mThreadListLink(this) {
-    mSwitchCount = 0;
-    mCost = 0;
-    mLastTick = 0;
-    field_0x60 = 0;
-    mThreadId = 0;
-
     if (heap == NULL) {
         heap = JKRHeap::getCurrentHeap();
     }
@@ -132,11 +121,6 @@ JKRThread::JKRThread(JKRHeap* heap, u32 stack_size, int message_count, int param
 
 /* 802D16B8-802D1758 2CBFF8 00A0+00 0/0 5/5 0/0 .text            __ct__9JKRThreadFP8OSThreadi */
 JKRThread::JKRThread(OSThread* thread, int message_count) : mThreadListLink(this) {
-    mSwitchCount = 0;
-    mCost = 0;
-    mLastTick = 0;
-    field_0x60 = 0;
-    mThreadId = 0;
     mHeap = NULL;
     mThreadRecord = thread;
     mStackSize = (u32)thread->stack_end - (u32)thread->stack_base;
@@ -260,11 +244,10 @@ JKRThread* JKRThreadSwitch::enter(JKRThread* thread, int thread_id) {
         thread = found_thread;
     }
 
-    thread->mSwitchCount = 0;
-    thread->mCost = 0;
-    thread->mLastTick = 0;
-    thread->field_0x60 = true;
-    thread->mThreadId = thread_id;
+    JKRThread::TLoad* loadInfo = thread->getLoadInfo();
+    loadInfo->clear();
+    loadInfo->setValid(true);
+    loadInfo->setId(thread_id);
     return thread;
 }
 
@@ -304,15 +287,17 @@ void JKRThreadSwitch::callback(OSThread* current, OSThread* next) {
 
         if (thread->getThreadRecord() == current) {
             thread->setCurrentHeap(JKRHeap::getCurrentHeap());
-            if (thread->field_0x60) {
-                thread->mCost += (OSGetTick() - thread->mLastTick);
+            JKRThread::TLoad* loadInfo = thread->getLoadInfo();
+            if (loadInfo->isValid()) {
+                loadInfo->addCurrentCost();
             }
         }
 
         if (thread->getThreadRecord() == next) {
-            if (thread->field_0x60 != false) {
-                thread->mLastTick = OSGetTick();
-                thread->mSwitchCount += 1;
+            JKRThread::TLoad* loadInfo = thread->getLoadInfo();
+            if (loadInfo->isValid()) {
+                loadInfo->setCurrentTime();
+                loadInfo->incCount();
             }
 
             if (sManager->field_0x8) {
@@ -359,39 +344,64 @@ void JKRThreadSwitch::callback(OSThread* current, OSThread* next) {
     }
 }
 
-/* ############################################################################################## */
-/* 8039CFA8-8039CFA8 029608 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D005 = " total: switch:%3d  time:%d(%df)\n";
-SECTION_DEAD static char const* const stringBase_8039D027 =
-    " -------------------------------------\n";
-SECTION_DEAD static char const* const stringBase_8039D04F = "%d";
-SECTION_DEAD static char const* const stringBase_8039D052 = " [%10s] switch:%5d  cost:%2d.%d%%\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039D075 = "\0\0";
-#pragma pop
-
-/* 80455FC0-80455FC4 0045C0 0004+00 1/1 0/0 0/0 .sdata2          @934 */
-SECTION_SDATA2 static f32 lit_934 = 100.0f;
-
-/* 80455FC4-80455FC8 0045C4 0004+00 1/1 0/0 0/0 .sdata2          @935 */
-SECTION_SDATA2 static f32 lit_935 = 1000.0f;
-
-/* 80455FC8-80455FD0 0045C8 0008+00 1/1 0/0 0/0 .sdata2          @937 */
-SECTION_SDATA2 static f64 lit_937 = 4503599627370496.0 /* cast u32 to float */;
-
 /* 802D1C74-802D1E14 2CC5B4 01A0+00 1/0 0/0 0/0 .text
  * draw__15JKRThreadSwitchFP14JKRThreadName_P10JUTConsole       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-#pragma force_active on
-asm void JKRThreadSwitch::draw(JKRThreadName_* param_0, JUTConsole* param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRThread/draw__15JKRThreadSwitchFP14JKRThreadName_P10JUTConsole.s"
+void JKRThreadSwitch::draw(JKRThreadName_* thread_names, JUTConsole* console) {
+    const char* print_0 = " total: switch:%3d  time:%d(%df)\n";
+    const char* print_1 = " -------------------------------------\n";
+
+    if (!console) {
+#if DEBUG
+        OSReport(print_0, getTotalCount(), (int)this->field_0x18, this->field_0x10);
+        OSReport(print_1);
+#endif
+    } else {
+        console->clear();
+        console->print_f(print_0, getTotalCount(), (int)this->field_0x18, this->field_0x10);
+        console->print(print_1);
+    }
+
+    JSUList<JKRThread>& threadList = JKRThread::getList();
+    JSUListIterator<JKRThread> iterator;
+    for (iterator = threadList.getFirst(); iterator != threadList.getEnd(); ++iterator) {
+        JKRThread* thread = iterator.getObject();
+        JKRThread::TLoad* loadInfo = thread->getLoadInfo();
+
+        if (loadInfo->isValid()) {
+            char* thread_print_name = NULL;
+            if (thread_names) {
+                JKRThreadName_* thread_name = thread_names;
+                for (; thread_name->name; thread_name++) {
+                    if (thread_name->id == loadInfo->getId()) {
+                        thread_print_name = thread_name->name;
+                        break;
+                    }
+                }
+            }
+
+            if (!thread_print_name) {
+                char buffer[16];
+                sprintf(buffer, "%d", loadInfo->getId());
+                thread_print_name = buffer;
+            }
+
+            u32 switch_count = loadInfo->getCount();
+            float cost_per_0x18 = loadInfo->getCost() / (float)this->field_0x18;
+
+            u32 cost_int = (u32)(cost_per_0x18 * 100.0f);
+            u32 cost_float = (u32)(cost_per_0x18 * 1000.0f) % 10;
+            if (!console) {
+#if DEBUG
+                OSReport(" [%10s] switch:%5d  cost:%2d.%d%%\n", thread_print_name, switch_count,
+                         cost_int, cost_float);
+#endif
+            } else {
+                console->print_f(" [%10s] switch:%5d  cost:%2d.%d%%\n", thread_print_name,
+                                 switch_count, cost_int, cost_float);
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 802D1E14-802D1E1C 2CC754 0008+00 1/0 0/0 0/0 .text            run__9JKRThreadFv */
 void* JKRThread::run() {

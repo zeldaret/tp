@@ -2,17 +2,59 @@
 #define JKRTHREAD_H
 
 #include "JSystem/JKernel/JKRDisposer.h"
-#include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JSupport/JSUList.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 
-class JKRThreadName_;
+struct JKRThreadName_ {
+    s32 id;
+    char* name;
+};
+
 class JUTConsole;
 class JKRHeap;
 class JKRThread : JKRDisposer {
 public:
     friend class JKRThreadSwitch;
+
+    class TLoad {
+    public:
+        TLoad() {
+            clear();
+            mValid = false;
+            mThreadId = 0;
+        }
+
+        bool isValid() const { return mValid; }
+        u32 getCost() const { return mCost; }
+        u32 getCount() const { return mSwitchCount; }
+        s32 getId() const { return mThreadId; }
+
+        void setValid(bool valid) { mValid = valid; }
+        void setId(s32 id) { mThreadId = id; }
+        void setCurrentTime() { mLastTick = OSGetTick(); }
+
+        void resetCost() { mCost = 0; }
+        void resetCount() { mSwitchCount = 0; }
+
+        void incCount() { mSwitchCount++; }
+        void addCurrentCost() { mCost = mCost + (OSGetTick() - mLastTick); }
+
+        void clear() {
+            resetCount();
+            resetCost();
+            mLastTick = 0;
+        }
+
+    private:
+        /* 0x00 */ bool mValid;
+        /* 0x01 */ u8 padding_0x61[3];
+        /* 0x04 */ u32 mCost;
+        /* 0x08 */ u32 mSwitchCount;
+        /* 0x0C */ OSTick mLastTick;
+        /* 0x10 */ s32 mThreadId;
+    };
 
     JKRThread(u32 stack_size, int message_count, int param_3);
     JKRThread(JKRHeap* heap, u32 stack_size, int message_count, int param_4);
@@ -26,7 +68,7 @@ public:
 
     OSThread* getThreadRecord() const { return mThreadRecord; }
     void* getStack() const { return mStackMemory; }
-    u8 getLoadInfo() const { return field_0x60; }
+    TLoad* getLoadInfo() { return &mLoadInfo; }
     JKRHeap* getCurrentHeap() const { return mCurrentHeap; }
     s32 getCurrentHeapError() const { return mCurrentHeapError; }
 
@@ -71,12 +113,7 @@ private:
     /* 0x54 */ s32 mMessageCount;
     /* 0x58 */ void* mStackMemory;
     /* 0x5C */ u32 mStackSize;
-    /* 0x60 */ bool field_0x60;
-    /* 0x61 */ u8 padding_0x61[3];
-    /* 0x64 */ u32 mCost;
-    /* 0x68 */ u32 mSwitchCount;
-    /* 0x6C */ u32 mLastTick;
-    /* 0x70 */ u32 mThreadId;
+    /* 0x60 */ TLoad mLoadInfo;
     /* 0x74 */ JKRHeap* mCurrentHeap;
     /* 0x78 */ s32 mCurrentHeapError;
 
@@ -103,6 +140,8 @@ public:
 
     JKRThread* enter(JKRThread* param_1, int param_2);
     static void callback(OSThread* param_1, OSThread* param_2);
+
+    static u32 getTotalCount() { return sTotalCount; }
 
     // TODO: fix types
     static JKRThreadSwitch* sManager;
