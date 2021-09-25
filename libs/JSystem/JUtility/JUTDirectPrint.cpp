@@ -4,12 +4,12 @@
 //
 
 #include "JSystem/JUtility/JUTDirectPrint.h"
+#include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
 #include "dolphin/types.h"
 #include "global.h"
 #include "msl_c/string.h"
-#include "Runtime.PPCEABI.H/__va_arg.h"
 
 //
 // Types:
@@ -206,66 +206,66 @@ void JUTDirectPrint::drawChar(int position_x, int position_y, int ch) {
         }
 
         for (int x = 0; x < scale_x * 6; x += 2) {
-            u16 u1;
-            u16 u2;
-            u16 u3;
-            u16 u4;
+            u16 C1;
+            u16 C2;
+            u16 C3;
+            u16 Y;
             u16 value;
 
             if (data & 0x40000000) {
-                u1 = field_0x20;
+                C1 = mCharColor_Cb2;
             } else {
-                u1 = 0x40;
+                C1 = 0x40;
             }
 
             if (data & 0x80000000) {
-                u2 = field_0x22;
+                C2 = mCharColor_Cb4;
             } else {
-                u2 = 0x20;
+                C2 = 0x20;
             }
 
             if (data & 0x20000000) {
-                u3 = field_0x22;
+                C3 = mCharColor_Cb4;
             } else {
-                u3 = 0x20;
+                C3 = 0x20;
             }
 
             if (data & 0x40000000) {
-                u4 = field_0x1C;
+                Y = mCharColor_Y;
             } else {
-                u4 = 0x00;
+                Y = 0x00;
             }
 
-            value = u4 | (u2 + u1 + u3);
+            value = Y | (C2 + C1 + C3);
             pixel[0] = value;
             if (scale_y > 1)
                 pixel[mStride] = value;
 
             if (data & 0x20000000) {
-                u1 = field_0x26;
+                C1 = mCharColor_Cr2;
             } else {
-                u1 = 0x40;
+                C1 = 0x40;
             }
 
             if (data & 0x40000000) {
-                u2 = field_0x28;
+                C2 = mCharColor_Cr4;
             } else {
-                u2 = 0x20;
+                C2 = 0x20;
             }
 
             if (data & 0x10000000) {
-                u3 = field_0x28;
+                C3 = mCharColor_Cr4;
             } else {
-                u3 = 0x20;
+                C3 = 0x20;
             }
 
             if (data & 0x20000000) {
-                u4 = field_0x1C;
+                Y = mCharColor_Y;
             } else {
-                u4 = 0x00;
+                Y = 0x00;
             }
 
-            value = u4 | (u2 + u1 + u3);
+            value = Y | (C2 + C1 + C3);
             pixel[1] = value;
             if (scale_y > 1)
                 pixel[1 + mStride] = value;
@@ -370,49 +370,23 @@ void JUTDirectPrint::setCharColor(JUtility::TColor color) {
     setCharColor(color.R(), color.G(), color.B());
 }
 
-
-/* ############################################################################################## */
-/* 80456060-80456068 004660 0008+00 1/1 0/0 0/0 .sdata2          @503 */
-SECTION_SDATA2 static f64 lit_503 = 128.0;
-
-/* 80456068-80456070 004668 0008+00 1/1 0/0 0/0 .sdata2          @504 */
-SECTION_SDATA2 static f64 lit_504 = 0.439;
-
-/* 80456070-80456078 004670 0008+00 1/1 0/0 0/0 .sdata2          @505 */
-SECTION_SDATA2 static f64 lit_505 = -0.148;
-
-/* 80456078-80456080 004678 0008+00 1/1 0/0 0/0 .sdata2          @506 */
-SECTION_SDATA2 static f64 lit_506 = 0.291;
-
-/* 80456080-80456088 004680 0008+00 1/1 0/0 0/0 .sdata2          @507 */
-SECTION_SDATA2 static f64 lit_507 = 0.368;
-
-/* 80456088-80456090 004688 0008+00 1/1 0/0 0/0 .sdata2          @508 */
-SECTION_SDATA2 static f64 lit_508 = 0.071;
-
-/* 80456090-80456098 004690 0008+00 1/1 0/0 0/0 .sdata2          @509 */
-SECTION_SDATA2 static f64 lit_509 = 16.0;
-
-/* 80456098-804560A0 004698 0008+00 1/1 0/0 0/0 .sdata2          @510 */
-SECTION_SDATA2 static f64 lit_510 = 0.098;
-
-/* 804560A0-804560A8 0046A0 0008+00 1/1 0/0 0/0 .sdata2          @511 */
-SECTION_SDATA2 static f64 lit_511 = 0.257;
-
-/* 804560A8-804560B0 0046A8 0008+00 1/1 0/0 0/0 .sdata2          @512 */
-SECTION_SDATA2 static f64 lit_512 = 0.504;
-
-/* 804560B0-804560B8 0046B0 0008+00 1/1 0/0 0/0 .sdata2          @514 */
-SECTION_SDATA2 static f64 lit_514 = 4503601774854144.0 /* cast s32 to float */;
-
 /* 802E47C8-802E495C 2DF108 0194+00 2/2 0/0 0/0 .text setCharColor__14JUTDirectPrintFUcUcUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTDirectPrint::setCharColor(u8 param_0, u8 param_1, u8 param_2) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTDirectPrint/setCharColor__14JUTDirectPrintFUcUcUc.s"
+void JUTDirectPrint::setCharColor(u8 r, u8 g, u8 b) {
+    mCharColor.set(r, g, b, 0xFF);
+
+    int Cb = -0.148 * (int)r - 0.291 * (int)g + 0.439 * (int)b + 128;
+    int Cr = 0.439 * (int)r - 0.368 * (int)g - 0.071 * (int)b + 128;
+    int Y = 0.257 * (int)r + 0.504 * (int)g + 0.098 * (int)b + 16;
+
+    mCharColor_Y = Y << 8;
+
+    mCharColor_Cb = Cb;
+    mCharColor_Cb2 = (Cb >> 1) & 0x7fff;
+    mCharColor_Cb4 = (Cb >> 2) & 0x3fff;
+    mCharColor_Cr = Cr;
+    mCharColor_Cr2 = (Cr >> 1) & 0x7fff;
+    mCharColor_Cr4 = (Cr >> 2) & 0x3fff;
 }
-#pragma pop
+
 
 /* 8039D9A0-8039D9A0 02A000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
