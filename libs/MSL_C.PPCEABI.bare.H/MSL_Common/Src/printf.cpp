@@ -11,9 +11,11 @@
 // Forward References:
 //
 
+struct __va_list_struct;
+
 extern "C" void sprintf();
 extern "C" void snprintf();
-extern "C" void vsnprintf();
+extern "C" size_t vsnprintf(char* buffer, size_t buffer_size, const char* format, __va_list_struct* args);
 extern "C" void vprintf();
 extern "C" void fprintf();
 extern "C" void printf();
@@ -77,7 +79,7 @@ asm void snprintf() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void vsnprintf() {
+asm size_t vsnprintf(char* buffer, size_t buffer_size, const char* format, __va_list_struct* args) {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf/vsnprintf.s"
 }

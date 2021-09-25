@@ -6,7 +6,7 @@
 
 struct base_process_class {};
 
-struct __va_list_struct {};
+struct __va_list_struct;
 
 class JUTDirectPrint {
 public:

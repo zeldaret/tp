@@ -5,8 +5,10 @@
 
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "dol2asm.h"
+#include "dolphin/os/OSCache.h"
 #include "dolphin/types.h"
 #include "global.h"
+#include "msl_c/string.h"
 
 //
 // Types:
@@ -46,12 +48,10 @@ extern "C" u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
 extern "C" void fpcBs_Delete__FP18base_process_class();
 extern "C" void __dt__Q27JStudio29TFunctionValue_list_parameterFv();
 extern "C" void* __nw__FUl();
-extern "C" void DCStoreRange();
 extern "C" void _savegpr_24();
 extern "C" void _savegpr_27();
 extern "C" void _restgpr_24();
 extern "C" void _restgpr_27();
-extern "C" void vsnprintf();
 
 //
 // Declarations:
@@ -298,18 +298,44 @@ void JUTDirectPrint::changeFrameBuffer(void* frameBuffer, u16 width, u16 height)
     mFrameBufferSize = (u32)mStride * (u32)mFrameBufferHeight * 2;
 }
 
-
 /* 802E45A4-802E46D8 2DEEE4 0134+00 1/1 0/0 0/0 .text
  * printSub__14JUTDirectPrintFUsUsPCcP16__va_list_structb       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTDirectPrint::printSub(u16 param_0, u16 param_1, char const* param_2,
-                                  __va_list_struct* param_3, bool param_4) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTDirectPrint/printSub__14JUTDirectPrintFUsUsPCcP16__va_list_structb.s"
+void JUTDirectPrint::printSub(u16 position_x, u16 position_y, char const* format,
+                              __va_list_struct* args, bool clear) {
+    char buffer[256];
+    if (!mFrameBuffer) {
+        return;
+    }
+
+    int buffer_length = vsnprintf(buffer, ARRAY_SIZE(buffer), format, args);
+    u16 x = position_x;
+    if (buffer_length > 0) {
+        if (clear) {
+            erase(position_x - 6, position_y - 3, (buffer_length + 2) * 6, 0xd);
+        }
+
+        char* ptr = buffer;
+        for (; 0 < buffer_length; buffer_length--, ptr++) {
+            int codepoint = sAsciiTable[*ptr & 0x7f];
+            if (codepoint == 0xfe) {
+                position_x = x;
+                position_y += 7;
+            } else if (codepoint == 0xfd) {
+                s32 current_position = (int)position_x;
+                s32 tab = (current_position - x + 0x2f) % 0x30;
+                position_x = current_position + 0x30 - tab;
+            } else {
+                if (codepoint != 0xff) {
+                    drawChar(position_x, position_y, codepoint);
+                }
+                position_x += 6;
+            }
+        }
+    }
+
+    DCStoreRange(mFrameBuffer, mFrameBufferSize);
 }
-#pragma pop
+
 
 /* ############################################################################################## */
 /* 8039D9A0-8039D9A0 02A000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
