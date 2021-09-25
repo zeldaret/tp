@@ -355,14 +355,14 @@ void JUTDirectPrint::drawString(u16 position_x, u16 position_y, char* text) {
 }
 
 /* 802E4708-802E4798 2DF048 0090+00 1/1 0/0 0/0 .text drawString_f__14JUTDirectPrintFUsUsPCce */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTDirectPrint::drawString_f(u16 param_0, u16 param_1, char const* param_2, ...) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTDirectPrint/drawString_f__14JUTDirectPrintFUsUsPCce.s"
+void JUTDirectPrint::drawString_f(u16 position_x, u16 position_y, char const* format, ...) {
+    if (mFrameBuffer) {
+        va_list args;
+        va_start(args, format);
+        printSub(position_x, position_y, format, (__va_list_struct*)args, false);
+        va_end(args);
+    }
 }
-#pragma pop
 
 /* 802E4798-802E47C8 2DF0D8 0030+00 0/0 2/2 0/0 .text
  * setCharColor__14JUTDirectPrintFQ28JUtility6TColor            */
