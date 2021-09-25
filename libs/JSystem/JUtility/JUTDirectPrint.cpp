@@ -336,26 +336,22 @@ void JUTDirectPrint::printSub(u16 position_x, u16 position_y, char const* format
     DCStoreRange(mFrameBuffer, mFrameBufferSize);
 }
 
-
-/* ############################################################################################## */
-/* 8039D9A0-8039D9A0 02A000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D9A0 = "%s";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039D9A3 = "\0\0\0\0";
-#pragma pop
+#if DEBUG
+void JUTDirectPrint::print(u16 position_x, u16 position_y, char const* format, ...) {
+    if (mFrameBuffer) {
+        va_list args;
+        va_start(args, format);
+        printSub(position_x, position_y, format, args);
+        va_end(args);
+    }
+}
+#endif
 
 /* 802E46D8-802E4708 2DF018 0030+00 0/0 2/2 0/0 .text            drawString__14JUTDirectPrintFUsUsPc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTDirectPrint::drawString(u16 param_0, u16 param_1, char* param_2) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTDirectPrint/drawString__14JUTDirectPrintFUsUsPc.s"
+void JUTDirectPrint::drawString(u16 position_x, u16 position_y, char* text) {
+    drawString_f(position_x, position_y, "%s", text);
 }
-#pragma pop
 
 /* 802E4708-802E4798 2DF048 0090+00 1/1 0/0 0/0 .text drawString_f__14JUTDirectPrintFUsUsPCce */
 #pragma push

@@ -1,8 +1,8 @@
 #ifndef JUTDIRECTPRINT_H
 #define JUTDIRECTPRINT_H
 
-#include "dolphin/types.h"
 #include "JSystem/JUtility/TColor.h"
+#include "dolphin/types.h"
 
 struct base_process_class {};
 
@@ -20,6 +20,10 @@ public:
     /* 802E4708 */ void drawString_f(u16, u16, char const*, ...);
     /* 802E47C8 */ void setCharColor(u8, u8, u8);
     /* 802E4798 */ void setCharColor(JUtility::TColor);
+
+#if DEBUG
+    /* -------- */ void print(u16, u16, char const*, ...);
+#endif
 
     static u8 sAsciiTable[128];
     static u32 sFontData[64];
