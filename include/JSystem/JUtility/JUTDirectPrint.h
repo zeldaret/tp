@@ -31,9 +31,9 @@ private:
     /* 0x00 */ void* field_0x00;
     /* 0x04 */ u16 mFrameBufferWidth;
     /* 0x06 */ u16 mFrameBufferHeight;
-    /* 0x08 */ u16 mWidthStride;
+    /* 0x08 */ u16 mStride;
     /* 0x0A */ u16 field_0x0A;
-    /* 0x0C */ size_t field_0x0C;
+    /* 0x0C */ size_t mFrameBufferSize;
     /* 0x10 */ u8 field_0x10[4];
     /* 0x14 */ u16* mFrameBuffer;
     /* 0x18 */ JUtility::TColor mCharColor;

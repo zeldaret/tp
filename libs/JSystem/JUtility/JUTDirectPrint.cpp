@@ -6,6 +6,7 @@
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 //
 // Types:
@@ -92,14 +93,14 @@ void JUTDirectPrint::erase(int x, int y, int width, int height) {
         height = height << 1;
     }
 
-    u16* pixel = mFrameBuffer + mWidthStride * y + x;
+    u16* pixel = mFrameBuffer + mStride * y + x;
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
             *pixel = 0x1080;
             pixel = pixel + 1;
         }
 
-        pixel += mWidthStride - width;
+        pixel += mStride - width;
     }
 }
 
@@ -189,7 +190,7 @@ void JUTDirectPrint::drawChar(int position_x, int position_y, int ch) {
     else
         scale_y = 2;
 
-    u16* pixel = mFrameBuffer + mWidthStride * position_y * scale_y + position_x * scale_x;
+    u16* pixel = mFrameBuffer + mStride * position_y * scale_y + position_x * scale_x;
     for (int y = 0; y < 7; y++) {
         u32 data = *font_data << col_index;
         font_data += 1;
@@ -237,7 +238,7 @@ void JUTDirectPrint::drawChar(int position_x, int position_y, int ch) {
             value = u4 | (u2 + u1 + u3);
             pixel[0] = value;
             if (scale_y > 1)
-                pixel[mWidthStride] = value;
+                pixel[mStride] = value;
 
             if (data & 0x20000000) {
                 u1 = field_0x26;
@@ -266,13 +267,13 @@ void JUTDirectPrint::drawChar(int position_x, int position_y, int ch) {
             value = u4 | (u2 + u1 + u3);
             pixel[1] = value;
             if (scale_y > 1)
-                pixel[1 + mWidthStride] = value;
+                pixel[1 + mStride] = value;
 
             data <<= 2;
             pixel += 2;
         }
 
-        pixel += mWidthStride * scale_y - scale_x * 6;
+        pixel += mStride * scale_y - scale_x * 6;
     }
 }
 #else
@@ -288,14 +289,15 @@ asm void JUTDirectPrint::drawChar(int param_0, int param_1, int param_2) {
 
 /* 802E456C-802E45A4 2DEEAC 0038+00 1/1 4/4 0/0 .text changeFrameBuffer__14JUTDirectPrintFPvUsUs
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTDirectPrint::changeFrameBuffer(void* param_0, u16 param_1, u16 param_2) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTDirectPrint/changeFrameBuffer__14JUTDirectPrintFPvUsUs.s"
+void JUTDirectPrint::changeFrameBuffer(void* frameBuffer, u16 width, u16 height) {
+    this->field_0x00 = frameBuffer;
+    mFrameBuffer = (u16*)frameBuffer;
+    mFrameBufferWidth = width;
+    mFrameBufferHeight = height;
+    mStride = ALIGN_NEXT(width & 0xFFFF, 16);
+    mFrameBufferSize = (u32)mStride * (u32)mFrameBufferHeight * 2;
 }
-#pragma pop
+
 
 /* 802E45A4-802E46D8 2DEEE4 0134+00 1/1 0/0 0/0 .text
  * printSub__14JUTDirectPrintFUsUsPCcP16__va_list_structb       */
