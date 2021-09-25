@@ -9,9 +9,10 @@ struct base_process_class {};
 struct __va_list_struct;
 
 class JUTDirectPrint {
-public:
+private:
     /* 802E41E8 */ JUTDirectPrint();
-    /* 802E4240 */ JUTDirectPrint* start();
+
+public:
     /* 802E4288 */ void erase(int, int, int, int);
     /* 802E431C */ void drawChar(int, int, int);
     /* 802E456C */ void changeFrameBuffer(void*, u16, u16);
@@ -21,10 +22,13 @@ public:
     /* 802E47C8 */ void setCharColor(u8, u8, u8);
     /* 802E4798 */ void setCharColor(JUtility::TColor);
 
+    /* 802E4240 */ static JUTDirectPrint* start();
+
 #if DEBUG
     /* -------- */ void print(u16, u16, char const*, ...);
 #endif
 
+private:
     static u8 sAsciiTable[128];
     static u32 sFontData[64];
     static u32 sFontData2[77];

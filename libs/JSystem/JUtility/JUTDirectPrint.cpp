@@ -12,62 +12,32 @@
 #include "msl_c/string.h"
 
 //
-// Types:
-//
-
-namespace JStudio {
-struct TFunctionValue_list_parameter {
-    /* 80283C24 */ ~TFunctionValue_list_parameter();
-};
-
-};  // namespace JStudio
-
-//
 // Forward References:
 //
 
-extern "C" void __ct__14JUTDirectPrintFv();
-extern "C" void start__14JUTDirectPrintFv();
-extern "C" void erase__14JUTDirectPrintFiiii();
-extern "C" void drawChar__14JUTDirectPrintFiii();
-extern "C" void changeFrameBuffer__14JUTDirectPrintFPvUsUs();
-extern "C" void printSub__14JUTDirectPrintFUsUsPCcP16__va_list_structb();
-extern "C" void drawString__14JUTDirectPrintFUsUsPc();
-extern "C" void drawString_f__14JUTDirectPrintFUsUsPCce();
-extern "C" void setCharColor__14JUTDirectPrintFQ28JUtility6TColor();
-extern "C" void setCharColor__14JUTDirectPrintFUcUcUc();
-extern "C" extern char const* const JUTDirectPrint__stringBase0;
 extern "C" u8 sAsciiTable__14JUTDirectPrint[128];
 extern "C" void* sFontData__14JUTDirectPrint[64];
 extern "C" void* sFontData2__14JUTDirectPrint[77];
-extern "C" u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
 
 //
 // External References:
 //
 
-extern "C" void fpcBs_Delete__FP18base_process_class();
-extern "C" void __dt__Q27JStudio29TFunctionValue_list_parameterFv();
-extern "C" void* __nw__FUl();
-extern "C" void _savegpr_24();
 extern "C" void _savegpr_27();
-extern "C" void _restgpr_24();
 extern "C" void _restgpr_27();
 
 //
 // Declarations:
 //
 
+/* 80451528-80451530 000A28 0004+04 1/1 4/4 0/0 .sbss            sDirectPrint__14JUTDirectPrint */
+JUTDirectPrint* JUTDirectPrint::sDirectPrint;
+
 /* 802E41E8-802E4240 2DEB28 0058+00 1/1 0/0 0/0 .text            __ct__14JUTDirectPrintFv */
 JUTDirectPrint::JUTDirectPrint() {
     changeFrameBuffer(NULL, 0, 0);
     setCharColor(0xff, 0xff, 0xff);
-}
-
-/* ############################################################################################## */
-/* 80451528-80451530 000A28 0004+04 1/1 4/4 0/0 .sbss            sDirectPrint__14JUTDirectPrint */
-JUTDirectPrint* JUTDirectPrint::sDirectPrint;
-u8 JUTDirectPrint::sDirectPrint_padding[4 /* padding */];
+} 
 
 /* 802E4240-802E4288 2DEB80 0048+00 0/0 1/1 0/0 .text            start__14JUTDirectPrintFv */
 JUTDirectPrint* JUTDirectPrint::start() {
@@ -162,6 +132,7 @@ SECTION_DATA static u32 twiceBit[4] = {
 #pragma pop
 
 /* 802E431C-802E456C 2DEC5C 0250+00 1/1 0/0 0/0 .text            drawChar__14JUTDirectPrintFiii */
+// incorrect reg-alloc
 #if NONMATCHING
 void JUTDirectPrint::drawChar(int position_x, int position_y, int ch) {
     int codepoint;
@@ -192,7 +163,7 @@ void JUTDirectPrint::drawChar(int position_x, int position_y, int ch) {
         scale_y = 2;
 
     u16* pixel = mFrameBuffer + mStride * position_y * scale_y + position_x * scale_x;
-    for (int y = 0; y < 7; y++) {
+    for (u32 y = 0; y < 7; y++) {
         u32 data = *font_data << col_index;
         font_data += 1;
 
@@ -388,5 +359,3 @@ void JUTDirectPrint::setCharColor(u8 r, u8 g, u8 b) {
     mCharColor_Cr4 = (Cr >> 2) & 0x3fff;
 }
 
-
-/* 8039D9A0-8039D9A0 02A000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

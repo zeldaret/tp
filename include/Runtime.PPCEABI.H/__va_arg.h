@@ -3,7 +3,8 @@
 
 #include "dolphin/types.h"
 
-// not sure what the members are. OK when the struct is 12 bytes.
+// not sure what the members are. 
+// OK when the struct is 12 bytes.
 typedef struct __va_list_struct {
     u8 data[12];
 };
@@ -16,7 +17,6 @@ extern "C" void __va_arg(void*, int);
 #define __builtin_va_info(...)
 #define _var_arg_typeof(...)
 #endif
-
 
 // from defined-string in mwcceppc.exe:
 // __builtin_va_info: initialize the __va_list_struct
