@@ -31,6 +31,11 @@ public:
     void set(u32 u32Color) { *(u32*)&mColor = u32Color; }
     void set(_GXColor gxColor) { mColor = gxColor; }
 
+    u8 R() const { return mColor.r; }
+    u8 G() const { return mColor.g; }
+    u8 B() const { return mColor.b; }
+    u8 A() const { return mColor.a; }
+
 private:
     _GXColor mColor;
 };

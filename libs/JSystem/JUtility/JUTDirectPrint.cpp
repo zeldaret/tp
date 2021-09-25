@@ -366,14 +366,10 @@ void JUTDirectPrint::drawString_f(u16 position_x, u16 position_y, char const* fo
 
 /* 802E4798-802E47C8 2DF0D8 0030+00 0/0 2/2 0/0 .text
  * setCharColor__14JUTDirectPrintFQ28JUtility6TColor            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTDirectPrint::setCharColor(JUtility::TColor param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTDirectPrint/setCharColor__14JUTDirectPrintFQ28JUtility6TColor.s"
+void JUTDirectPrint::setCharColor(JUtility::TColor color) {
+    setCharColor(color.R(), color.G(), color.B());
 }
-#pragma pop
+
 
 /* ############################################################################################## */
 /* 80456060-80456068 004660 0008+00 1/1 0/0 0/0 .sdata2          @503 */
