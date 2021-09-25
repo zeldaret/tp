@@ -22,8 +22,8 @@ public:
     /* 802E4798 */ void setCharColor(JUtility::TColor);
 
     static u8 sAsciiTable[128];
-    static void* sFontData[64];
-    static void* sFontData2[77];
+    static u32 sFontData[64];
+    static u32 sFontData2[77];
     static JUTDirectPrint* sDirectPrint;
     static u8 sDirectPrint_padding[4 /* padding */];
 
