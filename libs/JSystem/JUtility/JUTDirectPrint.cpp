@@ -9,6 +9,7 @@
 #include "dolphin/types.h"
 #include "global.h"
 #include "msl_c/string.h"
+#include "Runtime.PPCEABI.H/__va_arg.h"
 
 //
 // Types:

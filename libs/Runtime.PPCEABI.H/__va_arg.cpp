@@ -7,11 +7,11 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
+#undef __va_arg
+
 //
 // Forward References:
 //
-
-extern "C" void __va_arg();
 
 //
 // External References:
@@ -25,7 +25,7 @@ extern "C" void __va_arg();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __va_arg() {
+asm void __va_arg(void*, int) {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/__va_arg/__va_arg.s"
 }
