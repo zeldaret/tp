@@ -20,43 +20,33 @@ struct JUTDirectPrint {
 };
 
 //
-// Forward References:
-//
-
-extern "C" void createManager__8JUTVideoFPC16_GXRenderModeObj();
-extern "C" void destroyManager__8JUTVideoFv();
-extern "C" void __ct__8JUTVideoFPC16_GXRenderModeObj();
-extern "C" void __dt__8JUTVideoFv();
-extern "C" void preRetraceProc__8JUTVideoFUl();
-extern "C" void drawDoneStart__8JUTVideoFv();
-extern "C" void dummyNoDrawWait__8JUTVideoFv();
-extern "C" void drawDoneCallback__8JUTVideoFv();
-extern "C" void postRetraceProc__8JUTVideoFUl();
-extern "C" void setRenderMode__8JUTVideoFPC16_GXRenderModeObj();
-extern "C" void waitRetraceIfNeed__8JUTVideoFv();
-extern "C" u8 sManager__8JUTVideo[4];
-extern "C" u8 sVideoLastTick__8JUTVideo[4];
-extern "C" u8 sVideoInterval__8JUTVideo[4];
-
-//
 // External References:
 //
 
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void changeFrameBuffer__14JUTDirectPrintFPvUsUs();
 extern "C" void GXSetDrawDone();
 extern "C" void GXCopyDisp(void*, BOOL);
-extern "C" u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
-extern "C" u8 sManager__6JUTXfb[4 + 4 /* padding */];
 
 //
 // Declarations:
 //
 
-/* ############################################################################################## */
 /* 80451538-8045153C 000A38 0004+00 4/4 18/18 1/1 .sbss            sManager__8JUTVideo */
 JUTVideo* JUTVideo::sManager;
+
+/* 8045153C-80451540 000A3C 0004+00 2/2 1/1 0/0 .sbss            sVideoLastTick__8JUTVideo */
+OSTick JUTVideo::sVideoLastTick;
+
+/* 80451540-80451544 000A40 0004+00 2/2 1/1 0/0 .sbss            sVideoInterval__8JUTVideo */
+
+OSTick JUTVideo::sVideoInterval;
+/* 80451544-80451548 000A44 0004+00 4/4 0/0 0/0 .sbss            None */
+static bool data_80451544;
+
+/* 80451548-8045154C 000A48 0004+00 1/1 0/0 0/0 .sbss            frameBuffer$2222 */
+static void* frameBuffer;
+
+/* 8045154C-80451550 000A4C 0004+00 1/1 0/0 0/0 .sbss            None */
+static s8 data_8045154C;
 
 /* 802E4C54-802E4CAC 2DF594 0058+00 0/0 1/1 0/0 .text
  * createManager__8JUTVideoFPC16_GXRenderModeObj                */
@@ -74,22 +64,6 @@ void JUTVideo::destroyManager() {
         sManager = NULL;
     }
 }
-
-/* ############################################################################################## */
-/* 803CC980-803CC990 029AA0 000C+04 2/2 0/0 0/0 .data            __vt__8JUTVideo */
-SECTION_DATA extern void* __vt__8JUTVideo[3 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8JUTVideoFv,
-    /* padding */
-    NULL,
-};
-
-/* 8045153C-80451540 000A3C 0004+00 2/2 1/1 0/0 .sbss            sVideoLastTick__8JUTVideo */
-OSTick JUTVideo::sVideoLastTick;
-
-/* 80451540-80451544 000A40 0004+00 2/2 1/1 0/0 .sbss            sVideoInterval__8JUTVideo */
-OSTick JUTVideo::sVideoInterval;
 
 /* 802E4CF4-802E4DE8 2DF634 00F4+00 1/1 0/0 0/0 .text __ct__8JUTVideoFPC16_GXRenderModeObj */
 JUTVideo::JUTVideo(GXRenderModeObj const* param_0) {
@@ -119,16 +93,6 @@ JUTVideo::~JUTVideo() {
     VISetPreRetraceCallback(mPreRetraceCallback);
     VISetPostRetraceCallback(mPostRetraceCallback);
 }
-
-/* ############################################################################################## */
-/* 80451544-80451548 000A44 0004+00 4/4 0/0 0/0 .sbss            None */
-static bool data_80451544;
-
-/* 80451548-8045154C 000A48 0004+00 1/1 0/0 0/0 .sbss            frameBuffer$2222 */
-static void* frameBuffer;
-
-/* 8045154C-80451550 000A4C 0004+00 1/1 0/0 0/0 .sbss            None */
-static s8 data_8045154C;
 
 /* 802E4E50-802E5088 2DF790 0238+00 1/1 0/0 0/0 .text            preRetraceProc__8JUTVideoFUl */
 void JUTVideo::preRetraceProc(u32 retrace_count) {
