@@ -90,7 +90,7 @@ private:
     /* 0x94 */ u32 mTraceSuppress;
     /* 0x98 */ u32 field_0x98;
     /* 0x9C */ u32 field_0x9c;
-    /* 0xA0 */ u32 field_0xa0;
+    /* 0xA0 */ u32 mStackPointer;
 };
 
 STATIC_ASSERT(sizeof(JUTException) == 0xA4);

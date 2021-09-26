@@ -35,7 +35,7 @@ struct JUTConsoleManager {
     /* 802E8450 */ void drawDirect(bool) const;
     /* 802E84C4 */ void setDirectConsole(JUTConsole*);
 
-    static u8 sManager[4];
+    static JUTConsoleManager* sManager;
 };
 
 //
@@ -465,18 +465,18 @@ static void search_name_part(u8* src, u8* dst, int dst_length) {
         }
     }
 
-    if (*src == '\\') { 
+    if (*src == '\\') {
         src++;
     }
 
     for (int i = 0; (*src != 0) && (i < dst_length);) {
-        if(*src == '.') break;
+        if (*src == '.')
+            break;
         *dst++ = *src++;
         i++;
     }
 
     *dst = '\0';
-
 }
 
 /* ############################################################################################## */
@@ -491,14 +491,31 @@ SECTION_DEAD static char const* const stringBase_8039D63A = "%08X:  %08X    %08X
 #pragma pop
 
 /* 802E26B0-802E27B0 2DCFF0 0100+00 1/1 0/0 0/0 .text showStack__12JUTExceptionFP9OSContext */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTException::showStack(OSContext* param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/showStack__12JUTExceptionFP9OSContext.s"
+void JUTException::showStack(OSContext* context) {
+    if (!sConsole) {
+        return;
+    }
+
+    u32 i;
+    sConsole->print("-------------------------------- TRACE\n");
+    u32* stackPointer = (u32*)mStackPointer;
+    sConsole->print_f("Address:   BackChain   LR save\n");
+
+    for (i = 0; (stackPointer != NULL) && (stackPointer != (u32*)0xFFFFFFFF) && (i++ < 0x100);) {
+        if (i > mTraceSuppress) {
+            sConsole->print("Suppress trace.\n");
+            return;
+        }
+
+        sConsole->print_f("%08X:  %08X    %08X\n", stackPointer, stackPointer[0], stackPointer[1]);
+        showMapInfo_subroutine(stackPointer[1], false);
+        JUTConsoleManager* manager = JUTConsoleManager::sManager;
+        manager->drawDirect(true);
+        waitTime(this->field_0x90);
+        stackPointer = (u32*)stackPointer[0];
+    }
 }
-#pragma pop
+
 
 /* ############################################################################################## */
 /* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
