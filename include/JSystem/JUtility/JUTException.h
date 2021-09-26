@@ -23,7 +23,13 @@ struct JUTDirectPrint {
 
 class JUTException : public JKRThread {
 public:
-    struct EInfoPage {};
+    enum EInfoPage {
+        EINFO_PAGE_GPR = 1,
+        EINFO_PAGE_FLOAT = 2,
+        EINFO_PAGE_STACK = 3,
+        EINFO_PAGE_GPRMAP = 4,
+        EINFO_PAGE_SSR0MAP = 5,
+    };
 
     class JUTExMapFile {};
 
@@ -38,7 +44,7 @@ public:
     /* 802E2B44 */ bool showMapInfo_subroutine(u32, bool);
     /* 802E2CA0 */ void showGPRMap(OSContext*);
     /* 802E2DAC */ void showSRR0Map(OSContext*);
-    /* 802E2E70 */ void printDebugInfo(JUTException::EInfoPage, u16, OSContext*, u32, u32);
+    /* 802E2E70 */ void printDebugInfo(JUTException::EInfoPage, OSError, OSContext*, u32, u32);
     /* 802E2F18 */ void isEnablePad() const;
     /* 802E2F54 */ bool readPad(u32*, u32*);
     /* 802E34C0 */ void printContext(u16, OSContext*, u32, u32);
@@ -79,7 +85,7 @@ private:
     static u8 sConsoleBuffer[4];
     static u8 sConsoleBufferSize[4];
     static JUTConsole* sConsole;
-    static u8 msr[4];
+    static u32 msr;
     static u32 fpscr;
 
 private:

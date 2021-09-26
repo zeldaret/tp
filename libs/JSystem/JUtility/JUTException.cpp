@@ -309,7 +309,7 @@ u8 JUTException::sConsoleBufferSize[4];
 JUTConsole* JUTException::sConsole;
 
 /* 80451520-80451524 000A20 0004+00 2/2 0/0 0/0 .sbss            msr__12JUTException */
-u8 JUTException::msr[4];
+u32 JUTException::msr;
 
 /* 80451524-80451528 000A24 0004+00 3/3 0/0 0/0 .sbss            fpscr__12JUTException */
 u32 JUTException::fpscr;
@@ -675,25 +675,28 @@ void JUTException::showSRR0Map(OSContext* context) {
     }
 }
 
-
-/* ############################################################################################## */
-/* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D8DA = " MSR:%08XH\t FPSCR:%08XH\n";
-#pragma pop
-
 /* 802E2E70-802E2F18 2DD7B0 00A8+00 1/1 0/0 0/0 .text
  * printDebugInfo__12JUTExceptionFQ212JUTException9EInfoPageUsP9OSContextUlUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTException::printDebugInfo(JUTException::EInfoPage param_0, u16 param_1,
-                                      OSContext* param_2, u32 param_3, u32 param_4) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/printDebugInfo__12JUTExceptionFQ212JUTException9EInfoPageUsP9OSContextUlUl.s"
+void JUTException::printDebugInfo(JUTException::EInfoPage page, OSError error, OSContext* context,
+                                  u32 param_3, u32 param_4) {
+    switch (page) {
+    case EINFO_PAGE_GPR:
+        return showGPR(context);
+    case EINFO_PAGE_FLOAT:
+        showFloat(context);
+        if(sConsole) {
+            sConsole->print_f(" MSR:%08XH\t FPSCR:%08XH\n", msr, fpscr);
+        }
+        break;
+    case EINFO_PAGE_STACK:
+        return showStack(context);
+    case EINFO_PAGE_GPRMAP:
+        return showGPRMap(context);
+    case EINFO_PAGE_SSR0MAP:
+        return showSRR0Map(context);
+    }
 }
-#pragma pop
+
 
 /* 802E2F18-802E2F54 2DD858 003C+00 1/1 1/1 0/0 .text            isEnablePad__12JUTExceptionCFv */
 #pragma push
