@@ -197,24 +197,24 @@ SECTION_DATA static u8 c3bcnt[32] = {
 };
 
 /* 803CC660-803CC6A4 -00001 0044+00 1/1 0/0 0/0 .data            sCpuExpName__12JUTException */
-SECTION_DATA void* JUTException::sCpuExpName[17] = {
-    (void*)&JUTException__stringBase0,
-    (void*)(((char*)&JUTException__stringBase0) + 0xD),
-    (void*)(((char*)&JUTException__stringBase0) + 0x1B),
-    (void*)(((char*)&JUTException__stringBase0) + 0x1F),
-    (void*)(((char*)&JUTException__stringBase0) + 0x23),
-    (void*)(((char*)&JUTException__stringBase0) + 0x36),
-    (void*)(((char*)&JUTException__stringBase0) + 0x40),
-    (void*)(((char*)&JUTException__stringBase0) + 0x48),
-    (void*)(((char*)&JUTException__stringBase0) + 0x57),
-    (void*)(((char*)&JUTException__stringBase0) + 0x63),
-    (void*)(((char*)&JUTException__stringBase0) + 0x6F),
-    (void*)(((char*)&JUTException__stringBase0) + 0x75),
-    (void*)(((char*)&JUTException__stringBase0) + 0x88),
-    (void*)(((char*)&JUTException__stringBase0) + 0x94),
-    (void*)(((char*)&JUTException__stringBase0) + 0xA5),
-    (void*)(((char*)&JUTException__stringBase0) + 0xB7),
-    (void*)(((char*)&JUTException__stringBase0) + 0x48),
+SECTION_DATA const char* JUTException::sCpuExpName[17] = {
+    (const char*)&JUTException__stringBase0,
+    (const char*)(((char*)&JUTException__stringBase0) + 0xD),
+    (const char*)(((char*)&JUTException__stringBase0) + 0x1B),
+    (const char*)(((char*)&JUTException__stringBase0) + 0x1F),
+    (const char*)(((char*)&JUTException__stringBase0) + 0x23),
+    (const char*)(((char*)&JUTException__stringBase0) + 0x36),
+    (const char*)(((char*)&JUTException__stringBase0) + 0x40),
+    (const char*)(((char*)&JUTException__stringBase0) + 0x48),
+    (const char*)(((char*)&JUTException__stringBase0) + 0x57),
+    (const char*)(((char*)&JUTException__stringBase0) + 0x63),
+    (const char*)(((char*)&JUTException__stringBase0) + 0x6F),
+    (const char*)(((char*)&JUTException__stringBase0) + 0x75),
+    (const char*)(((char*)&JUTException__stringBase0) + 0x88),
+    (const char*)(((char*)&JUTException__stringBase0) + 0x94),
+    (const char*)(((char*)&JUTException__stringBase0) + 0xA5),
+    (const char*)(((char*)&JUTException__stringBase0) + 0xB7),
+    (const char*)(((char*)&JUTException__stringBase0) + 0x48),
 };
 
 /* 803CC6A4-803CC6B8 0297C4 0010+04 2/2 0/0 0/0 .data            __vt__12JUTException */
@@ -312,7 +312,7 @@ JUTConsole* JUTException::sConsole;
 u8 JUTException::msr[4];
 
 /* 80451524-80451528 000A24 0004+00 3/3 0/0 0/0 .sbss            fpscr__12JUTException */
-u8 JUTException::fpscr[4];
+u32 JUTException::fpscr;
 
 /* 802E1FCC-802E20C0 2DC90C 00F4+00 2/2 0/0 0/0 .text
  * errorHandler__12JUTExceptionFUsP9OSContextUlUl               */
@@ -479,17 +479,6 @@ static void search_name_part(u8* src, u8* dst, int dst_length) {
     *dst = '\0';
 }
 
-/* ############################################################################################## */
-/* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D5E1 =
-    "-------------------------------- TRACE\n";
-SECTION_DEAD static char const* const stringBase_8039D609 = "Address:   BackChain   LR save\n";
-SECTION_DEAD static char const* const stringBase_8039D629 = "Suppress trace.\n";
-SECTION_DEAD static char const* const stringBase_8039D63A = "%08X:  %08X    %08X\n";
-#pragma pop
-
 /* 802E26B0-802E27B0 2DCFF0 0100+00 1/1 0/0 0/0 .text showStack__12JUTExceptionFP9OSContext */
 void JUTException::showStack(OSContext* context) {
     if (!sConsole) {
@@ -516,41 +505,67 @@ void JUTException::showStack(OSContext* context) {
     }
 }
 
-
-/* ############################################################################################## */
-/* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D64F = "CONTEXT:%08XH  (%s EXCEPTION)\n";
-SECTION_DEAD static char const* const stringBase_8039D66E = "CONTEXT:%08XH\n";
-SECTION_DEAD static char const* const stringBase_8039D67D = " FPE: Invalid operation\n";
-SECTION_DEAD static char const* const stringBase_8039D696 = " SNaN\n";
-SECTION_DEAD static char const* const stringBase_8039D69D = " Infinity - Infinity\n";
-SECTION_DEAD static char const* const stringBase_8039D6B3 = " Infinity / Infinity\n";
-SECTION_DEAD static char const* const stringBase_8039D6C9 = " 0 / 0\n";
-SECTION_DEAD static char const* const stringBase_8039D6D1 = " Infinity * 0\n";
-SECTION_DEAD static char const* const stringBase_8039D6E0 = " Invalid compare\n";
-SECTION_DEAD static char const* const stringBase_8039D6F2 = " Software request\n";
-SECTION_DEAD static char const* const stringBase_8039D705 = " Invalid square root\n";
-SECTION_DEAD static char const* const stringBase_8039D71B = " Invalid integer convert\n";
-SECTION_DEAD static char const* const stringBase_8039D735 = " FPE: Overflow\n";
-SECTION_DEAD static char const* const stringBase_8039D745 = " FPE: Underflow\n";
-SECTION_DEAD static char const* const stringBase_8039D756 = " FPE: Zero division\n";
-SECTION_DEAD static char const* const stringBase_8039D76B = " FPE: Inexact result\n";
-SECTION_DEAD static char const* const stringBase_8039D781 = "SRR0:   %08XH   SRR1:%08XH\n";
-SECTION_DEAD static char const* const stringBase_8039D79D = "DSISR:  %08XH   DAR: %08XH\n";
-#pragma pop
-
 /* 802E27B0-802E2A84 2DD0F0 02D4+00 1/1 0/0 0/0 .text
  * showMainInfo__12JUTExceptionFUsP9OSContextUlUl               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTException::showMainInfo(u16 param_0, OSContext* param_1, u32 param_2, u32 param_3) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/showMainInfo__12JUTExceptionFUsP9OSContextUlUl.s"
+void JUTException::showMainInfo(u16 error, OSContext* context, u32 dsisr, u32 dar) {
+    if (!sConsole) {
+        return;
+    }
+
+    if (error < (OS_ERROR_MACHINE_CHECK | OS_ERROR_FLOATING_POINT_EXCEPTION)) {
+        sConsole->print_f("CONTEXT:%08XH  (%s EXCEPTION)\n", context, sCpuExpName[error]);
+    } else {
+        sConsole->print_f("CONTEXT:%08XH\n");
+    }
+
+    if (error == OS_ERROR_FLOATING_POINT_EXCEPTION) {
+        u32 flags = fpscr & (((fpscr & 0xf8) << 0x16) | 0x1f80700);
+        if ((flags & 0x20000000) != 0) {
+            sConsole->print_f(" FPE: Invalid operation\n");
+            if ((fpscr & 0x1000000) != 0) {
+                sConsole->print_f(" SNaN\n");
+            }
+            if ((fpscr & 0x800000) != 0) {
+                sConsole->print_f(" Infinity - Infinity\n");
+            }
+            if ((fpscr & 0x400000) != 0) {
+                sConsole->print_f(" Infinity / Infinity\n");
+            }
+            if ((fpscr & 0x200000) != 0) {
+                sConsole->print_f(" 0 / 0\n");
+            }
+            if ((fpscr & 0x100000) != 0) {
+                sConsole->print_f(" Infinity * 0\n");
+            }
+            if ((fpscr & 0x80000) != 0) {
+                sConsole->print_f(" Invalid compare\n");
+            }
+            if ((fpscr & 0x400) != 0) {
+                sConsole->print_f(" Software request\n");
+            }
+            if ((fpscr & 0x200) != 0) {
+                sConsole->print_f(" Invalid square root\n");
+            }
+            if ((fpscr & 0x100) != 0) {
+                sConsole->print_f(" Invalid integer convert\n");
+            }
+        }
+        if ((flags & 0x10000000) != 0) {
+            sConsole->print_f(" FPE: Overflow\n");
+        }
+        if ((flags & 0x8000000) != 0) {
+            sConsole->print_f(" FPE: Underflow\n");
+        }
+        if ((flags & 0x4000000) != 0) {
+            sConsole->print_f(" FPE: Zero division\n");
+        }
+        if ((flags & 0x2000000) != 0) {
+            sConsole->print_f(" FPE: Inexact result\n");
+        }
+    }
+    sConsole->print_f("SRR0:   %08XH   SRR1:%08XH\n", context->srr0, context->srr1);
+    sConsole->print_f("DSISR:  %08XH   DAR: %08XH\n", dsisr, dar);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

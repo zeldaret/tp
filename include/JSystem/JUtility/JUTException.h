@@ -68,7 +68,7 @@ public:
 
 private:
     static OSMessageQueue sMessageQueue;
-    static void* sCpuExpName[17];
+    static const char* sCpuExpName[17];
     static u8 sMapFileList[12 + 4 /* padding */];
     static u8 sMessageBuffer[4 + 4 /* padding */];
     static JUTException* sErrorManager;
@@ -78,7 +78,7 @@ private:
     static u8 sConsoleBufferSize[4];
     static JUTConsole* sConsole;
     static u8 msr[4];
-    static u8 fpscr[4];
+    static u32 fpscr;
 
 private:
     /* 0x7C */ JUTExternalFB* field_0x7C;
