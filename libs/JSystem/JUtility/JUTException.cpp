@@ -191,9 +191,11 @@ SECTION_DEAD static char const* const stringBase_8039D547 = "PROTECTION";
 SECTION_DATA OSMessageQueue JUTException::sMessageQueue = {0};
 
 /* 803CC640-803CC660 029760 0020+00 1/1 0/0 0/0 .data            c3bcnt */
-SECTION_DATA static u8 c3bcnt[32] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_DATA static OSTime c3bcnt[4] = {
+    0,
+    0,
+    0,
+    0,
 };
 
 /* 803CC660-803CC6A4 -00001 0044+00 1/1 0/0 0/0 .data            sCpuExpName__12JUTException */
@@ -709,14 +711,84 @@ bool JUTException::isEnablePad() const {
 }
 
 /* 802E2F54-802E34C0 2DD894 056C+00 1/1 1/1 0/0 .text            readPad__12JUTExceptionFPUlPUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool JUTException::readPad(u32* param_0, u32* param_1) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/readPad__12JUTExceptionFPUlPUl.s"
+bool JUTException::readPad(u32* param_0, u32* param_1) {
+    bool result = false;
+    OSTime start_time = OSGetTime();
+    OSTime ms;
+    do {
+        OSTime end_time = OSGetTime();
+        OSTime ticks = end_time - start_time;
+        ms = ticks / (OS_TIMER_CLOCK / 1000);
+    } while (ms < 0x32);
+
+    if (mGamePad == (JUTGamePad*)0xffffffff) {
+        JUTGamePad gamePad0(JUTGamePad::Port_1);
+        JUTGamePad gamePad1(JUTGamePad::Port_2);
+        JUTGamePad gamePad2(JUTGamePad::Port_3);
+        JUTGamePad gamePad3(JUTGamePad::Port_4);
+        JUTGamePad::read();
+
+        c3bcnt[0] =
+            (gamePad0.isPushing3ButtonReset() ? (c3bcnt[0] != 0 ? c3bcnt[0] : OSGetTime()) : 0);
+        c3bcnt[1] =
+            (gamePad1.isPushing3ButtonReset() ? (c3bcnt[1] != 0 ? c3bcnt[1] : OSGetTime()) : 0);
+        c3bcnt[2] =
+            (gamePad2.isPushing3ButtonReset() ? (c3bcnt[2] != 0 ? c3bcnt[2] : OSGetTime()) : 0);
+        c3bcnt[3] =
+            (gamePad3.isPushing3ButtonReset() ? (c3bcnt[3] != 0 ? c3bcnt[3] : OSGetTime()) : 0);
+
+        OSTime resetTime0 = (c3bcnt[0] != 0) ? (OSGetTime() - c3bcnt[0]) : 0;
+        OSTime resetTime1 = (c3bcnt[1] != 0) ? (OSGetTime() - c3bcnt[1]) : 0;
+        OSTime resetTime2 = (c3bcnt[2] != 0) ? (OSGetTime() - c3bcnt[2]) : 0;
+        OSTime resetTime3 = (c3bcnt[3] != 0) ? (OSGetTime() - c3bcnt[3]) : 0;
+
+        gamePad0.checkResetCallback(resetTime0);
+        gamePad1.checkResetCallback(resetTime1);
+        gamePad2.checkResetCallback(resetTime2);
+        gamePad3.checkResetCallback(resetTime3);
+
+        if (param_0) {
+            *param_0 = gamePad0.getTrigger() | gamePad1.getTrigger() | gamePad2.getTrigger() |
+                       gamePad3.getTrigger();
+        }
+        if (param_1) {
+            *param_1 = gamePad0.getButton() | gamePad1.getButton() | gamePad2.getButton() |
+                       gamePad3.getButton();
+        }
+
+        result = true;
+    } else if (mGamePadPort >= 0) {
+        JUTGamePad gamePad(mGamePadPort);
+        OSTime& gamePadTime = c3bcnt[0];
+        gamePadTime =
+            (gamePad.isPushing3ButtonReset() ? (gamePadTime != 0 ? gamePadTime : OSGetTime()) : 0);
+
+        OSTime resetTime = (gamePadTime != 0) ? (OSGetTime() - gamePadTime) : 0;
+        gamePad.checkResetCallback(resetTime);
+
+        JUTGamePad::read();
+        if (param_0) {
+            *param_0 = gamePad.getTrigger();
+        }
+        if (param_1) {
+            *param_1 = gamePad.getButton();
+        }
+
+        result = true;
+    } else if (mGamePad) {
+        JUTGamePad::read();
+        if (param_0) {
+            *param_0 = mGamePad->getTrigger();
+        }
+        if (param_1) {
+            *param_1 = mGamePad->getButton();
+        }
+
+        result = true;
+    }
+
+    return result;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
