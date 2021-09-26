@@ -25,6 +25,8 @@ class JUTException : public JKRThread {
 public:
     struct EInfoPage {};
 
+    class JUTExMapFile {};
+
     /* 802E1D5C */ JUTException(JUTDirectPrint*);
     /* 802E40EC */ virtual ~JUTException();
 
@@ -69,7 +71,7 @@ public:
 private:
     static OSMessageQueue sMessageQueue;
     static const char* sCpuExpName[17];
-    static u8 sMapFileList[12 + 4 /* padding */];
+    static JSUList<JUTException::JUTExMapFile> sMapFileList;
     static u8 sMessageBuffer[4 + 4 /* padding */];
     static JUTException* sErrorManager;
     static void* sPreUserCallback;

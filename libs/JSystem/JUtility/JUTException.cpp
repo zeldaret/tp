@@ -332,14 +332,11 @@ asm void JUTException::errorHandler(u16 param_0, OSContext* param_1, u32 param_2
 SECTION_DEAD static char const* const stringBase_8039D552 = "%s in \"%s\" on line %d\n";
 #pragma pop
 
-/* 8043458C-80434598 0612AC 000C+00 1/1 0/0 0/0 .bss             @2182 */
-static u8 lit_2182[12];
-
 /* 80434598-804345A8 0612B8 000C+04 4/4 0/0 0/0 .bss             sMapFileList__12JUTException */
-u8 JUTException::sMapFileList[12 + 4 /* padding */];
+JSUList<JUTException::JUTExMapFile> JUTException::sMapFileList(false);
 
 /* 804345A8-80434870 0612C8 02C8+00 1/1 0/0 0/0 .bss             context$2230 */
-static u8 context[712];
+static OSContext context;
 
 /* 802E20C0-802E21FC 2DCA00 013C+00 1/1 0/0 0/0 .text
  * panic_f_va__12JUTExceptionFPCciPCcP16__va_list_struct        */
@@ -592,6 +589,50 @@ SECTION_DEAD static char const* const stringBase_8039D821 = "%s %s:%x section:%d
 
 /* 802E2B44-802E2CA0 2DD484 015C+00 3/3 0/0 0/0 .text showMapInfo_subroutine__12JUTExceptionFUlb
  */
+#if NONMATCHING
+void JUTException::showMapInfo_subroutine(u32 address, bool param_1) {
+    if ((address < 0x80000000) || (0x82ffffff < address)) {
+        return FALSE;
+    }
+
+    const char* new_line = "\n";
+    if (begin_with_newline == false) {
+        new_line = "";
+    }
+
+    u32 module_id;
+    u32 section_id;
+    u32 section_offset;
+    u32 name_offset;
+
+    BOOL foundModule =
+        searchPartialModule(address, &module_id, &section_id, &section_offset, &name_offset);
+    if (foundModule) {
+        u8 name_part[0x20];
+        search_name_part((u8*)name_offset, name_part, ARRAY_SIZE(name_part));
+        sConsole->print_f("%s %s:%x section:%d\n", new_line, name_part, section_offset, section_id);
+        begin_with_newline = false;
+    }
+
+
+    if (sMapFileList.first != (JSUPtrLink*)0x0) {
+        if ((uVar1 & 0xff) == 1) {
+            cVar2 = queryMapAddress((JUTException*)JStack312, (char*)local_148, section_id,
+                                    (long)auStack332, &uStack336, auStack276, (char*)0x100, 1,
+                                    begin_with_newline, (bool)in_stack_fffffeaf);
+        } else {
+            cVar2 = queryMapAddress((JUTException*)0x0, (char*)address, 0xffffffff,
+                                    (long)auStack332, &uStack336, auStack276, (char*)0x100, 1,
+                                    begin_with_newline, (bool)in_stack_fffffeaf);
+        }
+        if (cVar2 == '\x01') {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -600,6 +641,7 @@ asm void JUTException::showMapInfo_subroutine(u32 param_0, bool param_1) {
 #include "asm/JSystem/JUtility/JUTException/showMapInfo_subroutine__12JUTExceptionFUlb.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -840,32 +882,6 @@ asm JUTExternalFB::JUTExternalFB(_GXRenderModeObj* param_0, _GXGamma param_1, vo
 asm JUTException::~JUTException() {
     nofralloc
 #include "asm/JSystem/JUtility/JUTException/__dt__12JUTExceptionFv.s"
-}
-#pragma pop
-
-/* 802E414C-802E4194 2DEA8C 0048+00 0/0 1/0 0/0 .text            __sinit_JUTException_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_JUTException_cpp() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/__sinit_JUTException_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x802E414C, __sinit_JUTException_cpp);
-#pragma pop
-
-/* 802E4194-802E41E8 2DEAD4 0054+00 1/1 0/0 0/0 .text
- * __dt__39JSUList<Q212JUTException12JUTExMapFile>Fv            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void func_802E4194(void* _this) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/func_802E4194.s"
 }
 #pragma pop
 
