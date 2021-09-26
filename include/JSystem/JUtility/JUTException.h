@@ -28,10 +28,8 @@ public:
     /* 802E1D5C */ JUTException(JUTDirectPrint*);
     /* 802E40EC */ virtual ~JUTException();
 
-    /* 802E20C0 */ void panic_f_va(char const*, int, char const*, va_list*);
     /* 802E22C4 */ void showFloatSub(int, f32);
     /* 802E2454 */ void showFloat(OSContext*);
-    /* 802E2578 */ void searchPartialModule(u32, u32*, u32*, u32*, u32*);
     /* 802E26B0 */ void showStack(OSContext*);
     /* 802E27B0 */ void showMainInfo(u16, OSContext*, u32, u32);
     /* 802E2A84 */ void showGPR(OSContext*);
@@ -54,8 +52,10 @@ public:
 
     /* 802E1E40 */ static JUTException* create(JUTDirectPrint*);
     /* 802E1FCC */ static void errorHandler(OSError, OSContext*, u32, u32);
-    /* 802E227C */ static void setFPException(u32);
+    /* 802E20C0 */ static void panic_f_va(char const*, int, char const*, va_list);
     /* 802E21FC */ static void panic_f(char const*, int, char const*, ...);
+    /* 802E227C */ static void setFPException(u32);
+    /* 802E2578 */ static BOOL searchPartialModule(u32, u32*, u32*, u32*, u32*);
     /* 802E3980 */ static void waitTime(s32);
 
     static JUTException* getManager() { return sErrorManager; }

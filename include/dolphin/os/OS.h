@@ -8,6 +8,7 @@
 #include "dolphin/types.h"
 
 #include "dolphin/os/OSError.h"
+#include "dolphin/os/OSLink.h"
 
 /* TODO: more structs, and get rid of the ones that are faked! */
 

@@ -425,15 +425,37 @@ void JUTException::showFloat(OSContext* context) {
 
 /* 802E2578-802E2638 2DCEB8 00C0+00 1/1 0/0 0/0 .text
  * searchPartialModule__12JUTExceptionFUlPUlPUlPUlPUl           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTException::searchPartialModule(u32 param_0, u32* param_1, u32* param_2, u32* param_3,
-                                           u32* param_4) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/searchPartialModule__12JUTExceptionFUlPUlPUlPUlPUl.s"
+BOOL JUTException::searchPartialModule(u32 address, u32* module_id, u32* section_id,
+                                       u32* section_offset, u32* name_offset) {
+    if (!address) {
+        return FALSE;
+    }
+
+    OSModuleInfo* module = *(OSModuleInfo**)0x800030C8;
+    while (module) {
+        OSSectionInfo* section = (OSSectionInfo*)module->section_info_offset;
+        for (u32 i = 0; i < module->num_sections; section++, i++) {
+            if (section->size) {
+                u32 addr = section->offset & 0xfffffffe;
+                if ((addr <= address) && (address < addr + section->size)) {
+                    if (module_id)
+                        *module_id = module->id;
+                    if (section_id)
+                        *section_id = i;
+                    if (section_offset)
+                        *section_offset = address - addr;
+                    if (name_offset)
+                        *name_offset = module->name_offset;
+                    return TRUE;
+                }
+            }
+        }
+
+        module = module->next;
+    }
+    
+    return FALSE;
 }
-#pragma pop
 
 /* 802E2638-802E26B0 2DCF78 0078+00 1/1 0/0 0/0 .text            search_name_part__FPUcPUci */
 #pragma push
