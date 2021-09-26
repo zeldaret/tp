@@ -419,7 +419,7 @@ void JUTException::showFloat(OSContext* context) {
     }
     showFloatSub(10, context->fpr[10]);
     sConsole->print(" ");
-    showFloatSub(0x15, context->fpr[0x15]);
+    showFloatSub(21, context->fpr[21]);
     sConsole->print("\n");
 }
 
@@ -567,27 +567,20 @@ void JUTException::showMainInfo(u16 error, OSContext* context, u32 dsisr, u32 da
     sConsole->print_f("DSISR:  %08XH   DAR: %08XH\n", dsisr, dar);
 }
 
-/* ############################################################################################## */
-/* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D7B9 =
-    "-------------------------------- GPR\n";
-SECTION_DEAD static char const* const stringBase_8039D7DF =
-    "R%02d:%08XH  R%02d:%08XH  R%02d:%08XH\n";
-SECTION_DEAD static char const* const stringBase_8039D806 = "R%02d:%08XH  R%02d:%08XH\n";
-#pragma pop
-
 /* 802E2A84-802E2B44 2DD3C4 00C0+00 1/1 0/0 0/0 .text            showGPR__12JUTExceptionFP9OSContext
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTException::showGPR(OSContext* param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/showGPR__12JUTExceptionFP9OSContext.s"
+void JUTException::showGPR(OSContext* context) {
+    if (!sConsole) {
+        return;
+    }
+
+    sConsole->print("-------------------------------- GPR\n");
+    for (int i = 0; i < 10; i++) {
+        sConsole->print_f("R%02d:%08XH  R%02d:%08XH  R%02d:%08XH\n", i, context->gpr[i], i + 11,
+                          context->gpr[i + 11], i + 22, context->gpr[i + 22]);
+    }
+    sConsole->print_f("R%02d:%08XH  R%02d:%08XH\n", 10, context->gpr[10], 21, context->gpr[21]);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
