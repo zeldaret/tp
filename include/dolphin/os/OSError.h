@@ -5,6 +5,8 @@
 
 struct OSContext;
 
+extern u32 __OSFpscrEnableBits;
+
 typedef u16 OSError;
 typedef void (*OSErrorHandler)(OSError, OSContext*, u32, u32);
 

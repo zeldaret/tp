@@ -365,14 +365,14 @@ asm void JUTException::panic_f(char const* param_0, int param_1, char const* par
 
 /* 802E227C-802E22C4 2DCBBC 0048+00 1/1 0/0 0/0 .text            setFPException__12JUTExceptionFUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTException::setFPException(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/setFPException__12JUTExceptionFUl.s"
+void JUTException::setFPException(u32 fpscr_enable_bits) {
+    __OSFpscrEnableBits = fpscr_enable_bits;
+    if (fpscr_enable_bits) {
+        OSSetErrorHandler(OS_ERROR_FLOATING_POINT_EXCEPTION, errorHandler);
+    } else {
+        OSSetErrorHandler(OS_ERROR_FLOATING_POINT_EXCEPTION, NULL);
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
