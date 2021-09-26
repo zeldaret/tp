@@ -121,7 +121,7 @@ public:
     bool operator==(JSULink<T> const* other) const { return this->mLink == other; }
     bool operator!=(JSULink<T> const* other) const { return this->mLink != other; }
     bool operator==(JSUListIterator<T> const& other) const { return this->mLink == other.mLink; }
-    bool operator!=(JSUListIterator<T> const& other) const { return this->mLink != other.other; }
+    bool operator!=(JSUListIterator<T> const& other) const { return this->mLink != other.mLink; }
 
     JSUListIterator<T> operator++(int) {
         JSUListIterator<T> prev = *this;

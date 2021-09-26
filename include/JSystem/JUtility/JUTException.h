@@ -35,7 +35,7 @@ public:
     /* 802E26B0 */ void showStack(OSContext*);
     /* 802E27B0 */ void showMainInfo(u16, OSContext*, u32, u32);
     /* 802E2A84 */ void showGPR(OSContext*);
-    /* 802E2B44 */ void showMapInfo_subroutine(u32, bool);
+    /* 802E2B44 */ bool showMapInfo_subroutine(u32, bool);
     /* 802E2CA0 */ void showGPRMap(OSContext*);
     /* 802E2DAC */ void showSRR0Map(OSContext*);
     /* 802E2E70 */ void printDebugInfo(JUTException::EInfoPage, u16, OSContext*, u32, u32);
@@ -46,8 +46,8 @@ public:
     /* 802E3AEC */ void setPreUserCallback(void (*)(u16, OSContext*, u32, u32));
     /* 802E3AFC */ void setPostUserCallback(void (*)(u16, OSContext*, u32, u32));
     /* 802E3B0C */ void appendMapFile(char const*);
-    /* 802E3BA0 */ void queryMapAddress(char*, u32, s32, u32*, u32*, char*, u32, bool, bool);
-    /* 802E3C90 */ void queryMapAddress_single(char*, u32, s32, u32*, u32*, char*, u32, bool, bool);
+    /* 802E3BA0 */ static bool queryMapAddress(char*, u32, s32, u32*, u32*, char*, u32, bool, bool);
+    /* 802E3C90 */ static void queryMapAddress_single(char*, u32, s32, u32*, u32*, char*, u32, bool, bool);
     /* 802E3FEC */ void createConsole(void*, u32);
 
     /* 802E1EA8 */ /* vt[03] */ virtual void* run();
@@ -57,7 +57,7 @@ public:
     /* 802E20C0 */ static void panic_f_va(char const*, int, char const*, va_list);
     /* 802E21FC */ static void panic_f(char const*, int, char const*, ...);
     /* 802E227C */ static void setFPException(u32);
-    /* 802E2578 */ static BOOL searchPartialModule(u32, u32*, u32*, u32*, u32*);
+    /* 802E2578 */ static bool searchPartialModule(u32, u32*, u32*, u32*, u32*);
     /* 802E3980 */ static void waitTime(s32);
 
     static JUTException* getManager() { return sErrorManager; }
