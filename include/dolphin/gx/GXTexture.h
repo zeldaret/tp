@@ -3,19 +3,12 @@
 
 #include "dolphin/types.h"
 
-struct _GXColor {
-    void operator=(const _GXColor& rhs) {
-        r = rhs.r;
-        g = rhs.g;
-        b = rhs.b;
-        a = rhs.a;
-    }
-
+typedef struct _GXColor {
     u8 r;
     u8 g;
     u8 b;
     u8 a;
-};
+} GXColor;
 
 struct _GXColorS10 {
     s16 r;

@@ -1,7 +1,7 @@
 #ifndef F_AP_F_AP_GAME_H
 #define F_AP_F_AP_GAME_H
 
-#include "JSystem/JUtility.h"
+#include "JSystem/JUtility/TColor.h"
 #include "dolphin/types.h"
 
 void fapGm_After();
