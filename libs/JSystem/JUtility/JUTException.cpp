@@ -579,14 +579,6 @@ void JUTException::showGPR(OSContext* context) {
     sConsole->print_f("R%02d:%08XH  R%02d:%08XH\n", 10, context->gpr[10], 21, context->gpr[21]);
 }
 
-/* ############################################################################################## */
-/* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D820 = "";
-SECTION_DEAD static char const* const stringBase_8039D821 = "%s %s:%x section:%d\n";
-#pragma pop
-
 /* 802E2B44-802E2CA0 2DD484 015C+00 3/3 0/0 0/0 .text showMapInfo_subroutine__12JUTExceptionFUlb
  */
 bool JUTException::showMapInfo_subroutine(u32 address, bool begin_with_newline) {
@@ -637,27 +629,35 @@ bool JUTException::showMapInfo_subroutine(u32 address, bool begin_with_newline) 
     return false;
 }
 
-/* ############################################################################################## */
-/* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D836 =
-    "-------------------------------- GPRMAP\n";
-SECTION_DEAD static char const* const stringBase_8039D85F = "R%02d: %08XH";
-SECTION_DEAD static char const* const stringBase_8039D86C = "  no information\n";
-SECTION_DEAD static char const* const stringBase_8039D87E =
-    "  no register which seem to address.\n";
-#pragma pop
-
 /* 802E2CA0-802E2DAC 2DD5E0 010C+00 1/1 0/0 0/0 .text showGPRMap__12JUTExceptionFP9OSContext */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTException::showGPRMap(OSContext* param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/showGPRMap__12JUTExceptionFP9OSContext.s"
+void JUTException::showGPRMap(OSContext* context) {
+    if (!sConsole) {
+        return;
+    }
+
+    bool found_address_register = false;
+    sConsole->print("-------------------------------- GPRMAP\n");
+ 
+    for (int i = 0; i < 31; i++) {
+        u32 address = context->gpr[i];
+
+        if (address >= 0x80000000 && address <= 0x83000000-1) {
+            found_address_register = true;
+
+            sConsole->print_f("R%02d: %08XH", i, address);
+            if (!showMapInfo_subroutine(address, true)) {
+                sConsole->print("  no information\n");
+            }
+            JUTConsoleManager::sManager->drawDirect(true);
+            waitTime(this->field_0x90);
+        }
+    }
+
+    if (!found_address_register) {
+        sConsole->print("  no register which seem to address.\n");
+    }
 }
-#pragma pop
+
 
 /* ############################################################################################## */
 /* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
