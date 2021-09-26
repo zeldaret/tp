@@ -453,19 +453,31 @@ BOOL JUTException::searchPartialModule(u32 address, u32* module_id, u32* section
 
         module = module->next;
     }
-    
+
     return FALSE;
 }
 
 /* 802E2638-802E26B0 2DCF78 0078+00 1/1 0/0 0/0 .text            search_name_part__FPUcPUci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void search_name_part(u8* param_0, u8* param_1, int param_2) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/search_name_part__FPUcPUci.s"
+static void search_name_part(u8* src, u8* dst, int dst_length) {
+    for (u8* p = src; *p; p++) {
+        if (*p == '\\') {
+            src = p;
+        }
+    }
+
+    if (*src == '\\') { 
+        src++;
+    }
+
+    for (int i = 0; (*src != 0) && (i < dst_length);) {
+        if(*src == '.') break;
+        *dst++ = *src++;
+        i++;
+    }
+
+    *dst = '\0';
+
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
