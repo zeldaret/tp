@@ -684,7 +684,7 @@ void JUTException::printDebugInfo(JUTException::EInfoPage page, OSError error, O
         return showGPR(context);
     case EINFO_PAGE_FLOAT:
         showFloat(context);
-        if(sConsole) {
+        if (sConsole) {
             sConsole->print_f(" MSR:%08XH\t FPSCR:%08XH\n", msr, fpscr);
         }
         break;
@@ -697,16 +697,16 @@ void JUTException::printDebugInfo(JUTException::EInfoPage page, OSError error, O
     }
 }
 
-
 /* 802E2F18-802E2F54 2DD858 003C+00 1/1 1/1 0/0 .text            isEnablePad__12JUTExceptionCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTException::isEnablePad() const {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/isEnablePad__12JUTExceptionCFv.s"
+bool JUTException::isEnablePad() const {
+    if (mGamePad == (JUTGamePad*)0xFFFFFFFF)
+        return true;
+
+    if (mGamePadPort >= 0)
+        return true;
+
+    return mGamePad;
 }
-#pragma pop
 
 /* 802E2F54-802E34C0 2DD894 056C+00 1/1 1/1 0/0 .text            readPad__12JUTExceptionFPUlPUl */
 #pragma push
@@ -836,7 +836,8 @@ asm void JUTException::queryMapAddress_single(char* param_0, u32 param_1, s32 pa
 }
 #pragma pop
 
-/* ############################################################################################## */
+/* ##############################################################################################
+ */
 /* 80456054-80456058 004654 0004+00 1/1 0/0 0/0 .sdata2          @3034 */
 SECTION_SDATA2 static f32 lit_3034 = 10.0f;
 
@@ -880,7 +881,8 @@ asm JUTException::~JUTException() {
 }
 #pragma pop
 
-/* ############################################################################################## */
+/* ##############################################################################################
+ */
 /* 804508F8-80450900 000378 0008+00 0/0 3/3 0/0 .sdata           None */
 SECTION_SDATA extern u8 data_804508F8[8] = {
     0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

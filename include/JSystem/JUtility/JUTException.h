@@ -45,7 +45,7 @@ public:
     /* 802E2CA0 */ void showGPRMap(OSContext*);
     /* 802E2DAC */ void showSRR0Map(OSContext*);
     /* 802E2E70 */ void printDebugInfo(JUTException::EInfoPage, OSError, OSContext*, u32, u32);
-    /* 802E2F18 */ void isEnablePad() const;
+    /* 802E2F18 */ bool isEnablePad() const;
     /* 802E2F54 */ bool readPad(u32*, u32*);
     /* 802E34C0 */ void printContext(u16, OSContext*, u32, u32);
     /* 802E3A08 */ void createFB();
