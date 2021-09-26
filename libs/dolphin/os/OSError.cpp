@@ -11,7 +11,6 @@
 // Forward References:
 //
 
-extern "C" void OSSetErrorHandler();
 extern "C" void __OSUnhandledException();
 
 //
@@ -54,7 +53,7 @@ SECTION_SDATA extern u32 __OSFpscrEnableBits = 0x000000F8;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSSetErrorHandler() {
+asm void OSSetErrorHandler(OSError, OSErrorHandler) {
     nofralloc
 #include "asm/dolphin/os/OSError/OSSetErrorHandler.s"
 }

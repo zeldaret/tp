@@ -7,6 +7,8 @@
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dolphin/types.h"
 
+#include "dolphin/os/OSError.h"
+
 /* TODO: more structs, and get rid of the ones that are faked! */
 
 #define OS_MESSAGE_NON_BLOCKING 0

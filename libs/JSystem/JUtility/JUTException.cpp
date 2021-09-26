@@ -126,7 +126,6 @@ extern "C" void PPCMfmsr();
 extern "C" void PPCMtmsr();
 extern "C" void OSGetCurrentContext();
 extern "C" void OSFillFPUContext();
-extern "C" void OSSetErrorHandler();
 extern "C" void OSProtectRange();
 extern "C" void OSYieldThread();
 extern "C" void VISetPreRetraceCallback();
@@ -188,10 +187,7 @@ SECTION_DEAD static char const* const stringBase_8039D547 = "PROTECTION";
 #pragma pop
 
 /* 803CC620-803CC640 029740 0020+00 3/3 0/0 0/0 .data            sMessageQueue__12JUTException */
-SECTION_DATA u8 JUTException::sMessageQueue[32] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_DATA OSMessageQueue JUTException::sMessageQueue = {0};
 
 /* 803CC640-803CC660 029760 0020+00 1/1 0/0 0/0 .data            c3bcnt */
 SECTION_DATA static u8 c3bcnt[32] = {
@@ -234,21 +230,34 @@ SECTION_DATA extern void* __vt__12JUTException[4 + 1 /* padding */] = {
 JUTException* JUTException::sErrorManager;
 
 /* 8045150C-80451510 000A0C 0004+00 4/4 0/0 0/0 .sbss            sPreUserCallback__12JUTException */
-u8 JUTException::sPreUserCallback[4];
+void* JUTException::sPreUserCallback;
 
 /* 80451510-80451514 000A10 0004+00 3/3 0/0 0/0 .sbss            sPostUserCallback__12JUTException
  */
-u8 JUTException::sPostUserCallback[4];
+void* JUTException::sPostUserCallback;
 
 /* 802E1D5C-802E1E40 2DC69C 00E4+00 1/1 0/0 0/0 .text __ct__12JUTExceptionFP14JUTDirectPrint */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JUTException::JUTException(JUTDirectPrint* param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/__ct__12JUTExceptionFP14JUTDirectPrint.s"
+JUTException::JUTException(JUTDirectPrint* directPrint)
+    : JKRThread(0x1C00 /* 0x4000 in DEBUG */, 0x10, 0), mDirectPrint(directPrint) {
+    OSSetErrorHandler(OS_ERROR_DSI, errorHandler);
+    OSSetErrorHandler(OS_ERROR_ISI, errorHandler);
+    OSSetErrorHandler(OS_ERROR_PROGRAM, errorHandler);
+    OSSetErrorHandler(OS_ERROR_ALIGNMENT, errorHandler);
+    OSSetErrorHandler(OS_ERROR_MEMORY_PROTECTION, errorHandler);
+    setFPException(0);
+
+    sPreUserCallback = NULL;
+    sPostUserCallback = NULL;
+
+    setGamePad(NULL);
+
+    this->field_0x8c = 10;
+    this->field_0x90 = 10;
+    this->mTraceSuppress = -1;
+    this->field_0x98 = 0;
+    this->field_0x9c = 0x1f;
 }
-#pragma pop
+
 
 /* 802E1E40-802E1EA8 2DC780 0068+00 0/0 1/1 0/0 .text create__12JUTExceptionFP14JUTDirectPrint */
 #pragma push
@@ -374,7 +383,7 @@ SECTION_DEAD static char const* const stringBase_8039D57A = "F%02d:+Inf     ";
 SECTION_DEAD static char const* const stringBase_8039D58A = "F%02d:-Inf     ";
 SECTION_DEAD static char const* const stringBase_8039D59A = "F%02d: 0.0      ";
 SECTION_DEAD static char const* const stringBase_8039D5AB = "F%02d:%+.3E";
-#pragma pop
+#pragma pop 
 
 /* 80456050-80456054 004650 0004+00 1/1 0/0 0/0 .sdata2          @2293 */
 SECTION_SDATA2 static u8 lit_2293[4] = {

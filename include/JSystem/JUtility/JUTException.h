@@ -28,10 +28,7 @@ public:
     /* 802E40EC */ virtual ~JUTException();
 
     /* 802E1E40 */ void create(JUTDirectPrint*);
-    /* 802E1FCC */ void errorHandler(u16, OSContext*, u32, u32);
-    /* 802E20C0 */ void panic_f_va(char const*, int, char const*, va_list);
-    /* 802E21FC */ static void panic_f(char const*, int, char const*, ...);
-    /* 802E227C */ void setFPException(u32);
+    /* 802E20C0 */ void panic_f_va(char const*, int, char const*, va_list*);
     /* 802E22C4 */ void showFloatSub(int, f32);
     /* 802E2454 */ void showFloat(OSContext*);
     /* 802E2578 */ void searchPartialModule(u32, u32*, u32*, u32*, u32*);
@@ -45,7 +42,6 @@ public:
     /* 802E2F18 */ void isEnablePad() const;
     /* 802E2F54 */ bool readPad(u32*, u32*);
     /* 802E34C0 */ void printContext(u16, OSContext*, u32, u32);
-    /* 802E3980 */ static void waitTime(s32);
     /* 802E3A08 */ void createFB();
     /* 802E3AEC */ void setPreUserCallback(void (*)(u16, OSContext*, u32, u32));
     /* 802E3AFC */ void setPostUserCallback(void (*)(u16, OSContext*, u32, u32));
@@ -56,6 +52,11 @@ public:
 
     /* 802E1EA8 */ /* vt[03] */ virtual void* run();
 
+    /* 802E1FCC */ static void errorHandler(OSError, OSContext*, u32, u32);
+    /* 802E227C */ static void setFPException(u32);
+    /* 802E21FC */ static void panic_f(char const*, int, char const*, ...);
+    /* 802E3980 */ static void waitTime(s32);
+
     static JUTException* getManager() { return sErrorManager; }
 
     void setTraceSuppress(u32 param_0) { mTraceSuppress = param_0; }
@@ -65,13 +66,13 @@ public:
     }
 
 private:
-    static u8 sMessageQueue[32];
+    static OSMessageQueue sMessageQueue;
     static void* sCpuExpName[17];
     static u8 sMapFileList[12 + 4 /* padding */];
     static u8 sMessageBuffer[4 + 4 /* padding */];
     static JUTException* sErrorManager;
-    static u8 sPreUserCallback[4];
-    static u8 sPostUserCallback[4];
+    static void* sPreUserCallback;
+    static void* sPostUserCallback;
     static u8 sConsoleBuffer[4];
     static u8 sConsoleBufferSize[4];
     static u8 sConsole[4];
@@ -80,7 +81,7 @@ private:
 
 private:
     /* 0x7C */ JUTExternalFB* field_0x7C;
-    /* 0x80 */ JUTDirectPrint* field_0x80;
+    /* 0x80 */ JUTDirectPrint* mDirectPrint;
     /* 0x84 */ JUTGamePad* mGamePad;
     /* 0x88 */ JUTGamePad::EPadPort mGamePadPort;
     /* 0x8C */ s32 field_0x8c;
