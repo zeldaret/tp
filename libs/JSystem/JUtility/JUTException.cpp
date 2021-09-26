@@ -377,10 +377,10 @@ void JUTException::setFPException(u32 fpscr_enable_bits) {
 
 /* 802E22C4-802E2454 2DCC04 0190+00 1/1 0/0 0/0 .text            showFloatSub__12JUTExceptionFif */
 void JUTException::showFloatSub(int index, f32 value) {
-    if (fpclassify(value) == FP_NAN) {   
+    if (fpclassify(value) == FP_NAN) {
         sConsole->print_f("F%02d: Nan      ", index);
-    } else if (fpclassify(value) == 2) { 
-        if (signbit(value)) {      
+    } else if (fpclassify(value) == 2) {
+        if (signbit(value)) {
             sConsole->print_f("F%02d:+Inf     ", index);
         } else {
             sConsole->print_f("F%02d:-Inf     ", index);
@@ -403,14 +403,25 @@ SECTION_DEAD static char const* const stringBase_8039D5DF = "\n";
 #pragma pop
 
 /* 802E2454-802E2578 2DCD94 0124+00 1/1 0/0 0/0 .text showFloat__12JUTExceptionFP9OSContext */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTException::showFloat(OSContext* param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/showFloat__12JUTExceptionFP9OSContext.s"
+void JUTException::showFloat(OSContext* context) {
+    if (!sConsole) {
+        return;
+    }
+
+    sConsole->print("-------------------------------- FPR\n");
+    for (int i = 0; i < 10; i++) {
+        showFloatSub(i, context->fpr[i]);
+        sConsole->print(" ");
+        showFloatSub(i + 11, context->fpr[i + 11]);
+        sConsole->print(" ");
+        showFloatSub(i + 22, context->fpr[i + 22]);
+        sConsole->print("\n");
+    }
+    showFloatSub(10, context->fpr[10]);
+    sConsole->print(" ");
+    showFloatSub(0x15, context->fpr[0x15]);
+    sConsole->print("\n");
 }
-#pragma pop
 
 /* 802E2578-802E2638 2DCEB8 00C0+00 1/1 0/0 0/0 .text
  * searchPartialModule__12JUTExceptionFUlPUlPUlPUlPUl           */
