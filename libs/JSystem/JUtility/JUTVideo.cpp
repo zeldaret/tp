@@ -249,27 +249,18 @@ void JUTVideo::drawDoneCallback() {
 }
 
 /* 802E5144-802E5198 2DFA84 0054+00 1/1 0/0 0/0 .text            postRetraceProc__8JUTVideoFUl */
-#if NONMATCHING
-void JUTVideo::postRetraceProc(u32 param_0) {
-    void* message;
-    if (sManager != NULL) {
-        if (sManager->unknown_callback_2 != NULL) {
-            sManager->unknown_callback_2();
-        }
-        message = (void*)VIGetRetraceCount();
-        OSSendMessage(&sManager->mMessageQueue, message, OS_MESSAGE_NON_BLOCKING);
+void JUTVideo::postRetraceProc(u32 retrace_count) {
+    if (!sManager) {
+        return;
     }
+
+    if (sManager->mPostCallback != NULL) {
+        sManager->mPostCallback(retrace_count);
+    }
+
+    OSMessage message = (OSMessage*)VIGetRetraceCount();
+    OSSendMessage(&sManager->mMessageQueue, message, OS_MESSAGE_NON_BLOCKING);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTVideo::postRetraceProc(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTVideo/postRetraceProc__8JUTVideoFUl.s"
-}
-#pragma pop
-#endif
 
 /* 802E5198-802E5210 2DFAD8 0078+00 1/1 2/2 0/0 .text
  * setRenderMode__8JUTVideoFPC16_GXRenderModeObj                */
