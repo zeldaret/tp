@@ -5,6 +5,7 @@
 
 #include "JSystem/JUtility/JUTException.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/float.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -305,7 +306,7 @@ u8 JUTException::sConsoleBuffer[4];
 u8 JUTException::sConsoleBufferSize[4];
 
 /* 8045151C-80451520 000A1C 0004+00 13/13 1/1 0/0 .sbss            sConsole__12JUTException */
-u8 JUTException::sConsole[4];
+JUTConsole* JUTException::sConsole;
 
 /* 80451520-80451524 000A20 0004+00 2/2 0/0 0/0 .sbss            msr__12JUTException */
 u8 JUTException::msr[4];
@@ -374,34 +375,22 @@ void JUTException::setFPException(u32 fpscr_enable_bits) {
     }
 }
 
-/* ############################################################################################## */
-/* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D569 = "F%02d: Nan      ";
-SECTION_DEAD static char const* const stringBase_8039D57A = "F%02d:+Inf     ";
-SECTION_DEAD static char const* const stringBase_8039D58A = "F%02d:-Inf     ";
-SECTION_DEAD static char const* const stringBase_8039D59A = "F%02d: 0.0      ";
-SECTION_DEAD static char const* const stringBase_8039D5AB = "F%02d:%+.3E";
-#pragma pop
-
-/* 80456050-80456054 004650 0004+00 1/1 0/0 0/0 .sdata2          @2293 */
-SECTION_SDATA2 static u8 lit_2293[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
 /* 802E22C4-802E2454 2DCC04 0190+00 1/1 0/0 0/0 .text            showFloatSub__12JUTExceptionFif */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTException::showFloatSub(int param_0, f32 param_1) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/showFloatSub__12JUTExceptionFif.s"
+void JUTException::showFloatSub(int index, f32 value) {
+    if (fpclassify(value) == FP_NAN) {   
+        sConsole->print_f("F%02d: Nan      ", index);
+    } else if (fpclassify(value) == 2) { 
+        if (signbit(value)) {      
+            sConsole->print_f("F%02d:+Inf     ", index);
+        } else {
+            sConsole->print_f("F%02d:-Inf     ", index);
+        }
+    } else if (value == 0.0f) {
+        sConsole->print_f("F%02d: 0.0      ", index);
+    } else {
+        sConsole->print_f("F%02d:%+.3E", index, value);
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

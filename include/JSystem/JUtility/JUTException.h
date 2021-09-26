@@ -76,7 +76,7 @@ private:
     static void* sPostUserCallback;
     static u8 sConsoleBuffer[4];
     static u8 sConsoleBufferSize[4];
-    static u8 sConsole[4];
+    static JUTConsole* sConsole;
     static u8 msr[4];
     static u8 fpscr[4];
 
