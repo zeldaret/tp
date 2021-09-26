@@ -637,11 +637,11 @@ void JUTException::showGPRMap(OSContext* context) {
 
     bool found_address_register = false;
     sConsole->print("-------------------------------- GPRMAP\n");
- 
+
     for (int i = 0; i < 31; i++) {
         u32 address = context->gpr[i];
 
-        if (address >= 0x80000000 && address <= 0x83000000-1) {
+        if (address >= 0x80000000 && address <= 0x83000000 - 1) {
             found_address_register = true;
 
             sConsole->print_f("R%02d: %08XH", i, address);
@@ -658,25 +658,23 @@ void JUTException::showGPRMap(OSContext* context) {
     }
 }
 
-
-/* ############################################################################################## */
-/* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D8A4 =
-    "-------------------------------- SRR0MAP\n";
-SECTION_DEAD static char const* const stringBase_8039D8CE = "SRR0: %08XH";
-#pragma pop
-
 /* 802E2DAC-802E2E70 2DD6EC 00C4+00 1/1 0/0 0/0 .text showSRR0Map__12JUTExceptionFP9OSContext */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTException::showSRR0Map(OSContext* param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/showSRR0Map__12JUTExceptionFP9OSContext.s"
+void JUTException::showSRR0Map(OSContext* context) {
+    if (!sConsole) {
+        return;
+    }
+
+    sConsole->print("-------------------------------- SRR0MAP\n");
+    u32 address = context->srr0;
+    if (address >= 0x80000000 && address <= 0x83000000 - 1) {
+        sConsole->print_f("SRR0: %08XH", address);
+        if (showMapInfo_subroutine(address, true) == false) {
+            sConsole->print("  no information\n");
+        }
+        JUTConsoleManager::sManager->drawDirect(true);
+    }
 }
-#pragma pop
+
 
 /* ############################################################################################## */
 /* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
