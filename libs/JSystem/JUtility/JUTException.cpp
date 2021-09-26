@@ -258,16 +258,16 @@ JUTException::JUTException(JUTDirectPrint* directPrint)
     this->field_0x9c = 0x1f;
 }
 
-
 /* 802E1E40-802E1EA8 2DC780 0068+00 0/0 1/1 0/0 .text create__12JUTExceptionFP14JUTDirectPrint */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTException::create(JUTDirectPrint* param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/create__12JUTExceptionFP14JUTDirectPrint.s"
+JUTException* JUTException::create(JUTDirectPrint* directPrint) {
+    if (!sErrorManager) {
+        JKRHeap* systemHeap = JKRGetSystemHeap();
+        sErrorManager = new (systemHeap, 0) JUTException(directPrint);
+        sErrorManager->resume();
+    }
+
+    return sErrorManager;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804508F0-804508F8 000370 0004+04 1/1 0/0 0/0 .sdata           sMessageBuffer__12JUTException */
@@ -383,7 +383,7 @@ SECTION_DEAD static char const* const stringBase_8039D57A = "F%02d:+Inf     ";
 SECTION_DEAD static char const* const stringBase_8039D58A = "F%02d:-Inf     ";
 SECTION_DEAD static char const* const stringBase_8039D59A = "F%02d: 0.0      ";
 SECTION_DEAD static char const* const stringBase_8039D5AB = "F%02d:%+.3E";
-#pragma pop 
+#pragma pop
 
 /* 80456050-80456054 004650 0004+00 1/1 0/0 0/0 .sdata2          @2293 */
 SECTION_SDATA2 static u8 lit_2293[4] = {

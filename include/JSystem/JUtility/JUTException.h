@@ -8,6 +8,7 @@
 #include "dolphin/gx/GX.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 struct _GXRenderModeObj;
 struct _GXGamma {};
@@ -27,7 +28,6 @@ public:
     /* 802E1D5C */ JUTException(JUTDirectPrint*);
     /* 802E40EC */ virtual ~JUTException();
 
-    /* 802E1E40 */ void create(JUTDirectPrint*);
     /* 802E20C0 */ void panic_f_va(char const*, int, char const*, va_list*);
     /* 802E22C4 */ void showFloatSub(int, f32);
     /* 802E2454 */ void showFloat(OSContext*);
@@ -52,6 +52,7 @@ public:
 
     /* 802E1EA8 */ /* vt[03] */ virtual void* run();
 
+    /* 802E1E40 */ static JUTException* create(JUTDirectPrint*);
     /* 802E1FCC */ static void errorHandler(OSError, OSContext*, u32, u32);
     /* 802E227C */ static void setFPException(u32);
     /* 802E21FC */ static void panic_f(char const*, int, char const*, ...);
@@ -91,5 +92,7 @@ private:
     /* 0x9C */ u32 field_0x9c;
     /* 0xA0 */ u32 field_0xa0;
 };
+
+STATIC_ASSERT(sizeof(JUTException) == 0xA4);
 
 #endif /* JUTEXCEPTION_H */

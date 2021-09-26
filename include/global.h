@@ -23,9 +23,13 @@
 #define _SDA_BASE_(dummy) 0
 #define _SDA2_BASE_(dummy) 0
 
+#ifndef IN_VSCODE_EDITOR
 #define GLUE(a, b) a##b
 #define GLUE2(a, b) GLUE(a, b)
 #define STATIC_ASSERT(cond) typedef char GLUE2(static_assertion_failed, __LINE__)[(cond) ? 1 : -1]
+#else
+#define STATIC_ASSERT(...)
+#endif
 
 struct JUTWarn {
     JUTWarn& operator<<(const char*) { return *this; }
