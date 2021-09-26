@@ -1,7 +1,7 @@
 #ifndef JUTFONT_H
 #define JUTFONT_H
 
-#include "JSystem/JUtility.h"
+#include "JSystem/JUtility/TColor.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 

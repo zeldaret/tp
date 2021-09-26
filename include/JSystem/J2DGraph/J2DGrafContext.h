@@ -2,7 +2,7 @@
 #define J2DGRAFCONTEXT_H
 
 #include "JSystem/JGeometry.h"
-#include "JSystem/JUtility.h"
+#include "JSystem/JUtility/TColor.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 

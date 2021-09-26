@@ -2,7 +2,7 @@
 #define D_METER_D_METER_HIO_H
 
 #include "JSystem/JKernel/JKRArchive.h"
-#include "JSystem/JUtility.h"
+#include "JSystem/JUtility/TColor.h"
 #include "SSystem/SComponent/c_Xyz.h"
 #include "SSystem/SComponent/c_sXyz.h"
 #include "dolphin/types.h"

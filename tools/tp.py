@@ -343,6 +343,31 @@ def remove_unused_asm():
     text.stylize("bold green")
     CONSOLE.print(text)
 
+@tp.command(name="format")
+@click.option('--debug/--no-debug')
+@click.option('--thread-count', '-j', 'thread_count', help="This option is passed forward to all 'make' commands.", default=4)
+@click.option('--game-path', default=DEFAULT_GAME_PATH, required=True)
+@click.option('--build-path', default=DEFAULT_BUILD_PATH, required=True)
+def format(debug, thread_count, game_path, build_path):
+    """ Format all .cpp/.h files using clang-format """
+    
+    if debug:
+        LOG.setLevel(logging.DEBUG)
+
+    text = Text("--- Clang-Format")
+    text.stylize("bold magenta")
+    CONSOLE.print(text)
+
+    if clang_format(thread_count):
+        text = Text("    OK")
+        text.stylize("bold green")
+        CONSOLE.print(text)
+    else:
+        text = Text("    ERR")
+        text.stylize("bold red")
+        CONSOLE.print(text)
+        sys.exit(1)
+
 @tp.command(name="pull-request")
 @click.option('--debug/--no-debug')
 @click.option('--thread-count', '-j', 'thread_count', help="This option is passed forward to all 'make' commands.", default=4)
@@ -359,6 +384,21 @@ def pull_request(debug, thread_count, game_path, build_path):
     CONSOLE.print(text)
 
     remove_unused_asm()
+
+    #
+    text = Text("--- Clang-Format")
+    text.stylize("bold magenta")
+    CONSOLE.print(text)
+
+    if clang_format(thread_count):
+        text = Text("    OK")
+        text.stylize("bold green")
+        CONSOLE.print(text)
+    else:
+        text = Text("    ERR")
+        text.stylize("bold red")
+        CONSOLE.print(text)
+        sys.exit(1)
 
     #
     text = Text("--- Full Rebuild")
@@ -387,21 +427,6 @@ def pull_request(debug, thread_count, game_path, build_path):
         CONSOLE.print(text)
     except CheckException as e:
         LOG.error(e)
-        text = Text("    ERR")
-        text.stylize("bold red")
-        CONSOLE.print(text)
-        sys.exit(1)
-
-    #
-    text = Text("--- Clang-Format")
-    text.stylize("bold magenta")
-    CONSOLE.print(text)
-
-    if clang_format(thread_count):
-        text = Text("    OK")
-        text.stylize("bold green")
-        CONSOLE.print(text)
-    else:
         text = Text("    ERR")
         text.stylize("bold red")
         CONSOLE.print(text)

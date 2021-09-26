@@ -338,7 +338,7 @@ void JUTDirectPrint::drawString_f(u16 position_x, u16 position_y, char const* fo
 /* 802E4798-802E47C8 2DF0D8 0030+00 0/0 2/2 0/0 .text
  * setCharColor__14JUTDirectPrintFQ28JUtility6TColor            */
 void JUTDirectPrint::setCharColor(JUtility::TColor color) {
-    setCharColor(color.R(), color.G(), color.B());
+    setCharColor(color.r, color.g, color.b);
 }
 
 /* 802E47C8-802E495C 2DF108 0194+00 2/2 0/0 0/0 .text setCharColor__14JUTDirectPrintFUcUcUc */
