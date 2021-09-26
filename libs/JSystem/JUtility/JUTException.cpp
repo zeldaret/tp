@@ -36,10 +36,6 @@ struct JUTConsoleManager {
     static u8 sManager[4];
 };
 
-struct JKRHeap {
-    static u8 sSystemHeap[4];
-};
-
 //
 // Forward References:
 //

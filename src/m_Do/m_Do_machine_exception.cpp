@@ -34,6 +34,11 @@ extern "C" void JUTConsole_print_f_va_();
 
 static JUTConsole* sConsole;
 
+#pragma push
+#pragma force_active on
+u8 struct_80450C94[4];
+#pragma pop
+
 /* 80017D7C-80017E08 0126BC 008C+00 3/3 0/0 0/0 .text            print_f__FPCce */
 #pragma push
 #pragma optimization_level 0
