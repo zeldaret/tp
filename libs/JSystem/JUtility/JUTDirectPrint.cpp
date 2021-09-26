@@ -272,8 +272,8 @@ void JUTDirectPrint::changeFrameBuffer(void* frameBuffer, u16 width, u16 height)
 
 /* 802E45A4-802E46D8 2DEEE4 0134+00 1/1 0/0 0/0 .text
  * printSub__14JUTDirectPrintFUsUsPCcP16__va_list_structb       */
-void JUTDirectPrint::printSub(u16 position_x, u16 position_y, char const* format,
-                              __va_list_struct* args, bool clear) {
+void JUTDirectPrint::printSub(u16 position_x, u16 position_y, char const* format, va_list args,
+                              bool clear) {
     char buffer[256];
     if (!mFrameBuffer) {
         return;
@@ -308,16 +308,14 @@ void JUTDirectPrint::printSub(u16 position_x, u16 position_y, char const* format
     DCStoreRange(mFrameBuffer, mFrameBufferSize);
 }
 
-#if DEBUG
 void JUTDirectPrint::print(u16 position_x, u16 position_y, char const* format, ...) {
     if (mFrameBuffer) {
         va_list args;
         va_start(args, format);
-        printSub(position_x, position_y, format, args);
+        printSub(position_x, position_y, format, args, true);
         va_end(args);
     }
 }
-#endif
 
 /* 802E46D8-802E4708 2DF018 0030+00 0/0 2/2 0/0 .text            drawString__14JUTDirectPrintFUsUsPc
  */
@@ -330,7 +328,7 @@ void JUTDirectPrint::drawString_f(u16 position_x, u16 position_y, char const* fo
     if (mFrameBuffer) {
         va_list args;
         va_start(args, format);
-        printSub(position_x, position_y, format, (__va_list_struct*)args, false);
+        printSub(position_x, position_y, format, args, false);
         va_end(args);
     }
 }
