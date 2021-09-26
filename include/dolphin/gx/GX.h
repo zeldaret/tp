@@ -291,7 +291,7 @@ typedef enum _GXTevAlphaArg {
     /* 0x6 */ GX_CA_ZERO,
 } GXTevAlphaArg;
 
-struct _GXRenderModeObj {
+typedef struct _GXRenderModeObj {
     s32 vi_tv_mode;
     u16 fb_width;
     u16 efb_height;
@@ -305,7 +305,7 @@ struct _GXRenderModeObj {
     u8 antialiasing;
     u8 sample_pattern[12][2];
     u8 vfilter[7];
-};
+} GXRenderModeObj;
 
 struct _GXTexObj {
     u32 texture_filter;

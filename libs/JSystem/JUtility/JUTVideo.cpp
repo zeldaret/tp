@@ -47,8 +47,8 @@ extern "C" u8 sVideoInterval__8JUTVideo[4];
 extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();
 extern "C" void changeFrameBuffer__14JUTDirectPrintFPvUsUs();
-extern "C" void VISetPreRetraceCallback(VIRetraceCallback);
-extern "C" void VISetPostRetraceCallback(VIRetraceCallback);
+extern "C" VIRetraceCallback VISetPreRetraceCallback(VIRetraceCallback);
+extern "C" VIRetraceCallback VISetPostRetraceCallback(VIRetraceCallback);
 extern "C" void VIInit();
 extern "C" void VIWaitForRetrace();
 extern "C" void VIConfigure(_GXRenderModeObj*);
@@ -104,8 +104,7 @@ u32 JUTVideo::sVideoLastTick;
 u32 JUTVideo::sVideoInterval;
 
 /* 802E4CF4-802E4DE8 2DF634 00F4+00 1/1 0/0 0/0 .text __ct__8JUTVideoFPC16_GXRenderModeObj */
-#ifdef NONMATCHING
-JUTVideo::JUTVideo(_GXRenderModeObj const* param_0) {
+JUTVideo::JUTVideo(GXRenderModeObj const* param_0) {
     mRenderObj = NULL;
     VIInit();
     mSetBlack = true;
@@ -120,22 +119,13 @@ JUTVideo::JUTVideo(_GXRenderModeObj const* param_0) {
     sVideoLastTick = OSGetTick();
     sVideoInterval = 670000;
     mPreRetraceCallback = VISetPreRetraceCallback(preRetraceProc);
-    mPostRetraceCallback = VISetPreRetraceCallback(postRetraceProc);
+    mPostRetraceCallback = VISetPostRetraceCallback(postRetraceProc);
     unknown_callback_1 = NULL;
     unknown_callback_2 = NULL;
-    OSInitMessageQueue(mMessageQueue, mMessage, 1);
+    OSInitMessageQueue(&mMessageQueue, &mMessage, 1);
     GXSetDrawDoneCallback(drawDoneCallback);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JUTVideo::JUTVideo(_GXRenderModeObj const* param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTVideo/__ct__8JUTVideoFPC16_GXRenderModeObj.s"
-}
-#pragma pop
-#endif
+
 
 /* 802E4DE8-802E4E50 2DF728 0068+00 1/0 0/0 0/0 .text            __dt__8JUTVideoFv */
 JUTVideo::~JUTVideo() {
@@ -209,12 +199,12 @@ asm void JUTVideo::postRetraceProc(u32 param_0) {
 
 /* 802E5198-802E5210 2DFAD8 0078+00 1/1 2/2 0/0 .text
  * setRenderMode__8JUTVideoFPC16_GXRenderModeObj                */
-void JUTVideo::setRenderMode(_GXRenderModeObj const* pObj) {
+void JUTVideo::setRenderMode(GXRenderModeObj const* pObj) {
     if (mRenderObj != NULL && pObj->vi_tv_mode != mRenderObj->vi_tv_mode) {
         mSetBlack = true;
         mSetBlackFrameCount = 4;
     }
-    mRenderObj = (_GXRenderModeObj*)pObj;
+    mRenderObj = (GXRenderModeObj*)pObj;
     VIConfigure(mRenderObj);
     VIFlush();
 

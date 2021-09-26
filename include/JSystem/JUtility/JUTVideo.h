@@ -10,23 +10,25 @@ class JUTVideo {
 public:
     typedef void (*CallbackFn)(void);
 
-    JUTVideo(_GXRenderModeObj const*);
+    JUTVideo(GXRenderModeObj const*);
     virtual ~JUTVideo();
 
     // TODO: return types not confirmed
-    /* 802E4C54 */ static JUTVideo* createManager(_GXRenderModeObj const*);
+    /* 802E4C54 */ static JUTVideo* createManager(GXRenderModeObj const*);
     /* 802E4CAC */ static void destroyManager();
-    /* 802E4E50 */ void preRetraceProc(u32);
     /* 802E5088 */ void drawDoneStart();
     /* 802E50B0 */ void dummyNoDrawWait();
-    /* 802E50BC */ void drawDoneCallback();
-    /* 802E5144 */ void postRetraceProc(u32);
-    /* 802E5198 */ void setRenderMode(_GXRenderModeObj const*);
+    /* 802E5198 */ void setRenderMode(GXRenderModeObj const*);
     /* 802E5210 */ void waitRetraceIfNeed();
 
-    static JUTVideo* getManager() { return sManager; }
-    _GXRenderModeObj* getRenderMode() const { return mRenderObj; }
+    /* 802E4E50 */ static void preRetraceProc(u32);
+    /* 802E5144 */ static void postRetraceProc(u32);
+    /* 802E50BC */ static void drawDoneCallback();
 
+    static JUTVideo* getManager() { return sManager; }
+    GXRenderModeObj* getRenderMode() const { return mRenderObj; }
+
+private:
     static JUTVideo* sManager;
     static u32 sVideoLastTick;
     static u32 sVideoInterval;
