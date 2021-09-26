@@ -3,7 +3,7 @@
 
 #include "dolphin/types.h"
 
-// not sure what the members are. 
+// not sure what the members are.
 // OK when the struct is 12 bytes.
 typedef struct __va_list_struct {
     u8 data[12];

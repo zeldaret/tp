@@ -37,7 +37,7 @@ JUTDirectPrint* JUTDirectPrint::sDirectPrint;
 JUTDirectPrint::JUTDirectPrint() {
     changeFrameBuffer(NULL, 0, 0);
     setCharColor(0xff, 0xff, 0xff);
-} 
+}
 
 /* 802E4240-802E4288 2DEB80 0048+00 0/0 1/1 0/0 .text            start__14JUTDirectPrintFv */
 JUTDirectPrint* JUTDirectPrint::start() {
@@ -358,4 +358,3 @@ void JUTDirectPrint::setCharColor(u8 r, u8 g, u8 b) {
     mCharColor_Cr2 = (Cr >> 1) & 0x7fff;
     mCharColor_Cr4 = (Cr >> 2) & 0x3fff;
 }
-

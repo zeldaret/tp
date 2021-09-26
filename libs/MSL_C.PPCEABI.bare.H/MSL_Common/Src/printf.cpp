@@ -15,7 +15,8 @@ struct __va_list_struct;
 
 extern "C" void sprintf();
 extern "C" void snprintf();
-extern "C" size_t vsnprintf(char* buffer, size_t buffer_size, const char* format, __va_list_struct* args);
+extern "C" size_t vsnprintf(char* buffer, size_t buffer_size, const char* format,
+                            __va_list_struct* args);
 extern "C" void vprintf();
 extern "C" void fprintf();
 extern "C" void printf();
