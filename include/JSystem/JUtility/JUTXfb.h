@@ -23,6 +23,29 @@ public:
     /* 802E5424 */ static void destroyManager();
     /* 802E5454 */ void initiate(u16, u16, JKRHeap*, JUTXfb::EXfbNumber);
 
+    s32 getBufferNum() const { return mBufferNum; }
+    s16 getDrawnXfbIndex() const { return mDrawnXfbIndex; }
+    s16 getDrawningXfbIndex() const { return mDrawingXfbIndex; }
+    s16 getDisplayingXfbIndex() const { return mDisplayingXfbIndex; }
+    s32 getSDrawingFlag() const { return mSDrawingFlag; }
+
+    void* getDisplayingXfb() const {
+        if (mDisplayingXfbIndex >= 0)
+            return mBuffer[mDisplayingXfbIndex];
+        return NULL;
+    }
+
+    void setDisplayingXfbIndex(s16 index) {
+        mDisplayingXfbIndex = index;
+    }
+
+    void setSDrawingFlag(s32 flag) {
+        mSDrawingFlag = flag;
+    }
+
+    static JUTXfb* getManager() { return sManager; }
+
+private:
     static JUTXfb* sManager;
 
 private:

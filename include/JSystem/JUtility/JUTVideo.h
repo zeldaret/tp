@@ -8,7 +8,7 @@
 
 class JUTVideo {
 public:
-    typedef void (*CallbackFn)(void);
+    typedef void (*Callback)(u32);
 
     JUTVideo(GXRenderModeObj const*);
     virtual ~JUTVideo();
@@ -30,8 +30,8 @@ public:
 
 private:
     static JUTVideo* sManager;
-    static u32 sVideoLastTick;
-    static u32 sVideoInterval;
+    static OSTick sVideoLastTick;
+    static OSTick sVideoInterval;
 
 private:
     /* 0x04 */ _GXRenderModeObj* mRenderObj;
@@ -42,12 +42,16 @@ private:
     /* 0x18 */ u32 field_0x18;
     /* 0x1C */ VIRetraceCallback mPreRetraceCallback;
     /* 0x20 */ VIRetraceCallback mPostRetraceCallback;
-    /* 0x24 */ CallbackFn unknown_callback_1;
-    /* 0x28 */ CallbackFn unknown_callback_2;
+    /* 0x24 */ Callback mPreCallback;
+    /* 0x28 */ Callback mPostCallback;
     /* 0x2C */ bool mSetBlack;
     /* 0x30 */ s32 mSetBlackFrameCount;
     /* 0x34 */ OSMessage mMessage;
     /* 0x38 */ OSMessageQueue mMessageQueue;
 };
+
+inline JUTVideo* JUTGetVideoManager() {
+    return JUTVideo::getManager();
+}
 
 #endif /* JUTVIDEO_H */

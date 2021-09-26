@@ -12,20 +12,10 @@
 //
 
 extern "C" void __VIRetraceHandler();
-extern "C" void VISetPreRetraceCallback();
-extern "C" void VISetPostRetraceCallback();
 extern "C" static void getTiming();
 extern "C" void __VIInit();
-extern "C" void VIInit();
-extern "C" void VIWaitForRetrace();
 extern "C" static void setFbbRegs();
 extern "C" static void setVerticalRegs();
-extern "C" void VIConfigure();
-extern "C" void VIFlush();
-extern "C" void VISetNextFrameBuffer();
-extern "C" u32 VIGetNextFrameBuffer();
-extern "C" u32 VIGetCurrentFrameBuffer();
-extern "C" void VISetBlack();
 extern "C" u32 VIGetRetraceCount();
 extern "C" static void GetCurrentDisplayPosition();
 extern "C" static void getCurrentFieldEvenOdd();
@@ -139,7 +129,7 @@ asm void __VIRetraceHandler() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void VISetPreRetraceCallback() {
+asm VIRetraceCallback VISetPreRetraceCallback(VIRetraceCallback) {
     nofralloc
 #include "asm/dolphin/vi/vi/VISetPreRetraceCallback.s"
 }
@@ -149,7 +139,7 @@ asm void VISetPreRetraceCallback() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void VISetPostRetraceCallback() {
+asm VIRetraceCallback VISetPostRetraceCallback(VIRetraceCallback) {
     nofralloc
 #include "asm/dolphin/vi/vi/VISetPostRetraceCallback.s"
 }
@@ -772,7 +762,7 @@ static u8 message[4 + 4 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void VIConfigure() {
+asm void VIConfigure(GXRenderModeObj*) {
     nofralloc
 #include "asm/dolphin/vi/vi/VIConfigure.s"
 }
@@ -792,27 +782,27 @@ asm void VIFlush() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void VISetNextFrameBuffer() {
+asm void VISetNextFrameBuffer(void*) {
     nofralloc
 #include "asm/dolphin/vi/vi/VISetNextFrameBuffer.s"
 }
 #pragma pop
 
 /* 8034D830-8034D838 -00001 0008+00 0/0 0/0 0/0 .text            VIGetNextFrameBuffer */
-u32 VIGetNextFrameBuffer() {
-    return *(u32*)(&NextBufAddr);
+void* VIGetNextFrameBuffer() {
+    return *(void**)(&NextBufAddr);
 }
 
 /* 8034D838-8034D840 -00001 0008+00 0/0 0/0 0/0 .text            VIGetCurrentFrameBuffer */
-u32 VIGetCurrentFrameBuffer() {
-    return *(u32*)(&CurrBufAddr);
+void* VIGetCurrentFrameBuffer() {
+    return *(void**)(&CurrBufAddr);
 }
 
 /* 8034D840-8034D8BC 348180 007C+00 0/0 7/7 0/0 .text            VISetBlack */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void VISetBlack() {
+asm void VISetBlack(BOOL) {
     nofralloc
 #include "asm/dolphin/vi/vi/VISetBlack.s"
 }

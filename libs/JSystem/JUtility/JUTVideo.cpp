@@ -4,21 +4,19 @@
 //
 
 #include "JSystem/JUtility/JUTVideo.h"
+#include "JSystem/JUtility/JUTXfb.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "dolphin/vi/vi.h"
 
 //
 // Types:
 //
 
-struct JUTXfb {
-    static u8 sManager[4 + 4 /* padding */];
-};
-
 struct JUTDirectPrint {
     /* 802E456C */ void changeFrameBuffer(void*, u16, u16);
 
-    static u8 sDirectPrint[4 + 4 /* padding */];
+    static JUTDirectPrint* sDirectPrint;
 };
 
 //
@@ -47,18 +45,8 @@ extern "C" u8 sVideoInterval__8JUTVideo[4];
 extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();
 extern "C" void changeFrameBuffer__14JUTDirectPrintFPvUsUs();
-extern "C" VIRetraceCallback VISetPreRetraceCallback(VIRetraceCallback);
-extern "C" VIRetraceCallback VISetPostRetraceCallback(VIRetraceCallback);
-extern "C" void VIInit();
-extern "C" void VIWaitForRetrace();
-extern "C" void VIConfigure(_GXRenderModeObj*);
-extern "C" void VIFlush();
-extern "C" void VISetNextFrameBuffer();
-extern "C" void VIGetNextFrameBuffer();
-extern "C" void VISetBlack(s32);
-extern "C" u32 VIGetRetraceCount();
 extern "C" void GXSetDrawDone();
-extern "C" void GXCopyDisp();
+extern "C" void GXCopyDisp(void*, BOOL);
 extern "C" u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
 extern "C" u8 sManager__6JUTXfb[4 + 4 /* padding */];
 
@@ -98,10 +86,10 @@ SECTION_DATA extern void* __vt__8JUTVideo[3 + 1 /* padding */] = {
 };
 
 /* 8045153C-80451540 000A3C 0004+00 2/2 1/1 0/0 .sbss            sVideoLastTick__8JUTVideo */
-u32 JUTVideo::sVideoLastTick;
+OSTick JUTVideo::sVideoLastTick;
 
 /* 80451540-80451544 000A40 0004+00 2/2 1/1 0/0 .sbss            sVideoInterval__8JUTVideo */
-u32 JUTVideo::sVideoInterval;
+OSTick JUTVideo::sVideoInterval;
 
 /* 802E4CF4-802E4DE8 2DF634 00F4+00 1/1 0/0 0/0 .text __ct__8JUTVideoFPC16_GXRenderModeObj */
 JUTVideo::JUTVideo(GXRenderModeObj const* param_0) {
@@ -120,12 +108,11 @@ JUTVideo::JUTVideo(GXRenderModeObj const* param_0) {
     sVideoInterval = 670000;
     mPreRetraceCallback = VISetPreRetraceCallback(preRetraceProc);
     mPostRetraceCallback = VISetPostRetraceCallback(postRetraceProc);
-    unknown_callback_1 = NULL;
-    unknown_callback_2 = NULL;
+    mPreCallback = NULL;
+    mPostCallback = NULL;
     OSInitMessageQueue(&mMessageQueue, &mMessage, 1);
     GXSetDrawDoneCallback(drawDoneCallback);
 }
-
 
 /* 802E4DE8-802E4E50 2DF728 0068+00 1/0 0/0 0/0 .text            __dt__8JUTVideoFv */
 JUTVideo::~JUTVideo() {
@@ -135,33 +122,109 @@ JUTVideo::~JUTVideo() {
 
 /* ############################################################################################## */
 /* 80451544-80451548 000A44 0004+00 4/4 0/0 0/0 .sbss            None */
-static u8 data_80451544[4];
+static bool data_80451544;
 
 /* 80451548-8045154C 000A48 0004+00 1/1 0/0 0/0 .sbss            frameBuffer$2222 */
 static void* frameBuffer;
 
 /* 8045154C-80451550 000A4C 0004+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_8045154C[4];
+static s8 data_8045154C;
 
 /* 802E4E50-802E5088 2DF790 0238+00 1/1 0/0 0/0 .text            preRetraceProc__8JUTVideoFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTVideo::preRetraceProc(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTVideo/preRetraceProc__8JUTVideoFUl.s"
+void JUTVideo::preRetraceProc(u32 retrace_count) {
+    if (!sManager) {
+        return;
+    }
+
+    if (sManager->mPreCallback) {
+        (*sManager->mPreCallback)(retrace_count);
+    }
+
+    OSTick tick = OSGetTick();
+    sVideoInterval = tick - sVideoLastTick;
+    sVideoLastTick = tick;
+
+    JUTXfb* xfb = JUTXfb::getManager();
+    if (!xfb) {
+        VISetBlack(TRUE);
+        VIFlush();
+        return;
+    }
+
+    if (!data_8045154C) {
+        frameBuffer = NULL;
+        data_8045154C = true;
+    }
+
+    if (frameBuffer) {
+        JUTVideo* videoManager = JUTGetVideoManager();
+        const GXRenderModeObj* renderMode = videoManager->getRenderMode();
+        JUTDirectPrint::sDirectPrint->changeFrameBuffer(frameBuffer, renderMode->fb_width,
+                                                        renderMode->efb_height);
+    }
+
+    if (sManager->mSetBlack == 1) {
+        s32 frame_count = sManager->mSetBlackFrameCount;
+        if (frame_count > 0) {
+            frame_count--;
+        }
+
+        sManager->mSetBlackFrameCount = frame_count;
+        sManager->mSetBlack = frame_count != 0;
+        VISetBlack(TRUE);
+        VIFlush();
+        return;
+    }
+
+    if (!xfb) {
+        VISetBlack(TRUE);
+        VIFlush();
+        return;
+    }
+
+    if (xfb->getBufferNum() == 3 || xfb->getBufferNum() == 2) {
+        if (!data_80451544) {
+            s16 index = xfb->getDrawnXfbIndex();
+            xfb->setDisplayingXfbIndex(index);
+            if (index < 0) {
+                VISetBlack(1);
+                VIFlush();
+            } else {
+                VISetNextFrameBuffer(xfb->getDisplayingXfb());
+                VIFlush();
+                VISetBlack(FALSE);
+                frameBuffer = xfb->getDisplayingXfb();
+            }
+        }
+    } else if (xfb->getBufferNum() == 1) {
+        if (xfb->getSDrawingFlag() == 0) {
+            s16 index = xfb->getDrawnXfbIndex();
+            if (index >= 0) {
+                xfb->setDisplayingXfbIndex(index);
+                GXCopyDisp(xfb->getDisplayingXfb(), 1);
+                GXFlush();
+                xfb->setSDrawingFlag(2);
+                frameBuffer = xfb->getDisplayingXfb();
+                if (VIGetNextFrameBuffer()) {
+                    VISetBlack(FALSE);
+                }
+            } else {
+                VISetBlack(TRUE);
+            }
+        }
+        VIFlush();
+    }
 }
-#pragma pop
 
 /* 802E5088-802E50B0 2DF9C8 0028+00 0/0 1/1 0/0 .text            drawDoneStart__8JUTVideoFv */
 void JUTVideo::drawDoneStart() {
-    data_80451544[0] = 1;
+    data_80451544 = 1;
     GXSetDrawDone();
 }
 
 /* 802E50B0-802E50BC 2DF9F0 000C+00 0/0 1/1 0/0 .text            dummyNoDrawWait__8JUTVideoFv */
 void JUTVideo::dummyNoDrawWait() {
-    data_80451544[0] = 0;
+    data_80451544 = 0;
 }
 
 /* 802E50BC-802E5144 2DF9FC 0088+00 1/1 0/0 0/0 .text            drawDoneCallback__8JUTVideoFv */
