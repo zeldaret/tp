@@ -2,6 +2,7 @@
 #define JUTEXCEPTION_H
 
 #include "JSystem/JKernel/JKRThread.h"
+#include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTGamePad.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dolphin/gx/GX.h"
@@ -19,12 +20,13 @@ struct JUTDirectPrint {
     /* 802E456C */ void changeFrameBuffer(void*, u16, u16);
 };
 
-class JUTException /* :  public JKRThread */ {
+class JUTException : public JKRThread {
 public:
     struct EInfoPage {};
 
-    // TODO: return types are probably wrong
     /* 802E1D5C */ JUTException(JUTDirectPrint*);
+    /* 802E40EC */ virtual ~JUTException();
+
     /* 802E1E40 */ void create(JUTDirectPrint*);
     /* 802E1FCC */ void errorHandler(u16, OSContext*, u32, u32);
     /* 802E20C0 */ void panic_f_va(char const*, int, char const*, va_list);
@@ -52,12 +54,17 @@ public:
     /* 802E3C90 */ void queryMapAddress_single(char*, u32, s32, u32*, u32*, char*, u32, bool, bool);
     /* 802E3FEC */ void createConsole(void*, u32);
 
-    /* 802E40EC */ virtual ~JUTException();
-    /* 802E1EA8 */ virtual void run();
+    /* 802E1EA8 */ /* vt[03] */ virtual void* run();
 
     static JUTException* getManager() { return sErrorManager; }
-    void setTraceSuppress(u32 param_0) { mTraceSuppress = param_0; }
 
+    void setTraceSuppress(u32 param_0) { mTraceSuppress = param_0; }
+    void setGamePad(JUTGamePad* gamePad) {
+        mGamePad = gamePad;
+        mGamePadPort = JUTGamePad::Port_Unknown;
+    }
+
+private:
     static u8 sMessageQueue[32];
     static void* sCpuExpName[17];
     static u8 sMapFileList[12 + 4 /* padding */];
@@ -71,10 +78,11 @@ public:
     static u8 msr[4];
     static u8 fpscr[4];
 
-    /* 0x00 */ JKRThread field_0x0;  // should be inherited
+private:
+    /* 0x7C */ JUTExternalFB* field_0x7C;
     /* 0x80 */ JUTDirectPrint* field_0x80;
-    /* 0x84 */ JUTGamePad* field_0x84;
-    /* 0x88 */ s32 field_0x88;
+    /* 0x84 */ JUTGamePad* mGamePad;
+    /* 0x88 */ JUTGamePad::EPadPort mGamePadPort;
     /* 0x8C */ s32 field_0x8c;
     /* 0x90 */ s32 field_0x90;
     /* 0x94 */ u32 mTraceSuppress;

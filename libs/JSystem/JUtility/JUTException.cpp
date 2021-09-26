@@ -278,7 +278,7 @@ SECTION_SDATA u8 JUTException::sMessageBuffer[4 + 4 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JUTException::run() {
+asm void* JUTException::run() {
     nofralloc
 #include "asm/JSystem/JUtility/JUTException/run__12JUTExceptionFv.s"
 }
