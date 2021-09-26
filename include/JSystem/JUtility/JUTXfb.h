@@ -29,19 +29,26 @@ public:
     s16 getDisplayingXfbIndex() const { return mDisplayingXfbIndex; }
     s32 getSDrawingFlag() const { return mSDrawingFlag; }
 
+    void* getDrawnXfb() const {
+        if (mDrawnXfbIndex >= 0)
+            return mBuffer[mDrawnXfbIndex];
+        return NULL;
+    }
+
+    void* getDrawningXfb() const {
+        if (mDrawingXfbIndex >= 0)
+            return mBuffer[mDrawingXfbIndex];
+        return NULL;
+    }
+
     void* getDisplayingXfb() const {
         if (mDisplayingXfbIndex >= 0)
             return mBuffer[mDisplayingXfbIndex];
         return NULL;
     }
 
-    void setDisplayingXfbIndex(s16 index) {
-        mDisplayingXfbIndex = index;
-    }
-
-    void setSDrawingFlag(s32 flag) {
-        mSDrawingFlag = flag;
-    }
+    void setDisplayingXfbIndex(s16 index) { mDisplayingXfbIndex = index; }
+    void setSDrawingFlag(s32 flag) { mSDrawingFlag = flag; }
 
     static JUTXfb* getManager() { return sManager; }
 

@@ -218,27 +218,38 @@ void JUTVideo::preRetraceProc(u32 retrace_count) {
 
 /* 802E5088-802E50B0 2DF9C8 0028+00 0/0 1/1 0/0 .text            drawDoneStart__8JUTVideoFv */
 void JUTVideo::drawDoneStart() {
-    data_80451544 = 1;
+    data_80451544 = true;
     GXSetDrawDone();
 }
 
 /* 802E50B0-802E50BC 2DF9F0 000C+00 0/0 1/1 0/0 .text            dummyNoDrawWait__8JUTVideoFv */
 void JUTVideo::dummyNoDrawWait() {
-    data_80451544 = 0;
+    data_80451544 = false;
 }
 
 /* 802E50BC-802E5144 2DF9FC 0088+00 1/1 0/0 0/0 .text            drawDoneCallback__8JUTVideoFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTVideo::drawDoneCallback() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTVideo/drawDoneCallback__8JUTVideoFv.s"
+void JUTVideo::drawDoneCallback() {
+    JUTXfb* xfb = JUTXfb::getManager();
+    if (!xfb) {
+        return;
+    }
+
+    data_80451544 = false;
+    if (xfb->getBufferNum() == 1) {
+        if (xfb->getSDrawingFlag() == 1) {
+            xfb->setSDrawingFlag(0);
+
+            void* frameBuffer = xfb->getDrawnXfb();
+            if (frameBuffer) {
+                VISetNextFrameBuffer(xfb->getDrawnXfb());
+                VIFlush();
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 802E5144-802E5198 2DFA84 0054+00 1/1 0/0 0/0 .text            postRetraceProc__8JUTVideoFUl */
-#ifdef NONMATCHING
+#if NONMATCHING
 void JUTVideo::postRetraceProc(u32 param_0) {
     void* message;
     if (sManager != NULL) {
