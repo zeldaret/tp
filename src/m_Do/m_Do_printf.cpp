@@ -23,8 +23,8 @@ extern "C" void OSReportInit__Fv();
 extern "C" void mDoPrintf_vprintf_Interrupt__FPCcP16__va_list_struct();
 extern "C" void mDoPrintf_vprintf_Thread__FPCcP16__va_list_struct();
 extern "C" void mDoPrintf_vprintf__FPCcP16__va_list_struct();
-extern "C" void mDoPrintf_VReport(const char* fmt, __va_list_struct* args);
-extern "C" void OSVReport(const char* fmt, __va_list_struct* args);
+extern "C" void mDoPrintf_VReport(const char* fmt, va_list args);
+extern "C" void OSVReport(const char* fmt, va_list args);
 extern "C" void OSReport(const char*, ...);
 extern "C" void OSReport_FatalError(const char* fmt, ...);
 extern "C" void OSReport_Error(const char* fmt, ...);
@@ -130,7 +130,7 @@ static u8 mDoPrintf_FiberStack[2048] ALIGN_DECL(32);
 
 /* 800068DC-80006964 00121C 0088+00 1/1 0/0 0/0 .text
  * mDoPrintf_vprintf_Interrupt__FPCcP16__va_list_struct         */
-void mDoPrintf_vprintf_Interrupt(char const* fmt, __va_list_struct* args) {
+void mDoPrintf_vprintf_Interrupt(char const* fmt, va_list args) {
     s32 interruptStatus = OSDisableInterrupts();
     if (!data_80450BB5) {
         data_80450BB5 = true;
@@ -143,13 +143,13 @@ void mDoPrintf_vprintf_Interrupt(char const* fmt, __va_list_struct* args) {
 
 /* 80006964-80006984 0012A4 0020+00 1/1 0/0 0/0 .text
  * mDoPrintf_vprintf_Thread__FPCcP16__va_list_struct            */
-void mDoPrintf_vprintf_Thread(char const* fmt, __va_list_struct* args) {
+void mDoPrintf_vprintf_Thread(char const* fmt, va_list args) {
     vprintf(fmt, args);
 }
 
 /* 80006984-80006A10 0012C4 008C+00 4/4 0/0 0/0 .text mDoPrintf_vprintf__FPCcP16__va_list_struct
  */
-void mDoPrintf_vprintf(char const* fmt, __va_list_struct* args) {
+void mDoPrintf_vprintf(char const* fmt, va_list args) {
     OSThread* currentThread = mDoExt_GetCurrentRunningThread__Fv();
     if (currentThread == NULL) {
         mDoPrintf_vprintf_Interrupt(fmt, args);
@@ -164,7 +164,7 @@ void mDoPrintf_vprintf(char const* fmt, __va_list_struct* args) {
 }
 
 /* 80006A10-80006A9C 001350 008C+00 1/1 0/0 0/0 .text            mDoPrintf_VReport */
-void mDoPrintf_VReport(const char* fmt, __va_list_struct* args) {
+void mDoPrintf_VReport(const char* fmt, va_list args) {
     if (!sOSReportInit) {
         OSReportInit();
     }
@@ -178,7 +178,7 @@ void mDoPrintf_VReport(const char* fmt, __va_list_struct* args) {
 }
 
 /* 80006A9C-80006ABC 0013DC 0020+00 2/2 0/0 0/0 .text            OSVReport */
-void OSVReport(const char* fmt, __va_list_struct* args) {
+void OSVReport(const char* fmt, va_list args) {
     mDoPrintf_VReport(fmt, args);
 }
 

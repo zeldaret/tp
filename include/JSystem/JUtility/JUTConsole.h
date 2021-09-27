@@ -47,11 +47,9 @@ public:
 
     void setVisible(bool visible) { mVisible = visible; }
 
-    void setLineAttr(int param_0, u8 param_1) {
-        *((u8*)mBuf + (field_0x20 + 2) * param_0) = param_1;
-    }
+    void setLineAttr(int param_0, u8 param_1) { mBuf[(field_0x20 + 2) * param_0] = param_1; }
 
-    u8* getLinePtr(int param_0) const { return ((u8*)mBuf + (field_0x20 + 2) * param_0 + 1); }
+    u8* getLinePtr(int param_0) const { return &mBuf[(field_0x20 + 2) * param_0 + 1]; }
 
     int diffIndex(int param_0, int param_1) const {
         int diff = param_1 - param_0;
@@ -66,7 +64,7 @@ public:
 private:
     /* 0x20 */ u32 field_0x20;
     /* 0x24 */ u32 field_0x24;
-    /* 0x28 */ void* mBuf;
+    /* 0x28 */ u8* mBuf;
     /* 0x2C */ bool field_0x2c;
     /* 0x30 */ int field_0x30;
     /* 0x34 */ int field_0x34;

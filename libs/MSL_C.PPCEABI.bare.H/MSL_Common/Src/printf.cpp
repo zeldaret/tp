@@ -4,7 +4,6 @@
 //
 
 #include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf.h"
-#include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -82,7 +81,7 @@ asm size_t vsnprintf(char* buffer, size_t buffer_size, const char* format, va_li
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm size_t vprintf(const char*, __va_list_struct*) {
+asm size_t vprintf(const char*, va_list) {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf/vprintf.s"
 }
