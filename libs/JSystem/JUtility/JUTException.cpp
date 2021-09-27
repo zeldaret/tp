@@ -945,14 +945,17 @@ void JUTException::printContext(OSError error, OSContext* context, u32 dsisr, u3
 }
 
 /* 802E3980-802E3A08 2DE2C0 0088+00 3/3 2/2 0/0 .text            waitTime__12JUTExceptionFl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTException::waitTime(s32 param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/waitTime__12JUTExceptionFl.s"
+void JUTException::waitTime(s32 timeout_ms) {
+    if (timeout_ms) {
+        OSTime start_time = OSGetTime();
+        OSTime ms;
+        do {
+            OSTime end_time = OSGetTime();
+            OSTime ticks = end_time - start_time;
+            ms = ticks / (OS_TIMER_CLOCK / 1000);
+        } while (ms < timeout_ms);
+    }
 }
-#pragma pop
 
 /* 802E3A08-802E3AEC 2DE348 00E4+00 1/1 0/0 0/0 .text            createFB__12JUTExceptionFv */
 #pragma push
