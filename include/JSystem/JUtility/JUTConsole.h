@@ -51,9 +51,7 @@ public:
         *((u8*)mBuf + (field_0x20 + 2) * param_0) = param_1;
     }
 
-    u8* getLinePtr(int param_0) const {
-        return ((u8*)mBuf + (field_0x20 + 2) * param_0 + 1);
-    }
+    u8* getLinePtr(int param_0) const { return ((u8*)mBuf + (field_0x20 + 2) * param_0 + 1); }
 
     int diffIndex(int param_0, int param_1) const {
         int diff = param_1 - param_0;
@@ -64,6 +62,7 @@ public:
     }
 
     /* 0x18 */ JGadget::TLinkListNode mListNode;
+
 private:
     /* 0x20 */ u32 field_0x20;
     /* 0x24 */ u32 field_0x24;

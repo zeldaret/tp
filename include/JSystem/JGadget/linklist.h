@@ -55,10 +55,8 @@ struct TLinkList : public TNodeLinkList {
         iterator(TNodeLinkList::iterator iter) : TNodeLinkList::iterator(iter) {}
     };
 
-    TLinkListNode* Element_toNode(T* element) const {
-        return &element->mListNode;
-    }
-    
+    TLinkListNode* Element_toNode(T* element) const { return &element->mListNode; }
+
     void Insert(TLinkList::iterator iter, T* element) {
         TLinkListNode* node = Element_toNode(element);
         TNodeLinkList::Insert(iter, node);

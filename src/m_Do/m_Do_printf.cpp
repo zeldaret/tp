@@ -5,8 +5,8 @@
 
 #include "m_Do/m_Do_printf.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "dolphin/os/OS.h"
+#include "dolphin/types.h"
 
 //
 // Forward References:
@@ -51,7 +51,7 @@ extern "C" s32 fflush(FILE*);
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm void OSSwitchFiberEx(u32 param_0, u32 param_1, u32 param_2, u32 param_3, u32 param_4,
-                                u32 param_5) {
+                         u32 param_5) {
     nofralloc
 #include "asm/m_Do/m_Do_printf/OSSwitchFiberEx__FUlUlUlUlUlUl.s"
 }
@@ -134,7 +134,8 @@ void mDoPrintf_vprintf_Interrupt(char const* fmt, __va_list_struct* args) {
     s32 interruptStatus = OSDisableInterrupts();
     if (!data_80450BB5) {
         data_80450BB5 = true;
-        OSSwitchFiberEx((u32)fmt, (u32)args, 0, 0, (u32)vprintf, (u32)&mDoPrintf_FiberStack + sizeof(mDoPrintf_FiberStack));
+        OSSwitchFiberEx((u32)fmt, (u32)args, 0, 0, (u32)vprintf,
+                        (u32)&mDoPrintf_FiberStack + sizeof(mDoPrintf_FiberStack));
         data_80450BB5 = false;
     }
     OSRestoreInterrupts(interruptStatus);
@@ -268,7 +269,7 @@ void OSPanic(const char* file, s32 line, const char* fmt, ...) {
 
     va_list args;
     va_start(args, fmt);
-    
+
     mDoPrintf_vprintf(fmt, args);
     OSAttention(" in \"%s\" on line %d.\n", file, line);
     OSAttention("\nAddress:      Back Chain    LR Save\n");
@@ -276,7 +277,8 @@ void OSPanic(const char* file, s32 line, const char* fmt, ...) {
     u32 tmp = 0;
     u8* stackPtr = OSGetStackPointer();
     while (stackPtr != NULL && tmp < 0x10) {
-        OSAttention("0x%08x:   0x%08x    0x%08x\n", stackPtr, *(u32*)stackPtr, *(u32*)(stackPtr + 4));
+        OSAttention("0x%08x:   0x%08x    0x%08x\n", stackPtr, *(u32*)stackPtr,
+                    *(u32*)(stackPtr + 4));
         stackPtr++;
         tmp++;
     }

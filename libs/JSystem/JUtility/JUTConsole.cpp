@@ -141,11 +141,11 @@ JUTConsole::JUTConsole(unsigned int param_0, unsigned int param_1, bool param_2)
     field_0x2c = param_2;
     field_0x20 = param_0;
     field_0x24 = param_1;
-    
+
     mPositionX = 30;
     mPositionY = 50;
     mHeight = 20;
-    
+
     if (mHeight > field_0x24) {
         mHeight = field_0x24;
     }
