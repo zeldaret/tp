@@ -9,6 +9,7 @@
 
 #include "dolphin/os/OSError.h"
 #include "dolphin/os/OSLink.h"
+#include "Runtime.PPCEABI.H/__va_arg.h"
 
 #define OS_BUS_CLOCK (*(u32*)0x800000F8)
 #define OS_CORE_CLOCK (*(u32*)0x800000FC)
@@ -208,7 +209,11 @@ u8* OSGetStackPointer(void);
 
 void OSSwitchFiberEx(u32, u32, u32, u32, u32, u32);
 
+<<<<<<< HEAD
 void OSVAttention(const char* fmt, va_list args);
+=======
+void OSVAttention(const char* fmt, va_list va_list);
+>>>>>>> OK printContext__12JUTExceptionFUsP9OSContextUlUl
 
 void OSReportInit(void);
 

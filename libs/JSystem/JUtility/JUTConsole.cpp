@@ -325,8 +325,17 @@ asm void JUTConsole::scroll(int param_0) {
 #endif
 
 /* 802E8184-802E81A8 2E2AC4 0024+00 0/0 2/2 0/0 .text            getUsedLine__10JUTConsoleCFv */
+<<<<<<< HEAD
 int JUTConsole::getUsedLine() const {
     return diffIndex(field_0x34, field_0x38);
+=======
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm int JUTConsole::getUsedLine() const {
+    nofralloc
+#include "asm/JSystem/JUtility/JUTConsole/getUsedLine__10JUTConsoleCFv.s"
+>>>>>>> OK printContext__12JUTExceptionFUsP9OSContextUlUl
 }
 
 /* 802E81A8-802E81CC 2E2AE8 0024+00 0/0 3/3 0/0 .text            getLineOffset__10JUTConsoleCFv */

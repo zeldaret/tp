@@ -31,22 +31,28 @@ public:
     /* 802E755C */ virtual ~JUTConsole();
 
     void setOutput(u32 output) { mOutput = output; }
-
-    u32 getOutput() const { return mOutput; }
-
     void setPosition(int x, int y) {
         mPositionX = x;
         mPositionY = y;
     }
 
-    int getPositionY() const { return mPositionY; }
+    int diffIndex(int param_1, int param_2) const {
+        int diff = param_2 - param_1;
+        if (diff < 0) {
+            diff = diff + this->field_0x24;
+        }
+        return diff;
+    }
 
+    u32 getOutput() const { return mOutput; }
+    int getPositionY() const { return mPositionY; }
     int getPositionX() const { return mPositionX; }
+    u32 getHeight() const { return mHeight; }
 
     bool isVisible() const { return mVisible; }
-
     void setVisible(bool visible) { mVisible = visible; }
 
+<<<<<<< HEAD
     void setLineAttr(int param_0, u8 param_1) { mBuf[(field_0x20 + 2) * param_0] = param_1; }
 
     u8* getLinePtr(int param_0) const { return &mBuf[(field_0x20 + 2) * param_0 + 1]; }
@@ -59,6 +65,13 @@ public:
         return diff += field_0x24;
     }
 
+=======
+    void scrollToLastLine() { scroll(field_0x24); }
+
+    void scrollToFirstLine() { scroll(-field_0x24); }
+
+private:
+>>>>>>> OK printContext__12JUTExceptionFUsP9OSContextUlUl
     /* 0x18 */ JGadget::TLinkListNode mListNode;
 
 private:

@@ -5,6 +5,7 @@
 
 #include "JSystem/JUtility/JUTException.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
+#include "JSystem/JUtility/JUTConsole.h"
 #include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/float.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
@@ -19,16 +20,6 @@ struct JUTDirectFile {
     /* 802E8860 */ void fopen(char const*);
     /* 802E88FC */ void fclose();
     /* 802E8958 */ void fgets(void*, int);
-};
-
-struct JUTConsole {
-    /* 802E73E4 */ void create(unsigned int, void*, u32);
-    /* 802E75DC */ void getLineFromObjectSize(u32, unsigned int);
-    /* 802E7BB8 */ void print_f(char const*, ...);
-    /* 802E7C38 */ void print(char const*);
-    /* 802E80A8 */ void scroll(int);
-    /* 802E8184 */ void getUsedLine() const;
-    /* 802E81A8 */ void getLineOffset() const;
 };
 
 struct JUTConsoleManager {
@@ -129,14 +120,14 @@ extern "C" void OSGetCurrentContext();
 extern "C" void OSFillFPUContext();
 extern "C" void OSProtectRange();
 extern "C" void OSYieldThread();
-extern "C" void VISetPreRetraceCallback();
-extern "C" void VISetPostRetraceCallback();
+extern "C" void VISetPreRetraceCallback(void*);
+extern "C" void VISetPostRetraceCallback(void*);
 extern "C" void VIConfigure();
 extern "C" void VIFlush();
 extern "C" void VISetNextFrameBuffer();
 extern "C" void VIGetCurrentFrameBuffer();
-extern "C" void VISetBlack();
-extern "C" void VIGetRetraceCount();
+extern "C" void VISetBlack(BOOL);
+extern "C" u32 VIGetRetraceCount();
 extern "C" void __register_global_object();
 extern "C" void _savegpr_16();
 extern "C" void _savegpr_22();
@@ -233,11 +224,11 @@ SECTION_DATA extern void* __vt__12JUTException[4 + 1 /* padding */] = {
 JUTException* JUTException::sErrorManager;
 
 /* 8045150C-80451510 000A0C 0004+00 4/4 0/0 0/0 .sbss            sPreUserCallback__12JUTException */
-void* JUTException::sPreUserCallback;
+OSErrorHandler JUTException::sPreUserCallback;
 
 /* 80451510-80451514 000A10 0004+00 3/3 0/0 0/0 .sbss            sPostUserCallback__12JUTException
  */
-void* JUTException::sPostUserCallback;
+OSErrorHandler JUTException::sPostUserCallback;
 
 /* 802E1D5C-802E1E40 2DC69C 00E4+00 1/1 0/0 0/0 .text __ct__12JUTExceptionFP14JUTDirectPrint */
 JUTException::JUTException(JUTDirectPrint* directPrint)
@@ -254,11 +245,12 @@ JUTException::JUTException(JUTDirectPrint* directPrint)
 
     setGamePad(NULL);
 
-    this->field_0x8c = 10;
-    this->field_0x90 = 10;
+    this->mPrintWaitTime0 = 10;
+    this->mPrintWaitTime1 = 10;
     this->mTraceSuppress = -1;
     this->field_0x98 = 0;
-    this->field_0x9c = 0x1f;
+    this->mPrintFlags =
+        JUT_PRINT_GPR | JUT_PRINT_GPR_MAP | JUT_PRINT_SRR0_MAP | JUT_PRINT_FLOAT | JUT_PRINT_STACK;
 }
 
 /* 802E1E40-802E1EA8 2DC780 0068+00 0/0 1/1 0/0 .text create__12JUTExceptionFP14JUTDirectPrint */
@@ -499,7 +491,7 @@ void JUTException::showStack(OSContext* context) {
         showMapInfo_subroutine(stackPointer[1], false);
         JUTConsoleManager* manager = JUTConsoleManager::sManager;
         manager->drawDirect(true);
-        waitTime(this->field_0x90);
+        waitTime(mPrintWaitTime1);
         stackPointer = (u32*)stackPointer[0];
     }
 }
@@ -651,7 +643,7 @@ void JUTException::showGPRMap(OSContext* context) {
                 sConsole->print("  no information\n");
             }
             JUTConsoleManager::sManager->drawDirect(true);
-            waitTime(this->field_0x90);
+            waitTime(mPrintWaitTime1);
         }
     }
 
@@ -692,9 +684,9 @@ void JUTException::printDebugInfo(JUTException::EInfoPage page, OSError error, O
         break;
     case EINFO_PAGE_STACK:
         return showStack(context);
-    case EINFO_PAGE_GPRMAP:
+    case EINFO_PAGE_GPR_MAP:
         return showGPRMap(context);
-    case EINFO_PAGE_SSR0MAP:
+    case EINFO_PAGE_SSR0_MAP:
         return showSRR0Map(context);
     }
 }
@@ -711,7 +703,7 @@ bool JUTException::isEnablePad() const {
 }
 
 /* 802E2F54-802E34C0 2DD894 056C+00 1/1 1/1 0/0 .text            readPad__12JUTExceptionFPUlPUl */
-bool JUTException::readPad(u32* param_0, u32* param_1) {
+bool JUTException::readPad(u32* out_trigger, u32* out_button) {
     bool result = false;
     OSTime start_time = OSGetTime();
     OSTime ms;
@@ -747,13 +739,13 @@ bool JUTException::readPad(u32* param_0, u32* param_1) {
         gamePad2.checkResetCallback(resetTime2);
         gamePad3.checkResetCallback(resetTime3);
 
-        if (param_0) {
-            *param_0 = gamePad0.getTrigger() | gamePad1.getTrigger() | gamePad2.getTrigger() |
-                       gamePad3.getTrigger();
+        if (out_trigger) {
+            *out_trigger = gamePad0.getTrigger() | gamePad1.getTrigger() | gamePad2.getTrigger() |
+                           gamePad3.getTrigger();
         }
-        if (param_1) {
-            *param_1 = gamePad0.getButton() | gamePad1.getButton() | gamePad2.getButton() |
-                       gamePad3.getButton();
+        if (out_button) {
+            *out_button = gamePad0.getButton() | gamePad1.getButton() | gamePad2.getButton() |
+                          gamePad3.getButton();
         }
 
         result = true;
@@ -767,21 +759,21 @@ bool JUTException::readPad(u32* param_0, u32* param_1) {
         gamePad.checkResetCallback(resetTime);
 
         JUTGamePad::read();
-        if (param_0) {
-            *param_0 = gamePad.getTrigger();
+        if (out_trigger) {
+            *out_trigger = gamePad.getTrigger();
         }
-        if (param_1) {
-            *param_1 = gamePad.getButton();
+        if (out_button) {
+            *out_button = gamePad.getButton();
         }
 
         result = true;
     } else if (mGamePad) {
         JUTGamePad::read();
-        if (param_0) {
-            *param_0 = mGamePad->getTrigger();
+        if (out_trigger) {
+            *out_trigger = mGamePad->getTrigger();
         }
-        if (param_1) {
-            *param_1 = mGamePad->getButton();
+        if (out_button) {
+            *out_button = mGamePad->getButton();
         }
 
         result = true;
@@ -790,192 +782,167 @@ bool JUTException::readPad(u32* param_0, u32* param_1) {
     return result;
 }
 
-/* ############################################################################################## */
-/* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D8F3 =
-    "******** EXCEPTION OCCURRED! ********\nFrameMemor"
-    "y:%XH\n";
-SECTION_DEAD static char const* const stringBase_8039D92A =
-    "******** USER HALT ********\nFrameMemory:%XH\n";
-SECTION_DEAD static char const* const stringBase_8039D957 = "--------------------------------\n";
-#pragma pop
-
 /* 802E34C0-802E3980 2DDE00 04C0+00 1/1 0/0 0/0 .text
  * printContext__12JUTExceptionFUsP9OSContextUlUl               */
-#if 0
 void JUTException::printContext(OSError error, OSContext* context, u32 dsisr, u32 dar) {
-
-    if(!sErrorManager->mDirectPrint->isActive()) {
+    bool is_pad_enabled = isEnablePad() == 0;
+    if (!sErrorManager->mDirectPrint->isActive()) {
         return;
     }
 
-  
-  pad_enabled = isEnablePad(this);
-  uVar3 = countLeadingZeros((uint)pad_enabled);
-  if (sErrorManager->print->field_0x0 != (void *)0x0) {
-    vi::VISetPreRetraceCallback((VIRetraceCallback)0x0);
-    vi::VISetPostRetraceCallback((VIRetraceCallback)0x0);
-    vi::VISetBlack(0);
-    vi::VIFlush();
-    if (sConsole != (JUTConsole *)0x0) {
-      if (error < (ERROR_MACHINE_CHECK|ERROR_FLOATING_POINT_EXCEPTION)) {
-        JUTConsole::print_f(sConsole,"******** EXCEPTION OCCURRED! ********\nFrameMemory:%XH\n",
-                            this->current_framebuffer);
-      }
-      else {
-        JUTConsole::print_f(sConsole,"******** USER HALT ********\nFrameMemory:%XH\n",
-                            this->current_framebuffer);
-      }
-      pad_enabled = false;
-      while( true ) {
-        showMainInfo(this,error,context,dsisr,dar);
-        JUTConsoleManager::drawDirect(JUTConsoleManager::sManager,true);
-        waitTime(this->field_0x8c);
-        if ((this->printing_flags & 1) != 0) {
-          printDebugInfo(this,PAGE_GPR,error,context,dsisr,dar);
-          JUTConsoleManager::drawDirect(JUTConsoleManager::sManager,true);
-          waitTime(this->field_0x8c);
-        }
-        if ((this->printing_flags & 4) != 0) {
-          printDebugInfo(this,PAGE_SRR0_MAP,error,context,dsisr,dar);
-          JUTConsoleManager::drawDirect(JUTConsoleManager::sManager,true);
-          waitTime(this->field_0x8c);
-        }
-        if ((this->printing_flags & 2) != 0) {
-          printDebugInfo(this,PAGE_GPR_MAP,error,context,dsisr,dar);
-          JUTConsoleManager::drawDirect(JUTConsoleManager::sManager,true);
-          waitTime(this->field_0x8c);
-        }
-        if ((this->printing_flags & 8) != 0) {
-          printDebugInfo(this,PAGE_FLOAT,error,context,dsisr,dar);
-          JUTConsoleManager::drawDirect(JUTConsoleManager::sManager,true);
-          waitTime(this->field_0x8c);
-        }
-        if ((this->printing_flags & 0x10) != 0) {
-          printDebugInfo(this,PAGE_STACK,error,context,dsisr,dar);
-          JUTConsoleManager::drawDirect(JUTConsoleManager::sManager,true);
-          waitTime(this->printWaitTime);
-        }
-        JUTConsole::print(sConsole,"--------------------------------\n");
-        JUTConsoleManager::drawDirect(JUTConsoleManager::sManager,true);
-        if ((!pad_enabled) && (sPostUserCallback != (void *)0x0)) {
-          enable = os::OSEnableInterrupts();
-          pad_enabled = true;
-          (*(code *)sPostUserCallback)(CONCAT22(in_register_00000010,error),context,dsisr,dar);
-          os::OSRestoreInterrupts(enable);
-        }
-        if ((this->field_0x98 == 0) || ((uVar3 >> 5 & 0xff) == 0)) break;
-        sConsole->field_0x58 = sConsole->field_0x58 & 1;
-      }
-      if ((uVar3 >> 5 & 0xff) == 0) {
-        os::OSEnableInterrupts();
-        iVar6 = 0;
-        iVar7 = 0;
-        do {
-          readPad(this,&local_38,local_34);
-          pad_enabled = local_38 == 0x100;
-          if (pad_enabled) {
-            JUTConsole::scroll(sConsole,sConsole->field_0x24);
-          }
-          bVar1 = local_38 == 0x200;
-          if (bVar1) {
-            JUTConsole::scroll(sConsole,-sConsole->field_0x24);
-          }
-          bVar1 = bVar1 || pad_enabled;
-          if (local_34[0] == 8) {
-            if (iVar6 < 3) {
-              iVar7 = -1;
-            }
-            else {
-              if (iVar6 < 5) {
-                iVar7 = -2;
-              }
-              else {
-                iVar7 = -8;
-                if (iVar6 < 7) {
-                  iVar7 = -4;
-                }
-              }
-            }
-            JUTConsole::scroll(sConsole,iVar7);
-            bVar1 = true;
-            iVar7 = 0;
-            iVar6 = iVar6 + 1;
-          }
-          else {
-            if (local_34[0] == 4) {
-              if (iVar7 < 3) {
-                iVar6 = 1;
-              }
-              else {
-                if (iVar7 < 5) {
-                  iVar6 = 2;
-                }
-                else {
-                  iVar6 = 8;
-                  if (iVar7 < 7) {
-                    iVar6 = 4;
-                  }
-                }
-              }
-              JUTConsole::scroll(sConsole,iVar6);
-              bVar1 = true;
-              iVar6 = 0;
-              iVar7 = iVar7 + 1;
-            }
-            else {
-              iVar6 = 0;
-              iVar7 = 0;
-            }
-          }
-          if (bVar1) {
-            uVar4 = vi::VIGetRetraceCount();
-            do {
-              uVar5 = vi::VIGetRetraceCount();
-            } while (uVar4 == uVar5);
-            JUTConsoleManager::drawDirect(JUTConsoleManager::sManager,true);
-          }
-          waitTime(0x1e);
-        } while( true );
-      }
-      do {
-        JUTConsole::scroll(sConsole,-sConsole->field_0x24);
-        JUTConsoleManager::drawDirect(JUTConsoleManager::sManager,true);
-        waitTime(2000);
-        do {
-          for (iVar6 = sConsole->field_0x48; iVar6 != 0; iVar6 = iVar6 + -1) {
-            JUTConsole::scroll(sConsole,1);
-            JUTConsoleManager::drawDirect(JUTConsoleManager::sManager,true);
-            pJVar2 = sConsole;
-            iVar8 = sConsole->field_0x48;
-            uVar3 = JUTConsole::getLineOffset(sConsole);
-            iVar7 = JUTConsole::getUsedLine(pJVar2);
-            if ((iVar7 - iVar8) + 1U <= uVar3) break;
-            waitTime(0x14);
-          }
-          waitTime(3000);
-          pJVar2 = sConsole;
-          iVar7 = sConsole->field_0x48;
-          uVar3 = JUTConsole::getLineOffset(sConsole);
-          iVar6 = JUTConsole::getUsedLine(pJVar2);
-        } while (uVar3 < (iVar6 - iVar7) + 1U);
-      } while( true );
-    }
-  }
+    VISetPreRetraceCallback(NULL);
+    VISetPostRetraceCallback(NULL);
+    VISetBlack(FALSE);
+    VIFlush();
 
+    if (!sConsole) {
+        return;
+    }
+
+    if (error < (OS_ERROR_MACHINE_CHECK | OS_ERROR_FLOATING_POINT_EXCEPTION)) {
+        sConsole->print_f("******** EXCEPTION OCCURRED! ********\nFrameMemory:%XH\n",
+                          getFrameMemory());
+    } else {
+        sConsole->print_f("******** USER HALT ********\nFrameMemory:%XH\n", getFrameMemory());
+    }
+
+    int post_callback_executed = false;
+    while (true) {
+        showMainInfo(error, context, dsisr, dar);
+
+        JUTConsoleManager::sManager->drawDirect(true);
+        waitTime(mPrintWaitTime0);
+
+        if ((mPrintFlags & JUT_PRINT_GPR) != 0) {
+            printDebugInfo(EINFO_PAGE_GPR, error, context, dsisr, dar);
+            JUTConsoleManager::sManager->drawDirect(true);
+            waitTime(mPrintWaitTime0);
+        }
+        if ((mPrintFlags & JUT_PRINT_SRR0_MAP) != 0) {
+            printDebugInfo(EINFO_PAGE_SSR0_MAP, error, context, dsisr, dar);
+            JUTConsoleManager::sManager->drawDirect(true);
+            waitTime(mPrintWaitTime0);
+        }
+        if ((mPrintFlags & JUT_PRINT_GPR_MAP) != 0) {
+            printDebugInfo(EINFO_PAGE_GPR_MAP, error, context, dsisr, dar);
+            JUTConsoleManager::sManager->drawDirect(true);
+            waitTime(mPrintWaitTime0);
+        }
+        if ((mPrintFlags & JUT_PRINT_FLOAT) != 0) {
+            printDebugInfo(EINFO_PAGE_FLOAT, error, context, dsisr, dar);
+            JUTConsoleManager::sManager->drawDirect(true);
+            waitTime(mPrintWaitTime0);
+        }
+        if ((mPrintFlags & JUT_PRINT_STACK) != 0) {
+            printDebugInfo(EINFO_PAGE_STACK, error, context, dsisr, dar);
+            JUTConsoleManager::sManager->drawDirect(true);
+            waitTime(mPrintWaitTime1);
+        }
+
+        sConsole->print("--------------------------------\n");
+        JUTConsoleManager::sManager->drawDirect(true);
+
+        if (post_callback_executed == 0 && sPostUserCallback) {
+            BOOL enable = OSEnableInterrupts();
+            post_callback_executed = true;
+            (*sPostUserCallback)(error, context, dsisr, dar);
+            OSRestoreInterrupts(enable);
+        }
+
+        if (this->field_0x98 == 0 || !is_pad_enabled) {
+            break;
+        }
+
+        sConsole->setOutput(sConsole->getOutput() & 1);
+    }
+
+    if (!is_pad_enabled) {
+        OSEnableInterrupts();
+
+        u32 button;
+        u32 trigger;
+
+        int down = 0;
+        int up = 0;
+        do {
+            readPad(&trigger, &button);
+
+            bool draw = false;
+            if (trigger == 0x100) {
+                sConsole->scrollToLastLine();
+                draw = true;
+            }
+
+            if (trigger == 0x200) {
+                sConsole->scrollToFirstLine();
+                draw = true;
+            }
+
+            if (button == 8) {
+                JUTConsole* console = sConsole;
+                up = (down < 3) ? -1 : ((down < 5) ? -2 : ((down < 7) ? -4 : -8));
+
+                console->scroll(up);
+                draw = true;
+                up = 0;
+                down++;
+            } else if (button == 4) {
+                JUTConsole* console = sConsole;
+                down = (up < 3) ? 1 : ((up < 5) ? 2 : ((up < 7) ? 4 : 8));
+
+                console->scroll(down);
+                draw = true;
+                down = 0;
+                up++;
+            } else {
+                down = 0;
+                up = 0;
+            }
+
+            if (draw == true) {
+                u32 start = VIGetRetraceCount();
+                while (start == VIGetRetraceCount())
+                    ;
+                JUTConsoleManager::sManager->drawDirect(true);
+            }
+
+            waitTime(30);
+        } while (true);
+    }
+
+    while (true) {
+        sConsole->scrollToFirstLine();
+        JUTConsoleManager::sManager->drawDirect(true);
+        waitTime(2000);
+
+        int line_offset;
+        int used_line;
+        u32 height;
+    next:
+        for (u32 i = sConsole->getHeight(); i > 0; i--) {
+            sConsole->scroll(1);
+            JUTConsoleManager::sManager->drawDirect(true);
+
+            height = sConsole->getHeight();
+            JUTConsole* console = sConsole;
+            line_offset = console->getLineOffset();
+            used_line = console->getUsedLine();
+            if ((used_line - height) + 1U <= line_offset)
+                break;
+            waitTime(20);
+        }
+
+        waitTime(3000);
+        height = sConsole->getHeight();
+        JUTConsole* console = sConsole;
+        line_offset = console->getLineOffset();
+        used_line = console->getUsedLine();
+        if ((used_line - height) + 1U <= line_offset) {
+            continue;
+        }
+        goto next;
+    }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTException::printContext(OSError error, OSContext* context, u32 param_2, u32 param_3) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/printContext__12JUTExceptionFUsP9OSContextUlUl.s"
-}
-#pragma pop
-#endif
 
 /* 802E3980-802E3A08 2DE2C0 0088+00 3/3 2/2 0/0 .text            waitTime__12JUTExceptionFl */
 #pragma push

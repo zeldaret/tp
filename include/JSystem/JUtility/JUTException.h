@@ -17,9 +17,11 @@ struct JUTExternalFB {
     /* 802E40CC */ JUTExternalFB(_GXRenderModeObj*, _GXGamma, void*, u32);
 };
 
-struct JUTDirectPrint {
-    /* 802E456C */ void changeFrameBuffer(void*, u16, u16);
-};
+#define JUT_PRINT_GPR 1
+#define JUT_PRINT_GPR_MAP 2
+#define JUT_PRINT_SRR0_MAP 4
+#define JUT_PRINT_FLOAT 8
+#define JUT_PRINT_STACK 16
 
 class JUTException : public JKRThread {
 public:
@@ -27,8 +29,8 @@ public:
         EINFO_PAGE_GPR = 1,
         EINFO_PAGE_FLOAT = 2,
         EINFO_PAGE_STACK = 3,
-        EINFO_PAGE_GPRMAP = 4,
-        EINFO_PAGE_SSR0MAP = 5,
+        EINFO_PAGE_GPR_MAP = 4,
+        EINFO_PAGE_SSR0_MAP = 5,
     };
 
     class JUTExMapFile {};
@@ -53,7 +55,8 @@ public:
     /* 802E3AFC */ void setPostUserCallback(void (*)(u16, OSContext*, u32, u32));
     /* 802E3B0C */ void appendMapFile(char const*);
     /* 802E3BA0 */ static bool queryMapAddress(char*, u32, s32, u32*, u32*, char*, u32, bool, bool);
-    /* 802E3C90 */ static void queryMapAddress_single(char*, u32, s32, u32*, u32*, char*, u32, bool, bool);
+    /* 802E3C90 */ static void queryMapAddress_single(char*, u32, s32, u32*, u32*, char*, u32, bool,
+                                                      bool);
     /* 802E3FEC */ void createConsole(void*, u32);
 
     /* 802E1EA8 */ /* vt[03] */ virtual void* run();
@@ -68,6 +71,8 @@ public:
 
     static JUTException* getManager() { return sErrorManager; }
 
+    JUTExternalFB* getFrameMemory() const { return mFrameMemory; }
+
     void setTraceSuppress(u32 param_0) { mTraceSuppress = param_0; }
     void setGamePad(JUTGamePad* gamePad) {
         mGamePad = gamePad;
@@ -80,8 +85,8 @@ private:
     static JSUList<JUTException::JUTExMapFile> sMapFileList;
     static u8 sMessageBuffer[4 + 4 /* padding */];
     static JUTException* sErrorManager;
-    static void* sPreUserCallback;
-    static void* sPostUserCallback;
+    static OSErrorHandler sPreUserCallback;
+    static OSErrorHandler sPostUserCallback;
     static u8 sConsoleBuffer[4];
     static u8 sConsoleBufferSize[4];
     static JUTConsole* sConsole;
@@ -89,15 +94,15 @@ private:
     static u32 fpscr;
 
 private:
-    /* 0x7C */ JUTExternalFB* field_0x7C;
+    /* 0x7C */ JUTExternalFB* mFrameMemory;
     /* 0x80 */ JUTDirectPrint* mDirectPrint;
     /* 0x84 */ JUTGamePad* mGamePad;
     /* 0x88 */ JUTGamePad::EPadPort mGamePadPort;
-    /* 0x8C */ s32 field_0x8c;
-    /* 0x90 */ s32 field_0x90;
+    /* 0x8C */ s32 mPrintWaitTime0;
+    /* 0x90 */ s32 mPrintWaitTime1;
     /* 0x94 */ u32 mTraceSuppress;
     /* 0x98 */ u32 field_0x98;
-    /* 0x9C */ u32 field_0x9c;
+    /* 0x9C */ u32 mPrintFlags;
     /* 0xA0 */ u32 mStackPointer;
 };
 
