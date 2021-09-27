@@ -1075,14 +1075,7 @@ asm JUTExternalFB::JUTExternalFB(_GXRenderModeObj* param_0, _GXGamma param_1, vo
 #pragma pop
 
 /* 802E40EC-802E414C 2DEA2C 0060+00 1/0 0/0 0/0 .text            __dt__12JUTExceptionFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JUTException::~JUTException() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/__dt__12JUTExceptionFv.s"
-}
-#pragma pop
+JUTException::~JUTException() {}
 
 /* ##############################################################################################
  */
