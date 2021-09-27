@@ -289,11 +289,11 @@ asm void* JUTException::run() {
 static u8 exCallbackObject[20];
 
 /* 80451514-80451518 000A14 0004+00 1/1 0/0 0/0 .sbss            sConsoleBuffer__12JUTException */
-u8 JUTException::sConsoleBuffer[4];
+void* JUTException::sConsoleBuffer;
 
 /* 80451518-8045151C 000A18 0004+00 1/1 0/0 0/0 .sbss            sConsoleBufferSize__12JUTException
  */
-u8 JUTException::sConsoleBufferSize[4];
+u32 JUTException::sConsoleBufferSize;
 
 /* 8045151C-80451520 000A1C 0004+00 13/13 1/1 0/0 .sbss            sConsole__12JUTException */
 JUTConsole* JUTException::sConsole;
@@ -1083,14 +1083,27 @@ SECTION_SDATA2 static f32 lit_3035[1 + 1 /* padding */] = {
 
 /* 802E3FEC-802E40CC 2DE92C 00E0+00 0/0 1/1 0/0 .text            createConsole__12JUTExceptionFPvUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTException::createConsole(void* param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/createConsole__12JUTExceptionFPvUl.s"
+void JUTException::createConsole(void* console_buffer, u32 console_buffer_size) {
+    if (!console_buffer || !console_buffer_size) {
+        return;
+    }
+
+    u32 lines = JUTConsole::getLineFromObjectSize(console_buffer_size, 0x32);
+    if (lines != 0) {
+        sConsoleBuffer = console_buffer;
+        sConsoleBufferSize = console_buffer_size;
+        sConsole = JUTConsole::create(0x32, console_buffer, console_buffer_size);
+
+        JUTConsoleManager* manager = JUTConsoleManager::sManager;
+        manager->setDirectConsole(sConsole);
+
+        sConsole->setFontSize(10.0, 6.0);
+        sConsole->setPosition(15, 26);
+        sConsole->setHeight(23);
+        sConsole->setVisible(true);
+        sConsole->setOutput(3);
+    } 
 }
-#pragma pop
 
 /* 802E40CC-802E40EC 2DEA0C 0020+00 1/1 0/0 0/0 .text
  * __ct__13JUTExternalFBFP16_GXRenderModeObj8_GXGammaPvUl       */

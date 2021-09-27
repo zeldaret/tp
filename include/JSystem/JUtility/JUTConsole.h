@@ -14,8 +14,8 @@ public:
         UNK_TYPE2 = 2,
     };
 
-    /* 802E73E4 */ void create(unsigned int, void*, u32);
-    /* 802E7354 */ void create(unsigned int, unsigned int, JKRHeap*);
+    /* 802E73E4 */ static JUTConsole* create(unsigned int, void*, u32);
+    /* 802E7354 */ static JUTConsole* create(unsigned int, unsigned int, JKRHeap*);
     /* 802E746C */ JUTConsole(unsigned int, unsigned int, bool);
     /* 802E75CC */ static size_t getObjectSizeFromBufferSize(unsigned int, unsigned int);
     /* 802E75DC */ static size_t getLineFromObjectSize(u32, unsigned int);
@@ -34,6 +34,16 @@ public:
     void setPosition(int x, int y) {
         mPositionX = x;
         mPositionY = y;
+    }
+    void setFontSize(f32 x, f32 y) {
+        mFontSizeX = x;
+        mFontSizeY = y;
+    }
+    void setHeight(u32 height) {
+        mHeight = height;
+        if(mHeight > field_0x24) {
+            mHeight = field_0x24;
+        }
     }
 
     int diffIndex(int param_1, int param_2) const {

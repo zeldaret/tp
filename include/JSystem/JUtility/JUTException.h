@@ -69,13 +69,6 @@ public:
     /* 802E2F54 */ bool readPad(u32*, u32*);
     /* 802E34C0 */ void printContext(u16, OSContext*, u32, u32);
     /* 802E3A08 */ void createFB();
-    /* 802E3AEC */ static OSErrorHandler setPreUserCallback(OSErrorHandler);
-    /* 802E3AFC */ static OSErrorHandler setPostUserCallback(OSErrorHandler);
-    /* 802E3B0C */ static void appendMapFile(char const*);
-    /* 802E3BA0 */ static bool queryMapAddress(char*, u32, s32, u32*, u32*, char*, u32, bool, bool);
-    /* 802E3C90 */ static void queryMapAddress_single(char*, u32, s32, u32*, u32*, char*, u32, bool,
-                                                      bool);
-    /* 802E3FEC */ void createConsole(void*, u32);
 
     /* 802E1EA8 */ /* vt[03] */ virtual void* run();
 
@@ -85,6 +78,13 @@ public:
     /* 802E21FC */ static void panic_f(char const*, int, char const*, ...);
     /* 802E227C */ static void setFPException(u32);
     /* 802E2578 */ static bool searchPartialModule(u32, u32*, u32*, u32*, u32*);
+    /* 802E3AEC */ static OSErrorHandler setPreUserCallback(OSErrorHandler);
+    /* 802E3AFC */ static OSErrorHandler setPostUserCallback(OSErrorHandler);
+    /* 802E3B0C */ static void appendMapFile(char const*);
+    /* 802E3BA0 */ static bool queryMapAddress(char*, u32, s32, u32*, u32*, char*, u32, bool, bool);
+    /* 802E3C90 */ static void queryMapAddress_single(char*, u32, s32, u32*, u32*, char*, u32, bool,
+                                                      bool);
+    /* 802E3FEC */ static void createConsole(void*, u32);
     /* 802E3980 */ static void waitTime(s32);
 
     static JUTException* getManager() { return sErrorManager; }
@@ -105,8 +105,8 @@ private:
     static JUTException* sErrorManager;
     static OSErrorHandler sPreUserCallback;
     static OSErrorHandler sPostUserCallback;
-    static u8 sConsoleBuffer[4];
-    static u8 sConsoleBufferSize[4];
+    static void* sConsoleBuffer;
+    static u32 sConsoleBufferSize;
     static JUTConsole* sConsole;
     static u32 msr;
     static u32 fpscr;
