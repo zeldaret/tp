@@ -22,6 +22,8 @@ public:
 
     /* 802E4240 */ static JUTDirectPrint* start();
 
+    static JUTDirectPrint* getManager() { return sDirectPrint; }
+
 private:
     static u8 sAsciiTable[128];
     static u32 sFontData[64];

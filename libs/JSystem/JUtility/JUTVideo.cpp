@@ -4,20 +4,11 @@
 //
 
 #include "JSystem/JUtility/JUTVideo.h"
+#include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTXfb.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "dolphin/vi/vi.h"
-
-//
-// Types:
-//
-
-struct JUTDirectPrint {
-    /* 802E456C */ void changeFrameBuffer(void*, u16, u16);
-
-    static JUTDirectPrint* sDirectPrint;
-};
 
 //
 // External References:
@@ -37,8 +28,8 @@ JUTVideo* JUTVideo::sManager;
 OSTick JUTVideo::sVideoLastTick;
 
 /* 80451540-80451544 000A40 0004+00 2/2 1/1 0/0 .sbss            sVideoInterval__8JUTVideo */
-
 OSTick JUTVideo::sVideoInterval;
+
 /* 80451544-80451548 000A44 0004+00 4/4 0/0 0/0 .sbss            None */
 static bool data_80451544;
 
@@ -123,8 +114,8 @@ void JUTVideo::preRetraceProc(u32 retrace_count) {
     if (frameBuffer) {
         JUTVideo* videoManager = JUTGetVideoManager();
         const GXRenderModeObj* renderMode = videoManager->getRenderMode();
-        JUTDirectPrint::sDirectPrint->changeFrameBuffer(frameBuffer, renderMode->fb_width,
-                                                        renderMode->efb_height);
+        JUTDirectPrint* directPrint = JUTDirectPrint::getManager();
+        directPrint->changeFrameBuffer(frameBuffer, renderMode->fb_width, renderMode->efb_height);
     }
 
     if (sManager->mSetBlack == 1) {

@@ -3,6 +3,7 @@
 
 #include "JSystem/JKernel/JKRThread.h"
 #include "JSystem/JUtility/JUTGamePad.h"
+#include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
@@ -26,7 +27,7 @@ public:
     /* 802E1D5C */ JUTException(JUTDirectPrint*);
     /* 802E1E40 */ void create(JUTDirectPrint*);
     /* 802E1FCC */ void errorHandler(u16, OSContext*, u32, u32);
-    /* 802E20C0 */ void panic_f_va(char const*, int, char const*, __va_list_struct*);
+    /* 802E20C0 */ void panic_f_va(char const*, int, char const*, va_list);
     /* 802E21FC */ static void panic_f(char const*, int, char const*, ...);
     /* 802E227C */ void setFPException(u32);
     /* 802E22C4 */ void showFloatSub(int, f32);
