@@ -10,12 +10,21 @@
 #include "dolphin/types.h"
 #include "global.h"
 
-struct _GXRenderModeObj;
-struct _GXGamma {};
+class JUTExternalFB {
+public:
+    /* 802E40CC */ JUTExternalFB(_GXRenderModeObj*, GXGamma, void*, u32);
 
-struct JUTExternalFB {
-    /* 802E40CC */ JUTExternalFB(_GXRenderModeObj*, _GXGamma, void*, u32);
+private:
+    /* 0x00 */ _GXRenderModeObj* mRenderMode;
+    /* 0x04 */ u32 mSize;
+    /* 0x08 */ u32 field_0x08;
+    /* 0x0C */ u16 field_0x0C;
+    /* 0x0D */ u16 field_0x0D;
+    /* 0x10 */ bool field_0x10;
+    /* 0x11 */ u8 field_[3];
 };
+
+STATIC_ASSERT(sizeof(JUTExternalFB) == 0x14);
 
 #define JUT_PRINT_GPR 1
 #define JUT_PRINT_GPR_MAP 2

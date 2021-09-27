@@ -122,10 +122,10 @@ extern "C" void OSProtectRange();
 extern "C" void OSYieldThread();
 extern "C" void VISetPreRetraceCallback(void*);
 extern "C" void VISetPostRetraceCallback(void*);
-extern "C" void VIConfigure();
+extern "C" void VIConfigure(_GXRenderModeObj*);
 extern "C" void VIFlush();
-extern "C" void VISetNextFrameBuffer();
-extern "C" void VIGetCurrentFrameBuffer();
+extern "C" void VISetNextFrameBuffer(void*);
+extern "C" void* VIGetCurrentFrameBuffer();
 extern "C" void VISetBlack(BOOL);
 extern "C" u32 VIGetRetraceCount();
 extern "C" void __register_global_object();
@@ -147,7 +147,7 @@ extern "C" void strcmp();
 extern "C" void strcat();
 extern "C" void strcpy();
 extern "C" void strtol();
-extern "C" extern u8 GXNtsc480Int[60];
+extern "C" extern _GXRenderModeObj GXNtsc480Int;
 extern "C" extern u32 __OSFpscrEnableBits;
 extern "C" u8 sSystemHeap__7JKRHeap[4];
 extern "C" u8 sManager__17JUTConsoleManager[4];
@@ -958,14 +958,33 @@ void JUTException::waitTime(s32 timeout_ms) {
 }
 
 /* 802E3A08-802E3AEC 2DE348 00E4+00 1/1 0/0 0/0 .text            createFB__12JUTExceptionFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTException::createFB() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/createFB__12JUTExceptionFv.s"
+void JUTException::createFB() {
+    _GXRenderModeObj* renderMode = &GXNtsc480Int;
+    void* end = (void*)OSGetArenaHi();
+    u16 width = ALIGN_NEXT(renderMode->fb_width, 16);
+    u16 height = renderMode->xfb_height;
+    u32 pixel_count = width * height;
+    u32 size = pixel_count * 2;
+
+    void* begin = (void*)(((u32)end - size) & 0xffffffe0);
+    void* object = (void*)(((s32)begin - sizeof(JUTExternalFB)) & 0xffffffe0);
+    new (object) JUTExternalFB(renderMode, GX_GM_1_7, begin, size);
+
+    mDirectPrint->changeFrameBuffer(begin, renderMode->fb_width, renderMode->efb_height);
+    VIConfigure(renderMode);
+    VISetNextFrameBuffer(begin);
+    VISetBlack(FALSE);
+    VIFlush();
+    VIFlush();
+
+    for (int i = 0; i < 3; i++) {
+        u32 start = VIGetRetraceCount();
+        while (start == VIGetRetraceCount())
+            ;
+    }
+
+    mFrameMemory = (JUTExternalFB*)object;
 }
-#pragma pop
 
 /* 802E3AEC-802E3AFC 2DE42C 0010+00 0/0 1/1 0/0 .text
  * setPreUserCallback__12JUTExceptionFPFUsP9OSContextUlUl_v     */
@@ -1070,7 +1089,7 @@ asm void JUTException::createConsole(void* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JUTExternalFB::JUTExternalFB(_GXRenderModeObj* param_0, _GXGamma param_1, void* param_2,
+asm JUTExternalFB::JUTExternalFB(_GXRenderModeObj* param_0, GXGamma param_1, void* param_2,
                                  u32 param_3) {
     nofralloc
 #include "asm/JSystem/JUtility/JUTException/__ct__13JUTExternalFBFP16_GXRenderModeObj8_GXGammaPvUl.s"
