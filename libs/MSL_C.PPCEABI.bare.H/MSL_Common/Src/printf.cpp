@@ -4,6 +4,7 @@
 //
 
 #include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf.h"
+#include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -11,12 +12,9 @@
 // Forward References:
 //
 
-struct __va_list_struct;
-
 extern "C" void sprintf();
 extern "C" void snprintf();
-extern "C" size_t vsnprintf(char* buffer, size_t buffer_size, const char* format,
-                            __va_list_struct* args);
+extern "C" size_t vsnprintf(char* buffer, size_t buffer_size, const char* format, va_list args);
 extern "C" void vprintf();
 extern "C" void fprintf();
 extern "C" void printf();
@@ -36,7 +34,6 @@ extern "C" extern char const* const MSL_Common_Src_printf__stringBase0;
 //
 
 SECTION_INIT void memcpy();
-extern "C" void __va_arg();
 extern "C" void __div2u();
 extern "C" void __mod2u();
 extern "C" void __num2dec();
@@ -80,7 +77,7 @@ asm void snprintf() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm size_t vsnprintf(char* buffer, size_t buffer_size, const char* format, __va_list_struct* args) {
+asm size_t vsnprintf(char* buffer, size_t buffer_size, const char* format, va_list args) {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf/vsnprintf.s"
 }
@@ -162,6 +159,7 @@ SECTION_SDATA static u8 data_80450AD8[2 + 6 /* padding */] = {
 #pragma optimizewithasm off
 asm void __pformatter() {
     nofralloc
+#undef __va_arg
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf/__pformatter.s"
 }
 #pragma pop

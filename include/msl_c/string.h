@@ -1,6 +1,7 @@
 #ifndef MSL_STRING_H_
 #define MSL_STRING_H_
 
+#include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dolphin/types.h"
 
 // TODO: move to MSL_C.PPCEABI.bare.H/
@@ -20,9 +21,7 @@ int tolower(int);
 int sprintf(char*, const char*, ...);
 int printf(const char*, ...);
 int snprintf(char*, u32, const char*, ...);
-
-struct __va_list_struct;
-size_t vsnprintf(char* buffer, size_t buffer_size, const char* format, __va_list_struct* args);
+size_t vsnprintf(char* buffer, size_t buffer_size, const char* format, va_list args);
 }
 
 #endif
