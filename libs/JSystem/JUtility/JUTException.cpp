@@ -1024,6 +1024,7 @@ asm void JUTException::appendMapFile(char const* param_0) {
     nofralloc
 #include "asm/JSystem/JUtility/JUTException/appendMapFile__12JUTExceptionFPCc.s"
 }
+#pragma pop
 #endif
 
 /* ############################################################################################## */
@@ -1093,15 +1094,13 @@ asm void JUTException::createConsole(void* param_0, u32 param_1) {
 
 /* 802E40CC-802E40EC 2DEA0C 0020+00 1/1 0/0 0/0 .text
  * __ct__13JUTExternalFBFP16_GXRenderModeObj8_GXGammaPvUl       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JUTExternalFB::JUTExternalFB(_GXRenderModeObj* param_0, GXGamma param_1, void* param_2,
-                                 u32 param_3) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/__ct__13JUTExternalFBFP16_GXRenderModeObj8_GXGammaPvUl.s"
+JUTExternalFB::JUTExternalFB(_GXRenderModeObj* renderMode, GXGamma gamma, void* buffer, u32 size) {
+    mRenderMode = renderMode;
+    mSize = size;
+    field_0x0C = 1;
+    mGamma = gamma;
+    field_0x10 = false;
 }
-#pragma pop
 
 /* 802E40EC-802E414C 2DEA2C 0060+00 1/0 0/0 0/0 .text            __dt__12JUTExceptionFv */
 JUTException::~JUTException() {}

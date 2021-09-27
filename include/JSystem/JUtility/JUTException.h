@@ -20,7 +20,7 @@ private:
     /* 0x04 */ u32 mSize;
     /* 0x08 */ u32 field_0x08;
     /* 0x0C */ u16 field_0x0C;
-    /* 0x0D */ u16 field_0x0D;
+    /* 0x0E */ u16 mGamma;
     /* 0x10 */ bool field_0x10;
     /* 0x11 */ u8 field_[3];
 };
@@ -44,15 +44,13 @@ public:
     };
 
     class JUTExMapFile {
-#if 0
     public:
         JUTExMapFile(const char* path) : mLink(this) { mPath = path; }
 
-        /* 0x00 */ const char* mPath;
     public:
+        /* 0x00 */ const char* mPath;
         /* 0x04 */ JSULink<JUTExMapFile> mLink;
         /* 0x14 */
-#endif
     };
 
     /* 802E1D5C */ JUTException(JUTDirectPrint*);
@@ -73,7 +71,7 @@ public:
     /* 802E3A08 */ void createFB();
     /* 802E3AEC */ static OSErrorHandler setPreUserCallback(OSErrorHandler);
     /* 802E3AFC */ static OSErrorHandler setPostUserCallback(OSErrorHandler);
-    /* 802E3B0C */  void appendMapFile(char const*);
+    /* 802E3B0C */ static void appendMapFile(char const*);
     /* 802E3BA0 */ static bool queryMapAddress(char*, u32, s32, u32*, u32*, char*, u32, bool, bool);
     /* 802E3C90 */ static void queryMapAddress_single(char*, u32, s32, u32*, u32*, char*, u32, bool,
                                                       bool);
