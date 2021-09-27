@@ -4,6 +4,7 @@
 #ifndef OS_H_
 #define OS_H_
 
+#include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dolphin/types.h"
 
 /* TODO: more structs, and get rid of the ones that are faked! */
@@ -122,8 +123,6 @@ struct OSThread {
     void* data[2];
 };
 
-struct __va_list_struct;
-
 extern "C" {
 s32 OSEnableScheduler(void);
 s32 OSDisableScheduler(void);
@@ -165,7 +164,7 @@ void OSReportDisable(void);
 void OSReportEnable(void);
 void OSReportForceEnableOff(void);
 void OSReportForceEnableOn(void);
-void OSVReport(const char* format, __va_list_struct* list);
+void OSVReport(const char* format, va_list list);
 
 void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime* out_time);
 OSTime OSGetTime(void);
@@ -202,7 +201,7 @@ u8* OSGetStackPointer(void);
 
 void OSSwitchFiberEx(u32, u32, u32, u32, u32, u32);
 
-void OSVAttention(const char* fmt, __va_list_struct* va_list);
+void OSVAttention(const char* fmt, va_list args);
 
 void OSReportInit(void);
 

@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/JUtility/JUTException.h"
+#include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -336,7 +337,7 @@ static u8 context[712];
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm void JUTException::panic_f_va(char const* param_0, int param_1, char const* param_2,
-                                  __va_list_struct* param_3) {
+                                  va_list param_3) {
     nofralloc
 #include "asm/JSystem/JUtility/JUTException/panic_f_va__12JUTExceptionFPCciPCcP16__va_list_struct.s"
 }
