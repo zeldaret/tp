@@ -2,6 +2,7 @@
 #define JUTEXCEPTION_H
 
 #include "JSystem/JKernel/JKRThread.h"
+#include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTGamePad.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
@@ -42,7 +43,17 @@ public:
         EINFO_PAGE_SSR0_MAP = 5,
     };
 
-    class JUTExMapFile {};
+    class JUTExMapFile {
+#if 0
+    public:
+        JUTExMapFile(const char* path) : mLink(this) { mPath = path; }
+
+        /* 0x00 */ const char* mPath;
+    public:
+        /* 0x04 */ JSULink<JUTExMapFile> mLink;
+        /* 0x14 */
+#endif
+    };
 
     /* 802E1D5C */ JUTException(JUTDirectPrint*);
     /* 802E40EC */ virtual ~JUTException();
@@ -60,9 +71,9 @@ public:
     /* 802E2F54 */ bool readPad(u32*, u32*);
     /* 802E34C0 */ void printContext(u16, OSContext*, u32, u32);
     /* 802E3A08 */ void createFB();
-    /* 802E3AEC */ void setPreUserCallback(void (*)(u16, OSContext*, u32, u32));
-    /* 802E3AFC */ void setPostUserCallback(void (*)(u16, OSContext*, u32, u32));
-    /* 802E3B0C */ void appendMapFile(char const*);
+    /* 802E3AEC */ static OSErrorHandler setPreUserCallback(OSErrorHandler);
+    /* 802E3AFC */ static OSErrorHandler setPostUserCallback(OSErrorHandler);
+    /* 802E3B0C */  void appendMapFile(char const*);
     /* 802E3BA0 */ static bool queryMapAddress(char*, u32, s32, u32*, u32*, char*, u32, bool, bool);
     /* 802E3C90 */ static void queryMapAddress_single(char*, u32, s32, u32*, u32*, char*, u32, bool,
                                                       bool);

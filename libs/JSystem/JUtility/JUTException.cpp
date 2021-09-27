@@ -9,6 +9,7 @@
 #include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/float.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "msl_c/string.h"
 
 //
 // Types:
@@ -85,7 +86,6 @@ extern "C" u8 fpscr__12JUTException[4];
 // External References:
 //
 
-SECTION_INIT void memcpy();
 extern "C" void* __nw__FUl();
 extern "C" void* __nw__FUlP7JKRHeapi();
 extern "C" void __dl__FPv();
@@ -142,10 +142,6 @@ extern "C" void _restgpr_25();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
 extern "C" void __div2i();
-extern "C" void vsnprintf();
-extern "C" void strcmp();
-extern "C" void strcat();
-extern "C" void strcpy();
 extern "C" void strtol();
 extern "C" extern _GXRenderModeObj GXNtsc480Int;
 extern "C" extern u32 __OSFpscrEnableBits;
@@ -988,28 +984,39 @@ void JUTException::createFB() {
 
 /* 802E3AEC-802E3AFC 2DE42C 0010+00 0/0 1/1 0/0 .text
  * setPreUserCallback__12JUTExceptionFPFUsP9OSContextUlUl_v     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTException::setPreUserCallback(void (*param_0)(u16, OSContext*, u32, u32)) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/setPreUserCallback__12JUTExceptionFPFUsP9OSContextUlUl_v.s"
+OSErrorHandler JUTException::setPreUserCallback(OSErrorHandler callback) {
+    OSErrorHandler previous = sPreUserCallback;
+    sPreUserCallback = callback;
+    return previous;
 }
-#pragma pop
 
 /* 802E3AFC-802E3B0C 2DE43C 0010+00 0/0 1/1 0/0 .text
  * setPostUserCallback__12JUTExceptionFPFUsP9OSContextUlUl_v    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTException::setPostUserCallback(void (*param_0)(u16, OSContext*, u32, u32)) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/setPostUserCallback__12JUTExceptionFPFUsP9OSContextUlUl_v.s"
+OSErrorHandler JUTException::setPostUserCallback(OSErrorHandler callback) {
+    OSErrorHandler previous = sPostUserCallback;
+    sPostUserCallback = callback;
+    return previous;
 }
-#pragma pop
 
 /* 802E3B0C-802E3BA0 2DE44C 0094+00 0/0 1/1 0/0 .text            appendMapFile__12JUTExceptionFPCc
  */
+#if 0
+void JUTException::appendMapFile(char const* path) {
+    if (!path) {
+        return;
+    }
+
+    JSUListIterator<JUTExMapFile> iterator;
+    for (iterator = sMapFileList.getFirst(); iterator != sMapFileList.getEnd(); ++iterator) {
+        if (strcmp(path, iterator->mPath) == 0) {
+            return;
+        }
+    }
+
+    JUTExMapFile* mapFile = new JUTExMapFile(path);
+    sMapFileList.append(&mapFile->mLink);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1017,7 +1024,7 @@ asm void JUTException::appendMapFile(char const* param_0) {
     nofralloc
 #include "asm/JSystem/JUtility/JUTException/appendMapFile__12JUTExceptionFPCc.s"
 }
-#pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
