@@ -73,8 +73,6 @@ extern "C" extern u8 data_80450B84[4];
 extern "C" extern u8 data_80450B88[4];
 extern "C" extern u8 data_80450B8C[4];
 extern "C" extern u8 data_80450B90[4 + 4 /* padding */];
-extern "C" extern u8 struct_80450B98[4];
-extern "C" extern u8 data_80450B9C[4];
 
 //
 // External References:
@@ -967,15 +965,15 @@ extern u8 data_80450B90[4 + 4 /* padding */];
 u8 data_80450B90[4 + 4 /* padding */];
 
 /* 80450B98-80450B9C -00001 0004+00 0/0 6/6 0/0 .sbss            None */
-/* 80450B98 0001+00 data_80450B98 None */
-/* 80450B99 0001+00 data_80450B99 None */
-/* 80450B9A 0001+00 data_80450B9A None */
-/* 80450B9B 0001+00 data_80450B9B None */
-extern u8 struct_80450B98[4];
-u8 struct_80450B98[4];
+bool sOSReportDisabled;
+
+bool data_80450B99;
+
+bool data_80450B9A;
+
+bool data_80450B9B;
 
 /* 80450B9C-80450BA0 00009C 0004+00 0/0 3/3 0/0 .sbss            None */
-extern u8 data_80450B9C[4];
-u8 data_80450B9C[4];
+bool sOSReportForceEnable;
 
 /* 803739A0-803739A0 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

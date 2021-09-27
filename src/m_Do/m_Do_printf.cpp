@@ -6,54 +6,41 @@
 #include "m_Do/m_Do_printf.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct __va_list_struct {};
+#include "dolphin/os/OS.h"
 
 //
 // Forward References:
 //
 
-extern "C" static void OSSwitchFiberEx__FUlUlUlUlUlUl();
+extern "C" void OSSwitchFiberEx__FUlUlUlUlUlUl(u32, u32, u32, u32, u32, u32);
 extern "C" void my_PutString__FPCc();
-extern "C" static void OSVAttention__FPCcP16__va_list_struct();
-extern "C" void OSAttention();
+extern "C" void OSVAttention__FPCcP16__va_list_struct();
 extern "C" void OSReportDisable();
 extern "C" void OSReportEnable();
-extern "C" static void OSReportForceEnableOn();
-extern "C" static void OSReportForceEnableOff();
+extern "C" void OSReportForceEnableOn();
+extern "C" void OSReportForceEnableOff();
 extern "C" void OSReportInit__Fv();
-extern "C" static void mDoPrintf_vprintf_Interrupt__FPCcP16__va_list_struct();
-extern "C" static void mDoPrintf_vprintf_Thread__FPCcP16__va_list_struct();
-extern "C" static void mDoPrintf_vprintf__FPCcP16__va_list_struct();
-extern "C" static void mDoPrintf_VReport();
-extern "C" static void OSVReport();
-extern "C" void OSReport();
-extern "C" void OSReport_FatalError();
-extern "C" void OSReport_Error();
-extern "C" void OSReport_Warning();
-extern "C" void OSReport_System();
-extern "C" void OSPanic();
+extern "C" void mDoPrintf_vprintf_Interrupt__FPCcP16__va_list_struct();
+extern "C" void mDoPrintf_vprintf_Thread__FPCcP16__va_list_struct();
+extern "C" void mDoPrintf_vprintf__FPCcP16__va_list_struct();
+extern "C" void mDoPrintf_VReport(const char* fmt, __va_list_struct* args);
+extern "C" void OSVReport(const char* fmt, __va_list_struct* args);
+extern "C" void OSReport(const char*, ...);
+extern "C" void OSReport_FatalError(const char* fmt, ...);
+extern "C" void OSReport_Error(const char* fmt, ...);
+extern "C" void OSReport_Warning(const char* fmt, ...);
+extern "C" void OSReport_System(const char* fmt, ...);
 extern "C" extern char const* const m_Do_m_Do_printf__stringBase0;
 
 //
 // External References:
 //
 
-extern "C" void mDoExt_GetCurrentRunningThread__Fv();
+extern "C" OSThread* mDoExt_GetCurrentRunningThread__Fv();
 extern "C" void PPCHalt();
-extern "C" void OSGetStackPointer();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
-extern "C" void fflush();
-extern "C" void vprintf();
-extern "C" extern u8 struct_80450B98[4];
-extern "C" extern u8 data_80450B9C[4];
+extern "C" s32 fflush(FILE*);
 
 //
 // Declarations:
@@ -63,7 +50,7 @@ extern "C" extern u8 data_80450B9C[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void OSSwitchFiberEx(u32 param_0, u32 param_1, u32 param_2, u32 param_3, u32 param_4,
+asm void OSSwitchFiberEx(u32 param_0, u32 param_1, u32 param_2, u32 param_3, u32 param_4,
                                 u32 param_5) {
     nofralloc
 #include "asm/m_Do/m_Do_printf/OSSwitchFiberEx__FUlUlUlUlUlUl.s"
@@ -76,95 +63,66 @@ void my_PutString(const char* string) {
 }
 
 /* 800067F4-80006814 001134 0020+00 3/3 0/0 0/0 .text OSVAttention__FPCcP16__va_list_struct */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void OSVAttention(char const* param_0, __va_list_struct* param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/OSVAttention__FPCcP16__va_list_struct.s"
+void OSVAttention(char const* fmt, va_list args) {
+    mDoPrintf_vprintf(fmt, args);
 }
-#pragma pop
 
 /* 80006814-80006894 001154 0080+00 1/1 1/1 0/0 .text            OSAttention */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSAttention() {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/OSAttention.s"
+void OSAttention(const char* fmt, ...) {
+    va_list args;
+    va_start(args, fmt);
+    mDoPrintf_vprintf(fmt, args);
+    va_end(args);
 }
-#pragma pop
 
 /* 80006894-800068A0 0011D4 000C+00 0/0 1/1 0/0 .text            OSReportDisable */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSReportDisable() {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/OSReportDisable.s"
+void OSReportDisable() {
+    sOSReportDisabled = true;
 }
-#pragma pop
 
 /* 800068A0-800068AC 0011E0 000C+00 0/0 1/1 0/0 .text            OSReportEnable */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSReportEnable() {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/OSReportEnable.s"
+void OSReportEnable() {
+    sOSReportDisabled = false;
 }
-#pragma pop
 
 /* 800068AC-800068B8 0011EC 000C+00 4/4 0/0 0/0 .text            OSReportForceEnableOn */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void OSReportForceEnableOn() {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/OSReportForceEnableOn.s"
+void OSReportForceEnableOn() {
+    sOSReportForceEnable = true;
 }
-#pragma pop
 
 /* 800068B8-800068C4 0011F8 000C+00 4/4 0/0 0/0 .text            OSReportForceEnableOff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void OSReportForceEnableOff() {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/OSReportForceEnableOff.s"
+void OSReportForceEnableOff() {
+    sOSReportForceEnable = false;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450BA0-80450BA4 0000A0 0004+00 1/1 0/0 0/0 .sbss            __OSReport_MonopolyThread */
-static u8 __OSReport_MonopolyThread[4];
+static OSThread* __OSReport_MonopolyThread;
 
 /* 80450BA4-80450BA8 0000A4 0004+00 1/1 0/0 0/0 .sbss            print_counts */
-static u8 print_counts[4];
+static u32 print_counts;
 
 /* 80450BA8-80450BAC 0000A8 0004+00 2/2 0/0 0/0 .sbss            print_errors */
-static u8 print_errors[4];
+static u32 print_errors;
 
 /* 80450BAC-80450BB0 0000AC 0004+00 1/1 0/0 0/0 .sbss            print_warings */
-static u8 print_warings[4];
+static u32 print_warings;
 
 /* 80450BB0-80450BB4 0000B0 0004+00 1/1 0/0 0/0 .sbss            print_systems */
-static u8 print_systems[4];
+static u32 print_systems;
 
 /* 80450BB4-80450BB8 -00001 0004+00 3/3 0/0 0/0 .sbss            None */
-/* 80450BB4 0001+00 data_80450BB4 None */
-/* 80450BB5 0003+00 data_80450BB5 None */
-static u8 struct_80450BB4[4];
+static bool sOSReportInit;
+
+static bool data_80450BB5;
 
 /* 800068C4-800068DC 001204 0018+00 1/1 1/1 0/0 .text            OSReportInit__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSReportInit() {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/OSReportInit__Fv.s"
+void OSReportInit() {
+    if (sOSReportInit) {
+        return;
+    }
+    sOSReportInit = true;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803DB740-803DBF40 008460 0800+00 1/1 0/0 0/0 .bss             mDoPrintf_FiberStack */
@@ -172,139 +130,125 @@ static u8 mDoPrintf_FiberStack[2048] ALIGN_DECL(32);
 
 /* 800068DC-80006964 00121C 0088+00 1/1 0/0 0/0 .text
  * mDoPrintf_vprintf_Interrupt__FPCcP16__va_list_struct         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void mDoPrintf_vprintf_Interrupt(char const* param_0, __va_list_struct* param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/mDoPrintf_vprintf_Interrupt__FPCcP16__va_list_struct.s"
+void mDoPrintf_vprintf_Interrupt(char const* fmt, __va_list_struct* args) {
+    s32 interruptStatus = OSDisableInterrupts();
+    if (!data_80450BB5) {
+        data_80450BB5 = true;
+        OSSwitchFiberEx((u32)fmt, (u32)args, 0, 0, (u32)vprintf, (u32)&mDoPrintf_FiberStack + sizeof(mDoPrintf_FiberStack));
+        data_80450BB5 = false;
+    }
+    OSRestoreInterrupts(interruptStatus);
 }
-#pragma pop
 
 /* 80006964-80006984 0012A4 0020+00 1/1 0/0 0/0 .text
  * mDoPrintf_vprintf_Thread__FPCcP16__va_list_struct            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void mDoPrintf_vprintf_Thread(char const* param_0, __va_list_struct* param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/mDoPrintf_vprintf_Thread__FPCcP16__va_list_struct.s"
+void mDoPrintf_vprintf_Thread(char const* fmt, __va_list_struct* args) {
+    vprintf(fmt, args);
 }
-#pragma pop
 
 /* 80006984-80006A10 0012C4 008C+00 4/4 0/0 0/0 .text mDoPrintf_vprintf__FPCcP16__va_list_struct
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void mDoPrintf_vprintf(char const* param_0, __va_list_struct* param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/mDoPrintf_vprintf__FPCcP16__va_list_struct.s"
+void mDoPrintf_vprintf(char const* fmt, __va_list_struct* args) {
+    OSThread* currentThread = mDoExt_GetCurrentRunningThread__Fv();
+    if (currentThread == NULL) {
+        mDoPrintf_vprintf_Interrupt(fmt, args);
+    } else {
+        u8* stackPtr = OSGetStackPointer();
+        if (stackPtr < currentThread->stack_end + 0xA00 || stackPtr > currentThread->stack_base) {
+            mDoPrintf_vprintf_Interrupt(fmt, args);
+        } else {
+            mDoPrintf_vprintf_Thread(fmt, args);
+        }
+    }
 }
-#pragma pop
 
 /* 80006A10-80006A9C 001350 008C+00 1/1 0/0 0/0 .text            mDoPrintf_VReport */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void mDoPrintf_VReport() {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/mDoPrintf_VReport.s"
+void mDoPrintf_VReport(const char* fmt, __va_list_struct* args) {
+    if (!sOSReportInit) {
+        OSReportInit();
+    }
+    if (sOSReportForceEnable || !sOSReportDisabled) {
+        OSThread* currentThread = mDoExt_GetCurrentRunningThread__Fv();
+        if (__OSReport_MonopolyThread == NULL || __OSReport_MonopolyThread == currentThread) {
+            mDoPrintf_vprintf(fmt, args);
+            print_counts++;
+        }
+    }
 }
-#pragma pop
 
 /* 80006A9C-80006ABC 0013DC 0020+00 2/2 0/0 0/0 .text            OSVReport */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void OSVReport() {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/OSVReport.s"
+void OSVReport(const char* fmt, __va_list_struct* args) {
+    mDoPrintf_VReport(fmt, args);
 }
-#pragma pop
 
 /* 80006ABC-80006B3C 0013FC 0080+00 0/0 97/97 10/10 .text            OSReport */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSReport() {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/OSReport.s"
+void OSReport(const char* fmt, ...) {
+    va_list args;
+    va_start(args, fmt);
+    OSVReport(fmt, args);
+    va_end(args);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80373CB0-80373CB0 000310 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80373CB0 = ""
-                                                            "\x1B"
-                                                            "[41;37m***** FATAL ERROR *****\n";
-SECTION_DEAD static char const* const stringBase_80373CD1 = "***** FATAL ERROR *****\n"
-                                                            "\x1B"
-                                                            "[m";
-#pragma pop
 
 /* 80006B3C-80006C0C 00147C 00D0+00 0/0 2/2 0/0 .text            OSReport_FatalError */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSReport_FatalError() {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/OSReport_FatalError.s"
-}
-#pragma pop
+void OSReport_FatalError(const char* fmt, ...) {
+    va_list args;
+    va_start(args, fmt);
 
-/* ############################################################################################## */
-/* 80373CB0-80373CB0 000310 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80373CED = ""
-                                                            "\x1B"
-                                                            "[41;37m[ERROR]";
-SECTION_DEAD static char const* const stringBase_80373CFD = ""
-                                                            "\x1B"
-                                                            "[m";
-#pragma pop
+    OSReportForceEnableOn();
+    my_PutString("\x1B[41;37m***** FATAL ERROR *****\n");
+    OSVAttention(fmt, args);
+    my_PutString("***** FATAL ERROR *****\n\x1B[m");
+    OSReportForceEnableOff();
+    fflush(&__files.stdout);
+    print_errors++;
+
+    va_end(args);
+}
 
 /* 80006C0C-80006CEC 00154C 00E0+00 0/0 31/31 10/10 .text            OSReport_Error */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSReport_Error() {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/OSReport_Error.s"
+void OSReport_Error(const char* fmt, ...) {
+    print_errors++;
+    if (!data_80450B99) {
+        va_list args;
+        va_start(args, fmt);
+        OSReportForceEnableOn();
+        my_PutString("\x1B[41;37m[ERROR]");
+        OSVReport(fmt, args);
+        my_PutString("\x1B[m");
+        OSReportForceEnableOff();
+        fflush(&__files.stdout);
+        va_end(args);
+    }
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80373CB0-80373CB0 000310 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80373D01 = ""
-                                                            "\x1B"
-                                                            "[43;30m[WARN]";
-#pragma pop
 
 /* 80006CEC-80006DCC 00162C 00E0+00 0/0 6/6 0/0 .text            OSReport_Warning */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSReport_Warning() {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/OSReport_Warning.s"
+void OSReport_Warning(const char* fmt, ...) {
+    print_warings++;
+    if (!data_80450B9A) {
+        va_list args;
+        va_start(args, fmt);
+        OSReportForceEnableOn();
+        my_PutString("\x1B[43;30m[WARN]");
+        OSVAttention(fmt, args);
+        my_PutString("\x1B[m");
+        OSReportForceEnableOff();
+        fflush(&__files.stdout);
+        va_end(args);
+    }
 }
-#pragma pop
 
 /* 80006DCC-80006E7C 00170C 00B0+00 0/0 1/1 0/0 .text            OSReport_System */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSReport_System() {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/OSReport_System.s"
+void OSReport_System(const char* fmt, ...) {
+    print_systems++;
+    if (!data_80450B9B) {
+        va_list args;
+        va_start(args, fmt);
+        OSReportForceEnableOn();
+        OSVAttention(fmt, args);
+        OSReportForceEnableOff();
+        va_end(args);
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80373CB0-80373CB0 000310 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -317,13 +261,38 @@ SECTION_DEAD static char const* const stringBase_80373D4C = "0x%08x:   0x%08x   
 #pragma pop
 
 /* 80006E7C-80006FB4 0017BC 0138+00 0/0 9/9 0/0 .text            OSPanic */
+// loop stuff / ending
+#ifdef NONMATCHING
+void OSPanic(const char* file, s32 line, const char* fmt, ...) {
+    OSDisableInterrupts();
+
+    va_list args;
+    va_start(args, fmt);
+    
+    mDoPrintf_vprintf(fmt, args);
+    OSAttention(" in \"%s\" on line %d.\n", file, line);
+    OSAttention("\nAddress:      Back Chain    LR Save\n");
+
+    u32 tmp = 0;
+    u8* stackPtr = OSGetStackPointer();
+    while (stackPtr != NULL && tmp < 0x10) {
+        OSAttention("0x%08x:   0x%08x    0x%08x\n", stackPtr, *(u32*)stackPtr, *(u32*)(stackPtr + 4));
+        stackPtr++;
+        tmp++;
+    }
+    PPCHalt();
+
+    va_end(args);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSPanic() {
+asm void OSPanic(const char* file, s32 line, const char* fmt, ...) {
     nofralloc
 #include "asm/m_Do/m_Do_printf/OSPanic.s"
 }
 #pragma pop
+#endif
 
 /* 80373CB0-80373CB0 000310 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

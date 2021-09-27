@@ -3,6 +3,7 @@
 
 #include "dolphin/types.h"
 
+void print_f(char const*, ...);
 void print(char const*);
 void dispHeapInfo();
 void dispGameInfo();

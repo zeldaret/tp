@@ -4,6 +4,8 @@
 //
 
 #include "JSystem/JUtility/JUTConsole.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -21,24 +23,6 @@ struct JUTDirectPrint {
     /* 802E4798 */ void setCharColor(JUtility::TColor);
 
     static u8 sDirectPrint[4 + 4 /* padding */];
-};
-
-struct JKRHeap {
-    /* 802CE474 */ void alloc(u32, int, JKRHeap*);
-
-    static u8 sCurrentHeap[4];
-};
-
-struct JUTConsoleManager {
-    /* 802E81CC */ JUTConsoleManager();
-    /* 802E81F4 */ void createManager(JKRHeap*);
-    /* 802E8240 */ void appendConsole(JUTConsole*);
-    /* 802E82B0 */ void removeConsole(JUTConsole*);
-    /* 802E8384 */ void draw() const;
-    /* 802E8450 */ void drawDirect(bool) const;
-    /* 802E84C4 */ void setDirectConsole(JUTConsole*);
-
-    static u8 sManager[4];
 };
 
 struct J2DOrthoGraph {
@@ -60,7 +44,6 @@ extern "C" void clear__10JUTConsoleFv();
 extern "C" void doDraw__10JUTConsoleCFQ210JUTConsole12EConsoleType();
 extern "C" void print_f__10JUTConsoleFPCce();
 extern "C" void print__10JUTConsoleFPCc();
-extern "C" void JUTConsole_print_f_va_();
 extern "C" void dumpToTerminal__10JUTConsoleFUi();
 extern "C" void scroll__10JUTConsoleFi();
 extern "C" void getUsedLine__10JUTConsoleCFv();
@@ -72,15 +55,9 @@ extern "C" void removeConsole__17JUTConsoleManagerFP10JUTConsole();
 extern "C" void draw__17JUTConsoleManagerCFv();
 extern "C" void drawDirect__17JUTConsoleManagerCFb();
 extern "C" void setDirectConsole__17JUTConsoleManagerFP10JUTConsole();
-extern "C" void JUTSetReportConsole();
-extern "C" u32 JUTGetReportConsole();
-extern "C" void JUTSetWarningConsole();
-extern "C" u32 JUTGetWarningConsole();
-extern "C" static void JUTReportConsole_f_va();
-extern "C" void JUTReportConsole_f();
-extern "C" void JUTReportConsole();
-extern "C" void JUTWarningConsole_f();
-extern "C" void JUTWarningConsole();
+extern "C" void JUTReportConsole(const char* message);
+extern "C" void JUTWarningConsole_f(const char* fmt, ...);
+extern "C" void JUTWarningConsole(const char*);
 extern "C" extern char const* const JUTConsole__stringBase0;
 extern "C" u8 sManager__17JUTConsoleManager[4];
 
@@ -88,7 +65,6 @@ extern "C" u8 sManager__17JUTConsoleManager[4];
 // External References:
 //
 
-extern "C" void OSReport();
 extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
 extern "C" void* __nw__FUlP7JKRHeapi();
 extern "C" void __dl__FPv();
@@ -105,9 +81,7 @@ extern "C" void setCharColor__14JUTDirectPrintFQ28JUtility6TColor();
 extern "C" void __ct__13J2DOrthoGraphFffffff();
 extern "C" void setPort__13J2DOrthoGraphFv();
 extern "C" void J2DFillBox__FffffQ28JUtility6TColor();
-extern "C" void OSEnableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void VIGetRetraceCount();
+extern "C" u32 VIGetRetraceCount();
 extern "C" void _savegpr_20();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
@@ -116,7 +90,6 @@ extern "C" void _restgpr_20();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void vsnprintf();
 extern "C" void strlen();
 extern "C" extern void* __vt__14J2DGrafContext[10];
 extern "C" extern void* __vt__13J2DOrthoGraph[10];
@@ -130,7 +103,7 @@ extern "C" u8 sManager__8JUTVideo[4];
 
 /* ############################################################################################## */
 /* 80451570-80451574 000A70 0004+00 4/4 7/7 0/0 .sbss            sManager__17JUTConsoleManager */
-u8 JUTConsoleManager::sManager[4];
+JUTConsoleManager* JUTConsoleManager::sManager;
 
 /* 802E7354-802E73E4 2E1C94 0090+00 0/0 1/1 0/0 .text            create__10JUTConsoleFUiUiP7JKRHeap
  */
@@ -164,55 +137,60 @@ SECTION_DATA extern void* __vt__10JUTConsole[3 + 1 /* padding */] = {
 };
 
 /* 802E746C-802E755C 2E1DAC 00F0+00 2/2 0/0 0/0 .text            __ct__10JUTConsoleFUiUib */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JUTConsole::JUTConsole(unsigned int param_0, unsigned int param_1, bool param_2) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/__ct__10JUTConsoleFUiUib.s"
+JUTConsole::JUTConsole(unsigned int param_0, unsigned int param_1, bool param_2) {
+    field_0x2c = param_2;
+    field_0x20 = param_0;
+    field_0x24 = param_1;
+    
+    mPositionX = 30;
+    mPositionY = 50;
+    mHeight = 20;
+    
+    if (mHeight > field_0x24) {
+        mHeight = field_0x24;
+    }
+
+    mFont = NULL;
+    mVisible = true;
+    field_0x69 = false;
+    field_0x6a = false;
+    field_0x6b = false;
+    mOutput = 1;
+
+    field_0x5c.set(0, 0, 0, 100);
+    field_0x60.set(0, 0, 0, 230);
+    field_0x64 = 8;
 }
-#pragma pop
 
 /* 802E755C-802E75CC 2E1E9C 0070+00 1/0 0/0 0/0 .text            __dt__10JUTConsoleFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JUTConsole::~JUTConsole() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/__dt__10JUTConsoleFv.s"
+JUTConsole::~JUTConsole() {
+    JUTConsoleManager::getManager()->removeConsole(this);
 }
-#pragma pop
 
 /* 802E75CC-802E75DC 2E1F0C 0010+00 1/1 0/0 0/0 .text
  * getObjectSizeFromBufferSize__10JUTConsoleFUiUi               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTConsole::getObjectSizeFromBufferSize(unsigned int param_0, unsigned int param_1) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/getObjectSizeFromBufferSize__10JUTConsoleFUiUi.s"
+size_t JUTConsole::getObjectSizeFromBufferSize(unsigned int param_0, unsigned int param_1) {
+    return (param_0 + 2) * param_1 + sizeof(JUTConsole);
 }
-#pragma pop
 
 /* 802E75DC-802E75EC 2E1F1C 0010+00 1/1 1/1 0/0 .text getLineFromObjectSize__10JUTConsoleFUlUi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTConsole::getLineFromObjectSize(u32 param_0, unsigned int param_1) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/getLineFromObjectSize__10JUTConsoleFUlUi.s"
+size_t JUTConsole::getLineFromObjectSize(u32 param_0, unsigned int param_1) {
+    return (param_0 - sizeof(JUTConsole)) / (param_1 + 2);
 }
-#pragma pop
 
 /* 802E75EC-802E7648 2E1F2C 005C+00 2/2 2/2 0/0 .text            clear__10JUTConsoleFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTConsole::clear() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/clear__10JUTConsoleFv.s"
+void JUTConsole::clear() {
+    field_0x30 = 0;
+    field_0x34 = 0;
+    field_0x38 = 0;
+    field_0x3c = 0;
+
+    for (int i = 0; i < field_0x24; i++) {
+        setLineAttr(i, 0);
+    }
+    setLineAttr(0, -1);
+    *getLinePtr(0) = 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80456118-8045611C 004718 0004+00 1/1 0/0 0/0 .sdata2          @2460 */
@@ -263,14 +241,12 @@ asm void JUTConsole::doDraw(JUTConsole::EConsoleType param_0) const {
 #pragma pop
 
 /* 802E7BB8-802E7C38 2E24F8 0080+00 0/0 13/13 0/0 .text            print_f__10JUTConsoleFPCce */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTConsole::print_f(char const* param_0, ...) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/print_f__10JUTConsoleFPCce.s"
+void JUTConsole::print_f(char const* fmt, ...) {
+    va_list args;
+    va_start(args, fmt);
+    JUTConsole_print_f_va_(this, fmt, args);
+    va_end(args);
 }
-#pragma pop
 
 /* 802E7C38-802E7F30 2E2578 02F8+00 2/2 10/10 0/0 .text            print__10JUTConsoleFPCc */
 #pragma push
@@ -283,14 +259,11 @@ asm void JUTConsole::print(char const* param_0) {
 #pragma pop
 
 /* 802E7F30-802E7F7C 2E2870 004C+00 1/1 1/1 0/0 .text            JUTConsole_print_f_va_ */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTConsole_print_f_va_() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/JUTConsole_print_f_va_.s"
+void JUTConsole_print_f_va_(JUTConsole* console, const char* fmt, va_list args) {
+    char buf[1024];
+    vsnprintf(buf, sizeof(buf), fmt, args);
+    console->print(buf);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039D9A8-8039D9A8 02A008 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -311,6 +284,36 @@ asm void JUTConsole::dumpToTerminal(unsigned int param_0) {
 #pragma pop
 
 /* 802E80A8-802E8184 2E29E8 00DC+00 0/0 3/3 0/0 .text            scroll__10JUTConsoleFi */
+// regalloc
+#ifdef NONMATCHING
+void JUTConsole::scroll(int param_0) {
+    if (param_0 < 0) {
+        int diff = diffIndex(field_0x34, field_0x30);
+        if (param_0 < -diff) {
+            param_0 = -diff;
+        }
+    } else {
+        if (param_0 > 0) {
+            int diff = diffIndex(field_0x34, field_0x38);
+            if (diff + 1 <= mHeight) {
+                param_0 = 0;
+            } else {
+                diff = diffIndex(field_0x30, field_0x38);
+                if (param_0 > (int)(diff - mHeight) + 1) {
+                    param_0 = diff;
+                }
+            }
+        }
+    }
+    field_0x30 += param_0;
+    if (field_0x30 < 0) {
+        field_0x30 += field_0x24;
+    }
+    if (field_0x30 >= field_0x24) {
+        field_0x30 -= field_0x24;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -319,50 +322,45 @@ asm void JUTConsole::scroll(int param_0) {
 #include "asm/JSystem/JUtility/JUTConsole/scroll__10JUTConsoleFi.s"
 }
 #pragma pop
+#endif
 
 /* 802E8184-802E81A8 2E2AC4 0024+00 0/0 2/2 0/0 .text            getUsedLine__10JUTConsoleCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTConsole::getUsedLine() const {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/getUsedLine__10JUTConsoleCFv.s"
+int JUTConsole::getUsedLine() const {
+    return diffIndex(field_0x34, field_0x38);
 }
-#pragma pop
 
 /* 802E81A8-802E81CC 2E2AE8 0024+00 0/0 3/3 0/0 .text            getLineOffset__10JUTConsoleCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int JUTConsole::getLineOffset() const {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/getLineOffset__10JUTConsoleCFv.s"
+int JUTConsole::getLineOffset() const {
+    return diffIndex(field_0x34, field_0x30);
 }
-#pragma pop
 
 /* 802E81CC-802E81F4 2E2B0C 0028+00 1/1 0/0 0/0 .text            __ct__17JUTConsoleManagerFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JUTConsoleManager::JUTConsoleManager() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/__ct__17JUTConsoleManagerFv.s"
+JUTConsoleManager::JUTConsoleManager() {
+    mActiveConsole = NULL;
+    mDirectConsole = NULL;
 }
-#pragma pop
 
 /* 802E81F4-802E8240 2E2B34 004C+00 0/0 1/1 0/0 .text createManager__17JUTConsoleManagerFP7JKRHeap
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTConsoleManager::createManager(JKRHeap* param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/createManager__17JUTConsoleManagerFP7JKRHeap.s"
+JUTConsoleManager* JUTConsoleManager::createManager(JKRHeap* pHeap) {
+    if (pHeap == NULL) {
+        pHeap = JKRHeap::sCurrentHeap;
+    }
+    JUTConsoleManager* manager = new (pHeap, 0) JUTConsoleManager();
+    sManager = manager;
+    return manager;
 }
-#pragma pop
 
 /* 802E8240-802E82B0 2E2B80 0070+00 3/3 0/0 0/0 .text
  * appendConsole__17JUTConsoleManagerFP10JUTConsole             */
+#ifdef NONMATCHING
+void JUTConsoleManager::appendConsole(JUTConsole* param_0) {
+    mLinkList.Push_back(param_0);
+    if (mActiveConsole == NULL) {
+        mActiveConsole = param_0;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -371,6 +369,7 @@ asm void JUTConsoleManager::appendConsole(JUTConsole* param_0) {
 #include "asm/JSystem/JUtility/JUTConsole/appendConsole__17JUTConsoleManagerFP10JUTConsole.s"
 }
 #pragma pop
+#endif
 
 /* 802E82B0-802E8384 2E2BF0 00D4+00 2/2 0/0 0/0 .text
  * removeConsole__17JUTConsoleManagerFP10JUTConsole             */
@@ -395,83 +394,81 @@ asm void JUTConsoleManager::draw() const {
 
 /* 802E8450-802E84C4 2E2D90 0074+00 0/0 5/5 0/0 .text            drawDirect__17JUTConsoleManagerCFb
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTConsoleManager::drawDirect(bool param_0) const {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/drawDirect__17JUTConsoleManagerCFb.s"
+void JUTConsoleManager::drawDirect(bool param_0) const {
+    if (mDirectConsole != NULL) {
+        if (param_0) {
+            s32 interrupt_status = OSEnableInterrupts();
+            u32 retrace_count = VIGetRetraceCount();
+            u32 new_count;
+            do {
+                new_count = VIGetRetraceCount();
+            } while (retrace_count == new_count);
+            OSRestoreInterrupts(interrupt_status);
+        }
+        mDirectConsole->doDraw(JUTConsole::UNK_TYPE2);
+    }
 }
-#pragma pop
 
 /* 802E84C4-802E8520 2E2E04 005C+00 0/0 2/2 0/0 .text
  * setDirectConsole__17JUTConsoleManagerFP10JUTConsole          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTConsoleManager::setDirectConsole(JUTConsole* param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/setDirectConsole__17JUTConsoleManagerFP10JUTConsole.s"
+void JUTConsoleManager::setDirectConsole(JUTConsole* pConsole) {
+    if (mDirectConsole != NULL) {
+        appendConsole(mDirectConsole);
+    }
+
+    if (pConsole != NULL) {
+        removeConsole(pConsole);
+    }
+    mDirectConsole = pConsole;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451574-80451578 000A74 0004+00 2/1 0/0 0/0 .sbss            sReportConsole */
-static u8 sReportConsole[4];
+static JUTConsole* sReportConsole;
 
 /* 802E8520-802E8528 2E2E60 0008+00 1/1 1/1 0/0 .text            JUTSetReportConsole */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTSetReportConsole() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/JUTSetReportConsole.s"
+void JUTSetReportConsole(JUTConsole* pConsole) {
+    sReportConsole = pConsole;
 }
-#pragma pop
 
 /* 802E8528-802E8530 -00001 0008+00 0/0 0/0 0/0 .text            JUTGetReportConsole */
-u32 JUTGetReportConsole() {
-    return *(u32*)(&sReportConsole);
+JUTConsole* JUTGetReportConsole() {
+    return sReportConsole;
 }
 
 /* ############################################################################################## */
 /* 80451578-80451580 000A78 0004+04 2/1 0/0 0/0 .sbss            sWarningConsole */
-static u8 sWarningConsole[4 + 4 /* padding */];
+static JUTConsole* sWarningConsole;
 
 /* 802E8530-802E8538 2E2E70 0008+00 1/1 1/1 0/0 .text            JUTSetWarningConsole */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTSetWarningConsole() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/JUTSetWarningConsole.s"
+void JUTSetWarningConsole(JUTConsole* pConsole) {
+    sWarningConsole = pConsole;
 }
-#pragma pop
 
 /* 802E8538-802E8540 -00001 0008+00 0/0 0/0 0/0 .text            JUTGetWarningConsole */
-u32 JUTGetWarningConsole() {
-    return *(u32*)(&sWarningConsole);
+JUTConsole* JUTGetWarningConsole() {
+    return sWarningConsole;
 }
 
 /* 802E8540-802E85C8 2E2E80 0088+00 2/2 0/0 0/0 .text            JUTReportConsole_f_va */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void JUTReportConsole_f_va() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/JUTReportConsole_f_va.s"
+void JUTReportConsole_f_va(const char* fmt, va_list args) {
+    char buf[256];
+
+    if (JUTGetReportConsole() == NULL) {
+        vsnprintf(buf, sizeof(buf), fmt, args);
+    } else if (JUTGetReportConsole()->getOutput() & 3) {
+        vsnprintf(buf, sizeof(buf), fmt, args);
+        JUTGetReportConsole()->print(buf);
+    }
 }
-#pragma pop
 
 /* 802E85C8-802E8648 2E2F08 0080+00 2/2 8/8 0/0 .text            JUTReportConsole_f */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTReportConsole_f() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/JUTReportConsole_f.s"
+void JUTReportConsole_f(const char* fmt, ...) {
+    va_list args;
+    va_start(args, fmt);
+    JUTReportConsole_f_va(fmt, args);
+    va_end(args);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039D9A8-8039D9A8 02A008 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -487,33 +484,21 @@ SECTION_DEAD static char const* const pad_8039DA0B = "\0\0\0\0\0\0\0\0\0\0\0\0\0
 #pragma pop
 
 /* 802E8648-802E867C 2E2F88 0034+00 0/0 6/6 0/0 .text            JUTReportConsole */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTReportConsole() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/JUTReportConsole.s"
+void JUTReportConsole(const char* message) {
+    JUTReportConsole_f("%s", message);
 }
-#pragma pop
 
 /* 802E867C-802E86FC 2E2FBC 0080+00 0/0 9/9 0/0 .text            JUTWarningConsole_f */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTWarningConsole_f() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/JUTWarningConsole_f.s"
+void JUTWarningConsole_f(const char* fmt, ...) {
+    va_list args;
+    va_start(args, fmt);
+    JUTReportConsole_f_va(fmt, args);
+    va_end(args);
 }
-#pragma pop
 
 /* 802E86FC-802E8730 2E303C 0034+00 0/0 2/2 0/0 .text            JUTWarningConsole */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTWarningConsole() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/JUTWarningConsole.s"
+void JUTWarningConsole(const char* message) {
+    JUTReportConsole_f("%s", message);
 }
-#pragma pop
 
 /* 8039D9A8-8039D9A8 02A008 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

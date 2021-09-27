@@ -122,7 +122,7 @@ struct OSThread {
     void* data[2];
 };
 
-struct __va_list_struct {};
+struct __va_list_struct;
 
 extern "C" {
 s32 OSEnableScheduler(void);
