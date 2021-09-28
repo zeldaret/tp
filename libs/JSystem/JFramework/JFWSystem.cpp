@@ -47,10 +47,6 @@ struct JUTDbPrint {
     /* 802E0204 */ void changeFont(JUTFont*);
 };
 
-struct JUTConsoleManager {
-    /* 802E81F4 */ void createManager(JKRHeap*);
-};
-
 struct JUTAssertion {
     /* 802E495C */ void create();
 };

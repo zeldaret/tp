@@ -30,13 +30,6 @@ struct cMl {
     /* 80263220 */ void init(JKRHeap*);
 };
 
-struct JUTConsoleManager {
-    /* 802E8450 */ void drawDirect(bool) const;
-    /* 802E84C4 */ void setDirectConsole(JUTConsole*);
-
-    static u8 sManager[4];
-};
-
 struct JUTAssertion {
     /* 802E4C34 */ static void setVisible(bool);
 };

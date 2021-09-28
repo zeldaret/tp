@@ -7,6 +7,7 @@
 #include "JSystem/JFramework/JFWSystem.h"
 #include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JUtility/JUTConsole.h"
+#include "Runtime.PPCEABI.H/__va_arg.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
@@ -26,7 +27,6 @@ struct DynamicModuleControlBase {
 //
 
 extern "C" void dump__24DynamicModuleControlBaseFv();
-extern "C" void JUTConsole_print_f_va_();
 
 //
 // Declarations:
@@ -39,15 +39,12 @@ static JUTConsole* sConsole;
 u8 struct_80450C94[4];
 #pragma pop
 
-/* 80017D7C-80017E08 0126BC 008C+00 3/3 0/0 0/0 .text            print_f__FPCce */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void print_f(char const* param_0, ...) {
-    nofralloc
-#include "asm/m_Do/m_Do_machine_exception/print_f__FPCce.s"
+void print_f(char const* fmt, ...) {
+    va_list args;
+    va_start(args, fmt);
+    JUTConsole_print_f_va_(sConsole, fmt, args);
+    va_end(args);
 }
-#pragma pop
 
 void print(char const* string) {
     sConsole->print(string);

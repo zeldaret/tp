@@ -49,4 +49,10 @@ struct mDoMain {
 
 extern s8 data_80450580;
 
+extern bool sOSReportDisabled;
+extern bool data_80450B99;
+extern bool data_80450B9A;
+extern bool data_80450B9B;
+extern bool sOSReportForceEnable;
+
 #endif /* M_DO_M_DO_MAIN_H */

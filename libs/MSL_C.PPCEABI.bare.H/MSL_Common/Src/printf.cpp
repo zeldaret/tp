@@ -4,7 +4,6 @@
 //
 
 #include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf.h"
-#include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -12,12 +11,7 @@
 // Forward References:
 //
 
-extern "C" void sprintf();
-extern "C" void snprintf();
-extern "C" size_t vsnprintf(char* buffer, size_t buffer_size, const char* format, va_list args);
-extern "C" void vprintf();
 extern "C" void fprintf();
-extern "C" void printf();
 extern "C" void __StringWrite();
 extern "C" void __FileWrite();
 extern "C" void __pformatter();
@@ -57,7 +51,7 @@ extern "C" extern u8 __ctype_map[256];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void sprintf() {
+asm size_t sprintf(const char*, const char*, ...) {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf/sprintf.s"
 }
@@ -67,7 +61,7 @@ asm void sprintf() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void snprintf() {
+asm size_t snprintf(const char*, size_t, const char*, ...) {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf/snprintf.s"
 }
@@ -87,7 +81,7 @@ asm size_t vsnprintf(char* buffer, size_t buffer_size, const char* format, va_li
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void vprintf() {
+asm size_t vprintf(const char*, va_list) {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf/vprintf.s"
 }
@@ -107,7 +101,7 @@ asm void fprintf() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void printf() {
+asm size_t printf(const char*, ...) {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf/printf.s"
 }
