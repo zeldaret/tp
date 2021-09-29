@@ -8,15 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct JASSoundParams {
-    /* 8029E3B0 */ void clamp();
-    /* 8029E47C */ void combine(JASSoundParams const&, JASSoundParams const&);
-};
-
-//
 // Forward References:
 //
 

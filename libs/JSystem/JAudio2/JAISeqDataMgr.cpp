@@ -8,18 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct JAISeqDataUser {
-    /* 802A1774 */ ~JAISeqDataUser();
-};
-
-struct JAISeqDataMgr {
-    /* 802A17BC */ ~JAISeqDataMgr();
-};
-
-//
 // Forward References:
 //
 

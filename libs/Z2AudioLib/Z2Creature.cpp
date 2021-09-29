@@ -100,11 +100,6 @@ struct Z2Audience {
     /* 802BDB44 */ void calcRelPosDolby(Vec const&, int);
 };
 
-struct JAISoundParamsMove {
-    /* 802A2DB4 */ void moveVolume(f32, u32);
-    /* 802A2E0C */ void movePitch(f32, u32);
-};
-
 //
 // Forward References:
 //

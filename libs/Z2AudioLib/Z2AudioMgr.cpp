@@ -11,18 +11,6 @@
 // Types:
 //
 
-struct Z2SpeechMgr2 {
-    /* 802CBC60 */ Z2SpeechMgr2();
-    /* 802CC9D0 */ void framework();
-};
-
-struct Z2SoundMgr {
-    /* 802A9E80 */ Z2SoundMgr();
-    /* 802AA67C */ void framework();
-    /* 802AA84C */ void stopSync();
-    /* 802AA908 */ void initParams();
-};
-
 struct Z2Param {
     static f32 VOL_BGM_DEFAULT;
     static f32 VOL_SE_SYSTEM_DEFAULT;
@@ -35,20 +23,12 @@ struct Z2Param {
     static f32 VOL_SE_ATMOSPHERE_DEFAULT;
 };
 
-struct Z2FxLineMgr {
-    /* 802BA7DC */ Z2FxLineMgr();
-};
-
 struct JAUSection {
     /* 802A50F8 */ void finishBuild();
 };
 
 struct Z2AudioArcLoader {
     /* 802A9A34 */ Z2AudioArcLoader(JAUSection*);
-};
-
-struct Z2Audience {
-    /* 802BD130 */ Z2Audience();
 };
 
 struct JAU_JASInitializer {
@@ -130,6 +110,7 @@ struct JASDriver {
     /* 8029E178 */ void setOutputMode(u32);
 };
 
+
 struct JASAramStream {
     static u8 sBlockSize[4];
 };
@@ -138,22 +119,8 @@ struct JAIStreamAramMgr {
     /* 802A3B20 */ ~JAIStreamAramMgr();
 };
 
-struct JAISoundParamsMove {
-    /* 802A2DB4 */ void moveVolume(f32, u32);
-};
-
 struct JAISoundInfo {
     /* 802A2D34 */ JAISoundInfo(bool);
-};
-
-struct JAISeqDataMgr {};
-
-struct JAISeCategoryArrangement {};
-
-struct JAISeMgr {
-    /* 802A0268 */ void setCategoryArrangement(JAISeCategoryArrangement const&);
-    /* 802A03E0 */ void setSeqDataMgr(JAISeqDataMgr*);
-    /* 802A08D0 */ void getNumActiveSe() const;
 };
 
 //

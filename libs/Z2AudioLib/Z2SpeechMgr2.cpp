@@ -11,47 +11,6 @@
 // Types:
 //
 
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
-
-struct JAISoundID {};
-
-struct JAISoundHandle {
-    /* 802A2184 */ void releaseSound();
-};
-
-struct Z2SpeechStarter {
-    /* 802CBCEC */ ~Z2SpeechStarter();
-    /* 802CCFB8 */ Z2SpeechStarter();
-    /* 802CCFF8 */ void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*, u32,
-                                   f32, f32, f32, f32, f32, u32);
-};
-
-struct Vec {};
-
-struct Z2SpeechMgr2 {
-    /* 802CBC60 */ Z2SpeechMgr2();
-    /* 802CBD88 */ void setString(u16 const*, s16, u8, u16);
-    /* 802CBF60 */ void setTextCount(s16);
-    /* 802CC190 */ void speakOneWord(bool);
-    /* 802CC2FC */ void isNonVerbal();
-    /* 802CC4C0 */ void selectUnit(bool);
-    /* 802CC738 */ void selectTail();
-    /* 802CC9D0 */ void framework();
-    /* 802CCA18 */ void playOneShotVoice(u8, u16, Vec*, s8);
-    /* 802CCF88 */ void isMidnaSpeak();
-};
-
-struct Z2SoundStarter {
-    /* 802AAB94 */ Z2SoundStarter(bool);
-    /* 802AABF4 */ void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
-    /* 802AAEDC */ void setPortData(JAISoundHandle*, u32, u16, s8);
-};
-
 struct Z2SeqMgr {
     /* 802AF49C */ void subBgmStart(u32);
 };
@@ -100,22 +59,6 @@ struct Z2EnvSeMgr {
 
 struct Z2AudioMgr {
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JAISoundStarter {
-    /* 802A2F88 */ ~JAISoundStarter();
-};
-
-struct JAISoundParamsMove {
-    /* 802A2DB4 */ void moveVolume(f32, u32);
-    /* 802A2E0C */ void movePitch(f32, u32);
-    /* 802A2E64 */ void moveFxMix(f32, u32);
-    /* 802A2EBC */ void movePan(f32, u32);
-    /* 802A2F14 */ void moveDolby(f32, u32);
-};
-
-struct JAISound {
-    /* 802A2598 */ void stop();
 };
 
 //

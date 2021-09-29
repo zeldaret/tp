@@ -11,11 +11,6 @@
 // Types:
 //
 
-struct JAISoundStatus_ {
-    /* 802A2220 */ void lockWhenPrepared();
-    /* 802A2244 */ void unlockIfLocked();
-};
-
 struct JAIAudience {};
 
 //

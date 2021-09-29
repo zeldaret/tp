@@ -55,17 +55,6 @@ struct JAIStreamMgr {
     /* 802A4068 */ void stop(u32);
 };
 
-struct JAISoundStatus_ {
-    /* 802A2220 */ void lockWhenPrepared();
-    /* 802A2244 */ void unlockIfLocked();
-};
-
-struct JAISoundParamsMove {
-    /* 802A2DB4 */ void moveVolume(f32, u32);
-    /* 802A2EBC */ void movePan(f32, u32);
-    /* 802A2F14 */ void moveDolby(f32, u32);
-};
-
 struct JAISeqMgr {
     /* 802A1C90 */ void calc();
     /* 802A1E3C */ void stop(u32);

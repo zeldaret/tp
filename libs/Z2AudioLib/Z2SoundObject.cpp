@@ -35,12 +35,6 @@ struct JAUSoundAnimation {
     /* 802A7044 */ void getEndSoundIndex(f32) const;
 };
 
-struct JAISoundParamsMove {
-    /* 802A2DB4 */ void moveVolume(f32, u32);
-    /* 802A2E0C */ void movePitch(f32, u32);
-    /* 802A2E64 */ void moveFxMix(f32, u32);
-};
-
 struct JAIAudience {};
 
 //

@@ -11,6 +11,10 @@
 #include "Z2AudioLib/Z2SoundObjMgr.h"
 #include "Z2AudioLib/Z2SoundStarter.h"
 #include "Z2AudioLib/Z2StatusMgr.h"
+#include "Z2AudioLib/Z2SoundMgr.h"
+#include "Z2AudioLib/Z2Audience.h"
+#include "Z2AudioLib/Z2SpeechMgr2.h"
+#include "Z2AudioLib/Z2FxLineMgr.h"
 #include "dolphin/types.h"
 
 class Z2AudioMgr {
@@ -23,7 +27,6 @@ public:
     void resetProcess(u32, bool);
     void resetRecover();
     void hasReset() const;
-    void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
 
     static Z2AudioMgr* mAudioMgrPtr;
 
@@ -33,13 +36,24 @@ private:
     /* 0x04A4 */ Z2SceneMgr mSceneMgr;
     /* 0x04C4 */ Z2StatusMgr mStatusMgr;
     /* 0x04F4 */ Z2SoundObjMgr mSoundObjMgr;
+
+public:
+    /* 0x0514 */ /* virtual */ void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
+    /* 0x0514 */ void* vtable;  // remove later
+
+private:
+    /* 0x0518 */ bool field_0x518;
+    /* 0x0519 */ u8 field_0x519;
     /* 0x051C */ JASAudioReseter mAudioReseter;
     /* 0x052C */ Z2SoundStarter mSoundStarter;
-    /* 0x0530 */  // Z2SoundMgr mSoundMgr;
-    /* 0x0D40 */  // JAISoundInfo mSoundInfo;
-    /* 0x0D4C */  // Z2Audience mAudience;
-    /* 0x0F2C */  // Z2SpeechMgr2 mSpeechMgr;
-    /* 0x1370 */  // Z2FxLineMgr mFxLineMgr;
-};
+    /* 0x0530 */ Z2SoundMgr mSoundMgr;
+    /* 0x0D40 */  // Z2SoundInfo mSoundInfo;
+    /* 0x0D40 */ void* mSoundInfo[3];  // remove later
+    /* 0x0D4C */ Z2Audience mAudience;
+    /* 0x0F2C */ Z2SpeechMgr2 mSpeechMgr;
+    /* 0x1370 */ Z2FxLineMgr mFxLineMgr;
+};  // Size: 0x138C
+
+STATIC_ASSERT(sizeof(Z2AudioMgr) == 0x138C);
 
 #endif /* Z2AUDIOMGR_H */

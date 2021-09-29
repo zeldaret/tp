@@ -8,14 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct JAIAudience {
-    /* 8029EFF4 */ ~JAIAudience();
-};
-
-//
 // Forward References:
 //
 

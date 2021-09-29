@@ -15,107 +15,20 @@ struct mDoRst {
     static u8 mResetData[4 + 4 /* padding */];
 };
 
-struct JKRHeap {
-    /* 802CE500 */ void free(void*, JKRHeap*);
-    /* 802CE7B0 */ void changeGroupID(u8);
-
-    static u8 sCurrentHeap[4];
-};
-
 struct mDoDvdThd_toMainRam_c {
     /* 80016394 */ void create(char const*, u8, JKRHeap*);
-};
-
-struct JKRArchive {
-    struct EMountMode {};
 };
 
 struct mDoDvdThd_mountXArchive_c {
     /* 800161E0 */ void create(char const*, u8, JKRArchive::EMountMode, JKRHeap*);
 };
 
-struct mDoAud_zelAudio_c {
-    /* 80006FB4 */ void reset();
-    /* 80007368 */ ~mDoAud_zelAudio_c();
-};
-
-struct Z2SceneMgr {
-    /* 802B697C */ void setFadeOutStart(u8);
-    /* 802B6A18 */ void setFadeInStart(u8);
-    /* 802B6AF8 */ void setSceneName(char*, s32, s32);
-    /* 802B9D40 */ void load1stDynamicWave();
-};
-
-struct Z2MultiSeObj {
-    /* 80007888 */ ~Z2MultiSeObj();
-};
-
-struct Z2MultiSeMgr {
-    /* 802AEB34 */ ~Z2MultiSeMgr();
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
-
-struct JKRSolidHeap {
-    /* 802D0BF4 */ void adjustSize();
-};
-
-struct JAISoundID {};
-
-struct JAISoundHandle {
-    /* 80007838 */ ~JAISoundHandle();
-    /* 802A2184 */ void releaseSound();
-};
-
-struct Z2AudioMgr {
-    /* 800073C8 */ ~Z2AudioMgr();
-    /* 802CD248 */ Z2AudioMgr();
-    /* 802CD34C */ void init(JKRSolidHeap*, u32, void*, JKRArchive*);
-    /* 802CD888 */ void setOutputMode(u32);
-    /* 802CD904 */ void gframeProcess();
-    /* 802CD974 */ void resetProcess(u32, bool);
-    /* 802CD9CC */ void resetRecover();
-    /* 802CDA6C */ void hasReset() const;
-    /* 802CDB1C */ void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
-
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct Z2Audience {
-    /* 802BD1FC */ ~Z2Audience();
-};
-
-struct JSUPtrList {
-    /* 802DBEAC */ ~JSUPtrList();
-};
-
-struct JASAudioReseter {
-    /* 8029D0FC */ ~JASAudioReseter();
-};
-
 struct JAIStreamDataMgr {
     /* 802A3AD8 */ ~JAIStreamDataMgr();
 };
 
-struct JAISoundStarter {
-    /* 802A2F88 */ ~JAISoundStarter();
-};
-
 struct JAISoundInfo {
     /* 802A2D50 */ ~JAISoundInfo();
-};
-
-struct JAISeqDataUser {
-    /* 802A1774 */ ~JAISeqDataUser();
-};
-
-struct JAISeCategoryMgr {
-    /* 800078DC */ ~JAISeCategoryMgr();
 };
 
 //
@@ -143,7 +56,6 @@ extern "C" extern char const* const m_Do_m_Do_audio__stringBase0;
 // External References:
 //
 
-extern "C" void OSReport_Error();
 extern "C" void create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap();
 extern "C" void create__21mDoDvdThd_toMainRam_cFPCcUcP7JKRHeap();
 extern "C" void __dt__15JASAudioReseterFv();
@@ -172,7 +84,6 @@ extern "C" void changeGroupID__7JKRHeapFUc();
 extern "C" void __dl__FPv();
 extern "C" void adjustSize__12JKRSolidHeapFv();
 extern "C" void __dt__10JSUPtrListFv();
-extern "C" void OSGetSoundMode();
 extern "C" void __register_global_object();
 extern "C" void __destroy_arr();
 extern "C" void _savegpr_29();
@@ -383,7 +294,8 @@ SECTION_DATA extern void* __vt__12JAUSoundInfo[4 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm Z2AudioMgr::~Z2AudioMgr() {
+extern "C" asm void __dt__10Z2AudioMgrFv() {
+// asm Z2AudioMgr::~Z2AudioMgr() {
     nofralloc
 #include "asm/m_Do/m_Do_audio/__dt__10Z2AudioMgrFv.s"
 }
@@ -413,7 +325,8 @@ asm Z2MultiSeObj::~Z2MultiSeObj() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JAISeCategoryMgr::~JAISeCategoryMgr() {
+extern "C" asm void __dt__16JAISeCategoryMgrFv() {
+// asm JAISeCategoryMgr::~JAISeCategoryMgr() {
     nofralloc
 #include "asm/m_Do/m_Do_audio/__dt__16JAISeCategoryMgrFv.s"
 }

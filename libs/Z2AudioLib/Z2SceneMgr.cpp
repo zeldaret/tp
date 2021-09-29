@@ -101,10 +101,6 @@ struct JAIStreamMgr {
     /* 802B9978 */ void isActive() const;
 };
 
-struct JAISoundParamsMove {
-    /* 802A2DB4 */ void moveVolume(f32, u32);
-};
-
 //
 // Forward References:
 //
