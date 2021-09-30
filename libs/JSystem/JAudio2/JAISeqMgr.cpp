@@ -11,30 +11,6 @@
 // Types:
 //
 
-struct JSUPtrLink {
-    /* 802DBE14 */ ~JSUPtrLink();
-};
-
-struct JSUPtrList {
-    /* 802DBEAC */ ~JSUPtrList();
-    /* 802DBF14 */ void initiate();
-    /* 802DBF4C */ void append(JSUPtrLink*);
-    /* 802DC15C */ void remove(JSUPtrLink*);
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
-
-struct JASTrack {
-    /* 8029131C */ ~JASTrack();
-};
-
-struct JASSoundParams {};
-
 template <typename A0>
 struct JASMemPool {};
 /* JASMemPool<JAISeq> */
@@ -49,54 +25,12 @@ struct JASGenericMemPool {
     /* 80290994 */ void free(void*, u32);
 };
 
-template <typename A0>
-struct JAISoundStrategyMgr {};
-/* JAISoundStrategyMgr<JAISeq> */
-struct JAISoundStrategyMgr__template1 {};
-
-struct JAISoundID {};
-
-struct JAISoundHandle {};
-
-struct JAISoundActivity {};
-
-struct JAISound {
-    /* 802A21BC */ void attachHandle(JAISoundHandle*);
-    /* 802A2598 */ void stop();
-    /* 802A24DC */ void stop(u32);
-};
-
-struct JAISeqMgr;
-struct JAIAudience {};
-
 struct JAISeq {
     /* 802A0A8C */ JAISeq(JAISeqMgr*, JAISoundStrategyMgr<JAISeq>*);
     /* 802A0B64 */ void JAISeqMgr_startID_(JAISoundID, JGeometry::TVec3<f32> const*, JAIAudience*,
                                            int, int);
     /* 802A108C */ void JAISeqMgr_calc_();
     /* 802A14FC */ void JAISeqMgr_mixOut_(JASSoundParams const&, JAISoundActivity);
-};
-
-struct JAISeqDataRegion {};
-
-struct JAISeqMgr {
-    /* 802A1804 */ void isUsingSeqData(JAISeqDataRegion const&);
-    /* 802A1870 */ void releaseSeqData(JAISeqDataRegion const&);
-    /* 802A1914 */ JAISeqMgr(bool);
-    /* 802A1A08 */ void freeDeadSeq_();
-    /* 802A1B48 */ void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
-    /* 802A1C90 */ void calc();
-    /* 802A1DFC */ void stop();
-    /* 802A1E3C */ void stop(u32);
-    /* 802A1E8C */ void stopSoundID(JAISoundID);
-    /* 802A1EFC */ void mixOut();
-    /* 802A1F58 */ void beginStartSeq_();
-    /* 802A1FE8 */ void endStartSeq_(JAISeq*, JAISoundHandle*);
-    /* 802A20F0 */ ~JAISeqMgr();
-};
-
-struct JAISeqDataUser {
-    /* 802A1774 */ ~JAISeqDataUser();
 };
 
 //
@@ -161,7 +95,7 @@ extern "C" extern u8 data_80451320[8];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JAISeqMgr::isUsingSeqData(JAISeqDataRegion const& param_0) {
+asm bool JAISeqMgr::isUsingSeqData(JAISeqDataRegion const& param_0) {
     nofralloc
 #include "asm/JSystem/JAudio2/JAISeqMgr/isUsingSeqData__9JAISeqMgrFRC16JAISeqDataRegion.s"
 }
@@ -334,7 +268,8 @@ asm void JAISeqMgr::endStartSeq_(JAISeq* param_0, JAISoundHandle* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JAISeqMgr::~JAISeqMgr() {
+extern "C" asm void __dt__9JAISeqMgrFv() {
+    // asm JAISeqMgr::~JAISeqMgr() {
     nofralloc
 #include "asm/JSystem/JAudio2/JAISeqMgr/__dt__9JAISeqMgrFv.s"
 }

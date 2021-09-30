@@ -31,11 +31,6 @@ struct Z2Calc {
     /* 802A96F4 */ void getParamByExp(f32, f32, f32, f32, f32, f32, Z2Calc::CurveSign);
 };
 
-struct JAISoundParamsMove {
-    /* 802A2DB4 */ void moveVolume(f32, u32);
-    /* 802A2E0C */ void movePitch(f32, u32);
-};
-
 //
 // Forward References:
 //

@@ -11,18 +11,6 @@
 // Types:
 //
 
-struct JASSoundParams {
-    /* 8029E3B0 */ void clamp();
-    /* 8029E47C */ void combine(JASSoundParams const&, JASSoundParams const&);
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
-
 struct Z2Audible {
     /* 802BBD94 */ Z2Audible(JGeometry::TVec3<f32> const&, JGeometry::TVec3<f32> const*, u32, bool);
     /* 802BBE98 */ void calc();
@@ -32,30 +20,6 @@ struct Z2Audible {
     /* 802BC218 */ void getDistVolBit();
     /* 802BD510 */ ~Z2Audible();
 };
-
-struct Vec {};
-
-struct Z2AudioCamera {
-    /* 802BC758 */ Z2AudioCamera();
-    /* 802BC788 */ void init();
-    /* 802BC8AC */ void setCameraState(f32 (*)[4], Vec&, Vec&, f32, f32, bool, bool);
-    /* 802BC7DC */ void setCameraState(f32 const (*)[4], Vec&, bool);
-    /* 802BCBEC */ void convertAbsToRel(Z2Audible*, int);
-    /* 802BCC7C */ void convertAbsToRel(Vec&, Vec*) const;
-    /* 802BCCC0 */ void isInSight(Vec&) const;
-};
-
-struct Z2SpotMic {
-    /* 802BCD28 */ Z2SpotMic();
-    /* 802BCDA8 */ void clearMicState(int);
-    /* 802BCDE8 */ void calcVolumeFactor(int);
-    /* 802BCE14 */ void setMicState(Z2AudioCamera*, int);
-    /* 802BCF5C */ void calcMicDist(Z2Audible*);
-    /* 802BCFE4 */ void calcMicPriority(f32);
-    /* 802BD03C */ void calcMicVolume(f32, int, f32);
-};
-
-struct JAISoundID {};
 
 struct Z2SoundInfo {
     /* 802BB158 */ void getAudibleSwFull(JAISoundID);
@@ -77,48 +41,6 @@ struct Z2Calc {
 
     /* 802A968C */ void linearTransform(f32, f32, f32, f32, f32, bool);
     /* 802A96F4 */ void getParamByExp(f32, f32, f32, f32, f32, f32, Z2Calc::CurveSign);
-};
-
-struct Z2Audience3DSetting {
-    /* 802BC248 */ Z2Audience3DSetting();
-    /* 802BC284 */ void init();
-    /* 802BC308 */ void initVolumeDist();
-    /* 802BC4D0 */ void updateVolumeDist(f32);
-    /* 802BC6A4 */ void initDolbyDist();
-    /* 802BC6F8 */ void updateDolbyDist(f32, f32);
-};
-
-struct JAIAudible {
-    /* 8029EFAC */ ~JAIAudible();
-};
-
-struct Z2AudibleChannel {
-    /* 802BBE74 */ Z2AudibleChannel();
-};
-
-struct Z2Audience {
-    /* 802BD130 */ Z2Audience();
-    /* 802BD1FC */ ~Z2Audience();
-    /* 802BD2DC */ void setAudioCamera(f32 (*)[4], Vec&, Vec&, f32, f32, bool, int, bool);
-    /* 802BD338 */ void newAudible(JGeometry::TVec3<f32> const&, JAISoundID,
-                                   JGeometry::TVec3<f32> const*, u32);
-    /* 802BD4D4 */ void deleteAudible(JAIAudible*);
-    /* 802BD5B8 */ void calcPriority(JAIAudible*);
-    /* 802BD704 */ void calcOffMicSound(f32);
-    /* 802BD71C */ void mixChannelOut(JASSoundParams const&, JAIAudible*, int);
-    /* 802BD90C */ void setTargetVolume(f32, int);
-    /* 802BD92C */ void convertAbsToRel(Vec&, Vec*, int);
-    /* 802BD95C */ void calcRelPosVolume(Vec const&, f32, int);
-    /* 802BDA44 */ void calcRelPosPan(Vec const&, int);
-    /* 802BDB44 */ void calcRelPosDolby(Vec const&, int);
-    /* 802BDBDC */ void calcVolume_(f32, int) const;
-    /* 802BDC44 */ void calcDeltaPriority_(f32, int, bool) const;
-    /* 802BDCB0 */ void calcPitchDoppler_(JGeometry::TVec3<f32> const&,
-                                          JGeometry::TVec3<f32> const&,
-                                          JGeometry::TVec3<f32> const&, f32) const;
-    /* 802BDD00 */ void calcFxMix_(f32, int) const;
-    /* 802BDD48 */ void calcPitch_(Z2AudibleChannel*, Z2Audible const*, Z2AudioCamera const*) const;
-    /* 802BDED4 */ void getMaxChannels();
 };
 
 struct Z2AudibleAbsPos {
@@ -143,10 +65,6 @@ struct JASGenericMemPool {
     /* 80290860 */ ~JASGenericMemPool();
     /* 80290948 */ void alloc(u32);
     /* 80290994 */ void free(void*, u32);
-};
-
-struct JAIAudience {
-    /* 8029EFF4 */ ~JAIAudience();
 };
 
 //
@@ -222,11 +140,6 @@ extern "C" void linearTransform__6Z2CalcFfffffb();
 extern "C" void getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign();
 extern "C" void getAudibleSwFull__11Z2SoundInfoF10JAISoundID();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXIdentity();
-extern "C" void PSMTXRotAxisRad();
-extern "C" void PSMTXMultVec();
-extern "C" void PSVECSubtract();
-extern "C" void PSVECMag();
 extern "C" void __register_global_object();
 extern "C" void __construct_array();
 extern "C" void __cvt_fp2unsigned();
@@ -748,7 +661,8 @@ asm Z2Audience::Z2Audience() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm Z2Audience::~Z2Audience() {
+extern "C" asm void __dt__10Z2AudienceFv() {
+    // asm Z2Audience::~Z2Audience() {
     nofralloc
 #include "asm/Z2AudioLib/Z2Audience/__dt__10Z2AudienceFv.s"
 }
@@ -794,8 +708,8 @@ u8 data_80451354[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2Audience::newAudible(JGeometry::TVec3<f32> const& param_0, JAISoundID param_1,
-                                JGeometry::TVec3<f32> const* param_2, u32 param_3) {
+asm JAIAudible* Z2Audience::newAudible(JGeometry::TVec3<f32> const& param_0, JAISoundID param_1,
+                                       JGeometry::TVec3<f32> const* param_2, u32 param_3) {
     nofralloc
 #include "asm/Z2AudioLib/Z2Audience/func_802BD338.s"
 }

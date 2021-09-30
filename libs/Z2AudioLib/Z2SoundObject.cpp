@@ -35,14 +35,6 @@ struct JAUSoundAnimation {
     /* 802A7044 */ void getEndSoundIndex(f32) const;
 };
 
-struct JAISoundParamsMove {
-    /* 802A2DB4 */ void moveVolume(f32, u32);
-    /* 802A2E0C */ void movePitch(f32, u32);
-    /* 802A2E64 */ void moveFxMix(f32, u32);
-};
-
-struct JAIAudience {};
-
 //
 // Forward References:
 //
@@ -527,7 +519,8 @@ asm Z2SoundObjAnime::Z2SoundObjAnime() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2SoundObjAnime::init(Vec* param_0, u8 param_1) {
+extern "C" asm void init__15Z2SoundObjAnimeFP3VecUc() {
+    // asm void Z2SoundObjAnime::init(Vec* param_0, u8 param_1) {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundObject/init__15Z2SoundObjAnimeFP3VecUc.s"
 }

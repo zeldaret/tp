@@ -12,8 +12,13 @@ struct TTransition {
 };  // Size = 0xC
 
 struct Z2SoundFader {
+    void move(f32 vol, u32 count) {
+        mIntensity = vol;
+        mTransition.zero();
+    }
+
     /* 0x0 */ float mIntensity;
-    /* 0x4 */ TTransition mTransition;
+    /* 0x4 */ JAISoundParamsTransition::TTransition mTransition;
 };  // Size = 0x10
 
 class Z2SeqMgr {
@@ -67,6 +72,21 @@ public:
     void taktModeMute();
     void taktModeMuteOff();
     void setFieldBgmPlay(bool);
+    /* 802B99AC */ void unMuteSceneBgm(u32);
+    /* 802B9A24 */ void muteSceneBgm(u32, f32);
+    /* 802B9AD0 */ void setTwilightGateVol(f32);
+    /* 802B9AFC */ void setWindStoneVol(f32, u32);
+
+    void i_setTwilightGateVol(f32 vol) { mTwilightGateVol = vol; }
+
+    void i_setWindStoneVol(f32 vol, u32 count) { field_0x94.move(vol, count); }
+
+    void i_bgmAllUnMute(u32 count) { field_0x74.move(1.0f, count); }
+
+    void i_unMuteSceneBgm(u32 count) {
+        field_0x34.move(1.0f, 0);
+        field_0x44.move(1.0f, count);
+    }
 
 private:
     /* 0x00 */ JAISoundHandle mMainBgmHandle;
@@ -84,7 +104,7 @@ private:
     /* 0x84 */ Z2SoundFader field_0x84;
     /* 0x94 */ Z2SoundFader field_0x94;
     /* 0xA4 */ Z2SoundFader field_0xa4;
-    /* 0xB4 */ float mTwilightGateVolume;
+    /* 0xB4 */ f32 mTwilightGateVol;
     /* 0xB8 */ u16 field_0xb8;
     /* 0xBA */ u8 field_0xba;
     /* 0xBB */ u8 field_0xbb;
@@ -97,8 +117,8 @@ private:
     /* 0xC2 */ u8 field_0xc2;
     /* 0xC3 */ u8 field_0xc3;
     /* 0xC4 */ u8 field_0xc4;
-    /* 0xC8 */ float field_0xc8;
-    /* 0xCC */ float field_0xcc;
+    /* 0xC8 */ f32 field_0xc8;
+    /* 0xCC */ f32 field_0xcc;
     /* 0xD0 */ u8 mFlags;
 };  // Size = 0xD4
 

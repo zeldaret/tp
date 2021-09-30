@@ -76,14 +76,6 @@ struct Z2Audience {
     /* 802BDB44 */ void calcRelPosDolby(Vec const&, int);
 };
 
-struct JAISoundParamsMove {
-    /* 802A2DB4 */ void moveVolume(f32, u32);
-    /* 802A2E0C */ void movePitch(f32, u32);
-    /* 802A2E64 */ void moveFxMix(f32, u32);
-    /* 802A2EBC */ void movePan(f32, u32);
-    /* 802A2F14 */ void moveDolby(f32, u32);
-};
-
 struct JAISeCategoryMgr {
     /* 8029FDE0 */ void stop(u32);
 };

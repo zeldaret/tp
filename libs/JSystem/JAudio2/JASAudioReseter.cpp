@@ -5,17 +5,12 @@
 
 #include "JSystem/JAudio2/JASAudioReseter.h"
 #include "dol2asm.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 
 //
 // Types:
 //
-
-struct JASDriver {
-    /* 8029E130 */ void setDSPLevel(f32);
-    /* 8029E158 */ void getDSPLevel();
-    /* 8029E240 */ void registerDspSyncCallback(s32 (*)(void*), void*);
-};
 
 struct JASDSPChannel {
     /* 8029D340 */ void drop();
@@ -49,8 +44,6 @@ extern "C" void setDSPLevel__9JASDriverFf();
 extern "C" void getDSPLevel__9JASDriverFv();
 extern "C" void registerDspSyncCallback__9JASDriverFPFPv_lPv();
 extern "C" void __dl__FPv();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
 extern "C" extern u8 data_80450B8C[4];
 
 //
@@ -58,54 +51,59 @@ extern "C" extern u8 data_80450B8C[4];
 //
 
 /* 8029D0B4-8029D0FC 2979F4 0048+00 0/0 1/1 0/0 .text            __ct__15JASAudioReseterFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JASAudioReseter::JASAudioReseter() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAudioReseter/__ct__15JASAudioReseterFv.s"
+JASAudioReseter::JASAudioReseter() {
+    field_0x0 = 0;
+    mIsDone = true;
+    field_0xc = false;
+    mDSPLevel = JASDriver::getDSPLevel();
 }
-#pragma pop
 
 /* 8029D0FC-8029D138 297A3C 003C+00 0/0 1/1 0/0 .text            __dt__15JASAudioReseterFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JASAudioReseter::~JASAudioReseter() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAudioReseter/__dt__15JASAudioReseterFv.s"
-}
-#pragma pop
+JASAudioReseter::~JASAudioReseter() {}
 
 /* 8029D138-8029D1D4 297A78 009C+00 0/0 1/1 0/0 .text            start__15JASAudioReseterFUlb */
+#ifdef NONMATCHING
+bool JASAudioReseter::start(u32 param_0, bool param_1) {
+    u32 interrupt_status;
+
+    if (mIsDone == false) {
+        return false;
+    } else {
+        field_0xc = param_1;
+        interrupt_status = OSDisableInterrupts();
+
+        if (!JASDriver::registerDspSyncCallback(callback, (void*)param_0)) {
+            OSRestoreInterrupts(interrupt_status);
+            return false;
+        } else {
+            mDSPLevel = JASDriver::getDSPLevel();
+            field_0x0 = param_0;
+            mIsDone = false;
+            OSRestoreInterrupts(interrupt_status);
+            return true;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASAudioReseter::start(u32 param_0, bool param_1) {
+asm bool JASAudioReseter::start(u32 param_0, bool param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASAudioReseter/start__15JASAudioReseterFUlb.s"
 }
 #pragma pop
+#endif
 
 /* 8029D1D4-8029D1F8 297B14 0024+00 0/0 1/1 0/0 .text            resume__15JASAudioReseterFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASAudioReseter::resume() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAudioReseter/resume__15JASAudioReseterFv.s"
+void JASAudioReseter::resume() {
+    JASDriver::setDSPLevel(mDSPLevel);
 }
-#pragma pop
 
 /* 8029D1F8-8029D200 297B38 0008+00 0/0 2/2 0/0 .text            checkDone__15JASAudioReseterCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASAudioReseter::checkDone() const {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAudioReseter/checkDone__15JASAudioReseterCFv.s"
+s32 JASAudioReseter::checkDone() const {
+    return mIsDone;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80455740-80455748 003D40 0008+00 1/1 0/0 0/0 .sdata2          @156 */
@@ -115,18 +113,13 @@ SECTION_SDATA2 static f64 lit_156 = 4503599627370496.0 /* cast u32 to float */;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASAudioReseter::calc() {
+asm s32 JASAudioReseter::calc() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASAudioReseter/calc__15JASAudioReseterFv.s"
 }
 #pragma pop
 
 /* 8029D2D4-8029D2F4 297C14 0020+00 1/1 0/0 0/0 .text            callback__15JASAudioReseterFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASAudioReseter::callback(void* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAudioReseter/callback__15JASAudioReseterFPv.s"
+s32 JASAudioReseter::callback(void* param_0) {
+    return calc();
 }
-#pragma pop

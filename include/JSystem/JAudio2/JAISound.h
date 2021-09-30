@@ -1,8 +1,10 @@
 #ifndef JAISOUND_H
 #define JAISOUND_H
 
+#include "JSystem/JAudio2/JAIAudience.h"
+#include "JSystem/JAudio2/JAISoundHandles.h"
+#include "JSystem/JAudio2/JAISoundParams.h"
 #include "JSystem/JGeometry.h"
-#include "JSystem/JUtility/JUTAssert.h"
 #include "dolphin/types.h"
 #include "global.h"
 
@@ -15,23 +17,10 @@ public:
 
     JAISoundID(JAISoundID const& other);
 
+    JAISoundID() {}
+
 private:
     u32 mId;
-};
-
-struct JASSoundParams {};
-
-struct JAISoundParams {
-    /* 802A2280 */ void mixOutAll(JASSoundParams const&, JASSoundParams*, f32);
-
-    float field_0x0;
-    float field_0x4;
-    float field_0x8;
-    float field_0xc;
-    float field_0x10;
-    float field_0x14;
-    float field_0x18;
-    float field_0x1c;
 };
 
 struct JASTrack {
@@ -40,6 +29,49 @@ struct JASTrack {
     /* 80291C30 */ void openChild(u32);
     /* 80292918 */ void writePort(u32, u16);
     /* 8029297C */ void readPort(u32);
+};
+
+struct JAISoundStatus_ {
+    /* 802A2220 */ s32 lockWhenPrepared();
+    /* 802A2244 */ s32 unlockIfLocked();
+
+    void init() {
+        field_0x0 = 0;
+        field_0x1 = 0;
+        *((u16*)(this) + 2) = 0;
+        user_data = 0;
+    }
+
+    /* 0x0 */ u8 field_0x0;
+    /* 0x1 */ u8 field_0x1;
+    /* 0x2 */ u8 state[2];  // debug accesses like "state.flags.calcedOnce"
+    /* 0x4 */ u32 user_data;
+};  // Size: 0x6
+
+struct JAISoundFader {
+    void forceIn() {
+        mIntensity = 1.0f;
+        field_0x4.zero();
+    }
+
+    /* 0x00 */ f32 mIntensity;
+    /* 0x04 */ JAISoundParamsTransition::TTransition field_0x4;
+};  // Size: 0x10
+
+template <typename A0>
+struct JAISoundStrategyMgr {};
+/* JAISoundStrategyMgr<JAISe> */
+struct JAISoundStrategyMgr__template0 {};
+/* JAISoundStrategyMgr<JAISeq> */
+struct JAISoundStrategyMgr__template1 {};
+/* JAISoundStrategyMgr<JAIStream> */
+struct JAISoundStrategyMgr__template2 {};
+
+class JAISoundActivity {
+public:
+    void init() { field_0x0 = 0; }
+
+    /* 0x0 */ u8 field_0x0;
 };
 
 class JAISoundHandle;
@@ -51,7 +83,7 @@ public:
     /* 802A21BC */ void attachHandle(JAISoundHandle*);
     /* 802A22F8 */ JAISound();
     /* 802A2328 */ void start_JAISound_(JAISoundID, JGeometry::TVec3<f32> const*, JAIAudience*);
-    /* 802A244C */ void acceptsNewAudible() const;
+    /* 802A244C */ bool acceptsNewAudible() const;
     /* 802A2474 */ void newAudible(JGeometry::TVec3<f32> const&, JGeometry::TVec3<f32> const*, u32,
                                    JAIAudience*);
     /* 802A2598 */ void stop();
@@ -64,124 +96,25 @@ public:
     /* 802A26B8 */ void calc_JAISound_();
     /* 802A29DC */ void initTrack_JAISound_(JASTrack*);
 
+    virtual void getNumChild() = 0;
+
     JAISoundID getID() const;
-    u32 getUserData() const { return user_data; }
+    u32 getUserData() const { return status_.user_data; }
+    bool isHandleAttached() const { return handle_ != NULL; }
 
-    // TODO: do proper struct later
-    void* __vt;
-    struct JAISoundHandle* handle;
-    struct JAIAudible* audible;
-    struct JAIAudience* audience;
-    s32 field_0xc;
-    s32 num_prepare_steps;
-    struct JAISoundID sound_id;
-    u8 field_0x18;
-    u8 field_0x19;
-    u8 field_0x1a;
-    u8 field_0x1b;
-    u32 user_data;
-    float field_0x20;
-    float field_0x24;
-    float field_0x28;
-    s32 field_0x2c;
-    s32 audience_priority;
-    s32 field_0x34;
-    struct JAISoundParams params;
-    u8 field_0x58;
-    u8 field_0x59;
-    u8 field_0x5a;
-    u8 field_0x5b;
-    u8 field_0x5c;
-    u8 field_0x5d;
-    u8 field_0x5e;
-    u8 field_0x5f;
-    u8 field_0x60;
-    u8 field_0x61;
-    u8 field_0x62;
-    u8 field_0x63;
-    u8 field_0x64;
-    u8 field_0x65;
-    u8 field_0x66;
-    u8 field_0x67;
-    u8 field_0x68;
-    u8 field_0x69;
-    u8 field_0x6a;
-    u8 field_0x6b;
-    u8 field_0x6c;
-    u8 field_0x6d;
-    u8 field_0x6e;
-    u8 field_0x6f;
-    u8 field_0x70;
-    u8 field_0x71;
-    u8 field_0x72;
-    u8 field_0x73;
-    u8 field_0x74;
-    u8 field_0x75;
-    u8 field_0x76;
-    u8 field_0x77;
-    u8 field_0x78;
-    u8 field_0x79;
-    u8 field_0x7a;
-    u8 field_0x7b;
-    u8 field_0x7c;
-    u8 field_0x7d;
-    u8 field_0x7e;
-    u8 field_0x7f;
-    u8 field_0x80;
-    u8 field_0x81;
-    u8 field_0x82;
-    u8 field_0x83;
-    u8 field_0x84;
-    u8 field_0x85;
-    u8 field_0x86;
-    u8 field_0x87;
-    u8 field_0x88;
-    u8 field_0x89;
-    u8 field_0x8a;
-    u8 field_0x8b;
-    u8 field_0x8c;
-    u8 field_0x8d;
-    u8 field_0x8e;
-    u8 field_0x8f;
-    u8 field_0x90;
-    u8 field_0x91;
-    u8 field_0x92;
-    u8 field_0x93;
-};
+    /* 0x04 */ JAISoundHandle* handle_;
+    /* 0x08 */ JAIAudible* audible_;
+    /* 0x0C */ JAIAudience* audience_;
+    /* 0x10 */ s32 lifeTime;
+    /* 0x14 */ s32 prepareCount;
+    /* 0x18 */ JAISoundID soundID;
+    /* 0x1C */ JAISoundStatus_ status_;
+    /* 0x24 */ JAISoundFader fader;
+    /* 0x34 */ s32 field_0x34;
+    /* 0x38 */ s32 mCount;
+    /* 0x3C */ JAISoundParams params;
+};  // Size: 0x98
 
-class JAISoundHandle {
-public:
-    JAISoundHandle();  // noninline in JAUClusterSound.cpp
-    ~JAISoundHandle();
-
-    bool isSoundAttached() const { return sound_ != NULL; }
-
-    JAISound* operator->() const {
-        JUT_ASSERT("JAISound.h", 0x3a, sound_ != 0);
-        return sound_;
-    }
-
-    operator bool() const { return isSoundAttached(); }
-
-    void releaseSound();
-
-private:
-    JAISound* sound_;  // member from assert in operator->()
-};
-
-class JAISoundHandles {
-public:
-    JAISoundHandles(JAISoundHandle* pHandle, int param_1) {
-        mSoundHandle = pHandle;
-        field_0x04 = param_1;
-    };
-
-    void getHandleSoundID(JAISoundID);
-    void getFreeHandle();
-
-private:
-    JAISoundHandle* mSoundHandle;
-    int field_0x04;
-};
+STATIC_ASSERT(sizeof(JAISound) == 0x98);
 
 #endif /* JAISOUND_H */

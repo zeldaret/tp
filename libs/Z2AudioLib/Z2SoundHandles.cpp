@@ -74,7 +74,7 @@ extern "C" extern u8 data_80451348[8];
 inline JAISoundID::JAISoundID(u32 pId) : mId(pId) {}
 
 inline JAISoundID JAISound::getID() const {
-    return JAISoundID((u32)sound_id);
+    return JAISoundID((u32)soundID);
 }
 
 Z2SoundHandles::Z2SoundHandles() {

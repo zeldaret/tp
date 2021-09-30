@@ -11,27 +11,6 @@
 // Types:
 //
 
-struct JKRHeap {
-    /* 802CE500 */ void free(void*, JKRHeap*);
-};
-
-struct JKRArchive {
-    /* 802D5D38 */ void getResource(u16);
-    /* 802D610C */ void countResource() const;
-};
-
-struct Z2FxLineConfig {};
-
-struct Z2FxLineMgr {
-    /* 802BA7DC */ Z2FxLineMgr();
-    /* 802BA7FC */ void initDataArc(JKRArchive*, JKRHeap*);
-    /* 802BAC28 */ void setLineID(s8, bool, bool);
-    /* 802BAC74 */ void setLine(Z2FxLineConfig*, bool, bool);
-    /* 802BAE1C */ void setFxForceOff(bool);
-    /* 802BAE48 */ void setUnderWaterFx(bool);
-    /* 802BAEB8 */ void setSceneFx(s32);
-};
-
 struct JSUMemoryInputStream {
     /* 802DC520 */ void setBuffer(void const*, s32);
 };

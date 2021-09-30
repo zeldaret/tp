@@ -8,17 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct JAISoundStatus_ {
-    /* 802A2220 */ void lockWhenPrepared();
-    /* 802A2244 */ void unlockIfLocked();
-};
-
-struct JAIAudience {};
-
-//
 // Forward References:
 //
 
@@ -59,55 +48,57 @@ extern "C" void _restgpr_26();
 
 /* 802A2184-802A21A0 29CAC4 001C+00 0/0 14/14 0/0 .text            releaseSound__14JAISoundHandleFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAISoundHandle::releaseSound() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISound/releaseSound__14JAISoundHandleFv.s"
+void JAISoundHandle::releaseSound() {
+    if (sound_ == NULL) {
+        return;
+    }
+    sound_->handle_ = NULL;
+    sound_ = NULL;
 }
-#pragma pop
 
 /* 802A21A0-802A21BC 29CAE0 001C+00 3/3 3/3 0/0 .text            releaseHandle__8JAISoundFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAISound::releaseHandle() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISound/releaseHandle__8JAISoundFv.s"
+void JAISound::releaseHandle() {
+    if (handle_ == NULL) {
+        return;
+    }
+    handle_->sound_ = NULL;
+    handle_ = NULL;
 }
-#pragma pop
 
 /* 802A21BC-802A2220 29CAFC 0064+00 0/0 3/3 0/0 .text attachHandle__8JAISoundFP14JAISoundHandle */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAISound::attachHandle(JAISoundHandle* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISound/attachHandle__8JAISoundFP14JAISoundHandle.s"
+void JAISound::attachHandle(JAISoundHandle* handle) {
+    if (handle->isSoundAttached()) {
+        handle->getSound()->stop();
+    }
+    if (isHandleAttached()) {
+        releaseHandle();
+    }
+    handle_ = handle;
+    handle_->sound_ = this;
 }
-#pragma pop
 
 /* 802A2220-802A2244 29CB60 0024+00 0/0 2/2 0/0 .text lockWhenPrepared__15JAISoundStatus_Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAISoundStatus_::lockWhenPrepared() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISound/lockWhenPrepared__15JAISoundStatus_Fv.s"
+s32 JAISoundStatus_::lockWhenPrepared() {
+    if (state[0] == 0) {
+        state[0] = 1;
+        return 1;
+    }
+    return 0;
 }
-#pragma pop
 
 /* 802A2244-802A2280 29CB84 003C+00 0/0 2/2 0/0 .text            unlockIfLocked__15JAISoundStatus_Fv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAISoundStatus_::unlockIfLocked() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISound/unlockIfLocked__15JAISoundStatus_Fv.s"
+s32 JAISoundStatus_::unlockIfLocked() {
+    if (state[0] == 3) {
+        state[0] = 4;
+        return 1;
+    }
+    if (state[0] == 1) {
+        state[0] = 0;
+        return 1;
+    }
+    return 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804557B8-804557BC 003DB8 0004+00 3/3 0/0 0/0 .sdata2          @659 */
@@ -115,15 +106,14 @@ SECTION_SDATA2 static f32 lit_659 = 0.5f;
 
 /* 802A2280-802A22F8 29CBC0 0078+00 0/0 4/4 0/0 .text
  * mixOutAll__14JAISoundParamsFRC14JASSoundParamsP14JASSoundParamsf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAISoundParams::mixOutAll(JASSoundParams const& param_0, JASSoundParams* param_1,
-                                   f32 param_2) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISound/mixOutAll__14JAISoundParamsFRC14JASSoundParamsP14JASSoundParamsf.s"
+void JAISoundParams::mixOutAll(JASSoundParams const& param_0, JASSoundParams* param_1,
+                               f32 param_2) {
+    param_1->mVolume = mMove.mParams.mVolume * (param_0.mVolume * mProperty.field_0x0) * param_2;
+    param_1->mFxMix = mMove.mParams.mFxMix + (param_0.mFxMix + mProperty.field_0x4);
+    param_1->mPitch = mMove.mParams.mPitch * (param_0.mPitch * mProperty.field_0x8);
+    param_1->mPan = (param_0.mPan + mMove.mParams.mPan) - lit_659;
+    param_1->mDolby = param_0.mDolby + mMove.mParams.mDolby;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803C9970-803C99A0 026A90 0030+00 1/1 0/0 0/0 .data            __vt__8JAISound */
@@ -153,6 +143,10 @@ SECTION_SDATA2 static f32 lit_698[1 + 1 /* padding */] = {
 };
 
 /* 802A22F8-802A2328 29CC38 0030+00 0/0 3/3 0/0 .text            __ct__8JAISoundFv */
+// matches with literals
+#ifdef NONMATCHING
+JAISound::JAISound() : params() {}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -161,9 +155,31 @@ asm JAISound::JAISound() {
 #include "asm/JSystem/JAudio2/JAISound/__ct__8JAISoundFv.s"
 }
 #pragma pop
+#endif
 
 /* 802A2328-802A244C 29CC68 0124+00 0/0 3/3 0/0 .text
  * start_JAISound___8JAISoundF10JAISoundIDPCQ29JGeometry8TVec3<f>P11JAIAudience */
+#ifdef NONMATCHING
+void JAISound::start_JAISound_(JAISoundID param_0, JGeometry::TVec3<f32> const* param_1,
+                               JAIAudience* param_2) {
+    handle_ = NULL;
+    soundID = param_0;
+    status_.init();
+    params.init();
+    fader.forceIn();
+    audience_ = param_2;
+    num_prepare_steps = 0;
+    mCount = 0;
+
+    if (param_1 == NULL || audience_ == NULL) {
+        audible_ = NULL;
+    } else {
+        JAISoundID sound = soundID;
+        audible_ = audience_->newAudible(*param_1, sound, NULL, 0);
+    }
+    field_0x34 = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -173,19 +189,29 @@ asm void JAISound::start_JAISound_(JAISoundID param_0, JGeometry::TVec3<f32> con
 #include "asm/JSystem/JAudio2/JAISound/func_802A2328.s"
 }
 #pragma pop
+#endif
 
 /* 802A244C-802A2474 29CD8C 0028+00 0/0 2/2 0/0 .text            acceptsNewAudible__8JAISoundCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAISound::acceptsNewAudible() const {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISound/acceptsNewAudible__8JAISoundCFv.s"
+bool JAISound::acceptsNewAudible() const {
+    bool accepts = false;
+    if (audible_ == NULL && !(status_.state[1] >> 6 & 1)) {
+        accepts = true;
+    }
+    return accepts;
 }
-#pragma pop
 
 /* 802A2474-802A24DC 29CDB4 0068+00 0/0 2/2 0/0 .text
- * newAudible__8JAISoundFRCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>UlP11JAIAudience */
+/*  * newAudible__8JAISoundFRCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>UlP11JAIAudience */
+#ifdef NONMATCHING
+void JAISound::newAudible(JGeometry::TVec3<f32> const& param_0,
+                          JGeometry::TVec3<f32> const* param_1, u32 param_2, JAIAudience* param_3) {
+    if (param_3 != NULL) {
+        audience_ = param_3;
+    }
+    JAISoundID sound = soundID;
+    audible_ = audience_->newAudible(param_0, sound, param_1, param_2);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -196,6 +222,7 @@ asm void JAISound::newAudible(JGeometry::TVec3<f32> const& param_0,
 #include "asm/JSystem/JAudio2/JAISound/func_802A2474.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804557C8-804557D0 003DC8 0008+00 1/1 0/0 0/0 .sdata2          @766 */

@@ -4,24 +4,13 @@
 //
 
 #include "Z2AudioLib/Z2AudioMgr.h"
+#include "JSystem/JAudio2/JASDriverIF.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
 //
 // Types:
 //
-
-struct Z2SpeechMgr2 {
-    /* 802CBC60 */ Z2SpeechMgr2();
-    /* 802CC9D0 */ void framework();
-};
-
-struct Z2SoundMgr {
-    /* 802A9E80 */ Z2SoundMgr();
-    /* 802AA67C */ void framework();
-    /* 802AA84C */ void stopSync();
-    /* 802AA908 */ void initParams();
-};
 
 struct Z2Param {
     static f32 VOL_BGM_DEFAULT;
@@ -35,20 +24,12 @@ struct Z2Param {
     static f32 VOL_SE_ATMOSPHERE_DEFAULT;
 };
 
-struct Z2FxLineMgr {
-    /* 802BA7DC */ Z2FxLineMgr();
-};
-
 struct JAUSection {
     /* 802A50F8 */ void finishBuild();
 };
 
 struct Z2AudioArcLoader {
     /* 802A9A34 */ Z2AudioArcLoader(JAUSection*);
-};
-
-struct Z2Audience {
-    /* 802BD130 */ Z2Audience();
 };
 
 struct JAU_JASInitializer {
@@ -126,10 +107,6 @@ struct JASGenericMemPool {
     /* 802908C8 */ void newMemPool(u32, int);
 };
 
-struct JASDriver {
-    /* 8029E178 */ void setOutputMode(u32);
-};
-
 struct JASAramStream {
     static u8 sBlockSize[4];
 };
@@ -138,22 +115,8 @@ struct JAIStreamAramMgr {
     /* 802A3B20 */ ~JAIStreamAramMgr();
 };
 
-struct JAISoundParamsMove {
-    /* 802A2DB4 */ void moveVolume(f32, u32);
-};
-
 struct JAISoundInfo {
     /* 802A2D34 */ JAISoundInfo(bool);
-};
-
-struct JAISeqDataMgr {};
-
-struct JAISeCategoryArrangement {};
-
-struct JAISeMgr {
-    /* 802A0268 */ void setCategoryArrangement(JAISeCategoryArrangement const&);
-    /* 802A03E0 */ void setSeqDataMgr(JAISeqDataMgr*);
-    /* 802A08D0 */ void getNumActiveSe() const;
 };
 
 //
@@ -363,44 +326,40 @@ extern "C" asm void func_802CD7F8(void* _this) {
 #pragma pop
 
 /* 802CD888-802CD8B4 2C81C8 002C+00 0/0 5/5 0/0 .text            setOutputMode__10Z2AudioMgrFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2AudioMgr::setOutputMode(u32 param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2AudioMgr/setOutputMode__10Z2AudioMgrFUl.s"
+void Z2AudioMgr::setOutputMode(u32 mode) {
+    if (mode <= 2) {
+        JASDriver::setOutputMode(mode);
+    }
 }
-#pragma pop
 
 /* 802CD8B4-802CD904 2C81F4 0050+00 1/1 0/0 0/0 .text            zeldaGFrameWork__10Z2AudioMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2AudioMgr::zeldaGFrameWork() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2AudioMgr/zeldaGFrameWork__10Z2AudioMgrFv.s"
+void Z2AudioMgr::zeldaGFrameWork() {
+    mStatusMgr.processTime();
+    mSpeechMgr.framework();
+    mSeMgr.processSeFramework();
+    mSeqMgr.processBgmFramework();
+    mStatusMgr.processHeartGaugeSound();
 }
-#pragma pop
 
 /* 802CD904-802CD974 2C8244 0070+00 0/0 1/1 0/0 .text            gframeProcess__10Z2AudioMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2AudioMgr::gframeProcess() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2AudioMgr/gframeProcess__10Z2AudioMgrFv.s"
+void Z2AudioMgr::gframeProcess() {
+    zeldaGFrameWork();
+    if (mResettingFlag && mAudioReseter.checkDone()) {
+        if (!field_0x519) {
+            mSoundMgr.stopSync();
+        }
+    } else {
+        mSoundMgr.framework();
+        mSceneMgr.framework();
+    }
 }
-#pragma pop
 
 /* 802CD974-802CD9CC 2C82B4 0058+00 0/0 3/3 0/0 .text            resetProcess__10Z2AudioMgrFUlb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2AudioMgr::resetProcess(u32 param_0, bool param_1) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2AudioMgr/resetProcess__10Z2AudioMgrFUlb.s"
+void Z2AudioMgr::resetProcess(u32 param_0, bool param_1) {
+    mAudioReseter.start(param_0 * JASDriver::getSubFrames(), param_1);
+    field_0x519 = param_1;
+    mResettingFlag = true;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80455F60-80455F68 004560 0004+04 1/1 0/0 0/0 .sdata2          @4035 */
@@ -411,6 +370,20 @@ SECTION_SDATA2 static f32 lit_4035[1 + 1 /* padding */] = {
 };
 
 /* 802CD9CC-802CDA6C 2C830C 00A0+00 0/0 1/1 0/0 .text            resetRecover__10Z2AudioMgrFv */
+// matches with literals
+#ifdef NONMATCHING
+void Z2AudioMgr::resetRecover() {
+    mAudioReseter.resume();
+    mSoundMgr.initParams();
+    mResettingFlag = false;
+
+    mSeqMgr.setTwilightGateVol(1.0f);
+    mSeqMgr.setWindStoneVol(1.0f, 0);
+    mStatusMgr.menuOut();
+    mSeqMgr.bgmAllUnMute(0);
+    mSeqMgr.unMuteSceneBgm(0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -419,12 +392,13 @@ asm void Z2AudioMgr::resetRecover() {
 #include "asm/Z2AudioLib/Z2AudioMgr/resetRecover__10Z2AudioMgrFv.s"
 }
 #pragma pop
+#endif
 
 /* 802CDA6C-802CDB1C 2C83AC 00B0+00 0/0 2/2 0/0 .text            hasReset__10Z2AudioMgrCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2AudioMgr::hasReset() const {
+asm bool Z2AudioMgr::hasReset() const {
     nofralloc
 #include "asm/Z2AudioLib/Z2AudioMgr/hasReset__10Z2AudioMgrCFv.s"
 }

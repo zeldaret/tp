@@ -2349,7 +2349,6 @@ private:
     /* 0x02C48 */ Mtx field_0x2c48;
     /* 0x02C78 */ Mtx field_0x2c78;
     /* 0x02CA8 */ Z2CreatureLink mZ2Link;
-    /* 0x02D75 */ u8 field_0x2d75[3];  // padding?
     /* 0x02D78 */ void* field_0x2d78;
     /* 0x02D7C */ daPy_frameCtrl_c* field_0x2d7c;
     /* 0x02D80 */ int field_0x2d80;

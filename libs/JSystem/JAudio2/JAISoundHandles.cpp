@@ -8,26 +8,11 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct JAISoundID {};
-
-struct JAISoundHandles {
-    /* 802A2C98 */ void getHandleSoundID(JAISoundID);
-    /* 802A2CF4 */ void getFreeHandle();
-};
-
-//
 // Forward References:
 //
 
 extern "C" void getHandleSoundID__15JAISoundHandlesF10JAISoundID();
 extern "C" void getFreeHandle__15JAISoundHandlesFv();
-
-//
-// External References:
-//
 
 //
 // Declarations:
@@ -49,7 +34,7 @@ asm void JAISoundHandles::getHandleSoundID(JAISoundID param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JAISoundHandles::getFreeHandle() {
+asm JAISoundHandle* JAISoundHandles::getFreeHandle() {
     nofralloc
 #include "asm/JSystem/JAudio2/JAISoundHandles/getFreeHandle__15JAISoundHandlesFv.s"
 }

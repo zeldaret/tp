@@ -11,25 +11,6 @@
 // Types:
 //
 
-struct JSUPtrLink {
-    /* 802DBE14 */ ~JSUPtrLink();
-};
-
-struct JSUPtrList {
-    /* 802DBF14 */ void initiate();
-    /* 802DBF4C */ void append(JSUPtrLink*);
-    /* 802DC15C */ void remove(JSUPtrLink*);
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
-
-struct JASSoundParams {};
-
 template <typename A0>
 struct JASMemPool {};
 /* JASMemPool<JAIStream> */
@@ -42,45 +23,6 @@ struct JASGenericMemPool {
     /* 80290860 */ ~JASGenericMemPool();
     /* 80290948 */ void alloc(u32);
     /* 80290994 */ void free(void*, u32);
-};
-
-struct JAISoundID {};
-
-struct JAISoundHandle {};
-
-struct JAIStreamMgr {
-    /* 802A3B68 */ JAIStreamMgr(bool);
-    /* 802A3C3C */ void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
-    /* 802A3D70 */ void freeDeadStream_();
-    /* 802A3EBC */ void calc();
-    /* 802A4028 */ void stop();
-    /* 802A4068 */ void stop(u32);
-    /* 802A40B8 */ void stopSoundID(JAISoundID);
-    /* 802A4118 */ void mixOut();
-    /* 802A4174 */ void newStream_();
-};
-
-struct JAISoundActivity {};
-
-template <typename A0>
-struct JAISoundStrategyMgr {};
-/* JAISoundStrategyMgr<JAIStream> */
-struct JAISoundStrategyMgr__template2 {};
-
-struct JAIAudience {};
-
-struct JAIStream {
-    /* 802A3104 */ JAIStream(JAIStreamMgr*, JAISoundStrategyMgr<JAIStream>*);
-    /* 802A319C */ void JAIStreamMgr_startID_(JAISoundID, s32, JGeometry::TVec3<f32> const*,
-                                              JAIAudience*, int);
-    /* 802A34E4 */ void JAIStreamMgr_mixOut_(JASSoundParams const&, JAISoundActivity);
-    /* 802A388C */ void JAIStreamMgr_calc_();
-};
-
-struct JAISound {
-    /* 802A21BC */ void attachHandle(JAISoundHandle*);
-    /* 802A2598 */ void stop();
-    /* 802A24DC */ void stop(u32);
 };
 
 //

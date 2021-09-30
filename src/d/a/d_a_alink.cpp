@@ -671,11 +671,6 @@ struct JASKernel {
     /* 80290B08 */ void getAramHeap();
 };
 
-template <typename A0>
-struct JAISoundStrategyMgr {};
-/* JAISoundStrategyMgr<JAISeq> */
-struct JAISoundStrategyMgr__template1 {};
-
 struct JAISeqMgr {};
 
 struct JAISeq {

@@ -16,27 +16,6 @@ struct JASDsp {
     /* 8029DA30 */ void getDSPMixerLevel();
 };
 
-struct JASDriver {
-    /* 8029E130 */ void setDSPLevel(f32);
-    /* 8029E150 */ u16 getChannelLevel_dsp();
-    /* 8029E158 */ void getDSPLevel();
-    /* 8029E178 */ void setOutputMode(u32);
-    /* 8029E180 */ u32 getOutputMode();
-    /* 8029E188 */ void waitSubFrame();
-    /* 8029E1C4 */ void rejectCallback(s32 (*)(void*), void*);
-    /* 8029E240 */ void registerDspSyncCallback(s32 (*)(void*), void*);
-    /* 8029E274 */ void registerSubFrameCallback(s32 (*)(void*), void*);
-    /* 8029E2A8 */ void subframeCallback();
-    /* 8029E2D0 */ void DSPSyncCallback();
-    /* 8029E2F8 */ void updateDacCallback();
-
-    static u8 sDspSyncCallback[256];
-    static u8 sSubFrameCallback[256];
-    static u8 sUpdateDacCallback[256 + 8 /* padding */];
-    static u16 MAX_MIXERLEVEL[1 + 1 /* padding */];
-    static u32 JAS_SYSTEM_OUTPUT_MODE;
-};
-
 struct JASCallbackMgr {
     struct TCallback {
         /* 8029E3A0 */ TCallback();
@@ -118,7 +97,7 @@ u16 JASDriver::getChannelLevel_dsp() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASDriver::getDSPLevel() {
+asm f32 JASDriver::getDSPLevel() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASDriverIF/getDSPLevel__9JASDriverFv.s"
 }
@@ -169,7 +148,7 @@ u8 JASDriver::sUpdateDacCallback[256 + 8 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASDriver::rejectCallback(s32 (*param_0)(void*), void* param_1) {
+asm void JASDriver::rejectCallback(DriverCallback callback, void* param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASDriverIF/rejectCallback__9JASDriverFPFPv_lPv.s"
 }
@@ -180,7 +159,7 @@ asm void JASDriver::rejectCallback(s32 (*param_0)(void*), void* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASDriver::registerDspSyncCallback(s32 (*param_0)(void*), void* param_1) {
+asm bool JASDriver::registerDspSyncCallback(DriverCallback callback, void* param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASDriverIF/registerDspSyncCallback__9JASDriverFPFPv_lPv.s"
 }
@@ -191,7 +170,7 @@ asm void JASDriver::registerDspSyncCallback(s32 (*param_0)(void*), void* param_1
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASDriver::registerSubFrameCallback(s32 (*param_0)(void*), void* param_1) {
+asm bool JASDriver::registerSubFrameCallback(DriverCallback callback, void* param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASDriverIF/registerSubFrameCallback__9JASDriverFPFPv_lPv.s"
 }

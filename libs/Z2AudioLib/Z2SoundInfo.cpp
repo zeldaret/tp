@@ -11,33 +11,6 @@
 // Types:
 //
 
-struct JAISeq {};
-
-struct JAISound {};
-
-struct JAIStream {};
-
-struct JAISe {};
-
-struct JAISoundID {};
-
-struct Z2SoundInfo {
-    /* 802BB00C */ void getBgmSeqResourceID(JAISoundID) const;
-    /* 802BB090 */ void getSoundType(JAISoundID) const;
-    /* 802BB0D8 */ void getCategory(JAISoundID) const;
-    /* 802BB0E0 */ void getPriority(JAISoundID) const;
-    /* 802BB158 */ void getAudibleSwFull(JAISoundID);
-    /* 802BB448 */ void getAudibleSw(JAISoundID) const;
-    /* 802BB6DC */ void getSeInfo(JAISoundID, JAISe*) const;
-    /* 802BB8B4 */ void getSeqInfo(JAISoundID, JAISeq*) const;
-    /* 802BB8E0 */ void getStreamInfo(JAISoundID, JAIStream*) const;
-    /* 802BBA10 */ void getStreamFilePath(JAISoundID);
-    /* 802BBA88 */ void getStreamFileEntry(JAISoundID);
-    /* 802BBAC8 */ void getSwBit(JAISoundID) const;
-    /* 802BBB48 */ void getSoundInfo_(JAISoundID, JAISound*) const;
-    /* 802BBBE0 */ ~Z2SoundInfo();
-};
-
 struct Z2Calc {
     /* 802A968C */ void linearTransform(f32, f32, f32, f32, f32, bool);
     /* 802A98D4 */ void getRandom_0_1();
@@ -50,14 +23,6 @@ struct JAUStdSoundTableType {
 struct JAUSoundTable {
     /* 802A7160 */ void getTypeID(JAISoundID) const;
     /* 802A728C */ void getData(JAISoundID) const;
-};
-
-struct JAIStreamDataMgr {
-    /* 802A3AD8 */ ~JAIStreamDataMgr();
-};
-
-struct JAISoundInfo {
-    /* 802A2D50 */ ~JAISoundInfo();
 };
 
 //
@@ -329,7 +294,8 @@ SECTION_DATA extern void* __vt__11Z2SoundInfo[20] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm Z2SoundInfo::~Z2SoundInfo() {
+extern "C" asm void __dt__11Z2SoundInfoFv() {
+    // asm Z2SoundInfo::~Z2SoundInfo() {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundInfo/__dt__11Z2SoundInfoFv.s"
 }
