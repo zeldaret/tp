@@ -26,6 +26,7 @@ public:
     /* 802A40B8 */ void stopSoundID(JAISoundID);
     /* 802A4118 */ void mixOut();
     /* 802A4174 */ void newStream_();
+    /* 802B9978 */ void isActive() const;
 
 private:
     /* 0x00 */ JAISoundActivity mActivity;

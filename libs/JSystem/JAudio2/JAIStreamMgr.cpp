@@ -25,8 +25,6 @@ struct JASGenericMemPool {
     /* 80290994 */ void free(void*, u32);
 };
 
-struct JAIAudience {};
-
 //
 // Forward References:
 //

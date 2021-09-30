@@ -34,7 +34,7 @@ asm void JAISoundHandles::getHandleSoundID(JAISoundID param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JAISoundHandles::getFreeHandle() {
+asm JAISoundHandle* JAISoundHandles::getFreeHandle() {
     nofralloc
 #include "asm/JSystem/JAudio2/JAISoundHandles/getFreeHandle__15JAISoundHandlesFv.s"
 }

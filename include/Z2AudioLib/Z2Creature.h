@@ -35,16 +35,16 @@ private:
 };
 
 struct Z2LinkSoundStarter : public Z2SoundStarter {
-    Z2LinkSoundStarter(void);
-    ~Z2LinkSoundStarter();
-    /* 802C4928 */ void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*, u32,
-                                   f32, f32, f32, f32, f32, u32);
+    Z2LinkSoundStarter();
+
+    virtual ~Z2LinkSoundStarter();
+    virtual void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*, u32, f32,
+                            f32, f32, f32, f32, u32);
 };
 
-#pragma pack(push, 1)
 class Z2CreatureLink : public Z2Creature {
 public:
-    Z2CreatureLink(void);
+    Z2CreatureLink();
     ~Z2CreatureLink();
 
     void setLinkState(u8);
@@ -76,43 +76,51 @@ public:
 
 private:
     /* 0x90 */ Z2LinkSoundStarter mLinkSoundStarter;
-    /* 0x94 */ Z2SoundObjSimple mSoundObjSimple;
+    /* 0x94 */ Z2SoundObjSimple mKantera;
     /* 0xB4 */ cXyz field_0xb4;
     /* 0xC0 */ u8 mLinkState;
-    /* 0xC1 */ u8 unk193;
-    /* 0xC2 */ u8 unk194;
+    /* 0xC1 */ u8 field_0xc1;
+    /* 0xC2 */ u8 mMarkState;
     /* 0xC3 */ u8 mLinkHp;
-    /* 0xC4 */ u8 mBootsType;
-    /* 0xC5 */ u8 mLanternState;
-    /* 0xC6 */ u8 unk198;
-    /* 0xC7 */ u8 unk199;
-    /* 0xC8 */ u8 unk200;
-    /* 0xC9 */ u8 unk201;
-    /* 0xCA */ u8 mSinkDepth;
-    /* 0xCB */ u8 flags1;
-    /* 0xCC */ u8 flags2;
-};
-#pragma pack(pop)
+    /* 0xC4 */ u8 mLinkBootsType;
+    /* 0xC5 */ u8 mKanteraState;
+    /* 0xC6 */ u8 mLinkSwordType;
+    /* 0xC7 */ u8 mLinkShieldType;
+    /* 0xC8 */ u8 mMoveSpeed;
+    /* 0xC9 */ u8 mMovingTime;
+    /* 0xCA */ s8 mSinkDepth;
+    /* 0xCB */ u8 mFlags;
+    /* 0xCC */ u8 mFlags2;
+};  // Size: 0xD0
 
-class Z2CreatureRide {
+class Z2CreatureRide;
+struct Z2RideSoundStarter : public Z2SoundStarter {
+    /* 802C5234 */ Z2RideSoundStarter(Z2CreatureRide*);
+
+    /* 802C5078 */ virtual ~Z2RideSoundStarter();
+    /* 802C5284 */ virtual void startSound(JAISoundID, JAISoundHandle*,
+                                           JGeometry::TVec3<f32> const*, u32, f32, f32, f32, f32,
+                                           f32, u32);
+
+    /* 0x4 */ Z2CreatureRide* mRide;
+};
+
+class Z2CreatureRide : public Z2Creature {
 public:
     Z2CreatureRide();
     ~Z2CreatureRide();
-    void deleteObject();
     void init(Vec*, Vec*, u8, u8);
     void setLinkRiding(bool);
 
+    virtual void deleteObject();
+
 private:
-    /* 0x00 */ void* vtable;
-    /* 0x04 */ u8 Z2Creature_members[140];
-    /* 0x90 */ u8 Z2RideSoundStarter[8];
+    /* 0x90 */ Z2RideSoundStarter mSoundStarter;
     /* 0x98 */ bool mLinkRiding;
-    /* 0x99 */ u8 padding[3];
-};
+};  // Size: 0x9C
 
 class Z2CreatureEnemy : public Z2Creature {
 public:
-    virtual void test();  // temp to build OK, remove later
     /* 802C0F64 */ Z2CreatureEnemy();
     /* 802C0FC4 */ virtual void deleteObject();
     /* 802C1094 */ void init(Vec*, Vec*, u8, u8);

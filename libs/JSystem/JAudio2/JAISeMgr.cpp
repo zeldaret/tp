@@ -436,7 +436,7 @@ asm void JAISeMgr::getNumActiveSe() const {
 #pragma optimization_level 0
 #pragma optimizewithasm off
 extern "C" asm void __dt__8JAISeMgrFv() {
-//asm JAISeMgr::~JAISeMgr() {
+    // asm JAISeMgr::~JAISeMgr() {
     nofralloc
 #include "asm/JSystem/JAudio2/JAISeMgr/__dt__8JAISeMgrFv.s"
 }

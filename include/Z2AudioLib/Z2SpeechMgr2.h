@@ -1,9 +1,9 @@
 #ifndef Z2SPEECHMGR2_H
 #define Z2SPEECHMGR2_H
 
-#include "Z2AudioLib/Z2SoundStarter.h"
 #include "JSystem/JAudio2/JAISoundHandles.h"
 #include "JSystem/JMath/random.h"
+#include "Z2AudioLib/Z2SoundStarter.h"
 #include "dolphin/mtx/vec.h"
 #include "dolphin/types.h"
 
@@ -11,8 +11,9 @@ struct Z2SpeechStarter : public Z2SoundStarter {
     /* 802CCFB8 */ Z2SpeechStarter();
 
     /* 802CBCEC */ virtual ~Z2SpeechStarter();
-    /* 802CCFF8 */ virtual void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*, u32,
-                                   f32, f32, f32, f32, f32, u32);
+    /* 802CCFF8 */ virtual void startSound(JAISoundID, JAISoundHandle*,
+                                           JGeometry::TVec3<f32> const*, u32, f32, f32, f32, f32,
+                                           f32, u32);
 };
 
 struct Z2SpeechMgr2 {

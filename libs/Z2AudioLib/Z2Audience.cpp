@@ -43,10 +43,6 @@ struct Z2Calc {
     /* 802A96F4 */ void getParamByExp(f32, f32, f32, f32, f32, f32, Z2Calc::CurveSign);
 };
 
-struct JAIAudible {
-    /* 8029EFAC */ ~JAIAudible();
-};
-
 struct Z2AudibleAbsPos {
     /* 802BBCDC */ void calc(JGeometry::TVec3<f32> const&);
     /* 802BBD18 */ void init(JGeometry::TVec3<f32>*, JGeometry::TVec3<f32> const&,
@@ -666,7 +662,7 @@ asm Z2Audience::Z2Audience() {
 #pragma optimization_level 0
 #pragma optimizewithasm off
 extern "C" asm void __dt__10Z2AudienceFv() {
-// asm Z2Audience::~Z2Audience() {
+    // asm Z2Audience::~Z2Audience() {
     nofralloc
 #include "asm/Z2AudioLib/Z2Audience/__dt__10Z2AudienceFv.s"
 }
@@ -712,8 +708,8 @@ u8 data_80451354[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2Audience::newAudible(JGeometry::TVec3<f32> const& param_0, JAISoundID param_1,
-                                JGeometry::TVec3<f32> const* param_2, u32 param_3) {
+asm JAIAudible* Z2Audience::newAudible(JGeometry::TVec3<f32> const& param_0, JAISoundID param_1,
+                                       JGeometry::TVec3<f32> const* param_2, u32 param_3) {
     nofralloc
 #include "asm/Z2AudioLib/Z2Audience/func_802BD338.s"
 }

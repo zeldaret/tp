@@ -12,7 +12,7 @@ struct JASSoundParams {
     void initPitch() { mPitch = 1.0f; }
     void initPan() { mPan = 0.5f; }
     void initDolby() { mDolby = 0.0f; }
-    void init () {
+    void init() {
         initVolume();
         initPitch();
         initFxMix();

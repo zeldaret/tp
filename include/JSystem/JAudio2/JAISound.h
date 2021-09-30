@@ -1,9 +1,10 @@
 #ifndef JAISOUND_H
 #define JAISOUND_H
 
-#include "JSystem/JGeometry.h"
-#include "JSystem/JAudio2/JAISoundParams.h"
+#include "JSystem/JAudio2/JAIAudience.h"
 #include "JSystem/JAudio2/JAISoundHandles.h"
+#include "JSystem/JAudio2/JAISoundParams.h"
+#include "JSystem/JGeometry.h"
 #include "dolphin/types.h"
 #include "global.h"
 
@@ -15,6 +16,8 @@ public:
     JAISoundID(u32 pId);
 
     JAISoundID(JAISoundID const& other);
+
+    JAISoundID() {}
 
 private:
     u32 mId;
@@ -29,16 +32,28 @@ struct JASTrack {
 };
 
 struct JAISoundStatus_ {
-    /* 802A2220 */ void lockWhenPrepared();
-    /* 802A2244 */ void unlockIfLocked();
+    /* 802A2220 */ s32 lockWhenPrepared();
+    /* 802A2244 */ s32 unlockIfLocked();
+
+    void init() {
+        field_0x0 = 0;
+        field_0x1 = 0;
+        *((u16*)(this) + 2) = 0;
+        user_data = 0;
+    }
 
     /* 0x0 */ u8 field_0x0;
     /* 0x1 */ u8 field_0x1;
-    /* 0x2 */ u16 state;  // debug accesses like "state.flags.calcedOnce"
+    /* 0x2 */ u8 state[2];  // debug accesses like "state.flags.calcedOnce"
     /* 0x4 */ u32 user_data;
 };  // Size: 0x6
 
 struct JAISoundFader {
+    void forceIn() {
+        mIntensity = 1.0f;
+        field_0x4.zero();
+    }
+
     /* 0x00 */ f32 mIntensity;
     /* 0x04 */ JAISoundParamsTransition::TTransition field_0x4;
 };  // Size: 0x10
@@ -68,7 +83,7 @@ public:
     /* 802A21BC */ void attachHandle(JAISoundHandle*);
     /* 802A22F8 */ JAISound();
     /* 802A2328 */ void start_JAISound_(JAISoundID, JGeometry::TVec3<f32> const*, JAIAudience*);
-    /* 802A244C */ void acceptsNewAudible() const;
+    /* 802A244C */ bool acceptsNewAudible() const;
     /* 802A2474 */ void newAudible(JGeometry::TVec3<f32> const&, JGeometry::TVec3<f32> const*, u32,
                                    JAIAudience*);
     /* 802A2598 */ void stop();
@@ -85,12 +100,13 @@ public:
 
     JAISoundID getID() const;
     u32 getUserData() const { return status_.user_data; }
+    bool isHandleAttached() const { return handle_ != NULL; }
 
-    /* 0x04 */ JAISoundHandle* handle;
-    /* 0x08 */ struct JAIAudible* audible_;
-    /* 0x0C */ struct JAIAudience* audience_;
+    /* 0x04 */ JAISoundHandle* handle_;
+    /* 0x08 */ JAIAudible* audible_;
+    /* 0x0C */ JAIAudience* audience_;
     /* 0x10 */ s32 lifeTime;
-    /* 0x14 */ s32 num_prepare_steps;
+    /* 0x14 */ s32 prepareCount;
     /* 0x18 */ JAISoundID soundID;
     /* 0x1C */ JAISoundStatus_ status_;
     /* 0x24 */ JAISoundFader fader;

@@ -1,9 +1,9 @@
 #ifndef JAISEQMGR_H
 #define JAISEQMGR_H
 
-#include "JSystem/JAudio2/JAISound.h"
-#include "JSystem/JAudio2/JAISeqDataMgr.h"
 #include "JSystem/JAudio2/JAIAudience.h"
+#include "JSystem/JAudio2/JAISeqDataMgr.h"
+#include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "dolphin/types.h"
 

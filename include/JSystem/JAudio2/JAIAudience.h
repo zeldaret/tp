@@ -1,15 +1,17 @@
 #ifndef JAIAUDIENCE_H
 #define JAIAUDIENCE_H
 
+#include "JSystem/JAudio2/JAIAudible.h"
 #include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JGeometry.h"
 #include "dolphin/types.h"
 
-struct JAIAudible;
+class JAISoundID;
+struct JASSoundParams;
 
 struct JAIAudience {
     virtual ~JAIAudience();
-    virtual void newAudible(JGeometry::TVec3<f32> const&, JAISoundID,
+    virtual JAIAudible* newAudible(JGeometry::TVec3<f32> const&, JAISoundID,
                                    JGeometry::TVec3<f32> const*, u32) = 0;
     virtual void getMaxChannels() = 0;
     virtual void deleteAudible(JAIAudible*) = 0;

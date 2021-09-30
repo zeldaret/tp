@@ -1,9 +1,9 @@
 #ifndef Z2SOUNDMGR_H
 #define Z2SOUNDMGR_H
 
-#include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JAISeMgr.h"
 #include "JSystem/JAudio2/JAISeqMgr.h"
+#include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JAIStreamMgr.h"
 #include "dolphin/types.h"
 
@@ -24,8 +24,9 @@ public:
     /* 802AA9E8 */ void multiVolumeSoundID(JAISoundID, f32);
     /* 802AAAC4 */ void isPlayingSoundID(JAISoundID);
 
-    /* 802A9EE8 */ /* virtual */ void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
-    /* 0x000 */ void* vtable; // remove later
+    /* 802A9EE8 */ /* virtual */ void startSound(JAISoundID, JAISoundHandle*,
+                                                 JGeometry::TVec3<f32> const*);
+    /* 0x000 */ void* vtable;  // remove later
 private:
     /* 0x004 */ JAISeMgr mSeMgr;
     /* 0x728 */ JAISeqMgr mSeqMgr;

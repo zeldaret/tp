@@ -24,7 +24,7 @@ struct Z2MultiSeMgr {
 
 struct Z2MultiSeObj : Z2MultiSeMgr {
     Z2MultiSeObj();
-    ~Z2MultiSeObj();
+    ~Z2MultiSeObj() {}
 
     /* 0x1C */ u32 field_0x1c;
     /* 0x20 */ u8 field_0x20;
@@ -52,6 +52,7 @@ public:
     /* 802AE184 */ void processSeFramework();
     /* 802AE524 */ void isLevelSe(JAISoundID);
     /* 802AE5B0 */ void isSoundCulling(JAISoundID);
+    /* 802B9AC4 */ void resetCrowdSize();
 
 private:
     /* 0x000 */ JAISoundHandle mSoundHandle[24];

@@ -1,9 +1,9 @@
 #ifndef JAISEMGR_H
 #define JAISEMGR_H
 
-#include "JSystem/JAudio2/JAISound.h"
-#include "JSystem/JAudio2/JAISeqDataMgr.h"
 #include "JSystem/JAudio2/JAIAudience.h"
+#include "JSystem/JAudio2/JAISeqDataMgr.h"
+#include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "dolphin/types.h"
 
@@ -35,7 +35,7 @@ public:
     /* 8029FF18 */ void JAISeMgr_mixOut_(JAISoundParamsMove const&, JAISoundActivity);
     /* 802A0994 */ JAISeCategoryMgr();
 
-    /* 800078DC */ virtual ~JAISeCategoryMgr();  // inline?
+    /* 800078DC */ virtual ~JAISeCategoryMgr() {}
     /* 8029F8B0 */ virtual bool isUsingSeqData(JAISeqDataRegion const&);
     /* 8029F91C */ virtual void releaseSeqData(JAISeqDataRegion const&);
 

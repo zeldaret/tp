@@ -35,8 +35,6 @@ struct JAUSoundAnimation {
     /* 802A7044 */ void getEndSoundIndex(f32) const;
 };
 
-struct JAIAudience {};
-
 //
 // Forward References:
 //
@@ -521,7 +519,8 @@ asm Z2SoundObjAnime::Z2SoundObjAnime() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2SoundObjAnime::init(Vec* param_0, u8 param_1) {
+extern "C" asm void init__15Z2SoundObjAnimeFP3VecUc() {
+    // asm void Z2SoundObjAnime::init(Vec* param_0, u8 param_1) {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundObject/init__15Z2SoundObjAnimeFP3VecUc.s"
 }

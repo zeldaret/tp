@@ -8,26 +8,27 @@
 template <typename T>
 class JASGlobalInstance {
 public:
-    JASGlobalInstance(bool param_0) {
-        if (param_0) {
-            sInstance = this;
-        }
-    };
-    ~JASGlobalInstance() {
-        if (sInstance == this) {
-            sInstance = NULL;
-        }
-    };
-
     T* getInstance() { return sInstance; };
 
     static T* sInstance;
 };
 
-class mDoAud_zelAudio_c : public Z2AudioMgr {
+extern bool struct_80450BB8;  // sInitFlag
+extern bool sResetFlag;
+
+class mDoAud_zelAudio_c {
 public:
     void reset();
-    ~mDoAud_zelAudio_c();
+    ~mDoAud_zelAudio_c() {}
+
+    static void onInitFlag() { struct_80450BB8 = true; }
+    static bool isResetFlag() { return sResetFlag; }
+    static void onResetFlag() { sResetFlag = true; }
+    static void offResetFlag() { sResetFlag = false; }
+
+    Z2AudioMgr mAudioMgr;
 };
+
+extern JKRSolidHeap* g_mDoAud_audioHeap;
 
 #endif /* M_DO_M_DO_AUDIO_H */

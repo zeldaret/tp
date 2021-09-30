@@ -885,7 +885,8 @@ asm Z2CreatureEnemy::Z2CreatureEnemy() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2CreatureEnemy::deleteObject() {
+extern "C" asm void deleteObject__15Z2CreatureEnemyFv() {
+    // asm void Z2CreatureEnemy::deleteObject() {
     nofralloc
 #include "asm/Z2AudioLib/Z2Creature/deleteObject__15Z2CreatureEnemyFv.s"
 }

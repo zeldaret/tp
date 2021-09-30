@@ -140,7 +140,6 @@ asm void Z2SoundInfo::getAudibleSw(JAISoundID param_0) const {
 }
 #pragma pop
 
-
 /* ############################################################################################## */
 /* 80455A68-80455A6C 004068 0004+00 1/1 0/0 0/0 .sdata2          @963 */
 SECTION_SDATA2 static f32 lit_963 = 8.0f;
@@ -296,7 +295,7 @@ SECTION_DATA extern void* __vt__11Z2SoundInfo[20] = {
 #pragma optimization_level 0
 #pragma optimizewithasm off
 extern "C" asm void __dt__11Z2SoundInfoFv() {
-// asm Z2SoundInfo::~Z2SoundInfo() {
+    // asm Z2SoundInfo::~Z2SoundInfo() {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundInfo/__dt__11Z2SoundInfoFv.s"
 }

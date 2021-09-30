@@ -269,7 +269,7 @@ asm void JAISeqMgr::endStartSeq_(JAISeq* param_0, JAISoundHandle* param_1) {
 #pragma optimization_level 0
 #pragma optimizewithasm off
 extern "C" asm void __dt__9JAISeqMgrFv() {
-// asm JAISeqMgr::~JAISeqMgr() {
+    // asm JAISeqMgr::~JAISeqMgr() {
     nofralloc
 #include "asm/JSystem/JAudio2/JAISeqMgr/__dt__9JAISeqMgrFv.s"
 }
