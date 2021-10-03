@@ -224,14 +224,12 @@ asm void JUTException::panic_f_va(char const* param_0, int param_1, char const* 
 
 /* 802E21FC-802E227C 2DCB3C 0080+00 0/0 16/16 0/0 .text            panic_f__12JUTExceptionFPCciPCce
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTException::panic_f(char const* param_0, int param_1, char const* param_2, ...) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/panic_f__12JUTExceptionFPCciPCce.s"
+void JUTException::panic_f(char const* param_0, int param_1, char const* format, ...) {
+    va_list args;
+    va_start(args, format);
+    panic_f_va(param_0, param_1, format, args);
+    va_end(args);
 }
-#pragma pop
 
 /* 802E227C-802E22C4 2DCBBC 0048+00 1/1 0/0 0/0 .text            setFPException__12JUTExceptionFUl
  */
