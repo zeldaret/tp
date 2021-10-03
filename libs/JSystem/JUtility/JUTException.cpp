@@ -1038,16 +1038,27 @@ SECTION_DEAD static char const* const stringBase_8039D979 = ".map";
 
 /* 802E3BA0-802E3C90 2DE4E0 00F0+00 1/1 0/0 0/0 .text
  * queryMapAddress__12JUTExceptionFPcUllPUlPUlPcUlbb            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool JUTException::queryMapAddress(char* param_0, u32 param_1, s32 param_2, u32* param_3,
-                                       u32* param_4, char* param_5, u32 param_6, bool param_7,
-                                       bool param_8) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/queryMapAddress__12JUTExceptionFPcUllPUlPUlPcUlbb.s"
+bool JUTException::queryMapAddress(char* mapPath, u32 address, s32 section_id, u32* out_addr,
+                                   u32* out_size, char* out_line, u32 line_length, bool print,
+                                   bool begin_with_newline) {
+    if (mapPath) {
+        char buffer[80];
+        strcpy(buffer, mapPath);
+        strcat(buffer, ".map");
+        if (queryMapAddress_single(buffer, address, section_id, out_addr, out_size, out_line,
+                                   line_length, print, begin_with_newline) == true) {
+            return true;
+        }
+    } else if (sMapFileList.getFirst() != sMapFileList.getEnd()) {
+        if (queryMapAddress_single(sMapFileList.getFirst()->getObject()->mPath, address, -1,
+                                   out_addr, out_size, out_line, line_length, print,
+                                   begin_with_newline) == true) {
+            return true;
+        }
+    }
+
+    return false;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -1084,7 +1095,7 @@ bool JUTException::queryMapAddress_single(char* mapPath, u32 address, s32 sectio
         do {
             i++;
             while (true) {
-                while(true) {
+                while (true) {
                     int length = file.fgets(buffer, ARRAY_SIZE(buffer));
                     if (length < 0)
                         goto next_section;

@@ -45,10 +45,10 @@ public:
 
     class JUTExMapFile {
     public:
-        JUTExMapFile(const char* path) : mLink(this) { mPath = path; }
+        JUTExMapFile(char* path) : mLink(this) { mPath = path; }
 
     public:
-        /* 0x00 */ const char* mPath;
+        /* 0x00 */ char* mPath;
         /* 0x04 */ JSULink<JUTExMapFile> mLink;
         /* 0x14 */
     };
