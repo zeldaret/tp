@@ -52,14 +52,14 @@ extern "C" void* VIGetCurrentFrameBuffer();
 extern "C" void VISetPreRetraceCallback(void*);
 extern "C" void VISetPostRetraceCallback(void*);
 extern "C" void PPCMtmsr();
-extern "C" void PPCMfmsr();
+extern "C" u32 PPCMfmsr();
 extern "C" void _savegpr_25();
 extern "C" void _restgpr_25();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
 extern "C" void OSYieldThread();
-extern "C" void OSProtectRange();
-extern "C" void OSFillFPUContext();
+extern "C" void OSProtectRange(int, void*, int, int);
+extern "C" void OSFillFPUContext(OSContext*);
 extern "C" void print_f__10JUTConsoleFPCce();
 extern "C" OSContext* OSGetCurrentContext();
 extern "C" void VIFlush();
@@ -210,14 +210,28 @@ u32 JUTException::fpscr;
 
 /* 802E1FCC-802E20C0 2DC90C 00F4+00 2/2 0/0 0/0 .text
  * errorHandler__12JUTExceptionFUsP9OSContextUlUl               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTException::errorHandler(u16 param_0, OSContext* param_1, u32 param_2, u32 param_3) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/errorHandler__12JUTExceptionFUsP9OSContextUlUl.s"
+void JUTException::errorHandler(u16 error, OSContext* context, u32 param_3, u32 param_4) {
+    msr = PPCMfmsr();
+    fpscr = context->fpscr;
+    OSFillFPUContext(context);
+    OSSetErrorHandler(error, NULL);
+    if (error == OS_ERROR_MEMORY_PROTECTION) {
+        OSProtectRange(0, NULL, 0, 3);
+        OSProtectRange(1, NULL, 0, 3);
+        OSProtectRange(2, NULL, 0, 3);
+        OSProtectRange(3, NULL, 0, 3);
+    }
+
+    exCallbackObject.callback = sPreUserCallback;
+    exCallbackObject.error = error;
+    exCallbackObject.context = context;
+    exCallbackObject.param_3 = param_3;
+    exCallbackObject.param_4 = param_4;
+
+    OSSendMessage(&sMessageQueue, &exCallbackObject, OS_MESSAGE_BLOCKING);
+    OSEnableScheduler();
+    OSYieldThread();
 }
-#pragma pop
 
 /* 80434598-804345A8 0612B8 000C+04 4/4 0/0 0/0 .bss             sMapFileList__12JUTException */
 JSUList<JUTException::JUTExMapFile> JUTException::sMapFileList(false);
