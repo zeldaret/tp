@@ -13,6 +13,17 @@
 #include "msl_c/string.h"
 
 //
+// Types:
+//
+
+struct JUTConsoleManager {
+    /* 802E8450 */ void drawDirect(bool) const;
+    /* 802E84C4 */ void setDirectConsole(JUTConsole*);
+
+    static JUTConsoleManager* sManager;
+};
+
+//
 // Forward References:
 //
 
@@ -50,7 +61,7 @@ extern "C" void OSYieldThread();
 extern "C" void OSProtectRange();
 extern "C" void OSFillFPUContext();
 extern "C" void print_f__10JUTConsoleFPCce();
-extern "C" void OSGetCurrentContext();
+extern "C" OSContext* OSGetCurrentContext();
 extern "C" void VIFlush();
 extern "C" void VISetBlack(BOOL);
 extern "C" u32 VIGetRetraceCount();
@@ -168,7 +179,18 @@ asm void* JUTException::run() {
 
 /* ############################################################################################## */
 /* 80434578-8043458C 061298 0014+00 2/2 0/0 0/0 .bss             exCallbackObject */
-static u8 exCallbackObject[20];
+struct CallbackObject {
+    /* 0x00 */ OSErrorHandler callback;
+    /* 0x04 */ s16 error;
+    /* 0x06 */ u16 pad_0x06;
+    /* 0x08 */ OSContext* context;
+    /* 0x0C */ int param_3;
+    /* 0x10 */ int param_4;
+    /* 0x14 */
+};
+
+STATIC_ASSERT(sizeof(CallbackObject) == 0x14);
+static CallbackObject exCallbackObject;
 
 /* 80451514-80451518 000A14 0004+00 1/1 0/0 0/0 .sbss            sConsoleBuffer__12JUTException */
 void* JUTException::sConsoleBuffer;
@@ -197,13 +219,6 @@ asm void JUTException::errorHandler(u16 param_0, OSContext* param_1, u32 param_2
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D552 = "%s in \"%s\" on line %d\n";
-#pragma pop
-
 /* 80434598-804345A8 0612B8 000C+04 4/4 0/0 0/0 .bss             sMapFileList__12JUTException */
 JSUList<JUTException::JUTExMapFile> JUTException::sMapFileList(false);
 
@@ -212,22 +227,42 @@ static OSContext context;
 
 /* 802E20C0-802E21FC 2DCA00 013C+00 1/1 0/0 0/0 .text
  * panic_f_va__12JUTExceptionFPCciPCcP16__va_list_struct        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTException::panic_f_va(char const* param_0, int param_1, char const* param_2,
-                                  va_list param_3) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/panic_f_va__12JUTExceptionFPCciPCcP16__va_list_struct.s"
+void JUTException::panic_f_va(char const* file, int line, char const* format, va_list args) {
+    char buffer[256];
+    vsnprintf(buffer, sizeof(buffer) - 1, format, args);
+    if (!sErrorManager) {
+        OSPanic(file, line, buffer);
+    }
+
+    OSContext* current_context = OSGetCurrentContext();
+    memcpy(&context, current_context, sizeof(OSContext));
+    sErrorManager->mStackPointer = (u32)OSGetStackPointer();
+
+    exCallbackObject.callback = sPreUserCallback;
+    exCallbackObject.error = 0xFF;
+    exCallbackObject.context = &context;
+    exCallbackObject.param_3 = 0;
+    exCallbackObject.param_4 = 0;
+
+    if (!sConsole || (sConsole && (sConsole->getOutput() & 2) == 0)) {
+        OSReport("%s in \"%s\" on line %d\n", buffer, file, line);
+    }
+
+    if (sConsole) {
+        sConsole->print_f("%s in \"%s\" on line %d\n", buffer, file, line);
+    }
+
+    OSSendMessage(&sMessageQueue, &exCallbackObject, 1);
+    OSThread* current_thread = OSGetCurrentThread();
+    OSSuspendThread(current_thread);
 }
-#pragma pop
 
 /* 802E21FC-802E227C 2DCB3C 0080+00 0/0 16/16 0/0 .text            panic_f__12JUTExceptionFPCciPCce
  */
-void JUTException::panic_f(char const* param_0, int param_1, char const* format, ...) {
+void JUTException::panic_f(char const* file, int line, char const* format, ...) {
     va_list args;
     va_start(args, format);
-    panic_f_va(param_0, param_1, format, args);
+    panic_f_va(file, line, format, args);
     va_end(args);
 }
 
