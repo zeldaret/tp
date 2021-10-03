@@ -18,9 +18,11 @@
 struct JUTDirectFile {
     /* 802E87F8 */ JUTDirectFile();
     /* 802E881C */ ~JUTDirectFile();
-    /* 802E8860 */ void fopen(char const*);
-    /* 802E88FC */ void fclose();
-    /* 802E8958 */ void fgets(void*, int);
+    /* 802E8860 */ bool fopen(char const*);
+    /* 802E88FC */ BOOL fclose();
+    /* 802E8958 */ int fgets(void*, int);
+
+    /* 0x00 */ char data[2160];
 };
 
 struct JUTConsoleManager {
@@ -142,7 +144,7 @@ extern "C" void _restgpr_25();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
 extern "C" void __div2i();
-extern "C" void strtol();
+extern "C" long int strtol(const char* str, char** endptr, int base);
 extern "C" extern _GXRenderModeObj GXNtsc480Int;
 extern "C" extern u32 __OSFpscrEnableBits;
 extern "C" u8 sSystemHeap__7JKRHeap[4];
@@ -1058,28 +1060,141 @@ SECTION_DEAD static char const* const pad_8039D99E = "\0";
 
 /* 802E3C90-802E3FEC 2DE5D0 035C+00 1/1 0/0 0/0 .text
  * queryMapAddress_single__12JUTExceptionFPcUllPUlPUlPcUlbb     */
+// 2 additional instructions (addi r5,r1,8) related to section_name variable.
+#if NONMATCHING
+bool JUTException::queryMapAddress_single(char* mapPath, u32 address, s32 section_id, u32* out_addr,
+                                          u32* out_size, char* out_line, u32 line_length,
+                                          bool print, bool begin_with_newline) {
+    if (!mapPath) {
+        return false;
+    }
+
+    char section_name[16];
+    char buffer[0x200];
+    JUTDirectFile file;
+    int i = 0;
+    if (!file.fopen(mapPath)) {
+        return false;
+    }
+
+    int result = 0;
+    do {
+        char* src = buffer;
+        int found_section = 0;
+        do {
+            i++;
+            while (true) {
+                while(true) {
+                    int length = file.fgets(buffer, ARRAY_SIZE(buffer));
+                    if (length < 0)
+                        goto next_section;
+                    if (buffer[0] == '.')
+                        break;
+                }
+
+                char* dst = section_name;
+                int i = 0;
+                char* src = buffer + 1;
+                for (; *src != '\0'; i++, dst++, src++) {
+                    *dst = *src;
+                    if (*src == ' ' || i == 0xf)
+                        break;
+                }
+
+                section_name[i] = 0;
+                if (*src == 0)
+                    break;
+
+                if (src[1] == 's' && src[2] == 'e' && src[3] == 'c' && src[4] == 't') {
+                    found_section = true;
+                    break;
+                }
+            }
+            if ((found_section & 0xFF) == 0)
+                goto end;
+        } while (section_id >= 0 && section_id != i);
+    next_section:;
+
+        u32 addr;
+        int size;
+        do {
+            int length;
+            do {
+                length = file.fgets(buffer, ARRAY_SIZE(buffer));
+                if (length <= 4)
+                    goto next_symbol;
+            } while ((length < 28) || (buffer[28] != '4'));
+
+            addr = strtol(buffer + 19, NULL, 16);
+            addr = ((buffer[18] - '0') << 28) | addr;
+            size = strtol(buffer + 11, NULL, 16);
+        } while (addr > address || address >= addr + size);
+
+        if (out_addr)
+            *out_addr = addr;
+
+        if (out_size)
+            *out_size = size;
+
+        if (out_line) {
+            src = buffer + 0x1e;
+            char* dst = out_line;
+            u32 length = 0;
+            for (; length < line_length - 1; src++) {
+                u32 ch = *(u8*)src;
+                if (ch < ' ' && ch != '\t')
+                    break;
+                if (((int)ch == ' ' || ch == '\t') && (length != 0)) {
+                    if (dst[-1] != ' ') {
+                        *dst = ' ';
+                        dst++;
+                        length++;
+                    }
+                } else {
+                    *dst = ch;
+                    dst++;
+                    length++;
+                }
+            }
+            if (length != 0 && dst[-1] == ' ') {
+                dst--;
+            }
+            *dst = 0;
+            if (print) {
+                if (begin_with_newline) {
+                    sConsole->print("\n");
+                }
+                sConsole->print_f("  [%08X]: .%s [%08X: %XH]\n  %s\n", address, section_name, addr,
+                                  size, out_line);
+                begin_with_newline = false;
+            }
+        }
+
+        result = true;
+
+    next_symbol:;
+    } while ((result & 0xFF) == 0 && section_id >= 0 && section_id != i);
+
+    if (print && begin_with_newline) {
+        sConsole->print("\n");
+    }
+
+end:
+    bool bresult = (file.fclose() & 0xFF) != 0;
+    return bresult;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JUTException::queryMapAddress_single(char* param_0, u32 param_1, s32 param_2, u32* param_3,
+asm bool JUTException::queryMapAddress_single(char* param_0, u32 param_1, s32 param_2, u32* param_3,
                                               u32* param_4, char* param_5, u32 param_6,
                                               bool param_7, bool param_8) {
     nofralloc
 #include "asm/JSystem/JUtility/JUTException/queryMapAddress_single__12JUTExceptionFPcUllPUlPUlPcUlbb.s"
 }
 #pragma pop
-
-/* ##############################################################################################
- */
-/* 80456054-80456058 004654 0004+00 1/1 0/0 0/0 .sdata2          @3034 */
-SECTION_SDATA2 static f32 lit_3034 = 10.0f;
-
-/* 80456058-80456060 004658 0004+04 1/1 0/0 0/0 .sdata2          @3035 */
-SECTION_SDATA2 static f32 lit_3035[1 + 1 /* padding */] = {
-    6.0f,
-    /* padding */
-    0.0f,
-};
+#endif
 
 /* 802E3FEC-802E40CC 2DE92C 00E0+00 0/0 1/1 0/0 .text            createConsole__12JUTExceptionFPvUl
  */
@@ -1102,7 +1217,7 @@ void JUTException::createConsole(void* console_buffer, u32 console_buffer_size) 
         sConsole->setHeight(23);
         sConsole->setVisible(true);
         sConsole->setOutput(3);
-    } 
+    }
 }
 
 /* 802E40CC-802E40EC 2DEA0C 0020+00 1/1 0/0 0/0 .text

@@ -82,7 +82,7 @@ public:
     /* 802E3AFC */ static OSErrorHandler setPostUserCallback(OSErrorHandler);
     /* 802E3B0C */ static void appendMapFile(char const*);
     /* 802E3BA0 */ static bool queryMapAddress(char*, u32, s32, u32*, u32*, char*, u32, bool, bool);
-    /* 802E3C90 */ static void queryMapAddress_single(char*, u32, s32, u32*, u32*, char*, u32, bool,
+    /* 802E3C90 */ static bool queryMapAddress_single(char*, u32, s32, u32*, u32*, char*, u32, bool,
                                                       bool);
     /* 802E3FEC */ static void createConsole(void*, u32);
     /* 802E3980 */ static void waitTime(s32);
