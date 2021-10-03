@@ -1002,7 +1002,6 @@ OSErrorHandler JUTException::setPostUserCallback(OSErrorHandler callback) {
 
 /* 802E3B0C-802E3BA0 2DE44C 0094+00 0/0 1/1 0/0 .text            appendMapFile__12JUTExceptionFPCc
  */
-#if 0
 void JUTException::appendMapFile(char const* path) {
     if (!path) {
         return;
@@ -1015,26 +1014,9 @@ void JUTException::appendMapFile(char const* path) {
         }
     }
 
-    JUTExMapFile* mapFile = new JUTExMapFile(path);
+    JUTExMapFile* mapFile = new JUTExMapFile((char*)path);
     sMapFileList.append(&mapFile->mLink);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTException::appendMapFile(char const* param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/appendMapFile__12JUTExceptionFPCc.s"
-}
-#pragma pop
-#endif
-
-/* ############################################################################################## */
-/* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D979 = ".map";
-#pragma pop
 
 /* 802E3BA0-802E3C90 2DE4E0 00F0+00 1/1 0/0 0/0 .text
  * queryMapAddress__12JUTExceptionFPcUllPUlPUlPcUlbb            */
