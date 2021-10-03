@@ -6,216 +6,96 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "JSystem/JUtility/JUTConsole.h"
+#include "JSystem/JUtility/JUTDirectPrint.h"
 #include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/float.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "msl_c/string.h"
 
 //
-// Types:
-//
-
-struct JUTDirectFile {
-    /* 802E87F8 */ JUTDirectFile();
-    /* 802E881C */ ~JUTDirectFile();
-    /* 802E8860 */ bool fopen(char const*);
-    /* 802E88FC */ BOOL fclose();
-    /* 802E8958 */ int fgets(void*, int);
-
-    /* 0x00 */ char data[2160];
-};
-
-struct JUTConsoleManager {
-    /* 802E8450 */ void drawDirect(bool) const;
-    /* 802E84C4 */ void setDirectConsole(JUTConsole*);
-
-    static JUTConsoleManager* sManager;
-};
-
-//
 // Forward References:
 //
 
-extern "C" void __ct__12JUTExceptionFP14JUTDirectPrint();
-extern "C" void create__12JUTExceptionFP14JUTDirectPrint();
 extern "C" void run__12JUTExceptionFv();
-extern "C" void errorHandler__12JUTExceptionFUsP9OSContextUlUl();
-extern "C" void panic_f_va__12JUTExceptionFPCciPCcP16__va_list_struct();
-extern "C" void panic_f__12JUTExceptionFPCciPCce();
-extern "C" void setFPException__12JUTExceptionFUl();
-extern "C" void showFloatSub__12JUTExceptionFif();
-extern "C" void showFloat__12JUTExceptionFP9OSContext();
-extern "C" void searchPartialModule__12JUTExceptionFUlPUlPUlPUlPUl();
-extern "C" static void search_name_part__FPUcPUci();
-extern "C" void showStack__12JUTExceptionFP9OSContext();
-extern "C" void showMainInfo__12JUTExceptionFUsP9OSContextUlUl();
-extern "C" void showGPR__12JUTExceptionFP9OSContext();
-extern "C" void showMapInfo_subroutine__12JUTExceptionFUlb();
-extern "C" void showGPRMap__12JUTExceptionFP9OSContext();
-extern "C" void showSRR0Map__12JUTExceptionFP9OSContext();
-extern "C" void printDebugInfo__12JUTExceptionFQ212JUTException9EInfoPageUsP9OSContextUlUl();
-extern "C" void isEnablePad__12JUTExceptionCFv();
-extern "C" void readPad__12JUTExceptionFPUlPUl();
-extern "C" void printContext__12JUTExceptionFUsP9OSContextUlUl();
-extern "C" void waitTime__12JUTExceptionFl();
-extern "C" void createFB__12JUTExceptionFv();
-extern "C" void setPreUserCallback__12JUTExceptionFPFUsP9OSContextUlUl_v();
-extern "C" void setPostUserCallback__12JUTExceptionFPFUsP9OSContextUlUl_v();
-extern "C" void appendMapFile__12JUTExceptionFPCc();
-extern "C" void queryMapAddress__12JUTExceptionFPcUllPUlPUlPcUlbb();
-extern "C" void queryMapAddress_single__12JUTExceptionFPcUllPUlPUlPcUlbb();
-extern "C" void createConsole__12JUTExceptionFPvUl();
-extern "C" void __ct__13JUTExternalFBFP16_GXRenderModeObj8_GXGammaPvUl();
 extern "C" void __dt__12JUTExceptionFv();
-extern "C" void __sinit_JUTException_cpp();
-extern "C" void func_802E4194(void* _this);
+extern "C" void printContext__12JUTExceptionFUsP9OSContextUlUl();
+extern "C" void createFB__12JUTExceptionFv();
+extern "C" void panic_f_va__12JUTExceptionFPCciPCcP16__va_list_struct();
+
 extern "C" extern char const* const JUTException__stringBase0;
 extern "C" u8 sMessageQueue__12JUTException[32];
-extern "C" void* sCpuExpName__12JUTException[17];
-extern "C" u8 sMapFileList__12JUTException[12 + 4 /* padding */];
 extern "C" u8 sMessageBuffer__12JUTException[4 + 4 /* padding */];
-extern "C" extern u8 data_804508F8[8];
 extern "C" u8 sErrorManager__12JUTException[4];
-extern "C" u8 sPreUserCallback__12JUTException[4];
-extern "C" u8 sPostUserCallback__12JUTException[4];
-extern "C" u8 sConsoleBuffer__12JUTException[4];
-extern "C" u8 sConsoleBufferSize__12JUTException[4];
-extern "C" u8 sConsole__12JUTException[4];
+
 extern "C" u8 msr__12JUTException[4];
 extern "C" u8 fpscr__12JUTException[4];
+extern "C" u8 sPreUserCallback__12JUTException[4];
+extern "C" u8 sConsole__12JUTException[4];
 
 //
 // External References:
 //
 
-extern "C" void* __nw__FUl();
-extern "C" void* __nw__FUlP7JKRHeapi();
-extern "C" void __dl__FPv();
-extern "C" void __ct__9JKRThreadFUlii();
-extern "C" void __dt__9JKRThreadFv();
-extern "C" void __ct__10JSUPtrLinkFPv();
-extern "C" void __ct__10JSUPtrListFb();
-extern "C" void __dt__10JSUPtrListFv();
-extern "C" void append__10JSUPtrListFP10JSUPtrLink();
-extern "C" void __ct__10JUTGamePadFQ210JUTGamePad8EPadPort();
-extern "C" void __dt__10JUTGamePadFv();
-extern "C" void read__10JUTGamePadFv();
-extern "C" void checkResetCallback__10JUTGamePadFx();
 extern "C" void changeFrameBuffer__14JUTDirectPrintFPvUsUs();
-extern "C" void create__10JUTConsoleFUiPvUl();
-extern "C" void getLineFromObjectSize__10JUTConsoleFUlUi();
+extern "C" void* VIGetCurrentFrameBuffer();
+extern "C" void VISetPreRetraceCallback(void*);
+extern "C" void VISetPostRetraceCallback(void*);
+extern "C" void PPCMtmsr();
+extern "C" void PPCMfmsr();
+extern "C" void _savegpr_25();
+extern "C" void _restgpr_25();
+extern "C" void _savegpr_28();
+extern "C" void _restgpr_28();
+extern "C" void OSYieldThread();
+extern "C" void OSProtectRange();
+extern "C" void OSFillFPUContext();
 extern "C" void print_f__10JUTConsoleFPCce();
-extern "C" void print__10JUTConsoleFPCc();
-extern "C" void scroll__10JUTConsoleFi();
-extern "C" void getUsedLine__10JUTConsoleCFv();
-extern "C" void getLineOffset__10JUTConsoleCFv();
-extern "C" void drawDirect__17JUTConsoleManagerCFb();
-extern "C" void setDirectConsole__17JUTConsoleManagerFP10JUTConsole();
-extern "C" void __ct__13JUTDirectFileFv();
-extern "C" void __dt__13JUTDirectFileFv();
+extern "C" void OSGetCurrentContext();
+extern "C" void VIFlush();
+extern "C" void VISetBlack(BOOL);
+extern "C" u32 VIGetRetraceCount();
+extern "C" extern _GXRenderModeObj GXNtsc480Int;
+extern "C" void VIConfigure(_GXRenderModeObj*);
+extern "C" void VISetNextFrameBuffer(void*);
+extern "C" void _restgpr_16();
 extern "C" void fopen__13JUTDirectFileFPCc();
 extern "C" void fclose__13JUTDirectFileFv();
 extern "C" void fgets__13JUTDirectFileFPvi();
-extern "C" void PPCMfmsr();
-extern "C" void PPCMtmsr();
-extern "C" void OSGetCurrentContext();
-extern "C" void OSFillFPUContext();
-extern "C" void OSProtectRange();
-extern "C" void OSYieldThread();
-extern "C" void VISetPreRetraceCallback(void*);
-extern "C" void VISetPostRetraceCallback(void*);
-extern "C" void VIConfigure(_GXRenderModeObj*);
-extern "C" void VIFlush();
-extern "C" void VISetNextFrameBuffer(void*);
-extern "C" void* VIGetCurrentFrameBuffer();
-extern "C" void VISetBlack(BOOL);
-extern "C" u32 VIGetRetraceCount();
-extern "C" void __register_global_object();
-extern "C" void _savegpr_16();
-extern "C" void _savegpr_22();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_16();
-extern "C" void _restgpr_22();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_28();
-extern "C" void __div2i();
+extern "C" void print__10JUTConsoleFPCc();
 extern "C" long int strtol(const char* str, char** endptr, int base);
-extern "C" extern _GXRenderModeObj GXNtsc480Int;
-extern "C" extern u32 __OSFpscrEnableBits;
-extern "C" u8 sSystemHeap__7JKRHeap[4];
-extern "C" u8 sManager__17JUTConsoleManager[4];
+extern "C" void __ct__13JUTDirectFileFv();
+extern "C" void __dt__13JUTDirectFileFv();
+extern "C" void _savegpr_16();
 
 //
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D490 = "SYSTEM RESET";
-SECTION_DEAD static char const* const stringBase_8039D49D = "MACHINE CHECK";
-SECTION_DEAD static char const* const stringBase_8039D4AB = "DSI";
-SECTION_DEAD static char const* const stringBase_8039D4AF = "ISI";
-SECTION_DEAD static char const* const stringBase_8039D4B3 = "EXTERNAL INTERRUPT";
-SECTION_DEAD static char const* const stringBase_8039D4C6 = "ALIGNMENT";
-SECTION_DEAD static char const* const stringBase_8039D4D0 = "PROGRAM";
-SECTION_DEAD static char const* const stringBase_8039D4D8 = "FLOATING POINT";
-SECTION_DEAD static char const* const stringBase_8039D4E7 = "DECREMENTER";
-SECTION_DEAD static char const* const stringBase_8039D4F3 = "SYSTEM CALL";
-SECTION_DEAD static char const* const stringBase_8039D4FF = "TRACE";
-SECTION_DEAD static char const* const stringBase_8039D505 = "PERFORMACE MONITOR";
-SECTION_DEAD static char const* const stringBase_8039D518 = "BREAK POINT";
-SECTION_DEAD static char const* const stringBase_8039D524 = "SYSTEM INTERRUPT";
-SECTION_DEAD static char const* const stringBase_8039D535 = "THERMAL INTERRUPT";
-SECTION_DEAD static char const* const stringBase_8039D547 = "PROTECTION";
-#pragma pop
-
 /* 803CC620-803CC640 029740 0020+00 3/3 0/0 0/0 .data            sMessageQueue__12JUTException */
 SECTION_DATA OSMessageQueue JUTException::sMessageQueue = {0};
 
 /* 803CC640-803CC660 029760 0020+00 1/1 0/0 0/0 .data            c3bcnt */
-SECTION_DATA static OSTime c3bcnt[4] = {
-    0,
-    0,
-    0,
-    0,
-};
+SECTION_DATA static OSTime c3bcnt[4] = {0, 0, 0, 0};
 
 /* 803CC660-803CC6A4 -00001 0044+00 1/1 0/0 0/0 .data            sCpuExpName__12JUTException */
 SECTION_DATA const char* JUTException::sCpuExpName[17] = {
-    (const char*)&JUTException__stringBase0,
-    (const char*)(((char*)&JUTException__stringBase0) + 0xD),
-    (const char*)(((char*)&JUTException__stringBase0) + 0x1B),
-    (const char*)(((char*)&JUTException__stringBase0) + 0x1F),
-    (const char*)(((char*)&JUTException__stringBase0) + 0x23),
-    (const char*)(((char*)&JUTException__stringBase0) + 0x36),
-    (const char*)(((char*)&JUTException__stringBase0) + 0x40),
-    (const char*)(((char*)&JUTException__stringBase0) + 0x48),
-    (const char*)(((char*)&JUTException__stringBase0) + 0x57),
-    (const char*)(((char*)&JUTException__stringBase0) + 0x63),
-    (const char*)(((char*)&JUTException__stringBase0) + 0x6F),
-    (const char*)(((char*)&JUTException__stringBase0) + 0x75),
-    (const char*)(((char*)&JUTException__stringBase0) + 0x88),
-    (const char*)(((char*)&JUTException__stringBase0) + 0x94),
-    (const char*)(((char*)&JUTException__stringBase0) + 0xA5),
-    (const char*)(((char*)&JUTException__stringBase0) + 0xB7),
-    (const char*)(((char*)&JUTException__stringBase0) + 0x48),
-};
-
-/* 803CC6A4-803CC6B8 0297C4 0010+04 2/2 0/0 0/0 .data            __vt__12JUTException */
-SECTION_DATA extern void* __vt__12JUTException[4 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12JUTExceptionFv,
-    (void*)run__12JUTExceptionFv,
-    /* padding */
-    NULL,
+    "SYSTEM RESET",
+    "MACHINE CHECK",
+    "DSI",
+    "ISI",
+    "EXTERNAL INTERRUPT",
+    "ALIGNMENT",
+    "PROGRAM",
+    "FLOATING POINT",
+    "DECREMENTER",
+    "SYSTEM CALL",
+    "TRACE",
+    "PERFORMACE MONITOR",
+    "BREAK POINT",
+    "SYSTEM INTERRUPT",
+    "THERMAL INTERRUPT",
+    "PROTECTION",
+    "FLOATING POINT",
 };
 
 /* 80451508-8045150C 000A08 0004+00 4/4 3/3 0/0 .sbss            sErrorManager__12JUTException */
