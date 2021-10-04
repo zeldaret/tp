@@ -311,15 +311,9 @@ def find_function_ranges(asm_files):
             first = None
             last = None
             for line in file.readlines():
-                line_start = line.find("/* ")
-                line_end = line.find(" */", 3)
-
-                if line_start < 0 or line_end < 0:
+                if not line.startswith('/* '):
                     continue
-
-                line_values = line[line_start+3:line_end].split(" ")
-                assert len(line_values) == 6
-                addr = int(line_values[0], 16)
+                addr = int(line[3:11], 16)
                 if not first:
                     first = addr
                 last = addr + 4
