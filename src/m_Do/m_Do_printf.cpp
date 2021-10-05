@@ -10,13 +10,6 @@
 #include "dolphin/types.h"
 
 //
-<<<<<<< HEAD
-=======
-// Types:
-//
-
-//
->>>>>>> OK printContext__12JUTExceptionFUsP9OSContextUlUl
 // Forward References:
 //
 
@@ -71,17 +64,8 @@ void my_PutString(const char* string) {
 }
 
 /* 800067F4-80006814 001134 0020+00 3/3 0/0 0/0 .text OSVAttention__FPCcP16__va_list_struct */
-<<<<<<< HEAD
 void OSVAttention(char const* fmt, va_list args) {
     mDoPrintf_vprintf(fmt, args);
-=======
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void OSVAttention(char const* param_0, va_list param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/OSVAttention__FPCcP16__va_list_struct.s"
->>>>>>> OK printContext__12JUTExceptionFUsP9OSContextUlUl
 }
 
 /* 80006814-80006894 001154 0080+00 1/1 1/1 0/0 .text            OSAttention */
@@ -147,7 +131,6 @@ static u8 mDoPrintf_FiberStack[2048] ALIGN_DECL(32);
 
 /* 800068DC-80006964 00121C 0088+00 1/1 0/0 0/0 .text
  * mDoPrintf_vprintf_Interrupt__FPCcP16__va_list_struct         */
-<<<<<<< HEAD
 void mDoPrintf_vprintf_Interrupt(char const* fmt, va_list args) {
     s32 interruptStatus = OSDisableInterrupts();
     if (!data_80450BB5) {
@@ -157,34 +140,16 @@ void mDoPrintf_vprintf_Interrupt(char const* fmt, va_list args) {
         data_80450BB5 = false;
     }
     OSRestoreInterrupts(interruptStatus);
-=======
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void mDoPrintf_vprintf_Interrupt(char const* param_0, va_list param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/mDoPrintf_vprintf_Interrupt__FPCcP16__va_list_struct.s"
->>>>>>> OK printContext__12JUTExceptionFUsP9OSContextUlUl
 }
 
 /* 80006964-80006984 0012A4 0020+00 1/1 0/0 0/0 .text
  * mDoPrintf_vprintf_Thread__FPCcP16__va_list_struct            */
-<<<<<<< HEAD
 void mDoPrintf_vprintf_Thread(char const* fmt, va_list args) {
     vprintf(fmt, args);
-=======
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void mDoPrintf_vprintf_Thread(char const* param_0, va_list param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/mDoPrintf_vprintf_Thread__FPCcP16__va_list_struct.s"
->>>>>>> OK printContext__12JUTExceptionFUsP9OSContextUlUl
 }
 
 /* 80006984-80006A10 0012C4 008C+00 4/4 0/0 0/0 .text mDoPrintf_vprintf__FPCcP16__va_list_struct
  */
-<<<<<<< HEAD
 void mDoPrintf_vprintf(char const* fmt, va_list args) {
     OSThread* currentThread = mDoExt_GetCurrentRunningThread__Fv();
     if (currentThread == NULL) {
@@ -197,14 +162,6 @@ void mDoPrintf_vprintf(char const* fmt, va_list args) {
             mDoPrintf_vprintf_Thread(fmt, args);
         }
     }
-=======
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void mDoPrintf_vprintf(char const* param_0, va_list param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/mDoPrintf_vprintf__FPCcP16__va_list_struct.s"
->>>>>>> OK printContext__12JUTExceptionFUsP9OSContextUlUl
 }
 
 /* 80006A10-80006A9C 001350 008C+00 1/1 0/0 0/0 .text            mDoPrintf_VReport */

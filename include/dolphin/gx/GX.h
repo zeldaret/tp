@@ -417,7 +417,7 @@ typedef enum _GXGamma {
     /* 0x0 */ GX_GM_2_2,
 } GXGamma;
 
-struct _GXRenderModeObj {
+typedef struct _GXRenderModeObj {
     s32 vi_tv_mode;
     u16 fb_width;
     u16 efb_height;

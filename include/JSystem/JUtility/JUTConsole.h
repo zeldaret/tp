@@ -46,14 +46,6 @@ public:
         }
     }
 
-    int diffIndex(int param_1, int param_2) const {
-        int diff = param_2 - param_1;
-        if (diff < 0) {
-            diff = diff + this->field_0x24;
-        }
-        return diff;
-    }
-
     u32 getOutput() const { return mOutput; }
     int getPositionY() const { return mPositionY; }
     int getPositionX() const { return mPositionX; }
@@ -62,11 +54,8 @@ public:
     bool isVisible() const { return mVisible; }
     void setVisible(bool visible) { mVisible = visible; }
 
-<<<<<<< HEAD
     void setLineAttr(int param_0, u8 param_1) { mBuf[(field_0x20 + 2) * param_0] = param_1; }
-
     u8* getLinePtr(int param_0) const { return &mBuf[(field_0x20 + 2) * param_0 + 1]; }
-
     int diffIndex(int param_0, int param_1) const {
         int diff = param_1 - param_0;
         if (diff >= 0) {
@@ -75,13 +64,10 @@ public:
         return diff += field_0x24;
     }
 
-=======
     void scrollToLastLine() { scroll(field_0x24); }
-
     void scrollToFirstLine() { scroll(-field_0x24); }
 
 private:
->>>>>>> OK printContext__12JUTExceptionFUsP9OSContextUlUl
     /* 0x18 */ JGadget::TLinkListNode mListNode;
 
 private:

@@ -209,11 +209,7 @@ u8* OSGetStackPointer(void);
 
 void OSSwitchFiberEx(u32, u32, u32, u32, u32, u32);
 
-<<<<<<< HEAD
 void OSVAttention(const char* fmt, va_list args);
-=======
-void OSVAttention(const char* fmt, va_list va_list);
->>>>>>> OK printContext__12JUTExceptionFUsP9OSContextUlUl
 
 void OSReportInit(void);
 

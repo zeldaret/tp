@@ -4,24 +4,13 @@
 //
 
 #include "JSystem/JUtility/JUTException.h"
-#include "Runtime.PPCEABI.H/__va_arg.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/float.h"
+#include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "msl_c/string.h"
-
-//
-// Types:
-//
-
-struct JUTConsoleManager {
-    /* 802E8450 */ void drawDirect(bool) const;
-    /* 802E84C4 */ void setDirectConsole(JUTConsole*);
-
-    static JUTConsoleManager* sManager;
-};
 
 //
 // Forward References:

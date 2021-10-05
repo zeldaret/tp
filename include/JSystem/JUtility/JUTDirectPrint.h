@@ -23,7 +23,7 @@ public:
     /* 802E4240 */ static JUTDirectPrint* start();
 
     bool isActive() const { return field_0x00 != 0; }
-    
+
     static JUTDirectPrint* getManager() { return sDirectPrint; }
 
 private:
