@@ -4,14 +4,14 @@
 #include "dolphin/types.h"
 
 struct OSModuleInfo {
-    u32 id;             
-    OSModuleInfo* next; 
+    u32 id;
+    OSModuleInfo* next;
     OSModuleInfo* prev;
-    u32 num_sections;        
-    u32 section_info_offset; 
-    u32 name_offset;          
-    u32 name_size;            
-    u32 version;             
+    u32 num_sections;
+    u32 section_info_offset;
+    u32 name_offset;
+    u32 name_size;
+    u32 version;
     u32 bss_size;
     u32 rel_offset;
     u32 imp_offset;
@@ -25,7 +25,7 @@ struct OSModuleInfo {
     u32 unresolved;
     u32 align;
     u32 bss_align;
-    u32 fix_size; 
+    u32 fix_size;
 };
 
 struct OSSectionInfo {

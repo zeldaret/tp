@@ -22,12 +22,9 @@ public:
 
     /* 802E4240 */ static JUTDirectPrint* start();
 
-<<<<<<< HEAD
-    static JUTDirectPrint* getManager() { return sDirectPrint; }
-=======
     bool isActive() const { return field_0x00 != 0; }
-
->>>>>>> OK printContext__12JUTExceptionFUsP9OSContextUlUl
+    
+    static JUTDirectPrint* getManager() { return sDirectPrint; }
 
 private:
     static u8 sAsciiTable[128];

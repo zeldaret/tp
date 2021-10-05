@@ -41,7 +41,7 @@ public:
     }
     void setHeight(u32 height) {
         mHeight = height;
-        if(mHeight > field_0x24) {
+        if (mHeight > field_0x24) {
             mHeight = field_0x24;
         }
     }

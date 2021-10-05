@@ -1,8 +1,8 @@
 #ifndef MSL_MATH_H_
 #define MSL_MATH_H_
 
-#include "dolphin/types.h"
 #include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/float.h"
+#include "dolphin/types.h"
 
 extern "C" {
 s32 abs(s32);

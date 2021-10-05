@@ -7,9 +7,9 @@
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dolphin/types.h"
 
+#include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dolphin/os/OSError.h"
 #include "dolphin/os/OSLink.h"
-#include "Runtime.PPCEABI.H/__va_arg.h"
 
 #define OS_BUS_CLOCK (*(u32*)0x800000F8)
 #define OS_CORE_CLOCK (*(u32*)0x800000FC)

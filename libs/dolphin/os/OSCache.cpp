@@ -4,8 +4,8 @@
 //
 
 #include "dolphin/os/OSCache.h"
-#include "dolphin/os/OSError.h"
 #include "dol2asm.h"
+#include "dolphin/os/OSError.h"
 #include "dolphin/types.h"
 
 //
