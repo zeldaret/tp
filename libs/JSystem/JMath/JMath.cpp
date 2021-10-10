@@ -8,14 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct Vec {};
-
-struct Quaternion {};
-
-//
 // Forward References:
 //
 

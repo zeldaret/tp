@@ -11,7 +11,6 @@
 // Forward References:
 //
 
-extern "C" void GDInitGDLObj();
 extern "C" void GDFlushCurrToMem();
 extern "C" void GDPadCurr32();
 extern "C" void GDOverflowed();
@@ -30,7 +29,7 @@ extern "C" void DCFlushRange();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GDInitGDLObj() {
+asm void GDInitGDLObj(GDLObj* obj, u8* start, u32 len) {
     nofralloc
 #include "asm/dolphin/gd/GDBase/GDInitGDLObj.s"
 }
@@ -38,8 +37,7 @@ asm void GDInitGDLObj() {
 
 /* ############################################################################################## */
 /* 80451980-80451984 000E80 0004+00 2/2 100/100 0/0 .sbss            __GDCurrentDL */
-extern u8 __GDCurrentDL[4];
-u8 __GDCurrentDL[4];
+GDLObj* __GDCurrentDL;
 
 /* 80360FB0-80360FDC 35B8F0 002C+00 0/0 2/2 0/0 .text            GDFlushCurrToMem */
 #pragma push

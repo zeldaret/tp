@@ -162,7 +162,7 @@ REGISTER_CTORS(0x80018388, __sinit_c_damagereaction_cpp);
 
 /* 800183D4-800183D8 012D14 0004+00 1/0 1/0 0/0 .text
  * execute__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle */
-void JPAParticleCallBack::execute(JPABaseEmitter* param_0, JPABaseParticle* param_1) {
+extern "C" void execute__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle() {
     /* empty function */
 }
 

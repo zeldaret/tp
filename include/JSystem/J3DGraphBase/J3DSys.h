@@ -1,6 +1,7 @@
 #ifndef J3DSYS_H
 #define J3DSYS_H
 
+#include "dolphin/gx/GXTexture.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 
@@ -21,19 +22,23 @@ class J3DDrawBuffer;
 class J3DTexture;
 
 struct J3DSys {
-    /* 0x00 */ Mtx mMtx;
-    /* 0x30 */ J3DMtxCalc* mMtxCalc;
-    /* 0x34 */ u32 mFlags;
-    /* 0x38 */ J3DModel* mModel;
-    /* 0x3C */ J3DMatPacket* mMatPacket;
-    /* 0x40 */ J3DShapePacket* mShapePacket;
-    /* 0x44 */ J3DShape* mShape;
-    /* 0x48 */ J3DDrawBuffer* mDrawBuffer[2];
-    /* 0x50 */ u32 mDrawMode;
-    /* 0x54 */ u32 mMaterialMode;
-    /* 0x58 */ J3DTexture* mTexture;
+    /* 0x000 */ Mtx mMtx;
+    /* 0x030 */ J3DMtxCalc* mCurrentMtxCalc;
+    /* 0x034 */ u32 mFlags;
+    /* 0x038 */ J3DModel* mModel;
+    /* 0x03C */ J3DMatPacket* mMatPacket;
+    /* 0x040 */ J3DShapePacket* mShapePacket;
+    /* 0x044 */ J3DShape* mShape;
+    /* 0x048 */ J3DDrawBuffer* mDrawBuffer[2];
+    /* 0x050 */ u32 mDrawMode;
+    /* 0x054 */ u32 mMaterialMode;
+    /* 0x058 */ J3DTexture* mTexture;
+    /* 0x05C */ u8 field_0x5c[0x10C - 0x5C];
+    /* 0x10C */ void* mVtxPos;
+    /* 0x110 */ void* mVtxNrm;
+    /* 0x114 */ _GXColor* mVtxCol;
+    /* 0x118 */ Vec* mNBTScale;
 
-    u8 field_0x5c[0x11C - 0x5C];
     /* 8030FDE8 */ J3DSys();
     /* 8030FEC0 */ void loadPosMtxIndx(int, u16) const;
     /* 8030FEE4 */ void loadNrmMtxIndx(int, u16) const;
@@ -57,9 +62,23 @@ struct J3DSys {
 
     void setDrawModeXlu() { mDrawMode = XLU; }
 
+    void setVtxPos(void* pVtxPos) { mVtxPos = pVtxPos; }
+
+    void setVtxNrm(void* pVtxNrm) { mVtxNrm = pVtxNrm; }
+
+    void setVtxCol(_GXColor* pVtxCol) { mVtxCol = pVtxCol; }
+
+    void setModel(J3DModel* pModel) { mModel = pModel; }
+
+    void setTexture(J3DTexture* pTex) { mTexture = pTex; }
+
+    void onFlag(u32 flag) { mFlags |= flag; }
+
+    void offFlag(u32 flag) { mFlags &= ~flag; }
+
     static Mtx mCurrentMtx;
-    static f32 mCurrentS[3];
-    static f32 mParentS[3];
+    static Vec mCurrentS;
+    static Vec mParentS;
     static u16 sTexCoordScaleTable[34];
 };
 

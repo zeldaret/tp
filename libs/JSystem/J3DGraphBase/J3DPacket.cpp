@@ -90,7 +90,6 @@ extern "C" void __dl__FPv();
 extern "C" void setArray__15J3DVertexBufferCFv();
 extern "C" void loadPreDrawSetting__8J3DShapeCFv();
 extern "C" void syncJ3DSysFlags__12J3DModelDataCFv();
-extern "C" void GDInitGDLObj();
 extern "C" void GDFlushCurrToMem();
 extern "C" void GDPadCurr32();
 extern "C" void __ptmf_scall();
@@ -101,7 +100,6 @@ extern "C" extern u8 struct_804515B0[4];
 extern "C" u8 sTexGenBlock__17J3DDifferedTexMtx[4];
 extern "C" u8 sTexMtxObj__17J3DDifferedTexMtx[4];
 extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
-extern "C" extern u8 __GDCurrentDL[4];
 
 //
 // Declarations:
@@ -159,52 +157,42 @@ void J3DDisplayListObj::callDL() const {
 
 /* ############################################################################################## */
 /* 80434C70-80434C80 061990 0010+00 2/2 3/3 0/0 .bss             sGDLObj__17J3DDisplayListObj */
-u8 J3DDisplayListObj::sGDLObj[16];
+GDLObj J3DDisplayListObj::sGDLObj;
 
 /* 804515A0-804515A8 000AA0 0004+04 3/3 0/0 0/0 .sbss            sInterruptFlag__17J3DDisplayListObj
  */
-u8 J3DDisplayListObj::sInterruptFlag[4 + 4 /* padding */];
+s32 J3DDisplayListObj::sInterruptFlag;
 
 /* 80312644-80312698 30CF84 0054+00 2/2 1/1 0/0 .text            beginDL__17J3DDisplayListObjFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DDisplayListObj::beginDL() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/beginDL__17J3DDisplayListObjFv.s"
+void J3DDisplayListObj::beginDL() {
+    swapBuffer();
+    sInterruptFlag = OSDisableInterrupts();
+    GDInitGDLObj(&sGDLObj, (u8*)mpData[0], mCapacity);
+    GDSetCurrent(&sGDLObj);
 }
-#pragma pop
 
 /* 80312698-803126F4 30CFD8 005C+00 1/1 1/1 0/0 .text            endDL__17J3DDisplayListObjFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DDisplayListObj::endDL() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/endDL__17J3DDisplayListObjFv.s"
+u32 J3DDisplayListObj::endDL() {
+    GDPadCurr32();
+    OSRestoreInterrupts(sInterruptFlag);
+    mSize = GDGetGDLObjOffset(&sGDLObj);
+    GDFlushCurrToMem();
+    GDSetCurrent(NULL);
+    return mSize;
 }
-#pragma pop
 
 /* 803126F4-80312714 30D034 0020+00 0/0 1/1 0/0 .text            beginPatch__17J3DDisplayListObjFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DDisplayListObj::beginPatch() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/beginPatch__17J3DDisplayListObjFv.s"
+void J3DDisplayListObj::beginPatch() {
+    beginDL();
 }
-#pragma pop
 
 /* 80312714-80312750 30D054 003C+00 0/0 1/1 0/0 .text            endPatch__17J3DDisplayListObjFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DDisplayListObj::endPatch() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/endPatch__17J3DDisplayListObjFv.s"
+u32 J3DDisplayListObj::endPatch() {
+    OSRestoreInterrupts(sInterruptFlag);
+    GDSetCurrent(NULL);
+    return mSize;
 }
-#pragma pop
 
 /* 80312750-80312758 30D090 0008+00 3/0 16/0 10/0 .text entry__9J3DPacketFP13J3DDrawBuffer */
 bool J3DPacket::entry(J3DDrawBuffer* param_0) {
@@ -222,16 +210,11 @@ void J3DPacket::addChildPacket(J3DPacket* pPacket) {
 
 /* ############################################################################################## */
 /* 803CD900-803CD920 02AA20 0020+00 1/1 0/0 0/0 .data            sDifferedRegister */
-SECTION_DATA static u8 sDifferedRegister[32] = {
-    0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02, 0x01, 0x00, 0x00, 0x00,
-    0x10, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
-};
+SECTION_DATA static u32 sDifferedRegister[8] = {0x00000004, 0x00000001, 0x00000002, 0x01000000,
+                                                0x10000000, 0x20000000, 0x02000000, 0x08000000};
 
 /* 803CD920-803CD940 02AA40 0020+00 1/1 0/0 0/0 .data            sSizeOfDiffered */
-SECTION_DATA static u8 sSizeOfDiffered[32] = {
-    0x00, 0x00, 0x00, 0x0D, 0x00, 0x00, 0x00, 0x0D, 0x00, 0x00, 0x00, 0x15, 0x00, 0x00, 0x00, 0x78,
-    0x00, 0x00, 0x00, 0x37, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x13, 0x00, 0x00, 0x00, 0x2D,
-};
+SECTION_DATA static s32 sSizeOfDiffered[8] = {13, 13, 21, 120, 55, 15, 19, 45};
 
 /* 803CD940-803CD954 02AA60 0014+00 2/2 0/0 0/0 .data            __vt__14J3DShapePacket */
 SECTION_DATA extern void* __vt__14J3DShapePacket[5] = {
@@ -270,14 +253,11 @@ SECTION_DATA extern void* __vt__9J3DPacket[5] = {
 };
 
 /* 80312778-803127B0 30D0B8 0038+00 2/2 0/0 0/0 .text            __ct__13J3DDrawPacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DDrawPacket::J3DDrawPacket() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/__ct__13J3DDrawPacketFv.s"
+J3DDrawPacket::J3DDrawPacket() {
+    mFlags = 0;
+    mpDisplayListObj = NULL;
+    mpTexMtx = NULL;
 }
-#pragma pop
 
 /* 803127B0-8031280C 30D0F0 005C+00 3/2 0/0 0/0 .text            __dt__13J3DDrawPacketFv */
 #pragma push
@@ -291,6 +271,17 @@ asm J3DDrawPacket::~J3DDrawPacket() {
 
 /* 8031280C-80312898 30D14C 008C+00 1/1 1/1 0/0 .text            newDisplayList__13J3DDrawPacketFUl
  */
+#ifdef NONMATCHING
+J3DError J3DDrawPacket::newDisplayList(u32 param_0) {
+    mpDisplayListObj = new J3DDisplayListObj();
+
+    if (mpDisplayListObj == NULL) {
+        return kJ3DError_Alloc;
+    } else if (mpDisplayListObj->newDisplayList(param_0)) {
+        return kJ3DError_Success;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -299,8 +290,20 @@ asm J3DError J3DDrawPacket::newDisplayList(u32 param_0) {
 #include "asm/JSystem/J3DGraphBase/J3DPacket/newDisplayList__13J3DDrawPacketFUl.s"
 }
 #pragma pop
+#endif
 
 /* 80312898-80312924 30D1D8 008C+00 0/0 1/1 0/0 .text newSingleDisplayList__13J3DDrawPacketFUl */
+#ifdef NONMATCHING
+J3DError J3DDrawPacket::newSingleDisplayList(u32 param_0) {
+    mpDisplayListObj = new J3DDisplayListObj();
+
+    if (mpDisplayListObj == NULL) {
+        return kJ3DError_Alloc;
+    } else if (mpDisplayListObj->newSingleDisplayList(param_0)) {
+        return kJ3DError_Success;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -309,30 +312,24 @@ asm J3DError J3DDrawPacket::newSingleDisplayList(u32 param_0) {
 #include "asm/JSystem/J3DGraphBase/J3DPacket/newSingleDisplayList__13J3DDrawPacketFUl.s"
 }
 #pragma pop
+#endif
 
 void J3DDrawPacket::draw() {
     mpDisplayListObj->callDL();
 }
 
 /* 80312948-803129A4 30D288 005C+00 0/0 1/1 0/0 .text            __ct__12J3DMatPacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DMatPacket::J3DMatPacket() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/__ct__12J3DMatPacketFv.s"
+J3DMatPacket::J3DMatPacket() {
+    mpShapePacket = NULL;
+    mpFirstShapePacket = NULL;
+    mpMaterial = NULL;
+    mSortFlags = -1;
+    mpTexture = NULL;
+    mpMaterialAnm = NULL;
 }
-#pragma pop
 
 /* 803129A4-80312A04 30D2E4 0060+00 1/0 1/1 0/0 .text            __dt__12J3DMatPacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DMatPacket::~J3DMatPacket() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/__dt__12J3DMatPacketFv.s"
-}
-#pragma pop
+J3DMatPacket::~J3DMatPacket() {}
 
 void J3DMatPacket::addShapePacket(J3DShapePacket* pShape) {
     if (mpFirstShapePacket == NULL) {
@@ -352,14 +349,14 @@ void J3DMatPacket::endDiff() {
 }
 
 /* 80312A74-80312A9C 30D3B4 0028+00 0/0 1/1 0/0 .text isSame__12J3DMatPacketCFP12J3DMatPacket */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMatPacket::isSame(J3DMatPacket* param_0) const {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/isSame__12J3DMatPacketCFP12J3DMatPacket.s"
+bool J3DMatPacket::isSame(J3DMatPacket* pOther) const {
+    bool isSame = false;
+
+    if (mSortFlags == pOther->mSortFlags && !(mSortFlags >> 0x1F)) {
+        isSame = true;
+    }
+    return isSame;
 }
-#pragma pop
 
 /* 80312A9C-80312B20 30D3DC 0084+00 1/0 0/0 0/0 .text            draw__12J3DMatPacketFv */
 #pragma push
@@ -372,31 +369,23 @@ asm void J3DMatPacket::draw() {
 #pragma pop
 
 /* 80312B20-80312B74 30D460 0054+00 0/0 1/1 0/0 .text            __ct__14J3DShapePacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DShapePacket::J3DShapePacket() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/__ct__14J3DShapePacketFv.s"
+J3DShapePacket::J3DShapePacket() {
+    mpShape = NULL;
+    mpMtxBuffer = NULL;
+    mpViewMtx = NULL;
+    mDiffFlag = 0;
+    mpModel = NULL;
 }
-#pragma pop
 
 /* 80312B74-80312BD4 30D4B4 0060+00 1/0 1/1 0/0 .text            __dt__14J3DShapePacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DShapePacket::~J3DShapePacket() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/__dt__14J3DShapePacketFv.s"
-}
-#pragma pop
+J3DShapePacket::~J3DShapePacket() {}
 
 /* 80312BD4-80312DBC 30D514 01E8+00 1/1 0/0 0/0 .text calcDifferedBufferSize__14J3DShapePacketFUl
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DShapePacket::calcDifferedBufferSize(u32 param_0) {
+asm u32 J3DShapePacket::calcDifferedBufferSize(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DPacket/calcDifferedBufferSize__14J3DShapePacketFUl.s"
 }
@@ -404,14 +393,17 @@ asm void J3DShapePacket::calcDifferedBufferSize(u32 param_0) {
 
 /* 80312DBC-80312E08 30D6FC 004C+00 0/0 1/1 0/0 .text newDifferedDisplayList__14J3DShapePacketFUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DShapePacket::newDifferedDisplayList(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/newDifferedDisplayList__14J3DShapePacketFUl.s"
+s32 J3DShapePacket::newDifferedDisplayList(u32 flag) {
+    mDiffFlag = flag;
+    u32 bufSize = calcDifferedBufferSize(flag);
+
+    if (newDisplayList(bufSize)) {
+        J3DDisplayListObj* dlObj = getDisplayListObj();
+        setDisplayListObj(dlObj);
+    } else {
+        return 0;
+    }
 }
-#pragma pop
 
 /* 80312E08-80312F24 30D748 011C+00 2/2 0/0 0/0 .text            prepareDraw__14J3DShapePacketCFv */
 #pragma push

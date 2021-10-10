@@ -3,4 +3,9 @@
 
 #include "dolphin/types.h"
 
+class J3DModelLoaderDataBase {
+public:
+    /* 803346BC */ void load(void const*, u32);
+};
+
 #endif /* J3DMODELLOADER_H */

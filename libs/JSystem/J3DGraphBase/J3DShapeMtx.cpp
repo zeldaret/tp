@@ -18,54 +18,6 @@ struct J3DSys {
     /* 8030FEE4 */ void loadNrmMtxIndx(int, u16) const;
 };
 
-struct J3DShapeMtxYBBoardConcatView {
-    /* 803143E4 */ void load() const;
-    /* 80314520 */ ~J3DShapeMtxYBBoardConcatView();
-    /* 8031458C */ void getType() const;
-};
-
-struct J3DShapeMtxMultiConcatView {
-    /* 80313FA4 */ void load() const;
-    /* 803146AC */ void loadNrmMtx(int, u16) const;
-    /* 8031419C */ void loadNrmMtx(int, u16, f32 (*)[4]) const;
-    /* 8031461C */ ~J3DShapeMtxMultiConcatView();
-    /* 80314688 */ void getType() const;
-    /* 80314694 */ void getUseMtxNum() const;
-    /* 8031469C */ void getUseMtxIndex(u16) const;
-};
-
-struct J3DShapeMtxMulti {
-    /* 80313E4C */ void load() const;
-    /* 80313EEC */ void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
-    /* 803146B0 */ ~J3DShapeMtxMulti();
-    /* 8031470C */ void getType() const;
-    /* 80314718 */ void getUseMtxNum() const;
-    /* 80314720 */ void getUseMtxIndex(u16) const;
-};
-
-struct J3DShapeMtxConcatView {
-    /* 80313828 */ void loadMtxConcatView_PNGP(int, u16) const;
-    /* 803138C8 */ void loadMtxConcatView_PCPU(int, u16) const;
-    /* 8031396C */ void loadMtxConcatView_NCPU(int, u16) const;
-    /* 80313A14 */ void loadMtxConcatView_PNCPU(int, u16) const;
-    /* 80313AC8 */ void loadMtxConcatView_PNGP_LOD(int, u16) const;
-    /* 80313C54 */ void load() const;
-    /* 80313D28 */ void loadNrmMtx(int, u16, f32 (*)[4]) const;
-    /* 80314598 */ void loadNrmMtx(int, u16) const;
-    /* 80314730 */ ~J3DShapeMtxConcatView();
-    /* 8031478C */ void getType() const;
-
-    static u8 sMtxLoadPipeline[48];
-    static u8 sMtxLoadLODPipeline[48];
-    static u8 sMtxPtrTbl[8];
-};
-
-struct J3DShapeMtxBBoardConcatView {
-    /* 803142D4 */ void load() const;
-    /* 803145A4 */ ~J3DShapeMtxBBoardConcatView();
-    /* 80314610 */ void getType() const;
-};
-
 struct J3DDifferedTexMtx {
     /* 8031322C */ void loadExecute(f32 const (*)[4]);
 
@@ -718,7 +670,8 @@ SECTION_DATA extern void* __vt__11J3DShapeMtx[8 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DShapeMtxYBBoardConcatView::~J3DShapeMtxYBBoardConcatView() {
+extern "C" asm void __dt__28J3DShapeMtxYBBoardConcatViewFv() {
+    // asm J3DShapeMtxYBBoardConcatView::~J3DShapeMtxYBBoardConcatView() {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DShapeMtx/__dt__28J3DShapeMtxYBBoardConcatViewFv.s"
 }
@@ -755,7 +708,8 @@ asm void J3DShapeMtx::getUseMtxIndex(u16 param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DShapeMtxBBoardConcatView::~J3DShapeMtxBBoardConcatView() {
+extern "C" asm void __dt__27J3DShapeMtxBBoardConcatViewFv() {
+    // asm J3DShapeMtxBBoardConcatView::~J3DShapeMtxBBoardConcatView() {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DShapeMtx/__dt__27J3DShapeMtxBBoardConcatViewFv.s"
 }
@@ -775,7 +729,8 @@ asm void J3DShapeMtxBBoardConcatView::getType() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DShapeMtxMultiConcatView::~J3DShapeMtxMultiConcatView() {
+extern "C" asm void __dt__26J3DShapeMtxMultiConcatViewFv() {
+    // asm J3DShapeMtxMultiConcatView::~J3DShapeMtxMultiConcatView() {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DShapeMtx/__dt__26J3DShapeMtxMultiConcatViewFv.s"
 }
@@ -823,7 +778,8 @@ void J3DShapeMtxMultiConcatView::loadNrmMtx(int param_0, u16 param_1) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DShapeMtxMulti::~J3DShapeMtxMulti() {
+extern "C" asm void __dt__16J3DShapeMtxMultiFv() {
+    // asm J3DShapeMtxMulti::~J3DShapeMtxMulti() {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DShapeMtx/__dt__16J3DShapeMtxMultiFv.s"
 }
@@ -864,7 +820,8 @@ asm void J3DShapeMtxMulti::getUseMtxIndex(u16 param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DShapeMtxConcatView::~J3DShapeMtxConcatView() {
+extern "C" asm void __dt__21J3DShapeMtxConcatViewFv() {
+    // asm J3DShapeMtxConcatView::~J3DShapeMtxConcatView() {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DShapeMtx/__dt__21J3DShapeMtxConcatViewFv.s"
 }

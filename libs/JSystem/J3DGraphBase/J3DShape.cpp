@@ -177,7 +177,7 @@ asm void J3DShape::loadVtxArray() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DShape::isSameVcdVatCmd(J3DShape* param_0) {
+asm bool J3DShape::isSameVcdVatCmd(J3DShape* param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DShape/isSameVcdVatCmd__8J3DShapeFP8J3DShape.s"
 }

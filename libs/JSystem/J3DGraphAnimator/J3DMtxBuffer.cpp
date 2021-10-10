@@ -8,37 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct Vec {};
-
-struct J3DShape {
-    /* 80314E28 */ void countBumpMtxNum() const;
-};
-
-struct J3DModelData {};
-
-struct J3DMtxBuffer {
-    /* 80326214 */ void initialize();
-    /* 80326258 */ void create(J3DModelData*, u32);
-    /* 80326364 */ void createAnmMtx(J3DModelData*);
-    /* 803263F0 */ void createWeightEnvelopeMtx(J3DModelData*);
-    /* 8032648C */ void setNoUseDrawMtx();
-    /* 803264B8 */ void createDoubleDrawMtx(J3DModelData*, u32);
-    /* 80326664 */ void createBumpMtxArray(J3DModelData*, u32);
-    /* 803268D4 */ void calcWeightEnvelopeMtx();
-    /* 80326ACC */ void calcDrawMtx(u32, Vec const&, f32 const (&)[3][4]);
-    /* 80326D3C */ void calcNrmMtx();
-    /* 80326EF0 */ void calcBBoardMtx();
-
-    static u8 sNoUseDrawMtx[48];
-    static u8 sNoUseNrmMtx[36 + 4 /* padding */];
-    static void* sNoUseDrawMtxPtr;
-    static void* sNoUseNrmMtxPtr;
-};
-
-//
 // Forward References:
 //
 
@@ -70,8 +39,6 @@ extern "C" void J3DCalcYBBoardMtx__FPA4_f();
 extern "C" void J3DPSCalcInverseTranspose__FPA4_fPA3_f();
 extern "C" void J3DPSMtxArrayConcat__FPA4_fPA4_fPA4_fUl();
 extern "C" void countBumpMtxNum__8J3DShapeCFv();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXConcat();
 extern "C" void _savegpr_19();
 extern "C" void _savegpr_24();
 extern "C" void _savegpr_27();
@@ -82,7 +49,6 @@ extern "C" void _restgpr_24();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 j3dSys[284];
 
 //
 // Declarations:
@@ -102,7 +68,7 @@ asm void J3DMtxBuffer::initialize() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DMtxBuffer::create(J3DModelData* param_0, u32 param_1) {
+asm s32 J3DMtxBuffer::create(J3DModelData* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DMtxBuffer/create__12J3DMtxBufferFP12J3DModelDataUl.s"
 }
@@ -132,16 +98,16 @@ asm void J3DMtxBuffer::createWeightEnvelopeMtx(J3DModelData* param_0) {
 
 /* ############################################################################################## */
 /* 804371C0-804371F0 063EE0 0030+00 1/0 0/0 0/0 .bss             sNoUseDrawMtx__12J3DMtxBuffer */
-u8 J3DMtxBuffer::sNoUseDrawMtx[48];
+Mtx J3DMtxBuffer::sNoUseDrawMtx;
 
 /* 804371F0-80437218 063F10 0024+04 1/0 0/0 0/0 .bss             sNoUseNrmMtx__12J3DMtxBuffer */
-u8 J3DMtxBuffer::sNoUseNrmMtx[36 + 4 /* padding */];
+Mtx33 J3DMtxBuffer::sNoUseNrmMtx;
 
 /* 80450970-80450974 -00001 0004+00 1/1 0/0 0/0 .sdata           sNoUseDrawMtxPtr__12J3DMtxBuffer */
-SECTION_SDATA void* J3DMtxBuffer::sNoUseDrawMtxPtr = (void*)&J3DMtxBuffer::sNoUseDrawMtx;
+Mtx* J3DMtxBuffer::sNoUseDrawMtxPtr = &J3DMtxBuffer::sNoUseDrawMtx;
 
 /* 80450974-80450978 -00001 0004+00 1/1 0/0 0/0 .sdata           sNoUseNrmMtxPtr__12J3DMtxBuffer */
-SECTION_SDATA void* J3DMtxBuffer::sNoUseNrmMtxPtr = (void*)&J3DMtxBuffer::sNoUseNrmMtx;
+Mtx33* J3DMtxBuffer::sNoUseNrmMtxPtr = &J3DMtxBuffer::sNoUseNrmMtx;
 
 /* 8032648C-803264B8 320DCC 002C+00 1/1 0/0 0/0 .text            setNoUseDrawMtx__12J3DMtxBufferFv
  */

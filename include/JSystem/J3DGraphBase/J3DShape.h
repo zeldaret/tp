@@ -31,7 +31,7 @@ public:
     /* 80314DA8 */ void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
     /* 80314E28 */ void countBumpMtxNum() const;
     /* 80314EEC */ void loadVtxArray() const;
-    /* 80314F5C */ void isSameVcdVatCmd(J3DShape*);
+    /* 80314F5C */ bool isSameVcdVatCmd(J3DShape*);
     /* 80314F98 */ void makeVtxArrayCmd();
     /* 80315260 */ void makeVcdVatCmd();
     /* 80315300 */ void loadPreDrawSetting() const;
@@ -41,6 +41,13 @@ public:
     /* 8031544C */ virtual void drawFast() const;
     /* 80315628 */ virtual void simpleDraw() const;
     /* 803156AC */ virtual void simpleDrawCache() const;
+
+    void onFlag(u32 flag) { mFlags |= flag; }
+    void offFlag(u32 flag) { mFlags &= ~flag; }
+    void setDrawMtxDataPointer(J3DDrawMtxData* pMtxData) { mDrawMtxData = pMtxData; }
+    void setVertexDataPointer(J3DVertexData* pVtxData) { mVertexData = pVtxData; }
+    void* getVcdVatCmd() { return mVcdVatCmd; }
+    void setVcdVatCmd(void* pVatCmd) { mVcdVatCmd = pVatCmd; }
 
     static void resetVcdVatCache() { sOldVcdVatCmd = NULL; }
 

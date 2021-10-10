@@ -6,6 +6,9 @@
 #include "dolphin/types.h"
 
 typedef float Mtx[3][4];
+typedef float Mtx33[3][3];
+typedef float Mtx23[2][3];
+typedef f32 (*MtxP)[4];
 
 extern "C" {
 void PSMTXIdentity(Mtx matrix);

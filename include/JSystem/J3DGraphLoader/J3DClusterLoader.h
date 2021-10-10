@@ -3,4 +3,8 @@
 
 #include "dolphin/types.h"
 
+struct J3DClusterLoaderDataBase {
+    /* 80334130 */ void load(void const*);
+};
+
 #endif /* J3DCLUSTERLOADER_H */

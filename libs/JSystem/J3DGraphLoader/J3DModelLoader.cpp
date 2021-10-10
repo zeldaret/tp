@@ -122,10 +122,6 @@ struct J3DModelLoader_v21 {
     /* 803363F4 */ ~J3DModelLoader_v21();
 };
 
-struct J3DModelLoaderDataBase {
-    /* 803346BC */ void load(void const*, u32);
-};
-
 struct J3DDrawBlock {};
 
 struct J3DMaterialDLBlock {};

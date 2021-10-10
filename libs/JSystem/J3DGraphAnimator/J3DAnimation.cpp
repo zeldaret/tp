@@ -8,139 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct _GXColorS10 {};
-
-struct _GXColor {};
-
-struct JUTNameTab {
-    /* 802DE9A0 */ JUTNameTab();
-    /* 802DEA58 */ void getIndex(char const*) const;
-    /* 802DEAF8 */ void getName(u16) const;
-};
-
-struct J3DTransformInfo {};
-
-struct J3DTextureSRTInfo {};
-
-struct J3DModelData {};
-
-struct J3DMaterialTable {};
-
-struct J3DAnmVtxColorKey {
-    /* 8032A4E0 */ J3DAnmVtxColorKey();
-    /* 8032A53C */ void getColor(u8, u16, _GXColor*) const;
-    /* 8032BF50 */ ~J3DAnmVtxColorKey();
-    /* 8032BFBC */ s32 getKind() const;
-};
-
-struct J3DAnmVtxColorFull {
-    /* 8032A30C */ J3DAnmVtxColorFull();
-    /* 8032A368 */ void getColor(u8, u16, _GXColor*) const;
-    /* 8032BFC4 */ ~J3DAnmVtxColorFull();
-    /* 8032C030 */ s32 getKind() const;
-};
-
-struct J3DAnmVtxColor {
-    /* 8032A29C */ J3DAnmVtxColor();
-    /* 8032BC50 */ ~J3DAnmVtxColor();
-    /* 8032C038 */ s32 getKind() const;
-    /* 8032C040 */ void getColor(u8, u16, _GXColor*) const;
-};
-
-struct J3DAnmTransformKey {
-    /* 80329A34 */ void calcTransform(f32, u16, J3DTransformInfo*) const;
-};
-
-struct J3DAnmTransformFullWithLerp {
-    /* 803291F0 */ void getTransform(u16, J3DTransformInfo*) const;
-    /* 8032C228 */ ~J3DAnmTransformFullWithLerp();
-    /* 8032C2A4 */ s32 getKind() const;
-};
-
-struct J3DAnmTransformFull {
-    /* 80328E90 */ void getTransform(u16, J3DTransformInfo*) const;
-    /* 8032C2AC */ ~J3DAnmTransformFull();
-    /* 8032C318 */ s32 getKind() const;
-};
-
-struct J3DAnmTransform {
-    /* 80328E40 */ J3DAnmTransform(s16, f32*, s16*, f32*);
-};
-
-struct J3DAnmTextureSRTKey {
-    /* 80329E5C */ J3DAnmTextureSRTKey();
-    /* 80329F14 */ void calcTransform(f32, u16, J3DTextureSRTInfo*) const;
-    /* 8032B0C0 */ void searchUpdateMaterialID(J3DMaterialTable*);
-    /* 8032B1D4 */ void searchUpdateMaterialID(J3DModelData*);
-    /* 8032C198 */ ~J3DAnmTextureSRTKey();
-    /* 8032C220 */ s32 getKind() const;
-};
-
-struct J3DAnmTexPattern {
-    /* 8032AED8 */ J3DAnmTexPattern();
-    /* 8032AF50 */ void getTexNo(u16, u16*) const;
-    /* 8032B004 */ void searchUpdateMaterialID(J3DMaterialTable*);
-    /* 8032B09C */ void searchUpdateMaterialID(J3DModelData*);
-    /* 8032BD20 */ ~J3DAnmTexPattern();
-    /* 8032BD94 */ s32 getKind() const;
-};
-
-struct J3DAnmTevRegKey {
-    /* 8032AE18 */ J3DAnmTevRegKey();
-    /* 8032B1F8 */ void getTevColorReg(u16, _GXColorS10*) const;
-    /* 8032B4BC */ void getTevKonstReg(u16, _GXColor*) const;
-    /* 8032B780 */ void searchUpdateMaterialID(J3DMaterialTable*);
-    /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
-    /* 8032BD9C */ ~J3DAnmTevRegKey();
-    /* 8032BE24 */ s32 getKind() const;
-};
-
-struct J3DAnmKeyTableBase {};
-
-struct J3DAnmColorKey {
-    /* 8032AB00 */ J3DAnmColorKey();
-    /* 8032AB54 */ void getColor(u16, _GXColor*) const;
-    /* 8032BE2C */ ~J3DAnmColorKey();
-    /* 8032BEB0 */ s32 getKind() const;
-};
-
-struct J3DAnmColorFull {
-    /* 8032A93C */ J3DAnmColorFull();
-    /* 8032A990 */ void getColor(u16, _GXColor*) const;
-    /* 8032BEB8 */ ~J3DAnmColorFull();
-    /* 8032BF3C */ s32 getKind() const;
-};
-
-struct J3DAnmColor {
-    /* 8032A828 */ J3DAnmColor();
-    /* 8032A8A4 */ void searchUpdateMaterialID(J3DMaterialTable*);
-    /* 8032BCAC */ ~J3DAnmColor();
-    /* 8032BF44 */ bool getKind() const;
-    /* 8032BF4C */ void getColor(u16, _GXColor*) const;
-};
-
-struct J3DAnmClusterKey {
-    /* 8032A218 */ void getWeight(u16) const;
-    /* 8032C044 */ ~J3DAnmClusterKey();
-    /* 8032C0B0 */ s32 getKind() const;
-};
-
-struct J3DAnmClusterFull {
-    /* 8032A184 */ void getWeight(u16) const;
-    /* 8032C124 */ ~J3DAnmClusterFull();
-    /* 8032C190 */ s32 getKind() const;
-};
-
-struct J3DAnmCluster {
-    /* 8032C0B8 */ ~J3DAnmCluster();
-    /* 8032C114 */ s32 getKind() const;
-    /* 8032C11C */ void getWeight(u16) const;
-};
-
-//
 // Forward References:
 //
 
@@ -783,7 +650,8 @@ extern "C" asm void func_8032BAD4(void* _this, f32 param_0, J3DAnmKeyTableBase* 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DAnmVtxColor::~J3DAnmVtxColor() {
+extern "C" asm void __dt__14J3DAnmVtxColorFv() {
+    // asm J3DAnmVtxColor::~J3DAnmVtxColor() {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__dt__14J3DAnmVtxColorFv.s"
 }
@@ -793,7 +661,8 @@ asm J3DAnmVtxColor::~J3DAnmVtxColor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DAnmColor::~J3DAnmColor() {
+extern "C" asm void __dt__11J3DAnmColorFv() {
+    // asm J3DAnmColor::~J3DAnmColor() {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__dt__11J3DAnmColorFv.s"
 }
@@ -803,7 +672,8 @@ asm J3DAnmColor::~J3DAnmColor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DAnmTexPattern::~J3DAnmTexPattern() {
+extern "C" asm void __dt__16J3DAnmTexPatternFv() {
+    // asm J3DAnmTexPattern::~J3DAnmTexPattern() {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__dt__16J3DAnmTexPatternFv.s"
 }
@@ -818,7 +688,8 @@ s32 J3DAnmTexPattern::getKind() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DAnmTevRegKey::~J3DAnmTevRegKey() {
+extern "C" asm void __dt__15J3DAnmTevRegKeyFv() {
+    // asm J3DAnmTevRegKey::~J3DAnmTevRegKey() {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__dt__15J3DAnmTevRegKeyFv.s"
 }
@@ -833,7 +704,8 @@ s32 J3DAnmTevRegKey::getKind() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DAnmColorKey::~J3DAnmColorKey() {
+extern "C" asm void __dt__14J3DAnmColorKeyFv() {
+    // asm J3DAnmColorKey::~J3DAnmColorKey() {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__dt__14J3DAnmColorKeyFv.s"
 }
@@ -848,7 +720,8 @@ s32 J3DAnmColorKey::getKind() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DAnmColorFull::~J3DAnmColorFull() {
+extern "C" asm void __dt__15J3DAnmColorFullFv() {
+    // asm J3DAnmColorFull::~J3DAnmColorFull() {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__dt__15J3DAnmColorFullFv.s"
 }
@@ -873,7 +746,8 @@ void J3DAnmColor::getColor(u16 param_0, _GXColor* param_1) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DAnmVtxColorKey::~J3DAnmVtxColorKey() {
+extern "C" asm void __dt__17J3DAnmVtxColorKeyFv() {
+    // asm J3DAnmVtxColorKey::~J3DAnmVtxColorKey() {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__dt__17J3DAnmVtxColorKeyFv.s"
 }
@@ -888,7 +762,8 @@ s32 J3DAnmVtxColorKey::getKind() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DAnmVtxColorFull::~J3DAnmVtxColorFull() {
+extern "C" asm void __dt__18J3DAnmVtxColorFullFv() {
+    // asm J3DAnmVtxColorFull::~J3DAnmVtxColorFull() {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__dt__18J3DAnmVtxColorFullFv.s"
 }
@@ -914,7 +789,8 @@ void J3DAnmVtxColor::getColor(u8 param_0, u16 param_1, _GXColor* param_2) const 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DAnmClusterKey::~J3DAnmClusterKey() {
+extern "C" asm void __dt__16J3DAnmClusterKeyFv() {
+    // asm J3DAnmClusterKey::~J3DAnmClusterKey() {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__dt__16J3DAnmClusterKeyFv.s"
 }
@@ -929,7 +805,8 @@ s32 J3DAnmClusterKey::getKind() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DAnmCluster::~J3DAnmCluster() {
+extern "C" asm void __dt__13J3DAnmClusterFv() {
+    // asm J3DAnmCluster::~J3DAnmCluster() {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__dt__13J3DAnmClusterFv.s"
 }
@@ -954,7 +831,8 @@ asm void J3DAnmCluster::getWeight(u16 param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DAnmClusterFull::~J3DAnmClusterFull() {
+extern "C" asm void __dt__17J3DAnmClusterFullFv() {
+    // asm J3DAnmClusterFull::~J3DAnmClusterFull() {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__dt__17J3DAnmClusterFullFv.s"
 }
@@ -969,7 +847,8 @@ s32 J3DAnmClusterFull::getKind() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DAnmTextureSRTKey::~J3DAnmTextureSRTKey() {
+extern "C" asm void __dt__19J3DAnmTextureSRTKeyFv() {
+    // asm J3DAnmTextureSRTKey::~J3DAnmTextureSRTKey() {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__dt__19J3DAnmTextureSRTKeyFv.s"
 }
@@ -1007,7 +886,8 @@ SECTION_DATA extern void* __vt__19J3DAnmTransformFull[5 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DAnmTransformFullWithLerp::~J3DAnmTransformFullWithLerp() {
+extern "C" asm void __dt__27J3DAnmTransformFullWithLerpFv() {
+    // asm J3DAnmTransformFullWithLerp::~J3DAnmTransformFullWithLerp() {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__dt__27J3DAnmTransformFullWithLerpFv.s"
 }
@@ -1022,7 +902,8 @@ s32 J3DAnmTransformFullWithLerp::getKind() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DAnmTransformFull::~J3DAnmTransformFull() {
+extern "C" asm void __dt__19J3DAnmTransformFullFv() {
+    // asm J3DAnmTransformFull::~J3DAnmTransformFull() {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__dt__19J3DAnmTransformFullFv.s"
 }

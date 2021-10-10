@@ -25,10 +25,6 @@ struct JMath {
     static u8 sincosTable_[65536];
 };
 
-struct J3DShape {
-    static u8 sOldVcdVatCmd[4];
-};
-
 struct J3DAnmLoaderDataBaseFlag {};
 
 struct J3DAnmLoaderDataBase {
@@ -748,7 +744,8 @@ SECTION_SDATA2 static u32 lit_4669 = 0x321400FF;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_sightPacket_c::draw() {
+extern "C" asm void draw__18daPy_sightPacket_cFv() {
+    // asm void daPy_sightPacket_c::draw() {
     nofralloc
 #include "asm/d/a/d_a_player/draw__18daPy_sightPacket_cFv.s"
 }

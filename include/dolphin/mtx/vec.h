@@ -23,6 +23,16 @@ struct Vec {
     }
 };
 
+struct SVec {
+    s16 x, y, z;
+
+    void set(s16 oX, s16 oY, s16 oZ) {
+        x = oX;
+        y = oY;
+        z = oZ;
+    }
+};
+
 extern "C" {
 void PSVECAdd(const Vec* src_a, const Vec* src_b, Vec* dst);
 void PSVECSubtract(const Vec* a, const Vec* b, Vec* dst);

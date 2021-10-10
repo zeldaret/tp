@@ -8,14 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct JUTNameTab {
-    /* 802DEAF8 */ void getName(u16) const;
-};
-
-//
 // Forward References:
 //
 

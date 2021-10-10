@@ -11,10 +11,10 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
-class daPy_sightPacket_c {
-    /* 80140CDC */ ~daPy_sightPacket_c();
-    virtual void test();  // temp to build OK, remove later
+class daPy_sightPacket_c : public dDlst_base_c {
     /* 8015F1A0 */ virtual void draw();
+    /* 80140CDC */ virtual ~daPy_sightPacket_c();
+
     /* 8015F2FC */ void setSight();
     /* 8015F384 */ void setSightImage(ResTIMG*);
 
@@ -80,7 +80,6 @@ private:
     fopAc_ac_c* mActor;
 };
 
-#pragma pack(push, 1)
 class daPy_frameCtrl_c : public J3DFrameCtrl {
 public:
     /* 80140D24 */ ~daPy_frameCtrl_c();
@@ -103,7 +102,6 @@ private:
     /* 0x14 */ u16 mEndFlg;
     /* 0x16 */ u16 mNowSetFlg;
 };
-#pragma pack(pop)
 
 class daPy_demo_c {
 public:
@@ -294,6 +292,7 @@ public:
     virtual bool getModelJointMtx(u16);
     virtual bool getHeadMtx(void);
     virtual bool setHookshotCarryOffset(unsigned int, cXyz const*);
+    // virtual void checkCutJumpCancelTurn() const;
     virtual bool checkIronBallReturn(void) const;
     virtual bool checkIronBallGroundStop(void) const;
     virtual bool checkSingleBoarBattleSecondBowReady(void) const;

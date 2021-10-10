@@ -63,19 +63,6 @@ struct JMath {
     static u8 sincosTable_[65536];
 };
 
-struct J3DTexMtxInfo {
-    /* 80325794 */ void setEffectMtx(f32 (*)[4]);
-};
-
-struct J3DMaterial {};
-
-struct J3DGXColor {};
-
-struct J3DColorBlock {
-    /* 801A4C08 */ void setLight(u32, J3DLightObj*);
-    /* 801A4C0C */ void setAmbColor(u32, J3DGXColor const*);
-};
-
 //
 // Forward References:
 //
@@ -403,7 +390,6 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void memcmp();
 extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
-extern "C" extern u8 const j3dDefaultMtx[48];
 extern "C" extern void* __vt__12J3DFrameCtrl[3];
 extern "C" extern void* g_fopKy_Method[5 + 1 /* padding */];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];

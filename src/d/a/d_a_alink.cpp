@@ -26,8 +26,6 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmCluster {};
-
 struct mDoExt_blkAnm {
     /* 8000DA08 */ void init(J3DDeformData*, J3DAnmCluster*, int, int, f32, s16, s16);
 };
@@ -97,8 +95,6 @@ struct daMirror_c {
 struct daCrod_c {
     /* 80141A94 */ void setControllActorData();
 };
-
-struct J3DMaterial {};
 
 struct daAlink_matAnm_c {
     /* 8009D8E4 */ void init();
@@ -677,48 +673,11 @@ struct JAISeq {
     /* 802A0A8C */ JAISeq(JAISeqMgr*, JAISoundStrategyMgr<JAISeq>*);
 };
 
-struct J3DTexNoAnm {
-    /* 8003B1F8 */ ~J3DTexNoAnm();
-    /* 8003B240 */ J3DTexNoAnm();
-};
-
-struct J3DTexMtxAnm {
-    /* 8003B264 */ ~J3DTexMtxAnm();
-    /* 8003B2A0 */ J3DTexMtxAnm();
-};
-
-struct J3DTevKColorAnm {
-    /* 8003B150 */ ~J3DTevKColorAnm();
-    /* 8003B18C */ J3DTevKColorAnm();
-};
-
-struct J3DTevColorAnm {
-    /* 8003B1A4 */ ~J3DTevColorAnm();
-    /* 8003B1E0 */ J3DTevColorAnm();
-};
-
-struct J3DTevBlock {
-    /* 80110E80 */ void setTevColor(u32, J3DGXColorS10 const*);
-};
-
-struct J3DShape {
-    /* 80315300 */ void loadPreDrawSetting() const;
-
-    static u8 sOldVcdVatCmd[4];
-};
-
 struct J3DMaterialAnm {
     /* 800A4820 */ ~J3DMaterialAnm();
     /* 8032C320 */ void initialize();
     /* 8032C3C4 */ void calc(J3DMaterial*) const;
 };
-
-struct J3DMatColorAnm {
-    /* 8003B2B8 */ ~J3DMatColorAnm();
-    /* 8003B2F4 */ J3DMatColorAnm();
-};
-
-struct J3DJoint {};
 
 struct J3DAnmLoaderDataBaseFlag {};
 
@@ -17697,9 +17656,9 @@ asm void daAlink_c::setFrontRollCrashShock(u8 param_0) {
 #pragma pop
 
 /* 800C1DAC-800C1DE0 0BC6EC 0034+00 1/0 0/0 0/0 .text            getModelJointMtx__9daAlink_cFUs */
-Mtx* daAlink_c::getModelJointMtx(u16 param_0) {
+MtxP daAlink_c::getModelJointMtx(u16 param_0) {
     if (param_0 >= field_0x30c6) {
-        return &field_0x0650->mBaseTransformMtx;
+        return field_0x0650->mBaseTransformMtx;
     }
     return field_0x0650->i_getAnmMtx(param_0);
 }
@@ -20115,7 +20074,8 @@ asm bool daAlink_c::checkWolfDownAttackPullOut() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool daAlink_c::getMidnaAtnPos() const {
+extern "C" asm void getMidnaAtnPos__9daAlink_cCFv() {
+    // asm bool daAlink_c::getMidnaAtnPos() const {
     nofralloc
 #include "asm/d/a/d_a_alink/getMidnaAtnPos__9daAlink_cCFv.s"
 }
@@ -31544,7 +31504,9 @@ asm void daAlink_c::setRunSplash() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dAlink_bottleWaterPcallBack_c::execute(JPABaseEmitter* param_0, JPABaseParticle* param_1) {
+extern "C" asm void execute__29dAlink_bottleWaterPcallBack_cFP14JPABaseEmitterP15JPABaseParticle() {
+    // asm void dAlink_bottleWaterPcallBack_c::execute(JPABaseEmitter* param_0, JPABaseParticle*
+    // param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/execute__29dAlink_bottleWaterPcallBack_cFP14JPABaseEmitterP15JPABaseParticle.s"
 }
@@ -31714,7 +31676,8 @@ SECTION_SDATA static u8 nColor0[4] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_blur_c::draw() {
+extern "C" asm void draw__14daAlink_blur_cFv() {
+    // asm void daAlink_blur_c::draw() {
     nofralloc
 #include "asm/d/a/d_a_alink/draw__14daAlink_blur_cFv.s"
 }
@@ -31754,7 +31717,8 @@ asm void daAlink_lockCursor_c::update() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_lockCursor_c::draw() {
+extern "C" asm void draw__20daAlink_lockCursor_cFv() {
+    // asm void daAlink_lockCursor_c::draw() {
     nofralloc
 #include "asm/d/a/d_a_alink/draw__20daAlink_lockCursor_cFv.s"
 }
@@ -31774,7 +31738,8 @@ asm void daAlink_sight_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_sight_c::draw() {
+extern "C" asm void draw__15daAlink_sight_cFv() {
+    // asm void daAlink_sight_c::draw() {
     nofralloc
 #include "asm/d/a/d_a_alink/draw__15daAlink_sight_cFv.s"
 }
@@ -35130,7 +35095,8 @@ int daPy_py_c::checkEndResetFlg0(daPy_ERFLG0 pFlag) const {
 }
 
 /* 80141500-80141508 13BE40 0008+00 1/0 0/0 0/0 .text            getMidnaAtnPos__9daPy_py_cCFv */
-bool daPy_py_c::getMidnaAtnPos() const {
+extern "C" bool getMidnaAtnPos__9daPy_py_cCFv() {
+    // bool daPy_py_c::getMidnaAtnPos() const {
     return false;
 }
 

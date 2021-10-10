@@ -4,6 +4,13 @@
 //
 
 #include "d/d_resorce.h"
+#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "JSystem/J3DGraphBase/J3DTevs.h"
+#include "JSystem/J3DGraphBase/J3DTexture.h"
+#include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
+#include "JSystem/J3DGraphLoader/J3DClusterLoader.h"
+#include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
@@ -30,84 +37,6 @@ struct mDoExt_transAnmBas {
 
 struct dBgWKCol {
     /* 8007E7D0 */ void initKCollision(void*);
-};
-
-struct J3DTexture {
-    /* 8031221C */ void addResTIMG(u16, ResTIMG const*);
-};
-
-struct J3DTexNoAnm {
-    /* 8003B1F8 */ ~J3DTexNoAnm();
-    /* 8003B240 */ J3DTexNoAnm();
-    /* 8003C82C */ void calc(u16*) const;
-};
-
-struct J3DTexMtxInfo {
-    /* 80325718 */ void operator=(J3DTexMtxInfo const&);
-};
-
-struct J3DTexMtxAnm {
-    /* 8003B264 */ ~J3DTexMtxAnm();
-    /* 8003B2A0 */ J3DTexMtxAnm();
-};
-
-struct J3DTexMtx {};
-
-struct J3DTexGenBlock {
-    /* 8003AB2C */ void setTexMtx(u32, J3DTexMtx*);
-};
-
-struct J3DTevStageInfo {};
-
-struct J3DTevStage {
-    /* 8000E298 */ void setTevStageInfo(J3DTevStageInfo const&);
-    /* 8003AACC */ J3DTevStage(J3DTevStageInfo const&);
-};
-
-struct J3DTevKColorAnm {
-    /* 8003B150 */ ~J3DTevKColorAnm();
-    /* 8003B18C */ J3DTevKColorAnm();
-};
-
-struct J3DTevColorAnm {
-    /* 8003B1A4 */ ~J3DTevColorAnm();
-    /* 8003B1E0 */ J3DTevColorAnm();
-};
-
-struct J3DShape {
-    /* 80314BB8 */ void addTexMtxIndexInDL(_GXAttr, u32);
-    /* 80314CBC */ void addTexMtxIndexInVcd(_GXAttr);
-};
-
-struct J3DModelLoaderDataBase {
-    /* 803346BC */ void load(void const*, u32);
-};
-
-struct J3DMaterialAnm {
-    /* 8032C320 */ void initialize();
-};
-
-struct J3DMatColorAnm {
-    /* 8003B2B8 */ ~J3DMatColorAnm();
-    /* 8003B2F4 */ J3DMatColorAnm();
-};
-
-struct J3DClusterLoaderDataBase {
-    /* 80334130 */ void load(void const*);
-};
-
-struct J3DAnmTransformKey {
-    /* 8003B8D0 */ ~J3DAnmTransformKey();
-    /* 8003C800 */ s32 getKind() const;
-    /* 8003C808 */ void getTransform(u16, J3DTransformInfo*) const;
-    /* 80329A34 */ void calcTransform(f32, u16, J3DTransformInfo*) const;
-};
-
-struct J3DAnmLoaderDataBaseFlag {};
-
-struct J3DAnmLoaderDataBase {
-    /* 80337B40 */ void load(void const*, J3DAnmLoaderDataBaseFlag);
-    /* 80338134 */ void setResource(J3DAnmBase*, void const*);
 };
 
 //
@@ -232,7 +161,6 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void memcmp();
-extern "C" extern u8 const j3dDefaultMtx[48];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_env_light[4880];
@@ -289,14 +217,20 @@ int dRes_info_c::set(char const* pArcName, char const* pArcPath, u8 param_2, JKR
 }
 
 /* 8003A3F0-8003A490 034D30 00A0+00 1/1 0/0 0/0 .text            setAlpha__FP16J3DMaterialTable */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void setAlpha(J3DMaterialTable* param_0) {
-    nofralloc
-#include "asm/d/d_resorce/setAlpha__FP16J3DMaterialTable.s"
+static void setAlpha(J3DMaterialTable* pMatTable) {
+    for (u16 i = 0; i < pMatTable->getMaterialNum(); i++) {
+        J3DMaterial* mat = pMatTable->getMaterialNodePointer(i);
+        J3DTevBlock* tevBlock = mat->getTevBlock();
+
+        if (tevBlock != NULL) {
+            _GXColorS10* tevColor = tevBlock->getTevColor(3);
+            if (tevColor != NULL) {
+                u8 tevStageNum = tevBlock->getTevStageNum();
+                tevColor->a = tevStageNum;
+            }
+        }
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -318,14 +252,9 @@ static asm void setIndirectTex(J3DModelData* param_0) {
 #pragma pop
 
 /* 8003A81C-8003A840 03515C 0024+00 1/1 0/0 0/0 .text            setAlpha__FP12J3DModelData */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void setAlpha(J3DModelData* param_0) {
-    nofralloc
-#include "asm/d/d_resorce/setAlpha__FP12J3DModelData.s"
+static void setAlpha(J3DModelData* pModelData) {
+    setAlpha(&pModelData->getMaterialTable());
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80379840-803798A4 005EA0 0064+00 2/2 0/0 0/0 .rodata          l_texMtxInfo */
@@ -624,7 +553,8 @@ asm int dRes_info_c::loadResource() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DAnmTransformKey::~J3DAnmTransformKey() {
+extern "C" asm void __dt__18J3DAnmTransformKeyFv() {
+    // asm J3DAnmTransformKey::~J3DAnmTransformKey() {
     nofralloc
 #include "asm/d/d_resorce/__dt__18J3DAnmTransformKeyFv.s"
 }
@@ -634,7 +564,8 @@ asm J3DAnmTransformKey::~J3DAnmTransformKey() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DAnmTransform::~J3DAnmTransform() {
+extern "C" asm void __dt__15J3DAnmTransformFv() {
+    // asm J3DAnmTransform::~J3DAnmTransform() {
     nofralloc
 #include "asm/d/d_resorce/__dt__15J3DAnmTransformFv.s"
 }
@@ -1149,15 +1080,16 @@ int dRes_control_c::getObjectResName2Index(char const* arcName, char const* para
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DAnmBase::~J3DAnmBase() {
+extern "C" asm void __dt__10J3DAnmBaseFv() {
+    // asm J3DAnmBase::~J3DAnmBase() {
     nofralloc
 #include "asm/d/d_resorce/__dt__10J3DAnmBaseFv.s"
 }
 #pragma pop
 
 /* 8003C77C-8003C784 0370BC 0008+00 1/0 0/0 0/0 .text            getKind__15J3DAnmTransformCFv */
-bool J3DAnmTransform::getKind() const {
-    return false;
+s32 J3DAnmTransform::getKind() const {
+    return 0;
 }
 
 /* 8003C784-8003C800 0370C4 007C+00 1/0 0/0 0/0 .text            __dt__18mDoExt_transAnmBasFv */

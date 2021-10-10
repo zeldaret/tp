@@ -91,8 +91,4 @@ public:
     /* 0x1200 */ dRes_info_c mStageInfo[0x40];
 };  // Size: 0x1B00
 
-struct J3DAnmBase {
-    /* 8003C734 */ ~J3DAnmBase();
-};
-
 #endif /* D_D_RESORCE_H */
