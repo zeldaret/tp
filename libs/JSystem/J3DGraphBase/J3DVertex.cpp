@@ -133,7 +133,7 @@ void J3DVertexBuffer::setArray() const {
 s32 J3DVertexBuffer::copyLocalVtxPosArray(u32 param_0) {
     if (param_0 & 1) {
         for (int i = 0; i < 2; i++) {
-            mVtxPosArray[i] = ::operator new[](mVtxData->getVtxNum() * 12, 0x20);
+            mVtxPosArray[i] = new (0x20) VertexPosition[mVtxData->getVtxNum()];
 
             if (mVtxPosArray[i] == NULL) {
                 return 4;
@@ -145,7 +145,7 @@ s32 J3DVertexBuffer::copyLocalVtxPosArray(u32 param_0) {
         mVtxPosArray[0] = mVtxData->getVtxPosArray();
 
         if (mVtxPosArray[1] == NULL) {
-            mVtxPosArray[1] = ::operator new[](mVtxData->getVtxNum() * 12, 0x20);
+            mVtxPosArray[1] = new (0x20) VertexPosition[mVtxData->getVtxNum()];
             if (mVtxPosArray[1] == NULL) {
                 return 4;
             }
@@ -161,7 +161,7 @@ s32 J3DVertexBuffer::copyLocalVtxPosArray(u32 param_0) {
 s32 J3DVertexBuffer::copyLocalVtxNrmArray(u32 param_0) {
     if (param_0 & 1) {
         for (int i = 0; i < 2; i++) {
-            mVtxNrmArray[i] = ::operator new[](mVtxData->getNrmNum() * 12, 0x20);
+            mVtxNrmArray[i] = new (0x20) VertexNormal[mVtxData->getNrmNum()];
 
             if (mVtxNrmArray[i] == NULL) {
                 return 4;
@@ -173,7 +173,7 @@ s32 J3DVertexBuffer::copyLocalVtxNrmArray(u32 param_0) {
         mVtxNrmArray[0] = mVtxData->getVtxNrmArray();
 
         if (mVtxNrmArray[1] == NULL) {
-            mVtxNrmArray[1] = ::operator new[](mVtxData->getNrmNum() * 12, 0x20);
+            mVtxNrmArray[1] = new (0x20) VertexNormal[mVtxData->getNrmNum()];
             if (mVtxNrmArray[1] == NULL) {
                 return 4;
             }
@@ -259,13 +259,13 @@ asm s32 J3DVertexBuffer::copyLocalVtxArray(u32 param_0) {
 s32 J3DVertexBuffer::allocTransformedVtxPosArray() {
     if (mTransformedVtxPosArray[0] != NULL && mTransformedVtxPosArray[1] != NULL) {
         return 0;
-    } else {
-        for (int i = 0; i < 2; i++) {
-            if (i == 0 || mTransformedVtxPosArray[i] == NULL) {
-                mTransformedVtxPosArray[i] = ::operator new[](mVtxData->getVtxNum() * 12, 0x20);
-                if (mTransformedVtxPosArray[i] == NULL) {
-                    return 4;
-                }
+    }
+
+    for (int i = 0; i < 2; i++) {
+        if (i == 0 || mTransformedVtxPosArray[i] == NULL) {
+            mTransformedVtxPosArray[i] = new (0x20) VertexPosition[mVtxData->getVtxNum()];
+            if (mTransformedVtxPosArray[i] == NULL) {
+                return 4;
             }
         }
     }
@@ -277,13 +277,13 @@ s32 J3DVertexBuffer::allocTransformedVtxPosArray() {
 s32 J3DVertexBuffer::allocTransformedVtxNrmArray() {
     if (mTransformedVtxNrmArray[0] != NULL && mTransformedVtxNrmArray[1] != NULL) {
         return 0;
-    } else {
-        for (int i = 0; i < 2; i++) {
-            if (i == 0 || mTransformedVtxNrmArray[i] == NULL) {
-                mTransformedVtxNrmArray[i] = ::operator new[](mVtxData->getNrmNum() * 12, 0x20);
-                if (mTransformedVtxNrmArray[i] == NULL) {
-                    return 4;
-                }
+    }
+
+    for (int i = 0; i < 2; i++) {
+        if (i == 0 || mTransformedVtxNrmArray[i] == NULL) {
+            mTransformedVtxNrmArray[i] = new (0x20) VertexNormal[mVtxData->getNrmNum()];
+            if (mTransformedVtxNrmArray[i] == NULL) {
+                return 4;
             }
         }
     }

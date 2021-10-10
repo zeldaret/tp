@@ -172,17 +172,10 @@ void J3DModelData::simpleCalcMaterial(u16 idx, Mtx param_1) {
 
 /* 803260CC-803260F8 320A0C 002C+00 0/0 1/1 0/0 .text syncJ3DSysPointers__12J3DModelDataCFv */
 void J3DModelData::syncJ3DSysPointers() const {
-    J3DTexture* tex = getTexture();
-    j3dSys.setTexture(tex);
-
-    void* vtxPos = getVtxPosArray();
-    j3dSys.setVtxPos(vtxPos);
-
-    void* vtxNrm = getVtxNrmArray();
-    j3dSys.setVtxNrm(vtxNrm);
-
-    _GXColor* vtxColor = getVtxColorArray(0);
-    j3dSys.setVtxCol(vtxColor);
+    j3dSys.setTexture(getTexture());
+    j3dSys.setVtxPos(getVtxPosArray());
+    j3dSys.setVtxNrm(getVtxNrmArray());
+    j3dSys.setVtxCol(getVtxColorArray(0));
 }
 
 /* 803260F8-80326134 320A38 003C+00 1/1 5/5 0/0 .text            syncJ3DSysFlags__12J3DModelDataCFv

@@ -10,11 +10,11 @@ typedef struct _GXColor {
     u8 a;
 } GXColor;
 
-struct _GXColorS10 {
+typedef struct _GXColorS10 {
     s16 r;
     s16 g;
     s16 b;
     s16 a;
-};
+} GXColorS10;
 
 #endif /* GXTEXTURE_H */

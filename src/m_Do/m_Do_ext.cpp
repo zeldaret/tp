@@ -1760,23 +1760,23 @@ bool J3DTevBlock::getTevOrder(u32 param_0) {
 }
 
 /* 8000DFC0-8000DFC8 008900 0008+00 0/0 3/0 0/0 .text            getTevKColor__11J3DTevBlockFUl */
-_GXColor* J3DTevBlock::getTevKColor(u32 param_0) {
-    return false;
+GXColor* J3DTevBlock::getTevKColor(u32 param_0) {
+    return NULL;
 }
 
 /* 8000DFC8-8000DFD0 008908 0008+00 0/0 3/0 0/0 .text            getTevColor__11J3DTevBlockFUl */
-_GXColorS10* J3DTevBlock::getTevColor(u32 param_0) {
-    return false;
+GXColorS10* J3DTevBlock::getTevColor(u32 param_0) {
+    return NULL;
 }
 
 /* 8000DFD0-8000DFD8 008910 0008+00 0/0 2/0 0/0 .text            getTevStageNum__11J3DTevBlockCFv */
 u8 J3DTevBlock::getTevStageNum() const {
-    return true;
+    return 1;
 }
 
 /* 8000DFD8-8000DFE0 008918 0008+00 0/0 2/0 0/0 .text            getTexMtx__14J3DTexGenBlockFUl */
 J3DTexMtx* J3DTexGenBlock::getTexMtx(u32 param_0) {
-    return false;
+    return NULL;
 }
 
 /* 8000DFE0-8000DFE8 008920 0008+00 0/0 2/0 0/0 .text            getTexCoord__14J3DTexGenBlockFUl */
@@ -1801,8 +1801,8 @@ bool J3DColorBlock::getColorChan(u32 param_0) {
 }
 
 /* 8000E000-8000E008 008940 0008+00 0/0 2/0 0/0 .text            getMatColor__13J3DColorBlockFUl */
-_GXColor* J3DColorBlock::getMatColor(u32 param_0) {
-    return false;
+GXColor* J3DColorBlock::getMatColor(u32 param_0) {
+    return NULL;
 }
 
 /* 8000E008-8000E010 008948 0008+00 0/0 2/0 0/0 .text            getColorChanNum__13J3DColorBlockCFv

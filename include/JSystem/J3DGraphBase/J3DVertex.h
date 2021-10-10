@@ -1,8 +1,6 @@
 #ifndef J3DVERTEX_H
 #define J3DVERTEX_H
 
-// #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
-// #include "JSystem/J3DGraphAnimator/J3DJointTree.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 
@@ -84,5 +82,13 @@ private:
     /* 0x30 */ void* mCurrentVtxNrm;
     /* 0x34 */ _GXColor* mCurrentVtxCol;
 };  // Size: 0x38
+
+struct VertexNormal {
+    u8 data[0xC];
+};
+
+struct VertexPosition {
+    u8 data[0xC];
+};
 
 #endif /* J3DVERTEX_H */

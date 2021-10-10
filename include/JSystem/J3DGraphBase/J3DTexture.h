@@ -1,7 +1,6 @@
 #ifndef J3DTEXTURE_H
 #define J3DTEXTURE_H
 
-// #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"

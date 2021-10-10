@@ -44,12 +44,12 @@ public:
     /* 80316E14 */ virtual void reset();
     /* 80316E70 */ virtual void change();
 
-    J3DMaterial* getNext() { return mNext; }
-    J3DTevBlock* getTevBlock() { return mTevBlock; }
-    J3DColorBlock* getColorBlock() { return mColorBlock; }
-    J3DTexGenBlock* getTexGenBlock() { return mTexGenBlock; }
-    J3DDisplayListObj* getSharedDisplayListObj() { return mSharedDLObj; }
-    J3DMaterialAnm* getMaterialAnm() {
+    J3DMaterial* getNext() const { return mNext; }
+    J3DTevBlock* getTevBlock() const { return mTevBlock; }
+    J3DColorBlock* getColorBlock() const { return mColorBlock; }
+    J3DTexGenBlock* getTexGenBlock() const { return mTexGenBlock; }
+    J3DDisplayListObj* getSharedDisplayListObj() const { return mSharedDLObj; }
+    J3DMaterialAnm* getMaterialAnm() const {
         if ((u32)mMaterialAnm < 0xC0000000) {
             return mMaterialAnm;
         } else {

@@ -366,6 +366,7 @@ s32 J3DModel::setSkinDeform(J3DSkinDeform* p_skinDeform, u32 param_1) {
             offFlag(J3DMdlFlag_SkinNrmCpu);
         }
     }
+    return 0;
 }
 #else
 #pragma push

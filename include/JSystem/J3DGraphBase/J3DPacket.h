@@ -37,8 +37,8 @@ public:
     void beginPatch();
     u32 endPatch();
 
-    u8* getDisplayList(int idx) { return (u8*)mpData[idx]; }
-    u32 getDisplayListSize() { return mSize; }
+    u8* getDisplayList(int idx) const { return (u8*)mpData[idx]; }
+    u32 getDisplayListSize() const { return mSize; }
 
     static GDLObj sGDLObj;
     static s32 sInterruptFlag;

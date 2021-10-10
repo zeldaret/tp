@@ -24,7 +24,7 @@ public:
     /* 80326D3C */ void calcNrmMtx();
     /* 80326EF0 */ void calcBBoardMtx();
 
-    MtxP getAnmMtx(int idx) { return *(mMatrices[0] + idx); }
+    MtxP getAnmMtx(int idx) const { return *(mMatrices[0] + idx); }
 
     void setScaleFlag(int idx, u8 flag) { mScaleFlag[idx] = flag; }
 

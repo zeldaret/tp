@@ -46,7 +46,7 @@ public:
     void offFlag(u32 flag) { mFlags &= ~flag; }
     void setDrawMtxDataPointer(J3DDrawMtxData* pMtxData) { mDrawMtxData = pMtxData; }
     void setVertexDataPointer(J3DVertexData* pVtxData) { mVertexData = pVtxData; }
-    void* getVcdVatCmd() { return mVcdVatCmd; }
+    void* getVcdVatCmd() const { return mVcdVatCmd; }
     void setVcdVatCmd(void* pVatCmd) { mVcdVatCmd = pVatCmd; }
 
     static void resetVcdVatCache() { sOldVcdVatCmd = NULL; }

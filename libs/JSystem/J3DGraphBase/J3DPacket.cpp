@@ -280,6 +280,7 @@ J3DError J3DDrawPacket::newDisplayList(u32 param_0) {
     } else if (mpDisplayListObj->newDisplayList(param_0)) {
         return kJ3DError_Success;
     }
+    return 0;
 }
 #else
 #pragma push
@@ -302,6 +303,7 @@ J3DError J3DDrawPacket::newSingleDisplayList(u32 param_0) {
     } else if (mpDisplayListObj->newSingleDisplayList(param_0)) {
         return kJ3DError_Success;
     }
+    return 0;
 }
 #else
 #pragma push

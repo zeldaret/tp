@@ -167,7 +167,7 @@ SECTION_INIT asm void __fill_mem() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-SECTION_INIT asm void memcpy(void*, const void*, s32) {
+SECTION_INIT asm void* memcpy(void*, const void*, s32) {
     nofralloc
 #include "asm/init/memcpy.s"
 }
