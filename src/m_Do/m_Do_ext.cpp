@@ -4,6 +4,8 @@
 //
 
 #include "m_Do/m_Do_ext.h"
+#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
+#include "JSystem/J3DGraphBase/J3DTevs.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRAssertHeap.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
@@ -40,8 +42,6 @@ struct mDoExt_btpAnm {
     /* 8000D5E8 */ void entry(J3DMaterialTable*, s16);
 };
 
-struct J3DAnmCluster {};
-
 struct mDoExt_blkAnm {
     /* 8000DA08 */ void init(J3DDeformData*, J3DAnmCluster*, int, int, f32, s16, s16);
 };
@@ -60,8 +60,6 @@ struct mDoExt_MtxCalcAnmBlendTbl {
     /* 8000F26C */ void calc();
     /* 80014F3C */ ~mDoExt_MtxCalcAnmBlendTbl();
 };
-
-struct J3DTransformInfo {};
 
 struct mDoExt_McaMorfCallBack2_c {};
 
@@ -135,10 +133,6 @@ struct mDoExt_3DlineMatSortPacket {
     /* 80014E20 */ ~mDoExt_3DlineMatSortPacket();
 };
 
-struct ResTIMG {};
-
-struct _GXColor {};
-
 struct dKy_tevstr_c {};
 
 struct mDoExt_3DlineMat1_c {
@@ -160,10 +154,6 @@ struct mDoExt_3DlineMat0_c {
 };
 
 struct J3DDrawBuffer;
-struct J3DPacket {
-    /* 8000E680 */ ~J3DPacket();
-    /* 80312750 */ bool entry(J3DDrawBuffer*);
-};
 
 struct J3DDrawBuffer {
     /* 8032548C */ void entryImm(J3DPacket*, u16);
@@ -173,13 +163,7 @@ struct dDlst_list_c {
     /* 800565EC */ void entryZSortXluDrawList(J3DDrawBuffer*, J3DPacket*, cXyz&);
 };
 
-struct _GXLogicOp {};
-
 struct _GXCompare {};
-
-struct _GXBlendMode {};
-
-struct _GXBlendFactor {};
 
 struct JAISoundID {};
 
@@ -210,10 +194,6 @@ struct JUTResFont {
     /* 802DEF94 */ JUTResFont(ResFONT const*, JKRHeap*);
 };
 
-struct JUTNameTab {
-    /* 802DEAF8 */ void getName(u16) const;
-};
-
 struct JUTFont {
     /* 8001494C */ ~JUTFont();
     /* 80014D9C */ void setGX(JUtility::TColor, JUtility::TColor);
@@ -223,116 +203,6 @@ struct JUTFont {
 
 struct JUTCacheFont {
     /* 802DD188 */ JUTCacheFont(ResFONT const*, u32, JKRHeap*);
-};
-
-struct J3DZMode {};
-
-struct J3DVertexBuffer {
-    /* 80310FD8 */ void init();
-};
-
-struct J3DTexMtxAnm {};
-
-struct J3DTexCoord {
-    /* 8000E464 */ J3DTexCoord();
-};
-
-struct J3DTexGenBlock {
-    /* 8000DFD8 */ bool getTexMtx(u32);
-    /* 8000DFE0 */ bool getTexCoord(u32);
-    /* 8000DFE8 */ bool getTexGenNum() const;
-    /* 8000E0CC */ void setTexCoord(u32, J3DTexCoord const*);
-    /* 8000E0D0 */ void setTexGenNum(u32);
-};
-
-struct J3DTevSwapModeTable {
-    /* 8000E134 */ J3DTevSwapModeTable();
-};
-
-struct J3DTevStageInfo {};
-
-struct J3DTevStage {
-    /* 8000E230 */ J3DTevStage();
-    /* 8000E298 */ void setTevStageInfo(J3DTevStageInfo const&);
-};
-
-struct J3DTevOrder {
-    /* 8000E140 */ J3DTevOrder();
-};
-
-struct J3DTevKColorAnm {};
-
-struct J3DTevColorAnm {};
-
-struct J3DGXColorS10 {
-    /* 8000E460 */ J3DGXColorS10();
-};
-
-struct J3DIndTevStage {
-    /* 8000E14C */ J3DIndTevStage();
-};
-
-struct J3DGXColor {
-    /* 8000E538 */ J3DGXColor();
-};
-
-struct J3DTevBlock {
-    /* 8000DBC8 */ void patchTexNoAndTexCoordScale();
-    /* 8000DBD4 */ void patch();
-    /* 8000DF84 */ bool getIndTevStage(u32);
-    /* 8000DF8C */ bool getTevStage(u32);
-    /* 8000DF94 */ void getTexNo(u32) const;
-    /* 8000DFA0 */ bool getTevSwapModeTable(u32);
-    /* 8000DFA8 */ bool getTevKAlphaSel(u32);
-    /* 8000DFB0 */ bool getTevKColorSel(u32);
-    /* 8000DFB8 */ bool getTevOrder(u32);
-    /* 8000DFC0 */ bool getTevKColor(u32);
-    /* 8000DFC8 */ bool getTevColor(u32);
-    /* 8000DFD0 */ bool getTevStageNum() const;
-    /* 8000E0A4 */ void setIndTevStage(u32, J3DIndTevStage);
-    /* 8000E0A8 */ void setTevStage(u32, J3DTevStage);
-    /* 8000E0AC */ void setTexNo(u32, u16);
-    /* 8000E0B0 */ void setTevSwapModeTable(u32, J3DTevSwapModeTable);
-    /* 8000E0B4 */ void setTevKAlphaSel(u32, u8);
-    /* 8000E0B8 */ void setTevKColorSel(u32, u8);
-    /* 8000E0BC */ void setTevOrder(u32, J3DTevOrder);
-    /* 8000E0C0 */ void setTevKColor(u32, J3DGXColor);
-    /* 8000E0C4 */ void setTevColor(u32, J3DGXColorS10);
-    /* 8000E0C8 */ void setTevStageNum(u8);
-};
-
-struct J3DSys {
-    /* 8031073C */ void reinitGX();
-
-    static u8 mCurrentMtx[48];
-    static f32 mParentS[3];
-};
-
-struct J3DShapePacket {
-    /* 80312FBC */ void drawFast();
-};
-
-struct J3DShape {
-    /* 80315300 */ void loadPreDrawSetting() const;
-
-    static u8 sOldVcdVatCmd[4];
-};
-
-struct J3DAlphaComp {};
-
-struct J3DBlend {};
-
-struct J3DPEBlock {
-    /* 8000DBCC */ void patch();
-    /* 8000DF3C */ bool getZCompLoc() const;
-    /* 8000DF44 */ bool getZMode();
-    /* 8000DF4C */ bool getBlend();
-    /* 8000DF54 */ bool getAlphaComp();
-    /* 8000DF5C */ bool getFog();
-    /* 8000E010 */ void setZCompLoc(u8);
-    /* 8000E014 */ void setZMode(J3DZMode);
-    /* 8000E018 */ void setBlend(J3DBlend const&);
-    /* 8000E01C */ void setAlphaComp(J3DAlphaComp const&);
 };
 
 struct J3DMtxCalcNoAnmBase {
@@ -346,14 +216,6 @@ struct J3DMtxCalcNoAnm__template0 {
     /* 8000FA20 */ void func_8000FA20(void* _this);
     /* 8001505C */ void func_8001505C(void* _this, Vec const&, f32 const (&)[3][4]);
     /* 80015084 */ void func_80015084(void* _this);
-};
-
-struct J3DMtxCalcJ3DSysInitMaya {
-    /* 8032ECAC */ void init(Vec const&, f32 const (&)[3][4]);
-};
-
-struct J3DMtxCalcCalcTransformMaya {
-    /* 8032EFBC */ void calcTransform(J3DTransformInfo const&);
 };
 
 struct J3DMtxCalcAnmBase {
@@ -373,72 +235,8 @@ struct J3DMtxCalcAnimation__template0 {
     /* 800150AC */ void func_800150AC(void* _this);
 };
 
-struct J3DMtxCalc {
-    /* 8000D948 */ ~J3DMtxCalc();
-    /* 80014E8C */ void setAnmTransform(u8, J3DAnmTransform*);
-    /* 80014E90 */ void setAnmTransform(J3DAnmTransform*);
-    /* 80014E94 */ bool getAnmTransform(u8);
-    /* 80014E9C */ bool getAnmTransform();
-    /* 80014EA4 */ void setWeight(u8, f32);
-    /* 80014EA8 */ void getWeight(u8) const;
-
-    static u8 mJoint[4];
-};
-
-struct J3DMaterialAnm {
-    /* 8032C5E4 */ void setTexMtxAnm(int, J3DTexMtxAnm*);
-    /* 8032C664 */ void setTevColorAnm(int, J3DTevColorAnm*);
-    /* 8032C6A4 */ void setTevKColorAnm(int, J3DTevKColorAnm*);
-};
-
-struct J3DIndTexOrder {
-    /* 8000E128 */ J3DIndTexOrder();
-};
-
 struct J3DIndTexMtxInfo {
     /* 803257DC */ void operator=(J3DIndTexMtxInfo const&);
-};
-
-struct J3DIndTexMtx {
-    /* 8000E064 */ ~J3DIndTexMtx();
-    /* 8000E0F0 */ J3DIndTexMtx();
-};
-
-struct J3DIndTexCoordScale {
-    /* 8000E024 */ ~J3DIndTexCoordScale();
-    /* 8000E0E4 */ J3DIndTexCoordScale();
-};
-
-struct J3DIndBlock {
-    /* 8000DF64 */ bool getIndTexCoordScale(u32);
-    /* 8000DF6C */ bool getIndTexMtx(u32);
-    /* 8000DF74 */ bool getIndTexOrder(u32);
-    /* 8000DF7C */ bool getIndTexStageNum() const;
-    /* 8000E020 */ void setIndTexCoordScale(u32, J3DIndTexCoordScale);
-    /* 8000E060 */ void setIndTexMtx(u32, J3DIndTexMtx);
-    /* 8000E0A0 */ void setIndTexStageNum(u8);
-};
-
-struct J3DDisplayListObj {
-    /* 80312618 */ void callDL() const;
-
-    static u8 sGDLObj[16];
-};
-
-struct J3DColorChan {
-    /* 8000E47C */ J3DColorChan();
-};
-
-struct J3DColorBlock {
-    /* 8000DBD0 */ void patchLight();
-    /* 8000DFF0 */ bool getAmbColor(u32);
-    /* 8000DFF8 */ bool getColorChan(u32);
-    /* 8000E000 */ bool getMatColor(u32);
-    /* 8000E008 */ bool getColorChanNum() const;
-    /* 8000E0D4 */ void setAmbColor(u32, J3DGXColor);
-    /* 8000E0D8 */ void setColorChan(u32, J3DColorChan const&);
-    /* 8000E0DC */ void setMatColor(u32, J3DGXColor);
-    /* 8000E0E0 */ void setColorChanNum(u8);
 };
 
 //
@@ -760,23 +558,14 @@ extern "C" void entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
 extern "C" void JMAEulerToQuat__FsssP10Quaternion();
 extern "C" void JMAQuatLerp__FPC10QuaternionPC10QuaternionfP10Quaternion();
 extern "C" void DCStoreRangeNoSync();
-extern "C" void GXSetVtxDesc();
 extern "C" void GXClearVtxDesc();
-extern "C" void GXSetVtxAttrFmt();
 extern "C" void GXSetArray();
-extern "C" void GXBegin();
-extern "C" void GXInitTexObj();
-extern "C" void GXInitTexObjLOD();
 extern "C" void GXGetTexObjWidth();
 extern "C" void GXGetTexObjHeight();
-extern "C" void GXLoadTexObj();
 extern "C" void GXSetTexCoordScaleManually();
 extern "C" void GXSetNumIndStages();
-extern "C" void GXSetTevColor();
-extern "C" void GXCallDisplayList();
 extern "C" void GXLoadPosMtxImm();
 extern "C" void GXLoadNrmMtxImm();
-extern "C" void GDInitGDLObj();
 extern "C" void __construct_new_array();
 extern "C" void _savegpr_15();
 extern "C" void _savegpr_18();
@@ -808,7 +597,6 @@ extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
 extern "C" extern void* __vt__9J3DPacket[5];
 extern "C" extern void* __vt__8J3DModel[9];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" f32 mParentS__6J3DSys[3];
 extern "C" u8 sGDLObj__17J3DDisplayListObj[16];
@@ -817,7 +605,6 @@ extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 extern "C" u8 sCurrentHeap__7JKRHeap[4];
 extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 extern "C" u8 mJoint__10J3DMtxCalc[4];
-extern "C" extern u8 __GDCurrentDL[4];
 extern "C" extern u32 j3dDefaultTevOrderInfoNull;
 extern "C" extern u32 j3dDefaultIndTexOrderNull;
 extern "C" extern u8 j3dDefaultIndTexCoordScaleInfo[4];
@@ -1973,23 +1760,23 @@ bool J3DTevBlock::getTevOrder(u32 param_0) {
 }
 
 /* 8000DFC0-8000DFC8 008900 0008+00 0/0 3/0 0/0 .text            getTevKColor__11J3DTevBlockFUl */
-bool J3DTevBlock::getTevKColor(u32 param_0) {
-    return false;
+GXColor* J3DTevBlock::getTevKColor(u32 param_0) {
+    return NULL;
 }
 
 /* 8000DFC8-8000DFD0 008908 0008+00 0/0 3/0 0/0 .text            getTevColor__11J3DTevBlockFUl */
-bool J3DTevBlock::getTevColor(u32 param_0) {
-    return false;
+GXColorS10* J3DTevBlock::getTevColor(u32 param_0) {
+    return NULL;
 }
 
 /* 8000DFD0-8000DFD8 008910 0008+00 0/0 2/0 0/0 .text            getTevStageNum__11J3DTevBlockCFv */
-bool J3DTevBlock::getTevStageNum() const {
-    return true;
+u8 J3DTevBlock::getTevStageNum() const {
+    return 1;
 }
 
 /* 8000DFD8-8000DFE0 008918 0008+00 0/0 2/0 0/0 .text            getTexMtx__14J3DTexGenBlockFUl */
-bool J3DTexGenBlock::getTexMtx(u32 param_0) {
-    return false;
+J3DTexMtx* J3DTexGenBlock::getTexMtx(u32 param_0) {
+    return NULL;
 }
 
 /* 8000DFE0-8000DFE8 008920 0008+00 0/0 2/0 0/0 .text            getTexCoord__14J3DTexGenBlockFUl */
@@ -2014,8 +1801,8 @@ bool J3DColorBlock::getColorChan(u32 param_0) {
 }
 
 /* 8000E000-8000E008 008940 0008+00 0/0 2/0 0/0 .text            getMatColor__13J3DColorBlockFUl */
-bool J3DColorBlock::getMatColor(u32 param_0) {
-    return false;
+GXColor* J3DColorBlock::getMatColor(u32 param_0) {
+    return NULL;
 }
 
 /* 8000E008-8000E010 008948 0008+00 0/0 2/0 0/0 .text            getColorChanNum__13J3DColorBlockCFv

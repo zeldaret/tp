@@ -35,12 +35,6 @@ struct Z2AudioMgr {
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
-struct J3DGXColor {};
-
-struct J3DTevBlock {
-    /* 800732AC */ void setTevKColor(u32, J3DGXColor const*);
-};
-
 //
 // Forward References:
 //

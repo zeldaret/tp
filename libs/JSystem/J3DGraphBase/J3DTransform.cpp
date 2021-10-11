@@ -11,13 +11,9 @@
 // Types:
 //
 
-struct Vec {};
-
 struct JMath {
     static u8 sincosTable_[65536];
 };
-
-struct J3DTransformInfo {};
 
 struct J3DTextureSRTInfo {};
 
@@ -46,7 +42,6 @@ extern "C" extern u8 PSMulUnit01[8];
 // External References:
 //
 
-extern "C" void PSVECNormalize();
 extern "C" u8 sincosTable___5JMath[65536];
 
 //
@@ -93,25 +88,15 @@ asm void J3DCalcBBoardMtx(f32 (*param_0)[4]) {
 
 /* ############################################################################################## */
 /* 803A1E30-803A1E50 02E490 0020+00 0/0 1/1 0/0 .rodata          j3dDefaultTransformInfo */
-SECTION_RODATA extern u8 const j3dDefaultTransformInfo[32] = {
-    0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x803A1E30, &j3dDefaultTransformInfo);
+extern J3DTransformInfo const j3dDefaultTransformInfo = {
+    {1.0f, 1.0f, 1.0f}, {0, 0, 0}, {0.0f, 0.0f, 0.0f}};
 
 /* 803A1E50-803A1E5C 02E4B0 000C+00 0/0 1/1 0/0 .rodata          j3dDefaultScale */
-SECTION_RODATA extern u8 const j3dDefaultScale[12] = {
-    0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x803A1E50, &j3dDefaultScale);
+extern Vec const j3dDefaultScale = {1.0f, 1.0f, 1.0f};
 
 /* 803A1E5C-803A1E8C 02E4BC 0030+00 0/0 8/8 7/7 .rodata          j3dDefaultMtx */
-SECTION_RODATA extern u8 const j3dDefaultMtx[48] = {
-    0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x803A1E5C, &j3dDefaultMtx);
+extern Mtx const j3dDefaultMtx = {
+    {1.0f, 0.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 1.0f, 0.0f}};
 
 /* 803A1E8C-803A1E98 02E4EC 000C+00 1/1 0/0 0/0 .rodata          @443 */
 SECTION_RODATA static u8 const lit_443[12] = {

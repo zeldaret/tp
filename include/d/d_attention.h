@@ -7,8 +7,6 @@
 #include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
 
-struct J3DTransformInfo {};
-
 class dAttHint_c {
 public:
     dAttHint_c() {}

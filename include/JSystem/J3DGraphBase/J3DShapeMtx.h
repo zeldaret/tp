@@ -29,4 +29,66 @@ private:
     /* 0x04 */ u16 mUseMtxIndex;
 };
 
+class J3DShapeMtxConcatView : public J3DShapeMtx {
+public:
+    /* 80314730 */ virtual ~J3DShapeMtxConcatView();
+    /* 8031478C */ virtual void getType() const;
+    /* 80313C54 */ virtual void load() const;
+    /* 80314598 */ virtual void loadNrmMtx(int, u16) const;
+    /* 80313D28 */ virtual void loadNrmMtx(int, u16, f32 (*)[4]) const;
+
+    /* 80313828 */ void loadMtxConcatView_PNGP(int, u16) const;
+    /* 803138C8 */ void loadMtxConcatView_PCPU(int, u16) const;
+    /* 8031396C */ void loadMtxConcatView_NCPU(int, u16) const;
+    /* 80313A14 */ void loadMtxConcatView_PNCPU(int, u16) const;
+    /* 80313AC8 */ void loadMtxConcatView_PNGP_LOD(int, u16) const;
+
+    static u8 sMtxLoadPipeline[48];
+    static u8 sMtxLoadLODPipeline[48];
+    static u8 sMtxPtrTbl[8];
+};
+
+class J3DShapeMtxYBBoardConcatView : public J3DShapeMtxConcatView {
+public:
+    /* 80314520 */ virtual ~J3DShapeMtxYBBoardConcatView();
+    /* 8031458C */ virtual void getType() const;
+    /* 803143E4 */ virtual void load() const;
+};
+
+class J3DShapeMtxBBoardConcatView : public J3DShapeMtxConcatView {
+public:
+    /* 803145A4 */ virtual ~J3DShapeMtxBBoardConcatView();
+    /* 80314610 */ virtual void getType() const;
+    /* 803142D4 */ virtual void load() const;
+};
+
+class J3DShapeMtxMulti : public J3DShapeMtx {
+public:
+    /* 803146B0 */ virtual ~J3DShapeMtxMulti();
+    /* 8031470C */ virtual void getType() const;
+    /* 80314718 */ virtual void getUseMtxNum() const;
+    /* 80314720 */ virtual void getUseMtxIndex(u16) const;
+    /* 80313E4C */ virtual void load() const;
+    /* 80313EEC */ virtual void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
+
+private:
+    /* 0x6 */ u16 mUseMtxNum;
+    /* 0x8 */ u16* mUseMtxIndex;
+};
+
+class J3DShapeMtxMultiConcatView : public J3DShapeMtx {
+public:
+    /* 8031461C */ virtual ~J3DShapeMtxMultiConcatView();
+    /* 80314688 */ virtual void getType() const;
+    /* 80314694 */ virtual void getUseMtxNum() const;
+    /* 8031469C */ virtual void getUseMtxIndex(u16) const;
+    /* 80313FA4 */ virtual void load() const;
+    /* 803146AC */ virtual void loadNrmMtx(int, u16) const;
+    /* 8031419C */ virtual void loadNrmMtx(int, u16, f32 (*)[4]) const;
+
+private:
+    /* 0x6 */ u16 mUseMtxNum;
+    /* 0x8 */ u16* mUseMtxIndex;
+};
+
 #endif /* J3DSHAPEMTX_H */

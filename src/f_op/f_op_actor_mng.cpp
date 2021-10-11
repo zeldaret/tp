@@ -143,10 +143,6 @@ struct cBgS {
     /* 80074744 */ void GetTriPla(cBgS_PolyInfo const&, cM3dGPla*) const;
 };
 
-struct J3DTexMtxInfo {
-    /* 80325794 */ void setEffectMtx(f32 (*)[4]);
-};
-
 //
 // Forward References:
 //

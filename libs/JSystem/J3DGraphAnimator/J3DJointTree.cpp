@@ -8,47 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct Vec {};
-
-struct J3DShapeTable {};
-
-struct J3DMtxBuffer {};
-
-struct J3DMtxCalc {
-    /* 80325D1C */ void setMtxBuffer(J3DMtxBuffer*);
-
-    static u8 mMtxBuffer[4];
-};
-
-struct J3DModelHierarchy {};
-
-struct J3DMaterialTable {};
-
-struct J3DJoint {
-    /* 8032F13C */ void appendChild(J3DJoint*);
-    /* 8032F3F8 */ void recursiveCalc();
-
-    static u8 mCurrentMtxCalc[4 + 4 /* padding */];
-};
-
-struct J3DJointTree {
-    /* 80325A18 */ J3DJointTree();
-    /* 80325A9C */ void makeHierarchy(J3DJoint*, J3DModelHierarchy const**, J3DMaterialTable*,
-                                      J3DShapeTable*);
-    /* 80325C00 */ void findImportantMtxIndex();
-    /* 80325CAC */ void calc(J3DMtxBuffer*, Vec const&, f32 const (&)[3][4]);
-    /* 80325D24 */ ~J3DJointTree();
-};
-
-struct J3DDrawMtxData {
-    /* 803115E0 */ J3DDrawMtxData();
-    /* 803115F4 */ ~J3DDrawMtxData();
-};
-
-//
 // Forward References:
 //
 

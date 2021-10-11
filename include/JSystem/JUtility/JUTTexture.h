@@ -7,29 +7,29 @@
 struct ResTIMG { /* Acts as the header to image data. Usually texture data immediately follows it,
                     so any pointer arithmetic to go past the end of this structure is so that a
                     variable sized allocated buffer can be accessed. */
-    u8 format;
-    bool alphaEnabled;
-    u16 width;
-    u16 height;
-    u8 wrapS;
-    u8 wrapT;
-    bool palettesEnabled;
-    u8 paletteFormat;
-    u16 paletteCount;
-    u32 paletteOffset;
-    bool mipmapEnabled;
-    bool doEdgeLOD;
-    bool biasClamp;
-    u8 maxAnisotropy;
-    u8 minFilter;
-    u8 magFilter;
-    s8 minLOD;
-    s8 maxLOD;
-    u8 mipmapCount;
-    u8 unknown;
-    s16 LODBias;
-    u32 texDataOffset;
-};
+    /* 0x00 */ u8 format;
+    /* 0x01 */ bool alphaEnabled;
+    /* 0x02 */ u16 width;
+    /* 0x04 */ u16 height;
+    /* 0x06 */ u8 wrapS;
+    /* 0x07 */ u8 wrapT;
+    /* 0x08 */ bool palettesEnabled;
+    /* 0x09 */ u8 paletteFormat;
+    /* 0x0A */ u16 paletteCount;
+    /* 0x0C */ u32 paletteOffset;
+    /* 0x10 */ bool mipmapEnabled;
+    /* 0x11 */ bool doEdgeLOD;
+    /* 0x12 */ bool biasClamp;
+    /* 0x13 */ u8 maxAnisotropy;
+    /* 0x14 */ u8 minFilter;
+    /* 0x15 */ u8 magFilter;
+    /* 0x16 */ s8 minLOD;
+    /* 0x17 */ s8 maxLOD;
+    /* 0x18 */ u8 mipmapCount;
+    /* 0x19 */ u8 unknown;
+    /* 0x1A */ s16 LODBias;
+    /* 0x1B */ u32 texDataOffset;
+};  // Size: 0x1C
 
 class JUTTexture {
 public:

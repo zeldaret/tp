@@ -34,10 +34,6 @@ struct J3DClusterLoader_v15 {
     /* 803342F8 */ void readCluster(J3DClusterBlock const*);
 };
 
-struct J3DClusterLoaderDataBase {
-    /* 80334130 */ void load(void const*);
-};
-
 struct J3DClusterLoader {
     /* 803345FC */ ~J3DClusterLoader();
 };

@@ -4,60 +4,15 @@
 //
 
 #include "JSystem/J3DGraphAnimator/J3DJoint.h"
+#include "JSystem/J3DGraphAnimator/J3DMtxBuffer.h"
+#include "JSystem/J3DGraphBase/J3DSys.h"
+#include "JSystem/JMath/JMath.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
 //
 // Types:
 //
-
-struct Vec {};
-
-struct J3DTransformInfo {};
-
-struct J3DSys {
-    static u8 mCurrentMtx[48];
-    static f32 mCurrentS[3];
-    static f32 mParentS[3];
-};
-
-struct J3DMtxCalcJ3DSysInitMaya {
-    /* 8032ECAC */ void init(Vec const&, f32 const (&)[3][4]);
-};
-
-struct J3DMtxCalcJ3DSysInitBasic {
-    /* 8032EC28 */ void init(Vec const&, f32 const (&)[3][4]);
-};
-
-struct J3DMtxCalcCalcTransformSoftimage {
-    /* 8032EE50 */ void calcTransform(J3DTransformInfo const&);
-};
-
-struct J3DMtxCalcCalcTransformMaya {
-    /* 8032EFBC */ void calcTransform(J3DTransformInfo const&);
-};
-
-struct J3DMtxCalcCalcTransformBasic {
-    /* 8032ED30 */ void calcTransform(J3DTransformInfo const&);
-};
-
-struct J3DMtxCalc {
-    static u8 mMtxBuffer[4];
-    static u8 mJoint[4];
-};
-
-struct J3DMaterial {
-    /* 80316AB0 */ void setCurrentMtx();
-};
-
-struct J3DJoint {
-    /* 8032F13C */ void appendChild(J3DJoint*);
-    /* 8032F170 */ J3DJoint();
-    /* 8032F254 */ void entryIn();
-    /* 8032F3F8 */ void recursiveCalc();
-
-    static u8 mCurrentMtxCalc[4 + 4 /* padding */];
-};
 
 struct J3DDrawBuffer {
     static u8 entryNum[4 + 4 /* padding */];
@@ -84,16 +39,14 @@ extern "C" u8 mCurrentMtxCalc__8J3DJoint[4 + 4 /* padding */];
 // External References:
 //
 
-extern "C" void J3DGetTranslateRotateMtx__FRC16J3DTransformInfoPA4_f();
+extern "C" void
+J3DGetTranslateRotateMtx__FRC16J3DTransformInfoPA4_f(J3DTransformInfo const& param_0,
+                                                     f32 (*param_1)[4]);
 extern "C" void J3DGetTranslateRotateMtx__FsssfffPA4_f();
 extern "C" void setCurrentMtx__11J3DMaterialFv();
-extern "C" void JMAMTXApplyScale__FPA4_CfPA4_ffff();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXConcat();
+extern "C" void JMAMTXApplyScale__FPA4_CfPA4_ffff(const Mtx*, Mtx*, f32, f32, f32);
 extern "C" void _savegpr_27();
 extern "C" void _restgpr_27();
-extern "C" extern u8 const j3dDefaultTransformInfo[32];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" f32 mCurrentS__6J3DSys[3];
 extern "C" f32 mParentS__6J3DSys[3];
@@ -103,95 +56,152 @@ extern "C" u8 entryNum__13J3DDrawBuffer[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 803A2068-803A2074 02E6C8 000C+00 1/1 0/0 0/0 .rodata          @882 */
-SECTION_RODATA static u8 const lit_882[12] = {
-    0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x803A2068, &lit_882);
-
 /* 8032EC28-8032ECAC 329568 0084+00 0/0 1/1 0/0 .text
  * init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMtxCalcJ3DSysInitBasic::init(Vec const& param_0, f32 const (&param_1)[3][4]) {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DJoint/init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf.s"
+void J3DMtxCalcJ3DSysInitBasic::init(Vec const& param_0, Mtx const& param_1) {
+    J3DSys::mCurrentS = param_0;
+    J3DSys::mParentS = (Vec){1.0f, 1.0f, 1.0f};
+    JMAMTXApplyScale(param_1, J3DSys::mCurrentMtx, J3DSys::mCurrentS.x, J3DSys::mCurrentS.y,
+                     J3DSys::mCurrentS.z);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 803A2074-803A2080 02E6D4 000C+00 1/1 0/0 0/0 .rodata          @893 */
-SECTION_RODATA static u8 const lit_893[12] = {
-    0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x803A2074, &lit_893);
 
 /* 8032ECAC-8032ED30 3295EC 0084+00 0/0 2/2 2/2 .text
  * init__24J3DMtxCalcJ3DSysInitMayaFRC3VecRA3_A4_Cf             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMtxCalcJ3DSysInitMaya::init(Vec const& param_0, f32 const (&param_1)[3][4]) {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DJoint/init__24J3DMtxCalcJ3DSysInitMayaFRC3VecRA3_A4_Cf.s"
+void J3DMtxCalcJ3DSysInitMaya::init(Vec const& param_0, Mtx const& param_1) {
+    J3DSys::mParentS = (Vec){1.0f, 1.0f, 1.0f};
+    J3DSys::mCurrentS = param_0;
+    JMAMTXApplyScale(param_1, J3DSys::mCurrentMtx, J3DSys::mCurrentS.x, J3DSys::mCurrentS.y,
+                     J3DSys::mCurrentS.z);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804515F0-804515F4 000AF0 0004+00 3/3 1/1 0/0 .sbss            mMtxBuffer__10J3DMtxCalc */
-u8 J3DMtxCalc::mMtxBuffer[4];
+J3DMtxBuffer* J3DMtxCalc::mMtxBuffer;
 
 /* 804515F4-804515F8 000AF4 0004+00 4/4 9/9 2/2 .sbss            mJoint__10J3DMtxCalc */
-u8 J3DMtxCalc::mJoint[4];
+J3DJoint* J3DMtxCalc::mJoint;
 
-/* 804564A0-804564A4 004AA0 0004+00 3/3 0/0 0/0 .sdata2          @922 */
-SECTION_SDATA2 static f32 lit_922 = 1.0f;
+inline s32 checkScaleOne(const Vec& param_0) {
+    if (param_0.x == 1.0f && param_0.y == 1.0f && param_0.z == 1.0f) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 /* 8032ED30-8032EE50 329670 0120+00 0/0 1/1 0/0 .text
  * calcTransform__28J3DMtxCalcCalcTransformBasicFRC16J3DTransformInfo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMtxCalcCalcTransformBasic::calcTransform(J3DTransformInfo const& param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DJoint/calcTransform__28J3DMtxCalcCalcTransformBasicFRC16J3DTransformInfo.s"
+void J3DMtxCalcCalcTransformBasic::calcTransform(J3DTransformInfo const& transInfo) {
+    J3DMtxBuffer* mtxBuf = J3DMtxCalc::getMtxBuffer();
+    u16 jntNo = J3DMtxCalc::getJoint()->getJntNo();
+
+    MtxP anmMtx = mtxBuf->getAnmMtx(jntNo);
+
+    J3DSys::mCurrentS.x *= transInfo.mScale.x;
+    J3DSys::mCurrentS.y *= transInfo.mScale.y;
+    J3DSys::mCurrentS.z *= transInfo.mScale.z;
+    J3DGetTranslateRotateMtx(transInfo, anmMtx);
+
+    if (!checkScaleOne(J3DSys::mCurrentS)) {
+        mtxBuf->setScaleFlag(jntNo, 0);
+        JMAMTXApplyScale(anmMtx, anmMtx, transInfo.mScale.x, transInfo.mScale.y,
+                         transInfo.mScale.z);
+    } else {
+        mtxBuf->setScaleFlag(jntNo, 1);
+    }
+
+    PSMTXConcat(J3DSys::mCurrentMtx, anmMtx, J3DSys::mCurrentMtx);
+    PSMTXCopy(J3DSys::mCurrentMtx, anmMtx);
 }
-#pragma pop
 
 /* 8032EE50-8032EFBC 329790 016C+00 0/0 1/1 0/0 .text
  * calcTransform__32J3DMtxCalcCalcTransformSoftimageFRC16J3DTransformInfo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMtxCalcCalcTransformSoftimage::calcTransform(J3DTransformInfo const& param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DJoint/calcTransform__32J3DMtxCalcCalcTransformSoftimageFRC16J3DTransformInfo.s"
+void J3DMtxCalcCalcTransformSoftimage::calcTransform(J3DTransformInfo const& transInfo) {
+    J3DMtxBuffer* mtxBuf = J3DMtxCalc::getMtxBuffer();
+    u16 jntNo = J3DMtxCalc::getJoint()->getJntNo();
+
+    MtxP anmMtx = mtxBuf->getAnmMtx(jntNo);
+
+    J3DGetTranslateRotateMtx(transInfo.mRotation.x, transInfo.mRotation.y, transInfo.mRotation.z,
+                             transInfo.mTranslate.x * J3DSys::mCurrentS.x,
+                             transInfo.mTranslate.y * J3DSys::mCurrentS.y,
+                             transInfo.mTranslate.z * J3DSys::mCurrentS.z, anmMtx);
+    PSMTXConcat(J3DSys::mCurrentMtx, anmMtx, J3DSys::mCurrentMtx);
+
+    J3DSys::mCurrentS.x *= transInfo.mScale.x;
+    J3DSys::mCurrentS.y *= transInfo.mScale.y;
+    J3DSys::mCurrentS.z *= transInfo.mScale.z;
+
+    if (!checkScaleOne(J3DSys::mCurrentS)) {
+        mtxBuf->setScaleFlag(jntNo, 0);
+        JMAMTXApplyScale(J3DSys::mCurrentMtx, anmMtx, J3DSys::mCurrentS.x, J3DSys::mCurrentS.y,
+                         J3DSys::mCurrentS.z);
+        anmMtx[0][3] = J3DSys::mCurrentMtx[0][3];
+        anmMtx[1][3] = J3DSys::mCurrentMtx[1][3];
+        anmMtx[2][3] = J3DSys::mCurrentMtx[2][3];
+    } else {
+        mtxBuf->setScaleFlag(jntNo, 1);
+        PSMTXCopy(J3DSys::mCurrentMtx, anmMtx);
+    }
 }
-#pragma pop
 
 /* 8032EFBC-8032F13C 3298FC 0180+00 0/0 6/6 2/2 .text
  * calcTransform__27J3DMtxCalcCalcTransformMayaFRC16J3DTransformInfo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMtxCalcCalcTransformMaya::calcTransform(J3DTransformInfo const& param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DJoint/calcTransform__27J3DMtxCalcCalcTransformMayaFRC16J3DTransformInfo.s"
+void J3DMtxCalcCalcTransformMaya::calcTransform(J3DTransformInfo const& transInfo) {
+    J3DJoint* joint = J3DMtxCalc::getJoint();
+    J3DMtxBuffer* mtxBuf = J3DMtxCalc::getMtxBuffer();
+
+    u16 jntNo = joint->getJntNo();
+
+    MtxP anmMtx = mtxBuf->getAnmMtx(jntNo);
+
+    J3DGetTranslateRotateMtx(transInfo, anmMtx);
+
+    if (transInfo.mScale.x == 1.0f && transInfo.mScale.y == 1.0f && transInfo.mScale.z == 1.0f) {
+        mtxBuf->setScaleFlag(jntNo, 1);
+    } else {
+        mtxBuf->setScaleFlag(jntNo, 0);
+        JMAMTXApplyScale(anmMtx, anmMtx, transInfo.mScale.x, transInfo.mScale.y,
+                         transInfo.mScale.z);
+    }
+
+    if (joint->getScaleCompensate() == 1) {
+        f32 tmp1 = JMath::fastReciprocal(J3DSys::mParentS.x);
+        f32 tmp2 = JMath::fastReciprocal(J3DSys::mParentS.y);
+        f32 tmp3 = JMath::fastReciprocal(J3DSys::mParentS.z);
+
+        anmMtx[0][0] *= tmp1;
+        anmMtx[0][1] *= tmp1;
+        anmMtx[0][2] *= tmp1;
+        anmMtx[1][0] *= tmp2;
+        anmMtx[1][1] *= tmp2;
+        anmMtx[1][2] *= tmp2;
+        anmMtx[2][0] *= tmp3;
+        anmMtx[2][1] *= tmp3;
+        anmMtx[2][2] *= tmp3;
+    }
+
+    PSMTXConcat(J3DSys::mCurrentMtx, anmMtx, J3DSys::mCurrentMtx);
+    PSMTXCopy(J3DSys::mCurrentMtx, anmMtx);
+
+    J3DSys::mParentS.x = transInfo.mScale.x;
+    J3DSys::mParentS.y = transInfo.mScale.y;
+    J3DSys::mParentS.z = transInfo.mScale.z;
 }
-#pragma pop
 
 /* 8032F13C-8032F170 329A7C 0034+00 0/0 1/1 0/0 .text            appendChild__8J3DJointFP8J3DJoint
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DJoint::appendChild(J3DJoint* param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DJoint/appendChild__8J3DJointFP8J3DJoint.s"
+void J3DJoint::appendChild(J3DJoint* pChild) {
+    if (mChild == NULL) {
+        mChild = pChild;
+    } else {
+        J3DJoint* curChild = mChild;
+        while (curChild->getYounger() != NULL) {
+            curChild = curChild->getYounger();
+        }
+        curChild->setYounger(pChild);
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803A2080-803A208C 02E6E0 000C+00 1/1 0/0 0/0 .rodata          @1257 */
@@ -215,6 +225,26 @@ SECTION_SDATA2 static u8 lit_1220[4] = {
 };
 
 /* 8032F170-8032F254 329AB0 00E4+00 0/0 1/1 0/0 .text            __ct__8J3DJointFv */
+#ifdef NONMATCHING
+J3DJoint::J3DJoint() {
+    field_0x0 = NULL;
+    mCallBack = NULL;
+    field_0x8 = NULL;
+    mChild = NULL;
+    mYounger = NULL;
+    mJntNo = 0;
+    mMtxType = 1;
+    mScaleCompensate = false;
+    mTransformInfo = j3dDefaultTransformInfo;
+    field_0x38 = 0.0f;
+    mMtxCalc = NULL;
+    mMesh = NULL;
+
+    Vec init = {0.0f, 0.0f, 0.0f};
+    mMin = init;
+    mMax = init;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -223,6 +253,7 @@ asm J3DJoint::J3DJoint() {
 #include "asm/JSystem/J3DGraphAnimator/J3DJoint/__ct__8J3DJointFv.s"
 }
 #pragma pop
+#endif
 
 /* 8032F254-8032F3F8 329B94 01A4+00 0/0 1/1 0/0 .text            entryIn__8J3DJointFv */
 #pragma push
@@ -236,7 +267,7 @@ asm void J3DJoint::entryIn() {
 
 /* ############################################################################################## */
 /* 804515F8-80451600 000AF8 0004+04 1/1 1/1 0/0 .sbss            mCurrentMtxCalc__8J3DJoint */
-u8 J3DJoint::mCurrentMtxCalc[4 + 4 /* padding */];
+J3DMtxCalc* J3DJoint::mCurrentMtxCalc;
 
 /* 8032F3F8-8032F5A8 329D38 01B0+00 0/0 1/1 0/0 .text            recursiveCalc__8J3DJointFv */
 #pragma push

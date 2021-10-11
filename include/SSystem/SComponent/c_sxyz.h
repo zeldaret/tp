@@ -1,17 +1,9 @@
 #ifndef C_SXYZ_H
 #define C_SXYZ_H
 
+#include "dolphin/mtx/vec.h"
 #include "dolphin/types.h"
 
-struct SVec {
-    s16 x, y, z;
-
-    void set(s16 oX, s16 oY, s16 oZ) {
-        x = oX;
-        y = oY;
-        z = oZ;
-    }
-};
 class csXyz : public SVec {
 public:
     static const csXyz Zero;

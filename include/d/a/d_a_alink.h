@@ -29,11 +29,10 @@ class J2DScreen;
 class J2DPane;
 class J2DAnmBase;
 
-class daAlink_lockCursor_c {
+class daAlink_lockCursor_c : public dDlst_base_c {
 public:
     /* 80125F14 */ void create();
     /* 80126358 */ void update();
-    virtual void temp();  // temp to build OK, remove later
     /* 80126424 */ virtual void draw();
     /* 800CFE68 */ virtual ~daAlink_lockCursor_c();
 
@@ -58,10 +57,10 @@ private:
 class daAlink_sight_c : public daPy_sightPacket_c {
 public:
     /* 80126650 */ void create();
-    virtual void test();  // temp to build OK, remove later
+    /* 80126710 */ void onLockFlg();
+
     /* 801266C0 */ virtual void draw();
     /* 800CFDF4 */ virtual ~daAlink_sight_c();
-    /* 80126710 */ void onLockFlg();
 
 private:
     /* 0x4C */ bool mLockFlag;
@@ -74,7 +73,7 @@ public:
     /* 801256EC */ void initBlur(f32, int, cXyz const*, cXyz const*, cXyz const*);
     /* 8012589C */ void copyBlur(cXyz const*, cXyz const*, cXyz const*);
     /* 80125B0C */ void traceBlur(cXyz const*, cXyz const*, s16);
-    virtual void temp();  // temp to build OK, remove later
+
     /* 80125BF4 */ virtual void draw();
     /* 800CFD58 */ virtual ~daAlink_blur_c();
 
@@ -93,9 +92,8 @@ private:
 
 class dAlink_bottleWaterPcallBack_c : public JPAParticleCallBack {
 public:
-    virtual void temp();  // temp to build OK, remove later
-    /* 800CFCF8 */ virtual ~dAlink_bottleWaterPcallBack_c();
     /* 80124A2C */ virtual void execute(JPABaseEmitter*, JPABaseParticle*);
+    /* 800CFCF8 */ virtual ~dAlink_bottleWaterPcallBack_c();
 
 private:
     /* 0x04 */ s16 mHitFlg;
@@ -2010,7 +2008,6 @@ public:
     /* 80140984 */ void statusWindowDraw();
     /* 80140AC8 */ void resetStatusWindow();
 
-    virtual void unk();
     virtual bool getMidnaAtnPos(void) const;
     virtual void setMidnaMsgNum(fopAc_ac_c*, u16);
     virtual Mtx* getModelMtx(void);
@@ -2079,7 +2076,7 @@ public:
     virtual void setOutPower(float, short, int);
     virtual void setGrabCollisionOffset(float, float, cBgS_PolyInfo*);
     virtual void onFrollCrashFlg(u8, int);
-    virtual Mtx* getModelJointMtx(u16);
+    virtual MtxP getModelJointMtx(u16);
     virtual bool getHeadMtx(void);
     virtual bool setHookshotCarryOffset(unsigned int, cXyz const*);
     virtual bool checkIronBallReturn(void) const;

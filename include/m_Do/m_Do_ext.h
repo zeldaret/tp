@@ -8,39 +8,6 @@
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "global.h"
 
-struct J3DMaterialTable;
-struct J3DAnmTextureSRTKey {
-    /* 80329E5C */ J3DAnmTextureSRTKey();
-    /* 8032B0C0 */ void searchUpdateMaterialID(J3DMaterialTable*);
-};
-
-struct J3DAnmTexPattern {
-    /* 8032AED8 */ J3DAnmTexPattern();
-    /* 8032AF50 */ void getTexNo(u16, u16*) const;
-    /* 8032B004 */ void searchUpdateMaterialID(J3DMaterialTable*);
-};
-
-struct J3DAnmTevRegKey {
-    /* 8032B780 */ void searchUpdateMaterialID(J3DMaterialTable*);
-};
-
-struct J3DAnmColor {
-    /* 8032A8A4 */ void searchUpdateMaterialID(J3DMaterialTable*);
-};
-
-struct J3DMaterialTable {
-    /* 8032FAF4 */ void entryMatColorAnimator(J3DAnmColor*);
-    /* 8032FBC8 */ void entryTexNoAnimator(J3DAnmTexPattern*);
-    /* 8032FCC4 */ void entryTexMtxAnimator(J3DAnmTextureSRTKey*);
-    /* 8032FE70 */ void entryTevRegAnimator(J3DAnmTevRegKey*);
-};
-
-struct J3DAnmTransform {
-    /* 8003B93C */ ~J3DAnmTransform();
-    /* 8003C77C */ bool getKind() const;
-    /* 80328E40 */ J3DAnmTransform(s16, f32*, s16*, f32*);
-};
-
 class mDoExt_baseAnm {
 public:
     mDoExt_baseAnm() {}

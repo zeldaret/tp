@@ -50,8 +50,6 @@ struct dPa_wbPcallBack_c {
 
 struct JPADrawInfo {};
 
-struct ResTIMG {};
-
 struct JPAResourceManager {
     /* 80273E10 */ JPAResourceManager(void const*, JKRHeap*);
     /* 80273EA8 */ void checkUserIndexDuplication(u16) const;
@@ -304,16 +302,6 @@ struct JMath {
 
 struct J3DUClipper {
     /* 802738FC */ void clip(f32 const (*)[4], Vec, f32) const;
-};
-
-struct J3DTexture {
-    /* 8031204C */ void loadGX(u16, _GXTexMapID) const;
-};
-
-struct J3DShape {
-    /* 80315300 */ void loadPreDrawSetting() const;
-
-    static u8 sOldVcdVatCmd[4];
 };
 
 //

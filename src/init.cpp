@@ -35,7 +35,6 @@ SECTION_INIT void __init_hardware();
 SECTION_INIT void __flush_cache();
 SECTION_INIT void memset();
 SECTION_INIT void __fill_mem();
-SECTION_INIT void memcpy();
 SECTION_INIT void TRK_memset();
 SECTION_INIT void TRK_memcpy();
 extern "C" extern u8 const __TRK_unknown_data[7988];
@@ -168,7 +167,7 @@ SECTION_INIT asm void __fill_mem() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-SECTION_INIT asm void memcpy() {
+SECTION_INIT asm void* memcpy(void*, const void*, s32) {
     nofralloc
 #include "asm/init/memcpy.s"
 }

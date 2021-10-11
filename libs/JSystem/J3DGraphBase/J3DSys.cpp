@@ -114,10 +114,10 @@ J3DSys j3dSys;
 Mtx J3DSys::mCurrentMtx;
 
 /* 80434C14-80434C20 061934 000C+00 0/0 6/6 0/0 .bss             mCurrentS__6J3DSys */
-f32 J3DSys::mCurrentS[3];
+Vec J3DSys::mCurrentS;
 
 /* 80434C20-80434C2C 061940 000C+00 0/0 5/5 0/0 .bss             mParentS__6J3DSys */
-f32 J3DSys::mParentS[3];
+Vec J3DSys::mParentS;
 
 /* 80434C2C-80434C70 06194C 0040+04 1/1 17/17 0/0 .bss             sTexCoordScaleTable__6J3DSys */
 u16 J3DSys::sTexCoordScaleTable[34];

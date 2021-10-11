@@ -8,20 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct _GXTexMapID {};
-
-struct ResTIMG {};
-
-struct J3DTexture {
-    /* 8031204C */ void loadGX(u16, _GXTexMapID) const;
-    /* 803121A4 */ void entryNum(u16);
-    /* 8031221C */ void addResTIMG(u16, ResTIMG const*);
-};
-
-//
 // Forward References:
 //
 
@@ -34,12 +20,6 @@ extern "C" void addResTIMG__10J3DTextureFUsPC7ResTIMG();
 //
 
 extern "C" void* __nwa__FUl();
-extern "C" void GXInitTexObj();
-extern "C" void GXInitTexObjCI();
-extern "C" void GXInitTexObjLOD();
-extern "C" void GXLoadTexObj();
-extern "C" void GXInitTlutObj();
-extern "C" void GXLoadTlut();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
 

@@ -17,10 +17,9 @@ struct JPABaseEmitter {
 
 class JPAParticleCallBack {
 public:
-    virtual void temp();  // temp to build OK, remove later
     ~JPAParticleCallBack();
-    virtual void draw(JPABaseEmitter*, JPABaseParticle*);
     virtual void execute(JPABaseEmitter*, JPABaseParticle*);
+    virtual void draw(JPABaseEmitter*, JPABaseParticle*);
 };
 
 #endif /* JPAPARTICLE_H */

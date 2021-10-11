@@ -66,15 +66,6 @@ struct J3DAnmTevRegKey {
     /* 8032AE18 */ J3DAnmTevRegKey();
 };
 
-struct J3DAnmLoaderDataBaseFlag {};
-
-struct J3DAnmBase {};
-
-struct J3DAnmLoaderDataBase {
-    /* 80337B40 */ void load(void const*, J3DAnmLoaderDataBaseFlag);
-    /* 80338134 */ void setResource(J3DAnmBase*, void const*);
-};
-
 struct J3DAnmLoader {
     /* 80339800 */ ~J3DAnmLoader();
 };
