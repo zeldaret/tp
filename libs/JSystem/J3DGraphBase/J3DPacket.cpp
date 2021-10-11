@@ -395,16 +395,17 @@ asm u32 J3DShapePacket::calcDifferedBufferSize(u32 param_0) {
 
 /* 80312DBC-80312E08 30D6FC 004C+00 0/0 1/1 0/0 .text newDifferedDisplayList__14J3DShapePacketFUl
  */
-s32 J3DShapePacket::newDifferedDisplayList(u32 flag) {
+J3DError J3DShapePacket::newDifferedDisplayList(u32 flag) {
     mDiffFlag = flag;
     u32 bufSize = calcDifferedBufferSize(flag);
+    J3DError error = newDisplayList(bufSize);
 
-    if (newDisplayList(bufSize)) {
-        J3DDisplayListObj* dlObj = getDisplayListObj();
-        setDisplayListObj(dlObj);
-    } else {
-        return 0;
+    if (error != kJ3DError_Success) {
+        return error;
     }
+
+    setDisplayListObj(getDisplayListObj());
+    return kJ3DError_Success;
 }
 
 /* 80312E08-80312F24 30D748 011C+00 2/2 0/0 0/0 .text            prepareDraw__14J3DShapePacketCFv */

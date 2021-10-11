@@ -95,7 +95,7 @@ class J3DShapePacket : public J3DDrawPacket {
 public:
     J3DShapePacket();
     u32 calcDifferedBufferSize(u32);
-    s32 newDifferedDisplayList(u32);
+    J3DError newDifferedDisplayList(u32);
     void prepareDraw() const;
     void drawFast();
 
