@@ -3228,32 +3228,36 @@ static asm int dKy_F_SP121Check(char const* param_0, int param_1, u8* param_2, i
 
 BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
     fishpig* ppuVar1 = dKyd_darkworld_tbl_getp();
-    int uVar3;
+    // int uVar3;
     BOOL uVar4 = false;
-    fishpig ppcVar6;
+    // fishpig ppcVar6;
+    // fishpig ppcVar6 = ppuVar1[];
     u8 local_28[8];
 
-    for (int iVar5 = 0; iVar5 < 0x22; iVar5++) {
-        ppcVar6 = ppuVar1[iVar5];
-        if (strcmp(stageName, ppcVar6.charPtr) == 0) {
-            // if (ppcVar6.val == '\b') {
-            if (ppcVar6.val == 8) {
-                uVar4 = TRUE;
+    int iVar5 = 0;
+    do {
+        // ppcVar6 = ppuVar1[iVar5];
+        if (!strcmp(stageName, ppuVar1[iVar5].charPtr)) {
+            if (8 == ppuVar1[iVar5].val) {
+                uVar4 = true;
                 break;
             }
+            // if (-1 < iVar2) {
             int iVar2 = dKy_F_SP121Check(stageName, roomNo, local_28, iVar5);
-            if (-1 < iVar2) {
+            if (iVar2 >= 0) {
                 if (iVar2 == 0) {
-                    local_28[0] = ppcVar6.val;
+                    // local_28[0] = ppcVar6.val;
+                    local_28[0] = ppuVar1[iVar5].val;
                 }
-                uVar3 = dComIfGs_isDarkClearLV((int)local_28[0]);
-                if (uVar3 == 0) {
-                    uVar4 = TRUE;
+                if (dComIfGs_isDarkClearLV((int)local_28[0]) == 0) {
+                    uVar4 = true;
+                    break;
                 }
                 break;
             }
         }
-    }
+        iVar5++;
+    } while (iVar5 < 0x22);
 
     // do {
     //     ppcVar6 = ppuVar1[iVar7];
