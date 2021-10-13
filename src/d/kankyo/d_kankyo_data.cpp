@@ -11,11 +11,6 @@
 // Types:
 //
 
-struct abcdef {
-    /*  */ char* charPtr;
-    u8 val;
-};
-
 struct timeattr_thing {
     float f0;
     float f1;
@@ -132,7 +127,7 @@ SECTION_DATA static u8 l_kydata_BloomInf_tbl[768] = {
 };
 
 /* 803A9198-803A92A8 -00001 0110+00 1/1 0/0 0/0 .data            l_darkworld_tbl */
-static abcdef l_darkworld_tbl[34] = {
+static fishpig l_darkworld_tbl[34] = {
     {"R_SP30", 6},  {"T_SP05", 5},  {"T_SP05A", 5}, {"T_WARP2", 5}, {"T_IMAI", 5},  {"T_IMAI0", 5},
     {"T_TOMI", 5},  {"T_TOMI", 5},  {"T_TOMI", 5},  {"T_SASA1", 5}, {"F_SP105", 0}, {"F_SP05", 5},
     {"R_SP107", 2}, {"F_SP108", 0}, {"R_SP108", 0}, {"TEST11", 5},  {"F_SP109", 1}, {"F_SP110", 1},
@@ -142,7 +137,7 @@ static abcdef l_darkworld_tbl[34] = {
 };
 
 /* 803A92A8-803A93C8 -00001 0120+00 1/1 0/0 0/0 .data            l_light_size_tbl */
-static abcdef l_light_size_tbl[36] = {
+static fishpig l_light_size_tbl[36] = {
     {"R_SP01", 0},  {"R_SP108", 0}, {"F_SP109", 2}, {"F_SP110", 2}, {"R_SP109", 0}, {"R_SP209", 0},
     {"R_SP128", 0}, {"F_SP114", 2}, {"F_SP115", 2}, {"F_SP121", 3}, {"F_SP102", 3}, {"F_SP122", 3},
     {"F_SP123", 3}, {"R_SP116", 0}, {"R_SP160", 0}, {"R_SP161", 0}, {"F_SP118", 2}, {"F_SP124", 3},
@@ -152,7 +147,7 @@ static abcdef l_light_size_tbl[36] = {
 };
 
 /* 803A93C8-803A9410 -00001 0048+00 1/1 0/0 0/0 .data            l_light_size_tbl_tw */
-static abcdef l_light_size_tbl_tw[9] = {
+static fishpig l_light_size_tbl_tw[9] = {
     {"F_SP109", 2}, {"F_SP110", 2}, {"R_SP209", 2}, {"F_SP113", 0}, {"F_SP126", 2},
     {"F_SP115", 2}, {"F_SP121", 3}, {"F_SP102", 3}, {"F_SP122", 3},
 };
@@ -883,8 +878,8 @@ void* dKyd_maple_col_getp() {
     return &l_maple_col;
 }
 
-void* dKyd_darkworld_tbl_getp() {
-    return &l_darkworld_tbl;
+fishpig* dKyd_darkworld_tbl_getp() {
+    return (fishpig*)&l_darkworld_tbl;
 }
 
 void* dKyd_light_size_tbl_getp() {

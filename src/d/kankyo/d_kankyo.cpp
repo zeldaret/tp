@@ -3,8 +3,9 @@
 // Translation Unit: d/kankyo/d_kankyo
 //
 
-#include "d/kankyo/d_kankyo.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/kankyo/d_kankyo.h"
+#include "d/kankyo/d_kankyo_data.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -3215,15 +3216,63 @@ static asm void dKy_F_SP121Check(char const* param_0, int param_1, u8* param_2, 
 }
 #pragma pop
 
-/* 801AC70C-801AC7E0 1A704C 00D4+00 0/0 2/2 0/0 .text            dKy_darkworld_stage_check__FPCci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL dKy_darkworld_stage_check(char const* param_0, int param_1) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_darkworld_stage_check__FPCci.s"
+// static void dKy_F_SP121Check(char const* param_0, int param_1, u8* param_2, int param_3) {}
+
+// /* 801AC70C-801AC7E0 1A704C 00D4+00 0/0 2/2 0/0 .text            dKy_darkworld_stage_check__FPCci
+// */ #pragma push #pragma optimization_level 0 #pragma optimizewithasm off asm BOOL
+// dKy_darkworld_stage_check(char const* param_0, int param_1) {
+//     nofralloc
+// #include "asm/d/kankyo/d_kankyo/dKy_darkworld_stage_check__FPCci.s"
+// }
+// #pragma pop
+
+BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
+    fishpig* ppuVar1;
+    int iVar2;
+    int uVar3;
+    BOOL uVar4;
+    int iVar5;
+    fishpig ppcVar6;
+    int iVar7;
+    u8 local_28[40];
+
+    ppuVar1 = dKyd_darkworld_tbl_getp();
+    uVar4 = FALSE;
+    iVar5 = 0;
+    iVar7 = 0;
+    do {
+        // ppcVar6 = (char**)((int)ppuVar1 + iVar7);
+        // ppcVar6 = (char**)(ppuVar1 + iVar7);
+        ppcVar6 = ppuVar1[iVar7];
+        iVar2 = strcmp(stageName, ppcVar6.charPtr);
+        if (iVar2 == 0) {
+            if (ppcVar6.val == '\b') {
+                uVar4 = TRUE;
+                break;
+            }
+            dKy_F_SP121Check(stageName, roomNo, local_28, iVar5);
+            // iVar2 = 17;
+            if (-1 < iVar2) {
+                if (iVar2 == 0) {
+                    local_28[0] = ppcVar6.val;
+                }
+                uVar3 = dComIfGs_isDarkClearLV((int)local_28[0]);
+                if (uVar3 == 0) {
+                    uVar4 = TRUE;
+                }
+                break;
+            }
+        }
+        iVar5 = iVar5 + 1;
+        // iVar7 = iVar7 + 8;
+        iVar7++;
+        if (0x21 < iVar5) {
+            break;
+        }
+    } while (true);
+
+    return uVar4;
 }
-#pragma pop
 
 /* 801AC7E0-801AC870 1A7120 0090+00 0/0 1/1 0/0 .text            dKy_darkworld_spot_check__FPCci */
 #pragma push
