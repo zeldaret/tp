@@ -3210,7 +3210,7 @@ SECTION_DEAD static char const* const stringBase_80394ED5 = "F_SP108";
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dKy_F_SP121Check(char const* param_0, int param_1, u8* param_2, int param_3) {
+static asm int dKy_F_SP121Check(char const* param_0, int param_1, u8* param_2, int param_3) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_F_SP121Check__FPCciPUci.s"
 }
@@ -3230,28 +3230,22 @@ BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
     fishpig* ppuVar1;
     int iVar2;
     int uVar3;
-    BOOL uVar4;
-    int iVar5;
+    BOOL uVar4 = false;
     fishpig ppcVar6;
-    int iVar7;
-    u8 local_28[40];
+    u8 local_28[8];
 
     ppuVar1 = dKyd_darkworld_tbl_getp();
-    uVar4 = FALSE;
-    iVar5 = 0;
-    iVar7 = 0;
-    do {
-        // ppcVar6 = (char**)((int)ppuVar1 + iVar7);
-        // ppcVar6 = (char**)(ppuVar1 + iVar7);
-        ppcVar6 = ppuVar1[iVar7];
+
+    for (int iVar5 = 0; iVar5 < 0x22; iVar5++) {
+        ppcVar6 = ppuVar1[iVar5];
         iVar2 = strcmp(stageName, ppcVar6.charPtr);
         if (iVar2 == 0) {
-            if (ppcVar6.val == '\b') {
+            // if (ppcVar6.val == '\b') {
+            if (ppcVar6.val == 8) {
                 uVar4 = TRUE;
                 break;
             }
-            dKy_F_SP121Check(stageName, roomNo, local_28, iVar5);
-            // iVar2 = 17;
+            iVar2 = dKy_F_SP121Check(stageName, roomNo, local_28, iVar5);
             if (-1 < iVar2) {
                 if (iVar2 == 0) {
                     local_28[0] = ppcVar6.val;
@@ -3263,13 +3257,36 @@ BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
                 break;
             }
         }
-        iVar5 = iVar5 + 1;
-        // iVar7 = iVar7 + 8;
-        iVar7++;
-        if (0x21 < iVar5) {
-            break;
-        }
-    } while (true);
+    }
+
+    // do {
+    //     ppcVar6 = ppuVar1[iVar7];
+    //     iVar2 = strcmp(stageName, ppcVar6.charPtr);
+    //     if (iVar2 == 0) {
+    //         if (ppcVar6.val == '\b') {
+    //             uVar4 = TRUE;
+    //             break;
+    //         }
+    //         dKy_F_SP121Check(stageName, roomNo, local_28, iVar5);
+    //         // iVar2 = 17;
+    //         if (-1 < iVar2) {
+    //             if (iVar2 == 0) {
+    //                 local_28[0] = ppcVar6.val;
+    //             }
+    //             uVar3 = dComIfGs_isDarkClearLV((int)local_28[0]);
+    //             if (uVar3 == 0) {
+    //                 uVar4 = TRUE;
+    //             }
+    //             break;
+    //         }
+    //     }
+    //     iVar5 = iVar5 + 1;
+    //     // iVar7 = iVar7 + 8;
+    //     iVar7++;
+    //     if (0x21 < iVar5) {
+    //         break;
+    //     }
+    // } while (true);
 
     return uVar4;
 }
