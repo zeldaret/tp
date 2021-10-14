@@ -3220,9 +3220,9 @@ BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
     fishpig* ppuVar1 = dKyd_darkworld_tbl_getp();
     BOOL result = false;
     u8 local_28[8];
-
     int iVar5 = 0;
-    do {
+
+    for (int iVar5 = 0; iVar5 < 0x22; iVar5++) {
         if (!strcmp(stageName, ppuVar1[iVar5].charPtr)) {
             if (ppuVar1[iVar5].val != 8) {
                 int iVar2 = dKy_F_SP121Check(stageName, roomNo, local_28, iVar5);
@@ -3241,8 +3241,7 @@ BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
                 break;
             }
         }
-        iVar5++;
-    } while (iVar5 < 0x22);
+    }
 
     return result;
 }
