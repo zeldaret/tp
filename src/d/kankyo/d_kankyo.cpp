@@ -3217,18 +3217,17 @@ static asm int dKy_F_SP121Check(char const* param_0, int param_1, u8* param_2, i
 #pragma pop
 
 BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
-    fishpig* ppuVar1 = dKyd_darkworld_tbl_getp();
+    fishpig* darkworldTbl = dKyd_darkworld_tbl_getp();
     BOOL result = false;
     u8 local_28[8];
-    int iVar5 = 0;
 
-    for (int iVar5 = 0; iVar5 < 0x22; iVar5++) {
-        if (!strcmp(stageName, ppuVar1[iVar5].charPtr)) {
-            if (ppuVar1[iVar5].val != 8) {
-                int iVar2 = dKy_F_SP121Check(stageName, roomNo, local_28, iVar5);
+    for (int i = 0; i < 34; i++) {
+        if (!strcmp(stageName, darkworldTbl[i].charPtr)) {
+            if (darkworldTbl[i].val != 8) {
+                int iVar2 = dKy_F_SP121Check(stageName, roomNo, local_28, i);
                 if (iVar2 >= 0) {
                     if (iVar2 == 0) {
-                        local_28[0] = ppuVar1[iVar5].val;
+                        local_28[0] = darkworldTbl[i].val;
                     }
                     if (dComIfGs_isDarkClearLV((int)local_28[0]) == 0) {
                         result = true;
