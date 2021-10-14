@@ -3238,21 +3238,20 @@ BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
     do {
         // ppcVar6 = ppuVar1[iVar5];
         if (!strcmp(stageName, ppuVar1[iVar5].charPtr)) {
-            if (8 == ppuVar1[iVar5].val) {
-                uVar4 = true;
-                break;
-            }
-            // if (-1 < iVar2) {
-            int iVar2 = dKy_F_SP121Check(stageName, roomNo, local_28, iVar5);
-            if (iVar2 >= 0) {
-                if (iVar2 == 0) {
-                    // local_28[0] = ppcVar6.val;
-                    local_28[0] = ppuVar1[iVar5].val;
-                }
-                if (dComIfGs_isDarkClearLV((int)local_28[0]) == 0) {
-                    uVar4 = true;
+            if (ppuVar1[iVar5].val != 8) {
+                int iVar2 = dKy_F_SP121Check(stageName, roomNo, local_28, iVar5);
+                if (iVar2 >= 0) {
+                    if (iVar2 == 0) {
+                        local_28[0] = ppuVar1[iVar5].val;
+                    }
+                    if (dComIfGs_isDarkClearLV((int)local_28[0]) == 0) {
+                        uVar4 = true;
+                        break;
+                    }
                     break;
                 }
+            } else {
+                uVar4 = true;
                 break;
             }
         }
