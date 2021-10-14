@@ -3231,7 +3231,6 @@ BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
                     }
                     if (dComIfGs_isDarkClearLV((int)local_28[0]) == 0) {
                         result = true;
-                        break;
                     }
                     break;
                 }
