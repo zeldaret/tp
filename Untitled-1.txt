@@ -59,7 +59,7 @@ APPLE_LBL:
 	// IGUANA_LBL:
 
 	r0 = tblPtr[darkworldTblIndex].byteValAtOffset4
-	if (r0 != 0 && isEventBitComp is not 0 ) {
+	if (r0 == 0 && isEventBitComp == 0 ) {
 		r30 = -1;
 	}
 
@@ -198,8 +198,7 @@ BEFORE_CLEAN_VERSION:
 	}
 	// IGUANA_LBL:
 
-	r0 = tblPtr[darkworldTblIndex].byteValAtOffset4
-	if (r0 != 0 && isEventBitComp is not 0 ) {
+	if (tblPtr[darkworldTblIndex].byteValAtOffset4 == 0 && isEventBitComp == 0 ) {
 		r30 = -1;
 	}
 
@@ -235,8 +234,8 @@ CLEAN_VERSION:
 		result = -1;
 	}
 
-	if (tblPtr[darkworldTblIndex].byteValAtOffset4 != 0 && isEventBitComp is not 0 ) {
-		result = -1;
+	if (tblPtr[darkworldTblIndex].byteValAtOffset4 == 0 && isEventBitComp == 0 ) {
+		r30 = -1;
 	}
 
 	return result;
@@ -261,5 +260,6 @@ void dComIfG_play_c::setStartStage(dStage_startStage_c* pStartStage) {
 	// From title screen, gets set to 0xa.
 	// Copying the byte from 8040bf05 to 8040afcb is one of 2 places it gets set.
 	// Other place hardcodes it to 9.
+	// EventBit 0x4510 said to be: "Ordon Day 2 over (Set in Goats 2 intro cutscene).
 	mStartStage = *pStartStage;
 }
