@@ -3256,37 +3256,53 @@ SECTION_DEAD static char const* const stringBase_80394ED5 = "F_SP108";
 //     return result;
 // }
 
-static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* param_2, int param_3) {
+static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* u8PtrP2, int tblIndex) {
     fishpig* darkworldTbl = dKyd_darkworld_tbl_getp();
     int result = 0;
 
-    // r26 stageName
-    // r27 roomNo
-    // r28 param_2
-    // r29 param_3
-    // r30 result
-    // r31 darkworldTbl
+    if (u8PtrP2 != NULL) {
+        *u8PtrP2 = 6;
+    }
 
-    if (param_2 != NULL) {
-        *param_2 = 6;
-    }
     if (!strcmp(stageName, "F_SP121")) {
-        if ((roomNo == 0) || (((1 < roomNo && (roomNo < 6)) || (roomNo == 7)))) {
-            if (param_2 != 0x0) {
-                *param_2 = 1;
+        if (roomNo == 0 || (2 <= roomNo && roomNo <= 5) || roomNo == 7) {
+            if (u8PtrP2 != NULL) {
+                u8PtrP2[0] = 1;
             }
+            result = 1;
+        } else if (roomNo < 9 || roomNo > 0xe) {
+            result = -1;
         } else {
-            if (((8 < roomNo) && (roomNo < 0xf)) && (param_2 != 0x0)) {
-                *param_2 = 2;
+            if (u8PtrP2 != NULL) {
+                u8PtrP2[0] = 2;
             }
+            result = 1;
         }
-    } else if (!strcmp(stageName, "F_SP108") && roomNo == 1) {
-        if (darkworldTbl[param_3 * 2].val == 0) {
-            if (dComIfGs_isEventBit(0x4510) == 0) {
-                result = -1;
-            }
-        }
+    } else if (!strcmp(stageName, "F_SP108") && roomNo == 1 && getLayerOld == 0xd) {
+        result = -1;
     }
+
+    if (darkworldTbl[tblIndex].val != 0 && dComIfGs_isEventBit(0x4510) != 0) {
+        result = -1;
+    }
+
+    // if (!strcmp(stageName, "F_SP121")) {
+    //     if ((roomNo == 0) || (((1 < roomNo && (roomNo < 6)) || (roomNo == 7)))) {
+    //         if (u8PtrP2 != 0x0) {
+    //             *u8PtrP2 = 1;
+    //         }
+    //     } else {
+    //         if (((8 < roomNo) && (roomNo < 0xf)) && (u8PtrP2 != 0x0)) {
+    //             *u8PtrP2 = 2;
+    //         }
+    //     }
+    // } else if (!strcmp(stageName, "F_SP108") && roomNo == 1) {
+    //     if (darkworldTbl[param_3 * 2].val == 0) {
+    //         if (dComIfGs_isEventBit(0x4510) == 0) {
+    //             result = -1;
+    //         }
+    //     }
+    // }
 
     return result;
 }

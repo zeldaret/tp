@@ -154,7 +154,7 @@ FINISH_FUNCTION:
 	lwz r0, 0x24(r1)
 	mtlr r0
 	addi r1, r1, 0x20
-	blr 
+	blr
 
 
 
@@ -240,3 +240,26 @@ CLEAN_VERSION:
 	}
 
 	return result;
+
+
+
+
+// Other Notes:
+
+8002b3b8 void
+__thiscall setStartStage(dComIfG_play_c *this,
+	dStage_startStage_c *param_1)
+
+r3 is 804070f8
+r4 is 8040afce is dStage_nextStage
+
+
+void dComIfG_play_c::setStartStage(dStage_startStage_c* pStartStage) {
+	mLayerOld = mStartStage.getLayer();
+	// ^ this sets this[0x4e0d] to val at this[0x3ed3]
+	// this is setting byte at 8040bf05 (this address is mLayerOld)
+	// From title screen, gets set to 0xa.
+	// Copying the byte from 8040bf05 to 8040afcb is one of 2 places it gets set.
+	// Other place hardcodes it to 9.
+	mStartStage = *pStartStage;
+}
