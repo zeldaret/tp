@@ -405,6 +405,11 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
+// Temporarily putting here. Probably should really be in d_com_inf_game.h
+inline BOOL dComIfGs_isEventBit(u16 id) {
+    return g_dComIfG_gameInfo.info.getSavedata().getEvent().isEventBit(id);
+}
+
 /* 8019C388-8019C3A4 196CC8 001C+00 2/2 0/0 0/0 .text dKy_WolfPowerup_AmbCol__FP11_GXColorS10 */
 #pragma push
 #pragma optimization_level 0
@@ -3206,15 +3211,85 @@ asm void dKy_darkworld_check() {
 SECTION_DEAD static char const* const stringBase_80394ED5 = "F_SP108";
 #pragma pop
 
-/* 801AC5BC-801AC70C 1A6EFC 0150+00 3/3 0/0 0/0 .text            dKy_F_SP121Check__FPCciPUci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int dKy_F_SP121Check(char const* param_0, int param_1, u8* param_2, int param_3) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_F_SP121Check__FPCciPUci.s"
+// /* 801AC5BC-801AC70C 1A6EFC 0150+00 3/3 0/0 0/0 .text            dKy_F_SP121Check__FPCciPUci */
+// #pragma push
+// #pragma optimization_level 0
+// #pragma optimizewithasm off
+// static asm int dKy_F_SP121Check(char const* param_0, int param_1, u8* param_2, int param_3) {
+//     nofralloc
+// #include "asm/d/kankyo/d_kankyo/dKy_F_SP121Check__FPCciPUci.s"
+// }
+// #pragma pop
+
+// static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* param_2, int param_3) {
+//     fishpig* darkworldTbl = dKyd_darkworld_tbl_getp();
+//     int result = 0;
+
+//     // r26 stageName
+//     // r27 roomNo
+//     // r28 param_2
+//     // r29 param_3
+//     // r30 result
+//     // r31 darkworldTbl
+
+//     if (param_2 != NULL) {
+//         *param_2 = 6;
+//     }
+//     if (!strcmp(stageName, "F_SP121")) {
+//         if ((roomNo == 0) || (((1 < roomNo && (roomNo < 6)) || (roomNo == 7)))) {
+//             if (param_2 != 0x0) {
+//                 *param_2 = 1;
+//             }
+//         } else {
+//             if (((8 < roomNo) && (roomNo < 0xf)) && (param_2 != 0x0)) {
+//                 *param_2 = 2;
+//             }
+//         }
+//     } else if (!strcmp(stageName, "F_SP108") && roomNo == 1) {
+//         if (darkworldTbl[param_3 * 2].val == 0) {
+//             if (dComIfGs_isEventBit(0x4510) == 0) {
+//                 result = -1;
+//             }
+//         }
+//     }
+
+//     return result;
+// }
+
+static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* param_2, int param_3) {
+    fishpig* darkworldTbl = dKyd_darkworld_tbl_getp();
+    int result = 0;
+
+    // r26 stageName
+    // r27 roomNo
+    // r28 param_2
+    // r29 param_3
+    // r30 result
+    // r31 darkworldTbl
+
+    if (param_2 != NULL) {
+        *param_2 = 6;
+    }
+    if (!strcmp(stageName, "F_SP121")) {
+        if ((roomNo == 0) || (((1 < roomNo && (roomNo < 6)) || (roomNo == 7)))) {
+            if (param_2 != 0x0) {
+                *param_2 = 1;
+            }
+        } else {
+            if (((8 < roomNo) && (roomNo < 0xf)) && (param_2 != 0x0)) {
+                *param_2 = 2;
+            }
+        }
+    } else if (!strcmp(stageName, "F_SP108") && roomNo == 1) {
+        if (darkworldTbl[param_3 * 2].val == 0) {
+            if (dComIfGs_isEventBit(0x4510) == 0) {
+                result = -1;
+            }
+        }
+    }
+
+    return result;
 }
-#pragma pop
 
 BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
     fishpig* darkworldTbl = dKyd_darkworld_tbl_getp();
