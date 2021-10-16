@@ -173,6 +173,7 @@ public:
     dAttention_c& getAttention() { return mAttention; }
     JKRArchive* getMsgDtArchive(int idx) { return mMsgDtArchive[idx]; }
     s16 getStartStagePoint() { return mStartStage.getPoint(); }
+    int getStartStageDarkArea() { return mStartStage.getDarkArea(); }
     void* getPlayerPtr(int ptrIdx) { return mPlayerPtr[ptrIdx]; }
     JKRArchive* getMain2DArchive() { return mMain2DArchive; }
     J2DGrafContext* getCurrentGrafPort() { return mCurrentGrafPort; }
@@ -763,6 +764,10 @@ inline s8 dComIfGp_getStartStageRoomNo() {
 
 inline s8 dComIfGp_getStartStageLayer() {
     return g_dComIfG_gameInfo.play.getStartStageLayer();
+}
+
+inline int dComIfGp_getStartStageLayer() {
+    return g_dComIfG_gameInfo.play.getStartStageDarkArea();
 }
 
 inline roomRead_class* dComIfGp_getStageRoom() {
