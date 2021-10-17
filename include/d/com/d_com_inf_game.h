@@ -174,6 +174,7 @@ public:
     JKRArchive* getMsgDtArchive(int idx) { return mMsgDtArchive[idx]; }
     s16 getStartStagePoint() { return mStartStage.getPoint(); }
     int getStartStageDarkArea() { return mStartStage.getDarkArea(); }
+    void setStartStageDarkArea(u8 param_0) { mStartStage.setDarkArea(param_0); }
     void* getPlayerPtr(int ptrIdx) { return mPlayerPtr[ptrIdx]; }
     JKRArchive* getMain2DArchive() { return mMain2DArchive; }
     J2DGrafContext* getCurrentGrafPort() { return mCurrentGrafPort; }

@@ -554,6 +554,7 @@ public:
     s8 getRoomNo() const { return mRoomNo; }
     s16 getPoint() { return mPoint; }
     s8 getDarkArea() { return mDarkArea; }
+    void setDarkArea(s8 param_0) { mDarkArea = param_0; }
 
 private:
     /* 0x0 */ char mStage[8];

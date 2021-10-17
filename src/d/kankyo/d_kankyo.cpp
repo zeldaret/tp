@@ -3298,15 +3298,28 @@ BOOL dKy_darkworld_spot_check(char const* stageName, int roomNo) {
     return result;
 }
 
-/* 801AC870-801AC918 1A71B0 00A8+00 0/0 1/1 0/0 .text            dKy_darkworld_Area_set__FPCci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_darkworld_Area_set(char const* param_0, int param_1) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_darkworld_Area_set__FPCci.s"
+// Temporarily putting here? Put in d_com_inf_game.h?
+inline void dComIfGp_setStartStageDarkArea(u8 param_0) {
+    g_dComIfG_gameInfo.play.setStartStageDarkArea(param_0);
 }
-#pragma pop
+
+void dKy_darkworld_Area_set(char const* stageName, int roomNo) {
+    fishpig* darkworldTblPtr = dKyd_darkworld_tbl_getp();
+    u8 ll[1];
+
+    for (int i = 0; i < 34; i++) {
+        if (!strcmp(stageName, darkworldTblPtr[i].stageName)) {
+            int checkRes = dKy_F_SP121Check(stageName, roomNo, ll, i);
+            if (checkRes >= 0) {
+                if (checkRes == 0) {
+                    ll[0] = darkworldTblPtr[i].val;
+                }
+                dComIfGp_setStartStageDarkArea(ll[0]);
+                break;
+            }
+        }
+    }
+}
 
 /* ############################################################################################## */
 /* 80453E00-80453E04 002400 0004+00 1/1 0/0 0/0 .sdata2          @10483 */
