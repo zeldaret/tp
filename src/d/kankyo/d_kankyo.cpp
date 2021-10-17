@@ -3204,6 +3204,9 @@ asm void dKy_darkworld_check() {
 }
 #pragma pop
 
+// If u8PtrP2 is provided, writes either 0b0110 (6), 0b0010 (2), or 0b0010 (1).
+// Returns 1, 0 (default), or -1. -1 is basically false. 0 means use the value from the table. 1
+// means use the value which was written to u8PtrP2.
 static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* u8PtrP2, int tblIndex) {
     fishpig* darkworldTbl = dKyd_darkworld_tbl_getp();
     int result = 0;
@@ -3241,12 +3244,13 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* u8PtrP2, int 
         }
     }
 
-    // Room is Faron Woods - Faron Spring
+    // Room is Faron Woods - Faron Spring AND ??
     else if (!strcmp(stageName, "F_SP108") && roomNo == 1 && dComIfGp_getStartStageLayer() == 13) {
         result = -1;
     }
 
-    // Tbl calc and haven't finished Ordon Day 2
+    // Stage is one of Faron Woods, Coro's Lantern Shop, and Faron Woods Cave and haven't finished
+    // Ordon Day 2. Prevents twilight in this case.
     if (darkworldTbl[tblIndex].val == 0 && !dComIfGs_isEventBit(0x4510)) {
         result = -1;
     }
@@ -3256,7 +3260,7 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* u8PtrP2, int 
 
 BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
     fishpig* darkworldTbl = dKyd_darkworld_tbl_getp();
-    BOOL result = false;
+    BOOL result = FALSE;
     u8 local_28[1];
 
     for (int i = 0; i < 34; i++) {
@@ -3268,12 +3272,14 @@ BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
                         *local_28 = darkworldTbl[i].val;
                     }
                     if (!dComIfGs_isDarkClearLV(*local_28)) {
-                        result = true;
+                        result = TRUE;
                     }
                     break;
                 }
             } else {
-                result = true;
+                // 8 is used to force twilight. This was likely used for testing. This will
+                // never normally run since 8 is not in l_darkworld_tbl.
+                result = TRUE;
                 break;
             }
         }
