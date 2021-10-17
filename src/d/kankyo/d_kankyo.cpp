@@ -3267,16 +3267,16 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* u8PtrP2, int 
     if (!strcmp(stageName, "F_SP121")) {
         if (roomNo == 0 || (2 <= roomNo && roomNo <= 5) || roomNo == 7) {
             if (u8PtrP2 != NULL) {
-                u8PtrP2[0] = 1;
+                *u8PtrP2 = 1;
             }
             result = 1;
-        } else if (roomNo < 9 || roomNo > 0xe) {
-            result = -1;
-        } else {
+        } else if (roomNo >= 9 && roomNo <= 0xe) {
             if (u8PtrP2 != NULL) {
-                u8PtrP2[0] = 2;
+                *u8PtrP2 = 2;
             }
             result = 1;
+        } else {
+            result = -1;
         }
     } else if (!strcmp(stageName, "F_SP108") && roomNo == 1 &&
                dComIfGp_getStartStageLayer() == 0xd) {
