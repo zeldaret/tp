@@ -3242,7 +3242,7 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* u8PtrP2, int 
     }
 
     // Room is Faron Woods - Faron Spring
-    else if (!strcmp(stageName, "F_SP108") && roomNo == 1 && dComIfGp_getStartStageLayer() == 0xd) {
+    else if (!strcmp(stageName, "F_SP108") && roomNo == 1 && dComIfGp_getStartStageLayer() == 13) {
         result = -1;
     }
 
@@ -3267,7 +3267,7 @@ BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
                     if (iVar2 == 0) {
                         *local_28 = darkworldTbl[i].val;
                     }
-                    if (dComIfGs_isDarkClearLV(*local_28) == 0) {
+                    if (!dComIfGs_isDarkClearLV(*local_28)) {
                         result = true;
                     }
                     break;
