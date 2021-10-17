@@ -128,28 +128,93 @@ SECTION_DATA static u8 l_kydata_BloomInf_tbl[768] = {
 
 /* 803A9198-803A92A8 -00001 0110+00 1/1 0/0 0/0 .data            l_darkworld_tbl */
 static fishpig l_darkworld_tbl[34] = {
-    {"R_SP30", 6},  {"T_SP05", 5},  {"T_SP05A", 5}, {"T_WARP2", 5}, {"T_IMAI", 5},  {"T_IMAI0", 5},
-    {"T_TOMI", 5},  {"T_TOMI", 5},  {"T_TOMI", 5},  {"T_SASA1", 5}, {"F_SP105", 0}, {"F_SP05", 5},
-    {"R_SP107", 2}, {"F_SP108", 0}, {"R_SP108", 0}, {"TEST11", 5},  {"F_SP109", 1}, {"F_SP110", 1},
-    {"R_SP109", 1}, {"F_SP111", 1}, {"F_SP112", 2}, {"F_SP113", 2}, {"F_SP115", 2}, {"F_SP116", 2},
-    {"F_SP122", 2}, {"F_SP121", 1}, {"F_SP126", 2}, {"R_SP209", 1}, {"R_SP116", 2}, {"D_MN08", 6},
-    {"D_MN08B", 6}, {"D_MN08C", 6}, {"D_MN08A", 6}, {"D_SB10", 0},
+    {"R_SP30", 6},   // UNUSED - Unknown Room
+    {"T_SP05", 5},   // UNUSED - E3 2005 Warp Test (Old)
+    {"T_SP05A", 5},  // UNUSED - Ito Warp Test
+    {"T_WARP2", 5},  // UNUSED - Unknown Test
+    {"T_IMAI", 5},   // UNUSED - Imai Shape Check (Level 2)
+    {"T_IMAI0", 5},  // UNUSED - Imai Shape Check (Level 3)
+    {"T_TOMI", 5},   // UNUSED - Tominaga Test 1
+    {"T_TOMI", 5},   // UNUSED - Same as above
+    {"T_TOMI", 5},   // UNUSED - Same as above
+    {"T_SASA1", 5},  // UNUSED - Sasaki Test 1
+    {"F_SP105", 0},  // UNUSED - L1 Forest Field
+    {"F_SP05", 5},   // UNUSED - Statue Forest
+    {"R_SP107", 2},  // Twilight Hyrule Castle
+    {"F_SP108", 0},  // Faron Woods
+    {"R_SP108", 0},  // Coro's Lantern Shop
+    {"TEST11", 5},   // UNUSED - Local Map C
+    {"F_SP109", 1},  // Kakariko Village
+    {"F_SP110", 1},  // Death Mountain
+    {"R_SP109", 1},  // Kakariko Interiors
+    {"F_SP111", 1},  // Kakariko Graveyard
+    {"F_SP112", 2},  // Zora's River
+    {"F_SP113", 2},  // Zora's Domain
+    {"F_SP115", 2},  // Lake Hylia
+    {"F_SP116", 2},  // Hyrule Castle Town
+    {"F_SP122", 2},  // Castle Town Gates
+    {"F_SP121", 1},  // Hyrule Field
+    {"F_SP126", 2},  // Upper Zora's River
+    {"R_SP209", 1},  // Sanctuary Basement
+    {"R_SP116", 2},  // Hyrule Castle Town Interiors
+    {"D_MN08", 6},   // Palace of Twilight
+    {"D_MN08B", 6},  // Palace of Twilight Miniboss A
+    {"D_MN08C", 6},  // Palace of Twilight Miniboss B
+    {"D_MN08A", 6},  // Palace of Twilight Throne Room
+    {"D_SB10", 0},   // Faron Woods Cave
 };
 
 /* 803A92A8-803A93C8 -00001 0120+00 1/1 0/0 0/0 .data            l_light_size_tbl */
 static fishpig l_light_size_tbl[36] = {
-    {"R_SP01", 0},  {"R_SP108", 0}, {"F_SP109", 2}, {"F_SP110", 2}, {"R_SP109", 0}, {"R_SP209", 0},
-    {"R_SP128", 0}, {"F_SP114", 2}, {"F_SP115", 2}, {"F_SP121", 3}, {"F_SP102", 3}, {"F_SP122", 3},
-    {"F_SP123", 3}, {"R_SP116", 0}, {"R_SP160", 0}, {"R_SP161", 0}, {"F_SP118", 2}, {"F_SP124", 3},
-    {"F_SP125", 2}, {"R_SP127", 0}, {"D_MN01A", 2}, {"D_MN10A", 2}, {"D_MN06A", 2}, {"D_MN07A", 2},
-    {"D_MN08", 2},  {"D_MN08A", 2}, {"D_MN08B", 2}, {"D_MN08C", 2}, {"D_MN08D", 2}, {"D_MN09", 2},
-    {"D_MN09B", 3}, {"D_MN09C", 3}, {"R_SP300", 2}, {"D_SB02", 0},  {"D_SB03", 0},  {"D_SB10", 0},
+    {"R_SP01", 0},   // Ordon Interiors
+    {"R_SP108", 0},  // Coro's Lantern Shop
+    {"F_SP109", 2},  // Kakariko Village
+    {"F_SP110", 2},  // Death Mountain
+    {"R_SP109", 0},  // Kakariko Interiors
+    {"R_SP209", 0},  // Sanctuary Basement
+    {"R_SP128", 0},  // Impaz's House
+    {"F_SP114", 2},  // Snowpeak
+    {"F_SP115", 2},  // Lake Hylia
+    {"F_SP121", 3},  // Hyrule Field
+    {"F_SP102", 3},  // Bridge of Elkdin Battle
+    {"F_SP122", 3},  // Castle Town Gates
+    {"F_SP123", 3},  // Great Bridge of Hylia Battle
+    {"R_SP116", 0},  // Hyrule Castle Town Interiors
+    {"R_SP160", 0},  // Hyrule Castle Town Shops
+    {"R_SP161", 0},  // STAR Tent
+    {"F_SP118", 2},  // Sanctuary Basement
+    {"F_SP124", 3},  // Gerudo Desert
+    {"F_SP125", 2},  // Mirror Chamber
+    {"R_SP127", 0},  // Hena's Cabin
+    {"D_MN01A", 2},  // Lakebed Temple Boss
+    {"D_MN10A", 2},  // Arbiter's Grounds Boss
+    {"D_MN06A", 2},  // Temple of Time Boss
+    {"D_MN07A", 2},  // City in the Sky Boss
+    {"D_MN08", 2},   // Palace of Twilight
+    {"D_MN08A", 2},  // Palace of Twilight Throne Room
+    {"D_MN08B", 2},  // Palace of Twilight Miniboss A
+    {"D_MN08C", 2},  // Palace of Twilight Miniboss B
+    {"D_MN08D", 2},  // Palace of Twilight Boss
+    {"D_MN09", 2},   // Hyrule Castle
+    {"D_MN09B", 3},  // Final Battle (Hyrule Field)
+    {"D_MN09C", 3},  // Hyrule Field (Cutscene)
+    {"R_SP300", 2},  // Light Spirits' Chamber
+    {"D_SB02", 0},   // Kakariko Gorge Lantern Cave
+    {"D_SB03", 0},   // Lake Hylia Lantern Cave
+    {"D_SB10", 0},   // Faron Woods Cave
 };
 
 /* 803A93C8-803A9410 -00001 0048+00 1/1 0/0 0/0 .data            l_light_size_tbl_tw */
 static fishpig l_light_size_tbl_tw[9] = {
-    {"F_SP109", 2}, {"F_SP110", 2}, {"R_SP209", 2}, {"F_SP113", 0}, {"F_SP126", 2},
-    {"F_SP115", 2}, {"F_SP121", 3}, {"F_SP102", 3}, {"F_SP122", 3},
+    {"F_SP109", 2},  // Kakariko Village
+    {"F_SP110", 2},  // Death Mountain
+    {"R_SP209", 2},  // Sanctuary Basement
+    {"F_SP113", 0},  // Zora's Domain
+    {"F_SP126", 2},  // Upper Zora's River
+    {"F_SP115", 2},  // Lake Hylia
+    {"F_SP121", 3},  // Hyrule Field
+    {"F_SP102", 3},  // Bridge of Eldin Battle
+    {"F_SP122", 3},  // Castle Town Gates
 };
 
 // Used in Fishing Hole
