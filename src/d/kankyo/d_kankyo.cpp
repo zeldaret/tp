@@ -3212,22 +3212,37 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* u8PtrP2, int 
         *u8PtrP2 = 6;
     }
 
+    // Stage is Hyrule Field
     if (!strcmp(stageName, "F_SP121")) {
+        // Room is Eldin Main Field (0) or Eldin Entrance (2) or Eldin Gorge (3) or Eldin
+        // Gorge-Main Transition 1 (4) or Eldin Gorge-Main transition 2 (5) or Eldin-Lanayru
+        // Transition (7)
         if (roomNo == 0 || (2 <= roomNo && roomNo <= 5) || roomNo == 7) {
             if (u8PtrP2 != NULL) {
                 *u8PtrP2 = 1;
             }
             result = 1;
-        } else if (roomNo >= 9 && roomNo <= 0xe) {
+
+        }
+
+        // Room is Lanayru Entrance (9) or Lanayru Main Field (10) or Lanayru Main-Bridge
+        // Transition 1 (11) or Lanayru Main-Bridge Transition 2 (12) or Lanayru Lake Hylia
+        // Bridge (13) or Faron-Lanayru Transition (14)
+        else if (roomNo >= 9 && roomNo <= 14) {
             if (u8PtrP2 != NULL) {
                 *u8PtrP2 = 2;
             }
             result = 1;
-        } else {
+        }
+
+        // Room is Faron-Eldin Transition (1) or Faron Main Field (6) or Faron-Lanayru Gate (15)
+        else {
             result = -1;
         }
-    } else if (!strcmp(stageName, "F_SP108") && roomNo == 1 &&
-               dComIfGp_getStartStageLayer() == 0xd) {
+    }
+
+    // Room is Faron Woods - Faron Spring
+    else if (!strcmp(stageName, "F_SP108") && roomNo == 1 && dComIfGp_getStartStageLayer() == 0xd) {
         result = -1;
     }
 
@@ -3251,7 +3266,7 @@ BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
                     if (iVar2 == 0) {
                         local_28[0] = darkworldTbl[i].val;
                     }
-                    if (dComIfGs_isDarkClearLV((int)local_28[0]) == 0) {
+                    if (dComIfGs_isDarkClearLV(local_28[0]) == 0) {
                         result = true;
                     }
                     break;
