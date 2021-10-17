@@ -3265,9 +3265,9 @@ BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
                 int iVar2 = dKy_F_SP121Check(stageName, roomNo, local_28, i);
                 if (iVar2 >= 0) {
                     if (iVar2 == 0) {
-                        local_28[0] = darkworldTbl[i].val;
+                        *local_28 = darkworldTbl[i].val;
                     }
-                    if (dComIfGs_isDarkClearLV(local_28[0]) == 0) {
+                    if (dComIfGs_isDarkClearLV(*local_28) == 0) {
                         result = true;
                     }
                     break;
