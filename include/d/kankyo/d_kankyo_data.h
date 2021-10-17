@@ -4,7 +4,7 @@
 #include "dolphin/types.h"
 
 struct fishpig {
-    /*  */ char* charPtr;
+    char* stageName;
     u8 val;
 };
 
