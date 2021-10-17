@@ -3256,7 +3256,7 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* u8PtrP2, int 
 BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
     fishpig* darkworldTbl = dKyd_darkworld_tbl_getp();
     BOOL result = false;
-    u8 local_28[8];
+    u8 local_28[1];
 
     for (int i = 0; i < 34; i++) {
         if (!strcmp(stageName, darkworldTbl[i].charPtr)) {
