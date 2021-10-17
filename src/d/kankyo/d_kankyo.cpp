@@ -3246,7 +3246,8 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* u8PtrP2, int 
         result = -1;
     }
 
-    if (darkworldTbl[tblIndex].val == 0 && dComIfGs_isEventBit(0x4510) == 0) {
+    // Tbl calc and haven't finished Ordon Day 2
+    if (darkworldTbl[tblIndex].val == 0 && !dComIfGs_isEventBit(0x4510)) {
         result = -1;
     }
 
