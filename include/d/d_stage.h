@@ -553,7 +553,7 @@ public:
     s8 getLayer() { return mLayer; }
     s8 getRoomNo() const { return mRoomNo; }
     s16 getPoint() { return mPoint; }
-    int getDarkArea() { return mDarkArea; }
+    s8 getDarkArea() { return mDarkArea; }
 
 private:
     /* 0x0 */ char mStage[8];

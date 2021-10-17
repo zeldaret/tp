@@ -3278,7 +3278,8 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* u8PtrP2, int 
             }
             result = 1;
         }
-    } else if (!strcmp(stageName, "F_SP108") && roomNo == 1 && getLayerOld == 0xd) {
+    } else if (!strcmp(stageName, "F_SP108") && roomNo == 1 &&
+               dComIfGp_getStartStageLayer() == 0xd) {
         result = -1;
     }
 

@@ -766,7 +766,7 @@ inline s8 dComIfGp_getStartStageLayer() {
     return g_dComIfG_gameInfo.play.getStartStageLayer();
 }
 
-inline int dComIfGp_getStartStageLayer() {
+inline s8 dComIfGp_getStartStageDarkArea() {
     return g_dComIfG_gameInfo.play.getStartStageDarkArea();
 }
 
