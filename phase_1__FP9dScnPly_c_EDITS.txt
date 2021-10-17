@@ -318,6 +318,7 @@ mr r3, r29
 lbz r0, 0x4e0a(r31)
 extsb r4, r0
 bl dKy_darkworld_Area_set__FPCci
+
 mr r3, r29
 lis r4, d_s_d_s_play__stringBase0@ha /* 0x8039A2D8@ha */
 addi r4, r4, d_s_d_s_play__stringBase0@l /* 0x8039A2D8@l */
@@ -443,10 +444,12 @@ stb r0, 0x12fe(r4)
 ZOMBIE_LABEL:
 li r3, -1
 bl dComIfGs_BossLife_public_Set__FSc
+
 li r0, 0
 lis r3, g_env_light@ha /* 0x8042CA54@ha */
 addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 stb r0, 0x1308(r3)
+
 lis r3, d_s_d_s_play__stringBase0@ha /* 0x8039A2D8@ha */
 addi r3, r3, d_s_d_s_play__stringBase0@l /* 0x8039A2D8@l */
 addi r3, r3, 0x66
