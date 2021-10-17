@@ -3204,58 +3204,6 @@ asm void dKy_darkworld_check() {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80394ED5 = "F_SP108";
-#pragma pop
-
-// /* 801AC5BC-801AC70C 1A6EFC 0150+00 3/3 0/0 0/0 .text            dKy_F_SP121Check__FPCciPUci */
-// #pragma push
-// #pragma optimization_level 0
-// #pragma optimizewithasm off
-// static asm int dKy_F_SP121Check(char const* param_0, int param_1, u8* param_2, int param_3) {
-//     nofralloc
-// #include "asm/d/kankyo/d_kankyo/dKy_F_SP121Check__FPCciPUci.s"
-// }
-// #pragma pop
-
-// static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* param_2, int param_3) {
-//     fishpig* darkworldTbl = dKyd_darkworld_tbl_getp();
-//     int result = 0;
-
-//     // r26 stageName
-//     // r27 roomNo
-//     // r28 param_2
-//     // r29 param_3
-//     // r30 result
-//     // r31 darkworldTbl
-
-//     if (param_2 != NULL) {
-//         *param_2 = 6;
-//     }
-//     if (!strcmp(stageName, "F_SP121")) {
-//         if ((roomNo == 0) || (((1 < roomNo && (roomNo < 6)) || (roomNo == 7)))) {
-//             if (param_2 != 0x0) {
-//                 *param_2 = 1;
-//             }
-//         } else {
-//             if (((8 < roomNo) && (roomNo < 0xf)) && (param_2 != 0x0)) {
-//                 *param_2 = 2;
-//             }
-//         }
-//     } else if (!strcmp(stageName, "F_SP108") && roomNo == 1) {
-//         if (darkworldTbl[param_3 * 2].val == 0) {
-//             if (dComIfGs_isEventBit(0x4510) == 0) {
-//                 result = -1;
-//             }
-//         }
-//     }
-
-//     return result;
-// }
-
 static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* u8PtrP2, int tblIndex) {
     fishpig* darkworldTbl = dKyd_darkworld_tbl_getp();
     int result = 0;
@@ -3286,24 +3234,6 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* u8PtrP2, int 
     if (darkworldTbl[tblIndex].val == 0 && dComIfGs_isEventBit(0x4510) == 0) {
         result = -1;
     }
-
-    // if (!strcmp(stageName, "F_SP121")) {
-    //     if ((roomNo == 0) || (((1 < roomNo && (roomNo < 6)) || (roomNo == 7)))) {
-    //         if (u8PtrP2 != 0x0) {
-    //             *u8PtrP2 = 1;
-    //         }
-    //     } else {
-    //         if (((8 < roomNo) && (roomNo < 0xf)) && (u8PtrP2 != 0x0)) {
-    //             *u8PtrP2 = 2;
-    //         }
-    //     }
-    // } else if (!strcmp(stageName, "F_SP108") && roomNo == 1) {
-    //     if (darkworldTbl[param_3 * 2].val == 0) {
-    //         if (dComIfGs_isEventBit(0x4510) == 0) {
-    //             result = -1;
-    //         }
-    //     }
-    // }
 
     return result;
 }
