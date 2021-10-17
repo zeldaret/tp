@@ -3282,15 +3282,21 @@ BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
     return result;
 }
 
-/* 801AC7E0-801AC870 1A7120 0090+00 0/0 1/1 0/0 .text            dKy_darkworld_spot_check__FPCci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_darkworld_spot_check(char const* param_0, int param_1) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_darkworld_spot_check__FPCci.s"
+BOOL dKy_darkworld_spot_check(char const* stageName, int roomNo) {
+    fishpig* darkworldTblPtr = dKyd_darkworld_tbl_getp();
+    BOOL result = FALSE;
+
+    for (int i = 0; i < 34; i++) {
+        if (!strcmp(stageName, (*darkworldTblPtr).stageName) &&
+            dKy_F_SP121Check(stageName, roomNo, NULL, i) >= 0) {
+            result = TRUE;
+            break;
+        }
+        darkworldTblPtr++;
+    }
+
+    return result;
 }
-#pragma pop
 
 /* 801AC870-801AC918 1A71B0 00A8+00 0/0 1/1 0/0 .text            dKy_darkworld_Area_set__FPCci */
 #pragma push
