@@ -6,6 +6,8 @@
 struct fishpig {
     char* stageName;
     u8 val;
+    // 0 Faron, 1 Eldin, 2 Lanayru, 6 ???
+    // u8 darkLvBitNo; // find name instead of 'val'
 };
 
 void* dKyd_dmpalet_getp();

@@ -3238,7 +3238,8 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* u8PtrP2, int 
             result = 1;
         }
 
-        // Room is Faron-Eldin Transition (1) or Faron Main Field (6) or Faron-Lanayru Gate (15)
+        // Rooms Faron-Eldin Transition (1), Faron Main Field (6), and Faron-Lanayru Gate (15)
+        // should never be in twilight state.
         else {
             result = -1;
         }
@@ -3249,8 +3250,8 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* u8PtrP2, int 
         result = -1;
     }
 
-    // Stage is one of Faron Woods, Coro's Lantern Shop, and Faron Woods Cave and haven't finished
-    // Ordon Day 2. Prevents twilight in this case.
+    // Prevent twilight if stage depends on Faron Twilight cleared status (Faron Woods, Coro's
+    // Lantern Shop, Faron Woods Cave) but you haven't finished Ordon Day 2.
     if (darkworldTbl[tblIndex].val == 0 && !dComIfGs_isEventBit(0x4510)) {
         result = -1;
     }
@@ -3258,6 +3259,8 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* u8PtrP2, int 
     return result;
 }
 
+// Returns true if room can be twilight, there is nothing preventing twilight, and the relevant
+// darkLv has not been completed? See how darkClear bits work.
 BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
     fishpig* darkworldTbl = dKyd_darkworld_tbl_getp();
     BOOL result = FALSE;
@@ -3277,7 +3280,7 @@ BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
                     break;
                 }
             } else {
-                // 8 is used to force twilight. This was likely used for testing. This will
+                // 8 is used to force twilight (likely for testing). This will
                 // never normally run since 8 is not in l_darkworld_tbl.
                 result = TRUE;
                 break;
@@ -3288,6 +3291,8 @@ BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
     return result;
 }
 
+// Checks if area is one which can be twilight and there is nothing preventing it from being
+// twilight?
 BOOL dKy_darkworld_spot_check(char const* stageName, int roomNo) {
     fishpig* darkworldTblPtr = dKyd_darkworld_tbl_getp();
     BOOL result = FALSE;

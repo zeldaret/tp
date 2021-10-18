@@ -140,7 +140,7 @@ static fishpig l_darkworld_tbl[34] = {
     {"T_SASA1", 5},  // UNUSED - Sasaki Test 1
     {"F_SP105", 0},  // UNUSED - L1 Forest Field
     {"F_SP05", 5},   // UNUSED - Statue Forest
-    {"R_SP107", 2},  // Twilight Hyrule Castle
+    {"R_SP107", 2},  // Twilight Hyrule Castle ?What is this? Bad name?
     {"F_SP108", 0},  // Faron Woods
     {"R_SP108", 0},  // Coro's Lantern Shop
     {"TEST11", 5},   // UNUSED - Local Map C
