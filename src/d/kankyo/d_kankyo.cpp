@@ -3206,6 +3206,19 @@ asm void dKy_darkworld_check() {
 
 // Returns 1, 0 (default), or -1. -1 is basically false. 0 means use the value from the table. 1
 // means use the value which was written to out_darkLv.
+
+/**
+ * @brief Returns the following info about a room: (1) if the room must not be twilight and (2)
+ * which darkLv the room belongs to (Faron, Eldin, etc.).
+ *
+ * @param stageName stage name
+ * @param roomNo room number
+ * @param out_darkLv byte pointer to write darkLv to, or NULL
+ * @param tblIndex index in darkworld table for the stageName
+ * @return int Returns -1 if the given room must not be loaded in twilight, else returns 0 or 1. A
+ * return of 1 means darkLv should be read from out_darkLv and 0 means it should be read from the
+ * darkworld table.
+ */
 static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, int tblIndex) {
     fishpig* darkworldTbl = dKyd_darkworld_tbl_getp();
     int result = 0;
@@ -3257,8 +3270,15 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, i
     return result;
 }
 
-// Returns true if room can be twilight, there is nothing preventing twilight, and the relevant
-// darkLv has not been completed? See how darkClear bits work.
+/**
+ * @brief Returns TRUE if the room can be loaded in twilight and the player has not cleared
+ * the relevant dark level (Faron Twilight, etc.), else FALSE.
+ *
+ * @param stageName stage name
+ * @param roomNo room number
+ * @return BOOL Returns TRUE if the room can be loaded as twilight and the player has not already
+ * cleared it, else FALSE.
+ */
 BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
     fishpig* darkworldTbl = dKyd_darkworld_tbl_getp();
     BOOL result = FALSE;
@@ -3278,7 +3298,7 @@ BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
                     break;
                 }
             } else {
-                // ALWAYS_DARK (8) is used to force twilight (likely for testing). This will
+                // ALWAYS_DARK is used to force twilight (likely for testing). This will
                 // never normally run since it is not used in l_darkworld_tbl.
                 result = TRUE;
                 break;
@@ -3289,8 +3309,13 @@ BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
     return result;
 }
 
-// Checks if area is one which can be twilight and there is nothing preventing it from being
-// twilight?
+/**
+ * @brief Returns FALSE if the room must not be loaded in twilight, else TRUE.
+ *
+ * @param stageName stage name
+ * @param roomNo room number
+ * @return BOOL Returns FALSE if the room must not be loaded in twilight, else TRUE.
+ */
 BOOL dKy_darkworld_spot_check(char const* stageName, int roomNo) {
     fishpig* darkworldTblPtr = dKyd_darkworld_tbl_getp();
     BOOL result = FALSE;
