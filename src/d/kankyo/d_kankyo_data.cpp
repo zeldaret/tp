@@ -129,21 +129,21 @@ SECTION_DATA static u8 l_kydata_BloomInf_tbl[768] = {
 /* 803A9198-803A92A8 -00001 0110+00 1/1 0/0 0/0 .data            l_darkworld_tbl */
 static fishpig l_darkworld_tbl[34] = {
     {"R_SP30", UNCLEARABLE},   // UNUSED - Unknown Room
-    {"T_SP05", UNUSED},        // UNUSED - E3 2005 Warp Test (Old)
-    {"T_SP05A", UNUSED},       // UNUSED - Ito Warp Test
-    {"T_WARP2", UNUSED},       // UNUSED - Unknown Test
-    {"T_IMAI", UNUSED},        // UNUSED - Imai Shape Check (Level 2)
-    {"T_IMAI0", UNUSED},       // UNUSED - Imai Shape Check (Level 3)
-    {"T_TOMI", UNUSED},        // UNUSED - Tominaga Test 1
-    {"T_TOMI", UNUSED},        // UNUSED - Same as above
-    {"T_TOMI", UNUSED},        // UNUSED - Same as above
-    {"T_SASA1", UNUSED},       // UNUSED - Sasaki Test 1
+    {"T_SP05", TEST},          // UNUSED - E3 2005 Warp Test (Old)
+    {"T_SP05A", TEST},         // UNUSED - Ito Warp Test
+    {"T_WARP2", TEST},         // UNUSED - Unknown Test
+    {"T_IMAI", TEST},          // UNUSED - Imai Shape Check (Level 2)
+    {"T_IMAI0", TEST},         // UNUSED - Imai Shape Check (Level 3)
+    {"T_TOMI", TEST},          // UNUSED - Tominaga Test 1
+    {"T_TOMI", TEST},          // UNUSED - Same as above
+    {"T_TOMI", TEST},          // UNUSED - Same as above
+    {"T_SASA1", TEST},         // UNUSED - Sasaki Test 1
     {"F_SP105", FARON},        // UNUSED - L1 Forest Field
-    {"F_SP05", UNUSED},        // UNUSED - Statue Forest
+    {"F_SP05", TEST},          // UNUSED - Statue Forest
     {"R_SP107", LANAYRU},      // Twilight Hyrule Castle ?What is this? Bad name?
     {"F_SP108", FARON},        // Faron Woods
     {"R_SP108", FARON},        // Coro's Lantern Shop
-    {"TEST11", UNUSED},        // UNUSED - Local Map C
+    {"TEST11", TEST},          // UNUSED - Local Map C
     {"F_SP109", ELDIN},        // Kakariko Village
     {"F_SP110", ELDIN},        // Death Mountain
     {"R_SP109", ELDIN},        // Kakariko Interiors
