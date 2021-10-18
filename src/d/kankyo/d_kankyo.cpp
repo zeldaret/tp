@@ -3204,15 +3204,14 @@ asm void dKy_darkworld_check() {
 }
 #pragma pop
 
-// If u8PtrP2 is provided, writes either 0b0110 (6), 0b0010 (2), or 0b0010 (1).
 // Returns 1, 0 (default), or -1. -1 is basically false. 0 means use the value from the table. 1
-// means use the value which was written to u8PtrP2.
-static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* u8PtrP2, int tblIndex) {
+// means use the value which was written to out_darkLv.
+static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, int tblIndex) {
     fishpig* darkworldTbl = dKyd_darkworld_tbl_getp();
     int result = 0;
 
-    if (u8PtrP2 != NULL) {
-        *u8PtrP2 = UNCLEARABLE;
+    if (out_darkLv != NULL) {
+        *out_darkLv = UNCLEARABLE;
     }
 
     // Stage is Hyrule Field
@@ -3221,8 +3220,8 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* u8PtrP2, int 
         // Gorge-Main Transition 1 (4) or Eldin Gorge-Main transition 2 (5) or Eldin-Lanayru
         // Transition (7)
         if (roomNo == 0 || (2 <= roomNo && roomNo <= 5) || roomNo == 7) {
-            if (u8PtrP2 != NULL) {
-                *u8PtrP2 = ELDIN;
+            if (out_darkLv != NULL) {
+                *out_darkLv = ELDIN;
             }
             result = 1;
         }
@@ -3231,8 +3230,8 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* u8PtrP2, int 
         // Transition 1 (11) or Lanayru Main-Bridge Transition 2 (12) or Lanayru Lake Hylia
         // Bridge (13) or Faron-Lanayru Transition (14)
         else if (roomNo >= 9 && roomNo <= 14) {
-            if (u8PtrP2 != NULL) {
-                *u8PtrP2 = LANAYRU;
+            if (out_darkLv != NULL) {
+                *out_darkLv = LANAYRU;
             }
             result = 1;
         }
@@ -3251,7 +3250,7 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* u8PtrP2, int 
 
     // Prevent twilight if stage depends on Faron Twilight cleared status (Faron Woods, Coro's
     // Lantern Shop, Faron Woods Cave) but you haven't finished Ordon Day 2.
-    if (darkworldTbl[tblIndex].val == 0 && !dComIfGs_isEventBit(0x4510)) {
+    if (darkworldTbl[tblIndex].darkLv == FARON && !dComIfGs_isEventBit(0x4510)) {
         result = -1;
     }
 
@@ -3263,24 +3262,24 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* u8PtrP2, int 
 BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
     fishpig* darkworldTbl = dKyd_darkworld_tbl_getp();
     BOOL result = FALSE;
-    u8 local_28[1];
+    u8 darkLv[1];
 
     for (int i = 0; i < 34; i++) {
         if (!strcmp(stageName, darkworldTbl[i].stageName)) {
-            if (darkworldTbl[i].val != 8) {
-                int iVar2 = dKy_F_SP121Check(stageName, roomNo, local_28, i);
+            if (darkworldTbl[i].darkLv != ALWAYS_DARK) {
+                int iVar2 = dKy_F_SP121Check(stageName, roomNo, darkLv, i);
                 if (iVar2 >= 0) {
                     if (iVar2 == 0) {
-                        *local_28 = darkworldTbl[i].val;
+                        *darkLv = darkworldTbl[i].darkLv;
                     }
-                    if (!dComIfGs_isDarkClearLV(*local_28)) {
+                    if (!dComIfGs_isDarkClearLV(*darkLv)) {
                         result = TRUE;
                     }
                     break;
                 }
             } else {
-                // 8 is used to force twilight (likely for testing). This will
-                // never normally run since 8 is not in l_darkworld_tbl.
+                // ALWAYS_DARK (8) is used to force twilight (likely for testing). This will
+                // never normally run since it is not in l_darkworld_tbl.
                 result = TRUE;
                 break;
             }
@@ -3315,16 +3314,16 @@ inline void dComIfGp_setStartStageDarkArea(u8 param_0) {
 
 void dKy_darkworld_Area_set(char const* stageName, int roomNo) {
     fishpig* darkworldTblPtr = dKyd_darkworld_tbl_getp();
-    u8 ll[1];
+    u8 darkLv[1];
 
     for (int i = 0; i < 34; i++) {
         if (!strcmp(stageName, darkworldTblPtr[i].stageName)) {
-            int checkRes = dKy_F_SP121Check(stageName, roomNo, ll, i);
+            int checkRes = dKy_F_SP121Check(stageName, roomNo, darkLv, i);
             if (checkRes >= 0) {
                 if (checkRes == 0) {
-                    ll[0] = darkworldTblPtr[i].val;
+                    *darkLv = darkworldTblPtr[i].darkLv;
                 }
-                dComIfGp_setStartStageDarkArea(ll[0]);
+                dComIfGp_setStartStageDarkArea(*darkLv);
                 break;
             }
         }

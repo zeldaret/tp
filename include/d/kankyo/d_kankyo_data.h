@@ -3,11 +3,18 @@
 
 #include "dolphin/types.h"
 
-enum dKy_DARKLV { FARON = 0, ELDIN = 1, LANAYRU = 2, TEST = 5, UNCLEARABLE = 6 };
+enum dKy_DARKLV {
+    FARON = 0,
+    ELDIN = 1,
+    LANAYRU = 2,
+    TEST = 5,
+    UNCLEARABLE = 6,
+    ALWAYS_DARK = 8,
+};
 
 struct fishpig {
     char* stageName;
-    u8 val;
+    u8 darkLv;
     // 0 Faron, 1 Eldin, 2 Lanayru, 6 ???
     // u8 darkLvBitNo; // find name instead of 'val'
 };
