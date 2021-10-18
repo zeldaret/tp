@@ -3212,7 +3212,7 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* u8PtrP2, int 
     int result = 0;
 
     if (u8PtrP2 != NULL) {
-        *u8PtrP2 = 6;
+        *u8PtrP2 = UNCLEARABLE;
     }
 
     // Stage is Hyrule Field
@@ -3222,10 +3222,9 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* u8PtrP2, int 
         // Transition (7)
         if (roomNo == 0 || (2 <= roomNo && roomNo <= 5) || roomNo == 7) {
             if (u8PtrP2 != NULL) {
-                *u8PtrP2 = 1;
+                *u8PtrP2 = ELDIN;
             }
             result = 1;
-
         }
 
         // Room is Lanayru Entrance (9) or Lanayru Main Field (10) or Lanayru Main-Bridge
@@ -3233,7 +3232,7 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* u8PtrP2, int 
         // Bridge (13) or Faron-Lanayru Transition (14)
         else if (roomNo >= 9 && roomNo <= 14) {
             if (u8PtrP2 != NULL) {
-                *u8PtrP2 = 2;
+                *u8PtrP2 = LANAYRU;
             }
             result = 1;
         }

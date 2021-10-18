@@ -3,6 +3,8 @@
 
 #include "dolphin/types.h"
 
+enum dKy_DARKLV { FARON = 0, ELDIN = 1, LANAYRU = 2, UNUSED = 5, UNCLEARABLE = 6 };
+
 struct fishpig {
     char* stageName;
     u8 val;
