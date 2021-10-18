@@ -3279,7 +3279,7 @@ BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
                 }
             } else {
                 // ALWAYS_DARK (8) is used to force twilight (likely for testing). This will
-                // never normally run since it is not in l_darkworld_tbl.
+                // never normally run since it is not used in l_darkworld_tbl.
                 result = TRUE;
                 break;
             }
