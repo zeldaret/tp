@@ -11,11 +11,20 @@
 // Types:
 //
 
-struct timeattr_thing {
-    float f0;
-    float f1;
-    u8 b0;
-    u8 b1;
+// Notes (needs more investigation):
+// startTime and endTime are in the range 0 to 360, which is the same as the current time of day.
+// l_time_attribute and l_time_attribute_boss are arrays of light_schejule, with their times set up
+// such that the current time of day will fall in the range of one light_schejule. For exmaple, if
+// the current time is 110.0f (7:20 AM), then the light_schejule {105.0f, 135.0f, 1, 2} would be
+// selected. If the time was 105.0f, we would use light 1. If the time was 135.0f, we would use
+// light 2. Since 110.0f is closer to 105.0f than 135.0f, we get a blend of lights 1 and 2 which is
+// mostly 1.
+// Move this to the header and adjust names as needed in the future.
+struct light_schejule {
+    float startTime;
+    float endTime;
+    u8 startTimeLight;
+    u8 endTimeLight;
 };
 
 //
@@ -229,14 +238,14 @@ static u8 l_maple_col[36] = {
 };
 
 /* 803A9434-803A94B8 006554 0084+00 1/1 0/0 0/0 .data            l_time_attribute */
-static timeattr_thing l_time_attribute[11] = {
+static light_schejule l_time_attribute[11] = {
     {0.0f, 75.0f, 5, 5},    {75.0f, 90.0f, 5, 0},   {90.0f, 105.0f, 0, 1},  {105.0f, 105.0f, 1, 1},
     {105.0f, 135.0f, 1, 2}, {135.0f, 240.0f, 2, 2}, {240.0f, 255.0f, 2, 3}, {255.0f, 270.0f, 3, 3},
     {270.0f, 285.0f, 3, 4}, {285.0f, 300.0f, 4, 5}, {300.0f, 360.0f, 5, 5},
 };
 
 /* 803A94B8-803A953C 0065D8 0084+00 1/1 0/0 0/0 .data            l_time_attribute_boss */
-static timeattr_thing l_time_attribute_boss[11] = {
+static light_schejule l_time_attribute_boss[11] = {
     {0.0f, 45.0f, 0, 1},    {45.0f, 90.0f, 1, 2},   {90.0f, 180.0f, 2, 3},  {180.0f, 225.0f, 3, 4},
     {225.0f, 270.0f, 4, 5}, {270.0f, 360.0f, 5, 0}, {360.0f, 360.0f, 5, 5}, {360.0f, 360.0f, 5, 5},
     {360.0f, 360.0f, 5, 5}, {360.0f, 360.0f, 5, 5}, {360.0f, 360.0f, 5, 5},
@@ -244,7 +253,7 @@ static timeattr_thing l_time_attribute_boss[11] = {
 
 /* 803A953C-803A987C 00665C 0340+00 1/1 0/0 0/0 .data            l_field_data */
 SECTION_DATA static u8 l_field_data[832] = {
-    // 0x34 long
+    // 0x34 long; 16 of them here
     0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40,  // 0
     0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40,  //
     0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0xC5, 0x9C, 0x40,  //
@@ -330,16 +339,7 @@ void* dKyd_dmpselect_getp() {
 /* ############################################################################################## */
 /* 803A9894-803A9918 0069B4 0082+02 1/1 0/0 0/0 .data            l_envr_default */
 SECTION_DATA static u8 l_envr_default[130 + 2 /* padding */] = {
-    // 0x41 (65 dec) long each
-    // 0x0 u8
-    // 0x1 u8
-    // 0x2 u8
-    // 0x3 u8
-    // 0x4 u8
-    // 0x5 u8
-    // 0x6 u8
-    // 0x7 u8
-    // [0x8 (inclusive) up to 0x40 (non inclusive)) is u8
+    // 0x41 (65 dec) long, all u8's?; 2 of these back-to-back
     0x00,
     0x01,
     0x02,
@@ -926,8 +926,8 @@ static u16 S_xfog_table_data[20] = {
 
 void dKyd_xfog_table_set(u8 param_0) {
     for (int i = 0; i < 10; i++) {
-        u16 uuu = *(S_xfog_table_data + i + (param_0 & 0xff) * 10);
-        ((u16*)g_env_light)[0x856 + i] = uuu;
+        u16 fogAdjTableEntry = *(S_xfog_table_data + i + (param_0 & 0xff) * 10);
+        ((u16*)g_env_light)[0x856 + i] = fogAdjTableEntry;
     }
 }
 
