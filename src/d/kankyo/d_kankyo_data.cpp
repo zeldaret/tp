@@ -48,18 +48,7 @@ extern "C" extern u8 g_env_light[4880];
 
 /* 803A8E98-803A9198 005FB8 0300+00 1/1 0/0 0/0 .data            l_kydata_BloomInf_tbl */
 SECTION_DATA static u8 l_kydata_BloomInf_tbl[768] = {
-    // 0x0 u8
-    // 0x1 u8
-    // 0x2 u8
-    // 0x3 u8
-    // 0x4 u8
-    // 0x5 u8
-    // 0x6 u8
-    // 0x7 u8
-    // 0x8 u8
-    // 0x9 u8
-    // 0xa u8
-    // 0xb u8
+    // Each is 0xc long; All u8's
     0x01, 0xFF, 0x40, 0x80, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00,  //
     0x00, 0x28, 0x46, 0x87, 0xCF, 0xB1, 0x38, 0xD2, 0xFF, 0xFF, 0xFF, 0x60,  //
     0x00, 0x2D, 0x46, 0x73, 0xCF, 0xB1, 0x38, 0xD2, 0xFF, 0xFF, 0xFF, 0x60,  //
@@ -164,6 +153,7 @@ static fishpig l_darkworld_tbl[34] = {
     {"D_SB10", FARON},         // Faron Woods Cave
 };
 
+// TODO: wrong type probably
 /* 803A92A8-803A93C8 -00001 0120+00 1/1 0/0 0/0 .data            l_light_size_tbl */
 static fishpig l_light_size_tbl[36] = {
     {"R_SP01", 0},   // Ordon Interiors
@@ -176,7 +166,7 @@ static fishpig l_light_size_tbl[36] = {
     {"F_SP114", 2},  // Snowpeak
     {"F_SP115", 2},  // Lake Hylia
     {"F_SP121", 3},  // Hyrule Field
-    {"F_SP102", 3},  // Bridge of Elkdin Battle
+    {"F_SP102", 3},  // Bridge of Eldin Battle
     {"F_SP122", 3},  // Castle Town Gates
     {"F_SP123", 3},  // Great Bridge of Hylia Battle
     {"R_SP116", 0},  // Hyrule Castle Town Interiors
@@ -204,6 +194,7 @@ static fishpig l_light_size_tbl[36] = {
     {"D_SB10", 0},   // Faron Woods Cave
 };
 
+// TODO: wrong type probably
 /* 803A93C8-803A9410 -00001 0048+00 1/1 0/0 0/0 .data            l_light_size_tbl_tw */
 static fishpig l_light_size_tbl_tw[9] = {
     {"F_SP109", 2},  // Kakariko Village
@@ -220,8 +211,8 @@ static fishpig l_light_size_tbl_tw[9] = {
 // Used in Fishing Hole
 /* 803A9410-803A9434 006530 0024+00 1/1 0/0 0/0 .data            l_maple_col */
 static u8 l_maple_col[36] = {
-    // leaf color blend major (is blend correct term?)
-    0x56, 0x4B, 0x39,  // spring, rgb, need struct for this probably
+    // leaf color blend major
+    0x56, 0x4B, 0x39,  // spring, rgb, TODO: need struct for this probably
     0x37, 0x28, 0x1E,  // summer
     0x6E, 0x32, 0x0F,  // fall
     0x64, 0x64, 0x80,  // winter
@@ -927,6 +918,7 @@ void* dKyd_schejule_boss_getp() {
     return &l_time_attribute_boss;
 }
 
+// Two _GXFogAdjTable back-to-back
 static u16 S_xfog_table_data[20] = {
     260, 260, 270, 280, 290, 300, 310, 320, 330, 340,
     250, 260, 280, 320, 350, 400, 480, 550, 600, 800,
