@@ -3220,7 +3220,7 @@ asm void dKy_darkworld_check() {
  * darkworld table.
  */
 static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, int tblIndex) {
-    fishpig* darkworldTbl = dKyd_darkworld_tbl_getp();
+    dKyd_darkworldTblEntry* darkworldTbl = dKyd_darkworld_tbl_getp();
     int result = 0;
 
     if (out_darkLv != NULL) {
@@ -3280,7 +3280,7 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, i
  * cleared it, else FALSE.
  */
 BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
-    fishpig* darkworldTbl = dKyd_darkworld_tbl_getp();
+    dKyd_darkworldTblEntry* darkworldTbl = dKyd_darkworld_tbl_getp();
     BOOL result = FALSE;
     u8 darkLv[1];
 
@@ -3317,7 +3317,7 @@ BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
  * @return BOOL Returns FALSE if the room must not be loaded in twilight, else TRUE.
  */
 BOOL dKy_darkworld_spot_check(char const* stageName, int roomNo) {
-    fishpig* darkworldTblPtr = dKyd_darkworld_tbl_getp();
+    dKyd_darkworldTblEntry* darkworldTblPtr = dKyd_darkworld_tbl_getp();
     BOOL result = FALSE;
 
     for (int i = 0; i < 34; i++) {
@@ -3338,7 +3338,7 @@ inline void dComIfGp_setStartStageDarkArea(u8 param_0) {
 }
 
 void dKy_darkworld_Area_set(char const* stageName, int roomNo) {
-    fishpig* darkworldTblPtr = dKyd_darkworld_tbl_getp();
+    dKyd_darkworldTblEntry* darkworldTblPtr = dKyd_darkworld_tbl_getp();
     u8 darkLv[1];
 
     for (int i = 0; i < 34; i++) {

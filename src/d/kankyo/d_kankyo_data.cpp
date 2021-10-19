@@ -11,22 +11,6 @@
 // Types:
 //
 
-// Notes (needs more investigation):
-// startTime and endTime are in the range 0 to 360, which is the same as the current time of day.
-// l_time_attribute and l_time_attribute_boss are arrays of light_schejule, with their times set up
-// such that the current time of day will fall in the range of one light_schejule. For exmaple, if
-// the current time is 110.0f (7:20 AM), then the light_schejule {105.0f, 135.0f, 1, 2} would be
-// selected. If the time was 105.0f, we would use light 1. If the time was 135.0f, we would use
-// light 2. Since 110.0f is closer to 105.0f than 135.0f, we get a blend of lights 1 and 2 which is
-// mostly 1.
-// Move this to the header and adjust names as needed in the future.
-struct light_schejule {
-    float startTime;
-    float endTime;
-    u8 startTimeLight;
-    u8 endTimeLight;
-};
-
 //
 // Forward References:
 //
@@ -125,7 +109,7 @@ SECTION_DATA static u8 l_kydata_BloomInf_tbl[768] = {
 };
 
 /* 803A9198-803A92A8 -00001 0110+00 1/1 0/0 0/0 .data            l_darkworld_tbl */
-static fishpig l_darkworld_tbl[34] = {
+static dKyd_darkworldTblEntry l_darkworld_tbl[34] = {
     {"R_SP30", UNCLEARABLE},   // UNUSED - Unknown Room
     {"T_SP05", TEST},          // UNUSED - E3 2005 Warp Test (Old)
     {"T_SP05A", TEST},         // UNUSED - Ito Warp Test
@@ -164,7 +148,7 @@ static fishpig l_darkworld_tbl[34] = {
 
 // TODO: wrong type probably
 /* 803A92A8-803A93C8 -00001 0120+00 1/1 0/0 0/0 .data            l_light_size_tbl */
-static fishpig l_light_size_tbl[36] = {
+static dKyd_darkworldTblEntry l_light_size_tbl[36] = {
     {"R_SP01", 0},   // Ordon Interiors
     {"R_SP108", 0},  // Coro's Lantern Shop
     {"F_SP109", 2},  // Kakariko Village
@@ -205,7 +189,7 @@ static fishpig l_light_size_tbl[36] = {
 
 // TODO: wrong type probably
 /* 803A93C8-803A9410 -00001 0048+00 1/1 0/0 0/0 .data            l_light_size_tbl_tw */
-static fishpig l_light_size_tbl_tw[9] = {
+static dKyd_darkworldTblEntry l_light_size_tbl_tw[9] = {
     {"F_SP109", 2},  // Kakariko Village
     {"F_SP110", 2},  // Death Mountain
     {"R_SP209", 2},  // Sanctuary Basement
@@ -910,12 +894,12 @@ void* dKyd_dmvrbox_getp() {
     return &l_vr_box_data;
 }
 
-void* dKyd_schejule_getp() {
-    return &l_time_attribute;
+light_schejule* dKyd_schejule_getp() {
+    return l_time_attribute;
 }
 
-void* dKyd_schejule_boss_getp() {
-    return &l_time_attribute_boss;
+light_schejule* dKyd_schejule_boss_getp() {
+    return l_time_attribute_boss;
 }
 
 // Two _GXFogAdjTable back-to-back
@@ -932,19 +916,19 @@ void dKyd_xfog_table_set(u8 param_0) {
 }
 
 void* dKyd_maple_col_getp() {
-    return &l_maple_col;
+    return l_maple_col;
 }
 
-fishpig* dKyd_darkworld_tbl_getp() {
-    return (fishpig*)&l_darkworld_tbl;
+dKyd_darkworldTblEntry* dKyd_darkworld_tbl_getp() {
+    return l_darkworld_tbl;
 }
 
 void* dKyd_light_size_tbl_getp() {
-    return &l_light_size_tbl;
+    return l_light_size_tbl;
 }
 
 void* dKyd_light_tw_size_tbl_getp() {
-    return &l_light_size_tbl_tw;
+    return l_light_size_tbl_tw;
 }
 
 void* dKyd_BloomInf_tbl_getp(int param_0) {
