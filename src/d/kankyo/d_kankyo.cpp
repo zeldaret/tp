@@ -405,7 +405,8 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-// Temporarily putting here. Probably should really be in d_com_inf_game.h
+// TODO: Temporarily putting here. There are some issues in `d_com_inf_game.h` which need to be
+// sorted out before we can correctly use this function from there.
 inline BOOL dComIfGs_isEventBit(u16 id) {
     return g_dComIfG_gameInfo.info.getSavedata().getEvent().isEventBit(id);
 }
@@ -3204,11 +3205,8 @@ asm void dKy_darkworld_check() {
 }
 #pragma pop
 
-// Returns 1, 0 (default), or -1. -1 is basically false. 0 means use the value from the table. 1
-// means use the value which was written to out_darkLv.
-
 /**
- * @brief Returns the following info about a room: (1) if the room must not be twilight and (2)
+ * @brief Returns the following info about a room: (1) if the room must not be in twilight and (2)
  * which darkLv the room belongs to (Faron, Eldin, etc.).
  *
  * @param stageName stage name
@@ -3271,8 +3269,9 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, i
 }
 
 /**
- * @brief Returns TRUE if the room can be loaded in twilight and the player has not cleared
- * the relevant dark level (Faron Twilight, etc.), else FALSE.
+ * @brief Returns TRUE if (1) the room is one which can be loaded in twilight, (2) there is nothing
+ * currently preventing it from being loaded in twilight, and (3) the player has not cleared the
+ * relevant dark level (Faron Twilight, etc.). Otherwise returns FALSE.
  *
  * @param stageName stage name
  * @param roomNo room number
@@ -3287,9 +3286,9 @@ BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
     for (int i = 0; i < 34; i++) {
         if (!strcmp(stageName, darkworldTbl[i].stageName)) {
             if (darkworldTbl[i].darkLv != ALWAYS_DARK) {
-                int iVar2 = dKy_F_SP121Check(stageName, roomNo, darkLv, i);
-                if (iVar2 >= 0) {
-                    if (iVar2 == 0) {
+                int fsp121CheckResult = dKy_F_SP121Check(stageName, roomNo, darkLv, i);
+                if (fsp121CheckResult >= 0) {
+                    if (fsp121CheckResult == 0) {
                         *darkLv = darkworldTbl[i].darkLv;
                     }
                     if (!dComIfGs_isDarkClearLV(*darkLv)) {
@@ -3310,7 +3309,8 @@ BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
 }
 
 /**
- * @brief Returns FALSE if the room must not be loaded in twilight, else TRUE.
+ * @brief Returns FALSE if either (1) the room is never twilight or (2) the room can potentially
+ * be twilight, but it currently must not be loaded in twilight. Otherwise returns TRUE.
  *
  * @param stageName stage name
  * @param roomNo room number
@@ -3333,7 +3333,7 @@ BOOL dKy_darkworld_spot_check(char const* stageName, int roomNo) {
 }
 
 // Temporarily putting here? Put in d_com_inf_game.h?
-inline void dComIfGp_setStartStageDarkArea(u8 param_0) {
+inline void dComIfGp_setStartStageDarkArea(s8 param_0) {
     g_dComIfG_gameInfo.play.setStartStageDarkArea(param_0);
 }
 
