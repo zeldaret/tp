@@ -26,7 +26,7 @@ struct dKyd_darkworldTblEntry {
 // light 2. Since 110.0f is closer to 105.0f than 135.0f, we get a blend of lights 1 and 2 which is
 // mostly 1.
 // Move this to the header and adjust names as needed in the future.
-struct light_schejule {
+struct dKyd_lightSchejule {
     float startTime;
     float endTime;
     u8 startTimeLight;
@@ -37,8 +37,8 @@ void* dKyd_dmpalet_getp();
 void* dKyd_dmpselect_getp();
 void* dKyd_dmenvr_getp();
 void* dKyd_dmvrbox_getp();
-light_schejule* dKyd_schejule_getp();
-light_schejule* dKyd_schejule_boss_getp();
+dKyd_lightSchejule* dKyd_schejule_getp();
+dKyd_lightSchejule* dKyd_schejule_boss_getp();
 void dKyd_xfog_table_set(u8);
 void* dKyd_maple_col_getp();
 dKyd_darkworldTblEntry* dKyd_darkworld_tbl_getp();

@@ -174,7 +174,7 @@ public:
     JKRArchive* getMsgDtArchive(int idx) { return mMsgDtArchive[idx]; }
     s16 getStartStagePoint() { return mStartStage.getPoint(); }
     int getStartStageDarkArea() { return mStartStage.getDarkArea(); }
-    void setStartStageDarkArea(u8 param_0) { mStartStage.setDarkArea(param_0); }
+    void setStartStageDarkArea(s8 darkArea) { mStartStage.setDarkArea(darkArea); }
     void* getPlayerPtr(int ptrIdx) { return mPlayerPtr[ptrIdx]; }
     JKRArchive* getMain2DArchive() { return mMain2DArchive; }
     J2DGrafContext* getCurrentGrafPort() { return mCurrentGrafPort; }
@@ -769,6 +769,10 @@ inline s8 dComIfGp_getStartStageLayer() {
 
 inline s8 dComIfGp_getStartStageDarkArea() {
     return g_dComIfG_gameInfo.play.getStartStageDarkArea();
+}
+
+inline void dComIfGp_setStartStageDarkArea(s8 darkArea) {
+    g_dComIfG_gameInfo.play.setStartStageDarkArea(darkArea);
 }
 
 inline roomRead_class* dComIfGp_getStageRoom() {

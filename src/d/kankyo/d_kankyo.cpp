@@ -3332,11 +3332,6 @@ BOOL dKy_darkworld_spot_check(char const* stageName, int roomNo) {
     return result;
 }
 
-// Temporarily putting here? Put in d_com_inf_game.h?
-inline void dComIfGp_setStartStageDarkArea(s8 param_0) {
-    g_dComIfG_gameInfo.play.setStartStageDarkArea(param_0);
-}
-
 void dKy_darkworld_Area_set(char const* stageName, int roomNo) {
     dKyd_darkworldTblEntry* darkworldTblPtr = dKyd_darkworld_tbl_getp();
     u8 darkLv[1];

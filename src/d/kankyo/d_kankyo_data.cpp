@@ -142,7 +142,12 @@ static dKyd_darkworldTblEntry l_darkworld_tbl[34] = {
     {"D_SB10", FARON},         // Faron Woods Cave
 };
 
-// TODO: wrong type probably
+// TODO: wrong type
+// Only thing I can easily find: the byte is written to 8042DD4D and it seems to control the Y
+// pos(?) (essentially brightness) of the soft spotlight that is on wolf Link during twilight? Will
+// need more investigation before can be changed to appropriate type. Leaving this way since the
+// stageNames are already converted.
+
 /* 803A92A8-803A93C8 -00001 0120+00 1/1 0/0 0/0 .data            l_light_size_tbl */
 static dKyd_darkworldTblEntry l_light_size_tbl[36] = {
     {"R_SP01", 0},   // Ordon Interiors
@@ -218,14 +223,14 @@ static u8 l_maple_col[36] = {
 };
 
 /* 803A9434-803A94B8 006554 0084+00 1/1 0/0 0/0 .data            l_time_attribute */
-static light_schejule l_time_attribute[11] = {
+static dKyd_lightSchejule l_time_attribute[11] = {
     {0.0f, 75.0f, 5, 5},    {75.0f, 90.0f, 5, 0},   {90.0f, 105.0f, 0, 1},  {105.0f, 105.0f, 1, 1},
     {105.0f, 135.0f, 1, 2}, {135.0f, 240.0f, 2, 2}, {240.0f, 255.0f, 2, 3}, {255.0f, 270.0f, 3, 3},
     {270.0f, 285.0f, 3, 4}, {285.0f, 300.0f, 4, 5}, {300.0f, 360.0f, 5, 5},
 };
 
 /* 803A94B8-803A953C 0065D8 0084+00 1/1 0/0 0/0 .data            l_time_attribute_boss */
-static light_schejule l_time_attribute_boss[11] = {
+static dKyd_lightSchejule l_time_attribute_boss[11] = {
     {0.0f, 45.0f, 0, 1},    {45.0f, 90.0f, 1, 2},   {90.0f, 180.0f, 2, 3},  {180.0f, 225.0f, 3, 4},
     {225.0f, 270.0f, 4, 5}, {270.0f, 360.0f, 5, 0}, {360.0f, 360.0f, 5, 5}, {360.0f, 360.0f, 5, 5},
     {360.0f, 360.0f, 5, 5}, {360.0f, 360.0f, 5, 5}, {360.0f, 360.0f, 5, 5},
@@ -884,11 +889,11 @@ void* dKyd_dmvrbox_getp() {
     return l_vr_box_data;
 }
 
-light_schejule* dKyd_schejule_getp() {
+dKyd_lightSchejule* dKyd_schejule_getp() {
     return l_time_attribute;
 }
 
-light_schejule* dKyd_schejule_boss_getp() {
+dKyd_lightSchejule* dKyd_schejule_boss_getp() {
     return l_time_attribute_boss;
 }
 
