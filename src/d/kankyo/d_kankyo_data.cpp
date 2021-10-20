@@ -202,11 +202,11 @@ static dKyd_darkworldTblEntry l_light_size_tbl_tw[9] = {
     {"F_SP122", 3},  // Castle Town Gates
 };
 
-// Used in Fishing Hole
+// Used in Fishing Hole. Values are RGB. TODO: struct here?
 /* 803A9410-803A9434 006530 0024+00 1/1 0/0 0/0 .data            l_maple_col */
 static u8 l_maple_col[36] = {
     // leaf color blend major
-    0x56, 0x4B, 0x39,  // spring, rgb, TODO: need struct for this probably
+    0x56, 0x4B, 0x39,  // spring
     0x37, 0x28, 0x1E,  // summer
     0x6E, 0x32, 0x0F,  // fall
     0x64, 0x64, 0x80,  // winter
