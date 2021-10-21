@@ -321,7 +321,7 @@ SECTION_DATA static u8 l_field_data[832] = {
     0x00, 0x46, 0xEA, 0x60, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  //
 };
 
-/* 800569DC-800569E8 05131C 000C+00 0/0 1/1 0/0 .text dKyd_dmpalet_getp__Fv */
+/* 800569DC-800569E8 05131C 000C+00 0/0 1/1 0/0 .text            dKyd_dmpalet_getp__Fv */
 void* dKyd_dmpalet_getp() {
     return l_field_data;
 }
@@ -334,7 +334,7 @@ SECTION_DATA static u8 l_pselect_default[24] = {
     0x04, 0x04, 0x05, 0x06, 0x06, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 800569E8-800569F4 051328 000C+00 0/0 1/1 0/0 .text dKyd_dmpselect_getp__Fv */
+/* 800569E8-800569F4 051328 000C+00 0/0 1/1 0/0 .text            dKyd_dmpselect_getp__Fv */
 void* dKyd_dmpselect_getp() {
     return l_pselect_default;
 }
@@ -889,23 +889,23 @@ SECTION_DATA static u8 l_vr_box_data[378 + 2 /* padding */] = {
     0x00,
 };
 
-/* 80056A00-80056A0C 051340 000C+00 0/0 1/1 0/0 .text dKyd_dmvrbox_getp__Fv */
+/* 80056A00-80056A0C 051340 000C+00 0/0 1/1 0/0 .text            dKyd_dmvrbox_getp__Fv */
 void* dKyd_dmvrbox_getp() {
     return l_vr_box_data;
 }
 
-/* 80056A0C-80056A18 05134C 000C+00 0/0 1/1 0/0 .text dKyd_schejule_getp__Fv */
+/* 80056A0C-80056A18 05134C 000C+00 0/0 1/1 0/0 .text            dKyd_schejule_getp__Fv */
 dKyd_lightSchejule* dKyd_schejule_getp() {
     return l_time_attribute;
 }
 
-/* 80056A18-80056A24 051358 000C+00 0/0 1/1 0/0 .text dKyd_schejule_boss_getp__Fv */
+/* 80056A18-80056A24 051358 000C+00 0/0 1/1 0/0 .text            dKyd_schejule_boss_getp__Fv */
 dKyd_lightSchejule* dKyd_schejule_boss_getp() {
     return l_time_attribute_boss;
 }
 
 // Two _GXFogAdjTable back-to-back
-/* 803A9A94-803A9AC0 006BB4 0028+04 1/1 0/0 0/0 .data S_xfog_table_data */
+/* 803A9A94-803A9AC0 006BB4 0028+04 1/1 0/0 0/0 .data            S_xfog_table_data */
 static u16 S_xfog_table_data[20] = {
     260, 260, 270, 280, 290, 300, 310, 320, 330, 340,
     250, 260, 280, 320, 350, 400, 480, 550, 600, 800,
@@ -913,7 +913,7 @@ static u16 S_xfog_table_data[20] = {
 
 // tblIdx must be 0 or 1. Not sure when 1 is used, and didn't see a visible difference when manually
 // set it.
-/* 80056A24-80056A64 051364 0040+00 0/0 2/2 0/0 .text dKyd_xfog_table_set__FUc */
+/* 80056A24-80056A64 051364 0040+00 0/0 2/2 0/0 .text            dKyd_xfog_table_set__FUc */
 void dKyd_xfog_table_set(u8 tblIdx) {
     for (int i = 0; i < 10; i++) {
         u16 fogAdjTableEntry = *(S_xfog_table_data + ((tblIdx & 0xff) * 10) + i);
@@ -922,27 +922,27 @@ void dKyd_xfog_table_set(u8 tblIdx) {
     }
 }
 
-/* 80056A64-80056A70 0513A4 000C+00 0/0 1/1 0/0 .text dKyd_maple_col_getp__Fv */
+/* 80056A64-80056A70 0513A4 000C+00 0/0 1/1 0/0 .text            dKyd_maple_col_getp__Fv */
 void* dKyd_maple_col_getp() {
     return l_maple_col;
 }
 
-/* 80056A70-80056A7C 0513B0 000C+00 0/0 4/4 0/0 .text dKyd_darkworld_tbl_getp__Fv */
+/* 80056A70-80056A7C 0513B0 000C+00 0/0 4/4 0/0 .text            dKyd_darkworld_tbl_getp__Fv */
 dKyd_darkworldTblEntry* dKyd_darkworld_tbl_getp() {
     return l_darkworld_tbl;
 }
 
-/* 80056A7C-80056A88 0513BC 000C+00 0/0 1/1 0/0 .text dKyd_light_size_tbl_getp__Fv */
+/* 80056A7C-80056A88 0513BC 000C+00 0/0 1/1 0/0 .text            dKyd_light_size_tbl_getp__Fv */
 void* dKyd_light_size_tbl_getp() {
     return l_light_size_tbl;
 }
 
-/* 80056A88-80056A94 0513C8 000C+00 0/0 1/1 0/0 .text dKyd_light_tw_size_tbl_getp__Fv */
+/* 80056A88-80056A94 0513C8 000C+00 0/0 1/1 0/0 .text            dKyd_light_tw_size_tbl_getp__Fv */
 void* dKyd_light_tw_size_tbl_getp() {
     return l_light_size_tbl_tw;
 }
 
-/* 80056A94-80056AA8 0513D4 0014+00 0/0 1/1 0/0 .text dKyd_BloomInf_tbl_getp__Fi */
+/* 80056A94-80056AA8 0513D4 0014+00 0/0 1/1 0/0 .text            dKyd_BloomInf_tbl_getp__Fi */
 void* dKyd_BloomInf_tbl_getp(int tblIdx) {
     return &l_kydata_BloomInf_tbl[tblIdx * 0xC];
 }
