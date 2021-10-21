@@ -907,7 +907,7 @@ static u16 S_xfog_table_data[20] = {
 // set it.
 void dKyd_xfog_table_set(u8 tblIdx) {
     for (int i = 0; i < 10; i++) {
-        u16 fogAdjTableEntry = *(S_xfog_table_data + i + (tblIdx & 0xff) * 10);
+        u16 fogAdjTableEntry = *(S_xfog_table_data + ((tblIdx & 0xff) * 10) + i);
         ((u16*)g_env_light)[0x856 + i] = fogAdjTableEntry;
         // TODO: update this cast once g_env_light is broken up.
     }

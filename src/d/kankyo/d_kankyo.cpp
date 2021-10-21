@@ -3309,12 +3309,16 @@ BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
 }
 
 /**
- * @brief Returns FALSE if either (1) the room is never twilight or (2) the room can potentially
- * be twilight, but it currently must not be loaded in twilight. Otherwise returns TRUE.
+ * @brief Returns TRUE if a given room would be loaded in twilight. This function always behaves as
+ * if the player has not cleared any twilights.
+ *
+ * For example, Eldin Field will always return TRUE. Faron Woods on the other hand might return TRUE
+ * or FALSE depending on whether or not the player has completed Ordon Day 2.
  *
  * @param stageName stage name
  * @param roomNo room number
- * @return BOOL Returns FALSE if the room must not be loaded in twilight, else TRUE.
+ * @return BOOL Returns TRUE if a given room would be loaded in twilight. This function always
+ * behaves as if the player has not cleared any twilights.
  */
 BOOL dKy_darkworld_spot_check(char const* stageName, int roomNo) {
     dKyd_darkworldTblEntry* darkworldTblPtr = dKyd_darkworld_tbl_getp();
@@ -3338,9 +3342,9 @@ void dKy_darkworld_Area_set(char const* stageName, int roomNo) {
 
     for (int i = 0; i < 34; i++) {
         if (!strcmp(stageName, darkworldTblPtr[i].stageName)) {
-            int checkRes = dKy_F_SP121Check(stageName, roomNo, darkLv, i);
-            if (checkRes >= 0) {
-                if (checkRes == 0) {
+            int fsp121CheckResult = dKy_F_SP121Check(stageName, roomNo, darkLv, i);
+            if (fsp121CheckResult >= 0) {
+                if (fsp121CheckResult == 0) {
                     *darkLv = darkworldTblPtr[i].darkLv;
                 }
                 dComIfGp_setStartStageDarkArea(*darkLv);
