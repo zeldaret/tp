@@ -3217,6 +3217,7 @@ asm void dKy_darkworld_check() {
  * return of 1 means darkLv should be read from out_darkLv and 0 means it should be read from the
  * darkworld table.
  */
+/* 801AC5BC-801AC70C 1A6EFC 0150+00 3/3 0/0 0/0 .text dKy_F_SP121Check__FPCciPUci */
 static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, int tblIndex) {
     dKyd_darkworldTblEntry* darkworldTbl = dKyd_darkworld_tbl_getp();
     int result = 0;
@@ -3278,6 +3279,7 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, i
  * @return BOOL Returns TRUE if the room can be loaded as twilight and the player has not already
  * cleared it, else FALSE.
  */
+/* 801AC70C-801AC7E0 1A704C 00D4+00 0/0 2/2 0/0 .text dKy_darkworld_stage_check__FPCci */
 BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
     dKyd_darkworldTblEntry* darkworldTbl = dKyd_darkworld_tbl_getp();
     BOOL result = FALSE;
@@ -3320,6 +3322,7 @@ BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
  * @return BOOL Returns TRUE if a given room would be loaded in twilight. This function always
  * behaves as if the player has not cleared any twilights.
  */
+/* 801AC7E0-801AC870 1A7120 0090+00 0/0 1/1 0/0 .text dKy_darkworld_spot_check__FPCci */
 BOOL dKy_darkworld_spot_check(char const* stageName, int roomNo) {
     dKyd_darkworldTblEntry* darkworldTblPtr = dKyd_darkworld_tbl_getp();
     BOOL result = FALSE;
@@ -3336,6 +3339,7 @@ BOOL dKy_darkworld_spot_check(char const* stageName, int roomNo) {
     return result;
 }
 
+/* 801AC870-801AC918 1A71B0 00A8+00 0/0 1/1 0/0 .text dKy_darkworld_Area_set__FPCci */
 void dKy_darkworld_Area_set(char const* stageName, int roomNo) {
     dKyd_darkworldTblEntry* darkworldTblPtr = dKyd_darkworld_tbl_getp();
     u8 darkLv[1];
