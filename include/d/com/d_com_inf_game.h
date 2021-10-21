@@ -173,7 +173,7 @@ public:
     dAttention_c& getAttention() { return mAttention; }
     JKRArchive* getMsgDtArchive(int idx) { return mMsgDtArchive[idx]; }
     s16 getStartStagePoint() { return mStartStage.getPoint(); }
-    int getStartStageDarkArea() { return mStartStage.getDarkArea(); }
+    s8 getStartStageDarkArea() { return mStartStage.getDarkArea(); }
     void setStartStageDarkArea(s8 darkArea) { mStartStage.setDarkArea(darkArea); }
     void* getPlayerPtr(int ptrIdx) { return mPlayerPtr[ptrIdx]; }
     JKRArchive* getMain2DArchive() { return mMain2DArchive; }

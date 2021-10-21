@@ -9,7 +9,7 @@ enum dKyd_DARKLV {
     ELDIN = 1,
     LANAYRU = 2,
     TEST = 5,         // Only used with nonexistent test stages
-    UNCLEARABLE = 6,  // Palace of Twilight stages
+    UNCLEARABLE = 6,  // Palace of Twilight stages use this
     ALWAYS_DARK = 8,  // Unused. Forces Twilight
 };
 
