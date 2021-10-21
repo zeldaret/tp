@@ -759,6 +759,10 @@ inline s8 dComIfGp_roomControl_getStayNo() {
     return dStage_roomControl_c::getStayNo();
 }
 
+inline void dComIfGp_setStartStage(dStage_startStage_c* pStartStage) {
+    g_dComIfG_gameInfo.play.setStartStage(pStartStage);
+}
+
 inline s8 dComIfGp_getStartStageRoomNo() {
     return g_dComIfG_gameInfo.play.getStartStageRoomNo();
 }

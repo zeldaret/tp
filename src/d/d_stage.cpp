@@ -3,8 +3,8 @@
 // Translation Unit: d/d_stage
 //
 
-#include "d/d_stage.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_stage.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
@@ -546,8 +546,8 @@ static asm int dStage_RoomKeepDoorInit(dStage_dt_c* param_0, void* param_1, int 
 #pragma pop
 #endif
 
-void dStage_startStage_c::set(const char* i_Stage, s8 i_RoomNo, s16 i_Point, s8 i_Layer) {
-    strcpy(mStage, i_Stage);
+void dStage_startStage_c::set(const char* i_Name, s8 i_RoomNo, s16 i_Point, s8 i_Layer) {
+    strcpy(mName, i_Name);
     mRoomNo = i_RoomNo;
     mPoint = i_Point;
     mLayer = i_Layer;

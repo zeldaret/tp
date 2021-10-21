@@ -3260,7 +3260,7 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, i
     }
 
     // Prevent twilight if stage depends on Faron Twilight cleared status (Faron Woods, Coro's
-    // Lantern Shop, Faron Woods Cave) but you haven't finished Ordon Day 2.
+    // Lantern Shop, Faron Woods Cave) but haven't finished Ordon Day 2.
     if (darkworldTbl[tblIndex].darkLv == FARON && !dComIfGs_isEventBit(0x4510)) {
         result = -1;
     }

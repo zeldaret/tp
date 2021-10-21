@@ -549,15 +549,16 @@ private:
 class dStage_startStage_c {
 public:
     void set(const char*, s8, s16, s8);
-    inline char* getName() { return mStage; }
-    s8 getLayer() { return mLayer; }
+    char* getName() const { return (char*)mName; }
+    s16 getPoint() const { return mPoint; }
     s8 getRoomNo() const { return mRoomNo; }
-    s16 getPoint() { return mPoint; }
-    s8 getDarkArea() { return mDarkArea; }
-    void setDarkArea(s8 param_0) { mDarkArea = param_0; }
+    s8 getLayer() const { return mLayer; }
+    void setLayer(s8 layer) { mLayer = layer; }
+    s8 getDarkArea() const { return mDarkArea; }
+    void setDarkArea(s8 darkArea) { mDarkArea = darkArea; }
 
 private:
-    /* 0x0 */ char mStage[8];
+    /* 0x0 */ char mName[8];
     /* 0x8 */ s16 mPoint;
     /* 0xA */ s8 mRoomNo;
     /* 0xB */ s8 mLayer;

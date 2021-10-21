@@ -118,7 +118,7 @@ static dKyd_darkworldTblEntry l_darkworld_tbl[34] = {
     {"T_SASA1", TEST},         // UNUSED - Sasaki Test 1
     {"F_SP105", FARON},        // UNUSED - L1 Forest Field
     {"F_SP05", TEST},          // UNUSED - Statue Forest
-    {"R_SP107", LANAYRU},      // Twilight Hyrule Castle ?What is this? Bad name?
+    {"R_SP107", LANAYRU},      // Twilight Hyrule Castle (What is this? Better name?)
     {"F_SP108", FARON},        // Faron Woods
     {"R_SP108", FARON},        // Coro's Lantern Shop
     {"TEST11", TEST},          // UNUSED - Local Map C
@@ -202,7 +202,7 @@ static dKyd_darkworldTblEntry l_light_size_tbl_tw[9] = {
     {"F_SP122", 3},  // Castle Town Gates
 };
 
-// Used in Fishing Hole. Values are RGB. TODO: struct here?
+// Maple color. Used in Fishing Hole. Values are RGB. TODO: struct here?
 /* 803A9410-803A9434 006530 0024+00 1/1 0/0 0/0 .data            l_maple_col */
 static u8 l_maple_col[36] = {
     // leaf color blend major
@@ -328,7 +328,7 @@ void* dKyd_dmpalet_getp() {
 /* ############################################################################################## */
 /* 803A987C-803A9894 00699C 0018+00 1/1 0/0 0/0 .data            l_pselect_default */
 SECTION_DATA static u8 l_pselect_default[24] = {
-    // 0xc long each; 2 of them here
+    // 0xC long each; 2 of them here
     0x00, 0x00, 0x01, 0x02, 0x02, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x04, 0x04, 0x05, 0x06, 0x06, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -340,7 +340,7 @@ void* dKyd_dmpselect_getp() {
 /* ############################################################################################## */
 /* 803A9894-803A9918 0069B4 0082+02 1/1 0/0 0/0 .data            l_envr_default */
 SECTION_DATA static u8 l_envr_default[130 + 2 /* padding */] = {
-    // 0x41 (65 dec) long, all u8's?; 2 of these back-to-back
+    // 0x15 (21 dec) long each; All u8's? 2 of these.
     0x00,
     0x01,
     0x02,
@@ -484,7 +484,7 @@ void* dKyd_dmenvr_getp() {
 /* ############################################################################################## */
 /* 803A9918-803A9A94 006A38 017A+02 1/1 0/0 0/0 .data            l_vr_box_data */
 SECTION_DATA static u8 l_vr_box_data[378 + 2 /* padding */] = {
-    // 0x15 (21 dec) long each; All u8's?
+    // 0x15 (21 dec) long each; All u8's? 18 of these.
     // 0
     0x2F,
     0x1A,
@@ -903,10 +903,13 @@ static u16 S_xfog_table_data[20] = {
     250, 260, 280, 320, 350, 400, 480, 550, 600, 800,
 };
 
-void dKyd_xfog_table_set(u8 param_0) {
+// tblIdx must be 0 or 1. Not sure when 1 is used, and didn't see a visible difference when manually
+// set it.
+void dKyd_xfog_table_set(u8 tblIdx) {
     for (int i = 0; i < 10; i++) {
-        u16 fogAdjTableEntry = *(S_xfog_table_data + i + (param_0 & 0xff) * 10);
+        u16 fogAdjTableEntry = *(S_xfog_table_data + i + (tblIdx & 0xff) * 10);
         ((u16*)g_env_light)[0x856 + i] = fogAdjTableEntry;
+        // TODO: update this cast once g_env_light is broken up.
     }
 }
 
@@ -926,8 +929,8 @@ void* dKyd_light_tw_size_tbl_getp() {
     return l_light_size_tbl_tw;
 }
 
-void* dKyd_BloomInf_tbl_getp(int param_0) {
-    return &l_kydata_BloomInf_tbl[param_0 * 0xc];
+void* dKyd_BloomInf_tbl_getp(int tblIdx) {
+    return &l_kydata_BloomInf_tbl[tblIdx * 0xC];
 }
 
 /* 8037A1C0-8037A1C0 006820 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
