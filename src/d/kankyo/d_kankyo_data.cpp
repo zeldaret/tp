@@ -188,7 +188,7 @@ static dKyd_darkworldTblEntry l_light_size_tbl[36] = {
     {"D_SB10", 0},   // Faron Woods Cave
 };
 
-// TODO: wrong type probably
+// TODO: wrong type
 /* 803A93C8-803A9410 -00001 0048+00 1/1 0/0 0/0 .data            l_light_size_tbl_tw */
 static dKyd_darkworldTblEntry l_light_size_tbl_tw[9] = {
     {"F_SP109", 2},  // Kakariko Village
