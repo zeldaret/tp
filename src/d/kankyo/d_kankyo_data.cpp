@@ -479,7 +479,7 @@ SECTION_DATA static u8 l_envr_default[130 + 2 /* padding */] = {
     0x00,
 };
 
-/* 800569F4-80056A00 051334 000C+00 0/0 1/1 0/0 .text dKyd_dmenvr_getp__Fv */
+/* 800569F4-80056A00 051334 000C+00 0/0 1/1 0/0 .text            dKyd_dmenvr_getp__Fv */
 void* dKyd_dmenvr_getp() {
     return l_envr_default;
 }
