@@ -22,9 +22,9 @@ struct dKyd_darkworldTblEntry {
 // Invented name; adjust as needed in the future.
 // Notes (needs more investigation):
 // startTime and endTime are in the range 0 to 360, which is the same as the current time of day.
-// l_time_attribute and l_time_attribute_boss are arrays of dKyd_lightSchedjule, with their times
-// set up such that the current time of day will fall in the range of one light_schejule. For
-// exmaple, if the current time is 110.0f (7:20 AM), then the dKyd_lightSchedjule {105.0f, 135.0f,
+// l_time_attribute and l_time_attribute_boss are arrays of `dKyd_lightSchedjule` with their times
+// set up such that the current time of day will fall in the range of one dKyd_lightSchedjule. For
+// example, if the current time is 110.0f (7:20 AM), then the dKyd_lightSchedjule {105.0f, 135.0f,
 // 1, 2} would be selected. If the time was 105.0f, we would use light 1. If the time was 135.0f, we
 // would use light 2. Since 110.0f is closer to 105.0f than 135.0f, we get a blend of lights 1 and 2
 // which is mostly 1. Blending the lights over time is how we get a smooth day-night transition.

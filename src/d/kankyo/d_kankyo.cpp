@@ -405,8 +405,8 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-// TODO: Temporarily putting here. There are some issues in `d_com_inf_game.h` which need to be
-// sorted out before we can correctly use this function from there.
+// TODO: Temporarily putting here. There is said to be some issues in `d_com_inf_game.h` which need
+// to be sorted out before we can correctly use this function from there.
 inline BOOL dComIfGs_isEventBit(u16 id) {
     return g_dComIfG_gameInfo.info.getSavedata().getEvent().isEventBit(id);
 }
@@ -3321,7 +3321,7 @@ BOOL dKy_darkworld_spot_check(char const* stageName, int roomNo) {
     BOOL result = FALSE;
 
     for (int i = 0; i < 34; i++) {
-        if (!strcmp(stageName, (*darkworldTblPtr).stageName) &&
+        if (!strcmp(stageName, darkworldTblPtr->stageName) &&
             dKy_F_SP121Check(stageName, roomNo, NULL, i) >= 0) {
             result = TRUE;
             break;
