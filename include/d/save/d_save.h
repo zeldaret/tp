@@ -1,9 +1,10 @@
 #ifndef D_SAVE_D_SAVE_H
 #define D_SAVE_D_SAVE_H
 
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/src/printf.h"
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/src/string.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
-#include "msl_c/string.h"
 
 #define DEFAULT_SELECT_ITEM_INDEX 0
 #define MAX_SELECT_ITEM 4

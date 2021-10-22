@@ -11,25 +11,10 @@
 // Types:
 //
 
-struct _GXTlutFmt {};
-
-struct _GXTlut {};
-
-struct JUTTransparency {};
-
 struct JKRArchive {};
 
 struct JUTResReference {
     /* 802DE120 */ void getResource(void const*, u32, JKRArchive*);
-};
-
-struct JUTPalette {
-    /* 802DE91C */ void storeTLUT(_GXTlut, _GXTlutFmt, JUTTransparency, u16, void*);
-};
-
-struct JUTNameTab {
-    /* 802DEA58 */ void getIndex(char const*) const;
-    /* 802DEAF8 */ void getName(u16) const;
 };
 
 struct J3DTransformInfo {};
@@ -406,7 +391,8 @@ SECTION_DATA extern void* __vt__16J2DAnmTexPattern[4] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DAnmTexPattern::~J2DAnmTexPattern() {
+extern "C" asm void __dt__16J2DAnmTexPatternFv() {
+    // asm J2DAnmTexPattern::~J2DAnmTexPattern() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnimation/__dt__16J2DAnmTexPatternFv.s"
 }
@@ -434,7 +420,8 @@ SECTION_DATA extern void* __vt__17J2DAnmVtxColorKey[5] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DAnmVtxColorKey::~J2DAnmVtxColorKey() {
+extern "C" asm void __dt__17J2DAnmVtxColorKeyFv() {
+    // asm J2DAnmVtxColorKey::~J2DAnmVtxColorKey() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnimation/__dt__17J2DAnmVtxColorKeyFv.s"
 }
@@ -454,7 +441,8 @@ SECTION_DATA extern void* __vt__18J2DAnmVtxColorFull[5] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DAnmVtxColorFull::~J2DAnmVtxColorFull() {
+extern "C" asm void __dt__18J2DAnmVtxColorFullFv() {
+    // asm J2DAnmVtxColorFull::~J2DAnmVtxColorFull() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnimation/__dt__18J2DAnmVtxColorFullFv.s"
 }
@@ -492,7 +480,8 @@ SECTION_DATA extern void* __vt__11J2DAnmColor[5] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DAnmColorFull::~J2DAnmColorFull() {
+extern "C" asm void __dt__15J2DAnmColorFullFv() {
+    // asm J2DAnmColorFull::~J2DAnmColorFull() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnimation/__dt__15J2DAnmColorFullFv.s"
 }
@@ -533,7 +522,8 @@ SECTION_DATA extern void* __vt__19J2DAnmTransformFull[5] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DAnmTransformFull::~J2DAnmTransformFull() {
+extern "C" asm void __dt__19J2DAnmTransformFullFv() {
+    // asm J2DAnmTransformFull::~J2DAnmTransformFull() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnimation/__dt__19J2DAnmTransformFullFv.s"
 }

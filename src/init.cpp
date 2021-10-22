@@ -33,7 +33,6 @@ SECTION_INIT void __init_registers();
 SECTION_INIT void __init_data();
 SECTION_INIT void __init_hardware();
 SECTION_INIT void __flush_cache();
-SECTION_INIT void memset();
 SECTION_INIT void __fill_mem();
 SECTION_INIT void TRK_memset();
 SECTION_INIT void TRK_memcpy();
@@ -147,7 +146,7 @@ SECTION_INIT asm void __flush_cache() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-SECTION_INIT asm void memset() {
+SECTION_INIT asm void* memset(void*, int, u32) {
     nofralloc
 #include "asm/init/memset.s"
 }

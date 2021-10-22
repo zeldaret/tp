@@ -8,7 +8,6 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 #include "f_op/f_op_actor_mng.h"
-#include "msl_c/string.h"
 
 struct stage_vrboxcol_info_class {};
 

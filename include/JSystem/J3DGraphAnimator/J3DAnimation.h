@@ -3,7 +3,7 @@
 
 #include "JSystem/J3DGraphAnimator/J3DMaterialAttach.h"
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
-#include "dolphin/gx/GXTexture.h"
+#include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 
 class J3DAnmBase {

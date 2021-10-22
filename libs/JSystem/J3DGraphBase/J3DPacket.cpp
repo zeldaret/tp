@@ -5,12 +5,12 @@
 
 #include "JSystem/J3DGraphBase/J3DPacket.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/src/string.h"
 #include "dol2asm.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/os/OSCache.h"
 #include "dolphin/types.h"
 #include "global.h"
-#include "msl_c/string.h"
 
 //
 // Types:

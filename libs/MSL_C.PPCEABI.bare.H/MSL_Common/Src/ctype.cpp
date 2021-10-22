@@ -11,7 +11,6 @@
 // Forward References:
 //
 
-extern "C" void tolower();
 extern "C" extern u8 __upper_map[256];
 
 //
@@ -67,7 +66,7 @@ SECTION_DATA extern u8 __lower_map[256] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void tolower() {
+asm int tolower(int) {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/ctype/tolower.s"
 }

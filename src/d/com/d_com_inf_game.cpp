@@ -9,7 +9,6 @@
 #include "d/meter/d_meter2_info.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "msl_c/string.h"
 
 //
 // Types:
