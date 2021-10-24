@@ -11,116 +11,7 @@
 // Types:
 //
 
-struct _GXTlut {};
-
-struct ResTIMG {};
-
-struct JUtility {
-    struct TColor {
-        /* 80193960 */ TColor();
-    };
-};
-
-struct JUTPalette {};
-
-struct JUTTexture {
-    /* 802DE480 */ void storeTIMG(ResTIMG const*, JUTPalette*, _GXTlut);
-};
-
 struct J3DTextureSRTInfo {};
-
-struct J2DTexMtx {};
-
-struct J2DTexGenBlock {
-    /* 802EB510 */ void initialize();
-    /* 802EB570 */ void setGX();
-    /* 802EB620 */ ~J2DTexGenBlock();
-    /* 802EB6A4 */ void setTexMtx(u32, J2DTexMtx&);
-    /* 802EB7E0 */ void getTexMtx(u32, J2DTexMtx&);
-};
-
-struct J2DTexCoord {
-    /* 802EB260 */ J2DTexCoord();
-};
-
-struct J2DTevBlock8 {
-    /* 802EED64 */ J2DTevBlock8();
-};
-
-struct J2DTevBlock4 {
-    /* 802ED8BC */ J2DTevBlock4();
-};
-
-struct J2DTevBlock2 {
-    /* 802EC5B8 */ J2DTevBlock2();
-};
-
-struct J2DTevBlock16 {
-    /* 802F01E4 */ J2DTevBlock16();
-};
-
-struct J2DTevBlock1 {
-    /* 802EB88C */ J2DTevBlock1();
-};
-
-struct J2DGXColorS10 {};
-
-struct J2DTevBlock {
-    /* 802EB184 */ ~J2DTevBlock();
-    /* 802EB1D0 */ void setGX();
-    /* 802EB1D4 */ void setTevKColor(u32, JUtility::TColor);
-    /* 802EB1D8 */ void setTevColor(u32, J2DGXColorS10);
-    /* 802EB1DC */ void setTexNo(u32, u16);
-};
-
-struct J2DPEBlock {
-    /* 802F17FC */ void initialize();
-    /* 802F1840 */ void setGX();
-};
-
-struct J2DIndTexOrder {
-    /* 802EB378 */ J2DIndTexOrder();
-};
-
-struct J2DIndTexMtx {
-    /* 802EB2E4 */ ~J2DIndTexMtx();
-    /* 802EB320 */ J2DIndTexMtx();
-};
-
-struct J2DIndTexCoordScale {
-    /* 802EB290 */ ~J2DIndTexCoordScale();
-    /* 802EB2CC */ J2DIndTexCoordScale();
-};
-
-struct J2DIndBlockNull {
-    /* 802EB1E0 */ void setGX();
-    /* 802EB1E4 */ void getType();
-    /* 802EB1F0 */ ~J2DIndBlockNull();
-};
-
-struct J2DIndBlock {
-    /* 802EA18C */ bool getIndTexCoordScale(u32);
-    /* 802EA194 */ bool getIndTexMtx(u32);
-    /* 802EA19C */ bool getIndTexOrder(u32);
-    /* 802EA1A4 */ bool getIndTexStageNum() const;
-    /* 802EB13C */ ~J2DIndBlock();
-    /* 802EB1CC */ void setGX();
-    /* 802EB24C */ void initialize();
-    /* 802EB250 */ void setIndTexStageNum(u8);
-    /* 802EB254 */ void setIndTexOrder(u32, J2DIndTexOrder);
-    /* 802EB258 */ void setIndTexMtx(u32, J2DIndTexMtx);
-    /* 802EB25C */ void setIndTexCoordScale(u32, J2DIndTexCoordScale);
-};
-
-struct J2DColorChan {
-    /* 802EB280 */ J2DColorChan();
-};
-
-struct J2DColorBlock {
-    /* 802EB0F4 */ ~J2DColorBlock();
-    /* 802EB394 */ void initialize();
-    /* 802EB424 */ void setGX();
-};
 
 //
 // Forward References:
@@ -280,7 +171,8 @@ asm J2DMaterial::J2DMaterial() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DMaterial::~J2DMaterial() {
+extern "C" asm void __dt__11J2DMaterialFv() {
+    // asm J2DMaterial::~J2DMaterial() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterial/__dt__11J2DMaterialFv.s"
 }
@@ -459,7 +351,7 @@ void J2DTevBlock::setTexNo(u32 param_0, u16 param_1) {
 }
 
 /* 802EB1E0-802EB1E4 2E5B20 0004+00 1/0 0/0 0/0 .text            setGX__15J2DIndBlockNullFv */
-void J2DIndBlockNull::setGX() {
+extern "C" void setGX__15J2DIndBlockNullFv() {
     /* empty function */
 }
 
@@ -484,7 +376,7 @@ asm J2DIndBlockNull::~J2DIndBlockNull() {
 #pragma pop
 
 /* 802EB24C-802EB250 2E5B8C 0004+00 2/0 0/0 0/0 .text            initialize__11J2DIndBlockFv */
-void J2DIndBlock::initialize() {
+extern "C" void initialize__11J2DIndBlockFv() {
     /* empty function */
 }
 

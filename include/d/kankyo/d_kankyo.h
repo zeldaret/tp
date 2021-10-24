@@ -7,7 +7,7 @@
 #include "JSystem/JParticle/JPAParticle.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/gx/GXTexture.h"
+#include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
 
@@ -326,10 +326,6 @@ public:
 private:
     /* 0x10 */ u8 field_0x10[8];
     /* 0x18 */ EVIL_EFF field_0x18[2000];
-};
-
-struct GXFogAdjTable {
-    u16 field_0x0[10];
 };
 
 class fopAc_ac_c;

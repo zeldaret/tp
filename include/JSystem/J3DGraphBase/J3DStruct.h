@@ -2,7 +2,7 @@
 #define J3DSTRUCT_H
 
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/gx/GXTexture.h"
+#include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 
 class J3DLightInfo {

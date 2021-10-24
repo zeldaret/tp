@@ -11,72 +11,12 @@
 // Types:
 //
 
-struct JKRArchive {};
-
 struct JUTResReference {
     /* 802DE120 */ void getResource(void const*, u32, JKRArchive*);
 };
 
-struct J2DTexMtx {
-    /* 802E9CC4 */ void calc();
-};
-
-struct J2DTevStageInfo {};
-
-struct J2DTevStage {
-    /* 802F4110 */ J2DTevStage(J2DTevStageInfo const&);
-    /* 802F1940 */ J2DTevStage();
-    /* 802F19A8 */ void setTevStageInfo(J2DTevStageInfo const&);
-};
-
 struct J2DScreen {
     static u8 mDataManage[4 + 4 /* padding */];
-};
-
-struct J2DResReference {
-    /* 8030CF10 */ void getResReference(u16) const;
-    /* 8030CF44 */ void getName(u16) const;
-};
-
-struct J2DMaterial {
-    /* 802EA410 */ void createTevBlock(int, bool);
-    /* 802EA5C4 */ void createIndBlock(int, bool);
-};
-
-struct J2DMaterialBlock {};
-
-struct J2DMaterialFactory {
-    /* 802F2AD0 */ J2DMaterialFactory(J2DMaterialBlock const&);
-    /* 802F2C94 */ void countStages(int) const;
-    /* 802F2D1C */ void create(J2DMaterial*, int, u32, J2DResReference*, J2DResReference*,
-                               JKRArchive*) const;
-    /* 802F362C */ void newMatColor(int, int) const;
-    /* 802F36CC */ void newColorChanNum(int) const;
-    /* 802F3704 */ void newColorChan(int, int) const;
-    /* 802F3758 */ void newTexGenNum(int) const;
-    /* 802F3790 */ void newTexCoord(int, int) const;
-    /* 802F3804 */ void newTexMtx(int, int) const;
-    /* 802F38E0 */ void newCullMode(int) const;
-    /* 802F3920 */ void newTexNo(int, int) const;
-    /* 802F3968 */ void newFontNo(int) const;
-    /* 802F39A8 */ void newTevOrder(int, int) const;
-    /* 802F3A1C */ void newTevColor(int, int) const;
-    /* 802F3AB4 */ void newTevKColor(int, int) const;
-    /* 802F3B54 */ void newTevStageNum(int) const;
-    /* 802F3B8C */ void newTevStage(int, int) const;
-    /* 802F3BEC */ void newTevSwapModeTable(int, int) const;
-    /* 802F3C88 */ void newIndTexStageNum(int) const;
-    /* 802F3CB8 */ void newIndTexOrder(int, int) const;
-    /* 802F3D20 */ void newIndTexMtx(int, int) const;
-    /* 802F3E24 */ void newIndTevStage(int, int) const;
-    /* 802F3F78 */ void newIndTexCoordScale(int, int) const;
-    /* 802F3FE0 */ void newAlphaComp(int) const;
-    /* 802F405C */ void newBlend(int) const;
-    /* 802F40D8 */ void newDither(int) const;
-};
-
-struct J2DDataManage {
-    /* 8030CE18 */ void get(char const*);
 };
 
 //

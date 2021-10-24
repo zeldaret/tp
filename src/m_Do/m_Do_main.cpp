@@ -17,7 +17,6 @@
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_dvd_thread.h"
 #include "m_Do/m_Do_graphic.h"
-#include "msl_c/string.h"
 
 //
 // Types:

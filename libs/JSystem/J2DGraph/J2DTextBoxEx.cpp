@@ -8,145 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct _GXCullMode {};
-
-struct ResTIMG {};
-
-struct ResFONT {};
-
-struct JUtility {
-    struct TColor {};
-};
-
-struct JUTFont {};
-
-struct JSUStreamSeekFrom {};
-
-struct JSURandomInputStream {
-    /* 802DC458 */ void peek(void*, s32);
-    /* 802DC4DC */ void seek(s32, JSUStreamSeekFrom);
-};
-
-struct JSUInputStream {
-    /* 802DC298 */ void read(void*, s32);
-};
-
-struct J2DTextBoxVBinding {};
-
-struct J2DTextBoxHBinding {};
-
-struct J2DAnmTexPattern {};
-
-struct J2DAnmVisibilityFull {
-    /* 8030C048 */ void getVisibility(u16, u8*) const;
-};
-
-struct J2DAnmBase {};
-
-struct J2DAnmTevRegKey {};
-
-struct J2DAnmTextureSRTKey {};
-
-struct J2DAnmVtxColor {};
-
-struct J2DAnmTransform {};
-
-struct J2DPane {
-    /* 80053BC0 */ void calcMtx();
-    /* 80053C00 */ void makeMatrix(f32, f32);
-    /* 802F7540 */ void makeMatrix(f32, f32, f32, f32);
-    /* 802F6F60 */ void move(f32, f32);
-    /* 802F6FB4 */ void add(f32, f32);
-    /* 802F72E0 */ void search(u64);
-    /* 802F7388 */ void searchUserInfo(u64);
-    /* 802F7430 */ void isUsed(ResTIMG const*);
-    /* 802F74B8 */ void isUsed(ResFONT const*);
-    /* 802F7680 */ void setCullBack(_GXCullMode);
-    /* 802F7B18 */ void makePaneExStream(J2DPane*, JSURandomInputStream*);
-    /* 802F7EF4 */ void setAnimation(J2DAnmBase*);
-    /* 802F8004 */ void clearAnmTransform();
-    /* 802F8080 */ void animationTransform(J2DAnmTransform const*);
-    /* 802F8118 */ void setVisibileAnimation(J2DAnmVisibilityFull*);
-    /* 802F81A0 */ void setVtxColorAnimation(J2DAnmVtxColor*);
-    /* 802F8228 */ void animationPane(J2DAnmTransform const*);
-    /* 802F83D0 */ void setAnimationVF(J2DAnmVisibilityFull*);
-    /* 802F83FC */ void setAnimationVC(J2DAnmVtxColor*);
-    /* 802F8474 */ void update();
-};
-
-struct J2DTevStage {};
-
-struct J2DAnmColor {};
-
-struct J2DMaterial {
-    /* 802EA38C */ void setGX();
-    /* 802EAB0C */ void setAnimation(J2DAnmTevRegKey*);
-    /* 802EAA2C */ void setAnimation(J2DAnmTexPattern*);
-    /* 802EA94C */ void setAnimation(J2DAnmTextureSRTKey*);
-    /* 802EA89C */ void setAnimation(J2DAnmColor*);
-};
-
-struct J2DTextBoxEx {
-    struct stage_enum {};
-
-    /* 80256024 */ void getMaterial() const;
-    /* 8030890C */ void setAnimation(J2DAnmTexPattern*);
-    /* 803088B4 */ void setAnimation(J2DAnmColor*);
-    /* 80308938 */ void setAnimation(J2DAnmTevRegKey*);
-    /* 80256044 */ void setAnimation(J2DAnmTransform*);
-    /* 80308A48 */ void setAnimation(J2DAnmVtxColor*);
-    /* 80308A4C */ void setAnimation(J2DAnmBase*);
-    /* 803088E0 */ void setAnimation(J2DAnmTextureSRTKey*);
-    /* 80308964 */ void setAnimation(J2DAnmVisibilityFull*);
-    /* 803071E4 */ J2DTextBoxEx(J2DPane*, JSURandomInputStream*, u32, J2DMaterial*);
-    /* 8030751C */ ~J2DTextBoxEx();
-    /* 803075AC */ void drawSelf(f32, f32, f32 (*)[3][4]);
-    /* 803078AC */ void draw(f32, f32);
-    /* 80307AF0 */ void draw(f32, f32, f32, J2DTextBoxHBinding);
-    /* 80307D5C */ void setFont(JUTFont*);
-    /* 80307DC0 */ void getFont() const;
-    /* 80307E0C */ void setTevOrder(bool);
-    /* 80307EF0 */ void setTevStage(bool);
-    /* 80307F94 */ void setStage(J2DTevStage*, J2DTextBoxEx::stage_enum);
-    /* 8030823C */ void setBlack(JUtility::TColor);
-    /* 803082C4 */ void setWhite(JUtility::TColor);
-    /* 8030834C */ void setBlackWhite(JUtility::TColor, JUtility::TColor);
-    /* 803084CC */ void getBlackWhite(JUtility::TColor*, JUtility::TColor*) const;
-    /* 80308668 */ void isSetBlackWhite(JUtility::TColor, JUtility::TColor) const;
-    /* 803086FC */ void getBlack() const;
-    /* 8030875C */ void getWhite() const;
-    /* 803087BC */ void setAlpha(u8);
-    /* 803087DC */ void setCullBack(_GXCullMode);
-    /* 803089EC */ void setCullBack(bool);
-    /* 80308810 */ void rewriteAlpha();
-    /* 80308828 */ void isUsed(ResFONT const*);
-    /* 80308A28 */ void isUsed(ResTIMG const*);
-    /* 8030896C */ void animationPane(J2DAnmTransform const*);
-};
-
-struct J2DTextBox {
-    /* 802FF660 */ J2DTextBox();
-    /* 803001E0 */ ~J2DTextBox();
-    /* 80300870 */ void setConnectParent(bool);
-    /* 803008E8 */ void drawSelf(f32, f32);
-    /* 80300AF8 */ void resize(f32, f32);
-    /* 80300C68 */ s32 getTypeID() const;
-};
-
-struct J2DPrint {
-    /* 802F4394 */ J2DPrint(JUTFont*, f32, f32, JUtility::TColor, JUtility::TColor,
-                            JUtility::TColor, JUtility::TColor);
-    /* 802F4420 */ ~J2DPrint();
-    /* 802F475C */ void locate(f32, f32);
-    /* 802F4778 */ void print(f32, f32, u8, char const*, ...);
-    /* 802F4828 */ void printReturn(char const*, f32, f32, J2DTextBoxHBinding, J2DTextBoxVBinding,
-                                    f32, f32, u8);
-};
-
-//
 // Forward References:
 //
 
@@ -232,16 +93,6 @@ extern "C" void drawSelf__10J2DTextBoxFff();
 extern "C" void resize__10J2DTextBoxFff();
 extern "C" s32 getTypeID__10J2DTextBoxCFv();
 extern "C" void getVisibility__20J2DAnmVisibilityFullCFUsPUc();
-extern "C" void PSMTXIdentity();
-extern "C" void PSMTXConcat();
-extern "C" void GXSetVtxDesc();
-extern "C" void GXClearVtxDesc();
-extern "C" void GXSetChanMatColor();
-extern "C" void GXSetNumIndStages();
-extern "C" void GXSetTevDirect();
-extern "C" void GXSetTevSwapModeTable();
-extern "C" void GXLoadPosMtxImm();
-extern "C" void GXSetCurrentMtx();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_25();
@@ -334,7 +185,8 @@ asm J2DTextBoxEx::J2DTextBoxEx(J2DPane* param_0, JSURandomInputStream* param_1, 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DTextBoxEx::~J2DTextBoxEx() {
+extern "C" asm void __dt__12J2DTextBoxExFv() {
+    // asm J2DTextBoxEx::~J2DTextBoxEx() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DTextBoxEx/__dt__12J2DTextBoxExFv.s"
 }

@@ -20,7 +20,6 @@
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_lib.h"
 #include "msl_c/math.h"
-#include "msl_c/string.h"
 
 //
 // Types:

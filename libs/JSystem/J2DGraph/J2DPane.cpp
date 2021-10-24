@@ -113,7 +113,6 @@ extern "C" void setScissor__14J2DGrafContextFv();
 extern "C" void func_802E90C0();
 extern "C" void func_802E987C();
 extern "C" void get__13J2DDataManageFP14JSUInputStream();
-extern "C" void GXSetCullMode();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();

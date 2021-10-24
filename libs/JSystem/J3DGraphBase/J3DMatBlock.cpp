@@ -11,18 +11,6 @@
 // Types:
 //
 
-struct _GXTevKColorID {};
-
-struct _GXIndTexStageID {};
-
-struct _GXIndTexScale {};
-
-struct _GXIndTexMtxID {};
-
-struct _GXFogType {};
-
-struct _GXFogAdjTable {};
-
 struct J3DSys {
     static u8 sTexCoordScaleTable[64 + 4 /* padding */];
 };
