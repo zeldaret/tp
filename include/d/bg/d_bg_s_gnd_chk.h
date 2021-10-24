@@ -8,7 +8,6 @@
 class dBgS_GndChk : public cBgS_GndChk {
 public:
     /* 8007757C */ dBgS_GndChk();
-    virtual void temp();  // temp to build OK
     /* 800775F0 */ virtual ~dBgS_GndChk();
 
 private:
@@ -16,7 +15,6 @@ private:
 };  // Size = 0x54
 
 class dBgS_LinkGndChk : dBgS_GndChk {
-    virtual void temp();  // temp to build OK
     /* 80140EB8 */ virtual ~dBgS_LinkGndChk();
 };
 

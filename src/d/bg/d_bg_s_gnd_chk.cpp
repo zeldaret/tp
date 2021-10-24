@@ -197,7 +197,8 @@ asm dBgS_GndChk::dBgS_GndChk() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_GndChk::~dBgS_GndChk() {
+// asm dBgS_GndChk::~dBgS_GndChk() {
+extern "C" asm void __dt__11dBgS_GndChkFv() {
     nofralloc
 #include "asm/d/bg/d_bg_s_gnd_chk/__dt__11dBgS_GndChkFv.s"
 }

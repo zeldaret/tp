@@ -7,21 +7,26 @@
 #include "d/bg/d_bg_s_chk.h"
 #include "dolphin/types.h"
 
-class dBgS_SplGrpChk {
+class dBgS_SplGrpChk : public cBgS_PolyInfo, public cBgS_Chk, public dBgS_Chk {
 public:
+    enum { FIND = 1, IN = 2, MOVE_BG_ONLY = 4};
     /* 80078B90 */ void Set(cXyz&, f32);
     /* 80078BB0 */ dBgS_SplGrpChk();
-    /* 80078C78 */ ~dBgS_SplGrpChk();
     /* 80078D0C */ void Init();
 
+    /* 80078C78 */ virtual ~dBgS_SplGrpChk();
+
+    void OffFind() { m_flags &= ~FIND; }
+    void OffIn() { m_flags &= ~IN; }
+    void OffMoveBGOnly() { m_flags &= ~MOVE_BG_ONLY; }
+    void SetHeight(f32 height) { m_height = height; }
+    cXyz& GetPosP() { return m_ground; }
+
 private:
-    /* 0x00 */ cBgS_PolyInfo field_0x00;
-    /* 0x10 */ cBgS_Chk field_0x10;
-    /* 0x24 */ dBgS_Chk field_0x24;
     /* 0x3C */ cXyz m_ground;
-    /* 0x48 */ float mRoof;
-    /* 0x4C */ float mHeight;
-    /* 0x50 */ int field_0x50;
-};  // Size = 0x54
+    /* 0x48 */ f32 m_roof;
+    /* 0x4C */ f32 m_height;
+    /* 0x50 */ u32 m_flags;
+};  // Size: 0x54
 
 #endif /* D_BG_D_BG_S_SPL_GRP_CHK_H */

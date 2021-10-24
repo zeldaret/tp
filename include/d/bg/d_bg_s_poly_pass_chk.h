@@ -11,7 +11,6 @@ public:
 class dBgS_PolyPassChk : public cBgS_PolyPassChk {
 public:
     dBgS_PolyPassChk();
-    virtual void temp();  // temp to build OK, remove later
     virtual ~dBgS_PolyPassChk();
 
     bool ChkArrow() { return mArrow; }

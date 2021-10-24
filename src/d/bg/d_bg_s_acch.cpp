@@ -144,24 +144,22 @@ SECTION_SDATA2 static u8 lit_4025[4] = {
 };
 
 /* 80075EAC-80075F14 0707EC 0068+00 0/0 4/4 336/336 .text            __ct__12dBgS_AcchCirFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dBgS_AcchCir::dBgS_AcchCir() {
-    nofralloc
-#include "asm/d/bg/d_bg_s_acch/__ct__12dBgS_AcchCirFv.s"
+dBgS_AcchCir::dBgS_AcchCir() {
+    mFlags = 0;
+    f32 tmp_0 = FLOAT_LABEL(lit_4025);
+    mWallRR = tmp_0;
+    field_0x2c = tmp_0;
+    mWallH = tmp_0;
+    mWallR = tmp_0;
+    mWallAngleY = 0;
+    mWallHDirect = tmp_0;
 }
-#pragma pop
 
 /* 80075F14-80075F40 070854 002C+00 1/1 0/0 0/0 .text            ClrWallHit__12dBgS_AcchCirFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgS_AcchCir::ClrWallHit() {
-    nofralloc
-#include "asm/d/bg/d_bg_s_acch/ClrWallHit__12dBgS_AcchCirFv.s"
+void dBgS_AcchCir::ClrWallHit() {
+    mFlags &= ~WALL_HIT;
+    ClearPi();
 }
-#pragma pop
 
 /* 80075F40-80075F48 070880 0008+00 1/1 2/2 109/109 .text            SetWallR__12dBgS_AcchCirFf */
 #pragma push
@@ -207,7 +205,8 @@ asm void dBgS_AcchCir::SetWallHDirect(f32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_Acch::~dBgS_Acch() {
+// asm dBgS_Acch::~dBgS_Acch() {
+extern "C" asm void __dt__9dBgS_AcchFv() {
     nofralloc
 #include "asm/d/bg/d_bg_s_acch/__dt__9dBgS_AcchFv.s"
 }
@@ -555,7 +554,8 @@ asm void dBgS_Acch::ChkLineDown() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_AcchCir::~dBgS_AcchCir() {
+// asm dBgS_AcchCir::~dBgS_AcchCir() {
+extern "C" asm void __dt__12dBgS_AcchCirFv() {
     nofralloc
 #include "asm/d/bg/d_bg_s_acch/__dt__12dBgS_AcchCirFv.s"
 }

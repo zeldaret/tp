@@ -170,7 +170,7 @@ static u8 l_SetCounter[4 + 4 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cBgS::Regist(dBgW_Base* param_0, unsigned int param_1, void* param_2) {
+asm bool cBgS::Regist(dBgW_Base* param_0, unsigned int param_1, void* param_2) {
     nofralloc
 #include "asm/d/bg/d_bg_s/Regist__4cBgSFP9dBgW_BaseUiPv.s"
 }
@@ -374,7 +374,7 @@ asm void dBgS::Move() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgS::Regist(dBgW_Base* param_0, fopAc_ac_c* param_1) {
+asm bool dBgS::Regist(dBgW_Base* param_0, fopAc_ac_c* param_1) {
     nofralloc
 #include "asm/d/bg/d_bg_s/Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c.s"
 }

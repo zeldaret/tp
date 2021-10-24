@@ -14,33 +14,33 @@
 #include "dolphin/types.h"
 //#include "d/bg/d_bg_s.h"
 
-class dBgS_AcchCir {
+class dBgS_AcchCir : public cBgS_PolyInfo {
+private:
+    /* 0x10 */ u32 mFlags;
+    /* 0x14 */ cM3dGCir m3DGCir;
+    /* 0x28 */ f32 mWallRR;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ f32 mWallH;
+    /* 0x34 */ f32 mWallR;
+    /* 0x38 */ f32 mWallHDirect;
+    /* 0x3C */ s16 mWallAngleY;
+
 public:
+    enum { WALL_HIT = 2 };
+
     /* 80075EAC */ dBgS_AcchCir();
     /* 80075F14 */ void ClrWallHit();
     /* 80075F40 */ void SetWallR(f32);
     /* 80075F48 */ void CalcWallRR();
     /* 80075F58 */ void SetWall(f32, f32);
     /* 80075F80 */ void SetWallHDirect(f32);
-    /* 80077414 */ ~dBgS_AcchCir();
 
-private:
-    /* 0x00 */ cBgS_PolyInfo mPolyInfo;
-    /* 0x10 */ int mWallHit;
-    /* 0x14 */ cM3dGCir m3DGCir;
-    /* 0x28 */ float mWallRR;
-    /* 0x2C */ float field_0x2c;
-    /* 0x30 */ float mWallH;
-    /* 0x34 */ float mWallR;
-    /* 0x38 */ float mWallHDirect;
-    /* 0x3C */ s16 mWallAngleY;
-    /* 0x3E */ u8 padding[2];
+    /* 80077414 */ virtual ~dBgS_AcchCir();
 };
 
 class dBgS;
-class dBgS_Acch {
+class dBgS_Acch : public cBgS_Chk, public dBgS_Chk {
 public:
-    /* 80075F94 */ ~dBgS_Acch();
     /* 800760A0 */ dBgS_Acch();
     /* 800761CC */ void Init();
     /* 80076288 */ void Set(fopAc_ac_c*, int, dBgS_AcchCir*);
@@ -74,11 +74,11 @@ public:
     /* 800D00DC */ void ClrGroundHit();
     /* 80141404 */ void ChkGroundHit() const;
 
-    float GetGroundH() const { return mGroundH; }
+    /* 80075F94 */ virtual ~dBgS_Acch();
+
+    f32 GetGroundH() const { return mGroundH; }
 
 private:
-    /* 0x000 */ cBgS_Chk field_0x000;
-    /* 0x014 */ dBgS_Chk field_0x014;
     /* 0x02C */ int field_0x2c;
     /* 0x030 */ cXyz* mPos;
     /* 0x034 */ cXyz* mOldPos;
@@ -93,21 +93,21 @@ private:
     /* 0x084 */ fopAc_ac_c* mMyAc;
     /* 0x088 */ int m_tbl_size;
     /* 0x08C */ dBgS_AcchCir* field_0x8c;
-    /* 0x090 */ float field_0x90;
-    /* 0x094 */ float field_0x94;
-    /* 0x098 */ float mGroundH;
-    /* 0x09C */ float field_0x9c;
+    /* 0x090 */ f32 field_0x90;
+    /* 0x094 */ f32 field_0x94;
+    /* 0x098 */ f32 mGroundH;
+    /* 0x09C */ f32 field_0x9c;
     /* 0x0A0 */ cM3dGPla field_0xa0;
     /* 0x0B4 */ u8 field_0xb4[4];
-    /* 0x0B8 */ float field_0xb8;
-    /* 0x0BC */ float field_0xbc;
+    /* 0x0B8 */ f32 field_0xb8;
+    /* 0x0BC */ f32 field_0xbc;
     /* 0x0C0 */ u8 field_0xc0[4];
-    /* 0x0C4 */ float mRoofHeight;
-    /* 0x0C8 */ float mRoofCrrHeight;
-    /* 0x0CC */ float field_0xcc;
-    /* 0x0D0 */ float mWaterCheckOffset;
+    /* 0x0C4 */ f32 mRoofHeight;
+    /* 0x0C8 */ f32 mRoofCrrHeight;
+    /* 0x0CC */ f32 field_0xcc;
+    /* 0x0D0 */ f32 mWaterCheckOffset;
     /* 0x0D4 */ int field_0xd4;
-    /* 0x0D8 */ float field_0xd8;
+    /* 0x0D8 */ f32 field_0xd8;
     /* 0x0DC */ dBgS_GndChk mGndChk;
     /* 0x130 */ dBgS_RoofChk mRoofChk;
     /* 0x180 */ dBgS_WtrChk mWtrChk;
@@ -115,7 +115,11 @@ private:
 };
 
 class dBgS_LinkAcch : public dBgS_Acch {
-    /* 80140F30 */ ~dBgS_LinkAcch();
+    /* 80140F30 */ virtual ~dBgS_LinkAcch();
+};
+
+class dBgS_ObjAcch : public dBgS_Acch {
+    /* 80BB336C */ virtual ~dBgS_ObjAcch();
 };
 
 #endif /* D_BG_D_BG_S_ACCH_H */

@@ -14,6 +14,7 @@ void mDoMtx_ZXYrotM(Mtx, s16, s16, s16);
 void mDoMtx_ZrotS(Mtx, s16);
 void mDoMtx_YrotS(Mtx, s16);
 void mDoMtx_XrotS(Mtx, s16);
+void mDoMtx_YrotM(Mtx, s16);
 
 class mDoMtx_stack_c {
 public:
@@ -32,13 +33,14 @@ public:
     /* 8000CF7C */ static void quatM(Quaternion const*);
     /* 8000D070 */ ~mDoMtx_stack_c();  // inline
 
-    Mtx* get() { return &now; }
+    static Mtx* get() { return &now; }
     static void transS(f32 x, f32 y, f32 z) { PSMTXTrans(now, x, y, z); }
     static void scaleS(f32 x, f32 y, f32 z) { PSMTXScale(now, x, y, z); }
     static void XYZrotS(s16 x, s16 y, s16 z) { mDoMtx_XYZrotS(now, x, y, z); }
     static void XYZrotM(s16 x, s16 y, s16 z) { mDoMtx_XYZrotM(now, x, y, z); }
     static void ZXYrotS(s16 x, s16 y, s16 z) { mDoMtx_ZXYrotS(now, x, y, z); }
     static void ZXYrotM(s16 x, s16 y, s16 z) { mDoMtx_ZXYrotM(now, x, y, z); }
+    static void YrotM(s16 y) { mDoMtx_YrotM(now, y); }
 
     static Mtx now;
     static Mtx buffer[16];

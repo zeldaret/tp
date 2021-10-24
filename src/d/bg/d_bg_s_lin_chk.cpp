@@ -282,7 +282,8 @@ asm dBgS_LinChk::dBgS_LinChk() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_LinChk::~dBgS_LinChk() {
+// asm dBgS_LinChk::~dBgS_LinChk() {
+extern "C" asm void __dt__11dBgS_LinChkFv() {
     nofralloc
 #include "asm/d/bg/d_bg_s_lin_chk/__dt__11dBgS_LinChkFv.s"
 }
@@ -353,7 +354,8 @@ asm dBgS_ObjLinChk::dBgS_ObjLinChk() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_ObjLinChk::~dBgS_ObjLinChk() {
+// asm dBgS_ObjLinChk::~dBgS_ObjLinChk() {
+extern "C" asm void __dt__14dBgS_ObjLinChkFv() {
     nofralloc
 #include "asm/d/bg/d_bg_s_lin_chk/__dt__14dBgS_ObjLinChkFv.s"
 }
@@ -373,7 +375,8 @@ asm dBgS_LinkLinChk::dBgS_LinkLinChk() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_LinkLinChk::~dBgS_LinkLinChk() {
+//asm dBgS_LinkLinChk::~dBgS_LinkLinChk() {
+extern "C" asm void __dt__15dBgS_LinkLinChkFv() {
     nofralloc
 #include "asm/d/bg/d_bg_s_lin_chk/__dt__15dBgS_LinkLinChkFv.s"
 }
@@ -393,7 +396,8 @@ asm dBgS_BombLinChk::dBgS_BombLinChk() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_BombLinChk::~dBgS_BombLinChk() {
+// asm dBgS_BombLinChk::~dBgS_BombLinChk() {
+extern "C" asm void __dt__15dBgS_BombLinChkFv() {
     nofralloc
 #include "asm/d/bg/d_bg_s_lin_chk/__dt__15dBgS_BombLinChkFv.s"
 }
@@ -413,7 +417,8 @@ asm dBgS_ArrowLinChk::dBgS_ArrowLinChk() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_ArrowLinChk::~dBgS_ArrowLinChk() {
+// asm dBgS_ArrowLinChk::~dBgS_ArrowLinChk() {
+extern "C" asm void __dt__16dBgS_ArrowLinChkFv() {
     nofralloc
 #include "asm/d/bg/d_bg_s_lin_chk/__dt__16dBgS_ArrowLinChkFv.s"
 }
@@ -433,7 +438,8 @@ asm dBgS_BoomerangLinChk::dBgS_BoomerangLinChk() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_BoomerangLinChk::~dBgS_BoomerangLinChk() {
+// asm dBgS_BoomerangLinChk::~dBgS_BoomerangLinChk() {
+extern "C" asm void __dt__20dBgS_BoomerangLinChkFv() {
     nofralloc
 #include "asm/d/bg/d_bg_s_lin_chk/__dt__20dBgS_BoomerangLinChkFv.s"
 }
@@ -453,7 +459,8 @@ asm dBgS_RopeLinChk::dBgS_RopeLinChk() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_RopeLinChk::~dBgS_RopeLinChk() {
+// asm dBgS_RopeLinChk::~dBgS_RopeLinChk() {
+extern "C" asm void __dt__15dBgS_RopeLinChkFv() {
     nofralloc
 #include "asm/d/bg/d_bg_s_lin_chk/__dt__15dBgS_RopeLinChkFv.s"
 }

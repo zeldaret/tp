@@ -8,33 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct dBgS_SphChk {
-    /* 80078A14 */ dBgS_SphChk();
-    /* 80078AC0 */ ~dBgS_SphChk();
-};
-
-struct dBgS_Chk {
-    /* 8007749C */ dBgS_Chk();
-    /* 800774E8 */ ~dBgS_Chk();
-    /* 80077560 */ void GetPolyPassChkInfo();
-    /* 80077564 */ void GetGrpPassChkInfo();
-};
-
-struct cBgS_PolyInfo {
-    /* 80268074 */ cBgS_PolyInfo();
-    /* 802680B0 */ ~cBgS_PolyInfo();
-    /* 80268120 */ void ClearPi();
-};
-
-struct cBgS_Chk {
-    /* 80267B4C */ cBgS_Chk();
-    /* 80267B70 */ ~cBgS_Chk();
-};
-
-//
 // Forward References:
 //
 
@@ -88,24 +61,16 @@ SECTION_DATA extern void* __vt__11dBgS_SphChk[15 + 1 /* padding */] = {
 };
 
 /* 80078A14-80078AC0 073354 00AC+00 0/0 1/1 1/1 .text            __ct__11dBgS_SphChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dBgS_SphChk::dBgS_SphChk() {
-    nofralloc
-#include "asm/d/bg/d_bg_s_sph_chk/__ct__11dBgS_SphChkFv.s"
+dBgS_SphChk::dBgS_SphChk() {
+    SetPolyPassChk(&GetPolyPassChkInfo());
+    SetGrpPassChk(&GetGrpPassChkInfo());
+    setActorPid(0xFFFFFFFF);
+    ClearPi();
+    mCallback = NULL;
 }
-#pragma pop
 
 /* 80078AC0-80078B70 073400 00B0+00 5/4 2/2 0/0 .text            __dt__11dBgS_SphChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dBgS_SphChk::~dBgS_SphChk() {
-    nofralloc
-#include "asm/d/bg/d_bg_s_sph_chk/__dt__11dBgS_SphChkFv.s"
-}
-#pragma pop
+dBgS_SphChk::~dBgS_SphChk() {}
 
 /* 80078B70-80078B78 0734B0 0008+00 1/0 0/0 0/0 .text            @20@__dt__11dBgS_SphChkFv */
 #pragma push

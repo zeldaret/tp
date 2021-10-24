@@ -52,26 +52,24 @@ asm dBgS_Chk::dBgS_Chk() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_Chk::~dBgS_Chk() {
+// asm dBgS_Chk::~dBgS_Chk() {
+extern "C" asm void __dt__8dBgS_ChkFv() {
     nofralloc
 #include "asm/d/bg/d_bg_s_chk/__dt__8dBgS_ChkFv.s"
 }
 #pragma pop
 
 /* 80077560-80077564 071EA0 0004+00 0/0 6/6 0/0 .text            GetPolyPassChkInfo__8dBgS_ChkFv */
-void dBgS_Chk::GetPolyPassChkInfo() {
+cBgS_PolyPassChk& dBgS_Chk::GetPolyPassChkInfo() {
     /* empty function */
 }
 
 /* 80077564-80077574 071EA4 0010+00 0/0 6/6 0/0 .text            GetGrpPassChkInfo__8dBgS_ChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgS_Chk::GetGrpPassChkInfo() {
-    nofralloc
-#include "asm/d/bg/d_bg_s_chk/GetGrpPassChkInfo__8dBgS_ChkFv.s"
+cBgS_GrpPassChk& dBgS_Chk::GetGrpPassChkInfo() {
+    if (this != NULL) {
+        return static_cast<cBgS_GrpPassChk&>(*this);
+    }
 }
-#pragma pop
 
 /* 80077574-8007757C 071EB4 0008+00 1/0 0/0 0/0 .text            @16@__dt__8dBgS_ChkFv */
 #pragma push

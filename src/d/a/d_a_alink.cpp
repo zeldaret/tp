@@ -621,10 +621,6 @@ struct dCamera_c {
     /* 80181500 */ void GetForceLockOnActor();
 };
 
-struct dBgS_ObjAcch {
-    /* 800D0C6C */ ~dBgS_ObjAcch();
-};
-
 struct Z2SeqMgr {
     /* 802AF010 */ void bgmStart(u32, u32, s32);
     /* 802AF49C */ void subBgmStart(u32);
@@ -20223,7 +20219,8 @@ SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_ObjAcch::~dBgS_ObjAcch() {
+// asm dBgS_ObjAcch::~dBgS_ObjAcch() {
+extern "C" asm void __dt__12dBgS_ObjAcchFv() {
     nofralloc
 #include "asm/d/a/d_a_alink/__dt__12dBgS_ObjAcchFv.s"
 }
@@ -34629,7 +34626,8 @@ asm mDoExt_AnmRatioPack::mDoExt_AnmRatioPack() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_LinkRoofChk::~dBgS_LinkRoofChk() {
+// asm dBgS_LinkRoofChk::~dBgS_LinkRoofChk() {
+extern "C" asm void __dt__16dBgS_LinkRoofChkFv() {
     nofralloc
 #include "asm/d/a/d_a_alink/__dt__16dBgS_LinkRoofChkFv.s"
 }
@@ -34639,7 +34637,8 @@ asm dBgS_LinkRoofChk::~dBgS_LinkRoofChk() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_LinkGndChk::~dBgS_LinkGndChk() {
+// asm dBgS_LinkGndChk::~dBgS_LinkGndChk() {
+extern "C" asm void __dt__15dBgS_LinkGndChkFv() {
     nofralloc
 #include "asm/d/a/d_a_alink/__dt__15dBgS_LinkGndChkFv.s"
 }
@@ -34649,7 +34648,8 @@ asm dBgS_LinkGndChk::~dBgS_LinkGndChk() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_LinkAcch::~dBgS_LinkAcch() {
+// asm dBgS_LinkAcch::~dBgS_LinkAcch() {
+extern "C" asm void __dt__13dBgS_LinkAcchFv() {
     nofralloc
 #include "asm/d/a/d_a_alink/__dt__13dBgS_LinkAcchFv.s"
 }

@@ -4,82 +4,10 @@
 //
 
 #include "d/bg/d_bg_s_movebg_actor.h"
+#include "d/com/d_com_inf_game.h"
+#include "m_Do/m_Do_mtx.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct mDoMtx_stack_c {
-    /* 8000CE38 */ void scaleM(f32, f32, f32);
-
-    static u8 now[48];
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dBgW_Base {};
-
-struct dBgW {
-    /* 8007B970 */ dBgW();
-    /* 8007B9C0 */ void Move();
-};
-
-struct cBgS_PolyInfo {};
-
-struct csXyz {};
-
-struct cXyz {};
-
-struct dBgS_MoveBgActor {
-    /* 80078624 */ dBgS_MoveBgActor();
-    /* 80078688 */ bool CreateHeap();
-    /* 80078690 */ bool Create();
-    /* 80078698 */ bool Execute(f32 (**)[3][4]);
-    /* 800786A0 */ bool Draw();
-    /* 800786A8 */ bool Delete();
-    /* 800786B0 */ bool IsDelete();
-    /* 800786B8 */ bool ToFore();
-    /* 800786C0 */ bool ToBack();
-    /* 800786C8 */ void MoveBGCreateHeap();
-    /* 800787BC */ void MoveBGCreate(char const*, int,
-                                     void (*)(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*,
-                                              csXyz*, csXyz*),
-                                     u32, f32 (*)[3][4]);
-    /* 800788DC */ void MoveBGDelete();
-    /* 80078950 */ void MoveBGExecute();
-
-    static u8 m_name[4];
-    static u8 m_dzb_id[4];
-    static u8 m_set_func[4 + 4 /* padding */];
-};
-
-struct dBgS {
-    /* 80074A08 */ void Regist(dBgW_Base*, fopAc_ac_c*);
-};
-
-struct cBgW_BgId {
-    /* 802681D4 */ void ChkUsed() const;
-};
-
-struct cBgD_t {};
-
-struct cBgW {
-    /* 80079F38 */ void Set(cBgD_t*, u32, f32 (*)[3][4]);
-};
-
-struct cBgS {
-    /* 80074250 */ void Release(dBgW_Base*);
-};
 
 //
 // Forward References:
@@ -120,12 +48,9 @@ extern "C" void __ct__4dBgWFv();
 extern "C" void Move__4dBgWFv();
 extern "C" void ChkUsed__9cBgW_BgIdCFv();
 extern "C" void* __nw__FUl();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
 extern "C" void _savegpr_27();
 extern "C" void _restgpr_27();
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
 // Declarations:
@@ -147,28 +72,18 @@ SECTION_DATA extern void* __vt__16dBgS_MoveBgActor[10] = {
 };
 
 /* 80078624-80078668 072F64 0044+00 0/0 0/0 173/173 .text            __ct__16dBgS_MoveBgActorFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dBgS_MoveBgActor::dBgS_MoveBgActor() {
-    nofralloc
-#include "asm/d/bg/d_bg_s_movebg_actor/__ct__16dBgS_MoveBgActorFv.s"
+dBgS_MoveBgActor::dBgS_MoveBgActor() {
+    field_0x568 = NULL;
 }
-#pragma pop
 
 /* 80078668-80078688 072FA8 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void CheckCreateHeap(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_s_movebg_actor/CheckCreateHeap__FP10fopAc_ac_c.s"
+static int CheckCreateHeap(fopAc_ac_c* p_actor) {
+    return static_cast<dBgS_MoveBgActor*>(p_actor)->MoveBGCreateHeap();
 }
-#pragma pop
 
 /* 80078688-80078690 072FC8 0008+00 1/0 0/0 2/0 .text            CreateHeap__16dBgS_MoveBgActorFv */
-bool dBgS_MoveBgActor::CreateHeap() {
-    return true;
+s32 dBgS_MoveBgActor::CreateHeap() {
+    return 1;
 }
 
 /* 80078690-80078698 072FD0 0008+00 1/0 0/0 60/0 .text            Create__16dBgS_MoveBgActorFv */
@@ -208,55 +123,112 @@ bool dBgS_MoveBgActor::ToBack() {
 
 /* ############################################################################################## */
 /* 80450F70-80450F74 000470 0004+00 2/2 0/0 0/0 .sbss            m_name__16dBgS_MoveBgActor */
-u8 dBgS_MoveBgActor::m_name[4];
+const char* dBgS_MoveBgActor::m_name;
 
 /* 80450F74-80450F78 000474 0004+00 2/2 0/0 0/0 .sbss            m_dzb_id__16dBgS_MoveBgActor */
-u8 dBgS_MoveBgActor::m_dzb_id[4];
+int dBgS_MoveBgActor::m_dzb_id;
 
 /* 80450F78-80450F80 000478 0004+04 2/2 0/0 1/1 .sbss            m_set_func__16dBgS_MoveBgActor */
-u8 dBgS_MoveBgActor::m_set_func[4 + 4 /* padding */];
+MoveBGActor_SetFunc dBgS_MoveBgActor::m_set_func;
 
 /* 800786C8-800787BC 073008 00F4+00 1/1 0/0 0/0 .text MoveBGCreateHeap__16dBgS_MoveBgActorFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgS_MoveBgActor::MoveBGCreateHeap() {
-    nofralloc
-#include "asm/d/bg/d_bg_s_movebg_actor/MoveBGCreateHeap__16dBgS_MoveBgActorFv.s"
+int dBgS_MoveBgActor::MoveBGCreateHeap() {
+    if (!CreateHeap()) {
+        return 0;
+    }
+
+    if (m_dzb_id == -1) {
+        field_0x568 = NULL;
+        return 1;
+    } else {
+        field_0x568 = new dBgW();
+        if (field_0x568 != NULL) {
+            cBgD_t* res = (cBgD_t*)dComIfG_getObjectRes(m_name, m_dzb_id);
+            if (!field_0x568->Set(res, 1, &field_0x56c)) {
+                if (m_set_func != NULL) {
+                    field_0x568->SetCrrFunc(m_set_func);
+                }
+            } else {
+                goto RET;  // probably fake match, clean up later
+            }
+        } else {
+            RET:
+            field_0x568 = NULL;
+            return 0;
+        }
+        
+        return 1;
+    }
 }
-#pragma pop
 
 /* 800787BC-800788DC 0730FC 0120+00 0/0 0/0 169/169 .text
  * MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f
  */
+// close
+#ifdef NONMATCHING
+int dBgS_MoveBgActor::MoveBGCreate(char const* p_name, int dzb_id, MoveBGActor_SetFunc set_func,
+                                        u32 param_3, Mtx* param_4) {
+    if (param_4 == NULL) {
+        mDoMtx_stack_c::transS(mCurrent.mPosition.x, mCurrent.mPosition.y, mCurrent.mPosition.z);
+        mDoMtx_stack_c::YrotM(mCollisionRot.y);
+        mDoMtx_stack_c::scaleM(mScale.x, mScale.y, mScale.z);
+        PSMTXCopy(*mDoMtx_stack_c::get(), field_0x56c);
+    } else {
+        PSMTXCopy(*param_4, field_0x56c);
+    }
+
+    m_name = p_name;
+    m_dzb_id = dzb_id;
+    m_set_func = set_func;
+
+    if (!fopAcM_entrySolidHeap(this, CheckCreateHeap, param_3)) {
+        return 5;
+    } else {
+        if (field_0x568 == NULL || dComIfG_Bgsp().Regist(field_0x568, this)) {
+            return 5;
+        } else {
+            return Create() + 5;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgS_MoveBgActor::MoveBGCreate(char const* param_0, int param_1,
-                                        void (*param_2)(dBgW*, void*, cBgS_PolyInfo const&, bool,
-                                                        cXyz*, csXyz*, csXyz*),
-                                        u32 param_3, f32 (*param_4)[3][4]) {
+asm int dBgS_MoveBgActor::MoveBGCreate(char const* param_0, int param_1, MoveBGActor_SetFunc,
+                                        u32 param_3, Mtx* param_4) {
     nofralloc
 #include "asm/d/bg/d_bg_s_movebg_actor/func_800787BC.s"
 }
 #pragma pop
+#endif
 
 /* 800788DC-80078950 07321C 0074+00 0/0 0/0 169/169 .text MoveBGDelete__16dBgS_MoveBgActorFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgS_MoveBgActor::MoveBGDelete() {
-    nofralloc
-#include "asm/d/bg/d_bg_s_movebg_actor/MoveBGDelete__16dBgS_MoveBgActorFv.s"
+bool dBgS_MoveBgActor::MoveBGDelete() {
+    bool ret = Delete();
+    
+    if (field_0x568 != NULL && field_0x568->ChkUsed()) {
+        dComIfG_Bgsp().Release(field_0x568);
+    }
+    return ret;
 }
-#pragma pop
 
 /* 80078950-80078A14 073290 00C4+00 0/0 0/0 183/183 .text MoveBGExecute__16dBgS_MoveBgActorFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgS_MoveBgActor::MoveBGExecute() {
-    nofralloc
-#include "asm/d/bg/d_bg_s_movebg_actor/MoveBGExecute__16dBgS_MoveBgActorFv.s"
+bool dBgS_MoveBgActor::MoveBGExecute() {
+    Mtx* tmp = NULL;
+
+    bool ret = Execute(&tmp);
+    if (tmp == NULL) {
+        mDoMtx_stack_c::transS(mCurrent.mPosition.x, mCurrent.mPosition.y, mCurrent.mPosition.z);
+        mDoMtx_stack_c::YrotM(mCollisionRot.y);
+        mDoMtx_stack_c::scaleM(mScale.x, mScale.y, mScale.z);
+        PSMTXCopy(*mDoMtx_stack_c::get(), field_0x56c);
+    } else {
+        PSMTXCopy(*tmp, field_0x56c);
+    }
+
+    if (field_0x568 != NULL) {
+        field_0x568->Move();
+    }
+    return ret;
 }
-#pragma pop

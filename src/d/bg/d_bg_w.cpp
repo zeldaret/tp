@@ -463,7 +463,8 @@ asm cBgW::cBgW() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cBgW::~cBgW() {
+// asm cBgW::~cBgW() {
+extern "C" asm void __dt__4cBgWFv() {
     nofralloc
 #include "asm/d/bg/d_bg_w/__dt__4cBgWFv.s"
 }
@@ -523,7 +524,8 @@ asm void cBgW::SetTri() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cBgW_TriElm::~cBgW_TriElm() {
+// asm cBgW_TriElm::~cBgW_TriElm() {
+extern "C" asm void __dt__11cBgW_TriElmFv() {
     nofralloc
 #include "asm/d/bg/d_bg_w/__dt__11cBgW_TriElmFv.s"
 }
@@ -648,7 +650,7 @@ SECTION_SDATA2 static f32 lit_4073 = 128.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cBgW::Set(cBgD_t* param_0, u32 param_1, f32 (*param_2)[3][4]) {
+asm bool cBgW::Set(cBgD_t* param_0, u32 param_1, f32 (*param_2)[3][4]) {
     nofralloc
 #include "asm/d/bg/d_bg_w/Set__4cBgWFP6cBgD_tUlPA3_A4_f.s"
 }
@@ -658,7 +660,8 @@ asm void cBgW::Set(cBgD_t* param_0, u32 param_1, f32 (*param_2)[3][4]) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cBgW_GrpElm::~cBgW_GrpElm() {
+// asm cBgW_GrpElm::~cBgW_GrpElm() {
+extern "C" asm void __dt__11cBgW_GrpElmFv() {
     nofralloc
 #include "asm/d/bg/d_bg_w/__dt__11cBgW_GrpElmFv.s"
 }
@@ -1778,7 +1781,8 @@ asm void dBgW_NewSet(cBgD_t* param_0, u32 param_1, f32 (*param_2)[3][4]) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgW::~dBgW() {
+// asm dBgW::~dBgW() {
+extern "C" asm void __dt__4dBgWFv() {
     nofralloc
 #include "asm/d/bg/d_bg_w/__dt__4dBgWFv.s"
 }

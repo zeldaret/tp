@@ -8,40 +8,34 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
-struct cBgW_BgId {
-    /* 802681C8 */ void Release();
-    /* 802681D4 */ void ChkUsed() const;
-};
-
 class cBgS_ChkElm {
 private:
-    /* 0x00 */ dBgW_Base* bgw_base_pointer;
-    /* 0x04 */ u8 used;
-    /* 0x05 */ u8 padding[3];
+    /* 0x00 */ dBgW_Base* m_bgw_base_ptr;
+    /* 0x04 */ bool m_used;
     /* 0x08 */ u32 field_0x8;
-    /* 0x0C */ void* actor_pointer;
+    /* 0x0C */ fopAc_ac_c* m_actor_ptr;
     /* 0x10 vtable */
+
 public:
-    cBgS_ChkElm(void) { this->Init(); }
-    virtual ~cBgS_ChkElm() {}
+    cBgS_ChkElm() { this->Init(); }
     void Init();
-    virtual void Regist2(dBgW_Base*, unsigned int, void*);
     void Release();
-};  // Size = 0x14
+
+    virtual ~cBgS_ChkElm() {}
+    virtual void Regist2(dBgW_Base*, unsigned int, void*);
+};  // Size: 0x14
 
 STATIC_ASSERT(sizeof(cBgS_ChkElm) == 0x14);
 
 class cBgS {
 private:
-    /* 0x0000 */ cBgS_ChkElm cbgs_elements[256];
+    /* 0x0000 */ cBgS_ChkElm m_chk_element[256];
     /* 0x1400 vtable */
+
 public:
     cBgS() {}
-    virtual ~cBgS() {}
-    void Regist(dBgW_Base*, unsigned int, void*);
+    bool Regist(dBgW_Base*, unsigned int, void*);
     void Release(dBgW_Base*);
-    virtual void Ct();
-    virtual void Dt();
     void LineCross(cBgS_LinChk*);
     void GroundCross(cBgS_GndChk*);
     void ConvDzb(void*);
@@ -53,6 +47,10 @@ public:
     void GetTriPnt(cBgS_PolyInfo const&, cXyz*, cXyz*, cXyz*) const;
     void ShdwDraw(cBgS_ShdwDraw*);
     void GetGrpInf(cBgS_PolyInfo const&) const;
+
+    virtual ~cBgS() {}
+    virtual void Ct();
+    virtual void Dt();
 };  // Size = 0x1404
 
 class dBgS_HIO {
@@ -77,7 +75,7 @@ public:
     void Dt();
     void ClrMoveFlag();
     void Move();
-    void Regist(dBgW_Base*, fopAc_ac_c*);
+    bool Regist(dBgW_Base*, fopAc_ac_c*);
     void ChkMoveBG(cBgS_PolyInfo const&);
     void ChkMoveBG_NoDABg(cBgS_PolyInfo const&);
     void GetExitId(cBgS_PolyInfo const&);

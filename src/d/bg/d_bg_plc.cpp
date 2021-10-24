@@ -8,20 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct sBgPc {};
-
-struct dBgPlc {
-    /* 80074074 */ dBgPlc();
-    /* 80074080 */ ~dBgPlc();
-    /* 800740BC */ void setBase(void*);
-    /* 800740C4 */ void getCode(int, sBgPc**) const;
-    /* 800740DC */ void getGrpCode(int) const;
-};
-
-//
 // Forward References:
 //
 
@@ -42,28 +28,16 @@ extern "C" void __dl__FPv();
 //
 
 /* 80074074-80074080 06E9B4 000C+00 0/0 1/1 0/0 .text            __ct__6dBgPlcFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dBgPlc::dBgPlc() {
-    nofralloc
-#include "asm/d/bg/d_bg_plc/__ct__6dBgPlcFv.s"
+dBgPlc::dBgPlc() {
+    m_base = NULL;
 }
-#pragma pop
 
 /* 80074080-800740BC 06E9C0 003C+00 0/0 1/1 0/0 .text            __dt__6dBgPlcFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dBgPlc::~dBgPlc() {
-    nofralloc
-#include "asm/d/bg/d_bg_plc/__dt__6dBgPlcFv.s"
-}
-#pragma pop
+dBgPlc::~dBgPlc() {}
 
 /* 800740BC-800740C4 -00001 0008+00 0/0 0/0 0/0 .text            setBase__6dBgPlcFPv */
-void dBgPlc::setBase(void* param_0) {
-    *(u32*)this = (u32)(param_0);
+void dBgPlc::setBase(void* p_base) {
+    m_base = p_base;
 }
 
 /* 800740C4-800740DC 06EA04 0018+00 0/0 1/1 0/0 .text            getCode__6dBgPlcCFiPP5sBgPc */

@@ -39,14 +39,10 @@ extern "C" void __dl__FPv();
 //
 
 /* 80078B90-80078BB0 0734D0 0020+00 0/0 2/2 3/3 .text            Set__14dBgS_SplGrpChkFR4cXyzf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgS_SplGrpChk::Set(cXyz& param_0, f32 param_1) {
-    nofralloc
-#include "asm/d/bg/d_bg_s_spl_grp_chk/Set__14dBgS_SplGrpChkFR4cXyzf.s"
+void dBgS_SplGrpChk::Set(cXyz& ground, f32 roof) {
+    m_ground = ground;
+    m_roof = roof;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803ABA08-803ABA38 008B28 0030+00 2/2 0/0 0/0 .data            __vt__14dBgS_SplGrpChk */
@@ -65,46 +61,33 @@ SECTION_DATA extern void* __vt__14dBgS_SplGrpChk[12] = {
     (void*)func_80078D54,
 };
 
-/* 804526E8-804526EC 000CE8 0004+00 1/1 0/0 0/0 .sdata2          @319 */
-SECTION_SDATA2 static u8 lit_319[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 804526EC-804526F0 000CEC 0004+00 1/1 0/0 0/0 .sdata2          @320 */
-SECTION_SDATA2 static f32 lit_320 = 1000000000.0f;
-
 /* 80078BB0-80078C78 0734F0 00C8+00 0/0 1/1 0/0 .text            __ct__14dBgS_SplGrpChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dBgS_SplGrpChk::dBgS_SplGrpChk() {
-    nofralloc
-#include "asm/d/bg/d_bg_s_spl_grp_chk/__ct__14dBgS_SplGrpChkFv.s"
+dBgS_SplGrpChk::dBgS_SplGrpChk() {
+    SetPolyPassChk(&GetPolyPassChkInfo());
+    SetGrpPassChk(&GetGrpPassChkInfo());
+    OffNormalGrp();
+
+    m_ground.x = 0.0f;
+    m_ground.y = 0.0f;
+    m_ground.z = 0.0f;
+    m_roof = 1000000000.0f;
+    m_height = 0.0f;
+
+    OffMoveBGOnly();
+    OffIn();
+    OffFind();
 }
-#pragma pop
 
 /* 80078C78-80078D0C 0735B8 0094+00 4/3 2/2 4/4 .text            __dt__14dBgS_SplGrpChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dBgS_SplGrpChk::~dBgS_SplGrpChk() {
-    nofralloc
-#include "asm/d/bg/d_bg_s_spl_grp_chk/__dt__14dBgS_SplGrpChkFv.s"
-}
-#pragma pop
+dBgS_SplGrpChk::~dBgS_SplGrpChk() {}
 
 /* 80078D0C-80078D4C 07364C 0040+00 0/0 1/1 0/0 .text            Init__14dBgS_SplGrpChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgS_SplGrpChk::Init() {
-    nofralloc
-#include "asm/d/bg/d_bg_s_spl_grp_chk/Init__14dBgS_SplGrpChkFv.s"
+void dBgS_SplGrpChk::Init() {
+    OffIn();
+    OffFind();
+    SetHeight(GetPosP().y);
+    ClearPi();
 }
-#pragma pop
 
 /* 80078D4C-80078D54 07368C 0008+00 1/0 0/0 0/0 .text            @16@__dt__14dBgS_SplGrpChkFv */
 #pragma push

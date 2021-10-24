@@ -24,7 +24,7 @@ cBgS_LinChk::~cBgS_LinChk() {}
 /* 80267E48-80267ED0 262788 0088+00 1/1 0/0 0/0 .text            ct__11cBgS_LinChkFv */
 void cBgS_LinChk::ct() {
     cXyz xyz(cXyz::Zero);
-    mLin.SetStartEnd(xyz, xyz);
+    mLinP.SetStartEnd(xyz, xyz);
     field_0x40 = xyz;
     setActorPid(0xFFFFFFFF);
     field_0x4c = 0;
@@ -34,7 +34,7 @@ void cBgS_LinChk::ct() {
 
 /* 80267ED0-80267F40 262810 0070+00 0/0 2/2 0/0 .text Set2__11cBgS_LinChkFPC4cXyzPC4cXyzUi */
 void cBgS_LinChk::Set2(cXyz const* pStart, cXyz const* pEnd, unsigned int actorPid) {
-    mLin.SetStartEnd(*pStart, *pEnd);
+    mLinP.SetStartEnd(*pStart, *pEnd);
     field_0x40 = *pEnd;
     setActorPid(actorPid);
     field_0x4c &= ~0x10;

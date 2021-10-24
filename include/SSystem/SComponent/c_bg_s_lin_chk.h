@@ -9,9 +9,9 @@
 
 class cBgS_LinChk : public cBgS_Chk, public cBgS_PolyInfo {
 private:
-    /* 0x024 */ cM3dGLin mLin;
+    /* 0x024 */ cM3dGLin mLinP;
     /* 0x040 */ cXyz field_0x40;
-    /* 0x04C */ int field_0x4c;
+    /* 0x04C */ u32 field_0x4c;
     /* 0x050 */ bool mPreWallChk;
     /* 0x051 */ bool mPreGroundChk;
     /* 0x052 */ bool mPreRoofChk;
@@ -19,11 +19,12 @@ private:
     /* 0x054 */ u8 mBackFlag;
 
 public:
-    cBgS_LinChk(void);
-    virtual ~cBgS_LinChk(void);
-    void ct(void);
+    cBgS_LinChk();
+    void ct();
     void Set2(const cXyz*, const cXyz*, unsigned int);
-    void PreCalc(void);
+    void PreCalc();
+
+    virtual ~cBgS_LinChk();
 };
 
 #endif /* C_BG_S_LIN_CHK_H */
