@@ -160,11 +160,6 @@ extern "C" void __ct__11J2DWindowExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMate
 extern "C" void __ct__12J2DPictureExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial();
 extern "C" void __ct__12J2DTextBoxExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial();
 extern "C" void get__13J2DDataManageFPCc();
-extern "C" void GXSetNumIndStages();
-extern "C" void GXSetTevDirect();
-extern "C" void GXSetTevSwapModeTable();
-extern "C" void GXSetScissor();
-extern "C" void GXGetScissor();
 extern "C" void __destroy_new_array();
 extern "C" void __construct_new_array();
 extern "C" void _savegpr_25();

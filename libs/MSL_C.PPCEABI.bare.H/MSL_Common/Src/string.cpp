@@ -8,19 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" void strrchr();
-extern "C" void strchr();
-extern "C" void strncmp();
-extern "C" void strcmp();
-extern "C" void strcat();
-extern "C" void strncpy();
-extern "C" void strcpy();
-extern "C" void strlen();
-
-//
 // External References:
 //
 
@@ -34,7 +21,7 @@ extern "C" void _epilog();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void strrchr() {
+asm char* strrchr(const char*, int) {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/string/strrchr.s"
 }
@@ -44,7 +31,7 @@ asm void strrchr() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void strchr() {
+asm char* strchr(const char*, int) {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/string/strchr.s"
 }
@@ -54,7 +41,7 @@ asm void strchr() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void strncmp() {
+asm int strncmp(const char*, const char*, u32) {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/string/strncmp.s"
 }
@@ -64,7 +51,7 @@ asm void strncmp() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void strcmp() {
+asm int strcmp(const char*, const char*) {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/string/strcmp.s"
 }
@@ -74,7 +61,7 @@ asm void strcmp() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void strcat() {
+asm char* strcat(char*, const char*) {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/string/strcat.s"
 }
@@ -84,7 +71,7 @@ asm void strcat() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void strncpy() {
+asm char* strncpy(char*, const char*, u32) {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/string/strncpy.s"
 }
@@ -94,7 +81,7 @@ asm void strncpy() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void strcpy() {
+asm char* strcpy(char*, const char*) {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/string/strcpy.s"
 }
@@ -104,7 +91,7 @@ asm void strcpy() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void strlen() {
+asm u32 strlen(const char*) {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/string/strlen.s"
 }

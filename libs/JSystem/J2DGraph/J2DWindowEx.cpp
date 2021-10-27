@@ -8,153 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct _GXCullMode {};
-
-struct _GXColor {};
-
-struct ResTIMG {};
-
-struct ResFONT {};
-
-struct JUtility {
-    struct TColor {};
-};
-
-struct JSUStreamSeekFrom {};
-
-struct JSURandomInputStream {
-    /* 802DC458 */ void peek(void*, s32);
-    /* 802DC4DC */ void seek(s32, JSUStreamSeekFrom);
-};
-
-struct JSUInputStream {
-    /* 802DC298 */ void read(void*, s32);
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TBox2 {};
-    /* TBox2<f32> */
-    struct TBox2__template0 {};
-};
-
-struct J2DAnmTexPattern {};
-
-struct J2DAnmVisibilityFull {
-    /* 8030C048 */ void getVisibility(u16, u8*) const;
-};
-
-struct J2DAnmColor {};
-
-struct J2DAnmBase {};
-
-struct J2DAnmTevRegKey {};
-
-struct J2DAnmTextureSRTKey {};
-
-struct J2DAnmVtxColor {
-    /* 8030363C */ void getColor(u8, u16, _GXColor*) const;
-};
-
-struct J2DAnmTransform {};
-
-struct J2DPane {
-    /* 80053BC0 */ void calcMtx();
-    /* 80053C00 */ void makeMatrix(f32, f32);
-    /* 802F7540 */ void makeMatrix(f32, f32, f32, f32);
-    /* 802F6F60 */ void move(f32, f32);
-    /* 802F6FB4 */ void add(f32, f32);
-    /* 802F7264 */ void clip(JGeometry::TBox2<f32> const&);
-    /* 802F72E0 */ void search(u64);
-    /* 802F7388 */ void searchUserInfo(u64);
-    /* 802F7430 */ void isUsed(ResTIMG const*);
-    /* 802F74B8 */ void isUsed(ResFONT const*);
-    /* 802F7680 */ void setCullBack(_GXCullMode);
-    /* 802F7AFC */ void getParentPane();
-    /* 802F7B18 */ void makePaneExStream(J2DPane*, JSURandomInputStream*);
-    /* 802F7EF4 */ void setAnimation(J2DAnmBase*);
-    /* 802F8004 */ void clearAnmTransform();
-    /* 802F8080 */ void animationTransform(J2DAnmTransform const*);
-    /* 802F8118 */ void setVisibileAnimation(J2DAnmVisibilityFull*);
-    /* 802F81A0 */ void setVtxColorAnimation(J2DAnmVtxColor*);
-    /* 802F8228 */ void animationPane(J2DAnmTransform const*);
-    /* 802F83D0 */ void setAnimationVF(J2DAnmVisibilityFull*);
-    /* 802F83FC */ void setAnimationVC(J2DAnmVtxColor*);
-    /* 802F8464 */ void setConnectParent(bool);
-    /* 802F8474 */ void update();
-};
-
-struct J2DTevStage {};
-
-struct J2DMaterial {
-    /* 802EA38C */ void setGX();
-    /* 802EAB0C */ void setAnimation(J2DAnmTevRegKey*);
-    /* 802EAA2C */ void setAnimation(J2DAnmTexPattern*);
-    /* 802EA94C */ void setAnimation(J2DAnmTextureSRTKey*);
-    /* 802EA89C */ void setAnimation(J2DAnmColor*);
-};
-
-struct J2DWindow {
-    struct TMaterial {};
-
-    /* 802F9A7C */ J2DWindow();
-    /* 802FA880 */ ~J2DWindow();
-    /* 802FB000 */ void resize(f32, f32);
-    /* 802FB1D8 */ void drawSelf(f32, f32);
-    /* 802FBF98 */ s32 getTypeID() const;
-};
-
-struct J2DWindowEx {
-    struct stage_enum {};
-
-    /* 8030327C */ void setAnimation(J2DAnmVtxColor*);
-    /* 80303084 */ void setAnimation(J2DAnmTextureSRTKey*);
-    /* 80256084 */ void setAnimation(J2DAnmTransform*);
-    /* 8030310C */ void setAnimation(J2DAnmTexPattern*);
-    /* 80303194 */ void setAnimation(J2DAnmTevRegKey*);
-    /* 8030361C */ void setAnimation(J2DAnmBase*);
-    /* 80303274 */ void setAnimation(J2DAnmVisibilityFull*);
-    /* 80302FFC */ void setAnimation(J2DAnmColor*);
-    /* 80300C94 */ J2DWindowEx(J2DPane*, JSURandomInputStream*, u32, J2DMaterial*);
-    /* 80300F80 */ void setMinSize();
-    /* 80301144 */ ~J2DWindowEx();
-    /* 8030122C */ void drawSelf(f32, f32, f32 (*)[3][4]);
-    /* 803012CC */ void draw_private(JGeometry::TBox2<f32> const&, JGeometry::TBox2<f32> const&);
-    /* 80301994 */ void drawContents(JGeometry::TBox2<f32> const&);
-    /* 80301D74 */ void drawFrameTexture(f32, f32, f32, f32, u16, u16, u16, u16, J2DMaterial*,
-                                         bool);
-    /* 80301FC8 */ void draw(JGeometry::TBox2<f32> const&);
-    /* 80302164 */ void draw(JGeometry::TBox2<f32> const&, JGeometry::TBox2<f32> const&);
-    /* 80303568 */ void draw(f32, f32, f32, f32);
-    /* 80302284 */ void setTevOrder(bool);
-    /* 80302388 */ void setTevStage(bool);
-    /* 803024B4 */ void setStage(J2DTevStage*, J2DWindowEx::stage_enum);
-    /* 80302764 */ void setBlack(JUtility::TColor);
-    /* 803027EC */ void setWhite(JUtility::TColor);
-    /* 80302874 */ void setBlackWhite(JUtility::TColor, JUtility::TColor);
-    /* 80302A4C */ void getBlackWhite(JUtility::TColor*, JUtility::TColor*) const;
-    /* 80302BE8 */ void isSetBlackWhite(JUtility::TColor, JUtility::TColor) const;
-    /* 80302C88 */ void getBlack() const;
-    /* 80302CE8 */ void getWhite() const;
-    /* 80302D48 */ void setAlpha(u8);
-    /* 80302D98 */ void setCullBack(_GXCullMode);
-    /* 803035C0 */ void setCullBack(bool);
-    /* 80302DF4 */ void rewriteAlpha();
-    /* 80302E0C */ void getFrameTexture(u8, u8) const;
-    /* 80302E74 */ void getContentsTexture(u8) const;
-    /* 803035FC */ void isUsed(ResFONT const*);
-    /* 80302EDC */ void isUsed(ResTIMG const*);
-    /* 8030321C */ void isNeedSetAnm(u8);
-    /* 80303370 */ void animationPane(J2DAnmTransform const*);
-    /* 80303510 */ void getFrameMaterial(u8) const;
-    /* 80303534 */ void getContentsMaterial() const;
-    /* 8030353C */ void getMaterial(J2DWindow::TMaterial&) const;
-};
-
-//
 // Forward References:
 //
 
@@ -243,21 +96,6 @@ extern "C" void resize__9J2DWindowFff();
 extern "C" void drawSelf__9J2DWindowFff();
 extern "C" s32 getTypeID__9J2DWindowCFv();
 extern "C" void getVisibility__20J2DAnmVisibilityFullCFUsPUc();
-extern "C" void PSMTXIdentity();
-extern "C" void PSMTXConcat();
-extern "C" void GXSetVtxDesc();
-extern "C" void GXClearVtxDesc();
-extern "C" void GXSetVtxAttrFmt();
-extern "C" void GXSetNumTexGens();
-extern "C" void GXBegin();
-extern "C" void GXSetChanMatColor();
-extern "C" void GXSetNumIndStages();
-extern "C" void GXSetTevDirect();
-extern "C" void GXSetTevOp();
-extern "C" void GXSetTevSwapModeTable();
-extern "C" void GXSetTevOrder();
-extern "C" void GXLoadPosMtxImm();
-extern "C" void GXSetCurrentMtx();
 extern "C" void _savegpr_20();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_26();
@@ -371,7 +209,8 @@ asm void J2DWindowEx::setMinSize() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DWindowEx::~J2DWindowEx() {
+extern "C" asm void __dt__11J2DWindowExFv() {
+    // asm J2DWindowEx::~J2DWindowEx() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DWindowEx/__dt__11J2DWindowExFv.s"
 }

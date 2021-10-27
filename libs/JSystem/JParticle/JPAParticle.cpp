@@ -11,8 +11,6 @@
 // Types:
 //
 
-struct Vec {};
-
 struct JPAEmitterWorkData {};
 
 struct JPABaseParticle {
@@ -55,7 +53,6 @@ extern "C" void createChild__14JPABaseEmitterFP15JPABaseParticle();
 extern "C" void JPAGetYZRotateMtx__FssPA4_f();
 extern "C" void __dl__FPv();
 extern "C" void JMAVECScaleAdd__FPC3VecPC3VecP3Vecf();
-extern "C" void PSMTXConcat();
 extern "C" void PSMTXMultVecSR();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_29();

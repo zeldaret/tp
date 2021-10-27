@@ -6,33 +6,6 @@
 
 enum JUTTransparency { UNK0, UNK1 };
 
-enum _GXTlut {
-    /* 0x00 */ GX_TLUT0,
-    /* 0x01 */ GX_TLUT1,
-    /* 0x02 */ GX_TLUT2,
-    /* 0x03 */ GX_TLUT3,
-    /* 0x04 */ GX_TLUT4,
-    /* 0x05 */ GX_TLUT5,
-    /* 0x06 */ GX_TLUT6,
-    /* 0x07 */ GX_TLUT7,
-    /* 0x08 */ GX_TLUT8,
-    /* 0x09 */ GX_TLUT9,
-    /* 0x0A */ GX_TLUT10,
-    /* 0x0B */ GX_TLUT11,
-    /* 0x0C */ GX_TLUT12,
-    /* 0x0D */ GX_TLUT13,
-    /* 0x0E */ GX_TLUT14,
-    /* 0x0F */ GX_TLUT15,
-    /* 0x10 */ GX_BIGTLUT0,
-    /* 0x11 */ GX_BIGTLUT1,
-    /* 0x12 */ GX_BIGTLUT2,
-    /* 0x13 */ GX_BIGTLUT3,
-};
-
-enum _GXTlutFmt {
-    /* 0x00 */ UNK,
-};
-
 struct ResTLUT {
     u8 format;
     u8 transparency;

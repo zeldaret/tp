@@ -163,8 +163,6 @@ struct dDlst_list_c {
     /* 800565EC */ void entryZSortXluDrawList(J3DDrawBuffer*, J3DPacket*, cXyz&);
 };
 
-struct _GXCompare {};
-
 struct JAISoundID {};
 
 struct Z2SoundHandlePool {};
@@ -563,8 +561,6 @@ extern "C" void GXSetArray();
 extern "C" void GXGetTexObjWidth();
 extern "C" void GXGetTexObjHeight();
 extern "C" void GXSetTexCoordScaleManually();
-extern "C" void GXSetNumIndStages();
-extern "C" void GXLoadPosMtxImm();
 extern "C" void GXLoadNrmMtxImm();
 extern "C" void __construct_new_array();
 extern "C" void _savegpr_15();

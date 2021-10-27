@@ -7,7 +7,7 @@
 #include "SSystem/SComponent/c_m3d_g_cyl.h"
 #include "SSystem/SComponent/c_m3d_g_sph.h"
 #include "SSystem/SComponent/c_m3d_g_tri.h"
-#include "dolphin/gx/GXTexture.h"
+#include "dolphin/gx/GX.h"
 #include "f_op/f_op_actor.h"
 #include "global.h"
 

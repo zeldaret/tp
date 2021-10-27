@@ -4,12 +4,12 @@
 //
 
 #include "JSystem/JUtility/JUTDirectPrint.h"
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/src/printf.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
 #include "dolphin/types.h"
 #include "global.h"
-#include "msl_c/string.h"
 
 //
 // Forward References:

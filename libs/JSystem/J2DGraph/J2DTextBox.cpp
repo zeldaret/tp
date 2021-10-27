@@ -4,23 +4,10 @@
 //
 
 #include "JSystem/J2DGraph/J2DTextBox.h"
+#include "JSystem/J2DGraph/J2DPrint.h"
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/src/string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "msl_c/string.h"
-
-//
-// Types:
-//
-
-struct J2DPrint {
-    /* 802F4394 */ J2DPrint(JUTFont*, f32, f32, JUtility::TColor, JUtility::TColor,
-                            JUtility::TColor, JUtility::TColor);
-    /* 802F4420 */ ~J2DPrint();
-    /* 802F475C */ void locate(f32, f32);
-    /* 802F4778 */ void print(f32, f32, u8, char const*, ...);
-    /* 802F4828 */ void printReturn(char const*, f32, f32, J2DTextBoxHBinding, J2DTextBoxVBinding,
-                                    f32, f32, u8);
-};
 
 //
 // Forward References:
@@ -109,11 +96,6 @@ extern "C" void setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull();
 extern "C" void setAnimationVC__7J2DPaneFP14J2DAnmVtxColor();
 extern "C" void setCullBack__7J2DPaneFb();
 extern "C" void update__7J2DPaneFv();
-extern "C" void GXSetTexCoordGen2();
-extern "C" void GXSetNumIndStages();
-extern "C" void GXSetTevDirect();
-extern "C" void GXLoadPosMtxImm();
-extern "C" void GXSetCurrentMtx();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_27();

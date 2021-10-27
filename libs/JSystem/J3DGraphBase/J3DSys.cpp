@@ -8,12 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct _GXTexMapID {};
-
-//
 // Forward References:
 //
 
@@ -46,51 +40,12 @@ extern "C" void makeTexCoordTable__Fv();
 extern "C" void makeAlphaCmpTable__Fv();
 extern "C" void makeZModeTable__Fv();
 extern "C" void makeTevSwapTable__Fv();
-extern "C" void GXSetVtxAttrFmt();
 extern "C" void GXInvalidateVtxCache();
-extern "C" void GXSetTexCoordGen2();
-extern "C" void GXSetNumTexGens();
 extern "C" void GXFlush();
-extern "C" void GXSetCullMode();
-extern "C" void GXSetCoPlanar();
 extern "C" void GXSetChanAmbColor();
-extern "C" void GXSetChanMatColor();
-extern "C" void GXSetNumChans();
-extern "C" void GXSetChanCtrl();
-extern "C" void GXInitTexObj();
-extern "C" void GXLoadTexObj();
 extern "C" void GXInitTexCacheRegion();
 extern "C" void GXSetTevIndirect();
-extern "C" void GXSetIndTexMtx();
-extern "C" void GXSetIndTexCoordScale();
-extern "C" void GXSetIndTexOrder();
-extern "C" void GXSetNumIndStages();
-extern "C" void GXSetTevDirect();
-extern "C" void GXSetTevColorIn();
-extern "C" void GXSetTevAlphaIn();
-extern "C" void GXSetTevColorOp();
-extern "C" void GXSetTevAlphaOp();
-extern "C" void GXSetTevColor();
-extern "C" void GXSetTevColorS10();
-extern "C" void GXSetTevKColor();
-extern "C" void GXSetTevKColorSel();
-extern "C" void GXSetTevKAlphaSel();
-extern "C" void GXSetTevSwapMode();
-extern "C" void GXSetTevSwapModeTable();
-extern "C" void GXSetAlphaCompare();
-extern "C" void GXSetTevOrder();
-extern "C" void GXSetNumTevStages();
-extern "C" void GXSetFog();
-extern "C" void GXSetFogRangeAdj();
-extern "C" void GXSetBlendMode();
 extern "C" void GXSetColorUpdate();
-extern "C" void GXSetAlphaUpdate();
-extern "C" void GXSetZMode();
-extern "C" void GXSetZCompLoc();
-extern "C" void GXSetDither();
-extern "C" void GXSetCurrentMtx();
-extern "C" void GXLoadTexMtxImm();
-extern "C" void GXSetClipMode();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_25();

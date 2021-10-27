@@ -40,8 +40,6 @@ struct dBgS_CamGndChk_Wtr {
 
 struct color_RGB_class {};
 
-struct _GXFogType {};
-
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
@@ -350,15 +348,7 @@ extern "C" void setEffectMtx__13J3DTexMtxInfoFPA4_f();
 extern "C" void simpleCalcMaterial__12J3DModelDataFUsPA4_f();
 extern "C" void init__12J3DFrameCtrlFs();
 extern "C" void GXInitLightAttn();
-extern "C" void GXInitLightSpot();
-extern "C" void GXInitLightDistAttn();
-extern "C" void GXInitLightPos();
-extern "C" void GXInitLightDir();
-extern "C" void GXInitLightColor();
-extern "C" void GXLoadLightObjImm();
 extern "C" void GXSetChanAmbColor();
-extern "C" void GXSetFog();
-extern "C" void GXSetFogRangeAdj();
 extern "C" void __register_global_object();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();

@@ -1,7 +1,7 @@
 #ifndef J3DSYS_H
 #define J3DSYS_H
 
-#include "dolphin/gx/GXTexture.h"
+#include "dolphin/gx/GX.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 
@@ -10,8 +10,6 @@ enum J3DError {
     kJ3DError_Success = 0,
     kJ3DError_Alloc = 4,
 };
-
-struct _GXTexCacheSize {};
 
 class J3DMtxCalc;
 class J3DModel;

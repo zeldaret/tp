@@ -8,7 +8,6 @@
 #include "d/save/d_save.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "msl_c/string.h"
 
 //
 // Forward References:

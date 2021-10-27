@@ -4,9 +4,9 @@
 //
 
 #include "JSystem/JKernel/JKRFileLoader.h"
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/src/string.h"
 #include "dol2asm.h"
 #include "global.h"
-#include "msl_c/string.h"
 
 //
 // Forward References:

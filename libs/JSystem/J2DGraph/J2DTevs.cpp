@@ -11,17 +11,6 @@
 // Types:
 //
 
-struct Vec {};
-
-struct J2DTextureSRTInfo {};
-
-struct J2DTexMtx {
-    /* 802E9C90 */ void load(u32);
-    /* 802E9CC4 */ void calc();
-    /* 802E9D2C */ void getTextureMtx(J2DTextureSRTInfo const&, Vec, f32 (*)[4]);
-    /* 802E9EBC */ void getTextureMtxMaya(J2DTextureSRTInfo const&, f32 (*)[4]);
-};
-
 struct J2DTevBlock {
     /* 802EA12C */ bool getTevSwapModeTable(u32);
     /* 802EA134 */ bool getTevStage(u32);
@@ -34,22 +23,6 @@ struct J2DTevBlock {
     /* 802EA170 */ void getTexNo(u32) const;
     /* 802EA17C */ bool getTevStageNum() const;
     /* 802EA184 */ bool getIndTevStage(u32);
-};
-
-struct J2DIndTexOrder {
-    /* 802EA0FC */ void load(u8);
-};
-
-struct J2DIndTexMtx {
-    /* 802EA098 */ void load(u8);
-};
-
-struct J2DIndTexCoordScale {
-    /* 802EA0CC */ void load(u8);
-};
-
-struct J2DIndTevStage {
-    /* 802EA044 */ void load(u8);
 };
 
 struct J2DIndBlock {
@@ -86,10 +59,10 @@ extern "C" bool getIndTexCoordScale__11J2DIndBlockFUl();
 extern "C" bool getIndTexMtx__11J2DIndBlockFUl();
 extern "C" bool getIndTexOrder__11J2DIndBlockFUl();
 extern "C" bool getIndTexStageNum__11J2DIndBlockCFv();
-extern "C" extern u8 const j2dDefaultTexCoordInfo[32];
-extern "C" extern u8 const j2dDefaultTexMtxInfo[36];
-extern "C" extern u8 const j2dDefaultIndTexMtxInfo[28];
-extern "C" extern u8 const j2dDefaultTevStageInfo[20];
+extern "C" extern J2DTexCoordInfo const j2dDefaultTexCoordInfo[8];
+extern "C" extern J2DTexMtxInfo const j2dDefaultTexMtxInfo;
+extern "C" extern J2DIndTexMtxInfo const j2dDefaultIndTexMtxInfo;
+extern "C" extern J2DTevStageInfo const j2dDefaultTevStageInfo;
 extern "C" extern u8 const j2dDefaultIndTevStageInfo[12];
 extern "C" extern u32 j2dDefaultColInfo;
 extern "C" extern u32 j2dDefaultTevOrderInfoNull;
@@ -318,33 +291,21 @@ bool J2DIndBlock::getIndTexStageNum() const {
 
 /* ############################################################################################## */
 /* 803A1B80-803A1BA0 02E1E0 0020+00 0/0 3/3 0/0 .rodata          j2dDefaultTexCoordInfo */
-SECTION_RODATA extern u8 const j2dDefaultTexCoordInfo[32] = {
-    0x01, 0x04, 0x3C, 0x00, 0x01, 0x05, 0x3C, 0x00, 0x01, 0x06, 0x3C, 0x00, 0x01, 0x07, 0x3C, 0x00,
-    0x01, 0x08, 0x3C, 0x00, 0x01, 0x09, 0x3C, 0x00, 0x01, 0x0A, 0x3C, 0x00, 0x01, 0x0B, 0x3C, 0x00,
+extern J2DTexCoordInfo const j2dDefaultTexCoordInfo[8] = {
+    {1, 4, 60, 0}, {1, 5, 60, 0}, {1, 6, 60, 0},  {1, 7, 60, 0},
+    {1, 8, 60, 0}, {1, 9, 60, 0}, {1, 10, 60, 0}, {1, 11, 60, 0},
 };
-COMPILER_STRIP_GATE(0x803A1B80, &j2dDefaultTexCoordInfo);
 
 /* 803A1BA0-803A1BC4 02E200 0024+00 0/0 3/3 0/0 .rodata          j2dDefaultTexMtxInfo */
-SECTION_RODATA extern u8 const j2dDefaultTexMtxInfo[36] = {
-    0x01, 0x01, 0xFF, 0xFF, 0x3F, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x803A1BA0, &j2dDefaultTexMtxInfo);
+extern J2DTexMtxInfo const j2dDefaultTexMtxInfo = {1,    1,    255,  255,  0.5f, 0.5f,
+                                                   0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f};
 
 /* 803A1BC4-803A1BE0 02E224 001C+00 0/0 3/3 0/0 .rodata          j2dDefaultIndTexMtxInfo */
-SECTION_RODATA extern u8 const j2dDefaultIndTexMtxInfo[28] = {
-    0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x803A1BC4, &j2dDefaultIndTexMtxInfo);
+extern J2DIndTexMtxInfo const j2dDefaultIndTexMtxInfo = {{0.5f, 0.0f, 0.0f, 0.0f, 0.5f, 0.0f}, 1};
 
 /* 803A1BE0-803A1BF4 02E240 0014+00 0/0 1/1 0/0 .rodata          j2dDefaultTevStageInfo */
-SECTION_RODATA extern u8 const j2dDefaultTevStageInfo[20] = {
-    0x04, 0x0A, 0x0F, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
-    0x05, 0x07, 0x07, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x803A1BE0, &j2dDefaultTevStageInfo);
+extern J2DTevStageInfo const j2dDefaultTevStageInfo = {4, 10, 15, 15, 0, 0, 0, 0, 1,
+                                                       0, 5,  7,  7,  0, 0, 0, 0, 1};
 
 /* 803A1BF4-803A1C00 02E254 000C+00 0/0 7/7 0/0 .rodata          j2dDefaultIndTevStageInfo */
 SECTION_RODATA extern u8 const j2dDefaultIndTevStageInfo[12] = {
