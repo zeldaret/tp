@@ -3,8 +3,8 @@
 // Translation Unit: d/kankyo/d_kankyo
 //
 
-#include "d/com/d_com_inf_game.h"
 #include "d/kankyo/d_kankyo.h"
+#include "d/com/d_com_inf_game.h"
 #include "d/kankyo/d_kankyo_data.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
