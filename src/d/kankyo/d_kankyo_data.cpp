@@ -118,7 +118,7 @@ static dKyd_darkworldTblEntry l_darkworld_tbl[34] = {
     {"T_SASA1", TEST},         // UNUSED - Sasaki Test 1
     {"F_SP105", FARON},        // UNUSED - L1 Forest Field
     {"F_SP05", TEST},          // UNUSED - Statue Forest
-    {"R_SP107", LANAYRU},      // Twilight Hyrule Castle (What is this? Better name?)
+    {"R_SP107", LANAYRU},      // Castle Sewers/Rooftops/Tower
     {"F_SP108", FARON},        // Faron Woods
     {"R_SP108", FARON},        // Coro's Lantern Shop
     {"TEST11", TEST},          // UNUSED - Local Map C
@@ -147,7 +147,6 @@ static dKyd_darkworldTblEntry l_darkworld_tbl[34] = {
 // pos(?) (essentially brightness) of the soft spotlight that is on wolf Link during twilight? Will
 // need more investigation before can be changed to appropriate type. Leaving this way since the
 // stageNames are already converted.
-
 /* 803A92A8-803A93C8 -00001 0120+00 1/1 0/0 0/0 .data            l_light_size_tbl */
 static dKyd_darkworldTblEntry l_light_size_tbl[36] = {
     {"R_SP01", 0},   // Ordon Interiors

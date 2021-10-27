@@ -3228,9 +3228,12 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, i
 
     // Stage is Hyrule Field
     if (!strcmp(stageName, "F_SP121")) {
-        // Room is Eldin Main Field (0) or Eldin Entrance (2) or Eldin Gorge (3) or Eldin
-        // Gorge-Main Transition 1 (4) or Eldin Gorge-Main transition 2 (5) or Eldin-Lanayru
-        // Transition (7)
+        // Room is one of:
+        // - Eldin Field (0)
+        // - Kakariko Gorge (3)
+        // - Eldin Field / Kakariko Gorge Path North (5) and South (4)
+        // - Faron Field / Kakariko Gorge Path North (2)
+        // - Outside Hidden Village (7)
         if (roomNo == 0 || (2 <= roomNo && roomNo <= 5) || roomNo == 7) {
             if (out_darkLv != NULL) {
                 *out_darkLv = ELDIN;
@@ -3238,9 +3241,12 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, i
             result = 1;
         }
 
-        // Room is Lanayru Entrance (9) or Lanayru Main Field (10) or Lanayru Main-Bridge
-        // Transition 1 (11) or Lanayru Main-Bridge Transition 2 (12) or Lanayru Lake Hylia
-        // Bridge (13) or Faron-Lanayru Transition (14)
+        // Room is one of:
+        // - Lanayru Field (10)
+        // - Great Bridge of Hylia (13)
+        // - Lanayru Field / Great Bridge of Hylia Path North (11) and South (12)
+        // - Faron Field / Great Bridge of Hylia Path North (14)
+        // - Lanayru Field / Outside Hidden Village Path (9)
         else if (roomNo >= 9 && roomNo <= 14) {
             if (out_darkLv != NULL) {
                 *out_darkLv = LANAYRU;
@@ -3248,14 +3254,16 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, i
             result = 1;
         }
 
-        // Rooms Faron-Eldin Transition (1), Faron Main Field (6), and Faron-Lanayru Gate (15)
-        // should never be in twilight state.
+        // Room is one of:
+        // - Faron Field (6)
+        // - Faron Field / Kakariko Gorge Path South (1)
+        // - Faron Field / Great Bridge of Hylia Path South (15)
         else {
             result = -1;
         }
     }
 
-    // Room is Faron Woods - Faron Spring AND ??
+    // Faron Spring; No twilight during Rusl cutscene at very beginning of game.
     else if (!strcmp(stageName, "F_SP108") && roomNo == 1 && dComIfGp_getStartStageLayer() == 13) {
         result = -1;
     }
