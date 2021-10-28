@@ -548,7 +548,7 @@ private:
 class dStage_startStage_c {
 public:
     void set(const char*, s8, s16, s8);
-    char* getName() const { return (char*)mName; }
+    const char* getName() const { return mName; }
     s16 getPoint() const { return mPoint; }
     s8 getRoomNo() const { return mRoomNo; }
     s8 getLayer() const { return mLayer; }

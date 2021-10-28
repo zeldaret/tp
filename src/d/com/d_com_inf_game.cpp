@@ -1205,7 +1205,7 @@ int dComIfG_play_c::getLayerNo(int param_0) {
     }
 
     int layer = dComIfGp_getStartStageLayer();
-    char* stage = dComIfGp_getStartStageName();
+    const char* stage = dComIfGp_getStartStageName();
 
     return getLayerNo_common(stage, roomNo, layer);
 }

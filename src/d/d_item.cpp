@@ -2588,7 +2588,7 @@ u8 check_itemno(int i_itemId) {
 
             if (g_dComIfG_gameInfo.play.getLayerNo(0) == 0xD ||
                 g_dComIfG_gameInfo.play.getLayerNo(0) == 0xE) {
-                char* tmp = dComIfGp_getStartStageName();
+                const char* tmp = dComIfGp_getStartStageName();
                 // D_MN08: Palace of Twilight
                 if (strncmp(tmp, "D_MN08", 6)) {
                     return GREEN_RUPEE;

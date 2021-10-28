@@ -157,7 +157,7 @@ public:
     void setMaxOxygen(int max) { mMaxOxygen = max; }
     u8 getDoStatus() { return mDoStatus; }
     u8 getRStatus() { return mRStatus; }
-    char* getStartStageName() { return mStartStage.getName(); }
+    const char* getStartStageName() { return mStartStage.getName(); }
     s8 getStartStageRoomNo() { return mStartStage.getRoomNo(); }
     s8 getStartStageLayer() { return mStartStage.getLayer(); }
     u8 isHeapLockFlag() { return mHeapLockFlag; }
@@ -743,7 +743,7 @@ inline u32 dComIfGp_getNowVibration() {
     return g_dComIfG_gameInfo.play.getNowVibration();
 }
 
-inline char* dComIfGp_getStartStageName() {
+inline const char* dComIfGp_getStartStageName() {
     return g_dComIfG_gameInfo.play.getStartStageName();
 }
 
