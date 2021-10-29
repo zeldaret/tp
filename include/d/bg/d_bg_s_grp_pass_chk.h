@@ -13,7 +13,10 @@ public:
     /* 80077BC4 */ virtual ~dBgS_GrpPassChk();
 
     void OnWaterGrp() { mGrp |= WATER_GRP; }
+    void OnSpl() { mGrp |= 2; }
+    void OnNormalGrp() { mGrp |= NORMAL_GRP; }
     void OffNormalGrp() { mGrp &= ~NORMAL_GRP; }
+    
 
 private:
     /* 0x4 */ u32 mGrp;

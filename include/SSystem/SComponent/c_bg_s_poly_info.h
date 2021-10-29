@@ -21,6 +21,9 @@ public:
     bool ChkBgIndex() const;
 
     virtual ~cBgS_PolyInfo();
+
+    u16 GetPolyIndex() const { return mPolyIndex; }
+    u16 GetBgIndex() const { return mBgIndex; }
 };  // Size: 0x10
 
 #endif /* C_BG_S_POLY_INFO_H */

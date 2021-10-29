@@ -8,33 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct dBgS_ObjGndChk_Wtr {
-    /* 80077678 */ dBgS_ObjGndChk_Wtr();
-    /* 80077710 */ ~dBgS_ObjGndChk_Wtr();
-};
-
-struct dBgS_ObjGndChk_Spl {
-    /* 800777B0 */ dBgS_ObjGndChk_Spl();
-    /* 80077848 */ ~dBgS_ObjGndChk_Spl();
-};
-
-struct dBgS_ObjGndChk_All {
-    /* 800778E8 */ ~dBgS_ObjGndChk_All();
-};
-
-struct dBgS_CamGndChk_Wtr {
-    /* 80077A00 */ dBgS_CamGndChk_Wtr();
-    /* 80077A98 */ ~dBgS_CamGndChk_Wtr();
-};
-
-struct dBgS_CamGndChk {
-    /* 80077988 */ ~dBgS_CamGndChk();
-};
-
-//
 // Forward References:
 //
 
@@ -184,14 +157,10 @@ SECTION_DATA extern void* __vt__11dBgS_GndChk[12] = {
 };
 
 /* 8007757C-800775F0 071EBC 0074+00 3/3 15/15 289/289 .text            __ct__11dBgS_GndChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dBgS_GndChk::dBgS_GndChk() {
-    nofralloc
-#include "asm/d/bg/d_bg_s_gnd_chk/__ct__11dBgS_GndChkFv.s"
+dBgS_GndChk::dBgS_GndChk() {
+    SetPolyPassChk(&GetPolyPassChkInfo());
+    SetGrpPassChk(&GetGrpPassChkInfo());
 }
-#pragma pop
 
 /* 800775F0-80077678 071F30 0088+00 8/7 13/13 295/295 .text            __dt__11dBgS_GndChkFv */
 #pragma push
@@ -205,40 +174,34 @@ extern "C" asm void __dt__11dBgS_GndChkFv() {
 #pragma pop
 
 /* 80077678-80077710 071FB8 0098+00 0/0 0/0 1/1 .text            __ct__18dBgS_ObjGndChk_WtrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dBgS_ObjGndChk_Wtr::dBgS_ObjGndChk_Wtr() {
-    nofralloc
-#include "asm/d/bg/d_bg_s_gnd_chk/__ct__18dBgS_ObjGndChk_WtrFv.s"
+dBgS_ObjGndChk_Wtr::dBgS_ObjGndChk_Wtr() {
+    OffNormalGrp();
+    OnWaterGrp();
 }
-#pragma pop
 
 /* 80077710-800777B0 072050 00A0+00 4/3 0/0 1/1 .text            __dt__18dBgS_ObjGndChk_WtrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_ObjGndChk_Wtr::~dBgS_ObjGndChk_Wtr() {
+// asm dBgS_ObjGndChk_Wtr::~dBgS_ObjGndChk_Wtr() {
+extern "C" asm void __dt__18dBgS_ObjGndChk_WtrFv() {
     nofralloc
 #include "asm/d/bg/d_bg_s_gnd_chk/__dt__18dBgS_ObjGndChk_WtrFv.s"
 }
 #pragma pop
 
 /* 800777B0-80077848 0720F0 0098+00 0/0 0/0 61/61 .text            __ct__18dBgS_ObjGndChk_SplFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dBgS_ObjGndChk_Spl::dBgS_ObjGndChk_Spl() {
-    nofralloc
-#include "asm/d/bg/d_bg_s_gnd_chk/__ct__18dBgS_ObjGndChk_SplFv.s"
+dBgS_ObjGndChk_Spl::dBgS_ObjGndChk_Spl() {
+    OffNormalGrp();
+    OnSpl();
 }
-#pragma pop
 
 /* 80077848-800778E8 072188 00A0+00 4/3 0/0 61/61 .text            __dt__18dBgS_ObjGndChk_SplFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_ObjGndChk_Spl::~dBgS_ObjGndChk_Spl() {
+// asm dBgS_ObjGndChk_Spl::~dBgS_ObjGndChk_Spl() {
+extern "C" asm void __dt__18dBgS_ObjGndChk_SplFv() {
     nofralloc
 #include "asm/d/bg/d_bg_s_gnd_chk/__dt__18dBgS_ObjGndChk_SplFv.s"
 }
@@ -248,7 +211,8 @@ asm dBgS_ObjGndChk_Spl::~dBgS_ObjGndChk_Spl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_ObjGndChk_All::~dBgS_ObjGndChk_All() {
+// asm dBgS_ObjGndChk_All::~dBgS_ObjGndChk_All() {
+extern "C" asm void __dt__18dBgS_ObjGndChk_AllFv() {
     nofralloc
 #include "asm/d/bg/d_bg_s_gnd_chk/__dt__18dBgS_ObjGndChk_AllFv.s"
 }
@@ -258,27 +222,25 @@ asm dBgS_ObjGndChk_All::~dBgS_ObjGndChk_All() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_CamGndChk::~dBgS_CamGndChk() {
+// asm dBgS_CamGndChk::~dBgS_CamGndChk() {
+extern "C" asm void __dt__14dBgS_CamGndChkFv() {
     nofralloc
 #include "asm/d/bg/d_bg_s_gnd_chk/__dt__14dBgS_CamGndChkFv.s"
 }
 #pragma pop
 
 /* 80077A00-80077A98 072340 0098+00 0/0 5/5 1/1 .text            __ct__18dBgS_CamGndChk_WtrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dBgS_CamGndChk_Wtr::dBgS_CamGndChk_Wtr() {
-    nofralloc
-#include "asm/d/bg/d_bg_s_gnd_chk/__ct__18dBgS_CamGndChk_WtrFv.s"
+dBgS_CamGndChk_Wtr::dBgS_CamGndChk_Wtr() {
+    OffNormalGrp();
+    OnWaterGrp();
 }
-#pragma pop
 
 /* 80077A98-80077B10 0723D8 0078+00 4/3 5/5 1/1 .text            __dt__18dBgS_CamGndChk_WtrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_CamGndChk_Wtr::~dBgS_CamGndChk_Wtr() {
+// asm dBgS_CamGndChk_Wtr::~dBgS_CamGndChk_Wtr() {
+extern "C" asm void __dt__18dBgS_CamGndChk_WtrFv() {
     nofralloc
 #include "asm/d/bg/d_bg_s_gnd_chk/__dt__18dBgS_CamGndChk_WtrFv.s"
 }

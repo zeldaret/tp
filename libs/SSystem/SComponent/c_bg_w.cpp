@@ -13,17 +13,17 @@
 
 /* 802681C0-802681C8 262B00 0008+00 0/0 1/1 0/0 .text            Regist__9cBgW_BgIdFi */
 void cBgW_BgId::Regist(int a1) {
-    mId = a1;
+    m_id = a1;
 }
 
 /* 802681C8-802681D4 262B08 000C+00 0/0 2/2 0/0 .text            Release__9cBgW_BgIdFv */
 void cBgW_BgId::Release() {
-    mId = 0x100;
+    m_id = 0x100;
 }
 
 /* 802681D4-802681E4 262B14 0010+00 0/0 7/7 121/121 .text            ChkUsed__9cBgW_BgIdCFv */
-unsigned int cBgW_BgId::ChkUsed() const {
-    return mId < 0x100;
+bool cBgW_BgId::ChkUsed() const {
+    return m_id < 0x100;
 }
 
 /* 802681E4-802681FC 262B24 0018+00 1/1 22/22 8/8 .text            cBgW_CheckBGround__Ff */

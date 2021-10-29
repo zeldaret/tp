@@ -25,6 +25,10 @@ public:
     void PreCalc();
 
     virtual ~cBgS_LinChk();
+
+    void ClrHit() { field_0x4c &= ~16; }
+    void SetHit() { field_0x4c |= 16; }
+    u32 ChkHit() const { return field_0x4c & 16; }
 };
 
 #endif /* C_BG_S_LIN_CHK_H */
