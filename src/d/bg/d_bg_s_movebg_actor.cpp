@@ -5,9 +5,9 @@
 
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "d/com/d_com_inf_game.h"
-#include "m_Do/m_Do_mtx.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "m_Do/m_Do_mtx.h"
 
 //
 // Forward References:
@@ -152,11 +152,11 @@ int dBgS_MoveBgActor::MoveBGCreateHeap() {
                 goto RET;  // probably fake match, clean up later
             }
         } else {
-            RET:
+        RET:
             field_0x568 = NULL;
             return 0;
         }
-        
+
         return 1;
     }
 }
@@ -167,7 +167,7 @@ int dBgS_MoveBgActor::MoveBGCreateHeap() {
 // close
 #ifdef NONMATCHING
 int dBgS_MoveBgActor::MoveBGCreate(char const* p_name, int dzb_id, MoveBGActor_SetFunc set_func,
-                                        u32 param_3, Mtx* param_4) {
+                                   u32 param_3, Mtx* param_4) {
     if (param_4 == NULL) {
         mDoMtx_stack_c::transS(mCurrent.mPosition.x, mCurrent.mPosition.y, mCurrent.mPosition.z);
         mDoMtx_stack_c::YrotM(mCollisionRot.y);
@@ -196,7 +196,7 @@ int dBgS_MoveBgActor::MoveBGCreate(char const* p_name, int dzb_id, MoveBGActor_S
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm int dBgS_MoveBgActor::MoveBGCreate(char const* param_0, int param_1, MoveBGActor_SetFunc,
-                                        u32 param_3, Mtx* param_4) {
+                                       u32 param_3, Mtx* param_4) {
     nofralloc
 #include "asm/d/bg/d_bg_s_movebg_actor/func_800787BC.s"
 }
@@ -206,7 +206,7 @@ asm int dBgS_MoveBgActor::MoveBGCreate(char const* param_0, int param_1, MoveBGA
 /* 800788DC-80078950 07321C 0074+00 0/0 0/0 169/169 .text MoveBGDelete__16dBgS_MoveBgActorFv */
 bool dBgS_MoveBgActor::MoveBGDelete() {
     bool ret = Delete();
-    
+
     if (field_0x568 != NULL && field_0x568->ChkUsed()) {
         dComIfG_Bgsp().Release(field_0x568);
     }

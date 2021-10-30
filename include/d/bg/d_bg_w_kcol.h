@@ -73,9 +73,12 @@ public:
     /* 80082EFC */ virtual void GetRoomPathPntNo(cBgS_PolyInfo const&);
     /* 80082F2C */ virtual void GetPolyGrpRoomInfId(cBgS_PolyInfo const&);
     /* 80082F5C */ virtual void GetGrpSoundId(cBgS_PolyInfo const&);
-    /* 80082F8C */ virtual void CrrPos(cBgS_PolyInfo const&, virtual void*, bool, cXyz*, csXyz*, csXyz*);
-    /* 80082F90 */ virtual void TransPos(cBgS_PolyInfo const&, virtual void*, bool, cXyz*, csXyz*, csXyz*);
-    /* 80082F94 */ virtual void MatrixCrrPos(cBgS_PolyInfo const&, virtual void*, bool, cXyz*, csXyz*, csXyz*);
+    /* 80082F8C */ virtual void CrrPos(cBgS_PolyInfo const&, virtual void*, bool, cXyz*, csXyz*,
+                                       csXyz*);
+    /* 80082F90 */ virtual void TransPos(cBgS_PolyInfo const&, virtual void*, bool, cXyz*, csXyz*,
+                                         csXyz*);
+    /* 80082F94 */ virtual void MatrixCrrPos(cBgS_PolyInfo const&, virtual void*, bool, cXyz*,
+                                             csXyz*, csXyz*);
 
 private:
     /* 0x18 */ void* m_pkc_head;

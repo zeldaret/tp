@@ -1,15 +1,15 @@
 #ifndef D_BG_D_BG_W_BASE_H
 #define D_BG_D_BG_W_BASE_H
 
-#include "SSystem/SComponent/c_bg_s_poly_info.h"
 #include "SSystem/SComponent/c_bg_s_gnd_chk.h"
 #include "SSystem/SComponent/c_bg_s_lin_chk.h"
+#include "SSystem/SComponent/c_bg_s_poly_info.h"
 #include "SSystem/SComponent/c_bg_s_shdw_draw.h"
 #include "SSystem/SComponent/c_bg_w.h"
 #include "d/bg/d_bg_s_acch.h"
 #include "d/bg/d_bg_s_sph_chk.h"
-#include "f_op/f_op_actor.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor.h"
 
 struct dBgS_CaptPoly;
 
@@ -17,7 +17,8 @@ class dBgW_Base : public cBgW_BgId {
 public:
     enum PushPullLabel {};
 
-typedef s32 (*PushPull_CallBack)(cBgS_PolyInfo const&, fopAc_ac_c*, s16, dBgW_Base::PushPullLabel);
+    typedef s32 (*PushPull_CallBack)(cBgS_PolyInfo const&, fopAc_ac_c*, s16,
+                                     dBgW_Base::PushPullLabel);
 
     /* 8007E5A8 */ dBgW_Base();
     /* 8007E69C */ void ClrDBgWBase();

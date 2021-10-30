@@ -39,7 +39,7 @@ public:
     bool Regist(dBgW_Base*, unsigned int, void*);
     void Release(dBgW_Base*);
     bool LineCross(cBgS_LinChk*);
-    void GroundCross(cBgS_GndChk*);
+    f32 GroundCross(cBgS_GndChk*);
     static void ConvDzb(void*);
     fopAc_ac_c* GetActorPointer(int) const;
     dBgW_Base* GetBgWBasePointer(cBgS_PolyInfo const&) const;
@@ -90,8 +90,8 @@ public:
     bool ChkPolyHSStick(cBgS_PolyInfo const&);
     void WallCorrect(dBgS_Acch*);
     void WallCorrectSort(dBgS_Acch*);
-    void RoofChk(dBgS_RoofChk*);
-    void SplGrpChk(dBgS_SplGrpChk*);
+    f32 RoofChk(dBgS_RoofChk*);
+    bool SplGrpChk(dBgS_SplGrpChk*);
     void SphChk(dBgS_SphChk*, void*);
     void MoveBgCrrPos(cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*, bool, bool);
     void MoveBgTransPos(cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
@@ -100,9 +100,7 @@ public:
     void ArrowStickCallBack(cBgS_PolyInfo const&, fopAc_ac_c*, cXyz&);
     bool PushPullCallBack(cBgS_PolyInfo const&, fopAc_ac_c*, s16, dBgW_Base::PushPullLabel);
 
-private:
-    // /* 0x0000 */ cBgS cbgs;
-    // /* 0x1400 */ void* vtable;
-};
+    bool WaterChk(dBgS_SplGrpChk* chk) { return SplGrpChk(chk); }
+};  // Size: 0x1404
 
 #endif /* D_BG_D_BG_S_H */

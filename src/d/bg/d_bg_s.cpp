@@ -163,12 +163,18 @@ static int l_SetCounter;
 /* 80074144-80074250 06EA84 010C+00 1/1 0/0 0/0 .text            Regist__4cBgSFP9dBgW_BaseUiPv */
 #ifdef NONMATCHING
 bool cBgS::Regist(dBgW_Base* p_data, unsigned int param_1, void* param_2) {
-    if (p_data != NULL && !p_data->ChkUsed() && !p_data->ChkMemoryError()) {
+    if (p_data == NULL) {
+        return 1;
+    } else if (p_data->ChkUsed()) {
+        return 1;
+    } else if (p_data->ChkMemoryError()) {
+        return 1;
+    } else {
         for (int i = 0; i < 0x100; i++) {
             if (!m_chk_element[i].m_bgw_base_ptr->ChkUsed()) {
                 m_chk_element[i].Regist2(p_data, param_1, param_2);
                 p_data->Regist(i);
-                
+
                 l_SetCounter = i + 1;
                 if (l_SetCounter > 0x100) {
                     l_SetCounter = 0;
@@ -230,7 +236,9 @@ bool cBgS::LineCross(cBgS_LinChk* param_0) {
     param_0->PreCalc();
 
     for (int i = 0; i < 0x100; i++) {
-        if (m_chk_element[i].ChkUsed() && !m_chk_element[i].m_bgw_base_ptr->ChkLock() && !param_0->ChkSameActorPid(m_chk_element[i].field_0x8) && m_chk_element[i].m_bgw_base_ptr->LineCheck(param_0)) {
+        if (m_chk_element[i].ChkUsed() && !m_chk_element[i].m_bgw_base_ptr->ChkLock() &&
+            !param_0->ChkSameActorPid(m_chk_element[i].field_0x8) &&
+            m_chk_element[i].m_bgw_base_ptr->LineCheck(param_0)) {
             param_0->SetActorInfo(i, &m_chk_element[0], m_chk_element[i].field_0x8);
             param_0->SetHit();
         }
@@ -260,7 +268,7 @@ SECTION_SDATA2 static f32 lit_3738[1 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cBgS::GroundCross(cBgS_GndChk* param_0) {
+asm f32 cBgS::GroundCross(cBgS_GndChk* param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_s/GroundCross__4cBgSFP11cBgS_GndChk.s"
 }
@@ -303,7 +311,8 @@ bool cBgS::ChkPolySafe(cBgS_PolyInfo const& poly) {
         return false;
     } else {
         if (m_chk_element[bg_index].ChkUsed()) {
-            return poly.ChkSafe(m_chk_element[bg_index].m_bgw_base_ptr, m_chk_element[bg_index].field_0x8);
+            return poly.ChkSafe(m_chk_element[bg_index].m_bgw_base_ptr,
+                                m_chk_element[bg_index].field_0x8);
         } else {
             return false;
         }
@@ -350,8 +359,7 @@ asm bool cBgS::GetTriPla(cBgS_PolyInfo const& param_0, cM3dGPla* param_1) const 
 
 /* 800747F0-80074840 06F130 0050+00 0/0 1/1 0/0 .text
  * GetTriPnt__4cBgSCFRC13cBgS_PolyInfoP4cXyzP4cXyzP4cXyz        */
-bool cBgS::GetTriPnt(cBgS_PolyInfo const& poly, cXyz* param_1, cXyz* param_2,
-                         cXyz* param_3) const {
+bool cBgS::GetTriPnt(cBgS_PolyInfo const& poly, cXyz* param_1, cXyz* param_2, cXyz* param_3) const {
     int id = poly.GetBgIndex();
     if (!m_chk_element[id].ChkUsed()) {
         return false;
@@ -697,7 +705,7 @@ asm void dBgS::WallCorrectSort(dBgS_Acch* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgS::RoofChk(dBgS_RoofChk* param_0) {
+asm f32 dBgS::RoofChk(dBgS_RoofChk* param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_s/RoofChk__4dBgSFP12dBgS_RoofChk.s"
 }
@@ -708,7 +716,7 @@ asm void dBgS::RoofChk(dBgS_RoofChk* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgS::SplGrpChk(dBgS_SplGrpChk* param_0) {
+asm bool dBgS::SplGrpChk(dBgS_SplGrpChk* param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_s/SplGrpChk__4dBgSFP14dBgS_SplGrpChk.s"
 }
@@ -726,26 +734,27 @@ asm void dBgS::SphChk(dBgS_SphChk* param_0, void* param_1) {
 
 /* 80075774-80075880 0700B4 010C+00 0/0 3/3 0/0 .text
  * MoveBgCrrPos__4dBgSFRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyzbb */
-void dBgS::MoveBgCrrPos(cBgS_PolyInfo const& poly, bool param_1, cXyz* param_2,
-                            csXyz* param_3, csXyz* param_4, bool param_5, bool param_6) {
+void dBgS::MoveBgCrrPos(cBgS_PolyInfo const& poly, bool param_1, cXyz* param_2, csXyz* param_3,
+                        csXyz* param_4, bool param_5, bool param_6) {
     if (!param_1 || !poly.ChkBgIndex()) {
         return;
     } else {
         int bg_index = poly.GetBgIndex();
         if (m_chk_element[bg_index].ChkUsed()) {
             dBgW_Base* base = m_chk_element[bg_index].m_bgw_base_ptr;
-            if ((!param_5 || base->chkStickWall()) && (!param_6 || base->chkStickRoof()) && base->ChkMoveFlag() && ChkPolySafe(poly)) {
-                base->CrrPos(poly, m_chk_element[bg_index].m_actor_ptr, param_1, param_2, param_3, param_4);
+            if ((!param_5 || base->chkStickWall()) && (!param_6 || base->chkStickRoof()) &&
+                base->ChkMoveFlag() && ChkPolySafe(poly)) {
+                base->CrrPos(poly, m_chk_element[bg_index].m_actor_ptr, param_1, param_2, param_3,
+                             param_4);
             }
         }
     }
 }
 
-
 /* 80075880-8007595C 0701C0 00DC+00 0/0 7/7 2/2 .text
  * MoveBgTransPos__4dBgSFRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz */
-void dBgS::MoveBgTransPos(cBgS_PolyInfo const& poly, bool param_1, cXyz* param_2,
-                              csXyz* param_3, csXyz* param_4) {
+void dBgS::MoveBgTransPos(cBgS_PolyInfo const& poly, bool param_1, cXyz* param_2, csXyz* param_3,
+                          csXyz* param_4) {
     if (!param_1 || !poly.ChkBgIndex()) {
         return;
     } else {
@@ -753,7 +762,8 @@ void dBgS::MoveBgTransPos(cBgS_PolyInfo const& poly, bool param_1, cXyz* param_2
         if (m_chk_element[bg_index].ChkUsed()) {
             dBgW_Base* base = m_chk_element[bg_index].m_bgw_base_ptr;
             if (base->ChkMoveFlag() && ChkPolySafe(poly)) {
-                base->TransPos(poly, m_chk_element[bg_index].m_actor_ptr, param_1, param_2, param_3, param_4);
+                base->TransPos(poly, m_chk_element[bg_index].m_actor_ptr, param_1, param_2, param_3,
+                               param_4);
             }
         }
     }
@@ -762,7 +772,7 @@ void dBgS::MoveBgTransPos(cBgS_PolyInfo const& poly, bool param_1, cXyz* param_2
 /* 8007595C-80075A24 07029C 00C8+00 0/0 6/6 0/0 .text
  * MoveBgMatrixCrrPos__4dBgSFRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz */
 void dBgS::MoveBgMatrixCrrPos(cBgS_PolyInfo const& poly, bool param_1, cXyz* param_2,
-                                  csXyz* param_3, csXyz* param_4) {
+                              csXyz* param_3, csXyz* param_4) {
     if (!param_1 || !poly.ChkBgIndex()) {
         return;
     } else {
@@ -770,7 +780,8 @@ void dBgS::MoveBgMatrixCrrPos(cBgS_PolyInfo const& poly, bool param_1, cXyz* par
         if (m_chk_element[bg_index].ChkUsed()) {
             dBgW_Base* base = m_chk_element[bg_index].m_bgw_base_ptr;
             if (base->ChkMoveFlag()) {
-                base->MatrixCrrPos(poly, m_chk_element[bg_index].m_actor_ptr, param_1, param_2, param_3, param_4);
+                base->MatrixCrrPos(poly, m_chk_element[bg_index].m_actor_ptr, param_1, param_2,
+                                   param_3, param_4);
             }
         }
     }
@@ -779,7 +790,7 @@ void dBgS::MoveBgMatrixCrrPos(cBgS_PolyInfo const& poly, bool param_1, cXyz* par
 /* 80075A24-80075AA4 070364 0080+00 1/1 0/0 46/46 .text
  * dBgS_MoveBGProc_Typical__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz */
 void dBgS_MoveBGProc_Typical(dBgW* param_0, void* param_1, cBgS_PolyInfo const& param_2,
-                                 bool param_3, cXyz* param_4, csXyz* param_5, csXyz* param_6) {
+                             bool param_3, cXyz* param_4, csXyz* param_5, csXyz* param_6) {
     Mtx tmp;
     if (param_0->GetOldInvMtx(tmp) != 0) {
         cXyz tmp2;
@@ -796,7 +807,7 @@ void dBgS_MoveBGProc_Typical(dBgW* param_0, void* param_1, cBgS_PolyInfo const& 
 /* 80075AA4-80075AD8 0703E4 0034+00 1/1 0/0 0/0 .text
  * dBgS_MoveBGProc_RotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz */
 static void dBgS_MoveBGProc_RotY(dBgW* param_0, void* param_1, cBgS_PolyInfo const& param_2,
-                                     bool param_3, cXyz* param_4, csXyz* param_5, csXyz* param_6) {
+                                 bool param_3, cXyz* param_4, csXyz* param_5, csXyz* param_6) {
     if (param_6 != NULL) {
         s16 y = param_0->GetDiffShapeAngleY();
         if (param_6 != NULL) {
@@ -811,15 +822,15 @@ static void dBgS_MoveBGProc_RotY(dBgW* param_0, void* param_1, cBgS_PolyInfo con
 /* 80075AD8-80075B44 070418 006C+00 0/0 0/0 124/124 .text
  * dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz */
 void dBgS_MoveBGProc_TypicalRotY(dBgW* param_0, void* param_1, cBgS_PolyInfo const& param_2,
-                                     bool param_3, cXyz* param_4, csXyz* param_5, csXyz* param_6) {
+                                 bool param_3, cXyz* param_4, csXyz* param_5, csXyz* param_6) {
     dBgS_MoveBGProc_Typical(param_0, param_1, param_2, param_3, param_4, param_5, param_6);
     dBgS_MoveBGProc_RotY(param_0, param_1, param_2, param_3, param_4, param_5, param_6);
 }
 
 /* 80075B44-80075B84 070484 0040+00 0/0 0/0 10/10 .text
  * dBgS_MoveBGProc_Trans__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz */
-void dBgS_MoveBGProc_Trans(dBgW* param_0, void* param_1, cBgS_PolyInfo const& param_2,
-                               bool param_3, cXyz* param_4, csXyz* param_5, csXyz* param_6) {
+void dBgS_MoveBGProc_Trans(dBgW* param_0, void* param_1, cBgS_PolyInfo const& param_2, bool param_3,
+                           cXyz* param_4, csXyz* param_5, csXyz* param_6) {
     cXyz xyz;
     param_0->GetTrans(&xyz);
 
@@ -838,8 +849,7 @@ void dBgS::RideCallBack(cBgS_PolyInfo const& param_0, fopAc_ac_c* param_1) {
 
 /* 80075BF4-80075C6C 070534 0078+00 0/0 0/0 2/2 .text
  * ArrowStickCallBack__4dBgSFRC13cBgS_PolyInfoP10fopAc_ac_cR4cXyz */
-void dBgS::ArrowStickCallBack(cBgS_PolyInfo const& param_0, fopAc_ac_c* param_1,
-                                  cXyz& param_2) {
+void dBgS::ArrowStickCallBack(cBgS_PolyInfo const& param_0, fopAc_ac_c* param_1, cXyz& param_2) {
     u16 bg_index = param_0.GetBgIndex();
     dBgW_Base* base = m_chk_element[bg_index].m_bgw_base_ptr;
     if (base->ChkUsed()) {
@@ -851,7 +861,7 @@ void dBgS::ArrowStickCallBack(cBgS_PolyInfo const& param_0, fopAc_ac_c* param_1,
  * PushPullCallBack__4dBgSFRC13cBgS_PolyInfoP10fopAc_ac_csQ29dBgW_Base13PushPullLabel */
 #ifdef NONMATCHING
 bool dBgS::PushPullCallBack(cBgS_PolyInfo const& param_0, fopAc_ac_c* param_1, s16 param_2,
-                                dBgW_Base::PushPullLabel param_3) {
+                            dBgW_Base::PushPullLabel param_3) {
     u16 bg_index = param_0.GetBgIndex();
     dBgW_Base* base = m_chk_element[bg_index].m_bgw_base_ptr;
     if (!base->ChkUsed()) {

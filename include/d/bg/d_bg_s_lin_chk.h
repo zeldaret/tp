@@ -13,9 +13,8 @@ public:
 
     /* 80077CDC */ virtual ~dBgS_LinChk();
 
-private:
-    /* 0x00 */ //cBgS_LinChk mLinChk;
-    /* 0x58 */ //dBgS_Chk mChk;
+    /* 0x00 cBgS_LinChk */;
+    /* 0x58 dBgS_Chk */;
 };
 
 class dBgS_LinkLinChk : public dBgS_LinChk {
@@ -36,7 +35,7 @@ class dBgS_BoomerangLinChk : public dBgS_LinChk {
 public:
     /* 800782B8 */ dBgS_BoomerangLinChk();
 
-    /* 80078314 */ virtual  ~dBgS_BoomerangLinChk();
+    /* 80078314 */ virtual ~dBgS_BoomerangLinChk();
 };
 
 class dBgS_ArrowLinChk : public dBgS_LinChk {

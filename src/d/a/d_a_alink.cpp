@@ -4,27 +4,19 @@
 //
 
 #include "d/a/d_a_alink.h"
+#include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
+#include "Z2AudioLib/Z2AudioMgr.h"
+#include "d/a/d_a_horse_static.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
+#include "m_Do/m_Do_ext.h"
+#include "m_Do/m_Do_mtx.h"
 
 //
 // Types:
 //
-//
-
-struct mDoMtx_stack_c {
-    /* 8000CD64 */ void transS(cXyz const&);
-    /* 8000CDD4 */ void transM(cXyz const&);
-    /* 8000CD9C */ void transM(f32, f32, f32);
-    /* 8000CE38 */ void scaleM(f32, f32, f32);
-    /* 8000CF0C */ void ZXYrotS(csXyz const&);
-    /* 8000CF44 */ void ZXYrotM(csXyz const&);
-    /* 8000CF7C */ void quatM(Quaternion const*);
-
-    static u8 now[48];
-};
 
 struct mDoExt_blkAnm {
     /* 8000DA08 */ void init(J3DDeformData*, J3DAnmCluster*, int, int, f32, s16, s16);
@@ -40,26 +32,12 @@ struct mDoExt_MtxCalcAnmBlendTbl {
 
 struct fopEn_enemy_c {};
 
-struct e_wb_class {
-    /* 80037C7C */ void checkWait();
-    /* 80037C90 */ void setPlayerRideNow();
-    /* 80037CB0 */ void setPlayerRide();
-    /* 80037CF4 */ void getOff();
-    /* 80037D68 */ void checkDownDamage();
-    /* 80037D94 */ void checkNormalRideMode() const;
-    /* 80037DBC */ void setRunRideMode();
-};
-
 struct daTagMist_c {
     /* 80031CF0 */ void getPlayerNo();
 };
 
 struct daTagMagne_c {
     /* 80031B50 */ void checkMagnetCode(cBgS_PolyInfo&);
-};
-
-struct daTagHstop_c {
-    static u8 m_top[4 + 4 /* padding */];
 };
 
 struct daObj_Sekizoa_c {
@@ -621,26 +599,6 @@ struct dCamera_c {
     /* 80181500 */ void GetForceLockOnActor();
 };
 
-struct Z2SeqMgr {
-    /* 802AF010 */ void bgmStart(u32, u32, s32);
-    /* 802AF49C */ void subBgmStart(u32);
-    /* 802AF884 */ void subBgmStop();
-    /* 802AFF8C */ void changeBgmStatus(s32);
-    /* 802B1DF4 */ void changeSubBgmStatus(s32);
-    /* 802B5E84 */ void bgmSetSwordUsing(s32);
-    /* 802B5E8C */ void taktModeMute();
-    /* 802B5ED4 */ void taktModeMuteOff();
-};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
 namespace JStudio {
 namespace stb {
 struct data {
@@ -655,15 +613,9 @@ struct data {
 
 };  // namespace JStudio
 
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
 struct JASKernel {
     /* 80290B08 */ void getAramHeap();
 };
-
-struct JAISeqMgr {};
 
 struct JAISeq {
     /* 802A0A8C */ JAISeq(JAISeqMgr*, JAISoundStrategyMgr<JAISeq>*);
@@ -673,12 +625,6 @@ struct J3DMaterialAnm {
     /* 800A4820 */ ~J3DMaterialAnm();
     /* 8032C320 */ void initialize();
     /* 8032C3C4 */ void calc(J3DMaterial*) const;
-};
-
-struct J3DAnmLoaderDataBaseFlag {};
-
-struct J3DAnmLoaderDataBase {
-    /* 80337B40 */ void load(void const*, J3DAnmLoaderDataBaseFlag);
 };
 
 struct J2DAnmLoaderDataBase {
@@ -15759,14 +15705,9 @@ asm void daAlink_c::setFrontWallType() {
 #pragma pop
 
 /* 800B146C-800B1488 0ABDAC 001C+00 1/1 0/0 0/0 .text            SetPos__12dBgS_RoofChkFRC4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgS_RoofChk::SetPos(cXyz const& param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/SetPos__12dBgS_RoofChkFRC4cXyz.s"
+void dBgS_RoofChk::SetPos(cXyz const& pos) {
+    m_pos = pos;
 }
-#pragma pop
 
 /* 800B1488-800B14B4 0ABDC8 002C+00 4/4 0/0 0/0 .text checkWaterPolygonUnder__9daAlink_cFv */
 #pragma push
@@ -19188,24 +19129,14 @@ asm void mDoExt_MtxCalcAnmBlendTbl::getAnm(int param_0) {
 #pragma pop
 
 /* 800D00D0-800D00DC 0CAA10 000C+00 1/1 0/0 0/0 .text            ChkRoofHit__9dBgS_AcchCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgS_Acch::ChkRoofHit() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/ChkRoofHit__9dBgS_AcchCFv.s"
+bool dBgS_Acch::ChkRoofHit() const {
+    return m_flags & ROOF_HIT ? true : false;
 }
-#pragma pop
 
 /* 800D00DC-800D00EC 0CAA1C 0010+00 1/1 0/0 0/0 .text            ClrGroundHit__9dBgS_AcchFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgS_Acch::ClrGroundHit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/ClrGroundHit__9dBgS_AcchFv.s"
+void dBgS_Acch::ClrGroundHit() {
+    m_flags &= ~GROUND_HIT;
 }
-#pragma pop
 
 /* 800D00EC-800D0110 0CAA2C 0024+00 1/1 0/0 0/0 .text            checkReinRide__9daAlink_cCFv */
 // regalloc
@@ -34986,14 +34917,9 @@ int daPy_py_c::checkResetFlg0(daPy_RFLG0 pFlag) const {
 }
 
 /* 80141404-80141410 13BD44 000C+00 1/1 0/0 0/0 .text            ChkGroundHit__9dBgS_AcchCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgS_Acch::ChkGroundHit() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/ChkGroundHit__9dBgS_AcchCFv.s"
+bool dBgS_Acch::ChkGroundHit() const {
+    return m_flags & GROUND_HIT ? true : false;
 }
-#pragma pop
 
 /* 80141410-8014141C 13BD50 000C+00 1/1 0/0 0/0 .text
  * checkNoResetFlg0__9daPy_py_cCFQ29daPy_py_c9daPy_FLG0         */

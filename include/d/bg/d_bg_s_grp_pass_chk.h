@@ -16,7 +16,6 @@ public:
     void OnSpl() { mGrp |= 2; }
     void OnNormalGrp() { mGrp |= NORMAL_GRP; }
     void OffNormalGrp() { mGrp &= ~NORMAL_GRP; }
-    
 
 private:
     /* 0x4 */ u32 mGrp;

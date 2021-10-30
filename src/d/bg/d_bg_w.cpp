@@ -4,17 +4,11 @@
 //
 
 #include "d/bg/d_bg_w.h"
+#include "JSystem/JMath/JMATrigonometric.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
 
 //
 // Forward References:
@@ -217,7 +211,6 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" extern void* __vt__8cM3dGAab[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 sincosTable___5JMath[65536];
 
 //
@@ -401,44 +394,16 @@ SECTION_DATA extern void* __vt__11cBgW_RwgElm[3 + 1 /* padding */] = {
 };
 
 /* 800791C4-800791D4 073B04 0010+00 1/1 0/0 0/0 .text            __ct__11cBgW_RwgElmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cBgW_RwgElm::cBgW_RwgElm() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/__ct__11cBgW_RwgElmFv.s"
-}
-#pragma pop
+cBgW_RwgElm::cBgW_RwgElm() {}
 
 /* 800791D4-8007921C 073B14 0048+00 2/1 0/0 0/0 .text            __dt__11cBgW_RwgElmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cBgW_RwgElm::~cBgW_RwgElm() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/__dt__11cBgW_RwgElmFv.s"
-}
-#pragma pop
+cBgW_RwgElm::~cBgW_RwgElm() {}
 
 /* 8007921C-80079238 073B5C 001C+00 1/1 0/0 0/0 .text            __ct__13cBgW_NodeTreeFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cBgW_NodeTree::cBgW_NodeTree() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/__ct__13cBgW_NodeTreeFv.s"
-}
-#pragma pop
+cBgW_NodeTree::cBgW_NodeTree() {}
 
 /* 80079238-80079294 073B78 005C+00 2/1 0/0 0/0 .text            __dt__13cBgW_NodeTreeFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cBgW_NodeTree::~cBgW_NodeTree() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/__dt__13cBgW_NodeTreeFv.s"
-}
-#pragma pop
+cBgW_NodeTree::~cBgW_NodeTree() {}
 
 /* ############################################################################################## */
 /* 804526F8-804526FC 000CF8 0004+00 6/6 0/0 0/0 .sdata2          @3717 */
@@ -450,14 +415,26 @@ SECTION_SDATA2 static u8 lit_3717[4] = {
 };
 
 /* 80079294-8007933C 073BD4 00A8+00 1/1 0/0 0/0 .text            __ct__4cBgWFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cBgW::cBgW() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/__ct__4cBgWFv.s"
+cBgW::cBgW() {
+    pm_bgd = NULL;
+    field_0x88 = 0x20;
+    field_0x89 = 1;
+    field_0x90 = 0;
+    field_0x7c.set(FLOAT_LABEL(lit_3717), FLOAT_LABEL(lit_3717), FLOAT_LABEL(lit_3717));
+
+    pm_tri = NULL;
+    pm_rwg = NULL;
+    field_0xa4 = NULL;
+    pm_node_tree = NULL;
+    pm_grp = NULL;
+    pm_vtx_tbl = NULL;
+    pm_base_mtx = NULL;
+
+    PSMTXIdentity(m_inv_mtx);
+    PSMTXIdentity(field_0x4c);
+    field_0x92 = 0xFFFF;
+    field_0x91 = 0;
 }
-#pragma pop
 
 /* 8007933C-800793A4 073C7C 0068+00 2/1 1/1 5/5 .text            __dt__4cBgWFv */
 #pragma push
@@ -471,14 +448,14 @@ extern "C" asm void __dt__4cBgWFv() {
 #pragma pop
 
 /* 800793A4-800793C4 073CE4 0020+00 2/2 0/0 0/0 .text            FreeArea__4cBgWFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::FreeArea() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/FreeArea__4cBgWFv.s"
+void cBgW::FreeArea() {
+    pm_tri = NULL;
+    pm_rwg = NULL;
+    pm_node_tree = NULL;
+    field_0xa4 = NULL;
+    pm_grp = NULL;
+    pm_vtx_tbl = NULL;
 }
-#pragma pop
 
 /* 800793C4-80079484 073D04 00C0+00 2/2 0/0 1/1 .text            GlobalVtx__4cBgWFv */
 #pragma push

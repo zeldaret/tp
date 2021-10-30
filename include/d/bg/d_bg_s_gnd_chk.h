@@ -9,9 +9,6 @@ class dBgS_GndChk : public cBgS_GndChk, public dBgS_Chk {
 public:
     /* 8007757C */ dBgS_GndChk();
     /* 800775F0 */ virtual ~dBgS_GndChk();
-
-private:
-    /* 0x3C */ // dBgS_Chk mChk;
 };  // Size: 0x54
 
 class dBgS_LinkGndChk : public dBgS_GndChk {

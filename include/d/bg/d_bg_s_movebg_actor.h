@@ -6,8 +6,8 @@
 #include "dolphin/types.h"
 
 class dBgW;
-typedef void (*MoveBGActor_SetFunc)(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*,
-                                              csXyz*, csXyz*);
+typedef void (*MoveBGActor_SetFunc)(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*,
+                                    csXyz*);
 
 class dBgS_MoveBgActor : public fopAc_ac_c {
 private:
@@ -17,8 +17,7 @@ private:
 public:
     /* 80078624 */ dBgS_MoveBgActor();
     /* 800786C8 */ int MoveBGCreateHeap();
-    /* 800787BC */ int MoveBGCreate(char const*, int, MoveBGActor_SetFunc,
-                                     u32, Mtx*);
+    /* 800787BC */ int MoveBGCreate(char const*, int, MoveBGActor_SetFunc, u32, Mtx*);
     /* 800788DC */ bool MoveBGDelete();
     /* 80078950 */ bool MoveBGExecute();
 

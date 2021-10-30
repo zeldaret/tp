@@ -16,6 +16,7 @@ public:
     /* 80079090 */ virtual ~dBgS_RoofChk();
 
     void SetNowY(f32 y) { mNowY = y; }
+    void i_SetPos(cXyz const& pos) { m_pos = pos; }
 
 private:
     /* 0x3C */ cXyz m_pos;

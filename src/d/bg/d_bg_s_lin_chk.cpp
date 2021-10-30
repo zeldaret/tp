@@ -4,9 +4,9 @@
 //
 
 #include "d/bg/d_bg_s_lin_chk.h"
-#include "f_op/f_op_actor_mng.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Forward References:
@@ -338,7 +338,7 @@ dBgS_LinkLinChk::dBgS_LinkLinChk() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-//asm dBgS_LinkLinChk::~dBgS_LinkLinChk() {
+// asm dBgS_LinkLinChk::~dBgS_LinkLinChk() {
 extern "C" asm void __dt__15dBgS_LinkLinChkFv() {
     nofralloc
 #include "asm/d/bg/d_bg_s_lin_chk/__dt__15dBgS_LinkLinChkFv.s"

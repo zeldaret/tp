@@ -39,14 +39,7 @@ SECTION_DATA extern void* __vt__8dBgS_Chk[6] = {
 };
 
 /* 8007749C-800774E8 071DDC 004C+00 0/0 6/6 0/0 .text            __ct__8dBgS_ChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dBgS_Chk::dBgS_Chk() {
-    nofralloc
-#include "asm/d/bg/d_bg_s_chk/__ct__8dBgS_ChkFv.s"
-}
-#pragma pop
+dBgS_Chk::dBgS_Chk() {}
 
 /* 800774E8-80077560 071E28 0078+00 2/1 6/6 0/0 .text            __dt__8dBgS_ChkFv */
 #pragma push

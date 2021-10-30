@@ -9,7 +9,12 @@
 
 class dBgS_SplGrpChk : public cBgS_PolyInfo, public cBgS_Chk, public dBgS_Chk {
 public:
-    enum { FIND = 1, IN = 2, MOVE_BG_ONLY = 4};
+    enum {
+        /* 0x1 */ FIND = 1,
+        /* 0x2 */ IN = 2,
+        /* 0x4 */ MOVE_BG_ONLY = 4
+    };
+
     /* 80078B90 */ void Set(cXyz&, f32);
     /* 80078BB0 */ dBgS_SplGrpChk();
     /* 80078D0C */ void Init();
@@ -19,7 +24,9 @@ public:
     void OffFind() { m_flags &= ~FIND; }
     void OffIn() { m_flags &= ~IN; }
     void OffMoveBGOnly() { m_flags &= ~MOVE_BG_ONLY; }
+    void OnMoveBGOnly() { m_flags |= MOVE_BG_ONLY; }
     void SetHeight(f32 height) { m_height = height; }
+    f32 GetHeight() { return m_height; }
     cXyz& GetPosP() { return m_ground; }
 
 private:

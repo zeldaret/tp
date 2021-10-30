@@ -1,6 +1,7 @@
 #ifndef D_BG_D_BG_W_H
 #define D_BG_D_BG_W_H
 
+#include "JSystem/J3DGraphBase/J3DVertex.h"
 #include "SSystem/SComponent/c_bg_s_gnd_chk.h"
 #include "SSystem/SComponent/c_bg_s_lin_chk.h"
 #include "SSystem/SComponent/c_bg_s_poly_info.h"
@@ -22,6 +23,9 @@ public:
 };
 
 class cBgW_RwgElm {
+private:
+    /* 0x0 */ u8 field_0x0[4];
+
 public:
     /* 800791C4 */ cBgW_RwgElm();
 
@@ -157,7 +161,7 @@ public:
     /* 0x92 */ u16 field_0x92;
     /* 0x94 */ cBgW_TriElm* pm_tri;
     /* 0x98 */ cBgW_RwgElm* pm_rwg;
-    /* 0x9C */ void* pm_vtx_tbl;
+    /* 0x9C */ VertexPosition* pm_vtx_tbl;  // type not confirmed
     /* 0xA0 */ void* pm_bgd;
     /* 0xA4 */ void* field_0xa4;
     /* 0xA8 */ cBgW_GrpElm* pm_grp;
@@ -167,8 +171,7 @@ public:
 class dBgW;
 typedef void (*dBgW_RideCallback)(dBgW*, fopAc_ac_c*, fopAc_ac_c*);
 typedef void (*dBgW_ArrowStickCallback)(fopAc_ac_c*, fopAc_ac_c*, cXyz&);
-typedef void (*dBgW_CrrFunc)(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*,
-                                              csXyz*, csXyz*);
+typedef void (*dBgW_CrrFunc)(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
 
 class dBgW : public cBgW {
 public:
@@ -193,7 +196,7 @@ public:
     /* 8007DB20 */ void RwgSphChk(u16, dBgS_SphChk*, void*);
     /* 8007DC70 */ void SphChkRp(dBgS_SphChk*, void*, int);
     /* 8007DDE0 */ void SphChkGrpRp(dBgS_SphChk*, void*, int, int);
-    
+
     /* 8007E548 */ virtual ~dBgW();
     /* 8007E4B4 */ virtual u32 ChkMoveFlag() const;
     /* 8007E4A4 */ virtual void OffMoveFlag();
@@ -233,9 +236,12 @@ public:
     /* 8007B904 */ virtual s32 GetRoomPathPntNo(cBgS_PolyInfo const&);
     /* 8007DF28 */ virtual void GetPolyGrpRoomInfId(cBgS_PolyInfo const&);
     /* 8007DF58 */ virtual s32 GetGrpSoundId(cBgS_PolyInfo const&);
-    /* 8007DF88 */ virtual void CrrPos(cBgS_PolyInfo const&, virtual void*, bool, cXyz*, csXyz*, csXyz*);
-    /* 8007DFC4 */ virtual void TransPos(cBgS_PolyInfo const&, virtual void*, bool, cXyz*, csXyz*, csXyz*);
-    /* 8007E000 */ virtual void MatrixCrrPos(cBgS_PolyInfo const&, virtual void*, bool, cXyz*, csXyz*, csXyz*);
+    /* 8007DF88 */ virtual void CrrPos(cBgS_PolyInfo const&, virtual void*, bool, cXyz*, csXyz*,
+                                       csXyz*);
+    /* 8007DFC4 */ virtual void TransPos(cBgS_PolyInfo const&, virtual void*, bool, cXyz*, csXyz*,
+                                         csXyz*);
+    /* 8007E000 */ virtual void MatrixCrrPos(cBgS_PolyInfo const&, virtual void*, bool, cXyz*,
+                                             csXyz*, csXyz*);
     /* 8007E444 */ virtual void CallRideCallBack(fopAc_ac_c*, fopAc_ac_c*);
     /* 8007E474 */ virtual void CallArrowStickCallBack(fopAc_ac_c*, fopAc_ac_c*, cXyz&);
     /* 8007E02C */ virtual void ChkPolyThrough(int, cBgS_PolyPassChk*);
