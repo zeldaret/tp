@@ -7,7 +7,7 @@
 class dBgS_GrpPassChk : public cBgS_GrpPassChk {
 public:
     enum {
-        /* 0x1 */ NORMAL_GRP = 1, 
+        /* 0x1 */ NORMAL_GRP = 1,
         /* 0x2 */ WATER_GRP
     };
 
