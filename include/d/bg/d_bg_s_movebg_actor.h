@@ -11,7 +11,7 @@ typedef void (*MoveBGActor_SetFunc)(dBgW*, void*, cBgS_PolyInfo const&, bool, cX
 
 class dBgS_MoveBgActor : public fopAc_ac_c {
 private:
-    /* 0x568 */ dBgW* field_0x568;  // dBgW size is 0xC0
+    /* 0x568 */ dBgW* field_0x568;
     /* 0x56C */ Mtx field_0x56c;
 
 public:
