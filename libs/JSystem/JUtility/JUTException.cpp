@@ -284,7 +284,7 @@ void JUTException::setFPException(u32 fpscr_enable_bits) {
 void JUTException::showFloatSub(int index, f32 value) {
     if (fpclassify(value) == FP_NAN) {
         sConsole->print_f("F%02d: Nan      ", index);
-    } else if (fpclassify(value) == 2) {
+    } else if (fpclassify(value) == FP_INFINITE) {
         if (signbit(value)) {
             sConsole->print_f("F%02d:+Inf     ", index);
         } else {
@@ -341,7 +341,7 @@ bool JUTException::searchPartialModule(u32 address, u32* module_id, u32* section
         OSSectionInfo* section = (OSSectionInfo*)module->section_info_offset;
         for (u32 i = 0; i < module->num_sections; section++, i++) {
             if (section->size) {
-                u32 addr = section->offset & 0xfffffffe;
+                u32 addr = ALIGN_PREV(section->offset, 2);
                 if ((addr <= address) && (address < addr + section->size)) {
                     if (module_id)
                         *module_id = module->id;
@@ -420,7 +420,7 @@ void JUTException::showMainInfo(u16 error, OSContext* context, u32 dsisr, u32 da
     if (error < (OS_ERROR_MACHINE_CHECK | OS_ERROR_FLOATING_POINT_EXCEPTION)) {
         sConsole->print_f("CONTEXT:%08XH  (%s EXCEPTION)\n", context, sCpuExpName[error]);
     } else {
-        sConsole->print_f("CONTEXT:%08XH\n");
+        sConsole->print_f("CONTEXT:%08XH\n", context);
     }
 
     if (error == OS_ERROR_FLOATING_POINT_EXCEPTION) {
@@ -579,7 +579,7 @@ void JUTException::showSRR0Map(OSContext* context) {
         if (showMapInfo_subroutine(address, true) == false) {
             sConsole->print("  no information\n");
         }
-        JUTConsoleManager::sManager->drawDirect(true);
+        JUTConsoleManager::getManager()->drawDirect(true);
     }
 }
 
@@ -698,6 +698,7 @@ bool JUTException::readPad(u32* out_trigger, u32* out_button) {
 
 /* 802E34C0-802E3980 2DDE00 04C0+00 1/1 0/0 0/0 .text
  * printContext__12JUTExceptionFUsP9OSContextUlUl               */
+// clean up
 void JUTException::printContext(OSError error, OSContext* context, u32 dsisr, u32 dar) {
     bool is_pad_enabled = isEnablePad() == 0;
     if (!sErrorManager->mDirectPrint->isActive()) {
@@ -880,8 +881,8 @@ void JUTException::createFB() {
     u32 pixel_count = width * height;
     u32 size = pixel_count * 2;
 
-    void* begin = (void*)(((u32)end - size) & 0xffffffe0);
-    void* object = (void*)(((s32)begin - sizeof(JUTExternalFB)) & 0xffffffe0);
+    void* begin = (void*)ALIGN_PREV((u32)end - size, 32);
+    void* object = (void*)ALIGN_PREV((s32)begin - sizeof(JUTExternalFB), 32);
     new (object) JUTExternalFB(renderMode, GX_GM_1_7, begin, size);
 
     mDirectPrint->changeFrameBuffer(begin, renderMode->fb_width, renderMode->efb_height);
