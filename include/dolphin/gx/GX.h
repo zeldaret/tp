@@ -37,6 +37,8 @@ typedef struct _GXRenderModeObj {
     u8 vfilter[7];
 } GXRenderModeObj;
 
+STATIC_ASSERT(sizeof(_GXRenderModeObj) == 60);
+
 typedef struct _GXTexObj {
     /* 0x00 */ u32 texture_filter;
     /* 0x04 */ u32 texture_lod;
@@ -416,37 +418,6 @@ typedef enum _GXGamma {
     /* 0x0 */ GX_GM_1_7,
     /* 0x0 */ GX_GM_2_2,
 } GXGamma;
-
-typedef struct _GXRenderModeObj {
-    s32 vi_tv_mode;
-    u16 fb_width;
-    u16 efb_height;
-    u16 xfb_height;
-    u16 vi_x_origin;
-    u16 vi_y_origin;
-    u16 vi_width;
-    u16 vi_height;
-    s32 xfb_mode;
-    u8 field_rendering;
-    u8 antialiasing;
-    u8 sample_pattern[12][2];
-    u8 vfilter[7];
-} GXRenderModeObj;
-
-STATIC_ASSERT(sizeof(_GXRenderModeObj) == 60);
-
-struct _GXTexObj {
-    u32 texture_filter;
-    u32 texture_lod;
-    u32 texture_size;
-    u32 texture_address;
-    u32 user_data;
-    u32 texture_format;
-    u32 tlut_name;
-    u16 texture_time_count;
-    u8 texture_tile_type;
-    u8 texture_flags;
-};
 
 typedef enum _GXTlutFmt {
     /* 0x0 */ GX_TL_IA8,

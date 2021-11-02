@@ -1072,8 +1072,8 @@ asm bool cM3d_Cross_TriTri(cM3dGTri const& param_0, cM3dGTri const& param_1, Vec
 }
 #pragma pop
 
-inline f32 cM3d_2LinCenter(cM3dGLin const pLinA, f32 pLinAF, cM3dGLin const& pLinB, f32 pLinBF,
-                           Vec* pVecOut) {
+inline void cM3d_2LinCenter(cM3dGLin const pLinA, f32 pLinAF, cM3dGLin const& pLinB, f32 pLinBF,
+                            Vec* pVecOut) {
     Vec tmp, tmp2;
     pLinA.CalcPos(&tmp, pLinAF);
     pLinB.CalcPos(&tmp2, pLinBF);
