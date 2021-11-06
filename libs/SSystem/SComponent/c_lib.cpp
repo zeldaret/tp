@@ -81,34 +81,62 @@ SECTION_SDATA2 static f32 lit_2262[1 + 1 /* padding */] = {
 };
 
 /* 8026F97C-8026FA3C 26A2BC 00C0+00 0/0 50/50 178/178 .text            cLib_addCalc__FPfffff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 cLib_addCalc(f32* param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/cLib_addCalc__FPfffff.s"
+f32 cLib_addCalc(f32* pValue, f32 target, f32 scale, f32 minStep, f32 maxStep) {
+    if (*pValue != target) {
+        f32 step = scale * (target - *pValue);
+        if (step >= maxStep || step <= -maxStep) {
+            if (step > minStep) {
+                step = minStep;
+            }
+            if (step < -minStep) {
+                step = -minStep;
+            }
+            *pValue += step;
+        } else {
+            if (step > FLOAT_LABEL(/* 0.0f */ lit_2262)) {
+                if (step < maxStep) {
+                    *pValue += maxStep;
+                    if (*pValue > target) {
+                        *pValue = target;
+                    }
+                }
+            } else {
+                maxStep = -maxStep;
+                if (step > maxStep) {
+                    *pValue += maxStep;
+                    if (*pValue < target) {
+                        *pValue = target;
+                    }
+                }
+            }
+        }
+    }
+    return fabsf(target - *pValue);
 }
-#pragma pop
 
 /* 8026FA3C-8026FA80 26A37C 0044+00 0/0 20/20 701/701 .text            cLib_addCalc2__FPffff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cLib_addCalc2(f32* param_0, f32 param_1, f32 param_2, f32 param_3) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/cLib_addCalc2__FPffff.s"
+void cLib_addCalc2(f32* pValue, f32 target, f32 scale, f32 maxStep) {
+    if (*pValue != target) {
+        f32 step = scale * (target - *pValue);
+        if (step > maxStep) {
+            step = maxStep;
+        } else if (step < -maxStep) {
+            step = -maxStep;
+        }
+        *pValue += step;
+    }
 }
-#pragma pop
 
 /* 8026FA80-8026FAB8 26A3C0 0038+00 0/0 2/2 322/322 .text            cLib_addCalc0__FPfff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cLib_addCalc0(f32* param_0, f32 param_1, f32 param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/cLib_addCalc0__FPfff.s"
+void cLib_addCalc0(f32* pValue, f32 scale, f32 maxStep) {
+    f32 step = *pValue * scale;
+    if (step > maxStep) {
+        step = maxStep;
+    } else if (step < -maxStep) {
+        step = -maxStep;
+    }
+    *pValue -= step;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804551E8-804551F0 0037E8 0008+00 7/7 0/0 0/0 .sdata2          @2379 */
