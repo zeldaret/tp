@@ -1,6 +1,7 @@
 #ifndef MSL_MATH_H_
 #define MSL_MATH_H_
 
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/float.h"
 #include "dolphin/types.h"
 
 extern "C" {
@@ -32,25 +33,7 @@ f64 fmod(f64, f64);
 inline f32 fmodf(f32 f1, f32 f2) {
     return fmod(f1, f2);
 }
-inline s32 fpclassify(f32 f) {
-    u32 var = *(u32*)&f;
-    switch (var & 0x7F800000) {
-    case 0x7F800000:
-        if ((var & 0x7FFFFF) != 0) {
-            return 1;
-        } else {
-            return 2;
-        }
-    case 0:
-        if ((var & 0x7FFFFF) != 0) {
-            return 5;
-        } else {
-            return 3;
-        }
-    default:
-        return 4;
-    }
-}
+
 f64 frexp(f64, s32*);
 f64 ldexp(f64, s32);
 f64 modf(f64, f64*);

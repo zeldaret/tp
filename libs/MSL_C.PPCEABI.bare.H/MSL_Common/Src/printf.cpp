@@ -4,6 +4,7 @@
 //
 
 #include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf.h"
+#include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

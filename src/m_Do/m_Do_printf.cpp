@@ -4,6 +4,7 @@
 //
 
 #include "m_Do/m_Do_printf.h"
+#include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"

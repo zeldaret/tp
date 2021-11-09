@@ -47,7 +47,14 @@ public:
 
     enum EStickMode {};
     enum EWhichStick {};
-    enum EPadPort { Port_1, Port_2, Port_3, Port_4 };
+    enum EPadPort {
+        Port_Unknown = -1,  // used by JUTException
+        Port_1,
+        Port_2,
+        Port_3,
+        Port_4,
+    };
+
     JUTGamePad(JUTGamePad::EPadPort port);
     virtual ~JUTGamePad();
 

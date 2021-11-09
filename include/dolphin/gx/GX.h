@@ -5,6 +5,7 @@
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/mtx/mtx44.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 typedef struct _GXColor {
     /* 0x0 */ u8 r;
@@ -35,6 +36,8 @@ typedef struct _GXRenderModeObj {
     u8 sample_pattern[12][2];
     u8 vfilter[7];
 } GXRenderModeObj;
+
+STATIC_ASSERT(sizeof(_GXRenderModeObj) == 60);
 
 typedef struct _GXTexObj {
     /* 0x00 */ u32 texture_filter;
@@ -409,6 +412,12 @@ typedef enum _GXTexFmt {
     /* 0x10 */ _GX_TF_ZTF = 0x10,
     /* 0x20 */ _GX_TF_CTF = 0x20
 } GXTexFmt;
+
+typedef enum _GXGamma {
+    /* 0x0 */ GX_GM_1_0,
+    /* 0x0 */ GX_GM_1_7,
+    /* 0x0 */ GX_GM_2_2,
+} GXGamma;
 
 typedef enum _GXTlutFmt {
     /* 0x0 */ GX_TL_IA8,

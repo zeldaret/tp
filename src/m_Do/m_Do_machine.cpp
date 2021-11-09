@@ -338,8 +338,7 @@ void myExceptionCallback(u16 param_0, OSContext* param_1, u32 param_2, u32 param
         manager->setTraceSuppress(0x80);
         if (data_80450580 == 0) {
             JUTGamePad pad(JUTGamePad::Port_1);
-            manager->field_0x84 = &pad;
-            manager->field_0x88 = -1;
+            manager->setGamePad(&pad);
 
             if (manager != NULL) {
                 OSEnableInterrupts();

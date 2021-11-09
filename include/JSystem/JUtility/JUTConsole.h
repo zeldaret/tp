@@ -14,8 +14,8 @@ public:
         UNK_TYPE2 = 2,
     };
 
-    /* 802E73E4 */ void create(unsigned int, void*, u32);
-    /* 802E7354 */ void create(unsigned int, unsigned int, JKRHeap*);
+    /* 802E73E4 */ static JUTConsole* create(unsigned int, void*, u32);
+    /* 802E7354 */ static JUTConsole* create(unsigned int, unsigned int, JKRHeap*);
     /* 802E746C */ JUTConsole(unsigned int, unsigned int, bool);
     /* 802E75CC */ static size_t getObjectSizeFromBufferSize(unsigned int, unsigned int);
     /* 802E75DC */ static size_t getLineFromObjectSize(u32, unsigned int);
@@ -31,26 +31,31 @@ public:
     /* 802E755C */ virtual ~JUTConsole();
 
     void setOutput(u32 output) { mOutput = output; }
-
-    u32 getOutput() const { return mOutput; }
-
     void setPosition(int x, int y) {
         mPositionX = x;
         mPositionY = y;
     }
+    void setFontSize(f32 x, f32 y) {
+        mFontSizeX = x;
+        mFontSizeY = y;
+    }
+    void setHeight(u32 height) {
+        mHeight = height;
+        if (mHeight > field_0x24) {
+            mHeight = field_0x24;
+        }
+    }
 
+    u32 getOutput() const { return mOutput; }
     int getPositionY() const { return mPositionY; }
-
     int getPositionX() const { return mPositionX; }
+    u32 getHeight() const { return mHeight; }
 
     bool isVisible() const { return mVisible; }
-
     void setVisible(bool visible) { mVisible = visible; }
 
     void setLineAttr(int param_0, u8 param_1) { mBuf[(field_0x20 + 2) * param_0] = param_1; }
-
     u8* getLinePtr(int param_0) const { return &mBuf[(field_0x20 + 2) * param_0 + 1]; }
-
     int diffIndex(int param_0, int param_1) const {
         int diff = param_1 - param_0;
         if (diff >= 0) {
@@ -59,6 +64,10 @@ public:
         return diff += field_0x24;
     }
 
+    void scrollToLastLine() { scroll(field_0x24); }
+    void scrollToFirstLine() { scroll(-field_0x24); }
+
+private:
     /* 0x18 */ JGadget::TLinkListNode mListNode;
 
 private:

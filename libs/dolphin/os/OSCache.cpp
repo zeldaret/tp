@@ -5,6 +5,7 @@
 
 #include "dolphin/os/OSCache.h"
 #include "dol2asm.h"
+#include "dolphin/os/OSError.h"
 #include "dolphin/types.h"
 
 //
@@ -43,7 +44,6 @@ extern "C" void PPCHalt();
 extern "C" void PPCMfhid2();
 extern "C" void PPCMthid2();
 extern "C" void OSDumpContext();
-extern "C" void OSSetErrorHandler();
 extern "C" void OSDisableInterrupts();
 extern "C" void OSRestoreInterrupts();
 extern "C" void DBPrintf();

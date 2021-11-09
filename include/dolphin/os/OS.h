@@ -7,6 +7,14 @@
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dolphin/types.h"
 
+#include "Runtime.PPCEABI.H/__va_arg.h"
+#include "dolphin/os/OSError.h"
+#include "dolphin/os/OSLink.h"
+
+#define OS_BUS_CLOCK (*(u32*)0x800000F8)
+#define OS_CORE_CLOCK (*(u32*)0x800000FC)
+#define OS_TIMER_CLOCK (OS_BUS_CLOCK / 4)
+
 /* TODO: more structs, and get rid of the ones that are faked! */
 
 #define OS_MESSAGE_NON_BLOCKING 0

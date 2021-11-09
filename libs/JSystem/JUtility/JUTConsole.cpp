@@ -110,7 +110,7 @@ JUTConsoleManager* JUTConsoleManager::sManager;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JUTConsole::create(unsigned int param_0, unsigned int param_1, JKRHeap* param_2) {
+asm JUTConsole* JUTConsole::create(unsigned int param_0, unsigned int param_1, JKRHeap* param_2) {
     nofralloc
 #include "asm/JSystem/JUtility/JUTConsole/create__10JUTConsoleFUiUiP7JKRHeap.s"
 }
@@ -120,7 +120,7 @@ asm void JUTConsole::create(unsigned int param_0, unsigned int param_1, JKRHeap*
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JUTConsole::create(unsigned int param_0, void* param_1, u32 param_2) {
+asm JUTConsole* JUTConsole::create(unsigned int param_0, void* param_1, u32 param_2) {
     nofralloc
 #include "asm/JSystem/JUtility/JUTConsole/create__10JUTConsoleFUiPvUl.s"
 }
