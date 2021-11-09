@@ -63,8 +63,8 @@ SECTION_DATA extern void* __vt__14dBgS_SplGrpChk[12] = {
 
 /* 80078BB0-80078C78 0734F0 00C8+00 0/0 1/1 0/0 .text            __ct__14dBgS_SplGrpChkFv */
 dBgS_SplGrpChk::dBgS_SplGrpChk() {
-    SetPolyPassChk(&GetPolyPassChkInfo());
-    SetGrpPassChk(&GetGrpPassChkInfo());
+    SetPolyPassChk(GetPolyPassChkInfo());
+    SetGrpPassChk(GetGrpPassChkInfo());
     OffNormalGrp();
 
     m_ground.x = 0.0f;

@@ -164,11 +164,11 @@ static int l_SetCounter;
 #ifdef NONMATCHING
 bool cBgS::Regist(dBgW_Base* p_data, unsigned int param_1, void* param_2) {
     if (p_data == NULL) {
-        return 1;
+        return true;
     } else if (p_data->ChkUsed()) {
-        return 1;
+        return true;
     } else if (p_data->ChkMemoryError()) {
-        return 1;
+        return true;
     } else {
         for (int i = 0; i < 0x100; i++) {
             if (!m_chk_element[i].m_bgw_base_ptr->ChkUsed()) {
@@ -243,7 +243,7 @@ bool cBgS::LineCross(cBgS_LinChk* param_0) {
             param_0->SetHit();
         }
     }
-    return param_0->ChkHit() ? 1 : 0;
+    return param_0->ChkHit() ? true : false;
 }
 #else
 #pragma push
@@ -865,15 +865,15 @@ bool dBgS::PushPullCallBack(cBgS_PolyInfo const& param_0, fopAc_ac_c* param_1, s
     u16 bg_index = param_0.GetBgIndex();
     dBgW_Base* base = m_chk_element[bg_index].m_bgw_base_ptr;
     if (!base->ChkUsed()) {
-        return 0;
+        return false;
     }
 
     if (m_chk_element[bg_index].m_actor_ptr == NULL) {
-        return 0;
+        return false;
     }
 
     if (base->GetPushPullCallback() == NULL) {
-        return 0;
+        return false;
     }
 
     base->GetPushPullCallback()(param_0, param_1, param_2, param_3);

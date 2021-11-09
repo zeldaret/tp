@@ -103,4 +103,7 @@ public:
     bool WaterChk(dBgS_SplGrpChk* chk) { return SplGrpChk(chk); }
 };  // Size: 0x1404
 
+bool dBgS_CheckBGroundPoly(cBgS_PolyInfo const&);
+bool dBgS_CheckBWallPoly(cBgS_PolyInfo const&);
+
 #endif /* D_BG_D_BG_S_H */

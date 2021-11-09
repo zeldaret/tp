@@ -141,7 +141,7 @@ public:
     // inline dupe
     void i_ClrGroundHit() { m_flags &= ~GROUND_HIT; }
 
-private:
+public:
     /* 0x02C */ u32 m_flags;
     /* 0x030 */ cXyz* pm_pos;
     /* 0x034 */ cXyz* pm_old_pos;

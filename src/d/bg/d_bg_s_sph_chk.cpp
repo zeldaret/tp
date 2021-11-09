@@ -62,8 +62,8 @@ SECTION_DATA extern void* __vt__11dBgS_SphChk[15 + 1 /* padding */] = {
 
 /* 80078A14-80078AC0 073354 00AC+00 0/0 1/1 1/1 .text            __ct__11dBgS_SphChkFv */
 dBgS_SphChk::dBgS_SphChk() {
-    SetPolyPassChk(&GetPolyPassChkInfo());
-    SetGrpPassChk(&GetGrpPassChkInfo());
+    SetPolyPassChk(GetPolyPassChkInfo());
+    SetGrpPassChk(GetGrpPassChkInfo());
     setActorPid(0xFFFFFFFF);
     ClearPi();
     mCallback = NULL;

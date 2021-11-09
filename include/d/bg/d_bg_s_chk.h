@@ -8,8 +8,8 @@
 class dBgS_Chk : public dBgS_PolyPassChk, public dBgS_GrpPassChk {
 public:
     /* 8007749C */ dBgS_Chk();
-    /* 80077560 */ cBgS_PolyPassChk& GetPolyPassChkInfo();
-    /* 80077564 */ cBgS_GrpPassChk& GetGrpPassChkInfo();
+    /* 80077560 */ cBgS_PolyPassChk* GetPolyPassChkInfo();
+    /* 80077564 */ cBgS_GrpPassChk* GetGrpPassChkInfo();
 
     /* 800774E8 */ virtual ~dBgS_Chk();
 };  // Size: 0x18

@@ -252,8 +252,8 @@ SECTION_DATA extern void* __vt__11dBgS_LinChk[12] = {
 
 /* 80077C68-80077CDC 0725A8 0074+00 8/8 3/3 388/388 .text            __ct__11dBgS_LinChkFv */
 dBgS_LinChk::dBgS_LinChk() {
-    SetPolyPassChk(&GetPolyPassChkInfo());
-    SetGrpPassChk(&GetGrpPassChkInfo());
+    SetPolyPassChk(GetPolyPassChkInfo());
+    SetGrpPassChk(GetGrpPassChkInfo());
 }
 
 /* 80077CDC-80077D64 07261C 0088+00 12/11 5/5 378/378 .text            __dt__11dBgS_LinChkFv */

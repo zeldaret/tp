@@ -19130,7 +19130,7 @@ asm void mDoExt_MtxCalcAnmBlendTbl::getAnm(int param_0) {
 
 /* 800D00D0-800D00DC 0CAA10 000C+00 1/1 0/0 0/0 .text            ChkRoofHit__9dBgS_AcchCFv */
 bool dBgS_Acch::ChkRoofHit() const {
-    return m_flags & ROOF_HIT ? true : false;
+    return m_flags & ROOF_HIT;
 }
 
 /* 800D00DC-800D00EC 0CAA1C 0010+00 1/1 0/0 0/0 .text            ClrGroundHit__9dBgS_AcchFv */
@@ -34918,7 +34918,7 @@ int daPy_py_c::checkResetFlg0(daPy_RFLG0 pFlag) const {
 
 /* 80141404-80141410 13BD44 000C+00 1/1 0/0 0/0 .text            ChkGroundHit__9dBgS_AcchCFv */
 bool dBgS_Acch::ChkGroundHit() const {
-    return m_flags & GROUND_HIT ? true : false;
+    return m_flags & GROUND_HIT;
 }
 
 /* 80141410-8014141C 13BD50 000C+00 1/1 0/0 0/0 .text

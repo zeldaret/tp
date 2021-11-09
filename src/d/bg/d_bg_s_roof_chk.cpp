@@ -56,8 +56,8 @@ SECTION_DATA extern void* __vt__12dBgS_RoofChk[12] = {
 
 /* 80078FF4-80079090 073934 009C+00 0/0 10/10 1/1 .text            __ct__12dBgS_RoofChkFv */
 dBgS_RoofChk::dBgS_RoofChk() {
-    SetPolyPassChk(&GetPolyPassChkInfo());
-    SetGrpPassChk(&GetGrpPassChkInfo());
+    SetPolyPassChk(GetPolyPassChkInfo());
+    SetGrpPassChk(GetGrpPassChkInfo());
     m_pos.x = 0.0f;
     m_pos.y = 0.0f;
     m_pos.z = 0.0f;

@@ -53,15 +53,13 @@ extern "C" asm void __dt__8dBgS_ChkFv() {
 #pragma pop
 
 /* 80077560-80077564 071EA0 0004+00 0/0 6/6 0/0 .text            GetPolyPassChkInfo__8dBgS_ChkFv */
-cBgS_PolyPassChk& dBgS_Chk::GetPolyPassChkInfo() {
-    /* empty function */
+cBgS_PolyPassChk* dBgS_Chk::GetPolyPassChkInfo() {
+    return this;
 }
 
 /* 80077564-80077574 071EA4 0010+00 0/0 6/6 0/0 .text            GetGrpPassChkInfo__8dBgS_ChkFv */
-cBgS_GrpPassChk& dBgS_Chk::GetGrpPassChkInfo() {
-    if (this != NULL) {
-        return static_cast<cBgS_GrpPassChk&>(*this);
-    }
+cBgS_GrpPassChk* dBgS_Chk::GetGrpPassChkInfo() {
+    return this;
 }
 
 /* 80077574-8007757C 071EB4 0008+00 1/0 0/0 0/0 .text            @16@__dt__8dBgS_ChkFv */

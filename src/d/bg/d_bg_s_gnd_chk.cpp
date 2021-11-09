@@ -158,8 +158,8 @@ SECTION_DATA extern void* __vt__11dBgS_GndChk[12] = {
 
 /* 8007757C-800775F0 071EBC 0074+00 3/3 15/15 289/289 .text            __ct__11dBgS_GndChkFv */
 dBgS_GndChk::dBgS_GndChk() {
-    SetPolyPassChk(&GetPolyPassChkInfo());
-    SetGrpPassChk(&GetGrpPassChkInfo());
+    SetPolyPassChk(GetPolyPassChkInfo());
+    SetGrpPassChk(GetGrpPassChkInfo());
 }
 
 /* 800775F0-80077678 071F30 0088+00 8/7 13/13 295/295 .text            __dt__11dBgS_GndChkFv */

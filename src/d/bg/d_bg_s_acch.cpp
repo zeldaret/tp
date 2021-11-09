@@ -763,7 +763,7 @@ void dBgS_Acch::ClrGndThinCellingOff() {
 /* 800773E0-800773EC 071D20 000C+00 1/1 0/0 0/0 .text            ChkGndThinCellingOff__9dBgS_AcchFv
  */
 bool dBgS_Acch::ChkGndThinCellingOff() {
-    return (m_flags & GND_THIN_CELLING_OFF) ? true : false;
+    return m_flags & GND_THIN_CELLING_OFF;
 }
 
 /* 800773EC-800773FC 071D2C 0010+00 0/0 1/1 1/1 .text            OnWallSort__9dBgS_AcchFv */
@@ -773,12 +773,12 @@ void dBgS_Acch::OnWallSort() {
 
 /* 800773FC-80077408 071D3C 000C+00 1/1 0/0 0/0 .text            ChkWallSort__9dBgS_AcchFv */
 bool dBgS_Acch::ChkWallSort() {
-    return (m_flags & WALL_SORT) ? true : false;
+    return m_flags & WALL_SORT;
 }
 
 /* 80077408-80077414 071D48 000C+00 1/1 0/0 0/0 .text            ChkLineDown__9dBgS_AcchFv */
 bool dBgS_Acch::ChkLineDown() {
-    return (m_flags & LINE_DOWN) ? true : false;
+    return m_flags & LINE_DOWN;
 }
 
 /* 80077414-80077484 071D54 0070+00 1/0 2/2 0/0 .text            __dt__12dBgS_AcchCirFv */
