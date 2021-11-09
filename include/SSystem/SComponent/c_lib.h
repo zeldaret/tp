@@ -4,6 +4,11 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
+#include "msl_c/math.h"
+
+inline bool cLib_IsZero(f32 f) {
+    return fabsf(f) < 8e-11;
+}
 
 void cLib_memCpy(void* dst, const void* src, unsigned long size);
 void cLib_memSet(void* ptr, int value, unsigned long size);

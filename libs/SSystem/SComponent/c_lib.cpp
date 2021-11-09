@@ -158,6 +158,32 @@ SECTION_SDATA2 static f32 lit_2382[1 + 1 /* padding */] = {
 };
 
 /* 8026FAB8-8026FDF4 26A3F8 033C+00 0/0 3/3 78/78 .text cLib_addCalcPos__FP4cXyzRC4cXyzfff */
+#ifdef NON_MATCHING
+// matches besides data
+f32 cLib_addCalcPos(cXyz* pValue, cXyz const& target, f32 scale, f32 param_3, f32 param_4) {
+    if (*pValue != target) {
+        cXyz diff = (*pValue - target);
+        f32 step = diff.abs();
+        if (step < param_4) {
+            *pValue = target;
+        } else {
+            step *= scale;
+            diff *= scale;
+            if (!cLib_IsZero(step)) {
+                if (step > param_3) {
+                    diff *= (param_3 / step);
+                } else if (step < param_4) {
+                    diff *= (param_4 / step);
+                }
+                *pValue -= diff;
+            } else {
+                *pValue = target;
+            }
+        }
+    }
+    return pValue->abs(target);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -166,6 +192,7 @@ asm f32 cLib_addCalcPos(cXyz* param_0, cXyz const& param_1, f32 param_2, f32 par
 #include "asm/SSystem/SComponent/c_lib/cLib_addCalcPos__FP4cXyzRC4cXyzfff.s"
 }
 #pragma pop
+#endif
 
 /* 8026FDF4-80270178 26A734 0384+00 0/0 1/1 4/4 .text cLib_addCalcPosXZ__FP4cXyzRC4cXyzfff */
 #pragma push
