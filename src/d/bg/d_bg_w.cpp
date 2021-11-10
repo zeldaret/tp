@@ -4,17 +4,11 @@
 //
 
 #include "d/bg/d_bg_w.h"
+#include "JSystem/JMath/JMATrigonometric.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
 
 //
 // Forward References:
@@ -217,7 +211,6 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" extern void* __vt__8cM3dGAab[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 sincosTable___5JMath[65536];
 
 //
@@ -401,44 +394,16 @@ SECTION_DATA extern void* __vt__11cBgW_RwgElm[3 + 1 /* padding */] = {
 };
 
 /* 800791C4-800791D4 073B04 0010+00 1/1 0/0 0/0 .text            __ct__11cBgW_RwgElmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cBgW_RwgElm::cBgW_RwgElm() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/__ct__11cBgW_RwgElmFv.s"
-}
-#pragma pop
+cBgW_RwgElm::cBgW_RwgElm() {}
 
 /* 800791D4-8007921C 073B14 0048+00 2/1 0/0 0/0 .text            __dt__11cBgW_RwgElmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cBgW_RwgElm::~cBgW_RwgElm() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/__dt__11cBgW_RwgElmFv.s"
-}
-#pragma pop
+cBgW_RwgElm::~cBgW_RwgElm() {}
 
 /* 8007921C-80079238 073B5C 001C+00 1/1 0/0 0/0 .text            __ct__13cBgW_NodeTreeFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cBgW_NodeTree::cBgW_NodeTree() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/__ct__13cBgW_NodeTreeFv.s"
-}
-#pragma pop
+cBgW_NodeTree::cBgW_NodeTree() {}
 
 /* 80079238-80079294 073B78 005C+00 2/1 0/0 0/0 .text            __dt__13cBgW_NodeTreeFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cBgW_NodeTree::~cBgW_NodeTree() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/__dt__13cBgW_NodeTreeFv.s"
-}
-#pragma pop
+cBgW_NodeTree::~cBgW_NodeTree() {}
 
 /* ############################################################################################## */
 /* 804526F8-804526FC 000CF8 0004+00 6/6 0/0 0/0 .sdata2          @3717 */
@@ -450,34 +415,47 @@ SECTION_SDATA2 static u8 lit_3717[4] = {
 };
 
 /* 80079294-8007933C 073BD4 00A8+00 1/1 0/0 0/0 .text            __ct__4cBgWFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cBgW::cBgW() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/__ct__4cBgWFv.s"
+cBgW::cBgW() {
+    pm_bgd = NULL;
+    field_0x88 = 0x20;
+    field_0x89 = 1;
+    field_0x90 = 0;
+    field_0x7c.set(FLOAT_LABEL(lit_3717), FLOAT_LABEL(lit_3717), FLOAT_LABEL(lit_3717));
+
+    pm_tri = NULL;
+    pm_rwg = NULL;
+    field_0xa4 = NULL;
+    pm_node_tree = NULL;
+    pm_grp = NULL;
+    pm_vtx_tbl = NULL;
+    pm_base_mtx = NULL;
+
+    PSMTXIdentity(m_inv_mtx);
+    PSMTXIdentity(field_0x4c);
+    field_0x92 = 0xFFFF;
+    field_0x91 = 0;
 }
-#pragma pop
 
 /* 8007933C-800793A4 073C7C 0068+00 2/1 1/1 5/5 .text            __dt__4cBgWFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cBgW::~cBgW() {
+// asm cBgW::~cBgW() {
+extern "C" asm void __dt__4cBgWFv() {
     nofralloc
 #include "asm/d/bg/d_bg_w/__dt__4cBgWFv.s"
 }
 #pragma pop
 
 /* 800793A4-800793C4 073CE4 0020+00 2/2 0/0 0/0 .text            FreeArea__4cBgWFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::FreeArea() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/FreeArea__4cBgWFv.s"
+void cBgW::FreeArea() {
+    pm_tri = NULL;
+    pm_rwg = NULL;
+    pm_node_tree = NULL;
+    field_0xa4 = NULL;
+    pm_grp = NULL;
+    pm_vtx_tbl = NULL;
 }
-#pragma pop
 
 /* 800793C4-80079484 073D04 00C0+00 2/2 0/0 1/1 .text            GlobalVtx__4cBgWFv */
 #pragma push
@@ -523,7 +501,8 @@ asm void cBgW::SetTri() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cBgW_TriElm::~cBgW_TriElm() {
+// asm cBgW_TriElm::~cBgW_TriElm() {
+extern "C" asm void __dt__11cBgW_TriElmFv() {
     nofralloc
 #include "asm/d/bg/d_bg_w/__dt__11cBgW_TriElmFv.s"
 }
@@ -648,7 +627,7 @@ SECTION_SDATA2 static f32 lit_4073 = 128.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cBgW::Set(cBgD_t* param_0, u32 param_1, f32 (*param_2)[3][4]) {
+asm bool cBgW::Set(cBgD_t* param_0, u32 param_1, f32 (*param_2)[3][4]) {
     nofralloc
 #include "asm/d/bg/d_bg_w/Set__4cBgWFP6cBgD_tUlPA3_A4_f.s"
 }
@@ -658,7 +637,8 @@ asm void cBgW::Set(cBgD_t* param_0, u32 param_1, f32 (*param_2)[3][4]) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cBgW_GrpElm::~cBgW_GrpElm() {
+// asm cBgW_GrpElm::~cBgW_GrpElm() {
+extern "C" asm void __dt__11cBgW_GrpElmFv() {
     nofralloc
 #include "asm/d/bg/d_bg_w/__dt__11cBgW_GrpElmFv.s"
 }
@@ -720,7 +700,7 @@ asm void cBgW::LineCheckGrpRp(cBgS_LinChk* param_0, int param_1, int param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cBgW::LineCheck(cBgS_LinChk* param_0) {
+asm bool cBgW::LineCheck(cBgS_LinChk* param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/LineCheck__4cBgWFP11cBgS_LinChk.s"
 }
@@ -880,7 +860,7 @@ bool cBgW::ChkGrpThrough(int param_0, cBgS_GrpPassChk* param_1, int param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cBgW::GetGrpRoomIndex(cBgS_PolyInfo const& param_0) const {
+asm s32 cBgW::GetGrpRoomIndex(cBgS_PolyInfo const& param_0) const {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetGrpRoomIndex__4cBgWCFRC13cBgS_PolyInfo.s"
 }
@@ -911,7 +891,7 @@ asm void cBgW::GetTrans(cXyz* param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cBgW::GetTriPnt(cBgS_PolyInfo const& param_0, cXyz* param_1, cXyz* param_2,
+asm bool cBgW::GetTriPnt(cBgS_PolyInfo const& param_0, cXyz* param_1, cXyz* param_2,
                          cXyz* param_3) const {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetTriPnt__4cBgWCFRC13cBgS_PolyInfoP4cXyzP4cXyzP4cXyz.s"
@@ -944,7 +924,7 @@ asm void cBgW::GetTriPla(cBgS_PolyInfo const& param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cBgW::GetGrpInf(cBgS_PolyInfo const& param_0) const {
+asm u32 cBgW::GetGrpInf(cBgS_PolyInfo const& param_0) const {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetGrpInf__4cBgWCFRC13cBgS_PolyInfo.s"
 }
@@ -985,7 +965,7 @@ asm void cBgW::GetMaskPolyInf0_NoShift(int param_0, u32 param_1) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::GetExitId(cBgS_PolyInfo const& param_0) {
+asm s32 dBgW::GetExitId(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetExitId__4dBgWFRC13cBgS_PolyInfo.s"
 }
@@ -995,7 +975,7 @@ asm void dBgW::GetExitId(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::GetPolyColor(cBgS_PolyInfo const& param_0) {
+asm s32 dBgW::GetPolyColor(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetPolyColor__4dBgWFRC13cBgS_PolyInfo.s"
 }
@@ -1005,7 +985,7 @@ asm void dBgW::GetPolyColor(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::GetHorseNoEntry(cBgS_PolyInfo const& param_0) {
+asm bool dBgW::GetHorseNoEntry(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetHorseNoEntry__4dBgWFRC13cBgS_PolyInfo.s"
 }
@@ -1015,7 +995,7 @@ asm void dBgW::GetHorseNoEntry(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::GetSpecialCode(cBgS_PolyInfo const& param_0) {
+asm bool dBgW::GetSpecialCode(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetSpecialCode__4dBgWFRC13cBgS_PolyInfo.s"
 }
@@ -1035,7 +1015,7 @@ asm void dBgW::GetSpecialCode(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::GetMagnetCode(cBgS_PolyInfo const& param_0) {
+asm bool dBgW::GetMagnetCode(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetMagnetCode__4dBgWFRC13cBgS_PolyInfo.s"
 }
@@ -1046,7 +1026,7 @@ asm void dBgW::GetMagnetCode(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::GetMonkeyBarsCode(cBgS_PolyInfo const& param_0) {
+asm bool dBgW::GetMonkeyBarsCode(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetMonkeyBarsCode__4dBgWFRC13cBgS_PolyInfo.s"
 }
@@ -1096,7 +1076,7 @@ asm void dBgW::GetPolyArrowThrough(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::GetPolyHSStick(int param_0) {
+asm bool dBgW::GetPolyHSStick(int param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetPolyHSStick__4dBgWFi.s"
 }
@@ -1146,7 +1126,7 @@ asm void dBgW::GetShdwThrough(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::GetUnderwaterRoofCode(int param_0) {
+asm bool dBgW::GetUnderwaterRoofCode(int param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetUnderwaterRoofCode__4dBgWFi.s"
 }
@@ -1177,7 +1157,7 @@ asm void dBgW::GetLinkNo(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::GetWallCode(cBgS_PolyInfo const& param_0) {
+asm bool dBgW::GetWallCode(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetWallCode__4dBgWFRC13cBgS_PolyInfo.s"
 }
@@ -1187,7 +1167,7 @@ asm void dBgW::GetWallCode(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::GetPolyAtt0(cBgS_PolyInfo const& param_0) {
+asm bool dBgW::GetPolyAtt0(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetPolyAtt0__4dBgWFRC13cBgS_PolyInfo.s"
 }
@@ -1197,7 +1177,7 @@ asm void dBgW::GetPolyAtt0(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::GetPolyAtt1(cBgS_PolyInfo const& param_0) {
+asm bool dBgW::GetPolyAtt1(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetPolyAtt1__4dBgWFRC13cBgS_PolyInfo.s"
 }
@@ -1207,7 +1187,7 @@ asm void dBgW::GetPolyAtt1(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::GetGroundCode(cBgS_PolyInfo const& param_0) {
+asm bool dBgW::GetGroundCode(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetGroundCode__4dBgWFRC13cBgS_PolyInfo.s"
 }
@@ -1238,7 +1218,7 @@ asm void dBgW::GetIronBallThrough(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::GetAttackThrough(int param_0) {
+asm u32 dBgW::GetAttackThrough(int param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetAttackThrough__4dBgWFi.s"
 }
@@ -1258,7 +1238,7 @@ asm void cBgW::GetPolyInf2(int param_0, u32 param_1, u32 param_2) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::GetCamMoveBG(cBgS_PolyInfo const& param_0) {
+asm s32 dBgW::GetCamMoveBG(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetCamMoveBG__4dBgWFRC13cBgS_PolyInfo.s"
 }
@@ -1268,7 +1248,7 @@ asm void dBgW::GetCamMoveBG(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::GetRoomCamId(cBgS_PolyInfo const& param_0) {
+asm s32 dBgW::GetRoomCamId(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetRoomCamId__4dBgWFRC13cBgS_PolyInfo.s"
 }
@@ -1278,7 +1258,7 @@ asm void dBgW::GetRoomCamId(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::GetRoomPathId(cBgS_PolyInfo const& param_0) {
+asm s32 dBgW::GetRoomPathId(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetRoomPathId__4dBgWFRC13cBgS_PolyInfo.s"
 }
@@ -1288,7 +1268,7 @@ asm void dBgW::GetRoomPathId(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::GetRoomPathPntNo(cBgS_PolyInfo const& param_0) {
+asm s32 dBgW::GetRoomPathPntNo(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetRoomPathPntNo__4dBgWFRC13cBgS_PolyInfo.s"
 }
@@ -1318,7 +1298,7 @@ asm void cBgW::ChkNotReady() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cBgW::ChkLock() const {
+asm bool cBgW::ChkLock() const {
     nofralloc
 #include "asm/d/bg/d_bg_w/ChkLock__4cBgWCFv.s"
 }
@@ -1328,7 +1308,7 @@ asm void cBgW::ChkLock() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cBgW::ChkMoveBg() const {
+asm bool cBgW::ChkMoveBg() const {
     nofralloc
 #include "asm/d/bg/d_bg_w/ChkMoveBg__4cBgWCFv.s"
 }
@@ -1648,7 +1628,7 @@ asm void dBgW::GetPolyGrpRoomInfId(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::GetGrpSoundId(cBgS_PolyInfo const& param_0) {
+asm s32 dBgW::GetGrpSoundId(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetGrpSoundId__4dBgWFRC13cBgS_PolyInfo.s"
 }
@@ -1758,7 +1738,7 @@ asm void dBgW::OffMoveFlag() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::ChkMoveFlag() const {
+asm u32 dBgW::ChkMoveFlag() const {
     nofralloc
 #include "asm/d/bg/d_bg_w/ChkMoveFlag__4dBgWCFv.s"
 }
@@ -1778,7 +1758,8 @@ asm void dBgW_NewSet(cBgD_t* param_0, u32 param_1, f32 (*param_2)[3][4]) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgW::~dBgW() {
+// asm dBgW::~dBgW() {
+extern "C" asm void __dt__4dBgWFv() {
     nofralloc
 #include "asm/d/bg/d_bg_w/__dt__4dBgWFv.s"
 }

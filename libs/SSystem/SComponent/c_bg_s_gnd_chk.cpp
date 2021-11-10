@@ -18,9 +18,9 @@
 
 /* 80267C1C-80267C94 26255C 0078+00 0/0 2/2 123/123 .text            __ct__11cBgS_GndChkFv */
 cBgS_GndChk::cBgS_GndChk() {
-    mPosition = cXyz::Zero;
+    m_pos = cXyz::Zero;
     setActorPid(0xFFFFFFFF);
-    _30 = 2;
+    mFlags = 2;
 }
 
 /* 80267C94-80267D0C 2625D4 0078+00 2/1 4/4 110/110 .text            __dt__11cBgS_GndChkFv */
@@ -28,16 +28,16 @@ cBgS_GndChk::~cBgS_GndChk() {}
 
 /* 80267D0C-80267D28 26264C 001C+00 0/0 0/0 62/62 .text            SetPos__11cBgS_GndChkFPC3Vec */
 void cBgS_GndChk::SetPos(Vec const* pVec) {
-    mPosition = *pVec;
+    m_pos = *pVec;
 }
 
 /* 80267D28-80267D44 262668 001C+00 0/0 51/51 185/185 .text            SetPos__11cBgS_GndChkFPC4cXyz
  */
 void cBgS_GndChk::SetPos(cXyz const* pVec) {
-    mPosition = *pVec;
+    m_pos = *pVec;
 }
 
 /* 80267D44-80267D54 262684 0010+00 0/0 1/1 0/0 .text            PreCheck__11cBgS_GndChkFv */
 void cBgS_GndChk::PreCheck() {
-    mWallPrecheck = _30 & 2;
+    mWallPrecheck = mFlags & 2;
 }

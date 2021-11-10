@@ -32,11 +32,6 @@ struct dPa_control_c {
                             cXyz const*, f32);
 };
 
-struct dBgS_CamGndChk_Wtr {
-    /* 80077A00 */ dBgS_CamGndChk_Wtr();
-    /* 80077A98 */ ~dBgS_CamGndChk_Wtr();
-};
-
 struct color_RGB_class {};
 
 struct Z2SeMgr {

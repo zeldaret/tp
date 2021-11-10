@@ -54,47 +54,33 @@ SECTION_DATA extern void* __vt__12dBgS_RoofChk[12] = {
     (void*)func_80079154,
 };
 
-/* 804526F0-804526F4 000CF0 0004+00 1/1 0/0 0/0 .sdata2          @316 */
-SECTION_SDATA2 static u8 lit_316[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
 /* 80078FF4-80079090 073934 009C+00 0/0 10/10 1/1 .text            __ct__12dBgS_RoofChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dBgS_RoofChk::dBgS_RoofChk() {
-    nofralloc
-#include "asm/d/bg/d_bg_s_roof_chk/__ct__12dBgS_RoofChkFv.s"
+dBgS_RoofChk::dBgS_RoofChk() {
+    SetPolyPassChk(GetPolyPassChkInfo());
+    SetGrpPassChk(GetGrpPassChkInfo());
+    m_pos.x = 0.0f;
+    m_pos.y = 0.0f;
+    m_pos.z = 0.0f;
+    setActorPid(0xFFFFFFFF);
+    field_0x48 = 0;
 }
-#pragma pop
 
 /* 80079090-80079124 0739D0 0094+00 4/3 11/11 1/1 .text            __dt__12dBgS_RoofChkFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_RoofChk::~dBgS_RoofChk() {
+// asm dBgS_RoofChk::~dBgS_RoofChk() {
+extern "C" asm void __dt__12dBgS_RoofChkFv() {
     nofralloc
 #include "asm/d/bg/d_bg_s_roof_chk/__dt__12dBgS_RoofChkFv.s"
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 804526F4-804526F8 000CF4 0004+00 1/1 0/0 0/0 .sdata2          @333 */
-SECTION_SDATA2 static f32 lit_333 = 1000000000.0f;
-
 /* 80079124-8007914C 073A64 0028+00 0/0 1/1 0/0 .text            Init__12dBgS_RoofChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgS_RoofChk::Init() {
-    nofralloc
-#include "asm/d/bg/d_bg_s_roof_chk/Init__12dBgS_RoofChkFv.s"
+void dBgS_RoofChk::Init() {
+    SetNowY(1000000000.0f);
+    ClearPi();
 }
-#pragma pop
 
 /* 8007914C-80079154 073A8C 0008+00 1/0 0/0 0/0 .text            @16@__dt__12dBgS_RoofChkFv */
 #pragma push

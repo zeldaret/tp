@@ -11,153 +11,9 @@
 // Types:
 //
 
-struct sBgPc {};
-
-struct fopAc_ac_c {};
-
-struct cXyz {};
-
-struct dBgW_Base {
-    /* 8007E5A8 */ dBgW_Base();
-    /* 8007E640 */ ~dBgW_Base();
-    /* 8007E69C */ void ClrDBgWBase();
-    /* 8007E6D0 */ bool ChkMemoryError();
-    /* 8007E6D8 */ void CallRideCallBack(fopAc_ac_c*, fopAc_ac_c*);
-    /* 8007E6DC */ void CallArrowStickCallBack(fopAc_ac_c*, fopAc_ac_c*, cXyz&);
-};
-
-struct cBgS_PolyInfo {};
-
-struct csXyz {};
-
-struct cBgS_ShdwDraw {};
-
-struct dBgPc {
-    /* 80074048 */ void setCode(sBgPc&);
-};
-
-struct Vec {};
-
-struct dBgS_Acch {
-    /* 800771E4 */ void GetSpeedY();
-    /* 80077200 */ void GetWallAddY(Vec&);
-    /* 80077288 */ void SetWallPolyIndex(int, int);
-    /* 800772E8 */ void CalcMovePosWork();
-};
-
-struct dBgS_SphChk {};
-
-struct dBgS_CaptPoly {};
-
-struct dBgS_SplGrpChk {};
-
-struct KC_PrismData {};
-
-struct cBgS_GrpPassChk {};
-
-struct cBgS_LinChk {};
-
-struct cBgS_GndChk {};
-
-struct dBgS_RoofChk {};
-
-struct cBgS_PolyPassChk {};
-
-struct dBgWKCol {
-    /* 8007E6F4 */ dBgWKCol();
-    /* 8007E74C */ ~dBgWKCol();
-    /* 8007E7D0 */ void initKCollision(void*);
-    /* 8007E804 */ void create(void*, void*);
-    /* 8007E850 */ void getTriNrm(KC_PrismData*, Vec**) const;
-    /* 8007E86C */ void ChkNotReady() const;
-    /* 8007E87C */ bool ChkLock() const;
-    /* 8007E884 */ bool ChkMoveBg() const;
-    /* 8007E88C */ bool ChkMoveFlag() const;
-    /* 8007E894 */ void GetTriPla(cBgS_PolyInfo const&) const;
-    /* 8007E8C0 */ void GetTriPla(int) const;
-    /* 8007E980 */ void GetTriPnt(cBgS_PolyInfo const&, cXyz*, cXyz*, cXyz*) const;
-    /* 8007E9A4 */ void GetTriPnt(int, Vec*, Vec*, Vec*) const;
-    /* 8007E9D4 */ void GetTriPnt(KC_PrismData const*, Vec*, Vec*, Vec*) const;
-    /* 8007EB28 */ void GetBnd() const;
-    /* 8007EB30 */ void GetGrpInf(cBgS_PolyInfo const&) const;
-    /* 8007EB6C */ void OffMoveFlag();
-    /* 8007EB70 */ void getPolyCode(int, dBgPc*) const;
-    /* 8007EBC4 */ void chkPolyThrough(dBgPc*, cBgS_PolyPassChk*, cBgS_GrpPassChk*, cXyz&) const;
-    /* 8007EE34 */ void LineCheck(cBgS_LinChk*);
-    /* 8007F628 */ void GroundCross(cBgS_GndChk*);
-    /* 8007F9A4 */ void ShdwDraw(cBgS_ShdwDraw*);
-    /* 8007FF00 */ void ChkShdwDrawThrough(dBgPc*);
-    /* 8007FF1C */ void CaptPoly(dBgS_CaptPoly&);
-    /* 80080330 */ void WallCorrectSort(dBgS_Acch*);
-    /* 800811A0 */ void WallCorrect(dBgS_Acch*);
-    /* 80081E18 */ void RoofChk(dBgS_RoofChk*);
-    /* 80082184 */ void SplGrpChk(dBgS_SplGrpChk*);
-    /* 800824EC */ void SphChk(dBgS_SphChk*, void*);
-    /* 800829AC */ void GetTopUnder(f32*, f32*) const;
-    /* 800829F0 */ void GetGrpRoomIndex(cBgS_PolyInfo const&) const;
-    /* 80082A20 */ void GetExitId(cBgS_PolyInfo const&);
-    /* 80082A50 */ void GetPolyColor(cBgS_PolyInfo const&);
-    /* 80082A80 */ void GetHorseNoEntry(cBgS_PolyInfo const&);
-    /* 80082AB0 */ void GetSpecialCode(cBgS_PolyInfo const&);
-    /* 80082AE0 */ void GetSpecialCode(int);
-    /* 80082B0C */ void GetMagnetCode(cBgS_PolyInfo const&);
-    /* 80082B3C */ void GetMonkeyBarsCode(cBgS_PolyInfo const&);
-    /* 80082B6C */ void GetPolyObjThrough(int);
-    /* 80082B98 */ void GetPolyCamThrough(int);
-    /* 80082BC4 */ void GetPolyLinkThrough(int);
-    /* 80082BF0 */ void GetPolyArrowThrough(int);
-    /* 80082C1C */ void GetPolyHSStick(int);
-    /* 80082C48 */ void GetPolyBoomerangThrough(int);
-    /* 80082C74 */ void GetPolyRopeThrough(int);
-    /* 80082CA0 */ void GetPolyBombThrough(int);
-    /* 80082CCC */ void GetUnderwaterRoofCode(int);
-    /* 80082CF8 */ void GetShdwThrough(int);
-    /* 80082D24 */ void GetLinkNo(cBgS_PolyInfo const&);
-    /* 80082D54 */ void GetWallCode(cBgS_PolyInfo const&);
-    /* 80082D84 */ void GetPolyAtt0(cBgS_PolyInfo const&);
-    /* 80082DB4 */ void GetPolyAtt1(cBgS_PolyInfo const&);
-    /* 80082DE4 */ void GetGroundCode(cBgS_PolyInfo const&);
-    /* 80082E14 */ void GetIronBallThrough(int);
-    /* 80082E40 */ void GetAttackThrough(int);
-    /* 80082E6C */ void GetCamMoveBG(cBgS_PolyInfo const&);
-    /* 80082E9C */ void GetRoomCamId(cBgS_PolyInfo const&);
-    /* 80082ECC */ void GetRoomPathId(cBgS_PolyInfo const&);
-    /* 80082EFC */ void GetRoomPathPntNo(cBgS_PolyInfo const&);
-    /* 80082F2C */ void GetPolyGrpRoomInfId(cBgS_PolyInfo const&);
-    /* 80082F5C */ void GetGrpSoundId(cBgS_PolyInfo const&);
-    /* 80082F8C */ void CrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*, csXyz*);
-    /* 80082F90 */ void TransPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*, csXyz*);
-    /* 80082F94 */ void MatrixCrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*, csXyz*);
-};
-
-struct dBgS_PolyPassChk {
-    /* 80078F04 */ void ChkNoHorse();
-};
-
-struct dBgPlc {
-    /* 80074074 */ dBgPlc();
-    /* 80074080 */ ~dBgPlc();
-    /* 800740C4 */ void getCode(int, sBgPc**) const;
-    /* 800740DC */ void getGrpCode(int) const;
-};
-
 struct cM3dGTri {
     /* 8026F8C8 */ void set(Vec const*, Vec const*, Vec const*, Vec const*);
 };
-
-struct cM3dGSph {
-    /* 8026F76C */ void GetMinMaxCube(cXyz&, cXyz&) const;
-};
-
-struct cM3dGPla {
-    /* 8026F52C */ void SetupNP(Vec const&, Vec const&);
-};
-
-struct cM3dGCyl {
-    /* 8026F24C */ void calcMinMax(cXyz*, cXyz*);
-};
-
-struct cM2dGCir {};
 
 struct JMath {
     static u8 sincosTable_[65536];
@@ -268,12 +124,6 @@ extern "C" void SetupNP__8cM3dGPlaFRC3VecRC3Vec();
 extern "C" void GetMinMaxCube__8cM3dGSphCFR4cXyzR4cXyz();
 extern "C" void set__8cM3dGTriFPC3VecPC3VecPC3VecPC3Vec();
 extern "C" void __dl__FPv();
-extern "C" void PSVECAdd();
-extern "C" void PSVECSubtract();
-extern "C" void PSVECScale();
-extern "C" void PSVECDotProduct();
-extern "C" void PSVECCrossProduct();
-extern "C" void PSVECSquareDistance();
 extern "C" void __ptmf_scall();
 extern "C" void __cvt_fp2unsigned();
 extern "C" void __save_gpr();
@@ -289,8 +139,6 @@ extern "C" extern void* __vt__8cM3dGAab[3];
 extern "C" extern void* __vt__8cM3dGTri[3];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 //
 // Declarations:
@@ -375,7 +223,8 @@ asm dBgWKCol::dBgWKCol() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgWKCol::~dBgWKCol() {
+// asm dBgWKCol::~dBgWKCol() {
+extern "C" asm void __dt__8dBgWKColFv() {
     nofralloc
 #include "asm/d/bg/d_bg_w_kcol/__dt__8dBgWKColFv.s"
 }

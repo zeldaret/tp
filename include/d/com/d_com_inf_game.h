@@ -995,6 +995,10 @@ inline void* dComIfG_getObjectRes(const char* arcName, const char* resName) {
     return g_dComIfG_gameInfo.mResControl.getObjectRes(arcName, resName);
 }
 
+inline void* dComIfG_getObjectRes(const char* arcName, int param_1) {
+    return g_dComIfG_gameInfo.mResControl.getObjectRes(arcName, param_1);
+}
+
 inline daPy_py_c* dComIfGp_getLinkPlayer() {
     return (daPy_py_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR);
 }
@@ -1009,6 +1013,10 @@ inline JKRArchive* dComIfGp_getMain2DArchive() {
 
 inline J2DGrafContext* dComIfGp_getCurrentGrafPort() {
     return g_dComIfG_gameInfo.play.getCurrentGrafPort();
+}
+
+inline dBgS& dComIfG_Bgsp() {
+    return g_dComIfG_gameInfo.play.mDBgS;
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

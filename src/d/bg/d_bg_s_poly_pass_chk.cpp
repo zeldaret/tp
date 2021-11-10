@@ -67,7 +67,8 @@ dBgS_PolyPassChk::dBgS_PolyPassChk()
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_PolyPassChk::~dBgS_PolyPassChk() {
+// asm dBgS_PolyPassChk::~dBgS_PolyPassChk() {
+extern "C" asm void __dt__16dBgS_PolyPassChkFv() {
     nofralloc
 #include "asm/d/bg/d_bg_s_poly_pass_chk/__dt__16dBgS_PolyPassChkFv.s"
 }

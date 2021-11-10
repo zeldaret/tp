@@ -2,6 +2,7 @@
 #define J3DVERTEX_H
 
 #include "dolphin/gx/GX.h"
+#include "dolphin/mtx/vec.h"
 #include "dolphin/types.h"
 
 class J3DModel;
@@ -84,11 +85,11 @@ private:
 };  // Size: 0x38
 
 struct VertexNormal {
-    u8 data[0xC];
+    Vec data;
 };
 
 struct VertexPosition {
-    u8 data[0xC];
+    Vec data;
 };
 
 #endif /* J3DVERTEX_H */

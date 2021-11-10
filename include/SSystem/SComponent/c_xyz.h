@@ -100,14 +100,21 @@ struct cXyz : Vec {
     }
 
     float getSquareMag() const { return PSVECSquareMag(this); }
+    f32 getSquareDistance(const Vec& other) const { return PSVECSquareDistance(this, &other); }
 
     static float getNearZeroValue() { return 8e-11f; }
 
     bool isNearZeroSquare() const { return (this->getSquareMag() < getNearZeroValue()); }
     f32 abs2() const { return this->getSquareMag(); }
+    f32 abs2(const Vec& other) const { return this->getSquareDistance(other); }
     f32 abs2XZ() const {
         cXyz tmp(this->x, 0, this->z);
         return tmp.abs2();
+    }
+    f32 abs2XZ(const Vec& other) const {
+        cXyz tmp(this->x, 0, this->z);
+        cXyz tmp2(other.x, 0, other.z);
+        return tmp.abs2(tmp2);
     }
     f32 getMagXZ() const { return cXyz(this->x, 0, this->z).getSquareMag(); }
 };

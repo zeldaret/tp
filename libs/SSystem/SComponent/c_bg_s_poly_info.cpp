@@ -8,16 +8,16 @@
 #include "dolphin/types.h"
 
 /* 80268074-802680B0 2629B4 003C+00 0/0 7/7 9/9 .text            __ct__13cBgS_PolyInfoFv */
-cBgS_PolyInfo::cBgS_PolyInfo(void) {
+cBgS_PolyInfo::cBgS_PolyInfo() {
     this->ClearPi();
 }
 
 /* 802680B0-802680F8 2629F0 0048+00 1/0 10/10 393/393 .text            __dt__13cBgS_PolyInfoFv */
-cBgS_PolyInfo::~cBgS_PolyInfo(void) {}
+cBgS_PolyInfo::~cBgS_PolyInfo() {}
 
 /* 802680F8-80268120 262A38 0028+00 0/0 4/4 0/0 .text            ChkSetInfo__13cBgS_PolyInfoCFv */
-bool cBgS_PolyInfo::ChkSetInfo(void) const {
-    if (mPolyIndex == 0xFFFF || unk_0x02 == 0x100) {
+bool cBgS_PolyInfo::ChkSetInfo() const {
+    if (mPolyIndex == 0xFFFF || mBgIndex == 0x100) {
         return false;
     } else {
         return true;
@@ -25,9 +25,9 @@ bool cBgS_PolyInfo::ChkSetInfo(void) const {
 }
 
 /* 80268120-80268148 262A60 0028+00 1/1 11/11 0/0 .text            ClearPi__13cBgS_PolyInfoFv */
-void cBgS_PolyInfo::ClearPi(void) {
+void cBgS_PolyInfo::ClearPi() {
     mPolyIndex = 0xFFFF;
-    unk_0x02 = 0x100;
+    mBgIndex = 0x100;
     unk_0x04 = 0;
     unk_0x08 = -1;
 }
@@ -36,7 +36,7 @@ void cBgS_PolyInfo::ClearPi(void) {
  * SetPolyInfo__13cBgS_PolyInfoFRC13cBgS_PolyInfo               */
 void cBgS_PolyInfo::SetPolyInfo(const cBgS_PolyInfo& pOther) {
     mPolyIndex = pOther.mPolyIndex;
-    unk_0x02 = pOther.unk_0x02;
+    mBgIndex = pOther.mBgIndex;
     unk_0x04 = pOther.unk_0x04;
     unk_0x08 = pOther.unk_0x08;
 }
@@ -44,7 +44,7 @@ void cBgS_PolyInfo::SetPolyInfo(const cBgS_PolyInfo& pOther) {
 /* 8026816C-8026817C 262AAC 0010+00 0/0 6/6 0/0 .text            SetActorInfo__13cBgS_PolyInfoFiPvUi
  */
 void cBgS_PolyInfo::SetActorInfo(int param_1, void* param_2, unsigned int param_3) {
-    unk_0x02 = param_1;
+    mBgIndex = param_1;
     unk_0x04 = param_2;
     unk_0x08 = param_3;
 }
@@ -65,6 +65,6 @@ void cBgS_PolyInfo::SetPolyIndex(int pPolyIndex) {
 }
 
 /* 802681AC-802681C0 262AEC 0014+00 0/0 3/3 0/0 .text            ChkBgIndex__13cBgS_PolyInfoCFv */
-bool cBgS_PolyInfo::ChkBgIndex(void) const {
-    return unk_0x02 != 0x100;
+bool cBgS_PolyInfo::ChkBgIndex() const {
+    return mBgIndex != 0x100;
 }

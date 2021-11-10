@@ -112,6 +112,26 @@ inline fopAc_ac_c* fopAcM_SearchByID(unsigned int id) {
     return (fopAc_ac_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)fpcSch_JudgeByID, &id);
 }
 
+inline cXyz& fopAcM_GetPosition_p(fopAc_ac_c* pActor) {
+    return pActor->mCurrent.mPosition;
+}
+
+inline cXyz& fopAcM_GetOldPosition_p(fopAc_ac_c* pActor) {
+    return pActor->mNext.mPosition;
+}
+
+inline cXyz& fopAcM_GetSpeed_p(fopAc_ac_c* pActor) {
+    return pActor->mSpeed;
+}
+
+inline csXyz& fopAcM_GetAngle_p(fopAc_ac_c* pActor) {
+    return pActor->mCurrent.mAngle;
+}
+
+inline csXyz& fopAcM_GetShapeAngle_p(fopAc_ac_c* pActor) {
+    return pActor->mCollisionRot;
+}
+
 void* fopAcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3, void* pData);
 void fopAcM_setStageLayer(void*);
 int fopAcM_setRoomLayer(void*, int);
@@ -143,9 +163,6 @@ void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
 void fopAcM_setCullSizeSphere(fopAc_ac_c*, f32, f32, f32, f32);
 void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
 bool fopAcM_addAngleY(fopAc_ac_c*, s16, s16);
-inline csXyz& fopAcM_GetAngle_p(fopAc_ac_c* pActor) {
-    return pActor->mCurrent.mAngle;
-}
 void fopAcM_calcSpeed(fopAc_ac_c*);
 void fopAcM_posMove(fopAc_ac_c*, const cXyz*);
 void fopAcM_posMoveF(fopAc_ac_c*, const cXyz*);
