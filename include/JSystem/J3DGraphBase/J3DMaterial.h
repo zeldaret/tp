@@ -49,6 +49,7 @@ public:
     J3DColorBlock* getColorBlock() const { return mColorBlock; }
     J3DTexGenBlock* getTexGenBlock() const { return mTexGenBlock; }
     J3DDisplayListObj* getSharedDisplayListObj() const { return mSharedDLObj; }
+    J3DShape* getShape() { return mShape; }
     J3DMaterialAnm* getMaterialAnm() const {
         if ((u32)mMaterialAnm < 0xC0000000) {
             return mMaterialAnm;

@@ -176,6 +176,15 @@ public:
     void* getPlayerPtr(int ptrIdx) { return mPlayerPtr[ptrIdx]; }
     JKRArchive* getMain2DArchive() { return mMain2DArchive; }
     J2DGrafContext* getCurrentGrafPort() { return mCurrentGrafPort; }
+    dVibration_c& getVibration() { return mVibration; }
+    void setPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[i] |= flag; }
+    BOOL checkCameraAttentionStatus(int i, u32 flag) { return mCameraInfo[i].mCameraAttentionStatus & flag; }
+    s8 getPlayerCameraID(int i) { return mPlayerCameraID[i]; }
+    void set3DStatus(u8 status, u8 direction, u8 flag) {
+        m3DStatus = status;
+        m3DDirection = direction;
+        m3DSetFlag = flag;
+    }
 
 public:
     /* 0x00000 */ dBgS mDBgS;
@@ -384,8 +393,8 @@ public:
     /* 0x04FD4 */ fopAc_ac_c* mMesgCamInfoActor8;
     /* 0x04FD8 */ fopAc_ac_c* mMesgCamInfoActor9;
     /* 0x04FDC */ fopAc_ac_c* mMesgCamInfoActor10;
-    /* 0x04FE0 */ int mPlayerStatus;
-    /* 0x04FE4 */ u8 field_0x4fe4[0x14];
+    /* 0x04FE0 */ u32 mPlayerStatus[2];
+    /* 0x04FE8 */ u8 field_0x4fe8[0x10];
     /* 0x04FF8 */ __d_timer_info_c mTimerInfo;
     /* 0x0500C */ dDlst_window_c* mCurrentWindow;
     /* 0x05010 */ void* mCurrentView;
@@ -451,6 +460,8 @@ void dComIfGs_setSelectEquipSword(u8);
 void dComIfGs_setSelectEquipShield(u8);
 void* dComIfG_getStageRes(char const*);
 void dComLbG_PhaseHandler(request_of_phase_process_class*, int (**param_1)(void*), void*);
+void dComIfGp_addSelectItemNum(int, s16);
+BOOL dComIfGs_isOneZoneSwitch(int, int);
 
 inline void dComIfGp_setRStatus(u8 status, u8 flag) {
     g_dComIfG_gameInfo.play.setRStatus(status, flag);
@@ -1017,6 +1028,42 @@ inline J2DGrafContext* dComIfGp_getCurrentGrafPort() {
 
 inline dBgS& dComIfG_Bgsp() {
     return g_dComIfG_gameInfo.play.mDBgS;
+}
+
+inline s16 dComIfGs_getStartPoint() {
+    return g_dComIfG_gameInfo.info.getRestart().getStartPoint();
+}
+
+inline dVibration_c& dComIfGp_getVibration() {
+    return g_dComIfG_gameInfo.play.getVibration();
+}
+
+inline void dComIfGp_setPlayerStatus0(int param_0, u32 flag) {
+    g_dComIfG_gameInfo.play.setPlayerStatus(param_0, 0, flag);
+}
+
+inline void dComIfGp_setPlayerStatus1(int param_0, u32 flag) {
+    g_dComIfG_gameInfo.play.setPlayerStatus(param_0, 1, flag);
+}
+
+inline dEvent_manager_c* dComIfGp_getPEvtManager() {
+    return &g_dComIfG_gameInfo.play.getEvtManager();
+}
+
+inline void dComIfGp_evmng_cutEnd(int param_0) {
+    dComIfGp_getPEvtManager()->cutEnd(param_0);
+}
+
+inline BOOL dComIfGp_checkCameraAttentionStatus(int i, u32 flag) {
+    return g_dComIfG_gameInfo.play.checkCameraAttentionStatus(i, flag);
+}
+
+inline void dComIfGp_set3DStatus(u8 status, u8 direction, u8 flag) {
+    g_dComIfG_gameInfo.play.set3DStatus(status, direction, flag);
+}
+
+inline u8 dComIfGs_getLastSceneMode() {
+    return g_dComIfG_gameInfo.info.getRestart().getLastMode();
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

@@ -87,8 +87,10 @@ public:
     /* 80140DF0 */ ~mDoExt_AnmRatioPack();
     /* 80140E2C */ mDoExt_AnmRatioPack();
 
+    void setRatio(f32 ratio) { mRatio = ratio; }
+
 private:
-    /* 0x0 */ float mRatio;
+    /* 0x0 */ f32 mRatio;
     /* 0x4 */ J3DAnmTransform* mAnmTransform;
 };  // Size = 0x8
 

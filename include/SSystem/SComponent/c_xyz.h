@@ -2,6 +2,7 @@
 #define C_XYZ_H
 
 #include "dolphin/mtx/vec.h"
+#include "msl_c/math.h"
 #include "global.h"
 
 struct cXyz : Vec {
@@ -115,6 +116,10 @@ struct cXyz : Vec {
         cXyz tmp(this->x, 0, this->z);
         cXyz tmp2(other.x, 0, other.z);
         return tmp.abs2(tmp2);
+    }
+    f32 absXZ(const Vec& other) const {
+        f32 abs = abs2XZ(other);
+        return sqrtf(abs);
     }
     f32 getMagXZ() const { return cXyz(this->x, 0, this->z).getSquareMag(); }
 };

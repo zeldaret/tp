@@ -124,6 +124,8 @@ public:
     /* 800A4820 */ virtual ~J3DMaterialAnm();
     /* 8032C3C4 */ virtual void calc(J3DMaterial*) const;
 
+    const J3DTexMtxAnm& getTexMtxAnm(int i) const { return mTexMtxAnm[i]; }
+
 private:
     /* 0x04 */ J3DMatColorAnm mMatColorAnm[2];
     /* 0x14 */ J3DTexMtxAnm mTexMtxAnm[8];

@@ -401,7 +401,7 @@ inline u8 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
 }
 
 inline BOOL dComIfGs_isEventBit(u16 id) {
-    return g_dComIfG_gameInfo.info.getSavedata().getEvent().isEventBit(id);
+    return g_dComIfG_gameInfo.info.getEvent().isEventBit(id);
 }
 
 inline int dComIfGs_isItemFirstBit(u8 i_no) {
@@ -978,9 +978,9 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                 else if (dComIfGs_isTmpBit(0x0601)) {
                     if (dComIfGs_isTmpBit(0x0602)) {
                         layer = 2;
+                    } else {
+                        layer = 3;
                     }
-                } else {
-                    layer = 3;
                 }
             }
 
@@ -1150,22 +1150,22 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                     layer = 13;
                 }
             }
+        }
 
-            // Stage is Hyrule Castle Sewers and room is Prison Cell
-            if (!strcmp(stageName, "R_SP107") && roomId == 0) {
-                // Haven't been to Hyrule Castle Sewers
-                if (!dComIfGs_isEventBit(0x4D08)) {
-                    layer = 11;
-                }
+        // Stage is Hyrule Castle Sewers and room is Prison Cell
+        if (!strcmp(stageName, "R_SP107") && roomId == 0) {
+            // Haven't been to Hyrule Castle Sewers
+            if (!dComIfGs_isEventBit(0x4D08)) {
+                layer = 11;
             }
-            // Stage and room is Zant Throne Room
-            else if (!strcmp(stageName, "D_MN08A") && roomId == 10) {
-                // Defeated Zant
-                if (dComIfGs_isEventBit(0x5410)) {
-                    layer = 1;
-                } else {
-                    layer = 0;
-                }
+        }
+        // Stage and room is Zant Throne Room
+        else if (!strcmp(stageName, "D_MN08A") && roomId == 10) {
+            // Defeated Zant
+            if (dComIfGs_isEventBit(0x5410)) {
+                layer = 1;
+            } else {
+                layer = 0;
             }
         }
     }
@@ -1728,7 +1728,7 @@ asm void dComIfGs_offOneZoneSwitch(int param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dComIfGs_isOneZoneSwitch(int param_0, int param_1) {
+asm BOOL dComIfGs_isOneZoneSwitch(int param_0, int param_1) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/dComIfGs_isOneZoneSwitch__Fii.s"
 }

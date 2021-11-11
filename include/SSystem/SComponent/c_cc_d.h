@@ -273,6 +273,7 @@ public:
     u8 GetWeightUc() const { return mWeight; }
     void SetWeight(u8 weight) { mWeight = weight; }
     fopAc_ac_c* GetAc() { return mActor; }
+    void SetActor(void* ac) { mActor = (fopAc_ac_c*)ac; }
 };  // Size = 0x1C
 
 STATIC_ASSERT(0x1C == sizeof(cCcD_Stts));
@@ -281,8 +282,8 @@ class cCcD_Obj;  // placeholder
 
 class cCcD_ObjCommonBase {
 protected:
-    /* 0x00 */ int mSPrm;
-    /* 0x04 */ int mRPrm;
+    /* 0x00 */ u32 mSPrm;
+    /* 0x04 */ u32 mRPrm;
     /* 0x08 */ cCcD_Obj* mHitObj;
     /* 0x0C vtable */
 public:
@@ -295,6 +296,8 @@ public:
     s32 getRPrm() const { return mRPrm; }
     cCcD_Obj* getHitObj() { return mHitObj; }
     u32 MskSPrm(u32 mask) const { return mSPrm & mask; }
+    void OnSPrmBit(u32 flag) { mSPrm |= flag; }
+    void OffSPrmBit(u32 flag) { mSPrm &= ~flag; }
 };
 
 STATIC_ASSERT(0x10 == sizeof(cCcD_ObjCommonBase));
@@ -311,6 +314,8 @@ public:
     bool ChkSet() const { return MskSPrm(1); }
     u8 GetAtp() const { return mAtp; }
     u32 MskType(u32 msk) const { return mType & msk; }
+    void SetType(u32 type) { mType = type; }
+    void SetAtp(int atp) { mAtp = atp; }
 
 protected:
     /* 0x10 */ int mType;
@@ -388,6 +393,11 @@ public:
     bool ChkAtType(u32 type) const { return mObjAt.MskType(type); }
     u32 ChkCoNoCrr() const { return mObjCo.ChkNoCrr(); }
     u32 ChkCoSph3DCrr() const { return mObjCo.ChkSph3DCrr(); }
+    void OnAtSPrmBit(u32 flag) { mObjAt.OnSPrmBit(flag); }
+    void OffAtSPrmBit(u32 flag) { mObjAt.OffSPrmBit(flag); }
+    void SetAtType(u32 type) { mObjAt.SetType(type); }
+    void OnAtSetBit() { mObjAt.OnSPrmBit(1); }
+    void SetAtAtp(int atp) { mObjAt.SetAtp(atp); }
 
 };  // Size = 0x40
 

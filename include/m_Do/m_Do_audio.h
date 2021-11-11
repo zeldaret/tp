@@ -31,4 +31,8 @@ public:
 
 extern JKRSolidHeap* g_mDoAud_audioHeap;
 
+inline void mDoAud_bgmSetSwordUsing(s32 id) {
+    Z2AudioMgr::getInterface()->mSeqMgr.bgmSetSwordUsing(id);
+}
+
 #endif /* M_DO_M_DO_AUDIO_H */

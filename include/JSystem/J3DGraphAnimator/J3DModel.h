@@ -34,7 +34,7 @@ public:
     /* 803281B4 */ void calcBumpMtx();
     /* 803282B8 */ void calcBBoardMtx();
     /* 803282EC */ void prepareShapePackets();
-    Mtx* getAnmMtx(int);
+    MtxP getAnmMtx(int);
 
     /* 80327CA4 */ virtual void update();
     /* 80327E4C */ virtual void entry();
@@ -48,6 +48,7 @@ public:
     void onFlag(u32 flag) { mFlags |= flag; }
     void offFlag(u32 flag) { mFlags &= ~flag; }
     bool checkFlag(u32 flag) const { return (mFlags & flag) ? true : false; }
+    Mtx& getBaseTRMtx() { return mBaseTransformMtx; }
 
     // is there a better way to handle inlines with same name as non-inlines?
     MtxP i_getAnmMtx(int p1) { return mMtxBuffer->getAnmMtx(p1); }

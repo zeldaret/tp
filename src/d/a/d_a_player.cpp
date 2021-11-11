@@ -10,6 +10,8 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_iter.h"
 #include "f_op/f_op_actor_mng.h"
+#include "SSystem/SComponent/c_math.h"
+#include "rel/d/a/d_a_boomerang/d_a_boomerang.h"
 
 //
 // Types:
@@ -19,10 +21,6 @@ struct mDoMtx_stack_c {
     /* 8000CE38 */ void scaleM(f32, f32, f32);
 
     static u8 now[48];
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
 };
 
 struct J3DAnmLoaderDataBaseFlag {};
@@ -219,14 +217,18 @@ SECTION_SDATA2 static f32 lit_4250 = 65536.0f;
 
 /* 8015E5B0-8015E654 158EF0 00A4+00 0/0 1/1 18/18 .text initOffset__20daPy_boomerangMove_cFPC4cXyz
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daPy_boomerangMove_c::initOffset(cXyz const* param_0) {
-    nofralloc
-#include "asm/d/a/d_a_player/initOffset__20daPy_boomerangMove_cFPC4cXyz.s"
+void daPy_boomerangMove_c::initOffset(cXyz const* param_0) {
+    daBoomerang_c* boomerang = daPy_py_c::getThrowBoomerangActor();
+    if (boomerang != NULL) {
+        bgCheckAfterOffset(param_0);
+        boomerang->onWindCatch();
+    } else {
+        field_0x4 = cM_rndF(lit_4248) + lit_4247;
+        field_0x8 = cM_rndF(lit_4249) + lit_4249;
+        field_0x2 = cM_rndF(lit_4250);
+    }
+    field_0x0 = 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451018-8045101C 000518 0004+00 2/2 33/32 103/103 .sbss            m_midnaActor__9daPy_py_c */
@@ -277,6 +279,17 @@ SECTION_SDATA2 static u8 lit_4381[8] = {
 
 /* 8015E87C-8015EA0C 1591BC 0190+00 1/1 1/1 17/17 .text
  * bgCheckAfterOffset__20daPy_boomerangMove_cFPC4cXyz           */
+// matches with literals (used in inlines)
+#ifdef NONMATCHING
+void daPy_boomerangMove_c::bgCheckAfterOffset(cXyz const* param_0) {
+    daBoomerang_c* boomerang = daPy_py_c::getThrowBoomerangActor();
+    if (boomerang != NULL) {
+        field_0x4 = param_0->y - boomerang->mCurrent.mPosition.y;
+        field_0x8 = boomerang->mCurrent.mPosition.absXZ(*param_0);
+        field_0x2 = cM_atan2s(param_0->x - boomerang->mCurrent.mPosition.x, param_0->z - boomerang->mCurrent.mPosition.z);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -285,6 +298,7 @@ asm void daPy_boomerangMove_c::bgCheckAfterOffset(cXyz const* param_0) {
 #include "asm/d/a/d_a_player/bgCheckAfterOffset__20daPy_boomerangMove_cFPC4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* 8015EA0C-8015EA20 15934C 0014+00 0/0 3/3 0/0 .text            setParamData__9daPy_py_cFiiii */
 #pragma push
@@ -323,7 +337,7 @@ asm BOOL daPy_py_c::checkFishingRodItem(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::checkBombItem(int param_0) {
+asm BOOL daPy_py_c::checkBombItem(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_player/checkBombItem__9daPy_py_cFi.s"
 }
@@ -333,7 +347,7 @@ asm void daPy_py_c::checkBombItem(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::checkBottleItem(int param_0) {
+asm BOOL daPy_py_c::checkBottleItem(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_player/checkBottleItem__9daPy_py_cFi.s"
 }
@@ -352,40 +366,24 @@ asm void daPy_py_c::checkDrinkBottleItem(int param_0) {
 
 /* 8015EB40-8015EB68 159480 0028+00 0/0 4/4 0/0 .text            checkOilBottleItem__9daPy_py_cFi */
 BOOL daPy_py_c::checkOilBottleItem(int i_itemNo) {
-    bool isOilBottleItem = false;
-    if (i_itemNo == CHUCHU_YELLOW || i_itemNo == OIL_BOTTLE_2 || i_itemNo == OIL_BOTTLE) {
-        isOilBottleItem = true;
-    }
-    return isOilBottleItem;
+    return i_itemNo == CHUCHU_YELLOW || i_itemNo == OIL_BOTTLE_2 || i_itemNo == OIL_BOTTLE;
 }
 
 /* 8015EB68-8015EB90 1594A8 0028+00 0/0 2/2 0/0 .text            checkOpenBottleItem__9daPy_py_cFi
  */
 BOOL daPy_py_c::checkOpenBottleItem(int i_itemNo) {
-    bool isOpenBottleItem = false;
-    if (i_itemNo == WATER_BOTTLE || i_itemNo == WORM || i_itemNo == FAIRY) {
-        isOpenBottleItem = true;
-    }
-    return isOpenBottleItem;
+    return i_itemNo == WATER_BOTTLE || i_itemNo == WORM || i_itemNo == FAIRY;
 }
 
 /* 8015EB90-8015EBB8 1594D0 0028+00 0/0 11/11 0/0 .text            checkBowItem__9daPy_py_cFi */
 BOOL daPy_py_c::checkBowItem(int i_itemNo) {
-    bool isBowItem = false;
-    if (i_itemNo == BOW || i_itemNo == BOMB_ARROW || i_itemNo == HAWK_ARROW) {
-        isBowItem = true;
-    }
-    return isBowItem;
+    return i_itemNo == BOW || i_itemNo == BOMB_ARROW || i_itemNo == HAWK_ARROW;
 }
 
 /* 8015EBB8-8015EBD8 1594F8 0020+00 0/0 23/23 0/0 .text            checkHookshotItem__9daPy_py_cFi
  */
 BOOL daPy_py_c::checkHookshotItem(int i_itemNo) {
-    bool isHookshotItem = false;
-    if (i_itemNo == HOOKSHOT || i_itemNo == W_HOOKSHOT) {
-        isHookshotItem = true;
-    }
-    return isHookshotItem;
+    return i_itemNo == HOOKSHOT || i_itemNo == W_HOOKSHOT;
 }
 
 /* 8015EBD8-8015EC28 159518 0050+00 0/0 3/3 0/0 .text            checkTradeItem__9daPy_py_cFi */
@@ -401,11 +399,7 @@ asm BOOL daPy_py_c::checkTradeItem(int param_0) {
 /* 8015EC28-8015EC48 159568 0020+00 0/0 2/2 0/0 .text            checkDungeonWarpItem__9daPy_py_cFi
  */
 BOOL daPy_py_c::checkDungeonWarpItem(int i_itemNo) {
-    bool isDungeonWarpItem = false;
-    if (i_itemNo == DUNGEON_EXIT || i_itemNo == DUNGEON_BACK) {
-        isDungeonWarpItem = true;
-    }
-    return isDungeonWarpItem;
+    return i_itemNo == DUNGEON_EXIT || i_itemNo == DUNGEON_BACK;
 }
 
 /* 8015EC48-8015ECB8 159588 0070+00 0/0 10/10 3/3 .text            setActor__16daPy_actorKeep_cFv */
@@ -909,7 +903,7 @@ asm void daPy_py_c::checkRoomRestartStart() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::checkCarryStartLightBallA() {
+asm u32 daPy_py_c::checkCarryStartLightBallA() {
     nofralloc
 #include "asm/d/a/d_a_player/checkCarryStartLightBallA__9daPy_py_cFv.s"
 }
@@ -919,7 +913,7 @@ asm void daPy_py_c::checkCarryStartLightBallA() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::checkCarryStartLightBallB() {
+asm u32 daPy_py_c::checkCarryStartLightBallB() {
     nofralloc
 #include "asm/d/a/d_a_player/checkCarryStartLightBallB__9daPy_py_cFv.s"
 }
@@ -962,14 +956,9 @@ bool daPy_py_c::checkBoomerangChargeTime() {
 }
 
 /* 8015F8D0-8015F8E4 15A210 0014+00 3/3 1/1 5/5 .text getThrowBoomerangActor__9daPy_py_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daPy_py_c::getThrowBoomerangActor() {
-    nofralloc
-#include "asm/d/a/d_a_player/getThrowBoomerangActor__9daPy_py_cFv.s"
+daBoomerang_c* daPy_py_c::getThrowBoomerangActor() {
+    return static_cast<daBoomerang_c*>(daAlink_getAlinkActorClass()->getThrowBoomerangAcKeep()->getActor());
 }
-#pragma pop
 
 /* 8015F8E4-8015F914 15A224 0030+00 0/0 0/0 2/2 .text
  * cancelBoomerangLockActor__9daPy_py_cFP10fopAc_ac_c           */

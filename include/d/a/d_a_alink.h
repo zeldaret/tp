@@ -4,6 +4,7 @@
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
 #include "Z2AudioLib/Z2Creature.h"
 #include "Z2AudioLib/Z2WolfHowlMgr.h"
+#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "d/a/d_a_player.h"
 #include "d/bg/d_bg_s.h"
 #include "d/cc/d_cc_d.h"
@@ -17,12 +18,12 @@
 #include "d/msg/d_msg_flow.h"
 #include "d/particle/d_particle.h"
 #include "d/particle/d_particle_copoly.h"
+#include "rel/d/a/tag/d_a_tag_mmsg/d_a_tag_mmsg.h"
 #include "dolphin/types.h"
 
 class fopEn_enemy_c;
 class daAlinkHIO_anm_c;
 class J3DAnmTevRegKey;
-class dCcG_At_Spl;
 class dDemo_actor_c;
 
 class J2DScreen;
@@ -78,7 +79,7 @@ public:
     /* 800CFD58 */ virtual ~daAlink_blur_c();
 
 private:
-    /* 0x010 */ u8 field_0x10[4];
+    /* 0x010 */ void* m_blurTex;
     /* 0x014 */ int field_0x14;
     /* 0x018 */ u8 field_0x18[4];
     /* 0x01C */ int field_0x1c;
@@ -108,13 +109,55 @@ public:
     /* 800CFCF4 */ daAlink_footData_c();
 
 private:
-    u8 field_0x00[0xa4];
+    /* 0x00 */ u8 field_0x00[0x8];
+    /* 0x08 */ cXyz field_0x8;
+    /* 0x14 */ Mtx field_0x14;
+    /* 0x44 */ Mtx field_0x44;
+    /* 0x74 */ Mtx field_0x74;
+};  // Size: 0xA4
+
+STATIC_ASSERT(sizeof(daAlink_footData_c) == 0xA4);
+
+class daAlink_matAnm_c : public J3DMaterialAnm {
+public:
+    /* 8009D8E4 */ void init();
+    /* 800D0180 */ void offSetFlg();
+
+    /* 800D0B8C */ virtual ~daAlink_matAnm_c();
+    /* 8009D90C */ virtual void calc(J3DMaterial*) const;
+
+private:
+    /* 0x0F4 */ f32 field_0xf4;
+    /* 0x0F8 */ f32 field_0xf8;
+    /* 0x0FC */ f32 mNowOffsetX;
+    /* 0x100 */ f32 mNowOffsetY;
+    /* 0x104 */ int mSetFlag;
 };
 
 class daAlink_c : public daPy_py_c {
 public:
     enum daAlink_ANM {
-        GANON_FINISH = 408  // name probably wrong, fix later
+        /* 0x13 */ ANM_DASH = 19,
+        /* 0x15 */ ANM_WAIT_TURN = 0x15,
+        /* 0x19 */ ANM_IDLE = 0x19,  // name might be inaccurate
+        /* 0x1B */ ANM_WAIT_INIT = 0x1B,
+        /* 0x1D */ ANM_SIDE_STEP_LEFT = 0x1D,
+        /* 0x1E */ ANM_SIDE_STEP_RIGHT,
+        /* 0x1F */ ANM_SIDE_STEP_LEFT_LAND,
+        /* 0x20 */ ANM_SIDE_STEP_RIGHT_LAND,
+        /* 0x21 */ ANM_BACK_JUMP = 0x21,
+        /* 0x22 */ ANM_BACK_JUMP_LAND,
+        /* 0x23 */ ANM_FRONT_ROLL,
+        /* 0x24 */ ANM_ROLL_CRASH,
+        /* 0x71 */ ANM_CUT_JUMP = 0x71,
+        /* 0x90 */ ANM_SERVICE_WAIT = 0x90,
+        /* 0xB6 */ ANM_TIRED_WAIT = 0xB6,
+        /* 0xB7 */ ANM_TIRED_WAIT_INIT,
+        /* 0xBD */ ANM_FORWARD_SLIDE = 0xBD,
+        /* 0xBE */ ANM_BACKWARD_SLIDE,
+        /* 0xBF */ ANM_BACKWARD_SLIDE_LAND,
+        /* 0xC0 */ ANM_FORWARD_SLIDE_LAND,
+        ANM_GANON_FINISH = 408  // name probably wrong, fix later
     };
 
     enum daAlink_UPPER {
@@ -126,157 +169,196 @@ public:
     enum daAlink_UNDER {};
     enum daAlink_FTANM {};
     enum daAlink_WARP_MAT_MODE {};
-    enum daAlink_WANM {};
+
+    enum daAlink_WANM {
+        /* 0x5E */ ANM_WOLF_HOWL_SUCCESS = 94
+    };
 
     enum MODE_FLG {
-        PLAYER_FLY = 0x70852,
+        /* 0x00000001 */ MODE_IDLE = (1 << 0),
+        /* 0x00000002 */ MODE_JUMP = (1 << 1),
+        /* 0x00000004 */ MODE_DISABLE_ITEMS = (1 << 2),  // ?
+        /* 0x00000008 */ MODE_HIT_STUN = (1 << 3),
+        /* 0x00000010 */ MODE_CLIMB = (1 << 4), // ?
+        /* 0x00000020 */ MODE_UNK_20 = 0x20,  // related to wolf?
+        /* 0x00000040 */ MODE_NO_COLLISION = 0x40,  // disables wall col checks
+        /* 0x00000080 */ MODE_GUARD_ENABLED = 0x80,
+        /* 0x00000100 */ MODE_UNK_100 = 0x100,
+        /* 0x00000400 */ MODE_RIDING = 0x400,
+        /* 0x00000800 */ MODE_UNK_800 = 0x800,
+        /* 0x00001000 */ MODE_UNK_1000 = 0x1000,  // affects things like anim set when controlling rod statue
+        /* 0x00002000 */ MODE_UNK_2000 = 0x2000,
+        /* 0x00004000 */ MODE_UNK_4000 = 0x4000,
+        /* 0x00008000 */ MODE_UNK_8000 = 0x8000,
+        /* 0x00010000 */ MODE_VINE_CLIMB = 0x10000,  // used for vine climbing
+        /* 0x00020000 */ MODE_ROPE_WALK = 0x20000,
+        /* 0x00040000 */ MODE_SWIMMING = 0x40000,  // this might be more than swimming
+        /* 0x00100000 */ MODE_GRAB_PLACE = 0x100000,
+        /* 0x00800000 */ MODE_UNK_800000 = 0x800000,  // moves camera down
+        /* 0x01000000 */ MODE_UNK_1000000 = 0x1000000,  // attention related?
+        /* 0x02000000 */ MODE_UNK_2000000 = 0x2000000,  // maybe related to snow/sand?
+        /* 0x04000000 */ MODE_UNK_4000000 = 0x4000000,
+        /* 0x08000000 */ MODE_UNK_8000000 = 0x8000000,
+        /* 0x10000000 */ MODE_UNK_10000000 = 0x10000000,  // catch boomerang?
+        /* 0x20000000 */ MODE_UNK_20000000 = 0x20000000,
+        /* 0x40000000 */ MODE_UNK_40000000 = 0x40000000,
     };
 
     enum daAlink_PROC {
-        PREACTION_UNEQUIP,
-        SERVICE_WAIT,
-        HUMAN_WAIT = 3,
-        HUMAN_SIDESTEP = 10,
-        HUMAN_SIDESTEP_LAND,
-        HUMAN_SLIDE,
-        FRONT_ROLL = 14,
-        FRONT_ROLL_CRASH,
-        HUMAN_KNOCKBACK,
-        SIDE_ROLL,
-        BACK_JUMP,
-        BACK_JUMP_LAND,
-        SLIP,
-        HUMAN_AUTOJUMP,
-        DIVE_JUMP,
-        ROLL_JUMP,
-        FALL,
-        LAND,
-        SMALL_JUMP,
-        STEP_MOVE,
-        GUARD_SLIP = 29,
-        GUARD_ATTACK,
-        GUARD_BREAK,
-        TURN_MOVE,
-        CUT_NORMAL,
-        CUT_FINISH,
-        CUT_FINISH_JUMP_UP,
-        CUT_FINISH_JUMP_UP_LAND,
-        CUT_REVERSE,
-        CUT_JUMP,
-        CUT_JUMP_LAND,
-        COMBO_CUT_TURN,
-        CUT_CHARGE,
-        CUT_TURN_MOVE,
-        CUT_DOWN,
-        CUT_DOWN_LAND,
-        CUT_HEAD,
-        CUT_HEAD_LAND,
-        CUT_LARGE_JUMP_CHARGE,
-        CUT_LARGE_JUMP,
-        CUT_LARGE_JUMP_LAND,
-        DAMAGE,
-        LAND_DAMAGE = 52,
-        CRAWL_START,
-        CRAWL_MOVE,
-        CRAWL_AUTOMOVE,
-        CRAWL_END,
-        PULL_MOVE,
-        HORSE_RIDE,
-        HORSE_GETOFF,
-        HORSE_TURN = 61,
-        HORSE_JUMP,
-        HORSE_LAND,
-        HORSE_SUBJECTIVITY,
-        HORSE_CUT,
-        HORSE_CUT_CHARGE_READY,
-        HORSE_CUT_TURN,
-        HORSE_DAMAGE,
-        RIDE_BOW_READY,
-        HORSE_BOTTLE_DRINK = 76,
-        HORSE_KANDELAAR_POUR = 78,
-        HORSE_RUN,
-        HORSE_HANG,
-        BOAR_RUN = 83,
-        HANG_START = 85,
-        HANG_FALL_START,
-        HANG_UP,
-        HANG_WAIT,
-        HANG_MOVE,
-        COPY_ROD_SWING = 101,
-        GRAB_READY = 108,
-        GRAB_UP,
-        GRAB_THROW = 111,
-        GRAB_DOWN,
-        GRAB_REBOUND = 114,
-        GRAB_STAND,
-        INSECT_CATCH,
-        PICK_UP,
-        PICK_PUT,
-        HUMAN_ST_ESCAPE,
-        CLIMB_MOVE_VERTICAL = 130,
-        CLIMB_MOVE_HORIZONTAL,
-        CANOE_RIDE = 140,
-        CANOE_JUMP_RIDE,
-        CANOE_GETOFF,
-        CANOE_ROW = 144,
-        CANOE_PADDLE_SHIFT,
-        CANOE_PADDLE_PUT,
-        CANOE_PADDLE_GRAB,
-        CANOE_ROD_GRAB,
-        CANOE_FISHING_REEL = 150,
-        CANOE_FISHING_GET,
-        CANOE_SUBJECTIVITY,
-        CANOE_BOTTLE_DRINK = 160,
-        CANOE_KANDELAAR_POUR,
-        FISHING_FOOD = 163,
-        BOARD_CUT_TURN = 173,
-        FM_CHAIN_UP,
-        BOTTLE_DRINK = 179,
-        EMPTY_BOTTLE_SWING = 181,
-        GRASS_WHISTLE = 186,
-        HAWK_WAIT = 188,
-        FLOOR_DOWN_REBOUND = 189,
-        GORON_RIDE_WAIT,
-        GOAT_THROW = 192,
-        GOAT_STROKE,
-        MAGNE_BOOTS_FLY = 204,
-        BOOTS_EQUIP,
-        SUMOU_PUSH = 207,
-        SUMOU_SIDE_MOVE,
-        SUMOU_ACTION,
-        SUMOU_STAGGER,
-        SUMOU_WIN_LOSE,
-        BOSS_ENEMY_HANG = 220,
-        SCREAM_WAIT = 222,
-        DUNGEON_WARP_READY = 234,
-        WOLF_HOWL = 237,
-        WOLF_WAIT = 241,
-        WOLF_DASH = 243,
-        WOLF_KNOCKBACK = 244,
-        WOLF_SIDESTEP = 247,
-        WOLF_AUTOJUMP = 252,
-        WOLF_RSIT = 255,
-        WOLF_DAMAGE = 263,
-        WOLF_SLIDE = 271,
-        WOLF_ROPE_HANG = 275,
-        WOLF_TAGLOCK_JUMP = 280,
-        WOLF_TAGLOCK_LAND,
-        WOLF_DOWNATTACK_PULLOUT = 291,
-        WOLF_JUMPATTACK = 284,
-        WOLF_ST_ESCAPE = 289,
-        WOLF_CHAIN = 305,
-        WOLF_DIG,
-        WOLF_ENEMY_HANG_BITE = 310,
-        SUBJECTIVITY = 318,
-        POLY_DAMAGE = 321,
-        ELEC_DAMAGE,
-        PUSH_PULL_WAIT,
-        PUSH_MOVE,
-        TRESURE_STAND = 328,
-        METAMORPHOSE = 333,
-        DEAD = 336,
-        LARGE_DAMAGE = 345,
-        LARGE_DAMAGE_WALL,
+        /* 0x000 */ PREACTION_UNEQUIP,
+        /* 0x001 */ SERVICE_WAIT,
+        /* 0x003 */ HUMAN_WAIT = 3,
+        /* 0x004 */ HUMAN_MOVE,
+        /* 0x005 */ HUMAN_ATN_MOVE,
+        /* 0x006 */ HUMAN_ATN_ACTOR_WAIT,
+        /* 0x007 */ HUMAN_ATN_ACTOR_MOVE,
+        /* 0x008 */ HUMAN_WAIT_TURN,
+        /* 0x009 */ HUMAN_MOVE_TURN,
+        /* 0x00A */ HUMAN_SIDESTEP,
+        /* 0x00B */ HUMAN_SIDESTEP_LAND,
+        /* 0x00C */ HUMAN_SLIDE,
+        /* 0x00D */ HUMAN_SLIDE_LAND,
+        /* 0x00E */ FRONT_ROLL,
+        /* 0x00F */ FRONT_ROLL_CRASH,
+        /* 0x010 */ HUMAN_KNOCKBACK,
+        /* 0x011 */ SIDE_ROLL,
+        /* 0x012 */ BACK_JUMP,
+        /* 0x013 */ BACK_JUMP_LAND,
+        /* 0x014 */ SLIP,
+        /* 0x015 */ HUMAN_AUTOJUMP,
+        /* 0x016 */ DIVE_JUMP,
+        /* 0x017 */ ROLL_JUMP,
+        /* 0x018 */ FALL,
+        /* 0x019 */ LAND,
+        /* 0x01A */ SMALL_JUMP,
+        /* 0x01B */ STEP_MOVE,
+        /* 0x01D */ GUARD_SLIP = 29,
+        /* 0x01E */ GUARD_ATTACK,
+        /* 0x01F */ GUARD_BREAK,
+        /* 0x020 */ TURN_MOVE,
+        /* 0x021 */ CUT_NORMAL,
+        /* 0x022 */ CUT_FINISH,
+        /* 0x023 */ CUT_FINISH_JUMP_UP,
+        /* 0x024 */ CUT_FINISH_JUMP_UP_LAND,
+        /* 0x025 */ CUT_REVERSE,
+        /* 0x026 */ CUT_JUMP,
+        /* 0x027 */ CUT_JUMP_LAND,
+        /* 0x028 */ COMBO_CUT_TURN,
+        /* 0x029 */ CUT_CHARGE,
+        /* 0x02A */ CUT_TURN_MOVE,
+        /* 0x02B */ CUT_DOWN,
+        /* 0x02C */ CUT_DOWN_LAND,
+        /* 0x02D */ CUT_HEAD,
+        /* 0x02E */ CUT_HEAD_LAND,
+        /* 0x02F */ CUT_LARGE_JUMP_CHARGE,
+        /* 0x030 */ CUT_LARGE_JUMP,
+        /* 0x031 */ CUT_LARGE_JUMP_LAND,
+        /* 0x032 */ DAMAGE,
+        /* 0x034 */ LAND_DAMAGE = 52,
+        /* 0x035 */ CRAWL_START,
+        /* 0x036 */ CRAWL_MOVE,
+        /* 0x037 */ CRAWL_AUTOMOVE,
+        /* 0x038 */ CRAWL_END,
+        /* 0x039 */ PULL_MOVE,
+        /* 0x03A */ HORSE_RIDE,
+        /* 0x03B */ HORSE_GETOFF,
+        /* 0x03D */ HORSE_TURN = 61,
+        /* 0x03E */ HORSE_JUMP,
+        /* 0x03F */ HORSE_LAND,
+        /* 0x040 */ HORSE_SUBJECTIVITY,
+        /* 0x041 */ HORSE_CUT,
+        /* 0x042 */ HORSE_CUT_CHARGE_READY,
+        /* 0x043 */ HORSE_CUT_TURN,
+        /* 0x044 */ HORSE_DAMAGE,
+        /* 0x045 */ RIDE_BOW_READY,
+        /* 0x04C */ HORSE_BOTTLE_DRINK = 76,
+        /* 0x04E */ HORSE_KANDELAAR_POUR = 78,
+        /* 0x04F */ HORSE_RUN,
+        /* 0x050 */ HORSE_HANG,
+        /* 0x053 */ BOAR_RUN = 83,
+        /* 0x055 */ HANG_START = 85,
+        /* 0x056 */ HANG_FALL_START,
+        /* 0x057 */ HANG_UP,
+        /* 0x058 */ HANG_WAIT,
+        /* 0x059 */ HANG_MOVE,
+        /* 0x065 */ COPY_ROD_SWING = 101,
+        /* 0x06B */ CLIMB_MOVE_LADDER = 107,
+        /* 0x06C */ GRAB_READY = 108,
+        /* 0x06D */ GRAB_UP,
+        /* 0x06F */ GRAB_THROW = 111,
+        /* 0x070 */ GRAB_DOWN,
+        /* 0x072 */ GRAB_REBOUND = 114,
+        /* 0x073 */ GRAB_STAND,
+        /* 0x074 */ INSECT_CATCH,
+        /* 0x075 */ PICK_UP,
+        /* 0x076 */ PICK_PUT,
+        /* 0x077 */ HUMAN_ST_ESCAPE,
+        /* 0x082 */ CLIMB_MOVE_VERTICAL = 130,
+        /* 0x083 */ CLIMB_MOVE_HORIZONTAL,
+        /* 0x084 */ CLIMB_HANG,
+        /* 0x08C */ CANOE_RIDE = 140,
+        /* 0x08D */ CANOE_JUMP_RIDE,
+        /* 0x08E */ CANOE_GETOFF,
+        /* 0x090 */ CANOE_ROW = 144,
+        /* 0x091 */ CANOE_PADDLE_SHIFT,
+        /* 0x092 */ CANOE_PADDLE_PUT,
+        /* 0x093 */ CANOE_PADDLE_GRAB,
+        /* 0x094 */ CANOE_ROD_GRAB,
+        /* 0x096 */ CANOE_FISHING_REEL = 150,
+        /* 0x097 */ CANOE_FISHING_GET,
+        /* 0x098 */ CANOE_SUBJECTIVITY,
+        /* 0x0A0 */ CANOE_BOTTLE_DRINK = 160,
+        /* 0x0A1 */ CANOE_KANDELAAR_POUR,
+        /* 0x0A3 */ FISHING_FOOD = 163,
+        /* 0x0AD */ BOARD_CUT_TURN = 173,
+        /* 0x0AF */ FM_CHAIN_UP,
+        /* 0x0B3 */ BOTTLE_DRINK = 179,
+        /* 0x0B5 */ BOTTLE_SWING = 181,
+        /* 0x0BA */ GRASS_WHISTLE = 186,
+        /* 0x0BC */ HAWK_WAIT = 188,
+        /* 0x0BD */ FLOOR_DOWN_REBOUND = 189,
+        /* 0x0BE */ GORON_RIDE_WAIT,
+        /* 0x0C0 */ GOAT_THROW = 192,
+        /* 0x0C1 */ GOAT_STROKE,
+        /* 0x0CC */ MAGNE_BOOTS_FLY = 204,
+        /* 0x0CD */ BOOTS_EQUIP,
+        /* 0x0CF */ SUMOU_PUSH = 207,
+        /* 0x0D0 */ SUMOU_SIDE_MOVE,
+        /* 0x0D1 */ SUMOU_ACTION,
+        /* 0x0D2 */ SUMOU_STAGGER,
+        /* 0x0D3 */ SUMOU_WIN_LOSE,
+        /* 0x0DC */ BOSS_ENEMY_HANG = 220,
+        /* 0x0DE */ SCREAM_WAIT = 222,
+        /* 0x0EA */ DUNGEON_WARP_READY = 234,
+        /* 0x0ED */ WOLF_HOWL = 237,
+        /* 0x0F1 */ WOLF_WAIT = 241,
+        /* 0x0F2 */ WOLF_MOVE,
+        /* 0x0F3 */ WOLF_DASH,
+        /* 0x0F4 */ WOLF_KNOCKBACK,
+        /* 0x0F7 */ WOLF_SIDESTEP = 247,
+        /* 0x0FC */ WOLF_AUTOJUMP = 252,
+        /* 0x0FF */ WOLF_RSIT = 255,
+        /* 0x107 */ WOLF_DAMAGE = 263,
+        /* 0x10F */ WOLF_SLIDE = 271,
+        /* 0x114 */ WOLF_ROPE_HANG = 276,
+        /* 0x118 */ WOLF_TAGLOCK_JUMP = 280,
+        /* 0x119 */ WOLF_TAGLOCK_LAND,
+        /* 0x11C */ WOLF_JUMPATTACK = 284,
+        /* 0x121 */ WOLF_ST_ESCAPE = 289,
+        /* 0x123 */ WOLF_DOWNATTACK_PULLOUT = 291,
+        /* 0x131 */ WOLF_CHAIN = 305,
+        /* 0x132 */ WOLF_DIG,
+        /* 0x136 */ WOLF_ENEMY_HANG_BITE = 310,
+        /* 0x13E */ SUBJECTIVITY = 318,
+        /* 0x141 */ POLY_DAMAGE = 321,
+        /* 0x142 */ ELEC_DAMAGE,
+        /* 0x143 */ PUSH_PULL_WAIT,
+        /* 0x144 */ PUSH_MOVE,
+        /* 0x148 */ TRESURE_STAND = 328,
+        /* 0x14D */ METAMORPHOSE = 333,
+        /* 0x150 */ DEAD = 336,
+        /* 0x159 */ LARGE_DAMAGE = 345,
+        /* 0x15A */ LARGE_DAMAGE_WALL,
     };
 
     // this might be one of the above enums, but not clear yet
@@ -297,9 +379,10 @@ public:
         /* 0x24 */ cXyz field_0x24;
     };
 
-    class hsChainShape_c {
-        /* 800D0CDC */ ~hsChainShape_c();
-        /* 80107900 */ void draw();
+    class hsChainShape_c : public J3DPacket {
+    public:
+        /* 80107900 */ virtual void draw();
+        /* 800D0CDC */ virtual ~hsChainShape_c();
     };
 
     /* 8009D87C */ bool getE3Zhint();
@@ -326,7 +409,7 @@ public:
     /* 800A1AEC */ void setEyeMove(cXyz*, s16, s16);
     /* 800A1F90 */ void setNeckAngle();
     /* 800A2198 */ void commonLineCheck(cXyz*, cXyz*);
-    /* 800A21E0 */ void getMoveBGActorName(cBgS_PolyInfo&, int);
+    /* 800A21E0 */ static s16 getMoveBGActorName(cBgS_PolyInfo&, int);
     /* 800A2280 */ void checkGoronRide();
     /* 800A22E8 */ void setMoveSlantAngle();
     /* 800A2710 */ void setArmMatrix();
@@ -343,10 +426,10 @@ public:
     /* 800A3E98 */ void initModelEnv(u16, u32);
     /* 800A3F00 */ void initDemoModel(J3DModel**, char const*, u32);
     /* 800A3F98 */ void initDemoBck(mDoExt_bckAnm**, char const*);
-    /* 800A4068 */ void createHeap();
+    /* 800A4068 */ static void createHeap();
     /* 800A4910 */ void setSelectEquipItem(int);
-    /* 800A4BC8 */ void checkBoarStart();
-    /* 800A4C40 */ void checkCanoeStart();
+    /* 800A4BC8 */ BOOL checkBoarStart();
+    /* 800A4C40 */ BOOL checkCanoeStart();
     /* 800A4CB4 */ void playerInit();
     /* 800A54F4 */ BOOL checkHorseStart(u32, int);
     /* 800A551C */ void setStartProcInit();
@@ -447,14 +530,14 @@ public:
     /* 800B1FB8 */ bool checkLv2MiddleBossBgRide(s16);
     /* 800B1FD8 */ void getSlidePolygon(cM3dGPla*);
     /* 800B21EC */ void checkSlope() const;
-    /* 800B25CC */ u32 itemTriggerCheck(u8);
-    /* 800B25E8 */ u32 itemButtonCheck(u8);
+    /* 800B25CC */ BOOL itemTriggerCheck(u8);
+    /* 800B25E8 */ BOOL itemButtonCheck(u8);
     /* 800B2604 */ void itemButton();
     /* 800B2634 */ void itemTrigger();
     /* 800B2664 */ void spActionButton();
     /* 800B2688 */ void spActionTrigger();
-    /* 800B26AC */ u32 midnaTalkTrigger() const;
-    /* 800B26B8 */ void swordSwingTrigger();
+    /* 800B26AC */ BOOL midnaTalkTrigger() const;
+    /* 800B26B8 */ BOOL swordSwingTrigger();
     /* 800B26DC */ void setItemActionButtonStatus(u8);
     /* 800B26FC */ void itemActionTrigger();
     /* 800B271C */ void setStickData();
@@ -465,7 +548,7 @@ public:
     /* 800B3268 */ void setDoStatusEmphasys(u8);
     /* 800B3280 */ void setDoStatusContinuation(u8);
     /* 800B3298 */ void setBStatus(u8);
-    /* 800B32B0 */ void checkAtnWaitAnime();
+    /* 800B32B0 */ BOOL checkAtnWaitAnime();
     /* 800B3358 */ void setTiredVoice(daPy_frameCtrl_c*);
     /* 800B33E4 */ void checkRestHPAnime();
     /* 800B3494 */ void getDirectionFromAngle(s16);
@@ -485,19 +568,19 @@ public:
     /* 800B4918 */ float getMetamorphoseFarDis() const;
     /* 800B4928 */ s16 getMetamorphoseFarAngle() const;
     /* 800B4938 */ void setMidnaMsg();
-    /* 800B4950 */ void notTalk();
+    /* 800B4950 */ bool notTalk();
     /* 800B4A08 */ void setTalkStatus();
-    /* 800B4B2C */ void getFrontRollRate();
+    /* 800B4B2C */ f32 getFrontRollRate();
     /* 800B4B7C */ void decideCommonDoStatus();
     /* 800B5284 */ void decideDoStatus();
-    /* 800B58EC */ void checkWaitAction();
+    /* 800B58EC */ BOOL checkWaitAction();
     /* 800B5BC0 */ void setFallVoice();
     /* 800B5C34 */ void setLandPassiveData();
     /* 800B5C64 */ void setStepLandVibration();
     /* 800B5CCC */ void checkLandAction(int);
     /* 800B5F6C */ void checkSlideAction();
     /* 800B607C */ void checkAutoJumpAction();
-    /* 800B69CC */ void checkCutJumpInFly();
+    /* 800B69CC */ bool checkCutJumpInFly();
     /* 800B6A30 */ BOOL checkFrontWallTypeAction();
     /* 800B6F28 */ void checkItemActionInitStart();
     /* 800B7090 */ void checkItemChangeAutoAction();
@@ -505,23 +588,23 @@ public:
     /* 800B7190 */ void cancelItemUseQuake(int);
     /* 800B71EC */ void cancelUpperItemReadyAnime(int);
     /* 800B72E4 */ void checkItemActorPointer();
-    /* 800B7390 */ void checkSwordTwirlAction();
-    /* 800B74B4 */ void checkUpperItemActionFly();
+    /* 800B7390 */ bool checkSwordTwirlAction();
+    /* 800B74B4 */ BOOL checkUpperItemActionFly();
     /* 800B7528 */ void checkItemButtonChange();
     /* 800B75EC */ void checkUpperItemAction();
     /* 800B7B7C */ void orderPeep();
     /* 800B7BF8 */ void orderTalk(int);
     /* 800B80C4 */ void orderZTalk();
     /* 800B8374 */ void checkNormalAction();
-    /* 800B8930 */ void checkReadyItem();
+    /* 800B8930 */ bool checkReadyItem();
     /* 800B8988 */ void checkItemAction();
     /* 800B9010 */ bool checkRAction();
     /* 800B9018 */ void checkMoveDoAction();
-    /* 800B9148 */ void checkSideRollAction(int);
-    /* 800B9254 */ void checkNoUpperAnime() const;
+    /* 800B9148 */ BOOL checkSideRollAction(int);
+    /* 800B9254 */ BOOL checkNoUpperAnime() const;
     /* 800B92D0 */ void checkOneHandItemEquipAnime() const;
     /* 800B92F8 */ void checkItemEquipAnime() const;
-    /* 800B9340 */ void checkEquipAnime() const;
+    /* 800B9340 */ BOOL checkEquipAnime() const;
     /* 800B9398 */ void checkWindDashAnime() const;
     /* 800B93CC */ void checkSwordTwirlAnime() const;
     /* 800B93F4 */ void swordEquip(int);
@@ -530,9 +613,9 @@ public:
     /* 800B96A4 */ void itemUnequip(u16, f32);
     /* 800B97EC */ void checkFastUnequip();
     /* 800B983C */ void allUnequip(int);
-    /* 800B994C */ void checkItemChangeFromButton();
-    /* 800B9D2C */ void checkNextActionFromButton();
-    /* 800B9F50 */ void checkGroundSpecialMode();
+    /* 800B994C */ BOOL checkItemChangeFromButton();
+    /* 800B9D2C */ BOOL checkNextActionFromButton();
+    /* 800B9F50 */ BOOL checkGroundSpecialMode();
     /* 800BA09C */ void commonCheckNextAction(int);
     /* 800BA0D0 */ int checkNextAction(int);
     /* 800BA6A0 */ void commonChangeItem();
@@ -544,7 +627,7 @@ public:
     /* 800BB2B0 */ void setBodyAngleXReadyAnime(int);
     /* 800BB324 */ void setMagicArmorBrk(int);
     /* 800BB408 */ BOOL checkMagicArmorHeavy() const;
-    /* 800BB4B8 */ void checkHeavyStateOn(int, int);
+    /* 800BB4B8 */ BOOL checkHeavyStateOn(int, int);
     /* 800BB644 */ void initGravity();
     /* 800BB770 */ void setSpecialGravity(f32, f32, int);
     /* 800BB7A0 */ void transAnimeProc(cXyz*, f32, f32);
@@ -571,10 +654,10 @@ public:
     /* 800BF79C */ void setMetamorphoseModel(int);
     /* 800BF854 */ void keepItemData();
     /* 800BF884 */ void returnKeepItemData();
-    /* 800BF8D0 */ void setItemModel();
-    /* 800BF9F0 */ void setItemActor();
+    /* 800BF8D0 */ BOOL setItemModel();
+    /* 800BF9F0 */ BOOL setItemActor();
     /* 800BFD74 */ void makeItemType();
-    /* 800BFDB0 */ void checkZoraWearAbility() const;
+    /* 800BFDB0 */ BOOL checkZoraWearAbility() const;
     /* 800BFDFC */ BOOL checkMagicArmorWearAbility() const;
     /* 800BFE48 */ void loadAramBmd(u16, u32);
     /* 800BFF04 */ void loadAram(u16, u32);
@@ -588,16 +671,16 @@ public:
     /* 800C0284 */ void checkField();
     /* 800C02C8 */ void checkBossRoom();
     /* 800C0310 */ void checkDungeon();
-    /* 800C0358 */ bool checkCastleTown();
-    /* 800C03A0 */ void checkCloudSea();
-    /* 800C03E8 */ void checkRoomOnly();
-    /* 800C044C */ void checkLv2DungeonRoomSpecial();
-    /* 800C04B4 */ void checkRoomSpecial();
-    /* 800C0520 */ bool checkRoom();
-    /* 800C0594 */ bool checkNotBattleStage();
-    /* 800C05DC */ void checkNotHeavyBootsStage();
-    /* 800C0630 */ void checkNotAutoJumpStage();
-    /* 800C0678 */ void checkCastleTownUseItem(u16);
+    /* 800C0358 */ static bool checkCastleTown();
+    /* 800C03A0 */ static bool checkCloudSea();
+    /* 800C03E8 */ static bool checkRoomOnly();
+    /* 800C044C */ static bool checkLv2DungeonRoomSpecial();
+    /* 800C04B4 */ static bool checkRoomSpecial();
+    /* 800C0520 */ static bool checkRoom();
+    /* 800C0594 */ static bool checkNotBattleStage();
+    /* 800C05DC */ bool checkNotHeavyBootsStage();
+    /* 800C0630 */ bool checkNotAutoJumpStage();
+    /* 800C0678 */ static bool checkCastleTownUseItem(u16);
     /* 800C077C */ void changeItemTriggerKeepProc(u8, int);
     /* 800C0A9C */ void checkNewItemChange(u8);
     /* 800C12DC */ void deleteEquipItem(int, int);
@@ -609,32 +692,32 @@ public:
     /* 800C2DDC */ void procPreActionUnequipInit(int, fopAc_ac_c*);
     /* 800C2EAC */ void procPreActionUnequip();
     /* 800C3098 */ bool procServiceWaitInit();
-    /* 800C30F0 */ void procServiceWait();
+    /* 800C30F0 */ bool procServiceWait();
     /* 800C3224 */ void procTiredWaitInit();
-    /* 800C3338 */ void procTiredWait();
-    /* 800C33B8 */ void procWaitInit();
+    /* 800C3338 */ bool procTiredWait();
+    /* 800C33B8 */ bool procWaitInit();
     /* 800C3504 */ void procWait();
-    /* 800C36CC */ void procMoveInit();
-    /* 800C3730 */ void procMove();
-    /* 800C3810 */ void procAtnMoveInit();
+    /* 800C36CC */ bool procMoveInit();
+    /* 800C3730 */ bool procMove();
+    /* 800C3810 */ bool procAtnMoveInit();
     /* 800C3868 */ bool procAtnMove();
-    /* 800C38CC */ void procAtnActorWaitInit();
-    /* 800C397C */ void procAtnActorWait();
-    /* 800C39EC */ void procAtnActorMoveInit();
-    /* 800C3A44 */ void procAtnActorMove();
-    /* 800C3A94 */ void procWaitTurnInit();
-    /* 800C3B1C */ void procWaitTurn();
-    /* 800C3C3C */ void procMoveTurnInit(int);
-    /* 800C3D38 */ void procMoveTurn();
-    /* 800C3DA0 */ void procSideStepInit(int);
-    /* 800C3F60 */ void procSideStep();
-    /* 800C40F0 */ void procSideStepLandInit();
-    /* 800C4278 */ void procSideStepLand();
-    /* 800C4378 */ void procSlideInit(s16);
+    /* 800C38CC */ bool procAtnActorWaitInit();
+    /* 800C397C */ bool procAtnActorWait();
+    /* 800C39EC */ bool procAtnActorMoveInit();
+    /* 800C3A44 */ bool procAtnActorMove();
+    /* 800C3A94 */ bool procWaitTurnInit();
+    /* 800C3B1C */ BOOL procWaitTurn();
+    /* 800C3C3C */ bool procMoveTurnInit(int);
+    /* 800C3D38 */ bool procMoveTurn();
+    /* 800C3DA0 */ bool procSideStepInit(int);
+    /* 800C3F60 */ bool procSideStep();
+    /* 800C40F0 */ bool procSideStepLandInit();
+    /* 800C4278 */ bool procSideStepLand();
+    /* 800C4378 */ bool procSlideInit(s16);
     /* 800C4514 */ void procSlide();
-    /* 800C47AC */ void procSlideLandInit(int);
-    /* 800C4894 */ void procSlideLand();
-    /* 800C494C */ void procFrontRollInit();
+    /* 800C47AC */ bool procSlideLandInit(int);
+    /* 800C4894 */ bool procSlideLand();
+    /* 800C494C */ bool procFrontRollInit();
     /* 800C4B40 */ void procFrontRoll();
     /* 800C4F14 */ void procFrontRollCrashInit();
     /* 800C4FFC */ void procFrontRollCrash();
@@ -643,7 +726,7 @@ public:
     /* 800C5328 */ void procSideRollInit(int);
     /* 800C5484 */ void procSideRoll();
     /* 800C5700 */ void backJumpSpeedDec();
-    /* 800C57A4 */ void procBackJumpInit(int);
+    /* 800C57A4 */ bool procBackJumpInit(int);
     /* 800C5964 */ void procBackJump();
     /* 800C5A54 */ void procBackJumpLandInit(int);
     /* 800C5AF0 */ void procBackJumpLand();
@@ -655,7 +738,7 @@ public:
     /* 800C6798 */ void procDiveJump();
     /* 800C6850 */ void procRollJumpInit();
     /* 800C692C */ void procRollJump();
-    /* 800C6A48 */ void procFallInit(int, f32);
+    /* 800C6A48 */ bool procFallInit(int, f32);
     /* 800C6D20 */ void procFall();
     /* 800C6F18 */ void procLandInit(f32);
     /* 800C6FE4 */ void procLand();
@@ -669,15 +752,15 @@ public:
     /* 800C7C64 */ void procCoMetamorphose();
     /* 800C82E8 */ void procCoMetamorphoseOnlyInit();
     /* 800C83A0 */ void procCoMetamorphoseOnly();
-    /* 800C8460 */ void procFloorDownReboundInit();
+    /* 800C8460 */ BOOL procFloorDownReboundInit();
     /* 800C84D0 */ void procFloorDownRebound();
     /* 800C854C */ void procGoronRideWaitInit(fopAc_ac_c*);
     /* 800C85D8 */ void procGoronRideWait();
     /* 800C8700 */ void execute();
     /* 800CAFC8 */ void setDrawHand();
-    /* 800CB480 */ void checkSwordDraw();
-    /* 800CB53C */ void checkShieldDraw();
-    /* 800CB5F8 */ void checkItemDraw();
+    /* 800CB480 */ bool checkSwordDraw();
+    /* 800CB53C */ bool checkShieldDraw();
+    /* 800CB5F8 */ bool checkItemDraw();
     /* 800CB694 */ void initShadowScaleLight();
     /* 800CBA38 */ void moveShadowScaleLight();
     /* 800CBC18 */ void shadowDraw();
@@ -715,45 +798,44 @@ public:
     /* 800D0164 */ void set3DStatus(u8, u8);
     /* 800D018C */ u32 checkModeFlg(u32) const;
     /* 800D2684 */ void checkCutTurnCharge();
-    /* 800D07A4 */ void checkCutJumpCancelTurn() const;
     /* 800D0E08 */ void checkLightSwordMtrl();
-    /* 800D0E98 */ void checkSwordEquipAnime() const;
-    /* 800D0ECC */ void checkCutDashAnime() const;
-    /* 800D0EFC */ void checkCutDashEnemyHit(dCcD_GObjInf&);
-    /* 800D0F5C */ void getSwordAtType();
+    /* 800D0E98 */ BOOL checkSwordEquipAnime() const;
+    /* 800D0ECC */ BOOL checkCutDashAnime() const;
+    /* 800D0EFC */ BOOL checkCutDashEnemyHit(dCcD_GObjInf&);
+    /* 800D0F5C */ static u32 getSwordAtType();
     /* 800D0F90 */ void initCutTurnAt(f32, int);
-    /* 800D102C */ void checkCutFinishJumpUp();
+    /* 800D102C */ bool checkCutFinishJumpUp();
     /* 800D1088 */ void changeCutFast();
     /* 800D10E0 */ void checkCutFastReady();
     /* 800D1268 */ void setSwordModel();
     /* 800D1310 */ void offSwordModel();
-    /* 800D13AC */ void checkCutTypeNoBlur() const;
-    /* 800D13E4 */ void checkCutTurnInput() const;
-    /* 800D1424 */ void getCutTurnDirection() const;
+    /* 800D13AC */ BOOL checkCutTypeNoBlur() const;
+    /* 800D13E4 */ bool checkCutTurnInput() const;
+    /* 800D1424 */ int getCutTurnDirection() const;
     /* 800D1430 */ void resetCombo(int);
     /* 800D1454 */ void checkComboCnt();
     /* 800D152C */ void setCutType(u8);
     /* 800D1540 */ void setCylAtParam(u32, dCcG_At_Spl, u8, u8, int, f32, f32);
     /* 800D1688 */ void setSwordAtParam(dCcG_At_Spl, u8, u8, int, f32, f32);
-    /* 800D1788 */ void notSwordHitVibActor(fopAc_ac_c*);
+    /* 800D1788 */ static bool notSwordHitVibActor(fopAc_ac_c*);
     /* 800D17EC */ void setSwordHitVibration(dCcD_GObjInf*);
-    /* 800D1920 */ void checkAtShieldHit(dCcD_GObjInf&);
-    /* 800D1978 */ void checkCutReverseAt(dCcD_GObjInf*);
-    /* 800D19C8 */ void changeCutReverseProc(daAlink_c::daAlink_ANM);
+    /* 800D1920 */ BOOL checkAtShieldHit(dCcD_GObjInf&);
+    /* 800D1978 */ bool checkCutReverseAt(dCcD_GObjInf*);
+    /* 800D19C8 */ BOOL changeCutReverseProc(daAlink_c::daAlink_ANM);
     /* 800D1E1C */ void setCutDash(int, int);
-    /* 800D20B4 */ void checkForceSwordSwing();
+    /* 800D20B4 */ BOOL checkForceSwordSwing();
     /* 800D20FC */ void setComboReserb();
-    /* 800D2188 */ void checkComboReserb();
-    /* 800D21D0 */ void commonCutAction();
+    /* 800D2188 */ BOOL checkComboReserb();
+    /* 800D21D0 */ bool commonCutAction();
     /* 800D2284 */ void setSwordVoiceSe(u32);
     /* 800D22BC */ void setSwordChargeVoiceSe();
     /* 800D2304 */ void setSwordComboVoice();
-    /* 800D2368 */ void checkCutTurnInputTrigger();
+    /* 800D2368 */ bool checkCutTurnInputTrigger();
     /* 800D23C0 */ void checkCutAction();
     /* 800D26EC */ void getCutDirection();
     /* 800D2760 */ void checkCutCancelNextMode(int);
     /* 800D27E4 */ void checkDoCutAction();
-    /* 800D2890 */ void checkCutBackState();
+    /* 800D2890 */ static BOOL checkCutBackState();
     /* 800D28F4 */ void checkCutHeadState();
     /* 800D29D4 */ void checkDownAttackState();
     /* 800D2ABC */ void checkCutLargeTurnState() const;
@@ -771,8 +853,8 @@ public:
     /* 800D3ECC */ void procCutFinishJumpUpLand();
     /* 800D4068 */ void procCutReverseInit(daAlink_c::daAlink_ANM);
     /* 800D41FC */ void procCutReverse();
-    /* 800D42FC */ void procCutJumpInit(int);
-    /* 800D43F8 */ void procCutJump();
+    /* 800D42FC */ bool procCutJumpInit(int);
+    /* 800D43F8 */ bool procCutJump();
     /* 800D452C */ void procCutJumpLandInit(int);
     /* 800D4684 */ void procCutJumpLand();
     /* 800D47DC */ void procCutTurnInit(int, int);
@@ -846,16 +928,16 @@ public:
     /* 800DC214 */ void procCoLavaReturn();
     /* 800DC278 */ void procCoSwimFreezeReturnInit();
     /* 800DC474 */ void procCoSwimFreezeReturn();
-    /* 800DC548 */ void checkEnemyGroup(fopAc_ac_c*);
-    /* 800DC5A4 */ void checkSpecialNpc(fopAc_ac_c*);
+    /* 800DC548 */ static BOOL checkEnemyGroup(fopAc_ac_c*);
+    /* 800DC5A4 */ static BOOL checkSpecialNpc(fopAc_ac_c*);
     /* 800DC5DC */ void checkShieldAttackEmphasys();
-    /* 800DC678 */ void checkGuardActionChange();
+    /* 800DC678 */ BOOL checkGuardActionChange();
     /* 800DC79C */ void stickArrowIncrement(int);
     /* 800DC8C4 */ void setArrowShieldActor(fopAc_ac_c*, int);
     /* 800DCA2C */ void checkWoodShieldEquipNotIronBall() const;
     /* 800DCA80 */ void getArrowShieldOffset(cXyz const*, csXyz const*, cXyz*, cXyz*) const;
     /* 800DCD74 */ void setArrowShieldPos(cXyz*, csXyz*, cXyz const*, cXyz const*) const;
-    /* 800DCDF0 */ void checkUpperGuardAnime() const;
+    /* 800DCDF0 */ BOOL checkUpperGuardAnime() const;
     /* 800DCF04 */ void checkPlayerGuardAndAttack() const;
     /* 800DCF64 */ void checkGuardAccept();
     /* 800DD008 */ void setUpperGuardAnime(f32);
@@ -875,7 +957,7 @@ public:
     /* 800DE750 */ void getBombArrowFlyExplodeTime() const;
     /* 800DE760 */ void getArrowIncAtMaxStart() const;
     /* 800DE770 */ void getArrowIncAtMax() const;
-    /* 800DE780 */ void checkBowAndSlingItem(int);
+    /* 800DE780 */ BOOL checkBowAndSlingItem(int);
     /* 800DE7D4 */ void setSlingModel();
     /* 800DE884 */ void checkBowCameraArrowPosP(s16*, s16*);
     /* 800DE9B8 */ void checkBowReadyAnime() const;
@@ -892,7 +974,7 @@ public:
     /* 800DF798 */ void checkUpperItemActionBowFly();
     /* 800DF814 */ void checkNextActionBow();
     /* 800DFAE8 */ void setBowModel();
-    /* 800DFBC8 */ void checkBowGrabLeftHand() const;
+    /* 800DFBC8 */ bool checkBowGrabLeftHand() const;
     /* 800DFC28 */ void setBowHangAnime();
     /* 800DFC70 */ void setBowNormalAnime();
     /* 800DFCD8 */ void setBowSight();
@@ -972,26 +1054,25 @@ public:
     /* 800E30DC */ void procBootsEquip();
     /* 800E3218 */ void procMagneBootsFlyInit();
     /* 800E3454 */ void procMagneBootsFly();
-    /* 800E3760 */ void getBombExplodeTime() const;
-    /* 800E3770 */ void getBombGravity() const;
-    /* 800E3780 */ void getBombMaxFallSpeed() const;
-    /* 800E3790 */ void getBombBoundRate() const;
-    /* 800E37A0 */ void getBombStopSpeedY() const;
-    /* 800E37B0 */ void getBombMaxSpeedY() const;
-    /* 800E37C0 */ void getBombEffScale() const;
-    /* 800E37D0 */ void getBombAtR() const;
-    /* 800E37E0 */ void getEnemyBombColorR() const;
-    /* 800E37F0 */ void getBombWaterGravity() const;
-    /* 800E3800 */ void getBombWaterMaxFallSpeed() const;
-    /* 800E3810 */ void getBombExplodeWaterEffectLimit() const;
-    /* 800E3820 */ void getBombInsectLimitAngle() const;
+    /* 800E3760 */ s16 getBombExplodeTime() const;
+    /* 800E3770 */ f32 getBombGravity() const;
+    /* 800E3780 */ f32 getBombMaxFallSpeed() const;
+    /* 800E3790 */ f32 getBombBoundRate() const;
+    /* 800E37A0 */ f32 getBombStopSpeedY() const;
+    /* 800E37B0 */ f32 getBombMaxSpeedY() const;
+    /* 800E37C0 */ f32 getBombEffScale() const;
+    /* 800E37D0 */ f32 getBombAtR() const;
+    /* 800E37E0 */ s16 getEnemyBombColorR() const;
+    /* 800E37F0 */ f32 getBombWaterGravity() const;
+    /* 800E3800 */ f32 getBombWaterMaxFallSpeed() const;
+    /* 800E3810 */ f32 getBombExplodeWaterEffectLimit() const;
+    /* 800E3820 */ s16 getBombInsectLimitAngle() const;
     /* 800E38EC */ void checkGrabLineCheck();
-
     /* 800E3BCC */ void getGrabThrowRate();
     /* 800E3C1C */ void checkGrabThrowAnime() const;
     /* 800E3C6C */ void checkGrabAnime() const;
     /* 800E3C9C */ void checkGrabAnimeAndThrow() const;
-    /* 800E3CF4 */ void checkGrabCarryActor();
+    /* 800E3CF4 */ BOOL checkGrabCarryActor();
     /* 800E3D1C */ void checkGrabSlowMoveActor();
     /* 800E3D6C */ void checkGrabHeavyActor();
     /* 800E3D94 */ void checkGrabSideActor();
@@ -1099,11 +1180,11 @@ public:
     /* 800ECDC4 */ void checkHorseWaitLashAnime() const;
     /* 800ECDEC */ void checkHorseReinLeftOnly() const;
     /* 800ECE10 */ void getReinHandType() const;
-    /* 800ECF04 */ void checkHorseLieAnime() const;
+    /* 800ECF04 */ BOOL checkHorseLieAnime() const;
     /* 800ECF5C */ void checkHorseSubjectivity() const;
     /* 800ECF9C */ void setHorseSwordUpAnime();
     /* 800ECFF4 */ void setHorseTurnUpperAnime(int);
-    /* 800ED074 */ void checkHorseNoUpperAnime() const;
+    /* 800ED074 */ BOOL checkHorseNoUpperAnime() const;
     /* 800ED0D4 */ void getHorseReinHandPos(cXyz*, cXyz*);
     /* 800ED1F0 */ void checkHorseNotGrab() const;
     /* 800ED310 */ void setHorseStirrup();
@@ -1575,7 +1656,7 @@ public:
     /* 80115860 */ void procIronBallThrow();
     /* 801159F0 */ void procIronBallReturnInit();
     /* 80115AA0 */ void procIronBallReturn();
-    /* 80115C20 */ void checkEventRun() const;
+    /* 80115C20 */ BOOL checkEventRun() const;
     /* 80115C50 */ void createNpcTks(cXyz*, int, u32);
     /* 80115EC0 */ void checkDemoAction();
     /* 80116E60 */ void checkDemoMoveMode(u32) const;
@@ -1685,7 +1766,7 @@ public:
     /* 8011EC60 */ void procMasterSwordStick();
     /* 8011ED18 */ bool procMasterSwordPullInit();
     /* 8011ED8C */ void procMasterSwordPull();
-    /* 8011EE40 */ void checkLv7DungeonShop();
+    /* 8011EE40 */ static BOOL checkLv7DungeonShop();
     /* 8011EE94 */ void procDungeonWarpReadyInit();
     /* 8011EFB8 */ void procDungeonWarpReady();
     /* 8011F084 */ void procDungeonWarpInit();
@@ -1767,7 +1848,7 @@ public:
     /* 80127F50 */ void setSpeedAndAngleWolf();
     /* 80128478 */ void setSpeedAndAngleWolfAtn();
     /* 80128798 */ void checkWolfAtnWait();
-    /* 8012880C */ void checkUnderMove0BckNoArcWolf(daAlink_c::daAlink_WANM) const;
+    /* 8012880C */ BOOL checkUnderMove0BckNoArcWolf(daAlink_c::daAlink_WANM) const;
     /* 80128844 */ void setBlendWolfMoveAnime(f32);
     /* 80128F0C */ void checkWolfAtnMoveBack(s16);
     /* 80128F5C */ void setWolfAtnMoveDirection();
@@ -1929,7 +2010,7 @@ public:
     /* 80138DC0 */ void setWolfBallModel();
     /* 80138F18 */ void resetWolfBallGrab();
     /* 80139048 */ void checkWolfLockData();
-    /* 801391DC */ void getWolfLockActorEnd();
+    /* 801391DC */ fopAc_ac_c* getWolfLockActorEnd();
     /* 801391E4 */ void searchWolfLockEnemy(fopAc_ac_c*, void*);
     /* 801392E4 */ void checkWolfComboCnt();
     /* 801393A4 */ void checkWolfAttackAction();
@@ -2008,68 +2089,68 @@ public:
     /* 80140984 */ void statusWindowDraw();
     /* 80140AC8 */ void resetStatusWindow();
 
-    virtual bool getMidnaAtnPos(void) const;
+    virtual cXyz* getMidnaAtnPos() const;
     virtual void setMidnaMsgNum(fopAc_ac_c*, u16);
-    virtual Mtx* getModelMtx(void);
-    virtual Mtx* getInvMtx(void);
-    virtual cXyz* getShadowTalkAtnPos(void);
-    virtual float getGroundY();
-    virtual Mtx* getLeftItemMatrix(void);
-    virtual Mtx* getRightItemMatrix(void);
-    virtual Mtx* getLeftHandMatrix(void);
-    virtual Mtx* getRightHandMatrix(void);
-    virtual Mtx* getLinkBackBone1Matrix(void);
-    virtual Mtx* getWolfMouthMatrix(void);
-    virtual Mtx* getWolfBackbone2Matrix(void);
-    virtual bool getBottleMtx(void);
-    virtual bool checkPlayerGuard(void) const;
+    virtual MtxP getModelMtx();
+    virtual MtxP getInvMtx();
+    virtual cXyz* getShadowTalkAtnPos();
+    virtual f32 getGroundY();
+    virtual MtxP getLeftItemMatrix();
+    virtual MtxP getRightItemMatrix();
+    virtual MtxP getLeftHandMatrix();
+    virtual MtxP getRightHandMatrix();
+    virtual MtxP getLinkBackBone1Matrix();
+    virtual MtxP getWolfMouthMatrix();
+    virtual MtxP getWolfBackbone2Matrix();
+    virtual MtxP getBottleMtx();
+    virtual BOOL checkPlayerGuard() const;
     virtual u32 checkPlayerFly() const;
     virtual BOOL checkFrontRoll() const;
-    virtual bool checkWolfDash() const;
-    virtual bool checkAutoJump(void) const;
-    virtual bool checkSideStep(void) const;
-    virtual bool checkWolfTriggerJump(void) const;
-    virtual bool checkGuardBreakMode(void) const;
-    virtual bool checkLv3Slide(void) const;
-    virtual bool checkWolfHowlDemoMode(void) const;
-    virtual bool checkChainBlockPushPull(void);
-    virtual bool checkElecDamage(void) const;
-    virtual bool checkEmptyBottleSwing(void) const;
-    virtual bool checkBottleSwingMode(void) const;
-    virtual bool checkHawkWait(void) const;
-    virtual bool checkGoatThrow(void) const;
-    virtual bool checkGoatThrowAfter(void) const;
-    virtual bool checkWolfTagLockJump(void) const;
-    virtual bool checkWolfTagLockJumpLand(void) const;
-    virtual bool checkWolfRope(void);
-    virtual bool checkWolfRopeHang(void) const;
-    virtual bool checkRollJump(void) const;
-    virtual bool checkGoronRideWait(void) const;
-    virtual bool checkWolfChain(void) const;
-    virtual bool checkWolfWait(void) const;
-    virtual bool checkWolfJumpAttack(void) const;
-    virtual bool checkWolfRSit(void) const;
-    virtual bool checkBottleDrinkEnd(void) const;
-    virtual bool checkWolfDig(void) const;
-    virtual bool checkCutCharge(void) const;
-    virtual BOOL checkCutTurnCharge(void) const;
-    virtual bool checkCutLargeJumpCharge(void) const;
-    virtual bool checkComboCutTurn(void) const;
-    virtual bool checkClimbMove(void) const;
-    virtual bool checkGrassWhistle(void) const;
-    virtual bool checkBoarRun(void) const;
-    virtual float getBaseAnimeFrameRate(void) const;
-    virtual float getBaseAnimeFrame(void) const;
+    virtual BOOL checkWolfDash() const;
+    virtual BOOL checkAutoJump() const;
+    virtual bool checkSideStep() const;
+    virtual bool checkWolfTriggerJump() const;
+    virtual BOOL checkGuardBreakMode() const;
+    virtual bool checkLv3Slide() const;
+    virtual bool checkWolfHowlDemoMode() const;
+    virtual bool checkChainBlockPushPull();
+    virtual BOOL checkElecDamage() const;
+    virtual BOOL checkEmptyBottleSwing() const;
+    virtual BOOL checkBottleSwingMode() const;
+    virtual BOOL checkHawkWait() const;
+    virtual BOOL checkGoatThrow() const;
+    virtual BOOL checkGoatThrowAfter() const;
+    virtual BOOL checkWolfTagLockJump() const;
+    virtual BOOL checkWolfTagLockJumpLand() const;
+    virtual bool checkWolfRope();
+    virtual BOOL checkWolfRopeHang() const;
+    virtual BOOL checkRollJump() const;
+    virtual BOOL checkGoronRideWait() const;
+    virtual BOOL checkWolfChain() const;
+    virtual BOOL checkWolfWait() const;
+    virtual BOOL checkWolfJumpAttack() const;
+    virtual BOOL checkWolfRSit() const;
+    virtual BOOL checkBottleDrinkEnd() const;
+    virtual BOOL checkWolfDig() const;
+    virtual BOOL checkCutCharge() const;
+    virtual BOOL checkCutTurnCharge() const;
+    virtual BOOL checkCutLargeJumpCharge() const;
+    virtual BOOL checkComboCutTurn() const;
+    virtual BOOL checkClimbMove() const;
+    virtual BOOL checkGrassWhistle() const;
+    virtual BOOL checkBoarRun() const;
+    virtual f32 getBaseAnimeFrameRate() const;
+    virtual f32 getBaseAnimeFrame() const;
     virtual void setAnimeFrame(float);
     virtual bool checkWolfLock(fopAc_ac_c*) const;
     virtual bool cancelWolfLock(fopAc_ac_c*);
-    virtual s32 getAtnActorID(void) const;
-    virtual s32 getItemID(void) const;
-    virtual s32 getGrabActorID(void) const;
+    virtual s32 getAtnActorID() const;
+    virtual s32 getItemID() const;
+    virtual s32 getGrabActorID() const;
     virtual bool exchangeGrabActor(fopAc_ac_c*);
     virtual bool setForceGrab(fopAc_ac_c*, int, int);
     virtual void setForcePutPos(cXyz const&);
-    virtual bool checkPlayerNoDraw(void);
+    virtual BOOL checkPlayerNoDraw();
     virtual void voiceStart(u32);
     virtual void seStartOnlyReverb(u32);
     virtual void seStartOnlyReverbLevel(u32);
@@ -2077,11 +2158,12 @@ public:
     virtual void setGrabCollisionOffset(float, float, cBgS_PolyInfo*);
     virtual void onFrollCrashFlg(u8, int);
     virtual MtxP getModelJointMtx(u16);
-    virtual bool getHeadMtx(void);
+    virtual MtxP getHeadMtx();
     virtual bool setHookshotCarryOffset(unsigned int, cXyz const*);
-    virtual bool checkIronBallReturn(void) const;
-    virtual bool checkIronBallGroundStop(void) const;
-    virtual bool checkSingleBoarBattleSecondBowReady(void) const;
+    virtual BOOL checkCutJumpCancelTurn() const;
+    virtual bool checkIronBallReturn() const;
+    virtual bool checkIronBallGroundStop() const;
+    virtual BOOL checkSingleBoarBattleSecondBowReady() const;
     virtual void setClothesChange(int);
     virtual void setPlayerPosAndAngle(float (*)[4]);
     virtual void setPlayerPosAndAngle(cXyz const*, csXyz const*);
@@ -2090,7 +2172,7 @@ public:
     virtual bool checkSetNpcTks(cXyz*, int, int);
     virtual bool setRollJump(float, float, short);
     virtual void playerStartCollisionSE(u32, u32);
-    virtual void cancelDungeonWarpReadyNeck(void);
+    virtual void cancelDungeonWarpReadyNeck();
     virtual void onSceneChangeArea(u8, u8, fopAc_ac_c*);
     virtual void onSceneChangeAreaJump(u8, u8, fopAc_ac_c*);
     virtual void onSceneChangeDead(u8, int);
@@ -2099,15 +2181,15 @@ public:
     virtual u32 checkCanoeRide() const;
     virtual u32 checkBoardRide() const;
     virtual u32 checkSpinnerRide() const;
-    virtual fopAc_ac_c* getSpinnerActor(void);
-    virtual bool checkHorseRideNotReady(void) const;
-    virtual bool checkArrowChargeEnd(void) const;
-    virtual void getSearchBallScale(void) const;
-    virtual bool checkFastShotTime(void);
-    virtual bool checkNoEquipItem(void) const;
+    virtual fopAc_ac_c* getSpinnerActor();
+    virtual BOOL checkHorseRideNotReady() const;
+    virtual bool checkArrowChargeEnd() const;
+    virtual f32 getSearchBallScale() const;
+    virtual s16 checkFastShotTime();
+    virtual bool checkNoEquipItem() const;
     virtual bool checkKandelaarSwing(int) const;
-    virtual bool getBoardCutTurnOffsetAngleY(void) const;
-    virtual cXyz* getMagneBootsTopVec(void);
+    virtual s16 getBoardCutTurnOffsetAngleY() const;
+    virtual cXyz* getMagneBootsTopVec();
     virtual bool getKandelaarFlamePos();
     virtual bool checkUseKandelaar(int);
     virtual void setDkCaught(fopAc_ac_c*);
@@ -2118,58 +2200,77 @@ public:
     virtual void setWolfEnemyHangBiteAngle(short);
     virtual void setKandelaarMtx(float (*)[4], int, int);
     virtual bool getStickAngleFromPlayerShape(short*) const;
-    virtual bool checkSpinnerPathMove(void);
-    virtual bool checkSpinnerTriggerAttack(void);
-    virtual void onSpinnerPathForceRemove(void);
-    virtual bool getIronBallBgHit(void) const;
-    virtual bool getIronBallCenterPos(void);
-    virtual bool checkCanoeFishingGetLeft(void) const;
-    virtual bool checkCanoeFishingGetRight(void) const;
-    virtual bool checkBeeChildDrink(void) const;
-    virtual void skipPortalObjWarp(void);
+    virtual bool checkSpinnerPathMove();
+    virtual bool checkSpinnerTriggerAttack();
+    virtual void onSpinnerPathForceRemove();
+    virtual bool getIronBallBgHit() const;
+    virtual bool getIronBallCenterPos();
+    virtual bool checkCanoeFishingGetLeft() const;
+    virtual bool checkCanoeFishingGetRight() const;
+    virtual u8 checkBeeChildDrink() const;
+    virtual void skipPortalObjWarp();
     virtual bool checkTreasureRupeeReturn(int) const;
     virtual void setSumouReady(fopAc_ac_c*);
     virtual void checkAcceptDungeonWarpAlink(int);
-    virtual s16 getSumouCounter(void) const;
-    virtual s16 checkSumouWithstand(void) const;
-    virtual void cancelGoronThrowEvent(void);
+    virtual s16 getSumouCounter() const;
+    virtual s16 checkSumouWithstand() const;
+    virtual void cancelGoronThrowEvent();
     virtual void setSumouGraspCancelCount(int);
     virtual void setSumouPushBackDirection(short);
-    virtual void setSumouLoseHeadUp(void);
-    virtual s16 getGiantPuzzleAimAngle(void) const;
+    virtual void setSumouLoseHeadUp();
+    virtual s16 getGiantPuzzleAimAngle() const;
     virtual void setGoronSideMove(fopAc_ac_c*);
     virtual void setCargoCarry(fopAc_ac_c*);
-    virtual bool getHookshotTopPos(void);
-    virtual bool checkHookshotReturnMode(void) const;
-    virtual bool checkHookshotShootReturnMode(void) const;
-    virtual bool checkOctaIealHang(void) const;
-    virtual void cancelOctaIealHang(void);
-    virtual void cancelDragonHangBackJump(void);
-    virtual void setOctaIealWildHang(void);
-    virtual bool checkDragonHangRide(void) const;
+    virtual bool getHookshotTopPos();
+    virtual bool checkHookshotReturnMode() const;
+    virtual bool checkHookshotShootReturnMode() const;
+    virtual bool checkOctaIealHang() const;
+    virtual void cancelOctaIealHang();
+    virtual void cancelDragonHangBackJump();
+    virtual void setOctaIealWildHang();
+    virtual bool checkDragonHangRide() const;
     virtual void changeDragonActor(fopAc_ac_c*);
-    virtual u8 getClothesChangeWaitTimer(void) const;
-    virtual u8 getShieldChangeWaitTimer(void) const;
-    virtual bool getSwordChangeWaitTimer(void) const;
-    virtual bool checkMetamorphose(void) const;
-    virtual bool checkWolfDownAttackPullOut(void) const;
-    virtual BOOL checkBootsOrArmorHeavy(void) const;
-    virtual s32 getBottleOpenAppearItem(void) const;
-    virtual bool checkItemSwordEquip(void) const;
-    virtual float getSinkShapeOffset(void) const;
-    virtual bool checkSinkDead(void) const;
-    virtual bool checkHorseStart(void);
-    virtual bool getWolfHowlMgrP(void);
-    virtual bool checkWolfHowlSuccessAnime(void) const;
-    virtual bool checkCopyRodTopUse(void);
-    virtual bool checkCopyRodEquip(void) const;
-    virtual bool checkCutJumpMode(void) const;
+    virtual u8 getClothesChangeWaitTimer() const;
+    virtual u8 getShieldChangeWaitTimer() const;
+    virtual u8 getSwordChangeWaitTimer() const;
+    virtual BOOL checkMetamorphose() const;
+    virtual BOOL checkWolfDownAttackPullOut() const;
+    virtual BOOL checkBootsOrArmorHeavy() const;
+    virtual s32 getBottleOpenAppearItem() const;
+    virtual bool checkItemSwordEquip() const;
+    virtual float getSinkShapeOffset() const;
+    virtual BOOL checkSinkDead() const;
+    virtual BOOL checkHorseStart();
+    virtual Z2WolfHowlMgr* getWolfHowlMgrP();
+    virtual BOOL checkWolfHowlSuccessAnime() const;
+    virtual bool checkCopyRodTopUse();
+    virtual bool checkCopyRodEquip() const;
+    virtual BOOL checkCutJumpMode() const;
 
-    // inlined version of checkModeFlg
+    // inlined dupes
     u32 i_checkModeFlg(u32 pFlag) const { return mModeFlg & pFlag; }
+    bool i_checkSmallUpperGuardAnime() const { return checkUpperAnime(0x16); }
+    bool i_checkFmChainGrabAnime() const { return checkUpperAnime(0x62) || checkUpperAnime(0x2A0); }
+    bool i_checkAttentionLock() { return mAttention->Lockon(); }
+
     bool checkUpperAnime(u16 pIdx) const { return mUpperAnime[UPPER_NOW].getIdx() == pIdx; }
     bool checkIronBallWaitAnime() const { return checkUpperAnime(0x19C); }
     s16 checkWolfEyeUp() const { return mWolfEyeUp; }
+    void onModeFlg(u32 flag) { mModeFlg |= flag; }
+    void offModeFlg(u32 flag) { mModeFlg &= ~flag; }
+    bool checkHorseTurnLAnime() const { return checkUpperAnime(0x24C); }
+    bool checkHorseTurnRAnime() const { return checkUpperAnime(0x24D); }
+    bool checkHorseTurnAnime() const { return checkHorseTurnLAnime() || checkHorseTurnRAnime(); }
+    bool checkHookshotShootAnime() const { return checkUpperAnime(0x18C); }
+    bool checkHookshotReadyAnime() const { return checkUpperAnime(0x18D); }
+    bool checkHookshotAnime() const { return checkHookshotReadyAnime() || checkHookshotShootAnime(); }
+    bool swordButton() { return itemButtonCheck(8); }
+    daPy_actorKeep_c* getThrowBoomerangAcKeep() { return &mThrowBoomerangActor; }
+    s32 getStartRoomNo() { return fopAcM_GetParam(this) & 0x3F; }
+    bool checkFisingRodLure() const { return mEquipItem == 0x105; }
+    bool doTrigger() const { return mItemTrigger & 0x10; }
+    u32 getStartMode() { return (fopAcM_GetParam(this) >> 0xC) & 0x1F; }
+    BOOL i_checkReinRide() const { return mRideStatus == 1 || mRideStatus == 2; }
 
     static u8 const m_mainBckShield[80];
     static u8 const m_mainBckSword[20];
@@ -2187,12 +2288,12 @@ public:
 
 private:
     /* 0x0062C */ void* field_0x062C;
-    /* 0x00630 */ void* field_0x0630;
-    /* 0x00634 */ void* field_0x0634;
+    /* 0x00630 */ int field_0x0630;
+    /* 0x00634 */ char* mArcName;
     /* 0x00638 */ JKRExpHeap** field_0x0638;
     /* 0x0063C */ void* field_0x063C;
-    /* 0x00640 */ void* field_0x0640;
-    /* 0x00644 */ void* field_0x0644;
+    /* 0x00640 */ int field_0x0640;
+    /* 0x00644 */ char* mShieldArcName;
     /* 0x00648 */ JKRExpHeap** field_0x0648;
     /* 0x0064C */ J3DModelData* field_0x064C;
     /* 0x00650 */ J3DModel* field_0x0650;
@@ -2205,7 +2306,7 @@ private:
     /* 0x0066C */ J3DModel* field_0x066c;
     /* 0x00670 */ J3DModel* field_0x0670;
     /* 0x00674 */ J3DModel* field_0x0674;
-    /* 0x00678 */ J3DModel* field_0x0678;
+    /* 0x00678 */ J3DModel* mShieldModel;
     /* 0x0067C */ J3DAnmBase* field_0x067c;
     /* 0x00680 */ J3DAnmBase* field_0x0680;
     /* 0x00684 */ J3DModel* field_0x0684;
@@ -2221,12 +2322,12 @@ private:
     /* 0x006AC */ mDoExt_bckAnm* field_0x06ac;
     /* 0x006B0 */ mDoExt_bckAnm* field_0x06b0;
     /* 0x006B4 */ J3DAnmTransform* field_0x06b4;
-    /* 0x006B8 */ J3DModel* field_0x06b8;
+    /* 0x006B8 */ J3DModel* mSwordModel;
     /* 0x006BC */ J3DModel* field_0x06bc;
     /* 0x006C0 */ J3DModelData* field_0x06c0;
-    /* 0x006C4 */ J3DAnmBase* field_0x06c4;
-    /* 0x006C8 */ J3DAnmBase* field_0x06c8;
-    /* 0x006CC */ J3DAnmBase* field_0x06cc;
+    /* 0x006C4 */ J3DAnmBase* m_nSwordBtk;
+    /* 0x006C8 */ J3DAnmBase* m_mSwordBtk;
+    /* 0x006CC */ J3DAnmBase* m_mSwordBck;
     /* 0x006D0 */ void* field_0x06d0;
     /* 0x006D4 */ void* field_0x06d4;
     /* 0x006D8 */ void* field_0x06d8;
@@ -2241,7 +2342,7 @@ private:
     /* 0x006FC */ J3DModel* field_0x06fc;
     /* 0x00700 */ J3DModel* field_0x0700;
     /* 0x00704 */ J3DAnmBase* field_0x0704;
-    /* 0x00708 */ J3DModel* field_0x0708;
+    /* 0x00708 */ J3DModel* mHeldItemModel;
     /* 0x0070C */ J3DModel* field_0x070c;
     /* 0x00710 */ J3DModel* field_0x0710;
     /* 0x00714 */ J3DModel* field_0x0714;
@@ -2254,7 +2355,7 @@ private:
     /* 0x00730 */ mDoExt_bckAnm field_0x730;
     /* 0x0074C */ mDoExt_bckAnm field_0x74C;
     /* 0x00768 */ u8 field_0x0768[0x5C];
-    /* 0x007C4 */ daPy_actorKeep_c field_0x07C4[10];
+    /* 0x007C4 */ daPy_actorKeep_c mWolfLockAcKeep[10];
     /* 0x00814 */ dCcD_Stts field_0x814;
     /* 0x00850 */ dCcD_Cyl field_0x850[3];
     /* 0x00C04 */ dCcD_Cyl field_0xC04[3];
@@ -2300,7 +2401,7 @@ private:
     /* 0x021B0 */ daPy_anmHeap_c mItemHeap[2];
     /* 0x021D8 */ daPy_anmHeap_c mAnmHeap9;
     /* 0x021EC */ u8 field_0x21ec[4];
-    /* 0x021F0 */ daAlink_blur_c mBlur;
+    /* 0x021F0 */ daAlink_blur_c m_swordBlur;
     /* 0x027C8 */ dAlink_bottleWaterPcallBack_c field_0x27c8;
     /* 0x027E0 */ dAttention_c* mAttention;
     /* 0x027E4 */ dAttList_c* mAttList;
@@ -2310,19 +2411,19 @@ private:
     /* 0x027F4 */ fopAc_ac_c* field_0x27f4;
     /* 0x027F8 */ fopAc_ac_c* field_0x27f8;
     /* 0x027FC */ fopAc_ac_c* field_0x27fc;
-    /* 0x02800 */ fopAc_ac_c* field_0x2800;
+    /* 0x02800 */ daTagMmsg_c* mMidnaMsg;
     /* 0x02804 */ fopAc_ac_c* field_0x2804;
     /* 0x02808 */ fopAc_ac_c* field_0x2808;
     /* 0x0280C */ daPy_actorKeep_c field_0x280c;
     /* 0x02814 */ daPy_actorKeep_c mRideActor;  // daspinnerc?
     /* 0x0281C */ daPy_actorKeep_c field_0x281c;
     /* 0x02824 */ daPy_actorKeep_c mItemActor;  // name might be wrong
-    /* 0x0282C */ daPy_actorKeep_c field_0x282c;
-    /* 0x02834 */ daPy_actorKeep_c field_0x2834;
+    /* 0x0282C */ daPy_actorKeep_c mGrabItemActor;
+    /* 0x02834 */ daPy_actorKeep_c mThrowBoomerangActor;
     /* 0x0283C */ daPy_actorKeep_c field_0x283c;
     /* 0x02844 */ daPy_actorKeep_c field_0x2844;
     /* 0x0284C */ daPy_actorKeep_c field_0x284c;
-    /* 0x02854 */ daPy_actorKeep_c field_0x2854;
+    /* 0x02854 */ daPy_actorKeep_c mCargoCarryActor;
     /* 0x0285C */ daPy_actorKeep_c field_0x285c;
     /* 0x02864 */ dMsgFlow_c mMsgFlow;
     /* 0x028B0 */ u8 field_0x28b0[0x40];
@@ -2338,7 +2439,7 @@ private:
     /* 0x02B98 */ float* field_0x2b9c;
     /* 0x02BA0 */ float* field_0x2ba0;
     /* 0x02BA4 */ float* field_0x2ba4;
-    /* 0x02BA8 */ float* field_0x2ba8;
+    /* 0x02BA8 */ f32 mSinkShapeOffset;
     /* 0x02BAC */ cXyz field_0x2bac;
     /* 0x02BB8 */ Mtx mInvMtx;
     /* 0x02BE8 */ Mtx field_0x2be8;
@@ -2375,17 +2476,17 @@ private:
     /* 0x02F97 */ u8 field_0x2f97;
     /* 0x02F98 */ u8 field_0x2f98;
     /* 0x02F99 */ u8 field_0x2f99;
-    /* 0x02F9A */ s8 field_0x2f9a;
+    /* 0x02F9A */ s8 mVoiceReverbIntensity;
     /* 0x02F9B */ u8 field_0x2f9b;
     /* 0x02F9C */ u8 mSelectItemId;
     /* 0x02F9D */ u8 field_0x2f9d;
     /* 0x02F9E */ u8 field_0x2f9e;
     /* 0x02F9F */ u8 field_0x2f9f;
     /* 0x02FA0 */ u8 field_0x2fa0;
-    /* 0x02FA1 */ u8 field_0x2fa1;
-    /* 0x02FA2 */ u8 field_0x2fa2;
+    /* 0x02FA1 */ u8 mRunCutComboCount;
+    /* 0x02FA2 */ u8 mActiveBombNum;
     /* 0x02FA3 */ u8 field_0x2fa3;
-    /* 0x02FA4 */ u8 field_0x2fa4;
+    /* 0x02FA4 */ u8 mRollCrashFlg;
     /* 0x02FA5 */ u8 field_0x2fa5;
     /* 0x02FA6 */ u8 field_0x2fa6;
     /* 0x02FA7 */ u8 field_0x2fa7;
@@ -2398,8 +2499,8 @@ private:
     /* 0x02FAE */ u8 field_0x2fae;
     /* 0x02FAF */ u8 field_0x2faf;
     /* 0x02FB0 */ u8 field_0x2fb0;
-    /* 0x02FB1 */ u8 field_0x2fb1;
-    /* 0x02FB2 */ u8 field_0x2fb2;
+    /* 0x02FB1 */ u8 mWolfLockNum;
+    /* 0x02FB2 */ u8 mMidnaTalkDelayTimer;
     /* 0x02FB3 */ u8 field_0x2fb3;
     /* 0x02FB4 */ u8 field_0x2fb4;
     /* 0x02FB5 */ u8 field_0x2fb5;
@@ -2435,11 +2536,11 @@ private:
     /* 0x02FD3 */ u8 field_0x2fd3;
     /* 0x02FD4 */ u8 field_0x2fd4;
     /* 0x02FD5 */ u8 field_0x2fd5;
-    /* 0x02FD6 */ u8 field_0x2fd6;
+    /* 0x02FD6 */ u8 mSwordChangeWaitTimer;
     /* 0x02FD7 */ u8 field_0x2fd7;
     /* 0x02FD8 */ u8 field_0x2fd8;
     /* 0x02FD9 */ u8 field_0x2fd9[3];
-    /* 0x02FDC */ u16 field_0x2fdc;
+    /* 0x02FDC */ u16 mEquipItem;
     /* 0x02FDE */ u16 field_0x2fde;
     /* 0x02FE0 */ u16 field_0x2fe0;
     /* 0x02FE2 */ s16 field_0x2fe2;
@@ -2525,7 +2626,7 @@ private:
     /* 0x03088 */ s16 field_0x3088;
     /* 0x0308A */ s16 field_0x308a;
     /* 0x0308C */ s16 field_0x308c;
-    /* 0x0308E */ s16 field_0x308e;
+    /* 0x0308E */ s16 mFastShotTime;
     /* 0x03090 */ s16 field_0x3090;
     /* 0x03092 */ s16 field_0x3092;
     /* 0x03094 */ s16 field_0x3094;
@@ -2565,7 +2666,7 @@ private:
     /* 0x030EE */ s16 field_0x30ee;
     /* 0x030F0 */ u16 field_0x30f0;
     /* 0x030F2 */ u8 field_0x30f2[2];
-    /* 0x030F4 */ s16 field_0x30f4;
+    /* 0x030F4 */ s16 mSwordFlourishTimer;
     /* 0x030F6 */ s16 field_0x30f6;
     /* 0x030F8 */ s16 field_0x30f8;
     /* 0x030FA */ s16 field_0x30fa;
@@ -2602,7 +2703,7 @@ private:
     /* 0x03172 */ u8 field_0x3172[2];
     /* 0x03174 */ int field_0x3174;
     /* 0x03178 */ int field_0x3178;
-    /* 0x0317C */ dAttention_c* field_0x317c;
+    /* 0x0317C */ int field_0x317c;
     /* 0x03180 */ int field_0x3180;
     /* 0x03184 */ int field_0x3184;
     /* 0x03184 */ int field_0x3188;
@@ -2719,7 +2820,7 @@ private:
     /* 0x03484 */ float field_0x3484;
     /* 0x03488 */ float field_0x3488;
     /* 0x0348C */ float field_0x348c;
-    /* 0x03490 */ float field_0x3490;
+    /* 0x03490 */ float mSearchBallScale;
     /* 0x03494 */ float field_0x3494;
     /* 0x03498 */ cXyz field_0x3498;
     /* 0x034A4 */ cXyz field_0x34a4;
@@ -2756,7 +2857,7 @@ private:
     /* 0x0363C */ cXyz field_0x363c[4];
     /* 0x0366C */ cXyz field_0x366c[4];
     /* 0x0369C */ cXyz field_0x369c;
-    /* 0x036A8 */ cXyz field_0x36a8;
+    /* 0x036A8 */ cXyz mMagneBootsTopVec;
     /* 0x036B4 */ cXyz field_0x36b4;
     /* 0x036C0 */ cXyz field_0x36c0[4];
     /* 0x036F0 */ cXyz field_0x36f0[4];
@@ -2787,14 +2888,17 @@ private:
     /* 0x03844 */ csXyz* mIronBallChainAngle;
     /* 0x03848 */ void* field_0x3848;
     /* 0x0384C */ float* field_0x384c;
+    /* 0x03850 */ u32 field_0x3850;
+    /* 0x03854 */ u32 field_0x3854;
+    /* 0x03858 */ u32 field_0x3858;
 };
 
 struct daAlinkHIO_anm_c {
-    /* 0x00 */ s16 field_0x00;
-    /* 0x04 */ f32 field_0x04;
-    /* 0x08 */ f32 field_0x08;
-    /* 0x0C */ f32 field_0x0c;
-    /* 0x10 */ f32 field_0x10;
+    /* 0x00 */ s16 field_0x00;  // end f?
+    /* 0x04 */ f32 field_0x04;  // speed?
+    /* 0x08 */ f32 field_0x08;  // start?
+    /* 0x0C */ f32 field_0x0c;  // interpolation?
+    /* 0x10 */ f32 field_0x10;  // CF?
 };  // size = 0x14
 
 struct daAlinkHIO_basic_c1 {
@@ -2901,29 +3005,419 @@ public:
     static daAlinkHIO_wlAutoJump_c1 const m;
 };
 
-class daHorse_c {
+class daAlinkHIO_bomb_c1 {
 public:
+    /* 0x00 */ s16 mExplodeTime;
+    /* 0x02 */ s16 mEnemyBombColorR;
+    /* 0x04 */ s16 mBombInsectLimitAngle;
+    /* 0x08 */ f32 mGravity;
+    /* 0x0C */ f32 mMaxFallSpeed;
+    /* 0x10 */ f32 mBoundRate;
+    /* 0x14 */ f32 mStopSpeedY;
+    /* 0x18 */ f32 mMaxSpeedY;
+    /* 0x1C */ f32 mEffScale;
+    /* 0x20 */ f32 mAtRadius;
+    /* 0x24 */ f32 mPokeBombTrackRate;
+    /* 0x28 */ f32 mWaterGravity;
+    /* 0x2C */ f32 mWaterMaxFallSpeed;
+    /* 0x30 */ f32 mThrowSpeedH;
+    /* 0x34 */ f32 mThrowSpeedV;
+    /* 0x38 */ f32 mWaterThrowSpeedH;
+    /* 0x3C */ f32 mWaterThrowSpeedV;
+    /* 0x40 */ f32 mWolfThrowSpeedH;
+    /* 0x44 */ f32 mWolfThrowSpeedV;
+    /* 0x48 */ f32 mExplodeWaterEffectLimit;
+};  // Size: 0x4C
+
+class daAlinkHIO_bomb_c0 {
+public:
+    static daAlinkHIO_bomb_c1 const m;
+};
+
+class daAlinkHIO_magneBoots_c1 {
+public:
+    /* 0x00 */ daAlinkHIO_anm_c mEquipAnm;
+    /* 0x14 */ f32 mInputFactor;
+    /* 0x18 */ f32 mFeetPositionRatio;
+    /* 0x1C */ f32 mWalkAnmSpeedMax;
+    /* 0x20 */ f32 mWalkAnmSpeedMin;
+    /* 0x24 */ f32 mWaterInputFactor;
+    /* 0x28 */ f32 mWaterStartWalkAnmRate;
+    /* 0x2C */ f32 mWaterWalkAnmRate;
+    /* 0x30 */ f32 mMaxMagneFlySpeed;
+    /* 0x34 */ f32 mMagneFlyAccelRate;
+    /* 0x38 */ f32 mWaterVelocityY;
+    /* 0x3C */ f32 mWaterVelocityX;
+    /* 0x40 */ f32 mWaterVelRateSword;
+    /* 0x44 */ f32 mZoraWaterInputFactor;
+    /* 0x48 */ f32 mZoraWaterAnmSpeed;
+};  // Size: 0x4C
+
+class daAlinkHIO_magneBoots_c0 {
+public:
+    static daAlinkHIO_magneBoots_c1 const m;
+};
+
+class daAlinkHIO_cut_c1 {
+public:
+    /* 0x00 */ daAlinkHIO_anm_c mEquipAnm;
+    /* 0x14 */ daAlinkHIO_anm_c mReleaseAnm;
+    /* 0x28 */ daAlinkHIO_anm_c mRecoilAnm;
+    /* 0x3C */ daAlinkHIO_anm_c mStabAnm;
+    /* 0x50 */ bool mForceHitCombo;
+    /* 0x52 */ s16 mComboDuration;
+    /* 0x54 */ s16 mBlurAlpha;
+    /* 0x56 */ s16 mNormalSwingDuration;
+    /* 0x58 */ s16 mDashBlurAlpha;
+    /* 0x5A */ s16 mUnkTime;  // might be related to flourish
+    /* 0x5C */ s16 mFlourishTime;
+    /* 0x5E */ s16 mUnkBodyDownwards;  // ?
+    /* 0x60 */ s16 mUnkBodyUpwards;  // ?
+    /* 0x62 */ s16 mSpinSlashWait;  // ? maybe related to wii?
+    /* 0x64 */ f32 mRecoilSpeed;
+    /* 0x68 */ f32 mRecoilDeceleration;
+    /* 0x6C */ f32 mFlourishAnmSpeed;
+    /* 0x70 */ f32 mFlourishEndAnmSpeed;
+    /* 0x74 */ f32 mSwordLength;
+    /* 0x78 */ f32 mSwordRadius;
+    /* 0x7C */ f32 mSwordLengthHorseback;
+    /* 0x80 */ f32 mSwordRadiusHorseback;
+    /* 0x84 */ f32 mRunCutLength;
+    /* 0x88 */ f32 mRunCutRadius;
+    /* 0x8C */ f32 mUnkReleaseASpeed;
+    /* 0x90 */ f32 mSwordLengthHorsebackFight;
+    /* 0x94 */ f32 mSwordRadiusHorsebackFight;
+    /* 0x98 */ f32 mFlourishControlStartFrame;
+};  // Size: 0x9C
+
+class daAlinkHIO_cut_c0 {
+public:
+    static daAlinkHIO_cut_c1 const m;
+};
+
+class daAlinkHIO_cutJump_c1 {
+public:
+    /* 0x00 */ daAlinkHIO_anm_c mCutAnm;
+    /* 0x14 */ daAlinkHIO_anm_c mLandAnm;
+    /* 0x28 */ f32 mBaseJumpSpeedH;
+    /* 0x2C */ f32 mBaseJumpSpeedV;
+    /* 0x30 */ f32 mAirJumpSpeedH;
+    /* 0x34 */ f32 mAirJumpSpeedV;
+    /* 0x38 */ f32 mStartAttackFrame;
+    /* 0x3C */ f32 mEndAttackFrame;
+    /* 0x40 */ f32 mJumpSpinDelay;
+};  // Size: 0x44
+
+class daAlinkHIO_cutJump_c0 {
+public:
+    static daAlinkHIO_cutJump_c1 const m;
+};
+
+class daAlinkHIO_move_c1 {
+public:
+    /* 0x00 */ daAlinkHIO_anm_c mSlideAnm;
+    /* 0x14 */ s16 mMaxTurnAngle;
+    /* 0x16 */ s16 mMinTurnAngle;
+    /* 0x18 */ s16 mTurnAngleRate;
+    /* 0x1C */ f32 mWaitAnmSpeed;
+    /* 0x20 */ f32 mWalkAnmSpeed;
+    /* 0x24 */ f32 mRunAnmSpeed;
+    /* 0x28 */ f32 mWalkChangeRate;
+    /* 0x2C */ f32 mRunChangeRate;
+    /* 0x30 */ f32 mMaxSpeed;
+    /* 0x34 */ f32 mAcceleration;
+    /* 0x38 */ f32 mDeceleration;
+    /* 0x3C */ f32 mSlideThresholdSpeed;  // speed needed to trigger a slide
+    /* 0x40 */ f32 mSlideSpeed;
+    /* 0x44 */ f32 mSlideDeceleration;
+    /* 0x48 */ f32 mFootPositionRatio;
+    /* 0x4C */ f32 mUnkInterpolation;
+    /* 0x50 */ f32 mMinWalkFrame;
+    /* 0x54 */ f32 mMinTiredWalkFrame;
+};  // Size: 0x58
+
+class daAlinkHIO_move_c0 {
+public:
+    static daAlinkHIO_move_c1 const m;
+};
+
+class daAlinkHIO_sideStep_c1 {
+public:
+    /* 0x00 */ daAlinkHIO_anm_c mSideJumpAnm;
+    /* 0x14 */ daAlinkHIO_anm_c mSideLandAnm;
+    /* 0x28 */ daAlinkHIO_anm_c mBackJumpAnm;
+    /* 0x3C */ daAlinkHIO_anm_c mBackLandAnm;
+    /* 0x50 */ f32 mSideJumpSpeedH;
+    /* 0x54 */ f32 mSideJumpSpeedV;
+    /* 0x58 */ f32 mBackJumpSpeedH;
+    /* 0x5C */ f32 mBackJumpSpeedV;
+    /* 0x60 */ f32 mFallHeight;
+    /* 0x64 */ f32 mFallInterpolation;
+};  // Size: 0x68
+
+class daAlinkHIO_sideStep_c0 {
+public:
+    static daAlinkHIO_sideStep_c1 const m;
+};
+
+class daAlinkHIO_atnMove_c1 {
+public:
+    /* 0x00 */ s16 mMaxTurnAngle;
+    /* 0x02 */ s16 mMinTurnAngle;
+    /* 0x04 */ s16 mTurnAngleRate;
+    /* 0x08 */ f32 mWaitAnmSpeed;
+    /* 0x0C */ f32 mWalkAnmSpeed;
+    /* 0x10 */ f32 mRunAnmSpeed;
+    /* 0x14 */ f32 mWalkChangeRate;
+    /* 0x18 */ f32 mRunChangeRate;
+    /* 0x1C */ f32 mMaxSpeed;
+    /* 0x20 */ f32 mAcceleration;
+    /* 0x24 */ f32 mDeceleration;
+    /* 0x28 */ f32 mBackWalkAnmSpeed;
+    /* 0x2C */ f32 mBackRunAnmSpeed;
+    /* 0x30 */ f32 mBackWalkChangeRate;
+    /* 0x34 */ f32 mBackRunChangeRate;
+    /* 0x38 */ f32 mMaxBackwardsSpeed;
+    /* 0x3C */ f32 mBackAcceleration;
+    /* 0x40 */ f32 mBackDeceleration;
+    /* 0x44 */ f32 mMinWalkFrame;
+    /* 0x48 */ f32 mMinBackWalkFrame;
+    /* 0x4C */ f32 mWalkForwardAnmSpeed;
+    /* 0x50 */ f32 mRunForwardAnmSpeed;
+};  // Size: 0x54
+
+class daAlinkHIO_atnMove_c0 {
+public:
+    static daAlinkHIO_atnMove_c1 const m;
+};
+
+class daAlinkHIO_wallMove_c1 {
+public:
+    /* 0x00 */ f32 mMinAnmSpeed;
+    /* 0x04 */ f32 mMaxAnmSpeed;
+    /* 0x08 */ f32 mInterpolation;
+    /* 0x0C */ f32 mMinSpeed;
+    /* 0x10 */ f32 mMaxSpeed;
+};
+
+class daAlinkHIO_wallMove_c0 {
+public:
+    static daAlinkHIO_wallMove_c1 const m;
+};
+
+class daAlinkHIO_turnMove_c1 {
+public:
+	/* 0x00 */ daAlinkHIO_anm_c mTurnAnm;
+	/* 0x14 */ s16 mTurnSpeedRate;
+	/* 0x16 */ s16 mMaxTurnSpeed;
+	/* 0x18 */ s16 mMinTurnSpeed;
+	/* 0x1A */ s16 mMaxHalfTurnSpeed;
+	/* 0x1C */ f32 mHalfTurnAnmSpeed;
+	/* 0x20 */ f32 mTwirlCutDelayF;
+	/* 0x24 */ f32 mSideRollAnmSpeed;
+	/* 0x28 */ f32 mSideRollSpeed;
+};  // Size: 0x2C
+
+class daAlinkHIO_turnMove_c0 {
+public:
+    static daAlinkHIO_turnMove_c1 const m;
+};
+
+class daAlinkHIO_slide_c1 {
+public:
+    // most of these havent been verified yet
+	/* 0x00 */ daAlinkHIO_anm_c mForwardSlideAnm;
+	/* 0x14 */ daAlinkHIO_anm_c mBackwardSlideAnm;
+	/* 0x28 */ daAlinkHIO_anm_c mForwardLandAnm;  // this and 0x3C might have names reversed?
+	/* 0x3C */ daAlinkHIO_anm_c mBackwardLandAnm;
+	/* 0x50 */ f32 mMaxSpeed;
+	/* 0x54 */ f32 mAcceleration;
+	/* 0x58 */ f32 mSlideAngle;
+	/* 0x5C */ f32 mClimbAngle;
+	/* 0x60 */ f32 mClimbAnmMinSpeed;
+	/* 0x64 */ f32 mMaxClimbSpeed;
+	/* 0x68 */ f32 mLavaFloorSlideAngle;  // ?
+	/* 0x6C */ f32 mLavaFloorWeakSlideAngle;  // ?
+	/* 0x70 */ f32 mLavaFloorWeakSlideSpeed;
+	/* 0x74 */ f32 mMaxClimbAnmSpeed;
+};  // Size: 0x78
+
+class daAlinkHIO_slide_c0 {
+public:
+    static daAlinkHIO_slide_c1 const m;
+};
+
+class daAlinkHIO_frontRoll_c1 {
+public:
+	/* 0x00 */ daAlinkHIO_anm_c mRollAnm;
+	/* 0x14 */ daAlinkHIO_anm_c mCrashAnm;
+	/* 0x28 */ daAlinkHIO_anm_c mCrashHitAnm;  // ?
+	/* 0x3C */ s16 mCrashAngleThreshold;
+	/* 0x3E */ s16 mTurnRate;
+	/* 0x40 */ s16 mTurnMaxAngle;
+	/* 0x42 */ s16 mTurnMinAngle;
+	/* 0x44 */ f32 mInitSpeed;
+	/* 0x48 */ f32 mSpeedRate;
+	/* 0x4C */ f32 mMinSpeed;
+	/* 0x50 */ f32 mCrashSpeedThreshold;
+	/* 0x54 */ f32 mCrashInitF;
+	/* 0x58 */ f32 mCrashEndF;
+	/* 0x5C */ f32 mCrashSpeedH;
+	/* 0x60 */ f32 mCrashSpeedV;
+	/* 0x64 */ f32 mBootsAttackInitF;
+	/* 0x68 */ f32 mBootsAttackEndF;
+	/* 0x6C */ f32 mBootsAttackRadius;
+};  // Size: 0x70
+
+class daAlinkHIO_frontRoll_c0 {
+public:
+    static daAlinkHIO_frontRoll_c1 const m;
+};
+
+class daAlinkHIO_wlAttack_c1 {
+public:
+	/* 0x00 */ daAlinkHIO_anm_c mLandAnm;
+	/* 0x14 */ s16 mUnkTime;
+	/* 0x16 */ s16 mComboDuration;
+	/* 0x18 */ f32 mFallHeight;
+	/* 0x1C */ f32 mFallInterpolation;
+	/* 0x20 */ f32 mReadyInterpolation;
+	/* 0x24 */ f32 mAttackRange;
+	/* 0x28 */ f32 mJumpBackSpeedH;
+	/* 0x2C */ f32 mJumpBackSpeedV;
+	/* 0x30 */ f32 mJumpAttackSpeedV;
+	/* 0x34 */ f32 mJumpAttackSpeedH;
+};  // Size: 0x38
+
+class daAlinkHIO_wlAttack_c0 {
+public:
+    static daAlinkHIO_wlAttack_c1 const m;
+};
+
+class daHorseRein_c {
+private:
+    /* 0x00 */ cXyz* field_0x0[2];
+    /* 0x08 */ int field_0x8[2];
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ cXyz field_0x1c;
+};  // Size: 0x28
+
+class daHorseFootData_c {
+private:
+    /* 0x0 */ u8 field_0x0[0xE4];
+};  // Size: 0xE4
+
+class daHorse_c : public fopAc_ac_c {
+public:
+    enum daHorse_ERFLG0 {
+        /* 0x010 */ MOVE_ACCEPT = 0x10,
+        /* 0x080 */ RIDE_RUN_FLG = 0x80,
+        /* 0x100 */ CUT_TURN_CANCEL = 0x100,
+    };
+
+    enum daHorse_RFLG0 {
+        /* 0x02 */ ENEMY_SEARCH = 2,
+        /* 0x08 */ LASH_DASH_START = 8,
+        /* 0x10 */ TURN_STAND = 0x10,
+        /* 0x40 */ TURN_STAND_CAMERA = 0x40,
+    };
+
+    enum daHorse_FLG0 {
+        /* 0x00000020 */ RODEO_LEFT = 0x20,
+        /* 0x00000040 */ RIDE_START_FLG = 0x40,
+        /* 0x00010000 */ PLAYER_BACK_RIDE_LASH = 0x10000,
+        /* 0x20000000 */ TURN_CANCEL_KEEP = 0x20000000,
+        /* 0x80000000 */ RODEO_MODE = 0x80000000
+    };
+
     fopAc_ac_c* getZeldaActor();
 
+    bool checkNoBombProc() const {
+        return field_0x16b4 == 0 || field_0x16b4 == 1;
+    }
+    bool checkResetStateFlg0(daHorse_RFLG0 flag) { return mResetStateFlg0 & flag; }
+    bool checkEndResetStateFlg0(daHorse_ERFLG0 flag) { return mEndResetStateFlg0 & flag; }
+    bool checkStateFlg0(daHorse_FLG0 flag) { return mStateFlg0 & flag; }
+
 private:
-    /* 0x0000 */ fopAc_ac_c mActor;
-    /* 0x0568 */ u8 field_0x568[0xCEC];
+    /* 0x0568 */ u8 field_0x568[8];
+    /* 0x0570 */ J3DModel* field_0x570;
+    /* 0x0574 */ void* field_0x574;
+    /* 0x0578 */ J3DFrameCtrl field_0x578;
+    /* 0x058C */ int field_0x58c;
+    /* 0x0590 */ u8 field_0x590[4];
+    /* 0x0594 */ mDoExt_AnmRatioPack field_0x594[3];
+    /* 0x05AC */ void* field_0x5ac;
+    /* 0x05B0 */ daPy_frameCtrl_c field_0x5b0[3];
+    /* 0x05F8 */ u8 field_0x5f8[4];
+    /* 0x05FC */ dBgS_AcchCir field_0x5fc[3];
+    /* 0x06BC */ dBgS_Acch field_0x6bc;
+    /* 0x0894 */ dCcD_Stts field_0x894;
+    /* 0x08D0 */ dBgS_HorseLinChk field_0x8d0;
+    /* 0x0940 */ dCcD_Cyl field_0x940[3];
+    /* 0x0CF4 */ dCcD_Cyl field_0xcf4;
+    /* 0x0E30 */ dCcD_Cyl field_0xe30;
+    /* 0x0F6C */ dCcD_Sph field_0xf6c;
+    /* 0x10A4 */ Z2CreatureRide field_0x10a4;
+    /* 0x1140 */ u8 field_0x1140[0x10];
+    /* 0x1150 */ daHorseRein_c field_0x1150[3];
+    /* 0x11C8 */ u8 field_0x11c8[0x40];
+    /* 0x1208 */ dMsgFlow_c field_0x1208;
     /* 0x1254 */ daPy_actorKeep_c mZeldaActorKeep;
+    /* 0x125C */ u8 field_0x125c[0xC8];
+    /* 0x1324 */ daHorseFootData_c mFootData[4];
+    /* 0x16B4 */ u8 field_0x16b4;
+    /* 0x16B5 */ u8 field_0x16b5[3];
+    /* 0x16B8 */ u8 field_0x16b8;
+    /* 0x16B9 */ u8 field_0x16b9[2];
+    /* 0x16BB */ u8 mRodeoPointCnt;
+    /* 0x16BC */ u8 field_0x16bc[0x36];
+    /* 0x16F2 */ s16 mAimNeckAngleY;
+    /* 0x16F4 */ u8 field_0x16f4[0xA];
+    /* 0x16FC */ s16 mDemoMoveAngle;
+    /* 0x16FE */ u8 field_0x16fe[4];
+    /* 0x1702 */ s16 field_0x1702;
+    /* 0x1704 */ u8 field_0x1704[2];
+    /* 0x1706 */ s16 mCowHitAngle;
+    /* 0x1708 */ s16 mCowHit;
+    /* 0x170A */ u8 field_0x170a[0x1E];
+    /* 0x1728 */ int field_0x1728;
+    /* 0x172C */ u8 field_0x172c[0x14];
+    /* 0x1740 */ u32 field_0x1740;
+    /* 0x1744 */ u32 mStateFlg0;
+    /* 0x1748 */ u32 mResetStateFlg0;
+    /* 0x174C */ u32 mEndResetStateFlg0;
+    /* 0x1750 */ f32 mMorfFrame;
+    /* 0x1754 */ u8 field_0x1754[0x14];
+    /* 0x1768 */ f32 field_0x1768;
+    /* 0x176C */ f32 field_0x176c;
+    /* 0x1770 */ f32 field_0x1770;
+    /* 0x1774 */ u8 field_0x1774[0x14];
+    /* 0x1788 */ f32 mDemoStickR;
+    /* 0x178C */ f32 mNormalMaxSpeedF;
+    /* 0x1790 */ f32 mLashMaxSpeedF;
+    /* 0x1794 */ u8 field_0x1794[0x30];
+    /* 0x17C4 */ cXyz mDemoPos0;
 };
 
 class daMidna_c {
 public:
     enum daMidna_ERFLG0 {
-        NoServiceWait = 128,
-        ForcePanic = 8,
+        NO_SERVICE_WAIT = 128,
+        FORCE_PANIC = 8,
     };
-    enum daMidna_FLG1 { ForceNormalColor = 8, ForceTiredColor = 4 };
+    enum daMidna_FLG1 {
+        FORCE_NORMAL_COLOR = 8, 
+        FORCE_TIRED_COLOR = 4
+    };
 
-    void onForcePanic(void);
-    u32 checkForceNormalColor(void) const;
-    u32 checkForceTiredColor(void) const;
-    bool checkMidnaTired(void);
-    void onNoServiceWait(void);
+    void onForcePanic();
+    u32 checkForceNormalColor() const;
+    u32 checkForceTiredColor() const;
+    bool checkMidnaTired();
+    void onNoServiceWait();
 
     void onEndResetStateFlg0(daMidna_ERFLG0 pFlg) { mEndResetStateFlg0 |= pFlg; }
     u32 checkStateFlg1(daMidna_FLG1 pFlg) const { return mStateFlg1 & pFlg; }

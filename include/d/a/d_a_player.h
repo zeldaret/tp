@@ -27,11 +27,18 @@ private:
     /* 0x48 */ ResTIMG* field_0x48;
 };
 
-struct daPy_boomerangMove_c {
+class daPy_boomerangMove_c {
+public:
     /* 8015E5B0 */ void initOffset(cXyz const*);
     /* 8015E654 */ void posMove(cXyz*, s16*, fopAc_ac_c*, s16);
     /* 8015E87C */ void bgCheckAfterOffset(cXyz const*);
-};
+
+private:
+    /* 0x0 */ u8 field_0x0;
+    /* 0x2 */ u16 field_0x2;
+    /* 0x4 */ f32 field_0x4;
+    /* 0x8 */ f32 field_0x8;
+};  // Size: 0xC
 
 class daPy_anmHeap_c {
 public:
@@ -66,14 +73,15 @@ private:
 
 class daPy_actorKeep_c {
 public:
-    daPy_actorKeep_c(void);
-    void setActor(void);
+    daPy_actorKeep_c();
+    void setActor();
     void setData(fopAc_ac_c*);
-    void clearData(void);
+    void clearData();
 
-    u32 getID(void) const { return mID; }
+    u32 getID() const { return mID; }
     void setID(u32 id) { mID = id; }
-    fopAc_ac_c* getActor(void) const { return mActor; }
+    fopAc_ac_c* getActor() const { return mActor; }
+    fopAc_ac_c* getActorConst() const { return mActor; }
 
 private:
     u32 mID;
@@ -84,8 +92,8 @@ class daPy_frameCtrl_c : public J3DFrameCtrl {
 public:
     /* 80140D24 */ ~daPy_frameCtrl_c();
     /* 80140D80 */ daPy_frameCtrl_c();
-    bool checkAnmEnd(void);
-    void updateFrame(void);
+    bool checkAnmEnd();
+    void updateFrame();
     void setFrameCtrl(u8, short, short, float, float);
 
     u16 getEndFlg() { return mEndFlg; }
@@ -103,12 +111,17 @@ private:
     /* 0x16 */ u16 mNowSetFlg;
 };
 
+class Z2WolfHowlMgr;
+class daBoomerang_c;
+
 class daPy_demo_c {
 public:
     void setSpecialDemoType();
 
     void setDemoType(u16 pType) { mDemoType = pType; }
     u16 getDemoType() const { return mDemoType; }
+    void setDemoMode(u32 mode) { mDemoMode = mode; }
+    u32 getDemoMode() const { return mDemoMode; }
 
 private:
     /* 0x00 */ u16 mDemoType;
@@ -117,24 +130,32 @@ private:
     /* 0x06 */ s16 mParam2;
     /* 0x08 */ int mParam0;
     /* 0x0C */ int mParam1;
-    /* 0x10 */ int mDemoMode;
+    /* 0x10 */ u32 mDemoMode;
     /* 0x14 */ float mStick;
     /* 0x18 */ cXyz mDemoPos0;
-};  // Size = 0x24
+};  // Size: 0x24
 
 class daPy_py_c : public fopAc_ac_c {
 public:
-    /* 0x0568 */ u8 field_0x568[8];
-    /* 0x0570 */ int mNoResetFlg0;
-    /* 0x0574 */ int mNoResetFlg1;
-    /* 0x0578 */ int mNoResetFlg2;
-    /* 0x057C */ int mNoResetFlg3;
-    /* 0x0580 */ int mResetFlg0;
-    /* 0x0584 */ int mResetFlg1;
-    /* 0x0588 */ int mEndResetFlg0;
-    /* 0x058C */ int mEndResetFlg1;
-    /* 0x0590 */ int mEndResetFlg2;
-    /* 0x0594 */ u8 field_0x594[0x10];
+    /* 0x0568 */ u8 mCutType;
+    /* 0x0569 */ u8 mComboCutCount;
+    /* 0x056A */ u8 mSpecialMode;  // maybe needs better name
+    /* 0x056B */ u8 field_0x56b;
+    /* 0x056C */ s16 mDamageTimer;
+    /* 0x056E */ u8 field_0x56e[2];
+    /* 0x0570 */ u32 mNoResetFlg0;
+    /* 0x0574 */ u32 mNoResetFlg1;
+    /* 0x0578 */ u32 mNoResetFlg2;
+    /* 0x057C */ u32 mNoResetFlg3;
+    /* 0x0580 */ u32 mResetFlg0;
+    /* 0x0584 */ u32 mResetFlg1;
+    /* 0x0588 */ u32 mEndResetFlg0;
+    /* 0x058C */ u32 mEndResetFlg1;
+    /* 0x0590 */ u32 mEndResetFlg2;
+    /* 0x0594 */ f32 field_0x594;
+    /* 0x0598 */ u8 field_0x598[0x4];
+    /* 0x059C */ s16 mLookAngleY;
+    /* 0x059E */ u8 field_0x59e[0x6];
     /* 0x05A4 */ cXyz mHeadTopPos;
     /* 0x05B0 */ cXyz mItemPos;
     /* 0x05BC */ cXyz mSwordTopPos;
@@ -147,23 +168,67 @@ public:
 
 public:
     enum daPy_FLG0 {
-        EquipHeavyBoots = 0x2000000,
-        MagneBootsOn = 0x1000,
-        UnkFrollCrashFlg2 = 0x10,
-        UnkFrollCrashFlg1 = 0x8
+        EQUIP_HEAVY_BOOTS = 0x2000000,
+        FLG0_UNK_8000000 = 0x8000000,
+        FLG0_UNK_1000000 = 0x1000000,
+        UNDER_WATER_MOVEMENT = 0x800000,
+        FLG0_UNK_80000 = 0x80000,
+        FLG0_UNK_8000 = 0x8000,
+        MAGNE_BOOTS_ON = 0x1000,
+        FLG0_UNK_40 = 0x40,
+        UNK_F_ROLL_CRASH_2 = 0x10,
+        UNK_F_ROLL_CRASH_1 = 0x8
     };
-    enum daPy_FLG1 { Wolf = 0x2000000, ThrowDamage = 0x4000 };
-    enum daPy_FLG2 { BoarSingleBattle = 0x1800000, UnkArmor = 0x80000, Unk = 1 };
-    enum daPy_FLG3 { CopyRodThrowAfter = 0x40000 };
-    enum daPy_ERFLG0 {};
-    enum daPy_ERFLG1 { GanonFinish = 0x80000000, UnkForcePutPos = 0x2000 };
+    enum daPy_FLG1 { IS_WOLF = 0x2000000, THROW_DAMAGE = 0x4000 };
+    enum daPy_FLG2 { FLG2_UNK_4080000 = 0x4080000, FLG2_UNK_2080000 = 0x2080000, BOAR_SINGLE_BATTLE = 0x1800000, STATUS_WINDOW_DRAW = 0x400000, UNK_ARMOR = 0x80000, UNK_FLG2_2 = 2, UNK_DAPY_FLG2_1 = 1 };
+    enum daPy_FLG3 { FLG3_UNK_100000 = 0x100000, COPY_ROD_THROW_AFTER = 0x40000 };
+    enum daPy_ERFLG0 { ERFLG0_UNK_8000000 = 0x8000000, ERFLG0_UNK_1000000 = 0x1000000, ERFLG0_UNK_100000 = 0x100000, };
+    enum daPy_ERFLG1 { GANON_FINISH = 0x80000000, UNK_FORCE_PUT_POS = 0x2000 };
     enum daPy_ERFLG2 {};
-    enum daPy_RFLG0 {};
+    enum daPy_RFLG0 {
+        RFLG0_UNK_8000000 = 0x8000000,
+        RFLG0_UNK_80 = 0x80,
+        RFLG0_UNK_40 = 0x40,
+        RFLG0_UNK_2 = 0x2,
+    };
+
+    enum {
+        /* 0x01 */ SMODE_SUMO_READY = 1,
+        /* 0x25 */ SMODE_SUMO_LOSE = 37,
+        /* 0x2A */ SMODE_GOAT_STOP = 42,
+        /* 0x2B */ SMODE_GORON_THROW,
+        /* 0x2C */ SMODE_CARGO_CARRY,
+    };
+
+    enum CutType {
+        /* 0x01 */ TYPE_CUT_VERTICAL = 1,
+        /* 0x02 */ TYPE_CUT_STAB,
+        /* 0x03 */ TYPE_CUT_SWEEP,
+        /* 0x04 */ TYPE_CUT_HORIZONTAL,
+        /* 0x05 */ TYPE_CUT_HEAD,  // Helm Splitter
+        /* 0x06 */ TYPE_CUT_LEFT_SWEEP_FINISH,
+        /* 0x07 */ TYPE_CUT_DOWN_FINISH,
+        /* 0x08 */ TYPE_CUT_TURN_RIGHT,
+        /* 0x0A */ TYPE_CUT_JUMP = 10,
+        /* 0x10 */ TYPE_CUT_AIR = 0x10,
+        /* 0x12 */ TYPE_CUT_LARGE_JUMP_INIT = 0x12,
+        /* 0x13 */ TYPE_CUT_LARGE_JUMP,
+        /* 0x14 */ TYPE_CUT_LARGE_JUMP_FINISH,
+        /* 0x15 */ TYPE_CUT_RIGHT_SWEEP_FINISH,
+        /* 0x16 */ TYPE_CUT_TURN_LEFT,
+        /* 0x17 */ TYPE_CUT_LARGE_TURN_LEFT,
+        /* 0x18 */ TYPE_CUT_LARGE_TURN_RIGHT,
+        /* 0x1A */ TYPE_CUT_FAST_MOVE = 0x1A,
+        /* 0x1E */ TYPE_CUT_TWIRL = 0x1E,  // Back Slice
+        /* 0x1F */ TYPE_CUT_FAST,
+        /* 0x20 */ TYPE_CUT_STAB_FINISH,
+        /* 0x21 */ TYPE_CUT_STAB_COMBO,
+    };
 
     void setParamData(int, int, int, int);
     int checkFishingRodItem(int);
-    void checkBombItem(int);
-    void checkBottleItem(int);
+    static BOOL checkBombItem(int);
+    static BOOL checkBottleItem(int);
     void checkDrinkBottleItem(int);
     static BOOL checkOilBottleItem(int);
     static BOOL checkOpenBottleItem(int);
@@ -171,7 +236,7 @@ public:
     static BOOL checkHookshotItem(int);
     static BOOL checkTradeItem(int);
     static BOOL checkDungeonWarpItem(int);
-    BOOL checkMasterSwordEquip();
+    static BOOL checkMasterSwordEquip();
     void checkWoodShieldEquip();
     f32 getAttentionOffsetY();
     s16 checkNowWolfEyeUp();
@@ -183,105 +248,104 @@ public:
     void linkGrabSubjectNoDraw(fopAc_ac_c*);
     void wolfGrabSubjectNoDraw(fopAc_ac_c*);
     void checkRoomRestartStart();
-    void checkCarryStartLightBallA();
-    void checkCarryStartLightBallB();
+    static u32 checkCarryStartLightBallA();
+    static u32 checkCarryStartLightBallB();
     float getSpinnerRideSpeed() const;
     void checkSpinnerReflectEffect();
     void checkBoomerangCharge();
     bool checkBoomerangChargeTime();
-    void getThrowBoomerangActor();
+    static daBoomerang_c* getThrowBoomerangActor();
     void cancelBoomerangLockActor(fopAc_ac_c*);
     void setPlayerDamage(int, int);
     void setMidnaMotionNum(int);
     void setMidnaFaceNum(int);
     int checkNoResetFlg0(daPy_FLG0) const;
     int checkEquipHeavyBoots() const;
-    int checkBoarSingleBattle(void) const;
+    int checkBoarSingleBattle() const;
     int checkEndResetFlg0(daPy_ERFLG0) const;
     void onNoResetFlg2(daPy_py_c::daPy_FLG2);
     void offNoResetFlg0(daPy_py_c::daPy_FLG0);
     int checkEndResetFlg2(daPy_py_c::daPy_ERFLG2) const;
     bool getSumouMode() const;
     int checkNoResetFlg3(daPy_py_c::daPy_FLG3) const;
-    void checkShieldGet();
+    BOOL checkShieldGet();
     void onNoResetFlg0(daPy_py_c::daPy_FLG0);
     int checkEndResetFlg1(daPy_py_c::daPy_ERFLG1) const;
     void offNoResetFlg1(daPy_py_c::daPy_FLG1);
     void offNoResetFlg2(daPy_py_c::daPy_FLG2);
     int checkWolf() const;
-    void checkSwordGet();
+    BOOL checkSwordGet();
     int checkResetFlg0(daPy_py_c::daPy_RFLG0) const;
     int checkNoResetFlg2(daPy_py_c::daPy_FLG2) const;
     int checkMagneBootsOn() const;
 
-    virtual void unk();
-    virtual bool getMidnaAtnPos(void) const;
+    virtual cXyz* getMidnaAtnPos() const;
     virtual void setMidnaMsgNum(fopAc_ac_c*, u16);
-    virtual Mtx* getModelMtx(void);
-    virtual Mtx* getInvMtx(void);
-    virtual cXyz* getShadowTalkAtnPos(void);
-    virtual float getGroundY();
-    virtual Mtx* getLeftItemMatrix(void);
-    virtual Mtx* getRightItemMatrix(void);
-    virtual Mtx* getLeftHandMatrix(void);
-    virtual Mtx* getRightHandMatrix(void);
-    virtual Mtx* getLinkBackBone1Matrix(void);
-    virtual Mtx* getWolfMouthMatrix(void);
-    virtual Mtx* getWolfBackbone2Matrix(void);
-    virtual bool getBottleMtx(void);
-    virtual bool checkPlayerGuard(void) const;
-    virtual bool checkPlayerFly() const;
-    virtual bool checkFrontRoll() const;
-    virtual bool checkWolfDash() const;
-    virtual bool checkAutoJump(void) const;
-    virtual bool checkSideStep(void) const;
-    virtual bool checkWolfTriggerJump(void) const;
-    virtual bool checkGuardBreakMode(void) const;
-    virtual bool checkLv3Slide(void) const;
-    virtual bool checkWolfHowlDemoMode(void) const;
-    virtual bool checkChainBlockPushPull(void);
-    virtual bool checkElecDamage(void) const;
-    virtual bool checkEmptyBottleSwing(void) const;
-    virtual bool checkBottleSwingMode(void) const;
-    virtual bool checkHawkWait(void) const;
-    virtual bool checkGoatThrow(void) const;
-    virtual bool checkGoatThrowAfter(void) const;
-    virtual bool checkWolfTagLockJump(void) const;
-    virtual bool checkWolfTagLockJumpLand(void) const;
-    virtual bool checkWolfRope(void);
-    virtual bool checkWolfRopeHang(void) const;
-    virtual bool checkRollJump(void) const;
-    virtual bool checkGoronRideWait(void) const;
-    virtual bool checkWolfChain(void) const;
-    virtual bool checkWolfWait(void) const;
-    virtual bool checkWolfJumpAttack(void) const;
-    virtual bool checkWolfRSit(void) const;
-    virtual bool checkBubbleFly(void) const;
-    virtual bool checkBottleDrinkEnd(void) const;
-    virtual bool checkWolfDig(void) const;
-    virtual bool checkCutCharge(void) const;
-    virtual bool checkCutTurnCharge(void) const;
-    virtual bool checkCutLargeJumpCharge(void) const;
+    virtual MtxP getModelMtx();
+    virtual MtxP getInvMtx();
+    virtual cXyz* getShadowTalkAtnPos();
+    virtual f32 getGroundY();
+    virtual MtxP getLeftItemMatrix();
+    virtual MtxP getRightItemMatrix();
+    virtual MtxP getLeftHandMatrix();
+    virtual MtxP getRightHandMatrix();
+    virtual MtxP getLinkBackBone1Matrix();
+    virtual MtxP getWolfMouthMatrix();
+    virtual MtxP getWolfBackbone2Matrix();
+    virtual MtxP getBottleMtx();
+    virtual BOOL checkPlayerGuard() const;
+    virtual u32 checkPlayerFly() const;
+    virtual BOOL checkFrontRoll() const;
+    virtual BOOL checkWolfDash() const;
+    virtual BOOL checkAutoJump() const;
+    virtual bool checkSideStep() const;
+    virtual bool checkWolfTriggerJump() const;
+    virtual BOOL checkGuardBreakMode() const;
+    virtual bool checkLv3Slide() const;
+    virtual bool checkWolfHowlDemoMode() const;
+    virtual bool checkChainBlockPushPull();
+    virtual BOOL checkElecDamage() const;
+    virtual BOOL checkEmptyBottleSwing() const;
+    virtual BOOL checkBottleSwingMode() const;
+    virtual BOOL checkHawkWait() const;
+    virtual BOOL checkGoatThrow() const;
+    virtual BOOL checkGoatThrowAfter() const;
+    virtual BOOL checkWolfTagLockJump() const;
+    virtual BOOL checkWolfTagLockJumpLand() const;
+    virtual bool checkWolfRope();
+    virtual BOOL checkWolfRopeHang() const;
+    virtual BOOL checkRollJump() const;
+    virtual BOOL checkGoronRideWait() const;
+    virtual BOOL checkWolfChain() const;
+    virtual BOOL checkWolfWait() const;
+    virtual BOOL checkWolfJumpAttack() const;
+    virtual BOOL checkWolfRSit() const;
+    virtual bool checkBubbleFly() const;
+    virtual BOOL checkBottleDrinkEnd() const;
+    virtual BOOL checkWolfDig() const;
+    virtual BOOL checkCutCharge() const;
+    virtual BOOL checkCutTurnCharge() const;
+    virtual BOOL checkCutLargeJumpCharge() const;
     virtual bool getBokoFlamePos(cXyz*);
-    virtual bool checkComboCutTurn(void) const;
-    virtual bool checkClimbMove(void) const;
-    virtual bool checkGrassWhistle(void) const;
-    virtual bool checkBoarRun(void) const;
-    virtual bool checkFmChainPut(void) const;
-    virtual bool checkHorseElecDamage(void) const;
-    virtual float getBaseAnimeFrameRate(void) const;
-    virtual float getBaseAnimeFrame(void) const;
+    virtual BOOL checkComboCutTurn() const;
+    virtual BOOL checkClimbMove() const;
+    virtual BOOL checkGrassWhistle() const;
+    virtual BOOL checkBoarRun() const;
+    virtual bool checkFmChainPut() const;
+    virtual bool checkHorseElecDamage() const;
+    virtual float getBaseAnimeFrameRate() const;
+    virtual float getBaseAnimeFrame() const;
     virtual void setAnimeFrame(float);
     virtual bool checkWolfLock(fopAc_ac_c*) const;
     virtual bool cancelWolfLock(fopAc_ac_c*);
-    virtual bool getAtnActorID(void) const;
-    virtual s32 getItemID(void) const;
-    virtual bool getGrabActorID(void) const;
+    virtual s32 getAtnActorID() const;
+    virtual s32 getItemID() const;
+    virtual s32 getGrabActorID() const;
     virtual bool exchangeGrabActor(fopAc_ac_c*);
     virtual bool setForceGrab(fopAc_ac_c*, int, int);
     virtual void setForcePutPos(cXyz const&);
-    virtual bool checkPlayerNoDraw(void);
-    virtual bool checkRopeTag(void);
+    virtual bool checkPlayerNoDraw();
+    virtual bool checkRopeTag();
     virtual void voiceStart(u32);
     virtual void seStartOnlyReverb(u32);
     virtual void seStartOnlyReverbLevel(u32);
@@ -289,14 +353,14 @@ public:
     virtual void setGrabCollisionOffset(float, float, cBgS_PolyInfo*);
     virtual void onMagneGrab(float, float);
     virtual void onFrollCrashFlg(u8, int);
-    virtual bool getModelJointMtx(u16);
-    virtual bool getHeadMtx(void);
+    virtual MtxP getModelJointMtx(u16);
+    virtual MtxP getHeadMtx();
     virtual bool setHookshotCarryOffset(unsigned int, cXyz const*);
-    // virtual void checkCutJumpCancelTurn() const;
-    virtual bool checkIronBallReturn(void) const;
-    virtual bool checkIronBallGroundStop(void) const;
-    virtual bool checkSingleBoarBattleSecondBowReady(void) const;
-    virtual bool checkPointSubWindowMode(void) const;
+    virtual BOOL checkCutJumpCancelTurn() const;
+    virtual bool checkIronBallReturn() const;
+    virtual bool checkIronBallGroundStop() const;
+    virtual BOOL checkSingleBoarBattleSecondBowReady() const;
+    virtual bool checkPointSubWindowMode() const;
     virtual void setClothesChange(int);
     virtual void setPlayerPosAndAngle(float (*)[4]);
     virtual void setPlayerPosAndAngle(cXyz const*, csXyz const*);
@@ -306,27 +370,27 @@ public:
     virtual bool setRollJump(float, float, short);
     virtual void playerStartCollisionSE(u32, u32);
     virtual void changeTextureAnime(u16, u16, int);
-    virtual void cancelChangeTextureAnime(void);
-    virtual void cancelDungeonWarpReadyNeck(void);
+    virtual void cancelChangeTextureAnime();
+    virtual void cancelDungeonWarpReadyNeck();
     virtual void onSceneChangeArea(u8, u8, fopAc_ac_c*);
     virtual void onSceneChangeAreaJump(u8, u8, fopAc_ac_c*);
     virtual void onSceneChangeDead(u8, int);
-    virtual bool checkHorseRide() const;
-    virtual bool checkBoarRide() const;
-    virtual bool checkCanoeRide() const;
-    virtual bool checkBoardRide() const;
+    virtual u32 checkHorseRide() const;
+    virtual u32 checkBoarRide() const;
+    virtual u32 checkCanoeRide() const;
+    virtual u32 checkBoardRide() const;
     virtual u32 checkSpinnerRide() const;
-    virtual bool getSpinnerActor(void);
-    virtual bool checkHorseRideNotReady(void) const;
-    virtual bool checkArrowChargeEnd(void) const;
-    virtual void getSearchBallScale(void) const;
-    virtual bool checkFastShotTime(void);
-    virtual bool checkNoEquipItem(void) const;
-    virtual bool checkFireMaterial(void) const;
+    virtual fopAc_ac_c* getSpinnerActor();
+    virtual BOOL checkHorseRideNotReady() const;
+    virtual bool checkArrowChargeEnd() const;
+    virtual f32 getSearchBallScale() const;
+    virtual s16 checkFastShotTime();
+    virtual bool checkNoEquipItem() const;
+    virtual bool checkFireMaterial() const;
     virtual bool checkKandelaarSwing(int) const;
-    virtual bool getBoardCutTurnOffsetAngleY(void) const;
-    virtual cXyz* getMagneHitPos(void);
-    virtual cXyz* getMagneBootsTopVec(void);
+    virtual s16 getBoardCutTurnOffsetAngleY() const;
+    virtual cXyz* getMagneHitPos();
+    virtual cXyz* getMagneBootsTopVec();
     virtual bool getKandelaarFlamePos();
     virtual bool checkUseKandelaar(int);
     virtual void setDkCaught(fopAc_ac_c*);
@@ -337,53 +401,53 @@ public:
     virtual void setWolfEnemyHangBiteAngle(short);
     virtual void setKandelaarMtx(float (*)[4], int, int);
     virtual bool getStickAngleFromPlayerShape(short*) const;
-    virtual bool checkSpinnerPathMove(void);
-    virtual bool checkSpinnerTriggerAttack(void);
-    virtual void onSpinnerPathForceRemove(void);
-    virtual bool getIronBallBgHit(void) const;
-    virtual bool getIronBallCenterPos(void);
-    virtual bool checkCanoeFishingGetLeft(void) const;
-    virtual bool checkCanoeFishingGetRight(void) const;
-    virtual bool checkBeeChildDrink(void) const;
-    virtual void skipPortalObjWarp(void);
+    virtual bool checkSpinnerPathMove();
+    virtual bool checkSpinnerTriggerAttack();
+    virtual void onSpinnerPathForceRemove();
+    virtual bool getIronBallBgHit() const;
+    virtual bool getIronBallCenterPos();
+    virtual bool checkCanoeFishingGetLeft() const;
+    virtual bool checkCanoeFishingGetRight() const;
+    virtual u8 checkBeeChildDrink() const;
+    virtual void skipPortalObjWarp();
     virtual bool checkTreasureRupeeReturn(int) const;
     virtual void setSumouReady(fopAc_ac_c*);
     virtual bool checkAcceptDungeonWarpAlink(int);
-    virtual bool getSumouCounter(void) const;
-    virtual bool checkSumouWithstand(void) const;
-    virtual void cancelGoronThrowEvent(void);
+    virtual s16 getSumouCounter() const;
+    virtual s16 checkSumouWithstand() const;
+    virtual void cancelGoronThrowEvent();
     virtual void setSumouGraspCancelCount(int);
     virtual void setSumouPushBackDirection(short);
-    virtual void setSumouLoseHeadUp(void);
-    virtual s16 getGiantPuzzleAimAngle(void) const;
+    virtual void setSumouLoseHeadUp();
+    virtual s16 getGiantPuzzleAimAngle() const;
     virtual void setGoronSideMove(fopAc_ac_c*);
     virtual void setCargoCarry(fopAc_ac_c*);
-    virtual bool getDpdFarFlg(void) const;
-    virtual bool getHookshotTopPos(void);
-    virtual bool checkHookshotReturnMode(void) const;
-    virtual bool checkHookshotShootReturnMode(void) const;
-    virtual bool checkOctaIealHang(void) const;
-    virtual void cancelOctaIealHang(void);
-    virtual void cancelDragonHangBackJump(void);
-    virtual void setOctaIealWildHang(void);
-    virtual bool checkDragonHangRide(void) const;
+    virtual bool getDpdFarFlg() const;
+    virtual bool getHookshotTopPos();
+    virtual bool checkHookshotReturnMode() const;
+    virtual bool checkHookshotShootReturnMode() const;
+    virtual bool checkOctaIealHang() const;
+    virtual void cancelOctaIealHang();
+    virtual void cancelDragonHangBackJump();
+    virtual void setOctaIealWildHang();
+    virtual bool checkDragonHangRide() const;
     virtual void changeDragonActor(fopAc_ac_c*);
-    virtual bool getClothesChangeWaitTimer(void) const;
-    virtual bool getShieldChangeWaitTimer(void) const;
-    virtual bool getSwordChangeWaitTimer(void) const;
-    virtual bool checkMetamorphose(void) const;
-    virtual bool checkWolfDownAttackPullOut(void) const;
-    virtual bool checkBootsOrArmorHeavy(void) const;
-    virtual s32 getBottleOpenAppearItem(void) const;
-    virtual bool checkItemSwordEquip(void) const;
-    virtual float getSinkShapeOffset(void) const;
-    virtual bool checkSinkDead(void) const;
-    virtual bool checkHorseStart(void);
-    virtual bool getWolfHowlMgrP(void);
-    virtual bool checkWolfHowlSuccessAnime(void) const;
-    virtual bool checkCopyRodTopUse(void);
-    virtual bool checkCopyRodEquip(void) const;
-    virtual bool checkCutJumpMode(void) const;
+    virtual u8 getClothesChangeWaitTimer() const;
+    virtual u8 getShieldChangeWaitTimer() const;
+    virtual u8 getSwordChangeWaitTimer() const;
+    virtual BOOL checkMetamorphose() const;
+    virtual BOOL checkWolfDownAttackPullOut() const;
+    virtual BOOL checkBootsOrArmorHeavy() const;
+    virtual s32 getBottleOpenAppearItem() const;
+    virtual bool checkItemSwordEquip() const;
+    virtual float getSinkShapeOffset() const;
+    virtual BOOL checkSinkDead() const;
+    virtual BOOL checkHorseStart();
+    virtual Z2WolfHowlMgr* getWolfHowlMgrP();
+    virtual BOOL checkWolfHowlSuccessAnime() const;
+    virtual bool checkCopyRodTopUse();
+    virtual bool checkCopyRodEquip() const;
+    virtual BOOL checkCutJumpMode() const;
 
     bool getSumouCameraMode() const {
         bool sumouCameraMode = false;
@@ -393,18 +457,37 @@ public:
         return sumouCameraMode;
     }
 
+    bool checkStatusWindowDraw() { return i_checkNoResetFlg2(STATUS_WINDOW_DRAW); }
+
     // some functions use these function as an inline
     // is there a better way to handle this?
     int i_checkNoResetFlg0(daPy_FLG0 pFlag) const { return mNoResetFlg0 & pFlag; }
     int i_checkNoResetFlg1(daPy_FLG1 pFlag) const { return mNoResetFlg1 & pFlag; }
     int i_checkNoResetFlg2(daPy_FLG2 pFlag) const { return mNoResetFlg2 & pFlag; }
+    int i_checkNoResetFlg3(daPy_FLG3 pFlag) const { return mNoResetFlg3 & pFlag; }
     void i_onNoResetFlg0(int pFlg) { mNoResetFlg0 |= pFlg; }
+    void i_onNoResetFlg1(int pFlg) { mNoResetFlg1 |= pFlg; }
+    void i_onNoResetFlg2(int pFlg) { mNoResetFlg2 |= pFlg; }
     void i_onNoResetFlg3(int pFlg) { mNoResetFlg3 |= pFlg; }
+    void i_offNoResetFlg0(int pFlg) { mNoResetFlg0 &= ~pFlg; }
     void i_offNoResetFlg3(int pFlg) { mNoResetFlg3 &= ~pFlg; }
+    void i_offResetFlg0(int flag) { mResetFlg0 &= ~flag; }
+    void i_onResetFlg0(int flag) { mResetFlg0 |= flag; }
+    void i_onResetFlg1(int flag) { mResetFlg1 |= flag; }
+    void i_onEndResetFlg0(int flag) { mEndResetFlg0 |= flag; }
+    int i_checkResetFlg0(daPy_py_c::daPy_RFLG0 flag) const { return mResetFlg0 & flag; }
+    int i_checkEndResetFlg0(daPy_py_c::daPy_ERFLG0 flag) const { return mEndResetFlg0 & flag; }
     void i_onEndResetFlg1(daPy_ERFLG1 pFlg) { mEndResetFlg1 |= pFlg; }
-    int i_checkWolf() { return i_checkNoResetFlg1(Wolf); }
-    BOOL i_checkEquipHeavyBoots() const { return i_checkNoResetFlg0(EquipHeavyBoots); }
+    int i_checkWolf() const { return i_checkNoResetFlg1(IS_WOLF); }
+    BOOL i_checkEquipHeavyBoots() const { return i_checkNoResetFlg0(EQUIP_HEAVY_BOOTS); }
+    BOOL i_checkMagneBootsOn() const { return i_checkNoResetFlg0(MAGNE_BOOTS_ON); }
+
+    inline u32 getLastSceneMode();
+    inline bool checkWoodSwordEquip();
+    inline BOOL i_checkSwordGet();
+    inline bool i_checkShieldGet() const;
     inline BOOL checkNowWolf();
+    inline bool checkZoraWearFlg() const;
 
     static u8 m_midnaActor[4];
 };

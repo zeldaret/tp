@@ -41,6 +41,14 @@ public:
     bool checkFlowerBombWait(fopAc_ac_c*);
     bool checkWaterBomb(fopAc_ac_c*);
     bool checkInsectBombMove(fopAc_ac_c*);
+
+    static fopAc_ac_c* createNormalBombPlayer(cXyz* p_pos) {
+        return (fopAc_ac_c*)fopAcM_fastCreate(0x221, 8, p_pos, -1, NULL, NULL, -1, NULL, NULL);
+    }
+
+    static fopAc_ac_c* createWaterBombPlayer(cXyz* p_pos) {
+        return (fopAc_ac_c*)fopAcM_fastCreate(0x221, 9, p_pos, -1, NULL, NULL, -1, NULL, NULL);
+    }
 };
 
 #endif /* D_D_BOMB_H */

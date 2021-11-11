@@ -114,7 +114,6 @@ struct GB_MAPLE_COL_CHANGE {
 
 class dKy_tevstr_c {
 public:
-private:
     /* 0x000 */ J3DLightObj field_0x000;
     /* 0x074 */ J3DLightObj field_0x074[6];
     /* 0x32C */ cXyz field_0x32c;
@@ -124,10 +123,18 @@ private:
     /* 0x34C */ int field_0x34c;
     /* 0x350 */ int field_0x350;
     /* 0x354 */ int field_0x354;
-    /* 0x358 */ int field_0x358;
-    /* 0x35C */ int field_0x35c;
-    /* 0x360 */ int field_0x360;
-    /* 0x364 */ int field_0x364;
+    /* 0x358 */ u16 field_0x358;
+    /* 0x35A */ u16 field_0x35a;
+    /* 0x35C */ u16 field_0x35c;
+    /* 0x35E */ u8 field_0x35e[2];
+    /* 0x360 */ u8 field_0x360;
+    /* 0x361 */ u8 field_0x361;
+    /* 0x362 */ u8 field_0x362;
+    /* 0x363 */ u8 field_0x363;
+    /* 0x364 */ u8 field_0x364;
+    /* 0x365 */ u8 field_0x365;
+    /* 0x366 */ u8 field_0x366;
+    /* 0x367 */ u8 field_0x367;
     /* 0x368 */ f32 field_0x368;
     /* 0x36C */ f32 field_0x36c;
     /* 0x370 */ f32 field_0x370;
@@ -655,6 +662,6 @@ public:
 
 STATIC_ASSERT(sizeof(dScnKy_env_light_c) == 4880);
 
-BOOL dKy_darkworld_stage_check(char const*, int);
+bool dKy_darkworld_stage_check(char const*, int);
 
 #endif /* D_KANKYO_D_KANKYO_H */

@@ -148,6 +148,16 @@ public:
     /* 80070178 */ virtual void execute(u16, J3DTransformInfo*);
 };
 
+struct dist_entry {
+    f32 field_0x0;
+    f32 field_0x4;
+    f32 field_0x8;
+    f32 field_0xc;
+    f32 field_0x10;
+    f32 field_0x14;
+    u32 field_0x18;
+};  // Size: 0x1C
+
 class dAttention_c {
 public:
     dAttention_c() {}
@@ -185,14 +195,22 @@ public:
     /* 800736CC */ void LockonTargetPId(s32);
     /* 80073734 */ void ActionTarget(s32);
     /* 8007378C */ void CheckObjectTarget(s32);
-    /* 800737E4 */ void LockonTruth();
+    /* 800737E4 */ bool LockonTruth();
     /* 80073838 */ void checkDistance(cXyz*, s16, cXyz*, f32, f32, f32, f32);
 
     dAttCatch_c& getCatghTarget() { return mCatghTarget; }
+    bool chkFlag(u32 flag) { return mFlags & flag; }
+    bool Lockon() {
+        bool chk = true;
+        if (!LockonTruth() && !chkFlag(0x20000000)) {
+            chk = false;
+        }
+        return chk;
+    }
 
     static u8 loc_type_tbl[12];
     static u8 act_type_tbl[20];
-    static u8 dist_table[6552];
+    static dist_entry dist_table[234];
     static u32 loc_type_num;
     static u32 act_type_num;
     static u32 chk_type_tbl;

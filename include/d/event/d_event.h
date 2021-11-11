@@ -80,6 +80,8 @@ public:
     void isOrderOK();
 
     u16 chkFlag2(u16 flag) { return flag & mFlag2; }
+    bool runCheck() { return field_0xe5 != 0; }
+    u16 chkEventFlag(u16 flag) { return flag & mEventFlag; }
 
 public:
     /* 0x000 */ u8 field_0x0[4];

@@ -19,7 +19,7 @@ public:
     void onCondition(u16);
     void offCondition(u16);
     bool checkCommandCatch();
-    bool checkCommandDoor();
+    BOOL checkCommandDoor();
     bool checkCommandDemoAccrpt();
 
     void setCommand(u16 command) { mCommand = command; }
@@ -52,7 +52,7 @@ public:
 struct actor_place {
     cXyz mPosition;
     csXyz mAngle;
-    u8 mRoomNo;
+    s8 mRoomNo;
 };
 
 struct actor_attention_types {
@@ -88,7 +88,7 @@ public:
     /* 0x4E4 */ csXyz mCollisionRot;
     /* 0x4EC */ cXyz mScale;
     /* 0x4F8 */ cXyz mSpeed;
-    /* 0x504 */ Mtx* mCullMtx;
+    /* 0x504 */ MtxP mCullMtx;
     union {
         struct {
             /* 0x508 */ cXyz mMin;

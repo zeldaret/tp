@@ -48,7 +48,7 @@ public:
     void startCheckOld(char const*);
     void endCheck(s16);
     void endCheckOld(char const*);
-    void getMyStaffId(char const*, fopAc_ac_c*, int);
+    s32 getMyStaffId(char const*, fopAc_ac_c*, int);
     void getIsAddvance(int);
     void getMyActIdx(int, char const* const*, int, int, int);
     void getMyNowCutName(int);

@@ -71,7 +71,6 @@ extern "C" void __register_global_object();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_epsilon;
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 //
