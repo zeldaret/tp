@@ -46,6 +46,7 @@ f32 tanf(f32);
 
 extern f32 __float_nan[4];
 extern f32 __float_epsilon[4];
+extern f32 __float_max[4];
 
 inline f64 sqrt_step(f64 tmpd, f32 mag) {
     return tmpd * 0.5 * (3.0 - mag * (tmpd * tmpd));

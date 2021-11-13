@@ -177,14 +177,11 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void tan();
 extern "C" extern void* __vt__25mDoExt_McaMorfCallBack1_c[3];
 extern "C" u8 dist_table__12dAttention_c[6552];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 __float_nan;
-extern "C" extern u32 __float_max;
 extern "C" extern u8 data_80450F58[8];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
