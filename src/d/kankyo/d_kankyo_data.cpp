@@ -5,6 +5,7 @@
 
 #include "d/kankyo/d_kankyo_data.h"
 #include "dol2asm.h"
+#include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 
 //
@@ -903,19 +904,16 @@ dKyd_lightSchejule* dKyd_schejule_boss_getp() {
     return l_time_attribute_boss;
 }
 
-// Two _GXFogAdjTable back-to-back
 /* 803A9A94-803A9AC0 006BB4 0028+04 1/1 0/0 0/0 .data            S_xfog_table_data */
-static u16 S_xfog_table_data[20] = {
-    260, 260, 270, 280, 290, 300, 310, 320, 330, 340,
-    250, 260, 280, 320, 350, 400, 480, 550, 600, 800,
-};
+static GXFogAdjTable S_xfog_table_data[2] = {{{260, 260, 270, 280, 290, 300, 310, 320, 330, 340}},
+                                             {{250, 260, 280, 320, 350, 400, 480, 550, 600, 800}}};
 
 // tblIdx must be 0 or 1. Not sure when 1 is used, and didn't see a visible difference when manually
 // set it.
 /* 80056A24-80056A64 051364 0040+00 0/0 2/2 0/0 .text            dKyd_xfog_table_set__FUc */
 void dKyd_xfog_table_set(u8 tblIdx) {
     for (int i = 0; i < 10; i++) {
-        u16 fogAdjTableEntry = *(S_xfog_table_data + ((tblIdx & 0xff) * 10) + i);
+        u16 fogAdjTableEntry = S_xfog_table_data[tblIdx & 0xff].r[i];
         ((u16*)g_env_light)[0x856 + i] = fogAdjTableEntry;
         // TODO: update this cast once g_env_light is broken up.
     }
