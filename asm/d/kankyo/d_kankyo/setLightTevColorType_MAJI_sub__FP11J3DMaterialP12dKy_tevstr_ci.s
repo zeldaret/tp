@@ -154,7 +154,7 @@ lbl_801A45FC:
 /* 801A4654  4E 80 04 21 */	bctrl 
 lbl_801A4658:
 /* 801A4658  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
-/* 801A465C  34 63 4A C8 */	addic. r3, r3, j3dSys@l /* 0x80434AC8@l */
+/* 801A465C  34 63 4A C8 */	addic. r3, r3, 0x80434AC8@l /* 0x80434AC8@l */
 /* 801A4660  41 82 00 28 */	beq lbl_801A4688
 /* 801A4664  38 99 03 2C */	addi r4, r25, 0x32c
 /* 801A4668  38 A1 00 0C */	addi r5, r1, 0xc
