@@ -31,6 +31,12 @@ struct dKyd_l_vr_box_data_struct {
     u8 data[21];
 };
 
+// Invented name. TODO: this should be renamed and probably moved to the header
+// file once l_pselect_default is looked into more.
+struct dKyd_l_pselect_default_struct {
+    u8 data[12];
+};
+
 //
 // Forward References:
 //
@@ -334,11 +340,9 @@ void* dKyd_dmpalet_getp() {
 
 /* ############################################################################################## */
 /* 803A987C-803A9894 00699C 0018+00 1/1 0/0 0/0 .data            l_pselect_default */
-SECTION_DATA static u8 l_pselect_default[24] = {
-    // 0xC long each; 2 of them here
-    0x00, 0x00, 0x01, 0x02, 0x02, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x04, 0x04, 0x05, 0x06, 0x06, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+static dKyd_l_pselect_default_struct l_pselect_default[2] = {
+    {{0x00, 0x00, 0x01, 0x02, 0x02, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}},
+    {{0x04, 0x04, 0x05, 0x06, 0x06, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}};
 
 /* 800569E8-800569F4 051328 000C+00 0/0 1/1 0/0 .text            dKyd_dmpselect_getp__Fv */
 void* dKyd_dmpselect_getp() {
