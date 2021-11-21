@@ -7,49 +7,17 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-//
-// Types:
-//
-
 namespace JStudio {
 namespace stb {
-struct data {
-    static u8 const gauDataSize_TEParagraph_data[32];
-    static u32 ga4cSignature[1 + 1 /* padding */];
-};
+namespace data {
 
-};  // namespace stb
-
-};  // namespace JStudio
-
-//
-// Forward References:
-//
-
-extern "C" u8 const gauDataSize_TEParagraph_data__Q37JStudio3stb4data[32];
-extern "C" u32 ga4cSignature__Q37JStudio3stb4data[1 + 1 /* padding */];
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 8039AB88-8039ABA8 0271E8 0020+00 0/0 1/1 0/0 .rodata
- * gauDataSize_TEParagraph_data__Q37JStudio3stb4data            */
-SECTION_RODATA u8 const JStudio::stb::data::gauDataSize_TEParagraph_data[32] = {
+const u8 gauDataSize_TEParagraph_data[32] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x04,
     0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x40,
 };
-COMPILER_STRIP_GATE(0x8039AB88, &JStudio::stb::data::gauDataSize_TEParagraph_data);
 
-/* 804554D8-804554E0 003AD8 0004+04 0/0 1/1 0/0 .sdata2          ga4cSignature__Q37JStudio3stb4data
- */
-SECTION_SDATA2 u32 JStudio::stb::data::ga4cSignature[1 + 1 /* padding */] = {
-    0x53544200,
-    /* padding */
-    0x00000000,
-};
+const u32 ga4cSignature = 'STB\0';
+
+}  // namespace data
+}  // namespace stb
+}  // namespace JStudio

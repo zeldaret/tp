@@ -26,12 +26,12 @@ struct data {
 };  // namespace JStudio
 
 namespace JGadget {
-struct binary {
-    struct TEBit {};
+namespace binary {
+struct TEBit {};
 
-    /* 802DC864 */ void parseVariableUInt_16_32_following(void const*, u32*, u32*,
-                                                          JGadget::binary::TEBit*);
-};
+/* 802DC864 */ void parseVariableUInt_16_32_following(void const*, u32*, u32*,
+                                                      JGadget::binary::TEBit*);
+};  // namespace binary
 
 };  // namespace JGadget
 

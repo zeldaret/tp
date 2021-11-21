@@ -11,16 +11,6 @@
 // Types:
 //
 
-namespace JStudio {
-struct object {
-    struct TIDData {
-        /* 80288988 */ void isEqual(JStudio::object::TIDData const&,
-                                    JStudio::object::TIDData const&);
-    };
-};
-
-};  // namespace JStudio
-
 //
 // Forward References:
 //

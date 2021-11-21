@@ -24,11 +24,11 @@ struct TVector_pointer {};
 /* TVector_pointer<JStudio::TFunctionValue*> */
 struct TVector_pointer__template0 {};
 
-struct binary {
-    struct TParse_header_block {
-        /* 802DC8C8 */ ~TParse_header_block();
-    };
+namespace binary {
+struct TParse_header_block {
+    /* 802DC8C8 */ ~TParse_header_block();
 };
+};  // namespace binary
 
 struct TLinkListNode {};
 
@@ -135,14 +135,13 @@ struct TParse {
 
 };  // namespace fvb
 
-struct object {
-    struct TPRObject_ID_equal {};
+namespace object {
+struct TPRObject_ID_equal {};
 
-    struct TIDData {
-        /* 80288988 */ void isEqual(JStudio::object::TIDData const&,
-                                    JStudio::object::TIDData const&);
-    };
+struct TIDData {
+    /* 80288988 */ void isEqual(JStudio::object::TIDData const&, JStudio::object::TIDData const&);
 };
+};  // namespace object
 
 struct TFunctionValue {
     /* 802816A0 */ ~TFunctionValue();

@@ -119,11 +119,11 @@ struct data {
 };  // namespace JStudio
 
 namespace JGadget {
-struct binary {
-    struct TParse_header_block {
-        /* 802DC910 */ void parse_next(void const**, u32);
-    };
+namespace binary {
+struct TParse_header_block {
+    /* 802DC910 */ void parse_next(void const**, u32);
 };
+};  // namespace binary
 
 struct TLinkListNode {};
 

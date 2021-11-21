@@ -59,11 +59,11 @@ struct JMessage {
 };
 
 namespace JGadget {
-struct binary {
-    struct TParse_header_block {
-        /* 802DC8C8 */ ~TParse_header_block();
-    };
+namespace binary {
+struct TParse_header_block {
+    /* 802DC8C8 */ ~TParse_header_block();
 };
+};  // namespace binary
 
 struct TLinkListNode {};
 

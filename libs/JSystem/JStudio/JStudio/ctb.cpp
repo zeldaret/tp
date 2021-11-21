@@ -55,14 +55,13 @@ struct TParse {
 
 };  // namespace ctb
 
-struct object {
-    struct TPRObject_ID_equal {};
+namespace object {
+struct TPRObject_ID_equal {};
 
-    struct TIDData {
-        /* 80288988 */ void isEqual(JStudio::object::TIDData const&,
-                                    JStudio::object::TIDData const&);
-    };
+struct TIDData {
+    /* 80288988 */ void isEqual(JStudio::object::TIDData const&, JStudio::object::TIDData const&);
 };
+};  // namespace object
 
 };  // namespace JStudio
 
@@ -74,11 +73,11 @@ struct TLinkList__template0 {
     struct iterator {};
 };
 
-struct binary {
-    struct TParse_header_block {
-        /* 802DC8C8 */ ~TParse_header_block();
-    };
+namespace binary {
+struct TParse_header_block {
+    /* 802DC8C8 */ ~TParse_header_block();
 };
+};  // namespace binary
 
 struct TLinkListNode {};
 
