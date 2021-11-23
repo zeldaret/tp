@@ -6,6 +6,7 @@ LIBJSTUDIO_A_CPP_FILES := \
 	libs/JSystem/JStudio/JStudio/ctb.cpp \
 	libs/JSystem/JStudio/JStudio/ctb-data.cpp \
 	libs/JSystem/JStudio/JStudio/functionvalue.cpp \
+	libs/JSystem/JStudio/JStudio/functionvalue-inline.cpp \
 	libs/JSystem/JStudio/JStudio/fvb.cpp \
 	libs/JSystem/JStudio/JStudio/fvb-data.cpp \
 	libs/JSystem/JStudio/JStudio/fvb-data-parse.cpp \
@@ -22,6 +23,7 @@ LIBJSTUDIO_A_O_FILES := \
 	$(BUILD_DIR)/libs/JSystem/JStudio/JStudio/ctb.o \
 	$(BUILD_DIR)/libs/JSystem/JStudio/JStudio/ctb-data.o \
 	$(BUILD_DIR)/libs/JSystem/JStudio/JStudio/functionvalue.o \
+	$(BUILD_DIR)/libs/JSystem/JStudio/JStudio/functionvalue-inline.o \
 	$(BUILD_DIR)/libs/JSystem/JStudio/JStudio/fvb.o \
 	$(BUILD_DIR)/libs/JSystem/JStudio/JStudio/fvb-data.o \
 	$(BUILD_DIR)/libs/JSystem/JStudio/JStudio/fvb-data-parse.o \
