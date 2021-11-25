@@ -12,189 +12,79 @@
 //
 
 namespace JGadget {
-template <typename A1, typename B1>
-struct TLinkList {};
 /* TLinkList<JStudio::fvb::TObject, 12> */
 struct TLinkList__template1 {
     struct iterator {};
 };
 
-template <typename A1>
-struct TVector_pointer {};
 /* TVector_pointer<JStudio::TFunctionValue*> */
 struct TVector_pointer__template0 {};
-
-namespace binary {
-struct TParse_header_block {
-    /* 802DC8C8 */ ~TParse_header_block();
-};
-};  // namespace binary
-
-struct TLinkListNode {};
-
-struct TNodeLinkList {
-    struct iterator {};
-
-    /* 802DCA1C */ ~TNodeLinkList();
-    /* 802DCBA8 */ void Insert(JGadget::TNodeLinkList::iterator, JGadget::TLinkListNode*);
-    /* 802DCBD4 */ void Erase(JGadget::TLinkListNode*);
-};
-
-struct TVector_pointer_void {
-    /* 802DCCFC */ ~TVector_pointer_void();
-    /* 802DCDA4 */ void insert(void**, void* const&);
-};
 
 };  // namespace JGadget
 
 namespace JStudio {
 namespace fvb {
-struct data {
-    struct TParse_TBlock {};
 
-    struct TParse_TParagraph {
-        struct TData {};
+// struct TControl {
+//     /* 80284668 */ TControl();
+//     /* 80284698 */ ~TControl();
+//     /* 80284704 */ void appendObject(JStudio::fvb::TObject*);
+//     /* 80284750 */ void removeObject(JStudio::fvb::TObject*);
+//     /* 80284780 */ void destroyObject(JStudio::fvb::TObject*);
+//     /* 802847D0 */ void destroyObject_all();
+//     /* 80284834 */ void getObject(void const*, u32);
+//     /* 802848D4 */ void getObject_index(u32);
+// };
 
-        /* 802850AC */ void getData(JStudio::fvb::data::TParse_TParagraph::TData*) const;
-    };
+// struct TObject {
+//     /* 80283F80 */ ~TObject();
+//     /* 80283FC8 */ void prepare(JStudio::fvb::data::TParse_TBlock const&,
+//     JStudio::fvb::TControl*);
+// };
 
-    static f32 ga4cSignature[1 + 1 /* padding */];
-};
+// struct TObject_constant {
+//     /* 80284338 */ TObject_constant(JStudio::fvb::data::TParse_TBlock const&);
+//     /* 802843B8 */ void prepare_data_(JStudio::fvb::data::TParse_TParagraph::TData const&,
+//                                       JStudio::fvb::TControl*);
+//     /* 80284EF4 */ ~TObject_constant();
+// };
 
-struct TObject;
-struct TControl {
-    /* 80284668 */ TControl();
-    /* 80284698 */ ~TControl();
-    /* 80284704 */ void appendObject(JStudio::fvb::TObject*);
-    /* 80284750 */ void removeObject(JStudio::fvb::TObject*);
-    /* 80284780 */ void destroyObject(JStudio::fvb::TObject*);
-    /* 802847D0 */ void destroyObject_all();
-    /* 80284834 */ void getObject(void const*, u32);
-    /* 802848D4 */ void getObject_index(u32);
-};
+// struct TObject_transition {
+//     /* 802843C8 */ TObject_transition(JStudio::fvb::data::TParse_TBlock const&);
+//     /* 80284448 */ void prepare_data_(JStudio::fvb::data::TParse_TParagraph::TData const&,
+//                                       JStudio::fvb::TControl*);
+//     /* 80284E70 */ ~TObject_transition();
+// };
 
-struct TObject {
-    /* 80283F80 */ ~TObject();
-    /* 80283FC8 */ void prepare(JStudio::fvb::data::TParse_TBlock const&, JStudio::fvb::TControl*);
-};
+// struct TObject_list {
+//     /* 80284460 */ TObject_list(JStudio::fvb::data::TParse_TBlock const&);
+//     /* 802844E0 */ void prepare_data_(JStudio::fvb::data::TParse_TParagraph::TData const&,
+//                                       JStudio::fvb::TControl*);
+//     /* 80284DEC */ ~TObject_list();
+// };
 
-struct TObject_composite {
-    /* 80284254 */ TObject_composite(JStudio::fvb::data::TParse_TBlock const&);
-    /* 802842D4 */ void prepare_data_(JStudio::fvb::data::TParse_TParagraph::TData const&,
-                                      JStudio::fvb::TControl*);
-    /* 80284F78 */ ~TObject_composite();
-};
+// struct TObject_list_parameter {
+//     /* 80284500 */ TObject_list_parameter(JStudio::fvb::data::TParse_TBlock const&);
+//     /* 80284580 */ void prepare_data_(JStudio::fvb::data::TParse_TParagraph::TData const&,
+//                                       JStudio::fvb::TControl*);
+//     /* 80284D68 */ ~TObject_list_parameter();
+// };
 
-struct TObject_constant {
-    /* 80284338 */ TObject_constant(JStudio::fvb::data::TParse_TBlock const&);
-    /* 802843B8 */ void prepare_data_(JStudio::fvb::data::TParse_TParagraph::TData const&,
-                                      JStudio::fvb::TControl*);
-    /* 80284EF4 */ ~TObject_constant();
-};
+// struct TObject_hermite {
+//     /* 802845B0 */ TObject_hermite(JStudio::fvb::data::TParse_TBlock const&);
+//     /* 80284630 */ void prepare_data_(JStudio::fvb::data::TParse_TParagraph::TData const&,
+//                                       JStudio::fvb::TControl*);
+//     /* 80284CE4 */ ~TObject_hermite();
+// };
 
-struct TObject_transition {
-    /* 802843C8 */ TObject_transition(JStudio::fvb::data::TParse_TBlock const&);
-    /* 80284448 */ void prepare_data_(JStudio::fvb::data::TParse_TParagraph::TData const&,
-                                      JStudio::fvb::TControl*);
-    /* 80284E70 */ ~TObject_transition();
-};
-
-struct TObject_list {
-    /* 80284460 */ TObject_list(JStudio::fvb::data::TParse_TBlock const&);
-    /* 802844E0 */ void prepare_data_(JStudio::fvb::data::TParse_TParagraph::TData const&,
-                                      JStudio::fvb::TControl*);
-    /* 80284DEC */ ~TObject_list();
-};
-
-struct TObject_list_parameter {
-    /* 80284500 */ TObject_list_parameter(JStudio::fvb::data::TParse_TBlock const&);
-    /* 80284580 */ void prepare_data_(JStudio::fvb::data::TParse_TParagraph::TData const&,
-                                      JStudio::fvb::TControl*);
-    /* 80284D68 */ ~TObject_list_parameter();
-};
-
-struct TObject_hermite {
-    /* 802845B0 */ TObject_hermite(JStudio::fvb::data::TParse_TBlock const&);
-    /* 80284630 */ void prepare_data_(JStudio::fvb::data::TParse_TParagraph::TData const&,
-                                      JStudio::fvb::TControl*);
-    /* 80284CE4 */ ~TObject_hermite();
-};
-
-struct TFactory {
-    /* 80284918 */ ~TFactory();
-    /* 80284960 */ void create(JStudio::fvb::data::TParse_TBlock const&);
-    /* 80284AA0 */ void destroy(JStudio::fvb::TObject*);
-};
-
-struct TParse {
-    /* 80284ADC */ TParse(JStudio::fvb::TControl*);
-    /* 80284AFC */ ~TParse();
-    /* 80284B5C */ void parseHeader_next(void const**, u32*, u32);
-    /* 80284BF0 */ void parseBlock_next(void const**, u32*, u32);
-};
+// struct TParse {
+//     /* 80284ADC */ TParse(JStudio::fvb::TControl*);
+//     /* 80284AFC */ ~TParse();
+//     /* 80284B5C */ void parseHeader_next(void const**, u32*, u32);
+//     /* 80284BF0 */ void parseBlock_next(void const**, u32*, u32);
+// };
 
 };  // namespace fvb
-
-namespace object {
-struct TPRObject_ID_equal {};
-
-struct TIDData {
-    /* 80288988 */ void isEqual(JStudio::object::TIDData const&, JStudio::object::TIDData const&);
-};
-};  // namespace object
-
-struct TFunctionValue {
-    /* 802816A0 */ ~TFunctionValue();
-};
-
-struct TFunctionValueAttribute_range {
-    /* 802819F4 */ void range_set(f64, f64);
-};
-
-struct TFunctionValue_composite {
-    struct TData {};
-
-    /* 80281D5C */ TFunctionValue_composite();
-    /* 80281E5C */ void composite_raw(JGadget::TVector_pointer<JStudio::TFunctionValue*> const&,
-                                      JStudio::TFunctionValue_composite::TData const&, f64);
-    /* 80281EC8 */ void composite_index(JGadget::TVector_pointer<JStudio::TFunctionValue*> const&,
-                                        JStudio::TFunctionValue_composite::TData const&, f64);
-    /* 8028202C */ void
-    composite_parameter(JGadget::TVector_pointer<JStudio::TFunctionValue*> const&,
-                        JStudio::TFunctionValue_composite::TData const&, f64);
-    /* 80282094 */ void composite_add(JGadget::TVector_pointer<JStudio::TFunctionValue*> const&,
-                                      JStudio::TFunctionValue_composite::TData const&, f64);
-    /* 80282118 */ void
-    composite_subtract(JGadget::TVector_pointer<JStudio::TFunctionValue*> const&,
-                       JStudio::TFunctionValue_composite::TData const&, f64);
-    /* 80282200 */ void
-    composite_multiply(JGadget::TVector_pointer<JStudio::TFunctionValue*> const&,
-                       JStudio::TFunctionValue_composite::TData const&, f64);
-    /* 80282284 */ void composite_divide(JGadget::TVector_pointer<JStudio::TFunctionValue*> const&,
-                                         JStudio::TFunctionValue_composite::TData const&, f64);
-};
-
-struct TFunctionValue_constant {
-    /* 8028236C */ TFunctionValue_constant();
-};
-
-struct TFunctionValue_transition {
-    /* 802823EC */ TFunctionValue_transition();
-};
-
-struct TFunctionValue_list {
-    /* 802826BC */ TFunctionValue_list();
-};
-
-struct TFunctionValue_list_parameter {
-    /* 80282D34 */ TFunctionValue_list_parameter();
-    /* 80282DD8 */ void data_set(f32 const*, u32);
-};
-
-struct TFunctionValue_hermite {
-    /* 802832C4 */ TFunctionValue_hermite();
-    /* 8028336C */ void data_set(f32 const*, u32, u32);
-};
 
 };  // namespace JStudio
 
@@ -221,7 +111,7 @@ extern "C" static void func_80284210();
 extern "C" static void func_8028421C();
 extern "C" static void func_80284228();
 extern "C" static void func_80284234();
-extern "C" static void func_80284240();
+// extern "C" static void func_80284240();
 extern "C" void __ct__Q37JStudio3fvb17TObject_compositeFRCQ47JStudio3fvb4data13TParse_TBlock();
 extern "C" void
 prepare_data___Q37JStudio3fvb17TObject_compositeFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl();
@@ -288,8 +178,6 @@ extern "C" void __ct__Q27JStudio22TFunctionValue_hermiteFv();
 extern "C" void data_set__Q27JStudio22TFunctionValue_hermiteFPCfUlUl();
 extern "C" void
 getData__Q47JStudio3fvb4data17TParse_TParagraphCFPQ57JStudio3fvb4data17TParse_TParagraph5TData();
-extern "C" void
-isEqual__Q37JStudio6object7TIDDataFRCQ37JStudio6object7TIDDataRCQ37JStudio6object7TIDData();
 extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();
 extern "C" void __dt__Q37JGadget6binary19TParse_header_blockFv();
@@ -305,7 +193,7 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_23();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void memcmp();
+extern "C" int memcmp(const void*, const void*, u32);
 extern "C" extern void* __vt__Q37JGadget6binary19TParse_header_block[5];
 extern "C" extern void* __vt__Q27JStudio22TFunctionValue_hermite[8];
 extern "C" extern void* __vt__Q27JStudio29TFunctionValue_list_parameter[8];
@@ -482,129 +370,242 @@ SECTION_DATA extern void* __vt__Q37JStudio3fvb7TObject[4] = {
     (void*)NULL,
 };
 
-/* 80283F80-80283FC8 27E8C0 0048+00 6/6 0/0 0/0 .text            __dt__Q37JStudio3fvb7TObjectFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::fvb::TObject::~TObject() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/__dt__Q37JStudio3fvb7TObjectFv.s"
-}
-#pragma pop
+namespace JStudio {
+namespace fvb {
 
+TObject::~TObject() {}
+
+#ifdef NONMATCHING
+void TObject::prepare(data::TParse_TBlock const& rBlock, TControl* pControl) {
+    ASSERT(pfv_ != 0);
+
+    ASSERT(pControl != 0);
+    TFunctionValueAttributeSet set = pfv_->getAttributeSet();
+    const void* pNext = rBlock.getNext();
+    const void* pData = rBlock.getContent();
+    while (pData < pNext) {
+        data::TParse_TParagraph para(pData);
+        data::TParse_TParagraph::TData dat;
+        para.getData(&dat);
+        u32 u32Type = dat.u32Type;
+        u32 u32Size = dat.u32Size;
+        const void* pContent = dat.pContent;
+        switch (u32Type) {
+        case 0:
+            pfv_->prepare();
+            return;
+        case 1:
+            prepare_data_(dat, pControl);
+            break;
+        case 0x10: {
+            JUT_EXPECT(u32Size >= 4);
+            ASSERT(pContent != 0);
+            TFunctionValueAttribute_refer* pfvaRefer = set.refer_get();
+            JUT_EXPECT(pfvaRefer != NULL);
+            if (pfvaRefer == NULL) {
+                JUTWarn w;
+                w << "invalid paragraph";
+            } else {
+                JGadget::TVector_pointer<TFunctionValue*>& rCnt = pfvaRefer->refer_referContainer();
+                data::TParse_TParagraph::TData** pBegin =
+                    (data::TParse_TParagraph::TData**)rCnt.pBegin_;
+                // todo: these definitely use a different struct
+                for (data::TParse_TParagraph::TData* i = *pBegin; i != NULL; i = *pBegin) {
+                    TObject* pObject = pControl->getObject(pContent, i->u32Size);
+                    if (pObject == NULL) {
+                        JUTWarn w;
+                        w << "object not found by ID";
+                    } else {
+                        TFunctionValue* const& rfv = pObject->referFunctionValue();
+                        rCnt.push_back(rfv);
+                    }
+                    *pBegin += align_roundUp(i->u32Size, 4);
+                }
+            }
+        } break;
+        case 0x11: {
+            JUT_EXPECT(u32Size >= 4);
+            ASSERT(pContent != 0);
+            TFunctionValueAttribute_refer* pfvaRefer = set.refer_get();
+            JUT_EXPECT(pfvaRefer != NULL);
+            if (pfvaRefer == NULL) {
+                JUTWarn w;
+                w << "invalid paragraph";
+            } else {
+                JGadget::TVector_pointer<TFunctionValue*>& rCnt = pfvaRefer->refer_referContainer();
+                data::TParse_TParagraph::TData** pBegin =
+                    (data::TParse_TParagraph::TData**)rCnt.pBegin_;
+                for (data::TParse_TParagraph::TData* i = *pBegin; i != NULL; i = *pBegin) {
+                    TObject* pObject = pControl->getObject_index(u32Size);
+                    if (pObject == NULL) {
+                        JUTWarn w;
+                        w << "object not found by index : " << u32Size;
+                    } else {
+                        TFunctionValue* const& rfv = pObject->referFunctionValue();
+                        rCnt.push_back(rfv);
+                    }
+                    *pBegin += align_roundUp(i->u32Size, 4);
+                }
+            }
+        } break;
+        case 0x12: {
+            JUT_EXPECT(u32Size == 8);
+            ASSERT(pContent != 0);
+            TFunctionValueAttribute_range* pfvaRange = set.range_get();
+            JUT_EXPECT(pfvaRange != NULL);
+            if (pfvaRange == NULL) {
+                JUTWarn w;
+                w << "invalid paragraph";
+            } else {
+                f64* arr = (f64*)pContent;
+                pfvaRange->range_set(arr[0], arr[1]);
+            }
+        } break;
+        case 0x13: {
+            JUT_EXPECT(u32Size == 4);
+            ASSERT(pContent != 0);
+            TFunctionValueAttribute_range* pfvaRange = set.range_get();
+            JUT_EXPECT(pfvaRange != NULL);
+            if (pfvaRange == NULL) {
+                JUTWarn w;
+                w << "invalid paragraph";
+            } else {
+                TFunctionValue::TEProgress prog = *(TFunctionValue::TEProgress*)pContent;
+                pfvaRange->range_setProgress(prog);
+            }
+        } break;
+        case 0x14: {
+            JUT_EXPECT(u32Size == 4);
+            ASSERT(pContent != 0);
+            TFunctionValueAttribute_range* pfvaRange = set.range_get();
+            JUT_EXPECT(pfvaRange != NULL);
+            if (pfvaRange == NULL) {
+                JUTWarn w;
+                w << "invalid paragraph";
+            } else {
+                TFunctionValue::TEAdjust adjust = *(TFunctionValue::TEAdjust*)pContent;
+                pfvaRange->range_setAdjust(adjust);
+            }
+        } break;
+        case 0x15: {
+            JUT_EXPECT(u32Size == 4);
+            ASSERT(pContent != 0);
+            TFunctionValueAttribute_range* pfvaRange = set.range_get();
+            JUT_EXPECT(pfvaRange != NULL);
+            if (pfvaRange == NULL) {
+                JUTWarn w;
+                w << "invalid paragraph";
+            } else {
+                TFunctionValue::TEOutside* out = (TFunctionValue::TEOutside*)pContent;
+                pfvaRange->range_setOutside(out[0], out[1]);
+            }
+        } break;
+        case 0x16: {
+            JUT_EXPECT(u32Size == 4);
+            ASSERT(pContent != 0);
+            TFunctionValueAttribute_interpolate* pfvaInterpolate = set.interpolate_get();
+            JUT_EXPECT(pfvaInterpolate != NULL);
+            if (pfvaInterpolate == NULL) {
+                JUTWarn w;
+                w << "invalid paragraph";
+            } else {
+                TFunctionValue::TEInterpolate interp = *(TFunctionValue::TEInterpolate*)pContent;
+                pfvaInterpolate->interpolate_set(interp);
+            }
+        } break;
+        default:
+            JUTWarn w;
+            w << "unknown paragraph : " << u32Type;
+        }
+        ASSERT(pData != 0);
+    }
+    JUT_EXPECT(pData == pNext);
+    pfv_->prepare();
+}
+#else
 /* 80283FC8-802841EC 27E908 0224+00 2/1 0/0 0/0 .text
  * prepare__Q37JStudio3fvb7TObjectFRCQ47JStudio3fvb4data13TParse_TBlockPQ37JStudio3fvb8TControl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JStudio::fvb::TObject::prepare(JStudio::fvb::data::TParse_TBlock const& param_0,
-                                        JStudio::fvb::TControl* param_1) {
+asm void TObject::prepare(data::TParse_TBlock const& param_0, TControl* param_1) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/fvb/func_80283FC8.s"
 }
 #pragma pop
 
-/* 802841EC-802841F8 27EB2C 000C+00 1/0 0/0 0/0 .text
- * getCompositeData_raw___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_802841EC() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/func_802841EC.s"
-}
-#pragma pop
+#endif
+namespace {
 
-/* 802841F8-80284204 27EB38 000C+00 1/0 0/0 0/0 .text
- * getCompositeData_index___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_802841F8() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/func_802841F8.s"
+TFunctionValue_composite::TData getCompositeData_raw_(const void* arg1) {
+    return TFunctionValue_composite::TData(*(const void**)arg1);
 }
-#pragma pop
 
-/* 80284204-80284210 27EB44 000C+00 1/0 0/0 0/0 .text
- * getCompositeData_parameter___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_80284204() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/func_80284204.s"
+TFunctionValue_composite::TData getCompositeData_index_(const void* arg1) {
+    return TFunctionValue_composite::TData(*(u32*)arg1);
 }
-#pragma pop
 
-/* 80284210-8028421C 27EB50 000C+00 1/0 0/0 0/0 .text
- * getCompositeData_add___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_80284210() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/func_80284210.s"
+TFunctionValue_composite::TData getCompositeData_parameter_(const void* arg1) {
+    return TFunctionValue_composite::TData(*(f32*)arg1);
 }
-#pragma pop
 
-/* 8028421C-80284228 27EB5C 000C+00 1/0 0/0 0/0 .text
- * getCompositeData_subtract___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8028421C() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/func_8028421C.s"
+TFunctionValue_composite::TData getCompositeData_add_(const void* arg1) {
+    return TFunctionValue_composite::TData(*(f32*)arg1);
 }
-#pragma pop
 
-/* 80284228-80284234 27EB68 000C+00 1/0 0/0 0/0 .text
- * getCompositeData_multiply___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_80284228() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/func_80284228.s"
+TFunctionValue_composite::TData getCompositeData_subtract_(const void* arg1) {
+    return TFunctionValue_composite::TData(*(f32*)arg1);
 }
-#pragma pop
 
-/* 80284234-80284240 27EB74 000C+00 1/0 0/0 0/0 .text
- * getCompositeData_divide___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_80284234() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/func_80284234.s"
+TFunctionValue_composite::TData getCompositeData_multiply_(const void* arg1) {
+    return TFunctionValue_composite::TData(*(f32*)arg1);
 }
-#pragma pop
+
+TFunctionValue_composite::TData getCompositeData_divide_(const void* arg1) {
+    return TFunctionValue_composite::TData(*(f32*)arg1);
+}
+
+}  // namespace
+
+}  // namespace fvb
+}  // namespace JStudio
+
+using namespace JStudio::fvb;
 
 /* ############################################################################################## */
 /* 8039AA00-8039AA40 -00001 0040+00 1/1 0/0 0/0 .rodata
  * saCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@     */
 SECTION_RODATA static void* const data_8039AA00[16] = {
-    (void*)NULL,          (void*)NULL,          (void*)func_80281E5C, (void*)func_802841EC,
-    (void*)func_80281EC8, (void*)func_802841F8, (void*)func_8028202C, (void*)func_80284204,
-    (void*)func_80282094, (void*)func_80284210, (void*)func_80282118, (void*)func_8028421C,
-    (void*)func_80282200, (void*)func_80284228, (void*)func_80282284, (void*)func_80284234,
+    (void*)NULL,          (void*)NULL,
+    (void*)func_80281E5C, (void*)getCompositeData_raw_,
+    (void*)func_80281EC8, (void*)getCompositeData_index_,
+    (void*)func_8028202C, (void*)getCompositeData_parameter_,
+    (void*)func_80282094, (void*)getCompositeData_add_,
+    (void*)func_80282118, (void*)getCompositeData_subtract_,
+    (void*)func_80282200, (void*)getCompositeData_multiply_,
+    (void*)func_80282284, (void*)getCompositeData_divide_,
 };
-COMPILER_STRIP_GATE(0x8039AA00, &data_8039AA00);
+// COMPILER_STRIP_GATE(0x8039AA00, &data_8039AA00);
 
 /* 80284240-80284254 27EB80 0014+00 1/1 0/0 0/0 .text
  * getCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@FQ47JStudio3fvb4data11TEComposite */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void func_80284240() {
+static asm data::CompositeOperation* func_80284240(data::TEComposite comp) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/fvb/func_80284240.s"
 }
 #pragma pop
 
-/* 80284254-802842D4 27EB94 0080+00 1/1 0/0 0/0 .text
- * __ct__Q37JStudio3fvb17TObject_compositeFRCQ47JStudio3fvb4data13TParse_TBlock */
+namespace JStudio {
+namespace fvb {
+
+#ifdef NONMATCHING
+TObject_composite::TObject_composite(const data::TParse_TBlock& block) : TObject(block, &fnValue) {}
+#else
+// /* 80284254-802842D4 27EB94 0080+00 1/1 0/0 0/0 .text
+//  * __ct__Q37JStudio3fvb17TObject_compositeFRCQ47JStudio3fvb4data13TParse_TBlock */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -614,170 +615,175 @@ asm JStudio::fvb::TObject_composite::TObject_composite(
 #include "asm/JSystem/JStudio/JStudio/fvb/__ct__Q37JStudio3fvb17TObject_compositeFRCQ47JStudio3fvb4data13TParse_TBlock.s"
 }
 #pragma pop
+#endif
 
+#ifdef NONMATCHING  // incomplete
+void TObject_composite::prepare_data_(const data::TParse_TParagraph::TData& rData,
+                                      TControl* control) {
+    ASSERT(rData.u32Type == data::PARAGRAPH_DATA);
+
+    u32 u32Size = rData.u32Size;
+    JUT_EXPECT(u32Size == 8);
+
+    const TFunctionValue_composite* pContent =
+        static_cast<const TFunctionValue_composite*>(rData.pContent);
+    ASSERT(pContent != NULL);
+
+    data::CompositeOperation* ops = func_80284240(*(data::TEComposite*)pContent);
+    data::CompositeOperation pfn = ops[1];
+
+    ASSERT(pfn != NULL);
+
+    pfn(pContent->data);
+    fnValue.data_set(*ops, pContent->data);
+}
+#else
 /* 802842D4-80284338 27EC14 0064+00 1/0 0/0 0/0 .text
  * prepare_data___Q37JStudio3fvb17TObject_compositeFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JStudio::fvb::TObject_composite::prepare_data_(
-    JStudio::fvb::data::TParse_TParagraph::TData const& param_0, JStudio::fvb::TControl* param_1) {
+asm void TObject_composite::prepare_data_(data::TParse_TParagraph::TData const& param_0,
+                                          TControl* param_1) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/fvb/func_802842D4.s"
 }
 #pragma pop
+#endif
 
 /* 80284338-802843B8 27EC78 0080+00 1/1 0/0 0/0 .text
  * __ct__Q37JStudio3fvb16TObject_constantFRCQ47JStudio3fvb4data13TParse_TBlock */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JStudio::fvb::TObject_constant::TObject_constant(
-    JStudio::fvb::data::TParse_TBlock const& param_0) {
+asm TObject_constant::TObject_constant(data::TParse_TBlock const& param_0) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/fvb/__ct__Q37JStudio3fvb16TObject_constantFRCQ47JStudio3fvb4data13TParse_TBlock.s"
 }
 #pragma pop
 
-/* 802843B8-802843C8 27ECF8 0010+00 1/0 0/0 0/0 .text
- * prepare_data___Q37JStudio3fvb16TObject_constantFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::fvb::TObject_constant::prepare_data_(
-    JStudio::fvb::data::TParse_TParagraph::TData const& param_0, JStudio::fvb::TControl* param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/func_802843B8.s"
+void TObject_constant::prepare_data_(const data::TParse_TParagraph::TData& rData,
+                                     TControl* control) {
+    ASSERT(rData.u32Type == data::PARAGRAPH_DATA);
+
+    u32 u32Size = rData.u32Size;
+    JUT_EXPECT(u32Size == 4);
+
+    const f32* pContent = static_cast<const f32*>(rData.pContent);
+    ASSERT(pContent != NULL);
+
+    fnValue.data_set(pContent[0]);
 }
-#pragma pop
 
 /* 802843C8-80284448 27ED08 0080+00 1/1 0/0 0/0 .text
  * __ct__Q37JStudio3fvb18TObject_transitionFRCQ47JStudio3fvb4data13TParse_TBlock */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JStudio::fvb::TObject_transition::TObject_transition(
-    JStudio::fvb::data::TParse_TBlock const& param_0) {
+asm TObject_transition::TObject_transition(data::TParse_TBlock const& param_0) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/fvb/__ct__Q37JStudio3fvb18TObject_transitionFRCQ47JStudio3fvb4data13TParse_TBlock.s"
 }
 #pragma pop
 
-/* 80284448-80284460 27ED88 0018+00 1/0 0/0 0/0 .text
- * prepare_data___Q37JStudio3fvb18TObject_transitionFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::fvb::TObject_transition::prepare_data_(
-    JStudio::fvb::data::TParse_TParagraph::TData const& param_0, JStudio::fvb::TControl* param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/func_80284448.s"
+void TObject_transition::prepare_data_(const data::TParse_TParagraph::TData& rData,
+                                       TControl* control) {
+    ASSERT(rData.u32Type == data::PARAGRAPH_DATA);
+
+    u32 u32Size = rData.u32Size;
+    JUT_EXPECT(u32size == 8);
+
+    const f32* pContent = static_cast<const f32*>(rData.pContent);
+    ASSERT(pContent != NULL);
+
+    fnValue.data_set(pContent[0], pContent[1]);
 }
-#pragma pop
 
 /* 80284460-802844E0 27EDA0 0080+00 1/1 0/0 0/0 .text
  * __ct__Q37JStudio3fvb12TObject_listFRCQ47JStudio3fvb4data13TParse_TBlock */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JStudio::fvb::TObject_list::TObject_list(JStudio::fvb::data::TParse_TBlock const& param_0) {
+asm TObject_list::TObject_list(data::TParse_TBlock const& param_0) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/fvb/__ct__Q37JStudio3fvb12TObject_listFRCQ47JStudio3fvb4data13TParse_TBlock.s"
 }
 #pragma pop
 
-/* 802844E0-80284500 27EE20 0020+00 1/0 0/0 0/0 .text
- * prepare_data___Q37JStudio3fvb12TObject_listFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::fvb::TObject_list::prepare_data_(
-    JStudio::fvb::data::TParse_TParagraph::TData const& param_0, JStudio::fvb::TControl* param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/func_802844E0.s"
+void TObject_list::prepare_data_(const data::TParse_TParagraph::TData& rData, TControl* control) {
+    ASSERT(rData.u32Type == data::PARAGRAPH_DATA);
+
+    u32 u32Size = rData.u32Size;
+    JUT_EXPECT(u32size >= 8);
+
+    const ListData* pContent = static_cast<const ListData*>(rData.pContent);
+    ASSERT(pContent != NULL);
+
+    fnValue.data_setInterval(pContent->_0);
+    fnValue.data_set(pContent->_8, pContent->_4);
 }
-#pragma pop
 
 /* 80284500-80284580 27EE40 0080+00 1/1 0/0 0/0 .text
  * __ct__Q37JStudio3fvb22TObject_list_parameterFRCQ47JStudio3fvb4data13TParse_TBlock */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JStudio::fvb::TObject_list_parameter::TObject_list_parameter(
-    JStudio::fvb::data::TParse_TBlock const& param_0) {
+asm TObject_list_parameter::TObject_list_parameter(data::TParse_TBlock const& param_0) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/fvb/__ct__Q37JStudio3fvb22TObject_list_parameterFRCQ47JStudio3fvb4data13TParse_TBlock.s"
 }
 #pragma pop
 
-/* 80284580-802845B0 27EEC0 0030+00 1/0 0/0 0/0 .text
- * prepare_data___Q37JStudio3fvb22TObject_list_parameterFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::fvb::TObject_list_parameter::prepare_data_(
-    JStudio::fvb::data::TParse_TParagraph::TData const& param_0, JStudio::fvb::TControl* param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/func_80284580.s"
+void TObject_list_parameter::prepare_data_(const data::TParse_TParagraph::TData& rData,
+                                           TControl* control) {
+    ASSERT(rData.u32Type == data::PARAGRAPH_DATA);
+
+    u32 u32Size = rData.u32Size;
+    JUT_EXPECT(u32size >= 8);
+
+    const ListData* pContent = static_cast<const ListData*>(rData.pContent);
+    ASSERT(pContent != NULL);
+
+    fnValue.data_set(pContent->_4, pContent->_0);
 }
-#pragma pop
 
 /* 802845B0-80284630 27EEF0 0080+00 1/1 0/0 0/0 .text
  * __ct__Q37JStudio3fvb15TObject_hermiteFRCQ47JStudio3fvb4data13TParse_TBlock */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JStudio::fvb::TObject_hermite::TObject_hermite(
-    JStudio::fvb::data::TParse_TBlock const& param_0) {
+asm TObject_hermite::TObject_hermite(data::TParse_TBlock const& param_0) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/fvb/__ct__Q37JStudio3fvb15TObject_hermiteFRCQ47JStudio3fvb4data13TParse_TBlock.s"
 }
 #pragma pop
 
-/* 80284630-80284668 27EF70 0038+00 1/0 0/0 0/0 .text
- * prepare_data___Q37JStudio3fvb15TObject_hermiteFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::fvb::TObject_hermite::prepare_data_(
-    JStudio::fvb::data::TParse_TParagraph::TData const& param_0, JStudio::fvb::TControl* param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/func_80284630.s"
-}
-#pragma pop
+void TObject_hermite::prepare_data_(const data::TParse_TParagraph::TData& rData,
+                                    TControl* control) {
+    ASSERT(rData.u32Type == data::PARAGRAPH_DATA);
 
-/* 80284668-80284698 27EFA8 0030+00 0/0 1/1 0/0 .text            __ct__Q37JStudio3fvb8TControlFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::fvb::TControl::TControl() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/__ct__Q37JStudio3fvb8TControlFv.s"
-}
-#pragma pop
+    u32 u32Size = rData.u32Size;
+    JUT_EXPECT(u32size >= 8);
 
-/* 80284698-80284704 27EFD8 006C+00 1/0 1/1 0/0 .text            __dt__Q37JStudio3fvb8TControlFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::fvb::TControl::~TControl() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/__dt__Q37JStudio3fvb8TControlFv.s"
+    const ListData* pContent = static_cast<const ListData*>(rData.pContent);
+    ASSERT(pContent != NULL);
+
+    fnValue.data_set(pContent->_4, pContent->_0 & 0xFFFFFFF, pContent->_0 >> 0x1C);
 }
-#pragma pop
+
+TControl::TControl() : pFactory(NULL) {}
+
+TControl::~TControl() {
+    JUT_EXPECT(ocObject_.empty());
+}
 
 /* 80284704-80284750 27F044 004C+00 1/1 0/0 0/0 .text
  * appendObject__Q37JStudio3fvb8TControlFPQ37JStudio3fvb7TObject */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JStudio::fvb::TControl::appendObject(JStudio::fvb::TObject* param_0) {
+asm void TControl::appendObject(TObject* param_0) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/fvb/appendObject__Q37JStudio3fvb8TControlFPQ37JStudio3fvb7TObject.s"
 }
@@ -788,7 +794,7 @@ asm void JStudio::fvb::TControl::appendObject(JStudio::fvb::TObject* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JStudio::fvb::TControl::removeObject(JStudio::fvb::TObject* param_0) {
+asm void TControl::removeObject(TObject* param_0) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/fvb/removeObject__Q37JStudio3fvb8TControlFPQ37JStudio3fvb7TObject.s"
 }
@@ -799,7 +805,7 @@ asm void JStudio::fvb::TControl::removeObject(JStudio::fvb::TObject* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JStudio::fvb::TControl::destroyObject(JStudio::fvb::TObject* param_0) {
+asm void TControl::destroyObject(TObject* param_0) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/fvb/destroyObject__Q37JStudio3fvb8TControlFPQ37JStudio3fvb7TObject.s"
 }
@@ -810,7 +816,7 @@ asm void JStudio::fvb::TControl::destroyObject(JStudio::fvb::TObject* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JStudio::fvb::TControl::destroyObject_all() {
+asm void TControl::destroyObject_all() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/fvb/destroyObject_all__Q37JStudio3fvb8TControlFv.s"
 }
@@ -820,7 +826,7 @@ asm void JStudio::fvb::TControl::destroyObject_all() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JStudio::fvb::TControl::getObject(void const* param_0, u32 param_1) {
+asm TObject* TControl::getObject(void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/fvb/getObject__Q37JStudio3fvb8TControlFPCvUl.s"
 }
@@ -831,159 +837,121 @@ asm void JStudio::fvb::TControl::getObject(void const* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JStudio::fvb::TControl::getObject_index(u32 param_0) {
+asm TObject* TControl::getObject_index(u32 param_0) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/fvb/getObject_index__Q37JStudio3fvb8TControlFUl.s"
 }
 #pragma pop
 
-/* 80284918-80284960 27F258 0048+00 1/0 1/1 0/0 .text            __dt__Q37JStudio3fvb8TFactoryFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::fvb::TFactory::~TFactory() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/__dt__Q37JStudio3fvb8TFactoryFv.s"
-}
-#pragma pop
+TFactory::~TFactory() {}
 
-/* 80284960-80284AA0 27F2A0 0140+00 1/0 0/0 0/0 .text
- * create__Q37JStudio3fvb8TFactoryFRCQ47JStudio3fvb4data13TParse_TBlock */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::fvb::TFactory::create(JStudio::fvb::data::TParse_TBlock const& param_0) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/create__Q37JStudio3fvb8TFactoryFRCQ47JStudio3fvb4data13TParse_TBlock.s"
+TObject* TFactory::create(data::TParse_TBlock const& rBlock) {
+    switch (rBlock.get_type()) {
+    case 1:
+        return new TObject_composite(rBlock);
+    case 2:
+        return new TObject_constant(rBlock);
+    case 3:
+        return new TObject_transition(rBlock);
+    case 4:
+        return new TObject_list(rBlock);
+    case 5:
+        return new TObject_list_parameter(rBlock);
+    case 6:
+        return new TObject_hermite(rBlock);
+    default:
+        JUTWarn w;
+        w << "unknown type : ";
+        return NULL;
+    }
 }
-#pragma pop
 
-/* 80284AA0-80284ADC 27F3E0 003C+00 1/0 0/0 0/0 .text
- * destroy__Q37JStudio3fvb8TFactoryFPQ37JStudio3fvb7TObject     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::fvb::TFactory::destroy(JStudio::fvb::TObject* param_0) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/destroy__Q37JStudio3fvb8TFactoryFPQ37JStudio3fvb7TObject.s"
+void TFactory::destroy(TObject* pObject) {
+    delete pObject;
 }
-#pragma pop
 
-/* 80284ADC-80284AFC 27F41C 0020+00 0/0 1/1 0/0 .text
- * __ct__Q37JStudio3fvb6TParseFPQ37JStudio3fvb8TControl         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::fvb::TParse::TParse(JStudio::fvb::TControl* param_0) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/__ct__Q37JStudio3fvb6TParseFPQ37JStudio3fvb8TControl.s"
+TParse::TParse(TControl* pControl) : pControl_(pControl) {
+    ASSERT(pControl_ != 0);
 }
-#pragma pop
 
-/* 80284AFC-80284B5C 27F43C 0060+00 1/0 1/1 0/0 .text            __dt__Q37JStudio3fvb6TParseFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::fvb::TParse::~TParse() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/__dt__Q37JStudio3fvb6TParseFv.s"
-}
-#pragma pop
+TParse::~TParse() {}
 
-/* 80284B5C-80284BF0 27F49C 0094+00 1/0 0/0 0/0 .text
- * parseHeader_next__Q37JStudio3fvb6TParseFPPCvPUlUl            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::fvb::TParse::parseHeader_next(void const** param_0, u32* param_1, u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/parseHeader_next__Q37JStudio3fvb6TParseFPPCvPUlUl.s"
-}
-#pragma pop
+bool TParse::parseHeader_next(void const** ppData_inout, u32* puBlock_out, u32 flags) {
+    ASSERT(ppData_inout != 0);
+    ASSERT(puBlock_out != 0);
 
-/* 80284BF0-80284CE4 27F530 00F4+00 1/0 0/0 0/0 .text
- * parseBlock_next__Q37JStudio3fvb6TParseFPPCvPUlUl             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::fvb::TParse::parseBlock_next(void const** param_0, u32* param_1, u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/parseBlock_next__Q37JStudio3fvb6TParseFPPCvPUlUl.s"
-}
-#pragma pop
+    const void* pData = *ppData_inout;
+    ASSERT(pData != 0);
 
-/* 80284CE4-80284D68 27F624 0084+00 1/0 0/0 0/0 .text __dt__Q37JStudio3fvb15TObject_hermiteFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::fvb::TObject_hermite::~TObject_hermite() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/__dt__Q37JStudio3fvb15TObject_hermiteFv.s"
-}
-#pragma pop
+    const data::TParse_THeader header(pData);
+    *ppData_inout = header.getContent();
+    *puBlock_out = header.get_blockNumber();
 
-/* 80284D68-80284DEC 27F6A8 0084+00 1/0 0/0 0/0 .text
- * __dt__Q37JStudio3fvb22TObject_list_parameterFv               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::fvb::TObject_list_parameter::~TObject_list_parameter() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/__dt__Q37JStudio3fvb22TObject_list_parameterFv.s"
-}
-#pragma pop
+    if (memcmp(header.get_signature(), &data::ga4cSignature, 4) != 0) {
+        JUTWarn w;
+        w << "unknown signature";
+        return false;
+    }
 
-/* 80284DEC-80284E70 27F72C 0084+00 1/0 0/0 0/0 .text __dt__Q37JStudio3fvb12TObject_listFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::fvb::TObject_list::~TObject_list() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/__dt__Q37JStudio3fvb12TObject_listFv.s"
+    if (header.get_byteOrder() != 0xFEFF) {
+        JUTWarn w;
+        w << "illegal byte-order";
+        return false;
+    }
+    u16 version = header.get_version();
+    if (version < 2) {
+        JUTWarn w;
+        w << "obselete version : " << (long)0;
+        return false;
+    } else if (version > 0x100) {
+        JUTWarn w;
+        w << "unknown version : " << version;
+        return false;
+    }
+    return true;
 }
-#pragma pop
 
-/* 80284E70-80284EF4 27F7B0 0084+00 1/0 0/0 0/0 .text __dt__Q37JStudio3fvb18TObject_transitionFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::fvb::TObject_transition::~TObject_transition() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/__dt__Q37JStudio3fvb18TObject_transitionFv.s"
-}
-#pragma pop
+bool TParse::parseBlock_next(void const** ppData_inout, u32* puData_out, u32 flags) {
+    ASSERT(ppData_inout != 0);
+    ASSERT(puData_out != 0);
 
-/* 80284EF4-80284F78 27F834 0084+00 1/0 0/0 0/0 .text __dt__Q37JStudio3fvb16TObject_constantFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::fvb::TObject_constant::~TObject_constant() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/__dt__Q37JStudio3fvb16TObject_constantFv.s"
-}
-#pragma pop
+    const void* pData = *ppData_inout;
+    ASSERT(pData != 0);
+    data::TParse_TBlock blk(pData);
+    *ppData_inout = blk.getNext();
+    *puData_out = blk.get_size();
 
-/* 80284F78-80285018 27F8B8 00A0+00 1/0 0/0 0/0 .text __dt__Q37JStudio3fvb17TObject_compositeFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::fvb::TObject_composite::~TObject_composite() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/__dt__Q37JStudio3fvb17TObject_compositeFv.s"
-}
-#pragma pop
+    TControl* pControl = getControl();
+    ASSERT(pControl != 0);
 
-/* 80285018-802850AC 27F958 0094+00 1/1 0/0 0/0 .text
- * find_if<Q37JGadget37TLinkList<Q37JStudio3fvb7TObject,-12>8iterator,Q37JStudio6object18TPRObject_ID_equal>__3stdFQ37JGadget37TLinkList<Q37JStudio3fvb7TObject,-12>8iteratorQ37JGadget37TLinkList<Q37JStudio3fvb7TObject,-12>8iteratorQ37JStudio6object18TPRObject_ID_equal
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void func_80285018(void* _this, JGadget::TLinkList__template1::iterator param_0,
-                                  JGadget::TLinkList__template1::iterator param_1,
-                                  JStudio::object::TPRObject_ID_equal param_2) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb/func_80285018.s"
+    if (flags & 0x10) {
+        if (pControl->getObject(blk.get_ID(), blk.get_IDSize()) != NULL)
+            return 1;
+    }
+    if (flags & 0x20) {
+        return 1;
+    }
+
+    TFactory* pFactory = pControl->getFactory();
+    if (pFactory == NULL) {
+        JUTWarn w;
+        w << "factory not specified";
+        return 0;
+    }
+
+    TObject* pObject = pFactory->create(blk);
+    if (pObject == NULL) {
+        JUTWarn w;
+        w << "can't create function-value";
+        if (flags & 0x40) {
+            return 1;
+        }
+        return 0;
+    }
+    pObject->prepare(blk, pControl);
+    pControl->appendObject(pObject);
+    return 1;
 }
-#pragma pop
+
+}  // namespace fvb
+}  // namespace JStudio

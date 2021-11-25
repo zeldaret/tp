@@ -51,14 +51,20 @@ struct TVector_pointer_void : TVector<void*, TAllocator> {
     /* 802DCCD0 */ TVector_pointer_void(JGadget::TAllocator<void*> const&);
     /* 802DCCFC */ ~TVector_pointer_void();
     /* 802DCDC4 */ void erase(void**, void**);
+    void insert(void**, void* const&);
 
     void clear() { erase(begin(), end()); }
+    void push_back(const void*& ref) { insert(end(), (void* const&)ref); }
 };
 
 template <typename T>
 struct TVector_pointer : TVector_pointer_void {
     // TVector_pointer(const TAllocator<void*>& allocator) : TVector_pointer_void(allocator) {}
     ~TVector_pointer() {}
+
+    void push_back(const T& ref) {
+        static_cast<TVector_pointer_void*>(this)->push_back((const void*&)ref);
+    }
 };
 
 }  // namespace JGadget

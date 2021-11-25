@@ -22,6 +22,7 @@ struct TFunctionValue {
     enum TEProgress { PROG_INIT = 0 };
     enum TEAdjust { ADJ_INIT = 0 };
     enum TEOutside { OUT_INIT = 0 };
+    enum TEInterpolate {};
 
     /* 80281690 */ TFunctionValue();
     /* 802816A0 */ virtual ~TFunctionValue() = 0;
@@ -45,6 +46,10 @@ struct TFunctionValueAttributeSet_const {
                                      TFunctionValueAttribute_interpolate* interp)
         : refer_(refer), range_(range), interp_(interp) {}
 
+    TFunctionValueAttribute_refer* refer_get() const { return refer_; }
+    TFunctionValueAttribute_range* range_get() const { return range_; }
+    TFunctionValueAttribute_interpolate* interpolate_get() const { return interp_; }
+
     /* 0x00 */ TFunctionValueAttribute_refer* refer_;
     /* 0x04 */ TFunctionValueAttribute_range* range_;
     /* 0x08 */ TFunctionValueAttribute_interpolate* interp_;
@@ -55,6 +60,16 @@ struct TFunctionValueAttributeSet : TFunctionValueAttributeSet_const {
                                TFunctionValueAttribute_range* range,
                                TFunctionValueAttribute_interpolate* interp)
         : TFunctionValueAttributeSet_const(refer, range, interp) {}
+
+    TFunctionValueAttribute_refer* refer_get() const {
+        return static_cast<const TFunctionValueAttributeSet_const*>(this)->refer_get();
+    }
+    TFunctionValueAttribute_range* range_get() const {
+        return static_cast<const TFunctionValueAttributeSet_const*>(this)->range_get();
+    }
+    TFunctionValueAttribute_interpolate* interpolate_get() const {
+        return static_cast<const TFunctionValueAttributeSet_const*>(this)->interpolate_get();
+    }
 };
 
 struct TFunctionValueAttribute_refer : JGadget::TVector_pointer<TFunctionValue*> {
@@ -65,6 +80,7 @@ struct TFunctionValueAttribute_refer : JGadget::TVector_pointer<TFunctionValue*>
     /* 802816E8 */ void refer_initialize();
 
     const TFunctionValueAttribute_refer* refer_getContainer() const { return this; }
+    JGadget::TVector_pointer<TFunctionValue*>& refer_referContainer() { return *this; }
     bool refer_isReferring(const TFunctionValue* p) const { return false; }  // todo
 };
 
@@ -121,6 +137,7 @@ struct TFunctionValueAttribute_interpolate {
     void interpolate_initialize() { _40 = 0; }
     void interpolate_prepare() {}
     u32 interpolate_get() const { return _40; }
+    void interpolate_set(TFunctionValue::TEInterpolate interp) { _40 = interp; }
 
     /* 0x40 */ u32 _40;
 };
@@ -158,6 +175,8 @@ struct TFunctionValue_composite : TFunctionValue, TFunctionValueAttribute_refer 
     };
     typedef f64 (*UnkFunc)(f64, const TFunctionValueAttribute_refer*,
                            const TFunctionValue_composite::TData*);
+    typedef f64 (*CompositeFunc)(const JGadget::TVector_pointer<TFunctionValue>&,
+                                 const TFunctionValue_composite::TData&, f64);
 
     /* 80281D5C */ TFunctionValue_composite();
     /* 80283DA4 */ virtual ~TFunctionValue_composite() {}
@@ -180,7 +199,12 @@ struct TFunctionValue_composite : TFunctionValue, TFunctionValueAttribute_refer 
     /* 80282284 */ void composite_divide(TVector_pointer<TFunctionValue*> const&, TData const&,
                                          f64);
 
+    void data_set(CompositeFunc fn, const TData& dat) {
+        pfn_ = (UnkFunc)fn;
+        data_setData(dat);
+    }
     const TData* data_getData() const { return &data; }
+    void data_setData(const TData& dat) { data = dat; }
 
     UnkFunc pfn_;
     TData data;

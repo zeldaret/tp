@@ -11,16 +11,6 @@
 // Types:
 //
 
-namespace JStudio {
-namespace fvb {
-struct data {
-    static f32 ga4cSignature[1 + 1 /* padding */];
-};
-
-};  // namespace fvb
-
-};  // namespace JStudio
-
 //
 // Forward References:
 //
