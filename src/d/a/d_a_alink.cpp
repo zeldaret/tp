@@ -5,6 +5,7 @@
 
 #include "d/a/d_a_alink.h"
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
+#include "JSystem/JStudio/JStudio/stb.h"
 #include "Z2AudioLib/Z2AudioMgr.h"
 #include "d/a/d_a_horse_static.h"
 #include "d/com/d_com_inf_game.h"
@@ -598,20 +599,6 @@ struct dCamera_c {
     /* 80164B64 */ void GetCameraTypeFromCameraName(char const*);
     /* 80181500 */ void GetForceLockOnActor();
 };
-
-namespace JStudio {
-namespace stb {
-struct data {
-    struct TParse_TParagraph_data {
-        struct TData {};
-
-        /* 80289A80 */ void getData(JStudio::stb::data::TParse_TParagraph_data::TData*) const;
-    };
-};
-
-};  // namespace stb
-
-};  // namespace JStudio
 
 struct JASKernel {
     /* 80290B08 */ void getAramHeap();

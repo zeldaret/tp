@@ -22,72 +22,6 @@ struct TVector_pointer__template0 {};
 
 };  // namespace JGadget
 
-namespace JStudio {
-namespace fvb {
-
-// struct TControl {
-//     /* 80284668 */ TControl();
-//     /* 80284698 */ ~TControl();
-//     /* 80284704 */ void appendObject(JStudio::fvb::TObject*);
-//     /* 80284750 */ void removeObject(JStudio::fvb::TObject*);
-//     /* 80284780 */ void destroyObject(JStudio::fvb::TObject*);
-//     /* 802847D0 */ void destroyObject_all();
-//     /* 80284834 */ void getObject(void const*, u32);
-//     /* 802848D4 */ void getObject_index(u32);
-// };
-
-// struct TObject {
-//     /* 80283F80 */ ~TObject();
-//     /* 80283FC8 */ void prepare(JStudio::fvb::data::TParse_TBlock const&,
-//     JStudio::fvb::TControl*);
-// };
-
-// struct TObject_constant {
-//     /* 80284338 */ TObject_constant(JStudio::fvb::data::TParse_TBlock const&);
-//     /* 802843B8 */ void prepare_data_(JStudio::fvb::data::TParse_TParagraph::TData const&,
-//                                       JStudio::fvb::TControl*);
-//     /* 80284EF4 */ ~TObject_constant();
-// };
-
-// struct TObject_transition {
-//     /* 802843C8 */ TObject_transition(JStudio::fvb::data::TParse_TBlock const&);
-//     /* 80284448 */ void prepare_data_(JStudio::fvb::data::TParse_TParagraph::TData const&,
-//                                       JStudio::fvb::TControl*);
-//     /* 80284E70 */ ~TObject_transition();
-// };
-
-// struct TObject_list {
-//     /* 80284460 */ TObject_list(JStudio::fvb::data::TParse_TBlock const&);
-//     /* 802844E0 */ void prepare_data_(JStudio::fvb::data::TParse_TParagraph::TData const&,
-//                                       JStudio::fvb::TControl*);
-//     /* 80284DEC */ ~TObject_list();
-// };
-
-// struct TObject_list_parameter {
-//     /* 80284500 */ TObject_list_parameter(JStudio::fvb::data::TParse_TBlock const&);
-//     /* 80284580 */ void prepare_data_(JStudio::fvb::data::TParse_TParagraph::TData const&,
-//                                       JStudio::fvb::TControl*);
-//     /* 80284D68 */ ~TObject_list_parameter();
-// };
-
-// struct TObject_hermite {
-//     /* 802845B0 */ TObject_hermite(JStudio::fvb::data::TParse_TBlock const&);
-//     /* 80284630 */ void prepare_data_(JStudio::fvb::data::TParse_TParagraph::TData const&,
-//                                       JStudio::fvb::TControl*);
-//     /* 80284CE4 */ ~TObject_hermite();
-// };
-
-// struct TParse {
-//     /* 80284ADC */ TParse(JStudio::fvb::TControl*);
-//     /* 80284AFC */ ~TParse();
-//     /* 80284B5C */ void parseHeader_next(void const**, u32*, u32);
-//     /* 80284BF0 */ void parseBlock_next(void const**, u32*, u32);
-// };
-
-};  // namespace fvb
-
-};  // namespace JStudio
-
 namespace std {
 template <typename A1, typename B1>
 void find_if(/* ... */);
@@ -104,14 +38,7 @@ void func_80285018(void* _this, JGadget::TLinkList__template1::iterator,
 extern "C" void __dt__Q37JStudio3fvb7TObjectFv();
 extern "C" void
 prepare__Q37JStudio3fvb7TObjectFRCQ47JStudio3fvb4data13TParse_TBlockPQ37JStudio3fvb8TControl();
-extern "C" static void func_802841EC();
-extern "C" static void func_802841F8();
-extern "C" static void func_80284204();
-extern "C" static void func_80284210();
-extern "C" static void func_8028421C();
-extern "C" static void func_80284228();
 extern "C" static void func_80284234();
-// extern "C" static void func_80284240();
 extern "C" void __ct__Q37JStudio3fvb17TObject_compositeFRCQ47JStudio3fvb4data13TParse_TBlock();
 extern "C" void
 prepare_data___Q37JStudio3fvb17TObject_compositeFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl();
@@ -585,7 +512,6 @@ SECTION_RODATA static void* const data_8039AA00[16] = {
     (void*)func_80282200, (void*)getCompositeData_multiply_,
     (void*)func_80282284, (void*)getCompositeData_divide_,
 };
-// COMPILER_STRIP_GATE(0x8039AA00, &data_8039AA00);
 
 /* 80284240-80284254 27EB80 0014+00 1/1 0/0 0/0 .text
  * getCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@FQ47JStudio3fvb4data11TEComposite */

@@ -666,7 +666,7 @@ asm void TFunctionValue_composite::composite_divide(TVector_pointer<TFunctionVal
 }
 #pragma pop
 
-TFunctionValue_constant::TFunctionValue_constant() : _0(__float_nan[0]) {}
+TFunctionValue_constant::TFunctionValue_constant() : fValue_(__float_nan[0]) {}
 
 u32 TFunctionValue_constant::getType() const {
     return 2;
@@ -677,7 +677,7 @@ TFunctionValueAttributeSet TFunctionValue_constant::getAttributeSet() {
 }
 
 void TFunctionValue_constant::initialize() {
-    _0 = __float_nan[0];
+    fValue_ = __float_nan[0];
 }
 
 void TFunctionValue_constant::prepare() {
@@ -685,7 +685,7 @@ void TFunctionValue_constant::prepare() {
 }
 
 f64 TFunctionValue_constant::getValue(f64 arg1) {
-    return _0;
+    return fValue_;
 }
 
 TFunctionValue_transition::TFunctionValue_transition() : _48(__float_nan[0]), _50(_48) {}

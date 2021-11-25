@@ -24,7 +24,7 @@ const u32 gu32Mask_TSequence_value_signExpansion = 0xFF000000;
 extern const u32 ga4cSignature;  // 'STB/0'
 extern const u8 gauDataSize_TEParagraph_data[32];
 
-void toString_block(char* a5c, u32 arg1) {
+inline void toString_block(char* a5c, u32 arg1) {
     // from debug, todo
 }
 
@@ -32,14 +32,14 @@ struct THeader {
     struct Target {
         /* 0x00 */ char name[8];  // "jstudio"
         /* 0x08 */ u16 _8[3];
-        /* 0x0e */ u16 target_version;
+        /* 0x0E */ u16 target_version;
     };
 
     /* 0x00 */ char signature[4];
     /* 0x04 */ u16 byte_order;  // must be 0xFEFF
     /* 0x06 */ u16 version;     // 0-1 = obselete, 2-7 = OK
     /* 0x08 */ u32 _8;
-    /* 0x0c */ u32 block_number;
+    /* 0x0C */ u32 block_number;
     /* 0x10 */ Target target;
     /* 0x20 */ u8 content[0];
 };
@@ -51,8 +51,8 @@ struct TBlock {
 
 struct TBlock_object : TBlock {
     /* 0x8 */ u16 flag;
-    /* 0xa */ u16 id_size;
-    /* 0xc */ u8 id[0];  // unique identifier
+    /* 0xA */ u16 id_size;
+    /* 0xC */ u8 id[0];  // unique identifier
     ///* ??? */ u8 content[0];
 };
 

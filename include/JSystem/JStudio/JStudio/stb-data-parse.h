@@ -37,10 +37,10 @@ public:
 class TParse_TSequence : public TParseData_aligned<4> {
 public:
     struct TData {
-        u8 type;
-        u32 param;
-        const void* content;
-        const void* next;
+        /* 0x00 */ u8 type;
+        /* 0x04 */ u32 param;
+        /* 0x08 */ const void* content;
+        /* 0x0C */ const void* next;
     };
 
     TParse_TSequence(const void* content) : TParseData_aligned<4>(content) {}
@@ -53,10 +53,10 @@ public:
 class TParse_TParagraph : public TParseData_aligned<4> {
 public:
     struct TData {
-        u32 type;
-        u32 param;
-        const void* content;
-        const void* next;
+        /* 0x00 */ u32 type;
+        /* 0x04 */ u32 param;
+        /* 0x08 */ const void* content;
+        /* 0x0C */ const void* next;
     };
 
     TParse_TParagraph(const void* content) : TParseData_aligned<4>(content) {}
@@ -65,11 +65,11 @@ public:
 
 struct TParse_TParagraph_data : public TParseData_aligned<4> {
     struct TData {
-        u8 _0;
-        u32 _4;
-        u32 _8;
-        const void* _c;
-        const void* _10;
+        /* 0x00 */ u8 _0;
+        /* 0x04 */ u32 _4;
+        /* 0x08 */ u32 _8;
+        /* 0x0C */ const void* _c;
+        /* 0x10 */ const void* _10;
     };
 
     TParse_TParagraph_data(const void* content) : TParseData_aligned<4>(content) {}

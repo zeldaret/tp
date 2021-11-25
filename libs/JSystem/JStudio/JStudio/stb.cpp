@@ -1,6 +1,6 @@
 #include "JSystem/JStudio/JStudio/stb.h"
 #include "dol2asm.h"
-#include "msl_c/string.h"
+#include "dolphin/types.h"
 
 //
 // Types:

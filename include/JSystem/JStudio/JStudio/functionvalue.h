@@ -11,17 +11,18 @@ namespace JStudio {
 
 typedef f64 (*ExtrapolateParameter)(f64, f64);
 
-struct TFunctionValue;
-struct TFunctionValueAttributeSet;
+class TFunctionValue;
+class TFunctionValueAttributeSet;
 
-struct TFunctionValueAttribute_refer;
-struct TFunctionValueAttribute_range;
-struct TFunctionValueAttribute_interpolate;
+class TFunctionValueAttribute_refer;
+class TFunctionValueAttribute_range;
+class TFunctionValueAttribute_interpolate;
 
-struct TFunctionValue {
-    enum TEProgress { PROG_INIT = 0 };
-    enum TEAdjust { ADJ_INIT = 0 };
-    enum TEOutside { OUT_INIT = 0 };
+class TFunctionValue {
+public:
+    enum TEProgress { PROG_INIT };
+    enum TEAdjust { ADJ_INIT };
+    enum TEOutside { OUT_INIT };
     enum TEInterpolate {};
 
     /* 80281690 */ TFunctionValue();
@@ -40,7 +41,8 @@ struct TFunctionValue {
     }
 };
 
-struct TFunctionValueAttributeSet_const {
+class TFunctionValueAttributeSet_const {
+public:
     TFunctionValueAttributeSet_const(TFunctionValueAttribute_refer* refer,
                                      TFunctionValueAttribute_range* range,
                                      TFunctionValueAttribute_interpolate* interp)
@@ -50,12 +52,14 @@ struct TFunctionValueAttributeSet_const {
     TFunctionValueAttribute_range* range_get() const { return range_; }
     TFunctionValueAttribute_interpolate* interpolate_get() const { return interp_; }
 
+private:
     /* 0x00 */ TFunctionValueAttribute_refer* refer_;
     /* 0x04 */ TFunctionValueAttribute_range* range_;
     /* 0x08 */ TFunctionValueAttribute_interpolate* interp_;
 };
 
-struct TFunctionValueAttributeSet : TFunctionValueAttributeSet_const {
+class TFunctionValueAttributeSet : public TFunctionValueAttributeSet_const {
+public:
     TFunctionValueAttributeSet(TFunctionValueAttribute_refer* refer,
                                TFunctionValueAttribute_range* range,
                                TFunctionValueAttribute_interpolate* interp)
@@ -72,7 +76,8 @@ struct TFunctionValueAttributeSet : TFunctionValueAttributeSet_const {
     }
 };
 
-struct TFunctionValueAttribute_refer : JGadget::TVector_pointer<TFunctionValue*> {
+class TFunctionValueAttribute_refer : public JGadget::TVector_pointer<TFunctionValue*> {
+public:
     // TFunctionValueAttribute_refer() :
     // JGadget::TVector_pointer<TFunctionValue*>(JGadget::TAllocator<void*>()) {}
     ~TFunctionValueAttribute_refer() {}
@@ -84,7 +89,8 @@ struct TFunctionValueAttribute_refer : JGadget::TVector_pointer<TFunctionValue*>
     bool refer_isReferring(const TFunctionValue* p) const { return false; }  // todo
 };
 
-struct TFunctionValueAttribute_range {
+class TFunctionValueAttribute_range {
+public:
     /* 80281D18 */ TFunctionValueAttribute_range();
 
     /* 80281918 */ void range_initialize();
@@ -118,31 +124,34 @@ struct TFunctionValueAttribute_range {
     f64 range_getParameter_progress(f64 arg1) const { return _20 + _28 * (arg1 - _20); }
 
 private:
-    /* -0x00 */ f64 fBegin_;
-    /* -0x08 */ f64 fEnd_;
-    /* -0x10 */ f64 fDifference_;
-    /* -0x18 */ s8 mProgress;
-    /* -0x19 */ s8 mAdjust;
-    /* -0x1a */ s8 _1a[2];
-    /* -0x1c */ u32 _1c;
-    /* -0x20 */ f64 _20;
-    /* -0x28 */ f64 _28;
-    /* -0x30 */ TFunctionValue::TEOutside mBegin;
-    /* -0x34 */ TFunctionValue::TEOutside mEnd;
+    /* 0x00 */ f64 fBegin_;
+    /* 0x08 */ f64 fEnd_;
+    /* 0x10 */ f64 fDifference_;
+    /* 0x18 */ s8 mProgress;
+    /* 0x19 */ s8 mAdjust;
+    /* 0x1A */ s8 _1a[2];
+    /* 0x1C */ u32 _1c;
+    /* 0x20 */ f64 _20;
+    /* 0x28 */ f64 _28;
+    /* 0x30 */ TFunctionValue::TEOutside mBegin;
+    /* 0x34 */ TFunctionValue::TEOutside mEnd;
 };
 
-struct TFunctionValueAttribute_interpolate {
-    TFunctionValueAttribute_interpolate() : _40(0) {}
+class TFunctionValueAttribute_interpolate {
+public:
+    TFunctionValueAttribute_interpolate() : interpolate_(0) {}
 
-    void interpolate_initialize() { _40 = 0; }
+    void interpolate_initialize() { interpolate_ = 0; }
     void interpolate_prepare() {}
-    u32 interpolate_get() const { return _40; }
-    void interpolate_set(TFunctionValue::TEInterpolate interp) { _40 = interp; }
+    u32 interpolate_get() const { return interpolate_; }
+    void interpolate_set(TFunctionValue::TEInterpolate interpolate) { interpolate_ = interpolate; }
 
-    /* 0x40 */ u32 _40;
+private:
+    /* 0x0 */ u32 interpolate_;
 };
 
-struct TFunctionValue_constant : TFunctionValue {
+class TFunctionValue_constant : public TFunctionValue {
+public:
     /* 8028236C */ TFunctionValue_constant();
     /* 80283D44 */ virtual ~TFunctionValue_constant() {}
 
@@ -152,13 +161,14 @@ struct TFunctionValue_constant : TFunctionValue {
     /* 802823E0 */ virtual void prepare();
     /* 802823E4 */ virtual f64 getValue(f64);
 
-    void data_set(f64 value) { _0 = value; }
+    void data_set(f64 value) { fValue_ = value; }
 
-    // u8 FIXME[8];
-    f64 _0;
+private:
+    f64 fValue_;
 };
 
-struct TFunctionValue_composite : TFunctionValue, TFunctionValueAttribute_refer {
+class TFunctionValue_composite : TFunctionValue, TFunctionValueAttribute_refer {
+public:
     struct TData {
         TData(void* data) : u32data((u32)data) {}
         TData(const void* data) : rawData(data) {}
@@ -206,14 +216,15 @@ struct TFunctionValue_composite : TFunctionValue, TFunctionValueAttribute_refer 
     const TData* data_getData() const { return &data; }
     void data_setData(const TData& dat) { data = dat; }
 
+private:
     UnkFunc pfn_;
     TData data;
 };
 
-// : TFunctionValue, TFunctionValueAttribute_range, TFunctionValueAttribute_interpolate {
-struct TFunctionValue_transition : TFunctionValue,
-                                   TFunctionValueAttribute_range,
-                                   TFunctionValueAttribute_interpolate {
+class TFunctionValue_transition : TFunctionValue,
+                                  TFunctionValueAttribute_range,
+                                  TFunctionValueAttribute_interpolate {
+public:
     /* 802823EC */ TFunctionValue_transition();
     /* 80283CE4 */ virtual ~TFunctionValue_transition() {}
 
@@ -228,13 +239,15 @@ struct TFunctionValue_transition : TFunctionValue,
         _50 = a2;
     }
 
+private:
     /* 0x48 */ f64 _48;
     /* 0x50 */ f64 _50;
 };
 
-struct TFunctionValue_list : TFunctionValue,
-                             TFunctionValueAttribute_range,
-                             TFunctionValueAttribute_interpolate {
+class TFunctionValue_list : TFunctionValue,
+                            TFunctionValueAttribute_range,
+                            TFunctionValueAttribute_interpolate {
+public:
     struct TIndexData_ {
         f64 _0;
         f64 _8;
@@ -274,15 +287,18 @@ struct TFunctionValue_list : TFunctionValue,
     /* 80282CA8 */ static f64
     update_INTERPOLATE_BSPLINE_dataMore3_(JStudio::TFunctionValue_list const&,
                                           JStudio::TFunctionValue_list::TIndexData_ const&);
+
+private:
     /* 0x44 */ const f32* _44;
     /* 0x48 */ u32 _48;
     /* 0x50 */ f64 _50;
     /* 0x58 */ update_INTERPOLATE _58;
 };
 
-struct TFunctionValue_list_parameter : TFunctionValue,
-                                       TFunctionValueAttribute_range,
-                                       TFunctionValueAttribute_interpolate {
+class TFunctionValue_list_parameter : TFunctionValue,
+                                      TFunctionValueAttribute_range,
+                                      TFunctionValueAttribute_interpolate {
+public:
     struct TIterator_data_ {
         TIterator_data_(const f32* value) : value_(value) {}
         TIterator_data_(const TIterator_data_& other) : value_(other.value_) {}
@@ -315,6 +331,7 @@ struct TFunctionValue_list_parameter : TFunctionValue,
     /* 80283060 */ static f64
     update_INTERPOLATE_BSPLINE_dataMore3_(JStudio::TFunctionValue_list_parameter const&, f64);
 
+private:
     /* 0x44 */ const f32* _44;
     /* 0x48 */ u32 _48;
     /* 0x4c */ TIterator_data_ dat1;
@@ -323,7 +340,8 @@ struct TFunctionValue_list_parameter : TFunctionValue,
     /* 0x58 */ update_INTERPOLATE _58;
 };
 
-struct TFunctionValue_hermite : TFunctionValue, TFunctionValueAttribute_range {
+class TFunctionValue_hermite : TFunctionValue, TFunctionValueAttribute_range {
+public:
     struct TIterator_data_ {
         TIterator_data_(const TFunctionValue_hermite& rParent, const f32* value) {
             value_ = value;
@@ -360,6 +378,7 @@ struct TFunctionValue_hermite : TFunctionValue, TFunctionValueAttribute_range {
 
     u32 data_getSize() const { return uSize_; }
 
+private:
     /* 0x40 */ const f32* pf_;
     /* 0x44 */ u32 u_;
     /* 0x48 */ u32 uSize_;

@@ -30,11 +30,11 @@ private:
 class TObject : public object::TObject_ID {
 public:
     enum TEStatus {
-        STATUS_STILL = 0,
-        STATUS_END = 1,
-        STATUS_WAIT = 2,
-        STATUS_SUSPEND = 4,
-        STATUS_INACTIVE = 8,
+        /* 0x0 */ STATUS_STILL = 0,
+        /* 0x1 */ STATUS_END = 1 << 0,
+        /* 0x2 */ STATUS_WAIT = 1 << 1,
+        /* 0x4 */ STATUS_SUSPEND = 1 << 2,
+        /* 0x8 */ STATUS_INACTIVE = 1 << 3,
     };
 
     /* 80288AC0 */ TObject(data::TParse_TBlock_object const&);
@@ -96,22 +96,24 @@ public:
 private:
     /* 0x14 */ TControl* pControl;
     /* 0x18 */ u32 signature;
-    /* 0x1c */ u16 mFlag;
-    /* 0x1e */ u8 bSequence_;
+    /* 0x1C */ u16 mFlag;
+    /* 0x1E */ u8 bSequence_;
     /* 0x20 */ u32 _20;  // "second per frame"?
     /* 0x24 */ const void* pSequence;
     /* 0x28 */ const void* pSequence_next;
-    /* 0x2c */ u32 u32Wait_;
+    /* 0x2C */ u32 u32Wait_;
     /* 0x30 */ TEStatus mStatus;
 };
 
-struct TFactory {
+class TFactory {
+public:
     /* 802895B4 */ virtual ~TFactory();
     /* 802895FC */ virtual TObject* create(data::TParse_TBlock_object const&);
     /* 80289604 */ virtual void destroy(TObject*);
 };
 
-struct TObject_control : public TObject {
+class TObject_control : public TObject {
+public:
     /* 80289068 */ TObject_control(void const*, u32);
     /* 80289134 */ ~TObject_control() {}
 };
@@ -139,9 +141,9 @@ public:
 private:
     /* 0x04 */ u32 _4;
     /* 0x08 */ u32 _8;
-    /* 0x0c */ TFactory* pFactory;
+    /* 0x0C */ TFactory* pFactory;
     /* 0x10 */ JGadget::TLinkList<TObject, 12> mObjectContainer;
-    /* 0x1c */ u32 mStatus;
+    /* 0x1C */ u32 mStatus;
     /* 0x20 */ TObject_control mObject_control;
     /* 0x54 */ s32 _54;  // "second per frame"?
 };

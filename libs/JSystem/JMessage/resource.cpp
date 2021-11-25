@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/JMessage/resource.h"
+#include "JSystem/JGadget/binary.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -57,25 +58,6 @@ struct JMessage {
         static f32 ga4cSignature[1 + 1 /* padding */];
     };
 };
-
-namespace JGadget {
-namespace binary {
-struct TParse_header_block {
-    /* 802DC8C8 */ ~TParse_header_block();
-};
-};  // namespace binary
-
-struct TLinkListNode {};
-
-struct TNodeLinkList {
-    struct iterator {};
-
-    /* 802DCA1C */ ~TNodeLinkList();
-    /* 802DCBA8 */ void Insert(JGadget::TNodeLinkList::iterator, JGadget::TLinkListNode*);
-    /* 802DCBD4 */ void Erase(JGadget::TLinkListNode*);
-};
-
-};  // namespace JGadget
 
 //
 // Forward References:

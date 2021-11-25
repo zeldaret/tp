@@ -7,7 +7,8 @@ namespace JStudio {
 namespace fvb {
 namespace data {
 
-struct TParse_TBlock : public TParseData_aligned<4> {
+class TParse_TBlock : public TParseData_aligned<4> {
+public:
     TParse_TBlock(const void* content) : TParseData_aligned<4>(content) {}
 
     const TBlock* get() const { return (TBlock*)getRaw(); }
@@ -32,11 +33,12 @@ struct TParse_TBlock : public TParseData_aligned<4> {
     }
 };
 
-struct TParse_TParagraph : TParseData_aligned<4> {
+class TParse_TParagraph : public TParseData_aligned<4> {
+public:
     struct TData {
-        u32 u32Size;
-        u32 u32Type;
-        const void* pContent;
+        /* 0x04 */ u32 u32Size;
+        /* 0x08 */ u32 u32Type;
+        /* 0x0C */ const void* pContent;
     };
     TParse_TParagraph(const void* content) : TParseData_aligned<4>(content) {}
 

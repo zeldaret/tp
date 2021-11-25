@@ -4,6 +4,9 @@
 //
 
 #include "d/d_demo.h"
+#include "JSystem/JGadget/binary.h"
+#include "JSystem/JStudio/JStudio/fvb.h"
+#include "JSystem/JStudio/JStudio/stb.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -293,13 +296,6 @@ struct TControl {
 
 };  // namespace ctb
 
-namespace fvb {
-struct TControl {
-    /* 802847D0 */ void destroyObject_all();
-};
-
-};  // namespace fvb
-
 struct TCreateObject {
     /* 80285488 */ ~TCreateObject();
 };
@@ -332,25 +328,6 @@ struct TAdaptor_message {
     /* 802875E0 */ ~TAdaptor_message();
 };
 
-namespace stb {
-struct data {
-    struct TParse_TBlock_object {};
-
-    struct TParse_TParagraph_data {
-        struct TData {};
-
-        /* 80289A80 */ void getData(JStudio::stb::data::TParse_TParagraph_data::TData*) const;
-    };
-};
-
-struct TControl {
-    /* 80289300 */ void destroyObject_all();
-    /* 80289404 */ void reset();
-    /* 802894B4 */ void forward(u32);
-};
-
-};  // namespace stb
-
 struct TObject_message {
     /* 80287640 */ TObject_message(JStudio::stb::data::TParse_TBlock_object const&,
                                    JStudio::TAdaptor_message*);
@@ -376,15 +353,6 @@ struct JMessage {
         /* 802A758C */ ~TControl();
     };
 };
-
-namespace JGadget {
-namespace binary {
-struct TParse_header_block {
-    /* 802DC910 */ void parse_next(void const**, u32);
-};
-};  // namespace binary
-
-};  // namespace JGadget
 
 //
 // Forward References:

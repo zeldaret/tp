@@ -20,11 +20,10 @@ template <typename T>
 struct TAllocator {
     static TAllocator get() {}
     inline TAllocator() { _0 = lit_569[0]; }
-    u8 _0;
-    u8 _1[3];
-    u32 _4;
-    u32 _8;
-    u32 _c;
+    /* 0x0 */ u8 _0;
+    /* 0x4 */ u32 _4;
+    /* 0x8 */ u32 _8;
+    /* 0xc */ u32 _c;
 };
 
 template <typename T, template <class> class Allocator>

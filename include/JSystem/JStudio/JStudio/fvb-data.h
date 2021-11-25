@@ -15,15 +15,15 @@ extern f32 ga4cSignature[1 + 1 /* padding */];
 const int PARAGRAPH_DATA = 1;
 
 typedef enum TEComposite {
-    COMPOSITE_NONE = 0,
-    COMPOSITE_RAW = 1,
-    COMPOSITE_IDX = 2,
-    COMPOSITE_PARAM = 3,
-    COMPOSITE_ADD = 4,
-    COMPOSITE_SUB = 5,
-    COMPOSITE_MUL = 6,
-    COMPOSITE_DIV = 7,
-    COMPOSITE_ENUM_SIZE,
+    /* 0x0 */ COMPOSITE_NONE,
+    /* 0x1 */ COMPOSITE_RAW,
+    /* 0x2 */ COMPOSITE_IDX,
+    /* 0x3 */ COMPOSITE_PARAM,
+    /* 0x4 */ COMPOSITE_ADD,
+    /* 0x5 */ COMPOSITE_SUB,
+    /* 0x6 */ COMPOSITE_MUL,
+    /* 0x7 */ COMPOSITE_DIV,
+    /* 0x8 */ COMPOSITE_ENUM_SIZE,
 };
 
 typedef const void* (*CompositeOperation)(TFunctionValue_composite::TData);
@@ -40,7 +40,7 @@ struct THeader {
     /* 0x04 */ u16 byte_order;  // must be 0xFEFF
     /* 0x06 */ u16 version;     // 0-1 = obselete, 2-7 = OK
     /* 0x08 */ u32 _8;
-    /* 0x0c */ u32 block_number;
+    /* 0x0C */ u32 block_number;
     /* 0x10 */ u8 content[0];
 };
 // Parses a THeader

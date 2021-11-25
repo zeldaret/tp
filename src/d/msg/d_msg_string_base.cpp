@@ -4,6 +4,7 @@
 //
 
 #include "d/msg/d_msg_string_base.h"
+#include "JSystem/JGadget/binary.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -78,21 +79,6 @@ struct JMessage {
 struct JKRArchive {
     /* 802D5B38 */ void getGlbResource(u32, char const*, JKRArchive*);
 };
-
-namespace JGadget {
-namespace binary {
-struct TParse_header_block {
-    /* 802DC910 */ void parse_next(void const**, u32);
-};
-};  // namespace binary
-
-struct TNodeLinkList {
-    struct iterator {};
-
-    /* 802DCA58 */ void erase(JGadget::TNodeLinkList::iterator);
-};
-
-};  // namespace JGadget
 
 //
 // Forward References:
