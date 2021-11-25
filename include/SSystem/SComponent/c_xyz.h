@@ -121,6 +121,8 @@ struct cXyz : Vec {
     }
     f32 abs() const { return sqrtf(this->abs2()); }
     f32 abs(const Vec& other) const { return sqrtf(this->abs2(other)); }
+    f32 absXZ() const { return sqrtf(this->abs2XZ()); }
+    f32 absXZ(const Vec& other) const { return sqrtf(this->abs2XZ(other)); }
     f32 getMagXZ() const { return cXyz(this->x, 0, this->z).getSquareMag(); }
 };
 

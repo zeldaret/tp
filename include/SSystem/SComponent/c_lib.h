@@ -7,7 +7,7 @@
 #include "msl_c/math.h"
 
 inline bool cLib_IsZero(f32 f) {
-    return fabsf(f) < 8e-11;
+    return fabsf(f) < 8e-11f;
 }
 
 void cLib_memCpy(void* dst, const void* src, unsigned long size);

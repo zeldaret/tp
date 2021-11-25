@@ -5,58 +5,13 @@
 
 #include "SSystem/SComponent/c_lib.h"
 #include "JSystem/JMath/JMath.h"
-#include "MSL_C.PPCEABI.bare.H/MSL_Common/src/string.h"
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/string.h"
 #include "SSystem/SComponent/c_math.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 #include "msl_c/math.h"
-
-//
-// Forward References:
-//
-
-extern "C" void cLib_memCpy__FPvPCvUl();
-extern "C" void cLib_memSet__FPviUl();
-extern "C" void cLib_addCalc__FPfffff();
-extern "C" void cLib_addCalc2__FPffff();
-extern "C" void cLib_addCalc0__FPfff();
-extern "C" void cLib_addCalcPos__FP4cXyzRC4cXyzfff();
-extern "C" void cLib_addCalcPosXZ__FP4cXyzRC4cXyzfff();
-extern "C" void cLib_addCalcPos2__FP4cXyzRC4cXyzff();
-extern "C" void cLib_addCalcPosXZ2__FP4cXyzRC4cXyzff();
-extern "C" void cLib_addCalcAngleS__FPsssss();
-extern "C" void cLib_addCalcAngleS2__FPssss();
-extern "C" void cLib_chaseUC__FPUcUcUc();
-extern "C" void cLib_chaseS__FPsss();
-extern "C" void cLib_chaseF__FPfff();
-extern "C" void cLib_chasePos__FP4cXyzRC4cXyzf();
-extern "C" void cLib_chasePosXZ__FP4cXyzRC4cXyzf();
-extern "C" void cLib_chaseAngleS__FPsss();
-extern "C" void cLib_targetAngleY__FPC3VecPC3Vec();
-extern "C" void cLib_targetAngleY__FRC3VecRC3Vec();
-extern "C" void cLib_targetAngleX__FPC4cXyzPC4cXyz();
-extern "C" void cLib_offsetPos__FP4cXyzPC4cXyzsPC4cXyz();
-extern "C" void cLib_distanceAngleS__Fss();
-extern "C" void MtxInit__Fv();
-extern "C" void MtxTrans__FfffUc();
-extern "C" void MtxScale__FfffUc();
-extern "C" void MtxPosition__FP4cXyzP4cXyz();
-extern "C" void MtxPush__Fv();
-extern "C" void MtxPull__Fv();
-
-//
-// External References:
-//
-
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void __ml__4cXyzCFf();
-extern "C" void normZP__4cXyzCFv();
-extern "C" bool __eq__4cXyzCFRC3Vec();
-extern "C" bool __ne__4cXyzCFRC3Vec();
-extern "C" void cM_atan2s__Fff();
-extern "C" u8 sincosTable___5JMath[65536];
 
 //
 // Declarations:
@@ -72,38 +27,30 @@ void cLib_memSet(void* ptr, int value, unsigned long size) {
     memset(ptr, value, size);
 }
 
-/* ############################################################################################## */
-/* 804551E0-804551E8 0037E0 0004+04 9/9 0/0 0/0 .sdata2          @2262 */
-SECTION_SDATA2 static f32 lit_2262[1 + 1 /* padding */] = {
-    0.0f,
-    /* padding */
-    0.0f,
-};
-
 /* 8026F97C-8026FA3C 26A2BC 00C0+00 0/0 50/50 178/178 .text            cLib_addCalc__FPfffff */
-f32 cLib_addCalc(f32* pValue, f32 target, f32 scale, f32 minStep, f32 maxStep) {
+f32 cLib_addCalc(f32* pValue, f32 target, f32 scale, f32 maxStep, f32 minStep) {
     if (*pValue != target) {
         f32 step = scale * (target - *pValue);
-        if (step >= maxStep || step <= -maxStep) {
-            if (step > minStep) {
-                step = minStep;
+        if (step >= minStep || step <= -minStep) {
+            if (step > maxStep) {
+                step = maxStep;
             }
-            if (step < -minStep) {
-                step = -minStep;
+            if (step < -maxStep) {
+                step = -maxStep;
             }
             *pValue += step;
         } else {
-            if (step > FLOAT_LABEL(/* 0.0f */ lit_2262)) {
-                if (step < maxStep) {
-                    *pValue += maxStep;
+            if (step > 0) {
+                if (step < minStep) {
+                    *pValue += minStep;
                     if (*pValue > target) {
                         *pValue = target;
                     }
                 }
             } else {
-                maxStep = -maxStep;
-                if (step > maxStep) {
-                    *pValue += maxStep;
+                minStep = -minStep;
+                if (step > minStep) {
+                    *pValue += minStep;
                     if (*pValue < target) {
                         *pValue = target;
                     }
@@ -138,42 +85,21 @@ void cLib_addCalc0(f32* pValue, f32 scale, f32 maxStep) {
     *pValue -= step;
 }
 
-/* ############################################################################################## */
-/* 804551E8-804551F0 0037E8 0008+00 7/7 0/0 0/0 .sdata2          @2379 */
-SECTION_SDATA2 static f64 lit_2379 = 0.5;
-
-/* 804551F0-804551F8 0037F0 0008+00 7/7 0/0 0/0 .sdata2          @2380 */
-SECTION_SDATA2 static f64 lit_2380 = 3.0;
-
-/* 804551F8-80455200 0037F8 0008+00 7/7 0/0 0/0 .sdata2          @2381 */
-SECTION_SDATA2 static u8 lit_2381[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80455200-80455208 003800 0004+04 5/5 0/0 0/0 .sdata2          @2382 */
-SECTION_SDATA2 static f32 lit_2382[1 + 1 /* padding */] = {
-    7.999999968033578e-11f,
-    /* padding */
-    0.0f,
-};
-
 /* 8026FAB8-8026FDF4 26A3F8 033C+00 0/0 3/3 78/78 .text cLib_addCalcPos__FP4cXyzRC4cXyzfff */
-#ifdef NON_MATCHING
-// matches besides data
-f32 cLib_addCalcPos(cXyz* pValue, cXyz const& target, f32 scale, f32 param_3, f32 param_4) {
+f32 cLib_addCalcPos(cXyz* pValue, cXyz const& target, f32 scale, f32 maxStep, f32 minStep) {
     if (*pValue != target) {
         cXyz diff = (*pValue - target);
         f32 step = diff.abs();
-        if (step < param_4) {
+        if (step < minStep) {
             *pValue = target;
         } else {
             step *= scale;
             diff *= scale;
             if (!cLib_IsZero(step)) {
-                if (step > param_3) {
-                    diff *= (param_3 / step);
-                } else if (step < param_4) {
-                    diff *= (param_4 / step);
+                if (step > maxStep) {
+                    diff *= (maxStep / step);
+                } else if (step < minStep) {
+                    diff *= (minStep / step);
                 }
                 *pValue -= diff;
             } else {
@@ -183,129 +109,216 @@ f32 cLib_addCalcPos(cXyz* pValue, cXyz const& target, f32 scale, f32 param_3, f3
     }
     return pValue->abs(target);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 cLib_addCalcPos(cXyz* param_0, cXyz const& param_1, f32 param_2, f32 param_3, f32 param_4) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/cLib_addCalcPos__FP4cXyzRC4cXyzfff.s"
-}
-#pragma pop
-#endif
 
 /* 8026FDF4-80270178 26A734 0384+00 0/0 1/1 4/4 .text cLib_addCalcPosXZ__FP4cXyzRC4cXyzfff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 cLib_addCalcPosXZ(cXyz* param_0, cXyz const& param_1, f32 param_2, f32 param_3,
-                          f32 param_4) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/cLib_addCalcPosXZ__FP4cXyzRC4cXyzfff.s"
+f32 cLib_addCalcPosXZ(cXyz* pValue, cXyz const& target, f32 scale, f32 maxStep, f32 minStep) {
+    if (pValue->x != target.x || pValue->z != target.z) {
+        cXyz diff = (*pValue - target);
+        f32 step = diff.absXZ();
+        if (step < minStep) {
+            pValue->x = target.x;
+            pValue->z = target.z;
+        } else {
+            step *= scale;
+            diff *= scale;
+            if (!cLib_IsZero(step)) {
+                if (step > maxStep) {
+                    diff *= (maxStep / step);
+                } else if (step < minStep) {
+                    diff *= (minStep / step);
+                }
+                pValue->x -= diff.x;
+                pValue->z -= diff.z;
+            } else {
+                pValue->x = target.x;
+                pValue->z = target.z;
+            }
+        }
+    }
+    return (*pValue - target).absXZ();
 }
-#pragma pop
 
 /* 80270178-80270350 26AAB8 01D8+00 0/0 2/2 33/33 .text cLib_addCalcPos2__FP4cXyzRC4cXyzff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cLib_addCalcPos2(cXyz* param_0, cXyz const& param_1, f32 param_2, f32 param_3) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/cLib_addCalcPos2__FP4cXyzRC4cXyzff.s"
+void cLib_addCalcPos2(cXyz* pValue, cXyz const& target, f32 scale, f32 maxStep) {
+    if (*pValue != target) {
+        cXyz diff = (*pValue - target) * scale;
+        if (diff.abs() > maxStep) {
+            diff = diff.normZP();
+            diff *= maxStep;
+        }
+        *pValue -= diff;
+    }
 }
-#pragma pop
 
 /* 80270350-80270540 26AC90 01F0+00 0/0 0/0 4/4 .text cLib_addCalcPosXZ2__FP4cXyzRC4cXyzff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cLib_addCalcPosXZ2(cXyz* param_0, cXyz const& param_1, f32 param_2, f32 param_3) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/cLib_addCalcPosXZ2__FP4cXyzRC4cXyzff.s"
+void cLib_addCalcPosXZ2(cXyz* pValue, cXyz const& target, f32 scale, f32 maxStep) {
+    if (pValue->x != target.x || pValue->z != target.z) {
+        cXyz diff = (*pValue - target) * scale;
+        f32 step = diff.absXZ();
+        if (!cLib_IsZero(step)) {
+            if (step > maxStep) {
+                diff *= (maxStep / step);
+            }
+            pValue->x -= diff.x;
+            pValue->z -= diff.z;
+        }
+    }
 }
-#pragma pop
 
 /* 80270540-80270608 26AE80 00C8+00 0/0 81/81 244/244 .text            cLib_addCalcAngleS__FPsssss
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s16 cLib_addCalcAngleS(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 param_4) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/cLib_addCalcAngleS__FPsssss.s"
+s16 cLib_addCalcAngleS(s16* pValue, s16 target, s16 scale, s16 maxStep, s16 minStep) {
+    s16 diff = target - *pValue;
+    if (*pValue != target) {
+        s16 step = (diff) / scale;
+        if (step > minStep || step < -minStep) {
+            if (step > maxStep) {
+                step = maxStep;
+            }
+            if (step < -maxStep) {
+                step = -maxStep;
+            }
+            *pValue += step;
+        } else {
+            if (0 <= diff) {
+                *pValue += minStep;
+                diff = target - *pValue;
+                if (0 >= diff) {
+                    *pValue = target;
+                }
+            } else {
+                *pValue -= minStep;
+                diff = target - *pValue;
+                if (0 <= diff) {
+                    *pValue = target;
+                }
+            }
+        }
+    }
+    return target - *pValue;
 }
-#pragma pop
 
 /* 80270608-8027065C 26AF48 0054+00 0/0 2/2 849/849 .text            cLib_addCalcAngleS2__FPssss */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cLib_addCalcAngleS2(s16* param_0, s16 param_1, s16 param_2, s16 param_3) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/cLib_addCalcAngleS2__FPssss.s"
+void cLib_addCalcAngleS2(s16* pValue, s16 target, s16 scale, s16 maxStep) {
+    s16 diff = target - *pValue;
+    s16 step = diff / scale;
+    if (step > maxStep) {
+        *pValue += maxStep;
+    } else if (step < -maxStep) {
+        *pValue -= maxStep;
+    } else {
+        *pValue += step;
+    }
 }
-#pragma pop
 
 /* 8027065C-802706D0 26AF9C 0074+00 0/0 3/3 14/14 .text            cLib_chaseUC__FPUcUcUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int cLib_chaseUC(u8* param_0, u8 param_1, u8 param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/cLib_chaseUC__FPUcUcUc.s"
+int cLib_chaseUC(u8* pValue, u8 target, u8 step) {
+    if (step) {
+        s16 wideValue = *pValue;
+        s16 wideTarget = target;
+        s16 wideStep;
+        if (wideValue > wideTarget) {
+            wideStep = -step;
+        } else {
+            wideStep = step;
+        }
+        wideValue += wideStep;
+        if (wideStep * (wideValue - wideTarget) >= 0) {
+            *pValue = target;
+            return 1;
+        } else {
+            *pValue = wideValue;
+        }
+    } else if (*pValue == target) {
+        return 1;
+    }
+    return 0;
 }
-#pragma pop
 
 /* 802706D0-80270740 26B010 0070+00 0/0 4/4 49/49 .text            cLib_chaseS__FPsss */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int cLib_chaseS(s16* param_0, s16 param_1, s16 param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/cLib_chaseS__FPsss.s"
+int cLib_chaseS(s16* pValue, s16 target, s16 step) {
+    if (step) {
+        if (*pValue > target) {
+            step = -step;
+        }
+        *pValue += step;
+        if (step * (*pValue - target) >= 0) {
+            *pValue = target;
+            return 1;
+        }
+    } else if (*pValue == target) {
+        return 1;
+    }
+    return 0;
 }
-#pragma pop
 
 /* 80270740-802707AC 26B080 006C+00 0/0 70/70 448/448 .text            cLib_chaseF__FPfff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int cLib_chaseF(f32* param_0, f32 param_1, f32 param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/cLib_chaseF__FPfff.s"
+int cLib_chaseF(f32* pValue, f32 target, f32 step) {
+    if (step) {
+        if (*pValue > target) {
+            step = -step;
+        }
+        *pValue += step;
+        if (step * (*pValue - target) >= 0) {
+            *pValue = target;
+            return 1;
+        }
+    } else if (*pValue == target) {
+        return 1;
+    }
+    return 0;
 }
-#pragma pop
 
 /* 802707AC-80270990 26B0EC 01E4+00 0/0 3/3 60/60 .text            cLib_chasePos__FP4cXyzRC4cXyzf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int cLib_chasePos(cXyz* param_0, cXyz const& param_1, f32 param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/cLib_chasePos__FP4cXyzRC4cXyzf.s"
+int cLib_chasePos(cXyz* pValue, cXyz const& target, f32 step) {
+    if (step) {
+        cXyz diff = *pValue - target;
+        f32 diffF = diff.abs();
+        if (cLib_IsZero(diffF) || diffF <= step) {
+            *pValue = target;
+            return 1;
+        }
+        *pValue -= diff * (step / diffF);
+    } else if (*pValue == target) {
+        return 1;
+    }
+    return 0;
 }
-#pragma pop
 
 /* 80270990-80270B90 26B2D0 0200+00 0/0 1/0 19/19 .text            cLib_chasePosXZ__FP4cXyzRC4cXyzf
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int cLib_chasePosXZ(cXyz* param_0, cXyz const& param_1, f32 param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/cLib_chasePosXZ__FP4cXyzRC4cXyzf.s"
+int cLib_chasePosXZ(cXyz* pValue, cXyz const& target, f32 step) {
+    cXyz diff = *pValue - target;
+    diff.y = 0;
+    f32 diffF = diff.absXZ();
+    if (step) {
+        if (cLib_IsZero(diffF) || diffF <= step) {
+            *pValue = target;
+            return 1;
+        }
+        *pValue -= diff * (step / diffF);
+    } else if (cLib_IsZero(diffF)) {
+        return 1;
+    }
+    return 0;
 }
-#pragma pop
 
 /* 80270B90-80270C04 26B4D0 0074+00 0/0 4/4 213/213 .text            cLib_chaseAngleS__FPsss */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int cLib_chaseAngleS(s16* param_0, s16 param_1, s16 param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/cLib_chaseAngleS__FPsss.s"
+int cLib_chaseAngleS(s16* pValue, s16 target, s16 step) {
+    if (step) {
+        if ((s16)(*pValue - target) > 0) {
+            step = -step;
+        }
+        *pValue += step;
+        if (step * (s16)(*pValue - target) >= 0) {
+            *pValue = target;
+            return 1;
+        }
+    } else if (*pValue == target) {
+        return 1;
+    }
+    return 0;
 }
-#pragma pop
 
 /* 80270C04-80270C3C 26B544 0038+00 0/0 39/39 454/454 .text cLib_targetAngleY__FPC3VecPC3Vec */
 s16 cLib_targetAngleY(const Vec* lhs, const Vec* rhs) {
@@ -318,34 +331,22 @@ s16 cLib_targetAngleY(const Vec& lhs, const Vec& rhs) {
 }
 
 /* 80270C74-80270DC0 26B5B4 014C+00 0/0 2/2 109/109 .text cLib_targetAngleX__FPC4cXyzPC4cXyz */
-#ifdef NON_MATCHING
 s16 cLib_targetAngleX(cXyz const* param_0, cXyz const* param_1) {
     // would match with all float literals
     cXyz diff = *param_1 - *param_0;
     f32 f1 = sqrtf(diff.getMagXZ());
     return cM_atan2s(diff.GetY(), f1);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s16 cLib_targetAngleX(cXyz const* param_0, cXyz const* param_1) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/cLib_targetAngleX__FPC4cXyzPC4cXyz.s"
-}
-#pragma pop
-#endif
 
 /* 80270DC0-80270E24 26B700 0064+00 0/0 2/2 118/118 .text cLib_offsetPos__FP4cXyzPC4cXyzsPC4cXyz
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cLib_offsetPos(cXyz* param_0, cXyz const* param_1, s16 param_2, cXyz const* param_3) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_lib/cLib_offsetPos__FP4cXyzPC4cXyzsPC4cXyz.s"
+void cLib_offsetPos(cXyz* pDest, cXyz const* pSrc, s16 angle, cXyz const* vec) {
+    f32 cos = cM_scos(angle);
+    f32 sin = cM_ssin(angle);
+    pDest->x = pSrc->x + (vec->x * cos + vec->z * sin);
+    pDest->y = pSrc->y + vec->y;
+    pDest->z = pSrc->z + (vec->z * cos - vec->x * sin);
 }
-#pragma pop
 
 /* 80270E24-80270E4C 26B764 0028+00 0/0 48/48 71/71 .text            cLib_distanceAngleS__Fss */
 s32 cLib_distanceAngleS(s16 x, s16 y) {
