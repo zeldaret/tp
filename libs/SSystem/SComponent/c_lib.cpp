@@ -332,7 +332,6 @@ s16 cLib_targetAngleY(const Vec& lhs, const Vec& rhs) {
 
 /* 80270C74-80270DC0 26B5B4 014C+00 0/0 2/2 109/109 .text cLib_targetAngleX__FPC4cXyzPC4cXyz */
 s16 cLib_targetAngleX(cXyz const* param_0, cXyz const* param_1) {
-    // would match with all float literals
     cXyz diff = *param_1 - *param_0;
     f32 f1 = sqrtf(diff.getMagXZ());
     return cM_atan2s(diff.GetY(), f1);
