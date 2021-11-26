@@ -8,25 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-namespace JGadget {
-struct binary {
-    struct TEBit {};
-
-    struct TParse_header_block {
-        /* 802DC8C8 */ ~TParse_header_block();
-        /* 802DC910 */ void parse_next(void const**, u32);
-    };
-
-    /* 802DC864 */ void parseVariableUInt_16_32_following(void const*, u32*, u32*,
-                                                          JGadget::binary::TEBit*);
-};
-
-};  // namespace JGadget
-
-//
 // Forward References:
 //
 
@@ -53,9 +34,9 @@ extern "C" extern void* __vt__Q37JGadget6binary19TParse_header_block[5];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JGadget::binary::parseVariableUInt_16_32_following(void const* param_0, u32* param_1,
-                                                            u32* param_2,
-                                                            JGadget::binary::TEBit* param_3) {
+asm const void*
+JGadget::binary::parseVariableUInt_16_32_following(void const* param_0, u32* param_1, u32* param_2,
+                                                   JGadget::binary::TEBit* param_3) {
     nofralloc
 #include "asm/JSystem/JGadget/binary/parseVariableUInt_16_32_following__Q27JGadget6binaryFPCvPUlPUlPQ37JGadget6binary5TEBit.s"
 }
@@ -77,7 +58,7 @@ asm JGadget::binary::TParse_header_block::~TParse_header_block() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JGadget::binary::TParse_header_block::parse_next(void const** param_0, u32 param_1) {
+asm bool JGadget::binary::TParse_header_block::parse_next(void const** param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JGadget/binary/parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl.s"
 }

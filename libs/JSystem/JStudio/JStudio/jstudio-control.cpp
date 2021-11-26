@@ -4,6 +4,9 @@
 //
 
 #include "JSystem/JStudio/JStudio/jstudio-control.h"
+#include "JSystem/JGadget/binary.h"
+#include "JSystem/JStudio/JStudio/fvb.h"
+#include "JSystem/JStudio/JStudio/stb.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -17,38 +20,6 @@ namespace JStudio {
 struct TCreateObject {
     /* 80285488 */ ~TCreateObject();
 };
-
-namespace stb {
-struct data {
-    struct TParse_TBlock_object {};
-
-    struct TParse_THeader {};
-
-    struct TParse_TBlock {};
-};
-
-struct TControl {
-    /* 802890B4 */ TControl();
-    /* 80289194 */ ~TControl();
-};
-
-struct TObject {};
-
-struct TFactory {
-    /* 802895B4 */ ~TFactory();
-    /* 80289604 */ void destroy(JStudio::stb::TObject*);
-};
-
-struct TParse {
-    /* 80289640 */ TParse(JStudio::stb::TControl*);
-    /* 80289660 */ ~TParse();
-    /* 802896C0 */ void parseHeader_next(void const**, u32*, u32);
-    /* 8028978C */ void parseBlock_next(void const**, u32*, u32);
-    /* 802897E8 */ void parseBlock_block(JStudio::stb::data::TParse_TBlock const&, u32);
-    /* 80289820 */ void parseBlock_object(JStudio::stb::data::TParse_TBlock_object const&, u32);
-};
-
-};  // namespace stb
 
 struct TFactory {
     /* 802854D0 */ ~TFactory();
@@ -95,46 +66,11 @@ struct TParse {
     /* 802858F0 */ void parseBlock_block_ctb_(JStudio::stb::data::TParse_TBlock const&, u32);
 };
 
-namespace fvb {
-struct TControl {
-    /* 80284668 */ TControl();
-    /* 80284698 */ ~TControl();
-};
-
-struct TFactory {
-    /* 80284918 */ ~TFactory();
-};
-
-struct TParse {
-    /* 80284ADC */ TParse(JStudio::fvb::TControl*);
-    /* 80284AFC */ ~TParse();
-};
-
-};  // namespace fvb
-
 struct data {
     static u8 ga8cSignature[8];
 };
 
 };  // namespace JStudio
-
-namespace JGadget {
-struct binary {
-    struct TParse_header_block {
-        /* 802DC910 */ void parse_next(void const**, u32);
-    };
-};
-
-struct TLinkListNode {};
-
-struct TNodeLinkList {
-    struct iterator {};
-
-    /* 802DCA1C */ ~TNodeLinkList();
-    /* 802DCBA8 */ void Insert(JGadget::TNodeLinkList::iterator, JGadget::TLinkListNode*);
-};
-
-};  // namespace JGadget
 
 //
 // Forward References:

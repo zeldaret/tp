@@ -4,6 +4,8 @@
 //
 
 #include "JSystem/JStudio/JStudio/jstudio-object.h"
+#include "JSystem/JStudio/JStudio/fvb.h"
+#include "JSystem/JStudio/JStudio/stb.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -72,18 +74,6 @@ struct TVariableValue {
 
     static u8 soOutput_none_[4 + 4 /* padding */];
 };
-
-namespace stb {
-struct data {
-    struct TParse_TBlock_object {};
-};
-
-struct TObject {
-    /* 80288AC0 */ TObject(JStudio::stb::data::TParse_TBlock_object const&);
-    /* 80288B30 */ ~TObject();
-};
-
-};  // namespace stb
 
 struct TObject {
     /* 802866B0 */ ~TObject();
@@ -213,14 +203,6 @@ struct TObject_sound {
     /* 80287BD8 */ void do_paragraph(u32, void const*, u32);
     /* 80287F04 */ ~TObject_sound();
 };
-
-namespace fvb {
-struct TControl {
-    /* 80284834 */ void getObject(void const*, u32);
-    /* 802848D4 */ void getObject_index(u32);
-};
-
-};  // namespace fvb
 
 };  // namespace JStudio
 

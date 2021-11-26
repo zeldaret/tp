@@ -4,6 +4,7 @@
 //
 
 #include "d/msg/d_msg_object.h"
+#include "JSystem/JGadget/binary.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -387,21 +388,6 @@ struct JMessage {
         /* 802A9130 */ TParse(JMessage::TResourceContainer*);
     };
 };
-
-namespace JGadget {
-struct binary {
-    struct TParse_header_block {
-        /* 802DC910 */ void parse_next(void const**, u32);
-    };
-};
-
-struct TNodeLinkList {
-    struct iterator {};
-
-    /* 802DCA58 */ void erase(JGadget::TNodeLinkList::iterator);
-};
-
-};  // namespace JGadget
 
 //
 // Forward References:

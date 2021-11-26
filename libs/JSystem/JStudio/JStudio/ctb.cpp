@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/JStudio/JStudio/ctb.h"
+#include "JSystem/JGadget/binary.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -55,14 +56,13 @@ struct TParse {
 
 };  // namespace ctb
 
-struct object {
-    struct TPRObject_ID_equal {};
+namespace object {
+struct TPRObject_ID_equal {};
 
-    struct TIDData {
-        /* 80288988 */ void isEqual(JStudio::object::TIDData const&,
-                                    JStudio::object::TIDData const&);
-    };
+struct TIDData {
+    /* 80288988 */ void isEqual(JStudio::object::TIDData const&, JStudio::object::TIDData const&);
 };
+};  // namespace object
 
 };  // namespace JStudio
 
@@ -73,23 +73,6 @@ struct TLinkList {};
 struct TLinkList__template0 {
     struct iterator {};
 };
-
-struct binary {
-    struct TParse_header_block {
-        /* 802DC8C8 */ ~TParse_header_block();
-    };
-};
-
-struct TLinkListNode {};
-
-struct TNodeLinkList {
-    struct iterator {};
-
-    /* 802DCA1C */ ~TNodeLinkList();
-    /* 802DCBA8 */ void Insert(JGadget::TNodeLinkList::iterator, JGadget::TLinkListNode*);
-    /* 802DCBD4 */ void Erase(JGadget::TLinkListNode*);
-};
-
 };  // namespace JGadget
 
 namespace std {
