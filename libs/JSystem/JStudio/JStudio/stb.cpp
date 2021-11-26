@@ -259,10 +259,10 @@ void TObject::process_sequence_() {
         break;
     case 0x80:
         ASSERT(pContent != 0);
-        void* i = (void*)pContent;
+        void* p = (void*)pContent;
         data::TParse_TParagraph para(NULL);
-        while (i < pNext) {
-            para.setRaw(i);
+        while (p < pNext) {
+            para.setRaw(p);
 
             data::TParse_TParagraph::TData para_dat;
             para.getData(&para_dat);
@@ -271,8 +271,8 @@ void TObject::process_sequence_() {
             } else {
                 on_paragraph(para_dat.type, para_dat.content, para_dat.param);
             }
-            i = (void*)para_dat.next;
-            ASSERT(i != 0);
+            p = (void*)para_dat.next;
+            ASSERT(p != 0);
         }
         JUT_EXPECT(p == pNext);
         break;
@@ -506,17 +506,14 @@ bool TParse::parseBlock_object(const data::TParse_TBlock_object& ppObject, u32 f
         if (flags & 0x40)
             return true;
 
-#if DEBUG
         char a5c[8];
         char t[16];
         int type = ppObject.get_type();
         data::toString_block(a5c, type);
-        sprintf(t, "%08x", type);
 
         JUTWarn w;
         w << "can't create object : " << a5c;
         w << "(0x" << type << ")";
-#endif
         return false;
     }
     pControl->appendObject(p);

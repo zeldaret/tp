@@ -312,15 +312,23 @@ SECTION_SDATA2 static f64 lit_1517 = 4503599627370496.0 /* cast u32 to float */;
 
 namespace JStudio {
 
-/* ############################################################################################## */
-/* 8039A9F0-8039AA00 -00001 0010+00 1/1 0/0 0/0 .rodata
- * gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@ */
+namespace functionvalue {
+f64 extrapolateParameter_raw(f64, f64);
+f64 extrapolateParameter_repeat(f64, f64);
+f64 extrapolateParameter_turn(f64, f64);
+f64 extrapolateParameter_clamp(f64, f64);
+};  // namespace functionvalue
+
+namespace {
+
 const ExtrapolateParameter gapfnExtrapolateParameter_[4] = {
-    (ExtrapolateParameter)extrapolateParameter_raw__Q27JStudio13functionvalueFdd,
-    (ExtrapolateParameter)extrapolateParameter_repeat__Q27JStudio13functionvalueFdd,
-    (ExtrapolateParameter)extrapolateParameter_turn__Q27JStudio13functionvalueFdd,
-    (ExtrapolateParameter)extrapolateParameter_clamp__Q27JStudio13functionvalueFdd,
+    functionvalue::extrapolateParameter_raw,
+    functionvalue::extrapolateParameter_repeat,
+    functionvalue::extrapolateParameter_turn,
+    functionvalue::extrapolateParameter_clamp,
 };
+
+}
 
 ExtrapolateParameter TFunctionValue::toFunction_outside(int idx) {
     ExtrapolateParameter fallback = NULL;
@@ -422,7 +430,8 @@ inline f64 interpolateValue_linear_1(f64 a1, f64 a2, f64 a3, f64 a4) {
 }
 
 inline f64 interpolateValue_plateau(f64 a1, f64 a2, f64 a3, f64 a4, f64 a5) {
-    return interpolateValue_hermite(a1, a2, a3, *(f64*)&lit_652, a4, a5, *(f64*)&lit_652);
+    return interpolateValue_hermite(a1, a2, a3, DOUBLE_LABEL(/* 0.0 */ lit_652), a4, a5,
+                                    DOUBLE_LABEL(/* 0.0 */ lit_652));
 }
 
 /* 802818B8-80281918 27C1F8 0060+00 1/0 0/0 0/0 .text
@@ -456,24 +465,24 @@ void TFunctionValueAttribute_range::range_prepare() {
         JUTWarn w;
         w << "unknown progress : " << progress;
     case 0:
-        _20 = *(f64*)&lit_652;  // 0.0
-        _28 = *(f64*)&lit_792;  // 1.0
+        _20 = DOUBLE_LABEL(/* 0.0 */ lit_652);
+        _28 = DOUBLE_LABEL(/* 1.0 */ lit_792);
         break;
     case 1:
-        _20 = *(f64*)&lit_652;  // 0.0
-        _28 = *(f64*)&lit_867;  // -1.0
+        _20 = DOUBLE_LABEL(/* 0.0 */ lit_652);
+        _28 = DOUBLE_LABEL(/*-1.0 */ lit_867);
         break;
     case 2:
         _20 = fBegin_;
-        _28 = *(f64*)&lit_867;  // -1.0
+        _28 = DOUBLE_LABEL(/*-1.0 */ lit_867);
         break;
     case 3:
         _20 = fEnd_;
-        _28 = *(f64*)&lit_867;  // -1.0
+        _28 = DOUBLE_LABEL(/*-1.0 */ lit_867);
         break;
     case 4:
-        _20 = *(f64*)&lit_800 * (fBegin_ + fEnd_);  // 0.5
-        _28 = *(f64*)&lit_867;                      // -1.0
+        _20 = DOUBLE_LABEL(/* 0.5 */ lit_800) * (fBegin_ + fEnd_);
+        _28 = DOUBLE_LABEL(/*-1.0 */ lit_867);
         break;
     }
 }
@@ -483,7 +492,7 @@ void TFunctionValueAttribute_range::range_set(f64 begin, f64 end) {
     fEnd_ = end;
     fDifference_ = end - begin;
 
-    ASSERT(fDifference_ >= lit_652);  // 0.0 -- supposed to be "fDifference_ >= TValue(0)" (???)
+    ASSERT(fDifference_ >= TValue(0));
 }
 
 #ifdef NONMATCHING
@@ -1012,15 +1021,15 @@ f64 extrapolateParameter_raw(f64 a1, f64 a2) {
 f64 extrapolateParameter_repeat(f64 a1, f64 a2) {
     f64 t = fmod(a1, a2);
 
-    if (t < *(f64*)&lit_652)
+    if (t < DOUBLE_LABEL(/* 0.0 */ lit_652))
         t += a2;
 
     return t;
 }
 
 f64 extrapolateParameter_clamp(f64 value, f64 max) {
-    if (value <= *(f64*)&lit_652)
-        return *(f64*)&lit_652;
+    if (value <= DOUBLE_LABEL(/* 0.0 */ lit_652))
+        return DOUBLE_LABEL(/* 0.0 */ lit_652);
 
     if (max <= value)
         value = max;
