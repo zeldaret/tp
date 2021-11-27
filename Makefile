@@ -19,7 +19,8 @@ TARGET_COL := wii
 
 TARGET := dolzel2
 
-BUILD_DIR := build/$(TARGET)
+BUILD_PATH := build
+BUILD_DIR := $(BUILD_PATH)/$(TARGET)
 
 SRC_DIRS := $(shell find src/ libs/ -type f -name '*.cpp')
 ASM_DIRS := $(shell find asm/ -type f -name '*.s')
@@ -33,7 +34,7 @@ ELF     := $(DOL:.dol=.elf)
 MAP     := $(BUILD_DIR)/dolzel2.map
 
 # include list of object files 
--include obj_files.mk
+include obj_files.mk
 
 #-------------------------------------------------------------------------------
 # Tools
@@ -62,12 +63,12 @@ OBJCOPY   := $(DEVKITPPC)/bin/powerpc-eabi-objcopy
 STRIP     := $(DEVKITPPC)/bin/powerpc-eabi-strip
 CC        := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc.exe
 LD        := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwldeppc.exe
-ELF2DOL   := tools/elf2dol
+ELF2DOL   := $(BUILD_PATH)/elf2dol
 PYTHON    := python3
+ICONV     := iconv
 DOXYGEN   := doxygen
+MAKEREL   := tools/makerel.py
 IMAGENAME := gz2e01.iso
-
-POSTPROC := tools/postprocess.py
 
 # Options
 INCLUDES := -i include -i include/dolphin/ -i src
@@ -107,31 +108,29 @@ $(DOL): $(ELF) | tools
 
 clean:
 	rm -f -d -r build
-	$(MAKE) -C tools clean
 
-tools:
-	@$(MAKE) -C tools
+tools: $(ELF2DOL)
 
 assets:
-	@cd game; python3 ../tools/extract_game_assets.py ../$(IMAGENAME)
+	@cd game; $(PYTHON) ../tools/extract_game_assets.py ../$(IMAGENAME)
 
 docs:
 	$(DOXYGEN) Doxyfile
 	
 rels: $(ELF) $(RELS)
 	@echo generating RELs from .plf
-	@python3 tools/makerel.py build --string-table $(BUILD_DIR)/frameworkF.str $(RELS) $(ELF)
+	@$(PYTHON) $(MAKEREL) build --string-table $(BUILD_DIR)/frameworkF.str $(RELS) $(ELF)
 
 $(ELF): $(LIBS) $(O_FILES)
 	@echo $(O_FILES) > build/o_files
-	@python3 tools/lcf.py dol --output $(LDSCRIPT)
+	@$(PYTHON) tools/lcf.py dol --output $(LDSCRIPT)
 	$(LD) -application $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files $(LIBS)
 
 #
 $(BUILD_DIR)/%.o: %.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $@.iconv.cpp
 	@$(CC) $(CFLAGS) -c -o $@ $@.iconv.cpp
 
 # shared cpp files for RELs
@@ -141,6 +140,9 @@ $(BUILD_DIR)/rel/%.o: rel/%.cpp
 
 # include library and rel makefiles
 -include include_link.mk
+
+# tools
+include tools/elf2dol/Makefile
 
 ### Debug Print ###
 print-% : ; $(info $* is a $(flavor $*) variable set to [$($*)]) @true
