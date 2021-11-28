@@ -96,11 +96,10 @@ default: all
 
 all: dirs $(DOL)
 
-ALL_DIRS := build $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS))
-
 # Make sure build directory exists before compiling anything
 dirs:
-	$(shell mkdir -p $(ALL_DIRS))
+	@mkdir -p build
+	@mkdir -p $(BUILD_DIR)
 
 $(DOL): $(ELF) | tools
 	$(ELF2DOL) $< $@ $(SDATA_PDHR) $(SBSS_PDHR) $(TARGET_COL)

@@ -1,0 +1,9 @@
+rich
+click
+intervaltree
+yaz0
+numpy
+capstone
+aiofiles
+GitPython
+hexdump

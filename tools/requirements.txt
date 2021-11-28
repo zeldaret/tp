@@ -1,8 +1,10 @@
 rich
 click
-intervaltree
 yaz0
-numpy
-capstone
-aiofiles
 GitPython
+hexdump
+colorama
+ansiwrap
+watchdog
+python-Levenshtein
+cxxfilt
