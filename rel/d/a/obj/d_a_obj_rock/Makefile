@@ -41,7 +41,7 @@ $(M604_TARGET): $(M604_O_FILES) $(M604_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rock/%.o: rel/d/a/obj/d_a_obj_rock/%.cpp
 	@echo [604] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M604_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M604_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

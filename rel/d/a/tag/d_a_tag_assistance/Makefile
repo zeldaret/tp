@@ -41,7 +41,7 @@ $(M715_TARGET): $(M715_O_FILES) $(M715_LIBS)
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_assistance/%.o: rel/d/a/tag/d_a_tag_assistance/%.cpp
 	@echo [715] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M715_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M715_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

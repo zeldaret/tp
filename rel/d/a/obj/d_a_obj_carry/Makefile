@@ -41,7 +41,7 @@ $(M18_TARGET): $(M18_O_FILES) $(M18_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_carry/%.o: rel/d/a/obj/d_a_obj_carry/%.cpp
 	@echo [ 18] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M18_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M18_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

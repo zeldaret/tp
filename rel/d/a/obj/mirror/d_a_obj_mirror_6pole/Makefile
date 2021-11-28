@@ -41,7 +41,7 @@ $(M572_TARGET): $(M572_O_FILES) $(M572_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_6pole/%.o: rel/d/a/obj/mirror/d_a_obj_mirror_6pole/%.cpp
 	@echo [572] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M572_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M572_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

@@ -43,7 +43,7 @@ $(M127_TARGET): $(M127_O_FILES) $(M127_LIBS)
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_hstop/%.o: rel/d/a/tag/d_a_tag_hstop/%.cpp
 	@echo [127] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M127_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M127_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

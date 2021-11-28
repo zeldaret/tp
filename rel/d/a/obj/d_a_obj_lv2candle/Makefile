@@ -43,7 +43,7 @@ $(M104_TARGET): $(M104_O_FILES) $(M104_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv2candle/%.o: rel/d/a/obj/d_a_obj_lv2candle/%.cpp
 	@echo [104] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M104_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M104_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

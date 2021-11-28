@@ -41,7 +41,7 @@ $(M508_TARGET): $(M508_O_FILES) $(M508_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kwheel00/%.o: rel/d/a/obj/d_a_obj_kwheel00/%.cpp
 	@echo [508] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M508_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M508_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

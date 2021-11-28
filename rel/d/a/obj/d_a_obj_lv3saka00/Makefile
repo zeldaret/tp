@@ -41,7 +41,7 @@ $(M521_TARGET): $(M521_O_FILES) $(M521_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3saka00/%.o: rel/d/a/obj/d_a_obj_lv3saka00/%.cpp
 	@echo [521] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M521_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M521_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

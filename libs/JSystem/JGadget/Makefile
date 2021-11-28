@@ -28,6 +28,6 @@ $(BUILD_DIR)/libJGadget.a: $(LIBJGADGET_A_O_FILES)
 $(BUILD_DIR)/libs/JSystem/JGadget/%.o: libs/JSystem/JGadget/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(LIBJGADGET_A_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBJGADGET_A_CFLAGS) -c -o $@ $(basename $@).cpp
 

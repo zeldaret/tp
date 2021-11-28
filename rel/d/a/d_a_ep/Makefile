@@ -41,7 +41,7 @@ $(M11_TARGET): $(M11_O_FILES) $(M11_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_ep/%.o: rel/d/a/d_a_ep/%.cpp
 	@echo [ 11] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M11_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M11_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

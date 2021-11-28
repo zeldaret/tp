@@ -43,7 +43,7 @@ $(M577_TARGET): $(M577_O_FILES) $(M577_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_msima/%.o: rel/d/a/obj/d_a_obj_msima/%.cpp
 	@echo [577] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M577_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M577_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

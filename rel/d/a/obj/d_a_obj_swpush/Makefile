@@ -43,7 +43,7 @@ $(M21_TARGET): $(M21_O_FILES) $(M21_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush/%.o: rel/d/a/obj/d_a_obj_swpush/%.cpp
 	@echo [ 21] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M21_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M21_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

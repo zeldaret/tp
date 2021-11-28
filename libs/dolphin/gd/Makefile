@@ -26,6 +26,6 @@ $(BUILD_DIR)/libgd.a: $(LIBGD_A_O_FILES)
 $(BUILD_DIR)/libs/dolphin/gd/%.o: libs/dolphin/gd/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(LIBGD_A_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBGD_A_CFLAGS) -c -o $@ $(basename $@).cpp
 

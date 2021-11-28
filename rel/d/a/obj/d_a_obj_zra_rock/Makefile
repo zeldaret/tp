@@ -41,7 +41,7 @@ $(M701_TARGET): $(M701_O_FILES) $(M701_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zra_rock/%.o: rel/d/a/obj/d_a_obj_zra_rock/%.cpp
 	@echo [701] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M701_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M701_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

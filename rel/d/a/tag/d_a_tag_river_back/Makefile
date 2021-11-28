@@ -43,7 +43,7 @@ $(M736_TARGET): $(M736_O_FILES) $(M736_LIBS)
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_river_back/%.o: rel/d/a/tag/d_a_tag_river_back/%.cpp
 	@echo [736] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M736_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M736_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

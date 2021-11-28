@@ -24,6 +24,6 @@ $(BUILD_DIR)/libdb.a: $(LIBDB_A_O_FILES)
 $(BUILD_DIR)/libs/dolphin/db/%.o: libs/dolphin/db/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(LIBDB_A_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBDB_A_CFLAGS) -c -o $@ $(basename $@).cpp
 

@@ -43,7 +43,7 @@ $(M361_TARGET): $(M361_O_FILES) $(M361_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shoe/%.o: rel/d/a/npc/d_a_npc_shoe/%.cpp
 	@echo [361] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M361_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M361_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

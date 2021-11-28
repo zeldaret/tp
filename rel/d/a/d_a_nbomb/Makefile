@@ -43,7 +43,7 @@ $(M52_TARGET): $(M52_O_FILES) $(M52_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_nbomb/%.o: rel/d/a/d_a_nbomb/%.cpp
 	@echo [ 52] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M52_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M52_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

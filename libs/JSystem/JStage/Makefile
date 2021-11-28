@@ -36,6 +36,6 @@ $(BUILD_DIR)/libJStage.a: $(LIBJSTAGE_A_O_FILES)
 $(BUILD_DIR)/libs/JSystem/JStage/%.o: libs/JSystem/JStage/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(LIBJSTAGE_A_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBJSTAGE_A_CFLAGS) -c -o $@ $(basename $@).cpp
 

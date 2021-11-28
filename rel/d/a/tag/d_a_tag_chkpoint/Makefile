@@ -41,7 +41,7 @@ $(M29_TARGET): $(M29_O_FILES) $(M29_LIBS)
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_chkpoint/%.o: rel/d/a/tag/d_a_tag_chkpoint/%.cpp
 	@echo [ 29] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M29_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M29_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

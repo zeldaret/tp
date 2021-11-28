@@ -41,7 +41,7 @@ $(M44_TARGET): $(M44_O_FILES) $(M44_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_vrbox2/%.o: rel/d/a/d_a_vrbox2/%.cpp
 	@echo [ 44] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M44_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M44_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

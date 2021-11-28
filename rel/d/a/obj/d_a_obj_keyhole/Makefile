@@ -43,7 +43,7 @@ $(M499_TARGET): $(M499_O_FILES) $(M499_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_keyhole/%.o: rel/d/a/obj/d_a_obj_keyhole/%.cpp
 	@echo [499] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M499_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M499_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

@@ -43,7 +43,7 @@ $(M515_TARGET): $(M515_O_FILES) $(M515_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv1Candle00/%.o: rel/d/a/obj/d_a_obj_lv1Candle00/%.cpp
 	@echo [515] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M515_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M515_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

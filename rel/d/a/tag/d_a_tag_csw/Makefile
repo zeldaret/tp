@@ -41,7 +41,7 @@ $(M718_TARGET): $(M718_O_FILES) $(M718_LIBS)
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_csw/%.o: rel/d/a/tag/d_a_tag_csw/%.cpp
 	@echo [718] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M718_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M718_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

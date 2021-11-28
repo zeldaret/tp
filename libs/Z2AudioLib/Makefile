@@ -64,6 +64,6 @@ $(BUILD_DIR)/libZ2AudioLib.a: $(LIBZ2AUDIOLIB_A_O_FILES)
 $(BUILD_DIR)/libs/Z2AudioLib/%.o: libs/Z2AudioLib/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(LIBZ2AUDIOLIB_A_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBZ2AUDIOLIB_A_CFLAGS) -c -o $@ $(basename $@).cpp
 

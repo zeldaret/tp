@@ -43,7 +43,7 @@ $(M703_TARGET): $(M703_O_FILES) $(M703_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_peru/%.o: rel/d/a/d_a_peru/%.cpp
 	@echo [703] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M703_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M703_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

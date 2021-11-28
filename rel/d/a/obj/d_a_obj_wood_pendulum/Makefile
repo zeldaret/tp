@@ -41,7 +41,7 @@ $(M690_TARGET): $(M690_O_FILES) $(M690_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wood_pendulum/%.o: rel/d/a/obj/d_a_obj_wood_pendulum/%.cpp
 	@echo [690] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M690_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M690_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

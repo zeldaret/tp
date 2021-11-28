@@ -43,7 +43,7 @@ $(M365_TARGET): $(M365_O_FILES) $(M365_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_soldierA/%.o: rel/d/a/npc/d_a_npc_soldierA/%.cpp
 	@echo [365] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M365_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M365_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

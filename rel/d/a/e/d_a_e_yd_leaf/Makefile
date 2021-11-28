@@ -41,7 +41,7 @@ $(M249_TARGET): $(M249_O_FILES) $(M249_LIBS)
 $(BUILD_DIR)/rel/d/a/e/d_a_e_yd_leaf/%.o: rel/d/a/e/d_a_e_yd_leaf/%.cpp
 	@echo [249] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M249_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M249_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

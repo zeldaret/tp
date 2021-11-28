@@ -43,7 +43,7 @@ $(M698_TARGET): $(M698_O_FILES) $(M698_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zrTuraraRock/%.o: rel/d/a/obj/d_a_obj_zrTuraraRock/%.cpp
 	@echo [698] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M698_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M698_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

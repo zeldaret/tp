@@ -41,7 +41,7 @@ $(M106_TARGET): $(M106_O_FILES) $(M106_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_metalbox/%.o: rel/d/a/obj/d_a_obj_metalbox/%.cpp
 	@echo [106] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M106_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M106_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

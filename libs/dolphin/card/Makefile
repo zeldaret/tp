@@ -50,6 +50,6 @@ $(BUILD_DIR)/libcard.a: $(LIBCARD_A_O_FILES)
 $(BUILD_DIR)/libs/dolphin/card/%.o: libs/dolphin/card/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(LIBCARD_A_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBCARD_A_CFLAGS) -c -o $@ $(basename $@).cpp
 

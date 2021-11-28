@@ -43,7 +43,7 @@ $(M541_TARGET): $(M541_O_FILES) $(M541_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5SwIce/%.o: rel/d/a/obj/d_a_obj_lv5SwIce/%.cpp
 	@echo [541] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M541_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M541_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

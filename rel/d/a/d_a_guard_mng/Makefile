@@ -41,7 +41,7 @@ $(M261_TARGET): $(M261_O_FILES) $(M261_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_guard_mng/%.o: rel/d/a/d_a_guard_mng/%.cpp
 	@echo [261] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M261_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M261_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

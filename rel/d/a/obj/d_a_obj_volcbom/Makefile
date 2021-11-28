@@ -43,7 +43,7 @@ $(M676_TARGET): $(M676_O_FILES) $(M676_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_volcbom/%.o: rel/d/a/obj/d_a_obj_volcbom/%.cpp
 	@echo [676] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M676_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M676_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

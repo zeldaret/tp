@@ -58,6 +58,6 @@ $(BUILD_DIR)/libJ2DGraph.a: $(LIBJ2DGRAPH_A_O_FILES)
 $(BUILD_DIR)/libs/JSystem/J2DGraph/%.o: libs/JSystem/J2DGraph/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(LIBJ2DGRAPH_A_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBJ2DGRAPH_A_CFLAGS) -c -o $@ $(basename $@).cpp
 

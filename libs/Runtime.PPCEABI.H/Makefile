@@ -40,6 +40,6 @@ $(BUILD_DIR)/libRuntime.PPCEABI.H.a: $(LIBRUNTIME_PPCEABI_H_A_O_FILES)
 $(BUILD_DIR)/libs/Runtime.PPCEABI.H/%.o: libs/Runtime.PPCEABI.H/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(LIBRUNTIME_PPCEABI_H_A_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBRUNTIME_PPCEABI_H_A_CFLAGS) -c -o $@ $(basename $@).cpp
 

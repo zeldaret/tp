@@ -43,7 +43,7 @@ $(M278_TARGET): $(M278_O_FILES) $(M278_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_mg_fshop/%.o: rel/d/a/d_a_mg_fshop/%.cpp
 	@echo [278] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M278_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M278_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

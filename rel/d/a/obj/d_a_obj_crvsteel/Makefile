@@ -41,7 +41,7 @@ $(M431_TARGET): $(M431_O_FILES) $(M431_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvsteel/%.o: rel/d/a/obj/d_a_obj_crvsteel/%.cpp
 	@echo [431] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M431_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M431_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

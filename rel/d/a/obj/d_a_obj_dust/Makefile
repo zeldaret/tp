@@ -41,7 +41,7 @@ $(M440_TARGET): $(M440_O_FILES) $(M440_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_dust/%.o: rel/d/a/obj/d_a_obj_dust/%.cpp
 	@echo [440] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M440_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M440_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

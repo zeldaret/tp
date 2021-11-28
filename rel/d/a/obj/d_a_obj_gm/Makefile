@@ -43,7 +43,7 @@ $(M460_TARGET): $(M460_O_FILES) $(M460_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gm/%.o: rel/d/a/obj/d_a_obj_gm/%.cpp
 	@echo [460] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M460_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M460_CFLAGS) -c -o $@ $(basename $@).cpp
 
 
