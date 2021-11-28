@@ -43,6 +43,7 @@ except ImportError as e:
     print(MISSING_PREREQUISITES, file=sys.stderr)
     sys.exit(1)
 
+
 class PathPath(click.Path):
     def convert(self, value, param, ctx):
         return Path(super().convert(value, param, ctx))
@@ -75,6 +76,7 @@ DEFAULT_TOOLS_PATH = "tools"
 def tp():
     """Tools to help the decompilation of "The Legend of Zelda: Twilight Princess" """
     pass
+
 
 @tp.command(name="setup")
 @click.option("--debug/--no-debug")
@@ -114,16 +116,22 @@ def setup(debug, game_path, tools_path):
 
     compilers = tools_path.joinpath("mwcc_compiler")
     if not compilers.exists() or not compilers.is_dir():
-        LOG.error((
-            f"Unable to find MWCC compilers: missing directory '{compilers}'\n" 
-            f"Check the README for instructions on how to obtain the compilers"))
+        LOG.error(
+            (
+                f"Unable to find MWCC compilers: missing directory '{compilers}'\n"
+                f"Check the README for instructions on how to obtain the compilers"
+            )
+        )
         sys.exit(1)
 
     c27 = compilers.joinpath("2.7")
     if not c27.exists() or not c27.is_dir():
-        LOG.error((
-            f"Unable to find MWCC compiler version 2.7: missing directory '{c27}'\n" 
-            f"Check the README for instructions on how to obtain the compilers"))
+        LOG.error(
+            (
+                f"Unable to find MWCC compiler version 2.7: missing directory '{c27}'\n"
+                f"Check the README for instructions on how to obtain the compilers"
+            )
+        )
         sys.exit(1)
 
     c27_lmgr326b = c27.joinpath("Lmgr326b.dll")
@@ -134,9 +142,12 @@ def setup(debug, game_path, tools_path):
     if not c27_lmgr326b.exists() or not c27_lmgr326b.is_file():
         c27_lmgr326b = c27.joinpath("LMGR326B.DLL")
     if not c27_lmgr326b.exists() or not c27_lmgr326b.is_file():
-        LOG.error((
-            f"Unable to find 'lmgr326b.dll' in '{c27}': missing file '{c27_lmgr326b}'\n" 
-            f"Check the README for instructions on how to obtain the compilers"))
+        LOG.error(
+            (
+                f"Unable to find 'lmgr326b.dll' in '{c27}': missing file '{c27_lmgr326b}'\n"
+                f"Check the README for instructions on how to obtain the compilers"
+            )
+        )
         sys.exit(1)
 
     c27_lmgr326b_cc = c27.joinpath("LMGR326B.dll")
@@ -146,19 +157,25 @@ def setup(debug, game_path, tools_path):
 
     c27_mwcceppc = c27.joinpath("mwcceppc.exe")
     if not c27_mwcceppc.exists() or not c27_mwcceppc.is_file():
-        LOG.error((
-            f"Unable to find 'mwcceppc.exe' in '{c27}': missing file '{c27_mwcceppc}'\n" 
-            f"Check the README for instructions on how to obtain the compilers"))
+        LOG.error(
+            (
+                f"Unable to find 'mwcceppc.exe' in '{c27}': missing file '{c27_mwcceppc}'\n"
+                f"Check the README for instructions on how to obtain the compilers"
+            )
+        )
         sys.exit(1)
 
     c27_mwldeppc = c27.joinpath("mwldeppc.exe")
     if not c27_mwldeppc.exists() or not c27_mwldeppc.is_file():
-        LOG.error((
-            f"Unable to find 'mwldeppc.exe' in '{c27}': missing file '{c27_mwldeppc}'\n" 
-            f"Check the README for instructions on how to obtain the compilers"))
+        LOG.error(
+            (
+                f"Unable to find 'mwldeppc.exe' in '{c27}': missing file '{c27_mwldeppc}'\n"
+                f"Check the README for instructions on how to obtain the compilers"
+            )
+        )
         sys.exit(1)
 
-    MWCCEPPC_SHA1 = "22C7DCFBAD7FE0710C84EA714B81C5220D8E2996"
+    MWCCEPPC_SHA1 = "100DD3A2898A1ECE55462801D42FF5DE8B42E29F"
     MWCCEPPC_PATCHED_SHA1 = "22C7DCFBAD7FE0710C84EA714B81C5220D8E2996"
     MWLDEPPC_SHA1 = "8225A47FF099A3AECB32CD307A95CB69B30A6A84"
 
@@ -177,26 +194,32 @@ def setup(debug, game_path, tools_path):
             with dst.open("wb") as dst_file:
                 data = bytearray(src_file.read())
                 if apply:
-                    data[0x001c6a55] = 0x6d
+                    data[0x001C6A54] = 0x6D
                 else:
-                    data[0x001c6a55] = 0x69
+                    data[0x001C6A54] = 0x69
                 dst_file.write(data)
 
-
     if mwcceppc_sha1 == MWCCEPPC_SHA1:
-        LOG.debug(f"found orignal compiler: '{c27_mwcceppc}' ('{mwcceppc_sha1}')")
-        shutil.copy(c27_mwcceppc, c27_mwcceppc_old)
+        LOG.debug(f"found original compiler: '{c27_mwcceppc}' ('{mwcceppc_sha1}')")
+        c27_mwcceppc_old.unlink(missing_ok=True)
+        shutil.move(c27_mwcceppc, c27_mwcceppc_old)
         shutil.copy(c27_mwcceppc_old, c27_mwcceppc_orignal)
-        patch_compiler(c27_mwcceppc_old, c27_mwcceppc_patched, apply=True) # patch 
+        patch_compiler(c27_mwcceppc_old, c27_mwcceppc_patched, apply=True)  # patch
     elif mwcceppc_sha1 == MWCCEPPC_PATCHED_SHA1:
         LOG.debug(f"found patched compiler: '{c27_mwcceppc}' ('{mwcceppc_sha1}')")
-        shutil.copy(c27_mwcceppc, c27_mwcceppc_old)
+        c27_mwcceppc_old.unlink(missing_ok=True)
+        shutil.move(c27_mwcceppc, c27_mwcceppc_old)
         shutil.copy(c27_mwcceppc_old, c27_mwcceppc_patched)
-        patch_compiler(c27_mwcceppc_old, c27_mwcceppc_orignal, apply=False) # revert patch
+        patch_compiler(
+            c27_mwcceppc_old, c27_mwcceppc_orignal, apply=False
+        )  # revert patch
     else:
-        LOG.error((
-            f"Invalid 'mwcceppc.exe' checksum of '{mwcceppc_sha1}'\n" 
-            f"Check the README for instructions on how to obtain the compilers"))
+        LOG.error(
+            (
+                f"Invalid 'mwcceppc.exe' checksum of '{mwcceppc_sha1}'\n"
+                f"Check the README for instructions on how to obtain the compilers"
+            )
+        )
         sys.exit(1)
 
     #
@@ -206,11 +229,14 @@ def setup(debug, game_path, tools_path):
 
     iso = Path("gz2e01.iso")
     if not iso.exists() or not iso.is_file():
-        LOG.error((
-            f"Missing file '{iso}'.\n"
-            f"Did you forget to copy the NTSC-U version in the root directory?"))
+        LOG.error(
+            (
+                f"Missing file '{iso}'.\n"
+                f"Did you forget to copy the NTSC-U version in the root directory?"
+            )
+        )
         sys.exit(1)
-    
+
     try:
         previous_dir = os.getcwd()
         os.chdir(str(game_path.absolute()))
@@ -226,7 +252,6 @@ def setup(debug, game_path, tools_path):
     CONSOLE.print(text)
     CONSOLE.print("You should now be able to build the project 👍")
     CONSOLE.print("Check the README for instructions for further instructions")
-
 
 
 #
