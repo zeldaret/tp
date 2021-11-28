@@ -102,8 +102,8 @@ def writeAssets(parsedFstBin, handler):
             while folderStack[-1]["lastEntryNumber"] == j+1:
                 folderStack.pop()
 
-def main():
-    with open(sys.argv[1], "rb") as f:
+def extract(path):
+    with open(path, "rb") as f:
         # Seek to fst offset information and retrieve it
         f.seek(fstInfoPosition)
         fstOffset,fstSize = getFstInfo(f,fstInfoPosition)
@@ -117,6 +117,9 @@ def main():
 
         # Write assets to file
         writeAssets(parsedFstBin, f)
+
+def main():
+    extract(sys.argv[1], "rb")
 
 if __name__ == "__main__":
     main()
