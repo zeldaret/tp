@@ -5,11 +5,21 @@ dol2asm.py - Script for splitting .dol and .rel binaries into C++ and .s code.
 This script only calls the underlaying libdol2asm code that does the heavy-lifting.
 
 """
-
-import click
-import libdol2asm
+import sys
 
 from pathlib import Path
+
+try:
+    import click
+    import libdol2asm
+except ImportError as e:
+    MISSING_PREREQUISITES = (
+        f"Missing prerequisite python module {e}.\n"
+        f"Run `python3 -m pip install --user -r tools/requirements.txt` to install prerequisites."
+    )
+
+    print(MISSING_PREREQUISITES, file=sys.stderr)
+    sys.exit(1)
 
 
 @click.command()

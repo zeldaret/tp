@@ -1,10 +1,28 @@
-import click
+"""
+
+conflict.py - Finds conflicts between in main.dol that prevents it from matching.
+
+"""
+
+import sys
 import logging
 
-from rich.logging import RichHandler
-from rich.console import Console
 from pathlib import Path
 from collections import defaultdict
+
+try:
+    import click
+
+    from rich.logging import RichHandler
+    from rich.console import Console
+except ImportError as e:
+    MISSING_PREREQUISITES = (
+        f"Missing prerequisite python module {e}.\n"
+        f"Run `python3 -m pip install --user -r tools/requirements.txt` to install prerequisites."
+    )
+
+    print(MISSING_PREREQUISITES, file=sys.stderr)
+    sys.exit(1)
 
 
 class PathPath(click.Path):
@@ -29,7 +47,7 @@ LOG.setLevel(logging.INFO)
 @click.group()
 @click.version_option(VERSION)
 def conflict():
-    """Finds conflict between in main.dol that prevents it from matching."""
+    """Finds conflicts between in main.dol that prevents it from matching."""
     pass
 
 
@@ -57,15 +75,17 @@ def normalize_name(name):
 
     return name
 
+
 def is_literal(name):
     return name.startswith("@") or name.startswith("lit_")
+
 
 def name_match(A, B, addr):
     if A == B:
         return True
     elif is_literal(A) and is_literal(B):
         return True
-    elif A == B.replace("_o_iconv_cpp", "_cpp"): # TODO: remove, not needed any more
+    elif A == B.replace("_o_iconv_cpp", "_cpp"):  # TODO: remove, not needed any more
         return True
     elif A == f"func_{addr:08X}":
         return True
@@ -77,6 +97,7 @@ def name_match(A, B, addr):
         return True
 
     return False
+
 
 #
 # All
@@ -110,6 +131,7 @@ def conflict_all(build_path, expected_path):
         LOG.error(exception)
 
     CONSOLE.print("no conflicts were found 😊")
+
 
 #
 # Sections
@@ -263,6 +285,7 @@ def conflict_symbols(build_path, expected_path):
     except ConflictException as exception:
         LOG.error(exception)
 
+
 def symbols(build_path, expected_path):
     import libelf
     import libdol
@@ -332,7 +355,6 @@ def symbols(build_path, expected_path):
             info.append(f"    name:    {symbol.name}")
             raise ConflictException("\n".join(info))
 
-            
         expected_symbol = expected_addr2sym[symbol.offset]
         if symbol.size != expected_symbol.size:
             # because of dol2asm all data elements, before they are decompiled, will include
@@ -371,7 +393,6 @@ def symbols(build_path, expected_path):
                 info.append(f"    name:    {expected_symbol.name}")
                 raise ConflictException("\n".join(info))
 
-
         if not name_match(symbol.name, expected_symbol.name, symbol.offset):
             info = []
             info.append(
@@ -390,7 +411,7 @@ def symbols(build_path, expected_path):
             raise ConflictException("\n".join(info))
 
         check_address_set.add(symbol.offset)
-        
+
     expected_symbol_address_list = list(expected_addr2sym.keys())
     expected_symbol_address_list.sort()
 
@@ -400,15 +421,15 @@ def symbols(build_path, expected_path):
 
         expected_symbol = build_addr2sym[symbol_addr]
         info = []
-        info.append(
-            f"missing symbol"
-        )
+        info.append(f"missing symbol")
         info.append(f"expected symbol:")
         info.append(f"    section: {expected_symbol.getSection().name}")
         info.append(f"    addr:    0x{expected_symbol.offset:08X}")
         info.append(f"    size:    0x{expected_symbol.size:05X}")
         info.append(f"    name:    {expected_symbol.name}")
         raise ConflictException("\n".join(info))
+
+
 #
 #
 #

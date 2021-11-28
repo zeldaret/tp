@@ -4,20 +4,31 @@ makerel.py - Generate .rel files from .plf files and a static binary
 
 """
 
-import click
 import sys
-import logging
 import glob
 import os
-import libelf
-import librel
 import traceback
 
 from pathlib import Path
 from dataclasses import dataclass, field
 from typing import List, Set, Tuple, Dict
-from rich.logging import RichHandler
-from rich.console import Console
+
+try:
+    import libelf
+    import librel
+    import click
+    import logging
+
+    from rich.logging import RichHandler
+    from rich.console import Console
+except ImportError as e:
+    MISSING_PREREQUISITES = (
+        f"Missing prerequisite python module {e}.\n"
+        f"Run `python3 -m pip install --user -r tools/requirements.txt` to install prerequisites."
+    )
+
+    print(MISSING_PREREQUISITES, file=sys.stderr)
+    sys.exit(1)
 
 VERSION = "1.0"
 CONSOLE = Console()

@@ -8,19 +8,30 @@ and apply some fixes which makes it easier to decompile.
 """
 
 import importlib
-import click
-import libelf
-import libar
-import dol2asm_settings
-from pathlib import Path
 import io
 import sys
-import os
+
+from pathlib import Path
+
+try:
+    import click
+    import libelf
+    import libar
+    import dol2asm_settings
+except ImportError as e:
+    MISSING_PREREQUISITES = (
+        f"Missing prerequisite python module {e}.\n"
+        f"Run `python3 -m pip install --user -r tools/requirements.txt` to install prerequisites."
+    )
+
+    print(MISSING_PREREQUISITES, file=sys.stderr)
+    sys.exit(1)
 
 VERSION = "1.0"
 
 # load the symbol definition file for main.dol
 sys.path.append("defs")
+
 
 def lcf_generate(output_path):
     """Script for generating .lcf files"""

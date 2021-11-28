@@ -4,17 +4,27 @@ rel.py - Tool for extracting information from .rel files
 
 """
 
-import click
 import sys
-import logging
-import librel
 import struct
-import hexdump
-from libdol2asm import settings
 
 from pathlib import Path
-from rich.logging import RichHandler
-from rich.console import Console
+
+try:
+    import click
+    import logging
+    import librel
+
+    from libdol2asm import settings
+    from rich.logging import RichHandler
+    from rich.console import Console
+except ImportError as e:
+    MISSING_PREREQUISITES = (
+        f"Missing prerequisite python module {e}.\n"
+        f"Run `python3 -m pip install --user -r tools/requirements.txt` to install prerequisites."
+    )
+
+    print(MISSING_PREREQUISITES, file=sys.stderr)
+    sys.exit(1)
 
 VERSION = "1.0"
 CONSOLE = Console()
@@ -51,7 +61,14 @@ def rel():
     type=click.Path(exists=True, file_okay=True, dir_okay=False),
 )
 def rel_info(
-    debug, rel_path, dump_header, dump_sections, dump_data, dump_relocation, dump_imp, dump_all
+    debug,
+    rel_path,
+    dump_header,
+    dump_sections,
+    dump_data,
+    dump_relocation,
+    dump_imp,
+    dump_all,
 ):
     if debug:
         LOG.setLevel(logging.DEBUG)
