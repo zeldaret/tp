@@ -152,20 +152,6 @@ struct Z2AudioMgr {
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
-namespace JStudio {
-namespace stb {
-struct data {
-    struct TParse_TParagraph_data {
-        struct TData {};
-
-        /* 80289A80 */ void getData(JStudio::stb::data::TParse_TParagraph_data::TData*) const;
-    };
-};
-
-};  // namespace stb
-
-};  // namespace JStudio
-
 struct JKRExpHeap {
     /* 802CEE2C */ void create(u32, JKRHeap*, bool);
 };
