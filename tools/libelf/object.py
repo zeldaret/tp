@@ -33,7 +33,7 @@ class Object:
     path: Path = None
     executable: bool = False
 
-def load_object_from_file(path, name, file) -> Object:
+def load_object_from_file(path, name, file, skip_symbols = False, skip_relocations = False) -> Object:
     obj = Object()
     obj.path = path
     obj.name = name
@@ -135,98 +135,100 @@ def load_object_from_file(path, name, file) -> Object:
         if section.name:
             obj.sections[section.name] = section
 
-    # Find all symbols
-    for symtab in obj.sym_sections.values():
-        if not symtab.header.sh_link in obj.str_sections:
-            raise ElfException("symbol table '%s' is not referenceing a valid string table section (sh_link: %i)" % (
-                symtab.name, symtab.header.sh_link))
+    if not skip_symbols:
+        # Find all symbols
+        for symtab in obj.sym_sections.values():
+            if not symtab.header.sh_link in obj.str_sections:
+                raise ElfException("symbol table '%s' is not referenceing a valid string table section (sh_link: %i)" % (
+                    symtab.name, symtab.header.sh_link))
 
-        symtab.object_offset = len(obj.symbols)
-        strtab = obj.str_sections[symtab.header.sh_link]
-        for i,sym in enumerate(symtab.symbols):
-            if i == 0:
-                symbol = NullSymbol(sym)
+            symtab.object_offset = len(obj.symbols)
+            strtab = obj.str_sections[symtab.header.sh_link]
+            for i,sym in enumerate(symtab.symbols):
+                if i == 0:
+                    symbol = NullSymbol(sym)
+                    symbol.object = obj
+                    obj.symbols.append(symbol)
+                    continue
+
+                name = None
+                if sym.st_name:
+                    name = strtab.readString(sym.st_name)
+                symbol = None
+                if sym.st_shndx == elf.SHN_UNDEF:
+                    symbol = UndefSymbol(sym, name)
+                elif sym.st_shndx == elf.SHN_ABS:
+                    symbol = AbsoluteSymbol(sym, name, sym.st_value)
+                else:
+                    if not sym.st_shndx in idx_sections:
+                        raise ElfException("symbol '%s' has invalid section-id (st_shndx: %i)" % (name, sym.st_shndx))
+                    s = idx_sections[sym.st_shndx]
+                    symbol = OffsetSymbol(sym, name, idx_sections[sym.st_shndx], sym.st_value)
+
+                assert symbol
                 symbol.object = obj
+
+                if symbol.name:
+                    obj.symbol_map[symbol.name].append(symbol)
+
                 obj.symbols.append(symbol)
-                continue
 
-            name = None
-            if sym.st_name:
-                name = strtab.readString(sym.st_name)
-            symbol = None
-            if sym.st_shndx == elf.SHN_UNDEF:
-                symbol = UndefSymbol(sym, name)
-            elif sym.st_shndx == elf.SHN_ABS:
-                symbol = AbsoluteSymbol(sym, name, sym.st_value)
-            else:
-                if not sym.st_shndx in idx_sections:
-                    raise ElfException("symbol '%s' has invalid section-id (st_shndx: %i)" % (name, sym.st_shndx))
-                s = idx_sections[sym.st_shndx]
-                symbol = OffsetSymbol(sym, name, idx_sections[sym.st_shndx], sym.st_value)
+    if not skip_relocations:
+        # Find all relocations
+        for rela_section in obj.rela_sections.values():
+            if not rela_section.header.sh_link in obj.sym_sections:
+                raise ElfException("relocation section '%s' is not referenceing a valid symbol table section (sh_link: %i)" % (
+                    symtab.name, rela_section.header.sh_link))
+            if not rela_section.header.sh_info in idx_sections:
+                raise ElfException("relocation section '%s' is not referenceing a valid section (sh_info: %i)" % (
+                    symtab.name, rela_section.header.sh_info))
 
-            assert symbol
-            symbol.object = obj
+            symtab = obj.sym_sections[rela_section.header.sh_link]
+            modify = idx_sections[rela_section.header.sh_info]
 
-            if symbol.name:
-                obj.symbol_map[symbol.name].append(symbol)
+            section_relocations = []
+            for rela in rela_section.relocations:
+                type  = elf.R_TYPE(rela.r_info)
+                sym_id = elf.R_SYM(rela.r_info)
+                if not type in RELOCATION_NAMES:
+                    raise ElfException("unsupported relocation type: 0x%02X (in '%s')" % (type, path))
 
-            obj.symbols.append(symbol)
+                if sym_id < 0 or sym_id >= len(symtab.symbols):
+                    # report warning? 
+                    # main.elf will generate relocation sections with invalid symbol indices
+                    # raise ElfException("invalid symbol index: %i (%i symbols)" % (sym_id, len(symtab.symbols)))
+                    continue 
+                symbol = obj.symbols[symtab.object_offset + sym_id]
 
-    # Find all relocations
-    for rela_section in obj.rela_sections.values():
-        if not rela_section.header.sh_link in obj.sym_sections:
-            raise ElfException("relocation section '%s' is not referenceing a valid symbol table section (sh_link: %i)" % (
-                symtab.name, rela_section.header.sh_link))
-        if not rela_section.header.sh_info in idx_sections:
-            raise ElfException("relocation section '%s' is not referenceing a valid section (sh_info: %i)" % (
-                symtab.name, rela_section.header.sh_info))
+                relocation = None
+                if type == 1:
+                    relocation = R_PPC_ADDR32(type, symbol, modify, rela.r_offset, rela.r_addend)
+                elif type == 3:
+                    relocation = R_PPC_ADDR16(type, symbol, modify, rela.r_offset, rela.r_addend)
+                elif type == 4:
+                    relocation = R_PPC_ADDR16_LO(type, symbol, modify, rela.r_offset, rela.r_addend)
+                elif type == 5:
+                    relocation = R_PPC_ADDR16_HI(type, symbol, modify, rela.r_offset, rela.r_addend)
+                elif type == 6:
+                    relocation = R_PPC_ADDR16_HA(type, symbol, modify, rela.r_offset, rela.r_addend)
+                elif type == 10:
+                    relocation = R_PPC_REL24(type, symbol, modify, rela.r_offset, rela.r_addend)
+                elif type == 11:
+                    relocation = R_PPC_REL14(type, symbol, modify, rela.r_offset, rela.r_addend)
+                elif type == 109:
+                    relocation = R_PPC_EMB_SDA21(type, symbol, modify, rela.r_offset, rela.r_addend)
+                else:
+                    print("unsupported relocation type: 0x%02X \"%s\" (in '%s')" % (type, RELOCATION_NAMES[type], path), file = sys.stderr)
+                    continue
+                
+                assert relocation
+                section_relocations.append(relocation)
+                obj.relocations.append(relocation)
 
-        symtab = obj.sym_sections[rela_section.header.sh_link]
-        modify = idx_sections[rela_section.header.sh_info]
-
-        section_relocations = []
-        for rela in rela_section.relocations:
-            type  = elf.R_TYPE(rela.r_info)
-            sym_id = elf.R_SYM(rela.r_info)
-            if not type in RELOCATION_NAMES:
-                raise ElfException("unsupported relocation type: 0x%02X (in '%s')" % (type, path))
-
-            if sym_id < 0 or sym_id >= len(symtab.symbols):
-                # report warning? 
-                # main.elf will generate relocation sections with invalid symbol indices
-                # raise ElfException("invalid symbol index: %i (%i symbols)" % (sym_id, len(symtab.symbols)))
-                continue 
-            symbol = obj.symbols[symtab.object_offset + sym_id]
-
-            relocation = None
-            if type == 1:
-                relocation = R_PPC_ADDR32(type, symbol, modify, rela.r_offset, rela.r_addend)
-            elif type == 3:
-                relocation = R_PPC_ADDR16(type, symbol, modify, rela.r_offset, rela.r_addend)
-            elif type == 4:
-                relocation = R_PPC_ADDR16_LO(type, symbol, modify, rela.r_offset, rela.r_addend)
-            elif type == 5:
-                relocation = R_PPC_ADDR16_HI(type, symbol, modify, rela.r_offset, rela.r_addend)
-            elif type == 6:
-                relocation = R_PPC_ADDR16_HA(type, symbol, modify, rela.r_offset, rela.r_addend)
-            elif type == 10:
-                relocation = R_PPC_REL24(type, symbol, modify, rela.r_offset, rela.r_addend)
-            elif type == 11:
-                relocation = R_PPC_REL14(type, symbol, modify, rela.r_offset, rela.r_addend)
-            elif type == 109:
-                relocation = R_PPC_EMB_SDA21(type, symbol, modify, rela.r_offset, rela.r_addend)
-            else:
-                print("unsupported relocation type: 0x%02X \"%s\" (in '%s')" % (type, RELOCATION_NAMES[type], path), file = sys.stderr)
-                continue
-            
-            assert relocation
-            section_relocations.append(relocation)
-            obj.relocations.append(relocation)
-
-        obj.section_relocations.append((rela_section.name, section_relocations))
+            obj.section_relocations.append((rela_section.name, section_relocations))
 
     return obj
 
-def load_object_from_path(path) -> Object:
+def load_object_from_path(path, skip_symbols = False, skip_relocations = False) -> Object:
     with open(path, 'rb') as file:
-        return load_object_from_file(path, path.parts[-1], file)
+        return load_object_from_file(path, path.parts[-1], file, skip_symbols, skip_relocations)

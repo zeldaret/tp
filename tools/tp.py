@@ -28,6 +28,7 @@ import libarc
 import yaz0
 import struct
 import io
+import time
 
 from pathlib import Path
 from rich.logging import RichHandler
@@ -40,6 +41,12 @@ from typing import Dict
 
 import multiprocessing as mp
 
+
+class PathPath(click.Path):
+    def convert(self, value, param, ctx):
+        return Path(super().convert(value, param, ctx))
+
+
 VERSION = "1.0"
 CONSOLE = Console()
 
@@ -47,7 +54,7 @@ logging.basicConfig(
     level="NOTSET",
     format="%(message)s",
     datefmt="[%X]",
-    handlers=[RichHandler(console=CONSOLE, rich_tracebacks=True)]
+    handlers=[RichHandler(console=CONSOLE, rich_tracebacks=True)],
 )
 
 LOG = logging.getLogger("rich")
@@ -57,22 +64,38 @@ loggers = [logging.getLogger(name) for name in logging.root.manager.loggerDict]
 for logger in loggers:
     logger.setLevel(logging.INFO)
 
-DEFAULT_GAME_PATH = Path("game")
-DEFAULT_BUILD_PATH = Path("build/dolzel2")
+DEFAULT_GAME_PATH = "game"
+DEFAULT_BUILD_PATH = "build/dolzel2"
+
 
 @click.group()
 @click.version_option(VERSION)
 def tp():
-    """ Tools to help the decompilation of "The Legend of Zelda: Twilight Princess" """
+    """Tools to help the decompilation of "The Legend of Zelda: Twilight Princess" """
     pass
 
+
+#
+# Progress
+#
 @tp.command(name="progress")
-@click.option('--debug/--no-debug')
-@click.option('--matching/--no-matching', default=True, is_flag=True)
-@click.option('--print-rels', default=False, is_flag=True)
-@click.option('--format', '-f', default="FANCY", type=click.Choice(['FANCY', 'CSV', 'JSON-SHIELD'], case_sensitive=False))
-def progress(debug, matching, format, print_rels):
-    """ Calculate decompilation progress """
+@click.option("--debug/--no-debug")
+@click.option("--matching/--no-matching", default=True, is_flag=True)
+@click.option("--print-rels", default=False, is_flag=True)
+@click.option(
+    "--format",
+    "-f",
+    default="FANCY",
+    type=click.Choice(["FANCY", "CSV", "JSON-SHIELD", "JSON"], case_sensitive=False),
+)
+@click.option(
+    "--build-path",
+    type=PathPath(file_okay=False, dir_okay=True),
+    default=DEFAULT_BUILD_PATH,
+    required=True,
+)
+def progress(debug, matching, format, print_rels, build_path):
+    """Calculate decompilation progress"""
 
     if debug:
         LOG.setLevel(logging.DEBUG)
@@ -82,14 +105,28 @@ def progress(debug, matching, format, print_rels):
         text.stylize("bold magenta")
         CONSOLE.print(text)
 
-    calculate_progress(matching, format, print_rels)
+    calculate_progress(build_path, matching, format, print_rels)
 
+
+#
+# Check
+#
 @tp.command(name="check")
-@click.option('--debug/--no-debug')
-@click.option('--game-path', default=DEFAULT_GAME_PATH, required=True)
-@click.option('--build-path', default=DEFAULT_BUILD_PATH, required=True)
+@click.option("--debug/--no-debug")
+@click.option(
+    "--game-path",
+    type=PathPath(file_okay=False, dir_okay=True),
+    default=DEFAULT_GAME_PATH,
+    required=True,
+)
+@click.option(
+    "--build-path",
+    type=PathPath(file_okay=False, dir_okay=True),
+    default=DEFAULT_BUILD_PATH,
+    required=True,
+)
 def check(debug, game_path, build_path):
-    """ Compare SHA1 Checksums """
+    """Compare SHA1 Checksums"""
 
     if debug:
         LOG.setLevel(logging.DEBUG)
@@ -110,6 +147,7 @@ def check(debug, game_path, build_path):
         CONSOLE.print(text)
         sys.exit(1)
 
+
 @dataclass
 class ProgressSection:
     name: str
@@ -120,6 +158,7 @@ class ProgressSection:
     @property
     def percentage(self):
         return 100 * (self.decompiled / self.size)
+
 
 @dataclass
 class ProgressGroup:
@@ -132,31 +171,45 @@ class ProgressGroup:
     def percentage(self):
         return 100 * (self.decompiled / self.size)
 
-def calculate_rel_progress(matching, format):
-    asm_files = find_used_asm_files(not matching, use_progress_bar=(format == "FANCY"))
 
+def calculate_rel_progress(build_path, matching, format, asm_files, ranges):
     results = []
-    rel_paths = get_files_with_ext(Path("build/dolzel2/rel/"), ".rel")
+    start = time.time()
+    rel_paths = get_files_with_ext(build_path.joinpath("rel"), ".rel")
+    end = time.time()
+    LOG.debug(f"get_files_with_ext: {(end - start)*1000} ms")
+
+    start = time.time()
+    from collections import defaultdict
+
+    range_dict = defaultdict(list)
+    for file, range in zip(asm_files, ranges):
+        str_file = str(file)
+        if not str_file.startswith("asm/rel/"):
+            continue
+        rel = str_file.split("/")[-2]
+        range_dict[rel].append(range[1] - range[0])
+
+    end = time.time()
+    LOG.debug(f"range_dict: {(end - start)*1000} ms")
+
     for rel_path in rel_paths:
-        with rel_path.open("rb") as file:
-            data = file.read()
+        start = time.time()
 
+        size = rel_path.stat().st_size
         name = rel_path.name.replace(".rel", "")
-        size = len(data)
-        rel_asm_files = [ file for file in asm_files if f"/{name}/" in str(file)]
-        ranges = find_function_ranges(rel_asm_files)
+        end = time.time()
 
-        decompiled = size
-        for range in ranges:
-            decompiled -= (range[1] - range[0])
-
+        rel_ranges = range_dict[name]
+        decompiled = size - sum(rel_ranges)
         results.append(ProgressGroup(name, size, decompiled, {}))
 
     return results
 
-def calculate_dol_progress(matching, format):
+
+def calculate_dol_progress(build_path, matching, format, asm_files, ranges):
     # read .dol file
-    dol_path = Path("build/dolzel2/main.dol")
+    dol_path = build_path.joinpath("main.dol")
     if not dol_path.exists():
         LOG.error(f"Unable to read '{dol_path}'")
         sys.exit(1)
@@ -170,12 +223,21 @@ def calculate_dol_progress(matching, format):
     format_size = 0x100
 
     # assume everything is decompiled
-    sections = dict([
-        (section.name, ProgressSection(section.name, section.addr, section.aligned_size, section.aligned_size))
-        for section in dol.sections
-        if section.data
-    ])
-
+    sections = dict(
+        [
+            (
+                section.name,
+                ProgressSection(
+                    section.name,
+                    section.addr,
+                    section.aligned_size,
+                    section.aligned_size,
+                ),
+            )
+            for section in dol.sections
+            if section.data
+        ]
+    )
 
     init = dol.get_named_section(".init")
     assert init
@@ -185,96 +247,146 @@ def calculate_dol_progress(matching, format):
     assert text
     text_decompiled_size = text.size
 
-    # find all _used_ asm files
-    asm_files = find_used_asm_files(not matching, use_progress_bar=(format == "FANCY"))
-
-    # calculate the range each asm file occupies
-    ranges = find_function_ranges(asm_files)
-
     LOG.debug(f"init {init.addr:08X}-{init.addr + init.size:08X}")
     LOG.debug(f"text {text.addr:08X}-{text.addr + text.size:08X}")
 
     # substract the size of each asm function
     for function_range in ranges:
         if function_range[0] >= init.addr and function_range[1] < init.addr + init.size:
-            sections[".init"].decompiled -= (function_range[1] - function_range[0])
-        elif function_range[0] >= text.addr and function_range[1] < text.addr + text.size:
-            sections[".text"].decompiled-= (function_range[1] - function_range[0])
+            sections[".init"].decompiled -= function_range[1] - function_range[0]
+        elif (
+            function_range[0] >= text.addr and function_range[1] < text.addr + text.size
+        ):
+            sections[".text"].decompiled -= function_range[1] - function_range[0]
 
-    total_decompiled_size = format_size + sum([section.decompiled for section in sections.values()])
+    total_decompiled_size = format_size + sum(
+        [section.decompiled for section in sections.values()]
+    )
     return ProgressGroup("main.dol", total_size, total_decompiled_size, sections)
 
-def calculate_progress(matching, format, print_rels):
+
+def calculate_progress(build_path, matching, format, print_rels):
     if not matching:
         LOG.error("non-matching progress is not support yet.")
         sys.exit(1)
 
-    dol_progress = calculate_dol_progress(matching, format)
-    rels_progress = calculate_rel_progress(matching, format)
+    start = time.time()
+    # find all _used_ asm files
+    asm_files = find_used_asm_files(not matching, use_progress_bar=(format == "FANCY"))
+    end = time.time()
+    LOG.debug(f"find_used_asm_files: {(end - start)*1000} ms")
+
+    start = time.time()
+    # calculate the range each asm file occupies
+    ranges = find_function_ranges(asm_files)
+    end = time.time()
+    LOG.debug(f"find_function_ranges: {(end - start)*1000} ms")
+
+    start = time.time()
+    dol_progress = calculate_dol_progress(
+        build_path, matching, format, asm_files, ranges
+    )
+    end = time.time()
+    LOG.debug(f"calculate_dol_progress: {(end - start)*1000} ms")
 
     rel_size = 0
     rel_decompiled = 0
-    for rel in rels_progress:
-        rel_size += rel.size
-        rel_decompiled += rel.decompiled
+    rels_progress = []
+    if print_rels:
+        start = time.time()
+        rels_progress = calculate_rel_progress(
+            build_path, matching, format, asm_files, ranges
+        )
+        end = time.time()
+        LOG.debug(f"calculate_rel_progress: {(end - start)*1000} ms")
+
+        for rel in rels_progress:
+            rel_size += rel.size
+            rel_decompiled += rel.decompiled
 
     total_size = dol_progress.size + rel_size
     decompiled_size = dol_progress.decompiled + rel_decompiled
 
-
     if format == "FANCY":
         table = Table(title="main.dol")
-        table.add_column("Section", justify="right",
-                         style="cyan", no_wrap=True)
+        table.add_column("Section", justify="right", style="cyan", no_wrap=True)
         table.add_column("Percentage", style="green")
-        table.add_column("Decompiled (bytes)",
-                         justify="right", style="bright_yellow")
-        table.add_column("Total (bytes)", justify="right",
-                         style="bright_magenta")
+        table.add_column("Decompiled (bytes)", justify="right", style="bright_yellow")
+        table.add_column("Total (bytes)", justify="right", style="bright_magenta")
 
         for name, section in dol_progress.sections.items():
-            table.add_row(name, f"{section.percentage:10.6f}%", f"{section.decompiled}", f"{section.size}")
+            table.add_row(
+                name,
+                f"{section.percentage:10.6f}%",
+                f"{section.decompiled}",
+                f"{section.size}",
+            )
 
         table.add_row("", "", "", "")
-        table.add_row("total", f"{dol_progress.percentage:10.6f}%", f"{dol_progress.decompiled}", f"{dol_progress.size}")
+        table.add_row(
+            "total",
+            f"{dol_progress.percentage:10.6f}%",
+            f"{dol_progress.decompiled}",
+            f"{dol_progress.size}",
+        )
         CONSOLE.print(table)
 
         if print_rels:
             table = Table(title="RELs")
-            table.add_column("Section", justify="right",
-                            style="cyan", no_wrap=True)
+            table.add_column("Section", justify="right", style="cyan", no_wrap=True)
             table.add_column("Percentage", style="green")
-            table.add_column("Decompiled (bytes)",
-                            justify="right", style="bright_yellow")
-            table.add_column("Total (bytes)", justify="right",
-                            style="bright_magenta")
+            table.add_column(
+                "Decompiled (bytes)", justify="right", style="bright_yellow"
+            )
+            table.add_column("Total (bytes)", justify="right", style="bright_magenta")
 
             for rel in rels_progress:
-                table.add_row(rel.name, f"{rel.percentage:10.6f}%", f"{rel.decompiled}", f"{rel.size}")
+                table.add_row(
+                    rel.name,
+                    f"{rel.percentage:10.6f}%",
+                    f"{rel.decompiled}",
+                    f"{rel.size}",
+                )
 
             table.add_row("", "", "", "")
-            table.add_row("total", f"{100 * (rel_decompiled / rel_size):10.6f}%", f"{rel_decompiled}", f"{rel_size}")
+            table.add_row(
+                "total",
+                f"{100 * (rel_decompiled / rel_size):10.6f}%",
+                f"{rel_decompiled}",
+                f"{rel_size}",
+            )
             CONSOLE.print(table)
 
         table = Table(title="Total")
-        table.add_column("Section", justify="right",
-                        style="cyan", no_wrap=True)
+        table.add_column("Section", justify="right", style="cyan", no_wrap=True)
         table.add_column("Percentage", style="green")
-        table.add_column("Decompiled (bytes)",
-                        justify="right", style="bright_yellow")
-        table.add_column("Total (bytes)", justify="right",
-                        style="bright_magenta")
+        table.add_column("Decompiled (bytes)", justify="right", style="bright_yellow")
+        table.add_column("Total (bytes)", justify="right", style="bright_magenta")
 
-        table.add_row("main.dol", f"{dol_progress.percentage:10.6f}%", f"{dol_progress.decompiled}", f"{dol_progress.size}")
+        table.add_row(
+            "main.dol",
+            f"{dol_progress.percentage:10.6f}%",
+            f"{dol_progress.decompiled}",
+            f"{dol_progress.size}",
+        )
         if rels_progress:
-            table.add_row("RELs", f"{100 * (rel_decompiled / rel_size):10.6f}%", f"{rel_decompiled}", f"{rel_size}")
+            table.add_row(
+                "RELs",
+                f"{100 * (rel_decompiled / rel_size):10.6f}%",
+                f"{rel_decompiled}",
+                f"{rel_size}",
+            )
         else:
             # if we don't have any rel progress, just indicate N/A
             table.add_row("RELs", "–".center(11), f"–", f"–")
 
-
         table.add_row("", "", "", "")
-        table.add_row("total", f"{100 * (decompiled_size / total_size):10.6f}%", f"{decompiled_size}", f"{total_size}")
+        table.add_row(
+            "total",
+            f"{100 * (decompiled_size / total_size):10.6f}%",
+            f"{decompiled_size}",
+            f"{total_size}",
+        )
         CONSOLE.print(table)
     elif format == "CSV":
         version = 1
@@ -283,48 +395,115 @@ def calculate_progress(matching, format, print_rels):
         git_hash = git_object.hexsha
 
         data = [
-            str(version), timestamp, git_hash,
-            str(dol_progress.decompiled), str(dol_progress.size),
-            str(rel_decompiled), str(rel_size),
-            str(decompiled_size), str(total_size),
-
+            str(version),
+            timestamp,
+            git_hash,
+            str(dol_progress.decompiled),
+            str(dol_progress.size),
+            str(rel_decompiled),
+            str(rel_size),
+            str(decompiled_size),
+            str(total_size),
         ]
         print(",".join(data))
     elif format == "JSON-SHIELD":
         # https://shields.io/endpoint
-        print(json.dumps({
-            "schemaVersion": 1,
-            "label": "progress",
-            "message": f"{100 * (decompiled_size / total_size):.3g}%",
-            "color": 'yellow',
-        }))
+        print(
+            json.dumps(
+                {
+                    "schemaVersion": 1,
+                    "label": "progress",
+                    "message": f"{100 * (decompiled_size / total_size):.3g}%",
+                    "color": "yellow",  # TODO: color
+                }
+            )
+        )
+    elif format == "JSON":
+        matching = {}
+        non_matching = {}
+
+        matching["main.dol"] = {
+            "decompiled": dol_progress.decompiled,
+            "total": dol_progress.size,
+            "sections": [
+                {
+                    name: {
+                        "decompiled": sec.decompiled,
+                        "total": sec.size,
+                    }
+                }
+                for name, sec in dol_progress.sections.items()
+            ],
+        }
+
+        if rels_progress:
+            matching["rels"] = {
+                "decompiled": rel_decompiled,
+                "total": rel_size,
+            }
+
+            for rel in rels_progress:
+                matching[rel.name] = {
+                    "decompiled": rel.decompiled,
+                    "total": rel.size,
+                }
+
+        print(
+            json.dumps(
+                {
+                    "matching": matching,
+                    "non-matchgin": non_matching,
+                }
+            )
+        )
     else:
         print(dol_progress.percentage)
         print(100 * (rel_decompiled / rel_size))
         print(100 * (decompiled_size / total_size))
         LOG.error("unknown format: '{format}'")
 
+
+def find_function_range(asm):
+    with asm.open("r") as file:
+        lines = file.readlines()
+        for line in lines:
+            if line.startswith("/* "):
+                fast_first = int(line[3:11], 16)
+                break
+
+        for line in lines[::-1]:
+            if line.startswith("/* "):
+                fast_last = int(line[3:11], 16) + 4
+                break
+
+        return (fast_first, fast_last)
+
+
 def find_function_ranges(asm_files):
-    function_ranges = []
-    for asm in asm_files:
-        with asm.open('r') as file:
-            first = None
-            last = None
-            for line in file.readlines():
-                if not line.startswith('/* '):
-                    continue
-                addr = int(line[3:11], 16)
-                if not first:
-                    first = addr
-                last = addr + 4
+    if len(asm_files) < 128:
+        return [find_function_range(x) for x in asm_files]
 
-            function_ranges.append((first, last))
+    thread_count = 4
+    with mp.Pool(processes=2 * thread_count) as pool:
+        jobs_left = len(asm_files)
+        result = pool.map_async(find_function_range, asm_files)
+        while result._number_left > 0:
+            time.sleep(1 / 20)
 
-    return function_ranges
+        function_ranges = result.get()
+        return function_ranges
 
-@tp.command(name="remove-unused-asm", help="remove all of the asm that is decompiled and not used anymore")
+
+#
+# Remove ASM
+#
+@tp.command(
+    name="remove-unused-asm",
+    help="Remove all of the asm that is decompiled and not used anymore",
+)
 def remove_unused_asm_cmd():
     remove_unused_asm()
+
 
 def remove_unused_asm():
     unused_files, error_files = find_unused_asm_files(False)
@@ -337,14 +516,34 @@ def remove_unused_asm():
     text.stylize("bold green")
     CONSOLE.print(text)
 
+
+#
+# Format
+#
 @tp.command(name="format")
-@click.option('--debug/--no-debug')
-@click.option('--thread-count', '-j', 'thread_count', help="This option is passed forward to all 'make' commands.", default=4)
-@click.option('--game-path', default=DEFAULT_GAME_PATH, required=True)
-@click.option('--build-path', default=DEFAULT_BUILD_PATH, required=True)
+@click.option("--debug/--no-debug")
+@click.option(
+    "--thread-count",
+    "-j",
+    "thread_count",
+    help="This option is passed forward to all 'make' commands.",
+    default=4,
+)
+@click.option(
+    "--game-path",
+    type=PathPath(file_okay=False, dir_okay=True),
+    default=DEFAULT_GAME_PATH,
+    required=True,
+)
+@click.option(
+    "--build-path",
+    type=PathPath(file_okay=False, dir_okay=True),
+    default=DEFAULT_BUILD_PATH,
+    required=True,
+)
 def format(debug, thread_count, game_path, build_path):
-    """ Format all .cpp/.h files using clang-format """
-    
+    """Format all .cpp/.h files using clang-format"""
+
     if debug:
         LOG.setLevel(logging.DEBUG)
 
@@ -362,13 +561,33 @@ def format(debug, thread_count, game_path, build_path):
         CONSOLE.print(text)
         sys.exit(1)
 
+
+#
+# Pull-Request
+#
 @tp.command(name="pull-request")
-@click.option('--debug/--no-debug')
-@click.option('--thread-count', '-j', 'thread_count', help="This option is passed forward to all 'make' commands.", default=4)
-@click.option('--game-path', default=DEFAULT_GAME_PATH, required=True)
-@click.option('--build-path', default=DEFAULT_BUILD_PATH, required=True)
+@click.option("--debug/--no-debug")
+@click.option(
+    "--thread-count",
+    "-j",
+    "thread_count",
+    help="This option is passed forward to all 'make' commands.",
+    default=4,
+)
+@click.option(
+    "--game-path",
+    type=PathPath(file_okay=False, dir_okay=True),
+    default=DEFAULT_GAME_PATH,
+    required=True,
+)
+@click.option(
+    "--build-path",
+    type=PathPath(file_okay=False, dir_okay=True),
+    default=DEFAULT_BUILD_PATH,
+    required=True,
+)
 def pull_request(debug, thread_count, game_path, build_path):
-    """ Verify that everything is OK before pull-request """
+    """Verify that everything is OK before pull-request"""
 
     if debug:
         LOG.setLevel(logging.DEBUG)
@@ -431,11 +650,11 @@ def pull_request(debug, thread_count, game_path, build_path):
     text.stylize("bold magenta")
     CONSOLE.print(text)
 
-    calculate_progress(True, "FANCY", False)
+    calculate_progress(build_path, True, "FANCY", False)
 
 
 def find_all_asm_files():
-    """ Recursivly find all files in the 'asm/' folder """
+    """Recursivly find all files in the 'asm/' folder"""
 
     files = set()
     errors = set()
@@ -451,7 +670,7 @@ def find_all_asm_files():
             if path.is_dir():
                 recursive(path)
             else:
-                if path.suffix == '.s':
+                if path.suffix == ".s":
                     files.add(path)
                 else:
                     errors.add(path)
@@ -462,25 +681,25 @@ def find_all_asm_files():
     recursive(root)
 
     LOG.debug(
-        f"find_all_asm_files: found {len(files)} .s files and {len(errors)} bad files")
+        f"find_all_asm_files: found {len(files)} .s files and {len(errors)} bad files"
+    )
     return files, errors
 
 
 def find_unused_asm_files(non_matching):
-    """ Search for unused asm function files. """
+    """Search for unused asm function files."""
 
     asm_files, error_files = find_all_asm_files()
     included_asm_files = find_used_asm_files(non_matching)
 
     unused_asm_files = asm_files - included_asm_files
-    LOG.debug(
-        f"find_unused_asm_files: found {len(unused_asm_files)} unused .s files")
+    LOG.debug(f"find_unused_asm_files: found {len(unused_asm_files)} unused .s files")
 
     return unused_asm_files, error_files
 
 
 def find_all_header_files():
-    """ Recursivly find all files in the 'include/' folder """
+    """Recursivly find all files in the 'include/' folder"""
 
     files = set()
 
@@ -496,7 +715,7 @@ def find_all_header_files():
             if path.is_dir():
                 recursive(path)
             else:
-                if path.suffix == '.h':
+                if path.suffix == ".h":
                     files.add(path)
 
     root = Path("./include/")
@@ -508,7 +727,7 @@ def find_all_header_files():
 
 
 def find_all_cpp_files():
-    """ Recursivly find all files in the 'cpp/' folder """
+    """Recursivly find all files in the 'cpp/' folder"""
 
     files = set()
 
@@ -524,7 +743,7 @@ def find_all_cpp_files():
             if path.is_dir():
                 recursive(path)
             else:
-                if path.suffix == '.cpp':
+                if path.suffix == ".cpp":
                     files.add(path)
 
     src_root = Path("./src/")
@@ -568,7 +787,9 @@ def find_used_asm_files(non_matching, use_progress_bar=True):
     includes = set()
 
     if use_progress_bar:
-        with Progress(console=CONSOLE, transient=True, refresh_per_second=1) as progress:
+        with Progress(
+            console=CONSOLE, transient=True, refresh_per_second=1
+        ) as progress:
             task = progress.add_task(f"preprocessing...", total=len(cpp_files))
 
             for cpp_file in cpp_files:
@@ -589,8 +810,7 @@ def find_used_asm_files(non_matching, use_progress_bar=True):
 
 def clang_format_impl(file):
     cmd = ["clang-format", "-i", str(file)]
-    cf = subprocess.run(args=cmd, stdout=subprocess.PIPE,
-                        stderr=subprocess.PIPE)
+    cf = subprocess.run(args=cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 
 def clang_format(thread_count):
@@ -602,7 +822,9 @@ def clang_format(thread_count):
     with mp.Pool(processes=2 * thread_count) as pool:
         result = pool.map_async(clang_format_impl, files)
         jobs_left = len(files)
-        with Progress(console=CONSOLE, transient=True, refresh_per_second=5) as progress:
+        with Progress(
+            console=CONSOLE, transient=True, refresh_per_second=5
+        ) as progress:
             task = progress.add_task(f"clang-formating...", total=len(files))
 
             while result._number_left > 0:
@@ -610,12 +832,16 @@ def clang_format(thread_count):
                 change = jobs_left - left
                 jobs_left = left
                 progress.update(
-                    task, description=f"clang-formating... ({left} left)", advance=change)
-                time.sleep(1/5)
+                    task,
+                    description=f"clang-formating... ({left} left)",
+                    advance=change,
+                )
+                time.sleep(1 / 5)
 
             progress.update(task, advance=jobs_left)
 
     return True
+
 
 def rebuild(thread_count):
     LOG.debug("make clean")
@@ -623,8 +849,9 @@ def rebuild(thread_count):
         task = progress.add_task(f"make clean", total=1000, start=False)
 
         cmd = ["make", f"-j{thread_count}", "clean"]
-        result = subprocess.run(args=cmd, stdout=subprocess.PIPE,
-                       stderr=subprocess.PIPE)
+        result = subprocess.run(
+            args=cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        )
         LOG.debug("make clean complete")
         if result.returncode != 0:
             return False
@@ -634,8 +861,9 @@ def rebuild(thread_count):
         task = progress.add_task(f"make", total=1000, start=False)
 
         cmd = ["make", f"-j{thread_count}", "build/dolzel2/main.dol"]
-        result = subprocess.run(args=cmd, stdout=subprocess.PIPE,
-                       stderr=subprocess.PIPE)
+        result = subprocess.run(
+            args=cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        )
         LOG.debug("make main.dol complete")
         if result.returncode != 0:
             return False
@@ -645,8 +873,9 @@ def rebuild(thread_count):
         task = progress.add_task(f"make rels", total=1000, start=False)
 
         cmd = ["make", f"-j{thread_count}", "rels"]
-        result = subprocess.run(args=cmd, stdout=subprocess.PIPE,
-                       stderr=subprocess.PIPE)
+        result = subprocess.run(
+            args=cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        )
         LOG.debug("make RELs complete")
         if result.returncode != 0:
             return False
@@ -660,16 +889,19 @@ def sha1_from_data(data):
 
     return sha1.hexdigest().upper()
 
+
 def get_files_with_ext(path, ext):
     return [x for x in path.glob(f"**/*{ext}") if x.is_file()]
+
 
 class CheckException(Exception):
     ...
 
+
 def check_sha1(game_path, build_path):
 
-    #dol_path = game_path.joinpath("main.dol")
-    #if not dol_path.exists():
+    # dol_path = game_path.joinpath("main.dol")
+    # if not dol_path.exists():
     #    raise CheckException(f"File not found: '{dol_path}'")
 
     rel_path = game_path.joinpath("rel/Final/Release")
@@ -681,27 +913,35 @@ def check_sha1(game_path, build_path):
     if not rels_archive_path.exists():
         raise CheckException(f"File not found: '{rels_archive_path}'")
 
-    #LOG.debug(f"DOL Path: '{dol_path}'")
+    # LOG.debug(f"DOL Path: '{dol_path}'")
     LOG.debug(f"RELs Path: '{rel_path}' (found {len(rels_path)} RELs)")
     LOG.debug(f"RELs Archive Path: '{rels_archive_path}'")
 
     EXPECTED = {}
-    #with dol_path.open('rb') as file:
+    # with dol_path.open('rb') as file:
     #    data = file.read()
     #    EXPECTED[0] = (str(dol_path), sha1_from_data(data),sha1_from_data(data),)
-    EXPECTED[0] = ("", "4997D93B9692620C40E90374A0F1DBF0E4889395", "4997D93B9692620C40E90374A0F1DBF0E4889395",)
+    EXPECTED[0] = (
+        "",
+        "4997D93B9692620C40E90374A0F1DBF0E4889395",
+        "4997D93B9692620C40E90374A0F1DBF0E4889395",
+    )
 
     for rel_filepath in rels_path:
-        with rel_filepath.open('rb') as file:
+        with rel_filepath.open("rb") as file:
             data = bytearray(file.read())
             yaz0_data = data
-            if struct.unpack('>I', data[:4])[0] == 0x59617A30:
+            if struct.unpack(">I", data[:4])[0] == 0x59617A30:
                 data = yaz0.decompress(io.BytesIO(data))
 
             rel = librel.read(data)
-            EXPECTED[rel.index] = (str(rel_filepath), sha1_from_data(yaz0_data),sha1_from_data(data),)
+            EXPECTED[rel.index] = (
+                str(rel_filepath),
+                sha1_from_data(yaz0_data),
+                sha1_from_data(data),
+            )
 
-    with rels_archive_path.open('rb') as file:
+    with rels_archive_path.open("rb") as file:
         rarc = libarc.read(file.read())
         for depth, file in rarc.files_and_folders:
             if not isinstance(file, libarc.File):
@@ -710,15 +950,19 @@ def check_sha1(game_path, build_path):
             if file.name.endswith(".rel"):
                 data = file.data
                 yaz0_data = data
-                if struct.unpack('>I', data[:4])[0] == 0x59617A30:
+                if struct.unpack(">I", data[:4])[0] == 0x59617A30:
                     data = yaz0.decompress(io.BytesIO(data))
 
-                xxx_path = Path('build').joinpath(file.name)
-                with xxx_path.open('wb') as write_file:
+                xxx_path = Path("build").joinpath(file.name)
+                with xxx_path.open("wb") as write_file:
                     write_file.write(data)
 
                 rel = librel.read(data)
-                EXPECTED[rel.index] = (file.name, sha1_from_data(yaz0_data),sha1_from_data(data),)
+                EXPECTED[rel.index] = (
+                    file.name,
+                    sha1_from_data(yaz0_data),
+                    sha1_from_data(data),
+                )
 
     if not build_path.exists():
         raise CheckException(f"Path not found: '{build_path}'")
@@ -730,25 +974,35 @@ def check_sha1(game_path, build_path):
     build_rels_path = get_files_with_ext(build_path, ".rel")
 
     CURRENT = {}
-    with build_dol_path.open('rb') as file:
+    with build_dol_path.open("rb") as file:
         data = file.read()
-        CURRENT[0] = (str(build_dol_path), sha1_from_data(data),sha1_from_data(data),)
+        CURRENT[0] = (
+            str(build_dol_path),
+            sha1_from_data(data),
+            sha1_from_data(data),
+        )
 
     for rel_filepath in build_rels_path:
-        with rel_filepath.open('rb') as file:
+        with rel_filepath.open("rb") as file:
             data = bytearray(file.read())
             yaz0_data = data
-            if struct.unpack('>I', data[:4])[0] == 0x59617A30:
+            if struct.unpack(">I", data[:4])[0] == 0x59617A30:
                 data = yaz0.decompress(io.BytesIO(data))
 
             rel = librel.read(data)
-            CURRENT[rel.index] = (str(rel_filepath), sha1_from_data(yaz0_data),sha1_from_data(data),)
+            CURRENT[rel.index] = (
+                str(rel_filepath),
+                sha1_from_data(yaz0_data),
+                sha1_from_data(data),
+            )
 
     expected_keys = set(EXPECTED.keys())
     current_keys = set(CURRENT.keys())
     match = expected_keys - current_keys
     if len(match) > 0:
-        raise CheckException(f"Missing RELs (expected: {len(expected_keys)}, found: {len(current_keys)})")
+        raise CheckException(
+            f"Missing RELs (expected: {len(expected_keys)}, found: {len(current_keys)})"
+        )
 
     errors = 0
     for key in expected_keys:
