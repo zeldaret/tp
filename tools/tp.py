@@ -67,8 +67,9 @@ for logger in loggers:
     logger.setLevel(logging.INFO)
 
 DEFAULT_GAME_PATH = "game"
-DEFAULT_BUILD_PATH = "build/dolzel2"
 DEFAULT_TOOLS_PATH = "tools"
+DEFAULT_BUILD_PATH = "build/dolzel2"
+DEFAULT_EXPECTED_PATH = "expected/build/dolzel2"
 
 
 @click.group()
@@ -76,6 +77,40 @@ DEFAULT_TOOLS_PATH = "tools"
 def tp():
     """Tools to help the decompilation of "The Legend of Zelda: Twilight Princess" """
     pass
+
+
+@tp.command(name="expected")
+@click.option("--debug/--no-debug")
+@click.option(
+    "--build-path",
+    type=PathPath(file_okay=False, dir_okay=True),
+    default=DEFAULT_BUILD_PATH,
+    required=True,
+)
+@click.option(
+    "--expected-path",
+    type=PathPath(file_okay=False, dir_okay=True),
+    default=DEFAULT_EXPECTED_PATH,
+    required=True,
+)
+def expected_copy(debug, build_path, expected_path):
+    """Copy the current build folder to the expected folder"""
+
+    if debug:
+        LOG.setLevel(logging.DEBUG)
+
+    if not build_path.exists() or not build_path.is_dir():
+        LOG.error(
+            f"You need to successfully build the project before copy into expected folder."
+        )
+        sys.exit(1)
+
+    shutil.rmtree(expected_path, ignore_errors=True)
+    expected_path.mkdir(exist_ok=True, parents=True)
+
+    CONSOLE.log(f"src: '{build_path}'")
+    CONSOLE.log(f"dst: '{expected_path}'")
+    shutil.copytree(build_path, expected_path, dirs_exist_ok=True)
 
 
 @tp.command(name="setup")
