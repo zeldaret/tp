@@ -106,7 +106,18 @@ $(DOL): $(ELF) | tools
 	$(SHA1SUM) -c $(TARGET).sha1
 
 clean:
+	rm -f -d -r $(BUILD_DIR)/libs
+	rm -f -d -r $(BUILD_DIR)/src
+	rm -f $(ELF)
+	rm -f $(DOL)
+	rm -f $(BUILD_DIR)/*.a
+
+clean_all: 
 	rm -f -d -r build
+
+clean_rels:
+	rm -f -d -r $(BUILD_DIR)/rel
+	rm -f $(BUILD_PATH)/*.rel
 
 tools: $(ELF2DOL)
 
