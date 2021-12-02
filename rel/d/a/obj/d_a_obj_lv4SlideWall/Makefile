@@ -43,7 +43,7 @@ $(M530_TARGET): $(M530_O_FILES) $(M530_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4SlideWall/%.o: rel/d/a/obj/d_a_obj_lv4SlideWall/%.cpp
 	@echo [530] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M530_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M530_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

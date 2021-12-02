@@ -41,7 +41,7 @@ $(M426_TARGET): $(M426_O_FILES) $(M426_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvfence/%.o: rel/d/a/obj/d_a_obj_crvfence/%.cpp
 	@echo [426] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M426_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M426_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

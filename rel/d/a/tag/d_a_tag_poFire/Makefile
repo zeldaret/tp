@@ -43,7 +43,7 @@ $(M733_TARGET): $(M733_O_FILES) $(M733_LIBS)
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_poFire/%.o: rel/d/a/tag/d_a_tag_poFire/%.cpp
 	@echo [733] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M733_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M733_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

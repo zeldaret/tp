@@ -43,7 +43,7 @@ $(M391_TARGET): $(M391_O_FILES) $(M391_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zrc/%.o: rel/d/a/npc/d_a_npc_zrc/%.cpp
 	@echo [391] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M391_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M391_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

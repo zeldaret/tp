@@ -43,7 +43,7 @@ $(M545_TARGET): $(M545_O_FILES) $(M545_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6FurikoTrap/%.o: rel/d/a/obj/d_a_obj_lv6FurikoTrap/%.cpp
 	@echo [545] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M545_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M545_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

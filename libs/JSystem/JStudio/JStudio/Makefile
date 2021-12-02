@@ -54,6 +54,6 @@ $(BUILD_DIR)/libJStudio.a: $(LIBJSTUDIO_A_O_FILES)
 $(BUILD_DIR)/libs/JSystem/JStudio/JStudio/%.o: libs/JSystem/JStudio/JStudio/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(LIBJSTUDIO_A_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBJSTUDIO_A_CFLAGS) -c -o $@ $(basename $@).cpp
 

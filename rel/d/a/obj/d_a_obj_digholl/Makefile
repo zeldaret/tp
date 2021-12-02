@@ -41,7 +41,7 @@ $(M436_TARGET): $(M436_O_FILES) $(M436_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_digholl/%.o: rel/d/a/obj/d_a_obj_digholl/%.cpp
 	@echo [436] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M436_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M436_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

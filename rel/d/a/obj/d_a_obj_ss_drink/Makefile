@@ -41,7 +41,7 @@ $(M630_TARGET): $(M630_O_FILES) $(M630_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ss_drink/%.o: rel/d/a/obj/d_a_obj_ss_drink/%.cpp
 	@echo [630] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M630_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M630_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

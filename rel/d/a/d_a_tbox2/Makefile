@@ -43,7 +43,7 @@ $(M42_TARGET): $(M42_O_FILES) $(M42_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_tbox2/%.o: rel/d/a/d_a_tbox2/%.cpp
 	@echo [ 42] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M42_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M42_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

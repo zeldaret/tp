@@ -41,7 +41,7 @@ $(M465_TARGET): $(M465_O_FILES) $(M465_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gra_rock/%.o: rel/d/a/obj/d_a_obj_gra_rock/%.cpp
 	@echo [465] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M465_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M465_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

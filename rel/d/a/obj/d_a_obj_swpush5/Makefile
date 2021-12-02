@@ -43,7 +43,7 @@ $(M115_TARGET): $(M115_O_FILES) $(M115_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush5/%.o: rel/d/a/obj/d_a_obj_swpush5/%.cpp
 	@echo [115] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M115_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M115_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

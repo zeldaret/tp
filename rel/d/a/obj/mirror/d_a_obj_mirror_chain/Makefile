@@ -41,7 +41,7 @@ $(M573_TARGET): $(M573_O_FILES) $(M573_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_chain/%.o: rel/d/a/obj/mirror/d_a_obj_mirror_chain/%.cpp
 	@echo [573] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M573_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M573_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

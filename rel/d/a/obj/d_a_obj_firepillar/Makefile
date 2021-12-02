@@ -43,7 +43,7 @@ $(M447_TARGET): $(M447_O_FILES) $(M447_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_firepillar/%.o: rel/d/a/obj/d_a_obj_firepillar/%.cpp
 	@echo [447] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M447_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M447_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

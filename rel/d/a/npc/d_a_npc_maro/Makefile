@@ -43,7 +43,7 @@ $(M86_TARGET): $(M86_O_FILES) $(M86_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_maro/%.o: rel/d/a/npc/d_a_npc_maro/%.cpp
 	@echo [ 86] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M86_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M86_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

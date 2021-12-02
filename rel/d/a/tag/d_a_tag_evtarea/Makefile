@@ -41,7 +41,7 @@ $(M32_TARGET): $(M32_O_FILES) $(M32_LIBS)
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_evtarea/%.o: rel/d/a/tag/d_a_tag_evtarea/%.cpp
 	@echo [ 32] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M32_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M32_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

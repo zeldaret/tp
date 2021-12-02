@@ -41,7 +41,7 @@ $(M536_TARGET): $(M536_O_FILES) $(M536_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prelvtr/%.o: rel/d/a/obj/d_a_obj_lv4prelvtr/%.cpp
 	@echo [536] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M536_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M536_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

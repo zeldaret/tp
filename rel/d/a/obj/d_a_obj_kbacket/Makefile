@@ -43,7 +43,7 @@ $(M99_TARGET): $(M99_O_FILES) $(M99_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kbacket/%.o: rel/d/a/obj/d_a_obj_kbacket/%.cpp
 	@echo [ 99] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M99_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M99_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

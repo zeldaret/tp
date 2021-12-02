@@ -41,7 +41,7 @@ $(M639_TARGET): $(M639_O_FILES) $(M639_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallB/%.o: rel/d/a/obj/d_a_obj_swBallB/%.cpp
 	@echo [639] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M639_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M639_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

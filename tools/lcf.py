@@ -1,31 +1,40 @@
-
 """
 
 lcf.py
 
 Generates the .lcf file used for the linker. This will auto force actives missing functions and data
-and apply some fixes with makes it easier to decompile.
+and apply some fixes which makes it easier to decompile.
 
 """
 
 import importlib
-import click
-from libdol2asm import settings
-import libelf
-import libar
-from pathlib import Path
 import io
 import sys
-import os
+
+from pathlib import Path
+
+try:
+    import click
+    import libelf
+    import libar
+    import dol2asm_settings
+except ImportError as e:
+    MISSING_PREREQUISITES = (
+        f"Missing prerequisite python module {e}.\n"
+        f"Run `python3 -m pip install --user -r tools/requirements.txt` to install prerequisites."
+    )
+
+    print(MISSING_PREREQUISITES, file=sys.stderr)
+    sys.exit(1)
+
 VERSION = "1.0"
 
-
-# laod the symbol definition file for main.dol
-sys.path.append('defs')
+# load the symbol definition file for main.dol
+sys.path.append("defs")
 
 
 def lcf_generate(output_path):
-    """ Script for generating .lcf files """
+    """Script for generating .lcf files"""
 
     import module0
 
@@ -36,11 +45,11 @@ def lcf_generate(output_path):
 
     # load object files from the 'build/o_files', this way we need no list of
     # object files in the python code.
-    with open("build/o_files", 'r') as content_file:
+    with open("build/o_files", "r") as content_file:
         o_files = content_file.read().strip().split(" ")
 
     for o_file in o_files:
-        with open(o_file, 'rb') as file:
+        with open(o_file, "rb") as file:
             obj = libelf.load_object_from_file(None, o_file, file)
             symbols.extend(get_symbols_from_object_file(obj))
 
@@ -62,7 +71,8 @@ def lcf_generate(output_path):
 
         file.write("\t} > text\n")
         file.write(
-            "\t_stack_addr = (_f_sbss2 + SIZEOF(.sbss2) + 65536 + 0x7) & ~0x7;\n")
+            "\t_stack_addr = (_f_sbss2 + SIZEOF(.sbss2) + 65536 + 0x7) & ~0x7;\n"
+        )
         file.write("\t_stack_end = _f_sbss2 + SIZEOF(.sbss2);\n")
         file.write("\t_db_stack_addr = (_stack_addr + 0x2000);\n")
         file.write("\t_db_stack_end = _stack_addr;\n")
@@ -80,9 +90,9 @@ def lcf_generate(output_path):
         names = base_names - main_names
         for name in names:
             symbol = module0.SYMBOLS[module0.SYMBOL_NAMES[name]]
-            if symbol['type'] == "StringBase":  # @stringBase0 is handled below
+            if symbol["type"] == "StringBase":  # @stringBase0 is handled below
                 continue
-            if symbol['type'] == "LinkerGenerated":  # linker handles these symbols
+            if symbol["type"] == "LinkerGenerated":  # linker handles these symbols
                 continue
 
             file.write(f"\t\"{symbol['label']}\" = 0x{symbol['addr']:08X};\n")
@@ -95,40 +105,40 @@ def lcf_generate(output_path):
         # that the @stringBase0 symbol is never used and strip it.
         file.write("\t/* @stringBase0 */\n")
         for x in module0.SYMBOLS:
-            if x['type'] == "StringBase":
-                file.write("\t\"%s\" = 0x%08X;\n" % (x['label'], x['addr']))
+            if x["type"] == "StringBase":
+                file.write('\t"%s" = 0x%08X;\n' % (x["label"], x["addr"]))
 
         file.write("}\n")
         file.write("\n")
 
         file.write("FORCEACTIVE {\n")
         for f in FORCE_ACTIVE:
-            file.write("\t\"%s\"\n" % f)
+            file.write('\t"%s"\n' % f)
         file.write("\n")
 
         file.write("\t/* unreferenced symbols */\n")
         for x in module0.SYMBOLS:
-            k = x['label']
-            if x['type'] == "StringBase":
+            k = x["label"]
+            if x["type"] == "StringBase":
                 continue
 
             require_force_active = False
 
             # if the symbol is not reachable from the __start add it as forceactive
-            if not x['is_reachable'] or sum(x['r']) == 0:
+            if not x["is_reachable"] or sum(x["r"]) == 0:
                 require_force_active = True
 
             if require_force_active:
                 file.write(f"\t\"{x['label']}\"\n")
-                if not x['label'] in main_names:
+                if not x["label"] in main_names:
                     file.write(f"\t\"{x['name']}\"\n")
 
         for x in module0.SYMBOLS:
-            if x['type'] == "StringBase":
+            if x["type"] == "StringBase":
                 continue
 
-            if x['is_reachable']:
-                if x['label'] != x['name']:
+            if x["is_reachable"]:
+                if x["label"] != x["name"]:
                     file.write(f"\t\"{x['name']}\"\n")
 
         for symbol in symbols:
@@ -136,7 +146,7 @@ def lcf_generate(output_path):
                 continue
 
             if "__template" in symbol.name:
-                file.write("\t\"%s\"\n" % (symbol.name))
+                file.write('\t"%s"\n' % (symbol.name))
 
         file.write("\n")
         file.write("}\n")
@@ -146,27 +156,20 @@ def lcf_generate(output_path):
 def rel_lcf_generate(module_index, output_path):
 
     module = importlib.import_module(f"module{module_index}")
-    base = settings.REL_TEMP_LOCATION[module.LIBRARIES[0].split(
-        "/")[-1] + ".rel"]
+    base = dol2asm_settings.REL_TEMP_LOCATION[
+        module.LIBRARIES[0].split("/")[-1] + ".rel"
+    ]
 
     # load object files from the 'build/o_files', this way we need no list of
     # object files in the python code.
-    with open(f"build/M{module_index}_ofiles", 'r') as content_file:
+    with open(f"build/M{module_index}_ofiles", "r") as content_file:
         all_files = content_file.read().strip().split(" ")
 
     path = f"build/dolzel2/rel/{module.LIBRARIES[0]}"
 
-    archives = [
-        path
-        for path in all_files
-        if path.endswith(".a")
-    ]
+    archives = [path for path in all_files if path.endswith(".a")]
 
-    o_files = [
-        path
-        for path in all_files
-        if path.endswith(".o")
-    ]
+    o_files = [path for path in all_files if path.endswith(".o")]
 
     # load symbols from compiled files
     symbols = []
@@ -174,7 +177,7 @@ def rel_lcf_generate(module_index, output_path):
         symbols.extend(load_archive(archive))
 
     for o_file in o_files:
-        with open(o_file, 'rb') as file:
+        with open(o_file, "rb") as file:
             obj = libelf.load_object_from_file(None, o_file, file)
             symbols.extend(get_symbols_from_object_file(obj))
 
@@ -186,7 +189,7 @@ def rel_lcf_generate(module_index, output_path):
         for name, align in REL_SECTIONS:
             file.write(f"\t\t{name} :{{}}\n")
 
-        #file.write("\t\t/DISCARD/ : { *(.dead) }\n")
+        # file.write("\t\t/DISCARD/ : { *(.dead) }\n")
 
         file.write("\t}\n")
 
@@ -202,13 +205,14 @@ def rel_lcf_generate(module_index, output_path):
         names = base_names - main_names
         for name in names:
             symbol = module.SYMBOLS[module.SYMBOL_NAMES[name]]
-            if symbol['type'] == "StringBase":  # @stringBase0 is handled below
+            if symbol["type"] == "StringBase":  # @stringBase0 is handled below
                 continue
-            if symbol['type'] == "LinkerGenerated":  # linker handles these symbols
+            if symbol["type"] == "LinkerGenerated":  # linker handles these symbols
                 continue
 
             file.write(
-                f"\t\"{symbol['label']}\" = __rel_base + 0x{symbol['addr'] - base:08X}; /* 0x{symbol['addr']:08X} */\n")
+                f"\t\"{symbol['label']}\" = __rel_base + 0x{symbol['addr'] - base:08X}; /* 0x{symbol['addr']:08X} */\n"
+            )
         file.write("\n")
 
         file.write("}\n")
@@ -222,27 +226,27 @@ def rel_lcf_generate(module_index, output_path):
 
         file.write("\t/* unreferenced symbols */\n")
         for x in module.SYMBOLS:
-            k = x['label']
-            if x['type'] == "StringBase":
+            k = x["label"]
+            if x["type"] == "StringBase":
                 continue
 
             require_force_active = False
 
             # if the symbol is not reachable from the __start add it as forceactive
-            if not x['is_reachable'] and not x['static']:
+            if not x["is_reachable"] and not x["static"]:
                 require_force_active = True
 
             if require_force_active:
                 file.write(f"\t\"{x['label']}\"\n")
-                if not x['label'] in main_names:
+                if not x["label"] in main_names:
                     file.write(f"\t\"{x['name']}\"\n")
 
         for x in module.SYMBOLS:
-            if x['type'] == "StringBase":
+            if x["type"] == "StringBase":
                 continue
 
-            if x['is_reachable']:
-                if x['label'] != x['name'] and x['name']:
+            if x["is_reachable"]:
+                if x["label"] != x["name"] and x["name"]:
                     file.write(f"\t\"{x['name']}\"\n")
 
         for symbol in symbols:
@@ -250,7 +254,7 @@ def rel_lcf_generate(module_index, output_path):
                 continue
 
             if "__template" in symbol.name:
-                file.write("\t\"%s\"\n" % (symbol.name))
+                file.write('\t"%s"\n' % (symbol.name))
 
         file.write("\n")
         file.write("}\n")
@@ -293,7 +297,7 @@ SECTIONS = [
     (".sdata2", 0x20),
     (".sbss2", 0x20),
     (".stack", 0x100),
-    #(".dead", 0x100),
+    # (".dead", 0x100),
 ]
 
 REL_SECTIONS = [
@@ -371,14 +375,28 @@ def lcf():
 
 
 @lcf.command(name="dol")
-@click.option('--output', '-o', 'output_path', required=False, type=PathPath(file_okay=True, dir_okay=False), default="build/dolzel2/ldscript.lcf")
+@click.option(
+    "--output",
+    "-o",
+    "output_path",
+    required=False,
+    type=PathPath(file_okay=True, dir_okay=False),
+    default="build/dolzel2/ldscript.lcf",
+)
 def dol(output_path):
     lcf_generate(output_path)
 
 
 @lcf.command(name="rel")
-@click.option('--output', '-o', 'output_path', required=False, type=PathPath(file_okay=True, dir_okay=False), default="build/dolzel2/ldscript.lcf")
-@click.argument('module', metavar="<MODULE>", nargs=1)
+@click.option(
+    "--output",
+    "-o",
+    "output_path",
+    required=False,
+    type=PathPath(file_okay=True, dir_okay=False),
+    default="build/dolzel2/ldscript.lcf",
+)
+@click.argument("module", metavar="<MODULE>", nargs=1)
 def rel(output_path, module):
     rel_lcf_generate(module, output_path)
 

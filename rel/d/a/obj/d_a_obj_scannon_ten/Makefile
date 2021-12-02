@@ -41,7 +41,7 @@ $(M615_TARGET): $(M615_O_FILES) $(M615_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_scannon_ten/%.o: rel/d/a/obj/d_a_obj_scannon_ten/%.cpp
 	@echo [615] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M615_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M615_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

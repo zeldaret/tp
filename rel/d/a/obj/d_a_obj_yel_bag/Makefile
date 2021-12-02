@@ -43,7 +43,7 @@ $(M693_TARGET): $(M693_O_FILES) $(M693_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_yel_bag/%.o: rel/d/a/obj/d_a_obj_yel_bag/%.cpp
 	@echo [693] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M693_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M693_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

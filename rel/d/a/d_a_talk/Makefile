@@ -41,7 +41,7 @@ $(M754_TARGET): $(M754_O_FILES) $(M754_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_talk/%.o: rel/d/a/d_a_talk/%.cpp
 	@echo [754] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M754_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M754_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

@@ -43,7 +43,7 @@ $(M546_TARGET): $(M546_O_FILES) $(M546_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Lblock/%.o: rel/d/a/obj/d_a_obj_lv6Lblock/%.cpp
 	@echo [546] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M546_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M546_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

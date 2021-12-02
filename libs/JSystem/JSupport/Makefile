@@ -30,6 +30,6 @@ $(BUILD_DIR)/libJSupport.a: $(LIBJSUPPORT_A_O_FILES)
 $(BUILD_DIR)/libs/JSystem/JSupport/%.o: libs/JSystem/JSupport/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(LIBJSUPPORT_A_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBJSUPPORT_A_CFLAGS) -c -o $@ $(basename $@).cpp
 

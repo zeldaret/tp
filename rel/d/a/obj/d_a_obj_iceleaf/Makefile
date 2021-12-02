@@ -43,7 +43,7 @@ $(M482_TARGET): $(M482_O_FILES) $(M482_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_iceleaf/%.o: rel/d/a/obj/d_a_obj_iceleaf/%.cpp
 	@echo [482] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M482_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M482_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

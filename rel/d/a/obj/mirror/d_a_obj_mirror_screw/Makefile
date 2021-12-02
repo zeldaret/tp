@@ -41,7 +41,7 @@ $(M575_TARGET): $(M575_O_FILES) $(M575_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_screw/%.o: rel/d/a/obj/mirror/d_a_obj_mirror_screw/%.cpp
 	@echo [575] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M575_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M575_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

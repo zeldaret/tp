@@ -43,7 +43,7 @@ $(M299_TARGET): $(M299_O_FILES) $(M299_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_doorboy/%.o: rel/d/a/npc/d_a_npc_doorboy/%.cpp
 	@echo [299] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M299_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M299_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

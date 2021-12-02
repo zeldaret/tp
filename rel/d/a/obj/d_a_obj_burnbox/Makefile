@@ -41,7 +41,7 @@ $(M17_TARGET): $(M17_O_FILES) $(M17_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_burnbox/%.o: rel/d/a/obj/d_a_obj_burnbox/%.cpp
 	@echo [ 17] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M17_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M17_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

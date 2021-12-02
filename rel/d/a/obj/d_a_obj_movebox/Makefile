@@ -43,7 +43,7 @@ $(M20_TARGET): $(M20_O_FILES) $(M20_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_movebox/%.o: rel/d/a/obj/d_a_obj_movebox/%.cpp
 	@echo [ 20] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M20_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M20_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

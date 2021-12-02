@@ -43,7 +43,7 @@ $(M419_TARGET): $(M419_O_FILES) $(M419_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cblock/%.o: rel/d/a/obj/d_a_obj_cblock/%.cpp
 	@echo [419] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M419_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M419_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

@@ -43,7 +43,7 @@ $(M618_TARGET): $(M618_O_FILES) $(M618_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekizoa/%.o: rel/d/a/obj/d_a_obj_sekizoa/%.cpp
 	@echo [618] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M618_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M618_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

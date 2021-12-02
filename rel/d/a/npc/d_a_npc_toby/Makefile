@@ -43,7 +43,7 @@ $(M374_TARGET): $(M374_O_FILES) $(M374_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_toby/%.o: rel/d/a/npc/d_a_npc_toby/%.cpp
 	@echo [374] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M374_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M374_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

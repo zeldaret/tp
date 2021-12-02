@@ -43,7 +43,7 @@ $(M348_TARGET): $(M348_O_FILES) $(M348_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_pouya/%.o: rel/d/a/npc/d_a_npc_pouya/%.cpp
 	@echo [348] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M348_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M348_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

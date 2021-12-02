@@ -41,7 +41,7 @@ $(M457_TARGET): $(M457_O_FILES) $(M457_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gb/%.o: rel/d/a/obj/d_a_obj_gb/%.cpp
 	@echo [457] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M457_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M457_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

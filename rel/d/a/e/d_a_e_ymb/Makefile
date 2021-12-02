@@ -43,7 +43,7 @@ $(M255_TARGET): $(M255_O_FILES) $(M255_LIBS)
 $(BUILD_DIR)/rel/d/a/e/d_a_e_ymb/%.o: rel/d/a/e/d_a_e_ymb/%.cpp
 	@echo [255] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M255_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M255_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

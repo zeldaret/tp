@@ -41,7 +41,7 @@ $(M743_TARGET): $(M743_O_FILES) $(M743_LIBS)
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_smk_emt/%.o: rel/d/a/tag/d_a_tag_smk_emt/%.cpp
 	@echo [743] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M743_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M743_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

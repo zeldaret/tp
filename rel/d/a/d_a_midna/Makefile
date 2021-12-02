@@ -43,7 +43,7 @@ $(M51_TARGET): $(M51_O_FILES) $(M51_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_midna/%.o: rel/d/a/d_a_midna/%.cpp
 	@echo [ 51] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M51_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M51_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

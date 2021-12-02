@@ -62,6 +62,6 @@ $(BUILD_DIR)/libJUtility.a: $(LIBJUTILITY_A_O_FILES)
 $(BUILD_DIR)/libs/JSystem/JUtility/%.o: libs/JSystem/JUtility/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(LIBJUTILITY_A_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBJUTILITY_A_CFLAGS) -c -o $@ $(basename $@).cpp
 

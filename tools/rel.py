@@ -1,24 +1,30 @@
 """
 
-rel.py - Tool for displaying information in .rel files
+rel.py - Tool for extracting information from .rel files
 
 """
 
-import click
 import sys
-import rich
-import logging
-import glob
-import librel
 import struct
-import dataclasses
-import hexdump
-from libdol2asm import settings
 
 from pathlib import Path
-from collections import defaultdict
-from rich.logging import RichHandler
-from rich.console import Console
+
+try:
+    import click
+    import logging
+    import librel
+
+    from libdol2asm import settings
+    from rich.logging import RichHandler
+    from rich.console import Console
+except ImportError as e:
+    MISSING_PREREQUISITES = (
+        f"Missing prerequisite python module {e}.\n"
+        f"Run `python3 -m pip install --user -r tools/requirements.txt` to install prerequisites."
+    )
+
+    print(MISSING_PREREQUISITES, file=sys.stderr)
+    sys.exit(1)
 
 VERSION = "1.0"
 CONSOLE = Console()
@@ -27,26 +33,43 @@ logging.basicConfig(
     level="NOTSET",
     format="%(message)s",
     datefmt="[%X]",
-    handlers=[RichHandler(console=CONSOLE, rich_tracebacks=True)]
+    handlers=[RichHandler(console=CONSOLE, rich_tracebacks=True)],
 )
 
 LOG = logging.getLogger("rich")
 LOG.setLevel(logging.INFO)
+
 
 @click.group()
 @click.version_option(VERSION)
 def rel():
     pass
 
+
 @rel.command(name="info")
-@click.option('--debug/--no-debug')
-@click.option('--header', '-t', 'dump_header', is_flag=True, default=False)
-@click.option('--sections', '-s', 'dump_sections', is_flag=True, default=False)
-@click.option('--data', '-d', 'dump_data', is_flag=True, default=False)
-@click.option('--relocations', '-r', 'dump_relocation', is_flag=True, default=False)
-@click.option('--imp', '-i', 'dump_imp', is_flag=True, default=False)
-@click.argument("rel_path", metavar='<REL>', nargs=1, type=click.Path(exists=True,file_okay=True,dir_okay=False))
-def rel_info(debug, rel_path, dump_header, dump_sections, dump_data, dump_relocation, dump_imp):
+@click.option("--debug/--no-debug")
+@click.option("--header", "-t", "dump_header", is_flag=True, default=False)
+@click.option("--sections", "-s", "dump_sections", is_flag=True, default=False)
+@click.option("--data", "-d", "dump_data", is_flag=True, default=False)
+@click.option("--relocations", "-r", "dump_relocation", is_flag=True, default=False)
+@click.option("--imp", "-i", "dump_imp", is_flag=True, default=False)
+@click.option("--all", "-a", "dump_all", is_flag=True, default=False)
+@click.argument(
+    "rel_path",
+    metavar="<REL>",
+    nargs=1,
+    type=click.Path(exists=True, file_okay=True, dir_okay=False),
+)
+def rel_info(
+    debug,
+    rel_path,
+    dump_header,
+    dump_sections,
+    dump_data,
+    dump_relocation,
+    dump_imp,
+    dump_all,
+):
     if debug:
         LOG.setLevel(logging.DEBUG)
 
@@ -55,9 +78,19 @@ def rel_info(debug, rel_path, dump_header, dump_sections, dump_data, dump_reloca
         LOG.error(f"File not found: '{path}'")
         sys.exit(1)
 
-    with open(path, 'rb') as file:
+    with open(path, "rb") as file:
         buffer = file.read()
         rel = librel.read(buffer)
+
+    if dump_all:
+        dump_header = True
+        dump_sections = True
+        dump_data = True
+        dump_relocation = True
+        dump_imp = True
+
+    if not (dump_header or dump_sections or dump_data or dump_relocation or dump_imp):
+        CONSOLE.print("no dump options specified")
 
     if dump_header:
         CONSOLE.print(f"Header:")
@@ -76,32 +109,42 @@ def rel_info(debug, rel_path, dump_header, dump_sections, dump_data, dump_reloca
         CONSOLE.print(f"\trel offset:  0x{rel.relOffset:04X}")
         CONSOLE.print(f"\timp offset:  0x{rel.impOffset:04X}")
         CONSOLE.print(f"\timp size:    0x{rel.impSize:04X}")
-        CONSOLE.print(f"\t_prolog:     0x{rel.prolog:04X} (section: 0x{rel.prologSection:X})")
-        CONSOLE.print(f"\t_epilog:     0x{rel.epilog:04X} (section: 0x{rel.epilogSection:X})")
-        CONSOLE.print(f"\t_unresolved: 0x{rel.unresolved:04X} (section: 0x{rel.unresolvedSection:X})")
+        CONSOLE.print(
+            f"\t_prolog:     0x{rel.prolog:04X} (section: 0x{rel.prologSection:X})"
+        )
+        CONSOLE.print(
+            f"\t_epilog:     0x{rel.epilog:04X} (section: 0x{rel.epilogSection:X})"
+        )
+        CONSOLE.print(
+            f"\t_unresolved: 0x{rel.unresolved:04X} (section: 0x{rel.unresolvedSection:X})"
+        )
 
     if dump_sections:
         CONSOLE.print(f"Sections:")
 
-        for i,section in enumerate(rel.sections):
-            CONSOLE.print(f"\t#{i:<2} offset: 0x{section.offset:08X}, length: 0x{section.length:04X}, unknown flag: {section.unknown_flag}, executable flag: {section.executable_flag}")
+        for i, section in enumerate(rel.sections):
+            CONSOLE.print(
+                f"\t#{i:<2} offset: 0x{section.offset:08X}, length: 0x{section.length:04X}, unknown flag: {section.unknown_flag}, executable flag: {section.executable_flag}"
+            )
 
     if dump_imp:
         CONSOLE.print(f"Imp Table:")
 
-        imp_buffer = rel.data[rel.impOffset:]
+        imp_buffer = rel.data[rel.impOffset :]
         for i in range(rel.impSize // 8):
             imp_offset = 0x8 * i
-            module_id, rel_offset = struct.unpack('>II', imp_buffer[imp_offset:][:0x8])
-            CONSOLE.print(f"\t#{i:<2} module: {module_id:>4}, offset: 0x{rel_offset:04X}")
+            module_id, rel_offset = struct.unpack(">II", imp_buffer[imp_offset:][:0x8])
+            CONSOLE.print(
+                f"\t#{i:<2} module: {module_id:>4}, offset: 0x{rel_offset:04X}"
+            )
 
     if dump_relocation:
         CONSOLE.print(f"Relocations:")
-        
-        imp_buffer = rel.data[rel.impOffset:]
+
+        imp_buffer = rel.data[rel.impOffset :]
         for i in range(rel.impSize // 8):
             imp_offset = 0x8 * i
-            module_id, rel_offset = struct.unpack('>II', imp_buffer[imp_offset:][:0x8])
+            module_id, rel_offset = struct.unpack(">II", imp_buffer[imp_offset:][:0x8])
 
             CONSOLE.print(f"\t[ module: {module_id:>4} ]")
             section = None
@@ -118,13 +161,15 @@ def rel_info(debug, rel_path, dump_header, dump_sections, dump_data, dump_reloca
                     base += section.offset - rel.sections[1].offset
                     extra = f" | {base:08X} {base+relocation.offset + offset:08X}"
 
-                CONSOLE.print(f"\t#{rel_index:<3} {librel.RELOCATION_NAMES[relocation.type]:<20} {relocation.section:>4} 0x{relocation.offset+offset:08X} 0x{relocation.addend:08X}{extra}")
+                CONSOLE.print(
+                    f"\t#{rel_index:<3} {librel.RELOCATION_NAMES[relocation.type]:<20} {relocation.section:>4} 0x{relocation.offset+offset:08X} 0x{relocation.addend:08X}{extra}"
+                )
 
                 if relocation.type == librel.R_PPC_NONE:
                     continue
                 if relocation.type == librel.R_DOLPHIN_NOP:
-                    # NOP is used to simulate have long offset values, this is because 
-                    # the offset field is limited to 2^16-1 values. Thus, any offsets 
+                    # NOP is used to simulate long offset values, this is because
+                    # the offset field is limited to 2^16-1 values. Thus, any offsets
                     # above 2^16 will be divided into a NOP + original relocation type.
                     offset += relocation.offset
                     continue
@@ -145,12 +190,13 @@ def rel_info(debug, rel_path, dump_header, dump_sections, dump_data, dump_reloca
 
     if dump_data:
         CONSOLE.print(f"Sections:")
-        
-        for i,section in enumerate(rel.sections):
+
+        for i, section in enumerate(rel.sections):
             if section.data:
                 CONSOLE.print(f"\t#{i:<2}")
-                hexdata = hexdump.hexdump(section.data, result='return')
+                hexdata = hexdump.hexdump(section.data, result="return")
                 CONSOLE.print(hexdata)
+
 
 if __name__ == "__main__":
     rel()

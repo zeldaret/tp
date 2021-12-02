@@ -43,7 +43,7 @@ $(M453_TARGET): $(M453_O_FILES) $(M453_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fw/%.o: rel/d/a/obj/d_a_obj_fw/%.cpp
 	@echo [453] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M453_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M453_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

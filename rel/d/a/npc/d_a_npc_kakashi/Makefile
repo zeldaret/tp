@@ -43,7 +43,7 @@ $(M83_TARGET): $(M83_O_FILES) $(M83_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kakashi/%.o: rel/d/a/npc/d_a_npc_kakashi/%.cpp
 	@echo [ 83] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M83_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M83_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

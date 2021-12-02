@@ -41,7 +41,7 @@ $(M485_TARGET): $(M485_O_FILES) $(M485_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_inobone/%.o: rel/d/a/obj/d_a_obj_inobone/%.cpp
 	@echo [485] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M485_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M485_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

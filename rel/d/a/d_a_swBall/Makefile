@@ -41,7 +41,7 @@ $(M707_TARGET): $(M707_O_FILES) $(M707_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_swBall/%.o: rel/d/a/d_a_swBall/%.cpp
 	@echo [707] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M707_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M707_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

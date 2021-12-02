@@ -43,7 +43,7 @@ $(M548_TARGET): $(M548_O_FILES) $(M548_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6SzGate/%.o: rel/d/a/obj/d_a_obj_lv6SzGate/%.cpp
 	@echo [548] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M548_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M548_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

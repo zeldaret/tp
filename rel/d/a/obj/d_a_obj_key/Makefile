@@ -43,7 +43,7 @@ $(M498_TARGET): $(M498_O_FILES) $(M498_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_key/%.o: rel/d/a/obj/d_a_obj_key/%.cpp
 	@echo [498] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M498_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M498_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

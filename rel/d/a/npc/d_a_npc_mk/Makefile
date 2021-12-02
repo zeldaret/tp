@@ -41,7 +41,7 @@ $(M336_TARGET): $(M336_O_FILES) $(M336_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_mk/%.o: rel/d/a/npc/d_a_npc_mk/%.cpp
 	@echo [336] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M336_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M336_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

@@ -43,7 +43,7 @@ $(M159_TARGET): $(M159_O_FILES) $(M159_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_balloon_2D/%.o: rel/d/a/d_a_balloon_2D/%.cpp
 	@echo [159] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M159_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M159_CFLAGS) -c -o $@ $(basename $@).cpp
 
 
