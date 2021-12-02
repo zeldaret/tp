@@ -157,7 +157,7 @@ public:
     void setMaxOxygen(int max) { mMaxOxygen = max; }
     u8 getDoStatus() { return mDoStatus; }
     u8 getRStatus() { return mRStatus; }
-    char* getStartStageName() { return mStartStage.getName(); }
+    const char* getStartStageName() { return mStartStage.getName(); }
     s8 getStartStageRoomNo() { return mStartStage.getRoomNo(); }
     s8 getStartStageLayer() { return mStartStage.getLayer(); }
     u8 isHeapLockFlag() { return mHeapLockFlag; }
@@ -173,6 +173,8 @@ public:
     dAttention_c& getAttention() { return mAttention; }
     JKRArchive* getMsgDtArchive(int idx) { return mMsgDtArchive[idx]; }
     s16 getStartStagePoint() { return mStartStage.getPoint(); }
+    s8 getStartStageDarkArea() { return mStartStage.getDarkArea(); }
+    void setStartStageDarkArea(s8 darkArea) { mStartStage.setDarkArea(darkArea); }
     void* getPlayerPtr(int ptrIdx) { return mPlayerPtr[ptrIdx]; }
     JKRArchive* getMain2DArchive() { return mMain2DArchive; }
     J2DGrafContext* getCurrentGrafPort() { return mCurrentGrafPort; }
@@ -741,7 +743,7 @@ inline u32 dComIfGp_getNowVibration() {
     return g_dComIfG_gameInfo.play.getNowVibration();
 }
 
-inline char* dComIfGp_getStartStageName() {
+inline const char* dComIfGp_getStartStageName() {
     return g_dComIfG_gameInfo.play.getStartStageName();
 }
 
@@ -757,12 +759,24 @@ inline s8 dComIfGp_roomControl_getStayNo() {
     return dStage_roomControl_c::getStayNo();
 }
 
+inline void dComIfGp_setStartStage(dStage_startStage_c* pStartStage) {
+    g_dComIfG_gameInfo.play.setStartStage(pStartStage);
+}
+
 inline s8 dComIfGp_getStartStageRoomNo() {
     return g_dComIfG_gameInfo.play.getStartStageRoomNo();
 }
 
 inline s8 dComIfGp_getStartStageLayer() {
     return g_dComIfG_gameInfo.play.getStartStageLayer();
+}
+
+inline s8 dComIfGp_getStartStageDarkArea() {
+    return g_dComIfG_gameInfo.play.getStartStageDarkArea();
+}
+
+inline void dComIfGp_setStartStageDarkArea(s8 darkArea) {
+    g_dComIfG_gameInfo.play.setStartStageDarkArea(darkArea);
 }
 
 inline roomRead_class* dComIfGp_getStageRoom() {
