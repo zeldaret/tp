@@ -70,8 +70,8 @@ public:
     /* 0x18 */ virtual u16 getLeading() const = 0;
     /* 0x1C */ virtual u16 getAscent() const = 0;
     /* 0x20 */ virtual u16 getDescent() const = 0;
-    /* 0x24 */ virtual u16 getHeight() const = 0;
-    /* 0x28 */ virtual u16 getWidth() const = 0;
+    /* 0x24 */ virtual s32 getHeight() const = 0;
+    /* 0x28 */ virtual s32 getWidth() const = 0;
     /* 0x2C */ virtual void getWidthEntry(int i_no, TWidth* width) const;
     /* 0x30 */ virtual u16 getCellWidth() const;
     /* 0x34 */ virtual u16 getCellHeight() const;
