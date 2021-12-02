@@ -167,7 +167,6 @@ extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__14Z2SoundStarter[5 + 1 /* padding */];
 extern "C" extern void* __vt__16Z2SoundObjSimple[8];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 __float_nan;
 extern "C" extern u8 data_80450B40[4];
 extern "C" extern u8 data_80450B44[4];
 extern "C" extern u8 data_80450B48[4];

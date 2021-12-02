@@ -3600,7 +3600,6 @@ extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 g_whiteColor;
 extern "C" u16 m_branchId__7dDemo_c[1 + 3 /* padding */];
-extern "C" extern u32 __float_max;
 extern "C" extern u8 data_80450B38[4];
 extern "C" f32 mGroundY__11fopAcM_gc_c;
 extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];

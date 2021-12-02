@@ -605,8 +605,6 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 g_whiteColor;
-extern "C" extern u32 __float_nan;
-extern "C" extern u32 __float_epsilon;
 extern "C" u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
 extern "C" extern u8 JPTracePCB4[4];
 extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];

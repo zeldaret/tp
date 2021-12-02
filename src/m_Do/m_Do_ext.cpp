@@ -596,7 +596,6 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" f32 mParentS__6J3DSys[3];
 extern "C" u8 sGDLObj__17J3DDisplayListObj[16];
-extern "C" extern u32 __float_nan;
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 extern "C" u8 sCurrentHeap__7JKRHeap[4];
 extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
