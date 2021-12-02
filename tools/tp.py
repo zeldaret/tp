@@ -715,20 +715,30 @@ def find_function_ranges(asm_files):
     name="remove-unused-asm",
     help="Remove all of the asm that is decompiled and not used anymore",
 )
-def remove_unused_asm_cmd():
-    remove_unused_asm()
+@click.option("--check", default=False, is_flag=True)
+def remove_unused_asm_cmd(check):
+    result = remove_unused_asm(check)
+    if check:
+        if result == 0:
+            print("OK")
+            sys.exit(0)
+        else:
+            sys.exit(1)
 
 
-def remove_unused_asm():
-    unused_files, error_files = find_unused_asm_files(False)
+def remove_unused_asm(check):
+    unused_files, error_files = find_unused_asm_files(False, use_progress_bar=not check)
 
-    for unused_file in unused_files:
-        unused_file.unlink()
-        CONSOLE.print(f"removed '{unused_file}'")
+    if not check:
+        for unused_file in unused_files:
+            unused_file.unlink()
+            CONSOLE.print(f"removed '{unused_file}'")
 
-    text = Text("    OK")
-    text.stylize("bold green")
-    CONSOLE.print(text)
+        text = Text("    OK")
+        text.stylize("bold green")
+        CONSOLE.print(text)
+
+    return len(unused_files)
 
 
 #
@@ -820,7 +830,8 @@ def pull_request(debug, rels, thread_count, game_path, build_path):
     text = Text("--- Remove unused .s files")
     text.stylize("bold magenta")
     CONSOLE.print(text)
-    remove_unused_asm()
+
+    remove_unused_asm(False)
 
     #
     text = Text("--- Clang-Format")
@@ -910,11 +921,13 @@ def find_all_asm_files():
     return files, errors
 
 
-def find_unused_asm_files(non_matching):
+def find_unused_asm_files(non_matching, use_progress_bar=True):
     """Search for unused asm function files."""
 
     asm_files, error_files = find_all_asm_files()
-    included_asm_files = find_used_asm_files(non_matching)
+    included_asm_files = find_used_asm_files(
+        non_matching, use_progress_bar=use_progress_bar
+    )
 
     unused_asm_files = asm_files - included_asm_files
     LOG.debug(f"find_unused_asm_files: found {len(unused_asm_files)} unused .s files")
