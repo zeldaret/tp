@@ -6,7 +6,7 @@
 #include "dolphin/types.h"
 
 struct J2DAnmLoaderDataBase {
-    /* 80308A6C */ static void load(void const*);
+    /* 80308A6C */ static void* load(void const*);
 };
 
 class J2DAnmLoader {

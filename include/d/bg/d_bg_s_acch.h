@@ -137,6 +137,8 @@ public:
     void SetGroundHit() { m_flags |= GROUND_HIT; }
     void SetGroundLanding() { m_flags |= GROUND_LANDING; }
     void SetGroundAway() { m_flags |= GROUND_AWAY; }
+    u32 MaskWaterHit() { return m_flags & WATER_HIT; }
+    bool ChkWaterHit() { return MaskWaterHit(); }
 
     // inline dupe
     void i_ClrGroundHit() { m_flags &= ~GROUND_HIT; }

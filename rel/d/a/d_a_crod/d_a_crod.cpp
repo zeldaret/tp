@@ -18,11 +18,6 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct daPy_actorKeep_c {
-    /* 8015ECB8 */ void setData(fopAc_ac_c*);
-    /* 8015ECFC */ void clearData();
-};
-
 struct daAlink_c {
     /* 8009D884 */ void getAlinkArcName();
     /* 800A9248 */ void simpleAnmPlay(J3DAnmBase*);
@@ -31,59 +26,8 @@ struct daAlink_c {
     /* 800E1A30 */ void returnCopyRod();
 };
 
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCps {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 804A3240 */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-    /* 800842C0 */ void ChkAtHit();
-    /* 80084318 */ void ResetAtHit();
-};
-
-struct dCcD_GAtTgCoCommonBase {
-    /* 80083688 */ void GetAc();
-};
-
-struct dCcD_Cps {
-    /* 800847D0 */ void Set(dCcD_SrcCps const&);
-};
-
-struct cM3dGLin {
-    /* 8026F2E8 */ void SetStartEnd(cXyz const&, cXyz const&);
-};
-
-struct cM3dGCps {
-    /* 8026EF88 */ cM3dGCps();
-    /* 8026EFA4 */ ~cM3dGCps();
-};
-
-struct cM3dGAab {
-    /* 804A31F8 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 804A409C */ ~cCcD_GStts();
 };
 
 struct JAISoundID {};
@@ -318,7 +262,8 @@ asm void daCrod_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_crod/d_a_crod/__dt__8cM3dGAabFv.s"
 }
@@ -328,7 +273,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_crod/d_a_crod/__dt__10dCcD_GSttsFv.s"
 }
@@ -554,7 +500,8 @@ static asm void daCrod_Draw(daCrod_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_crod/d_a_crod/__dt__10cCcD_GSttsFv.s"
 }

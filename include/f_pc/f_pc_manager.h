@@ -22,6 +22,10 @@ inline u32 fpcM_GetParam(const void* pActor) {
     return ((base_process_class*)pActor)->mParameters;
 }
 
+inline void fpcM_SetParam(void* p_actor, u32 param) {
+    ((base_process_class*)p_actor)->mParameters = param;
+}
+
 void fpcM_Draw(void* pProc);
 s32 fpcM_DrawIterater(fpcM_DrawIteraterFunc pFunc);
 void fpcM_Execute(void* pProc);

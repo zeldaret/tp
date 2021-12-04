@@ -12,11 +12,14 @@
 #include "f_op/f_op_actor.h"
 
 class daPy_sightPacket_c : public dDlst_base_c {
+public:
     /* 8015F1A0 */ virtual void draw();
     /* 80140CDC */ virtual ~daPy_sightPacket_c();
 
     /* 8015F2FC */ void setSight();
     /* 8015F384 */ void setSightImage(ResTIMG*);
+
+    bool getDrawFlg() { return mDrawFlag; }
 
 private:
     /* 0x04 */ bool mDrawFlag;
@@ -54,12 +57,13 @@ public:
     J3DAnmBase* loadDataIdx(u16);
     J3DAnmBase* loadDataPriIdx(u16);
     J3DAnmBase* loadDataDemoRID(u16, u16);
-    void setAnimeHeap();
+    JKRHeap* setAnimeHeap();
 
     u16 getIdx() const { return mIdx; }
     void resetIdx() { mIdx = 0xffff; }
     void resetPriIdx() { mPriIdx = 0xffff; }
     void resetArcNo() { mArcNo = 0xffff; }
+    bool checkNoSetArcNo() const { return mArcNo == 0xFFFF; }
 
 private:
     /* 0x00 */ u16 mIdx;
@@ -84,9 +88,9 @@ public:
     fopAc_ac_c* getActorConst() const { return mActor; }
 
 private:
-    u32 mID;
-    fopAc_ac_c* mActor;
-};
+    /* 0x0 */ u32 mID;
+    /* 0x4 */ fopAc_ac_c* mActor;
+};  // Size: 0x8
 
 class daPy_frameCtrl_c : public J3DFrameCtrl {
 public:
@@ -122,6 +126,7 @@ public:
     u16 getDemoType() const { return mDemoType; }
     void setDemoMode(u32 mode) { mDemoMode = mode; }
     u32 getDemoMode() const { return mDemoMode; }
+    void i_setSpecialDemoType() { setDemoType(5); }
 
 private:
     /* 0x00 */ u16 mDemoType;
@@ -135,6 +140,8 @@ private:
     /* 0x18 */ cXyz mDemoPos0;
 };  // Size: 0x24
 
+class daMidna_c;
+
 class daPy_py_c : public fopAc_ac_c {
 public:
     /* 0x0568 */ u8 mCutType;
@@ -142,7 +149,7 @@ public:
     /* 0x056A */ u8 mSpecialMode;  // maybe needs better name
     /* 0x056B */ u8 field_0x56b;
     /* 0x056C */ s16 mDamageTimer;
-    /* 0x056E */ u8 field_0x56e[2];
+    /* 0x056E */ u16 mSwordUpTimer;
     /* 0x0570 */ u32 mNoResetFlg0;
     /* 0x0574 */ u32 mNoResetFlg1;
     /* 0x0578 */ u32 mNoResetFlg2;
@@ -168,22 +175,29 @@ public:
 
 public:
     enum daPy_FLG0 {
+        FLG0_UNK_40000000 = 0x40000000,
         EQUIP_HEAVY_BOOTS = 0x2000000,
         FLG0_UNK_8000000 = 0x8000000,
         FLG0_UNK_1000000 = 0x1000000,
         UNDER_WATER_MOVEMENT = 0x800000,
         FLG0_UNK_80000 = 0x80000,
+        FLG0_UNK_20000 = 0x20000,
         FLG0_UNK_8000 = 0x8000,
         MAGNE_BOOTS_ON = 0x1000,
+        FLG0_UNK_80 = 0x80,
         FLG0_UNK_40 = 0x40,
+        FLG0_UNK_20 = 0x20,
         UNK_F_ROLL_CRASH_2 = 0x10,
-        UNK_F_ROLL_CRASH_1 = 0x8
+        UNK_F_ROLL_CRASH_1 = 0x8,
+        FLG0_UNK_4 = 4,
+
+        HEAVY_STATE_BOOTS = FLG0_UNK_40000000 | EQUIP_HEAVY_BOOTS | FLG0_UNK_20000,
     };
-    enum daPy_FLG1 { IS_WOLF = 0x2000000, THROW_DAMAGE = 0x4000 };
+    enum daPy_FLG1 { IS_WOLF = 0x2000000, FLG1_UNK_10000 = 0x10000, THROW_DAMAGE = 0x4000 };
     enum daPy_FLG2 { FLG2_UNK_4080000 = 0x4080000, FLG2_UNK_2080000 = 0x2080000, BOAR_SINGLE_BATTLE = 0x1800000, STATUS_WINDOW_DRAW = 0x400000, UNK_ARMOR = 0x80000, UNK_FLG2_2 = 2, UNK_DAPY_FLG2_1 = 1 };
-    enum daPy_FLG3 { FLG3_UNK_100000 = 0x100000, COPY_ROD_THROW_AFTER = 0x40000 };
-    enum daPy_ERFLG0 { ERFLG0_UNK_8000000 = 0x8000000, ERFLG0_UNK_1000000 = 0x1000000, ERFLG0_UNK_100000 = 0x100000, };
-    enum daPy_ERFLG1 { GANON_FINISH = 0x80000000, UNK_FORCE_PUT_POS = 0x2000 };
+    enum daPy_FLG3 { FLG3_UNK_2000000 = 0x2000000, FLG3_UNK_100000 = 0x100000, COPY_ROD_THROW_AFTER = 0x40000 };
+    enum daPy_ERFLG0 { ERFLG0_UNK_8000000 = 0x8000000, ERFLG0_UNK_1000000 = 0x1000000, ERFLG0_UNK_100000 = 0x100000, ERFLG0_UNK_1 = 1, };
+    enum daPy_ERFLG1 { GANON_FINISH = 0x80000000, UNK_FORCE_PUT_POS = 0x2000, ERFLG1_UNK_1 = 1, };
     enum daPy_ERFLG2 {};
     enum daPy_RFLG0 {
         RFLG0_UNK_8000000 = 0x8000000,
@@ -195,6 +209,7 @@ public:
     enum {
         /* 0x01 */ SMODE_SUMO_READY = 1,
         /* 0x25 */ SMODE_SUMO_LOSE = 37,
+        /* 0x27 */ SMODE_WOLF_PUZZLE = 39,
         /* 0x2A */ SMODE_GOAT_STOP = 42,
         /* 0x2B */ SMODE_GORON_THROW,
         /* 0x2C */ SMODE_CARGO_CARRY,
@@ -225,7 +240,7 @@ public:
         /* 0x21 */ TYPE_CUT_STAB_COMBO,
     };
 
-    void setParamData(int, int, int, int);
+    static u32 setParamData(int, int, int, int);
     int checkFishingRodItem(int);
     static BOOL checkBombItem(int);
     static BOOL checkBottleItem(int);
@@ -445,7 +460,7 @@ public:
     virtual BOOL checkHorseStart();
     virtual Z2WolfHowlMgr* getWolfHowlMgrP();
     virtual BOOL checkWolfHowlSuccessAnime() const;
-    virtual bool checkCopyRodTopUse();
+    virtual BOOL checkCopyRodTopUse();
     virtual bool checkCopyRodEquip() const;
     virtual BOOL checkCutJumpMode() const;
 
@@ -458,6 +473,8 @@ public:
     }
 
     bool checkStatusWindowDraw() { return i_checkNoResetFlg2(STATUS_WINDOW_DRAW); }
+    bool checkCargoCarry() const { return mSpecialMode == SMODE_CARGO_CARRY; }
+    bool getHeavyStateAndBoots() { return i_checkNoResetFlg0(HEAVY_STATE_BOOTS); }
 
     // some functions use these function as an inline
     // is there a better way to handle this?
@@ -477,10 +494,12 @@ public:
     void i_onEndResetFlg0(int flag) { mEndResetFlg0 |= flag; }
     int i_checkResetFlg0(daPy_py_c::daPy_RFLG0 flag) const { return mResetFlg0 & flag; }
     int i_checkEndResetFlg0(daPy_py_c::daPy_ERFLG0 flag) const { return mEndResetFlg0 & flag; }
+    int i_checkEndResetFlg1(daPy_py_c::daPy_ERFLG1 flag) const { return mEndResetFlg1 & flag; }
     void i_onEndResetFlg1(daPy_ERFLG1 pFlg) { mEndResetFlg1 |= pFlg; }
     int i_checkWolf() const { return i_checkNoResetFlg1(IS_WOLF); }
     BOOL i_checkEquipHeavyBoots() const { return i_checkNoResetFlg0(EQUIP_HEAVY_BOOTS); }
     BOOL i_checkMagneBootsOn() const { return i_checkNoResetFlg0(MAGNE_BOOTS_ON); }
+    bool i_checkMidnaRide() const { return i_checkNoResetFlg0(FLG0_UNK_4); }
 
     inline u32 getLastSceneMode();
     inline bool checkWoodSwordEquip();
@@ -489,7 +508,7 @@ public:
     inline BOOL checkNowWolf();
     inline bool checkZoraWearFlg() const;
 
-    static u8 m_midnaActor[4];
+    static daMidna_c* m_midnaActor;
 };
 
 #endif /* D_A_D_A_PLAYER_H */

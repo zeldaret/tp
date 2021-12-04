@@ -28,10 +28,6 @@ struct dSmplMdl_draw_c {
     /* 80049058 */ void removeModel(J3DModelData*, int);
 };
 
-struct dPa_control_c {
-    /* 8004BACC */ dPa_control_c();
-};
-
 struct dMapInfo_n {
     /* 8003EE5C */ void getMapPlayerPos();
 };
@@ -2276,7 +2272,7 @@ cXyz dComIfGs_getWarpPlayerPos() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dComIfGs_getWarpPlayerPos() {
+asm cXyz& dComIfGs_getWarpPlayerPos() {
     nofralloc
 #include "asm/d/com/d_com_inf_game/dComIfGs_getWarpPlayerPos__Fv.s"
 }
@@ -2287,7 +2283,7 @@ s16 dComIfGs_getWarpPlayerAngleY() {
     return dComIfGs_getLastWarpMarkPlayerAngleY();
 }
 
-int dComIfGs_getWarpRoomNo() {
+s8 dComIfGs_getWarpRoomNo() {
     return dComIfGs_getLastWarpMarkRoomNo();
 }
 

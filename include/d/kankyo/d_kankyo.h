@@ -12,6 +12,7 @@
 #include "m_Do/m_Do_ext.h"
 
 void dKankyo_DayProc();
+void dKy_set_nexttime(f32);
 
 struct LIGHT_INFLUENCE {
     /* 800CFC7C */ ~LIGHT_INFLUENCE();
@@ -663,5 +664,6 @@ public:
 STATIC_ASSERT(sizeof(dScnKy_env_light_c) == 4880);
 
 bool dKy_darkworld_stage_check(char const*, int);
+BOOL dKy_withwarp_capture_check();
 
 #endif /* D_KANKYO_D_KANKYO_H */

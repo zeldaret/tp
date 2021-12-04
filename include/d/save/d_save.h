@@ -919,8 +919,10 @@ class dSv_restart_c {
 public:
     void setRoom(const cXyz&, s16, s8);
 
+    void setRoomParam(u32 param) { mRoomParam = param; }
     s16 getStartPoint() const { return mStartPoint; }
     u32 getLastMode() const { return mLastMode; }
+    s8 getRoomNo() const { return mRoomNo; }
 
 private:
     /* 0x00 */ s8 mRoomNo;
@@ -1007,6 +1009,7 @@ public:
     dSv_player_c& getPlayer() { return mSavedata.getPlayer(); }
     dSv_event_c& getTmp() { return mTmp; }
     dSv_restart_c& getRestart() { return mRestart; }
+    dSv_turnRestart_c& getTurnRestart() { return mTurnRestart; }
     dSv_event_c& getEvent() { return mSavedata.getEvent(); }
     s64 getStartTime() { return mStartTime; }
     s64 getSaveTotalTime() { return mSaveTotalTime; }

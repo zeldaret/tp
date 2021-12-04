@@ -91,6 +91,10 @@ public:
         return getRes(arcName, resName, &mStageInfo[0], ARRAY_SIZE(mStageInfo));
     }
 
+    dRes_info_c* getObjectResInfo(const char* arcName) {
+        return getResInfo(arcName, &mObjectInfo[0], ARRAY_SIZE(mObjectInfo));
+    }
+
     /* 0x0000 */ dRes_info_c mObjectInfo[0x80];
     /* 0x1200 */ dRes_info_c mStageInfo[0x40];
 };  // Size: 0x1B00

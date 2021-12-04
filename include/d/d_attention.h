@@ -200,12 +200,16 @@ public:
 
     dAttCatch_c& getCatghTarget() { return mCatghTarget; }
     bool chkFlag(u32 flag) { return mFlags & flag; }
-    bool Lockon() {
+    BOOL Lockon() {
         bool chk = true;
-        if (!LockonTruth() && !chkFlag(0x20000000)) {
-            chk = false;
-        }
+        if (!LockonTruth()) {
+            if (!chkFlag(0x20000000)) {
+                chk = false;
+            }
+        } 
         return chk;
+       
+        //return !LockonTruth() && !chkFlag(0x20000000);
     }
 
     static u8 loc_type_tbl[12];

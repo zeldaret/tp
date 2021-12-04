@@ -18,25 +18,6 @@
 // Types:
 //
 
-struct mDoExt_morf_c {
-    /* 8000F950 */ mDoExt_morf_c();
-    /* 8000FAE8 */ ~mDoExt_morf_c();
-    /* 8000FB7C */ void setMorf(f32);
-    /* 8000FBC0 */ void frameUpdate();
-};
-
-struct mDoExt_invisibleModel {
-    /* 8000E53C */ void create(J3DModel*, u8);
-    /* 8000E6C8 */ void entryJoint(cXyz*);
-    /* 8000E7C0 */ void entryDL(cXyz*);
-};
-
-struct mDoExt_invJntPacket {
-    /* 8000E5F8 */ ~mDoExt_invJntPacket();
-    /* 8000E654 */ mDoExt_invJntPacket();
-    /* 80012220 */ void draw();
-};
-
 struct mDoExt_btpAnm {
     /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
     /* 8000D5E8 */ void entry(J3DMaterialTable*, s16);
@@ -44,11 +25,6 @@ struct mDoExt_btpAnm {
 
 struct mDoExt_blkAnm {
     /* 8000DA08 */ void init(J3DDeformData*, J3DAnmCluster*, int, int, f32, s16, s16);
-};
-
-struct mDoExt_MtxCalcOldFrame {
-    /* 8000F848 */ void initOldFrameMorf(f32, u16, u16);
-    /* 8000F8CC */ void decOldFrameMorfCounter();
 };
 
 struct mDoExt_MtxCalcAnmBlendTblOld {
@@ -203,12 +179,6 @@ struct JUTCacheFont {
     /* 802DD188 */ JUTCacheFont(ResFONT const*, u32, JKRHeap*);
 };
 
-struct J3DMtxCalcNoAnmBase {
-    /* 8000FA8C */ ~J3DMtxCalcNoAnmBase();
-};
-
-template <typename A0, typename B0>
-struct J3DMtxCalcNoAnm {};
 /* J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya> */
 struct J3DMtxCalcNoAnm__template0 {
     /* 8000FA20 */ void func_8000FA20(void* _this);
@@ -2518,7 +2488,8 @@ extern "C" asm void func_8000FA20(void* _this) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DMtxCalcNoAnmBase::~J3DMtxCalcNoAnmBase() {
+// asm J3DMtxCalcNoAnmBase::~J3DMtxCalcNoAnmBase() {
+extern "C" asm void __dt__19J3DMtxCalcNoAnmBaseFv() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/__dt__19J3DMtxCalcNoAnmBaseFv.s"
 }
@@ -2528,7 +2499,8 @@ asm J3DMtxCalcNoAnmBase::~J3DMtxCalcNoAnmBase() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm mDoExt_morf_c::~mDoExt_morf_c() {
+// asm mDoExt_morf_c::~mDoExt_morf_c() {
+extern "C" asm void __dt__13mDoExt_morf_cFv() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/__dt__13mDoExt_morf_cFv.s"
 }
@@ -2920,7 +2892,8 @@ asm void mDoExt_McaMorf2::stopZelAnime() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoExt_invJntPacket::draw() {
+// asm void mDoExt_invJntPacket::draw() {
+extern "C" asm void draw__19mDoExt_invJntPacketFv() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/draw__19mDoExt_invJntPacketFv.s"
 }

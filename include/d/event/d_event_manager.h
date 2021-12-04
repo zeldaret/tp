@@ -22,7 +22,7 @@ private:
 
 class dEvent_manager_c {
 public:
-    void getSubstance(dEvDtData_c*, int);
+    void* getSubstance(dEvDtData_c*, int);
     dEvent_manager_c();
     ~dEvent_manager_c() {}
     int create();
@@ -52,8 +52,8 @@ public:
     void getIsAddvance(int);
     void getMyActIdx(int, char const* const*, int, int, int);
     void getMyNowCutName(int);
-    void getMyDataP(int, char const*, int);
-    void getMySubstanceP(int, char const*, int);
+    dEvDtData_c* getMyDataP(int, char const*, int);
+    void* getMySubstanceP(int, char const*, int);
     void getMySubstanceNum(int, char const*);
     void cutEnd(int);
     void getEventPrio(fopAc_ac_c*, s16);
@@ -63,11 +63,13 @@ public:
     void getGoal();
     void getRunEventName();
     void specialCast_Shutter(s16, int);
-    void specialCast(char const*, int);
+    fopAc_ac_c* specialCast(char const*, int);
     void ChkPresentEnd();
     void checkStartDemo();
 
     void setStartDemo(int param_0) { mEventException.setStartDemo(param_0); }
+    void setCameraPlay(int status) { mCameraPlay = status; }
+    dEvDtBase_c& getBase() { return mEventList[field_0x1b4]; }
 
 private:
     /* 0x0000 */ dEvDtBase_c mEventList[11];
@@ -77,7 +79,7 @@ private:
     /* 0x01A8 */ u8 field_0x1a8[2];
     /* 0x01AA */ s16 field_0x1aa;
     /* 0x01AC */ u8 field_0x1ac[4];
-    /* 0x01B0 */ u32 field_0x1b0;
+    /* 0x01B0 */ int mRoomNo;
     /* 0x01B4 */ u32 field_0x1b4;
     /* 0x01B8 */ u32 field_0x1b8;
     /* 0x01BC */ dEvDtFlag_c mFlags;

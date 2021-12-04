@@ -132,6 +132,11 @@ public:
     dMw_c* getMenuWindowClass() { return mMenuWindowClass; }
     void offUseButton(int pButton) { mUseButton &= ~(u16)pButton; }
     u16 getOilGaugeBackUp() { return mOilGaugeBackUp; }
+    u8 getWarpStatus() { return mWarpStatus; }
+    u8 getWarpRoomNo() { return mWarpInfo.mRoomNo; }
+    u8 getWarpPlayerNo() { return mWarpInfo.mWarpPlayerNo; }
+    cXyz& getWarpPos() { return mWarpInfo.mPosition; }
+    const char* getWarpStageName() { return mWarpInfo.mStageName; }
 
 private:
     /* 0x04 */ u8 unk4[4];
@@ -250,6 +255,26 @@ inline u16 dMeter2Info_getOilGaugeBackUp() {
 
 inline void dMeter2Info_setSaveStageName(const char* name) {
     g_meter2_info.setSaveStageName(name);
+}
+
+inline u8 dMeter2Info_getWarpStatus() {
+    return g_meter2_info.getWarpStatus();
+}
+
+inline u8 dMeter2Info_getWarpRoomNo() {
+    return g_meter2_info.getWarpRoomNo();
+}
+
+inline u8 dMeter2Info_getWarpPlayerNo() {
+    return g_meter2_info.getWarpPlayerNo();
+}
+
+inline cXyz& dMeter2Info_getWarpPos() {
+    return g_meter2_info.getWarpPos();
+}
+
+inline const char* dMeter2Info_getWarpStageName() {
+    return g_meter2_info.getWarpStageName();
 }
 
 #endif /* D_METER_D_METER2_INFO_H */

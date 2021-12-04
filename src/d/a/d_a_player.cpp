@@ -232,7 +232,7 @@ void daPy_boomerangMove_c::initOffset(cXyz const* param_0) {
 
 /* ############################################################################################## */
 /* 80451018-8045101C 000518 0004+00 2/2 33/32 103/103 .sbss            m_midnaActor__9daPy_py_c */
-u8 daPy_py_c::m_midnaActor[4];
+daMidna_c* daPy_py_c::m_midnaActor;
 
 /* 8045101C-80451020 -00001 0004+00 1/1 1/1 1/1 .sbss            None */
 /* 8045101C 0002+00 data_8045101C m_dropAngleY__20daPy_boomerangMove_c */
@@ -304,7 +304,7 @@ asm void daPy_boomerangMove_c::bgCheckAfterOffset(cXyz const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::setParamData(int param_0, int param_1, int param_2, int param_3) {
+asm u32 daPy_py_c::setParamData(int param_0, int param_1, int param_2, int param_3) {
     nofralloc
 #include "asm/d/a/d_a_player/setParamData__9daPy_py_cFiiii.s"
 }
@@ -574,9 +574,9 @@ J3DAnmBase* daPy_anmHeap_c::loadDataDemoRID(u16 pID, u16 pArcNo) {
 }
 
 /* 8015F168-8015F1A0 159AA8 0038+00 1/1 4/4 0/0 .text            setAnimeHeap__14daPy_anmHeap_cFv */
-void daPy_anmHeap_c::setAnimeHeap() {
+JKRHeap* daPy_anmHeap_c::setAnimeHeap() {
     mAnimeHeap->freeAll();
-    mDoExt_setCurrentHeap(mAnimeHeap);
+    return mDoExt_setCurrentHeap(mAnimeHeap);
 }
 
 /* ############################################################################################## */

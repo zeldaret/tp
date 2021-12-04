@@ -8,16 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct kytag05_class {};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-//
 // Forward References:
 //
 

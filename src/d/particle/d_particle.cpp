@@ -11,6 +11,7 @@
 // Types:
 //
 
+
 struct mDoLib_clipper {
     static u8 mClipper[92];
 };
@@ -50,13 +51,6 @@ struct dPa_wbPcallBack_c {
 
 struct JPADrawInfo {};
 
-struct JPAResourceManager {
-    /* 80273E10 */ JPAResourceManager(void const*, JKRHeap*);
-    /* 80273EA8 */ void checkUserIndexDuplication(u16) const;
-    /* 80273EEC */ void swapTexture(ResTIMG const*, char const*);
-    /* 80273FCC */ void getResUserWork(u16) const;
-};
-
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
@@ -75,16 +69,6 @@ struct JPAEmitterManager {
     /* 8027E354 */ void clearResourceManager(u8);
 };
 
-struct dPa_simpleEcallBack {
-    /* 8004ADF4 */ dPa_simpleEcallBack();
-    /* 8004AE1C */ void executeAfter(JPABaseEmitter*);
-    /* 8004AF94 */ void draw(JPABaseEmitter*);
-    /* 8004AF98 */ void create(JPAEmitterManager*, u16, u8);
-    /* 8004B064 */ void createEmitter(JPAEmitterManager*);
-    /* 8004B168 */ void set(cXyz const*, dKy_tevstr_c const*, u8, _GXColor const&, _GXColor const&,
-                            int, f32);
-    /* 8004FC08 */ ~dPa_simpleEcallBack();
-};
 
 struct dPa_simpleData_c {
     /* 8004B024 */ ~dPa_simpleData_c();
@@ -204,82 +188,6 @@ struct dPa_followEcallBack {
 };
 
 struct cBgS_PolyInfo {};
-
-struct dPa_control_c {
-    struct level_c {
-        struct emitter_c {
-            /* 8004B504 */ void onActive();
-            /* 8004B544 */ void entry(u32, u16, JPABaseEmitter*, dPa_levelEcallBack*);
-            /* 8004B5AC */ void cleanup();
-            /* 8004FBFC */ emitter_c();
-        };
-
-        /* 8004B688 */ level_c();
-        /* 8004B7A8 */ void execute();
-        /* 8004B6F8 */ void execute(dPa_control_c::level_c::emitter_c*);
-        /* 8004B808 */ void cleanup();
-        /* 8004B874 */ void get(u32);
-        /* 8004B8B4 */ void forceOnEventMove(u32);
-        /* 8004B8E8 */ void allForceOnEventMove();
-        /* 8004B918 */ void getEmitter(u32);
-        /* 8004B94C */ void entry(u16, JPABaseEmitter*, dPa_levelEcallBack*);
-        /* 8004BA40 */ void addTable(dPa_control_c::level_c::emitter_c*);
-        /* 8004BA74 */ void cutTable(dPa_control_c::level_c::emitter_c*);
-    };
-
-    /* 8004BACC */ dPa_control_c();
-    /* 8004BB70 */ void getRM_ID(u16);
-    /* 8004BB78 */ void createCommon(void const*);
-    /* 8004BCDC */ void createRoomScene();
-    /* 8004BDFC */ void readScene(u8, mDoDvdThd_toMainRam_c**);
-    /* 8004BEB0 */ void createScene(void const*);
-    /* 8004BF3C */ void removeRoomScene(bool);
-    /* 8004BFD4 */ void removeScene(bool);
-    /* 8004C054 */ void cleanup();
-    /* 8004C078 */ void calc3D();
-    /* 8004C0EC */ void calc2D();
-    /* 8004C134 */ void calcMenu();
-    /* 8004C188 */ void draw(JPADrawInfo*, u8);
-    /* 8004C218 */ void setHitMark(u16, fopAc_ac_c*, cXyz const*, csXyz const*, cXyz const*, u32);
-    /* 8004C838 */ void setWaterRipple(u32*, cBgS_PolyInfo&, cXyz const*, f32, dKy_tevstr_c const*,
-                                       cXyz const*, s8);
-    /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
-                            u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
-                            cXyz const*, f32);
-    /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
-                            cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
-                            _GXColor const*, cXyz const*, f32);
-    /* 8004CF90 */ void getPolyColor(cBgS_PolyInfo&, int, _GXColor*, _GXColor*, u8*, f32*);
-    /* 8004D6A4 */ void setPoly(u32, u16, cBgS_PolyInfo&, cXyz const*, dKy_tevstr_c const*,
-                                csXyz const*, cXyz const*, int, dPa_levelEcallBack*, s8,
-                                cXyz const*);
-    /* 8004D068 */ void setPoly(u16, cBgS_PolyInfo&, cXyz const*, dKy_tevstr_c const*, csXyz const*,
-                                cXyz const*, int, dPa_levelEcallBack*, s8, cXyz const*);
-    /* 8004D128 */ void newSimple(u16, u8, u32*);
-    /* 8004D1B8 */ void setSimple(u16, cXyz const*, dKy_tevstr_c const*, u8, _GXColor const&,
-                                  _GXColor const&, int, f32);
-    /* 8004D23C */ void getSimple(u16);
-    /* 8004D770 */ void setStopContinue(u32);
-    /* 8004D7C4 */ void setSimpleFoot(u32, u32*, cBgS_PolyInfo&, cXyz const*, dKy_tevstr_c const*,
-                                      int, csXyz const*, cXyz const*, dPa_levelEcallBack*, s8,
-                                      cXyz const*);
-    /* 8004D988 */ void setCommonPoly(u32*, cBgS_PolyInfo*, cXyz const*, cXyz const*,
-                                      dKy_tevstr_c const*, u32, u32, csXyz const*, cXyz const*, s8);
-
-    static u8 mTsubo[64];
-    static u8 mLifeBall[24];
-    static u8 mWindViewMatrix[48];
-    static u8 mEmitterMng[4];
-    static u8 mWaterBubblePcallBack[4];
-    static u8 mFsenthPcallBack[4];
-    static u8 mLight8EcallBack[4];
-    static u8 mLight8PcallBack[4];
-    static u8 m_b_Light8EcallBack[4];
-    static u8 m_b_Light8PcallBack[4];
-    static u8 m_d_Light8EcallBack[4];
-    static u8 m_d_Light8PcallBack[4];
-    static u8 mParticleTracePCB[4 + 4 /* padding */];
-};
 
 struct dJntCol_c {
     /* 80036C44 */ void getHitmarkPosAndAngle(cXyz const*, csXyz const*, cXyz*, csXyz*, int) const;
@@ -1628,7 +1536,7 @@ asm void dPa_control_c::level_c::allForceOnEventMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dPa_control_c::level_c::getEmitter(u32 param_0) {
+asm dPa_control_c::level_c::emitter_c* dPa_control_c::level_c::getEmitter(u32 param_0) {
     nofralloc
 #include "asm/d/particle/d_particle/getEmitter__Q213dPa_control_c7level_cFUl.s"
 }
@@ -2144,7 +2052,7 @@ static asm void dPa_kankyocolor_set(f32 param_0, JPABaseEmitter* param_1,
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dPa_control_c::set(u32 param_0, u8 param_1, u16 param_2, cXyz const* param_3,
+asm u32 dPa_control_c::set(u32 param_0, u8 param_1, u16 param_2, cXyz const* param_3,
                             dKy_tevstr_c const* param_4, csXyz const* param_5, cXyz const* param_6,
                             u8 param_7, dPa_levelEcallBack* param_8, s8 param_9,
                             _GXColor const* param_10, _GXColor const* param_11,
@@ -2160,7 +2068,7 @@ asm void dPa_control_c::set(u32 param_0, u8 param_1, u16 param_2, cXyz const* pa
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dPa_control_c::setPoly(u32 param_0, u16 param_1, cBgS_PolyInfo& param_2,
+asm u32 dPa_control_c::setPoly(u32 param_0, u16 param_1, cBgS_PolyInfo& param_2,
                                 cXyz const* param_3, dKy_tevstr_c const* param_4,
                                 csXyz const* param_5, cXyz const* param_6, int param_7,
                                 dPa_levelEcallBack* param_8, s8 param_9, cXyz const* param_10) {
@@ -2379,7 +2287,8 @@ asm void dPa_particleTracePcallBack_c::execute(JPABaseEmitter* param_0, JPABaseP
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dPa_levelEcallBack::~dPa_levelEcallBack() {
+// asm dPa_levelEcallBack::~dPa_levelEcallBack() {
+extern "C" asm void __dt__18dPa_levelEcallBackFv() {
     nofralloc
 #include "asm/d/particle/d_particle/__dt__18dPa_levelEcallBackFv.s"
 }
@@ -2415,7 +2324,8 @@ asm dPa_control_c::level_c::emitter_c::emitter_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dPa_simpleEcallBack::~dPa_simpleEcallBack() {
+// asm dPa_simpleEcallBack::~dPa_simpleEcallBack() {
+extern "C" asm void __dt__19dPa_simpleEcallBackFv() {
     nofralloc
 #include "asm/d/particle/d_particle/__dt__19dPa_simpleEcallBackFv.s"
 }
@@ -2435,7 +2345,8 @@ asm dPa_particleTracePcallBack_c::~dPa_particleTracePcallBack_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dPa_hermiteEcallBack_c::~dPa_hermiteEcallBack_c() {
+// asm dPa_hermiteEcallBack_c::~dPa_hermiteEcallBack_c() {
+extern "C" asm void __dt__22dPa_hermiteEcallBack_cFv() {
     nofralloc
 #include "asm/d/particle/d_particle/__dt__22dPa_hermiteEcallBack_cFv.s"
 }
@@ -2666,7 +2577,7 @@ asm dPa_setColorEcallBack::~dPa_setColorEcallBack() {
 
 /* 80050368-8005036C 04ACA8 0004+00 10/0 0/0 0/0 .text
  * execute__18JPAEmitterCallBackFP14JPABaseEmitter              */
-void JPAEmitterCallBack::execute(JPABaseEmitter* param_0) {
+extern "C" void execute__18JPAEmitterCallBackFP14JPABaseEmitter() {
     /* empty function */
 }
 

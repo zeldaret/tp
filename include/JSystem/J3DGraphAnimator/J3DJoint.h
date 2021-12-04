@@ -29,6 +29,14 @@ public:
     static J3DJoint* mJoint;
 };  // Size: 0x4
 
+class J3DMtxCalcNoAnmBase : public J3DMtxCalc {
+public:
+    /* 8000FA8C */ virtual ~J3DMtxCalcNoAnmBase();
+};
+
+template <typename A, typename B>
+class J3DMtxCalcNoAnm : public J3DMtxCalcNoAnmBase, public A, public B {};
+
 class J3DJoint;
 typedef int (*J3DJointCallBack)(J3DJoint*, int);
 

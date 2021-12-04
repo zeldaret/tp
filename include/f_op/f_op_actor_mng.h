@@ -102,6 +102,10 @@ inline u32 fopAcM_GetParam(const void* pActor) {
     return fpcM_GetParam(pActor);
 }
 
+inline void fopAcM_SetParam(void* p_actor, u32 param) {
+    fpcM_SetParam(p_actor, param);
+}
+
 inline u8 fopAcM_GetGroup(const fopAc_ac_c* p_actor) {
     return p_actor->mGroup;
 }
@@ -244,7 +248,7 @@ static const char* fopAcM_getProcNameString(const fopAc_ac_c*);
 // s32 fopAcM_findObjectCB(const fopAc_ac_c*, void*);
 s32 fopAcM_searchFromName(const char*, u32, u32);
 s32 fopAcM_findObject4EventCB(fopAc_ac_c*, void*);
-s32 fopAcM_searchFromName4Event(const char*, s16);
+fopAc_ac_c* fopAcM_searchFromName4Event(const char*, s16);
 s32 fopAcM_getWaterY(const cXyz*, f32*);
 void fpoAcM_relativePos(const fopAc_ac_c*, const cXyz*, cXyz*);
 s32 fopAcM_getWaterStream(const cXyz*, const cBgS_PolyInfo&, cXyz*, int*, int);

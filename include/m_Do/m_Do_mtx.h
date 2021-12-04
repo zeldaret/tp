@@ -61,4 +61,10 @@ public:
     /* 0x118 */ mDoMtx_quatStack_c* field_0x118;
 };  // Size: 0x11C
 
+inline void mDoMtx_multVecZero(MtxP param_0, Vec* param_1) {
+    param_1->x = param_0[0][3];
+    param_1->y = param_0[1][3];
+    param_1->z = param_0[2][3];
+}
+
 #endif /* M_DO_M_DO_MTX_H */

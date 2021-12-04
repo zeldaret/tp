@@ -49,6 +49,7 @@ public:
     void offFlag(u32 flag) { mFlags &= ~flag; }
     bool checkFlag(u32 flag) const { return (mFlags & flag) ? true : false; }
     Mtx& getBaseTRMtx() { return mBaseTransformMtx; }
+    void i_setBaseTRMtx(Mtx m) { PSMTXCopy(m, mBaseTransformMtx); }
 
     // is there a better way to handle inlines with same name as non-inlines?
     MtxP i_getAnmMtx(int p1) { return mMtxBuffer->getAnmMtx(p1); }

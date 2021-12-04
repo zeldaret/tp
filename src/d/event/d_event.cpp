@@ -628,7 +628,7 @@ bool dEvt_control_c::compulsory(void* param_0, char const* param_1, u16 param_2)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool dEvt_control_c::compulsory(void* param_0, char const* param_1, u16 param_2) {
+asm BOOL dEvt_control_c::compulsory(void* param_0, char const* param_1, u16 param_2) {
     nofralloc
 #include "asm/d/event/d_event/compulsory__14dEvt_control_cFPvPCcUs.s"
 }

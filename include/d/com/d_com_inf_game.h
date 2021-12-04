@@ -138,6 +138,14 @@ public:
         mAStatus = status;
         mASetFlag = flag;
     }
+    void setXStatus(u8 status, u8 flag) {
+        mXStatus = status;
+        mXSetFlag = flag;
+    }
+    void setYStatus(u8 status, u8 flag) {
+        mYStatus = status;
+        mYSetFlag = flag;
+    }
     void setBottleStatus(u8 status, u8 flag) {
         mBottleStatus = status;
         mBottleSetFlag = flag;
@@ -178,8 +186,11 @@ public:
     J2DGrafContext* getCurrentGrafPort() { return mCurrentGrafPort; }
     dVibration_c& getVibration() { return mVibration; }
     void setPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[i] |= flag; }
+    void clearPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[i] &= ~flag; }
+    bool checkPlayerStatus(int param_0, int i, u32 flag) { return flag & mPlayerStatus[i]; }
     BOOL checkCameraAttentionStatus(int i, u32 flag) { return mCameraInfo[i].mCameraAttentionStatus & flag; }
     s8 getPlayerCameraID(int i) { return mPlayerCameraID[i]; }
+    dPa_control_c* getParticle() { return mParticle; }
     void set3DStatus(u8 status, u8 direction, u8 flag) {
         m3DStatus = status;
         m3DDirection = direction;
@@ -224,7 +235,7 @@ public:
     /* 0x04DBC */ JKRArchive* mMsgDtArchive[15];
     /* 0x04DF8 */ JKRArchive* mMain2DArchive;
     /* 0x04DFC */ void* field_0x4dfc[2];
-    /* 0x04E04 */ void* mParticle;
+    /* 0x04E04 */ dPa_control_c* mParticle;
     /* 0x04E08 */ void* mSimpleModel;
     /* 0x04E0C */ u8 mWindowNum;
     /* 0x04E0D */ u8 mLayerOld;
@@ -326,7 +337,7 @@ public:
     /* 0x04F23 */ u8 mZSetFlagForce;
     /* 0x04F24 */ u8 mXStatus;
     /* 0x04F25 */ u8 mXStatusForce;
-    /* 0x04F26 */ u8 field_0x4fbe;  // related to XStatus
+    /* 0x04F26 */ u8 mXSetFlag;
     /* 0x04F27 */ u8 mXSetFlagForce;
     /* 0x04F28 */ u8 mYStatus;
     /* 0x04F29 */ u8 mYStatusForce;
@@ -462,6 +473,16 @@ void* dComIfG_getStageRes(char const*);
 void dComLbG_PhaseHandler(request_of_phase_process_class*, int (**param_1)(void*), void*);
 void dComIfGp_addSelectItemNum(int, s16);
 BOOL dComIfGs_isOneZoneSwitch(int, int);
+u8 dComIfGp_getSelectItem(int);
+u8 dComIfGp_TargetWarpPt_get();
+void dComIfGp_TargetWarpPt_set(u8);
+BOOL dComIfGp_TransportWarp_check();
+void dComIfGp_setNextStage(char const*, s16, s8, s8, f32, u32, int, s8, s16, int, int);
+cXyz& dComIfGs_getWarpPlayerPos();
+const char* dComIfGs_getWarpStageName();
+s16 dComIfGs_getWarpPlayerAngleY();
+s8 dComIfGs_getWarpRoomNo();
+char* dComIfG_getRoomArcName(int);
 
 inline void dComIfGp_setRStatus(u8 status, u8 flag) {
     g_dComIfG_gameInfo.play.setRStatus(status, flag);
@@ -716,7 +737,7 @@ inline s16 dComIfGs_getLastWarpMarkPlayerAngleY() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerLastMarkInfo().getAngleY();
 }
 
-inline s8 dComIfGs_getLastWarpMarkRoomNo() {
+inline u8 dComIfGs_getLastWarpMarkRoomNo() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerLastMarkInfo().getRoomNo();
 }
 
@@ -775,6 +796,10 @@ inline s8 dComIfGp_getStartStageRoomNo() {
 inline s8 dComIfGp_getStartStageLayer() {
     return g_dComIfG_gameInfo.play.getStartStageLayer();
 }
+
+/* inline dStage_stageDt_c& dComIfGp_getStage() {
+    return g_dComIfG_gameInfo.play.getStage();
+} */
 
 inline roomRead_class* dComIfGp_getStageRoom() {
     return g_dComIfG_gameInfo.play.getStage().getRoom();
@@ -1064,6 +1089,78 @@ inline void dComIfGp_set3DStatus(u8 status, u8 direction, u8 flag) {
 
 inline u8 dComIfGs_getLastSceneMode() {
     return g_dComIfG_gameInfo.info.getRestart().getLastMode();
+}
+
+inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* param_2, const dKy_tevstr_c* param_3, const csXyz* param_4, const cXyz* param_5, u8 param_6, dPa_levelEcallBack* param_7, s8 param_8, const GXColor* param_9, const GXColor* param_10, const cXyz* param_11) {
+    return g_dComIfG_gameInfo.play.getParticle()->setNormal(param_0, param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, 1.0f);
+}
+
+inline void dComIfGp_particle_levelEmitterOnEventMove(u32 param_0) {
+    g_dComIfG_gameInfo.play.getParticle()->forceOnEventMove(param_0);
+}
+
+inline dPa_control_c::level_c::emitter_c* dComIfGp_particle_getEmitter(u32 param_0) {
+    return g_dComIfG_gameInfo.play.getParticle()->getEmitter(param_0);
+}
+
+inline u32 dComIfGp_particle_setPolyColor(u32 param_0, u16 param_1, cBgS_PolyInfo& param_2, const cXyz* param_3, const dKy_tevstr_c* param_4, const csXyz* param_5, const cXyz* param_6, int param_7, dPa_levelEcallBack* param_8, s8 param_9, const cXyz* param_10) {
+    return g_dComIfG_gameInfo.play.getParticle()->setPoly(param_0, param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10);
+}
+
+inline dRes_info_c* dComIfG_getObjectResInfo(const char* arc_name) {
+    return g_dComIfG_gameInfo.mResControl.getObjectResInfo(arc_name);
+}
+
+inline void dComIfGp_setXStatus(u8 status, u8 flag) {
+    g_dComIfG_gameInfo.play.setXStatus(status, flag);
+}
+
+inline void dComIfGp_setYStatus(u8 status, u8 flag) {
+    g_dComIfG_gameInfo.play.setYStatus(status, flag);
+}
+
+inline BOOL dComIfGp_event_compulsory(void* param_0, const char* param_1, u16 param_2) {
+    return g_dComIfG_gameInfo.play.getEvent().compulsory(param_0, param_1, param_2);
+}
+
+inline void dComIfGs_setTurnRestart(const cXyz& param_0, s16 param_1, s8 param_2, u32 param_3) {
+    g_dComIfG_gameInfo.info.getTurnRestart().set(param_0, param_1, param_2, param_3);
+}
+
+inline void dComIfGs_setRestartRoom(const cXyz& param_0, s16 param_1, s8 param_2) {
+    g_dComIfG_gameInfo.info.getRestart().setRoom(param_0, param_1, param_2);
+}
+
+inline s8 dComIfGs_getRestartRoomNo() {
+    return g_dComIfG_gameInfo.info.getRestart().getRoomNo();
+}
+
+inline void dComIfGs_setRestartRoomParam(u32 param) {
+    g_dComIfG_gameInfo.info.getRestart().setRoomParam(param);
+}
+
+inline void dComIfGp_clearPlayerStatus0(int param_0, u32 flag) {
+    g_dComIfG_gameInfo.play.clearPlayerStatus(param_0, 0, flag);
+}
+
+inline int* dComIfGp_evmng_getMyIntegerP(int index, char* name) {
+    return (int*)dComIfGp_getPEvtManager()->getMySubstanceP(index, name, dEvDtData_c::TYPE_INT);
+}
+
+inline char* dComIfGp_evmng_getMyStringP(int index, char* name) {
+    return (char*)dComIfGp_getPEvtManager()->getMySubstanceP(index, name, dEvDtData_c::TYPE_STRING);
+}
+
+inline f32* dComIfGp_evmng_getMyFloatP(int index, char* name) {
+    return (f32*)dComIfGp_getPEvtManager()->getMySubstanceP(index, name, dEvDtData_c::TYPE_FLOAT);
+}
+
+inline stage_scls_info_dummy_class* dComIfGp_getStageSclsInfo() {
+    return g_dComIfG_gameInfo.play.getStage().getSclsInfo();
+}
+
+inline dStage_roomStatus_c* dComIfGp_roomControl_getStatusRoomDt(int room_no) {
+    return g_dComIfG_gameInfo.play.getRoomControl()->getStatusRoomDt(room_no);
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

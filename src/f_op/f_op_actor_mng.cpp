@@ -1948,7 +1948,7 @@ asm s32 fopAcM_findObject4EventCB(fopAc_ac_c* param_0, void* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm s32 fopAcM_searchFromName4Event(char const* param_0, s16 param_1) {
+asm fopAc_ac_c* fopAcM_searchFromName4Event(char const* param_0, s16 param_1) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_searchFromName4Event__FPCcs.s"
 }
