@@ -5,7 +5,6 @@
 #include "JSystem/JUtility/JUTFont.h"
 #include "dolphin/types.h"
 
-
 // TODO: fix struct
 struct unk_print {
     /* 0x00 */ unk_print* mNext;

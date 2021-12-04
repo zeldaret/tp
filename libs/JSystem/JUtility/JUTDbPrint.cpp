@@ -4,22 +4,22 @@
 //
 
 #include "JSystem/JUtility/JUTDbPrint.h"
+#include "JSystem/JUtility/JUTVideo.h"
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf.h"
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/string.h"
-#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf.h"
-#include "JSystem/JUtility/JUTVideo.h"
 
 class J2DGrafContext {
 public:
-    virtual ~J2DGrafContext() {};
+    virtual ~J2DGrafContext(){};
 };
 
 class J2DOrthoGraph : public J2DGrafContext {
 public:
     char fake[0xd0];
     J2DOrthoGraph(f32, f32, f32, f32, f32, f32);
-    virtual ~J2DOrthoGraph() {};
+    virtual ~J2DOrthoGraph(){};
     void setPort();
 };
 
@@ -28,7 +28,7 @@ JUTDbPrint::JUTDbPrint(JUTFont* pFont, JKRHeap* pHeap) {
     mFont = pFont;
     mFirst = NULL;
     mHeap = pHeap != NULL ? pHeap : JKRHeap::getCurrentHeap();
-    mColor.set(255,255,255,255);
+    mColor.set(255, 255, 255, 255);
     mVisible = true;
 }
 
@@ -49,7 +49,7 @@ JUTDbPrint* JUTDbPrint::start(JUTFont* pFont, JKRHeap* pHeap) {
 
 /* 802E0204-802E021C 2DAB44 0018+00 0/0 1/1 0/0 .text            changeFont__10JUTDbPrintFP7JUTFont
  */
-JUTFont *JUTDbPrint::changeFont(JUTFont* pFont) {
+JUTFont* JUTDbPrint::changeFont(JUTFont* pFont) {
     JUTFont* old = mFont;
     if (pFont != NULL) {
         mFont = pFont;
@@ -58,8 +58,7 @@ JUTFont *JUTDbPrint::changeFont(JUTFont* pFont) {
 }
 
 /* 802E021C-802E02A4 2DAB5C 0088+00 2/2 0/0 0/0 .text            enter__10JUTDbPrintFiiiPCci */
-void JUTDbPrint::enter(int param_0, int param_1, int param_2, char const* param_3,
-                           int param_4) {
+void JUTDbPrint::enter(int param_0, int param_1, int param_2, char const* param_3, int param_4) {
     if (param_4 > 0) {
         unk_print* ptr = static_cast<unk_print*>(JKRAllocFromHeap(mHeap, param_4 + 0x10, -4));
         if (ptr != NULL) {
@@ -68,8 +67,8 @@ void JUTDbPrint::enter(int param_0, int param_1, int param_2, char const* param_
             ptr->unk_0x08 = param_2;
             ptr->unk_0x0A = param_4;
             strcpy(ptr->unk_0x0C, param_3);
-            ptr->mNext = this->mFirst;
-            this->mFirst = ptr;
+            ptr->mNext = mFirst;
+            mFirst = ptr;
         }
     }
 }
@@ -89,7 +88,7 @@ void JUTDbPrint::flush(int param_0, int param_1, int param_2, int param_3) {
         g.setPort();
         mFont->setGX();
         mFont->setCharColor(mColor);
-        
+
         while (cur != NULL) {
             if (mVisible) {
                 this->drawString(cur->unk_0x04, cur->unk_0x06, cur->unk_0x0A, (u8*)cur->unk_0x0C);
@@ -110,7 +109,8 @@ void JUTDbPrint::flush(int param_0, int param_1, int param_2, int param_3) {
 /* 802E0440-802E0530 2DAD80 00F0+00 1/1 0/0 0/0 .text            drawString__10JUTDbPrintFiiiPCUc */
 void JUTDbPrint::drawString(int param_0, int param_1, int param_2, u8 const* param_3) {
     JUTFont* font = mFont;
-    font->drawString_size_scale(param_0, param_1, font->getWidth(), font->getHeight(), (const char*)param_3, param_2, true);
+    font->drawString_size_scale(param_0, param_1, font->getWidth(), font->getHeight(),
+                                (const char*)param_3, param_2, true);
 }
 
 /* 802E0530-802E0600 2DAE70 00D0+00 0/0 2/2 2/2 .text            JUTReport__FiiPCce */
