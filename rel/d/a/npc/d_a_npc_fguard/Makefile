@@ -41,7 +41,7 @@ $(M303_TARGET): $(M303_O_FILES) $(M303_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fguard/%.o: rel/d/a/npc/d_a_npc_fguard/%.cpp
 	@echo [303] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M303_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M303_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

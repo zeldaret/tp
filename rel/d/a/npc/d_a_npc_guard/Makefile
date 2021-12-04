@@ -41,7 +41,7 @@ $(M314_TARGET): $(M314_O_FILES) $(M314_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_guard/%.o: rel/d/a/npc/d_a_npc_guard/%.cpp
 	@echo [314] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M314_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M314_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

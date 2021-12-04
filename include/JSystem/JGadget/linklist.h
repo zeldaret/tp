@@ -22,15 +22,15 @@ struct TNodeLinkList {
         TLinkListNode* node;
     };
 
-    TNodeLinkList() : mListNode() { Initialize_(); }
+    TNodeLinkList() : ocObject_() { Initialize_(); }
     void Initialize_() {
         ptr = NULL;
-        mListNode.mNext = &mListNode;
-        mListNode.mPrev = &mListNode;
+        ocObject_.mNext = &ocObject_;
+        ocObject_.mPrev = &ocObject_;
     }
 
     iterator end() {
-        iterator iter(&mListNode);
+        iterator iter(&ocObject_);
         return iter;
     }
 
@@ -40,11 +40,11 @@ struct TNodeLinkList {
     /* 802DCB08 */ void splice(JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList&,
                                JGadget::TNodeLinkList::iterator);
     /* 802DCBA8 */ void Insert(JGadget::TNodeLinkList::iterator, JGadget::TLinkListNode*);
-    /* 802DCBD4 */ void Erase(JGadget::TLinkListNode*);
+    /* 802DCBD4 */ iterator Erase(JGadget::TLinkListNode*);
     /* 802DCBF8 */ void Remove(JGadget::TLinkListNode*);
 
     /* 0x00 */ TNodeLinkList* ptr;
-    /* 0x04 */ TLinkListNode mListNode;
+    /* 0x04 */ TLinkListNode ocObject_;
 };  // Size: 0xC
 
 template <typename T, int I>
@@ -55,11 +55,16 @@ struct TLinkList : public TNodeLinkList {
         iterator(TNodeLinkList::iterator iter) : TNodeLinkList::iterator(iter) {}
     };
 
-    TLinkListNode* Element_toNode(T* element) const { return &element->mListNode; }
+    TLinkListNode* Element_toNode(T* element) const { return &element->ocObject_; }
 
     void Insert(TLinkList::iterator iter, T* element) {
         TLinkListNode* node = Element_toNode(element);
         TNodeLinkList::Insert(iter, node);
+    }
+
+    iterator Erase(T* element) {
+        TLinkListNode* node = Element_toNode(element);
+        return ((TNodeLinkList*)this)->Erase(node);
     }
 
     TLinkList::iterator end() {

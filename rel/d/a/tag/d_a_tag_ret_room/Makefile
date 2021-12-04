@@ -41,7 +41,7 @@ $(M735_TARGET): $(M735_O_FILES) $(M735_LIBS)
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_ret_room/%.o: rel/d/a/tag/d_a_tag_ret_room/%.cpp
 	@echo [735] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M735_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M735_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

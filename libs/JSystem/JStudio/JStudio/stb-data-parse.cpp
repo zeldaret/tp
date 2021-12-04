@@ -5,106 +5,94 @@
 
 #include "JSystem/JStudio/JStudio/stb-data-parse.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
+#include "global.h"
 
 namespace JStudio {
 namespace stb {
-struct data {
-    struct TParse_TSequence {
-        struct TData {};
+namespace data {
 
-        /* 802899BC */ void getData(JStudio::stb::data::TParse_TSequence::TData*) const;
-    };
+extern "C" u32 gauDataSize_TEParagraph_data__Q37JStudio3stb4data[];
 
-    struct TParse_TParagraph {
-        struct TData {};
+void TParse_TSequence::getData(TData* pData) const {
+    ASSERT(pData != 0);
 
-        /* 80289A08 */ void getData(JStudio::stb::data::TParse_TParagraph::TData*) const;
-    };
-
-    struct TParse_TParagraph_data {
-        struct TData {};
-
-        /* 80289A80 */ void getData(JStudio::stb::data::TParse_TParagraph_data::TData*) const;
-    };
-
-    static u8 const gauDataSize_TEParagraph_data[32];
-};
-
-};  // namespace stb
-
-};  // namespace JStudio
-
-namespace JGadget {
-struct binary {
-    struct TEBit {};
-
-    /* 802DC864 */ void parseVariableUInt_16_32_following(void const*, u32*, u32*,
-                                                          JGadget::binary::TEBit*);
-};
-
-};  // namespace JGadget
-
-//
-// Forward References:
-//
-
-extern "C" void
-getData__Q47JStudio3stb4data16TParse_TSequenceCFPQ57JStudio3stb4data16TParse_TSequence5TData();
-extern "C" void
-getData__Q47JStudio3stb4data17TParse_TParagraphCFPQ57JStudio3stb4data17TParse_TParagraph5TData();
-extern "C" void
-getData__Q47JStudio3stb4data22TParse_TParagraph_dataCFPQ57JStudio3stb4data22TParse_TParagraph_data5TData();
-
-//
-// External References:
-//
-
-extern "C" void
-parseVariableUInt_16_32_following__Q27JGadget6binaryFPCvPUlPUlPQ37JGadget6binary5TEBit();
-extern "C" u8 const gauDataSize_TEParagraph_data__Q37JStudio3stb4data[32];
-
-//
-// Declarations:
-//
-
-/* 802899BC-80289A08 2842FC 004C+00 0/0 1/1 0/0 .text
- * getData__Q47JStudio3stb4data16TParse_TSequenceCFPQ57JStudio3stb4data16TParse_TSequence5TData */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::stb::data::TParse_TSequence::getData(
-    JStudio::stb::data::TParse_TSequence::TData* param_0) const {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/stb-data-parse/func_802899BC.s"
+    pData->content = NULL;
+    pData->next = NULL;
+    u32 head = get_head();
+    u8 type = head >> 24;
+    u32 param = head & 0xffffff;
+    pData->type = type;
+    pData->param = param;
+    if (type != 0) {
+        const void* next = (const void*)((int)getRaw() + 4);
+        if (type <= 0x7f) {
+            pData->next = next;
+        } else {
+            pData->content = next;
+            pData->next = (const void*)((int)next + param);
+        }
+    }
 }
-#pragma pop
 
-/* 80289A08-80289A80 284348 0078+00 0/0 1/1 0/0 .text
- * getData__Q47JStudio3stb4data17TParse_TParagraphCFPQ57JStudio3stb4data17TParse_TParagraph5TData */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::stb::data::TParse_TParagraph::getData(
-    JStudio::stb::data::TParse_TParagraph::TData* param_0) const {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/stb-data-parse/func_80289A08.s"
+void TParse_TParagraph::getData(TData* pData) const {
+    ASSERT(pData != 0);
+
+    const void* data = getRaw();
+    u32 result;
+    const void* next = parseVariableUInt_16_32_following(data, &result, &pData->type, NULL);
+    pData->param = result;
+    if (result == 0) {
+        pData->content = NULL;
+        pData->next = next;
+    } else {
+        pData->content = next;
+        pData->next = (const void*)((int)next + align_roundUp(result, 4));
+    }
 }
-#pragma pop
 
+#ifdef NONMATCHING
+void TParse_TParagraph_data::getData(data::TParse_TParagraph_data::TData* pData) const {
+    ASSERT(pData != 0);
+
+    pData->_4 = 0;
+    pData->_8 = 0;
+    pData->_c = NULL;
+    pData->_10 = 0;
+    u8* p = (u8*)getRaw();
+    if (p != NULL) {
+        u8 val = *p;
+        pData->_0 = val & ~8;
+        if (val != 0) {
+            u32 count = 1;
+            p++;
+            if (val & 8) {
+                count = *(p++);
+            }
+            pData->_8 = count;
+            pData->_c = p;
+            u8 idx = val & 7;
+            if (idx) {
+                u32 size = gauDataSize_TEParagraph_data[idx];
+                pData->_4 = size;
+                pData->_10 = p + size * count;
+            }
+        }
+    }
+}
+#else
 /* 80289A80-80289B00 2843C0 0080+00 0/0 3/3 1/1 .text
  * getData__Q47JStudio3stb4data22TParse_TParagraph_dataCFPQ57JStudio3stb4data22TParse_TParagraph_data5TData
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JStudio::stb::data::TParse_TParagraph_data::getData(
-    JStudio::stb::data::TParse_TParagraph_data::TData* param_0) const {
+asm void TParse_TParagraph_data::getData(TParse_TParagraph_data::TData* param_0) const {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/stb-data-parse/func_80289A80.s"
 }
 #pragma pop
+#endif
+
+}  // namespace data
+}  // namespace stb
+}  // namespace JStudio

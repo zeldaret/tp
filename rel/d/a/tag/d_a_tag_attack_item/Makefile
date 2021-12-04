@@ -41,7 +41,7 @@ $(M123_TARGET): $(M123_O_FILES) $(M123_LIBS)
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_attack_item/%.o: rel/d/a/tag/d_a_tag_attack_item/%.cpp
 	@echo [123] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M123_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M123_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

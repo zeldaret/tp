@@ -41,7 +41,7 @@ $(M744_TARGET): $(M744_O_FILES) $(M744_LIBS)
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_spinner/%.o: rel/d/a/tag/d_a_tag_spinner/%.cpp
 	@echo [744] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M744_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M744_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

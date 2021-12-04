@@ -43,7 +43,7 @@ $(M329_TARGET): $(M329_O_FILES) $(M329_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kolinb/%.o: rel/d/a/npc/d_a_npc_kolinb/%.cpp
 	@echo [329] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M329_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M329_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

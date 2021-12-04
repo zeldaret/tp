@@ -43,7 +43,7 @@ $(M566_TARGET): $(M566_O_FILES) $(M566_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_magLiftRot/%.o: rel/d/a/obj/d_a_obj_magLiftRot/%.cpp
 	@echo [566] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M566_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M566_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

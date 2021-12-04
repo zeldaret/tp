@@ -24,6 +24,6 @@ $(BUILD_DIR)/libai.a: $(LIBAI_A_O_FILES)
 $(BUILD_DIR)/libs/dolphin/ai/%.o: libs/dolphin/ai/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(LIBAI_A_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBAI_A_CFLAGS) -c -o $@ $(basename $@).cpp
 

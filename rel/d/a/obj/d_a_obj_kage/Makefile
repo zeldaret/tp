@@ -41,7 +41,7 @@ $(M490_TARGET): $(M490_O_FILES) $(M490_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kage/%.o: rel/d/a/obj/d_a_obj_kage/%.cpp
 	@echo [490] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M490_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M490_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

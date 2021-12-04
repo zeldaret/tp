@@ -26,6 +26,6 @@ $(BUILD_DIR)/libpad.a: $(LIBPAD_A_O_FILES)
 $(BUILD_DIR)/libs/dolphin/pad/%.o: libs/dolphin/pad/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(LIBPAD_A_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBPAD_A_CFLAGS) -c -o $@ $(basename $@).cpp
 

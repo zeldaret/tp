@@ -43,7 +43,7 @@ $(M727_TARGET): $(M727_O_FILES) $(M727_LIBS)
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv6CstaSw/%.o: rel/d/a/tag/d_a_tag_lv6CstaSw/%.cpp
 	@echo [727] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M727_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M727_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

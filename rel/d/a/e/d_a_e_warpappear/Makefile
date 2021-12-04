@@ -41,7 +41,7 @@ $(M243_TARGET): $(M243_O_FILES) $(M243_LIBS)
 $(BUILD_DIR)/rel/d/a/e/d_a_e_warpappear/%.o: rel/d/a/e/d_a_e_warpappear/%.cpp
 	@echo [243] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M243_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M243_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

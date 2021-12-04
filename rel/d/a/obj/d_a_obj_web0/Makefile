@@ -43,7 +43,7 @@ $(M684_TARGET): $(M684_O_FILES) $(M684_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_web0/%.o: rel/d/a/obj/d_a_obj_web0/%.cpp
 	@echo [684] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M684_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M684_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

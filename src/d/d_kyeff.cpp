@@ -73,7 +73,7 @@ SECTION_DEAD static char const* const pad_80394F3D = "\0\0";
 // matching but need gameinfo setup
 #ifdef NONMATCHING
 bool dKyeff_c::execute() {
-    char* stageName = dComIfGp_getStartStageName();
+    const char* stageName = dComIfGp_getStartStageName();
     int strcmp_result = strcmp(stageName, "Name");  // strcmp(stageName,"Name");
     if (strcmp_result != 0) {
         dKyw_wether_move();

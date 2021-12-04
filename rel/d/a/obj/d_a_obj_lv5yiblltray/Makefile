@@ -41,7 +41,7 @@ $(M543_TARGET): $(M543_O_FILES) $(M543_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5yiblltray/%.o: rel/d/a/obj/d_a_obj_lv5yiblltray/%.cpp
 	@echo [543] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M543_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M543_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

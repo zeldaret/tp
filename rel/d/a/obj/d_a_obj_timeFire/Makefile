@@ -43,7 +43,7 @@ $(M659_TARGET): $(M659_O_FILES) $(M659_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_timeFire/%.o: rel/d/a/obj/d_a_obj_timeFire/%.cpp
 	@echo [659] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M659_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M659_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

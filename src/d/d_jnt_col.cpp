@@ -88,7 +88,6 @@ extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" extern void* __vt__8cM3dGCyl[3];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 BaseZ__4cXyz[12];
-extern "C" extern u32 __float_max;
 
 //
 // Declarations:

@@ -26,6 +26,6 @@ $(BUILD_DIR)/libJStudio_JAudio2.a: $(LIBJSTUDIO_JAUDIO2_A_O_FILES)
 $(BUILD_DIR)/libs/JSystem/JStudio/JStudio_JAudio2/%.o: libs/JSystem/JStudio/JStudio_JAudio2/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(LIBJSTUDIO_JAUDIO2_A_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBJSTUDIO_JAUDIO2_A_CFLAGS) -c -o $@ $(basename $@).cpp
 

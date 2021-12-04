@@ -43,7 +43,7 @@ $(M85_TARGET): $(M85_O_FILES) $(M85_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kolin/%.o: rel/d/a/npc/d_a_npc_kolin/%.cpp
 	@echo [ 85] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M85_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M85_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

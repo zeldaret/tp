@@ -98,6 +98,6 @@ $(BUILD_DIR)/libSComponent.a: $(LIBSCOMPONENT_A_O_FILES)
 $(BUILD_DIR)/libs/SSystem/SComponent/%.o: libs/SSystem/SComponent/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(LIBSCOMPONENT_A_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBSCOMPONENT_A_CFLAGS) -c -o $@ $(basename $@).cpp
 

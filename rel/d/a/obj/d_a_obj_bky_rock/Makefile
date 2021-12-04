@@ -41,7 +41,7 @@ $(M409_TARGET): $(M409_O_FILES) $(M409_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bky_rock/%.o: rel/d/a/obj/d_a_obj_bky_rock/%.cpp
 	@echo [409] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M409_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M409_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

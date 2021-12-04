@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/JStudio/JStudio_JParticle/control.h"
+#include "JSystem/JStudio/JStudio/stb.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -13,13 +14,6 @@
 
 namespace JStudio {
 struct TObject {};
-
-namespace stb {
-struct data {
-    struct TParse_TBlock_object {};
-};
-
-};  // namespace stb
 
 struct TCreateObject {
     /* 80285488 */ ~TCreateObject();

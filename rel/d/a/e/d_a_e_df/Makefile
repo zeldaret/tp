@@ -43,7 +43,7 @@ $(M185_TARGET): $(M185_O_FILES) $(M185_LIBS)
 $(BUILD_DIR)/rel/d/a/e/d_a_e_df/%.o: rel/d/a/e/d_a_e_df/%.cpp
 	@echo [185] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M185_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M185_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

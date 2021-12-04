@@ -104,7 +104,8 @@ asm void JGadget::TNodeLinkList::Insert(JGadget::TNodeLinkList::iterator param_0
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JGadget::TNodeLinkList::Erase(JGadget::TLinkListNode* param_0) {
+asm JGadget::TNodeLinkList::iterator
+JGadget::TNodeLinkList::Erase(JGadget::TLinkListNode* param_0) {
     nofralloc
 #include "asm/JSystem/JGadget/linklist/Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode.s"
 }

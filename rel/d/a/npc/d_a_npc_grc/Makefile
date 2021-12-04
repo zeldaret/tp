@@ -43,7 +43,7 @@ $(M306_TARGET): $(M306_O_FILES) $(M306_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_grc/%.o: rel/d/a/npc/d_a_npc_grc/%.cpp
 	@echo [306] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M306_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M306_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

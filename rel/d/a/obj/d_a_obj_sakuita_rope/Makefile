@@ -41,7 +41,7 @@ $(M612_TARGET): $(M612_O_FILES) $(M612_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sakuita_rope/%.o: rel/d/a/obj/d_a_obj_sakuita_rope/%.cpp
 	@echo [612] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M612_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M612_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

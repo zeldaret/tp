@@ -41,7 +41,7 @@ $(M363_TARGET): $(M363_O_FILES) $(M363_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shop_maro/%.o: rel/d/a/npc/d_a_npc_shop_maro/%.cpp
 	@echo [363] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M363_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M363_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

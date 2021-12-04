@@ -41,7 +41,7 @@ $(M362_TARGET): $(M362_O_FILES) $(M362_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shop0/%.o: rel/d/a/npc/d_a_npc_shop0/%.cpp
 	@echo [362] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M362_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M362_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

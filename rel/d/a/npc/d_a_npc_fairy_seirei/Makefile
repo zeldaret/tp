@@ -43,7 +43,7 @@ $(M80_TARGET): $(M80_O_FILES) $(M80_LIBS)
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fairy_seirei/%.o: rel/d/a/npc/d_a_npc_fairy_seirei/%.cpp
 	@echo [ 80] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M80_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M80_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

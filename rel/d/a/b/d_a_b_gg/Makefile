@@ -43,7 +43,7 @@ $(M143_TARGET): $(M143_O_FILES) $(M143_LIBS)
 $(BUILD_DIR)/rel/d/a/b/d_a_b_gg/%.o: rel/d/a/b/d_a_b_gg/%.cpp
 	@echo [143] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M143_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M143_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

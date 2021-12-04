@@ -50,6 +50,6 @@ $(BUILD_DIR)/libJ3DGraphBase.a: $(LIBJ3DGRAPHBASE_A_O_FILES)
 $(BUILD_DIR)/libs/JSystem/J3DGraphBase/%.o: libs/JSystem/J3DGraphBase/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(LIBJ3DGRAPHBASE_A_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBJ3DGRAPHBASE_A_CFLAGS) -c -o $@ $(basename $@).cpp
 

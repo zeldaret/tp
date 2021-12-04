@@ -546,8 +546,8 @@ static asm int dStage_RoomKeepDoorInit(dStage_dt_c* param_0, void* param_1, int 
 #pragma pop
 #endif
 
-void dStage_startStage_c::set(const char* i_Stage, s8 i_RoomNo, s16 i_Point, s8 i_Layer) {
-    strcpy(mStage, i_Stage);
+void dStage_startStage_c::set(const char* i_Name, s8 i_RoomNo, s16 i_Point, s8 i_Layer) {
+    strcpy(mName, i_Name);
     mRoomNo = i_RoomNo;
     mPoint = i_Point;
     mLayer = i_Layer;

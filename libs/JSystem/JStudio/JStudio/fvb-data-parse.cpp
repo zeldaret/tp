@@ -11,30 +11,6 @@
 // Types:
 //
 
-namespace JStudio {
-namespace fvb {
-struct data {
-    struct TParse_TParagraph {
-        struct TData {};
-
-        /* 802850AC */ void getData(JStudio::fvb::data::TParse_TParagraph::TData*) const;
-    };
-};
-
-};  // namespace fvb
-
-};  // namespace JStudio
-
-namespace JGadget {
-struct binary {
-    struct TEBit {};
-
-    /* 802DC864 */ void parseVariableUInt_16_32_following(void const*, u32*, u32*,
-                                                          JGadget::binary::TEBit*);
-};
-
-};  // namespace JGadget
-
 //
 // Forward References:
 //

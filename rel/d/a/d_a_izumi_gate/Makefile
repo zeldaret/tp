@@ -41,7 +41,7 @@ $(M264_TARGET): $(M264_O_FILES) $(M264_LIBS)
 $(BUILD_DIR)/rel/d/a/d_a_izumi_gate/%.o: rel/d/a/d_a_izumi_gate/%.cpp
 	@echo [264] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M264_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M264_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

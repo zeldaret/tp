@@ -43,7 +43,7 @@ $(M658_TARGET): $(M658_O_FILES) $(M658_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_thdoor/%.o: rel/d/a/obj/d_a_obj_thdoor/%.cpp
 	@echo [658] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M658_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M658_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

@@ -26,6 +26,6 @@ $(BUILD_DIR)/libJFramework.a: $(LIBJFRAMEWORK_A_O_FILES)
 $(BUILD_DIR)/libs/JSystem/JFramework/%.o: libs/JSystem/JFramework/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(LIBJFRAMEWORK_A_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBJFRAMEWORK_A_CFLAGS) -c -o $@ $(basename $@).cpp
 

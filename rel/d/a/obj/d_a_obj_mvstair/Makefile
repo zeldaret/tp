@@ -43,7 +43,7 @@ $(M578_TARGET): $(M578_O_FILES) $(M578_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mvstair/%.o: rel/d/a/obj/d_a_obj_mvstair/%.cpp
 	@echo [578] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M578_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M578_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

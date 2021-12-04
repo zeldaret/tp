@@ -302,7 +302,6 @@ extern "C" u8 mBackColor__13mDoGph_gInf_c[4];
 extern "C" extern u8 g_clearColor[4];
 extern "C" extern u32 g_blackColor;
 extern "C" extern u32 g_whiteColor;
-extern "C" extern u32 __float_max;
 extern "C" f32 mSystemFar__14mDoLib_clipper;
 extern "C" f32 mFovyRate__14mDoLib_clipper;
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];

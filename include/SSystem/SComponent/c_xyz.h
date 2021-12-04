@@ -4,6 +4,7 @@
 #include "dolphin/mtx/vec.h"
 #include "msl_c/math.h"
 #include "global.h"
+#include "msl_c/math.h"
 
 struct cXyz : Vec {
     static const cXyz Zero;
@@ -51,11 +52,13 @@ struct cXyz : Vec {
         y -= f;
         z -= f;
     }
+    void operator-=(const Vec& other) { PSVECSubtract(this, &other, this); }
     void operator+=(const Vec& vec) {
         x += vec.x;
         y += vec.y;
         z += vec.z;
     }
+    void operator*=(f32 scale) { PSVECScale(this, this, scale); }
     /* 80266C6C */ cXyz getCrossProduct(Vec const&) const;
     /* 80266CBC */ cXyz outprod(Vec const&) const;
     /* 80266CE4 */ cXyz norm() const;
@@ -117,10 +120,10 @@ struct cXyz : Vec {
         cXyz tmp2(other.x, 0, other.z);
         return tmp.abs2(tmp2);
     }
-    f32 absXZ(const Vec& other) const {
-        f32 abs = abs2XZ(other);
-        return sqrtf(abs);
-    }
+    f32 abs() const { return sqrtf(this->abs2()); }
+    f32 abs(const Vec& other) const { return sqrtf(this->abs2(other)); }
+    f32 absXZ() const { return sqrtf(this->abs2XZ()); }
+    f32 absXZ(const Vec& other) const { return sqrtf(this->abs2XZ(other)); }
     f32 getMagXZ() const { return cXyz(this->x, 0, this->z).getSquareMag(); }
 };
 

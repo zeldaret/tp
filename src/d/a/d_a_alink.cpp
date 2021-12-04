@@ -8,6 +8,7 @@
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/JMath/JMath.h"
+#include "JSystem/JStudio/JStudio/stb.h"
 #include "SSystem/SComponent/c_math.h"
 #include "Z2AudioLib/Z2AudioMgr.h"
 #include "d/a/d_a_horse_static.h"
@@ -334,20 +335,6 @@ struct dCamera_c {
     /* 80164B64 */ void GetCameraTypeFromCameraName(char const*);
     /* 80181500 */ void GetForceLockOnActor();
 };
-
-namespace JStudio {
-namespace stb {
-struct data {
-    struct TParse_TParagraph_data {
-        struct TData {};
-
-        /* 80289A80 */ void getData(JStudio::stb::data::TParse_TParagraph_data::TData*) const;
-    };
-};
-
-};  // namespace stb
-
-};  // namespace JStudio
 
 struct JASKernel {
     /* 80290B08 */ void getAramHeap();
@@ -3339,7 +3326,6 @@ extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 g_whiteColor;
 extern "C" u16 m_branchId__7dDemo_c[1 + 3 /* padding */];
-extern "C" extern u32 __float_max;
 extern "C" extern u8 data_80450B38[4];
 extern "C" f32 mGroundY__11fopAcM_gc_c;
 extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];

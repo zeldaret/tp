@@ -5,6 +5,7 @@
 
 #include "d/kankyo/d_kankyo.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/kankyo/d_kankyo_data.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -382,6 +383,12 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 // Declarations:
 //
+
+// TODO: Temporarily putting here. There is said to be some issues in `d_com_inf_game.h` which need
+// to be sorted out before we can correctly use this function from there.
+inline BOOL dComIfGs_isEventBit(u16 id) {
+    return g_dComIfG_gameInfo.info.getSavedata().getEvent().isEventBit(id);
+}
 
 /* 8019C388-8019C3A4 196CC8 001C+00 2/2 0/0 0/0 .text dKy_WolfPowerup_AmbCol__FP11_GXColorS10 */
 #pragma push
@@ -3177,52 +3184,166 @@ asm void dKy_darkworld_check() {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80394ED5 = "F_SP108";
-#pragma pop
-
+/**
+ * @brief Returns the following info about a room: (1) if the room must not be in twilight and (2)
+ * which darkLv the room belongs to (Faron, Eldin, etc.).
+ *
+ * @param stageName stage name
+ * @param roomNo room number
+ * @param out_darkLv byte pointer to write darkLv to, or NULL
+ * @param tblIndex index in darkworld table for the stageName
+ * @return int Returns -1 if the given room must not be loaded in twilight, else returns 0 or 1. A
+ * return of 1 means darkLv should be read from out_darkLv and 0 means it should be read from the
+ * darkworld table.
+ */
 /* 801AC5BC-801AC70C 1A6EFC 0150+00 3/3 0/0 0/0 .text            dKy_F_SP121Check__FPCciPUci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKy_F_SP121Check(char const* param_0, int param_1, u8* param_2, int param_3) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_F_SP121Check__FPCciPUci.s"
-}
-#pragma pop
+static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, int tblIndex) {
+    dKyd_darkworldTblEntry* darkworldTbl = dKyd_darkworld_tbl_getp();
+    int result = 0;
 
+    if (out_darkLv != NULL) {
+        *out_darkLv = UNCLEARABLE;
+    }
+
+    // Stage is Hyrule Field
+    if (!strcmp(stageName, "F_SP121")) {
+        // Room is one of:
+        // - Eldin Field (0)
+        // - Kakariko Gorge (3)
+        // - Eldin Field / Kakariko Gorge Path North (5) and South (4)
+        // - Faron Field / Kakariko Gorge Path North (2)
+        // - Outside Hidden Village (7)
+        if (roomNo == 0 || (2 <= roomNo && roomNo <= 5) || roomNo == 7) {
+            if (out_darkLv != NULL) {
+                *out_darkLv = ELDIN;
+            }
+            result = 1;
+        }
+
+        // Room is one of:
+        // - Lanayru Field (10)
+        // - Great Bridge of Hylia (13)
+        // - Lanayru Field / Great Bridge of Hylia Path North (11) and South (12)
+        // - Faron Field / Great Bridge of Hylia Path North (14)
+        // - Lanayru Field / Outside Hidden Village Path (9)
+        else if (roomNo >= 9 && roomNo <= 14) {
+            if (out_darkLv != NULL) {
+                *out_darkLv = LANAYRU;
+            }
+            result = 1;
+        }
+
+        // Room is one of:
+        // - Faron Field (6)
+        // - Faron Field / Kakariko Gorge Path South (1)
+        // - Faron Field / Great Bridge of Hylia Path South (15)
+        else {
+            result = -1;
+        }
+    }
+
+    // Faron Spring; No twilight during Rusl cutscene at very beginning of game.
+    else if (!strcmp(stageName, "F_SP108") && roomNo == 1 && dComIfGp_getStartStageLayer() == 13) {
+        result = -1;
+    }
+
+    // Prevent twilight if stage depends on Faron Twilight cleared status (Faron Woods, Coro's
+    // Lantern Shop, Faron Woods Cave) but haven't finished Ordon Day 2.
+    if (darkworldTbl[tblIndex].darkLv == FARON && !dComIfGs_isEventBit(0x4510)) {
+        result = -1;
+    }
+
+    return result;
+}
+
+/**
+ * @brief Returns TRUE if (1) the room is one which can be loaded in twilight, (2) there is nothing
+ * currently preventing it from being loaded in twilight, and (3) the player has not cleared the
+ * relevant dark level (Faron Twilight, etc.). Otherwise returns FALSE.
+ *
+ * @param stageName stage name
+ * @param roomNo room number
+ * @return BOOL Returns TRUE if the room can be loaded as twilight and the player has not already
+ * cleared it, else FALSE.
+ */
 /* 801AC70C-801AC7E0 1A704C 00D4+00 0/0 2/2 0/0 .text            dKy_darkworld_stage_check__FPCci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dKy_darkworld_stage_check(char const* param_0, int param_1) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_darkworld_stage_check__FPCci.s"
-}
-#pragma pop
+BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
+    dKyd_darkworldTblEntry* darkworldTbl = dKyd_darkworld_tbl_getp();
+    BOOL result = FALSE;
+    u8 darkLv[1];
 
-/* 801AC7E0-801AC870 1A7120 0090+00 0/0 1/1 0/0 .text            dKy_darkworld_spot_check__FPCci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_darkworld_spot_check(char const* param_0, int param_1) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_darkworld_spot_check__FPCci.s"
+    for (int i = 0; i < 34; i++) {
+        if (!strcmp(stageName, darkworldTbl[i].stageName)) {
+            if (darkworldTbl[i].darkLv != ALWAYS_DARK) {
+                int fsp121CheckResult = dKy_F_SP121Check(stageName, roomNo, darkLv, i);
+                if (fsp121CheckResult >= 0) {
+                    if (fsp121CheckResult == 0) {
+                        *darkLv = darkworldTbl[i].darkLv;
+                    }
+                    if (!dComIfGs_isDarkClearLV(*darkLv)) {
+                        result = TRUE;
+                    }
+                    break;
+                }
+            } else {
+                // ALWAYS_DARK is used to force twilight (likely for testing). This will
+                // never normally run since it is not present in l_darkworld_tbl.
+                result = TRUE;
+                break;
+            }
+        }
+    }
+
+    return result;
 }
-#pragma pop
+
+/**
+ * @brief Returns TRUE if a given room would be loaded in twilight. This function always behaves as
+ * if the player has not cleared any twilights.
+ *
+ * For example, Eldin Field will always return TRUE. Faron Woods on the other hand might return TRUE
+ * or FALSE depending on whether or not the player has completed Ordon Day 2.
+ *
+ * @param stageName stage name
+ * @param roomNo room number
+ * @return BOOL Returns TRUE if a given room would be loaded in twilight. This function always
+ * behaves as if the player has not cleared any twilights.
+ */
+/* 801AC7E0-801AC870 1A7120 0090+00 0/0 1/1 0/0 .text            dKy_darkworld_spot_check__FPCci */
+BOOL dKy_darkworld_spot_check(char const* stageName, int roomNo) {
+    dKyd_darkworldTblEntry* darkworldTblPtr = dKyd_darkworld_tbl_getp();
+    BOOL result = FALSE;
+
+    for (int i = 0; i < 34; i++) {
+        if (!strcmp(stageName, darkworldTblPtr->stageName) &&
+            dKy_F_SP121Check(stageName, roomNo, NULL, i) >= 0) {
+            result = TRUE;
+            break;
+        }
+        darkworldTblPtr++;
+    }
+
+    return result;
+}
 
 /* 801AC870-801AC918 1A71B0 00A8+00 0/0 1/1 0/0 .text            dKy_darkworld_Area_set__FPCci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_darkworld_Area_set(char const* param_0, int param_1) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_darkworld_Area_set__FPCci.s"
+void dKy_darkworld_Area_set(char const* stageName, int roomNo) {
+    dKyd_darkworldTblEntry* darkworldTblPtr = dKyd_darkworld_tbl_getp();
+    u8 darkLv[1];
+
+    for (int i = 0; i < 34; i++) {
+        if (!strcmp(stageName, darkworldTblPtr[i].stageName)) {
+            int fsp121CheckResult = dKy_F_SP121Check(stageName, roomNo, darkLv, i);
+            if (fsp121CheckResult >= 0) {
+                if (fsp121CheckResult == 0) {
+                    *darkLv = darkworldTblPtr[i].darkLv;
+                }
+                dComIfGp_setStartStageDarkArea(*darkLv);
+                break;
+            }
+        }
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80453E00-80453E04 002400 0004+00 1/1 0/0 0/0 .sdata2          @10483 */

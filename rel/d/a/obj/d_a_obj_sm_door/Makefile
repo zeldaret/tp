@@ -41,7 +41,7 @@ $(M620_TARGET): $(M620_O_FILES) $(M620_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sm_door/%.o: rel/d/a/obj/d_a_obj_sm_door/%.cpp
 	@echo [620] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M620_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M620_CFLAGS) -c -o $@ $(basename $@).cpp
 
 

@@ -43,7 +43,7 @@ $(M91_TARGET): $(M91_O_FILES) $(M91_LIBS)
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bosswarp/%.o: rel/d/a/obj/d_a_obj_bosswarp/%.cpp
 	@echo [ 91] building $@
 	@mkdir -p $(@D)
-	@iconv -f UTF-8 -t CP932 < $< > $@.iconv.cpp
-	@$(CC) $(CFLAGS) $(M91_CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M91_CFLAGS) -c -o $@ $(basename $@).cpp
 
 
