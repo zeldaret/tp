@@ -190,7 +190,9 @@ public:
     void setPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[i] |= flag; }
     void clearPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[i] &= ~flag; }
     bool checkPlayerStatus(int param_0, int i, u32 flag) { return flag & mPlayerStatus[i]; }
-    BOOL checkCameraAttentionStatus(int i, u32 flag) { return mCameraInfo[i].mCameraAttentionStatus & flag; }
+    BOOL checkCameraAttentionStatus(int i, u32 flag) {
+        return mCameraInfo[i].mCameraAttentionStatus & flag;
+    }
     s8 getPlayerCameraID(int i) { return mPlayerCameraID[i]; }
     dPa_control_c* getParticle() { return mParticle; }
     void set3DStatus(u8 status, u8 direction, u8 flag) {
@@ -1101,8 +1103,14 @@ inline u8 dComIfGs_getLastSceneMode() {
     return g_dComIfG_gameInfo.info.getRestart().getLastMode();
 }
 
-inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* param_2, const dKy_tevstr_c* param_3, const csXyz* param_4, const cXyz* param_5, u8 param_6, dPa_levelEcallBack* param_7, s8 param_8, const GXColor* param_9, const GXColor* param_10, const cXyz* param_11) {
-    return g_dComIfG_gameInfo.play.getParticle()->setNormal(param_0, param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, 1.0f);
+inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* param_2,
+                                 const dKy_tevstr_c* param_3, const csXyz* param_4,
+                                 const cXyz* param_5, u8 param_6, dPa_levelEcallBack* param_7,
+                                 s8 param_8, const GXColor* param_9, const GXColor* param_10,
+                                 const cXyz* param_11) {
+    return g_dComIfG_gameInfo.play.getParticle()->setNormal(
+        param_0, param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9,
+        param_10, param_11, 1.0f);
 }
 
 inline void dComIfGp_particle_levelEmitterOnEventMove(u32 param_0) {
@@ -1113,8 +1121,14 @@ inline dPa_control_c::level_c::emitter_c* dComIfGp_particle_getEmitter(u32 param
     return g_dComIfG_gameInfo.play.getParticle()->getEmitter(param_0);
 }
 
-inline u32 dComIfGp_particle_setPolyColor(u32 param_0, u16 param_1, cBgS_PolyInfo& param_2, const cXyz* param_3, const dKy_tevstr_c* param_4, const csXyz* param_5, const cXyz* param_6, int param_7, dPa_levelEcallBack* param_8, s8 param_9, const cXyz* param_10) {
-    return g_dComIfG_gameInfo.play.getParticle()->setPoly(param_0, param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10);
+inline u32 dComIfGp_particle_setPolyColor(u32 param_0, u16 param_1, cBgS_PolyInfo& param_2,
+                                          const cXyz* param_3, const dKy_tevstr_c* param_4,
+                                          const csXyz* param_5, const cXyz* param_6, int param_7,
+                                          dPa_levelEcallBack* param_8, s8 param_9,
+                                          const cXyz* param_10) {
+    return g_dComIfG_gameInfo.play.getParticle()->setPoly(param_0, param_1, param_2, param_3,
+                                                          param_4, param_5, param_6, param_7,
+                                                          param_8, param_9, param_10);
 }
 
 inline dRes_info_c* dComIfG_getObjectResInfo(const char* arc_name) {

@@ -200,20 +200,10 @@ SECTION_DEAD static char const* const stringBase_8037A071 = "(!BAD DATA!)";
 
 /* 803A8270-803A82A8 -00001 0038+00 1/1 0/0 0/0 .data            soecial_names$3966 */
 SECTION_DATA static char* soecial_names[14] = {
-    "NORMAL_COMEBACK",
-    "DEFAULT_START",
-    "SHUTTER_START",
-    "SHUTTER_START_STOP",
-    "BS_SHUTTER_START",
-    "BS_SHUTTER_START_B",
-    "KNOB_START",
-    "KNOB_START_B",
-    "FMASTER_START",
-    "FALL_START",
-    "CRAWLOUT_START",
-    "BOSSWARP_START",
-    "PORTALWARP_START",
-    "PORTALWARP_START_B",
+    "NORMAL_COMEBACK",  "DEFAULT_START",      "SHUTTER_START",  "SHUTTER_START_STOP",
+    "BS_SHUTTER_START", "BS_SHUTTER_START_B", "KNOB_START",     "KNOB_START_B",
+    "FMASTER_START",    "FALL_START",         "CRAWLOUT_START", "BOSSWARP_START",
+    "PORTALWARP_START", "PORTALWARP_START_B",
 };
 
 /* 80046480-800465E8 040DC0 0168+00 1/1 0/0 0/0 .text getEventName__18dEvent_exception_cFv */
@@ -232,15 +222,15 @@ void* dEvent_manager_c::getSubstance(dEvDtData_c* p_data, int type) {
     if (p_data->getIndex() < 0 || p_data->getNumber() <= 0) {
         return NULL;
     } else {
-        switch(p_data->getType()) {
-            case dEvDtData_c::TYPE_FLOAT:
-            case dEvDtData_c::TYPE_VEC:
-            case 2:
-                return getBase().getFDataP(p_data->getIndex());
-            case dEvDtData_c::TYPE_INT:
-                return getBase().getIDataP(p_data->getIndex());
-            case dEvDtData_c::TYPE_STRING:
-                return getBase().getSDataP(p_data->getIndex());
+        switch (p_data->getType()) {
+        case dEvDtData_c::TYPE_FLOAT:
+        case dEvDtData_c::TYPE_VEC:
+        case 2:
+            return getBase().getFDataP(p_data->getIndex());
+        case dEvDtData_c::TYPE_INT:
+            return getBase().getIDataP(p_data->getIndex());
+        case dEvDtData_c::TYPE_STRING:
+            return getBase().getSDataP(p_data->getIndex());
         }
         return NULL;
     }
@@ -328,7 +318,7 @@ void dEvent_manager_c::roomInit(int roomNo) {
             tmp = i;
             continue;
         }
-        
+
         if (mEventList[i].roomNo() == roomNo) {
             tmp = i;
             break;
@@ -721,11 +711,9 @@ inline dEvt_control_c& dComIfGp_getEvent() {
 dEvDtData_c* dEvent_manager_c::getMyDataP(int index, char const* name, int type) {
     if (dComIfGp_getEvent().getMode() == 0) {
         return NULL;
-    } 
-    else if (index == -1) {
+    } else if (index == -1) {
         return NULL;
-    } 
-    else if (field_0x1aa == -1) {
+    } else if (field_0x1aa == -1) {
         return NULL;
     } else {
         dEvDtCut_c* cut;
@@ -743,7 +731,7 @@ dEvDtData_c* dEvent_manager_c::getMyDataP(int index, char const* name, int type)
             }
             top = data->getNext();
         }
-        
+
         return NULL;
     }
 }

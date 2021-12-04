@@ -128,9 +128,7 @@ public:
     void* getPointer(JSURandomInputStream* stream, u32 size, JKRArchive* archive);
     void animationTransform();
     void updateTransform(const J2DAnmTransform* transform);
-    void setUserInfo(u64 info) {
-        mUserInfoTag = info;
-    }
+    void setUserInfo(u64 info) { mUserInfoTag = info; }
 
     static f32 static_mBounds[4];
 

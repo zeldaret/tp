@@ -282,13 +282,13 @@ static int dEvDt_Next_Stage(int index, int wipe_type) {
     s16 point;
     s8 roomNo;
     s8 layer;
-    u32 mode = 0;  // uvar8 - retail
+    u32 mode = 0;         // uvar8 - retail
     s8 wipe = wipe_type;  // ivar10
     int noVisit = true;
-    int wipe_time = 0;  // bvar9
+    int wipe_time = 0;                  // bvar9
     f32 speed = FLOAT_LABEL(lit_4264);  // dvar12
-    bool setHour = false;  // bvar2
-    f32 hour = speed;  // set to 0.0f dvar13
+    bool setHour = false;               // bvar2
+    f32 hour = speed;                   // set to 0.0f dvar13
 
     int* p_id = dComIfGp_evmng_getMyIntegerP(index, "ID");
     if (p_id != NULL) {
@@ -371,7 +371,8 @@ static int dEvDt_Next_Stage(int index, int wipe_type) {
         if (setHour) {
             dKy_set_nexttime(15.0f * hour);
         }
-        dComIfGp_setNextStage(stage, point, roomNo, layer, speed, mode, 1, wipe, 0, noVisit, wipe_time);
+        dComIfGp_setNextStage(stage, point, roomNo, layer, speed, mode, 1, wipe, 0, noVisit,
+                              wipe_time);
     }
     return 1;
 }
@@ -760,7 +761,7 @@ int dEvDtBase_c::init(char* p_data, int roomNo) {
         return 0;
     } else {
         setHeaderP((event_binary_data_header*)p_data);
-        
+
         if (getEventNum() > 0) {
             setEventP((dEvDtEvent_c*)(p_data + getEventTop()));
         }

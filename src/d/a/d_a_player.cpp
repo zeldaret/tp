@@ -4,13 +4,13 @@
 //
 
 #include "d/a/d_a_player.h"
+#include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_iter.h"
 #include "f_op/f_op_actor_mng.h"
-#include "SSystem/SComponent/c_math.h"
 #include "rel/d/a/d_a_boomerang/d_a_boomerang.h"
 
 //
@@ -286,7 +286,8 @@ void daPy_boomerangMove_c::bgCheckAfterOffset(cXyz const* param_0) {
     if (boomerang != NULL) {
         field_0x4 = param_0->y - boomerang->mCurrent.mPosition.y;
         field_0x8 = boomerang->mCurrent.mPosition.absXZ(*param_0);
-        field_0x2 = cM_atan2s(param_0->x - boomerang->mCurrent.mPosition.x, param_0->z - boomerang->mCurrent.mPosition.z);
+        field_0x2 = cM_atan2s(param_0->x - boomerang->mCurrent.mPosition.x,
+                              param_0->z - boomerang->mCurrent.mPosition.z);
     }
 }
 #else
@@ -957,7 +958,8 @@ bool daPy_py_c::checkBoomerangChargeTime() {
 
 /* 8015F8D0-8015F8E4 15A210 0014+00 3/3 1/1 5/5 .text getThrowBoomerangActor__9daPy_py_cFv */
 daBoomerang_c* daPy_py_c::getThrowBoomerangActor() {
-    return static_cast<daBoomerang_c*>(daAlink_getAlinkActorClass()->getThrowBoomerangAcKeep()->getActor());
+    return static_cast<daBoomerang_c*>(
+        daAlink_getAlinkActorClass()->getThrowBoomerangAcKeep()->getActor());
 }
 
 /* 8015F8E4-8015F914 15A224 0030+00 0/0 0/0 2/2 .text

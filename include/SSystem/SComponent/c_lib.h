@@ -47,7 +47,7 @@ inline u8 cLib_checkBit(u8& pVar, u8 pBit) {
     return pVar & pBit;
 }
 
-template<typename T>
+template <typename T>
 inline T cLib_minMaxLimit(T param_0, T min, T max) {
     if (param_0 < min) {
         return max;

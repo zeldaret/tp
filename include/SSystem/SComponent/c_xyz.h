@@ -2,7 +2,6 @@
 #define C_XYZ_H
 
 #include "dolphin/mtx/vec.h"
-#include "msl_c/math.h"
 #include "global.h"
 #include "msl_c/math.h"
 

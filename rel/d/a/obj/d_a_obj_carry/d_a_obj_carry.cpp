@@ -2108,7 +2108,7 @@ static asm void bound(cXyz* param_0, cBgS_PolyInfo const& param_1, f32 param_2) 
 #pragma optimization_level 0
 #pragma optimizewithasm off
 extern "C" asm void __dt__8cM3dGPlaFv() {
-// asm cM3dGPla::~cM3dGPla() {
+    // asm cM3dGPla::~cM3dGPla() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/__dt__8cM3dGPlaFv.s"
 }
@@ -2392,7 +2392,7 @@ asm daObjCarry_c::daObjCarry_c() {
 #pragma optimization_level 0
 #pragma optimizewithasm off
 extern "C" asm void __dt__8cM3dGSphFv() {
-// asm cM3dGSph::~cM3dGSph() {
+    // asm cM3dGSph::~cM3dGSph() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/__dt__8cM3dGSphFv.s"
 }
@@ -2403,7 +2403,7 @@ extern "C" asm void __dt__8cM3dGSphFv() {
 #pragma optimization_level 0
 #pragma optimizewithasm off
 extern "C" asm void __dt__8cM3dGCylFv() {
-// asm cM3dGCyl::~cM3dGCyl() {
+    // asm cM3dGCyl::~cM3dGCyl() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/__dt__8cM3dGCylFv.s"
 }
@@ -2414,7 +2414,7 @@ extern "C" asm void __dt__8cM3dGCylFv() {
 #pragma optimization_level 0
 #pragma optimizewithasm off
 extern "C" asm void __dt__8cM3dGAabFv() {
-// asm cM3dGAab::~cM3dGAab() {
+    // asm cM3dGAab::~cM3dGAab() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/__dt__8cM3dGAabFv.s"
 }
@@ -2425,7 +2425,7 @@ extern "C" asm void __dt__8cM3dGAabFv() {
 #pragma optimization_level 0
 #pragma optimizewithasm off
 extern "C" asm void __dt__10dCcD_GSttsFv() {
-// asm dCcD_GStts::~dCcD_GStts() {
+    // asm dCcD_GStts::~dCcD_GStts() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/__dt__10dCcD_GSttsFv.s"
 }
@@ -2436,7 +2436,7 @@ extern "C" asm void __dt__10dCcD_GSttsFv() {
 #pragma optimization_level 0
 #pragma optimizewithasm off
 extern "C" asm void __dt__12dBgS_AcchCirFv() {
-// asm dBgS_AcchCir::~dBgS_AcchCir() {
+    // asm dBgS_AcchCir::~dBgS_AcchCir() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/__dt__12dBgS_AcchCirFv.s"
 }
@@ -2447,7 +2447,7 @@ extern "C" asm void __dt__12dBgS_AcchCirFv() {
 #pragma optimization_level 0
 #pragma optimizewithasm off
 extern "C" asm void __dt__12dBgS_ObjAcchFv() {
-// asm dBgS_ObjAcch::~dBgS_ObjAcch() {
+    // asm dBgS_ObjAcch::~dBgS_ObjAcch() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/__dt__12dBgS_ObjAcchFv.s"
 }
@@ -4306,7 +4306,7 @@ static asm void daObjCarry_Create(fopAc_ac_c* param_0) {
 #pragma optimization_level 0
 #pragma optimizewithasm off
 extern "C" asm void __dt__10cCcD_GSttsFv() {
-// asm cCcD_GStts::~cCcD_GStts() {
+    // asm cCcD_GStts::~cCcD_GStts() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/__dt__10cCcD_GSttsFv.s"
 }

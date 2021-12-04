@@ -4,23 +4,23 @@
 //
 
 #include "d/a/d_a_alink.h"
-#include "d/d_bomb.h"
-#include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
+#include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 #include "JSystem/JMath/JMath.h"
 #include "JSystem/JStudio/JStudio/stb.h"
 #include "SSystem/SComponent/c_math.h"
 #include "Z2AudioLib/Z2AudioMgr.h"
 #include "d/a/d_a_horse_static.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_bomb.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
-#include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_audio.h"
+#include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_mtx.h"
-#include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
 #include "rel/d/a/d_a_crod/d_a_crod.h"
+#include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
 
 //
 // Types:
@@ -3505,8 +3505,9 @@ asm void daAlink_matAnm_c::calc(J3DMaterial* param_0) const {
                 if (sMorfFrame != 0) {
                     if (mSetFlag == 0) {
                         f32 tmp = 1.0f / sMorfFrame;
-                        info->field_0x10.field_0xc = field_0xf4 * (1.0f - tmp) + info->field_0x10.field_0xc * tmp;
-                        info->field_0x10.field_0x10 = field_0xf8 * (1.0f - tmp) + info->field_0x10.field_0xc * tmp;
+                        info->field_0x10.field_0xc = field_0xf4 * (1.0f - tmp) +
+info->field_0x10.field_0xc * tmp; info->field_0x10.field_0x10 = field_0xf8 * (1.0f - tmp) +
+info->field_0x10.field_0xc * tmp;
                         //mSetFlag = 1;
                     } else {
                         info->field_0x10.field_0xc = field_0xf4;
@@ -3520,7 +3521,7 @@ asm void daAlink_matAnm_c::calc(J3DMaterial* param_0) const {
                     }
 
 
-                
+
             }
         }
     }
@@ -3532,8 +3533,7 @@ bool daAlink_c::checkStageName(const char* stage) {
 
 /* 8009DA98-8009DB64 0983D8 00CC+00 1/1 0/0 0/0 .text
  * tgHitCallback__9daAlink_cFP10fopAc_ac_cP12dCcD_GObjInfP12dCcD_GObjInf */
-void daAlink_c::tgHitCallback(fopAc_ac_c* param_0, dCcD_GObjInf* param_1,
-                                  dCcD_GObjInf* param_2) {
+void daAlink_c::tgHitCallback(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, dCcD_GObjInf* param_2) {
     if (param_2->ChkAtType(0x40000)) {
         field_0x369c = *param_2->GetAtVecP();
         for (int i = 0; i < 3; i++) {
@@ -3567,7 +3567,7 @@ asm void daAlink_c::coHitCallback(fopAc_ac_c* param_0, dCcD_GObjInf* param_1) {
 /* 8009DC6C-8009DD90 0985AC 0124+00 5/5 0/0 0/0 .text
  * setMatrixWorldAxisRot__9daAlink_cFPA4_fsssiPC4cXyz           */
 void daAlink_c::setMatrixWorldAxisRot(MtxP param_0, s16 param_1, s16 param_2, s16 param_3,
-                                          int param_4, cXyz const* param_5) {
+                                      int param_4, cXyz const* param_5) {
     cXyz tmp;
     mDoMtx_multVecZero(param_0, &tmp);
     if (param_5 != NULL) {
@@ -3631,8 +3631,7 @@ bool daAlink_c::modelCallBack(int param_0) {
     jointControll(param_0);
     if (param_0 == 0) {
         setUpperFront();
-    }
-    else if (param_0 == 0x1A) {
+    } else if (param_0 == 0x1A) {
         bool check = false;
         if (mSpecialMode == 0 || mSpecialMode < 0x26) {
             check = true;
@@ -3642,7 +3641,8 @@ bool daAlink_c::modelCallBack(int param_0) {
         }
         setArmMatrix();
     }
-    if (field_0x2fb6 != 0 && (param_0 == 0 || param_0 == 10 || param_0 - 4 < 1 || param_0 == 13 || param_0 == 15)) {
+    if (field_0x2fb6 != 0 &&
+        (param_0 == 0 || param_0 == 10 || param_0 - 4 < 1 || param_0 == 13 || param_0 == 15)) {
         changeBlendRate(param_0);
     }
     return true;
@@ -4874,16 +4874,30 @@ daAlinkHIO_basic_c1 const daAlinkHIO_basic_c0::m = {
     60.0f, 85.0f, 300.0f, 200.0f, 20.0f, 30.0f, 23.0f, 41.0f, 0.7f,  0.5f, 0.7f, 400.0f, 5000.0f};
 
 /* 8038D6BC-8038D714 019D1C 0058+00 34/47 0/0 0/0 .rodata          m__18daAlinkHIO_move_c0 */
-daAlinkHIO_move_c1 const daAlinkHIO_move_c0::m = {
-    { 11, 0.7f, 3.0f, 4.0f, 12.0f },
-    4500, 100, 5, 1.0f, 0.75f, 1.5f, 0.4f, 0.8f, 23.0f, 1.9f, 2.2f, 0.6f, 1.1f, 1.5f, 0.99f, 3.0f, 0.7f, 0.4f
-};
+daAlinkHIO_move_c1 const daAlinkHIO_move_c0::m = {{11, 0.7f, 3.0f, 4.0f, 12.0f},
+                                                  4500,
+                                                  100,
+                                                  5,
+                                                  1.0f,
+                                                  0.75f,
+                                                  1.5f,
+                                                  0.4f,
+                                                  0.8f,
+                                                  23.0f,
+                                                  1.9f,
+                                                  2.2f,
+                                                  0.6f,
+                                                  1.1f,
+                                                  1.5f,
+                                                  0.99f,
+                                                  3.0f,
+                                                  0.7f,
+                                                  0.4f};
 
 /* 8038D714-8038D768 019D74 0054+00 10/16 0/0 0/0 .rodata          m__21daAlinkHIO_atnMove_c0 */
 daAlinkHIO_atnMove_c1 const daAlinkHIO_atnMove_c0::m = {
-    3000, 2000, 6, 1.2f, 1.1f, 1.5f, 0.5f, 0.6f, 13.0f, 6.0f, 7.5f,
-    0.7f, 1.4f, 0.25f, 0.7f, 15.0f, 2.5f, 8.0f, 0.5f, 0.4f, 1.0f, 1.3f
-};
+    3000, 2000, 6,     1.2f, 1.1f,  1.5f, 0.5f, 0.6f, 13.0f, 6.0f, 7.5f,
+    0.7f, 1.4f, 0.25f, 0.7f, 15.0f, 2.5f, 8.0f, 0.5f, 0.4f,  1.0f, 1.3f};
 
 /* 8038D768-8038D7BC 019DC8 0054+00 3/9 0/0 0/0 .rodata          m__26daAlinkHIO_noActAtnMove_c0 */
 SECTION_RODATA u8 const daAlinkHIO_noActAtnMove_c0::m[84] = {
@@ -4897,37 +4911,57 @@ SECTION_RODATA u8 const daAlinkHIO_noActAtnMove_c0::m[84] = {
 COMPILER_STRIP_GATE(0x8038D768, &daAlinkHIO_noActAtnMove_c0::m);
 
 /* 8038D7BC-8038D82C 019E1C 0070+00 5/7 0/0 0/0 .rodata          m__23daAlinkHIO_frontRoll_c0 */
-daAlinkHIO_frontRoll_c1 const daAlinkHIO_frontRoll_c0::m = {
-	{ 29, 1.1f, 0.0f, 3.0f, 22.0f },
-    { 29, 0.8f, 3.0f, 2.0f, 25.0f },
-    { 33, 1.2f, 0.0f, 1.0f, 25.0f },
-    10000, 5, 1000, 100, 3.0f, 1.3f, 25.0f, 10.0f, 3.0f, 15.0f, 10.0f, 12.0f, 9.0f, 19.0f, 60.0f
-};
+daAlinkHIO_frontRoll_c1 const daAlinkHIO_frontRoll_c0::m = {{29, 1.1f, 0.0f, 3.0f, 22.0f},
+                                                            {29, 0.8f, 3.0f, 2.0f, 25.0f},
+                                                            {33, 1.2f, 0.0f, 1.0f, 25.0f},
+                                                            10000,
+                                                            5,
+                                                            1000,
+                                                            100,
+                                                            3.0f,
+                                                            1.3f,
+                                                            25.0f,
+                                                            10.0f,
+                                                            3.0f,
+                                                            15.0f,
+                                                            10.0f,
+                                                            12.0f,
+                                                            9.0f,
+                                                            19.0f,
+                                                            60.0f};
 
 /* 8038D82C-8038D864 019E8C 0038+00 5/5 0/0 0/0 .rodata          m__22daAlinkHIO_backJump_c0 */
 daAlinkHIO_backJump_c1 const daAlinkHIO_backJump_c0::m = {
-	{ 9, 0.7f, 0.0f, 2.0f, 12.0f },
-	{ 17, 1.0f, 2.0f, 2.0f, 3.0f },
-	24.0f, 10.0f, 100.0f, 10.0f, 
+    {9, 0.7f, 0.0f, 2.0f, 12.0f}, {17, 1.0f, 2.0f, 2.0f, 3.0f}, 24.0f, 10.0f, 100.0f, 10.0f,
 };
 
 /* 8038D864-8038D8CC 019EC4 0068+00 3/3 0/0 0/0 .rodata          m__22daAlinkHIO_sideStep_c0 */
-daAlinkHIO_sideStep_c1 const daAlinkHIO_sideStep_c0::m = {
-    { 5, 1.1f, 1.0f, 3.0f, 6.0f },
-    { 9, 1.0f, 0.0f, 3.0f, 2.0f },
-    { 6, 1.0f, 0.0f, 3.0f, 7.0f },
-    { 9, 1.1f, 0.0f, 3.0f, 4.0f },
-    28.0f, 22.0f, 25.0f, 20.0f, 100.0f, 10.0f
-};
+daAlinkHIO_sideStep_c1 const daAlinkHIO_sideStep_c0::m = {{5, 1.1f, 1.0f, 3.0f, 6.0f},
+                                                          {9, 1.0f, 0.0f, 3.0f, 2.0f},
+                                                          {6, 1.0f, 0.0f, 3.0f, 7.0f},
+                                                          {9, 1.1f, 0.0f, 3.0f, 4.0f},
+                                                          28.0f,
+                                                          22.0f,
+                                                          25.0f,
+                                                          20.0f,
+                                                          100.0f,
+                                                          10.0f};
 
 /* 8038D8CC-8038D944 019F2C 0078+00 5/10 0/0 0/0 .rodata          m__19daAlinkHIO_slide_c0 */
-daAlinkHIO_slide_c1 const daAlinkHIO_slide_c0::m = {
-	{ 14, 0.75f, 0.0f, 5.0f, 15.0f },
-    { 6, 0.9f, 0.0f, 3.0f, 7.0f },
-    { 15, 1.0f, 0.0f, 3.0f, 9.0f },
-    { 20, 1.0f, 0.0f, 3.0f, 16.0f },
-    40.0f, 3.0f, 50.0f, 27.0f, 0.2f, 12.0f, 50.0f, 3.0f, 33.0f, 1.2f
-};
+daAlinkHIO_slide_c1 const daAlinkHIO_slide_c0::m = {{14, 0.75f, 0.0f, 5.0f, 15.0f},
+                                                    {6, 0.9f, 0.0f, 3.0f, 7.0f},
+                                                    {15, 1.0f, 0.0f, 3.0f, 9.0f},
+                                                    {20, 1.0f, 0.0f, 3.0f, 16.0f},
+                                                    40.0f,
+                                                    3.0f,
+                                                    50.0f,
+                                                    27.0f,
+                                                    0.2f,
+                                                    12.0f,
+                                                    50.0f,
+                                                    3.0f,
+                                                    33.0f,
+                                                    1.2f};
 
 /* 8038D944-8038D964 019FA4 0020+00 0/1 0/0 0/0 .rodata          m__20daAlinkHIO_cutNmV_c0 */
 #pragma push
@@ -5057,11 +5091,15 @@ SECTION_RODATA u8 const daAlinkHIO_cutFnJU_c0::m[84] = {
 COMPILER_STRIP_GATE(0x8038DAEC, &daAlinkHIO_cutFnJU_c0::m);
 
 /* 8038DB40-8038DB84 01A1A0 0044+00 4/4 0/0 0/0 .rodata          m__21daAlinkHIO_cutJump_c0 */
-daAlinkHIO_cutJump_c1 const daAlinkHIO_cutJump_c0::m = {
-    { 17, 1.1f, 0.0f, 2.0f, 18.0f },
-    { 29, 1.0f, 2.0f, 0.0f, 9.0f },
-    25.0f, 27.0f, 15.0f, 13.0f, 13.0f, 1.0f, 3.0f
-};
+daAlinkHIO_cutJump_c1 const daAlinkHIO_cutJump_c0::m = {{17, 1.1f, 0.0f, 2.0f, 18.0f},
+                                                        {29, 1.0f, 2.0f, 0.0f, 9.0f},
+                                                        25.0f,
+                                                        27.0f,
+                                                        15.0f,
+                                                        13.0f,
+                                                        13.0f,
+                                                        1.0f,
+                                                        3.0f};
 
 /* 8038DB84-8038DC1C 01A1E4 0098+00 5/6 0/0 0/0 .rodata          m__21daAlinkHIO_cutTurn_c0 */
 SECTION_RODATA u8 const daAlinkHIO_cutTurn_c0::m[152] = {
@@ -5184,25 +5222,49 @@ SECTION_RODATA u8 const daAlinkHIO_cutHead_c0::m[96] = {
 COMPILER_STRIP_GATE(0x8038DDB8, &daAlinkHIO_cutHead_c0::m);
 
 /* 8038DE18-8038DE8C 01A478 0074+00 5/5 0/0 0/0 .rodata          m__26daAlinkHIO_cutLargeJump_c0 */
-daAlinkHIO_cutLargeJump_c1 const daAlinkHIO_cutLargeJump_c0::m = {
-	{ 29, 1.3f, 0.0f, 3.0f, 30.0f },
-    { 6, 1.0f, 0.0f, 3.0f, 7.0f },
-    { 16, 1.0f, 0.0f, 2.0f, 17.0f },
-    { 35, 1.25f, 0.0f, 0.0f, 22.0f },
-    20.0f, 33.0f, 2.0f, 6.0f, 13.0f, 0.0f, 10.0f, 250.0f, 5.0f
-};
+daAlinkHIO_cutLargeJump_c1 const daAlinkHIO_cutLargeJump_c0::m = {{29, 1.3f, 0.0f, 3.0f, 30.0f},
+                                                                  {6, 1.0f, 0.0f, 3.0f, 7.0f},
+                                                                  {16, 1.0f, 0.0f, 2.0f, 17.0f},
+                                                                  {35, 1.25f, 0.0f, 0.0f, 22.0f},
+                                                                  20.0f,
+                                                                  33.0f,
+                                                                  2.0f,
+                                                                  6.0f,
+                                                                  13.0f,
+                                                                  0.0f,
+                                                                  10.0f,
+                                                                  250.0f,
+                                                                  5.0f};
 
 /* 8038DE8C-8038DF28 01A4EC 009C+00 21/30 0/0 0/0 .rodata          m__17daAlinkHIO_cut_c0 */
-daAlinkHIO_cut_c1 const daAlinkHIO_cut_c0::m = {
-    { 18, -1.100f, 0.0f, 3.0f, -1.0f },
-    { 22, 0.9f, 0.0f, 3.0f, 23.0f },
-    { 45, 1.0f, 0.0f, 3.0f, 15.0f },
-    { 47, 1.0f, 0.0f, 5.0f, 27.0f },
-    0, 1, 15, 8, 10, 90, 75, 4000, -4000, 30, 
-    12.0f, 1.250f, 1.0f, 1.0f, 1.6f, 45.0f,
-    1.65f, 65.0f, 1.21f, 35.0f, 2.3f, 2.2f, 65.0f,
-    0.0f
-};
+daAlinkHIO_cut_c1 const daAlinkHIO_cut_c0::m = {{18, -1.100f, 0.0f, 3.0f, -1.0f},
+                                                {22, 0.9f, 0.0f, 3.0f, 23.0f},
+                                                {45, 1.0f, 0.0f, 3.0f, 15.0f},
+                                                {47, 1.0f, 0.0f, 5.0f, 27.0f},
+                                                0,
+                                                1,
+                                                15,
+                                                8,
+                                                10,
+                                                90,
+                                                75,
+                                                4000,
+                                                -4000,
+                                                30,
+                                                12.0f,
+                                                1.250f,
+                                                1.0f,
+                                                1.0f,
+                                                1.6f,
+                                                45.0f,
+                                                1.65f,
+                                                65.0f,
+                                                1.21f,
+                                                35.0f,
+                                                2.3f,
+                                                2.2f,
+                                                65.0f,
+                                                0.0f};
 
 /* 8038DF28-8038DF4C 01A588 0024+00 1/1 0/0 0/0 .rodata          m__21daAlinkHIO_gAtPush_c0 */
 SECTION_RODATA u8 const daAlinkHIO_gAtPush_c0::m[36] = {
@@ -5225,8 +5287,7 @@ COMPILER_STRIP_GATE(0x8038DF4C, &daAlinkHIO_gAtKick_c0::m);
 
 /* 8038DF70-8038DF9C 01A5D0 002C+00 4/4 0/0 0/0 .rodata          m__22daAlinkHIO_turnMove_c0 */
 daAlinkHIO_turnMove_c1 const daAlinkHIO_turnMove_c0::m = {
-	{ 27, 1.0f, 0.0f, 3.0f, 22.0f },
-    5, 2500, 200, 1000, 1.1f, 19.0f, 1.5f, 25.0f, 
+    {27, 1.0f, 0.0f, 3.0f, 22.0f}, 5, 2500, 200, 1000, 1.1f, 19.0f, 1.5f, 25.0f,
 };
 
 /* 8038DF9C-8038E01C 01A5FC 0080+00 6/7 0/0 0/0 .rodata          m__19daAlinkHIO_guard_c0 */
@@ -5315,9 +5376,7 @@ SECTION_RODATA u8 const daAlinkHIO_wallFall_c0::m[40] = {
 COMPILER_STRIP_GATE(0x8038E1B8, &daAlinkHIO_wallFall_c0::m);
 
 /* 8038E1E0-8038E1F4 01A840 0014+00 2/2 0/0 0/0 .rodata          m__22daAlinkHIO_wallMove_c0 */
-daAlinkHIO_wallMove_c1 const daAlinkHIO_wallMove_c0::m = {
-	0.8f, 1.1f, 3.0f, 2.0f, 3.0f
-};
+daAlinkHIO_wallMove_c1 const daAlinkHIO_wallMove_c0::m = {0.8f, 1.1f, 3.0f, 2.0f, 3.0f};
 
 /* 8038E1F4-8038E210 01A854 001C+00 2/5 0/0 0/0 .rodata          m__22daAlinkHIO_wallHang_c0 */
 SECTION_RODATA u8 const daAlinkHIO_wallHang_c0::m[28] = {
@@ -5434,11 +5493,20 @@ COMPILER_STRIP_GATE(0x8038E54C, &daAlinkHIO_damage_c0::m);
 
 /* 8038E5A4-8038E610 01AC04 006C+00 7/8 0/0 0/0 .rodata          m__19daAlinkHIO_horse_c0 */
 daAlinkHIO_horse_c1 const daAlinkHIO_horse_c0::m = {
-	{ 18, 1.2f, 0.0f, 5.0f, 19.0f },
-	{ 22, 1.2f, 0.0f, 3.0f, 23.0f },
-	{ 43, 1.45f, 3.0f, 3.0f, 44.0f },
-	{ 18, 1.2f, 0.0f, 3.0f, 23.0f },
-	100, 32767, 30, 25, 5500, -13000, 1.2f, 8.0f, 8.0f, 5.0f, 
+    {18, 1.2f, 0.0f, 5.0f, 19.0f},
+    {22, 1.2f, 0.0f, 3.0f, 23.0f},
+    {43, 1.45f, 3.0f, 3.0f, 44.0f},
+    {18, 1.2f, 0.0f, 3.0f, 23.0f},
+    100,
+    32767,
+    30,
+    25,
+    5500,
+    -13000,
+    1.2f,
+    8.0f,
+    8.0f,
+    5.0f,
 };
 
 /* 800A07D8-800A0868 09B118 0090+00 2/2 0/0 0/0 .text checkAttentionPosAngle__9daAlink_cFP4cXyz */
@@ -5486,23 +5554,49 @@ COMPILER_STRIP_GATE(0x8038E610, &daAlinkHIO_canoe_c0::m);
 
 /* 8038E658-8038E6C8 01ACB8 0070+00 9/9 0/0 0/0 .rodata          m__17daAlinkHIO_bow_c0 */
 daAlinkHIO_bow_c1 const daAlinkHIO_bow_c0::m = {
-	{ 9, 1.0f, 0.0f, 3.0f, 5.0f }, 
-    { 6, 1.0f, 0.0f, 3.0f, 7.0f },
-    10, 30, 70, 5.0f, 300.0f, 5000.0f, 800.0f, 9000.0f, 50.0f, 200.0f, 3000.0f, 230.0f, 3500.0f, 600.0f, 9000.0f, 1000.0f, 4000.0f, 250.0f, 800.0f, 
+    {9, 1.0f, 0.0f, 3.0f, 5.0f},
+    {6, 1.0f, 0.0f, 3.0f, 7.0f},
+    10,
+    30,
+    70,
+    5.0f,
+    300.0f,
+    5000.0f,
+    800.0f,
+    9000.0f,
+    50.0f,
+    200.0f,
+    3000.0f,
+    230.0f,
+    3500.0f,
+    600.0f,
+    9000.0f,
+    1000.0f,
+    4000.0f,
+    250.0f,
+    800.0f,
 };
 
 /* 8038E6C8-8038E714 01AD28 004C+00 22/23 0/0 0/0 .rodata          m__18daAlinkHIO_boom_c0 */
 daAlinkHIO_boom_c1 const daAlinkHIO_boom_c0::m = {
-	{ 21, 0.9f, 3.0f, 2.0f, 22.0f },
-    { 25, 1.0f, 3.0f, 1.0f, 10.0f },
-    40, 0, 1.0f, 3.0f, 60.0f, 60.0f, 2000.0f, 3000.0f, 3000.0f, 40.0f, 
+    {21, 0.9f, 3.0f, 2.0f, 22.0f},
+    {25, 1.0f, 3.0f, 1.0f, 10.0f},
+    40,
+    0,
+    1.0f,
+    3.0f,
+    60.0f,
+    60.0f,
+    2000.0f,
+    3000.0f,
+    3000.0f,
+    40.0f,
 };
 
 /* 8038E714-8038E760 01AD74 004C+00 14/14 0/0 0/0 .rodata          m__18daAlinkHIO_bomb_c0 */
 daAlinkHIO_bomb_c1 const daAlinkHIO_bomb_c0::m = {
-    160, 50, 50, -4.2f, -100.0f, 0.350f, 2.0f, 20.0f, 1.3f, 225.0f, 0.0f, -0.8f, -7.0f, 26.0f, 33.0f,
-    10.0f, 15.0f, 40.0f, 15.0f, 300.0f
-};
+    160,  50,    50,    -4.2f, -100.0f, 0.350f, 2.0f,  20.0f, 1.3f,  225.0f,
+    0.0f, -0.8f, -7.0f, 26.0f, 33.0f,   10.0f,  15.0f, 40.0f, 15.0f, 300.0f};
 
 /* 8038E760-8038E77C 01ADC0 001C+00 0/1 0/0 0/0 .rodata          m__21daAlinkHIO_huLight_c0 */
 #pragma push
@@ -5533,10 +5627,21 @@ SECTION_RODATA u8 const daAlinkHIO_fmChain_c0::m[40] = {
 COMPILER_STRIP_GATE(0x8038E7CC, &daAlinkHIO_fmChain_c0::m);
 
 /* 8038E7F4-8038E840 01AE54 004C+00 17/21 0/0 0/0 .rodata          m__24daAlinkHIO_magneBoots_c0 */
-daAlinkHIO_magneBoots_c1 const daAlinkHIO_magneBoots_c0::m = {
-    {29, 1.1f, 0.0f, 3.0f, 23.0f},
-    0.4f, 1.0f, 1.8f, 0.7f, 0.75f, 0.45, 0.6f, 50.0f, 10.0f, 0.35f, 0.3f, 0.7f, 0.8f, 0.7f
-};
+daAlinkHIO_magneBoots_c1 const daAlinkHIO_magneBoots_c0::m = {{29, 1.1f, 0.0f, 3.0f, 23.0f},
+                                                              0.4f,
+                                                              1.0f,
+                                                              1.8f,
+                                                              0.7f,
+                                                              0.75f,
+                                                              0.45,
+                                                              0.6f,
+                                                              50.0f,
+                                                              10.0f,
+                                                              0.35f,
+                                                              0.3f,
+                                                              0.7f,
+                                                              0.8f,
+                                                              0.7f};
 
 /* 8038E840-8038E870 01AEA0 0030+00 6/6 0/0 0/0 .rodata          m__20daAlinkHIO_pickUp_c0 */
 SECTION_RODATA u8 const daAlinkHIO_pickUp_c0::m[48] = {
@@ -5548,38 +5653,74 @@ COMPILER_STRIP_GATE(0x8038E840, &daAlinkHIO_pickUp_c0::m);
 
 /* 8038E870-8038E90C 01AED0 009C+00 16/17 0/0 0/0 .rodata          m__19daAlinkHIO_board_c0 */
 daAlinkHIO_board_c1 const daAlinkHIO_board_c0::m = {
-	{ 9, 2.5f, 0.0f, 3.0f, 10.0f },
-	{ 14, 0.7f, 0.0f, 8.0f, 15.0f },
-	{ 24, 1.6f, 5.0f, 5.0f, 25.0f },
-	{ 24, 0.8f, 0.0f, 3.0f, 25.0f },
-	70.0f, 4.0f, 22.0f, 35.0f, 1.0f, 4.0f, 1.0f, 3.0f, 2.0f, 30.0f, 0.9f, 55.0f, 4.0f, 3.0f, 1.0f, 20.0f, 24.0f, 35.0f, 50.0f, 
+    {9, 2.5f, 0.0f, 3.0f, 10.0f},
+    {14, 0.7f, 0.0f, 8.0f, 15.0f},
+    {24, 1.6f, 5.0f, 5.0f, 25.0f},
+    {24, 0.8f, 0.0f, 3.0f, 25.0f},
+    70.0f,
+    4.0f,
+    22.0f,
+    35.0f,
+    1.0f,
+    4.0f,
+    1.0f,
+    3.0f,
+    2.0f,
+    30.0f,
+    0.9f,
+    55.0f,
+    4.0f,
+    3.0f,
+    1.0f,
+    20.0f,
+    24.0f,
+    35.0f,
+    50.0f,
 };
 
 /* 8038E90C-8038E9C0 01AF6C 00B4+00 12/12 0/0 0/0 .rodata          m__20daAlinkHIO_bottle_c0 */
 daAlinkHIO_bottle_c1 const daAlinkHIO_bottle_c0::m = {
-	{ 56, 1.15f, 0.0f, 3.0f, 57.0f },
-	{ 39, 1.2f, 0.0f, 3.0f, 40.0f },
-	{ 44, 1.2f, 0.0f, 3.0f, 50.0f },
-	{ 54, 1.1f, 0.0f, 3.0f, 55.0f },
-	{ 24, 1.0f, 0.0f, 3.0f, 25.0f },
-	{ 12, 0.6f, 1.0f, 3.0f, 10.0f },
-	{ 47, 1.0f, 0.0f, 3.0f, 48.0f },
-	{ 86, 1.0f, 0.0f, 3.0f, 87.0f },
-	{ 29, 1.2f, 0.0f, 3.0f, 30.0f },
+    {56, 1.15f, 0.0f, 3.0f, 57.0f}, {39, 1.2f, 0.0f, 3.0f, 40.0f}, {44, 1.2f, 0.0f, 3.0f, 50.0f},
+    {54, 1.1f, 0.0f, 3.0f, 55.0f},  {24, 1.0f, 0.0f, 3.0f, 25.0f}, {12, 0.6f, 1.0f, 3.0f, 10.0f},
+    {47, 1.0f, 0.0f, 3.0f, 48.0f},  {86, 1.0f, 0.0f, 3.0f, 87.0f}, {29, 1.2f, 0.0f, 3.0f, 30.0f},
 };
 
 /* 8038E9C0-8038EA30 01B020 0070+00 15/16 0/0 0/0 .rodata          m__22daAlinkHIO_hookshot_c0 */
 daAlinkHIO_hookshot_c1 const daAlinkHIO_hookshot_c0::m = {
-	{ 12, 1.0f, 0.0f, 0.0f, 13.0f },
-	{ 39, 1.0f, 0.0f, 1.0f, 11.0f },
-	{ 28, 1.0f, 0.0f, 2.0f, 7.0f },
-	0.0f, 1.0f, 3.0f, 2000.0f, 100.0f, 150.0f, 60.0f, 5.0f, 13.0f, 3000.0f, 150.0f, 225.0f, 90.0f, 
+    {12, 1.0f, 0.0f, 0.0f, 13.0f},
+    {39, 1.0f, 0.0f, 1.0f, 11.0f},
+    {28, 1.0f, 0.0f, 2.0f, 7.0f},
+    0.0f,
+    1.0f,
+    3.0f,
+    2000.0f,
+    100.0f,
+    150.0f,
+    60.0f,
+    5.0f,
+    13.0f,
+    3000.0f,
+    150.0f,
+    225.0f,
+    90.0f,
 };
 
 /* 8038EA30-8038EA70 01B090 0040+00 10/10 0/0 0/0 .rodata          m__21daAlinkHIO_spinner_c0 */
 daAlinkHIO_spinner_c1 const daAlinkHIO_spinner_c0::m = {
-	{ 21, 0.8f, 0.0f, 3.0f, 13.0f },
-	30, 15, 360, 360, 150, -3.7f, -50.0f, 0.9f, 26.0f, 0.5f, 0.1f, 0.01f, 60.0f, 
+    {21, 0.8f, 0.0f, 3.0f, 13.0f},
+    30,
+    15,
+    360,
+    360,
+    150,
+    -3.7f,
+    -50.0f,
+    0.9f,
+    26.0f,
+    0.5f,
+    0.1f,
+    0.01f,
+    60.0f,
 };
 
 /* 8038EA70-8038EAFC 01B0D0 008C+00 10/12 0/0 0/0 .rodata          m__22daAlinkHIO_ironBall_c0 */
@@ -5598,30 +5739,51 @@ COMPILER_STRIP_GATE(0x8038EA70, &daAlinkHIO_ironBall_c0::m);
 
 /* 8038EAFC-8038EB34 01B15C 0038+00 4/4 0/0 0/0 .rodata          m__21daAlinkHIO_copyRod_c0 */
 daAlinkHIO_copyRod_c1 const daAlinkHIO_copyRod_c0::m = {
-	19, 1.0f, 0.0f, 3.0f, 14.0f, 39, 1.0f, 0.0f, 3.0f, 30.0f, 80.0f, 1500.0f, 100.0f, 2000.0f, 
+    19, 1.0f, 0.0f, 3.0f, 14.0f, 39, 1.0f, 0.0f, 3.0f, 30.0f, 80.0f, 1500.0f, 100.0f, 2000.0f,
 };
 
 /* 8038EB34-8038EB50 01B194 001C+00 0/0 0/0 0/0 .rodata          m__21daAlinkHIO_zwLight_c0 */
 #pragma push
 #pragma force_active on
 daAlinkHIO_zwLight_c1 const daAlinkHIO_zwLight_c0::m = {
-	771, 0, 182, 225, 243, -87, 1.0f, 70.75195f, 131.83594f, 0.0f, 
+    771, 0, 182, 225, 243, -87, 1.0f, 70.75195f, 131.83594f, 0.0f,
 };
 COMPILER_STRIP_GATE(0x8038EB34, &daAlinkHIO_zwLight_c0::m);
 #pragma pop
 
 /* 8038EB50-8038EB8C 01B1B0 003C+00 3/3 0/0 0/0 .rodata          m__18daAlinkHIO_item_c0 */
-daAlinkHIO_item_c1 const daAlinkHIO_item_c0::m = {
-	{ 12, 1.0f, 0.0f, 3.0f, 13.0f }, 
-    { 14, 1.0f, 0.0f, 3.0f, 15.0f },
-    15, 10000, -13000, 6000, -9000, 1.3f, 1.3f
-};
+daAlinkHIO_item_c1 const daAlinkHIO_item_c0::m = {{12, 1.0f, 0.0f, 3.0f, 13.0f},
+                                                  {14, 1.0f, 0.0f, 3.0f, 15.0f},
+                                                  15,
+                                                  10000,
+                                                  -13000,
+                                                  6000,
+                                                  -9000,
+                                                  1.3f,
+                                                  1.3f};
 
 /* 8038EB8C-8038EBFC 01B1EC 0070+00 14/14 0/0 0/0 .rodata          m__20daAlinkHIO_ladder_c0 */
 daAlinkHIO_ladder_c1 const daAlinkHIO_ladder_c0::m = {
-	{ 13, 0.8f, 2.0f, 3.0f, 10.0f },
-	{ 47, 1.25f, 0.0f, 2.0f, 48.0f },
-	0.8f, 5.0f, 1.0f, 0.0f, 1.0f, 5.0f, 1.2f, 0.0f, 0.4f, 0.9f, 2.0f, 18.0f, 40.0f, 0.8f, 1.15f, 0.9f, 1.35f, 80.0f, 
+    {13, 0.8f, 2.0f, 3.0f, 10.0f},
+    {47, 1.25f, 0.0f, 2.0f, 48.0f},
+    0.8f,
+    5.0f,
+    1.0f,
+    0.0f,
+    1.0f,
+    5.0f,
+    1.2f,
+    0.0f,
+    0.4f,
+    0.9f,
+    2.0f,
+    18.0f,
+    40.0f,
+    0.8f,
+    1.15f,
+    0.9f,
+    1.35f,
+    80.0f,
 };
 
 /* 8038EBFC-8038EC48 01B25C 004C+00 11/11 0/0 0/0 .rodata          m__22daAlinkHIO_roofHang_c0 */
@@ -5656,55 +5818,155 @@ COMPILER_STRIP_GATE(0x8038EC48, &daAlinkHIO_grab_c0::m);
 
 /* 8038ED2C-8038EE28 01B38C 00FC+00 21/30 0/0 0/0 .rodata          m__18daAlinkHIO_swim_c0 */
 daAlinkHIO_swim_c1 const daAlinkHIO_swim_c0::m = {
-	{ 25, 1.0f, 0.0f, 3.0f, -1.0f },
-    { 23, 1.0f, 0.0f, 3.0f, 24.0f },
-    { 12, 2.0f, 0.0f, 10.0f, 24.0f },
-    { 37, 1.0f, 3.0f, 5.0f, 38.0f },
-    15, 800, 5000, 15, 200, 5000, 90, 50, 140.0f, 50.0f, 8.0f, 8.0f, 6.0f, 12.0f, 8.0f, 5.0f, 0.5f, -7.0f, 6.0f, 0.2f, 0.8f, 15.0f, 3.5f, 0.5f, 1.0f, 0.5f, 1.3f, 0.5f, 1.3f, 0.4f, 0.6f, 15.0f, 37.5f, -37.5f, 3.0f, -4.0f, -20.0f, 250.0f, 0.0f, 10.0f, 0.9f, -0.7f, 0.6f, 13.0f, 0.3f, 0.5f, 1.3f, 
+    {25, 1.0f, 0.0f, 3.0f, -1.0f},
+    {23, 1.0f, 0.0f, 3.0f, 24.0f},
+    {12, 2.0f, 0.0f, 10.0f, 24.0f},
+    {37, 1.0f, 3.0f, 5.0f, 38.0f},
+    15,
+    800,
+    5000,
+    15,
+    200,
+    5000,
+    90,
+    50,
+    140.0f,
+    50.0f,
+    8.0f,
+    8.0f,
+    6.0f,
+    12.0f,
+    8.0f,
+    5.0f,
+    0.5f,
+    -7.0f,
+    6.0f,
+    0.2f,
+    0.8f,
+    15.0f,
+    3.5f,
+    0.5f,
+    1.0f,
+    0.5f,
+    1.3f,
+    0.5f,
+    1.3f,
+    0.4f,
+    0.6f,
+    15.0f,
+    37.5f,
+    -37.5f,
+    3.0f,
+    -4.0f,
+    -20.0f,
+    250.0f,
+    0.0f,
+    10.0f,
+    0.9f,
+    -0.7f,
+    0.6f,
+    13.0f,
+    0.3f,
+    0.5f,
+    1.3f,
 };
 
 /* 8038EE28-8038EF28 01B488 0100+00 32/41 0/0 0/0 .rodata          m__20daAlinkHIO_wlMove_c0 */
 daAlinkHIO_wlMove_c1 const daAlinkHIO_wlMove_c0::m = {
-	{ 14, 1.0f, 0.0f, 3.0f, 15.0f },
-	{ 14, 1.0f, 0.0f, 3.0f, 12.0f },
-	{ 8, 1.0f, 0.0f, 1.0f, 20.0f },
-	{ 41, 1.0f, 0.0f, 3.0f, 20.0f },
-	9000, 100, 5, 90, 50, 60, 50, 45, 50, 40.0f, 4.0f, 3.0f, 1.6f, 1.1f, 2.2f, 1.2f, 1.3f, 0.1f, 0.4f, 0.4f, 0.5f, 5.0f, 5.0f, 0.3f, 0.85f, 0.9f, 2.5f, 40.0f, 5.0f, 22.0f, 1.0f, 5.0f, 100.0f, 10.0f, 45.0f, 1.3f, 6.0f, 65.0f, 20.0f, 15.0f, 33.0f, 35.0f, 1.2f, 3.0f, 25.0f, 35.0f, 1.1f, 0.5f, 
+    {14, 1.0f, 0.0f, 3.0f, 15.0f},
+    {14, 1.0f, 0.0f, 3.0f, 12.0f},
+    {8, 1.0f, 0.0f, 1.0f, 20.0f},
+    {41, 1.0f, 0.0f, 3.0f, 20.0f},
+    9000,
+    100,
+    5,
+    90,
+    50,
+    60,
+    50,
+    45,
+    50,
+    40.0f,
+    4.0f,
+    3.0f,
+    1.6f,
+    1.1f,
+    2.2f,
+    1.2f,
+    1.3f,
+    0.1f,
+    0.4f,
+    0.4f,
+    0.5f,
+    5.0f,
+    5.0f,
+    0.3f,
+    0.85f,
+    0.9f,
+    2.5f,
+    40.0f,
+    5.0f,
+    22.0f,
+    1.0f,
+    5.0f,
+    100.0f,
+    10.0f,
+    45.0f,
+    1.3f,
+    6.0f,
+    65.0f,
+    20.0f,
+    15.0f,
+    33.0f,
+    35.0f,
+    1.2f,
+    3.0f,
+    25.0f,
+    35.0f,
+    1.1f,
+    0.5f,
 };
 
 /* 8038EF28-8038EF70 01B588 0048+00 19/27 0/0 0/0 .rodata          m__23daAlinkHIO_wlMoveNoP_c0 */
 daAlinkHIO_wlMoveNoP_c1 const daAlinkHIO_wlMoveNoP_c0::m = {
-	9000, 100, 5, 25.0f, 3.0f, 1.8f, 1.0f, 0.8f, 2.2f, 1.1f, 0.1f, 0.6f, 0.6f, 5.0f, 0.5f, 0.85f, 0.9f, 2.5f, 30.0f, 
+    9000, 100,  5,    25.0f, 3.0f, 1.8f,  1.0f, 0.8f, 2.2f,  1.1f,
+    0.1f, 0.6f, 0.6f, 5.0f,  0.5f, 0.85f, 0.9f, 2.5f, 30.0f,
 };
 
 /* 8038EF70-8038EFA8 01B5D0 0038+00 3/6 0/0 0/0 .rodata          m__23daAlinkHIO_wlAtnMove_c0 */
 daAlinkHIO_wlAtnMove_c1 const daAlinkHIO_wlAtnMove_c0::m = {
-	9000, 100, 3, 0.8f, 1.8f, 0.2f, 0.6f, 18.0f, 2.0f, 2.0f, 1.7f, 0.4f, 12.0f, 3.0f, 2.0f, 
+    9000, 100, 3, 0.8f, 1.8f, 0.2f, 0.6f, 18.0f, 2.0f, 2.0f, 1.7f, 0.4f, 12.0f, 3.0f, 2.0f,
 };
 
 /* 8038EFA8-8038F010 01B608 0068+00 3/3 0/0 0/0 .rodata          m__24daAlinkHIO_wlSideStep_c0 */
 daAlinkHIO_wlSideStep_c1 const daAlinkHIO_wlSideStep_c0::m = {
-	{ 5, 1.0f, 0.0f, 3.0f, 6.0f },
-	{ 23, 1.0f, 1.0f, 2.0f, 2.0f },
-	{ 4, 0.9f, 0.0f, 3.0f, 5.0f },
-	{ 23, 1.0f, 1.0f, 2.0f, 3.0f },
-	33.0f, 23.0f, 30.0f, 22.0f, 100.0f, 10.0f, 
+    {5, 1.0f, 0.0f, 3.0f, 6.0f},
+    {23, 1.0f, 1.0f, 2.0f, 2.0f},
+    {4, 0.9f, 0.0f, 3.0f, 5.0f},
+    {23, 1.0f, 1.0f, 2.0f, 3.0f},
+    33.0f,
+    23.0f,
+    30.0f,
+    22.0f,
+    100.0f,
+    10.0f,
 };
 
 /* 8038F010-8038F048 01B670 0038+00 3/4 0/0 0/0 .rodata          m__24daAlinkHIO_wlBackJump_c0 */
 daAlinkHIO_wlBackJump_c1 const daAlinkHIO_wlBackJump_c0::m = {
-	{ 11, 0.8f, 0.0f, 2.0f, 12.0f },
-	{ 28, 1.0f, 0.0f, 3.0f, 1.0f },
-	30.0f, 20.0f, 100.0f, 10.0f, 
+    {11, 0.8f, 0.0f, 2.0f, 12.0f}, {28, 1.0f, 0.0f, 3.0f, 1.0f}, 30.0f, 20.0f, 100.0f, 10.0f,
 };
 
 /* 8038F048-8038F0A8 01B6A8 0060+00 2/2 0/0 0/0 .rodata          m__20daAlinkHIO_wlHowl_c0 */
 daAlinkHIO_wlHowl_c1 const daAlinkHIO_wlHowl_c0::m = {
-	{ 49, 1.0f, 0.0f, 3.0f, 40.0f },
-	{ 71, 1.0f, 0.0f, 3.0f, 72.0f },
-	{ 14, 1.3f, 1.0f, 3.0f, 11.0f },
-	{ 17, 0.9f, 0.0f, 3.0f, 18.0f },
-	3.0f, 8.0f, 1.7f, 0.7f, 
+    {49, 1.0f, 0.0f, 3.0f, 40.0f},
+    {71, 1.0f, 0.0f, 3.0f, 72.0f},
+    {14, 1.3f, 1.0f, 3.0f, 11.0f},
+    {17, 0.9f, 0.0f, 3.0f, 18.0f},
+    3.0f,
+    8.0f,
+    1.7f,
+    0.7f,
 };
 
 /* 8038F0A8-8038F124 01B708 007C+00 8/13 0/0 0/0 .rodata          m__24daAlinkHIO_wlAutoJump_c0 */
@@ -5732,105 +5994,163 @@ daAlinkHIO_wlAutoJump_c1 const daAlinkHIO_wlAutoJump_c0::m = {{3, 1.2f, 1.0f, 2.
 
 /* 8038F124-8038F138 01B784 0014+00 4/4 0/0 0/0 .rodata          m__20daAlinkHIO_wlPush_c0 */
 daAlinkHIO_wlPush_c1 const daAlinkHIO_wlPush_c0::m = {
-	1.0f, 3.0f, 1.0f, 3.0f, 0.75f, 
+    1.0f, 3.0f, 1.0f, 3.0f, 0.75f,
 };
 
 /* 8038F138-8038F184 01B798 004C+00 13/15 0/0 0/0 .rodata          m__19daAlinkHIO_wlLie_c0 */
 daAlinkHIO_wlLie_c1 const daAlinkHIO_wlLie_c0::m = {
-	{ 14, 1.5f, 0.0f, 3.0f, 10.0f },
-	{ 11, 1.5f, 3.0f, 3.0f, 8.0f },
-	5, 500, 50, 3.0f, 8.0f, 1.7f, 0.7f, 5.0f, 0.8f, 3.0f, 
+    {14, 1.5f, 0.0f, 3.0f, 10.0f},
+    {11, 1.5f, 3.0f, 3.0f, 8.0f},
+    5,
+    500,
+    50,
+    3.0f,
+    8.0f,
+    1.7f,
+    0.7f,
+    5.0f,
+    0.8f,
+    3.0f,
 };
 
 /* 8038F184-8038F1A0 01B7E4 001C+00 0/1 0/0 0/0 .rodata          m__21daAlinkHIO_wlLight_c0 */
 #pragma push
 #pragma force_active on
 daAlinkHIO_wlLight_c1 const daAlinkHIO_wlLight_c0::m = {
-	515, 0, 120, 120, 120, -30, 3.0f, 20.0f, 512.0f, -638.0f, 
+    515, 0, 120, 120, 120, -30, 3.0f, 20.0f, 512.0f, -638.0f,
 };
 #pragma pop
 
 /* 8038F1A0-8038F23C 01B800 009C+00 9/11 0/0 0/0 .rodata          m__24daAlinkHIO_wlWallHang_c0 */
 daAlinkHIO_wlWallHang_c1 const daAlinkHIO_wlWallHang_c0::m = {
-	{ 13, 1.2f, 8.0f, 2.0f, 14.0f },
-	{ 39, 1.1f, 0.0f, 3.0f, 31.0f },
-	{ 39, 1.0f, 0.0f, 5.0f, 40.0f },
-	{ 5, 1.0f, 0.0f, 3.0f, 6.0f },
-	{ 6, 1.0f, 0.0f, 3.0f, 7.0f },
-	{ 16, 1.0f, 0.0f, 3.0f, 10.0f },
-	50.0f, 100.0f, 200.0f, 250.0f, 100.0f, 17.0f, 15.0f, 10.0f, 10.0f, 
+    {13, 1.2f, 8.0f, 2.0f, 14.0f},
+    {39, 1.1f, 0.0f, 3.0f, 31.0f},
+    {39, 1.0f, 0.0f, 5.0f, 40.0f},
+    {5, 1.0f, 0.0f, 3.0f, 6.0f},
+    {6, 1.0f, 0.0f, 3.0f, 7.0f},
+    {16, 1.0f, 0.0f, 3.0f, 10.0f},
+    50.0f,
+    100.0f,
+    200.0f,
+    250.0f,
+    100.0f,
+    17.0f,
+    15.0f,
+    10.0f,
+    10.0f,
 };
 
 /* 8038F23C-8038F29C 01B89C 0060+00 2/3 0/0 0/0 .rodata          m__25daAlinkHIO_wlDamNormal_c0 */
 daAlinkHIO_wlDamNormal_c1 const daAlinkHIO_wlDamNormal_c0::m = {
-	{ 9, 1.0f, 0.0f, 0.0f, 8.0f },
-	{ 9, 1.0f, 0.0f, 0.0f, 8.0f },
-	{ 9, 1.0f, 0.0f, 0.0f, 8.0f },
-	{ 9, 1.0f, 0.0f, 0.0f, 8.0f },
-	10.0f, 0.01f, 1.0f, 0.25f, 
+    {9, 1.0f, 0.0f, 0.0f, 8.0f},
+    {9, 1.0f, 0.0f, 0.0f, 8.0f},
+    {9, 1.0f, 0.0f, 0.0f, 8.0f},
+    {9, 1.0f, 0.0f, 0.0f, 8.0f},
+    10.0f,
+    0.01f,
+    1.0f,
+    0.25f,
 };
 
 /* 8038F29C-8038F308 01B8FC 006C+00 2/4 0/0 0/0 .rodata          m__24daAlinkHIO_wlDamLarge_c0 */
 daAlinkHIO_wlDamLarge_c1 const daAlinkHIO_wlDamLarge_c0::m = {
-	{ 49, 1.0f, 0.0f, 3.0f, 40.0f },
-	{ 39, 1.0f, 0.0f, 3.0f, 35.0f },
-	{ 34, 1.1f, 0.0f, 3.0f, 32.0f },
-	{ 34, 1.1f, 0.0f, 3.0f, 32.0f },
-	1300, -5.2f, 3.0f, 10.0f, 15.0f, 15.0f, 0.5f, 
+    {49, 1.0f, 0.0f, 3.0f, 40.0f},
+    {39, 1.0f, 0.0f, 3.0f, 35.0f},
+    {34, 1.1f, 0.0f, 3.0f, 32.0f},
+    {34, 1.1f, 0.0f, 3.0f, 32.0f},
+    1300,
+    -5.2f,
+    3.0f,
+    10.0f,
+    15.0f,
+    15.0f,
+    0.5f,
 };
 
 /* 8038F308-8038F374 01B968 006C+00 0/2 0/0 0/0 .rodata          m__23daAlinkHIO_wlDamHuge_c0 */
 #pragma push
 #pragma force_active on
 daAlinkHIO_wlDamHuge_c1 const daAlinkHIO_wlDamHuge_c0::m = {
-	{ 49, 1.1f, 0.0f, 3.0f, 40.0f },
-	{ 39, 1.1f, 0.0f, 3.0f, 35.0f },
-	{ 34, 1.2f, 0.0f, 3.0f, 30.0f },
-	{ 34, 1.2f, 0.0f, 3.0f, 30.0f },
-	2000, -7.5f, 3.0f, 85.0f, 45.0f, 15.0f, 0.5f, 
+    {49, 1.1f, 0.0f, 3.0f, 40.0f},
+    {39, 1.1f, 0.0f, 3.0f, 35.0f},
+    {34, 1.2f, 0.0f, 3.0f, 30.0f},
+    {34, 1.2f, 0.0f, 3.0f, 30.0f},
+    2000,
+    -7.5f,
+    3.0f,
+    85.0f,
+    45.0f,
+    15.0f,
+    0.5f,
 };
 #pragma pop
 
 /* 8038F374-8038F3B4 01B9D4 0040+00 6/6 0/0 0/0 .rodata          m__23daAlinkHIO_wlDamFall_c0 */
 daAlinkHIO_wlDamFall_c1 const daAlinkHIO_wlDamFall_c0::m = {
-	{ 11, 1.0f, 0.0f, 3.0f, 12.0f },
-	{ 17, 0.8f, 0.0f, 0.0f, 12.0f },
-	15, 35, 40.0f, 60.0f, 3.0f, 1.0f, 15.0f, 
+    {11, 1.0f, 0.0f, 3.0f, 12.0f},
+    {17, 0.8f, 0.0f, 0.0f, 12.0f},
+    15,
+    35,
+    40.0f,
+    60.0f,
+    3.0f,
+    1.0f,
+    15.0f,
 };
 
 /* 8038F3B4-8038F3C4 01BA14 0010+00 1/1 0/0 0/0 .rodata          m__25daAlinkHIO_wlDamCaught_c0 */
 daAlinkHIO_wlDamCaught_c1 const daAlinkHIO_wlDamCaught_c0::m = {
-	300, 5, 1.2f, 3.0f, 1.5f, 
+    300, 5, 1.2f, 3.0f, 1.5f,
 };
 
 /* 8038F3C4-8038F3F0 01BA24 002C+00 3/4 0/0 0/0 .rodata          m__22daAlinkHIO_wlDamage_c0 */
 daAlinkHIO_wlDamage_c1 const daAlinkHIO_wlDamage_c0::m = {
-	{ 9, 1.1f, 0.0f, 3.0f, 10.0f },
-	{ 9, 1.1f, 0.0f, 3.0f, 7.0f },
-	0.7f, 
+    {9, 1.1f, 0.0f, 3.0f, 10.0f},
+    {9, 1.1f, 0.0f, 3.0f, 7.0f},
+    0.7f,
 };
 
 /* 8038F3F0-8038F46C 01BA50 007C+00 10/14 0/0 0/0 .rodata          m__21daAlinkHIO_wlSlide_c0 */
 daAlinkHIO_wlSlide_c1 const daAlinkHIO_wlSlide_c0::m = {
-	{ 20, 1.25f, 0.0f, 3.0f, 25.0f },
-	{ 7, 1.0f, 0.0f, 3.0f, 8.0f },
-	{ 14, 1.0f, 0.0f, 3.0f, 15.0f },
-	{ 29, 1.0f, 0.0f, 3.0f, 27.0f },
-	512, 64, 35.0f, 3.0f, 50.0f, 35.0f, 2.6f, 18.0f, 2.1f, 10.0f, 0.7f, 30.0f, 
+    {20, 1.25f, 0.0f, 3.0f, 25.0f},
+    {7, 1.0f, 0.0f, 3.0f, 8.0f},
+    {14, 1.0f, 0.0f, 3.0f, 15.0f},
+    {29, 1.0f, 0.0f, 3.0f, 27.0f},
+    512,
+    64,
+    35.0f,
+    3.0f,
+    50.0f,
+    35.0f,
+    2.6f,
+    18.0f,
+    2.1f,
+    10.0f,
+    0.7f,
+    30.0f,
 };
 
 /* 8038F46C-8038F4A4 01BACC 0038+00 7/7 0/0 0/0 .rodata          m__20daAlinkHIO_wlRope_c0 */
 daAlinkHIO_wlRope_c1 const daAlinkHIO_wlRope_c0::m = {
-	{ 16, 1.0f, 0.0f, 3.0f, 17.0f },
-	90, 30, 0.5f, 1.2f, 3.0f, 15.0f, 1.0f, 3.0f, 3.0f, 0.8f, 
+    {16, 1.0f, 0.0f, 3.0f, 17.0f}, 90, 30, 0.5f, 1.2f, 3.0f, 15.0f, 1.0f, 3.0f, 3.0f, 0.8f,
 };
 
 /* 8038F4A4-8038F4E0 01BB04 003C+00 0/1 0/0 0/0 .rodata          m__22daAlinkHIO_wlAtWaLr_c0 */
 #pragma push
 #pragma force_active on
 daAlinkHIO_wlAtWaLr_c1 const daAlinkHIO_wlAtWaLr_c0::m = {
-	{ 41, 0.9f, 4.0f, 3.0f, 16.0f },
-	5, 3, 0.0f, 10.0f, 4.0f, 11.0f, 18.0f, 5.0f, 70.0f, 70.0f, 150.0f, 
+    {41, 0.9f, 4.0f, 3.0f, 16.0f},
+    5,
+    3,
+    0.0f,
+    10.0f,
+    4.0f,
+    11.0f,
+    18.0f,
+    5.0f,
+    70.0f,
+    70.0f,
+    150.0f,
 };
 #pragma pop
 
@@ -5838,8 +6158,18 @@ daAlinkHIO_wlAtWaLr_c1 const daAlinkHIO_wlAtWaLr_c0::m = {
 #pragma push
 #pragma force_active on
 daAlinkHIO_wlAtWaSc_c1 const daAlinkHIO_wlAtWaSc_c0::m = {
-	{ 15, 0.9f, 0.0f, 3.0f, 15.0f },
-	5, 5, 10.0f, 3.0f, 5.0f, 11.0f, 18.0f, 0.0f, 100.0f, 85.0f, 150.0f, 
+    {15, 0.9f, 0.0f, 3.0f, 15.0f},
+    5,
+    5,
+    10.0f,
+    3.0f,
+    5.0f,
+    11.0f,
+    18.0f,
+    0.0f,
+    100.0f,
+    85.0f,
+    150.0f,
 };
 #pragma pop
 
@@ -5847,21 +6177,42 @@ daAlinkHIO_wlAtWaSc_c1 const daAlinkHIO_wlAtWaSc_c0::m = {
 #pragma push
 #pragma force_active on
 daAlinkHIO_wlAtWaTl_c1 const daAlinkHIO_wlAtWaTl_c0::m = {
-	{ 42, 1.05f, 3.0f, 3.0f, 28.0f },
-	0, 3, 10.0f, 5.0f, 10.0f, 14.0f, 25.0f, 0.0f, 40.0f, 150.0f, 100.0f, 
+    {42, 1.05f, 3.0f, 3.0f, 28.0f},
+    0,
+    3,
+    10.0f,
+    5.0f,
+    10.0f,
+    14.0f,
+    25.0f,
+    0.0f,
+    40.0f,
+    150.0f,
+    100.0f,
 };
 #pragma pop
 
 /* 8038F558-8038F578 01BBB8 0020+00 2/2 0/0 0/0 .rodata          m__22daAlinkHIO_wlAtRoll_c0 */
 daAlinkHIO_wlAtRoll_c1 const daAlinkHIO_wlAtRoll_c0::m = {
-	{ 40, 1.0f, 4.0f, 3.0f, 23.0f },
-	250.0f, 20.0f, 0.0f, 
+    {40, 1.0f, 4.0f, 3.0f, 23.0f},
+    250.0f,
+    20.0f,
+    0.0f,
 };
 
 /* 8038F578-8038F5B4 01BBD8 003C+00 3/5 0/0 0/0 .rodata          m__23daAlinkHIO_wlAtNjump_c0 */
 daAlinkHIO_wlAtNjump_c1 const daAlinkHIO_wlAtNjump_c0::m = {
-	{ 6, 1.0f, 4.0f, 3.0f, 7.0f },
-	30.0f, 40.0f, 23.0f, 17.0f, 0.8f, 2.0f, 80.0f, 60.0f, 120.0f, 10.0f, 
+    {6, 1.0f, 4.0f, 3.0f, 7.0f},
+    30.0f,
+    40.0f,
+    23.0f,
+    17.0f,
+    0.8f,
+    2.0f,
+    80.0f,
+    60.0f,
+    120.0f,
+    10.0f,
 };
 
 /* 8038F5B4-8038F618 01BC14 0064+00 1/4 0/0 0/0 .rodata          m__23daAlinkHIO_wlAtCjump_c0 */
@@ -5878,10 +6229,10 @@ COMPILER_STRIP_GATE(0x8038F5B4, &daAlinkHIO_wlAtCjump_c0::m);
 
 /* 8038F618-8038F658 01BC78 0040+00 4/4 0/0 0/0 .rodata          m__22daAlinkHIO_wlAtLand_c0 */
 daAlinkHIO_wlAtLand_c1 const daAlinkHIO_wlAtLand_c0::m = {
-	{ 19, 0.9f, 0.0f, 2.0f, 2.0f },
-	{ 14, 1.0f, 0.0f, 3.0f, 1.0f },
-	{ 19, 1.1f, 0.0f, 2.0f, 1.0f },
-	2.0f, 
+    {19, 0.9f, 0.0f, 2.0f, 2.0f},
+    {14, 1.0f, 0.0f, 3.0f, 1.0f},
+    {19, 1.1f, 0.0f, 2.0f, 1.0f},
+    2.0f,
 };
 
 /* 8038F658-8038F6F4 01BCB8 009C+00 6/7 0/0 0/0 .rodata          m__22daAlinkHIO_wlAtDown_c0 */
@@ -5901,10 +6252,15 @@ COMPILER_STRIP_GATE(0x8038F658, &daAlinkHIO_wlAtDown_c0::m);
 
 /* 8038F6F4-8038F748 01BD54 0054+00 6/6 0/0 0/0 .rodata          m__22daAlinkHIO_wlAtLock_c0 */
 daAlinkHIO_wlAtLock_c1 const daAlinkHIO_wlAtLock_c0::m = {
-	{ 6, 3.0f, 0.0f, 3.0f, 15.0f },
-	{ 6, 2.0f, 0.0f, 2.0f, 20.0f },
-	{ 120, 100.0f, 550.0f, 25.0f, 85.0f },
-	80.0f, 60.0f, 120.0f, -8.0f, 700.0f, 1000.0f, 
+    {6, 3.0f, 0.0f, 3.0f, 15.0f},
+    {6, 2.0f, 0.0f, 2.0f, 20.0f},
+    {120, 100.0f, 550.0f, 25.0f, 85.0f},
+    80.0f,
+    60.0f,
+    120.0f,
+    -8.0f,
+    700.0f,
+    1000.0f,
 };
 
 /* 8038F748-8038F7A4 01BDA8 005C+00 5/5 0/0 0/0 .rodata          m__22daAlinkHIO_wlAtBite_c0 */
@@ -5920,58 +6276,93 @@ COMPILER_STRIP_GATE(0x8038F748, &daAlinkHIO_wlAtBite_c0::m);
 
 /* 8038F7A4-8038F7DC 01BE04 0038+00 7/10 0/0 0/0 .rodata          m__22daAlinkHIO_wlAttack_c0 */
 daAlinkHIO_wlAttack_c1 const daAlinkHIO_wlAttack_c0::m = {
-	{ 59, 1.2f, 0.0f, 2.0f, 5.0f },
-    15, 5, 100.0f, 10.0f, 5.0f, 230.0f, 10.0f, 12.0f, 35.0f, 30.0f
-};
+    {59, 1.2f, 0.0f, 2.0f, 5.0f}, 15, 5, 100.0f, 10.0f, 5.0f, 230.0f, 10.0f, 12.0f, 35.0f, 30.0f};
 
 /* 8038F7DC-8038F858 01BE3C 007C+00 5/5 0/0 0/0 .rodata          m__21daAlinkHIO_wlPoint_c0 */
 daAlinkHIO_wlPoint_c1 const daAlinkHIO_wlPoint_c0::m = {
-	{ 6, 0.9f, 2.0f, 3.0f, 7.0f },
-	{ 7, 1.0f, 0.0f, 3.0f, 8.0f },
-	{ 11, 0.75f, 0.0f, 3.0f, 5.0f },
-	{ 14, 1.0f, 0.0f, 3.0f, 3.0f },
-	{ 20, 1.0f, 3.0f, 5.0f, 50.0f },
-	45.0f, 65.0f, 15.0f, 0.5f, 0.5f, 0.2f, 
+    {6, 0.9f, 2.0f, 3.0f, 7.0f},
+    {7, 1.0f, 0.0f, 3.0f, 8.0f},
+    {11, 0.75f, 0.0f, 3.0f, 5.0f},
+    {14, 1.0f, 0.0f, 3.0f, 3.0f},
+    {20, 1.0f, 3.0f, 5.0f, 50.0f},
+    45.0f,
+    65.0f,
+    15.0f,
+    0.5f,
+    0.5f,
+    0.2f,
 };
 
 /* 8038F858-8038F8B4 01BEB8 005C+00 6/6 0/0 0/0 .rodata          m__21daAlinkHIO_wlChain_c0 */
 daAlinkHIO_wlChain_c1 const daAlinkHIO_wlChain_c0::m = {
-	{ 39, 1.0f, 0.0f, 3.0f, 40.0f },
-	{ 81, 1.0f, 0.0f, 3.0f, 82.0f },
-	{ 47, 1.0f, 0.0f, 0.0f, 48.0f },
-	20, 5, 1.0f, 3.0f, 1.0f, 3.0f, 15.1f, 1.0f, 5.0f, 
+    {39, 1.0f, 0.0f, 3.0f, 40.0f},
+    {81, 1.0f, 0.0f, 3.0f, 82.0f},
+    {47, 1.0f, 0.0f, 0.0f, 48.0f},
+    20,
+    5,
+    1.0f,
+    3.0f,
+    1.0f,
+    3.0f,
+    15.1f,
+    1.0f,
+    5.0f,
 };
 
 /* 8038F8B4-8038F95C 01BF14 00A8+00 16/24 0/0 0/0 .rodata          m__20daAlinkHIO_wlSwim_c0 */
 daAlinkHIO_wlSwim_c1 const daAlinkHIO_wlSwim_c0::m = {
-	{ 25, 0.9f, 0.0f, 5.0f, -1.0f },
-	{ 45, 1.0f, 0.0f, 3.0f, 20.0f },
-	{ 28, 1.1f, 0.0f, 1.0f, 32.0f },
-	5, 1000, 1600, 5, 2500, 1024, 90.0f, 50.0f, 20.0f, 0.35f, -10.0f, 10.0f, 1.5f, 1.4f, 10.0f, 3.5f, 0.5f, 1.5f, 5.0f, 37.5f, 9.0f, 0.25f, 1.0f, 0.4f, 1.2f, -37.5f, 8.0f, 0.2f, -7.0f, 7.0f, 
+    {25, 0.9f, 0.0f, 5.0f, -1.0f},
+    {45, 1.0f, 0.0f, 3.0f, 20.0f},
+    {28, 1.1f, 0.0f, 1.0f, 32.0f},
+    5,
+    1000,
+    1600,
+    5,
+    2500,
+    1024,
+    90.0f,
+    50.0f,
+    20.0f,
+    0.35f,
+    -10.0f,
+    10.0f,
+    1.5f,
+    1.4f,
+    10.0f,
+    3.5f,
+    0.5f,
+    1.5f,
+    5.0f,
+    37.5f,
+    9.0f,
+    0.25f,
+    1.0f,
+    0.4f,
+    1.2f,
+    -37.5f,
+    8.0f,
+    0.2f,
+    -7.0f,
+    7.0f,
 };
 
 /* 8038F95C-8038F9C0 01BFBC 0064+00 6/6 0/0 0/0 .rodata          m__20daAlinkHIO_wlGrab_c0 */
 daAlinkHIO_wlGrab_c1 const daAlinkHIO_wlGrab_c0::m = {
-	{ 20, 1.5f, 0.0f, 3.0f, 15.0f },
-	{ 20, -1.3f, 0.0f, 3.0f, 5.0f },
-	{ 14, 1.0f, 0.0f, 3.0f, 15.0f },
-	{ 14, -1.0f, 0.0f, 3.0f, -1.0f },
-	{ 19, 1.3f, 4.0f, 3.0f, 15.0f },
+    {20, 1.5f, 0.0f, 3.0f, 15.0f},  {20, -1.3f, 0.0f, 3.0f, 5.0f}, {14, 1.0f, 0.0f, 3.0f, 15.0f},
+    {14, -1.0f, 0.0f, 3.0f, -1.0f}, {19, 1.3f, 4.0f, 3.0f, 15.0f},
 };
 
 /* 8038F9C0-8038F9F8 01C020 0038+00 0/0 0/0 0/0 .rodata          m__20daAlinkHIO_wlBall_c0 */
 #pragma push
 #pragma force_active on
 daAlinkHIO_wlBall_c1 const daAlinkHIO_wlBall_c0::m = {
-	{ 64, 1.0f, 0.0f, 3.0f, 35.0f },
-	{ 54, 1.0f, 0.0f, 3.0f, 55.0f },
-	60, -5.0f, 60.0f, 20.0f,
+    {64, 1.0f, 0.0f, 3.0f, 35.0f}, {54, 1.0f, 0.0f, 3.0f, 55.0f}, 60, -5.0f, 60.0f, 20.0f,
 };
 #pragma pop
 
 /* 8038F9F8-8038FA10 01C058 0018+00 5/6 0/0 0/0 .rodata          m__18daAlinkHIO_wolf_c0 */
 daAlinkHIO_wolf_c1 const daAlinkHIO_wolf_c0::m = {
-	13000, -10000, 8000, 4000, -2000, 8000, 150, 5, 35, 60, 0.7f, 
+    13000, -10000, 8000, 4000, -2000, 8000, 150, 5, 35, 60, 0.7f,
 };
 
 /* 800A142C-800A1AEC 09BD6C 06C0+00 1/1 0/0 0/0 .text getNeckAimAngle__9daAlink_cFP4cXyzPsPsPsPs
@@ -6339,571 +6730,498 @@ COMPILER_STRIP_GATE(0x8038FC38, &daAlink_c::m_mainBckFishing);
 
 /* 8038FCA8-80391010 01C308 1368+00 3/4 0/0 0/0 .rodata          m_anmDataTable__9daAlink_c */
 daAlink_AnmData const daAlink_c::m_anmDataTable[414] = {
-	{ 37, 36, 254, 254, 0, 232, 0 },
-	{ 35, 34, 254, 254, 0, 232, 0 },
-	{ 18, 18, 254, 254, 0, 232, 0 },
-	{ 16, 16, 254, 254, 0, 232, 0 },
-	{ 33, 31, 254, 254, 0, 232, 0 },
-	{ 30, 29, 254, 254, 0, 232, 0 },
-	{ 60, 59, 4, 10, 0, 232, 0 },
-	{ 44, 43, 4, 10, 0, 232, 0 },
-	{ 62, 61, 4, 10, 0, 232, 0 },
-	{ 46, 45, 4, 10, 0, 232, 0 },
-	{ 48, 47, 4, 10, 0, 232, 0 },
-	{ 40, 39, 4, 10, 0, 232, 0 },
-	{ 50, 49, 4, 10, 0, 232, 0 },
-	{ 42, 41, 4, 10, 0, 232, 0 },
-	{ 628, 628, 254, 254, 0, 232, 0 },
-	{ 32, 26, 254, 254, 0, 0, 0 },
-	{ 26, 14, 254, 254, 0, 232, 0 },
-	{ 28, 14, 254, 254, 0, 232, 0 },
-	{ 631, 631, 4, 10, 0, 0, 0 },
-	{ 205, 197, 4, 10, 0, 232, 0 },
-	{ 579, 579, 254, 254, 0, 345, 0 },
-	{ 563, 563, 4, 10, 0, 0, 0 },
-	{ 564, 564, 4, 10, 0, 0, 0 },
-	{ 563, 604, 4, 10, 0, 0, 0 },
-	{ 564, 604, 4, 10, 0, 0, 0 },
-	{ 618, 618, 4, 10, 0, 0, 0 },
-	{ 598, 598, 1, 6, 0, 232, 0 },
-	{ 599, 599, 1, 6, 0, 351, 0 },
-	{ 198, 198, 1, 6, 0, 232, 0 },
-	{ 54, 54, 254, 254, 0, 328, 0 },
-	{ 56, 56, 254, 254, 0, 328, 0 },
-	{ 53, 53, 1, 6, 0, 232, 0 },
-	{ 55, 55, 1, 6, 0, 232, 0 },
-	{ 52, 52, 254, 254, 0, 328, 0 },
-	{ 51, 51, 1, 6, 0, 232, 0 },
-	{ 519, 519, 254, 254, 0, 328, 0 },
-	{ 521, 521, 254, 254, 0, 223, 0 },
-	{ 520, 520, 1, 6, 38, 335, 0 },
-	{ 518, 518, 4, 10, 0, 328, 0 },
-	{ 517, 517, 4, 10, 0, 232, 0 },
-	{ 559, 559, 254, 254, 0, 232, 0 },
-	{ 123, 123, 254, 254, 0, 0, 0 },
-	{ 126, 126, 254, 6, 0, 232, 0 },
-	{ 19, 19, 254, 6, 0, 232, 0 },
-	{ 21, 21, 254, 6, 0, 232, 0 },
-	{ 124, 124, 254, 6, 0, 232, 0 },
-	{ 23, 23, 254, 6, 0, 232, 0 },
-	{ 24, 24, 254, 6, 0, 232, 0 },
-	{ 20, 20, 1, 6, 125, 233, 0 },
-	{ 421, 421, 254, 254, 0, 327, 0 },
-	{ 419, 419, 254, 254, 0, 327, 0 },
-	{ 420, 420, 254, 254, 0, 223, 0 },
-	{ 436, 436, 254, 254, 0, 223, 0 },
-	{ 437, 437, 254, 254, 0, 223, 0 },
-	{ 617, 617, 254, 254, 0, 223, 0 },
-	{ 503, 503, 254, 254, 10, 333, 0 },
-	{ 502, 502, 254, 254, 4, 232, 0 },
-	{ 501, 501, 254, 254, 4, 232, 0 },
-	{ 500, 500, 0, 5, 11, 332, 0 },
-	{ 499, 499, 254, 254, 0, 232, 0 },
-	{ 498, 498, 0, 5, 0, 232, 0 },
-	{ 510, 510, 254, 254, 0, 223, 0 },
-	{ 511, 511, 254, 254, 0, 223, 0 },
-	{ 509, 509, 254, 254, 0, 223, 0 },
-	{ 225, 225, 4, 10, 0, 223, 0 },
-	{ 226, 226, 4, 10, 0, 223, 0 },
-	{ 565, 565, 4, 5, 0, 232, 0 },
-	{ 566, 566, 4, 5, 0, 232, 0 },
-	{ 562, 562, 4, 5, 0, 232, 0 },
-	{ 418, 418, 4, 5, 0, 232, 0 },
-	{ 416, 416, 4, 5, 0, 232, 0 },
-	{ 417, 417, 4, 5, 0, 232, 0 },
-	{ 614, 614, 4, 5, 0, 0, 0 },
-	{ 629, 629, 4, 5, 0, 0, 0 },
-	{ 630, 630, 4, 5, 0, 0, 0 },
-	{ 202, 202, 4, 5, 0, 232, 0 },
-	{ 203, 203, 4, 5, 0, 232, 0 },
-	{ 781, 614, 4, 5, 0, 0, 0 },
-	{ 221, 221, 4, 5, 0, 258, 0 },
-	{ 435, 435, 4, 5, 0, 261, 0 },
-	{ 149, 149, 100, 5, 36, 272, 0 },
-	{ 568, 568, 4, 5, 55, 338, 0 },
-	{ 569, 569, 4, 5, 56, 0, 0 },
-	{ 214, 214, 4, 10, 88, 300, 0 },
-	{ 587, 587, 4, 5, 37, 0, 0 },
-	{ 613, 613, 4, 5, 0, 232, 0 },
-	{ 560, 560, 4, 5, 109, 336, 0 },
-	{ 561, 561, 4, 5, 109, 336, 0 },
-	{ 373, 373, 4, 5, 110, 321, 0 },
-	{ 374, 374, 4, 5, 110, 321, 0 },
-	{ 588, 588, 4, 5, 114, 0, 0 },
-	{ 589, 589, 4, 5, 115, 0, 0 },
-	{ 512, 512, 254, 254, 0, 223, 0 },
-	{ 513, 513, 254, 254, 0, 223, 0 },
-	{ 227, 227, 4, 10, 0, 223, 0 },
-	{ 228, 228, 4, 10, 0, 223, 0 },
-	{ 624, 624, 254, 254, 16, 357, 0 },
-	{ 623, 623, 4, 5, 17, 356, 0 },
-	{ 127, 127, 100, 6, 46, 259, 0 },
-	{ 153, 153, 0, 6, 47, 275, 0 },
-	{ 154, 154, 0, 6, 48, 276, 0 },
-	{ 143, 143, 100, 6, 49, 267, 0 },
-	{ 144, 144, 100, 6, 49, 267, 0 },
-	{ 132, 132, 100, 6, 50, 262, 0 },
-	{ 133, 133, 100, 6, 51, 263, 0 },
-	{ 134, 134, 100, 5, 0, 261, 0 },
-	{ 138, 138, 0, 5, 0, 223, 0 },
-	{ 137, 137, 100, 5, 0, 223, 0 },
-	{ 139, 139, 100, 5, 52, 264, 0 },
-	{ 136, 136, 0, 5, 0, 223, 0 },
-	{ 135, 135, 100, 5, 0, 223, 0 },
-	{ 155, 155, 0, 6, 89, 277, 0 },
-	{ 156, 156, 0, 6, 89, 277, 0 },
-	{ 152, 152, 100, 6, 60, 274, 0 },
-	{ 151, 151, 100, 6, 61, 273, 0 },
-	{ 159, 159, 100, 6, 58, 280, 0 },
-	{ 158, 158, 100, 6, 59, 279, 0 },
-	{ 164, 164, 0, 6, 0, 232, 0 },
-	{ 165, 165, 100, 6, 0, 232, 0 },
-	{ 166, 166, 100, 6, 0, 232, 0 },
-	{ 170, 170, 0, 5, 0, 261, 0 },
-	{ 167, 167, 0, 5, 90, 285, 0 },
-	{ 168, 168, 0, 5, 0, 286, 0 },
-	{ 169, 169, 100, 5, 18, 287, 0 },
-	{ 142, 142, 0, 6, 127, 266, 0 },
-	{ 140, 140, 0, 6, 128, 265, 0 },
-	{ 141, 141, 0, 6, 0, 232, 0 },
-	{ 174, 174, 1, 6, 39, 234, 0 },
-	{ 172, 172, 1, 6, 39, 234, 0 },
-	{ 189, 189, 1, 6, 39, 234, 0 },
-	{ 190, 190, 1, 6, 39, 234, 0 },
-	{ 178, 178, 254, 254, 40, 248, 0 },
-	{ 175, 175, 254, 254, 40, 248, 0 },
-	{ 180, 180, 254, 254, 40, 248, 0 },
-	{ 182, 182, 254, 254, 40, 248, 0 },
-	{ 179, 179, 254, 254, 42, 292, 0 },
-	{ 176, 176, 254, 254, 43, 290, 0 },
-	{ 181, 181, 254, 254, 44, 293, 0 },
-	{ 183, 183, 254, 254, 44, 293, 0 },
-	{ 171, 171, 1, 6, 39, 234, 0 },
-	{ 431, 431, 1, 6, 39, 234, 0 },
-	{ 432, 432, 254, 254, 0, 223, 0 },
-	{ 324, 324, 0, 6, 6, 305, 0 },
-	{ 325, 325, 0, 10, 7, 306, 0 },
-	{ 567, 567, 4, 10, 28, 337, 0 },
-	{ 591, 591, 254, 254, 0, 223, 0 },
-	{ 592, 592, 254, 254, 0, 223, 0 },
-	{ 593, 593, 254, 254, 0, 223, 0 },
-	{ 594, 594, 254, 254, 0, 223, 0 },
-	{ 372, 372, 254, 254, 0, 223, 0 },
-	{ 378, 378, 254, 254, 0, 223, 0 },
-	{ 376, 376, 254, 254, 0, 223, 0 },
-	{ 377, 377, 254, 254, 0, 223, 0 },
-	{ 430, 430, 254, 254, 0, 223, 0 },
-	{ 428, 428, 254, 254, 0, 223, 0 },
-	{ 429, 429, 254, 254, 0, 223, 0 },
-	{ 425, 425, 254, 254, 0, 223, 0 },
-	{ 423, 423, 254, 254, 0, 223, 0 },
-	{ 424, 424, 254, 254, 0, 223, 0 },
-	{ 427, 427, 254, 254, 0, 223, 0 },
-	{ 426, 426, 254, 254, 0, 223, 0 },
-	{ 106, 106, 3, 9, 0, 232, 0 },
-	{ 112, 112, 3, 9, 0, 232, 0 },
-	{ 108, 108, 3, 9, 0, 232, 0 },
-	{ 109, 109, 3, 9, 0, 232, 0 },
-	{ 110, 110, 3, 9, 0, 232, 0 },
-	{ 111, 111, 3, 9, 0, 232, 0 },
-	{ 107, 107, 3, 9, 92, 254, 0 },
-	{ 527, 527, 3, 9, 0, 232, 0 },
-	{ 528, 528, 3, 9, 0, 232, 0 },
-	{ 522, 522, 3, 9, 0, 232, 0 },
-	{ 524, 524, 3, 9, 0, 232, 0 },
-	{ 525, 525, 3, 9, 0, 232, 0 },
-	{ 526, 526, 3, 9, 0, 232, 0 },
-	{ 523, 523, 3, 9, 0, 232, 0 },
-	{ 366, 366, 254, 254, 24, 313, 0 },
-	{ 369, 369, 254, 254, 25, 316, 0 },
-	{ 368, 368, 254, 254, 0, 315, 0 },
-	{ 379, 379, 254, 254, 26, 322, 0 },
-	{ 365, 365, 254, 254, 27, 312, 0 },
-	{ 367, 367, 254, 254, 0, 314, 0 },
-	{ 95, 95, 254, 254, 0, 223, 0 },
-	{ 604, 604, 4, 10, 1, 352, 0 },
-	{ 596, 596, 4, 10, 1, 349, 0 },
-	{ 585, 585, 4, 10, 0, 223, 0 },
-	{ 620, 620, 1, 6, 12, 355, 0 },
-	{ 157, 157, 1, 6, 13, 278, 0 },
-	{ 82, 82, 254, 254, 0, 232, 0 },
-	{ 632, 632, 1, 6, 0, 223, 0 },
-	{ 557, 557, 254, 254, 0, 223, 0 },
-	{ 555, 555, 254, 254, 0, 223, 0 },
-	{ 558, 558, 254, 254, 0, 223, 0 },
-	{ 556, 556, 254, 254, 0, 223, 0 },
-	{ 574, 574, 254, 254, 21, 342, 0 },
-	{ 578, 578, 254, 254, 22, 344, 0 },
-	{ 57, 57, 254, 254, 0, 232, 0 },
-	{ 58, 58, 254, 254, 0, 232, 0 },
-	{ 17, 17, 254, 254, 0, 232, 0 },
-	{ 570, 570, 254, 254, 3, 232, 0 },
-	{ 573, 573, 254, 254, 23, 341, 0 },
-	{ 577, 577, 254, 254, 0, 232, 0 },
-	{ 576, 576, 254, 254, 0, 232, 0 },
-	{ 193, 193, 1, 6, 39, 234, 0 },
-	{ 192, 192, 1, 6, 39, 234, 0 },
-	{ 194, 194, 1, 6, 39, 234, 0 },
-	{ 195, 195, 1, 6, 39, 234, 0 },
-	{ 196, 196, 1, 6, 39, 234, 0 },
-	{ 87, 87, 254, 254, 77, 247, 0 },
-	{ 86, 86, 254, 254, 78, 246, 0 },
-	{ 85, 85, 254, 254, 79, 245, 0 },
-	{ 361, 361, 254, 254, 0, 308, 0 },
-	{ 362, 362, 254, 254, 0, 310, 0 },
-	{ 362, 618, 254, 254, 0, 307, 0 },
-	{ 362, 381, 254, 254, 0, 307, 0 },
-	{ 586, 586, 4, 10, 41, 346, 0 },
-	{ 595, 595, 254, 254, 0, 348, 0 },
-	{ 619, 619, 254, 254, 0, 223, 0 },
-	{ 603, 602, 254, 5, 0, 223, 0 },
-	{ 603, 603, 0, 254, 0, 223, 0 },
-	{ 619, 533, 254, 5, 0, 223, 0 },
-	{ 619, 534, 0, 254, 0, 223, 0 },
-	{ 619, 531, 254, 5, 0, 223, 0 },
-	{ 619, 532, 0, 254, 0, 223, 0 },
-	{ 619, 103, 254, 5, 0, 223, 0 },
-	{ 90, 90, 2, 254, 0, 304, 0 },
-	{ 91, 91, 2, 254, 0, 304, 0 },
-	{ 92, 92, 2, 254, 0, 223, 0 },
-	{ 94, 94, 2, 5, 120, 249, 0 },
-	{ 491, 491, 254, 254, 0, 223, 0 },
-	{ 506, 506, 2, 5, 0, 223, 0 },
-	{ 508, 508, 2, 5, 0, 223, 0 },
-	{ 434, 434, 2, 5, 0, 223, 0 },
-	{ 217, 217, 4, 10, 30, 301, 0 },
-	{ 218, 218, 4, 10, 31, 302, 0 },
-	{ 215, 215, 3, 10, 0, 223, 0 },
-	{ 216, 216, 3, 10, 0, 223, 0 },
-	{ 219, 219, 254, 254, 0, 223, 0 },
-	{ 220, 220, 254, 254, 0, 223, 0 },
-	{ 492, 492, 254, 254, 29, 223, 0 },
-	{ 529, 529, 1, 6, 0, 223, 0 },
-	{ 484, 484, 1, 6, 0, 223, 0 },
-	{ 485, 485, 1, 6, 0, 223, 0 },
-	{ 552, 552, 254, 254, 0, 223, 0 },
-	{ 544, 544, 254, 254, 0, 223, 0 },
-	{ 543, 543, 254, 254, 0, 223, 0 },
-	{ 549, 549, 254, 254, 0, 223, 0 },
-	{ 547, 547, 254, 254, 0, 223, 0 },
-	{ 545, 545, 254, 254, 0, 223, 0 },
-	{ 546, 546, 254, 254, 0, 223, 0 },
-	{ 548, 548, 254, 254, 0, 223, 0 },
-	{ 551, 551, 100, 254, 0, 223, 0 },
-	{ 550, 550, 100, 254, 0, 223, 0 },
-	{ 530, 530, 254, 254, 0, 223, 0 },
-	{ 102, 102, 254, 254, 53, 252, 0 },
-	{ 105, 105, 254, 254, 54, 253, 0 },
-	{ 625, 625, 4, 10, 0, 358, 0 },
-	{ 72, 72, 3, 254, 62, 238, 0 },
-	{ 70, 70, 3, 254, 63, 236, 0 },
-	{ 71, 71, 3, 254, 64, 237, 0 },
-	{ 69, 69, 3, 254, 65, 235, 0 },
-	{ 75, 75, 3, 254, 66, 241, 0 },
-	{ 76, 76, 3, 5, 67, 242, 0 },
-	{ 73, 73, 3, 5, 68, 239, 0 },
-	{ 78, 78, 3, 254, 69, 243, 0 },
-	{ 79, 79, 3, 254, 70, 244, 0 },
-	{ 74, 74, 3, 254, 71, 240, 0 },
-	{ 77, 77, 3, 254, 0, 223, 0 },
-	{ 438, 438, 0, 10, 0, 223, 0 },
-	{ 495, 495, 0, 9, 0, 223, 0 },
-	{ 493, 493, 0, 9, 0, 223, 0 },
-	{ 494, 494, 0, 9, 0, 223, 0 },
-	{ 371, 371, 2, 254, 74, 319, 0 },
-	{ 370, 370, 2, 254, 76, 318, 0 },
-	{ 97, 97, 2, 254, 75, 251, 0 },
-	{ 621, 621, 2, 254, 75, 251, 0 },
-	{ 605, 605, 1, 6, 14, 355, 0 },
-	{ 610, 610, 1, 6, 15, 353, 0 },
-	{ 483, 483, 254, 254, 0, 223, 0 },
-	{ 212, 212, 4, 10, 80, 298, 0 },
-	{ 213, 213, 4, 10, 81, 299, 0 },
-	{ 571, 571, 254, 254, 82, 339, 0 },
-	{ 572, 572, 254, 254, 83, 340, 0 },
-	{ 114, 114, 3, 9, 0, 255, 0 },
-	{ 116, 116, 3, 9, 85, 256, 0 },
-	{ 115, 115, 3, 9, 0, 232, 0 },
-	{ 113, 113, 3, 9, 0, 232, 0 },
-	{ 117, 117, 3, 9, 0, 232, 0 },
-	{ 119, 119, 3, 9, 86, 257, 0 },
-	{ 120, 120, 3, 9, 87, 257, 0 },
-	{ 28, 121, 3, 9, 0, 232, 0 },
-	{ 122, 122, 3, 9, 0, 232, 0 },
-	{ 118, 118, 254, 254, 0, 304, 0 },
-	{ 222, 222, 4, 10, 84, 303, 0 },
-	{ 224, 224, 254, 254, 40, 248, 0 },
-	{ 8, 8, 0, 5, 0, 232, 0 },
-	{ 554, 554, 254, 254, 0, 223, 0 },
-	{ 553, 553, 254, 254, 0, 223, 0 },
-	{ 394, 394, 1, 6, 0, 232, 0 },
-	{ 395, 395, 1, 6, 0, 232, 0 },
-	{ 396, 396, 254, 254, 0, 232, 0 },
-	{ 384, 384, 1, 6, 0, 232, 0 },
-	{ 385, 385, 1, 6, 0, 232, 0 },
-	{ 386, 386, 1, 6, 0, 232, 0 },
-	{ 388, 388, 1, 6, 0, 232, 0 },
-	{ 392, 392, 1, 6, 0, 232, 0 },
-	{ 393, 393, 1, 6, 0, 232, 0 },
-	{ 390, 390, 1, 6, 0, 232, 0 },
-	{ 391, 391, 1, 6, 0, 232, 0 },
-	{ 387, 387, 1, 6, 0, 232, 0 },
-	{ 389, 389, 1, 6, 0, 232, 0 },
-	{ 398, 398, 1, 6, 0, 232, 0 },
-	{ 399, 399, 1, 6, 0, 232, 0 },
-	{ 400, 400, 1, 6, 0, 232, 0 },
-	{ 401, 401, 1, 6, 0, 232, 0 },
-	{ 404, 404, 1, 6, 0, 232, 0 },
-	{ 405, 405, 1, 6, 0, 232, 0 },
-	{ 402, 402, 1, 6, 0, 232, 0 },
-	{ 403, 403, 1, 6, 0, 232, 0 },
-	{ 504, 504, 254, 254, 0, 334, 0 },
-	{ 4142, 4142, 0, 5, 0, 223, 0 },
-	{ 4141, 4141, 0, 5, 0, 223, 0 },
-	{ 4106, 4106, 254, 254, 0, 223, 0 },
-	{ 4104, 4104, 254, 254, 0, 223, 0 },
-	{ 4105, 4105, 254, 254, 0, 223, 0 },
-	{ 4103, 4103, 254, 254, 0, 223, 0 },
-	{ 4129, 4129, 254, 254, 0, 223, 0 },
-	{ 4131, 4131, 254, 254, 0, 223, 0 },
-	{ 4130, 4130, 254, 254, 0, 223, 0 },
-	{ 4132, 4132, 254, 254, 0, 223, 0 },
-	{ 4133, 4133, 254, 254, 94, 4113, 0 },
-	{ 4136, 4136, 254, 254, 0, 223, 0 },
-	{ 4137, 4137, 254, 254, 0, 223, 0 },
-	{ 4134, 4134, 254, 254, 95, 4114, 0 },
-	{ 4135, 4135, 254, 254, 95, 4114, 0 },
-	{ 4138, 4138, 254, 254, 99, 4115, 0 },
-	{ 4121, 4121, 254, 254, 0, 223, 0 },
-	{ 4123, 4123, 254, 254, 97, 4110, 0 },
-	{ 4124, 4124, 254, 254, 98, 4111, 0 },
-	{ 4122, 4122, 254, 254, 96, 4109, 0 },
-	{ 4128, 4128, 254, 254, 95, 4114, 0 },
-	{ 4125, 4125, 254, 254, 101, 4112, 0 },
-	{ 4119, 4119, 254, 254, 100, 4108, 0 },
-	{ 4120, 4120, 254, 254, 100, 4108, 0 },
-	{ 4139, 4139, 254, 254, 0, 223, 0 },
-	{ 4140, 4140, 254, 254, 0, 223, 0 },
-	{ 4117, 4117, 254, 254, 102, 4107, 0 },
-	{ 4118, 4118, 254, 254, 102, 4107, 0 },
-	{ 4102, 4102, 254, 254, 0, 223, 0 },
-	{ 4116, 4116, 254, 254, 0, 223, 0 },
-	{ 4126, 4126, 0, 5, 0, 223, 0 },
-	{ 4127, 4127, 254, 254, 0, 223, 0 },
-	{ 177, 177, 254, 254, 93, 291, 0 },
-	{ 412, 412, 254, 5, 0, 232, 0 },
-	{ 413, 413, 254, 5, 0, 232, 0 },
-	{ 406, 406, 0, 5, 0, 232, 0 },
-	{ 411, 411, 0, 5, 0, 232, 0 },
-	{ 410, 410, 0, 5, 0, 232, 0 },
-	{ 409, 409, 0, 5, 0, 232, 0 },
-	{ 407, 407, 254, 5, 0, 232, 0 },
-	{ 408, 408, 254, 5, 0, 232, 0 },
-	{ 8204, 8204, 3, 9, 0, 232, 0 },
-	{ 8205, 8205, 3, 9, 0, 232, 0 },
-	{ 8206, 8206, 3, 9, 0, 232, 0 },
-	{ 8207, 8207, 100, 254, 0, 232, 0 },
-	{ 8201, 8201, 100, 9, 103, 232, 0 },
-	{ 8202, 8202, 100, 9, 104, 232, 0 },
-	{ 8203, 8203, 100, 10, 105, 8200, 0 },
-	{ 8208, 8208, 0, 5, 0, 223, 0 },
-	{ 20493, 20493, 1, 6, 0, 232, 0 },
-	{ 20494, 20494, 1, 6, 0, 232, 0 },
-	{ 20490, 20490, 3, 9, 0, 232, 0 },
-	{ 20491, 20491, 3, 9, 0, 232, 0 },
-	{ 20492, 20492, 100, 254, 0, 232, 0 },
-	{ 20487, 20487, 100, 9, 106, 232, 0 },
-	{ 20488, 20488, 100, 9, 107, 232, 0 },
-	{ 20489, 20489, 100, 10, 108, 20495, 0 },
-	{ 515, 515, 2, 5, 111, 232, 0 },
-	{ 516, 516, 2, 5, 112, 232, 0 },
-	{ 363, 363, 2, 10, 113, 309, 0 },
-	{ 606, 606, 3, 9, 39, 234, 0 },
-	{ 486, 486, 3, 9, 40, 248, 0 },
-	{ 487, 487, 3, 9, 40, 248, 0 },
-	{ 422, 422, 4, 5, 116, 330, 0 },
-	{ 614, 362, 254, 254, 0, 310, 0 },
-	{ 12292, 12292, 1, 6, 0, 12291, 0 },
-	{ 101, 101, 254, 254, 0, 223, 0 },
-	{ 98, 98, 3, 9, 0, 232, 0 },
-	{ 100, 100, 3, 9, 0, 232, 0 },
-	{ 99, 99, 3, 9, 0, 232, 0 },
-	{ 615, 615, 4, 10, 121, 354, 0 },
-	{ 208, 208, 4, 10, 126, 295, 0 },
-	{ 375, 375, 254, 254, 0, 223, 0 },
-	{ 633, 633, 4, 10, 0, 359, 0 },
-	{ 634, 634, 4, 10, 0, 307, 0 },
-	{ 207, 207, 0, 6, 0, 232, 0 },
-	{ 162, 162, 100, 6, 129, 283, 0 },
-	{ 163, 163, 100, 6, 129, 232, 0 },
-	{ 160, 160, 100, 6, 131, 281, 0 },
-	{ 161, 161, 100, 6, 132, 282, 0 },
-	{ 24587, 24587, 0, 10, 133, 24585, 0 },
-	{ 24588, 24588, 0, 5, 0, 232, 0 },
-	{ 24586, 24586, 100, 5, 0, 24584, 0 },
-	{ 28682, 28682, 0, 6, 0, 232, 0 },
-	{ 28683, 28683, 0, 6, 0, 232, 0 },
-	{ 28684, 28684, 0, 6, 0, 232, 0 },
-	{ 28686, 28686, 0, 6, 0, 232, 0 },
-	{ 28685, 28685, 0, 6, 0, 232, 0 },
-	{ 28680, 28680, 0, 5, 134, 28688, 0 },
-	{ 28681, 28681, 0, 5, 0, 28689, 0 },
-	{ 614, 28687, 4, 5, 135, 28690, 0 },
-	{ 415, 415, 254, 254, 0, 223, 0 },
-	{ 414, 414, 254, 254, 0, 223, 0 },
-	{ 490, 490, 254, 254, 136, 331, 0 },
-	{ 11, 11, 254, 254, 137, 231, 0 },
+    {37, 36, 254, 254, 0, 232, 0},
+    {35, 34, 254, 254, 0, 232, 0},
+    {18, 18, 254, 254, 0, 232, 0},
+    {16, 16, 254, 254, 0, 232, 0},
+    {33, 31, 254, 254, 0, 232, 0},
+    {30, 29, 254, 254, 0, 232, 0},
+    {60, 59, 4, 10, 0, 232, 0},
+    {44, 43, 4, 10, 0, 232, 0},
+    {62, 61, 4, 10, 0, 232, 0},
+    {46, 45, 4, 10, 0, 232, 0},
+    {48, 47, 4, 10, 0, 232, 0},
+    {40, 39, 4, 10, 0, 232, 0},
+    {50, 49, 4, 10, 0, 232, 0},
+    {42, 41, 4, 10, 0, 232, 0},
+    {628, 628, 254, 254, 0, 232, 0},
+    {32, 26, 254, 254, 0, 0, 0},
+    {26, 14, 254, 254, 0, 232, 0},
+    {28, 14, 254, 254, 0, 232, 0},
+    {631, 631, 4, 10, 0, 0, 0},
+    {205, 197, 4, 10, 0, 232, 0},
+    {579, 579, 254, 254, 0, 345, 0},
+    {563, 563, 4, 10, 0, 0, 0},
+    {564, 564, 4, 10, 0, 0, 0},
+    {563, 604, 4, 10, 0, 0, 0},
+    {564, 604, 4, 10, 0, 0, 0},
+    {618, 618, 4, 10, 0, 0, 0},
+    {598, 598, 1, 6, 0, 232, 0},
+    {599, 599, 1, 6, 0, 351, 0},
+    {198, 198, 1, 6, 0, 232, 0},
+    {54, 54, 254, 254, 0, 328, 0},
+    {56, 56, 254, 254, 0, 328, 0},
+    {53, 53, 1, 6, 0, 232, 0},
+    {55, 55, 1, 6, 0, 232, 0},
+    {52, 52, 254, 254, 0, 328, 0},
+    {51, 51, 1, 6, 0, 232, 0},
+    {519, 519, 254, 254, 0, 328, 0},
+    {521, 521, 254, 254, 0, 223, 0},
+    {520, 520, 1, 6, 38, 335, 0},
+    {518, 518, 4, 10, 0, 328, 0},
+    {517, 517, 4, 10, 0, 232, 0},
+    {559, 559, 254, 254, 0, 232, 0},
+    {123, 123, 254, 254, 0, 0, 0},
+    {126, 126, 254, 6, 0, 232, 0},
+    {19, 19, 254, 6, 0, 232, 0},
+    {21, 21, 254, 6, 0, 232, 0},
+    {124, 124, 254, 6, 0, 232, 0},
+    {23, 23, 254, 6, 0, 232, 0},
+    {24, 24, 254, 6, 0, 232, 0},
+    {20, 20, 1, 6, 125, 233, 0},
+    {421, 421, 254, 254, 0, 327, 0},
+    {419, 419, 254, 254, 0, 327, 0},
+    {420, 420, 254, 254, 0, 223, 0},
+    {436, 436, 254, 254, 0, 223, 0},
+    {437, 437, 254, 254, 0, 223, 0},
+    {617, 617, 254, 254, 0, 223, 0},
+    {503, 503, 254, 254, 10, 333, 0},
+    {502, 502, 254, 254, 4, 232, 0},
+    {501, 501, 254, 254, 4, 232, 0},
+    {500, 500, 0, 5, 11, 332, 0},
+    {499, 499, 254, 254, 0, 232, 0},
+    {498, 498, 0, 5, 0, 232, 0},
+    {510, 510, 254, 254, 0, 223, 0},
+    {511, 511, 254, 254, 0, 223, 0},
+    {509, 509, 254, 254, 0, 223, 0},
+    {225, 225, 4, 10, 0, 223, 0},
+    {226, 226, 4, 10, 0, 223, 0},
+    {565, 565, 4, 5, 0, 232, 0},
+    {566, 566, 4, 5, 0, 232, 0},
+    {562, 562, 4, 5, 0, 232, 0},
+    {418, 418, 4, 5, 0, 232, 0},
+    {416, 416, 4, 5, 0, 232, 0},
+    {417, 417, 4, 5, 0, 232, 0},
+    {614, 614, 4, 5, 0, 0, 0},
+    {629, 629, 4, 5, 0, 0, 0},
+    {630, 630, 4, 5, 0, 0, 0},
+    {202, 202, 4, 5, 0, 232, 0},
+    {203, 203, 4, 5, 0, 232, 0},
+    {781, 614, 4, 5, 0, 0, 0},
+    {221, 221, 4, 5, 0, 258, 0},
+    {435, 435, 4, 5, 0, 261, 0},
+    {149, 149, 100, 5, 36, 272, 0},
+    {568, 568, 4, 5, 55, 338, 0},
+    {569, 569, 4, 5, 56, 0, 0},
+    {214, 214, 4, 10, 88, 300, 0},
+    {587, 587, 4, 5, 37, 0, 0},
+    {613, 613, 4, 5, 0, 232, 0},
+    {560, 560, 4, 5, 109, 336, 0},
+    {561, 561, 4, 5, 109, 336, 0},
+    {373, 373, 4, 5, 110, 321, 0},
+    {374, 374, 4, 5, 110, 321, 0},
+    {588, 588, 4, 5, 114, 0, 0},
+    {589, 589, 4, 5, 115, 0, 0},
+    {512, 512, 254, 254, 0, 223, 0},
+    {513, 513, 254, 254, 0, 223, 0},
+    {227, 227, 4, 10, 0, 223, 0},
+    {228, 228, 4, 10, 0, 223, 0},
+    {624, 624, 254, 254, 16, 357, 0},
+    {623, 623, 4, 5, 17, 356, 0},
+    {127, 127, 100, 6, 46, 259, 0},
+    {153, 153, 0, 6, 47, 275, 0},
+    {154, 154, 0, 6, 48, 276, 0},
+    {143, 143, 100, 6, 49, 267, 0},
+    {144, 144, 100, 6, 49, 267, 0},
+    {132, 132, 100, 6, 50, 262, 0},
+    {133, 133, 100, 6, 51, 263, 0},
+    {134, 134, 100, 5, 0, 261, 0},
+    {138, 138, 0, 5, 0, 223, 0},
+    {137, 137, 100, 5, 0, 223, 0},
+    {139, 139, 100, 5, 52, 264, 0},
+    {136, 136, 0, 5, 0, 223, 0},
+    {135, 135, 100, 5, 0, 223, 0},
+    {155, 155, 0, 6, 89, 277, 0},
+    {156, 156, 0, 6, 89, 277, 0},
+    {152, 152, 100, 6, 60, 274, 0},
+    {151, 151, 100, 6, 61, 273, 0},
+    {159, 159, 100, 6, 58, 280, 0},
+    {158, 158, 100, 6, 59, 279, 0},
+    {164, 164, 0, 6, 0, 232, 0},
+    {165, 165, 100, 6, 0, 232, 0},
+    {166, 166, 100, 6, 0, 232, 0},
+    {170, 170, 0, 5, 0, 261, 0},
+    {167, 167, 0, 5, 90, 285, 0},
+    {168, 168, 0, 5, 0, 286, 0},
+    {169, 169, 100, 5, 18, 287, 0},
+    {142, 142, 0, 6, 127, 266, 0},
+    {140, 140, 0, 6, 128, 265, 0},
+    {141, 141, 0, 6, 0, 232, 0},
+    {174, 174, 1, 6, 39, 234, 0},
+    {172, 172, 1, 6, 39, 234, 0},
+    {189, 189, 1, 6, 39, 234, 0},
+    {190, 190, 1, 6, 39, 234, 0},
+    {178, 178, 254, 254, 40, 248, 0},
+    {175, 175, 254, 254, 40, 248, 0},
+    {180, 180, 254, 254, 40, 248, 0},
+    {182, 182, 254, 254, 40, 248, 0},
+    {179, 179, 254, 254, 42, 292, 0},
+    {176, 176, 254, 254, 43, 290, 0},
+    {181, 181, 254, 254, 44, 293, 0},
+    {183, 183, 254, 254, 44, 293, 0},
+    {171, 171, 1, 6, 39, 234, 0},
+    {431, 431, 1, 6, 39, 234, 0},
+    {432, 432, 254, 254, 0, 223, 0},
+    {324, 324, 0, 6, 6, 305, 0},
+    {325, 325, 0, 10, 7, 306, 0},
+    {567, 567, 4, 10, 28, 337, 0},
+    {591, 591, 254, 254, 0, 223, 0},
+    {592, 592, 254, 254, 0, 223, 0},
+    {593, 593, 254, 254, 0, 223, 0},
+    {594, 594, 254, 254, 0, 223, 0},
+    {372, 372, 254, 254, 0, 223, 0},
+    {378, 378, 254, 254, 0, 223, 0},
+    {376, 376, 254, 254, 0, 223, 0},
+    {377, 377, 254, 254, 0, 223, 0},
+    {430, 430, 254, 254, 0, 223, 0},
+    {428, 428, 254, 254, 0, 223, 0},
+    {429, 429, 254, 254, 0, 223, 0},
+    {425, 425, 254, 254, 0, 223, 0},
+    {423, 423, 254, 254, 0, 223, 0},
+    {424, 424, 254, 254, 0, 223, 0},
+    {427, 427, 254, 254, 0, 223, 0},
+    {426, 426, 254, 254, 0, 223, 0},
+    {106, 106, 3, 9, 0, 232, 0},
+    {112, 112, 3, 9, 0, 232, 0},
+    {108, 108, 3, 9, 0, 232, 0},
+    {109, 109, 3, 9, 0, 232, 0},
+    {110, 110, 3, 9, 0, 232, 0},
+    {111, 111, 3, 9, 0, 232, 0},
+    {107, 107, 3, 9, 92, 254, 0},
+    {527, 527, 3, 9, 0, 232, 0},
+    {528, 528, 3, 9, 0, 232, 0},
+    {522, 522, 3, 9, 0, 232, 0},
+    {524, 524, 3, 9, 0, 232, 0},
+    {525, 525, 3, 9, 0, 232, 0},
+    {526, 526, 3, 9, 0, 232, 0},
+    {523, 523, 3, 9, 0, 232, 0},
+    {366, 366, 254, 254, 24, 313, 0},
+    {369, 369, 254, 254, 25, 316, 0},
+    {368, 368, 254, 254, 0, 315, 0},
+    {379, 379, 254, 254, 26, 322, 0},
+    {365, 365, 254, 254, 27, 312, 0},
+    {367, 367, 254, 254, 0, 314, 0},
+    {95, 95, 254, 254, 0, 223, 0},
+    {604, 604, 4, 10, 1, 352, 0},
+    {596, 596, 4, 10, 1, 349, 0},
+    {585, 585, 4, 10, 0, 223, 0},
+    {620, 620, 1, 6, 12, 355, 0},
+    {157, 157, 1, 6, 13, 278, 0},
+    {82, 82, 254, 254, 0, 232, 0},
+    {632, 632, 1, 6, 0, 223, 0},
+    {557, 557, 254, 254, 0, 223, 0},
+    {555, 555, 254, 254, 0, 223, 0},
+    {558, 558, 254, 254, 0, 223, 0},
+    {556, 556, 254, 254, 0, 223, 0},
+    {574, 574, 254, 254, 21, 342, 0},
+    {578, 578, 254, 254, 22, 344, 0},
+    {57, 57, 254, 254, 0, 232, 0},
+    {58, 58, 254, 254, 0, 232, 0},
+    {17, 17, 254, 254, 0, 232, 0},
+    {570, 570, 254, 254, 3, 232, 0},
+    {573, 573, 254, 254, 23, 341, 0},
+    {577, 577, 254, 254, 0, 232, 0},
+    {576, 576, 254, 254, 0, 232, 0},
+    {193, 193, 1, 6, 39, 234, 0},
+    {192, 192, 1, 6, 39, 234, 0},
+    {194, 194, 1, 6, 39, 234, 0},
+    {195, 195, 1, 6, 39, 234, 0},
+    {196, 196, 1, 6, 39, 234, 0},
+    {87, 87, 254, 254, 77, 247, 0},
+    {86, 86, 254, 254, 78, 246, 0},
+    {85, 85, 254, 254, 79, 245, 0},
+    {361, 361, 254, 254, 0, 308, 0},
+    {362, 362, 254, 254, 0, 310, 0},
+    {362, 618, 254, 254, 0, 307, 0},
+    {362, 381, 254, 254, 0, 307, 0},
+    {586, 586, 4, 10, 41, 346, 0},
+    {595, 595, 254, 254, 0, 348, 0},
+    {619, 619, 254, 254, 0, 223, 0},
+    {603, 602, 254, 5, 0, 223, 0},
+    {603, 603, 0, 254, 0, 223, 0},
+    {619, 533, 254, 5, 0, 223, 0},
+    {619, 534, 0, 254, 0, 223, 0},
+    {619, 531, 254, 5, 0, 223, 0},
+    {619, 532, 0, 254, 0, 223, 0},
+    {619, 103, 254, 5, 0, 223, 0},
+    {90, 90, 2, 254, 0, 304, 0},
+    {91, 91, 2, 254, 0, 304, 0},
+    {92, 92, 2, 254, 0, 223, 0},
+    {94, 94, 2, 5, 120, 249, 0},
+    {491, 491, 254, 254, 0, 223, 0},
+    {506, 506, 2, 5, 0, 223, 0},
+    {508, 508, 2, 5, 0, 223, 0},
+    {434, 434, 2, 5, 0, 223, 0},
+    {217, 217, 4, 10, 30, 301, 0},
+    {218, 218, 4, 10, 31, 302, 0},
+    {215, 215, 3, 10, 0, 223, 0},
+    {216, 216, 3, 10, 0, 223, 0},
+    {219, 219, 254, 254, 0, 223, 0},
+    {220, 220, 254, 254, 0, 223, 0},
+    {492, 492, 254, 254, 29, 223, 0},
+    {529, 529, 1, 6, 0, 223, 0},
+    {484, 484, 1, 6, 0, 223, 0},
+    {485, 485, 1, 6, 0, 223, 0},
+    {552, 552, 254, 254, 0, 223, 0},
+    {544, 544, 254, 254, 0, 223, 0},
+    {543, 543, 254, 254, 0, 223, 0},
+    {549, 549, 254, 254, 0, 223, 0},
+    {547, 547, 254, 254, 0, 223, 0},
+    {545, 545, 254, 254, 0, 223, 0},
+    {546, 546, 254, 254, 0, 223, 0},
+    {548, 548, 254, 254, 0, 223, 0},
+    {551, 551, 100, 254, 0, 223, 0},
+    {550, 550, 100, 254, 0, 223, 0},
+    {530, 530, 254, 254, 0, 223, 0},
+    {102, 102, 254, 254, 53, 252, 0},
+    {105, 105, 254, 254, 54, 253, 0},
+    {625, 625, 4, 10, 0, 358, 0},
+    {72, 72, 3, 254, 62, 238, 0},
+    {70, 70, 3, 254, 63, 236, 0},
+    {71, 71, 3, 254, 64, 237, 0},
+    {69, 69, 3, 254, 65, 235, 0},
+    {75, 75, 3, 254, 66, 241, 0},
+    {76, 76, 3, 5, 67, 242, 0},
+    {73, 73, 3, 5, 68, 239, 0},
+    {78, 78, 3, 254, 69, 243, 0},
+    {79, 79, 3, 254, 70, 244, 0},
+    {74, 74, 3, 254, 71, 240, 0},
+    {77, 77, 3, 254, 0, 223, 0},
+    {438, 438, 0, 10, 0, 223, 0},
+    {495, 495, 0, 9, 0, 223, 0},
+    {493, 493, 0, 9, 0, 223, 0},
+    {494, 494, 0, 9, 0, 223, 0},
+    {371, 371, 2, 254, 74, 319, 0},
+    {370, 370, 2, 254, 76, 318, 0},
+    {97, 97, 2, 254, 75, 251, 0},
+    {621, 621, 2, 254, 75, 251, 0},
+    {605, 605, 1, 6, 14, 355, 0},
+    {610, 610, 1, 6, 15, 353, 0},
+    {483, 483, 254, 254, 0, 223, 0},
+    {212, 212, 4, 10, 80, 298, 0},
+    {213, 213, 4, 10, 81, 299, 0},
+    {571, 571, 254, 254, 82, 339, 0},
+    {572, 572, 254, 254, 83, 340, 0},
+    {114, 114, 3, 9, 0, 255, 0},
+    {116, 116, 3, 9, 85, 256, 0},
+    {115, 115, 3, 9, 0, 232, 0},
+    {113, 113, 3, 9, 0, 232, 0},
+    {117, 117, 3, 9, 0, 232, 0},
+    {119, 119, 3, 9, 86, 257, 0},
+    {120, 120, 3, 9, 87, 257, 0},
+    {28, 121, 3, 9, 0, 232, 0},
+    {122, 122, 3, 9, 0, 232, 0},
+    {118, 118, 254, 254, 0, 304, 0},
+    {222, 222, 4, 10, 84, 303, 0},
+    {224, 224, 254, 254, 40, 248, 0},
+    {8, 8, 0, 5, 0, 232, 0},
+    {554, 554, 254, 254, 0, 223, 0},
+    {553, 553, 254, 254, 0, 223, 0},
+    {394, 394, 1, 6, 0, 232, 0},
+    {395, 395, 1, 6, 0, 232, 0},
+    {396, 396, 254, 254, 0, 232, 0},
+    {384, 384, 1, 6, 0, 232, 0},
+    {385, 385, 1, 6, 0, 232, 0},
+    {386, 386, 1, 6, 0, 232, 0},
+    {388, 388, 1, 6, 0, 232, 0},
+    {392, 392, 1, 6, 0, 232, 0},
+    {393, 393, 1, 6, 0, 232, 0},
+    {390, 390, 1, 6, 0, 232, 0},
+    {391, 391, 1, 6, 0, 232, 0},
+    {387, 387, 1, 6, 0, 232, 0},
+    {389, 389, 1, 6, 0, 232, 0},
+    {398, 398, 1, 6, 0, 232, 0},
+    {399, 399, 1, 6, 0, 232, 0},
+    {400, 400, 1, 6, 0, 232, 0},
+    {401, 401, 1, 6, 0, 232, 0},
+    {404, 404, 1, 6, 0, 232, 0},
+    {405, 405, 1, 6, 0, 232, 0},
+    {402, 402, 1, 6, 0, 232, 0},
+    {403, 403, 1, 6, 0, 232, 0},
+    {504, 504, 254, 254, 0, 334, 0},
+    {4142, 4142, 0, 5, 0, 223, 0},
+    {4141, 4141, 0, 5, 0, 223, 0},
+    {4106, 4106, 254, 254, 0, 223, 0},
+    {4104, 4104, 254, 254, 0, 223, 0},
+    {4105, 4105, 254, 254, 0, 223, 0},
+    {4103, 4103, 254, 254, 0, 223, 0},
+    {4129, 4129, 254, 254, 0, 223, 0},
+    {4131, 4131, 254, 254, 0, 223, 0},
+    {4130, 4130, 254, 254, 0, 223, 0},
+    {4132, 4132, 254, 254, 0, 223, 0},
+    {4133, 4133, 254, 254, 94, 4113, 0},
+    {4136, 4136, 254, 254, 0, 223, 0},
+    {4137, 4137, 254, 254, 0, 223, 0},
+    {4134, 4134, 254, 254, 95, 4114, 0},
+    {4135, 4135, 254, 254, 95, 4114, 0},
+    {4138, 4138, 254, 254, 99, 4115, 0},
+    {4121, 4121, 254, 254, 0, 223, 0},
+    {4123, 4123, 254, 254, 97, 4110, 0},
+    {4124, 4124, 254, 254, 98, 4111, 0},
+    {4122, 4122, 254, 254, 96, 4109, 0},
+    {4128, 4128, 254, 254, 95, 4114, 0},
+    {4125, 4125, 254, 254, 101, 4112, 0},
+    {4119, 4119, 254, 254, 100, 4108, 0},
+    {4120, 4120, 254, 254, 100, 4108, 0},
+    {4139, 4139, 254, 254, 0, 223, 0},
+    {4140, 4140, 254, 254, 0, 223, 0},
+    {4117, 4117, 254, 254, 102, 4107, 0},
+    {4118, 4118, 254, 254, 102, 4107, 0},
+    {4102, 4102, 254, 254, 0, 223, 0},
+    {4116, 4116, 254, 254, 0, 223, 0},
+    {4126, 4126, 0, 5, 0, 223, 0},
+    {4127, 4127, 254, 254, 0, 223, 0},
+    {177, 177, 254, 254, 93, 291, 0},
+    {412, 412, 254, 5, 0, 232, 0},
+    {413, 413, 254, 5, 0, 232, 0},
+    {406, 406, 0, 5, 0, 232, 0},
+    {411, 411, 0, 5, 0, 232, 0},
+    {410, 410, 0, 5, 0, 232, 0},
+    {409, 409, 0, 5, 0, 232, 0},
+    {407, 407, 254, 5, 0, 232, 0},
+    {408, 408, 254, 5, 0, 232, 0},
+    {8204, 8204, 3, 9, 0, 232, 0},
+    {8205, 8205, 3, 9, 0, 232, 0},
+    {8206, 8206, 3, 9, 0, 232, 0},
+    {8207, 8207, 100, 254, 0, 232, 0},
+    {8201, 8201, 100, 9, 103, 232, 0},
+    {8202, 8202, 100, 9, 104, 232, 0},
+    {8203, 8203, 100, 10, 105, 8200, 0},
+    {8208, 8208, 0, 5, 0, 223, 0},
+    {20493, 20493, 1, 6, 0, 232, 0},
+    {20494, 20494, 1, 6, 0, 232, 0},
+    {20490, 20490, 3, 9, 0, 232, 0},
+    {20491, 20491, 3, 9, 0, 232, 0},
+    {20492, 20492, 100, 254, 0, 232, 0},
+    {20487, 20487, 100, 9, 106, 232, 0},
+    {20488, 20488, 100, 9, 107, 232, 0},
+    {20489, 20489, 100, 10, 108, 20495, 0},
+    {515, 515, 2, 5, 111, 232, 0},
+    {516, 516, 2, 5, 112, 232, 0},
+    {363, 363, 2, 10, 113, 309, 0},
+    {606, 606, 3, 9, 39, 234, 0},
+    {486, 486, 3, 9, 40, 248, 0},
+    {487, 487, 3, 9, 40, 248, 0},
+    {422, 422, 4, 5, 116, 330, 0},
+    {614, 362, 254, 254, 0, 310, 0},
+    {12292, 12292, 1, 6, 0, 12291, 0},
+    {101, 101, 254, 254, 0, 223, 0},
+    {98, 98, 3, 9, 0, 232, 0},
+    {100, 100, 3, 9, 0, 232, 0},
+    {99, 99, 3, 9, 0, 232, 0},
+    {615, 615, 4, 10, 121, 354, 0},
+    {208, 208, 4, 10, 126, 295, 0},
+    {375, 375, 254, 254, 0, 223, 0},
+    {633, 633, 4, 10, 0, 359, 0},
+    {634, 634, 4, 10, 0, 307, 0},
+    {207, 207, 0, 6, 0, 232, 0},
+    {162, 162, 100, 6, 129, 283, 0},
+    {163, 163, 100, 6, 129, 232, 0},
+    {160, 160, 100, 6, 131, 281, 0},
+    {161, 161, 100, 6, 132, 282, 0},
+    {24587, 24587, 0, 10, 133, 24585, 0},
+    {24588, 24588, 0, 5, 0, 232, 0},
+    {24586, 24586, 100, 5, 0, 24584, 0},
+    {28682, 28682, 0, 6, 0, 232, 0},
+    {28683, 28683, 0, 6, 0, 232, 0},
+    {28684, 28684, 0, 6, 0, 232, 0},
+    {28686, 28686, 0, 6, 0, 232, 0},
+    {28685, 28685, 0, 6, 0, 232, 0},
+    {28680, 28680, 0, 5, 134, 28688, 0},
+    {28681, 28681, 0, 5, 0, 28689, 0},
+    {614, 28687, 4, 5, 135, 28690, 0},
+    {415, 415, 254, 254, 0, 223, 0},
+    {414, 414, 254, 254, 0, 223, 0},
+    {490, 490, 254, 254, 136, 331, 0},
+    {11, 11, 254, 254, 137, 231, 0},
 };
 
 /* 80391010-803914A8 -00001 0498+00 4/4 0/0 0/0 .rodata          m_wlAnmDataTable__9daAlink_c */
 daAlink_WlAnmData const daAlink_c::m_wlAnmDataTable[147] = {
-	{ 767, 0, 1, 2600, 255, 255 },
-	{ 778, 0, 2, 270, 255, 255 },
-	{ 779, 0, 2, 270, 255, 255 },
-	{ 692, 0, 12, 65535, 255, 255 },
-	{ 716, 1, 12, 65535, 255, 255 },
-	{ 714, 1, 12, 65535, 255, 255 },
-	{ 715, 1, 12, 65535, 255, 255 },
-	{ 773, 0, 1, 4095, 255, 255 },
-	{ 736, 0, 7, 767, 255, 255 },
-	{ 735, 0, 7, 1568, 255, 255 },
-	{ 734, 0, 12, 65535, 255, 255 },
-	{ 745, 1, 0, 2047, 255, 255 },
-	{ 724, 1, 12, 65535, 255, 255 },
-	{ 725, 2, 12, 65535, 255, 255 },
-	{ 774, 1, 0, 511, 255, 255 },
-	{ 666, 1, 7, 2559, 255, 255 },
-	{ 766, 1, 5, 2559, 255, 255 },
-	{ 668, 1, 5, 1023, 255, 255 },
-	{ 667, 1, 12, 65535, 255, 255 },
-	{ 765, 1, 6, 6655, 255, 255 },
-	{ 764, 1, 12, 65535, 255, 255 },
-	{ 763, 0, 8, 1023, 255, 255 },
-	{ 679, 0, 12, 65535, 255, 255 },
-	{ 771, 0, 3, 2590, 50, 255 },
-	{ 768, 0, 3, 1791, 255, 255 },
-	{ 706, 1, 5, 1791, 255, 255 },
-	{ 750, 1, 12, 65535, 255, 255 },
-	{ 762, 1, 12, 65535, 255, 255 },
-	{ 638, 0, 12, 65535, 255, 255 },
-	{ 780, 1, 2, 274, 255, 255 },
-	{ 746, 1, 12, 65535, 255, 255 },
-	{ 747, 1, 12, 65535, 255, 255 },
-	{ 748, 2, 12, 65535, 255, 255 },
-	{ 743, 0, 2, 270, 255, 255 },
-	{ 739, 1, 5, 5375, 255, 255 },
-	{ 740, 1, 5, 6911, 255, 255 },
-	{ 742, 0, 12, 65535, 255, 255 },
-	{ 744, 8, 1, 6450, 255, 255 },
-	{ 741, 9, 2, 270, 30, 45 },
-	{ 693, 1, 12, 65535, 255, 255 },
-	{ 684, 2, 12, 65535, 255, 255 },
-	{ 682, 2, 12, 65535, 255, 255 },
-	{ 686, 2, 12, 65535, 255, 255 },
-	{ 688, 2, 12, 65535, 255, 255 },
-	{ 685, 2, 10, 8447, 255, 255 },
-	{ 683, 2, 11, 5375, 255, 255 },
-	{ 687, 2, 12, 65535, 255, 255 },
-	{ 689, 2, 12, 65535, 255, 255 },
-	{ 752, 0, 12, 65535, 255, 255 },
-	{ 770, 0, 1, 2600, 255, 255 },
-	{ 719, 0, 12, 65535, 255, 255 },
-	{ 720, 0, 12, 65535, 255, 255 },
-	{ 717, 0, 12, 65535, 255, 255 },
-	{ 718, 0, 12, 65535, 255, 255 },
-	{ 759, 1, 12, 65535, 255, 255 },
-	{ 760, 0, 1, 3583, 255, 255 },
-	{ 758, 0, 2, 511, 255, 255 },
-	{ 755, 0, 4, 1023, 255, 255 },
-	{ 753, 1, 12, 65535, 255, 255 },
-	{ 775, 0, 12, 65535, 255, 255 },
-	{ 681, 1, 12, 65535, 255, 255 },
-	{ 680, 1, 12, 65535, 255, 255 },
-	{ 690, 1, 12, 65535, 255, 255 },
-	{ 691, 1, 12, 65535, 255, 255 },
-	{ 653, 1, 12, 65535, 255, 255 },
-	{ 654, 1, 12, 65535, 255, 255 },
-	{ 655, 0, 12, 65535, 255, 255 },
-	{ 656, 1, 12, 65535, 255, 255 },
-	{ 639, 0, 12, 65535, 255, 255 },
-	{ 641, 0, 12, 65535, 255, 255 },
-	{ 640, 0, 12, 65535, 255, 255 },
-	{ 730, 0, 12, 65535, 255, 255 },
-	{ 645, 1, 12, 65535, 255, 255 },
-	{ 644, 1, 12, 65535, 255, 255 },
-	{ 647, 1, 12, 65535, 255, 255 },
-	{ 646, 1, 12, 65535, 255, 255 },
-	{ 643, 1, 12, 65535, 255, 255 },
-	{ 642, 1, 12, 65535, 255, 255 },
-	{ 731, 0, 12, 65535, 255, 255 },
-	{ 732, 0, 9, 2047, 255, 255 },
-	{ 652, 1, 12, 65535, 255, 255 },
-	{ 648, 1, 12, 65535, 255, 255 },
-	{ 649, 1, 12, 65535, 255, 255 },
-	{ 651, 1, 12, 65535, 255, 255 },
-	{ 650, 1, 12, 65535, 255, 255 },
-	{ 661, 2, 12, 65535, 255, 255 },
-	{ 660, 2, 12, 65535, 255, 255 },
-	{ 707, 1, 12, 65535, 255, 255 },
-	{ 709, 1, 12, 65535, 255, 255 },
-	{ 708, 1, 12, 65535, 255, 255 },
-	{ 676, 0, 12, 65535, 255, 255 },
-	{ 678, 0, 12, 65535, 255, 255 },
-	{ 710, 0, 12, 65535, 255, 255 },
-	{ 711, 1, 12, 65535, 255, 255 },
-	{ 712, 1, 12, 65535, 255, 255 },
-	{ 713, 0, 1, 7935, 255, 255 },
-	{ 722, 1, 12, 65535, 255, 255 },
-	{ 723, 1, 10, 1279, 255, 255 },
-	{ 665, 0, 12, 65535, 255, 255 },
-	{ 662, 1, 12, 65535, 255, 255 },
-	{ 663, 1, 12, 65535, 255, 255 },
-	{ 664, 1, 11, 10495, 255, 255 },
-	{ 738, 1, 12, 65535, 255, 255 },
-	{ 737, 1, 12, 65535, 255, 255 },
-	{ 697, 0, 11, 16895, 255, 255 },
-	{ 698, 13, 12, 65535, 255, 255 },
-	{ 761, 0, 5, 14662, 85, 255 },
-	{ 749, 1, 6, 511, 255, 255 },
-	{ 721, 1, 12, 65535, 255, 255 },
-	{ 733, 0, 12, 65535, 255, 255 },
-	{ 677, 0, 12, 65535, 255, 255 },
-	{ 674, 0, 12, 65535, 255, 255 },
-	{ 675, 0, 12, 65535, 255, 255 },
-	{ 776, 1, 12, 65535, 255, 255 },
-	{ 751, 0, 12, 65535, 255, 255 },
-	{ 694, 2, 4, 511, 255, 255 },
-	{ 659, 1, 12, 65535, 255, 255 },
-	{ 657, 1, 12, 65535, 255, 255 },
-	{ 700, 0, 12, 65535, 255, 255 },
-	{ 703, 0, 12, 65535, 255, 255 },
-	{ 670, 2, 12, 65535, 255, 255 },
-	{ 669, 2, 12, 65535, 255, 255 },
-	{ 658, 1, 5, 4351, 255, 255 },
-	{ 696, 6, 12, 65535, 255, 255 },
-	{ 756, 7, 12, 65535, 255, 255 },
-	{ 757, 7, 12, 65535, 255, 255 },
-	{ 772, 2, 12, 65535, 255, 255 },
-	{ 769, 0, 1, 4095, 255, 255 },
-	{ 754, 0, 1, 3885, 255, 255 },
-	{ 727, 0, 12, 65535, 255, 255 },
-	{ 699, 3, 12, 65535, 255, 255 },
-	{ 705, 1, 12, 65535, 255, 255 },
-	{ 704, 1, 0, 1535, 255, 255 },
-	{ 777, 0, 1, 511, 255, 255 },
-	{ 671, 5, 12, 65535, 255, 255 },
-	{ 728, 0, 12, 65535, 255, 255 },
-	{ 729, 2, 12, 65535, 255, 255 },
-	{ 16387, 0, 12, 65535, 255, 255 },
-	{ 672, 0, 12, 65535, 255, 255 },
-	{ 673, 0, 12, 65535, 255, 255 },
-	{ 726, 1, 0, 5178, 255, 255 },
-	{ 32808, 10, 12, 65535, 255, 255 },
-	{ 32807, 10, 12, 65535, 255, 255 },
-	{ 32810, 11, 12, 65535, 255, 255 },
-	{ 32809, 11, 12, 65535, 255, 255 },
-	{ 32812, 12, 12, 65535, 255, 255 },
-	{ 32811, 12, 12, 65535, 255, 255 },
+    {767, 0, 1, 2600, 255, 255},      {778, 0, 2, 270, 255, 255},
+    {779, 0, 2, 270, 255, 255},       {692, 0, 12, 65535, 255, 255},
+    {716, 1, 12, 65535, 255, 255},    {714, 1, 12, 65535, 255, 255},
+    {715, 1, 12, 65535, 255, 255},    {773, 0, 1, 4095, 255, 255},
+    {736, 0, 7, 767, 255, 255},       {735, 0, 7, 1568, 255, 255},
+    {734, 0, 12, 65535, 255, 255},    {745, 1, 0, 2047, 255, 255},
+    {724, 1, 12, 65535, 255, 255},    {725, 2, 12, 65535, 255, 255},
+    {774, 1, 0, 511, 255, 255},       {666, 1, 7, 2559, 255, 255},
+    {766, 1, 5, 2559, 255, 255},      {668, 1, 5, 1023, 255, 255},
+    {667, 1, 12, 65535, 255, 255},    {765, 1, 6, 6655, 255, 255},
+    {764, 1, 12, 65535, 255, 255},    {763, 0, 8, 1023, 255, 255},
+    {679, 0, 12, 65535, 255, 255},    {771, 0, 3, 2590, 50, 255},
+    {768, 0, 3, 1791, 255, 255},      {706, 1, 5, 1791, 255, 255},
+    {750, 1, 12, 65535, 255, 255},    {762, 1, 12, 65535, 255, 255},
+    {638, 0, 12, 65535, 255, 255},    {780, 1, 2, 274, 255, 255},
+    {746, 1, 12, 65535, 255, 255},    {747, 1, 12, 65535, 255, 255},
+    {748, 2, 12, 65535, 255, 255},    {743, 0, 2, 270, 255, 255},
+    {739, 1, 5, 5375, 255, 255},      {740, 1, 5, 6911, 255, 255},
+    {742, 0, 12, 65535, 255, 255},    {744, 8, 1, 6450, 255, 255},
+    {741, 9, 2, 270, 30, 45},         {693, 1, 12, 65535, 255, 255},
+    {684, 2, 12, 65535, 255, 255},    {682, 2, 12, 65535, 255, 255},
+    {686, 2, 12, 65535, 255, 255},    {688, 2, 12, 65535, 255, 255},
+    {685, 2, 10, 8447, 255, 255},     {683, 2, 11, 5375, 255, 255},
+    {687, 2, 12, 65535, 255, 255},    {689, 2, 12, 65535, 255, 255},
+    {752, 0, 12, 65535, 255, 255},    {770, 0, 1, 2600, 255, 255},
+    {719, 0, 12, 65535, 255, 255},    {720, 0, 12, 65535, 255, 255},
+    {717, 0, 12, 65535, 255, 255},    {718, 0, 12, 65535, 255, 255},
+    {759, 1, 12, 65535, 255, 255},    {760, 0, 1, 3583, 255, 255},
+    {758, 0, 2, 511, 255, 255},       {755, 0, 4, 1023, 255, 255},
+    {753, 1, 12, 65535, 255, 255},    {775, 0, 12, 65535, 255, 255},
+    {681, 1, 12, 65535, 255, 255},    {680, 1, 12, 65535, 255, 255},
+    {690, 1, 12, 65535, 255, 255},    {691, 1, 12, 65535, 255, 255},
+    {653, 1, 12, 65535, 255, 255},    {654, 1, 12, 65535, 255, 255},
+    {655, 0, 12, 65535, 255, 255},    {656, 1, 12, 65535, 255, 255},
+    {639, 0, 12, 65535, 255, 255},    {641, 0, 12, 65535, 255, 255},
+    {640, 0, 12, 65535, 255, 255},    {730, 0, 12, 65535, 255, 255},
+    {645, 1, 12, 65535, 255, 255},    {644, 1, 12, 65535, 255, 255},
+    {647, 1, 12, 65535, 255, 255},    {646, 1, 12, 65535, 255, 255},
+    {643, 1, 12, 65535, 255, 255},    {642, 1, 12, 65535, 255, 255},
+    {731, 0, 12, 65535, 255, 255},    {732, 0, 9, 2047, 255, 255},
+    {652, 1, 12, 65535, 255, 255},    {648, 1, 12, 65535, 255, 255},
+    {649, 1, 12, 65535, 255, 255},    {651, 1, 12, 65535, 255, 255},
+    {650, 1, 12, 65535, 255, 255},    {661, 2, 12, 65535, 255, 255},
+    {660, 2, 12, 65535, 255, 255},    {707, 1, 12, 65535, 255, 255},
+    {709, 1, 12, 65535, 255, 255},    {708, 1, 12, 65535, 255, 255},
+    {676, 0, 12, 65535, 255, 255},    {678, 0, 12, 65535, 255, 255},
+    {710, 0, 12, 65535, 255, 255},    {711, 1, 12, 65535, 255, 255},
+    {712, 1, 12, 65535, 255, 255},    {713, 0, 1, 7935, 255, 255},
+    {722, 1, 12, 65535, 255, 255},    {723, 1, 10, 1279, 255, 255},
+    {665, 0, 12, 65535, 255, 255},    {662, 1, 12, 65535, 255, 255},
+    {663, 1, 12, 65535, 255, 255},    {664, 1, 11, 10495, 255, 255},
+    {738, 1, 12, 65535, 255, 255},    {737, 1, 12, 65535, 255, 255},
+    {697, 0, 11, 16895, 255, 255},    {698, 13, 12, 65535, 255, 255},
+    {761, 0, 5, 14662, 85, 255},      {749, 1, 6, 511, 255, 255},
+    {721, 1, 12, 65535, 255, 255},    {733, 0, 12, 65535, 255, 255},
+    {677, 0, 12, 65535, 255, 255},    {674, 0, 12, 65535, 255, 255},
+    {675, 0, 12, 65535, 255, 255},    {776, 1, 12, 65535, 255, 255},
+    {751, 0, 12, 65535, 255, 255},    {694, 2, 4, 511, 255, 255},
+    {659, 1, 12, 65535, 255, 255},    {657, 1, 12, 65535, 255, 255},
+    {700, 0, 12, 65535, 255, 255},    {703, 0, 12, 65535, 255, 255},
+    {670, 2, 12, 65535, 255, 255},    {669, 2, 12, 65535, 255, 255},
+    {658, 1, 5, 4351, 255, 255},      {696, 6, 12, 65535, 255, 255},
+    {756, 7, 12, 65535, 255, 255},    {757, 7, 12, 65535, 255, 255},
+    {772, 2, 12, 65535, 255, 255},    {769, 0, 1, 4095, 255, 255},
+    {754, 0, 1, 3885, 255, 255},      {727, 0, 12, 65535, 255, 255},
+    {699, 3, 12, 65535, 255, 255},    {705, 1, 12, 65535, 255, 255},
+    {704, 1, 0, 1535, 255, 255},      {777, 0, 1, 511, 255, 255},
+    {671, 5, 12, 65535, 255, 255},    {728, 0, 12, 65535, 255, 255},
+    {729, 2, 12, 65535, 255, 255},    {16387, 0, 12, 65535, 255, 255},
+    {672, 0, 12, 65535, 255, 255},    {673, 0, 12, 65535, 255, 255},
+    {726, 1, 0, 5178, 255, 255},      {32808, 10, 12, 65535, 255, 255},
+    {32807, 10, 12, 65535, 255, 255}, {32810, 11, 12, 65535, 255, 255},
+    {32809, 11, 12, 65535, 255, 255}, {32812, 12, 12, 65535, 255, 255},
+    {32811, 12, 12, 65535, 255, 255},
 };
 
 /* 803914A8-80391734 01DB08 028C+00 2/2 0/0 0/0 .rodata          m_faceTexDataTable__9daAlink_c */
@@ -6961,81 +7279,61 @@ COMPILER_STRIP_GATE(0x80391734, &lit_5908);
 /* 80391740-80391754 01DDA0 0014+00 0/1 0/0 0/0 .rodata          atnNormalType1$6976 */
 #pragma push
 #pragma force_active on
-static int const atnNormalType1[5] = {
-    4, 1, 1, 2, 0
-};
+static int const atnNormalType1[5] = {4, 1, 1, 2, 0};
 #pragma pop
 
 /* 80391754-80391768 01DDB4 0014+00 0/1 0/0 0/0 .rodata          atnNormalType2$6977 */
 #pragma push
 #pragma force_active on
-static int const atnNormalType2[5] = {
-    3, 0, 0, 1, 1
-};
+static int const atnNormalType2[5] = {3, 0, 0, 1, 1};
 #pragma pop
 
 /* 80391768-8039177C 01DDC8 0014+00 0/1 0/0 0/0 .rodata          atnNormalType3$6978 */
 #pragma push
 #pragma force_active on
-static int const atnNormalType3[5] = {
-   4, 1, 1, 0, 0
-};
+static int const atnNormalType3[5] = {4, 1, 1, 0, 0};
 #pragma pop
 
 /* 8039177C-80391790 01DDDC 0014+00 0/1 0/0 0/0 .rodata          atnFinishType$6979 */
 #pragma push
 #pragma force_active on
-static int const atnFinishType[5] = {
-    2, 1, 0, 5, 1
-};
+static int const atnFinishType[5] = {2, 1, 0, 5, 1};
 #pragma pop
 
 /* 80391790-803917A4 01DDF0 0014+00 0/1 0/0 0/0 .rodata          hitType$6980 */
 #pragma push
 #pragma force_active on
-static int const hitType[5] = {
-    4, 0, 5, 0, 1
-};
+static int const hitType[5] = {4, 0, 5, 0, 1};
 #pragma pop
 
 /* 803917A4-803917B8 01DE04 0014+00 0/1 0/0 0/0 .rodata          hitFinishType$6981 */
 #pragma push
 #pragma force_active on
-static int const hitFinishType[5] = {
-    2, 1, 0, 5, 0
-};
+static int const hitFinishType[5] = {2, 1, 0, 5, 0};
 #pragma pop
 
 /* 803917B8-803917CC 01DE18 0014+00 0/1 0/0 0/0 .rodata          normalType1$6982 */
 #pragma push
 #pragma force_active on
-static int const normalType1_6982[5] = {
-    0, 2, 1, 2, 1
-};
+static int const normalType1_6982[5] = {0, 2, 1, 2, 1};
 #pragma pop
 
 /* 803917CC-803917E0 01DE2C 0014+00 0/1 0/0 0/0 .rodata          normalType2$6983 */
 #pragma push
 #pragma force_active on
-static int const normalType2[5] = {
-    1, 1, 2, 1, 2
-};
+static int const normalType2[5] = {1, 1, 2, 1, 2};
 #pragma pop
 
 /* 803917E0-803917F4 01DE40 0014+00 0/1 0/0 0/0 .rodata          normalType3$6984 */
 #pragma push
 #pragma force_active on
-static int const normalType3[5] = {
-    4, 0, 1, 2, 1
-};
+static int const normalType3[5] = {4, 0, 1, 2, 1};
 #pragma pop
 
 /* 803917F4-80391808 01DE54 0014+00 0/1 0/0 0/0 .rodata          finishType$6985 */
 #pragma push
 #pragma force_active on
-static int const finishType[5] = {
-    2, 0, 0, 5, 1
-};
+static int const finishType[5] = {2, 0, 0, 5, 1};
 #pragma pop
 
 /* 80391808-80391858 01DE68 0050+00 0/1 0/0 0/0 .rodata          cutParamTable$7312 */
@@ -7066,24 +7364,16 @@ COMPILER_STRIP_GATE(0x80391858, &cutParamTable_7455);
 #pragma pop
 
 /* 803918B8-803918C4 01DF18 000C+00 1/1 0/0 0/0 .rodata          localCenter$11047 */
-static Vec const localCenter = {
-	-15.0f, 0.0f, 18.0f
-};
+static Vec const localCenter = {-15.0f, 0.0f, 18.0f};
 
 /* 803918C4-803918D0 01DF24 000C+00 1/1 0/0 0/0 .rodata          localPos$11819 */
-static Vec const localPos = {
-	3.45f, 45.32f, -7.0f
-};
+static Vec const localPos = {3.45f, 45.32f, -7.0f};
 
 /* 803918D0-803918DC 01DF30 000C+00 1/1 0/0 0/0 .rodata          slingLocalPos$12042 */
-static Vec const slingLocalPos = {
-	10.0f, 10.0f, 0.0f
-};
+static Vec const slingLocalPos = {10.0f, 10.0f, 0.0f};
 
 /* 803918DC-803918E8 01DF3C 000C+00 1/1 0/0 0/0 .rodata          localSidePos$14270 */
-static Vec const localSidePos = {
-	2.3f, -15.5f, 15.6f
-};
+static Vec const localSidePos = {2.3f, -15.5f, 15.6f};
 
 /* 803918E8-803918F4 01DF48 000C+00 0/1 0/0 0/0 .rodata          m_handLeftOutSidePos__9daAlink_c */
 #pragma push
@@ -7563,21 +7853,16 @@ SECTION_RODATA static u8 const getSeType[255 + 1 /* padding */] = {
 COMPILER_STRIP_GATE(0x80391A5C, &getSeType);
 
 /* 80391B5C-80391B7C 01E1BC 0020+00 1/1 0/0 0/0 .rodata          bgmLabel$37391 */
-static u32 const bgmLabel[8] = {
-    0x100001C, 0x100000A, 0x100000B, 0x1000014, 0x1000081, 0x1000082, 0x1000083, 0x10000A0
-};
+static u32 const bgmLabel[8] = {0x100001C, 0x100000A, 0x100000B, 0x1000014,
+                                0x1000081, 0x1000082, 0x1000083, 0x10000A0};
 
 /* 80391B7C-80391B8C 01E1DC 0010+00 1/1 0/0 0/0 .rodata          rupeeCount$37407 */
-static int const rupeeCount[4] = {
-    20, 50, 100, 200
-};
+static int const rupeeCount[4] = {20, 50, 100, 200};
 
 /* 80391B8C-80391BA0 01E1EC 0014+00 0/1 0/0 0/0 .rodata          heartPieceMessage$37580 */
 #pragma push
 #pragma force_active on
-static u32 const heartPieceMessage[5] = {
-    0x86, 0x9C, 0x9D, 0x9E, 0x9F
-};
+static u32 const heartPieceMessage[5] = {0x86, 0x9C, 0x9D, 0x9E, 0x9F};
 #pragma pop
 
 /* 80391BA0-80391BAC 01E200 000C+00 0/1 0/0 0/0 .rodata          effName$39419 */
@@ -7802,10 +8087,7 @@ SECTION_RODATA static u8 const effName_41208[12] = {
 COMPILER_STRIP_GATE(0x80391D38, &effName_41208);
 
 /* 80391D44-80391D54 01E3A4 0010+00 1/1 0/0 0/0 .rodata          swordUpColor$41733 */
-static GXColorS10 const swordUpColor[2] = {
-    { 13, 10, 2, 255 },
-    { 28, 16, 4, 255 }
-};
+static GXColorS10 const swordUpColor[2] = {{13, 10, 2, 255}, {28, 16, 4, 255}};
 
 /* 80391D54-80391D60 01E3B4 000C+00 1/1 0/0 0/0 .rodata          swordCutSplashScale$41755 */
 SECTION_RODATA static u8 const swordCutSplashScale[12] = {
@@ -14563,8 +14845,8 @@ void daAlink_c::setAnimeFrame(f32 frame) {
 
 /* 800AC394-800AC450 0A6CD4 00BC+00 6/6 0/0 0/0 .text
  * setFrameCtrl__9daAlink_cFP16daPy_frameCtrl_cUcssff           */
-void daAlink_c::setFrameCtrl(daPy_frameCtrl_c* p_ctrl, u8 attr, s16 start, s16 end,
-                                 f32 rate, f32 frame) {
+void daAlink_c::setFrameCtrl(daPy_frameCtrl_c* p_ctrl, u8 attr, s16 start, s16 end, f32 rate,
+                             f32 frame) {
     if (i_checkNoResetFlg0(UNDER_WATER_MOVEMENT)) {
         if (checkZoraWearAbility()) {
             rate *= daAlinkHIO_magneBoots_c0::m.mZoraWaterAnmSpeed;
@@ -14689,8 +14971,7 @@ void daAlink_c::setSingleAnimeBaseMorf(daAlink_c::daAlink_ANM anm, f32 param_1) 
 
 /* 800ACFE0-800AD00C 0A7920 002C+00 77/77 0/0 0/0 .text
  * setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff */
-void daAlink_c::setSingleAnimeBaseSpeed(daAlink_c::daAlink_ANM anm, f32 param_1,
-                                            f32 param_2) {
+void daAlink_c::setSingleAnimeBaseSpeed(daAlink_c::daAlink_ANM anm, f32 param_1, f32 param_2) {
     setSingleAnime(anm, param_1, FLOAT_LABEL(lit_6108), -1, param_2);
 }
 
@@ -15202,13 +15483,15 @@ asm void daAlink_c::setBgCheckParam() {
 /* 800B1B28-800B1B68 0AC468 0040+00 4/4 0/0 0/0 .text            checkNotJumpSinkLimit__9daAlink_cFv
  */
 BOOL daAlink_c::checkNotJumpSinkLimit() {
-    return mSinkShapeOffset < lit_14614 || field_0x2fbd == 3 || (field_0x2fbd == 4 && mSinkShapeOffset < lit_14624);
+    return mSinkShapeOffset < lit_14614 || field_0x2fbd == 3 ||
+           (field_0x2fbd == 4 && mSinkShapeOffset < lit_14624);
 }
 
 /* 800B1B68-800B1BAC 0AC4A8 0044+00 2/2 0/0 0/0 .text            checkNotItemSinkLimit__9daAlink_cFv
  */
 BOOL daAlink_c::checkNotItemSinkLimit() {
-    return mSinkShapeOffset < lit_28045 && (field_0x2fbd == 1 || field_0x2fbd == 2 || field_0x2fbd == 3 || field_0x2fbd == 4);
+    return mSinkShapeOffset < lit_28045 &&
+           (field_0x2fbd == 1 || field_0x2fbd == 2 || field_0x2fbd == 3 || field_0x2fbd == 4);
 }
 
 /* ############################################################################################## */
@@ -15230,7 +15513,7 @@ asm void daAlink_c::setSandShapeOffset() {
 
 /* 800B1FB8-800B1FD8 0AC8F8 0020+00 2/2 0/0 0/0 .text checkLv2MiddleBossBgRide__9daAlink_cFs */
 bool daAlink_c::checkLv2MiddleBossBgRide(short param_0) {
-    return param_0 == 0x7B || param_0 == 0x7D; 
+    return param_0 == 0x7B || param_0 == 0x7D;
 }
 
 /* 800B1FD8-800B21EC 0AC918 0214+00 11/11 0/0 0/0 .text getSlidePolygon__9daAlink_cFP8cM3dGPla */
@@ -15569,8 +15852,11 @@ bool daAlink_c::notTalk() {
         chk = false;
     }
 
-    if ((mMidnaTalkDelayTimer != 0 || (i_checkMagneBootsOn() && !cBgW_CheckBGround(mMagneBootsTopVec.y))) || 
-    !i_checkModeFlg(MODE_SWIMMING | MODE_ROPE_WALK | MODE_VINE_CLIMB | MODE_UNK_800 | MODE_RIDING | MODE_NO_COLLISION | MODE_CLIMB | MODE_JUMP) && !chk) {
+    if ((mMidnaTalkDelayTimer != 0 ||
+         (i_checkMagneBootsOn() && !cBgW_CheckBGround(mMagneBootsTopVec.y))) ||
+        !i_checkModeFlg(MODE_SWIMMING | MODE_ROPE_WALK | MODE_VINE_CLIMB | MODE_UNK_800 |
+                        MODE_RIDING | MODE_NO_COLLISION | MODE_CLIMB | MODE_JUMP) &&
+            !chk) {
         return true;
     }
     return false;
@@ -15657,7 +15943,7 @@ void daAlink_c::setStepLandVibration() {
         shock = 1;
     }
     cXyz xyz(0.0f, 1.0f, 0.0f);
-    
+
     dComIfGp_getVibration().StartShock(shock, 15, xyz);
 }
 #else
@@ -15801,11 +16087,9 @@ asm bool daAlink_c::checkSwordTwirlAction() {
 BOOL daAlink_c::checkUpperItemActionFly() {
     if (checkBowAndSlingItem(mEquipItem)) {
         checkUpperItemActionBowFly();
-    } 
-    else if (mEquipItem == BOOMERANG) {
+    } else if (mEquipItem == BOOMERANG) {
         checkUpperItemActionBoomerangFly();
-    }
-    else if (mEquipItem == COPY_ROD) {
+    } else if (mEquipItem == COPY_ROD) {
         checkUpperItemActionCopyRodFly();
     }
 
@@ -15848,9 +16132,7 @@ void daAlink_c::orderPeep() {
 
 /* ############################################################################################## */
 /* 804532B0-804532B4 0018B0 0004+00 1/1 0/0 0/0 .sdata2          itemTalkType$67468 */
-SECTION_SDATA2 static u16 itemTalkType[2] = {
-   6, 7
-};
+SECTION_SDATA2 static u16 itemTalkType[2] = {6, 7};
 
 /* 800B7BF8-800B7D4C 0B2538 0154+00 13/13 0/0 0/0 .text            orderTalk__9daAlink_cFi */
 #pragma push
@@ -15948,11 +16230,13 @@ asm void daAlink_c::checkMoveDoAction() {
  */
 #ifdef NONMATCHING
 BOOL daAlink_c::checkSideRollAction(int param_0) {
-    if (checkNotJumpSinkLimit() || checkHeavyStateOn(1, 1) || checkInputOnR() || checkCutBackState()) {
+    if (checkNotJumpSinkLimit() || checkHeavyStateOn(1, 1) || checkInputOnR() ||
+        checkCutBackState()) {
         return false;
     } else {
         if (mTargetedActor != NULL) {
-            if (checkEnemyGroup(mTargetedActor) && mTargetedActor->mCurrent.mPosition.abs2XZ(mCurrent.mPosition) <= lit_6237) {
+            if (checkEnemyGroup(mTargetedActor) &&
+                mTargetedActor->mCurrent.mPosition.abs2XZ(mCurrent.mPosition) <= lit_6237) {
                 return procSideRollInit(param_0);
             } else {
                 return procTurnMoveInit(param_0);
@@ -16259,7 +16543,9 @@ BOOL daAlink_c::checkBootsOrArmorHeavy() const {
 // param_0 something related to boots
 BOOL daAlink_c::checkHeavyStateOn(int param_0, int param_1) {
     if (!checkEventRun()) {
-        if ((param_1 != 0 && mSinkShapeOffset < lit_14614) || (param_0 != 0 && checkIronBallWaitAnime()) || checkIronBallAnime() || checkMagicArmorHeavy() || getHeavyStateAndBoots()) {
+        if ((param_1 != 0 && mSinkShapeOffset < lit_14614) ||
+            (param_0 != 0 && checkIronBallWaitAnime()) || checkIronBallAnime() ||
+            checkMagicArmorHeavy() || getHeavyStateAndBoots()) {
             return true;
         }
     }
@@ -16643,7 +16929,8 @@ asm BOOL daAlink_c::setItemModel() {
 #ifdef NONMATCHING
 BOOL daAlink_c::setItemActor() {
     if (mEquipItem == BOOMERANG) {
-        fopAc_ac_c* actor = (fopAc_ac_c*)fopAcM_fastCreate(0xFE, 0, &mCurrent.mPosition, -1, NULL, NULL, -1, NULL, NULL);
+        fopAc_ac_c* actor = (fopAc_ac_c*)fopAcM_fastCreate(0xFE, 0, &mCurrent.mPosition, -1, NULL,
+                                                           NULL, -1, NULL, NULL);
         if (actor == NULL) {
             deleteEquipItem(0, 0);
             return false;
@@ -16652,9 +16939,9 @@ BOOL daAlink_c::setItemActor() {
             field_0x2f94 = 2;
             return true;
         }
-    }
-    else if (mEquipItem == COPY_ROD) {
-        fopAc_ac_c* actor = (fopAc_ac_c*)fopAcM_fastCreate(0x2F4, 0, &mCurrent.mPosition, -1, NULL, NULL, -1, NULL, NULL);
+    } else if (mEquipItem == COPY_ROD) {
+        fopAc_ac_c* actor = (fopAc_ac_c*)fopAcM_fastCreate(0x2F4, 0, &mCurrent.mPosition, -1, NULL,
+                                                           NULL, -1, NULL, NULL);
         if (actor == NULL) {
             deleteEquipItem(0, 0);
             return false;
@@ -16663,8 +16950,7 @@ BOOL daAlink_c::setItemActor() {
             field_0x2f94 = 2;
             return true;
         }
-    }
-    else if (mEquipItem == IRONBALL) {
+    } else if (mEquipItem == IRONBALL) {
         fopAc_ac_c* actor = daCrod_c::makeIronBallDummy(this);
         if (actor == NULL) {
             if (checkIronBallWaitAnime()) {
@@ -16677,20 +16963,18 @@ BOOL daAlink_c::setItemActor() {
             field_0x173c.SetActor(actor);
             return true;
         }
-    }
-    else if (checkFisingRodLure()) {
+    } else if (checkFisingRodLure()) {
         u32 id = fopAcM_create(0x2E4, 0x10D, &mLeftHandPos, -1, NULL, NULL, 0xFF);
         mItemActor.setID(id);
         initFishingRodHand();
         return 1;
-    }
-    else if (checkFishingRodItem(mEquipItem)) {
+    } else if (checkFishingRodItem(mEquipItem)) {
         setGroundFishingRodActor();
         return 1;
-    }
-    else if (checkBombItem(mEquipItem)) {
+    } else if (checkBombItem(mEquipItem)) {
         if (checkHorseRide()) {
-            if (!i_dComIfGp_getHorseActor()->checkNoBombProc() && (mActionID != HORSE_TURN || !i_checkModeFlg(MODE_DISABLE_ITEMS))) {
+            if (!i_dComIfGp_getHorseActor()->checkNoBombProc() &&
+                (mActionID != HORSE_TURN || !i_checkModeFlg(MODE_DISABLE_ITEMS))) {
                 mEquipItem = NO_ITEM;
                 return 1;
             }
@@ -16928,14 +17212,17 @@ asm bool daAlink_c::checkRoomOnly() {
 
 /* 800C044C-800C04B4 0BAD8C 0068+00 3/3 0/0 0/0 .text checkLv2DungeonRoomSpecial__9daAlink_cFv */
 bool daAlink_c::checkLv2DungeonRoomSpecial() {
-    return checkStageName("D_MN04") && (dComIfGp_roomControl_getStayNo() == 14 || dComIfGp_roomControl_getStayNo() == 16 || dComIfGp_roomControl_getStayNo() == 17);
+    return checkStageName("D_MN04") &&
+           (dComIfGp_roomControl_getStayNo() == 14 || dComIfGp_roomControl_getStayNo() == 16 ||
+            dComIfGp_roomControl_getStayNo() == 17);
 }
 
 /* 800C04B4-800C0520 0BADF4 006C+00 2/2 0/0 0/0 .text            checkRoomSpecial__9daAlink_cFv */
 // 1 wrong branch
 #ifdef NONMATCHING
 bool daAlink_c::checkRoomSpecial() {
-    return !checkStageName("D_MN11") || dComIfGp_roomControl_getStayNo() == 1 || dComIfGp_roomControl_getStayNo() == 2 || checkLv2DungeonRoomSpecial();
+    return !checkStageName("D_MN11") || dComIfGp_roomControl_getStayNo() == 1 ||
+           dComIfGp_roomControl_getStayNo() == 2 || checkLv2DungeonRoomSpecial();
 }
 #else
 #pragma push
@@ -16950,7 +17237,8 @@ asm bool daAlink_c::checkRoomSpecial() {
 
 /* 800C0520-800C0594 0BAE60 0074+00 1/1 0/0 0/0 .text            checkRoom__9daAlink_cFv */
 bool daAlink_c::checkRoom() {
-    return checkRoomOnly() || checkRoomSpecial() || checkStageName("R_SP161") && !dComIfGs_isOneZoneSwitch(14, -1);
+    return checkRoomOnly() || checkRoomSpecial() ||
+           checkStageName("R_SP161") && !dComIfGs_isOneZoneSwitch(14, -1);
 }
 
 /* 800C0594-800C05DC 0BAED4 0048+00 8/8 0/0 0/0 .text            checkNotBattleStage__9daAlink_cFv
@@ -16973,12 +17261,12 @@ bool daAlink_c::checkNotAutoJumpStage() {
 /* 800C0678-800C077C 0BAFB8 0104+00 3/3 0/0 0/0 .text checkCastleTownUseItem__9daAlink_cFUs */
 bool daAlink_c::checkCastleTownUseItem(u16 item_id) {
     if (checkNotBattleStage()) {
-        if (item_id == KANTERA || checkTradeItem(item_id) || 
-           (item_id == DUNGEON_BACK && checkLv7DungeonShop()) || 
-           (checkRoomSpecial() && (item_id == EMPTY_BOTTLE || checkDungeonWarpItem(item_id))) || 
-           (checkStageName("R_SP128") && item_id == COPY_ROD) || 
-           (checkLv2DungeonRoomSpecial() && item_id == HVY_BOOTS) || 
-           (checkBottleItem(item_id) && item_id != EMPTY_BOTTLE)) {
+        if (item_id == KANTERA || checkTradeItem(item_id) ||
+            (item_id == DUNGEON_BACK && checkLv7DungeonShop()) ||
+            (checkRoomSpecial() && (item_id == EMPTY_BOTTLE || checkDungeonWarpItem(item_id))) ||
+            (checkStageName("R_SP128") && item_id == COPY_ROD) ||
+            (checkLv2DungeonRoomSpecial() && item_id == HVY_BOOTS) ||
+            (checkBottleItem(item_id) && item_id != EMPTY_BOTTLE)) {
             return true;
         } else {
             return false;
@@ -17192,17 +17480,16 @@ bool daAlink_c::procServiceWaitInit() {
 /* 800C30F0-800C3224 0BDA30 0134+00 1/0 0/0 0/0 .text            procServiceWait__9daAlink_cFv */
 bool daAlink_c::procServiceWait() {
     J3DFrameCtrl* ctrl = &mFrameCtrl1[0];
-    if ((!checkNextAction(0) && !checkFrontWallTypeAction()) && (checkEventRun() || checkGuardActionChange() || mCollisionRot.y != field_0x2fe6)) {
-            ctrl->setRate(FLOAT_LABEL(lit_6108));
-            procWaitInit();
+    if ((!checkNextAction(0) && !checkFrontWallTypeAction()) &&
+        (checkEventRun() || checkGuardActionChange() || mCollisionRot.y != field_0x2fe6)) {
+        ctrl->setRate(FLOAT_LABEL(lit_6108));
+        procWaitInit();
     } else {
         if (ctrl->checkPass(lit_10040)) {
             voiceStart(Z2SE_AL_V_RELAX_A);
-        }
-        else if (ctrl->checkPass(lit_11673)) {
+        } else if (ctrl->checkPass(lit_11673)) {
             voiceStart(Z2SE_AL_V_RELAX_B);
-        }
-        else if (ctrl->checkPass(lit_25684)) {
+        } else if (ctrl->checkPass(lit_25684)) {
             voiceStart(Z2SE_AL_V_RELAX_C);
         }
     }
@@ -17225,8 +17512,7 @@ bool daAlink_c::procTiredWait() {
     if (!checkNextAction(0)) {
         if (ctrl->checkAnmEnd()) {
             setSingleAnimeBase(ANM_TIRED_WAIT);
-        }
-        else if (ctrl->getAttribute() == 2) {
+        } else if (ctrl->getAttribute() == 2) {
             setTiredVoice(ctrl);
         }
     }
@@ -17269,12 +17555,15 @@ bool daAlink_c::procMoveInit() {
 bool daAlink_c::procMove() {
     setFootEffectProcType(3);
     if (!checkNextAction(0) && !checkFrontWallTypeAction()) {
-        if (mDemo.getDemoMode() == 2 && mNormalSpeed > field_0x594 * daAlinkHIO_move_c0::m.mWalkChangeRate) {
+        if (mDemo.getDemoMode() == 2 &&
+            mNormalSpeed > field_0x594 * daAlinkHIO_move_c0::m.mWalkChangeRate) {
             mNormalSpeed = field_0x594 * daAlinkHIO_move_c0::m.mWalkChangeRate;
         }
         setBlendMoveAnime(-1.0f);
         if (field_0x3174 != 8) {
-            field_0x30a0 = cLib_minMaxLimit((s16)(field_0x2ff0 >> 1), daAlinkHIO_basic_c0::m.mNeckMaxUp, daAlinkHIO_basic_c0::m.mNeckMaxDown);
+            field_0x30a0 =
+                cLib_minMaxLimit((s16)(field_0x2ff0 >> 1), daAlinkHIO_basic_c0::m.mNeckMaxUp,
+                                 daAlinkHIO_basic_c0::m.mNeckMaxDown);
         }
     }
     return true;
@@ -17329,7 +17618,7 @@ bool daAlink_c::procAtnActorWaitInit() {
     } else {
         setBlendMoveAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
     }
-    
+
     return true;
 }
 
@@ -17371,7 +17660,8 @@ bool daAlink_c::procWaitTurnInit() {
         return false;
     }
 
-    setSingleAnimeBaseSpeed(ANM_WAIT_TURN, daAlinkHIO_basic_c0::m.mWaitTurnSpeed, daAlinkHIO_basic_c0::m.mAnmBlendFactor);
+    setSingleAnimeBaseSpeed(ANM_WAIT_TURN, daAlinkHIO_basic_c0::m.mWaitTurnSpeed,
+                            daAlinkHIO_basic_c0::m.mAnmBlendFactor);
     if (checkEventRun()) {
         mNormalSpeed = FLOAT_LABEL(lit_6108);
     }
@@ -17398,8 +17688,7 @@ BOOL daAlink_c::procWaitTurn() {
                     if (checkEventRun()) {
                         if (mDemo.getDemoMode() == 5) {
                             dComIfGp_evmng_cutEnd(field_0x3184);
-                        }
-                        else if (!checkNextAction(0)) {
+                        } else if (!checkNextAction(0)) {
                             checkWaitAction();
                         }
                     } else {
@@ -17440,8 +17729,9 @@ bool daAlink_c::procMoveTurnInit(int param_0) {
 /* 800C3D38-800C3DA0 0BE678 0068+00 1/0 0/0 0/0 .text            procMoveTurn__9daAlink_cFv */
 bool daAlink_c::procMoveTurn() {
     setSpeedAndAngleNormal();
-    cLib_addCalcAngleS(&mCollisionRot.y, mCurrent.mAngle.y, field_0x300a, field_0x300e, field_0x3010);
-    
+    cLib_addCalcAngleS(&mCollisionRot.y, mCurrent.mAngle.y, field_0x300a, field_0x300e,
+                       field_0x3010);
+
     if (!checkNextAction(0)) {
         setBlendMoveAnime(lit_6041);
     }
@@ -17450,12 +17740,13 @@ bool daAlink_c::procMoveTurn() {
 
 /* 800C3DA0-800C3F60 0BE6E0 01C0+00 2/2 0/0 0/0 .text            procSideStepInit__9daAlink_cFi */
 bool daAlink_c::procSideStepInit(int jump_type) {
-    if (jump_type == 1 && !checkHeavyStateOn(1, 1) && (checkNoUpperAnime() || checkEquipAnime() || field_0x2fcc != 0 && checkUpperGuardAnime())) {
+    if (jump_type == 1 && !checkHeavyStateOn(1, 1) &&
+        (checkNoUpperAnime() || checkEquipAnime() || field_0x2fcc != 0 && checkUpperGuardAnime())) {
         return procBackJumpInit(0);
     } else {
         commonProcInit(HUMAN_SIDESTEP);
         field_0x2f98 = jump_type;
-        
+
         if (field_0x2f98 == 1) {
             mCurrent.mAngle.y = mCollisionRot.y + 0x8000;
             setSingleAnimeParam(ANM_BACK_JUMP, &daAlinkHIO_sideStep_c0::m.mBackJumpAnm);
@@ -17504,18 +17795,16 @@ bool daAlink_c::procSideStep() {
 
     if (checkUpperItemActionFly()) {
         return true;
-    }
-    else if (mLinkAcch.ChkGroundHit() && field_0x300e != 0) {
+    } else if (mLinkAcch.ChkGroundHit() && field_0x300e != 0) {
         if (mCommonCounter != 0 && checkSideRollAction(field_0x2f98)) {
             return true;
         } else {
             return procSideStepLandInit();
         }
-    }
-    else if (checkNoUpperAnime() && checkForceSwordSwing()) {
+    } else if (checkNoUpperAnime() && checkForceSwordSwing()) {
         setCutDash(1, 0);
-    }
-    else if (mDemo.getDemoMode() != 16 && mCurrent.mPosition.y < mLastJumpPos.y - daAlinkHIO_sideStep_c0::m.mFallHeight) {
+    } else if (mDemo.getDemoMode() != 16 &&
+               mCurrent.mPosition.y < mLastJumpPos.y - daAlinkHIO_sideStep_c0::m.mFallHeight) {
         return procFallInit(2, daAlinkHIO_sideStep_c0::m.mFallInterpolation);
     }
 
@@ -17584,14 +17873,13 @@ bool daAlink_c::procSideStepLand() {
         } else {
             checkNextAction(0);
         }
-    } 
-    else if (ctrl->getFrame() > field_0x3478) {
+    } else if (ctrl->getFrame() > field_0x3478) {
         if (mCommonCounter != 0 && checkSideRollAction(field_0x2f98)) {
             return true;
         }
         checkNextAction(1);
     }
-    
+
     return true;
 }
 
@@ -17704,15 +17992,18 @@ bool daAlink_c::procFrontRollInit() {
     } else {
         BOOL check = mActionID == 0x16;
         commonProcInit(FRONT_ROLL);
-        
+
         f32 fvar1;
         if (!check) {
             fvar1 = daAlinkHIO_frontRoll_c0::m.mRollAnm.field_0x04;
         } else {
             fvar1 = lit_7977;
         }
-        setSingleAnime(ANM_FRONT_ROLL, daAlinkHIO_frontRoll_c0::m.mRollAnm.field_0x04, fvar1, daAlinkHIO_frontRoll_c0::m.mRollAnm.field_0x00, daAlinkHIO_frontRoll_c0::m.mRollAnm.field_0x0c);
-        mNormalSpeed = mSpeedF * daAlinkHIO_frontRoll_c0::m.mInitSpeed + daAlinkHIO_frontRoll_c0::m.mSpeedRate;
+        setSingleAnime(ANM_FRONT_ROLL, daAlinkHIO_frontRoll_c0::m.mRollAnm.field_0x04, fvar1,
+                       daAlinkHIO_frontRoll_c0::m.mRollAnm.field_0x00,
+                       daAlinkHIO_frontRoll_c0::m.mRollAnm.field_0x0c);
+        mNormalSpeed =
+            mSpeedF * daAlinkHIO_frontRoll_c0::m.mInitSpeed + daAlinkHIO_frontRoll_c0::m.mSpeedRate;
         if (mNormalSpeed > daAlinkHIO_frontRoll_c0::m.mCrashHitAnm.field_0x08) {
             mNormalSpeed = daAlinkHIO_frontRoll_c0::m.mCrashHitAnm.field_0x08;
         }
@@ -18296,7 +18587,9 @@ BOOL daPy_py_c::i_checkSwordGet() {
 
 /* 800CB480-800CB53C 0C5DC0 00BC+00 3/3 0/0 0/0 .text            checkSwordDraw__9daAlink_cFv */
 bool daAlink_c::checkSwordDraw() {
-    return ((i_checkSwordGet() && mSwordChangeWaitTimer == 0) && !i_checkNoResetFlg2(FLG2_UNK_2080000)) && (!i_checkWolf() || !i_dComIfGs_isEventBit(0x0C08));
+    return ((i_checkSwordGet() && mSwordChangeWaitTimer == 0) &&
+            !i_checkNoResetFlg2(FLG2_UNK_2080000)) &&
+           (!i_checkWolf() || !i_dComIfGs_isEventBit(0x0C08));
 }
 
 bool daPy_py_c::i_checkShieldGet() const {
@@ -18305,13 +18598,16 @@ bool daPy_py_c::i_checkShieldGet() const {
 
 /* 800CB53C-800CB5F8 0C5E7C 00BC+00 3/3 0/0 0/0 .text            checkShieldDraw__9daAlink_cFv */
 bool daAlink_c::checkShieldDraw() {
-    return ((i_checkShieldGet() && mShieldChangeWaitTimer == 0) && !i_checkNoResetFlg2(FLG2_UNK_4080000)) && (!i_checkWolf() || !i_dComIfGs_isEventBit(0x0C08));
+    return ((i_checkShieldGet() && mShieldChangeWaitTimer == 0) &&
+            !i_checkNoResetFlg2(FLG2_UNK_4080000)) &&
+           (!i_checkWolf() || !i_dComIfGs_isEventBit(0x0C08));
 }
 
 /* 800CB5F8-800CB694 0C5F38 009C+00 2/2 0/0 0/0 .text            checkItemDraw__9daAlink_cFv */
 bool daAlink_c::checkItemDraw() {
     if (mHeldItemModel != NULL && (mEquipItem != IRONBALL || !checkSwordEquipAnime())) {
-        if (!checkBowAndSlingItem(mEquipItem) || checkBowGrabLeftHand() || !i_checkShieldGet() || field_0x2e44.checkPassNum(15)) {
+        if (!checkBowAndSlingItem(mEquipItem) || checkBowGrabLeftHand() || !i_checkShieldGet() ||
+            field_0x2e44.checkPassNum(15)) {
             return true;
         }
     }
@@ -18481,8 +18777,7 @@ static bool daAlink_Delete(daAlink_c* p_link) {
     if (p_link->getClothesChangeWaitTimer() != 0) {
         p_link->loadModelDVD();
         return false;
-    }
-    else if (p_link->getShieldChangeWaitTimer() != 0) {
+    } else if (p_link->getShieldChangeWaitTimer() != 0) {
         p_link->loadShieldModelDVD();
         return false;
     } else {
@@ -18717,7 +19012,8 @@ MtxP daAlink_c::getRightItemMatrix() {
 
 /* 800CF344-800CF380 0C9C84 003C+00 1/0 0/0 0/0 .text            checkPlayerNoDraw__9daAlink_cFv */
 BOOL daAlink_c::checkPlayerNoDraw() {
-    return dComIfGp_checkCameraAttentionStatus(field_0x317c, 2) || i_checkNoResetFlg0(FLG0_UNK_8000000);
+    return dComIfGp_checkCameraAttentionStatus(field_0x317c, 2) ||
+           i_checkNoResetFlg0(FLG0_UNK_8000000);
 }
 
 /* 800CF380-800CFC3C 0C9CC0 08BC+00 1/1 0/0 0/0 .text            __ct__9daAlink_cFv */
@@ -18902,7 +19198,8 @@ BOOL daAlink_c::checkReinRide() const {
 
 /* 800D0110-800D0138 0CAA50 0028+00 1/1 0/0 0/0 .text checkWolfEnemyThrowAnime__9daAlink_cCFv */
 BOOL daAlink_c::checkWolfEnemyThrowAnime() const {
-    return checkUpperAnime(ANM_WOLF_ENEMY_THROW_LEFT) || checkUpperAnime(ANM_WOLF_ENEMY_THROW_RIGHT);
+    return checkUpperAnime(ANM_WOLF_ENEMY_THROW_LEFT) ||
+           checkUpperAnime(ANM_WOLF_ENEMY_THROW_RIGHT);
 }
 
 /* 800D0138-800D014C 0CAA78 0014+00 1/1 0/0 0/0 .text            checkSpecialDemoMode__9daAlink_cCFv
@@ -19069,7 +19366,8 @@ void daAlink_c::setForcePutPos(cXyz const& pPutPos) {
 
 /* 800D03B4-800D03C8 0CACF4 0014+00 1/0 0/0 0/0 .text            checkPlayerFly__9daAlink_cCFv */
 u32 daAlink_c::checkPlayerFly() const {
-    return i_checkModeFlg(MODE_SWIMMING | MODE_ROPE_WALK | MODE_VINE_CLIMB | MODE_UNK_800 | MODE_NO_COLLISION | MODE_CLIMB | MODE_JUMP);
+    return i_checkModeFlg(MODE_SWIMMING | MODE_ROPE_WALK | MODE_VINE_CLIMB | MODE_UNK_800 |
+                          MODE_NO_COLLISION | MODE_CLIMB | MODE_JUMP);
 }
 
 /* 800D03C8-800D03DC 0CAD08 0014+00 1/0 0/0 0/0 .text            checkFrontRoll__9daAlink_cCFv */
@@ -19222,7 +19520,8 @@ BOOL daAlink_c::checkComboCutTurn() const {
 
 /* 800D06D8-800D0704 0CB018 002C+00 1/0 0/0 0/0 .text            checkClimbMove__9daAlink_cCFv */
 BOOL daAlink_c::checkClimbMove() const {
-    return mActionID == CLIMB_MOVE_VERTICAL || mActionID == CLIMB_MOVE_LADDER || mActionID == CLIMB_MOVE_HORIZONTAL;
+    return mActionID == CLIMB_MOVE_VERTICAL || mActionID == CLIMB_MOVE_LADDER ||
+           mActionID == CLIMB_MOVE_HORIZONTAL;
 }
 
 /* 800D0704-800D0718 0CB044 0014+00 1/0 0/0 0/0 .text            checkGrassWhistle__9daAlink_cCFv */
@@ -19591,7 +19890,8 @@ asm void daAlink_c::checkLightSwordMtrl() {
 /* 800D0E98-800D0ECC 0CB7D8 0034+00 5/5 0/0 0/0 .text            checkSwordEquipAnime__9daAlink_cCFv
  */
 BOOL daAlink_c::checkSwordEquipAnime() const {
-    return !i_checkNoResetFlg0(FLG0_UNK_1000000) && (checkUpperAnime(0x255) || checkUpperAnime(0x261));
+    return !i_checkNoResetFlg0(FLG0_UNK_1000000) &&
+           (checkUpperAnime(0x255) || checkUpperAnime(0x261));
 }
 
 /* 800D0ECC-800D0EFC 0CB80C 0030+00 8/8 0/0 0/0 .text            checkCutDashAnime__9daAlink_cCFv */
@@ -19676,7 +19976,7 @@ void daAlink_c::setSwordModel() {
 
     mDoAud_bgmSetSwordUsing(1);
     field_0x2f94 = 0;
-    
+
     if (checkWoodSwordEquip()) {
         mSwordModel->getModelData()->getMaterialNodePointer(1)->getShape()->hide();
     } else {
@@ -19690,8 +19990,7 @@ void daAlink_c::offSwordModel() {
 
     if (mSwordModel == field_0x0668 || mSwordModel == field_0x0660) {
         mSwordModel->getModelData()->getMaterialNodePointer(0)->getShape()->hide();
-    }
-    else if (mSwordModel == field_0x0670) {
+    } else if (mSwordModel == field_0x0670) {
         field_0x0670->getModelData()->getMaterialNodePointer(1)->getShape()->show();
     }
 }
@@ -19699,7 +19998,8 @@ void daAlink_c::offSwordModel() {
 /* 800D13AC-800D13E4 0CBCEC 0038+00 1/1 0/0 0/0 .text            checkCutTypeNoBlur__9daAlink_cCFv
  */
 BOOL daAlink_c::checkCutTypeNoBlur() const {
-    return mCutType == TYPE_CUT_STAB || mCutType == TYPE_CUT_STAB_COMBO || mCutType == TYPE_CUT_STAB_FINISH || i_checkNoResetFlg0(UNDER_WATER_MOVEMENT);
+    return mCutType == TYPE_CUT_STAB || mCutType == TYPE_CUT_STAB_COMBO ||
+           mCutType == TYPE_CUT_STAB_FINISH || i_checkNoResetFlg0(UNDER_WATER_MOVEMENT);
 }
 
 /* 800D13E4-800D1424 0CBD24 0040+00 7/7 0/0 0/0 .text            checkCutTurnInput__9daAlink_cCFv */
@@ -19731,7 +20031,9 @@ void daAlink_c::resetCombo(int param_0) {
 // something with i_checkAttentionLock
 #ifdef NONMATCHING
 void daAlink_c::checkComboCnt() {
-    if ((mEquipItem == EQUIP_SWORD && mComboCutCount == 2) && (i_checkAttentionLock() && (field_0x122C[0].ChkAtHit() || field_0x122C[1].ChkAtHit() || field_0x122C[2].ChkAtHit()))) {
+    if ((mEquipItem == EQUIP_SWORD && mComboCutCount == 2) &&
+        (i_checkAttentionLock() && (field_0x122C[0].ChkAtHit() || field_0x122C[1].ChkAtHit() ||
+                                    field_0x122C[2].ChkAtHit()))) {
         i_onNoResetFlg0(FLG0_UNK_8000);
     }
     if (field_0x307e > 0) {
@@ -19909,8 +20211,7 @@ void daAlink_c::setSwordChargeVoiceSe() {
 void daAlink_c::setSwordComboVoice() {
     if (mActionID == CUT_JUMP || mComboCutCount == 4) {
         setSwordVoiceSe(Z2SE_AL_V_ATTACK_L);
-    }
-    else if (mComboCutCount == 1) {
+    } else if (mComboCutCount == 1) {
         setSwordVoiceSe(Z2SE_AL_V_ATTACK_S);
     } else {
         setSwordVoiceSe(Z2SE_AL_V_ATTACK_M);
@@ -20061,10 +20362,10 @@ void daAlink_c::setCutJumpSpeed(int cut_type) {
     // cut_type 0 = standing jump attack
     if (mTargetedActor != NULL && cut_type == 0) {
         mCollisionRot.y = cLib_targetAngleY(&mCurrent.mPosition, &mTargetedActor->mEyePos);
-        cXyz targetPos(mTargetedActor->mEyePos.x - (cM_ssin(mCollisionRot.y) * 70.0f), 
+        cXyz targetPos(mTargetedActor->mEyePos.x - (cM_ssin(mCollisionRot.y) * 70.0f),
                        mTargetedActor->mEyePos.y + 50.0f,
                        mTargetedActor->mEyePos.z - (cM_scos(mCollisionRot.y) * 70.0f));
-        
+
         if (fopAcM_gc_c::gndCheck(&targetPos)) {
             targetPos.y = fopAcM_gc_c::getGroundY();
         } else {
@@ -20214,7 +20515,8 @@ bool daAlink_c::procCutJumpInit(int jump_type) {
     }
     setCutJumpSpeed(jump_type);
     mCurrent.mAngle.y = mCollisionRot.y;
-    setSwordAtParam(dCcG_At_Spl_UNK_01, 3, 1, 3, daAlinkHIO_cut_c0::m.mSwordLength, daAlinkHIO_cut_c0::m.mSwordRadius);
+    setSwordAtParam(dCcG_At_Spl_UNK_01, 3, 1, 3, daAlinkHIO_cut_c0::m.mSwordLength,
+                    daAlinkHIO_cut_c0::m.mSwordRadius);
     setCutType(TYPE_CUT_JUMP);
     setSwordComboVoice();
     dComIfGp_setPlayerStatus0(0, 0x8000);
@@ -20230,8 +20532,7 @@ bool daAlink_c::procCutJump() {
         mNormalSpeed = 27.0f;
         cXyz xyz(0.0f, 1.0f, 0.0f);
         dComIfGp_getVibration().StartShock(5, 31, xyz);
-    }
-    else if (mCurrent.mAngle.y != mCollisionRot.y) {
+    } else if (mCurrent.mAngle.y != mCollisionRot.y) {
         cLib_chaseF(&mNormalSpeed, 5.0f, 1.0f);
     }
 
@@ -20240,8 +20541,7 @@ bool daAlink_c::procCutJump() {
     }
     if (mLinkAcch.ChkGroundHit()) {
         procCutJumpLandInit(field_0x3198);
-    }
-    else if (mFrameCtrl1[0].getFrame() >= daAlinkHIO_cutJump_c0::m.mStartAttackFrame) {
+    } else if (mFrameCtrl1[0].getFrame() >= daAlinkHIO_cutJump_c0::m.mStartAttackFrame) {
         if (!i_checkNoResetFlg0(FLG0_UNK_40)) {
             seStartSwordCut(Z2SE_AL_SWORD_SWING_L);
         }
@@ -20486,7 +20786,8 @@ bool daAlink_c::procCutLargeJump() {
                 setCutJumpSpeed(0);
             }
 
-            if (ctrl->getFrame() >= daAlinkHIO_cutLargeJump_c0::m.mJumpAttackStartF && ctrl->getFrame() < daAlinkHIO_cutLargeJump_c0::m.mJumpAttackEndF) {
+            if (ctrl->getFrame() >= daAlinkHIO_cutLargeJump_c0::m.mJumpAttackStartF &&
+                ctrl->getFrame() < daAlinkHIO_cutLargeJump_c0::m.mJumpAttackEndF) {
                 if (!i_checkNoResetFlg0(FLG0_UNK_40)) {
                     seStartSwordCut(Z2SE_AL_SWORD_SWING_S);
                 }
@@ -20497,7 +20798,8 @@ bool daAlink_c::procCutLargeJump() {
         if (field_0x300e != 0) {
             field_0x300e--;
             if (field_0x300e == 0) {
-                setSwordAtParam(dCcG_At_Spl_UNK_01, 3, 1, 4, daAlinkHIO_cut_c0::m.mSwordLength, daAlinkHIO_cut_c0::m.mSwordRadius);
+                setSwordAtParam(dCcG_At_Spl_UNK_01, 3, 1, 4, daAlinkHIO_cut_c0::m.mSwordLength,
+                                daAlinkHIO_cut_c0::m.mSwordRadius);
                 setCutType(TYPE_CUT_LARGE_JUMP);
             }
         }
@@ -21745,8 +22047,7 @@ f32 daAlink_c::getBoomLockMax() {
 
     if (checkBossBabaRoom()) {
         return lit_12475;
-    } 
-    else if (daAlinkHIO_boom_c0::m.field_0x44 > max) {
+    } else if (daAlinkHIO_boom_c0::m.field_0x44 > max) {
         return daAlinkHIO_boom_c0::m.field_0x44;
     } else {
         return max;
@@ -22073,7 +22374,7 @@ asm void daAlink_c::initCopyRodUpperAnimeSpeed(int param_0) {
         f32 tmp = FLOAT_LABEL(lit_6108);
         mFrameCtrl2[2].setRate(tmp);
         mFrameCtrl2[2].setFrame(tmp);
-        
+
     }
 } */
 
@@ -22192,7 +22493,7 @@ void daAlink_c::throwCopyRod() {
     mFastShotTime = -1;
     voiceStart(Z2SE_AL_V_ATTACK_S);
     seStartSwordCut(Z2SE_AL_COPYROD_SWING);
-    
+
     if (mLinkAcch.ChkGroundHit()) {
         if (checkZeroSpeedF()) {
             field_0x2f98 = 3;
@@ -22567,7 +22868,8 @@ s16 daAlink_c::getBombInsectLimitAngle() const {
 
 /* 800E3830-800E3858 0DE170 0028+00 2/2 0/0 0/0 .text daAlink_checkLightBallA__FP10fopAc_ac_c */
 static bool daAlink_checkLightBallA(fopAc_ac_c* p_actor) {
-    if (fopAcM_GetName(p_actor) == 0x2FC && static_cast<daObjCarry_c*>(p_actor)->getType() == daObjCarry_c::TYPE_BALL_S) {
+    if (fopAcM_GetName(p_actor) == 0x2FC &&
+        static_cast<daObjCarry_c*>(p_actor)->getType() == daObjCarry_c::TYPE_BALL_S) {
         return true;
     }
     return false;
@@ -22575,7 +22877,8 @@ static bool daAlink_checkLightBallA(fopAc_ac_c* p_actor) {
 
 /* 800E3858-800E3880 0DE198 0028+00 2/2 0/0 0/0 .text daAlink_checkLightBallB__FP10fopAc_ac_c */
 static bool daAlink_checkLightBallB(fopAc_ac_c* p_actor) {
-    if (fopAcM_GetName(p_actor) == 0x2FC && static_cast<daObjCarry_c*>(p_actor)->getType() == daObjCarry_c::TYPE_BALL_S_2) {
+    if (fopAcM_GetName(p_actor) == 0x2FC &&
+        static_cast<daObjCarry_c*>(p_actor)->getType() == daObjCarry_c::TYPE_BALL_S_2) {
         return true;
     }
     return false;
@@ -22583,7 +22886,8 @@ static bool daAlink_checkLightBallB(fopAc_ac_c* p_actor) {
 
 /* 800E3880-800E38EC 0DE1C0 006C+00 1/1 0/0 0/0 .text daAlink_searchLightBall__FP10fopAc_ac_cPv */
 static fopAc_ac_c* daAlink_searchLightBall(fopAc_ac_c* p_actor, void* param_1) {
-    if ((daPy_py_c::checkCarryStartLightBallA() && daAlink_checkLightBallA(p_actor)) || (daPy_py_c::checkCarryStartLightBallB() && daAlink_checkLightBallB(p_actor))) {
+    if ((daPy_py_c::checkCarryStartLightBallA() && daAlink_checkLightBallA(p_actor)) ||
+        (daPy_py_c::checkCarryStartLightBallB() && daAlink_checkLightBallB(p_actor))) {
         return p_actor;
     }
     return NULL;
@@ -22618,7 +22922,7 @@ bool daAlink_c::exchangeGrabActor(fopAc_ac_c* p_actor) {
     if (actor == NULL) {
         return false;
     }
-    
+
     fopAcM_cancelCarryNow(actor);
     actor->mCollisionRot.z = 0;
     actor->mCollisionRot.x = 0;
@@ -22632,10 +22936,11 @@ bool daAlink_c::exchangeGrabActor(fopAc_ac_c* p_actor) {
 
 /* 800E3A9C-800E3BCC 0DE3DC 0130+00 1/0 0/0 0/0 .text setForceGrab__9daAlink_cFP10fopAc_ac_cii */
 bool daAlink_c::setForceGrab(fopAc_ac_c* p_actor, int param_1, int param_2) {
-    if (((param_1 != 0 || !checkEventRun()) && !i_checkWolf()) && 
-        (((mEquipItem == NO_ITEM || (param_2 != 0 && checkHookshotItem(mEquipItem)))) && 
-        ((i_checkModeFlg(MODE_UNK_10000000) && (checkHorseNoUpperAnime() || checkHorseTurnAnime())) || 
-        param_2 != 0 && checkHookshotAnime()))) {
+    if (((param_1 != 0 || !checkEventRun()) && !i_checkWolf()) &&
+        (((mEquipItem == NO_ITEM || (param_2 != 0 && checkHookshotItem(mEquipItem)))) &&
+         ((i_checkModeFlg(MODE_UNK_10000000) &&
+           (checkHorseNoUpperAnime() || checkHorseTurnAnime())) ||
+          param_2 != 0 && checkHookshotAnime()))) {
         deleteEquipItem(1, 0);
         setGrabItemActor(p_actor);
         field_0x33e4 = lit_8785;
@@ -23234,13 +23539,13 @@ bool daAlink_c::checkChainBlockPushPull() {
         fopAc_ac_c* actor = field_0x2844.getActor();
         if (actor != NULL) {
             s16 name = fopAcM_GetName(actor);
-            // actor is Cblock || chainSw || Cwall 
+            // actor is Cblock || chainSw || Cwall
             if (name == 0x7E || name == 0x16F || name == 0x7F) {
                 return true;
             }
         }
     }
-    return false; 
+    return false;
 }
 
 /* 800E7C30-800E7CC0 0E2570 0090+00 2/2 0/0 0/0 .text            procFmChainUpInit__9daAlink_cFv */
@@ -27505,7 +27810,7 @@ asm void daAlink_c::procBoardCutTurn() {
 #pragma optimization_level 0
 #pragma optimizewithasm off
 extern "C" asm void draw__Q29daAlink_c14hsChainShape_cFv() {
-// asm void daAlink_c::hsChainShape_c::draw() {
+    // asm void daAlink_c::hsChainShape_c::draw() {
     nofralloc
 #include "asm/d/a/d_a_alink/draw__Q29daAlink_c14hsChainShape_cFv.s"
 }
@@ -30451,7 +30756,6 @@ asm void daAlink_c::checkAcceptWarp() {
 }
 #pragma pop
 
-
 /* 8011F7D8-8011F8B8 11A118 00E0+00 2/2 0/0 0/0 .text            dungeonReturnWarp__9daAlink_cFv */
 void daAlink_c::dungeonReturnWarp() {
     cXyz pos = dComIfGs_getWarpPlayerPos();
@@ -30461,7 +30765,8 @@ void daAlink_c::dungeonReturnWarp() {
     strcpy(name, dComIfGs_getWarpStageName());
 
     dComIfGs_setRestartRoom(pos, angle, room);
-    dComIfGp_setNextStage(name, -1, dComIfGs_getRestartRoomNo(), -1, FLOAT_LABEL(lit_6108), 12, 0, 0, 0, 1, 0);
+    dComIfGp_setNextStage(name, -1, dComIfGs_getRestartRoomNo(), -1, FLOAT_LABEL(lit_6108), 12, 0,
+                          0, 0, 1, 0);
     u32 data = setParamData(dComIfGs_getRestartRoomNo(), 0, 0xCA, 0);
     dComIfGs_setRestartRoomParam(data);
 }
@@ -30472,12 +30777,16 @@ void daAlink_c::skipPortalObjWarp() {
         return;
     }
 
-    if (i_checkNoResetFlg3(FLG3_UNK_2000000) && (dComIfGp_TargetWarpPt_get() == 9 && dComIfGp_TransportWarp_check())) {
-        dStage_changeScene(2, FLOAT_LABEL(lit_6108), 0, fopAcM_GetRoomNo(this), mCollisionRot.y, -1);
+    if (i_checkNoResetFlg3(FLG3_UNK_2000000) &&
+        (dComIfGp_TargetWarpPt_get() == 9 && dComIfGp_TransportWarp_check())) {
+        dStage_changeScene(2, FLOAT_LABEL(lit_6108), 0, fopAcM_GetRoomNo(this), mCollisionRot.y,
+                           -1);
     } else {
         u32 data = setParamData(dMeter2Info_getWarpRoomNo(), 0, 0xCA, 0);
-        dComIfGs_setTurnRestart(dMeter2Info_getWarpPos(), dMeter2Info_getWarpPlayerNo(), dMeter2Info_getWarpRoomNo(), data);
-        dComIfGp_setNextStage(dMeter2Info_getWarpStageName(), -4, dMeter2Info_getWarpRoomNo(), -1, FLOAT_LABEL(lit_6108), 0, 1, 0, mCollisionRot.y, 1, 0);
+        dComIfGs_setTurnRestart(dMeter2Info_getWarpPos(), dMeter2Info_getWarpPlayerNo(),
+                                dMeter2Info_getWarpRoomNo(), data);
+        dComIfGp_setNextStage(dMeter2Info_getWarpStageName(), -4, dMeter2Info_getWarpRoomNo(), -1,
+                              FLOAT_LABEL(lit_6108), 0, 1, 0, mCollisionRot.y, 1, 0);
     }
 
     if (mActionID == WARP) {
@@ -30496,16 +30805,13 @@ void daAlink_c::checkWarpStart() {
                     if (dComIfGp_TargetWarpPt_get() == 3) {
                         mEvtInfo.setArchiveName("Obj_kbrg");
                         portal = kBridgePortal;
-                    }
-                    else if (dComIfGp_TargetWarpPt_get() == 6) {
+                    } else if (dComIfGp_TargetWarpPt_get() == 6) {
                         mEvtInfo.setArchiveName("Obj_obrg");
                         portal = oBridgePortal;
-                    }
-                    else if (dComIfGp_TargetWarpPt_get() == 9) {
+                    } else if (dComIfGp_TargetWarpPt_get() == 9) {
                         mEvtInfo.setArchiveName("M_VolcBom");
                         portal = volcBomPortal;
-                    }
-                    else if (dComIfGp_TargetWarpPt_get() == 8) {
+                    } else if (dComIfGp_TargetWarpPt_get() == 8) {
                         mEvtInfo.setArchiveName("SCanCrs");
                         portal = cannonPortal;
                     } else {
@@ -30602,9 +30908,9 @@ void daAlink_c::commonFallInit(int param_0) {
  * setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz                  */
 // matches with literal
 #ifdef NONMATCHING
-void daAlink_c::setEmitter(u32* param_0, u16 param_1, cXyz const* param_2,
-                               csXyz const* param_3) {
-    *param_0 = dComIfGp_particle_set(*param_0, param_1, param_2, &mTevStr, param_3, NULL, 0xFF, NULL, 0xFF, NULL, NULL, NULL);
+void daAlink_c::setEmitter(u32* param_0, u16 param_1, cXyz const* param_2, csXyz const* param_3) {
+    *param_0 = dComIfGp_particle_set(*param_0, param_1, param_2, &mTevStr, param_3, NULL, 0xFF,
+                                     NULL, 0xFF, NULL, NULL, NULL);
     dComIfGp_particle_levelEmitterOnEventMove(*param_0);
     dComIfGp_particle_getEmitter(*param_0);
 }
@@ -30623,8 +30929,9 @@ asm void daAlink_c::setEmitter(u32* param_0, u16 param_1, cXyz const* param_2,
 /* 80120634-801206C4 11AF74 0090+00 4/4 0/0 0/0 .text
  * setEmitterPolyColor__9daAlink_cFPUlUsR13cBgS_PolyInfoPC4cXyzPC5csXyz */
 void daAlink_c::setEmitterPolyColor(u32* param_0, u16 param_1, cBgS_PolyInfo& param_2,
-                                        cXyz const* param_3, csXyz const* param_4) {
-    *param_0 = dComIfGp_particle_setPolyColor(*param_0, param_1, param_2, param_3, &mTevStr, param_4, NULL, 0, NULL, -1, NULL);
+                                    cXyz const* param_3, csXyz const* param_4) {
+    *param_0 = dComIfGp_particle_setPolyColor(*param_0, param_1, param_2, param_3, &mTevStr,
+                                              param_4, NULL, 0, NULL, -1, NULL);
     dComIfGp_particle_levelEmitterOnEventMove(*param_0);
     dComIfGp_particle_getEmitter(*param_0);
 }
@@ -31152,8 +31459,8 @@ asm void daAlink_c::setWoodShieldBurnOutEffect() {
 
 /* 801256EC-80125778 12002C 008C+00 2/2 0/0 0/0 .text
  * initBlur__14daAlink_blur_cFfiPC4cXyzPC4cXyzPC4cXyz           */
-void daAlink_blur_c::initBlur(f32 param_0, int param_1, cXyz const* param_2,
-                                  cXyz const* param_3, cXyz const* param_4) {
+void daAlink_blur_c::initBlur(f32 param_0, int param_1, cXyz const* param_2, cXyz const* param_3,
+                              cXyz const* param_4) {
     field_0x24 = param_0;
     field_0x1c = param_1;
     field_0x2c = *param_4;
@@ -31280,7 +31587,7 @@ BOOL daAlink_lockCursor_c::create() {
     mCursor2->setAnimation(field_0x24);
     mScrn->search('flash')->setAnimation(field_0x24);
     field_0x24->setFrame(FLOAT_LABEL(lit_6108));
-    
+
     field_0x1c->searchUpdateMaterialID(mScrn);
     field_0x20->searchUpdateMaterialID(mScrn);
     mCursor0->setAnimation(field_0x1c);
@@ -31453,7 +31760,9 @@ asm BOOL daAlink_c::checkWolfShapeReverse() const {
 
 /* 80127DC4-80127E08 122704 0044+00 1/1 0/0 0/0 .text            checkWolfSideStep__9daAlink_cCFv */
 BOOL daAlink_c::checkWolfSideStep() const {
-    return field_0x2f98 != 0 && ((mActionID == WOLF_ATN_WAIT && !i_checkModeFlg(1)) || mActionID == WOLF_SIDESTEP_LAND || mActionID == WOLF_BACKFLIP_LAND);
+    return field_0x2f98 != 0 &&
+           ((mActionID == WOLF_ATN_WAIT && !i_checkModeFlg(1)) || mActionID == WOLF_SIDESTEP_LAND ||
+            mActionID == WOLF_BACKFLIP_LAND);
 }
 
 /* 80127E08-80127F20 122748 0118+00 1/1 0/0 0/0 .text            setWolfTailAngle__9daAlink_cFv */
@@ -31503,13 +31812,15 @@ asm void daAlink_c::checkWolfAtnWait() {
 #pragma pop
 
 /* void daAlink_c::checkWolfAtnWait() {
-    return checkEnemyGroup(mTargetedActor) && mDemo.getDemoMode() == 0x17 || mTargetedActor != NULL || fopAcM_GetName(mTargetedActor) == 0x262 || 
+    return checkEnemyGroup(mTargetedActor) && mDemo.getDemoMode() == 0x17 || mTargetedActor != NULL
+|| fopAcM_GetName(mTargetedActor) == 0x262 ||
 } */
 
 /* 8012880C-80128844 12314C 0038+00 27/27 0/0 0/0 .text
  * checkUnderMove0BckNoArcWolf__9daAlink_cCFQ29daAlink_c12daAlink_WANM */
 BOOL daAlink_c::checkUnderMove0BckNoArcWolf(daAlink_c::daAlink_WANM anm_id) const {
-    return mUnderAnime[0].checkNoSetArcNo() && m_wlAnmDataTable[anm_id].field_0x0 == mUnderAnime[0].getIdx();
+    return mUnderAnime[0].checkNoSetArcNo() &&
+           m_wlAnmDataTable[anm_id].field_0x0 == mUnderAnime[0].getIdx();
 }
 
 /* 80128844-80128F0C 123184 06C8+00 11/11 0/0 0/0 .text setBlendWolfMoveAnime__9daAlink_cFf */
@@ -31666,7 +31977,8 @@ void daAlink_c::checkWolfUseAbility() {
     if (checkMidnaLockJumpPoint() != NULL && !i_checkMidnaRide()) {
         offWolfEyeUp();
     } else {
-        if (i_dComIfGs_isEventBit(0x4308) && field_0x2fd2 == 0 && !checkEventRun() && mWolfEyeUp < daAlinkHIO_wolf_c0::m.mSensesLingerTime && wolfSenseTrigger()) {
+        if (i_dComIfGs_isEventBit(0x4308) && field_0x2fd2 == 0 && !checkEventRun() &&
+            mWolfEyeUp < daAlinkHIO_wolf_c0::m.mSensesLingerTime && wolfSenseTrigger()) {
             if (mWolfEyeUp == 0) {
                 onWolfEyeUp();
             } else {
@@ -31679,19 +31991,16 @@ void daAlink_c::checkWolfUseAbility() {
 /* 80129A80-80129B44 1243C0 00C4+00 13/13 0/0 0/0 .text checkWolfGroundSpecialMode__9daAlink_cFv
  */
 bool daAlink_c::checkWolfGroundSpecialMode() {
-    if (mLinkAcch.ChkGroundHit() && !i_checkModeFlg(MODE_PLAYER_FLY) && i_checkEndResetFlg0(ERFLG0_UNK_1)) {
+    if (mLinkAcch.ChkGroundHit() && !i_checkModeFlg(MODE_PLAYER_FLY) &&
+        i_checkEndResetFlg0(ERFLG0_UNK_1)) {
         return procCoMetamorphoseInit();
-    }
-    else if (mSpecialMode == SMODE_WOLF_PUZZLE || mSpecialMode == 0x28) {
+    } else if (mSpecialMode == SMODE_WOLF_PUZZLE || mSpecialMode == 0x28) {
         return procWolfGiantPuzzleInit();
-    }
-    else if (checkCargoCarry()) {
+    } else if (checkCargoCarry()) {
         return procWolfCargoCarryInit();
-    }
-    else if (checkSlideAction()) {
+    } else if (checkSlideAction()) {
         return true;
-    }
-    else if (i_checkEndResetFlg1(ERFLG1_UNK_1)) {
+    } else if (i_checkEndResetFlg1(ERFLG1_UNK_1)) {
         return procWolfScreamWaitInit();
     }
     return false;

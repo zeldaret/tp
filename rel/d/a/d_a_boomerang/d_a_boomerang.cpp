@@ -138,7 +138,6 @@ struct J2DAnmLoaderDataBase {
     /* 80308A6C */ void load(void const*);
 };
 
-
 //
 // Forward References:
 //

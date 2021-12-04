@@ -1,10 +1,10 @@
 #ifndef D_A_OBJ_CARRY_H
 #define D_A_OBJ_CARRY_H
 
-#include "dolphin/types.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "d/bg/d_bg_s_acch.h"
 #include "d/cc/d_cc_d.h"
+#include "dolphin/types.h"
 
 class daObjCarry_c : public fopAc_ac_c {
 public:
@@ -21,8 +21,8 @@ public:
         /* 0x9 */ TYPE_BALL_S_2,   // Light Ball B
         /* 0xA */ TYPE_AOTSUBO,    // Big Blue Pot
         /* 0xB */ TYPE_LV8_BALL,
-        /* 0xC */ TYPE_TSUBO_S,    // Small pot - Twilight
-        /* 0xD */ TYPE_TSUBO_B,    // Big pot - Twilight
+        /* 0xC */ TYPE_TSUBO_S,  // Small pot - Twilight
+        /* 0xD */ TYPE_TSUBO_B,  // Big pot - Twilight
     };
 
     /* 80031CF8 */ static void clrSaveFlag();
@@ -198,7 +198,7 @@ private:
     /* 0xCBC */ u8 field_0xcbc[0x34];
     /* 0xCF0 */ u8 mType;
     /* 0xCF4 */ cXyz field_0xcf4;
-    /* 0xD00 */ 
+    /* 0xD00 */
 };
 
 #endif /* D_A_OBJ_CARRY_H */

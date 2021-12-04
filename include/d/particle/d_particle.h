@@ -128,12 +128,12 @@ public:
                             u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
                             cXyz const*, f32);
     /* 8004D4CC */ u32 set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
-                            cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
-                            _GXColor const*, cXyz const*, f32);
+                           cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
+                           _GXColor const*, cXyz const*, f32);
     /* 8004CF90 */ void getPolyColor(cBgS_PolyInfo&, int, _GXColor*, _GXColor*, u8*, f32*);
     /* 8004D6A4 */ u32 setPoly(u32, u16, cBgS_PolyInfo&, cXyz const*, dKy_tevstr_c const*,
-                                csXyz const*, cXyz const*, int, dPa_levelEcallBack*, s8,
-                                cXyz const*);
+                               csXyz const*, cXyz const*, int, dPa_levelEcallBack*, s8,
+                               cXyz const*);
     /* 8004D068 */ void setPoly(u16, cBgS_PolyInfo&, cXyz const*, dKy_tevstr_c const*, csXyz const*,
                                 cXyz const*, int, dPa_levelEcallBack*, s8, cXyz const*);
     /* 8004D128 */ void newSimple(u16, u8, u32*);
@@ -149,8 +149,12 @@ public:
 
     void forceOnEventMove(u32 param_0) { field_0x210.forceOnEventMove(param_0); }
     level_c::emitter_c* getEmitter(u32 param_0) { return field_0x210.getEmitter(param_0); }
-    u32 setNormal(u32 param_0, u16 param_1, const cXyz* param_2, const dKy_tevstr_c* param_3, const csXyz* param_4, const cXyz* param_5, u8 param_6, dPa_levelEcallBack* param_7, s8 param_8, const GXColor* param_9, const GXColor* param_10, const cXyz* param_11, f32 param_12) {
-        return set(param_0, 0, param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12);
+    u32 setNormal(u32 param_0, u16 param_1, const cXyz* param_2, const dKy_tevstr_c* param_3,
+                  const csXyz* param_4, const cXyz* param_5, u8 param_6,
+                  dPa_levelEcallBack* param_7, s8 param_8, const GXColor* param_9,
+                  const GXColor* param_10, const cXyz* param_11, f32 param_12) {
+        return set(param_0, 0, param_1, param_2, param_3, param_4, param_5, param_6, param_7,
+                   param_8, param_9, param_10, param_11, param_12);
     }
 
     static u8 mTsubo[64];
@@ -170,7 +174,7 @@ public:
 private:
     /* 0x000 */ JKRSolidHeap* mHeap;
     /* 0x004 */ JPAResourceManager* mCommonResMng;
-    /* 0x008 */ JKRExpHeap* m_resHeap; 
+    /* 0x008 */ JKRExpHeap* m_resHeap;
     /* 0x00C */ JKRSolidHeap* m_sceneHeap;
     /* 0x010 */ void* m_sceneRes;
     /* 0x014 */ JPAResourceManager* mSceneResMng;

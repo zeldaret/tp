@@ -1,11 +1,11 @@
 #ifndef D_A_CROD_H
 #define D_A_CROD_H
 
+#include "d/a/d_a_player.h"
+#include "d/cc/d_cc_d.h"
+#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 #include "f_op/f_op_actor_mng.h"
-#include "d/cc/d_cc_d.h"
-#include "d/a/d_a_player.h"
-#include "dolphin/types.h"
 
 class daCrod_c : public fopAc_ac_c {
 public:
@@ -23,16 +23,14 @@ public:
     /* 804A3FD4 */ void draw();
 
     static fopAc_ac_c* makeIronBallDummy(fopAc_ac_c* p_actor) {
-        return (fopAc_ac_c*)fopAcM_fastCreate(0x2F4, 6, &p_actor->mCurrent.mPosition, fopAcM_GetRoomNo(p_actor), NULL, NULL, -1, NULL, NULL);
+        return (fopAc_ac_c*)fopAcM_fastCreate(0x2F4, 6, &p_actor->mCurrent.mPosition,
+                                              fopAcM_GetRoomNo(p_actor), NULL, NULL, -1, NULL,
+                                              NULL);
     }
 
-    fopAc_ac_c* getControllActor() {
-        return mControllActor.getActor();
-    }
+    fopAc_ac_c* getControllActor() { return mControllActor.getActor(); }
 
-    fopAc_ac_c* getCameraActor() {
-        return mCameraActor.getActor();
-    }
+    fopAc_ac_c* getCameraActor() { return mCameraActor.getActor(); }
 
     void setThrow() { fopAcM_SetParam(this, 2); }
 

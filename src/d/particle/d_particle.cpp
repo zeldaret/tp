@@ -11,7 +11,6 @@
 // Types:
 //
 
-
 struct mDoLib_clipper {
     static u8 mClipper[92];
 };
@@ -68,7 +67,6 @@ struct JPAEmitterManager {
     /* 8027E344 */ void entryResourceManager(JPAResourceManager*, u8);
     /* 8027E354 */ void clearResourceManager(u8);
 };
-
 
 struct dPa_simpleData_c {
     /* 8004B024 */ ~dPa_simpleData_c();
@@ -2053,10 +2051,10 @@ static asm void dPa_kankyocolor_set(f32 param_0, JPABaseEmitter* param_1,
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm u32 dPa_control_c::set(u32 param_0, u8 param_1, u16 param_2, cXyz const* param_3,
-                            dKy_tevstr_c const* param_4, csXyz const* param_5, cXyz const* param_6,
-                            u8 param_7, dPa_levelEcallBack* param_8, s8 param_9,
-                            _GXColor const* param_10, _GXColor const* param_11,
-                            cXyz const* param_12, f32 param_13) {
+                           dKy_tevstr_c const* param_4, csXyz const* param_5, cXyz const* param_6,
+                           u8 param_7, dPa_levelEcallBack* param_8, s8 param_9,
+                           _GXColor const* param_10, _GXColor const* param_11, cXyz const* param_12,
+                           f32 param_13) {
     nofralloc
 #include "asm/d/particle/d_particle/func_8004D4CC.s"
 }
@@ -2069,9 +2067,9 @@ asm u32 dPa_control_c::set(u32 param_0, u8 param_1, u16 param_2, cXyz const* par
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm u32 dPa_control_c::setPoly(u32 param_0, u16 param_1, cBgS_PolyInfo& param_2,
-                                cXyz const* param_3, dKy_tevstr_c const* param_4,
-                                csXyz const* param_5, cXyz const* param_6, int param_7,
-                                dPa_levelEcallBack* param_8, s8 param_9, cXyz const* param_10) {
+                               cXyz const* param_3, dKy_tevstr_c const* param_4,
+                               csXyz const* param_5, cXyz const* param_6, int param_7,
+                               dPa_levelEcallBack* param_8, s8 param_9, cXyz const* param_10) {
     nofralloc
 #include "asm/d/particle/d_particle/func_8004D6A4.s"
 }

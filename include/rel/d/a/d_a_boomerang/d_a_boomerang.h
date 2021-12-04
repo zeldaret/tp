@@ -1,12 +1,12 @@
 #ifndef D_A_BOOMERANG_H
 #define D_A_BOOMERANG_H
 
-#include "dolphin/types.h"
-#include "f_op/f_op_actor.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
+#include "Z2AudioLib/Z2SoundObject.h"
 #include "d/bg/d_bg_s_acch.h"
 #include "d/particle/d_particle_copoly.h"
-#include "Z2AudioLib/Z2SoundObject.h"
+#include "dolphin/types.h"
+#include "f_op/f_op_actor.h"
 
 class daBoomerang_sight_c {
 public:

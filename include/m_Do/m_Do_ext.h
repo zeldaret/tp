@@ -92,7 +92,7 @@ private:
 class mDoExt_invJntPacket : public J3DPacket {
 public:
     /* 8000E654 */ mDoExt_invJntPacket();
-    
+
     /* 80012220 */ virtual void draw();
     /* 8000E5F8 */ virtual ~mDoExt_invJntPacket();
 
@@ -112,7 +112,8 @@ public:
     /* 0x4 */ mDoExt_invJntPacket* field_0x4;
 };
 
-class mDoExt_morf_c : public J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya> {
+class mDoExt_morf_c
+    : public J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya> {
 public:
     /* 8000F950 */ mDoExt_morf_c();
     /* 8000FB7C */ void setMorf(f32);
