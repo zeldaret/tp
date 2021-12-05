@@ -11,18 +11,6 @@
 // Types:
 //
 
-struct JPAEmitterWorkData {};
-
-struct JPABaseParticle {
-    /* 8027EFEC */ void init_p(JPAEmitterWorkData*);
-    /* 8027F8C8 */ void init_c(JPAEmitterWorkData*, JPABaseParticle*);
-    /* 8027FFD0 */ void calc_p(JPAEmitterWorkData*);
-    /* 80280260 */ void calc_c(JPAEmitterWorkData*);
-    /* 802804C8 */ void canCreateChild(JPAEmitterWorkData*);
-    /* 80280548 */ void getWidth(JPABaseEmitter const*) const;
-    /* 80280568 */ void getHeight(JPABaseEmitter const*) const;
-};
-
 struct JPAResource {
     /* 8027658C */ void calc_p(JPAEmitterWorkData*, JPABaseParticle*);
     /* 80276608 */ void calc_c(JPAEmitterWorkData*, JPABaseParticle*);
@@ -53,7 +41,6 @@ extern "C" void createChild__14JPABaseEmitterFP15JPABaseParticle();
 extern "C" void JPAGetYZRotateMtx__FssPA4_f();
 extern "C" void __dl__FPv();
 extern "C" void JMAVECScaleAdd__FPC3VecPC3VecP3Vecf();
-extern "C" void PSMTXMultVecSR();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_26();
@@ -170,22 +157,14 @@ SECTION_SDATA2 static f32 lit_3010[1 + 1 /* padding */] = {
 
 /* 80280548-80280568 27AE88 0020+00 0/0 3/3 0/0 .text
  * getWidth__15JPABaseParticleCFPC14JPABaseEmitter              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPABaseParticle::getWidth(JPABaseEmitter const* param_0) const {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAParticle/getWidth__15JPABaseParticleCFPC14JPABaseEmitter.s"
+f32 JPABaseParticle::getWidth(JPABaseEmitter const* emtr) const {
+    f32 scale = lit_3010[0] * mParticleScaleX;
+    return scale * emtr->mpEmtrMgr->mpWorkData->mGlobalPtclScl.x;
 }
-#pragma pop
 
 /* 80280568-80280588 27AEA8 0020+00 0/0 3/3 0/0 .text
  * getHeight__15JPABaseParticleCFPC14JPABaseEmitter             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPABaseParticle::getHeight(JPABaseEmitter const* param_0) const {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAParticle/getHeight__15JPABaseParticleCFPC14JPABaseEmitter.s"
+f32 JPABaseParticle::getHeight(JPABaseEmitter const* emtr) const {
+    f32 scale = lit_3010[0] * mParticleScaleY;
+    return scale * emtr->mpEmtrMgr->mpWorkData->mGlobalPtclScl.y;
 }
-#pragma pop

@@ -24,9 +24,16 @@ public:
     /* 80326D3C */ void calcNrmMtx();
     /* 80326EF0 */ void calcBBoardMtx();
 
-    MtxP getAnmMtx(int idx) const { return *(mMatrices[0] + idx); }
+    MtxP getAnmMtx(int idx) const { return mpAnmMtx[idx]; }
 
-    void setScaleFlag(int idx, u8 flag) { mScaleFlag[idx] = flag; }
+    void setScaleFlag(int idx, u8 flag) { mScaleFlagArray[idx] = flag; }
+    u32* getCurrentViewNoPtr() { return &mCurrentViewNo; }
+    u8* getScaleFlagArray() const { return mScaleFlagArray; }
+    Mtx** getDrawMtxPtrPtr() const { return mpDrawMtxArr; }
+    Mtx33** getNrmMtxPtrPtr() const { return mpNrmMtxArr; }
+    Mtx33* getNrmMtxPtr() const { return mpNrmMtxArr[mCurrentViewNo]; }
+    Mtx33** getBumpMtxPtrPtr() const { return mpBumpMtxArr; }
+    Mtx33* getBumpMtxPtr(int idx) const { return mpBumpMtxArr[idx]; }
 
     static Mtx sNoUseDrawMtx;
     static Mtx33 sNoUseNrmMtx;
@@ -35,14 +42,18 @@ public:
 
 private:
     /* 0x00 */ J3DJointTree* mJointTree;
-    /* 0x04 */ u8* mScaleFlag;
+    /* 0x04 */ u8* mScaleFlagArray;
     /* 0x08 */ u8* mEnvScaleFlag;
-    /* 0x0C */ Mtx* mMatrices[5];  // fix this later
-    /* 0x20 */ Mtx33* mpNrmMtxPtrPtr;
-    /* 0x24 */ Mtx** field_0x24;
-    /* 0x28 */ Mtx** mpBumpMtxPtr;
-    /* 0x2C */ u32 field_0x2c;
-    /* 0x30 */ u32* mCurrentViewNoPtr;
+    /* 0x0C */ Mtx* mpAnmMtx;
+    /* 0x10 */ Mtx* mpWeightEnvMtx;
+    /* 0x14 */ Mtx** mpOldDrawMtxArr;
+    /* 0x18 */ Mtx** mpDrawMtxArr;
+    /* 0x1C */ Mtx33** mpOldNrmMtxArr;
+    /* 0x20 */ Mtx33** mpNrmMtxArr;
+    /* 0x24 */ u32 field_0x24;
+    /* 0x28 */ Mtx33** mpBumpMtxArr;
+    /* 0x2C */ u32 mFlags;
+    /* 0x30 */ u32 mCurrentViewNo;
     /* 0x34 */ Mtx** mUserAnmMtx;
 
 public:

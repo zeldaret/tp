@@ -10,7 +10,7 @@ class J3DMtxBuffer;
 
 class J3DMtxCalc {
 public:
-    /* 80325D1C */ void setMtxBuffer(J3DMtxBuffer*);
+    /* 80325D1C */ static void setMtxBuffer(J3DMtxBuffer*);
 
     /* 8000D948 */ virtual ~J3DMtxCalc();
     /* 80014E90 */ virtual void setAnmTransform(J3DAnmTransform*);
@@ -52,11 +52,12 @@ public:
     u8 getScaleCompensate() const { return mScaleCompensate; }
     J3DJoint* getYounger() { return mYounger; }
     void setYounger(J3DJoint* pYounger) { mYounger = pYounger; }
+    void setCurrentMtxCalc(J3DMtxCalc* pMtxCalc) { mCurrentMtxCalc = pMtxCalc; }
 
     static J3DMtxCalc* mCurrentMtxCalc;
 
 private:
-    /* 0x00 */ void* field_0x0;
+    /* 0x00 */ void* mCallBackUserData;
     /* 0x04 */ J3DJointCallBack mCallBack;
     /* 0x08 */ void* field_0x8;
     /* 0x0C */ J3DJoint* mChild;
@@ -65,7 +66,7 @@ private:
     /* 0x16 */ u8 mMtxType;
     /* 0x17 */ u8 mScaleCompensate;
     /* 0x18 */ J3DTransformInfo mTransformInfo;
-    /* 0x38 */ f32 field_0x38;
+    /* 0x38 */ f32 mBoundingSphereRadius;
     /* 0x3C */ Vec mMin;
     /* 0x48 */ Vec mMax;
     /* 0x54 */ J3DMtxCalc* mMtxCalc;

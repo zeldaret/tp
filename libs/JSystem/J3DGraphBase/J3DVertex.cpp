@@ -130,8 +130,8 @@ void J3DVertexBuffer::setArray() const {
 
 /* 80311090-803111B0 30B9D0 0120+00 1/1 0/0 0/0 .text copyLocalVtxPosArray__15J3DVertexBufferFUl
  */
-s32 J3DVertexBuffer::copyLocalVtxPosArray(u32 param_0) {
-    if (param_0 & 1) {
+s32 J3DVertexBuffer::copyLocalVtxPosArray(u32 flags) {
+    if (flags & 1) {
         for (int i = 0; i < 2; i++) {
             mVtxPosArray[i] = new (0x20) VertexPosition[mVtxData->getVtxNum()];
 

@@ -73,7 +73,7 @@ void J3DMaterialAnm::calc(J3DMaterial* pMat) const {
     for (u32 i = 0; i < ARRAY_SIZE(mTexMtxAnm); i++) {
         if (mTexMtxAnm[i].getAnmFlag()) {
             J3DTexMtx* texMtx = pMat->getTexGenBlock()->getTexMtx(i);
-            mTexMtxAnm[i].calc(&texMtx->getTexMtxInfo().field_0x10);
+            mTexMtxAnm[i].calc(&texMtx->getTexMtxInfo().mSRT);
         }
     }
 }

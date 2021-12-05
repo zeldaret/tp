@@ -6,6 +6,7 @@
 #include "JSystem/J2DGraph/J2DTevs.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "dolphin/gx/GX.h"
 
 //
 // Types:
@@ -19,8 +20,8 @@ struct J2DTevBlock {
     /* 802EA14C */ bool getTevKAlphaSel(u32);
     /* 802EA154 */ bool getTevKColorSel(u32);
     /* 802EA15C */ bool getTevKColor(u32);
-    /* 802EA164 */ void getFontNo() const;
-    /* 802EA170 */ void getTexNo(u32) const;
+    /* 802EA164 */ u32 getFontNo() const;
+    /* 802EA170 */ u32 getTexNo(u32) const;
     /* 802EA17C */ bool getTevStageNum() const;
     /* 802EA184 */ bool getIndTevStage(u32);
 };
@@ -82,11 +83,6 @@ extern "C" extern u16 j2dDefaultAlphaCmp;
 // External References:
 //
 
-extern "C" void GXSetTevIndirect();
-extern "C" void GXSetIndTexMtx();
-extern "C" void GXSetIndTexCoordScale();
-extern "C" void GXSetIndTexOrder();
-extern "C" void GXLoadTexMtxImm();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
 extern "C" void cos();
@@ -97,24 +93,18 @@ extern "C" void sin();
 //
 
 /* 802E9C90-802E9CC4 2E45D0 0034+00 0/0 1/1 0/0 .text            load__9J2DTexMtxFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTexMtx::load(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTevs/load__9J2DTexMtxFUl.s"
+void J2DTexMtx::load(u32 mtxIdx) {
+    GXLoadTexMtxImm(mTexMtx, mtxIdx * 3 + GX_TEXMTX0, mInfo.getTexMtxType());
 }
-#pragma pop
 
 /* 802E9CC4-802E9D2C 2E4604 0068+00 0/0 2/2 0/0 .text            calc__9J2DTexMtxFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTexMtx::calc() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTevs/calc__9J2DTexMtxFv.s"
+void J2DTexMtx::calc() {
+    if (mInfo.mTexMtxDCC == J2DTexMtxInfo::DCC_NONE) {
+        getTextureMtx(mInfo.mTexSRTInfo, mInfo.mCenter, mTexMtx);
+    } else if (mInfo.mTexMtxDCC == J2DTexMtxInfo::DCC_MAYA) {
+        getTextureMtxMaya(mInfo.mTexSRTInfo, mTexMtx);
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80456168-8045616C 004768 0004+00 2/2 0/0 0/0 .sdata2          @1488 */
@@ -162,44 +152,24 @@ asm void J2DTexMtx::getTextureMtxMaya(J2DTextureSRTInfo const& param_0, f32 (*pa
 #pragma pop
 
 /* 802EA044-802EA098 2E4984 0054+00 0/0 5/5 0/0 .text            load__14J2DIndTevStageFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DIndTevStage::load(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTevs/load__14J2DIndTevStageFUc.s"
+void J2DIndTevStage::load(u8 tevStage) {
+    GXSetTevIndirect((GXTevStageID)tevStage, getIndStage(), getIndFormat(), getBiasSel(), getMtxSel(), getWrapS(), getWrapT(), getPrev(), getLod(), getAlphaSel());
 }
-#pragma pop
 
 /* 802EA098-802EA0CC 2E49D8 0034+00 0/0 1/1 0/0 .text            load__12J2DIndTexMtxFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DIndTexMtx::load(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTevs/load__12J2DIndTexMtxFUc.s"
+void J2DIndTexMtx::load(u8 indTexMtx) {
+    GXSetIndTexMtx((GXIndTexMtxID)(GX_ITM_0 + indTexMtx), mIndTexMtxInfo.mMtx, mIndTexMtxInfo.mScaleExp);
 }
-#pragma pop
 
 /* 802EA0CC-802EA0FC 2E4A0C 0030+00 0/0 1/1 0/0 .text            load__19J2DIndTexCoordScaleFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DIndTexCoordScale::load(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTevs/load__19J2DIndTexCoordScaleFUc.s"
+void J2DIndTexCoordScale::load(u8 indTexStage) {
+    GXSetIndTexCoordScale((GXIndTexStageID)indTexStage, mInfo.getScaleS(), mInfo.getScaleT());
 }
-#pragma pop
 
 /* 802EA0FC-802EA12C 2E4A3C 0030+00 0/0 1/1 0/0 .text            load__14J2DIndTexOrderFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DIndTexOrder::load(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTevs/load__14J2DIndTexOrderFUc.s"
+void J2DIndTexOrder::load(u8 indTexStage) {
+    GXSetIndTexOrder((GXIndTexStageID)indTexStage, mInfo.getTexCoordID(), mInfo.getTexMapID());
 }
-#pragma pop
 
 /* 802EA12C-802EA134 2E4A6C 0008+00 0/0 1/0 0/0 .text getTevSwapModeTable__11J2DTevBlockFUl */
 bool J2DTevBlock::getTevSwapModeTable(u32 param_0) {
@@ -239,24 +209,14 @@ bool J2DTevBlock::getTevKColor(u32 param_0) {
 }
 
 /* 802EA164-802EA170 2E4AA4 000C+00 0/0 1/0 0/0 .text            getFontNo__11J2DTevBlockCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock::getFontNo() const {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTevs/getFontNo__11J2DTevBlockCFv.s"
+u32 J2DTevBlock::getFontNo() const {
+    return 0xFFFF;
 }
-#pragma pop
 
 /* 802EA170-802EA17C 2E4AB0 000C+00 0/0 1/0 0/0 .text            getTexNo__11J2DTevBlockCFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock::getTexNo(u32 param_0) const {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTevs/getTexNo__11J2DTevBlockCFUl.s"
+u32 J2DTevBlock::getTexNo(u32 param_0) const {
+    return 0xFFFF;
 }
-#pragma pop
 
 /* 802EA17C-802EA184 2E4ABC 0008+00 0/0 1/0 0/0 .text            getTevStageNum__11J2DTevBlockCFv */
 bool J2DTevBlock::getTevStageNum() const {

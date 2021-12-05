@@ -31,7 +31,6 @@ extern "C" f32 mFovyRate__14mDoLib_clipper;
 extern "C" void init__11J3DUClipperFv();
 extern "C" void calcViewFrustum__11J3DUClipperFv();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXMultVec();
 extern "C" void __register_global_object();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();

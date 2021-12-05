@@ -58,20 +58,18 @@ extern "C" u8 entryNum__13J3DDrawBuffer[4 + 4 /* padding */];
 
 /* 8032EC28-8032ECAC 329568 0084+00 0/0 1/1 0/0 .text
  * init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf            */
-void J3DMtxCalcJ3DSysInitBasic::init(Vec const& param_0, Mtx const& param_1) {
-    J3DSys::mCurrentS = param_0;
+void J3DMtxCalcJ3DSysInitBasic::init(Vec const& scale, Mtx const& mtx) {
+    J3DSys::mCurrentS = scale;
     J3DSys::mParentS = (Vec){1.0f, 1.0f, 1.0f};
-    JMAMTXApplyScale(param_1, J3DSys::mCurrentMtx, J3DSys::mCurrentS.x, J3DSys::mCurrentS.y,
-                     J3DSys::mCurrentS.z);
+    JMAMTXApplyScale(mtx, J3DSys::mCurrentMtx, J3DSys::mCurrentS.x, J3DSys::mCurrentS.y, J3DSys::mCurrentS.z);
 }
 
 /* 8032ECAC-8032ED30 3295EC 0084+00 0/0 2/2 2/2 .text
  * init__24J3DMtxCalcJ3DSysInitMayaFRC3VecRA3_A4_Cf             */
-void J3DMtxCalcJ3DSysInitMaya::init(Vec const& param_0, Mtx const& param_1) {
+void J3DMtxCalcJ3DSysInitMaya::init(Vec const& scale, Mtx const& mtx) {
     J3DSys::mParentS = (Vec){1.0f, 1.0f, 1.0f};
-    J3DSys::mCurrentS = param_0;
-    JMAMTXApplyScale(param_1, J3DSys::mCurrentMtx, J3DSys::mCurrentS.x, J3DSys::mCurrentS.y,
-                     J3DSys::mCurrentS.z);
+    J3DSys::mCurrentS = scale;
+    JMAMTXApplyScale(mtx, J3DSys::mCurrentMtx, J3DSys::mCurrentS.x, J3DSys::mCurrentS.y, J3DSys::mCurrentS.z);
 }
 
 /* ############################################################################################## */
@@ -166,19 +164,19 @@ void J3DMtxCalcCalcTransformMaya::calcTransform(J3DTransformInfo const& transInf
     }
 
     if (joint->getScaleCompensate() == 1) {
-        f32 tmp1 = JMath::fastReciprocal(J3DSys::mParentS.x);
-        f32 tmp2 = JMath::fastReciprocal(J3DSys::mParentS.y);
-        f32 tmp3 = JMath::fastReciprocal(J3DSys::mParentS.z);
+        f32 invX = JMath::fastReciprocal(J3DSys::mParentS.x);
+        f32 invY = JMath::fastReciprocal(J3DSys::mParentS.y);
+        f32 invZ = JMath::fastReciprocal(J3DSys::mParentS.z);
 
-        anmMtx[0][0] *= tmp1;
-        anmMtx[0][1] *= tmp1;
-        anmMtx[0][2] *= tmp1;
-        anmMtx[1][0] *= tmp2;
-        anmMtx[1][1] *= tmp2;
-        anmMtx[1][2] *= tmp2;
-        anmMtx[2][0] *= tmp3;
-        anmMtx[2][1] *= tmp3;
-        anmMtx[2][2] *= tmp3;
+        anmMtx[0][0] *= invX;
+        anmMtx[0][1] *= invX;
+        anmMtx[0][2] *= invX;
+        anmMtx[1][0] *= invY;
+        anmMtx[1][1] *= invY;
+        anmMtx[1][2] *= invY;
+        anmMtx[2][0] *= invZ;
+        anmMtx[2][1] *= invZ;
+        anmMtx[2][2] *= invZ;
     }
 
     PSMTXConcat(J3DSys::mCurrentMtx, anmMtx, J3DSys::mCurrentMtx);
@@ -227,7 +225,7 @@ SECTION_SDATA2 static u8 lit_1220[4] = {
 /* 8032F170-8032F254 329AB0 00E4+00 0/0 1/1 0/0 .text            __ct__8J3DJointFv */
 #ifdef NONMATCHING
 J3DJoint::J3DJoint() {
-    field_0x0 = NULL;
+    mCallBackUserData = NULL;
     mCallBack = NULL;
     field_0x8 = NULL;
     mChild = NULL;
@@ -236,7 +234,7 @@ J3DJoint::J3DJoint() {
     mMtxType = 1;
     mScaleCompensate = false;
     mTransformInfo = j3dDefaultTransformInfo;
-    field_0x38 = 0.0f;
+    mBoundingSphereRadius = 0.0f;
     mMtxCalc = NULL;
     mMesh = NULL;
 

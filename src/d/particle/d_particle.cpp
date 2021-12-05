@@ -33,11 +33,6 @@ struct daPy_py_c {
     /* 8015F424 */ void checkNowWolfEyeUp();
 };
 
-struct JPABaseParticle {
-    /* 80280548 */ void getWidth(JPABaseEmitter const*) const;
-    /* 80280568 */ void getHeight(JPABaseEmitter const*) const;
-};
-
 struct dPa_windPcallBack {
     /* 8004B4E0 */ void execute(JPABaseEmitter*, JPABaseParticle*);
     /* 8004FF2C */ ~dPa_windPcallBack();
@@ -46,26 +41,6 @@ struct dPa_windPcallBack {
 struct dPa_wbPcallBack_c {
     /* 8004DC28 */ void execute(JPABaseEmitter*, JPABaseParticle*);
     /* 8004FECC */ ~dPa_wbPcallBack_c();
-};
-
-struct JPADrawInfo {};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
-
-struct JPAEmitterManager {
-    /* 8027DCA0 */ JPAEmitterManager(u32, u32, JKRHeap*, u8, u8);
-    /* 8027DEBC */ void createSimpleEmitterID(JGeometry::TVec3<f32> const&, u16, u8, u8,
-                                              JPAEmitterCallBack*, JPAParticleCallBack*);
-    /* 8027DFA0 */ void calc(u8);
-    /* 8027E028 */ void draw(JPADrawInfo const*, u8);
-    /* 8027E220 */ void forceDeleteAllEmitter();
-    /* 8027E344 */ void entryResourceManager(JPAResourceManager*, u8);
-    /* 8027E354 */ void clearResourceManager(u8);
 };
 
 struct dPa_simpleData_c {
@@ -466,12 +441,8 @@ extern "C" void removeTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern();
 extern "C" void removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
 extern "C" void entryTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern();
 extern "C" void entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
-extern "C" void GXClearVtxDesc();
 extern "C" void GXInvalidateVtxCache();
 extern "C" void GXFlush();
-extern "C" void GXEnableTexOffsets();
-extern "C" void GXSetChanAmbColor();
-extern "C" void GXSetColorUpdate();
 extern "C" void GXLoadNrmMtxImm();
 extern "C" void __register_global_object();
 extern "C" void __destroy_new_array();

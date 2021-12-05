@@ -4,40 +4,13 @@
 //
 
 #include "JSystem/J3DGraphBase/J3DTevs.h"
+#include "JSystem/J3DGraphBase/J3DSys.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
 //
 // Types:
 //
-
-struct _GXTlutSize {};
-
-struct _GXTlutFmt {};
-
-struct _GXTexWrapMode {};
-
-struct _GXTexMtxType {};
-
-struct _GXTexMapID {};
-
-struct _GXTexGenType {};
-
-struct _GXTexGenSrc {};
-
-struct _GXTexFmt {};
-
-struct _GXTexFilter {};
-
-struct _GXLightID {};
-
-struct _GXColor {};
-
-struct _GXAnisotropy {};
-
-struct Vec {};
-
-struct J3DTextureSRTInfo {};
 
 struct J3DTexMtx {
     /* 803238C4 */ void load(u32) const;
@@ -49,10 +22,6 @@ struct J3DTexMtx {
 };
 
 struct J3DTexCoord {};
-
-struct J3DSys {
-    static u8 sTexCoordScaleTable[64 + 4 /* padding */];
-};
 
 struct J3DNBTScale {};
 
@@ -121,13 +90,11 @@ extern "C" void J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f();
 extern "C" void J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f();
 extern "C" void J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f();
 extern "C" void J3DMtxProjConcat__FPA4_fPA4_fPA4_f();
-extern "C" void PSMTXConcat();
 extern "C" void GDOverflowed();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 sTexCoordScaleTable__6J3DSys[64 + 4 /* padding */];
 extern "C" extern u8 __GDCurrentDL[4];
 
@@ -157,24 +124,18 @@ asm void loadTexCoordGens(u32 param_0, J3DTexCoord* param_1) {
 #pragma pop
 
 /* 803238C4-80323900 31E204 003C+00 0/0 6/6 0/0 .text            load__9J3DTexMtxCFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DTexMtx::load(u32 param_0) const {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DTevs/load__9J3DTexMtxCFUl.s"
+void J3DTexMtx::load(u32 mtxIdx) const {
+    if (j3dSys.checkFlag(J3DSysFlag_PostTexMtx)) {
+        loadPostTexMtx(mtxIdx);
+    } else {
+        loadTexMtx(mtxIdx);
+    }
 }
-#pragma pop
 
 /* 80323900-80323920 31E240 0020+00 0/0 2/2 0/0 .text            calc__9J3DTexMtxFPA4_Cf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DTexMtx::calc(f32 const (*param_0)[4]) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DTevs/calc__9J3DTexMtxFPA4_Cf.s"
+void J3DTexMtx::calc(f32 const (*param_0)[4]) {
+    calcTexMtx(param_0);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803CEAC8-803CEAF8 02BBE8 0030+00 1/1 0/0 0/0 .data            qMtx$1001 */

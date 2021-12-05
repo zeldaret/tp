@@ -49,10 +49,10 @@ extern "C" extern void* __vt__12J3DJointTree[4 + 1 /* padding */];
 
 /* 80325D88-80325DA0 3206C8 0018+00 1/1 2/2 0/0 .text            clear__12J3DModelDataFv */
 void J3DModelData::clear() {
-    field_0x4 = 0;
+    mpRawData = 0;
     mFlags = 0;
-    field_0xc = 0;
-    field_0xe = 0;
+    mbHasBumpArray = 0;
+    mbHasBillboard = 0;
 }
 
 /* ############################################################################################## */
@@ -182,9 +182,9 @@ void J3DModelData::syncJ3DSysPointers() const {
  */
 void J3DModelData::syncJ3DSysFlags() const {
     if (checkFlag(0x20)) {
-        j3dSys.onFlag(0x40000000);
+        j3dSys.onFlag(J3DSysFlag_PostTexMtx);
     } else {
-        j3dSys.offFlag(0x40000000);
+        j3dSys.offFlag(J3DSysFlag_PostTexMtx);
     }
 }
 

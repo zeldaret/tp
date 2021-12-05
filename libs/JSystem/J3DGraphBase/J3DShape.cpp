@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/J3DGraphBase/J3DShape.h"
+#include "JSystem/J3DGraphBase/J3DSys.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -52,7 +53,6 @@ extern "C" void OSDisableInterrupts();
 extern "C" void OSRestoreInterrupts();
 extern "C" void OSDisableScheduler();
 extern "C" void OSEnableScheduler();
-extern "C" void GXSetArray();
 extern "C" void GDInitGDLObj();
 extern "C" void GDFlushCurrToMem();
 extern "C" void GDPadCurr32();
@@ -65,12 +65,11 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 j3dSys[284];
 extern "C" extern u8 j3dDefaultViewNo[4 + 4 /* padding */];
-extern "C" u8 sCurrentPipeline__11J3DShapeMtx[4];
-extern "C" u8 sCurrentScaleFlag__11J3DShapeMtx[4];
+extern "C" u32 sCurrentPipeline__11J3DShapeMtx;
+extern "C" u32 sCurrentScaleFlag__11J3DShapeMtx;
 extern "C" extern u8 struct_804515B0[4];
-extern "C" u8 sTexMtxLoadType__11J3DShapeMtx[4];
+extern "C" u32 sTexMtxLoadType__11J3DShapeMtx;
 extern "C" extern u8 __GDCurrentDL[4];
 
 //
@@ -164,14 +163,13 @@ static asm void J3DLoadArrayBasePtr(_GXAttr param_0, void* param_1) {
 #pragma pop
 
 /* 80314EEC-80314F5C 30F82C 0070+00 3/3 0/0 0/0 .text            loadVtxArray__8J3DShapeCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DShape::loadVtxArray() const {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DShape/loadVtxArray__8J3DShapeCFv.s"
+void J3DShape::loadVtxArray() const {
+    J3DLoadArrayBasePtr(GX_VA_POS, j3dSys.getVtxPos());
+    if (!mHasNBT) {
+        J3DLoadArrayBasePtr(GX_VA_NRM, j3dSys.getVtxNrm());
+    }
+    J3DLoadArrayBasePtr(GX_VA_CLR0, j3dSys.getVtxCol());
 }
-#pragma pop
 
 /* 80314F5C-80314F98 30F89C 003C+00 0/0 1/1 0/0 .text isSameVcdVatCmd__8J3DShapeFP8J3DShape */
 #pragma push
@@ -229,14 +227,18 @@ asm void J3DShape::loadPreDrawSetting() const {
 static u8 data_804515D4[4];
 
 /* 80315398-8031544C 30FCD8 00B4+00 1/1 0/0 0/0 .text setArrayAndBindPipeline__8J3DShapeCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DShape::setArrayAndBindPipeline() const {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DShape/setArrayAndBindPipeline__8J3DShapeCFv.s"
+void J3DShape::setArrayAndBindPipeline() const {
+    J3DShapeMtx::setCurrentPipeline(getPipeline());
+    loadVtxArray();
+    j3dSys.setModelDrawMtx(mDrawMtx[*mCurrentViewNo]);
+    j3dSys.setModelNrmMtx(mNrmMtx[*mCurrentViewNo]);
+    J3DShapeMtx::sCurrentScaleFlag = mScaleFlagArray;
+    // The below struct_804515B0 is actually a continuation of sCurrentScaleFlag, I believe?
+    // Also, there seems to be an extra entry in the array that's only there in DEBUG builds.
+    struct_804515B0[0] = mHasNBT;
+    data_804515D4[0] = mHasPNMTXIdx;
+    J3DShapeMtx::sTexMtxLoadType = getTexMtxLoadType();
 }
-#pragma pop
 
 /* 8031544C-803155E0 30FD8C 0194+00 1/0 0/0 0/0 .text            drawFast__8J3DShapeCFv */
 #pragma push
@@ -259,14 +261,17 @@ asm void J3DShape::draw() const {
 #pragma pop
 
 /* 80315628-803156AC 30FF68 0084+00 1/0 0/0 0/0 .text            simpleDraw__8J3DShapeCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DShape::simpleDraw() const {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DShape/simpleDraw__8J3DShapeCFv.s"
+void J3DShape::simpleDraw() const {
+    resetVcdVatCache();
+    loadPreDrawSetting();
+    J3DShapeMtx::setCurrentPipeline(getPipeline());
+    loadVtxArray();
+    for (u16 n = mMtxGroupNum, i = 0; i < n; i++) {
+        if (mShapeDraw[i] != NULL) {
+            mShapeDraw[i]->draw();
+        }
+    }
 }
-#pragma pop
 
 /* 803156AC-803157A0 30FFEC 00F4+00 1/0 0/0 0/0 .text            simpleDrawCache__8J3DShapeCFv */
 #pragma push
@@ -277,11 +282,3 @@ asm void J3DShape::simpleDrawCache() const {
 #include "asm/JSystem/J3DGraphBase/J3DShape/simpleDrawCache__8J3DShapeCFv.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 803CDC78-803CDC90 02AD98 0018+00 0/0 1/1 0/0 .data            __vt__8J3DShape */
-SECTION_DATA extern void* __vt__8J3DShape[6] = {
-    (void*)NULL /* RTTI */,          (void*)NULL,
-    (void*)draw__8J3DShapeCFv,       (void*)drawFast__8J3DShapeCFv,
-    (void*)simpleDraw__8J3DShapeCFv, (void*)simpleDrawCache__8J3DShapeCFv,
-};

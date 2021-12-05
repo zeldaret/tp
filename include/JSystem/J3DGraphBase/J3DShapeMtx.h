@@ -4,6 +4,19 @@
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 
+class J3DTexMtx;
+class J3DTexGenBlock;
+
+class J3DDifferedTexMtx {
+public:
+    /* 8031322C */ void loadExecute(f32 const (*)[4]);
+
+    static J3DTexGenBlock* sTexGenBlock;
+    static J3DTexMtx* sTexMtxObj;
+};
+
+extern u8 struct_804515B0[4];
+
 class J3DShapeMtx {
 public:
     /* 803130A8 */ void resetMtxLoadCache();
@@ -20,10 +33,14 @@ public:
     /* 80313BF0 */ virtual void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
 
     static u8 sMtxLoadPipeline[48];
-    static u8 sMtxLoadCache[20 + 4 /* padding */];
-    static u8 sCurrentPipeline[4];
-    static u8 sCurrentScaleFlag[4];
-    static u8 sTexMtxLoadType[4];
+    static u16 sMtxLoadCache[10 + 2 /* padding */];
+    static u32 sCurrentPipeline;
+    // static J3DScaleFlag sCurrentScaleFlag;
+    static u8* sCurrentScaleFlag;
+    static u32 sTexMtxLoadType;
+
+    static void setCurrentPipeline(u32 pipeline) { sCurrentPipeline = pipeline; }
+    static void setLODFlag(u8 flag) { struct_804515B0[1] = flag; }
 
 private:
     /* 0x04 */ u16 mUseMtxIndex;

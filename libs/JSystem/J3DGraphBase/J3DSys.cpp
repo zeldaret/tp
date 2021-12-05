@@ -6,6 +6,7 @@
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "dolphin/gx/GXPixel.h"
 
 //
 // Forward References:
@@ -42,10 +43,7 @@ extern "C" void makeZModeTable__Fv();
 extern "C" void makeTevSwapTable__Fv();
 extern "C" void GXInvalidateVtxCache();
 extern "C" void GXFlush();
-extern "C" void GXSetChanAmbColor();
 extern "C" void GXInitTexCacheRegion();
-extern "C" void GXSetTevIndirect();
-extern "C" void GXSetColorUpdate();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_25();
@@ -162,122 +160,149 @@ asm void J3DSys::drawInit() {
 #pragma pop
 
 /* 8031073C-8031079C 30B07C 0060+00 0/0 16/16 6/6 .text            reinitGX__6J3DSysFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DSys::reinitGX() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DSys/reinitGX__6J3DSysFv.s"
+void J3DSys::reinitGX() {
+    reinitGenMode();
+    reinitLighting();
+    reinitTransform();
+    reinitTexture();
+    reinitTevStages();
+    reinitIndStages();
+    reinitPixelProc();
+    GXFlush();
 }
-#pragma pop
 
 /* 8031079C-803107E8 30B0DC 004C+00 1/1 0/0 0/0 .text            reinitGenMode__6J3DSysFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DSys::reinitGenMode() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DSys/reinitGenMode__6J3DSysFv.s"
+void J3DSys::reinitGenMode() {
+    GXSetNumChans(0);
+    GXSetNumTexGens(1);
+    GXSetNumTevStages(1);
+    GXSetNumIndStages(0);
+    GXSetCullMode(GX_CULL_BACK);
+    GXSetCoPlanar(GX_FALSE);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450950-80450954 0003D0 0004+00 2/2 0/0 0/0 .sdata           ColorBlack */
-SECTION_SDATA static u8 ColorBlack[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_SDATA static GXColor ColorBlack = { 0x00, 0x00, 0x00, 0x00 };
 
 /* 80450954-80450958 0003D4 0004+00 2/2 0/0 0/0 .sdata           ColorWhite */
-SECTION_SDATA static u32 ColorWhite = 0xFFFFFFFF;
+SECTION_SDATA static GXColor ColorWhite = { 0xFF, 0xFF, 0xFF, 0xFF };
 
 /* 803107E8-80310894 30B128 00AC+00 1/1 0/0 0/0 .text            reinitLighting__6J3DSysFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DSys::reinitLighting() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DSys/reinitLighting__6J3DSysFv.s"
+void J3DSys::reinitLighting() {
+    GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+    GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+    GXSetChanAmbColor(GX_COLOR0A0, ColorBlack);
+    GXSetChanAmbColor(GX_COLOR1A1, ColorBlack);
+    GXSetChanMatColor(GX_COLOR0A0, ColorWhite);
+    GXSetChanMatColor(GX_COLOR1A1, ColorWhite);
 }
-#pragma pop
 
 /* 80310894-80310998 30B1D4 0104+00 1/1 0/0 0/0 .text            reinitTransform__6J3DSysFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DSys::reinitTransform() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DSys/reinitTransform__6J3DSysFv.s"
+void J3DSys::reinitTransform() {
+    GXSetCurrentMtx(GX_PNMTX0);
+    GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY, GX_FALSE, GX_PTIDENTITY);
+    GXSetTexCoordGen2(GX_TEXCOORD1, GX_TG_MTX2x4, GX_TG_TEX1, GX_IDENTITY, GX_FALSE, GX_PTIDENTITY);
+    GXSetTexCoordGen2(GX_TEXCOORD2, GX_TG_MTX2x4, GX_TG_TEX2, GX_IDENTITY, GX_FALSE, GX_PTIDENTITY);
+    GXSetTexCoordGen2(GX_TEXCOORD3, GX_TG_MTX2x4, GX_TG_TEX3, GX_IDENTITY, GX_FALSE, GX_PTIDENTITY);
+    GXSetTexCoordGen2(GX_TEXCOORD4, GX_TG_MTX2x4, GX_TG_TEX4, GX_IDENTITY, GX_FALSE, GX_PTIDENTITY);
+    GXSetTexCoordGen2(GX_TEXCOORD5, GX_TG_MTX2x4, GX_TG_TEX5, GX_IDENTITY, GX_FALSE, GX_PTIDENTITY);
+    GXSetTexCoordGen2(GX_TEXCOORD6, GX_TG_MTX2x4, GX_TG_TEX6, GX_IDENTITY, GX_FALSE, GX_PTIDENTITY);
+    GXSetTexCoordGen2(GX_TEXCOORD7, GX_TG_MTX2x4, GX_TG_TEX7, GX_IDENTITY, GX_FALSE, GX_PTIDENTITY);
 }
-#pragma pop
 
 /* 80310998-80310A3C 30B2D8 00A4+00 2/2 0/0 0/0 .text            reinitTexture__6J3DSysFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DSys::reinitTexture() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DSys/reinitTexture__6J3DSysFv.s"
+void J3DSys::reinitTexture() {
+    GXTexObj texObj;
+    GXInitTexObj(&texObj, NullTexData, 4, 4, GX_TF_IA8, GX_CLAMP, GX_CLAMP, GX_FALSE);
+    GXLoadTexObj(&texObj, GX_TEXMAP0);
+    GXLoadTexObj(&texObj, GX_TEXMAP1);
+    GXLoadTexObj(&texObj, GX_TEXMAP2);
+    GXLoadTexObj(&texObj, GX_TEXMAP3);
+    GXLoadTexObj(&texObj, GX_TEXMAP4);
+    GXLoadTexObj(&texObj, GX_TEXMAP5);
+    GXLoadTexObj(&texObj, GX_TEXMAP6);
+    GXLoadTexObj(&texObj, GX_TEXMAP7);
 }
-#pragma pop
 
 /* 80310A3C-80310D44 30B37C 0308+00 1/1 0/0 0/0 .text            reinitTevStages__6J3DSysFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DSys::reinitTevStages() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DSys/reinitTevStages__6J3DSysFv.s"
+void J3DSys::reinitTevStages() {
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+    GXSetTevOrder(GX_TEVSTAGE1, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+    GXSetTevOrder(GX_TEVSTAGE2, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+    GXSetTevOrder(GX_TEVSTAGE3, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+    GXSetTevOrder(GX_TEVSTAGE4, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+    GXSetTevOrder(GX_TEVSTAGE5, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+    GXSetTevOrder(GX_TEVSTAGE6, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+    GXSetTevOrder(GX_TEVSTAGE7, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+    GXSetTevOrder(GX_TEVSTAGE8, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+    GXSetTevOrder(GX_TEVSTAGE9, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+    GXSetTevOrder(GX_TEVSTAGE10, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+    GXSetTevOrder(GX_TEVSTAGE11, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+    GXSetTevOrder(GX_TEVSTAGE12, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+    GXSetTevOrder(GX_TEVSTAGE13, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+    GXSetTevOrder(GX_TEVSTAGE14, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+    GXSetTevOrder(GX_TEVSTAGE15, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+
+    GXSetTevColor(GX_TEVREG0, ColorWhite);
+    GXSetTevColor(GX_TEVREG1, ColorWhite);
+    GXSetTevColor(GX_TEVREG2, ColorWhite);
+    GXSetTevKColor(GX_KCOLOR0, ColorWhite);
+    GXSetTevKColor(GX_KCOLOR1, ColorWhite);
+    GXSetTevKColor(GX_KCOLOR2, ColorWhite);
+    GXSetTevKColor(GX_KCOLOR3, ColorWhite);
+
+    for (u32 i = 0; i < GX_MAX_TEVSTAGE; i++) {
+        GXSetTevColorIn((GXTevStageID)i, GX_CC_RASC, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO);
+        GXSetTevColorOp((GXTevStageID)i, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+        GXSetTevAlphaIn((GXTevStageID)i, GX_CA_RASA, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO);
+        GXSetTevAlphaOp((GXTevStageID)i, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+        GXSetTevKColorSel((GXTevStageID)i, GX_TEV_KCSEL_1_4);
+        GXSetTevKAlphaSel((GXTevStageID)i, GX_TEV_KASEL_1);
+        GXSetTevSwapMode((GXTevStageID)i, GX_TEV_SWAP0, GX_TEV_SWAP0);
+    }
+
+    GXSetTevSwapModeTable(GX_TEV_SWAP0, GX_CH_RED,   GX_CH_GREEN, GX_CH_BLUE,  GX_CH_ALPHA);
+    GXSetTevSwapModeTable(GX_TEV_SWAP1, GX_CH_RED,   GX_CH_RED,   GX_CH_RED,   GX_CH_ALPHA);
+    GXSetTevSwapModeTable(GX_TEV_SWAP2, GX_CH_GREEN, GX_CH_GREEN, GX_CH_GREEN, GX_CH_ALPHA);
+    GXSetTevSwapModeTable(GX_TEV_SWAP3, GX_CH_BLUE,  GX_CH_BLUE,  GX_CH_BLUE,  GX_CH_ALPHA);
+    GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_AND, GX_ALWAYS, 0);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803CD8E0-803CD8F8 02AA00 0018+00 1/1 0/0 0/0 .data            IndMtx */
-SECTION_DATA static u8 IndMtx[24] = {
-    0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_DATA static Mtx23 IndMtx = { 0.5f, 0.0f, 0.0f, 0.0f, 0.5f, 0.0f };
 
 /* 80310D44-80310E3C 30B684 00F8+00 1/1 0/0 0/0 .text            reinitIndStages__6J3DSysFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DSys::reinitIndStages() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DSys/reinitIndStages__6J3DSysFv.s"
+void J3DSys::reinitIndStages() {
+    for (u32 i = 0; i < GX_MAX_TEVSTAGE; i++) {
+        GXSetTevDirect((GXTevStageID)i);
+    }
+
+    GXSetIndTexOrder(GX_INDTEXSTAGE0, GX_TEXCOORD0, GX_TEXMAP0);
+    GXSetIndTexOrder(GX_INDTEXSTAGE1, GX_TEXCOORD1, GX_TEXMAP1);
+    GXSetIndTexOrder(GX_INDTEXSTAGE2, GX_TEXCOORD2, GX_TEXMAP2);
+    GXSetIndTexOrder(GX_INDTEXSTAGE3, GX_TEXCOORD3, GX_TEXMAP3);
+    GXSetIndTexCoordScale(GX_INDTEXSTAGE0, GX_ITS_1, GX_ITS_1);
+    GXSetIndTexCoordScale(GX_INDTEXSTAGE1, GX_ITS_1, GX_ITS_1);
+    GXSetIndTexCoordScale(GX_INDTEXSTAGE2, GX_ITS_1, GX_ITS_1);
+    GXSetIndTexCoordScale(GX_INDTEXSTAGE3, GX_ITS_1, GX_ITS_1);
+    GXSetIndTexMtx(GX_ITM_0, IndMtx, 1);
+    GXSetIndTexMtx(GX_ITM_1, IndMtx, 1);
+    GXSetIndTexMtx(GX_ITM_2, IndMtx, 1);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80456368-8045636C 004968 0004+00 1/1 0/0 0/0 .sdata2          @892 */
-SECTION_SDATA2 static u8 lit_892[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 8045636C-80456370 00496C 0004+00 1/1 0/0 0/0 .sdata2          @893 */
-SECTION_SDATA2 static f32 lit_893 = 1.0f;
-
-/* 80456370-80456378 004970 0004+04 1/1 0/0 0/0 .sdata2          @894 */
-SECTION_SDATA2 static f32 lit_894[1 + 1 /* padding */] = {
-    1.0f / 10.0f,
-    /* padding */
-    0.0f,
-};
 
 /* 80310E3C-80310ED0 30B77C 0094+00 1/1 0/0 0/0 .text            reinitPixelProc__6J3DSysFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DSys::reinitPixelProc() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DSys/reinitPixelProc__6J3DSysFv.s"
+void J3DSys::reinitPixelProc() {
+    GXSetBlendMode(GX_BM_NONE, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_CLEAR);
+    GXSetColorUpdate(GX_TRUE);
+    GXSetAlphaUpdate(GX_FALSE);
+    GXSetDither(GX_TRUE);
+    GXSetFog(GX_FOG_NONE, 0.0f, 1.0f, 0.1f, 1.0f, ColorBlack);
+    GXSetFogRangeAdj(GX_FALSE, 0, NULL);
+    GXSetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
+    GXSetZCompLoc(GX_TRUE);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451598-804515A0 000A98 0004+04 0/0 1/1 0/0 .sbss            j3dDefaultViewNo */

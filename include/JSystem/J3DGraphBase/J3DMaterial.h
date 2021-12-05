@@ -45,6 +45,7 @@ public:
     /* 80316E70 */ virtual void change();
 
     J3DMaterial* getNext() const { return mNext; }
+    J3DShape* getShape() const { return mShape; }
     J3DTevBlock* getTevBlock() const { return mTevBlock; }
     J3DColorBlock* getColorBlock() const { return mColorBlock; }
     J3DTexGenBlock* getTexGenBlock() const { return mTexGenBlock; }
@@ -57,8 +58,9 @@ public:
             return NULL;
         }
     }
+    J3DNBTScale* getNBTScale() const { return mTexGenBlock->getNBTScale(); }
 
-private:
+public:
     /* 0x04 */ J3DMaterial* mNext;
     /* 0x08 */ J3DShape* mShape;
     /* 0x0C */ J3DJoint* mJoint;
@@ -72,7 +74,7 @@ private:
     /* 0x2C */ J3DTevBlock* mTevBlock;
     /* 0x30 */ J3DIndBlock* mIndBlock;
     /* 0x34 */ J3DPEBlock* mPEBlock;
-    /* 0x38 */ J3DMaterial* field_0x38;
+    /* 0x38 */ J3DMaterial* mpOrigMaterial;
     /* 0x3C */ J3DMaterialAnm* mMaterialAnm;
     /* 0x40 */ J3DCurrentMtx mCurrentMtx;
     /* 0x48 */ J3DDisplayListObj* mSharedDLObj;

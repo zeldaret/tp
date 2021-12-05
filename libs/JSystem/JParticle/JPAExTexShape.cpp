@@ -4,54 +4,32 @@
 //
 
 #include "JSystem/JParticle/JPAExTexShape.h"
+#include "JSystem/JParticle/JPAParticle.h"
+#include "JSystem/JParticle/JPAResource.h"
+#include "JSystem/JParticle/JPAResourceManager.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-//
-// Types:
-//
-
-struct _GXTexMapID {};
-
-struct JUTTexture {
-    /* 802DE840 */ void load(_GXTexMapID);
-};
-
-struct JPAExTexShape {
-    /* 8027B13C */ JPAExTexShape(u8 const*);
-};
-
-struct JPAEmitterWorkData {};
-
-//
-// Forward References:
-//
-
-extern "C" void JPALoadExTex__FP18JPAEmitterWorkData();
-extern "C" void __ct__13JPAExTexShapeFPCUc();
-
-//
-// External References:
-//
-
-extern "C" void load__10JUTTextureF11_GXTexMapID();
-extern "C" void GXSetTexCoordGen2();
-
-//
-// Declarations:
-//
-
 /* 8027B040-8027B13C 275980 00FC+00 0/0 1/1 0/0 .text JPALoadExTex__FP18JPAEmitterWorkData */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPALoadExTex(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAExTexShape/JPALoadExTex__FP18JPAEmitterWorkData.s"
+void JPALoadExTex(JPAEmitterWorkData* work) {
+    JPAExTexShape* ets = work->mpRes->getEts();
+
+    GXTexCoordID secTexCoordID = GX_TEXCOORD1;
+    if (ets->isUseIndirect()) {
+        GXSetTexCoordGen2(GX_TEXCOORD1, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY, GX_FALSE, GX_PTIDENTITY);
+        u8 texIdx = ets->getIndTexIdx();
+        work->mpResMgr->load(work->mpRes->getTexIdx(texIdx), GX_TEXMAP2);
+        secTexCoordID = GX_TEXCOORD2;
+    }
+
+    if (ets->isUseSecTex()) {
+        GXSetTexCoordGen2(secTexCoordID, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY, GX_FALSE, GX_PTIDENTITY);
+        u8 texIdx = ets->getSecTexIdx();
+        work->mpResMgr->load(work->mpRes->getTexIdx(texIdx), GX_TEXMAP3);
+    }
 }
-#pragma pop
 
 /* 8027B13C-8027B144 -00001 0008+00 0/0 0/0 0/0 .text            __ct__13JPAExTexShapeFPCUc */
-JPAExTexShape::JPAExTexShape(u8 const* param_0) {
-    *(u32*)this = (u32)(param_0);
+JPAExTexShape::JPAExTexShape(u8 const* data) {
+    mpData = (const JPAExTexShapeData*)data;
 }

@@ -18,13 +18,6 @@ struct J3DSys {
     /* 8030FEE4 */ void loadNrmMtxIndx(int, u16) const;
 };
 
-struct J3DDifferedTexMtx {
-    /* 8031322C */ void loadExecute(f32 const (*)[4]);
-
-    static u8 sTexGenBlock[4];
-    static u8 sTexMtxObj[4];
-};
-
 //
 // Forward References:
 //
@@ -125,18 +118,22 @@ extern "C" extern u8 j3dSys[284];
 
 /* ############################################################################################## */
 /* 80434C80-80434C98 0619A0 0014+04 2/2 0/0 0/0 .bss             sMtxLoadCache__11J3DShapeMtx */
-u8 J3DShapeMtx::sMtxLoadCache[20 + 4 /* padding */];
+u16 J3DShapeMtx::sMtxLoadCache[10 + 2 /* padding */];
 
 /* 803130A8-803130E4 30D9E8 003C+00 0/0 1/1 0/0 .text            resetMtxLoadCache__11J3DShapeMtxFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DShapeMtx::resetMtxLoadCache() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DShapeMtx/resetMtxLoadCache__11J3DShapeMtxFv.s"
+void J3DShapeMtx::resetMtxLoadCache() {
+    sMtxLoadCache[9] = 0xFFFF;
+    sMtxLoadCache[8] = 0xFFFF;
+    sMtxLoadCache[7] = 0xFFFF;
+    sMtxLoadCache[6] = 0xFFFF;
+    sMtxLoadCache[5] = 0xFFFF;
+    sMtxLoadCache[4] = 0xFFFF;
+    sMtxLoadCache[3] = 0xFFFF;
+    sMtxLoadCache[2] = 0xFFFF;
+    sMtxLoadCache[1] = 0xFFFF;
+    sMtxLoadCache[0] = 0xFFFF;
 }
-#pragma pop
 
 /* 803130E4-80313128 30DA24 0044+00 1/0 0/0 0/0 .text loadMtxIndx_PNGP__11J3DShapeMtxCFiUs */
 #pragma push
@@ -365,10 +362,12 @@ SECTION_DATA static void* lit_1034[12] = {
 };
 
 /* 804515A8-804515AC 000AA8 0004+00 4/4 2/2 0/0 .sbss            sCurrentPipeline__11J3DShapeMtx */
-u8 J3DShapeMtx::sCurrentPipeline[4];
+u32 J3DShapeMtx::sCurrentPipeline;
 
 /* 804515AC-804515B0 000AAC 0004+00 3/3 1/1 0/0 .sbss            sCurrentScaleFlag__11J3DShapeMtx */
-u8 J3DShapeMtx::sCurrentScaleFlag[4];
+u8* J3DShapeMtx::sCurrentScaleFlag;
+
+// This below is technically part of J3DScaleFlag.
 
 /* 804515B0-804515B4 -00001 0004+00 5/5 3/3 0/0 .sbss            None */
 /* 804515B0 0001+00 data_804515B0 None */
@@ -377,7 +376,7 @@ extern u8 struct_804515B0[4];
 u8 struct_804515B0[4];
 
 /* 804515B4-804515B8 000AB4 0004+00 4/4 1/1 0/0 .sbss            sTexMtxLoadType__11J3DShapeMtx */
-u8 J3DShapeMtx::sTexMtxLoadType[4];
+u32 J3DShapeMtx::sTexMtxLoadType;
 
 /* 804515B8-804515C0 000AB8 0008+00 2/2 0/0 0/0 .sbss            sMtxPtrTbl__21J3DShapeMtxConcatView
  */
@@ -385,10 +384,10 @@ u8 J3DShapeMtxConcatView::sMtxPtrTbl[8];
 
 /* 804515C0-804515C4 000AC0 0004+00 6/6 2/2 0/0 .sbss            sTexGenBlock__17J3DDifferedTexMtx
  */
-u8 J3DDifferedTexMtx::sTexGenBlock[4];
+J3DTexGenBlock* J3DDifferedTexMtx::sTexGenBlock;
 
 /* 804515C4-804515C8 000AC4 0004+00 1/1 2/2 0/0 .sbss            sTexMtxObj__17J3DDifferedTexMtx */
-u8 J3DDifferedTexMtx::sTexMtxObj[4];
+J3DTexMtx* J3DDifferedTexMtx::sTexMtxObj;
 
 /* 80456398-8045639C 004998 0004+00 2/2 0/0 0/0 .sdata2          @1032 */
 SECTION_SDATA2 static u8 lit_1032[4] = {

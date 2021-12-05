@@ -4,6 +4,9 @@
 //
 
 #include "JSystem/JParticle/JPABaseShape.h"
+#include "JSystem/JParticle/JPAParticle.h"
+#include "JSystem/JParticle/JPAResource.h"
+#include "JSystem/JParticle/JPAResourceManager.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -11,51 +14,83 @@
 // Types:
 //
 
-struct _GXTexMapID {};
-
-struct _GXColor {};
-
-struct JUTTexture {
-    /* 802DE840 */ void load(_GXTexMapID);
-};
-
-template <typename A0>
-struct JPANode {};
-/* JPANode<JPABaseParticle> */
-struct JPANode__template0 {};
-
-struct JPAEmitterWorkData {};
-
 struct JPAClrAnmKeyData {};
 
 struct JKRHeap {
     /* 802CE474 */ void alloc(u32, int, JKRHeap*);
 };
 
+struct JPABaseShapeData {
+    // Common header.
+    /* 0x00 */ u8 mMagic[4];
+    /* 0x04 */ u32 mSize;
+
+    /* 0x08 */ u32 mFlags;
+    /* 0x0C */ u16 mClrPrmAnmOffset;
+    /* 0x0E */ u16 mClrEnvAnmOffset;
+    /* 0x10 */ JGeometry::TVec2<float> mGlobalScale2D;
+    /* 0x18 */ u16 mBlendModeCfg;
+    /* 0x1A */ u8 mAlphaCompareCfg;
+    /* 0x1B */ u8 mAlphaRef0;
+    /* 0x1C */ u8 mAlphaRef1;
+    /* 0x1D */ u8 mZModeCfg;
+    /* 0x1E */ u8 mTexFlg;
+    /* 0x1F */ u8 mTexAnmNum;
+    /* 0x20 */ u8 mTexIdx;
+    /* 0x21 */ u8 mClrFlg;
+    /* 0x22 */ u8 mClrPrmKeyNum;
+    /* 0x23 */ u8 mClrEnvKeyNum;
+    /* 0x24 */ s16 mClrAnmFrmMax;
+    /* 0x26 */ GXColor mClrPrm;
+    /* 0x2A */ GXColor mClrEnv;
+    /* 0x2E */ u8 mAnmRndm;
+    /* 0x2F */ u8 mClrAnmRndmMask;
+    /* 0x30 */ u8 mTexAnmRndmMask;
+};
+
 struct JPABaseShape {
+public:
     /* 8027A6DC */ JPABaseShape(u8 const*, JKRHeap*);
     /* 8027A7E8 */ void setGX(JPAEmitterWorkData*) const;
 
-    static u8 st_bm[12];
-    static u8 st_bf[40];
-    static u8 st_lo[64];
-    static u8 st_c[32];
-    static u8 st_ao[16];
-    static u8 st_ca[96];
-    static u8 st_aa[32 + 4 /* padding */];
-};
+    static GXBlendMode st_bm[3];
+    static GXBlendFactor st_bf[10];
+    static GXLogicOp st_lo[16];
+    static GXCompare st_c[8];
+    static GXAlphaOp st_ao[4];
+    static GXTevColorArg st_ca[6][4];
+    static GXTevAlphaArg st_aa[2][4];
 
-struct JPABaseParticle {};
+    void getPrmClr(s16 idx, GXColor* dst) { *dst = mpPrmClrAnmTbl[idx]; }
+    void getEnvClr(s16 idx, GXColor* dst) { *dst = mpEnvClrAnmTbl[idx]; }
+    u32 getTexIdx() const { return mpData->mTexIdx; }
+    s16 getClrAnmMaxFrm() const { return mpData->mClrAnmFrmMax; }
 
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
+    GXBlendMode getBlendMode() const { return st_bm[mpData->mBlendModeCfg & 0x03]; }
+    GXBlendFactor getBlendSrc() const { return st_bf[(mpData->mBlendModeCfg >> 2) & 0x0F]; }
+    GXBlendFactor getBlendDst() const { return st_bf[(mpData->mBlendModeCfg >> 6) & 0x0F]; }
+    GXLogicOp getLogicOp() const { return st_lo[(mpData->mBlendModeCfg >> 10) & 0x0F]; }
+    GXBool getZCompLoc() const { return (GXBool)((mpData->mZModeCfg >> 5) & 0x01); }
 
-struct JPABaseEmitter {
-    /* 8027EEB0 */ void calcEmitterGlobalPosition(JGeometry::TVec3<f32>*) const;
+    GXBool getZEnable() const { return (GXBool)(mpData->mZModeCfg & 0x01); }
+    GXCompare getZCmp() const { return st_c[(mpData->mZModeCfg >> 1) & 0x07]; }
+    GXBool getZUpd() const { return (GXBool)((mpData->mZModeCfg >> 4) & 0x01); }
+
+    GXCompare getAlphaCmp0() const { return st_c[mpData->mAlphaCompareCfg & 0x07]; }
+    u8 getAlphaRef0() const { return mpData->mAlphaRef0; }
+    GXAlphaOp getAlphaOp() const { return st_ao[(mpData->mAlphaCompareCfg >> 3) & 0x03]; }
+    GXCompare getAlphaCmp1() const { return st_c[(mpData->mAlphaCompareCfg >> 5) & 0x07]; }
+    u8 getAlphaRef1() const { return mpData->mAlphaRef1; }
+
+    const GXTevColorArg* getTevColorArg() const { return st_ca[(mpData->mFlags >> 0x0F) & 0x07]; }
+    const GXTevAlphaArg* getTevAlphaArg() const { return st_aa[(mpData->mFlags >> 0x12) & 0x01]; }
+
+public:
+    JPABaseShapeData* mpData;
+    const void* mpTexCrdMtxAnmTbl;
+    const u8* mpTexIdxAnimTbl;
+    const GXColor* mpPrmClrAnmTbl;
+    const GXColor* mpEnvClrAnmTbl;
 };
 
 struct JMath {
@@ -146,13 +181,6 @@ extern "C" void JPADrawParticleCallBack__FP18JPAEmitterWorkDataP15JPABaseParticl
 extern "C" static void makeColorTable__FPP8_GXColorPC16JPAClrAnmKeyDataUcsP7JKRHeap();
 extern "C" void __ct__12JPABaseShapeFPCUcP7JKRHeap();
 extern "C" void setGX__12JPABaseShapeCFP18JPAEmitterWorkData();
-extern "C" u8 st_bm__12JPABaseShape[12];
-extern "C" u8 st_bf__12JPABaseShape[40];
-extern "C" u8 st_lo__12JPABaseShape[64];
-extern "C" u8 st_c__12JPABaseShape[32];
-extern "C" u8 st_ao__12JPABaseShape[16];
-extern "C" u8 st_ca__12JPABaseShape[96];
-extern "C" u8 st_aa__12JPABaseShape[32 + 4 /* padding */];
 
 //
 // External References:
@@ -161,27 +189,7 @@ extern "C" u8 st_aa__12JPABaseShape[32 + 4 /* padding */];
 extern "C" void func_8027EEB0();
 extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
 extern "C" void load__10JUTTextureF11_GXTexMapID();
-extern "C" void PSMTXConcat();
-extern "C" void PSMTXMultVec();
-extern "C" void PSMTXMultVecSR();
 extern "C" void PSMTXMultVecArraySR();
-extern "C" void PSVECCrossProduct();
-extern "C" void GXSetVtxDesc();
-extern "C" void GXSetTexCoordGen2();
-extern "C" void GXBegin();
-extern "C" void GXSetLineWidth();
-extern "C" void GXSetPointSize();
-extern "C" void GXSetTevDirect();
-extern "C" void GXSetTevColorIn();
-extern "C" void GXSetTevAlphaIn();
-extern "C" void GXSetTevColor();
-extern "C" void GXSetAlphaCompare();
-extern "C" void GXSetBlendMode();
-extern "C" void GXSetZMode();
-extern "C" void GXSetZCompLoc();
-extern "C" void GXCallDisplayList();
-extern "C" void GXLoadPosMtxImm();
-extern "C" void GXLoadTexMtxImm();
 extern "C" void _savegpr_22();
 extern "C" void _savegpr_24();
 extern "C" void _savegpr_28();
@@ -206,46 +214,26 @@ SECTION_SDATA2 static f32 lit_2262[1 + 1 /* padding */] = {
 };
 
 /* 80276A90-80276ACC 2713D0 003C+00 0/0 1/1 0/0 .text JPASetPointSize__FP18JPAEmitterWorkData */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPASetPointSize(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPASetPointSize__FP18JPAEmitterWorkData.s"
+void JPASetPointSize(JPAEmitterWorkData* work) {
+    GXSetPointSize((u8)(lit_2262[0] * work->mGlobalPtclScl.x), GX_TO_ONE);
 }
-#pragma pop
 
 /* 80276ACC-80276B08 27140C 003C+00 0/0 1/1 0/0 .text JPASetLineWidth__FP18JPAEmitterWorkData */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPASetLineWidth(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPASetLineWidth__FP18JPAEmitterWorkData.s"
+void JPASetLineWidth(JPAEmitterWorkData* work) {
+    GXSetLineWidth((u8)(lit_2262[0] * work->mGlobalPtclScl.x), GX_TO_ONE);
 }
-#pragma pop
 
 /* 80276B08-80276B4C 271448 0044+00 0/0 1/1 0/0 .text
  * JPASetPointSize__FP18JPAEmitterWorkDataP15JPABaseParticle    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPASetPointSize(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPASetPointSize__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPASetPointSize(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    GXSetPointSize((u8)(lit_2262[0] * work->mGlobalPtclScl.x * ptcl->mParticleScaleX), GX_TO_ONE);
 }
-#pragma pop
 
 /* 80276B4C-80276B90 27148C 0044+00 0/0 1/1 0/0 .text
  * JPASetLineWidth__FP18JPAEmitterWorkDataP15JPABaseParticle    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPASetLineWidth(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPASetLineWidth__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPASetLineWidth(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    GXSetLineWidth((u8)(lit_2262[0] * work->mGlobalPtclScl.x * ptcl->mParticleScaleX), GX_TO_ONE);
 }
-#pragma pop
 
 /* 80276B90-80276C2C 2714D0 009C+00 0/0 1/1 0/0 .text JPARegistPrm__FP18JPAEmitterWorkData */
 #pragma push
@@ -332,8 +320,17 @@ asm void JPARegistEnv(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
 }
 #pragma pop
 
+#define MIN(a, b) ((a) < (b) ? (a) : (b))
+
 /* 802771BC-802771E8 271AFC 002C+00 0/0 1/1 0/0 .text JPACalcClrIdxNormal__FP18JPAEmitterWorkData
  */
+#ifdef NONMATCHING
+void JPACalcClrIdxNormal(JPAEmitterWorkData* work) {
+    JPABaseShape* bsp = work->mpRes->getBsp();
+    // can't get the extsh to appear in the right spot...
+    work->mClrKeyFrame = MIN(work->mpEmtr->mTick, bsp->getClrAnmMaxFrm());
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -342,6 +339,7 @@ asm void JPACalcClrIdxNormal(JPAEmitterWorkData* param_0) {
 #include "asm/JSystem/JParticle/JPABaseShape/JPACalcClrIdxNormal__FP18JPAEmitterWorkData.s"
 }
 #pragma pop
+#endif
 
 /* 802771E8-80277210 271B28 0028+00 0/0 1/1 0/0 .text
  * JPACalcClrIdxNormal__FP18JPAEmitterWorkDataP15JPABaseParticle */
@@ -400,14 +398,9 @@ asm void JPACalcClrIdxReverse(JPAEmitterWorkData* param_0, JPABaseParticle* para
 
 /* 80277308-80277314 271C48 000C+00 0/0 1/1 0/0 .text JPACalcClrIdxMerge__FP18JPAEmitterWorkData
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcClrIdxMerge(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPACalcClrIdxMerge__FP18JPAEmitterWorkData.s"
+void JPACalcClrIdxMerge(JPAEmitterWorkData* work) {
+    work->mClrKeyFrame = 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804552B0-804552B8 0038B0 0008+00 4/4 0/0 0/0 .sdata2          @2623 */
@@ -426,14 +419,9 @@ asm void JPACalcClrIdxMerge(JPAEmitterWorkData* param_0, JPABaseParticle* param_
 
 /* 80277384-80277390 271CC4 000C+00 0/0 1/1 0/0 .text JPACalcClrIdxRandom__FP18JPAEmitterWorkData
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcClrIdxRandom(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPACalcClrIdxRandom__FP18JPAEmitterWorkData.s"
+void JPACalcClrIdxRandom(JPAEmitterWorkData* work) {
+    work->mClrKeyFrame = 0;
 }
-#pragma pop
 
 /* 80277390-802773C4 271CD0 0034+00 0/0 1/1 0/0 .text
  * JPACalcClrIdxRandom__FP18JPAEmitterWorkDataP15JPABaseParticle */
@@ -448,91 +436,53 @@ asm void JPACalcClrIdxRandom(JPAEmitterWorkData* param_0, JPABaseParticle* param
 
 /* 802773C4-80277404 271D04 0040+00 0/0 1/1 0/0 .text            JPACalcPrm__FP18JPAEmitterWorkData
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcPrm(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPACalcPrm__FP18JPAEmitterWorkData.s"
+void JPACalcPrm(JPAEmitterWorkData* work) {
+    work->mpRes->getBsp()->getPrmClr(work->mClrKeyFrame, &work->mpEmtr->mPrmClr);
 }
-#pragma pop
 
 /* 80277404-80277440 271D44 003C+00 0/0 1/1 0/0 .text
  * JPACalcPrm__FP18JPAEmitterWorkDataP15JPABaseParticle         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcPrm(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPACalcPrm__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPACalcPrm(JPAEmitterWorkData* work, JPABaseParticle*ptcl) {
+    work->mpRes->getBsp()->getPrmClr(work->mClrKeyFrame, &ptcl->mPrmClr);
 }
-#pragma pop
 
 /* 80277440-80277480 271D80 0040+00 0/0 1/1 0/0 .text            JPACalcEnv__FP18JPAEmitterWorkData
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcEnv(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPACalcEnv__FP18JPAEmitterWorkData.s"
+void JPACalcEnv(JPAEmitterWorkData* work) {
+    work->mpRes->getBsp()->getEnvClr(work->mClrKeyFrame, &work->mpEmtr->mEnvClr);
 }
-#pragma pop
 
 /* 80277480-802774BC 271DC0 003C+00 0/0 1/1 0/0 .text
  * JPACalcEnv__FP18JPAEmitterWorkDataP15JPABaseParticle         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcEnv(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPACalcEnv__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPACalcEnv(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    work->mpRes->getBsp()->getEnvClr(work->mClrKeyFrame, &ptcl->mEnvClr);
 }
-#pragma pop
 
 /* 802774BC-80277504 271DFC 0048+00 0/0 1/1 0/0 .text
  * JPACalcColorCopy__FP18JPAEmitterWorkDataP15JPABaseParticle   */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcColorCopy(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPACalcColorCopy__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPACalcColorCopy(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    JPABaseEmitter* emtr = work->mpEmtr;
+    ptcl->mPrmClr = emtr->mPrmClr;
+    ptcl->mEnvClr = emtr->mEnvClr;
 }
-#pragma pop
 
 /* 80277504-8027753C 271E44 0038+00 0/0 1/1 0/0 .text JPAGenTexCrdMtxIdt__FP18JPAEmitterWorkData
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPAGenTexCrdMtxIdt(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPAGenTexCrdMtxIdt__FP18JPAEmitterWorkData.s"
+void JPAGenTexCrdMtxIdt(JPAEmitterWorkData* param_0) {
+    GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY, GX_FALSE, GX_PTIDENTITY);
 }
-#pragma pop
 
 /* 8027753C-80277574 271E7C 0038+00 0/0 1/1 0/0 .text JPAGenTexCrdMtxAnm__FP18JPAEmitterWorkData
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPAGenTexCrdMtxAnm(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPAGenTexCrdMtxAnm__FP18JPAEmitterWorkData.s"
+void JPAGenTexCrdMtxAnm(JPAEmitterWorkData* param_0) {
+    GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_TEXMTX0, GX_FALSE, GX_PTIDENTITY);
 }
-#pragma pop
 
 /* 80277574-802775AC 271EB4 0038+00 0/0 1/1 0/0 .text JPAGenTexCrdMtxPrj__FP18JPAEmitterWorkData
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPAGenTexCrdMtxPrj(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPAGenTexCrdMtxPrj__FP18JPAEmitterWorkData.s"
+void JPAGenTexCrdMtxPrj(JPAEmitterWorkData* param_0) {
+    GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3x4, GX_TG_POS, GX_TEXMTX0, GX_FALSE, GX_PTIDENTITY);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804552B8-804552BC 0038B8 0004+00 9/9 0/0 0/0 .sdata2          @2740 */
@@ -575,35 +525,20 @@ asm void JPALoadCalcTexCrdMtxAnm(JPAEmitterWorkData* param_0, JPABaseParticle* p
 
 /* 802778EC-80277940 27222C 0054+00 0/0 1/1 0/0 .text            JPALoadTex__FP18JPAEmitterWorkData
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPALoadTex(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPALoadTex__FP18JPAEmitterWorkData.s"
+void JPALoadTex(JPAEmitterWorkData* work) {
+    work->mpResMgr->load(work->mpRes->getTexIdx(work->mpRes->getBsp()->getTexIdx()), GX_TEXMAP0);
 }
-#pragma pop
 
 /* 80277940-80277990 272280 0050+00 0/0 1/1 0/0 .text JPALoadTexAnm__FP18JPAEmitterWorkData */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPALoadTexAnm(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPALoadTexAnm__FP18JPAEmitterWorkData.s"
+void JPALoadTexAnm(JPAEmitterWorkData* work) {
+    work->mpResMgr->load(work->mpRes->getTexIdx(work->mpEmtr->mTexAnmIdx), GX_TEXMAP0);
 }
-#pragma pop
 
 /* 80277990-802779DC 2722D0 004C+00 0/0 1/1 0/0 .text
  * JPALoadTexAnm__FP18JPAEmitterWorkDataP15JPABaseParticle      */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPALoadTexAnm(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPALoadTexAnm__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPALoadTexAnm(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    work->mpResMgr->load(work->mpRes->getTexIdx(ptcl->mTexAnmIdx), GX_TEXMAP0);
 }
-#pragma pop
 
 /* 802779DC-80277A18 27231C 003C+00 0/0 1/1 0/0 .text JPACalcTexIdxNormal__FP18JPAEmitterWorkData
  */
@@ -673,14 +608,9 @@ asm void JPACalcTexIdxReverse(JPAEmitterWorkData* param_0, JPABaseParticle* para
 
 /* 80277B78-80277B94 2724B8 001C+00 0/0 1/1 0/0 .text JPACalcTexIdxMerge__FP18JPAEmitterWorkData
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcTexIdxMerge(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPACalcTexIdxMerge__FP18JPAEmitterWorkData.s"
+void JPACalcTexIdxMerge(JPAEmitterWorkData* work) {
+    work->mpEmtr->mTexAnmIdx = work->mpRes->getBsp()->getTexIdx();
 }
-#pragma pop
 
 /* 80277B94-80277C0C 2724D4 0078+00 0/0 1/1 0/0 .text
  * JPACalcTexIdxMerge__FP18JPAEmitterWorkDataP15JPABaseParticle */
@@ -695,14 +625,9 @@ asm void JPACalcTexIdxMerge(JPAEmitterWorkData* param_0, JPABaseParticle* param_
 
 /* 80277C0C-80277C28 27254C 001C+00 0/0 1/1 0/0 .text JPACalcTexIdxRandom__FP18JPAEmitterWorkData
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcTexIdxRandom(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPACalcTexIdxRandom__FP18JPAEmitterWorkData.s"
+void JPACalcTexIdxRandom(JPAEmitterWorkData* work) {
+    work->mpEmtr->mTexAnmIdx = work->mpRes->getBsp()->getTexIdx();
 }
-#pragma pop
 
 /* 80277C28-80277C64 272568 003C+00 0/0 1/1 0/0 .text
  * JPACalcTexIdxRandom__FP18JPAEmitterWorkDataP15JPABaseParticle */
@@ -716,14 +641,9 @@ asm void JPACalcTexIdxRandom(JPAEmitterWorkData* param_0, JPABaseParticle* param
 #pragma pop
 
 /* 80277C64-80277C8C 2725A4 0028+00 0/0 1/1 0/0 .text JPALoadPosMtxCam__FP18JPAEmitterWorkData */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPALoadPosMtxCam(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPALoadPosMtxCam__FP18JPAEmitterWorkData.s"
+void JPALoadPosMtxCam(JPAEmitterWorkData* work) {
+    GXLoadPosMtxImm(work->mPosCamMtx, GX_PNMTX0);
 }
-#pragma pop
 
 /* 80277C8C-80277C90 2725CC 0004+00 1/0 0/0 0/0 .text noLoadPrj__FPC18JPAEmitterWorkDataPA4_Cf */
 static void noLoadPrj(JPAEmitterWorkData const* param_0, f32 const (*param_1)[4]) {
@@ -1142,115 +1062,93 @@ asm JPABaseShape::JPABaseShape(u8 const* param_0, JKRHeap* param_1) {
 
 /* ############################################################################################## */
 /* 803C4360-803C436C 021480 000C+00 0/1 0/0 0/0 .data            st_bm__12JPABaseShape */
-#pragma push
-#pragma force_active on
-SECTION_DATA u8 JPABaseShape::st_bm[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02,
+SECTION_DATA GXBlendMode JPABaseShape::st_bm[3] = {
+    GX_BM_NONE,
+    GX_BM_BLEND,
+    GX_BM_LOGIC,
 };
-#pragma pop
 
 /* 803C436C-803C4394 02148C 0028+00 0/1 0/0 0/0 .data            st_bf__12JPABaseShape */
-#pragma push
-#pragma force_active on
-SECTION_DATA u8 JPABaseShape::st_bf[40] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00,
-    0x00, 0x03, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04,
-    0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x07,
+SECTION_DATA GXBlendFactor JPABaseShape::st_bf[10] = {
+    GX_BL_ZERO,
+    GX_BL_ONE,
+    GX_BL_SRC_COLOR,
+    GX_BL_INV_SRC_COLOR,
+    GX_BL_SRC_COLOR,
+    GX_BL_INV_SRC_COLOR,
+    GX_BL_SRC_ALPHA,
+    GX_BL_INV_SRC_ALPHA,
+    GX_BL_DST_ALPHA,
+    GX_BL_INV_DST_ALPHA,
 };
-#pragma pop
 
 /* 803C4394-803C43D4 0214B4 0040+00 0/1 0/0 0/0 .data            st_lo__12JPABaseShape */
-#pragma push
-#pragma force_active on
-SECTION_DATA u8 JPABaseShape::st_lo[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x0C,
-    0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x0E,
-    0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x09,
-    0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x00, 0x00, 0x0D,
+SECTION_DATA GXLogicOp JPABaseShape::st_lo[16] = {
+    GX_LO_CLEAR,
+    GX_LO_SET,
+    GX_LO_COPY,
+    GX_LO_INV_COPY,
+    GX_LO_NOOP,
+    GX_LO_INV,
+    GX_LO_AND,
+    GX_LO_NAND,
+    GX_LO_OR,
+    GX_LO_NOR,
+    GX_LO_XOR,
+    GX_LO_EQUIV,
+    GX_LO_REV_AND,
+    GX_LO_INV_AND,
+    GX_LO_REV_OR,
+    GX_LO_INV_OR,
 };
-#pragma pop
 
 /* 803C43D4-803C43F4 0214F4 0020+00 0/1 0/0 0/0 .data            st_c__12JPABaseShape */
-#pragma push
-#pragma force_active on
-SECTION_DATA u8 JPABaseShape::st_c[32] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x02,
-    0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x07,
+SECTION_DATA GXCompare JPABaseShape::st_c[8] = {
+    GX_NEVER,
+    GX_LESS,
+    GX_LEQUAL,
+    GX_EQUAL,
+    GX_NEQUAL,
+    GX_GEQUAL,
+    GX_GREATER,
+    GX_ALWAYS,
 };
-#pragma pop
 
 /* 803C43F4-803C4404 021514 0010+00 0/1 0/0 0/0 .data            st_ao__12JPABaseShape */
-#pragma push
-#pragma force_active on
-SECTION_DATA u8 JPABaseShape::st_ao[16] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x03,
+SECTION_DATA GXAlphaOp JPABaseShape::st_ao[4] = {
+    GX_AOP_AND,
+    GX_AOP_OR,
+    GX_AOP_XOR,
+    GX_AOP_XNOR,
 };
-#pragma pop
 
 /* 803C4404-803C4464 021524 0060+00 0/1 0/0 0/0 .data            st_ca__12JPABaseShape */
-#pragma push
-#pragma force_active on
-SECTION_DATA u8 JPABaseShape::st_ca[96] = {
-    0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x0F,
-    0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0F,
-    0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0F,
-    0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0F,
-    0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x04,
-    0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x02,
+SECTION_DATA GXTevColorArg JPABaseShape::st_ca[6][4] = {
+    { GX_CC_ZERO, GX_CC_TEXC, GX_CC_ONE,  GX_CC_ZERO, },
+    { GX_CC_ZERO, GX_CC_C0,   GX_CC_TEXC, GX_CC_ZERO, },
+    { GX_CC_C0,   GX_CC_ONE,  GX_CC_TEXC, GX_CC_ZERO, },
+    { GX_CC_C1,   GX_CC_C0,   GX_CC_TEXC, GX_CC_ZERO, },
+    { GX_CC_ZERO, GX_CC_TEXC, GX_CC_C0,   GX_CC_C1,   },
+    { GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, GX_CC_C0,   },
 };
-#pragma pop
 
 /* 803C4464-803C4488 021584 0020+04 0/1 0/0 0/0 .data            st_aa__12JPABaseShape */
-#pragma push
-#pragma force_active on
-SECTION_DATA u8 JPABaseShape::st_aa[32 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x07,
-    0x00,
-    0x00,
-    0x00,
-    0x04,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x07,
-    0x00,
-    0x00,
-    0x00,
-    0x07,
-    0x00,
-    0x00,
-    0x00,
-    0x07,
-    0x00,
-    0x00,
-    0x00,
-    0x07,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_DATA GXTevAlphaArg JPABaseShape::st_aa[2][4] = {
+    { GX_CA_ZERO, GX_CA_TEXA, GX_CA_A0,   GX_CA_ZERO, },
+    { GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_A0,   },
 };
-#pragma pop
 
 /* 8027A7E8-8027A918 275128 0130+00 0/0 1/1 0/0 .text setGX__12JPABaseShapeCFP18JPAEmitterWorkData
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPABaseShape::setGX(JPAEmitterWorkData* param_0) const {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/setGX__12JPABaseShapeCFP18JPAEmitterWorkData.s"
+void JPABaseShape::setGX(JPAEmitterWorkData* work) const {
+    const GXTevColorArg *colorArg = getTevColorArg();
+    const GXTevAlphaArg *alphaArg = getTevAlphaArg();
+    GXSetBlendMode(getBlendMode(), getBlendSrc(), getBlendDst(), getLogicOp());
+    GXSetZMode(getZEnable(), getZCmp(), getZUpd());
+    GXSetAlphaCompare(getAlphaCmp0(), getAlphaRef0(), getAlphaOp(), getAlphaCmp1(), getAlphaRef1());
+    GXSetTevColorIn(GX_TEVSTAGE0, colorArg[0], colorArg[1], colorArg[2], colorArg[3]);
+    GXSetTevAlphaIn(GX_TEVSTAGE0, alphaArg[0], alphaArg[1], alphaArg[2], alphaArg[3]);
+    GXSetTevDirect(GX_TEVSTAGE0);
+    GXSetTevDirect(GX_TEVSTAGE1);
+    GXSetZCompLoc(getZCompLoc());
 }
-#pragma pop

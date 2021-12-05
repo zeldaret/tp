@@ -191,14 +191,10 @@ asm void J2DGrafContext::setColor(JUtility::TColor param_0, JUtility::TColor par
 
 /* 802E9234-802E9260 2E3B74 002C+00 1/1 2/2 0/0 .text            setLineWidth__14J2DGrafContextFUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DGrafContext::setLineWidth(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DGrafContext/setLineWidth__14J2DGrafContextFUc.s"
+void J2DGrafContext::setLineWidth(u8 param_0) {
+    mLineWidth = param_0;
+    GXSetLineWidth(mLineWidth, GX_TO_ZERO);
 }
-#pragma pop
 
 /* 802E9260-802E9368 2E3BA0 0108+00 0/0 2/2 0/0 .text
  * fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>            */

@@ -12,6 +12,14 @@ typedef struct _GXColor {
     /* 0x1 */ u8 g;
     /* 0x2 */ u8 b;
     /* 0x3 */ u8 a;
+
+    _GXColor& operator=(const _GXColor& o) {
+        r = o.r;
+        g = o.g;
+        b = o.b;
+        a = o.a;
+        return *this;
+    }
 } GXColor;
 
 typedef struct _GXColorS10 {
@@ -234,7 +242,7 @@ typedef enum _GXLogicOp {
     /* 0x4 */ GX_LO_INV_AND,
     /* 0x5 */ GX_LO_NOOP,
     /* 0x6 */ GX_LO_XOR,
-    /* 0x7 */ GX_LO_OP,
+    /* 0x7 */ GX_LO_OR,
     /* 0x8 */ GX_LO_NOR,
     /* 0x9 */ GX_LO_EQUIV,
     /* 0xA */ GX_LO_INV,
@@ -258,7 +266,7 @@ typedef enum _GXVtxFmt {
 } GXVtxFmt;
 
 typedef enum _GXAttr {
-    /* 0x00 */ GX_VA_PTNMTXIDX,
+    /* 0x00 */ GX_VA_PNMTXIDX,
     /* 0x01 */ GX_VA_TEX0MTXIDX,
     /* 0x02 */ GX_VA_TEX1MTXIDX,
     /* 0x03 */ GX_VA_TEX2MTXIDX,
@@ -364,8 +372,8 @@ typedef enum _GXTevColorArg {
 
 typedef enum _GXTevColor {
     /* 0x0 */ GX_CH_RED,
-    /* 0x1 */ GX_CH_BLUE,
-    /* 0x2 */ GX_CH_GREEN,
+    /* 0x1 */ GX_CH_GREEN,
+    /* 0x2 */ GX_CH_BLUE,
     /* 0x3 */ GX_CH_ALPHA,
 } GXTevColor;
 
@@ -693,6 +701,41 @@ typedef enum _GXIndTexMtxID {
     /* 0xB */ GX_ITM_T2,
 } GXIndTexMtxID;
 
+typedef enum _GXIndTexFormat {
+    /* 0x0 */ GX_ITF_8,
+    /* 0x1 */ GX_ITF_5,
+    /* 0x2 */ GX_ITF_4,
+    /* 0x3 */ GX_ITF_3,
+} GXIndTexFormat;
+
+typedef enum _GXIndTexBiasSel {
+    /* 0x0 */ GX_ITB_NONE,
+    /* 0x1 */ GX_ITB_S,
+    /* 0x2 */ GX_ITB_T,
+    /* 0x3 */ GX_ITB_ST,
+    /* 0x4 */ GX_ITB_U,
+    /* 0x5 */ GX_ITB_SU,
+    /* 0x6 */ GX_ITB_TU,
+    /* 0x7 */ GX_ITB_STU,
+} GXIndTexBiasSel;
+
+typedef enum _GXIndTexAlphaSel {
+    /* 0x0 */ GX_ITBA_OFF,
+    /* 0x1 */ GX_ITBA_S,
+    /* 0x2 */ GX_ITBA_T,
+    /* 0x3 */ GX_ITBA_U,
+} GXIndTexAlphaSel;
+
+typedef enum _GXIndTexWrap {
+    /* 0x0 */ GX_ITW_OFF,
+    /* 0x1 */ GX_ITW_256,
+    /* 0x2 */ GX_ITW_128,
+    /* 0x3 */ GX_ITW_64,
+    /* 0x4 */ GX_ITW_32,
+    /* 0x5 */ GX_ITW_16,
+    /* 0x6 */ GX_ITW_0,
+} GXIndTexWrap;
+
 typedef enum _GXTexOffset {
     /* 0x0 */ GX_TO_ZERO,
     /* 0x1 */ GX_TO_SIXTEENTH,
@@ -716,6 +759,62 @@ typedef enum _GXTexCacheSize {
     /* 0x2 */ GX_TEXCACHE_512K,
     /* 0x3 */ GX_TEXCACHE_NONE,
 } GXTexCacheSize;
+
+typedef enum _GXPosNrmMtx {
+    GX_PNMTX0 = 3 * 0,
+    GX_PNMTX1 = 3 * 1,
+    GX_PNMTX2 = 3 * 2,
+    GX_PNMTX3 = 3 * 3,
+    GX_PNMTX4 = 3 * 4,
+    GX_PNMTX5 = 3 * 5,
+    GX_PNMTX6 = 3 * 6,
+    GX_PNMTX7 = 3 * 7,
+    GX_PNMTX8 = 3 * 8,
+    GX_PNMTX9 = 3 * 9,
+} GXPosNrmMtx;
+
+typedef enum _GXTexMtx {
+    GX_TEXMTX0 = 30 + 0 * 3,
+    GX_TEXMTX1 = 30 + 1 * 3,
+    GX_TEXMTX2 = 30 + 2 * 3,
+    GX_TEXMTX3 = 30 + 3 * 3,
+    GX_TEXMTX4 = 30 + 4 * 3,
+    GX_TEXMTX5 = 30 + 5 * 3,
+    GX_TEXMTX6 = 30 + 6 * 3,
+    GX_TEXMTX7 = 30 + 7 * 3,
+    GX_TEXMTX8 = 30 + 8 * 3,
+    GX_TEXMTX9 = 30 + 9 * 3,
+    GX_IDENTITY = 60,
+};
+
+typedef enum _GXPTTexMtx {
+    GX_PTTEXMTX0 = 64 + 0 * 3,
+    GX_PTTEXMTX1 = 64 + 1 * 3,
+    GX_PTTEXMTX2 = 64 + 2 * 3,
+    GX_PTTEXMTX3 = 64 + 3 * 3,
+    GX_PTTEXMTX4 = 64 + 4 * 3,
+    GX_PTTEXMTX5 = 64 + 5 * 3,
+    GX_PTTEXMTX6 = 64 + 6 * 3,
+    GX_PTTEXMTX7 = 64 + 7 * 3,
+    GX_PTTEXMTX8 = 64 + 8 * 3,
+    GX_PTTEXMTX9 = 64 + 9 * 3,
+    GX_PTTEXMTX10 = 64 + 10 * 3,
+    GX_PTTEXMTX11 = 64 + 11 * 3,
+    GX_PTTEXMTX12 = 64 + 12 * 3,
+    GX_PTTEXMTX13 = 64 + 13 * 3,
+    GX_PTTEXMTX14 = 64 + 14 * 3,
+    GX_PTTEXMTX15 = 64 + 15 * 3,
+    GX_PTTEXMTX16 = 64 + 16 * 3,
+    GX_PTTEXMTX17 = 64 + 17 * 3,
+    GX_PTTEXMTX18 = 64 + 18 * 3,
+    GX_PTTEXMTX19 = 64 + 19 * 3,
+    GX_PTIDENTITY = 125,
+};
+
+typedef struct _GXVtxDescList {
+    GXAttr attr;
+    GXAttrType type;
+} GXVtxDescList;
 
 extern "C" {
 f32 GXGetYScaleFactor(u16 efb_height, u16 xfb_height);
@@ -741,10 +840,12 @@ void GXSetTevColorIn(GXTevStageID, GXTevColorArg, GXTevColorArg, GXTevColorArg, 
 void GXSetTevAlphaIn(GXTevStageID, GXTevAlphaArg, GXTevAlphaArg, GXTevAlphaArg, GXTevAlphaArg);
 void GXSetTevColorOp(GXTevStageID, GXTevOp, GXTevBias, GXTevScale, GXBool, GXTevRegID);
 void GXSetTevAlphaOp(GXTevStageID, GXTevOp, GXTevBias, GXTevScale, GXBool, GXTevRegID);
+void GXSetTevIndirect(GXTevStageID, _GXIndTexStageID, GXIndTexFormat, GXIndTexBiasSel, GXIndTexMtxID, GXIndTexWrap, GXIndTexWrap, GXBool, GXBool, GXIndTexAlphaSel);
 void GXSetBlendMode(GXBlendMode, GXBlendFactor, GXBlendFactor, GXLogicOp);
 void GXSetVtxAttrFmt(GXVtxFmt, GXAttr, GXCompCnt, GXCompType, u32);
-void GXClearVtxDesc();
+void GXClearVtxDesc(void);
 void GXSetVtxDesc(GXAttr, GXAttrType);
+void GXSetArray(GXAttr, const void*, u8);
 typedef void (*GXDrawDoneCallback)(void);
 void GXSetDrawDoneCallback(GXDrawDoneCallback);
 void GXDrawDone(void);
@@ -772,9 +873,11 @@ void GXPixModeSync(void);
 void GXProject(f32, f32, f32, Mtx, f32*, f32*, f32*, f32*, f32*);
 void GXSetAlphaCompare(GXCompare, u8, GXAlphaOp, GXCompare, u8);
 void GXSetAlphaUpdate(GXBool);
+void GXSetChanAmbColor(GXChannelID, GXColor);
 void GXSetChanMatColor(GXChannelID, GXColor);
 void GXSetClipMode(GXBool);
 void GXSetCoPlanar(GXBool);
+void GXSetColorUpdate(GXBool);
 void GXSetCopyFilter(GXBool, u8[12][2], GXBool, u8[7]);
 void GXSetCullMode(GXCullMode);
 void GXSetCurrentMtx(u32);
@@ -786,7 +889,7 @@ void GXSetProjection(Mtx44, GXProjectionType);
 void GXSetScissor(u32, u32, u32, u32);
 void GXSetTevColorS10(GXTevRegID, GXColorS10);
 void GXSetTevKAlphaSel(GXTevStageID, GXTevKAlphaSel);
-void GXSetTevSwapMode(GXTevStageID, GXTevSwapSel);
+void GXSetTevSwapMode(GXTevStageID, GXTevSwapSel, GXTevSwapSel);
 void GXSetTevSwapModeTable(GXTevSwapSel, GXTevColor, GXTevColor, GXTevColor, GXTevColor);
 void GXSetTexCoordGen2(GXTexCoordID, GXTexGenType, GXTexGenSrc, u32, GXBool, u32);
 void GXSetTexCopyDst(u16, u16, GXTexFmt, GXBool);
@@ -795,7 +898,7 @@ void GXSetViewport(f32, f32, f32, f32, f32, f32);
 void GXSetZCompLoc(GXBool);
 void GXSetZMode(GXBool, GXCompare, GXBool);
 void GXSetZTexture(GXZTexOp, GXZTexFmt, u32);
-void GXClearVtxDesc(void);
+void GXSetPointSize(u8, GXTexOffset);
 void GXSetLineWidth(u8, GXTexOffset);
 void GXSetTevDirect(GXTevStageID);
 void GXSetTevKColor(GXTevKColorID, GXColor);
@@ -804,6 +907,7 @@ void GXGetScissor(u32*, u32*, u32*, u32*);
 void GXSetIndTexMtx(GXIndTexMtxID, Mtx23, s8);
 void GXSetIndTexCoordScale(GXIndTexStageID, GXIndTexScale, GXIndTexScale);
 void GXSetIndTexOrder(GXIndTexStageID, GXTexCoordID, GXTexMapID);
+void GXEnableTexOffsets(GXTexCoordID, GXBool, GXBool);
 };
 
 #endif
