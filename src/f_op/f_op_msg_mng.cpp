@@ -373,7 +373,7 @@ asm void J2DPicture::insert(char const* param_0, u8 param_1, f32 param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fopMsgM_createExpHeap(u32 param_0, JKRHeap* param_1) {
+asm JKRExpHeap* fopMsgM_createExpHeap(u32 param_0, JKRHeap* param_1) {
     nofralloc
 #include "asm/f_op/f_op_msg_mng/fopMsgM_createExpHeap__FUlP7JKRHeap.s"
 }

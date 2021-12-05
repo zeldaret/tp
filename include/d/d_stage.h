@@ -45,6 +45,10 @@ struct stage_stag_info_class {
     /* 0x2A */ u16 mStageTitleNo;
 };  // Size: Unknown
 
+inline u16 dStage_stagInfo_GetUpButton(stage_stag_info_class* p_info) {
+    return p_info->field_0x10 & 7;
+}
+
 struct stage_scls_info_class {
     /* 0x0 */ char mStage[8];
     /* 0x8 */ u8 mStart;

@@ -4911,24 +4911,26 @@ SECTION_RODATA u8 const daAlinkHIO_noActAtnMove_c0::m[84] = {
 COMPILER_STRIP_GATE(0x8038D768, &daAlinkHIO_noActAtnMove_c0::m);
 
 /* 8038D7BC-8038D82C 019E1C 0070+00 5/7 0/0 0/0 .rodata          m__23daAlinkHIO_frontRoll_c0 */
-daAlinkHIO_frontRoll_c1 const daAlinkHIO_frontRoll_c0::m = {{29, 1.1f, 0.0f, 3.0f, 22.0f},
-                                                            {29, 0.8f, 3.0f, 2.0f, 25.0f},
-                                                            {33, 1.2f, 0.0f, 1.0f, 25.0f},
-                                                            10000,
-                                                            5,
-                                                            1000,
-                                                            100,
-                                                            3.0f,
-                                                            1.3f,
-                                                            25.0f,
-                                                            10.0f,
-                                                            3.0f,
-                                                            15.0f,
-                                                            10.0f,
-                                                            12.0f,
-                                                            9.0f,
-                                                            19.0f,
-                                                            60.0f};
+daAlinkHIO_frontRoll_c1 const daAlinkHIO_frontRoll_c0::m = {
+    {29, 1.1f, 0.0f, 3.0f, 22.0f},
+    {29, 0.8f, 3.0f, 2.0f, 25.0f},
+    {33, 1.2f, 0.0f, 1.0f, 25.0f},
+    10000,
+    5,
+    1000,
+    100,
+    3.0f,
+    1.3f,
+    25.0f,
+    10.0f,
+    3.0f,
+    15.0f,
+    10.0f,
+    12.0f,
+    9.0f,
+    19.0f,
+    60.0f,
+};
 
 /* 8038D82C-8038D864 019E8C 0038+00 5/5 0/0 0/0 .rodata          m__22daAlinkHIO_backJump_c0 */
 daAlinkHIO_backJump_c1 const daAlinkHIO_backJump_c0::m = {
@@ -4936,32 +4938,36 @@ daAlinkHIO_backJump_c1 const daAlinkHIO_backJump_c0::m = {
 };
 
 /* 8038D864-8038D8CC 019EC4 0068+00 3/3 0/0 0/0 .rodata          m__22daAlinkHIO_sideStep_c0 */
-daAlinkHIO_sideStep_c1 const daAlinkHIO_sideStep_c0::m = {{5, 1.1f, 1.0f, 3.0f, 6.0f},
-                                                          {9, 1.0f, 0.0f, 3.0f, 2.0f},
-                                                          {6, 1.0f, 0.0f, 3.0f, 7.0f},
-                                                          {9, 1.1f, 0.0f, 3.0f, 4.0f},
-                                                          28.0f,
-                                                          22.0f,
-                                                          25.0f,
-                                                          20.0f,
-                                                          100.0f,
-                                                          10.0f};
+daAlinkHIO_sideStep_c1 const daAlinkHIO_sideStep_c0::m = {
+    {5, 1.1f, 1.0f, 3.0f, 6.0f},
+    {9, 1.0f, 0.0f, 3.0f, 2.0f},
+    {6, 1.0f, 0.0f, 3.0f, 7.0f},
+    {9, 1.1f, 0.0f, 3.0f, 4.0f},
+    28.0f,
+    22.0f,
+    25.0f,
+    20.0f,
+    100.0f,
+    10.0f,
+};
 
 /* 8038D8CC-8038D944 019F2C 0078+00 5/10 0/0 0/0 .rodata          m__19daAlinkHIO_slide_c0 */
-daAlinkHIO_slide_c1 const daAlinkHIO_slide_c0::m = {{14, 0.75f, 0.0f, 5.0f, 15.0f},
-                                                    {6, 0.9f, 0.0f, 3.0f, 7.0f},
-                                                    {15, 1.0f, 0.0f, 3.0f, 9.0f},
-                                                    {20, 1.0f, 0.0f, 3.0f, 16.0f},
-                                                    40.0f,
-                                                    3.0f,
-                                                    50.0f,
-                                                    27.0f,
-                                                    0.2f,
-                                                    12.0f,
-                                                    50.0f,
-                                                    3.0f,
-                                                    33.0f,
-                                                    1.2f};
+daAlinkHIO_slide_c1 const daAlinkHIO_slide_c0::m = {
+    {14, 0.75f, 0.0f, 5.0f, 15.0f},
+    {6, 0.9f, 0.0f, 3.0f, 7.0f},
+    {15, 1.0f, 0.0f, 3.0f, 9.0f},
+    {20, 1.0f, 0.0f, 3.0f, 16.0f},
+    40.0f,
+    3.0f,
+    50.0f,
+    27.0f,
+    0.2f,
+    12.0f,
+    50.0f,
+    3.0f,
+    33.0f,
+    1.2f,
+};
 
 /* 8038D944-8038D964 019FA4 0020+00 0/1 0/0 0/0 .rodata          m__20daAlinkHIO_cutNmV_c0 */
 #pragma push
@@ -5091,15 +5097,17 @@ SECTION_RODATA u8 const daAlinkHIO_cutFnJU_c0::m[84] = {
 COMPILER_STRIP_GATE(0x8038DAEC, &daAlinkHIO_cutFnJU_c0::m);
 
 /* 8038DB40-8038DB84 01A1A0 0044+00 4/4 0/0 0/0 .rodata          m__21daAlinkHIO_cutJump_c0 */
-daAlinkHIO_cutJump_c1 const daAlinkHIO_cutJump_c0::m = {{17, 1.1f, 0.0f, 2.0f, 18.0f},
-                                                        {29, 1.0f, 2.0f, 0.0f, 9.0f},
-                                                        25.0f,
-                                                        27.0f,
-                                                        15.0f,
-                                                        13.0f,
-                                                        13.0f,
-                                                        1.0f,
-                                                        3.0f};
+daAlinkHIO_cutJump_c1 const daAlinkHIO_cutJump_c0::m = {
+    {17, 1.1f, 0.0f, 2.0f, 18.0f},
+    {29, 1.0f, 2.0f, 0.0f, 9.0f},
+    25.0f,
+    27.0f,
+    15.0f,
+    13.0f,
+    13.0f,
+    1.0f,
+    3.0f,
+};
 
 /* 8038DB84-8038DC1C 01A1E4 0098+00 5/6 0/0 0/0 .rodata          m__21daAlinkHIO_cutTurn_c0 */
 SECTION_RODATA u8 const daAlinkHIO_cutTurn_c0::m[152] = {
@@ -5222,49 +5230,53 @@ SECTION_RODATA u8 const daAlinkHIO_cutHead_c0::m[96] = {
 COMPILER_STRIP_GATE(0x8038DDB8, &daAlinkHIO_cutHead_c0::m);
 
 /* 8038DE18-8038DE8C 01A478 0074+00 5/5 0/0 0/0 .rodata          m__26daAlinkHIO_cutLargeJump_c0 */
-daAlinkHIO_cutLargeJump_c1 const daAlinkHIO_cutLargeJump_c0::m = {{29, 1.3f, 0.0f, 3.0f, 30.0f},
-                                                                  {6, 1.0f, 0.0f, 3.0f, 7.0f},
-                                                                  {16, 1.0f, 0.0f, 2.0f, 17.0f},
-                                                                  {35, 1.25f, 0.0f, 0.0f, 22.0f},
-                                                                  20.0f,
-                                                                  33.0f,
-                                                                  2.0f,
-                                                                  6.0f,
-                                                                  13.0f,
-                                                                  0.0f,
-                                                                  10.0f,
-                                                                  250.0f,
-                                                                  5.0f};
+daAlinkHIO_cutLargeJump_c1 const daAlinkHIO_cutLargeJump_c0::m = {
+    {29, 1.3f, 0.0f, 3.0f, 30.0f},
+    {6, 1.0f, 0.0f, 3.0f, 7.0f},
+    {16, 1.0f, 0.0f, 2.0f, 17.0f},
+    {35, 1.25f, 0.0f, 0.0f, 22.0f},
+    20.0f,
+    33.0f,
+    2.0f,
+    6.0f,
+    13.0f,
+    0.0f,
+    10.0f,
+    250.0f,
+    5.0f,
+};
 
 /* 8038DE8C-8038DF28 01A4EC 009C+00 21/30 0/0 0/0 .rodata          m__17daAlinkHIO_cut_c0 */
-daAlinkHIO_cut_c1 const daAlinkHIO_cut_c0::m = {{18, -1.100f, 0.0f, 3.0f, -1.0f},
-                                                {22, 0.9f, 0.0f, 3.0f, 23.0f},
-                                                {45, 1.0f, 0.0f, 3.0f, 15.0f},
-                                                {47, 1.0f, 0.0f, 5.0f, 27.0f},
-                                                0,
-                                                1,
-                                                15,
-                                                8,
-                                                10,
-                                                90,
-                                                75,
-                                                4000,
-                                                -4000,
-                                                30,
-                                                12.0f,
-                                                1.250f,
-                                                1.0f,
-                                                1.0f,
-                                                1.6f,
-                                                45.0f,
-                                                1.65f,
-                                                65.0f,
-                                                1.21f,
-                                                35.0f,
-                                                2.3f,
-                                                2.2f,
-                                                65.0f,
-                                                0.0f};
+daAlinkHIO_cut_c1 const daAlinkHIO_cut_c0::m = {
+    {18, -1.100f, 0.0f, 3.0f, -1.0f},
+    {22, 0.9f, 0.0f, 3.0f, 23.0f},
+    {45, 1.0f, 0.0f, 3.0f, 15.0f},
+    {47, 1.0f, 0.0f, 5.0f, 27.0f},
+    0,
+    1,
+    15,
+    8,
+    10,
+    90,
+    75,
+    4000,
+    -4000,
+    30,
+    12.0f,
+    1.250f,
+    1.0f,
+    1.0f,
+    1.6f,
+    45.0f,
+    1.65f,
+    65.0f,
+    1.21f,
+    35.0f,
+    2.3f,
+    2.2f,
+    65.0f,
+    0.0f,
+};
 
 /* 8038DF28-8038DF4C 01A588 0024+00 1/1 0/0 0/0 .rodata          m__21daAlinkHIO_gAtPush_c0 */
 SECTION_RODATA u8 const daAlinkHIO_gAtPush_c0::m[36] = {
@@ -5314,37 +5326,39 @@ SECTION_RODATA u8 const daAlinkHIO_crouch_c0::m[76] = {
 COMPILER_STRIP_GATE(0x8038E01C, &daAlinkHIO_crouch_c0::m);
 
 /* 8038E068-8038E11C 01A6C8 00B4+00 26/32 0/0 0/0 .rodata          m__22daAlinkHIO_autoJump_c0 */
-daAlinkHIO_autoJump_c1 const daAlinkHIO_autoJump_c0::m = {{6, 1.2f, 3.0f, 6.0f, 7.0f},
-                                                          {7, 0.9f, 1.0f, 0.0f, 5.0f},
-                                                          {4, 0.75f, 0.0f, 2.0f, 5.0f},
-                                                          {10, 0.6f, 0.0f, 2.0f, 11.0f},
-                                                          1,
-                                                          9158,
-                                                          12287,
-                                                          8,
-                                                          16384,
-                                                          10.0f,
-                                                          10.0f,
-                                                          1.3f,
-                                                          5.0f,
-                                                          10.0f,
-                                                          3.0f,
-                                                          -3.4f,
-                                                          -200.0f,
-                                                          26.0f,
-                                                          3.0f,
-                                                          4.0f,
-                                                          10.0f,
-                                                          1.0f,
-                                                          170.0f,
-                                                          100.0f,
-                                                          20.0f,
-                                                          30.0f,
-                                                          20.0f,
-                                                          -3.4f,
-                                                          14.0f,
-                                                          -5.0f,
-                                                          23.0f};
+daAlinkHIO_autoJump_c1 const daAlinkHIO_autoJump_c0::m = {
+    {6, 1.2f, 3.0f, 6.0f, 7.0f},
+    {7, 0.9f, 1.0f, 0.0f, 5.0f},
+    {4, 0.75f, 0.0f, 2.0f, 5.0f},
+    {10, 0.6f, 0.0f, 2.0f, 11.0f},
+    1,
+    9158,
+    12287,
+    8,
+    16384,
+    10.0f,
+    10.0f,
+    1.3f,
+    5.0f,
+    10.0f,
+    3.0f,
+    -3.4f,
+    -200.0f,
+    26.0f,
+    3.0f,
+    4.0f,
+    10.0f,
+    1.0f,
+    170.0f,
+    100.0f,
+    20.0f,
+    30.0f,
+    20.0f,
+    -3.4f,
+    14.0f,
+    -5.0f,
+    23.0f,
+};
 
 /* 8038E11C-8038E164 01A77C 0048+00 7/7 0/0 0/0 .rodata          m__23daAlinkHIO_smallJump_c0 */
 SECTION_RODATA u8 const daAlinkHIO_smallJump_c0::m[72] = {
@@ -5627,21 +5641,23 @@ SECTION_RODATA u8 const daAlinkHIO_fmChain_c0::m[40] = {
 COMPILER_STRIP_GATE(0x8038E7CC, &daAlinkHIO_fmChain_c0::m);
 
 /* 8038E7F4-8038E840 01AE54 004C+00 17/21 0/0 0/0 .rodata          m__24daAlinkHIO_magneBoots_c0 */
-daAlinkHIO_magneBoots_c1 const daAlinkHIO_magneBoots_c0::m = {{29, 1.1f, 0.0f, 3.0f, 23.0f},
-                                                              0.4f,
-                                                              1.0f,
-                                                              1.8f,
-                                                              0.7f,
-                                                              0.75f,
-                                                              0.45,
-                                                              0.6f,
-                                                              50.0f,
-                                                              10.0f,
-                                                              0.35f,
-                                                              0.3f,
-                                                              0.7f,
-                                                              0.8f,
-                                                              0.7f};
+daAlinkHIO_magneBoots_c1 const daAlinkHIO_magneBoots_c0::m = {
+    {29, 1.1f, 0.0f, 3.0f, 23.0f},
+    0.4f,
+    1.0f,
+    1.8f,
+    0.7f,
+    0.75f,
+    0.45,
+    0.6f,
+    50.0f,
+    10.0f,
+    0.35f,
+    0.3f,
+    0.7f,
+    0.8f,
+    0.7f,
+};
 
 /* 8038E840-8038E870 01AEA0 0030+00 6/6 0/0 0/0 .rodata          m__20daAlinkHIO_pickUp_c0 */
 SECTION_RODATA u8 const daAlinkHIO_pickUp_c0::m[48] = {
@@ -5752,15 +5768,17 @@ COMPILER_STRIP_GATE(0x8038EB34, &daAlinkHIO_zwLight_c0::m);
 #pragma pop
 
 /* 8038EB50-8038EB8C 01B1B0 003C+00 3/3 0/0 0/0 .rodata          m__18daAlinkHIO_item_c0 */
-daAlinkHIO_item_c1 const daAlinkHIO_item_c0::m = {{12, 1.0f, 0.0f, 3.0f, 13.0f},
-                                                  {14, 1.0f, 0.0f, 3.0f, 15.0f},
-                                                  15,
-                                                  10000,
-                                                  -13000,
-                                                  6000,
-                                                  -9000,
-                                                  1.3f,
-                                                  1.3f};
+daAlinkHIO_item_c1 const daAlinkHIO_item_c0::m = {
+    {12, 1.0f, 0.0f, 3.0f, 13.0f},
+    {14, 1.0f, 0.0f, 3.0f, 15.0f},
+    15,
+    10000,
+    -13000,
+    6000,
+    -9000,
+    1.3f,
+    1.3f,
+};
 
 /* 8038EB8C-8038EBFC 01B1EC 0070+00 14/14 0/0 0/0 .rodata          m__20daAlinkHIO_ladder_c0 */
 daAlinkHIO_ladder_c1 const daAlinkHIO_ladder_c0::m = {

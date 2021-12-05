@@ -11,6 +11,7 @@
 #include "d/d_vibration.h"
 #include "d/event/d_event.h"
 #include "d/event/d_event_manager.h"
+#include "d/particle/d_particle.h"
 #include "d/save/d_save.h"
 #include "dolphin/types.h"
 
@@ -67,6 +68,10 @@ public:
 STATIC_ASSERT(sizeof(dComIfG_camera_info_class) == 0x38);
 
 enum PlayerPtr { LINK_PTR, HORSE_PTR };
+
+class daHorse_c;
+class dPa_control_c;
+class daAlink_c;
 
 class dComIfG_play_c {
 public:

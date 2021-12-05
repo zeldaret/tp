@@ -4,6 +4,7 @@
 #include "JSystem/JUtility/JUTTexture.h"
 #include "d/d_resorce.h"
 #include "d/menu/d_menu_window.h"
+#include "d/meter/d_meter2.h"
 #include "d/msg/d_msg_flow.h"
 #include "d/pane/d_pane_class.h"
 #include "dolphin/types.h"
@@ -13,17 +14,8 @@ struct dMsgObject_c {
     /* 802384C4 */ static void setLetterNameID(u16);
     /* 802379AC */ void setKillMessageFlag();
     /* 8023822C */ void getStatus();
+    /* 802371E4 */ void isPlaceMessage();
 };
-
-class dMeterMap_c {
-public:
-    /* 8020D900 */ static bool isMapOpenCheck();
-    /* 8020D650 */ void isEnableDispMapAndMapDispSizeTypeNo();
-    /* 8020D874 */ void setDispPosInsideFlg_SE_On();
-    /* 8020D8BC */ void setDispPosOutsideFlg_SE_On();
-};
-
-struct J2DPicture {};
 
 struct JMSMesgEntry_c {
     /* 0x00 */ u32 mStringOffset;
@@ -64,11 +56,9 @@ struct dItem_data {
 };
 
 class dMw_c;
-
-class dMeter2_c {
-public:
-    /* 8021F6EC */ void emphasisButtonDelete();
-};
+class dMeter2_c;
+class J2DPicture;
+class dMeterMap_c;
 
 class dMeter2Info_c {
 public:
@@ -95,7 +85,7 @@ public:
     void getStringKana(u32, char*, JMSMesgEntry_c*);
     void getStringKanji(u32, char*, JMSMesgEntry_c*);
     double getStringLength(J2DTextBox*, char*);  // define J2DTextBox
-    dMeter2Info_c* getStringLength(JUTFont*, float, float, char*);
+    dMeter2Info_c* getStringLength(JUTFont*, f32, f32, char*);
     void onDirectUseItem(int);
     bool isDirectUseItem(int);
     int setMeterString(s32);
@@ -137,6 +127,8 @@ public:
     u8 getWarpPlayerNo() { return mWarpInfo.mWarpPlayerNo; }
     cXyz& getWarpPos() { return mWarpInfo.mPosition; }
     const char* getWarpStageName() { return mWarpInfo.mStageName; }
+    void setNowCount(u8 count) { mNowCount = count; }
+    void setMaxCount(u8 count) { mMaxCount = count; }
 
 private:
     /* 0x04 */ u8 unk4[4];
@@ -149,18 +141,18 @@ private:
     /* 0x24 */ dMw_c* mMenuWindowClass;
     /* 0x28 */ CPaneMgr* mMeterItemPanePtr[4];
     /* 0x38 */ WarpInfo_c mWarpInfo;
-    /* 0x54 */ float unk84;
-    /* 0x58 */ float unk88;
-    /* 0x5C */ float unk92;
-    /* 0x60 */ float unk96;
-    /* 0x64 */ float unk100;
-    /* 0x68 */ float unk104;
-    /* 0x6C */ float unk108;
-    /* 0x70 */ float m2DWidth;
-    /* 0x74 */ float m2DHeight;
-    /* 0x78 */ float m2DPosH;
-    /* 0x7C */ float m2DPosV;
-    /* 0x80 */ float unk128;
+    /* 0x54 */ f32 unk84;
+    /* 0x58 */ f32 unk88;
+    /* 0x5C */ f32 unk92;
+    /* 0x60 */ f32 unk96;
+    /* 0x64 */ f32 unk100;
+    /* 0x68 */ f32 unk104;
+    /* 0x6C */ f32 unk108;
+    /* 0x70 */ f32 m2DWidth;
+    /* 0x74 */ f32 m2DHeight;
+    /* 0x78 */ f32 m2DPosH;
+    /* 0x7C */ f32 m2DPosV;
+    /* 0x80 */ f32 unk128;
     /* 0x84 */ u32 mTimeMs;
     /* 0x88 */ u32 mMsgTimeMs;
     /* 0x8C */ u32 mMeterString;
@@ -275,6 +267,14 @@ inline cXyz& dMeter2Info_getWarpPos() {
 
 inline const char* dMeter2Info_getWarpStageName() {
     return g_meter2_info.getWarpStageName();
+}
+
+inline void dMeter2Info_setNowCount(u8 count) {
+    g_meter2_info.setNowCount(count);
+}
+
+inline void dMeter2Info_setMaxCount(u8 count) {
+    g_meter2_info.setMaxCount(count);
 }
 
 #endif /* D_METER_D_METER2_INFO_H */
