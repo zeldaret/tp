@@ -26,9 +26,10 @@ struct JPABaseShapeData {
     /* 0x04 */ u32 mSize;
 
     /* 0x08 */ u32 mFlags;
-    /* 0x0C */ u16 mClrPrmAnmOffset;
-    /* 0x0E */ u16 mClrEnvAnmOffset;
-    /* 0x10 */ JGeometry::TVec2<float> mGlobalScale2D;
+    /* 0x0C */ s16 mClrPrmAnmOffset;
+    /* 0x0E */ s16 mClrEnvAnmOffset;
+    /* 0x10 */ f32 mBaseSizeX;
+    /* 0x14 */ f32 mBaseSizeY;
     /* 0x18 */ u16 mBlendModeCfg;
     /* 0x1A */ u8 mAlphaCompareCfg;
     /* 0x1B */ u8 mAlphaRef0;
@@ -61,11 +62,6 @@ public:
     static GXTevColorArg st_ca[6][4];
     static GXTevAlphaArg st_aa[2][4];
 
-    void getPrmClr(s16 idx, GXColor* dst) { *dst = mpPrmClrAnmTbl[idx]; }
-    void getEnvClr(s16 idx, GXColor* dst) { *dst = mpEnvClrAnmTbl[idx]; }
-    u32 getTexIdx() const { return mpData->mTexIdx; }
-    s16 getClrAnmMaxFrm() const { return mpData->mClrAnmFrmMax; }
-
     GXBlendMode getBlendMode() const { return st_bm[mpData->mBlendModeCfg & 0x03]; }
     GXBlendFactor getBlendSrc() const { return st_bf[(mpData->mBlendModeCfg >> 2) & 0x0F]; }
     GXBlendFactor getBlendDst() const { return st_bf[(mpData->mBlendModeCfg >> 6) & 0x0F]; }
@@ -85,12 +81,42 @@ public:
     const GXTevColorArg* getTevColorArg() const { return st_ca[(mpData->mFlags >> 0x0F) & 0x07]; }
     const GXTevAlphaArg* getTevAlphaArg() const { return st_aa[(mpData->mFlags >> 0x12) & 0x01]; }
 
+    u32 getType() const          { return (mpData->mFlags >>  0) & 0x0F; }
+    u32 getDirType() const       { return (mpData->mFlags >>  4) & 0x07; }
+    u32 getRotType() const       { return (mpData->mFlags >>  7) & 0x07; }
+    u32 getBasePlaneType() const { return (mpData->mFlags >> 10) & 0x07; }
+    u32 getTilingS() const       { return (mpData->mFlags >> 25) & 0x01; }
+    u32 getTilingT() const       { return (mpData->mFlags >> 26) & 0x01; }
+    bool isGlblClrAnm() const    { return !!(mpData->mFlags & 0x00001000); }
+    bool isGlblTexAnm() const    { return !!(mpData->mFlags & 0x00004000); }
+    bool isPrjTex() const        { return !!(mpData->mFlags & 0x00100000); }
+    bool isDrawFwdAhead() const  { return !!(mpData->mFlags & 0x00200000); }
+    bool isDrawPrntAhead() const { return !!(mpData->mFlags & 0x00400000); }
+    bool isClipOn() const        { return !!(mpData->mFlags & 0x00800000); }
+    bool isTexCrdAnm() const     { return !!(mpData->mFlags & 0x01000000); }
+    bool isNoDrawParent() const  { return !!(mpData->mFlags & 0x08000000); }
+    bool isNoDrawChild() const   { return !!(mpData->mFlags & 0x10000000); }
+
+    bool isPrmAnm() const { return !!(mpData->mClrFlg & 0x02); }
+    bool isEnvAnm() const { return !!(mpData->mClrFlg & 0x08); }
+    u8 getClrAnmType() const { return (mpData->mClrFlg >> 4) & 0x07; }
+    s16 getClrAnmMaxFrm() const { return mpData->mClrAnmFrmMax; }
+    void getPrmClr(s16 idx, GXColor* dst) { *dst = mpPrmClrAnmTbl[idx]; }
+    void getEnvClr(s16 idx, GXColor* dst) { *dst = mpEnvClrAnmTbl[idx]; }
+
+    bool isTexAnm() const { return !!(mpData->mTexFlg & 0x01); }
+    u8 getTexAnmType() const { return (mpData->mTexFlg >> 2) & 0x07; }
+    u32 getTexIdx() const { return mpData->mTexIdx; }
+
+    f32 getBaseSizeX() const { return mpData->mBaseSizeX; }
+    f32 getBaseSizeY() const { return mpData->mBaseSizeY; }
+
 public:
-    JPABaseShapeData* mpData;
+    const JPABaseShapeData* mpData;
     const void* mpTexCrdMtxAnmTbl;
     const u8* mpTexIdxAnimTbl;
-    const GXColor* mpPrmClrAnmTbl;
-    const GXColor* mpEnvClrAnmTbl;
+    GXColor* mpPrmClrAnmTbl;
+    GXColor* mpEnvClrAnmTbl;
 };
 
 struct JMath {
@@ -147,8 +173,6 @@ extern "C" void JPACalcTexIdxMerge__FP18JPAEmitterWorkDataP15JPABaseParticle();
 extern "C" void JPACalcTexIdxRandom__FP18JPAEmitterWorkData();
 extern "C" void JPACalcTexIdxRandom__FP18JPAEmitterWorkDataP15JPABaseParticle();
 extern "C" void JPALoadPosMtxCam__FP18JPAEmitterWorkData();
-extern "C" static void noLoadPrj__FPC18JPAEmitterWorkDataPA4_Cf();
-extern "C" static void loadPrj__FPC18JPAEmitterWorkDataPA4_Cf();
 extern "C" static void loadPrjAnm__FPC18JPAEmitterWorkDataPA4_Cf();
 extern "C" void JPADrawBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle();
 extern "C" void JPADrawRotBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle();
@@ -646,19 +670,16 @@ void JPALoadPosMtxCam(JPAEmitterWorkData* work) {
 }
 
 /* 80277C8C-80277C90 2725CC 0004+00 1/0 0/0 0/0 .text noLoadPrj__FPC18JPAEmitterWorkDataPA4_Cf */
-static void noLoadPrj(JPAEmitterWorkData const* param_0, f32 const (*param_1)[4]) {
+static void noLoadPrj(JPAEmitterWorkData const* work, const Mtx srt) {
     /* empty function */
 }
 
 /* 80277C90-80277CC8 2725D0 0038+00 1/0 0/0 0/0 .text loadPrj__FPC18JPAEmitterWorkDataPA4_Cf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void loadPrj(JPAEmitterWorkData const* param_0, f32 const (*param_1)[4]) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/loadPrj__FPC18JPAEmitterWorkDataPA4_Cf.s"
+void loadPrj(JPAEmitterWorkData const* work, const Mtx srt) {
+    Mtx mtx;
+    PSMTXConcat(work->mPrjMtx, srt, mtx);
+    GXLoadTexMtxImm(mtx, GX_TEXMTX0, GX_MTX3x4);
 }
-#pragma pop
 
 /* 80277CC8-80277E88 272608 01C0+00 1/0 0/0 0/0 .text loadPrjAnm__FPC18JPAEmitterWorkDataPA4_Cf */
 #pragma push
@@ -685,8 +706,8 @@ SECTION_DATA static u8 jpa_dl_x[32] = {
 
 /* 803C4320-803C432C -00001 000C+00 6/10 0/0 0/0 .data            p_prj */
 SECTION_DATA static void* p_prj[3] = {
-    (void*)noLoadPrj__FPC18JPAEmitterWorkDataPA4_Cf,
-    (void*)loadPrj__FPC18JPAEmitterWorkDataPA4_Cf,
+    (void*)noLoadPrj,
+    (void*)loadPrj,
     (void*)loadPrjAnm__FPC18JPAEmitterWorkDataPA4_Cf,
 };
 
@@ -1051,14 +1072,36 @@ static asm void makeColorTable(_GXColor** param_0, JPAClrAnmKeyData const* param
 
 /* 8027A6DC-8027A7E8 27501C 010C+00 0/0 1/1 0/0 .text            __ct__12JPABaseShapeFPCUcP7JKRHeap
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JPABaseShape::JPABaseShape(u8 const* param_0, JKRHeap* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/__ct__12JPABaseShapeFPCUcP7JKRHeap.s"
+JPABaseShape::JPABaseShape(u8 const* pData, JKRHeap* pHeap) {
+    mpData = (const JPABaseShapeData*) pData;
+
+    if (isTexCrdAnm()) {
+        mpTexCrdMtxAnmTbl = (const void*)(pData + sizeof(JPABaseShapeData));
+    } else {
+        mpTexCrdMtxAnmTbl = NULL;
+    }
+
+    if (isTexAnm()) {
+        u32 offs = sizeof(JPABaseShapeData);
+        if (isTexCrdAnm())
+            offs = sizeof(JPABaseShapeData) + 0x28;
+        mpTexIdxAnimTbl = (const u8*)(pData + offs);
+    } else {
+        mpTexIdxAnimTbl = NULL;
+    }
+
+    if (isPrmAnm()) {
+        makeColorTable(&mpPrmClrAnmTbl, (JPAClrAnmKeyData*)(pData + mpData->mClrPrmAnmOffset), mpData->mClrPrmKeyNum, mpData->mClrAnmFrmMax, pHeap);
+    } else {
+        mpPrmClrAnmTbl = NULL;
+    }
+
+    if (isEnvAnm()) {
+        makeColorTable(&mpEnvClrAnmTbl, (JPAClrAnmKeyData*)(pData + mpData->mClrEnvAnmOffset), mpData->mClrEnvKeyNum, mpData->mClrAnmFrmMax, pHeap);
+    } else {
+        mpEnvClrAnmTbl = NULL;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803C4360-803C436C 021480 000C+00 0/1 0/0 0/0 .data            st_bm__12JPABaseShape */
