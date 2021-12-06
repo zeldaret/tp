@@ -179,7 +179,7 @@ asm void J3DDrawBuffer::entryInvalidSort(J3DMatPacket* param_0) {
 
 bool J3DDrawBuffer::entryNonSort(J3DMatPacket* pMat) {
     pMat->clear();
-    pMat->mpFirstShapePacket->clear();
+    pMat->mpShapePacket->clear();
 
     // inlined copy of entryImm, add to start of buf
     pMat->mpNextSibling = mpBuf[0];

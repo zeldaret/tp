@@ -57,6 +57,7 @@ public:
     }
 
     void addChildPacket(J3DPacket*);
+    J3DPacket* getNextPacket() const { return mpNextSibling; }
 
     inline void clear() {
         mpNextSibling = NULL;
@@ -81,8 +82,21 @@ public:
     J3DError newSingleDisplayList(u32);
     virtual void draw();
 
-    J3DDisplayListObj* getDisplayListObj() { return mpDisplayListObj; }
+    J3DDisplayListObj* getDisplayListObj() const { return mpDisplayListObj; }
     void setDisplayListObj(J3DDisplayListObj* pObj) { mpDisplayListObj = pObj; }
+
+    void callDL() const { getDisplayListObj()->callDL(); }
+
+    enum {
+        LOCKED = 0x01,
+    };
+
+    bool checkFlag(u32 flag) const { return (mFlags & flag) != 0; }
+    void onFlag(u32 flag) { mFlags |= flag; }
+    void offFlag(u32 flag) { mFlags &= ~flag; }
+    void lock() { onFlag(LOCKED); }
+    void unlock() { offFlag(LOCKED); }
+    J3DTexMtx* getTexMtxObj() const { return mpTexMtx; }
 
 public:
     /* 0x10 */ u32 mFlags;
@@ -104,11 +118,16 @@ public:
 
     void setShape(J3DShape* pShape) { mpShape = pShape; }
     void setModel(J3DModel* pModel) { mpModel = pModel; }
+    void setMtxBuffer(J3DMtxBuffer* pMtxBuffer) { mpMtxBuffer = pMtxBuffer; }
+    void setBaseMtxPtr(Mtx* pMtx) { mpBaseMtxPtr = pMtx; }
+
+    J3DShape* getShape() const { return mpShape; }
+    J3DModel* getModel() const { return mpModel; }
 
 public:
     /* 0x28 */ J3DShape* mpShape;
     /* 0x2C */ J3DMtxBuffer* mpMtxBuffer;
-    /* 0x30 */ Mtx* mpViewMtx;
+    /* 0x30 */ Mtx* mpBaseMtxPtr;
     /* 0x34 */ u32 mDiffFlag;
     /* 0x38 */ J3DModel* mpModel;
 };  // Size: 0x3C
@@ -121,13 +140,17 @@ public:
     void endDiff();
     bool isSame(J3DMatPacket*) const;
 
+    J3DShapePacket* getShapePacket() const { return mpShapePacket; }
+    void setShapePacket(J3DShapePacket* packet) { mpShapePacket = packet; }
+    void setInitShapePacket(J3DShapePacket* packet) { mpInitShapePacket = packet; }
+
     virtual ~J3DMatPacket();
     virtual bool entry(J3DDrawBuffer*);
     virtual void draw();
 
 public:
-    /* 0x28 */ J3DShapePacket* mpShapePacket;
-    /* 0x2C */ J3DShapePacket* mpFirstShapePacket;
+    /* 0x28 */ J3DShapePacket* mpInitShapePacket;
+    /* 0x2C */ J3DShapePacket* mpShapePacket;
     /* 0x30 */ J3DMaterial* mpMaterial;
     /* 0x34 */ u32 mSortFlags;
     /* 0x38 */ J3DTexture* mpTexture;

@@ -24,6 +24,8 @@ void PSMTXTransApply(const Mtx src, Mtx dst, float x, float y, float z);
 void PSMTXScale(Mtx matrix, float x_scale, float y_scale, float z_scale);
 void PSMTXScaleApply(const Mtx src, Mtx dst, float x_scale, float y_scale, float z_scale);
 void PSMTXQuat(Mtx matrix, const Quaternion* quat);
+void PSMTXMultVec(const Mtx matrix, const Vec* src, Vec* dst);
+void PSMTXMultVecSR(const Mtx matrix, const Vec* src, Vec* dst);
 
 void C_MTXLookAt(Mtx param_1, const Vec* param_2, const Vec* param_3, const Vec* param_4);
 void C_MTXLightPerspective(Mtx matrix, float fov_y, float aspect, float scale_s, float scale_t,

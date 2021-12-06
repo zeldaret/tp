@@ -1053,7 +1053,7 @@ s32 fopAcM_checkCullingBox(Mtx pMtx, f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32
     Vec tmp1 = {x1, y1, z1};
     Vec tmp2 = {x2, y2, z2};
     Mtx tmpMtx;
-    PSMTXConcat(j3dSys.mMtx, pMtx, tmpMtx);
+    PSMTXConcat(j3dSys.mViewMtx, pMtx, tmpMtx);
     return mDoLib_clipper::mClipper.clip(tmpMtx, &tmp2, &tmp1) != 0;
 }
 

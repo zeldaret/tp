@@ -6,6 +6,7 @@
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "JSystem/J3DGraphBase/J3DTransform.h"
 #include "dol2asm.h"
+#include "dolphin/os/OSCache.h"
 #include "dolphin/types.h"
 
 //
@@ -79,7 +80,6 @@ extern "C" void calc__15J3DVtxColorCalcFP8J3DModel();
 extern "C" void offAllFlag__13J3DDeformDataFUl();
 extern "C" void deform__13J3DDeformDataFP8J3DModel();
 extern "C" void entryIn__8J3DJointFv();
-extern "C" void DCStoreRange();
 extern "C" void DCStoreRangeNoSync();
 extern "C" void __construct_new_array();
 extern "C" void _savegpr_23();
@@ -111,8 +111,8 @@ SECTION_SDATA2 static f32 lit_896[1 + 1 /* padding */] = {
 void J3DModel::initialize() {
     mModelData = NULL;
     mFlags = 0;
-    field_0x0c = 0;
-    field_0x10 = 0;
+    mDiffFlag = 0;
+    mCalcCallBack = NULL;
     mUserArea = 0;
 
     mBaseScale.x = 1.0f;
@@ -128,8 +128,8 @@ void J3DModel::initialize() {
     mDeformData = NULL;
     mSkinDeform = NULL;
     mVtxColorCalc = NULL;
-    field_0xd4 = 0;
-    field_0xd8 = 0;
+    mUnkCalc1 = NULL;
+    mUnkCalc2 = NULL;
 }
 
 /* ############################################################################################## */
@@ -207,36 +207,25 @@ s32 J3DModel::entryModelData(J3DModelData* p_modelData, u32 param_1, u32 param_2
 /* 80327300-803273CC 321C40 00CC+00 1/1 0/0 0/0 .text createShapePacket__8J3DModelFP12J3DModelData
  */
 // probably some wrong member types
-#ifdef NONMATCHING
 s32 J3DModel::createShapePacket(J3DModelData* p_modelData) {
     if (p_modelData->getShapeNum() != 0) {
         u16 shapeNum = p_modelData->getShapeNum();
 
-        J3DShapePacket* packet = new J3DShapePacket[shapeNum];
-        mShapePacket = &packet;
+        mShapePacket = new J3DShapePacket[shapeNum];
 
         if (mShapePacket == NULL) {
-            return 4;
+            return kJ3DError_Alloc;
         }
 
         for (int i = 0; i < p_modelData->getShapeNum(); i++) {
             J3DShape* shapeNode = p_modelData->getShapeNodePointer(i);
-            mShapePacket[i]->setShape(shapeNode);
-            mShapePacket[i]->setModel(this);
+            mShapePacket[i].setShape(shapeNode);
+            mShapePacket[i].setModel(this);
         }
     }
-    return 0;
+
+    return kJ3DError_Success;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 J3DModel::createShapePacket(J3DModelData* param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DModel/createShapePacket__8J3DModelFP12J3DModelData.s"
-}
-#pragma pop
-#endif
 
 /* 803273CC-803275FC 321D0C 0230+00 1/1 0/0 0/0 .text createMatPacket__8J3DModelFP12J3DModelDataUl
  */
@@ -300,14 +289,12 @@ asm void J3DModel::calcDiffTexMtx() {
 #pragma pop
 
 /* 803279A0-80327A2C 3222E0 008C+00 0/0 2/2 0/0 .text            diff__8J3DModelFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DModel::diff() {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DModel/diff__8J3DModelFv.s"
+void J3DModel::diff() {
+    for (u16 n = getModelData()->getMaterialNum(), i = 0; i < n; i++) {
+        j3dSys.setMatPacket(&mMatPacket[i]);
+        getModelData()->getMaterialNodePointer(i)->diff(mDiffFlag);
+    }
 }
-#pragma pop
 
 /* 80327A2C-80327AA0 32236C 0074+00 0/0 1/1 2/2 .text setDeformData__8J3DModelFP13J3DDeformDataUl
  */
@@ -329,9 +316,10 @@ s32 J3DModel::setDeformData(J3DDeformData* p_deformData, u32 param_1) {
 
 /* 80327AA0-80327BD4 3223E0 0134+00 0/0 0/0 2/2 .text setSkinDeform__8J3DModelFP13J3DSkinDeformUl
  */
-#ifdef NONMATCHING
-s32 J3DModel::setSkinDeform(J3DSkinDeform* p_skinDeform, u32 param_1) {
+s32 J3DModel::setSkinDeform(J3DSkinDeform* p_skinDeform, u32 flags) {
     mSkinDeform = p_skinDeform;
+
+    s32 ret = kJ3DError_Success;
 
     if (p_skinDeform == NULL) {
         offFlag(J3DMdlFlag_SkinPosCpu);
@@ -339,45 +327,42 @@ s32 J3DModel::setSkinDeform(J3DSkinDeform* p_skinDeform, u32 param_1) {
         return 5;
     } else {
         mSkinDeform->initMtxIndexArray(mModelData);
-        if (mModelData->checkFlag(0x100)) {
+
+        ret = mModelData->checkFlag(0x100);
+        if (ret != 0) {
             mSkinDeform->changeFastSkinDL(mModelData);
-            param_1 = 0;
+            flags &= ~2;
+            flags &= ~4;
             mSkinDeform->transformVtxPosNrm(mModelData);
             mSkinDeform->initSkinInfo(mModelData);
         }
-        p_skinDeform = NULL;
 
-        if ((~param_1 & 2)) {
-            if (mVertexBuffer.allocTransformedVtxPosArray()) {
+        ret = 0;
+        if ((~flags & 2)) {
+            ret = mVertexBuffer.allocTransformedVtxPosArray();
+            if (ret != kJ3DError_Success) {
                 offFlag(J3DMdlFlag_SkinPosCpu);
-                return 0;
+                return ret;
             }
             onFlag(J3DMdlFlag_SkinPosCpu);
         } else {
             offFlag(J3DMdlFlag_SkinPosCpu);
         }
 
-        if ((~param_1 & 4)) {
-            if (mVertexBuffer.allocTransformedVtxNrmArray()) {
-                onFlag(J3DMdlFlag_SkinNrmCpu);
+        if ((~flags & 4)) {
+            ret = mVertexBuffer.allocTransformedVtxNrmArray();
+            if (ret != kJ3DError_Success) {
+                offFlag(J3DMdlFlag_SkinNrmCpu);
+                return ret;
             }
-            offFlag(J3DMdlFlag_SkinNrmCpu);
+            onFlag(J3DMdlFlag_SkinNrmCpu);
         } else {
             offFlag(J3DMdlFlag_SkinNrmCpu);
         }
     }
-    return 0;
+
+    return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 J3DModel::setSkinDeform(J3DSkinDeform* param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DModel/setSkinDeform__8J3DModelFP13J3DSkinDeformUl.s"
-}
-#pragma pop
-#endif
 
 /* 80327BD4-80327C58 322514 0084+00 1/1 0/0 2/2 .text            calcAnmMtx__8J3DModelFv */
 void J3DModel::calcAnmMtx() {
@@ -412,24 +397,78 @@ extern "C" asm void update__8J3DModelFv() {
 #pragma pop
 
 /* 80327CF0-80327E4C 322630 015C+00 1/0 0/0 0/0 .text            calc__8J3DModelFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DModel::calc() {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DModel/calc__8J3DModelFv.s"
+void J3DModel::calc() {
+    j3dSys.setModel(this);
+
+    if (checkFlag(J3DMdlFlag_SkinPosCpu)) {
+        j3dSys.onFlag(J3DSysFlag_SkinPosCpu);
+    } else {
+        j3dSys.offFlag(J3DSysFlag_SkinPosCpu);
+    }
+
+    if (checkFlag(J3DMdlFlag_SkinNrmCpu)) {
+        j3dSys.onFlag(J3DSysFlag_SkinNrmCpu);
+    } else {
+        j3dSys.offFlag(J3DSysFlag_SkinNrmCpu);
+    }
+
+    getModelData()->syncJ3DSysFlags();
+    mVertexBuffer.frameInit();
+
+    if (mUnkCalc2 != NULL) {
+        mUnkCalc2->calc(getModelData());
+    }
+
+    if (mDeformData != NULL) {
+        mDeformData->deform(this);
+    }
+
+    if (mVtxColorCalc != NULL) {
+        mVtxColorCalc->calc(this);
+    }
+
+    if (mUnkCalc1 != NULL) {
+        mUnkCalc1->calc(this);
+    }
+
+    calcAnmMtx();
+    calcWeightEnvelopeMtx();
+
+    if (mSkinDeform != NULL) {
+        mSkinDeform->deform(this);
+    }
+
+    if (mCalcCallBack != NULL) {
+        mCalcCallBack(this, 0);
+    }
 }
-#pragma pop
 
 /* 80327E4C-80327F40 32278C 00F4+00 1/0 0/0 0/0 .text            entry__8J3DModelFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DModel::entry() {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DModel/entry__8J3DModelFv.s"
+void J3DModel::entry() {
+    j3dSys.setModel(this);
+
+    if (checkFlag(J3DMdlFlag_SkinPosCpu)) {
+        j3dSys.onFlag(J3DSysFlag_SkinPosCpu);
+    } else {
+        j3dSys.offFlag(J3DSysFlag_SkinPosCpu);
+    }
+
+    if (checkFlag(J3DMdlFlag_SkinNrmCpu)) {
+        j3dSys.onFlag(J3DSysFlag_SkinNrmCpu);
+    } else {
+        j3dSys.offFlag(J3DSysFlag_SkinNrmCpu);
+    }
+
+    getModelData()->syncJ3DSysFlags();
+    j3dSys.setTexture(getModelData()->getTexture());
+
+    for (u16 i = 0; i < getModelData()->getJointNum(); i++) {
+        J3DJoint* joint = getModelData()->getJointNodePointer(i);
+        if (joint->getMesh() != NULL) {
+            joint->entryIn();
+        }
+    }
 }
-#pragma pop
 
 /* 80327F40-80328190 322880 0250+00 1/0 0/0 0/0 .text            viewCalc__8J3DModelFv */
 #pragma push
@@ -447,6 +486,24 @@ void J3DModel::calcNrmMtx() {
 }
 
 /* 803281B4-803282B8 322AF4 0104+00 1/1 0/0 0/0 .text            calcBumpMtx__8J3DModelFv */
+#ifdef NONMATCHING
+void J3DModel::calcBumpMtx() {
+    // comparison (might be b/c of bool rather than u8?)
+    if (!getModelData()->checkBumpFlag())
+        return;
+
+    // loop is a bit different
+    for (u16 n = getModelData()->getMaterialNum(), i = 0; i < n; i++) {
+        J3DMaterial* material = getModelData()->getMaterialNodePointer(i);
+        if (!material->getNBTScale()->mbHasScale)
+            continue;
+
+        material->getShape()->calcNBTScale(*material->getNBTScale()->getScale(), getNrmMtxPtr(),
+                                           getBumpMtxPtr(i));
+        DCStoreRange(getBumpMtxPtr(i), getModelData()->getDrawMtxNum() * 0x24);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -455,6 +512,7 @@ asm void J3DModel::calcBumpMtx() {
 #include "asm/JSystem/J3DGraphAnimator/J3DModel/calcBumpMtx__8J3DModelFv.s"
 }
 #pragma pop
+#endif
 
 /* 803282B8-803282EC 322BF8 0034+00 1/1 0/0 0/0 .text            calcBBoardMtx__8J3DModelFv */
 void J3DModel::calcBBoardMtx() {
@@ -464,6 +522,20 @@ void J3DModel::calcBBoardMtx() {
 }
 
 /* 803282EC-80328350 322C2C 0064+00 2/2 0/0 0/0 .text            prepareShapePackets__8J3DModelFv */
+#ifdef NONMATCHING
+void J3DModel::prepareShapePackets() {
+    for (u16 n = getModelData()->getShapeNum(), i = 0; i < n; i++) {
+        // two swapped instructions right around here when calling getShapePacket
+        J3DShapePacket* pkt = getShapePacket(i);
+        pkt->setMtxBuffer(mMtxBuffer);
+        if (getMtxCalcMode() == 2) {
+            pkt->setBaseMtxPtr(&mInternalView);
+        } else {
+            pkt->setBaseMtxPtr(j3dSys.getViewMtx());
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -472,6 +544,7 @@ asm void J3DModel::prepareShapePackets() {
 #include "asm/JSystem/J3DGraphAnimator/J3DModel/prepareShapePackets__8J3DModelFv.s"
 }
 #pragma pop
+#endif
 
 /* 80328350-803283B4 322C90 0064+00 1/0 0/0 0/0 .text            __dt__8J3DModelFv */
 J3DModel::~J3DModel() {}

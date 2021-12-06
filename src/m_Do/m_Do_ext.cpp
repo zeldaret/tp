@@ -527,7 +527,6 @@ extern "C" void JMAEulerToQuat__FsssP10Quaternion();
 extern "C" void JMAQuatLerp__FPC10QuaternionPC10QuaternionfP10Quaternion();
 extern "C" void DCStoreRangeNoSync();
 extern "C" void GXClearVtxDesc();
-extern "C" void GXSetArray();
 extern "C" void GXGetTexObjWidth();
 extern "C" void GXGetTexObjHeight();
 extern "C" void GXSetTexCoordScaleManually();

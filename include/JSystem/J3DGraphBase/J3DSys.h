@@ -19,8 +19,14 @@ class J3DShape;
 class J3DDrawBuffer;
 class J3DTexture;
 
+enum J3DSysFlag {
+    J3DSysFlag_SkinPosCpu = 0x00000004,
+    J3DSysFlag_SkinNrmCpu = 0x00000008,
+    J3DSysFlag_PostTexMtx = 0x40000000,
+};
+
 struct J3DSys {
-    /* 0x000 */ Mtx mMtx;
+    /* 0x000 */ Mtx mViewMtx;
     /* 0x030 */ J3DMtxCalc* mCurrentMtxCalc;
     /* 0x034 */ u32 mFlags;
     /* 0x038 */ J3DModel* mModel;
@@ -31,7 +37,9 @@ struct J3DSys {
     /* 0x050 */ u32 mDrawMode;
     /* 0x054 */ u32 mMaterialMode;
     /* 0x058 */ J3DTexture* mTexture;
-    /* 0x05C */ u8 field_0x5c[0x10C - 0x5C];
+    /* 0x05C */ u8 field_0x5c[0x104 - 0x5C];
+    /* 0x104 */ Mtx* mModelDrawMtx;
+    /* 0x104 */ Mtx33* mModelNrmMtx;
     /* 0x10C */ void* mVtxPos;
     /* 0x110 */ void* mVtxNrm;
     /* 0x114 */ _GXColor* mVtxCol;
@@ -56,23 +64,43 @@ struct J3DSys {
         /* 0x4 */ XLU,
     };
 
+    Mtx* getViewMtx() { return &mViewMtx; }
+
     void setDrawModeOpaTexEdge() { mDrawMode = OPA_TEX_EDGE; }
 
     void setDrawModeXlu() { mDrawMode = XLU; }
 
+    void* getVtxPos() const { return mVtxPos; }
     void setVtxPos(void* pVtxPos) { mVtxPos = pVtxPos; }
 
+    void* getVtxNrm() const { return mVtxNrm; }
     void setVtxNrm(void* pVtxNrm) { mVtxNrm = pVtxNrm; }
 
+    void* getVtxCol() const { return mVtxCol; }
     void setVtxCol(_GXColor* pVtxCol) { mVtxCol = pVtxCol; }
 
     void setModel(J3DModel* pModel) { mModel = pModel; }
+    void setShapePacket(J3DShapePacket* pPacket) { mShapePacket = pPacket; }
+    void setMatPacket(J3DMatPacket* pPacket) { mMatPacket = pPacket; }
+    void setMaterialMode(u32 mode) { mMaterialMode = mode; }
 
     void setTexture(J3DTexture* pTex) { mTexture = pTex; }
 
     void onFlag(u32 flag) { mFlags |= flag; }
 
     void offFlag(u32 flag) { mFlags &= ~flag; }
+
+    bool checkFlag(u32 flag) { return mFlags & flag; }
+
+    void setModelDrawMtx(Mtx* pMtxArr) {
+        mModelDrawMtx = pMtxArr;
+        GXSetArray(GX_POS_MTX_ARRAY, mModelDrawMtx, sizeof(*mModelDrawMtx));
+    }
+
+    void setModelNrmMtx(Mtx33* pMtxArr) {
+        mModelNrmMtx = pMtxArr;
+        GXSetArray(GX_NRM_MTX_ARRAY, mModelNrmMtx, sizeof(*mModelNrmMtx));
+    }
 
     static Mtx mCurrentMtx;
     static Vec mCurrentS;

@@ -3,6 +3,7 @@
 
 #include "JSystem/JUtility/JUTTexture.h"
 #include "dolphin/mtx/mtx.h"
+#include "dolphin/mtx/mtx44.h"
 #include "dolphin/types.h"
 
 class J3DTexture {
@@ -18,27 +19,21 @@ public:
 };
 
 struct J3DTextureSRTInfo {
-    /* 0x00 */ f32 field_0x0;
-    /* 0x04 */ f32 field_0x4;
-    /* 0x08 */ s16 field_0x8;
-    /* 0x0C */ f32 field_0xc;
-    /* 0x10 */ f32 field_0x10;
+    /* 0x00 */ f32 mScaleX;
+    /* 0x04 */ f32 mScaleY;
+    /* 0x08 */ s16 mRotation;
+    /* 0x0C */ f32 mTranslationX;
+    /* 0x10 */ f32 mTranslationY;
 };  // Size: 0x14
 
 struct J3DTexMtxInfo {
     /* 80325718 */ void operator=(J3DTexMtxInfo const&);
 
-    /* 0x00 */ u8 field_0x0;
-    /* 0x01 */ u8 field_0x1;
-    /* 0x04 */ f32 field_0x04;
-    /* 0x08 */ f32 field_0x08;
-    /* 0x0C */ f32 field_0x0c;
-    /* 0x10 */ J3DTextureSRTInfo field_0x10;
-    /* 0x24 */ Mtx mEffectMtx;
-    /* 0x54 */ f32 field_0x54;
-    /* 0x58 */ f32 field_0x58;
-    /* 0x5C */ f32 field_0x5c;
-    /* 0x60 */ f32 field_0x60;
+    /* 0x00 */ u8 mProjection;
+    /* 0x01 */ u8 mInfo;
+    /* 0x04 */ Vec mCenter;
+    /* 0x10 */ J3DTextureSRTInfo mSRT;
+    /* 0x24 */ Mtx44 mEffectMtx;
 };  // Size: 0x64
 
 class J3DTexMtx {

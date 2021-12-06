@@ -1,6 +1,7 @@
 #ifndef JGEOMETRY_H
 #define JGEOMETRY_H
 
+#include "dolphin/mtx/vec.h"
 #include "dolphin/types.h"
 
 namespace JGeometry {
@@ -10,15 +11,29 @@ struct TVec3 {
     T x;
     T y;
     T z;
-};
-/*
-template <>
-struct TVec3<f32> {
-    TVec3(Vec& v) {
 
+    void set(const TVec3& other) {
+        x = other.x;
+        y = other.y;
+        z = other.z;
     }
 };
- */
+
+template <>
+struct TVec3<f32> {
+    f32 x;
+    f32 y;
+    f32 z;
+
+    operator Vec*() { return (Vec*)&x; }
+    operator const Vec*() const { return (Vec*)&x; }
+
+    void set(const TVec3<f32>& other) {
+        x = other.x;
+        y = other.y;
+        z = other.z;
+    }
+};
 
 template <typename T>
 struct TVec2 {

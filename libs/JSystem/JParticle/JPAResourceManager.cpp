@@ -4,135 +4,83 @@
 //
 
 #include "JSystem/JParticle/JPAResourceManager.h"
+#include "JSystem/JParticle/JPADynamicsBlock.h"
+#include "JSystem/JParticle/JPAResource.h"
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct ResTIMG {};
-
-struct JUTTexture {
-    /* 802DE2A8 */ void storeTIMG(ResTIMG const*, u8);
-};
-
-struct JPATexture {};
-
-struct JKRHeap {};
-
-struct JPAResource {};
-
-struct JPAResourceManager {
-    /* 80273E10 */ JPAResourceManager(void const*, JKRHeap*);
-    /* 80273E68 */ void getResource(u16) const;
-    /* 80273EA8 */ void checkUserIndexDuplication(u16) const;
-    /* 80273EEC */ void swapTexture(ResTIMG const*, char const*);
-    /* 80273F8C */ void registRes(JPAResource*);
-    /* 80273FAC */ void registTex(JPATexture*);
-    /* 80273FCC */ void getResUserWork(u16) const;
-};
 
 struct JPAResourceLoader {
     /* 8027D8A0 */ JPAResourceLoader(u8 const*, JPAResourceManager*);
 };
 
-//
-// Forward References:
-//
-
-extern "C" void __ct__18JPAResourceManagerFPCvP7JKRHeap();
-extern "C" void getResource__18JPAResourceManagerCFUs();
-extern "C" void checkUserIndexDuplication__18JPAResourceManagerCFUs();
-extern "C" void swapTexture__18JPAResourceManagerFPC7ResTIMGPCc();
-extern "C" void registRes__18JPAResourceManagerFP11JPAResource();
-extern "C" void registTex__18JPAResourceManagerFP10JPATexture();
-extern "C" void getResUserWork__18JPAResourceManagerCFUs();
-
-//
-// External References:
-//
-
-extern "C" void __ct__17JPAResourceLoaderFPCUcP18JPAResourceManager();
-extern "C" void storeTIMG__10JUTTextureFPC7ResTIMGUc();
-extern "C" void _savegpr_26();
-extern "C" void _restgpr_26();
-extern "C" void strcmp();
-
-//
-// Declarations:
-//
-
 /* 80273E10-80273E68 26E750 0058+00 0/0 2/2 0/0 .text __ct__18JPAResourceManagerFPCvP7JKRHeap */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JPAResourceManager::JPAResourceManager(void const* param_0, JKRHeap* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAResourceManager/__ct__18JPAResourceManagerFPCvP7JKRHeap.s"
+JPAResourceManager::JPAResourceManager(void const* pData, JKRHeap* pHeap) {
+    mpResArr = NULL;
+    mpTexArr = NULL;
+    mResMax = 0;
+    mResNum = 0;
+    mTexMax = 0;
+    mTexNum = 0;
+    mpHeap = pHeap;
+    JPAResourceLoader loader((u8 const*)pData, this);
 }
-#pragma pop
 
 /* 80273E68-80273EA8 26E7A8 0040+00 1/1 1/1 0/0 .text getResource__18JPAResourceManagerCFUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPAResourceManager::getResource(u16 param_0) const {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAResourceManager/getResource__18JPAResourceManagerCFUs.s"
+JPAResource* JPAResourceManager::getResource(u16 usrIdx) const {
+    for (u16 i = 0; i < mResNum; i++)
+        if (mpResArr[i]->getUsrIdx() == usrIdx)
+            return mpResArr[i];
+    return NULL;
 }
-#pragma pop
 
 /* 80273EA8-80273EEC 26E7E8 0044+00 0/0 2/2 0/0 .text
  * checkUserIndexDuplication__18JPAResourceManagerCFUs          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPAResourceManager::checkUserIndexDuplication(u16 param_0) const {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAResourceManager/checkUserIndexDuplication__18JPAResourceManagerCFUs.s"
+bool JPAResourceManager::checkUserIndexDuplication(u16 usrIdx) const {
+    for (s32 i = 0; i < mResNum; i++)
+        if (mpResArr[i]->getUsrIdx() == usrIdx)
+            return true;
+    return false;
 }
-#pragma pop
 
 /* 80273EEC-80273F8C 26E82C 00A0+00 0/0 2/2 0/0 .text
  * swapTexture__18JPAResourceManagerFPC7ResTIMGPCc              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPAResourceManager::swapTexture(ResTIMG const* param_0, char const* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAResourceManager/swapTexture__18JPAResourceManagerFPC7ResTIMGPCc.s"
+const ResTIMG* JPAResourceManager::swapTexture(ResTIMG const* img, char const* swapName) {
+    const ResTIMG* ret = NULL;
+
+    for (s32 i = 0; i < mTexNum; i++) {
+        if (strcmp(swapName, mpTexArr[i]->getName()) == 0) {
+            JUTTexture* tex = mpTexArr[i]->getJUTTexture();
+            ret = tex->getTexInfo();
+            tex->storeTIMG(img, (u8)0);
+            break;
+        }
+    }
+
+    return ret;
 }
-#pragma pop
 
 /* 80273F8C-80273FAC 26E8CC 0020+00 0/0 1/1 0/0 .text
  * registRes__18JPAResourceManagerFP11JPAResource               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPAResourceManager::registRes(JPAResource* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAResourceManager/registRes__18JPAResourceManagerFP11JPAResource.s"
+void JPAResourceManager::registRes(JPAResource* res) {
+    mpResArr[mResNum] = res;
+    mResNum++;
 }
-#pragma pop
 
 /* 80273FAC-80273FCC 26E8EC 0020+00 0/0 1/1 0/0 .text
  * registTex__18JPAResourceManagerFP10JPATexture                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPAResourceManager::registTex(JPATexture* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAResourceManager/registTex__18JPAResourceManagerFP10JPATexture.s"
+void JPAResourceManager::registTex(JPATexture* tex) {
+    mpTexArr[mTexNum] = tex;
+    mTexNum++;
 }
-#pragma pop
 
 /* 80273FCC-80274010 26E90C 0044+00 0/0 6/6 0/0 .text getResUserWork__18JPAResourceManagerCFUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPAResourceManager::getResUserWork(u16 param_0) const {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAResourceManager/getResUserWork__18JPAResourceManagerCFUs.s"
+u32 JPAResourceManager::getResUserWork(u16 usrIdx) const {
+    u32 ret = 0;
+
+    JPAResource* res = getResource(usrIdx);
+    if (res != NULL)
+        ret = res->getDyn()->getResUserWork();
+
+    return ret;
 }
-#pragma pop

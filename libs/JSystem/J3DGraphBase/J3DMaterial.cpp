@@ -71,7 +71,7 @@ extern "C" bool countDLSize__10J3DPEBlockFv();
 extern "C" void load__13J3DColorBlockFv();
 extern "C" s32 getCullMode__13J3DColorBlockCFv();
 extern "C" void load__11J3DTevBlockFv();
-extern "C" bool getNBTScale__14J3DTexGenBlockFv();
+extern "C" J3DNBTScale* getNBTScale__14J3DTexGenBlockFv();
 extern "C" void patch__13J3DColorBlockFv();
 extern "C" void diff__13J3DColorBlockFUl();
 extern "C" void diff__10J3DPEBlockFUl();
@@ -762,14 +762,11 @@ asm void J3DPatchedMaterial::load() {
 #pragma pop
 
 /* 80316FFC-8031703C 31193C 0040+00 1/0 0/0 0/0 .text loadSharedDL__18J3DPatchedMaterialFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DPatchedMaterial::loadSharedDL() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/loadSharedDL__18J3DPatchedMaterialFv.s"
+void J3DPatchedMaterial::loadSharedDL() {
+    j3dSys.setMaterialMode(mMaterialMode);
+    if (!j3dSys.checkFlag(0x02))
+        mSharedDLObj->callDL();
 }
-#pragma pop
 
 /* 8031703C-80317040 31197C 0004+00 1/0 0/0 0/0 .text            reset__18J3DPatchedMaterialFv */
 void J3DPatchedMaterial::reset() {
@@ -804,6 +801,12 @@ void J3DLockedMaterial::makeSharedDisplayList() {
 }
 
 /* 8031706C-80317088 3119AC 001C+00 1/0 0/0 0/0 .text            load__17J3DLockedMaterialFv */
+#ifdef NONMATCHING
+void J3DLockedMaterial::load() {
+    j3dSys.setMaterialMode(mMaterialMode);
+    // some extra dead code after? wtf?
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -812,17 +815,15 @@ asm void J3DLockedMaterial::load() {
 #include "asm/JSystem/J3DGraphBase/J3DMaterial/load__17J3DLockedMaterialFv.s"
 }
 #pragma pop
+#endif
 
 /* 80317088-803170C8 3119C8 0040+00 1/0 0/0 0/0 .text            loadSharedDL__17J3DLockedMaterialFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DLockedMaterial::loadSharedDL() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/loadSharedDL__17J3DLockedMaterialFv.s"
+void J3DLockedMaterial::loadSharedDL() {
+    j3dSys.setMaterialMode(mMaterialMode);
+    if (!j3dSys.checkFlag(0x02))
+        mSharedDLObj->callDL();
 }
-#pragma pop
 
 /* 803170C8-803170CC 311A08 0004+00 1/0 0/0 0/0 .text            patch__17J3DLockedMaterialFv */
 void J3DLockedMaterial::patch() {
@@ -960,8 +961,8 @@ void J3DTevBlock::load() {
 }
 
 /* 80317334-8031733C 311C74 0008+00 1/0 2/0 0/0 .text            getNBTScale__14J3DTexGenBlockFv */
-bool J3DTexGenBlock::getNBTScale() {
-    return false;
+J3DNBTScale* J3DTexGenBlock::getNBTScale() {
+    return NULL;
 }
 
 /* 8031733C-80317340 311C7C 0004+00 1/0 1/0 0/0 .text            patch__13J3DColorBlockFv */
@@ -1091,14 +1092,9 @@ extern "C" asm void reset__15J3DIndBlockNullFP11J3DIndBlock() {
 }
 
 /* 803173A4-803173B0 311CE4 000C+00 1/0 0/0 0/0 .text            getType__15J3DIndBlockNullFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DIndBlockNull::getType() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/getType__15J3DIndBlockNullFv.s"
+u32 J3DIndBlockNull::getType() {
+    return 'IBLN';
 }
-#pragma pop
 
 /* 803173B0-8031740C 311CF0 005C+00 1/0 0/0 0/0 .text            __dt__15J3DIndBlockNullFv */
 #pragma push

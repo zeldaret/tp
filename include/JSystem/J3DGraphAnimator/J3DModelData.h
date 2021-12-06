@@ -25,6 +25,8 @@ public:
     J3DVertexData& getVertexData() { return mVertexData; }
     u16 getShapeNum() const { return mShapeTable.getShapeNum(); }
     u16 getMaterialNum() const { return mMaterialTable.getMaterialNum(); }
+    u16 getJointNum() const { return mJointTree.getJointNum(); }
+    u16 getDrawMtxNum() const { return mJointTree.getDrawMtxNum(); }
     J3DMaterial* getMaterialNodePointer(u16 idx) const {
         return mMaterialTable.getMaterialNodePointer(idx);
     }
@@ -36,14 +38,15 @@ public:
     void* getVtxPosArray() const { return mVertexData.getVtxPosArray(); }
     void* getVtxNrmArray() const { return mVertexData.getVtxNrmArray(); }
     _GXColor* getVtxColorArray(u8 idx) const { return mVertexData.getVtxColorArray(idx); }
-    bool checkFlag(u32 flag) const { return (mFlags & flag) ? true : false; }
-    bool checkBBoardFlag() const { return field_0xe == 1; }
+    bool checkFlag(u32 flag) const { return !!(mFlags & flag); }
+    bool checkBumpFlag() const { return mbHasBumpArray; }
+    bool checkBBoardFlag() const { return mbHasBillboard == 1; }
 
 private:
-    /* 0x04 */ u32 field_0x4;
+    /* 0x04 */ void* mpRawData;
     /* 0x08 */ u32 mFlags;
-    /* 0x0C */ u16 field_0xc;
-    /* 0x0E */ u16 field_0xe;
+    /* 0x0C */ u16 mbHasBumpArray;
+    /* 0x0E */ u16 mbHasBillboard;
     /* 0x10 */ J3DJointTree mJointTree;
     /* 0x58 */ J3DMaterialTable mMaterialTable;
     /* 0x78 */ J3DShapeTable mShapeTable;

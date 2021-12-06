@@ -32,7 +32,11 @@ public:
     /* 80325D24 */ virtual ~J3DJointTree();
 
     u16 getWEvlpMtxNum() const { return mWEvlpMtxNum; }
+    u16 getJointNum() const { return mJointNum; }
+    u16 getDrawMtxNum() const { return mDrawMtxData.mEntryNum; }
+    J3DJoint* getRootNode() { return mRootNode; }
     J3DJoint* getJointNodePointer(u16 idx) const { return mJointNodePointer[idx]; }
+    J3DMtxCalc* getBasicMtxCalc() const { return mBasicMtxCalc; }
 
 private:
     /* 0x04 */ J3DModelHierarchy* mHierarchy;
@@ -43,13 +47,13 @@ private:
     /* 0x18 */ J3DJoint** mJointNodePointer;
     /* 0x1C */ u16 mJointNum;
     /* 0x1E */ u16 mWEvlpMtxNum;
-    /* 0x20 */ u8 mWEvlpMixMtxNum;
+    /* 0x20 */ u32 mWEvlpMixMtxNum;
     /* 0x24 */ s32 mWEvlpMixIndex;
     /* 0x28 */ s32 mWEvlpMixWeight;
     /* 0x2C */ Mtx* mInvJointMtx;
     /* 0x30 */ s32 mWEvlpImportantMtxIdx;
-    /* 0x34 */ J3DDrawMtxData mDrawMtxNum;
-    /* 0x40 */ u8 field_0x40[4];
+    /* 0x34 */ J3DDrawMtxData mDrawMtxData;
+    /* 0x40 */ u32 field_0x40;
     /* 0x44 */ JUTNameTab* mJointName;
 };  // Size: 0x48
 

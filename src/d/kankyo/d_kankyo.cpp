@@ -337,7 +337,6 @@ extern "C" void setEffectMtx__13J3DTexMtxInfoFPA4_f();
 extern "C" void simpleCalcMaterial__12J3DModelDataFUsPA4_f();
 extern "C" void init__12J3DFrameCtrlFs();
 extern "C" void GXInitLightAttn();
-extern "C" void GXSetChanAmbColor();
 extern "C" void __register_global_object();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();

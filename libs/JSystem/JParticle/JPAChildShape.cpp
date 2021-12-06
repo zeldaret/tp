@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/JParticle/JPAChildShape.h"
+#include "JSystem/JParticle/JPAParticle.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -11,13 +12,13 @@
 // Types:
 //
 
-struct JPAEmitterWorkData {};
-
 struct JPAChildShape {
+public:
     /* 8027B038 */ JPAChildShape(u8 const*);
-};
 
-struct JPABaseParticle {};
+public:
+    u8 const* mpData;
+};
 
 //
 // Forward References:
@@ -27,12 +28,6 @@ extern "C" void JPARegistChildPrmEnv__FP18JPAEmitterWorkData();
 extern "C" void JPACalcChildAlphaOut__FP18JPAEmitterWorkDataP15JPABaseParticle();
 extern "C" void JPACalcChildScaleOut__FP18JPAEmitterWorkDataP15JPABaseParticle();
 extern "C" void __ct__13JPAChildShapeFPCUc();
-
-//
-// External References:
-//
-
-extern "C" void GXSetTevColor();
 
 //
 // Declarations:
@@ -69,6 +64,13 @@ asm void JPACalcChildAlphaOut(JPAEmitterWorkData* param_0, JPABaseParticle* para
 
 /* 8027B008-8027B038 275948 0030+00 0/0 1/1 0/0 .text
  * JPACalcChildScaleOut__FP18JPAEmitterWorkDataP15JPABaseParticle */
+#ifdef NONMATCHING
+void JPACalcChildScaleOut(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    // literal
+    ptcl->mParticleScaleX = ptcl->mScaleOut * (1.0f - ptcl->mTime);
+    ptcl->mParticleScaleY = ptcl->mAlphaWaveRandom * (1.0f - ptcl->mTime);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -77,8 +79,9 @@ asm void JPACalcChildScaleOut(JPAEmitterWorkData* param_0, JPABaseParticle* para
 #include "asm/JSystem/JParticle/JPAChildShape/JPACalcChildScaleOut__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
 }
 #pragma pop
+#endif
 
 /* 8027B038-8027B040 -00001 0008+00 0/0 0/0 0/0 .text            __ct__13JPAChildShapeFPCUc */
-JPAChildShape::JPAChildShape(u8 const* param_0) {
-    *(u32*)this = (u32)(param_0);
+JPAChildShape::JPAChildShape(u8 const* pData) {
+    mpData = pData;
 }

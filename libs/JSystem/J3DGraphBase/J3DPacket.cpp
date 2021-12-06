@@ -4,6 +4,12 @@
 //
 
 #include "JSystem/J3DGraphBase/J3DPacket.h"
+#include "JSystem/J3DGraphAnimator/J3DModel.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "JSystem/J3DGraphBase/J3DShape.h"
+#include "JSystem/J3DGraphBase/J3DShapeMtx.h"
+#include "JSystem/J3DGraphBase/J3DSys.h"
+#include "JSystem/J3DGraphBase/J3DVertex.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "MSL_C.PPCEABI.bare.H/MSL_Common/src/string.h"
 #include "dol2asm.h"
@@ -16,27 +22,8 @@
 // Types:
 //
 
-struct J3DVertexBuffer {
-    /* 8031106C */ void setArray() const;
-};
-
-struct J3DShape {
-    /* 80315300 */ void loadPreDrawSetting() const;
-
-    static u8 sOldVcdVatCmd[4];
-};
-
 struct J3DDrawBuffer {
     static u8 sortFuncTable[72];
-};
-
-struct J3DModelData {
-    /* 803260F8 */ void syncJ3DSysFlags() const;
-};
-
-struct J3DDifferedTexMtx {
-    static u8 sTexGenBlock[4];
-    static u8 sTexMtxObj[4];
 };
 
 //
@@ -322,8 +309,8 @@ void J3DDrawPacket::draw() {
 
 /* 80312948-803129A4 30D288 005C+00 0/0 1/1 0/0 .text            __ct__12J3DMatPacketFv */
 J3DMatPacket::J3DMatPacket() {
+    mpInitShapePacket = NULL;
     mpShapePacket = NULL;
-    mpFirstShapePacket = NULL;
     mpMaterial = NULL;
     mSortFlags = -1;
     mpTexture = NULL;
@@ -334,20 +321,20 @@ J3DMatPacket::J3DMatPacket() {
 J3DMatPacket::~J3DMatPacket() {}
 
 void J3DMatPacket::addShapePacket(J3DShapePacket* pShape) {
-    if (mpFirstShapePacket == NULL) {
-        mpFirstShapePacket = pShape;
+    if (mpShapePacket == NULL) {
+        mpShapePacket = pShape;
     } else {
-        pShape->mpNextSibling = mpFirstShapePacket;
-        mpFirstShapePacket = pShape;
+        pShape->mpNextSibling = mpShapePacket;
+        mpShapePacket = pShape;
     }
 }
 
 void J3DMatPacket::beginDiff() {
-    mpShapePacket->mpDisplayListObj->beginDL();
+    mpInitShapePacket->mpDisplayListObj->beginDL();
 }
 
 void J3DMatPacket::endDiff() {
-    mpShapePacket->mpDisplayListObj->endDL();
+    mpInitShapePacket->mpDisplayListObj->endDL();
 }
 
 /* 80312A74-80312A9C 30D3B4 0028+00 0/0 1/1 0/0 .text isSame__12J3DMatPacketCFP12J3DMatPacket */
@@ -361,20 +348,31 @@ bool J3DMatPacket::isSame(J3DMatPacket* pOther) const {
 }
 
 /* 80312A9C-80312B20 30D3DC 0084+00 1/0 0/0 0/0 .text            draw__12J3DMatPacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMatPacket::draw() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/draw__12J3DMatPacketFv.s"
+void J3DMatPacket::draw() {
+    mpMaterial->load();
+    callDL();
+    J3DShapePacket* packet = getShapePacket();
+
+    J3DShape* shape = packet->getShape();
+    shape->loadPreDrawSetting();
+
+    while (packet != NULL) {
+        if (packet->getDisplayListObj() != NULL) {
+            packet->getDisplayListObj()->callDL();
+        }
+
+        packet->drawFast();
+        packet = (J3DShapePacket*)packet->getNextPacket();
+    }
+
+    shape->resetVcdVatCache();
 }
-#pragma pop
 
 /* 80312B20-80312B74 30D460 0054+00 0/0 1/1 0/0 .text            __ct__14J3DShapePacketFv */
 J3DShapePacket::J3DShapePacket() {
     mpShape = NULL;
     mpMtxBuffer = NULL;
-    mpViewMtx = NULL;
+    mpBaseMtxPtr = NULL;
     mDiffFlag = 0;
     mpModel = NULL;
 }
@@ -409,6 +407,40 @@ J3DError J3DShapePacket::newDifferedDisplayList(u32 flag) {
 }
 
 /* 80312E08-80312F24 30D748 011C+00 2/2 0/0 0/0 .text            prepareDraw__14J3DShapePacketCFv */
+#ifdef NONMATCHING
+void J3DShapePacket::prepareDraw() const {
+    mpModel->getVertexBuffer()->setArray();
+    j3dSys.setModel(mpModel);
+    j3dSys.setShapePacket((J3DShapePacket*)this);
+
+    // the way that the LOD flag is set seems to be wrong...
+    J3DShapeMtx::setLODFlag(mpModel->checkFlag(0x10));
+
+    if (mpModel->checkFlag(J3DMdlFlag_SkinPosCpu)) {
+        mpShape->onFlag(J3DShpFlag_SkinPosCpu);
+    } else {
+        mpShape->offFlag(J3DShpFlag_SkinPosCpu);
+    }
+
+    if (mpModel->checkFlag(J3DMdlFlag_SkinNrmCpu) && !mpShape->checkFlag(J3DShpFlag_EnableLod)) {
+        mpShape->onFlag(J3DShpFlag_SkinNrmCpu);
+    } else {
+        mpShape->offFlag(J3DShpFlag_SkinNrmCpu);
+    }
+
+    mpShape->setCurrentViewNoPtr(mpMtxBuffer->getCurrentViewNoPtr());
+    mpShape->setScaleFlagArray(mpMtxBuffer->getScaleFlagArray());
+    mpShape->setDrawMtx(mpMtxBuffer->getDrawMtxPtrPtr());
+
+    if (!mpShape->getNBTFlag()) {
+        mpShape->setNrmMtx(mpMtxBuffer->getNrmMtxPtrPtr());
+    } else {
+        mpShape->setNrmMtx(mpMtxBuffer->getBumpMtxPtrPtr() + mpShape->getBumpMtxOffset());
+    }
+
+    mpModel->getModelData()->syncJ3DSysFlags();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -417,26 +449,40 @@ asm void J3DShapePacket::prepareDraw() const {
 #include "asm/JSystem/J3DGraphBase/J3DPacket/prepareDraw__14J3DShapePacketCFv.s"
 }
 #pragma pop
+#endif
 
 /* 80312F24-80312FBC 30D864 0098+00 1/0 0/0 0/0 .text            draw__14J3DShapePacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DShapePacket::draw() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/draw__14J3DShapePacketFv.s"
+void J3DShapePacket::draw() {
+    if (!checkFlag(J3DShpFlag_Hidden) && mpShape != NULL) {
+        prepareDraw();
+        if (mpTexMtx != NULL) {
+            J3DMaterial* material = mpShape->getMaterial();
+            J3DDifferedTexMtx::sTexGenBlock = material->getTexGenBlock();
+            J3DDifferedTexMtx::sTexMtxObj = getTexMtxObj();
+        } else {
+            J3DDifferedTexMtx::sTexGenBlock = NULL;
+        }
+        if (mpDisplayListObj != NULL) {
+            mpDisplayListObj->callDL();
+        }
+        mpShape->draw();
+    }
 }
-#pragma pop
 
 /* 80312FBC-80313044 30D8FC 0088+00 1/1 2/2 1/1 .text            drawFast__14J3DShapePacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DShapePacket::drawFast() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/drawFast__14J3DShapePacketFv.s"
+void J3DShapePacket::drawFast() {
+    if (!checkFlag(J3DShpFlag_Hidden) && mpShape != NULL) {
+        prepareDraw();
+        if (mpTexMtx != NULL) {
+            J3DMaterial* material = mpShape->getMaterial();
+            J3DDifferedTexMtx::sTexGenBlock = material->getTexGenBlock();
+            J3DDifferedTexMtx::sTexMtxObj = getTexMtxObj();
+        } else {
+            J3DDifferedTexMtx::sTexGenBlock = NULL;
+        }
+        mpShape->drawFast();
+    }
 }
-#pragma pop
 
 /* 80313044-80313048 30D984 0004+00 1/0 0/0 0/0 .text            draw__9J3DPacketFv */
 void J3DPacket::draw() {

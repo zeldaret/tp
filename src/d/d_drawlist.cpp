@@ -258,16 +258,13 @@ extern "C" void frameInit__13J3DDrawBufferFv();
 extern "C" void entryImm__13J3DDrawBufferFP9J3DPacketUs();
 extern "C" void draw__13J3DDrawBufferCFv();
 extern "C" void GXClearVtxDesc();
-extern "C" void GXSetArray();
 extern "C" void GXPixModeSync();
 extern "C" void GXPeekZ();
-extern "C" void GXSetPointSize();
 extern "C" void GXGetTexObjWidth();
 extern "C" void GXGetTexObjHeight();
 extern "C" void GXGetTexObjWrapS();
 extern "C" void GXGetTexObjWrapT();
 extern "C" void GXGetTexObjTlut();
-extern "C" void GXSetColorUpdate();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void _savefpr_26();
@@ -1985,7 +1982,7 @@ SECTION_DATA static _GXColor l_imageDrawColor[4] = {{0xFF, 0x00, 0x00, 0x00},
 /* 803A8D8C-803A8D9C 005EAC 0010+00 0/1 0/0 0/0 .data            l_tevColorChan$5438 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static GXTevColor l_tevColorChan[4] = {GX_CH_RED, GX_CH_BLUE, GX_CH_GREEN,
+SECTION_DATA static GXTevColor l_tevColorChan[4] = {GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE,
                                                     GX_CH_ALPHA};
 #pragma pop
 

@@ -21,11 +21,13 @@ struct J3DGXColor : public _GXColor {
 struct J3DNBTScaleInfo {
     /* 8032587C */ void operator=(J3DNBTScaleInfo const&);
 
-    /* 0x0 */ u8 field_0x0;
+    /* 0x0 */ u8 mbHasScale;
     /* 0x4 */ Vec mScale;
 };  // Size: 0x10
 
-struct J3DNBTScale : public J3DNBTScaleInfo {};
+struct J3DNBTScale : public J3DNBTScaleInfo {
+    Vec* getScale() { return &mScale; }
+};
 
 class J3DTexGenBlock {
 public:
@@ -50,7 +52,7 @@ public:
     /* 8000DFD8 */ virtual J3DTexMtx* getTexMtx(u32);
     /* 80317424 */ virtual void setNBTScale(J3DNBTScale const*);
     /* 80317420 */ virtual void setNBTScale(J3DNBTScale);
-    /* 80317334 */ virtual bool getNBTScale();
+    /* 80317334 */ virtual J3DNBTScale* getNBTScale();
     /* 80317428 */ virtual bool getTexMtxOffset() const;
     /* 80317430 */ virtual void setTexMtxOffset(u32);
     /* 803171DC */ virtual ~J3DTexGenBlock();
@@ -71,7 +73,7 @@ public:
     /* 8031ACD0 */ virtual void diffTexMtx();
     /* 8031AD30 */ virtual void diffTexGen();
     /* 80317B9C */ virtual s32 countDLSize();
-    /* 80322E74 */ virtual void getType();
+    /* 80322E74 */ virtual u32 getType();
     /* 80322D3C */ virtual void setTexGenNum(u32 const*);
     /* 80322D34 */ virtual void setTexGenNum(u32);
     /* 80322D48 */ virtual void getTexGenNum() const;
@@ -98,7 +100,7 @@ public:
     /* 8031A9E8 */ virtual void load();
     /* 8031ABC0 */ virtual void patch();
     /* 80317BAC */ virtual s32 countDLSize();
-    /* 80322C6C */ virtual void getType();
+    /* 80322C6C */ virtual u32 getType();
     /* 80322C9C */ virtual void setNBTScale(J3DNBTScale const*);
     /* 80322C78 */ virtual void setNBTScale(J3DNBTScale);
     /* 80322CC0 */ virtual void getNBTScale();
@@ -116,7 +118,7 @@ public:
     /* 8031A948 */ virtual void load();
     /* 8031AB18 */ virtual void patch();
     /* 80317BA4 */ virtual s32 countDLSize();
-    /* 80322DA8 */ virtual void getType();
+    /* 80322DA8 */ virtual u32 getType();
     /* 80322DD8 */ virtual void setNBTScale(J3DNBTScale const*);
     /* 80322DB4 */ virtual void setNBTScale(J3DNBTScale);
     /* 80322DFC */ virtual void getNBTScale();
@@ -205,7 +207,7 @@ public:
     /* 8031C0AC */ virtual void patchTexNoAndTexCoordScale();
     /* 8031DFB4 */ virtual void ptrToIndex();
     /* 80322974 */ virtual void indexToPtr();
-    /* 80322998 */ virtual void getType();
+    /* 80322998 */ virtual u32 getType();
     /* 80317BB4 */ virtual s32 countDLSize();
     /* 803229D0 */ virtual void setTexNo(u32, u16 const*);
     /* 803229C0 */ virtual void setTexNo(u32, u16);
@@ -269,7 +271,7 @@ public:
     /* 8031C854 */ virtual void patchTexNoAndTexCoordScale();
     /* 80321FE8 */ virtual void ptrToIndex();
     /* 80321FEC */ virtual void indexToPtr();
-    /* 80322010 */ virtual void getType();
+    /* 80322010 */ virtual u32 getType();
     /* 80317BCC */ virtual s32 countDLSize();
     /* 8032202C */ virtual void setTexNo(u32, u16 const*);
     /* 8032201C */ virtual void setTexNo(u32, u16);
@@ -339,7 +341,7 @@ public:
     /* 8031C558 */ virtual void patchTexNoAndTexCoordScale();
     /* 803223AC */ virtual void ptrToIndex();
     /* 803223B0 */ virtual void indexToPtr();
-    /* 803223D4 */ virtual void getType();
+    /* 803223D4 */ virtual u32 getType();
     /* 80317BC4 */ virtual s32 countDLSize();
     /* 803223F0 */ virtual void setTexNo(u32, u16 const*);
     /* 803223E0 */ virtual void setTexNo(u32, u16);
@@ -409,7 +411,7 @@ public:
     /* 8031CB7C */ virtual void patchTexNoAndTexCoordScale();
     /* 8031DED0 */ virtual void ptrToIndex();
     /* 80321C20 */ virtual void indexToPtr();
-    /* 80321C44 */ virtual void getType();
+    /* 80321C44 */ virtual u32 getType();
     /* 80317BD4 */ virtual s32 countDLSize();
     /* 80321C60 */ virtual void setTexNo(u32, u16 const*);
     /* 80321C50 */ virtual void setTexNo(u32, u16);
@@ -479,7 +481,7 @@ public:
     /* 8031C2E8 */ virtual void patchTexNoAndTexCoordScale();
     /* 80322770 */ virtual void ptrToIndex();
     /* 80322774 */ virtual void indexToPtr();
-    /* 80322798 */ virtual void getType();
+    /* 80322798 */ virtual u32 getType();
     /* 80317BBC */ virtual s32 countDLSize();
     /* 803227B4 */ virtual void setTexNo(u32, u16 const*);
     /* 803227A4 */ virtual void setTexNo(u32, u16);
@@ -581,7 +583,7 @@ class J3DPEBlockXlu : public J3DPEBlock {
 public:
     /* 8031E98C */ virtual void load();
     /* 80317BF4 */ virtual s32 countDLSize();
-    /* 80323258 */ virtual void getType();
+    /* 80323258 */ virtual u32 getType();
     /* 80323264 */ virtual ~J3DPEBlockXlu();
 };
 
@@ -589,7 +591,7 @@ class J3DPEBlockTexEdge : public J3DPEBlock {
 public:
     /* 8031E6C8 */ virtual void load();
     /* 80317BEC */ virtual s32 countDLSize();
-    /* 803232C0 */ virtual void getType();
+    /* 803232C0 */ virtual u32 getType();
     /* 803232CC */ virtual ~J3DPEBlockTexEdge();
 };
 
@@ -597,7 +599,7 @@ class J3DPEBlockOpa : public J3DPEBlock {
 public:
     /* 8031E408 */ virtual void load();
     /* 80317BE4 */ virtual s32 countDLSize();
-    /* 80323328 */ virtual void getType();
+    /* 80323328 */ virtual u32 getType();
     /* 80323334 */ virtual ~J3DPEBlockOpa();
 };
 
@@ -612,7 +614,7 @@ public:
     /* 8031F940 */ virtual void diffFog();
     /* 8031F9B8 */ virtual void diffBlend();
     /* 80317C04 */ virtual s32 countDLSize();
-    /* 8032194C */ virtual void getType();
+    /* 8032194C */ virtual u32 getType();
     /* 8032197C */ virtual void setFog(J3DFog);
     /* 80321958 */ virtual void setFog(J3DFog*);
     /* 803219A0 */ virtual void getFog();
@@ -654,7 +656,7 @@ public:
     /* 80321ACC */ virtual void diff(u32);
     /* 8031F0D8 */ virtual void diffBlend();
     /* 80317BFC */ virtual s32 countDLSize();
-    /* 80321B00 */ virtual void getType();
+    /* 80321B00 */ virtual u32 getType();
     /* 80321B28 */ virtual void setAlphaComp(J3DAlphaComp const*);
     /* 80321B0C */ virtual void setAlphaComp(J3DAlphaComp const&);
     /* 80321B44 */ virtual void getAlphaComp();
@@ -732,7 +734,7 @@ public:
     /* 8031E328 */ virtual void diff(u32);
     /* 8031E12C */ virtual void load();
     /* 80317BDC */ virtual s32 countDLSize();
-    /* 80323390 */ virtual void getType();
+    /* 80323390 */ virtual u32 getType();
     /* 8032339C */ virtual void setIndTexStageNum(u8);
     /* 803233A4 */ virtual void getIndTexStageNum() const;
     /* 803233AC */ virtual void setIndTexOrder(u32, J3DIndTexOrder);
@@ -758,7 +760,7 @@ public:
     /* 803173A0 */ virtual void reset(J3DIndBlock*);
     /* 80317398 */ virtual void diff(u32);
     /* 8031739C */ virtual void load();
-    /* 803173A4 */ virtual void getType();
+    /* 803173A4 */ virtual u32 getType();
     /* 803173B0 */ virtual ~J3DIndBlockNull();
 };
 
@@ -830,7 +832,7 @@ public:
     /* 8031A4D4 */ virtual void diffColorChan();
     /* 8031A8E0 */ virtual void diffLightObj(u32);
     /* 80317B94 */ virtual s32 countDLSize();
-    /* 80322E80 */ virtual void getType();
+    /* 80322E80 */ virtual u32 getType();
     /* 80322EB8 */ virtual void setMatColor(u32, J3DGXColor const*);
     /* 80322E8C */ virtual void setMatColor(u32, J3DGXColor);
     /* 80322EE4 */ virtual void getMatColor(u32);
@@ -878,7 +880,7 @@ public:
     /* 80319BB4 */ virtual void diffMatColor();
     /* 80319D30 */ virtual void diffColorChan();
     /* 80317B84 */ virtual s32 countDLSize();
-    /* 80323560 */ virtual void getType();
+    /* 80323560 */ virtual u32 getType();
     /* 80323184 */ virtual void setMatColor(u32, J3DGXColor const*);
     /* 80323158 */ virtual void setMatColor(u32, J3DGXColor);
     /* 803231B0 */ virtual void getMatColor(u32);
@@ -913,7 +915,7 @@ public:
     /* 8031816C */ virtual void load();
     /* 8031FDE4 */ virtual void reset(J3DColorBlock*);
     /* 80317B8C */ virtual s32 countDLSize();
-    /* 80323074 */ virtual void getType();
+    /* 80323074 */ virtual u32 getType();
     /* 803230AC */ virtual void setAmbColor(u32, J3DGXColor const*);
     /* 80323080 */ virtual void setAmbColor(u32, J3DGXColor);
     /* 803230D8 */ virtual void getAmbColor(u32);

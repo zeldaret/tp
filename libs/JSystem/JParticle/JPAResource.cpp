@@ -4,51 +4,15 @@
 //
 
 #include "JSystem/JParticle/JPAResource.h"
+#include "JSystem/JParticle/JPAMath.h"
+#include "JSystem/JParticle/JPAParticle.h"
 #include "dol2asm.h"
+#include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 
 //
 // Types:
 //
-
-struct _GXTexMapID {};
-
-struct JUTTexture {
-    /* 802DE840 */ void load(_GXTexMapID);
-};
-
-struct JPAEmitterWorkData {};
-
-struct JKRHeap {
-    /* 802CE474 */ void alloc(u32, int, JKRHeap*);
-};
-
-struct JPABaseParticle {
-    /* 8027FFD0 */ void calc_p(JPAEmitterWorkData*);
-    /* 80280260 */ void calc_c(JPAEmitterWorkData*);
-};
-
-struct JPABaseEmitter {
-    /* 8027EDD4 */ void processTillStartFrame();
-    /* 8027EE14 */ void processTermination();
-};
-
-struct JPAResource {
-    /* 80274010 */ JPAResource();
-    /* 80274080 */ void init(JKRHeap*);
-    /* 802755E8 */ void calc(JPAEmitterWorkData*, JPABaseEmitter*);
-    /* 80275A94 */ void draw(JPAEmitterWorkData*, JPABaseEmitter*);
-    /* 80275B74 */ void drawP(JPAEmitterWorkData*);
-    /* 80275EB0 */ void drawC(JPAEmitterWorkData*);
-    /* 802761A8 */ void setPTev();
-    /* 8027642C */ void setCTev(JPAEmitterWorkData*);
-    /* 8027658C */ void calc_p(JPAEmitterWorkData*, JPABaseParticle*);
-    /* 80276608 */ void calc_c(JPAEmitterWorkData*, JPABaseParticle*);
-    /* 80276684 */ void calcField(JPAEmitterWorkData*, JPABaseParticle*);
-    /* 80276700 */ void calcKey(JPAEmitterWorkData*);
-    /* 80276840 */ void calcWorkData_c(JPAEmitterWorkData*);
-    /* 80276A0C */ void calcWorkData_d(JPAEmitterWorkData*);
-};
 
 struct JPAKeyBlock {
     /* 8027D740 */ void calc(f32);
@@ -58,21 +22,6 @@ struct JPAFieldBlock {};
 
 struct JPAFieldBase {
     /* 80276A8C */ void prepare(JPAEmitterWorkData*, JPAFieldBlock*);
-};
-
-struct JPADynamicsBlock {
-    /* 8027BBE8 */ void create(JPAEmitterWorkData*);
-};
-
-struct JPABaseShape {
-    /* 8027A7E8 */ void setGX(JPAEmitterWorkData*) const;
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
 };
 
 //
@@ -184,28 +133,7 @@ extern "C" void func_80280588();
 extern "C" void JPAGetXYZRotateMtx__FsssPA4_f();
 extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
 extern "C" void load__10JUTTextureF11_GXTexMapID();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXConcat();
-extern "C" void PSMTXScale();
-extern "C" void PSMTXMultVec();
-extern "C" void PSMTXMultVecSR();
-extern "C" void GXSetArray();
-extern "C" void GXSetTexCoordGen2();
-extern "C" void GXSetNumTexGens();
 extern "C" void GXSetMisc();
-extern "C" void GXSetTevIndirect();
-extern "C" void GXSetIndTexMtx();
-extern "C" void GXSetIndTexCoordScale();
-extern "C" void GXSetIndTexOrder();
-extern "C" void GXSetNumIndStages();
-extern "C" void GXSetTevDirect();
-extern "C" void GXSetTevColorIn();
-extern "C" void GXSetTevAlphaIn();
-extern "C" void GXSetTevColorOp();
-extern "C" void GXSetTevAlphaOp();
-extern "C" void GXSetTevOrder();
-extern "C" void GXSetNumTevStages();
-extern "C" void GXSetClipMode();
 extern "C" void __save_gpr();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_27();
@@ -800,14 +728,13 @@ asm void JPAResource::calcWorkData_c(JPAEmitterWorkData* param_0) {
 
 /* 80276A0C-80276A8C 27134C 0080+00 1/1 0/0 0/0 .text
  * calcWorkData_d__11JPAResourceFP18JPAEmitterWorkData          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPAResource::calcWorkData_d(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAResource/calcWorkData_d__11JPAResourceFP18JPAEmitterWorkData.s"
+void JPAResource::calcWorkData_d(JPAEmitterWorkData* work) {
+    Mtx mtx;
+    JPAGetXYZRotateMtx(work->mpEmtr->mLocalRot.x * 0xB6, work->mpEmtr->mLocalRot.y * 0xB6,
+                       work->mpEmtr->mLocalRot.z * 0xB6, mtx);
+    PSMTXConcat(work->mpEmtr->mGlobalRot, mtx, work->mGlobalRot);
+    PSMTXMultVecSR(work->mGlobalRot, &work->mpEmtr->mLocalDir, work->mGlobalEmtrDir);
 }
-#pragma pop
 
 /* 80276A8C-80276A90 2713CC 0004+00 0/0 3/0 0/0 .text
  * prepare__12JPAFieldBaseFP18JPAEmitterWorkDataP13JPAFieldBlock */

@@ -3238,7 +3238,6 @@ extern "C" void entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
 extern "C" void load__20J3DAnmLoaderDataBaseFPCv24J3DAnmLoaderDataBaseFlag();
 extern "C" void JMAEulerToQuat__FsssP10Quaternion();
 extern "C" void GXClearVtxDesc();
-extern "C" void GXSetChanAmbColor();
 extern "C" void GXLoadNrmMtxImm();
 extern "C" void __register_global_object();
 extern "C" void __destroy_arr();

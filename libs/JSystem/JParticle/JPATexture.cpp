@@ -7,67 +7,11 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-//
-// Types:
-//
-
-struct ResTIMG {};
-
-struct JUTTexture {
-    /* 802DE234 */ ~JUTTexture();
-    /* 802DE2A8 */ void storeTIMG(ResTIMG const*, u8);
-};
-
-struct JPATexture {
-    /* 8027D7D4 */ JPATexture(u8 const*);
-    /* 8027D83C */ ~JPATexture();
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__10JPATextureFPCUc();
-extern "C" void __dt__10JPATextureFv();
-
-//
-// External References:
-//
-
-extern "C" void __dl__FPv();
-extern "C" void __dt__10JUTTextureFv();
-extern "C" void storeTIMG__10JUTTextureFPC7ResTIMGUc();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 803C4598-803C45A8 0216B8 000C+04 2/2 0/0 0/0 .data            __vt__10JPATexture */
-SECTION_DATA extern void* __vt__10JPATexture[3 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10JPATextureFv,
-    /* padding */
-    NULL,
-};
-
 /* 8027D7D4-8027D83C 278114 0068+00 0/0 1/1 0/0 .text            __ct__10JPATextureFPCUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JPATexture::JPATexture(u8 const* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPATexture/__ct__10JPATextureFPCUc.s"
+JPATexture::JPATexture(u8 const* pData) {
+    mpData = (const JPATextureData*)pData;
+    mTexture.storeTIMG(&mpData->mResTIMG, (u8)0);
 }
-#pragma pop
 
 /* 8027D83C-8027D8A0 27817C 0064+00 1/0 0/0 0/0 .text            __dt__10JPATextureFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JPATexture::~JPATexture() {
-    nofralloc
-#include "asm/JSystem/JParticle/JPATexture/__dt__10JPATextureFv.s"
-}
-#pragma pop
+JPATexture::~JPATexture() {}

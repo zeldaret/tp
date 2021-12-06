@@ -37,8 +37,6 @@ extern "C" void JPACalcKeyAnmValue__FfUsPCf();
 // External References:
 //
 
-extern "C" void PSMTXIdentity();
-extern "C" void PSVECMag();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
 extern "C" u8 sincosTable___5JMath[65536];
@@ -92,7 +90,7 @@ asm void JPAGetYZRotateMtx(s16 param_0, s16 param_1, f32 (*param_2)[4]) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JPAGetXYZRotateMtx(s16 param_0, s16 param_1, s16 param_2, f32 (*param_3)[4]) {
+asm void JPAGetXYZRotateMtx(s16 x, s16 y, s16 z, Mtx mtx) {
     nofralloc
 #include "asm/JSystem/JParticle/JPAMath/JPAGetXYZRotateMtx__FsssPA4_f.s"
 }

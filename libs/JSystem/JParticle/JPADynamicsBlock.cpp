@@ -13,12 +13,6 @@
 
 struct JPAEmitterWorkData {};
 
-struct JPADynamicsBlock {
-    /* 8027BB18 */ JPADynamicsBlock(u8 const*);
-    /* 8027BB4C */ void init();
-    /* 8027BBE8 */ void create(JPAEmitterWorkData*);
-};
-
 struct JPABaseEmitter {
     /* 8027EA40 */ void createParticle();
 };

@@ -5,22 +5,6 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
-class JPAEmitterCallBack {
-public:
-    /* 8027E6A4 */ virtual ~JPAEmitterCallBack() = 0;
-    /* 80050368 */ virtual void execute(JPABaseEmitter*);
-    /* 80050374 */ virtual void executeAfter(JPABaseEmitter*);
-    /* 8005036C */ virtual void draw(JPABaseEmitter*);
-    /* 80050370 */ virtual void drawAfter(JPABaseEmitter*);
-};
-
-struct JPAResourceManager {
-    /* 80273E10 */ JPAResourceManager(void const*, JKRHeap*);
-    /* 80273EA8 */ void checkUserIndexDuplication(u16) const;
-    /* 80273EEC */ void swapTexture(ResTIMG const*, char const*);
-    /* 80273FCC */ void getResUserWork(u16) const;
-};
-
 class dPa_levelEcallBack : public JPAEmitterCallBack {
 public:
     /* 8004FB18 */ virtual ~dPa_levelEcallBack();
