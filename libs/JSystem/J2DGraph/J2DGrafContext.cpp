@@ -6,95 +6,23 @@
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__14J2DGrafContextFffff();
-extern "C" void setPort__14J2DGrafContextFv();
-extern "C" void setup2D__14J2DGrafContextFv();
-extern "C" void setScissor__14J2DGrafContextFv();
-extern "C" void func_802E90C0();
-extern "C" void func_802E90E4();
-extern "C" void
-setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor();
-extern "C" void setLineWidth__14J2DGrafContextFUc();
-extern "C" void func_802E9260();
-extern "C" void func_802E9368();
-extern "C" void func_802E9488();
-extern "C" void func_802E9564();
-extern "C" void __dt__14J2DGrafContextFv();
-extern "C" void place__14J2DGrafContextFffff();
-extern "C" bool getGrafType__14J2DGrafContextCFv();
-extern "C" void setLookat__14J2DGrafContextFv();
-
-//
-// External References:
-//
-
-extern "C" void __dl__FPv();
-extern "C" void __cvt_fp2unsigned();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-extern "C" void ceil();
+#include "msl_c/math.h"
 
 //
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 803CC9B8-803CC9E0 029AD8 0028+00 2/2 13/13 0/0 .data            __vt__14J2DGrafContext */
-SECTION_DATA extern void* __vt__14J2DGrafContext[10] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14J2DGrafContextFv,
-    (void*)func_802E90E4,
-    (void*)place__14J2DGrafContextFffff,
-    (void*)setPort__14J2DGrafContextFv,
-    (void*)setup2D__14J2DGrafContextFv,
-    (void*)setScissor__14J2DGrafContextFv,
-    (void*)getGrafType__14J2DGrafContextCFv,
-    (void*)setLookat__14J2DGrafContextFv,
-};
-
 /* 802E8B08-802E8BB4 2E3448 00AC+00 0/0 2/2 0/0 .text            __ct__14J2DGrafContextFffff */
-// reversed stack
-#ifdef NONMATCHING
 J2DGrafContext::J2DGrafContext(f32 left, f32 top, f32 right, f32 bottom)
     : mBounds(left, top, left + right, top + bottom),
       mScissorBounds(left, top, left + right, top + bottom), field_0x24(-1), field_0x28(-1),
       field_0x2c(-1), field_0x30(-1) {
     JUtility::TColor color(-1);
-    setColor(color, color, color, color);
+    setColor(color);
     setLineWidth(6);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J2DGrafContext::J2DGrafContext(f32 param_0, f32 param_1, f32 param_2, f32 param_3) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DGrafContext/__ct__14J2DGrafContextFffff.s"
-}
-#pragma pop
-#endif
-
-/* ############################################################################################## */
-/* 80456148-8045614C 004748 0004+00 5/5 0/0 0/0 .sdata2          @627 */
-SECTION_SDATA2 static u8 lit_627[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 8045614C-80456150 00474C 0004+00 1/1 0/0 0/0 .sdata2          @628 */
-SECTION_SDATA2 static f32 lit_628 = 1.0f;
 
 /* 802E8BB4-802E8C44 2E34F4 0090+00 1/0 1/1 0/0 .text            setPort__14J2DGrafContextFv */
-// matches with literal
-#ifdef NONMATCHING
 void J2DGrafContext::setPort() {
     setScissor();
     setup2D();
@@ -112,160 +40,182 @@ void J2DGrafContext::setPort() {
     }
     GXSetViewport(x_origin, y_origin, width - x_origin, height - y_origin, 0.0f, 1.0f);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DGrafContext::setPort() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DGrafContext/setPort__14J2DGrafContextFv.s"
-}
-#pragma pop
-#endif
 
 /* 802E8C44-802E8E20 2E3584 01DC+00 1/0 1/0 0/0 .text            setup2D__14J2DGrafContextFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DGrafContext::setup2D() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DGrafContext/setup2D__14J2DGrafContextFv.s"
+void J2DGrafContext::setup2D() {
+    GXSetNumIndStages(0);
+    for (int i = 0; i < 0x10; i++) {
+        GXSetTevDirect((GXTevStageID)i);
+    }
+    GXSetZCompLoc(GX_FALSE);
+    GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_OR, GX_GREATER, 0);
+    GXSetZMode(GX_FALSE, GX_LEQUAL, GX_FALSE);
+    GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+    GXSetNumChans(1);
+    GXSetNumTevStages(1);
+    GXSetNumTexGens(0);
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+    GXSetCullMode(GX_CULL_NONE);
+    GXLoadPosMtxImm(mPosMtx, 0);
+    Mtx mtx;
+    PSMTXIdentity(mtx);
+    GXLoadTexMtxImm(mtx, 0x3c, GX_MTX3x4);
+    GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE,
+                  GX_AF_NONE);
+    GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE,
+                  GX_AF_NONE);
+    GXSetCurrentMtx(0);
+    GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 0x3c, GX_FALSE, 0x7d);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_CLR_RGBA, GX_RGBA8, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBX8, 0xf);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX1, GX_CLR_RGBA, GX_RGBX8, 0xf);
+    GXSetLineWidth(mLineWidth, GX_TO_ZERO);
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_TEX0, GX_NONE);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80456150-80456158 004750 0004+04 1/1 0/0 0/0 .sdata2          @730 */
-SECTION_SDATA2 static f32 lit_730[1 + 1 /* padding */] = {
-    1024.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80456158-80456160 004758 0008+00 1/1 0/0 0/0 .sdata2          @732 */
-SECTION_SDATA2 static f64 lit_732 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802E8E20-802E90C0 2E3760 02A0+00 1/0 2/1 0/0 .text            setScissor__14J2DGrafContextFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DGrafContext::setScissor() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DGrafContext/setScissor__14J2DGrafContextFv.s"
+void J2DGrafContext::setScissor() {
+    JGeometry::TBox2<f32> bounds(0, 0, 1024, 1024);
+    JGeometry::TBox2<f32> curBounds(mScissorBounds);
+    mScissorBounds.intersect(bounds);
+    curBounds.absolute();
+    if (curBounds.intersect(bounds)) {
+        curBounds.i.x = (u32)curBounds.i.x;
+        curBounds.i.y = (u32)curBounds.i.y;
+        curBounds.f.x = ceil(curBounds.f.x);
+        curBounds.f.y = ceil(curBounds.f.y);
+        GXSetScissor(curBounds.i.x, curBounds.i.y, curBounds.getWidth(), curBounds.getHeight());
+    } else {
+        GXSetScissor(0, 0, 0, 0);
+    }
 }
-#pragma pop
 
 /* 802E90C0-802E90E4 2E3A00 0024+00 0/0 10/10 0/0 .text
  * scissor__14J2DGrafContextFRCQ29JGeometry8TBox2<f>            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DGrafContext::scissor(JGeometry::TBox2<f32> const& param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DGrafContext/func_802E90C0.s"
+void J2DGrafContext::scissor(JGeometry::TBox2<f32> const& bounds) {
+    mScissorBounds = bounds;
 }
-#pragma pop
 
 /* 802E90E4-802E9118 2E3A24 0034+00 1/0 1/0 0/0 .text
  * place__14J2DGrafContextFRCQ29JGeometry8TBox2<f>              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DGrafContext::place(JGeometry::TBox2<f32> const& param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DGrafContext/func_802E90E4.s"
+void J2DGrafContext::place(JGeometry::TBox2<f32> const& bounds) {
+    mBounds = bounds;
+    mScissorBounds = bounds;
 }
-#pragma pop
 
 /* 802E9118-802E9234 2E3A58 011C+00 1/1 4/4 0/0 .text
  * setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DGrafContext::setColor(JUtility::TColor param_0, JUtility::TColor param_1,
-                                  JUtility::TColor param_2, JUtility::TColor param_3) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DGrafContext/func_802E9118.s"
+void J2DGrafContext::setColor(JUtility::TColor color1, JUtility::TColor color2,
+                              JUtility::TColor color3, JUtility::TColor color4) {
+    field_0x24 = color1;
+    field_0x28 = color2;
+    field_0x2c = color3;
+    field_0x30 = color4;
+    field_0xb0 = GX_BM_BLEND;
+    field_0xb1 = GX_BL_SRC_ALPHA;
+    field_0xb2 = GX_BL_INV_SRC_ALPHA;
+    mLineBlendMode = GX_BM_BLEND;
+    mLineSrcBlendFactor = GX_BL_SRC_ALPHA;
+    mLineDstBlendFactor = GX_BL_INV_SRC_ALPHA;
+    mBoxBlendMode = GX_BM_BLEND;
+    mBoxSrcBlendFactor = GX_BL_SRC_ALPHA;
+    mBoxDstBlendFactor = GX_BL_INV_SRC_ALPHA;
+    if ((field_0x24 & 0xFF) != 0xFF) {
+        return;
+    }
+    field_0xb0 = GX_BM_NONE;
+    field_0xb1 = GX_BL_ONE;
+    field_0xb2 = GX_BL_ZERO;
+    if ((field_0x2c & 0xFF) != 0xFF) {
+        return;
+    }
+    mLineBlendMode = GX_BM_NONE;
+    mLineSrcBlendFactor = GX_BL_ONE;
+    mLineDstBlendFactor = GX_BL_ZERO;
+    if ((field_0x28 & 0xFF) != 0xFF) {
+        return;
+    }
+    if ((field_0x30 & 0xFF) != 0xFF) {
+        return;
+    }
+    mBoxBlendMode = GX_BM_NONE;
+    mBoxSrcBlendFactor = GX_BL_ONE;
+    mBoxDstBlendFactor = GX_BL_ZERO;
 }
-#pragma pop
 
 /* 802E9234-802E9260 2E3B74 002C+00 1/1 2/2 0/0 .text            setLineWidth__14J2DGrafContextFUc
  */
-void J2DGrafContext::setLineWidth(u8 param_0) {
-    mLineWidth = param_0;
+void J2DGrafContext::setLineWidth(u8 lineWidth) {
+    mLineWidth = lineWidth;
     GXSetLineWidth(mLineWidth, GX_TO_ZERO);
 }
 
 /* 802E9260-802E9368 2E3BA0 0108+00 0/0 2/2 0/0 .text
  * fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DGrafContext::fillBox(JGeometry::TBox2<f32> const& param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DGrafContext/func_802E9260.s"
+void J2DGrafContext::fillBox(JGeometry::TBox2<f32> const& box) {
+    GXSetBlendMode((GXBlendMode)mBoxBlendMode, (GXBlendFactor)mBoxSrcBlendFactor,
+                   (GXBlendFactor)mBoxDstBlendFactor, GX_LO_SET);
+    GXLoadPosMtxImm(mPosMtx, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
+    GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+    GXPosition3f32(box.i.x, box.i.y, 0);
+    GXColor1u32(field_0x24);
+    GXPosition3f32(box.f.x, box.i.y, 0);
+    GXColor1u32(field_0x28);
+    GXPosition3f32(box.f.x, box.f.y, 0);
+    GXColor1u32(field_0x30);
+    GXPosition3f32(box.i.x, box.f.y, 0);
+    GXColor1u32(field_0x2c);
+    GXEnd();
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
 }
-#pragma pop
 
 /* 802E9368-802E9488 2E3CA8 0120+00 0/0 1/1 0/0 .text
  * drawFrame__14J2DGrafContextFRCQ29JGeometry8TBox2<f>          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DGrafContext::drawFrame(JGeometry::TBox2<f32> const& param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DGrafContext/func_802E9368.s"
+void J2DGrafContext::drawFrame(JGeometry::TBox2<f32> const& box) {
+    GXSetBlendMode((GXBlendMode)mBoxBlendMode, (GXBlendFactor)mBoxSrcBlendFactor,
+                   (GXBlendFactor)mBoxDstBlendFactor, GX_LO_SET);
+    GXLoadPosMtxImm(mPosMtx, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
+    GXBegin(GX_LINESTRIP, GX_VTXFMT0, 5);
+    GXPosition3f32(box.i.x, box.i.y, 0);
+    GXColor1u32(field_0x24);
+    GXPosition3f32(box.f.x, box.i.y, 0);
+    GXColor1u32(field_0x28);
+    GXPosition3f32(box.f.x, box.f.y, 0);
+    GXColor1u32(field_0x30);
+    GXPosition3f32(box.i.x, box.f.y, 0);
+    GXColor1u32(field_0x2c);
+    GXPosition3f32(box.i.x, box.i.y, 0);
+    GXColor1u32(field_0x24);
+    GXEnd();
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
 }
-#pragma pop
 
 /* 802E9488-802E9564 2E3DC8 00DC+00 1/1 0/0 0/0 .text
  * line__14J2DGrafContextFQ29JGeometry8TVec2<f>Q29JGeometry8TVec2<f> */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DGrafContext::line(JGeometry::TVec2<f32> param_0, JGeometry::TVec2<f32> param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DGrafContext/func_802E9488.s"
+void J2DGrafContext::line(JGeometry::TVec2<f32> start, JGeometry::TVec2<f32> end) {
+    GXSetBlendMode((GXBlendMode)mLineBlendMode, (GXBlendFactor)mLineSrcBlendFactor,
+                   (GXBlendFactor)mLineDstBlendFactor, GX_LO_SET);
+    GXLoadPosMtxImm(mPosMtx, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
+    GXBegin(GX_LINES, GX_VTXFMT0, 2);
+    GXPosition3f32(start.x, start.y, 0);
+    GXColor1u32(field_0x24);
+    GXPosition3f32(end.x, end.y, 0);
+    GXColor1u32(field_0x2c);
+    GXEnd();
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
 }
-#pragma pop
 
 /* 802E9564-802E95D4 2E3EA4 0070+00 0/0 1/1 0/0 .text
  * lineTo__14J2DGrafContextFQ29JGeometry8TVec2<f>               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DGrafContext::lineTo(JGeometry::TVec2<f32> param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DGrafContext/func_802E9564.s"
-}
-#pragma pop
-
-/* 802E95D4-802E961C 2E3F14 0048+00 1/0 0/0 0/0 .text            __dt__14J2DGrafContextFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J2DGrafContext::~J2DGrafContext() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DGrafContext/__dt__14J2DGrafContextFv.s"
-}
-#pragma pop
-
-/* 802E961C-802E9664 2E3F5C 0048+00 1/0 1/0 0/0 .text            place__14J2DGrafContextFffff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DGrafContext::place(f32 param_0, f32 param_1, f32 param_2, f32 param_3) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DGrafContext/place__14J2DGrafContextFffff.s"
-}
-#pragma pop
-
-/* 802E9664-802E966C 2E3FA4 0008+00 1/0 0/0 0/0 .text            getGrafType__14J2DGrafContextCFv */
-bool J2DGrafContext::getGrafType() const {
-    return false;
-}
-
-/* 802E966C-802E9670 2E3FAC 0004+00 1/0 0/0 0/0 .text            setLookat__14J2DGrafContextFv */
-void J2DGrafContext::setLookat() {
-    /* empty function */
+void J2DGrafContext::lineTo(JGeometry::TVec2<f32> pos) {
+    this->line(mPrevPos, pos);
+    mPrevPos = pos;
 }
