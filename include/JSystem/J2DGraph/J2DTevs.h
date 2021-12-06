@@ -1,9 +1,9 @@
 #ifndef J2DTEVS_H
 #define J2DTEVS_H
 
+#include "dolphin/gx/GX.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
-#include "dolphin/gx/GX.h"
 
 struct J2DTextureSRTInfo {
     /* 0x00 */ f32 field_0x0;

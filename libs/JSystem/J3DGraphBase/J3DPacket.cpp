@@ -4,12 +4,12 @@
 //
 
 #include "JSystem/J3DGraphBase/J3DPacket.h"
+#include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/J3DGraphBase/J3DShape.h"
 #include "JSystem/J3DGraphBase/J3DShapeMtx.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "JSystem/J3DGraphBase/J3DVertex.h"
-#include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "MSL_C.PPCEABI.bare.H/MSL_Common/src/string.h"
 #include "dol2asm.h"
@@ -362,7 +362,7 @@ void J3DMatPacket::draw() {
         }
 
         packet->drawFast();
-        packet = (J3DShapePacket*) packet->getNextPacket();
+        packet = (J3DShapePacket*)packet->getNextPacket();
     }
 
     shape->resetVcdVatCache();

@@ -1,9 +1,9 @@
 #ifndef JPARESOURCEMANAGER_H
 #define JPARESOURCEMANAGER_H
 
-#include "dolphin/types.h"
-#include "dolphin/gx/GX.h"
 #include "JSystem/JParticle/JPATexture.h"
+#include "dolphin/gx/GX.h"
+#include "dolphin/types.h"
 
 class JKRHeap;
 class ResTIMG;
@@ -19,9 +19,7 @@ public:
     /* 80273FAC */ void registTex(JPATexture*);
     /* 80273FCC */ u32 getResUserWork(u16) const;
 
-    void load(u16 idx, GXTexMapID texMapID) {
-        mpTexArr[idx]->load(texMapID);
-    }
+    void load(u16 idx, GXTexMapID texMapID) { mpTexArr[idx]->load(texMapID); }
 
 public:
     /* 0x00 */ JKRHeap* mpHeap;

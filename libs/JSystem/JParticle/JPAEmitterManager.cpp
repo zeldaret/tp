@@ -4,9 +4,9 @@
 //
 
 #include "JSystem/JParticle/JPAEmitterManager.h"
-#include "JSystem/JParticle/JPAResourceManager.h"
-#include "JSystem/JParticle/JPAParticle.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JParticle/JPAParticle.h"
+#include "JSystem/JParticle/JPAResourceManager.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -78,7 +78,8 @@ extern "C" extern u32 __float_epsilon;
 /* 8027DCA0-8027DEBC 2785E0 021C+00 0/0 1/1 0/0 .text __ct__17JPAEmitterManagerFUlUlP7JKRHeapUcUc
  */
 #ifdef NONMATCHING
-JPAEmitterManager::JPAEmitterManager(u32 ptclMax, u32 emtrMax, JKRHeap* pHeap, u8 grpMax, u8 resMax) {
+JPAEmitterManager::JPAEmitterManager(u32 ptclMax, u32 emtrMax, JKRHeap* pHeap, u8 grpMax,
+                                     u8 resMax) {
     mEmtrMax = emtrMax;
     mPtclMax = ptclMax;
     mGrpMax = grpMax;
@@ -115,13 +116,13 @@ asm JPAEmitterManager::JPAEmitterManager(u32 param_0, u32 param_1, JKRHeap* para
 /* 8027DEBC-8027DFA0 2787FC 00E4+00 0/0 3/3 0/0 .text
  * createSimpleEmitterID__17JPAEmitterManagerFRCQ29JGeometry8TVec3<f>UsUcUcP18JPAEmitterCallBackP19JPAParticleCallBack
  */
-JPABaseEmitter* JPAEmitterManager::createSimpleEmitterID(JGeometry::TVec3<f32> const& pos, u16 resID,
-                                                         u8 groupID, u8 resMgrID,
+JPABaseEmitter* JPAEmitterManager::createSimpleEmitterID(JGeometry::TVec3<f32> const& pos,
+                                                         u16 resID, u8 groupID, u8 resMgrID,
                                                          JPAEmitterCallBack* emtrCB,
                                                          JPAParticleCallBack* ptclCB) {
     JPAResource* pRes = mpResMgrAry[resMgrID]->getResource(resID);
     if (pRes != NULL && mFreeEmtrList.getNumLinks() != 0) {
-        JSULink<JPABaseEmitter> *pLink = mFreeEmtrList.getFirst();
+        JSULink<JPABaseEmitter>* pLink = mFreeEmtrList.getFirst();
         mFreeEmtrList.remove(pLink);
         mpGrpEmtr[groupID].append(pLink);
         JPABaseEmitter* emtr = pLink->getObject();
@@ -140,7 +141,8 @@ JPABaseEmitter* JPAEmitterManager::createSimpleEmitterID(JGeometry::TVec3<f32> c
 
 /* 8027DFA0-8027E028 2788E0 0088+00 0/0 3/3 0/0 .text            calc__17JPAEmitterManagerFUc */
 void JPAEmitterManager::calc(u8 groupID) {
-    for (JSULink<JPABaseEmitter>* pLink = mpGrpEmtr[groupID].getFirst(), *pNext; pLink != mpGrpEmtr[groupID].getEnd(); pLink = pNext) {
+    for (JSULink<JPABaseEmitter>*pLink = mpGrpEmtr[groupID].getFirst(), *pNext;
+         pLink != mpGrpEmtr[groupID].getEnd(); pLink = pNext) {
         pNext = pLink->getNext();
 
         JPABaseEmitter* emtr = pLink->getObject();
@@ -172,11 +174,14 @@ void JPAEmitterManager::draw(JPADrawInfo const* drawInfo, u8 groupID) {
     GXSetVtxAttrFmt(GX_VTXFMT1, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
     GXSetVtxAttrFmt(GX_VTXFMT1, GX_VA_TEX0, GX_TEX_ST, GX_F32, 0);
     GXSetCurrentMtx(GX_PNMTX0);
-    GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
-    GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+    GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE,
+                  GX_AF_NONE);
+    GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE,
+                  GX_AF_NONE);
     GXSetNumChans(0);
 
-    for (JSULink<JPABaseEmitter>* pLink = mpGrpEmtr[groupID].getFirst(); pLink != mpGrpEmtr[groupID].getEnd(); pLink = pLink->getNext()) {
+    for (JSULink<JPABaseEmitter>* pLink = mpGrpEmtr[groupID].getFirst();
+         pLink != mpGrpEmtr[groupID].getEnd(); pLink = pLink->getNext()) {
         JPABaseEmitter* emtr = pLink->getObject();
         if (!emtr->checkStatus(0x04)) {
             mpWorkData->mpResMgr = mpResMgrAry[emtr->mResMgrID];
@@ -218,7 +223,8 @@ void JPAEmitterManager::entryResourceManager(JPAResourceManager* resMgr, u8 resM
  */
 void JPAEmitterManager::clearResourceManager(u8 resMgrID) {
     for (u8 i = 0; i < mGrpMax; i++) {
-        for (JSULink<JPABaseEmitter>* pLink = mpGrpEmtr[i].getFirst(), *pNext; pLink != mpGrpEmtr[i].getEnd(); pLink = pNext) {
+        for (JSULink<JPABaseEmitter>*pLink = mpGrpEmtr[i].getFirst(), *pNext;
+             pLink != mpGrpEmtr[i].getEnd(); pLink = pNext) {
             pNext = pLink->getNext();
 
             if (resMgrID == pLink->getObject()->getResourceManagerID())
@@ -308,10 +314,7 @@ extern "C" asm void func_8027E598(void* _this) {
 #pragma pop
 
 /* 8027E5EC-8027E64C 278F2C 0060+00 1/1 0/0 0/0 .text            __dt__14JPABaseEmitterFv */
-JPABaseEmitter::~JPABaseEmitter() {
-}
+JPABaseEmitter::~JPABaseEmitter() {}
 
 /* 8027E64C-8027E6A4 278F8C 0058+00 1/1 0/0 0/0 .text            __ct__14JPABaseEmitterFv */
-JPABaseEmitter::JPABaseEmitter()
-    : mLink(this) {
-}
+JPABaseEmitter::JPABaseEmitter() : mLink(this) {}

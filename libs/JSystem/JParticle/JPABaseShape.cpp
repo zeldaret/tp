@@ -81,21 +81,21 @@ public:
     const GXTevColorArg* getTevColorArg() const { return st_ca[(mpData->mFlags >> 0x0F) & 0x07]; }
     const GXTevAlphaArg* getTevAlphaArg() const { return st_aa[(mpData->mFlags >> 0x12) & 0x01]; }
 
-    u32 getType() const          { return (mpData->mFlags >>  0) & 0x0F; }
-    u32 getDirType() const       { return (mpData->mFlags >>  4) & 0x07; }
-    u32 getRotType() const       { return (mpData->mFlags >>  7) & 0x07; }
+    u32 getType() const { return (mpData->mFlags >> 0) & 0x0F; }
+    u32 getDirType() const { return (mpData->mFlags >> 4) & 0x07; }
+    u32 getRotType() const { return (mpData->mFlags >> 7) & 0x07; }
     u32 getBasePlaneType() const { return (mpData->mFlags >> 10) & 0x07; }
-    u32 getTilingS() const       { return (mpData->mFlags >> 25) & 0x01; }
-    u32 getTilingT() const       { return (mpData->mFlags >> 26) & 0x01; }
-    bool isGlblClrAnm() const    { return !!(mpData->mFlags & 0x00001000); }
-    bool isGlblTexAnm() const    { return !!(mpData->mFlags & 0x00004000); }
-    bool isPrjTex() const        { return !!(mpData->mFlags & 0x00100000); }
-    bool isDrawFwdAhead() const  { return !!(mpData->mFlags & 0x00200000); }
+    u32 getTilingS() const { return (mpData->mFlags >> 25) & 0x01; }
+    u32 getTilingT() const { return (mpData->mFlags >> 26) & 0x01; }
+    bool isGlblClrAnm() const { return !!(mpData->mFlags & 0x00001000); }
+    bool isGlblTexAnm() const { return !!(mpData->mFlags & 0x00004000); }
+    bool isPrjTex() const { return !!(mpData->mFlags & 0x00100000); }
+    bool isDrawFwdAhead() const { return !!(mpData->mFlags & 0x00200000); }
     bool isDrawPrntAhead() const { return !!(mpData->mFlags & 0x00400000); }
-    bool isClipOn() const        { return !!(mpData->mFlags & 0x00800000); }
-    bool isTexCrdAnm() const     { return !!(mpData->mFlags & 0x01000000); }
-    bool isNoDrawParent() const  { return !!(mpData->mFlags & 0x08000000); }
-    bool isNoDrawChild() const   { return !!(mpData->mFlags & 0x10000000); }
+    bool isClipOn() const { return !!(mpData->mFlags & 0x00800000); }
+    bool isTexCrdAnm() const { return !!(mpData->mFlags & 0x01000000); }
+    bool isNoDrawParent() const { return !!(mpData->mFlags & 0x08000000); }
+    bool isNoDrawChild() const { return !!(mpData->mFlags & 0x10000000); }
 
     bool isPrmAnm() const { return !!(mpData->mClrFlg & 0x02); }
     bool isEnvAnm() const { return !!(mpData->mClrFlg & 0x08); }
@@ -466,7 +466,7 @@ void JPACalcPrm(JPAEmitterWorkData* work) {
 
 /* 80277404-80277440 271D44 003C+00 0/0 1/1 0/0 .text
  * JPACalcPrm__FP18JPAEmitterWorkDataP15JPABaseParticle         */
-void JPACalcPrm(JPAEmitterWorkData* work, JPABaseParticle*ptcl) {
+void JPACalcPrm(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
     work->mpRes->getBsp()->getPrmClr(work->mClrKeyFrame, &ptcl->mPrmClr);
 }
 
@@ -1073,7 +1073,7 @@ static asm void makeColorTable(_GXColor** param_0, JPAClrAnmKeyData const* param
 /* 8027A6DC-8027A7E8 27501C 010C+00 0/0 1/1 0/0 .text            __ct__12JPABaseShapeFPCUcP7JKRHeap
  */
 JPABaseShape::JPABaseShape(u8 const* pData, JKRHeap* pHeap) {
-    mpData = (const JPABaseShapeData*) pData;
+    mpData = (const JPABaseShapeData*)pData;
 
     if (isTexCrdAnm()) {
         mpTexCrdMtxAnmTbl = (const void*)(pData + sizeof(JPABaseShapeData));
@@ -1091,13 +1091,15 @@ JPABaseShape::JPABaseShape(u8 const* pData, JKRHeap* pHeap) {
     }
 
     if (isPrmAnm()) {
-        makeColorTable(&mpPrmClrAnmTbl, (JPAClrAnmKeyData*)(pData + mpData->mClrPrmAnmOffset), mpData->mClrPrmKeyNum, mpData->mClrAnmFrmMax, pHeap);
+        makeColorTable(&mpPrmClrAnmTbl, (JPAClrAnmKeyData*)(pData + mpData->mClrPrmAnmOffset),
+                       mpData->mClrPrmKeyNum, mpData->mClrAnmFrmMax, pHeap);
     } else {
         mpPrmClrAnmTbl = NULL;
     }
 
     if (isEnvAnm()) {
-        makeColorTable(&mpEnvClrAnmTbl, (JPAClrAnmKeyData*)(pData + mpData->mClrEnvAnmOffset), mpData->mClrEnvKeyNum, mpData->mClrAnmFrmMax, pHeap);
+        makeColorTable(&mpEnvClrAnmTbl, (JPAClrAnmKeyData*)(pData + mpData->mClrEnvAnmOffset),
+                       mpData->mClrEnvKeyNum, mpData->mClrAnmFrmMax, pHeap);
     } else {
         mpEnvClrAnmTbl = NULL;
     }
@@ -1113,48 +1115,21 @@ SECTION_DATA GXBlendMode JPABaseShape::st_bm[3] = {
 
 /* 803C436C-803C4394 02148C 0028+00 0/1 0/0 0/0 .data            st_bf__12JPABaseShape */
 SECTION_DATA GXBlendFactor JPABaseShape::st_bf[10] = {
-    GX_BL_ZERO,
-    GX_BL_ONE,
-    GX_BL_SRC_COLOR,
-    GX_BL_INV_SRC_COLOR,
-    GX_BL_SRC_COLOR,
-    GX_BL_INV_SRC_COLOR,
-    GX_BL_SRC_ALPHA,
-    GX_BL_INV_SRC_ALPHA,
-    GX_BL_DST_ALPHA,
-    GX_BL_INV_DST_ALPHA,
+    GX_BL_ZERO,      GX_BL_ONE,           GX_BL_SRC_COLOR, GX_BL_INV_SRC_COLOR,
+    GX_BL_SRC_COLOR, GX_BL_INV_SRC_COLOR, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA,
+    GX_BL_DST_ALPHA, GX_BL_INV_DST_ALPHA,
 };
 
 /* 803C4394-803C43D4 0214B4 0040+00 0/1 0/0 0/0 .data            st_lo__12JPABaseShape */
 SECTION_DATA GXLogicOp JPABaseShape::st_lo[16] = {
-    GX_LO_CLEAR,
-    GX_LO_SET,
-    GX_LO_COPY,
-    GX_LO_INV_COPY,
-    GX_LO_NOOP,
-    GX_LO_INV,
-    GX_LO_AND,
-    GX_LO_NAND,
-    GX_LO_OR,
-    GX_LO_NOR,
-    GX_LO_XOR,
-    GX_LO_EQUIV,
-    GX_LO_REV_AND,
-    GX_LO_INV_AND,
-    GX_LO_REV_OR,
-    GX_LO_INV_OR,
+    GX_LO_CLEAR,   GX_LO_SET,     GX_LO_COPY,   GX_LO_INV_COPY, GX_LO_NOOP, GX_LO_INV,
+    GX_LO_AND,     GX_LO_NAND,    GX_LO_OR,     GX_LO_NOR,      GX_LO_XOR,  GX_LO_EQUIV,
+    GX_LO_REV_AND, GX_LO_INV_AND, GX_LO_REV_OR, GX_LO_INV_OR,
 };
 
 /* 803C43D4-803C43F4 0214F4 0020+00 0/1 0/0 0/0 .data            st_c__12JPABaseShape */
 SECTION_DATA GXCompare JPABaseShape::st_c[8] = {
-    GX_NEVER,
-    GX_LESS,
-    GX_LEQUAL,
-    GX_EQUAL,
-    GX_NEQUAL,
-    GX_GEQUAL,
-    GX_GREATER,
-    GX_ALWAYS,
+    GX_NEVER, GX_LESS, GX_LEQUAL, GX_EQUAL, GX_NEQUAL, GX_GEQUAL, GX_GREATER, GX_ALWAYS,
 };
 
 /* 803C43F4-803C4404 021514 0010+00 0/1 0/0 0/0 .data            st_ao__12JPABaseShape */
@@ -1167,25 +1142,65 @@ SECTION_DATA GXAlphaOp JPABaseShape::st_ao[4] = {
 
 /* 803C4404-803C4464 021524 0060+00 0/1 0/0 0/0 .data            st_ca__12JPABaseShape */
 SECTION_DATA GXTevColorArg JPABaseShape::st_ca[6][4] = {
-    { GX_CC_ZERO, GX_CC_TEXC, GX_CC_ONE,  GX_CC_ZERO, },
-    { GX_CC_ZERO, GX_CC_C0,   GX_CC_TEXC, GX_CC_ZERO, },
-    { GX_CC_C0,   GX_CC_ONE,  GX_CC_TEXC, GX_CC_ZERO, },
-    { GX_CC_C1,   GX_CC_C0,   GX_CC_TEXC, GX_CC_ZERO, },
-    { GX_CC_ZERO, GX_CC_TEXC, GX_CC_C0,   GX_CC_C1,   },
-    { GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, GX_CC_C0,   },
+    {
+        GX_CC_ZERO,
+        GX_CC_TEXC,
+        GX_CC_ONE,
+        GX_CC_ZERO,
+    },
+    {
+        GX_CC_ZERO,
+        GX_CC_C0,
+        GX_CC_TEXC,
+        GX_CC_ZERO,
+    },
+    {
+        GX_CC_C0,
+        GX_CC_ONE,
+        GX_CC_TEXC,
+        GX_CC_ZERO,
+    },
+    {
+        GX_CC_C1,
+        GX_CC_C0,
+        GX_CC_TEXC,
+        GX_CC_ZERO,
+    },
+    {
+        GX_CC_ZERO,
+        GX_CC_TEXC,
+        GX_CC_C0,
+        GX_CC_C1,
+    },
+    {
+        GX_CC_ZERO,
+        GX_CC_ZERO,
+        GX_CC_ZERO,
+        GX_CC_C0,
+    },
 };
 
 /* 803C4464-803C4488 021584 0020+04 0/1 0/0 0/0 .data            st_aa__12JPABaseShape */
 SECTION_DATA GXTevAlphaArg JPABaseShape::st_aa[2][4] = {
-    { GX_CA_ZERO, GX_CA_TEXA, GX_CA_A0,   GX_CA_ZERO, },
-    { GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_A0,   },
+    {
+        GX_CA_ZERO,
+        GX_CA_TEXA,
+        GX_CA_A0,
+        GX_CA_ZERO,
+    },
+    {
+        GX_CA_ZERO,
+        GX_CA_ZERO,
+        GX_CA_ZERO,
+        GX_CA_A0,
+    },
 };
 
 /* 8027A7E8-8027A918 275128 0130+00 0/0 1/1 0/0 .text setGX__12JPABaseShapeCFP18JPAEmitterWorkData
  */
 void JPABaseShape::setGX(JPAEmitterWorkData* work) const {
-    const GXTevColorArg *colorArg = getTevColorArg();
-    const GXTevAlphaArg *alphaArg = getTevAlphaArg();
+    const GXTevColorArg* colorArg = getTevColorArg();
+    const GXTevAlphaArg* alphaArg = getTevAlphaArg();
     GXSetBlendMode(getBlendMode(), getBlendSrc(), getBlendDst(), getLogicOp());
     GXSetZMode(getZEnable(), getZCmp(), getZUpd());
     GXSetAlphaCompare(getAlphaCmp0(), getAlphaRef0(), getAlphaOp(), getAlphaCmp1(), getAlphaRef1());

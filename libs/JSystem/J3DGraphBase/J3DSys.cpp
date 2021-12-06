@@ -5,8 +5,8 @@
 
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "dolphin/gx/GXPixel.h"
+#include "dolphin/types.h"
 
 //
 // Forward References:
@@ -183,15 +183,17 @@ void J3DSys::reinitGenMode() {
 
 /* ############################################################################################## */
 /* 80450950-80450954 0003D0 0004+00 2/2 0/0 0/0 .sdata           ColorBlack */
-SECTION_SDATA static GXColor ColorBlack = { 0x00, 0x00, 0x00, 0x00 };
+SECTION_SDATA static GXColor ColorBlack = {0x00, 0x00, 0x00, 0x00};
 
 /* 80450954-80450958 0003D4 0004+00 2/2 0/0 0/0 .sdata           ColorWhite */
-SECTION_SDATA static GXColor ColorWhite = { 0xFF, 0xFF, 0xFF, 0xFF };
+SECTION_SDATA static GXColor ColorWhite = {0xFF, 0xFF, 0xFF, 0xFF};
 
 /* 803107E8-80310894 30B128 00AC+00 1/1 0/0 0/0 .text            reinitLighting__6J3DSysFv */
 void J3DSys::reinitLighting() {
-    GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
-    GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+    GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE,
+                  GX_AF_NONE);
+    GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE,
+                  GX_AF_NONE);
     GXSetChanAmbColor(GX_COLOR0A0, ColorBlack);
     GXSetChanAmbColor(GX_COLOR1A1, ColorBlack);
     GXSetChanMatColor(GX_COLOR0A0, ColorWhite);
@@ -254,24 +256,26 @@ void J3DSys::reinitTevStages() {
 
     for (u32 i = 0; i < GX_MAX_TEVSTAGE; i++) {
         GXSetTevColorIn((GXTevStageID)i, GX_CC_RASC, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO);
-        GXSetTevColorOp((GXTevStageID)i, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+        GXSetTevColorOp((GXTevStageID)i, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE,
+                        GX_TEVPREV);
         GXSetTevAlphaIn((GXTevStageID)i, GX_CA_RASA, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO);
-        GXSetTevAlphaOp((GXTevStageID)i, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+        GXSetTevAlphaOp((GXTevStageID)i, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE,
+                        GX_TEVPREV);
         GXSetTevKColorSel((GXTevStageID)i, GX_TEV_KCSEL_1_4);
         GXSetTevKAlphaSel((GXTevStageID)i, GX_TEV_KASEL_1);
         GXSetTevSwapMode((GXTevStageID)i, GX_TEV_SWAP0, GX_TEV_SWAP0);
     }
 
-    GXSetTevSwapModeTable(GX_TEV_SWAP0, GX_CH_RED,   GX_CH_GREEN, GX_CH_BLUE,  GX_CH_ALPHA);
-    GXSetTevSwapModeTable(GX_TEV_SWAP1, GX_CH_RED,   GX_CH_RED,   GX_CH_RED,   GX_CH_ALPHA);
+    GXSetTevSwapModeTable(GX_TEV_SWAP0, GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
+    GXSetTevSwapModeTable(GX_TEV_SWAP1, GX_CH_RED, GX_CH_RED, GX_CH_RED, GX_CH_ALPHA);
     GXSetTevSwapModeTable(GX_TEV_SWAP2, GX_CH_GREEN, GX_CH_GREEN, GX_CH_GREEN, GX_CH_ALPHA);
-    GXSetTevSwapModeTable(GX_TEV_SWAP3, GX_CH_BLUE,  GX_CH_BLUE,  GX_CH_BLUE,  GX_CH_ALPHA);
+    GXSetTevSwapModeTable(GX_TEV_SWAP3, GX_CH_BLUE, GX_CH_BLUE, GX_CH_BLUE, GX_CH_ALPHA);
     GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_AND, GX_ALWAYS, 0);
 }
 
 /* ############################################################################################## */
 /* 803CD8E0-803CD8F8 02AA00 0018+00 1/1 0/0 0/0 .data            IndMtx */
-SECTION_DATA static Mtx23 IndMtx = { 0.5f, 0.0f, 0.0f, 0.0f, 0.5f, 0.0f };
+SECTION_DATA static Mtx23 IndMtx = {0.5f, 0.0f, 0.0f, 0.0f, 0.5f, 0.0f};
 
 /* 80310D44-80310E3C 30B684 00F8+00 1/1 0/0 0/0 .text            reinitIndStages__6J3DSysFv */
 void J3DSys::reinitIndStages() {

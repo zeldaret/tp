@@ -48,15 +48,13 @@ public:
     /* 8027BB4C */ void init();
     /* 8027BBE8 */ void create(JPAEmitterWorkData*);
 
-    void calc(JPAEmitterWorkData* work) {
-        mpCalcVolumeFunc(work);
-    }
+    void calc(JPAEmitterWorkData* work) { mpCalcVolumeFunc(work); }
 
     s16 getStartFrame() const { return mpData->mStartFrame; }
     u32 getResUserWork() const { return mpData->mResUserWork; }
 
 public:
-    JPADynamicsBlockData *mpData;
+    JPADynamicsBlockData* mpData;
     JPADynamicsCalcVolumeFunc mpCalcVolumeFunc;
 };
 

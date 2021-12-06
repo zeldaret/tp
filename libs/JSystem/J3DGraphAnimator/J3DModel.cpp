@@ -6,8 +6,8 @@
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "JSystem/J3DGraphBase/J3DTransform.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "dolphin/os/OSCache.h"
+#include "dolphin/types.h"
 
 //
 // Forward References:
@@ -498,7 +498,8 @@ void J3DModel::calcBumpMtx() {
         if (!material->getNBTScale()->mbHasScale)
             continue;
 
-        material->getShape()->calcNBTScale(*material->getNBTScale()->getScale(), getNrmMtxPtr(), getBumpMtxPtr(i));
+        material->getShape()->calcNBTScale(*material->getNBTScale()->getScale(), getNrmMtxPtr(),
+                                           getBumpMtxPtr(i));
         DCStoreRange(getBumpMtxPtr(i), getModelData()->getDrawMtxNum() * 0x24);
     }
 }

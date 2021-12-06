@@ -26,8 +26,8 @@ class J3DDrawMtxData;
 enum J3DShpFlag {
     J3DShpFlag_SkinPosCpu = 0x0004,
     J3DShpFlag_SkinNrmCpu = 0x0008,
-    J3DShpFlag_Hidden     = 0x0010,
-    J3DShpFlag_EnableLod  = 0x0100,
+    J3DShpFlag_Hidden = 0x0010,
+    J3DShpFlag_EnableLod = 0x0100,
 };
 
 class J3DShape {

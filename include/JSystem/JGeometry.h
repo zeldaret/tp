@@ -1,8 +1,8 @@
 #ifndef JGEOMETRY_H
 #define JGEOMETRY_H
 
-#include "dolphin/types.h"
 #include "dolphin/mtx/vec.h"
+#include "dolphin/types.h"
 
 namespace JGeometry {
 
@@ -19,7 +19,7 @@ struct TVec3 {
     }
 };
 
-template<>
+template <>
 struct TVec3<f32> {
     f32 x;
     f32 y;

@@ -4,13 +4,13 @@
 //
 
 #include "JSystem/JParticle/JPAEmitter.h"
+#include "JSystem/JParticle/JPADynamicsBlock.h"
 #include "JSystem/JParticle/JPAParticle.h"
 #include "JSystem/JParticle/JPAResource.h"
 #include "JSystem/JParticle/JPAResourceManager.h"
-#include "JSystem/JParticle/JPADynamicsBlock.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "dolphin/mtx/mtx.h"
+#include "dolphin/types.h"
 
 //
 // Types:

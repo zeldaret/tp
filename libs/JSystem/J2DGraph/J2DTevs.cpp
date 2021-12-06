@@ -5,8 +5,8 @@
 
 #include "JSystem/J2DGraph/J2DTevs.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "dolphin/gx/GX.h"
+#include "dolphin/types.h"
 
 //
 // Types:
@@ -153,12 +153,14 @@ asm void J2DTexMtx::getTextureMtxMaya(J2DTextureSRTInfo const& param_0, f32 (*pa
 
 /* 802EA044-802EA098 2E4984 0054+00 0/0 5/5 0/0 .text            load__14J2DIndTevStageFUc */
 void J2DIndTevStage::load(u8 tevStage) {
-    GXSetTevIndirect((GXTevStageID)tevStage, getIndStage(), getIndFormat(), getBiasSel(), getMtxSel(), getWrapS(), getWrapT(), getPrev(), getLod(), getAlphaSel());
+    GXSetTevIndirect((GXTevStageID)tevStage, getIndStage(), getIndFormat(), getBiasSel(),
+                     getMtxSel(), getWrapS(), getWrapT(), getPrev(), getLod(), getAlphaSel());
 }
 
 /* 802EA098-802EA0CC 2E49D8 0034+00 0/0 1/1 0/0 .text            load__12J2DIndTexMtxFUc */
 void J2DIndTexMtx::load(u8 indTexMtx) {
-    GXSetIndTexMtx((GXIndTexMtxID)(GX_ITM_0 + indTexMtx), mIndTexMtxInfo.mMtx, mIndTexMtxInfo.mScaleExp);
+    GXSetIndTexMtx((GXIndTexMtxID)(GX_ITM_0 + indTexMtx), mIndTexMtxInfo.mMtx,
+                   mIndTexMtxInfo.mScaleExp);
 }
 
 /* 802EA0CC-802EA0FC 2E4A0C 0030+00 0/0 1/1 0/0 .text            load__19J2DIndTexCoordScaleFUc */

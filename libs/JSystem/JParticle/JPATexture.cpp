@@ -9,10 +9,9 @@
 
 /* 8027D7D4-8027D83C 278114 0068+00 0/0 1/1 0/0 .text            __ct__10JPATextureFPCUc */
 JPATexture::JPATexture(u8 const* pData) {
-    mpData = (const JPATextureData*) pData;
+    mpData = (const JPATextureData*)pData;
     mTexture.storeTIMG(&mpData->mResTIMG, (u8)0);
 }
 
 /* 8027D83C-8027D8A0 27817C 0064+00 1/0 0/0 0/0 .text            __dt__10JPATextureFv */
-JPATexture::~JPATexture() {
-}
+JPATexture::~JPATexture() {}

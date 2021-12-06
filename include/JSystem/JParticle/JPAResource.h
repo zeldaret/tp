@@ -33,10 +33,10 @@ public:
     /* 80276840 */ void calcWorkData_c(JPAEmitterWorkData*);
     /* 80276A0C */ void calcWorkData_d(JPAEmitterWorkData*);
 
-    JPABaseShape*     getBsp() const { return mpBaseShape; }
-    JPAExtraShape*    getEsp() const { return mpExtraShape; }
-    JPAChildShape*    getCsp() const { return mpChildShape; }
-    JPAExTexShape*    getEts() const { return mpExTexShape; }
+    JPABaseShape* getBsp() const { return mpBaseShape; }
+    JPAExtraShape* getEsp() const { return mpExtraShape; }
+    JPAChildShape* getCsp() const { return mpChildShape; }
+    JPAExTexShape* getEts() const { return mpExTexShape; }
     JPADynamicsBlock* getDyn() const { return mpDynamicsBlock; }
 
     u32 getTexIdx(u32 idx) const { return mpTDB1[idx]; }

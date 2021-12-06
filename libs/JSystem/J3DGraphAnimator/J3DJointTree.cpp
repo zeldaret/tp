@@ -101,23 +101,10 @@ SECTION_DATA static void* lit_871[19] = {
 
 /* 80325A18-80325A9C 320358 0084+00 0/0 1/1 0/0 .text            __ct__12J3DJointTreeFv */
 J3DJointTree::J3DJointTree()
-     : mHierarchy(NULL)
-     , mFlags(0)
-     , mModelDataType(0)
-     , mRootNode(NULL)
-     , mBasicMtxCalc(NULL)
-     , mJointNodePointer(NULL)
-     , mJointNum(0)
-     , mWEvlpMtxNum(0)
-     , mWEvlpMixMtxNum(0)
-     , mWEvlpMixIndex(0)
-     , mWEvlpMixWeight(0)
-     , mInvJointMtx(NULL)
-     , mWEvlpImportantMtxIdx(0)
-     , field_0x40(0)
-     , mJointName(NULL)
-{
-}
+    : mHierarchy(NULL), mFlags(0), mModelDataType(0), mRootNode(NULL), mBasicMtxCalc(NULL),
+      mJointNodePointer(NULL), mJointNum(0), mWEvlpMtxNum(0), mWEvlpMixMtxNum(0), mWEvlpMixIndex(0),
+      mWEvlpMixWeight(0), mInvJointMtx(NULL), mWEvlpImportantMtxIdx(0), field_0x40(0),
+      mJointName(NULL) {}
 
 /* 80325A9C-80325C00 3203DC 0164+00 1/0 2/2 0/0 .text
  * makeHierarchy__12J3DJointTreeFP8J3DJointPPC17J3DModelHierarchyP16J3DMaterialTableP13J3DShapeTable
@@ -153,23 +140,22 @@ asm void J3DJointTree::findImportantMtxIndex() {
 /* 80325CAC-80325D1C 3205EC 0070+00 1/0 0/0 0/0 .text
  * calc__12J3DJointTreeFP12J3DMtxBufferRC3VecRA3_A4_Cf          */
 void J3DJointTree::calc(J3DMtxBuffer* pMtxBuffer, Vec const& scale, f32 const (&mtx)[3][4]) {
-     getBasicMtxCalc()->init(scale, (Mtx*)mtx);
-     J3DMtxCalc::setMtxBuffer(pMtxBuffer);
-     J3DJoint* root = getRootNode();
+    getBasicMtxCalc()->init(scale, (Mtx*)mtx);
+    J3DMtxCalc::setMtxBuffer(pMtxBuffer);
+    J3DJoint* root = getRootNode();
 
-     if (root == NULL)
-          return;
+    if (root == NULL)
+        return;
 
-     root->setCurrentMtxCalc(getBasicMtxCalc());
-     root->recursiveCalc();
+    root->setCurrentMtxCalc(getBasicMtxCalc());
+    root->recursiveCalc();
 }
 
 /* 80325D1C-80325D24 32065C 0008+00 1/1 0/0 0/0 .text setMtxBuffer__10J3DMtxCalcFP12J3DMtxBuffer
  */
 void J3DMtxCalc::setMtxBuffer(J3DMtxBuffer* mtxBuffer) {
-     J3DMtxCalc::mMtxBuffer = mtxBuffer;
+    J3DMtxCalc::mMtxBuffer = mtxBuffer;
 }
 
 /* 80325D24-80325D88 320664 0064+00 1/0 0/0 0/0 .text            __dt__12J3DJointTreeFv */
-J3DJointTree::~J3DJointTree() {
-}
+J3DJointTree::~J3DJointTree() {}

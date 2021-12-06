@@ -35,24 +35,20 @@ public:
     u32 mSeed;
 };
 
-template<class T>
+template <class T>
 struct JPANode {
     JPANode<T>* mpPrev;
     JPANode<T>* mpNext;
     T mData;
 };
 
-template<class T>
+template <class T>
 struct JPAList {
     JPANode<T>* mpFirst;
     JPANode<T>* mpLast;
     u32 mNum;
 
-    JPAList()
-        : mpFirst(NULL)
-        , mpLast(NULL)
-        , mNum() {
-    }
+    JPAList() : mpFirst(NULL), mpLast(NULL), mNum() {}
 
     JPANode<T>* getFirst() const { return mpFirst; }
     JPANode<T>* getLast() const { return mpLast; }

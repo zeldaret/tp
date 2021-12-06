@@ -6,9 +6,9 @@
 #include "JSystem/JParticle/JPAResourceManager.h"
 #include "JSystem/JParticle/JPADynamicsBlock.h"
 #include "JSystem/JParticle/JPAResource.h"
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/string.h"
 
 struct JPAResourceLoader {
     /* 8027D8A0 */ JPAResourceLoader(u8 const*, JPAResourceManager*);
@@ -23,7 +23,7 @@ JPAResourceManager::JPAResourceManager(void const* pData, JKRHeap* pHeap) {
     mTexMax = 0;
     mTexNum = 0;
     mpHeap = pHeap;
-    JPAResourceLoader loader((u8 const*) pData, this);
+    JPAResourceLoader loader((u8 const*)pData, this);
 }
 
 /* 80273E68-80273EA8 26E7A8 0040+00 1/1 1/1 0/0 .text getResource__18JPAResourceManagerCFUs */

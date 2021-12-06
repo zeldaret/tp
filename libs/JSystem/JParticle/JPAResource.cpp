@@ -4,11 +4,11 @@
 //
 
 #include "JSystem/JParticle/JPAResource.h"
-#include "JSystem/JParticle/JPAParticle.h"
 #include "JSystem/JParticle/JPAMath.h"
+#include "JSystem/JParticle/JPAParticle.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "dolphin/mtx/mtx.h"
+#include "dolphin/types.h"
 
 //
 // Types:
@@ -23,7 +23,6 @@ struct JPAFieldBlock {};
 struct JPAFieldBase {
     /* 80276A8C */ void prepare(JPAEmitterWorkData*, JPAFieldBlock*);
 };
-
 
 //
 // Forward References:
@@ -731,7 +730,8 @@ asm void JPAResource::calcWorkData_c(JPAEmitterWorkData* param_0) {
  * calcWorkData_d__11JPAResourceFP18JPAEmitterWorkData          */
 void JPAResource::calcWorkData_d(JPAEmitterWorkData* work) {
     Mtx mtx;
-    JPAGetXYZRotateMtx(work->mpEmtr->mLocalRot.x * 0xB6, work->mpEmtr->mLocalRot.y * 0xB6, work->mpEmtr->mLocalRot.z * 0xB6, mtx);
+    JPAGetXYZRotateMtx(work->mpEmtr->mLocalRot.x * 0xB6, work->mpEmtr->mLocalRot.y * 0xB6,
+                       work->mpEmtr->mLocalRot.z * 0xB6, mtx);
     PSMTXConcat(work->mpEmtr->mGlobalRot, mtx, work->mGlobalRot);
     PSMTXMultVecSR(work->mGlobalRot, &work->mpEmtr->mLocalDir, work->mGlobalEmtrDir);
 }

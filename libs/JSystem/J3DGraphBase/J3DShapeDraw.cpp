@@ -5,8 +5,8 @@
 
 #include "JSystem/J3DGraphBase/J3DShapeDraw.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "dolphin/gx/gx.h"
+#include "dolphin/types.h"
 
 //
 // Forward References:
@@ -65,5 +65,4 @@ void J3DShapeDraw::draw() const {
 }
 
 /* 80314B00-80314B48 30F440 0048+00 1/0 0/0 0/0 .text            __dt__12J3DShapeDrawFv */
-J3DShapeDraw::~J3DShapeDraw() {
-}
+J3DShapeDraw::~J3DShapeDraw() {}

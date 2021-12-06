@@ -61,7 +61,8 @@ extern "C" u8 entryNum__13J3DDrawBuffer[4 + 4 /* padding */];
 void J3DMtxCalcJ3DSysInitBasic::init(Vec const& scale, Mtx const& mtx) {
     J3DSys::mCurrentS = scale;
     J3DSys::mParentS = (Vec){1.0f, 1.0f, 1.0f};
-    JMAMTXApplyScale(mtx, J3DSys::mCurrentMtx, J3DSys::mCurrentS.x, J3DSys::mCurrentS.y, J3DSys::mCurrentS.z);
+    JMAMTXApplyScale(mtx, J3DSys::mCurrentMtx, J3DSys::mCurrentS.x, J3DSys::mCurrentS.y,
+                     J3DSys::mCurrentS.z);
 }
 
 /* 8032ECAC-8032ED30 3295EC 0084+00 0/0 2/2 2/2 .text
@@ -69,7 +70,8 @@ void J3DMtxCalcJ3DSysInitBasic::init(Vec const& scale, Mtx const& mtx) {
 void J3DMtxCalcJ3DSysInitMaya::init(Vec const& scale, Mtx const& mtx) {
     J3DSys::mParentS = (Vec){1.0f, 1.0f, 1.0f};
     J3DSys::mCurrentS = scale;
-    JMAMTXApplyScale(mtx, J3DSys::mCurrentMtx, J3DSys::mCurrentS.x, J3DSys::mCurrentS.y, J3DSys::mCurrentS.z);
+    JMAMTXApplyScale(mtx, J3DSys::mCurrentMtx, J3DSys::mCurrentS.x, J3DSys::mCurrentS.y,
+                     J3DSys::mCurrentS.z);
 }
 
 /* ############################################################################################## */
