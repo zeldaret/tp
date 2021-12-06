@@ -9,15 +9,7 @@
 #include "d/meter/d_meter2_info.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct daObjCarry_c {
-    /* 80031CF8 */ void clrSaveFlag();
-    /* 80031D04 */ void setSaveFlag();
-};
+#include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
 
 //
 // Forward References:
@@ -1456,11 +1448,11 @@ bool dSv_danBit_c::init(s8 i_stage) {
             unk28[i] = 0xFFFF;
         }
 
-        clrSaveFlag__12daObjCarry_cFv();
+        daObjCarry_c::clrSaveFlag();
         return true;
 
     } else {
-        setSaveFlag__12daObjCarry_cFv();
+        daObjCarry_c::setSaveFlag();
         return false;
     }
 }

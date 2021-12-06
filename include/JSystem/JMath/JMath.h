@@ -10,6 +10,14 @@ inline f32 JMAFastReciprocal(f32 value) {
     return __fres(value);
 }
 
+inline f32 JMAFastSqrt(f32 input) {
+    if (input > 0.0f) {
+        f64 tmp = __frsqrte(input);
+        return tmp * input;
+    }
+    return input;
+}
+
 namespace JMath {
 
 inline f32 fastReciprocal(f32 value) {

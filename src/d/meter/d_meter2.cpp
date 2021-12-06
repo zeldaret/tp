@@ -6,48 +6,11 @@
 #include "d/meter/d_meter2.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_msg_mng.h"
 
 //
 // Types:
 //
-
-struct msg_class {};
-
-struct dSv_player_status_a_c {
-    /* 80032A5C */ void getSelectItemIndex(int) const;
-    /* 80032AA8 */ void getRupeeMax() const;
-};
-
-struct dSv_player_item_record_c {
-    /* 80033F6C */ void setBombNum(u8, u8);
-    /* 80033F7C */ void getBombNum(u8) const;
-    /* 80034030 */ void getBottleNum(u8) const;
-};
-
-struct dSv_player_item_max_c {
-    /* 800340F8 */ void getBombNum(u8) const;
-};
-
-struct dSv_player_item_c {
-    /* 80032FB8 */ void setItem(int, u8);
-    /* 80033030 */ void getItem(int, bool) const;
-};
-
-struct dSv_player_collect_c {
-    /* 8003422C */ void onCollectCrystal(u8);
-    /* 8003424C */ void isCollectCrystal(u8) const;
-    /* 80034270 */ void onCollectMirror(u8);
-    /* 80034290 */ void isCollectMirror(u8) const;
-};
-
-struct dSv_light_drop_c {
-    /* 80034340 */ void getLightDropNum(u8) const;
-    /* 8003439C */ void isLightDropGetFlag(u8) const;
-};
-
-struct dSv_event_c {
-    /* 800349BC */ void isEventBit(u16) const;
-};
 
 struct dScope_c {
     /* 80193690 */ dScope_c(u8);
@@ -59,25 +22,9 @@ struct dMw_HIO_c {
     /* 801F9E24 */ bool getPachinkoFlag();
 };
 
-struct dMsgObject_c {
-    /* 802371E4 */ void isPlaceMessage();
-    /* 8023822C */ void getStatus();
-};
-
 struct dMeterString_c {
     /* 8020ED60 */ dMeterString_c(int);
     /* 8020F5A4 */ void createString(int);
-};
-
-struct J2DScreen {};
-
-struct dMeterMap_c {
-    /* 8020D650 */ void isEnableDispMapAndMapDispSizeTypeNo();
-    /* 8020D75C */ void getMapDispEdgeTop();
-    /* 8020D948 */ dMeterMap_c(J2DScreen*);
-    /* 8020DCE4 */ void _move(u32);
-    /* 8020DF1C */ void _draw();
-    /* 8020E754 */ void meter_map_move(u32);
 };
 
 struct dMeterHakusha_c {
@@ -98,141 +45,8 @@ struct dMeterButton_c {
     /* 80209CEC */ void hideAll();
 };
 
-struct dMeter2_c {
-    /* 8021EA14 */ void _create();
-    /* 8021F128 */ void _execute();
-    /* 8021F370 */ void _draw();
-    /* 8021F49C */ void _delete();
-    /* 8021F6EC */ void emphasisButtonDelete();
-    /* 8021F780 */ void setLifeZero();
-    /* 8021F7B0 */ void checkStatus();
-    /* 8021FD60 */ void moveLife();
-    /* 80220180 */ void moveKantera();
-    /* 8022051C */ void moveOxygen();
-    /* 80220888 */ void moveLightDrop();
-    /* 80220C30 */ void moveRupee();
-    /* 802210AC */ void moveKey();
-    /* 80221244 */ void moveButtonA();
-    /* 802217F4 */ void moveButtonB();
-    /* 80221EC8 */ void moveButtonR();
-    /* 80222000 */ void moveButtonZ();
-    /* 802222A0 */ void moveButton3D();
-    /* 80222364 */ void moveButtonC();
-    /* 80222494 */ void moveButtonS();
-    /* 80222518 */ void moveButtonXY();
-    /* 80222E88 */ void moveButtonCross();
-    /* 802230F8 */ void moveTouchSubMenu();
-    /* 802230FC */ void moveSubContents();
-    /* 802231C8 */ void move2DContents();
-    /* 802237D4 */ void checkSubContents();
-    /* 80223BC4 */ void check2DContents();
-    /* 80223E00 */ void moveBombNum();
-    /* 80224258 */ void moveBottleNum();
-    /* 80224354 */ void moveArrowNum();
-    /* 80224680 */ void movePachinkoNum();
-    /* 802248E4 */ void alphaAnimeLife();
-    /* 80224A04 */ void alphaAnimeKantera();
-    /* 80224BAC */ void alphaAnimeOxygen();
-    /* 80224D6C */ void alphaAnimeLightDrop();
-    /* 80224DC0 */ void alphaAnimeRupee();
-    /* 80224F70 */ void alphaAnimeKey();
-    /* 802250F4 */ void alphaAnimeButton();
-    /* 802254C0 */ void alphaAnimeButtonCross();
-    /* 802256DC */ void isShowLightDrop();
-    /* 802258A0 */ void killSubContents(u8);
-    /* 80225960 */ void isKeyVisible();
-    /* 802259F8 */ void isArrowEquip();
-    /* 80225A64 */ void isPachinkoEquip();
-};
-
-struct dMeter2Info_c {
-    /* 8021C1DC */ void isFloatingMessageVisible();
-    /* 8021C950 */ void isDirectUseItem(int);
-    /* 8021DCE0 */ void decHotSpringTimer();
-};
-
-struct JKRExpHeap {};
-
-struct dMeter2Draw_c {
-    /* 8020FAB4 */ dMeter2Draw_c(JKRExpHeap*);
-    /* 8021135C */ void exec(u32);
-    /* 802149F4 */ void drawLife(s16, s16, f32, f32);
-    /* 80214C20 */ void setAlphaLifeChange(bool);
-    /* 80214DF4 */ void setAlphaLifeAnimeMin();
-    /* 80214E54 */ void setAlphaLifeAnimeMax();
-    /* 802154A8 */ void drawKantera(s32, s32, f32, f32);
-    /* 802155B8 */ void setAlphaKanteraChange(bool);
-    /* 802156E0 */ void setAlphaKanteraAnimeMin();
-    /* 8021575C */ void setAlphaKanteraAnimeMax();
-    /* 802157E0 */ void drawOxygen(s32, s32, f32, f32);
-    /* 802158F0 */ void setAlphaOxygenChange(bool);
-    /* 80215A18 */ void setAlphaOxygenAnimeMin();
-    /* 80215A94 */ void setAlphaOxygenAnimeMax();
-    /* 80215B18 */ void drawLightDrop(u8, u8, f32, f32, f32, f32, u8);
-    /* 80215DA4 */ void setAlphaLightDropChange(bool);
-    /* 80215DA8 */ void getNowLightDropRateCalc();
-    /* 80215E40 */ void setAlphaLightDropAnimeMin();
-    /* 80215F88 */ void setAlphaLightDropAnimeMax();
-    /* 8021632C */ void drawRupee(s16);
-    /* 80216684 */ void setAlphaRupeeChange(bool);
-    /* 802168D0 */ void setAlphaRupeeAnimeMin();
-    /* 80216990 */ void setAlphaRupeeAnimeMax();
-    /* 80216A40 */ void drawKey(s16);
-    /* 80216B28 */ void setAlphaKeyChange(bool);
-    /* 80216CA8 */ void setAlphaKeyAnimeMin();
-    /* 80216D2C */ void setAlphaKeyAnimeMax();
-    /* 80216DAC */ void drawButtonA(u8, f32, f32, f32, f32, f32, bool, bool);
-    /* 802170E4 */ void drawButtonB(u8, bool, f32, f32, f32, f32, f32, bool);
-    /* 8021764C */ void drawButtonR(u8, u8, bool, bool);
-    /* 802176EC */ void drawButtonZ(u8);
-    /* 80217904 */ void drawButton3D(u8);
-    /* 80217954 */ void drawButtonC(u8, bool);
-    /* 802179C0 */ void drawButtonS(u8);
-    /* 80217A10 */ void drawButtonBin(u8);
-    /* 80217AB4 */ void drawButtonXY(int, u8, u8, bool, bool);
-    /* 80218238 */ void getButtonCrossParentInitTransY();
-    /* 80218254 */ void drawButtonCross(f32, f32);
-    /* 80218338 */ void setAlphaButtonCrossAnimeMin();
-    /* 802183A8 */ void setAlphaButtonCrossAnimeMax();
-    /* 80218788 */ void setAlphaButtonChange(bool);
-    /* 8021901C */ void setAlphaButtonAnimeMin();
-    /* 802190A8 */ void setAlphaButtonAnimeMax();
-    /* 80219174 */ void setAlphaButtonAAnimeMin();
-    /* 80219258 */ void setAlphaButtonAAnimeMax();
-    /* 80219324 */ void setAlphaButtonBAnimeMin();
-    /* 80219474 */ void setAlphaButtonBAnimeMax();
-    /* 802195A4 */ void setButtonIconAAlpha(u8, u32, bool);
-    /* 80219788 */ void setButtonIconBAlpha(u8, u32, bool);
-    /* 80219A84 */ void setButtonIconMidonaAlpha(u32);
-    /* 80219E98 */ void setButtonIconAlpha(int, u8, u32, bool);
-    /* 8021A2F4 */ void getActionString(u8, u8, u8*);
-    /* 8021AB84 */ void setItemNum(u8, u8, u8);
-    /* 8021AEC8 */ void drawItemNum(u8, f32);
-    /* 8021AF78 */ void drawKanteraMeter(u8, f32);
-    /* 8021B0C8 */ void isButtonVisible();
-    /* 8021BC24 */ void getCameraSubject();
-    /* 8021BC54 */ void getItemSubject();
-    /* 8021BCAC */ void getPlayerSubject();
-    /* 8021BCC0 */ void isBButtonShow(bool);
-    /* 8021BDD0 */ void getButtonTimer();
-};
-
-struct dDlst_base_c {};
-
-struct dDlst_list_c {
-    /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
-};
-
 struct dDemo_c {
     static u8 m_mode[4];
-};
-
-struct dComIfG_play_c {
-    /* 8002B36C */ void setItemBombNumCount(u8, s16);
-    /* 8002B384 */ void getItemBombNumCount(u8);
-    /* 8002B394 */ void clearItemBombNumCount(u8);
-    /* 8002C97C */ void getLayerNo(int);
-    /* 8002CBBC */ void getTimerMode();
 };
 
 struct dCamera_c {
@@ -243,10 +57,6 @@ struct Z2StatusMgr {
     /* 802B5F70 */ void heartGaugeOn();
 };
 
-struct JAISoundID {};
-
-struct Vec {};
-
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -254,11 +64,6 @@ struct Z2SeMgr {
 
 struct Z2AudioMgr {
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JKRHeap {
-    /* 802CE5CC */ void freeAll();
-    /* 802CE784 */ void getTotalFreeSize();
 };
 
 //
@@ -471,16 +276,13 @@ extern "C" void _restgpr_23();
 extern "C" void _restgpr_25();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_29();
-extern "C" void strcmp();
 extern "C" extern void* g_fopMsg_Method[5 + 1 /* padding */];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_mwHIO[304];
 extern "C" extern u8 g_drawHIO[3880];
 extern "C" extern u8 g_ringHIO[344];
 extern "C" extern u8 g_fmapHIO[1188];
 extern "C" extern u8 g_cursorHIO[68 + 4 /* padding */];
-extern "C" extern u8 g_meter2_info[248];
 extern "C" u8 m_mode__7dDemo_c[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 

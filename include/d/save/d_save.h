@@ -315,6 +315,10 @@ enum ItemTable {
     /* 0xFF */ NO_ITEM
 };
 
+enum EquipItem {
+    /* 0x103 */ EQUIP_SWORD = 0x103,
+};
+
 enum CollectItem {
     /* 0x0 */ COLLECT_CLOTHING,
     /* 0x1 */ COLLECT_SWORD,
@@ -915,6 +919,11 @@ class dSv_restart_c {
 public:
     void setRoom(const cXyz&, s16, s8);
 
+    void setRoomParam(u32 param) { mRoomParam = param; }
+    s16 getStartPoint() const { return mStartPoint; }
+    u32 getLastMode() const { return mLastMode; }
+    s8 getRoomNo() const { return mRoomNo; }
+
 private:
     /* 0x00 */ s8 mRoomNo;
     /* 0x01 */ u8 field_0x01[3];
@@ -999,6 +1008,9 @@ public:
     dSv_zone_c* getZones() { return mZone; }
     dSv_player_c& getPlayer() { return mSavedata.getPlayer(); }
     dSv_event_c& getTmp() { return mTmp; }
+    dSv_restart_c& getRestart() { return mRestart; }
+    dSv_turnRestart_c& getTurnRestart() { return mTurnRestart; }
+    dSv_event_c& getEvent() { return mSavedata.getEvent(); }
     s64 getStartTime() { return mStartTime; }
     s64 getSaveTotalTime() { return mSaveTotalTime; }
     void initDan(s8 param_0) { mDan.init(param_0); }

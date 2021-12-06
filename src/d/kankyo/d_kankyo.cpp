@@ -27,12 +27,6 @@ struct mDoGph_gInf_c {
     static u8 m_bloom[20];
 };
 
-struct dPa_control_c {
-    /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
-                            u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
-                            cXyz const*, f32);
-};
-
 struct color_RGB_class {};
 
 struct Z2SeMgr {
@@ -3159,7 +3153,7 @@ static asm void dKy_Indoor_check() {
 #pragma pop
 
 /* 801AC2E0-801AC2E8 1A6C20 0008+00 0/0 1/1 0/0 .text            dKy_withwarp_capture_check__Fv */
-bool dKy_withwarp_capture_check() {
+BOOL dKy_withwarp_capture_check() {
     return false;
 }
 

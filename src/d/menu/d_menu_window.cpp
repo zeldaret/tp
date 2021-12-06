@@ -11,8 +11,6 @@
 // Types:
 //
 
-struct msg_class {};
-
 struct mDoGph_gInf_c {
     static u8 mFader[4];
     static u8 mFrameBufferTimg[4];
@@ -122,18 +120,10 @@ struct dMenu_Collect2D_c {
     /* 801B5FAC */ bool isOutCheck();
 };
 
-struct dDlst_base_c {};
-
-struct dDlst_list_c {
-    /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
-};
-
 struct dDlst_MENU_CAPTURE_c {
     /* 801FDFCC */ void draw();
     /* 801FE2E8 */ ~dDlst_MENU_CAPTURE_c();
 };
-
-struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -387,7 +377,6 @@ extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" extern void* __vt__10CSTControl[4];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_mwHIO[304];
 extern "C" extern u8 g_mwDHIO[520];
 extern "C" extern u8 g_fmapHIO[1188];

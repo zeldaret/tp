@@ -4,6 +4,7 @@
 //
 
 #include "d/event/d_event_data.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -16,45 +17,6 @@ struct mDoGph_gInf_c {
     /* 800080D0 */ void fadeOut(f32);
 
     static f32 mFadeRate;
-};
-
-struct dVibration_c {
-    /* 8006FA24 */ void StartShock(int, int, cXyz);
-    /* 8006FB10 */ void StartQuake(int, int, cXyz);
-    /* 8006FC0C */ void StartQuake(u8 const*, int, int, cXyz);
-    /* 8006FD94 */ void StopQuake(int);
-};
-
-struct dMsgObject_c {
-    /* 8023806C */ void demoMessageGroup();
-};
-
-struct dEvt_control_c {
-    /* 80042914 */ void setSkipProc(void*, int (*)(void*, int), int);
-    /* 80042958 */ void setSkipZev(void*, char*);
-    /* 80043278 */ void getStageEventDt();
-    /* 800432EC */ void convPId(unsigned int);
-    /* 8004331C */ void getStbDemoData(char*);
-    /* 800434D8 */ void searchMapEventData(u8);
-    /* 8004365C */ void setPt2(void*);
-    /* 8004368C */ void setPtT(void*);
-    /* 800436BC */ void setPtI(void*);
-    /* 800436F4 */ void setPtD(void*);
-};
-
-struct dEvent_manager_c {
-    /* 80047B1C */ void getMyStaffId(char const*, fopAc_ac_c*, int);
-    /* 80047D4C */ void getIsAddvance(int);
-    /* 80047F5C */ void getMyNowCutName(int);
-    /* 800480EC */ void getMySubstanceP(int, char const*, int);
-    /* 80048144 */ void getMySubstanceNum(int, char const*);
-    /* 8004817C */ void cutEnd(int);
-};
-
-struct dDlst_list_c {
-    /* 800568D8 */ void wipeIn(f32);
-
-    static f32 mWipeRate;
 };
 
 struct dDemo_c {
@@ -74,8 +36,6 @@ struct Z2SeqMgr {
     /* 802AF408 */ void bgmStop(u32, s32);
     /* 802AFE18 */ void bgmStreamPlay();
 };
-
-struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -189,7 +149,6 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" f32 mFadeRate__13mDoGph_gInf_c;
 extern "C" extern u8 struct_80450BE4[4];
 extern "C" u8 m_control__7dDemo_c[4];
@@ -316,14 +275,117 @@ SECTION_SDATA2 static f32 lit_4265 = 15.0f;
 SECTION_SDATA2 static f64 lit_4267 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80043A14-80043D60 03E354 034C+00 1/1 0/0 0/0 .text            dEvDt_Next_Stage__Fii */
+// bunch of issues with sclsInfo section. regalloc for the rest
+#ifdef NONMATCHING
+static int dEvDt_Next_Stage(int index, int wipe_type) {
+    char* stage;
+    s16 point;
+    s8 roomNo;
+    s8 layer;
+    u32 mode = 0;         // uvar8 - retail
+    s8 wipe = wipe_type;  // ivar10
+    int noVisit = true;
+    int wipe_time = 0;                  // bvar9
+    f32 speed = FLOAT_LABEL(lit_4264);  // dvar12
+    bool setHour = false;               // bvar2
+    f32 hour = speed;                   // set to 0.0f dvar13
+
+    int* p_id = dComIfGp_evmng_getMyIntegerP(index, "ID");
+    if (p_id != NULL) {
+        int id = *p_id;
+        s8 room_no = dComIfGp_roomControl_getStayNo();
+        stage_scls_info_dummy_class* info;
+        if (room_no == -1) {
+            info = dComIfGp_getStageSclsInfo();
+        } else {
+            info = dComIfGp_roomControl_getStatusRoomDt(room_no)->mRoomDt.getSclsInfo();
+        }
+
+        if (info != NULL && id >= 0 && id < info->numEntries) {
+            stage = info->mEntries[id].mStage;
+            point = info->mEntries[id].mStart;
+            roomNo = info->mEntries[id].mRoom;
+            layer = dStage_sclsInfo_getSceneLayer(&info->mEntries[id]);
+            wipe = dStage_sclsInfo_getWipe(&info->mEntries[id]);
+            wipe_time = dStage_sclsInfo_getWipeTime(&info->mEntries[id]);
+
+            if (wipe == 15) {
+                wipe = 0;
+            }
+
+            s8 timeH = dStage_sclsInfo_getTimeH(&info->mEntries[id]);
+            if (timeH >= 0 && timeH <= 23) {
+                setHour = true;
+                hour = timeH;
+            }
+        }
+    }
+
+    char* stageP = dComIfGp_evmng_getMyStringP(index, "Stage");
+    if (stageP != NULL) {
+        stage = stageP;
+    }
+
+    int* pointP = dComIfGp_evmng_getMyIntegerP(index, "StartCode");
+    if (pointP != NULL) {
+        point = *pointP;
+    }
+
+    int* roomP = dComIfGp_evmng_getMyIntegerP(index, "RoomNo");
+    if (roomP != NULL) {
+        roomNo = *roomP;
+    }
+
+    int* layerP = dComIfGp_evmng_getMyIntegerP(index, "Layer");
+    if (layerP != NULL) {
+        layer = *layerP;
+    }
+
+    int* wipeP = dComIfGp_evmng_getMyIntegerP(index, "Wipe");
+    if (wipeP != NULL) {
+        wipe = *wipeP;
+    }
+
+    int* modeP = dComIfGp_evmng_getMyIntegerP(index, "Mode");
+    if (modeP != NULL) {
+        mode = *modeP;
+    }
+
+    f32* speedP = dComIfGp_evmng_getMyFloatP(index, "Speed");
+    if (speedP != NULL) {
+        speed = *speedP;
+    }
+
+    f32* hourP = dComIfGp_evmng_getMyFloatP(index, "Hour");
+    if (hourP != NULL) {
+        hour = *hourP;
+        setHour = true;
+    }
+
+    int* noVisitP = dComIfGp_evmng_getMyIntegerP(index, "NoVisit");
+    if (noVisitP != NULL) {
+        noVisit = false;
+    }
+
+    if (stage != NULL && point != -1) {
+        if (setHour) {
+            dKy_set_nexttime(15.0f * hour);
+        }
+        dComIfGp_setNextStage(stage, point, roomNo, layer, speed, mode, 1, wipe, 0, noVisit,
+                              wipe_time);
+    }
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dEvDt_Next_Stage(int param_0, int param_1) {
+static asm int dEvDt_Next_Stage(int param_0, int param_1) {
     nofralloc
 #include "asm/d/event/d_event_data/dEvDt_Next_Stage__Fii.s"
 }
 #pragma pop
+#endif
 
 /* 80043D60-80043DC8 03E6A0 0068+00 3/3 0/0 0/0 .text            flagCheck__11dEvDtFlag_cFi */
 #pragma push
@@ -447,25 +509,28 @@ asm void dEvDtStaff_c::specialProc() {
 }
 #pragma pop
 
-/* 80044134-80044170 03EA74 003C+00 0/0 1/1 0/0 .text            init__12dEvDtStaff_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvDtStaff_c::init() {
-    nofralloc
-#include "asm/d/event/d_event_data/init__12dEvDtStaff_cFv.s"
+inline dEvent_manager_c& dComIfGp_getEventManager() {
+    return g_dComIfG_gameInfo.play.getEvtManager();
 }
-#pragma pop
+
+/* 80044134-80044170 03EA74 003C+00 0/0 1/1 0/0 .text            init__12dEvDtStaff_cFv */
+void dEvDtStaff_c::init() {
+    mCurrentCut = mStartCut;
+    field_0x40 = true;
+    field_0x41 = false;
+    field_0x3c = -1;
+    if (mType == TYPE_CAMERA) {
+        dComIfGp_getEventManager().setCameraPlay(1);
+    }
+}
 
 /* 80044170-80044190 03EAB0 0020+00 1/1 0/0 0/0 .text            advanceCut__12dEvDtStaff_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvDtStaff_c::advanceCut(int param_0) {
-    nofralloc
-#include "asm/d/event/d_event_data/advanceCut__12dEvDtStaff_cFi.s"
+void dEvDtStaff_c::advanceCut(int cut) {
+    mCurrentCut = cut;
+    field_0x40 = true;
+    field_0x41 = false;
+    field_0x3c = -1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80379DD0-80379DD0 006430 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -676,34 +741,66 @@ asm void dEvDtCut_c::startCheck() {
 #pragma pop
 
 /* 80046138-8004616C 040A78 0034+00 1/1 7/7 0/0 .text            init__11dEvDtBase_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvDtBase_c::init() {
-    nofralloc
-#include "asm/d/event/d_event_data/init__11dEvDtBase_cFv.s"
+int dEvDtBase_c::init() {
+    mHeaderP = NULL;
+    mEventP = NULL;
+    mStaffP = NULL;
+    mCutP = NULL;
+    mDataP = NULL;
+    mFDataP = NULL;
+    mIDataP = NULL;
+    mSDataP = NULL;
+    mRoomNo = -1;
+    return 0;
 }
-#pragma pop
 
 /* 8004616C-8004628C 040AAC 0120+00 0/0 6/6 0/0 .text            init__11dEvDtBase_cFPci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvDtBase_c::init(char* param_0, int param_1) {
-    nofralloc
-#include "asm/d/event/d_event_data/init__11dEvDtBase_cFPci.s"
+int dEvDtBase_c::init(char* p_data, int roomNo) {
+    init();
+    if (p_data == NULL) {
+        return 0;
+    } else {
+        setHeaderP((event_binary_data_header*)p_data);
+
+        if (getEventNum() > 0) {
+            setEventP((dEvDtEvent_c*)(p_data + getEventTop()));
+        }
+
+        if (getStaffNum() > 0) {
+            setStaffP((dEvDtStaff_c*)(p_data + getStaffTop()));
+        }
+
+        if (getCutNum() > 0) {
+            setCutP((dEvDtCut_c*)(p_data + getCutTop()));
+        }
+
+        if (getDataNum() > 0) {
+            setDataP((dEvDtData_c*)(p_data + getDataTop()));
+        }
+
+        if (getFDataNum() > 0) {
+            setFDataP((f32*)(p_data + getFDataTop()));
+        }
+
+        if (getIDataNum() > 0) {
+            setIDataP((int*)(p_data + getIDataTop()));
+        }
+
+        if (getSDataNum() > 0) {
+            setSDataP((char*)(p_data + getSDataTop()));
+        }
+
+        mRoomNo = roomNo;
+        return getEventNum();
+    }
 }
-#pragma pop
 
 /* 8004628C-800462FC 040BCC 0070+00 0/0 1/1 0/0 .text advanceCut__11dEvDtBase_cFP12dEvDtEvent_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvDtBase_c::advanceCut(dEvDtEvent_c* param_0) {
-    nofralloc
-#include "asm/d/event/d_event_data/advanceCut__11dEvDtBase_cFP12dEvDtEvent_c.s"
+void dEvDtBase_c::advanceCut(dEvDtEvent_c* p_event) {
+    for (int i = 0; i < p_event->getNStaff(); i++) {
+        advanceCutLocal(mStaffP + p_event->getStaff(i));
+    }
 }
-#pragma pop
 
 /* 800462FC-800463DC 040C3C 00E0+00 1/1 0/0 0/0 .text
  * advanceCutLocal__11dEvDtBase_cFP12dEvDtStaff_c               */

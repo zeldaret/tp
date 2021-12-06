@@ -48,6 +48,8 @@ public:
     void setVertexDataPointer(J3DVertexData* pVtxData) { mVertexData = pVtxData; }
     void* getVcdVatCmd() const { return mVcdVatCmd; }
     void setVcdVatCmd(void* pVatCmd) { mVcdVatCmd = pVatCmd; }
+    void show() { offFlag(1); }
+    void hide() { onFlag(1); }
 
     static void resetVcdVatCache() { sOldVcdVatCmd = NULL; }
 

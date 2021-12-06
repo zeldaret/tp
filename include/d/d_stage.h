@@ -45,7 +45,23 @@ struct stage_stag_info_class {
     /* 0x2A */ u16 mStageTitleNo;
 };  // Size: Unknown
 
-struct stage_scls_info_dummy_class {};
+inline u16 dStage_stagInfo_GetUpButton(stage_stag_info_class* p_info) {
+    return p_info->field_0x10 & 7;
+}
+
+struct stage_scls_info_class {
+    /* 0x0 */ char mStage[8];
+    /* 0x8 */ u8 mStart;
+    /* 0x9 */ s8 mRoom;
+    /* 0xA */ s8 field_0xa;
+    /* 0xB */ s8 field_0xb;
+    /* 0xC */ s8 mWipe;
+};  // Size: 0xD
+
+struct stage_scls_info_dummy_class {
+    /* 0x00 */ int numEntries;
+    /* 0x04 */ stage_scls_info_class* mEntries;
+};
 
 struct stage_pure_lightvec_info_class {};
 
@@ -650,6 +666,7 @@ static int dStage_fieldMapFiliInfo2Init(dStage_dt_c*, void*, int, void*);
 static int dStage_fieldMapMapPathInit(dStage_dt_c*, void*, int, void*);
 
 u8 dStage_roomRead_dt_c_GetReverbStage(roomRead_class&, int);
+void dStage_changeScene(int, f32, u32, s8, s16, int);
 
 inline u8 dStage_roomRead_dt_c_GetLoadRoomIndex(u8 param_0) {
     return param_0 & 0x3f;
@@ -657,6 +674,26 @@ inline u8 dStage_roomRead_dt_c_GetLoadRoomIndex(u8 param_0) {
 
 inline u32 dStage_stagInfo_GetSTType(stage_stag_info_class* pstag) {
     return pstag->field_0x0c >> 0x10 & 7;
+}
+
+inline u32 dStage_stagInfo_GetEscapeWarp(stage_stag_info_class* pstag) {
+    return pstag->field_0x10 >> 0x18;
+}
+
+inline s8 dStage_sclsInfo_getSceneLayer(stage_scls_info_class* p_info) {
+    return p_info->field_0xb & 0xF;
+}
+
+inline s8 dStage_sclsInfo_getWipe(stage_scls_info_class* p_info) {
+    return p_info->mWipe;
+}
+
+inline s8 dStage_sclsInfo_getWipeTime(stage_scls_info_class* p_info) {
+    return p_info->field_0xb >> 5;
+}
+
+inline s8 dStage_sclsInfo_getTimeH(stage_scls_info_class* p_info) {
+    return (p_info->field_0xa >> 4) | (p_info->field_0xb & 16);
 }
 
 #endif /* D_D_STAGE_H */

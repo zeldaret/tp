@@ -60,7 +60,7 @@ public:
     void skipper();
     void Step();
     void moveApproval(void*);
-    bool compulsory(void*, char const*, u16);
+    BOOL compulsory(void*, char const*, u16);
     void remove();
     void* getStageEventDt();  // ret type probably wrong, fix later
     void sceneChange(int);
@@ -80,6 +80,9 @@ public:
     void isOrderOK();
 
     u16 chkFlag2(u16 flag) { return flag & mFlag2; }
+    bool runCheck() { return field_0xe5 != 0; }
+    u16 chkEventFlag(u16 flag) { return flag & mEventFlag; }
+    u8 getMode() const { return mMode; }
 
 public:
     /* 0x000 */ u8 field_0x0[4];

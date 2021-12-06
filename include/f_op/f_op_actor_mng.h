@@ -54,6 +54,8 @@ public:
     static bool gndCheck(const cXyz*);
     static u8 mGndCheck[84];
     static f32 mGroundY;
+
+    static f32 getGroundY() { return mGroundY; }
 };
 
 class fopAcM_wt_c {
@@ -100,6 +102,14 @@ inline u32 fopAcM_GetParam(const void* pActor) {
     return fpcM_GetParam(pActor);
 }
 
+inline void fopAcM_SetParam(void* p_actor, u32 param) {
+    fpcM_SetParam(p_actor, param);
+}
+
+inline u8 fopAcM_GetGroup(const fopAc_ac_c* p_actor) {
+    return p_actor->mGroup;
+}
+
 inline void fopAcM_OnStatus(fopAc_ac_c* pActor, u32 flag) {
     pActor->mStatus |= flag;
 }
@@ -130,6 +140,14 @@ inline csXyz& fopAcM_GetAngle_p(fopAc_ac_c* pActor) {
 
 inline csXyz& fopAcM_GetShapeAngle_p(fopAc_ac_c* pActor) {
     return pActor->mCollisionRot;
+}
+
+inline bool fopAcM_CheckCondition(fopAc_ac_c* p_actor, u32 flag) {
+    return p_actor->mCondition & flag;
+}
+
+inline void fopAcM_OnCondition(fopAc_ac_c* p_actor, u32 flag) {
+    p_actor->mCondition |= flag;
 }
 
 void* fopAcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3, void* pData);
@@ -230,7 +248,7 @@ static const char* fopAcM_getProcNameString(const fopAc_ac_c*);
 // s32 fopAcM_findObjectCB(const fopAc_ac_c*, void*);
 s32 fopAcM_searchFromName(const char*, u32, u32);
 s32 fopAcM_findObject4EventCB(fopAc_ac_c*, void*);
-s32 fopAcM_searchFromName4Event(const char*, s16);
+fopAc_ac_c* fopAcM_searchFromName4Event(const char*, s16);
 s32 fopAcM_getWaterY(const cXyz*, f32*);
 void fpoAcM_relativePos(const fopAc_ac_c*, const cXyz*, cXyz*);
 s32 fopAcM_getWaterStream(const cXyz*, const cBgS_PolyInfo&, cXyz*, int*, int);

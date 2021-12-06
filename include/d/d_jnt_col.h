@@ -20,6 +20,8 @@ public:
     /* 80036C44 */ void getHitmarkPosAndAngle(cXyz const*, csXyz const*, cXyz*, csXyz*, int) const;
     /* 80036FA8 */ void setArrowPosAndAngle(cXyz const*, cXyz const*, int, cXyz*, csXyz*);
 
+    bool checkPassNum(int bit) { return field_0xc & (1 << bit); }
+
     /* 0x00 */ dJntColData_c* mData;
     /* 0x04 */ J3DModel* mModel;
     /* 0x08 */ int field_0x8;

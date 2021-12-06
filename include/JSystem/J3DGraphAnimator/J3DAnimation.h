@@ -299,6 +299,8 @@ public:
     virtual ~J3DFrameCtrl() {}
 
     f32 getRate() const { return mRate; }
+    f32 getFrame() const { return mFrame; }
+    u8 getAttribute() const { return mAttribute; }
     void setAttribute(u8 attr) { mAttribute = attr; }
     void setEnd(s16 end) { mEnd = end; }
     void setRate(f32 rate) { mRate = rate; }

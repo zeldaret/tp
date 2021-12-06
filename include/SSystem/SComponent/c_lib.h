@@ -47,6 +47,18 @@ inline u8 cLib_checkBit(u8& pVar, u8 pBit) {
     return pVar & pBit;
 }
 
+template <typename T>
+inline T cLib_minMaxLimit(T param_0, T min, T max) {
+    if (param_0 < min) {
+        return max;
+    }
+    min = param_0;
+    if (min > max) {
+        min = max;
+    }
+    return min;
+}
+
 void MtxInit(void);
 void MtxTrans(float, float, float, unsigned char);
 void MtxScale(float, float, float, unsigned char);

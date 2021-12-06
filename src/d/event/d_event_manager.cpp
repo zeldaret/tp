@@ -199,21 +199,11 @@ SECTION_DEAD static char const* const stringBase_8037A071 = "(!BAD DATA!)";
 #pragma pop
 
 /* 803A8270-803A82A8 -00001 0038+00 1/1 0/0 0/0 .data            soecial_names$3966 */
-SECTION_DATA static void* soecial_names[14] = {
-    (void*)&d_event_d_event_manager__stringBase0,
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x10),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x1E),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x2C),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x3F),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x50),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x63),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x6E),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x7B),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x89),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x94),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0xA3),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0xB2),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0xC3),
+SECTION_DATA static char* soecial_names[14] = {
+    "NORMAL_COMEBACK",  "DEFAULT_START",      "SHUTTER_START",  "SHUTTER_START_STOP",
+    "BS_SHUTTER_START", "BS_SHUTTER_START_B", "KNOB_START",     "KNOB_START_B",
+    "FMASTER_START",    "FALL_START",         "CRAWLOUT_START", "BOSSWARP_START",
+    "PORTALWARP_START", "PORTALWARP_START_B",
 };
 
 /* 80046480-800465E8 040DC0 0168+00 1/1 0/0 0/0 .text getEventName__18dEvent_exception_cFv */
@@ -228,14 +218,23 @@ asm void dEvent_exception_c::getEventName() {
 
 /* 800465E8-80046688 040F28 00A0+00 1/1 0/0 0/0 .text
  * getSubstance__16dEvent_manager_cFP11dEvDtData_ci             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvent_manager_c::getSubstance(dEvDtData_c* param_0, int param_1) {
-    nofralloc
-#include "asm/d/event/d_event_manager/getSubstance__16dEvent_manager_cFP11dEvDtData_ci.s"
+void* dEvent_manager_c::getSubstance(dEvDtData_c* p_data, int type) {
+    if (p_data->getIndex() < 0 || p_data->getNumber() <= 0) {
+        return NULL;
+    } else {
+        switch (p_data->getType()) {
+        case dEvDtData_c::TYPE_FLOAT:
+        case dEvDtData_c::TYPE_VEC:
+        case 2:
+            return getBase().getFDataP(p_data->getIndex());
+        case dEvDtData_c::TYPE_INT:
+            return getBase().getIDataP(p_data->getIndex());
+        case dEvDtData_c::TYPE_STRING:
+            return getBase().getSDataP(p_data->getIndex());
+        }
+        return NULL;
+    }
 }
-#pragma pop
 
 dEvent_manager_c::dEvent_manager_c() {
     mDataLoaded = false;
@@ -264,18 +263,16 @@ int dEvent_manager_c::create() {
     field_0x1b4 = 0;
     field_0x1aa = -1;
     field_0x1b8 = 0;
-    field_0x1b0 = -1;
+    mRoomNo = -1;
     mDataLoaded = 0;
 
     for (int i = 4; i <= 9; i++) {
         mEventList[i].init();
     }
-    char* res = (char*)dComIfG_getStageRes(data_80379F50);
-    mEventList[3].init(res, -1);
-    mEventList[10].init();
 
-    res = (char*)dComIfG_getObjectRes("Event", data_80379F50);
-    mEventList[1].init(res, -1);
+    mEventList[3].init((char*)dComIfG_getStageRes(data_80379F50), -1);
+    mEventList[10].init();
+    mEventList[1].init((char*)dComIfG_getObjectRes("Event", data_80379F50), -1);
     mEventList[2].init();
     return 1;
 }
@@ -305,6 +302,35 @@ asm void dEvent_manager_c::demoInit() {
 #pragma pop
 
 /* 80046904-800469EC 041244 00E8+00 0/0 1/1 0/0 .text            roomInit__16dEvent_manager_cFi */
+// reversed reg alloc
+#ifdef NONMATCHING
+void dEvent_manager_c::roomInit(int roomNo) {
+    if (roomNo == -1) {
+        roomNo = dComIfGp_roomControl_getStayNo();
+    }
+    char arc_name[8];
+    strcpy(arc_name, dComIfG_getRoomArcName(roomNo));
+    char* data = (char*)dComIfG_getStageRes(arc_name, data_80379F50);
+
+    int tmp = -1;
+    for (int i = 4; i <= 9; i++) {
+        if (mEventList[i].getHeaderP() == NULL) {
+            tmp = i;
+            continue;
+        }
+
+        if (mEventList[i].roomNo() == roomNo) {
+            tmp = i;
+            break;
+        }
+    }
+
+    if (tmp != -1) {
+        mEventList[tmp].init(data, roomNo);
+    }
+    mRoomNo = roomNo;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -313,6 +339,7 @@ asm void dEvent_manager_c::roomInit(int param_0) {
 #include "asm/d/event/d_event_manager/roomInit__16dEvent_manager_cFi.s"
 }
 #pragma pop
+#endif
 
 void dEvent_manager_c::roomFinish(int param_0) {
     for (int i = 4; i <= 9; i++) {
@@ -369,19 +396,31 @@ static int allOffObjectCallBack(fopAc_ac_c* pActor, void* param_1) {
 
 /* 80046CB8-80046DA0 0415F8 00E8+00 1/1 0/0 0/0 .text
  * startProc__16dEvent_manager_cFP12dEvDtEvent_c                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvent_manager_c::startProc(dEvDtEvent_c* param_0) {
-    nofralloc
-#include "asm/d/event/d_event_manager/startProc__16dEvent_manager_cFP12dEvDtEvent_c.s"
+void dEvent_manager_c::startProc(dEvDtEvent_c* p_evnt) {
+    for (int i = 0; i < p_evnt->getNStaff(); i++) {
+        dEvDtStaff_c* staff = getBase().getStaffP(p_evnt->getStaff(i));
+        if (staff->getType() == dEvDtStaff_c::TYPE_DEFAULT) {
+            fopAc_ac_c* ac = specialCast(staff->getName(), 1);
+            if (ac == NULL) {
+                ac = fopAcM_searchFromName4Event(staff->getName(), -1);
+            }
+            if (ac != NULL) {
+                fopAcM_OnStatus(ac, 0x8000);
+            }
+        }
+        if (staff->getType() == dEvDtStaff_c::TYPE_ALL) {
+            issueStaff(staff->getName());
+        }
+        staff->init();
+    }
+    p_evnt->mEventState = 1;
+    mFlags.init();
 }
-#pragma pop
 
 /* 80046DA0-80046DAC 0416E0 000C+00 2/2 0/0 0/0 .text
  * closeProc__16dEvent_manager_cFP12dEvDtEvent_c                */
-void dEvent_manager_c::closeProc(dEvDtEvent_c* param_0) {
-    param_0->field_0xa4 = 2;
+void dEvent_manager_c::closeProc(dEvDtEvent_c* p_evnt) {
+    p_evnt->mEventState = 2;
 }
 
 /* ############################################################################################## */
@@ -452,23 +491,21 @@ asm void dEvent_manager_c::Experts() {
 /* 80047454-800474BC 041D94 0068+00 1/1 0/0 0/0 .text            getEventData__16dEvent_manager_cFsi
  */
 #ifdef NONMATCHING
-dEvDtEvent_c* dEvent_manager_c::getEventData(s16 param_0, int param_1) {
-    dEvDtBase_c* baseptr;
-    dEvDtEvent_c* eventptr;
-
-    if (param_1 < 1 || param_1 > 12) {
-        eventptr = NULL;
+dEvDtEvent_c* dEvent_manager_c::getEventData(s16 param_0, int idx) {
+    if (idx <= 0 || idx > 11) {
+        return NULL;
     } else {
-        baseptr = &mEventList[param_1];
-        if (baseptr == NULL || baseptr->getHeaderP() == NULL) {
-            eventptr = NULL;
-        } else if (param_0 < 0 || baseptr->getEventNum() <= param_0) {
-            eventptr = NULL;
+        dEvDtBase_c* base = &mEventList[idx];
+
+        if (base == NULL || base->getHeaderP() == NULL) {
+            return NULL;
+        } else if (param_0 < 0 || param_0 >= base->getEventNum()) {
+            return NULL;
         } else {
-            eventptr = baseptr->getEventP(param_1);
+            return base->getEventP(idx);
         }
     }
-    return eventptr;
+    return NULL;
 }
 #else
 #pragma push
@@ -616,7 +653,7 @@ SECTION_DEAD static char const* const stringBase_8037A0C5 = "Link";
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvent_manager_c::getMyStaffId(char const* param_0, fopAc_ac_c* param_1, int param_2) {
+asm s32 dEvent_manager_c::getMyStaffId(char const* param_0, fopAc_ac_c* param_1, int param_2) {
     nofralloc
 #include "asm/d/event/d_event_manager/getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci.s"
 }
@@ -664,26 +701,60 @@ asm void dEvent_manager_c::getMyNowCutName(int param_0) {
 }
 #pragma pop
 
+inline dEvt_control_c& dComIfGp_getEvent() {
+    return g_dComIfG_gameInfo.play.getEvent();
+}
+
 /* 80047FC8-800480EC 042908 0124+00 2/2 0/0 0/0 .text getMyDataP__16dEvent_manager_cFiPCci */
+// instruction in wrong place
+#ifdef NONMATCHING
+dEvDtData_c* dEvent_manager_c::getMyDataP(int index, char const* name, int type) {
+    if (dComIfGp_getEvent().getMode() == 0) {
+        return NULL;
+    } else if (index == -1) {
+        return NULL;
+    } else if (field_0x1aa == -1) {
+        return NULL;
+    } else {
+        dEvDtCut_c* cut;
+        if (type != 0) {
+            cut = getBase().getCutStaffStartCutP(index);
+        } else {
+            cut = getBase().getCutStaffCurrentCutP(index);
+        }
+
+        int top = cut->getDataTop();
+        while (top != -1) {
+            dEvDtData_c* data = getBase().getDataP(index);
+            if (!strcmp(name, data->getName())) {
+                return data;
+            }
+            top = data->getNext();
+        }
+
+        return NULL;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvent_manager_c::getMyDataP(int param_0, char const* param_1, int param_2) {
+asm dEvDtData_c* dEvent_manager_c::getMyDataP(int param_0, char const* param_1, int param_2) {
     nofralloc
 #include "asm/d/event/d_event_manager/getMyDataP__16dEvent_manager_cFiPCci.s"
 }
 #pragma pop
+#endif
 
 /* 800480EC-80048144 042A2C 0058+00 0/0 22/22 355/355 .text
  * getMySubstanceP__16dEvent_manager_cFiPCci                    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvent_manager_c::getMySubstanceP(int param_0, char const* param_1, int param_2) {
-    nofralloc
-#include "asm/d/event/d_event_manager/getMySubstanceP__16dEvent_manager_cFiPCci.s"
+void* dEvent_manager_c::getMySubstanceP(int index, char const* name, int type) {
+    dEvDtData_c* data = getMyDataP(index, name, 0);
+    if (data == NULL) {
+        return NULL;
+    }
+    return getSubstance(data, type);
 }
-#pragma pop
 
 /* 80048144-8004817C 042A84 0038+00 0/0 12/12 0/0 .text getMySubstanceNum__16dEvent_manager_cFiPCc
  */
@@ -821,7 +892,7 @@ SECTION_DEAD static char const* const stringBase_8037A0DE = "SHUTTER_DOOR";
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvent_manager_c::specialCast(char const* param_0, int param_1) {
+asm fopAc_ac_c* dEvent_manager_c::specialCast(char const* param_0, int param_1) {
     nofralloc
 #include "asm/d/event/d_event_manager/specialCast__16dEvent_manager_cFPCci.s"
 }

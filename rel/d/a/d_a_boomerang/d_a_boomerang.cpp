@@ -11,21 +11,6 @@
 // Types:
 //
 
-struct csXyz {
-    /* 802673F4 */ csXyz(s16, s16, s16);
-};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266C18 */ void operator/(f32) const;
-    /* 80267128 */ void atan2sX_Z() const;
-    /* 80267150 */ void atan2sY_XZ() const;
-    /* 8049EE8C */ ~cXyz();
-    /* 804A27FC */ cXyz();
-};
-
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
@@ -34,75 +19,8 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DModelData {};
-
-struct J3DAnmTransform {};
-
-struct mDoExt_bckAnm {
-    /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
-    /* 8000D9CC */ void entry(J3DModelData*, f32);
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct fopAcM_wt_c {
-    /* 8001DD84 */ void waterCheck(cXyz const*);
-
-    static f32 mWaterY[1 + 1 /* padding */];
-};
-
-struct fopAcM_rc_c {
-    /* 8001DD1C */ void roofCheck(cXyz const*);
-
-    static u8 mRoofCheck[80];
-    static f32 mRoofY;
-};
-
-struct J3DModel {};
-
 struct daMirror_c {
     /* 8003194C */ void entry(J3DModel*);
-};
-
-struct daBoomerang_sight_c {
-    /* 8049E0B8 */ void createHeap();
-    /* 8049E36C */ void initialize();
-    /* 8049EB64 */ void playAnime(int, int);
-    /* 8049EDA8 */ void initFrame(int);
-    /* 8049EDE8 */ void copyNumData(int);
-    /* 8049EEC8 */ void setSight(cXyz const*, int);
-    /* 8049EF60 */ void draw();
-    /* 804A278C */ ~daBoomerang_sight_c();
-};
-
-struct daBoomerang_c {
-    /* 8049F280 */ void windModelCallBack();
-    /* 8049F39C */ void draw();
-    /* 8049F5F4 */ void lockLineCallback(fopAc_ac_c*);
-    /* 8049F660 */ void moveLineCallback(fopAc_ac_c*);
-    /* 8049F710 */ void pushLockList(int);
-    /* 8049F818 */ void cancelLockActorBase(fopAc_ac_c*);
-    /* 8049F874 */ void setAimActorBase(fopAc_ac_c*);
-    /* 8049F8B0 */ void setLockActor(fopAc_ac_c*, int);
-    /* 8049F9A4 */ void resetLockActor();
-    /* 8049F9F0 */ void setRoomInfo();
-    /* 8049FAA4 */ void setKeepMatrix();
-    /* 8049FBAC */ void setMoveMatrix();
-    /* 8049FCD0 */ void setRotAngle();
-    /* 8049FD6C */ void setAimPos();
-    /* 8049FE6C */ void checkBgHit(cXyz*, cXyz*);
-    /* 804A006C */ void setEffectTraceMatrix(u32*, u16);
-    /* 804A012C */ void setEffect();
-    /* 804A0874 */ void procWait();
-    /* 804A0F0C */ void procMove();
-    /* 804A1814 */ void execute();
-    /* 804A1BF4 */ ~daBoomerang_c();
-    /* 804A1EE4 */ void createHeap();
-    /* 804A2084 */ void create();
-    /* 804A230C */ daBoomerang_c();
 };
 
 struct daBoomerang_HIO_c0 {
@@ -113,8 +31,6 @@ struct daBoomerang_HIO_c0 {
     static f32 const m_scale;
     static f32 const m_lockWindScale;
 };
-
-struct J3DAnmBase {};
 
 struct daAlink_c {
     /* 8009D884 */ void getAlinkArcName();
@@ -129,23 +45,7 @@ struct daAlink_c {
     /* 800E08C4 */ void returnBoomerang(int);
 };
 
-struct dKy_tevstr_c {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C1E4 */ void getResInfo(char const*, dRes_info_c*, int);
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
 struct dPa_levelEcallBack {};
-
-struct _GXColor {};
 
 struct dPa_control_c {
     struct level_c {
@@ -157,36 +57,11 @@ struct dPa_control_c {
                             _GXColor const*, cXyz const*, f32);
 };
 
-struct cBgS_PolyInfo {};
-
 struct dBgS {
     /* 80074BE8 */ void GetPolyColor(cBgS_PolyInfo const&);
     /* 80074DAC */ void GetUnderwaterRoofCode(cBgS_PolyInfo const&);
     /* 80074E50 */ void GetPolyAtt0(cBgS_PolyInfo const&);
     /* 80075100 */ void GetRoomId(cBgS_PolyInfo const&);
-};
-
-struct dBgS_AcchCir {};
-
-struct dBgS_Acch {
-    /* 80075F94 */ ~dBgS_Acch();
-    /* 800760A0 */ dBgS_Acch();
-    /* 80076288 */ void Set(fopAc_ac_c*, int, dBgS_AcchCir*);
-    /* 80076AAC */ void CrrPos(dBgS&);
-};
-
-struct dPaPo_c {
-    /* 80050C9C */ void init(dBgS_Acch*, f32, f32);
-    /* 80051008 */ void setEffectCenter(dKy_tevstr_c const*, cXyz const*, u32, u32, cXyz const*,
-                                        csXyz const*, cXyz const*, s8, f32, f32);
-};
-
-struct dDlst_base_c {
-    /* 804A2718 */ void draw();
-};
-
-struct dDlst_list_c {
-    /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
 };
 
 struct cCcD_Obj {};
@@ -223,47 +98,6 @@ struct dCcD_Cps {
     /* 80084824 */ void CalcAtVec();
 };
 
-struct dBgS_PolyPassChk {
-    /* 80078E68 */ void SetObj();
-};
-
-struct dBgS_ObjLinChk {
-    /* 80077F5C */ dBgS_ObjLinChk();
-    /* 80077FB8 */ ~dBgS_ObjLinChk();
-};
-
-struct dBgS_ObjGndChk {
-    /* 804A2524 */ ~dBgS_ObjGndChk();
-};
-
-struct dBgS_ObjAcch {
-    /* 804A2688 */ ~dBgS_ObjAcch();
-};
-
-struct dBgS_LinChk {
-    /* 80077D64 */ void Set(cXyz const*, cXyz const*, fopAc_ac_c const*);
-};
-
-struct dBgS_GndChk {
-    /* 8007757C */ dBgS_GndChk();
-    /* 800775F0 */ ~dBgS_GndChk();
-};
-
-struct dBgS_BoomerangLinChk {
-    /* 800782B8 */ dBgS_BoomerangLinChk();
-    /* 80078314 */ ~dBgS_BoomerangLinChk();
-};
-
-struct cM3dGPla {
-    /* 804A082C */ ~cM3dGPla();
-};
-
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 8026F1F8 */ void SetH(f32);
-    /* 804A259C */ ~cM3dGCyl();
-};
-
 struct cM3dGCps {
     /* 8026EF88 */ cM3dGCps();
     /* 8026EFA4 */ ~cM3dGCps();
@@ -282,28 +116,11 @@ struct cCcD_GStts {
     /* 804A271C */ ~cCcD_GStts();
 };
 
-struct cBgS_LinChk {};
-
-struct cBgS_GndChk {
-    /* 80267D28 */ void SetPos(cXyz const*);
-};
-
 struct cBgS {
     /* 800743B4 */ void LineCross(cBgS_LinChk*);
     /* 800744A0 */ void GroundCross(cBgS_GndChk*);
     /* 80074744 */ void GetTriPla(cBgS_PolyInfo const&, cM3dGPla*) const;
 };
-
-struct Z2SoundObjSimple {
-    /* 802BE844 */ Z2SoundObjSimple();
-};
-
-struct Z2SoundObjBase {
-    /* 802BDF48 */ ~Z2SoundObjBase();
-    /* 802BDFF8 */ void deleteObject();
-};
-
-struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -315,47 +132,6 @@ struct Z2AudioMgr {
 
 struct JMath {
     static u8 sincosTable_[65536];
-};
-
-struct JKRFileLoader {
-    /* 802D4270 */ void getGlbResource(char const*, JKRFileLoader*);
-};
-
-struct JKRArchive {};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
-
-struct J3DSys {
-    static u8 mCurrentMtx[48];
-};
-
-struct J3DAnmTextureSRTKey {
-    /* 8032B1D4 */ void searchUpdateMaterialID(J3DModelData*);
-};
-
-struct J3DMaterialTable {
-    /* 8032FCC4 */ void entryTexMtxAnimator(J3DAnmTextureSRTKey*);
-};
-
-struct J3DJoint {};
-
-struct J3DFrameCtrl {
-    /* 803283FC */ void init(s16);
-    /* 804A2800 */ ~J3DFrameCtrl();
-};
-
-struct J2DGrafContext {};
-
-struct J2DScreen {
-    /* 802F8498 */ J2DScreen();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-    /* 802F9690 */ void animation();
 };
 
 struct J2DAnmLoaderDataBase {
@@ -547,11 +323,6 @@ extern "C" void load__20J2DAnmLoaderDataBaseFPCv();
 extern "C" void init__12J3DFrameCtrlFs();
 extern "C" void searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP12J3DModelData();
 extern "C" void entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXConcat();
-extern "C" void PSVECSquareMag();
-extern "C" void PSVECDotProduct();
-extern "C" void PSVECSquareDistance();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void __ptmf_scall();
@@ -585,13 +356,10 @@ extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mRoofCheck__11fopAcM_rc_c[80];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
 extern "C" f32 mRoofY__11fopAcM_rc_c;
 extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
-extern "C" extern u8 struct_80450D64[4];
 extern "C" extern u8 struct_8045101C[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
@@ -831,7 +599,8 @@ asm void daBoomerang_sight_c::copyNumData(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/__dt__4cXyzFv.s"
 }
@@ -1600,7 +1369,8 @@ asm void daBoomerang_c::setEffect() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGPla::~cM3dGPla() {
+// asm cM3dGPla::~cM3dGPla() {
+extern "C" asm void __dt__8cM3dGPlaFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/__dt__8cM3dGPlaFv.s"
 }
@@ -1813,7 +1583,8 @@ asm daBoomerang_c::daBoomerang_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_ObjGndChk::~dBgS_ObjGndChk() {
+// asm dBgS_ObjGndChk::~dBgS_ObjGndChk() {
+extern "C" asm void __dt__14dBgS_ObjGndChkFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/__dt__14dBgS_ObjGndChkFv.s"
 }
@@ -1823,7 +1594,8 @@ asm dBgS_ObjGndChk::~dBgS_ObjGndChk() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/__dt__8cM3dGCylFv.s"
 }
@@ -1853,7 +1625,8 @@ asm dCcD_GStts::~dCcD_GStts() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_ObjAcch::~dBgS_ObjAcch() {
+// asm dBgS_ObjAcch::~dBgS_ObjAcch() {
+extern "C" asm void __dt__12dBgS_ObjAcchFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/__dt__12dBgS_ObjAcchFv.s"
 }
@@ -1871,7 +1644,7 @@ static asm void daBoomerang_Create(fopAc_ac_c* param_0) {
 #pragma pop
 
 /* 804A2718-804A271C 0046D8 0004+00 1/0 0/0 0/0 .text            draw__12dDlst_base_cFv */
-void dDlst_base_c::draw() {
+void draw__12dDlst_base_cFv() {
     /* empty function */
 }
 
@@ -1939,14 +1712,15 @@ static asm void func_804A2784() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm daBoomerang_sight_c::~daBoomerang_sight_c() {
+// asm daBoomerang_sight_c::~daBoomerang_sight_c() {
+extern "C" asm void __dt__19daBoomerang_sight_cFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/__dt__19daBoomerang_sight_cFv.s"
 }
 #pragma pop
 
 /* 804A27FC-804A2800 0047BC 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-cXyz::cXyz() {
+extern "C" void __ct__4cXyzFv() {
     /* empty function */
 }
 
@@ -1954,7 +1728,8 @@ cXyz::cXyz() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DFrameCtrl::~J3DFrameCtrl() {
+// asm J3DFrameCtrl::~J3DFrameCtrl() {
+extern "C" asm void __dt__12J3DFrameCtrlFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/__dt__12J3DFrameCtrlFv.s"
 }

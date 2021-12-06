@@ -933,7 +933,7 @@ asm void dAttention_c::CheckObjectTarget(s32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dAttention_c::LockonTruth() {
+asm bool dAttention_c::LockonTruth() {
     nofralloc
 #include "asm/d/d_attention/LockonTruth__12dAttention_cFv.s"
 }

@@ -29,22 +29,6 @@ struct dMsgObject_c {
     /* 8023822C */ void getStatus();
 };
 
-struct ResTIMG {};
-
-struct ResTLUT {};
-
-struct JGeometry {
-    template <typename A1>
-    struct TBox2 {};
-    /* TBox2<f32> */
-    struct TBox2__template0 {};
-};
-
-struct J2DPicture {
-    /* 802FC708 */ J2DPicture(ResTIMG const*);
-    /* 802FC800 */ J2DPicture(u64, JGeometry::TBox2<f32> const&, ResTIMG const*, ResTLUT const*);
-};
-
 struct JMSMesgEntry_c {};
 
 struct dMeter2Info_c {
@@ -54,157 +38,6 @@ struct dMeter2Info_c {
     /* 8021C950 */ void isDirectUseItem(int);
     /* 8021CF08 */ void readItemTexture(u8, void*, J2DPicture*, void*, J2DPicture*, void*,
                                         J2DPicture*, void*, J2DPicture*, int);
-};
-
-struct JUtility {
-    struct TColor {};
-};
-
-struct JKRExpHeap {};
-
-struct J2DGrafContext {};
-
-struct JKRArchive {
-    /* 802D5B38 */ void getGlbResource(u32, char const*, JKRArchive*);
-};
-
-struct J2DScreen {
-    /* 802F8498 */ J2DScreen();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-    /* 802F9690 */ void animation();
-};
-
-struct CPaneMgrAlpha {
-    /* 802553FC */ CPaneMgrAlpha(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 802555C8 */ void show();
-    /* 80255608 */ void hide();
-    /* 8025564C */ void isVisible();
-    /* 802557D0 */ void setAlphaRate(f32);
-    /* 80255828 */ void getAlphaRate();
-};
-
-struct J2DBasePosition {};
-
-struct J2DRotateAxis {};
-
-struct J2DPane {
-    /* 802F666C */ void appendChild(J2DPane*);
-    /* 802F71DC */ void rotate(f32, f32, J2DRotateAxis, f32);
-    /* 802F76F8 */ void setBasePosition(J2DBasePosition);
-    /* 802F79A8 */ void getGlbVtx(u8) const;
-    /* 802F7FCC */ void animationTransform();
-};
-
-struct CPaneMgr {
-    /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 80254458 */ void setBlackWhite(JUtility::TColor, JUtility::TColor);
-    /* 802545B0 */ void paneTrans(f32, f32);
-    /* 80254EBC */ void getGlobalVtxCenter(J2DPane*, bool, s16);
-};
-
-struct J2DAnmColor {};
-
-struct dMeter2Draw_c {
-    /* 8020FAB4 */ dMeter2Draw_c(JKRExpHeap*);
-    /* 802102F8 */ ~dMeter2Draw_c();
-    /* 80210FB0 */ void init();
-    /* 8021135C */ void exec(u32);
-    /* 8021151C */ void draw();
-    /* 80211BEC */ void initLife();
-    /* 80211E64 */ void initMagic();
-    /* 80212190 */ void initLightDrop();
-    /* 80212404 */ void initRupeeKey();
-    /* 802126E4 */ void initButton();
-    /* 8021350C */ void initButtonCross();
-    /* 80213CEC */ void playPikariBckAnimation(f32);
-    /* 80213D6C */ void setPikariBpkAnimation(J2DAnmColor*);
-    /* 80213E3C */ void playPikariBpkAnimation(f32);
-    /* 80213E94 */ void playOxygenBpkAnimation(J2DAnmColor*);
-    /* 802140DC */ void drawPikari(f32, f32, f32*, f32, JUtility::TColor, JUtility::TColor,
-                                   JUtility::TColor, JUtility::TColor, f32, u8);
-    /* 80213FF0 */ void drawPikari(CPaneMgr*, f32*, f32, JUtility::TColor, JUtility::TColor,
-                                   JUtility::TColor, JUtility::TColor, f32, u8);
-    /* 8021462C */ void drawPikariHakusha(f32, f32, f32, f32, JUtility::TColor, JUtility::TColor,
-                                          JUtility::TColor, JUtility::TColor);
-    /* 802147CC */ void changeTextureLife(int, bool, u8);
-    /* 802149F4 */ void drawLife(s16, s16, f32, f32);
-    /* 80214C20 */ void setAlphaLifeChange(bool);
-    /* 80214DF4 */ void setAlphaLifeAnimeMin();
-    /* 80214E54 */ void setAlphaLifeAnimeMax();
-    /* 80214EB4 */ void drawKanteraScreen(u8);
-    /* 80215290 */ void drawMagic(s16, s16, f32, f32);
-    /* 80215380 */ void setAlphaMagicChange(bool);
-    /* 802154A8 */ void drawKantera(s32, s32, f32, f32);
-    /* 802155B8 */ void setAlphaKanteraChange(bool);
-    /* 802156E0 */ void setAlphaKanteraAnimeMin();
-    /* 8021575C */ void setAlphaKanteraAnimeMax();
-    /* 802157E0 */ void drawOxygen(s32, s32, f32, f32);
-    /* 802158F0 */ void setAlphaOxygenChange(bool);
-    /* 80215A18 */ void setAlphaOxygenAnimeMin();
-    /* 80215A94 */ void setAlphaOxygenAnimeMax();
-    /* 80215B18 */ void drawLightDrop(u8, u8, f32, f32, f32, f32, u8);
-    /* 80215DA4 */ void setAlphaLightDropChange(bool);
-    /* 80215DA8 */ void getNowLightDropRateCalc();
-    /* 80215E40 */ void setAlphaLightDropAnimeMin();
-    /* 80215F88 */ void setAlphaLightDropAnimeMax();
-    /* 8021632C */ void drawRupee(s16);
-    /* 80216684 */ void setAlphaRupeeChange(bool);
-    /* 802168D0 */ void setAlphaRupeeAnimeMin();
-    /* 80216990 */ void setAlphaRupeeAnimeMax();
-    /* 80216A40 */ void drawKey(s16);
-    /* 80216B28 */ void setAlphaKeyChange(bool);
-    /* 80216CA8 */ void setAlphaKeyAnimeMin();
-    /* 80216D2C */ void setAlphaKeyAnimeMax();
-    /* 80216DAC */ void drawButtonA(u8, f32, f32, f32, f32, f32, bool, bool);
-    /* 802170E4 */ void drawButtonB(u8, bool, f32, f32, f32, f32, f32, bool);
-    /* 8021764C */ void drawButtonR(u8, u8, bool, bool);
-    /* 802176EC */ void drawButtonZ(u8);
-    /* 80217904 */ void drawButton3D(u8);
-    /* 80217954 */ void drawButtonC(u8, bool);
-    /* 802179C0 */ void drawButtonS(u8);
-    /* 80217A10 */ void drawButtonBin(u8);
-    /* 80217AB4 */ void drawButtonXY(int, u8, u8, bool, bool);
-    /* 80218238 */ void getButtonCrossParentInitTransY();
-    /* 80218254 */ void drawButtonCross(f32, f32);
-    /* 80218338 */ void setAlphaButtonCrossAnimeMin();
-    /* 802183A8 */ void setAlphaButtonCrossAnimeMax();
-    /* 80218448 */ void setAlphaButtonCrossItemAnimeMin();
-    /* 80218524 */ void setAlphaButtonCrossItemAnimeMax();
-    /* 802185E8 */ void setAlphaButtonCrossMapAnimeMin();
-    /* 802186C4 */ void setAlphaButtonCrossMapAnimeMax();
-    /* 80218788 */ void setAlphaButtonChange(bool);
-    /* 8021901C */ void setAlphaButtonAnimeMin();
-    /* 802190A8 */ void setAlphaButtonAnimeMax();
-    /* 80219174 */ void setAlphaButtonAAnimeMin();
-    /* 80219258 */ void setAlphaButtonAAnimeMax();
-    /* 80219324 */ void setAlphaButtonBAnimeMin();
-    /* 80219474 */ void setAlphaButtonBAnimeMax();
-    /* 802195A4 */ void setButtonIconAAlpha(u8, u32, bool);
-    /* 80219788 */ void setButtonIconBAlpha(u8, u32, bool);
-    /* 80219A84 */ void setButtonIconMidonaAlpha(u32);
-    /* 80219E98 */ void setButtonIconAlpha(int, u8, u32, bool);
-    /* 8021A29C */ void getNumberTexture(int);
-    /* 8021A2F4 */ void getActionString(u8, u8, u8*);
-    /* 8021A468 */ void changeTextureItemB(u8);
-    /* 8021A71C */ void changeTextureItemXY(int, u8);
-    /* 8021A9C8 */ void setAlphaAnimeMin(CPaneMgrAlpha*, s16);
-    /* 8021AAA4 */ void setAlphaAnimeMax(CPaneMgrAlpha*, s16);
-    /* 8021AB84 */ void setItemNum(u8, u8, u8);
-    /* 8021AEC8 */ void drawItemNum(u8, f32);
-    /* 8021AF78 */ void drawKanteraMeter(u8, f32);
-    /* 8021B0C8 */ void isButtonVisible();
-    /* 8021B104 */ void setItemParamX(u8);
-    /* 8021B364 */ void setItemParamY(u8);
-    /* 8021B5B0 */ void setItemParamZ(u8);
-    /* 8021B810 */ void setItemParamB(u8);
-    /* 8021BB6C */ void getFishingType();
-    /* 8021BBB4 */ void getCanoeFishing();
-    /* 8021BC24 */ void getCameraSubject();
-    /* 8021BC54 */ void getItemSubject();
-    /* 8021BCAC */ void getPlayerSubject();
-    /* 8021BCC0 */ void isBButtonShow(bool);
-    /* 8021BDD0 */ void getButtonTimer();
 };
 
 struct dKantera_icon_c {
@@ -221,8 +54,6 @@ struct dItem_data {
 
 struct JAISoundID {};
 
-struct Vec {};
-
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -230,20 +61,6 @@ struct Z2SeMgr {
 
 struct Z2AudioMgr {
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JKRHeap {
-    /* 802CE4D4 */ void alloc(u32, int);
-    /* 802CE548 */ void free(void*);
-};
-
-struct JKRFileLoader {
-    /* 802D4270 */ void getGlbResource(char const*, JKRFileLoader*);
-};
-
-struct J2DTextBox {
-    /* 80300658 */ void getStringPtr() const;
-    /* 8030074C */ void setString(s16, char const*, ...);
 };
 
 struct J2DAnmLoaderDataBase {

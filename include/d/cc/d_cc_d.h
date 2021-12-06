@@ -57,6 +57,7 @@ public:
     /* 80083830 */ void Move();
     /* 8008523C */ virtual ~dCcD_GStts() {}
     void ClrTg() { mTg = 0; }
+    void SetAtApid(unsigned int id) { mAtApid = id; }
 
     // private:
     /* 0x04 */ u8 mAt;
@@ -82,11 +83,19 @@ public:
 
 };  // Size = 0x3C
 
+enum dCcG_At_Spl {
+    /* 0x0 */ dCcG_At_Spl_UNK_0,
+    /* 0x1 */ dCcG_At_Spl_UNK_01,
+};
+
+class dCcD_GObjInf;
+typedef void (*dCcD_AtHitCallback)(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
+
 class dCcD_GAtTgCoCommonBase {
 public:
     /* 0x00 */ u32 mGFlag;
     /* 0x04 */ u32 mRPrm;
-    /* 0x08 */ u32 field_0x08;
+    /* 0x08 */ dCcD_AtHitCallback mHitCallback;
     /* 0x0C */ u32 mApid;
     /* 0x10 */ fopAc_ac_c* mAc;
     /* 0x14 */ s8 mEffCounter;
@@ -108,7 +117,12 @@ public:
     u32 GetGFlag() const { return mGFlag; }
     u32 GetRPrm() const { return mRPrm; }
     u32 MskSPrm(u32 mask) const { return mGFlag & mask; }
+    u32 MskRPrm(u32 mask) const { return mRPrm & mask; }
     bool ChkSPrm(u32 mask) const { return MskSPrm(mask); }
+    void OnSPrm(u32 flag) { mGFlag |= flag; }
+    void OffSPrm(u32 flag) { mGFlag &= ~flag; }
+    bool ChkRPrm(u32 flag) const { return MskRPrm(flag); }
+    void SetHitCallback(dCcD_AtHitCallback callback) { mHitCallback = callback; }
 };  // Size = 0x1C
 
 class dCcD_GObjAt : public dCcD_GAtTgCoCommonBase {
@@ -117,6 +131,11 @@ public:
     /* 80083C44 */ virtual ~dCcD_GObjAt() {}
     void SetVec(cXyz& vec) { mVec = vec; }
     cXyz& GetVec() { return mVec; }
+    cXyz* GetVecP() { return &mVec; }
+    void SetHitMark(u8 mark) { mHitMark = mark; }
+    void SetSe(u8 se) { mSe = se; }
+    void SetMtrl(u8 mtrl) { mMtrl = mtrl; }
+    void SetAtSpl(dCcG_At_Spl spl) { mSpl = spl; }
 
     // private:
     /* 0x1C */ u8 mSe;
@@ -156,7 +175,7 @@ public:
     /* 800840E4 */ virtual ~dCcD_GObjInf();
     /* 80084268 */ cCcD_GObjInf* GetGObjInf();
     /* 8008426C */ virtual void ClrAtHit();
-    /* 800842C0 */ s32 ChkAtHit();
+    /* 800842C0 */ u32 ChkAtHit();
     /* 80084318 */ void ResetAtHit();
     /* 80084358 */ cCcD_Obj* GetAtHitObj();
     /* 800843A8 */ cCcD_GObjInf* GetAtHitGObj();
@@ -176,6 +195,18 @@ public:
 
     void SetAtVec(cXyz& vec) { mGObjAt.SetVec(vec); }
     bool ChkAtNoMass() const { return mGObjAt.ChkSPrm(8); }
+    void OnAtNoHitMark() { mGObjAt.OnSPrm(2); }
+    void OffAtNoHitMark() { mGObjAt.OffSPrm(2); }
+    void OnAtNoConHit() { mGObjAt.OnSPrm(1); }
+    void OffAtNoConHit() { mGObjAt.OffSPrm(1); }
+    void SetAtHitMark(u8 mark) { mGObjAt.SetHitMark(mark); }
+    void SetAtSe(u8 se) { mGObjAt.SetSe(se); }
+    void SetAtMtrl(u8 mtrl) { mGObjAt.SetMtrl(mtrl); }
+    fopAc_ac_c* GetAtHitAc() { return mGObjAt.GetAc(); }
+    bool ChkAtShieldHit() { return mGObjAt.ChkRPrm(1); }
+    cXyz* GetAtVecP() { return mGObjAt.GetVecP(); }
+    void SetAtSpl(dCcG_At_Spl spl) { mGObjAt.SetAtSpl(spl); }
+    void SetAtHitCallback(dCcD_AtHitCallback callback) { mGObjAt.SetHitCallback(callback); }
 
     static u32 const m_hitSeID[24];
 

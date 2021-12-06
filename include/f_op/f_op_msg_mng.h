@@ -6,4 +6,6 @@
 
 typedef int (*fopMsgCreateFunc)(void*);
 
+JKRExpHeap* fopMsgM_createExpHeap(u32, JKRHeap*);
+
 #endif
