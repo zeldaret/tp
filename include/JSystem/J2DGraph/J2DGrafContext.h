@@ -38,10 +38,10 @@ public:
 protected:
     /* 0x04 */ JGeometry::TBox2<f32> mBounds;
     /* 0x14 */ JGeometry::TBox2<f32> mScissorBounds;
-    /* 0x24 */ JUtility::TColor field_0x24;
-    /* 0x28 */ JUtility::TColor field_0x28;
-    /* 0x2C */ JUtility::TColor field_0x2c;
-    /* 0x30 */ JUtility::TColor field_0x30;
+    /* 0x24 */ JUtility::TColor mColorTL;
+    /* 0x28 */ JUtility::TColor mColorTR;
+    /* 0x2C */ JUtility::TColor mColorBR;
+    /* 0x30 */ JUtility::TColor mColorBL;
     /* 0x34 */ u8 mLineWidth;
     /* 0x38 */ JGeometry::TVec2<f32> mPrevPos;
     /* 0x40 */ Mtx44 mMtx44;
