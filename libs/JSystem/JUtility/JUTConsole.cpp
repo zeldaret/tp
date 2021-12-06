@@ -284,8 +284,6 @@ asm void JUTConsole::dumpToTerminal(unsigned int param_0) {
 #pragma pop
 
 /* 802E80A8-802E8184 2E29E8 00DC+00 0/0 3/3 0/0 .text            scroll__10JUTConsoleFi */
-// regalloc
-#ifdef NONMATCHING
 void JUTConsole::scroll(int param_0) {
     if (param_0 < 0) {
         int diff = diffIndex(field_0x34, field_0x30);
@@ -300,7 +298,7 @@ void JUTConsole::scroll(int param_0) {
             } else {
                 diff = diffIndex(field_0x30, field_0x38);
                 if (param_0 > (int)(diff - mHeight) + 1) {
-                    param_0 = diff;
+                    param_0 = (int)(diff - mHeight) + 1;
                 }
             }
         }
@@ -313,16 +311,6 @@ void JUTConsole::scroll(int param_0) {
         field_0x30 -= field_0x24;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTConsole::scroll(int param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/scroll__10JUTConsoleFi.s"
-}
-#pragma pop
-#endif
 
 /* 802E8184-802E81A8 2E2AC4 0024+00 0/0 2/2 0/0 .text            getUsedLine__10JUTConsoleCFv */
 int JUTConsole::getUsedLine() const {

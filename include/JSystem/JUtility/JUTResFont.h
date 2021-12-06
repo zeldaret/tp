@@ -14,8 +14,8 @@ public:
     /* 802DDFEC */ virtual u16 getLeading() const;
     /* 802DE004 */ virtual u16 getAscent() const;
     /* 802DE010 */ virtual u16 getDescent() const;
-    /* 802DE01C */ virtual u16 getHeight() const;
-    /* 802DDFF8 */ virtual u16 getWidth() const;
+    /* 802DE01C */ virtual s32 getHeight() const;
+    /* 802DDFF8 */ virtual s32 getWidth() const;
     /* 802DFC64 */ virtual void getWidthEntry(int, JUTFont::TWidth*) const;
     /* 802DFD0C */ virtual u16 getCellWidth() const;
     /* 802DFD58 */ virtual u16 getCellHeight() const;

@@ -25,6 +25,9 @@ public:
     /* 802E5144 */ static void postRetraceProc(u32);
     /* 802E50BC */ static void drawDoneCallback();
 
+    u32 getFbWidth() const { return mRenderObj->fb_width; }
+    u32 getEfbHeight() const { return mRenderObj->efb_height; }
+
     static JUTVideo* getManager() { return sManager; }
     GXRenderModeObj* getRenderMode() const { return mRenderObj; }
 

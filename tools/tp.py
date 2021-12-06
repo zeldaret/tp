@@ -1046,7 +1046,7 @@ def find_used_asm_files(non_matching, use_progress_bar=True):
 
 
 def clang_format_impl(file):
-    cmd = ["clang-format", "-i", str(file)]
+    cmd = ["clang-format-10", "-i", str(file)]
     cf = subprocess.run(args=cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 
