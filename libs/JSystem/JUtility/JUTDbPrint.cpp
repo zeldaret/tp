@@ -4,24 +4,12 @@
 //
 
 #include "JSystem/JUtility/JUTDbPrint.h"
+#include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "JSystem/JUtility/JUTVideo.h"
 #include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf.h"
 #include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-class J2DGrafContext {
-public:
-    virtual ~J2DGrafContext(){};
-};
-
-class J2DOrthoGraph : public J2DGrafContext {
-public:
-    char fake[0xd0];
-    J2DOrthoGraph(f32, f32, f32, f32, f32, f32);
-    virtual ~J2DOrthoGraph(){};
-    void setPort();
-};
 
 /* 802E0148-802E0190 2DAA88 0048+00 1/1 0/0 0/0 .text __ct__10JUTDbPrintFP7JUTFontP7JKRHeap */
 JUTDbPrint::JUTDbPrint(JUTFont* pFont, JKRHeap* pHeap) {

@@ -49,147 +49,93 @@ extern "C" extern void* __vt__14J2DGrafContext[10];
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 803CC9E0-803CCA08 029B00 0028+00 5/5 9/9 0/0 .data            __vt__13J2DOrthoGraph */
-SECTION_DATA extern void* __vt__13J2DOrthoGraph[10] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__13J2DOrthoGraphFv,
-    (void*)func_802E90E4,
-    (void*)place__14J2DGrafContextFffff,
-    (void*)setPort__13J2DOrthoGraphFv,
-    (void*)setup2D__14J2DGrafContextFv,
-    (void*)setScissor__14J2DGrafContextFv,
-    (void*)getGrafType__13J2DOrthoGraphCFv,
-    (void*)setLookat__13J2DOrthoGraphFv,
-};
-
-/* 80456160-80456168 004760 0004+04 3/3 0/0 0/0 .sdata2          @522 */
-SECTION_SDATA2 static f32 lit_522[1 + 1 /* padding */] = {
-    0.0f,
-    /* padding */
-    0.0f,
-};
-
 /* 802E9670-802E96D0 2E3FB0 0060+00 3/3 1/1 0/0 .text            __ct__13J2DOrthoGraphFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J2DOrthoGraph::J2DOrthoGraph() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DOrthoGraph/__ct__13J2DOrthoGraphFv.s"
+J2DOrthoGraph::J2DOrthoGraph() : J2DGrafContext(0, 0, 0, 0) {
+    this->setLookat();
 }
-#pragma pop
 
 /* 802E96D0-802E97B4 2E4010 00E4+00 0/0 7/7 0/0 .text            __ct__13J2DOrthoGraphFffffff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J2DOrthoGraph::J2DOrthoGraph(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
-                                 f32 param_5) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DOrthoGraph/__ct__13J2DOrthoGraphFffffff.s"
+J2DOrthoGraph::J2DOrthoGraph(f32 left, f32 top, f32 right, f32 bottom, f32 param_4, f32 param_5)
+    : J2DGrafContext(left, top, right, bottom) {
+    mOrtho = JGeometry::TBox2<f32>(0, 0, right, bottom);
+    mNear = -param_5;
+    mFar = -param_4;
+    this->setLookat();
 }
-#pragma pop
 
 /* 802E97B4-802E980C 2E40F4 0058+00 1/0 6/6 0/0 .text            setPort__13J2DOrthoGraphFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DOrthoGraph::setPort() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DOrthoGraph/setPort__13J2DOrthoGraphFv.s"
+void J2DOrthoGraph::setPort() {
+    this->J2DGrafContext::setPort();
+    C_MTXOrtho(mMtx44, mOrtho.i.y, mOrtho.f.y, mOrtho.i.x, mOrtho.f.x, mNear, mFar);
+    GXSetProjection(mMtx44, GX_ORTHOGRAPHIC);
 }
-#pragma pop
 
 /* 802E980C-802E9840 2E414C 0034+00 0/0 5/5 0/0 .text
  * setOrtho__13J2DOrthoGraphFRCQ29JGeometry8TBox2<f>ff          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DOrthoGraph::setOrtho(JGeometry::TBox2<f32> const& param_0, f32 param_1, f32 param_2) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DOrthoGraph/func_802E980C.s"
+void J2DOrthoGraph::setOrtho(JGeometry::TBox2<f32> const& bounds, f32 far, f32 near) {
+    mOrtho = bounds;
+    mNear = -near;
+    mFar = -far;
 }
-#pragma pop
 
 /* 802E9840-802E987C 2E4180 003C+00 1/0 0/0 0/0 .text            setLookat__13J2DOrthoGraphFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DOrthoGraph::setLookat() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DOrthoGraph/setLookat__13J2DOrthoGraphFv.s"
+void J2DOrthoGraph::setLookat() {
+    PSMTXIdentity(mPosMtx);
+    GXLoadPosMtxImm(mPosMtx, 0);
 }
-#pragma pop
 
 /* 802E987C-802E9998 2E41BC 011C+00 0/0 1/1 0/0 .text
  * scissorBounds__13J2DOrthoGraphFPQ29JGeometry8TBox2<f>PCQ29JGeometry8TBox2<f> */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DOrthoGraph::scissorBounds(JGeometry::TBox2<f32>* param_0,
-                                      JGeometry::TBox2<f32> const* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DOrthoGraph/func_802E987C.s"
+void J2DOrthoGraph::scissorBounds(JGeometry::TBox2<f32>* param_0,
+                                  JGeometry::TBox2<f32> const* param_1) {
+    f32 widthPower = this->getWidthPower();
+    f32 heightPower = this->getHeightPower();
+    f32 ix = mBounds.i.x >= 0 ? mBounds.i.x : 0;
+    f32 iy = mBounds.i.y >= 0 ? mBounds.i.y : 0;
+    f32 f0 = ix + widthPower * (param_1->i.x - mOrtho.i.x);
+    f32 f2 = ix + widthPower * (param_1->f.x - mOrtho.i.x);
+    f32 f1 = iy + heightPower * (param_1->i.y - mOrtho.i.y);
+    f32 f3 = iy + heightPower * (param_1->f.y - mOrtho.i.y);
+    param_0->set(f0, f1, f2, f3);
+    param_0->intersect(mScissorBounds);
 }
-#pragma pop
 
 /* 802E9998-802E9AC4 2E42D8 012C+00 0/0 6/6 0/0 .text J2DDrawLine__FffffQ28JUtility6TColori */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DDrawLine(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor param_4,
-                     int param_5) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DOrthoGraph/J2DDrawLine__FffffQ28JUtility6TColori.s"
+void J2DDrawLine(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor color,
+                 int line_width) {
+    J2DOrthoGraph oGrph;
+    oGrph.setLineWidth(line_width);
+    oGrph.setColor(color);
+    oGrph.moveTo(param_0, param_1);
+    oGrph.lineTo(param_2, param_3);
 }
-#pragma pop
 
 /* 802E9AC4-802E9B0C 2E4404 0048+00 0/0 10/10 0/0 .text J2DFillBox__FffffQ28JUtility6TColor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DFillBox(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor param_4) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DOrthoGraph/J2DFillBox__FffffQ28JUtility6TColor.s"
+void J2DFillBox(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor color) {
+    J2DFillBox(JGeometry::TBox2<f32>(param_0, param_1, param_0 + param_2, param_1 + param_3),
+               color);
 }
-#pragma pop
 
 /* 802E9B0C-802E9B9C 2E444C 0090+00 1/1 0/0 0/0 .text
  * J2DFillBox__FRCQ29JGeometry8TBox2<f>Q28JUtility6TColor       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DFillBox(JGeometry::TBox2<f32> const& param_0, JUtility::TColor param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DOrthoGraph/func_802E9B0C.s"
+void J2DFillBox(JGeometry::TBox2<f32> const& param_0, JUtility::TColor param_1) {
+    J2DOrthoGraph oGrph;
+    oGrph.setColor(param_1);
+    oGrph.fillBox(param_0);
 }
-#pragma pop
 
 /* 802E9B9C-802E9BE8 2E44DC 004C+00 0/0 5/5 0/0 .text J2DDrawFrame__FffffQ28JUtility6TColorUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DDrawFrame(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor param_4,
-                      u8 param_5) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DOrthoGraph/J2DDrawFrame__FffffQ28JUtility6TColorUc.s"
+void J2DDrawFrame(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor color,
+                  u8 line_width) {
+    J2DDrawFrame(JGeometry::TBox2<f32>(param_0, param_1, param_0 + param_2, param_1 + param_3),
+                 color, line_width);
 }
-#pragma pop
 
 /* 802E9BE8-802E9C88 2E4528 00A0+00 1/1 0/0 0/0 .text
  * J2DDrawFrame__FRCQ29JGeometry8TBox2<f>Q28JUtility6TColorUc   */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DDrawFrame(JGeometry::TBox2<f32> const& param_0, JUtility::TColor param_1, u8 param_2) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DOrthoGraph/func_802E9BE8.s"
-}
-#pragma pop
-
-/* 802E9C88-802E9C90 2E45C8 0008+00 1/0 0/0 0/0 .text            getGrafType__13J2DOrthoGraphCFv */
-bool J2DOrthoGraph::getGrafType() const {
-    return true;
+void J2DDrawFrame(JGeometry::TBox2<f32> const& param_0, JUtility::TColor color, u8 line_width) {
+    J2DOrthoGraph oGrph;
+    oGrph.setColor(color);
+    oGrph.setLineWidth(line_width);
+    oGrph.drawFrame(param_0);
 }

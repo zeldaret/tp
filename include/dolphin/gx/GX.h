@@ -909,6 +909,20 @@ void GXSetIndTexMtx(GXIndTexMtxID, Mtx23, s8);
 void GXSetIndTexCoordScale(GXIndTexStageID, GXIndTexScale, GXIndTexScale);
 void GXSetIndTexOrder(GXIndTexStageID, GXTexCoordID, GXTexMapID);
 void GXEnableTexOffsets(GXTexCoordID, GXBool, GXBool);
+
+#define GFX_FIFO(T) (*(volatile T*)0xCC008000)
+
+inline void GXPosition3f32(f32 x, f32 y, f32 z) {
+    GFX_FIFO(f32) = x;
+    GFX_FIFO(f32) = y;
+    GFX_FIFO(f32) = z;
+}
+
+inline void GXColor1u32(u32 c) {
+    GFX_FIFO(u32) = c;
+}
+
+inline void GXEnd() {}
 };
 
 #endif
