@@ -15,6 +15,7 @@ public:
 
     s16 getFrameMax() const { return mFrameMax; }
     void setFrame(f32 frame) { mFrame = frame; }
+    s32 getKind() const { return mKind; }
 
 private:
     /* 0x0 */  // vtable

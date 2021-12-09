@@ -31,7 +31,7 @@ public:
     J2DPane(J2DPane* other, JSURandomInputStream* stream, u8 arg3);
     virtual ~J2DPane();
 
-    /* 0x0c */ virtual s32 getTypeID() const;
+    /* 0x0c */ virtual s32 getTypeID() const { return 16; }
     /* 0x10 */ virtual void move(f32 x, f32 y);
     /* 0x14 */ virtual void add(f32 x, f32 y);
     /* 0x18 */ virtual void resize(f32 x, f32 y);
@@ -53,12 +53,12 @@ public:
     /* 0x58 */ virtual void rewriteAlpha();
     /* 0x5c */ virtual void setAnimation(J2DAnmBase* anm);
     /* 0x60 */ virtual void setAnimation(J2DAnmTransform* anm);
-    /* 0x64 */ virtual void setAnimation(J2DAnmColor* anm);
-    /* 0x68 */ virtual void setAnimation(J2DAnmTexPattern* anm);
-    /* 0x6c */ virtual void setAnimation(J2DAnmTextureSRTKey* anm);
-    /* 0x70 */ virtual void setAnimation(J2DAnmTevRegKey* anm);
-    /* 0x74 */ virtual void setAnimation(J2DAnmVisibilityFull* anm);
-    /* 0x78 */ virtual void setAnimation(J2DAnmVtxColor* anm);
+    /* 0x64 */ virtual void setAnimation(J2DAnmColor* anm) {}
+    /* 0x68 */ virtual void setAnimation(J2DAnmTexPattern* anm) {}
+    /* 0x6c */ virtual void setAnimation(J2DAnmTextureSRTKey* anm) {}
+    /* 0x70 */ virtual void setAnimation(J2DAnmTevRegKey* anm) {}
+    /* 0x74 */ virtual void setAnimation(J2DAnmVisibilityFull* anm) {}
+    /* 0x78 */ virtual void setAnimation(J2DAnmVtxColor* anm) {}
     /* 0x7c */ virtual const J2DAnmTransform* animationTransform(const J2DAnmTransform* transform);
     /* 0x80 */ virtual void setVisibileAnimation(J2DAnmVisibilityFull* visibility);
     /* 0x84 */ virtual void setAnimationVF(J2DAnmVisibilityFull* visibility);
@@ -119,7 +119,7 @@ public:
     void clip(const JGeometry::TBox2<f32>& bounds);
     void setBasePosition(J2DBasePosition position);
     void setInfluencedAlpha(bool arg1, bool arg2);
-    void getGlbVtx(u8 arg1) const;
+    JGeometry::TVec3<f32> getGlbVtx(u8 arg1) const;
     J2DPane* getFirstChildPane();
     J2DPane* getNextChildPane();
     J2DPane* getParentPane();
@@ -130,7 +130,7 @@ public:
     void updateTransform(const J2DAnmTransform* transform);
     void setUserInfo(u64 info) { mUserInfoTag = info; }
 
-    static f32 static_mBounds[4];
+    static JGeometry::TBox2<f32> static_mBounds;
 
 public:
     /* 0x04 */ u16 _4;
