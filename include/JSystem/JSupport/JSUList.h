@@ -184,10 +184,6 @@ public:
     T* getObject() const { return (T*)this->getObjectPtr(); }
 
     JSUTree<T>* getParent() const { return (JSUTree<T>*)this->getList(); }
-
-    // private:
-    //     JSUList<T> mList;
-    //     JSULink<T> mLink;
 };
 
 template <typename T>

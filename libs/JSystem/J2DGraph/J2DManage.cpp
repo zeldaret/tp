@@ -33,7 +33,7 @@ extern "C" void strcmp();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void *J2DDataManage::get(char const* param_0) {
+asm void* J2DDataManage::get(char const* param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DManage/get__13J2DDataManageFPCc.s"
 }
@@ -43,7 +43,7 @@ asm void *J2DDataManage::get(char const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void *J2DDataManage::get(JSUInputStream* param_0) {
+asm void* J2DDataManage::get(JSUInputStream* param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DManage/get__13J2DDataManageFP14JSUInputStream.s"
 }
