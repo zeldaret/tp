@@ -6,7 +6,7 @@
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 
-struct J2DGrafContext_Part {
+struct BlendInfo {  // actual name unknown
     u8 mBlendMode;
     u8 mSrcBlendFactor;
     u8 mDstBlendFactor;
@@ -52,9 +52,9 @@ public:
     /* 0x38 */ JGeometry::TVec2<f32> mPrevPos;
     /* 0x40 */ Mtx44 mMtx44;
     /* 0x80 */ Mtx mPosMtx;
-    /* 0xB0 */ J2DGrafContext_Part field_0xb0;
-    /* 0xB3 */ J2DGrafContext_Part mLinePart;
-    /* 0xB6 */ J2DGrafContext_Part mBoxPart;
+    /* 0xB0 */ BlendInfo field_0xb0;
+    /* 0xB3 */ BlendInfo mLinePart;
+    /* 0xB6 */ BlendInfo mBoxPart;
 };
 
 #endif /* J2DGRAFCONTEXT_H */

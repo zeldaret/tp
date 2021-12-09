@@ -4,123 +4,13 @@
 //
 
 #include "JSystem/J2DGraph/J2DPane.h"
+#include "JSystem/J2DGraph/J2DManage.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J3DGraphBase/J3DTransform.h"
+#include "JSystem/JUtility/JUTResource.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JUTResReference {
-    /* 802DE078 */ void getResource(JSUInputStream*, u32, JKRArchive*);
-};
-
-struct J2DDataManage {
-    /* 8030CE7C */ void get(JSUInputStream*);
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__7J2DPaneFv();
-extern "C" void initiate__7J2DPaneFv();
-extern "C" void func_802F5D40();
-extern "C" void func_802F5DD0();
-extern "C" void func_802F5E88();
-extern "C" void func_802F5F08();
-extern "C" void __ct__7J2DPaneFP7J2DPaneP20JSURandomInputStreamUc();
-extern "C" void makePaneStream__7J2DPaneFP7J2DPaneP20JSURandomInputStream();
-extern "C" void changeUseTrans__7J2DPaneFP7J2DPane();
-extern "C" void __dt__7J2DPaneFv();
-extern "C" void appendChild__7J2DPaneFP7J2DPane();
-extern "C" void insertChild__7J2DPaneFP7J2DPaneP7J2DPane();
-extern "C" void draw__7J2DPaneFffPC14J2DGrafContextbb();
-extern "C" void func_802F6D18();
-extern "C" void move__7J2DPaneFff();
-extern "C" void add__7J2DPaneFff();
-extern "C" void resize__7J2DPaneFff();
-extern "C" void getBounds__7J2DPaneFv();
-extern "C" void rotate__7J2DPaneFff13J2DRotateAxisf();
-extern "C" void rotate__7J2DPaneFf();
-extern "C" void func_802F7264();
-extern "C" void search__7J2DPaneFUx();
-extern "C" void searchUserInfo__7J2DPaneFUx();
-extern "C" void isUsed__7J2DPaneFPC7ResTIMG();
-extern "C" void isUsed__7J2DPaneFPC7ResFONT();
-extern "C" void makeMatrix__7J2DPaneFffff();
-extern "C" void setCullBack__7J2DPaneF11_GXCullMode();
-extern "C" void setBasePosition__7J2DPaneF15J2DBasePosition();
-extern "C" void setInfluencedAlpha__7J2DPaneFbb();
-extern "C" void getGlbVtx__7J2DPaneCFUc();
-extern "C" void getFirstChildPane__7J2DPaneFv();
-extern "C" void getNextChildPane__7J2DPaneFv();
-extern "C" void getParentPane__7J2DPaneFv();
-extern "C" void makePaneExStream__7J2DPaneFP7J2DPaneP20JSURandomInputStream();
-extern "C" void J2DCast_F32_to_S16__7J2DPaneFfUc();
-extern "C" void getPointer__7J2DPaneFP20JSURandomInputStreamUlP10JKRArchive();
-extern "C" void setAnimation__7J2DPaneFP10J2DAnmBase();
-extern "C" void setAnimation__7J2DPaneFP15J2DAnmTransform();
-extern "C" void animationTransform__7J2DPaneFv();
-extern "C" void clearAnmTransform__7J2DPaneFv();
-extern "C" void animationTransform__7J2DPaneFPC15J2DAnmTransform();
-extern "C" void setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull();
-extern "C" void setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor();
-extern "C" void animationPane__7J2DPaneFPC15J2DAnmTransform();
-extern "C" void updateTransform__7J2DPaneFPC15J2DAnmTransform();
-extern "C" void drawSelf__7J2DPaneFffPA3_A4_f();
-extern "C" void rewriteAlpha__7J2DPaneFv();
-extern "C" void setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull();
-extern "C" void setAnimationVC__7J2DPaneFP14J2DAnmVtxColor();
-extern "C" void setCullBack__7J2DPaneFb();
-extern "C" void setConnectParent__7J2DPaneFb();
-extern "C" void update__7J2DPaneFv();
-extern "C" void drawSelf__7J2DPaneFff();
-extern "C" void __sinit_J2DPane_cpp();
-extern "C" f32 static_mBounds__7J2DPane[4];
-
-//
-// External References:
-//
-
-extern "C" void setAlpha__7J2DPaneFUc();
-extern "C" void calcMtx__7J2DPaneFv();
-extern "C" void makeMatrix__7J2DPaneFff();
-extern "C" s32 getTypeID__7J2DPaneCFv();
-extern "C" void setAnimation__7J2DPaneFP15J2DAnmTevRegKey();
-extern "C" void setAnimation__7J2DPaneFP11J2DAnmColor();
-extern "C" void setAnimation__7J2DPaneFP19J2DAnmTextureSRTKey();
-extern "C" void setAnimation__7J2DPaneFP14J2DAnmVtxColor();
-extern "C" void setAnimation__7J2DPaneFP20J2DAnmVisibilityFull();
-extern "C" void setAnimation__7J2DPaneFP16J2DAnmTexPattern();
-extern "C" void __dl__FPv();
-extern "C" void __ct__10JSUPtrLinkFPv();
-extern "C" void __dt__10JSUPtrLinkFv();
-extern "C" void __dt__10JSUPtrListFv();
-extern "C" void initiate__10JSUPtrListFv();
-extern "C" void append__10JSUPtrListFP10JSUPtrLink();
-extern "C" void insert__10JSUPtrListFP10JSUPtrLinkP10JSUPtrLink();
-extern "C" void read__14JSUInputStreamFPvl();
-extern "C" void align__20JSURandomInputStreamFl();
-extern "C" void peek__20JSURandomInputStreamFPvl();
-extern "C" void seek__20JSURandomInputStreamFl17JSUStreamSeekFrom();
-extern "C" void getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive();
-extern "C" void setScissor__14J2DGrafContextFv();
-extern "C" void func_802E90C0();
-extern "C" void func_802E987C();
-extern "C" void get__13J2DDataManageFP14JSUInputStream();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__14J2DGrafContext[10];
-extern "C" u8 mDataManage__9J2DScreen[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -839,14 +729,36 @@ s16 J2DPane::J2DCast_F32_to_S16(f32 value, u8 arg2) {
 
 /* 802F7DB8-802F7EF4 2F26F8 013C+00 0/0 3/3 0/0 .text
  * getPointer__7J2DPaneFP20JSURandomInputStreamUlP10JKRArchive  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void* J2DPane::getPointer(JSURandomInputStream* param_0, u32 param_1, JKRArchive* param_2) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/getPointer__7J2DPaneFP20JSURandomInputStreamUlP10JKRArchive.s"
+void* J2DPane::getPointer(JSURandomInputStream* inputStream, u32 param_1, JKRArchive* archive) {
+    JUTResReference resRef;
+    void* result;
+    if (archive == NULL) {
+        if (J2DScreen::getDataManage() == NULL) {
+            result = resRef.getResource(inputStream, param_1, NULL);
+        } else {
+            s32 prevPos = inputStream->getPosition();
+            result = resRef.getResource(inputStream, param_1, NULL);
+            if (result == 0) {
+                inputStream->seek(prevPos, JSUStreamSeekFrom_SET);
+                result = J2DScreen::getDataManage()->get(inputStream);
+            }
+        }
+    } else {
+        s32 prevPos = inputStream->getPosition();
+        result = resRef.getResource(inputStream, param_1, archive);
+        if (result == NULL) {
+            inputStream->seek(prevPos, JSUStreamSeekFrom_SET);
+            result = resRef.getResource(inputStream, param_1, NULL);
+        }
+        if (result == NULL) {
+            if (J2DScreen::getDataManage() != NULL) {
+                inputStream->seek(prevPos, JSUStreamSeekFrom_SET);
+                result = J2DScreen::getDataManage()->get(inputStream);
+            }
+        }
+    }
+    return result;
 }
-#pragma pop
 
 /* 802F7EF4-802F7FC4 2F2834 00D0+00 2/0 7/4 0/0 .text setAnimation__7J2DPaneFP10J2DAnmBase */
 void J2DPane::setAnimation(J2DAnmBase* anm) {

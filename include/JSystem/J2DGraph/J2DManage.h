@@ -11,8 +11,8 @@ struct J2DResReference {
 
 class J2DDataManage {
 public:
-    /* 8030CE18 */ void get(char const*);
-    /* 8030CE7C */ void get(JSUInputStream*);
+    /* 8030CE18 */ void* get(char const*);
+    /* 8030CE7C */ void* get(JSUInputStream*);
 };
 
 #endif /* J2DMANAGE_H */
