@@ -116,36 +116,36 @@ void J2DGrafContext::setColor(JUtility::TColor colorTL, JUtility::TColor colorTR
     mColorTR = colorTR;
     mColorBR = colorBR;
     mColorBL = colorBL;
-    field_0xb0.mBlendMode = GX_BM_BLEND;
-    field_0xb0.mSrcBlendFactor = GX_BL_SRC_ALPHA;
-    field_0xb0.mDstBlendFactor = GX_BL_INV_SRC_ALPHA;
-    mLinePart.mBlendMode = GX_BM_BLEND;
-    mLinePart.mSrcBlendFactor = GX_BL_SRC_ALPHA;
-    mLinePart.mDstBlendFactor = GX_BL_INV_SRC_ALPHA;
-    mBoxPart.mBlendMode = GX_BM_BLEND;
-    mBoxPart.mSrcBlendFactor = GX_BL_SRC_ALPHA;
-    mBoxPart.mDstBlendFactor = GX_BL_INV_SRC_ALPHA;
+    field_0xb0.mType = GX_BM_BLEND;
+    field_0xb0.mSrcFactor = GX_BL_SRC_ALPHA;
+    field_0xb0.mDstFactor = GX_BL_INV_SRC_ALPHA;
+    mLinePart.mType = GX_BM_BLEND;
+    mLinePart.mSrcFactor = GX_BL_SRC_ALPHA;
+    mLinePart.mDstFactor = GX_BL_INV_SRC_ALPHA;
+    mBoxPart.mType = GX_BM_BLEND;
+    mBoxPart.mSrcFactor = GX_BL_SRC_ALPHA;
+    mBoxPart.mDstFactor = GX_BL_INV_SRC_ALPHA;
     if ((mColorTL & 0xFF) != 0xFF) {
         return;
     }
-    field_0xb0.mBlendMode = GX_BM_NONE;
-    field_0xb0.mSrcBlendFactor = GX_BL_ONE;
-    field_0xb0.mDstBlendFactor = GX_BL_ZERO;
+    field_0xb0.mType = GX_BM_NONE;
+    field_0xb0.mSrcFactor = GX_BL_ONE;
+    field_0xb0.mDstFactor = GX_BL_ZERO;
     if ((mColorBR & 0xFF) != 0xFF) {
         return;
     }
-    mLinePart.mBlendMode = GX_BM_NONE;
-    mLinePart.mSrcBlendFactor = GX_BL_ONE;
-    mLinePart.mDstBlendFactor = GX_BL_ZERO;
+    mLinePart.mType = GX_BM_NONE;
+    mLinePart.mSrcFactor = GX_BL_ONE;
+    mLinePart.mDstFactor = GX_BL_ZERO;
     if ((mColorTR & 0xFF) != 0xFF) {
         return;
     }
     if ((mColorBL & 0xFF) != 0xFF) {
         return;
     }
-    mBoxPart.mBlendMode = GX_BM_NONE;
-    mBoxPart.mSrcBlendFactor = GX_BL_ONE;
-    mBoxPart.mDstBlendFactor = GX_BL_ZERO;
+    mBoxPart.mType = GX_BM_NONE;
+    mBoxPart.mSrcFactor = GX_BL_ONE;
+    mBoxPart.mDstFactor = GX_BL_ZERO;
 }
 
 /* 802E9234-802E9260 2E3B74 002C+00 1/1 2/2 0/0 .text            setLineWidth__14J2DGrafContextFUc
@@ -158,8 +158,8 @@ void J2DGrafContext::setLineWidth(u8 lineWidth) {
 /* 802E9260-802E9368 2E3BA0 0108+00 0/0 2/2 0/0 .text
  * fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>            */
 void J2DGrafContext::fillBox(JGeometry::TBox2<f32> const& box) {
-    GXSetBlendMode((GXBlendMode)mBoxPart.mBlendMode, (GXBlendFactor)mBoxPart.mSrcBlendFactor,
-                   (GXBlendFactor)mBoxPart.mDstBlendFactor, GX_LO_SET);
+    GXSetBlendMode((GXBlendMode)mBoxPart.mType, (GXBlendFactor)mBoxPart.mSrcFactor,
+                   (GXBlendFactor)mBoxPart.mDstFactor, GX_LO_SET);
     GXLoadPosMtxImm(mPosMtx, 0);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
@@ -178,8 +178,8 @@ void J2DGrafContext::fillBox(JGeometry::TBox2<f32> const& box) {
 /* 802E9368-802E9488 2E3CA8 0120+00 0/0 1/1 0/0 .text
  * drawFrame__14J2DGrafContextFRCQ29JGeometry8TBox2<f>          */
 void J2DGrafContext::drawFrame(JGeometry::TBox2<f32> const& box) {
-    GXSetBlendMode((GXBlendMode)mBoxPart.mBlendMode, (GXBlendFactor)mBoxPart.mSrcBlendFactor,
-                   (GXBlendFactor)mBoxPart.mDstBlendFactor, GX_LO_SET);
+    GXSetBlendMode((GXBlendMode)mBoxPart.mType, (GXBlendFactor)mBoxPart.mSrcFactor,
+                   (GXBlendFactor)mBoxPart.mDstFactor, GX_LO_SET);
     GXLoadPosMtxImm(mPosMtx, 0);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
     GXBegin(GX_LINESTRIP, GX_VTXFMT0, 5);
@@ -200,8 +200,8 @@ void J2DGrafContext::drawFrame(JGeometry::TBox2<f32> const& box) {
 /* 802E9488-802E9564 2E3DC8 00DC+00 1/1 0/0 0/0 .text
  * line__14J2DGrafContextFQ29JGeometry8TVec2<f>Q29JGeometry8TVec2<f> */
 void J2DGrafContext::line(JGeometry::TVec2<f32> start, JGeometry::TVec2<f32> end) {
-    GXSetBlendMode((GXBlendMode)mLinePart.mBlendMode, (GXBlendFactor)mLinePart.mSrcBlendFactor,
-                   (GXBlendFactor)mLinePart.mDstBlendFactor, GX_LO_SET);
+    GXSetBlendMode((GXBlendMode)mLinePart.mType, (GXBlendFactor)mLinePart.mSrcFactor,
+                   (GXBlendFactor)mLinePart.mDstFactor, GX_LO_SET);
     GXLoadPosMtxImm(mPosMtx, 0);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
     GXBegin(GX_LINES, GX_VTXFMT0, 2);

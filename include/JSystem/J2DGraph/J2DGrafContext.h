@@ -1,16 +1,11 @@
 #ifndef J2DGRAFCONTEXT_H
 #define J2DGRAFCONTEXT_H
 
+#include "JSystem/J2DGraph/J2DMatBlock.h"
 #include "JSystem/JGeometry.h"
 #include "JSystem/JUtility/TColor.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
-
-struct BlendInfo {  // actual name unknown
-    u8 mBlendMode;
-    u8 mSrcBlendFactor;
-    u8 mDstBlendFactor;
-};
 
 class J2DGrafContext {
 public:
@@ -52,9 +47,9 @@ public:
     /* 0x38 */ JGeometry::TVec2<f32> mPrevPos;
     /* 0x40 */ Mtx44 mMtx44;
     /* 0x80 */ Mtx mPosMtx;
-    /* 0xB0 */ BlendInfo field_0xb0;
-    /* 0xB3 */ BlendInfo mLinePart;
-    /* 0xB6 */ BlendInfo mBoxPart;
+    /* 0xB0 */ J2DBlendInfo field_0xb0;
+    /* 0xB3 */ J2DBlendInfo mLinePart;
+    /* 0xB6 */ J2DBlendInfo mBoxPart;
 };
 
 #endif /* J2DGRAFCONTEXT_H */

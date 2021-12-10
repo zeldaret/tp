@@ -414,11 +414,11 @@ struct J2DBlendInfo {
     /* 0x0 */ u8 mType;
     /* 0x1 */ u8 mSrcFactor;
     /* 0x2 */ u8 mDstFactor;
-    /* 0x3 */ u8 mOp;
 };
 
 struct J2DBlend {
     /* 0x0 */ J2DBlendInfo mBlendInfo;
+    /* 0x3 */ u8 mOp;
 };
 
 class J2DPEBlock {
