@@ -31624,12 +31624,14 @@ BOOL daAlink_lockCursor_c::create() {
 }
 
 /* 80126350-80126354 120C90 0004+00 0/0 4/0 0/0 .text setAnimation__7J2DPaneFP15J2DAnmTevRegKey */
-void J2DPane::setAnimation(J2DAnmTevRegKey* param_0) {
+// void J2DPane::setAnimation(J2DAnmTevRegKey* param_0) {
+extern "C" void setAnimation__7J2DPaneFP15J2DAnmTevRegKey() {
     /* empty function */
 }
 
 /* 80126354-80126358 120C94 0004+00 0/0 4/0 0/0 .text setAnimation__7J2DPaneFP11J2DAnmColor */
-void J2DPane::setAnimation(J2DAnmColor* param_0) {
+// void J2DPane::setAnimation(J2DAnmColor* param_0) {
+extern "C" void setAnimation__7J2DPaneFP11J2DAnmColor() {
     /* empty function */
 }
 

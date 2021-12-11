@@ -19,6 +19,30 @@ public:
     /* vt[4] */ virtual s32 skip(s32);
     /* vt[5] */ virtual u32 readData(void*, s32) = 0;
 
+    u32 read32b() {
+        u32 val;
+        this->read(&val, sizeof(val));
+        return val;
+    }
+
+    s16 readS16() {
+        s16 val;
+        this->read(&val, sizeof(val));
+        return val;
+    }
+
+    u16 readU16() {
+        u16 val;
+        this->read(&val, sizeof(val));
+        return val;
+    }
+
+    u8 readU8() {
+        u8 val;
+        this->read(&val, sizeof(val));
+        return val;
+    }
+
     // TODO: return value probably wrong
     /* 802DC298 */ s32 read(void*, s32);
 };  // Size = 0x8
