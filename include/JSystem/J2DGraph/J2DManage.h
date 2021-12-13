@@ -5,21 +5,22 @@
 #include "dolphin/types.h"
 
 struct J2DResReference {
-    u16 mCount;
-    u16 mOffsets[1];
+    /* 0x00 */ u16 mCount;
+    /* 0x02 */ u16 mOffsets[1];
+
     /* 8030CF10 */ s8* getResReference(u16) const;
     /* 8030CF44 */ char* getName(u16) const;
 };
 
 struct J2DataManageLink {
-    void* mData;
-    char* mName;
-    J2DataManageLink* mNext;
+    /* 0x00 */ void* mData;
+    /* 0x04 */ char* mName;
+    /* 0x08 */ J2DataManageLink* mNext;
 };
 
 class J2DDataManage {
 private:
-    J2DataManageLink* mList;
+    /* 0x00 */ J2DataManageLink* mList;
 
 public:
     /* 8030CE18 */ void* get(char const*);
