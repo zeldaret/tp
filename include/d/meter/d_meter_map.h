@@ -8,7 +8,7 @@ class dMeterMap_c {
 public:
     /* 8020D49C */ void isEnableDispMap();
     /* 8020D528 */ void getMapDispSizeTypeNo();
-    /* 8020D650 */ void isEnableDispMapAndMapDispSizeTypeNo();
+    /* 8020D650 */ static bool isEnableDispMapAndMapDispSizeTypeNo();
     /* 8020D690 */ void getMapDispEdgeBottomY_Layout();
     /* 8020D698 */ void isEventRunCheck();
     /* 8020D72C */ void getMapDispEdgeLeftX_Layout();
@@ -31,8 +31,10 @@ public:
     /* 8020E4C8 */ void isShow(u32);
     /* 8020E620 */ void isFmapScreen();
     /* 8020E70C */ void isDmapScreen();
-    /* 8020E754 */ void meter_map_move(u32);
+    /* 8020E754 */ static void meter_map_move(u32);
     /* 8020E9CC */ void keyCheck();
+
+    u8 field_0x0[0x34];
 };
 
 #endif /* D_METER_D_METER_MAP_H */

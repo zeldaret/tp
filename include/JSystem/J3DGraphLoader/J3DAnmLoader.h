@@ -3,12 +3,14 @@
 
 #include "dolphin/types.h"
 
-struct J3DAnmLoaderDataBaseFlag {};
+enum J3DAnmLoaderDataBaseFlag {
+    UNK_FLAG0
+};
 
 struct J3DAnmBase;
 
 struct J3DAnmLoaderDataBase {
-    /* 80337B40 */ void load(void const*, J3DAnmLoaderDataBaseFlag);
+    /* 80337B40 */ static void* load(void const*, J3DAnmLoaderDataBaseFlag);
     /* 80338134 */ void setResource(J3DAnmBase*, void const*);
 };
 

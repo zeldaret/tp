@@ -1970,20 +1970,22 @@ SECTION_DEAD static char const* const pad_80379296 = "\0";
 /* 80035BD0-80035C88 030510 00B8+00 0/0 3/3 0/0 .text            initdata_to_card__10dSv_info_cFPci
  */
 #ifdef NONMATCHING
-void dSv_info_c::initdata_to_card(char* param_0, int fileNo) {
+int dSv_info_c::initdata_to_card(char* param_0, int fileNo) {
+    char* ptr = param_0 + (fileNo * 0xa94);
     dSv_save_c tmp;
 
     tmp.init();
     tmp.getPlayer().getPlayerInfo().setPlayerName("");
     tmp.getPlayer().getPlayerInfo().setHorseName("");
-    memcpy(&param_0 + fileNo * 0xa94, &tmp, 0x958);
+    memcpy(&ptr, &tmp, 0x958);
     printf("INIT size:%d\n", 0x958);
+    return 0;
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dSv_info_c::initdata_to_card(char* param_0, int param_1) {
+asm int dSv_info_c::initdata_to_card(char* param_0, int param_1) {
     nofralloc
 #include "asm/d/save/d_save/initdata_to_card__10dSv_info_cFPci.s"
 }

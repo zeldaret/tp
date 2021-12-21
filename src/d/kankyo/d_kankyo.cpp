@@ -3177,7 +3177,7 @@ asm void dKy_depth_dist_set(void* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dKy_darkworld_check() {
+asm bool dKy_darkworld_check() {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_darkworld_check__Fv.s"
 }

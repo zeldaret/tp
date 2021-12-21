@@ -45,8 +45,8 @@ struct stage_stag_info_class {
     /* 0x2A */ u16 mStageTitleNo;
 };  // Size: Unknown
 
-inline u16 dStage_stagInfo_GetUpButton(stage_stag_info_class* p_info) {
-    return p_info->field_0x10 & 7;
+inline s16 dStage_stagInfo_GetUpButton(stage_stag_info_class* p_info) {
+    return p_info->field_0x0a & 7;
 }
 
 struct stage_scls_info_class {
@@ -547,11 +547,12 @@ public:
     bool checkStatusFlag(int i_roomNo, u8 flag) const {
         return cLib_checkBit(mStatus[i_roomNo].unk_0x3F4, flag);
     }
+    static char* getDemoArcName() { return mDemoArcName; }
 
     static JKRExpHeap* mMemoryBlock[19];
     static char mArcBank[32][10];
     static dStage_roomStatus_c mStatus[0x40];
-    static u8 mDemoArcName[10 + 2 /* padding */];
+    static char mDemoArcName[10];
     static u32 mProcID;
     static char* mArcBankName;
     static char* mArcBankData;

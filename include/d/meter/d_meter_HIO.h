@@ -1380,4 +1380,10 @@ public:
 
 STATIC_ASSERT(sizeof(dMeter_cursorHIO_c) == 68);
 
+extern dMeter_menuHIO_c g_menuHIO;
+extern dMeter_drawHIO_c g_drawHIO;
+extern dMeter_ringHIO_c g_ringHIO;
+extern dMeter_fmapHIO_c g_fmapHIO;
+extern dMeter_cursorHIO_c g_cursorHIO;
+
 #endif /* D_METER_D_METER_HIO_H */

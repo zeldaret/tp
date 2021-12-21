@@ -75,7 +75,7 @@ public:
     bool GetMagnetCode(cBgS_PolyInfo const&);
     bool GetMonkeyBarsCode(cBgS_PolyInfo const&);
     bool GetUnderwaterRoofCode(cBgS_PolyInfo const&);
-    bool GetWallCode(cBgS_PolyInfo const&);
+    s32 GetWallCode(cBgS_PolyInfo const&);
     bool GetPolyAtt0(cBgS_PolyInfo const&);
     bool GetPolyAtt1(cBgS_PolyInfo const&);
     bool GetGroundCode(cBgS_PolyInfo const&);

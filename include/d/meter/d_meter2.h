@@ -14,12 +14,12 @@ public:
 
 class dMeterMap_c;
 
-class dMeter2_c {
+class dMeter2_c : public msg_class {
 public:
-    /* 8021EA14 */ void _create();
-    /* 8021F128 */ void _execute();
-    /* 8021F370 */ void _draw();
-    /* 8021F49C */ void _delete();
+    /* 8021EA14 */ int _create();
+    /* 8021F128 */ int _execute();
+    /* 8021F370 */ int _draw();
+    /* 8021F49C */ int _delete();
     /* 8021F6EC */ void emphasisButtonDelete();
     /* 8021F780 */ void setLifeZero();
     /* 8021F7B0 */ void checkStatus();
@@ -61,6 +61,8 @@ public:
     /* 802259F8 */ void isArrowEquip();
     /* 80225A64 */ void isPachinkoEquip();
 
+    void setNowLifeGauge(s16 life) { mNowLifeGauge = life; }
+
 private:
     /* 0x100 */ JKRExpHeap* mpHeap;
     /* 0x104 */ JKRExpHeap* mpSubHeap;
@@ -72,7 +74,7 @@ private:
     /* 0x11C */ void* field_0x11c;
     /* 0x120 */ dMeterMap_c* mpMap;
     /* 0x124 */ u32 field_0x124;
-    /* 0x128 */ int field_0x128;
+    /* 0x128 */ u32 field_0x128;
     /* 0x12C */ int field_0x12c;
     /* 0x130 */ f32 field_0x130;
     /* 0x134 */ f32 field_0x134[2];
@@ -90,22 +92,22 @@ private:
     /* 0x18C */ f32 field_0x18c;
     /* 0x190 */ s16 field_0x190;
     /* 0x192 */ s16 mNowLifeGauge;
-    /* 0x194 */ s16 field_0x194;
-    /* 0x196 */ s16 field_0x196;
-    /* 0x198 */ s16 field_0x198;
+    /* 0x194 */ s16 mMaxLife;
+    /* 0x196 */ s16 mNowMagic;
+    /* 0x198 */ s16 mMaxMagic;
     /* 0x19A */ s16 field_0x19a;
-    /* 0x19C */ int field_0x19c;
-    /* 0x1A0 */ int field_0x1a0;
-    /* 0x1A4 */ int field_0x1a4;
-    /* 0x1A8 */ int field_0x1a8;
+    /* 0x19C */ int mNowOil;
+    /* 0x1A0 */ int mMaxOil;
+    /* 0x1A4 */ int mNowOxygen;
+    /* 0x1A8 */ int mMaxOxygen;
     /* 0x1AC */ int field_0x1ac;
-    /* 0x1B0 */ u16 field_0x1b0;
-    /* 0x1B2 */ u16 field_0x1b2;
+    /* 0x1B0 */ u16 mRupeeNum;
+    /* 0x1B2 */ u16 mKeyNum;
     /* 0x1B4 */ u16 field_0x1b4;
     /* 0x1B6 */ u16 mSubContentsStringType;
     /* 0x1B8 */ u16 field_0x1b8[5];
-    /* 0x1C2 */ u8 field_0x1c2;
-    /* 0x1C3 */ u8 field_0x1c3;
+    /* 0x1C2 */ u8 mLightDropNum;
+    /* 0x1C3 */ u8 mNeedLightDropNum;
     /* 0x1C4 */ u8 field_0x1c4;
     /* 0x1C5 */ u8 field_0x1c5;
     /* 0x1C6 */ u8 field_0x1c6;
@@ -123,8 +125,8 @@ private:
     /* 0x1D2 */ u8 field_0x1d2[4];
     /* 0x1D6 */ u8 field_0x1d6[2];
     /* 0x1D8 */ u8 field_0x1d8[2];
-    /* 0x1DA */ u8 field_0x1da;
-    /* 0x1DB */ u8 field_0x1db;
+    /* 0x1DA */ u8 mArrowNum;
+    /* 0x1DB */ u8 mPachinkoNum;
     /* 0x1DC */ u8 field_0x1dc;
     /* 0x1DD */ u8 field_0x1dd;
     /* 0x1DE */ u8 field_0x1de;
@@ -144,15 +146,17 @@ private:
     /* 0x1EC */ u8 field_0x1ec;
     /* 0x1ED */ u8 field_0x1ed;
     /* 0x1EE */ u8 field_0x1ee;
-    /* 0x1EF */ u8 field_0x1ef[4];
-    /* 0x1F3 */ u8 field_0x1f3[3];
-    /* 0x1F6 */ u8 field_0x1f6[3];
-    /* 0x1F9 */ u8 field_0x1f9[4];
+    /* 0x1EF */ u8 mBottleNum[4];
+    /* 0x1F3 */ u8 mBombNum[3];
+    /* 0x1F6 */ u8 mBombMax[3];
+    /* 0x1F9 */ u8 mItemMaxNum[4];
     /* 0x1FD */ u8 field_0x1fd;
     /* 0x1FE */ u8 field_0x1fe;
     /* 0x1FF */ u8 field_0x1ff;
     /* 0x200 */ u8 field_0x200;
     /* 0x201 */ u8 field_0x201;
 };
+
+typedef int (*dMeter2_Method)(dMeter2_c*);
 
 #endif /* D_METER_D_METER2_H */

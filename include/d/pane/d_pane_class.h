@@ -47,6 +47,12 @@ public:
 
     f32 getInitCenterPosY() { return mInitPos.y + mInitSize.y * 0.5f; }
 
+    f32 getInitSizeX() { return mInitSize.x; }
+    f32 getInitSizeY() { return mInitSize.y; }
+
+    f32 getInitPosX() { return mInitPos.x; }
+    f32 getInitPosY() { return mInitPos.y; }
+
 private:
     /* 0x1C */ void* mpFirstStackSize;
     /* 0x20 */ void* field_0x20;

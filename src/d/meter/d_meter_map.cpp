@@ -170,7 +170,7 @@ asm void dMeterMap_c::getMapDispSizeTypeNo() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeterMap_c::isEnableDispMapAndMapDispSizeTypeNo() {
+asm bool dMeterMap_c::isEnableDispMapAndMapDispSizeTypeNo() {
     nofralloc
 #include "asm/d/meter/d_meter_map/isEnableDispMapAndMapDispSizeTypeNo__11dMeterMap_cFv.s"
 }

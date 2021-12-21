@@ -47,4 +47,9 @@ public:
     /* 802DC298 */ s32 read(void*, s32);
 };  // Size = 0x8
 
+
+// move?
+template <typename T>
+T* JSUConvertOffsetToPtr(const void*, const void*);
+
 #endif /* JSUINPUTSTREAM_H */

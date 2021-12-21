@@ -26,8 +26,8 @@ private:
     /* 0x05 */ u8 field_0x5[3];
     /* 0x08 */ cXyz mPos;
     /* 0x14 */ Mtx field_0x14;
-    /* 0x44 */ ResTIMG* field_0x44;
-    /* 0x48 */ ResTIMG* field_0x48;
+    /* 0x44 */ ResTIMG* mpImg;
+    /* 0x48 */ u8* mpData;
 };
 
 class daPy_boomerangMove_c {
@@ -53,10 +53,10 @@ public:
     void initData();
     void* mallocBuffer();
     void createHeap(daPy_anmHeap_c::daAlinkHEAP_TYPE);
-    J3DAnmBase* loadData(u16);
-    J3DAnmBase* loadDataIdx(u16);
-    J3DAnmBase* loadDataPriIdx(u16);
-    J3DAnmBase* loadDataDemoRID(u16, u16);
+    void* loadData(u16);
+    void* loadDataIdx(u16);
+    void* loadDataPriIdx(u16);
+    void* loadDataDemoRID(u16, u16);
     JKRHeap* setAnimeHeap();
 
     u16 getIdx() const { return mIdx; }
@@ -126,6 +126,7 @@ public:
     u16 getDemoType() const { return mDemoType; }
     void setDemoMode(u32 mode) { mDemoMode = mode; }
     u32 getDemoMode() const { return mDemoMode; }
+    int getParam1() const { return mParam1; }
     void i_setSpecialDemoType() { setDemoType(5); }
 
 private:
@@ -189,7 +190,7 @@ public:
         FLG0_UNK_20 = 0x20,
         UNK_F_ROLL_CRASH_2 = 0x10,
         UNK_F_ROLL_CRASH_1 = 0x8,
-        FLG0_UNK_4 = 4,
+        MIDNA_RIDE = 4,
 
         HEAVY_STATE_BOOTS = FLG0_UNK_40000000 | EQUIP_HEAVY_BOOTS | FLG0_UNK_20000,
     };
@@ -212,6 +213,7 @@ public:
         ERFLG0_UNK_8000000 = 0x8000000,
         ERFLG0_UNK_1000000 = 0x1000000,
         ERFLG0_UNK_100000 = 0x100000,
+        ERFLG0_UNK_2 = 2,
         ERFLG0_UNK_1 = 1,
     };
     enum daPy_ERFLG1 {
@@ -262,10 +264,10 @@ public:
     };
 
     static u32 setParamData(int, int, int, int);
-    int checkFishingRodItem(int);
+    static BOOL checkFishingRodItem(int);
     static BOOL checkBombItem(int);
     static BOOL checkBottleItem(int);
-    void checkDrinkBottleItem(int);
+    static BOOL checkDrinkBottleItem(int);
     static BOOL checkOilBottleItem(int);
     static BOOL checkOpenBottleItem(int);
     static BOOL checkBowItem(int);
@@ -276,25 +278,25 @@ public:
     void checkWoodShieldEquip();
     f32 getAttentionOffsetY();
     s16 checkNowWolfEyeUp();
-    void forceRestartRoom(int, u32, int);
-    void setFmChainPos(fopAc_ac_c*, cXyz*, int);
-    void cancelFmChainGrab();
-    void setLookPos(cXyz*);
-    void setPlayerSe(u32);
-    void linkGrabSubjectNoDraw(fopAc_ac_c*);
+    static void forceRestartRoom(int, u32, int);
+    static void setFmChainPos(fopAc_ac_c*, cXyz*, int);
+    static void cancelFmChainGrab();
+    static void setLookPos(cXyz*);
+    static void setPlayerSe(u32);
+    static bool linkGrabSubjectNoDraw(fopAc_ac_c*);
     void wolfGrabSubjectNoDraw(fopAc_ac_c*);
-    void checkRoomRestartStart();
+    static bool checkRoomRestartStart();
     static u32 checkCarryStartLightBallA();
     static u32 checkCarryStartLightBallB();
     float getSpinnerRideSpeed() const;
     void checkSpinnerReflectEffect();
-    void checkBoomerangCharge();
+    static bool checkBoomerangCharge();
     bool checkBoomerangChargeTime();
     static daBoomerang_c* getThrowBoomerangActor();
-    void cancelBoomerangLockActor(fopAc_ac_c*);
-    void setPlayerDamage(int, int);
-    void setMidnaMotionNum(int);
-    void setMidnaFaceNum(int);
+    static void cancelBoomerangLockActor(fopAc_ac_c*);
+    static void setPlayerDamage(int, int);
+    static void setMidnaMotionNum(int);
+    static void setMidnaFaceNum(int);
     int checkNoResetFlg0(daPy_FLG0) const;
     int checkEquipHeavyBoots() const;
     int checkBoarSingleBattle() const;
@@ -517,17 +519,19 @@ public:
     int i_checkEndResetFlg0(daPy_py_c::daPy_ERFLG0 flag) const { return mEndResetFlg0 & flag; }
     int i_checkEndResetFlg1(daPy_py_c::daPy_ERFLG1 flag) const { return mEndResetFlg1 & flag; }
     void i_onEndResetFlg1(daPy_ERFLG1 pFlg) { mEndResetFlg1 |= pFlg; }
-    int i_checkWolf() const { return i_checkNoResetFlg1(IS_WOLF); }
+    u32 i_checkWolf() const { return i_checkNoResetFlg1(IS_WOLF); }
     BOOL i_checkEquipHeavyBoots() const { return i_checkNoResetFlg0(EQUIP_HEAVY_BOOTS); }
     BOOL i_checkMagneBootsOn() const { return i_checkNoResetFlg0(MAGNE_BOOTS_ON); }
-    bool i_checkMidnaRide() const { return i_checkNoResetFlg0(FLG0_UNK_4); }
+    bool i_checkMidnaRide() const { return i_checkNoResetFlg0(MIDNA_RIDE); }
 
-    inline u32 getLastSceneMode();
+    inline static u32 getLastSceneMode();
     inline bool checkWoodSwordEquip();
     inline BOOL i_checkSwordGet();
     inline bool i_checkShieldGet() const;
     inline BOOL checkNowWolf();
     inline bool checkZoraWearFlg() const;
+
+    static daMidna_c* getMidnaActor() { return m_midnaActor; }
 
     static daMidna_c* m_midnaActor;
 };

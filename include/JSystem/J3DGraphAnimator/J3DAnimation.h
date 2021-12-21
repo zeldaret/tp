@@ -40,6 +40,12 @@ private:
 };  // Size: 0x20
 
 class J3DAnmTransformKey : public J3DAnmTransform {
+public:
+    J3DAnmTransformKey() : J3DAnmTransform(0, NULL, NULL, NULL) {
+        field_0x20 = 0;
+        field_0x24 = 0;
+    }
+
     /* 80329A34 */ void calcTransform(f32, u16, J3DTransformInfo*) const;
 
     /* 8003B8D0 */ virtual ~J3DAnmTransformKey();

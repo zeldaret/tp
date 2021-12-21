@@ -6443,7 +6443,7 @@ asm bool daAlink_c::getStickAngleFromPlayerShape(s16* param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::commonLineCheck(cXyz* param_0, cXyz* param_1) {
+asm bool daAlink_c::commonLineCheck(cXyz* param_0, cXyz* param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/commonLineCheck__9daAlink_cFP4cXyzP4cXyz.s"
 }
@@ -14470,7 +14470,7 @@ COMPILER_STRIP_GATE(0x80391FEC, &swimOffset);
 static u8 lit_4409[12];
 
 /* 80425514-80425520 052234 000C+00 32/35 0/0 0/0 .bss             l_waitBaseAnime */
-static f32 l_waitBaseAnime[3];
+static Vec l_waitBaseAnime;
 
 /* 80425520-8042552C 052240 000C+00 0/1 0/0 0/0 .bss             @4410 */
 #pragma push
@@ -17963,9 +17963,7 @@ bool daAlink_c::procSlideLandInit(int param_0) {
         field_0x3478 = daAlinkHIO_slide_c0::m.mForwardLandAnm.field_0x10;
         field_0x3198 = 1;
         field_0x2f99 = 4;
-        field_0x3588.x = l_waitBaseAnime[0];
-        field_0x3588.y = l_waitBaseAnime[1];
-        field_0x3588.z = l_waitBaseAnime[2];
+        field_0x3588 = l_waitBaseAnime;
     } else {
         setSingleAnimeParam(ANM_FORWARD_SLIDE_LAND, &daAlinkHIO_slide_c0::m.mBackwardLandAnm);
         field_0x3478 = daAlinkHIO_slide_c0::m.mBackwardLandAnm.field_0x10;
@@ -18411,9 +18409,132 @@ static u8 lit_4420[12];
 #pragma pop
 
 /* 8042561C-80425628 05233C 000C+00 37/39 0/0 0/0 .bss             l_wolfBaseAnime */
-static f32 l_wolfBaseAnime[3];
+static Vec l_wolfBaseAnime;
+
+inline dEvt_control_c& i_dComIfGp_getEvent() {
+    return g_dComIfG_gameInfo.play.getEvent();
+}
+
+bool daMidna_c::checkMidnaRealBody() {
+    return dKy_darkworld_check() == 1 || dComIfGs_isTransformLV(3);
+}
 
 /* 800C77F4-800C7C64 0C2134 0470+00 4/2 0/0 0/0 .text procCoMetamorphoseInit__9daAlink_cFv */
+// 1 missing instruction, lots of regalloc. maybe related
+#ifdef NONMATCHING
+bool daAlink_c::procCoMetamorphoseInit() {
+    int svar8 = 0;
+
+    if (i_dComIfGp_getEvent().i_isOrderOK()) {
+        if (!dComIfGp_event_compulsory(this, NULL, 0xFFFF)) {
+            return 0;
+        }
+        mDemo.i_setSpecialDemoType();
+        mDamageTimer = 0;
+        svar8 = 1;
+    }
+
+    if (!commonProcInitNotSameProc(METAMORPHOSE)) {
+        return 1;
+    }
+
+    field_0x3198 = svar8;
+    field_0x3008 = 0;
+    field_0x300e = 0;
+    field_0x3010 = 0;
+    field_0x347c = 1.0f;
+    mFallVoiceInit = 0;
+
+    if ((i_checkWolf() && mDemo.getDemoMode() == 0x39) || (!i_checkWolf() && mDemo.getDemoMode() == 0x3A)) {
+        field_0x300a = 1;
+        mSpeed.y = 0.0f;
+        mNormalSpeed = 0.0f;
+        if (i_checkWolf()) {
+            mCommonCounter = mCollisionRot.x;
+        }
+    } else {
+        deleteEquipItem(0, 1);
+
+        if (i_checkEndResetFlg0(ERFLG0_UNK_2) && checkStageName("D_MN08")) {
+            field_0x3010 = 1;
+        }
+        field_0x300a = 0;
+
+        if (i_checkWolf()) {
+            // Transform Wolf -> Human
+            setSingleAnimeWolfBase(ANM_TRANFORM_HUMAN);
+            field_0x3588 = l_wolfBaseAnime;
+            field_0x347c = 0.5f;
+            field_0x3480 = daAlinkHIO_basic_c0::m.mWolfLinkTransformSpeed;
+            mCommonCounter = mCollisionRot.x;
+
+            daMidna_c* midna = getMidnaActor();
+            if (i_checkMidnaRide() && midna->checkMidnaRealBody() && midna->checkDemoTypeNone()) {
+                midna->changeOriginalDemo();
+                midna->changeDemoMode(15);
+            }
+        } else {
+            // Transform Human -> Wolf
+            if (mDemo.getDemoMode() == 0x39 && mDemo.getParam1() == 1) {
+                voiceStart(Z2SE_AL_V_TRANSFORM);
+            }
+            setSingleAnimeBase(ANM_TRANSFORM_WOLF);
+            setMetamorphoseModel(1);
+            field_0x3588 = l_waitBaseAnime;
+            field_0x3480 = daAlinkHIO_basic_c0::m.mLinkWolfTransformSpeed;
+            
+            cXyz pos(mCurrent.mPosition.x + (cM_ssin(mCollisionRot.y) * 100.0f),
+                     mCurrent.mPosition.y + 300.0f,
+                     mCurrent.mPosition.z + (cM_scos(mCollisionRot.y) * 100.0f));
+            mLinkGndChk.SetPos(&pos);
+
+            f32 gnd_cross = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
+            if (gnd_cross != -1000000000.0f) {
+                pos.y = -1000000000.0f;
+                cXyz tmp_4c = mCurrent.mPosition;
+                cXyz tmp_58 = pos;
+                BOOL check = false;
+                for (int i = 0; i < 4; i++) {
+                    if (i == 3) {
+                        tmp_4c.y = gnd_cross + 5.0f;
+                    } else {
+                        tmp_4c.y = mCurrent.mPosition.y + field_0x18B0[i].GetWallH();
+                    }
+                    tmp_58.y = tmp_4c.y;
+
+
+                    if (commonLineCheck(&tmp_4c, &tmp_58) && dBgS_CheckBWallPoly(mLinkLinChk)) {
+                        if (dComIfG_Bgsp().GetWallCode(mLinkLinChk) != 7) {
+                            check = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (check) {
+                    mCommonCounter = field_0x2ff0;
+                } else {
+                    pos -= mCurrent.mPosition;
+                    pos.atan2sY_XZ();
+                    mCommonCounter = svar8;
+
+                    if (cM_deg2s(70.0f) < abs(mCommonCounter)) {
+                        mCommonCounter = field_0x2ff0;
+                    }
+                }
+            } else {
+                mCommonCounter = 0;
+            }
+        }
+        mSpeed.y = 0.0f;
+        mNormalSpeed = 0.0f;
+        field_0x3012 = 0;
+    }
+
+    field_0x3484 = mCurrent.mPosition.y;
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -18422,6 +18543,7 @@ asm bool daAlink_c::procCoMetamorphoseInit() {
 #include "asm/d/a/d_a_alink/procCoMetamorphoseInit__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80392070-8039207C 01E6D0 000C+00 0/1 0/0 0/0 .rodata          @74273 */
@@ -19258,11 +19380,11 @@ u8 daAlink_c::getClothesChangeWaitTimer() const {
 
 /* 800D01A8-800D01E0 0CAAE8 0038+00 1/0 0/0 0/0 .text            checkHorseStart__9daAlink_cFv */
 u32 daPy_py_c::getLastSceneMode() {
-    return dComIfGs_getLastSceneMode();
+    return dComIfGs_getLastSceneMode() & 0xF;
 }
 
 BOOL daAlink_c::checkHorseStart() {
-    return checkHorseStart(getLastSceneMode() & 0xF, getStartMode());
+    return checkHorseStart(getLastSceneMode(), getStartMode());
 }
 
 /* 800D01E0-800D0208 0CAB20 0028+00 1/0 0/0 0/0 .text            checkCutTurnCharge__9daAlink_cCFv
@@ -22110,7 +22232,7 @@ fopAc_ac_c* daAlink_c::getBoomerangActor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkBoomerangChargeEnd() {
+asm bool daAlink_c::checkBoomerangChargeEnd() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkBoomerangChargeEnd__9daAlink_cFv.s"
 }

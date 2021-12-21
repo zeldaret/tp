@@ -25,4 +25,8 @@ inline f32 cM_ssin(s16 s) {
     return JMath::sincosTable_.table[static_cast<u16>(s) >> 3].a1;
 }
 
+inline s16 cM_deg2s(f32 val) {
+    return val * 182.04445f;
+}
+
 #endif /* C_MATH_H */

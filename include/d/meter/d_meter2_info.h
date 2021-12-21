@@ -129,8 +129,12 @@ public:
     const char* getWarpStageName() { return mWarpInfo.mStageName; }
     void setNowCount(u8 count) { mNowCount = count; }
     void setMaxCount(u8 count) { mMaxCount = count; }
+    void allUseButton() { mUseButton = -1; }
+    bool isUseButton(int param_0) { return param_0 & mUseButton; }
+    void setMeterMapClass(dMeterMap_c* p_map) { mMeterMap = p_map; }
+    void resetGameStatus() { mGameStatus = 0; }
 
-private:
+public:
     /* 0x04 */ u8 unk4[4];
     /* 0x08 */ u64 unk8;
     /* 0x10 */ void* mMsgResource;
@@ -275,6 +279,30 @@ inline void dMeter2Info_setNowCount(u8 count) {
 
 inline void dMeter2Info_setMaxCount(u8 count) {
     g_meter2_info.setMaxCount(count);
+}
+
+inline bool dMeter2Info_isDirectUseItem(int param_0) {
+    return g_meter2_info.isDirectUseItem(param_0);
+}
+
+inline bool dMeter2Info_isUseButton(int param_0) {
+    return g_meter2_info.isUseButton(param_0);
+}
+
+inline void dMeter2Info_setMeterMapClass(dMeterMap_c* p_map) {
+    g_meter2_info.setMeterMapClass(p_map);
+}
+
+inline void dMeter2Info_decHotSpringTimer() {
+    g_meter2_info.decHotSpringTimer();
+}
+
+inline void dMeter2Info_allUseButton() {
+    g_meter2_info.allUseButton();
+}
+
+inline void dMeter2Info_resetGameStatus() {
+    g_meter2_info.resetGameStatus();
 }
 
 #endif /* D_METER_D_METER2_INFO_H */

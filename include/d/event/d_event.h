@@ -84,6 +84,8 @@ public:
     u16 chkEventFlag(u16 flag) { return flag & mEventFlag; }
     u8 getMode() const { return mMode; }
 
+    bool i_isOrderOK() { return field_0xe5 == 0 || field_0xe5 == 2; }
+
 public:
     /* 0x000 */ u8 field_0x0[4];
     /* 0x004 */ dEvt_order_c mOrder[8];

@@ -392,7 +392,7 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-inline u8 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
+inline s32 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
     return param_0->field_0x09 >> 1 & 0x1f;
 }
 

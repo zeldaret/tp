@@ -184,6 +184,8 @@ public:
         /* 0xBF */ ANM_BACKWARD_SLIDE_LAND,
         /* 0xC0 */ ANM_FORWARD_SLIDE_LAND,
 
+        /* 0xFD */ ANM_TRANSFORM_WOLF = 0xFD,  // verify
+
         /* 0x18D */ ANM_CUT_JUMP_LARGE = 0x18D,  // verify
         ANM_GANON_FINISH = 408                   // name probably wrong, fix later
     };
@@ -199,7 +201,9 @@ public:
     enum daAlink_WARP_MAT_MODE {};
 
     enum daAlink_WANM {
-        /* 0x5E */ ANM_WOLF_HOWL_SUCCESS = 94
+        /* 0x5E */ ANM_WOLF_HOWL_SUCCESS = 94,
+
+        /* 0x70 */ ANM_TRANFORM_HUMAN = 0x70, // verify
     };
 
     enum MODE_FLG {
@@ -446,7 +450,7 @@ public:
     /* 800A142C */ void getNeckAimAngle(cXyz*, s16*, s16*, s16*, s16*);
     /* 800A1AEC */ void setEyeMove(cXyz*, s16, s16);
     /* 800A1F90 */ void setNeckAngle();
-    /* 800A2198 */ void commonLineCheck(cXyz*, cXyz*);
+    /* 800A2198 */ bool commonLineCheck(cXyz*, cXyz*);
     /* 800A21E0 */ static s16 getMoveBGActorName(cBgS_PolyInfo&, int);
     /* 800A2280 */ void checkGoronRide();
     /* 800A22E8 */ void setMoveSlantAngle();
@@ -1029,7 +1033,7 @@ public:
     /* 800E01A0 */ bool checkBossBabaRoom();
     /* 800E01CC */ void cancelBoomerangLock(fopAc_ac_c*);
     /* 800E0210 */ fopAc_ac_c* getBoomerangActor();
-    /* 800E0244 */ void checkBoomerangChargeEnd();
+    /* 800E0244 */ bool checkBoomerangChargeEnd();
     /* 800E02B8 */ void checkBoomerangCarry(fopAc_ac_c*);
     /* 800E03D0 */ void initBoomerangUpperAnimeSpeed(int);
     /* 800E0440 */ BOOL checkBoomerangAnime() const;
@@ -2323,9 +2327,14 @@ public:
         return mNowAnmPack[param_0].getAnmTransform();
     }
     void setFacePriBck(u16 param_0) { setFaceBck(param_0, 1, 0xFFFF); }
+    void cancelFmChainGrabFromOut() {
+        field_0x2fa3 = 0;
+        field_0x2844.clearData();
+    }
 
     BOOL i_checkReinRide() const { return mRideStatus == 1 || mRideStatus == 2; }
 
+    inline void startRestartRoomFromOut(int, u32, int);
     inline u16 getReadyItem();
 
     static u8 const m_mainBckShield[80];
@@ -4518,6 +4527,13 @@ public:
 
     void onEndResetStateFlg0(daMidna_ERFLG0 pFlg) { mEndResetStateFlg0 |= pFlg; }
     u32 checkStateFlg1(daMidna_FLG1 pFlg) const { return mStateFlg1 & pFlg; }
+    void setFaceNum(int num) { mFaceNum = num; }
+    void setMotionNum(int num) { mMotionNum = num; }
+    bool checkDemoTypeNone() const { return mDemoType == 0; }
+    void changeOriginalDemo() { mDemoType = 3; }
+    void changeDemoMode(u32 mode) { mDemoMode = mode; }
+
+    inline bool checkMidnaRealBody();
 
     static u8 const m_texDataTable[84];
     static u8 const m_anmDataTable[636];

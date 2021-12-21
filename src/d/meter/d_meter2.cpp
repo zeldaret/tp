@@ -308,31 +308,330 @@ SECTION_SDATA2 static u8 lit_4662[4] = {
 /* 804549CC-804549D0 002FCC 0004+00 13/13 0/0 0/0 .sdata2          @4663 */
 SECTION_SDATA2 static f32 lit_4663 = 1.0f;
 
-/* 8021EA14-8021F128 219354 0714+00 1/1 0/0 0/0 .text            _create__9dMeter2_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2_c::_create() {
-    nofralloc
-#include "asm/d/meter/d_meter2/_create__9dMeter2_cFv.s"
+inline u16 dComIfGs_getLife() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getLife();
 }
-#pragma pop
+
+inline u16 i_dComIfGs_getRupee() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getRupee();
+}
+
+inline u8 dComIfGp_getRStatus() {
+    return g_dComIfG_gameInfo.play.getRStatus();
+}
+
+inline void dComIfGp_setBottleStatus(u8 param_0, u8 param_1) {
+    g_dComIfG_gameInfo.play.setBottleStatus(param_0, param_1);
+}
+
+inline u8 dComIfGp_getDoStatus() {
+    return g_dComIfG_gameInfo.play.getDoStatus();
+}
+
+inline void dMeter2Info_offUseButton(int flag) {
+    g_meter2_info.offUseButton(flag);
+}
+
+/* 8021EA14-8021F128 219354 0714+00 1/1 0/0 0/0 .text            _create__9dMeter2_cFv */
+// this can be cleaned up with float literals when everything else is decompiled
+int dMeter2_c::_create() {
+    stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
+    if (dStage_stagInfo_GetUpButton(stag_info) == 1) {
+        mpHeap = fopMsgM_createExpHeap(0x5A400, NULL);
+    } else {
+        mpHeap = fopMsgM_createExpHeap(0x60800, NULL);
+    }
+
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpHeap);
+    mpHeap->getTotalFreeSize();
+
+    if (!strcmp(dComIfGp_getStartStageName(), "F_SP00")) {
+        dMeter2Info_setNowCount(0);
+        dMeter2Info_setMaxCount(0);
+    }
+
+    field_0x128 = 0;
+    field_0x12c = field_0x128;
+    field_0x124 = 0;
+    mSubContents = 0;
+    mSubContentsStringType = 0;
+    field_0x1e6 = 0;
+    field_0x1e7 = 0;
+
+    mItemMaxNum[2] = dComIfGs_getArrowMax();
+    mArrowNum = dComIfGs_getArrowNum();
+    mItemMaxNum[3] = dComIfGs_getPachinkoMax();
+    mPachinkoNum = dComIfGs_getPachinkoNum();
+
+    for (int i = 0; i < 3; i++) {
+        mBombMax[i] = dComIfGs_getBombMax(dComIfGs_getItem((u8)(i + SLOT_15), 1));
+        mBombNum[i] = dComIfGs_getBombNum(i);
+    }
+
+    for (int i = 0; i < 2; i++) {
+        mItemMaxNum[i] = dComIfGs_getSelectItemIndex(i);
+    }
+
+    for (int i = 0; i < 4; i++) {
+        mBottleNum[i] = dComIfGs_getBottleNum(i);
+    }
+
+    field_0x1e8 = 0;
+    field_0x1e9 = 0;
+    field_0x1ea = 0;
+    field_0x1eb = 0;
+
+    for (int i = 0; i < 5; i++) {
+        field_0x1b8[i] = 0;
+    }
+
+    field_0x1ec = 0;
+    field_0x1ed = 0;
+    field_0x1ee = 0;
+
+    mNowLifeGauge = dComIfGs_getLife();
+    dComIfGp_setItemNowLife((u8)mNowLifeGauge);
+
+    mMaxLife = dComIfGs_getMaxLife();
+
+    mNowMagic = dComIfGs_getMagic();
+    dComIfGp_setItemNowMagic(mNowMagic);
+
+    mMaxMagic = dComIfGs_getMaxMagic();
+
+    mNowOil = dComIfGs_getOil();
+    dComIfGp_setItemNowOil(mNowOil);
+
+    mMaxOil = dComIfGs_getMaxOil();
+
+    mNowOxygen = dComIfGp_getOxygen();
+    dComIfGp_setNowOxygen(mNowOxygen);
+
+    mMaxOxygen = dComIfGp_getMaxOxygen();
+
+    field_0x130 = FLOAT_LABEL(lit_4662);
+
+    u8 dark_area = dComIfGp_getStartStageDarkArea();
+    mLightDropNum = dComIfGs_getLightDropNum(dark_area);
+
+    mNeedLightDropNum = dComIfGp_getNeedLightDropNum();
+
+    mRupeeNum = i_dComIfGs_getRupee();
+    mKeyNum = dComIfGs_getKeyNum();
+
+    field_0x1c4 = dComIfGp_getDoStatus();
+    field_0x1dc = dComIfGp_isDoSetFlag(2);
+
+    int i = 0;
+    f32 temp0 = FLOAT_LABEL(lit_4662);
+    for (; i < 2; i++) {
+        field_0x134[i] = temp0;
+        field_0x13c[i] = temp0;
+    }
+    field_0x144 = lit_4663;
+
+    field_0x1c5 = dComIfGp_getAStatus();
+    field_0x1c6 = 0;
+    field_0x1dd = dComIfGp_isASetFlag(2);
+
+    i = 0;
+    f32 temp1 = FLOAT_LABEL(lit_4662);
+    for (; i < 2; i++) {
+        field_0x148[i] = temp1;
+        field_0x150[i] = temp1;
+    }
+    field_0x158 = lit_4663;
+
+    field_0x1e4 = 0;
+    field_0x1e2 = dComIfGs_getSelectEquipSword();
+    field_0x1e3 = 0;
+
+    field_0x1fe = 0;
+    field_0x1fd = 0;
+    field_0x1ff = 0;
+    field_0x200 = 0;
+    field_0x201 = 0;
+
+    field_0x1c7 = dComIfGs_getCollectSmell();
+    field_0x1c8 = dComIfGp_getRStatus();
+    field_0x1de = dComIfGp_isRSetFlag(2);
+    field_0x1df = dComIfGp_isXSetFlag(2);
+    field_0x1e0 = dComIfGp_isYSetFlag(2);
+
+    for (int i = 0; i < 2; i++) {
+        dComIfGp_setSelectItem(i);
+    }
+
+    field_0x1d2[0] = dComIfGp_getSelectItem(0);
+    field_0x1d2[2] = dComIfGp_getSelectItem(1);
+    field_0x1d2[1] = dComIfGp_getXStatus();
+    field_0x1d2[3] = dComIfGp_getYStatus();
+    f32 temp2 = FLOAT_LABEL(lit_4662);
+    field_0x188 = temp2;
+    field_0x18c = temp2;
+
+    for (int i = 0; i < 2; i++) {
+        field_0x1d6[i] = dMeter2Info_isDirectUseItem(i);
+        field_0x1d8[i] = dComIfGp_getSelectItemNum(i);
+    }
+
+    field_0x1e1 = 0;
+    field_0x1b4 = 0;
+
+    f32 temp3 = FLOAT_LABEL(lit_4662);
+    field_0x15c = temp3;
+    
+    for (int i = 0; i < 4; i++) {
+        field_0x160[i] = temp3;
+        field_0x174[i] = temp3;
+    }
+    field_0x190 = 0;
+
+    field_0x1c9 = dComIfGp_getZStatus();
+    field_0x1ca = dComIfGp_get3DStatus();
+    field_0x1cb = dComIfGp_getCStickStatus();
+    field_0x1cc = dComIfGp_getSButtonStatus();
+    field_0x1cd = dComIfGp_getNunStatus();
+    field_0x1ce = dComIfGp_getRemoConStatus();
+    field_0x1cf = dComIfGp_getNunZStatus();
+    field_0x1d0 = dComIfGp_getNunCStatus();
+    field_0x1d1 = dComIfGp_getBottleStatus();
+
+    field_0x1ac = dMeter2Info_isUseButton(16);
+    field_0x19a = 0;
+
+    mpMeterDraw = new dMeter2Draw_c(mpHeap);
+
+    field_0x130 = mpMeterDraw->getNowLightDropRateCalc();
+    mpHeap->getTotalFreeSize();
+
+    for (int i = 0; i < 2; i++) {
+        if (field_0x128 == 0) {
+            if (field_0x1d2[i * 2] == BOMB_BAG_LV1 || field_0x1d2[i * 2] == NORMAL_BOMB ||
+                field_0x1d2[i * 2] == WATER_BOMB || field_0x1d2[i * 2] == POKE_BOMB) {
+                    mpMeterDraw->setItemNum(i, dComIfGp_getSelectItemNum(i), dComIfGp_getSelectItemMaxNum(i));
+            } else if (field_0x1d2[i * 2] == BEE_CHILD) {
+                mpMeterDraw->setItemNum(i, dComIfGp_getSelectItemNum(i), dComIfGp_getSelectItemMaxNum(i));
+            } else if (field_0x1d2[i * 2] == BOW || field_0x1d2[i * 2] == LIGHT_ARROW ||
+                       field_0x1d2[i * 2] == ARROW_LV1 || field_0x1d2[i * 2] == ARROW_LV2 ||
+                       field_0x1d2[i * 2] == ARROW_LV3 || field_0x1d2[i * 2] == HAWK_ARROW) {
+                mpMeterDraw->setItemNum(i, mArrowNum, dComIfGs_getArrowMax());
+            } else if (field_0x1d2[i * 2] == PACHINKO) {
+                mpMeterDraw->setItemNum(i, mPachinkoNum, dComIfGs_getPachinkoMax());
+            } else if (field_0x1d2[i * 2] == BOMB_ARROW) {
+                u8 item_num = dComIfGp_getSelectItemNum(i);
+                u8 item_max = dComIfGp_getSelectItemMaxNum(i);
+                if (item_num > mArrowNum) {
+                    item_num = mArrowNum;
+                }
+                u8 temp = dComIfGs_getArrowMax() & 0xFF;
+                if (item_max < temp) {
+                    item_max = temp;
+                }
+                mpMeterDraw->setItemNum(i, item_num, item_max);
+            }
+        } 
+    }
+
+    mpMap = NULL;
+    if (dMeterMap_c::isEnableDispMapAndMapDispSizeTypeNo()) {
+        mpMap = new dMeterMap_c(mpMeterDraw->getMainScreenPtr());
+    } else {
+        if (g_meter2_info.mMapStatus == 2) {
+            g_meter2_info.mMapStatus = 0;
+        }
+    }
+    dMeter2Info_setMeterMapClass(mpMap);
+
+    mpHeap->getTotalFreeSize();
+    mpSubHeap = fopMsgM_createExpHeap(0x5000, mpHeap);
+    field_0x108 = NULL;
+    field_0x110 = NULL;
+    field_0x114 = NULL;
+    field_0x118 = NULL;
+    
+    mpHeap->getTotalFreeSize();
+    field_0x11c = NULL;
+    mDoExt_setCurrentHeap(heap);
+    return 4;
+}
+
+inline BOOL dComIfGs_isEventBit(u16 id) {
+    return g_dComIfG_gameInfo.info.getSavedata().getEvent().isEventBit(id);
+}
+
+inline BOOL dComIfGp_event_runCheck() {
+    return g_dComIfG_gameInfo.play.getEvent().runCheck();
+}
 
 /* 8021F128-8021F370 219A68 0248+00 1/1 0/0 0/0 .text            _execute__9dMeter2_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2_c::_execute() {
-    nofralloc
-#include "asm/d/meter/d_meter2/_execute__9dMeter2_cFv.s"
+int dMeter2_c::_execute() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpHeap);
+
+    if (!dComIfGs_isCollectMirror(0) && dComIfGs_isEventBit(0x5420)) {
+        dComIfGs_onCollectMirror(0);
+    }
+
+    if (!dComIfGs_isCollectCrystal(3) && dComIfGs_isEventBit(0x5410)) {
+        dComIfGs_onCollectCrystal(3);
+    }
+
+    checkStatus();
+    mpMeterDraw->exec(field_0x124);
+
+    moveLife();
+    moveKantera();
+    moveOxygen();
+    moveLightDrop();
+    moveRupee();
+    moveKey();
+    moveButtonXY();
+    moveButtonA();
+    moveButtonB();
+    moveButtonR();
+    moveButtonZ();
+    moveButton3D();
+    moveButtonC();
+    moveButtonS();
+    moveButtonCross();
+    moveTouchSubMenu();
+    moveBombNum();
+    moveArrowNum();
+    movePachinkoNum();
+    moveBottleNum();
+
+    if (mpMap != NULL) {
+        mpMap->_move(field_0x124);
+    } else {
+        dMeterMap_c::meter_map_move(field_0x124);
+    }
+
+    moveSubContents();
+    move2DContents();
+
+    if (!dComIfGp_isPauseFlag() && !dComIfGp_event_runCheck()) {
+        dMeter2Info_decHotSpringTimer();
+    }
+
+    dMeter2Info_allUseButton();
+    dMeter2Info_offUseButton(0x800);
+    dMeter2Info_resetGameStatus();
+    dComIfGp_setNunStatus(0, 0, 0);
+    dComIfGp_setRemoConStatus(0, 0, 0);
+    dComIfGp_setNunZStatus(0, 0);
+    dComIfGp_setNunCStatus(0, 0);
+    dComIfGp_setBottleStatus(0, 0);
+    dComIfGp_setCStickStatus(0, 0, 0);
+
+    mDoExt_setCurrentHeap(heap);
+    return 1;
 }
-#pragma pop
 
 /* 8021F370-8021F49C 219CB0 012C+00 1/1 0/0 0/0 .text            _draw__9dMeter2_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2_c::_draw() {
+asm int dMeter2_c::_draw() {
     nofralloc
 #include "asm/d/meter/d_meter2/_draw__9dMeter2_cFv.s"
 }
@@ -350,7 +649,7 @@ SECTION_SDATA2 static f32 lit_4837[1 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2_c::_delete() {
+asm int dMeter2_c::_delete() {
     nofralloc
 #include "asm/d/meter/d_meter2/_delete__9dMeter2_cFv.s"
 }
@@ -367,15 +666,16 @@ asm void dMeter2_c::emphasisButtonDelete() {
 }
 #pragma pop
 
-/* 8021F780-8021F7B0 21A0C0 0030+00 0/0 0/0 1/1 .text            setLifeZero__9dMeter2_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2_c::setLifeZero() {
-    nofralloc
-#include "asm/d/meter/d_meter2/setLifeZero__9dMeter2_cFv.s"
+inline void i_dComIfGp_setItemLifeCount(f32 amount, u8 type) {
+    g_dComIfG_gameInfo.play.setItemLifeCount(amount, type);
 }
-#pragma pop
+
+/* 8021F780-8021F7B0 21A0C0 0030+00 0/0 0/0 1/1 .text            setLifeZero__9dMeter2_cFv */
+void dMeter2_c::setLifeZero() {
+    dComIfGs_setLife(1);
+    setNowLifeGauge(1);
+    i_dComIfGp_setItemLifeCount(lit_4837[0], 0);
+}
 
 /* ############################################################################################## */
 /* 803BFA28-803BFA54 -00001 002C+00 1/1 0/0 0/0 .data            @5038 */
@@ -433,6 +733,49 @@ asm void dMeter2_c::moveKantera() {
 #include "asm/d/meter/d_meter2/moveKantera__9dMeter2_cFv.s"
 }
 #pragma pop
+
+/* void dMeter2_c::moveKantera() {
+    s32 max_oil = dComIfGs_getMaxOil();
+    bool meter_visible = false;
+
+    s32 cur_oil = 0;
+    if (dComIfGp_getItemMaxOilCount() != 0) {
+        if (dComIfGs_getMaxOil() + dComIfGp_getItemMaxOilCount() <= max_oil) {
+            max_oil = dComIfGs_getMaxOil() + dComIfGp_getItemMaxOilCount();
+            if (max_oil < 0) {
+                max_oil = 0;
+            }
+        }
+        dComIfGs_setMaxOil(max_oil);
+        
+        cur_oil = dComIfGs_getOil();
+        dComIfGp_setItemOilCount(max_oil - cur_oil);
+        dComIfGp_clearItemMaxOilCount();
+        meter_visible = true;
+        cur_oil = max_oil;
+    }
+
+    if (dComIfGp_getItemOilCount() != 0) {
+        if (!meter_visible) {
+            cur_oil = dComIfGs_getMaxOil();
+        }
+
+        if (dComIfGs_getOil() + dComIfGp_getItemOilCount() <= cur_oil) {
+            cur_oil = dComIfGs_getOil();
+            if (dComIfGs_getOil() < 0) {
+                cur_oil = 0;
+            }
+        }
+
+        dComIfGs_setOil(cur_oil);
+        dComIfGp_clearItemOilCount();
+        meter_visible = true;
+    }
+
+    if () {
+
+    }
+} */
 
 /* ############################################################################################## */
 /* 804549EC-804549F0 002FEC 0004+00 2/2 0/0 0/0 .sdata2          @5933 */
@@ -831,45 +1174,30 @@ asm void dMeter2_c::isPachinkoEquip() {
 #pragma pop
 
 /* 80225AA0-80225AC0 2203E0 0020+00 1/0 0/0 0/0 .text            dMeter2_Draw__FP9dMeter2_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dMeter2_Draw(dMeter2_c* param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2/dMeter2_Draw__FP9dMeter2_c.s"
+static int dMeter2_Draw(dMeter2_c* p_meter) {
+    return p_meter->_draw();
 }
-#pragma pop
 
 /* 80225AC0-80225AE0 220400 0020+00 1/0 0/0 0/0 .text            dMeter2_Execute__FP9dMeter2_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dMeter2_Execute(dMeter2_c* param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2/dMeter2_Execute__FP9dMeter2_c.s"
+static int dMeter2_Execute(dMeter2_c* p_meter) {
+    return p_meter->_execute();
 }
-#pragma pop
 
 /* 80225AE0-80225AE8 220420 0008+00 1/0 0/0 0/0 .text            dMeter2_IsDelete__FP9dMeter2_c */
-static bool dMeter2_IsDelete(dMeter2_c* param_0) {
-    return true;
+static int dMeter2_IsDelete(dMeter2_c* p_meter) {
+    return 1;
 }
 
 /* 80225AE8-80225B08 220428 0020+00 1/0 0/0 0/0 .text            dMeter2_Delete__FP9dMeter2_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dMeter2_Delete(dMeter2_c* param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2/dMeter2_Delete__FP9dMeter2_c.s"
+static int dMeter2_Delete(dMeter2_c* p_meter) {
+    return p_meter->_delete();
 }
-#pragma pop
 
 /* 80225B08-80225BB8 220448 00B0+00 1/0 0/0 0/0 .text            dMeter2_Create__FP9msg_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dMeter2_Create(msg_class* param_0) {
+static asm int dMeter2_Create(msg_class* param_0) {
     nofralloc
 #include "asm/d/meter/d_meter2/dMeter2_Create__FP9msg_class.s"
 }
@@ -877,10 +1205,10 @@ static asm void dMeter2_Create(msg_class* param_0) {
 
 /* ############################################################################################## */
 /* 803BFA54-803BFA68 -00001 0014+00 1/0 0/0 0/0 .data            l_dMeter2_Method */
-SECTION_DATA static void* l_dMeter2_Method[5] = {
-    (void*)dMeter2_Create__FP9msg_class,  (void*)dMeter2_Delete__FP9dMeter2_c,
-    (void*)dMeter2_Execute__FP9dMeter2_c, (void*)dMeter2_IsDelete__FP9dMeter2_c,
-    (void*)dMeter2_Draw__FP9dMeter2_c,
+SECTION_DATA static dMeter2_Method l_dMeter2_Method[5] = {
+    (dMeter2_Method)dMeter2_Create,  dMeter2_Delete,
+    dMeter2_Execute, dMeter2_IsDelete,
+    dMeter2_Draw,
 };
 
 /* 803BFA68-803BFA90 -00001 0028+00 0/0 0/0 1/0 .data            g_profile_METER2 */

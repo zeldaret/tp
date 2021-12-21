@@ -433,8 +433,8 @@ extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 // Declarations:
 //
 
-inline dStage_stageDt_c& dComIfGp_getStage() {
-    return g_dComIfG_gameInfo.play.getStage();
+inline dStage_stageDt_c* dComIfGp_getStage() {
+    return &g_dComIfG_gameInfo.play.getStage();
 }
 
 void dStage_nextStage_c::set(const char* i_stage, s8 i_roomId, s16 i_point, s8 i_layer, s8 i_wipe,
@@ -2283,7 +2283,7 @@ void dStage_infoCreate() {
     void* stageRsrc = dComIfG_getStageRes("stage.dzs");
 
     dComIfGp_roomControl_init();
-    dStage_dt_c_stageInitLoader(stageRsrc, &dComIfGp_getStage());
+    dStage_dt_c_stageInitLoader(stageRsrc, dComIfGp_getStage());
 }
 
 /* ############################################################################################## */
@@ -2294,7 +2294,7 @@ SECTION_DEAD static char const* const stringBase_80378B73 = "vrbox_sora.bmd";
 #pragma pop
 
 /* 80406194-804061A0 032EB4 000A+02 2/2 14/14 7/7 .bss mDemoArcName__20dStage_roomControl_c */
-u8 dStage_roomControl_c::mDemoArcName[10 + 2 /* padding */];
+char dStage_roomControl_c::mDemoArcName[10];
 
 /* 80026D38-80026DF8 021678 00C0+00 0/0 1/1 0/0 .text            dStage_Create__Fv */
 #pragma push

@@ -4,41 +4,15 @@
 //
 
 #include "d/meter/d_meter2_draw.h"
+#include "d/meter/d_meter_HIO.h"
+#include "d/com/d_com_inf_game.h"
+#include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
 //
 // Types:
 //
-
-struct dSv_player_item_c {
-    /* 80033030 */ void getItem(int, bool) const;
-};
-
-struct dSv_light_drop_c {
-    /* 80034340 */ void getLightDropNum(u8) const;
-    /* 8003439C */ void isLightDropGetFlag(u8) const;
-};
-
-struct dSv_event_c {
-    /* 800349BC */ void isEventBit(u16) const;
-};
-
-struct dMsgObject_c {
-    /* 802370E8 */ void isHowlMessage();
-    /* 8023822C */ void getStatus();
-};
-
-struct JMSMesgEntry_c {};
-
-struct dMeter2Info_c {
-    /* 8021C250 */ void getString(u32, char*, JMSMesgEntry_c*);
-    /* 8021C370 */ void getStringKana(u32, char*, JMSMesgEntry_c*);
-    /* 8021C544 */ void getStringKanji(u32, char*, JMSMesgEntry_c*);
-    /* 8021C950 */ void isDirectUseItem(int);
-    /* 8021CF08 */ void readItemTexture(u8, void*, J2DPicture*, void*, J2DPicture*, void*,
-                                        J2DPicture*, void*, J2DPicture*, int);
-};
 
 struct dKantera_icon_c {
     /* 801AE938 */ dKantera_icon_c();
@@ -48,12 +22,6 @@ struct dKantera_icon_c {
     /* 801AEC44 */ void setNowGauge(u16, u16);
 };
 
-struct dItem_data {
-    static void* item_resource[1530];
-};
-
-struct JAISoundID {};
-
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -61,10 +29,6 @@ struct Z2SeMgr {
 
 struct Z2AudioMgr {
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct J2DAnmLoaderDataBase {
-    /* 80308A6C */ void load(void const*);
 };
 
 //
@@ -258,13 +222,8 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strcmp();
-extern "C" void strcpy();
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" void* item_resource__10dItem_data[1530];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_drawHIO[3880];
-extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 g_MsgObject_HIO_c[1040];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
@@ -745,6 +704,55 @@ SECTION_DEAD static char const* const stringBase_80398A0A = "zelda_game_image_sa
 #pragma pop
 
 /* 80211E64-80212190 20C7A4 032C+00 1/1 0/0 0/0 .text            initMagic__13dMeter2Draw_cFv */
+#ifdef NONMATCHING
+void dMeter2Draw_c::initMagic() {
+    field_0x550 = 0.0f;
+    field_0x554 = 0.0f;
+
+    mpMagicParent = new CPaneMgr(mpKanteraScreen, 'magic_n', 2, NULL);
+    mpMagicBase = new CPaneMgr(mpKanteraScreen, 'mm_base', 0, NULL);
+    mpMagicFrameL = new CPaneMgr(mpKanteraScreen, 'm_w_l_n', 2, NULL);
+    mpMagicFrameR = new CPaneMgr(mpKanteraScreen, 'm_w_r_n', 2, NULL);
+    mpMagicMeter = new CPaneMgr(mpKanteraScreen, 'mm_00', 0, NULL);
+
+    void* res = JKRFileLoader::getGlbResource("zelda_game_image_sanso_10percent.bpk", dComIfGp_getMain2DArchive());
+    field_0x53c = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(res);
+    field_0x53c->searchUpdateMaterialID(mpKanteraScreen);
+
+    res = JKRFileLoader::getGlbResource("zelda_game_image_sanso_25percent.bpk", dComIfGp_getMain2DArchive());
+    field_0x540 = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(res);
+    field_0x540->searchUpdateMaterialID(mpKanteraScreen);
+
+    res = JKRFileLoader::getGlbResource("zelda_game_image_sanso_50percent.bpk", dComIfGp_getMain2DArchive());
+    field_0x544 = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(res);
+    field_0x544->searchUpdateMaterialID(mpKanteraScreen);
+
+    field_0x558 = 0.0f;
+    mpMagicParent->setAlphaRate(0.0f);
+
+    f32 offsetX = g_drawHIO.mLifeTopPosX;
+    f32 offsetY = 0.0f;
+
+    if (dComIfGs_getMaxLife() <= 50) {
+        offsetY = g_drawHIO.mLifeTopPosY;
+    }
+
+    for (int i = 0; i < 3; i++) {
+        field_0x5fc[i] = 0.0f;
+        field_0x742[i] = 0;
+    }
+
+    u8 magic = dComIfGs_getMagic();
+    u8 max_magic = dComIfGs_getMaxMagic();
+    drawMagic(max_magic, magic, g_drawHIO.mMagicMeterPosX + offsetX, g_drawHIO.mMagicMeterPosY + offsetY);
+    setAlphaMagicChange(true);
+
+    u16 oil = dComIfGs_getOil();
+    u16 max_oil = dComIfGs_getMaxOil();
+    drawKantera(max_oil, oil, g_drawHIO.mLanternMeterPosX + offsetX, g_drawHIO.mLanternMeterPosY + (g_drawHIO.mNoMagicPosY + offsetY));
+    setAlphaKanteraChange(true);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -753,6 +761,7 @@ asm void dMeter2Draw_c::initMagic() {
 #include "asm/d/meter/d_meter2_draw/initMagic__13dMeter2Draw_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80398640-803986C0 024CA0 0080+00 0/1 0/0 0/0 .rodata          tuta_0$5094 */
@@ -1072,6 +1081,26 @@ asm void dMeter2Draw_c::drawKanteraScreen(u8 param_0) {
 SECTION_SDATA2 static f32 lit_6175 = 0.03125f;
 
 /* 80215290-80215380 20FBD0 00F0+00 1/1 0/0 0/0 .text            drawMagic__13dMeter2Draw_cFssff */
+#ifdef NONMATCHING
+void dMeter2Draw_c::drawMagic(s16 max_count, s16 now_count, f32 x_pos, f32 y_pos) {
+    f32 x_diff = mpMagicFrameR->getInitPosX() - mpMagicFrameL->getInitPosX();
+    
+    field_0x584 = mpMagicMeter->getInitSizeX() * (lit_6175 * now_count);
+    field_0x590 = mpMagicMeter->getInitSizeY();
+
+    field_0x59c = mpMagicFrameL->getInitPosX() * x_diff * (max_count * lit_6175);
+    field_0x5a8 = mpMagicFrameL->getInitPosY();
+
+    field_0x5b4 = mpMagicBase->getInitSizeX() * (max_count * lit_6175);
+    field_0x5c0 = mpMagicBase->getInitSizeY();
+
+    field_0x5cc = g_drawHIO.mMagicMeterScale;
+    field_0x5d8 = g_drawHIO.mMagicMeterScale;
+
+    field_0x5e4 = x_pos;
+    field_0x5f0 = y_pos;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1080,6 +1109,7 @@ asm void dMeter2Draw_c::drawMagic(s16 param_0, s16 param_1, f32 param_2, f32 par
 #include "asm/d/meter/d_meter2_draw/drawMagic__13dMeter2Draw_cFssff.s"
 }
 #pragma pop
+#endif
 
 /* 80215380-802154A8 20FCC0 0128+00 2/2 0/0 0/0 .text setAlphaMagicChange__13dMeter2Draw_cFb */
 #pragma push
@@ -1207,7 +1237,7 @@ void dMeter2Draw_c::setAlphaLightDropChange(bool param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Draw_c::getNowLightDropRateCalc() {
+asm f32 dMeter2Draw_c::getNowLightDropRateCalc() {
     nofralloc
 #include "asm/d/meter/d_meter2_draw/getNowLightDropRateCalc__13dMeter2Draw_cFv.s"
 }
