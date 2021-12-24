@@ -587,7 +587,7 @@ asm void JPAResource::init(JKRHeap* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JPAResource::calc(JPAEmitterWorkData* param_0, JPABaseEmitter* param_1) {
+asm bool JPAResource::calc(JPAEmitterWorkData* param_0, JPABaseEmitter* param_1) {
     nofralloc
 #include "asm/JSystem/JParticle/JPAResource/calc__11JPAResourceFP18JPAEmitterWorkDataP14JPABaseEmitter.s"
 }
