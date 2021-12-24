@@ -17,6 +17,9 @@ struct pair {
 
 struct TSinCosTable {
     std::pair<f32, f32> table[0x2000];
+
+    f32 sinShort(s16 v) const { return table[static_cast<u16>(v) >> 3].a1; }
+    f32 cosShort(s16 v) const { return table[static_cast<u16>(v) >> 3].b1; }
 };
 
 struct TAtanTable {
@@ -34,5 +37,13 @@ extern TSinCosTable sincosTable_;
 extern TAtanTable atanTable_;
 extern TAsinAcosTable asinAcosTable_;
 };  // namespace JMath
+
+inline f32 JMASSin(s16 s) {
+    return JMath::sincosTable_.sinShort(s);
+}
+
+inline f32 JMASCos(s16 s) {
+    return JMath::sincosTable_.cosShort(s);
+}
 
 #endif /* JMATRIGONOMETRIC_H */

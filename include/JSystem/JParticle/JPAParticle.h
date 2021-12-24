@@ -277,7 +277,7 @@ public:
     /* 0x74 */ f32 mDrag;
     /* 0x78 */ u32 field_0x78;
     /* 0x7C */ u32 mStatus;
-    /* 0x80 */ u16 mAge;
+    /* 0x80 */ s16 mAge;
     /* 0x82 */ u16 mLifeTime;
     /* 0x84 */ f32 mTime;
     /* 0x88 */ u16 mRotateAngle;
