@@ -60,7 +60,7 @@ s32 fpcLf_Create(leafdraw_class* pLeaf) {
         profDef = (leaf_process_profile_definition*)pLeaf->mBase.mpProf;
         pLeaf->mpDrawMtd = profDef->mLfDrwMth;
         pLeaf->mBase.mSubType = fpcBs_MakeOfType(&g_fpcLf_type);
-        fpcDwPi_Init(&pLeaf->mDwPi, profDef->unk20);
+        fpcDwPi_Init(&pLeaf->mDwPi, profDef->mPriority);
         pLeaf->mbUnk0 = 0;
     }
     return fpcMtd_Create(&pLeaf->mpDrawMtd->mBase, pLeaf);
