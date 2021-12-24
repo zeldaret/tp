@@ -194,6 +194,7 @@ public:
     bool checkStatus(u32 status) { return !!(mStatus & status); }
     u8 getResourceManagerID() const { return mResMgrID; }
     u8 getGroupID() const { return mGroupID; }
+    u8 getDrawTimes() const { return mDrawTimes; }
 
 public:
     /* 0x00 */ Vec mLocalScl;

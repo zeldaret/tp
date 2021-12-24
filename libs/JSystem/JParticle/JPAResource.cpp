@@ -5,6 +5,7 @@
 
 #include "JSystem/JParticle/JPAResource.h"
 #include "JSystem/JParticle/JPAMath.h"
+#include "JSystem/JParticle/JPABaseShape.h"
 #include "JSystem/JParticle/JPAParticle.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx.h"
@@ -148,14 +149,34 @@ extern "C" void _restgpr_28();
 //
 
 /* 80274010-80274080 26E950 0070+00 0/0 1/1 0/0 .text            __ct__11JPAResourceFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JPAResource::JPAResource() {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAResource/__ct__11JPAResourceFv.s"
+JPAResource::JPAResource() {
+    mpDrawEmitterChildFuncList = NULL;
+    mpDrawEmitterFuncList = NULL;
+    mpCalcEmitterFuncList = NULL;
+    mpDrawParticleChildFuncList = NULL;
+    mpCalcParticleChildFuncList = NULL;
+    mpDrawParticleFuncList = NULL;
+    mpCalcParticleFuncList = NULL;
+    mpBaseShape = NULL;
+    mpExtraShape = NULL;
+    mpChildShape = NULL;
+    mpExTexShape = NULL;
+    mpDynamicsBlock = NULL;
+    mpFieldBlocks = NULL;
+    mpKeyBlocks = NULL;
+    mpTDB1 = NULL;
+    mpDrawParticleChildFuncListNum = 0;
+    mpCalcParticleChildFuncListNum = 0;
+    mpDrawParticleFuncListNum = 0;
+    mpCalcParticleFuncListNum = 0;
+    mpDrawEmitterChildFuncListNum = 0;
+    mpDrawEmitterFuncListNum = 0;
+    mpCalcEmitterFuncListNum = 0;
+    mTDB1Num = 0;
+    mKeyBlockNum = 0;
+    mFieldBlockNum = 0;
+    mUsrIdx = 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803C40C0-803C4220 0211E0 0144+1C 2/2 0/0 0/0 .data            jpa_pos */
@@ -574,14 +595,21 @@ asm void JPAResource::calc(JPAEmitterWorkData* param_0, JPABaseEmitter* param_1)
 
 /* 80275A94-80275B74 2703D4 00E0+00 0/0 1/1 0/0 .text
  * draw__11JPAResourceFP18JPAEmitterWorkDataP14JPABaseEmitter   */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPAResource::draw(JPAEmitterWorkData* param_0, JPABaseEmitter* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAResource/draw__11JPAResourceFP18JPAEmitterWorkDataP14JPABaseEmitter.s"
+void JPAResource::draw(JPAEmitterWorkData* work, JPABaseEmitter* emtr) {
+    work->mpEmtr = emtr;
+    work->mpRes = this;
+    work->mDrawCount = 0;
+    calcWorkData_d(work);
+    mpBaseShape->setGX(work);
+    for (s32 i = 1; i <= emtr->getDrawTimes(); i++) {
+        work->mDrawCount++;
+        if (mpBaseShape->isDrawPrntAhead() && mpChildShape != NULL)
+            drawC(work);
+        drawP(work);
+        if (!mpBaseShape->isDrawPrntAhead() && mpChildShape != NULL)
+            drawC(work);
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80455290-80455294 003890 0004+00 2/2 0/0 0/0 .sdata2          @3189 */
