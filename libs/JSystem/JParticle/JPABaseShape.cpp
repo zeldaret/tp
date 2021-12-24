@@ -906,6 +906,22 @@ asm void JPADrawRotation(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) 
 
 /* 80279110-802791B0 273A50 00A0+00 0/0 1/1 0/0 .text
  * JPADrawPoint__FP18JPAEmitterWorkDataP15JPABaseParticle       */
+#ifdef NONMATCHING
+// literal only
+void JPADrawPoint(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    if (!!(ptcl->mStatus & JPAPtclStts_Invisible))
+        return;
+
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+    GXBegin(GX_POINTS, GX_VTXFMT1, 1);
+    GXPosition3f32(ptcl->mPosition.x, ptcl->mPosition.y, ptcl->mPosition.z);
+    GXTexCoord2f32(0.0f, 0.0f);
+    GXEnd();
+    GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
+    GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -914,6 +930,7 @@ asm void JPADrawPoint(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
 #include "asm/JSystem/JParticle/JPABaseShape/JPADrawPoint__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
 }
 #pragma pop
+#endif
 
 /* 802791B0-80279364 273AF0 01B4+00 0/0 1/1 0/0 .text
  * JPADrawLine__FP18JPAEmitterWorkDataP15JPABaseParticle        */
@@ -979,14 +996,12 @@ asm void JPADrawEmitterCallBackB(JPAEmitterWorkData* param_0) {
 
 /* 8027A414-8027A454 274D54 0040+00 0/0 1/1 0/0 .text
  * JPADrawParticleCallBack__FP18JPAEmitterWorkDataP15JPABaseParticle */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPADrawParticleCallBack(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPADrawParticleCallBack__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPADrawParticleCallBack(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    if (work->mpEmtr->mpPtclCallBack == NULL)
+        return;
+
+    work->mpEmtr->mpPtclCallBack->draw(work->mpEmtr, ptcl);
 }
-#pragma pop
 
 /* 8027A454-8027A6DC 274D94 0288+00 1/1 0/0 0/0 .text
  * makeColorTable__FPP8_GXColorPC16JPAClrAnmKeyDataUcsP7JKRHeap */

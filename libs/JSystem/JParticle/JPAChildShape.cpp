@@ -7,81 +7,59 @@
 #include "JSystem/JParticle/JPAParticle.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "dolphin/os/OS.h"
 
 //
 // Types:
 //
 
-struct JPAChildShape {
-public:
-    /* 8027B038 */ JPAChildShape(u8 const*);
-
-public:
-    u8 const* mpData;
-};
-
 //
 // Forward References:
 //
-
-extern "C" void JPARegistChildPrmEnv__FP18JPAEmitterWorkData();
-extern "C" void JPACalcChildAlphaOut__FP18JPAEmitterWorkDataP15JPABaseParticle();
-extern "C" void JPACalcChildScaleOut__FP18JPAEmitterWorkDataP15JPABaseParticle();
-extern "C" void __ct__13JPAChildShapeFPCUc();
 
 //
 // Declarations:
 //
 
+static inline u32 COLOR_MULTI(u32 a, u32 b) {
+    return ((a * (b + 1)) * 0x10000) >> 24;
+}
+
 /* 8027AEBC-8027AFDC 2757FC 0120+00 0/0 1/1 0/0 .text JPARegistChildPrmEnv__FP18JPAEmitterWorkData
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPARegistChildPrmEnv(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAChildShape/JPARegistChildPrmEnv__FP18JPAEmitterWorkData.s"
+void JPARegistChildPrmEnv(JPAEmitterWorkData* work) {
+    JPAChildShape* csp = work->mpRes->getCsp();
+    JPABaseEmitter* emtr = work->mpEmtr;
+    GXColor prm, env;
+    csp->getPrmClr(&prm);
+    csp->getEnvClr(&env);
+    prm.r = COLOR_MULTI(prm.r, emtr->mGlobalPrmClr.r);
+    prm.g = COLOR_MULTI(prm.g, emtr->mGlobalPrmClr.g);
+    prm.b = COLOR_MULTI(prm.b, emtr->mGlobalPrmClr.b);
+    prm.a = COLOR_MULTI(prm.a, emtr->mGlobalPrmClr.a);
+    env.r = COLOR_MULTI(env.r, emtr->mGlobalEnvClr.r);
+    env.g = COLOR_MULTI(env.g, emtr->mGlobalEnvClr.g);
+    env.b = COLOR_MULTI(env.b, emtr->mGlobalEnvClr.b);
+    GXSetTevColor(GX_TEVREG0, prm);
+    GXSetTevColor(GX_TEVREG1, env);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80455308-8045530C 003908 0004+00 1/1 0/0 0/0 .sdata2          @2318 */
-SECTION_SDATA2 static f32 lit_2318 = 255.0f;
-
-/* 8045530C-80455310 00390C 0004+00 2/2 0/0 0/0 .sdata2          @2319 */
-SECTION_SDATA2 static f32 lit_2319 = 1.0f;
 
 /* 8027AFDC-8027B008 27591C 002C+00 0/0 1/1 0/0 .text
  * JPACalcChildAlphaOut__FP18JPAEmitterWorkDataP15JPABaseParticle */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcChildAlphaOut(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAChildShape/JPACalcChildAlphaOut__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPACalcChildAlphaOut(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    f32 anm = (1.0f - ptcl->mTime) * 255.0f;
+    OSf32tou8(&anm, &ptcl->mPrmColorAlphaAnm);
 }
-#pragma pop
 
 /* 8027B008-8027B038 275948 0030+00 0/0 1/1 0/0 .text
  * JPACalcChildScaleOut__FP18JPAEmitterWorkDataP15JPABaseParticle */
-#ifdef NONMATCHING
 void JPACalcChildScaleOut(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
     // literal
     ptcl->mParticleScaleX = ptcl->mScaleOut * (1.0f - ptcl->mTime);
     ptcl->mParticleScaleY = ptcl->mAlphaWaveRandom * (1.0f - ptcl->mTime);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcChildScaleOut(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAChildShape/JPACalcChildScaleOut__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
-}
-#pragma pop
-#endif
 
 /* 8027B038-8027B040 -00001 0008+00 0/0 0/0 0/0 .text            __ct__13JPAChildShapeFPCUc */
 JPAChildShape::JPAChildShape(u8 const* pData) {
-    mpData = pData;
+    mpData = (JPAChildShapeData*)pData;
 }

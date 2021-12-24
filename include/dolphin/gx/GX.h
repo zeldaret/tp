@@ -922,7 +922,13 @@ inline void GXColor1u32(u32 c) {
     GFX_FIFO(u32) = c;
 }
 
+inline void GXTexCoord2f32(f32 s, f32 t) {
+    GFX_FIFO(f32) = s;
+    GFX_FIFO(f32) = t;
+}
+
 inline void GXEnd() {}
+
 };
 
 #endif

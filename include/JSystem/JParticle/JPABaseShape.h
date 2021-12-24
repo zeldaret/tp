@@ -99,11 +99,11 @@ public:
     f32 getBaseSizeY() const { return mpData->mBaseSizeY; }
 
 public:
-    const JPABaseShapeData* mpData;
-    const void* mpTexCrdMtxAnmTbl;
-    const u8* mpTexIdxAnimTbl;
-    GXColor* mpPrmClrAnmTbl;
-    GXColor* mpEnvClrAnmTbl;
+    /* 0x00 */ const JPABaseShapeData* mpData;
+    /* 0x04 */ const void* mpTexCrdMtxAnmTbl;
+    /* 0x08 */ const u8* mpTexIdxAnimTbl;
+    /* 0x0C */ GXColor* mpPrmClrAnmTbl;
+    /* 0x10 */ GXColor* mpEnvClrAnmTbl;
 };
 
 #endif /* JPABASESHAPE_H */
