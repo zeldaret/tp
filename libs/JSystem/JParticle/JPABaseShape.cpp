@@ -160,90 +160,119 @@ void JPASetLineWidth(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
     GXSetLineWidth((u8)(lit_2262[0] * work->mGlobalPtclScl.x * ptcl->mParticleScaleX), GX_TO_ONE);
 }
 
-/* 80276B90-80276C2C 2714D0 009C+00 0/0 1/1 0/0 .text JPARegistPrm__FP18JPAEmitterWorkData */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPARegistPrm(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPARegistPrm__FP18JPAEmitterWorkData.s"
+static inline u8 COLOR_MULTI(u32 a, u32 b) {
+    return ((a * (b + 1)) * 0x10000) >> 24;
 }
-#pragma pop
+
+/* 80276B90-80276C2C 2714D0 009C+00 0/0 1/1 0/0 .text JPARegistPrm__FP18JPAEmitterWorkData */
+void JPARegistPrm(JPAEmitterWorkData* work) {
+    JPABaseEmitter* emtr = work->mpEmtr;
+    GXColor prm = emtr->mPrmClr;
+    prm.r = COLOR_MULTI(prm.r, emtr->mGlobalPrmClr.r);
+    prm.g = COLOR_MULTI(prm.g, emtr->mGlobalPrmClr.g);
+    prm.b = COLOR_MULTI(prm.b, emtr->mGlobalPrmClr.b);
+    prm.a = COLOR_MULTI(prm.a, emtr->mGlobalPrmClr.a);
+    GXSetTevColor(GX_TEVREG0, prm);
+}
 
 /* 80276C2C-80276CB0 27156C 0084+00 0/0 1/1 0/0 .text JPARegistEnv__FP18JPAEmitterWorkData */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPARegistEnv(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPARegistEnv__FP18JPAEmitterWorkData.s"
+void JPARegistEnv(JPAEmitterWorkData* work) {
+    JPABaseEmitter* emtr = work->mpEmtr;
+    GXColor env = emtr->mEnvClr;
+    env.r = COLOR_MULTI(env.r, emtr->mGlobalEnvClr.r);
+    env.g = COLOR_MULTI(env.g, emtr->mGlobalEnvClr.g);
+    env.b = COLOR_MULTI(env.b, emtr->mGlobalEnvClr.b);
+    GXSetTevColor(GX_TEVREG1, env);
 }
-#pragma pop
 
 /* 80276CB0-80276DB0 2715F0 0100+00 0/0 1/1 0/0 .text JPARegistPrmEnv__FP18JPAEmitterWorkData */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPARegistPrmEnv(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPARegistPrmEnv__FP18JPAEmitterWorkData.s"
+void JPARegistPrmEnv(JPAEmitterWorkData* work) {
+    JPABaseEmitter* emtr = work->mpEmtr;
+    GXColor prm = emtr->mPrmClr;
+    GXColor env = emtr->mEnvClr;
+    prm.r = COLOR_MULTI(prm.r, emtr->mGlobalPrmClr.r);
+    prm.g = COLOR_MULTI(prm.g, emtr->mGlobalPrmClr.g);
+    prm.b = COLOR_MULTI(prm.b, emtr->mGlobalPrmClr.b);
+    prm.a = COLOR_MULTI(prm.a, emtr->mGlobalPrmClr.a);
+    env.r = COLOR_MULTI(env.r, emtr->mGlobalEnvClr.r);
+    env.g = COLOR_MULTI(env.g, emtr->mGlobalEnvClr.g);
+    env.b = COLOR_MULTI(env.b, emtr->mGlobalEnvClr.b);
+    GXSetTevColor(GX_TEVREG0, prm);
+    GXSetTevColor(GX_TEVREG1, env);
 }
-#pragma pop
 
 /* 80276DB0-80276E60 2716F0 00B0+00 0/0 1/1 0/0 .text
  * JPARegistAlpha__FP18JPAEmitterWorkDataP15JPABaseParticle     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPARegistAlpha(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPARegistAlpha__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPARegistAlpha(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    JPABaseEmitter* emtr = work->mpEmtr;
+    GXColor prm = emtr->mPrmClr;
+    prm.r = COLOR_MULTI(prm.r, emtr->mGlobalPrmClr.r);
+    prm.g = COLOR_MULTI(prm.g, emtr->mGlobalPrmClr.g);
+    prm.b = COLOR_MULTI(prm.b, emtr->mGlobalPrmClr.b);
+    prm.a = COLOR_MULTI(prm.a, emtr->mGlobalPrmClr.a);
+    prm.a = COLOR_MULTI(prm.a, ptcl->mPrmColorAlphaAnm);
+    GXSetTevColor(GX_TEVREG0, prm);
 }
-#pragma pop
 
 /* 80276E60-80276F10 2717A0 00B0+00 0/0 1/1 0/0 .text
  * JPARegistPrmAlpha__FP18JPAEmitterWorkDataP15JPABaseParticle  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPARegistPrmAlpha(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPARegistPrmAlpha__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPARegistPrmAlpha(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    JPABaseEmitter* emtr = work->mpEmtr;
+    GXColor prm = ptcl->mPrmClr;
+    prm.r = COLOR_MULTI(prm.r, emtr->mGlobalPrmClr.r);
+    prm.g = COLOR_MULTI(prm.g, emtr->mGlobalPrmClr.g);
+    prm.b = COLOR_MULTI(prm.b, emtr->mGlobalPrmClr.b);
+    prm.a = COLOR_MULTI(prm.a, emtr->mGlobalPrmClr.a);
+    prm.a = COLOR_MULTI(prm.a, ptcl->mPrmColorAlphaAnm);
+    GXSetTevColor(GX_TEVREG0, prm);
 }
-#pragma pop
 
 /* 80276F10-80277024 271850 0114+00 0/0 1/1 0/0 .text
  * JPARegistPrmAlphaEnv__FP18JPAEmitterWorkDataP15JPABaseParticle */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPARegistPrmAlphaEnv(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPARegistPrmAlphaEnv__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPARegistPrmAlphaEnv(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    JPABaseEmitter* emtr = work->mpEmtr;
+    GXColor prm = ptcl->mPrmClr;
+    GXColor env = ptcl->mEnvClr;
+    prm.r = COLOR_MULTI(prm.r, emtr->mGlobalPrmClr.r);
+    prm.g = COLOR_MULTI(prm.g, emtr->mGlobalPrmClr.g);
+    prm.b = COLOR_MULTI(prm.b, emtr->mGlobalPrmClr.b);
+    prm.a = COLOR_MULTI(prm.a, emtr->mGlobalPrmClr.a);
+    prm.a = COLOR_MULTI(prm.a, ptcl->mPrmColorAlphaAnm);
+    env.r = COLOR_MULTI(env.r, emtr->mGlobalEnvClr.r);
+    env.g = COLOR_MULTI(env.g, emtr->mGlobalEnvClr.g);
+    env.b = COLOR_MULTI(env.b, emtr->mGlobalEnvClr.b);
+    GXSetTevColor(GX_TEVREG0, prm);
+    GXSetTevColor(GX_TEVREG1, env);
 }
-#pragma pop
 
 /* 80277024-80277138 271964 0114+00 0/0 1/1 0/0 .text
  * JPARegistAlphaEnv__FP18JPAEmitterWorkDataP15JPABaseParticle  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPARegistAlphaEnv(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPARegistAlphaEnv__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPARegistAlphaEnv(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    JPABaseEmitter* emtr = work->mpEmtr;
+    GXColor prm = emtr->mPrmClr;
+    GXColor env = ptcl->mEnvClr;
+    prm.r = COLOR_MULTI(prm.r, emtr->mGlobalPrmClr.r);
+    prm.g = COLOR_MULTI(prm.g, emtr->mGlobalPrmClr.g);
+    prm.b = COLOR_MULTI(prm.b, emtr->mGlobalPrmClr.b);
+    prm.a = COLOR_MULTI(prm.a, emtr->mGlobalPrmClr.a);
+    prm.a = COLOR_MULTI(prm.a, ptcl->mPrmColorAlphaAnm);
+    env.r = COLOR_MULTI(env.r, emtr->mGlobalEnvClr.r);
+    env.g = COLOR_MULTI(env.g, emtr->mGlobalEnvClr.g);
+    env.b = COLOR_MULTI(env.b, emtr->mGlobalEnvClr.b);
+    GXSetTevColor(GX_TEVREG0, prm);
+    GXSetTevColor(GX_TEVREG1, env);
 }
-#pragma pop
 
 /* 80277138-802771BC 271A78 0084+00 0/0 1/1 0/0 .text
  * JPARegistEnv__FP18JPAEmitterWorkDataP15JPABaseParticle       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPARegistEnv(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPARegistEnv__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPARegistEnv(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    JPABaseEmitter* emtr = work->mpEmtr;
+    GXColor env = ptcl->mEnvClr;
+    env.r = COLOR_MULTI(env.r, emtr->mGlobalEnvClr.r);
+    env.g = COLOR_MULTI(env.g, emtr->mGlobalEnvClr.g);
+    env.b = COLOR_MULTI(env.b, emtr->mGlobalEnvClr.b);
+    GXSetTevColor(GX_TEVREG1, env);
 }
-#pragma pop
 
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 
