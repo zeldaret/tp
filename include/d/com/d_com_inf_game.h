@@ -72,6 +72,7 @@ enum PlayerPtr { LINK_PTR, HORSE_PTR };
 class daHorse_c;
 class dPa_control_c;
 class daAlink_c;
+class dMsgObject_c;
 
 class dComIfG_play_c {
 public:
@@ -110,7 +111,7 @@ public:
 
     // inlines
     bool& isPauseFlag() { return mPauseFlag; }
-    void* getMsgObjectClass() { return mMsgObjectClass; }
+    dMsgObject_c* getMsgObjectClass() { return mMsgObjectClass; }
     dStage_roomControl_c* getRoomControl() { return &mRoomControl; }
     dStage_stageDt_c& getStage() { return mStageData; }
     dEvt_control_c& getEvent() { return mEvent; }
@@ -303,7 +304,7 @@ public:
     /* 0x04E74 */ daAlink_c* mPlayer[1];
     /* 0x04E78 */ s8 mPlayerCameraID[4];
     /* 0x04E7C */ void* mPlayerPtr[2];  // 0: Player, 1: Horse ; type may be wrong
-    /* 0x04E84 */ void* mMsgObjectClass;
+    /* 0x04E84 */ dMsgObject_c* mMsgObjectClass;
     /* 0x04E88 */ float mItemLifeCount;
     /* 0x04E8C */ int mItemRupeeCount;
     /* 0x04E90 */ s16 mItemKeyNumCount;
@@ -543,6 +544,9 @@ s8 dComIfGs_getWarpRoomNo();
 char* dComIfG_getRoomArcName(int);
 int dComIfGp_getSelectItemNum(int);
 int dComIfGp_getSelectItemMaxNum(int);
+void dComIfGp_mapShow();
+void dComIfGp_mapHide();
+bool dComIfGp_checkMapShow();
 
 inline void dComIfGp_setRStatus(u8 status, u8 flag) {
     g_dComIfG_gameInfo.play.setRStatus(status, flag);
@@ -726,6 +730,10 @@ inline BOOL dComIfGs_isSwitch(int param1, int param2) {
 
 inline s32 dComIfGs_isDungeonItemMap() {
     return g_dComIfG_gameInfo.info.getMemory().getBit().isDungeonItemMap();
+}
+
+inline s32 dComIfGs_isDungeonItemCompass() {
+    return g_dComIfG_gameInfo.info.getMemory().getBit().isDungeonItemCompass();
 }
 
 inline s32 dComIfGs_isDungeonItemBossKey() {
@@ -1405,6 +1413,14 @@ inline void* dComIfG_getObjectIDRes(const char* arc_name, u16 id) {
 
 inline void* dComIfGp_getPlayer(int idx) {
     return g_dComIfG_gameInfo.play.getPlayer(idx);
+}
+
+inline void dComIfGd_set2DOpa(dDlst_base_c* dlst) {
+    g_dComIfG_gameInfo.drawlist.set2DOpa(dlst);
+}
+
+inline dMsgObject_c* dComIfGp_getMsgObjectClass() {
+    return g_dComIfG_gameInfo.play.getMsgObjectClass();
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

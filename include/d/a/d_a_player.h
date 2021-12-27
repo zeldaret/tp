@@ -64,6 +64,7 @@ public:
     void resetPriIdx() { mPriIdx = 0xffff; }
     void resetArcNo() { mArcNo = 0xffff; }
     bool checkNoSetArcNo() const { return mArcNo == 0xFFFF; }
+    void setBufferSize(u32 size) { mBufferSize = size; }
 
 private:
     /* 0x00 */ u16 mIdx;
@@ -212,6 +213,7 @@ public:
     enum daPy_ERFLG0 {
         ERFLG0_UNK_8000000 = 0x8000000,
         ERFLG0_UNK_1000000 = 0x1000000,
+        ERFLG0_UNK_800000 = 0x800000,
         ERFLG0_UNK_100000 = 0x100000,
         ERFLG0_UNK_2 = 2,
         ERFLG0_UNK_1 = 1,
@@ -221,9 +223,13 @@ public:
         UNK_FORCE_PUT_POS = 0x2000,
         ERFLG1_UNK_1 = 1,
     };
-    enum daPy_ERFLG2 {};
+    enum daPy_ERFLG2 {
+        ERFLG2_UNK_100 = 0x100,
+    };
     enum daPy_RFLG0 {
         RFLG0_UNK_8000000 = 0x8000000,
+        RFLG0_UNK_4000 = 0x4000,
+        ENEMY_ATTENTION_LOCK = 0x1000,
         RFLG0_UNK_80 = 0x80,
         RFLG0_UNK_40 = 0x40,
         RFLG0_UNK_2 = 0x2,
@@ -316,6 +322,11 @@ public:
     int checkResetFlg0(daPy_py_c::daPy_RFLG0) const;
     int checkNoResetFlg2(daPy_py_c::daPy_FLG2) const;
     int checkMagneBootsOn() const;
+    void changeDemoPos0(cXyz const*);
+    void changeDemoMode(u32, int, int, s16);
+    void changeDemoParam2(s16);
+    void cancelOriginalDemo();
+    void changeOriginalDemo();
 
     virtual cXyz* getMidnaAtnPos() const;
     virtual void setMidnaMsgNum(fopAc_ac_c*, u16);
@@ -494,10 +505,13 @@ public:
         }
         return sumouCameraMode;
     }
+    
+    bool i_getSumouMode() const { return getSumouCameraMode(); }
 
     bool checkStatusWindowDraw() { return i_checkNoResetFlg2(STATUS_WINDOW_DRAW); }
     bool checkCargoCarry() const { return mSpecialMode == SMODE_CARGO_CARRY; }
     bool getHeavyStateAndBoots() { return i_checkNoResetFlg0(HEAVY_STATE_BOOTS); }
+    bool checkEnemyAttentionLock() const { return i_checkResetFlg0(ENEMY_ATTENTION_LOCK); }
 
     // some functions use these function as an inline
     // is there a better way to handle this?
@@ -515,6 +529,7 @@ public:
     void i_onResetFlg0(int flag) { mResetFlg0 |= flag; }
     void i_onResetFlg1(int flag) { mResetFlg1 |= flag; }
     void i_onEndResetFlg0(int flag) { mEndResetFlg0 |= flag; }
+    void i_onEndResetFlg2(int flag) { mEndResetFlg2 |= flag; }
     int i_checkResetFlg0(daPy_py_c::daPy_RFLG0 flag) const { return mResetFlg0 & flag; }
     int i_checkEndResetFlg0(daPy_py_c::daPy_ERFLG0 flag) const { return mEndResetFlg0 & flag; }
     int i_checkEndResetFlg1(daPy_py_c::daPy_ERFLG1 flag) const { return mEndResetFlg1 & flag; }

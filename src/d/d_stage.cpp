@@ -19,23 +19,8 @@ struct daSus_c {
     /* 800315A4 */ void execute();
 };
 
-struct dTres_c {
-    struct list_class {};
-
-    /* 8009BCB4 */ void addData(dTres_c::list_class*, s8);
-};
-
 struct dSvBit_HIO_c {
     /* 8025C1F8 */ void init();
-};
-
-struct dDrawPath_c {
-    struct room_class {};
-};
-
-struct dMpath_c {
-    /* 8003F810 */ void setPointer(dDrawPath_c::room_class*, s8*, s8*);
-    /* 8003FA40 */ void setPointer(s8, void*, int);
 };
 
 struct cMl {

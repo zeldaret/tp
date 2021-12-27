@@ -11,120 +11,10 @@
 // Types:
 //
 
-struct stage_tgsc_data_class {};
-
-struct renderingPlusDoor_c {
-    /* 8002B0B4 */ ~renderingPlusDoor_c();
-    /* 80040518 */ void afterDrawPath();
-    /* 80040574 */ void drawDoor1();
-    /* 800405B8 */ void drawDoor2();
-    /* 800405FC */ void drawDoorCommon(stage_tgsc_data_class const*, int, bool);
-    /* 80040710 */ void checkDispDoorS(int, int, f32);
-    /* 80040838 */ void drawNormalDoorS(stage_tgsc_data_class const*, int, int, bool);
-    /* 8004145C */ void beforeDrawPath();
-};
-
-struct dTres_c {
-    struct data_s {};
-
-    struct typeGroupData_c {};
-
-    /* 8009C360 */ void getFirstData(u8);
-    /* 8009C3B4 */ void getNextData(dTres_c::typeGroupData_c const*);
-    /* 8009C39C */ void getNextData(dTres_c::typeGroupData_c*);
-
-    static u8 mTypeGroupListAll[204 + 4 /* padding */];
-};
-
-struct Vec {};
-
-struct renderingPlusDoorAndCursor_c {
-    /* 8002B008 */ ~renderingPlusDoorAndCursor_c();
-    /* 800402FC */ void afterDrawPath();
-    /* 80040A94 */ void getFirstData(u8);
-    /* 80040AB8 */ void getNextData(dTres_c::typeGroupData_c*);
-    /* 80040ADC */ void getIconPosition(dTres_c::typeGroupData_c*) const;
-    /* 80040B00 */ void drawTreasure();
-    /* 80040E84 */ void drawTreasureAfterPlayer();
-    /* 80041208 */ void drawIconSingle(Vec const&, f32, f32);
-    /* 800412C0 */ void drawCursor(Vec const&, s16, int, f32);
-};
-
-struct dDrawPath_c {
-    struct room_class {};
-
-    struct group_class {};
-
-    struct line_class {};
-
-    struct poly_class {};
-
-    /* 8002ABF0 */ bool isDrawType(int);
-    /* 8002AD84 */ void getLineColor(int, int);
-    /* 8003CA40 */ void rendering(dDrawPath_c::poly_class const*);
-    /* 8003CC24 */ void rendering(dDrawPath_c::room_class const*);
-    /* 8003C94C */ void rendering(dDrawPath_c::line_class const*);
-    /* 8003CCC4 */ void drawPath();
-};
-
-struct renderingDAmap_c {
-    /* 8002B150 */ ~renderingDAmap_c();
-    /* 8003FCA4 */ void calcFloorNoForObjectByMapPathRend(f32, int) const;
-    /* 8003FCC8 */ void init(u8*, u16, u16, u16, u16);
-    /* 8003FD08 */ void entry(f32, f32, f32, int, s8);
-    /* 8003FD9C */ void isSwitch(dDrawPath_c::group_class const*);
-    /* 8003FE18 */ void draw();
-    /* 8003FE4C */ void getBackColor() const;
-    /* 8003FE54 */ void isRenderingFloor(int);
-    /* 8003FE6C */ void setSingleRoomSetting();
-    /* 8003FE70 */ void isDrawRoom(int, int) const;
-    /* 8003FF14 */ void preDrawPath();
-    /* 8003FFC4 */ void postDrawPath();
-    /* 8003FFEC */ void getRoomNoSingle();
-    /* 8003FFF4 */ void getFirstDrawRoomNo();
-    /* 80040094 */ void getNextDrawRoomNo(int);
-    /* 80040134 */ void getFirstRoomPointer();
-    /* 800401E8 */ void getNextRoomPointer();
-    /* 800402C0 */ void isDrawPath();
-    /* 800402E0 */ bool getFirstDrawLayerNo();
-    /* 800402E8 */ void getNextDrawLayerNo(int);
-    /* 800409B4 */ void isDrawRoomIcon(int, int) const;
-    /* 800409E0 */ void isDrawIconSingle(dTres_c::data_s const*, int, int, bool, bool,
-                                         Vec const*) const;
-    /* 80040AE4 */ void getIconGroupNumber(u8) const;
-};
-
 struct mDoMtx_stack_c {
     /* 8000CE38 */ void scaleM(f32, f32, f32);
 
     static u8 now[48];
-};
-
-struct dSv_memBit_c {
-    /* 80034934 */ void isDungeonItem(int) const;
-};
-
-struct dSv_info_c {
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dStage_roomControl_c {
-    static u8 mStatus[65792];
-};
-
-struct dStage_FileList2_dt_c {};
-
-struct dRenderingMap_c {
-    /* 8003CDAC */ void renderingMap();
-};
-
-struct dRenderingFDAmap_c {
-    /* 8003CE78 */ void setTevSettingNonTextureDirectColor() const;
-    /* 8003CF40 */ void setTevSettingIntensityTextureToCI() const;
-    /* 8003D188 */ void preRenderingMap();
-    /* 8003D320 */ void postRenderingMap();
-    /* 8003D68C */ void getDecoLineColor(int, int);
-    /* 8003D6B8 */ void getDecorationLineWidth(int);
 };
 
 struct dMpath_n {
@@ -134,44 +24,6 @@ struct dMpath_n {
     };
 
     static u8 m_texObjAgg[28];
-};
-
-struct dMpath_c {
-    /* 8003F758 */ u8 isExistMapPathData();
-    /* 8003F760 */ void getTopBottomFloorNo(s8*, s8*);
-    /* 8003F7E8 */ void createWork();
-    /* 8003FA40 */ void setPointer(s8, void*, int);
-    /* 8003F810 */ void setPointer(dDrawPath_c::room_class*, s8*, s8*);
-    /* 8003FB70 */ void create();
-    /* 8003FBD0 */ void reset();
-    /* 8003FC70 */ void remove();
-
-    static u8 mLayerList[4];
-    static f32 mMinX;
-    static f32 mMaxX;
-    static f32 mMinZ;
-    static f32 mMaxZ;
-    static f32 mAllCenterX;
-    static f32 mAllCenterZ;
-    static f32 mAllSizeX;
-    static f32 mAllSizeZ;
-};
-
-struct dMapInfo_n {
-    /* 8003ECA0 */ void chkGetCompass();
-    /* 8003ECD8 */ void chkGetMap();
-    /* 8003ED10 */ void isVisitedRoom(int);
-    /* 8003ED60 */ void correctionOriginPos(s8, Vec*);
-    /* 8003EDC0 */ void offsetPlus(dStage_FileList2_dt_c const*, Vec*);
-    /* 8003EDEC */ void rotAngle(dStage_FileList2_dt_c const*, Vec*);
-    /* 8003EE5C */ void getMapPlayerPos();
-    /* 8003EF20 */ void getMapPlayerAngleY();
-    /* 8003EF70 */ void getConstRestartIconPointer();
-    /* 8003F02C */ void getMapRestartPos();
-    /* 8003F0F8 */ void getMapRestartAngleY();
-    /* 8003F19C */ void getRoomCenter(int, f32*, f32*);
-    /* 8003F1F4 */ void getRoomMinMaxXZ(int, f32*, f32*, f32*, f32*);
-    /* 8003F24C */ void getFloorParameter(f32, s8*, f32*, f32*, f32*, f32*);
 };
 
 struct dMapInfo_c {
@@ -185,12 +37,6 @@ struct dMapInfo_c {
 
     static u32 mNextRoomNo;
     static u8 mNowStayRoomNo[4];
-};
-
-struct dDlst_base_c {};
-
-struct dDlst_list_c {
-    /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
 };
 
 //
@@ -316,19 +162,9 @@ extern "C" void getFirstData__7dTres_cFUc();
 extern "C" void getNextData__7dTres_cFPQ27dTres_c15typeGroupData_c();
 extern "C" void getNextData__7dTres_cFPCQ27dTres_c15typeGroupData_c();
 extern "C" void* __nw__FUl();
-extern "C" void PSMTXTrans();
-extern "C" void PSMTXMultVec();
-extern "C" void PSMTXMultVecArray();
-extern "C" void GXSetVtxDesc();
 extern "C" void GXClearVtxDesc();
-extern "C" void GXSetVtxAttrFmt();
-extern "C" void GXSetArray();
 extern "C" void GXSetMisc();
-extern "C" void GXBegin();
-extern "C" void GXLoadTexObj();
 extern "C" void GXInvalidateTexAll();
-extern "C" void GXSetTevColor();
-extern "C" void GXLoadPosMtxImm();
 extern "C" void _savegpr_20();
 extern "C" void _savegpr_24();
 extern "C" void _savegpr_25();
@@ -343,15 +179,12 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void floor();
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mStatus__20dStage_roomControl_c[65792];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 m_texObjAgg__8dMpath_n[28];
 extern "C" u8 mTypeGroupListAll__7dTres_c[204 + 4 /* padding */];
 extern "C" extern u8 g_fmapHIO[1188];
-extern "C" extern u32 __float_max;
-extern "C" extern u8 struct_80450D64[4];
 
 //
 // Declarations:
@@ -432,7 +265,7 @@ SECTION_SDATA2 static u8 lit_3796[4] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMapInfo_n::getMapPlayerPos() {
+asm Vec dMapInfo_n::getMapPlayerPos() {
     nofralloc
 #include "asm/d/map/d_map_path_dmap/getMapPlayerPos__10dMapInfo_nFv.s"
 }

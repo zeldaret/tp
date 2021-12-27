@@ -1685,6 +1685,27 @@ dMeter_fmapHIO_c::dMeter_fmapHIO_c() {
 }
 
 /* 80200BCC-80200CD4 1FB50C 0108+00 2/1 0/0 0/0 .text            __dt__16dMeter_fmapHIO_cFv */
+#ifdef NONMATCHING
+dMeter_fmapHIO_c::~dMeter_fmapHIO_c() {
+    if (field_0xc != NULL) {
+        mDoExt_getGameHeap()->free(field_0xc);
+        field_0xc = NULL;
+    }
+
+    if (field_0x10 != NULL) {
+        mDoExt_getGameHeap()->free(field_0x10);
+        field_0x10 = NULL;
+    }
+
+    if (field_0x8 != NULL) {
+        field_0x8->unmount();
+        delete field_0x8;
+        field_0x8 = NULL;
+    }
+
+    delete mMapIconHIO;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1694,6 +1715,7 @@ extern "C" asm void __dt__16dMeter_fmapHIO_cFv() {
 #include "asm/d/meter/d_meter_HIO/__dt__16dMeter_fmapHIO_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80200CD4-80200D58 1FB614 0084+00 1/1 0/0 0/0 .text            __ct__18dMeter_cursorHIO_cFv */
 dMeter_cursorHIO_c::dMeter_cursorHIO_c() {

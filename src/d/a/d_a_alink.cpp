@@ -21,6 +21,7 @@
 #include "m_Do/m_Do_mtx.h"
 #include "rel/d/a/d_a_crod/d_a_crod.h"
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
+#include "rel/d/a/d_a_horse/d_a_horse.h"
 
 //
 // Types:
@@ -6429,46 +6430,40 @@ asm void daAlink_c::setNeckAngle() {
 
 /* 800A2160-800A2198 09CAA0 0038+00 1/0 0/0 0/0 .text getStickAngleFromPlayerShape__9daAlink_cCFPs
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool daAlink_c::getStickAngleFromPlayerShape(s16* param_0) const {
-    nofralloc
-#include "asm/d/a/d_a_alink/getStickAngleFromPlayerShape__9daAlink_cCFPs.s"
+bool daAlink_c::getStickAngleFromPlayerShape(s16* param_0) const {
+    // inline uses literal
+    // if (checkInputOnR()) {
+    if (field_0x33ac > lit_6021) {
+        *param_0 = field_0x2fe2 - mCollisionRot.y;
+        return true;
+    }
+    *param_0 = 0;
+    return false;
 }
-#pragma pop
 
 /* 800A2198-800A21E0 09CAD8 0048+00 42/42 0/0 0/0 .text commonLineCheck__9daAlink_cFP4cXyzP4cXyz
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool daAlink_c::commonLineCheck(cXyz* param_0, cXyz* param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/commonLineCheck__9daAlink_cFP4cXyzP4cXyz.s"
+bool daAlink_c::commonLineCheck(cXyz* param_0, cXyz* param_1) {
+    mLinkLinChk.Set(param_0, param_1, this);
+    return dComIfG_Bgsp().LineCross(&mLinkLinChk);
 }
-#pragma pop
 
 /* 800A21E0-800A2280 09CB20 00A0+00 18/18 0/0 2/2 .text
  * getMoveBGActorName__9daAlink_cFR13cBgS_PolyInfoi             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s16 daAlink_c::getMoveBGActorName(cBgS_PolyInfo& param_0, int param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/getMoveBGActorName__9daAlink_cFR13cBgS_PolyInfoi.s"
+s16 daAlink_c::getMoveBGActorName(cBgS_PolyInfo& param_0, int param_1) {
+    if ((param_1 != 0 || dComIfG_Bgsp().ChkPolySafe(param_0)) && dComIfG_Bgsp().ChkMoveBG_NoDABg(param_0) && dComIfG_Bgsp().GetActorPointer(param_0)) {
+        return fopAcM_GetName(dComIfG_Bgsp().GetActorPointer(param_0));
+    }
+    return 0xFD;
 }
-#pragma pop
 
 /* 800A2280-800A22E8 09CBC0 0068+00 2/2 0/0 0/0 .text            checkGoronRide__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkGoronRide() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkGoronRide__9daAlink_cFv.s"
+fopAc_ac_c* daAlink_c::checkGoronRide() {
+    if (mLinkAcch.ChkGroundHit() && getMoveBGActorName(mLinkAcch.m_gnd, 0) == 0x21) {
+        return dComIfG_Bgsp().GetActorPointer(mLinkAcch.m_gnd);
+    }
+    return NULL;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80453224-80453228 001824 0004+00 1/1 0/0 0/0 .sdata2          @56018 */
@@ -8409,35 +8404,54 @@ asm void daAlink_c::handBgCheck() {
 #pragma pop
 
 /* 800A3C8C-800A3CE4 09E5CC 0058+00 11/11 0/0 0/0 .text            setItemHeap__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRHeap* daAlink_c::setItemHeap() {
-    nofralloc
-#include "asm/d/a/d_a_alink/setItemHeap__9daAlink_cFv.s"
+JKRHeap* daAlink_c::setItemHeap() {
+    if (!i_checkResetFlg0(RFLG0_UNK_4000)) {
+        field_0x2fa0 ^= 1;
+        i_onResetFlg0(RFLG0_UNK_4000);
+    }
+    return mItemHeap[field_0x2fa0].setAnimeHeap();
 }
-#pragma pop
 
 /* 800A3CE4-800A3D0C 09E624 0028+00 4/4 0/0 0/0 .text            setIdxMask__9daAlink_cFPUsPUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setIdxMask(u16* param_0, u16* param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setIdxMask__9daAlink_cFPUsPUs.s"
+void daAlink_c::setIdxMask(u16* param_0, u16* param_1) {
+    if (*param_0 == 0xFFFF) {
+        u16 tmp = (*param_1 >> 12) & 0xF;
+        *param_1 &= 0xFFF;
+
+        if (tmp != 0) {
+            *param_0 = tmp;
+        }
+    }
 }
-#pragma pop
 
 /* 800A3D0C-800A3D7C 09E64C 0070+00 5/5 0/0 0/0 .text
  * getAnimeResource__9daAlink_cFP14daPy_anmHeap_cUsUl           */
+// setIdxMask param loads backwards
+#ifdef NONMATCHING
+void* daAlink_c::getAnimeResource(daPy_anmHeap_c* p_anmHeap, u16 param_1, u32 buf_size) {
+    p_anmHeap->setBufferSize(buf_size);
+
+    u16 tmp2 = 0xFFFF;
+    u16* tmp1 = &param_1;
+    
+    setIdxMask(tmp1, &tmp2);
+
+    if (tmp2 == 0xFFFF) {
+        return p_anmHeap->loadDataIdx(*tmp1);
+    } else {
+        return p_anmHeap->loadDataDemoRID(*tmp1, tmp2);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getAnimeResource(daPy_anmHeap_c* param_0, u16 param_1, u32 param_2) {
+asm void* daAlink_c::getAnimeResource(daPy_anmHeap_c* param_0, u16 param_1, u32 param_2) {
     nofralloc
 #include "asm/d/a/d_a_alink/getAnimeResource__9daAlink_cFP14daPy_anmHeap_cUsUl.s"
 }
 #pragma pop
+#endif
 
 /* 800A3D7C-800A3E30 09E6BC 00B4+00 16/16 0/0 0/0 .text initModel__9daAlink_cFP12J3DModelDataUlUl
  */
@@ -15548,8 +15562,55 @@ BOOL daAlink_c::checkSlope() const {
     return field_0x3174 != 8 && field_0x2ff0 < -field_0x3122;
 }
 
+inline daHorse_c* i_dComIfGp_getHorseActor() {
+    return (daHorse_c*)g_dComIfG_gameInfo.play.getPlayerPtr(1);
+}
+
 /* 800B221C-800B23FC 0ACB5C 01E0+00 1/0 0/0 0/0 .text setPlayerPosAndAngle__9daAlink_cFPC4cXyzsi
  */
+// need to figure out member function pointer calls
+#ifdef NONMATCHING
+void daAlink_c::setPlayerPosAndAngle(cXyz const* p_pos, s16 param_1, int param_2) {
+    if (checkEventRun() || param_2 != 0 || mSpecialMode != 0) {
+        if (p_pos != NULL) {
+            mCurrent.mPosition = *p_pos;
+            mNext.mPosition = mCurrent.mPosition;
+            field_0x3798 = mCurrent.mPosition;
+            i_onEndResetFlg0(ERFLG0_UNK_800000);
+            i_onEndResetFlg2(ERFLG2_UNK_100);
+            if (mDemo.getDemoMode() != 0x59) {
+                mSpeed.y = FLOAT_LABEL(lit_6108);
+            }
+        }
+
+        mCollisionRot.y = param_1;
+        mCurrent.mAngle.y = param_1;
+        field_0x2fe6 = mCollisionRot.y;
+        if ((mActionID == 0x145 || mActionID == 0xE2) && !i_checkWolf()) {
+            if (field_0x3198 != 0) {
+                field_0x37c8.x = mCurrent.mPosition.x;
+                field_0x37c8.z = mCurrent.mPosition.z;
+            }
+        }
+
+        if (i_checkMagneBootsOn() && cBgW_CheckBGround(mMagneBootsTopVec.y)) {
+            field_0x3118 = mCollisionRot.y;
+        }
+
+        if (checkHorseRide() || checkSpinnerRide()) {
+            fopAc_ac_c* rideAc = mRideActor.getActor();
+            rideAc->mCurrent.mPosition = mCurrent.mPosition;
+            rideAc->mCollisionRot.y = mCollisionRot.y;
+            rideAc->mCurrent.mAngle.y = mCollisionRot.y;
+            rideAc->mSpeed.y = FLOAT_LABEL(lit_6108);
+        } else {
+            i_dComIfGp_getHorseActor()->setHorsePosAndAngle(&mCurrent.mPosition, mCollisionRot.y);
+        }
+
+        field_0x814.ClrCcMove();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -15558,27 +15619,48 @@ asm void daAlink_c::setPlayerPosAndAngle(cXyz const* param_0, s16 param_1, int p
 #include "asm/d/a/d_a_alink/setPlayerPosAndAngle__9daAlink_cFPC4cXyzsi.s"
 }
 #pragma pop
+#endif
 
 /* 800B23FC-800B24F4 0ACD3C 00F8+00 1/0 0/0 0/0 .text
  * setPlayerPosAndAngle__9daAlink_cFPC4cXyzPC5csXyz             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setPlayerPosAndAngle(cXyz const* param_0, csXyz const* param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setPlayerPosAndAngle__9daAlink_cFPC4cXyzPC5csXyz.s"
+void daAlink_c::setPlayerPosAndAngle(cXyz const* p_pos, csXyz const* p_angle) {
+    if (checkEventRun() || mSpecialMode != 0) {
+        if (p_pos != NULL) {
+            mCurrent.mPosition = *p_pos;
+            mNext.mPosition = mCurrent.mPosition;
+            field_0x3798 = mCurrent.mPosition;
+            i_onEndResetFlg0(ERFLG0_UNK_800000);
+            i_onEndResetFlg2(ERFLG2_UNK_100);
+            mSpeed.y = FLOAT_LABEL(lit_6108);
+        }
+
+        if (p_angle != NULL) {
+            mCollisionRot = *p_angle;
+            mCurrent.mAngle.y = mCollisionRot.y;
+            field_0x2fe6 = mCollisionRot.y;
+        }
+
+        field_0x814.ClrCcMove();
+    }
 }
-#pragma pop
 
 /* 800B24F4-800B25CC 0ACE34 00D8+00 1/0 0/0 0/0 .text setPlayerPosAndAngle__9daAlink_cFPA4_f */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setPlayerPosAndAngle(f32 (*param_0)[4]) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setPlayerPosAndAngle__9daAlink_cFPA4_f.s"
+void daAlink_c::setPlayerPosAndAngle(Mtx param_0) {
+    if (checkEventRun() || mSpecialMode != 0) {
+        mCurrent.mPosition.x = param_0[0][3];
+        mCurrent.mPosition.y = param_0[1][3];
+        mCurrent.mPosition.z = param_0[2][3];
+        mNext.mPosition = mCurrent.mPosition;
+        field_0x3798 = mCurrent.mPosition;
+        i_onEndResetFlg0(ERFLG0_UNK_800000);
+        i_onEndResetFlg2(ERFLG2_UNK_100);
+        mDoMtx_MtxToRot(param_0, &mCollisionRot);
+        mCurrent.mAngle.y = mCollisionRot.y;
+        field_0x2fe6 = mCollisionRot.y;
+        mSpeed.y = FLOAT_LABEL(lit_6108);
+        field_0x814.ClrCcMove();
+    }
 }
-#pragma pop
 
 /* 800B25CC-800B25E8 0ACF0C 001C+00 16/16 0/0 0/0 .text            itemTriggerCheck__9daAlink_cFUc
  */
@@ -16384,14 +16466,9 @@ asm void daAlink_c::itemUnequip(u16 param_0, f32 param_1) {
 #pragma pop
 
 /* 800B97EC-800B983C 0B412C 0050+00 2/2 0/0 0/0 .text            checkFastUnequip__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkFastUnequip() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkFastUnequip__9daAlink_cFv.s"
+bool daAlink_c::checkFastUnequip() {
+    return mActionID == PREACTION_UNEQUIP || mActionID == HORSE_GETOFF || checkEventRun();
 }
-#pragma pop
 
 /* 800B983C-800B994C 0B417C 0110+00 10/10 0/0 0/0 .text            allUnequip__9daAlink_cFi */
 #pragma push
@@ -16435,14 +16512,13 @@ asm BOOL daAlink_c::checkGroundSpecialMode() {
 
 /* 800BA09C-800BA0D0 0B49DC 0034+00 4/4 0/0 0/0 .text            commonCheckNextAction__9daAlink_cFi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::commonCheckNextAction(int param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/commonCheckNextAction__9daAlink_cFi.s"
+void daAlink_c::commonCheckNextAction(int param_0) {
+    if (i_checkWolf()) {
+        checkNextActionWolf(param_0);
+    } else {
+        checkNextAction(param_0);
+    }
 }
-#pragma pop
 
 /* 800BA0D0-800BA6A0 0B4A10 05D0+00 91/91 0/0 0/0 .text            checkNextAction__9daAlink_cFi */
 #pragma push
@@ -16926,10 +17002,6 @@ asm void daAlink_c::returnKeepItemData() {
 #include "asm/d/a/d_a_alink/returnKeepItemData__9daAlink_cFv.s"
 }
 #pragma pop
-
-inline daHorse_c* i_dComIfGp_getHorseActor() {
-    return (daHorse_c*)g_dComIfG_gameInfo.play.getPlayerPtr(1);
-}
 
 /* 800BF8D0-800BF9F0 0BA210 0120+00 2/2 0/0 0/0 .text            setItemModel__9daAlink_cFv */
 #pragma push
@@ -29627,15 +29699,14 @@ asm void daAlink_c::procIronBallReturn() {
 }
 #pragma pop
 
-/* 80115C20-80115C50 110560 0030+00 72/72 0/0 0/0 .text            checkEventRun__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL daAlink_c::checkEventRun() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkEventRun__9daAlink_cCFv.s"
+inline BOOL i_dComIfGp_event_runCheck() {
+    return g_dComIfG_gameInfo.play.getEvent().runCheck();
 }
-#pragma pop
+
+/* 80115C20-80115C50 110560 0030+00 72/72 0/0 0/0 .text            checkEventRun__9daAlink_cCFv */
+BOOL daAlink_c::checkEventRun() const {
+    return i_dComIfGp_event_runCheck() || checkPlayerDemoMode();
+}
 
 /* 80115C50-80115D08 110590 00B8+00 2/2 0/0 0/0 .text            createNpcTks__9daAlink_cFP4cXyziUl
  */

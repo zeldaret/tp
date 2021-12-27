@@ -28,10 +28,6 @@ struct dSmplMdl_draw_c {
     /* 80049058 */ void removeModel(J3DModelData*, int);
 };
 
-struct dMapInfo_n {
-    /* 8003EE5C */ void getMapPlayerPos();
-};
-
 struct dComIfG_resLoader_c {
     /* 8002F314 */ dComIfG_resLoader_c();
     /* 8002F328 */ ~dComIfG_resLoader_c();

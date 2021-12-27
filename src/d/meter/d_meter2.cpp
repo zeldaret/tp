@@ -290,13 +290,6 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 80399338-80399338 025998 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80399338 = "F_SP00";
-#pragma pop
-
 /* 804549C8-804549CC 002FC8 0004+00 9/9 0/0 0/0 .sdata2          @4662 */
 SECTION_SDATA2 static u8 lit_4662[4] = {
     0x00,

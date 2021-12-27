@@ -13,7 +13,7 @@ public:
     operator u32() const { return this->mId; }
     void operator=(JAISoundID const&);
 
-    JAISoundID(u32 pId);
+    JAISoundID(u32 pId) { mId = pId; };
 
     JAISoundID(JAISoundID const& other);
 

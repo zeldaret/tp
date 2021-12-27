@@ -10,13 +10,6 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
-struct dMsgObject_c {
-    /* 802384C4 */ static void setLetterNameID(u16);
-    /* 802379AC */ void setKillMessageFlag();
-    /* 8023822C */ void getStatus();
-    /* 802371E4 */ void isPlaceMessage();
-};
-
 struct JMSMesgEntry_c {
     /* 0x00 */ u32 mStringOffset;
     /* 0x04 */ u16 mStringId;
@@ -133,6 +126,14 @@ public:
     bool isUseButton(int param_0) { return param_0 & mUseButton; }
     void setMeterMapClass(dMeterMap_c* p_map) { mMeterMap = p_map; }
     void resetGameStatus() { mGameStatus = 0; }
+    void setMapStatus(u8 status) { mMapStatus = status; }
+    u8 getMapStatus() { return mMapStatus; }
+    void setPauseStatus(u8 status) { mPauseStatus = status; }
+    void resetPauseStatus() { mPauseStatus = 0; }
+    u8 getPauseStatus() { return mPauseStatus; }
+    bool isGameStatus(int status) { return mGameStatus & status; }
+    void setMapKeyDirection(u16 direction) { mMapKeyDirection = direction; }
+    bool isSub2DStatus(int flag) { return mSub2DStatus & (1 << flag); }
 
 public:
     /* 0x04 */ u8 unk4[4];
@@ -220,6 +221,7 @@ public:
 extern dMeter2Info_c g_meter2_info;
 
 void dMeter2Info_setSword(u8, bool);
+void dMeter2Info_set2DVibration();
 
 inline void dMeter2Info_Initialize() {
     g_meter2_info.init();
@@ -303,6 +305,38 @@ inline void dMeter2Info_allUseButton() {
 
 inline void dMeter2Info_resetGameStatus() {
     g_meter2_info.resetGameStatus();
+}
+
+inline void dMeter2Info_setMapStatus(u8 status) {
+    g_meter2_info.setMapStatus(status);
+}
+
+inline u8 dMeter2Info_getMapStatus() {
+    return g_meter2_info.getMapStatus();
+}
+
+inline void dMeter2Info_setPauseStatus(u8 status) {
+    g_meter2_info.setPauseStatus(status);
+}
+
+inline void dMeter2Info_resetPauseStatus() {
+    g_meter2_info.resetPauseStatus();
+}
+
+inline u8 dMeter2Info_getPauseStatus() {
+    return g_meter2_info.getPauseStatus();
+}
+
+inline bool dMeter2Info_isGameStatus(int status) {
+    return g_meter2_info.isGameStatus(status);
+}
+
+inline void dMeter2Info_setMapKeyDirection(u16 direction) {
+    g_meter2_info.setMapKeyDirection(direction);
+}
+
+inline bool dMeter2Info_isSub2DStatus(int flag) {
+    return g_meter2_info.isSub2DStatus(flag);
 }
 
 #endif /* D_METER_D_METER2_INFO_H */

@@ -768,6 +768,7 @@ public:
     void onDungeonItemMap() { onDungeonItem(MAP); }
     s32 isDungeonItemMap() const { return isDungeonItem(MAP); }
     void onDungeonItemCompass() { onDungeonItem(COMPASS); }
+    s32 isDungeonItemCompass() const { return isDungeonItem(COMPASS); }
     void onDungeonItemWarp() { onDungeonItem(OOCCOO_NOTE); }
     void onDungeonItemBossKey() { onDungeonItem(BOSS_KEY); }
     s32 isDungeonItemBossKey() const { return isDungeonItem(BOSS_KEY); }

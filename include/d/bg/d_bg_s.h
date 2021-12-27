@@ -53,6 +53,10 @@ public:
     virtual ~cBgS() {}
     virtual void Ct();
     virtual void Dt();
+
+    fopAc_ac_c* GetActorPointer(cBgS_PolyInfo const& info) const {
+        return GetActorPointer(info.GetBgIndex());
+    }
 };  // Size: 0x1404
 
 class dBgS_Acch;

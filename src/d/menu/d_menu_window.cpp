@@ -401,7 +401,7 @@ bool dMw_DOWN_TRIGGER() {
     return mDoCPd_c::getTrigDown(mDoCPd_c::PAD_0);
 }
 
-bool dMw_LEFT_TRIGGER() {
+BOOL dMw_LEFT_TRIGGER() {
     if (mDoCPd_c::getTrigLeft(mDoCPd_c::PAD_0) && !dMw_UP_TRIGGER()) {
         return true;
     } else {
@@ -409,7 +409,7 @@ bool dMw_LEFT_TRIGGER() {
     }
 }
 
-bool dMw_RIGHT_TRIGGER() {
+BOOL dMw_RIGHT_TRIGGER() {
     if (mDoCPd_c::getTrigRight(mDoCPd_c::PAD_0) && !dMw_UP_TRIGGER()) {
         return true;
     } else {
