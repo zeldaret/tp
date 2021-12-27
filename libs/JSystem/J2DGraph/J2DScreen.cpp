@@ -249,9 +249,8 @@ SECTION_SDATA2 static f32 lit_1563[1 + 1 /* padding */] = {
 
 /* 802F8498-802F8540 2F2DD8 00A8+00 0/0 59/59 4/4 .text            __ct__9J2DScreenFv */
 #ifdef NONMATCHING
-J2DScreen::J2DScreen() :
-    J2DPane(NULL, true, 'root', JGeometry::TBox2<f32>(0.0f, 0.0f, 640.0f, 480.0f)) {
-    
+J2DScreen::J2DScreen()
+    : J2DPane(NULL, true, 'root', JGeometry::TBox2<f32>(0.0f, 0.0f, 640.0f, 480.0f)) {
     field_0x114 = -1;
     _4 = -1;
     mScissor = false;

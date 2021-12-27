@@ -18,7 +18,7 @@ public:
 
     /* 8003CB00 */ void rendering(dDrawPath_c::group_class const*);
     /* 8003CBBC */ void rendering(dDrawPath_c::floor_class const*);
-    
+
     /* 8002AD3C */ virtual ~dDrawPath_c();
     /* 8002ABF0 */ virtual bool isDrawType(int);
     virtual void getColor(int) = 0;

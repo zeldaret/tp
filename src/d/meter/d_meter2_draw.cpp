@@ -4,9 +4,9 @@
 //
 
 #include "d/meter/d_meter2_draw.h"
-#include "d/meter/d_meter_HIO.h"
-#include "d/com/d_com_inf_game.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/meter/d_meter_HIO.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -715,15 +715,18 @@ void dMeter2Draw_c::initMagic() {
     mpMagicFrameR = new CPaneMgr(mpKanteraScreen, 'm_w_r_n', 2, NULL);
     mpMagicMeter = new CPaneMgr(mpKanteraScreen, 'mm_00', 0, NULL);
 
-    void* res = JKRFileLoader::getGlbResource("zelda_game_image_sanso_10percent.bpk", dComIfGp_getMain2DArchive());
+    void* res = JKRFileLoader::getGlbResource("zelda_game_image_sanso_10percent.bpk",
+                                              dComIfGp_getMain2DArchive());
     field_0x53c = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(res);
     field_0x53c->searchUpdateMaterialID(mpKanteraScreen);
 
-    res = JKRFileLoader::getGlbResource("zelda_game_image_sanso_25percent.bpk", dComIfGp_getMain2DArchive());
+    res = JKRFileLoader::getGlbResource("zelda_game_image_sanso_25percent.bpk",
+                                        dComIfGp_getMain2DArchive());
     field_0x540 = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(res);
     field_0x540->searchUpdateMaterialID(mpKanteraScreen);
 
-    res = JKRFileLoader::getGlbResource("zelda_game_image_sanso_50percent.bpk", dComIfGp_getMain2DArchive());
+    res = JKRFileLoader::getGlbResource("zelda_game_image_sanso_50percent.bpk",
+                                        dComIfGp_getMain2DArchive());
     field_0x544 = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(res);
     field_0x544->searchUpdateMaterialID(mpKanteraScreen);
 
@@ -744,12 +747,14 @@ void dMeter2Draw_c::initMagic() {
 
     u8 magic = dComIfGs_getMagic();
     u8 max_magic = dComIfGs_getMaxMagic();
-    drawMagic(max_magic, magic, g_drawHIO.mMagicMeterPosX + offsetX, g_drawHIO.mMagicMeterPosY + offsetY);
+    drawMagic(max_magic, magic, g_drawHIO.mMagicMeterPosX + offsetX,
+              g_drawHIO.mMagicMeterPosY + offsetY);
     setAlphaMagicChange(true);
 
     u16 oil = dComIfGs_getOil();
     u16 max_oil = dComIfGs_getMaxOil();
-    drawKantera(max_oil, oil, g_drawHIO.mLanternMeterPosX + offsetX, g_drawHIO.mLanternMeterPosY + (g_drawHIO.mNoMagicPosY + offsetY));
+    drawKantera(max_oil, oil, g_drawHIO.mLanternMeterPosX + offsetX,
+                g_drawHIO.mLanternMeterPosY + (g_drawHIO.mNoMagicPosY + offsetY));
     setAlphaKanteraChange(true);
 }
 #else
@@ -1084,7 +1089,7 @@ SECTION_SDATA2 static f32 lit_6175 = 0.03125f;
 #ifdef NONMATCHING
 void dMeter2Draw_c::drawMagic(s16 max_count, s16 now_count, f32 x_pos, f32 y_pos) {
     f32 x_diff = mpMagicFrameR->getInitPosX() - mpMagicFrameL->getInitPosX();
-    
+
     field_0x584 = mpMagicMeter->getInitSizeX() * (lit_6175 * now_count);
     field_0x590 = mpMagicMeter->getInitSizeY();
 

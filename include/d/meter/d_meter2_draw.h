@@ -114,7 +114,7 @@ public:
 
     /* 802102F8 */ virtual ~dMeter2Draw_c();
 
-    J2DScreen* getMainScreenPtr() { return mpScreen; } 
+    J2DScreen* getMainScreenPtr() { return mpScreen; }
 
 private:
     /* 0x004 */ f32 field_0x4;
@@ -213,8 +213,8 @@ private:
     /* 0x524 */ int field_0x524[2][2];
     /* 0x534 */ u8 field_0x534[8];
     /* 0x53C */ J2DAnmColorKey* field_0x53c;
-    /* 0x540 */ J2DAnmColorKey* field_0x540;  // bpk
-    /* 0x544 */ J2DAnmColorKey* field_0x544;  // bpk
+    /* 0x540 */ J2DAnmColorKey* field_0x540;
+    /* 0x544 */ J2DAnmColorKey* field_0x544;
     /* 0x548 */ u8 field_0x548[8];
     /* 0x550 */ f32 field_0x550;
     /* 0x554 */ f32 field_0x554;

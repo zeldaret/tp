@@ -203,7 +203,7 @@ public:
     enum daAlink_WANM {
         /* 0x5E */ ANM_WOLF_HOWL_SUCCESS = 94,
 
-        /* 0x70 */ ANM_TRANFORM_HUMAN = 0x70, // verify
+        /* 0x70 */ ANM_TRANFORM_HUMAN = 0x70,  // verify
     };
 
     enum MODE_FLG {

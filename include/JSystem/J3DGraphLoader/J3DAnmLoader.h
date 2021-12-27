@@ -3,9 +3,7 @@
 
 #include "dolphin/types.h"
 
-enum J3DAnmLoaderDataBaseFlag {
-    UNK_FLAG0
-};
+enum J3DAnmLoaderDataBaseFlag { UNK_FLAG0 };
 
 struct J3DAnmBase;
 

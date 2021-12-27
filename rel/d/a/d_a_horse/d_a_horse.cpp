@@ -1205,7 +1205,7 @@ asm void daHorse_c::createHeap() {
 #pragma pop
 
 /* 808392D8-808392DC 001498 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-//cXyz::cXyz()
+// cXyz::cXyz()
 extern "C" void __ct__4cXyzFv() {
     /* empty function */
 }

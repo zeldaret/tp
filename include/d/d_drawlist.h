@@ -191,9 +191,7 @@ public:
     /* 800568D8 */ void wipeIn(f32);
     /* 80056900 */ void calcWipe();
 
-    void set2DOpa(dDlst_base_c* dlst) {
-        set(field_0x1b4, field_0x1b8, dlst);
-    }
+    void set2DOpa(dDlst_base_c* dlst) { set(field_0x1b4, field_0x1b8, dlst); }
 
     static u8 mWipeDlst[72];
     static u8 mWipeColor[4];

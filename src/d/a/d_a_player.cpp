@@ -4,6 +4,7 @@
 //
 
 #include "d/a/d_a_player.h"
+#include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
@@ -11,7 +12,6 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_iter.h"
 #include "f_op/f_op_actor_mng.h"
-#include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 #include "rel/d/a/d_a_boomerang/d_a_boomerang.h"
 
 //
@@ -324,14 +324,19 @@ asm BOOL daPy_py_c::checkBombItem(int param_0) {
 /* 8015EA88-8015EAD8 1593C8 0050+00 0/0 5/5 0/0 .text            checkBottleItem__9daPy_py_cFi */
 // is there a way to write this with a switch?
 BOOL daPy_py_c::checkBottleItem(int i_itemNo) {
-    return (i_itemNo >= EMPTY_BOTTLE && i_itemNo <= FAIRY) || i_itemNo == BEE_CHILD || i_itemNo == WORM || i_itemNo == FAIRY_DROP || i_itemNo == CHUCHU_BLACK || (i_itemNo >= CHUCHU_RARE && i_itemNo <= LV3_SOUP);
+    return (i_itemNo >= EMPTY_BOTTLE && i_itemNo <= FAIRY) || i_itemNo == BEE_CHILD ||
+           i_itemNo == WORM || i_itemNo == FAIRY_DROP || i_itemNo == CHUCHU_BLACK ||
+           (i_itemNo >= CHUCHU_RARE && i_itemNo <= LV3_SOUP);
 }
 
 /* 8015EAD8-8015EB40 159418 0068+00 0/0 3/3 0/0 .text            checkDrinkBottleItem__9daPy_py_cFi
  */
 // is there a way to write this with a switch?
 BOOL daPy_py_c::checkDrinkBottleItem(int i_itemNo) {
-    return (i_itemNo >= RED_BOTTLE && i_itemNo <= HALF_MILK_BOTTLE) || i_itemNo == RED_BOTTLE_2 || i_itemNo == UGLY_SOUP || i_itemNo == HOT_SPRING || i_itemNo == BEE_CHILD || i_itemNo == CHUCHU_BLACK || i_itemNo == FAIRY_DROP || (i_itemNo >= CHUCHU_RARE && i_itemNo != CHUCHU_YELLOW && i_itemNo <= LV3_SOUP);
+    return (i_itemNo >= RED_BOTTLE && i_itemNo <= HALF_MILK_BOTTLE) || i_itemNo == RED_BOTTLE_2 ||
+           i_itemNo == UGLY_SOUP || i_itemNo == HOT_SPRING || i_itemNo == BEE_CHILD ||
+           i_itemNo == CHUCHU_BLACK || i_itemNo == FAIRY_DROP ||
+           (i_itemNo >= CHUCHU_RARE && i_itemNo != CHUCHU_YELLOW && i_itemNo <= LV3_SOUP);
 }
 
 /* 8015EB40-8015EB68 159480 0028+00 0/0 4/4 0/0 .text            checkOilBottleItem__9daPy_py_cFi */
@@ -358,7 +363,9 @@ BOOL daPy_py_c::checkHookshotItem(int i_itemNo) {
 
 /* 8015EBD8-8015EC28 159518 0050+00 0/0 3/3 0/0 .text            checkTradeItem__9daPy_py_cFi */
 BOOL daPy_py_c::checkTradeItem(int i_itemNo) {
-    return (i_itemNo >= LETTER && i_itemNo <= IRIAS_PENDANT) || i_itemNo == ANCIENT_DOCUMENT || i_itemNo == AIR_LETTER || i_itemNo == ANCIENT_DOCUMENT2 || i_itemNo == RAFRELS_MEMO || i_itemNo == TKS_LETTER || i_itemNo == ASHS_SCRIBBLING;
+    return (i_itemNo >= LETTER && i_itemNo <= IRIAS_PENDANT) || i_itemNo == ANCIENT_DOCUMENT ||
+           i_itemNo == AIR_LETTER || i_itemNo == ANCIENT_DOCUMENT2 || i_itemNo == RAFRELS_MEMO ||
+           i_itemNo == TKS_LETTER || i_itemNo == ASHS_SCRIBBLING;
 }
 
 /* 8015EC28-8015EC48 159568 0020+00 0/0 2/2 0/0 .text            checkDungeonWarpItem__9daPy_py_cFi
@@ -567,143 +574,15 @@ JKRHeap* daPy_anmHeap_c::setAnimeHeap() {
 /* ############################################################################################## */
 /* 803BA0C0-803BA14C 0171E0 0089+03 1/1 0/0 0/0 .data            l_sightDL */
 SECTION_DATA static u8 l_sightDL[137] = {
-    0x10,
-    0x00,
-    0x00,
-    0x10,
-    0x40,
-    0xFF,
-    0xFF,
-    0x42,
-    0x80,
-    0x08,
-    0x30,
-    0x3C,
-    0xF3,
-    0xCF,
-    0x00,
-    0x10,
-    0x00,
-    0x00,
-    0x10,
-    0x18,
-    0x3C,
-    0xF3,
-    0xCF,
-    0x00,
-    0x61,
-    0x28,
-    0x38,
-    0x03,
-    0xC0,
-    0x61,
-    0xC0,
-    0x08,
-    0x42,
-    0x8F,
-    0x61,
-    0xC1,
-    0x08,
-    0xE6,
-    0x70,
-    0x61,
-    0x43,
-    0x00,
-    0x00,
-    0x01,
-    0x61,
-    0x40,
-    0x00,
-    0x00,
-    0x06,
-    0x61,
-    0x41,
-    0x00,
-    0x04,
-    0xAD,
-    0x61,
-    0xF3,
-    0x64,
-    0x00,
-    0x00,
-    0x10,
-    0x00,
-    0x00,
-    0x10,
-    0x3F,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x10,
-    0x00,
-    0x00,
-    0x10,
-    0x09,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x61,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x98,
-    0x00,
-    0x04,
-    0x01,
-    0x01,
-    0x00,
-    0x01,
-    0x01,
-    0xFF,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x01,
-    0xFF,
-    0x00,
-    0x01,
-    0x00,
-    0xFF,
-    0xFF,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0x10, 0x00, 0x00, 0x10, 0x40, 0xFF, 0xFF, 0x42, 0x80, 0x08, 0x30, 0x3C, 0xF3, 0xCF, 0x00, 0x10,
+    0x00, 0x00, 0x10, 0x18, 0x3C, 0xF3, 0xCF, 0x00, 0x61, 0x28, 0x38, 0x03, 0xC0, 0x61, 0xC0, 0x08,
+    0x42, 0x8F, 0x61, 0xC1, 0x08, 0xE6, 0x70, 0x61, 0x43, 0x00, 0x00, 0x01, 0x61, 0x40, 0x00, 0x00,
+    0x06, 0x61, 0x41, 0x00, 0x04, 0xAD, 0x61, 0xF3, 0x64, 0x00, 0x00, 0x10, 0x00, 0x00, 0x10, 0x3F,
+    0x00, 0x00, 0x00, 0x01, 0x10, 0x00, 0x00, 0x10, 0x09, 0x00, 0x00, 0x00, 0x00, 0x61, 0x00, 0x00,
+    0x00, 0x01, 0x98, 0x00, 0x04, 0x01, 0x01, 0x00, 0x01, 0x01, 0xFF, 0x01, 0x00, 0x00, 0x01, 0x01,
+    0xFF, 0x00, 0x01, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 80453678-8045367C 001C78 0004+00 1/1 0/0 0/0 .sdata2          @4668 */
@@ -893,7 +772,8 @@ inline s32 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
 
 /* 8015F698-8015F730 159FD8 0098+00 0/0 2/2 1/1 .text checkCarryStartLightBallA__9daPy_py_cFv */
 u32 daPy_py_c::checkCarryStartLightBallA() {
-    if (checkRoomRestartStart() || !dComIfGp_getStage() || !dComIfGp_getStage()->getStagInfo() || dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x17) {
+    if (checkRoomRestartStart() || !dComIfGp_getStage() || !dComIfGp_getStage()->getStagInfo() ||
+        dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x17) {
         return FALSE;
     }
     return dComIfGs_getLastSceneMode() & 0x100000;
@@ -901,7 +781,8 @@ u32 daPy_py_c::checkCarryStartLightBallA() {
 
 /* 8015F730-8015F7C8 15A070 0098+00 0/0 2/2 1/1 .text checkCarryStartLightBallB__9daPy_py_cFv */
 u32 daPy_py_c::checkCarryStartLightBallB() {
-    if (checkRoomRestartStart() || !dComIfGp_getStage() || !dComIfGp_getStage()->getStagInfo() || dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x17) {
+    if (checkRoomRestartStart() || !dComIfGp_getStage() || !dComIfGp_getStage()->getStagInfo() ||
+        dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x17) {
         return FALSE;
     }
     return dComIfGs_getLastSceneMode() & 0x80000;
@@ -983,12 +864,12 @@ int daPy_addCalcShort(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 p
     s32 phi_r4;
 
     temp_r8 = *param_0;
-    temp_r9 = (s16) param_1;
+    temp_r9 = (s16)param_1;
     temp_r10 = temp_r9 - temp_r8;
 
     if (temp_r8 != temp_r9) {
         temp_r5 = temp_r10 / param_2;
-        temp_r0 = (s16) param_4;
+        temp_r0 = (s16)param_4;
         if (temp_r5 > temp_r0 || temp_r5 < -temp_r0) {
             temp_r0_2 = param_3;
             temp_r4 = -temp_r0_2;
@@ -999,8 +880,7 @@ int daPy_addCalcShort(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 p
                 phi_r4 = temp_r0_2;
             }
             *param_0 += phi_r4;
-        }
-        else if (temp_r10 >= 0) {
+        } else if (temp_r10 >= 0) {
             *param_0 = temp_r8 + param_4;
             if (temp_r9 - *param_0 <= 0) {
                 *param_0 = param_1;

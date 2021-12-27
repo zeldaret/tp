@@ -1,8 +1,8 @@
 #ifndef D_MAP_D_MAP_PATH_DMAP_H
 #define D_MAP_D_MAP_PATH_DMAP_H
 
-#include "d/map/d_map_path.h"
 #include "d/d_stage.h"
+#include "d/map/d_map_path.h"
 #include "dolphin/types.h"
 
 struct dTres_c {
@@ -68,7 +68,7 @@ public:
     /* 8003FE6C */ void setSingleRoomSetting();
     /* 8003FFF4 */ void getFirstDrawRoomNo();
     /* 80040094 */ void getNextDrawRoomNo(int);
-    
+
     /* 8003FE18 */ virtual void draw();
     /* 8002B150 */ virtual ~renderingDAmap_c();
     /* 8003FD9C */ virtual void isSwitch(dDrawPath_c::group_class const*);
@@ -82,7 +82,7 @@ public:
     /* 800402E0 */ virtual bool getFirstDrawLayerNo();
     /* 800402E8 */ virtual void getNextDrawLayerNo(int);
     /* 800409E0 */ virtual void isDrawIconSingle(dTres_c::data_s const*, int, int, bool, bool,
-                                         Vec const*) const;
+                                                 Vec const*) const;
     /* 80040AE4 */ virtual void getIconGroupNumber(u8) const;
     virtual void hasMap() const = 0;
     virtual void isRendAllRoom() const = 0;
@@ -93,9 +93,7 @@ public:
     /* 8003FE70 */ virtual void isDrawRoom(int, int) const;
     /* 800409B4 */ virtual void isDrawRoomIcon(int, int) const;
 
-    bool isDraw() const {
-        return mDraw;
-    }
+    bool isDraw() const { return mDraw; }
 
 private:
     /* 0x24 */ int field_0x24;
@@ -108,13 +106,13 @@ private:
 class stage_tgsc_data_class;
 
 class renderingPlusDoor_c : public renderingDAmap_c {
-public: 
+public:
     /* 80040574 */ void drawDoor1();
     /* 800405B8 */ void drawDoor2();
     /* 800405FC */ void drawDoorCommon(stage_tgsc_data_class const*, int, bool);
     /* 80040710 */ void checkDispDoorS(int, int, f32);
     /* 80040838 */ void drawNormalDoorS(stage_tgsc_data_class const*, int, int, bool);
-    
+
     /* 8002B0B4 */ virtual ~renderingPlusDoor_c();
     /* 8004145C */ virtual void beforeDrawPath();
     /* 80040518 */ virtual void afterDrawPath();

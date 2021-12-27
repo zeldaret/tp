@@ -20,8 +20,8 @@
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_mtx.h"
 #include "rel/d/a/d_a_crod/d_a_crod.h"
-#include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
 #include "rel/d/a/d_a_horse/d_a_horse.h"
+#include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
 
 //
 // Types:
@@ -6451,7 +6451,8 @@ bool daAlink_c::commonLineCheck(cXyz* param_0, cXyz* param_1) {
 /* 800A21E0-800A2280 09CB20 00A0+00 18/18 0/0 2/2 .text
  * getMoveBGActorName__9daAlink_cFR13cBgS_PolyInfoi             */
 s16 daAlink_c::getMoveBGActorName(cBgS_PolyInfo& param_0, int param_1) {
-    if ((param_1 != 0 || dComIfG_Bgsp().ChkPolySafe(param_0)) && dComIfG_Bgsp().ChkMoveBG_NoDABg(param_0) && dComIfG_Bgsp().GetActorPointer(param_0)) {
+    if ((param_1 != 0 || dComIfG_Bgsp().ChkPolySafe(param_0)) &&
+        dComIfG_Bgsp().ChkMoveBG_NoDABg(param_0) && dComIfG_Bgsp().GetActorPointer(param_0)) {
         return fopAcM_GetName(dComIfG_Bgsp().GetActorPointer(param_0));
     }
     return 0xFD;
@@ -8433,7 +8434,7 @@ void* daAlink_c::getAnimeResource(daPy_anmHeap_c* p_anmHeap, u16 param_1, u32 bu
 
     u16 tmp2 = 0xFFFF;
     u16* tmp1 = &param_1;
-    
+
     setIdxMask(tmp1, &tmp2);
 
     if (tmp2 == 0xFFFF) {
@@ -18517,7 +18518,8 @@ bool daAlink_c::procCoMetamorphoseInit() {
     field_0x347c = 1.0f;
     mFallVoiceInit = 0;
 
-    if ((i_checkWolf() && mDemo.getDemoMode() == 0x39) || (!i_checkWolf() && mDemo.getDemoMode() == 0x3A)) {
+    if ((i_checkWolf() && mDemo.getDemoMode() == 0x39) ||
+        (!i_checkWolf() && mDemo.getDemoMode() == 0x3A)) {
         field_0x300a = 1;
         mSpeed.y = 0.0f;
         mNormalSpeed = 0.0f;
@@ -18554,7 +18556,7 @@ bool daAlink_c::procCoMetamorphoseInit() {
             setMetamorphoseModel(1);
             field_0x3588 = l_waitBaseAnime;
             field_0x3480 = daAlinkHIO_basic_c0::m.mLinkWolfTransformSpeed;
-            
+
             cXyz pos(mCurrent.mPosition.x + (cM_ssin(mCollisionRot.y) * 100.0f),
                      mCurrent.mPosition.y + 300.0f,
                      mCurrent.mPosition.z + (cM_scos(mCollisionRot.y) * 100.0f));
@@ -18573,7 +18575,6 @@ bool daAlink_c::procCoMetamorphoseInit() {
                         tmp_4c.y = mCurrent.mPosition.y + field_0x18B0[i].GetWallH();
                     }
                     tmp_58.y = tmp_4c.y;
-
 
                     if (commonLineCheck(&tmp_4c, &tmp_58) && dBgS_CheckBWallPoly(mLinkLinChk)) {
                         if (dComIfG_Bgsp().GetWallCode(mLinkLinChk) != 7) {

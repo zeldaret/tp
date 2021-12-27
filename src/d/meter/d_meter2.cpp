@@ -473,7 +473,7 @@ int dMeter2_c::_create() {
 
     f32 temp3 = FLOAT_LABEL(lit_4662);
     field_0x15c = temp3;
-    
+
     for (int i = 0; i < 4; i++) {
         field_0x160[i] = temp3;
         field_0x174[i] = temp3;
@@ -502,9 +502,11 @@ int dMeter2_c::_create() {
         if (field_0x128 == 0) {
             if (field_0x1d2[i * 2] == BOMB_BAG_LV1 || field_0x1d2[i * 2] == NORMAL_BOMB ||
                 field_0x1d2[i * 2] == WATER_BOMB || field_0x1d2[i * 2] == POKE_BOMB) {
-                    mpMeterDraw->setItemNum(i, dComIfGp_getSelectItemNum(i), dComIfGp_getSelectItemMaxNum(i));
+                mpMeterDraw->setItemNum(i, dComIfGp_getSelectItemNum(i),
+                                        dComIfGp_getSelectItemMaxNum(i));
             } else if (field_0x1d2[i * 2] == BEE_CHILD) {
-                mpMeterDraw->setItemNum(i, dComIfGp_getSelectItemNum(i), dComIfGp_getSelectItemMaxNum(i));
+                mpMeterDraw->setItemNum(i, dComIfGp_getSelectItemNum(i),
+                                        dComIfGp_getSelectItemMaxNum(i));
             } else if (field_0x1d2[i * 2] == BOW || field_0x1d2[i * 2] == LIGHT_ARROW ||
                        field_0x1d2[i * 2] == ARROW_LV1 || field_0x1d2[i * 2] == ARROW_LV2 ||
                        field_0x1d2[i * 2] == ARROW_LV3 || field_0x1d2[i * 2] == HAWK_ARROW) {
@@ -523,7 +525,7 @@ int dMeter2_c::_create() {
                 }
                 mpMeterDraw->setItemNum(i, item_num, item_max);
             }
-        } 
+        }
     }
 
     mpMap = NULL;
@@ -542,7 +544,7 @@ int dMeter2_c::_create() {
     field_0x110 = NULL;
     field_0x114 = NULL;
     field_0x118 = NULL;
-    
+
     mpHeap->getTotalFreeSize();
     field_0x11c = NULL;
     mDoExt_setCurrentHeap(heap);
@@ -726,49 +728,6 @@ asm void dMeter2_c::moveKantera() {
 #include "asm/d/meter/d_meter2/moveKantera__9dMeter2_cFv.s"
 }
 #pragma pop
-
-/* void dMeter2_c::moveKantera() {
-    s32 max_oil = dComIfGs_getMaxOil();
-    bool meter_visible = false;
-
-    s32 cur_oil = 0;
-    if (dComIfGp_getItemMaxOilCount() != 0) {
-        if (dComIfGs_getMaxOil() + dComIfGp_getItemMaxOilCount() <= max_oil) {
-            max_oil = dComIfGs_getMaxOil() + dComIfGp_getItemMaxOilCount();
-            if (max_oil < 0) {
-                max_oil = 0;
-            }
-        }
-        dComIfGs_setMaxOil(max_oil);
-        
-        cur_oil = dComIfGs_getOil();
-        dComIfGp_setItemOilCount(max_oil - cur_oil);
-        dComIfGp_clearItemMaxOilCount();
-        meter_visible = true;
-        cur_oil = max_oil;
-    }
-
-    if (dComIfGp_getItemOilCount() != 0) {
-        if (!meter_visible) {
-            cur_oil = dComIfGs_getMaxOil();
-        }
-
-        if (dComIfGs_getOil() + dComIfGp_getItemOilCount() <= cur_oil) {
-            cur_oil = dComIfGs_getOil();
-            if (dComIfGs_getOil() < 0) {
-                cur_oil = 0;
-            }
-        }
-
-        dComIfGs_setOil(cur_oil);
-        dComIfGp_clearItemOilCount();
-        meter_visible = true;
-    }
-
-    if () {
-
-    }
-} */
 
 /* ############################################################################################## */
 /* 804549EC-804549F0 002FEC 0004+00 2/2 0/0 0/0 .sdata2          @5933 */
@@ -1199,9 +1158,7 @@ static asm int dMeter2_Create(msg_class* param_0) {
 /* ############################################################################################## */
 /* 803BFA54-803BFA68 -00001 0014+00 1/0 0/0 0/0 .data            l_dMeter2_Method */
 SECTION_DATA static dMeter2_Method l_dMeter2_Method[5] = {
-    (dMeter2_Method)dMeter2_Create,  dMeter2_Delete,
-    dMeter2_Execute, dMeter2_IsDelete,
-    dMeter2_Draw,
+    (dMeter2_Method)dMeter2_Create, dMeter2_Delete, dMeter2_Execute, dMeter2_IsDelete, dMeter2_Draw,
 };
 
 /* 803BFA68-803BFA90 -00001 0028+00 0/0 0/0 1/0 .data            g_profile_METER2 */

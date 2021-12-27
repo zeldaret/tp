@@ -20,9 +20,7 @@ private:
 
 class mDoExt_transAnmBas : public J3DAnmTransformKey {
 public:
-    mDoExt_transAnmBas(void* bas) {
-        mBas = bas;
-    }
+    mDoExt_transAnmBas(void* bas) { mBas = bas; }
     virtual ~mDoExt_transAnmBas();
 
 private:

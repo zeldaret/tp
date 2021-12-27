@@ -1,8 +1,8 @@
 #ifndef D_METER_D_METER_MAP_H
 #define D_METER_D_METER_MAP_H
 
-#include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J2DGraph/J2DPicture.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
 #include "d/map/d_map_path_dmap.h"
 #include "dolphin/types.h"
 
@@ -66,7 +66,7 @@ public:
     /* 8002A1BC */ void getDispType() const;
     /* 8002A32C */ void _move(f32, f32, int, f32);
     /* 8002AB54 */ void _draw();
-    
+
     /* 8002AF20 */ virtual ~dMap_c();
     /* 800296EC */ virtual void isDrawType(int);
     /* 80028DF4 */ virtual void getColor(int);
@@ -80,9 +80,7 @@ public:
     /* 8002A148 */ virtual void setAmapPaletteColor(int, u8, u8, u8, u8);
     /* 80029744 */ virtual bool isSpecialOutline();
 
-    bool isDraw() const {
-        return renderingDAmap_c::isDraw();
-    }
+    bool isDraw() const { return renderingDAmap_c::isDraw(); }
 
     ResTIMG* getResTIMGPointer() { return mResTIMG; }
     f32 getTopEdgePlus() { return mTopEdgePlus; }
@@ -154,11 +152,7 @@ public:
 
     bool isDispPosInsideFlg() { return field_0x2d != 0; }
 
-    enum {
-        MAP_SIZE_TYPE_BIG = 2,
-        MAP_SIZE_TYPE_SMALL = 3,
-        MAP_SIZE_TYPE_STAGE = 7
-    };
+    enum { MAP_SIZE_TYPE_BIG = 2, MAP_SIZE_TYPE_SMALL = 3, MAP_SIZE_TYPE_STAGE = 7 };
 
 private:
     /* 0x04 */ J2DPicture* mMapJ2DPicture;

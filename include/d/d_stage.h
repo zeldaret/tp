@@ -705,6 +705,6 @@ inline s8 dStage_sclsInfo_getTimeH(stage_scls_info_class* p_info) {
 
 inline u32 dStage_FileList_dt_getMiniMap(dStage_FileList_dt_c* p_fList) {
     return p_fList->field_0x0 >> 3 & 7;
-} 
+}
 
 #endif /* D_D_STAGE_H */

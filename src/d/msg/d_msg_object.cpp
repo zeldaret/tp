@@ -93,7 +93,6 @@ struct dMsgScrnBase_c {
     /* 8023C3EC */ void setRubyString(char*);
 };
 
-
 struct COutFont_c {
     /* 80225C94 */ COutFont_c(u8);
 };

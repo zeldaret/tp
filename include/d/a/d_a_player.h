@@ -505,7 +505,7 @@ public:
         }
         return sumouCameraMode;
     }
-    
+
     bool i_getSumouMode() const { return getSumouCameraMode(); }
 
     bool checkStatusWindowDraw() { return i_checkNoResetFlg2(STATUS_WINDOW_DRAW); }

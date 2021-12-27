@@ -1,12 +1,12 @@
 #ifndef D_A_HORSE_H
 #define D_A_HORSE_H
 
-#include "dolphin/types.h"
-#include "f_op/f_op_actor.h"
+#include "Z2AudioLib/Z2Creature.h"
 #include "d/bg/d_bg_s.h"
 #include "d/cc/d_cc_d.h"
 #include "d/msg/d_msg_flow.h"
-#include "Z2AudioLib/Z2Creature.h"
+#include "dolphin/types.h"
+#include "f_op/f_op_actor.h"
 
 class daHorseRein_c {
 public:

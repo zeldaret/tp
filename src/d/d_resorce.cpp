@@ -993,7 +993,7 @@ asm void* dRes_control_c::getRes(char const* param_0, char const* param_1, dRes_
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm void* dRes_control_c::getIDRes(char const* param_0, u16 param_1, dRes_info_c* param_2,
-                                  int param_3) {
+                                   int param_3) {
     nofralloc
 #include "asm/d/d_resorce/getIDRes__14dRes_control_cFPCcUsP11dRes_info_ci.s"
 }
