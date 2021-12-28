@@ -75,7 +75,11 @@ class J3DAnmTransformFullWithLerp : public J3DAnmTransformFull {
 struct J3DTextureSRTInfo;
 struct J3DModelData;
 struct J3DMaterialTable;
-struct J3DAnmKeyTableBase {};
+struct J3DAnmKeyTableBase {
+    /* 0x00 */ u16 _0;
+    /* 0x02 */ u16 _2;
+    /* 0x04 */ u16 _4;
+};  // Size = 0x6
 
 class J3DAnmTextureSRTKey : public J3DAnmBase {
 public:

@@ -40,8 +40,6 @@ struct dMeter2Info_c {
     /* 8021C250 */ void getString(u32, char*, JMSMesgEntry_c*);
 };
 
-struct cXyz {};
-
 struct cMl {
     /* 80263228 */ void memalignB(int, u32);
 };

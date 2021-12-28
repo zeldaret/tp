@@ -205,6 +205,43 @@ void LCDisable(void);
 void OSReportInit__Fv(void);  // needed for inline asm
 
 u8* OSGetStackPointer(void);
+
+inline s16 __OSf32tos16(register f32 inF) {
+    register s16 out;
+    u32 tmp;
+    register u32* tmpPtr = &tmp;
+    // clang-format off
+    asm {
+        psq_st inF, 0(tmpPtr), 0x1, 5
+        lha out, 0(tmpPtr)
+    }
+    // clang-format on
+
+    return out;
+}
+
+inline void OSf32tos16(f32* f, s16* out) {
+    *out = __OSf32tos16(*f);
+}
+
+inline u8 __OSf32tou8(register f32 inF) {
+    register u8 out;
+    u32 tmp;
+    register u32* tmpPtr = &tmp;
+    // clang-format off
+    asm {
+        psq_st inF, 0(tmpPtr), 0x1, 2
+        lbz out, 0(tmpPtr)
+    }
+    // clang-format on
+
+    return out;
+}
+
+inline void OSf32tou8(f32* f, u8* out) {
+    *out = __OSf32tou8(*f);
+}
+
 };  // extern "C"
 
 void OSSwitchFiberEx(u32, u32, u32, u32, u32, u32);
@@ -302,24 +339,6 @@ struct GLOBAL_MEMORY {
 inline void* OSPhysicalToCached(u32 offset) {
     OS_ASSERT(offset <= 0x1fffffff);
     return (void*)(offset + 0x80000000);
-}
-
-static inline u8 __OSf32tou8(register f32 src) {
-    f32 tmp;
-    register f32 *p = &tmp;
-    register u8 ret;
-
-    asm
-    {
-        psq_st src, 0(p), 1, 2
-        lbz    ret, 0(p)
-    }
-
-    return ret;
-}
-
-static inline void OSf32tou8(register f32* src, volatile register u8* dst) {
-    *dst = __OSf32tou8(*src);
 }
 
 #endif

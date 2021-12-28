@@ -3098,7 +3098,8 @@ s32 dDlst_shadowRealPoly_c::getTriMax() {
 
 /* 800569B0-800569B4 0512F0 0004+00 1/0 7/0 0/0 .text
  * searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen             */
-void J2DAnmBase::searchUpdateMaterialID(J2DScreen* param_0) {
+// void J2DAnmBase::searchUpdateMaterialID(J2DScreen* param_0) {
+extern "C" void searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen() {
     /* empty function */
 }
 
