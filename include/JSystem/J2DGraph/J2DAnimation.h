@@ -5,61 +5,8 @@
 #include "JSystem/JUtility/JUTNameTab.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "dolphin/gx/GX.h"
-#include "dolphin/types.h"
 #include "dolphin/os/OS.h"
-
-struct VisibilityAnmTableStruct {
-    u16 _0;
-    u16 _2;
-};  // Size = 0x4
-
-struct UnkKeyColorAnmStruct {
-    J3DAnmKeyTableBase _0;
-    J3DAnmKeyTableBase _6;
-    J3DAnmKeyTableBase _C;
-    J3DAnmKeyTableBase _12;
-};  // Size = 0x18
-
-struct UnkAnmColorStruct {
-    /* 0x00 */ u16 _0;
-    /* 0x02 */ u16 _2;
-    /* 0x04 */ u16 _4;
-    /* 0x06 */ u16 _6;
-    /* 0x08 */ u16 _8;
-    /* 0x0A */ u16 _A;
-    /* 0x0C */ u16 _C;
-    /* 0x0E */ u16 _E;
-};  // Size = 0x10
-
-struct UnkKeyAnmStruct {
-    J3DAnmKeyTableBase _0;
-    J3DAnmKeyTableBase _6;
-    J3DAnmKeyTableBase _C;
-};  // Size = 0x12
-
-struct UnkAnimInfo {
-    /* 0x00 */ u16 _0;
-    /* 0x02 */ u16 _2;
-    /* 0x04 */ u16 _4;
-    /* 0x06 */ u16 _6;
-    /* 0x08 */ u16 _8;
-    /* 0x0A */ u16 _A;
-};  // Size = 0xC
-
-struct AnmTableStruct {
-    /* 0x00 */ u16 _0;
-    /* 0x02 */ u16 _2;
-    /* 0x04 */ u16 _4;
-    /* 0x06 */ u16 _6;
-};  // Size = 0x8
-
-struct J2DAnmTevRegKeyData {
-    /* 0x00 */ J3DAnmKeyTableBase _0;
-    /* 0x06 */ J3DAnmKeyTableBase _6;
-    /* 0x0C */ J3DAnmKeyTableBase _C;
-    /* 0x12 */ J3DAnmKeyTableBase _12;
-    /* 0x18 */ u8 _18[4];
-};  // Size = 0x1C
+#include "dolphin/types.h"
 
 class J2DScreen;
 
@@ -95,17 +42,35 @@ private:
 struct J3DTransformInfo;
 struct J3DTextureSRTInfo;
 
+struct J2DAnmVtxColorKeyInfo {
+    J3DAnmKeyTableBase mRInfo;
+    J3DAnmKeyTableBase mGInfo;
+    J3DAnmKeyTableBase mBInfo;
+    J3DAnmKeyTableBase mAInfo;
+};  // Size = 0x18
+
 class J2DAnmVtxColorKey : public J2DAnmVtxColor {
     /* 8030CC20 */ virtual ~J2DAnmVtxColorKey() {}
     /* 8030B704 */ virtual void getColor(u8, u16, _GXColor*) const;
 
 private:
-    /* 0x24 */ UnkKeyColorAnmStruct* field_0x24[2];
-    /* 0x2C */ s16* field_0x2c;
-    /* 0x30 */ s16* field_0x30;
-    /* 0x34 */ s16* field_0x34;
-    /* 0x38 */ s16* field_0x38;
+    /* 0x24 */ J2DAnmVtxColorKeyInfo* mInfoTable[2];
+    /* 0x2C */ s16* mRValues;
+    /* 0x30 */ s16* mGValues;
+    /* 0x34 */ s16* mBValues;
+    /* 0x38 */ s16* mAValues;
 };  // Size: 0x3C
+
+struct J2DAnmVtxColorFullInfo {
+    /* 0x00 */ u16 mRMaxFrame;
+    /* 0x02 */ u16 mROffset;
+    /* 0x04 */ u16 mGMaxFrame;
+    /* 0x06 */ u16 mGOffset;
+    /* 0x08 */ u16 mBMaxFrame;
+    /* 0x0A */ u16 mBOffset;
+    /* 0x0C */ u16 mAMaxFrame;
+    /* 0x0E */ u16 mAOffset;
+};  // Size = 0x10
 
 class J2DAnmVtxColorFull : public J2DAnmVtxColor {
 public:
@@ -113,12 +78,17 @@ public:
     /* 8030B4C4 */ virtual void getColor(u8, u16, _GXColor*) const;
 
 private:
-    /* 0x24 */ UnkAnmColorStruct* field_0x24[2];
-    /* 0x2C */ u8* field_0x2c;
-    /* 0x30 */ u8* field_0x30;
-    /* 0x34 */ u8* field_0x34;
-    /* 0x38 */ u8* field_0x38;
+    /* 0x24 */ J2DAnmVtxColorFullInfo* mInfoTable[2];
+    /* 0x2C */ u8* mRValues;
+    /* 0x30 */ u8* mGValues;
+    /* 0x34 */ u8* mBValues;
+    /* 0x38 */ u8* mAValues;
 };  // Size: 0x3C
+
+struct J2DAnmVisibilityFullInfo {
+    u16 _0;
+    u16 _2;
+};  // Size = 0x4
 
 class J2DAnmVisibilityFull : public J2DAnmBase {
 public:
@@ -128,7 +98,7 @@ public:
 private:
     /* 0x10 */ u16 field_0x10;
     /* 0x12 */ u16 field_0x12;
-    /* 0x14 */ VisibilityAnmTableStruct* field_0x14;
+    /* 0x14 */ J2DAnmVisibilityFullInfo* field_0x14;
     /* 0x18 */ u8* field_0x18;
 };  // Size: 0x1C
 
@@ -138,10 +108,16 @@ public:
     /* 80191130 */ virtual void getTransform(u16, J3DTransformInfo*) const;
 
 protected:
-    /* 0x10 */ f32* field_0x10;
-    /* 0x14 */ s16* field_0x14;
-    /* 0x18 */ f32* field_0x18;
+    /* 0x10 */ f32* mScaleValues;
+    /* 0x14 */ s16* mRotationValues;
+    /* 0x18 */ f32* mTranslateValues;
 };  // Size: 0x1C
+
+struct J2DAnmTransformKeyInfo {
+    J3DAnmKeyTableBase mScaleInfo;
+    J3DAnmKeyTableBase mRotationInfo;
+    J3DAnmKeyTableBase mTranslateInfo;
+};  // Size = 0x12
 
 class J2DAnmTransformKey : public J2DAnmTransform {
 public:
@@ -154,8 +130,17 @@ public:
 private:
     /* 0x1C */ u8 field_0x1c[8];
     /* 0x24 */ u32 field_0x24;
-    /* 0x28 */ UnkKeyAnmStruct* field_0x28;
+    /* 0x28 */ J2DAnmTransformKeyInfo* mInfoTable;
 };
+
+struct J2DAnmTransformFullInfo {
+    /* 0x00 */ u16 mScaleMaxFrame;
+    /* 0x02 */ u16 mScaleOffset;
+    /* 0x04 */ u16 mRotationMaxFrame;
+    /* 0x06 */ u16 mRotationOffset;
+    /* 0x08 */ u16 mTranslateMaxFrame;
+    /* 0x0A */ u16 mTranslateOffset;
+};  // Size = 0xC
 
 class J2DAnmTransformFull : public J2DAnmTransform {
 public:
@@ -165,8 +150,14 @@ public:
 private:
     /* 0x1C */ u8 field_0x1c[6];
     /* 0x22 */ u16 field_0x22;
-    /* 0x24 */ UnkAnimInfo* field_0x24;
+    /* 0x24 */ J2DAnmTransformFullInfo* mTableInfo;
 };
+
+struct J2DAnmTextureSRTKeyInfo {
+    J3DAnmKeyTableBase mScaleInfo;
+    J3DAnmKeyTableBase mRotationInfo;
+    J3DAnmKeyTableBase mTranslationInfo;
+};  // Size = 0x12
 
 class J2DAnmTextureSRTKey : public J2DAnmBase {
 public:
@@ -178,13 +169,13 @@ public:
 
 private:
     /* 0x10 */ int field_0x10;
-    /* 0x14 */ UnkKeyAnmStruct* field_0x14;
+    /* 0x14 */ J2DAnmTextureSRTKeyInfo* mInfoTable;
     /* 0x18 */ u16 mUpdateMaterialNum;
     /* 0x1A */ u16 field_0x1a;
     /* 0x1C */ u16 field_0x1c;
-    /* 0x20 */ f32* field_0x20;
-    /* 0x24 */ s16* field_0x24;
-    /* 0x28 */ f32* field_0x28;
+    /* 0x20 */ f32* mScaleValues;
+    /* 0x24 */ s16* mRotationValues;
+    /* 0x28 */ f32* mTranslationValues;
     /* 0x2C */ u8* mUpdateTexMtxID;
     /* 0x30 */ u16* mUpdateMaterialID;
     /* 0x34 */ JUTNameTab field_0x34;
@@ -202,6 +193,13 @@ private:
     /* 0x78 */ u8 field_0x78[4];
     /* 0x7C */ int field_0x7c;
 };
+
+struct J2DAnmTexPatternInfo {
+    /* 0x00 */ u16 mMaxFrame;
+    /* 0x02 */ u16 mOffset;
+    /* 0x04 */ u16 _4;
+    /* 0x06 */ u16 _6;
+};  // Size = 0x8
 
 class J2DAnmTexPattern : public J2DAnmBase {
 public:
@@ -222,14 +220,22 @@ public:
     u16 getUpdateMaterialNum() const { return mUpdateMaterialNum; }
 
 private:
-    /* 0x10 */ u16* field_0x10;
-    /* 0x14 */ AnmTableStruct* mAnmTable;
+    /* 0x10 */ u16* mValues;
+    /* 0x14 */ J2DAnmTexPatternInfo* mAnmTable;
     /* 0x18 */ u8 field_0x18[2];
     /* 0x1A */ u16 mUpdateMaterialNum;
     /* 0x1C */ u16* mUpdaterMaterialID;
     /* 0x20 */ JUTNameTab field_0x20;
     /* 0x30 */ J2DAnmTexPatternTIMGPointer* mTIMGPtrArray;
 };
+
+struct J2DAnmTevRegKeyInfo {
+    /* 0x00 */ J3DAnmKeyTableBase mRTable;
+    /* 0x06 */ J3DAnmKeyTableBase mGTable;
+    /* 0x0C */ J3DAnmKeyTableBase mBTable;
+    /* 0x12 */ J3DAnmKeyTableBase mATable;
+    /* 0x18 */ u8 _18[4];
+};  // Size = 0x1C
 
 class J2DAnmTevRegKey : public J2DAnmBase {
 public:
@@ -254,16 +260,16 @@ private:
     /* 0x28 */ JUTNameTab field_0x28;
     /* 0x38 */ u16* mKRegUpdateMaterialID;
     /* 0x3C */ JUTNameTab field_0x3c;
-    /* 0x4C */ J2DAnmTevRegKeyData* mAnmCRegKeyTable;
-    /* 0x50 */ J2DAnmTevRegKeyData* mAnmKRegKeyTable;
-    /* 0x54 */ s16* field_0x54;
-    /* 0x58 */ s16* field_0x58;
-    /* 0x5C */ s16* field_0x5c;
-    /* 0x60 */ s16* field_0x60;
-    /* 0x64 */ s16* field_0x64;
-    /* 0x68 */ s16* field_0x68;
-    /* 0x6C */ s16* field_0x6c;
-    /* 0x70 */ s16* field_0x70;
+    /* 0x4C */ J2DAnmTevRegKeyInfo* mAnmCRegKeyTable;
+    /* 0x50 */ J2DAnmTevRegKeyInfo* mAnmKRegKeyTable;
+    /* 0x54 */ s16* mCRValues;
+    /* 0x58 */ s16* mCGValues;
+    /* 0x5C */ s16* mCBValues;
+    /* 0x60 */ s16* mCAValues;
+    /* 0x64 */ s16* mKRValues;
+    /* 0x68 */ s16* mKGValues;
+    /* 0x6C */ s16* mKBValues;
+    /* 0x70 */ s16* mKAValues;
 };
 
 class J2DAnmColor : public J2DAnmBase {
@@ -283,18 +289,36 @@ private:
     /* 0x20 */ JUTNameTab field_0x20;
 };  // Size: 0x30
 
+struct J2DAnmColorKeyInfo {
+    J3DAnmKeyTableBase mRInfo;
+    J3DAnmKeyTableBase mGInfo;
+    J3DAnmKeyTableBase mBInfo;
+    J3DAnmKeyTableBase mAInfo;
+};  // Size = 0x18
+
 class J2DAnmColorKey : public J2DAnmColor {
 public:
     /* 80239BE0 */ virtual ~J2DAnmColorKey() {}
     /* 8030B200 */ virtual void getColor(u16, _GXColor*) const;
 
 private:
-    /* 0x30 */ s16* field_0x30;
-    /* 0x34 */ s16* field_0x34;
-    /* 0x38 */ s16* field_0x38;
-    /* 0x3C */ s16* field_0x3c;
-    /* 0x40 */ UnkKeyColorAnmStruct* field_0x40;
+    /* 0x30 */ s16* mRValues;
+    /* 0x34 */ s16* mGValues;
+    /* 0x38 */ s16* mBValues;
+    /* 0x3C */ s16* mAValues;
+    /* 0x40 */ J2DAnmColorKeyInfo* mInfoTable;
 };
+
+struct J2DAnmColorFullInfo {
+    /* 0x00 */ u16 mRMaxFrame;
+    /* 0x02 */ u16 mROffset;
+    /* 0x04 */ u16 mGMaxFrame;
+    /* 0x06 */ u16 mGOffset;
+    /* 0x08 */ u16 mBMaxFrame;
+    /* 0x0A */ u16 mBOffset;
+    /* 0x0C */ u16 mAMaxFrame;
+    /* 0x0E */ u16 mAOffset;
+};  // Size = 0x10
 
 class J2DAnmColorFull : public J2DAnmColor {
 public:
@@ -302,11 +326,11 @@ public:
     /* 8030AFC8 */ virtual void getColor(u16, _GXColor*) const;
 
 private:
-    /* 0x30 */ u8* field_0x30;
-    /* 0x34 */ u8* field_0x34;
-    /* 0x38 */ u8* field_0x38;
-    /* 0x3C */ u8* field_0x3c;
-    /* 0x40 */ UnkAnmColorStruct* field_0x40;
+    /* 0x30 */ u8* mRValues;
+    /* 0x34 */ u8* mGValues;
+    /* 0x38 */ u8* mBValues;
+    /* 0x3C */ u8* mAValues;
+    /* 0x40 */ J2DAnmColorFullInfo* mInfoTable;
 };
 
 template <typename T>

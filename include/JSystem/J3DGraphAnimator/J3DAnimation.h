@@ -76,9 +76,9 @@ struct J3DTextureSRTInfo;
 struct J3DModelData;
 struct J3DMaterialTable;
 struct J3DAnmKeyTableBase {
-    /* 0x00 */ u16 _0;
-    /* 0x02 */ u16 _2;
-    /* 0x04 */ u16 _4;
+    /* 0x00 */ u16 mMaxFrame;
+    /* 0x02 */ u16 mOffset;
+    /* 0x04 */ u16 mType;
 };  // Size = 0x6
 
 class J3DAnmTextureSRTKey : public J3DAnmBase {
