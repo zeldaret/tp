@@ -553,7 +553,7 @@ s32 fopAcM_create(s16 procName, u16 enemyNo, u32 parameter, const cXyz* pPos, in
     fopAcM_prm_class* params =
         createAppend(enemyNo, parameter, pPos, roomNo, pRot, pScale, subType, 0xFFFFFFFF);
     if (params == NULL) {
-        return 0xFFFFFFFF;
+        return -1;
     } else {
         return fpcSCtRq_Request(fpcLy_CurrentLayer(), procName, (stdCreateFunc)pCreateFunc, NULL,
                                 params);

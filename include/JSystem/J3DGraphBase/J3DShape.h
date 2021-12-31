@@ -24,10 +24,11 @@ class J3DVertexData;
 class J3DDrawMtxData;
 
 enum J3DShpFlag {
+    J3DShpFlag_Visible    = 0x0001,
     J3DShpFlag_SkinPosCpu = 0x0004,
     J3DShpFlag_SkinNrmCpu = 0x0008,
-    J3DShpFlag_Hidden = 0x0010,
-    J3DShpFlag_EnableLod = 0x0100,
+    J3DShpFlag_Hidden     = 0x0010,
+    J3DShpFlag_EnableLod  = 0x0100,
 };
 
 class J3DShape {
@@ -56,8 +57,8 @@ public:
     void setVertexDataPointer(J3DVertexData* pVtxData) { mVertexData = pVtxData; }
     void* getVcdVatCmd() const { return mVcdVatCmd; }
     void setVcdVatCmd(void* pVatCmd) { mVcdVatCmd = pVatCmd; }
-    void show() { offFlag(1); }
-    void hide() { onFlag(1); }
+    void show() { offFlag(J3DShpFlag_Visible); }
+    void hide() { onFlag(J3DShpFlag_Visible); }
     void setCurrentViewNoPtr(u32* pViewNoPtr) { mCurrentViewNo = pViewNoPtr; }
     void setScaleFlagArray(u8* pScaleFlagArray) { mScaleFlagArray = pScaleFlagArray; }
     void setDrawMtx(Mtx** pDrawMtx) { mDrawMtx = pDrawMtx; }
@@ -66,7 +67,7 @@ public:
     u32 getBumpMtxOffset() const { return mBumpMtxOffset; }
 
     inline J3DMaterial* getMaterial() const { return mMaterial; }
-    inline u32 getPipeline() const { return (mFlags >> 2) & 7; }
+    inline u32 getPipeline() const { return (mFlags >> 2) & 0x07; }
     inline u32 getTexMtxLoadType() const { return mFlags & 0xF000; }
     static void resetVcdVatCache() { sOldVcdVatCmd = NULL; }
 

@@ -33,6 +33,22 @@ struct TVec3<f32> {
         y = other.y;
         z = other.z;
     }
+
+    void set(f32 x_, f32 y_, f32 z_) {
+        x = x_;
+        y = y_;
+        z = z_;
+    }
+
+    void zero() {
+        x = y = z = 0.0f;
+    }
+
+    void mul(const TVec3<f32>& a, const TVec3<f32>& b) {
+        x = a.x * b.x;
+        y = a.y * b.y;
+        z = a.z * b.z;
+    }
 };
 
 template <typename T>

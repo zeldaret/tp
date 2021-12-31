@@ -23,7 +23,7 @@ typedef struct leafdraw_class {
 typedef struct leaf_process_profile_definition {
     /* 0x00 */ process_profile_definition mBase;
     /* 0x1C */ leafdraw_method_class* mLfDrwMth;
-    /* 0x20 */ s16 unk20;
+    /* 0x20 */ s16 mPriority;
     /* 0x22 */ u8 unk22[2];
     /* 0x24 */ s32 unk24;
 } leaf_process_profile_definition;

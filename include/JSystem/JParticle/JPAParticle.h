@@ -7,6 +7,9 @@
 #include "JSystem/JGeometry.h"
 #include "JSystem/JSupport/JSUList.h"
 
+#include "JSystem/JParticle/JPADynamicsBlock.h"
+#include "JSystem/JParticle/JPAResource.h"
+
 class JKRHeap;
 class JPABaseEmitter;
 class JPABaseParticle;
@@ -30,6 +33,30 @@ struct JPARandom {
 public:
     JPARandom() { mSeed = 0; }
     void set_seed(u32 seed) { mSeed = seed; }
+
+    u32 get_rndm_u() {
+        return mSeed = mSeed * 0x19660du + 0x3c6ef35fu;
+    }
+
+    f32 get_rndm_f() {
+        union { u32 u; f32 f; } a;
+        a.u = ((get_rndm_u() >> 9) | 0x3f800000);
+        return a.f - 1.0f;
+    }
+
+    f32 get_rndm_zp() {
+        f32 f = get_rndm_f();
+        return (f + f) - 1.0f;
+    }
+
+    f32 get_rndm_zh() {
+        f32 f = get_rndm_f();
+        return f - 1.0f;
+    }
+
+    s16 get_rndm_ss() {
+        return ((s16)get_rndm_u()) >> 16;
+    }
 
 public:
     u32 mSeed;
@@ -175,6 +202,13 @@ public:
     /* 8027E6A4 */ ~JPAEmitterCallBack();
 };
 
+enum {
+    JPAEmtrStts_StopEmit     = 0x01,
+    JPAEmtrStts_StopCalc     = 0x02,
+    JPAEmtrStts_FirstEmit    = 0x10,
+    JPAEmtrStts_RateStepEmit = 0x20,
+};
+
 class JPABaseEmitter {
 public:
     /* 8027E5EC */ ~JPABaseEmitter();
@@ -191,9 +225,17 @@ public:
     /* 8027EF50 */ bool loadTexture(u8, GXTexMapID);
 
     void setStatus(u32 status) { mStatus |= status; }
+    void clearStatus(u32 status) { mStatus &= ~status; }
     bool checkStatus(u32 status) { return !!(mStatus & status); }
+    bool checkFlag(u32 flag) { return !!(mpRes->getDyn()->getFlag() & flag); }
     u8 getResourceManagerID() const { return mResMgrID; }
     u8 getGroupID() const { return mGroupID; }
+    u8 getDrawTimes() const { return mDrawTimes; }
+
+    f32 get_r_f() { return mRndm.get_rndm_f(); }
+    f32 get_r_zp() { return mRndm.get_rndm_zp(); }
+    f32 get_r_zh() { return mRndm.get_rndm_zh(); }
+    s16 get_r_ss() { return mRndm.get_rndm_ss(); }
 
 public:
     /* 0x00 */ Vec mLocalScl;
@@ -234,7 +276,7 @@ public:
     /* 0xFC */ f32 mScaleOut;
     /* 0x100 */ u32 mTick;
     /* 0x104 */ s16 mWaitTime;
-    /* 0x106 */ u16 mRateStepTimer;
+    /* 0x106 */ s16 mRateStepTimer;
     /* 0x108 */ GXColor mPrmClr;
     /* 0x10C */ GXColor mEnvClr;
     /* 0x110 */ u8 mDrawTimes;
@@ -245,9 +287,13 @@ public:
 
 class JPAParticleCallBack {
 public:
-    ~JPAParticleCallBack();
+    virtual ~JPAParticleCallBack();
     virtual void execute(JPABaseEmitter*, JPABaseParticle*);
     virtual void draw(JPABaseEmitter*, JPABaseParticle*);
+};
+
+enum {
+    JPAPtclStts_Invisible = 0x08,
 };
 
 class JPABaseParticle {
@@ -277,7 +323,7 @@ public:
     /* 0x74 */ f32 mDrag;
     /* 0x78 */ u32 field_0x78;
     /* 0x7C */ u32 mStatus;
-    /* 0x80 */ u16 mAge;
+    /* 0x80 */ s16 mAge;
     /* 0x82 */ u16 mLifeTime;
     /* 0x84 */ f32 mTime;
     /* 0x88 */ u16 mRotateAngle;
