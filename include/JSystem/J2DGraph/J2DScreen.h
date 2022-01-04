@@ -53,7 +53,7 @@ public:
 
     static J2DDataManage* mDataManage;
 
-private:
+    // private:
     /* 0x100 */ bool mScissor;
     /* 0x102 */ u16 mMaterialNum;
     /* 0x104 */ J2DMaterial* mMaterials;

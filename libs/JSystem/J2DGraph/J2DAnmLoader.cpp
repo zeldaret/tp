@@ -501,7 +501,8 @@ asm void J2DAnmFullLoader_v15::setAnmVtxColor(J2DAnmVtxColorFull* param_0,
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DAnmVtxColor::~J2DAnmVtxColor() {
+// asm J2DAnmVtxColor::~J2DAnmVtxColor() {
+extern "C" asm void __dt__14J2DAnmVtxColorFv() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/__dt__14J2DAnmVtxColorFv.s"
 }
@@ -511,7 +512,8 @@ asm J2DAnmVtxColor::~J2DAnmVtxColor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DAnmVisibilityFull::~J2DAnmVisibilityFull() {
+// asm J2DAnmVisibilityFull::~J2DAnmVisibilityFull() {
+extern "C" asm void __dt__20J2DAnmVisibilityFullFv() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/__dt__20J2DAnmVisibilityFullFv.s"
 }
@@ -521,7 +523,8 @@ asm J2DAnmVisibilityFull::~J2DAnmVisibilityFull() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DAnmLoader::~J2DAnmLoader() {
+// asm J2DAnmLoader::~J2DAnmLoader() {
+extern "C" asm void __dt__12J2DAnmLoaderFv() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/__dt__12J2DAnmLoaderFv.s"
 }

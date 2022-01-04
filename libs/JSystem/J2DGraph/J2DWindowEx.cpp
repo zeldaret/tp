@@ -767,6 +767,7 @@ asm void J2DWindowEx::setAnimation(J2DAnmBase* param_0) {
 
 /* 8030363C-80303640 2FDF7C 0004+00 0/0 1/0 0/0 .text getColor__14J2DAnmVtxColorCFUcUsP8_GXColor
  */
-void J2DAnmVtxColor::getColor(u8 param_0, u16 param_1, _GXColor* param_2) const {
+// void J2DAnmVtxColor::getColor(u8 param_0, u16 param_1, _GXColor* param_2) const {
+extern "C" void getColor__14J2DAnmVtxColorCFUcUsP8_GXColor() {
     /* empty function */
 }
