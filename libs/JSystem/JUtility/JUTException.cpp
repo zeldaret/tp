@@ -338,25 +338,25 @@ bool JUTException::searchPartialModule(u32 address, u32* module_id, u32* section
 
     OSModuleInfo* module = *(OSModuleInfo**)0x800030C8;
     while (module) {
-        OSSectionInfo* section = (OSSectionInfo*)module->section_info_offset;
-        for (u32 i = 0; i < module->num_sections; section++, i++) {
-            if (section->size) {
-                u32 addr = ALIGN_PREV(section->offset, 2);
-                if ((addr <= address) && (address < addr + section->size)) {
+        OSSectionInfo* section = (OSSectionInfo*)module->info.sectionInfoOffset;
+        for (u32 i = 0; i < module->mNumSections; section=section+1, i++) {
+            if (section->mSize) {
+                u32 addr = ALIGN_PREV(section->mOffset, 2);
+                if ((addr <= address) && (address < addr + section->mSize)) {
                     if (module_id)
-                        *module_id = module->id;
+                        *module_id = module->mId;
                     if (section_id)
                         *section_id = i;
                     if (section_offset)
                         *section_offset = address - addr;
                     if (name_offset)
-                        *name_offset = module->name_offset;
+                        *name_offset = module->mModuleNameOffset;
                     return true;
                 }
             }
         }
 
-        module = module->next;
+        module = module->mNext;
     }
 
     return false;

@@ -16,10 +16,7 @@ extern "C" static void OSNotifyUnlink();
 extern "C" void OSSetStringTable();
 extern "C" static void Relocate();
 extern "C" static void Link();
-extern "C" void OSLink();
-extern "C" void OSLinkFixed();
 extern "C" static void Undo();
-extern "C" void OSUnlink();
 extern "C" void __OSModuleInit();
 
 //
@@ -125,7 +122,7 @@ static asm void Link() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSLink() {
+extern "C" asm BOOL OSLink(OSModuleInfo* info) {
     nofralloc
 #include "asm/dolphin/os/OSLink/OSLink.s"
 }
@@ -135,7 +132,7 @@ asm void OSLink() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSLinkFixed() {
+extern "C" asm BOOL OSLinkFixed(OSModuleInfo* info, u32 unk) {
     nofralloc
 #include "asm/dolphin/os/OSLink/OSLinkFixed.s"
 }
@@ -201,7 +198,7 @@ static asm void Undo() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSUnlink() {
+extern "C" asm BOOL OSUnlink(OSModuleInfo* info) {
     nofralloc
 #include "asm/dolphin/os/OSLink/OSUnlink.s"
 }

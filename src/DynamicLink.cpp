@@ -6,90 +6,76 @@
 #include "DynamicLink.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct mDoDvdThd_callback_c {
-    /* 80015C74 */ void create(void* (*)(void*), void*);
-};
-
-struct JKRHeap {
-    /* 802CE474 */ void alloc(u32, int, JKRHeap*);
-    /* 802CE500 */ void free(void*, JKRHeap*);
-    /* 802CE624 */ void resize(void*, u32, JKRHeap*);
-    /* 802CE6B0 */ void getSize(void*, JKRHeap*);
-};
-
-struct JKRFileLoader {
-    /* 802D43A0 */ void detachResource(void*, JKRFileLoader*);
-};
-
-struct JKRFileCache {
-    /* 802D49B4 */ void mount(char const*, JKRHeap*, char const*);
-};
-
-struct JKRExpandSwitch {};
-
-struct JKRDvdRipper {
-    struct EAllocDirection {};
-
-    /* 802D9B98 */ void loadToMainRAM(char const*, u8*, JKRExpandSwitch, u32, JKRHeap*,
-                                      JKRDvdRipper::EAllocDirection, u32, int*, u32*);
-};
-
-struct JKRArchive {
-    struct EMountMode {};
-
-    struct EMountDirection {};
-
-    /* 802D57E4 */ void mount(char const*, JKRArchive::EMountMode, JKRHeap*,
-                              JKRArchive::EMountDirection);
-    /* 802D5B38 */ void getGlbResource(u32, char const*, JKRArchive*);
-};
+#include "dolphin/os/OS.h"
+#include "JSystem/JUtility/JUTConsole.h"
+#include "m_Do/m_Do_dvd_thread.h"
+#include "m_Do/m_Do_ext.h"
+#include "JSystem/JKernel/JKRFileCache.h"
+#include "dolphin/os/OSLink.h"
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf.h"
+#include "JSystem/JKernel/JKRDvdRipper.h"
 
 struct DynamicModuleControlBase {
-    /* 800188DC */ bool getModuleName() const;
-    /* 802621CC */ ~DynamicModuleControlBase();
-    /* 80262284 */ DynamicModuleControlBase();
-    /* 802622D0 */ void link();
-    /* 80262364 */ void unlink();
-    /* 802623EC */ void load_async();
-    /* 8026242C */ void force_unlink();
-    /* 80262470 */ void dump();
-    /* 802631D4 */ bool do_link();
-    /* 802631DC */ bool do_load();
-    /* 802631E4 */ bool do_unload();
-    /* 802631EC */ bool do_unlink();
-    /* 802631F4 */ bool do_load_async();
-    /* 802631FC */ void dump2();
-    /* 80263200 */ void getModuleTypeString() const;
-    /* 80263210 */ bool getModuleSize() const;
+    u16 mLinkCount; //0x0
+    u16 mDoLinkCount; //0x2
+    DynamicModuleControlBase* mPrev; //0x4
+    DynamicModuleControlBase* mNext; //0x8
 
-    static u8 mFirst[4];
-    static u8 mLast[4];
+    /* 802621CC */ virtual ~DynamicModuleControlBase(); //0xC
+    /* 800188DC */ virtual const char* getModuleName() const;
+    /* 80263210 */ virtual int getModuleSize() const;
+    /* 80263200 */ virtual const char* getModuleTypeString() const;
+    /* 80262470 */ virtual void dump();
+    /* 802631FC */ virtual void dump2();
+    /* 802631DC */ virtual bool do_load();
+    /* 802631F4 */ virtual bool do_load_async();
+    /* 802631E4 */ virtual bool do_unload();
+    /* 802631D4 */ virtual BOOL do_link();
+    /* 802631EC */ virtual bool do_unlink();
+    /* 80262284 */ DynamicModuleControlBase();
+    /* 802622D0 */ bool link();
+    /* 80262364 */ bool unlink();
+    /* 802623EC */ bool load_async();
+    /* 8026242C */ bool force_unlink();
+
+    static inline DynamicModuleControlBase* getFirstClass() {return mFirst;}
+    inline DynamicModuleControlBase* getNextClass() {return mNext;}
+
+
+    static DynamicModuleControlBase* mFirst;
+    static DynamicModuleControlBase* mLast;
 };
 
-struct DynamicModuleControl {
-    /* 800188E4 */ ~DynamicModuleControl();
+struct DynamicModuleControl : DynamicModuleControlBase {
+    /* 800188E4 */ virtual ~DynamicModuleControl();
+    /* 80263218 */ virtual const char* getModuleName() const;
+    /* 80263000 */ virtual int getModuleSize() const;
+    /* 80263070 */ virtual const char* getModuleTypeString() const;
+    //virtual void dump();
+    /* 80262C0C */ virtual void dump2();
+    /* 802627E8 */ virtual bool do_load();
+    /* 80262AFC */ virtual bool do_load_async();
+    /* 80262BC4 */ virtual bool do_unload();
+    /* 80262C5C */ virtual BOOL do_link();
+    /* 80262F28 */ virtual bool do_unlink();
     /* 80262660 */ DynamicModuleControl(char const*);
-    /* 802626D0 */ void mountCallback(void*);
-    /* 8026275C */ void initialize();
-    /* 80262794 */ void callback(void*);
-    /* 802627E8 */ void do_load();
-    /* 80262AFC */ void do_load_async();
-    /* 80262BC4 */ void do_unload();
-    /* 80262C0C */ void dump2();
-    /* 80262C5C */ void do_link();
-    /* 80262F28 */ void do_unlink();
-    /* 80263000 */ void getModuleSize() const;
-    /* 80263070 */ void getModuleTypeString() const;
-    /* 80263218 */ void getModuleName() const;
+    /* 802626D0 */ static JKRArchive* mountCallback(void*);
+    /* 8026275C */ bool initialize();
+    /* 80262794 */ static void* callback(void*);
+    
+    OSModuleInfo* mModule; //0x10
+    void* mBss; //0x14
+    u32 unk_24; //0x18
+    const char* mName; //0x1c
+    u8 mResourceType; //0x20
+    u8 unk_33; //0x21
+    u16 mChecksum; //0x22
+    s32 mSize; //0x24
+    mDoDvdThd_callback_c* mAsyncLoadCallback; //0x28
 
-    static u8 sAllocBytes[4];
-    static u8 sArchive[4];
-    static u8 sFileCache[4 + 4 /* padding */];
+    static u32 sAllocBytes;
+    static JKRArchive* sArchive;
+    static JKRFileCache* sFileCache;
 };
 
 //
@@ -119,8 +105,8 @@ extern "C" void getModuleTypeString__20DynamicModuleControlCFv();
 extern "C" void ModuleProlog();
 extern "C" void ModuleEpilog();
 extern "C" void ModuleUnresolved();
-extern "C" void ModuleConstructorsX();
-extern "C" void ModuleDestructorsX();
+extern "C" void ModuleConstructorsX(void(**ctors)());
+extern "C" void ModuleDestructorsX(void(**dtors)());
 extern "C" bool do_link__24DynamicModuleControlBaseFv();
 extern "C" bool do_load__24DynamicModuleControlBaseFv();
 extern "C" bool do_unload__24DynamicModuleControlBaseFv();
@@ -141,9 +127,6 @@ extern "C" u8 sFileCache__20DynamicModuleControl[4 + 4 /* padding */];
 // External References:
 //
 
-extern "C" void OSReport();
-extern "C" void OSReport_Error();
-extern "C" void OSReport_Warning();
 extern "C" void mDoExt_getArchiveHeap__Fv();
 extern "C" void create__20mDoDvdThd_callback_cFPFPv_PvPv();
 extern "C" bool getModuleName__24DynamicModuleControlBaseCFv();
@@ -160,31 +143,147 @@ mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMount
 extern "C" void getGlbResource__10JKRArchiveFUlPCcP10JKRArchive();
 extern "C" void
 loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl();
-extern "C" void JUTReportConsole_f();
-extern "C" void OSGetStackPointer();
-extern "C" void OSLink();
-extern "C" void OSLinkFixed();
-extern "C" void OSUnlink();
-extern "C" void OSGetTime();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void snprintf();
 
 //
 // Declarations:
 //
 
+extern "C" void* __vt__20DynamicModuleControl[13];
+extern "C" void* __vt__24DynamicModuleControlBase[13];
+
+/* 80451138-8045113C 000638 0004+00 3/3 0/0 0/0 .sbss            mFirst__24DynamicModuleControlBase
+ */
+DynamicModuleControlBase* DynamicModuleControlBase::mFirst;
+
+/* 8045113C-80451140 00063C 0004+00 2/2 0/0 0/0 .sbss            mLast__24DynamicModuleControlBase
+ */
+DynamicModuleControlBase* DynamicModuleControlBase::mLast;
+
+/* 802621CC-80262284 25CB0C 00B8+00 1/0 2/2 0/0 .text            __dt__24DynamicModuleControlBaseFv
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm DynamicModuleControlBase::~DynamicModuleControlBase() {
+    nofralloc
+#include "asm/DynamicLink/__dt__24DynamicModuleControlBaseFv.s"
+}
+#pragma pop
+
+/* 80262284-802622D0 25CBC4 004C+00 1/1 0/0 0/0 .text            __ct__24DynamicModuleControlBaseFv
+ */
+DynamicModuleControlBase::DynamicModuleControlBase() {
+    mLinkCount = 0;
+    mDoLinkCount = 0;
+    mNext = NULL;
+    if (mFirst==NULL) {
+        mFirst = this;
+    }
+    mPrev = mLast;
+    if (mPrev!=NULL) {
+        mPrev->mNext = this;
+    }
+    mLast = this;
+}
+
+/* 802622D0-80262364 25CC10 0094+00 0/0 2/2 0/0 .text            link__24DynamicModuleControlBaseFv
+ */
+bool DynamicModuleControlBase::link() {
+    if (mLinkCount==0) {
+        do_load();
+        if (do_link()==false) {
+            return false;
+        }
+        if (mDoLinkCount<0xFFFF) {
+            mDoLinkCount++;
+        }
+    }
+    if(mLinkCount<0xFFFF) {
+        mLinkCount++;
+    }
+    return true;
+}
+
+/* 80262364-802623EC 25CCA4 0088+00 0/0 1/1 0/0 .text unlink__24DynamicModuleControlBaseFv */
+bool DynamicModuleControlBase::unlink() {
+    if(mLinkCount!=0) {
+        mLinkCount--;
+        if(mLinkCount==0) {
+            do_unlink();
+            do_unload();
+        }
+    }else{
+        OSReport_Warning("%08x DynamicModuleControlBase::unlink() mLinkCount id already zero.\n",this);
+    }
+    return true;
+}
+
+/* 802623EC-8026242C 25CD2C 0040+00 0/0 1/1 0/0 .text load_async__24DynamicModuleControlBaseFv */
+bool DynamicModuleControlBase::load_async() {
+    if (mLinkCount==0) {
+        return do_load_async();
+    }
+    return true;
+}
+
+/* 8026242C-80262470 25CD6C 0044+00 1/1 0/0 0/0 .text force_unlink__24DynamicModuleControlBaseFv
+ */
+bool DynamicModuleControlBase::force_unlink() {
+    if (mLinkCount!=0) {
+        mLinkCount = 0;
+        do_unlink();
+    }
+    return true;
+}
+
+#ifdef NONMATCHING
+void DynamicModuleControlBase::dump() {
+    DynamicModuleControlBase* current = getFirstClass();
+    int totalSize = 0;
+    JUTReportConsole_f("\nDynamicModuleControlBase::dump()\n");
+    JUTReportConsole_f("Do  Lnk Size      Name\n");
+    while (current!=NULL) {
+        if (current->mDoLinkCount!=0||current->mLinkCount!=0) {
+            int size = current->getModuleSize();
+            const char* name = current->getModuleName();
+            if (size>=0) {
+                if (name==NULL) {
+                    name = "(Null)";
+                }
+                const char* type = current->getModuleTypeString();
+                JUTReportConsole_f("%3d%3d%5.1f %05x %-4s %-24s ",mDoLinkCount,mLinkCount,(float)size*((float)1/(float)1024),size,type,name);
+                totalSize = totalSize + size;
+               }else{
+                if (name==NULL) {
+                    name = "(Null)";
+                }
+                const char* type = current->getModuleTypeString();
+                JUTReportConsole_f("%3d%3d ???? ????? %-4s %-24s ",mDoLinkCount,mLinkCount,type,name);
+            }
+        }
+        current->dump2();
+        JUTReportConsole_f("\n");
+        current=current->getNextClass();
+    }
+    JUTReportConsole_f("TotalSize %6.2f %06x\n\n",(float)totalSize*(float)(1/1024),totalSize);
+}
+#else
 /* ############################################################################################## */
-/* 8039A4A0-8039A4A0 026B00 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+/* 80455008-80455010 003608 0004+04 1/1 0/0 0/0 .sdata2          @3772 */
+SECTION_SDATA2 static f32 lit_3772[1 + 1 /* padding */] = {
+    0.0009765625f, // 1/1024
+    /* padding */
+    0.0f,
+};
+
 #pragma push
 #pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039A4A0 =
-    "%08x DynamicModuleControlBase::unlink() mLinkCou"
-    "nt id already zero.\n";
 SECTION_DEAD static char const* const stringBase_8039A4E5 = "\nDynamicModuleControlBase::dump()\n";
 SECTION_DEAD static char const* const stringBase_8039A508 = "Do  Lnk Size      Name\n";
 SECTION_DEAD static char const* const stringBase_8039A520 = "(Null)";
@@ -192,11 +291,181 @@ SECTION_DEAD static char const* const stringBase_8039A527 = "%3d%3d%5.1f %05x %-
 SECTION_DEAD static char const* const stringBase_8039A544 = "%3d%3d ???? ????? %-4s %-24s ";
 SECTION_DEAD static char const* const stringBase_8039A562 = "\n";
 SECTION_DEAD static char const* const stringBase_8039A564 = "TotalSize %6.2f %06x\n\n";
+#pragma pop
+
+/* 80455010-80455018 003610 0008+00 1/1 0/0 0/0 .sdata2          @3774 */
+SECTION_SDATA2 static f64 lit_3774 = 4503599627370496.0 /* cast u32 to float */;
+
+/* 80262470-80262660 25CDB0 01F0+00 2/0 2/2 0/0 .text            dump__24DynamicModuleControlBaseFv
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void DynamicModuleControlBase::dump() {
+    nofralloc
+#include "asm/DynamicLink/dump__24DynamicModuleControlBaseFv.s"
+}
+#pragma pop
+#endif
+
+/* 80262660-802626D0 25CFA0 0070+00 0/0 2/2 0/0 .text            __ct__20DynamicModuleControlFPCc */
+DynamicModuleControl::DynamicModuleControl(char const* name) {
+    mModule = NULL;
+    mBss = NULL;
+    unk_24 = 0;
+    mName = name;
+    mResourceType = 0;
+    unk_33 = 0;
+    mChecksum = 0;
+    mSize = 0;
+    mAsyncLoadCallback = NULL;
+}
+
+/* ############################################################################################## */
+/* 80451140-80451144 000640 0004+00 3/3 0/0 0/0 .sbss            sAllocBytes__20DynamicModuleControl
+ */
+u32 DynamicModuleControl::sAllocBytes;
+
+/* 80451144-80451148 000644 0004+00 3/3 0/0 0/0 .sbss            sArchive__20DynamicModuleControl */
+JKRArchive* DynamicModuleControl::sArchive;
+
+/* 80451148-80451150 000648 0004+04 3/3 0/0 0/0 .sbss            sFileCache__20DynamicModuleControl
+ */
+JKRFileCache* DynamicModuleControl::sFileCache;
+
+#pragma push
+#pragma force_active on
 SECTION_DEAD static char const* const stringBase_8039A57B = "Base";
-SECTION_DEAD static char const* const stringBase_8039A580 = "/rel/Final/Release";
-SECTION_DEAD static char const* const stringBase_8039A593 = "RELS.arc";
-SECTION_DEAD static char const* const stringBase_8039A59C =
-    "マウント失敗ですが単にアーカイブを作ってないだけなら遅いだけです %s\n";
+#pragma pop
+
+/* 802626D0-8026275C 25D010 008C+00 1/1 0/0 0/0 .text mountCallback__20DynamicModuleControlFPv */
+JKRArchive* DynamicModuleControl::mountCallback(void* param_0) {
+    JKRExpHeap* heap = mDoExt_getArchiveHeap();
+    sFileCache = JKRFileCache::mount("/rel/Final/Release",heap,NULL);
+    sArchive = JKRArchive::mount("RELS.arc",JKRArchive::MOUNT_COMP,heap,JKRArchive::MOUNT_DIRECTION_HEAD);
+    if (sArchive == NULL) {
+        OSReport_Warning("マウント失敗ですが単にアーカイブを作ってないだけなら遅いだけです %s\n","RELS.arc");
+    }
+    return sArchive;
+}
+
+/* 8026275C-80262794 25D09C 0038+00 0/0 1/1 0/0 .text initialize__20DynamicModuleControlFv */
+bool DynamicModuleControl::initialize() {
+    sFileCache = NULL;
+    sAllocBytes = 0;
+    sArchive = NULL;
+    mountCallback(NULL);
+    return true;
+}
+
+/* 80262794-802627C0 25D0D4 002C+00 1/1 0/0 0/0 .text            callback__20DynamicModuleControlFPv
+ */
+void* DynamicModuleControl::callback(void* moduleControlPtr) {
+    DynamicModuleControl* moduleControl = (DynamicModuleControl*)moduleControlPtr;
+    moduleControl->do_load();
+}
+
+/* 802627C0-802627E8 25D100 0028+00 1/1 0/0 0/0 .text            calcSum2__FPCUsUl */
+static u32 calcSum2(u16 const* data, u32 size) {
+    u32 sum = 0;
+    while (size>0) {
+        sum = sum + *data;
+        size=size-2;
+        data++;
+    }
+    return sum;
+}
+
+#ifdef NONMATCHING
+bool DynamicModuleControl::do_load() {
+
+    if (mModule!=NULL) {
+        return true;
+    }
+    JKRExpHeap* heap = mDoExt_getArchiveHeap();
+    s32 i = 0;
+    while(true) {
+        if(mModule != NULL) {
+            JKRHeap::free(mModule,NULL);
+            mModule = NULL;
+        }
+        char buffer[64];
+        snprintf(buffer,64,"%s.rel",mName);
+        if(mModule==NULL&&sArchive!=NULL) {
+            if(mModule==NULL) {
+                mModule = (OSModuleInfo*)JKRArchive::getGlbResource(0x4D4D454D,buffer,sArchive);
+                if(mModule!=NULL) {
+                    mResourceType = 1;
+                }
+            }
+            if(mModule==NULL) {
+                mModule = (OSModuleInfo*)JKRArchive::getGlbResource(0x414D454D,buffer,sArchive);
+                if(mModule!=NULL) {
+                    mResourceType = 2;
+                }
+            }
+            if(mModule==NULL) {
+                mModule = (OSModuleInfo*)JKRArchive::getGlbResource(0x444D454D,buffer,sArchive);
+                if(mModule!=NULL) {
+                    mResourceType = 3;
+                }
+            }
+        }
+        if(mModule!=NULL) {
+            mSize = sArchive->getExpandedResSize(mModule);
+            JKRFileLoader::detachResource(mModule,NULL);
+        }else if(mModule==NULL){
+            snprintf(buffer,64,"/rel/Final/Release/%s.rel",mName);
+            mModule = (OSModuleInfo*)JKRDvdRipper::loadToMainRAM(buffer,NULL,EXPAND_SWITCH_UNKNOWN1,0,heap,JKRDvdRipper::ALLOC_DIRECTION_FORWARD,0,NULL,NULL);
+            if(mModule!=NULL) {
+                mSize = 0;
+                mResourceType = 7;
+            }
+        }
+        if(mModule==NULL&&sFileCache!=NULL) {
+            mModule = (OSModuleInfo*)sFileCache->getResource(0x72656C73,buffer);
+            if(mModule!=NULL) {
+                mSize = 0;
+                mResourceType = 11;
+                JKRFileLoader::detachResource(mModule,NULL);
+            }
+        }
+        if(mModule==NULL) {
+            OSReport_Error("\x44\x79\x6E\x61\x6D\x69\x63\x4D\x6F\x64\x75\x6C\x65\x43\x6F\x6E\x74\x72\x6F\x6C\x3A\x3A\x64\x6F\x5F\x6C\x6F\x61\x64\x28\x29\x20\x83\x8A\x83\x5C\x81\x5B\x83\x58\x93\xC7\x82\xDD\x8D\x9E\x82\xDD\x8E\xB8\x94\x73\x20\x5B\x25\x73\x5D\x0A",mName);
+            return false;
+        }
+        if(mSize>0) {
+            u32 sum = calcSum2((u16*)mModule,mSize);
+            if(unk_33==0) {
+                mChecksum=sum;
+                unk_33++;
+            }else{
+                u32 newsum = sum&0xFFFF;
+                if(newsum!=mChecksum) {
+                    OSReport_Error("DynamicModuleControl::do_load() チェックサムエラー %04x %04x[%s]\n",newsum,mChecksum,mName);
+                    unk_33 = 0;
+                    i++;
+                    if(i>=3) {
+                        return false;
+                    }
+                }
+            }
+            if(unk_33<0xFF) {
+                unk_33++;
+                return true;
+            }
+        }
+        if(unk_33<0xFF) {
+            unk_33++;
+            return true;
+        }
+    }
+}
+#else
+/* ############################################################################################## */
+/* 8039A4A0-8039A4A0 026B00 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
 SECTION_DEAD static char const* const stringBase_8039A5E1 = "%s.rel";
 SECTION_DEAD static char const* const stringBase_8039A5E8 = "/rel/Final/Release/%s.rel";
 // MWCC ignores mapping of some japanese characters using the
@@ -209,29 +478,214 @@ SECTION_DEAD static char const* const stringBase_8039A602 =
 SECTION_DEAD static char const* const stringBase_8039A63D =
     "DynamicModuleControl::do_load() チェックサムエラー %04x %"
     "04x[%s]\n";
-SECTION_DEAD static char const* const stringBase_8039A67F =
-    "DynamicModuleControl::do_load_async() 非同期読み込みコール"
-    "バック登録失敗 [%s]\n";
-SECTION_DEAD static char const* const stringBase_8039A6CE = "%08x-%08x %08x %08x";
+#pragma pop
+
+/* 802627E8-80262AFC 25D128 0314+00 1/0 0/0 0/0 .text            do_load__20DynamicModuleControlFv
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm bool DynamicModuleControl::do_load() {
+    nofralloc
+#include "asm/DynamicLink/do_load__20DynamicModuleControlFv.s"
+}
+#pragma pop
+#endif
+
+/* 80262AFC-80262BC4 25D43C 00C8+00 1/0 0/0 0/0 .text do_load_async__20DynamicModuleControlFv */
+bool DynamicModuleControl::do_load_async() {
+    if (mAsyncLoadCallback==NULL) {
+        if(mModule!=NULL) {
+            return true;
+        }
+        mAsyncLoadCallback = mDoDvdThd_callback_c::create(DynamicModuleControl::callback,this);
+        if(mAsyncLoadCallback==NULL) {
+            OSReport_Error("DynamicModuleControl::do_load_async() 非同期読み込みコールバック登録失敗 [%s]\n",mName);
+        }
+    }
+    if (mAsyncLoadCallback!=NULL&&mAsyncLoadCallback->sync()) {
+        mAsyncLoadCallback->destroy();
+        mAsyncLoadCallback = NULL;
+        return true;
+    }else{
+        return false;
+    }
+}
+
+/* 80262BC4-80262C0C 25D504 0048+00 1/0 0/0 0/0 .text            do_unload__20DynamicModuleControlFv
+ */
+bool DynamicModuleControl::do_unload() {
+    if (mModule!=NULL){
+        JKRFree(mModule);
+        mModule = NULL;
+    }
+    return true;
+}
+
+/* 80262C0C-80262C5C 25D54C 0050+00 1/0 0/0 0/0 .text            dump2__20DynamicModuleControlFv */
+void DynamicModuleControl::dump2() {
+    if (mModule!=NULL) {
+        OSSectionInfo* section = (OSSectionInfo*)mModule->info.sectionInfoOffset;
+        OSSectionInfo* section2 = section+1;
+        u32 offset = section2->mOffset & ~(1);
+        OSReport("%08x-%08x %08x %08x",mModule,offset,offset+section2->mSize);
+    }
+}
+
+#ifdef NONMATCHING
+BOOL DynamicModuleControl::do_link() {
+    OSGetTime();
+    if(mModule==NULL) {
+        do_load();
+    }
+
+    if(mModule!=NULL) {
+        ASSERT(mModule->info.sectionInfoOffset < 0x80000000);
+        ASSERT((u32)mModule + mModule->fixSize < 0x82000000);
+        OSGetTime();
+        OSGetTime();
+        if(mModule->mModuleVersion>=3) {
+            u32 unk = mModule->fixSize + 0x1f;
+            u32 unk3 = unk & ~0x1f;
+            u32 unk2 = (u32)mModule+unk3;
+            s32 size = JKRHeap::getSize(mModule,NULL);
+            if(size<0) {
+                void* bss = JKRHeap::alloc(mModule->mBssSize,0x20,NULL);
+                if (bss==NULL) {
+                    OSReport_Error("BSSメモリ確保失敗\n");
+                    goto end;
+                }else{
+                    mBss = bss;
+                    BOOL linkResult = OSLink(mModule);
+                    if(linkResult==FALSE) {
+                        OSReport_Error("リンク失敗\n");
+                        goto end;
+                    }
+                }
+            }else{
+                if(mModule->mBssSize+unk<size) {
+                    BOOL linkResult = OSLinkFixed(mModule,unk2);
+                    if(linkResult==FALSE) {
+                        OSReport_Error("リンク失敗\n");
+                        goto end;
+                    }else{
+                        s32 result = JKRHeap::resize(mModule,mModule->mBssSize+unk,NULL);
+                        if (result<0) {
+                            OSReport_Error("モジュールリサイズ(縮小)失敗\n");
+                        }
+                    }
+                }else{ //lbl_80262DB0
+                    s32 result = JKRHeap::resize(mModule,mModule->mBssSize+unk,NULL);
+                    if (result>0) {
+                        BOOL linkResult = OSLinkFixed(mModule,unk2);
+                        if(linkResult==FALSE) {
+                            OSReport_Error("リンク失敗\n");
+                            goto end;
+                        }
+                    }else{ //lbl_80262DF0
+                        void* bss = JKRHeap::alloc(mModule->mBssSize,0x20,NULL);
+                        if (bss==NULL) {
+                            OSReport_Error("BSSメモリ確保失敗 [%x]\n",mModule->mBssSize);
+                            goto end;
+                        }else{ //lbl_80262E2C
+                            mBss = bss;
+                            BOOL linkResult = OSLinkFixed(mModule,(u32)bss);
+                            if (linkResult==FALSE) {
+                                OSReport_Error("リンク失敗\n");
+                                goto end;
+                            }
+                            //lbl_80262E58
+                            s32 result = JKRHeap::resize(mModule,unk3,NULL);
+                            if (result<0) {
+                                OSReport_Error("モジュールリサイズ(縮小)失敗\n");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        //lbl_80262E84
+        OSGetTime();
+        sAllocBytes = sAllocBytes + getModuleSize();
+        OSGetTime();
+        unk_24 = mModule->prolog();
+        OSGetTime();
+        return TRUE;
+    }
+
+end: //lbl_80262ECC
+    unk_33 = 0;
+    if(mBss!=NULL) {
+        JKRHeap::free(mBss,NULL);
+        mBss = NULL;
+    }
+    if(mModule!=NULL) {
+        JKRHeap::free(mModule,NULL);
+        mModule = NULL;
+    }
+    return FALSE;
+}
+#else
+#pragma push
+#pragma force_active on
 SECTION_DEAD static char const* const stringBase_8039A6E2 = "BSSメモリ確保失敗\n";
 SECTION_DEAD static char const* const stringBase_8039A6F5 = "リンク失敗\n";
 SECTION_DEAD static char const* const stringBase_8039A701 = "モジュールリサイズ(縮小)失敗\n";
 SECTION_DEAD static char const* const stringBase_8039A71F = "BSSメモリ確保失敗 [%x]\n";
-SECTION_DEAD static char const* const stringBase_8039A737 =
-    "アンリンク失敗 mModule=%08x mBss=%08x\n";
-SECTION_DEAD static char const* const stringBase_8039A75E = "????";
-SECTION_DEAD static char const* const stringBase_8039A763 = "MEM";
-SECTION_DEAD static char const* const stringBase_8039A767 = "ARAM";
-SECTION_DEAD static char const* const stringBase_8039A76C = "DVD";
 #pragma pop
 
-/* 803C34B0-803C34C0 -00001 0010+00 1/1 0/0 0/0 .data            strings$4165 */
-SECTION_DATA static void* strings[4] = {
-    (void*)(((char*)&DynamicLink__stringBase0) + 0x2BE),
-    (void*)(((char*)&DynamicLink__stringBase0) + 0x2C3),
-    (void*)(((char*)&DynamicLink__stringBase0) + 0x2C7),
-    (void*)(((char*)&DynamicLink__stringBase0) + 0x2CC),
-};
+/* 80262C5C-80262F28 25D59C 02CC+00 1/0 0/0 0/0 .text            do_link__20DynamicModuleControlFv
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm BOOL DynamicModuleControl::do_link() {
+    nofralloc
+#include "asm/DynamicLink/do_link__20DynamicModuleControlFv.s"
+}
+#pragma pop
+#endif
+
+/* 80262F28-80263000 25D868 00D8+00 1/0 0/0 0/0 .text            do_unlink__20DynamicModuleControlFv
+ */
+bool DynamicModuleControl::do_unlink() {
+    OSTime time1 = OSGetTime();
+    mModule->epilog();
+    OSTime time2 = OSGetTime();
+    BOOL unklink = OSUnlink(mModule);
+    OSTime time3 = OSGetTime();
+    if (unklink==FALSE) {
+        OSReport_Error("アンリンク失敗 mModule=%08x mBss=%08x\n",mModule,mBss);
+        return false;
+    }
+    sAllocBytes = sAllocBytes - getModuleSize();
+    if (mBss!=NULL) {
+        JKRFree(mBss);
+        mBss = NULL;
+    }
+    do_unload();
+    return true;
+}  
+
+/* 80263000-80263070 25D940 0070+00 1/0 0/0 0/0 .text getModuleSize__20DynamicModuleControlCFv */
+int DynamicModuleControl::getModuleSize() const {
+    if (mModule!=NULL){
+        u32 size = JKRGetMemBlockSize(NULL,mModule);
+        if (mBss!=NULL) {
+           JKRGetMemBlockSize(NULL,mBss);
+        }
+        return size+mModule->mBssSize;
+    }else{
+        return 0;
+    }
+}
+
+/* 80263070-80263088 25D9B0 0018+00 1/0 0/0 0/0 .text
+ * getModuleTypeString__20DynamicModuleControlCFv               */
+const char* DynamicModuleControl::getModuleTypeString() const {
+    static const char* strings[4] = {"????","MEM","ARAM","DVD"};
+    return strings[mResourceType&3];
+}
 
 /* 803C34C0-803C34F4 0205E0 0034+00 1/1 2/2 0/0 .data            __vt__20DynamicModuleControl */
 SECTION_DATA extern void* __vt__20DynamicModuleControl[13] = {
@@ -250,6 +704,8 @@ SECTION_DATA extern void* __vt__20DynamicModuleControl[13] = {
     (void*)do_unlink__20DynamicModuleControlFv,
 };
 
+
+
 /* 803C34F4-803C3528 020614 0034+00 2/2 0/0 0/0 .data            __vt__24DynamicModuleControlBase */
 SECTION_DATA extern void* __vt__24DynamicModuleControlBase[13] = {
     (void*)NULL /* RTTI */,
@@ -267,303 +723,48 @@ SECTION_DATA extern void* __vt__24DynamicModuleControlBase[13] = {
     (void*)do_unlink__24DynamicModuleControlBaseFv,
 };
 
-/* 80451138-8045113C 000638 0004+00 3/3 0/0 0/0 .sbss            mFirst__24DynamicModuleControlBase
- */
-u8 DynamicModuleControlBase::mFirst[4];
-
-/* 8045113C-80451140 00063C 0004+00 2/2 0/0 0/0 .sbss            mLast__24DynamicModuleControlBase
- */
-u8 DynamicModuleControlBase::mLast[4];
-
-/* 802621CC-80262284 25CB0C 00B8+00 1/0 2/2 0/0 .text            __dt__24DynamicModuleControlBaseFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm DynamicModuleControlBase::~DynamicModuleControlBase() {
-    nofralloc
-#include "asm/DynamicLink/__dt__24DynamicModuleControlBaseFv.s"
-}
-#pragma pop
-
-/* 80262284-802622D0 25CBC4 004C+00 1/1 0/0 0/0 .text            __ct__24DynamicModuleControlBaseFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm DynamicModuleControlBase::DynamicModuleControlBase() {
-    nofralloc
-#include "asm/DynamicLink/__ct__24DynamicModuleControlBaseFv.s"
-}
-#pragma pop
-
-/* 802622D0-80262364 25CC10 0094+00 0/0 2/2 0/0 .text            link__24DynamicModuleControlBaseFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DynamicModuleControlBase::link() {
-    nofralloc
-#include "asm/DynamicLink/link__24DynamicModuleControlBaseFv.s"
-}
-#pragma pop
-
-/* 80262364-802623EC 25CCA4 0088+00 0/0 1/1 0/0 .text unlink__24DynamicModuleControlBaseFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DynamicModuleControlBase::unlink() {
-    nofralloc
-#include "asm/DynamicLink/unlink__24DynamicModuleControlBaseFv.s"
-}
-#pragma pop
-
-/* 802623EC-8026242C 25CD2C 0040+00 0/0 1/1 0/0 .text load_async__24DynamicModuleControlBaseFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DynamicModuleControlBase::load_async() {
-    nofralloc
-#include "asm/DynamicLink/load_async__24DynamicModuleControlBaseFv.s"
-}
-#pragma pop
-
-/* 8026242C-80262470 25CD6C 0044+00 1/1 0/0 0/0 .text force_unlink__24DynamicModuleControlBaseFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DynamicModuleControlBase::force_unlink() {
-    nofralloc
-#include "asm/DynamicLink/force_unlink__24DynamicModuleControlBaseFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80455008-80455010 003608 0004+04 1/1 0/0 0/0 .sdata2          @3772 */
-SECTION_SDATA2 static f32 lit_3772[1 + 1 /* padding */] = {
-    0.0009765625f,
-    /* padding */
-    0.0f,
-};
-
-/* 80455010-80455018 003610 0008+00 1/1 0/0 0/0 .sdata2          @3774 */
-SECTION_SDATA2 static f64 lit_3774 = 4503599627370496.0 /* cast u32 to float */;
-
-/* 80262470-80262660 25CDB0 01F0+00 2/0 2/2 0/0 .text            dump__24DynamicModuleControlBaseFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DynamicModuleControlBase::dump() {
-    nofralloc
-#include "asm/DynamicLink/dump__24DynamicModuleControlBaseFv.s"
-}
-#pragma pop
-
-/* 80262660-802626D0 25CFA0 0070+00 0/0 2/2 0/0 .text            __ct__20DynamicModuleControlFPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm DynamicModuleControl::DynamicModuleControl(char const* param_0) {
-    nofralloc
-#include "asm/DynamicLink/__ct__20DynamicModuleControlFPCc.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80451140-80451144 000640 0004+00 3/3 0/0 0/0 .sbss            sAllocBytes__20DynamicModuleControl
- */
-u8 DynamicModuleControl::sAllocBytes[4];
-
-/* 80451144-80451148 000644 0004+00 3/3 0/0 0/0 .sbss            sArchive__20DynamicModuleControl */
-u8 DynamicModuleControl::sArchive[4];
-
-/* 80451148-80451150 000648 0004+04 3/3 0/0 0/0 .sbss            sFileCache__20DynamicModuleControl
- */
-u8 DynamicModuleControl::sFileCache[4 + 4 /* padding */];
-
-/* 802626D0-8026275C 25D010 008C+00 1/1 0/0 0/0 .text mountCallback__20DynamicModuleControlFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DynamicModuleControl::mountCallback(void* param_0) {
-    nofralloc
-#include "asm/DynamicLink/mountCallback__20DynamicModuleControlFPv.s"
-}
-#pragma pop
-
-/* 8026275C-80262794 25D09C 0038+00 0/0 1/1 0/0 .text initialize__20DynamicModuleControlFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DynamicModuleControl::initialize() {
-    nofralloc
-#include "asm/DynamicLink/initialize__20DynamicModuleControlFv.s"
-}
-#pragma pop
-
-/* 80262794-802627C0 25D0D4 002C+00 1/1 0/0 0/0 .text            callback__20DynamicModuleControlFPv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DynamicModuleControl::callback(void* param_0) {
-    nofralloc
-#include "asm/DynamicLink/callback__20DynamicModuleControlFPv.s"
-}
-#pragma pop
-
-/* 802627C0-802627E8 25D100 0028+00 1/1 0/0 0/0 .text            calcSum2__FPCUsUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void calcSum2(u16 const* param_0, u32 param_1) {
-    nofralloc
-#include "asm/DynamicLink/calcSum2__FPCUsUl.s"
-}
-#pragma pop
-
-/* 802627E8-80262AFC 25D128 0314+00 1/0 0/0 0/0 .text            do_load__20DynamicModuleControlFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DynamicModuleControl::do_load() {
-    nofralloc
-#include "asm/DynamicLink/do_load__20DynamicModuleControlFv.s"
-}
-#pragma pop
-
-/* 80262AFC-80262BC4 25D43C 00C8+00 1/0 0/0 0/0 .text do_load_async__20DynamicModuleControlFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DynamicModuleControl::do_load_async() {
-    nofralloc
-#include "asm/DynamicLink/do_load_async__20DynamicModuleControlFv.s"
-}
-#pragma pop
-
-/* 80262BC4-80262C0C 25D504 0048+00 1/0 0/0 0/0 .text            do_unload__20DynamicModuleControlFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DynamicModuleControl::do_unload() {
-    nofralloc
-#include "asm/DynamicLink/do_unload__20DynamicModuleControlFv.s"
-}
-#pragma pop
-
-/* 80262C0C-80262C5C 25D54C 0050+00 1/0 0/0 0/0 .text            dump2__20DynamicModuleControlFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DynamicModuleControl::dump2() {
-    nofralloc
-#include "asm/DynamicLink/dump2__20DynamicModuleControlFv.s"
-}
-#pragma pop
-
-/* 80262C5C-80262F28 25D59C 02CC+00 1/0 0/0 0/0 .text            do_link__20DynamicModuleControlFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DynamicModuleControl::do_link() {
-    nofralloc
-#include "asm/DynamicLink/do_link__20DynamicModuleControlFv.s"
-}
-#pragma pop
-
-/* 80262F28-80263000 25D868 00D8+00 1/0 0/0 0/0 .text            do_unlink__20DynamicModuleControlFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DynamicModuleControl::do_unlink() {
-    nofralloc
-#include "asm/DynamicLink/do_unlink__20DynamicModuleControlFv.s"
-}
-#pragma pop
-
-/* 80263000-80263070 25D940 0070+00 1/0 0/0 0/0 .text getModuleSize__20DynamicModuleControlCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DynamicModuleControl::getModuleSize() const {
-    nofralloc
-#include "asm/DynamicLink/getModuleSize__20DynamicModuleControlCFv.s"
-}
-#pragma pop
-
-/* 80263070-80263088 25D9B0 0018+00 1/0 0/0 0/0 .text
- * getModuleTypeString__20DynamicModuleControlCFv               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DynamicModuleControl::getModuleTypeString() const {
-    nofralloc
-#include "asm/DynamicLink/getModuleTypeString__20DynamicModuleControlCFv.s"
-}
-#pragma pop
-
 /* 80263088-8026308C 25D9C8 0004+00 0/0 0/0 756/756 .text            ModuleProlog */
-void ModuleProlog() {
+extern "C" void ModuleProlog() {
     /* empty function */
 }
 
 /* 8026308C-80263090 25D9CC 0004+00 0/0 0/0 756/756 .text            ModuleEpilog */
-void ModuleEpilog() {
+extern "C" void ModuleEpilog() {
     /* empty function */
 }
 
-/* ############################################################################################## */
-/* 8039A4A0-8039A4A0 026B00 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039A770 =
-    "\nError: リンクされていない関数が呼び出されました.\n";
-SECTION_DEAD static char const* const stringBase_8039A7A3 = "Address:      Back Chain    LR Save\n";
-SECTION_DEAD static char const* const stringBase_8039A7C8 = "0x%08x:   0x%08x    0x%08x\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039A7E4 = "\0\0\0";
-#pragma pop
-
 /* 80263090-8026314C 25D9D0 00BC+00 0/0 0/0 757/757 .text            ModuleUnresolved */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void ModuleUnresolved() {
-    nofralloc
-#include "asm/DynamicLink/ModuleUnresolved.s"
+extern "C" void ModuleUnresolved() {
+    OSReport_Error("\nError: リンクされていない関数が呼び出されました.\n");
+    OSReport_Error("Address:      Back Chain    LR Save\n");
+    u32 i = 0;
+    u32* stackPtr = (u32*)OSGetStackPointer();
+    while(stackPtr!=NULL&&(u32)stackPtr!=0xFFFFFFFF&&i++<0x10) {
+        OSReport_Error("0x%08x:   0x%08x    0x%08x\n",stackPtr,*stackPtr,*(stackPtr+1));
+        stackPtr = (u32*)*stackPtr;
+    }
+    OSReport_Error("\n");
 }
-#pragma pop
 
 /* 8026314C-80263190 25DA8C 0044+00 0/0 0/0 757/757 .text            ModuleConstructorsX */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void ModuleConstructorsX() {
-    nofralloc
-#include "asm/DynamicLink/ModuleConstructorsX.s"
+extern "C" void ModuleConstructorsX(void(**ctors)()) {
+    while (*ctors!=0) {
+        (**ctors)();
+        ctors++;
+    }
 }
-#pragma pop
 
 /* 80263190-802631D4 25DAD0 0044+00 0/0 0/0 757/757 .text            ModuleDestructorsX */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void ModuleDestructorsX() {
-    nofralloc
-#include "asm/DynamicLink/ModuleDestructorsX.s"
+extern "C" void ModuleDestructorsX(void(**dtors)()) {
+    while (*dtors!=0) {
+        (**dtors)();
+        dtors++;
+    }
 }
-#pragma pop
 
 /* 802631D4-802631DC 25DB14 0008+00 1/0 0/0 0/0 .text do_link__24DynamicModuleControlBaseFv */
-bool DynamicModuleControlBase::do_link() {
-    return true;
+BOOL DynamicModuleControlBase::do_link() {
+    return TRUE;
 }
 
 /* 802631DC-802631E4 25DB1C 0008+00 1/0 0/0 0/0 .text do_load__24DynamicModuleControlBaseFv */
@@ -595,29 +796,19 @@ void DynamicModuleControlBase::dump2() {
 
 /* 80263200-80263210 25DB40 0010+00 1/0 0/0 0/0 .text
  * getModuleTypeString__24DynamicModuleControlBaseCFv           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DynamicModuleControlBase::getModuleTypeString() const {
-    nofralloc
-#include "asm/DynamicLink/getModuleTypeString__24DynamicModuleControlBaseCFv.s"
+const char* DynamicModuleControlBase::getModuleTypeString() const {
+    return "Base";
 }
-#pragma pop
 
 /* 80263210-80263218 25DB50 0008+00 1/0 0/0 0/0 .text getModuleSize__24DynamicModuleControlBaseCFv
  */
-bool DynamicModuleControlBase::getModuleSize() const {
-    return false;
+int DynamicModuleControlBase::getModuleSize() const {
+    return 0;
 }
 
 /* 80263218-80263220 25DB58 0008+00 1/0 0/0 0/0 .text getModuleName__20DynamicModuleControlCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DynamicModuleControl::getModuleName() const {
-    nofralloc
-#include "asm/DynamicLink/getModuleName__20DynamicModuleControlCFv.s"
+const char* DynamicModuleControl::getModuleName() const {
+    return mName;
 }
-#pragma pop
 
 /* 8039A4A0-8039A4A0 026B00 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

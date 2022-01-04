@@ -111,8 +111,6 @@ extern "C" void create__12JUTAssertionFv();
 extern "C" void createManager__8JUTVideoFPC16_GXRenderModeObj();
 extern "C" void create__10JUTConsoleFUiUiP7JKRHeap();
 extern "C" void createManager__17JUTConsoleManagerFP7JKRHeap();
-extern "C" void JUTSetReportConsole();
-extern "C" void JUTSetWarningConsole();
 extern "C" void OSInit();
 extern "C" void OSGetCurrentThread();
 extern "C" void DVDInit();
