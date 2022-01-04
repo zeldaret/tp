@@ -20,9 +20,9 @@ public:
     f32 getFrame() const { return mFrame; }
     s32 getKind() const { return mKind; }
 
-private:
     /* 0x0 */  // vtable
-    /* 0x4 */ u8 field_0x4[2];
+    /* 0x4 */ u8 field_0x4;
+    /* 0x5 */ u8 field_0x5;
     /* 0x6 */ s16 mFrameMax;
     /* 0x8 */ f32 mFrame;
     /* 0xC */ s32 mKind;
@@ -107,13 +107,12 @@ public:
     /* 80184370 */ virtual ~J2DAnmTransform() {}
     /* 80191130 */ virtual void getTransform(u16, J3DTransformInfo*) const;
 
-protected:
     /* 0x10 */ f32* mScaleValues;
     /* 0x14 */ s16* mRotationValues;
     /* 0x18 */ f32* mTranslateValues;
 };  // Size: 0x1C
 
-struct J2DAnmTransformKeyInfo {
+struct J3DAnmTransformKeyTable {
     J3DAnmKeyTableBase mScaleInfo;
     J3DAnmKeyTableBase mRotationInfo;
     J3DAnmKeyTableBase mTranslateInfo;
@@ -127,10 +126,10 @@ public:
     }
     /* 8030AAFC */ virtual void calcTransform(f32, u16, J3DTransformInfo*) const;
 
-private:
-    /* 0x1C */ u8 field_0x1c[8];
+    /* 0x1C */ u8 field_0x1c[6];
+    /* 0x22 */ s16 field_0x22;
     /* 0x24 */ u32 field_0x24;
-    /* 0x28 */ J2DAnmTransformKeyInfo* mInfoTable;
+    /* 0x28 */ J3DAnmTransformKeyTable* mInfoTable;
 };
 
 struct J2DAnmTransformFullInfo {
@@ -153,12 +152,6 @@ private:
     /* 0x24 */ J2DAnmTransformFullInfo* mTableInfo;
 };
 
-struct J2DAnmTextureSRTKeyInfo {
-    J3DAnmKeyTableBase mScaleInfo;
-    J3DAnmKeyTableBase mRotationInfo;
-    J3DAnmKeyTableBase mTranslationInfo;
-};  // Size = 0x12
-
 class J2DAnmTextureSRTKey : public J2DAnmBase {
 public:
     /* 8030B9F0 */ void calcTransform(f32, u16, J3DTextureSRTInfo*) const;
@@ -167,30 +160,31 @@ public:
     /* 8030BC60 */ virtual void searchUpdateMaterialID(J2DScreen*);
     u16 getUpdateMaterialNum() const { return mUpdateMaterialNum / 3; }
 
-private:
     /* 0x10 */ int field_0x10;
-    /* 0x14 */ J2DAnmTextureSRTKeyInfo* mInfoTable;
+    /* 0x14 */ J3DAnmTransformKeyTable* mInfoTable;
     /* 0x18 */ u16 mUpdateMaterialNum;
     /* 0x1A */ u16 field_0x1a;
     /* 0x1C */ u16 field_0x1c;
+    /* 0x1E */ u16 field_0x1e;
     /* 0x20 */ f32* mScaleValues;
     /* 0x24 */ s16* mRotationValues;
     /* 0x28 */ f32* mTranslationValues;
     /* 0x2C */ u8* mUpdateTexMtxID;
     /* 0x30 */ u16* mUpdateMaterialID;
     /* 0x34 */ JUTNameTab field_0x34;
-    /* 0x44 */ u8 field_0x44[4];
+    /* 0x44 */ Vec *field_0x44;
     /* 0x48 */ u16 field_0x48;
     /* 0x4A */ u16 field_0x4a;
     /* 0x4C */ u16 field_0x4c;
     /* 0x4E */ u16 field_0x4e;
-    /* 0x50 */ int field_0x50;
-    /* 0x54 */ int field_0x54;
-    /* 0x58 */ int field_0x58;
-    /* 0x5C */ int field_0x5c;
-    /* 0x60 */ u8 field_0x60[8];
+    /* 0x50 */ f32* field_0x50;
+    /* 0x54 */ s16* field_0x54;
+    /* 0x58 */ f32* field_0x58;
+    /* 0x5C */ J3DAnmTransformKeyTable* field_0x5c;
+    /* 0x60 */ u8* field_0x60;
+    /* 0x64 */ u16* field_0x64;
     /* 0x68 */ JUTNameTab field_0x68;
-    /* 0x78 */ u8 field_0x78[4];
+    /* 0x78 */ Vec* field_0x78;
     /* 0x7C */ int field_0x7c;
 };
 

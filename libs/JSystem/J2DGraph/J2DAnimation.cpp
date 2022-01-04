@@ -103,9 +103,9 @@ void J2DAnmTransformFull::getTransform(u16 param_0, J3DTransformInfo* transformI
 void J2DAnmTransformKey::calcTransform(f32 param_0, u16 param_1,
                                        J3DTransformInfo* transformInfo) const {
     u16 idx = param_1 * 3;
-    J2DAnmTransformKeyInfo* xInf = &mInfoTable[idx];
-    J2DAnmTransformKeyInfo* yInf = &mInfoTable[idx + 1];
-    J2DAnmTransformKeyInfo* zInf = &mInfoTable[idx + 2];
+    J3DAnmTransformKeyTable* xInf = &mInfoTable[idx];
+    J3DAnmTransformKeyTable* yInf = &mInfoTable[idx + 1];
+    J3DAnmTransformKeyTable* zInf = &mInfoTable[idx + 2];
     switch (xInf->mScaleInfo.mMaxFrame) {
     case 0:
         transformInfo->mScale.x = 1;
@@ -464,9 +464,9 @@ void J2DAnmVtxColorKey::getColor(u8 param_0, u16 param_1, _GXColor* pColor) cons
  * calcTransform__19J2DAnmTextureSRTKeyCFfUsP17J3DTextureSRTInfo */
 void J2DAnmTextureSRTKey::calcTransform(f32 param_0, u16 param_1, J3DTextureSRTInfo* pInfo) const {
     u16 idx = param_1 * 3;
-    J2DAnmTextureSRTKeyInfo* xInf = &mInfoTable[idx];
-    J2DAnmTextureSRTKeyInfo* yInf = &mInfoTable[idx + 1];
-    J2DAnmTextureSRTKeyInfo* zInf = &mInfoTable[idx + 2];
+    J3DAnmTransformKeyTable* xInf = &mInfoTable[idx];
+    J3DAnmTransformKeyTable* yInf = &mInfoTable[idx + 1];
+    J3DAnmTransformKeyTable* zInf = &mInfoTable[idx + 2];
     switch (xInf->mScaleInfo.mMaxFrame) {
     case 0:
         pInfo->mScaleX = 1;
@@ -502,27 +502,27 @@ void J2DAnmTextureSRTKey::calcTransform(f32 param_0, u16 param_1, J3DTextureSRTI
                 param_0, &zInf->mRotationInfo, &mRotationValues[zInf->mRotationInfo.mOffset]))
             << field_0x10;
     }
-    switch (xInf->mTranslationInfo.mMaxFrame) {
+    switch (xInf->mTranslateInfo.mMaxFrame) {
     case 0:
         pInfo->mTranslationX = 0;
         break;
     case 1:
-        pInfo->mTranslationX = mTranslationValues[xInf->mTranslationInfo.mOffset];
+        pInfo->mTranslationX = mTranslationValues[xInf->mTranslateInfo.mOffset];
         break;
     default:
         pInfo->mTranslationX = J2DGetKeyFrameInterpolationf(
-            param_0, &xInf->mTranslationInfo, &mTranslationValues[xInf->mTranslationInfo.mOffset]);
+            param_0, &xInf->mTranslateInfo, &mTranslationValues[xInf->mTranslateInfo.mOffset]);
     }
-    switch (yInf->mTranslationInfo.mMaxFrame) {
+    switch (yInf->mTranslateInfo.mMaxFrame) {
     case 0:
         pInfo->mTranslationY = 0;
         break;
     case 1:
-        pInfo->mTranslationY = mTranslationValues[yInf->mTranslationInfo.mOffset];
+        pInfo->mTranslationY = mTranslationValues[yInf->mTranslateInfo.mOffset];
         break;
     default:
         pInfo->mTranslationY = J2DGetKeyFrameInterpolationf(
-            param_0, &yInf->mTranslationInfo, &mTranslationValues[yInf->mTranslationInfo.mOffset]);
+            param_0, &yInf->mTranslateInfo, &mTranslationValues[yInf->mTranslateInfo.mOffset]);
     }
 }
 

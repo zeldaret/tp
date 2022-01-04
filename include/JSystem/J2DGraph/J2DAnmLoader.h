@@ -11,12 +11,24 @@ struct J2DAnmLoaderDataBase {
 
 class J2DAnmLoader {
 public:
-    virtual void load(void const*) = 0;
+    virtual void *load(void const*) = 0;
     virtual void setResource(J2DAnmBase*, void const*) = 0;
-    /* 8030A410 */ virtual ~J2DAnmLoader();
+    /* 8030A410 */ virtual ~J2DAnmLoader() {}
 };
 
-struct J3DAnmTransformKeyData;
+struct J3DAnmTransformKeyData {
+    /* 0x00 */ u8 _0[0x8];
+    /* 0x08 */ u8 _8;
+    /* 0x09 */ u8 _9;
+    /* 0x0A */ s16 mFrameMax;
+    /* 0x0C */ u16 _C;
+    /* 0x0E */ u8 _E[0x14-0xE];
+    /* 0x14 */ s32 mTableOffset;
+    /* 0x18 */ s32 mScaleOffset;
+    /* 0x1C */ s32 mRotationOffset;
+    /* 0x20 */ s32 mTranslateOffset;
+
+};
 struct J3DAnmTextureSRTKeyData;
 struct J3DAnmColorKeyData;
 struct J3DAnmVtxColorKeyData;
@@ -41,9 +53,11 @@ public:
     /* 80309FDC */ void readAnmTevReg(J3DAnmTevRegKeyData const*);
     /* 8030A004 */ void setAnmTevReg(J2DAnmTevRegKey*, J3DAnmTevRegKeyData const*);
 
-    /* 80309308 */ virtual void load(void const*);
+    /* 80309308 */ virtual void *load(void const*);
     /* 80309414 */ virtual void setResource(J2DAnmBase*, void const*);
     /* 803092AC */ virtual ~J2DAnmKeyLoader_v15();
+
+    /* 0x04 */ void* _4;
 };
 
 class J2DAnmFullLoader_v15 : public J2DAnmLoader {

@@ -18,11 +18,35 @@ struct J3DAnmVtxColorFullData {};
 
 struct J3DAnmVisibilityFullData {};
 
-struct J3DAnmTransformKeyData {};
-
 struct J3DAnmTransformFullData {};
 
-struct J3DAnmTextureSRTKeyData {};
+struct J3DAnmTextureSRTKeyData {
+    u8 field_0x0[8];
+    u8 field_0x8;
+    u8 field_0x9;
+    u16 field_0xa;
+    u16 field_0xc;
+    u16 field_0xe;
+    u16 field_0x10;
+    u16 field_0x12;
+    s32 mTableOffset;
+    s32 mUpdateMatIDOffset;
+    s32 mNameTab1Offset;
+    s32 mUpdateTexMtxIDOffset;
+    s32 unkOffset;
+    s32 mScaleValOffset;
+    s32 mRotValOffset;
+    s32 mTransValOffset;
+    u16 field_0x34;
+    u16 field_0x36;
+    u16 field_0x38;
+    u16 field_0x3a;
+    s32 mInfoTable2Offset;
+    u8 field_0x40[4];
+    s32 mNameTab2Offset;
+    u8 field_0x48[0x5C-0x48];
+    s32 field_0x5c;
+};
 
 struct J3DAnmTexPatternFullData {};
 
@@ -184,6 +208,9 @@ asm void* J2DAnmLoaderDataBase::load(void const* param_0) {
 #pragma pop
 
 /* 80309290-803092AC 303BD0 001C+00 1/1 0/0 0/0 .text            __ct__19J2DAnmKeyLoader_v15Fv */
+#ifndef NM
+J2DAnmKeyLoader_v15::J2DAnmKeyLoader_v15() {}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -192,8 +219,12 @@ asm J2DAnmKeyLoader_v15::J2DAnmKeyLoader_v15() {
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/__ct__19J2DAnmKeyLoader_v15Fv.s"
 }
 #pragma pop
+#endif
 
 /* 803092AC-80309308 303BEC 005C+00 2/1 0/0 0/0 .text            __dt__19J2DAnmKeyLoader_v15Fv */
+#ifndef NM
+J2DAnmKeyLoader_v15::~J2DAnmKeyLoader_v15() {}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -202,8 +233,48 @@ asm J2DAnmKeyLoader_v15::~J2DAnmKeyLoader_v15() {
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/__dt__19J2DAnmKeyLoader_v15Fv.s"
 }
 #pragma pop
+#endif
+
+struct DataBlockHeader {
+    /* 0x0 */ u32 mType;
+    /* 0x4 */ u32 mNextOffset;
+};
+
+struct DataHeader {
+    /* 0x00 */ u8 _0[0xC];
+    /* 0x0C */ u32 mCount;
+    /* 0x10 */ u8 _10[0x20-0x10];
+    /* 0x20 */ DataBlockHeader mFirst;
+};
 
 /* 80309308-80309414 303C48 010C+00 2/1 0/0 0/0 .text            load__19J2DAnmKeyLoader_v15FPCv */
+#ifndef NM
+void *J2DAnmKeyLoader_v15::load(void const* param_0) {
+    const DataHeader *hdr = (const DataHeader*) param_0;
+    const DataBlockHeader *dataPtr = &hdr->mFirst;
+    for (s32 i = 0; i < hdr->mCount; i++) {
+        switch (dataPtr->mType) {
+            case 'ANK1':
+                this->readAnmTransform((J3DAnmTransformKeyData*) dataPtr);
+                break;
+            case 'PAK1':
+                this->readAnmColor((J3DAnmColorKeyData*) dataPtr);
+                break;
+            case 'TTK1':
+                this->readAnmTextureSRT((J3DAnmTextureSRTKeyData*) dataPtr);
+                break;
+            case 'VCK1':
+                this->readAnmVtxColor((J3DAnmVtxColorKeyData*) dataPtr);
+                break;
+            case 'TRK1':
+                this->readAnmTevReg((J3DAnmTevRegKeyData*) dataPtr);
+                break;
+        }
+        dataPtr = (DataBlockHeader*)((s32)dataPtr + dataPtr->mNextOffset);
+    }
+    return _4;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -213,9 +284,46 @@ extern "C" asm void load__19J2DAnmKeyLoader_v15FPCv() {
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/load__19J2DAnmKeyLoader_v15FPCv.s"
 }
 #pragma pop
+#endif
 
 /* 80309414-80309570 303D54 015C+00 1/0 0/0 0/0 .text
  * setResource__19J2DAnmKeyLoader_v15FP10J2DAnmBasePCv          */
+#ifndef NM
+void J2DAnmKeyLoader_v15::setResource(J2DAnmBase* pAnm, void const* param_1) {
+    const DataHeader *hdr = (const DataHeader*) param_1;
+    const DataBlockHeader *dataPtr = &hdr->mFirst;
+    for (s32 i = 0; i < hdr->mCount; i++) {
+        switch (dataPtr->mType) {
+            case 'ANK1':
+                if (pAnm->getKind() == 0) {
+                    this->setAnmTransform((J2DAnmTransformKey*) pAnm, (J3DAnmTransformKeyData*) dataPtr);
+                }
+                break;
+            case 'PAK1':
+                if (pAnm->getKind() == 1) {
+                    this->setAnmColor((J2DAnmColorKey*) pAnm, (J3DAnmColorKeyData*) dataPtr);
+                }
+                break;
+            case 'TTK1':
+                if (pAnm->getKind() == 4) {
+                    this->setAnmTextureSRT((J2DAnmTextureSRTKey*) pAnm, (J3DAnmTextureSRTKeyData*) dataPtr);
+                }
+                break;
+            case 'TRK1':
+                if (pAnm->getKind() == 5) {
+                    this->setAnmTevReg((J2DAnmTevRegKey*) pAnm, (J3DAnmTevRegKeyData*) dataPtr);
+                }
+                break;
+            case 'VCK1':
+                if (pAnm->getKind() == 7) {
+                    this->setAnmVtxColor((J2DAnmVtxColorKey*) pAnm, (J3DAnmVtxColorKeyData*) dataPtr);
+                }
+                break;
+        }
+        dataPtr = (DataBlockHeader*)((s32)dataPtr + dataPtr->mNextOffset);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -224,9 +332,15 @@ asm void J2DAnmKeyLoader_v15::setResource(J2DAnmBase* param_0, void const* param
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/setResource__19J2DAnmKeyLoader_v15FP10J2DAnmBasePCv.s"
 }
 #pragma pop
+#endif
 
 /* 80309570-80309598 303EB0 0028+00 1/1 0/0 0/0 .text
  * readAnmTransform__19J2DAnmKeyLoader_v15FPC22J3DAnmTransformKeyData */
+#ifndef NM
+void J2DAnmKeyLoader_v15::readAnmTransform(J3DAnmTransformKeyData const* pData) {
+    this->setAnmTransform((J2DAnmTransformKey*)_4, pData);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -235,9 +349,32 @@ asm void J2DAnmKeyLoader_v15::readAnmTransform(J3DAnmTransformKeyData const* par
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/readAnmTransform__19J2DAnmKeyLoader_v15FPC22J3DAnmTransformKeyData.s"
 }
 #pragma pop
+#endif
+
+template <typename T>
+T* JSUConvertOffsetToPtr(const void* ptr, const void* offset) {
+    if (ptr == NULL) {
+        return NULL;
+    } else {
+        return (T*) ((s32)ptr + (s32)offset);
+    }
+}
 
 /* 80309598-80309634 303ED8 009C+00 2/2 0/0 0/0 .text
  * setAnmTransform__19J2DAnmKeyLoader_v15FP18J2DAnmTransformKeyPC22J3DAnmTransformKeyData */
+#ifndef NM
+void J2DAnmKeyLoader_v15::setAnmTransform(J2DAnmTransformKey* param_0, J3DAnmTransformKeyData const* param_1) {
+    param_0->field_0x22 = param_1->_C;
+    param_0->mFrameMax = param_1->mFrameMax;
+    param_0->field_0x4 = param_1->_8;
+    param_0->field_0x24 = param_1->_9;
+    param_0->mFrame = 0;
+    param_0->mInfoTable = JSUConvertOffsetToPtr<J3DAnmTransformKeyTable>(param_1, (void*)param_1->mTableOffset);
+    param_0->mScaleValues = JSUConvertOffsetToPtr<f32>(param_1, (void*) param_1->mScaleOffset);
+    param_0->mRotationValues = JSUConvertOffsetToPtr<s16>(param_1, (void*) param_1->mRotationOffset);
+    param_0->mTranslateValues = JSUConvertOffsetToPtr<f32>(param_1, (void*) param_1->mTranslateOffset);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -247,9 +384,15 @@ asm void J2DAnmKeyLoader_v15::setAnmTransform(J2DAnmTransformKey* param_0,
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_80309598.s"
 }
 #pragma pop
+#endif
 
 /* 80309634-8030965C 303F74 0028+00 1/1 0/0 0/0 .text
  * readAnmTextureSRT__19J2DAnmKeyLoader_v15FPC23J3DAnmTextureSRTKeyData */
+#ifndef NM
+void J2DAnmKeyLoader_v15::readAnmTextureSRT(J3DAnmTextureSRTKeyData const* param_0) {
+    this->setAnmTextureSRT((J2DAnmTextureSRTKey*) _4, param_0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -258,9 +401,29 @@ asm void J2DAnmKeyLoader_v15::readAnmTextureSRT(J3DAnmTextureSRTKeyData const* p
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/readAnmTextureSRT__19J2DAnmKeyLoader_v15FPC23J3DAnmTextureSRTKeyData.s"
 }
 #pragma pop
+#endif
 
 /* 8030965C-80309848 303F9C 01EC+00 2/2 0/0 0/0 .text
  * setAnmTextureSRT__19J2DAnmKeyLoader_v15FP19J2DAnmTextureSRTKeyPC23J3DAnmTextureSRTKeyData */
+#ifndef NM
+void J2DAnmKeyLoader_v15::setAnmTextureSRT(J2DAnmTextureSRTKey* pAnm, J3DAnmTextureSRTKeyData const* pData) {
+    pAnm->mUpdateMaterialNum = pData->field_0xc;
+    pAnm->mFrameMax = pData->field_0xa;
+    pAnm->field_0x4 = pData->field_0x8;
+    pAnm->field_0x10 = pData->field_0x9;
+    pAnm->mFrame = 0;
+    pAnm->field_0x1a = pData->field_0xe;
+    pAnm->field_0x1c = pData->field_0x10;
+    pAnm->field_0x1e = pData->field_0x12;
+    pAnm->mInfoTable = JSUConvertOffsetToPtr<J3DAnmTransformKeyTable>(pData, (void*)pData->mTableOffset);
+    pAnm->mUpdateMaterialID = JSUConvertOffsetToPtr<u16>(pData, (void*)pData->mUpdateMatIDOffset);
+    pAnm->field_0x34.setResource(JSUConvertOffsetToPtr<ResNTAB>(pData, (void*)pData->mNameTab1Offset));
+    pAnm->mUpdateTexMtxID = JSUConvertOffsetToPtr<u8>(pData, (void*)pData->mUpdateTexMtxIDOffset);
+    pAnm->field_0x44 = JSUConvertOffsetToPtr<Vec>(pData, (void*)pData->unkOffset);
+    
+
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -270,6 +433,7 @@ asm void J2DAnmKeyLoader_v15::setAnmTextureSRT(J2DAnmTextureSRTKey* param_0,
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030965C.s"
 }
 #pragma pop
+#endif
 
 /* 80309848-80309870 304188 0028+00 1/1 0/0 0/0 .text
  * readAnmColor__19J2DAnmKeyLoader_v15FPC18J3DAnmColorKeyData   */
