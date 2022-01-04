@@ -59,7 +59,7 @@ public:
     /* 8003C260 */ static dRes_info_c* newResInfo(dRes_info_c*, int);
     /* 8003C288 */ static dRes_info_c* getResInfoLoaded(char const*, dRes_info_c*, int);
     /* 8003C2EC */ static void* getRes(char const*, s32, dRes_info_c*, int);
-    /* 8003C400 */ void getIDRes(char const*, u16, dRes_info_c*, int);
+    /* 8003C400 */ static void* getIDRes(char const*, u16, dRes_info_c*, int);
     /* 8003C470 */ static int syncAllRes(dRes_info_c*, int);
     /* 8003C4E4 */ int setObjectRes(char const*, void*, u32, JKRHeap*);
     /* 8003C5BC */ int setStageRes(char const*, JKRHeap*);
@@ -77,6 +77,10 @@ public:
 
     void* getObjectRes(const char* arcName, s32 param_1) {
         return getRes(arcName, param_1, &mObjectInfo[0], ARRAY_SIZE(mObjectInfo));
+    }
+
+    void* getObjectIDRes(const char* arcName, u16 id) {
+        return getIDRes(arcName, id, &mObjectInfo[0], ARRAY_SIZE(mObjectInfo));
     }
 
     int syncObjectRes(const char* name) {

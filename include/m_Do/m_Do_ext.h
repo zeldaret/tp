@@ -18,6 +18,15 @@ private:
     /* 0x0 */ J3DFrameCtrl mFrameCtrl;
 };  // Size: 0x14
 
+class mDoExt_transAnmBas : public J3DAnmTransformKey {
+public:
+    mDoExt_transAnmBas(void* bas) { mBas = bas; }
+    virtual ~mDoExt_transAnmBas();
+
+private:
+    /* 0x28 */ void* mBas;
+};
+
 class mDoExt_btkAnm : public mDoExt_baseAnm {
 public:
     mDoExt_btkAnm(void) { mBtkAnm = 0; }
@@ -165,6 +174,7 @@ JKRExpHeap* mDoExt_getHostIOHeap();
 JKRSolidHeap* mDoExt_createSolidHeapToCurrent(JKRHeap**, u32, JKRHeap*, u32);
 JKRSolidHeap* mDoExt_createSolidHeapToCurrent(u32, JKRHeap*, u32);
 JKRSolidHeap* mDoExt_createSolidHeapFromGameToCurrent(u32, u32);
+JKRSolidHeap* mDoExt_createSolidHeapFromGameToCurrent(JKRHeap**, u32, u32);
 JKRHeap* mDoExt_getCurrentHeap();
 
 extern JKRExpHeap* zeldaHeap;

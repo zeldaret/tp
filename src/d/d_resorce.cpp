@@ -31,10 +31,6 @@ struct mDoGph_gInf_c {
     static u8 mZbufferTimg[4];
 };
 
-struct mDoExt_transAnmBas {
-    /* 8003C784 */ ~mDoExt_transAnmBas();
-};
-
 struct dBgWKCol {
     /* 8007E7D0 */ void initKCollision(void*);
 };
@@ -996,8 +992,8 @@ asm void* dRes_control_c::getRes(char const* param_0, char const* param_1, dRes_
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dRes_control_c::getIDRes(char const* param_0, u16 param_1, dRes_info_c* param_2,
-                                  int param_3) {
+asm void* dRes_control_c::getIDRes(char const* param_0, u16 param_1, dRes_info_c* param_2,
+                                   int param_3) {
     nofralloc
 #include "asm/d/d_resorce/getIDRes__14dRes_control_cFPCcUsP11dRes_info_ci.s"
 }
@@ -1096,7 +1092,8 @@ s32 J3DAnmTransform::getKind() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm mDoExt_transAnmBas::~mDoExt_transAnmBas() {
+// asm mDoExt_transAnmBas::~mDoExt_transAnmBas() {
+extern "C" asm void __dt__18mDoExt_transAnmBasFv() {
     nofralloc
 #include "asm/d/d_resorce/__dt__18mDoExt_transAnmBasFv.s"
 }

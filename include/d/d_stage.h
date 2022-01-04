@@ -45,8 +45,8 @@ struct stage_stag_info_class {
     /* 0x2A */ u16 mStageTitleNo;
 };  // Size: Unknown
 
-inline u16 dStage_stagInfo_GetUpButton(stage_stag_info_class* p_info) {
-    return p_info->field_0x10 & 7;
+inline s16 dStage_stagInfo_GetUpButton(stage_stag_info_class* p_info) {
+    return p_info->field_0x0a & 7;
 }
 
 struct stage_scls_info_class {
@@ -99,7 +99,9 @@ struct dStage_Multi_c {};
 
 struct dStage_SoundInfo_c {};
 
-struct dStage_FileList_dt_c {};
+struct dStage_FileList_dt_c {
+    /* 0x0 */ u32 field_0x0;
+};
 
 struct dStage_dPnt_c {};
 
@@ -547,11 +549,12 @@ public:
     bool checkStatusFlag(int i_roomNo, u8 flag) const {
         return cLib_checkBit(mStatus[i_roomNo].unk_0x3F4, flag);
     }
+    static char* getDemoArcName() { return mDemoArcName; }
 
     static JKRExpHeap* mMemoryBlock[19];
     static char mArcBank[32][10];
     static dStage_roomStatus_c mStatus[0x40];
-    static u8 mDemoArcName[10 + 2 /* padding */];
+    static char mDemoArcName[10];
     static u32 mProcID;
     static char* mArcBankName;
     static char* mArcBankData;
@@ -680,6 +683,10 @@ inline u32 dStage_stagInfo_GetEscapeWarp(stage_stag_info_class* pstag) {
     return pstag->field_0x10 >> 0x18;
 }
 
+inline u32 dStage_stagInfo_GetMiniMap(stage_stag_info_class* pstag) {
+    return (pstag->field_0x0a >> 0xD) & 7;
+}
+
 inline s8 dStage_sclsInfo_getSceneLayer(stage_scls_info_class* p_info) {
     return p_info->field_0xb & 0xF;
 }
@@ -694,6 +701,10 @@ inline s8 dStage_sclsInfo_getWipeTime(stage_scls_info_class* p_info) {
 
 inline s8 dStage_sclsInfo_getTimeH(stage_scls_info_class* p_info) {
     return (p_info->field_0xa >> 4) | (p_info->field_0xb & 16);
+}
+
+inline u32 dStage_FileList_dt_getMiniMap(dStage_FileList_dt_c* p_fList) {
+    return p_fList->field_0x0 >> 3 & 7;
 }
 
 #endif /* D_D_STAGE_H */

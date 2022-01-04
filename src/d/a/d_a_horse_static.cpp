@@ -8,58 +8,47 @@
 #include "dolphin/types.h"
 
 BOOL e_wb_class::checkWait() {
-    return unk1460 == 0x2A;
+    return field_0x5b4 == 0x2A;
 }
 
 void e_wb_class::setPlayerRideNow() {
-    unk1680 = 0x67;
-    unk1460 = 0;
-    unk1726 |= 3;
+    field_0x690 = 0x67;
+    field_0x5b4 = 0;
+    field_0x6be |= 3;
 }
 
 void e_wb_class::setPlayerRide() {
-    unk1680 = 0x65;
-    unk1460 = 0;
-    unk1726 |= 3;
+    field_0x690 = 0x65;
+    field_0x5b4 = 0;
+    field_0x6be |= 3;
 
     mZ2Ride.setLinkRiding(true);
 }
 
 void e_wb_class::getOff() {
-    if (!checkDownDamage() || unk1680 == 0x67) {
-        unk1680 = 0;
+    if (!checkDownDamage() || field_0x690 == 0x67) {
+        field_0x690 = 0;
     } else {
-        unk1682 = 0;
+        field_0x692 = 0;
     }
-    unk1460 = 0;
-    unk1726 &= 0xfffc;
+    field_0x5b4 = 0;
+    field_0x6be &= 0xfffc;
     mZ2Ride.setLinkRiding(false);
 }
 
 BOOL e_wb_class::checkDownDamage() {
-    bool downDamage = false;
-    s16 tmp = unk1680;
-
-    if (tmp != 0x65 && tmp != 0x66 && tmp != 0x15) {
-        downDamage = true;
-    }
-    return downDamage;
+    return field_0x690 != 0x65 && field_0x690 != 0x66 && field_0x690 != 0x15;
 }
 
 u8 e_wb_class::checkNormalRideMode() const {
-    bool normalRideMode = false;
-
-    if (unk1680 != 0x66 || unk1460 < 1) {
-        normalRideMode = 1;
-    }
-    return normalRideMode;
+    return field_0x690 != 0x66 || field_0x5b4 < 1;
 }
 
 void e_wb_class::setRunRideMode() {
-    if (unk1680 == 0x65) {
-        unk1460 = 0;
-        unk1680 = 0x15;
-        unk1682 = 0x65;
+    if (field_0x690 == 0x65) {
+        field_0x5b4 = 0;
+        field_0x690 = 0x15;
+        field_0x692 = 0x65;
     }
 }
 

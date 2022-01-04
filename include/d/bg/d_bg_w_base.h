@@ -65,7 +65,7 @@ public:
     virtual bool GetUnderwaterRoofCode(int) = 0;
     virtual bool GetMonkeyBarsCode(cBgS_PolyInfo const&) = 0;
     virtual void GetLinkNo(cBgS_PolyInfo const&) = 0;
-    virtual bool GetWallCode(cBgS_PolyInfo const&) = 0;
+    virtual s32 GetWallCode(cBgS_PolyInfo const&) = 0;
     virtual bool GetPolyAtt0(cBgS_PolyInfo const&) = 0;
     virtual bool GetPolyAtt1(cBgS_PolyInfo const&) = 0;
     virtual bool GetGroundCode(cBgS_PolyInfo const&) = 0;

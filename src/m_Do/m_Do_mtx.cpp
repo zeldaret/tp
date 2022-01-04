@@ -287,7 +287,7 @@ asm void mDoMtx_QuatConcat(Quaternion const* param_0, Quaternion const* param_1,
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoMtx_MtxToRot(f32 const (*param_0)[4], csXyz* param_1) {
+asm void mDoMtx_MtxToRot(MtxP param_0, csXyz* param_1) {
     nofralloc
 #include "asm/m_Do/m_Do_mtx/mDoMtx_MtxToRot__FPA4_CfP5csXyz.s"
 }

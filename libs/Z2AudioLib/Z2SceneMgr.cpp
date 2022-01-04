@@ -124,7 +124,7 @@ extern "C" static void dComIfGs_isSaveSwitch__Fi();
 extern "C" void resetCrowdSize__7Z2SeMgrFv();
 extern "C" void setTwilightGateVol__8Z2SeqMgrFf();
 extern "C" void setWindStoneVol__8Z2SeqMgrFfUl();
-extern "C" void __ct__10JAISoundIDFUl();
+extern "C" void __ct__10JAISoundIDFUl(void* param_0, u32 param_1);
 extern "C" void sceneChange__10Z2SceneMgrF10JAISoundIDUcUcUcUcUcb();
 extern "C" void framework__10Z2SceneMgrFv();
 extern "C" void load1stDynamicWave__10Z2SceneMgrFv();
@@ -875,8 +875,9 @@ asm void Z2SeqMgr::setWindStoneVol(f32 param_0, u32 param_1) {
 #pragma pop
 
 /* 802B9B60-802B9B68 -00001 0008+00 0/0 0/0 0/0 .text            __ct__10JAISoundIDFUl */
-JAISoundID::JAISoundID(u32 id) {
-    mId = id;
+// JAISoundID::JAISoundID(u32 id) {
+extern "C" void __ct__10JAISoundIDFUl(void* param_0, u32 param_1) {
+    *(u32*)param_0 = (u32)(param_1);
 }
 
 /* 802B9B68-802B9C50 2B44A8 00E8+00 1/1 0/0 0/0 .text

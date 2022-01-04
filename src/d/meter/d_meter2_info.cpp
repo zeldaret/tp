@@ -5,6 +5,7 @@
 
 #include "d/meter/d_meter2_info.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/msg/d_msg_object.h"
 #include "d/save/d_save.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"

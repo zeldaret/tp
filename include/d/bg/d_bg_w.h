@@ -124,7 +124,7 @@ public:
     virtual void GetShdwThrough(int) = 0;
     virtual bool GetUnderwaterRoofCode(int) = 0;
     virtual bool GetMonkeyBarsCode(cBgS_PolyInfo const&) = 0;
-    virtual bool GetWallCode(cBgS_PolyInfo const&) = 0;
+    virtual s32 GetWallCode(cBgS_PolyInfo const&) = 0;
     virtual bool GetPolyAtt0(cBgS_PolyInfo const&) = 0;
     virtual bool GetPolyAtt1(cBgS_PolyInfo const&) = 0;
     virtual bool GetGroundCode(cBgS_PolyInfo const&) = 0;
@@ -224,7 +224,7 @@ public:
     /* 8007B630 */ virtual bool GetUnderwaterRoofCode(int);
     /* 8007B4B4 */ virtual bool GetMonkeyBarsCode(cBgS_PolyInfo const&);
     /* 8007B6AC */ virtual void GetLinkNo(cBgS_PolyInfo const&);
-    /* 8007B6D8 */ virtual bool GetWallCode(cBgS_PolyInfo const&);
+    /* 8007B6D8 */ virtual s32 GetWallCode(cBgS_PolyInfo const&);
     /* 8007B704 */ virtual bool GetPolyAtt0(cBgS_PolyInfo const&);
     /* 8007B734 */ virtual bool GetPolyAtt1(cBgS_PolyInfo const&);
     /* 8007B760 */ virtual bool GetGroundCode(cBgS_PolyInfo const&);

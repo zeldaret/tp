@@ -72,6 +72,7 @@ enum PlayerPtr { LINK_PTR, HORSE_PTR };
 class daHorse_c;
 class dPa_control_c;
 class daAlink_c;
+class dMsgObject_c;
 
 class dComIfG_play_c {
 public:
@@ -110,7 +111,7 @@ public:
 
     // inlines
     bool& isPauseFlag() { return mPauseFlag; }
-    void* getMsgObjectClass() { return mMsgObjectClass; }
+    dMsgObject_c* getMsgObjectClass() { return mMsgObjectClass; }
     dStage_roomControl_c* getRoomControl() { return &mRoomControl; }
     dStage_stageDt_c& getStage() { return mStageData; }
     dEvt_control_c& getEvent() { return mEvent; }
@@ -155,6 +156,29 @@ public:
         mBottleStatus = status;
         mBottleSetFlag = flag;
     }
+    void setNunStatus(u8 status, u8 param_1, u8 flag) {
+        mNunStatus = status;
+        field_0x4ef0 = param_1;
+        mNunSetFlag = flag;
+    }
+    void setRemoConStatus(u8 status, u8 param_1, u8 flag) {
+        mRemoConStatus = status;
+        field_0x4ef2 = param_1;
+        mRemoConSetFlag = flag;
+    }
+    void setNunZStatus(u8 status, u8 flag) {
+        mNunZStatus = status;
+        mNunZSetFlag = flag;
+    }
+    void setNunCStatus(u8 status, u8 flag) {
+        mNunCStatus = status;
+        mNunCSetFlag = flag;
+    }
+    void setCStickStatus(u8 status, u8 param_1, u8 flag) {
+        mCStickStatus = status;
+        mCStickDirection = param_1;
+        mCStickSetFlag = flag;
+    }
     void setItemLifeCount(float hearts, u8 type) {
         mItemLifeCount += hearts;
         mItemLifeCountType = type;
@@ -167,9 +191,33 @@ public:
     void setItemKeyNumCount(s16 keys) { mItemKeyNumCount += keys; }
     void setItemMaxLifeCount(s16 max) { mItemMaxLifeCount += max; }
     void setOxygen(int oxygen) { mOxygen = oxygen; }
+    void setNowOxygen(s32 oxygen) { mNowOxygen = oxygen; }
+    int getOxygen() { return mOxygen; }
+    int getMaxOxygen() { return mMaxOxygen; }
     void setMaxOxygen(int max) { mMaxOxygen = max; }
+    void setItemNowLife(u16 life) { mItemNowLife = life; }
+    void setItemNowMagic(s16 magic) { mItemNowMagicCount = magic; }
+    void setItemNowOil(s32 oil) { mItemNowOil = oil; }
+    u8 getNeedLightDropNum() { return mNeedLightDropNum; }
     u8 getDoStatus() { return mDoStatus; }
     u8 getRStatus() { return mRStatus; }
+    u8 getAStatus() { return mAStatus; }
+    u8 getXStatus() { return mXStatus; }
+    u8 getYStatus() { return mYStatus; }
+    u8 getZStatus() { return mZStatus; }
+    u8 get3DStatus() { return m3DStatus; }
+    u8 getCStickStatus() { return mCStickStatus; }
+    u8 getSButtonStatus() { return mSButtonStatus; }
+    u8 getNunStatus() { return mNunStatus; }
+    u8 getRemoConStatus() { return mRemoConStatus; }
+    u8 getNunZStatus() { return mNunZStatus; }
+    u8 getNunCStatus() { return mNunCStatus; }
+    u8 getBottleStatus() { return mBottleStatus; }
+    bool isDoSetFlag(u8 flag) { return flag & mDoSetFlag; }
+    bool isASetFlag(u8 flag) { return flag & mASetFlag; }
+    bool isRSetFlag(u8 flag) { return flag & mRSetFlag; }
+    bool isXSetFlag(u8 flag) { return flag & mXSetFlag; }
+    bool isYSetFlag(u8 flag) { return flag & mYSetFlag; }
     const char* getStartStageName() { return mStartStage.getName(); }
     s8 getStartStageRoomNo() { return mStartStage.getRoomNo(); }
     s8 getStartStageLayer() { return mStartStage.getLayer(); }
@@ -189,7 +237,9 @@ public:
     s8 getStartStageDarkArea() { return mStartStage.getDarkArea(); }
     void setStartStageDarkArea(s8 darkArea) { mStartStage.setDarkArea(darkArea); }
     void* getPlayerPtr(int ptrIdx) { return mPlayerPtr[ptrIdx]; }
+    void* getPlayer(int idx) { return mPlayer[idx]; }
     JKRArchive* getMain2DArchive() { return mMain2DArchive; }
+    JKRArchive* getAnmArchive() { return mAnmArchive; }
     J2DGrafContext* getCurrentGrafPort() { return mCurrentGrafPort; }
     dVibration_c& getVibration() { return mVibration; }
     void setPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[i] |= flag; }
@@ -254,7 +304,7 @@ public:
     /* 0x04E74 */ daAlink_c* mPlayer[1];
     /* 0x04E78 */ s8 mPlayerCameraID[4];
     /* 0x04E7C */ void* mPlayerPtr[2];  // 0: Player, 1: Horse ; type may be wrong
-    /* 0x04E84 */ void* mMsgObjectClass;
+    /* 0x04E84 */ dMsgObject_c* mMsgObjectClass;
     /* 0x04E88 */ float mItemLifeCount;
     /* 0x04E8C */ int mItemRupeeCount;
     /* 0x04E90 */ s16 mItemKeyNumCount;
@@ -492,6 +542,11 @@ const char* dComIfGs_getWarpStageName();
 s16 dComIfGs_getWarpPlayerAngleY();
 s8 dComIfGs_getWarpRoomNo();
 char* dComIfG_getRoomArcName(int);
+int dComIfGp_getSelectItemNum(int);
+int dComIfGp_getSelectItemMaxNum(int);
+void dComIfGp_mapShow();
+void dComIfGp_mapHide();
+bool dComIfGp_checkMapShow();
 
 inline void dComIfGp_setRStatus(u8 status, u8 flag) {
     g_dComIfG_gameInfo.play.setRStatus(status, flag);
@@ -675,6 +730,10 @@ inline BOOL dComIfGs_isSwitch(int param1, int param2) {
 
 inline s32 dComIfGs_isDungeonItemMap() {
     return g_dComIfG_gameInfo.info.getMemory().getBit().isDungeonItemMap();
+}
+
+inline s32 dComIfGs_isDungeonItemCompass() {
+    return g_dComIfG_gameInfo.info.getMemory().getBit().isDungeonItemCompass();
 }
 
 inline s32 dComIfGs_isDungeonItemBossKey() {
@@ -912,8 +971,12 @@ inline JKRHeap* dComIfGp_getExpHeap2D() {
     return g_dComIfG_gameInfo.play.getExpHeap2D();
 }
 
-inline u16 dComIfGs_getOil() {
+inline s16 dComIfGs_getOil() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getOil();
+}
+
+inline s16 dComIfGs_getMaxOil() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getMaxOil();
 }
 
 inline s64 dComIfGs_getSaveStartTime() {
@@ -1064,6 +1127,10 @@ inline JKRArchive* dComIfGp_getMain2DArchive() {
     return g_dComIfG_gameInfo.play.getMain2DArchive();
 }
 
+inline JKRArchive* dComIfGp_getAnmArchive() {
+    return g_dComIfG_gameInfo.play.getAnmArchive();
+}
+
 inline J2DGrafContext* dComIfGp_getCurrentGrafPort() {
     return g_dComIfG_gameInfo.play.getCurrentGrafPort();
 }
@@ -1104,7 +1171,7 @@ inline void dComIfGp_set3DStatus(u8 status, u8 direction, u8 flag) {
     g_dComIfG_gameInfo.play.set3DStatus(status, direction, flag);
 }
 
-inline u8 dComIfGs_getLastSceneMode() {
+inline s32 dComIfGs_getLastSceneMode() {
     return g_dComIfG_gameInfo.info.getRestart().getLastMode();
 }
 
@@ -1190,6 +1257,170 @@ inline stage_scls_info_dummy_class* dComIfGp_getStageSclsInfo() {
 
 inline dStage_roomStatus_c* dComIfGp_roomControl_getStatusRoomDt(int room_no) {
     return g_dComIfG_gameInfo.play.getRoomControl()->getStatusRoomDt(room_no);
+}
+
+inline void dComIfGp_setItemNowLife(u16 life) {
+    g_dComIfG_gameInfo.play.setItemNowLife(life);
+}
+
+inline void dComIfGp_setItemNowMagic(s16 magic) {
+    g_dComIfG_gameInfo.play.setItemNowMagic(magic);
+}
+
+inline u8 dComIfGs_getMagic() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getMagic();
+}
+
+inline u8 dComIfGs_getMaxMagic() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getMaxMagic();
+}
+
+inline void dComIfGp_setOxygen(int oxygen) {
+    g_dComIfG_gameInfo.play.setOxygen(oxygen);
+}
+
+inline void dComIfGp_setNowOxygen(s32 oxygen) {
+    g_dComIfG_gameInfo.play.setNowOxygen(oxygen);
+}
+
+inline int dComIfGp_getMaxOxygen() {
+    return g_dComIfG_gameInfo.play.getMaxOxygen();
+}
+
+inline int dComIfGp_getOxygen() {
+    return g_dComIfG_gameInfo.play.getOxygen();
+}
+
+inline u8 dComIfGp_getNeedLightDropNum() {
+    return g_dComIfG_gameInfo.play.getNeedLightDropNum();
+}
+
+inline void dComIfGp_setItemNowOil(s32 oil) {
+    g_dComIfG_gameInfo.play.setItemNowOil(oil);
+}
+
+inline u8 dComIfGp_getAStatus() {
+    return g_dComIfG_gameInfo.play.getAStatus();
+}
+
+inline u8 dComIfGp_getXStatus() {
+    return g_dComIfG_gameInfo.play.getXStatus();
+}
+
+inline u8 dComIfGp_getYStatus() {
+    return g_dComIfG_gameInfo.play.getYStatus();
+}
+
+inline u8 dComIfGp_getZStatus() {
+    return g_dComIfG_gameInfo.play.getZStatus();
+}
+
+inline u8 dComIfGp_get3DStatus() {
+    return g_dComIfG_gameInfo.play.get3DStatus();
+}
+
+inline u8 dComIfGp_getCStickStatus() {
+    return g_dComIfG_gameInfo.play.getCStickStatus();
+}
+
+inline u8 dComIfGp_getSButtonStatus() {
+    return g_dComIfG_gameInfo.play.getSButtonStatus();
+}
+
+inline u8 dComIfGp_getNunStatus() {
+    return g_dComIfG_gameInfo.play.getNunStatus();
+}
+
+inline u8 dComIfGp_getNunZStatus() {
+    return g_dComIfG_gameInfo.play.getNunZStatus();
+}
+
+inline u8 dComIfGp_getNunCStatus() {
+    return g_dComIfG_gameInfo.play.getNunCStatus();
+}
+
+inline u8 dComIfGp_getBottleStatus() {
+    return g_dComIfG_gameInfo.play.getBottleStatus();
+}
+
+inline u8 dComIfGp_getRemoConStatus() {
+    return g_dComIfG_gameInfo.play.getRemoConStatus();
+}
+
+inline bool dComIfGp_isDoSetFlag(u8 flag) {
+    return g_dComIfG_gameInfo.play.isDoSetFlag(flag);
+}
+
+inline bool dComIfGp_isASetFlag(u8 flag) {
+    return g_dComIfG_gameInfo.play.isASetFlag(flag);
+}
+
+inline bool dComIfGp_isRSetFlag(u8 flag) {
+    return g_dComIfG_gameInfo.play.isRSetFlag(flag);
+}
+
+inline bool dComIfGp_isXSetFlag(u8 flag) {
+    return g_dComIfG_gameInfo.play.isXSetFlag(flag);
+}
+
+inline bool dComIfGp_isYSetFlag(u8 flag) {
+    return g_dComIfG_gameInfo.play.isYSetFlag(flag);
+}
+
+inline bool dComIfGs_isCollectMirror(u8 param_0) {
+    return g_dComIfG_gameInfo.info.getPlayer().getCollect().isCollectMirror(param_0);
+}
+
+inline bool dComIfGs_isCollectCrystal(u8 param_0) {
+    return g_dComIfG_gameInfo.info.getPlayer().getCollect().isCollectCrystal(param_0);
+}
+
+inline void dComIfGs_onCollectMirror(u8 param_0) {
+    g_dComIfG_gameInfo.info.getPlayer().getCollect().onCollectMirror(param_0);
+}
+
+inline void dComIfGs_onCollectCrystal(u8 param_0) {
+    g_dComIfG_gameInfo.info.getPlayer().getCollect().onCollectCrystal(param_0);
+}
+
+inline bool dComIfGp_isPauseFlag() {
+    return g_dComIfG_gameInfo.play.isPauseFlag();
+}
+
+inline void dComIfGp_setNunStatus(u8 param_0, u8 param_1, u8 param_2) {
+    g_dComIfG_gameInfo.play.setNunStatus(param_0, param_1, param_2);
+}
+
+inline void dComIfGp_setRemoConStatus(u8 param_0, u8 param_1, u8 param_2) {
+    g_dComIfG_gameInfo.play.setRemoConStatus(param_0, param_1, param_2);
+}
+
+inline void dComIfGp_setNunZStatus(u8 param_0, u8 param_1) {
+    g_dComIfG_gameInfo.play.setNunZStatus(param_0, param_1);
+}
+
+inline void dComIfGp_setNunCStatus(u8 param_0, u8 param_1) {
+    g_dComIfG_gameInfo.play.setNunCStatus(param_0, param_1);
+}
+
+inline void dComIfGp_setCStickStatus(u8 param_0, u8 param_1, u8 param_2) {
+    g_dComIfG_gameInfo.play.setCStickStatus(param_0, param_1, param_2);
+}
+
+inline void* dComIfG_getObjectIDRes(const char* arc_name, u16 id) {
+    return g_dComIfG_gameInfo.mResControl.getObjectIDRes(arc_name, id);
+}
+
+inline void* dComIfGp_getPlayer(int idx) {
+    return g_dComIfG_gameInfo.play.getPlayer(idx);
+}
+
+inline void dComIfGd_set2DOpa(dDlst_base_c* dlst) {
+    g_dComIfG_gameInfo.drawlist.set2DOpa(dlst);
+}
+
+inline dMsgObject_c* dComIfGp_getMsgObjectClass() {
+    return g_dComIfG_gameInfo.play.getMsgObjectClass();
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

@@ -172,4 +172,7 @@ private:
     /* 0x154 */ bool mPauseWindow;
 };
 
+BOOL dMw_LEFT_TRIGGER();
+BOOL dMw_RIGHT_TRIGGER();
+
 #endif /* D_MENU_D_MENU_WINDOW_H */
