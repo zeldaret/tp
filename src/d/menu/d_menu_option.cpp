@@ -15,8 +15,6 @@ struct mDoGph_gInf_c {
     static u8 mFader[4];
 };
 
-struct JKRHeap {};
-
 struct mDoDvdThd_mountArchive_c {
     /* 80015E14 */ void create(char const*, u8, JKRHeap*);
 };
@@ -28,24 +26,6 @@ struct mDoCPd_c {
 
 struct dSv_player_config_c {
     /* 80034684 */ void getSound();
-};
-
-struct J2DBasePosition {};
-
-struct J2DPane {
-    /* 802F7100 */ void getBounds();
-    /* 802F76F8 */ void setBasePosition(J2DBasePosition);
-    /* 802F7FCC */ void animationTransform();
-};
-
-struct JKRArchive {};
-
-struct dSelect_cursor_c {
-    /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
-    /* 801950F4 */ void setPos(f32, f32, J2DPane*, bool);
-    /* 801951B0 */ void setParam(f32, f32, f32, f32, f32);
-    /* 801951C8 */ void setScale(f32);
-    /* 801952A0 */ void setAlphaRate(f32);
 };
 
 struct dMw_c {
@@ -69,96 +49,8 @@ struct dMeter2Info_c {
     /* 8021C544 */ void getStringKanji(u32, char*, JMSMesgEntry_c*);
 };
 
-struct STControl {
-    /* 8003219C */ void checkTrigger();
-    /* 8003242C */ void checkLeftTrigger();
-    /* 800324A8 */ void checkRightTrigger();
-    /* 80032524 */ void checkUpTrigger();
-    /* 800325A0 */ void checkDownTrigger();
-};
-
-struct dMenu_Option_c {
-    /* 801E1F10 */ dMenu_Option_c(JKRArchive*, STControl*);
-    /* 801E2014 */ ~dMenu_Option_c();
-    /* 801E205C */ void _create();
-    /* 801E2C1C */ void _delete();
-    /* 801E3408 */ void _move();
-    /* 801E36CC */ void _draw();
-    /* 801E38CC */ void drawHaihai();
-    /* 801E3A7C */ void isSync();
-    /* 801E3AA4 */ void checkLeftTrigger();
-    /* 801E3AC8 */ void checkRightTrigger();
-    /* 801E3AEC */ void setAnimation();
-    /* 801E3B98 */ void _open();
-    /* 801E3DE0 */ void _close();
-    /* 801E3F6C */ void atten_init();
-    /* 801E3FC4 */ void atten_move();
-    /* 801E41A0 */ void vib_init();
-    /* 801E41F8 */ void vib_move();
-    /* 801E4488 */ void sound_init();
-    /* 801E44E0 */ void sound_move();
-    /* 801E48AC */ void change_init();
-    /* 801E48E8 */ void change_move();
-    /* 801E4B34 */ void confirm_open_init();
-    /* 801E4C10 */ void confirm_open_move();
-    /* 801E4CE4 */ void confirm_move_init();
-    /* 801E4D20 */ void confirm_move_move();
-    /* 801E4E98 */ void confirm_select_init();
-    /* 801E4E9C */ void confirm_select_move();
-    /* 801E4F18 */ void confirm_close_init();
-    /* 801E4FB0 */ void confirm_close_move();
-    /* 801E51CC */ void tv_open1_move();
-    /* 801E5244 */ void tv_open2_move();
-    /* 801E5260 */ void tv_move_move();
-    /* 801E5300 */ void tv_close1_move();
-    /* 801E5364 */ void tv_close2_move();
-    /* 801E5380 */ void calibration_open1_move();
-    /* 801E53C4 */ void calibration_open2_move();
-    /* 801E53E0 */ void calibration_move_move();
-    /* 801E5434 */ void calibration_close1_move();
-    /* 801E5478 */ void calibration_close2_move();
-    /* 801E5494 */ void menuVisible();
-    /* 801E54F8 */ void menuShow(int);
-    /* 801E55B8 */ void menuHide(int);
-    /* 801E5678 */ void screenSet();
-    /* 801E6FBC */ void setSoundMode(u32);
-    /* 801E7004 */ void setAttenString();
-    /* 801E70E8 */ void setVibString();
-    /* 801E71CC */ void setSoundString();
-    /* 801E7314 */ void setCursorPos(u8);
-    /* 801E73D8 */ void setSelectColor(u8, bool);
-    /* 801E76EC */ void getSelectType();
-    /* 801E7718 */ void changeBarColor(bool);
-    /* 801E78B8 */ void setHIO(bool);
-    /* 801E7D18 */ void cursorAnime(f32);
-    /* 801E7D60 */ void setZButtonString(u16);
-    /* 801E7DF4 */ void changeTVCheck();
-    /* 801E7E98 */ void setAButtonString(u16);
-    /* 801E7F9C */ void setBButtonString(u16);
-    /* 801E80A0 */ void isRumbleSupported();
-    /* 801E80AC */ bool dpdMenuMove();
-    /* 801E80B4 */ void paneResize(u64);
-    /* 801E8210 */ void initialize();
-    /* 801E82C4 */ void yesnoMenuMoveAnmInitSet(int, int);
-    /* 801E8438 */ void yesnoMenuMoveAnm();
-    /* 801E85D4 */ void yesnoSelectMoveAnm();
-    /* 801E8888 */ void yesnoCursorShow();
-    /* 801E89F8 */ void yesNoSelectStart();
-    /* 801E8AC8 */ void yesnoSelectAnmSet();
-    /* 801E8C38 */ void yesnoCancelAnmSet();
-    /* 801E8CB0 */ void yesnoWakuAlpahAnmInit(u8, u8, u8, u8);
-    /* 801E8CFC */ void yesnoWakuAlpahAnm(u8);
-    /* 801E8E6C */ void draw();
-};
-
 struct dMenu_Calibration_c {
     /* 801AEDAC */ void _move();
-};
-
-struct JUtility {
-    struct TColor {
-        /* 80193960 */ TColor();
-    };
 };
 
 struct dFile_warning_c {
@@ -177,8 +69,6 @@ struct dComIfG_play_c {
 
 struct JAISoundID {};
 
-struct Vec {};
-
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
@@ -188,8 +78,6 @@ struct Z2AudioMgr {
 
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
-
-struct ResTIMG {};
 
 struct JUTGamePad {
     struct CRumble {
@@ -201,49 +89,8 @@ struct JUTGamePad {
     static u8 sRumbleSupported[4];
 };
 
-struct JKRFileLoader {
-    /* 802D4270 */ void getGlbResource(char const*, JKRFileLoader*);
-};
-
-struct JKRExpHeap {};
-
-struct J2DTextBox {
-    /* 80300658 */ void getStringPtr() const;
-    /* 8030074C */ void setString(s16, char const*, ...);
-};
-
-struct J2DGrafContext {};
-
-struct J2DScreen {
-    /* 802F8498 */ J2DScreen();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-    /* 802F9690 */ void animation();
-};
-
-struct J2DPicture {
-    /* 802FC708 */ J2DPicture(ResTIMG const*);
-};
-
 struct J2DAnmLoaderDataBase {
     /* 80308A6C */ void load(void const*);
-};
-
-struct CPaneMgrAlpha {
-    /* 802555C8 */ void show();
-    /* 80255608 */ void hide();
-    /* 802557D0 */ void setAlphaRate(f32);
-    /* 80255878 */ void alphaAnime(s16, u8, u8, u8);
-};
-
-struct CPaneMgr {
-    /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 80253930 */ CPaneMgr();
-    /* 80253A18 */ ~CPaneMgr();
-    /* 802545B0 */ void paneTrans(f32, f32);
-    /* 802548BC */ void colorAnime(s16, JUtility::TColor, JUtility::TColor, JUtility::TColor,
-                                   JUtility::TColor, u8);
-    /* 80254EBC */ void getGlobalVtxCenter(J2DPane*, bool, s16);
 };
 
 //
@@ -395,7 +242,6 @@ extern "C" void __ct__10J2DPictureFPC7ResTIMG();
 extern "C" void getStringPtr__10J2DTextBoxCFv();
 extern "C" void setString__10J2DTextBoxFsPCce();
 extern "C" void load__20J2DAnmLoaderDataBaseFPCv();
-extern "C" void OSSetSoundMode();
 extern "C" void __construct_array();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_20();
@@ -1080,7 +926,7 @@ asm void dMenu_Option_c::drawHaihai() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Option_c::isSync() {
+asm bool dMenu_Option_c::isSync() {
     nofralloc
 #include "asm/d/menu/d_menu_option/isSync__14dMenu_Option_cFv.s"
 }
@@ -1131,7 +977,7 @@ SECTION_DEAD static char const* const stringBase_80397721 = "/res/Layout/optres.
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Option_c::_open() {
+asm bool dMenu_Option_c::_open() {
     nofralloc
 #include "asm/d/menu/d_menu_option/_open__14dMenu_Option_cFv.s"
 }
@@ -2232,7 +2078,8 @@ asm void dMenu_Option_c::yesnoWakuAlpahAnm(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Option_c::draw() {
+// asm void dMenu_Option_c::draw() {
+extern "C" asm void draw__14dMenu_Option_cFv() {
     nofralloc
 #include "asm/d/menu/d_menu_option/draw__14dMenu_Option_cFv.s"
 }

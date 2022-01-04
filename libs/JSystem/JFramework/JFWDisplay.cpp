@@ -12,35 +12,7 @@
 // Types:
 //
 
-struct _GXRenderModeObj {};
-
-struct _GXColor {};
-
-struct OSContext {};
-
 struct OSAlarm {};
-
-struct JKRHeap {};
-
-struct JUTXfb {
-    struct EXfbNumber {};
-
-    /* 802E53B8 */ void createManager(JKRHeap*, JUTXfb::EXfbNumber);
-    /* 802E5424 */ void destroyManager();
-
-    static u8 sManager[4 + 4 /* padding */];
-};
-
-struct JUTVideo {
-    /* 802E5088 */ void drawDoneStart();
-    /* 802E50B0 */ void dummyNoDrawWait();
-    /* 802E5198 */ void setRenderMode(_GXRenderModeObj const*);
-    /* 802E5210 */ void waitRetraceIfNeed();
-
-    static u8 sManager[4];
-    static u8 sVideoLastTick[4];
-    static u8 sVideoInterval[4];
-};
 
 struct JUTProcBar {
     /* 802E59E0 */ void create();
@@ -49,10 +21,6 @@ struct JUTProcBar {
     /* 802E5E08 */ void draw();
 
     static u8 sManager[4];
-};
-
-struct JUTFader {
-    /* 802E55DC */ void control();
 };
 
 struct JUTDirectPrint {
@@ -76,51 +44,6 @@ struct JUTConsoleManager {
 struct JUTAssertion {
     /* 802E499C */ void flushMessage();
     /* 802E4A54 */ void flushMessage_dbPrint();
-};
-
-struct JSUPtrLink {
-    /* 802DBDFC */ JSUPtrLink(void*);
-    /* 802DBE14 */ ~JSUPtrLink();
-};
-
-struct JSUPtrList {
-    /* 802DBE74 */ JSUPtrList(bool);
-    /* 802DBEAC */ ~JSUPtrList();
-    /* 802DBF4C */ void append(JSUPtrLink*);
-    /* 802DC15C */ void remove(JSUPtrLink*);
-};
-
-template <typename A0>
-struct JSUList {};
-/* JSUList<JFWAlarm> */
-struct JSUList__template0 {
-    /* 80273724 */ void func_80273724(void* _this);
-};
-
-struct JFWDisplay {
-    /* 80272040 */ void ctor_subroutine(bool);
-    /* 802720F8 */ JFWDisplay(JKRHeap*, JUTXfb::EXfbNumber, bool);
-    /* 80272160 */ ~JFWDisplay();
-    /* 802721DC */ void createManager(_GXRenderModeObj const*, JKRHeap*, JUTXfb::EXfbNumber, bool);
-    /* 802722B8 */ void prepareCopyDisp();
-    /* 802723AC */ void drawendXfb_single();
-    /* 802723F4 */ void exchangeXfb_double();
-    /* 802724FC */ void exchangeXfb_triple();
-    /* 80272574 */ void copyXfb_triple();
-    /* 802725F8 */ void preGX();
-    /* 8027268C */ void endGX();
-    /* 80272798 */ void beginRender();
-    /* 80272A04 */ void endRender();
-    /* 80272AB0 */ void endFrame();
-    /* 80272C60 */ void waitBlanking(int);
-    /* 80272E10 */ void threadSleep(s64);
-    /* 80272EB8 */ void clearEfb_init();
-    /* 80272F9C */ void clearEfb(int, int, int, int, _GXColor);
-    /* 80272F2C */ void clearEfb();
-    /* 80272F58 */ void clearEfb(_GXColor);
-    /* 8027331C */ void calcCombinationRatio();
-
-    static u8 sManager[4];
 };
 
 struct JFWAlarm {
@@ -173,7 +96,6 @@ extern "C" u8 sManager__10JFWDisplay[4];
 // External References:
 //
 
-extern "C" void OSReport();
 extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();
 extern "C" void __ct__10JSUPtrLinkFPv();
@@ -203,71 +125,29 @@ extern "C" void setPort__13J2DOrthoGraphFv();
 extern "C" void OSCreateAlarm();
 extern "C" void OSSetAlarm();
 extern "C" void OSCancelAlarm();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void OSReceiveMessage();
-extern "C" void OSGetCurrentThread();
-extern "C" void OSResumeThread();
-extern "C" void OSSuspendThread();
-extern "C" void OSGetTime();
-extern "C" void OSGetTick();
 extern "C" void VIFlush();
-extern "C" void VIGetRetraceCount();
 extern "C" void GXInit();
 extern "C" void GXGetGPStatus();
 extern "C" void GXGetFifoBase();
 extern "C" void GXGetFifoSize();
 extern "C" void GXGetCPUFifo();
-extern "C" void GXSetVtxDesc();
 extern "C" void GXClearVtxDesc();
-extern "C" void GXSetVtxAttrFmt();
 extern "C" void GXInvalidateVtxCache();
-extern "C" void GXSetTexCoordGen2();
-extern "C" void GXSetNumTexGens();
 extern "C" void GXFlush();
 extern "C" void GXAbortFrame();
 extern "C" void GXSetDrawDone();
 extern "C" void GXDrawDone();
 extern "C" void GXPixModeSync();
-extern "C" void GXBegin();
-extern "C" void GXSetCullMode();
 extern "C" void GXSetDispCopySrc();
 extern "C" void GXSetDispCopyDst();
 extern "C" void GXSetCopyClamp();
-extern "C" void GXGetNumXfbLines();
-extern "C" void GXGetYScaleFactor();
 extern "C" void GXSetDispCopyYScale();
 extern "C" void GXSetCopyClear();
-extern "C" void GXSetCopyFilter();
 extern "C" void GXSetDispCopyGamma();
 extern "C" void GXCopyDisp();
-extern "C" void GXSetNumChans();
-extern "C" void GXSetChanCtrl();
-extern "C" void GXInitTexObj();
-extern "C" void GXInitTexObjLOD();
-extern "C" void GXLoadTexObj();
 extern "C" void GXInvalidateTexAll();
-extern "C" void GXSetTevColorIn();
-extern "C" void GXSetTevAlphaIn();
-extern "C" void GXSetTevColorOp();
-extern "C" void GXSetTevAlphaOp();
-extern "C" void GXSetTevColor();
-extern "C" void GXSetAlphaCompare();
-extern "C" void GXSetZTexture();
-extern "C" void GXSetTevOrder();
-extern "C" void GXSetNumTevStages();
-extern "C" void GXSetBlendMode();
-extern "C" void GXSetAlphaUpdate();
-extern "C" void GXSetZMode();
-extern "C" void GXSetZCompLoc();
 extern "C" void GXSetPixelFmt();
-extern "C" void GXSetDither();
 extern "C" void GXSetDstAlpha();
-extern "C" void GXSetProjection();
-extern "C" void GXLoadPosMtxImm();
-extern "C" void GXSetCurrentMtx();
-extern "C" void GXSetViewport();
-extern "C" void GXSetScissor();
 extern "C" void GXReadXfRasMetric();
 extern "C" void __register_global_object();
 extern "C" void _savegpr_24();
@@ -425,7 +305,7 @@ asm JFWDisplay::~JFWDisplay() {
 
 /* ############################################################################################## */
 /* 804511C0-804511C4 0006C0 0004+00 2/2 40/40 1/1 .sbss            sManager__10JFWDisplay */
-u8 JFWDisplay::sManager[4];
+JFWDisplay* JFWDisplay::sManager;
 
 /* 802721DC-80272260 26CB1C 0084+00 0/0 1/1 0/0 .text
  * createManager__10JFWDisplayFPC16_GXRenderModeObjP7JKRHeapQ26JUTXfb10EXfbNumberb */
@@ -540,7 +420,8 @@ asm void JFWDisplay::endGX() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JFWDisplay::beginRender() {
+// asm void JFWDisplay::beginRender() {
+extern "C" asm void beginRender__10JFWDisplayFv() {
     nofralloc
 #include "asm/JSystem/JFramework/JFWDisplay/beginRender__10JFWDisplayFv.s"
 }

@@ -12,10 +12,6 @@
 // Types:
 //
 
-struct mDoGph_gInf_c {
-    /* 80007FD8 */ void fadeOut(f32, _GXColor&);
-};
-
 struct dShopSystem_c {
     /* 801975F8 */ void isFlag(int);
     /* 8019A354 */ void setSoldOutFlag();

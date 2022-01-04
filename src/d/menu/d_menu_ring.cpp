@@ -11,6 +11,7 @@
 // Types:
 //
 
+
 struct mDoCPd_c {
     static u8 m_cpadInfo[256];
 };
@@ -33,24 +34,9 @@ struct dSv_player_item_c {
     /* 80033354 */ void getLineUpItem(int) const;
 };
 
-struct JKRArchive {};
-
-struct dSelect_cursor_c {
-    /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
-    /* 801951B0 */ void setParam(f32, f32, f32, f32, f32);
-    /* 801951C8 */ void setScale(f32);
-    /* 801952A0 */ void setAlphaRate(f32);
-};
-
 struct dMsgString_c {
     /* 80249C20 */ dMsgString_c();
     /* 80249D28 */ ~dMsgString_c();
-};
-
-struct ResTIMG {};
-
-struct J2DPicture {
-    /* 802FC708 */ J2DPicture(ResTIMG const*);
 };
 
 struct dMeter2Info_c {
@@ -60,76 +46,9 @@ struct dMeter2Info_c {
     /* 8021D36C */ void setItemColor(u8, J2DPicture*, J2DPicture*, J2DPicture*, J2DPicture*);
 };
 
-struct JUtility {
-    struct TColor {};
-};
-
 struct dMeter2Draw_c {
     /* 802140DC */ void drawPikari(f32, f32, f32*, f32, JUtility::TColor, JUtility::TColor,
                                    JUtility::TColor, JUtility::TColor, f32, u8);
-};
-
-struct STControl {};
-
-struct CSTControl {};
-
-struct JKRExpHeap {};
-
-struct dMenu_Ring_c {
-    /* 801E9118 */ dMenu_Ring_c(JKRExpHeap*, STControl*, CSTControl*, u8);
-    /* 801EA708 */ ~dMenu_Ring_c();
-    /* 801EAB7C */ void _create();
-    /* 801EABE8 */ void _delete();
-    /* 801EABEC */ void _move();
-    /* 801EACC8 */ void _draw();
-    /* 801EB080 */ void setKanteraPos(f32, f32);
-    /* 801EB0A4 */ void isOpen();
-    /* 801EB2B4 */ void isMoveEnd();
-    /* 801EB3CC */ void isClose();
-    /* 801EB624 */ void getStickInfo(STControl*);
-    /* 801EB8C0 */ void calcStickAngle(STControl*, u8);
-    /* 801EB960 */ void setRotate();
-    /* 801EBA38 */ void setItemScale(int, f32);
-    /* 801EBAB8 */ void setButtonScale(int, f32);
-    /* 801EBB10 */ void setItem();
-    /* 801EBE58 */ void setJumpItem(bool);
-    /* 801EC20C */ void setScale();
-    /* 801EC3B0 */ void setNameString(u32);
-    /* 801EC504 */ void setActiveCursor();
-    /* 801EC754 */ void setMixItem();
-    /* 801ECB14 */ void drawItem();
-    /* 801ECF9C */ void drawItem2();
-    /* 801ED2BC */ void stick_wait_init();
-    /* 801ED31C */ void stick_wait_proc();
-    /* 801ED490 */ void stick_move_init();
-    /* 801ED53C */ void stick_move_proc();
-    /* 801ED934 */ void stick_explain_init();
-    /* 801ED938 */ void stick_explain_force_init();
-    /* 801ED93C */ void stick_explain_proc();
-    /* 801EDA0C */ void stick_explain_force_proc();
-    /* 801EDB14 */ void setSelectItem(int, u8);
-    /* 801EDC98 */ void drawSelectItem();
-    /* 801EDF2C */ void setSelectItemForce(int);
-    /* 801EDFDC */ void getCursorPos(u8);
-    /* 801EE058 */ void getItemNum(u8);
-    /* 801EE15C */ void getItemMaxNum(u8);
-    /* 801EE228 */ void checkExplainForce();
-    /* 801EE63C */ bool checkCombineBomb(int);
-    /* 801EE644 */ void setCombineBomb(int);
-    /* 801EE648 */ void drawNumber(int, int, f32, f32);
-    /* 801EEA84 */ void getItem(int, u8);
-    /* 801EEAE4 */ void setDoStatus(u8);
-    /* 801EEB58 */ void isMixItemOn();
-    /* 801EEC98 */ void isMixItemOff();
-    /* 801EED84 */ void setMixMessage();
-    /* 801EEF14 */ void textScaleHIO();
-    /* 801EF11C */ void textCentering();
-    /* 801EF13C */ void clacEllipseFunction(f32, f32, f32);
-    /* 801EF174 */ void calcDistance(f32, f32, f32, f32);
-    /* 801EF1A0 */ void clacEllipsePlotAverage(int, f32, f32);
-    /* 801EF484 */ bool dpdMove();
-    /* 801EF48C */ void openExplain(u8);
-    /* 801EF560 */ void draw();
 };
 
 struct J2DOrthoGraph {};
@@ -155,12 +74,6 @@ struct dItem_data {
     static void* item_resource[1530];
 };
 
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-};
-
 struct JAISoundID {};
 
 struct Z2SeMgr {
@@ -173,47 +86,6 @@ struct Z2AudioMgr {
 
 struct JMath {
     static u8 sincosTable_[65536];
-};
-
-struct JKRHeap {
-    /* 802CE4D4 */ void alloc(u32, int);
-    /* 802CE548 */ void free(void*);
-    /* 802CE784 */ void getTotalFreeSize();
-};
-
-struct J2DTextBox {
-    /* 80300658 */ void getStringPtr() const;
-    /* 8030074C */ void setString(s16, char const*, ...);
-};
-
-struct J2DGrafContext {};
-
-struct J2DScreen {
-    /* 802F8498 */ J2DScreen();
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-};
-
-struct J2DBasePosition {};
-
-struct J2DPane {
-    /* 802F76F8 */ void setBasePosition(J2DBasePosition);
-};
-
-struct CPaneMgrAlpha {
-    /* 802553FC */ CPaneMgrAlpha(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 802555C8 */ void show();
-    /* 80255608 */ void hide();
-    /* 8025564C */ void isVisible();
-    /* 802557D0 */ void setAlphaRate(f32);
-    /* 80255828 */ void getAlphaRate();
-};
-
-struct CPaneMgr {
-    /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 80253930 */ CPaneMgr();
-    /* 80253A18 */ ~CPaneMgr();
-    /* 802545B0 */ void paneTrans(f32, f32);
-    /* 80254EBC */ void getGlobalVtxCenter(J2DPane*, bool, s16);
 };
 
 //
@@ -355,7 +227,6 @@ extern "C" void draw__9J2DScreenFffPC14J2DGrafContext();
 extern "C" void __ct__10J2DPictureFPC7ResTIMG();
 extern "C" void getStringPtr__10J2DTextBoxCFv();
 extern "C" void setString__10J2DTextBoxFsPCce();
-extern "C" void PSVECSquareMag();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_17();
 extern "C" void _savegpr_18();
@@ -377,7 +248,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void abs();
 extern "C" void strcpy();
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" void* item_resource__10dItem_data[1530];
@@ -386,7 +256,6 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_ringHIO[344];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
@@ -766,7 +635,7 @@ SECTION_SDATA2 static f64 lit_4596 = 4503601774854144.0 /* cast s32 to float */;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Ring_c::isOpen() {
+asm bool dMenu_Ring_c::isOpen() {
     nofralloc
 #include "asm/d/menu/d_menu_ring/isOpen__12dMenu_Ring_cFv.s"
 }
@@ -776,7 +645,7 @@ asm void dMenu_Ring_c::isOpen() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Ring_c::isMoveEnd() {
+asm bool dMenu_Ring_c::isMoveEnd() {
     nofralloc
 #include "asm/d/menu/d_menu_ring/isMoveEnd__12dMenu_Ring_cFv.s"
 }
@@ -786,7 +655,7 @@ asm void dMenu_Ring_c::isMoveEnd() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Ring_c::isClose() {
+asm bool dMenu_Ring_c::isClose() {
     nofralloc
 #include "asm/d/menu/d_menu_ring/isClose__12dMenu_Ring_cFv.s"
 }
@@ -1292,7 +1161,8 @@ asm void dMenu_Ring_c::openExplain(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Ring_c::draw() {
+// asm void dMenu_Ring_c::draw() {
+extern "C" asm void draw__12dMenu_Ring_cFv() {
     nofralloc
 #include "asm/d/menu/d_menu_ring/draw__12dMenu_Ring_cFv.s"
 }

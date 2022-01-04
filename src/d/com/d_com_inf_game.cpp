@@ -16,10 +16,6 @@
 
 struct scene_class {};
 
-struct mDoGph_gInf_c {
-    static u8 mFader[4];
-};
-
 struct dSmplMdl_draw_c {
     /* 80048CB4 */ dSmplMdl_draw_c();
     /* 80048E0C */ void draw();
@@ -1360,7 +1356,7 @@ SECTION_SDATA extern u8 g_clearColor[4] = {
 };
 
 /* 80450604-80450608 000084 0004+00 1/1 10/10 15/15 .sdata           g_blackColor */
-SECTION_SDATA extern u32 g_blackColor = 0x000000FF;
+SECTION_SDATA extern GXColor g_blackColor = { 0, 0, 0, 255 };
 
 /* 8002CC54-8002CD44 027594 00F0+00 1/1 1/1 0/0 .text dComIfG_changeOpeningScene__FP11scene_classs
  */

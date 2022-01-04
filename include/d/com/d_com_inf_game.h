@@ -229,7 +229,7 @@ public:
     JKRExpHeap* getSubExpHeap2D(int idx) { return mSubExpHeap2D[idx]; }
     void setSubExpHeap2D(int idx, void* heap) { mSubExpHeap2D[idx] = (JKRExpHeap*)heap; }
     void offEnableNextStage() { mNextStage.offEnable(); }
-    JKRHeap* getExpHeap2D() { return mExpHeap2D; }
+    JKRExpHeap* getExpHeap2D() { return mExpHeap2D; }
     dEvent_manager_c& getEvtManager() { return mEvtManager; }
     dAttention_c& getAttention() { return mAttention; }
     JKRArchive* getMsgDtArchive(int idx) { return mMsgDtArchive[idx]; }
@@ -240,6 +240,7 @@ public:
     void* getPlayer(int idx) { return mPlayer[idx]; }
     JKRArchive* getMain2DArchive() { return mMain2DArchive; }
     JKRArchive* getAnmArchive() { return mAnmArchive; }
+    JKRArchive* getCollectResArchive() { return mCollectResArchive; }
     J2DGrafContext* getCurrentGrafPort() { return mCurrentGrafPort; }
     dVibration_c& getVibration() { return mVibration; }
     void setPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[i] |= flag; }
@@ -255,6 +256,7 @@ public:
         m3DDirection = direction;
         m3DSetFlag = flag;
     }
+    void offPauseFlag() { mPauseFlag = false; }
 
 public:
     /* 0x00000 */ dBgS mDBgS;
@@ -506,6 +508,8 @@ STATIC_ASSERT(122384 == sizeof(dComIfG_inf_c));
 
 extern dComIfG_inf_c g_dComIfG_gameInfo;
 
+extern GXColor g_blackColor;
+
 void dComIfGp_setItemLifeCount(float, u8);
 void dComIfGp_setItemRupeeCount(long);
 int dComIfGs_isItemFirstBit(u8);
@@ -547,6 +551,7 @@ int dComIfGp_getSelectItemMaxNum(int);
 void dComIfGp_mapShow();
 void dComIfGp_mapHide();
 bool dComIfGp_checkMapShow();
+s32 dComIfGp_setHeapLockFlag(u8);
 
 inline void dComIfGp_setRStatus(u8 status, u8 flag) {
     g_dComIfG_gameInfo.play.setRStatus(status, flag);
@@ -967,7 +972,7 @@ inline int dComIfG_syncObjectRes(const char* name) {
     return g_dComIfG_gameInfo.mResControl.syncObjectRes(name);
 }
 
-inline JKRHeap* dComIfGp_getExpHeap2D() {
+inline JKRExpHeap* dComIfGp_getExpHeap2D() {
     return g_dComIfG_gameInfo.play.getExpHeap2D();
 }
 
@@ -1119,6 +1124,10 @@ inline daPy_py_c* dComIfGp_getLinkPlayer() {
     return (daPy_py_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR);
 }
 
+inline daPy_py_c* daPy_getLinkPlayerActorClass() {
+    return dComIfGp_getLinkPlayer();
+} 
+
 inline daAlink_c* daAlink_getAlinkActorClass() {
     return (daAlink_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR);
 }
@@ -1129,6 +1138,10 @@ inline JKRArchive* dComIfGp_getMain2DArchive() {
 
 inline JKRArchive* dComIfGp_getAnmArchive() {
     return g_dComIfG_gameInfo.play.getAnmArchive();
+}
+
+inline JKRArchive* dComIfGp_getCollectResArchive() {
+    return g_dComIfG_gameInfo.play.getCollectResArchive();
 }
 
 inline J2DGrafContext* dComIfGp_getCurrentGrafPort() {
@@ -1419,8 +1432,16 @@ inline void dComIfGd_set2DOpa(dDlst_base_c* dlst) {
     g_dComIfG_gameInfo.drawlist.set2DOpa(dlst);
 }
 
+inline void dComIfGd_set2DOpaTop(dDlst_base_c* dlst) {
+    g_dComIfG_gameInfo.drawlist.set2DOpaTop(dlst);
+}
+
 inline dMsgObject_c* dComIfGp_getMsgObjectClass() {
     return g_dComIfG_gameInfo.play.getMsgObjectClass();
+}
+
+inline void dComIfGp_offPauseFlag() {
+    g_dComIfG_gameInfo.play.offPauseFlag();
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

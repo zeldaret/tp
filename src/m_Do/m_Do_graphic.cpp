@@ -23,39 +23,6 @@ struct mDoMch_render_c {
     static void* mRenderModeObj[1 + 1 /* padding */];
 };
 
-struct _GXColor {};
-
-struct mDoGph_gInf_c {
-    struct bloom_c {
-        /* 80009544 */ void create();
-        /* 800095F8 */ void remove();
-        /* 80009650 */ void draw();
-    };
-
-    /* 80007E44 */ void create();
-    /* 80007F90 */ void beginRender();
-    /* 800080D0 */ void fadeOut(f32);
-    /* 80007FD8 */ void fadeOut(f32, _GXColor&);
-    /* 80008028 */ void fadeOut_f(f32, _GXColor&);
-    /* 800080A0 */ void onBlure(f32 const (*)[4]);
-    /* 80008078 */ void onBlure();
-    /* 80008330 */ void calcFade();
-
-    static u8 mFrameBufferTexObj[32];
-    static u8 mZbufferTexObj[32];
-    static u8 m_bloom[20];
-    static u8 mBlureMtx[48 + 4 /* padding */];
-    static u8 mBackColor[4];
-    static u8 mFadeColor[4];
-    static u8 mFader[4];
-    static u8 mFrameBufferTimg[4];
-    static u8 mFrameBufferTex[4];
-    static u8 mZbufferTimg[4];
-    static u8 mZbufferTex[4];
-    static f32 mFadeRate;
-    static f32 mFadeSpeed;
-};
-
 struct daPy_py_c {
     /* 8000B1E4 */ s32 getAtnActorID() const;
 };
@@ -101,36 +68,12 @@ struct cXyz {
     static f32 Zero[3];
 };
 
-struct _GXRenderModeObj {};
-
-struct Vec {};
-
-struct JUtility {
-    struct TColor {};
-};
-
-struct JUTXfb {
-    struct EXfbNumber {};
-
-    static u8 sManager[4 + 4 /* padding */];
-};
-
-struct JUTVideo {
-    /* 802E5198 */ void setRenderMode(_GXRenderModeObj const*);
-
-    static u8 sManager[4];
-};
-
 struct JUTProcBar {
     static u8 sManager[4];
 };
 
 struct JUTGamePad {
     static u8 mPadStatus[48];
-};
-
-struct JUTFader {
-    /* 802E5530 */ JUTFader(int, int, int, int, JUtility::TColor);
 };
 
 struct JUTDbPrint {
@@ -143,29 +86,8 @@ struct JMath {
 
 struct JKRSolidHeap {};
 
-struct JKRHeap {
-    /* 802CE4D4 */ void alloc(u32, int);
-    /* 802CE474 */ void alloc(u32, int, JKRHeap*);
-    /* 802CE548 */ void free(void*);
-
-    static u8 sCurrentHeap[4];
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TBox2 {};
-    /* TBox2<f32> */
-    struct TBox2__template0 {};
-};
-
 struct JFWSystem {
     static u8 systemConsole[4];
-};
-
-struct JFWDisplay {
-    /* 802721DC */ void createManager(_GXRenderModeObj const*, JKRHeap*, JUTXfb::EXfbNumber, bool);
-
-    static u8 sManager[4];
 };
 
 struct J3DSys {
@@ -278,72 +200,9 @@ extern "C" void setBuffer__8J2DPrintFUl();
 extern "C" void drawInit__6J3DSysFv();
 extern "C" void reinitGX__6J3DSysFv();
 extern "C" void PPCSync();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
-extern "C" void C_MTXLightPerspective();
-extern "C" void C_MTXLightOrtho();
-extern "C" void C_MTXPerspective();
-extern "C" void C_MTXOrtho();
-extern "C" void PSVECSquareDistance();
-extern "C" void VISetBlack();
-extern "C" void GXSetVtxDesc();
 extern "C" void GXClearVtxDesc();
-extern "C" void GXSetVtxAttrFmt();
-extern "C" void GXSetTexCoordGen2();
-extern "C" void GXSetNumTexGens();
 extern "C" void GXPixModeSync();
-extern "C" void GXBegin();
-extern "C" void GXSetCullMode();
-extern "C" void GXSetCoPlanar();
-extern "C" void GXSetTexCopySrc();
-extern "C" void GXSetTexCopyDst();
-extern "C" void GXSetCopyFilter();
-extern "C" void GXCopyTex();
-extern "C" void GXInitLightSpot();
-extern "C" void GXInitLightDistAttn();
-extern "C" void GXInitLightPos();
-extern "C" void GXInitLightDir();
-extern "C" void GXInitLightColor();
-extern "C" void GXLoadLightObjImm();
-extern "C" void GXSetChanMatColor();
-extern "C" void GXSetNumChans();
-extern "C" void GXSetChanCtrl();
-extern "C" void GXGetTexBufferSize();
-extern "C" void GXInitTexObj();
-extern "C" void GXInitTexObjLOD();
-extern "C" void GXLoadTexObj();
 extern "C" void GXInvalidateTexAll();
-extern "C" void GXSetNumIndStages();
-extern "C" void GXSetTevColorIn();
-extern "C" void GXSetTevAlphaIn();
-extern "C" void GXSetTevColorOp();
-extern "C" void GXSetTevAlphaOp();
-extern "C" void GXSetTevColor();
-extern "C" void GXSetTevColorS10();
-extern "C" void GXSetTevKAlphaSel();
-extern "C" void GXSetTevSwapMode();
-extern "C" void GXSetTevSwapModeTable();
-extern "C" void GXSetAlphaCompare();
-extern "C" void GXSetZTexture();
-extern "C" void GXSetTevOrder();
-extern "C" void GXSetNumTevStages();
-extern "C" void GXSetFog();
-extern "C" void GXSetFogRangeAdj();
-extern "C" void GXSetBlendMode();
-extern "C" void GXSetAlphaUpdate();
-extern "C" void GXSetZMode();
-extern "C" void GXSetZCompLoc();
-extern "C" void GXSetDither();
-extern "C" void GXProject();
-extern "C" void GXSetProjection();
-extern "C" void GXGetProjectionv();
-extern "C" void GXLoadPosMtxImm();
-extern "C" void GXSetCurrentMtx();
-extern "C" void GXLoadTexMtxImm();
-extern "C" void GXSetViewport();
-extern "C" void GXGetViewportv();
-extern "C" void GXSetScissor();
-extern "C" void GXSetClipMode();
 extern "C" void __cvt_fp2unsigned();
 extern "C" void _savegpr_17();
 extern "C" void _savegpr_21();
@@ -412,7 +271,7 @@ SECTION_SDATA u8 mDoGph_gInf_c::mFadeColor[4] = {
 };
 
 /* 80450BC8-80450BCC 0000C8 0004+00 2/2 38/38 1/1 .sbss            mFader__13mDoGph_gInf_c */
-u8 mDoGph_gInf_c::mFader[4];
+JUTFader* mDoGph_gInf_c::mFader;
 
 /* 80450BCC-80450BD0 0000CC 0004+00 3/3 8/8 1/1 .sbss            mFrameBufferTimg__13mDoGph_gInf_c
  */

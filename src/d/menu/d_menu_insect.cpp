@@ -15,11 +15,6 @@ struct mDoGph_gInf_c {
     static u8 mFader[4];
 };
 
-struct JKRHeap {
-    /* 802CE4D4 */ void alloc(u32, int);
-    /* 802CE548 */ void free(void*);
-};
-
 struct mDoDvdThd_mountArchive_c {
     /* 80015E14 */ void create(char const*, u8, JKRHeap*);
 };
@@ -38,18 +33,6 @@ struct dSv_event_flag_c {
 
 struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
-};
-
-struct J2DPane {};
-
-struct JKRArchive {};
-
-struct dSelect_cursor_c {
-    /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
-    /* 801950F4 */ void setPos(f32, f32, J2DPane*, bool);
-    /* 801951B0 */ void setParam(f32, f32, f32, f32, f32);
-    /* 801951C8 */ void setScale(f32);
-    /* 801952A0 */ void setAlphaRate(f32);
 };
 
 struct dMsgString_c {
@@ -72,14 +55,6 @@ struct dMsgScrn3Select_c {
     /* 8023A97C */ void getCharSpace();
 };
 
-struct ResTIMG {};
-
-struct J2DPicture {
-    /* 802FC708 */ J2DPicture(ResTIMG const*);
-};
-
-struct JUTFont {};
-
 struct JMSMesgEntry_c {};
 
 struct dMeter2Info_c {
@@ -90,60 +65,7 @@ struct dMeter2Info_c {
                                         J2DPicture*, void*, J2DPicture*, int);
 };
 
-struct STControl {
-    /* 8003219C */ void checkTrigger();
-    /* 8003242C */ void checkLeftTrigger();
-    /* 800324A8 */ void checkRightTrigger();
-    /* 80032524 */ void checkUpTrigger();
-    /* 800325A0 */ void checkDownTrigger();
-};
-
-struct CSTControl {};
-
-struct JKRExpHeap {};
-
-struct dMenu_Insect_c {
-    /* 801D8114 */ dMenu_Insect_c(JKRExpHeap*, STControl*, CSTControl*, u8);
-    /* 801D82F4 */ ~dMenu_Insect_c();
-    /* 801D8658 */ void _create();
-    /* 801D86C8 */ void _move();
-    /* 801D8760 */ void _draw();
-    /* 801D88EC */ void isSync();
-    /* 801D8914 */ void init();
-    /* 801D894C */ void _open();
-    /* 801D8B2C */ void _close();
-    /* 801D8C68 */ void wait_init();
-    /* 801D8CCC */ void wait_move();
-    /* 801D8E00 */ void explain_open_init();
-    /* 801D91E4 */ void explain_open_move();
-    /* 801D9264 */ void explain_move_init();
-    /* 801D9268 */ void explain_move_move();
-    /* 801D9290 */ void select_move_init();
-    /* 801D92DC */ void select_move_move();
-    /* 801D9504 */ void explain_close_init();
-    /* 801D95AC */ void explain_close_move();
-    /* 801D9644 */ void screenSetBase();
-    /* 801D98F0 */ void screenSetExplain();
-    /* 801D9BD0 */ void screenSetDoIcon();
-    /* 801D9D4C */ void getGetInsectNum();
-    /* 801D9DCC */ void getInsectItemID(int, int);
-    /* 801D9DE4 */ void isGetInsect(int, int);
-    /* 801D9E20 */ void isGiveInsect(int, int);
-    /* 801D9ED4 */ void isGiveInsect(u8);
-    /* 801D9E7C */ void isCatchInsect(u8);
-    /* 801D9F3C */ void isCatchNotGiveInsect(u8);
-    /* 801D9F8C */ void cursorMove();
-    /* 801DA1EC */ void setCursorPos();
-    /* 801DA2FC */ bool dpdMove();
-    /* 801DA304 */ void setAButtonString(u16);
-    /* 801DA3B4 */ void setBButtonString(u16);
-    /* 801DA464 */ void setHIO(bool);
-    /* 801DA630 */ void draw();
-};
-
 struct JAISoundID {};
-
-struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -151,33 +73,6 @@ struct Z2SeMgr {
 
 struct Z2AudioMgr {
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct J2DTextBox {
-    /* 80300658 */ void getStringPtr() const;
-    /* 8030074C */ void setString(s16, char const*, ...);
-};
-
-struct J2DGrafContext {};
-
-struct J2DScreen {
-    /* 802F8498 */ J2DScreen();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-};
-
-struct CPaneMgrAlpha {
-    /* 802555C8 */ void show();
-    /* 80255608 */ void hide();
-    /* 802557D0 */ void setAlphaRate(f32);
-    /* 80255828 */ void getAlphaRate();
-    /* 80255878 */ void alphaAnime(s16, u8, u8, u8);
-};
-
-struct CPaneMgr {
-    /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 802545B0 */ void paneTrans(f32, f32);
-    /* 80254EBC */ void getGlobalVtxCenter(J2DPane*, bool, s16);
 };
 
 //
@@ -555,7 +450,7 @@ asm void dMenu_Insect_c::_draw() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Insect_c::isSync() {
+asm bool dMenu_Insect_c::isSync() {
     nofralloc
 #include "asm/d/menu/d_menu_insect/isSync__14dMenu_Insect_cFv.s"
 }
@@ -982,7 +877,8 @@ asm void dMenu_Insect_c::setHIO(bool param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Insect_c::draw() {
+// asm void dMenu_Insect_c::draw() {
+extern "C" asm void draw__14dMenu_Insect_cFv() {
     nofralloc
 #include "asm/d/menu/d_menu_insect/draw__14dMenu_Insect_cFv.s"
 }

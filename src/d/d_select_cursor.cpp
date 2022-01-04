@@ -11,77 +11,8 @@
 // Types:
 //
 
-struct J2DPane {};
-
-struct dSelect_icon_c {
-    /* 80195A3C */ void animation();
-    /* 80195B40 */ void setAlpha(u8);
-    /* 80195B70 */ void setPos(J2DPane*, f32, f32);
-};
-
-struct J2DAnmTransformKey {
-    /* 801959C0 */ ~J2DAnmTransformKey();
-};
-
-struct J2DAnmTextureSRTKey {};
-
-struct JKRArchive {};
-
-struct J2DAnmColor {};
-
-struct dSelect_cursor_c {
-    /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
-    /* 801949EC */ ~dSelect_cursor_c();
-    /* 80194C30 */ void draw();
-    /* 80194CC0 */ void update();
-    /* 801950F4 */ void setPos(f32, f32, J2DPane*, bool);
-    /* 801951B0 */ void setParam(f32, f32, f32, f32, f32);
-    /* 801951C8 */ void setScale(f32);
-    /* 801952A0 */ void setAlphaRate(f32);
-    /* 80195330 */ void addAlpha();
-    /* 801953CC */ void decAlpha();
-    /* 80195460 */ void setBpkAnimation(J2DAnmColor*);
-    /* 801955F0 */ void setBtk0Animation(J2DAnmTextureSRTKey*);
-    /* 80195724 */ void setCursorAnimation();
-    /* 801958E0 */ void setBckAnimation(J2DAnmTransformKey*);
-    /* 80195940 */ void moveCenter(J2DPane*, f32, f32);
-};
-
-struct dSelect_cursorHIO_c {
-    /* 801941E4 */ dSelect_cursorHIO_c();
-    /* 80195978 */ ~dSelect_cursorHIO_c();
-};
-
-struct JKRFileLoader {
-    /* 802D4270 */ void getGlbResource(char const*, JKRFileLoader*);
-};
-
-struct JKRExpHeap {};
-
-struct J2DGrafContext {};
-
-struct J2DScreen {
-    /* 802F8498 */ J2DScreen();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-    /* 802F9690 */ void animation();
-};
-
 struct J2DAnmLoaderDataBase {
     /* 80308A6C */ void load(void const*);
-};
-
-struct CPaneMgrAlpha {
-    /* 802555C8 */ void show();
-    /* 80255608 */ void hide();
-    /* 8025564C */ void isVisible();
-    /* 802557D0 */ void setAlphaRate(f32);
-    /* 80255828 */ void getAlphaRate();
-};
-
-struct CPaneMgr {
-    /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 80254EBC */ void getGlobalVtxCenter(J2DPane*, bool, s16);
 };
 
 //
@@ -322,7 +253,8 @@ asm dSelect_cursor_c::~dSelect_cursor_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dSelect_cursor_c::draw() {
+// asm void dSelect_cursor_c::draw() {
+extern "C" asm void draw__16dSelect_cursor_cFv() {
     nofralloc
 #include "asm/d/d_select_cursor/draw__16dSelect_cursor_cFv.s"
 }
@@ -513,7 +445,8 @@ asm dSelect_cursorHIO_c::~dSelect_cursorHIO_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DAnmTransformKey::~J2DAnmTransformKey() {
+// asm J2DAnmTransformKey::~J2DAnmTransformKey() {
+extern "C" asm void __dt__18J2DAnmTransformKeyFv() {
     nofralloc
 #include "asm/d/d_select_cursor/__dt__18J2DAnmTransformKeyFv.s"
 }

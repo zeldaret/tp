@@ -26,11 +26,6 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct mDoGph_gInf_c {
-    static u8 mFrameBufferTimg[4];
-    static u8 mZbufferTimg[4];
-};
-
 struct dBgWKCol {
     /* 8007E7D0 */ void initKCollision(void*);
 };

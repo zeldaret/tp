@@ -112,6 +112,7 @@ public:
     }
     u8& getDirectUseItem() { return mDirectUseItem; }
     dMeterMap_c* getMeterMapClass() { return mMeterMap; }
+    void setMenuWindowClass(dMw_c* p_menu) { mMenuWindowClass = p_menu; }
     dMw_c* getMenuWindowClass() { return mMenuWindowClass; }
     void offUseButton(int pButton) { mUseButton &= ~(u16)pButton; }
     u16 getOilGaugeBackUp() { return mOilGaugeBackUp; }
@@ -134,6 +135,10 @@ public:
     bool isGameStatus(int status) { return mGameStatus & status; }
     void setMapKeyDirection(u16 direction) { mMapKeyDirection = direction; }
     bool isSub2DStatus(int flag) { return mSub2DStatus & (1 << flag); }
+    void offMenuInForce(int flag) { unk152 &= ~(1 << flag); } 
+    bool isMenuInForce(int flag) { return unk152 & (1 << flag); }
+    u16 getMapKeyDirection() { return mMapKeyDirection; }
+    u8 getWindowStatus() { return mWindowStatus; }
 
 public:
     /* 0x04 */ u8 unk4[4];
@@ -222,6 +227,7 @@ extern dMeter2Info_c g_meter2_info;
 
 void dMeter2Info_setSword(u8, bool);
 void dMeter2Info_set2DVibration();
+void dMeter2Info_set2DVibrationM();
 
 inline void dMeter2Info_Initialize() {
     g_meter2_info.init();
@@ -337,6 +343,30 @@ inline void dMeter2Info_setMapKeyDirection(u16 direction) {
 
 inline bool dMeter2Info_isSub2DStatus(int flag) {
     return g_meter2_info.isSub2DStatus(flag);
+}
+
+inline void dMeter2Info_offMenuInForce(int flag) {
+    g_meter2_info.offMenuInForce(flag);
+}
+
+inline bool dMeter2Info_isMenuInForce(int flag) {
+    return g_meter2_info.isMenuInForce(flag);
+}
+
+inline void dMeter2Info_setMenuWindowClass(dMw_c* p_menu) {
+    g_meter2_info.setMenuWindowClass(p_menu);
+}
+
+inline void dMeter2Info_resetWarpStatus() {
+    g_meter2_info.resetWarpStatus();
+}
+
+inline u16 dMeter2Info_getMapKeyDirection() {
+    return g_meter2_info.getMapKeyDirection();
+}
+
+inline u8 dMeter2Info_getWindowStatus() {
+    return g_meter2_info.getWindowStatus();
 }
 
 #endif /* D_METER_D_METER2_INFO_H */

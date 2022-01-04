@@ -19,34 +19,6 @@ struct mDoGph_gInf_c {
     static u8 mFader[4];
 };
 
-struct J3DMaterialTable {};
-
-struct J3DModelData {};
-
-struct J3DAnmTevRegKey {
-    /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
-};
-
-struct mDoExt_brkAnm {
-    /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
-    /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct J3DAnmTransform {};
-
-struct mDoExt_bckAnm {
-    /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
-    /* 8000D9CC */ void entry(J3DModelData*, f32);
-};
-
-struct mDoExt_baseAnm {
-    /* 8000D428 */ void play();
-};
-
-struct cXyz {
-    static f32 Zero[3];
-};
-
 struct daAlink_c {
     /* 80140064 */ void setShieldChange();
     /* 801406A8 */ void initStatusWindow();
@@ -76,24 +48,6 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct J2DPane {};
-
-struct JKRArchive {};
-
-struct dSelect_cursor_c {
-    /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
-    /* 801950F4 */ void setPos(f32, f32, J2DPane*, bool);
-    /* 801951B0 */ void setParam(f32, f32, f32, f32, f32);
-    /* 801952A0 */ void setAlphaRate(f32);
-};
-
-struct dKy_tevstr_c {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
 struct dMsgString_c {
     /* 80249C20 */ dMsgString_c();
     /* 80249D28 */ ~dMsgString_c();
@@ -118,25 +72,6 @@ struct dMenu_save_c {
     /* 801F0B28 */ void _delete();
     /* 801F1048 */ void _move();
     /* 801F69B8 */ void _draw();
-};
-
-struct STControl {
-    /* 8003219C */ void checkTrigger();
-    /* 8003242C */ void checkLeftTrigger();
-    /* 800324A8 */ void checkRightTrigger();
-    /* 80032524 */ void checkUpTrigger();
-    /* 800325A0 */ void checkDownTrigger();
-};
-
-struct CSTControl {};
-
-struct JKRHeap {
-    /* 802CE5CC */ void freeAll();
-    /* 802CE784 */ void getTotalFreeSize();
-};
-
-struct JKRExpHeap {
-    /* 802CEE2C */ void create(u32, JKRHeap*, bool);
 };
 
 struct dMenu_Skill_c {
@@ -182,132 +117,7 @@ struct dMenu_Fishing_c {
     /* 801C5470 */ void _close();
 };
 
-struct dMenu_Collect_c {
-    /* 801B78C0 */ dMenu_Collect_c(JKRExpHeap*, STControl*, CSTControl*);
-    /* 801B795C */ ~dMenu_Collect_c();
-    /* 801B7A0C */ void _create();
-    /* 801B7A44 */ void _delete();
-    /* 801B7A7C */ void _move();
-    /* 801B7AC0 */ void draw();
-};
-
-struct J2DAnmTextureSRTKey {};
-
-struct dMenu_Collect2D_c {
-    /* 801AFD48 */ dMenu_Collect2D_c(JKRExpHeap*, STControl*, CSTControl*);
-    /* 801AFE34 */ ~dMenu_Collect2D_c();
-    /* 801AFEA4 */ void _create();
-    /* 801B0100 */ void _delete();
-    /* 801B0570 */ void initialize();
-    /* 801B05A8 */ void isFishIconVisible();
-    /* 801B061C */ void isSkillIconVisible();
-    /* 801B071C */ void isInsectIconVisible();
-    /* 801B074C */ void screenSet();
-    /* 801B1C3C */ void animationSet();
-    /* 801B1CE0 */ void btkAnimeLoop0(J2DAnmTextureSRTKey*);
-    /* 801B1EDC */ void setBackAlpha();
-    /* 801B1FAC */ void cursorMove();
-    /* 801B27EC */ void cursorPosSet();
-    /* 801B2A74 */ void changeSword();
-    /* 801B2D00 */ void changeShield();
-    /* 801B2EE4 */ void changeClothe();
-    /* 801B30C8 */ void setArrowMaxNum(u8);
-    /* 801B3340 */ void setWalletMaxNum(u16);
-    /* 801B3524 */ void setSmellType();
-    /* 801B3640 */ void setHeartPiece();
-    /* 801B370C */ void setPohMaxNum(u8);
-    /* 801B39D0 */ void setEquipItemFrameColorSword(int);
-    /* 801B3CF4 */ void setEquipItemFrameColorShield(int);
-    /* 801B3FDC */ void setEquipItemFrameColorClothes(int);
-    /* 801B42D8 */ void setHIO(bool);
-    /* 801B46FC */ void getItemTag(int, int, bool);
-    /* 801B473C */ void wait_init();
-    /* 801B48D0 */ void wait_proc();
-    /* 801B4E14 */ void save_open_init();
-    /* 801B4EC0 */ void save_open_proc();
-    /* 801B4F30 */ void save_move_init();
-    /* 801B4F6C */ void save_move_proc();
-    /* 801B4FDC */ void save_close_init();
-    /* 801B5018 */ void save_close_proc();
-    /* 801B5094 */ void option_open_init();
-    /* 801B513C */ void option_open_proc();
-    /* 801B51AC */ void option_move_init();
-    /* 801B51E8 */ void option_move_proc();
-    /* 801B5258 */ void option_close_init();
-    /* 801B5294 */ void option_close_proc();
-    /* 801B5310 */ void letter_open_init();
-    /* 801B53AC */ void letter_open_proc();
-    /* 801B541C */ void letter_move_init();
-    /* 801B5458 */ void letter_move_proc();
-    /* 801B54C8 */ void letter_close_init();
-    /* 801B5504 */ void letter_close_proc();
-    /* 801B5580 */ void fishing_open_init();
-    /* 801B561C */ void fishing_open_proc();
-    /* 801B568C */ void fishing_move_init();
-    /* 801B56C8 */ void fishing_move_proc();
-    /* 801B5738 */ void fishing_close_init();
-    /* 801B5774 */ void fishing_close_proc();
-    /* 801B57F0 */ void skill_open_init();
-    /* 801B588C */ void skill_open_proc();
-    /* 801B58FC */ void skill_move_init();
-    /* 801B5938 */ void skill_move_proc();
-    /* 801B59A8 */ void skill_close_init();
-    /* 801B59E4 */ void skill_close_proc();
-    /* 801B5A60 */ void insect_open_init();
-    /* 801B5B00 */ void insect_open_proc();
-    /* 801B5B70 */ void insect_move_init();
-    /* 801B5BAC */ void insect_move_proc();
-    /* 801B5C1C */ void insect_close_init();
-    /* 801B5C58 */ void insect_close_proc();
-    /* 801B5CD4 */ void _move();
-    /* 801B5D70 */ void _draw();
-    /* 801B5F48 */ void drawTop();
-    /* 801B5F84 */ void isKeyCheck();
-    /* 801B5FAC */ bool isOutCheck();
-    /* 801B5FB4 */ void setAButtonString(u16);
-    /* 801B60B8 */ void setBButtonString(u16);
-    /* 801B61BC */ void setItemNameString(u8, u8);
-    /* 801B6344 */ void setItemNameStringNull();
-    /* 801B7F00 */ void draw();
-};
-
-struct dMenu_Collect3D_c {
-    /* 801B6454 */ dMenu_Collect3D_c(JKRExpHeap*, dMenu_Collect2D_c*, CSTControl*);
-    /* 801B6538 */ ~dMenu_Collect3D_c();
-    /* 801B65A8 */ void _create();
-    /* 801B6694 */ void _delete();
-    /* 801B66C8 */ void _move(u8, u8);
-    /* 801B696C */ void draw();
-    /* 801B6A30 */ void setJ3D(char const*, char const*, char const*);
-    /* 801B6D30 */ void set_mtx();
-    /* 801B6E70 */ void animePlay();
-    /* 801B6FB0 */ void animeEntry();
-    /* 801B7014 */ void createMaskModel();
-    /* 801B71C4 */ void createMirrorModel();
-    /* 801B7434 */ void getCrystalNum();
-    /* 801B749C */ void getMirrorNum();
-    /* 801B7504 */ void getMaskMdlVisible();
-    /* 801B75E8 */ void setupItem3D(f32 (*)[4]);
-    /* 801B7660 */ void toItem3Dpos(f32, f32, f32, cXyz*);
-    /* 801B774C */ void calcViewMtx(f32 (*)[4]);
-
-    static f32 mViewOffsetY[1 + 1 /* padding */];
-};
-
-struct dMenu_Collect2DTop_c {
-    /* 801B77A4 */ void draw();
-    /* 801B7EB8 */ ~dMenu_Collect2DTop_c();
-};
-
-struct dDlst_base_c {};
-
-struct dDlst_list_c {
-    /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
-};
-
 struct JAISoundID {};
-
-struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -315,20 +125,6 @@ struct Z2SeMgr {
 
 struct Z2AudioMgr {
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct ResTIMG {};
-
-struct JKRSolidHeap {
-    /* 802D0BF4 */ void adjustSize();
-};
-
-struct JKRFileLoader {
-    /* 802D4270 */ void getGlbResource(char const*, JKRFileLoader*);
-};
-
-struct J3DVertexBuffer {
-    /* 80310FD8 */ void init();
 };
 
 struct J3DTexNoAnm {
@@ -355,11 +151,6 @@ struct J3DModelLoaderDataBase {
     /* 803346BC */ void load(void const*, u32);
 };
 
-struct J3DModel {
-    /* 80327100 */ void initialize();
-    /* 80327184 */ void entryModelData(J3DModelData*, u32, u32);
-};
-
 struct J3DMaterialAnm {
     /* 8032C320 */ void initialize();
 };
@@ -369,54 +160,14 @@ struct J3DMatColorAnm {
     /* 8003B2F4 */ J3DMatColorAnm();
 };
 
-struct J3DLightObj {
-    /* 80018C0C */ J3DLightObj();
-};
-
-struct J3DLightInfo {
-    /* 803256C4 */ void operator=(J3DLightInfo const&);
-};
-
-struct J3DFrameCtrl {
-    /* 803283FC */ void init(s16);
-};
-
 struct J3DAnmLoaderDataBaseFlag {};
 
 struct J3DAnmLoaderDataBase {
     /* 80337B40 */ void load(void const*, J3DAnmLoaderDataBaseFlag);
 };
 
-struct J2DTextBox {
-    /* 80300658 */ void getStringPtr() const;
-    /* 8030074C */ void setString(s16, char const*, ...);
-};
-
-struct J2DGrafContext {};
-
-struct J2DScreen {
-    /* 802F8498 */ J2DScreen();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-    /* 802F9690 */ void animation();
-};
-
-struct J2DPicture {
-    /* 802FC708 */ J2DPicture(ResTIMG const*);
-};
-
 struct J2DAnmLoaderDataBase {
     /* 80308A6C */ void load(void const*);
-};
-
-struct CPaneMgrAlpha {
-    /* 802557D0 */ void setAlphaRate(f32);
-};
-
-struct CPaneMgr {
-    /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 802545B0 */ void paneTrans(f32, f32);
-    /* 80254EBC */ void getGlobalVtxCenter(J2DPane*, bool, s16);
 };
 
 //
@@ -663,13 +414,6 @@ extern "C" void searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData();
 extern "C" void initialize__14J3DMaterialAnmFv();
 extern "C" void load__22J3DModelLoaderDataBaseFPCvUl();
 extern "C" void load__20J3DAnmLoaderDataBaseFPCv24J3DAnmLoaderDataBaseFlag();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXInverse();
-extern "C" void PSMTXTrans();
-extern "C" void PSMTXMultVec();
-extern "C" void C_MTXPerspective();
-extern "C" void GXSetProjection();
-extern "C" void GXSetViewport();
 extern "C" void __construct_array();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_17();
@@ -687,8 +431,6 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void strcpy();
-extern "C" void tan();
-extern "C" extern u8 const j3dDefaultLightInfo[52];
 extern "C" extern void* __vt__12J3DFrameCtrl[3];
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
@@ -700,7 +442,6 @@ extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_drawHIO[3880];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" f32 Zero__4cXyz[3];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 mFader__13mDoGph_gInf_c[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
@@ -2209,7 +1950,7 @@ asm void dMenu_Collect2D_c::drawTop() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Collect2D_c::isKeyCheck() {
+asm bool dMenu_Collect2D_c::isKeyCheck() {
     nofralloc
 #include "asm/d/menu/d_menu_collect/isKeyCheck__17dMenu_Collect2D_cFv.s"
 }
@@ -2299,7 +2040,8 @@ asm dMenu_Collect3D_c::dMenu_Collect3D_c(JKRExpHeap* param_0, dMenu_Collect2D_c*
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMenu_Collect3D_c::~dMenu_Collect3D_c() {
+// asm dMenu_Collect3D_c::~dMenu_Collect3D_c() {
+extern "C" asm void __dt__17dMenu_Collect3D_cFv() {
     nofralloc
 #include "asm/d/menu/d_menu_collect/__dt__17dMenu_Collect3D_cFv.s"
 }
@@ -2563,11 +2305,7 @@ asm void dMenu_Collect3D_c::getMaskMdlVisible() {
 /* ############################################################################################## */
 /* 80450720-80450728 0001A0 0004+04 1/1 0/0 1/1 .sdata           mViewOffsetY__17dMenu_Collect3D_c
  */
-SECTION_SDATA f32 dMenu_Collect3D_c::mViewOffsetY[1 + 1 /* padding */] = {
-    -100.0f,
-    /* padding */
-    0.0f,
-};
+SECTION_SDATA f32 dMenu_Collect3D_c::mViewOffsetY = -100.0f;
 
 /* 80453FC4-80453FC8 0025C4 0004+00 3/3 0/0 0/0 .sdata2          @7944 */
 SECTION_SDATA2 static f32 lit_7944 = 608.0f;
@@ -2630,7 +2368,8 @@ asm void dMenu_Collect3D_c::calcViewMtx(f32 (*param_0)[4]) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Collect2DTop_c::draw() {
+// asm void dMenu_Collect2DTop_c::draw() {
+extern "C" asm void draw__20dMenu_Collect2DTop_cFv() {
     nofralloc
 #include "asm/d/menu/d_menu_collect/draw__20dMenu_Collect2DTop_cFv.s"
 }
@@ -2651,7 +2390,8 @@ asm dMenu_Collect_c::dMenu_Collect_c(JKRExpHeap* param_0, STControl* param_1, CS
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMenu_Collect_c::~dMenu_Collect_c() {
+// asm dMenu_Collect_c::~dMenu_Collect_c() {
+extern "C" asm void __dt__15dMenu_Collect_cFv() {
     nofralloc
 #include "asm/d/menu/d_menu_collect/__dt__15dMenu_Collect_cFv.s"
 }
@@ -2726,7 +2466,8 @@ asm dMenu_Collect2DTop_c::~dMenu_Collect2DTop_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Collect2D_c::draw() {
+// asm void dMenu_Collect2D_c::draw() {
+extern "C" asm void draw__17dMenu_Collect2D_cFv() {
     nofralloc
 #include "asm/d/menu/d_menu_collect/draw__17dMenu_Collect2D_cFv.s"
 }
