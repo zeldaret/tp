@@ -742,51 +742,6 @@ def remove_unused_asm(check):
 
 
 #
-# Format
-#
-@tp.command(name="format")
-@click.option("--debug/--no-debug")
-@click.option(
-    "--thread-count",
-    "-j",
-    "thread_count",
-    help="This option is passed forward to all 'make' commands.",
-    default=4,
-)
-@click.option(
-    "--game-path",
-    type=PathPath(file_okay=False, dir_okay=True),
-    default=DEFAULT_GAME_PATH,
-    required=True,
-)
-@click.option(
-    "--build-path",
-    type=PathPath(file_okay=False, dir_okay=True),
-    default=DEFAULT_BUILD_PATH,
-    required=True,
-)
-def format(debug, thread_count, game_path, build_path):
-    """Format all .cpp/.h files using clang-format"""
-
-    if debug:
-        LOG.setLevel(logging.DEBUG)
-
-    text = Text("--- Clang-Format")
-    text.stylize("bold magenta")
-    CONSOLE.print(text)
-
-    if clang_format(thread_count):
-        text = Text("    OK")
-        text.stylize("bold green")
-        CONSOLE.print(text)
-    else:
-        text = Text("    ERR")
-        text.stylize("bold red")
-        CONSOLE.print(text)
-        sys.exit(1)
-
-
-#
 # Pull-Request
 #
 @tp.command(name="pull-request")
@@ -832,21 +787,6 @@ def pull_request(debug, rels, thread_count, game_path, build_path):
     CONSOLE.print(text)
 
     remove_unused_asm(False)
-
-    #
-    text = Text("--- Clang-Format")
-    text.stylize("bold magenta")
-    CONSOLE.print(text)
-
-    if clang_format(thread_count):
-        text = Text("    OK")
-        text.stylize("bold green")
-        CONSOLE.print(text)
-    else:
-        text = Text("    ERR")
-        text.stylize("bold red")
-        CONSOLE.print(text)
-        sys.exit(1)
 
     #
     text = Text("--- Full Rebuild")
@@ -1043,41 +983,6 @@ def find_used_asm_files(non_matching, use_progress_bar=True):
     LOG.debug(f"find_used_asm_files: found {len(includes)} included .s files")
 
     return includes
-
-
-def clang_format_impl(file):
-    cmd = ["clang-format-10", "-i", str(file)]
-    cf = subprocess.run(args=cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
-
-def clang_format(thread_count):
-
-    cpp_files = find_all_cpp_files()
-    h_files = find_all_header_files()
-    files = cpp_files | h_files
-
-    with mp.Pool(processes=2 * thread_count) as pool:
-        result = pool.map_async(clang_format_impl, files)
-        jobs_left = len(files)
-        with Progress(
-            console=CONSOLE, transient=True, refresh_per_second=5
-        ) as progress:
-            task = progress.add_task(f"clang-formating...", total=len(files))
-
-            while result._number_left > 0:
-                left = result._number_left * result._chunksize
-                change = jobs_left - left
-                jobs_left = left
-                progress.update(
-                    task,
-                    description=f"clang-formating... ({left} left)",
-                    advance=change,
-                )
-                time.sleep(1 / 5)
-
-            progress.update(task, advance=jobs_left)
-
-    return True
 
 
 def rebuild(thread_count, include_rels):
