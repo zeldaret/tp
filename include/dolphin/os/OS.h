@@ -306,7 +306,7 @@ inline void* OSPhysicalToCached(u32 offset) {
 
 static inline u8 __OSf32tou8(register f32 src) {
     f32 tmp;
-    register f32 *p = &tmp;
+    register f32* p = &tmp;
     register u8 ret;
 
     asm

@@ -1,10 +1,10 @@
 #ifndef D_MENU_D_MENU_SKILL_H
 #define D_MENU_D_MENU_SKILL_H
 
-#include "dolphin/types.h"
+#include "JSystem/J2DGraph/J2DPicture.h"
 #include "d/d_lib.h"
 #include "d/d_select_cursor.h"
-#include "JSystem/J2DGraph/J2DPicture.h"
+#include "dolphin/types.h"
 
 class mDoDvdThd_mountArchive_c;
 class dMsgString_c;
@@ -39,7 +39,7 @@ public:
     /* 801F93C0 */ void setNameString(u16);
     /* 801F9470 */ void getSkillNum();
     /* 801F9500 */ void setHIO(bool);
-    
+
     /* 801F9A08 */ virtual void draw();
     /* 801F7348 */ virtual ~dMenu_Skill_c();
 

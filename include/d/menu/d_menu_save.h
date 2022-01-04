@@ -3,8 +3,8 @@
 
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "d/d_lib.h"
-#include "dolphin/types.h"
 #include "d/d_select_cursor.h"
+#include "dolphin/types.h"
 
 class dMsgString_c;
 class mDoDvdThd_command_c;
@@ -173,14 +173,14 @@ private:
     /* 0x002C */ dSelect_cursor_c* mSelIcon;
     /* 0x0030 */ dFile_warning_c* field_0x30;
     /* 0x0034 */ dFile_info_c* field_0x34[3];
-    /* 0x0040 */ void* field_0x40;  // bck
-    /* 0x0044 */ void* field_0x44;  // bck
-    /* 0x0048 */ void* field_0x48;  // bck
-    /* 0x004C */ void* field_0x4c;  // bck
+    /* 0x0040 */ void* field_0x40;
+    /* 0x0044 */ void* field_0x44;
+    /* 0x0048 */ void* field_0x48;
+    /* 0x004C */ void* field_0x4c;
     /* 0x0050 */ s32 field_0x50;
     /* 0x0054 */ u8 field_0x54;
     /* 0x0058 */ CPaneMgr* field_0x58;
-    /* 0x005C */ int field_0x5c; 
+    /* 0x005C */ int field_0x5c;
     /* 0x0060 */ int field_0x60;
     /* 0x0064 */ u8 field_0x64;
     /* 0x0064 */ u8 field_0x65;
@@ -215,15 +215,15 @@ private:
     /* 0x0132 */ u8 field_0x132[2];
     /* 0x0134 */ u8 field_0x134[2];
     /* 0x0138 */ CPaneMgr* field_0x138[2];
-    /* 0x0140 */ void* field_0x140;  // bpk
+    /* 0x0140 */ void* field_0x140;
     /* 0x0144 */ int field_0x144;
-    /* 0x0148 */ void* field_0x148;  // btk
+    /* 0x0148 */ void* field_0x148;
     /* 0x014C */ int field_0x14c;
     /* 0x0150 */ void* field_0x150;
     /* 0x0154 */ int field_0x154;
-    /* 0x0158 */ void* field_0x158;  // btk
+    /* 0x0158 */ void* field_0x158;
     /* 0x015C */ int field_0x15c;
-    /* 0x0160 */ void* field_0x160;  // brk
+    /* 0x0160 */ void* field_0x160;
     /* 0x0164 */ int field_0x164;
     /* 0x0168 */ CPaneMgr* field_0x168[2];
     /* 0x0170 */ u8 field_0x170[8];
@@ -260,8 +260,8 @@ private:
     /* 0x01C0 */ u8 field_0x1c0;
     /* 0x01C4 */ int field_0x1c4;
     /* 0x01C8 */ int field_0x1c8;
-    /* 0x01CC */ void* field_0x1cc;  // func
-    /* 0x01D0 */ u8 field_0x1d0[0xA94 * 3];  // 3 savefiles buffer
+    /* 0x01CC */ void* field_0x1cc;
+    /* 0x01D0 */ u8 field_0x1d0[0xA94 * 3];
     /* 0x218C */ dMsgScrnExplain_c* mpScrnExplain;
     /* 0x2190 */ u8 field_0x2190;
     /* 0x2192 */ u16 field_0x2192;

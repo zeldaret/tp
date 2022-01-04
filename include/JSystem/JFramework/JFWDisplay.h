@@ -1,12 +1,12 @@
 #ifndef JFWDISPLAY_H
 #define JFWDISPLAY_H
 
-#include "dolphin/types.h"
-#include "dolphin/gx/GX.h"
-#include "JSystem/JUtility/JUTXfb.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JUtility/TColor.h"
 #include "JSystem/JUtility/JUTFader.h"
+#include "JSystem/JUtility/JUTXfb.h"
+#include "JSystem/JUtility/TColor.h"
+#include "dolphin/gx/GX.h"
+#include "dolphin/types.h"
 
 class JFWDisplay {
 public:

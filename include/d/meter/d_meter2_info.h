@@ -135,7 +135,7 @@ public:
     bool isGameStatus(int status) { return mGameStatus & status; }
     void setMapKeyDirection(u16 direction) { mMapKeyDirection = direction; }
     bool isSub2DStatus(int flag) { return mSub2DStatus & (1 << flag); }
-    void offMenuInForce(int flag) { unk152 &= ~(1 << flag); } 
+    void offMenuInForce(int flag) { unk152 &= ~(1 << flag); }
     bool isMenuInForce(int flag) { return unk152 & (1 << flag); }
     u16 getMapKeyDirection() { return mMapKeyDirection; }
     u8 getWindowStatus() { return mWindowStatus; }

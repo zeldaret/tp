@@ -1,13 +1,13 @@
 #ifndef D_MENU_D_MENU_WINDOW_H
 #define D_MENU_D_MENU_WINDOW_H
 
+#include "d/d_drawlist.h"
+#include "d/menu/d_menu_collect.h"
 #include "d/meter/d_meter2_info.h"
+#include "d/msg/d_msg_class.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
-#include "d/d_drawlist.h"
-#include "d/menu/d_menu_collect.h"
-#include "d/msg/d_msg_class.h"
 
 class dMenu_Ring_c;
 class dMenu_Dmap_c;
@@ -237,19 +237,5 @@ static int dMw_Delete(dMw_c*);
 static int dMw_Create(msg_class*);
 
 typedef int (*dMw_Method)(dMw_c*);
-
-typedef void (dMw_c::*dMw_init_func)(u8);
-struct dMw_init_proc {
-    /* 0x0 */ u32 field_0x0;
-    /* 0x4 */ u32 field_0x4;
-    /* 0x8 */ dMw_init_func init_func;
-};
-
-typedef void (dMw_c::*dMw_proc_func)();
-struct dMw_move_proc {
-    /* 0x0 */ u32 field_0x0;
-    /* 0x4 */ u32 field_0x4;
-    /* 0x8 */ dMw_proc_func proc_func;
-};
 
 #endif /* D_MENU_D_MENU_WINDOW_H */

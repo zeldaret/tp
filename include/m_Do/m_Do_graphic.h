@@ -1,9 +1,9 @@
 #ifndef M_DO_M_DO_GRAPHIC_H
 #define M_DO_M_DO_GRAPHIC_H
 
-#include "dolphin/gx/GX.h"
-#include "JSystem/JUtility/JUTFader.h"
 #include "JSystem/JFramework/JFWDisplay.h"
+#include "JSystem/JUtility/JUTFader.h"
+#include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 
 void mDoGph_Create();

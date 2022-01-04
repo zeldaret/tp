@@ -4,24 +4,24 @@
 //
 
 #include "d/menu/d_menu_window.h"
+#include "Z2AudioLib/Z2AudioMgr.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/menu/d_menu_collect.h"
-#include "d/menu/d_menu_ring.h"
-#include "d/menu/d_menu_skill.h"
-#include "d/menu/d_menu_save.h"
-#include "d/menu/d_menu_letter.h"
-#include "d/menu/d_menu_fmap.h"
 #include "d/menu/d_menu_dmap.h"
 #include "d/menu/d_menu_fishing.h"
+#include "d/menu/d_menu_fmap.h"
 #include "d/menu/d_menu_insect.h"
+#include "d/menu/d_menu_letter.h"
 #include "d/menu/d_menu_option.h"
+#include "d/menu/d_menu_ring.h"
+#include "d/menu/d_menu_save.h"
+#include "d/menu/d_menu_skill.h"
 #include "d/menu/d_menu_window_HIO.h"
 #include "d/meter/d_meter_HIO.h"
 #include "d/msg/d_msg_object.h"
-#include "f_op/f_op_msg_mng.h"
-#include "Z2AudioLib/Z2AudioMgr.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_msg_mng.h"
 
 //
 // Forward References:
@@ -1246,12 +1246,17 @@ void dMw_c::collect_move_init(u8 menu_status) {
 
 /* 801FA46C-801FA538 1F4DAC 00CC+00 1/0 0/0 0/0 .text            collect_close_init__5dMw_cFUc */
 void dMw_c::collect_close_init(u8 param_0) {
-    if (mpMenuCollect->getSubWindowOpenCheck() != 1 && mpMenuCollect->getSubWindowOpenCheck() != 2) {
-        if (mpMenuCollect->getSubWindowOpenCheck() == 3 || mpMenuCollect->getSubWindowOpenCheck() == 4 ||
-            mpMenuCollect->getSubWindowOpenCheck() == 5 || mpMenuCollect->getSubWindowOpenCheck() == 6) {
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_SUB_IN, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    if (mpMenuCollect->getSubWindowOpenCheck() != 1 &&
+        mpMenuCollect->getSubWindowOpenCheck() != 2) {
+        if (mpMenuCollect->getSubWindowOpenCheck() == 3 ||
+            mpMenuCollect->getSubWindowOpenCheck() == 4 ||
+            mpMenuCollect->getSubWindowOpenCheck() == 5 ||
+            mpMenuCollect->getSubWindowOpenCheck() == 6) {
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_SUB_IN, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                            -1.0f, 0);
         } else {
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_OUT, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_OUT, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                            0);
             dMeter2Info_set2DVibrationM();
         }
     }
@@ -1498,7 +1503,8 @@ void dMw_c::collect_move_proc() {
     if (mpMenuCollect->getSubWindowOpenCheck()) {
         mMenuStatus = COLLECT_CLOSE;
     } else {
-        if ((dMw_isPush_S_Button() && !mpMenuCollect->isKeyCheck()) || mpMenuCollect->isOutCheck()) {
+        if ((dMw_isPush_S_Button() && !mpMenuCollect->isKeyCheck()) ||
+            mpMenuCollect->isOutCheck()) {
             mMenuStatus = COLLECT_CLOSE;
         } else {
             mpMenuCollect->_move();
@@ -1563,7 +1569,8 @@ void dMw_c::fmap_move_proc() {
 
         if (g_fmapHIO.field_0x2f9 != 0) {
             mMenuStatus = FMAP_CLOSE;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_CLOSE_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_CLOSE_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                            -1.0f, 0);
         }
 
         if (dMeter2Info_getMeterMapClass() != NULL) {
@@ -1609,24 +1616,27 @@ void dMw_c::dmap_move_proc() {
         dMeter2Info_setMapKeyDirection(0x200);
         mMenuStatus = DMAP_CLOSE;
         mpMenuDmap->setInOutDir(3);
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_CLOSE_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_CLOSE_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                        0);
     } else if (nextStatus == 2) {
         dMeter2Info_setMapStatus(0);
         dMeter2Info_setMapKeyDirection(0x400);
         mMenuStatus = DMAP_CLOSE;
         dMeter2Info_getMeterMapClass()->setDispPosOutsideFlg_SE_On();
         mpMenuDmap->setInOutDir(1);
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_CLOSE_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_CLOSE_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                        0);
     } else if (nextStatus == 3) {
         if (dMeterMap_c::isEnableDispMapAndMapDispSizeTypeNo()) {
             dMeter2Info_setMapStatus(1);
         } else {
             dMeter2Info_setMapStatus(0);
         }
-        
+
         mMenuStatus = DMAP_CLOSE;
         mpMenuDmap->setInOutDir(2);
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_CLOSE_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_CLOSE_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                        0);
     } else {
         mpMenuDmap->_move();
     }
@@ -1713,7 +1723,7 @@ void dMw_c::collect_option_close_proc() {
 void dMw_c::collect_letter_open_proc() {
     if (mpMenuLetter->getStatus() == 1) {
         mpMenuLetter->_open();
-        
+
         if (field_0x152 == 0 && mpMenuLetter->isSync()) {
             dMw_fade_in();
             field_0x152 = 1;
@@ -1752,7 +1762,7 @@ void dMw_c::collect_letter_close_proc() {
 void dMw_c::collect_fishing_open_proc() {
     if (mpMenuFishing->getStatus() == 1) {
         mpMenuFishing->_open();
-        
+
         if (field_0x152 == 0 && mpMenuFishing->isSync()) {
             dMw_fade_in();
             field_0x152 = 1;
@@ -1868,7 +1878,7 @@ void dMw_c::insect_open_proc() {
         dComIfGp_setHeapLockFlag(1);
         dMw_insect_create(1);
         mMenuStatus = INSECT_AGITHA_OPEN2;
-    } 
+    }
 }
 
 /* 801FBC78-801FBD08 1F65B8 0090+00 1/0 0/0 0/0 .text            insect_open2_proc__5dMw_cFv */
@@ -1969,7 +1979,7 @@ void dMw_c::dMw_capture_delete() {
 void dMw_c::dMw_ring_create(u8 param_0) {
     markMemSize();
     dComIfGp_setHeapLockFlag(1);
-    
+
     mpMenuRing = new dMenu_Ring_c(mpHeap, mpStick, mpCStick, param_0);
     mpMenuRing->_create();
 
@@ -2006,8 +2016,7 @@ void dMw_c::dMw_collect_create() {
 
     if (mDoCPd_c::getHoldLockL(mDoCPd_c::PAD_0)) {
         dMw_onButtonBit(1);
-    }
-    else if (mDoCPd_c::getHoldLockR(mDoCPd_c::PAD_0)) {
+    } else if (mDoCPd_c::getHoldLockR(mDoCPd_c::PAD_0)) {
         dMw_onButtonBit(2);
     }
 }
@@ -2029,14 +2038,10 @@ void dMw_c::dMw_fmap_create() {
     dComIfGp_setHeapLockFlag(2);
 
     u8 tmp = 0;
-    if (dMeter2Info_getMapKeyDirection() == 0x400 ||
-        dMeter2Info_getMapStatus() == 3 ||
-        dMeter2Info_getMapStatus() == 4 ||
-        dMeter2Info_getMapStatus() == 5 ||
-        dMeter2Info_getMapStatus() == 7 ||
-        dMeter2Info_getMapStatus() == 8 ||
-        dMeter2Info_getMapStatus() == 9 ||
-        dMeter2Info_getMapStatus() == 6) {
+    if (dMeter2Info_getMapKeyDirection() == 0x400 || dMeter2Info_getMapStatus() == 3 ||
+        dMeter2Info_getMapStatus() == 4 || dMeter2Info_getMapStatus() == 5 ||
+        dMeter2Info_getMapStatus() == 7 || dMeter2Info_getMapStatus() == 8 ||
+        dMeter2Info_getMapStatus() == 9 || dMeter2Info_getMapStatus() == 6) {
         tmp = 1;
     } else if (dMeter2Info_getMapKeyDirection() == 0x200) {
         tmp = 3;
@@ -2045,8 +2050,9 @@ void dMw_c::dMw_fmap_create() {
     } else if (dMeter2Info_getMapKeyDirection() == 0x80) {
         tmp = 3;
     }
-    
-    mpMenuFmap = new dMenu_Fmap_c(mpHeap, mpStick, mpCStick, field_0x14E, field_0x14F, field_0x150, field_0x13c, field_0x140, tmp);
+
+    mpMenuFmap = new dMenu_Fmap_c(mpHeap, mpStick, mpCStick, field_0x14E, field_0x14F, field_0x150,
+                                  field_0x13c, field_0x140, tmp);
 
     if (mpCapture == NULL) {
         mpCapture = new dDlst_MENU_CAPTURE_c();
@@ -2104,9 +2110,9 @@ void dMw_c::dMw_dmap_create() {
     } else if (dMeter2Info_getMapKeyDirection() == 0x80) {
         tmp = 0;
     }
-    
+
     mpMenuDmap = new dMenu_Dmap_c(mpHeap, mpStick, mpCStick, field_0x14C, tmp);
-    
+
     dMeter2Info_resetWarpStatus();
 }
 
@@ -2135,7 +2141,7 @@ bool dMw_c::dMw_dmap_delete(bool param_0) {
 /* 801FC520-801FC5D0 1F6E60 00B0+00 1/1 0/0 0/0 .text            dMw_save_create__5dMw_cFv */
 void dMw_c::dMw_save_create() {
     markMemSize();
-    
+
     mpMenuSave = new dMenu_save_c();
     mpMenuSave->setUseType(1);
     mpMenuSave->_create();
@@ -2166,7 +2172,7 @@ bool dMw_c::dMw_save_delete() {
 /* 801FC668-801FC70C 1F6FA8 00A4+00 1/1 0/0 0/0 .text            dMw_option_create__5dMw_cFv */
 void dMw_c::dMw_option_create() {
     markMemSize();
-    
+
     mpMenuOption = new dMenu_Option_c(dComIfGp_getCollectResArchive(), mpStick);
 
     if (mpCapture == NULL) {
@@ -2197,7 +2203,7 @@ bool dMw_c::dMw_option_delete() {
 /* 801FC7BC-801FC85C 1F70FC 00A0+00 1/1 0/0 0/0 .text            dMw_letter_create__5dMw_cFv */
 void dMw_c::dMw_letter_create() {
     markMemSize();
-    
+
     mpMenuLetter = new dMenu_Letter_c(mpHeap, mpStick, mpCStick);
 
     if (mpCapture == NULL) {
@@ -2227,7 +2233,7 @@ bool dMw_c::dMw_letter_delete() {
 /* 801FC904-801FC9A4 1F7244 00A0+00 1/1 0/0 0/0 .text            dMw_fishing_create__5dMw_cFv */
 void dMw_c::dMw_fishing_create() {
     markMemSize();
-    
+
     mpMenuFishing = new dMenu_Fishing_c(mpHeap, mpStick, mpCStick);
 
     if (mpCapture == NULL) {
@@ -2257,7 +2263,7 @@ bool dMw_c::dMw_fishing_delete() {
 /* 801FCA4C-801FCAEC 1F738C 00A0+00 1/1 0/0 0/0 .text            dMw_skill_create__5dMw_cFv */
 void dMw_c::dMw_skill_create() {
     markMemSize();
-    
+
     mpMenuSkill = new dMenu_Skill_c(mpHeap, mpStick, mpCStick);
     if (mpCapture == NULL) {
         mpCapture = new dDlst_MENU_CAPTURE_c();
@@ -2286,7 +2292,7 @@ bool dMw_c::dMw_skill_delete() {
 /* 801FCB94-801FCC44 1F74D4 00B0+00 2/2 0/0 0/0 .text            dMw_insect_create__5dMw_cFUc */
 void dMw_c::dMw_insect_create(u8 param_0) {
     markMemSize();
-    
+
     mpMenuInsect = new dMenu_Insect_c(mpHeap, mpStick, mpCStick, param_0);
     if (mpCapture == NULL) {
         mpCapture = new dDlst_MENU_CAPTURE_c();
@@ -2420,15 +2426,12 @@ bool dMw_c::isEventCheck() {
 
         if (dComIfGp_event_runCheck()) {
             if (!dMsgObject_isTalkNowCheck() &&
-                (dMeter2Info_getMapStatus() == 4 ||
-                dMeter2Info_getMapStatus() == 5 ||
-                dMeter2Info_getMapStatus() == 7 ||
-                dMeter2Info_getMapStatus() == 8 ||
-                dMeter2Info_getMapStatus() == 9 ||
-                dMeter2Info_getMapStatus() == 6 ||
-                dMeter2Info_getMapStatus() == 3 ||
-                dMeter2Info_isMenuInForce(2) || dMeter2Info_getPauseStatus() == 8)) {
-                    return false;
+                (dMeter2Info_getMapStatus() == 4 || dMeter2Info_getMapStatus() == 5 ||
+                 dMeter2Info_getMapStatus() == 7 || dMeter2Info_getMapStatus() == 8 ||
+                 dMeter2Info_getMapStatus() == 9 || dMeter2Info_getMapStatus() == 6 ||
+                 dMeter2Info_getMapStatus() == 3 || dMeter2Info_isMenuInForce(2) ||
+                 dMeter2Info_getPauseStatus() == 8)) {
+                return false;
             }
             return true;
         }
@@ -2460,7 +2463,7 @@ void dMw_c::checkMemSize() {
 /* 801FD140-801FD2D8 1F7A80 0198+00 1/1 0/0 0/0 .text            _create__5dMw_cFv */
 int dMw_c::_create() {
     mpHeap = dComIfGp_getExpHeap2D();
-    
+
     mpStick = new STControl(5, 2, 1, 1, 0.9f, 0.5f, 0, 0x800);
     mpStick->setFirstWaitTime(8);
 
@@ -2542,7 +2545,7 @@ int dMw_c::_draw() {
             if (mpMenuSave != NULL) {
                 mpMenuSave->_draw2();
             }
-            
+
             if (mpMenuOption != NULL) {
                 dComIfGd_set2DOpa(mpMenuOption);
             }

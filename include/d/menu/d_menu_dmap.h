@@ -1,10 +1,10 @@
 #ifndef D_MENU_D_MENU_DMAP_H
 #define D_MENU_D_MENU_DMAP_H
 
-#include "dolphin/types.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "d/d_lib.h"
 #include "d/d_select_cursor.h"
+#include "dolphin/types.h"
 
 class dMenu_DmapMapCtrl_c;
 class dMenu_DmapBg_c;

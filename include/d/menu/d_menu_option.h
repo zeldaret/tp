@@ -1,10 +1,10 @@
 #ifndef D_MENU_D_MENU_OPTION_H
 #define D_MENU_D_MENU_OPTION_H
 
-#include "dolphin/types.h"
+#include "JSystem/J2DGraph/J2DPicture.h"
 #include "d/d_lib.h"
 #include "d/d_select_cursor.h"
-#include "JSystem/J2DGraph/J2DPicture.h"
+#include "dolphin/types.h"
 
 class dFile_warning_c;
 class dMenu_Calibration_c;
@@ -97,11 +97,11 @@ private:
     /* 0x014 */ J2DScreen* mpTVScreen;
     /* 0x018 */ J2DScreen* mpScreenIcon;
     /* 0x01C */ J2DScreen* mpSelectScreen;
-    /* 0x020 */ void* field_0x20;  // bck
-    /* 0x024 */ void* field_0x24;  // bck
-    /* 0x028 */ void* field_0x28;  // bck
-    /* 0x02C */ void* field_0x2c;  // bpk
-    /* 0x030 */ void* field_0x30;  // btk
+    /* 0x020 */ void* field_0x20;
+    /* 0x024 */ void* field_0x24;
+    /* 0x028 */ void* field_0x28;
+    /* 0x02C */ void* field_0x2c;
+    /* 0x030 */ void* field_0x30;
     /* 0x034 */ dFile_warning_c* mpWarning;
     /* 0x038 */ J2DPicture* mpBlackTex;
     /* 0x03C */ dMenu_Calibration_c* field_0x3c;

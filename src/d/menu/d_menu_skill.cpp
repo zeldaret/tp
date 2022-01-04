@@ -738,21 +738,13 @@ asm void dMenu_Skill_c::screenSetLetter() {
 /* ############################################################################################## */
 /* 80397D30-80397D58 024390 0028+00 1/1 0/0 0/0 .rodata          text_a_tag$4365 */
 SECTION_RODATA static u64 const text_a_tag[5] = {
-    'atext1_1',
-    'atext1_2',
-    'atext1_3',
-    'atext1_4',
-    'atext1_5',
+    'atext1_1', 'atext1_2', 'atext1_3', 'atext1_4', 'atext1_5',
 };
 COMPILER_STRIP_GATE(0x80397D30, &text_a_tag);
 
 /* 80397D58-80397D80 0243B8 0028+00 1/1 0/0 0/0 .rodata          text_b_tag$4366 */
 SECTION_RODATA static u64 const text_b_tag[5] = {
-    'btext1_1',
-    'btext1_2',
-    'btext1_3',
-    'btext1_4',
-    'btext1_5',
+    'btext1_1', 'btext1_2', 'btext1_3', 'btext1_4', 'btext1_5',
 };
 COMPILER_STRIP_GATE(0x80397D58, &text_b_tag);
 

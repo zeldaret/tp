@@ -40,9 +40,7 @@ struct TVec3<f32> {
         z = z_;
     }
 
-    void zero() {
-        x = y = z = 0.0f;
-    }
+    void zero() { x = y = z = 0.0f; }
 
     void mul(const TVec3<f32>& a, const TVec3<f32>& b) {
         x = a.x * b.x;

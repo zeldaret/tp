@@ -1126,7 +1126,7 @@ inline daPy_py_c* dComIfGp_getLinkPlayer() {
 
 inline daPy_py_c* daPy_getLinkPlayerActorClass() {
     return dComIfGp_getLinkPlayer();
-} 
+}
 
 inline daAlink_c* daAlink_getAlinkActorClass() {
     return (daAlink_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR);

@@ -928,7 +928,6 @@ inline void GXTexCoord2f32(f32 s, f32 t) {
 }
 
 inline void GXEnd() {}
-
 };
 
 #endif

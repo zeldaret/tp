@@ -1,10 +1,10 @@
 #ifndef D_MENU_D_MENU_COLLECT_H
 #define D_MENU_D_MENU_COLLECT_H
 
-#include "dolphin/types.h"
+#include "JSystem/J2DGraph/J2DPicture.h"
 #include "d/d_lib.h"
 #include "d/d_select_cursor.h"
-#include "JSystem/J2DGraph/J2DPicture.h"
+#include "dolphin/types.h"
 
 class dMsgString_c;
 class dMenu_save_c;

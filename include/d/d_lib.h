@@ -42,11 +42,9 @@ struct STControl {
 };  // Size = 0x30
 
 struct CSTControl : public STControl {
-    CSTControl(s16 param_0, s16 param_1, s16 param_2,
-               s16 param_3, f32 param_4, f32 param_5,
+    CSTControl(s16 param_0, s16 param_1, s16 param_2, s16 param_3, f32 param_4, f32 param_5,
                s16 param_6, s16 param_7)
-    : STControl(param_0, param_1, param_2, param_3,
-                param_4, param_5, param_6, param_7) {}
+        : STControl(param_0, param_1, param_2, param_3, param_4, param_5, param_6, param_7) {}
 
     virtual f32 getValueStick();
     virtual s16 getAngleStick();

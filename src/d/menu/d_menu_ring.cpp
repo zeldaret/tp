@@ -11,7 +11,6 @@
 // Types:
 //
 
-
 struct mDoCPd_c {
     static u8 m_cpadInfo[256];
 };

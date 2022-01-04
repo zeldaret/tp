@@ -1,11 +1,11 @@
 #ifndef D_MENU_D_MENU_FMAP_H
 #define D_MENU_D_MENU_FMAP_H
 
-#include "dolphin/types.h"
-#include "d/pane/d_pane_class.h"
-#include "d/d_lib.h"
 #include "d/d_drawlist.h"
+#include "d/d_lib.h"
 #include "d/msg/d_msg_flow.h"
+#include "d/pane/d_pane_class.h"
+#include "dolphin/types.h"
 
 class dMenu_Fmap_stage_data_c;
 class dMenu_Fmap_world_data_c;

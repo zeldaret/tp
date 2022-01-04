@@ -4,8 +4,8 @@
 //
 
 #include "JSystem/JParticle/JPAResource.h"
-#include "JSystem/JParticle/JPAMath.h"
 #include "JSystem/JParticle/JPABaseShape.h"
+#include "JSystem/JParticle/JPAMath.h"
 #include "JSystem/JParticle/JPAParticle.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx.h"

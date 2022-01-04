@@ -1,9 +1,9 @@
 #ifndef D_D_SELECT_CURSOR_H
 #define D_D_SELECT_CURSOR_H
 
-#include "dolphin/types.h"
-#include "d/d_select_icon.h"
 #include "d/d_drawlist.h"
+#include "d/d_select_icon.h"
+#include "dolphin/types.h"
 
 class dSelect_cursorHIO_c {
 public:
