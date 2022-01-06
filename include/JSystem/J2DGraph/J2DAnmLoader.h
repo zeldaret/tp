@@ -14,6 +14,7 @@ public:
     virtual void *load(void const*) = 0;
     virtual void setResource(J2DAnmBase*, void const*) = 0;
     /* 8030A410 */ virtual ~J2DAnmLoader() {}
+    void* _4;
 };
 
 struct J3DAnmTransformKeyData {
@@ -57,7 +58,7 @@ public:
     /* 80309414 */ virtual void setResource(J2DAnmBase*, void const*);
     /* 803092AC */ virtual ~J2DAnmKeyLoader_v15();
 
-    /* 0x04 */ void* _4;
+    // /* 0x04 */ void* _4;
 };
 
 class J2DAnmFullLoader_v15 : public J2DAnmLoader {
@@ -74,9 +75,11 @@ public:
     /* 8030A234 */ void readAnmVtxColor(J3DAnmVtxColorFullData const*);
     /* 8030A25C */ void setAnmVtxColor(J2DAnmVtxColorFull*, J3DAnmVtxColorFullData const*);
 
-    /* 80309A80 */ virtual void load(void const*);
+    /* 80309A80 */ virtual void *load(void const*);
     /* 80309B8C */ virtual void setResource(J2DAnmBase*, void const*);
     /* 80309D04 */ virtual ~J2DAnmFullLoader_v15();
+
+    // void* _4;
 };
 
 #endif /* J2DANMLOADER_H */

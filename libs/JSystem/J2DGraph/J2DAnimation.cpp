@@ -21,9 +21,9 @@ f32 J2DGetKeyFrameInterpolations(f32 param_0, J3DAnmKeyTableBase* param_1, s16* 
  * getTransform__19J2DAnmTransformFullCFUsP16J3DTransformInfo   */
 void J2DAnmTransformFull::getTransform(u16 param_0, J3DTransformInfo* transformInfo) const {
     u16 idx = (param_0 * 3);
-    J2DAnmTransformFullInfo* xPart = &mTableInfo[idx];
-    J2DAnmTransformFullInfo* yPart = &mTableInfo[idx + 1];
-    J2DAnmTransformFullInfo* zPart = &mTableInfo[idx + 2];
+    J3DAnmTransformFullTable* xPart = &mTableInfo[idx];
+    J3DAnmTransformFullTable* yPart = &mTableInfo[idx + 1];
+    J3DAnmTransformFullTable* zPart = &mTableInfo[idx + 2];
     u16 xMaxFrame = xPart->mScaleMaxFrame;
     if (getFrame() < 0) {
         transformInfo->mScale.x = mScaleValues[xPart->mScaleOffset];
@@ -230,7 +230,7 @@ void J2DAnmColor::searchUpdateMaterialID(J2DScreen* pScreen) {
 
 /* 8030AFC8-8030B200 305908 0238+00 1/0 0/0 0/0 .text getColor__15J2DAnmColorFullCFUsP8_GXColor */
 void J2DAnmColorFull::getColor(u16 param_0, _GXColor* pColor) const {
-    J2DAnmColorFullInfo* info = &mInfoTable[param_0];
+    J3DAnmColorFullTable* info = &mInfoTable[param_0];
     u16 maxFrame = info->mRMaxFrame;
     if (getFrame() < 0) {
         pColor->r = mRValues[info->mROffset];
@@ -267,7 +267,7 @@ void J2DAnmColorFull::getColor(u16 param_0, _GXColor* pColor) const {
 
 /* 8030B200-8030B4C4 305B40 02C4+00 1/0 0/0 0/0 .text getColor__14J2DAnmColorKeyCFUsP8_GXColor */
 void J2DAnmColorKey::getColor(u16 param_0, _GXColor* pColor) const {
-    J2DAnmColorKeyInfo* info = &mInfoTable[param_0];
+    J3DAnmColorKeyTable* info = &mInfoTable[param_0];
     f32 val;
     switch (info->mRInfo.mMaxFrame) {
     case 0:
@@ -346,7 +346,7 @@ void J2DAnmColorKey::getColor(u16 param_0, _GXColor* pColor) const {
 /* 8030B4C4-8030B704 305E04 0240+00 1/0 0/0 0/0 .text
  * getColor__18J2DAnmVtxColorFullCFUcUsP8_GXColor               */
 void J2DAnmVtxColorFull::getColor(u8 param_0, u16 param_1, _GXColor* pColor) const {
-    J2DAnmVtxColorFullInfo* info = &mInfoTable[param_0][param_1];
+    J3DAnmColorFullTable* info = &mInfoTable[param_0][param_1];
     u16 maxFrame = info->mRMaxFrame;
     if (getFrame() < 0) {
         pColor->r = mRValues[info->mROffset];
@@ -384,7 +384,7 @@ void J2DAnmVtxColorFull::getColor(u8 param_0, u16 param_1, _GXColor* pColor) con
 /* 8030B704-8030B9F0 306044 02EC+00 1/0 0/0 0/0 .text
  * getColor__17J2DAnmVtxColorKeyCFUcUsP8_GXColor                */
 void J2DAnmVtxColorKey::getColor(u8 param_0, u16 param_1, _GXColor* pColor) const {
-    J2DAnmVtxColorKeyInfo* info = &mInfoTable[param_0][param_1];
+    J3DAnmColorKeyTable* info = &mInfoTable[param_0][param_1];
     f32 val;
     switch (info->mRInfo.mMaxFrame) {
     case 0:
@@ -621,21 +621,21 @@ JUTPalette* J2DAnmTexPattern::getPalette(u16 param_0) const {
 /* 8030C048-8030C0F0 306988 00A8+00 0/0 3/3 0/0 .text getVisibility__20J2DAnmVisibilityFullCFUsPUc
  */
 void J2DAnmVisibilityFull::getVisibility(u16 param_0, u8* pOut) const {
-    u16 maxFrame = field_0x14[param_0]._0;
+    u16 maxFrame = mTable[param_0]._0;
     if (getFrame() < 0) {
-        *pOut = field_0x18[field_0x14[param_0]._2];
+        *pOut = mValues[mTable[param_0]._2];
     } else if (getFrame() >= maxFrame) {
-        *pOut = field_0x18[field_0x14[param_0]._2 + (maxFrame - 1)];
+        *pOut = mValues[mTable[param_0]._2 + (maxFrame - 1)];
     } else {
         int frame = getFrame();
-        *pOut = field_0x18[field_0x14[param_0]._2 + frame];
+        *pOut = mValues[mTable[param_0]._2 + frame];
     }
 }
 
 /* 8030C0F0-8030C3B4 306A30 02C4+00 0/0 1/1 0/0 .text
  * getTevColorReg__15J2DAnmTevRegKeyCFUsP11_GXColorS10          */
 void J2DAnmTevRegKey::getTevColorReg(u16 param_0, _GXColorS10* pColor) const {
-    J2DAnmTevRegKeyInfo* info = &mAnmCRegKeyTable[param_0];
+    J3DAnmCRegKeyTable* info = &mAnmCRegKeyTable[param_0];
     f32 val;
     switch (info->mRTable.mMaxFrame) {
     case 0:
@@ -714,7 +714,7 @@ void J2DAnmTevRegKey::getTevColorReg(u16 param_0, _GXColorS10* pColor) const {
 /* 8030C3B4-8030C678 306CF4 02C4+00 0/0 1/1 0/0 .text
  * getTevKonstReg__15J2DAnmTevRegKeyCFUsP8_GXColor              */
 void J2DAnmTevRegKey::getTevKonstReg(u16 param_0, _GXColor* pColor) const {
-    J2DAnmTevRegKeyInfo* info = &mAnmKRegKeyTable[param_0];
+    J3DAnmKRegKeyTable* info = &mAnmKRegKeyTable[param_0];
     f32 val;
     switch (info->mRTable.mMaxFrame) {
     case 0:
@@ -795,7 +795,7 @@ void J2DAnmTevRegKey::getTevKonstReg(u16 param_0, _GXColor* pColor) const {
 void J2DAnmTevRegKey::searchUpdateMaterialID(J2DScreen* pScreen) {
     if (pScreen != NULL && pScreen->mNameTable != NULL) {
         for (u16 i = 0; i < mCRegUpdateMaterialNum; i++) {
-            s32 idx = pScreen->mNameTable->getIndex(field_0x28.getName(i));
+            s32 idx = pScreen->mNameTable->getIndex(mCRegNameTab.getName(i));
             if (idx != -1) {
                 mCRegUpdateMaterialID[i] = idx;
             } else {
@@ -803,7 +803,7 @@ void J2DAnmTevRegKey::searchUpdateMaterialID(J2DScreen* pScreen) {
             }
         }
         for (u16 i = 0; i < mKRegUpdateMaterialNum; i++) {
-            s32 idx = pScreen->mNameTable->getIndex(field_0x3c.getName(i));
+            s32 idx = pScreen->mNameTable->getIndex(mKRegNameTab.getName(i));
             if (idx != -1) {
                 mKRegUpdateMaterialID[i] = idx;
             } else {

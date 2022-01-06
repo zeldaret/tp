@@ -10,8 +10,19 @@
 
 class J2DScreen;
 
+struct J3DAnmColorKeyTable {
+    J3DAnmKeyTableBase mRInfo;
+    J3DAnmKeyTableBase mGInfo;
+    J3DAnmKeyTableBase mBInfo;
+    J3DAnmKeyTableBase mAInfo;
+};  // Size = 0x18
+
 class J2DAnmBase {
 public:
+    J2DAnmBase() {
+        mFrame = 0;
+        mFrameMax = 0;
+    }
     /* 80053C94 */ virtual ~J2DAnmBase() {}
     /* 800569B0 */ virtual void searchUpdateMaterialID(J2DScreen*);
 
@@ -28,40 +39,48 @@ public:
     /* 0xC */ s32 mKind;
 };  // Size: 0x10
 
+struct J3DAnmVtxColorIndexData;
+
 class J2DAnmVtxColor : public J2DAnmBase {
 public:
+    J2DAnmVtxColor() {
+        mKind = 7;
+        for (s32 i = 0; i < ARRAY_SIZE(mAnmTableNum); i++) {
+            mAnmTableNum[i] = NULL;
+        }
+        for (s32 i = 0; i < ARRAY_SIZE(mVtxColorIndexData); i++) {
+            mVtxColorIndexData[i] = NULL;
+        }
+    }
     /* 8030A358 */ virtual ~J2DAnmVtxColor() {}
     /* 8030363C */ virtual void getColor(u8, u16, _GXColor*) const;
 
-private:
     /* 0x10 */ u16 mAnmTableNum[2];
-    /* 0x14 */ void* mVtxColorIndexData[2];
-    /* 0x1C */ void* mVtxColorIndexPointer[2];
+    /* 0x14 */ J3DAnmVtxColorIndexData* mVtxColorIndexData[2];
+    /* 0x1C */ u16* mVtxColorIndexPointer[2];
 };  // Size: 0x24
 
 struct J3DTransformInfo;
 struct J3DTextureSRTInfo;
 
-struct J2DAnmVtxColorKeyInfo {
-    J3DAnmKeyTableBase mRInfo;
-    J3DAnmKeyTableBase mGInfo;
-    J3DAnmKeyTableBase mBInfo;
-    J3DAnmKeyTableBase mAInfo;
-};  // Size = 0x18
-
 class J2DAnmVtxColorKey : public J2DAnmVtxColor {
+public:
+    J2DAnmVtxColorKey() {
+        for (s32 i = 0; i < ARRAY_SIZE(mInfoTable); i++) {
+            mInfoTable[i] = NULL;
+        }
+    }
     /* 8030CC20 */ virtual ~J2DAnmVtxColorKey() {}
     /* 8030B704 */ virtual void getColor(u8, u16, _GXColor*) const;
 
-private:
-    /* 0x24 */ J2DAnmVtxColorKeyInfo* mInfoTable[2];
+    /* 0x24 */ J3DAnmColorKeyTable* mInfoTable[2];
     /* 0x2C */ s16* mRValues;
     /* 0x30 */ s16* mGValues;
     /* 0x34 */ s16* mBValues;
     /* 0x38 */ s16* mAValues;
 };  // Size: 0x3C
 
-struct J2DAnmVtxColorFullInfo {
+struct J3DAnmColorFullTable {
     /* 0x00 */ u16 mRMaxFrame;
     /* 0x02 */ u16 mROffset;
     /* 0x04 */ u16 mGMaxFrame;
@@ -74,36 +93,52 @@ struct J2DAnmVtxColorFullInfo {
 
 class J2DAnmVtxColorFull : public J2DAnmVtxColor {
 public:
+    J2DAnmVtxColorFull() {
+        for (s32 i = 0; i < ARRAY_SIZE(mInfoTable); i++) {
+            mInfoTable[i] = NULL;
+        }
+    }
     /* 8030CC8C */ virtual ~J2DAnmVtxColorFull() {}
     /* 8030B4C4 */ virtual void getColor(u8, u16, _GXColor*) const;
 
-private:
-    /* 0x24 */ J2DAnmVtxColorFullInfo* mInfoTable[2];
+    /* 0x24 */ J3DAnmColorFullTable* mInfoTable[2];
     /* 0x2C */ u8* mRValues;
     /* 0x30 */ u8* mGValues;
     /* 0x34 */ u8* mBValues;
     /* 0x38 */ u8* mAValues;
 };  // Size: 0x3C
 
-struct J2DAnmVisibilityFullInfo {
+struct J3DAnmVisibilityFullTable {
     u16 _0;
     u16 _2;
 };  // Size = 0x4
 
 class J2DAnmVisibilityFull : public J2DAnmBase {
 public:
-    /* 8030A3B4 */ virtual ~J2DAnmVisibilityFull();
+    J2DAnmVisibilityFull() {
+        field_0x10 = 0;
+        mTable = NULL;
+        field_0x12 = 0;
+        mValues = NULL;
+        mKind = 6;
+    }
+    /* 8030A3B4 */ virtual ~J2DAnmVisibilityFull() {}
     /* 8030C048 */ void getVisibility(u16, u8*) const;
 
-private:
     /* 0x10 */ u16 field_0x10;
     /* 0x12 */ u16 field_0x12;
-    /* 0x14 */ J2DAnmVisibilityFullInfo* field_0x14;
-    /* 0x18 */ u8* field_0x18;
+    /* 0x14 */ J3DAnmVisibilityFullTable* mTable;
+    /* 0x18 */ u8* mValues;
 };  // Size: 0x1C
 
 class J2DAnmTransform : public J2DAnmBase {
 public:
+    J2DAnmTransform(f32* pScaleValues, s16* pRotationValues, f32* pTranslateValues) {
+        mScaleValues = pScaleValues;
+        mRotationValues = pRotationValues;
+        mTranslateValues = pTranslateValues;
+        mKind = 0;
+    }
     /* 80184370 */ virtual ~J2DAnmTransform() {}
     /* 80191130 */ virtual void getTransform(u16, J3DTransformInfo*) const;
 
@@ -120,6 +155,10 @@ struct J3DAnmTransformKeyTable {
 
 class J2DAnmTransformKey : public J2DAnmTransform {
 public:
+    J2DAnmTransformKey(): J2DAnmTransform(NULL, NULL, NULL) {
+        field_0x24 = 0;
+        mInfoTable = NULL;
+    }
     /* 801959C0 */ virtual ~J2DAnmTransformKey() {}
     /* 8030CD7C */ virtual void getTransform(u16 p1, J3DTransformInfo* pInfo) const {
         this->calcTransform(getFrame(), p1, pInfo);
@@ -132,7 +171,7 @@ public:
     /* 0x28 */ J3DAnmTransformKeyTable* mInfoTable;
 };
 
-struct J2DAnmTransformFullInfo {
+struct J3DAnmTransformFullTable {
     /* 0x00 */ u16 mScaleMaxFrame;
     /* 0x02 */ u16 mScaleOffset;
     /* 0x04 */ u16 mRotationMaxFrame;
@@ -143,17 +182,40 @@ struct J2DAnmTransformFullInfo {
 
 class J2DAnmTransformFull : public J2DAnmTransform {
 public:
+    J2DAnmTransformFull(): J2DAnmTransform(NULL, NULL, NULL) {
+        mTableInfo = NULL;
+    }
     /* 8030CDAC */ virtual ~J2DAnmTransformFull() {}
     /* 8030A590 */ virtual void getTransform(u16, J3DTransformInfo*) const;
 
-private:
     /* 0x1C */ u8 field_0x1c[6];
     /* 0x22 */ u16 field_0x22;
-    /* 0x24 */ J2DAnmTransformFullInfo* mTableInfo;
+    /* 0x24 */ J3DAnmTransformFullTable* mTableInfo;
 };
 
 class J2DAnmTextureSRTKey : public J2DAnmBase {
 public:
+    J2DAnmTextureSRTKey() {
+        field_0x10 = 0;
+        field_0x1e = 0;
+        field_0x1c = 0;
+        field_0x1a = 0;
+        mUpdateMaterialNum = 0;
+        mInfoTable = NULL;
+        mTranslationValues = NULL;
+        mScaleValues = NULL;
+        mRotationValues = NULL;
+        field_0x4c = 0;
+        field_0x4a = 0;
+        field_0x48 = 0;
+        field_0x4e = 0;
+        field_0x5c = NULL;
+        field_0x58 = NULL;
+        field_0x50 = NULL;
+        field_0x54 = NULL;
+        field_0x7c = 0;
+        mKind = 4;
+    }
     /* 8030B9F0 */ void calcTransform(f32, u16, J3DTextureSRTInfo*) const;
 
     /* 80184274 */ virtual ~J2DAnmTextureSRTKey() {}
@@ -188,7 +250,7 @@ public:
     /* 0x7C */ int field_0x7c;
 };
 
-struct J2DAnmTexPatternInfo {
+struct J3DAnmTexPatternFullTable {
     /* 0x00 */ u16 mMaxFrame;
     /* 0x02 */ u16 mOffset;
     /* 0x04 */ u16 _4;
@@ -205,6 +267,15 @@ public:
         /* 0x4 */ JUTPalette* mPalette;
     };  // Size: 0x8
 
+    J2DAnmTexPattern() {
+        mValues = NULL;
+        mAnmTable = NULL;
+        mKind = 2;
+        mUpdateMaterialNum = 0;
+        mUpdaterMaterialID = NULL;
+        mTIMGPtrArray = NULL;
+    }
+
     /* 8030BEE8 */ void getTexNo(u16, u16*) const;
     /* 8030BF9C */ ResTIMG* getResTIMG(u16) const;
     /* 8030BFF0 */ JUTPalette* getPalette(u16) const;
@@ -213,17 +284,24 @@ public:
     /* 8030BD10 */ virtual void searchUpdateMaterialID(J2DScreen*);
     u16 getUpdateMaterialNum() const { return mUpdateMaterialNum; }
 
-private:
     /* 0x10 */ u16* mValues;
-    /* 0x14 */ J2DAnmTexPatternInfo* mAnmTable;
-    /* 0x18 */ u8 field_0x18[2];
+    /* 0x14 */ J3DAnmTexPatternFullTable* mAnmTable;
+    /* 0x18 */ u16 field_0x18;
     /* 0x1A */ u16 mUpdateMaterialNum;
     /* 0x1C */ u16* mUpdaterMaterialID;
     /* 0x20 */ JUTNameTab field_0x20;
     /* 0x30 */ J2DAnmTexPatternTIMGPointer* mTIMGPtrArray;
 };
 
-struct J2DAnmTevRegKeyInfo {
+struct J3DAnmCRegKeyTable {
+    /* 0x00 */ J3DAnmKeyTableBase mRTable;
+    /* 0x06 */ J3DAnmKeyTableBase mGTable;
+    /* 0x0C */ J3DAnmKeyTableBase mBTable;
+    /* 0x12 */ J3DAnmKeyTableBase mATable;
+    /* 0x18 */ u8 _18[4];
+};  // Size = 0x1C
+
+struct J3DAnmKRegKeyTable {
     /* 0x00 */ J3DAnmKeyTableBase mRTable;
     /* 0x06 */ J3DAnmKeyTableBase mGTable;
     /* 0x0C */ J3DAnmKeyTableBase mBTable;
@@ -233,13 +311,35 @@ struct J2DAnmTevRegKeyInfo {
 
 class J2DAnmTevRegKey : public J2DAnmBase {
 public:
+    J2DAnmTevRegKey() {
+        mKRegUpdateMaterialNum = 0;
+        mCRegUpdateMaterialNum = 0;
+        field_0x1a = 0;
+        field_0x18 = 0;
+        field_0x16 = 0;
+        field_0x14 = 0;
+        field_0x22 = 0;
+        field_0x20 = 0;
+        field_0x1e = 0;
+        field_0x1c = 0;
+        mKRegUpdateMaterialID = NULL;
+        mCRegUpdateMaterialID = NULL;
+        mCAValues = NULL;
+        mCBValues = NULL;
+        mCGValues = NULL;
+        mCRValues = NULL;
+        mKAValues = NULL;
+        mKBValues = NULL;
+        mKGValues = NULL;
+        mKRValues = NULL;
+        mKind = 5;
+    }
     /* 8030C0F0 */ void getTevColorReg(u16, _GXColorS10*) const;
     /* 8030C3B4 */ void getTevKonstReg(u16, _GXColor*) const;
 
     /* 801841EC */ virtual ~J2DAnmTevRegKey() {}
     /* 8030C678 */ virtual void searchUpdateMaterialID(J2DScreen* pScreen);
 
-private:
     /* 0x10 */ u16 mCRegUpdateMaterialNum;
     /* 0x12 */ u16 mKRegUpdateMaterialNum;
     /* 0x14 */ u16 field_0x14;
@@ -251,11 +351,11 @@ private:
     /* 0x20 */ u16 field_0x20;
     /* 0x22 */ u16 field_0x22;
     /* 0x24 */ u16* mCRegUpdateMaterialID;
-    /* 0x28 */ JUTNameTab field_0x28;
+    /* 0x28 */ JUTNameTab mCRegNameTab;
     /* 0x38 */ u16* mKRegUpdateMaterialID;
-    /* 0x3C */ JUTNameTab field_0x3c;
-    /* 0x4C */ J2DAnmTevRegKeyInfo* mAnmCRegKeyTable;
-    /* 0x50 */ J2DAnmTevRegKeyInfo* mAnmKRegKeyTable;
+    /* 0x3C */ JUTNameTab mKRegNameTab;
+    /* 0x4C */ J3DAnmCRegKeyTable* mAnmCRegKeyTable;
+    /* 0x50 */ J3DAnmKRegKeyTable* mAnmKRegKeyTable;
     /* 0x54 */ s16* mCRValues;
     /* 0x58 */ s16* mCGValues;
     /* 0x5C */ s16* mCBValues;
@@ -268,12 +368,20 @@ private:
 
 class J2DAnmColor : public J2DAnmBase {
 public:
+    J2DAnmColor() {
+        field_0x16 = 0;
+        field_0x14 = 0;
+        field_0x12 = 0;
+        field_0x10 = 0;
+        mUpdateMaterialNum = 0;
+        mUpdateMaterialID = NULL;
+        mKind = 1;
+    }
     /* 801842FC */ virtual ~J2DAnmColor() {}
     /* 8030AF24 */ virtual void searchUpdateMaterialID(J2DScreen*);
     /* 802EB390 */ virtual void getColor(u16, _GXColor*) const;
     u16 getUpdateMaterialNum() const { return mUpdateMaterialNum; }
 
-private:
     /* 0x10 */ u16 field_0x10;
     /* 0x12 */ u16 field_0x12;
     /* 0x14 */ u16 field_0x14;
@@ -283,24 +391,23 @@ private:
     /* 0x20 */ JUTNameTab field_0x20;
 };  // Size: 0x30
 
-struct J2DAnmColorKeyInfo {
-    J3DAnmKeyTableBase mRInfo;
-    J3DAnmKeyTableBase mGInfo;
-    J3DAnmKeyTableBase mBInfo;
-    J3DAnmKeyTableBase mAInfo;
-};  // Size = 0x18
-
 class J2DAnmColorKey : public J2DAnmColor {
 public:
+    J2DAnmColorKey() {
+        mRValues = NULL;
+        mGValues = NULL;
+        mBValues = NULL;
+        mAValues = NULL;
+        mInfoTable = NULL;
+    }
     /* 80239BE0 */ virtual ~J2DAnmColorKey() {}
     /* 8030B200 */ virtual void getColor(u16, _GXColor*) const;
 
-private:
     /* 0x30 */ s16* mRValues;
     /* 0x34 */ s16* mGValues;
     /* 0x38 */ s16* mBValues;
     /* 0x3C */ s16* mAValues;
-    /* 0x40 */ J2DAnmColorKeyInfo* mInfoTable;
+    /* 0x40 */ J3DAnmColorKeyTable* mInfoTable;
 };
 
 struct J2DAnmColorFullInfo {
@@ -316,15 +423,21 @@ struct J2DAnmColorFullInfo {
 
 class J2DAnmColorFull : public J2DAnmColor {
 public:
+    J2DAnmColorFull() {
+        mRValues = NULL;
+        mGValues = NULL;
+        mBValues = NULL;
+        mAValues = NULL;
+        mInfoTable = NULL;
+    }
     /* 8030CCF8 */ virtual ~J2DAnmColorFull() {}
     /* 8030AFC8 */ virtual void getColor(u16, _GXColor*) const;
 
-private:
     /* 0x30 */ u8* mRValues;
     /* 0x34 */ u8* mGValues;
     /* 0x38 */ u8* mBValues;
     /* 0x3C */ u8* mAValues;
-    /* 0x40 */ J2DAnmColorFullInfo* mInfoTable;
+    /* 0x40 */ J3DAnmColorFullTable* mInfoTable;
 };
 
 template <typename T>
