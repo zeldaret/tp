@@ -1126,7 +1126,7 @@ void JUTException::createConsole(void* console_buffer, u32 console_buffer_size) 
         sConsole->setPosition(15, 26);
         sConsole->setHeight(23);
         sConsole->setVisible(true);
-        sConsole->setOutput(3);
+        sConsole->setOutput(JUTConsole::OUTPUT_OSREPORT | JUTConsole::OUTPUT_CONSOLE);
     }
 }
 

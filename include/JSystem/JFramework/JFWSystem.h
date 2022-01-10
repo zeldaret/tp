@@ -1,12 +1,16 @@
 #ifndef JFWSYSTEM_H
 #define JFWSYSTEM_H
 
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JKernel/JKRThread.h"
 #include "JSystem/JUtility/JUTConsole.h"
+#include "JSystem/JUtility/JUTDbPrint.h"
+#include "JSystem/JUtility/JUTResFont.h"
 #include "dolphin/types.h"
 
 struct JFWSystem {
     struct CSetUpParam {
-        static u32 maxStdHeaps;
+        static s32 maxStdHeaps;
         static u32 sysHeapSize;
         static u32 fifoBufSize;
         static u32 aramAudioBufSize;
@@ -14,22 +18,22 @@ struct JFWSystem {
         static u32 streamPriority;
         static u32 decompPriority;
         static u32 aPiecePriority;
-        static void* systemFontRes;
-        static void* renderMode;
-        static u32 exConsoleBufferSize[1 + 1 /* padding */];
+        static ResFONT* systemFontRes;
+        static GXRenderModeObj* renderMode;
+        static u32 exConsoleBufferSize;
     };
 
-    /* 80271CD0 */ void firstInit();
-    /* 80271D18 */ void init();
+    /* 80271CD0 */ static void firstInit();
+    /* 80271D18 */ static void init();
 
     static JUTConsole* getSystemConsole() { return systemConsole; }
 
-    static u8 rootHeap[4];
-    static u8 systemHeap[4];
-    static u8 mainThread[4];
-    static u8 debugPrint[4];
-    static u8 systemFont[4];
-    static u8 systemConsoleManager[4];
+    static JKRExpHeap* rootHeap;
+    static JKRExpHeap* systemHeap;
+    static JKRThread* mainThread;
+    static JUTDbPrint* debugPrint;
+    static JUTResFont* systemFont;
+    static JUTConsoleManager* systemConsoleManager;
     static JUTConsole* systemConsole;
 };
 

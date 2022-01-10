@@ -68,10 +68,6 @@ struct cXyz {
     static f32 Zero[3];
 };
 
-struct JUTProcBar {
-    static u8 sManager[4];
-};
-
 struct JUTGamePad {
     static u8 mPadStatus[48];
 };

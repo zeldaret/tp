@@ -15,7 +15,6 @@
 //
 
 extern "C" void GXSetDrawDone();
-extern "C" void GXCopyDisp(void*, BOOL);
 
 //
 // Declarations:
@@ -156,7 +155,7 @@ void JUTVideo::preRetraceProc(u32 retrace_count) {
             s16 index = xfb->getDrawnXfbIndex();
             if (index >= 0) {
                 xfb->setDisplayingXfbIndex(index);
-                GXCopyDisp(xfb->getDisplayingXfb(), 1);
+                GXCopyDisp(xfb->getDisplayingXfb(), GX_TRUE);
                 GXFlush();
                 xfb->setSDrawingFlag(2);
                 frameBuffer = xfb->getDisplayingXfb();

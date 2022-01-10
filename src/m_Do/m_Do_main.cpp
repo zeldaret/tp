@@ -544,7 +544,7 @@ bool Debug_console(u32 i_padNo) {
 
                 if (mDoCPd_c::getTrig(i_padNo) & CButton::A) {
                     console->dumpToTerminal(0xFFFFFFFF);
-                    console->setOutput(3);
+                    console->setOutput(JUTConsole::OUTPUT_OSREPORT | JUTConsole::OUTPUT_CONSOLE);
                 }
 
                 JUTReport(0x1E, 0x186, 1, "Press X+Y+START to CLEAR console.");
@@ -709,7 +709,7 @@ void main01(void) {
 
     JUTConsole* console = JFWSystem::getSystemConsole();
     if (data_80450580 != 0) {
-        console->setOutput(3);
+        console->setOutput(JUTConsole::OUTPUT_OSREPORT | JUTConsole::OUTPUT_CONSOLE);
     }
 
     console->setPosition(32, 42);

@@ -25,7 +25,7 @@ public:
 
     s32 getBufferNum() const { return mBufferNum; }
     s16 getDrawnXfbIndex() const { return mDrawnXfbIndex; }
-    s16 getDrawningXfbIndex() const { return mDrawingXfbIndex; }
+    s16 getDrawingXfbIndex() const { return mDrawingXfbIndex; }
     s16 getDisplayingXfbIndex() const { return mDisplayingXfbIndex; }
     s32 getSDrawingFlag() const { return mSDrawingFlag; }
 
@@ -35,7 +35,7 @@ public:
         return NULL;
     }
 
-    void* getDrawningXfb() const {
+    void* getDrawingXfb() const {
         if (mDrawingXfbIndex >= 0)
             return mBuffer[mDrawingXfbIndex];
         return NULL;
@@ -49,6 +49,8 @@ public:
 
     void setDisplayingXfbIndex(s16 index) { mDisplayingXfbIndex = index; }
     void setSDrawingFlag(s32 flag) { mSDrawingFlag = flag; }
+    void setDrawnXfbIndex(s16 index) { mDrawnXfbIndex = index; }
+    void setDrawingXfbIndex(s16 index) { mDrawingXfbIndex = index; }
 
     static JUTXfb* getManager() { return sManager; }
 

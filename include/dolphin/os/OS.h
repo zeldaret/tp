@@ -131,6 +131,23 @@ struct OSThread {
     void* data[2];
 };
 
+struct OSAlarm;
+struct OSAlarmLink {
+    /* 0x0 */ OSAlarm* prev;
+    /* 0x4 */ OSAlarm* next;
+};
+
+typedef void (*OSAlarmHandler)(OSAlarm*, OSContext*);
+
+struct OSAlarm {
+    /* 0x00 */ OSAlarmHandler handler;
+    /* 0x04 */ u32 tag;
+    /* 0x08 */ OSTime fire_time;
+    /* 0x10 */ OSAlarmLink link;
+    /* 0x18 */ OSTime period_time;
+    /* 0x20 */ OSTime start_time;
+};  // Size: 0x28
+
 extern "C" {
 s32 OSEnableScheduler(void);
 s32 OSDisableScheduler(void);
@@ -205,6 +222,10 @@ void LCDisable(void);
 void OSReportInit__Fv(void);  // needed for inline asm
 
 u8* OSGetStackPointer(void);
+
+void OSCreateAlarm(OSAlarm*);
+void OSCancelAlarm(OSAlarm*);
+void OSSetAlarm(OSAlarm*, OSTime, OSAlarmHandler);
 };  // extern "C"
 
 void OSSwitchFiberEx(u32, u32, u32, u32, u32, u32);

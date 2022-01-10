@@ -40,7 +40,7 @@ typedef struct _GXRenderModeObj {
     u16 vi_height;
     s32 xfb_mode;
     u8 field_rendering;
-    u8 antialiasing;
+    bool antialiasing;
     u8 sample_pattern[12][2];
     u8 vfilter[7];
 } GXRenderModeObj;
@@ -73,6 +73,21 @@ typedef struct _GXLightObj {
 typedef struct _GXFogAdjTable {
     /* 0x0 */ u16 r[10];
 } GXFogAdjTable;
+
+typedef struct _GXFifoObj {
+    /* 0x00 */ void* base;
+    /* 0x04 */ u32 end;
+    /* 0x08 */ u32 size;
+    /* 0x0C */ u32 high_wtrmark;
+    /* 0x10 */ u32 low_wtrmark;
+    /* 0x14 */ void* read_ptr;
+    /* 0x18 */ void* write_ptr;
+    /* 0x1C */ void* rw_dst;
+    /* 0x20 */ u8 fifo_wrap;
+    /* 0x21 */ bool cpu_fifo_ready;
+    /* 0x22 */ bool gp_fifo_ready;
+    /* 0x23 */ u8 field_0x23[93];
+} GXFifoObj;  // Size: 0x80
 
 typedef enum _GXPrimitive {
     /* 0x80 */ GX_QUADS = 0x80,
@@ -416,9 +431,15 @@ typedef enum _GXTexFmt {
     /* 0x8 */ GX_TF_CI8,
     /* 0x9 */ GX_TF_CI14,
     /* 0xE */ GX_TF_CMPR = 14,
-
     /* 0x10 */ _GX_TF_ZTF = 0x10,
-    /* 0x20 */ _GX_TF_CTF = 0x20
+    /* 0x11 */ GX_TF_Z8 = (0x1 | _GX_TF_ZTF),
+    /* 0x13 */ GX_TF_Z16 = (0x3 | _GX_TF_ZTF),
+    /* 0x16 */ GX_TF_Z24X8 = (0x6 | _GX_TF_ZTF),
+    /* 0x20 */ _GX_TF_CTF = 0x20,
+    /* 0x30 */ GX_CTF_Z4 = (0x0 | _GX_TF_ZTF | _GX_TF_CTF),
+    /* 0x39 */ GX_CTF_Z8M = (0x9 | _GX_TF_ZTF | _GX_TF_CTF),
+    /* 0x3A */ GX_CTF_Z8L = (0xA | _GX_TF_ZTF | _GX_TF_CTF),
+    /* 0x3C */ GX_CTF_Z16L = (0xC | _GX_TF_ZTF | _GX_TF_CTF),
 } GXTexFmt;
 
 typedef enum _GXGamma {
@@ -469,16 +490,6 @@ typedef enum _GXTexFmt8 {
     /* 0x2B */ GX_CTF_RG8 = (0xB | _GX_TF_CTF),
     /* 0x2C */ GX_CTF_GB8 = (0xC | _GX_TF_CTF),
 } GXTexFmt8;
-
-typedef enum _GXZTexFmt {
-    /* 0x11 */ GX_TF_Z8 = (0x1 | _GX_TF_ZTF),
-    /* 0x13 */ GX_TF_Z16 = (0x3 | _GX_TF_ZTF),
-    /* 0x16 */ GX_TF_Z24X8 = (0x6 | _GX_TF_ZTF),
-    /* 0x30 */ GX_CTF_Z4 = (0x0 | _GX_TF_ZTF | _GX_TF_CTF),
-    /* 0x39 */ GX_CTF_Z8M = (0x9 | _GX_TF_ZTF | _GX_TF_CTF),
-    /* 0x3A */ GX_CTF_Z8L = (0xA | _GX_TF_ZTF | _GX_TF_CTF),
-    /* 0x3C */ GX_CTF_Z16L = (0xC | _GX_TF_ZTF | _GX_TF_CTF),
-} GXZTexFmt;
 
 typedef enum _GXTexWrapMode {
     /* 0x0 */ GX_CLAMP,
@@ -816,6 +827,30 @@ typedef struct _GXVtxDescList {
     GXAttrType type;
 } GXVtxDescList;
 
+typedef enum _GXFBClamp {
+    /* 0x0 */ GX_CLAMP_NONE,
+    /* 0x1 */ GX_CLAMP_TOP,
+    /* 0x2 */ GX_CLAMP_BOTTOM,
+} GXFBClamp;
+
+typedef enum _GXPixelFmt {
+    /* 0x0 */ GX_PF_RGB8_Z24,
+    /* 0x1 */ GX_PF_RGBA6_Z24,
+    /* 0x2 */ GX_PF_RGB565_Z16,
+    /* 0x3 */ GX_PF_Z24,
+    /* 0x4 */ GX_PF_Y8,
+    /* 0x5 */ GX_PF_U8,
+    /* 0x6 */ GX_PF_V8,
+    /* 0x7 */ GX_PF_YUV420,
+} GXPixelFmt;
+
+typedef enum _GXZFmt16 {
+    /* 0x0 */ GX_ZC_LINEAR,
+    /* 0x1 */ GX_ZC_NEAR,
+    /* 0x2 */ GX_ZC_MID,
+    /* 0x3 */ GX_ZC_FAR,
+} GXZFmt16;
+
 extern "C" {
 f32 GXGetYScaleFactor(u16 efb_height, u16 xfb_height);
 u16 GXGetNumXfbLines(u32 efb_height, f32 y_scale);
@@ -852,6 +887,14 @@ void GXSetDrawDoneCallback(GXDrawDoneCallback);
 void GXDrawDone(void);
 void GXAbortFrame(void);
 void GXFlush(void);
+void GXSetCopyClear(GXColor, u32);
+void GXSetDispCopySrc(u16, u16, u16, u16);
+void GXSetDispCopyDst(u16, u16);
+u32 GXSetDispCopyYScale(f32);
+void GXSetCopyClamp(GXFBClamp);
+void GXSetDispCopyGamma(GXGamma);
+void GXCopyDisp(void*, GXBool);
+void GXSetPixelFmt(GXPixelFmt, GXZFmt16);
 
 struct OSThread;
 OSThread* GXSetCurrentGXThread(void);
@@ -898,7 +941,7 @@ void GXSetTexCopySrc(u16, u16, u16, u16);
 void GXSetViewport(f32, f32, f32, f32, f32, f32);
 void GXSetZCompLoc(GXBool);
 void GXSetZMode(GXBool, GXCompare, GXBool);
-void GXSetZTexture(GXZTexOp, GXZTexFmt, u32);
+void GXSetZTexture(GXZTexOp, GXTexFmt, u32);
 void GXSetPointSize(u8, GXTexOffset);
 void GXSetLineWidth(u8, GXTexOffset);
 void GXSetTevDirect(GXTevStageID);
@@ -909,6 +952,13 @@ void GXSetIndTexMtx(GXIndTexMtxID, Mtx23, s8);
 void GXSetIndTexCoordScale(GXIndTexStageID, GXIndTexScale, GXIndTexScale);
 void GXSetIndTexOrder(GXIndTexStageID, GXTexCoordID, GXTexMapID);
 void GXEnableTexOffsets(GXTexCoordID, GXBool, GXBool);
+void GXSetDstAlpha(GXBool, u8);
+u32 GXGetFifoSize(GXFifoObj*);
+void* GXGetFifoBase(GXFifoObj*);
+GXFifoObj* GXInit(void*, u32);
+GXFifoObj* GXGetCPUFifo(void);
+void GXGetGPStatus(GXBool*, GXBool*, GXBool*, GXBool*, GXBool*);
+void GXReadXfRasMetric(u32*, u32*, u32*, u32*);
 
 #define GFX_FIFO(T) (*(volatile T*)0xCC008000)
 
@@ -925,6 +975,16 @@ inline void GXColor1u32(u32 c) {
 inline void GXTexCoord2f32(f32 s, f32 t) {
     GFX_FIFO(f32) = s;
     GFX_FIFO(f32) = t;
+}
+
+inline void GXTexCoord2u8(u8 s, u8 t) {
+    GFX_FIFO(u8) = s;
+    GFX_FIFO(u8) = t;
+}
+
+inline void GXPosition2u16(u16 x, u16 y) {
+    GFX_FIFO(u16) = x;
+    GFX_FIFO(u16) = y;
 }
 
 inline void GXEnd() {}
