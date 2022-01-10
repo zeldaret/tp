@@ -54,7 +54,7 @@ asm void* JUTResReference::getResource(JSUInputStream* param_0, u32 param_1, JKR
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JUTResReference::getResource(void const* param_0, u32 param_1, JKRArchive* param_2) {
+asm void* JUTResReference::getResource(void const* param_0, u32 param_1, JKRArchive* param_2) {
     nofralloc
 #include "asm/JSystem/JUtility/JUTResource/getResource__15JUTResReferenceFPCvUlP10JKRArchive.s"
 }
@@ -65,7 +65,7 @@ asm void JUTResReference::getResource(void const* param_0, u32 param_1, JKRArchi
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JUTResReference::getResource(u32 param_0, JKRArchive* param_1) {
+asm void* JUTResReference::getResource(u32 param_0, JKRArchive* param_1) {
     nofralloc
 #include "asm/JSystem/JUtility/JUTResource/getResource__15JUTResReferenceFUlP10JKRArchive.s"
 }
