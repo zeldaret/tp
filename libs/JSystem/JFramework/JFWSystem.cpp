@@ -9,19 +9,10 @@
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JUtility/JUTGamePad.h"
+#include "JSystem/JUtility/JUTGraphFifo.h"
 #include "JSystem/JUtility/JUTVideo.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JUTGraphFifo {
-    /* 802DEB58 */ JUTGraphFifo(u32);
-
-    u8 field_0x0[0x1C];
-};
 
 //
 // Forward References:

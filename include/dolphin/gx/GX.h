@@ -959,6 +959,9 @@ GXFifoObj* GXInit(void*, u32);
 GXFifoObj* GXGetCPUFifo(void);
 void GXGetGPStatus(GXBool*, GXBool*, GXBool*, GXBool*, GXBool*);
 void GXReadXfRasMetric(u32*, u32*, u32*, u32*);
+void GXInitFifoBase(GXFifoObj*, void*, u32);
+void GXInitFifoPtrs(GXFifoObj*, void*, void*);
+void GXSaveCPUFifo(GXFifoObj*);
 
 #define GFX_FIFO(T) (*(volatile T*)0xCC008000)
 
