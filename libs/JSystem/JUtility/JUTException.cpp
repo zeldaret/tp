@@ -7,10 +7,10 @@
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/float.h"
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "msl_c/string.h"
 
 //
 // Forward References:
@@ -1146,8 +1146,6 @@ JUTException::~JUTException() {}
 /* ##############################################################################################
  */
 /* 804508F8-80450900 000378 0008+00 0/0 3/3 0/0 .sdata           None */
-SECTION_SDATA extern u8 data_804508F8[8] = {
-    0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA extern bool sAssertVisible = true;
 
 /* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

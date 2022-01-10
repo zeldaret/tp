@@ -260,7 +260,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strcpy();
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" u8 m_gamePad__8mDoCPd_c[16];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];

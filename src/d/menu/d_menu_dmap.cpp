@@ -285,8 +285,6 @@ extern "C" u8 myclass__12dMenu_Dmap_c[4 + 4 /* padding */];
 // External References:
 //
 
-SECTION_INIT void memset();
-SECTION_INIT void memcpy();
 extern "C" void mDoExt_getJ2dHeap__Fv();
 extern "C" void mDoExt_destroyExpHeap__FP10JKRExpHeap();
 extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
@@ -420,7 +418,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strcpy();
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" extern void* __vt__28dDrawPathWithNormalPattern_c[16];
 extern "C" extern void* __vt__15dRenderingMap_c[23];

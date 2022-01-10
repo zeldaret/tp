@@ -430,7 +430,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strcpy();
 extern "C" extern void* __vt__12J3DFrameCtrl[3];
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];

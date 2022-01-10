@@ -70,7 +70,6 @@ extern "C" void _restgpr_23();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_29();
-extern "C" void strcmp();
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" extern void* __vt__10J2DAnmBase[4];
 extern "C" extern void* __vt__15J2DAnmTransform[5 + 4 /* padding */];
