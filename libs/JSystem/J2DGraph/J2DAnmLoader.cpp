@@ -205,15 +205,13 @@ void* J2DAnmLoaderDataBase::load(void const* param_0) {
         switch (hdr->mType) {
             case 'bck1':
                 {J2DAnmKeyLoader_v15 loader;
-                J2DAnmTransformKey* anm = new J2DAnmTransformKey();
-                loader._4 = anm;
+                loader._4 = new J2DAnmTransformKey();
                 return loader.load(param_0);
                 break;
                 }
             case 'bpk1':
                 {J2DAnmKeyLoader_v15 loader;
-                J2DAnmColorKey* anm = new J2DAnmColorKey();
-                loader._4 = anm;
+                loader._4 = new J2DAnmColorKey();
                 return loader.load(param_0);
                 break;
                 }
@@ -221,49 +219,42 @@ void* J2DAnmLoaderDataBase::load(void const* param_0) {
                 return NULL;
             case 'btk1':
                 {J2DAnmKeyLoader_v15 loader;
-                J2DAnmTextureSRTKey* anm = new J2DAnmTextureSRTKey();
-                loader._4 = anm;
+                loader._4 = new J2DAnmTextureSRTKey();
                 return loader.load(param_0);
                 break; 
                 }
             case 'brk1':
                 {J2DAnmKeyLoader_v15 loader;
-                J2DAnmTevRegKey* anm = new J2DAnmTevRegKey();
-                loader._4 = anm;
+                loader._4 = new J2DAnmTevRegKey();
                 return loader.load(param_0);
                 break;
                 }
             case 'bxk1':
                 {J2DAnmKeyLoader_v15 loader;
-                J2DAnmVtxColorKey* anm = new J2DAnmVtxColorKey();
-                loader._4 = anm;
+                loader._4 = new J2DAnmVtxColorKey();
                 return loader.load(param_0);
                 break;
                 }
             case 'bca1': 
                 {J2DAnmFullLoader_v15 loader;
-                J2DAnmTransformFull* anm = new J2DAnmTransformFull();
-                loader._4 = anm;
+                loader._4 = new J2DAnmTransformFull();
                 return loader.load(param_0);
                 break;
                 }
             case 'bpa1': 
                 {J2DAnmFullLoader_v15 loader;
-                J2DAnmColorFull* anm = new J2DAnmColorFull();
-                loader._4 = anm;
+                loader._4 = new J2DAnmColorFull();
                 return loader.load(param_0);
                 break;
                 }
             case 'btp1': 
                 {J2DAnmFullLoader_v15 loader;
-                J2DAnmTexPattern* anm = new J2DAnmTexPattern();
-                loader._4 = anm;
+                loader._4 = new J2DAnmTexPattern();
                 return loader.load(param_0);
                 }
             case 'bva1': 
                 {J2DAnmFullLoader_v15 loader;
-                J2DAnmVisibilityFull* anm = new J2DAnmVisibilityFull();
-                loader._4 = anm;
+                loader._4 = new J2DAnmVisibilityFull();
                 return loader.load(param_0);
                 break;
                 }
@@ -271,8 +262,7 @@ void* J2DAnmLoaderDataBase::load(void const* param_0) {
                 return NULL;
             case 'bxa1': 
                 {J2DAnmFullLoader_v15 loader;
-                J2DAnmVtxColorFull* anm = new J2DAnmVtxColorFull();
-                loader._4 = anm;
+                loader._4 = new J2DAnmVtxColorFull();
                 return loader.load(param_0);
                 }
         }
