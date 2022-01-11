@@ -10,7 +10,7 @@
 #include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 
-typedef void (*UnkFunc)(void);
+typedef void (*JFWDisplayUnkFunc)(void);
 
 class JFWAlarm : public OSAlarm {
 public:
@@ -97,7 +97,7 @@ private:
     /* 0x38 */ int field_0x38;
     /* 0x3C */ int field_0x3c;
     /* 0x40 */ bool field_0x40;
-    /* 0x44 */ UnkFunc field_0x44;
+    /* 0x44 */ JFWDisplayUnkFunc field_0x44;
     /* 0x48 */ s16 field_0x48;
     /* 0x4A */ u8 field_0x4a;
 };

@@ -19,7 +19,7 @@ public:
         }
 
         void end() {
-            field_0x4 = ((OSGetTick() - mTick) * 8) / ((*(u32*)0x800000F8 >> 2) / 125000);
+            field_0x4 = ((OSGetTick() - mTick) * 8) / ((*(u32*)0x800000F8 / 4) / 125000);
             if (field_0x4 == 0) {
                 field_0x4 = 1;
             }

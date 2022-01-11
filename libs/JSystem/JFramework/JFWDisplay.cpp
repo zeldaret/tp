@@ -681,7 +681,7 @@ static void JFWDrawDoneAlarm() {
     s32 status = OSDisableInterrupts();
     alarm.createAlarm();
     alarm.appendLink();
-    OSSetAlarm(&alarm, 0.5 * (*(u32*)0x800000F8 >> 2), JFWGXAbortAlarmHandler);
+    OSSetAlarm(&alarm, 0.5 * (*(u32*)0x800000F8 / 4), JFWGXAbortAlarmHandler);
     GXDrawDone();
     alarm.cancelAlarm();
     alarm.removeLink();
