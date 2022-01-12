@@ -30,7 +30,9 @@ LDSCRIPT := $(BUILD_DIR)/ldscript.lcf
 
 # Outputs
 DOL     := $(BUILD_DIR)/main.dol
+DOL_SHIFT := $(BUILD_DIR)/main_shift.dol
 ELF     := $(DOL:.dol=.elf)
+ELF_SHIFT     := $(DOL_SHIFT:.dol=.elf)
 MAP     := $(BUILD_DIR)/dolzel2.map
 
 # include list of object files 
@@ -94,7 +96,10 @@ SBSS_PDHR := 10
 
 default: all
 
-all: dirs $(DOL)
+check:
+	$(SHA1SUM) -c $(TARGET).sha1
+
+all: dirs $(DOL) check
 
 # Make sure build directory exists before compiling anything
 dirs:
@@ -103,7 +108,6 @@ dirs:
 
 $(DOL): $(ELF) | tools
 	$(ELF2DOL) $< $@ $(SDATA_PDHR) $(SBSS_PDHR) $(TARGET_COL)
-	$(SHA1SUM) -c $(TARGET).sha1
 
 clean:
 	rm -f -d -r $(BUILD_DIR)/libs
@@ -136,6 +140,16 @@ $(ELF): $(LIBS) $(O_FILES)
 	@$(PYTHON) tools/lcf.py dol --output $(LDSCRIPT)
 	$(LD) -application $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files $(LIBS)
 
+$(ELF_SHIFT): $(LIBS) $(O_FILES)
+	@echo $(O_FILES) > build/o_files
+	@$(PYTHON) tools/lcf.py dol --shift --output $(LDSCRIPT)
+	$(LD) -application $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files $(LIBS)
+
+$(DOL_SHIFT): $(ELF_SHIFT) | tools
+	$(ELF2DOL) $< $@ $(SDATA_PDHR) $(SBSS_PDHR) $(TARGET_COL)
+
+shift: dirs $(DOL_SHIFT)
+
 #
 $(BUILD_DIR)/%.o: %.cpp
 	@mkdir -p $(@D)
@@ -157,4 +171,4 @@ include tools/elf2dol/Makefile
 ### Debug Print ###
 print-% : ; $(info $* is a $(flavor $*) variable set to [$($*)]) @true
 
-.PHONY: default all dirs clean tools docs print-%
+.PHONY: default all dirs clean tools docs shift print-%
