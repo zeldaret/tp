@@ -3,9 +3,9 @@
 // Translation Unit: J2DAnmLoader
 //
 
-#include "JSystem/J2DGraph/J2DAnmLoader.h"
-#include "JSystem/J2DGraph/J2DAnimation.h"
-#include "JSystem/JSupport/JSupport.h"
+// See J2DAnmLoader_nonmatching.cpp
+
+// #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -13,490 +13,739 @@
 // Types:
 //
 
+struct _GXColor {};
+
+struct ResNTAB {};
+
+struct JUTNameTab {
+    /* 802DE9A0 */ JUTNameTab();
+    /* 802DEA1C */ void setResource(ResNTAB const*);
+};
+
+struct J3DAnmVtxColorKeyData {};
+
+struct J3DAnmVtxColorFullData {};
+
+struct J3DAnmVisibilityFullData {};
+
+struct J3DAnmTransformKeyData {};
+
+struct J3DAnmTransformFullData {};
+
+struct J3DAnmTextureSRTKeyData {};
+
+struct J3DAnmTexPatternFullData {};
+
+struct J3DAnmTevRegKeyData {};
+
+struct J3DAnmColorKeyData {};
+
+struct J3DAnmColorFullData {};
+
+struct J2DScreen {};
+
+struct J2DAnmVtxColorKey {};
+
+struct J2DAnmVtxColorFull {};
+
+struct J2DAnmVtxColor {
+    /* 8030363C */ void getColor(u8, u16, _GXColor*) const;
+    /* 8030A358 */ ~J2DAnmVtxColor();
+};
+
+struct J2DAnmVisibilityFull {
+    /* 8030A3B4 */ ~J2DAnmVisibilityFull();
+};
+
+struct J2DAnmTransformKey {};
+
+struct J2DAnmTransformFull {};
+
+struct J2DAnmTextureSRTKey {};
+
+struct J2DAnmTexPattern {};
+
+struct J2DAnmTevRegKey {};
+
+struct J2DAnmLoaderDataBase {
+    /* 80308A6C */ void load(void const*);
+};
+
+struct J2DAnmLoader {
+    /* 8030A410 */ ~J2DAnmLoader();
+};
+
+struct J2DAnmBase {
+    /* 800569B0 */ void searchUpdateMaterialID(J2DScreen*);
+};
+
+struct J2DAnmColorKey {};
+
+struct J2DAnmKeyLoader_v15 {
+    /* 80309290 */ J2DAnmKeyLoader_v15();
+    /* 803092AC */ ~J2DAnmKeyLoader_v15();
+    /* 80309308 */ void load(void const*);
+    /* 80309414 */ void setResource(J2DAnmBase*, void const*);
+    /* 80309570 */ void readAnmTransform(J3DAnmTransformKeyData const*);
+    /* 80309598 */ void setAnmTransform(J2DAnmTransformKey*, J3DAnmTransformKeyData const*);
+    /* 80309634 */ void readAnmTextureSRT(J3DAnmTextureSRTKeyData const*);
+    /* 8030965C */ void setAnmTextureSRT(J2DAnmTextureSRTKey*, J3DAnmTextureSRTKeyData const*);
+    /* 80309848 */ void readAnmColor(J3DAnmColorKeyData const*);
+    /* 80309870 */ void setAnmColor(J2DAnmColorKey*, J3DAnmColorKeyData const*);
+    /* 8030995C */ void readAnmVtxColor(J3DAnmVtxColorKeyData const*);
+    /* 80309984 */ void setAnmVtxColor(J2DAnmVtxColorKey*, J3DAnmVtxColorKeyData const*);
+    /* 80309FDC */ void readAnmTevReg(J3DAnmTevRegKeyData const*);
+    /* 8030A004 */ void setAnmTevReg(J2DAnmTevRegKey*, J3DAnmTevRegKeyData const*);
+};
+
+struct J2DAnmColorFull {};
+
+struct J2DAnmFullLoader_v15 {
+    /* 80309A80 */ void load(void const*);
+    /* 80309B8C */ void setResource(J2DAnmBase*, void const*);
+    /* 80309CE8 */ J2DAnmFullLoader_v15();
+    /* 80309D04 */ ~J2DAnmFullLoader_v15();
+    /* 80309D60 */ void readAnmTransform(J3DAnmTransformFullData const*);
+    /* 80309D88 */ void setAnmTransform(J2DAnmTransformFull*, J3DAnmTransformFullData const*);
+    /* 80309E1C */ void readAnmColor(J3DAnmColorFullData const*);
+    /* 80309E44 */ void setAnmColor(J2DAnmColorFull*, J3DAnmColorFullData const*);
+    /* 80309F10 */ void readAnmTexPattern(J3DAnmTexPatternFullData const*);
+    /* 80309F38 */ void setAnmTexPattern(J2DAnmTexPattern*, J3DAnmTexPatternFullData const*);
+    /* 8030A190 */ void readAnmVisibility(J3DAnmVisibilityFullData const*);
+    /* 8030A1B8 */ void setAnmVisibility(J2DAnmVisibilityFull*, J3DAnmVisibilityFullData const*);
+    /* 8030A234 */ void readAnmVtxColor(J3DAnmVtxColorFullData const*);
+    /* 8030A25C */ void setAnmVtxColor(J2DAnmVtxColorFull*, J3DAnmVtxColorFullData const*);
+};
+
+//
+// Forward References:
+//
+
+extern "C" void load__20J2DAnmLoaderDataBaseFPCv();
+extern "C" void __ct__19J2DAnmKeyLoader_v15Fv();
+extern "C" void __dt__19J2DAnmKeyLoader_v15Fv();
+extern "C" void load__19J2DAnmKeyLoader_v15FPCv();
+extern "C" void setResource__19J2DAnmKeyLoader_v15FP10J2DAnmBasePCv();
+extern "C" void readAnmTransform__19J2DAnmKeyLoader_v15FPC22J3DAnmTransformKeyData();
+extern "C" void
+setAnmTransform__19J2DAnmKeyLoader_v15FP18J2DAnmTransformKeyPC22J3DAnmTransformKeyData();
+extern "C" void readAnmTextureSRT__19J2DAnmKeyLoader_v15FPC23J3DAnmTextureSRTKeyData();
+extern "C" void
+setAnmTextureSRT__19J2DAnmKeyLoader_v15FP19J2DAnmTextureSRTKeyPC23J3DAnmTextureSRTKeyData();
+extern "C" void readAnmColor__19J2DAnmKeyLoader_v15FPC18J3DAnmColorKeyData();
+extern "C" void setAnmColor__19J2DAnmKeyLoader_v15FP14J2DAnmColorKeyPC18J3DAnmColorKeyData();
+extern "C" void readAnmVtxColor__19J2DAnmKeyLoader_v15FPC21J3DAnmVtxColorKeyData();
+extern "C" void
+setAnmVtxColor__19J2DAnmKeyLoader_v15FP17J2DAnmVtxColorKeyPC21J3DAnmVtxColorKeyData();
+extern "C" void load__20J2DAnmFullLoader_v15FPCv();
+extern "C" void setResource__20J2DAnmFullLoader_v15FP10J2DAnmBasePCv();
+extern "C" void __ct__20J2DAnmFullLoader_v15Fv();
+extern "C" void __dt__20J2DAnmFullLoader_v15Fv();
+extern "C" void readAnmTransform__20J2DAnmFullLoader_v15FPC23J3DAnmTransformFullData();
+extern "C" void
+setAnmTransform__20J2DAnmFullLoader_v15FP19J2DAnmTransformFullPC23J3DAnmTransformFullData();
+extern "C" void readAnmColor__20J2DAnmFullLoader_v15FPC19J3DAnmColorFullData();
+extern "C" void setAnmColor__20J2DAnmFullLoader_v15FP15J2DAnmColorFullPC19J3DAnmColorFullData();
+extern "C" void readAnmTexPattern__20J2DAnmFullLoader_v15FPC24J3DAnmTexPatternFullData();
+extern "C" void
+setAnmTexPattern__20J2DAnmFullLoader_v15FP16J2DAnmTexPatternPC24J3DAnmTexPatternFullData();
+extern "C" void readAnmTevReg__19J2DAnmKeyLoader_v15FPC19J3DAnmTevRegKeyData();
+extern "C" void setAnmTevReg__19J2DAnmKeyLoader_v15FP15J2DAnmTevRegKeyPC19J3DAnmTevRegKeyData();
+extern "C" void readAnmVisibility__20J2DAnmFullLoader_v15FPC24J3DAnmVisibilityFullData();
+extern "C" void
+setAnmVisibility__20J2DAnmFullLoader_v15FP20J2DAnmVisibilityFullPC24J3DAnmVisibilityFullData();
+extern "C" void readAnmVtxColor__20J2DAnmFullLoader_v15FPC22J3DAnmVtxColorFullData();
+extern "C" void
+setAnmVtxColor__20J2DAnmFullLoader_v15FP18J2DAnmVtxColorFullPC22J3DAnmVtxColorFullData();
+extern "C" void __dt__14J2DAnmVtxColorFv();
+extern "C" void __dt__20J2DAnmVisibilityFullFv();
+extern "C" void __dt__12J2DAnmLoaderFv();
+extern "C" void func_8030A458(void const*, void const*);
+extern "C" void func_8030A470(void const*, void const*);
+extern "C" void func_8030A488(void const*, void const*);
+extern "C" void func_8030A4A0(void const*, void const*);
+extern "C" void func_8030A4B8(void const*, void const*);
+extern "C" void func_8030A4D0(void const*, void const*);
+extern "C" void func_8030A4E8(void const*, void const*);
+extern "C" void func_8030A500(void const*, void const*);
+extern "C" void func_8030A518(void const*, void const*);
+extern "C" void func_8030A530(void const*, void const*);
+extern "C" void func_8030A548(void const*, void const*);
+extern "C" void func_8030A560(void const*, void const*);
+extern "C" void func_8030A578(void const*, void const*);
+
+//
+// External References:
+//
+
+extern "C" void searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen();
+extern "C" void* __nw__FUl();
+extern "C" void __dl__FPv();
+extern "C" void __ct__10JUTNameTabFv();
+extern "C" void setResource__10JUTNameTabFPC7ResNTAB();
+extern "C" void func_802F4260(void const*, void const*);
+extern "C" void func_802F42C0(void const*, void const*);
+extern "C" void getColor__14J2DAnmVtxColorCFUcUsP8_GXColor();
+extern "C" void _savegpr_26();
+extern "C" void _savegpr_27();
+extern "C" void _restgpr_26();
+extern "C" void _restgpr_27();
+extern "C" extern void* __vt__10J2DAnmBase[4];
+extern "C" extern void* __vt__15J2DAnmTransform[5 + 4 /* padding */];
+extern "C" extern void* __vt__15J2DAnmTevRegKey[4];
+extern "C" extern void* __vt__16J2DAnmTexPattern[4];
+extern "C" extern void* __vt__19J2DAnmTextureSRTKey[4];
+extern "C" extern void* __vt__17J2DAnmVtxColorKey[5];
+extern "C" extern void* __vt__18J2DAnmVtxColorFull[5];
+extern "C" extern void* __vt__14J2DAnmColorKey[5];
+extern "C" extern void* __vt__15J2DAnmColorFull[5];
+extern "C" extern void* __vt__11J2DAnmColor[5];
+extern "C" extern void* __vt__18J2DAnmTransformKey[6];
+extern "C" extern void* __vt__19J2DAnmTransformFull[5];
+
+//
+// Declarations:
+//
+
+/* ############################################################################################## */
+/* 803CD6C8-803CD6DC 02A7E8 0014+00 2/2 0/0 0/0 .data            __vt__20J2DAnmFullLoader_v15 */
+SECTION_DATA extern void* __vt__20J2DAnmFullLoader_v15[5] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)load__20J2DAnmFullLoader_v15FPCv,
+    (void*)setResource__20J2DAnmFullLoader_v15FP10J2DAnmBasePCv,
+    (void*)__dt__20J2DAnmFullLoader_v15Fv,
+};
+
+/* 803CD6DC-803CD6F0 02A7FC 0014+00 2/2 0/0 0/0 .data            __vt__19J2DAnmKeyLoader_v15 */
+SECTION_DATA extern void* __vt__19J2DAnmKeyLoader_v15[5] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)load__19J2DAnmKeyLoader_v15FPCv,
+    (void*)setResource__19J2DAnmKeyLoader_v15FP10J2DAnmBasePCv,
+    (void*)__dt__19J2DAnmKeyLoader_v15Fv,
+};
+
+/* 803CD6F0-803CD704 02A810 0014+00 5/5 0/0 0/0 .data            __vt__12J2DAnmLoader */
+SECTION_DATA extern void* __vt__12J2DAnmLoader[5] = {
+    (void*)NULL /* RTTI */, (void*)NULL, (void*)NULL, (void*)NULL, (void*)__dt__12J2DAnmLoaderFv,
+};
+
+/* 803CD704-803CD714 02A824 0010+00 2/2 0/0 0/0 .data            __vt__20J2DAnmVisibilityFull */
+SECTION_DATA extern void* __vt__20J2DAnmVisibilityFull[4] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)__dt__20J2DAnmVisibilityFullFv,
+    (void*)searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen,
+};
+
+/* 803CD714-803CD728 02A834 0014+00 2/2 2/2 0/0 .data            __vt__14J2DAnmVtxColor */
+SECTION_DATA extern void* __vt__14J2DAnmVtxColor[5] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)__dt__14J2DAnmVtxColorFv,
+    (void*)searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen,
+    (void*)getColor__14J2DAnmVtxColorCFUcUsP8_GXColor,
+};
+
+/* 804562F8-80456300 0048F8 0004+04 11/11 0/0 0/0 .sdata2          @1581 */
+SECTION_SDATA2 static f32 lit_1581[1 + 1 /* padding */] = {
+    0.0f,
+    /* padding */
+    0.0f,
+};
+
 /* 80308A6C-80309290 3033AC 0824+00 0/0 26/26 2/2 .text            load__20J2DAnmLoaderDataBaseFPCv
  */
-void* J2DAnmLoaderDataBase::load(void const* param_0) {
-    const J3DAnmDataHeader* hdr = (const J3DAnmDataHeader*) param_0;
-    if (hdr == NULL)  {
-        return NULL;
-    } else if (hdr->mMagic == 'J3D1') {
-        switch (hdr->mType) {
-            case 'bck1':
-                {J2DAnmKeyLoader_v15 loader;
-                loader._4 = new J2DAnmTransformKey();
-                return loader.load(param_0);
-                break;
-                }
-            case 'bpk1':
-                {J2DAnmKeyLoader_v15 loader;
-                loader._4 = new J2DAnmColorKey();
-                return loader.load(param_0);
-                break;
-                }
-            case 'blk1':
-                return NULL;
-            case 'btk1':
-                {J2DAnmKeyLoader_v15 loader;
-                loader._4 = new J2DAnmTextureSRTKey();
-                return loader.load(param_0);
-                break; 
-                }
-            case 'brk1':
-                {J2DAnmKeyLoader_v15 loader;
-                loader._4 = new J2DAnmTevRegKey();
-                return loader.load(param_0);
-                break;
-                }
-            case 'bxk1':
-                {J2DAnmKeyLoader_v15 loader;
-                loader._4 = new J2DAnmVtxColorKey();
-                return loader.load(param_0);
-                break;
-                }
-            case 'bca1': 
-                {J2DAnmFullLoader_v15 loader;
-                loader._4 = new J2DAnmTransformFull();
-                return loader.load(param_0);
-                break;
-                }
-            case 'bpa1': 
-                {J2DAnmFullLoader_v15 loader;
-                loader._4 = new J2DAnmColorFull();
-                return loader.load(param_0);
-                break;
-                }
-            case 'btp1': 
-                {J2DAnmFullLoader_v15 loader;
-                loader._4 = new J2DAnmTexPattern();
-                return loader.load(param_0);
-                }
-            case 'bva1': 
-                {J2DAnmFullLoader_v15 loader;
-                loader._4 = new J2DAnmVisibilityFull();
-                return loader.load(param_0);
-                break;
-                }
-            case 'bla1':
-                return NULL;
-            case 'bxa1': 
-                {J2DAnmFullLoader_v15 loader;
-                loader._4 = new J2DAnmVtxColorFull();
-                return loader.load(param_0);
-                }
-        }
-        return NULL;
-    } else {
-        return NULL;
-    }
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmLoaderDataBase::load(void const* param_0) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/load__20J2DAnmLoaderDataBaseFPCv.s"
 }
+#pragma pop
 
 /* 80309290-803092AC 303BD0 001C+00 1/1 0/0 0/0 .text            __ct__19J2DAnmKeyLoader_v15Fv */
-J2DAnmKeyLoader_v15::J2DAnmKeyLoader_v15() {}
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm J2DAnmKeyLoader_v15::J2DAnmKeyLoader_v15() {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/__ct__19J2DAnmKeyLoader_v15Fv.s"
+}
+#pragma pop
 
 /* 803092AC-80309308 303BEC 005C+00 2/1 0/0 0/0 .text            __dt__19J2DAnmKeyLoader_v15Fv */
-J2DAnmKeyLoader_v15::~J2DAnmKeyLoader_v15() {}
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm J2DAnmKeyLoader_v15::~J2DAnmKeyLoader_v15() {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/__dt__19J2DAnmKeyLoader_v15Fv.s"
+}
+#pragma pop
 
 /* 80309308-80309414 303C48 010C+00 2/1 0/0 0/0 .text            load__19J2DAnmKeyLoader_v15FPCv */
-void *J2DAnmKeyLoader_v15::load(void const* param_0) {
-    const J3DAnmDataHeader *hdr = (const J3DAnmDataHeader*) param_0;
-    const J3DAnmDataBlockHeader *dataPtr = &hdr->mFirst;
-    for (s32 i = 0; i < hdr->mCount; i++) {
-        switch (dataPtr->mType) {
-            case 'ANK1':
-                this->readAnmTransform((J3DAnmTransformKeyData*) dataPtr);
-                break;
-            case 'PAK1':
-                this->readAnmColor((J3DAnmColorKeyData*) dataPtr);
-                break;
-            case 'TTK1':
-                this->readAnmTextureSRT((J3DAnmTextureSRTKeyData*) dataPtr);
-                break;
-            case 'VCK1':
-                this->readAnmVtxColor((J3DAnmVtxColorKeyData*) dataPtr);
-                break;
-            case 'TRK1':
-                this->readAnmTevReg((J3DAnmTevRegKeyData*) dataPtr);
-                break;
-        }
-        dataPtr = (J3DAnmDataBlockHeader*)((s32)dataPtr + dataPtr->mNextOffset);
-    }
-    return _4;
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmKeyLoader_v15::load(void const* param_0) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/load__19J2DAnmKeyLoader_v15FPCv.s"
 }
+#pragma pop
 
 /* 80309414-80309570 303D54 015C+00 1/0 0/0 0/0 .text
  * setResource__19J2DAnmKeyLoader_v15FP10J2DAnmBasePCv          */
-void J2DAnmKeyLoader_v15::setResource(J2DAnmBase* pAnm, void const* param_1) {
-    const J3DAnmDataHeader *hdr = (const J3DAnmDataHeader*) param_1;
-    const J3DAnmDataBlockHeader *dataPtr = &hdr->mFirst;
-    for (s32 i = 0; i < hdr->mCount; i++) {
-        switch (dataPtr->mType) {
-            case 'ANK1':
-                if (pAnm->getKind() == 0) {
-                    this->setAnmTransform((J2DAnmTransformKey*) pAnm, (J3DAnmTransformKeyData*) dataPtr);
-                }
-                break;
-            case 'PAK1':
-                if (pAnm->getKind() == 1) {
-                    this->setAnmColor((J2DAnmColorKey*) pAnm, (J3DAnmColorKeyData*) dataPtr);
-                }
-                break;
-            case 'TTK1':
-                if (pAnm->getKind() == 4) {
-                    this->setAnmTextureSRT((J2DAnmTextureSRTKey*) pAnm, (J3DAnmTextureSRTKeyData*) dataPtr);
-                }
-                break;
-            case 'TRK1':
-                if (pAnm->getKind() == 5) {
-                    this->setAnmTevReg((J2DAnmTevRegKey*) pAnm, (J3DAnmTevRegKeyData*) dataPtr);
-                }
-                break;
-            case 'VCK1':
-                if (pAnm->getKind() == 7) {
-                    this->setAnmVtxColor((J2DAnmVtxColorKey*) pAnm, (J3DAnmVtxColorKeyData*) dataPtr);
-                }
-                break;
-        }
-        dataPtr = (J3DAnmDataBlockHeader*)((s32)dataPtr + dataPtr->mNextOffset);
-    }
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmKeyLoader_v15::setResource(J2DAnmBase* param_0, void const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/setResource__19J2DAnmKeyLoader_v15FP10J2DAnmBasePCv.s"
 }
+#pragma pop
 
 /* 80309570-80309598 303EB0 0028+00 1/1 0/0 0/0 .text
  * readAnmTransform__19J2DAnmKeyLoader_v15FPC22J3DAnmTransformKeyData */
-void J2DAnmKeyLoader_v15::readAnmTransform(J3DAnmTransformKeyData const* pData) {
-    this->setAnmTransform((J2DAnmTransformKey*)_4, pData);
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmKeyLoader_v15::readAnmTransform(J3DAnmTransformKeyData const* param_0) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/readAnmTransform__19J2DAnmKeyLoader_v15FPC22J3DAnmTransformKeyData.s"
 }
+#pragma pop
 
 /* 80309598-80309634 303ED8 009C+00 2/2 0/0 0/0 .text
  * setAnmTransform__19J2DAnmKeyLoader_v15FP18J2DAnmTransformKeyPC22J3DAnmTransformKeyData */
-void J2DAnmKeyLoader_v15::setAnmTransform(J2DAnmTransformKey* param_0, J3DAnmTransformKeyData const* param_1) {
-    param_0->field_0x22 = param_1->_C;
-    param_0->mFrameMax = param_1->mFrameMax;
-    param_0->field_0x4 = param_1->_8;
-    param_0->field_0x24 = param_1->_9;
-    param_0->mFrame = 0;
-    param_0->mInfoTable = JSUConvertOffsetToPtr<J3DAnmTransformKeyTable>(param_1, (void*)param_1->mTableOffset);
-    param_0->mScaleValues = JSUConvertOffsetToPtr<f32>(param_1, (void*) param_1->mScaleOffset);
-    param_0->mRotationValues = JSUConvertOffsetToPtr<s16>(param_1, (void*) param_1->mRotationOffset);
-    param_0->mTranslateValues = JSUConvertOffsetToPtr<f32>(param_1, (void*) param_1->mTranslateOffset);
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmKeyLoader_v15::setAnmTransform(J2DAnmTransformKey* param_0,
+                                              J3DAnmTransformKeyData const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/func_80309598.s"
 }
+#pragma pop
 
 /* 80309634-8030965C 303F74 0028+00 1/1 0/0 0/0 .text
  * readAnmTextureSRT__19J2DAnmKeyLoader_v15FPC23J3DAnmTextureSRTKeyData */
-void J2DAnmKeyLoader_v15::readAnmTextureSRT(J3DAnmTextureSRTKeyData const* param_0) {
-    this->setAnmTextureSRT((J2DAnmTextureSRTKey*) _4, param_0);
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmKeyLoader_v15::readAnmTextureSRT(J3DAnmTextureSRTKeyData const* param_0) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/readAnmTextureSRT__19J2DAnmKeyLoader_v15FPC23J3DAnmTextureSRTKeyData.s"
 }
+#pragma pop
 
 /* 8030965C-80309848 303F9C 01EC+00 2/2 0/0 0/0 .text
  * setAnmTextureSRT__19J2DAnmKeyLoader_v15FP19J2DAnmTextureSRTKeyPC23J3DAnmTextureSRTKeyData */
-void J2DAnmKeyLoader_v15::setAnmTextureSRT(J2DAnmTextureSRTKey* pAnm, J3DAnmTextureSRTKeyData const* pData) {
-    pAnm->mUpdateMaterialNum = pData->field_0xc;
-    pAnm->mFrameMax = pData->field_0xa;
-    pAnm->field_0x4 = pData->field_0x8;
-    pAnm->field_0x10 = pData->field_0x9;
-    pAnm->mFrame = 0;
-    pAnm->mUpdateMaterialNum = pData->field_0xc;
-    pAnm->field_0x1a = pData->field_0xe;
-    pAnm->field_0x1c = pData->field_0x10;
-    pAnm->field_0x1e = pData->field_0x12;
-    pAnm->mInfoTable = JSUConvertOffsetToPtr<J3DAnmTransformKeyTable>(pData, (void*)pData->mTableOffset);
-    pAnm->mUpdateMaterialID = JSUConvertOffsetToPtr<u16>(pData, (void*)pData->mUpdateMatIDOffset);
-    pAnm->field_0x34.setResource(JSUConvertOffsetToPtr<ResNTAB>(pData, (void*)pData->mNameTab1Offset));
-    pAnm->mUpdateTexMtxID = JSUConvertOffsetToPtr<u8>(pData, (void*)pData->mUpdateTexMtxIDOffset);
-    pAnm->field_0x44 = JSUConvertOffsetToPtr<Vec>(pData, (void*)pData->unkOffset);
-    pAnm->mScaleValues = JSUConvertOffsetToPtr<f32>(pData, (void*)pData->mScaleValOffset);
-    pAnm->mRotationValues = JSUConvertOffsetToPtr<s16>(pData, (void*)pData->mRotValOffset);
-    pAnm->mTranslationValues = JSUConvertOffsetToPtr<f32>(pData, (void*)pData->mTransValOffset);
-    if (pData->mNameTab2Offset != 0) {
-        pAnm->field_0x68.setResource(JSUConvertOffsetToPtr<ResNTAB>(pData, (void*)pData->mNameTab2Offset));
-    }
-    pAnm->field_0x4e = pData->field_0x34;
-    pAnm->field_0x48 = pData->field_0x36;
-    pAnm->field_0x4a = pData->field_0x38;
-    pAnm->field_0x4c = pData->field_0x3a;
-    pAnm->field_0x5c = JSUConvertOffsetToPtr<J3DAnmTransformKeyTable>(pData, (void*)pData->mInfoTable2Offset);
-    pAnm->field_0x64 = JSUConvertOffsetToPtr<u16>(pData, (void*)pData->field_0x40);
-    pAnm->field_0x60 = JSUConvertOffsetToPtr<u8>(pData, (void*)pData->field_0x48);
-    pAnm->field_0x78 = JSUConvertOffsetToPtr<Vec>(pData, (void*)pData->field_0x48);
-    pAnm->field_0x50 = JSUConvertOffsetToPtr<f32>(pData, (void*)pData->field_0x50);
-    pAnm->field_0x54 = JSUConvertOffsetToPtr<s16>(pData, (void*)pData->field_0x54);
-    pAnm->field_0x58 = JSUConvertOffsetToPtr<f32>(pData, (void*)pData->field_0x58);
-    switch (pData->field_0x5c) {
-        case 0:
-            pAnm->field_0x7c = 0;
-            break;
-        case 1:
-            pAnm->field_0x7c = 1;
-            break;
-        default:
-            pAnm->field_0x7c = 0;
-            break;
-    }
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmKeyLoader_v15::setAnmTextureSRT(J2DAnmTextureSRTKey* param_0,
+                                               J3DAnmTextureSRTKeyData const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030965C.s"
 }
+#pragma pop
 
 /* 80309848-80309870 304188 0028+00 1/1 0/0 0/0 .text
  * readAnmColor__19J2DAnmKeyLoader_v15FPC18J3DAnmColorKeyData   */
-void J2DAnmKeyLoader_v15::readAnmColor(J3DAnmColorKeyData const* pData) {
-    this->setAnmColor((J2DAnmColorKey*)_4, pData);
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmKeyLoader_v15::readAnmColor(J3DAnmColorKeyData const* param_0) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/readAnmColor__19J2DAnmKeyLoader_v15FPC18J3DAnmColorKeyData.s"
 }
+#pragma pop
 
 /* 80309870-8030995C 3041B0 00EC+00 2/2 0/0 0/0 .text
  * setAnmColor__19J2DAnmKeyLoader_v15FP14J2DAnmColorKeyPC18J3DAnmColorKeyData */
-void J2DAnmKeyLoader_v15::setAnmColor(J2DAnmColorKey* pAnm, J3DAnmColorKeyData const* pData) {
-    pAnm->mFrameMax = pData->mFrameMax;
-    pAnm->field_0x4 = pData->field_0x8;
-    pAnm->mFrame = 0;
-    pAnm->mUpdateMaterialNum = pData->mUpdateMaterialNum;
-    pAnm->field_0x10 = pData->field_0x10;
-    pAnm->field_0x12 = pData->field_0x12;
-    pAnm->field_0x14 = pData->field_0x14;
-    pAnm->field_0x16 = pData->field_0x16;
-    pAnm->mInfoTable = JSUConvertOffsetToPtr<J3DAnmColorKeyTable>(pData, (void*) pData->mTableOffset);
-    pAnm->mRValues = JSUConvertOffsetToPtr<s16>(pData, (void*)pData->mRValOffset);
-    pAnm->mGValues = JSUConvertOffsetToPtr<s16>(pData, (void*)pData->mGValOffset);
-    pAnm->mBValues = JSUConvertOffsetToPtr<s16>(pData, (void*)pData->mBValOffset);
-    pAnm->mAValues = JSUConvertOffsetToPtr<s16>(pData, (void*)pData->mAValOffset);
-    pAnm->mUpdateMaterialID = JSUConvertOffsetToPtr<u16>(pData, (void*)pData->mUpdateMaterialIDOffset);
-    pAnm->field_0x20.setResource(JSUConvertOffsetToPtr<ResNTAB>(pData, (void*)pData->mNameTabOffset));
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmKeyLoader_v15::setAnmColor(J2DAnmColorKey* param_0,
+                                          J3DAnmColorKeyData const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/setAnmColor__19J2DAnmKeyLoader_v15FP14J2DAnmColorKeyPC18J3DAnmColorKeyData.s"
 }
+#pragma pop
 
 /* 8030995C-80309984 30429C 0028+00 1/1 0/0 0/0 .text
  * readAnmVtxColor__19J2DAnmKeyLoader_v15FPC21J3DAnmVtxColorKeyData */
-void J2DAnmKeyLoader_v15::readAnmVtxColor(J3DAnmVtxColorKeyData const* pData) {
-    this->setAnmVtxColor((J2DAnmVtxColorKey*) _4, pData);
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmKeyLoader_v15::readAnmVtxColor(J3DAnmVtxColorKeyData const* param_0) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/readAnmVtxColor__19J2DAnmKeyLoader_v15FPC21J3DAnmVtxColorKeyData.s"
 }
+#pragma pop
 
 /* 80309984-80309A80 3042C4 00FC+00 2/2 0/0 0/0 .text
  * setAnmVtxColor__19J2DAnmKeyLoader_v15FP17J2DAnmVtxColorKeyPC21J3DAnmVtxColorKeyData */
-void J2DAnmKeyLoader_v15::setAnmVtxColor(J2DAnmVtxColorKey* pAnm, J3DAnmVtxColorKeyData const* pData) {
-    pAnm->mFrameMax = pData->mFrameMax;
-    pAnm->field_0x4 = pData->field_0x8;
-    pAnm->mFrame = 0;
-    pAnm->mAnmTableNum[0] = pData->mAnmTableNum[0];
-    pAnm->mAnmTableNum[1] = pData->mAnmTableNum[1];
-    pAnm->mInfoTable[0] = JSUConvertOffsetToPtr<J3DAnmColorKeyTable>(pData, (void*) pData->mTableOffsets[0]);
-    pAnm->mInfoTable[1] = JSUConvertOffsetToPtr<J3DAnmColorKeyTable>(pData, (void*) pData->mTableOffsets[1]);
-    pAnm->mVtxColorIndexData[0] = JSUConvertOffsetToPtr<J3DAnmVtxColorIndexData>(pData, (void*) pData->mVtxColoIndexDataOffset[0]);
-    pAnm->mVtxColorIndexData[1] = JSUConvertOffsetToPtr<J3DAnmVtxColorIndexData>(pData, (void*) pData->mVtxColoIndexDataOffset[1]);
-    pAnm->mVtxColorIndexPointer[0] = JSUConvertOffsetToPtr<u16>(pData, (void*) pData->mVtxColoIndexPointerOffset[0]);
-    pAnm->mVtxColorIndexPointer[1] = JSUConvertOffsetToPtr<u16>(pData, (void*) pData->mVtxColoIndexPointerOffset[1]);
-    pAnm->mRValues = JSUConvertOffsetToPtr<s16>(pData, (void*) pData->mRValOffset);
-    pAnm->mGValues = JSUConvertOffsetToPtr<s16>(pData, (void*) pData->mGValOffset);
-    pAnm->mBValues = JSUConvertOffsetToPtr<s16>(pData, (void*) pData->mBValOffset);
-    pAnm->mAValues = JSUConvertOffsetToPtr<s16>(pData, (void*) pData->mAValOffset);
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmKeyLoader_v15::setAnmVtxColor(J2DAnmVtxColorKey* param_0,
+                                             J3DAnmVtxColorKeyData const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/setAnmVtxColor__19J2DAnmKeyLoader_v15FP17J2DAnmVtxColorKeyPC21J3DAnmVtxColorKeyData.s"
 }
+#pragma pop
 
 /* 80309A80-80309B8C 3043C0 010C+00 2/1 0/0 0/0 .text            load__20J2DAnmFullLoader_v15FPCv */
-void *J2DAnmFullLoader_v15::load(void const* param_0) {
-    const J3DAnmDataHeader *hdr = (const J3DAnmDataHeader*) param_0;
-    const J3DAnmDataBlockHeader *dataPtr = &hdr->mFirst;
-    for (s32 i = 0; i < hdr->mCount; i++) {
-        switch (dataPtr->mType) {
-            case 'ANF1':
-                this->readAnmTransform((J3DAnmTransformFullData*) dataPtr);
-                break;
-            case 'PAF1':
-                this->readAnmColor((J3DAnmColorFullData*) dataPtr);
-                break;
-            case 'TPT1':
-                this->readAnmTexPattern((J3DAnmTexPatternFullData*) dataPtr);
-                break;
-            case 'VAF1':
-                this->readAnmVisibility((J3DAnmVisibilityFullData*) dataPtr);
-                break;
-            case 'VCF1':
-                this->readAnmVtxColor((J3DAnmVtxColorFullData*) dataPtr);
-                break;
-        }
-        dataPtr = (J3DAnmDataBlockHeader*)((s32)dataPtr + dataPtr->mNextOffset);
-    }
-    return _4;
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmFullLoader_v15::load(void const* param_0) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/load__20J2DAnmFullLoader_v15FPCv.s"
 }
+#pragma pop
 
 /* 80309B8C-80309CE8 3044CC 015C+00 1/0 0/0 0/0 .text
  * setResource__20J2DAnmFullLoader_v15FP10J2DAnmBasePCv         */
-void J2DAnmFullLoader_v15::setResource(J2DAnmBase* pAnm, void const* pData) {
-    const J3DAnmDataHeader *hdr = (const J3DAnmDataHeader*) pData;
-    const J3DAnmDataBlockHeader *dataPtr = &hdr->mFirst;
-    for (s32 i = 0; i < hdr->mCount; i++) {
-        switch (dataPtr->mType) {
-            case 'ANF1':
-                if (pAnm->getKind() == 0)
-                    this->setAnmTransform((J2DAnmTransformFull*) pAnm, (J3DAnmTransformFullData*) dataPtr);
-                break;
-            case 'PAF1':
-                if (pAnm->getKind() == 1)
-                    this->setAnmColor((J2DAnmColorFull*) pAnm, (J3DAnmColorFullData*) dataPtr);
-                break;
-            case 'TPT1':
-                if (pAnm->getKind() == 2)
-                    this->setAnmTexPattern((J2DAnmTexPattern*) pAnm, (J3DAnmTexPatternFullData*) dataPtr);
-                break;
-            case 'VAF1':
-                if (pAnm->getKind() == 6)
-                    this->setAnmVisibility((J2DAnmVisibilityFull*) pAnm, (J3DAnmVisibilityFullData*) dataPtr);
-                break;
-            case 'VCF1':
-                if (pAnm->getKind() == 7)
-                    this->setAnmVtxColor((J2DAnmVtxColorFull*) pAnm, (J3DAnmVtxColorFullData*) dataPtr);
-                break;
-        }
-        dataPtr = (J3DAnmDataBlockHeader*)((s32)dataPtr + dataPtr->mNextOffset);
-    }
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmFullLoader_v15::setResource(J2DAnmBase* param_0, void const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/setResource__20J2DAnmFullLoader_v15FP10J2DAnmBasePCv.s"
 }
+#pragma pop
 
 /* 80309CE8-80309D04 304628 001C+00 1/1 0/0 0/0 .text            __ct__20J2DAnmFullLoader_v15Fv */
-J2DAnmFullLoader_v15::J2DAnmFullLoader_v15() {}
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm J2DAnmFullLoader_v15::J2DAnmFullLoader_v15() {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/__ct__20J2DAnmFullLoader_v15Fv.s"
+}
+#pragma pop
 
 /* 80309D04-80309D60 304644 005C+00 2/1 0/0 0/0 .text            __dt__20J2DAnmFullLoader_v15Fv */
-J2DAnmFullLoader_v15::~J2DAnmFullLoader_v15() {}
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm J2DAnmFullLoader_v15::~J2DAnmFullLoader_v15() {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/__dt__20J2DAnmFullLoader_v15Fv.s"
+}
+#pragma pop
 
 /* 80309D60-80309D88 3046A0 0028+00 1/1 0/0 0/0 .text
  * readAnmTransform__20J2DAnmFullLoader_v15FPC23J3DAnmTransformFullData */
-void J2DAnmFullLoader_v15::readAnmTransform(J3DAnmTransformFullData const* pData) {
-    this->setAnmTransform((J2DAnmTransformFull*) _4, pData);
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmFullLoader_v15::readAnmTransform(J3DAnmTransformFullData const* param_0) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/readAnmTransform__20J2DAnmFullLoader_v15FPC23J3DAnmTransformFullData.s"
 }
+#pragma pop
 
 /* 80309D88-80309E1C 3046C8 0094+00 2/2 0/0 0/0 .text
  * setAnmTransform__20J2DAnmFullLoader_v15FP19J2DAnmTransformFullPC23J3DAnmTransformFullData */
-void J2DAnmFullLoader_v15::setAnmTransform(J2DAnmTransformFull* pAnm, J3DAnmTransformFullData const* pData) {
-    pAnm->field_0x22 = pData->field_0xc;
-    pAnm->mFrameMax = pData->mFrameMax;
-    pAnm->field_0x4 = pData->field_0x8;
-    pAnm->mFrame = 0;
-    pAnm->mTableInfo = JSUConvertOffsetToPtr<J3DAnmTransformFullTable>(pData, (void*) pData->mTableOffset);
-    pAnm->mScaleValues = JSUConvertOffsetToPtr<f32>(pData, (void*) pData->mScaleValOffset);
-    pAnm->mRotationValues = JSUConvertOffsetToPtr<s16>(pData, (void*) pData->mRotValOffset);
-    pAnm->mTranslateValues = JSUConvertOffsetToPtr<f32>(pData, (void*) pData->mTransValOffset);
-
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmFullLoader_v15::setAnmTransform(J2DAnmTransformFull* param_0,
+                                               J3DAnmTransformFullData const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/func_80309D88.s"
 }
+#pragma pop
 
 /* 80309E1C-80309E44 30475C 0028+00 1/1 0/0 0/0 .text
  * readAnmColor__20J2DAnmFullLoader_v15FPC19J3DAnmColorFullData */
-void J2DAnmFullLoader_v15::readAnmColor(J3DAnmColorFullData const* pData) {
-    this->setAnmColor((J2DAnmColorFull*) _4, pData);
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmFullLoader_v15::readAnmColor(J3DAnmColorFullData const* param_0) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/readAnmColor__20J2DAnmFullLoader_v15FPC19J3DAnmColorFullData.s"
 }
+#pragma pop
 
 /* 80309E44-80309F10 304784 00CC+00 2/2 0/0 0/0 .text
  * setAnmColor__20J2DAnmFullLoader_v15FP15J2DAnmColorFullPC19J3DAnmColorFullData */
-void J2DAnmFullLoader_v15::setAnmColor(J2DAnmColorFull* pAnm, J3DAnmColorFullData const* pData) {
-    pAnm->mFrameMax = pData->mFrameMax;
-    pAnm->field_0x4 = pData->field_0x8;
-    pAnm->mFrame = 0;
-    pAnm->mUpdateMaterialNum = pData->mUpdateMaterialNum;
-    pAnm->mInfoTable = JSUConvertOffsetToPtr<J3DAnmColorFullTable>(pData, (void*) pData->mTableOffset);
-    pAnm->mRValues = JSUConvertOffsetToPtr<u8>(pData, (void*) pData->mRValuesOffset);
-    pAnm->mGValues = JSUConvertOffsetToPtr<u8>(pData, (void*) pData->mGValuesOffset);
-    pAnm->mBValues = JSUConvertOffsetToPtr<u8>(pData, (void*) pData->mBValuesOffset);
-    pAnm->mAValues = JSUConvertOffsetToPtr<u8>(pData, (void*) pData->mAValuesOffset);
-    pAnm->mUpdateMaterialID = JSUConvertOffsetToPtr<u16>(pData, (void*) pData->mUpdateMaterialIDOffset);
-    pAnm->field_0x20.setResource(JSUConvertOffsetToPtr<ResNTAB>(pData, (void*) pData->mNameTabOffset));
-
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmFullLoader_v15::setAnmColor(J2DAnmColorFull* param_0,
+                                           J3DAnmColorFullData const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/setAnmColor__20J2DAnmFullLoader_v15FP15J2DAnmColorFullPC19J3DAnmColorFullData.s"
 }
+#pragma pop
 
 /* 80309F10-80309F38 304850 0028+00 1/1 0/0 0/0 .text
  * readAnmTexPattern__20J2DAnmFullLoader_v15FPC24J3DAnmTexPatternFullData */
-void J2DAnmFullLoader_v15::readAnmTexPattern(J3DAnmTexPatternFullData const* pData) {
-    this->setAnmTexPattern((J2DAnmTexPattern*) _4, pData);
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmFullLoader_v15::readAnmTexPattern(J3DAnmTexPatternFullData const* param_0) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/readAnmTexPattern__20J2DAnmFullLoader_v15FPC24J3DAnmTexPatternFullData.s"
 }
+#pragma pop
 
 /* 80309F38-80309FDC 304878 00A4+00 2/2 0/0 0/0 .text
  * setAnmTexPattern__20J2DAnmFullLoader_v15FP16J2DAnmTexPatternPC24J3DAnmTexPatternFullData */
-void J2DAnmFullLoader_v15::setAnmTexPattern(J2DAnmTexPattern* pAnm, J3DAnmTexPatternFullData const* pData) {
-    pAnm->mFrameMax = pData->mFrameMax;
-    pAnm->field_0x4 = pData->field_0x8;
-    pAnm->mFrame = 0;
-    pAnm->mUpdateMaterialNum = pData->field_0xc;
-    pAnm->field_0x18 = pData->field_0xe;
-    pAnm->mAnmTable = JSUConvertOffsetToPtr<J3DAnmTexPatternFullTable>(pData, (void*) pData->mTableOffset);
-    pAnm->mValues = JSUConvertOffsetToPtr<u16>(pData, (void*) pData->mValuesOffset);
-    pAnm->mUpdaterMaterialID = JSUConvertOffsetToPtr<u16>(pData, (void*) pData->mUpdaterMaterialIDOffset);
-    pAnm->field_0x20.setResource(JSUConvertOffsetToPtr<ResNTAB>(pData, (void*) pData->mNameTabOffset));
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmFullLoader_v15::setAnmTexPattern(J2DAnmTexPattern* param_0,
+                                                J3DAnmTexPatternFullData const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/func_80309F38.s"
 }
+#pragma pop
 
 /* 80309FDC-8030A004 30491C 0028+00 1/1 0/0 0/0 .text
  * readAnmTevReg__19J2DAnmKeyLoader_v15FPC19J3DAnmTevRegKeyData */
-void J2DAnmKeyLoader_v15::readAnmTevReg(J3DAnmTevRegKeyData const* pData) {
-    this->setAnmTevReg((J2DAnmTevRegKey*) _4, pData);
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmKeyLoader_v15::readAnmTevReg(J3DAnmTevRegKeyData const* param_0) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/readAnmTevReg__19J2DAnmKeyLoader_v15FPC19J3DAnmTevRegKeyData.s"
 }
+#pragma pop
 
 /* 8030A004-8030A190 304944 018C+00 2/2 0/0 0/0 .text
  * setAnmTevReg__19J2DAnmKeyLoader_v15FP15J2DAnmTevRegKeyPC19J3DAnmTevRegKeyData */
-void J2DAnmKeyLoader_v15::setAnmTevReg(J2DAnmTevRegKey* pAnm, J3DAnmTevRegKeyData const* pData) {
-    pAnm->mFrameMax = pData->mFrameMax;
-    pAnm->field_0x4 = pData->field_0x8;
-    pAnm->mFrame = 0;
-    pAnm->mCRegUpdateMaterialNum = pData->mCRegUpdateMaterialNum;
-    pAnm->mAnmCRegKeyTable = JSUConvertOffsetToPtr<J3DAnmCRegKeyTable>(pData, (void*) pData->mCRegTableOffset);
-    pAnm->mCRegUpdateMaterialID = JSUConvertOffsetToPtr<u16>(pData, (void*) pData->mCRegUpdateMaterialIDOffset);
-    pAnm->mCRegNameTab.setResource(JSUConvertOffsetToPtr<ResNTAB>(pData, (void*) pData->mCRegNameTabOffset));
-    pAnm->mKRegUpdateMaterialNum = pData->mKRegUpdateMaterialNum;
-    pAnm->mAnmKRegKeyTable = JSUConvertOffsetToPtr<J3DAnmKRegKeyTable>(pData, (void*) pData->mKRegTableOffset);
-    pAnm->mKRegUpdateMaterialID = JSUConvertOffsetToPtr<u16>(pData, (void*) pData->mKRegUpdateMaterialIDOffset);
-    pAnm->mKRegNameTab.setResource(JSUConvertOffsetToPtr<ResNTAB>(pData, (void*) pData->mKRegNameTabOffset));
-    pAnm->field_0x14 = pData->field_0x10;
-    pAnm->field_0x16 = pData->field_0x12;
-    pAnm->field_0x18 = pData->field_0x14;
-    pAnm->field_0x1a = pData->field_0x16;
-    pAnm->mCRValues = JSUConvertOffsetToPtr<s16>(pData, (void*) pData->mCRValuesOffset);
-    pAnm->mCGValues = JSUConvertOffsetToPtr<s16>(pData, (void*) pData->mCGValuesOffset);
-    pAnm->mCBValues = JSUConvertOffsetToPtr<s16>(pData, (void*) pData->mCBValuesOffset);
-    pAnm->mCAValues = JSUConvertOffsetToPtr<s16>(pData, (void*) pData->mCAValuesOffset);
-    pAnm->field_0x1c = pData->field_0x18;
-    pAnm->field_0x1e = pData->field_0x1a;
-    pAnm->field_0x20 = pData->field_0x1c;
-    pAnm->field_0x22 = pData->field_0x1e;
-    pAnm->mKRValues = JSUConvertOffsetToPtr<s16>(pData, (void*) pData->mKRValuesOffset);
-    pAnm->mKGValues = JSUConvertOffsetToPtr<s16>(pData, (void*) pData->mKGValuesOffset);
-    pAnm->mKBValues = JSUConvertOffsetToPtr<s16>(pData, (void*) pData->mKBValuesOffset);
-    pAnm->mKAValues = JSUConvertOffsetToPtr<s16>(pData, (void*) pData->mKAValuesOffset);
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmKeyLoader_v15::setAnmTevReg(J2DAnmTevRegKey* param_0,
+                                           J3DAnmTevRegKeyData const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/setAnmTevReg__19J2DAnmKeyLoader_v15FP15J2DAnmTevRegKeyPC19J3DAnmTevRegKeyData.s"
 }
+#pragma pop
 
 /* 8030A190-8030A1B8 304AD0 0028+00 1/1 0/0 0/0 .text
  * readAnmVisibility__20J2DAnmFullLoader_v15FPC24J3DAnmVisibilityFullData */
-void J2DAnmFullLoader_v15::readAnmVisibility(J3DAnmVisibilityFullData const* pData) {
-    this->setAnmVisibility((J2DAnmVisibilityFull*) _4, pData);
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmFullLoader_v15::readAnmVisibility(J3DAnmVisibilityFullData const* param_0) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/readAnmVisibility__20J2DAnmFullLoader_v15FPC24J3DAnmVisibilityFullData.s"
 }
+#pragma pop
 
 /* 8030A1B8-8030A234 304AF8 007C+00 2/2 0/0 0/0 .text
  * setAnmVisibility__20J2DAnmFullLoader_v15FP20J2DAnmVisibilityFullPC24J3DAnmVisibilityFullData */
-void J2DAnmFullLoader_v15::setAnmVisibility(J2DAnmVisibilityFull* pAnm, J3DAnmVisibilityFullData const* pData) {
-    pAnm->mFrameMax = pData->mFrameMax;
-    pAnm->field_0x4 = pData->field_0x8;
-    pAnm->mFrame = 0;
-    pAnm->field_0x10 = pData->field_0xc;
-    pAnm->field_0x12 = pData->field_0xe;
-    pAnm->mTable = JSUConvertOffsetToPtr<J3DAnmVisibilityFullTable>(pData, (void*) pData->mTableOffset);
-    pAnm->mValues = JSUConvertOffsetToPtr<u8>(pData, (void*) pData->mValuesOffset);
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmFullLoader_v15::setAnmVisibility(J2DAnmVisibilityFull* param_0,
+                                                J3DAnmVisibilityFullData const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A1B8.s"
 }
+#pragma pop
 
 /* 8030A234-8030A25C 304B74 0028+00 1/1 0/0 0/0 .text
  * readAnmVtxColor__20J2DAnmFullLoader_v15FPC22J3DAnmVtxColorFullData */
-void J2DAnmFullLoader_v15::readAnmVtxColor(J3DAnmVtxColorFullData const* pData) {
-    this->setAnmVtxColor((J2DAnmVtxColorFull*) _4, pData);
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmFullLoader_v15::readAnmVtxColor(J3DAnmVtxColorFullData const* param_0) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/readAnmVtxColor__20J2DAnmFullLoader_v15FPC22J3DAnmVtxColorFullData.s"
 }
+#pragma pop
 
 /* 8030A25C-8030A358 304B9C 00FC+00 2/2 0/0 0/0 .text
  * setAnmVtxColor__20J2DAnmFullLoader_v15FP18J2DAnmVtxColorFullPC22J3DAnmVtxColorFullData */
-void J2DAnmFullLoader_v15::setAnmVtxColor(J2DAnmVtxColorFull* pAnm, J3DAnmVtxColorFullData const* pData) {
-    pAnm->mFrameMax = pData->mFrameMax;
-    pAnm->field_0x4 = pData->field_0x8;
-    pAnm->mFrame = 0;
-    pAnm->mAnmTableNum[0] = pData->mAnmTableNum[0];
-    pAnm->mAnmTableNum[1] = pData->mAnmTableNum[1];
-    pAnm->mInfoTable[0] = JSUConvertOffsetToPtr<J3DAnmColorFullTable>(pData, (void*) pData->mTableOffsets[0]);
-    pAnm->mInfoTable[1] = JSUConvertOffsetToPtr<J3DAnmColorFullTable>(pData, (void*) pData->mTableOffsets[1]);
-    pAnm->mVtxColorIndexData[0] = JSUConvertOffsetToPtr<J3DAnmVtxColorIndexData>(pData, (void*) pData->mVtxColorIndexDataOffsets[0]);
-    pAnm->mVtxColorIndexData[1] = JSUConvertOffsetToPtr<J3DAnmVtxColorIndexData>(pData, (void*) pData->mVtxColorIndexDataOffsets[1]);
-    pAnm->mVtxColorIndexPointer[0] = JSUConvertOffsetToPtr<u16>(pData, (void*) pData->mVtxColorIndexPointerOffsets[0]);
-    pAnm->mVtxColorIndexPointer[1] = JSUConvertOffsetToPtr<u16>(pData, (void*) pData->mVtxColorIndexPointerOffsets[1]);
-    pAnm->mRValues = JSUConvertOffsetToPtr<u8>(pData, (void*) pData->mRValuesOffset);
-    pAnm->mGValues = JSUConvertOffsetToPtr<u8>(pData, (void*) pData->mGValuesOffset);
-    pAnm->mBValues = JSUConvertOffsetToPtr<u8>(pData, (void*) pData->mBValuesOffset);
-    pAnm->mAValues = JSUConvertOffsetToPtr<u8>(pData, (void*) pData->mAValuesOffset);
-
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DAnmFullLoader_v15::setAnmVtxColor(J2DAnmVtxColorFull* param_0,
+                                              J3DAnmVtxColorFullData const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A25C.s"
 }
+#pragma pop
 
 /* 8030A358-8030A3B4 304C98 005C+00 1/0 0/0 0/0 .text            __dt__14J2DAnmVtxColorFv */
-// J2DAnmVtxColor::~J2DAnmVtxColor() {}
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm J2DAnmVtxColor::~J2DAnmVtxColor() {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/__dt__14J2DAnmVtxColorFv.s"
+}
+#pragma pop
+
 /* 8030A3B4-8030A410 304CF4 005C+00 1/0 0/0 0/0 .text            __dt__20J2DAnmVisibilityFullFv */
-// J2DAnmVisibilityFull::~J2DAnmVisibilityFull() {}
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm J2DAnmVisibilityFull::~J2DAnmVisibilityFull() {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/__dt__20J2DAnmVisibilityFullFv.s"
+}
+#pragma pop
+
+/* 8030A410-8030A458 304D50 0048+00 1/0 0/0 0/0 .text            __dt__12J2DAnmLoaderFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm J2DAnmLoader::~J2DAnmLoader() {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/__dt__12J2DAnmLoaderFv.s"
+}
+#pragma pop
+
+/* 8030A458-8030A470 304D98 0018+00 1/1 1/1 0/0 .text
+ * JSUConvertOffsetToPtr<25J3DAnmVisibilityFullTable>__FPCvPCv  */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void func_8030A458(void const* param_0, void const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A458.s"
+}
+#pragma pop
+
+/* 8030A470-8030A488 304DB0 0018+00 1/1 1/1 0/0 .text
+ * JSUConvertOffsetToPtr<18J3DAnmKRegKeyTable>__FPCvPCv         */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void func_8030A470(void const* param_0, void const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A470.s"
+}
+#pragma pop
+
+/* 8030A488-8030A4A0 304DC8 0018+00 1/1 1/1 0/0 .text
+ * JSUConvertOffsetToPtr<18J3DAnmCRegKeyTable>__FPCvPCv         */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void func_8030A488(void const* param_0, void const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A488.s"
+}
+#pragma pop
+
+/* 8030A4A0-8030A4B8 304DE0 0018+00 1/1 1/1 0/0 .text
+ * JSUConvertOffsetToPtr<25J3DAnmTexPatternFullTable>__FPCvPCv  */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void func_8030A4A0(void const* param_0, void const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A4A0.s"
+}
+#pragma pop
+
+/* 8030A4B8-8030A4D0 304DF8 0018+00 2/2 2/2 0/0 .text
+ * JSUConvertOffsetToPtr<20J3DAnmColorFullTable>__FPCvPCv       */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void func_8030A4B8(void const* param_0, void const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A4B8.s"
+}
+#pragma pop
+
+/* 8030A4D0-8030A4E8 304E10 0018+00 1/1 1/1 0/0 .text
+ * JSUConvertOffsetToPtr<24J3DAnmTransformFullTable>__FPCvPCv   */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void func_8030A4D0(void const* param_0, void const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A4D0.s"
+}
+#pragma pop
+
+/* 8030A4E8-8030A500 304E28 0018+00 2/2 2/2 0/0 .text
+ * JSUConvertOffsetToPtr<23J3DAnmVtxColorIndexData>__FPCvPCv    */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void func_8030A4E8(void const* param_0, void const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A4E8.s"
+}
+#pragma pop
+
+/* 8030A500-8030A518 304E40 0018+00 2/2 2/2 0/0 .text
+ * JSUConvertOffsetToPtr<19J3DAnmColorKeyTable>__FPCvPCv        */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void func_8030A500(void const* param_0, void const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A500.s"
+}
+#pragma pop
+
+/* 8030A518-8030A530 304E58 0018+00 1/1 1/1 0/0 .text JSUConvertOffsetToPtr<3Vec>__FPCvPCv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void func_8030A518(void const* param_0, void const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A518.s"
+}
+#pragma pop
+
+/* 8030A530-8030A548 304E70 0018+00 5/5 16/16 0/0 .text JSUConvertOffsetToPtr<7ResNTAB>__FPCvPCv
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void func_8030A530(void const* param_0, void const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A530.s"
+}
+#pragma pop
+
+/* 8030A548-8030A560 304E88 0018+00 6/6 6/6 0/0 .text            JSUConvertOffsetToPtr<s>__FPCvPCv
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void func_8030A548(void const* param_0, void const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A548.s"
+}
+#pragma pop
+
+/* 8030A560-8030A578 304EA0 0018+00 3/3 7/7 0/0 .text            JSUConvertOffsetToPtr<f>__FPCvPCv
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void func_8030A560(void const* param_0, void const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A560.s"
+}
+#pragma pop
+
+/* 8030A578-8030A590 304EB8 0018+00 2/2 2/2 0/0 .text
+ * JSUConvertOffsetToPtr<23J3DAnmTransformKeyTable>__FPCvPCv    */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void func_8030A578(void const* param_0, void const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A578.s"
+}
+#pragma pop

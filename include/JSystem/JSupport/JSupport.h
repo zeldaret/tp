@@ -6,7 +6,7 @@ T* JSUConvertOffsetToPtr(const void* ptr, const void* offset) {
     if (ptr == NULL) {
         return NULL;
     } else {
-        return (T*) ((s32)ptr + (s32)offset);
+        return (T*)((s32)ptr + (s32)offset);
     }
 }
 

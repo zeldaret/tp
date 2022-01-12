@@ -155,7 +155,7 @@ struct J3DAnmTransformKeyTable {
 
 class J2DAnmTransformKey : public J2DAnmTransform {
 public:
-    J2DAnmTransformKey(): J2DAnmTransform(NULL, NULL, NULL) {
+    J2DAnmTransformKey() : J2DAnmTransform(NULL, NULL, NULL) {
         field_0x24 = 0;
         mInfoTable = NULL;
     }
@@ -182,9 +182,7 @@ struct J3DAnmTransformFullTable {
 
 class J2DAnmTransformFull : public J2DAnmTransform {
 public:
-    J2DAnmTransformFull(): J2DAnmTransform(NULL, NULL, NULL) {
-        mTableInfo = NULL;
-    }
+    J2DAnmTransformFull() : J2DAnmTransform(NULL, NULL, NULL) { mTableInfo = NULL; }
     /* 8030CDAC */ virtual ~J2DAnmTransformFull() {}
     /* 8030A590 */ virtual void getTransform(u16, J3DTransformInfo*) const;
 
@@ -234,7 +232,7 @@ public:
     /* 0x2C */ u8* mUpdateTexMtxID;
     /* 0x30 */ u16* mUpdateMaterialID;
     /* 0x34 */ JUTNameTab field_0x34;
-    /* 0x44 */ Vec *field_0x44;
+    /* 0x44 */ Vec* field_0x44;
     /* 0x48 */ u16 field_0x48;
     /* 0x4A */ u16 field_0x4a;
     /* 0x4C */ u16 field_0x4c;
