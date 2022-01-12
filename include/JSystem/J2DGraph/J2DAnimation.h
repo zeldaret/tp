@@ -10,12 +10,15 @@
 
 class J2DScreen;
 
-struct J3DAnmColorKeyTable {
-    J3DAnmKeyTableBase mRInfo;
-    J3DAnmKeyTableBase mGInfo;
-    J3DAnmKeyTableBase mBInfo;
-    J3DAnmKeyTableBase mAInfo;
-};  // Size = 0x18
+enum J2DAnmKind {
+    J2DAnmTransformKind = 0,
+    J2DAnmColorKind = 1,
+    J2DAnmTexPatternKind = 2,
+    J2DAnmTextureSRTKeyKind = 4,
+    J2DAnmTevRegKeyKind = 5,
+    J2DAnmVisibilityFullKind = 6,
+    J2DAnmVtxColorKind = 7
+};
 
 class J2DAnmBase {
 public:
@@ -29,22 +32,20 @@ public:
     s16 getFrameMax() const { return mFrameMax; }
     void setFrame(f32 frame) { mFrame = frame; }
     f32 getFrame() const { return mFrame; }
-    s32 getKind() const { return mKind; }
+    J2DAnmKind getKind() const { return mKind; }
 
     /* 0x0 */  // vtable
     /* 0x4 */ u8 field_0x4;
     /* 0x5 */ u8 field_0x5;
     /* 0x6 */ s16 mFrameMax;
     /* 0x8 */ f32 mFrame;
-    /* 0xC */ s32 mKind;
+    /* 0xC */ J2DAnmKind mKind;
 };  // Size: 0x10
-
-struct J3DAnmVtxColorIndexData;
 
 class J2DAnmVtxColor : public J2DAnmBase {
 public:
     J2DAnmVtxColor() {
-        mKind = 7;
+        mKind = J2DAnmVtxColorKind;
         for (s32 i = 0; i < ARRAY_SIZE(mAnmTableNum); i++) {
             mAnmTableNum[i] = NULL;
         }
@@ -80,17 +81,6 @@ public:
     /* 0x38 */ s16* mAValues;
 };  // Size: 0x3C
 
-struct J3DAnmColorFullTable {
-    /* 0x00 */ u16 mRMaxFrame;
-    /* 0x02 */ u16 mROffset;
-    /* 0x04 */ u16 mGMaxFrame;
-    /* 0x06 */ u16 mGOffset;
-    /* 0x08 */ u16 mBMaxFrame;
-    /* 0x0A */ u16 mBOffset;
-    /* 0x0C */ u16 mAMaxFrame;
-    /* 0x0E */ u16 mAOffset;
-};  // Size = 0x10
-
 class J2DAnmVtxColorFull : public J2DAnmVtxColor {
 public:
     J2DAnmVtxColorFull() {
@@ -108,11 +98,6 @@ public:
     /* 0x38 */ u8* mAValues;
 };  // Size: 0x3C
 
-struct J3DAnmVisibilityFullTable {
-    u16 _0;
-    u16 _2;
-};  // Size = 0x4
-
 class J2DAnmVisibilityFull : public J2DAnmBase {
 public:
     J2DAnmVisibilityFull() {
@@ -120,7 +105,7 @@ public:
         mTable = NULL;
         field_0x12 = 0;
         mValues = NULL;
-        mKind = 6;
+        mKind = J2DAnmVisibilityFullKind;
     }
     /* 8030A3B4 */ virtual ~J2DAnmVisibilityFull() {}
     /* 8030C048 */ void getVisibility(u16, u8*) const;
@@ -137,7 +122,7 @@ public:
         mScaleValues = pScaleValues;
         mRotationValues = pRotationValues;
         mTranslateValues = pTranslateValues;
-        mKind = 0;
+        mKind = J2DAnmTransformKind;
     }
     /* 80184370 */ virtual ~J2DAnmTransform() {}
     /* 80191130 */ virtual void getTransform(u16, J3DTransformInfo*) const;
@@ -146,12 +131,6 @@ public:
     /* 0x14 */ s16* mRotationValues;
     /* 0x18 */ f32* mTranslateValues;
 };  // Size: 0x1C
-
-struct J3DAnmTransformKeyTable {
-    J3DAnmKeyTableBase mScaleInfo;
-    J3DAnmKeyTableBase mRotationInfo;
-    J3DAnmKeyTableBase mTranslateInfo;
-};  // Size = 0x12
 
 class J2DAnmTransformKey : public J2DAnmTransform {
 public:
@@ -170,15 +149,6 @@ public:
     /* 0x24 */ u32 field_0x24;
     /* 0x28 */ J3DAnmTransformKeyTable* mInfoTable;
 };
-
-struct J3DAnmTransformFullTable {
-    /* 0x00 */ u16 mScaleMaxFrame;
-    /* 0x02 */ u16 mScaleOffset;
-    /* 0x04 */ u16 mRotationMaxFrame;
-    /* 0x06 */ u16 mRotationOffset;
-    /* 0x08 */ u16 mTranslateMaxFrame;
-    /* 0x0A */ u16 mTranslateOffset;
-};  // Size = 0xC
 
 class J2DAnmTransformFull : public J2DAnmTransform {
 public:
@@ -212,7 +182,7 @@ public:
         field_0x50 = NULL;
         field_0x54 = NULL;
         field_0x7c = 0;
-        mKind = 4;
+        mKind = J2DAnmTextureSRTKeyKind;
     }
     /* 8030B9F0 */ void calcTransform(f32, u16, J3DTextureSRTInfo*) const;
 
@@ -248,13 +218,6 @@ public:
     /* 0x7C */ int field_0x7c;
 };
 
-struct J3DAnmTexPatternFullTable {
-    /* 0x00 */ u16 mMaxFrame;
-    /* 0x02 */ u16 mOffset;
-    /* 0x04 */ u16 _4;
-    /* 0x06 */ u16 _6;
-};  // Size = 0x8
-
 class J2DAnmTexPattern : public J2DAnmBase {
 public:
     struct J2DAnmTexPatternTIMGPointer {
@@ -268,7 +231,7 @@ public:
     J2DAnmTexPattern() {
         mValues = NULL;
         mAnmTable = NULL;
-        mKind = 2;
+        mKind = J2DAnmTexPatternKind;
         mUpdateMaterialNum = 0;
         mUpdaterMaterialID = NULL;
         mTIMGPtrArray = NULL;
@@ -290,22 +253,6 @@ public:
     /* 0x20 */ JUTNameTab field_0x20;
     /* 0x30 */ J2DAnmTexPatternTIMGPointer* mTIMGPtrArray;
 };
-
-struct J3DAnmCRegKeyTable {
-    /* 0x00 */ J3DAnmKeyTableBase mRTable;
-    /* 0x06 */ J3DAnmKeyTableBase mGTable;
-    /* 0x0C */ J3DAnmKeyTableBase mBTable;
-    /* 0x12 */ J3DAnmKeyTableBase mATable;
-    /* 0x18 */ u8 _18[4];
-};  // Size = 0x1C
-
-struct J3DAnmKRegKeyTable {
-    /* 0x00 */ J3DAnmKeyTableBase mRTable;
-    /* 0x06 */ J3DAnmKeyTableBase mGTable;
-    /* 0x0C */ J3DAnmKeyTableBase mBTable;
-    /* 0x12 */ J3DAnmKeyTableBase mATable;
-    /* 0x18 */ u8 _18[4];
-};  // Size = 0x1C
 
 class J2DAnmTevRegKey : public J2DAnmBase {
 public:
@@ -330,7 +277,7 @@ public:
         mKBValues = NULL;
         mKGValues = NULL;
         mKRValues = NULL;
-        mKind = 5;
+        mKind = J2DAnmTevRegKeyKind;
     }
     /* 8030C0F0 */ void getTevColorReg(u16, _GXColorS10*) const;
     /* 8030C3B4 */ void getTevKonstReg(u16, _GXColor*) const;
@@ -373,7 +320,7 @@ public:
         field_0x10 = 0;
         mUpdateMaterialNum = 0;
         mUpdateMaterialID = NULL;
-        mKind = 1;
+        mKind = J2DAnmColorKind;
     }
     /* 801842FC */ virtual ~J2DAnmColor() {}
     /* 8030AF24 */ virtual void searchUpdateMaterialID(J2DScreen*);

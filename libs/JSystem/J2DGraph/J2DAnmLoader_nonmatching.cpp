@@ -134,28 +134,28 @@ void J2DAnmKeyLoader_v15::setResource(J2DAnmBase* pAnm, void const* param_1) {
     for (s32 i = 0; i < hdr->mCount; i++) {
         switch (dataPtr->mType) {
         case 'ANK1':
-            if (pAnm->getKind() == 0) {
+            if (pAnm->getKind() == J2DAnmTransformKind) {
                 this->setAnmTransform((J2DAnmTransformKey*)pAnm, (J3DAnmTransformKeyData*)dataPtr);
             }
             break;
         case 'PAK1':
-            if (pAnm->getKind() == 1) {
+            if (pAnm->getKind() == J2DAnmColorKind) {
                 this->setAnmColor((J2DAnmColorKey*)pAnm, (J3DAnmColorKeyData*)dataPtr);
             }
             break;
         case 'TTK1':
-            if (pAnm->getKind() == 4) {
+            if (pAnm->getKind() == J2DAnmTextureSRTKeyKind) {
                 this->setAnmTextureSRT((J2DAnmTextureSRTKey*)pAnm,
                                        (J3DAnmTextureSRTKeyData*)dataPtr);
             }
             break;
         case 'TRK1':
-            if (pAnm->getKind() == 5) {
+            if (pAnm->getKind() == J2DAnmTevRegKeyKind) {
                 this->setAnmTevReg((J2DAnmTevRegKey*)pAnm, (J3DAnmTevRegKeyData*)dataPtr);
             }
             break;
         case 'VCK1':
-            if (pAnm->getKind() == 7) {
+            if (pAnm->getKind() == J2DAnmVtxColorKind) {
                 this->setAnmVtxColor((J2DAnmVtxColorKey*)pAnm, (J3DAnmVtxColorKeyData*)dataPtr);
             }
             break;
@@ -342,25 +342,25 @@ void J2DAnmFullLoader_v15::setResource(J2DAnmBase* pAnm, void const* pData) {
     for (s32 i = 0; i < hdr->mCount; i++) {
         switch (dataPtr->mType) {
         case 'ANF1':
-            if (pAnm->getKind() == 0)
+            if (pAnm->getKind() == J2DAnmTransformKind)
                 this->setAnmTransform((J2DAnmTransformFull*)pAnm,
                                       (J3DAnmTransformFullData*)dataPtr);
             break;
         case 'PAF1':
-            if (pAnm->getKind() == 1)
+            if (pAnm->getKind() == J2DAnmColorKind)
                 this->setAnmColor((J2DAnmColorFull*)pAnm, (J3DAnmColorFullData*)dataPtr);
             break;
         case 'TPT1':
-            if (pAnm->getKind() == 2)
+            if (pAnm->getKind() == J2DAnmTexPatternKind)
                 this->setAnmTexPattern((J2DAnmTexPattern*)pAnm, (J3DAnmTexPatternFullData*)dataPtr);
             break;
         case 'VAF1':
-            if (pAnm->getKind() == 6)
+            if (pAnm->getKind() == J2DAnmVisibilityFullKind)
                 this->setAnmVisibility((J2DAnmVisibilityFull*)pAnm,
                                        (J3DAnmVisibilityFullData*)dataPtr);
             break;
         case 'VCF1':
-            if (pAnm->getKind() == 7)
+            if (pAnm->getKind() == J2DAnmVtxColorKind)
                 this->setAnmVtxColor((J2DAnmVtxColorFull*)pAnm, (J3DAnmVtxColorFullData*)dataPtr);
             break;
         }

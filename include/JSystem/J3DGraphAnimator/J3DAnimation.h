@@ -6,27 +6,96 @@
 #include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 
-struct J3DAnmDataBlockHeader { // actual name unknown
+struct J3DAnmKeyTableBase {
+    /* 0x00 */ u16 mMaxFrame;
+    /* 0x02 */ u16 mOffset;
+    /* 0x04 */ u16 mType;
+};  // Size = 0x6
+
+struct J3DAnmColorKeyTable {
+    J3DAnmKeyTableBase mRInfo;
+    J3DAnmKeyTableBase mGInfo;
+    J3DAnmKeyTableBase mBInfo;
+    J3DAnmKeyTableBase mAInfo;
+};  // Size = 0x18
+
+struct J3DAnmVtxColorIndexData;
+
+struct J3DAnmColorFullTable {
+    /* 0x00 */ u16 mRMaxFrame;
+    /* 0x02 */ u16 mROffset;
+    /* 0x04 */ u16 mGMaxFrame;
+    /* 0x06 */ u16 mGOffset;
+    /* 0x08 */ u16 mBMaxFrame;
+    /* 0x0A */ u16 mBOffset;
+    /* 0x0C */ u16 mAMaxFrame;
+    /* 0x0E */ u16 mAOffset;
+};  // Size = 0x10
+
+struct J3DAnmVisibilityFullTable {
+    u16 _0;
+    u16 _2;
+};  // Size = 0x4
+
+struct J3DAnmTransformKeyTable {
+    J3DAnmKeyTableBase mScaleInfo;
+    J3DAnmKeyTableBase mRotationInfo;
+    J3DAnmKeyTableBase mTranslateInfo;
+};  // Size = 0x12
+
+struct J3DAnmTransformFullTable {
+    /* 0x00 */ u16 mScaleMaxFrame;
+    /* 0x02 */ u16 mScaleOffset;
+    /* 0x04 */ u16 mRotationMaxFrame;
+    /* 0x06 */ u16 mRotationOffset;
+    /* 0x08 */ u16 mTranslateMaxFrame;
+    /* 0x0A */ u16 mTranslateOffset;
+};  // Size = 0xC
+
+struct J3DAnmTexPatternFullTable {
+    /* 0x00 */ u16 mMaxFrame;
+    /* 0x02 */ u16 mOffset;
+    /* 0x04 */ u16 _4;
+    /* 0x06 */ u16 _6;
+};  // Size = 0x8
+
+struct J3DAnmCRegKeyTable {
+    /* 0x00 */ J3DAnmKeyTableBase mRTable;
+    /* 0x06 */ J3DAnmKeyTableBase mGTable;
+    /* 0x0C */ J3DAnmKeyTableBase mBTable;
+    /* 0x12 */ J3DAnmKeyTableBase mATable;
+    /* 0x18 */ u8 _18[4];
+};  // Size = 0x1C
+
+struct J3DAnmKRegKeyTable {
+    /* 0x00 */ J3DAnmKeyTableBase mRTable;
+    /* 0x06 */ J3DAnmKeyTableBase mGTable;
+    /* 0x0C */ J3DAnmKeyTableBase mBTable;
+    /* 0x12 */ J3DAnmKeyTableBase mATable;
+    /* 0x18 */ u8 _18[4];
+};  // Size = 0x1C
+
+struct J3DAnmDataBlockHeader {  // actual name unknown
     /* 0x0 */ u32 mType;
     /* 0x4 */ u32 mNextOffset;
-}; // Size = 0x8
+};  // Size = 0x8
 
-struct J3DAnmDataHeader { // actual name unknown
+struct J3DAnmDataHeader {  // actual name unknown
     /* 0x00 */ u32 mMagic;
     /* 0x04 */ u32 mType;
     /* 0x08 */ u8 _8[4];
     /* 0x0C */ u32 mCount;
-    /* 0x10 */ u8 _10[0x20-0x10];
+    /* 0x10 */ u8 _10[0x20 - 0x10];
     /* 0x20 */ J3DAnmDataBlockHeader mFirst;
 };
 
 struct J3DAnmVtxColorFullData {
     /* 0x00 */ J3DAnmDataBlockHeader mHeader;
     /* 0x08 */ u8 field_0x8;
-    /* 0x09 */ u8 field_0x9; // padding?
+    /* 0x09 */ u8 field_0x9;  // padding?
     /* 0x0A */ s16 mFrameMax;
     /* 0x0C */ u16 mAnmTableNum[2];
-    /* 0x10 */ u8 field_0x10[0x18-0x10];
+    /* 0x10 */ u8 field_0x10[0x18 - 0x10];
     /* 0x18 */ s32 mTableOffsets[2];
     /* 0x20 */ s32 mVtxColorIndexDataOffsets[2];
     /* 0x28 */ s32 mVtxColorIndexPointerOffsets[2];
@@ -34,20 +103,20 @@ struct J3DAnmVtxColorFullData {
     /* 0x34 */ s32 mGValuesOffset;
     /* 0x38 */ s32 mBValuesOffset;
     /* 0x3C */ s32 mAValuesOffset;
-}; // Size = 0x40
+};  // Size = 0x40
 
 STATIC_ASSERT(sizeof(J3DAnmVtxColorFullData) == 0x40);
 
 struct J3DAnmVisibilityFullData {
     /* 0x00 */ J3DAnmDataBlockHeader mHeader;
     /* 0x08 */ u8 field_0x8;
-    /* 0x09 */ u8 field_0x9; // padding?
+    /* 0x09 */ u8 field_0x9;  // padding?
     /* 0x0A */ s16 mFrameMax;
     /* 0x0C */ u16 field_0xc;
     /* 0x0E */ u16 field_0xe;
     /* 0x10 */ s32 mTableOffset;
     /* 0x14 */ s32 mValuesOffset;
-}; // Size = 0x18
+};  // Size = 0x18
 
 STATIC_ASSERT(sizeof(J3DAnmVisibilityFullData) == 0x18);
 
@@ -57,12 +126,12 @@ struct J3DAnmTransformFullData {
     /* 0x09 */ u8 field_0x9;
     /* 0x0A */ s16 mFrameMax;
     /* 0x0C */ u16 field_0xc;
-    /* 0x0E */ u8 field_0xe[0x14-0xe];
+    /* 0x0E */ u8 field_0xe[0x14 - 0xe];
     /* 0x14 */ s32 mTableOffset;
     /* 0x18 */ s32 mScaleValOffset;
     /* 0x1C */ s32 mRotValOffset;
     /* 0x20 */ s32 mTransValOffset;
-}; // Size = 0x24
+};  // Size = 0x24
 
 STATIC_ASSERT(sizeof(J3DAnmTransformFullData) == 0x24);
 
@@ -83,7 +152,7 @@ struct J3DAnmColorKeyData {
     /* 0x28 */ s32 mGValOffset;
     /* 0x2C */ s32 mBValOffset;
     /* 0x30 */ s32 mAValOffset;
-}; // Size = 0x34
+};  // Size = 0x34
 
 STATIC_ASSERT(sizeof(J3DAnmColorKeyData) == 0x34);
 
@@ -117,7 +186,7 @@ struct J3DAnmTextureSRTKeyData {
     /* 0x54 */ s32 field_0x54;
     /* 0x58 */ s32 field_0x58;
     /* 0x5C */ s32 field_0x5c;
-}; // Size = 0x60
+};  // Size = 0x60
 
 STATIC_ASSERT(sizeof(J3DAnmTextureSRTKeyData) == 0x60);
 
@@ -127,7 +196,7 @@ struct J3DAnmVtxColorKeyData {
     /* 0x09 */ u8 field_0x9;
     /* 0x0A */ s16 mFrameMax;
     /* 0x0C */ u16 mAnmTableNum[2];
-    /* 0x10 */ u8 field_0x10[0x18-0x10];
+    /* 0x10 */ u8 field_0x10[0x18 - 0x10];
     /* 0x18 */ s32 mTableOffsets[2];
     /* 0x20 */ s32 mVtxColoIndexDataOffset[2];
     /* 0x28 */ s32 mVtxColoIndexPointerOffset[2];
@@ -135,7 +204,7 @@ struct J3DAnmVtxColorKeyData {
     /* 0x34 */ s32 mGValOffset;
     /* 0x38 */ s32 mBValOffset;
     /* 0x3C */ s32 mAValOffset;
-}; // Size = 0x40
+};  // Size = 0x40
 
 STATIC_ASSERT(sizeof(J3DAnmVtxColorKeyData) == 0x40);
 
@@ -150,14 +219,14 @@ struct J3DAnmTexPatternFullData {
     /* 0x14 */ s32 mValuesOffset;
     /* 0x18 */ s32 mUpdaterMaterialIDOffset;
     /* 0x1C */ s32 mNameTabOffset;
-}; // Size = 0x20
+};  // Size = 0x20
 
 STATIC_ASSERT(sizeof(J3DAnmTexPatternFullData) == 0x20);
 
 struct J3DAnmTevRegKeyData {
     /* 0x00 */ J3DAnmDataBlockHeader mHeader;
     /* 0x08 */ u8 field_0x8;
-    /* 0x09 */ u8 field_0x9; // maybe padding
+    /* 0x09 */ u8 field_0x9;  // maybe padding
     /* 0x0A */ s16 mFrameMax;
     /* 0x0C */ u16 mCRegUpdateMaterialNum;
     /* 0x0E */ u16 mKRegUpdateMaterialNum;
@@ -183,7 +252,7 @@ struct J3DAnmTevRegKeyData {
     /* 0x4C */ s32 mKGValuesOffset;
     /* 0x50 */ s32 mKBValuesOffset;
     /* 0x54 */ s32 mKAValuesOffset;
-}; // Size = 0x58
+};  // Size = 0x58
 
 STATIC_ASSERT(sizeof(J3DAnmTevRegKeyData) == 0x58);
 
@@ -193,7 +262,7 @@ struct J3DAnmColorFullData { /* PlaceHolder Structure */
     /* 0x09 */ u8 field_0x9[3];
     /* 0x0C */ s16 mFrameMax;
     /* 0x0E */ u16 mUpdateMaterialNum;
-    /* 0x10 */ u8 field_0x10[0x18-0x10];
+    /* 0x10 */ u8 field_0x10[0x18 - 0x10];
     /* 0x18 */ s32 mTableOffset;
     /* 0x1C */ s32 mUpdateMaterialIDOffset;
     /* 0x20 */ s32 mNameTabOffset;
@@ -201,7 +270,7 @@ struct J3DAnmColorFullData { /* PlaceHolder Structure */
     /* 0x28 */ s32 mGValuesOffset;
     /* 0x2C */ s32 mBValuesOffset;
     /* 0x30 */ s32 mAValuesOffset;
-}; // Size = 0x34
+};  // Size = 0x34
 
 STATIC_ASSERT(sizeof(J3DAnmColorFullData) == 0x34);
 
@@ -274,11 +343,6 @@ class J3DAnmTransformFullWithLerp : public J3DAnmTransformFull {
 struct J3DTextureSRTInfo;
 struct J3DModelData;
 struct J3DMaterialTable;
-struct J3DAnmKeyTableBase {
-    /* 0x00 */ u16 mMaxFrame;
-    /* 0x02 */ u16 mOffset;
-    /* 0x04 */ u16 mType;
-};  // Size = 0x6
 
 class J3DAnmTextureSRTKey : public J3DAnmBase {
 public:
