@@ -292,7 +292,7 @@ SECTION_DEAD static char const* const stringBase_8039A57B = "Base";
 JKRArchive* DynamicModuleControl::mountCallback(void* param_0) {
     JKRExpHeap* heap = mDoExt_getArchiveHeap();
     sFileCache = JKRFileCache::mount("/rel/Final/Release",heap,NULL);
-    sArchive = JKRArchive::mount("aRELS.arc",JKRArchive::MOUNT_COMP,heap,JKRArchive::MOUNT_DIRECTION_HEAD);
+    sArchive = JKRArchive::mount("RELS.arc",JKRArchive::MOUNT_COMP,heap,JKRArchive::MOUNT_DIRECTION_HEAD);
     if (sArchive == NULL) {
         OSReport_Warning("マウント失敗ですが単にアーカイブを作ってないだけなら遅いだけです %s\n","RELS.arc");
     }
