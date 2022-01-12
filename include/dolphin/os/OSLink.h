@@ -13,7 +13,7 @@ struct OSModuleInfo {
     OSModuleInfo* mNext;
     OSModuleInfo* mPrev;
     u32 mNumSections;
-    struct { //Needed to get an assert corret; very likely bigger
+    struct { //Needed to get an assert correct; very likely bigger
         u32 sectionInfoOffset;
     } info;
     u32 mModuleNameOffset;
