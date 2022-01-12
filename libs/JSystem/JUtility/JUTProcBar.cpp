@@ -11,45 +11,8 @@
 // Types:
 //
 
-struct JUtility {
-    struct TColor {};
-};
-
 struct JUTVideo {
     static u8 sManager[4];
-};
-
-struct JUTProcBar {
-    struct CTime {
-        /* 802E7340 */ CTime();
-    };
-
-    /* 802E5888 */ JUTProcBar();
-    /* 802E599C */ ~JUTProcBar();
-    /* 802E59E0 */ void create();
-    /* 802E5A28 */ void destroy();
-    /* 802E5A60 */ void clear();
-    /* 802E5B30 */ void bar_subroutine(int, int, int, int, int, int, int, JUtility::TColor,
-                                       JUtility::TColor);
-    /* 802E5CC4 */ void adjustMeterLength(u32, f32*, f32, f32, int*);
-    /* 802E5E08 */ void draw();
-    /* 802E5E3C */ void drawProcessBar();
-    /* 802E6FA0 */ void drawHeapBar();
-
-    static u8 sManager[4];
-};
-
-struct JKRHeap {
-    /* 802CE784 */ void getTotalFreeSize();
-
-    static u8 sSystemHeap[4];
-    static u8 sCurrentHeap[4];
-    static u8 sRootHeap[4];
-    static u8 mCodeStart[4];
-    static u8 mCodeEnd[4];
-    static u8 mUserRamStart[4];
-    static u8 mUserRamEnd[4];
-    static u8 mMemorySize[4];
 };
 
 //
@@ -82,7 +45,6 @@ extern "C" void __dl__FPv();
 extern "C" void J2DDrawLine__FffffQ28JUtility6TColori();
 extern "C" void J2DFillBox__FffffQ28JUtility6TColor();
 extern "C" void J2DDrawFrame__FffffQ28JUtility6TColorUc();
-extern "C" void OSGetTick();
 extern "C" void __construct_array();
 extern "C" void _savegpr_21();
 extern "C" void _savegpr_25();
@@ -118,7 +80,7 @@ asm JUTProcBar::JUTProcBar() {
 
 /* ############################################################################################## */
 /* 80451558-8045155C 000A58 0004+00 4/4 6/6 0/0 .sbss            sManager__10JUTProcBar */
-u8 JUTProcBar::sManager[4];
+JUTProcBar* JUTProcBar::sManager;
 
 /* 802E599C-802E59E0 2E02DC 0044+00 1/1 0/0 0/0 .text            __dt__10JUTProcBarFv */
 #pragma push

@@ -14,10 +14,6 @@
 // Types:
 //
 
-struct mDoGph_gInf_c {
-    /* 800080D0 */ void fadeOut(f32);
-};
-
 struct dDemo_c {
     /* 80039CF8 */ void end();
 

@@ -4,13 +4,13 @@
 //
 
 #include "JSystem/JParticle/JPAExtraShape.h"
+#include "JSystem/JMath/JMATrigonometric.h"
 #include "JSystem/JParticle/JPAParticle.h"
 #include "JSystem/JParticle/JPAResource.h"
 #include "JSystem/JParticle/JPAResourceManager.h"
-#include "JSystem/JMath/JMATrigonometric.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "dolphin/os/OS.h"
+#include "dolphin/types.h"
 
 //
 // Types:
@@ -21,9 +21,12 @@
 void JPACalcScaleX(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
     JPAExtraShape* esp = work->mpRes->getEsp();
     if (work->mScaleAnm < esp->getScaleInTiming()) {
-        ptcl->mParticleScaleX = ptcl->mScaleOut * (esp->getScaleIncRateX() * work->mScaleAnm + esp->getScaleInValueX());
+        ptcl->mParticleScaleX =
+            ptcl->mScaleOut * (esp->getScaleIncRateX() * work->mScaleAnm + esp->getScaleInValueX());
     } else if (work->mScaleAnm > esp->getScaleOutTiming()) {
-        ptcl->mParticleScaleX = ptcl->mScaleOut * (esp->getScaleDecRateX() * (work->mScaleAnm - esp->getScaleOutTiming()) + 1.0f);
+        ptcl->mParticleScaleX =
+            ptcl->mScaleOut *
+            (esp->getScaleDecRateX() * (work->mScaleAnm - esp->getScaleOutTiming()) + 1.0f);
     } else {
         ptcl->mParticleScaleX = ptcl->mScaleOut;
     }
@@ -34,9 +37,12 @@ void JPACalcScaleX(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
 void JPACalcScaleY(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
     JPAExtraShape* esp = work->mpRes->getEsp();
     if (work->mScaleAnm < esp->getScaleInTiming()) {
-        ptcl->mParticleScaleY = ptcl->mScaleOut * (esp->getScaleIncRateY() * work->mScaleAnm + esp->getScaleInValueY());
+        ptcl->mParticleScaleY =
+            ptcl->mScaleOut * (esp->getScaleIncRateY() * work->mScaleAnm + esp->getScaleInValueY());
     } else if (work->mScaleAnm > esp->getScaleOutTiming()) {
-        ptcl->mParticleScaleY = ptcl->mScaleOut * (esp->getScaleDecRateY() * (work->mScaleAnm - esp->getScaleOutTiming()) + 1.0f);
+        ptcl->mParticleScaleY =
+            ptcl->mScaleOut *
+            (esp->getScaleDecRateY() * (work->mScaleAnm - esp->getScaleOutTiming()) + 1.0f);
     } else {
         ptcl->mParticleScaleY = ptcl->mScaleOut;
     }
@@ -95,7 +101,8 @@ void JPACalcAlphaAnm(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
     if (ptcl->mTime < esp->getAlphaInTiming()) {
         alpha = 255.0f * (esp->getAlphaInValue() + esp->getAlphaIncRate() * ptcl->mTime);
     } else if (ptcl->mTime > esp->getAlphaOutTiming()) {
-        alpha = 255.0f * ((ptcl->mTime - esp->getAlphaOutTiming()) * esp->getAlphaDecRate() + esp->getAlphaBaseValue());
+        alpha = 255.0f * ((ptcl->mTime - esp->getAlphaOutTiming()) * esp->getAlphaDecRate() +
+                          esp->getAlphaBaseValue());
     } else {
         alpha = 255.0f * esp->getAlphaBaseValue();
     }
@@ -110,7 +117,8 @@ void JPACalcAlphaFlickAnm(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
     if (ptcl->mTime < esp->getAlphaInTiming()) {
         alpha = (esp->getAlphaInValue() + esp->getAlphaIncRate() * ptcl->mTime);
     } else if (ptcl->mTime > esp->getAlphaOutTiming()) {
-        alpha = ((ptcl->mTime - esp->getAlphaOutTiming()) * esp->getAlphaDecRate() + esp->getAlphaBaseValue());
+        alpha = ((ptcl->mTime - esp->getAlphaOutTiming()) * esp->getAlphaDecRate() +
+                 esp->getAlphaBaseValue());
     } else {
         alpha = esp->getAlphaBaseValue();
     }
@@ -128,8 +136,12 @@ JPAExtraShape::JPAExtraShape(u8 const* data) {
 
 /* 8027ADBC-8027AEBC 2756FC 0100+00 1/1 0/0 0/0 .text            init__13JPAExtraShapeFv */
 void JPAExtraShape::init() {
-    mAlphaIncRate = (getAlphaInTiming() != 0.0f) ? (getAlphaBaseValue() - getAlphaInValue()) / getAlphaInTiming() : 1.0f;
-    mAlphaDecRate = (getAlphaOutTiming() != 1.0f) ? (getAlphaOutValue() - getAlphaBaseValue()) / (1.0f - getAlphaOutTiming()) : 1.0f;
+    mAlphaIncRate = (getAlphaInTiming() != 0.0f) ?
+                        (getAlphaBaseValue() - getAlphaInValue()) / getAlphaInTiming() :
+                        1.0f;
+    mAlphaDecRate = (getAlphaOutTiming() != 1.0f) ?
+                        (getAlphaOutValue() - getAlphaBaseValue()) / (1.0f - getAlphaOutTiming()) :
+                        1.0f;
 
     if (getScaleInTiming() != 0.0f) {
         mScaleIncRateX = (1.0f - getScaleInValueX()) / getScaleInTiming();

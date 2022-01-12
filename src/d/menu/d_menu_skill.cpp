@@ -15,8 +15,6 @@ struct mDoGph_gInf_c {
     static u8 mFader[4];
 };
 
-struct JKRHeap {};
-
 struct mDoDvdThd_mountArchive_c {
     /* 80015E14 */ void create(char const*, u8, JKRHeap*);
 };
@@ -33,18 +31,6 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct J2DPane {};
-
-struct JKRArchive {};
-
-struct dSelect_cursor_c {
-    /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
-    /* 801950F4 */ void setPos(f32, f32, J2DPane*, bool);
-    /* 801951B0 */ void setParam(f32, f32, f32, f32, f32);
-    /* 801951C8 */ void setScale(f32);
-    /* 801952A0 */ void setAlphaRate(f32);
-};
-
 struct dMsgString_c {
     /* 80249C20 */ dMsgString_c();
     /* 80249D28 */ ~dMsgString_c();
@@ -56,51 +42,7 @@ struct dMeter2Info_c {
     /* 8021C544 */ void getStringKanji(u32, char*, JMSMesgEntry_c*);
 };
 
-struct STControl {
-    /* 80032524 */ void checkUpTrigger();
-    /* 800325A0 */ void checkDownTrigger();
-};
-
-struct CSTControl {};
-
-struct JKRExpHeap {};
-
-struct dMenu_Skill_c {
-    /* 801F7224 */ dMenu_Skill_c(JKRExpHeap*, STControl*, CSTControl*);
-    /* 801F7348 */ ~dMenu_Skill_c();
-    /* 801F763C */ void _create();
-    /* 801F7718 */ void _move();
-    /* 801F77B0 */ void _draw();
-    /* 801F7950 */ void isSync();
-    /* 801F7978 */ void skill_init_calc();
-    /* 801F79EC */ void init();
-    /* 801F7A40 */ void _open();
-    /* 801F7C1C */ void _close();
-    /* 801F7D58 */ void wait_init();
-    /* 801F7D94 */ void wait_move();
-    /* 801F7F24 */ void read_open_init();
-    /* 801F7FF8 */ void read_open_move();
-    /* 801F8114 */ void read_move_init();
-    /* 801F8150 */ void read_move_move();
-    /* 801F8218 */ void read_close_init();
-    /* 801F826C */ void read_close_move();
-    /* 801F8388 */ void screenSetMenu();
-    /* 801F8A18 */ void screenSetLetter();
-    /* 801F8D20 */ void screenSetDoIcon();
-    /* 801F8E9C */ void setCursorPos();
-    /* 801F8F28 */ void changeActiveColor();
-    /* 801F9144 */ void setPageText();
-    /* 801F9260 */ void setAButtonString(u16);
-    /* 801F9310 */ void setBButtonString(u16);
-    /* 801F93C0 */ void setNameString(u16);
-    /* 801F9470 */ void getSkillNum();
-    /* 801F9500 */ void setHIO(bool);
-    /* 801F9A08 */ void draw();
-};
-
 struct JAISoundID {};
-
-struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -108,41 +50,6 @@ struct Z2SeMgr {
 
 struct Z2AudioMgr {
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct ResTIMG {};
-
-struct JUtility {
-    struct TColor {
-        /* 80193960 */ TColor();
-    };
-};
-
-struct J2DTextBox {
-    /* 80300658 */ void getStringPtr() const;
-    /* 8030074C */ void setString(s16, char const*, ...);
-};
-
-struct J2DGrafContext {};
-
-struct J2DScreen {
-    /* 802F8498 */ J2DScreen();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-};
-
-struct J2DPicture {
-    /* 802FC708 */ J2DPicture(ResTIMG const*);
-};
-
-struct CPaneMgrAlpha {
-    /* 802557D0 */ void setAlphaRate(f32);
-};
-
-struct CPaneMgr {
-    /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 802545B0 */ void paneTrans(f32, f32);
-    /* 80254EBC */ void getGlobalVtxCenter(J2DPane*, bool, s16);
 };
 
 //
@@ -233,7 +140,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strcpy();
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
@@ -379,14 +285,26 @@ SECTION_SDATA2 static f32 lit_3809 = 1.0f;
 
 /* 801F7224-801F7348 1F1B64 0124+00 0/0 2/2 0/0 .text
  * __ct__13dMenu_Skill_cFP10JKRExpHeapP9STControlP10CSTControl  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMenu_Skill_c::dMenu_Skill_c(JKRExpHeap* param_0, STControl* param_1, CSTControl* param_2) {
-    nofralloc
-#include "asm/d/menu/d_menu_skill/__ct__13dMenu_Skill_cFP10JKRExpHeapP9STControlP10CSTControl.s"
+dMenu_Skill_c::dMenu_Skill_c(JKRExpHeap* param_0, STControl* param_1, CSTControl* param_2) {
+    field_0x4 = param_0;
+    field_0x8 = NULL;
+    field_0x14 = NULL;
+    field_0xc = param_1;
+    field_0x10 = param_2;
+    mStatus = 1;
+    field_0x205 = 0;
+    field_0x200 = 0;
+    field_0x1fc = 0;
+    field_0x202 = 0;
+    field_0x206 = 0;
+    field_0x209 = 255;
+    field_0x20a = 255;
+    skill_init_calc();
+    field_0x1f0 = FLOAT_LABEL(lit_3808);
+    f32 tmp_1 = lit_3809;
+    field_0x1f8 = tmp_1;
+    field_0x1f4 = tmp_1;
 }
-#pragma pop
 
 /* 801F7348-801F763C 1F1C88 02F4+00 1/0 0/0 0/0 .text            __dt__13dMenu_Skill_cFv */
 #pragma push
@@ -459,7 +377,7 @@ asm void dMenu_Skill_c::_draw() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Skill_c::isSync() {
+asm bool dMenu_Skill_c::isSync() {
     nofralloc
 #include "asm/d/menu/d_menu_skill/isSync__13dMenu_Skill_cFv.s"
 }
@@ -818,18 +736,14 @@ asm void dMenu_Skill_c::screenSetLetter() {
 
 /* ############################################################################################## */
 /* 80397D30-80397D58 024390 0028+00 1/1 0/0 0/0 .rodata          text_a_tag$4365 */
-SECTION_RODATA static u8 const text_a_tag[40] = {
-    0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x31, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31,
-    0x5F, 0x32, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x33, 0x61, 0x74, 0x65, 0x78,
-    0x74, 0x31, 0x5F, 0x34, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x35,
+SECTION_RODATA static u64 const text_a_tag[5] = {
+    'atext1_1', 'atext1_2', 'atext1_3', 'atext1_4', 'atext1_5',
 };
 COMPILER_STRIP_GATE(0x80397D30, &text_a_tag);
 
 /* 80397D58-80397D80 0243B8 0028+00 1/1 0/0 0/0 .rodata          text_b_tag$4366 */
-SECTION_RODATA static u8 const text_b_tag[40] = {
-    0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x31, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31,
-    0x5F, 0x32, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x33, 0x62, 0x74, 0x65, 0x78,
-    0x74, 0x31, 0x5F, 0x34, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x35,
+SECTION_RODATA static u64 const text_b_tag[5] = {
+    'btext1_1', 'btext1_2', 'btext1_3', 'btext1_4', 'btext1_5',
 };
 COMPILER_STRIP_GATE(0x80397D58, &text_b_tag);
 
@@ -952,7 +866,8 @@ asm void dMenu_Skill_c::setHIO(bool param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Skill_c::draw() {
+// asm void dMenu_Skill_c::draw() {
+extern "C" asm void draw__13dMenu_Skill_cFv() {
     nofralloc
 #include "asm/d/menu/d_menu_skill/draw__13dMenu_Skill_cFv.s"
 }

@@ -15,8 +15,6 @@ struct mDoGph_gInf_c {
     static u8 mFader[4];
 };
 
-struct JKRHeap {};
-
 struct mDoDvdThd_mountArchive_c {
     /* 80015E14 */ void create(char const*, u8, JKRHeap*);
 };
@@ -34,66 +32,6 @@ struct JMSMesgEntry_c {};
 
 struct dMeter2Info_c {
     /* 8021C544 */ void getStringKanji(u32, char*, JMSMesgEntry_c*);
-};
-
-struct STControl {};
-
-struct CSTControl {};
-
-struct JKRExpHeap {};
-
-struct dMenu_Fishing_c {
-    /* 801C4D54 */ dMenu_Fishing_c(JKRExpHeap*, STControl*, CSTControl*);
-    /* 801C4D98 */ ~dMenu_Fishing_c();
-    /* 801C504C */ void _create();
-    /* 801C50B4 */ void _move();
-    /* 801C514C */ void _draw();
-    /* 801C5204 */ void isSync();
-    /* 801C522C */ void init();
-    /* 801C52E4 */ void _open();
-    /* 801C5470 */ void _close();
-    /* 801C556C */ void wait_init();
-    /* 801C55A8 */ void wait_move();
-    /* 801C55D8 */ void screenSetBase();
-    /* 801C5D3C */ void screenSetDoIcon();
-    /* 801C5EB8 */ void setAButtonString(u16);
-    /* 801C5F68 */ void setBButtonString(u16);
-    /* 801C6018 */ void getFigure(int);
-    /* 801C605C */ void setFishParam(int, u16, u8);
-    /* 801C6210 */ void setHIO(bool);
-    /* 801C659C */ void draw();
-};
-
-struct ResTIMG {};
-
-struct JKRArchive {};
-
-struct J2DTextBox {
-    /* 80300658 */ void getStringPtr() const;
-    /* 8030074C */ void setString(s16, char const*, ...);
-};
-
-struct J2DGrafContext {};
-
-struct J2DScreen {
-    /* 802F8498 */ J2DScreen();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-};
-
-struct J2DPicture {
-    /* 802FC708 */ J2DPicture(ResTIMG const*);
-};
-
-struct CPaneMgrAlpha {
-    /* 802555C8 */ void show();
-    /* 80255608 */ void hide();
-    /* 802557D0 */ void setAlphaRate(f32);
-};
-
-struct CPaneMgr {
-    /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 802545B0 */ void paneTrans(f32, f32);
 };
 
 //
@@ -162,7 +100,6 @@ extern "C" void _restgpr_25();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strcpy();
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
@@ -292,7 +229,7 @@ asm void dMenu_Fishing_c::_draw() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fishing_c::isSync() {
+asm bool dMenu_Fishing_c::isSync() {
     nofralloc
 #include "asm/d/menu/d_menu_fishing/isSync__15dMenu_Fishing_cFv.s"
 }
@@ -620,7 +557,8 @@ asm void dMenu_Fishing_c::setHIO(bool param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fishing_c::draw() {
+// asm void dMenu_Fishing_c::draw() {
+extern "C" asm void draw__15dMenu_Fishing_cFv() {
     nofralloc
 #include "asm/d/menu/d_menu_fishing/draw__15dMenu_Fishing_cFv.s"
 }

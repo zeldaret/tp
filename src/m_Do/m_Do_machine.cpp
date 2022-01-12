@@ -356,7 +356,8 @@ void myExceptionCallback(u16 param_0, OSContext* param_1, u32 param_2, u32 param
                 OSReport("JUTAssertionを可視化しました\n");
                 JUTAssertion::setVisible(true);
                 JUTDbPrint::getManager()->setVisible(true);
-                JFWSystem::getSystemConsole()->setOutput(3);
+                JFWSystem::getSystemConsole()->setOutput(JUTConsole::OUTPUT_OSREPORT |
+                                                         JUTConsole::OUTPUT_CONSOLE);
             } else {
                 PPCHalt();
             }

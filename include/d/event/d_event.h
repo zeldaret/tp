@@ -84,6 +84,7 @@ public:
     u16 chkEventFlag(u16 flag) { return flag & mEventFlag; }
     u8 getMode() const { return mMode; }
     u16 checkHind(u16 flag) { return flag & mHindFlag; }
+    u8 checkCompulsory() { return mCompulsory; }
 
     bool i_isOrderOK() { return field_0xe5 == 0 || field_0xe5 == 2; }
 

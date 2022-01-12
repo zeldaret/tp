@@ -1,8 +1,8 @@
 #ifndef JPABASESHAPE_H
 #define JPABASESHAPE_H
 
-#include "dolphin/types.h"
 #include "dolphin/gx/GX.h"
+#include "dolphin/types.h"
 
 class JPAEmitterWorkData;
 class JKRHeap;

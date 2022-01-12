@@ -15,8 +15,6 @@ struct mDoGph_gInf_c {
     static u8 mFader[4];
 };
 
-struct JKRHeap {};
-
 struct mDoDvdThd_mountArchive_c {
     /* 80015E14 */ void create(char const*, u8, JKRHeap*);
 };
@@ -30,29 +28,6 @@ struct dSv_letter_info_c {
     /* 80034474 */ void onLetterReadFlag(int);
     /* 8003449C */ void isLetterReadFlag(int) const;
 };
-
-struct J2DPane {
-    /* 802F7100 */ void getBounds();
-};
-
-struct JKRArchive {};
-
-struct dSelect_cursor_c {
-    /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
-    /* 801950F4 */ void setPos(f32, f32, J2DPane*, bool);
-    /* 801951B0 */ void setParam(f32, f32, f32, f32, f32);
-    /* 801951C8 */ void setScale(f32);
-    /* 801952A0 */ void setAlphaRate(f32);
-};
-
-struct J2DTextBox {
-    /* 801DFA28 */ void getWhite() const;
-    /* 801DFA34 */ void getBlack() const;
-    /* 80300658 */ void getStringPtr() const;
-    /* 8030074C */ void setString(s16, char const*, ...);
-};
-
-struct JUTFont {};
 
 struct COutFont_c {};
 
@@ -85,67 +60,11 @@ struct dMeter2Info_c {
     /* 8021C544 */ void getStringKanji(u32, char*, JMSMesgEntry_c*);
 };
 
-struct STControl {
-    /* 80032524 */ void checkUpTrigger();
-    /* 800325A0 */ void checkDownTrigger();
-};
-
-struct CSTControl {};
-
-struct JKRExpHeap {};
-
-struct dMenu_Letter_c {
-    /* 801DCDC0 */ dMenu_Letter_c(JKRExpHeap*, STControl*, CSTControl*);
-    /* 801DCF34 */ ~dMenu_Letter_c();
-    /* 801DD36C */ void _create();
-    /* 801DD474 */ void _move();
-    /* 801DD50C */ void _draw();
-    /* 801DD934 */ void isSync();
-    /* 801DD95C */ void letter_init_calc();
-    /* 801DDA20 */ void init();
-    /* 801DDA74 */ void _open();
-    /* 801DDC98 */ void _close();
-    /* 801DDE18 */ void wait_init();
-    /* 801DDE54 */ void wait_move();
-    /* 801DE164 */ void slide_right_init();
-    /* 801DE1E8 */ void slide_right_move();
-    /* 801DE24C */ void slide_left_init();
-    /* 801DE2D0 */ void slide_left_move();
-    /* 801DE334 */ void read_open_init();
-    /* 801DE564 */ void read_open_move();
-    /* 801DE70C */ void read_move_init();
-    /* 801DE824 */ void read_move_move();
-    /* 801DEA48 */ void read_next_fadeout_init();
-    /* 801DEA94 */ void read_next_fadeout_move();
-    /* 801DEBD8 */ void read_next_fadein_init();
-    /* 801DED04 */ void read_next_fadein_move();
-    /* 801DEE20 */ void read_close_init();
-    /* 801DEE6C */ void read_close_move();
-    /* 801DF010 */ void screenSetMenu();
-    /* 801DFA58 */ void screenSetBase();
-    /* 801E0330 */ void screenSetShadow();
-    /* 801E03D8 */ void screenSetLetter();
-    /* 801E09A8 */ void screenSetDoIcon();
-    /* 801E0B24 */ void setCursorPos();
-    /* 801E0BB0 */ void changeActiveColor();
-    /* 801E0E34 */ void changePageLight();
-    /* 801E0E84 */ void setPageText();
-    /* 801E1038 */ void setDMYPageText();
-    /* 801E11EC */ void copyDMYMenu();
-    /* 801E1518 */ void setAButtonString(u16);
-    /* 801E15C8 */ void setBButtonString(u16);
-    /* 801E1678 */ void getLetterNum();
-    /* 801E1748 */ void setHIO(bool);
-    /* 801E1D5C */ void draw();
-};
-
 struct dMenu_Letter {
     static u8 letter_data[512];
 };
 
 struct JAISoundID {};
-
-struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -153,50 +72,6 @@ struct Z2SeMgr {
 
 struct Z2AudioMgr {
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct ResTIMG {};
-
-struct JUtility {
-    struct TColor {
-        /* 80193960 */ TColor();
-    };
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TBox2 {};
-    /* TBox2<f32> */
-    struct TBox2__template0 {};
-};
-
-struct J2DGrafContext {
-    /* 802E90C0 */ void scissor(JGeometry::TBox2<f32> const&);
-};
-
-struct J2DScreen {
-    /* 802F8498 */ J2DScreen();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-};
-
-struct J2DPicture {
-    /* 801DFA40 */ void getWhite() const;
-    /* 801DFA4C */ void getBlack() const;
-    /* 802FC708 */ J2DPicture(ResTIMG const*);
-};
-
-struct CPaneMgrAlpha {
-    /* 802557D0 */ void setAlphaRate(f32);
-};
-
-struct CPaneMgr {
-    /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 80253930 */ CPaneMgr();
-    /* 80253A18 */ ~CPaneMgr();
-    /* 802545B0 */ void paneTrans(f32, f32);
-    /* 80254C90 */ void getGlobalVtx(J2DPane*, f32 (*)[3][4], u8, bool, s16);
-    /* 80254EBC */ void getGlobalVtxCenter(J2DPane*, bool, s16);
 };
 
 //
@@ -308,7 +183,6 @@ extern "C" void draw__9J2DScreenFffPC14J2DGrafContext();
 extern "C" void __ct__10J2DPictureFPC7ResTIMG();
 extern "C" void getStringPtr__10J2DTextBoxCFv();
 extern "C" void setString__10J2DTextBoxFsPCce();
-extern "C" void GXGetScissor();
 extern "C" void __construct_array();
 extern "C" void __ptmf_scall();
 extern "C" void __save_gpr();
@@ -326,7 +200,6 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void sprintf();
-extern "C" void strcpy();
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" u8 letter_data__12dMenu_Letter[512];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
@@ -634,7 +507,7 @@ asm void dMenu_Letter_c::_draw() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Letter_c::isSync() {
+asm bool dMenu_Letter_c::isSync() {
     nofralloc
 #include "asm/d/menu/d_menu_letter/isSync__14dMenu_Letter_cFv.s"
 }
@@ -1339,7 +1212,8 @@ asm void dMsgString_c::getStringPage(u32 param_0, u8 param_1, u8 param_2, J2DTex
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Letter_c::draw() {
+// asm void dMenu_Letter_c::draw() {
+extern "C" asm void draw__14dMenu_Letter_cFv() {
     nofralloc
 #include "asm/d/menu/d_menu_letter/draw__14dMenu_Letter_cFv.s"
 }

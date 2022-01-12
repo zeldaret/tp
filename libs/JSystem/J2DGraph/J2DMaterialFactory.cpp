@@ -86,7 +86,6 @@ extern "C" void _savegpr_19();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_19();
 extern "C" void _restgpr_29();
-extern "C" void strcpy();
 extern "C" extern u8 const j2dDefaultTexCoordInfo[32];
 extern "C" extern u8 const j2dDefaultIndTexMtxInfo[28];
 extern "C" extern u8 const j2dDefaultIndTevStageInfo[12];

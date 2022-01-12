@@ -6,6 +6,8 @@
 #include "dolphin/types.h"
 #include "dolphin/vi/vi.h"
 
+typedef u8 (*Pattern)[2];
+
 class JUTVideo {
 public:
     typedef void (*Callback)(u32);
@@ -16,8 +18,8 @@ public:
     // TODO: return types not confirmed
     /* 802E4C54 */ static JUTVideo* createManager(GXRenderModeObj const*);
     /* 802E4CAC */ static void destroyManager();
-    /* 802E5088 */ void drawDoneStart();
-    /* 802E50B0 */ void dummyNoDrawWait();
+    /* 802E5088 */ static void drawDoneStart();
+    /* 802E50B0 */ static void dummyNoDrawWait();
     /* 802E5198 */ void setRenderMode(GXRenderModeObj const*);
     /* 802E5210 */ void waitRetraceIfNeed();
 
@@ -25,10 +27,22 @@ public:
     /* 802E5144 */ static void postRetraceProc(u32);
     /* 802E50BC */ static void drawDoneCallback();
 
-    u32 getFbWidth() const { return mRenderObj->fb_width; }
-    u32 getEfbHeight() const { return mRenderObj->efb_height; }
+    u16 getFbWidth() const { return mRenderObj->fb_width; }
+    u16 getEfbHeight() const { return mRenderObj->efb_height; }
+    void getBounds(u16& width, u16& height) const {
+        width = (u16)getFbWidth();
+        height = (u16)getEfbHeight();
+    }
+    u16 getXfbHeight() const { return mRenderObj->xfb_height; }
+    u32 isAntiAliasing() const { return mRenderObj->antialiasing; }
+    Pattern getSamplePattern() const { return mRenderObj->sample_pattern; }
+    u8* getVFilter() const { return mRenderObj->vfilter; }
+    OSMessageQueue* getMessageQueue() { return &mMessageQueue; }
 
     static JUTVideo* getManager() { return sManager; }
+    static OSTick getVideoInterval() { return sVideoInterval; }
+    static OSTick getVideoLastTick() { return sVideoLastTick; }
+
     GXRenderModeObj* getRenderMode() const { return mRenderObj; }
 
 private:

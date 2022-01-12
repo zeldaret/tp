@@ -4,8 +4,8 @@
 //
 
 #include "JSystem/JParticle/JPAResource.h"
-#include "JSystem/JParticle/JPAMath.h"
 #include "JSystem/JParticle/JPABaseShape.h"
+#include "JSystem/JParticle/JPAMath.h"
 #include "JSystem/JParticle/JPAParticle.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx.h"
@@ -180,7 +180,7 @@ JPAResource::JPAResource() {
 
 /* ############################################################################################## */
 /* 803C40C0-803C4220 0211E0 0144+1C 2/2 0/0 0/0 .data            jpa_pos */
-SECTION_DATA static u8 jpa_pos[324 + 28 /* padding */] = {
+SECTION_DATA static u8 jpa_pos[324 + 28 /* padding */] ALIGN_DECL(32) = {
     0x00,
     0x00,
     0x00,
