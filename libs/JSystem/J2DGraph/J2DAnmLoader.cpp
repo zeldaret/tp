@@ -5,6 +5,7 @@
 
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J2DGraph/J2DAnimation.h"
+#include "JSystem/JSupport/JSupport.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -12,193 +13,10 @@
 // Types:
 //
 
-struct DataBlockHeader {
-    /* 0x0 */ u32 mType;
-    /* 0x4 */ u32 mNextOffset;
-};
-
-struct DataHeader {
-    /* 0x00 */ u32 mMagic;
-    /* 0x04 */ u32 mType;
-    /* 0x08 */ u8 _8[4];
-    /* 0x0C */ u32 mCount;
-    /* 0x10 */ u8 _10[0x20-0x10];
-    /* 0x20 */ DataBlockHeader mFirst;
-};
-
-struct J3DAnmVtxColorFullData { /* PlaceHolder Structure */
-    /* 0x00 */ DataBlockHeader mHeader;
-    u8 field_0x8;
-    u8 field_0x9; // padding?
-    s16 mFrameMax;
-    u16 mAnmTableNum[2];
-    u8 field_0x10[0x18-0x10];
-    s32 mTableOffsets[2];
-    s32 mVtxColorIndexDataOffsets[2];
-    s32 mVtxColorIndexPointerOffsets[2];
-    s32 mRValuesOffset;
-    s32 mGValuesOffset;
-    s32 mBValuesOffset;
-    s32 mAValuesOffset;
-};
-
-struct J3DAnmVisibilityFullData {
-    /* 0x00 */ DataBlockHeader mHeader;
-    u8 field_0x8;
-    u8 field_0x9; // padding?
-    s16 mFrameMax;
-    u16 field_0xc;
-    u16 field_0xe;
-    s32 mTableOffset;
-    s32 mValuesOffset;
-};
-
-struct J3DAnmTransformFullData {
-    /* 0x00 */ DataBlockHeader mHeader;
-    u8 field_0x8;
-    u8 field_0x9;
-    s16 mFrameMax;
-    u16 field_0xc;
-    u8 field_0xe[0x14-0xe];
-    s32 mTableOffset;
-    s32 mScaleValOffset;
-    s32 mRotValOffset;
-    s32 mTransValOffset;
-};
-
-struct J3DAnmColorKeyData {
-    /* 0x00 */ DataBlockHeader mHeader;
-    /* 0x08 */ u8 field_0x8;
-    /* 0x09 */ u8 field_0x9[3];
-    /* 0x0C */ s16 mFrameMax;
-    /* 0x0E */ u16 mUpdateMaterialNum;
-    /* 0x10 */ u16 field_0x10;
-    /* 0x12 */ u16 field_0x12;
-    /* 0x14 */ u16 field_0x14;
-    /* 0x16 */ u16 field_0x16;
-    /* 0x18 */ s32 mTableOffset; /* Created by retype action */
-    /* 0x1C */ s32 mUpdateMaterialIDOffset;
-    /* 0x20 */ s32 mNameTabOffset; /* Created by retype action */
-    /* 0x24 */ s32 mRValOffset;
-    /* 0x28 */ s32 mGValOffset;
-    /* 0x2C */ s32 mBValOffset;
-    /* 0x30 */ s32 mAValOffset;
-}; // Size = 0x34
-
-struct J3DAnmTextureSRTKeyData {
-    /* 0x00 */ DataBlockHeader mHeader;
-    u8 field_0x8;
-    u8 field_0x9;
-    s16 field_0xa;
-    u16 field_0xc;
-    u16 field_0xe;
-    u16 field_0x10;
-    u16 field_0x12;
-    s32 mTableOffset;
-    s32 mUpdateMatIDOffset;
-    s32 mNameTab1Offset;
-    s32 mUpdateTexMtxIDOffset;
-    s32 unkOffset;
-    s32 mScaleValOffset;
-    s32 mRotValOffset;
-    s32 mTransValOffset;
-    u16 field_0x34;
-    u16 field_0x36;
-    u16 field_0x38;
-    u16 field_0x3a;
-    s32 mInfoTable2Offset;
-    s32 field_0x40;
-    u32 mNameTab2Offset;
-    s32 field_0x48;
-    s32 field_0x4c;
-    s32 field_0x50;
-    s32 field_0x54;
-    s32 field_0x58;
-    s32 field_0x5c;
-};
-
-struct J3DAnmVtxColorKeyData {
-    /* 0x00 */ DataBlockHeader mHeader;
-    /* 0x08 */ u8 field_0x8;
-    /* 0x09 */ u8 field_0x9;
-    /* 0x0A */ s16 mFrameMax;
-    /* 0x0C */ u16 mAnmTableNum[2];
-    /* 0x10 */ u8 field_0x10[0x18-0x10];
-    /* 0x18 */ s32 mTableOffsets[2];
-    /* 0x20 */ s32 mVtxColoIndexDataOffset[2];
-    /* 0x28 */ s32 mVtxColoIndexPointerOffset[2];
-    /* 0x30 */ s32 mRValOffset;
-    /* 0x34 */ s32 mGValOffset;
-    /* 0x38 */ s32 mBValOffset;
-    /* 0x3C */ s32 mAValOffset;
-}; // Size = 0x40
-
-struct J3DAnmTexPatternFullData {
-    /* 0x00 */ DataBlockHeader mHeader;
-    u8 field_0x8;
-    u8 field_0x9;
-    s16 mFrameMax;
-    u16 field_0xc;
-    u16 field_0xe;
-    s32 mTableOffset;
-    s32 mValuesOffset;
-    s32 mUpdaterMaterialIDOffset;
-    s32 mNameTabOffset;
-};
-
-struct J3DAnmTevRegKeyData {
-    /* 0x00 */ DataBlockHeader mHeader;
-    u8 field_0x8;
-    u8 field_0x9; // maybe padding
-    s16 mFrameMax;
-    u16 mCRegUpdateMaterialNum;
-    u16 mKRegUpdateMaterialNum;
-    u16 field_0x10;
-    u16 field_0x12;
-    u16 field_0x14;
-    u16 field_0x16;
-    u16 field_0x18;
-    u16 field_0x1a;
-    u16 field_0x1c;
-    u16 field_0x1e;
-    s32 mCRegTableOffset;
-    s32 mKRegTableOffset;
-    s32 mCRegUpdateMaterialIDOffset;
-    s32 mKRegUpdateMaterialIDOffset;
-    s32 mCRegNameTabOffset;
-    s32 mKRegNameTabOffset;
-    s32 mCRValuesOffset;
-    s32 mCGValuesOffset;
-    s32 mCBValuesOffset;
-    s32 mCAValuesOffset;
-    s32 mKRValuesOffset;
-    s32 mKGValuesOffset;
-    s32 mKBValuesOffset;
-    s32 mKAValuesOffset;
-};
-
-struct J3DAnmColorFullData { /* PlaceHolder Structure */
-    /* 0x00 */ DataBlockHeader mHeader;
-    u8 field_0x8;
-    u8 field_0x9[3];
-    s16 mFrameMax;
-    u16 mUpdateMaterialNum;
-    u8 field_0x10[0x18-0x10];
-    s32 mTableOffset;
-    s32 mUpdateMaterialIDOffset;
-    s32 mNameTabOffset;
-    s32 mRValuesOffset;
-    s32 mGValuesOffset;
-    s32 mBValuesOffset;
-    s32 mAValuesOffset;
-};
-
-struct J2DScreen {};
-
 /* 80308A6C-80309290 3033AC 0824+00 0/0 26/26 2/2 .text            load__20J2DAnmLoaderDataBaseFPCv
  */
 void* J2DAnmLoaderDataBase::load(void const* param_0) {
-    const DataHeader* hdr = (const DataHeader*) param_0;
+    const J3DAnmDataHeader* hdr = (const J3DAnmDataHeader*) param_0;
     if (hdr == NULL)  {
         return NULL;
     } else if (hdr->mMagic == 'J3D1') {
@@ -280,8 +98,8 @@ J2DAnmKeyLoader_v15::~J2DAnmKeyLoader_v15() {}
 
 /* 80309308-80309414 303C48 010C+00 2/1 0/0 0/0 .text            load__19J2DAnmKeyLoader_v15FPCv */
 void *J2DAnmKeyLoader_v15::load(void const* param_0) {
-    const DataHeader *hdr = (const DataHeader*) param_0;
-    const DataBlockHeader *dataPtr = &hdr->mFirst;
+    const J3DAnmDataHeader *hdr = (const J3DAnmDataHeader*) param_0;
+    const J3DAnmDataBlockHeader *dataPtr = &hdr->mFirst;
     for (s32 i = 0; i < hdr->mCount; i++) {
         switch (dataPtr->mType) {
             case 'ANK1':
@@ -300,7 +118,7 @@ void *J2DAnmKeyLoader_v15::load(void const* param_0) {
                 this->readAnmTevReg((J3DAnmTevRegKeyData*) dataPtr);
                 break;
         }
-        dataPtr = (DataBlockHeader*)((s32)dataPtr + dataPtr->mNextOffset);
+        dataPtr = (J3DAnmDataBlockHeader*)((s32)dataPtr + dataPtr->mNextOffset);
     }
     return _4;
 }
@@ -308,8 +126,8 @@ void *J2DAnmKeyLoader_v15::load(void const* param_0) {
 /* 80309414-80309570 303D54 015C+00 1/0 0/0 0/0 .text
  * setResource__19J2DAnmKeyLoader_v15FP10J2DAnmBasePCv          */
 void J2DAnmKeyLoader_v15::setResource(J2DAnmBase* pAnm, void const* param_1) {
-    const DataHeader *hdr = (const DataHeader*) param_1;
-    const DataBlockHeader *dataPtr = &hdr->mFirst;
+    const J3DAnmDataHeader *hdr = (const J3DAnmDataHeader*) param_1;
+    const J3DAnmDataBlockHeader *dataPtr = &hdr->mFirst;
     for (s32 i = 0; i < hdr->mCount; i++) {
         switch (dataPtr->mType) {
             case 'ANK1':
@@ -338,7 +156,7 @@ void J2DAnmKeyLoader_v15::setResource(J2DAnmBase* pAnm, void const* param_1) {
                 }
                 break;
         }
-        dataPtr = (DataBlockHeader*)((s32)dataPtr + dataPtr->mNextOffset);
+        dataPtr = (J3DAnmDataBlockHeader*)((s32)dataPtr + dataPtr->mNextOffset);
     }
 }
 
@@ -346,15 +164,6 @@ void J2DAnmKeyLoader_v15::setResource(J2DAnmBase* pAnm, void const* param_1) {
  * readAnmTransform__19J2DAnmKeyLoader_v15FPC22J3DAnmTransformKeyData */
 void J2DAnmKeyLoader_v15::readAnmTransform(J3DAnmTransformKeyData const* pData) {
     this->setAnmTransform((J2DAnmTransformKey*)_4, pData);
-}
-
-template <typename T> // TODO move
-T* JSUConvertOffsetToPtr(const void* ptr, const void* offset) {
-    if (ptr == NULL) {
-        return NULL;
-    } else {
-        return (T*) ((s32)ptr + (s32)offset);
-    }
 }
 
 /* 80309598-80309634 303ED8 009C+00 2/2 0/0 0/0 .text
@@ -478,8 +287,8 @@ void J2DAnmKeyLoader_v15::setAnmVtxColor(J2DAnmVtxColorKey* pAnm, J3DAnmVtxColor
 
 /* 80309A80-80309B8C 3043C0 010C+00 2/1 0/0 0/0 .text            load__20J2DAnmFullLoader_v15FPCv */
 void *J2DAnmFullLoader_v15::load(void const* param_0) {
-    const DataHeader *hdr = (const DataHeader*) param_0;
-    const DataBlockHeader *dataPtr = &hdr->mFirst;
+    const J3DAnmDataHeader *hdr = (const J3DAnmDataHeader*) param_0;
+    const J3DAnmDataBlockHeader *dataPtr = &hdr->mFirst;
     for (s32 i = 0; i < hdr->mCount; i++) {
         switch (dataPtr->mType) {
             case 'ANF1':
@@ -498,7 +307,7 @@ void *J2DAnmFullLoader_v15::load(void const* param_0) {
                 this->readAnmVtxColor((J3DAnmVtxColorFullData*) dataPtr);
                 break;
         }
-        dataPtr = (DataBlockHeader*)((s32)dataPtr + dataPtr->mNextOffset);
+        dataPtr = (J3DAnmDataBlockHeader*)((s32)dataPtr + dataPtr->mNextOffset);
     }
     return _4;
 }
@@ -506,8 +315,8 @@ void *J2DAnmFullLoader_v15::load(void const* param_0) {
 /* 80309B8C-80309CE8 3044CC 015C+00 1/0 0/0 0/0 .text
  * setResource__20J2DAnmFullLoader_v15FP10J2DAnmBasePCv         */
 void J2DAnmFullLoader_v15::setResource(J2DAnmBase* pAnm, void const* pData) {
-    const DataHeader *hdr = (const DataHeader*) pData;
-    const DataBlockHeader *dataPtr = &hdr->mFirst;
+    const J3DAnmDataHeader *hdr = (const J3DAnmDataHeader*) pData;
+    const J3DAnmDataBlockHeader *dataPtr = &hdr->mFirst;
     for (s32 i = 0; i < hdr->mCount; i++) {
         switch (dataPtr->mType) {
             case 'ANF1':
@@ -531,7 +340,7 @@ void J2DAnmFullLoader_v15::setResource(J2DAnmBase* pAnm, void const* pData) {
                     this->setAnmVtxColor((J2DAnmVtxColorFull*) pAnm, (J3DAnmVtxColorFullData*) dataPtr);
                 break;
         }
-        dataPtr = (DataBlockHeader*)((s32)dataPtr + dataPtr->mNextOffset);
+        dataPtr = (J3DAnmDataBlockHeader*)((s32)dataPtr + dataPtr->mNextOffset);
     }
 }
 
