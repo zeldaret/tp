@@ -8,16 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct JPAResource {
-    /* 8027658C */ void calc_p(JPAEmitterWorkData*, JPABaseParticle*);
-    /* 80276608 */ void calc_c(JPAEmitterWorkData*, JPABaseParticle*);
-    /* 80276684 */ void calcField(JPAEmitterWorkData*, JPABaseParticle*);
-};
-
-//
 // Forward References:
 //
 

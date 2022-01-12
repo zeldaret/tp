@@ -33,6 +33,22 @@ struct TVec3<f32> {
         y = other.y;
         z = other.z;
     }
+
+    void set(f32 x_, f32 y_, f32 z_) {
+        x = x_;
+        y = y_;
+        z = z_;
+    }
+
+    void zero() {
+        x = y = z = 0.0f;
+    }
+
+    void mul(const TVec3<f32>& a, const TVec3<f32>& b) {
+        x = a.x * b.x;
+        y = a.y * b.y;
+        z = a.z * b.z;
+    }
 };
 
 template <typename T>
@@ -92,6 +108,10 @@ template<> struct TBox<TVec2<f32> > {
 
     bool isValid() const { return f.isAbove(i); }
 
+    void addPos(f32 x, f32 y) {
+        addPos(TVec2<f32>(x, y));
+    }
+
     void addPos(const TVec2<f32>& pos) {
         i.add(pos);
         f.add(pos);
@@ -123,7 +143,7 @@ struct TBox2 : TBox<TVec2<T> > {
     }
 
     void set(const TBox2& other) { set(other.i, other.f); }
-    void set(const TVec2<f32>& i, const TVec2<f32> f) { this->i.set(i), this->f.set(f); }
+    void set(const TVec2<f32>& i, const TVec2<f32>& f) { this->i.set(i), this->f.set(f); }
     void set(f32 x0, f32 y0, f32 x1, f32 y1) { i.set(x0, y0); f.set(x1, y1); }
 };
 

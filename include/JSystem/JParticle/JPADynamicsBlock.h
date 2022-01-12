@@ -35,12 +35,20 @@ struct JPADynamicsBlockData {
     /* 0x70 */ s16 mStartFrame;
     /* 0x72 */ s16 mLifeTime;
     /* 0x74 */ s16 mVolumeSize;
-    /* 0x76 */ s16 mDivNumber;
+    /* 0x76 */ u16 mDivNumber;
     /* 0x78 */ u8 mRateStep;
     /* 0x7C */ u32 field_0x7c;
 };
 
 typedef void (*JPADynamicsCalcVolumeFunc)(JPAEmitterWorkData*);
+
+enum {
+    JPADynFlag_FixedDensity   = 0x01,
+    JPADynFlag_FixedInterval  = 0x02,
+    JPADynFlag_InheritScale   = 0x04,
+    JPADynFlag_FollowEmtr     = 0x08,
+    JPADynFlag_FollowEmtrChld = 0x10,
+};
 
 class JPADynamicsBlock {
 public:
@@ -52,10 +60,14 @@ public:
 
     s16 getStartFrame() const { return mpData->mStartFrame; }
     u32 getResUserWork() const { return mpData->mResUserWork; }
+    u32 getFlag() const { return mpData->mFlags; }
+    u32 getVolumeType() const { return (mpData->mFlags >> 8) & 0x07; }
+    u16 getDivNumber() const { return mpData->mDivNumber; }
+    f32 getRateRndm() const { return mpData->mRateRndm; }
 
 public:
-    JPADynamicsBlockData* mpData;
-    JPADynamicsCalcVolumeFunc mpCalcVolumeFunc;
+    /* 0x00 */ const JPADynamicsBlockData* mpData;
+    /* 0x04 */ JPADynamicsCalcVolumeFunc mpCalcVolumeFunc;
 };
 
 #endif /* JPADYNAMICSBLOCK_H */

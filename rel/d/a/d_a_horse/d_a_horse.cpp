@@ -4,32 +4,13 @@
 //
 
 #include "rel/d/a/d_a_horse/d_a_horse.h"
+#include "d/a/d_a_player.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
 //
 // Types:
 //
-
-struct request_of_phase_process_class {};
-
-struct Quaternion {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 80266F48 */ void normalizeZP();
-    /* 80267128 */ void atan2sX_Z() const;
-    /* 80267150 */ void atan2sY_XZ() const;
-    /* 8083836C */ ~cXyz();
-    /* 808392D8 */ cXyz();
-
-    static f32 Zero[3];
-    static u8 BaseX[12];
-};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -40,35 +21,10 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DMaterialTable {};
-
-struct J3DAnmTexPattern {};
-
 struct mDoExt_btpAnm {
     /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
     /* 8000D5E8 */ void entry(J3DMaterialTable*, s16);
 };
-
-struct mDoExt_MtxCalcOldFrame {
-    /* 8000F848 */ void initOldFrameMorf(f32, u16, u16);
-};
-
-struct mDoExt_AnmRatioPack {
-    /* 808453FC */ ~mDoExt_AnmRatioPack();
-    /* 80845438 */ mDoExt_AnmRatioPack();
-};
-
-struct mDoExt_3DlineMat_c {};
-
-struct mDoExt_3DlineMatSortPacket {
-    /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
-};
-
-struct ResTIMG {};
-
-struct _GXColor {};
-
-struct dKy_tevstr_c {};
 
 struct mDoExt_3DlineMat1_c {
     /* 80013360 */ void init(u16, u16, ResTIMG*, int);
@@ -79,165 +35,17 @@ struct mDoCPd_c {
     static u8 m_cpadInfo[256];
 };
 
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct fopAcM_wt_c {
-    /* 8001DD84 */ void waterCheck(cXyz const*);
-
-    static f32 mWaterY[1 + 1 /* padding */];
-};
-
-struct fopAcM_gc_c {
-    /* 8001DCBC */ void gndCheck(cXyz const*);
-
-    static u8 mGndCheck[84];
-    static f32 mGroundY;
-};
-
 struct daTagHstop_c {
     static u8 m_top[4 + 4 /* padding */];
-};
-
-struct daPy_py_c {
-    /* 8015F4F0 */ void setLookPos(cXyz*);
-};
-
-struct daPy_frameCtrl_c {
-    /* 8015E4CC */ void checkAnmEnd();
-    /* 8015E510 */ void updateFrame();
-    /* 8015E544 */ void setFrameCtrl(u8, s16, s16, f32, f32);
-    /* 80845354 */ ~daPy_frameCtrl_c();
-    /* 808453B0 */ daPy_frameCtrl_c();
-};
-
-struct daPy_actorKeep_c {
-    /* 8015EC48 */ void setActor();
-    /* 8015ECFC */ void clearData();
 };
 
 struct daHorse_hio_c0 {
     static u8 const m[292];
 };
 
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-    /* 80084318 */ void ResetAtHit();
-    /* 80084460 */ void ChkTgHit();
-};
-
-struct daHorse_c {
-    /* 80838498 */ void coHitCallbackBoarJump(fopAc_ac_c*);
-    /* 80838798 */ void coHitCallbackBoarHit(fopAc_ac_c*, dCcD_GObjInf*);
-    /* 80838904 */ void coHitCallbackCowHit(fopAc_ac_c*);
-    /* 80838B78 */ void modelCallBack(int);
-    /* 80838F98 */ void createHeap();
-    /* 8083940C */ void checkEnding();
-    /* 80839498 */ void create();
-    /* 80839D1C */ void setBasAnime(int);
-    /* 80839EBC */ void resetBasAnime();
-    /* 80839ED4 */ void setDoubleAnime(f32, f32, f32, u16, u16, f32);
-    /* 8083A20C */ void setSingleAnime(u16, f32, f32, s16, f32, int);
-    /* 8083A3C4 */ void animePlay();
-    /* 8083A5AC */ void checkDemoAction();
-    /* 8083A890 */ void setStickRodeoMove();
-    /* 8083AC7C */ void setStickCallMove();
-    /* 8083ACEC */ void setDemoMoveData(u32*, cXyz const*);
-    /* 8083AEC0 */ void setDemoData();
-    /* 8083B578 */ void acceptPlayerRide();
-    /* 8083B600 */ void setStickData();
-    /* 8083B828 */ void setTurnStartVibration();
-    /* 8083B82C */ void setTurnVibration();
-    /* 8083B830 */ void setMoveAnime(f32);
-    /* 8083BF48 */ void checkHorseNoMove(int);
-    /* 8083CA80 */ void checkTurnPlayerState();
-    /* 8083CB38 */ void setSpeedAndAngle();
-    /* 8083D748 */ void checkWaitTurn() const;
-    /* 8083D774 */ void setRoomInfo(int);
-    /* 8083D918 */ void setBodyPart();
-    /* 8083D9D8 */ void setMatrix();
-    /* 8083DC58 */ void setDashEffect(u32*);
-    /* 8083DEEC */ void setEffect();
-    /* 8083E4D8 */ void setCollision();
-    /* 8083E6E8 */ void autoGroundHit();
-    /* 8083E760 */ void setTailAngle();
-    /* 8083E8A4 */ void setNeckAngle();
-    /* 8083EA78 */ void copyFootMatrix();
-    /* 8083EB10 */ void setFootMatrix();
-    /* 8083ED88 */ void setLegAngle(f32, int, int, s16*);
-    /* 8083F3B0 */ void footBgCheck();
-    /* 8083F9AC */ void setReinPosMoveInit(int);
-    /* 8083FDAC */ void copyReinPos();
-    /* 8083FEB4 */ void setReinPosHandSubstance(int);
-    /* 8084010C */ void setReinPosNormalSubstance();
-    /* 808402F8 */ void bgCheck();
-    /* 80840714 */ void checkSpecialWallHitSubstance(cXyz const&) const;
-    /* 808407B0 */ void setServiceWaitTimer();
-    /* 80840800 */ void checkServiceWaitAnime();
-    /* 80840844 */ void checkTurnInput();
-    /* 808408F0 */ void checkTgHitTurn();
-    /* 808409C0 */ void checkTurnAfterFastMove(f32);
-    /* 80840B28 */ void setNeckAnimeMorf();
-    /* 80840B88 */ void setNeckAnime(u16, f32, f32, s16);
-    /* 80840CA4 */ void resetNeckAnime();
-    /* 80840CE4 */ void setLashCnt();
-    /* 80840FE0 */ void setTalkModeWolf();
-    /* 80841084 */ void setBoarHit(fopAc_ac_c*, int);
-    /* 8084116C */ void savePos();
-    /* 808411D0 */ void callHorseSubstance(cXyz const*);
-    /* 80841468 */ void setHorsePosAndAngleSubstance(cXyz const*, s16);
-    /* 808415B4 */ void checkPlayerHeavy();
-    /* 80841628 */ void setTgCoGrp(u32, u32);
-    /* 80841698 */ void onRideFlgSubstance();
-    /* 808416D4 */ void offRideFlgSubstance();
-    /* 80841708 */ void procWaitInit();
-    /* 808417B8 */ void procWait();
-    /* 80841F04 */ void procMoveInit();
-    /* 80841F80 */ void procMove();
-    /* 808423DC */ void procStopInit();
-    /* 808425BC */ void procStop();
-    /* 80842878 */ void procTurnInit(int);
-    /* 80842AB0 */ void procTurn();
-    /* 80843008 */ void procJumpInit(int);
-    /* 808432E0 */ void procJump();
-    /* 80843604 */ void procLandInit(f32, int);
-    /* 80843770 */ void procLand();
-    /* 808438AC */ void procLargeDamageInit();
-    /* 8084396C */ void procLargeDamage();
-    /* 808439C8 */ void procToolDemoInit();
-    /* 80843A44 */ void procToolDemo();
-    /* 80843BFC */ void searchSceneChangeArea(fopAc_ac_c*);
-    /* 80843C74 */ void execute();
-    /* 80844590 */ void draw();
-    /* 8084478C */ ~daHorse_c();
-    /* 80844CB0 */ daHorse_c();
-
-    static u8 const m_footJointTable[8];
-    static f32 const m_callLimitDistance2;
-};
-
-struct daHorseRein_c {
-    /* 80837F2C */ void setReinPos(int);
-    /* 808383A8 */ void setReinPosPart(int);
-    /* 80844FB0 */ ~daHorseRein_c();
-    /* 80844FEC */ daHorseRein_c();
-};
-
-struct daHorseFootData_c {
-    /* 80844F70 */ ~daHorseFootData_c();
-    /* 80844FAC */ daHorseFootData_c();
-};
-
 struct daCow_c {
     /* 8065CFBC */ void isAngry();
     /* 8065D0B8 */ void setAngryHit();
-};
-
-struct cBgS_PolyInfo {
-    /* 802680B0 */ ~cBgS_PolyInfo();
 };
 
 struct daAlink_c {
@@ -261,37 +69,9 @@ struct dVibration_c {
     /* 8006FD94 */ void StopQuake(int);
 };
 
-struct dSv_horse_place_c {
-    /* 80032C64 */ void set(char const*, cXyz const&, s16, s8);
-};
-
-struct dSv_event_c {
-    /* 800349BC */ void isEventBit(u16) const;
-};
-
-struct dStage_roomControl_c {
-    static u8 mDemoArcName[10 + 2 /* padding */];
-};
-
-struct J3DModelData {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-    /* 8003C400 */ void getIDRes(char const*, u16, dRes_info_c*, int);
-};
-
 struct dPath {};
 
 struct dPa_levelEcallBack {};
-
-struct csXyz {};
 
 struct dPa_control_c {
     struct level_c {
@@ -301,28 +81,6 @@ struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
                             cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
                             _GXColor const*, cXyz const*, f32);
-};
-
-struct dBgS {
-    /* 80074B98 */ void GetExitId(cBgS_PolyInfo const&);
-    /* 80074BE8 */ void GetPolyColor(cBgS_PolyInfo const&);
-    /* 80074C6C */ void GetHorseNoEntry(cBgS_PolyInfo const&);
-    /* 80074CBC */ void GetSpecialCode(cBgS_PolyInfo const&);
-    /* 80074EF0 */ void GetGroundCode(cBgS_PolyInfo const&);
-    /* 80075100 */ void GetRoomId(cBgS_PolyInfo const&);
-};
-
-struct dBgS_AcchCir {
-    /* 80075EAC */ dBgS_AcchCir();
-    /* 80075F58 */ void SetWall(f32, f32);
-    /* 808452E4 */ ~dBgS_AcchCir();
-};
-
-struct dBgS_Acch {
-    /* 80075F94 */ ~dBgS_Acch();
-    /* 800760A0 */ dBgS_Acch();
-    /* 80076288 */ void Set(fopAc_ac_c*, int, dBgS_AcchCir*);
-    /* 80076AAC */ void CrrPos(dBgS&);
 };
 
 struct dPaPo_c {
@@ -338,13 +96,6 @@ struct dPaPoF_c {
     static u8 m_emitterFourData[60 + 28 /* padding */];
 };
 
-struct dMsgFlow_c {
-    /* 80249F00 */ dMsgFlow_c();
-    /* 80249F48 */ ~dMsgFlow_c();
-    /* 80249F90 */ void init(fopAc_ac_c*, int, int, fopAc_ac_c**);
-    /* 8024A2D8 */ void doFlow(fopAc_ac_c*, fopAc_ac_c**, int);
-};
-
 struct dEvt_control_c {
     /* 80042468 */ void reset();
 };
@@ -355,10 +106,6 @@ struct dEvent_manager_c {
     /* 800480EC */ void getMySubstanceP(int, char const*, int);
     /* 8004817C */ void cutEnd(int);
     /* 800483E0 */ void getGoal();
-};
-
-struct dDlst_shadowControl_c {
-    static u8 mSimpleTexObj[32];
 };
 
 struct dDemo_object_c {
@@ -377,48 +124,8 @@ struct dComIfG_play_c {
     /* 8002C97C */ void getLayerNo(int);
 };
 
-struct cCcD_Obj {};
-
 struct dCcMassS_Mng {
     /* 80085D98 */ void Set(cCcD_Obj*, u8);
-};
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80083830 */ void Move();
-    /* 80845218 */ ~dCcD_GStts();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-    /* 80084954 */ void MoveCAt(cXyz&);
-    /* 808450C8 */ ~dCcD_Cyl();
-    /* 80845194 */ dCcD_Cyl();
-};
-
-struct dBgS_PolyPassChk {
-    /* 80078EF8 */ void SetHorse();
-};
-
-struct dBgS_LinChk {
-    /* 80077D64 */ void Set(cXyz const*, cXyz const*, fopAc_ac_c const*);
-};
-
-struct dBgS_HorseLinChk {
-    /* 80078460 */ dBgS_HorseLinChk();
-    /* 800784BC */ ~dBgS_HorseLinChk();
 };
 
 struct dBgS_HorseAcch {
@@ -436,79 +143,16 @@ struct dAttList_c {
 
 struct camera_class {};
 
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 80844FF0 */ ~cM3dGSph();
-};
-
-struct cM3dGPla {
-    /* 80838750 */ ~cM3dGPla();
-};
-
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 8026F1F8 */ void SetH(f32);
-    /* 8026F200 */ void SetR(f32);
-    /* 80845038 */ ~cM3dGCyl();
-};
-
-struct cM3dGCir {
-    /* 8026EF18 */ ~cM3dGCir();
-};
-
-struct cM3dGAab {
-    /* 80845080 */ ~cM3dGAab();
-};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
 };
-
-struct cCcD_Stts {
-    /* 8026395C */ void ClrCcMove();
-};
-
-struct cCcD_ObjTg {
-    /* 80264894 */ void SetGrp(u32);
-};
-
-struct cCcD_ObjCo {
-    /* 8026491C */ void SetVsGrp(u32);
-};
-
-struct cCcD_GStts {
-    /* 80844B44 */ ~cCcD_GStts();
-};
-
-struct cBgS_LinChk {};
-
-struct cBgS {
-    /* 800743B4 */ void LineCross(cBgS_LinChk*);
-    /* 80074660 */ void ChkPolySafe(cBgS_PolyInfo const&);
-    /* 80074744 */ void GetTriPla(cBgS_PolyInfo const&, cM3dGPla*) const;
-};
-
-struct _GXTexObj {};
 
 struct Z2SeqMgr {
     /* 802AF49C */ void subBgmStart(u32);
 };
 
-struct JAISoundID {};
-
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2CreatureRide {
-    /* 802C4FFC */ Z2CreatureRide();
-    /* 802C5114 */ ~Z2CreatureRide();
-    /* 802C520C */ void init(Vec*, Vec*, u8, u8);
-};
-
-struct Z2Creature {
-    /* 802C0628 */ void initAnime(void*, bool, f32, f32);
-    /* 802C06D0 */ void updateAnime(f32, f32);
 };
 
 struct Z2AudioMgr {
@@ -517,57 +161,6 @@ struct Z2AudioMgr {
 
 struct JMath {
     static u8 sincosTable_[65536];
-};
-
-struct J3DTransformInfo {};
-
-struct J3DSys {
-    static u8 mCurrentMtx[48];
-};
-
-struct J3DMtxCalcNoAnmBase {
-    /* 80839348 */ ~J3DMtxCalcNoAnmBase();
-};
-
-template <typename A0, typename B0>
-struct J3DMtxCalcNoAnm {};
-/* J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya> */
-struct J3DMtxCalcNoAnm__template0 {
-    /* 808392DC */ void func_808392DC(void* _this);
-    /* 80844BB4 */ void func_80844BB4(void* _this, Vec const&, f32 const (&)[3][4]);
-    /* 80844BDC */ void func_80844BDC(void* _this);
-};
-
-struct J3DMtxCalcJ3DSysInitMaya {
-    /* 8032ECAC */ void init(Vec const&, f32 const (&)[3][4]);
-};
-
-struct J3DMtxCalcCalcTransformMaya {
-    /* 8032EFBC */ void calcTransform(J3DTransformInfo const&);
-};
-
-struct J3DAnmTransform {};
-
-struct J3DMtxCalc {
-    /* 808393A4 */ ~J3DMtxCalc();
-    /* 80844B8C */ void setAnmTransform(u8, J3DAnmTransform*);
-    /* 80844B90 */ void setAnmTransform(J3DAnmTransform*);
-    /* 80844B94 */ bool getAnmTransform(u8);
-    /* 80844B9C */ bool getAnmTransform();
-    /* 80844BA4 */ void setWeight(u8, f32);
-    /* 80844BA8 */ void getWeight(u8) const;
-
-    static u8 mJoint[4];
-};
-
-struct J3DModel {};
-
-struct J3DJoint {};
-
-struct J3DFrameCtrl {
-    /* 803283FC */ void init(s16);
-    /* 8032842C */ void checkPass(f32);
-    /* 80845450 */ ~J3DFrameCtrl();
 };
 
 //
@@ -878,17 +471,6 @@ extern "C" void checkPass__12J3DFrameCtrlFf();
 extern "C" void init__24J3DMtxCalcJ3DSysInitMayaFRC3VecRA3_A4_Cf();
 extern "C" void calcTransform__27J3DMtxCalcCalcTransformMayaFRC16J3DTransformInfo();
 extern "C" void JMAEulerToQuat__FsssP10Quaternion();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXConcat();
-extern "C" void PSMTXInverse();
-extern "C" void PSMTXTrans();
-extern "C" void PSMTXQuat();
-extern "C" void PSMTXMultVec();
-extern "C" void PSVECAdd();
-extern "C" void PSVECSubtract();
-extern "C" void PSVECScale();
-extern "C" void PSVECSquareMag();
-extern "C" void PSVECSquareDistance();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void __construct_new_array();
@@ -913,8 +495,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void abs();
-extern "C" void strcmp();
 extern "C" u8 const m_handLeftInSidePos__9daAlink_c[12];
 extern "C" u8 const m_handRightInSidePos__9daAlink_c[12];
 extern "C" extern void* __vt__19mDoExt_3DlineMat1_c[5];
@@ -941,16 +521,12 @@ extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" f32 Zero__4cXyz[3];
 extern "C" u8 BaseX__4cXyz[12];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
 extern "C" f32 mGroundY__11fopAcM_gc_c;
 extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
-extern "C" extern u8 struct_80450D64[4];
 extern "C" u8 m_top__12daTagHstop_c[4 + 4 /* padding */];
 extern "C" u8 m_object__7dDemo_c[4];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" u8 mJoint__10J3DMtxCalc[4];
 extern "C" void isAngry__7daCow_cFv();
@@ -1122,7 +698,8 @@ asm void daHorseRein_c::setReinPos(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_horse/d_a_horse/__dt__4cXyzFv.s"
 }
@@ -1510,7 +1087,8 @@ asm void daHorse_c::coHitCallbackBoarJump(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGPla::~cM3dGPla() {
+// asm cM3dGPla::~cM3dGPla() {
+extern "C" asm void __dt__8cM3dGPlaFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_horse/d_a_horse/__dt__8cM3dGPlaFv.s"
 }
@@ -1627,7 +1205,8 @@ asm void daHorse_c::createHeap() {
 #pragma pop
 
 /* 808392D8-808392DC 001498 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-cXyz::cXyz() {
+// cXyz::cXyz()
+extern "C" void __ct__4cXyzFv() {
     /* empty function */
 }
 
@@ -1646,7 +1225,8 @@ extern "C" asm void func_808392DC(void* _this) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DMtxCalcNoAnmBase::~J3DMtxCalcNoAnmBase() {
+// asm J3DMtxCalcNoAnmBase::~J3DMtxCalcNoAnmBase() {
+extern "C" asm void __dt__19J3DMtxCalcNoAnmBaseFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_horse/d_a_horse/__dt__19J3DMtxCalcNoAnmBaseFv.s"
 }
@@ -1656,7 +1236,8 @@ asm J3DMtxCalcNoAnmBase::~J3DMtxCalcNoAnmBase() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DMtxCalc::~J3DMtxCalc() {
+// asm J3DMtxCalc::~J3DMtxCalc() {
+extern "C" asm void __dt__10J3DMtxCalcFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_horse/d_a_horse/__dt__10J3DMtxCalcFv.s"
 }
@@ -3520,7 +3101,8 @@ static asm void daHorse_Delete(daHorse_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_horse/d_a_horse/__dt__10cCcD_GSttsFv.s"
 }
@@ -3672,14 +3254,16 @@ daHorseFootData_c::daHorseFootData_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm daHorseRein_c::~daHorseRein_c() {
+// asm daHorseRein_c::~daHorseRein_c() {
+extern "C" asm void __dt__13daHorseRein_cFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_horse/d_a_horse/__dt__13daHorseRein_cFv.s"
 }
 #pragma pop
 
 /* 80844FEC-80844FF0 00D1AC 0004+00 1/1 0/0 0/0 .text            __ct__13daHorseRein_cFv */
-daHorseRein_c::daHorseRein_c() {
+// daHorseRein_c::daHorseRein_c() {
+extern "C" void __ct__13daHorseRein_cFv() {
     /* empty function */
 }
 
@@ -3687,7 +3271,8 @@ daHorseRein_c::daHorseRein_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_horse/d_a_horse/__dt__8cM3dGSphFv.s"
 }
@@ -3697,7 +3282,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_horse/d_a_horse/__dt__8cM3dGCylFv.s"
 }
@@ -3707,7 +3293,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_horse/d_a_horse/__dt__8cM3dGAabFv.s"
 }
@@ -3717,7 +3304,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Cyl::~dCcD_Cyl() {
+// asm dCcD_Cyl::~dCcD_Cyl() {
+extern "C" asm void __dt__8dCcD_CylFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_horse/d_a_horse/__dt__8dCcD_CylFv.s"
 }
@@ -3727,7 +3315,8 @@ asm dCcD_Cyl::~dCcD_Cyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Cyl::dCcD_Cyl() {
+// asm dCcD_Cyl::dCcD_Cyl() {
+extern "C" asm void __ct__8dCcD_CylFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_horse/d_a_horse/__ct__8dCcD_CylFv.s"
 }
@@ -3737,7 +3326,8 @@ asm dCcD_Cyl::dCcD_Cyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_horse/d_a_horse/__dt__10dCcD_GSttsFv.s"
 }
@@ -3757,7 +3347,8 @@ asm dBgS_HorseAcch::~dBgS_HorseAcch() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_AcchCir::~dBgS_AcchCir() {
+// asm dBgS_AcchCir::~dBgS_AcchCir() {
+extern "C" asm void __dt__12dBgS_AcchCirFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_horse/d_a_horse/__dt__12dBgS_AcchCirFv.s"
 }
@@ -3767,7 +3358,8 @@ asm dBgS_AcchCir::~dBgS_AcchCir() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm daPy_frameCtrl_c::~daPy_frameCtrl_c() {
+// asm daPy_frameCtrl_c::~daPy_frameCtrl_c() {
+extern "C" asm void __dt__16daPy_frameCtrl_cFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_horse/d_a_horse/__dt__16daPy_frameCtrl_cFv.s"
 }
@@ -3807,7 +3399,8 @@ asm mDoExt_AnmRatioPack::mDoExt_AnmRatioPack() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DFrameCtrl::~J3DFrameCtrl() {
+// asm J3DFrameCtrl::~J3DFrameCtrl() {
+extern "C" asm void __dt__12J3DFrameCtrlFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_horse/d_a_horse/__dt__12J3DFrameCtrlFv.s"
 }

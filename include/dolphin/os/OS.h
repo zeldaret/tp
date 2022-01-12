@@ -205,6 +205,43 @@ void LCDisable(void);
 void OSReportInit__Fv(void);  // needed for inline asm
 
 u8* OSGetStackPointer(void);
+
+inline s16 __OSf32tos16(register f32 inF) {
+    register s16 out;
+    u32 tmp;
+    register u32* tmpPtr = &tmp;
+    // clang-format off
+    asm {
+        psq_st inF, 0(tmpPtr), 0x1, 5
+        lha out, 0(tmpPtr)
+    }
+    // clang-format on
+
+    return out;
+}
+
+inline void OSf32tos16(f32* f, s16* out) {
+    *out = __OSf32tos16(*f);
+}
+
+inline u8 __OSf32tou8(register f32 inF) {
+    register u8 out;
+    u32 tmp;
+    register u32* tmpPtr = &tmp;
+    // clang-format off
+    asm {
+        psq_st inF, 0(tmpPtr), 0x1, 2
+        lbz out, 0(tmpPtr)
+    }
+    // clang-format on
+
+    return out;
+}
+
+inline void OSf32tou8(f32* f, u8* out) {
+    *out = __OSf32tou8(*f);
+}
+
 };  // extern "C"
 
 void OSSwitchFiberEx(u32, u32, u32, u32, u32, u32);

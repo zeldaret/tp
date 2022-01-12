@@ -533,7 +533,7 @@ bool dBgS::GetUnderwaterRoofCode(cBgS_PolyInfo const& poly) {
 }
 
 /* 80074E00-80074E50 06F740 0050+00 0/0 13/13 5/5 .text GetWallCode__4dBgSFRC13cBgS_PolyInfo */
-bool dBgS::GetWallCode(cBgS_PolyInfo const& poly) {
+s32 dBgS::GetWallCode(cBgS_PolyInfo const& poly) {
     int bg_index = poly.GetBgIndex();
     if (m_chk_element[bg_index].ChkUsed()) {
         return m_chk_element[bg_index].m_bgw_base_ptr->GetWallCode(poly);

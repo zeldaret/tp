@@ -57,4 +57,8 @@ public:
 
 STATIC_ASSERT(sizeof(Z2AudioMgr) == 0x138C);
 
+inline Z2AudioMgr* Z2GetAudioMgr() {
+    return Z2AudioMgr::getInterface();
+}
+
 #endif /* Z2AUDIOMGR_H */

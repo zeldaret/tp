@@ -50,6 +50,8 @@ public:
 };  // Size = 0x18
 
 struct actor_place {
+    /* 807E2468 */ void operator=(actor_place const&);
+
     cXyz mPosition;
     csXyz mAngle;
     s8 mRoomNo;

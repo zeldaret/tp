@@ -20,105 +20,6 @@ struct JKRHeap {
     /* 802CE474 */ void alloc(u32, int, JKRHeap*);
 };
 
-struct JPABaseShapeData {
-    // Common header.
-    /* 0x00 */ u8 mMagic[4];
-    /* 0x04 */ u32 mSize;
-
-    /* 0x08 */ u32 mFlags;
-    /* 0x0C */ s16 mClrPrmAnmOffset;
-    /* 0x0E */ s16 mClrEnvAnmOffset;
-    /* 0x10 */ f32 mBaseSizeX;
-    /* 0x14 */ f32 mBaseSizeY;
-    /* 0x18 */ u16 mBlendModeCfg;
-    /* 0x1A */ u8 mAlphaCompareCfg;
-    /* 0x1B */ u8 mAlphaRef0;
-    /* 0x1C */ u8 mAlphaRef1;
-    /* 0x1D */ u8 mZModeCfg;
-    /* 0x1E */ u8 mTexFlg;
-    /* 0x1F */ u8 mTexAnmNum;
-    /* 0x20 */ u8 mTexIdx;
-    /* 0x21 */ u8 mClrFlg;
-    /* 0x22 */ u8 mClrPrmKeyNum;
-    /* 0x23 */ u8 mClrEnvKeyNum;
-    /* 0x24 */ s16 mClrAnmFrmMax;
-    /* 0x26 */ GXColor mClrPrm;
-    /* 0x2A */ GXColor mClrEnv;
-    /* 0x2E */ u8 mAnmRndm;
-    /* 0x2F */ u8 mClrAnmRndmMask;
-    /* 0x30 */ u8 mTexAnmRndmMask;
-};
-
-struct JPABaseShape {
-public:
-    /* 8027A6DC */ JPABaseShape(u8 const*, JKRHeap*);
-    /* 8027A7E8 */ void setGX(JPAEmitterWorkData*) const;
-
-    static GXBlendMode st_bm[3];
-    static GXBlendFactor st_bf[10];
-    static GXLogicOp st_lo[16];
-    static GXCompare st_c[8];
-    static GXAlphaOp st_ao[4];
-    static GXTevColorArg st_ca[6][4];
-    static GXTevAlphaArg st_aa[2][4];
-
-    GXBlendMode getBlendMode() const { return st_bm[mpData->mBlendModeCfg & 0x03]; }
-    GXBlendFactor getBlendSrc() const { return st_bf[(mpData->mBlendModeCfg >> 2) & 0x0F]; }
-    GXBlendFactor getBlendDst() const { return st_bf[(mpData->mBlendModeCfg >> 6) & 0x0F]; }
-    GXLogicOp getLogicOp() const { return st_lo[(mpData->mBlendModeCfg >> 10) & 0x0F]; }
-    GXBool getZCompLoc() const { return (GXBool)((mpData->mZModeCfg >> 5) & 0x01); }
-
-    GXBool getZEnable() const { return (GXBool)(mpData->mZModeCfg & 0x01); }
-    GXCompare getZCmp() const { return st_c[(mpData->mZModeCfg >> 1) & 0x07]; }
-    GXBool getZUpd() const { return (GXBool)((mpData->mZModeCfg >> 4) & 0x01); }
-
-    GXCompare getAlphaCmp0() const { return st_c[mpData->mAlphaCompareCfg & 0x07]; }
-    u8 getAlphaRef0() const { return mpData->mAlphaRef0; }
-    GXAlphaOp getAlphaOp() const { return st_ao[(mpData->mAlphaCompareCfg >> 3) & 0x03]; }
-    GXCompare getAlphaCmp1() const { return st_c[(mpData->mAlphaCompareCfg >> 5) & 0x07]; }
-    u8 getAlphaRef1() const { return mpData->mAlphaRef1; }
-
-    const GXTevColorArg* getTevColorArg() const { return st_ca[(mpData->mFlags >> 0x0F) & 0x07]; }
-    const GXTevAlphaArg* getTevAlphaArg() const { return st_aa[(mpData->mFlags >> 0x12) & 0x01]; }
-
-    u32 getType() const { return (mpData->mFlags >> 0) & 0x0F; }
-    u32 getDirType() const { return (mpData->mFlags >> 4) & 0x07; }
-    u32 getRotType() const { return (mpData->mFlags >> 7) & 0x07; }
-    u32 getBasePlaneType() const { return (mpData->mFlags >> 10) & 0x07; }
-    u32 getTilingS() const { return (mpData->mFlags >> 25) & 0x01; }
-    u32 getTilingT() const { return (mpData->mFlags >> 26) & 0x01; }
-    bool isGlblClrAnm() const { return !!(mpData->mFlags & 0x00001000); }
-    bool isGlblTexAnm() const { return !!(mpData->mFlags & 0x00004000); }
-    bool isPrjTex() const { return !!(mpData->mFlags & 0x00100000); }
-    bool isDrawFwdAhead() const { return !!(mpData->mFlags & 0x00200000); }
-    bool isDrawPrntAhead() const { return !!(mpData->mFlags & 0x00400000); }
-    bool isClipOn() const { return !!(mpData->mFlags & 0x00800000); }
-    bool isTexCrdAnm() const { return !!(mpData->mFlags & 0x01000000); }
-    bool isNoDrawParent() const { return !!(mpData->mFlags & 0x08000000); }
-    bool isNoDrawChild() const { return !!(mpData->mFlags & 0x10000000); }
-
-    bool isPrmAnm() const { return !!(mpData->mClrFlg & 0x02); }
-    bool isEnvAnm() const { return !!(mpData->mClrFlg & 0x08); }
-    u8 getClrAnmType() const { return (mpData->mClrFlg >> 4) & 0x07; }
-    s16 getClrAnmMaxFrm() const { return mpData->mClrAnmFrmMax; }
-    void getPrmClr(s16 idx, GXColor* dst) { *dst = mpPrmClrAnmTbl[idx]; }
-    void getEnvClr(s16 idx, GXColor* dst) { *dst = mpEnvClrAnmTbl[idx]; }
-
-    bool isTexAnm() const { return !!(mpData->mTexFlg & 0x01); }
-    u8 getTexAnmType() const { return (mpData->mTexFlg >> 2) & 0x07; }
-    u32 getTexIdx() const { return mpData->mTexIdx; }
-
-    f32 getBaseSizeX() const { return mpData->mBaseSizeX; }
-    f32 getBaseSizeY() const { return mpData->mBaseSizeY; }
-
-public:
-    const JPABaseShapeData* mpData;
-    const void* mpTexCrdMtxAnmTbl;
-    const u8* mpTexIdxAnimTbl;
-    GXColor* mpPrmClrAnmTbl;
-    GXColor* mpEnvClrAnmTbl;
-};
-
 struct JMath {
     static u8 sincosTable_[65536];
 };
@@ -259,90 +160,119 @@ void JPASetLineWidth(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
     GXSetLineWidth((u8)(lit_2262[0] * work->mGlobalPtclScl.x * ptcl->mParticleScaleX), GX_TO_ONE);
 }
 
-/* 80276B90-80276C2C 2714D0 009C+00 0/0 1/1 0/0 .text JPARegistPrm__FP18JPAEmitterWorkData */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPARegistPrm(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPARegistPrm__FP18JPAEmitterWorkData.s"
+static inline u8 COLOR_MULTI(u32 a, u32 b) {
+    return ((a * (b + 1)) * 0x10000) >> 24;
 }
-#pragma pop
+
+/* 80276B90-80276C2C 2714D0 009C+00 0/0 1/1 0/0 .text JPARegistPrm__FP18JPAEmitterWorkData */
+void JPARegistPrm(JPAEmitterWorkData* work) {
+    JPABaseEmitter* emtr = work->mpEmtr;
+    GXColor prm = emtr->mPrmClr;
+    prm.r = COLOR_MULTI(prm.r, emtr->mGlobalPrmClr.r);
+    prm.g = COLOR_MULTI(prm.g, emtr->mGlobalPrmClr.g);
+    prm.b = COLOR_MULTI(prm.b, emtr->mGlobalPrmClr.b);
+    prm.a = COLOR_MULTI(prm.a, emtr->mGlobalPrmClr.a);
+    GXSetTevColor(GX_TEVREG0, prm);
+}
 
 /* 80276C2C-80276CB0 27156C 0084+00 0/0 1/1 0/0 .text JPARegistEnv__FP18JPAEmitterWorkData */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPARegistEnv(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPARegistEnv__FP18JPAEmitterWorkData.s"
+void JPARegistEnv(JPAEmitterWorkData* work) {
+    JPABaseEmitter* emtr = work->mpEmtr;
+    GXColor env = emtr->mEnvClr;
+    env.r = COLOR_MULTI(env.r, emtr->mGlobalEnvClr.r);
+    env.g = COLOR_MULTI(env.g, emtr->mGlobalEnvClr.g);
+    env.b = COLOR_MULTI(env.b, emtr->mGlobalEnvClr.b);
+    GXSetTevColor(GX_TEVREG1, env);
 }
-#pragma pop
 
 /* 80276CB0-80276DB0 2715F0 0100+00 0/0 1/1 0/0 .text JPARegistPrmEnv__FP18JPAEmitterWorkData */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPARegistPrmEnv(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPARegistPrmEnv__FP18JPAEmitterWorkData.s"
+void JPARegistPrmEnv(JPAEmitterWorkData* work) {
+    JPABaseEmitter* emtr = work->mpEmtr;
+    GXColor prm = emtr->mPrmClr;
+    GXColor env = emtr->mEnvClr;
+    prm.r = COLOR_MULTI(prm.r, emtr->mGlobalPrmClr.r);
+    prm.g = COLOR_MULTI(prm.g, emtr->mGlobalPrmClr.g);
+    prm.b = COLOR_MULTI(prm.b, emtr->mGlobalPrmClr.b);
+    prm.a = COLOR_MULTI(prm.a, emtr->mGlobalPrmClr.a);
+    env.r = COLOR_MULTI(env.r, emtr->mGlobalEnvClr.r);
+    env.g = COLOR_MULTI(env.g, emtr->mGlobalEnvClr.g);
+    env.b = COLOR_MULTI(env.b, emtr->mGlobalEnvClr.b);
+    GXSetTevColor(GX_TEVREG0, prm);
+    GXSetTevColor(GX_TEVREG1, env);
 }
-#pragma pop
 
 /* 80276DB0-80276E60 2716F0 00B0+00 0/0 1/1 0/0 .text
  * JPARegistAlpha__FP18JPAEmitterWorkDataP15JPABaseParticle     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPARegistAlpha(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPARegistAlpha__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPARegistAlpha(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    JPABaseEmitter* emtr = work->mpEmtr;
+    GXColor prm = emtr->mPrmClr;
+    prm.r = COLOR_MULTI(prm.r, emtr->mGlobalPrmClr.r);
+    prm.g = COLOR_MULTI(prm.g, emtr->mGlobalPrmClr.g);
+    prm.b = COLOR_MULTI(prm.b, emtr->mGlobalPrmClr.b);
+    prm.a = COLOR_MULTI(prm.a, emtr->mGlobalPrmClr.a);
+    prm.a = COLOR_MULTI(prm.a, ptcl->mPrmColorAlphaAnm);
+    GXSetTevColor(GX_TEVREG0, prm);
 }
-#pragma pop
 
 /* 80276E60-80276F10 2717A0 00B0+00 0/0 1/1 0/0 .text
  * JPARegistPrmAlpha__FP18JPAEmitterWorkDataP15JPABaseParticle  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPARegistPrmAlpha(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPARegistPrmAlpha__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPARegistPrmAlpha(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    JPABaseEmitter* emtr = work->mpEmtr;
+    GXColor prm = ptcl->mPrmClr;
+    prm.r = COLOR_MULTI(prm.r, emtr->mGlobalPrmClr.r);
+    prm.g = COLOR_MULTI(prm.g, emtr->mGlobalPrmClr.g);
+    prm.b = COLOR_MULTI(prm.b, emtr->mGlobalPrmClr.b);
+    prm.a = COLOR_MULTI(prm.a, emtr->mGlobalPrmClr.a);
+    prm.a = COLOR_MULTI(prm.a, ptcl->mPrmColorAlphaAnm);
+    GXSetTevColor(GX_TEVREG0, prm);
 }
-#pragma pop
 
 /* 80276F10-80277024 271850 0114+00 0/0 1/1 0/0 .text
  * JPARegistPrmAlphaEnv__FP18JPAEmitterWorkDataP15JPABaseParticle */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPARegistPrmAlphaEnv(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPARegistPrmAlphaEnv__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPARegistPrmAlphaEnv(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    JPABaseEmitter* emtr = work->mpEmtr;
+    GXColor prm = ptcl->mPrmClr;
+    GXColor env = ptcl->mEnvClr;
+    prm.r = COLOR_MULTI(prm.r, emtr->mGlobalPrmClr.r);
+    prm.g = COLOR_MULTI(prm.g, emtr->mGlobalPrmClr.g);
+    prm.b = COLOR_MULTI(prm.b, emtr->mGlobalPrmClr.b);
+    prm.a = COLOR_MULTI(prm.a, emtr->mGlobalPrmClr.a);
+    prm.a = COLOR_MULTI(prm.a, ptcl->mPrmColorAlphaAnm);
+    env.r = COLOR_MULTI(env.r, emtr->mGlobalEnvClr.r);
+    env.g = COLOR_MULTI(env.g, emtr->mGlobalEnvClr.g);
+    env.b = COLOR_MULTI(env.b, emtr->mGlobalEnvClr.b);
+    GXSetTevColor(GX_TEVREG0, prm);
+    GXSetTevColor(GX_TEVREG1, env);
 }
-#pragma pop
 
 /* 80277024-80277138 271964 0114+00 0/0 1/1 0/0 .text
  * JPARegistAlphaEnv__FP18JPAEmitterWorkDataP15JPABaseParticle  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPARegistAlphaEnv(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPARegistAlphaEnv__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPARegistAlphaEnv(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    JPABaseEmitter* emtr = work->mpEmtr;
+    GXColor prm = emtr->mPrmClr;
+    GXColor env = ptcl->mEnvClr;
+    prm.r = COLOR_MULTI(prm.r, emtr->mGlobalPrmClr.r);
+    prm.g = COLOR_MULTI(prm.g, emtr->mGlobalPrmClr.g);
+    prm.b = COLOR_MULTI(prm.b, emtr->mGlobalPrmClr.b);
+    prm.a = COLOR_MULTI(prm.a, emtr->mGlobalPrmClr.a);
+    prm.a = COLOR_MULTI(prm.a, ptcl->mPrmColorAlphaAnm);
+    env.r = COLOR_MULTI(env.r, emtr->mGlobalEnvClr.r);
+    env.g = COLOR_MULTI(env.g, emtr->mGlobalEnvClr.g);
+    env.b = COLOR_MULTI(env.b, emtr->mGlobalEnvClr.b);
+    GXSetTevColor(GX_TEVREG0, prm);
+    GXSetTevColor(GX_TEVREG1, env);
 }
-#pragma pop
 
 /* 80277138-802771BC 271A78 0084+00 0/0 1/1 0/0 .text
  * JPARegistEnv__FP18JPAEmitterWorkDataP15JPABaseParticle       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPARegistEnv(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPARegistEnv__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPARegistEnv(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    JPABaseEmitter* emtr = work->mpEmtr;
+    GXColor env = ptcl->mEnvClr;
+    env.r = COLOR_MULTI(env.r, emtr->mGlobalEnvClr.r);
+    env.g = COLOR_MULTI(env.g, emtr->mGlobalEnvClr.g);
+    env.b = COLOR_MULTI(env.b, emtr->mGlobalEnvClr.b);
+    GXSetTevColor(GX_TEVREG1, env);
 }
-#pragma pop
 
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 
@@ -976,6 +906,22 @@ asm void JPADrawRotation(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) 
 
 /* 80279110-802791B0 273A50 00A0+00 0/0 1/1 0/0 .text
  * JPADrawPoint__FP18JPAEmitterWorkDataP15JPABaseParticle       */
+#ifdef NONMATCHING
+// literal only
+void JPADrawPoint(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    if (!!(ptcl->mStatus & JPAPtclStts_Invisible))
+        return;
+
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+    GXBegin(GX_POINTS, GX_VTXFMT1, 1);
+    GXPosition3f32(ptcl->mPosition.x, ptcl->mPosition.y, ptcl->mPosition.z);
+    GXTexCoord2f32(0.0f, 0.0f);
+    GXEnd();
+    GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
+    GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -984,6 +930,7 @@ asm void JPADrawPoint(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
 #include "asm/JSystem/JParticle/JPABaseShape/JPADrawPoint__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
 }
 #pragma pop
+#endif
 
 /* 802791B0-80279364 273AF0 01B4+00 0/0 1/1 0/0 .text
  * JPADrawLine__FP18JPAEmitterWorkDataP15JPABaseParticle        */
@@ -1049,14 +996,12 @@ asm void JPADrawEmitterCallBackB(JPAEmitterWorkData* param_0) {
 
 /* 8027A414-8027A454 274D54 0040+00 0/0 1/1 0/0 .text
  * JPADrawParticleCallBack__FP18JPAEmitterWorkDataP15JPABaseParticle */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPADrawParticleCallBack(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPADrawParticleCallBack__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPADrawParticleCallBack(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    if (work->mpEmtr->mpPtclCallBack == NULL)
+        return;
+
+    work->mpEmtr->mpPtclCallBack->draw(work->mpEmtr, ptcl);
 }
-#pragma pop
 
 /* 8027A454-8027A6DC 274D94 0288+00 1/1 0/0 0/0 .text
  * makeColorTable__FPP8_GXColorPC16JPAClrAnmKeyDataUcsP7JKRHeap */

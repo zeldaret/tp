@@ -53,6 +53,10 @@ public:
     virtual ~cBgS() {}
     virtual void Ct();
     virtual void Dt();
+
+    fopAc_ac_c* GetActorPointer(cBgS_PolyInfo const& info) const {
+        return GetActorPointer(info.GetBgIndex());
+    }
 };  // Size: 0x1404
 
 class dBgS_Acch;
@@ -75,7 +79,7 @@ public:
     bool GetMagnetCode(cBgS_PolyInfo const&);
     bool GetMonkeyBarsCode(cBgS_PolyInfo const&);
     bool GetUnderwaterRoofCode(cBgS_PolyInfo const&);
-    bool GetWallCode(cBgS_PolyInfo const&);
+    s32 GetWallCode(cBgS_PolyInfo const&);
     bool GetPolyAtt0(cBgS_PolyInfo const&);
     bool GetPolyAtt1(cBgS_PolyInfo const&);
     bool GetGroundCode(cBgS_PolyInfo const&);

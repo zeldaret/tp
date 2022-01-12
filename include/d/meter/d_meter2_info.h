@@ -10,13 +10,6 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
-struct dMsgObject_c {
-    /* 802384C4 */ static void setLetterNameID(u16);
-    /* 802379AC */ void setKillMessageFlag();
-    /* 8023822C */ void getStatus();
-    /* 802371E4 */ void isPlaceMessage();
-};
-
 struct JMSMesgEntry_c {
     /* 0x00 */ u32 mStringOffset;
     /* 0x04 */ u16 mStringId;
@@ -129,8 +122,20 @@ public:
     const char* getWarpStageName() { return mWarpInfo.mStageName; }
     void setNowCount(u8 count) { mNowCount = count; }
     void setMaxCount(u8 count) { mMaxCount = count; }
+    void allUseButton() { mUseButton = -1; }
+    bool isUseButton(int param_0) { return param_0 & mUseButton; }
+    void setMeterMapClass(dMeterMap_c* p_map) { mMeterMap = p_map; }
+    void resetGameStatus() { mGameStatus = 0; }
+    void setMapStatus(u8 status) { mMapStatus = status; }
+    u8 getMapStatus() { return mMapStatus; }
+    void setPauseStatus(u8 status) { mPauseStatus = status; }
+    void resetPauseStatus() { mPauseStatus = 0; }
+    u8 getPauseStatus() { return mPauseStatus; }
+    bool isGameStatus(int status) { return mGameStatus & status; }
+    void setMapKeyDirection(u16 direction) { mMapKeyDirection = direction; }
+    bool isSub2DStatus(int flag) { return mSub2DStatus & (1 << flag); }
 
-private:
+public:
     /* 0x04 */ u8 unk4[4];
     /* 0x08 */ u64 unk8;
     /* 0x10 */ void* mMsgResource;
@@ -216,6 +221,7 @@ private:
 extern dMeter2Info_c g_meter2_info;
 
 void dMeter2Info_setSword(u8, bool);
+void dMeter2Info_set2DVibration();
 
 inline void dMeter2Info_Initialize() {
     g_meter2_info.init();
@@ -275,6 +281,62 @@ inline void dMeter2Info_setNowCount(u8 count) {
 
 inline void dMeter2Info_setMaxCount(u8 count) {
     g_meter2_info.setMaxCount(count);
+}
+
+inline bool dMeter2Info_isDirectUseItem(int param_0) {
+    return g_meter2_info.isDirectUseItem(param_0);
+}
+
+inline bool dMeter2Info_isUseButton(int param_0) {
+    return g_meter2_info.isUseButton(param_0);
+}
+
+inline void dMeter2Info_setMeterMapClass(dMeterMap_c* p_map) {
+    g_meter2_info.setMeterMapClass(p_map);
+}
+
+inline void dMeter2Info_decHotSpringTimer() {
+    g_meter2_info.decHotSpringTimer();
+}
+
+inline void dMeter2Info_allUseButton() {
+    g_meter2_info.allUseButton();
+}
+
+inline void dMeter2Info_resetGameStatus() {
+    g_meter2_info.resetGameStatus();
+}
+
+inline void dMeter2Info_setMapStatus(u8 status) {
+    g_meter2_info.setMapStatus(status);
+}
+
+inline u8 dMeter2Info_getMapStatus() {
+    return g_meter2_info.getMapStatus();
+}
+
+inline void dMeter2Info_setPauseStatus(u8 status) {
+    g_meter2_info.setPauseStatus(status);
+}
+
+inline void dMeter2Info_resetPauseStatus() {
+    g_meter2_info.resetPauseStatus();
+}
+
+inline u8 dMeter2Info_getPauseStatus() {
+    return g_meter2_info.getPauseStatus();
+}
+
+inline bool dMeter2Info_isGameStatus(int status) {
+    return g_meter2_info.isGameStatus(status);
+}
+
+inline void dMeter2Info_setMapKeyDirection(u16 direction) {
+    g_meter2_info.setMapKeyDirection(direction);
+}
+
+inline bool dMeter2Info_isSub2DStatus(int flag) {
+    return g_meter2_info.isSub2DStatus(flag);
 }
 
 #endif /* D_METER_D_METER2_INFO_H */

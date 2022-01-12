@@ -4,71 +4,85 @@
 //
 
 #include "JSystem/J2DGraph/J2DManage.h"
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Forward References:
-//
-
-extern "C" void get__13J2DDataManageFPCc();
-extern "C" void get__13J2DDataManageFP14JSUInputStream();
-extern "C" void getResReference__15J2DResReferenceCFUs();
-extern "C" void getName__15J2DResReferenceCFUs();
-
-//
-// External References:
-//
-
-extern "C" void read__14JSUInputStreamFPvl();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-extern "C" void strcmp();
 
 //
 // Declarations:
 //
 
 /* 8030CE18-8030CE7C 307758 0064+00 1/1 3/3 0/0 .text            get__13J2DDataManageFPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DDataManage::get(char const* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DManage/get__13J2DDataManageFPCc.s"
+void* J2DDataManage::get(char const* name) {
+    for (J2DataManageLink* link = mList; link != NULL; link = link->mNext) {
+        if (strcmp(link->mName, name) == 0) {
+            return link->mData;
+        }
+    }
+    return NULL;
 }
-#pragma pop
 
 /* 8030CE7C-8030CF10 3077BC 0094+00 0/0 1/1 0/0 .text get__13J2DDataManageFP14JSUInputStream */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DDataManage::get(JSUInputStream* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DManage/get__13J2DDataManageFP14JSUInputStream.s"
+void* J2DDataManage::get(JSUInputStream* inputStream) {
+    inputStream->skip(1);
+    u8 nameLen = inputStream->readU8();
+    if (nameLen == 0) {
+        return NULL;
+    } else {
+        char nameBuffer[257];
+        inputStream->read(&nameBuffer, nameLen);
+        nameBuffer[nameLen] = 0;
+        return this->get(nameBuffer);
+    }
 }
-#pragma pop
 
 /* 8030CF10-8030CF44 307850 0034+00 1/1 2/2 0/0 .text getResReference__15J2DResReferenceCFUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DResReference::getResReference(u16 param_0) const {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DManage/getResReference__15J2DResReferenceCFUs.s"
+s8* J2DResReference::getResReference(u16 idx) const {
+    if (mCount <= idx || idx == 0xFFFF) {
+        return NULL;
+    } else {
+        return (((s8*)this) + mOffsets[idx]);
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804349C0-80434AC8 0616E0 0101+07 1/1 0/0 0/0 .bss             p_name$494 */
-static u8 p_name[257 + 7 /* padding */];
+static char p_name[257];
 
 /* 8030CF44-8030D098 307884 0154+00 0/0 2/2 0/0 .text            getName__15J2DResReferenceCFUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DResReference::getName(u16 param_0) const {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DManage/getName__15J2DResReferenceCFUs.s"
+char* J2DResReference::getName(u16 idx) const {
+    s8* resRef = this->getResReference(idx);
+    if (resRef == NULL) {
+        p_name[0] = 0;
+        return p_name;
+    } else {
+        s8 first = resRef[0];
+        switch (first) {
+        case 2:
+        case 3:
+            for (s32 i = 0; i < resRef[1]; i++) {
+                p_name[i] = resRef[2 + i];
+            }
+            p_name[resRef[1]] = 0;
+            break;
+        case 4:
+            s32 pos = resRef[1] + 1;
+            for (; pos >= 2; pos--) {
+                if (resRef[pos] == '\\' || resRef[pos] == '/') {
+                    break;
+                }
+            }
+            s32 i = 0;
+            pos++;
+            for (; pos < resRef[1] + 2; i++, pos++) {
+                p_name[i] = resRef[pos];
+            }
+            p_name[i] = 0;
+
+            break;
+        default:
+            p_name[0] = 0;
+        }
+        return p_name;
+    }
 }
-#pragma pop

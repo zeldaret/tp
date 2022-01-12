@@ -1157,7 +1157,7 @@ asm void dBgW::GetLinkNo(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool dBgW::GetWallCode(cBgS_PolyInfo const& param_0) {
+asm s32 dBgW::GetWallCode(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetWallCode__4dBgWFRC13cBgS_PolyInfo.s"
 }

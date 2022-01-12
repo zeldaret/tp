@@ -40,6 +40,12 @@ private:
 };  // Size: 0x20
 
 class J3DAnmTransformKey : public J3DAnmTransform {
+public:
+    J3DAnmTransformKey() : J3DAnmTransform(0, NULL, NULL, NULL) {
+        field_0x20 = 0;
+        field_0x24 = 0;
+    }
+
     /* 80329A34 */ void calcTransform(f32, u16, J3DTransformInfo*) const;
 
     /* 8003B8D0 */ virtual ~J3DAnmTransformKey();
@@ -69,7 +75,11 @@ class J3DAnmTransformFullWithLerp : public J3DAnmTransformFull {
 struct J3DTextureSRTInfo;
 struct J3DModelData;
 struct J3DMaterialTable;
-struct J3DAnmKeyTableBase {};
+struct J3DAnmKeyTableBase {
+    /* 0x00 */ u16 mMaxFrame;
+    /* 0x02 */ u16 mOffset;
+    /* 0x04 */ u16 mType;
+};  // Size = 0x6
 
 class J3DAnmTextureSRTKey : public J3DAnmBase {
 public:

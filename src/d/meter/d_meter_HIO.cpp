@@ -1685,6 +1685,27 @@ dMeter_fmapHIO_c::dMeter_fmapHIO_c() {
 }
 
 /* 80200BCC-80200CD4 1FB50C 0108+00 2/1 0/0 0/0 .text            __dt__16dMeter_fmapHIO_cFv */
+#ifdef NONMATCHING
+dMeter_fmapHIO_c::~dMeter_fmapHIO_c() {
+    if (field_0xc != NULL) {
+        mDoExt_getGameHeap()->free(field_0xc);
+        field_0xc = NULL;
+    }
+
+    if (field_0x10 != NULL) {
+        mDoExt_getGameHeap()->free(field_0x10);
+        field_0x10 = NULL;
+    }
+
+    if (field_0x8 != NULL) {
+        field_0x8->unmount();
+        delete field_0x8;
+        field_0x8 = NULL;
+    }
+
+    delete mMapIconHIO;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1694,6 +1715,7 @@ extern "C" asm void __dt__16dMeter_fmapHIO_cFv() {
 #include "asm/d/meter/d_meter_HIO/__dt__16dMeter_fmapHIO_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80200CD4-80200D58 1FB614 0084+00 1/1 0/0 0/0 .text            __ct__18dMeter_cursorHIO_cFv */
 dMeter_cursorHIO_c::dMeter_cursorHIO_c() {
@@ -1875,65 +1897,17 @@ extern "C" asm void __dt__16dMeter_drawHIO_cFv() {
 /* 8020123C-80201284 1FBB7C 0048+00 2/1 0/0 0/0 .text            __dt__16dMeter_menuHIO_cFv */
 dMeter_menuHIO_c::~dMeter_menuHIO_c() {}
 
-/* ############################################################################################## */
-/* 8042EBB0-8042EBBC 05B8D0 000C+00 1/1 0/0 0/0 .bss             @3766 */
-static u8 lit_3766[12];
-
-/* 8042EBBC-8042EBC8 05B8DC 000C+00 0/1 0/0 0/0 .bss             @3767 */
-#pragma push
-#pragma force_active on
-static u8 lit_3767[12];
-#pragma pop
+/* 804510B0-804510B8 0005B0 0008+00 1/1 1/1 0/0 .sbss            g_menuHIO */
+dMeter_menuHIO_c g_menuHIO;
 
 /* 8042EBC8-8042FAF0 05B8E8 0F28+00 0/1 157/157 0/0 .bss             g_drawHIO */
-extern u8 g_drawHIO[3880];
-u8 g_drawHIO[3880];
-
-/* 8042FAF0-8042FAFC 05C810 000C+00 0/1 0/0 0/0 .bss             @3768 */
-#pragma push
-#pragma force_active on
-static u8 lit_3768[12];
-#pragma pop
+dMeter_drawHIO_c g_drawHIO;
 
 /* 8042FAFC-8042FC54 05C81C 0158+00 0/1 19/19 0/0 .bss             g_ringHIO */
-extern u8 g_ringHIO[344];
-u8 g_ringHIO[344];
-
-/* 8042FC54-8042FC60 05C974 000C+00 0/1 0/0 0/0 .bss             @3769 */
-#pragma push
-#pragma force_active on
-static u8 lit_3769[12];
-#pragma pop
+dMeter_ringHIO_c g_ringHIO;
 
 /* 8042FC60-80430104 05C980 04A4+00 0/1 54/54 0/0 .bss             g_fmapHIO */
-extern u8 g_fmapHIO[1188];
-u8 g_fmapHIO[1188];
-
-/* 80430104-80430110 05CE24 000C+00 0/1 0/0 0/0 .bss             @3770 */
-#pragma push
-#pragma force_active on
-static u8 lit_3770[12];
-#pragma pop
+dMeter_fmapHIO_c g_fmapHIO;
 
 /* 80430110-80430158 05CE30 0044+04 0/1 6/6 1/1 .bss             g_cursorHIO */
-extern u8 g_cursorHIO[68 + 4 /* padding */];
-u8 g_cursorHIO[68 + 4 /* padding */];
-
-/* 804510B0-804510B8 0005B0 0008+00 1/1 1/1 0/0 .sbss            g_menuHIO */
-extern u8 g_menuHIO[8];
-u8 g_menuHIO[8];
-
-/* 80201284-80201328 1FBBC4 00A4+00 0/0 1/0 0/0 .text            __sinit_d_meter_HIO_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_meter_HIO_cpp() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__sinit_d_meter_HIO_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80201284, __sinit_d_meter_HIO_cpp);
-#pragma pop
+dMeter_cursorHIO_c g_cursorHIO;

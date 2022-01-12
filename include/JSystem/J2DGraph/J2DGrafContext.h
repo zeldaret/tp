@@ -1,6 +1,7 @@
 #ifndef J2DGRAFCONTEXT_H
 #define J2DGRAFCONTEXT_H
 
+#include "JSystem/J2DGraph/J2DMatBlock.h"
 #include "JSystem/JGeometry.h"
 #include "JSystem/JUtility/TColor.h"
 #include "dolphin/mtx/mtx.h"
@@ -35,7 +36,7 @@ public:
     /* 802E9664 */ virtual s32 getGrafType() const { return 0; }
     /* 802E966C */ virtual void setLookat() {}
 
-protected:
+public:
     /* 0x04 */ JGeometry::TBox2<f32> mBounds;
     /* 0x14 */ JGeometry::TBox2<f32> mScissorBounds;
     /* 0x24 */ JUtility::TColor mColorTL;
@@ -46,15 +47,9 @@ protected:
     /* 0x38 */ JGeometry::TVec2<f32> mPrevPos;
     /* 0x40 */ Mtx44 mMtx44;
     /* 0x80 */ Mtx mPosMtx;
-    /* 0xB0 */ u8 field_0xb0;
-    /* 0xB1 */ u8 field_0xb1;
-    /* 0xB2 */ u8 field_0xb2;
-    /* 0xB3 */ u8 mLineBlendMode;
-    /* 0xB4 */ u8 mLineSrcBlendFactor;
-    /* 0xB5 */ u8 mLineDstBlendFactor;
-    /* 0xB6 */ u8 mBoxBlendMode;
-    /* 0xB7 */ u8 mBoxSrcBlendFactor;
-    /* 0xB8 */ u8 mBoxDstBlendFactor;
+    /* 0xB0 */ J2DBlendInfo field_0xb0;
+    /* 0xB3 */ J2DBlendInfo mLinePart;
+    /* 0xB6 */ J2DBlendInfo mBoxPart;
 };
 
 #endif /* J2DGRAFCONTEXT_H */

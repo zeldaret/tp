@@ -4,214 +4,144 @@
 //
 
 #include "JSystem/JParticle/JPAExtraShape.h"
+#include "JSystem/JParticle/JPAParticle.h"
+#include "JSystem/JParticle/JPAResource.h"
+#include "JSystem/JParticle/JPAResourceManager.h"
+#include "JSystem/JMath/JMATrigonometric.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "dolphin/os/OS.h"
 
 //
 // Types:
 //
 
-struct JPAExtraShape {
-    /* 8027AD88 */ JPAExtraShape(u8 const*);
-    /* 8027ADBC */ void init();
-};
-
-struct JPAEmitterWorkData {};
-
-struct JPABaseParticle {};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-//
-// Forward References:
-//
-
-extern "C" void JPACalcScaleX__FP18JPAEmitterWorkDataP15JPABaseParticle();
-extern "C" void JPACalcScaleY__FP18JPAEmitterWorkDataP15JPABaseParticle();
-extern "C" void JPACalcScaleCopy__FP18JPAEmitterWorkDataP15JPABaseParticle();
-extern "C" void JPACalcScaleAnmNormal__FP18JPAEmitterWorkDataP15JPABaseParticle();
-extern "C" void JPACalcScaleAnmRepeatX__FP18JPAEmitterWorkDataP15JPABaseParticle();
-extern "C" void JPACalcScaleAnmRepeatY__FP18JPAEmitterWorkDataP15JPABaseParticle();
-extern "C" void JPACalcScaleAnmReverseX__FP18JPAEmitterWorkDataP15JPABaseParticle();
-extern "C" void JPACalcScaleAnmReverseY__FP18JPAEmitterWorkDataP15JPABaseParticle();
-extern "C" void JPACalcAlphaAnm__FP18JPAEmitterWorkDataP15JPABaseParticle();
-extern "C" void JPACalcAlphaFlickAnm__FP18JPAEmitterWorkDataP15JPABaseParticle();
-extern "C" void __ct__13JPAExtraShapeFPCUc();
-extern "C" void init__13JPAExtraShapeFv();
-
-//
-// External References:
-//
-
-extern "C" u8 sincosTable___5JMath[65536];
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 804552E0-804552E8 0038E0 0004+04 6/6 0/0 0/0 .sdata2          @2270 */
-SECTION_SDATA2 static f32 lit_2270[1 + 1 /* padding */] = {
-    1.0f,
-    /* padding */
-    0.0f,
-};
-
 /* 8027A918-8027A990 275258 0078+00 0/0 1/1 0/0 .text
  * JPACalcScaleX__FP18JPAEmitterWorkDataP15JPABaseParticle      */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcScaleX(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAExtraShape/JPACalcScaleX__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPACalcScaleX(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    JPAExtraShape* esp = work->mpRes->getEsp();
+    if (work->mScaleAnm < esp->getScaleInTiming()) {
+        ptcl->mParticleScaleX = ptcl->mScaleOut * (esp->getScaleIncRateX() * work->mScaleAnm + esp->getScaleInValueX());
+    } else if (work->mScaleAnm > esp->getScaleOutTiming()) {
+        ptcl->mParticleScaleX = ptcl->mScaleOut * (esp->getScaleDecRateX() * (work->mScaleAnm - esp->getScaleOutTiming()) + 1.0f);
+    } else {
+        ptcl->mParticleScaleX = ptcl->mScaleOut;
+    }
 }
-#pragma pop
 
 /* 8027A990-8027AA08 2752D0 0078+00 0/0 1/1 0/0 .text
  * JPACalcScaleY__FP18JPAEmitterWorkDataP15JPABaseParticle      */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcScaleY(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAExtraShape/JPACalcScaleY__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPACalcScaleY(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    JPAExtraShape* esp = work->mpRes->getEsp();
+    if (work->mScaleAnm < esp->getScaleInTiming()) {
+        ptcl->mParticleScaleY = ptcl->mScaleOut * (esp->getScaleIncRateY() * work->mScaleAnm + esp->getScaleInValueY());
+    } else if (work->mScaleAnm > esp->getScaleOutTiming()) {
+        ptcl->mParticleScaleY = ptcl->mScaleOut * (esp->getScaleDecRateY() * (work->mScaleAnm - esp->getScaleOutTiming()) + 1.0f);
+    } else {
+        ptcl->mParticleScaleY = ptcl->mScaleOut;
+    }
 }
-#pragma pop
 
 /* 8027AA08-8027AA14 275348 000C+00 0/0 1/1 0/0 .text
  * JPACalcScaleCopy__FP18JPAEmitterWorkDataP15JPABaseParticle   */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcScaleCopy(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAExtraShape/JPACalcScaleCopy__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPACalcScaleCopy(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    JPAExtraShape* esp = work->mpRes->getEsp();
+    ptcl->mParticleScaleY = ptcl->mParticleScaleX;
 }
-#pragma pop
 
 /* 8027AA14-8027AA20 275354 000C+00 0/0 1/1 0/0 .text
  * JPACalcScaleAnmNormal__FP18JPAEmitterWorkDataP15JPABaseParticle */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcScaleAnmNormal(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAExtraShape/JPACalcScaleAnmNormal__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPACalcScaleAnmNormal(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    work->mScaleAnm = ptcl->mTime;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804552E8-804552F0 0038E8 0008+00 5/5 0/0 0/0 .sdata2          @2312 */
-SECTION_SDATA2 static f64 lit_2312 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8027AA20-8027AA84 275360 0064+00 0/0 1/1 0/0 .text
  * JPACalcScaleAnmRepeatX__FP18JPAEmitterWorkDataP15JPABaseParticle */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcScaleAnmRepeatX(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAExtraShape/JPACalcScaleAnmRepeatX__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPACalcScaleAnmRepeatX(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    JPAExtraShape* esp = work->mpRes->getEsp();
+    work->mScaleAnm = (ptcl->mAge % esp->getScaleAnmCycleX()) / (f32)esp->getScaleAnmCycleX();
 }
-#pragma pop
 
 /* 8027AA84-8027AAE8 2753C4 0064+00 0/0 1/1 0/0 .text
  * JPACalcScaleAnmRepeatY__FP18JPAEmitterWorkDataP15JPABaseParticle */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcScaleAnmRepeatY(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAExtraShape/JPACalcScaleAnmRepeatY__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPACalcScaleAnmRepeatY(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    JPAExtraShape* esp = work->mpRes->getEsp();
+    work->mScaleAnm = (ptcl->mAge % esp->getScaleAnmCycleY()) / (f32)esp->getScaleAnmCycleY();
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804552F0-804552F4 0038F0 0004+00 2/2 0/0 0/0 .sdata2          @2339 */
-SECTION_SDATA2 static f32 lit_2339 = 2.0f;
 
 /* 8027AAE8-8027AB7C 275428 0094+00 0/0 1/1 0/0 .text
  * JPACalcScaleAnmReverseX__FP18JPAEmitterWorkDataP15JPABaseParticle */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcScaleAnmReverseX(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAExtraShape/JPACalcScaleAnmReverseX__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPACalcScaleAnmReverseX(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    JPAExtraShape* esp = work->mpRes->getEsp();
+    s32 cycle = ptcl->mAge / esp->getScaleAnmCycleX();
+    f32 base = (ptcl->mAge % esp->getScaleAnmCycleX()) / (f32)esp->getScaleAnmCycleX();
+    work->mScaleAnm = base + ((cycle & 1) * (1.0f - base * 2.0f));
 }
-#pragma pop
 
 /* 8027AB7C-8027AC10 2754BC 0094+00 0/0 1/1 0/0 .text
  * JPACalcScaleAnmReverseY__FP18JPAEmitterWorkDataP15JPABaseParticle */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcScaleAnmReverseY(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAExtraShape/JPACalcScaleAnmReverseY__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPACalcScaleAnmReverseY(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    JPAExtraShape* esp = work->mpRes->getEsp();
+    s32 cycle = ptcl->mAge / esp->getScaleAnmCycleY();
+    f32 base = (ptcl->mAge % esp->getScaleAnmCycleY()) / (f32)esp->getScaleAnmCycleY();
+    work->mScaleAnm = base + ((cycle & 1) * (1.0f - base * 2.0f));
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804552F4-804552F8 0038F4 0004+00 2/2 0/0 0/0 .sdata2          @2390 */
-SECTION_SDATA2 static f32 lit_2390 = 255.0f;
 
 /* 8027AC10-8027AC98 275550 0088+00 0/0 1/1 0/0 .text
  * JPACalcAlphaAnm__FP18JPAEmitterWorkDataP15JPABaseParticle    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcAlphaAnm(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAExtraShape/JPACalcAlphaAnm__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPACalcAlphaAnm(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    JPAExtraShape* esp = work->mpRes->getEsp();
+    f32 alpha;
+    if (ptcl->mTime < esp->getAlphaInTiming()) {
+        alpha = 255.0f * (esp->getAlphaInValue() + esp->getAlphaIncRate() * ptcl->mTime);
+    } else if (ptcl->mTime > esp->getAlphaOutTiming()) {
+        alpha = 255.0f * ((ptcl->mTime - esp->getAlphaOutTiming()) * esp->getAlphaDecRate() + esp->getAlphaBaseValue());
+    } else {
+        alpha = 255.0f * esp->getAlphaBaseValue();
+    }
+    OSf32tou8(&alpha, &ptcl->mPrmColorAlphaAnm);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804552F8-804552FC 0038F8 0004+00 1/1 0/0 0/0 .sdata2          @2433 */
-SECTION_SDATA2 static f32 lit_2433 = 16384.0f;
-
-/* 804552FC-80455300 0038FC 0004+00 1/1 0/0 0/0 .sdata2          @2434 */
-SECTION_SDATA2 static f32 lit_2434 = 0.5f;
 
 /* 8027AC98-8027AD88 2755D8 00F0+00 0/0 1/1 0/0 .text
  * JPACalcAlphaFlickAnm__FP18JPAEmitterWorkDataP15JPABaseParticle */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcAlphaFlickAnm(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAExtraShape/JPACalcAlphaFlickAnm__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPACalcAlphaFlickAnm(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+    JPAExtraShape* esp = work->mpRes->getEsp();
+    f32 alpha;
+    if (ptcl->mTime < esp->getAlphaInTiming()) {
+        alpha = (esp->getAlphaInValue() + esp->getAlphaIncRate() * ptcl->mTime);
+    } else if (ptcl->mTime > esp->getAlphaOutTiming()) {
+        alpha = ((ptcl->mTime - esp->getAlphaOutTiming()) * esp->getAlphaDecRate() + esp->getAlphaBaseValue());
+    } else {
+        alpha = esp->getAlphaBaseValue();
+    }
+    s32 theta = ptcl->mAlphaWaveRandom * ptcl->mAge * 16384.0f * (1.0f - esp->getAlphaFreq());
+    f32 wave = JMASSin(theta);
+    alpha *= (1.0f + esp->getAlphaAmp() * (wave - 1.0f) * 0.5f) * 255.0f;
+    OSf32tou8(&alpha, &ptcl->mPrmColorAlphaAnm);
 }
-#pragma pop
 
 /* 8027AD88-8027ADBC 2756C8 0034+00 0/0 1/1 0/0 .text            __ct__13JPAExtraShapeFPCUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JPAExtraShape::JPAExtraShape(u8 const* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAExtraShape/__ct__13JPAExtraShapeFPCUc.s"
+JPAExtraShape::JPAExtraShape(u8 const* data) {
+    mpData = (const JPAExtraShapeData*)data;
+    init();
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80455300-80455308 003900 0004+04 1/1 0/0 0/0 .sdata2          @2503 */
-SECTION_SDATA2 static f32 lit_2503[1 + 1 /* padding */] = {
-    0.0f,
-    /* padding */
-    0.0f,
-};
 
 /* 8027ADBC-8027AEBC 2756FC 0100+00 1/1 0/0 0/0 .text            init__13JPAExtraShapeFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPAExtraShape::init() {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAExtraShape/init__13JPAExtraShapeFv.s"
+void JPAExtraShape::init() {
+    mAlphaIncRate = (getAlphaInTiming() != 0.0f) ? (getAlphaBaseValue() - getAlphaInValue()) / getAlphaInTiming() : 1.0f;
+    mAlphaDecRate = (getAlphaOutTiming() != 1.0f) ? (getAlphaOutValue() - getAlphaBaseValue()) / (1.0f - getAlphaOutTiming()) : 1.0f;
+
+    if (getScaleInTiming() != 0.0f) {
+        mScaleIncRateX = (1.0f - getScaleInValueX()) / getScaleInTiming();
+        mScaleIncRateY = (1.0f - getScaleInValueY()) / getScaleInTiming();
+    } else {
+        mScaleIncRateX = mScaleIncRateY = 1.0f;
+    }
+
+    if (getScaleOutTiming() != 1.0f) {
+        mScaleDecRateX = (getScaleOutValueX() - 1.0f) / (1.0f - getScaleOutTiming());
+        mScaleDecRateY = (getScaleOutValueY() - 1.0f) / (1.0f - getScaleOutTiming());
+    } else {
+        mScaleDecRateX = mScaleDecRateY = 1.0f;
+    }
 }
-#pragma pop

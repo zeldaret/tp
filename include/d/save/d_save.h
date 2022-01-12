@@ -371,6 +371,9 @@ public:
     u16& getLife() { return mLife; }
     u16& getRupee() { return mRupee; }
     u16& getOil() { return mOil; }
+    u16& getMaxOil() { return mMaxOil; }
+    u8& getMagic() { return mMagic; }
+    u8& getMaxMagic() { return mMaxMagic; }
     u8 getSelectEquip(int item) const { return mSelectEquip[item]; }
     void setOil(u16 oil) { mOil = oil; }
     void setMaxOil(u16 max) { mMaxOil = max; }
@@ -765,6 +768,7 @@ public:
     void onDungeonItemMap() { onDungeonItem(MAP); }
     s32 isDungeonItemMap() const { return isDungeonItem(MAP); }
     void onDungeonItemCompass() { onDungeonItem(COMPASS); }
+    s32 isDungeonItemCompass() const { return isDungeonItem(COMPASS); }
     void onDungeonItemWarp() { onDungeonItem(OOCCOO_NOTE); }
     void onDungeonItemBossKey() { onDungeonItem(BOSS_KEY); }
     s32 isDungeonItemBossKey() const { return isDungeonItem(BOSS_KEY); }
@@ -1001,7 +1005,7 @@ public:
     BOOL isActor(int, int) const;
     int memory_to_card(char*, int);
     int card_to_memory(char*, int);
-    void initdata_to_card(char*, int);
+    int initdata_to_card(char*, int);
 
     dSv_save_c& getSavedata() { return mSavedata; }
     dSv_memory_c& getMemory() { return mMemory; }

@@ -283,7 +283,7 @@ SECTION_SDATA2 static f32 lit_889[1 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DAnmLoaderDataBase::load(void const* param_0, J3DAnmLoaderDataBaseFlag param_1) {
+asm void* J3DAnmLoaderDataBase::load(void const* param_0, J3DAnmLoaderDataBaseFlag param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DAnmLoader/load__20J3DAnmLoaderDataBaseFPCv24J3DAnmLoaderDataBaseFlag.s"
 }

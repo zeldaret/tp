@@ -14,12 +14,6 @@
 // Types:
 //
 
-struct JPAResource;
-struct JPAResource {
-    /* 802755E8 */ bool calc(JPAEmitterWorkData*, JPABaseEmitter*);
-    /* 80275A94 */ void draw(JPAEmitterWorkData*, JPABaseEmitter*);
-};
-
 //
 // Forward References:
 //

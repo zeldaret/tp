@@ -83,6 +83,9 @@ public:
     bool runCheck() { return field_0xe5 != 0; }
     u16 chkEventFlag(u16 flag) { return flag & mEventFlag; }
     u8 getMode() const { return mMode; }
+    u16 checkHind(u16 flag) { return flag & mHindFlag; }
+
+    bool i_isOrderOK() { return field_0xe5 == 0 || field_0xe5 == 2; }
 
 public:
     /* 0x000 */ u8 field_0x0[4];

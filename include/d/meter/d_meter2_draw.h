@@ -51,7 +51,7 @@ public:
     /* 80215A94 */ void setAlphaOxygenAnimeMax();
     /* 80215B18 */ void drawLightDrop(u8, u8, f32, f32, f32, f32, u8);
     /* 80215DA4 */ void setAlphaLightDropChange(bool);
-    /* 80215DA8 */ void getNowLightDropRateCalc();
+    /* 80215DA8 */ f32 getNowLightDropRateCalc();
     /* 80215E40 */ void setAlphaLightDropAnimeMin();
     /* 80215F88 */ void setAlphaLightDropAnimeMax();
     /* 8021632C */ void drawRupee(s16);
@@ -113,6 +113,8 @@ public:
     /* 8021BDD0 */ void getButtonTimer();
 
     /* 802102F8 */ virtual ~dMeter2Draw_c();
+
+    J2DScreen* getMainScreenPtr() { return mpScreen; }
 
 private:
     /* 0x004 */ f32 field_0x4;
@@ -210,9 +212,9 @@ private:
     /* 0x518 */ J2DPicture* mpItemXYPane[3];
     /* 0x524 */ int field_0x524[2][2];
     /* 0x534 */ u8 field_0x534[8];
-    /* 0x53C */ void* field_0x53c;
-    /* 0x540 */ J2DAnmBase* field_0x540;  // bpk
-    /* 0x544 */ J2DAnmBase* field_0x544;  // bpk
+    /* 0x53C */ J2DAnmColorKey* field_0x53c;
+    /* 0x540 */ J2DAnmColorKey* field_0x540;
+    /* 0x544 */ J2DAnmColorKey* field_0x544;
     /* 0x548 */ u8 field_0x548[8];
     /* 0x550 */ f32 field_0x550;
     /* 0x554 */ f32 field_0x554;
@@ -227,7 +229,35 @@ private:
     /* 0x578 */ f32 field_0x578;
     /* 0x57C */ f32 field_0x57c;
     /* 0x580 */ f32 field_0x580;
-    /* 0x584 */ u8 field_0x584[0x78];
+    /* 0x584 */ f32 field_0x584;
+    /* 0x588 */ f32 field_0x588;
+    /* 0x58C */ f32 field_0x58c;
+    /* 0x590 */ f32 field_0x590;
+    /* 0x594 */ f32 field_0x594;
+    /* 0x598 */ f32 field_0x598;
+    /* 0x59C */ f32 field_0x59c;
+    /* 0x5A0 */ f32 field_0x5a0;
+    /* 0x5A4 */ f32 field_0x5a4;
+    /* 0x5A8 */ f32 field_0x5a8;
+    /* 0x5AC */ f32 field_0x5ac;
+    /* 0x5B0 */ f32 field_0x5b0;
+    /* 0x5B4 */ f32 field_0x5b4;
+    /* 0x5B8 */ f32 field_0x5b8;
+    /* 0x5BC */ f32 field_0x5bc;
+    /* 0x5C0 */ f32 field_0x5c0;
+    /* 0x5C4 */ f32 field_0x5c4;
+    /* 0x5C8 */ f32 field_0x5c8;
+    /* 0x5CC */ f32 field_0x5cc;
+    /* 0x5D0 */ f32 field_0x5d0;
+    /* 0x5D4 */ f32 field_0x5d4;
+    /* 0x5D8 */ f32 field_0x5d8;
+    /* 0x5DC */ f32 field_0x5dc;
+    /* 0x5E0 */ f32 field_0x5e0;
+    /* 0x5E4 */ f32 field_0x5e4;
+    /* 0x5E8 */ f32 field_0x5e8;
+    /* 0x5EC */ f32 field_0x5ec;
+    /* 0x5F0 */ f32 field_0x5f0;
+    /* 0x5F4 */ u8 field_0x5f4[0x8];
     /* 0x5FC */ f32 field_0x5fc[3];
     /* 0x608 */ f32 field_0x608;
     /* 0x60C */ f32 field_0x60c;

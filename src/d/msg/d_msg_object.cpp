@@ -12,31 +12,7 @@
 // Types:
 //
 
-struct msg_class {};
-
-struct JKRHeap {
-    /* 802CE784 */ void getTotalFreeSize();
-};
-
-struct JKRArchive {
-    struct EMountMode {};
-};
-
-struct mDoDvdThd_mountXArchive_c {
-    /* 800161E0 */ void create(char const*, u8, JKRArchive::EMountMode, JKRHeap*);
-};
-
-struct mDoCPd_c {
-    static u8 m_cpadInfo[256];
-};
-
 struct jmessage_tControl {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 8026702C */ bool operator==(Vec const&) const;
-};
 
 struct jmessage_tReference {
     /* 80228B04 */ jmessage_tReference();
@@ -58,48 +34,10 @@ struct jmessage_tRenderingProcessor {
     /* 8022E12C */ void resetRendering();
 };
 
-struct fopAc_ac_c {};
-
-struct daPy_py_c {
-    static u8 m_midnaActor[4];
-};
-
-struct dSv_player_item_record_c {
-    /* 80033F7C */ void getBombNum(u8) const;
-};
-
-struct dSv_player_item_c {
-    /* 80033030 */ void getItem(int, bool) const;
-};
-
-struct dSv_player_get_item_c {
-    /* 80033E60 */ void onFirstBit(u8);
-};
-
-struct dSv_event_tmp_flag_c {
-    static u8 const tempBitLabels[370 + 2 /* padding */];
-};
-
-struct dSv_event_flag_c {
-    static u8 saveBitLabels[1644 + 4 /* padding */];
-};
-
-struct dSv_event_c {
-    /* 8003498C */ void onEventBit(u16);
-    /* 800349A4 */ void offEventBit(u16);
-    /* 800349BC */ void isEventBit(u16) const;
-    /* 800349E0 */ void setEventReg(u16, u8);
-    /* 80034A04 */ void getEventReg(u16) const;
-};
-
 struct dMsgString_c {
     /* 80249C20 */ dMsgString_c();
     /* 80249D28 */ ~dMsgString_c();
 };
-
-struct JUTFont {};
-
-struct JKRExpHeap {};
 
 struct dMsgScrnTree_c {
     /* 80248954 */ dMsgScrnTree_c(JUTFont*, JKRExpHeap*);
@@ -155,152 +93,8 @@ struct dMsgScrnBase_c {
     /* 8023C3EC */ void setRubyString(char*);
 };
 
-struct J2DTextBox {};
-
 struct COutFont_c {
     /* 80225C94 */ COutFont_c(u8);
-};
-
-struct dMsgObject_c {
-    /* 80233284 */ void _create(msg_class*);
-    /* 80233590 */ void _execute();
-    /* 802339BC */ void _draw();
-    /* 80233AE8 */ void _delete();
-    /* 80233D04 */ void setMessageIndex(u32, u32, bool);
-    /* 80233E70 */ void setMessageIndexDemo(u32, bool);
-    /* 80233F84 */ void getMessageIndex(u32);
-    /* 80233FD8 */ void getRevoMessageIndex(u32);
-    /* 802340D4 */ void getMessageIndexAlways(u32);
-    /* 80234128 */ void getMessageIDAlways(u32);
-    /* 8023413C */ void getMessageGroup(u32);
-    /* 80234150 */ void waitProc();
-    /* 80234318 */ void openProc();
-    /* 802349D8 */ void outnowProc();
-    /* 80234CCC */ void outwaitProc();
-    /* 80234FF0 */ void stopProc();
-    /* 80234FF4 */ void continueProc();
-    /* 8023531C */ void selectProc();
-    /* 8023587C */ void selectEndProc();
-    /* 802358D4 */ void inputProc();
-    /* 80235AD4 */ void finishProc();
-    /* 80235CC0 */ void endProc();
-    /* 80235EBC */ void deleteProc();
-    /* 8023609C */ void textmodeProc();
-    /* 802360A0 */ void talkStartInit();
-    /* 8023670C */ void fukiPosCalc(bool);
-    /* 802368E4 */ void setStatusLocal(u16);
-    /* 802368F8 */ void getStatusLocal();
-    /* 8023690C */ void delete_screen(bool);
-    /* 802369D8 */ void isSend();
-    /* 80236BF8 */ void readMessageGroupLocal(mDoDvdThd_mountXArchive_c**);
-    /* 80236C90 */ void changeFlowGroupLocal(s32);
-    /* 80236CD4 */ void demoMessageGroupLocal();
-    /* 80236D00 */ void endFlowGroupLocal();
-    /* 80236D0C */ void changeGroupLocal(s16);
-    /* 80236DE4 */ void getStringLocal(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, char*,
-                                       char*, char*, s16*);
-    /* 802370A8 */ void isGetItemMessage();
-    /* 802370BC */ void isKanbanMessage();
-    /* 802370E8 */ void isHowlMessage();
-    /* 802370FC */ void isMidonaMessage();
-    /* 80237138 */ void isMidonaNormalTalkWait();
-    /* 802371B0 */ void isMidonaTalkWait();
-    /* 802371E4 */ void isPlaceMessage();
-    /* 802371F8 */ void isBossMessage();
-    /* 8023720C */ bool isBookMessage();
-    /* 80237214 */ void isStaffMessage();
-    /* 80237228 */ void isSaveMessage();
-    /* 8023723C */ void isTalkMessage();
-    /* 802372CC */ void getSmellName();
-    /* 80237334 */ void getPortalName();
-    /* 8023738C */ void getBombName();
-    /* 8023741C */ void getInsectName();
-    /* 80237478 */ void getLetterName();
-    /* 802374D0 */ void getSelectBombNum();
-    /* 80237520 */ void onMsgSendControlLocal();
-    /* 80237530 */ void offMsgSendControlLocal();
-    /* 80237550 */ void isMsgSendControlLocal();
-    /* 8023755C */ void onMsgSendLocal();
-    /* 8023756C */ void offMsgSendLocal();
-    /* 8023757C */ void isMsgSendLocal();
-    /* 80237588 */ void isMouthCheckLocal();
-    /* 8023759C */ void getBombBuyPriceLocal(u8);
-    /* 802375E4 */ void addSelectBomBag(u8);
-    /* 80237610 */ void resetSelectBomBag();
-    /* 8023763C */ void getSelectBombBagIDLocal();
-    /* 8023768C */ void getSelectBombPriceLocal();
-    /* 8023773C */ void setEquipBombInfoLocal();
-    /* 80237748 */ void updateEquipBombInfoLocal();
-    /* 802378B8 */ void setShopWaitTimer(u8);
-    /* 802378CC */ void setSelectWordFlagLocal(u8);
-    /* 802378D4 */ void isHowlHearingModeLocal();
-    /* 80237934 */ void isCameraCancelFlag();
-    /* 80237950 */ void onCameraCancelFlag();
-    /* 80237968 */ void offCameraCancelFlag();
-    /* 80237980 */ void isKillMessageFlag();
-    /* 80237994 */ void onKillMessageFlag();
-    /* 802379AC */ void setKillMessageFlag();
-    /* 802379D8 */ void setKillMessageFlagLocal();
-    /* 80237A74 */ void setTalkPartner(fopAc_ac_c*);
-    /* 80237A88 */ void setNowTalkFlowNo(s16);
-    /* 80237A9C */ void getNowTalkFlowNo();
-    /* 80237AB0 */ void setDemoMessage(u32);
-    /* 80237AE0 */ void setTalkHeap(void*);
-    /* 80237B10 */ void setTalkHeapLocal(void*);
-    /* 80237B54 */ void getTalkHeap();
-    /* 80237B68 */ void isDraw();
-    /* 80237BFC */ void setButtonStatusLocal();
-    /* 80237D88 */ void setDemoMessageLocal(u32);
-    /* 80237DD8 */ void getSmellTypeMessageIDLocal();
-    /* 80237E04 */ void setSmellTypeLocal(u8);
-    /* 80237E58 */ void getSelectCursorPosLocal();
-    /* 80237E68 */ void setSelectCursorPosLocal(u8);
-    /* 80237F10 */ void setTalkActorLocal(fopAc_ac_c*);
-    /* 8023800C */ void readMessageGroup(mDoDvdThd_mountXArchive_c**);
-    /* 8023803C */ void changeFlowGroup(s32);
-    /* 8023806C */ void demoMessageGroup();
-    /* 80238098 */ void endFlowGroup();
-    /* 802380C4 */ void changeGroup(s16);
-    /* 802380F4 */ void getString(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, char*,
-                                  char*, char*, s16*);
-    /* 80238174 */ void getMsgDtPtr();
-    /* 80238188 */ void setProcessID(unsigned int);
-    /* 8023819C */ void getActor();
-    /* 802381C0 */ void getpTalkActor();
-    /* 802381D4 */ void getIdx();
-    /* 802381E8 */ void getNodeIdx();
-    /* 802381FC */ void setStatus(u16);
-    /* 8023822C */ void getStatus();
-    /* 80238258 */ void getScrnDrawPtr();
-    /* 8023826C */ void setTalkActor(fopAc_ac_c*);
-    /* 8023829C */ void onMsgSendControl();
-    /* 802382C8 */ void offMsgSendControl();
-    /* 802382F4 */ void isMsgSendControl();
-    /* 80238320 */ void onMsgSend();
-    /* 8023834C */ void offMsgSend();
-    /* 80238378 */ void isMsgSend();
-    /* 802383A4 */ void isMouthCheck();
-    /* 802383D0 */ void getMessageID();
-    /* 802383E4 */ void getSmellTypeMessageID();
-    /* 80238410 */ void setSmellType(u8);
-    /* 80238440 */ void getSelectCursorPos();
-    /* 8023846C */ void setSelectCursorPos(u8);
-    /* 8023849C */ void setPortalMessageID(u16);
-    /* 802384B0 */ void setInsectItemNo(u8);
-    /* 802384C4 */ void setLetterNameID(u16);
-    /* 802384D8 */ void setArrowNum(u8);
-    /* 802384EC */ void setMsgOutputType(u8);
-    /* 80238500 */ void getMsgOutputType();
-    /* 80238514 */ void getWord();
-    /* 80238528 */ void getSelectWord(int);
-    /* 80238544 */ void setSelectWordFlag(u8);
-    /* 80238574 */ void getSelectWordFlag();
-    /* 80238588 */ void isHowlHearingMode();
-    /* 802385B4 */ void getSelectBombBagID();
-    /* 802385E0 */ void getSelectBombPrice();
-    /* 8023860C */ void setEquipBombInfo();
-    /* 80238638 */ void getItemEquipButton();
-    /* 8023864C */ void setSelectCancelPos(u8);
 };
 
 struct dMsgObject_HowlHIO_c {
@@ -311,26 +105,6 @@ struct dMsgObject_HowlHIO_c {
 struct dMsgObject_HIO_c {
     /* 80232D6C */ dMsgObject_HIO_c();
     /* 80238BDC */ ~dMsgObject_HIO_c();
-};
-
-struct dMeter2_c {
-    /* 8021F6EC */ void emphasisButtonDelete();
-};
-
-struct dMeter2Info_c {
-    /* 8021C1DC */ void isFloatingMessageVisible();
-    /* 8021C218 */ void resetFloatingMessage();
-    /* 8021C238 */ void decMsgKeyWaitTimer();
-};
-
-struct dEvt_control_c {
-    /* 8004368C */ void setPtT(void*);
-};
-
-struct dDlst_base_c {};
-
-struct dDlst_list_c {
-    /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
 };
 
 struct dDemo_c {
@@ -351,20 +125,12 @@ struct Z2SeqMgr {
     /* 802AFF8C */ void changeBgmStatus(s32);
 };
 
-struct JAISoundID {};
-
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
 struct Z2AudioMgr {
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JUtility {
-    struct TColor {
-        /* 80193960 */ TColor();
-    };
 };
 
 struct JMessage {
@@ -661,15 +427,11 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void sprintf();
-extern "C" void strcpy();
 extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
 extern "C" extern void* g_fopMsg_Method[5 + 1 /* padding */];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 data_80450B70[4];
 extern "C" u8 m_control__7dDemo_c[4];
 extern "C" u8 m_mesgControl__7dDemo_c[4];
@@ -2090,7 +1852,7 @@ asm void dMsgObject_c::setStatus(u16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getStatus() {
+asm u16 dMsgObject_c::getStatus() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getStatus__12dMsgObject_cFv.s"
 }

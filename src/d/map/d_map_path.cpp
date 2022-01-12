@@ -17,47 +17,6 @@ struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
 };
 
-struct ResTIMG {};
-
-struct dRenderingMap_c {
-    /* 8003CD38 */ void makeResTIMG(ResTIMG*, u16, u16, u8*, u8*, u16) const;
-    /* 8003CDAC */ void renderingMap();
-};
-
-struct dDrawPath_c {
-    struct line_class {};
-
-    struct poly_class {};
-
-    struct group_class {};
-
-    struct floor_class {};
-
-    struct room_class {};
-
-    /* 8002ABF0 */ bool isDrawType(int);
-    /* 8002AD3C */ ~dDrawPath_c();
-    /* 8002AD84 */ void getLineColor(int, int);
-    /* 8003CA40 */ void rendering(dDrawPath_c::poly_class const*);
-    /* 8003CB00 */ void rendering(dDrawPath_c::group_class const*);
-    /* 8003CC24 */ void rendering(dDrawPath_c::room_class const*);
-    /* 8003C94C */ void rendering(dDrawPath_c::line_class const*);
-    /* 8003CBBC */ void rendering(dDrawPath_c::floor_class const*);
-    /* 8003CCC4 */ void drawPath();
-};
-
-struct dRenderingFDAmap_c {
-    /* 8002ABF8 */ ~dRenderingFDAmap_c();
-    /* 8003CE78 */ void setTevSettingNonTextureDirectColor() const;
-    /* 8003CF40 */ void setTevSettingIntensityTextureToCI() const;
-    /* 8003D0AC */ void drawBack() const;
-    /* 8003D188 */ void preRenderingMap();
-    /* 8003D320 */ void postRenderingMap();
-    /* 8003D3C0 */ void renderingDecoration(dDrawPath_c::line_class const*);
-    /* 8003D68C */ void getDecoLineColor(int, int);
-    /* 8003D6B8 */ void getDecorationLineWidth(int);
-};
-
 struct dMpath_n {
     struct dTexObjAggregate_c {
         /* 8003C85C */ void create();
@@ -67,14 +26,6 @@ struct dMpath_n {
 
     static u8 m_texObjAgg[28];
 };
-
-struct dDlst_base_c {
-    /* 8002ABEC */ void draw();
-};
-
-struct _GXTlutObj {};
-
-struct _GXTexObj {};
 
 //
 // Forward References:
@@ -118,46 +69,8 @@ extern "C" void getLineColor__11dDrawPath_cFii();
 extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
 extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();
-extern "C" void C_MTXOrtho();
-extern "C" void GXSetVtxDesc();
 extern "C" void GXClearVtxDesc();
-extern "C" void GXSetVtxAttrFmt();
-extern "C" void GXSetArray();
-extern "C" void GXSetTexCoordGen2();
-extern "C" void GXSetNumTexGens();
 extern "C" void GXPixModeSync();
-extern "C" void GXBegin();
-extern "C" void GXSetLineWidth();
-extern "C" void GXSetPointSize();
-extern "C" void GXSetCullMode();
-extern "C" void GXSetTexCopySrc();
-extern "C" void GXSetTexCopyDst();
-extern "C" void GXSetCopyFilter();
-extern "C" void GXCopyTex();
-extern "C" void GXSetNumChans();
-extern "C" void GXSetChanCtrl();
-extern "C" void GXLoadTexObj();
-extern "C" void GXSetNumIndStages();
-extern "C" void GXSetTevColorIn();
-extern "C" void GXSetTevAlphaIn();
-extern "C" void GXSetTevColorOp();
-extern "C" void GXSetTevAlphaOp();
-extern "C" void GXSetTevColor();
-extern "C" void GXSetTevKColorSel();
-extern "C" void GXSetAlphaCompare();
-extern "C" void GXSetTevOrder();
-extern "C" void GXSetNumTevStages();
-extern "C" void GXSetFog();
-extern "C" void GXSetBlendMode();
-extern "C" void GXSetZMode();
-extern "C" void GXSetZCompLoc();
-extern "C" void GXSetDither();
-extern "C" void GXSetProjection();
-extern "C" void GXLoadPosMtxImm();
-extern "C" void GXSetCurrentMtx();
-extern "C" void GXSetViewport();
-extern "C" void GXSetScissor();
-extern "C" void GXSetClipMode();
 extern "C" void __register_global_object();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_27();

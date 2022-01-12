@@ -8,12 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct J3DTextureSRTInfo {};
-
-//
 // Forward References:
 //
 

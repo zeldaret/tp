@@ -2216,7 +2216,8 @@ asm void J2DPane::makeMatrix(f32 param_0, f32 param_1) {
 #pragma pop
 
 /* 80053C3C-80053C44 04E57C 0008+00 0/0 1/0 0/0 .text            getTypeID__7J2DPaneCFv */
-s32 J2DPane::getTypeID() const {
+// s32 J2DPane::getTypeID() const {
+extern "C" s32 getTypeID__7J2DPaneCFv() {
     return 16;
 }
 
@@ -3097,7 +3098,8 @@ s32 dDlst_shadowRealPoly_c::getTriMax() {
 
 /* 800569B0-800569B4 0512F0 0004+00 1/0 7/0 0/0 .text
  * searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen             */
-void J2DAnmBase::searchUpdateMaterialID(J2DScreen* param_0) {
+// void J2DAnmBase::searchUpdateMaterialID(J2DScreen* param_0) {
+extern "C" void searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen() {
     /* empty function */
 }
 

@@ -49,9 +49,11 @@ public:
     /* 802F9640 */ static void* getNameResource(char const*);
     /* 802F9690 */ void animation();
 
+    static J2DDataManage* getDataManage() { return mDataManage; }
+
     static J2DDataManage* mDataManage;
 
-private:
+    // private:
     /* 0x100 */ bool mScissor;
     /* 0x102 */ u16 mMaterialNum;
     /* 0x104 */ J2DMaterial* mMaterials;

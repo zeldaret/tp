@@ -4,31 +4,13 @@
 //
 
 #include "JSystem/JUtility/JUTResource.h"
+#include "JSystem/JKernel/JKRFileLoader.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
 //
 // Types:
 //
-
-struct JSUInputStream {
-    /* 802DC298 */ void read(void*, s32);
-};
-
-struct JKRArchive {
-    /* 802D5B38 */ void getGlbResource(u32, char const*, JKRArchive*);
-};
-
-struct JUTResReference {
-    /* 802DE078 */ void getResource(JSUInputStream*, u32, JKRArchive*);
-    /* 802DE120 */ void getResource(void const*, u32, JKRArchive*);
-    /* 802DE1BC */ void getResource(u32, JKRArchive*);
-};
-
-struct JKRFileLoader {
-    /* 802D4270 */ void getGlbResource(char const*, JKRFileLoader*);
-    /* 802D4224 */ void getGlbResource(char const*);
-};
 
 //
 // Forward References:
@@ -61,7 +43,7 @@ extern "C" void _restgpr_29();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JUTResReference::getResource(JSUInputStream* param_0, u32 param_1, JKRArchive* param_2) {
+asm void* JUTResReference::getResource(JSUInputStream* param_0, u32 param_1, JKRArchive* param_2) {
     nofralloc
 #include "asm/JSystem/JUtility/JUTResource/getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive.s"
 }
@@ -72,7 +54,7 @@ asm void JUTResReference::getResource(JSUInputStream* param_0, u32 param_1, JKRA
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JUTResReference::getResource(void const* param_0, u32 param_1, JKRArchive* param_2) {
+asm void* JUTResReference::getResource(void const* param_0, u32 param_1, JKRArchive* param_2) {
     nofralloc
 #include "asm/JSystem/JUtility/JUTResource/getResource__15JUTResReferenceFPCvUlP10JKRArchive.s"
 }
@@ -83,7 +65,7 @@ asm void JUTResReference::getResource(void const* param_0, u32 param_1, JKRArchi
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JUTResReference::getResource(u32 param_0, JKRArchive* param_1) {
+asm void* JUTResReference::getResource(u32 param_0, JKRArchive* param_1) {
     nofralloc
 #include "asm/JSystem/JUtility/JUTResource/getResource__15JUTResReferenceFUlP10JKRArchive.s"
 }

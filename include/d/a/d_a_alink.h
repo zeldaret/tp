@@ -184,6 +184,8 @@ public:
         /* 0xBF */ ANM_BACKWARD_SLIDE_LAND,
         /* 0xC0 */ ANM_FORWARD_SLIDE_LAND,
 
+        /* 0xFD */ ANM_TRANSFORM_WOLF = 0xFD,  // verify
+
         /* 0x18D */ ANM_CUT_JUMP_LARGE = 0x18D,  // verify
         ANM_GANON_FINISH = 408                   // name probably wrong, fix later
     };
@@ -199,7 +201,9 @@ public:
     enum daAlink_WARP_MAT_MODE {};
 
     enum daAlink_WANM {
-        /* 0x5E */ ANM_WOLF_HOWL_SUCCESS = 94
+        /* 0x5E */ ANM_WOLF_HOWL_SUCCESS = 94,
+
+        /* 0x70 */ ANM_TRANFORM_HUMAN = 0x70,  // verify
     };
 
     enum MODE_FLG {
@@ -446,9 +450,9 @@ public:
     /* 800A142C */ void getNeckAimAngle(cXyz*, s16*, s16*, s16*, s16*);
     /* 800A1AEC */ void setEyeMove(cXyz*, s16, s16);
     /* 800A1F90 */ void setNeckAngle();
-    /* 800A2198 */ void commonLineCheck(cXyz*, cXyz*);
+    /* 800A2198 */ bool commonLineCheck(cXyz*, cXyz*);
     /* 800A21E0 */ static s16 getMoveBGActorName(cBgS_PolyInfo&, int);
-    /* 800A2280 */ void checkGoronRide();
+    /* 800A2280 */ fopAc_ac_c* checkGoronRide();
     /* 800A22E8 */ void setMoveSlantAngle();
     /* 800A2710 */ void setArmMatrix();
     /* 800A29DC */ void setFootMatrix();
@@ -458,7 +462,7 @@ public:
     /* 800A39B8 */ void handBgCheck();
     /* 800A3C8C */ JKRHeap* setItemHeap();
     /* 800A3CE4 */ void setIdxMask(u16*, u16*);
-    /* 800A3D0C */ void getAnimeResource(daPy_anmHeap_c*, u16, u32);
+    /* 800A3D0C */ void* getAnimeResource(daPy_anmHeap_c*, u16, u32);
     /* 800A3D7C */ J3DModel* initModel(J3DModelData*, u32, u32);
     /* 800A3E30 */ void initModel(u16, u32);
     /* 800A3E98 */ void initModelEnv(u16, u32);
@@ -649,7 +653,7 @@ public:
     /* 800B9580 */ void swordUnequip();
     /* 800B9640 */ void itemEquip(u16);
     /* 800B96A4 */ void itemUnequip(u16, f32);
-    /* 800B97EC */ void checkFastUnequip();
+    /* 800B97EC */ bool checkFastUnequip();
     /* 800B983C */ void allUnequip(int);
     /* 800B994C */ BOOL checkItemChangeFromButton();
     /* 800B9D2C */ BOOL checkNextActionFromButton();
@@ -1029,7 +1033,7 @@ public:
     /* 800E01A0 */ bool checkBossBabaRoom();
     /* 800E01CC */ void cancelBoomerangLock(fopAc_ac_c*);
     /* 800E0210 */ fopAc_ac_c* getBoomerangActor();
-    /* 800E0244 */ void checkBoomerangChargeEnd();
+    /* 800E0244 */ bool checkBoomerangChargeEnd();
     /* 800E02B8 */ void checkBoomerangCarry(fopAc_ac_c*);
     /* 800E03D0 */ void initBoomerangUpperAnimeSpeed(int);
     /* 800E0440 */ BOOL checkBoomerangAnime() const;
@@ -2314,7 +2318,7 @@ public:
     bool checkFisingRodLure() const { return mEquipItem == 0x105; }
     bool doTrigger() const { return mItemTrigger & 0x10; }
     u32 getStartMode() { return (fopAcM_GetParam(this) >> 0xC) & 0x1F; }
-    bool checkInputOnR() const { return field_0x33ac <= 0.05f; }
+    bool checkInputOnR() const { return field_0x33ac > 0.05f; }
     static int getSightBti() { return 0x5B; }
     bool checkBoomerangChargeEndWait() const {
         return mEquipItem != 0x102 && checkBoomerangAnime();
@@ -2323,9 +2327,15 @@ public:
         return mNowAnmPack[param_0].getAnmTransform();
     }
     void setFacePriBck(u16 param_0) { setFaceBck(param_0, 1, 0xFFFF); }
+    void cancelFmChainGrabFromOut() {
+        field_0x2fa3 = 0;
+        field_0x2844.clearData();
+    }
+    s32 checkPlayerDemoMode() const { return mDemo.getDemoType(); }
 
     BOOL i_checkReinRide() const { return mRideStatus == 1 || mRideStatus == 2; }
 
+    inline void startRestartRoomFromOut(int, u32, int);
     inline u16 getReadyItem();
 
     static u8 const m_mainBckShield[80];
@@ -4347,112 +4357,6 @@ public:
     static daAlinkHIO_hookshot_c1 const m;
 };
 
-class daHorseRein_c {
-private:
-    /* 0x00 */ cXyz* field_0x0[2];
-    /* 0x08 */ int field_0x8[2];
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ cXyz field_0x1c;
-};  // Size: 0x28
-
-class daHorseFootData_c {
-private:
-    /* 0x0 */ u8 field_0x0[0xE4];
-};  // Size: 0xE4
-
-class daHorse_c : public fopAc_ac_c {
-public:
-    enum daHorse_ERFLG0 {
-        /* 0x010 */ MOVE_ACCEPT = 0x10,
-        /* 0x080 */ RIDE_RUN_FLG = 0x80,
-        /* 0x100 */ CUT_TURN_CANCEL = 0x100,
-    };
-
-    enum daHorse_RFLG0 {
-        /* 0x02 */ ENEMY_SEARCH = 2,
-        /* 0x08 */ LASH_DASH_START = 8,
-        /* 0x10 */ TURN_STAND = 0x10,
-        /* 0x40 */ TURN_STAND_CAMERA = 0x40,
-    };
-
-    enum daHorse_FLG0 {
-        /* 0x00000020 */ RODEO_LEFT = 0x20,
-        /* 0x00000040 */ RIDE_START_FLG = 0x40,
-        /* 0x00010000 */ PLAYER_BACK_RIDE_LASH = 0x10000,
-        /* 0x20000000 */ TURN_CANCEL_KEEP = 0x20000000,
-        /* 0x80000000 */ RODEO_MODE = 0x80000000
-    };
-
-    fopAc_ac_c* getZeldaActor();
-
-    bool checkNoBombProc() const { return field_0x16b4 == 0 || field_0x16b4 == 1; }
-    bool checkResetStateFlg0(daHorse_RFLG0 flag) { return mResetStateFlg0 & flag; }
-    bool checkEndResetStateFlg0(daHorse_ERFLG0 flag) { return mEndResetStateFlg0 & flag; }
-    bool checkStateFlg0(daHorse_FLG0 flag) { return mStateFlg0 & flag; }
-
-private:
-    /* 0x0568 */ u8 field_0x568[8];
-    /* 0x0570 */ J3DModel* field_0x570;
-    /* 0x0574 */ void* field_0x574;
-    /* 0x0578 */ J3DFrameCtrl field_0x578;
-    /* 0x058C */ int field_0x58c;
-    /* 0x0590 */ u8 field_0x590[4];
-    /* 0x0594 */ mDoExt_AnmRatioPack field_0x594[3];
-    /* 0x05AC */ void* field_0x5ac;
-    /* 0x05B0 */ daPy_frameCtrl_c field_0x5b0[3];
-    /* 0x05F8 */ u8 field_0x5f8[4];
-    /* 0x05FC */ dBgS_AcchCir field_0x5fc[3];
-    /* 0x06BC */ dBgS_Acch field_0x6bc;
-    /* 0x0894 */ dCcD_Stts field_0x894;
-    /* 0x08D0 */ dBgS_HorseLinChk field_0x8d0;
-    /* 0x0940 */ dCcD_Cyl field_0x940[3];
-    /* 0x0CF4 */ dCcD_Cyl field_0xcf4;
-    /* 0x0E30 */ dCcD_Cyl field_0xe30;
-    /* 0x0F6C */ dCcD_Sph field_0xf6c;
-    /* 0x10A4 */ Z2CreatureRide field_0x10a4;
-    /* 0x1140 */ u8 field_0x1140[0x10];
-    /* 0x1150 */ daHorseRein_c field_0x1150[3];
-    /* 0x11C8 */ u8 field_0x11c8[0x40];
-    /* 0x1208 */ dMsgFlow_c field_0x1208;
-    /* 0x1254 */ daPy_actorKeep_c mZeldaActorKeep;
-    /* 0x125C */ u8 field_0x125c[0xC8];
-    /* 0x1324 */ daHorseFootData_c mFootData[4];
-    /* 0x16B4 */ u8 field_0x16b4;
-    /* 0x16B5 */ u8 field_0x16b5[3];
-    /* 0x16B8 */ u8 field_0x16b8;
-    /* 0x16B9 */ u8 field_0x16b9[2];
-    /* 0x16BB */ u8 mRodeoPointCnt;
-    /* 0x16BC */ u8 field_0x16bc[0x36];
-    /* 0x16F2 */ s16 mAimNeckAngleY;
-    /* 0x16F4 */ u8 field_0x16f4[0xA];
-    /* 0x16FC */ s16 mDemoMoveAngle;
-    /* 0x16FE */ u8 field_0x16fe[4];
-    /* 0x1702 */ s16 field_0x1702;
-    /* 0x1704 */ u8 field_0x1704[2];
-    /* 0x1706 */ s16 mCowHitAngle;
-    /* 0x1708 */ s16 mCowHit;
-    /* 0x170A */ u8 field_0x170a[0x1E];
-    /* 0x1728 */ int field_0x1728;
-    /* 0x172C */ u8 field_0x172c[0x14];
-    /* 0x1740 */ u32 field_0x1740;
-    /* 0x1744 */ u32 mStateFlg0;
-    /* 0x1748 */ u32 mResetStateFlg0;
-    /* 0x174C */ u32 mEndResetStateFlg0;
-    /* 0x1750 */ f32 mMorfFrame;
-    /* 0x1754 */ u8 field_0x1754[0x14];
-    /* 0x1768 */ f32 field_0x1768;
-    /* 0x176C */ f32 field_0x176c;
-    /* 0x1770 */ f32 field_0x1770;
-    /* 0x1774 */ u8 field_0x1774[0x14];
-    /* 0x1788 */ f32 mDemoStickR;
-    /* 0x178C */ f32 mNormalMaxSpeedF;
-    /* 0x1790 */ f32 mLashMaxSpeedF;
-    /* 0x1794 */ u8 field_0x1794[0x30];
-    /* 0x17C4 */ cXyz mDemoPos0;
-};
-
 class mDoExt_morf_c;
 
 class daMidna_c : public fopAc_ac_c {
@@ -4518,6 +4422,13 @@ public:
 
     void onEndResetStateFlg0(daMidna_ERFLG0 pFlg) { mEndResetStateFlg0 |= pFlg; }
     u32 checkStateFlg1(daMidna_FLG1 pFlg) const { return mStateFlg1 & pFlg; }
+    void setFaceNum(int num) { mFaceNum = num; }
+    void setMotionNum(int num) { mMotionNum = num; }
+    bool checkDemoTypeNone() const { return mDemoType == 0; }
+    void changeOriginalDemo() { mDemoType = 3; }
+    void changeDemoMode(u32 mode) { mDemoMode = mode; }
+
+    inline bool checkMidnaRealBody();
 
     static u8 const m_texDataTable[84];
     static u8 const m_anmDataTable[636];

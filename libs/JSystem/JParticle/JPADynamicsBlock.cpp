@@ -4,6 +4,8 @@
 //
 
 #include "JSystem/JParticle/JPADynamicsBlock.h"
+#include "JSystem/JParticle/JPAParticle.h"
+#include "JSystem/JMath/JMATrigonometric.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -11,27 +13,17 @@
 // Types:
 //
 
-struct JPAEmitterWorkData {};
-
-struct JPABaseEmitter {
-    /* 8027EA40 */ void createParticle();
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
 //
 // Forward References:
 //
 
-extern "C" static void JPAVolumePoint__FP18JPAEmitterWorkData();
-extern "C" static void JPAVolumeLine__FP18JPAEmitterWorkData();
-extern "C" static void JPAVolumeCircle__FP18JPAEmitterWorkData();
-extern "C" static void JPAVolumeCube__FP18JPAEmitterWorkData();
-extern "C" static void JPAVolumeSphere__FP18JPAEmitterWorkData();
-extern "C" static void JPAVolumeCylinder__FP18JPAEmitterWorkData();
-extern "C" static void JPAVolumeTorus__FP18JPAEmitterWorkData();
+extern "C" static void JPAVolumePoint(JPAEmitterWorkData*);
+extern "C" static void JPAVolumeLine(JPAEmitterWorkData*);
+extern "C" static void JPAVolumeCircle(JPAEmitterWorkData*);
+extern "C" static void JPAVolumeCube(JPAEmitterWorkData*);
+extern "C" static void JPAVolumeSphere(JPAEmitterWorkData*);
+extern "C" static void JPAVolumeCylinder(JPAEmitterWorkData*);
+extern "C" static void JPAVolumeTorus(JPAEmitterWorkData*);
 extern "C" void __ct__16JPADynamicsBlockFPCUc();
 extern "C" void init__16JPADynamicsBlockFv();
 extern "C" void create__16JPADynamicsBlockFP18JPAEmitterWorkData();
@@ -67,6 +59,17 @@ SECTION_SDATA2 static f32 lit_2289[1 + 1 /* padding */] = {
 };
 
 /* 8027B144-8027B220 275A84 00DC+00 1/1 0/0 0/0 .text JPAVolumePoint__FP18JPAEmitterWorkData */
+#ifdef NONMATCHING
+
+// bug in diff.py preventing me from seeing what's wrong
+void JPAVolumePoint(JPAEmitterWorkData* work) {
+    work->mVolumePos.zero();
+    work->mVelOmni.set(work->mpEmtr->get_r_zh(), work->mpEmtr->get_r_zh(), work->mpEmtr->get_r_zh());
+    work->mVelAxis.set(work->mVelOmni.x, 0.0f, work->mVelOmni.z);
+}
+
+#else
+
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -76,11 +79,30 @@ static asm void JPAVolumePoint(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
+#endif
+
 /* ############################################################################################## */
 /* 80455320-80455328 003920 0008+00 6/6 0/0 0/0 .sdata2          @2321 */
 SECTION_SDATA2 static f64 lit_2321 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8027B220-8027B33C 275B60 011C+00 1/1 0/0 0/0 .text JPAVolumeLine__FP18JPAEmitterWorkData */
+#ifdef NONMATCHING
+
+// bug in diff.py preventing me from seeing what's wrong
+void JPAVolumeLine(JPAEmitterWorkData* work) {
+    if (work->mpEmtr->checkFlag(JPADynFlag_FixedInterval)) {
+        work->mVolumePos.set(0.0f, 0.0f, work->mVolumeSize * (s32)((work->mVolumeEmitIdx / (work->mEmitCount - 1.0f) - 0.5f)));
+        work->mVolumeEmitIdx++;
+    } else {
+        work->mVolumePos.set(0.0f, 0.0f, work->mVolumeSize * work->mpEmtr->get_r_zh());
+    }
+
+    work->mVelOmni.set(0.0f, 0.0f, work->mVolumePos.z * work->mGlobalScl.z);
+    work->mVelAxis.set(0.0f, 0.0f, work->mVolumePos.z);
+}
+
+#else
+
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -90,7 +112,34 @@ static asm void JPAVolumeLine(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
+#endif
+
 /* 8027B33C-8027B4E8 275C7C 01AC+00 1/1 0/0 0/0 .text JPAVolumeCircle__FP18JPAEmitterWorkData */
+
+#ifdef NONMATCHING
+
+// bug in diff.py preventing me from seeing what's wrong
+void JPAVolumeCircle(JPAEmitterWorkData* work) {
+    f32 theta, distance, sizeXZ;
+    if (work->mpEmtr->checkFlag(JPADynFlag_FixedInterval)) {
+        theta = work->mVolumeSweep * (work->mVolumeEmitIdx++ / work->mEmitCount);
+    } else {
+        theta = work->mVolumeSweep * work->mpEmtr->get_r_ss();
+    }
+
+    distance = work->mpEmtr->get_r_f();
+    if (work->mpEmtr->checkFlag(JPADynFlag_FixedDensity)) {
+        distance = 1.0f - (distance * distance);
+    }
+
+    sizeXZ = work->mVolumeSize * (work->mVolumeMinRad + distance * (1.0f - work->mVolumeMinRad));
+    work->mVolumePos.set(sizeXZ * JMASSin(theta), 0.0f, sizeXZ * JMASCos(theta));
+    work->mVelOmni.mul(work->mVolumePos, work->mGlobalScl);
+    work->mVelAxis.set(work->mVolumePos.x, 0.0f, work->mVolumePos.z);
+}
+
+#else
+
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -100,7 +149,22 @@ static asm void JPAVolumeCircle(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
+#endif
+
 /* 8027B4E8-8027B5F0 275E28 0108+00 1/1 0/0 0/0 .text JPAVolumeCube__FP18JPAEmitterWorkData */
+
+#ifdef NONMATCHING
+
+// bug in diff.py preventing me from seeing what's wrong
+void JPAVolumeCube(JPAEmitterWorkData* work) {
+    f32 size = work->mVolumeSize;
+    work->mVolumePos.set(size * work->mpEmtr->get_r_zh(), size * work->mpEmtr->get_r_zh(), size * work->mpEmtr->get_r_zh());
+    work->mVelOmni.mul(work->mVolumePos, work->mGlobalScl);
+    work->mVelAxis.set(work->mVolumePos.x, 0.0f, work->mVolumePos.z);
+}
+
+#else
+
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -109,6 +173,8 @@ static asm void JPAVolumeCube(JPAEmitterWorkData* param_0) {
 #include "asm/JSystem/JParticle/JPADynamicsBlock/JPAVolumeCube__FP18JPAEmitterWorkData.s"
 }
 #pragma pop
+
+#endif
 
 /* ############################################################################################## */
 /* 80455328-80455330 003928 0004+04 1/1 0/0 0/0 .sdata2          @2501 */
@@ -152,41 +218,94 @@ static asm void JPAVolumeTorus(JPAEmitterWorkData* param_0) {
 #pragma pop
 
 /* 8027BB18-8027BB4C 276458 0034+00 0/0 1/1 0/0 .text            __ct__16JPADynamicsBlockFPCUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JPADynamicsBlock::JPADynamicsBlock(u8 const* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPADynamicsBlock/__ct__16JPADynamicsBlockFPCUc.s"
+JPADynamicsBlock::JPADynamicsBlock(u8 const* data) {
+    mpData = (const JPADynamicsBlockData*)data;
+    init();
 }
-#pragma pop
 
-/* ############################################################################################## */
-/* 803C4488-803C44A8 -00001 001C+04 1/1 0/0 0/0 .data            @2631 */
-SECTION_DATA static void* lit_2631[7 + 1 /* padding */] = {
-    (void*)(((char*)init__16JPADynamicsBlockFv) + 0x2C),
-    (void*)(((char*)init__16JPADynamicsBlockFv) + 0x3C),
-    (void*)(((char*)init__16JPADynamicsBlockFv) + 0x4C),
-    (void*)(((char*)init__16JPADynamicsBlockFv) + 0x5C),
-    (void*)(((char*)init__16JPADynamicsBlockFv) + 0x6C),
-    (void*)(((char*)init__16JPADynamicsBlockFv) + 0x7C),
-    (void*)(((char*)init__16JPADynamicsBlockFv) + 0x8C),
-    /* padding */
-    NULL,
+enum {
+    VOL_Cube     = 0x00,
+    VOL_Sphere   = 0x01,
+    VOL_Cylinder = 0x02,
+    VOL_Torus    = 0x03,
+    VOL_Point    = 0x04,
+    VOL_Circle   = 0x05,
+    VOL_Line     = 0x06,
 };
 
 /* 8027BB4C-8027BBE8 27648C 009C+00 2/1 0/0 0/0 .text            init__16JPADynamicsBlockFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPADynamicsBlock::init() {
-    nofralloc
-#include "asm/JSystem/JParticle/JPADynamicsBlock/init__16JPADynamicsBlockFv.s"
+void JPADynamicsBlock::init() {
+    switch (getVolumeType()) {
+    case VOL_Cube:     mpCalcVolumeFunc = &JPAVolumeCube;     break;
+    case VOL_Sphere:   mpCalcVolumeFunc = &JPAVolumeSphere;   break;
+    case VOL_Cylinder: mpCalcVolumeFunc = &JPAVolumeCylinder; break;
+    case VOL_Torus:    mpCalcVolumeFunc = &JPAVolumeTorus;    break;
+    case VOL_Point:    mpCalcVolumeFunc = &JPAVolumePoint;    break;
+    case VOL_Circle:   mpCalcVolumeFunc = &JPAVolumeCircle;   break;
+    case VOL_Line:     mpCalcVolumeFunc = &JPAVolumeLine;     break;
+    }
 }
-#pragma pop
 
 /* 8027BBE8-8027BDEC 276528 0204+00 0/0 1/1 0/0 .text
  * create__16JPADynamicsBlockFP18JPAEmitterWorkData             */
+
+#ifdef NONMATCHING
+
+// literal only
+void JPADynamicsBlock::create(JPAEmitterWorkData* work) {
+    if (work->mpEmtr->checkStatus(JPAEmtrStts_RateStepEmit)) {
+        s32 emitCount;
+        s32 createCount;
+
+        // Probably an inlined function.
+        if (work->mpEmtr->checkFlag(JPADynFlag_FixedInterval)) {
+            s32 count;
+            if (getVolumeType() == VOL_Sphere) {
+                count = 4 * getDivNumber() * getDivNumber() + 2;
+            } else {
+                count = getDivNumber();
+            }
+            emitCount = count;
+
+            work->mVolumeEmitIdx = 0;
+        } else {
+            f32 newPtclCount = work->mpEmtr->mRate * (getRateRndm() * work->mpEmtr->get_r_zp() + 1.0f);
+            f32 newEmitCount = work->mpEmtr->mEmitCount + newPtclCount;
+            work->mpEmtr->mEmitCount = newEmitCount;
+            emitCount = (s32)newEmitCount;
+            work->mpEmtr->mEmitCount -= emitCount;
+
+            if (work->mpEmtr->checkStatus(JPAEmtrStts_FirstEmit) && 0.0f < newPtclCount && newPtclCount < 1.0f)
+                emitCount = 1;
+        }
+
+        work->mEmitCount = emitCount;
+        if (work->mpEmtr->checkStatus(JPAEmtrStts_StopEmit)) {
+            emitCount = 0;
+        }
+
+        // Probably an inlined function.
+        createCount = emitCount;
+        while (createCount > 0) {
+            JPABaseParticle* ptcl = work->mpEmtr->createParticle();
+            if (ptcl == NULL)
+                break;
+            createCount--;
+        }
+    }
+
+    if (++work->mpEmtr->mRateStepTimer >= (work->mpEmtr->mRateStep + 1)) {
+        work->mpEmtr->mRateStepTimer -= (work->mpEmtr->mRateStep + 1);
+        work->mpEmtr->setStatus(JPAEmtrStts_RateStepEmit);
+    } else {
+        work->mpEmtr->clearStatus(JPAEmtrStts_RateStepEmit);
+    }
+
+    work->mpEmtr->clearStatus(JPAEmtrStts_FirstEmit);
+}
+
+#else
+
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -195,3 +314,5 @@ asm void JPADynamicsBlock::create(JPAEmitterWorkData* param_0) {
 #include "asm/JSystem/JParticle/JPADynamicsBlock/create__16JPADynamicsBlockFP18JPAEmitterWorkData.s"
 }
 #pragma pop
+
+#endif

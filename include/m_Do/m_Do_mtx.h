@@ -15,6 +15,7 @@ void mDoMtx_ZrotS(Mtx, s16);
 void mDoMtx_YrotS(Mtx, s16);
 void mDoMtx_XrotS(Mtx, s16);
 void mDoMtx_YrotM(Mtx, s16);
+void mDoMtx_MtxToRot(MtxP, csXyz*);
 
 class mDoMtx_stack_c {
 public:

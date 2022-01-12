@@ -20,7 +20,7 @@ class JPAResource {
 public:
     /* 80274010 */ JPAResource();
     /* 80274080 */ void init(JKRHeap*);
-    /* 802755E8 */ void calc(JPAEmitterWorkData*, JPABaseEmitter*);
+    /* 802755E8 */ bool calc(JPAEmitterWorkData*, JPABaseEmitter*);
     /* 80275A94 */ void draw(JPAEmitterWorkData*, JPABaseEmitter*);
     /* 80275B74 */ void drawP(JPAEmitterWorkData*);
     /* 80275EB0 */ void drawC(JPAEmitterWorkData*);

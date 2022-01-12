@@ -19,6 +19,8 @@ typedef struct process_profile_definition {
     s32 mParameters;
 } process_profile_definition;
 
+#define LAYER_DEFAULT (-2)
+
 process_profile_definition* fpcPf_Get(s16 profileID);
 
 extern process_profile_definition** g_fpcPf_ProfileList_p;

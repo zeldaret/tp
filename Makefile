@@ -82,7 +82,7 @@ ASFLAGS := -mgekko -I include
 LDFLAGS := -unused -map $(MAP) -fp hard -nodefaults -w off
 
 # Compiler flags
-CFLAGS  += -Cpp_exceptions off -proc gekko -fp hard -O3 -nodefaults -msgstyle gcc -str pool,readonly,reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)
+CFLAGS  += -Cpp_exceptions off -proc gekko -fp hard -O3 -nodefaults -str pool,readonly,reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)
 
 # elf2dol needs to know these in order to calculate sbss correctly.
 SDATA_PDHR := 9
