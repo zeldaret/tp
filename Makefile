@@ -96,11 +96,10 @@ SBSS_PDHR := 10
 
 default: all
 
-check:
+dol: $(DOL)
 	$(SHA1SUM) -c $(TARGET).sha1
 
-all: dirs $(DOL) check
-
+all: dirs dol
 # Make sure build directory exists before compiling anything
 dirs:
 	@mkdir -p build
@@ -142,7 +141,7 @@ $(ELF): $(LIBS) $(O_FILES)
 
 $(ELF_SHIFT): $(LIBS) $(O_FILES)
 	@echo $(O_FILES) > build/o_files
-	@$(PYTHON) tools/lcf.py dol --shift --output $(LDSCRIPT)
+	@$(PYTHON) tools/lcf.py dol_shift --output $(LDSCRIPT)
 	$(LD) -application $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files $(LIBS)
 
 $(DOL_SHIFT): $(ELF_SHIFT) | tools
