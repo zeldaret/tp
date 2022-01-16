@@ -8,3 +8,4 @@ ansiwrap
 watchdog
 python-Levenshtein
 cxxfilt
+oead

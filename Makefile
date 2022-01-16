@@ -140,7 +140,7 @@ $(ELF): $(LIBS) $(O_FILES)
 	@$(PYTHON) tools/lcf.py dol --output $(LDSCRIPT)
 	$(LD) -application $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files $(LIBS)
 
-$(ELF_SHIFT): $(LIBS) $(O_FILES)
+$(ELF_SHIFT): $(DOL)
 	@echo $(O_FILES) > build/o_files
 	@$(PYTHON) tools/lcf.py dol_shift --output $(LDSCRIPT)
 	$(LD) -application $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files $(LIBS)

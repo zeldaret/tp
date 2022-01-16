@@ -119,6 +119,9 @@ static u8 RunQueueHint[4];
 static u8 Reschedule[4 + 4 /* padding */];
 
 /* 80340B1C-80340C74 33B45C 0158+00 0/0 1/1 0/0 .text            __OSThreadInit */
+
+extern void* _stack_end;
+
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
