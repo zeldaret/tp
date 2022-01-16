@@ -5,6 +5,8 @@ import extract_game_assets
 from pathlib import Path
 import hashlib
 import struct
+import ctypes
+import oead
 
 
 def sha1_from_data(data):
@@ -216,8 +218,8 @@ def computeHash(string):
         hash = hash*3
         hash = hash + ord(char)
 
-    if hash>65535:
-        hash=hash%65535
+    hash = ctypes.c_ushort(hash)
+    hash = hash.value
     return hash
 
 def addFile(index,sizeIndex,dirs,name,stringTable,paths,data):
@@ -230,12 +232,15 @@ def addFile(index,sizeIndex,dirs,name,stringTable,paths,data):
     for relPath in paths:
         if str(relPath).find(name)!=-1:
             path = relPath
-    file.fileLength = os.path.getsize(path)
-    file.fileOffset = sizeIndex
-    sizeIndex = sizeIndex + file.fileLength + 1
     file.unk1 = 0
     fileData = open(path,"rb")
-    data += fileData.read(file.fileLength)
+    compressedData = oead.yaz0.compress(fileData.read())
+    padding = (0x20-(len(compressedData)%0x20))
+    file.fileLength = len(compressedData)
+    file.fileOffset = sizeIndex
+    sizeIndex = sizeIndex + file.fileLength + padding
+    data += compressedData
+    data += bytearray(padding)
     fileData.close()
     dirs.append(file)
 
@@ -255,13 +260,20 @@ def copyRelFiles(buildPath,aMemList,mMemList):
                     if rel==file:
                         relArcFound = True
                 fullPath = Path(root+"/"+file)
-                print(str(fullPath)+" -> "+str(buildPath/"game/files/rel/Final/Release"/file))
-                shutil.copy(fullPath,buildPath/"game/files/rel/Final/Release/") #We're copying uncompressed rels here, we should compress in the future!
-                if relArcFound==True:
+                if relArcFound==False:
+                    print(str(fullPath)+" -> "+str(buildPath/"game/files/rel/Final/Release"/file))
+                    relSource = open(fullPath,"rb")
+                    data = relSource.read()
+                    relSource.close()
+                    data = oead.yaz0.compress(data)
+                    relNew = open(buildPath/"game/files/rel/Final/Release"/file,"wb")
+                    relNew.write(data)
+                    relNew.truncate()
+                    relNew.close()
+                else:
                     relArcPaths.append(fullPath)
-    #print(relArcPaths)
-    
-    #After writing this all I found out we don't actually need RELS.arc to load rels lol, keeping it here for the future in case we want to match RELS.arc
+
+                
     
     arcHeader = HEADER()
     arcHeader.RARC = 0x52415243
@@ -269,7 +281,7 @@ def copyRelFiles(buildPath,aMemList,mMemList):
     arcHeader.unk1 = 0
     arcHeader.unk2 = 0
     infoBlock = INFO()
-    infoBlock.numNodes = 5
+    infoBlock.numNodes = 3
     infoBlock.numDirsThatAreFiles = 142
     rootNode = NODE()
     rootNode.NAME = 0x524F4F54
@@ -287,12 +299,13 @@ def copyRelFiles(buildPath,aMemList,mMemList):
     mMemNode.numDirs = 59
     mMemNode.firstDirIndex = 83
 
-    stringTable = "\x2E\0\x2E\x2E\0rels\0amem\0"
+    stringTable = ".\0..\0rels\0amem\0"
     for rel in aMemList:
         stringTable = stringTable+rel+'\0'
     stringTable = stringTable+"mmem\0"
     for rel in mMemList:
         stringTable = stringTable+rel+'\0'
+    stringTable = stringTable+"\0\0\0\0\0\0"
     
     rootNode.stringTableOffset = stringTable.find("rels")
     aMemNode.stringTableOffset = stringTable.find("amem")
@@ -346,6 +359,9 @@ def copyRelFiles(buildPath,aMemList,mMemList):
         sizeIndex = retSize
         dirs = retdirs
         data = retdata
+    dirs.append(unkDir)
+    dirs.append(unkDir2)
+    dirIndex = dirIndex+2
     for rel in mMemList:
         retdirs,retdata,retSize = addFile(dirIndex,sizeIndex,dirs,rel,stringTable,relArcPaths,data)
         dirIndex = dirIndex+1
@@ -353,8 +369,28 @@ def copyRelFiles(buildPath,aMemList,mMemList):
         #print(hex(dirIndex))
         dirs = retdirs
         data = retdata
+    unkDir3 = DIRECTORY()
+    unkDir3.dirIndex = 0xFFFF
+    unkDir3.stringHash = 0x2E
+    unkDir3.type = 0x200
+    unkDir3.stringOffset = 0
+    unkDir3.fileOffset = 2
+    unkDir3.fileLength = 0x10
+    unkDir3.unk1 = 0
 
-    arcHeader.length = sizeIndex+len(stringTable)+0x20+0x20+0x30+(len(dirs)*0x14)+len(data)
+    unkDir4 = DIRECTORY()
+    unkDir4.dirIndex = 0xFFFF
+    unkDir4.stringHash = 0xB8
+    unkDir4.type = 0x200
+    unkDir4.stringOffset = 2
+    unkDir4.fileOffset = 0
+    unkDir4.fileLength = 0x10
+    unkDir4.unk1 = 0
+    dirs.append(unkDir3)
+    dirs.append(unkDir4)
+    dirIndex = dirIndex+2
+
+    arcHeader.length = len(stringTable)+0x20+0x20+0x30+(len(dirs)*0x14)+len(data)
     arcHeader.fileDataOffset=0x14E0
     arcHeader.fileDataLen=len(data)
     arcHeader.fileDataLen2=arcHeader.fileDataLen
@@ -365,13 +401,13 @@ def copyRelFiles(buildPath,aMemList,mMemList):
     infoBlock.stringTableOffset = 0xB80
     infoBlock.unk1 = 0x100
     infoBlock.unk2 = 0
-    infoBlock.totalDirNum = len(dirs)
+    infoBlock.totalDirNum = 0x8E
 
     
     outputArcFile = open(buildPath/"game/files/RELS.arc","wb")
     outputArcFile.seek(0)
 
-    outputArcFile.write(struct.pack(">IIIIIIII",arcHeader.RARC,arcHeader.length,arcHeader.headerLength,arcHeader.fileDataOffset,arcHeader.fileDataLen,arcHeader.fileDataLen2,arcHeader.unk1,arcHeader.unk2))
+    outputArcFile.write(struct.pack(">IIIIIIII",arcHeader.RARC,arcHeader.length,arcHeader.headerLength,arcHeader.fileDataOffset,arcHeader.fileDataLen,arcHeader.unk1,arcHeader.fileDataLen2,arcHeader.unk2))
     outputArcFile.write(struct.pack(">IIIIIIHHI",infoBlock.numNodes,infoBlock.firstNodeOffset,infoBlock.totalDirNum,infoBlock.firstDirOffset,infoBlock.stringTableLen,infoBlock.stringTableOffset,infoBlock.numDirsThatAreFiles,infoBlock.unk1,infoBlock.unk2))
     outputArcFile.write(struct.pack(">IIHHI",rootNode.NAME,rootNode.stringTableOffset,rootNode.hash,rootNode.numDirs,rootNode.firstDirIndex))
     outputArcFile.write(struct.pack(">IIHHI",aMemNode.NAME,aMemNode.stringTableOffset,aMemNode.hash,aMemNode.numDirs,aMemNode.firstDirIndex))
@@ -379,12 +415,10 @@ def copyRelFiles(buildPath,aMemList,mMemList):
     outputArcFile.write(bytearray(16))
     for dir in dirs:
         outputArcFile.write(struct.pack(">HHHHIII",dir.dirIndex,dir.stringHash,dir.type,dir.stringOffset,dir.fileOffset,dir.fileLength,dir.unk1))
-    unkData = [0x8A ,0xCF ,0x7F ,0xA5 ,0x00 ,0x09 ,0x36 ,0x00 ,0x0D ,0x08 ,0xA0 ,0x00 ,0x00 ,0x0C ,0xD8 ,0x00 ,0x00 ,0x00 ,0x00 ,0x00 ,0x8B ,0x9B ,0xF7 ,0xA5 ,0x00 ,0x09 ,0x45 ,0x00 ,0x0D ,0x15 ,0x80 ,0x00 ,0x00 ,0x21 ,0xED ,0x00 ,0x00 ,0x00 ,0x00 ,0xFF ,0xFF ,0x00 ,0x2E ,0x02 ,0x00 ,0x00 ,0x00 ,0x00 ,0x00 ,0x00 ,0x02 ,0x00 ,0x00 ,0x00 ,0x10 ,0x00 ,0x00 ,0x00 ,0x00 ,0xFF ,0xFF ,0x00 ,0xB8 ,0x02 ,0x00 ,0x00 ,0x02 ,0x00 ,0x00 ,0x00 ,0x00 ,0x00 ,0x00 ,0x00 ,0x10 ,0x00 ,0x00 ,0x00 ,0x00 ,0x00 ,0x00 ,0x00 ,0x00 ,0x00 ,0x00 ,0x00 ,0x00, 0x00]
-    outputArcFile.write(bytearray(unkData))
+    outputArcFile.write(bytearray(8))
     strBytearray = bytearray()
     strBytearray.extend(map(ord,stringTable))
     outputArcFile.write(strBytearray)
-    outputArcFile.write(bytearray(6))
     outputArcFile.write(data)
 
     outputArcFile.truncate()
