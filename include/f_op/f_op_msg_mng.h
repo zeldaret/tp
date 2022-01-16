@@ -7,5 +7,6 @@
 typedef int (*fopMsgCreateFunc)(void*);
 
 JKRExpHeap* fopMsgM_createExpHeap(u32, JKRHeap*);
+void fopMsgM_setStageLayer(void*);
 
 #endif

@@ -1,8 +1,8 @@
 #ifndef JPACHILDSHAPE_H
 #define JPACHILDSHAPE_H
 
-#include "dolphin/types.h"
 #include "dolphin/gx/GX.h"
+#include "dolphin/types.h"
 
 struct JPAChildShapeData {
     // Common header.

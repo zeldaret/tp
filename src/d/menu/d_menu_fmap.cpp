@@ -21,17 +21,9 @@ struct renderingFmap_c {
                                                  int*);
 };
 
-struct JKRHeap {
-    /* 802CE4D4 */ void alloc(u32, int);
-    /* 802CE548 */ void free(void*);
-    /* 802CE784 */ void getTotalFreeSize();
-};
-
 struct mDoDvdThd_mountArchive_c {
     /* 80015E14 */ void create(char const*, u8, JKRHeap*);
 };
-
-struct fopAc_ac_c {};
 
 struct fmpTresTypeGroupDataList_c {
     /* 8003EB10 */ ~fmpTresTypeGroupDataList_c();
@@ -70,13 +62,6 @@ struct dMsgObject_c {
     /* 8023849C */ void setPortalMessageID(u16);
 };
 
-struct dMsgFlow_c {
-    /* 80249F00 */ dMsgFlow_c();
-    /* 80249F48 */ ~dMsgFlow_c();
-    /* 80249F90 */ void init(fopAc_ac_c*, int, int, fopAc_ac_c**);
-    /* 8024A2D8 */ void doFlow(fopAc_ac_c*, fopAc_ac_c**, int);
-};
-
 struct dMf_HIO_c {
     /* 801C65F8 */ dMf_HIO_c();
     /* 801CDA2C */ ~dMf_HIO_c();
@@ -88,8 +73,6 @@ struct dMeterMap_c {
     /* 8020D650 */ void isEnableDispMapAndMapDispSizeTypeNo();
 };
 
-struct cXyz {};
-
 struct dMeter2Info_c {
     /* 8021CC0C */ void setWarpInfo(char const*, cXyz const&, s16, u8, u8, u8);
 };
@@ -100,141 +83,6 @@ struct dMenu_Fmap_world_data_c {
 
 struct dMenu_Fmap_stage_data_c {};
 
-struct STControl {
-    /* 8003219C */ void checkTrigger();
-};
-
-struct CSTControl {};
-
-struct JKRExpHeap {
-    /* 802CEE2C */ void create(u32, JKRHeap*, bool);
-};
-
-struct dMenu_Fmap_c {
-    /* 801C66E4 */ dMenu_Fmap_c(JKRExpHeap*, STControl*, CSTControl*, u8, u8, u8, f32, f32, u8);
-    /* 801C6AC8 */ ~dMenu_Fmap_c();
-    /* 801C6D64 */ void _create();
-    /* 801C74A4 */ void _delete();
-    /* 801C74A8 */ void _move();
-    /* 801C7650 */ void _draw();
-    /* 801C77F0 */ void getNextStatus(u8*);
-    /* 801C7AFC */ void isSync();
-    /* 801C7B24 */ void all_map_init();
-    /* 801C7C2C */ void all_map_proc();
-    /* 801C8230 */ void zoom_all_to_region_init();
-    /* 801C8308 */ void zoom_all_to_region_proc();
-    /* 801C83E0 */ void zoom_region_to_all_init();
-    /* 801C8438 */ void zoom_region_to_all_proc();
-    /* 801C8518 */ void region_map_init();
-    /* 801C8600 */ void region_map_proc();
-    /* 801C8B00 */ void to_portal_warp_map_init();
-    /* 801C8B0C */ void to_portal_warp_map_proc();
-    /* 801C8B48 */ void portal_warp_map_init();
-    /* 801C8C0C */ void portal_warp_map_proc();
-    /* 801C90A4 */ void portal_warp_select_init();
-    /* 801C90A8 */ void portal_warp_select_proc();
-    /* 801C91D8 */ void portal_warp_forbid_init();
-    /* 801C9238 */ void portal_warp_forbid_proc();
-    /* 801C92A4 */ void zoom_region_to_spot_init();
-    /* 801C9304 */ void zoom_region_to_spot_proc();
-    /* 801C93CC */ void zoom_spot_to_region_init();
-    /* 801C9428 */ void zoom_spot_to_region_proc();
-    /* 801C950C */ void spot_map_init();
-    /* 801C9618 */ void spot_map_proc();
-    /* 801C9A4C */ void portal_demo1_init();
-    /* 801C9B64 */ void portal_demo1_move();
-    /* 801C9C7C */ void portal_demo2_init();
-    /* 801C9CC8 */ void portal_demo2_move();
-    /* 801C9D60 */ void portal_demo3_init();
-    /* 801C9DB4 */ void portal_demo3_move();
-    /* 801C9EB8 */ void portal_demo4_init();
-    /* 801C9F14 */ void portal_demo4_move();
-    /* 801C9F7C */ void portal_demo5_init();
-    /* 801C9FBC */ void portal_demo5_move();
-    /* 801CA158 */ void portal_demo6_init();
-    /* 801CA15C */ void portal_demo6_move();
-    /* 801CA1E8 */ void yamiboss_demo1_init();
-    /* 801CA2F4 */ void yamiboss_demo1_move();
-    /* 801CA34C */ void yamiboss_demo2_init();
-    /* 801CA35C */ void yamiboss_demo2_move();
-    /* 801CA40C */ void yamiboss_demo3_init();
-    /* 801CA410 */ void yamiboss_demo3_move();
-    /* 801CA468 */ void yamiboss_demo4_init();
-    /* 801CA4C0 */ void yamiboss_demo4_move();
-    /* 801CA544 */ void yamiboss_demo5_init();
-    /* 801CA548 */ void yamiboss_demo5_move();
-    /* 801CA5CC */ void light_demo1_init();
-    /* 801CA7A4 */ void light_demo1_move();
-    /* 801CA7E0 */ void light_demo2_init();
-    /* 801CA814 */ void light_demo2_move();
-    /* 801CA874 */ void table_demo1_init();
-    /* 801CA9B4 */ void table_demo1_move();
-    /* 801CAA78 */ void table_demo2_init();
-    /* 801CAABC */ void table_demo2_move();
-    /* 801CAB88 */ void table_demo3_init();
-    /* 801CABD0 */ void table_demo3_move();
-    /* 801CAC30 */ void howl_demo1_init();
-    /* 801CAC7C */ void howl_demo1_move();
-    /* 801CAD48 */ void howl_demo2_init();
-    /* 801CAD54 */ void howl_demo2_move();
-    /* 801CAD9C */ void howl_demo3_init();
-    /* 801CADA0 */ void howl_demo3_move();
-    /* 801CADC4 */ void isOpen();
-    /* 801CB038 */ void isClose();
-    /* 801CB1DC */ void getProcess();
-    /* 801CB200 */ void getRegionCursor();
-    /* 801CB230 */ void getStageCursor();
-    /* 801CB260 */ void getStageTransX();
-    /* 801CB290 */ void getStageTransZ();
-    /* 801CB2C0 */ void isRoomCheck(int, int);
-    /* 801CB570 */ void checkStRoomData();
-    /* 801CB664 */ void talkButton();
-    /* 801CB6D0 */ void setProcess(u8);
-    /* 801CB6E0 */ void setFlash(u8, bool);
-    /* 801CB770 */ void readWorldData(u8);
-    /* 801CB938 */ void readAreaData(u8, bool);
-    /* 801CBF04 */ void readRoomData(char const*, dMenu_Fmap_stage_data_c*, void*, int, u8);
-    /* 801CC094 */ void readFieldMapData(void**, char const*, bool, bool);
-    /* 801CC2B0 */ void decodeFieldMapData();
-    /* 801CC4EC */ void decodePortalData();
-    /* 801CC51C */ void readRoomDzsData(void**, u32, char const*);
-    /* 801CC61C */ void removeAreaData();
-    /* 801CC7A8 */ void removeRoomData(dMenu_Fmap_stage_data_c*);
-    /* 801CC85C */ void setTitleName(u32);
-    /* 801CC880 */ void setAreaName(u32);
-    /* 801CC8AC */ void setAreaNameZero();
-    /* 801CC8DC */ void portalWarpMapMove(STControl*);
-    /* 801CCA70 */ void onRoomDataBit(int);
-    /* 801CCA98 */ void isRoomDataBit(int);
-    /* 801CCAC4 */ void resetRoomDataBit();
-    /* 801CCB08 */ void drawIcon(f32, bool);
-    /* 801CD10C */ void drawIcon(u8, int);
-    /* 801CCD98 */ void drawLightDropIcon();
-    /* 801CCDDC */ void drawBatsumarkIcon();
-    /* 801CCE04 */ void drawSnowmanIcon();
-    /* 801CCE48 */ void drawGoldWolfIcon();
-    /* 801CCE70 */ void drawCoachIcon();
-    /* 801CCE98 */ void drawPlayEnterIcon();
-    /* 801CCFB0 */ void checkDrawPortalIcon(int, int);
-    /* 801CD000 */ void searchIcon(u8, int, f32*, f32*);
-    /* 801CD210 */ void drawEnterIcon();
-    /* 801CD254 */ void drawPortalIcon();
-    /* 801CD2FC */ void getRegionStageNum(int);
-    /* 801CD350 */ void getNowFmapRegionData();
-    /* 801CD368 */ void getNowFmapStageData();
-    /* 801CD380 */ void searchPortalStageID(char*);
-    /* 801CD3F0 */ void drawDebugStage();
-    /* 801CD460 */ void arrowPosInit();
-    /* 801CD5CC */ void tableArrowPosInit(bool);
-    /* 801CD770 */ void yamibossArrowPosInit();
-    /* 801CD814 */ void howlArrowPosInit();
-    /* 801CD8B4 */ void getHowlRegionID();
-    /* 801CD92C */ void isLightVesselGet();
-    /* 801CD95C */ void getPlayerPos2D();
-
-    static u8 MyClass[4];
-};
-
 struct dMenu_FmapMap_c {
     /* 801CEC24 */ dMenu_FmapMap_c();
     /* 801CEDE8 */ void _create(u16, u16, u16, u16, void*);
@@ -242,8 +90,6 @@ struct dMenu_FmapMap_c {
     /* 801CF1E0 */ void setFlashOn(int, int, u8*, int);
     /* 801CF450 */ void setRendering(dMenu_Fmap_world_data_c*, int, f32, f32, f32, f32);
 };
-
-struct J2DAnmTextureSRTKey {};
 
 struct dMenu_Fmap2DTop_c {
     /* 801D5BD0 */ dMenu_Fmap2DTop_c(JKRExpHeap*, STControl*);
@@ -266,8 +112,6 @@ struct dMenu_Fmap2DTop_c {
     /* 801D7B58 */ void checkWarpAcceptCannon();
     /* 801D8088 */ void isWarpAccept();
 };
-
-struct ResTIMG {};
 
 struct dMenu_Fmap2DBack_c {
     /* 801CF56C */ dMenu_Fmap2DBack_c();
@@ -322,15 +166,7 @@ struct dMapInfo_n {
     /* 8003F02C */ void getMapRestartPos();
 };
 
-struct dDlst_base_c {};
-
-struct dDlst_list_c {
-    /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
-};
-
 struct JAISoundID {};
-
-struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -338,10 +174,6 @@ struct Z2SeMgr {
 
 struct Z2AudioMgr {
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JKRArchive {
-    /* 801CC284 */ void getExpandedResSize(void const*) const;
 };
 
 struct JKRAramArchive {};
@@ -621,8 +453,6 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void sprintf();
-extern "C" void strcmp();
-extern "C" void strcpy();
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__19dMenuFmapIconDisp_c[3];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
@@ -1429,7 +1259,8 @@ asm dMenu_Fmap_c::dMenu_Fmap_c(JKRExpHeap* param_0, STControl* param_1, CSTContr
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMenu_Fmap_c::~dMenu_Fmap_c() {
+// asm dMenu_Fmap_c::~dMenu_Fmap_c() {
+extern "C" asm void __dt__12dMenu_Fmap_cFv() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap/__dt__12dMenu_Fmap_cFv.s"
 }
@@ -1502,7 +1333,7 @@ SECTION_SDATA2 static f32 lit_4541 = -1.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap_c::getNextStatus(u8* param_0) {
+asm u8 dMenu_Fmap_c::getNextStatus(u8* param_0) {
     nofralloc
 #include "asm/d/menu/d_menu_fmap/getNextStatus__12dMenu_Fmap_cFPUc.s"
 }
@@ -1512,7 +1343,7 @@ asm void dMenu_Fmap_c::getNextStatus(u8* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap_c::isSync() {
+asm bool dMenu_Fmap_c::isSync() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap/isSync__12dMenu_Fmap_cFv.s"
 }
@@ -2138,7 +1969,7 @@ asm void dMenu_Fmap_c::howl_demo3_move() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap_c::isOpen() {
+asm bool dMenu_Fmap_c::isOpen() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap/isOpen__12dMenu_Fmap_cFv.s"
 }
@@ -2148,7 +1979,7 @@ asm void dMenu_Fmap_c::isOpen() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap_c::isClose() {
+asm bool dMenu_Fmap_c::isClose() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap/isClose__12dMenu_Fmap_cFv.s"
 }
@@ -2158,7 +1989,7 @@ asm void dMenu_Fmap_c::isClose() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap_c::getProcess() {
+asm u8 dMenu_Fmap_c::getProcess() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap/getProcess__12dMenu_Fmap_cFv.s"
 }
@@ -2169,7 +2000,7 @@ asm void dMenu_Fmap_c::getProcess() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap_c::getRegionCursor() {
+asm u8 dMenu_Fmap_c::getRegionCursor() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap/getRegionCursor__12dMenu_Fmap_cFv.s"
 }
@@ -2179,7 +2010,7 @@ asm void dMenu_Fmap_c::getRegionCursor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap_c::getStageCursor() {
+asm u8 dMenu_Fmap_c::getStageCursor() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap/getStageCursor__12dMenu_Fmap_cFv.s"
 }
@@ -2189,7 +2020,7 @@ asm void dMenu_Fmap_c::getStageCursor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap_c::getStageTransX() {
+asm f32 dMenu_Fmap_c::getStageTransX() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap/getStageTransX__12dMenu_Fmap_cFv.s"
 }
@@ -2199,7 +2030,7 @@ asm void dMenu_Fmap_c::getStageTransX() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap_c::getStageTransZ() {
+asm f32 dMenu_Fmap_c::getStageTransZ() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap/getStageTransZ__12dMenu_Fmap_cFv.s"
 }
@@ -2303,7 +2134,7 @@ asm void dMenu_Fmap_c::readFieldMapData(void** param_0, char const* param_1, boo
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRArchive::getExpandedResSize(void const* param_0) const {
+asm u32 JKRArchive::getExpandedResSize(void const* param_0) const {
     nofralloc
 #include "asm/d/menu/d_menu_fmap/getExpandedResSize__10JKRArchiveCFPCv.s"
 }

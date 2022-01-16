@@ -14,6 +14,12 @@ public:
         UNK_TYPE2 = 2,
     };
 
+    enum OutputFlag {
+        /* 0x0 */ OUTPUT_NONE,
+        /* 0x1 */ OUTPUT_OSREPORT,
+        /* 0x2 */ OUTPUT_CONSOLE
+    };
+
     /* 802E73E4 */ static JUTConsole* create(unsigned int, void*, u32);
     /* 802E7354 */ static JUTConsole* create(unsigned int, unsigned int, JKRHeap*);
     /* 802E746C */ JUTConsole(unsigned int, unsigned int, bool);
@@ -44,6 +50,11 @@ public:
         if (mHeight > field_0x24) {
             mHeight = field_0x24;
         }
+    }
+
+    void setFont(JUTFont* p_font) {
+        mFont = p_font;
+        setFontSize(p_font->getWidth(), p_font->getHeight());
     }
 
     u32 getOutput() const { return mOutput; }

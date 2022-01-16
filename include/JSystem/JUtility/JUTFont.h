@@ -2,6 +2,7 @@
 #define JUTFONT_H
 
 #include "JSystem/JUtility/TColor.h"
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/string.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 
@@ -87,6 +88,14 @@ public:
     void setCharColor(JUtility::TColor col1);
     void setGradColor(JUtility::TColor col1, JUtility::TColor col2);
     f32 drawString_size_scale(f32 a1, f32 a2, f32 a3, f32 a4, const char* a5, u32 usz, bool a7);
+
+    void drawString(int param_0, int param_1, const char* str, bool param_3) {
+        drawString_size(param_0, param_1, str, strlen(str), param_3);
+    }
+
+    void drawString_size(int param_0, int param_1, const char* str, u32 len, bool param_4) {
+        drawString_size_scale(param_0, param_1, getWidth(), getHeight(), str, len, param_4);
+    }
 
     /* 0x04 */ bool mValid;
     /* 0x05 */ bool mFixed;

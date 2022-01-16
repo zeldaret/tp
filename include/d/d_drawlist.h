@@ -192,6 +192,7 @@ public:
     /* 80056900 */ void calcWipe();
 
     void set2DOpa(dDlst_base_c* dlst) { set(field_0x1b4, field_0x1b8, dlst); }
+    void set2DOpaTop(dDlst_base_c* dlst) { set(field_0xac, field_0xb0, dlst); }
 
     static u8 mWipeDlst[72];
     static u8 mWipeColor[4];
@@ -226,8 +227,8 @@ private:
     /* 0x00068 */ dDlst_list_c** field_0x68;
     /* 0x0006C */ dDlst_list_c** field_0x6c;  // array?
     /* 0x00070 */ u8 field_0x70[0x3C];
-    /* 0x000AC */ dDlst_list_c* field_0xac;
-    /* 0x000B0 */ dDlst_list_c** field_0xb0;
+    /* 0x000AC */ dDlst_base_c** field_0xac;
+    /* 0x000B0 */ dDlst_base_c** field_0xb0;
     /* 0x000B4 */ dDlst_list_c** field_0xb4;  // array?
     /* 0x000B8 */ u8 field_0xb8[0xFC];
     /* 0x001B4 */ dDlst_base_c** field_0x1b4;

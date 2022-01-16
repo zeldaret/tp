@@ -9,8 +9,7 @@ public:
 
     /* 801F9E98 */ virtual ~dMw_DHIO_c() {}
 
-private:
-    /* 0x004 */ u8 field_0x4;
+    /* 0x004 */ s8 field_0x4;
     /* 0x005 */ bool mMap[32];
     /* 0x025 */ bool mCompass[32];
     /* 0x045 */ bool mBossKey[32];
@@ -41,8 +40,7 @@ public:
 
     /* 801F9EE0 */ virtual ~dMw_HIO_c() {}
 
-private:
-    /* 0x004 */ u8 field_0x4;
+    /* 0x004 */ s8 field_0x4;
     /* 0x006 */ u16 mLife;
     /* 0x008 */ u16 mMaxLife;
     /* 0x00A */ u8 mMagic;

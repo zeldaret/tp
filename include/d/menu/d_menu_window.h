@@ -1,26 +1,80 @@
 #ifndef D_MENU_D_MENU_WINDOW_H
 #define D_MENU_D_MENU_WINDOW_H
 
+#include "d/d_drawlist.h"
+#include "d/menu/d_menu_collect.h"
 #include "d/meter/d_meter2_info.h"
+#include "d/msg/d_msg_class.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_controller_pad.h"
+#include "m_Do/m_Do_graphic.h"
 
-struct STControl;
-struct CSTControl;
-class dDlst_base_c;
 class dMenu_Ring_c;
-class dMenu_Collect2D_c;
 class dMenu_Dmap_c;
 class dMenu_Fmap_c;
-class dMenu_save_c;
-class dMenu_Option_c;
-class dMenu_Letter_c;
-class dMenu_Fishing_c;
-class dMenu_Skill_c;
-class dMenu_Insect_c;
 
-class dMw_c {
+class dDlst_MENU_CAPTURE_c : public dDlst_base_c {
 public:
+    /* 801FDFCC */ virtual void draw();
+    /* 801FE2E8 */ virtual ~dDlst_MENU_CAPTURE_c();
+
+    dDlst_MENU_CAPTURE_c() {
+        mFlag = 0;
+        mAlpha = 255;
+        mTopFlag = 0;
+    }
+
+    void setCaptureFlag() { mFlag = 1; }
+    bool checkDraw() { return mFlag; }
+    u8 getAlpha() { return mAlpha; }
+    u8 getTopFlag() { return mTopFlag; }
+
+private:
+    /* 0x4 */ u8 mFlag;
+    /* 0x5 */ u8 mAlpha;
+    /* 0x6 */ u8 mTopFlag;
+};
+
+class dMw_c : public msg_class {
+public:
+    enum dMw_Status {
+        /* 0x00 */ NO_MENU,
+        /* 0x01 */ RING_OPEN,
+        /* 0x02 */ RING_MOVE,
+        /* 0x03 */ RING_CLOSE,
+        /* 0x04 */ COLLECT_OPEN,
+        /* 0x05 */ COLLECT_MOVE,
+        /* 0x06 */ COLLECT_CLOSE,
+        /* 0x07 */ FMAP_OPEN,
+        /* 0x08 */ FMAP_MOVE,
+        /* 0x09 */ FMAP_CLOSE,
+        /* 0x0A */ DMAP_OPEN,
+        /* 0x0B */ DMAP_MOVE,
+        /* 0x0C */ DMAP_CLOSE,
+        /* 0x0D */ SAVE_OPEN,
+        /* 0x0E */ SAVE_MOVE,
+        /* 0x0F */ SAVE_CLOSE,
+        /* 0x10 */ OPTIONS_OPEN,
+        /* 0x11 */ OPTIONS_MOVE,
+        /* 0x12 */ OPTIONS_CLOSE,
+        /* 0x13 */ LETTER_OPEN,
+        /* 0x14 */ LETTER_MOVE,
+        /* 0x15 */ LETTER_CLOSE,
+        /* 0x16 */ FISHING_OPEN,
+        /* 0x17 */ FISHING_MOVE,
+        /* 0x18 */ FISHING_CLOSE,
+        /* 0x19 */ SKILL_OPEN,
+        /* 0x1A */ SKILL_MOVE,
+        /* 0x1B */ SKILL_CLOSE,
+        /* 0x1C */ INSECT_OPEN,
+        /* 0x1D */ INSECT_MOVE,
+        /* 0x1E */ INSECT_CLOSE,
+        /* 0x1F */ INSECT_AGITHA_OPEN1,
+        /* 0x20 */ INSECT_AGITHA_OPEN2,
+        /* 0x21 */ INSECT_AGITHA_MOVE,
+        /* 0x22 */ INSECT_AGITHA_CLOSE,
+    };
+
     /* 801FA13C */ void key_wait_init(u8);
     /* 801FA220 */ void ring_open_init(u8);
     /* 801FA23C */ void ring_move_init(u8);
@@ -94,70 +148,71 @@ public:
     /* 801FBD80 */ void dMw_capture_create();
     /* 801FBE14 */ void dMw_capture_delete();
     /* 801FBE94 */ void dMw_ring_create(u8);
-    /* 801FBF60 */ void dMw_ring_delete();
+    /* 801FBF60 */ bool dMw_ring_delete();
     /* 801FBFF8 */ void dMw_collect_create();
-    /* 801FC090 */ void dMw_collect_delete(bool);
+    /* 801FC090 */ bool dMw_collect_delete(bool);
     /* 801FC0FC */ void dMw_fmap_create();
-    /* 801FC264 */ void dMw_fmap_delete(bool);
+    /* 801FC264 */ bool dMw_fmap_delete(bool);
     /* 801FC350 */ void dMw_dmap_create();
-    /* 801FC46C */ void dMw_dmap_delete(bool);
+    /* 801FC46C */ bool dMw_dmap_delete(bool);
     /* 801FC520 */ void dMw_save_create();
-    /* 801FC5D0 */ void dMw_save_delete();
+    /* 801FC5D0 */ bool dMw_save_delete();
     /* 801FC668 */ void dMw_option_create();
-    /* 801FC70C */ void dMw_option_delete();
+    /* 801FC70C */ bool dMw_option_delete();
     /* 801FC7BC */ void dMw_letter_create();
-    /* 801FC85C */ void dMw_letter_delete();
+    /* 801FC85C */ bool dMw_letter_delete();
     /* 801FC904 */ void dMw_fishing_create();
-    /* 801FC9A4 */ void dMw_fishing_delete();
+    /* 801FC9A4 */ bool dMw_fishing_delete();
     /* 801FCA4C */ void dMw_skill_create();
-    /* 801FCAEC */ void dMw_skill_delete();
+    /* 801FCAEC */ bool dMw_skill_delete();
     /* 801FCB94 */ void dMw_insect_create(u8);
-    /* 801FCC44 */ void dMw_insect_delete();
+    /* 801FCC44 */ bool dMw_insect_delete();
     /* 801FCCEC */ void dMw_onButtonBit(u8);
     /* 801FCCFC */ void dMw_offButtonBit(u8);
-    /* 801FCD0C */ void dMw_isButtonBit(u8);
-    /* 801FCD24 */ void dMw_isPush_S_Button();
-    /* 801FCDD8 */ void isPauseReady();
-    /* 801FCE08 */ void dMw_fade_out();
-    /* 801FCE78 */ void dMw_fade_in();
-    /* 801FCEE8 */ void checkCStickTrigger();
-    /* 801FCF84 */ void isEventCheck();
+    /* 801FCD0C */ BOOL dMw_isButtonBit(u8);
+    /* 801FCD24 */ BOOL dMw_isPush_S_Button();
+    /* 801FCDD8 */ bool isPauseReady();
+    /* 801FCE08 */ static void dMw_fade_out();
+    /* 801FCE78 */ static void dMw_fade_in();
+    /* 801FCEE8 */ int checkCStickTrigger();
+    /* 801FCF84 */ bool isEventCheck();
     /* 801FD094 */ void markMemSize();
     /* 801FD0D4 */ void checkMemSize();
-    /* 801FD140 */ void _create();
-    /* 801FD2D8 */ void _execute();
-    /* 801FD450 */ void _draw();
-    /* 801FD67C */ void _delete();
+    /* 801FD140 */ int _create();
+    /* 801FD2D8 */ int _execute();
+    /* 801FD450 */ int _draw();
+    /* 801FD67C */ int _delete();
 
     void onPauseWindow() { mPauseWindow = true; }
     void offPauseWindow() { mPauseWindow = false; }
     void onShowFlag() { mShowFlag |= 1; }
     void offShowFlag() { mShowFlag &= ~1; }
     bool isShowFlag() { return mShowFlag & 1 != 0; }
+    bool isFadeNowCheck() { return mDoGph_gInf_c::getFader()->getStatus() == 1; }
 
 private:
-    u8 field_0x0[0x100];
-    /* 0x100 */ void* field_0x100;
+    /* 0x100 */ JKRExpHeap* mpHeap;
     /* 0x104 */ STControl* mpStick;
     /* 0x108 */ CSTControl* mpCStick;
-    /* 0x10C */ dDlst_base_c* field_0x10c;
-    /* 0x110 */ dMenu_Ring_c* mRing;
-    /* 0x114 */ dMenu_Collect2D_c* mCollect2D;
-    /* 0x118 */ dMenu_Dmap_c* mDmap;
-    /* 0x11C */ dMenu_Fmap_c* mFmap;
-    /* 0x120 */ dMenu_save_c* mSave;
-    /* 0x124 */ dMenu_Option_c* mOption;
-    /* 0x128 */ dMenu_Letter_c* mLetter;
-    /* 0x12C */ dMenu_Fishing_c* mFishing;
-    /* 0x130 */ dMenu_Skill_c* mSkill;
-    /* 0x134 */ dMenu_Insect_c* mInsect;
-    /* 0x138 */ int field_0x138;
-    /* 0x13C */ u8 field_0x13c[8];
+    /* 0x10C */ dDlst_MENU_CAPTURE_c* mpCapture;
+    /* 0x110 */ dMenu_Ring_c* mpMenuRing;
+    /* 0x114 */ dMenu_Collect_c* mpMenuCollect;
+    /* 0x118 */ dMenu_Dmap_c* mpMenuDmap;
+    /* 0x11C */ dMenu_Fmap_c* mpMenuFmap;
+    /* 0x120 */ dMenu_save_c* mpMenuSave;
+    /* 0x124 */ dMenu_Option_c* mpMenuOption;
+    /* 0x128 */ dMenu_Letter_c* mpMenuLetter;
+    /* 0x12C */ dMenu_Fishing_c* mpMenuFishing;
+    /* 0x130 */ dMenu_Skill_c* mpMenuSkill;
+    /* 0x134 */ dMenu_Insect_c* mpMenuInsect;
+    /* 0x138 */ s32 mMemSize;
+    /* 0x13C */ f32 field_0x13c;
+    /* 0x140 */ f32 field_0x140;
     /* 0x144 */ u8 field_0x144;
     /* 0x145 */ u8 mButtons;
-    /* 0x146 */ u8 field_0x146;
+    /* 0x146 */ u8 mMenuStatus;
     /* 0x147 */ u8 mShowFlag;
-    /* 0x148 */ u8 field_0x148;
+    /* 0x148 */ s8 field_0x148;
     /* 0x149 */ u8 field_0x149;
     /* 0x14A */ u8 field_0x14A;
     /* 0x14B */ u8 field_0x14B;
@@ -174,5 +229,13 @@ private:
 
 BOOL dMw_LEFT_TRIGGER();
 BOOL dMw_RIGHT_TRIGGER();
+
+static int dMw_Draw(dMw_c*);
+static int dMw_Execute(dMw_c*);
+static int dMw_IsDelete(dMw_c*);
+static int dMw_Delete(dMw_c*);
+static int dMw_Create(msg_class*);
+
+typedef int (*dMw_Method)(dMw_c*);
 
 #endif /* D_MENU_D_MENU_WINDOW_H */

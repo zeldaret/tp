@@ -12,13 +12,6 @@
 // Types:
 //
 
-struct mDoGph_gInf_c {
-    /* 80007FD8 */ void fadeOut(f32, _GXColor&);
-    /* 800080D0 */ void fadeOut(f32);
-
-    static f32 mFadeRate;
-};
-
 struct dDemo_c {
     /* 80039B6C */ void start(u8 const*, cXyz*, f32);
     /* 80039CF8 */ void end();

@@ -48,7 +48,6 @@ extern "C" void _restgpr_25();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strlen();
 extern "C" void strtol();
 extern "C" void strtoul();
 extern "C" u8 sSystemHeap__7JKRHeap[4];

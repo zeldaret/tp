@@ -9,6 +9,7 @@ class JUTFader {
 public:
     enum EStatus {
         UNKSTATUS_M1 = -1,
+        UNKSTATUS_0 = 0,
     };
 
     /* 802E5530 */ JUTFader(int, int, int, int, JUtility::TColor);
@@ -19,6 +20,9 @@ public:
     /* 802E576C */ virtual bool startFadeIn(int);
     /* 802E579C */ virtual bool startFadeOut(int);
     /* 802E56DC */ virtual void draw();
+
+    s32 getStatus() const { return mStatus; }
+    void setColor(JUtility::TColor color) { mColor.set(color); }
 
 private:
     /* 0x04 */ s32 mStatus;

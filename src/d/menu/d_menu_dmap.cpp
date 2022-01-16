@@ -16,13 +16,6 @@ struct renderingDmap_c {
     /* 801C051C */ renderingDmap_c();
 };
 
-struct JKRHeap {
-    /* 802CE4D4 */ void alloc(u32, int);
-    /* 802CE548 */ void free(void*);
-    /* 802CE72C */ void getFreeSize();
-    /* 802CE784 */ void getTotalFreeSize();
-};
-
 struct mDoDvdThd_mountArchive_c {
     /* 80015E14 */ void create(char const*, u8, JKRHeap*);
 };
@@ -48,22 +41,6 @@ struct dSv_info_c {
 
 struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
-};
-
-struct J2DBasePosition {};
-
-struct J2DPane {
-    /* 802F7100 */ void getBounds();
-    /* 802F76F8 */ void setBasePosition(J2DBasePosition);
-};
-
-struct JKRArchive {};
-
-struct dSelect_cursor_c {
-    /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
-    /* 801950F4 */ void setPos(f32, f32, J2DPane*, bool);
-    /* 801951B0 */ void setParam(f32, f32, f32, f32, f32);
-    /* 801952A0 */ void setAlphaRate(f32);
 };
 
 struct dMsgString_c {
@@ -94,8 +71,6 @@ struct dMeterHaihai_c {
     /* 8020B814 */ void drawHaihai(u8, f32, f32, f32, f32);
     /* 8020BC20 */ void setScale(f32);
 };
-
-struct ResTIMG {};
 
 struct J2DPicture {
     /* 801BDD40 */ void append(ResTIMG const*, f32);
@@ -140,102 +115,11 @@ struct dMenu_StageMapCtrl_c {
     /* 801C2590 */ void setPlusZoomCenterZ(f32);
 };
 
-struct STControl {
-    /* 80032044 */ STControl(s16, s16, s16, s16, f32, f32, s16, s16);
-    /* 8003219C */ void checkTrigger();
-    /* 8003242C */ void checkLeftTrigger();
-    /* 800324A8 */ void checkRightTrigger();
-    /* 80032524 */ void checkUpTrigger();
-    /* 800325A0 */ void checkDownTrigger();
-};
-
-struct J2DOrthoGraph {};
-
-struct JKRExpHeap {
-    /* 802CEE2C */ void create(u32, JKRHeap*, bool);
-};
-
 struct dMenu_ItemExplain_c {
     /* 801DA754 */ dMenu_ItemExplain_c(JKRExpHeap*, JKRArchive*, STControl*, bool);
     /* 801DB470 */ void move();
     /* 801DB514 */ void draw(J2DOrthoGraph*);
     /* 801DC3C8 */ void openExplainDmap(u8, u8, u8, bool, u8);
-};
-
-struct CSTControl {};
-
-struct JGeometry {
-    template <typename A1>
-    struct TBox2 {};
-    /* TBox2<f32> */
-    struct TBox2__template0 {};
-};
-
-struct J2DGrafContext {
-    /* 802E90C0 */ void scissor(JGeometry::TBox2<f32> const&);
-};
-
-struct J2DScreen {
-    /* 802F8498 */ J2DScreen();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-    /* 802F9690 */ void animation();
-};
-
-struct dMenu_Dmap_c {
-    /* 801BB498 */ dMenu_Dmap_c(JKRExpHeap*, STControl*, CSTControl*, u8, u8);
-    /* 801BB634 */ void screenInit();
-    /* 801BC788 */ void getPlayerIconPos(s8, f32);
-    /* 801BC848 */ void getIconPos(s8, f32);
-    /* 801BCDF4 */ ~dMenu_Dmap_c();
-    /* 801BD1D4 */ void getCurFloorPos();
-    /* 801BD1E8 */ void getDefaultCurFloorPos();
-    /* 801BD208 */ void iconMoveCalc();
-    /* 801BD3B8 */ void drawFloorScreenBack(J2DScreen*, f32, f32, J2DOrthoGraph*);
-    /* 801BD524 */ void drawFloorScreenTop(J2DScreen*, f32, f32, J2DOrthoGraph*);
-    /* 801BD690 */ void isMapMoveState();
-    /* 801BD6C4 */ void floorChangeMode();
-    /* 801BD7C0 */ void _create();
-    /* 801BDDA4 */ void _move();
-    /* 801BDEF8 */ void setMapTexture();
-    /* 801BDF48 */ void mapBgAnime();
-    /* 801BDF6C */ void mapControl();
-    /* 801BE328 */ void isOpen();
-    /* 801BE670 */ void isClose();
-    /* 801BE7E0 */ void _draw();
-    /* 801BEAFC */ void itemInfo_init_proc();
-    /* 801BEB0C */ void itemInfo_proc();
-    /* 801BEB44 */ void itemSelect();
-    /* 801BEF28 */ void getNextItem(int);
-    /* 801BEFCC */ void itemSelectAnmInit();
-    /* 801BF030 */ void itemSelectAnm();
-    /* 801BF180 */ void itemInfoOpenAnm();
-    /* 801BF18C */ void itemInfoWait();
-    /* 801BF278 */ void itemInfoCloseAnm();
-    /* 801BF334 */ void getNextStatus();
-    /* 801BF410 */ void isSync();
-    /* 801BF464 */ void isKeyCheck();
-    /* 801BF4A4 */ void infoModeChange_init_proc();
-    /* 801BF528 */ void infoModeChange_proc();
-    /* 801BF688 */ void mapModeChange_init_proc();
-    /* 801BF70C */ void mapModeChange_proc();
-    /* 801BF8A0 */ void lv5_talk_init_proc();
-    /* 801BF8F8 */ void lv5_talk_proc();
-    /* 801BF9D4 */ void mapMode_init_proc();
-    /* 801BF9E0 */ void mapMode_proc();
-    /* 801BFA84 */ void floorSelect_init_proc();
-    /* 801BFA88 */ void floorSelect_proc();
-    /* 801BFC78 */ void itemCarryCheck();
-    /* 801BFCAC */ void floorChange_init_proc();
-    /* 801BFD5C */ void floorChange_proc();
-    /* 801BFF84 */ void zoomWait_init_proc();
-    /* 801BFF88 */ void zoomWait_proc();
-    /* 801C008C */ void zoomIn_init_proc();
-    /* 801C01A0 */ void zoomIn_proc();
-    /* 801C023C */ void zoomOut_init_proc();
-    /* 801C02F0 */ void zoomOut_proc();
-
-    static u8 myclass[4 + 4 /* padding */];
 };
 
 struct dMenu_DmapMap_c {
@@ -285,15 +169,7 @@ struct dMenuMapCommon_c {
     /* 801C443C */ void clearIconInfo();
 };
 
-struct dDlst_base_c {};
-
-struct dDlst_list_c {
-    /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
-};
-
 struct JAISoundID {};
-
-struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -308,41 +184,8 @@ struct JMath {
     static u8 sincosTable_[65536];
 };
 
-struct JKRFileLoader {
-    /* 802D4270 */ void getGlbResource(char const*, JKRFileLoader*);
-};
-
-struct J2DTextBox {
-    /* 80300658 */ void getStringPtr() const;
-    /* 8030074C */ void setString(s16, char const*, ...);
-};
-
 struct J2DAnmLoaderDataBase {
     /* 80308A6C */ void load(void const*);
-};
-
-struct CPaneMgrAlphaMorf {
-    /* 80255C68 */ CPaneMgrAlphaMorf(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 80255DD0 */ void setBackupAlpha();
-    /* 80255E28 */ void setAlphaMorfRate(f32);
-};
-
-struct CPaneMgrAlpha {
-    /* 802553FC */ CPaneMgrAlpha(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 802555C8 */ void show();
-    /* 80255608 */ void hide();
-    /* 802557D0 */ void setAlphaRate(f32);
-    /* 80255878 */ void alphaAnime(s16, u8, u8, u8);
-};
-
-struct CPaneMgr {
-    /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 80253930 */ CPaneMgr();
-    /* 80253A18 */ ~CPaneMgr();
-    /* 802545B0 */ void paneTrans(f32, f32);
-    /* 802547CC */ void scaleAnime(s16, f32, f32, u8);
-    /* 80254C90 */ void getGlobalVtx(J2DPane*, f32 (*)[3][4], u8, bool, s16);
-    /* 80254EBC */ void getGlobalVtxCenter(J2DPane*, bool, s16);
 };
 
 //
@@ -442,8 +285,6 @@ extern "C" u8 myclass__12dMenu_Dmap_c[4 + 4 /* padding */];
 // External References:
 //
 
-SECTION_INIT void memset();
-SECTION_INIT void memcpy();
 extern "C" void mDoExt_getJ2dHeap__Fv();
 extern "C" void mDoExt_destroyExpHeap__FP10JKRExpHeap();
 extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
@@ -562,7 +403,6 @@ extern "C" void __ct__10J2DPictureFPC7ResTIMG();
 extern "C" void getStringPtr__10J2DTextBoxCFv();
 extern "C" void setString__10J2DTextBoxFsPCce();
 extern "C" void load__20J2DAnmLoaderDataBaseFPCv();
-extern "C" void GXGetScissor();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void __ptmf_scall();
@@ -578,7 +418,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strcpy();
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" extern void* __vt__28dDrawPathWithNormalPattern_c[16];
 extern "C" extern void* __vt__15dRenderingMap_c[23];
@@ -1773,7 +1612,8 @@ asm void dMenu_Dmap_c::getIconPos(s8 param_0, f32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMenu_Dmap_c::~dMenu_Dmap_c() {
+// asm dMenu_Dmap_c::~dMenu_Dmap_c() {
+extern "C" asm void __dt__12dMenu_Dmap_cFv() {
     nofralloc
 #include "asm/d/menu/d_menu_dmap/__dt__12dMenu_Dmap_cFv.s"
 }
@@ -1961,7 +1801,7 @@ SECTION_DEAD static char const* const pad_8039584B = "\0\0\0\0\0\0\0\0\0\0\0\0\0
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Dmap_c::isOpen() {
+asm bool dMenu_Dmap_c::isOpen() {
     nofralloc
 #include "asm/d/menu/d_menu_dmap/isOpen__12dMenu_Dmap_cFv.s"
 }
@@ -1971,7 +1811,7 @@ asm void dMenu_Dmap_c::isOpen() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Dmap_c::isClose() {
+asm bool dMenu_Dmap_c::isClose() {
     nofralloc
 #include "asm/d/menu/d_menu_dmap/isClose__12dMenu_Dmap_cFv.s"
 }
@@ -2084,7 +1924,7 @@ asm void dMenu_Dmap_c::itemInfoCloseAnm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Dmap_c::getNextStatus() {
+asm u8 dMenu_Dmap_c::getNextStatus() {
     nofralloc
 #include "asm/d/menu/d_menu_dmap/getNextStatus__12dMenu_Dmap_cFv.s"
 }
@@ -2094,7 +1934,7 @@ asm void dMenu_Dmap_c::getNextStatus() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Dmap_c::isSync() {
+asm bool dMenu_Dmap_c::isSync() {
     nofralloc
 #include "asm/d/menu/d_menu_dmap/isSync__12dMenu_Dmap_cFv.s"
 }

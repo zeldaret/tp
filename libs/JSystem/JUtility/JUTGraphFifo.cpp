@@ -4,93 +4,50 @@
 //
 
 #include "JSystem/JUtility/JUTGraphFifo.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JUTGraphFifo {
-    /* 802DEB58 */ JUTGraphFifo(u32);
-    /* 802DEC34 */ ~JUTGraphFifo();
-
-    static u8 sCurrentFifo[4];
-    static u8 mGpStatus[5 + 3 /* padding */];
-};
-
-struct JKRHeap {
-    /* 802CE4D4 */ void alloc(u32, int);
-    /* 802CE548 */ void free(void*);
-
-    static u8 sSystemHeap[4];
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__12JUTGraphFifoFUl();
-extern "C" void __dt__12JUTGraphFifoFv();
-extern "C" u8 sCurrentFifo__12JUTGraphFifo[4];
-extern "C" u8 mGpStatus__12JUTGraphFifo[5 + 3 /* padding */];
-
-//
-// External References:
-//
-
-extern "C" void alloc__7JKRHeapFUli();
-extern "C" void free__7JKRHeapFPv();
-extern "C" void __dl__FPv();
-extern "C" void GXInit();
-extern "C" void GXInitFifoBase();
-extern "C" void GXInitFifoPtrs();
-extern "C" void GXSaveCPUFifo();
-extern "C" void GXGetGPStatus();
-extern "C" void _savegpr_26();
-extern "C" void _restgpr_26();
-extern "C" u8 sSystemHeap__7JKRHeap[4];
 
 //
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 803CC590-803CC5A0 0296B0 000C+04 2/2 0/0 0/0 .data            __vt__12JUTGraphFifo */
-SECTION_DATA extern void* __vt__12JUTGraphFifo[3 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12JUTGraphFifoFv,
-    /* padding */
-    NULL,
-};
-
 /* 804514B8-804514BC 0009B8 0004+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_804514B8[4];
+static bool data_804514B8;
 
 /* 804514BC-804514C0 0009BC 0004+00 2/2 0/0 0/0 .sbss            sCurrentFifo__12JUTGraphFifo */
-u8 JUTGraphFifo::sCurrentFifo[4];
+JUTGraphFifo* JUTGraphFifo::sCurrentFifo;
 
 /* 802DEB58-802DEC34 2D9498 00DC+00 0/0 1/1 0/0 .text            __ct__12JUTGraphFifoFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JUTGraphFifo::JUTGraphFifo(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTGraphFifo/__ct__12JUTGraphFifoFUl.s"
+JUTGraphFifo::JUTGraphFifo(u32 size) {
+    mSize = size + 0x1F & ~0x1F;
+    if (data_804514B8) {
+        mFifo = (GXFifoObj*)JKRAllocFromSysHeap(mSize + 0x80, 32);
+        mBase = mFifo + 1;
+        GXInitFifoBase(mFifo, mBase, mSize);
+        GXInitFifoPtrs(mFifo, mBase, mBase);
+    } else {
+        mBase = JKRAllocFromSysHeap(mSize + 0xA0, 32);
+        mBase = (void*)((int)mBase + 0x1F & ~0x1F);
+        mFifo = GXInit(mBase, mSize);
+        data_804514B8 = true;
+        sCurrentFifo = this;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804514C0-804514C8 0009C0 0005+03 1/1 0/0 0/0 .sbss            mGpStatus__12JUTGraphFifo */
-u8 JUTGraphFifo::mGpStatus[5 + 3 /* padding */];
+bool JUTGraphFifo::mGpStatus[5];
 
 /* 802DEC34-802DECF8 2D9574 00C4+00 1/0 0/0 0/0 .text            __dt__12JUTGraphFifoFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JUTGraphFifo::~JUTGraphFifo() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTGraphFifo/__dt__12JUTGraphFifoFv.s"
+JUTGraphFifo::~JUTGraphFifo() {
+    sCurrentFifo->save();
+
+    do {
+    } while (isGPActive());
+
+    if (sCurrentFifo == this) {
+        sCurrentFifo = NULL;
+    }
+    JKRFreeToSysHeap(mBase);
 }
-#pragma pop

@@ -6,8 +6,8 @@
 #include "JSystem/JParticle/JPAChildShape.h"
 #include "JSystem/JParticle/JPAParticle.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "dolphin/os/OS.h"
+#include "dolphin/types.h"
 
 //
 // Types:

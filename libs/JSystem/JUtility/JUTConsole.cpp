@@ -90,7 +90,6 @@ extern "C" void _restgpr_20();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strlen();
 extern "C" extern void* __vt__14J2DGrafContext[10];
 extern "C" extern void* __vt__13J2DOrthoGraph[10];
 extern "C" u8 sCurrentHeap__7JKRHeap[4];

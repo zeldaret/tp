@@ -19,14 +19,6 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct mDoGph_gInf_c {
-    struct bloom_c {
-        /* 80009544 */ void create();
-    };
-
-    static u8 m_bloom[20];
-};
-
 struct color_RGB_class {};
 
 struct Z2SeMgr {

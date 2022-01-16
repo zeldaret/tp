@@ -26,7 +26,9 @@ public:
     /* 802E0440 */ void drawString(int, int, int, u8 const*);
 
     static JUTDbPrint* getManager() { return sDebugPrint; }
+
     void setVisible(bool visible) { mVisible = visible; }
+    JUTFont* getFont() const { return mFont; }
 
     static JUTDbPrint* sDebugPrint;
 

@@ -4,65 +4,15 @@
 //
 
 #include "JSystem/JFramework/JFWSystem.h"
+#include "JSystem/JKernel/JKRAram.h"
+#include "JSystem/JUtility/JUTAssert.h"
+#include "JSystem/JUtility/JUTDirectPrint.h"
+#include "JSystem/JUtility/JUTException.h"
+#include "JSystem/JUtility/JUTGamePad.h"
+#include "JSystem/JUtility/JUTGraphFifo.h"
+#include "JSystem/JUtility/JUTVideo.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct OSThread {};
-
-struct JUTVideo {
-    /* 802E4C54 */ void createManager(_GXRenderModeObj const*);
-};
-
-struct JKRHeap {
-    /* 802CE4D4 */ void alloc(u32, int);
-};
-
-struct JUTResFont {
-    /* 802DEF94 */ JUTResFont(ResFONT const*, JKRHeap*);
-};
-
-struct JUTGraphFifo {
-    /* 802DEB58 */ JUTGraphFifo(u32);
-};
-
-struct JUTGamePad {
-    /* 802E0898 */ void init();
-};
-
-struct JUTDirectPrint {
-    /* 802E4240 */ void start();
-};
-
-struct JUTException {
-    /* 802E1E40 */ void create(JUTDirectPrint*);
-    /* 802E3FEC */ void createConsole(void*, u32);
-};
-
-struct JUTDbPrint {
-    /* 802E0190 */ void start(JUTFont*, JKRHeap*);
-    /* 802E0204 */ void changeFont(JUTFont*);
-};
-
-struct JUTAssertion {
-    /* 802E495C */ void create();
-};
-
-struct JKRThread {
-    /* 802D16B8 */ JKRThread(OSThread*, int);
-};
-
-struct JKRExpHeap {
-    /* 802CEDB4 */ void createRoot(int, bool);
-    /* 802CEE2C */ void create(u32, JKRHeap*, bool);
-};
-
-struct JKRAram {
-    /* 802D1FA4 */ void create(u32, u32, s32, s32, s32);
-};
 
 //
 // Forward References:
@@ -112,7 +62,6 @@ extern "C" void createManager__8JUTVideoFPC16_GXRenderModeObj();
 extern "C" void create__10JUTConsoleFUiUiP7JKRHeap();
 extern "C" void createManager__17JUTConsoleManagerFP7JKRHeap();
 extern "C" void OSInit();
-extern "C" void OSGetCurrentThread();
 extern "C" void DVDInit();
 extern "C" extern u8 const JUTResFONT_Ascfont_fix12[16736];
 extern "C" extern u8 GXNtsc480IntDf[60];
@@ -123,82 +72,78 @@ extern "C" extern u8 GXNtsc480IntDf[60];
 
 /* ############################################################################################## */
 /* 80450770-80450774 0001F0 0004+00 1/1 1/1 0/0 .sdata maxStdHeaps__Q29JFWSystem11CSetUpParam */
-SECTION_SDATA u32 JFWSystem::CSetUpParam::maxStdHeaps = 0x00000002;
+SECTION_SDATA s32 JFWSystem::CSetUpParam::maxStdHeaps = 2;
 
 /* 80450774-80450778 0001F4 0004+00 1/1 1/1 0/0 .sdata sysHeapSize__Q29JFWSystem11CSetUpParam */
-SECTION_SDATA u32 JFWSystem::CSetUpParam::sysHeapSize = 0x00400000;
+SECTION_SDATA u32 JFWSystem::CSetUpParam::sysHeapSize = 0x400000;
 
 /* 804511A0-804511A4 0006A0 0004+00 2/2 0/0 0/0 .sbss            rootHeap__9JFWSystem */
-u8 JFWSystem::rootHeap[4];
+JKRExpHeap* JFWSystem::rootHeap;
 
 /* 804511A4-804511A8 0006A4 0004+00 2/2 1/1 0/0 .sbss            systemHeap__9JFWSystem */
-u8 JFWSystem::systemHeap[4];
+JKRExpHeap* JFWSystem::systemHeap;
 
 /* 80271CD0-80271D18 26C610 0048+00 1/1 1/1 0/0 .text            firstInit__9JFWSystemFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JFWSystem::firstInit() {
-    nofralloc
-#include "asm/JSystem/JFramework/JFWSystem/firstInit__9JFWSystemFv.s"
+void JFWSystem::firstInit() {
+    OSInit();
+    DVDInit();
+    rootHeap = JKRExpHeap::createRoot(CSetUpParam::maxStdHeaps, false);
+    systemHeap = JKRExpHeap::create(CSetUpParam::sysHeapSize, rootHeap, false);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450778-8045077C 0001F8 0004+00 1/1 1/1 0/0 .sdata fifoBufSize__Q29JFWSystem11CSetUpParam */
-SECTION_SDATA u32 JFWSystem::CSetUpParam::fifoBufSize = 0x00040000;
+SECTION_SDATA u32 JFWSystem::CSetUpParam::fifoBufSize = 0x40000;
 
 /* 8045077C-80450780 0001FC 0004+00 1/1 1/1 0/0 .sdata aramAudioBufSize__Q29JFWSystem11CSetUpParam
  */
-SECTION_SDATA u32 JFWSystem::CSetUpParam::aramAudioBufSize = 0x00800000;
+SECTION_SDATA u32 JFWSystem::CSetUpParam::aramAudioBufSize = 0x800000;
 
 /* 80450780-80450784 000200 0004+00 1/1 1/1 0/0 .sdata aramGraphBufSize__Q29JFWSystem11CSetUpParam
  */
-SECTION_SDATA u32 JFWSystem::CSetUpParam::aramGraphBufSize = 0x00600000;
+SECTION_SDATA u32 JFWSystem::CSetUpParam::aramGraphBufSize = 0x600000;
 
 /* 80450784-80450788 000204 0004+00 1/1 0/0 0/0 .sdata streamPriority__Q29JFWSystem11CSetUpParam
  */
-SECTION_SDATA u32 JFWSystem::CSetUpParam::streamPriority = 0x00000008;
+SECTION_SDATA u32 JFWSystem::CSetUpParam::streamPriority = 8;
 
 /* 80450788-8045078C 000208 0004+00 1/1 0/0 0/0 .sdata decompPriority__Q29JFWSystem11CSetUpParam
  */
-SECTION_SDATA u32 JFWSystem::CSetUpParam::decompPriority = 0x00000007;
+SECTION_SDATA u32 JFWSystem::CSetUpParam::decompPriority = 7;
 
 /* 8045078C-80450790 00020C 0004+00 1/1 0/0 0/0 .sdata aPiecePriority__Q29JFWSystem11CSetUpParam
  */
-SECTION_SDATA u32 JFWSystem::CSetUpParam::aPiecePriority = 0x00000006;
+SECTION_SDATA u32 JFWSystem::CSetUpParam::aPiecePriority = 6;
 
 /* 80450790-80450794 -00001 0004+00 1/1 0/0 0/0 .sdata systemFontRes__Q29JFWSystem11CSetUpParam */
-SECTION_SDATA void* JFWSystem::CSetUpParam::systemFontRes = (void*)&JUTResFONT_Ascfont_fix12;
+SECTION_SDATA ResFONT* JFWSystem::CSetUpParam::systemFontRes = (ResFONT*)&JUTResFONT_Ascfont_fix12;
 
 /* 80450794-80450798 -00001 0004+00 1/1 1/1 0/0 .sdata renderMode__Q29JFWSystem11CSetUpParam */
-SECTION_SDATA void* JFWSystem::CSetUpParam::renderMode = (void*)&GXNtsc480IntDf;
+SECTION_SDATA GXRenderModeObj* JFWSystem::CSetUpParam::renderMode =
+    (GXRenderModeObj*)&GXNtsc480IntDf;
 
 /* 80450798-804507A0 000218 0004+04 1/1 0/0 0/0 .sdata
  * exConsoleBufferSize__Q29JFWSystem11CSetUpParam               */
-SECTION_SDATA u32 JFWSystem::CSetUpParam::exConsoleBufferSize[1 + 1 /* padding */] = {
-    0x000024FC,
-    /* padding */
-    0x00000000,
-};
+SECTION_SDATA u32 JFWSystem::CSetUpParam::exConsoleBufferSize = 0x24FC;
 
 /* 804511A8-804511AC 0006A8 0004+00 1/1 0/0 0/0 .sbss            mainThread__9JFWSystem */
-u8 JFWSystem::mainThread[4];
+JKRThread* JFWSystem::mainThread;
 
 /* 804511AC-804511B0 0006AC 0004+00 1/1 0/0 0/0 .sbss            debugPrint__9JFWSystem */
-u8 JFWSystem::debugPrint[4];
+JUTDbPrint* JFWSystem::debugPrint;
 
 /* 804511B0-804511B4 0006B0 0004+00 1/1 0/0 0/0 .sbss            systemFont__9JFWSystem */
-u8 JFWSystem::systemFont[4];
+JUTResFont* JFWSystem::systemFont;
 
 /* 804511B4-804511B8 0006B4 0004+00 1/1 0/0 0/0 .sbss            systemConsoleManager__9JFWSystem */
-u8 JFWSystem::systemConsoleManager[4];
+JUTConsoleManager* JFWSystem::systemConsoleManager;
 
 /* 804511B8-804511BC 0006B8 0004+00 1/1 7/7 0/0 .sbss            systemConsole__9JFWSystem */
 JUTConsole* JFWSystem::systemConsole;
 
 /* 804511BC-804511C0 0006BC 0004+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_804511BC[4];
+static u8 data_804511BC;
+// static bool sInitCalled
 
 /* 80455240-80455244 003840 0004+00 1/1 0/0 0/0 .sdata2          @2242 */
 SECTION_SDATA2 static f32 lit_2242 = 0.5f;
@@ -210,6 +155,60 @@ SECTION_SDATA2 static f32 lit_2243 = 17.0f / 20.0f;
 SECTION_SDATA2 static f64 lit_2245 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80271D18-80272040 26C658 0328+00 0/0 1/1 0/0 .text            init__9JFWSystemFv */
+// just regalloc in the beginning
+#ifdef NONMATCHING
+void JFWSystem::init() {
+    if (rootHeap == NULL) {
+        firstInit();
+    }
+    sInitCalled = true;
+
+    JKRAram::create(CSetUpParam::aramAudioBufSize, CSetUpParam::aramGraphBufSize,
+                    CSetUpParam::streamPriority, CSetUpParam::decompPriority,
+                    CSetUpParam::aPiecePriority);
+    mainThread = new JKRThread(OSGetCurrentThread(), 4);
+
+    JUTVideo::createManager(CSetUpParam::renderMode);
+
+    u32 fifoSize = CSetUpParam::fifoBufSize;
+    JUTGraphFifo* fifo = new JUTGraphFifo(fifoSize);
+
+    JUTGamePad::init();
+
+    JUTDirectPrint* dbPrint = JUTDirectPrint::start();
+
+    JUTAssertion::create();
+
+    JUTException::create(dbPrint);
+
+    systemFont = new JUTResFont(CSetUpParam::systemFontRes, NULL);
+
+    debugPrint = JUTDbPrint::start(NULL, NULL);
+    debugPrint->changeFont(systemFont);
+
+    systemConsoleManager = JUTConsoleManager::createManager(NULL);
+
+    systemConsole = JUTConsole::create(60, 200, NULL);
+    systemConsole->setFont(systemFont);
+
+    if (CSetUpParam::renderMode->efb_height < 300) {
+        systemConsole->setFontSize(systemFont->getWidth() * 0.85f, systemFont->getHeight() * 0.5f);
+        systemConsole->setPosition(20, 25);
+    } else {
+        systemConsole->setFontSize(systemFont->getWidth(), systemFont->getHeight());
+        systemConsole->setPosition(20, 50);
+    }
+
+    systemConsole->setHeight(25);
+    systemConsole->setVisible(false);
+    systemConsole->setOutput(JUTConsole::OUTPUT_OSREPORT | JUTConsole::OUTPUT_CONSOLE);
+    JUTSetReportConsole(systemConsole);
+    JUTSetWarningConsole(systemConsole);
+
+    void* buffer = systemHeap->alloc(CSetUpParam::exConsoleBufferSize, 4);
+    JUTException::createConsole(buffer, CSetUpParam::exConsoleBufferSize);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -218,3 +217,4 @@ asm void JFWSystem::init() {
 #include "asm/JSystem/JFramework/JFWSystem/init__9JFWSystemFv.s"
 }
 #pragma pop
+#endif

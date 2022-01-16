@@ -4,57 +4,11 @@
 //
 
 #include "JSystem/JUtility/JUTAssert.h"
+#include "JSystem/JUtility/JUTDbPrint.h"
+#include "JSystem/JUtility/JUTDirectPrint.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JUtility {
-    struct TColor {};
-};
-
-struct JUTFont {
-    /* 802DED70 */ void setCharColor(JUtility::TColor);
-    /* 802DEE28 */ void drawString_size_scale(f32, f32, f32, f32, char const*, u32, bool);
-};
-
-struct JUTDirectPrint {
-    /* 802E46D8 */ void drawString(u16, u16, char*);
-    /* 802E4798 */ void setCharColor(JUtility::TColor);
-
-    static u8 sDirectPrint[4 + 4 /* padding */];
-};
-
-struct JUTDbPrint {
-    static u8 sDebugPrint[4 + 4 /* padding */];
-};
-
-//
-// Forward References:
-//
-
-extern "C" void create__12JUTAssertionFv();
-extern "C" void flush_subroutine__12JUTAssertionFv();
-extern "C" void flushMessage__12JUTAssertionFv();
-extern "C" void flushMessage_dbPrint__12JUTAssertionFv();
-extern "C" void setVisible__12JUTAssertionFb();
-extern "C" void setMessageCount__12JUTAssertionFi();
-
-//
-// External References:
-//
-
-extern "C" void setCharColor__7JUTFontFQ28JUtility6TColor();
-extern "C" void drawString_size_scale__7JUTFontFffffPCcUlb();
-extern "C" void drawString__14JUTDirectPrintFUsUsPc();
-extern "C" void setCharColor__14JUTDirectPrintFQ28JUtility6TColor();
-extern "C" void VIGetRetraceCount();
-extern "C" void strlen();
-extern "C" extern u8 data_804508F8[8];
-extern "C" u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
-extern "C" u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
+#include "dolphin/vi/vi.h"
 
 //
 // Declarations:
@@ -68,82 +22,67 @@ void JUTAssertion::create() {
 /* ############################################################################################## */
 /* 80451530-80451538 000A30 0004+04 2/2 0/0 0/0 .sbss
  * sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@      */
-static s32 data_80451530;
+static u32 sMessageLife;
 
 /* 802E4960-802E499C 2DF2A0 003C+00 2/2 0/0 0/0 .text            flush_subroutine__12JUTAssertionFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTAssertion::flush_subroutine() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTAssert/flush_subroutine__12JUTAssertionFv.s"
+u32 JUTAssertion::flush_subroutine() {
+    if (sMessageLife == 0) {
+        return 0;
+    }
+
+    if (sMessageLife != -1) {
+        sMessageLife--;
+    }
+
+    if (sMessageLife >= 5) {
+        return sMessageLife;
+    }
+    return 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80434870-804348B0 061590 0040+00 2/2 0/0 0/0 .bss
  * sMessageFileLine__Q212JUTAssertion23@unnamed@JUTAssert_cpp@  */
-static u8 data_80434870[64];
+static char sMessageFileLine[64];
 
 /* 804348B0-804349B0 0615D0 0100+00 2/2 0/0 0/0 .bss
  * sMessageString__Q212JUTAssertion23@unnamed@JUTAssert_cpp@    */
-static u8 data_804348B0[256];
+static char sMessageString[256];
 
 /* 802E499C-802E4A54 2DF2DC 00B8+00 0/0 1/1 0/0 .text            flushMessage__12JUTAssertionFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTAssertion::flushMessage() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTAssert/flushMessage__12JUTAssertionFv.s"
+void JUTAssertion::flushMessage() {
+    if (flush_subroutine() && sAssertVisible == true) {
+        JUTDirectPrint* manager = JUTDirectPrint::getManager();
+        JUtility::TColor color = manager->getCharColor();
+        manager->setCharColor(JUtility::TColor(255, 200, 200, 255));
+        manager->drawString(16, 16, sMessageFileLine);
+        manager->drawString(16, 24, sMessageString);
+        manager->setCharColor(color);
+    }
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804560B8-804560BC 0046B8 0004+00 1/1 0/0 0/0 .sdata2          @724 */
-SECTION_SDATA2 static f32 lit_724 = 30.0f;
-
-/* 804560BC-804560C0 0046BC 0004+00 1/1 0/0 0/0 .sdata2          @725 */
-SECTION_SDATA2 static f32 lit_725 = 36.0f;
-
-/* 804560C0-804560C8 0046C0 0004+04 1/1 0/0 0/0 .sdata2          @726 */
-SECTION_SDATA2 static f32 lit_726[1 + 1 /* padding */] = {
-    54.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 804560C8-804560D0 0046C8 0008+00 1/1 0/0 0/0 .sdata2          @728 */
-SECTION_SDATA2 static f64 lit_728 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 802E4A54-802E4C34 2DF394 01E0+00 0/0 1/1 0/0 .text flushMessage_dbPrint__12JUTAssertionFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTAssertion::flushMessage_dbPrint() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTAssert/flushMessage_dbPrint__12JUTAssertionFv.s"
+void JUTAssertion::flushMessage_dbPrint() {
+    if (flush_subroutine() && sAssertVisible == true && JUTDbPrint::getManager() != NULL) {
+        JUTFont* font = JUTDbPrint::getManager()->getFont();
+        if (font != NULL) {
+            u8 tmp = ((VIGetRetraceCount() & 0x3C) << 2) | 0xF;
+            font->setGX();
+            font->setCharColor(JUtility::TColor(255, tmp, tmp, 255));
+            font->drawString(30, 36, sMessageFileLine, true);
+            font->drawString(30, 54, sMessageString, true);
+        }
+    }
 }
-#pragma pop
 
 /* 802E4C34-802E4C3C 2DF574 0008+00 0/0 2/2 0/0 .text            setVisible__12JUTAssertionFb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTAssertion::setVisible(bool param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTAssert/setVisible__12JUTAssertionFb.s"
+void JUTAssertion::setVisible(bool visible) {
+    sAssertVisible = visible;
 }
-#pragma pop
 
 /* 802E4C3C-802E4C54 2DF57C 0018+00 0/0 2/2 0/0 .text            setMessageCount__12JUTAssertionFi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTAssertion::setMessageCount(int param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTAssert/setMessageCount__12JUTAssertionFi.s"
+void JUTAssertion::setMessageCount(int msg_count) {
+    sMessageLife = msg_count <= 0 ? 0 : msg_count;
 }
-#pragma pop
