@@ -372,7 +372,7 @@ bool DynamicModuleControl::do_load() {
             }
         }
         if(mModule==NULL&&sFileCache!=NULL) {
-            mModule = (OSModuleInfo*)sFileCache->getResource(0x72656C73,buffer);
+            mModule = (OSModuleInfo*)sFileCache->getResource(0x72656C73/*rels*/,buffer);
             if(mModule!=NULL) {
                 mSize = 0;
                 mResourceType = 11;

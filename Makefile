@@ -125,6 +125,7 @@ clean_rels:
 tools: $(ELF2DOL)
 
 assets:
+	@mkdir -p game
 	@cd game; $(PYTHON) ../tools/extract_game_assets.py ../$(IMAGENAME)
 
 docs:
@@ -149,6 +150,14 @@ $(DOL_SHIFT): $(ELF_SHIFT) | tools
 
 shift: dirs $(DOL_SHIFT)
 
+game: | shift rels
+	@mkdir -p game
+	@$(PYTHON) tools/package_game_assets.py game $(BUILD_DIR)
+
+rungame: game
+	@echo If you are playing on a shifted game make sure Hyrule Field Speed hack is disabled in dolphin!
+	dolphin-emu $(BUILD_DIR)/game/sys/main.dol
+
 #
 $(BUILD_DIR)/%.o: %.cpp
 	@mkdir -p $(@D)
@@ -170,4 +179,4 @@ include tools/elf2dol/Makefile
 ### Debug Print ###
 print-% : ; $(info $* is a $(flavor $*) variable set to [$($*)]) @true
 
-.PHONY: default all dirs clean tools docs shift print-%
+.PHONY: default all dirs clean tools docs shift game rungame print-%
