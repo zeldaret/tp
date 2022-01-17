@@ -11,13 +11,13 @@
 class J2DScreen;
 
 enum J2DAnmKind {
-    J2DAnmTransformKind = 0,
-    J2DAnmColorKind = 1,
-    J2DAnmTexPatternKind = 2,
-    J2DAnmTextureSRTKeyKind = 4,
-    J2DAnmTevRegKeyKind = 5,
-    J2DAnmVisibilityFullKind = 6,
-    J2DAnmVtxColorKind = 7
+    KIND_TRANSFORM   = 0,
+    KIND_COLOR       = 1,
+    KIND_TEX_PATTERN = 2,
+    KIND_TEXTURE_SRT = 4,
+    KIND_TEV_REG     = 5,
+    KIND_VISIBILITY  = 6,
+    KIND_VTX_COLOR   = 7
 };
 
 class J2DAnmBase {
@@ -45,7 +45,7 @@ public:
 class J2DAnmVtxColor : public J2DAnmBase {
 public:
     J2DAnmVtxColor() {
-        mKind = J2DAnmVtxColorKind;
+        mKind = KIND_VTX_COLOR;
         for (s32 i = 0; i < ARRAY_SIZE(mAnmTableNum); i++) {
             mAnmTableNum[i] = NULL;
         }
@@ -105,7 +105,7 @@ public:
         mTable = NULL;
         field_0x12 = 0;
         mValues = NULL;
-        mKind = J2DAnmVisibilityFullKind;
+        mKind = KIND_VISIBILITY;
     }
     /* 8030A3B4 */ virtual ~J2DAnmVisibilityFull() {}
     /* 8030C048 */ void getVisibility(u16, u8*) const;
@@ -122,7 +122,7 @@ public:
         mScaleValues = pScaleValues;
         mRotationValues = pRotationValues;
         mTranslateValues = pTranslateValues;
-        mKind = J2DAnmTransformKind;
+        mKind = KIND_TRANSFORM;
     }
     /* 80184370 */ virtual ~J2DAnmTransform() {}
     /* 80191130 */ virtual void getTransform(u16, J3DTransformInfo*) const;
@@ -182,7 +182,7 @@ public:
         field_0x50 = NULL;
         field_0x54 = NULL;
         field_0x7c = 0;
-        mKind = J2DAnmTextureSRTKeyKind;
+        mKind = KIND_TEXTURE_SRT;
     }
     /* 8030B9F0 */ void calcTransform(f32, u16, J3DTextureSRTInfo*) const;
 
@@ -231,7 +231,7 @@ public:
     J2DAnmTexPattern() {
         mValues = NULL;
         mAnmTable = NULL;
-        mKind = J2DAnmTexPatternKind;
+        mKind = KIND_TEX_PATTERN;
         mUpdateMaterialNum = 0;
         mUpdaterMaterialID = NULL;
         mTIMGPtrArray = NULL;
@@ -277,7 +277,7 @@ public:
         mKBValues = NULL;
         mKGValues = NULL;
         mKRValues = NULL;
-        mKind = J2DAnmTevRegKeyKind;
+        mKind = KIND_TEV_REG;
     }
     /* 8030C0F0 */ void getTevColorReg(u16, _GXColorS10*) const;
     /* 8030C3B4 */ void getTevKonstReg(u16, _GXColor*) const;
@@ -320,7 +320,7 @@ public:
         field_0x10 = 0;
         mUpdateMaterialNum = 0;
         mUpdateMaterialID = NULL;
-        mKind = J2DAnmColorKind;
+        mKind = KIND_COLOR;
     }
     /* 801842FC */ virtual ~J2DAnmColor() {}
     /* 8030AF24 */ virtual void searchUpdateMaterialID(J2DScreen*);
