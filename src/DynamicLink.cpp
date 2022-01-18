@@ -669,7 +669,7 @@ extern "C" void ModuleUnresolved() {
     OSReport_Error("Address:      Back Chain    LR Save\n");
     u32 i = 0;
     u32* stackPtr = (u32*)OSGetStackPointer();
-    while(stackPtr!=NULL&&(u32)stackPtr!=0xFFFFFFFF&&i++<0x10) {
+    while((stackPtr != NULL) && ((u32)stackPtr != 0xFFFFFFFF) && (i++ < 0x10)) {
         OSReport_Error("0x%08x:   0x%08x    0x%08x\n",stackPtr,*stackPtr,*(stackPtr+1));
         stackPtr = (u32*)*stackPtr;
     }

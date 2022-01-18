@@ -7,12 +7,13 @@
 #include "JSystem/JKernel/JKRFileCache.h"
 
 struct DynamicModuleControlBase {
-    u16 mLinkCount; //0x0
-    u16 mDoLinkCount; //0x2
-    DynamicModuleControlBase* mPrev; //0x4
-    DynamicModuleControlBase* mNext; //0x8
+    /* 0x00 */u16 mLinkCount;
+    /* 0x02 */u16 mDoLinkCount;
+    /* 0x04 */DynamicModuleControlBase* mPrev;
+    /* 0x08 */DynamicModuleControlBase* mNext;
 
-    /* 802621CC */ virtual ~DynamicModuleControlBase(); //0xC
+    /* 0x0C */ /*vtable*/
+    /* 802621CC */ virtual ~DynamicModuleControlBase();
     /* 800188DC */ virtual const char* getModuleName() const;
     /* 80263210 */ virtual int getModuleSize() const;
     /* 80263200 */ virtual const char* getModuleTypeString() const;
@@ -54,15 +55,15 @@ struct DynamicModuleControl : DynamicModuleControlBase {
     /* 8026275C */ bool initialize();
     /* 80262794 */ static void* callback(void*);
     
-    OSModuleInfo* mModule; //0x10
-    void* mBss; //0x14
-    u32 unk_24; //0x18
-    const char* mName; //0x1c
-    u8 mResourceType; //0x20
-    u8 unk_33; //0x21
-    u16 mChecksum; //0x22
-    s32 mSize; //0x24
-    mDoDvdThd_callback_c* mAsyncLoadCallback; //0x28
+    /* 0x10 */OSModuleInfo* mModule;
+    /* 0x14 */void* mBss;
+    /* 0x18 */u32 unk_24;
+    /* 0x1c */const char* mName;
+    /* 0x20 */u8 mResourceType;
+    /* 0x21 */u8 unk_33;
+    /* 0x22 */u16 mChecksum;
+    /* 0x24 */s32 mSize;
+    /* 0x28 */mDoDvdThd_callback_c* mAsyncLoadCallback;
 
     static u32 sAllocBytes;
     static JKRArchive* sArchive;

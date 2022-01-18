@@ -113,7 +113,15 @@ clean:
 	rm -f -d -r $(BUILD_DIR)/src
 	rm -f $(ELF)
 	rm -f $(DOL)
+	rm -f $(ELF_SHIFT)
+	rm -f $(DOL_SHIFT)
 	rm -f $(BUILD_DIR)/*.a
+
+clean_game:
+	rm -r -f -d $(TARGET)/game
+
+clean_assets:
+	rm -r -f -d game
 
 clean_all: 
 	rm -f -d -r build
