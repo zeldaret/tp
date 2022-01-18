@@ -144,9 +144,11 @@ $(ELF_SHIFT): $(DOL)
 	@echo $(O_FILES) > build/o_files
 	@$(PYTHON) tools/lcf.py dol_shift --output $(LDSCRIPT)
 	$(LD) -application $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files $(LIBS)
+	@cp -v $(ELF_SHIFT) $(ELF)
 
 $(DOL_SHIFT): $(ELF_SHIFT) | tools
 	$(ELF2DOL) $< $@ $(SDATA_PDHR) $(SBSS_PDHR) $(TARGET_COL)
+	@cp -v $(DOL_SHIFT) $(DOL)
 
 shift: dirs $(DOL_SHIFT)
 

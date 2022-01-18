@@ -6,7 +6,13 @@
 
 class dDrawPath_c : public dDlst_base_c {
 public:
-    struct line_class {};
+    struct line_class {
+        /*0x0*/ u8 unk0; 
+        /*0x1*/ u8 unk1; 
+        /*0x2*/ u8 unk2; 
+        /*0x3*/ u8 unk3; 
+        /*0x4*/ u16* unk4;
+    };
 
     struct poly_class {};
 
@@ -52,7 +58,7 @@ public:
     virtual void isDrawPath() = 0;
     virtual void preRenderingMap() = 0;
     virtual void postRenderingMap() = 0;
-    virtual void getBackColor() const = 0;
+    virtual GXColor* getBackColor() const = 0;
 };
 
 class dRenderingFDAmap_c : public dRenderingMap_c {
@@ -65,8 +71,8 @@ public:
     /* 8002ABF8 */ virtual ~dRenderingFDAmap_c();
     /* 8003D188 */ virtual void preRenderingMap();
     /* 8003D320 */ virtual void postRenderingMap();
-    /* 8003D68C */ virtual void getDecoLineColor(int, int);
-    /* 8003D6B8 */ virtual void getDecorationLineWidth(int);
+    /* 8003D68C */ virtual GXColor* getDecoLineColor(int, int);
+    /* 8003D6B8 */ virtual s32 getDecorationLineWidth(int);
 
 private:
     /* 0x04 */ int field_0x4;
