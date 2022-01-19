@@ -31,11 +31,11 @@ lbl_80340B1C:
 /* 80340B90  4B FF B4 71 */	bl OSClearContext
 /* 80340B94  7F E3 FB 78 */	mr r3, r31
 /* 80340B98  4B FF B2 A1 */	bl OSSetCurrentContext
-/* 80340B9C  3C 60 80 45 */	lis r3, 0x8045 /* 0x80457BC8@ha */
-/* 80340BA0  38 03 7B C8 */	addi r0, r3, 0x7BC8 /* 0x80457BC8@l */
-/* 80340BA4  3C 60 80 45 */	lis r3, 0x8045 /* 0x80456BC8@ha */
+/* 80340B9C  3C 60 80 45 */	lis r3, _stack_end+0x1000@ha /* 0x80457BC8@ha */
+/* 80340BA0  38 03 7B C8 */	addi r0, r3, _stack_end+0x1000@l /* 0x80457BC8@l */
+/* 80340BA4  3C 60 80 45 */	lis r3, _stack_end@ha /* 0x80456BC8@ha */
 /* 80340BA8  90 1C 07 1C */	stw r0, 0x71c(r28)
-/* 80340BAC  38 03 6B C8 */	addi r0, r3, 0x6BC8 /* 0x80456BC8@l */
+/* 80340BAC  38 03 6B C8 */	addi r0, r3, _stack_end@l /* 0x80456BC8@l */
 /* 80340BB0  90 1C 07 20 */	stw r0, 0x720(r28)
 /* 80340BB4  3C 60 DE AE */	lis r3, 0xDEAE /* 0xDEADBABE@ha */
 /* 80340BB8  38 03 BA BE */	addi r0, r3, 0xBABE /* 0xDEADBABE@l */

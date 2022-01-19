@@ -126,15 +126,12 @@ private:
     /* 0x10 */ JUTConsole* mDirectConsole;
 };  // Size: 0x14
 
-extern "C" {
-void JUTSetReportConsole(JUTConsole*);
-void JUTSetWarningConsole(JUTConsole*);
-};
-
-void JUTConsole_print_f_va_(JUTConsole*, const char*, va_list);
-JUTConsole* JUTGetReportConsole();
-JUTConsole* JUTGetWarningConsole();
-void JUTReportConsole_f_va(const char*, va_list);
-void JUTReportConsole_f(const char*, ...);
+extern "C" void JUTConsole_print_f_va_(JUTConsole*, const char*, va_list);
+extern "C" void JUTSetReportConsole(JUTConsole*);
+extern "C" JUTConsole* JUTGetReportConsole();
+extern "C" void JUTSetWarningConsole(JUTConsole*);
+extern "C" JUTConsole* JUTGetWarningConsole();
+extern "C" void JUTReportConsole_f_va(const char*, va_list);
+extern "C" void JUTReportConsole_f(const char*, ...);
 
 #endif /* JUTCONSOLE_H */

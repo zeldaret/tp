@@ -78,7 +78,7 @@ public:
     /* 8003FF14 */ virtual void preDrawPath();
     /* 8003FFC4 */ virtual void postDrawPath();
     /* 800402C0 */ virtual void isDrawPath();
-    /* 8003FE4C */ virtual void getBackColor() const;
+    /* 8003FE4C */ virtual GXColor* getBackColor() const;
     /* 800402E0 */ virtual bool getFirstDrawLayerNo();
     /* 800402E8 */ virtual void getNextDrawLayerNo(int);
     /* 800409E0 */ virtual void isDrawIconSingle(dTres_c::data_s const*, int, int, bool, bool,

@@ -1,8 +1,8 @@
 #ifndef D_SAVE_D_SAVE_H
 #define D_SAVE_D_SAVE_H
 
-#include "MSL_C.PPCEABI.bare.H/MSL_Common/src/printf.h"
-#include "MSL_C.PPCEABI.bare.H/MSL_Common/src/string.h"
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf.h"
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/string.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
 

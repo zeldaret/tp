@@ -635,7 +635,7 @@ SECTION_SDATA2 static u8 l_mapBaseColor[4] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void renderingDAmap_c::getBackColor() const {
+asm GXColor* renderingDAmap_c::getBackColor() const {
     nofralloc
 #include "asm/d/map/d_map_path_dmap/getBackColor__16renderingDAmap_cCFv.s"
 }

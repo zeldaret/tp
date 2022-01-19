@@ -990,6 +990,10 @@ inline void GXPosition2u16(u16 x, u16 y) {
     GFX_FIFO(u16) = y;
 }
 
+inline void GXPosition1x16(u16 x) {
+    GFX_FIFO(u16) = x;
+}
+
 inline void GXEnd() {}
 };
 

@@ -1,8 +1,8 @@
 #ifndef M_DO_M_DO_MTX_H
 #define M_DO_M_DO_MTX_H
 
-#include "SSystem/SComponent/c_Xyz.h"
-#include "SSystem/SComponent/c_sXyz.h"
+#include "SSystem/SComponent/c_xyz.h"
+#include "SSystem/SComponent/c_sxyz.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/mtx/quat.h"
 #include "dolphin/types.h"
@@ -15,7 +15,7 @@ void mDoMtx_ZrotS(Mtx, s16);
 void mDoMtx_YrotS(Mtx, s16);
 void mDoMtx_XrotS(Mtx, s16);
 void mDoMtx_YrotM(Mtx, s16);
-void mDoMtx_MtxToRot(MtxP, csXyz*);
+void mDoMtx_MtxToRot(CMtxP, csXyz*);
 
 class mDoMtx_stack_c {
 public:

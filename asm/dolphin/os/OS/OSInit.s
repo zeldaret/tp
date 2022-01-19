@@ -71,8 +71,8 @@ lbl_8033A060:
 /* 8033A06C  80 63 00 30 */	lwz r3, 0x30(r3)
 /* 8033A070  28 03 00 00 */	cmplwi r3, 0
 /* 8033A074  40 82 00 10 */	bne lbl_8033A084
-/* 8033A078  3C 60 80 46 */	lis r3, 0x8046 /* 0x80459BE0@ha */
-/* 8033A07C  38 63 9B E0 */	addi r3, r3, 0x9BE0 /* 0x80459BE0@l */
+/* 8033A078  3C 60 80 46 */	lis r3, _stack_end+0x3018@ha /* 0x80459BE0@ha */
+/* 8033A07C  38 63 9B E0 */	addi r3, r3, _stack_end+0x3018@l /* 0x80459BE0@l */
 /* 8033A080  48 00 00 04 */	b lbl_8033A084
 lbl_8033A084:
 /* 8033A084  48 00 12 21 */	bl OSSetArenaLo
@@ -86,8 +86,8 @@ lbl_8033A084:
 /* 8033A0A4  80 03 00 00 */	lwz r0, 0(r3)
 /* 8033A0A8  28 00 00 02 */	cmplwi r0, 2
 /* 8033A0AC  40 80 00 18 */	bge lbl_8033A0C4
-/* 8033A0B0  3C 60 80 45 */	lis r3, 0x8045 /* 0x80457BC8@ha */
-/* 8033A0B4  38 63 7B C8 */	addi r3, r3, 0x7BC8 /* 0x80457BC8@l */
+/* 8033A0B0  3C 60 80 45 */	lis r3, _stack_end+0x1000@ha /* 0x80457BC8@ha */
+/* 8033A0B4  38 63 7B C8 */	addi r3, r3, _stack_end+0x1000@l /* 0x80457BC8@l */
 /* 8033A0B8  38 03 00 1F */	addi r0, r3, 0x1f
 /* 8033A0BC  54 03 00 34 */	rlwinm r3, r0, 0, 0, 0x1a
 /* 8033A0C0  48 00 11 E5 */	bl OSSetArenaLo
@@ -96,8 +96,8 @@ lbl_8033A0C4:
 /* 8033A0C8  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 8033A0CC  28 03 00 00 */	cmplwi r3, 0
 /* 8033A0D0  40 82 00 10 */	bne lbl_8033A0E0
-/* 8033A0D4  3C 60 81 70 */	lis r3, 0x8170 /* 0x81700000@ha */
-/* 8033A0D8  38 63 00 00 */	addi r3, r3, 0x0000 /* 0x81700000@l */
+/* 8033A0D4  3C 60 81 70 */	lis r3, __ArenaHi@ha /* 0x81700000@ha */
+/* 8033A0D8  38 63 00 00 */	addi r3, r3, __ArenaHi@l /* 0x81700000@l */
 /* 8033A0DC  48 00 00 04 */	b lbl_8033A0E0
 lbl_8033A0E0:
 /* 8033A0E0  48 00 11 BD */	bl OSSetArenaHi
