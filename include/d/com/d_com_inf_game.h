@@ -46,7 +46,11 @@ public:
     /* 0x4 */ JKRHeap* heap;
 };
 
-struct camera_class {};
+struct camera_class : public leafdraw_class {
+    /* 0xC0 */ u8 field_0xc0[0x18];
+    /* 0xD8 */ cXyz field_0xd8;
+    /* 0xE4 */ cXyz field_0xe4;
+};
 
 class dComIfG_camera_info_class {
 public:
@@ -257,6 +261,8 @@ public:
         m3DSetFlag = flag;
     }
     void offPauseFlag() { mPauseFlag = false; }
+    camera_class* getCamera(int idx) { return mCameraInfo[idx].mCamera; }
+    s32 checkStatus(u16 flags) { return flags & mStatus; }
 
 public:
     /* 0x00000 */ dBgS mDBgS;
@@ -858,7 +864,7 @@ inline u8 dComIfGs_getOptVibration() {
     return g_dComIfG_gameInfo.info.getPlayer().getConfig().getVibration();
 }
 
-inline s8 dComIfGp_roomControl_getStayNo() {
+inline s32 dComIfGp_roomControl_getStayNo() {
     return dStage_roomControl_c::getStayNo();
 }
 
@@ -1198,6 +1204,20 @@ inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* param_2,
         param_10, param_11, 1.0f);
 }
 
+inline u32 dComIfGp_particle_set(u16 param_1, const cXyz* param_2,
+                                 const dKy_tevstr_c* param_3, const csXyz* param_4,
+                                 const cXyz* param_5, u8 param_6, dPa_levelEcallBack* param_7,
+                                 s8 param_8, const GXColor* param_9, const GXColor* param_10,
+                                 const cXyz* param_11) {
+    return g_dComIfG_gameInfo.play.getParticle()->setNormal(param_1, param_2, param_3, param_4, 
+        param_5, param_6, param_7, param_8, param_9, param_10, param_11, 1.0f);
+}
+
+inline u32 dComIfGp_particle_set(u16 param_0, const cXyz* param_1, const csXyz* param_2,
+                                 const cXyz* param_3) {
+    return dComIfGp_particle_set(param_0, param_1, NULL, param_2, param_3, 0xFF, NULL, -1, NULL, NULL, NULL);
+}
+
 inline void dComIfGp_particle_levelEmitterOnEventMove(u32 param_0) {
     g_dComIfG_gameInfo.play.getParticle()->forceOnEventMove(param_0);
 }
@@ -1442,6 +1462,40 @@ inline dMsgObject_c* dComIfGp_getMsgObjectClass() {
 
 inline void dComIfGp_offPauseFlag() {
     g_dComIfG_gameInfo.play.offPauseFlag();
+}
+
+inline view_class* dComIfGd_getView() {
+    return g_dComIfG_gameInfo.drawlist.getView();
+}
+
+inline J3DDrawBuffer* dComIfGd_getListFilter() {
+    return g_dComIfG_gameInfo.drawlist.getOpaListFilter();
+}
+
+inline J3DDrawBuffer* dComIfGd_getOpaListIndScreen() {
+    return g_dComIfG_gameInfo.drawlist.getOpaListP0();
+}
+
+inline void dComIfGd_setListSky() {
+    g_dComIfG_gameInfo.drawlist.setOpaListSky();
+    g_dComIfG_gameInfo.drawlist.setXluListSky();
+}
+
+inline void dComIfGd_setList() {
+    g_dComIfG_gameInfo.drawlist.setOpaList();
+    g_dComIfG_gameInfo.drawlist.setXluList();
+}
+
+inline void dComIfGd_setXluListBG() {
+    g_dComIfG_gameInfo.drawlist.setXluListBG();
+}
+
+inline camera_class* dComIfGp_getCamera(int idx) {
+    return g_dComIfG_gameInfo.play.getCamera(idx);
+}
+
+inline s32 dComIfGp_checkStatus(u16 flags) {
+    return g_dComIfG_gameInfo.play.checkStatus(flags);
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

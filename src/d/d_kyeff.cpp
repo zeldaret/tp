@@ -8,6 +8,8 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
+#include "d/com/d_com_inf_game.h"
+
 //
 // Types:
 //
@@ -42,18 +44,19 @@ extern "C" void dKyw_wether_move_draw__Fv();
 extern "C" void dKyw_wether_draw__Fv();
 extern "C" void dKy_FiveSenses_fullthrottle_dark__Fv();
 extern "C" void framework__10Z2EnvSeMgrFv();
-extern "C" void OSGetTime();
-extern "C" void OSTicksToCalendarTime();
-extern "C" void strcmp();
 extern "C" extern void* g_fopKy_Method[5 + 1 /* padding */];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_mEnvSeMgr[780];
 
 //
 // Declarations:
 //
+
+/* 801ADD00-801ADD38 1A8640 0038+00 2/2 0/0 0/0 .text            dKankyo_DayProc__Fv */
+void dKankyo_DayProc() {
+    dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[91]);
+}
 
 static bool dKyeff_Draw(dKyeff_c* ptr) {
     dKyw_wether_draw();

@@ -2075,7 +2075,8 @@ asm mDoExt_invJntPacket::mDoExt_invJntPacket() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DPacket::~J3DPacket() {
+// asm J3DPacket::~J3DPacket() {
+extern "C" asm void __dt__9J3DPacketFv() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/__dt__9J3DPacketFv.s"
 }

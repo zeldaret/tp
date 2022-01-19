@@ -6,6 +6,7 @@
 #include "d/kankyo/d_kankyo.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/kankyo/d_kankyo_data.h"
+#include "Z2AudioLib/Z2EnvSeMgr.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -27,12 +28,6 @@ struct Z2SeMgr {
 
 struct Z2SceneMgr {
     /* 802BA120 */ void load2ndDynamicWave();
-};
-
-struct Z2EnvSeMgr {
-    /* 802C611C */ Z2EnvSeMgr();
-    /* 802C6540 */ ~Z2EnvSeMgr();
-    /* 802C6998 */ void resetScene();
 };
 
 struct Z2AudioMgr {
@@ -3520,11 +3515,6 @@ asm void __sinit_d_kankyo_cpp() {
 #pragma force_active on
 REGISTER_CTORS(0x801ADCA4, __sinit_d_kankyo_cpp);
 #pragma pop
-
-/* 801ADD00-801ADD38 1A8640 0038+00 2/2 0/0 0/0 .text            dKankyo_DayProc__Fv */
-void dKankyo_DayProc() {
-    dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[91]);
-}
 
 /* ############################################################################################## */
 /* 80451070-80451078 -00001 0008+00 0/0 1/1 0/0 .sbss            None */

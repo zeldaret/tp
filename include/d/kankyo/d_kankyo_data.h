@@ -35,6 +35,28 @@ struct dKyd_lightSchejule {
     u8 endTimeLight;
 };  // Size: 0xC
 
+
+enum BloomType {
+    /* 0x0 */ BLOOM_CLEAR,
+    /* 0x1 */ BLOOM_SOFT
+};
+
+#define BLOOMINFO_MAX 64
+struct dKydata_BloomInfo_c {
+    /* 0x0 */ u8 mType;
+    /* 0x1 */ u8 mThreshold;
+    /* 0x2 */ u8 mBlurAmount;
+    /* 0x3 */ u8 mDensity;
+    /* 0x4 */ u8 mColorR;
+    /* 0x5 */ u8 mColorG;
+    /* 0x6 */ u8 mColorB;
+    /* 0x7 */ u8 mOrigDensity;  // ?
+    /* 0x8 */ u8 mSaturateSubtractR;
+    /* 0x9 */ u8 mSaturateSubtractG;
+    /* 0xA */ u8 mSaturateSubtractB;
+    /* 0xB */ u8 mSaturateSubtractA;
+};  // Size: 0xC
+
 void* dKyd_dmpalet_getp();
 void* dKyd_dmpselect_getp();
 void* dKyd_dmenvr_getp();
