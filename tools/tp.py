@@ -351,7 +351,7 @@ def check(debug, rels, game_path, build_path):
     CONSOLE.print(text)
 
     try:
-        check_sha1(game_path, build_path, rels)
+        check_sha1(game_path/"files", build_path, rels)
         text = Text("    OK")
         text.stylize("bold green")
         CONSOLE.print(text)

@@ -102,6 +102,10 @@ SECTION_INIT asm void __start() {
 }
 #pragma pop
 
+extern void* _stack_end;
+extern void* _SDA2_BASE_;
+extern void* _SDA_BASE_;
+
 /* 800032B0-80003340 0001B0 0090+00 1/1 0/0 0/0 .init            __init_registers */
 #pragma push
 #pragma optimization_level 0

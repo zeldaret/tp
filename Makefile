@@ -30,7 +30,9 @@ LDSCRIPT := $(BUILD_DIR)/ldscript.lcf
 
 # Outputs
 DOL     := $(BUILD_DIR)/main.dol
+DOL_SHIFT := $(BUILD_DIR)/main_shift.dol
 ELF     := $(DOL:.dol=.elf)
+ELF_SHIFT     := $(DOL_SHIFT:.dol=.elf)
 MAP     := $(BUILD_DIR)/dolzel2.map
 
 # include list of object files 
@@ -94,8 +96,10 @@ SBSS_PDHR := 10
 
 default: all
 
-all: dirs $(DOL)
+dol: $(DOL)
+	$(SHA1SUM) -c $(TARGET).sha1
 
+all: dirs dol
 # Make sure build directory exists before compiling anything
 dirs:
 	@mkdir -p build
@@ -103,14 +107,21 @@ dirs:
 
 $(DOL): $(ELF) | tools
 	$(ELF2DOL) $< $@ $(SDATA_PDHR) $(SBSS_PDHR) $(TARGET_COL)
-	$(SHA1SUM) -c $(TARGET).sha1
 
 clean:
 	rm -f -d -r $(BUILD_DIR)/libs
 	rm -f -d -r $(BUILD_DIR)/src
 	rm -f $(ELF)
 	rm -f $(DOL)
+	rm -f $(ELF_SHIFT)
+	rm -f $(DOL_SHIFT)
 	rm -f $(BUILD_DIR)/*.a
+
+clean_game:
+	rm -r -f -d $(TARGET)/game
+
+clean_assets:
+	rm -r -f -d game
 
 clean_all: 
 	rm -f -d -r build
@@ -122,6 +133,7 @@ clean_rels:
 tools: $(ELF2DOL)
 
 assets:
+	@mkdir -p game
 	@cd game; $(PYTHON) ../tools/extract_game_assets.py ../$(IMAGENAME)
 
 docs:
@@ -135,6 +147,26 @@ $(ELF): $(LIBS) $(O_FILES)
 	@echo $(O_FILES) > build/o_files
 	@$(PYTHON) tools/lcf.py dol --output $(LDSCRIPT)
 	$(LD) -application $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files $(LIBS)
+
+$(ELF_SHIFT): $(DOL)
+	@echo $(O_FILES) > build/o_files
+	@$(PYTHON) tools/lcf.py dol_shift --output $(LDSCRIPT)
+	$(LD) -application $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files $(LIBS)
+	@cp -v $(ELF_SHIFT) $(ELF)
+
+$(DOL_SHIFT): $(ELF_SHIFT) | tools
+	$(ELF2DOL) $< $@ $(SDATA_PDHR) $(SBSS_PDHR) $(TARGET_COL)
+	@cp -v $(DOL_SHIFT) $(DOL)
+
+shift: dirs $(DOL_SHIFT)
+
+game: | shift rels
+	@mkdir -p game
+	@$(PYTHON) tools/package_game_assets.py game $(BUILD_DIR)
+
+rungame: game
+	@echo If you are playing on a shifted game make sure Hyrule Field Speed hack is disabled in dolphin!
+	dolphin-emu $(BUILD_DIR)/game/sys/main.dol
 
 #
 $(BUILD_DIR)/%.o: %.cpp
@@ -157,4 +189,4 @@ include tools/elf2dol/Makefile
 ### Debug Print ###
 print-% : ; $(info $* is a $(flavor $*) variable set to [$($*)]) @true
 
-.PHONY: default all dirs clean tools docs print-%
+.PHONY: default all dirs clean tools docs shift game rungame print-%

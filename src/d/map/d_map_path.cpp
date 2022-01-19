@@ -17,15 +17,24 @@ struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
 };
 
+
 struct dMpath_n {
     struct dTexObjAggregate_c {
         /* 8003C85C */ void create();
         /* 8003C8F4 */ void remove();
-        /* 8003D740 */ ~dTexObjAggregate_c();
+        /* 8003D740 */ ~dTexObjAggregate_c() {remove();};
+        inline dTexObjAggregate_c() {
+            for(int i = 0;i<7;i++) {
+                mTexObjs[i] = NULL;
+            }
+        }
+        GXTexObj* mTexObjs[7];
     };
 
-    static u8 m_texObjAgg[28];
+    static dTexObjAggregate_c m_texObjAgg;
 };
+
+STATIC_ASSERT(sizeof(dMpath_n::dTexObjAggregate_c)==28);
 
 //
 // Forward References:
@@ -78,9 +87,9 @@ extern "C" void _savegpr_28();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
-extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
+extern "C" extern Mtx g_mDoMtx_identity;
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_clearColor[4];
+extern "C" extern GXColor g_clearColor;
 
 //
 // Declarations:
@@ -232,48 +241,49 @@ asm void dRenderingFDAmap_c::setTevSettingIntensityTextureToCI() const {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80451E08-80451E0C 000408 0004+00 3/3 0/0 0/0 .sdata2          @3836 */
-SECTION_SDATA2 static u8 lit_3836[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
 /* 8003D0AC-8003D188 0379EC 00DC+00 1/1 0/0 0/0 .text            drawBack__18dRenderingFDAmap_cCFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dRenderingFDAmap_c::drawBack() const {
-    nofralloc
-#include "asm/d/map/d_map_path/drawBack__18dRenderingFDAmap_cCFv.s"
+void dRenderingFDAmap_c::drawBack() const {
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS,GX_DIRECT);
+    GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_POS,GX_CLR_RGBA,GX_F32,0);
+    GXColor* colorPtr = getBackColor();
+    GXSetTevColor(GX_TEVREG0,*colorPtr);
+    GXBegin(GX_QUADS,GX_VTXFMT0,4);
+    GXPosition3f32(-field_0x8,-field_0xc,0);
+    GXPosition3f32(field_0x8,-field_0xc,0);
+    GXPosition3f32(field_0x8,field_0xc,0);
+    GXPosition3f32(-field_0x8,field_0xc,0);
+    GXEnd();
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80451E0C-80451E10 00040C 0004+00 1/1 0/0 0/0 .sdata2          @3846 */
-SECTION_SDATA2 static f32 lit_3846 = 1.0f;
-
-/* 80451E10-80451E14 000410 0004+00 1/1 0/0 0/0 .sdata2          @3847 */
-SECTION_SDATA2 static f32 lit_3847 = 0.5f;
-
-/* 80451E14-80451E18 000414 0004+00 1/1 0/0 0/0 .sdata2          @3848 */
-SECTION_SDATA2 static f32 lit_3848 = 10000.0f;
-
-/* 80451E18-80451E20 000418 0008+00 1/1 0/0 0/0 .sdata2          @3850 */
-SECTION_SDATA2 static f64 lit_3850 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8003D188-8003D320 037AC8 0198+00 1/0 8/0 0/0 .text preRenderingMap__18dRenderingFDAmap_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dRenderingFDAmap_c::preRenderingMap() {
-    nofralloc
-#include "asm/d/map/d_map_path/preRenderingMap__18dRenderingFDAmap_cFv.s"
+void dRenderingFDAmap_c::preRenderingMap() {
+    GXSetViewport(0.0f,0.0f,field_0x1c,field_0x1e,0.0f,1.0f);
+    GXSetScissor(0,0,field_0x1c,field_0x1e);
+    GXSetNumChans(1);
+    GXSetNumTevStages(1);
+    GXSetChanCtrl(GX_COLOR0A0,GX_FALSE,GX_SRC_REG,GX_SRC_REG,GX_LIGHT_NULL,GX_DF_NONE,GX_AF_NONE);
+    GXSetAlphaCompare(GX_ALWAYS,0,GX_AOP_OR,GX_ALWAYS,0);
+    GXSetZCompLoc(GX_TRUE);
+    GXSetZMode(GX_FALSE,GX_ALWAYS,GX_FALSE);
+    GXSetBlendMode(GX_BM_NONE,GX_BL_SRC_ALPHA,GX_BL_INV_SRC_ALPHA,GX_LO_CLEAR);
+    GXColor color = g_clearColor;
+    GXSetFog(GX_FOG_NONE,0.0f,0.0f,0.0f,0.0f,color);
+    GXSetCullMode(GX_CULL_NONE);
+    GXSetDither(GX_FALSE);
+    GXSetNumIndStages(0);
+    GXSetClipMode(GX_FALSE);
+    setTevSettingNonTextureDirectColor();
+    float right = field_0x8*0.5f;
+    float top = field_0xc*0.5f;
+    Mtx44 matrix;
+    C_MTXOrtho(matrix,top,-top,-right,right,0.0f,10000.0f);
+    GXSetProjection(matrix,GX_ORTHOGRAPHIC);
+    GXLoadPosMtxImm(g_mDoMtx_identity,GX_PNMTX0);
+    GXSetCurrentMtx(0);
+    drawBack();
 }
-#pragma pop
 
 /* 8003D320-8003D3C0 037C60 00A0+00 1/0 7/1 0/0 .text postRenderingMap__18dRenderingFDAmap_cFv */
 #pragma push
@@ -285,29 +295,73 @@ asm void dRenderingFDAmap_c::postRenderingMap() {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80424678-80424684 051398 000C+00 1/1 0/0 0/0 .bss             @3639 */
-static u8 lit_3639[12];
-
 /* 80424684-804246A0 0513A4 001C+00 2/2 5/5 0/0 .bss             m_texObjAgg__8dMpath_n */
-u8 dMpath_n::m_texObjAgg[28];
+dMpath_n::dTexObjAggregate_c dMpath_n::m_texObjAgg;
+
+/* Enabling the following definition will modify the following function to
+ * make the map look worse for extra speed in the emulator, especially in large
+ * areas such as hyrule field.
+ */
+//#define HYRULE_FIELD_SPEEDHACK
 
 /* 8003D3C0-8003D68C 037D00 02CC+00 0/0 2/2 0/0 .text
  * renderingDecoration__18dRenderingFDAmap_cFPCQ211dDrawPath_c10line_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dRenderingFDAmap_c::renderingDecoration(dDrawPath_c::line_class const* param_0) {
-    nofralloc
-#include "asm/d/map/d_map_path/renderingDecoration__18dRenderingFDAmap_cFPCQ211dDrawPath_c10line_class.s"
+void dRenderingFDAmap_c::renderingDecoration(dDrawPath_c::line_class const* line) {
+    s32 width = getDecorationLineWidth(line->unk1);
+    if (width<=0) {
+        return;
+    }
+    setTevSettingIntensityTextureToCI();
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS,GX_INDEX16);
+    GXSetVtxDesc(GX_VA_TEX0,GX_DIRECT);
+    GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_POS,GX_POS_XY,GX_F32,0);
+    GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_TEX0,GX_POS_XYZ,GX_F32,0);
+    GXSetNumTevStages(1);
+    GXLoadTexObj(dMpath_n::m_texObjAgg.mTexObjs[6],GX_TEXMAP0);
+    u16* unk = line->unk4;
+    s32 unk2 = line->unk2;
+    GXSetLineWidth(width,GX_TO_ONE);
+    GXSetPointSize(width,GX_TO_ONE);
+    GXColor* lineColorPtr = getDecoLineColor(line->unk0&0x3f,line->unk1);
+    GXColor  lineColor = *lineColorPtr;
+    GXSetTevColor(GX_TEVREG0,lineColor);
+    lineColor.r = lineColor.r-4;
+    GXSetTevColor(GX_TEVREG1,lineColor);
+    for (int i = 0; i<unk2; unk++,i++) {
+#ifndef HYRULE_FIELD_SPEEDHACK
+        if(i<unk2-1) {
+            GXSetTevColorIn(GX_TEVSTAGE0,GX_CC_ZERO,GX_CC_ZERO,GX_CC_ZERO,GX_CC_C0);
+            GXSetTevColorOp(GX_TEVSTAGE0,GX_TEV_ADD,GX_TB_ZERO,GX_CS_SCALE_1,GX_TRUE,GX_TEVPREV);
+            GXSetTevAlphaIn(GX_TEVSTAGE0,GX_CA_ZERO,GX_CA_ZERO,GX_CA_ZERO,GX_CA_KONST);
+            GXSetTevAlphaOp(GX_TEVSTAGE0,GX_TEV_ADD,GX_TB_ZERO,GX_CS_SCALE_1,GX_TRUE,GX_TEVPREV);
+            GXBegin(GX_LINESTRIP,GX_VTXFMT0,2);
+            GXPosition1x16(unk[0]);
+            GXTexCoord2f32(0,0);
+            GXPosition1x16(unk[1]);
+            GXTexCoord2f32(0,0);
+        }
+        GXSetTevColorIn(GX_TEVSTAGE0,GX_CC_ZERO,GX_CC_KONST,GX_CC_TEXC,GX_CC_C1);
+        GXSetTevColorOp(GX_TEVSTAGE0,GX_TEV_ADD,GX_TB_ZERO,GX_CS_SCALE_1,GX_TRUE,GX_TEVPREV);
+        GXSetTevAlphaIn(GX_TEVSTAGE0,GX_CA_ZERO,GX_CA_ZERO,GX_CA_ZERO,GX_CA_TEXA);
+        GXSetTevAlphaOp(GX_TEVSTAGE0,GX_TEV_ADD,GX_TB_ZERO,GX_CS_SCALE_1,GX_TRUE,GX_TEVPREV);
+#endif
+        GXBegin(GX_POINTS,GX_VTXFMT0,1);
+        GXPosition1x16(unk[0]);
+        GXTexCoord2f32(0,0);
+        GXEnd();
+    }
+    setTevSettingNonTextureDirectColor();
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS,GX_INDEX16);
+    GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_POS,GX_CLR_RGB,GX_F32,0);
 }
-#pragma pop
 
 /* 8003D68C-8003D6B8 037FCC 002C+00 1/0 6/0 0/0 .text getDecoLineColor__18dRenderingFDAmap_cFii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dRenderingFDAmap_c::getDecoLineColor(int param_0, int param_1) {
+asm GXColor* dRenderingFDAmap_c::getDecoLineColor(int param_0, int param_1) {
     nofralloc
 #include "asm/d/map/d_map_path/getDecoLineColor__18dRenderingFDAmap_cFii.s"
 }
@@ -318,34 +372,9 @@ asm void dRenderingFDAmap_c::getDecoLineColor(int param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dRenderingFDAmap_c::getDecorationLineWidth(int param_0) {
+asm s32 dRenderingFDAmap_c::getDecorationLineWidth(int param_0) {
     nofralloc
 #include "asm/d/map/d_map_path/getDecorationLineWidth__18dRenderingFDAmap_cFi.s"
-}
-#pragma pop
-
-/* 8003D6E4-8003D740 038024 005C+00 0/0 1/0 0/0 .text            __sinit_d_map_path_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_map_path_cpp() {
-    nofralloc
-#include "asm/d/map/d_map_path/__sinit_d_map_path_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x8003D6E4, __sinit_d_map_path_cpp);
-#pragma pop
-
-/* 8003D740-8003D790 038080 0050+00 1/1 0/0 0/0 .text __dt__Q28dMpath_n18dTexObjAggregate_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMpath_n::dTexObjAggregate_c::~dTexObjAggregate_c() {
-    nofralloc
-#include "asm/d/map/d_map_path/__dt__Q28dMpath_n18dTexObjAggregate_cFv.s"
 }
 #pragma pop
 

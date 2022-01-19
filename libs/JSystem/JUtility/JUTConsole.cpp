@@ -258,7 +258,7 @@ asm void JUTConsole::print(char const* param_0) {
 #pragma pop
 
 /* 802E7F30-802E7F7C 2E2870 004C+00 1/1 1/1 0/0 .text            JUTConsole_print_f_va_ */
-void JUTConsole_print_f_va_(JUTConsole* console, const char* fmt, va_list args) {
+extern "C" void JUTConsole_print_f_va_(JUTConsole* console, const char* fmt, va_list args) {
     char buf[1024];
     vsnprintf(buf, sizeof(buf), fmt, args);
     console->print(buf);
@@ -414,12 +414,12 @@ void JUTConsoleManager::setDirectConsole(JUTConsole* pConsole) {
 static JUTConsole* sReportConsole;
 
 /* 802E8520-802E8528 2E2E60 0008+00 1/1 1/1 0/0 .text            JUTSetReportConsole */
-void JUTSetReportConsole(JUTConsole* pConsole) {
+extern "C" void JUTSetReportConsole(JUTConsole* pConsole) {
     sReportConsole = pConsole;
 }
 
 /* 802E8528-802E8530 -00001 0008+00 0/0 0/0 0/0 .text            JUTGetReportConsole */
-JUTConsole* JUTGetReportConsole() {
+extern "C" JUTConsole* JUTGetReportConsole() {
     return sReportConsole;
 }
 
@@ -428,17 +428,17 @@ JUTConsole* JUTGetReportConsole() {
 static JUTConsole* sWarningConsole;
 
 /* 802E8530-802E8538 2E2E70 0008+00 1/1 1/1 0/0 .text            JUTSetWarningConsole */
-void JUTSetWarningConsole(JUTConsole* pConsole) {
+extern "C" void JUTSetWarningConsole(JUTConsole* pConsole) {
     sWarningConsole = pConsole;
 }
 
 /* 802E8538-802E8540 -00001 0008+00 0/0 0/0 0/0 .text            JUTGetWarningConsole */
-JUTConsole* JUTGetWarningConsole() {
+extern "C" JUTConsole* JUTGetWarningConsole() {
     return sWarningConsole;
 }
 
 /* 802E8540-802E85C8 2E2E80 0088+00 2/2 0/0 0/0 .text            JUTReportConsole_f_va */
-void JUTReportConsole_f_va(const char* fmt, va_list args) {
+extern "C" void JUTReportConsole_f_va(const char* fmt, va_list args) {
     char buf[256];
 
     if (JUTGetReportConsole() == NULL) {
@@ -450,7 +450,7 @@ void JUTReportConsole_f_va(const char* fmt, va_list args) {
 }
 
 /* 802E85C8-802E8648 2E2F08 0080+00 2/2 8/8 0/0 .text            JUTReportConsole_f */
-void JUTReportConsole_f(const char* fmt, ...) {
+extern "C" void JUTReportConsole_f(const char* fmt, ...) {
     va_list args;
     va_start(args, fmt);
     JUTReportConsole_f_va(fmt, args);

@@ -497,6 +497,9 @@ u8 __OSStartTime[4];
 extern u8 data_80451634[4];
 u8 data_80451634[4];
 
+extern void* __ArenaHi;
+extern void* _stack_end;
+
 /* 80339F60-8033A440 3348A0 04E0+00 0/0 2/2 0/0 .text            OSInit */
 #pragma push
 #pragma optimization_level 0
