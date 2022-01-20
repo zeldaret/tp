@@ -1204,18 +1204,19 @@ inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* param_2,
         param_10, param_11, 1.0f);
 }
 
-inline u32 dComIfGp_particle_set(u16 param_1, const cXyz* param_2,
-                                 const dKy_tevstr_c* param_3, const csXyz* param_4,
-                                 const cXyz* param_5, u8 param_6, dPa_levelEcallBack* param_7,
-                                 s8 param_8, const GXColor* param_9, const GXColor* param_10,
-                                 const cXyz* param_11) {
-    return g_dComIfG_gameInfo.play.getParticle()->setNormal(param_1, param_2, param_3, param_4, 
-        param_5, param_6, param_7, param_8, param_9, param_10, param_11, 1.0f);
+inline u32 dComIfGp_particle_set(u16 param_1, const cXyz* param_2, const dKy_tevstr_c* param_3,
+                                 const csXyz* param_4, const cXyz* param_5, u8 param_6,
+                                 dPa_levelEcallBack* param_7, s8 param_8, const GXColor* param_9,
+                                 const GXColor* param_10, const cXyz* param_11) {
+    return g_dComIfG_gameInfo.play.getParticle()->setNormal(param_1, param_2, param_3, param_4,
+                                                            param_5, param_6, param_7, param_8,
+                                                            param_9, param_10, param_11, 1.0f);
 }
 
 inline u32 dComIfGp_particle_set(u16 param_0, const cXyz* param_1, const csXyz* param_2,
                                  const cXyz* param_3) {
-    return dComIfGp_particle_set(param_0, param_1, NULL, param_2, param_3, 0xFF, NULL, -1, NULL, NULL, NULL);
+    return dComIfGp_particle_set(param_0, param_1, NULL, param_2, param_3, 0xFF, NULL, -1, NULL,
+                                 NULL, NULL);
 }
 
 inline void dComIfGp_particle_levelEmitterOnEventMove(u32 param_0) {

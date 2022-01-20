@@ -35,7 +35,6 @@ struct dKyd_lightSchejule {
     u8 endTimeLight;
 };  // Size: 0xC
 
-
 enum BloomType {
     /* 0x0 */ BLOOM_CLEAR,
     /* 0x1 */ BLOOM_SOFT

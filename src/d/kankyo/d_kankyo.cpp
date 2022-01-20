@@ -4,9 +4,9 @@
 //
 
 #include "d/kankyo/d_kankyo.h"
+#include "Z2AudioLib/Z2EnvSeMgr.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/kankyo/d_kankyo_data.h"
-#include "Z2AudioLib/Z2EnvSeMgr.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

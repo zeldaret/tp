@@ -4,12 +4,12 @@
 //
 
 #include "d/kankyo/d_kankyo_wether.h"
-#include "d/kankyo/d_kankyo_rain.h"
-#include "d/kankyo/d_kankyo.h"
+#include "Z2AudioLib/Z2EnvSeMgr.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/kankyo/d_kankyo.h"
+#include "d/kankyo/d_kankyo_rain.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "Z2AudioLib/Z2EnvSeMgr.h"
 #include "m_Do/m_Do_audio.h"
 
 //
@@ -154,7 +154,8 @@ extern "C" void dKyr_star_init__Fv();
 extern "C" void dKyr_star_move__Fv();
 extern "C" void cloud_shadow_move__Fv();
 extern "C" void vrkumo_move__Fv();
-extern "C" void dKyr_drawSun__FPA4_fP4cXyzR8_GXColorPPUc(f32 (*param_0)[4], cXyz* param_1, _GXColor& param_2, u8** param_3);
+extern "C" void dKyr_drawSun__FPA4_fP4cXyzR8_GXColorPPUc(f32 (*param_0)[4], cXyz* param_1,
+                                                         _GXColor& param_2, u8** param_3);
 extern "C" void dKyr_drawLenzflare__FPA4_fP4cXyzR8_GXColorPPUc();
 extern "C" void dKyr_drawRain__FPA4_fPPUc();
 extern "C" void dKyr_drawSibuki__FPA4_fPPUc();
@@ -227,7 +228,8 @@ inline void mDoAud_rainPlay(s32 enable) {
 }
 
 inline void mDoAud_seStart(u32 sfx_id, const Vec* param_1, u32 param_2, s8 param_3) {
-    Z2AudioMgr::getInterface()->mSeMgr.seStart(sfx_id, param_1, param_2, param_3, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    Z2AudioMgr::getInterface()->mSeMgr.seStart(sfx_id, param_1, param_2, param_3, 1.0f, 1.0f, -1.0f,
+                                               -1.0f, 0);
 }
 
 /* 80056AA8-80056AF8 0513E8 0050+00 3/3 0/0 0/0 .text dKyw_setDrawPacketList__FP9J3DPacketi */
@@ -278,7 +280,7 @@ static J3DPacket* dKyw_setDrawPacketListXluBg(J3DPacket* p_packet, int type) {
 
 /* 80056C60-80056C98 0515A0 0038+00 1/0 0/0 0/0 .text            draw__18dKankyo_sun_PacketFv */
 void dKankyo_sun_Packet::draw() {
-    dKyr_drawSun(j3dSys.getViewMtx(), &field_0x10[0], field_0x70, &mpResMoon);
+    dKyr_drawSun(j3dSys.getViewMtx(), &field_0x10[0], mColor, &mpResMoon);
 }
 
 /* 80056C98-80056CD0 0515D8 0038+00 1/0 0/0 0/0 .text            draw__22dKankyo_sunlenz_PacketFv */
@@ -540,62 +542,62 @@ SECTION_SDATA2 static u8 lit_4378[4] = {
 SECTION_SDATA2 static f32 lit_4379 = 1.0f;
 
 // remove these once float data is fixed
-inline u32 tmp_dComIfGp_particle_set(u16 param_1, const cXyz* param_2,
-                                 const dKy_tevstr_c* param_3, const csXyz* param_4,
-                                 const cXyz* param_5, u8 param_6, dPa_levelEcallBack* param_7,
-                                 s8 param_8, const GXColor* param_9, const GXColor* param_10,
-                                 const cXyz* param_11) {
-    return g_dComIfG_gameInfo.play.getParticle()->setNormal(param_1, param_2, param_3, param_4, 
-        param_5, param_6, param_7, param_8, param_9, param_10, param_11, lit_4379);
+inline u32 tmp_dComIfGp_particle_set(u16 param_1, const cXyz* param_2, const dKy_tevstr_c* param_3,
+                                     const csXyz* param_4, const cXyz* param_5, u8 param_6,
+                                     dPa_levelEcallBack* param_7, s8 param_8,
+                                     const GXColor* param_9, const GXColor* param_10,
+                                     const cXyz* param_11) {
+    return g_dComIfG_gameInfo.play.getParticle()->setNormal(param_1, param_2, param_3, param_4,
+                                                            param_5, param_6, param_7, param_8,
+                                                            param_9, param_10, param_11, lit_4379);
 }
 
 inline u32 tmp_dComIfGp_particle_set(u16 param_0, const cXyz* param_1, const csXyz* param_2,
-                                 const cXyz* param_3) {
-    return tmp_dComIfGp_particle_set(param_0, param_1, NULL, param_2, param_3, 0xFF, NULL, -1, NULL, NULL, NULL);
+                                     const cXyz* param_3) {
+    return tmp_dComIfGp_particle_set(param_0, param_1, NULL, param_2, param_3, 0xFF, NULL, -1, NULL,
+                                     NULL, NULL);
 }
 
 /* 800574E0-800579EC 051E20 050C+00 0/0 1/1 0/0 .text            dKyw_wether_init__Fv */
 void dKyw_wether_init() {
-    g_env_light.field_0xe70 = 0;
+    g_env_light.mSunPacketEnabled = false;
     g_env_light.field_0xed4.field_0x0 = 0;
     g_env_light.field_0xed4.field_0x4 = 0;
-    g_env_light.field_0xe7c = 0;
-    g_env_light.mRainCheck = 0;
-    g_env_light.field_0xe88 = 0;
+    g_env_light.mRainPacketEnabled = 0;
+    g_env_light.mRainCount = 0;
+    g_env_light.mSnowPacketEnabled = 0;
     g_env_light.field_0xe92 = 0;
-    g_env_light.field_0xe8c = 0;
+    g_env_light.mSnowCount = 0;
     g_env_light.field_0xe90 = 0;
     g_env_light.field_0xe91 = 0;
-    g_env_light.field_0xe98 = 0;
-    g_env_light.field_0xe9c = 0;
+    g_env_light.mStarPacketEnabled = false;
+    g_env_light.mStarCount = 0;
     f32 tmp0 = FLOAT_LABEL(lit_4378);
-    g_env_light.field_0xea0 = tmp0;
-    g_env_light.field_0xeb4 = 0;
+    g_env_light.mStarDensity = tmp0;
+    g_env_light.mCloudPacketEnabled = 0;
     g_env_light.field_0xeb8 = 0;
     g_env_light.field_0xebc = tmp0;
     g_env_light.field_0xeb5 = 0;
-    g_env_light.field_0xea8 = 0;
+    g_env_light.mHousiPacketEnabled = false;
     g_env_light.field_0xeac = 0;
-    g_env_light.field_0xf20 = 0;
+    g_env_light.mOdourPacketStatus = 0;
     g_env_light.field_0xf24 = 0;
     g_env_light.field_0xf21 = 0;
     g_env_light.mpOdourPacket = NULL;
     g_env_light.field_0x1038 = 0;
     g_env_light.field_0x103c = 0;
-    g_env_light.field_0x1044 = 0;
+    g_env_light.mMudPacketEnabled = 0;
     g_env_light.field_0x1048 = 0;
-    g_env_light.field_0x1050 = 0;
+    g_env_light.mEvilPacketEnabled = 0;
     g_env_light.field_0x1054 = 0;
     g_env_light.field_0x1051 = 0;
     g_env_light.field_0xe60 = tmp0;
 
     dKyw_wind_init();
     dKyw_pntwind_init();
-    
-    // Stage is Zora's Domain
-    // Room is Outside Throne Room
-    if (!strcmp(dComIfGp_getStartStageName(), "F_SP113") &&
-        dComIfGp_roomControl_getStayNo() == 1 &&
+
+    // Stage is Zora's Domain and Room is Outside Throne Room
+    if (!strcmp(dComIfGp_getStartStageName(), "F_SP113") && dComIfGp_roomControl_getStayNo() == 1 &&
         dComIfG_play_c::getLayerNo(0) < 8) {
         cXyz tmp;
         f32 tmp0_2 = FLOAT_LABEL(lit_4378);
@@ -621,7 +623,8 @@ void dKyw_wether_init() {
     // Stage is City in the Sky
     // Room is Entrance or Right Wing Outside or Left Wing Outside or Central Hub Outside
     if (!strcmp(dComIfGp_getStartStageName(), "D_MN07")) {
-        if ((dComIfGp_roomControl_getStayNo() == 0 || dComIfGp_roomControl_getStayNo() == 3) || dComIfGp_roomControl_getStayNo() == 6 || dComIfGp_roomControl_getStayNo() == 13) {
+        if ((dComIfGp_roomControl_getStayNo() == 0 || dComIfGp_roomControl_getStayNo() == 3) ||
+            dComIfGp_roomControl_getStayNo() == 6 || dComIfGp_roomControl_getStayNo() == 13) {
             g_mEnvSeMgr.initStrongWindSe();
         }
     }
@@ -635,50 +638,50 @@ void dKyw_wether_init2() {
 
 /* 80057A04-80057C84 052344 0280+00 0/0 1/1 0/0 .text            dKyw_wether_delete__Fv */
 void dKyw_wether_delete() {
-    if (g_env_light.field_0xe70 != 0) {
+    if (g_env_light.mSunPacketEnabled) {
         delete g_env_light.mpSunPacket;
         delete g_env_light.mpSunLenzPacket;
         g_env_light.mpSunPacket = NULL;
         g_env_light.mpSunLenzPacket = NULL;
     }
 
-    if (g_env_light.field_0xe7c != 0) {
+    if (g_env_light.mRainPacketEnabled) {
         delete g_env_light.mpRainPacket;
         g_env_light.mpRainPacket = NULL;
     }
 
-    if (g_env_light.field_0xe88 != 0) {
+    if (g_env_light.mSnowPacketEnabled) {
         delete g_env_light.mpSnowPacket;
         g_env_light.mpSnowPacket = NULL;
         g_env_light.field_0xe90 = 0;
     }
 
-    if (g_env_light.field_0xe98 != 0) {
+    if (g_env_light.mStarPacketEnabled) {
         delete g_env_light.mpStarPacket;
         g_env_light.mpStarPacket = NULL;
     }
 
-    if (g_env_light.field_0xea8 != 0) {
+    if (g_env_light.mHousiPacketEnabled) {
         delete g_env_light.mpHousiPacket;
         g_env_light.mpHousiPacket = NULL;
     }
 
-    if (g_env_light.field_0xeb4 != 0) {
+    if (g_env_light.mCloudPacketEnabled) {
         delete g_env_light.mpCloudPacket;
         g_env_light.mpCloudPacket = NULL;
     }
 
-    if (g_env_light.field_0xf20 != 0) {
+    if (g_env_light.mOdourPacketStatus) {
         delete g_env_light.mpOdourPacket;
         g_env_light.mpOdourPacket = NULL;
     }
 
-    if (g_env_light.field_0x1044 != 0) {
+    if (g_env_light.mMudPacketEnabled) {
         delete g_env_light.mpMudPacket;
         g_env_light.mpMudPacket = NULL;
     }
 
-    if (g_env_light.field_0x1050 != 0) {
+    if (g_env_light.mEvilPacketEnabled) {
         delete g_env_light.mpEvilPacket;
         g_env_light.mpEvilPacket = NULL;
     }
@@ -783,39 +786,53 @@ SECTION_SDATA2 static f32 lit_4611 = 1000000000.0f;
 
 /* 80058318-80058894 052C58 057C+00 1/1 0/0 0/0 .text            wether_move_sun__Fv */
 static void wether_move_sun() {
-    s32 check = false;
-    if (dComIfGp_checkStatus(1) && g_env_light.field_0x12d4 == 0) {
+    s32 sunVisible = false;
+    if (dComIfGp_checkStatus(1) && !g_env_light.field_0x12d4) {
         roomRead_class* room = dComIfGp_getStageRoom();
         if (room != NULL && room->field_0x0 > dComIfGp_roomControl_getStayNo()) {
-            check = dStage_roomRead_dt_c_GetVrboxswitch(*room->field_0x4[dComIfGp_roomControl_getStayNo()]);
+            sunVisible = dStage_roomRead_dt_c_GetVrboxswitch(
+                *room->field_0x4[dComIfGp_roomControl_getStayNo()]);
         }
 
+        // Stage is Hero Shade arena
         if (!strcmp(dComIfGp_getStartStageName(), "F_SP200")) {
-            check = true;
-        } else if (!strcmp(dComIfGp_getStartStageName(), "D_MN09") || !strcmp(dComIfGp_getStartStageName(), "D_MN09A")) {
-            check = false;
+            sunVisible = true;
+        // Stage is Hyrule Castle or Castle Throne Room
+        } else if (!strcmp(dComIfGp_getStartStageName(), "D_MN09") ||
+                   !strcmp(dComIfGp_getStartStageName(), "D_MN09A")) {
+            sunVisible = false;
         }
 
-        switch (g_env_light.field_0xe70) {
-        case 0:
-            if (check && dKy_darkworld_check() != true) {
+        switch (g_env_light.mSunPacketEnabled) {
+        case FALSE:
+            if (sunVisible && dKy_darkworld_check() != true) {
                 g_env_light.mpSunPacket = new (0x20) dKankyo_sun_Packet();
                 g_env_light.mpSunLenzPacket = new (0x20) dKankyo_sunlenz_Packet();
                 if (g_env_light.mpSunPacket != NULL && g_env_light.mpSunLenzPacket != NULL) {
                     g_env_light.mpSunPacket->mpResMoon = (u8*)dComIfG_getStageRes("F_moon.bti");
                     g_env_light.mpSunPacket->mpResMoon_A = (u8*)dComIfG_getStageRes("F_moon_A.bti");
-                    g_env_light.mpSunPacket->mpResMoon_A_A00 = (u8*)dComIfG_getStageRes("F_moon_A_A00.bti");
-                    g_env_light.mpSunPacket->mpResMoon_A_A01 = (u8*)dComIfG_getStageRes("F_moon_A_A01.bti");
-                    g_env_light.mpSunPacket->mpResMoon_A_A02 = (u8*)dComIfG_getStageRes("F_moon_A_A02.bti");
-                    g_env_light.mpSunPacket->mpResMoon_A_A03 = (u8*)dComIfG_getStageRes("F_moon_A_A03.bti");
-                    
+                    g_env_light.mpSunPacket->mpResMoon_A_A00 =
+                        (u8*)dComIfG_getStageRes("F_moon_A_A00.bti");
+                    g_env_light.mpSunPacket->mpResMoon_A_A01 =
+                        (u8*)dComIfG_getStageRes("F_moon_A_A01.bti");
+                    g_env_light.mpSunPacket->mpResMoon_A_A02 =
+                        (u8*)dComIfG_getStageRes("F_moon_A_A02.bti");
+                    g_env_light.mpSunPacket->mpResMoon_A_A03 =
+                        (u8*)dComIfG_getStageRes("F_moon_A_A03.bti");
+
                     if (g_env_light.mpSunPacket->mpResMoon == NULL) {
-                        g_env_light.mpSunPacket->mpResMoon = (u8*)dComIfG_getObjectRes("Always", 0x56);
-                        g_env_light.mpSunPacket->mpResMoon_A = (u8*)dComIfG_getObjectRes("Always", 0x56);
-                        g_env_light.mpSunPacket->mpResMoon_A_A00 = (u8*)dComIfG_getObjectRes("Always", 0x56);
-                        g_env_light.mpSunPacket->mpResMoon_A_A01 = (u8*)dComIfG_getObjectRes("Always", 0x56);
-                        g_env_light.mpSunPacket->mpResMoon_A_A02 = (u8*)dComIfG_getObjectRes("Always", 0x56);
-                        g_env_light.mpSunPacket->mpResMoon_A_A03 = (u8*)dComIfG_getObjectRes("Always", 0x56);
+                        g_env_light.mpSunPacket->mpResMoon =
+                            (u8*)dComIfG_getObjectRes("Always", 0x56);
+                        g_env_light.mpSunPacket->mpResMoon_A =
+                            (u8*)dComIfG_getObjectRes("Always", 0x56);
+                        g_env_light.mpSunPacket->mpResMoon_A_A00 =
+                            (u8*)dComIfG_getObjectRes("Always", 0x56);
+                        g_env_light.mpSunPacket->mpResMoon_A_A01 =
+                            (u8*)dComIfG_getObjectRes("Always", 0x56);
+                        g_env_light.mpSunPacket->mpResMoon_A_A02 =
+                            (u8*)dComIfG_getObjectRes("Always", 0x56);
+                        g_env_light.mpSunPacket->mpResMoon_A_A03 =
+                            (u8*)dComIfG_getObjectRes("Always", 0x56);
                     }
                     g_env_light.mpSunPacket->field_0x28 = 0;
                     g_env_light.mpSunPacket->field_0x29 = 0;
@@ -824,7 +841,7 @@ static void wether_move_sun() {
                     g_env_light.mpSunPacket->field_0x60 = tmp0;
                     g_env_light.mpSunPacket->field_0x64 = tmp0;
                     g_env_light.mpSunPacket->field_0x68 = tmp0;
-                    
+
                     if (g_env_light.mDaytime < lit_4610) {
                         g_env_light.mpSunPacket->field_0x6c = lit_4379;
                     } else {
@@ -837,9 +854,12 @@ static void wether_move_sun() {
                     g_env_light.mpSunPacket->field_0x54 = 0;
                     g_env_light.mpSunPacket->field_0x58 = 0;
 
-                    g_env_light.mpSunLenzPacket->mpResBall = (u8*)dComIfG_getObjectRes("Always", 0x4A);
-                    g_env_light.mpSunLenzPacket->mpResRing_A = (u8*)dComIfG_getObjectRes("Always", 0x57);
-                    g_env_light.mpSunLenzPacket->mpResLenz = (u8*)dComIfG_getObjectRes("Always", 0x5C);
+                    g_env_light.mpSunLenzPacket->mpResBall =
+                        (u8*)dComIfG_getObjectRes("Always", 0x4A);
+                    g_env_light.mpSunLenzPacket->mpResRing_A =
+                        (u8*)dComIfG_getObjectRes("Always", 0x57);
+                    g_env_light.mpSunLenzPacket->mpResLenz =
+                        (u8*)dComIfG_getObjectRes("Always", 0x5C);
                     g_env_light.mpSunLenzPacket->field_0x8c = lit_4611;
                     f32 tmp0_2 = FLOAT_LABEL(lit_4378);
                     g_env_light.mpSunLenzPacket->field_0x90 = tmp0_2;
@@ -847,13 +867,13 @@ static void wether_move_sun() {
                     g_env_light.mpSunLenzPacket->field_0x9e = 0;
                     dKyr_sun_move();
                     dKyr_lenzflare_move();
-                    g_env_light.field_0xe70 = 1;
+                    g_env_light.mSunPacketEnabled = true;
                 }
             }
             break;
-        case 1:
-            if (!check) {
-                g_env_light.field_0xe70 = 0;
+        case TRUE:
+            if (!sunVisible) {
+                g_env_light.mSunPacketEnabled = false;
                 delete g_env_light.mpSunPacket;
                 delete g_env_light.mpSunLenzPacket;
                 g_env_light.mpSunPacket = NULL;
@@ -887,30 +907,30 @@ SECTION_SDATA2 static f64 lit_4671 = 4503601774854144.0 /* cast s32 to float */;
 // matches with literals
 #ifdef NONMATCHING
 static void wether_move_rain() {
-    switch (g_env_light.field_0xe7c) {
-    case 0:
-        if (g_env_light.mRainCheck > 3) {
+    switch (g_env_light.mRainPacketEnabled) {
+    case FALSE:
+        if (g_env_light.mRainCount > 3) {
             g_env_light.mpRainPacket = new (32) dKankyo_rain_Packet();
 
             if (g_env_light.mpRainPacket != NULL) {
                 dKyr_rain_init();
                 dKyr_rain_move();
-                g_env_light.field_0xe7c = 1;
+                g_env_light.mRainPacketEnabled = 1;
 
-                if (g_env_light.mRainCheck != 250) {
+                if (g_env_light.mRainCount != 250) {
                     mDoAud_seStart(JA_SE_ATM_RAIN_START, NULL, 0, 0);
                 }
             }
         }
         break;
-    case 1:
+    case TRUE:
         camera_class* cam = dComIfGp_getCamera(0);
         dKyr_rain_move();
-        
-        if (g_env_light.field_0xe8c == 0 && cam != NULL) {
+
+        if (g_env_light.mSnowCount == 0 && cam != NULL) {
             // Stage is not Fishing Pond
             if (strcmp(dComIfGp_getStartStageName(), "R_SP127") || cam->field_0xd8.y > 0.0f) {
-                if (g_env_light.mRainCheck < 125.0f) {
+                if (g_env_light.mRainCount < 125.0f) {
                     mDoAud_rainPlay(FALSE);
                 } else {
                     mDoAud_rainPlay(TRUE);
@@ -918,8 +938,8 @@ static void wether_move_rain() {
             }
         }
 
-        if (g_env_light.mRainCheck <= 3) {
-            g_env_light.field_0xe7c = 0;
+        if (g_env_light.mRainCount <= 3) {
+            g_env_light.mRainPacketEnabled = 0;
             mDoAud_seStart(JA_SE_ATM_RAIN_END, NULL, 0, 0);
             delete g_env_light.mpRainPacket;
             g_env_light.mpRainPacket = NULL;
@@ -940,17 +960,17 @@ static asm void wether_move_rain() {
 
 /* 80058B00-80058B8C 053440 008C+00 1/1 0/0 0/0 .text            wether_move_snow__Fv */
 static void wether_move_snow() {
-    switch (g_env_light.field_0xe88) {
-    case 0:
-        if (g_env_light.field_0xe8c != 0 || g_env_light.field_0xe90 != 0) {
+    switch (g_env_light.mSnowPacketEnabled) {
+    case FALSE:
+        if (g_env_light.mSnowCount != 0 || g_env_light.field_0xe90 != 0) {
             dKyr_snow_init();
             if (g_env_light.mpSnowPacket != NULL) {
                 dKyr_snow_move();
-                g_env_light.field_0xe88 = 1;
+                g_env_light.mSnowPacketEnabled = 1;
             }
         }
         break;
-    case 1:
+    case TRUE:
         dKyr_snow_move();
         break;
     }
@@ -1003,73 +1023,83 @@ SECTION_SDATA2 static f32 lit_4772 = 500.0f;
 
 /* 80058B8C-80058F18 0534CC 038C+00 1/1 0/0 0/0 .text            wether_move_star__Fv */
 static void wether_move_star() {
-    s32 check = 0;
-    if (!strcmp(dComIfGp_getStartStageName(), "D_MN09") || !strcmp(dComIfGp_getStartStageName(), "D_MN09A")) {
+    s32 starsVisible = false;
+    // Stage is Hyrule Castle or Castle Throne Room
+    if (!strcmp(dComIfGp_getStartStageName(), "D_MN09") ||
+        !strcmp(dComIfGp_getStartStageName(), "D_MN09A")) {
         return;
     } else {
-        if ((dComIfGp_checkStatus(1) && g_env_light.field_0x12d4 == 0) || !strcmp(dComIfGp_getStartStageName(), "F_SP200")) {
+        // Stage is Hero Shade arena
+        if ((dComIfGp_checkStatus(1) && !g_env_light.field_0x12d4) ||
+            !strcmp(dComIfGp_getStartStageName(), "F_SP200")) {
             roomRead_class* room = dComIfGp_getStageRoom();
             if (room != NULL && room->field_0x0 > dComIfGp_roomControl_getStayNo()) {
-                check = dStage_roomRead_dt_c_GetVrboxswitch(*room->field_0x4[dComIfGp_roomControl_getStayNo()]);
+                starsVisible = dStage_roomRead_dt_c_GetVrboxswitch(
+                    *room->field_0x4[dComIfGp_roomControl_getStayNo()]);
             }
 
+            // Stage is Hero Shade arena
             if (!strcmp(dComIfGp_getStartStageName(), "F_SP200")) {
-                check = true;
+                starsVisible = true;
             }
 
-            if (check && dKy_darkworld_check() != true) {
-                f32 dvar7;
+            if (starsVisible && dKy_darkworld_check() != true) {
+                f32 density;
                 f32 time = g_env_light.getDaytime();
                 if (time >= lit_4761 || time < lit_4762) {
-                    dvar7 = lit_4379;
+                    density = lit_4379;
                 } else if (time > lit_4763) {
-                    dvar7 = lit_4379 - lit_4764 * (lit_4761 - time);
+                    density = lit_4379 - lit_4764 * (lit_4761 - time);
                 } else {
                     if (time < lit_4765) {
-                        dvar7 = lit_4766 * (lit_4765 - time);
+                        density = lit_4766 * (lit_4765 - time);
                     } else {
-                        dvar7 = FLOAT_LABEL(lit_4378);
+                        density = FLOAT_LABEL(lit_4378);
                     }
                 }
 
                 if (g_env_light.field_0x12c8 != 0) {
-                    dvar7 = FLOAT_LABEL(lit_4378);
+                    density = FLOAT_LABEL(lit_4378);
                 }
 
                 if (g_env_light.field_0x12c3 != 0 && g_env_light.field_0x11dc > lit_4767) {
-                    dvar7 = FLOAT_LABEL(lit_4378);
+                    density = FLOAT_LABEL(lit_4378);
                 }
 
+                // Stage is Hero Shade arena
                 if (!strcmp(dComIfGp_getStartStageName(), "F_SP200")) {
-                    dvar7 = lit_4379;
+                    density = lit_4379;
                 }
 
-                cLib_addCalc(&g_env_light.field_0xea0, dvar7, lit_4768, lit_4769, lit_4770);
-                g_env_light.field_0xe9c = (s16)(lit_4771 * g_env_light.field_0xea0);
+                cLib_addCalc(&g_env_light.mStarDensity, density, lit_4768, lit_4769, lit_4770);
+                g_env_light.mStarCount = (s16)(lit_4771 * g_env_light.mStarDensity);
 
-                if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") || !strcmp(dComIfGp_getStartStageName(), "F_SP122") || !strcmp(dComIfGp_getStartStageName(), "F_SP128")) {
-                    g_env_light.field_0xe9c = (s16)(lit_4772 * g_env_light.field_0xea0);
+                // Stage is Hyrule Field or Outside Castle Town or Hidden Village
+                if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") ||
+                    !strcmp(dComIfGp_getStartStageName(), "F_SP122") ||
+                    !strcmp(dComIfGp_getStartStageName(), "F_SP128")) {
+                    g_env_light.mStarCount = (s16)(lit_4772 * g_env_light.mStarDensity);
                 }
 
-                switch (g_env_light.field_0xe98) {
-                case 0:
-                    if (g_env_light.field_0xe9c != 0) {
+                switch (g_env_light.mStarPacketEnabled) {
+                case FALSE:
+                    if (g_env_light.mStarCount != 0) {
                         dKyr_star_init();
                         dKyr_shstar_init();
 
                         if (g_env_light.mpStarPacket != NULL) {
                             dKyr_star_move();
                             dKyr_shstar_move();
-                            g_env_light.field_0xe98 = 1;
+                            g_env_light.mStarPacketEnabled = true;
                         }
                     }
                     break;
-                case 1:
+                case TRUE:
                     dKyr_star_move();
                     dKyr_shstar_move();
-                    
-                    if (g_env_light.field_0xe9c == 0) {
-                        g_env_light.field_0xe98 = 0;
+
+                    if (g_env_light.mStarCount == 0) {
+                        g_env_light.mStarPacketEnabled = false;
 
                         delete g_env_light.mpStarPacket;
                         g_env_light.mpStarPacket = NULL;
@@ -1085,14 +1115,18 @@ static void wether_move_star() {
 static void wether_move_housi() {
     // Stage is Palace of Twilight or Zant Throne Room, or Phantom Zant arena
     // Room is not Entrance or Boss Key room
-    if ((!strcmp(dComIfGp_getStartStageName(), "D_MN08") && dComIfGp_roomControl_getStayNo() != 0 && dComIfGp_roomControl_getStayNo() != 11) ||
-        (!strcmp(dComIfGp_getStartStageName(), "D_MN08A") || !strcmp(dComIfGp_getStartStageName(), "D_MN08B") || !strcmp(dComIfGp_getStartStageName(), "D_MN08C"))) {
+    if ((!strcmp(dComIfGp_getStartStageName(), "D_MN08") && dComIfGp_roomControl_getStayNo() != 0 &&
+         dComIfGp_roomControl_getStayNo() != 11) ||
+        (!strcmp(dComIfGp_getStartStageName(), "D_MN08A") ||
+         !strcmp(dComIfGp_getStartStageName(), "D_MN08B") ||
+         !strcmp(dComIfGp_getStartStageName(), "D_MN08C"))) {
         return;
     }
 
     // Stage is darkworld or Stage is Lake Hylia and Room is Lanayru Spring
-    if (dKy_darkworld_check() == true || (!strcmp(dComIfGp_getStartStageName(), "F_SP115") &&
-        dComIfGp_roomControl_getStayNo() == 1 && dComIfGp_getStartStageLayer() == 9)) {
+    if (dKy_darkworld_check() == true ||
+        (!strcmp(dComIfGp_getStartStageName(), "F_SP115") &&
+         dComIfGp_roomControl_getStayNo() == 1 && dComIfGp_getStartStageLayer() == 9)) {
         if (g_env_light.field_0x12d2 != 0) {
             g_env_light.field_0xea9 = 0;
             g_env_light.field_0xeac = 200;
@@ -1101,17 +1135,21 @@ static void wether_move_housi() {
             // Stage is Castle Town and Room is Castle Town Center or
             // Stage is Faron Woods and Room is South Faron or
             // Stage is Lake Hylia
-            if ((!strcmp(dComIfGp_getStartStageName(), "F_SP108") && dComIfGp_getStartStageRoomNo() == 1 && dComIfGp_getStartStageLayer() == 13) ||
-                (!strcmp(dComIfGp_getStartStageName(), "F_SP116") && dComIfGp_getStartStageRoomNo() == 0 && dComIfGp_getStartStageLayer() == 8) ||
-                (!strcmp(dComIfGp_getStartStageName(), "F_SP108") && dComIfGp_getStartStageRoomNo() == 0 && dComIfGp_getStartStageLayer() == 9) ||
-                (!strcmp(dComIfGp_getStartStageName(), "F_SP115") && dComIfGp_getStartStageLayer() == 9)) {
+            if ((!strcmp(dComIfGp_getStartStageName(), "F_SP108") &&
+                 dComIfGp_getStartStageRoomNo() == 1 && dComIfGp_getStartStageLayer() == 13) ||
+                (!strcmp(dComIfGp_getStartStageName(), "F_SP116") &&
+                 dComIfGp_getStartStageRoomNo() == 0 && dComIfGp_getStartStageLayer() == 8) ||
+                (!strcmp(dComIfGp_getStartStageName(), "F_SP108") &&
+                 dComIfGp_getStartStageRoomNo() == 0 && dComIfGp_getStartStageLayer() == 9) ||
+                (!strcmp(dComIfGp_getStartStageName(), "F_SP115") &&
+                 dComIfGp_getStartStageLayer() == 9)) {
                 g_env_light.field_0xeac = 0;
             }
         }
     }
 
-    switch (g_env_light.field_0xea8) {
-    case 0:
+    switch (g_env_light.mHousiPacketEnabled) {
+    case FALSE:
         if (g_env_light.field_0xeac != 0) {
             g_env_light.mpHousiPacket = new (32) dKankyo_housi_Packet();
 
@@ -1121,19 +1159,24 @@ static void wether_move_housi() {
                 } else {
                     if (g_env_light.field_0xea9 == 2) {
                         if (g_env_light.field_0x12fe == 3) {
-                            g_env_light.mpHousiPacket->mpResTex = (u8*)dComIfG_getStageRes("momiji64s3tc.bti");
+                            g_env_light.mpHousiPacket->mpResTex =
+                                (u8*)dComIfG_getStageRes("momiji64s3tc.bti");
                         } else {
-                            g_env_light.mpHousiPacket->mpResTex = (u8*)dComIfG_getStageRes("sakura32ia4.bti");
+                            g_env_light.mpHousiPacket->mpResTex =
+                                (u8*)dComIfG_getStageRes("sakura32ia4.bti");
                         }
 
                         if (g_env_light.mpHousiPacket->mpResTex == NULL) {
-                            g_env_light.mpHousiPacket->mpResTex = (u8*)dComIfG_getObjectRes("Always", 0x55);
+                            g_env_light.mpHousiPacket->mpResTex =
+                                (u8*)dComIfG_getObjectRes("Always", 0x55);
                         }
                     } else if (g_env_light.field_0xea9 == 0) {
-                        g_env_light.mpHousiPacket->mpResTex = (u8*)dComIfG_getObjectRes("Always", 0x55);
+                        g_env_light.mpHousiPacket->mpResTex =
+                            (u8*)dComIfG_getObjectRes("Always", 0x55);
                     } else {
-                        g_env_light.mpHousiPacket->mpResTex = (u8*)dComIfG_getObjectRes("Always", 0x56);
-                    }    
+                        g_env_light.mpHousiPacket->mpResTex =
+                            (u8*)dComIfG_getObjectRes("Always", 0x56);
+                    }
                 }
 
                 f32 tmp0 = FLOAT_LABEL(lit_4378);
@@ -1143,13 +1186,14 @@ static void wether_move_housi() {
                     g_env_light.mpHousiPacket->field_0x18[i].field_0x0 = 0;
                 }
                 dKyr_housi_move();
-                g_env_light.field_0xea8 = 1;
+                g_env_light.mHousiPacketEnabled = true;
             }
         }
         break;
-    case 1:
-        if (g_env_light.field_0xeac == 0 && g_env_light.mpHousiPacket->field_0x5de8 <= FLOAT_LABEL(lit_4378)) {
-            g_env_light.field_0xea8 = 0;
+    case TRUE:
+        if (g_env_light.field_0xeac == 0 &&
+            g_env_light.mpHousiPacket->field_0x5de8 <= FLOAT_LABEL(lit_4378)) {
+            g_env_light.mHousiPacketEnabled = false;
             delete g_env_light.mpHousiPacket;
             g_env_light.mpHousiPacket = NULL;
         } else {
@@ -1164,7 +1208,7 @@ static void wether_move_housi() {
 
 /* 800593DC-80059580 053D1C 01A4+00 1/1 0/0 0/0 .text            wether_move_odour__Fv */
 static void wether_move_odour() {
-    switch (g_env_light.field_0xf20) {
+    switch (g_env_light.mOdourPacketStatus) {
     case 0:
         if (g_env_light.field_0xf21 != 0) {
             g_env_light.mpOdourPacket = new (32) dKankyo_odour_Packet();
@@ -1173,13 +1217,13 @@ static void wether_move_odour() {
                 g_env_light.mpOdourPacket->mpResTex = (u8*)dComIfG_getObjectRes("Always", 0x53);
                 dKyr_odour_init();
                 dKyr_odour_move();
-                g_env_light.field_0xf20 = 1;
+                g_env_light.mOdourPacketStatus = 1;
             }
         }
         break;
     case 1:
         if (g_env_light.field_0xf21 == 0) {
-            g_env_light.field_0xf20 = 0;
+            g_env_light.mOdourPacketStatus = 0;
             if (g_env_light.mpOdourPacket != NULL) {
                 delete g_env_light.mpOdourPacket;
                 g_env_light.mpOdourPacket = NULL;
@@ -1190,7 +1234,7 @@ static void wether_move_odour() {
         break;
     case 2:
         g_env_light.field_0xf21 = 0;
-        g_env_light.field_0xf20 = 0;
+        g_env_light.mOdourPacketStatus = 0;
         delete g_env_light.mpOdourPacket;
         g_env_light.mpOdourPacket = NULL;
         break;
@@ -1199,7 +1243,7 @@ static void wether_move_odour() {
 
 /* 80059580-80059728 053EC0 01A8+00 1/1 0/0 0/0 .text            wether_move_moya__Fv */
 static void wether_move_moya() {
-    switch (g_env_light.field_0xeb4) {
+    switch (g_env_light.mCloudPacketEnabled) {
     case 0:
         if (g_env_light.field_0xeb8 != 0) {
             g_env_light.mpCloudPacket = new (32) dKankyo_cloud_Packet();
@@ -1212,7 +1256,7 @@ static void wether_move_moya() {
                 }
                 g_env_light.mpCloudPacket->field_0x14 = 0;
                 cloud_shadow_move();
-                g_env_light.field_0xeb4++;
+                g_env_light.mCloudPacketEnabled++;
             }
         }
         break;
@@ -1222,9 +1266,9 @@ static void wether_move_moya() {
         }
 
         cloud_shadow_move();
-        
+
         if (g_env_light.field_0xeb8 == 0 && g_env_light.mpCloudPacket->field_0x14 == 0) {
-            g_env_light.field_0xeb4 = 0;
+            g_env_light.mCloudPacketEnabled = 0;
 
             delete g_env_light.mpCloudPacket;
             g_env_light.mpCloudPacket = NULL;
@@ -1302,7 +1346,7 @@ static asm void wether_move_vrkumo() {
 
 /* 80059E38-80059F74 054778 013C+00 1/1 0/0 0/0 .text            wether_move_mud__Fv */
 static void wether_move_mud() {
-    switch (g_env_light.field_0x1044) {
+    switch (g_env_light.mMudPacketEnabled) {
     case 0:
         if (g_env_light.field_0x1048 != 0) {
             g_env_light.mpMudPacket = new (32) dKankyo_mud_Packet();
@@ -1310,15 +1354,15 @@ static void wether_move_mud() {
             if (g_env_light.mpMudPacket != NULL) {
                 dKyr_mud_init();
                 dKyr_mud_move();
-                g_env_light.field_0x1044++;
+                g_env_light.mMudPacketEnabled++;
             }
         }
         break;
     case 1:
         dKyr_mud_move();
-        
+
         if (g_env_light.field_0x1048 == 0 && g_env_light.mpMudPacket->field_0x10 == 0) {
-            g_env_light.field_0x1044 = 0;
+            g_env_light.mMudPacketEnabled = 0;
 
             delete g_env_light.mpMudPacket;
             g_env_light.mpMudPacket = NULL;
@@ -1329,7 +1373,7 @@ static void wether_move_mud() {
 
 /* 80059F74-8005A0B8 0548B4 0144+00 1/1 0/0 0/0 .text            wether_move_evil__Fv */
 static void wether_move_evil() {
-    switch (g_env_light.field_0x1050 & 0xF) {
+    switch (g_env_light.mEvilPacketEnabled & 0xF) {
     case 0:
         if (g_env_light.field_0x1054 != 0) {
             g_env_light.mpEvilPacket = new (32) dKankyo_evil_Packet();
@@ -1337,15 +1381,15 @@ static void wether_move_evil() {
             if (g_env_light.mpEvilPacket != NULL) {
                 dKyr_evil_init();
                 dKyr_evil_move();
-                g_env_light.field_0x1050++;
+                g_env_light.mEvilPacketEnabled++;
             }
         }
         break;
     case 1:
         dKyr_evil_move();
-        
+
         if (g_env_light.field_0x1054 == 0 && g_env_light.mpEvilPacket->field_0x10 == 0) {
-            g_env_light.field_0x1050 = 0;
+            g_env_light.mEvilPacketEnabled = 0;
 
             delete g_env_light.mpEvilPacket;
             g_env_light.mpEvilPacket = NULL;
@@ -1381,46 +1425,46 @@ void dKyw_wether_move_draw2() {
 
 /* 8005A174-8005A304 054AB4 0190+00 0/0 1/1 0/0 .text            dKyw_wether_draw__Fv */
 void dKyw_wether_draw() {
-    if (strcmp(dComIfGp_getStartStageName(), "Name") && g_env_light.field_0xeb4 != 0) {
+    if (strcmp(dComIfGp_getStartStageName(), "Name") && g_env_light.mCloudPacketEnabled != 0) {
         dKyw_Cloud_Draw();
     }
 
-    if (strcmp(dComIfGp_getStartStageName(), "Name") && g_env_light.field_0xe70 != 0) {
+    if (strcmp(dComIfGp_getStartStageName(), "Name") && g_env_light.mSunPacketEnabled) {
         stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
-        
+
         if (dStage_stagInfo_GetArg0(stag_info) != 0) {
             dKyw_Sun_Draw();
             dKyw_Sunlenz_Draw();
         }
     }
 
-    if (g_env_light.field_0xe98 != 0) {
+    if (g_env_light.mStarPacketEnabled) {
         dKyw_Star_Draw();
         dKyw_shstar_Draw();
     }
 
     if (strcmp(dComIfGp_getStartStageName(), "Name")) {
-        if (g_env_light.field_0xe7c != 0) {
+        if (g_env_light.mRainPacketEnabled) {
             dKyw_Rain_Draw();
         }
 
-        if (g_env_light.field_0xe88 != 0) {
+        if (g_env_light.mSnowPacketEnabled) {
             dKyw_Snow_Draw();
         }
 
-        if (g_env_light.field_0xea8 != 0) {
+        if (g_env_light.mHousiPacketEnabled) {
             dKyw_Housi_Draw();
         }
 
-        if (g_env_light.field_0xf20 != 0) {
+        if (g_env_light.mOdourPacketStatus != 0) {
             dKyw_Odour_Draw();
         }
 
-        if (g_env_light.field_0x1044 != 0) {
+        if (g_env_light.mMudPacketEnabled != 0) {
             dKyw_mud_Draw();
         }
 
-        if (g_env_light.field_0x1050 != 0) {
+        if (g_env_light.mEvilPacketEnabled != 0) {
             dKyw_evil_Draw();
         }
 
@@ -1461,6 +1505,49 @@ SECTION_SDATA2 static f32 lit_5364[1 + 1 /* padding */] = {
 };
 
 /* 8005A340-8005A57C 054C80 023C+00 0/0 1/1 0/0 .text            dKyw_wether_proc__Fv */
+// small branch issues
+#ifdef NONMATCHING
+void dKyw_wether_proc() {
+    // Stage is Faron Woods or Fishing Pond or Hyrule Field
+    if (!strcmp(dComIfGp_getStartStageName(), "F_SP108") ||
+        !strcmp(dComIfGp_getStartStageName(), "F_SP127") ||
+        (!strcmp(dComIfGp_getStartStageName(), "F_SP121") &&
+         FLOAT_LABEL(lit_4378) != g_env_light.field_0x11d8)) {
+        if (!dKy_darkworld_check()) {
+            // Stage is Hyrule Field
+            if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") || g_env_light.mDaytime >= 75.0f ||
+                g_env_light.mDaytime <= 120.0f) {
+                // Stage is Hyrule Field
+                if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") &&
+                    g_env_light.field_0x12c9 >= 1 && g_env_light.field_0x12c9 < 6) {
+                    dKy_get_dayofweek();
+                    cLib_addCalc(&g_env_light.field_0xebc, lit_4379, lit_5362, lit_5363, lit_4770);
+                    g_env_light.field_0xeb5 = 7;
+                    g_env_light.field_0xeb8 = 49;
+                } else {
+                    cLib_addCalc(&g_env_light.field_0xebc, FLOAT_LABEL(lit_4378), lit_5362,
+                                 lit_5363, lit_5364[0]);
+                    if (g_env_light.field_0xebc <= lit_4769 && g_env_light.field_0xeb8 == 49) {
+                        g_env_light.field_0xeb8 = 0;
+                    }
+                }
+            }
+        }
+    }
+
+    // Stage is Fishing Pond
+    if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") &&
+        (g_env_light.field_0x12fe == 1 || g_env_light.field_0x12fe == 3)) {
+        if (g_env_light.field_0x12fe == 1) {
+            g_env_light.field_0xeac = 35;
+        } else {
+            g_env_light.field_0xeac = 30;
+        }
+        g_env_light.field_0xea9 = 2;
+    }
+    squal_proc();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1469,6 +1556,7 @@ asm void dKyw_wether_proc() {
 #include "asm/d/kankyo/d_kankyo_wether/dKyw_wether_proc__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 8005A57C-8005A5C0 054EBC 0044+00 1/1 0/0 0/0 .text            dKyw_wind_init__Fv */
 static void dKyw_wind_init() {
@@ -1640,7 +1728,7 @@ void dKyw_pntlight_collision_get_info(cXyz* param_0, cXyz* param_1, f32* param_2
 void dKyw_pntwind_get_vecpow(cXyz* out_vec) {
     f32 pow;
     cXyz vec;
-    
+
     dKyw_pntwind_get_info(out_vec, &vec, &pow);
     vec = vec * pow;
     *out_vec = vec;
@@ -1720,9 +1808,9 @@ void dKyw_evt_wind_set_go() {
 }
 
 /* 8005B64C-8005B660 055F8C 0014+00 0/0 1/1 5/5 .text            dKyw_rain_set__Fi */
-void dKyw_rain_set(int param_0) {
-    g_env_light.mRainCheck = param_0;
-    g_env_light.field_0x129c = param_0;
+void dKyw_rain_set(int count) {
+    g_env_light.mRainCount = count;
+    g_env_light.field_0x129c = count;
 }
 
 /* 8037A368-8037A368 0069C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

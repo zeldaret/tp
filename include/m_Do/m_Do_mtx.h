@@ -1,8 +1,8 @@
 #ifndef M_DO_M_DO_MTX_H
 #define M_DO_M_DO_MTX_H
 
-#include "SSystem/SComponent/c_xyz.h"
 #include "SSystem/SComponent/c_sxyz.h"
+#include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/mtx/quat.h"
 #include "dolphin/types.h"

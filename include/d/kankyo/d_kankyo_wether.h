@@ -1,10 +1,10 @@
 #ifndef D_KANKYO_D_KANKYO_WETHER_H
 #define D_KANKYO_D_KANKYO_WETHER_H
 
-#include "dolphin/types.h"
 #include "JSystem/J3DGraphBase/J3DPacket.h"
-#include "SSystem/SComponent/c_xyz.h"
 #include "SSystem/SComponent/c_sxyz.h"
+#include "SSystem/SComponent/c_xyz.h"
+#include "dolphin/types.h"
 
 void dKyw_wether_draw();
 void dKyw_wether_delete();
@@ -15,6 +15,7 @@ void dKyw_wether_init2();
 static void dKyw_wind_init();
 static void dKyw_pntwind_init();
 f32 dKyw_get_wind_pow();
+static void squal_proc();
 
 class dKankyo_sun_Packet : public J3DPacket {
 public:
@@ -41,7 +42,7 @@ public:
     /* 0x64 */ f32 field_0x64;
     /* 0x68 */ f32 field_0x68;
     /* 0x6C */ f32 field_0x6c;
-    /* 0x70 */ GXColor field_0x70;
+    /* 0x70 */ GXColor mColor;
     /* 0x74 */ u8 field_0x74[4];
 };  // Size: 0x78
 

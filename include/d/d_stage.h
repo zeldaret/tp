@@ -51,7 +51,7 @@ inline s16 dStage_stagInfo_GetUpButton(stage_stag_info_class* p_info) {
 
 inline u32 dStage_stagInfo_GetArg0(stage_stag_info_class* p_info) {
     return (p_info->field_0x0c >> 0x14) & 0xFF;
-} 
+}
 
 struct stage_scls_info_class {
     /* 0x0 */ char mStage[8];

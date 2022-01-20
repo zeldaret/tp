@@ -233,27 +233,27 @@ public:
     /* 0x0E6D */ u8 field_0xe6d;
     /* 0x0E6E */ u8 field_0xe6e;  // E5C - E6E might all be part of GB_WIND_INFLUENCE
     /* 0x0E6F */ u8 field_0xe6f;
-    /* 0x0E70 */ u8 field_0xe70;
+    /* 0x0E70 */ bool mSunPacketEnabled;
     /* 0x0E74 */ dKankyo_sun_Packet* mpSunPacket;
     /* 0x0E78 */ dKankyo_sunlenz_Packet* mpSunLenzPacket;
-    /* 0x0E7C */ u8 field_0xe7c;
-    /* 0x0E80 */ int mRainCheck;
+    /* 0x0E7C */ bool mRainPacketEnabled;
+    /* 0x0E80 */ int mRainCount;
     /* 0x0E84 */ dKankyo_rain_Packet* mpRainPacket;
-    /* 0x0E88 */ u8 field_0xe88;
-    /* 0x0E8C */ int field_0xe8c;
+    /* 0x0E88 */ bool mSnowPacketEnabled;
+    /* 0x0E8C */ int mSnowCount;
     /* 0x0E90 */ u8 field_0xe90;
     /* 0x0E91 */ u8 field_0xe91;
-    /* 0x0E92 */ u8 field_0xe92;
+    /* 0x0E92 */ bool field_0xe92;
     /* 0x0E94 */ dKankyo_snow_Packet* mpSnowPacket;
-    /* 0x0E98 */ u8 field_0xe98;
-    /* 0x0E9C */ int field_0xe9c;
-    /* 0x0EA0 */ f32 field_0xea0;
+    /* 0x0E98 */ bool mStarPacketEnabled;
+    /* 0x0E9C */ int mStarCount;
+    /* 0x0EA0 */ f32 mStarDensity;
     /* 0x0EA4 */ dKankyo_star_Packet* mpStarPacket;
-    /* 0x0EA8 */ u8 field_0xea8;
+    /* 0x0EA8 */ bool mHousiPacketEnabled;
     /* 0x0EA9 */ u8 field_0xea9;
     /* 0x0EAC */ int field_0xeac;
     /* 0x0EB0 */ dKankyo_housi_Packet* mpHousiPacket;
-    /* 0x0EB4 */ u8 field_0xeb4;
+    /* 0x0EB4 */ u8 mCloudPacketEnabled;
     /* 0x0EB5 */ u8 field_0xeb5;
     /* 0x0EB8 */ int field_0xeb8;
     /* 0x0EBC */ f32 field_0xebc;
@@ -265,7 +265,7 @@ public:
     /* 0x0ED4 */ EF_THUNDER field_0xed4;
     /* 0x0F18 */ u8 field_0xf18[4];
     /* 0x0F1C */ dKankyo_shstar_Packet* mpShstarPacket;
-    /* 0x0F20 */ u8 field_0xf20;
+    /* 0x0F20 */ u8 mOdourPacketStatus;
     /* 0x0F21 */ u8 field_0xf21;
     /* 0x0F24 */ int field_0xf24;
     /* 0x0F28 */ dKankyo_odour_Packet* mpOdourPacket;
@@ -283,10 +283,10 @@ public:
     /* 0x1038 */ u8 field_0x1038;
     /* 0x103C */ int field_0x103c;
     /* 0x1040 */ u8 field_0x1040[4];
-    /* 0x1044 */ u8 field_0x1044;
+    /* 0x1044 */ u8 mMudPacketEnabled;
     /* 0x1048 */ int field_0x1048;
     /* 0x104C */ dKankyo_mud_Packet* mpMudPacket;
-    /* 0x1050 */ u8 field_0x1050;
+    /* 0x1050 */ u8 mEvilPacketEnabled;
     /* 0x1051 */ u8 field_0x1051;
     /* 0x1054 */ int field_0x1054;
     /* 0x1058 */ dKankyo_evil_Packet* mpEvilPacket;
@@ -443,7 +443,7 @@ public:
     /* 0x12D1 */ u8 mItemGetCol_chg;
     /* 0x12D2 */ u8 field_0x12d2;
     /* 0x12D3 */ u8 field_0x12d3;
-    /* 0x12D4 */ u8 field_0x12d4;
+    /* 0x12D4 */ bool field_0x12d4;  // related to vrbox color
     /* 0x12D5 */ u8 field_0x12d5;
     /* 0x12D6 */ u8 field_0x12d6;
     /* 0x12D7 */ u8 mShadowMode;
@@ -478,5 +478,6 @@ BOOL dKy_darkworld_stage_check(char const*, int);
 BOOL dKy_withwarp_capture_check();
 bool dKy_darkworld_check();
 void dKy_undwater_filter_draw();
+void dKy_get_dayofweek();
 
 #endif /* D_KANKYO_D_KANKYO_H */

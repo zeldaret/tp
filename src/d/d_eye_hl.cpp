@@ -4,11 +4,11 @@
 //
 
 #include "d/d_eye_hl.h"
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/string.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "dolphin/os/OS.h"
-#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/string.h"
+#include "dolphin/types.h"
 
 //
 // Forward References:
@@ -43,7 +43,7 @@ extern "C" extern u8 g_envHIO[68];
 void dEyeHL_c::entry(J3DModelData* p_mData, char const* name) {
     J3DTexture* tex = p_mData->getTexture();
     JUTNameTab* tex_nametab = p_mData->getTextureName();
-    
+
     if (tex != NULL && tex_nametab != NULL) {
         for (u16 i = 0; i < tex->getNum(); i++) {
             const char* tex_name = tex_nametab->getName(i);

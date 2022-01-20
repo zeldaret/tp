@@ -109,15 +109,11 @@ struct J3DSys {
 
     // Type 0: Opa Buffer
     // Type 1: Xlu Buffer
-    void setDrawBuffer(J3DDrawBuffer* buffer, int type) {
-        mDrawBuffer[type] = buffer;
-    }
+    void setDrawBuffer(J3DDrawBuffer* buffer, int type) { mDrawBuffer[type] = buffer; }
 
     // Type 0: Opa Buffer
     // Type 1: Xlu Buffer
-    J3DDrawBuffer* getDrawBuffer(int type) {
-        return mDrawBuffer[type];
-    }
+    J3DDrawBuffer* getDrawBuffer(int type) { return mDrawBuffer[type]; }
 
     static Mtx mCurrentMtx;
     static Vec mCurrentS;
