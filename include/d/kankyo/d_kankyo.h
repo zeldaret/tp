@@ -400,7 +400,7 @@ public:
     /* 0x1250 */ f32 mDarkDaytime;
     /* 0x1254 */ f32 field_0x1254;
     /* 0x1258 */ f32 field_0x1258;
-    /* 0x125C */ f32 mPaletteTerrainLightEffect;  // 0 - 2
+    /* 0x125C */ f32 mPaletteTerrainLightEffect;
     /* 0x1260 */ f32 mGrassLightEffectRate;
     /* 0x1264 */ f32 field_0x1264;
     /* 0x1268 */ f32 field_0x1268;
@@ -455,7 +455,7 @@ public:
     /* 0x12EC */ void* mResPolSound;
     /* 0x12F0 */ void* mResPolArg;
     /* 0x12F4 */ void* mResColorDataTbl;
-    /* 0x12F8 */ s8 mFogDensity;  // verify
+    /* 0x12F8 */ s8 mFogDensity;
     /* 0x12F9 */ u8 field_0x12f9;
     /* 0x12FA */ u8 field_0x12fa;
     /* 0x12FB */ u8 field_0x12fb;
