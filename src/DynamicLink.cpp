@@ -348,22 +348,19 @@ bool DynamicModuleControl::do_load() {
         snprintf(buffer, 64, "%s.rel", mName);
         if (mModule == NULL && sArchive != NULL) {
             if (mModule == NULL) {
-                mModule = (OSModuleInfo*)JKRArchive::getGlbResource('MMEM', buffer,
-                                                                    sArchive);
+                mModule = (OSModuleInfo*)JKRArchive::getGlbResource('MMEM', buffer, sArchive);
                 if (mModule != NULL) {
                     mResourceType = 1;
                 }
             }
             if (mModule == NULL) {
-                mModule = (OSModuleInfo*)JKRArchive::getGlbResource('AMEM', buffer,
-                                                                    sArchive);
+                mModule = (OSModuleInfo*)JKRArchive::getGlbResource('AMEM', buffer, sArchive);
                 if (mModule != NULL) {
                     mResourceType = 2;
                 }
             }
             if (mModule == NULL) {
-                mModule = (OSModuleInfo*)JKRArchive::getGlbResource('DMEM', buffer,
-                                                                    sArchive);
+                mModule = (OSModuleInfo*)JKRArchive::getGlbResource('DMEM', buffer, sArchive);
                 if (mModule != NULL) {
                     mResourceType = 3;
                 }

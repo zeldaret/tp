@@ -558,7 +558,7 @@ public:
     /* 80024940 */ static char* getArcBank(int);
     /* 80024954 */ static int resetArchiveBank(int);
     /* 80024DB0 */ static void SetTimePass(int);
-    static s8 GetTimePass();
+    static s32 GetTimePass();
 
     inline static s8 getStayNo() { return struct_80450D64; }
     s8 getMemoryBlockID(int i_roomNo) { return mStatus[i_roomNo].mMemBlockID; }

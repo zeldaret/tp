@@ -3278,7 +3278,7 @@ asm void mDoExt_removeSubFont() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoExt_J3DModel__create(J3DModelData* param_0, u32 param_1, u32 param_2) {
+asm J3DModel* mDoExt_J3DModel__create(J3DModelData* param_0, u32 param_1, u32 param_2) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/mDoExt_J3DModel__create__FP12J3DModelDataUlUl.s"
 }

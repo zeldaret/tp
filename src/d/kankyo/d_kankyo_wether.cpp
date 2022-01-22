@@ -797,7 +797,7 @@ static void wether_move_sun() {
         // Stage is Hero Shade arena
         if (!strcmp(dComIfGp_getStartStageName(), "F_SP200")) {
             sunVisible = true;
-        // Stage is Hyrule Castle or Castle Throne Room
+            // Stage is Hyrule Castle or Castle Throne Room
         } else if (!strcmp(dComIfGp_getStartStageName(), "D_MN09") ||
                    !strcmp(dComIfGp_getStartStageName(), "D_MN09A")) {
             sunVisible = false;

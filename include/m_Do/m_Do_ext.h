@@ -14,6 +14,9 @@ public:
     /* 8000D320 */ void initPlay(s16, int, f32, s16, s16);
     /* 8000D428 */ void play();
 
+    void setPlaySpeed(f32 speed) { mFrameCtrl.setRate(speed); }
+    f32 getFrame() { return mFrameCtrl.getFrame(); }
+
 private:
     /* 0x0 */ J3DFrameCtrl mFrameCtrl;
 };  // Size: 0x14
@@ -32,6 +35,13 @@ public:
     mDoExt_btkAnm(void) { mBtkAnm = 0; }
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
     /* 8000D6D8 */ void entry(J3DMaterialTable*, f32);
+
+    void entry(J3DModelData* data) { entry(data, getFrame()); }
+    void entry(J3DModelData* data, f32 frame) { entry(&data->getMaterialTable(), frame); }
+    void init(J3DModelData* data, J3DAnmTextureSRTKey* key, int param_2, int param_3, f32 param_4,
+              s16 param_5, s16 param_6) {
+        init(&data->getMaterialTable(), key, param_2, param_3, param_4, param_5, param_6);
+    }
 
 private:
     /* 0x14 */ u32 mBtkAnm;
@@ -177,6 +187,8 @@ JKRSolidHeap* mDoExt_createSolidHeapFromGameToCurrent(u32, u32);
 JKRSolidHeap* mDoExt_createSolidHeapFromGameToCurrent(JKRHeap**, u32, u32);
 JKRHeap* mDoExt_getCurrentHeap();
 void mDoExt_removeMesgFont();
+void mDoExt_modelUpdateDL(J3DModel*);
+J3DModel* mDoExt_J3DModel__create(J3DModelData*, u32, u32);
 
 extern JKRExpHeap* zeldaHeap;
 extern JKRExpHeap* gameHeap;

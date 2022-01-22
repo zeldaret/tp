@@ -14,6 +14,7 @@
 #include "d/particle/d_particle.h"
 #include "d/save/d_save.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_camera_mng.h"
 
 struct dTimer_c {
     /* 8025D524 */ int deleteCheck();
@@ -44,12 +45,6 @@ class phaseParam_c {
 public:
     /* 0x0 */ char* field_0x0;
     /* 0x4 */ JKRHeap* heap;
-};
-
-struct camera_class : public leafdraw_class {
-    /* 0xC0 */ u8 field_0xc0[0x18];
-    /* 0xD8 */ cXyz field_0xd8;
-    /* 0xE4 */ cXyz field_0xe4;
 };
 
 class dComIfG_camera_info_class {
@@ -558,6 +553,8 @@ void dComIfGp_mapShow();
 void dComIfGp_mapHide();
 bool dComIfGp_checkMapShow();
 s32 dComIfGp_setHeapLockFlag(u8);
+s8 dComIfGs_sense_type_change_Get();
+u8 dComIfGp_world_dark_get();
 
 inline void dComIfGp_setRStatus(u8 status, u8 flag) {
     g_dComIfG_gameInfo.play.setRStatus(status, flag);
@@ -1487,6 +1484,10 @@ inline void dComIfGd_setList() {
     g_dComIfG_gameInfo.drawlist.setXluList();
 }
 
+inline void dComIfGd_setXluList2DScreen() {
+    g_dComIfG_gameInfo.drawlist.setXluList2DScreen();
+}
+
 inline void dComIfGd_setXluListBG() {
     g_dComIfG_gameInfo.drawlist.setXluListBG();
 }
@@ -1497,6 +1498,26 @@ inline camera_class* dComIfGp_getCamera(int idx) {
 
 inline s32 dComIfGp_checkStatus(u16 flags) {
     return g_dComIfG_gameInfo.play.checkStatus(flags);
+}
+
+inline s32 dComIfGp_roomControl_getTimePass() {
+    return g_dComIfG_gameInfo.play.getRoomControl()->GetTimePass();
+}
+
+inline u16 dComIfGs_getDate() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusB().getDate();
+}
+
+inline void dComIfGs_setDate(u16 date) {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusB().setDate(date);
+}
+
+inline f32 dComIfGs_getTime() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusB().getTime();
+}
+
+inline void dComIfGs_setTime(f32 time) {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusB().setTime(time);
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

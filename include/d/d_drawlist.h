@@ -206,6 +206,7 @@ public:
     void setOpaList() { setOpaDrawList(mOpaList); }
     void setXluList() { setXluDrawList(mXluList); }
     void setXluListBG() { setXluDrawList(mXluListBG); }
+    void setXluList2DScreen() { setXluDrawList(mList2DScreen); }
 
     static u8 mWipeDlst[72];
     static u8 mWipeColor[4];

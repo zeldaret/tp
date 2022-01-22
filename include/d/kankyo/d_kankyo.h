@@ -21,7 +21,7 @@ struct LIGHT_INFLUENCE {
     /* 0x00 */ cXyz mPosition;
     /* 0x0C */ GXColorS10 mColor;
     /* 0x14 */ f32 mPow;
-    /* 0x18 */ f32 field_0x18;
+    /* 0x18 */ f32 mFluctuation;  // ?
     /* 0x1C */ int field_0x1c;
 };
 
@@ -46,7 +46,7 @@ struct EFLIGHT_PROC {
     /* 0x00 */ u8 field_0x0;
     /* 0x01 */ u8 field_0x1;
     /* 0x04 */ int field_0x4;
-    /* 0x08 */ LIGHT_INFLUENCE field_0x8;
+    /* 0x08 */ u8 field_0x8[0x20];  // LIGHT_INFLUENCE?
 };
 
 struct SND_INFLUENCE {
@@ -112,7 +112,7 @@ struct EF_THUNDER {
     /* 0x18 */ f32 field_0x18;
     /* 0x1C */ f32 field_0x1c;
     /* 0x20 */ u8 field_0x20[4];
-    /* 0x24 */ LIGHT_INFLUENCE field_0x24;
+    /* 0x24 */ u8 field_0x24[0x20];  // LIGHT_INFLUENCE?
 };
 
 struct GB_MAPLE_COL_CHANGE {
@@ -173,7 +173,7 @@ public:
     /* 8019F4FC */ void setDaytime();
     /* 8019F788 */ void setSunpos();
     /* 8019FA08 */ f32 getDaytime();
-    /* 8019FBCC */ void getDarkDaytime();
+    /* 8019FBCC */ f32 getDarkDaytime();
     /* 8019FBD4 */ void setLight_palno_get(u8*, u8*, u8*, u8*, u8*, u8*, u8*, u8*, f32*, int*, int*,
                                            f32*, u8*);
     /* 801A040C */ void setLight();
@@ -203,13 +203,13 @@ public:
     /* 0x000C */ void* mpDmEnvr;
     /* 0x0010 */ void* mpDmVrbox;
     /* 0x0014 */ void* mpSchedule;
-    /* 0x0018 */ LIGHT_INFLUENCE field_0x18;
+    /* 0x0018 */ u8 field_0x18[0x20];  // LIGHT_INFLUENCE?
     /* 0x0038 */ LIGHT_INFLUENCE field_0x38[30];
     /* 0x03F8 */ LIGHT_INFLUENCE* mPointLight[100];
     /* 0x0588 */ LIGHT_INFLUENCE* mEfPLight[5];
     /* 0x059C */ u8 field_0x59c[400];
     /* 0x072C */ LIGHT_INFLUENCE* field_0x72c[5];
-    /* 0x0740 */ LIGHT_INFLUENCE field_0x740;
+    /* 0x0740 */ u8 field_0x740[0x20];  // LIGHT_INFLUENCE?
     /* 0x0760 */ u8 field_0x760[4];
     /* 0x0764 */ LIGHT_INFLUENCE mBGpartsActiveLight[2];
     /* 0x07A4 */ EFLIGHT_PROC field_0x7a4;
@@ -272,7 +272,7 @@ public:
     /* 0x0F2C */ u8 field_0xf2c;
     /* 0x0F30 */ J3DModel* field_0xf30;
     /* 0x0F34 */ f32 field_0xf34;
-    /* 0x0F38 */ int field_0xf38;
+    /* 0x0F38 */ JKRSolidHeap* field_0xf38;
     /* 0x0F3C */ u8 field_0xf3c;
     /* 0x0F3D */ u8 field_0xf3d;
     /* 0x0F40 */ f32 field_0xf40;
@@ -423,13 +423,13 @@ public:
     /* 0x12B4 */ int field_0x12b4;
     /* 0x12B8 */ u8 field_0x12b8[4];
     /* 0x12BC */ u16 field_0x12bc;
-    /* 0x12BE */ u16 field_0x12be;
+    /* 0x12BE */ u16 mDate;
     /* 0x12C0 */ u16 mActorLightEffect;
     /* 0x12C2 */ u8 field_0x12c2;
     /* 0x12C3 */ u8 field_0x12c3;
     /* 0x12C4 */ u8 field_0x12c4;
     /* 0x12C5 */ u8 mWeatherPalette;
-    /* 0x12C6 */ u8 field_0x12c6;
+    /* 0x12C6 */ s8 mNowRoom;
     /* 0x12C7 */ u8 field_0x12c7;
     /* 0x12C8 */ u8 field_0x12c8;
     /* 0x12C9 */ u8 field_0x12c9;
@@ -478,6 +478,12 @@ BOOL dKy_darkworld_stage_check(char const*, int);
 BOOL dKy_withwarp_capture_check();
 bool dKy_darkworld_check();
 void dKy_undwater_filter_draw();
-void dKy_get_dayofweek();
+BOOL dKy_camera_water_in_status_check();
+static int dKy_Outdoor_check();
+s32 dKy_getdaytime_hour();
+s32 dKy_getdaytime_minute();
+s32 dKy_get_dayofweek();
+static void dKy_Sound_init();
+void dKy_setLight_nowroom(char);
 
 #endif /* D_KANKYO_D_KANKYO_H */

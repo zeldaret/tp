@@ -34,7 +34,7 @@ public:
     /* 8000CF7C */ static void quatM(Quaternion const*);
     /* 8000D070 */ ~mDoMtx_stack_c();  // inline
 
-    static Mtx* get() { return &now; }
+    static MtxP get() { return now; }
     static void transS(f32 x, f32 y, f32 z) { PSMTXTrans(now, x, y, z); }
     static void scaleS(f32 x, f32 y, f32 z) { PSMTXScale(now, x, y, z); }
     static void XYZrotS(s16 x, s16 y, s16 z) { mDoMtx_XYZrotS(now, x, y, z); }

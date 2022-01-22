@@ -1802,7 +1802,7 @@ asm void dMsgObject_c::setProcessID(unsigned int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getActor() {
+asm fopAc_ac_c* dMsgObject_c::getActor() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getActor__12dMsgObject_cFv.s"
 }

@@ -415,6 +415,10 @@ public:
     BOOL isTransformLV(int) const;
 
     void setDateIpl(s64 time) { mDateIpl = time; }
+    u16 getDate() const { return mDate; }
+    f32 getTime() const { return mTime; }
+    void setDate(u16 date) { mDate = date; }
+    void setTime(f32 time) { mTime = time; }
 
 private:
     /* 0x00 */ s64 mDateIpl;

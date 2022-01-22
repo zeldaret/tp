@@ -3582,10 +3582,10 @@ void daAlink_c::setMatrixWorldAxisRot(MtxP param_0, s16 param_1, s16 param_2, s1
     mDoMtx_stack_c::YrotM(-mCollisionRot.y);
     concatMagneBootInvMtx();
     mDoMtx_stack_c::transM(-tmp.x, -tmp.y, -tmp.z);
-    PSMTXConcat(*mDoMtx_stack_c::get(), param_0, *mDoMtx_stack_c::get());
-    PSMTXCopy(*mDoMtx_stack_c::get(), param_0);
+    PSMTXConcat(mDoMtx_stack_c::get(), param_0, mDoMtx_stack_c::get());
+    PSMTXCopy(mDoMtx_stack_c::get(), param_0);
     if (param_4 != 0) {
-        PSMTXCopy(*mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
+        PSMTXCopy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
     }
 }
 
