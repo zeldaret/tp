@@ -124,6 +124,8 @@ public:
         return isPushingReset;
     }
 
+    static s8 getPortStatus(u32 port) { return mPadStatus[port].error; }
+
     struct CButton {
         CButton();  // inline
         void clear();

@@ -29,7 +29,7 @@ public:
     /* 8025564C */ void isVisible();
     /* 80255658 */ f32 rateCalc(s16, s16, u8);
     /* 802557D0 */ void setAlphaRate(f32);
-    /* 80255828 */ void getAlphaRate();
+    /* 80255828 */ f32 getAlphaRate();
     /* 80255878 */ void alphaAnime(s16, u8, u8, u8);
     /* 80255964 */ void alphaAnimeLoop(s16, u8, u8, u8);
     /* 80255A60 */ void childPaneCount(J2DPane*);
@@ -38,6 +38,7 @@ public:
 
     J2DPane* getPanePtr() { return (J2DPane*)mWindow; }
     u8 getAlpha() { return getPanePtr()->getAlpha(); }
+    s16 getAlphaTimer() { return mAlphaTimer; }
 
     /* 0x04 */ J2DWindow* mWindow;
     /* 0x08 */ JKRExpHeap* heap;

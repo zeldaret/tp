@@ -721,7 +721,7 @@ asm void mDoExt_brkAnm::entry(J3DMaterialTable* param_0, f32 param_1) {
 
 /* ############################################################################################## */
 /* 803A3020-803A30C0 000140 0085+1B 1/1 0/0 0/0 .data            l_invisibleMat$7041 */
-SECTION_DATA static u8 l_invisibleMat[133 + 27 /* padding */] = {
+SECTION_DATA static u8 l_invisibleMat[133 + 27 /* padding */] ALIGN_DECL(32) = {
     0x10,
     0x00,
     0x00,
@@ -3173,7 +3173,7 @@ static asm void mDoExt_initFont0() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoExt_getMesgFont() {
+asm JUTFont* mDoExt_getMesgFont() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/mDoExt_getMesgFont__Fv.s"
 }

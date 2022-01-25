@@ -54,4 +54,8 @@ public:
     static JSUList<JKRFileLoader> sVolumeList;
 };
 
+inline void* JKRGetNameResource(const char* name, JKRFileLoader* loader) {
+    return JKRFileLoader::getGlbResource(name, loader);
+}
+
 #endif /* JKRFILELOADER_H */

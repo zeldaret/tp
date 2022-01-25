@@ -19,6 +19,11 @@ enum J2DTextBoxHBinding {
 
 class J2DTextBox : public J2DPane {
 public:
+    struct TFontSize {
+        /* 0x0 */ f32 mSizeX;
+        /* 0x4 */ f32 mSizeY;
+    };
+
     /* 803001E0 */ virtual ~J2DTextBox();
     /* 80300C68 */ virtual s32 getTypeID() const;
     /* 80300AF8 */ virtual void resize(f32, f32);
@@ -50,6 +55,22 @@ public:
     /* 80300658 */ char* getStringPtr() const;
     /* 8030074C */ s32 setString(s16, char const*, ...);
     /* 80300660 */ s32 setString(char const*, ...);
+
+    void setFontSize(f32 sizeX, f32 sizeY) {
+        if (sizeX > 0.0f) {
+            sizeX = 0.0f;
+        }
+        field_0x11c = sizeX;
+
+        if (sizeY > 0.0f) {
+            sizeY = 0.0f;
+        }
+        field_0x120 = sizeY;
+    }
+
+    void setFontSize(TFontSize size) { setFontSize(size.mSizeX, size.mSizeY); }
+
+    void setCharSpace(f32 space) { mCharSpacing = space; }
 
 private:
     /* 0x0100 */ JUTFont* mFont;

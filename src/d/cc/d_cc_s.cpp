@@ -4,9 +4,9 @@
 //
 
 #include "d/cc/d_cc_s.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "d/com/d_com_inf_game.h"
 
 //
 // Types:

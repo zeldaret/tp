@@ -240,6 +240,8 @@ public:
     JKRArchive* getMain2DArchive() { return mMain2DArchive; }
     JKRArchive* getAnmArchive() { return mAnmArchive; }
     JKRArchive* getCollectResArchive() { return mCollectResArchive; }
+    JKRArchive* getItemIconArchive() { return mItemIconArchive; }
+    JKRExpHeap* getMsgExpHeap() { return mMsgExpHeap; }
     J2DGrafContext* getCurrentGrafPort() { return mCurrentGrafPort; }
     dVibration_c& getVibration() { return mVibration; }
     void setPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[i] |= flag; }
@@ -489,7 +491,7 @@ public:
     /* 0x05F64 */ dDlst_list_c drawlist;
     /* 0x1C104 */ u8 field_0x1C104[0x1F4];
     /* 0x1C2F8 */ dRes_control_c mResControl;
-    /* 0x1DDF8 */ u8 field_0x1ddf8;  // related to fade, controls brightness
+    /* 0x1DDF8 */ u8 mFadeBrightness;
     /* 0x1DDF9 */ u8 mWorldDark;
     /* 0x1DDFA */ s8 field_0x1ddfa;
     /* 0x1DDFB */ s8 field_0x1ddfb;
@@ -510,6 +512,8 @@ STATIC_ASSERT(122384 == sizeof(dComIfG_inf_c));
 extern dComIfG_inf_c g_dComIfG_gameInfo;
 
 extern GXColor g_blackColor;
+extern GXColor g_clearColor;
+extern GXColor g_whiteColor;
 
 void dComIfGp_setItemLifeCount(float, u8);
 void dComIfGp_setItemRupeeCount(long);
@@ -979,6 +983,10 @@ inline JKRExpHeap* dComIfGp_getExpHeap2D() {
     return g_dComIfG_gameInfo.play.getExpHeap2D();
 }
 
+inline JKRExpHeap* dComIfGp_getMsgExpHeap() {
+    return g_dComIfG_gameInfo.play.getMsgExpHeap();
+}
+
 inline s16 dComIfGs_getOil() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getOil();
 }
@@ -1145,6 +1153,10 @@ inline JKRArchive* dComIfGp_getAnmArchive() {
 
 inline JKRArchive* dComIfGp_getCollectResArchive() {
     return g_dComIfG_gameInfo.play.getCollectResArchive();
+}
+
+inline JKRArchive* dComIfGp_getItemIconArchive() {
+    return g_dComIfG_gameInfo.play.getItemIconArchive();
 }
 
 inline J2DGrafContext* dComIfGp_getCurrentGrafPort() {
@@ -1518,6 +1530,19 @@ inline f32 dComIfGs_getTime() {
 
 inline void dComIfGs_setTime(f32 time) {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusB().setTime(time);
+}
+
+inline u8 dComIfG_getBrightness() {
+    return g_dComIfG_gameInfo.mFadeBrightness;
+}
+
+inline void dComIfGd_drawListItem3d() {
+    g_dComIfG_gameInfo.drawlist.drawOpaListItem3d();
+    g_dComIfG_gameInfo.drawlist.drawXluListItem3d();
+}
+
+inline void dComIfGd_init() {
+    g_dComIfG_gameInfo.drawlist.init();
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

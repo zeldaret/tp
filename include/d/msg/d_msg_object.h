@@ -153,6 +153,8 @@ public:
     /* 0x100 */ fopAc_ac_c* field_0x100;
 };
 
+s16 dMsgObject_getGroupID();
+
 inline dMsgObject_c* dMsgObject_getMsgObjectClass() {
     return dComIfGp_getMsgObjectClass();
 }

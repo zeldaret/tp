@@ -49,6 +49,8 @@ public:
     static Mtx* end;
 };
 
+extern Mtx g_mDoMtx_identity;
+
 class mDoMtx_quatStack_c {
 public:
     ~mDoMtx_quatStack_c();  // inline

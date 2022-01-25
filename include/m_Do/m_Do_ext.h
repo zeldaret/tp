@@ -190,6 +190,9 @@ void mDoExt_removeMesgFont();
 void mDoExt_modelUpdateDL(J3DModel*);
 J3DModel* mDoExt_J3DModel__create(J3DModelData*, u32, u32);
 
+struct JUTFont;
+JUTFont* mDoExt_getMesgFont();
+
 extern JKRExpHeap* zeldaHeap;
 extern JKRExpHeap* gameHeap;
 extern JKRExpHeap* archiveHeap;

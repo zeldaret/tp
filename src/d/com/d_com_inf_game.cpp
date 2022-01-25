@@ -230,7 +230,6 @@ extern "C" void __dt__8cM3dGCylFv();
 extern "C" void __dt__8cM3dGAabFv();
 extern "C" void __dt__15cCcD_DivideInfoFv();
 extern "C" extern char const* const d_com_d_com_inf_game__stringBase0;
-extern "C" extern u32 g_whiteColor;
 extern "C" extern u32 g_saftyWhiteColor;
 
 //
@@ -1327,7 +1326,7 @@ dTimer_c* dComIfG_play_c::getTimerPtr() {
 }
 
 void dComIfG_inf_c::ct() {
-    field_0x1ddf8 = 0xFF;
+    mFadeBrightness = 255;
     play.ct();
     mWorldDark = 0;
     field_0x1ddfa = -1;
@@ -1348,12 +1347,7 @@ SECTION_DEAD static char const* const stringBase_80379043 = "F_SP102";
 #pragma pop
 
 /* 80450600-80450604 000080 0004+00 0/0 18/18 2/2 .sdata           g_clearColor */
-SECTION_SDATA extern u8 g_clearColor[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_SDATA extern GXColor g_clearColor = {0, 0, 0, 0};
 
 /* 80450604-80450608 000084 0004+00 1/1 10/10 15/15 .sdata           g_blackColor */
 SECTION_SDATA extern GXColor g_blackColor = {0, 0, 0, 255};
@@ -2591,7 +2585,7 @@ asm void dComIfGs_staffroll_next_go_check() {
 
 /* ############################################################################################## */
 /* 80450608-8045060C 000088 0004+00 0/0 6/6 11/11 .sdata           g_whiteColor */
-SECTION_SDATA extern u32 g_whiteColor = 0xFFFFFFFF;
+SECTION_SDATA extern GXColor g_whiteColor = {255, 255, 255, 255};
 
 /* 8045060C-80450610 00008C 0004+00 0/0 3/3 3/3 .sdata           g_saftyWhiteColor */
 SECTION_SDATA extern u32 g_saftyWhiteColor = 0xA0A0A0FF;
