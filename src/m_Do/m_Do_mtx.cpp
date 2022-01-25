@@ -51,7 +51,6 @@ extern "C" void quatM__14mDoMtx_stack_cFPC10Quaternion();
 extern "C" void __sinit_m_Do_mtx_cpp();
 extern "C" void __dt__18mDoMtx_quatStack_cFv();
 extern "C" void __dt__14mDoMtx_stack_cFv();
-extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 buffer__14mDoMtx_stack_c[768];
 extern "C" void* next__14mDoMtx_stack_c;
@@ -462,84 +461,8 @@ asm mDoMtx_stack_c::~mDoMtx_stack_c() {
 
 /* ############################################################################################## */
 /* 803A2FD8-803A3020 0000F8 0030+18 0/0 23/23 4/4 .data            g_mDoMtx_identity */
-SECTION_DATA extern u8 g_mDoMtx_identity[48 + 24 /* padding */] = {
-    0x3F,
-    0x80,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x3F,
-    0x80,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x3F,
-    0x80,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* SECTION_DATA extern Mtx g_mDoMtx_identity = {
+SECTION_DATA extern Mtx g_mDoMtx_identity = {
     {1.0f, 0.0f, 0.0f, 0.0f},
     {0.0f, 1.0f, 0.0f, 0.0f},
     {0.0f, 0.0f, 1.0f, 0.0f},
-}; */
+};

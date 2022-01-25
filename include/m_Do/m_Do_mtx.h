@@ -1,8 +1,8 @@
 #ifndef M_DO_M_DO_MTX_H
 #define M_DO_M_DO_MTX_H
 
-#include "SSystem/SComponent/c_xyz.h"
 #include "SSystem/SComponent/c_sxyz.h"
+#include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/mtx/quat.h"
 #include "dolphin/types.h"
@@ -34,7 +34,7 @@ public:
     /* 8000CF7C */ static void quatM(Quaternion const*);
     /* 8000D070 */ ~mDoMtx_stack_c();  // inline
 
-    static Mtx* get() { return &now; }
+    static MtxP get() { return now; }
     static void transS(f32 x, f32 y, f32 z) { PSMTXTrans(now, x, y, z); }
     static void scaleS(f32 x, f32 y, f32 z) { PSMTXScale(now, x, y, z); }
     static void XYZrotS(s16 x, s16 y, s16 z) { mDoMtx_XYZrotS(now, x, y, z); }
@@ -48,6 +48,8 @@ public:
     static Mtx* next;
     static Mtx* end;
 };
+
+extern Mtx g_mDoMtx_identity;
 
 class mDoMtx_quatStack_c {
 public:

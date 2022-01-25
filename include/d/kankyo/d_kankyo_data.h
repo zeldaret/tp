@@ -3,7 +3,7 @@
 
 #include "dolphin/types.h"
 
-// Invented name; Used as u8 `darkLv` in dKyd_darkworldTblEntry.
+// Invented name; Used as u8 `darkLv` in dKydata_darkworldInfo_c.
 enum dKyd_DARKLV {
     FARON = 0,
     ELDIN = 1,
@@ -13,10 +13,16 @@ enum dKyd_DARKLV {
     ALWAYS_DARK = 8,  // Unused. Forces Twilight
 };
 
-// Invented name
-struct dKyd_darkworldTblEntry {
-    char* stageName;
-    u8 darkLv;
+class dKydata_darkworldInfo_c {
+public:
+    /* 0x0 */ char* stageName;
+    /* 0x4 */ u8 darkLv;
+};  // Size: 0x8
+
+class dKydata_lightsizeInfo_c {
+public:
+    /* 0x0 */ char* stageName;
+    /* 0x4 */ u8 size;
 };  // Size: 0x8
 
 // Invented name; adjust as needed in the future.
@@ -35,6 +41,28 @@ struct dKyd_lightSchejule {
     u8 endTimeLight;
 };  // Size: 0xC
 
+enum BloomType {
+    /* 0x0 */ BLOOM_CLEAR,
+    /* 0x1 */ BLOOM_SOFT
+};
+
+#define BLOOMINFO_MAX 64
+class dKydata_BloomInfo_c {
+public:
+    /* 0x0 */ u8 mType;
+    /* 0x1 */ u8 mThreshold;
+    /* 0x2 */ u8 mBlurAmount;
+    /* 0x3 */ u8 mDensity;
+    /* 0x4 */ u8 mColorR;
+    /* 0x5 */ u8 mColorG;
+    /* 0x6 */ u8 mColorB;
+    /* 0x7 */ u8 mOrigDensity;  // ?
+    /* 0x8 */ u8 mSaturateSubtractR;
+    /* 0x9 */ u8 mSaturateSubtractG;
+    /* 0xA */ u8 mSaturateSubtractB;
+    /* 0xB */ u8 mSaturateSubtractA;
+};  // Size: 0xC
+
 void* dKyd_dmpalet_getp();
 void* dKyd_dmpselect_getp();
 void* dKyd_dmenvr_getp();
@@ -43,9 +71,9 @@ dKyd_lightSchejule* dKyd_schejule_getp();
 dKyd_lightSchejule* dKyd_schejule_boss_getp();
 void dKyd_xfog_table_set(u8);
 void* dKyd_maple_col_getp();
-dKyd_darkworldTblEntry* dKyd_darkworld_tbl_getp();
-void* dKyd_light_size_tbl_getp();
-void* dKyd_light_tw_size_tbl_getp();
-void* dKyd_BloomInf_tbl_getp(int);
+dKydata_darkworldInfo_c* dKyd_darkworld_tbl_getp();
+dKydata_lightsizeInfo_c* dKyd_light_size_tbl_getp();
+dKydata_lightsizeInfo_c* dKyd_light_tw_size_tbl_getp();
+dKydata_BloomInfo_c* dKyd_BloomInf_tbl_getp(int);
 
 #endif /* D_KANKYO_D_KANKYO_DATA_H */

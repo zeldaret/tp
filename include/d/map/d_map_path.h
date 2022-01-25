@@ -7,10 +7,10 @@
 class dDrawPath_c : public dDlst_base_c {
 public:
     struct line_class {
-        /* 0x00 */ u8 unk0; 
-        /* 0x01 */ u8 unk1; 
-        /* 0x02 */ u8 unk2; 
-        /* 0x03 */ u8 unk3; 
+        /* 0x00 */ u8 unk0;
+        /* 0x01 */ u8 unk1;
+        /* 0x02 */ u8 unk2;
+        /* 0x03 */ u8 unk3;
         /* 0x04 */ u16* unk4;
     };
 

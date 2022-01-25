@@ -4,189 +4,13 @@
 //
 
 #include "d/kankyo/d_kankyo_wether.h"
+#include "Z2AudioLib/Z2EnvSeMgr.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/kankyo/d_kankyo.h"
+#include "d/kankyo/d_kankyo_rain.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct dStage_roomControl_c {
-    /* 80024384 */ void getStatusRoomDt(int);
-};
-
-struct dScnKy_env_light_c {
-    /* 8019FA08 */ void getDaytime();
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dPa_levelEcallBack {};
-
-struct dKy_tevstr_c {};
-
-struct csXyz {};
-
-struct _GXColor {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80009184 */ ~cXyz();
-    /* 800125DC */ cXyz();
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 80266D30 */ void normZP() const;
-    /* 8026706C */ bool operator!=(Vec const&) const;
-
-    static f32 Zero[3];
-};
-
-struct dPa_control_c {
-    /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
-                            u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
-                            cXyz const*, f32);
-};
-
-struct dKankyo_vrkumo_Packet {
-    /* 80056F58 */ void draw();
-    /* 8005820C */ ~dKankyo_vrkumo_Packet();
-};
-
-struct dKankyo_sunlenz_Packet {
-    /* 80056C98 */ void draw();
-    /* 800580A4 */ ~dKankyo_sunlenz_Packet();
-};
-
-struct dKankyo_sun_Packet {
-    /* 80056C60 */ void draw();
-    /* 80058128 */ ~dKankyo_sun_Packet();
-};
-
-struct dKankyo_star_Packet {
-    /* 80056E08 */ void draw();
-    /* 80057F18 */ ~dKankyo_star_Packet();
-};
-
-struct dKankyo_snow_Packet {
-    /* 80056D98 */ void draw();
-    /* 80057F9C */ ~dKankyo_snow_Packet();
-};
-
-struct dKankyo_rain_Packet {
-    /* 80056D10 */ void draw();
-    /* 80058020 */ ~dKankyo_rain_Packet();
-};
-
-struct dKankyo_odour_Packet {
-    /* 80056FCC */ void draw();
-    /* 80057D8C */ ~dKankyo_odour_Packet();
-};
-
-struct dKankyo_mud_Packet {
-    /* 8005703C */ void draw();
-    /* 80057D08 */ ~dKankyo_mud_Packet();
-};
-
-struct dKankyo_housi_Packet {
-    /* 80056EE8 */ void draw();
-    /* 80057E94 */ ~dKankyo_housi_Packet();
-};
-
-struct dKankyo_evil_Packet {
-    /* 800570AC */ void draw();
-    /* 80057C84 */ ~dKankyo_evil_Packet();
-};
-
-struct dKankyo_cloud_Packet {
-    /* 80056E78 */ void draw();
-    /* 80057E10 */ ~dKankyo_cloud_Packet();
-};
-
-struct dComIfG_play_c {
-    /* 8002C97C */ void getLayerNo(int);
-};
-
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2EnvSeMgr {
-    /* 802C7830 */ void startRainSe(s32, s8);
-    /* 802C7FBC */ void initStrongWindSe();
-    /* 802C7FC8 */ void setWindDirection(Vec*);
-    /* 802C800C */ void startStrongWindSe(s8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct WIND_INFLUENCE {};
-
-struct VRKUMO_EFF {
-    /* 80056F18 */ ~VRKUMO_EFF();
-    /* 80056F54 */ VRKUMO_EFF();
-};
-
-struct STAR_EFF {
-    /* 80056DC8 */ ~STAR_EFF();
-    /* 80056E04 */ STAR_EFF();
-};
-
-struct SNOW_EFF {
-    /* 80056D58 */ ~SNOW_EFF();
-    /* 80056D94 */ SNOW_EFF();
-};
-
-struct RAIN_EFF {
-    /* 80056CD0 */ ~RAIN_EFF();
-    /* 80056D0C */ RAIN_EFF();
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-struct J3DPacket;
-struct J3DDrawBuffer {
-    /* 8032548C */ void entryImm(J3DPacket*, u16);
-};
-
-struct J3DPacket {
-    /* 80312750 */ bool entry(J3DDrawBuffer*);
-};
-
-struct HOUSI_EFF {
-    /* 80056EA8 */ ~HOUSI_EFF();
-    /* 80056EE4 */ HOUSI_EFF();
-};
-
-struct EF_ODOUR_EFF {
-    /* 80056F8C */ ~EF_ODOUR_EFF();
-    /* 80056FC8 */ EF_ODOUR_EFF();
-};
-
-struct EF_MUD_EFF {
-    /* 80056FFC */ ~EF_MUD_EFF();
-    /* 80057038 */ EF_MUD_EFF();
-};
-
-struct EF_EVIL_EFF {
-    /* 8005706C */ ~EF_EVIL_EFF();
-    /* 800570A8 */ EF_EVIL_EFF();
-};
-
-struct CLOUD_EFF {
-    /* 80056E38 */ ~CLOUD_EFF();
-    /* 80056E74 */ CLOUD_EFF();
-};
+#include "m_Do/m_Do_audio.h"
 
 //
 // Forward References:
@@ -330,7 +154,8 @@ extern "C" void dKyr_star_init__Fv();
 extern "C" void dKyr_star_move__Fv();
 extern "C" void cloud_shadow_move__Fv();
 extern "C" void vrkumo_move__Fv();
-extern "C" void dKyr_drawSun__FPA4_fP4cXyzR8_GXColorPPUc();
+extern "C" void dKyr_drawSun__FPA4_fP4cXyzR8_GXColorPPUc(f32 (*param_0)[4], cXyz* param_1,
+                                                         _GXColor& param_2, u8** param_3);
 extern "C" void dKyr_drawLenzflare__FPA4_fP4cXyzR8_GXColorPPUc();
 extern "C" void dKyr_drawRain__FPA4_fPPUc();
 extern "C" void dKyr_drawSibuki__FPA4_fPPUc();
@@ -371,8 +196,6 @@ extern "C" void* __nw__FUli();
 extern "C" void __dl__FPv();
 extern "C" bool entry__9J3DPacketFP13J3DDrawBuffer();
 extern "C" void entryImm__13J3DDrawBufferFP9J3DPacketUs();
-extern "C" void PSVECSquareMag();
-extern "C" void PSVECSquareDistance();
 extern "C" void __register_global_object();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
@@ -387,16 +210,11 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void memcmp();
-extern "C" void strcmp();
 extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_mEnvSeMgr[780];
+extern "C" extern dScnKy_env_light_c g_env_light;
+extern "C" extern Z2EnvSeMgr g_mEnvSeMgr;
 extern "C" f32 Zero__4cXyz[3];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80450D64[4];
 extern "C" extern u8 data_80450EE0[8];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
@@ -404,77 +222,74 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 80056AA8-80056AF8 0513E8 0050+00 3/3 0/0 0/0 .text dKyw_setDrawPacketList__FP9J3DPacketi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_setDrawPacketList(J3DPacket* param_0, int param_1) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_setDrawPacketList__FP9J3DPacketi.s"
+// move these later
+inline void mDoAud_rainPlay(s32 enable) {
+    g_mEnvSeMgr.startRainSe(enable, 0);
 }
-#pragma pop
+
+inline void mDoAud_seStart(u32 sfx_id, const Vec* param_1, u32 param_2, s8 param_3) {
+    Z2AudioMgr::getInterface()->mSeMgr.seStart(sfx_id, param_1, param_2, param_3, 1.0f, 1.0f, -1.0f,
+                                               -1.0f, 0);
+}
+
+/* 80056AA8-80056AF8 0513E8 0050+00 3/3 0/0 0/0 .text dKyw_setDrawPacketList__FP9J3DPacketi */
+static J3DPacket* dKyw_setDrawPacketList(J3DPacket* p_packet, int param_1) {
+    if (p_packet == NULL) {
+        return NULL;
+    } else {
+        dComIfGd_getListFilter()->entryImm(p_packet, 0);
+        return p_packet;
+    }
+}
 
 /* 80056AF8-80056B48 051438 0050+00 3/3 0/0 0/0 .text
  * dKyw_setDrawPacketListIndScreen__FP9J3DPacketi               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_setDrawPacketListIndScreen(J3DPacket* param_0, int param_1) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_setDrawPacketListIndScreen__FP9J3DPacketi.s"
+static J3DPacket* dKyw_setDrawPacketListIndScreen(J3DPacket* p_packet, int param_1) {
+    if (p_packet == NULL) {
+        return NULL;
+    } else {
+        dComIfGd_getOpaListIndScreen()->entryImm(p_packet, 0);
+        return p_packet;
+    }
 }
-#pragma pop
 
 /* 80056B48-80056BD8 051488 0090+00 5/5 0/0 0/0 .text dKyw_setDrawPacketListSky__FP9J3DPacketi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_setDrawPacketListSky(J3DPacket* param_0, int param_1) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_setDrawPacketListSky__FP9J3DPacketi.s"
+static J3DPacket* dKyw_setDrawPacketListSky(J3DPacket* p_packet, int type) {
+    if (p_packet == NULL) {
+        return NULL;
+    } else {
+        dComIfGd_setListSky();
+        j3dSys.getDrawBuffer(type)->entryImm(p_packet, 0);
+        dComIfGd_setList();
+        return p_packet;
+    }
 }
-#pragma pop
 
 /* 80056BD8-80056C60 051518 0088+00 2/2 0/0 0/0 .text dKyw_setDrawPacketListXluBg__FP9J3DPacketi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_setDrawPacketListXluBg(J3DPacket* param_0, int param_1) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_setDrawPacketListXluBg__FP9J3DPacketi.s"
+static J3DPacket* dKyw_setDrawPacketListXluBg(J3DPacket* p_packet, int type) {
+    if (p_packet == NULL) {
+        return NULL;
+    } else {
+        dComIfGd_setXluListBG();
+        j3dSys.getDrawBuffer(type)->entryImm(p_packet, 0);
+        dComIfGd_setList();
+        return p_packet;
+    }
 }
-#pragma pop
 
 /* 80056C60-80056C98 0515A0 0038+00 1/0 0/0 0/0 .text            draw__18dKankyo_sun_PacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKankyo_sun_Packet::draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/draw__18dKankyo_sun_PacketFv.s"
+void dKankyo_sun_Packet::draw() {
+    dKyr_drawSun(j3dSys.getViewMtx(), &field_0x10[0], mColor, &mpResMoon);
 }
-#pragma pop
 
 /* 80056C98-80056CD0 0515D8 0038+00 1/0 0/0 0/0 .text            draw__22dKankyo_sunlenz_PacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKankyo_sunlenz_Packet::draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/draw__22dKankyo_sunlenz_PacketFv.s"
+void dKankyo_sunlenz_Packet::draw() {
+    dKyr_drawLenzflare(j3dSys.getViewMtx(), &field_0x24[0], field_0x10, &mpResBall);
 }
-#pragma pop
 
 /* 80056CD0-80056D0C 051610 003C+00 2/2 0/0 0/0 .text            __dt__8RAIN_EFFFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm RAIN_EFF::~RAIN_EFF() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/__dt__8RAIN_EFFFv.s"
-}
-#pragma pop
+RAIN_EFF::~RAIN_EFF() {}
 
 /* 80056D0C-80056D10 05164C 0004+00 1/1 0/0 0/0 .text            __ct__8RAIN_EFFFv */
 RAIN_EFF::RAIN_EFF() {
@@ -482,24 +297,13 @@ RAIN_EFF::RAIN_EFF() {
 }
 
 /* 80056D10-80056D58 051650 0048+00 1/0 0/0 0/0 .text            draw__19dKankyo_rain_PacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKankyo_rain_Packet::draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/draw__19dKankyo_rain_PacketFv.s"
+void dKankyo_rain_Packet::draw() {
+    dKyr_drawSibuki(j3dSys.getViewMtx(), &field_0x10);
+    dKyr_drawRain(j3dSys.getViewMtx(), &field_0x10);
 }
-#pragma pop
 
 /* 80056D58-80056D94 051698 003C+00 1/1 1/1 0/0 .text            __dt__8SNOW_EFFFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm SNOW_EFF::~SNOW_EFF() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/__dt__8SNOW_EFFFv.s"
-}
-#pragma pop
+SNOW_EFF::~SNOW_EFF() {}
 
 /* 80056D94-80056D98 0516D4 0004+00 0/0 1/1 0/0 .text            __ct__8SNOW_EFFFv */
 SNOW_EFF::SNOW_EFF() {
@@ -507,24 +311,12 @@ SNOW_EFF::SNOW_EFF() {
 }
 
 /* 80056D98-80056DC8 0516D8 0030+00 1/0 0/0 0/0 .text            draw__19dKankyo_snow_PacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKankyo_snow_Packet::draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/draw__19dKankyo_snow_PacketFv.s"
+void dKankyo_snow_Packet::draw() {
+    dKyr_drawSnow(j3dSys.getViewMtx(), &field_0x10);
 }
-#pragma pop
 
 /* 80056DC8-80056E04 051708 003C+00 1/1 1/1 0/0 .text            __dt__8STAR_EFFFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm STAR_EFF::~STAR_EFF() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/__dt__8STAR_EFFFv.s"
-}
-#pragma pop
+STAR_EFF::~STAR_EFF() {}
 
 /* 80056E04-80056E08 051744 0004+00 0/0 1/1 0/0 .text            __ct__8STAR_EFFFv */
 STAR_EFF::STAR_EFF() {
@@ -532,24 +324,12 @@ STAR_EFF::STAR_EFF() {
 }
 
 /* 80056E08-80056E38 051748 0030+00 1/0 0/0 0/0 .text            draw__19dKankyo_star_PacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKankyo_star_Packet::draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/draw__19dKankyo_star_PacketFv.s"
+void dKankyo_star_Packet::draw() {
+    dKyr_drawStar(j3dSys.getViewMtx(), &field_0x10);
 }
-#pragma pop
 
 /* 80056E38-80056E74 051778 003C+00 2/2 0/0 0/0 .text            __dt__9CLOUD_EFFFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm CLOUD_EFF::~CLOUD_EFF() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/__dt__9CLOUD_EFFFv.s"
-}
-#pragma pop
+CLOUD_EFF::~CLOUD_EFF() {}
 
 /* 80056E74-80056E78 0517B4 0004+00 1/1 0/0 0/0 .text            __ct__9CLOUD_EFFFv */
 CLOUD_EFF::CLOUD_EFF() {
@@ -557,24 +337,12 @@ CLOUD_EFF::CLOUD_EFF() {
 }
 
 /* 80056E78-80056EA8 0517B8 0030+00 1/0 0/0 0/0 .text            draw__20dKankyo_cloud_PacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKankyo_cloud_Packet::draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/draw__20dKankyo_cloud_PacketFv.s"
+void dKankyo_cloud_Packet::draw() {
+    drawCloudShadow(j3dSys.getViewMtx(), &mpResTex);
 }
-#pragma pop
 
 /* 80056EA8-80056EE4 0517E8 003C+00 2/2 0/0 0/0 .text            __dt__9HOUSI_EFFFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm HOUSI_EFF::~HOUSI_EFF() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/__dt__9HOUSI_EFFFv.s"
-}
-#pragma pop
+HOUSI_EFF::~HOUSI_EFF() {}
 
 /* 80056EE4-80056EE8 051824 0004+00 1/1 0/0 0/0 .text            __ct__9HOUSI_EFFFv */
 HOUSI_EFF::HOUSI_EFF() {
@@ -582,24 +350,12 @@ HOUSI_EFF::HOUSI_EFF() {
 }
 
 /* 80056EE8-80056F18 051828 0030+00 1/0 0/0 0/0 .text            draw__20dKankyo_housi_PacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKankyo_housi_Packet::draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/draw__20dKankyo_housi_PacketFv.s"
+void dKankyo_housi_Packet::draw() {
+    dKyr_drawHousi(j3dSys.getViewMtx(), &mpResTex);
 }
-#pragma pop
 
 /* 80056F18-80056F54 051858 003C+00 2/2 0/0 0/0 .text            __dt__10VRKUMO_EFFFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm VRKUMO_EFF::~VRKUMO_EFF() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/__dt__10VRKUMO_EFFFv.s"
-}
-#pragma pop
+VRKUMO_EFF::~VRKUMO_EFF() {}
 
 /* 80056F54-80056F58 051894 0004+00 1/1 0/0 0/0 .text            __ct__10VRKUMO_EFFFv */
 VRKUMO_EFF::VRKUMO_EFF() {
@@ -607,24 +363,12 @@ VRKUMO_EFF::VRKUMO_EFF() {
 }
 
 /* 80056F58-80056F8C 051898 0034+00 1/0 0/0 0/0 .text            draw__21dKankyo_vrkumo_PacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKankyo_vrkumo_Packet::draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/draw__21dKankyo_vrkumo_PacketFv.s"
+void dKankyo_vrkumo_Packet::draw() {
+    drawVrkumo(j3dSys.getViewMtx(), field_0x10, &mpResCloudtx_01);
 }
-#pragma pop
 
 /* 80056F8C-80056FC8 0518CC 003C+00 2/2 0/0 0/0 .text            __dt__12EF_ODOUR_EFFFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm EF_ODOUR_EFF::~EF_ODOUR_EFF() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/__dt__12EF_ODOUR_EFFFv.s"
-}
-#pragma pop
+EF_ODOUR_EFF::~EF_ODOUR_EFF() {}
 
 /* 80056FC8-80056FCC 051908 0004+00 1/1 0/0 0/0 .text            __ct__12EF_ODOUR_EFFFv */
 EF_ODOUR_EFF::EF_ODOUR_EFF() {
@@ -632,24 +376,12 @@ EF_ODOUR_EFF::EF_ODOUR_EFF() {
 }
 
 /* 80056FCC-80056FFC 05190C 0030+00 1/0 0/0 0/0 .text            draw__20dKankyo_odour_PacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKankyo_odour_Packet::draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/draw__20dKankyo_odour_PacketFv.s"
+void dKankyo_odour_Packet::draw() {
+    dKyr_odour_draw(j3dSys.getViewMtx(), &mpResTex);
 }
-#pragma pop
 
 /* 80056FFC-80057038 05193C 003C+00 2/2 0/0 0/0 .text            __dt__10EF_MUD_EFFFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm EF_MUD_EFF::~EF_MUD_EFF() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/__dt__10EF_MUD_EFFFv.s"
-}
-#pragma pop
+EF_MUD_EFF::~EF_MUD_EFF() {}
 
 /* 80057038-8005703C 051978 0004+00 1/1 0/0 0/0 .text            __ct__10EF_MUD_EFFFv */
 EF_MUD_EFF::EF_MUD_EFF() {
@@ -657,24 +389,12 @@ EF_MUD_EFF::EF_MUD_EFF() {
 }
 
 /* 8005703C-8005706C 05197C 0030+00 1/0 0/0 0/0 .text            draw__18dKankyo_mud_PacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKankyo_mud_Packet::draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/draw__18dKankyo_mud_PacketFv.s"
+void dKankyo_mud_Packet::draw() {
+    dKyr_mud_draw(j3dSys.getViewMtx(), &field_0x14);
 }
-#pragma pop
 
 /* 8005706C-800570A8 0519AC 003C+00 2/2 0/0 0/0 .text            __dt__11EF_EVIL_EFFFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm EF_EVIL_EFF::~EF_EVIL_EFF() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/__dt__11EF_EVIL_EFFFv.s"
-}
-#pragma pop
+EF_EVIL_EFF::~EF_EVIL_EFF() {}
 
 /* 800570A8-800570AC 0519E8 0004+00 1/1 0/0 0/0 .text            __ct__11EF_EVIL_EFFFv */
 EF_EVIL_EFF::EF_EVIL_EFF() {
@@ -682,262 +402,133 @@ EF_EVIL_EFF::EF_EVIL_EFF() {
 }
 
 /* 800570AC-800570DC 0519EC 0030+00 1/0 0/0 0/0 .text            draw__19dKankyo_evil_PacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKankyo_evil_Packet::draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/draw__19dKankyo_evil_PacketFv.s"
+void dKankyo_evil_Packet::draw() {
+    dKyr_evil_draw(j3dSys.getViewMtx(), &field_0x14);
 }
-#pragma pop
 
 /* 800570DC-8005710C 051A1C 0030+00 1/1 0/0 0/0 .text            dKyw_drawSun__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_drawSun(int param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_drawSun__Fi.s"
+static void dKyw_drawSun(int type) {
+    dKyw_setDrawPacketListSky(g_env_light.mpSunPacket, type);
 }
-#pragma pop
 
 /* 8005710C-80057130 051A4C 0024+00 1/1 0/0 0/0 .text            dKyw_Sun_Draw__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_Sun_Draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_Sun_Draw__Fv.s"
+static void dKyw_Sun_Draw() {
+    dKyw_drawSun(XLU_BUFFER);
 }
-#pragma pop
 
 /* 80057130-80057174 051A70 0044+00 1/1 0/0 0/0 .text            dKyw_drawSunlenz__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_drawSunlenz(int param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_drawSunlenz__Fi.s"
+static void dKyw_drawSunlenz(int type) {
+    if (g_env_light.mpSunLenzPacket->field_0x9e == 0) {
+        dKyw_setDrawPacketListIndScreen(g_env_light.mpSunLenzPacket, type);
+    } else {
+        dKyw_setDrawPacketListSky(g_env_light.mpSunLenzPacket, type);
+    }
 }
-#pragma pop
 
 /* 80057174-80057198 051AB4 0024+00 1/1 0/0 0/0 .text            dKyw_Sunlenz_Draw__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_Sunlenz_Draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_Sunlenz_Draw__Fv.s"
+static void dKyw_Sunlenz_Draw() {
+    dKyw_drawSunlenz(XLU_BUFFER);
 }
-#pragma pop
 
 /* 80057198-800571C8 051AD8 0030+00 1/1 0/0 0/0 .text            dKyw_drawRain__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_drawRain(int param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_drawRain__Fi.s"
+static void dKyw_drawRain(int type) {
+    dKyw_setDrawPacketList(g_env_light.mpRainPacket, type);
 }
-#pragma pop
 
 /* 800571C8-800571EC 051B08 0024+00 1/1 0/0 0/0 .text            dKyw_Rain_Draw__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_Rain_Draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_Rain_Draw__Fv.s"
+static void dKyw_Rain_Draw() {
+    dKyw_drawRain(XLU_BUFFER);
 }
-#pragma pop
 
 /* 800571EC-8005721C 051B2C 0030+00 1/1 0/0 0/0 .text            dKyw_drawSnow__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_drawSnow(int param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_drawSnow__Fi.s"
+static void dKyw_drawSnow(int type) {
+    dKyw_setDrawPacketList(g_env_light.mpSnowPacket, type);
 }
-#pragma pop
 
 /* 8005721C-80057240 051B5C 0024+00 1/1 0/0 0/0 .text            dKyw_Snow_Draw__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_Snow_Draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_Snow_Draw__Fv.s"
+static void dKyw_Snow_Draw() {
+    dKyw_drawSnow(XLU_BUFFER);
 }
-#pragma pop
 
 /* 80057240-80057270 051B80 0030+00 1/1 0/0 0/0 .text            dKyw_drawStar__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_drawStar(int param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_drawStar__Fi.s"
+static void dKyw_drawStar(int type) {
+    dKyw_setDrawPacketListSky(g_env_light.mpStarPacket, type);
 }
-#pragma pop
 
 /* 80057270-80057294 051BB0 0024+00 1/1 0/0 0/0 .text            dKyw_Star_Draw__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_Star_Draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_Star_Draw__Fv.s"
+static void dKyw_Star_Draw() {
+    dKyw_drawStar(XLU_BUFFER);
 }
-#pragma pop
 
 /* 80057294-800572C4 051BD4 0030+00 1/1 0/0 0/0 .text            dKyw_drawHousi__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_drawHousi(int param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_drawHousi__Fi.s"
+static void dKyw_drawHousi(int type) {
+    dKyw_setDrawPacketList(g_env_light.mpHousiPacket, type);
 }
-#pragma pop
 
 /* 800572C4-800572E8 051C04 0024+00 1/1 0/0 0/0 .text            dKyw_Housi_Draw__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_Housi_Draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_Housi_Draw__Fv.s"
+static void dKyw_Housi_Draw() {
+    dKyw_drawHousi(XLU_BUFFER);
 }
-#pragma pop
 
 /* 800572E8-80057318 051C28 0030+00 1/1 0/0 0/0 .text            dKyw_drawCloud__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_drawCloud(int param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_drawCloud__Fi.s"
+static void dKyw_drawCloud(int type) {
+    dKyw_setDrawPacketListIndScreen(g_env_light.mpCloudPacket, type);
 }
-#pragma pop
 
 /* 80057318-8005733C 051C58 0024+00 1/1 0/0 0/0 .text            dKyw_Cloud_Draw__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_Cloud_Draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_Cloud_Draw__Fv.s"
+static void dKyw_Cloud_Draw() {
+    dKyw_drawCloud(XLU_BUFFER);
 }
-#pragma pop
 
 /* 8005733C-8005736C 051C7C 0030+00 1/1 0/0 0/0 .text            dKyw_drawVrkumo__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_drawVrkumo(int param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_drawVrkumo__Fi.s"
+static void dKyw_drawVrkumo(int type) {
+    dKyw_setDrawPacketListSky(g_env_light.mpVrkumoPacket, type);
 }
-#pragma pop
 
 /* 8005736C-80057390 051CAC 0024+00 1/1 0/0 0/0 .text            dKyw_Vrkumo_Draw__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_Vrkumo_Draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_Vrkumo_Draw__Fv.s"
+static void dKyw_Vrkumo_Draw() {
+    dKyw_drawVrkumo(XLU_BUFFER);
 }
-#pragma pop
 
 /* 80057390-800573C0 051CD0 0030+00 1/1 0/0 0/0 .text            dKyw_shstar_packet__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_shstar_packet(int param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_shstar_packet__Fi.s"
+static void dKyw_shstar_packet(int type) {
+    dKyw_setDrawPacketListSky(g_env_light.mpShstarPacket, type);
 }
-#pragma pop
 
 /* 800573C0-800573E4 051D00 0024+00 1/1 0/0 0/0 .text            dKyw_shstar_Draw__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_shstar_Draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_shstar_Draw__Fv.s"
+static void dKyw_shstar_Draw() {
+    dKyw_shstar_packet(XLU_BUFFER);
 }
-#pragma pop
 
 /* 800573E4-80057414 051D24 0030+00 1/1 0/0 0/0 .text            dKyw_odour_packet__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_odour_packet(int param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_odour_packet__Fi.s"
+static void dKyw_odour_packet(int type) {
+    dKyw_setDrawPacketListIndScreen(g_env_light.mpOdourPacket, type);
 }
-#pragma pop
 
 /* 80057414-80057438 051D54 0024+00 1/1 0/0 0/0 .text            dKyw_Odour_Draw__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_Odour_Draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_Odour_Draw__Fv.s"
+static void dKyw_Odour_Draw() {
+    dKyw_odour_packet(XLU_BUFFER);
 }
-#pragma pop
 
 /* 80057438-80057468 051D78 0030+00 1/1 0/0 0/0 .text            dKyw_mud_packet__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_mud_packet(int param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_mud_packet__Fi.s"
+static void dKyw_mud_packet(int type) {
+    dKyw_setDrawPacketListXluBg(g_env_light.mpMudPacket, type);
 }
-#pragma pop
 
 /* 80057468-8005748C 051DA8 0024+00 1/1 0/0 0/0 .text            dKyw_mud_Draw__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_mud_Draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_mud_Draw__Fv.s"
+static void dKyw_mud_Draw() {
+    dKyw_mud_packet(XLU_BUFFER);
 }
-#pragma pop
 
 /* 8005748C-800574BC 051DCC 0030+00 1/1 0/0 0/0 .text            dKyw_evil_packet__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_evil_packet(int param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_evil_packet__Fi.s"
+static void dKyw_evil_packet(int type) {
+    dKyw_setDrawPacketListXluBg(g_env_light.mpEvilPacket, type);
 }
-#pragma pop
 
 /* 800574BC-800574E0 051DFC 0024+00 1/1 0/0 0/0 .text            dKyw_evil_Draw__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_evil_Draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_evil_Draw__Fv.s"
+static void dKyw_evil_Draw() {
+    dKyw_evil_packet(XLU_BUFFER);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 8037A368-8037A368 0069C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8037A368 = "F_SP113";
-SECTION_DEAD static char const* const stringBase_8037A370 = "D_MN07";
-#pragma pop
 
 /* 804520E0-804520E4 0006E0 0004+00 12/12 0/0 0/0 .sdata2          @4378 */
 SECTION_SDATA2 static u8 lit_4378[4] = {
@@ -950,95 +541,160 @@ SECTION_SDATA2 static u8 lit_4378[4] = {
 /* 804520E4-804520E8 0006E4 0004+00 11/11 0/0 0/0 .sdata2          @4379 */
 SECTION_SDATA2 static f32 lit_4379 = 1.0f;
 
-/* 800574E0-800579EC 051E20 050C+00 0/0 1/1 0/0 .text            dKyw_wether_init__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKyw_wether_init() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_wether_init__Fv.s"
+// remove these once float data is fixed
+inline u32 tmp_dComIfGp_particle_set(u16 param_1, const cXyz* param_2, const dKy_tevstr_c* param_3,
+                                     const csXyz* param_4, const cXyz* param_5, u8 param_6,
+                                     dPa_levelEcallBack* param_7, s8 param_8,
+                                     const GXColor* param_9, const GXColor* param_10,
+                                     const cXyz* param_11) {
+    return g_dComIfG_gameInfo.play.getParticle()->setNormal(param_1, param_2, param_3, param_4,
+                                                            param_5, param_6, param_7, param_8,
+                                                            param_9, param_10, param_11, lit_4379);
 }
-#pragma pop
+
+inline u32 tmp_dComIfGp_particle_set(u16 param_0, const cXyz* param_1, const csXyz* param_2,
+                                     const cXyz* param_3) {
+    return tmp_dComIfGp_particle_set(param_0, param_1, NULL, param_2, param_3, 0xFF, NULL, -1, NULL,
+                                     NULL, NULL);
+}
+
+/* 800574E0-800579EC 051E20 050C+00 0/0 1/1 0/0 .text            dKyw_wether_init__Fv */
+void dKyw_wether_init() {
+    g_env_light.mSunPacketEnabled = false;
+    g_env_light.field_0xed4.field_0x0 = 0;
+    g_env_light.field_0xed4.field_0x4 = 0;
+    g_env_light.mRainPacketEnabled = 0;
+    g_env_light.mRainCount = 0;
+    g_env_light.mSnowPacketEnabled = 0;
+    g_env_light.field_0xe92 = 0;
+    g_env_light.mSnowCount = 0;
+    g_env_light.field_0xe90 = 0;
+    g_env_light.field_0xe91 = 0;
+    g_env_light.mStarPacketEnabled = false;
+    g_env_light.mStarCount = 0;
+    f32 tmp0 = FLOAT_LABEL(lit_4378);
+    g_env_light.mStarDensity = tmp0;
+    g_env_light.mCloudPacketEnabled = 0;
+    g_env_light.field_0xeb8 = 0;
+    g_env_light.field_0xebc = tmp0;
+    g_env_light.field_0xeb5 = 0;
+    g_env_light.mHousiPacketEnabled = false;
+    g_env_light.field_0xeac = 0;
+    g_env_light.mOdourPacketStatus = 0;
+    g_env_light.field_0xf24 = 0;
+    g_env_light.field_0xf21 = 0;
+    g_env_light.mpOdourPacket = NULL;
+    g_env_light.field_0x1038 = 0;
+    g_env_light.field_0x103c = 0;
+    g_env_light.mMudPacketEnabled = 0;
+    g_env_light.field_0x1048 = 0;
+    g_env_light.mEvilPacketEnabled = 0;
+    g_env_light.field_0x1054 = 0;
+    g_env_light.field_0x1051 = 0;
+    g_env_light.field_0xe60 = tmp0;
+
+    dKyw_wind_init();
+    dKyw_pntwind_init();
+
+    // Stage is Zora's Domain and Room is Outside Throne Room
+    if (!strcmp(dComIfGp_getStartStageName(), "F_SP113") && dComIfGp_roomControl_getStayNo() == 1 &&
+        dComIfG_play_c::getLayerNo(0) < 8) {
+        cXyz tmp;
+        f32 tmp0_2 = FLOAT_LABEL(lit_4378);
+        tmp.z = tmp0_2;
+        tmp.y = tmp0_2;
+        tmp.x = tmp0_2;
+
+        tmp_dComIfGp_particle_set(0x878F, &tmp, NULL, NULL);
+        tmp_dComIfGp_particle_set(0x8790, &tmp, NULL, NULL);
+        tmp_dComIfGp_particle_set(0x8791, &tmp, NULL, NULL);
+        tmp_dComIfGp_particle_set(0x8792, &tmp, NULL, NULL);
+        tmp_dComIfGp_particle_set(0x8793, &tmp, NULL, NULL);
+        tmp_dComIfGp_particle_set(0x8794, &tmp, NULL, NULL);
+        tmp_dComIfGp_particle_set(0x8795, &tmp, NULL, NULL);
+        tmp_dComIfGp_particle_set(0x8796, &tmp, NULL, NULL);
+        tmp_dComIfGp_particle_set(0x8797, &tmp, NULL, NULL);
+        tmp_dComIfGp_particle_set(0x8798, &tmp, NULL, NULL);
+        tmp_dComIfGp_particle_set(0x8799, &tmp, NULL, NULL);
+        tmp_dComIfGp_particle_set(0x879A, &tmp, NULL, NULL);
+        tmp_dComIfGp_particle_set(0x879B, &tmp, NULL, NULL);
+    }
+
+    // Stage is City in the Sky
+    // Room is Entrance or Right Wing Outside or Left Wing Outside or Central Hub Outside
+    if (!strcmp(dComIfGp_getStartStageName(), "D_MN07")) {
+        if ((dComIfGp_roomControl_getStayNo() == 0 || dComIfGp_roomControl_getStayNo() == 3) ||
+            dComIfGp_roomControl_getStayNo() == 6 || dComIfGp_roomControl_getStayNo() == 13) {
+            g_mEnvSeMgr.initStrongWindSe();
+        }
+    }
+}
 
 /* 800579EC-80057A04 05232C 0018+00 0/0 1/1 0/0 .text            dKyw_wether_init2__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKyw_wether_init2() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_wether_init2__Fv.s"
+void dKyw_wether_init2() {
+    g_env_light.field_0xec4 = 0;
+    g_env_light.field_0xec8 = 0;
 }
-#pragma pop
 
 /* 80057A04-80057C84 052344 0280+00 0/0 1/1 0/0 .text            dKyw_wether_delete__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKyw_wether_delete() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_wether_delete__Fv.s"
-}
-#pragma pop
+void dKyw_wether_delete() {
+    if (g_env_light.mSunPacketEnabled) {
+        delete g_env_light.mpSunPacket;
+        delete g_env_light.mpSunLenzPacket;
+        g_env_light.mpSunPacket = NULL;
+        g_env_light.mpSunLenzPacket = NULL;
+    }
 
-/* ############################################################################################## */
-/* 803A9AC0-803A9AD4 006BE0 0014+00 2/2 0/0 0/0 .data            __vt__19dKankyo_evil_Packet */
-SECTION_DATA extern void* __vt__19dKankyo_evil_Packet[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)entry__9J3DPacketFP13J3DDrawBuffer,
-    (void*)draw__19dKankyo_evil_PacketFv,
-    (void*)__dt__19dKankyo_evil_PacketFv,
-};
+    if (g_env_light.mRainPacketEnabled) {
+        delete g_env_light.mpRainPacket;
+        g_env_light.mpRainPacket = NULL;
+    }
+
+    if (g_env_light.mSnowPacketEnabled) {
+        delete g_env_light.mpSnowPacket;
+        g_env_light.mpSnowPacket = NULL;
+        g_env_light.field_0xe90 = 0;
+    }
+
+    if (g_env_light.mStarPacketEnabled) {
+        delete g_env_light.mpStarPacket;
+        g_env_light.mpStarPacket = NULL;
+    }
+
+    if (g_env_light.mHousiPacketEnabled) {
+        delete g_env_light.mpHousiPacket;
+        g_env_light.mpHousiPacket = NULL;
+    }
+
+    if (g_env_light.mCloudPacketEnabled) {
+        delete g_env_light.mpCloudPacket;
+        g_env_light.mpCloudPacket = NULL;
+    }
+
+    if (g_env_light.mOdourPacketStatus) {
+        delete g_env_light.mpOdourPacket;
+        g_env_light.mpOdourPacket = NULL;
+    }
+
+    if (g_env_light.mMudPacketEnabled) {
+        delete g_env_light.mpMudPacket;
+        g_env_light.mpMudPacket = NULL;
+    }
+
+    if (g_env_light.mEvilPacketEnabled) {
+        delete g_env_light.mpEvilPacket;
+        g_env_light.mpEvilPacket = NULL;
+    }
+}
 
 /* 80057C84-80057D08 0525C4 0084+00 1/0 0/0 0/0 .text            __dt__19dKankyo_evil_PacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dKankyo_evil_Packet::~dKankyo_evil_Packet() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/__dt__19dKankyo_evil_PacketFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 803A9AD4-803A9AE8 006BF4 0014+00 2/2 0/0 0/0 .data            __vt__18dKankyo_mud_Packet */
-SECTION_DATA extern void* __vt__18dKankyo_mud_Packet[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)entry__9J3DPacketFP13J3DDrawBuffer,
-    (void*)draw__18dKankyo_mud_PacketFv,
-    (void*)__dt__18dKankyo_mud_PacketFv,
-};
+dKankyo_evil_Packet::~dKankyo_evil_Packet() {}
 
 /* 80057D08-80057D8C 052648 0084+00 1/0 0/0 0/0 .text            __dt__18dKankyo_mud_PacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dKankyo_mud_Packet::~dKankyo_mud_Packet() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/__dt__18dKankyo_mud_PacketFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 803A9AE8-803A9AFC 006C08 0014+00 2/2 0/0 0/0 .data            __vt__20dKankyo_odour_Packet */
-SECTION_DATA extern void* __vt__20dKankyo_odour_Packet[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)entry__9J3DPacketFP13J3DDrawBuffer,
-    (void*)draw__20dKankyo_odour_PacketFv,
-    (void*)__dt__20dKankyo_odour_PacketFv,
-};
+dKankyo_mud_Packet::~dKankyo_mud_Packet() {}
 
 /* 80057D8C-80057E10 0526CC 0084+00 1/0 0/0 0/0 .text            __dt__20dKankyo_odour_PacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dKankyo_odour_Packet::~dKankyo_odour_Packet() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/__dt__20dKankyo_odour_PacketFv.s"
-}
-#pragma pop
+dKankyo_odour_Packet::~dKankyo_odour_Packet() {}
 
 /* ############################################################################################## */
 /* 803A9AFC-803A9B10 006C1C 0014+00 2/2 0/0 0/0 .data            __vt__21dKankyo_vrkumo_Packet */
@@ -1050,43 +706,11 @@ SECTION_DATA extern void* __vt__21dKankyo_vrkumo_Packet[5] = {
     (void*)__dt__21dKankyo_vrkumo_PacketFv,
 };
 
-/* 803A9B10-803A9B24 006C30 0014+00 2/2 0/0 0/0 .data            __vt__20dKankyo_housi_Packet */
-SECTION_DATA extern void* __vt__20dKankyo_housi_Packet[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)entry__9J3DPacketFP13J3DDrawBuffer,
-    (void*)draw__20dKankyo_housi_PacketFv,
-    (void*)__dt__20dKankyo_housi_PacketFv,
-};
-
-/* 803A9B24-803A9B38 006C44 0014+00 2/2 0/0 0/0 .data            __vt__20dKankyo_cloud_Packet */
-SECTION_DATA extern void* __vt__20dKankyo_cloud_Packet[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)entry__9J3DPacketFP13J3DDrawBuffer,
-    (void*)draw__20dKankyo_cloud_PacketFv,
-    (void*)__dt__20dKankyo_cloud_PacketFv,
-};
-
 /* 80057E10-80057E94 052750 0084+00 1/0 0/0 0/0 .text            __dt__20dKankyo_cloud_PacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dKankyo_cloud_Packet::~dKankyo_cloud_Packet() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/__dt__20dKankyo_cloud_PacketFv.s"
-}
-#pragma pop
+dKankyo_cloud_Packet::~dKankyo_cloud_Packet() {}
 
 /* 80057E94-80057F18 0527D4 0084+00 1/0 0/0 0/0 .text            __dt__20dKankyo_housi_PacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dKankyo_housi_Packet::~dKankyo_housi_Packet() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/__dt__20dKankyo_housi_PacketFv.s"
-}
-#pragma pop
+dKankyo_housi_Packet::~dKankyo_housi_Packet() {}
 
 /* ############################################################################################## */
 /* 803A9B38-803A9B4C 006C58 0014+00 1/1 1/1 0/0 .data            __vt__19dKankyo_star_Packet */
@@ -1099,34 +723,10 @@ SECTION_DATA extern void* __vt__19dKankyo_star_Packet[5] = {
 };
 
 /* 80057F18-80057F9C 052858 0084+00 1/0 0/0 0/0 .text            __dt__19dKankyo_star_PacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dKankyo_star_Packet::~dKankyo_star_Packet() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/__dt__19dKankyo_star_PacketFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 803A9B4C-803A9B60 006C6C 0014+00 1/1 1/1 0/0 .data            __vt__19dKankyo_snow_Packet */
-SECTION_DATA extern void* __vt__19dKankyo_snow_Packet[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)entry__9J3DPacketFP13J3DDrawBuffer,
-    (void*)draw__19dKankyo_snow_PacketFv,
-    (void*)__dt__19dKankyo_snow_PacketFv,
-};
+dKankyo_star_Packet::~dKankyo_star_Packet() {}
 
 /* 80057F9C-80058020 0528DC 0084+00 1/0 0/0 0/0 .text            __dt__19dKankyo_snow_PacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dKankyo_snow_Packet::~dKankyo_snow_Packet() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/__dt__19dKankyo_snow_PacketFv.s"
-}
-#pragma pop
+dKankyo_snow_Packet::~dKankyo_snow_Packet() {}
 
 /* ############################################################################################## */
 /* 803A9B60-803A9B74 006C80 0014+00 2/2 0/0 0/0 .data            __vt__19dKankyo_rain_Packet */
@@ -1139,112 +739,44 @@ SECTION_DATA extern void* __vt__19dKankyo_rain_Packet[5] = {
 };
 
 /* 80058020-800580A4 052960 0084+00 1/0 0/0 0/0 .text            __dt__19dKankyo_rain_PacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dKankyo_rain_Packet::~dKankyo_rain_Packet() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/__dt__19dKankyo_rain_PacketFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 803A9B74-803A9B88 006C94 0014+00 2/2 0/0 0/0 .data            __vt__22dKankyo_sunlenz_Packet */
-SECTION_DATA extern void* __vt__22dKankyo_sunlenz_Packet[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)entry__9J3DPacketFP13J3DDrawBuffer,
-    (void*)draw__22dKankyo_sunlenz_PacketFv,
-    (void*)__dt__22dKankyo_sunlenz_PacketFv,
-};
+dKankyo_rain_Packet::~dKankyo_rain_Packet() {}
 
 /* 800580A4-80058128 0529E4 0084+00 1/0 0/0 0/0 .text            __dt__22dKankyo_sunlenz_PacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dKankyo_sunlenz_Packet::~dKankyo_sunlenz_Packet() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/__dt__22dKankyo_sunlenz_PacketFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 803A9B88-803A9BA0 006CA8 0014+04 2/2 0/0 0/0 .data            __vt__18dKankyo_sun_Packet */
-SECTION_DATA extern void* __vt__18dKankyo_sun_Packet[5 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)entry__9J3DPacketFP13J3DDrawBuffer,
-    (void*)draw__18dKankyo_sun_PacketFv,
-    (void*)__dt__18dKankyo_sun_PacketFv,
-    /* padding */
-    NULL,
-};
+dKankyo_sunlenz_Packet::~dKankyo_sunlenz_Packet() {}
 
 /* 80058128-800581AC 052A68 0084+00 1/0 0/0 0/0 .text            __dt__18dKankyo_sun_PacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dKankyo_sun_Packet::~dKankyo_sun_Packet() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/__dt__18dKankyo_sun_PacketFv.s"
-}
-#pragma pop
+dKankyo_sun_Packet::~dKankyo_sun_Packet() {}
 
 /* 800581AC-8005820C 052AEC 0060+00 0/0 1/1 0/0 .text            dKyw_wether_delete2__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKyw_wether_delete2() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_wether_delete2__Fv.s"
+void dKyw_wether_delete2() {
+    if (g_env_light.field_0xec4 != 0) {
+        delete g_env_light.mpVrkumoPacket;
+        g_env_light.mpVrkumoPacket = NULL;
+    }
 }
-#pragma pop
 
 /* 8005820C-80058290 052B4C 0084+00 1/0 0/0 0/0 .text            __dt__21dKankyo_vrkumo_PacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dKankyo_vrkumo_Packet::~dKankyo_vrkumo_Packet() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/__dt__21dKankyo_vrkumo_PacketFv.s"
-}
-#pragma pop
+dKankyo_vrkumo_Packet::~dKankyo_vrkumo_Packet() {}
 
 /* 80058290-800582F8 052BD0 0068+00 1/1 0/0 0/0 .text            wether_move_thunder__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void wether_move_thunder() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/wether_move_thunder__Fv.s"
+static void wether_move_thunder() {
+    switch (g_env_light.field_0xed4.field_0x0) {
+    case 0:
+        if (g_env_light.field_0xed4.field_0x4 != 0) {
+            dKyr_thunder_init();
+            g_env_light.field_0xed4.field_0x0 = 1;
+        }
+        break;
+    case 1:
+        dKyr_thunder_move();
+        break;
+    }
 }
-#pragma pop
 
 /* 800582F8-80058318 052C38 0020+00 0/0 1/1 0/0 .text            dKyw_wether_move__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKyw_wether_move() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_wether_move__Fv.s"
+void dKyw_wether_move() {
+    wether_move_thunder();
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 8037A368-8037A368 0069C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8037A377 = "F_SP200";
-SECTION_DEAD static char const* const stringBase_8037A37F = "D_MN09";
-SECTION_DEAD static char const* const stringBase_8037A386 = "D_MN09A";
-SECTION_DEAD static char const* const stringBase_8037A38E = "F_moon.bti";
-SECTION_DEAD static char const* const stringBase_8037A399 = "F_moon_A.bti";
-SECTION_DEAD static char const* const stringBase_8037A3A6 = "F_moon_A_A00.bti";
-SECTION_DEAD static char const* const stringBase_8037A3B7 = "F_moon_A_A01.bti";
-SECTION_DEAD static char const* const stringBase_8037A3C8 = "F_moon_A_A02.bti";
-SECTION_DEAD static char const* const stringBase_8037A3D9 = "F_moon_A_A03.bti";
-SECTION_DEAD static char const* const stringBase_8037A3EA = "Always";
-#pragma pop
 
 /* 804520E8-804520EC 0006E8 0004+00 1/1 0/0 0/0 .sdata2          @4610 */
 SECTION_SDATA2 static f32 lit_4610 = 255.0f;
@@ -1253,14 +785,107 @@ SECTION_SDATA2 static f32 lit_4610 = 255.0f;
 SECTION_SDATA2 static f32 lit_4611 = 1000000000.0f;
 
 /* 80058318-80058894 052C58 057C+00 1/1 0/0 0/0 .text            wether_move_sun__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void wether_move_sun() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/wether_move_sun__Fv.s"
+static void wether_move_sun() {
+    s32 sunVisible = false;
+    if (dComIfGp_checkStatus(1) && !g_env_light.field_0x12d4) {
+        roomRead_class* room = dComIfGp_getStageRoom();
+        if (room != NULL && room->field_0x0 > dComIfGp_roomControl_getStayNo()) {
+            sunVisible = dStage_roomRead_dt_c_GetVrboxswitch(
+                *room->field_0x4[dComIfGp_roomControl_getStayNo()]);
+        }
+
+        // Stage is Hero Shade arena
+        if (!strcmp(dComIfGp_getStartStageName(), "F_SP200")) {
+            sunVisible = true;
+            // Stage is Hyrule Castle or Castle Throne Room
+        } else if (!strcmp(dComIfGp_getStartStageName(), "D_MN09") ||
+                   !strcmp(dComIfGp_getStartStageName(), "D_MN09A")) {
+            sunVisible = false;
+        }
+
+        switch (g_env_light.mSunPacketEnabled) {
+        case FALSE:
+            if (sunVisible && dKy_darkworld_check() != true) {
+                g_env_light.mpSunPacket = new (0x20) dKankyo_sun_Packet();
+                g_env_light.mpSunLenzPacket = new (0x20) dKankyo_sunlenz_Packet();
+                if (g_env_light.mpSunPacket != NULL && g_env_light.mpSunLenzPacket != NULL) {
+                    g_env_light.mpSunPacket->mpResMoon = (u8*)dComIfG_getStageRes("F_moon.bti");
+                    g_env_light.mpSunPacket->mpResMoon_A = (u8*)dComIfG_getStageRes("F_moon_A.bti");
+                    g_env_light.mpSunPacket->mpResMoon_A_A00 =
+                        (u8*)dComIfG_getStageRes("F_moon_A_A00.bti");
+                    g_env_light.mpSunPacket->mpResMoon_A_A01 =
+                        (u8*)dComIfG_getStageRes("F_moon_A_A01.bti");
+                    g_env_light.mpSunPacket->mpResMoon_A_A02 =
+                        (u8*)dComIfG_getStageRes("F_moon_A_A02.bti");
+                    g_env_light.mpSunPacket->mpResMoon_A_A03 =
+                        (u8*)dComIfG_getStageRes("F_moon_A_A03.bti");
+
+                    if (g_env_light.mpSunPacket->mpResMoon == NULL) {
+                        g_env_light.mpSunPacket->mpResMoon =
+                            (u8*)dComIfG_getObjectRes("Always", 0x56);
+                        g_env_light.mpSunPacket->mpResMoon_A =
+                            (u8*)dComIfG_getObjectRes("Always", 0x56);
+                        g_env_light.mpSunPacket->mpResMoon_A_A00 =
+                            (u8*)dComIfG_getObjectRes("Always", 0x56);
+                        g_env_light.mpSunPacket->mpResMoon_A_A01 =
+                            (u8*)dComIfG_getObjectRes("Always", 0x56);
+                        g_env_light.mpSunPacket->mpResMoon_A_A02 =
+                            (u8*)dComIfG_getObjectRes("Always", 0x56);
+                        g_env_light.mpSunPacket->mpResMoon_A_A03 =
+                            (u8*)dComIfG_getObjectRes("Always", 0x56);
+                    }
+                    g_env_light.mpSunPacket->field_0x28 = 0;
+                    g_env_light.mpSunPacket->field_0x29 = 0;
+                    f32 tmp0 = FLOAT_LABEL(lit_4378);
+                    g_env_light.mpSunPacket->field_0x5c = tmp0;
+                    g_env_light.mpSunPacket->field_0x60 = tmp0;
+                    g_env_light.mpSunPacket->field_0x64 = tmp0;
+                    g_env_light.mpSunPacket->field_0x68 = tmp0;
+
+                    if (g_env_light.mDaytime < lit_4610) {
+                        g_env_light.mpSunPacket->field_0x6c = lit_4379;
+                    } else {
+                        g_env_light.mpSunPacket->field_0x6c = tmp0;
+                    }
+                    g_env_light.mpSunPacket->field_0x44 = 0;
+                    g_env_light.mpSunPacket->field_0x48 = 0;
+                    g_env_light.mpSunPacket->field_0x4c = 0;
+                    g_env_light.mpSunPacket->field_0x50 = 0;
+                    g_env_light.mpSunPacket->field_0x54 = 0;
+                    g_env_light.mpSunPacket->field_0x58 = 0;
+
+                    g_env_light.mpSunLenzPacket->mpResBall =
+                        (u8*)dComIfG_getObjectRes("Always", 0x4A);
+                    g_env_light.mpSunLenzPacket->mpResRing_A =
+                        (u8*)dComIfG_getObjectRes("Always", 0x57);
+                    g_env_light.mpSunLenzPacket->mpResLenz =
+                        (u8*)dComIfG_getObjectRes("Always", 0x5C);
+                    g_env_light.mpSunLenzPacket->field_0x8c = lit_4611;
+                    f32 tmp0_2 = FLOAT_LABEL(lit_4378);
+                    g_env_light.mpSunLenzPacket->field_0x90 = tmp0_2;
+                    g_env_light.mpSunLenzPacket->field_0x98 = tmp0_2;
+                    g_env_light.mpSunLenzPacket->field_0x9e = 0;
+                    dKyr_sun_move();
+                    dKyr_lenzflare_move();
+                    g_env_light.mSunPacketEnabled = true;
+                }
+            }
+            break;
+        case TRUE:
+            if (!sunVisible) {
+                g_env_light.mSunPacketEnabled = false;
+                delete g_env_light.mpSunPacket;
+                delete g_env_light.mpSunLenzPacket;
+                g_env_light.mpSunPacket = NULL;
+                g_env_light.mpSunLenzPacket = NULL;
+            } else {
+                dKyr_sun_move();
+                dKyr_lenzflare_move();
+            }
+            break;
+        }
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037A368-8037A368 0069C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -1279,6 +904,50 @@ SECTION_SDATA2 static f32 lit_4669 = 125.0f;
 SECTION_SDATA2 static f64 lit_4671 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80058894-80058B00 0531D4 026C+00 1/1 0/0 0/0 .text            wether_move_rain__Fv */
+// matches with literals
+#ifdef NONMATCHING
+static void wether_move_rain() {
+    switch (g_env_light.mRainPacketEnabled) {
+    case FALSE:
+        if (g_env_light.mRainCount > 3) {
+            g_env_light.mpRainPacket = new (32) dKankyo_rain_Packet();
+
+            if (g_env_light.mpRainPacket != NULL) {
+                dKyr_rain_init();
+                dKyr_rain_move();
+                g_env_light.mRainPacketEnabled = 1;
+
+                if (g_env_light.mRainCount != 250) {
+                    mDoAud_seStart(JA_SE_ATM_RAIN_START, NULL, 0, 0);
+                }
+            }
+        }
+        break;
+    case TRUE:
+        camera_class* cam = dComIfGp_getCamera(0);
+        dKyr_rain_move();
+
+        if (g_env_light.mSnowCount == 0 && cam != NULL) {
+            // Stage is not Fishing Pond
+            if (strcmp(dComIfGp_getStartStageName(), "R_SP127") || cam->field_0xd8.y > 0.0f) {
+                if (g_env_light.mRainCount < 125.0f) {
+                    mDoAud_rainPlay(FALSE);
+                } else {
+                    mDoAud_rainPlay(TRUE);
+                }
+            }
+        }
+
+        if (g_env_light.mRainCount <= 3) {
+            g_env_light.mRainPacketEnabled = 0;
+            mDoAud_seStart(JA_SE_ATM_RAIN_END, NULL, 0, 0);
+            delete g_env_light.mpRainPacket;
+            g_env_light.mpRainPacket = NULL;
+        }
+        break;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1287,16 +956,25 @@ static asm void wether_move_rain() {
 #include "asm/d/kankyo/d_kankyo_wether/wether_move_rain__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 80058B00-80058B8C 053440 008C+00 1/1 0/0 0/0 .text            wether_move_snow__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void wether_move_snow() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/wether_move_snow__Fv.s"
+static void wether_move_snow() {
+    switch (g_env_light.mSnowPacketEnabled) {
+    case FALSE:
+        if (g_env_light.mSnowCount != 0 || g_env_light.field_0xe90 != 0) {
+            dKyr_snow_init();
+            if (g_env_light.mpSnowPacket != NULL) {
+                dKyr_snow_move();
+                g_env_light.mSnowPacketEnabled = 1;
+            }
+        }
+        break;
+    case TRUE:
+        dKyr_snow_move();
+        break;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037A368-8037A368 0069C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -1344,59 +1022,260 @@ SECTION_SDATA2 static f32 lit_4771 = 1200.0f;
 SECTION_SDATA2 static f32 lit_4772 = 500.0f;
 
 /* 80058B8C-80058F18 0534CC 038C+00 1/1 0/0 0/0 .text            wether_move_star__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void wether_move_star() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/wether_move_star__Fv.s"
-}
-#pragma pop
+static void wether_move_star() {
+    s32 starsVisible = false;
+    // Stage is Hyrule Castle or Castle Throne Room
+    if (!strcmp(dComIfGp_getStartStageName(), "D_MN09") ||
+        !strcmp(dComIfGp_getStartStageName(), "D_MN09A")) {
+        return;
+    } else {
+        // Stage is Hero Shade arena
+        if ((dComIfGp_checkStatus(1) && !g_env_light.field_0x12d4) ||
+            !strcmp(dComIfGp_getStartStageName(), "F_SP200")) {
+            roomRead_class* room = dComIfGp_getStageRoom();
+            if (room != NULL && room->field_0x0 > dComIfGp_roomControl_getStayNo()) {
+                starsVisible = dStage_roomRead_dt_c_GetVrboxswitch(
+                    *room->field_0x4[dComIfGp_roomControl_getStayNo()]);
+            }
 
-/* ############################################################################################## */
-/* 8037A368-8037A368 0069C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8037A411 = "D_MN08";
-SECTION_DEAD static char const* const stringBase_8037A418 = "D_MN08A";
-SECTION_DEAD static char const* const stringBase_8037A420 = "D_MN08B";
-SECTION_DEAD static char const* const stringBase_8037A428 = "D_MN08C";
-SECTION_DEAD static char const* const stringBase_8037A430 = "F_SP115";
-SECTION_DEAD static char const* const stringBase_8037A438 = "F_SP108";
-SECTION_DEAD static char const* const stringBase_8037A440 = "F_SP116";
-SECTION_DEAD static char const* const stringBase_8037A448 = "momiji64s3tc.bti";
-SECTION_DEAD static char const* const stringBase_8037A459 = "sakura32ia4.bti";
-#pragma pop
+            // Stage is Hero Shade arena
+            if (!strcmp(dComIfGp_getStartStageName(), "F_SP200")) {
+                starsVisible = true;
+            }
+
+            if (starsVisible && dKy_darkworld_check() != true) {
+                f32 density;
+                f32 time = g_env_light.getDaytime();
+                if (time >= lit_4761 || time < lit_4762) {
+                    density = lit_4379;
+                } else if (time > lit_4763) {
+                    density = lit_4379 - lit_4764 * (lit_4761 - time);
+                } else {
+                    if (time < lit_4765) {
+                        density = lit_4766 * (lit_4765 - time);
+                    } else {
+                        density = FLOAT_LABEL(lit_4378);
+                    }
+                }
+
+                if (g_env_light.field_0x12c8 != 0) {
+                    density = FLOAT_LABEL(lit_4378);
+                }
+
+                if (g_env_light.field_0x12c3 != 0 && g_env_light.field_0x11dc > lit_4767) {
+                    density = FLOAT_LABEL(lit_4378);
+                }
+
+                // Stage is Hero Shade arena
+                if (!strcmp(dComIfGp_getStartStageName(), "F_SP200")) {
+                    density = lit_4379;
+                }
+
+                cLib_addCalc(&g_env_light.mStarDensity, density, lit_4768, lit_4769, lit_4770);
+                g_env_light.mStarCount = (s16)(lit_4771 * g_env_light.mStarDensity);
+
+                // Stage is Hyrule Field or Outside Castle Town or Hidden Village
+                if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") ||
+                    !strcmp(dComIfGp_getStartStageName(), "F_SP122") ||
+                    !strcmp(dComIfGp_getStartStageName(), "F_SP128")) {
+                    g_env_light.mStarCount = (s16)(lit_4772 * g_env_light.mStarDensity);
+                }
+
+                switch (g_env_light.mStarPacketEnabled) {
+                case FALSE:
+                    if (g_env_light.mStarCount != 0) {
+                        dKyr_star_init();
+                        dKyr_shstar_init();
+
+                        if (g_env_light.mpStarPacket != NULL) {
+                            dKyr_star_move();
+                            dKyr_shstar_move();
+                            g_env_light.mStarPacketEnabled = true;
+                        }
+                    }
+                    break;
+                case TRUE:
+                    dKyr_star_move();
+                    dKyr_shstar_move();
+
+                    if (g_env_light.mStarCount == 0) {
+                        g_env_light.mStarPacketEnabled = false;
+
+                        delete g_env_light.mpStarPacket;
+                        g_env_light.mpStarPacket = NULL;
+                    }
+                    break;
+                }
+            }
+        }
+    }
+}
 
 /* 80058F18-800593DC 053858 04C4+00 1/1 0/0 0/0 .text            wether_move_housi__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void wether_move_housi() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/wether_move_housi__Fv.s"
+static void wether_move_housi() {
+    // Stage is Palace of Twilight or Zant Throne Room, or Phantom Zant arena
+    // Room is not Entrance or Boss Key room
+    if ((!strcmp(dComIfGp_getStartStageName(), "D_MN08") && dComIfGp_roomControl_getStayNo() != 0 &&
+         dComIfGp_roomControl_getStayNo() != 11) ||
+        (!strcmp(dComIfGp_getStartStageName(), "D_MN08A") ||
+         !strcmp(dComIfGp_getStartStageName(), "D_MN08B") ||
+         !strcmp(dComIfGp_getStartStageName(), "D_MN08C"))) {
+        return;
+    }
+
+    // Stage is darkworld or Stage is Lake Hylia and Room is Lanayru Spring
+    if (dKy_darkworld_check() == true ||
+        (!strcmp(dComIfGp_getStartStageName(), "F_SP115") &&
+         dComIfGp_roomControl_getStayNo() == 1 && dComIfGp_getStartStageLayer() == 9)) {
+        if (g_env_light.field_0x12d2 != 0) {
+            g_env_light.field_0xea9 = 0;
+            g_env_light.field_0xeac = 200;
+
+            // Stage is Faron Woods and Room is Faron Spring or
+            // Stage is Castle Town and Room is Castle Town Center or
+            // Stage is Faron Woods and Room is South Faron or
+            // Stage is Lake Hylia
+            if ((!strcmp(dComIfGp_getStartStageName(), "F_SP108") &&
+                 dComIfGp_getStartStageRoomNo() == 1 && dComIfGp_getStartStageLayer() == 13) ||
+                (!strcmp(dComIfGp_getStartStageName(), "F_SP116") &&
+                 dComIfGp_getStartStageRoomNo() == 0 && dComIfGp_getStartStageLayer() == 8) ||
+                (!strcmp(dComIfGp_getStartStageName(), "F_SP108") &&
+                 dComIfGp_getStartStageRoomNo() == 0 && dComIfGp_getStartStageLayer() == 9) ||
+                (!strcmp(dComIfGp_getStartStageName(), "F_SP115") &&
+                 dComIfGp_getStartStageLayer() == 9)) {
+                g_env_light.field_0xeac = 0;
+            }
+        }
+    }
+
+    switch (g_env_light.mHousiPacketEnabled) {
+    case FALSE:
+        if (g_env_light.field_0xeac != 0) {
+            g_env_light.mpHousiPacket = new (32) dKankyo_housi_Packet();
+
+            if (g_env_light.mpHousiPacket != NULL) {
+                if (dKy_darkworld_check() == true) {
+                    g_env_light.mpHousiPacket->mpResTex = (u8*)dComIfG_getObjectRes("Always", 0x5E);
+                } else {
+                    if (g_env_light.field_0xea9 == 2) {
+                        if (g_env_light.field_0x12fe == 3) {
+                            g_env_light.mpHousiPacket->mpResTex =
+                                (u8*)dComIfG_getStageRes("momiji64s3tc.bti");
+                        } else {
+                            g_env_light.mpHousiPacket->mpResTex =
+                                (u8*)dComIfG_getStageRes("sakura32ia4.bti");
+                        }
+
+                        if (g_env_light.mpHousiPacket->mpResTex == NULL) {
+                            g_env_light.mpHousiPacket->mpResTex =
+                                (u8*)dComIfG_getObjectRes("Always", 0x55);
+                        }
+                    } else if (g_env_light.field_0xea9 == 0) {
+                        g_env_light.mpHousiPacket->mpResTex =
+                            (u8*)dComIfG_getObjectRes("Always", 0x55);
+                    } else {
+                        g_env_light.mpHousiPacket->mpResTex =
+                            (u8*)dComIfG_getObjectRes("Always", 0x56);
+                    }
+                }
+
+                f32 tmp0 = FLOAT_LABEL(lit_4378);
+                g_env_light.mpHousiPacket->field_0x5de8 = tmp0;
+                g_env_light.mpHousiPacket->field_0x10.set(tmp0, tmp0, tmp0);
+                for (int i = 0; i < 300; i++) {
+                    g_env_light.mpHousiPacket->field_0x18[i].field_0x0 = 0;
+                }
+                dKyr_housi_move();
+                g_env_light.mHousiPacketEnabled = true;
+            }
+        }
+        break;
+    case TRUE:
+        if (g_env_light.field_0xeac == 0 &&
+            g_env_light.mpHousiPacket->field_0x5de8 <= FLOAT_LABEL(lit_4378)) {
+            g_env_light.mHousiPacketEnabled = false;
+            delete g_env_light.mpHousiPacket;
+            g_env_light.mpHousiPacket = NULL;
+        } else {
+            dKyr_housi_move();
+            if (!dKy_darkworld_check()) {
+                g_env_light.field_0xeac = 0;
+            }
+        }
+        break;
+    }
 }
-#pragma pop
 
 /* 800593DC-80059580 053D1C 01A4+00 1/1 0/0 0/0 .text            wether_move_odour__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void wether_move_odour() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/wether_move_odour__Fv.s"
+static void wether_move_odour() {
+    switch (g_env_light.mOdourPacketStatus) {
+    case 0:
+        if (g_env_light.field_0xf21 != 0) {
+            g_env_light.mpOdourPacket = new (32) dKankyo_odour_Packet();
+
+            if (g_env_light.mpOdourPacket != NULL) {
+                g_env_light.mpOdourPacket->mpResTex = (u8*)dComIfG_getObjectRes("Always", 0x53);
+                dKyr_odour_init();
+                dKyr_odour_move();
+                g_env_light.mOdourPacketStatus = 1;
+            }
+        }
+        break;
+    case 1:
+        if (g_env_light.field_0xf21 == 0) {
+            g_env_light.mOdourPacketStatus = 0;
+            if (g_env_light.mpOdourPacket != NULL) {
+                delete g_env_light.mpOdourPacket;
+                g_env_light.mpOdourPacket = NULL;
+            }
+        } else {
+            dKyr_odour_move();
+        }
+        break;
+    case 2:
+        g_env_light.field_0xf21 = 0;
+        g_env_light.mOdourPacketStatus = 0;
+        delete g_env_light.mpOdourPacket;
+        g_env_light.mpOdourPacket = NULL;
+        break;
+    }
 }
-#pragma pop
 
 /* 80059580-80059728 053EC0 01A8+00 1/1 0/0 0/0 .text            wether_move_moya__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void wether_move_moya() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/wether_move_moya__Fv.s"
+static void wether_move_moya() {
+    switch (g_env_light.mCloudPacketEnabled) {
+    case 0:
+        if (g_env_light.field_0xeb8 != 0) {
+            g_env_light.mpCloudPacket = new (32) dKankyo_cloud_Packet();
+
+            if (g_env_light.mpCloudPacket != NULL) {
+                g_env_light.mpCloudPacket->mpResTex = (u8*)dComIfG_getObjectRes("Always", 0x53);
+
+                for (int i = 0; i < 50; i++) {
+                    g_env_light.mpCloudPacket->field_0x18[i].field_0x0 = 0;
+                }
+                g_env_light.mpCloudPacket->field_0x14 = 0;
+                cloud_shadow_move();
+                g_env_light.mCloudPacketEnabled++;
+            }
+        }
+        break;
+    case 1:
+        if (g_env_light.field_0xeb5 == 0) {
+            dKyw_get_wind_pow();
+        }
+
+        cloud_shadow_move();
+
+        if (g_env_light.field_0xeb8 == 0 && g_env_light.mpCloudPacket->field_0x14 == 0) {
+            g_env_light.mCloudPacketEnabled = 0;
+
+            delete g_env_light.mpCloudPacket;
+            g_env_light.mpCloudPacket = NULL;
+        }
+        break;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037A368-8037A368 0069C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -1466,71 +1345,139 @@ static asm void wether_move_vrkumo() {
 #pragma pop
 
 /* 80059E38-80059F74 054778 013C+00 1/1 0/0 0/0 .text            wether_move_mud__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void wether_move_mud() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/wether_move_mud__Fv.s"
+static void wether_move_mud() {
+    switch (g_env_light.mMudPacketEnabled) {
+    case 0:
+        if (g_env_light.field_0x1048 != 0) {
+            g_env_light.mpMudPacket = new (32) dKankyo_mud_Packet();
+
+            if (g_env_light.mpMudPacket != NULL) {
+                dKyr_mud_init();
+                dKyr_mud_move();
+                g_env_light.mMudPacketEnabled++;
+            }
+        }
+        break;
+    case 1:
+        dKyr_mud_move();
+
+        if (g_env_light.field_0x1048 == 0 && g_env_light.mpMudPacket->field_0x10 == 0) {
+            g_env_light.mMudPacketEnabled = 0;
+
+            delete g_env_light.mpMudPacket;
+            g_env_light.mpMudPacket = NULL;
+        }
+        break;
+    }
 }
-#pragma pop
 
 /* 80059F74-8005A0B8 0548B4 0144+00 1/1 0/0 0/0 .text            wether_move_evil__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void wether_move_evil() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/wether_move_evil__Fv.s"
-}
-#pragma pop
+static void wether_move_evil() {
+    switch (g_env_light.mEvilPacketEnabled & 0xF) {
+    case 0:
+        if (g_env_light.field_0x1054 != 0) {
+            g_env_light.mpEvilPacket = new (32) dKankyo_evil_Packet();
 
-/* ############################################################################################## */
-/* 8037A368-8037A368 0069C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8037A4AE = "Name";
-#pragma pop
+            if (g_env_light.mpEvilPacket != NULL) {
+                dKyr_evil_init();
+                dKyr_evil_move();
+                g_env_light.mEvilPacketEnabled++;
+            }
+        }
+        break;
+    case 1:
+        dKyr_evil_move();
+
+        if (g_env_light.field_0x1054 == 0 && g_env_light.mpEvilPacket->field_0x10 == 0) {
+            g_env_light.mEvilPacketEnabled = 0;
+
+            delete g_env_light.mpEvilPacket;
+            g_env_light.mpEvilPacket = NULL;
+        }
+        break;
+    }
+}
 
 /* 8005A0B8-8005A154 0549F8 009C+00 0/0 1/1 0/0 .text            dKyw_wether_move_draw__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKyw_wether_move_draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_wether_move_draw__Fv.s"
+void dKyw_wether_move_draw() {
+    g_env_light.field_0x1288 = 0;
+
+    if (strcmp(dComIfGp_getStartStageName(), "Name")) {
+        wether_move_sun();
+        wether_move_rain();
+        wether_move_snow();
+    }
+    wether_move_star();
+
+    if (strcmp(dComIfGp_getStartStageName(), "Name")) {
+        wether_move_housi();
+        wether_move_moya();
+        wether_move_mud();
+        wether_move_evil();
+        wether_move_odour();
+    }
 }
-#pragma pop
 
 /* 8005A154-8005A174 054A94 0020+00 0/0 1/1 0/0 .text            dKyw_wether_move_draw2__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKyw_wether_move_draw2() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_wether_move_draw2__Fv.s"
+void dKyw_wether_move_draw2() {
+    wether_move_vrkumo();
 }
-#pragma pop
 
 /* 8005A174-8005A304 054AB4 0190+00 0/0 1/1 0/0 .text            dKyw_wether_draw__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKyw_wether_draw() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_wether_draw__Fv.s"
+void dKyw_wether_draw() {
+    if (strcmp(dComIfGp_getStartStageName(), "Name") && g_env_light.mCloudPacketEnabled != 0) {
+        dKyw_Cloud_Draw();
+    }
+
+    if (strcmp(dComIfGp_getStartStageName(), "Name") && g_env_light.mSunPacketEnabled) {
+        stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
+
+        if (dStage_stagInfo_GetArg0(stag_info) != 0) {
+            dKyw_Sun_Draw();
+            dKyw_Sunlenz_Draw();
+        }
+    }
+
+    if (g_env_light.mStarPacketEnabled) {
+        dKyw_Star_Draw();
+        dKyw_shstar_Draw();
+    }
+
+    if (strcmp(dComIfGp_getStartStageName(), "Name")) {
+        if (g_env_light.mRainPacketEnabled) {
+            dKyw_Rain_Draw();
+        }
+
+        if (g_env_light.mSnowPacketEnabled) {
+            dKyw_Snow_Draw();
+        }
+
+        if (g_env_light.mHousiPacketEnabled) {
+            dKyw_Housi_Draw();
+        }
+
+        if (g_env_light.mOdourPacketStatus != 0) {
+            dKyw_Odour_Draw();
+        }
+
+        if (g_env_light.mMudPacketEnabled != 0) {
+            dKyw_mud_Draw();
+        }
+
+        if (g_env_light.mEvilPacketEnabled != 0) {
+            dKyw_evil_Draw();
+        }
+
+        dKy_undwater_filter_draw();
+    }
 }
-#pragma pop
 
 /* 8005A304-8005A340 054C44 003C+00 0/0 1/1 0/0 .text            dKyw_wether_draw2__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKyw_wether_draw2() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_wether_draw2__Fv.s"
+void dKyw_wether_draw2() {
+    if (g_env_light.field_0xec4 != 0 && g_env_light.field_0xec4 < 99) {
+        dKyw_Vrkumo_Draw();
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037A368-8037A368 0069C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -1558,6 +1505,49 @@ SECTION_SDATA2 static f32 lit_5364[1 + 1 /* padding */] = {
 };
 
 /* 8005A340-8005A57C 054C80 023C+00 0/0 1/1 0/0 .text            dKyw_wether_proc__Fv */
+// small branch issues
+#ifdef NONMATCHING
+void dKyw_wether_proc() {
+    // Stage is Faron Woods or Fishing Pond or Hyrule Field
+    if (!strcmp(dComIfGp_getStartStageName(), "F_SP108") ||
+        !strcmp(dComIfGp_getStartStageName(), "F_SP127") ||
+        (!strcmp(dComIfGp_getStartStageName(), "F_SP121") &&
+         FLOAT_LABEL(lit_4378) != g_env_light.field_0x11d8)) {
+        if (!dKy_darkworld_check()) {
+            // Stage is Hyrule Field
+            if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") || g_env_light.mDaytime >= 75.0f ||
+                g_env_light.mDaytime <= 120.0f) {
+                // Stage is Hyrule Field
+                if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") &&
+                    g_env_light.field_0x12c9 >= 1 && g_env_light.field_0x12c9 < 6) {
+                    dKy_get_dayofweek();
+                    cLib_addCalc(&g_env_light.field_0xebc, lit_4379, lit_5362, lit_5363, lit_4770);
+                    g_env_light.field_0xeb5 = 7;
+                    g_env_light.field_0xeb8 = 49;
+                } else {
+                    cLib_addCalc(&g_env_light.field_0xebc, FLOAT_LABEL(lit_4378), lit_5362,
+                                 lit_5363, lit_5364[0]);
+                    if (g_env_light.field_0xebc <= lit_4769 && g_env_light.field_0xeb8 == 49) {
+                        g_env_light.field_0xeb8 = 0;
+                    }
+                }
+            }
+        }
+    }
+
+    // Stage is Fishing Pond
+    if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") &&
+        (g_env_light.field_0x12fe == 1 || g_env_light.field_0x12fe == 3)) {
+        if (g_env_light.field_0x12fe == 1) {
+            g_env_light.field_0xeac = 35;
+        } else {
+            g_env_light.field_0xeac = 30;
+        }
+        g_env_light.field_0xea9 = 2;
+    }
+    squal_proc();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1566,16 +1556,23 @@ asm void dKyw_wether_proc() {
 #include "asm/d/kankyo/d_kankyo_wether/dKyw_wether_proc__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 8005A57C-8005A5C0 054EBC 0044+00 1/1 0/0 0/0 .text            dKyw_wind_init__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_wind_init() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_wind_init__Fv.s"
+static void dKyw_wind_init() {
+    g_env_light.mWind.vec.x = lit_4668;
+    f32 tmp_0 = FLOAT_LABEL(lit_4378);
+    g_env_light.mWind.vec.y = tmp_0;
+    g_env_light.mWind.vec.z = tmp_0;
+    g_env_light.mWind.pow = tmp_0;
+    g_env_light.field_0xe6c = 0;
+    g_env_light.field_0xe64 = 0;
+    g_env_light.field_0xe66 = 0;
+    g_env_light.mWind.field_0xc = 0;
+    g_env_light.custom_windpower = tmp_0;
+    g_env_light.field_0xe6d = 0;
+    g_env_light.field_0xe6e = 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80452178-80452180 000778 0008+00 3/3 0/0 0/0 .sdata2          @5524 */
@@ -1615,34 +1612,20 @@ asm void dKyw_wind_set() {
 #pragma pop
 
 /* 8005AAE0-8005AAF0 055420 0010+00 1/1 6/6 7/7 .text            dKyw_get_wind_vec__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKyw_get_wind_vec() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_get_wind_vec__Fv.s"
+cXyz& dKyw_get_wind_vec() {
+    return g_env_light.mWind.vec;
 }
-#pragma pop
 
 /* 8005AAF0-8005AB00 055430 0010+00 1/1 6/6 8/8 .text            dKyw_get_wind_pow__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKyw_get_wind_pow() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_get_wind_pow__Fv.s"
+f32 dKyw_get_wind_pow() {
+    return g_env_light.mWind.pow;
 }
-#pragma pop
 
 /* 8005AB00-8005AB64 055440 0064+00 0/0 8/8 3/3 .text            dKyw_get_wind_vecpow__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKyw_get_wind_vecpow() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_get_wind_vecpow__Fv.s"
+cXyz dKyw_get_wind_vecpow() {
+    cXyz vec = g_env_light.mWind.vec * g_env_light.mWind.pow;
+    return vec;
 }
-#pragma pop
 
 /* 8005AB64-8005AC30 0554A4 00CC+00 0/0 0/0 1/1 .text dKyw_plight_collision_set__FP4cXyzssfffff */
 #pragma push
@@ -1670,54 +1653,52 @@ static asm void squal_proc() {
 #pragma pop
 
 /* 8005AD44-8005AD98 055684 0054+00 1/1 0/0 0/0 .text            dKyw_pntwind_init__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_pntwind_init() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_pntwind_init__Fv.s"
+static void dKyw_pntwind_init() {
+    for (int i = 0; i < 30; i++) {
+        g_env_light.mPntWind[i] = NULL;
+    }
+
+    for (int i = 0; i < 5; i++) {
+        g_env_light.field_0x848[i].field_0x0[0] = 0;
+    }
 }
-#pragma pop
 
 /* 8005AD98-8005ADFC 0556D8 0064+00 2/2 0/0 0/0 .text            pntwind_set__FP14WIND_INFLUENCE */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void pntwind_set(WIND_INFLUENCE* param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/pntwind_set__FP14WIND_INFLUENCE.s"
+static void pntwind_set(WIND_INFLUENCE* pntwind) {
+    int i = 0;
+    for (; i < 30; i++) {
+        if (g_env_light.mPntWind[i] == NULL) {
+            g_env_light.mPntWind[i] = pntwind;
+            g_env_light.mPntWind[i]->field_0x24 = i;
+            break;
+        }
+    }
+
+    if (i >= 30) {
+        pntwind->field_0x24 = 9999;
+    }
 }
-#pragma pop
 
 /* 8005ADFC-8005AE28 05573C 002C+00 0/0 0/0 5/5 .text dKyw_pntwind_set__FP14WIND_INFLUENCE */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKyw_pntwind_set(WIND_INFLUENCE* param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_pntwind_set__FP14WIND_INFLUENCE.s"
+void dKyw_pntwind_set(WIND_INFLUENCE* pntwind) {
+    pntwind->field_0x28 = 0;
+    pntwind->field_0x29 = 0;
+    pntwind_set(pntwind);
 }
-#pragma pop
 
 /* 8005AE28-8005AE58 055768 0030+00 1/1 0/0 0/0 .text dKyw_pntlight_set__FP14WIND_INFLUENCE */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_pntlight_set(WIND_INFLUENCE* param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_pntlight_set__FP14WIND_INFLUENCE.s"
+static void dKyw_pntlight_set(WIND_INFLUENCE* pntwind) {
+    pntwind->field_0x28 = 0;
+    pntwind->field_0x29 = 1;
+    pntwind_set(pntwind);
 }
-#pragma pop
 
 /* 8005AE58-8005AE90 055798 0038+00 1/1 0/0 5/5 .text dKyw_pntwind_cut__FP14WIND_INFLUENCE */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKyw_pntwind_cut(WIND_INFLUENCE* param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_pntwind_cut__FP14WIND_INFLUENCE.s"
+void dKyw_pntwind_cut(WIND_INFLUENCE* pntwind_cut) {
+    if (pntwind_cut != NULL && pntwind_cut->field_0x24 >= 0 && pntwind_cut->field_0x24 < 30) {
+        g_env_light.mPntWind[pntwind_cut->field_0x24] = NULL;
+    }
 }
-#pragma pop
 
 /* 8005AE90-8005B23C 0557D0 03AC+00 2/2 0/0 0/0 .text            pntwind_get_info__FP4cXyzP4cXyzPfUc
  */
@@ -1731,27 +1712,28 @@ static asm void pntwind_get_info(cXyz* param_0, cXyz* param_1, f32* param_2, u8 
 #pragma pop
 
 /* 8005B23C-8005B260 055B7C 0024+00 3/3 0/0 0/0 .text dKyw_pntwind_get_info__FP4cXyzP4cXyzPf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKyw_pntwind_get_info(cXyz* param_0, cXyz* param_1, f32* param_2) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_pntwind_get_info__FP4cXyzP4cXyzPf.s"
+static void dKyw_pntwind_get_info(cXyz* param_0, cXyz* param_1, f32* param_2) {
+    pntwind_get_info(param_0, param_1, param_2, 0);
 }
-#pragma pop
 
 /* 8005B260-8005B284 055BA0 0024+00 0/0 0/0 3/3 .text
  * dKyw_pntlight_collision_get_info__FP4cXyzP4cXyzPf            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKyw_pntlight_collision_get_info(cXyz* param_0, cXyz* param_1, f32* param_2) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_pntlight_collision_get_info__FP4cXyzP4cXyzPf.s"
+void dKyw_pntlight_collision_get_info(cXyz* param_0, cXyz* param_1, f32* param_2) {
+    pntwind_get_info(param_0, param_1, param_2, 1);
 }
-#pragma pop
 
 /* 8005B284-8005B2F8 055BC4 0074+00 0/0 1/1 0/0 .text            dKyw_pntwind_get_vecpow__FP4cXyz */
+// missing mr instruction
+#ifdef NONMATCHING
+void dKyw_pntwind_get_vecpow(cXyz* out_vec) {
+    f32 pow;
+    cXyz vec;
+
+    dKyw_pntwind_get_info(out_vec, &vec, &pow);
+    vec = vec * pow;
+    *out_vec = vec;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1760,6 +1742,7 @@ asm void dKyw_pntwind_get_vecpow(cXyz* param_0) {
 #include "asm/d/kankyo/d_kankyo_wether/dKyw_pntwind_get_vecpow__FP4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804521A8-804521B0 0007A8 0004+04 2/2 0/0 0/0 .sdata2          @5855 */
@@ -1780,6 +1763,23 @@ asm void dKyw_get_AllWind_vec(cXyz* param_0, cXyz* param_1, f32* param_2) {
 #pragma pop
 
 /* 8005B530-8005B60C 055E70 00DC+00 0/0 0/0 5/5 .text            dKyw_get_AllWind_vecpow__FP4cXyz */
+// missing mr instruction
+#ifdef NONMATCHING
+void dKyw_get_AllWind_vecpow(cXyz* param_0) {
+    f32 sp8;
+    cXyz spC;
+    cXyz sp18;
+    cXyz sp24;
+    cXyz sp30;
+
+    dKyw_pntwind_get_info(param_0, &sp30, &sp8);
+    sp18 = g_env_light.mWind.vec * (g_env_light.mWind.pow * (1.0f - sp8));
+    sp24 = sp30 * (5.0f * sp8);
+    spC = sp18 + sp24;
+
+    *param_0 = spC;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1788,45 +1788,29 @@ asm void dKyw_get_AllWind_vecpow(cXyz* param_0) {
 #include "asm/d/kankyo/d_kankyo_wether/dKyw_get_AllWind_vecpow__FP4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* 8005B60C-8005B61C 055F4C 0010+00 0/0 0/0 5/5 .text            dKyw_custom_windpower__Ff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKyw_custom_windpower(f32 param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_custom_windpower__Ff.s"
+void dKyw_custom_windpower(f32 pow) {
+    g_env_light.custom_windpower = pow;
 }
-#pragma pop
 
 /* 8005B61C-8005B638 055F5C 001C+00 0/0 0/0 6/6 .text            dKyw_evt_wind_set__Fss */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKyw_evt_wind_set(s16 param_0, s16 param_1) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_evt_wind_set__Fss.s"
+void dKyw_evt_wind_set(s16 param_0, s16 param_1) {
+    g_env_light.field_0xe6d = 1;
+    g_env_light.field_0xe68 = param_0;
+    g_env_light.field_0xe6a = param_1;
 }
-#pragma pop
 
 /* 8005B638-8005B64C 055F78 0014+00 0/0 0/0 3/3 .text            dKyw_evt_wind_set_go__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKyw_evt_wind_set_go() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_evt_wind_set_go__Fv.s"
+void dKyw_evt_wind_set_go() {
+    g_env_light.field_0xe6d = 1;
 }
-#pragma pop
 
 /* 8005B64C-8005B660 055F8C 0014+00 0/0 1/1 5/5 .text            dKyw_rain_set__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKyw_rain_set(int param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_rain_set__Fi.s"
+void dKyw_rain_set(int count) {
+    g_env_light.mRainCount = count;
+    g_env_light.field_0x129c = count;
 }
-#pragma pop
 
 /* 8037A368-8037A368 0069C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

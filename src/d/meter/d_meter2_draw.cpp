@@ -6,21 +6,15 @@
 #include "d/meter/d_meter2_draw.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_kantera_icon_meter.h"
 #include "d/meter/d_meter_HIO.h"
+#include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
 //
 // Types:
 //
-
-struct dKantera_icon_c {
-    /* 801AE938 */ dKantera_icon_c();
-    /* 801AEB7C */ void setAlphaRate(f32);
-    /* 801AEBA0 */ void setPos(f32, f32);
-    /* 801AEBF4 */ void setScale(f32, f32);
-    /* 801AEC44 */ void setNowGauge(u16, u16);
-};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -231,57 +225,46 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
+inline bool dComIfGp_checkPlayerStatus0(int param_0, u32 param_1) {
+    return g_dComIfG_gameInfo.play.checkPlayerStatus(param_0, 0, param_1);
+}
+
 /* ############################################################################################## */
 /* 80398258-80398280 0248B8 0028+00 4/4 0/0 0/0 .rodata          a_tag$3949 */
-SECTION_RODATA static u8 const a_tag[40] = {
-    0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74, 0x31, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x61,
-    0x74, 0x32, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74, 0x33, 0x63, 0x6F, 0x6E, 0x74,
-    0x5F, 0x61, 0x74, 0x34, 0x00, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74,
+static u64 const a_tag[5] = {
+    'cont_at1', 'cont_at2', 'cont_at3', 'cont_at4', 'cont_at',
 };
-COMPILER_STRIP_GATE(0x80398258, &a_tag);
 
 /* 80398280-803982A8 0248E0 0028+00 0/1 0/0 0/0 .rodata          b_tag$3950 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const b_tag[40] = {
-    0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x62, 0x74, 0x31, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x62,
-    0x74, 0x32, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x62, 0x74, 0x33, 0x63, 0x6F, 0x6E, 0x74,
-    0x5F, 0x62, 0x74, 0x34, 0x00, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x62, 0x74,
+static u64 const b_tag[5] = {
+    'cont_bt1', 'cont_bt2', 'cont_bt3', 'cont_bt4', 'cont_bt',
 };
-COMPILER_STRIP_GATE(0x80398280, &b_tag);
 #pragma pop
 
 /* 803982A8-803982D0 024908 0028+00 0/1 0/0 0/0 .rodata          z_tag$3951 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const z_tag[40] = {
-    0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x7A, 0x74, 0x31, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x7A,
-    0x74, 0x32, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x7A, 0x74, 0x33, 0x63, 0x6F, 0x6E, 0x74,
-    0x5F, 0x7A, 0x74, 0x34, 0x00, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x72, 0x74,
+static u64 const z_tag[5] = {
+    'cont_zt1', 'cont_zt2', 'cont_zt3', 'cont_zt4', 'cont_rt',
 };
-COMPILER_STRIP_GATE(0x803982A8, &z_tag);
 #pragma pop
 
 /* 803982D0-803982F8 024930 0028+00 0/1 0/0 0/0 .rodata          x_tag$3952 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const x_tag[40] = {
-    0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x78, 0x74, 0x31, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x78,
-    0x74, 0x32, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x78, 0x74, 0x33, 0x63, 0x6F, 0x6E, 0x74,
-    0x5F, 0x78, 0x74, 0x34, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x78, 0x74, 0x35,
+static u64 const x_tag[5] = {
+    'cont_xt1', 'cont_xt2', 'cont_xt3', 'cont_xt4', 'cont_xt5',
 };
-COMPILER_STRIP_GATE(0x803982D0, &x_tag);
 #pragma pop
 
 /* 803982F8-80398320 024958 0028+00 0/1 0/0 0/0 .rodata          y_tag$3953 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const y_tag[40] = {
-    0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x79, 0x74, 0x31, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x79,
-    0x74, 0x32, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x79, 0x74, 0x33, 0x63, 0x6F, 0x6E, 0x74,
-    0x5F, 0x79, 0x74, 0x34, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x79, 0x74, 0x35,
+static u64 const y_tag[5] = {
+    'cont_yt1', 'cont_yt2', 'cont_yt3', 'cont_yt4', 'cont_yt5',
 };
-COMPILER_STRIP_GATE(0x803982F8, &y_tag);
 #pragma pop
 
 /* 803988D0-803988D0 024F30 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -307,17 +290,9 @@ SECTION_DEAD static char const* const stringBase_803989BF = "";
 #pragma pop
 
 /* 803BF328-803BF350 -00001 0028+00 1/1 0/0 0/0 .data            bmg_filename$3954 */
-SECTION_DATA static void* bmg_filename[10] = {
-    (void*)&d_meter_d_meter2_draw__stringBase0,
-    (void*)(((char*)&d_meter_d_meter2_draw__stringBase0) + 0xB),
-    (void*)(((char*)&d_meter_d_meter2_draw__stringBase0) + 0x16),
-    (void*)(((char*)&d_meter_d_meter2_draw__stringBase0) + 0x21),
-    (void*)(((char*)&d_meter_d_meter2_draw__stringBase0) + 0x2C),
-    (void*)(((char*)&d_meter_d_meter2_draw__stringBase0) + 0x37),
-    (void*)(((char*)&d_meter_d_meter2_draw__stringBase0) + 0x42),
-    (void*)(((char*)&d_meter_d_meter2_draw__stringBase0) + 0x4D),
-    (void*)(((char*)&d_meter_d_meter2_draw__stringBase0) + 0x58),
-    (void*)(((char*)&d_meter_d_meter2_draw__stringBase0) + 0x63),
+SECTION_DATA static char* bmg_filename[10] = {
+    "zel_00.bmg", "zel_01.bmg", "zel_02.bmg", "zel_03.bmg", "zel_04.bmg",
+    "zel_05.bmg", "zel_06.bmg", "zel_07.bmg", "zel_08.bmg", "zel_99.bmg",
 };
 
 /* 803BF350-803BF554 01C470 0204+00 1/1 0/0 0/0 .data            i_action_num$8471 */
@@ -527,6 +502,91 @@ SECTION_SDATA2 static f32 lit_4185 = 20.0f;
 
 /* 8020FAB4-802102F8 20A3F4 0844+00 0/0 1/1 0/0 .text            __ct__13dMeter2Draw_cFP10JKRExpHeap
  */
+#ifdef NONMATCHING
+dMeter2Draw_c::dMeter2Draw_c(JKRExpHeap* p_heap) {
+    mp_heap = p_heap;
+    JKRHeap* heap = mDoExt_setCurrentHeap(dComIfGp_getMsgExpHeap());
+
+    void* msg_res = JKRGetTypeResource('ROOT', "zel_00.bmg", dComIfGp_getMsgDtArchive(0));
+    dMeter2Info_setMsgResource(msg_res);
+
+    void* stg_msg_res = JKRGetTypeResource('ROOT', bmg_filename[dMsgObject_getGroupID()],
+                                           dComIfGp_getMsgDtArchive(1));
+    dMeter2Info_setStageMsgResource(stg_msg_res);
+
+    void* msg_unit_res = JKRGetTypeResource('ROOT', "zel_unit.bmg", dComIfGp_getMsgDtArchive(0));
+    dMeter2Info_setMsgUnitResource(msg_unit_res);
+    mDoExt_setCurrentHeap(heap);
+
+    mpScreen = new J2DScreen();
+    mpScreen->setPriority("zelda_game_image.blo", 0x20000, dComIfGp_getMain2DArchive());
+    dPaneClass_showNullPane(mpScreen);
+    mpScreen->search('ju_ring5')->hide();
+
+    field_0x73c = 0.0f;
+    for (int i = 0; i < 2; i++) {
+        mpKanteraMeter[i] = new dKantera_icon_c();
+    }
+    mpKanteraScreen = new J2DScreen();
+    mpKanteraScreen->setPriority("zelda_game_image_kantera.blo", 0x20000,
+                                 dComIfGp_getMain2DArchive());
+    dPaneClass_showNullPane(mpKanteraScreen);
+
+    mpPikariScreen = new J2DScreen();
+    mpPikariScreen->setPriority("zelda_icon_pikari.blo", 0x20000, dComIfGp_getMain2DArchive());
+    dPaneClass_showNullPane(mpPikariScreen);
+    mpPikariParent = new CPaneMgr(mpPikariScreen, 'pika_n', 0, NULL);
+    field_0x548 = ((J2DPicture*)mpPikariScreen->search('pika00'))->getBlack();
+    field_0x54c = ((J2DPicture*)mpPikariScreen->search('pika00'))->getWhite();
+    OSInitFastCast();
+    void* pikari_bck = JKRGetNameResource("zelda_icon_pikari.bck", dComIfGp_getMain2DArchive());
+    mPikariBck = (J2DAnmTransformKey*)J2DAnmLoaderDataBase::load(pikari_bck);
+    playPikariBckAnimation(1.0f);
+    void* pikari_bpk = JKRGetNameResource("zelda_icon_pikari.bpk", dComIfGp_getMain2DArchive());
+    mPikariBpk = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(pikari_bpk);
+    mPikariBpk->searchUpdateMaterialID(mpPikariScreen);
+    playPikariBpkAnimation(1.0f);
+
+    mpParent = new CPaneMgr(mpScreen, 'n_all', 2, NULL);
+    for (int i = 0; i < 5; i++) {
+        mpAText[i] = new CPaneMgr(mpScreen, a_tag[i], 0, NULL);
+        ((J2DTextBox*)mpAText[i]->getPanePtr())->setString(64, "");
+        ((J2DTextBox*)mpAText[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
+        ((J2DTextBox*)mpAText[i]->getPanePtr())->setCharSpace(g_drawHIO.mAButtonFontSpacing);
+
+        mpBText[i] = new CPaneMgr(mpScreen, b_tag[i], 0, NULL);
+        ((J2DTextBox*)mpBText[i]->getPanePtr())->setString(64, "");
+        ((J2DTextBox*)mpBText[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
+
+        mpXYText[i][2] = new CPaneMgr(mpScreen, z_tag[i], 0, NULL);
+        ((J2DTextBox*)mpXYText[i][2]->getPanePtr())->setString(64, "");
+        ((J2DTextBox*)mpXYText[i][2]->getPanePtr())->setFont(mDoExt_getMesgFont());
+
+        mpXYText[i][0] = new CPaneMgr(mpScreen, x_tag[i], 0, NULL);
+        ((J2DTextBox*)mpXYText[i][0]->getPanePtr())->setString(64, "");
+        ((J2DTextBox*)mpXYText[i][0]->getPanePtr())->setFont(mDoExt_getMesgFont());
+
+        mpXYText[i][1] = new CPaneMgr(mpScreen, y_tag[i], 0, NULL);
+        ((J2DTextBox*)mpXYText[i][1]->getPanePtr())->setString(64, "");
+        ((J2DTextBox*)mpXYText[i][1]->getPanePtr())->setFont(mDoExt_getMesgFont());
+    }
+
+    J2DTextBox::TFontSize font_size = {lit_4184, lit_4185};
+    for (int i = 0; i < 5; i++) {
+        ((J2DTextBox*)mpAText[i]->getPanePtr())->setFontSize(font_size);
+        ((J2DTextBox*)mpBText[i]->getPanePtr())->setFontSize(font_size);
+        ((J2DTextBox*)mpXYText[i][2]->getPanePtr())->setFontSize(font_size);
+        ((J2DTextBox*)mpXYText[i][0]->getPanePtr())->setFontSize(font_size);
+        ((J2DTextBox*)mpXYText[i][1]->getPanePtr())->setFontSize(font_size);
+    }
+
+    init();
+    field_0xa8 = 0;
+    field_0x1e4 = 0;
+    field_0x2fc = 0;
+    field_0x36c = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -535,36 +595,437 @@ asm dMeter2Draw_c::dMeter2Draw_c(JKRExpHeap* param_0) {
 #include "asm/d/meter/d_meter2_draw/__ct__13dMeter2Draw_cFP10JKRExpHeap.s"
 }
 #pragma pop
+#endif
 
 /* 802102F8-80210FB0 20AC38 0CB8+00 1/0 0/0 0/0 .text            __dt__13dMeter2Draw_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMeter2Draw_c::~dMeter2Draw_c() {
-    nofralloc
-#include "asm/d/meter/d_meter2_draw/__dt__13dMeter2Draw_cFv.s"
+dMeter2Draw_c::~dMeter2Draw_c() {
+    dComIfGp_getMsgDtArchive(0)->removeResource(dMeter2Info_getMsgResource());
+    dComIfGp_getMsgDtArchive(0)->removeResource(dMeter2Info_getMsgUnitResource());
+    dComIfGp_getItemIconArchive()->removeResourceAll();
+
+    delete mpScreen;
+    mpScreen = NULL;
+
+    delete mpKanteraScreen;
+    mpKanteraScreen = NULL;
+
+    for (int i = 0; i < 2; i++) {
+        delete mpKanteraMeter[i];
+        mpKanteraMeter[i] = NULL;
+    }
+
+    delete mpParent;
+    mpParent = NULL;
+
+    delete mpPikariScreen;
+    mpPikariScreen = NULL;
+
+    delete mpPikariParent;
+    mpPikariParent = NULL;
+
+    delete mPikariBck;
+    mPikariBck = NULL;
+
+    delete mPikariBpk;
+    mPikariBpk = NULL;
+
+    for (int i = 0; i < 5; i++) {
+        delete mpAText[i];
+        mpAText[i] = NULL;
+
+        delete mpBText[i];
+        mpBText[i] = NULL;
+
+        for (int j = 0; j < 3; j++) {
+            delete mpXYText[i][j];
+            mpXYText[i][j] = NULL;
+        }
+    }
+
+    delete mpLifeParent;
+    mpLifeParent = NULL;
+
+    for (int i = 0; i < 20; i++) {
+        delete mpLifeParts[i];
+        mpLifeParts[i] = NULL;
+
+        delete mpHeartMask[i];
+        mpHeartMask[i] = NULL;
+
+        delete mpHeartBase[i];
+        mpHeartBase[i] = NULL;
+
+        delete mpLifeTexture[i][0];
+        mpLifeTexture[i][0] = NULL;
+
+        delete mpLifeTexture[i][1];
+        mpLifeTexture[i][1] = NULL;
+    }
+
+    delete mpBigHeart;
+    mpBigHeart = NULL;
+
+    delete mpMagicParent;
+    mpMagicParent = NULL;
+
+    delete mpMagicBase;
+    mpMagicBase = NULL;
+
+    delete mpMagicFrameL;
+    mpMagicFrameL = NULL;
+
+    delete mpMagicFrameR;
+    mpMagicFrameR = NULL;
+
+    for (int i = 0; i < 3; i++) {
+        delete field_0x53c[i];
+        field_0x53c[i] = NULL;
+    }
+
+    delete mpMagicMeter;
+    mpMagicMeter = NULL;
+
+    for (int i = 0; i < 2; i++) {
+        delete mpSIParent[i];
+        mpSIParent[i] = NULL;
+    }
+
+    delete mpLightDropParent;
+    mpLightDropParent = NULL;
+
+    for (int i = 0; i < 16; i++) {
+        for (int j = 0; j < 3; j++) {
+            if (mpSIParts[i][j] != NULL) {
+                delete mpSIParts[i][j];
+                mpSIParts[i][j] = NULL;
+            }
+        }
+    }
+
+    delete mpRupeeKeyParent;
+    mpRupeeKeyParent = NULL;
+
+    for (int i = 0; i < 4; i++) {
+        delete mpRupeeTexture[i][0];
+        mpRupeeTexture[i][0] = NULL;
+
+        delete mpRupeeTexture[i][1];
+        mpRupeeTexture[i][1] = NULL;
+    }
+
+    for (int i = 0; i < 3; i++) {
+        delete mpRupeeParent[i];
+        mpRupeeParent[i] = NULL;
+    }
+
+    for (int i = 0; i < 5; i++) {
+        delete mpKeyTexture[i];
+        mpKeyTexture[i] = NULL;
+    }
+
+    delete mpKeyParent;
+    mpKeyParent = NULL;
+
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            mp_heap->free(mpItemBTex[i][j]);
+            mpItemBTex[i][j] = NULL;
+        }
+    }
+
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            for (int k = 0; k < 2; k++) {
+                mp_heap->free(mpItemXYTex[i][j][k]);
+                mpItemXYTex[i][j][k] = NULL;
+            }
+        }
+    }
+
+    delete mpItemB;
+    mpItemB = NULL;
+    mpItemBPane = NULL;
+
+    for (int i = 0; i < 2; i++) {
+        if (mpItemXY[i] != NULL) {
+            delete mpItemXY[i];
+            mpItemXY[i] = NULL;
+        }
+    }
+
+    delete mpItemR;
+    mpItemR = NULL;
+
+    for (int i = 0; i < 3; i++) {
+        mpItemXYPane[i] = NULL;
+    }
+
+    delete mpLightB;
+    mpLightB = NULL;
+
+    for (int i = 0; i < 3; i++) {
+        if (mpLightXY[i] != NULL) {
+            delete mpLightXY[i];
+            mpLightXY[i] = NULL;
+        }
+    }
+
+    delete mpBTextA;
+    mpBTextA = NULL;
+
+    delete mpBTextB;
+    mpBTextB = NULL;
+
+    for (int i = 0; i < 3; i++) {
+        if (mpBTextXY[i] != NULL) {
+            delete mpBTextXY[i];
+            mpBTextXY[i] = NULL;
+        }
+    }
+
+    delete mpTextA;
+    mpTextA = NULL;
+
+    delete mpTextB;
+    mpTextB = NULL;
+
+    for (int i = 0; i < 3; i++) {
+        delete mpTextXY[i];
+        mpTextXY[i] = NULL;
+    }
+
+    delete mpTextI;
+    mpTextI = NULL;
+
+    delete mpTextM;
+    mpTextM = NULL;
+
+    for (int i = 0; i < 5; i++) {
+        if (mpJujiI[i] != NULL) {
+            delete mpJujiI[i];
+            mpJujiI[i] = NULL;
+        }
+
+        if (mpJujiM[i] != NULL) {
+            delete mpJujiM[i];
+            mpJujiM[i] = NULL;
+        }
+    }
+
+    delete mpButtonParent;
+    mpButtonParent = NULL;
+
+    delete mpButtonA;
+    mpButtonA = NULL;
+
+    delete mpButtonB;
+    mpButtonB = NULL;
+
+    delete mpButtonMidona;
+    mpButtonMidona = NULL;
+
+    for (int i = 0; i < 3; i++) {
+        delete mpButtonXY[i];
+        mpButtonXY[i] = NULL;
+    }
+
+    if (mpUzu != NULL) {
+        delete mpUzu;
+        mpUzu = NULL;
+    }
+
+    delete mpButtonCrossParent;
+    mpButtonCrossParent = NULL;
+
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 3; j++) {
+            if (mpItemNumTex[i][j] != NULL) {
+                delete mpItemNumTex[i][j];
+                mpItemNumTex[i][j] = NULL;
+            }
+        }
+    }
+
+    for (int i = 0; i < 3; i++) {
+        if (field_0x9c[i] != NULL) {
+            delete field_0x9c[i];
+            field_0x9c[i] = NULL;
+        }
+    }
 }
-#pragma pop
 
 /* 80210FB0-8021135C 20B8F0 03AC+00 1/1 0/0 0/0 .text            init__13dMeter2Draw_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Draw_c::init() {
-    nofralloc
-#include "asm/d/meter/d_meter2_draw/init__13dMeter2Draw_cFv.s"
+void dMeter2Draw_c::init() {
+    f32 tmp_0 = FLOAT_LABEL(lit_4182);
+    field_0x608 = tmp_0;
+    field_0x60c = tmp_0;
+
+    for (int i = 0; i < 3; i++) {
+        field_0x620[i] = tmp_0;
+        field_0x610[i] = tmp_0;
+    }
+
+    f32 tmp_0_1 = FLOAT_LABEL(lit_4182);
+    field_0x61c = tmp_0_1;
+    for (int i = 0; i < 16; i++) {
+        field_0x62c[i] = tmp_0_1;
+        field_0x66c[i] = tmp_0_1;
+    }
+
+    field_0x759 = 0;
+    field_0x75a = 0;
+    for (int i = 0; i < 3; i++) {
+        field_0x75c[i] = 0;
+    }
+
+    field_0x75f = 0;
+    field_0x756 = -1;
+
+    field_0x760 = 0;
+
+    int j = 0;
+    f32 tmp_0_3 = FLOAT_LABEL(lit_4182);
+    for (; j < 3; j++) {
+        field_0x6ac[j] = tmp_0_3;
+        field_0x6b8[j] = tmp_0_3;
+        field_0x6c4[j] = tmp_0_3;
+        field_0x6d0[j] = tmp_0_3;
+    }
+
+    f32 tmp_0_4 = FLOAT_LABEL(lit_4182);
+    field_0x6dc = tmp_0_4;
+    field_0x6e0 = tmp_0_4;
+    field_0x6e4 = tmp_0_4;
+    field_0x6e8 = tmp_0_4;
+    field_0x6ec = tmp_0_4;
+    field_0x6f0 = tmp_0_4;
+    mHUDScale = g_drawHIO.mHUDScale;
+    mHUDAlpha = g_drawHIO.mHUDAlpha;
+    mButtonsPosX = tmp_0_4;
+    mButtonsPosY = tmp_0_4;
+    mButtonsScale = lit_4183;
+    field_0x78c = g_drawHIO.mButtonDisplayBackScale;
+    field_0x790 = tmp_0_4;
+    mLifeGaugeHeartAlpha = g_drawHIO.mLifeGaugeHeartAlpha;
+    mLifeGaugeBaseAlpha = g_drawHIO.mLifeGaugeBaseAlpha;
+    mHeartAlpha = g_drawHIO.mHeartAlpha;
+    mLargeHeartAlpha = g_drawHIO.mLargeHeartAlpha;
+    field_0x7a4 = tmp_0_4;
+    mMagicMeterAlpha = g_drawHIO.mMagicMeterAlpha;
+    mMagicMeterFrameAlpha = g_drawHIO.mMagicMeterFrameAlpha;
+    field_0x7b0 = tmp_0_4;
+    mLanternMeterAlpha = g_drawHIO.mLanternMeterAlpha;
+    mLanternMeterFrameAlpha = g_drawHIO.mLanternMeterFrameAlpha;
+    field_0x7bc = tmp_0_4;
+    mOxygenMeterAlpha = g_drawHIO.mOxygenMeterAlpha;
+    mOxygenMeterFrameAlpha = g_drawHIO.mOxygenMeterFrameAlpha;
+    field_0x7c8 = tmp_0_4;
+    field_0x861 = 0;
+    field_0x860 = 0;
+    field_0x7cc = g_drawHIO.mHUDAlpha;
+    field_0x7d0 = g_drawHIO.mRupeeKeyAlpha;
+    mRupeeAlpha = g_drawHIO.mRupeeAlpha;
+    mRupeeFrameAlpha = g_drawHIO.mRupeeFrameAlpha;
+    mRupeeCountAlpha = g_drawHIO.mRupeeCountAlpha;
+    field_0x7e0 = g_drawHIO.mHUDAlpha;
+    field_0x7e4 = g_drawHIO.mRupeeKeyAlpha;
+    mKeyAlpha = g_drawHIO.mKeyAlpha;
+    mKeyNumAlpha = g_drawHIO.mKeyNumAlpha;
+    field_0x7f0 = g_drawHIO.mHUDAlpha;
+    mMainHUDButtonsAlpha = g_drawHIO.mMainHUDButtonsAlpha;
+    mButtonDisplayBackAlpha = g_drawHIO.mButtonDisplayBackAlpha;
+    mAButtonAlpha = g_drawHIO.mAButtonAlpha;
+    mBButtonAlpha = g_drawHIO.mBButtonAlpha;
+    mXButtonAlpha = g_drawHIO.mXButtonAlpha;
+    mYButtonAlpha = g_drawHIO.mYButtonAlpha;
+    field_0x80c = g_drawHIO.field_0x168;
+    field_0x810 = g_drawHIO.mZButtonAlpha;
+
+    for (int i = 0; i < 2; i++) {
+        mBItemBaseAlpha[i] = g_drawHIO.mBItemBaseAlpha[i];
+        mXButtonItemBaseAlpha[i] = g_drawHIO.mXButtonItemBaseAlpha[i];
+        mYButtonItemBaseAlpha[i] = g_drawHIO.mYButtonItemBaseAlpha[i];
+        field_0x82c[i] = g_drawHIO.field_0x298[i];
+    }
+
+    mZButtonItemBaseAlpha = g_drawHIO.mZButtonItemBaseAlpha;
+    mButtonBaseAlpha = g_drawHIO.mButtonBaseAlpha;
+    mAButtonFontSpacing = g_drawHIO.mAButtonFontSpacing;
+    mDPadButtonAlpha = g_drawHIO.mDPadButtonAlpha;
+    mDPadButtonITEMAlpha = g_drawHIO.mDPadButtonITEMAlpha;
+    mDPadButtonMAPAlpha = g_drawHIO.mDPadButtonMAPAlpha;
+    field_0x84c = g_drawHIO.mAButtonFontColor.r;
+    field_0x84d = g_drawHIO.mAButtonFontColor.g;
+    field_0x84e = g_drawHIO.mAButtonFontColor.b;
+    field_0x84f = g_drawHIO.mAButtonFontColor.a;
+    field_0x850 = g_drawHIO.mBButtonFontColor.r;
+    field_0x851 = g_drawHIO.mBButtonFontColor.g;
+    field_0x852 = g_drawHIO.mBButtonFontColor.b;
+    field_0x853 = g_drawHIO.mBButtonFontColor.a;
+    field_0x854 = g_drawHIO.field_0x2f0.r;
+    field_0x855 = g_drawHIO.field_0x2f0.g;
+    field_0x856 = g_drawHIO.field_0x2f0.b;
+    field_0x857 = g_drawHIO.field_0x2f0.a;
+    field_0x858 = g_drawHIO.mZButtonFontColor.r;
+    field_0x859 = g_drawHIO.mZButtonFontColor.g;
+    field_0x85a = g_drawHIO.mZButtonFontColor.b;
+    field_0x85b = g_drawHIO.mZButtonFontColor.a;
+    field_0x85c = g_drawHIO.mXYButtonFontColor.r;
+    field_0x85d = g_drawHIO.mXYButtonFontColor.g;
+    field_0x85e = g_drawHIO.mXYButtonFontColor.b;
+    field_0x85f = g_drawHIO.mXYButtonFontColor.a;
+
+    setItemParamX(0);
+    setItemParamY(0);
+    setItemParamZ(0);
+    setItemParamB(0);
+    initLife();
+    initMagic();
+    initLightDrop();
+    initRupeeKey();
+    initButton();
+    initButtonCross();
+    field_0x772 = 0;
 }
-#pragma pop
 
 /* 8021135C-8021151C 20BC9C 01C0+00 0/0 1/1 0/0 .text            exec__13dMeter2Draw_cFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Draw_c::exec(u32 param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2_draw/exec__13dMeter2Draw_cFUl.s"
+void dMeter2Draw_c::exec(u32 param_0) {
+    if (mHUDScale != g_drawHIO.mHUDScale) {
+        mHUDScale = g_drawHIO.mHUDScale;
+        mpParent->scale(g_drawHIO.mHUDScale, g_drawHIO.mHUDScale);
+    }
+
+    if (mHUDAlpha != g_drawHIO.mHUDAlpha) {
+        mHUDAlpha = g_drawHIO.mHUDAlpha;
+        mpParent->setAlphaRate(g_drawHIO.mHUDAlpha);
+    }
+
+    if (param_0 & 0x1000000) {
+        if (mButtonsPosX != g_drawHIO.mRingHUDButtonsPosX ||
+            mButtonsPosY != g_drawHIO.mRingHUDButtonsPosY) {
+            mButtonsPosX = g_drawHIO.mRingHUDButtonsPosX;
+            mButtonsPosY = g_drawHIO.mRingHUDButtonsPosY;
+            mpButtonParent->paneTrans(g_drawHIO.mRingHUDButtonsPosX, g_drawHIO.mRingHUDButtonsPosY);
+        }
+
+        if (mButtonsScale != g_drawHIO.mRingHUDButtonsScale) {
+            mButtonsScale = g_drawHIO.mRingHUDButtonsScale;
+            mpButtonParent->scale(g_drawHIO.mRingHUDButtonsScale, g_drawHIO.mRingHUDButtonsScale);
+        }
+    } else {
+        if (mButtonsPosX != g_drawHIO.mMainHUDButtonsPosX ||
+            mButtonsPosY != g_drawHIO.mMainHUDButtonsPosY) {
+            mButtonsPosX = g_drawHIO.mMainHUDButtonsPosX;
+            mButtonsPosY = g_drawHIO.mMainHUDButtonsPosY;
+            mpButtonParent->paneTrans(g_drawHIO.mMainHUDButtonsPosX, g_drawHIO.mMainHUDButtonsPosY);
+        }
+
+        if (mButtonsScale != g_drawHIO.mMainHUDButtonsScale) {
+            mButtonsScale = g_drawHIO.mMainHUDButtonsScale;
+            mpButtonParent->scale(g_drawHIO.mMainHUDButtonsScale, g_drawHIO.mMainHUDButtonsScale);
+        }
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80454890-80454894 002E90 0004+00 1/1 0/0 0/0 .sdata2          @4921 */
@@ -704,6 +1165,7 @@ SECTION_DEAD static char const* const stringBase_80398A0A = "zelda_game_image_sa
 #pragma pop
 
 /* 80211E64-80212190 20C7A4 032C+00 1/1 0/0 0/0 .text            initMagic__13dMeter2Draw_cFv */
+// matches with literals
 #ifdef NONMATCHING
 void dMeter2Draw_c::initMagic() {
     field_0x550 = 0.0f;
@@ -714,21 +1176,22 @@ void dMeter2Draw_c::initMagic() {
     mpMagicFrameL = new CPaneMgr(mpKanteraScreen, 'm_w_l_n', 2, NULL);
     mpMagicFrameR = new CPaneMgr(mpKanteraScreen, 'm_w_r_n', 2, NULL);
     mpMagicMeter = new CPaneMgr(mpKanteraScreen, 'mm_00', 0, NULL);
+    OSInitFastCast();
 
     void* res = JKRFileLoader::getGlbResource("zelda_game_image_sanso_10percent.bpk",
                                               dComIfGp_getMain2DArchive());
-    field_0x53c = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(res);
-    field_0x53c->searchUpdateMaterialID(mpKanteraScreen);
+    field_0x53c[0] = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(res);
+    field_0x53c[0]->searchUpdateMaterialID(mpKanteraScreen);
 
     res = JKRFileLoader::getGlbResource("zelda_game_image_sanso_25percent.bpk",
                                         dComIfGp_getMain2DArchive());
-    field_0x540 = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(res);
-    field_0x540->searchUpdateMaterialID(mpKanteraScreen);
+    field_0x53c[1] = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(res);
+    field_0x53c[1]->searchUpdateMaterialID(mpKanteraScreen);
 
     res = JKRFileLoader::getGlbResource("zelda_game_image_sanso_50percent.bpk",
                                         dComIfGp_getMain2DArchive());
-    field_0x544 = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(res);
-    field_0x544->searchUpdateMaterialID(mpKanteraScreen);
+    field_0x53c[2] = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(res);
+    field_0x53c[2]->searchUpdateMaterialID(mpKanteraScreen);
 
     field_0x558 = 0.0f;
     mpMagicParent->setAlphaRate(0.0f);
@@ -751,10 +1214,9 @@ void dMeter2Draw_c::initMagic() {
               g_drawHIO.mMagicMeterPosY + offsetY);
     setAlphaMagicChange(true);
 
-    u16 oil = dComIfGs_getOil();
-    u16 max_oil = dComIfGs_getMaxOil();
-    drawKantera(max_oil, oil, g_drawHIO.mLanternMeterPosX + offsetX,
-                g_drawHIO.mLanternMeterPosY + (g_drawHIO.mNoMagicPosY + offsetY));
+    drawKantera((u16)dComIfGs_getMaxOil(), (u16)dComIfGs_getOil(),
+                g_drawHIO.mLanternMeterPosX + offsetX,
+                g_drawHIO.mNoMagicPosY + (g_drawHIO.mLanternMeterPosY + offsetY));
     setAlphaKanteraChange(true);
 }
 #else
@@ -908,35 +1370,28 @@ asm void dMeter2Draw_c::initButtonCross() {
 #pragma pop
 
 /* 80213CEC-80213D6C 20E62C 0080+00 3/3 0/0 0/0 .text playPikariBckAnimation__13dMeter2Draw_cFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Draw_c::playPikariBckAnimation(f32 param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2_draw/playPikariBckAnimation__13dMeter2Draw_cFf.s"
+void dMeter2Draw_c::playPikariBckAnimation(f32 frame) {
+    mpPikariParent->getPanePtr()->setAnimation(mPikariBck);
+    mPikariBck->setFrame(frame);
+    mpPikariParent->getPanePtr()->animationTransform();
+    mpPikariParent->getPanePtr()->setAnimation((J2DAnmTransformKey*)NULL);
 }
-#pragma pop
 
 /* 80213D6C-80213E3C 20E6AC 00D0+00 1/1 0/0 0/0 .text
  * setPikariBpkAnimation__13dMeter2Draw_cFP11J2DAnmColor        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Draw_c::setPikariBpkAnimation(J2DAnmColor* param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2_draw/setPikariBpkAnimation__13dMeter2Draw_cFP11J2DAnmColor.s"
+void dMeter2Draw_c::setPikariBpkAnimation(J2DAnmColor* p_anmcolor) {
+    mpPikariScreen->search('pika00')->setAnimation(p_anmcolor);
+    mpPikariScreen->search('moya00')->setAnimation(p_anmcolor);
+    mpPikariScreen->search('moyabs')->setAnimation(p_anmcolor);
 }
-#pragma pop
 
 /* 80213E3C-80213E94 20E77C 0058+00 3/3 0/0 0/0 .text playPikariBpkAnimation__13dMeter2Draw_cFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Draw_c::playPikariBpkAnimation(f32 param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2_draw/playPikariBpkAnimation__13dMeter2Draw_cFf.s"
+void dMeter2Draw_c::playPikariBpkAnimation(f32 frame) {
+    setPikariBpkAnimation(mPikariBpk);
+    mPikariBpk->setFrame(frame);
+    mpPikariScreen->animation();
+    setPikariBpkAnimation(NULL);
 }
-#pragma pop
 
 /* 80213E94-80213FF0 20E7D4 015C+00 1/1 0/0 0/0 .text
  * playOxygenBpkAnimation__13dMeter2Draw_cFP11J2DAnmColor       */
@@ -1414,14 +1869,12 @@ asm void dMeter2Draw_c::drawButtonC(u8 param_0, bool param_1) {
 #pragma pop
 
 /* 802179C0-80217A10 212300 0050+00 1/1 1/1 0/0 .text            drawButtonS__13dMeter2Draw_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Draw_c::drawButtonS(u8 param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2_draw/drawButtonS__13dMeter2Draw_cFUc.s"
+void dMeter2Draw_c::drawButtonS(u8 param_0) {
+    getActionString(param_0, 1, &field_0x767);
+    if (param_0 != 0) {
+        field_0x767 = 7;
+    }
 }
-#pragma pop
 
 /* 80217A10-80217AB4 212350 00A4+00 0/0 1/1 0/0 .text            drawButtonBin__13dMeter2Draw_cFUc
  */
@@ -1671,14 +2124,10 @@ asm void dMeter2Draw_c::setButtonIconAlpha(int param_0, u8 param_1, u32 param_2,
 
 /* 8021A29C-8021A2F4 214BDC 0058+00 1/1 0/0 0/0 .text            getNumberTexture__13dMeter2Draw_cFi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Draw_c::getNumberTexture(int param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2_draw/getNumberTexture__13dMeter2Draw_cFi.s"
+ResTIMG* dMeter2Draw_c::getNumberTexture(int i) {
+    return (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG',
+                                                              dMeter2Info_getNumberTextureName(i));
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80430158-80430178 05CE78 0020+00 1/1 0/0 0/0 .bss             i_text_buf$8454 */
@@ -1795,14 +2244,9 @@ asm void dMeter2Draw_c::drawKanteraMeter(u8 param_0, f32 param_1) {
 
 /* 8021B0C8-8021B104 215A08 003C+00 0/0 3/3 0/0 .text            isButtonVisible__13dMeter2Draw_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Draw_c::isButtonVisible() {
-    nofralloc
-#include "asm/d/meter/d_meter2_draw/isButtonVisible__13dMeter2Draw_cFv.s"
+u8 dMeter2Draw_c::isButtonVisible() {
+    return (mpButtonParent->getAlphaRate() == FLOAT_LABEL(lit_4182)) ^ 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804548E8-804548EC 002EE8 0004+00 2/2 0/0 0/0 .sdata2          @8992 */
@@ -1986,14 +2430,13 @@ asm void dMeter2Draw_c::setItemParamB(u8 param_0) {
 
 /* 8021BB6C-8021BBB4 2164AC 0048+00 1/1 0/0 0/0 .text            getFishingType__13dMeter2Draw_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Draw_c::getFishingType() {
-    nofralloc
-#include "asm/d/meter/d_meter2_draw/getFishingType__13dMeter2Draw_cFv.s"
+bool dMeter2Draw_c::getFishingType() {
+    if (dMeter2Info_isGameStatus(1) && getCanoeFishing()) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803988D0-803988D0 024F30 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -2010,14 +2453,14 @@ SECTION_DEAD static char const* const pad_80398A77 = "";
 
 /* 8021BBB4-8021BC24 2164F4 0070+00 2/2 1/1 0/0 .text            getCanoeFishing__13dMeter2Draw_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Draw_c::getCanoeFishing() {
-    nofralloc
-#include "asm/d/meter/d_meter2_draw/getCanoeFishing__13dMeter2Draw_cFv.s"
+bool dMeter2Draw_c::getCanoeFishing() {
+    if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") &&
+        g_dComIfG_gameInfo.play.mPlayer[0]->checkCanoeRide()) {
+        return TRUE;
+    } else {
+        return FALSE;
+    }
 }
-#pragma pop
 
 /* 8021BC24-8021BC54 216564 0030+00 0/0 1/1 0/0 .text            getCameraSubject__13dMeter2Draw_cFv
  */
@@ -2043,14 +2486,9 @@ asm void dMeter2Draw_c::getItemSubject() {
 
 /* 8021BCAC-8021BCC0 2165EC 0014+00 0/0 1/1 0/0 .text            getPlayerSubject__13dMeter2Draw_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Draw_c::getPlayerSubject() {
-    nofralloc
-#include "asm/d/meter/d_meter2_draw/getPlayerSubject__13dMeter2Draw_cFv.s"
+bool dMeter2Draw_c::getPlayerSubject() {
+    return dComIfGp_checkPlayerStatus0(0, 0x8000000);
 }
-#pragma pop
 
 /* 8021BCC0-8021BDD0 216600 0110+00 2/2 2/2 0/0 .text            isBButtonShow__13dMeter2Draw_cFb */
 #pragma push
@@ -2064,14 +2502,9 @@ asm void dMeter2Draw_c::isBButtonShow(bool param_0) {
 
 /* 8021BDD0-8021BDDC 216710 000C+00 0/0 1/1 0/0 .text            getButtonTimer__13dMeter2Draw_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Draw_c::getButtonTimer() {
-    nofralloc
-#include "asm/d/meter/d_meter2_draw/getButtonTimer__13dMeter2Draw_cFv.s"
+s16 dMeter2Draw_c::getButtonTimer() {
+    return mpButtonParent->getAlphaTimer();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803988B8-803988D0 024F18 0018+00 0/0 0/0 0/0 .rodata          tag$7759 */

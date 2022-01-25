@@ -4,10 +4,14 @@
 //
 
 #include "d/kankyo/d_kankyo.h"
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/mem.h"
+#include "Z2AudioLib/Z2EnvSeMgr.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/kankyo/d_kankyo_data.h"
+#include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "m_Do/m_Do_audio.h"
 
 //
 // Types:
@@ -20,28 +24,6 @@ struct mDoMtx_stack_c {
 };
 
 struct color_RGB_class {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2SceneMgr {
-    /* 802BA120 */ void load2ndDynamicWave();
-};
-
-struct Z2EnvSeMgr {
-    /* 802C611C */ Z2EnvSeMgr();
-    /* 802C6540 */ ~Z2EnvSeMgr();
-    /* 802C6998 */ void resetScene();
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
 
 //
 // Forward References:
@@ -359,7 +341,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void memcmp();
 extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
 extern "C" extern void* __vt__12J3DFrameCtrl[3];
 extern "C" extern void* g_fopKy_Method[5 + 1 /* padding */];
@@ -382,78 +363,172 @@ inline BOOL dComIfGs_isEventBit(u16 id) {
 }
 
 /* 8019C388-8019C3A4 196CC8 001C+00 2/2 0/0 0/0 .text dKy_WolfPowerup_AmbCol__FP11_GXColorS10 */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKy_WolfPowerup_AmbCol(_GXColorS10* param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_WolfPowerup_AmbCol__FP11_GXColorS10.s"
+static void dKy_WolfPowerup_AmbCol(GXColorS10* in_col_p) {
+    in_col_p->r = 40;
+    in_col_p->g = 52;
+    in_col_p->b = 49;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80394C6C = "F_SP115";
-SECTION_DEAD static char const* const stringBase_80394C74 = "F_SP113";
-SECTION_DEAD static char const* const stringBase_80394C7C = "D_SB10";
-SECTION_DEAD static char const* const stringBase_80394C83 = "F_SP112";
-SECTION_DEAD static char const* const stringBase_80394C8B = "F_SP126";
-SECTION_DEAD static char const* const stringBase_80394C93 = "F_SP114";
-SECTION_DEAD static char const* const stringBase_80394C9B = "D_MN05";
-SECTION_DEAD static char const* const stringBase_80394CA2 = "D_MN04";
-SECTION_DEAD static char const* const stringBase_80394CA9 = "D_SB04";
-SECTION_DEAD static char const* const stringBase_80394CB0 = "D_SB05";
-SECTION_DEAD static char const* const stringBase_80394CB7 = "D_SB06";
-SECTION_DEAD static char const* const stringBase_80394CBE = "D_SB07";
-SECTION_DEAD static char const* const stringBase_80394CC5 = "D_SB08";
-SECTION_DEAD static char const* const stringBase_80394CCC = "D_SB09";
-SECTION_DEAD static char const* const stringBase_80394CD3 = "D_MN10A";
-SECTION_DEAD static char const* const stringBase_80394CDB = "D_MN07A";
-SECTION_DEAD static char const* const stringBase_80394CE3 = "D_MN10B";
-SECTION_DEAD static char const* const stringBase_80394CEB = "D_MN10";
-SECTION_DEAD static char const* const stringBase_80394CF2 = "D_MN11A";
-SECTION_DEAD static char const* const stringBase_80394CFA = "D_MN11";
-SECTION_DEAD static char const* const stringBase_80394D01 = "D_MN11B";
-SECTION_DEAD static char const* const stringBase_80394D09 = "D_SB00";
-SECTION_DEAD static char const* const stringBase_80394D10 = "D_MN09B";
-SECTION_DEAD static char const* const stringBase_80394D18 = "D_MN09C";
-SECTION_DEAD static char const* const stringBase_80394D20 = "F_SP116";
-SECTION_DEAD static char const* const stringBase_80394D28 = "D_MN06";
-SECTION_DEAD static char const* const stringBase_80394D2F = "D_MN07";
-SECTION_DEAD static char const* const stringBase_80394D36 = "D_MN09A";
-SECTION_DEAD static char const* const stringBase_80394D3E = "D_SB01";
-SECTION_DEAD static char const* const stringBase_80394D45 = "R_SP300";
-SECTION_DEAD static char const* const stringBase_80394D4D = "R_SP301";
-SECTION_DEAD static char const* const stringBase_80394D55 = "D_MN01";
-SECTION_DEAD static char const* const stringBase_80394D5C = "D_MN01B";
-SECTION_DEAD static char const* const stringBase_80394D64 = "D_MN01A";
-SECTION_DEAD static char const* const stringBase_80394D6C = "D_MN08";
-SECTION_DEAD static char const* const stringBase_80394D73 = "D_SB02";
-SECTION_DEAD static char const* const stringBase_80394D7A = "D_SB03";
-SECTION_DEAD static char const* const stringBase_80394D81 = "R_SP01";
-SECTION_DEAD static char const* const stringBase_80394D88 = "R_SP108";
-SECTION_DEAD static char const* const stringBase_80394D90 = "R_SP209";
-SECTION_DEAD static char const* const stringBase_80394D98 = "R_SP116";
-SECTION_DEAD static char const* const stringBase_80394DA0 = "R_SP161";
-SECTION_DEAD static char const* const stringBase_80394DA8 = "F_SP110";
-SECTION_DEAD static char const* const stringBase_80394DB0 = "R_SP107";
-SECTION_DEAD static char const* const stringBase_80394DB8 = "R_SP128";
-SECTION_DEAD static char const* const stringBase_80394DC0 = "R_SP160";
-SECTION_DEAD static char const* const stringBase_80394DC8 = "R_SP127";
-SECTION_DEAD static char const* const stringBase_80394DD0 = "R_SP109";
-#pragma pop
 
 /* 8019C3A4-8019CB0C 196CE4 0768+00 2/2 0/0 0/0 .text            dKy_sense_pat_get__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKy_sense_pat_get() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_sense_pat_get__Fv.s"
+static s32 dKy_sense_pat_get() {
+    s32 pat = 0;
+    if (dKy_Outdoor_check()) {
+        pat = 1;
+    } else {
+        pat = 5;
+    }
+
+    // Stage is Lake Hylia
+    if (!strcmp(dComIfGp_getStartStageName(), "F_SP115")) {
+        pat = 9;
+
+        // Room is Lake
+        if (dComIfGp_roomControl_getStayNo() == 0 && dComIfGs_isSaveSwitch(0x11) &&
+            !dComIfGs_isSaveSwitch(0x75)) {
+            pat = 2;
+        }
+
+        if (dComIfGs_sense_type_change_Get() > 0) {
+            pat = 13;
+        }
+    }
+    // Stage is Zora's Domain
+    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP113")) {
+        if (dComIfGs_sense_type_change_Get() > 0) {
+            pat = 13;
+        } else {
+            pat = 1;
+        }
+    }
+    // Stage is Faron Woods Cave
+    else if (!strcmp(dComIfGp_getStartStageName(), "D_SB10")) {
+        pat = 1;
+    }
+    // Stage is Zora's River
+    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP112")) {
+        pat = 3;
+    }
+    // Stage is Upper Zora's River
+    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP126")) {
+        pat = 6;
+    }
+    // Stage is Snowpeak
+    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP114")) {
+        pat = 4;
+    }
+    // Stage is Forest Temple or Goron Mines or Goron Stockcave or Grotto
+    else if (!memcmp(dComIfGp_getStartStageName(), "D_MN05", 6) ||
+             !memcmp(dComIfGp_getStartStageName(), "D_MN04", 6) ||
+             !memcmp(dComIfGp_getStartStageName(), "D_SB04", 6) ||
+             !memcmp(dComIfGp_getStartStageName(), "D_SB05", 6) ||
+             !memcmp(dComIfGp_getStartStageName(), "D_SB06", 6) ||
+             !memcmp(dComIfGp_getStartStageName(), "D_SB07", 6) ||
+             !memcmp(dComIfGp_getStartStageName(), "D_SB08", 6) ||
+             !memcmp(dComIfGp_getStartStageName(), "D_SB09", 6)) {
+        pat = 5;
+    }
+    // Stage is Stallord arena or Argorok arena
+    else if (!strcmp(dComIfGp_getStartStageName(), "D_MN10A") ||
+             !strcmp(dComIfGp_getStartStageName(), "D_MN07A")) {
+        pat = 14;
+    }
+    // Stage is Death Sword arena
+    else if (!strcmp(dComIfGp_getStartStageName(), "D_MN10B")) {
+        pat = 15;
+    }
+    // Stage is Arbiter's Grounds
+    else if (!strcmp(dComIfGp_getStartStageName(), "D_MN10")) {
+        pat = 8;
+        // Room is Central Poe room
+        if (dComIfGp_roomControl_getStayNo() == 2) {
+            pat = 14;
+            // Room is 2nd Poe room or 4th Poe room
+        } else if (dComIfGp_roomControl_getStayNo() == 3 || dComIfGp_roomControl_getStayNo() == 8) {
+            pat = 6;
+        }
+    }
+    // Stage is Blizzeta arena
+    else if (!strcmp(dComIfGp_getStartStageName(), "D_MN11A")) {
+        pat = 4;
+    }
+    // Stage is Snowpeak Ruins or Darkhammer or Ice Puzzle cave
+    else if (!strcmp(dComIfGp_getStartStageName(), "D_MN11") ||
+             !strcmp(dComIfGp_getStartStageName(), "D_MN11B") ||
+             !memcmp(dComIfGp_getStartStageName(), "D_SB00", 6)) {
+        pat = 7;
+
+        // Stage is Snowpeak Ruins and Room is Courtyard
+        if (!strcmp(dComIfGp_getStartStageName(), "D_MN11") &&
+            dComIfGp_roomControl_getStayNo() == 4) {
+            pat = 4;
+        }
+    }
+    // Stage is Ganondorf Field or Ganondorf Defeated or Castle Town
+    else if (!strcmp(dComIfGp_getStartStageName(), "D_MN09B") ||
+             !strcmp(dComIfGp_getStartStageName(), "D_MN09C") ||
+             !strcmp(dComIfGp_getStartStageName(), "F_SP116")) {
+        pat = 1;
+    }
+    // Stage is Temple of Time or City in the Sky or Hyrule Castle Throne Room or
+    // Cave of Ordeals or Cloud Sea or Hyrule Castle cutscenes or Lakebed Temple or Deku Toad
+    else if (!memcmp(dComIfGp_getStartStageName(), "D_MN06", 6) ||
+             !strcmp(dComIfGp_getStartStageName(), "D_MN07") ||
+             !strcmp(dComIfGp_getStartStageName(), "D_MN09A") ||
+             !memcmp(dComIfGp_getStartStageName(), "D_SB01", 6) ||
+             !strcmp(dComIfGp_getStartStageName(), "R_SP300") ||
+             !strcmp(dComIfGp_getStartStageName(), "R_SP301") ||
+             !strcmp(dComIfGp_getStartStageName(), "D_MN01") ||
+             !strcmp(dComIfGp_getStartStageName(), "D_MN01B")) {
+        pat = 8;
+    }
+    // Stage is Morpheel arena
+    else if (!strcmp(dComIfGp_getStartStageName(), "D_MN01A")) {
+        pat = 14;
+    }
+    // Stage is Palace of Twilight
+    else if (!memcmp(dComIfGp_getStartStageName(), "D_MN08", 6)) {
+        pat = 9;
+    }
+    // Stage is Gorge Cave or Lake Hylia Cave
+    else if (!memcmp(dComIfGp_getStartStageName(), "D_SB02", 6) ||
+             !memcmp(dComIfGp_getStartStageName(), "D_SB03", 6)) {
+        pat = 10;
+    }
+    // Stage is Ordon Village Interiors or Faron Woods Interiors or
+    // Kakariko Graveyard or Telma's Bar or STAR game or Death Mountain or
+    // Hyrule Castle sewers
+    else if (!strcmp(dComIfGp_getStartStageName(), "R_SP01") ||
+             !strcmp(dComIfGp_getStartStageName(), "R_SP108") ||
+             !strcmp(dComIfGp_getStartStageName(), "R_SP209") ||
+             !strcmp(dComIfGp_getStartStageName(), "R_SP116") ||
+             !strcmp(dComIfGp_getStartStageName(), "R_SP161") ||
+             !strcmp(dComIfGp_getStartStageName(), "F_SP110") ||
+             !strcmp(dComIfGp_getStartStageName(), "R_SP107")) {
+        pat = 11;
+
+        // Stage is Ordon Village and Room is Sera's Shop
+        if (!strcmp(dComIfGp_getStartStageName(), "R_SP01") &&
+            dComIfGp_roomControl_getStayNo() == 1) {
+            pat = 12;
+        }
+    }
+    // Stage is Hidden Village interiors or Castle Town interiors or Fishing Pond interiors
+    else if (!strcmp(dComIfGp_getStartStageName(), "R_SP128") ||
+             !strcmp(dComIfGp_getStartStageName(), "R_SP160") ||
+             !strcmp(dComIfGp_getStartStageName(), "R_SP127")) {
+        pat = 12;
+    }
+    // Stage is Kakariko Village interiors
+    else if (!strcmp(dComIfGp_getStartStageName(), "R_SP109")) {
+        pat = 12;
+
+        // Room is Sanctuary or Inn
+        if (dComIfGp_roomControl_getStayNo() == 0 || dComIfGp_roomControl_getStayNo() == 2) {
+            pat = 11;
+        }
+    }
+    return pat;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803BBDB8-803BBDC4 018ED8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -481,39 +556,86 @@ SECTION_DATA static u8 lightStatusBase[232] = {
 };
 
 /* 803BBEAC-803BBEBC 018FCC 0010+00 4/4 0/0 0/0 .data            lightMaskData */
-SECTION_DATA static u8 lightMaskData[16] = {
-    0x00, 0x01, 0x00, 0x02, 0x00, 0x04, 0x00, 0x08, 0x00, 0x10, 0x00, 0x20, 0x00, 0x40, 0x00, 0x80,
-};
-
-/* 803BBEBC-803BBEFC -00001 0040+00 1/1 0/0 0/0 .data            @4322 */
-SECTION_DATA static void* lit_4322[16] = {
-    (void*)(((char*)dKy_WolfPowerup_BgAmbCol__FP11_GXColorS10) + 0x1BC),
-    (void*)(((char*)dKy_WolfPowerup_BgAmbCol__FP11_GXColorS10) + 0x38),
-    (void*)(((char*)dKy_WolfPowerup_BgAmbCol__FP11_GXColorS10) + 0x54),
-    (void*)(((char*)dKy_WolfPowerup_BgAmbCol__FP11_GXColorS10) + 0x70),
-    (void*)(((char*)dKy_WolfPowerup_BgAmbCol__FP11_GXColorS10) + 0x8C),
-    (void*)(((char*)dKy_WolfPowerup_BgAmbCol__FP11_GXColorS10) + 0xA8),
-    (void*)(((char*)dKy_WolfPowerup_BgAmbCol__FP11_GXColorS10) + 0xC4),
-    (void*)(((char*)dKy_WolfPowerup_BgAmbCol__FP11_GXColorS10) + 0xE0),
-    (void*)(((char*)dKy_WolfPowerup_BgAmbCol__FP11_GXColorS10) + 0xFC),
-    (void*)(((char*)dKy_WolfPowerup_BgAmbCol__FP11_GXColorS10) + 0x118),
-    (void*)(((char*)dKy_WolfPowerup_BgAmbCol__FP11_GXColorS10) + 0x150),
-    (void*)(((char*)dKy_WolfPowerup_BgAmbCol__FP11_GXColorS10) + 0x134),
-    (void*)(((char*)dKy_WolfPowerup_BgAmbCol__FP11_GXColorS10) + 0x134),
-    (void*)(((char*)dKy_WolfPowerup_BgAmbCol__FP11_GXColorS10) + 0x16C),
-    (void*)(((char*)dKy_WolfPowerup_BgAmbCol__FP11_GXColorS10) + 0x188),
-    (void*)(((char*)dKy_WolfPowerup_BgAmbCol__FP11_GXColorS10) + 0x1A4),
+SECTION_DATA static u16 lightMaskData[8] = {
+    0x0001, 0x0002, 0x0004, 0x0008, 0x0010, 0x0020, 0x0040, 0x0080,
 };
 
 /* 8019CB0C-8019CCDC 19744C 01D0+00 3/2 0/0 0/0 .text dKy_WolfPowerup_BgAmbCol__FP11_GXColorS10 */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKy_WolfPowerup_BgAmbCol(_GXColorS10* param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_WolfPowerup_BgAmbCol__FP11_GXColorS10.s"
+static void dKy_WolfPowerup_BgAmbCol(GXColorS10* in_col_p) {
+    switch (dKy_sense_pat_get()) {
+    case 1:
+        in_col_p->r = 33;
+        in_col_p->g = 48;
+        in_col_p->b = 44;
+        break;
+    case 2:
+        in_col_p->r = 33;
+        in_col_p->g = 48;
+        in_col_p->b = 44;
+        break;
+    case 3:
+        in_col_p->r = 40;
+        in_col_p->g = 53;
+        in_col_p->b = 49;
+        break;
+    case 4:
+        in_col_p->r = 32;
+        in_col_p->g = 46;
+        in_col_p->b = 40;
+        break;
+    case 5:
+        in_col_p->r = 45;
+        in_col_p->g = 64;
+        in_col_p->b = 58;
+        break;
+    case 6:
+        in_col_p->r = 33;
+        in_col_p->g = 48;
+        in_col_p->b = 44;
+        break;
+    case 7:
+        in_col_p->r = 38;
+        in_col_p->g = 53;
+        in_col_p->b = 49;
+        break;
+    case 8:
+        in_col_p->r = 33;
+        in_col_p->g = 48;
+        in_col_p->b = 44;
+        break;
+    case 9:
+        in_col_p->r = 40;
+        in_col_p->g = 59;
+        in_col_p->b = 53;
+        break;
+    case 11:
+    case 12:
+        in_col_p->r = 45;
+        in_col_p->g = 64;
+        in_col_p->b = 58;
+        break;
+    case 10:
+        in_col_p->r = 40;
+        in_col_p->g = 60;
+        in_col_p->b = 58;
+        break;
+    case 13:
+        in_col_p->r = 33;
+        in_col_p->g = 48;
+        in_col_p->b = 44;
+        break;
+    case 14:
+        in_col_p->r = 33;
+        in_col_p->g = 48;
+        in_col_p->b = 44;
+        break;
+    case 15:
+        in_col_p->r = 30;
+        in_col_p->g = 48;
+        in_col_p->b = 59;
+        break;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803BBEFC-803BBF3C -00001 0040+00 1/1 0/0 0/0 .data            @4364 */
@@ -639,7 +761,6 @@ static asm void dKy_pos2_get_angle(cXyz* param_0, cXyz* param_1, s16* param_2, s
 static u8 lit_4112[12];
 
 /* 8042CA54-8042DD64 059774 1310+00 116/118 128/128 649/649 .bss             g_env_light */
-extern u8 g_env_light[4880];
 u8 g_env_light[4880];
 
 /* 80453C28-80453C2C 002228 0004+00 1/1 0/0 0/0 .sdata2          @4441 */
@@ -818,21 +939,16 @@ static asm void float_kankyo_color_ratio_set(f32 param_0, f32 param_1, f32 param
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void get_parcent(f32 param_0, f32 param_1, f32 param_2) {
+static asm f32 get_parcent(f32 param_0, f32 param_1, f32 param_2) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/get_parcent__Ffff.s"
 }
 #pragma pop
 
 /* 8019D8AC-8019D8CC 1981EC 0020+00 0/0 1/1 1/1 .text            dKy_get_parcent__Ffff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_get_parcent(f32 param_0, f32 param_1, f32 param_2) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_get_parcent__Ffff.s"
+f32 dKy_get_parcent(f32 param_0, f32 param_1, f32 param_2) {
+    return get_parcent(param_0, param_1, param_2);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80453C64-80453C68 002264 0004+00 4/4 0/0 0/0 .sdata2          @4730 */
@@ -856,14 +972,9 @@ static asm void dKy_FiveSenses_fullthrottle_dark_static1() {
 #pragma pop
 
 /* 8019DD4C-8019DD6C 19868C 0020+00 0/0 1/1 0/0 .text dKy_FiveSenses_fullthrottle_dark__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_FiveSenses_fullthrottle_dark() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_FiveSenses_fullthrottle_dark__Fv.s"
+void dKy_FiveSenses_fullthrottle_dark() {
+    dKy_FiveSenses_fullthrottle_dark_static1();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -907,14 +1018,10 @@ static asm void dKy_eflight_influence_id(cXyz param_0, int param_1) {
 #pragma pop
 
 /* 8019E404-8019E430 198D44 002C+00 1/1 0/0 0/0 .text            dKy_light_influence_col__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKy_light_influence_col(int param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_light_influence_col__Fi.s"
+static GXColorS10 dKy_light_influence_col(int param_0) {
+    dScnKy_env_light_c* env_light = ((dScnKy_env_light_c*)g_env_light);
+    return env_light->mPointLight[param_0 >= 0 ? param_0 : 0]->mColor;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80453C80-80453C88 002280 0008+00 14/14 0/0 0/0 .sdata2          @4964 */
@@ -931,24 +1038,16 @@ asm void dKy_light_influence_col(_GXColor* param_0, f32 param_1) {
 #pragma pop
 
 /* 8019E520-8019E548 198E60 0028+00 1/1 0/0 0/0 .text            dKy_light_influence_power__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKy_light_influence_power(int param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_light_influence_power__Fi.s"
+static f32 dKy_light_influence_power(int param_0) {
+    dScnKy_env_light_c* env_light = ((dScnKy_env_light_c*)g_env_light);
+    return env_light->mPointLight[param_0 >= 0 ? param_0 : 0]->mPow;
 }
-#pragma pop
 
 /* 8019E548-8019E570 198E88 0028+00 1/1 0/0 0/0 .text            dKy_light_influence_yuragi__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKy_light_influence_yuragi(int param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_light_influence_yuragi__Fi.s"
+static f32 dKy_light_influence_yuragi(int param_0) {
+    dScnKy_env_light_c* env_light = ((dScnKy_env_light_c*)g_env_light);
+    return env_light->mPointLight[param_0 >= 0 ? param_0 : 0]->mFluctuation;
 }
-#pragma pop
 
 /* 8019E570-8019E694 198EB0 0124+00 1/1 0/0 0/0 .text dKy_light_influence_distance__F4cXyzi */
 #pragma push
@@ -965,24 +1064,28 @@ static asm void dKy_light_influence_distance(cXyz param_0, int param_1) {
 SECTION_SDATA2 static f32 lit_5077 = 99999.8984375f;
 
 /* 8019E694-8019E708 198FD4 0074+00 2/2 0/0 0/0 .text            plight_init__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void plight_init() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/plight_init__Fv.s"
+static void plight_init() {
+    (*(dScnKy_env_light_c*)g_env_light).field_0x38[0].mPow = lit_5077;
+
+    for (int i = 0; i < 100; i++) {
+        (*(dScnKy_env_light_c*)g_env_light).mPointLight[i] = NULL;
+    }
+
+    for (int i = 0; i < 5; i++) {
+        (*(dScnKy_env_light_c*)g_env_light).mEfPLight[i] = NULL;
+        (*(dScnKy_env_light_c*)g_env_light).field_0x72c[i] = NULL;
+    }
+
+    (*(dScnKy_env_light_c*)g_env_light).field_0x12a4 = -1;
+    (*(dScnKy_env_light_c*)g_env_light).field_0x12a8 = -1;
 }
-#pragma pop
 
 /* 8019E708-8019E734 199048 002C+00 1/1 0/0 0/0 .text            darkmist_init__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void darkmist_init() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/darkmist_init__Fv.s"
+static void darkmist_init() {
+    for (int i = 0; i < 10; i++) {
+        (*(dScnKy_env_light_c*)g_env_light).mDalkmistInf[i] = NULL;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80453C8C-80453C90 00228C 0004+00 6/6 0/0 0/0 .sdata2          @5106 */
@@ -1047,32 +1150,54 @@ static asm void dungeonlight_init() {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80394DDF = "Always";
-#pragma pop
-
 /* 8019EAA0-8019EBD0 1993E0 0130+00 1/1 0/0 0/0 .text            undwater_init__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void undwater_init() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/undwater_init__Fv.s"
+static void undwater_init() {
+    J3DModelData* modelData2 = (J3DModelData*)dComIfG_getObjectRes("Always", 0x1D);
+    (*(dScnKy_env_light_c*)g_env_light).field_0xf38 =
+        mDoExt_createSolidHeapFromGameToCurrent(0x600, 0x20);
+
+    if ((*(dScnKy_env_light_c*)g_env_light).field_0xf38 != NULL) {
+        (*(dScnKy_env_light_c*)g_env_light).field_0xf30 =
+            mDoExt_J3DModel__create(modelData2, 0x80000, 0x11020202);
+
+        if ((*(dScnKy_env_light_c*)g_env_light).field_0xf30 != NULL) {
+            (*(dScnKy_env_light_c*)g_env_light).field_0x105c = new mDoExt_btkAnm();
+
+            if ((*(dScnKy_env_light_c*)g_env_light).field_0x105c != NULL) {
+                J3DAnmTextureSRTKey* key =
+                    (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Always", 0x3C);
+                (*(dScnKy_env_light_c*)g_env_light)
+                    .field_0x105c->init(modelData2, key, 1, 2, lit_4505, 0, -1);
+            }
+        }
+        mDoExt_restoreCurrentHeap();
+        mDoExt_adjustSolidHeap((*(dScnKy_env_light_c*)g_env_light).field_0xf38);
+    }
 }
-#pragma pop
 
 /* 8019EBD0-8019EC98 199510 00C8+00 1/1 0/0 0/0 .text            dKy_light_size_get__FPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKy_light_size_get(char const* param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_light_size_get__FPCc.s"
+static void dKy_light_size_get(char const* stage) {
+    dKydata_lightsizeInfo_c* lightTbl = dKyd_light_size_tbl_getp();
+    dKydata_lightsizeInfo_c* lightTwTbl = dKyd_light_tw_size_tbl_getp();
+
+    if (!dKy_darkworld_check()) {
+        for (int i = 0; i < 36; i++) {
+            if (!strcmp(stage, lightTbl->stageName)) {
+                (*(dScnKy_env_light_c*)g_env_light).field_0x1309 = lightTbl->size;
+                return;
+            }
+            lightTbl++;
+        }
+    } else {
+        for (int i = 0; i < 9; i++) {
+            if (!strcmp(stage, lightTwTbl->stageName)) {
+                (*(dScnKy_env_light_c*)g_env_light).field_0x1309 = lightTwTbl->size;
+                return;
+            }
+            lightTwTbl++;
+        }
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -1370,34 +1495,15 @@ SECTION_DATA extern void* __vt__18dScnKy_env_light_c[3 + 4 /* padding */] = {
 };
 
 /* 8019F2E8-8019F400 199C28 0118+00 1/1 0/0 0/0 .text            __ct__18dScnKy_env_light_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dScnKy_env_light_c::dScnKy_env_light_c() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/__ct__18dScnKy_env_light_cFv.s"
+dScnKy_env_light_c::dScnKy_env_light_c() {
+    dKy_clear_game_init();
 }
-#pragma pop
 
 /* 8019F400-8019F438 199D40 0038+00 1/1 0/0 0/0 .text            __ct__19GB_MAPLE_COL_CHANGEFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm GB_MAPLE_COL_CHANGE::GB_MAPLE_COL_CHANGE() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/__ct__19GB_MAPLE_COL_CHANGEFv.s"
-}
-#pragma pop
+GB_MAPLE_COL_CHANGE::GB_MAPLE_COL_CHANGE() {}
 
 /* 8019F438-8019F474 199D78 003C+00 2/2 0/0 0/0 .text            __dt__10BOSS_LIGHTFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOSS_LIGHT::~BOSS_LIGHT() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/__dt__10BOSS_LIGHTFv.s"
-}
-#pragma pop
+BOSS_LIGHT::~BOSS_LIGHT() {}
 
 /* 8019F474-8019F478 199DB4 0004+00 1/1 0/0 0/0 .text            __ct__10BOSS_LIGHTFv */
 BOSS_LIGHT::BOSS_LIGHT() {
@@ -1405,14 +1511,7 @@ BOSS_LIGHT::BOSS_LIGHT() {
 }
 
 /* 8019F478-8019F4B4 199DB8 003C+00 2/2 0/0 0/0 .text            __dt__13DUNGEON_LIGHTFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm DUNGEON_LIGHT::~DUNGEON_LIGHT() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/__dt__13DUNGEON_LIGHTFv.s"
-}
-#pragma pop
+DUNGEON_LIGHT::~DUNGEON_LIGHT() {}
 
 /* 8019F4B4-8019F4B8 199DF4 0004+00 1/1 0/0 0/0 .text            __ct__13DUNGEON_LIGHTFv */
 DUNGEON_LIGHT::DUNGEON_LIGHT() {
@@ -1420,14 +1519,7 @@ DUNGEON_LIGHT::DUNGEON_LIGHT() {
 }
 
 /* 8019F4B8-8019F4F4 199DF8 003C+00 2/2 0/0 0/0 .text            __dt__15WIND_INF_ENTITYFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm WIND_INF_ENTITY::~WIND_INF_ENTITY() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/__dt__15WIND_INF_ENTITYFv.s"
-}
-#pragma pop
+WIND_INF_ENTITY::~WIND_INF_ENTITY() {}
 
 /* 8019F4F4-8019F4F8 199E34 0004+00 1/1 0/0 0/0 .text            __ct__15WIND_INF_ENTITYFv */
 WIND_INF_ENTITY::WIND_INF_ENTITY() {
@@ -1449,8 +1541,72 @@ SECTION_SDATA2 static f32 lit_5555 = 150.0f;
 /* 80453CC4-80453CC8 0022C4 0004+00 1/1 0/0 0/0 .sdata2          @5556 */
 SECTION_SDATA2 static f32 lit_5556 = 195.0f;
 
+inline BOOL dComIfGp_event_runCheck() {
+    return g_dComIfG_gameInfo.play.getEvent().runCheck();
+}
+
 /* 8019F4FC-8019F780 199E3C 0284+00 1/1 0/0 0/0 .text            setDaytime__18dScnKy_env_light_cFv
  */
+// matches with literals
+#ifdef NONMATCHING
+void dScnKy_env_light_c::setDaytime() {
+    mDate = dComIfGs_getDate();
+    mDaytime = dComIfGs_getTime();
+
+    if (field_0x12fb == 0) {
+        if (!dKy_darkworld_check()) {
+            if (!dComIfGp_event_runCheck()) {
+                fopAc_ac_c* ac = dMsgObject_c::getActor();
+                bool tmp = true;
+
+                if (ac != NULL && ac->mEvtInfo.mCommand >= 2) {
+                    tmp = false;
+                }
+
+                if (dComIfGp_roomControl_getTimePass() && !field_0x130a && tmp) {
+                    mDaytime += mTimeSpeed;
+
+                    // Stage is Fishing Pond or Hena's Hut
+                    if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") ||
+                        !strcmp(dComIfGp_getStartStageName(), "R_SP127")) {
+                        f32 current_time = mDaytime;
+                        if (current_time >= 300.0f || current_time <= 60.0f) {
+                            mDaytime += mTimeSpeed;
+                            mDaytime += mTimeSpeed;
+                        } else if (current_time >= 150.0f && current_time <= 195.0f) {
+                            mDaytime = current_time + mTimeSpeed;
+                        }
+                    }
+
+                    if ((u32)mDaytime >= 360.0f) {
+                        mDaytime = 0.0f;
+                        mDate++;
+                        dKankyo_DayProc();
+                    }
+                }
+            }
+        } else {
+            mDarkDaytime += mTimeSpeed;
+            if ((u32)mDarkDaytime >= 360.0f) {
+                mDarktimeWeek++;
+                mDarkDaytime = 0.0f;
+            }
+            mDaytime = 0.0f;
+        }
+    }
+
+    if (mDaytime >= 360.0f) {
+        mDaytime = 0.0f;
+    }
+
+    dComIfGs_setTime(mDaytime);
+    mDoAud_setHour(dKy_getdaytime_hour());
+    mDoAud_setMinute(dKy_getdaytime_minute());
+    mDoAud_setWeekday(dKy_get_dayofweek());
+    dComIfGs_setDate(mDate);
+    (*(dScnKy_env_light_c*)g_env_light).field_0x12fb = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1459,12 +1615,13 @@ asm void dScnKy_env_light_c::setDaytime() {
 #include "asm/d/kankyo/d_kankyo/setDaytime__18dScnKy_env_light_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8019F780-8019F788 19A0C0 0008+00 1/1 0/0 0/0 .text GetTimePass__20dStage_roomControl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm s8 dStage_roomControl_c::GetTimePass() {
+asm s32 dStage_roomControl_c::GetTimePass() {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/GetTimePass__20dStage_roomControl_cFv.s"
 }
@@ -1513,44 +1670,43 @@ f32 dScnKy_env_light_c::getDaytime() {
 }
 
 /* 8019FA10-8019FA3C 19A350 002C+00 2/2 2/2 32/32 .text            dKy_getdaytime_hour__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_getdaytime_hour() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_getdaytime_hour__Fv.s"
+s32 dKy_getdaytime_hour() {
+    return dComIfGs_getTime() / lit_5347;
 }
-#pragma pop
 
 /* 8019FA3C-8019FAB8 19A37C 007C+00 1/1 1/1 26/26 .text            dKy_getdaytime_minute__Fv */
+// just small regalloc
+#ifdef NONMATCHING
+s32 dKy_getdaytime_minute() {
+    f32 tmp = ((s32)(dComIfGs_getTime() * lit_4850) % 15000000);
+    return tmp / lit_4850 / lit_5347 * lit_5554;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dKy_getdaytime_minute() {
+asm s32 dKy_getdaytime_minute() {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_getdaytime_minute__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 8019FAB8-8019FAF4 19A3F8 003C+00 0/0 3/3 6/6 .text            dKy_daynight_check__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_daynight_check() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_daynight_check__Fv.s"
+s32 dKy_daynight_check() {
+    s32 hour = dKy_getdaytime_hour();
+
+    if (hour >= 6 && hour < 19) {
+        return 0;  // day time
+    } else {
+        return 1;  // night time
+    }
 }
-#pragma pop
 
 /* 8019FAF4-8019FB30 19A434 003C+00 0/0 0/0 22/22 .text            dKy_getDarktime_hour__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_getDarktime_hour() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_getDarktime_hour__Fv.s"
+s32 dKy_getDarktime_hour() {
+    return (*(dScnKy_env_light_c*)g_env_light).getDarkDaytime() / lit_5347;
 }
-#pragma pop
 
 /* 8019FB30-8019FBBC 19A470 008C+00 0/0 0/0 19/19 .text            dKy_getDarktime_minute__Fv */
 #pragma push
@@ -1563,24 +1719,14 @@ asm void dKy_getDarktime_minute() {
 #pragma pop
 
 /* 8019FBBC-8019FBCC 19A4FC 0010+00 0/0 0/0 8/8 .text            dKy_getDarktime_week__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_getDarktime_week() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_getDarktime_week__Fv.s"
+s32 dKy_getDarktime_week() {
+    return (*(dScnKy_env_light_c*)g_env_light).mDarktimeWeek;
 }
-#pragma pop
 
 /* 8019FBCC-8019FBD4 19A50C 0008+00 2/2 0/0 0/0 .text getDarkDaytime__18dScnKy_env_light_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dScnKy_env_light_c::getDarkDaytime() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/getDarkDaytime__18dScnKy_env_light_cFv.s"
+f32 dScnKy_env_light_c::getDarkDaytime() {
+    return mDarkDaytime;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -1939,14 +2085,14 @@ asm void dScnKy_env_light_c::CalcTevColor() {
 #pragma pop
 
 /* 801A4F24-801A4F64 19F864 0040+00 1/1 0/0 0/0 .text            Sndpos__18dScnKy_env_light_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dScnKy_env_light_c::Sndpos() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/Sndpos__18dScnKy_env_light_cFv.s"
+void dScnKy_env_light_c::Sndpos() {
+    if (mSound.field_0x10 != 0) {
+        mSound.field_0x10--;
+        if (mSound.field_0x10 == 0) {
+            dKy_Sound_init();
+        }
+    }
 }
-#pragma pop
 
 /* 801A4F64-801A516C 19F8A4 0208+00 1/1 0/0 0/0 .text Eflight_flush_proc__18dScnKy_env_light_cFv
  */
@@ -1999,14 +2145,12 @@ asm void dScnKy_env_light_c::exeKankyo() {
 
 /* 801A56DC-801A572C 1A001C 0050+00 1/1 0/0 0/0 .text            drawKankyo__18dScnKy_env_light_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dScnKy_env_light_c::drawKankyo() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/drawKankyo__18dScnKy_env_light_cFv.s"
+void dScnKy_env_light_c::drawKankyo() {
+    setSunpos();
+    SetBaseLight();
+    setLight();
+    dKy_setLight_nowroom((*(dScnKy_env_light_c*)g_env_light).mNowRoom);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8042E7BC-8042E7C8 05B4DC 000C+00 0/1 0/0 0/0 .bss             @7485 */
@@ -2162,14 +2306,11 @@ static asm void dKy_setLight_nowroom_common(char param_0, f32 param_1) {
 #pragma pop
 
 /* 801A6C20-801A6C58 1A1560 0038+00 2/2 1/1 0/0 .text            dKy_setLight_nowroom__Fc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_setLight_nowroom(char param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_setLight_nowroom__Fc.s"
+void dKy_setLight_nowroom(char param_0) {
+    if (dComIfGp_getCamera(0) != NULL) {
+        dKy_setLight_nowroom_common(param_0, lit_4505);
+    }
 }
-#pragma pop
 
 /* 801A6C58-801A6D4C 1A1598 00F4+00 0/0 1/1 2/2 .text            dKy_setLight_nowroom_grass__Fcf */
 #pragma push
@@ -2210,14 +2351,9 @@ asm void dKy_setLight_nowroom_actor(dKy_tevstr_c* param_0) {
 #pragma pop
 
 /* 801A75C0-801A75E0 1A1F00 0020+00 0/0 6/6 7/7 .text            dKy_setLight_again__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_setLight_again() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_setLight_again__Fv.s"
+void dKy_setLight_again() {
+    dKy_GlobalLight_set();
 }
-#pragma pop
 
 /* 801A75E0-801A76D8 1A1F20 00F8+00 0/0 3/3 5/5 .text dKy_Global_amb_set__FP12dKy_tevstr_c */
 #pragma push
@@ -2230,24 +2366,19 @@ asm void dKy_Global_amb_set(dKy_tevstr_c* param_0) {
 #pragma pop
 
 /* 801A76D8-801A7714 1A2018 003C+00 1/1 0/0 0/0 .text            dKy_light_influence_pos__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKy_light_influence_pos(int param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_light_influence_pos__Fi.s"
+static cXyz dKy_light_influence_pos(int param_0) {
+    if (param_0 < 0) {
+        param_0 = 0;
+    }
+
+    dScnKy_env_light_c* env_light = ((dScnKy_env_light_c*)g_env_light);
+    return env_light->mPointLight[param_0]->mPosition;
 }
-#pragma pop
 
 /* 801A7714-801A7738 1A2054 0024+00 0/0 1/1 0/0 .text            dKy_plight_near_pos__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_plight_near_pos() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_plight_near_pos__Fv.s"
+cXyz dKy_plight_near_pos() {
+    return (*(dScnKy_env_light_c*)g_env_light).mPLightNearPos;
 }
-#pragma pop
 
 /* 801A7738-801A7790 1A2078 0058+00 0/0 0/0 1/1 .text
  * dKy_mock_light_every_set__FP15LIGHT_INFLUENCE                */
@@ -2729,7 +2860,7 @@ asm void dKy_itudemo_se() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dKy_get_dayofweek() {
+asm s32 dKy_get_dayofweek() {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_get_dayofweek__Fv.s"
 }
@@ -2964,7 +3095,7 @@ asm void dKy_camera_water_in_status_set(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dKy_camera_water_in_status_check() {
+asm BOOL dKy_camera_water_in_status_check() {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_camera_water_in_status_check__Fv.s"
 }
@@ -3127,7 +3258,7 @@ asm void dKy_SunMoon_Light_Check() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dKy_Outdoor_check() {
+static asm int dKy_Outdoor_check() {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_Outdoor_check__Fv.s"
 }
@@ -3189,7 +3320,7 @@ asm bool dKy_darkworld_check() {
  */
 /* 801AC5BC-801AC70C 1A6EFC 0150+00 3/3 0/0 0/0 .text            dKy_F_SP121Check__FPCciPUci */
 static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, int tblIndex) {
-    dKyd_darkworldTblEntry* darkworldTbl = dKyd_darkworld_tbl_getp();
+    dKydata_darkworldInfo_c* darkworldTbl = dKyd_darkworld_tbl_getp();
     int result = 0;
 
     if (out_darkLv != NULL) {
@@ -3259,7 +3390,7 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, i
  */
 /* 801AC70C-801AC7E0 1A704C 00D4+00 0/0 2/2 0/0 .text            dKy_darkworld_stage_check__FPCci */
 BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
-    dKyd_darkworldTblEntry* darkworldTbl = dKyd_darkworld_tbl_getp();
+    dKydata_darkworldInfo_c* darkworldTbl = dKyd_darkworld_tbl_getp();
     BOOL result = FALSE;
     u8 darkLv[1];
 
@@ -3302,7 +3433,7 @@ BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
  */
 /* 801AC7E0-801AC870 1A7120 0090+00 0/0 1/1 0/0 .text            dKy_darkworld_spot_check__FPCci */
 BOOL dKy_darkworld_spot_check(char const* stageName, int roomNo) {
-    dKyd_darkworldTblEntry* darkworldTblPtr = dKyd_darkworld_tbl_getp();
+    dKydata_darkworldInfo_c* darkworldTblPtr = dKyd_darkworld_tbl_getp();
     BOOL result = FALSE;
 
     for (int i = 0; i < 34; i++) {
@@ -3319,7 +3450,7 @@ BOOL dKy_darkworld_spot_check(char const* stageName, int roomNo) {
 
 /* 801AC870-801AC918 1A71B0 00A8+00 0/0 1/1 0/0 .text            dKy_darkworld_Area_set__FPCci */
 void dKy_darkworld_Area_set(char const* stageName, int roomNo) {
-    dKyd_darkworldTblEntry* darkworldTblPtr = dKyd_darkworld_tbl_getp();
+    dKydata_darkworldInfo_c* darkworldTblPtr = dKyd_darkworld_tbl_getp();
     u8 darkLv[1];
 
     for (int i = 0; i < 34; i++) {
@@ -3360,34 +3491,19 @@ static asm void dKy_murky_set(J3DMaterial* param_0) {
 #pragma pop
 
 /* 801ACCDC-801ACCF4 1A761C 0018+00 2/2 1/1 0/0 .text            dKy_shadow_mode_set__FUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_shadow_mode_set(u8 param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_shadow_mode_set__FUc.s"
+void dKy_shadow_mode_set(u8 mode) {
+    (*(dScnKy_env_light_c*)g_env_light).mShadowMode |= mode;
 }
-#pragma pop
 
 /* 801ACCF4-801ACD0C 1A7634 0018+00 2/2 1/1 0/0 .text            dKy_shadow_mode_reset__FUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_shadow_mode_reset(u8 param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_shadow_mode_reset__FUc.s"
+void dKy_shadow_mode_reset(u8 mode) {
+    (*(dScnKy_env_light_c*)g_env_light).mShadowMode &= ~mode;
 }
-#pragma pop
 
 /* 801ACD0C-801ACD24 1A764C 0018+00 3/3 0/0 1/1 .text            dKy_shadow_mode_check__FUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_shadow_mode_check(u8 param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_shadow_mode_check__FUc.s"
+u8 dKy_shadow_mode_check(u8 mode) {
+    return (*(dScnKy_env_light_c*)g_env_light).mShadowMode & mode;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -3520,11 +3636,6 @@ asm void __sinit_d_kankyo_cpp() {
 #pragma force_active on
 REGISTER_CTORS(0x801ADCA4, __sinit_d_kankyo_cpp);
 #pragma pop
-
-/* 801ADD00-801ADD38 1A8640 0038+00 2/2 0/0 0/0 .text            dKankyo_DayProc__Fv */
-void dKankyo_DayProc() {
-    dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[91]);
-}
 
 /* ############################################################################################## */
 /* 80451070-80451078 -00001 0008+00 0/0 1/1 0/0 .sbss            None */

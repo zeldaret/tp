@@ -3324,7 +3324,6 @@ extern "C" u8 BaseY__4cXyz[12];
 extern "C" u8 BaseZ__4cXyz[12];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 g_whiteColor;
 extern "C" u16 m_branchId__7dDemo_c[1 + 3 /* padding */];
 extern "C" extern u8 data_80450B38[4];
 extern "C" f32 mGroundY__11fopAcM_gc_c;
@@ -3582,10 +3581,10 @@ void daAlink_c::setMatrixWorldAxisRot(MtxP param_0, s16 param_1, s16 param_2, s1
     mDoMtx_stack_c::YrotM(-mCollisionRot.y);
     concatMagneBootInvMtx();
     mDoMtx_stack_c::transM(-tmp.x, -tmp.y, -tmp.z);
-    PSMTXConcat(*mDoMtx_stack_c::get(), param_0, *mDoMtx_stack_c::get());
-    PSMTXCopy(*mDoMtx_stack_c::get(), param_0);
+    PSMTXConcat(mDoMtx_stack_c::get(), param_0, mDoMtx_stack_c::get());
+    PSMTXCopy(mDoMtx_stack_c::get(), param_0);
     if (param_4 != 0) {
-        PSMTXCopy(*mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
+        PSMTXCopy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
     }
 }
 

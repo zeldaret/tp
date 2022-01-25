@@ -370,8 +370,8 @@ public:
     u16& getMaxLife() { return mMaxLife; }
     u16& getLife() { return mLife; }
     u16& getRupee() { return mRupee; }
-    u16& getOil() { return mOil; }
-    u16& getMaxOil() { return mMaxOil; }
+    u16 getOil() { return mOil; }
+    u16 getMaxOil() { return mMaxOil; }
     u8& getMagic() { return mMagic; }
     u8& getMaxMagic() { return mMaxMagic; }
     u8 getSelectEquip(int item) const { return mSelectEquip[item]; }
@@ -415,6 +415,10 @@ public:
     BOOL isTransformLV(int) const;
 
     void setDateIpl(s64 time) { mDateIpl = time; }
+    u16 getDate() const { return mDate; }
+    f32 getTime() const { return mTime; }
+    void setDate(u16 date) { mDate = date; }
+    void setTime(f32 time) { mTime = time; }
 
 private:
     /* 0x00 */ s64 mDateIpl;

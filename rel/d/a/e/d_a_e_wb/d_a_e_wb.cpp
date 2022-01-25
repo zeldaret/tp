@@ -277,7 +277,7 @@ extern "C" static void cMtx_XrotM__FPA4_fs();
 extern "C" static void JMAFastSqrt__Ff();
 extern "C" static void dComIfGp_particle_set__FUlUsPC4cXyzPC5csXyzPC4cXyz();
 extern "C" void cancelOriginalDemo__9daHorse_cFv();
-extern "C" void __ct__10JAISoundIDFUl(u32* this_replacement,u32 param_0);
+extern "C" void __ct__10JAISoundIDFUl(u32* this_replacement, u32 param_0);
 extern "C" static void dComIfGp_getVibration__Fv();
 extern "C" void __ct__4cXyzFfff();
 extern "C" void onDemoJumpDistance__9daHorse_cFff();
@@ -4970,7 +4970,7 @@ asm void daHorse_c::cancelOriginalDemo() {
 #pragma pop
 
 /* 807E27D0-807E27D8 -00001 0008+00 0/0 0/0 0/0 .text            __ct__10JAISoundIDFUl */
-extern "C" void __ct__10JAISoundIDFUl(u32* this_replacement,u32 param_0) {
+extern "C" void __ct__10JAISoundIDFUl(u32* this_replacement, u32 param_0) {
     *(u32*)this_replacement = (u32)(param_0);
 }
 

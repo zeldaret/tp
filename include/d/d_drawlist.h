@@ -167,7 +167,10 @@ STATIC_ASSERT(sizeof(dDlst_window_c) == 0x2C);
 
 struct view_port_class {};
 
-struct view_class {};
+struct view_class {
+    /* 0x00 */ u8 field_0x0[0xD0];
+    /* 0xD0 */ f32 field_0xd0;
+};
 
 class dDlst_base_c {
 public:
@@ -193,6 +196,17 @@ public:
 
     void set2DOpa(dDlst_base_c* dlst) { set(field_0x1b4, field_0x1b8, dlst); }
     void set2DOpaTop(dDlst_base_c* dlst) { set(field_0xac, field_0xb0, dlst); }
+    view_class* getView() { return mView; }
+    J3DDrawBuffer* getOpaListFilter() { return mListFilter; }
+    J3DDrawBuffer* getOpaListP0() { return mListP0; }
+    void setXluDrawList(J3DDrawBuffer* buffer) { j3dSys.setDrawBuffer(buffer, XLU_BUFFER); }
+    void setOpaDrawList(J3DDrawBuffer* buffer) { j3dSys.setDrawBuffer(buffer, OPA_BUFFER); }
+    void setXluListSky() { setXluDrawList(mpXluListSky); }
+    void setOpaListSky() { setOpaDrawList(mOpaListSky); }
+    void setOpaList() { setOpaDrawList(mOpaList); }
+    void setXluList() { setXluDrawList(mXluList); }
+    void setXluListBG() { setXluDrawList(mXluListBG); }
+    void setXluList2DScreen() { setXluDrawList(mList2DScreen); }
 
     static u8 mWipeDlst[72];
     static u8 mWipeColor[4];

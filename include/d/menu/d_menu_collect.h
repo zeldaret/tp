@@ -311,7 +311,7 @@ public:
     /* 801B7434 */ void getCrystalNum();
     /* 801B749C */ void getMirrorNum();
     /* 801B7504 */ void getMaskMdlVisible();
-    /* 801B75E8 */ void setupItem3D(f32 (*)[4]);
+    /* 801B75E8 */ static void setupItem3D(f32 (*)[4]);
     /* 801B7660 */ void toItem3Dpos(f32, f32, f32, cXyz*);
     /* 801B774C */ void calcViewMtx(f32 (*)[4]);
 

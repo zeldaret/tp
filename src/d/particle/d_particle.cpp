@@ -1906,11 +1906,11 @@ SECTION_SDATA2 static u32 lit_5199 = 0xFFFFFFFF;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dPa_control_c::set(u8 param_0, u16 param_1, cXyz const* param_2,
-                            dKy_tevstr_c const* param_3, csXyz const* param_4, cXyz const* param_5,
-                            u8 param_6, dPa_levelEcallBack* param_7, s8 param_8,
-                            _GXColor const* param_9, _GXColor const* param_10, cXyz const* param_11,
-                            f32 param_12) {
+asm u32 dPa_control_c::set(u8 param_0, u16 param_1, cXyz const* param_2,
+                           dKy_tevstr_c const* param_3, csXyz const* param_4, cXyz const* param_5,
+                           u8 param_6, dPa_levelEcallBack* param_7, s8 param_8,
+                           _GXColor const* param_9, _GXColor const* param_10, cXyz const* param_11,
+                           f32 param_12) {
     nofralloc
 #include "asm/d/particle/d_particle/func_8004CA90.s"
 }

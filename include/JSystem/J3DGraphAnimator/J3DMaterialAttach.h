@@ -30,6 +30,7 @@ public:
     J3DMaterial* getMaterialNodePointer(u16 idx) const { return mMaterialNodePointer[idx]; }
 
     J3DTexture* getTexture() const { return mTexture; }
+    JUTNameTab* getTextureName() const { return mTextureName; }
 
     u16 getMaterialNum() const { return mMaterialNum; }
 

@@ -8,12 +8,12 @@ struct OSSectionInfo {
     u32 mSize;
 };
 
-struct OSModuleInfo { 
+struct OSModuleInfo {
     u32 mId;
     OSModuleInfo* mNext;
     OSModuleInfo* mPrev;
     u32 mNumSections;
-    struct { //Needed to get an assert correct; very likely bigger
+    struct {  // Needed to get an assert correct; very likely bigger
         u32 sectionInfoOffset;
     } info;
     u32 mModuleNameOffset;
@@ -28,7 +28,7 @@ struct OSModuleInfo {
     u8 mUnresolvedSection;
     u8 mBssSection;
     u32 (*prolog)();
-    void(*epilog)();
+    void (*epilog)();
     u32 mUnresolvedFuncOffset;
     u32 mModuleAlignment;
     u32 mBssAlignment;
@@ -36,7 +36,7 @@ struct OSModuleInfo {
 };
 
 extern "C" BOOL OSLink(OSModuleInfo*);
-extern "C" BOOL OSLinkFixed(OSModuleInfo*,u32);
+extern "C" BOOL OSLinkFixed(OSModuleInfo*, u32);
 extern "C" BOOL OSUnlink(OSModuleInfo*);
 
 #endif /* OSLINK_H */

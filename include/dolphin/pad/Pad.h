@@ -16,16 +16,16 @@ typedef enum PADMask {
 } PADMask;
 
 typedef struct PADStatus {
-    u16 button;
-    s8 stick_x;
-    s8 stick_y;
-    s8 substick_x;
-    s8 substick_y;
-    u8 trigger_left;
-    u8 trigger_right;
-    u8 analog_a;
-    u8 analog_b;
-    s8 error;
+    /* 0x0 */ u16 button;
+    /* 0x2 */ s8 stick_x;
+    /* 0x3 */ s8 stick_y;
+    /* 0x4 */ s8 substick_x;
+    /* 0x5 */ s8 substick_y;
+    /* 0x6 */ u8 trigger_left;
+    /* 0x7 */ u8 trigger_right;
+    /* 0x8 */ u8 analog_a;
+    /* 0x9 */ u8 analog_b;
+    /* 0xA */ s8 error;
 } PADStatus;
 
 extern "C" {

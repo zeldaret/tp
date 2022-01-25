@@ -4,6 +4,7 @@
 //
 
 #include "d/d_bomb.h"
+#include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
@@ -14,13 +15,13 @@ bool dBomb_c::checkStateCarry() {
 }
 
 bool dBomb_c::checkFlowerBombWait(fopAc_ac_c* param_1) {
-    return (fopAcM_GetName(&mActor) == 0x221 && fopAcM_GetParam(&mActor) == 4);
+    return (fopAcM_GetName(&mActor) == PROC_NBOMB && fopAcM_GetParam(&mActor) == 4);
 }
 
 bool dBomb_c::checkWaterBomb(fopAc_ac_c* param_1) {
-    return (fopAcM_GetName(&mActor) == 0x221 && daNbomb_c::checkWaterBomb());
+    return (fopAcM_GetName(&mActor) == PROC_NBOMB && daNbomb_c::checkWaterBomb());
 }
 
 bool dBomb_c::checkInsectBombMove(fopAc_ac_c* param_1) {
-    return (fopAcM_GetName(&mActor) == 0x221 && fopAcM_GetParam(&mActor) == 7);
+    return (fopAcM_GetName(&mActor) == PROC_NBOMB && fopAcM_GetParam(&mActor) == 7);
 }

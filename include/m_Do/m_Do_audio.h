@@ -35,4 +35,16 @@ inline void mDoAud_bgmSetSwordUsing(s32 id) {
     Z2AudioMgr::getInterface()->mSeqMgr.bgmSetSwordUsing(id);
 }
 
+inline void mDoAud_setHour(s32 hour) {
+    Z2AudioMgr::getInterface()->mStatusMgr.setHour(hour);
+}
+
+inline void mDoAud_setMinute(s32 min) {
+    Z2AudioMgr::getInterface()->mStatusMgr.setMinute(min);
+}
+
+inline void mDoAud_setWeekday(s32 day) {
+    Z2AudioMgr::getInterface()->mStatusMgr.setWeekday(day);
+}
+
 #endif /* M_DO_M_DO_AUDIO_H */

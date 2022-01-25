@@ -221,8 +221,8 @@ inline JKRHeap* JKRGetCurrentHeap() {
     return JKRHeap::getCurrentHeap();
 }
 
-inline u32 JKRGetMemBlockSize(JKRHeap* heap,void* block) {
-    return JKRHeap::getSize(block,heap);
+inline u32 JKRGetMemBlockSize(JKRHeap* heap, void* block) {
+    return JKRHeap::getSize(block, heap);
 }
 
 #endif /* JKRHEAP_H */

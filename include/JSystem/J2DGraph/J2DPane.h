@@ -103,6 +103,7 @@ public:
     bool isVisible() const { return mVisible; }
 
     void show() { mVisible = true; }
+    void hide() { mVisible = false; }
 
     void initiate();
     void initialize(J2DPane*, bool, u64, const JGeometry::TBox2<f32>&);

@@ -139,6 +139,12 @@ public:
     bool isMenuInForce(int flag) { return unk152 & (1 << flag); }
     u16 getMapKeyDirection() { return mMapKeyDirection; }
     u8 getWindowStatus() { return mWindowStatus; }
+    void setMsgResource(void* res) { mMsgResource = res; }
+    void setStageMsgResource(void* res) { mStageMsgResource = res; }
+    void setMsgUnitResource(void* res) { mMsgUnitResource = res; }
+    void* getMsgResource() { return mMsgResource; }
+    void* getStageMsgResource() { return mStageMsgResource; }
+    void* getMsgUnitResource() { return mMsgUnitResource; }
 
 public:
     /* 0x04 */ u8 unk4[4];
@@ -368,5 +374,31 @@ inline u16 dMeter2Info_getMapKeyDirection() {
 inline u8 dMeter2Info_getWindowStatus() {
     return g_meter2_info.getWindowStatus();
 }
+
+inline void dMeter2Info_setMsgResource(void* res) {
+    g_meter2_info.setMsgResource(res);
+}
+
+inline void dMeter2Info_setStageMsgResource(void* res) {
+    g_meter2_info.setStageMsgResource(res);
+}
+
+inline void dMeter2Info_setMsgUnitResource(void* res) {
+    g_meter2_info.setMsgUnitResource(res);
+}
+
+inline void* dMeter2Info_getMsgResource() {
+    return g_meter2_info.getMsgResource();
+}
+
+inline void* dMeter2Info_getStageMsgResource() {
+    return g_meter2_info.getStageMsgResource();
+}
+
+inline void* dMeter2Info_getMsgUnitResource() {
+    return g_meter2_info.getMsgUnitResource();
+}
+
+char* dMeter2Info_getNumberTextureName(int pIndex);
 
 #endif /* D_METER_D_METER2_INFO_H */

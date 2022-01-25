@@ -1011,38 +1011,38 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
         mBItemBasePosY[i] = 0.0f;
     }
 
-    mBItemBaseAlpha = 0.5f;
-    field_0x23c = 0.5f;
+    mBItemBaseAlpha[0] = 0.5f;
+    mBItemBaseAlpha[1] = 0.5f;
 
     mXButtonItemBaseScale = 1.5f;
     mXButtonItemBasePosX = 14.0f;
     mXButtonItemBasePosY = -12.0f;
-    mXButtonItemBaseAlpha = 0.5f;
+    mXButtonItemBaseAlpha[0] = 0.5f;
 
     mXButtonItemBaseNoItemScale = 1.5f;
     mXButtonItemBaseNoItemPosX = 0.0f;
     mXButtonItemBaseNoItemPosY = 0.0f;
-    mXButtonItemBaseNoItemAlpha = 1.0f;
+    mXButtonItemBaseAlpha[1] = 1.0f;
 
     mYButtonItemBaseScale = 1.5f;
     mYButtonItemBasePosX = -15.0f;
     mYButtonItemBasePosY = -12.0f;
-    mYButtonItemBaseAlpha = 0.5f;
+    mYButtonItemBaseAlpha[0] = 0.5f;
 
     mYButtonItemBaseNoItemScale = 1.5f;
     mYButtonItemBaseNoItemPosX = 0.0f;
     mYButtonItemBaseNoItemPosY = 0.0f;
-    mYButtonItemBaseNoItemAlpha = 0.5f;
+    mYButtonItemBaseAlpha[1] = 0.5f;
 
     field_0x280 = 1.5f;
     field_0x288 = 0.0f;
     field_0x290 = 6.0f;
-    field_0x298 = 0.5f;
+    field_0x298[0] = 0.5f;
 
     field_0x284 = 1.0f;
     field_0x28c = 0.0f;
     field_0x294 = 4.0f;
-    field_0x29c = 1.0f;
+    field_0x298[1] = 1.0f;
 
     mZButtonItemBaseScale = 1.0f;
     mZButtonItemBasePosX = 0.0f;

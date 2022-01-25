@@ -9,13 +9,16 @@
 class J3DTexture {
 private:
     /* 0x0 */ u16 mNum;
-    /* 0x4 */ ResTIMG** mpRes;
+    /* 0x4 */ ResTIMG* mpRes;
 
 public:
     /* 8031204C */ void loadGX(u16, _GXTexMapID) const;
     /* 803121A4 */ void entryNum(u16);
     /* 8031221C */ void addResTIMG(u16, ResTIMG const*);
     /* 803366A4 */ virtual ~J3DTexture();
+
+    u16 getNum() const { return mNum; }
+    ResTIMG* getResTIMG(u16 entry) const { return &mpRes[entry]; }
 };
 
 struct J3DTextureSRTInfo {

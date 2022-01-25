@@ -447,7 +447,7 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 static u8 s_groupID[2 + 6 /* padding */];
 
 /* 80232A3C-80232A44 -00001 0008+00 0/0 0/0 0/0 .text            dMsgObject_getGroupID__Fv */
-s32 dMsgObject_getGroupID() {
+s16 dMsgObject_getGroupID() {
     return (s32) * (s16*)(&s_groupID);
 }
 
@@ -1802,7 +1802,7 @@ asm void dMsgObject_c::setProcessID(unsigned int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getActor() {
+asm fopAc_ac_c* dMsgObject_c::getActor() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getActor__12dMsgObject_cFv.s"
 }

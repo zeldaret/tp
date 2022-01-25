@@ -8,6 +8,7 @@
 
 class mDoCPd_c {
 public:
+    // Controller Ports 1 - 4
     enum { PAD_0, PAD_1, PAD_2, PAD_3 };
 
     static void create();
@@ -57,6 +58,7 @@ public:
     static s16 getSubStickAngle(u32 pad) { return getCpadInfo(pad).mCStickAngle; }
     static f32 getAnalogR(u32 pad) { return getCpadInfo(pad).mTriggerRight; }
     static f32 getAnalogL(u32 pad) { return getCpadInfo(pad).mTriggerLeft; }
+    static BOOL isConnect(u32 pad) { return JUTGamePad::getPortStatus(pad) == 0; }
 
     static JUTGamePad* m_gamePad[4];
     static interface_of_controller_pad m_cpadInfo[4];

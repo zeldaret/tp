@@ -1,16 +1,16 @@
 #ifndef DYNAMICLINK_H
 #define DYNAMICLINK_H
 
-#include "dolphin/types.h"
-#include "dolphin/os/OSLink.h"
-#include "m_Do/m_Do_dvd_thread.h"
 #include "JSystem/JKernel/JKRFileCache.h"
+#include "dolphin/os/OSLink.h"
+#include "dolphin/types.h"
+#include "m_Do/m_Do_dvd_thread.h"
 
 struct DynamicModuleControlBase {
-    /* 0x00 */u16 mLinkCount;
-    /* 0x02 */u16 mDoLinkCount;
-    /* 0x04 */DynamicModuleControlBase* mPrev;
-    /* 0x08 */DynamicModuleControlBase* mNext;
+    /* 0x00 */ u16 mLinkCount;
+    /* 0x02 */ u16 mDoLinkCount;
+    /* 0x04 */ DynamicModuleControlBase* mPrev;
+    /* 0x08 */ DynamicModuleControlBase* mNext;
 
     /* 0x0C */ /*vtable*/
     /* 802621CC */ virtual ~DynamicModuleControlBase();
@@ -30,9 +30,8 @@ struct DynamicModuleControlBase {
     /* 802623EC */ bool load_async();
     /* 8026242C */ bool force_unlink();
 
-    static inline DynamicModuleControlBase* getFirstClass() {return mFirst;}
-    inline DynamicModuleControlBase* getNextClass() {return mNext;}
-
+    static inline DynamicModuleControlBase* getFirstClass() { return mFirst; }
+    inline DynamicModuleControlBase* getNextClass() { return mNext; }
 
     static DynamicModuleControlBase* mFirst;
     static DynamicModuleControlBase* mLast;
@@ -54,21 +53,20 @@ struct DynamicModuleControl : DynamicModuleControlBase {
     /* 802626D0 */ static JKRArchive* mountCallback(void*);
     /* 8026275C */ bool initialize();
     /* 80262794 */ static void* callback(void*);
-    
-    /* 0x10 */OSModuleInfo* mModule;
-    /* 0x14 */void* mBss;
-    /* 0x18 */u32 unk_24;
-    /* 0x1c */const char* mName;
-    /* 0x20 */u8 mResourceType;
-    /* 0x21 */u8 unk_33;
-    /* 0x22 */u16 mChecksum;
-    /* 0x24 */s32 mSize;
-    /* 0x28 */mDoDvdThd_callback_c* mAsyncLoadCallback;
+
+    /* 0x10 */ OSModuleInfo* mModule;
+    /* 0x14 */ void* mBss;
+    /* 0x18 */ u32 unk_24;
+    /* 0x1c */ const char* mName;
+    /* 0x20 */ u8 mResourceType;
+    /* 0x21 */ u8 unk_33;
+    /* 0x22 */ u16 mChecksum;
+    /* 0x24 */ s32 mSize;
+    /* 0x28 */ mDoDvdThd_callback_c* mAsyncLoadCallback;
 
     static u32 sAllocBytes;
     static JKRArchive* sArchive;
     static JKRFileCache* sFileCache;
 };
-
 
 #endif /* DYNAMICLINK_H */

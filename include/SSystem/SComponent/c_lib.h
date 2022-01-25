@@ -48,15 +48,17 @@ inline u8 cLib_checkBit(u8& pVar, u8 pBit) {
 }
 
 template <typename T>
-inline T cLib_minMaxLimit(T param_0, T min, T max) {
-    if (param_0 < min) {
-        return max;
+inline T cLib_minMaxLimit(T val, T min, T max) {
+    T ret;
+    if (val < min) {
+        ret = min;
+    } else {
+        ret = max;
+        if (val <= max) {
+            ret = val;
+        }
     }
-    min = param_0;
-    if (min > max) {
-        min = max;
-    }
-    return min;
+    return ret;
 }
 
 void MtxInit(void);
