@@ -47,4 +47,9 @@ inline void mDoAud_setWeekday(s32 day) {
     Z2AudioMgr::getInterface()->mStatusMgr.setWeekday(day);
 }
 
+inline void mDoAud_seStart(u32 sfx_id, const Vec* param_1, u32 param_2, s8 param_3) {
+    Z2AudioMgr::getInterface()->mSeMgr.seStart(sfx_id, param_1, param_2, param_3, 1.0f, 1.0f, -1.0f,
+                                               -1.0f, 0);
+}
+
 #endif /* M_DO_M_DO_AUDIO_H */

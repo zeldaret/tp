@@ -24,7 +24,6 @@ extern "C" extern void* g_profile_KYTAG05[12];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 
 //
 // Declarations:

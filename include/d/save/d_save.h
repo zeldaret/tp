@@ -367,8 +367,8 @@ public:
     u16 getRupeeMax() const;
     int isMagicFlag(u8) const;
 
-    u16& getMaxLife() { return mMaxLife; }
-    u16& getLife() { return mLife; }
+    u16 getMaxLife() { return mMaxLife; }
+    u16 getLife() { return mLife; }
     u16& getRupee() { return mRupee; }
     u16 getOil() { return mOil; }
     u16 getMaxOil() { return mMaxOil; }

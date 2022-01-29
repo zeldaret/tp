@@ -429,7 +429,6 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
 extern "C" extern void* g_fopMsg_Method[5 + 1 /* padding */];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" extern u8 data_80450B70[4];

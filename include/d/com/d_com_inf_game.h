@@ -178,6 +178,19 @@ public:
         mCStickDirection = param_1;
         mCStickSetFlag = flag;
     }
+    void setCStickStatusForce(u8 status, u8 param_1, u8 flag) {
+        mCStickStatusForce = status;
+        mCStickDirectionForce = param_1;
+        mCStickSetFlagForce = flag;
+    }
+    void setSButtonStatus(u8 status, u8 flag) {
+        mSButtonStatus = status;
+        mSButtonSetFlag = flag;
+    }
+    void setSButtonStatusForce(u8 status, u8 flag) {
+        mSButtonStatusForce = status;
+        mSButtonSetFlagForce = flag;
+    }
     void setItemLifeCount(float hearts, u8 type) {
         mItemLifeCount += hearts;
         mItemLifeCountType = type;
@@ -260,6 +273,19 @@ public:
     void offPauseFlag() { mPauseFlag = false; }
     camera_class* getCamera(int idx) { return mCameraInfo[idx].mCamera; }
     s32 checkStatus(u16 flags) { return flags & mStatus; }
+    s16 getItemPachinkoNumCount() { return mItemPachinkoNumCount; }
+    void clearItemPachinkoNumCount() { mItemPachinkoNumCount = 0; }
+    u8 getSButtonStatusForce() { return mSButtonStatusForce; }
+    u8 getSButtonSetFlagForce() { return mSButtonSetFlagForce; }
+    u8 getCStickStatusForce() { return mCStickStatusForce; }
+    u8 getCStickSetFlagForce() { return mCStickSetFlagForce; }
+    u8 getCStickDirectionForce() { return mCStickDirectionForce; }
+    bool isCStickSetFlag(u8 flag) { return mCStickSetFlag & flag; }
+    void show2dOn() { mShow2D = 1; }
+    s16 getItemMaxLifeCount() { return mItemMaxLifeCount; }
+    f32 getItemLifeCount() { return mItemLifeCount; }
+    void clearItemMaxLifeCount() { mItemMaxLifeCount = 0; }
+    void clearItemLifeCount() { mItemLifeCount = 0.0f; mItemLifeCountType = 0; }
 
 public:
     /* 0x00000 */ dBgS mDBgS;
@@ -559,6 +585,7 @@ bool dComIfGp_checkMapShow();
 s32 dComIfGp_setHeapLockFlag(u8);
 s8 dComIfGs_sense_type_change_Get();
 u8 dComIfGp_world_dark_get();
+JKRExpHeap* dComIfGp_getSubHeap2D(int);
 
 inline void dComIfGp_setRStatus(u8 status, u8 flag) {
     g_dComIfG_gameInfo.play.setRStatus(status, flag);
@@ -1450,6 +1477,26 @@ inline void dComIfGp_setCStickStatus(u8 param_0, u8 param_1, u8 param_2) {
     g_dComIfG_gameInfo.play.setCStickStatus(param_0, param_1, param_2);
 }
 
+inline void dComIfGp_setCStickStatusForce(u8 param_0, u8 param_1, u8 param_2) {
+    g_dComIfG_gameInfo.play.setCStickStatusForce(param_0, param_1, param_2);
+}
+
+inline u8 dComIfGp_getCStickDirectionForce() {
+    return g_dComIfG_gameInfo.play.getCStickDirectionForce();
+}
+
+inline u8 dComIfGp_getCStickStatusForce() {
+    return g_dComIfG_gameInfo.play.getCStickStatusForce();
+}
+
+inline u8 dComIfGp_getCStickSetFlagForce() {
+    return g_dComIfG_gameInfo.play.getCStickSetFlagForce();
+}
+
+inline bool dComIfGp_isCStickSetFlag(u8 flag) {
+    return g_dComIfG_gameInfo.play.isCStickSetFlag(flag);
+}
+
 inline void* dComIfG_getObjectIDRes(const char* arc_name, u16 id) {
     return g_dComIfG_gameInfo.mResControl.getObjectIDRes(arc_name, id);
 }
@@ -1543,6 +1590,54 @@ inline void dComIfGd_drawListItem3d() {
 
 inline void dComIfGd_init() {
     g_dComIfG_gameInfo.drawlist.init();
+}
+
+inline s16 dComIfGp_getItemPachinkoNumCount() {
+    return g_dComIfG_gameInfo.play.getItemPachinkoNumCount();
+}
+
+inline void dComIfGp_clearItemPachinkoNumCount() {
+    g_dComIfG_gameInfo.play.clearItemPachinkoNumCount();
+}
+
+inline u8 dComIfGp_getSButtonStatusForce() {
+    return g_dComIfG_gameInfo.play.getSButtonStatusForce();
+}
+
+inline u8 dComIfGp_getSButtonSetFlagForce() {
+    return g_dComIfG_gameInfo.play.getSButtonSetFlagForce();
+}
+
+inline void dComIfGp_setSButtonStatus(u8 status, u8 flag) {
+    g_dComIfG_gameInfo.play.setSButtonStatus(status, flag);
+}
+
+inline void dComIfGp_setSButtonStatusForce(u8 status, u8 flag) {
+    g_dComIfG_gameInfo.play.setSButtonStatusForce(status, flag);
+}
+
+inline void dComIfGp_2dShowOn() {
+    g_dComIfG_gameInfo.play.show2dOn();
+}
+
+inline s16 dComIfGp_getItemMaxLifeCount() {
+    return g_dComIfG_gameInfo.play.getItemMaxLifeCount();
+}
+
+inline f32 dComIfGp_getItemLifeCount() {
+    return g_dComIfG_gameInfo.play.getItemLifeCount();
+}
+
+inline void dComIfGp_clearItemMaxLifeCount() {
+    g_dComIfG_gameInfo.play.clearItemMaxLifeCount();
+}
+
+inline void dComIfGp_clearItemLifeCount() {
+    g_dComIfG_gameInfo.play.clearItemLifeCount();
+}
+
+inline u8 dComIfGp_getItemLifeCountType() {
+    return g_dComIfG_gameInfo.play.getItemLifeCountType();
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

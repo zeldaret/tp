@@ -45,7 +45,6 @@ extern "C" void dKyw_wether_draw__Fv();
 extern "C" void dKy_FiveSenses_fullthrottle_dark__Fv();
 extern "C" void framework__10Z2EnvSeMgrFv();
 extern "C" extern void* g_fopKy_Method[5 + 1 /* padding */];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_mEnvSeMgr[780];
 

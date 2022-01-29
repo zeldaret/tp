@@ -512,6 +512,7 @@ public:
     bool checkCargoCarry() const { return mSpecialMode == SMODE_CARGO_CARRY; }
     bool getHeavyStateAndBoots() { return i_checkNoResetFlg0(HEAVY_STATE_BOOTS); }
     bool checkEnemyAttentionLock() const { return i_checkResetFlg0(ENEMY_ATTENTION_LOCK); }
+    bool checkCanoeSlider() const { return mSpecialMode == 0x2D; }
 
     // some functions use these function as an inline
     // is there a better way to handle this?
