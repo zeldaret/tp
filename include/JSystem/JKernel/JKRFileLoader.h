@@ -58,4 +58,8 @@ inline bool JKRDetachResource(void* resource, JKRFileLoader* fileLoader) {
     return JKRFileLoader::detachResource(resource,fileLoader);
 }
 
+inline void* JKRGetNameResource(const char* name, JKRFileLoader* loader) {
+    return JKRFileLoader::getGlbResource(name, loader);
+}
+
 #endif /* JKRFILELOADER_H */

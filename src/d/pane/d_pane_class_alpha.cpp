@@ -202,7 +202,7 @@ SECTION_SDATA2 static f32 lit_3721[1 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void CPaneMgrAlpha::getAlphaRate() {
+asm f32 CPaneMgrAlpha::getAlphaRate() {
     nofralloc
 #include "asm/d/pane/d_pane_class_alpha/getAlphaRate__13CPaneMgrAlphaFv.s"
 }

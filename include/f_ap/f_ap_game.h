@@ -18,7 +18,7 @@ public:
     /* 0x10 */ f32 field_0x10;
     /* 0x14 */ bool mUsingHostIO;
     /* 0x15 */ bool mDisplayMeter;
-    /* 0x16 */ bool mDisplayPrint;
+    /* 0x16 */ u8 mDisplayPrint;
     /* 0x17 */ bool mDisplay2D;
     /* 0x18 */ bool mDisplayParticle;
     /* 0x19 */ bool mDisplayProcessID;
@@ -40,5 +40,15 @@ public:
 };  // Size: 0x40
 
 extern fapGm_HIO_c g_HIO;
+
+inline bool fapGmHIO_isMenu() {
+    return g_HIO.mDisplayPrint & 2;
+}
+inline bool fapGmHIO_isPrint() {
+    return g_HIO.mDisplayPrint & 1;
+}
+inline bool fapGmHIO_getMeter() {
+    return g_HIO.mDisplayMeter;
+}
 
 #endif /* F_AP_F_AP_GAME_H */

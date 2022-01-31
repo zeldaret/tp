@@ -8,12 +8,12 @@ struct OSSectionInfo {
     u32 mSize;
 };
 
-struct OSModuleInfo { 
+struct OSModuleInfo {
     u32 mId;
     u32 mNext;
     u32 mPrev;
     u32 mNumSections;
-    struct { //Needed to get an assert correct; very likely bigger
+    struct {  // Needed to get an assert correct; very likely bigger
         u32 sectionInfoOffset;
     } info;
     u32 mModuleNameOffset;
@@ -36,7 +36,7 @@ struct OSModuleInfo {
 };
 
 extern "C" BOOL OSLink(OSModuleInfo*);
-extern "C" BOOL OSLinkFixed(OSModuleInfo*,u32);
+extern "C" BOOL OSLinkFixed(OSModuleInfo*, u32);
 extern "C" BOOL OSUnlink(OSModuleInfo*);
 
 #endif /* OSLINK_H */

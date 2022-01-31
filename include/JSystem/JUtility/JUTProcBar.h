@@ -66,6 +66,8 @@ public:
     void idleStart() { mIdle.start(255, 129, 30); }
     void idleEnd() { mIdle.end(); }
     void setCostFrame(int frame) { mCostFrame = frame; }
+    void setVisible(bool visible) { mVisible = visible; }
+    void setVisibleHeapBar(bool visible) { mHeapBarVisible = visible; }
 
     static JUTProcBar* getManager() { return sManager; }
 

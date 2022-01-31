@@ -108,9 +108,9 @@ public:
     /* 8004C218 */ void setHitMark(u16, fopAc_ac_c*, cXyz const*, csXyz const*, cXyz const*, u32);
     /* 8004C838 */ void setWaterRipple(u32*, cBgS_PolyInfo&, cXyz const*, f32, dKy_tevstr_c const*,
                                        cXyz const*, s8);
-    /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
-                            u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
-                            cXyz const*, f32);
+    /* 8004CA90 */ u32 set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*, u8,
+                           dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*, cXyz const*,
+                           f32);
     /* 8004D4CC */ u32 set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
                            cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
                            _GXColor const*, cXyz const*, f32);
@@ -139,6 +139,14 @@ public:
                   const GXColor* param_10, const cXyz* param_11, f32 param_12) {
         return set(param_0, 0, param_1, param_2, param_3, param_4, param_5, param_6, param_7,
                    param_8, param_9, param_10, param_11, param_12);
+    }
+
+    u32 setNormal(u16 param_1, const cXyz* param_2, const dKy_tevstr_c* param_3,
+                  const csXyz* param_4, const cXyz* param_5, u8 param_6,
+                  dPa_levelEcallBack* param_7, s8 param_8, const GXColor* param_9,
+                  const GXColor* param_10, const cXyz* param_11, f32 param_12) {
+        return set(0, param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8,
+                   param_9, param_10, param_11, param_12);
     }
 
     static u8 mTsubo[64];

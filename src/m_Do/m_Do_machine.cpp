@@ -18,10 +18,6 @@ struct mDoMemCd_Ctrl_c {
     /* 80016730 */ void ThdInit();
 };
 
-struct mDoMch_render_c {
-    static _GXRenderModeObj* mRenderModeObj;
-};
-
 struct mDoDvdThd {
     /* 80015858 */ void create(s32);
 };

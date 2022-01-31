@@ -937,7 +937,7 @@ asm void J2DTextBox::getBlack() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DPicture::getWhite() const {
+asm JUtility::TColor J2DPicture::getWhite() const {
     nofralloc
 #include "asm/d/menu/d_menu_letter/getWhite__10J2DPictureCFv.s"
 }
@@ -947,7 +947,7 @@ asm void J2DPicture::getWhite() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DPicture::getBlack() const {
+asm JUtility::TColor J2DPicture::getBlack() const {
     nofralloc
 #include "asm/d/menu/d_menu_letter/getBlack__10J2DPictureCFv.s"
 }

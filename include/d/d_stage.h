@@ -49,6 +49,10 @@ inline s16 dStage_stagInfo_GetUpButton(stage_stag_info_class* p_info) {
     return p_info->field_0x0a & 7;
 }
 
+inline u32 dStage_stagInfo_GetArg0(stage_stag_info_class* p_info) {
+    return (p_info->field_0x0c >> 0x14) & 0xFF;
+}
+
 struct stage_scls_info_class {
     /* 0x0 */ char mStage[8];
     /* 0x8 */ u8 mStart;
@@ -87,7 +91,19 @@ struct stage_actor_data_class {};
 
 struct stage_actor_class {};
 
-struct roomRead_class {};
+struct roomRead_data_class {
+    /* 0x0 */ u8 field_0x0[2];
+    /* 0x2 */ u8 field_0x2;
+};
+
+struct roomRead_class {
+    /* 0x0 */ int field_0x0;
+    /* 0x4 */ roomRead_data_class** field_0x4;
+};
+
+inline s32 dStage_roomRead_dt_c_GetVrboxswitch(roomRead_data_class& data) {
+    return data.field_0x2 & 8;
+}
 
 struct dStage_FileList2_dt_c {};
 
@@ -542,7 +558,7 @@ public:
     /* 80024940 */ static char* getArcBank(int);
     /* 80024954 */ static int resetArchiveBank(int);
     /* 80024DB0 */ static void SetTimePass(int);
-    static s8 GetTimePass();
+    static s32 GetTimePass();
 
     inline static s8 getStayNo() { return struct_80450D64; }
     s8 getMemoryBlockID(int i_roomNo) { return mStatus[i_roomNo].mMemBlockID; }

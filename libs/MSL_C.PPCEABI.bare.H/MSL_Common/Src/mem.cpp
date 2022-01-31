@@ -11,7 +11,6 @@
 // Forward References:
 //
 
-extern "C" void memcmp();
 extern "C" void __memrchr();
 extern "C" void memchr();
 extern "C" void memmove();
@@ -33,7 +32,7 @@ extern "C" void __copy_longs_aligned();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void memcmp() {
+asm int memcmp(const void*, const void*, size_t) {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/mem/memcmp.s"
 }

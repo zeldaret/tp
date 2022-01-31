@@ -36,17 +36,14 @@ public:
     bool checkCommandTalk() { return mCommand == 1; }
     bool checkCommandItem() { return mCommand == 4; }
 
-private:
-    /*  0x04 */ u16 mCommand;
-    /*  0x06 */ u16 mCondition;
-    /*  0x08 */ s16 mEventId;
-    /*  0x0A */ u8 mMapToolId;
-
-public:
-    /*  0x0B */ u8 mIndex;
-    /*  0x0C */ char* mArchiveName;
-    /*  0x10 */ void* field_0x10;
-    /*  0x14 */ void* field_0x14;
+    /* 0x04 */ u16 mCommand;
+    /* 0x06 */ u16 mCondition;
+    /* 0x08 */ s16 mEventId;
+    /* 0x0A */ u8 mMapToolId;
+    /* 0x0B */ u8 mIndex;
+    /* 0x0C */ char* mArchiveName;
+    /* 0x10 */ void* field_0x10;
+    /* 0x14 */ void* field_0x14;
 };  // Size = 0x18
 
 struct actor_place {

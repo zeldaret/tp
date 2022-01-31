@@ -34,6 +34,7 @@ public:
     J3DJoint* getJointNodePointer(u16 idx) const { return mJointTree.getJointNodePointer(idx); }
     J3DJointTree& getJointTree() { return mJointTree; }
     J3DTexture* getTexture() const { return mMaterialTable.getTexture(); }
+    JUTNameTab* getTextureName() const { return mMaterialTable.getTextureName(); }
     u16 getWEvlpMtxNum() const { return mJointTree.getWEvlpMtxNum(); }
     void* getVtxPosArray() const { return mVertexData.getVtxPosArray(); }
     void* getVtxNrmArray() const { return mVertexData.getVtxNrmArray(); }

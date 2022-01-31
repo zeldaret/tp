@@ -4,91 +4,22 @@
 //
 
 #include "m_Do/m_Do_graphic.h"
+#include "JSystem/JFramework/JFWSystem.h"
+#include "SSystem/SComponent/c_lib.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_ap/f_ap_game.h"
+#include "m_Do/m_Do_controller_pad.h"
+#include "m_Do/m_Do_machine.h"
+#include "m_Do/m_Do_mtx.h"
 
 //
 // Types:
 //
 
-struct view_port_class {};
-
-struct view_class {};
-
-struct mDoMtx_stack_c {
-    static u8 now[48];
-};
-
-struct mDoMch_render_c {
-    static void* mRenderModeObj[1 + 1 /* padding */];
-};
-
-struct daPy_py_c {
-    /* 8000B1E4 */ s32 getAtnActorID() const;
-};
-
-struct JPADrawInfo {};
-
-struct dPa_control_c {
-    /* 8004C134 */ void calcMenu();
-    /* 8004C188 */ void draw(JPADrawInfo*, u8);
-};
-
-struct dMenu_Collect3D_c {
-    /* 801B75E8 */ void setupItem3D(f32 (*)[4]);
-};
-
-struct dDlst_shadowControl_c {
-    /* 800557C8 */ void imageDraw(f32 (*)[4]);
-    /* 80055A14 */ void draw(f32 (*)[4]);
-};
-
-struct J3DDrawBuffer {};
-
-struct dDlst_base_c {};
-
-struct dDlst_list_c {
-    /* 80056390 */ void init();
-    /* 80056538 */ void reset();
-    /* 800566D4 */ void drawOpaDrawList(J3DDrawBuffer*);
-    /* 80056710 */ void drawXluDrawList(J3DDrawBuffer*);
-    /* 8005674C */ void drawOpaListItem3d();
-    /* 80056770 */ void drawXluListItem3d();
-    /* 800567C4 */ void draw(dDlst_base_c**, dDlst_base_c**);
-    /* 80056900 */ void calcWipe();
-};
-
-struct dAttention_c {
-    /* 800737E4 */ void LockonTruth();
-};
-
-struct cXyz {
-    /* 80009184 */ ~cXyz();
-
-    static f32 Zero[3];
-};
-
-struct JUTGamePad {
-    static u8 mPadStatus[48];
-};
-
-struct JUTDbPrint {
-    static u8 sDebugPrint[4 + 4 /* padding */];
-};
-
 struct JMath {
     static u8 sincosTable_[65536];
-};
-
-struct JKRSolidHeap {};
-
-struct JFWSystem {
-    static u8 systemConsole[4];
-};
-
-struct J3DSys {
-    /* 803100BC */ void drawInit();
-    /* 8031073C */ void reinitGX();
 };
 
 struct J2DPrint {
@@ -210,23 +141,16 @@ extern "C" void _restgpr_21();
 extern "C" void _restgpr_24();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
-extern "C" void strcmp();
-extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
 extern "C" extern void* __vt__14J2DGrafContext[10];
 extern "C" extern void* __vt__13J2DOrthoGraph[10];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_HIO[64 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" f32 Zero__4cXyz[3];
 extern "C" u8 mPadStatus__10JUTGamePad[48];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 data_80450580;
+extern "C" extern s8 data_80450580;
 extern "C" void* mRenderModeObj__15mDoMch_render_c[1 + 1 /* padding */];
-extern "C" extern u8 g_clearColor[4];
-extern "C" extern u32 g_whiteColor;
-extern "C" extern u32 __float_nan;
+;
 extern "C" u8 systemConsole__9JFWSystem[4];
 extern "C" u8 sManager__10JFWDisplay[4];
 extern "C" u8 sCurrentHeap__7JKRHeap[4];
@@ -240,47 +164,60 @@ extern "C" u8 sManager__10JUTProcBar[4];
 //
 
 /* 80007D9C-80007E44 0026DC 00A8+00 1/1 0/0 0/0 .text            createTimg__FUsUsUl */
+// extra mr optimized out?
+#ifdef NONMATCHING
+static ResTIMG* createTimg(u16 width, u16 height, u32 format) {
+    u32 buf_size = GXGetTexBufferSize(width, height, format, GX_FALSE, 0) + 0x20;
+    ResTIMG* timg = (ResTIMG*)JKRHeap::alloc(buf_size, 0x20, NULL);
+
+    if (timg == NULL) {
+        return NULL;
+    } else {
+        cLib_memSet(timg, 0, buf_size);
+        timg->format = format;
+        timg->alphaEnabled = false;
+        timg->width = width;
+        timg->height = height;
+        timg->minFilter = GX_LINEAR;
+        timg->magFilter = GX_LINEAR;
+        timg->mipmapCount = 1;
+        timg->texDataOffset = 0x20;
+    }
+    return timg;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void createTimg(u16 param_0, u16 param_1, u32 param_2) {
+static asm ResTIMG* createTimg(u16 param_0, u16 param_1, u32 param_2) {
     nofralloc
 #include "asm/m_Do/m_Do_graphic/createTimg__FUsUsUl.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80450590-80450594 000010 0004+00 2/2 1/1 0/0 .sdata           mBackColor__13mDoGph_gInf_c */
-SECTION_SDATA u8 mDoGph_gInf_c::mBackColor[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
+GXColor mDoGph_gInf_c::mBackColor = {0, 0, 0, 0};
 
 /* 80450594-80450598 000014 0004+00 4/4 3/3 0/0 .sdata           mFadeColor__13mDoGph_gInf_c */
-SECTION_SDATA u8 mDoGph_gInf_c::mFadeColor[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
+GXColor mDoGph_gInf_c::mFadeColor = {0, 0, 0, 0};
 
 /* 80450BC8-80450BCC 0000C8 0004+00 2/2 38/38 1/1 .sbss            mFader__13mDoGph_gInf_c */
 JUTFader* mDoGph_gInf_c::mFader;
 
 /* 80450BCC-80450BD0 0000CC 0004+00 3/3 8/8 1/1 .sbss            mFrameBufferTimg__13mDoGph_gInf_c
  */
-u8 mDoGph_gInf_c::mFrameBufferTimg[4];
+ResTIMG* mDoGph_gInf_c::mFrameBufferTimg;
 
 /* 80450BD0-80450BD4 0000D0 0004+00 3/3 6/6 0/0 .sbss            mFrameBufferTex__13mDoGph_gInf_c */
-u8 mDoGph_gInf_c::mFrameBufferTex[4];
+void* mDoGph_gInf_c::mFrameBufferTex;
 
 /* 80450BD4-80450BD8 0000D4 0004+00 1/1 1/1 0/0 .sbss            mZbufferTimg__13mDoGph_gInf_c */
-u8 mDoGph_gInf_c::mZbufferTimg[4];
+ResTIMG* mDoGph_gInf_c::mZbufferTimg;
 
 /* 80450BD8-80450BDC 0000D8 0004+00 3/3 1/1 0/0 .sbss            mZbufferTex__13mDoGph_gInf_c */
-u8 mDoGph_gInf_c::mZbufferTex[4];
+void* mDoGph_gInf_c::mZbufferTex;
 
 /* 80450BDC-80450BE0 0000DC 0004+00 3/3 3/3 1/1 .sbss            mFadeRate__13mDoGph_gInf_c */
 f32 mDoGph_gInf_c::mFadeRate;
@@ -293,8 +230,17 @@ f32 mDoGph_gInf_c::mFadeSpeed;
 /* 80450BE5 0001+00 data_80450BE5 None */
 /* 80450BE6 0001+00 data_80450BE6 None */
 /* 80450BE7 0001+00 data_80450BE7 None */
-extern u8 struct_80450BE4[4];
-u8 struct_80450BE4[4];
+extern u8 struct_80450BE4;
+u8 struct_80450BE4;
+
+#pragma push
+#pragma force_active on
+static bool data_80450BE5;
+
+static u8 data_80450BE6;
+
+static bool data_80450BE7;
+#pragma pop
 
 /* 80007E44-80007F90 002784 014C+00 1/1 0/0 0/0 .text            create__13mDoGph_gInf_cFv */
 #pragma push
@@ -308,17 +254,15 @@ asm void mDoGph_gInf_c::create() {
 
 /* ############################################################################################## */
 /* 80450BE8-80450BF0 0000E8 0008+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_80450BE8[8];
+static bool data_80450BE8;
 
 /* 80007F90-80007FD8 0028D0 0048+00 1/1 2/2 0/0 .text            beginRender__13mDoGph_gInf_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoGph_gInf_c::beginRender() {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/beginRender__13mDoGph_gInf_cFv.s"
+void mDoGph_gInf_c::beginRender() {
+    if (data_80450BE8) {
+        JUTXfb::getManager()->setDrawingXfbIndex(-1);
+    }
+    JFWDisplay::getManager()->beginRender();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451A38-80451A3C 000038 0004+00 11/11 0/0 0/0 .sdata2          @4062 */
@@ -333,74 +277,110 @@ SECTION_SDATA2 static u8 lit_4062[4] = {
 SECTION_SDATA2 static f32 lit_4063 = 1.0f;
 
 /* 80007FD8-80008028 002918 0050+00 1/1 6/4 15/15 .text fadeOut__13mDoGph_gInf_cFfR8_GXColor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoGph_gInf_c::fadeOut(f32 param_0, _GXColor& param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/fadeOut__13mDoGph_gInf_cFfR8_GXColor.s"
+void mDoGph_gInf_c::fadeOut(f32 fadeSpeed, GXColor& fadeColor) {
+    data_80450BE6 = 1;
+    mFadeSpeed = fadeSpeed;
+    mFadeColor = fadeColor;
+
+    f32 tmp_0 = FLOAT_LABEL(lit_4062);
+    if (fadeSpeed >= tmp_0) {
+        mFadeRate = tmp_0;
+    } else {
+        mFadeRate = lit_4063;
+    }
 }
-#pragma pop
 
 /* 80008028-80008078 002968 0050+00 0/0 0/0 2/2 .text fadeOut_f__13mDoGph_gInf_cFfR8_GXColor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoGph_gInf_c::fadeOut_f(f32 param_0, _GXColor& param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/fadeOut_f__13mDoGph_gInf_cFfR8_GXColor.s"
+void mDoGph_gInf_c::fadeOut_f(f32 fadeSpeed, GXColor& fadeColor) {
+    data_80450BE6 = 129;
+    mFadeSpeed = fadeSpeed;
+    mFadeColor = fadeColor;
+
+    f32 tmp_0 = FLOAT_LABEL(lit_4062);
+    if (fadeSpeed >= tmp_0) {
+        mFadeRate = tmp_0;
+    } else {
+        mFadeRate = lit_4063;
+    }
 }
-#pragma pop
 
 /* 80008078-800080A0 0029B8 0028+00 0/0 1/1 8/8 .text            onBlure__13mDoGph_gInf_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoGph_gInf_c::onBlure() {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/onBlure__13mDoGph_gInf_cFv.s"
+void mDoGph_gInf_c::onBlure() {
+    onBlure(g_mDoMtx_identity);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803DD3E8-803DD408 00A108 0020+00 3/3 3/3 0/0 .bss             mFrameBufferTexObj__13mDoGph_gInf_c
  */
-u8 mDoGph_gInf_c::mFrameBufferTexObj[32];
+GXTexObj mDoGph_gInf_c::mFrameBufferTexObj;
 
 /* 803DD408-803DD428 00A128 0020+00 1/1 0/0 0/0 .bss             mZbufferTexObj__13mDoGph_gInf_c */
-u8 mDoGph_gInf_c::mZbufferTexObj[32];
+GXTexObj mDoGph_gInf_c::mZbufferTexObj;
 
 /* 803DD428-803DD43C 00A148 0014+00 2/2 3/3 0/0 .bss             m_bloom__13mDoGph_gInf_c */
-u8 mDoGph_gInf_c::m_bloom[20];
+mDoGph_gInf_c::bloom_c mDoGph_gInf_c::m_bloom;
 
 /* 803DD43C-803DD470 00A15C 0030+04 2/2 0/0 0/0 .bss             mBlureMtx__13mDoGph_gInf_c */
-u8 mDoGph_gInf_c::mBlureMtx[48 + 4 /* padding */];
+Mtx mDoGph_gInf_c::mBlureMtx;
 
 /* 800080A0-800080D0 0029E0 0030+00 1/1 1/1 0/0 .text            onBlure__13mDoGph_gInf_cFPA4_Cf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoGph_gInf_c::onBlure(f32 const (*param_0)[4]) {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/onBlure__13mDoGph_gInf_cFPA4_Cf.s"
+void mDoGph_gInf_c::onBlure(const Mtx m) {
+    struct_80450BE4 = 1;
+    PSMTXCopy(m, mBlureMtx);
 }
-#pragma pop
 
 /* 800080D0-800080F4 002A10 0024+00 0/0 3/3 7/7 .text            fadeOut__13mDoGph_gInf_cFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoGph_gInf_c::fadeOut(f32 param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/fadeOut__13mDoGph_gInf_cFf.s"
+void mDoGph_gInf_c::fadeOut(f32 fadeSpeed) {
+    fadeOut(fadeSpeed, g_clearColor);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451A40-80451A44 000040 0004+00 5/5 0/0 0/0 .sdata2          @4105 */
 SECTION_SDATA2 static f32 lit_4105 = 10.0f;
 
 /* 800080F4-80008330 002A34 023C+00 1/1 0/0 0/0 .text            darwFilter__F8_GXColor */
+// matches with literals
+#ifdef NONMATCHING
+static void darwFilter(GXColor matColor) {
+    GXSetNumChans(1);
+    GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE,
+                  GX_AF_NONE);
+    GXSetNumTexGens(0);
+    GXSetNumTevStages(1);
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+    GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, GX_CC_RASC);
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_ENABLE, GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_RASA);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_ENABLE, GX_TEVPREV);
+    GXSetZCompLoc(GX_ENABLE);
+    GXSetZMode(GX_DISABLE, GX_ALWAYS, GX_DISABLE);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_OR);
+    GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
+    f32 tmp_0 = FLOAT_LABEL(lit_4062);
+    GXSetFog(GX_FOG_NONE, tmp_0, tmp_0, tmp_0, tmp_0, g_clearColor);
+    GXSetFogRangeAdj(GX_DISABLE, 0, NULL);
+    GXSetCullMode(GX_CULL_NONE);
+    GXSetDither(GX_ENABLE);
+    GXSetNumIndStages(0);
+
+    Mtx44 mtx;
+    f32 tmp_0_2 = FLOAT_LABEL(lit_4062);
+    C_MTXOrtho(mtx, tmp_0_2, lit_4063, tmp_0_2, lit_4063, tmp_0_2, lit_4105);
+    GXSetProjection(mtx, GX_ORTHOGRAPHIC);
+    GXLoadPosMtxImm(g_mDoMtx_identity, GX_PNMTX0);
+    GXSetChanMatColor(GX_COLOR0A0, matColor);
+    GXSetCurrentMtx(0);
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGB8, 0);
+    GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+    GXPosition3s8(0, 0, -5);
+    GXPosition3s8(1, 0, -5);
+    GXPosition3s8(1, 1, -5);
+    GXPosition3s8(0, 1, -5);
+    GXEnd();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -409,12 +389,44 @@ static asm void darwFilter(_GXColor param_0) {
 #include "asm/m_Do/m_Do_graphic/darwFilter__F8_GXColor.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80451A44-80451A48 000044 0004+00 1/1 0/0 0/0 .sdata2          @4131 */
 SECTION_SDATA2 static f32 lit_4131 = 255.0f;
 
 /* 80008330-8000841C 002C70 00EC+00 1/1 0/0 0/0 .text            calcFade__13mDoGph_gInf_cFv */
+// li instead of addi
+#ifdef NONMATCHING
+void mDoGph_gInf_c::calcFade() {
+    if (data_80450BE6) {
+        mFadeRate += mFadeSpeed;
+
+        if (mFadeRate < 0.0f) {
+            mFadeRate = 0.0f;
+            data_80450BE6 = false;
+        } else {
+            if (mFadeRate > 1.0f) {
+                mFadeRate = 1.0f;
+            }
+        }
+        mFadeColor.a = lit_4131 * mFadeRate;
+    } else {
+        if (dComIfG_getBrightness() != 255) {
+            mFadeColor.r = 0;
+            mFadeColor.g = 0;
+            mFadeColor.b = 0;
+            mFadeColor.a = 255 - dComIfG_getBrightness();
+        } else {
+            mFadeColor.a = 0;
+        }
+    }
+
+    if (mFadeColor.a != 0) {
+        darwFilter(mFadeColor);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -423,6 +435,7 @@ asm void mDoGph_gInf_c::calcFade() {
 #include "asm/m_Do/m_Do_graphic/calcFade__13mDoGph_gInf_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8000841C-80008420 002D5C 0004+00 0/0 1/0 0/0 .text            mDoGph_BlankingON__Fv */
 void mDoGph_BlankingON() {
@@ -435,26 +448,58 @@ void mDoGph_BlankingOFF() {
 }
 
 /* 80008424-80008450 002D64 002C+00 1/1 0/0 0/0 .text            dScnPly_BeforeOfPaint__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dScnPly_BeforeOfPaint() {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/dScnPly_BeforeOfPaint__Fv.s"
+static void dScnPly_BeforeOfPaint() {
+    dComIfGd_reset();
 }
-#pragma pop
 
 /* 80008450-80008474 002D90 0024+00 0/0 1/0 0/0 .text            mDoGph_BeforeOfDraw__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoGph_BeforeOfDraw() {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/mDoGph_BeforeOfDraw__Fv.s"
+int mDoGph_BeforeOfDraw() {
+    dScnPly_BeforeOfPaint();
+    return 1;
 }
-#pragma pop
 
 /* 80008474-80008630 002DB4 01BC+00 0/0 1/0 0/0 .text            mDoGph_AfterOfDraw__Fv */
+// r6 / r7 swapped
+#ifdef NONMATCHING
+int mDoGph_AfterOfDraw() {
+    if (fapGmHIO_isMenu()) {
+        JUTProcBar::getManager()->setVisible(false);
+        JUTProcBar::getManager()->setVisibleHeapBar(false);
+        JUTDbPrint::getManager()->setVisible(true);
+    } else {
+        int sysConsole_visible = JFWSystem::getSystemConsole()->isVisible();
+        int port3_connected = mDoCPd_c::isConnect(mDoCPd_c::PAD_2);
+
+        BOOL procBar_visible = port3_connected && fapGmHIO_getMeter() && !sysConsole_visible;
+        BOOL console_visible = port3_connected && fapGmHIO_isPrint();
+
+        // Dev mode check
+        if (!data_80450580) {
+            procBar_visible = false;
+            console_visible = false;
+        }
+
+        JUTProcBar::getManager()->setVisible(procBar_visible);
+        JUTProcBar::getManager()->setVisibleHeapBar(procBar_visible);
+        JUTDbPrint::getManager()->setVisible(console_visible);
+    }
+
+    GXSetZCompLoc(GX_ENABLE);
+    GXSetZMode(GX_DISABLE, GX_ALWAYS, GX_DISABLE);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_CLEAR);
+    GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_OR, GX_GREATER, 0);
+    GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, g_clearColor);
+    GXSetFogRangeAdj(GX_DISABLE, 0, NULL);
+    GXSetCoPlanar(GX_DISABLE);
+    GXSetZTexture(GX_ZT_DISABLE, GX_TF_Z8, 0);
+    GXSetDither(GX_ENABLE);
+    GXSetClipMode(GX_DISABLE);
+    GXSetCullMode(GX_CULL_NONE);
+    JUTVideo::getManager()->setRenderMode(mDoMch_render_c::getRenderModeObj());
+    mDoGph_gInf_c::endFrame();
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -463,6 +508,7 @@ asm void mDoGph_AfterOfDraw() {
 #include "asm/m_Do/m_Do_graphic/mDoGph_AfterOfDraw__Fv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80450598-8045059C 000018 0004+00 1/1 0/0 0/0 .sdata           l_tevColor0$4208 */
@@ -561,7 +607,8 @@ static asm void drawDepth2(view_class* param_0, view_port_class* param_1, int pa
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/m_Do/m_Do_graphic/__dt__4cXyzFv.s"
 }
@@ -586,40 +633,43 @@ static asm void trimming(view_class* param_0, view_port_class* param_1) {
 #pragma pop
 
 /* 800094B4-80009544 003DF4 0090+00 2/2 1/1 0/0 .text            mDoGph_drawFilterQuad__FScSc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoGph_drawFilterQuad(s8 param_0, s8 param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/mDoGph_drawFilterQuad__FScSc.s"
+void mDoGph_drawFilterQuad(s8 param_0, s8 param_1) {
+    GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+    GXPosition2s8(0, 0);
+    GXTexCoord2s8(0, 0);
+    GXPosition2s8(param_0, 0);
+    GXTexCoord2s8(1, 0);
+    GXPosition2s8(param_0, param_1);
+    GXTexCoord2s8(1, 1);
+    GXPosition2s8(0, param_1);
+    GXTexCoord2s8(0, 1);
+    GXEnd();
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80451AB0-80451AB4 0000B0 0004+00 1/1 0/0 0/0 .sdata2          @4505 */
-SECTION_SDATA2 static u32 lit_4505 = 0xFFFFFFFF;
 
 /* 80009544-800095F8 003E84 00B4+00 0/0 1/1 0/0 .text            create__Q213mDoGph_gInf_c7bloom_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoGph_gInf_c::bloom_c::create() {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/create__Q213mDoGph_gInf_c7bloom_cFv.s"
+void mDoGph_gInf_c::bloom_c::create() {
+    if (m_buffer == NULL) {
+        u32 size = GXGetTexBufferSize(304, 224, 6, GX_FALSE, 0);
+        m_buffer = mDoExt_getArchiveHeap()->alloc(size, -32);
+        mEnable = false;
+        mMode = 0;
+        mPoint = 128;
+        mBlureSize = 64;
+        mBlureRatio = 128;
+        mBlendColor = (GXColor){255, 255, 255, 255};
+    }
 }
-#pragma pop
 
 /* 800095F8-80009650 003F38 0058+00 0/0 1/1 0/0 .text            remove__Q213mDoGph_gInf_c7bloom_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoGph_gInf_c::bloom_c::remove() {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/remove__Q213mDoGph_gInf_c7bloom_cFv.s"
+void mDoGph_gInf_c::bloom_c::remove() {
+    if (m_buffer != NULL) {
+        mDoExt_getArchiveHeap()->free(m_buffer);
+        m_buffer = NULL;
+    }
+    mMonoColor.a = 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451AB4-80451AB8 0000B4 0004+00 1/1 0/0 0/0 .sdata2          @4528 */
@@ -689,6 +739,19 @@ SECTION_SDATA2 static f32 lit_4641 = -35000.0f;
 SECTION_SDATA2 static f32 lit_4642 = -30000.0f;
 
 /* 8000A504-8000A58C 004E44 0088+00 1/1 0/0 0/0 .text            setLight__Fv */
+// matches with literals
+#ifdef NONMATCHING
+static void setLight() {
+    GXLightObj obj;
+
+    GXInitLightPos(&obj, -35000.0f, 0.0f, -30000.0f);
+    GXInitLightDir(&obj, 0.0f, 0.0f, 0.0f);
+    GXInitLightColor(&obj, g_whiteColor);
+    GXInitLightDistAttn(&obj, 0.0f, 0.0f, GX_DA_GENTLE);
+    GXInitLightSpot(&obj, 0.0f, GX_SP_FLAT);
+    GXLoadLightObjImm(&obj, GX_LIGHT0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -697,16 +760,19 @@ static asm void setLight() {
 #include "asm/m_Do/m_Do_graphic/setLight__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 8000A58C-8000A604 004ECC 0078+00 1/1 0/0 0/0 .text            drawItem3D__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void drawItem3D() {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/drawItem3D__Fv.s"
+static void drawItem3D() {
+    Mtx item_mtx;
+    dMenu_Collect3D_c::setupItem3D(item_mtx);
+    setLight();
+    j3dSys.setViewMtx(item_mtx);
+    GXSetClipMode(GX_ENABLE);
+    dComIfGd_drawListItem3d();
+    GXSetClipMode(GX_DISABLE);
+    j3dSys.reinitGX();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80373DD0-80373DD0 000430 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -771,14 +837,14 @@ asm J2DOrthoGraph::~J2DOrthoGraph() {
 #pragma pop
 
 /* 8000B174-8000B1D0 005AB4 005C+00 0/0 2/1 0/0 .text            mDoGph_Create__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoGph_Create() {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/mDoGph_Create__Fv.s"
+int mDoGph_Create() {
+    JKRSolidHeap* heap = mDoExt_createSolidHeapToCurrent(0, NULL, 0);
+    mDoGph_gInf_c::create();
+    dComIfGd_init();
+    mDoExt_adjustSolidHeap(heap);
+    mDoExt_restoreCurrentHeap();
+    return 1;
 }
-#pragma pop
 
 /* 8000B1D0-8000B1E4 005B10 0014+00 0/0 1/0 0/0 .text            __sinit_m_Do_graphic_cpp */
 #pragma push

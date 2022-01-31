@@ -17,14 +17,13 @@ struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
 };
 
-
 struct dMpath_n {
     struct dTexObjAggregate_c {
         /* 8003C85C */ void create();
         /* 8003C8F4 */ void remove();
-        /* 8003D740 */ ~dTexObjAggregate_c() {remove();};
+        /* 8003D740 */ ~dTexObjAggregate_c() { remove(); };
         inline dTexObjAggregate_c() {
-            for(int i = 0;i<7;i++) {
+            for (int i = 0; i < 7; i++) {
                 mTexObjs[i] = NULL;
             }
         }
@@ -34,7 +33,7 @@ struct dMpath_n {
     static dTexObjAggregate_c m_texObjAgg;
 };
 
-STATIC_ASSERT(sizeof(dMpath_n::dTexObjAggregate_c)==28);
+STATIC_ASSERT(sizeof(dMpath_n::dTexObjAggregate_c) == 28);
 
 //
 // Forward References:
@@ -245,42 +244,43 @@ asm void dRenderingFDAmap_c::setTevSettingIntensityTextureToCI() const {
  */
 void dRenderingFDAmap_c::drawBack() const {
     GXClearVtxDesc();
-    GXSetVtxDesc(GX_VA_POS,GX_DIRECT);
-    GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_POS,GX_CLR_RGBA,GX_F32,0);
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
     GXColor* colorPtr = getBackColor();
-    GXSetTevColor(GX_TEVREG0,*colorPtr);
-    GXBegin(GX_QUADS,GX_VTXFMT0,4);
-    GXPosition3f32(-field_0x8,-field_0xc,0);
-    GXPosition3f32(field_0x8,-field_0xc,0);
-    GXPosition3f32(field_0x8,field_0xc,0);
-    GXPosition3f32(-field_0x8,field_0xc,0);
+    GXSetTevColor(GX_TEVREG0, *colorPtr);
+    GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+    GXPosition3f32(-field_0x8, -field_0xc, 0);
+    GXPosition3f32(field_0x8, -field_0xc, 0);
+    GXPosition3f32(field_0x8, field_0xc, 0);
+    GXPosition3f32(-field_0x8, field_0xc, 0);
     GXEnd();
 }
 
 /* 8003D188-8003D320 037AC8 0198+00 1/0 8/0 0/0 .text preRenderingMap__18dRenderingFDAmap_cFv */
 void dRenderingFDAmap_c::preRenderingMap() {
-    GXSetViewport(0.0f,0.0f,field_0x1c,field_0x1e,0.0f,1.0f);
-    GXSetScissor(0,0,field_0x1c,field_0x1e);
+    GXSetViewport(0.0f, 0.0f, field_0x1c, field_0x1e, 0.0f, 1.0f);
+    GXSetScissor(0, 0, field_0x1c, field_0x1e);
     GXSetNumChans(1);
     GXSetNumTevStages(1);
-    GXSetChanCtrl(GX_COLOR0A0,GX_FALSE,GX_SRC_REG,GX_SRC_REG,GX_LIGHT_NULL,GX_DF_NONE,GX_AF_NONE);
-    GXSetAlphaCompare(GX_ALWAYS,0,GX_AOP_OR,GX_ALWAYS,0);
+    GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE,
+                  GX_AF_NONE);
+    GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
     GXSetZCompLoc(GX_TRUE);
-    GXSetZMode(GX_FALSE,GX_ALWAYS,GX_FALSE);
-    GXSetBlendMode(GX_BM_NONE,GX_BL_SRC_ALPHA,GX_BL_INV_SRC_ALPHA,GX_LO_CLEAR);
+    GXSetZMode(GX_FALSE, GX_ALWAYS, GX_FALSE);
+    GXSetBlendMode(GX_BM_NONE, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_CLEAR);
     GXColor color = g_clearColor;
-    GXSetFog(GX_FOG_NONE,0.0f,0.0f,0.0f,0.0f,color);
+    GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, color);
     GXSetCullMode(GX_CULL_NONE);
     GXSetDither(GX_FALSE);
     GXSetNumIndStages(0);
     GXSetClipMode(GX_FALSE);
     setTevSettingNonTextureDirectColor();
-    float right = field_0x8*0.5f;
-    float top = field_0xc*0.5f;
+    float right = field_0x8 * 0.5f;
+    float top = field_0xc * 0.5f;
     Mtx44 matrix;
-    C_MTXOrtho(matrix,top,-top,-right,right,0.0f,10000.0f);
-    GXSetProjection(matrix,GX_ORTHOGRAPHIC);
-    GXLoadPosMtxImm(g_mDoMtx_identity,GX_PNMTX0);
+    C_MTXOrtho(matrix, top, -top, -right, right, 0.0f, 10000.0f);
+    GXSetProjection(matrix, GX_ORTHOGRAPHIC);
+    GXLoadPosMtxImm(g_mDoMtx_identity, GX_PNMTX0);
     GXSetCurrentMtx(0);
     drawBack();
 }
@@ -308,53 +308,55 @@ dMpath_n::dTexObjAggregate_c dMpath_n::m_texObjAgg;
  * renderingDecoration__18dRenderingFDAmap_cFPCQ211dDrawPath_c10line_class */
 void dRenderingFDAmap_c::renderingDecoration(dDrawPath_c::line_class const* line) {
     s32 width = getDecorationLineWidth(line->unk1);
-    if (width<=0) {
+    if (width <= 0) {
         return;
     }
     setTevSettingIntensityTextureToCI();
     GXClearVtxDesc();
-    GXSetVtxDesc(GX_VA_POS,GX_INDEX16);
-    GXSetVtxDesc(GX_VA_TEX0,GX_DIRECT);
-    GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_POS,GX_POS_XY,GX_F32,0);
-    GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_TEX0,GX_POS_XYZ,GX_F32,0);
+    GXSetVtxDesc(GX_VA_POS, GX_INDEX16);
+    GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XY, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_F32, 0);
     GXSetNumTevStages(1);
-    GXLoadTexObj(dMpath_n::m_texObjAgg.mTexObjs[6],GX_TEXMAP0);
+    GXLoadTexObj(dMpath_n::m_texObjAgg.mTexObjs[6], GX_TEXMAP0);
     u16* unk = line->unk4;
     s32 unk2 = line->unk2;
-    GXSetLineWidth(width,GX_TO_ONE);
-    GXSetPointSize(width,GX_TO_ONE);
-    GXColor* lineColorPtr = getDecoLineColor(line->unk0&0x3f,line->unk1);
-    GXColor  lineColor = *lineColorPtr;
-    GXSetTevColor(GX_TEVREG0,lineColor);
-    lineColor.r = lineColor.r-4;
-    GXSetTevColor(GX_TEVREG1,lineColor);
-    for (int i = 0; i<unk2; unk++,i++) {
+    GXSetLineWidth(width, GX_TO_ONE);
+    GXSetPointSize(width, GX_TO_ONE);
+    GXColor* lineColorPtr = getDecoLineColor(line->unk0 & 0x3f, line->unk1);
+    GXColor lineColor = *lineColorPtr;
+    GXSetTevColor(GX_TEVREG0, lineColor);
+    lineColor.r = lineColor.r - 4;
+    GXSetTevColor(GX_TEVREG1, lineColor);
+    for (int i = 0; i < unk2; unk++, i++) {
 #ifndef HYRULE_FIELD_SPEEDHACK
-        if(i<unk2-1) {
-            GXSetTevColorIn(GX_TEVSTAGE0,GX_CC_ZERO,GX_CC_ZERO,GX_CC_ZERO,GX_CC_C0);
-            GXSetTevColorOp(GX_TEVSTAGE0,GX_TEV_ADD,GX_TB_ZERO,GX_CS_SCALE_1,GX_TRUE,GX_TEVPREV);
-            GXSetTevAlphaIn(GX_TEVSTAGE0,GX_CA_ZERO,GX_CA_ZERO,GX_CA_ZERO,GX_CA_KONST);
-            GXSetTevAlphaOp(GX_TEVSTAGE0,GX_TEV_ADD,GX_TB_ZERO,GX_CS_SCALE_1,GX_TRUE,GX_TEVPREV);
-            GXBegin(GX_LINESTRIP,GX_VTXFMT0,2);
+        if (i < unk2 - 1) {
+            GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, GX_CC_C0);
+            GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE,
+                            GX_TEVPREV);
+            GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_KONST);
+            GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE,
+                            GX_TEVPREV);
+            GXBegin(GX_LINESTRIP, GX_VTXFMT0, 2);
             GXPosition1x16(unk[0]);
-            GXTexCoord2f32(0,0);
+            GXTexCoord2f32(0, 0);
             GXPosition1x16(unk[1]);
-            GXTexCoord2f32(0,0);
+            GXTexCoord2f32(0, 0);
         }
-        GXSetTevColorIn(GX_TEVSTAGE0,GX_CC_ZERO,GX_CC_KONST,GX_CC_TEXC,GX_CC_C1);
-        GXSetTevColorOp(GX_TEVSTAGE0,GX_TEV_ADD,GX_TB_ZERO,GX_CS_SCALE_1,GX_TRUE,GX_TEVPREV);
-        GXSetTevAlphaIn(GX_TEVSTAGE0,GX_CA_ZERO,GX_CA_ZERO,GX_CA_ZERO,GX_CA_TEXA);
-        GXSetTevAlphaOp(GX_TEVSTAGE0,GX_TEV_ADD,GX_TB_ZERO,GX_CS_SCALE_1,GX_TRUE,GX_TEVPREV);
+        GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_KONST, GX_CC_TEXC, GX_CC_C1);
+        GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+        GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_TEXA);
+        GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
 #endif
-        GXBegin(GX_POINTS,GX_VTXFMT0,1);
+        GXBegin(GX_POINTS, GX_VTXFMT0, 1);
         GXPosition1x16(unk[0]);
-        GXTexCoord2f32(0,0);
+        GXTexCoord2f32(0, 0);
         GXEnd();
     }
     setTevSettingNonTextureDirectColor();
     GXClearVtxDesc();
-    GXSetVtxDesc(GX_VA_POS,GX_INDEX16);
-    GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_POS,GX_CLR_RGB,GX_F32,0);
+    GXSetVtxDesc(GX_VA_POS, GX_INDEX16);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGB, GX_F32, 0);
 }
 
 /* 8003D68C-8003D6B8 037FCC 002C+00 1/0 6/0 0/0 .text getDecoLineColor__18dRenderingFDAmap_cFii */

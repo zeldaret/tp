@@ -3,12 +3,12 @@
 
 #include "JSystem/J2DGraph/J2DTextbox.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/msg/d_msg_class.h"
 #include "dolphin/types.h"
 
-class msg_class;
 class COutFont_c;
 
-class dMsgObject_c {
+class dMsgObject_c : public msg_class {
 public:
     /* 80233284 */ void _create(msg_class*);
     /* 80233590 */ void _execute();
@@ -113,7 +113,7 @@ public:
                                   char*, char*, s16*);
     /* 80238174 */ void getMsgDtPtr();
     /* 80238188 */ void setProcessID(unsigned int);
-    /* 8023819C */ void getActor();
+    /* 8023819C */ static fopAc_ac_c* getActor();
     /* 802381C0 */ void getpTalkActor();
     /* 802381D4 */ void getIdx();
     /* 802381E8 */ void getNodeIdx();
@@ -149,7 +149,11 @@ public:
     /* 8023860C */ void setEquipBombInfo();
     /* 80238638 */ void getItemEquipButton();
     /* 8023864C */ void setSelectCancelPos(u8);
+
+    /* 0x100 */ fopAc_ac_c* field_0x100;
 };
+
+s16 dMsgObject_getGroupID();
 
 inline dMsgObject_c* dMsgObject_getMsgObjectClass() {
     return dComIfGp_getMsgObjectClass();

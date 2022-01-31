@@ -9,7 +9,7 @@ typedef float Mtx[3][4];
 typedef float Mtx33[3][3];
 typedef float Mtx23[2][3];
 typedef f32 (*MtxP)[4];
-typedef const f32 (*CMtxP)[4]; //Change name later?
+typedef const f32 (*CMtxP)[4];  // Change name later?
 
 extern "C" {
 void PSMTXIdentity(Mtx matrix);

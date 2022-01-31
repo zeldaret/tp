@@ -66,7 +66,7 @@ public:
 
     virtual bool entry(J3DDrawBuffer*);
     virtual void draw();
-    virtual ~J3DPacket();
+    virtual ~J3DPacket() {}
 
 public:
     /* 0x04 */ J3DPacket* mpNextSibling;

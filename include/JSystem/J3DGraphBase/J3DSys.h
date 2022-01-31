@@ -11,6 +11,11 @@ enum J3DError {
     kJ3DError_Alloc = 4,
 };
 
+enum J3DSysDrawBuffer {
+    /* 0x0 */ OPA_BUFFER,
+    /* 0x1 */ XLU_BUFFER
+};
+
 class J3DMtxCalc;
 class J3DModel;
 class J3DMatPacket;
@@ -64,7 +69,7 @@ struct J3DSys {
         /* 0x4 */ XLU,
     };
 
-    Mtx* getViewMtx() { return &mViewMtx; }
+    MtxP getViewMtx() { return mViewMtx; }
 
     void setDrawModeOpaTexEdge() { mDrawMode = OPA_TEX_EDGE; }
 
@@ -101,6 +106,16 @@ struct J3DSys {
         mModelNrmMtx = pMtxArr;
         GXSetArray(GX_NRM_MTX_ARRAY, mModelNrmMtx, sizeof(*mModelNrmMtx));
     }
+
+    // Type 0: Opa Buffer
+    // Type 1: Xlu Buffer
+    void setDrawBuffer(J3DDrawBuffer* buffer, int type) { mDrawBuffer[type] = buffer; }
+
+    // Type 0: Opa Buffer
+    // Type 1: Xlu Buffer
+    J3DDrawBuffer* getDrawBuffer(int type) { return mDrawBuffer[type]; }
+
+    void setViewMtx(Mtx m) { PSMTXCopy(m, mViewMtx); }
 
     static Mtx mCurrentMtx;
     static Vec mCurrentS;

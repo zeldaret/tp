@@ -67,6 +67,7 @@ public:
     J3DShapePacket* getShapePacket(u16 idx) const { return &mShapePacket[idx]; }
     Mtx33* getBumpMtxPtr(int idx) const { return mMtxBuffer->getBumpMtxPtr(idx); }
     Mtx33* getNrmMtxPtr() const { return mMtxBuffer->getNrmMtxPtr(); }
+    void setBaseScale(const Vec& scale) { mBaseScale = scale; }
 
     // is there a better way to handle inlines with same name as non-inlines?
     MtxP i_getAnmMtx(int p1) { return mMtxBuffer->getAnmMtx(p1); }

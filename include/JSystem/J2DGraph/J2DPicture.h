@@ -63,8 +63,8 @@ public:
     /* 80053C6C */ virtual void setBlack(JUtility::TColor);
     /* 80053C44 */ virtual void setWhite(JUtility::TColor);
     /* 8018BEE0 */ virtual void setBlackWhite(JUtility::TColor, JUtility::TColor);
-    /* 801DFA4C */ virtual void getBlack() const;
-    /* 801DFA40 */ virtual void getWhite() const;
+    /* 801DFA4C */ virtual JUtility::TColor getBlack() const;
+    /* 801DFA40 */ virtual JUtility::TColor getWhite() const;
     /* 8025603C */ virtual bool getMaterial() const;
     /* 802FDBFC */ virtual void drawFullSet(f32, f32, f32, f32, Mtx*);
     /* 802FE380 */ virtual void drawTexCoord(f32, f32, f32, f32, s16, s16, s16, s16, s16, s16, s16,

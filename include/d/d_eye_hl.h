@@ -10,19 +10,18 @@ class dEyeHL_c;
 
 class dEyeHL_mng_c {
 public:
-    /* 8009CA48 */ void update();
-    /* 8009CB14 */ void entry(dEyeHL_c*);
-    /* 8009CB34 */ void remove(dEyeHL_c*);
+    /* 8009CA48 */ static void update();
+    /* 8009CB14 */ static void entry(dEyeHL_c*);
+    /* 8009CB34 */ static void remove(dEyeHL_c*);
 
-    static u8 m_obj[4 + 4 /* padding */];
+    static dEyeHL_mng_c* m_obj;
 
-private:
-    /* 0x00 */ void* vtable;
-    /* 0x04 */ ResTIMG* field_0x04;
-    /* 0x08 */ u16 field_0x08;
+    /* 0x00 */ u8 field_0x0[4];
+    /* 0x04 */ ResTIMG* m_timg;
+    /* 0x08 */ s16 m_lodBias;
     /* 0x0A */ u8 field_0x0a[2];
-    /* 0x0C */ dEyeHL_mng_c* field_0x0c;
-    /* 0x10 */ dEyeHL_mng_c* field_0x10;
+    /* 0x0C */ dEyeHL_mng_c* m_pre;
+    /* 0x10 */ dEyeHL_mng_c* m_next;
 };
 
 class dEyeHL_c : public dEyeHL_mng_c {

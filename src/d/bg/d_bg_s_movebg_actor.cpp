@@ -172,7 +172,7 @@ int dBgS_MoveBgActor::MoveBGCreate(char const* p_name, int dzb_id, MoveBGActor_S
         mDoMtx_stack_c::transS(mCurrent.mPosition.x, mCurrent.mPosition.y, mCurrent.mPosition.z);
         mDoMtx_stack_c::YrotM(mCollisionRot.y);
         mDoMtx_stack_c::scaleM(mScale.x, mScale.y, mScale.z);
-        PSMTXCopy(*mDoMtx_stack_c::get(), field_0x56c);
+        PSMTXCopy(mDoMtx_stack_c::get(), field_0x56c);
     } else {
         PSMTXCopy(*param_4, field_0x56c);
     }
@@ -222,7 +222,7 @@ bool dBgS_MoveBgActor::MoveBGExecute() {
         mDoMtx_stack_c::transS(mCurrent.mPosition.x, mCurrent.mPosition.y, mCurrent.mPosition.z);
         mDoMtx_stack_c::YrotM(mCollisionRot.y);
         mDoMtx_stack_c::scaleM(mScale.x, mScale.y, mScale.z);
-        PSMTXCopy(*mDoMtx_stack_c::get(), field_0x56c);
+        PSMTXCopy(mDoMtx_stack_c::get(), field_0x56c);
     } else {
         PSMTXCopy(*tmp, field_0x56c);
     }

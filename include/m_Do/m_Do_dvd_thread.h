@@ -16,8 +16,8 @@ public:
 public:
     /* 800158FC */ virtual ~mDoDvdThd_command_c();
     /* 80015B74 */ mDoDvdThd_command_c();
-    inline s32 sync() {return mIsDone;}
-    inline void destroy() {delete this;}
+    inline s32 sync() { return mIsDone; }
+    inline void destroy() { delete this; }
     virtual s32 execute() = 0;
 };  // Size = 0x14
 

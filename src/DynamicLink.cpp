@@ -4,13 +4,13 @@
 //
 
 #include "DynamicLink.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
-#include "dolphin/os/OS.h"
-#include "JSystem/JUtility/JUTConsole.h"
-#include "m_Do/m_Do_ext.h"
-#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
+#include "JSystem/JUtility/JUTConsole.h"
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf.h"
+#include "dol2asm.h"
+#include "dolphin/os/OS.h"
+#include "dolphin/types.h"
+#include "m_Do/m_Do_ext.h"
 
 /* 80451138-8045113C 000638 0004+00 3/3 0/0 0/0 .sbss            mFirst__24DynamicModuleControlBase
  */
@@ -24,16 +24,16 @@ DynamicModuleControlBase* DynamicModuleControlBase::mLast;
  */
 DynamicModuleControlBase::~DynamicModuleControlBase() {
     force_unlink();
-    if (mPrev!=NULL) {
+    if (mPrev != NULL) {
         mPrev->mNext = mNext;
     }
-    if (mNext!=NULL) {
+    if (mNext != NULL) {
         mNext->mPrev = mPrev;
     }
-    if (mFirst==this) {
+    if (mFirst == this) {
         mFirst = mNext;
     }
-    if (mLast==this) {
+    if (mLast == this) {
         mLast = mPrev;
     }
     mNext = NULL;
@@ -46,11 +46,11 @@ DynamicModuleControlBase::DynamicModuleControlBase() {
     mLinkCount = 0;
     mDoLinkCount = 0;
     mNext = NULL;
-    if (mFirst==NULL) {
+    if (mFirst == NULL) {
         mFirst = this;
     }
     mPrev = mLast;
-    if (mPrev!=NULL) {
+    if (mPrev != NULL) {
         mPrev->mNext = this;
     }
     mLast = this;
@@ -59,16 +59,16 @@ DynamicModuleControlBase::DynamicModuleControlBase() {
 /* 802622D0-80262364 25CC10 0094+00 0/0 2/2 0/0 .text            link__24DynamicModuleControlBaseFv
  */
 bool DynamicModuleControlBase::link() {
-    if (mLinkCount==0) {
+    if (mLinkCount == 0) {
         do_load();
-        if (do_link()==false) {
+        if (do_link() == false) {
             return false;
         }
-        if (mDoLinkCount<0xFFFF) {
+        if (mDoLinkCount < 0xFFFF) {
             mDoLinkCount++;
         }
     }
-    if(mLinkCount<0xFFFF) {
+    if (mLinkCount < 0xFFFF) {
         mLinkCount++;
     }
     return true;
@@ -76,21 +76,22 @@ bool DynamicModuleControlBase::link() {
 
 /* 80262364-802623EC 25CCA4 0088+00 0/0 1/1 0/0 .text unlink__24DynamicModuleControlBaseFv */
 bool DynamicModuleControlBase::unlink() {
-    if(mLinkCount!=0) {
+    if (mLinkCount != 0) {
         mLinkCount--;
-        if(mLinkCount==0) {
+        if (mLinkCount == 0) {
             do_unlink();
             do_unload();
         }
-    }else{
-        OSReport_Warning("%08x DynamicModuleControlBase::unlink() mLinkCount id already zero.\n",this);
+    } else {
+        OSReport_Warning("%08x DynamicModuleControlBase::unlink() mLinkCount id already zero.\n",
+                         this);
     }
     return true;
 }
 
 /* 802623EC-8026242C 25CD2C 0040+00 0/0 1/1 0/0 .text load_async__24DynamicModuleControlBaseFv */
 bool DynamicModuleControlBase::load_async() {
-    if (mLinkCount==0) {
+    if (mLinkCount == 0) {
         return do_load_async();
     }
     return true;
@@ -99,7 +100,7 @@ bool DynamicModuleControlBase::load_async() {
 /* 8026242C-80262470 25CD6C 0044+00 1/1 0/0 0/0 .text force_unlink__24DynamicModuleControlBaseFv
  */
 bool DynamicModuleControlBase::force_unlink() {
-    if (mLinkCount!=0) {
+    if (mLinkCount != 0) {
         mLinkCount = 0;
         do_unlink();
     }
@@ -127,7 +128,8 @@ void DynamicModuleControlBase::dump() {
             }else{
                 name = (name!=NULL) ? name : "(Null)";
                 const char* type = current->getModuleTypeString();
-                JUTReportConsole_f("%3d%3d ???? ????? %-4s %-24s ",doLinkCount,linkCount,type,name);
+                JUTReportConsole_f("%3d%3d ???? ????? %-4s %-24s ", doLinkCount, linkCount, type,
+                                   name);
             }
             current->dump2();
             JUTReportConsole_f("\n");
@@ -167,10 +169,13 @@ static const char* baseString = "Base";
 /* 802626D0-8026275C 25D010 008C+00 1/1 0/0 0/0 .text mountCallback__20DynamicModuleControlFPv */
 JKRArchive* DynamicModuleControl::mountCallback(void* param_0) {
     JKRExpHeap* heap = mDoExt_getArchiveHeap();
-    sFileCache = JKRFileCache::mount("/rel/Final/Release",heap,NULL);
-    sArchive = JKRArchive::mount("RELS.arc",JKRArchive::MOUNT_COMP,heap,JKRArchive::MOUNT_DIRECTION_HEAD);
+    sFileCache = JKRFileCache::mount("/rel/Final/Release", heap, NULL);
+    sArchive = JKRArchive::mount("RELS.arc", JKRArchive::MOUNT_COMP, heap,
+                                 JKRArchive::MOUNT_DIRECTION_HEAD);
     if (sArchive == NULL) {
-        OSReport_Warning("マウント失敗ですが単にアーカイブを作ってないだけなら遅いだけです %s\n","RELS.arc");
+        // "Mount failure, but if the archive isn't created, it was too slow %s\n"
+        OSReport_Warning("マウント失敗ですが単にアーカイブを作ってないだけなら遅いだけです %s\n",
+                         "RELS.arc");
     }
     return sArchive;
 }
@@ -194,9 +199,9 @@ void* DynamicModuleControl::callback(void* moduleControlPtr) {
 /* 802627C0-802627E8 25D100 0028+00 1/1 0/0 0/0 .text            calcSum2__FPCUsUl */
 static u32 calcSum2(u16 const* data, u32 size) {
     u32 sum = 0;
-    while (size>0) {
+    while (size > 0) {
         sum = sum + *data;
-        size=size-2;
+        size = size - 2;
         data++;
     }
     return sum;
@@ -205,7 +210,7 @@ static u32 calcSum2(u16 const* data, u32 size) {
 /* 802627E8-80262AFC 25D128 0314+00 1/0 0/0 0/0 .text            do_load__20DynamicModuleControlFv
  */
 bool DynamicModuleControl::do_load() {
-    if (mModule!=NULL) {
+    if (mModule != NULL) {
         return true;
     }
     JKRExpHeap* heap = mDoExt_getArchiveHeap();
@@ -237,7 +242,7 @@ bool DynamicModuleControl::do_load() {
                 }
             }
         }
-        if(mModule!=NULL) {
+        if (mModule != NULL) {
             mSize = sArchive->getExpandedResSize(mModule);
             JKRDetachResource(mModule,NULL);
         }else {
@@ -258,22 +263,30 @@ bool DynamicModuleControl::do_load() {
                 }
             }
         }
-        if(mModule==NULL) {
-            OSReport_Error("\x44\x79\x6E\x61\x6D\x69\x63\x4D\x6F\x64\x75\x6C\x65\x43\x6F\x6E\x74\x72\x6F\x6C\x3A\x3A\x64\x6F\x5F\x6C\x6F\x61\x64\x28\x29\x20\x83\x8A\x83\x5C\x81\x5B\x83\x58\x93\xC7\x82\xDD\x8D\x9E\x82\xDD\x8E\xB8\x94\x73\x20\x5B\x25\x73\x5D\x0A",mName);
+        if (mModule == NULL) {
+            // "DynamicModuleControl::do_load() Resource load failure [%s]\n"
+            OSReport_Error(
+                "\x44\x79\x6E\x61\x6D\x69\x63\x4D\x6F\x64\x75\x6C\x65\x43\x6F\x6E\x74\x72\x6F\x6C"
+                "\x3A\x3A\x64\x6F\x5F\x6C\x6F\x61\x64\x28\x29\x20\x83\x8A\x83\x5C\x81\x5B\x83\x58"
+                "\x93\xC7\x82\xDD\x8D\x9E\x82\xDD\x8E\xB8\x94\x73\x20\x5B\x25\x73\x5D\x0A",
+                mName);
             return false;
         }
-        if(mSize>0) {
-            u32 sum = calcSum2((u16*)mModule,mSize);
-            if(unk_33==0) {
-                mChecksum=sum;
+        if (mSize > 0) {
+            u32 sum = calcSum2((u16*)mModule, mSize);
+            if (unk_33 == 0) {
+                mChecksum = sum;
                 unk_33++;
-            }else{
-                u32 newsum = sum&0xFFFF;
-                if(newsum!=mChecksum) {
-                    OSReport_Error("DynamicModuleControl::do_load() チェックサムエラー %04x %04x[%s]\n",newsum,mChecksum,mName);
+            } else {
+                u32 newsum = sum & 0xFFFF;
+                if (newsum != mChecksum) {
+                    OSReport_Error(
+                        // "DynamicModuleControl::do_load() Checksum Error %04x %04x[%s]\n"
+                        "DynamicModuleControl::do_load() チェックサムエラー %04x %04x[%s]\n",
+                        newsum, mChecksum, mName);
                     unk_33 = 0;
                     i++;
-                    if(i>=3) {
+                    if (i >= 3) {
                         return false;
                     }
                 } else {
@@ -295,20 +308,23 @@ bool DynamicModuleControl::do_load() {
 
 /* 80262AFC-80262BC4 25D43C 00C8+00 1/0 0/0 0/0 .text do_load_async__20DynamicModuleControlFv */
 bool DynamicModuleControl::do_load_async() {
-    if (mAsyncLoadCallback==NULL) {
-        if(mModule!=NULL) {
+    if (mAsyncLoadCallback == NULL) {
+        if (mModule != NULL) {
             return true;
         }
-        mAsyncLoadCallback = mDoDvdThd_callback_c::create(DynamicModuleControl::callback,this);
-        if(mAsyncLoadCallback==NULL) {
-            OSReport_Error("DynamicModuleControl::do_load_async() 非同期読み込みコールバック登録失敗 [%s]\n",mName);
+        mAsyncLoadCallback = mDoDvdThd_callback_c::create(DynamicModuleControl::callback, this);
+        if (mAsyncLoadCallback == NULL) {
+            OSReport_Error(
+                // "DynamicModuleControl::do_load_async() async load callback entry failure [%s]\n"
+                "DynamicModuleControl::do_load_async() 非同期読み込みコールバック登録失敗 [%s]\n",
+                mName);
         }
     }
-    if (mAsyncLoadCallback!=NULL&&mAsyncLoadCallback->sync()) {
+    if (mAsyncLoadCallback != NULL && mAsyncLoadCallback->sync()) {
         mAsyncLoadCallback->destroy();
         mAsyncLoadCallback = NULL;
         return true;
-    }else{
+    } else {
         return false;
     }
 }
@@ -316,7 +332,7 @@ bool DynamicModuleControl::do_load_async() {
 /* 80262BC4-80262C0C 25D504 0048+00 1/0 0/0 0/0 .text            do_unload__20DynamicModuleControlFv
  */
 bool DynamicModuleControl::do_unload() {
-    if (mModule!=NULL){
+    if (mModule != NULL) {
         JKRFree(mModule);
         mModule = NULL;
     }
@@ -325,17 +341,17 @@ bool DynamicModuleControl::do_unload() {
 
 /* 80262C0C-80262C5C 25D54C 0050+00 1/0 0/0 0/0 .text            dump2__20DynamicModuleControlFv */
 void DynamicModuleControl::dump2() {
-    if (mModule!=NULL) {
+    if (mModule != NULL) {
         OSSectionInfo* section = (OSSectionInfo*)mModule->info.sectionInfoOffset;
-        OSSectionInfo* section2 = section+1;
+        OSSectionInfo* section2 = section + 1;
         u32 offset = section2->mOffset & ~(1);
-        OSReport("%08x-%08x %08x %08x",mModule,offset,offset+section2->mSize);
+        OSReport("%08x-%08x %08x %08x", mModule, offset, offset + section2->mSize);
     }
 }
 
 BOOL DynamicModuleControl::do_link() {
     OSGetTime();
-    if(mModule==NULL) {
+    if (mModule == NULL) {
         do_load();
     }
     if(mModule!=NULL) {
@@ -410,12 +426,12 @@ BOOL DynamicModuleControl::do_link() {
 
 error:
     unk_33 = 0;
-    if(mBss!=NULL) {
-        JKRHeap::free(mBss,NULL);
+    if (mBss != NULL) {
+        JKRHeap::free(mBss, NULL);
         mBss = NULL;
     }
-    if(mModule!=NULL) {
-        JKRHeap::free(mModule,NULL);
+    if (mModule != NULL) {
+        JKRHeap::free(mModule, NULL);
         mModule = NULL;
     }
     return FALSE;
@@ -429,28 +445,29 @@ bool DynamicModuleControl::do_unlink() {
     OSTime time2 = OSGetTime();
     BOOL unklink = OSUnlink(mModule);
     OSTime time3 = OSGetTime();
-    if (unklink==FALSE) {
-        OSReport_Error("アンリンク失敗 mModule=%08x mBss=%08x\n",mModule,mBss);
+    if (unklink == FALSE) {
+        // "Unlink failed mModule=%08x mBss=%08x\n"
+        OSReport_Error("アンリンク失敗 mModule=%08x mBss=%08x\n", mModule, mBss);
         return false;
     }
     sAllocBytes = sAllocBytes - getModuleSize();
-    if (mBss!=NULL) {
+    if (mBss != NULL) {
         JKRFree(mBss);
         mBss = NULL;
     }
     do_unload();
     return true;
-}  
+}
 
 /* 80263000-80263070 25D940 0070+00 1/0 0/0 0/0 .text getModuleSize__20DynamicModuleControlCFv */
 int DynamicModuleControl::getModuleSize() const {
-    if (mModule!=NULL){
-        u32 size = JKRGetMemBlockSize(NULL,mModule);
-        if (mBss!=NULL) {
-           JKRGetMemBlockSize(NULL,mBss);
+    if (mModule != NULL) {
+        u32 size = JKRGetMemBlockSize(NULL, mModule);
+        if (mBss != NULL) {
+            JKRGetMemBlockSize(NULL, mBss);
         }
-        return size+mModule->mBssSize;
-    }else{
+        return size + mModule->mBssSize;
+    } else {
         return 0;
     }
 }
@@ -458,8 +475,8 @@ int DynamicModuleControl::getModuleSize() const {
 /* 80263070-80263088 25D9B0 0018+00 1/0 0/0 0/0 .text
  * getModuleTypeString__20DynamicModuleControlCFv               */
 const char* DynamicModuleControl::getModuleTypeString() const {
-    static const char* strings[4] = {"????","MEM","ARAM","DVD"};
-    return strings[mResourceType&3];
+    static const char* strings[4] = {"????", "MEM", "ARAM", "DVD"};
+    return strings[mResourceType & 3];
 }
 
 /* 80263088-8026308C 25D9C8 0004+00 0/0 0/0 756/756 .text            ModuleProlog */
@@ -474,28 +491,29 @@ extern "C" void ModuleEpilog() {
 
 /* 80263090-8026314C 25D9D0 00BC+00 0/0 0/0 757/757 .text            ModuleUnresolved */
 extern "C" void ModuleUnresolved() {
+    // "\nError: Unlinked function was called.\n"
     OSReport_Error("\nError: リンクされていない関数が呼び出されました.\n");
     OSReport_Error("Address:      Back Chain    LR Save\n");
     u32 i = 0;
     u32* stackPtr = (u32*)OSGetStackPointer();
-    while((stackPtr != NULL) && ((u32)stackPtr != 0xFFFFFFFF) && (i++ < 0x10)) {
-        OSReport_Error("0x%08x:   0x%08x    0x%08x\n",stackPtr,*stackPtr,*(stackPtr+1));
+    while ((stackPtr != NULL) && ((u32)stackPtr != 0xFFFFFFFF) && (i++ < 0x10)) {
+        OSReport_Error("0x%08x:   0x%08x    0x%08x\n", stackPtr, *stackPtr, *(stackPtr + 1));
         stackPtr = (u32*)*stackPtr;
     }
     OSReport_Error("\n");
 }
 
 /* 8026314C-80263190 25DA8C 0044+00 0/0 0/0 757/757 .text            ModuleConstructorsX */
-extern "C" void ModuleConstructorsX(void(**ctors)()) {
-    while (*ctors!=0) {
+extern "C" void ModuleConstructorsX(void (**ctors)()) {
+    while (*ctors != 0) {
         (**ctors)();
         ctors++;
     }
 }
 
 /* 80263190-802631D4 25DAD0 0044+00 0/0 0/0 757/757 .text            ModuleDestructorsX */
-extern "C" void ModuleDestructorsX(void(**dtors)()) {
-    while (*dtors!=0) {
+extern "C" void ModuleDestructorsX(void (**dtors)()) {
+    while (*dtors != 0) {
         (**dtors)();
         dtors++;
     }
