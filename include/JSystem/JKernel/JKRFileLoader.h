@@ -54,4 +54,8 @@ public:
     static JSUList<JKRFileLoader> sVolumeList;
 };
 
+inline bool JKRDetachResource(void* resource, JKRFileLoader* fileLoader) {
+    return JKRFileLoader::detachResource(resource,fileLoader);
+}
+
 #endif /* JKRFILELOADER_H */

@@ -10,8 +10,8 @@ struct OSSectionInfo {
 
 struct OSModuleInfo { 
     u32 mId;
-    OSModuleInfo* mNext;
-    OSModuleInfo* mPrev;
+    u32 mNext;
+    u32 mPrev;
     u32 mNumSections;
     struct { //Needed to get an assert correct; very likely bigger
         u32 sectionInfoOffset;
@@ -27,8 +27,8 @@ struct OSModuleInfo {
     u8 mEpilogSection;
     u8 mUnresolvedSection;
     u8 mBssSection;
-    u32 (*prolog)();
-    void(*epilog)();
+    u32 prolog;
+    u32 epilog;
     u32 mUnresolvedFuncOffset;
     u32 mModuleAlignment;
     u32 mBssAlignment;
