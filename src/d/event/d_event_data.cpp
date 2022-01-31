@@ -143,7 +143,6 @@ extern "C" void _restgpr_29();
 extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" f32 mFadeRate__13mDoGph_gInf_c;
-extern "C" extern u8 struct_80450BE4[4];
 extern "C" u8 m_control__7dDemo_c[4];
 extern "C" u8 m_frameNoMsg__7dDemo_c[4];
 extern "C" u8 m_mode__7dDemo_c[4];

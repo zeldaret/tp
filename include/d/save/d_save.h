@@ -1019,6 +1019,7 @@ public:
     dSv_restart_c& getRestart() { return mRestart; }
     dSv_turnRestart_c& getTurnRestart() { return mTurnRestart; }
     dSv_event_c& getEvent() { return mSavedata.getEvent(); }
+    dSv_danBit_c& getDan() { return mDan; }
     s64 getStartTime() { return mStartTime; }
     s64 getSaveTotalTime() { return mSaveTotalTime; }
     void initDan(s8 param_0) { mDan.init(param_0); }

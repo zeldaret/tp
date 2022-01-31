@@ -237,7 +237,7 @@ u8 struct_80450BE4;
 #pragma force_active on
 static bool data_80450BE5;
 
-static u8 data_80450BE6;
+u8 data_80450BE6;
 
 static bool data_80450BE7;
 #pragma pop

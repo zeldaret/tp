@@ -233,6 +233,10 @@ public:
     const char* getStartStageName() { return mStartStage.getName(); }
     s8 getStartStageRoomNo() { return mStartStage.getRoomNo(); }
     s8 getStartStageLayer() { return mStartStage.getLayer(); }
+    const char* getNextStageName() { return mNextStage.getName(); }
+    dStage_startStage_c* getNextStartStage() { return &mNextStage; }
+    s8 getNextStageRoomNo() { return mNextStage.getRoomNo(); }
+    s8 getNextStageLayer() { return mNextStage.getLayer(); }
     u8 isHeapLockFlag() { return mHeapLockFlag; }
     void setHeapLockFlag(u8 status) { mHeapLockFlag = status; }
     void setSubHeapLockFlag(int idx, u8 status) { mSubHeapLockFlag[idx] = status; }
@@ -248,6 +252,10 @@ public:
     s16 getStartStagePoint() { return mStartStage.getPoint(); }
     s8 getStartStageDarkArea() { return mStartStage.getDarkArea(); }
     void setStartStageDarkArea(s8 darkArea) { mStartStage.setDarkArea(darkArea); }
+    void setStartStageLayer(s8 layer) { mStartStage.setLayer(layer); }
+    s16 getNextStagePoint() { return mNextStage.getPoint(); }
+    s8 getNextStageWipe() { return mNextStage.getWipe(); }
+    bool isEnableNextStage() { return mNextStage.isEnable(); }
     void* getPlayerPtr(int ptrIdx) { return mPlayerPtr[ptrIdx]; }
     void* getPlayer(int idx) { return mPlayer[idx]; }
     JKRArchive* getMain2DArchive() { return mMain2DArchive; }
@@ -286,6 +294,9 @@ public:
     f32 getItemLifeCount() { return mItemLifeCount; }
     void clearItemMaxLifeCount() { mItemMaxLifeCount = 0; }
     void clearItemLifeCount() { mItemLifeCount = 0.0f; mItemLifeCountType = 0; }
+    void setCameraParamFileName(int i, char* name) { mCameraInfo[i].mCameraParamFileName = name; }
+    s8 getLayerOld() { return mLayerOld; }
+    void setStatus(u16 status) { mStatus = status; }
 
 public:
     /* 0x00000 */ dBgS mDBgS;
@@ -328,7 +339,7 @@ public:
     /* 0x04E04 */ dPa_control_c* mParticle;
     /* 0x04E08 */ void* mSimpleModel;
     /* 0x04E0C */ u8 mWindowNum;
-    /* 0x04E0D */ u8 mLayerOld;
+    /* 0x04E0D */ s8 mLayerOld;
     /* 0x04E0E */ u16 mStatus;
     /* 0x04E10 */ dDlst_window_c mWindow[1];
     /* 0x04E3C */ dComIfG_camera_info_class mCameraInfo[1];
@@ -541,6 +552,8 @@ extern GXColor g_blackColor;
 extern GXColor g_clearColor;
 extern GXColor g_whiteColor;
 
+typedef int (**request_of_phase_process_fn)(void*);
+
 void dComIfGp_setItemLifeCount(float, u8);
 void dComIfGp_setItemRupeeCount(long);
 int dComIfGs_isItemFirstBit(u8);
@@ -564,7 +577,7 @@ void dComIfGs_setWarpMarkFlag(u8);
 void dComIfGs_setSelectEquipSword(u8);
 void dComIfGs_setSelectEquipShield(u8);
 void* dComIfG_getStageRes(char const*);
-void dComLbG_PhaseHandler(request_of_phase_process_class*, int (**param_1)(void*), void*);
+void dComLbG_PhaseHandler(request_of_phase_process_class*, request_of_phase_process_fn, void*);
 void dComIfGp_addSelectItemNum(int, s16);
 BOOL dComIfGs_isOneZoneSwitch(int, int);
 u8 dComIfGp_getSelectItem(int);
@@ -586,6 +599,11 @@ s32 dComIfGp_setHeapLockFlag(u8);
 s8 dComIfGs_sense_type_change_Get();
 u8 dComIfGp_world_dark_get();
 JKRExpHeap* dComIfGp_getSubHeap2D(int);
+void dComIfGp_world_dark_set(u8);
+void dComIfGs_BossLife_public_Set(s8);
+
+class scene_class;
+BOOL dComIfG_resetToOpening(scene_class*);
 
 inline void dComIfGp_setRStatus(u8 status, u8 flag) {
     g_dComIfG_gameInfo.play.setRStatus(status, flag);
@@ -884,6 +902,30 @@ inline const char* dComIfGp_getStartStageName() {
     return g_dComIfG_gameInfo.play.getStartStageName();
 }
 
+inline const char* dComIfGp_getNextStageName() {
+    return g_dComIfG_gameInfo.play.getNextStageName();
+}
+
+inline dStage_startStage_c* dComIfGp_getNextStartStage() {
+    return g_dComIfG_gameInfo.play.getNextStartStage();
+}
+
+inline s8 dComIfGp_getNextStageRoomNo() {
+    return g_dComIfG_gameInfo.play.getNextStageRoomNo();
+}
+
+inline s8 dComIfGp_getNextStageLayer() {
+    return g_dComIfG_gameInfo.play.getNextStageLayer();
+}
+
+inline s32 dComIfGp_getNextStageWipe() {
+    return g_dComIfG_gameInfo.play.getNextStageWipe();
+}
+
+inline bool dComIfGp_isEnableNextStage() {
+    return g_dComIfG_gameInfo.play.isEnableNextStage();
+}
+
 inline void dComIfGd_reset() {
     g_dComIfG_gameInfo.drawlist.reset();
 }
@@ -1002,8 +1044,16 @@ inline int dComIfG_setObjectRes(const char* name, u8 param_1, JKRHeap* heap) {
     return g_dComIfG_gameInfo.mResControl.setObjectRes(name, param_1, heap);
 }
 
+inline int dComIfG_setStageRes(const char* name, JKRHeap* heap) {
+    return g_dComIfG_gameInfo.mResControl.setStageRes(name, heap);
+}
+
 inline int dComIfG_syncObjectRes(const char* name) {
     return g_dComIfG_gameInfo.mResControl.syncObjectRes(name);
+}
+
+inline int dComIfG_syncStageRes(const char* name) {
+    return g_dComIfG_gameInfo.mResControl.syncStageRes(name);
 }
 
 inline JKRExpHeap* dComIfGp_getExpHeap2D() {
@@ -1134,6 +1184,10 @@ inline s16 dComIfGp_getStartStagePoint() {
     return g_dComIfG_gameInfo.play.getStartStagePoint();
 }
 
+inline s16 dComIfGp_getNextStagePoint() {
+    return g_dComIfG_gameInfo.play.getNextStagePoint();
+}
+
 inline void dComIfGs_initZone() {
     g_dComIfG_gameInfo.info.initZone();
 }
@@ -1194,6 +1248,10 @@ inline dBgS& dComIfG_Bgsp() {
     return g_dComIfG_gameInfo.play.mDBgS;
 }
 
+inline dCcS* dComIfG_Ccsp() {
+    return &g_dComIfG_gameInfo.play.mDCcS;
+}
+
 inline s16 dComIfGs_getStartPoint() {
     return g_dComIfG_gameInfo.info.getRestart().getStartPoint();
 }
@@ -1226,7 +1284,7 @@ inline void dComIfGp_set3DStatus(u8 status, u8 direction, u8 flag) {
     g_dComIfG_gameInfo.play.set3DStatus(status, direction, flag);
 }
 
-inline s32 dComIfGs_getLastSceneMode() {
+inline u32 dComIfGs_getLastSceneMode() {
     return g_dComIfG_gameInfo.info.getRestart().getLastMode();
 }
 
@@ -1583,6 +1641,10 @@ inline u8 dComIfG_getBrightness() {
     return g_dComIfG_gameInfo.mFadeBrightness;
 }
 
+inline void dComIfG_setBrightness(u8 brightness) {
+    g_dComIfG_gameInfo.mFadeBrightness = brightness;
+}
+
 inline void dComIfGd_drawListItem3d() {
     g_dComIfG_gameInfo.drawlist.drawOpaListItem3d();
     g_dComIfG_gameInfo.drawlist.drawXluListItem3d();
@@ -1638,6 +1700,54 @@ inline void dComIfGp_clearItemLifeCount() {
 
 inline u8 dComIfGp_getItemLifeCountType() {
     return g_dComIfG_gameInfo.play.getItemLifeCountType();
+}
+
+inline void dComIfGp_particle_cleanup() {
+    g_dComIfG_gameInfo.play.getParticle()->cleanup();
+}
+
+inline void dComIfGp_setCameraParamFileName(int i, char* name) {
+    g_dComIfG_gameInfo.play.setCameraParamFileName(i, name);
+}
+
+inline void dComIfGs_onDarkClearLV(int lv) {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusB().onDarkClearLV(lv);
+}
+
+inline void dComIfGs_onTransformLV(int lv) {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusB().onTransformLV(lv);
+}
+
+inline s8 dComIfGp_getLayerOld() {
+    return g_dComIfG_gameInfo.play.getLayerOld();
+}
+
+inline void dComIfGp_setStartStageLayer(s8 layer) {
+    g_dComIfG_gameInfo.play.setStartStageLayer(layer);
+}
+
+inline void dComIfGs_onSaveDunSwitch(int flag) {
+    g_dComIfG_gameInfo.info.getDan().onSwitch(flag);
+}
+
+inline void dComIfGp_setStatus(u16 status) {
+    g_dComIfG_gameInfo.play.setStatus(status);
+}
+
+inline int dComIfG_syncAllObjectRes() {
+    return g_dComIfG_gameInfo.mResControl.syncAllObjectRes();
+}
+
+inline void dComIfGp_particle_readScene(u8 particle_no, mDoDvdThd_toMainRam_c** param_1) {
+    g_dComIfG_gameInfo.play.getParticle()->readScene(particle_no, param_1);
+}
+
+inline void dComIfGp_particle_calc3D() {
+    g_dComIfG_gameInfo.play.getParticle()->calc3D();
+}
+
+inline void dComIfGp_particle_calc2D() {
+    g_dComIfG_gameInfo.play.getParticle()->calc2D();
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

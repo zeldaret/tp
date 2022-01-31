@@ -17,7 +17,7 @@ public:
     void load1stDynamicWave();
     void _load1stWaveInner_1();
     void _load1stWaveInner_2();
-    void check1stDynamicWave();
+    bool check1stDynamicWave();
     void load2ndDynamicWave();
     void sceneBgmStart();
     void loadStaticWaves();

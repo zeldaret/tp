@@ -1408,8 +1408,7 @@ asm void dPa_control_c::level_c::emitter_c::entry(u32 param_0, u16 param_1, JPAB
 
 /* ############################################################################################## */
 /* 80450EC4-80450EC8 0003C4 0004+00 1/1 2/2 0/0 .sbss            None */
-extern u8 data_80450EC4[4];
-u8 data_80450EC4[4];
+u8 data_80450EC4;
 
 /* 80450EC8-80450ED0 0003C8 0004+04 2/2 1/1 17/17 .sbss mParticleTracePCB__13dPa_control_c */
 u8 dPa_control_c::mParticleTracePCB[4 + 4 /* padding */];

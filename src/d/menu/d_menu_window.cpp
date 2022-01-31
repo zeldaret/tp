@@ -265,7 +265,6 @@ extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" u8 mFader__13mDoGph_gInf_c[4];
 extern "C" u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
 extern "C" u8 mFrameBufferTex__13mDoGph_gInf_c[4];
-extern "C" extern u8 struct_80450BE4[4];
 extern "C" u8 sManager__10JFWDisplay[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 

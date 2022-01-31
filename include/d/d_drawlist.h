@@ -177,6 +177,8 @@ public:
     virtual void draw();
 };
 
+extern u8 data_80450ED0;  // Wipe
+
 class dDlst_list_c {
 public:
     /* 800560F0 */ dDlst_list_c();
@@ -207,6 +209,8 @@ public:
     void setXluList() { setXluDrawList(mXluList); }
     void setXluListBG() { setXluDrawList(mXluListBG); }
     void setXluList2DScreen() { setXluDrawList(mList2DScreen); }
+    
+    static void offWipe() { data_80450ED0 = 0; }
 
     static u8 mWipeDlst[72];
     static u8 mWipeColor[4];
