@@ -4,6 +4,7 @@
 #include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf.h"
 #include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/string.h"
 #include "SSystem/SComponent/c_xyz.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 
 #define DEFAULT_SELECT_ITEM_INDEX 0
@@ -419,9 +420,10 @@ public:
     f32 getTime() const { return mTime; }
     void setDate(u16 date) { mDate = date; }
     void setTime(f32 time) { mTime = time; }
+    OSTime getDateIpl() const { return mDateIpl; }
 
 private:
-    /* 0x00 */ s64 mDateIpl;
+    /* 0x00 */ OSTime mDateIpl;
     /* 0x08 */ u8 mTransformLevelFlag;
     /* 0x09 */ u8 mDarkClearLevelFlag;
     /* 0x0A */ u8 unk10;
@@ -433,6 +435,8 @@ private:
 
 class dSv_horse_place_c {
 public:
+    dSv_horse_place_c() {}
+
     void init();
     void set(const char*, const cXyz&, s16, s8);
 
@@ -462,6 +466,8 @@ private:
 
 class dSv_player_field_last_stay_info_c {
 public:
+    dSv_player_field_last_stay_info_c() {}
+
     void init();
     BOOL isRegionBit(int unk) const;
     void onRegionBit(int unk);
@@ -480,6 +486,8 @@ private:
 
 class dSv_player_last_mark_info_c {
 public:
+    dSv_player_last_mark_info_c() {}
+
     void init();
     void setWarpItemData(const char*, const cXyz&, s16, s8, u8, u8);
 
@@ -654,11 +662,12 @@ public:
     void setPlayerName(const char* name) { strcpy((char*)mPlayerName, name); }
     void setHorseName(const char* name) { strcpy((char*)mHorseName, name); }
     void setTotalTime(s64 time) { mTotalTime = time; }
+    s64 getTotalTime() const { return mTotalTime; }
 
 private:
     /* 0x00 */ u32 unk0;
     /* 0x04 */ u32 unk4;
-    /* 0x08 */ u64 mTotalTime;
+    /* 0x08 */ s64 mTotalTime;
     /* 0x10 */ u16 unk16;
     /* 0x12 */ u16 mDeathCount;
     /* 0x14 */ u8 mPlayerName[16];
@@ -706,6 +715,8 @@ private:
 
 class dSv_player_c {
 public:
+    dSv_player_c() {}
+
     void init();
     dSv_player_info_c& getPlayerInfo() { return mPlayerInfo; }
     dSv_player_status_a_c& getPlayerStatusA() { return mPlayerStatusA; }
@@ -971,6 +982,8 @@ private:
 
 class dSv_save_c {
 public:
+    dSv_save_c() {}
+
     void init();
     dSv_memory2_c* getSave2(int);
 
@@ -1020,9 +1033,10 @@ public:
     dSv_turnRestart_c& getTurnRestart() { return mTurnRestart; }
     dSv_event_c& getEvent() { return mSavedata.getEvent(); }
     dSv_danBit_c& getDan() { return mDan; }
-    s64 getStartTime() { return mStartTime; }
-    s64 getSaveTotalTime() { return mSaveTotalTime; }
+    s64 getStartTime() const { return mStartTime; }
+    s64 getSaveTotalTime() const { return mSaveTotalTime; }
     void initDan(s8 param_0) { mDan.init(param_0); }
+    u8 getDataNum() const { return mDataNum; }
 
 private:
     /* 0x000 */ dSv_save_c mSavedata;

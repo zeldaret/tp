@@ -26,12 +26,21 @@ private:
     /* 0x10 */ mDoExt_3DlineMat_c* mp3DlineMat;
 };
 
-class dDlst_FileInfo_c {
+class dDlst_base_c {
 public:
-    void draw(void);
-    ~dDlst_FileInfo_c();
+    virtual void draw();
+};
 
-private:
+class dDlst_FileInfo_c : public dDlst_base_c {
+public:
+    dDlst_FileInfo_c() {}
+    virtual void draw(void);
+    virtual ~dDlst_FileInfo_c();  // inlined
+
+    /* 0x04 */ J2DScreen* Scr;
+    /* 0x08 */ JUTFont* mFont;
+    /* 0x0C */ J2DPane* mBasePane;
+    /* 0x10 */ J2DPane* field_0x10;
 };
 
 class dDlst_peekZ_c {
@@ -170,11 +179,6 @@ struct view_port_class {};
 struct view_class {
     /* 0x00 */ u8 field_0x0[0xD0];
     /* 0xD0 */ f32 field_0xd0;
-};
-
-class dDlst_base_c {
-public:
-    virtual void draw();
 };
 
 extern u8 data_80450ED0;  // Wipe

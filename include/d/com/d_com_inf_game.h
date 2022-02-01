@@ -1080,8 +1080,8 @@ inline s64 dComIfGs_getSaveTotalTime() {
     return g_dComIfG_gameInfo.info.getSaveTotalTime();
 }
 
-inline dSv_save_c& dComIfGs_getSaveData() {
-    return g_dComIfG_gameInfo.info.getSavedata();
+inline dSv_save_c* dComIfGs_getSaveData() {
+    return &g_dComIfG_gameInfo.info.getSavedata();
 }
 
 inline void dComIfGs_setLineUpItem() {
@@ -1748,6 +1748,14 @@ inline void dComIfGp_particle_calc3D() {
 
 inline void dComIfGp_particle_calc2D() {
     g_dComIfG_gameInfo.play.getParticle()->calc2D();
+}
+
+inline u8 dComIfGs_getDataNum() {
+    return g_dComIfG_gameInfo.info.getDataNum();
+}
+
+inline char* dComIfGs_getPlayerName() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerInfo().getLinkName();
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

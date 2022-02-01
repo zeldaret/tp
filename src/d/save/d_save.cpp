@@ -1819,61 +1819,55 @@ SECTION_DEAD static char const* const stringBase_8037926C = "SAVE size:%d\n";
 #pragma pop
 
 /* 80035798-80035A04 0300D8 026C+00 0/0 1/1 0/0 .text            memory_to_card__10dSv_info_cFPci */
-// few wrong instructions, lots of regalloc issues
+// lots of regalloc issues
 #ifdef NONMATCHING
-int dSv_info_c::memory_to_card(char* param_0, int param_1) {
-    BOOL bVar1 = FALSE;
-    u32 unaff27;
-    int unaff23;
-    int unkr27 = 0;
+int dSv_info_c::memory_to_card(char* card_ptr, int data_num) {
+    bool lantern_not_recovered = false;
+    s32 lantern_stolen;
+    s32 lantern_dropped;
+    bool phi_r30 = false;
     u16 current_lantern_oil = 0;
 
     if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[226])) {
-        unaff27 = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[224]);
-        unaff23 = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[225]);
+        lantern_stolen = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[224]);
+        lantern_dropped = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[225]);
         dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[224]);
         dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[225]);
-        unkr27 = 1;
+        lantern_not_recovered = true;
     }
 
-    if (dComIfGs_isItemFirstBit(KANTERA) && dComIfGs_getItem(1, 1) == 0xFF) {
+    if (dComIfGs_isItemFirstBit(KANTERA) && dComIfGs_getItem(SLOT_1, 1) == NO_ITEM) {
         dComIfGs_setItem(SLOT_1, KANTERA);
         current_lantern_oil = dComIfGs_getOil();
-        u16 oil_gauge_backup = dMeter2Info_getOilGaugeBackUp();
-        dComIfGs_setOil(oil_gauge_backup);
-        bVar1 = TRUE;
+        dComIfGs_setOil(dMeter2Info_getOilGaugeBackUp());
+        phi_r30 = true;
     }
 
-    char* ptr = param_0 + param_1 * 0xa94;
+    char* save_ptr = card_ptr + (data_num * 0xA94);  // 0xA94 = Quest Log size
+    dSv_save_c* savedata = dComIfGs_getSaveData();
 
-    // weird time stuff going on here. not really sure about any of it
-    s64 start_time = dComIfGs_getSaveStartTime();
-    s64 new_time = OSGetTime() - start_time;
-    // new_time = 0;
-    s64 ivar7 = new_time + start_time;
+    s64 play_time = (OSGetTime() - dComIfGs_getSaveStartTime());
+    s64 total_time = (play_time + dComIfGs_getSaveTotalTime()) / (OS_BUS_CLOCK / 4);
 
-    s64 total_time = dComIfGs_getSaveTotalTime();
-    new_time += total_time;
-
-    if (new_time < start_time) {
-        g_dComIfG_gameInfo.info.getPlayer().getPlayerInfo().setTotalTime(new_time);
+    // 3599940 = 999:59 in seconds
+    if (total_time < 3599940) {
+        savedata->getPlayer().getPlayerInfo().setTotalTime(total_time);
     }
+    savedata->getPlayer().getPlayerStatusB().setDateIpl(OSGetTime());
 
-    s64 tmp = OSGetTime();
-    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusB().setDateIpl(tmp);
-    memcpy(ptr, &g_dComIfG_gameInfo, sizeof(dSv_save_c));
+    memcpy(save_ptr, savedata, sizeof(dSv_save_c));
     printf("Write size:%d\n", sizeof(dSv_save_c));
 
-    if ((u8)unkr27 == 1) {
-        if (unaff27) {
+    if (lantern_not_recovered == true) {
+        if (lantern_stolen) {
             dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[224]);
         }
-        if ((u8)unaff23 != 0) {
+        if (lantern_dropped) {
             dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[225]);
         }
     }
 
-    if (!bVar1) {
+    if (phi_r30 == true) {
         dComIfGs_setItem(SLOT_1, NO_ITEM);
         dComIfGs_setOil(current_lantern_oil);
     }
@@ -1900,29 +1894,24 @@ SECTION_DEAD static char const* const stringBase_8037927A = "LOAD size:%d\n";
 #pragma pop
 
 /* 80035A04-80035BD0 030344 01CC+00 0/0 2/2 0/0 .text            card_to_memory__10dSv_info_cFPci */
-// close, some instructions out of order / regalloc
+// memcpy param loads out of order
 #ifdef NONMATCHING
-int dSv_info_c::card_to_memory(char* param_0, int param_1) {
-    char* ptr = param_0 + param_1 * 0xa94;
-    dSv_save_c* tmp = &g_dComIfG_gameInfo.info.getSavedata();
-    memcpy(tmp, ptr, sizeof(dSv_save_c));
+int dSv_info_c::card_to_memory(char* param_0, int param_1) {    
+    memcpy(dComIfGs_getSaveData(), param_0 + param_1 * 0xa94, sizeof(dSv_save_c));
 
-    if (!OSGetSoundMode()) {
+    if (OSGetSoundMode() == SOUND_MODE_MONO) {
         g_dComIfG_gameInfo.info.getPlayer().getConfig().setSound(SOUND_MODE_MONO);
         Z2AudioMgr::mAudioMgrPtr->setOutputMode(SOUND_MODE_MONO);
+    } else if (g_dComIfG_gameInfo.info.getPlayer().getConfig().getSound() == 2) {
+        Z2AudioMgr::mAudioMgrPtr->setOutputMode(2);
     } else {
-        u8 save_sound = g_dComIfG_gameInfo.info.getPlayer().getConfig().getSound();
-
-        if (save_sound == 2) {
-            Z2AudioMgr::mAudioMgrPtr->setOutputMode(2);
-        } else {
-            g_dComIfG_gameInfo.info.getPlayer().getConfig().setSound(SOUND_MODE_STEREO);
-            Z2AudioMgr::mAudioMgrPtr->setOutputMode(SOUND_MODE_STEREO);
-        }
+        g_dComIfG_gameInfo.info.getPlayer().getConfig().setSound(SOUND_MODE_STEREO);
+        Z2AudioMgr::mAudioMgrPtr->setOutputMode(SOUND_MODE_STEREO);
     }
 
-    if (dComIfGs_getSaveData().getPlayer().getPlayerStatusA().getLife() < 12) {
-        dComIfGs_setLife(12);
+    dSv_save_c* savedata = dComIfGs_getSaveData();
+    if (savedata->getPlayer().getPlayerStatusA().getLife() < 12) {
+        savedata->getPlayer().getPlayerStatusA().setLife(12);
     }
 
     dComIfGs_setKeyNum(6, 0);
@@ -1932,16 +1921,16 @@ int dSv_info_c::card_to_memory(char* param_0, int param_1) {
         dComIfGs_setItem(SLOT_9, NO_ITEM);
     }
 
-    if (dComIfGs_getItem(SLOT_9, 1) == HOOKSHOT && dComIfGs_getItem(SLOT_9, 1) == W_HOOKSHOT) {
+    if (dComIfGs_getItem(SLOT_9, 1) == HOOKSHOT && dComIfGs_getItem(SLOT_10, 1) == W_HOOKSHOT) {
         dComIfGs_setItem(SLOT_9, NO_ITEM);
     }
 
     dComIfGs_setLineUpItem();
 
-    u8 save_vibration = dComIfGs_getSaveData().getPlayer().getConfig().getVibration();
+    u8 save_vibration = savedata->getPlayer().getConfig().getVibration();
     dComIfGp_setNowVibration(save_vibration);
 
-    char* save_stage = dComIfGs_getSaveData().getPlayer().getPlayerReturnPlace().getName();
+    char* save_stage = g_dComIfG_gameInfo.info.getPlayer().getPlayerReturnPlace().getName();
     dMeter2Info_setSaveStageName(save_stage);
 
     printf("LOAD size:%d\n", sizeof(dSv_save_c));
