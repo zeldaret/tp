@@ -213,7 +213,7 @@ public:
     void setXluList() { setXluDrawList(mXluList); }
     void setXluListBG() { setXluDrawList(mXluListBG); }
     void setXluList2DScreen() { setXluDrawList(mList2DScreen); }
-    
+
     static void offWipe() { data_80450ED0 = 0; }
 
     static u8 mWipeDlst[72];

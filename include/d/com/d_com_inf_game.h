@@ -293,7 +293,10 @@ public:
     s16 getItemMaxLifeCount() { return mItemMaxLifeCount; }
     f32 getItemLifeCount() { return mItemLifeCount; }
     void clearItemMaxLifeCount() { mItemMaxLifeCount = 0; }
-    void clearItemLifeCount() { mItemLifeCount = 0.0f; mItemLifeCountType = 0; }
+    void clearItemLifeCount() {
+        mItemLifeCount = 0.0f;
+        mItemLifeCountType = 0;
+    }
     void setCameraParamFileName(int i, char* name) { mCameraInfo[i].mCameraParamFileName = name; }
     s8 getLayerOld() { return mLayerOld; }
     void setStatus(u16 status) { mStatus = status; }

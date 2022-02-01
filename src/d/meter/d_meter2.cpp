@@ -4,14 +4,14 @@
 //
 
 #include "d/meter/d_meter2.h"
+#include "d/d_timer.h"
+#include "d/menu/d_menu_window_HIO.h"
+#include "d/meter/d_meter_HIO.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "f_op/f_op_msg_mng.h"
 #include "f_op/f_op_msg.h"
-#include "d/meter/d_meter_HIO.h"
-#include "d/menu/d_menu_window_HIO.h"
+#include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_audio.h"
-#include "d/d_timer.h"
 
 //
 // Types:
@@ -87,7 +87,7 @@ extern "C" static bool dMeter2_IsDelete__FP9dMeter2_c();
 extern "C" static void dMeter2_Delete__FP9dMeter2_c();
 extern "C" static void dMeter2_Create__FP9msg_class();
 extern "C" extern char const* const d_meter_d_meter2__stringBase0;
-//extern "C" extern void* g_profile_METER2[10];
+// extern "C" extern void* g_profile_METER2[10];
 
 //
 // External References:
@@ -637,7 +637,8 @@ int dMeter2_c::_delete() {
         mDoAud_seStart(Z2SE_LUPY_DEC_CNT_2, 0, 0, 0);
     }
 
-    if (isArrowSoundBit(2) && (isArrowEquip() || isPachinkoEquip()) && mpMeterDraw->isButtonVisible()) {
+    if (isArrowSoundBit(2) && (isArrowEquip() || isPachinkoEquip()) &&
+        mpMeterDraw->isButtonVisible()) {
         mDoAud_seStart(Z2SE_CONSUM_INC_CNT_2, 0, 0, 0);
     }
 
@@ -824,8 +825,8 @@ void dMeter2_c::moveLife() {
     if (mNowLifeGauge != current_life) {
         if (mNowLifeGauge < current_life) {
             mNowLifeGauge++;
-            if (i_dComIfGp_checkPlayerStatus1(0, 0x2000) || dComIfGp_checkPlayerStatus0(0, 0x20000000) ||
-                dMeter2Info_getLifeGaugeSE()) {
+            if (i_dComIfGp_checkPlayerStatus1(0, 0x2000) ||
+                dComIfGp_checkPlayerStatus0(0, 0x20000000) || dMeter2Info_getLifeGaugeSE()) {
                 if (mNowLifeGauge % 4 == 0) {
                     mDoAud_seStart(Z2SE_HP_GAUGE_INC, 0, 0, 0);
                 }
@@ -907,37 +908,6 @@ asm void dMeter2_c::moveKantera() {
 #include "asm/d/meter/d_meter2/moveKantera__9dMeter2_cFv.s"
 }
 #pragma pop
-
-/* void dMeter2_c::moveKantera() {
-    u16 max_oil = dComIfGs_getMaxOil();
-    u16 max_count = 0;
-    bool setDraw = false;
-
-    if (dComIfGp_getItemMaxOilCount() != 0) {
-        max_count = dComIfGs_getMaxOil() + dComIfGp_getItemMaxOilCount();
-        if (max_count <= dComIfGs_getMaxOil() && max_count > 0) {
-            max_oil = 0;
-        }
-
-        dComIfGs_setMaxOil(max_oil);
-        dComIfGp_setItemOilCount(max_oil - dComIfGs_getOil());
-        dComIfGp_clearItemMaxOilCount();
-        setDraw = true;
-    }
-
-    if (dComIfGp_getItemOilCount() != 0) {
-        if (!setDraw) {
-            max_count = dComIfGs_getMaxOil();
-        }
-
-        if () {
-
-        }
-
-        dComIfGp_clearItemOilCount();
-        setDraw = true;
-    }
-} */
 
 /* ############################################################################################## */
 /* 804549EC-804549F0 002FEC 0004+00 2/2 0/0 0/0 .sdata2          @5933 */
@@ -1054,7 +1024,8 @@ void dMeter2_c::moveButtonC() {
         dComIfGp_setCStickStatusForce(0, 0, 0);
     }
 
-    if (mCStickStatus == dComIfGp_getCStickStatus() && field_0x1ac == dMeter2Info_isUseButton(0x10)) {
+    if (mCStickStatus == dComIfGp_getCStickStatus() &&
+        field_0x1ac == dMeter2Info_isUseButton(0x10)) {
         if ((!mpMeterDraw->isEmphasisC() || dComIfGp_isCStickSetFlag(2)) &&
             (mpMeterDraw->isEmphasisC() || !dComIfGp_isCStickSetFlag(2)) &&
             field_0x19a == mpMeterDraw->getButtonTimer()) {
@@ -1219,8 +1190,8 @@ void dMeter2_c::movePachinkoNum() {
         }
     }
 
-    if (dComIfGp_getItemPachinkoNumCount() == 0 &&
-        mItemMaxNum[3] == dComIfGs_getPachinkoMax() && mPachinkoNum == dComIfGs_getPachinkoNum()) {
+    if (dComIfGp_getItemPachinkoNumCount() == 0 && mItemMaxNum[3] == dComIfGs_getPachinkoMax() &&
+        mPachinkoNum == dComIfGs_getPachinkoNum()) {
         return;
     }
 
@@ -1240,7 +1211,7 @@ void dMeter2_c::movePachinkoNum() {
     if (mPachinkoNum < dComIfGs_getPachinkoNum()) {
         mPachinkoNum++;
         onArrowSoundBit(2);
-        
+
         if (isArrowSoundBit(2)) {
             if (mPachinkoNum != dComIfGs_getPachinkoNum()) {
                 if (!isArrowSoundBit(0) && isPachinkoEquip() && mpMeterDraw->isButtonVisible()) {
@@ -1394,24 +1365,20 @@ inline u16 dComIfGp_event_checkHind(u16 flag) {
 /* 802256DC-802258A0 22001C 01C4+00 3/3 0/0 0/0 .text            isShowLightDrop__9dMeter2_cFv */
 bool dMeter2_c::isShowLightDrop() {
     if (!g_drawHIO.mLightDrop.mAnimDebug) {
-        if ((field_0x124 & 0x4000) || !dComIfGs_isLightDropGetFlag(dComIfGp_getStartStageDarkArea()) || 
-            dMeter2Info_getLightDropGetFlag(dComIfGp_getStartStageDarkArea()) <= 1 || !dKy_darkworld_check() ||
-            ((field_0x124 & 0x40) && dComIfGp_event_checkHind(0x200)) || daPy_getPlayerActorClass()->i_getSumouMode() ||
-            (daPy_getPlayerActorClass()->checkCanoeSlider() && (dComIfG_getTimerMode() == 3 || dComIfG_getTimerMode() == 4)) ||
-            (field_0x124 & 0x40000000) ||
-            (field_0x124 & 0x00001000) ||
-            (field_0x124 & 0x00100000) ||
-            (field_0x124 & 0x80000000) ||
-            (field_0x124 & 0x00000100) ||
-            (field_0x124 & 0x00000080) ||
-            (field_0x124 & 0x00000008) ||
-            (field_0x124 & 0x00000010) ||
-            (field_0x124 & 0x01000000) ||
-            (field_0x124 & 0x00000020) ||
-            (field_0x124 & 0x04000000) ||
-            (field_0x124 & 0x08000000) ||
-            (field_0x124 & 0x10000000) ||
-            dMeter2Info_isSub2DStatus(1)) {
+        if ((field_0x124 & 0x4000) ||
+            !dComIfGs_isLightDropGetFlag(dComIfGp_getStartStageDarkArea()) ||
+            dMeter2Info_getLightDropGetFlag(dComIfGp_getStartStageDarkArea()) <= 1 ||
+            !dKy_darkworld_check() || ((field_0x124 & 0x40) && dComIfGp_event_checkHind(0x200)) ||
+            daPy_getPlayerActorClass()->i_getSumouMode() ||
+            (daPy_getPlayerActorClass()->checkCanoeSlider() &&
+             (dComIfG_getTimerMode() == 3 || dComIfG_getTimerMode() == 4)) ||
+            (field_0x124 & 0x40000000) || (field_0x124 & 0x00001000) ||
+            (field_0x124 & 0x00100000) || (field_0x124 & 0x80000000) ||
+            (field_0x124 & 0x00000100) || (field_0x124 & 0x00000080) ||
+            (field_0x124 & 0x00000008) || (field_0x124 & 0x00000010) ||
+            (field_0x124 & 0x01000000) || (field_0x124 & 0x00000020) ||
+            (field_0x124 & 0x04000000) || (field_0x124 & 0x08000000) ||
+            (field_0x124 & 0x10000000) || dMeter2Info_isSub2DStatus(1)) {
             return false;
         }
     }
@@ -1458,8 +1425,9 @@ asm void dMeter2_c::isKeyVisible() {
 int dMeter2_c::isArrowEquip() {
     for (int i = 0; i < 2; i++) {
         if (mItemStatus[i * 2] == BOW || mItemStatus[i * 2] == LIGHT_ARROW ||
-            mItemStatus[i * 2] == ARROW_LV1 || mItemStatus[i * 2] == ARROW_LV2 || mItemStatus[i * 2] == ARROW_LV3 || 
-            mItemStatus[i * 2] == HAWK_ARROW || mItemStatus[i * 2] == BOMB_ARROW) {
+            mItemStatus[i * 2] == ARROW_LV1 || mItemStatus[i * 2] == ARROW_LV2 ||
+            mItemStatus[i * 2] == ARROW_LV3 || mItemStatus[i * 2] == HAWK_ARROW ||
+            mItemStatus[i * 2] == BOMB_ARROW) {
             return i + 1;
         }
     }
@@ -1515,29 +1483,19 @@ static int dMeter2_Create(msg_class* meter) {
 /* ############################################################################################## */
 /* 803BFA54-803BFA68 -00001 0014+00 1/0 0/0 0/0 .data            l_dMeter2_Method */
 SECTION_DATA static leafdraw_method_class l_dMeter2_Method = {
-    (process_method_func)dMeter2_Create,
-    (process_method_func)dMeter2_Delete,
-    (process_method_func)dMeter2_Execute,
-    (process_method_func)dMeter2_IsDelete,
+    (process_method_func)dMeter2_Create,  (process_method_func)dMeter2_Delete,
+    (process_method_func)dMeter2_Execute, (process_method_func)dMeter2_IsDelete,
     (process_method_func)dMeter2_Draw,
 };
 
 /* 803BFA68-803BFA90 -00001 0028+00 0/0 0/0 1/0 .data            g_profile_METER2 */
 SECTION_DATA extern leaf_process_profile_definition g_profile_METER2 = {
-    -3,
-    12,
-    -3,
-    0x0316,
-    0,
-    (process_method_class*)&g_fpcLf_Method,
-    0x4C0,
-    0,
-    0,
-    &g_fopMsg_Method,
-    0x0301,
-    0,
-    0,
-    &l_dMeter2_Method
-};
+    -3,     12,
+    -3,     0x0316,
+    0,      (process_method_class*)&g_fpcLf_Method,
+    0x4C0,  0,
+    0,      &g_fopMsg_Method,
+    0x0301, 0,
+    0,      &l_dMeter2_Method};
 
 /* 80399338-80399338 025998 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

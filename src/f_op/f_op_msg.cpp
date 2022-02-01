@@ -95,9 +95,5 @@ static asm int fopMsg_Create(void* param_0) {
 /* ############################################################################################## */
 /* 803A3958-803A3970 -00001 0014+04 0/0 5/0 0/0 .data            g_fopMsg_Method */
 SECTION_DATA extern leafdraw_method_class g_fopMsg_Method = {
-    &fopMsg_Create,
-    &fopMsg_Delete,
-    &fopMsg_Execute,
-    &fopMsg_IsDelete,
-    &fopMsg_Draw,
+    &fopMsg_Create, &fopMsg_Delete, &fopMsg_Execute, &fopMsg_IsDelete, &fopMsg_Draw,
 };

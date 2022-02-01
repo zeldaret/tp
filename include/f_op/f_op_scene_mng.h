@@ -1,8 +1,8 @@
 #ifndef F_F_OP_SCENE_MNG_H_
 #define F_F_OP_SCENE_MNG_H_
 
-#include "f_op/f_op_scene_pause.h"
 #include "f_op/f_op_actor_mng.h"
+#include "f_op/f_op_scene_pause.h"
 
 void* fopScnM_SearchByID(unsigned int id);
 int fopScnM_ChangeReq(scene_class*, s16, s16, u16);

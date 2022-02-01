@@ -4,9 +4,9 @@
 //
 
 #include "rel/f_pc/f_pc_profile_lst/f_pc_profile_lst.h"
-#include "f_pc/f_pc_leaf.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_pc/f_pc_leaf.h"
 
 //
 // Forward References:

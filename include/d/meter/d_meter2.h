@@ -309,7 +309,7 @@ private:
     /* 0x1EF */ u8 mBottleNum[4];
     /* 0x1F3 */ u8 mBombNum[3];
     /* 0x1F6 */ u8 mBombMax[3];
-    /* 0x1F9 */ u8 mItemMaxNum[4];  // ?, ?, ?, Pachinko
+    /* 0x1F9 */ u8 mItemMaxNum[4];
     /* 0x1FD */ u8 field_0x1fd;
     /* 0x1FE */ u8 field_0x1fe;
     /* 0x1FF */ u8 field_0x1ff;

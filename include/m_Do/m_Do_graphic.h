@@ -9,7 +9,7 @@
 int mDoGph_Create();
 
 extern u8 struct_80450BE4;  // Blure
-extern u8 data_80450BE6;  // Fade
+extern u8 data_80450BE6;    // Fade
 
 struct ResTIMG;
 class mDoGph_gInf_c {

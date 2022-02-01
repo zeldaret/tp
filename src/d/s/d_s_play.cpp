@@ -4,16 +4,16 @@
 //
 
 #include "d/s/d_s_play.h"
+#include "JSystem/JUtility/JUTConsole.h"
+#include "SSystem/SComponent/c_counter.h"
+#include "d/d_item.h"
+#include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "m_Do/m_Do_audio.h"
+#include "f_op/f_op_draw_iter.h"
 #include "f_op/f_op_overlap_mng.h"
 #include "f_op/f_op_scene_mng.h"
-#include "f_op/f_op_draw_iter.h"
-#include "d/d_item.h"
-#include "JSystem/JUtility/JUTConsole.h"
-#include "d/msg/d_msg_object.h"
-#include "SSystem/SComponent/c_counter.h"
+#include "m_Do/m_Do_audio.h"
 
 //
 // Types:
@@ -44,7 +44,6 @@ struct cDylPhs {
     /* 8001884C */ void Link(request_of_phase_process_class*, s16);
     /* 80018890 */ void Unlink(request_of_phase_process_class*, s16);
 };
-
 
 //
 // Forward References:
@@ -274,29 +273,8 @@ s8 dScnPly_c::calcPauseTimer() {
 /* ############################################################################################## */
 /* 803C3158-803C3188 020278 002E+02 1/1 0/0 0/0 .data            l_wipeType$4081 */
 SECTION_DATA static s16 l_wipeType[23] = {
-    0x0000,
-    0x0000,
-    0x0011,
-    0x0002,
-    0x0002,
-    0x0001,
-    0x0003,
-    0x0001,
-    0x0004,
-    0x0004,
-    0x0005,
-    0x0005,
-    0x0006,
-    0x0007,
-    0x0000,
-    0x0000,
-    0x0002,
-    0x0002,
-    0x0002,
-    0x0002,
-    0x0002,
-    0x0008,
-    0x0008,
+    0x0000, 0x0000, 0x0011, 0x0002, 0x0002, 0x0001, 0x0003, 0x0001, 0x0004, 0x0004, 0x0005, 0x0005,
+    0x0006, 0x0007, 0x0000, 0x0000, 0x0002, 0x0002, 0x0002, 0x0002, 0x0002, 0x0008, 0x0008,
 };
 
 /* 803C3188-803C3194 0202A8 000A+02 1/1 0/0 0/0 .data            camparamarc$4608 */
@@ -304,10 +282,17 @@ SECTION_DATA static char camparamarc[10] = "CamParam";
 
 /* 803C3194-803C31C0 -00001 002C+00 1/1 0/0 0/0 .data            l_method$4860 */
 SECTION_DATA static request_of_phase_process_fn l_method[11] = {
-    (request_of_phase_process_fn)phase_00__FP9dScnPly_c, (request_of_phase_process_fn)phase_1__FP9dScnPly_c, (request_of_phase_process_fn)phase_1_0__FP9dScnPly_c,
-    (request_of_phase_process_fn)phase_01__FP9dScnPly_c, (request_of_phase_process_fn)phase_0__FP9dScnPly_c, (request_of_phase_process_fn)phase_2__FP9dScnPly_c,
-    (request_of_phase_process_fn)phase_3__FP9dScnPly_c,  (request_of_phase_process_fn)phase_4__FP9dScnPly_c, (request_of_phase_process_fn)phase_5__FP9dScnPly_c,
-    (request_of_phase_process_fn)phase_6__FP9dScnPly_c,  (request_of_phase_process_fn)phase_compleate__FPv,
+    (request_of_phase_process_fn)phase_00__FP9dScnPly_c,
+    (request_of_phase_process_fn)phase_1__FP9dScnPly_c,
+    (request_of_phase_process_fn)phase_1_0__FP9dScnPly_c,
+    (request_of_phase_process_fn)phase_01__FP9dScnPly_c,
+    (request_of_phase_process_fn)phase_0__FP9dScnPly_c,
+    (request_of_phase_process_fn)phase_2__FP9dScnPly_c,
+    (request_of_phase_process_fn)phase_3__FP9dScnPly_c,
+    (request_of_phase_process_fn)phase_4__FP9dScnPly_c,
+    (request_of_phase_process_fn)phase_5__FP9dScnPly_c,
+    (request_of_phase_process_fn)phase_6__FP9dScnPly_c,
+    (request_of_phase_process_fn)phase_compleate__FPv,
 };
 
 /* 803C31C0-803C31D4 -00001 0014+00 2/0 0/0 0/0 .data            l_dScnPly_Method */
@@ -435,7 +420,7 @@ static int dScnPly_Draw(dScnPly_c* scn) {
                 ((wipe == 9 || wipe == 11 || wipe == 19) && !tmp)) {
                 mDoGph_gInf_c::setFadeColor(*(JUtility::TColor*)&g_saftyWhiteColor);
             } else if (wipe == 14 || wipe == 20) {
-                GXColor color = { 0x2A, 0x1E, 0x46, 0xFF };
+                GXColor color = {0x2A, 0x1E, 0x46, 0xFF};
                 if (dKy_darkworld_check()) {
                     color.r = 0xFF;
                     color.g = 0xCF;
@@ -587,8 +572,9 @@ bool dScnPly_c::resetGame() {
         }
     } else {
         if (dComIfGp_getNextStagePoint() == -4 || (dComIfGs_getLastSceneMode() & 0xF) == 0xC ||
-            !strcmp(dComIfGp_getNextStageName(), "F_SP109") || (!strcmp(dComIfGp_getNextStageName(), "F_SP116") &&
-            dComIfGp_getNextStageRoomNo() == 1 && dComIfGp_getNextStageLayer() == 9)) {
+            !strcmp(dComIfGp_getNextStageName(), "F_SP109") ||
+            (!strcmp(dComIfGp_getNextStageName(), "F_SP116") &&
+             dComIfGp_getNextStageRoomNo() == 1 && dComIfGp_getNextStageLayer() == 9)) {
             if (!dStage_roomControl_c::resetArchiveBank(0)) {
                 return false;
             }
@@ -635,10 +621,9 @@ static int phase_01(dScnPly_c* scn) {
     }
 
     s8 start_room = dComIfGp_getStartStageRoomNo();
-    int layer = dComIfG_play_c::getLayerNo_common(dComIfGp_getStartStageName(),
-                                                  start_room,
+    int layer = dComIfG_play_c::getLayerNo_common(dComIfGp_getStartStageName(), start_room,
                                                   dComIfGp_getStartStageLayer());
-    
+
     mDoAud_setSceneName(dComIfGp_getStartStageName(), start_room, layer);
 
     if (!mDoAud_load1stDynamicWave()) {
@@ -677,18 +662,18 @@ static int phase_1(dScnPly_c* scn) {
         execItemGet(WEAR_KOKIRI);
     }
     // Stage: Kakariko Village, Room: Kakariko Village
-    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP109") && dComIfGp_getStartStageRoomNo() == 0 &&
-             dComIfGp_getStartStagePoint() == 30) {
+    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP109") &&
+             dComIfGp_getStartStageRoomNo() == 0 && dComIfGp_getStartStagePoint() == 30) {
         dComIfGs_onDarkClearLV(1);
     }
     // Stage: Lake Hylia, Room: Fountain
-    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP115") && dComIfGp_getStartStageRoomNo() == 1 &&
-             dComIfGp_getStartStagePoint() == 20) {
+    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP115") &&
+             dComIfGp_getStartStageRoomNo() == 1 && dComIfGp_getStartStagePoint() == 20) {
         dComIfGs_onDarkClearLV(2);
     }
     // Stage: Sacred Grove, Room: Lost Woods
-    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP117") && dComIfGp_getStartStageRoomNo() == 1 &&
-             dComIfGp_getStartStagePoint() == 99) {
+    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP117") &&
+             dComIfGp_getStartStageRoomNo() == 1 && dComIfGp_getStartStagePoint() == 99) {
         dComIfGs_onDarkClearLV(3);
     }
 
@@ -699,10 +684,11 @@ static int phase_1(dScnPly_c* scn) {
         dComIfGs_setItem(SLOT_21, HORSE_FLUTE);
     }
 
-    if ((u8)dKy_darkworld_stage_check(dComIfGp_getStartStageName(), dComIfGp_getStartStageRoomNo()) == true) {
+    if ((u8)dKy_darkworld_stage_check(dComIfGp_getStartStageName(),
+                                      dComIfGp_getStartStageRoomNo()) == true) {
         dComIfGp_world_dark_set(1);
-    }
-    else if ((u8)dKy_darkworld_spot_check(dComIfGp_getStartStageName(), dComIfGp_getStartStageRoomNo()) == true) {
+    } else if ((u8)dKy_darkworld_spot_check(dComIfGp_getStartStageName(),
+                                            dComIfGp_getStartStageRoomNo()) == true) {
         dComIfGp_world_dark_set(2);
     } else {
         dComIfGp_world_dark_set(0);
@@ -723,11 +709,15 @@ static int phase_1(dScnPly_c* scn) {
     // Stage: Faron Woods Cave
     // Stage: Kakariko Village, Room: Kakariko Village
     // Stage: Lake Hylia, Room: Fountain
-    if ((!strcmp(dComIfGp_getStartStageName(), "F_SP108") && dComIfGp_getStartStageRoomNo() == 0 && dComIfGp_getStartStageLayer() == 7) ||
+    if ((!strcmp(dComIfGp_getStartStageName(), "F_SP108") && dComIfGp_getStartStageRoomNo() == 0 &&
+         dComIfGp_getStartStageLayer() == 7) ||
         (!strcmp(dComIfGp_getStartStageName(), "D_SB10") && dComIfG_play_c::getLayerNo(0) == 14) ||
-        (!strcmp(dComIfGp_getStartStageName(), "F_SP109") && dComIfGp_getStartStageRoomNo() == 0 && dComIfGp_getStartStageLayer() == 8) ||
-        (!strcmp(dComIfGp_getStartStageName(), "F_SP115") && dComIfGp_getStartStageRoomNo() == 1 && dComIfGp_getStartStageLayer() == 8) ||
-        (!strcmp(dComIfGp_getStartStageName(), "F_SP115") && dComIfGp_getStartStageRoomNo() == 1 && dComIfGp_getStartStageLayer() == 9)) {
+        (!strcmp(dComIfGp_getStartStageName(), "F_SP109") && dComIfGp_getStartStageRoomNo() == 0 &&
+         dComIfGp_getStartStageLayer() == 8) ||
+        (!strcmp(dComIfGp_getStartStageName(), "F_SP115") && dComIfGp_getStartStageRoomNo() == 1 &&
+         dComIfGp_getStartStageLayer() == 8) ||
+        (!strcmp(dComIfGp_getStartStageName(), "F_SP115") && dComIfGp_getStartStageRoomNo() == 1 &&
+         dComIfGp_getStartStageLayer() == 9)) {
         dComIfGp_world_dark_set(1);
     }
 
@@ -745,18 +735,19 @@ static int phase_1(dScnPly_c* scn) {
         dComIfGs_onTransformLV(0);
     }
     // Stage: Hyrule Field, Room: Eldin Gorge south entrance
-    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") && dComIfGp_getStartStageRoomNo() == 2 &&
-            dComIfGp_getStartStagePoint() == 10) {
+    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") &&
+             dComIfGp_getStartStageRoomNo() == 2 && dComIfGp_getStartStagePoint() == 10) {
         dComIfGs_onTransformLV(1);
     }
     // Stage: Hyrule Field, Room: Lanayru Field north entrance
-    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") && dComIfGp_getStartStageRoomNo() == 9 &&
-            dComIfGp_getStartStagePoint() == 10) {
+    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") &&
+             dComIfGp_getStartStageRoomNo() == 9 && dComIfGp_getStartStagePoint() == 10) {
         dComIfGs_onTransformLV(2);
     }
     // Stage: Hyrule Field, Room: Lanayru Field
-    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") && dComIfGp_getStartStageRoomNo() == 10 &&
-            (dComIfGp_getStartStagePoint() == 23 || dComIfGp_getStartStagePoint() == 20)) {
+    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") &&
+             dComIfGp_getStartStageRoomNo() == 10 &&
+             (dComIfGp_getStartStagePoint() == 23 || dComIfGp_getStartStagePoint() == 20)) {
         dComIfGs_onTransformLV(3);
     }
 
@@ -773,7 +764,8 @@ static int phase_1(dScnPly_c* scn) {
     dComIfGs_BossLife_public_Set(0xFF);
     g_env_light.field_0x1308 = 0;
 
-    JUTReportConsole_f("Start StageName:RoomNo [%s:%d]\n", dComIfGp_getStartStageName(), dComIfGp_getStartStageRoomNo());
+    JUTReportConsole_f("Start StageName:RoomNo [%s:%d]\n", dComIfGp_getStartStageName(),
+                       dComIfGp_getStartStageRoomNo());
     dComIfGp_setStatus(0);
     if (dComIfG_syncStageRes("Stg_00") < 0) {
         dComIfG_setStageRes("Stg_00", NULL);

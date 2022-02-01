@@ -1896,7 +1896,7 @@ SECTION_DEAD static char const* const stringBase_8037927A = "LOAD size:%d\n";
 /* 80035A04-80035BD0 030344 01CC+00 0/0 2/2 0/0 .text            card_to_memory__10dSv_info_cFPci */
 // memcpy param loads out of order
 #ifdef NONMATCHING
-int dSv_info_c::card_to_memory(char* param_0, int param_1) {    
+int dSv_info_c::card_to_memory(char* param_0, int param_1) {
     memcpy(dComIfGs_getSaveData(), param_0 + param_1 * 0xa94, sizeof(dSv_save_c));
 
     if (OSGetSoundMode() == SOUND_MODE_MONO) {

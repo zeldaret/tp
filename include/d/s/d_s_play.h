@@ -1,8 +1,8 @@
 #ifndef D_S_D_S_PLAY_H
 #define D_S_D_S_PLAY_H
 
-#include "dolphin/types.h"
 #include "d/com/d_com_inf_game.h"
+#include "dolphin/types.h"
 #include "f_op/f_op_scene.h"
 
 class dScnPly_reg_HIO_c {

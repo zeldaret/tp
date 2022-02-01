@@ -90,26 +90,9 @@ SECTION_DATA static u8 cNullVec__6Z2Calc[12 + 4 /* padding */] = {
 
 /* 803BB4A8-803BB548 0185C8 00A0+00 1/1 0/0 0/0 .data            l_htag$3879 */
 SECTION_DATA static u64 l_htag[20] = {
-    'hear_20', 
-    'hear_21',
-    'hear_22',
-    'hear_23',
-    'hear_24',
-    'hear_25',
-    'hear_26',
-    'hear_27',
-    'hear_28',
-    'hear_29',
-    'hear_30',
-    'hear_31',
-    'hear_32',
-    'hear_33',
-    'hear_34',
-    'hear_35',
-    'hear_36',
-    'hear_37',
-    'hear_38',
-    'hear_39',
+    'hear_20', 'hear_21', 'hear_22', 'hear_23', 'hear_24', 'hear_25', 'hear_26',
+    'hear_27', 'hear_28', 'hear_29', 'hear_30', 'hear_31', 'hear_32', 'hear_33',
+    'hear_34', 'hear_35', 'hear_36', 'hear_37', 'hear_38', 'hear_39',
 };
 
 /* 803BB548-803BB558 -00001 0010+00 1/1 0/0 0/0 .data            amariheartTex$3880 */
@@ -321,8 +304,8 @@ asm void dFile_info_c::setHeartCnt(dSv_save_c* param_0) {
 void dFile_info_c::setSaveDate(dSv_save_c* save) {
     OSCalendarTime time;
     OSTicksToCalendarTime(save->getPlayer().getPlayerStatusB().getDateIpl(), &time);
-    sprintf(mSaveDate, "%02d/%02d/%d %02d:%02d",
-            time.month + 1, time.day_of_month, time.year, time.hours, time.minutes);
+    sprintf(mSaveDate, "%02d/%02d/%d %02d:%02d", time.month + 1, time.day_of_month, time.year,
+            time.hours, time.minutes);
 }
 
 /* 80192C70-80192D58 18D5B0 00E8+00 1/1 0/0 0/0 .text setPlayTime__12dFile_info_cFP10dSv_save_c */
@@ -375,7 +358,8 @@ void dDlst_FileInfo_c::draw() {
 
     if (mBasePane != NULL) {
         MtxP glbMtx = mBasePane->getGlbMtx();
-        PSMTXScale(m, mBasePane->getWidth() / field_0x10->getWidth(), mBasePane->getHeight() / field_0x10->getHeight(), 1.0f);
+        PSMTXScale(m, mBasePane->getWidth() / field_0x10->getWidth(),
+                   mBasePane->getHeight() / field_0x10->getHeight(), 1.0f);
         PSMTXConcat(glbMtx, m, glbMtx);
         Scr->search('Nm_02')->setMtx(glbMtx);
     }

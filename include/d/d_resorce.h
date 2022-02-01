@@ -91,9 +91,7 @@ public:
         return syncRes(name, &mStageInfo[0], ARRAY_SIZE(mStageInfo));
     }
 
-    int syncAllObjectRes() {
-        return syncAllRes(&mObjectInfo[0], ARRAY_SIZE(mObjectInfo));
-    }
+    int syncAllObjectRes() { return syncAllRes(&mObjectInfo[0], ARRAY_SIZE(mObjectInfo)); }
 
     int deleteObjectRes(const char* name) {
         return deleteRes(name, &mObjectInfo[0], ARRAY_SIZE(mObjectInfo));

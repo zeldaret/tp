@@ -1,8 +1,8 @@
 #ifndef D_FILE_D_FILE_SEL_INFO_H
 #define D_FILE_D_FILE_SEL_INFO_H
 
-#include "dolphin/types.h"
 #include "d/com/d_com_inf_game.h"
+#include "dolphin/types.h"
 
 class dFile_info_c {
 public:

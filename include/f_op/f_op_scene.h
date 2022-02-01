@@ -1,11 +1,11 @@
 #ifndef F_F_OP_SCENE_H_
 #define F_F_OP_SCENE_H_
 
+#include "SSystem/SComponent/c_phase.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_scene_tag.h"
-#include "f_pc/f_pc_node.h"
 #include "f_pc/f_pc_base.h"
-#include "SSystem/SComponent/c_phase.h"
+#include "f_pc/f_pc_node.h"
 #include "m_Do/m_Do_dvd_thread.h"
 
 struct request_of_phase_process_class;

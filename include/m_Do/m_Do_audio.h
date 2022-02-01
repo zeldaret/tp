@@ -14,7 +14,7 @@ public:
 };
 
 extern bool struct_80450BB8;  // sInitFlag
-extern bool data_80450bba;  // sBgmSet
+extern bool data_80450bba;    // sBgmSet
 extern bool sResetFlag;
 
 class mDoAud_zelAudio_c {
