@@ -2130,6 +2130,12 @@ public:
     /* 80140888 */ void statusWindowExecute(cXyz const*, s16);
     /* 80140984 */ void statusWindowDraw();
     /* 80140AC8 */ void resetStatusWindow();
+    /* 8018280C */ void getChainGrabActor();
+    /* 80182814 */ void checkCokkoGlide() const;
+    /* 8018283C */ void checkCameraLargeDamage() const;
+    /* 80182870 */ void getHsSubChainTopPos() const;
+    /* 80182888 */ void checkCutHeadProc() const;
+    /* 8018289C */ void getRideActor();
 
     virtual cXyz* getMidnaAtnPos() const;
     virtual void setMidnaMsgNum(fopAc_ac_c*, u16);

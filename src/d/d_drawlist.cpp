@@ -79,19 +79,6 @@ struct dDlst_2DM_c {
     /* 80052C58 */ void draw();
 };
 
-class cM_rnd_c {
-public:
-    /* 80053CDC */ void init(int, int, int);
-    /* 80053CEC */ f32 get();
-    /* 80053DE0 */ f32 getF(f32);
-    /* 80053E18 */ f32 getFX(f32);
-    /* 80053E60 */ f32 getValue(f32, f32);
-
-    /* 0x0 */ int seed0;
-    /* 0x4 */ int seed1;
-    /* 0x8 */ int seed2;
-};
-
 struct cBgS_ShdwDraw {
     /* 80267F88 */ cBgS_ShdwDraw();
     /* 80267FD0 */ ~cBgS_ShdwDraw();

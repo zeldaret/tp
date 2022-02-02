@@ -26,6 +26,19 @@ private:
     /* 0x10 */ mDoExt_3DlineMat_c* mp3DlineMat;
 };
 
+class cM_rnd_c {
+public:
+    /* 80053CDC */ void init(int, int, int);
+    /* 80053CEC */ f32 get();
+    /* 80053DE0 */ f32 getF(f32);
+    /* 80053E18 */ f32 getFX(f32);
+    /* 80053E60 */ f32 getValue(f32, f32);
+
+    /* 0x0 */ int seed0;
+    /* 0x4 */ int seed1;
+    /* 0x8 */ int seed2;
+};
+
 class dDlst_base_c {
 public:
     virtual void draw();

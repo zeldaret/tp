@@ -4,37 +4,9 @@
 //
 
 #include "rel/d/a/tag/d_a_tag_lv5soup/d_a_tag_lv5soup.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct daTag_Lv5Soup_c {
-    /* 80D5AD58 */ void create();
-    /* 80D5ADEC */ bool Delete();
-    /* 80D5ADF4 */ void Execute();
-    /* 80D5AE9C */ bool Draw();
-    /* 80D5AEA4 */ void isAreaCheck();
-    /* 80D5B0F4 */ ~daTag_Lv5Soup_c();
-};
-
-struct dSv_event_c {
-    /* 8003498C */ void onEventBit(u16);
-    /* 800349BC */ void isEventBit(u16) const;
-};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-};
 
 //
 // Forward References:
@@ -63,41 +35,15 @@ extern "C" void onEventBit__11dSv_event_cFUs();
 extern "C" void isEventBit__11dSv_event_cCFUs();
 extern "C" void __mi__4cXyzCFRC3Vec();
 extern "C" void __dl__FPv();
-extern "C" void PSVECSquareMag();
 extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 __float_nan;
 
 //
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 80D5B15C-80D5B160 000000 0004+00 2/2 0/0 0/0 .rodata          @3655 */
-SECTION_RODATA static f32 const lit_3655 = -30.0f;
-COMPILER_STRIP_GATE(0x80D5B15C, &lit_3655);
-
-/* 80D5B160-80D5B164 000004 0004+00 0/1 0/0 0/0 .rodata          @3656 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3656 = -15.0f;
-COMPILER_STRIP_GATE(0x80D5B160, &lit_3656);
-#pragma pop
-
-/* 80D5B164-80D5B168 000008 0004+00 0/1 0/0 0/0 .rodata          @3657 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3657 = 30.0f;
-COMPILER_STRIP_GATE(0x80D5B164, &lit_3657);
-#pragma pop
-
-/* 80D5B168-80D5B16C 00000C 0004+00 0/1 0/0 0/0 .rodata          @3658 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3658 = 45.0f;
-COMPILER_STRIP_GATE(0x80D5B168, &lit_3658);
-#pragma pop
+inline int dComIfGs_isEventBit(u16 event) {
+    return g_dComIfG_gameInfo.info.getSavedata().getEvent().isEventBit(event);
+}
 
 /* 80D5B18C-80D5B1AC -00001 0020+00 1/0 0/0 0/0 .data            daTag_Lv5Soup_MethodTable */
 SECTION_DATA static void* daTag_Lv5Soup_MethodTable[8] = {
@@ -129,143 +75,82 @@ SECTION_DATA extern void* __vt__15daTag_Lv5Soup_c[3] = {
 };
 
 /* 80D5AD58-80D5ADEC 000078 0094+00 1/1 0/0 0/0 .text            create__15daTag_Lv5Soup_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTag_Lv5Soup_c::create() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_lv5soup/d_a_tag_lv5soup/create__15daTag_Lv5Soup_cFv.s"
+int daTag_Lv5Soup_c::create() {
+    if (!fopAcM_CheckCondition(this, 8)) {
+        new (this) daTag_Lv5Soup_c();
+        fopAcM_OnCondition(this, 8);
+    }
+
+    fopAcM_setCullSizeBox(this, -30.0f, -15.0f, -30.0f, 30.0f, 45.0f, 30.0f);
+    mAttentionInfo.mFlags = 0;
+    return 4;
 }
-#pragma pop
 
 /* 80D5ADEC-80D5ADF4 00010C 0008+00 1/1 0/0 0/0 .text            Delete__15daTag_Lv5Soup_cFv */
-bool daTag_Lv5Soup_c::Delete() {
-    return true;
+int daTag_Lv5Soup_c::Delete() {
+    return 1;
 }
 
 /* 80D5ADF4-80D5AE9C 000114 00A8+00 1/1 0/0 0/0 .text            Execute__15daTag_Lv5Soup_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTag_Lv5Soup_c::Execute() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_lv5soup/d_a_tag_lv5soup/Execute__15daTag_Lv5Soup_cFv.s"
+int daTag_Lv5Soup_c::Execute() {
+    if (isAreaCheck()) {
+        // Yeto took pumpkin and pumpkin not in soup
+        if (dComIfGs_isEventBit(0x0020) && !dComIfGs_isEventBit(0x0002)) {
+            // Pumpkin in soup
+            dComIfGs_onEventBit(0x0002);
+        }
+
+        // Yeto took cheese and cheese not in soup
+        if (dComIfGs_isEventBit(0x0010) && !dComIfGs_isEventBit(0x0001)) {
+            // Cheese in soup
+            dComIfGs_onEventBit(0x0001);
+        }
+    }
+    return 1;
 }
-#pragma pop
 
 /* 80D5AE9C-80D5AEA4 0001BC 0008+00 1/1 0/0 0/0 .text            Draw__15daTag_Lv5Soup_cFv */
-bool daTag_Lv5Soup_c::Draw() {
-    return true;
+int daTag_Lv5Soup_c::Draw() {
+    return 1;
 }
-
-/* ############################################################################################## */
-/* 80D5B16C-80D5B170 000010 0004+00 0/1 0/0 0/0 .rodata          @3743 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3743 = 100.0f;
-COMPILER_STRIP_GATE(0x80D5B16C, &lit_3743);
-#pragma pop
-
-/* 80D5B170-80D5B174 000014 0004+00 0/1 0/0 0/0 .rodata          @3744 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3744[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80D5B170, &lit_3744);
-#pragma pop
-
-/* 80D5B174-80D5B17C 000018 0008+00 0/1 0/0 0/0 .rodata          @3745 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3745[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D5B174, &lit_3745);
-#pragma pop
-
-/* 80D5B17C-80D5B184 000020 0008+00 0/1 0/0 0/0 .rodata          @3746 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3746[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D5B17C, &lit_3746);
-#pragma pop
-
-/* 80D5B184-80D5B18C 000028 0008+00 0/1 0/0 0/0 .rodata          @3747 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3747[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D5B184, &lit_3747);
-#pragma pop
 
 /* 80D5AEA4-80D5B06C 0001C4 01C8+00 1/1 0/0 0/0 .text            isAreaCheck__15daTag_Lv5Soup_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTag_Lv5Soup_c::isAreaCheck() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_lv5soup/d_a_tag_lv5soup/isAreaCheck__15daTag_Lv5Soup_cFv.s"
+bool daTag_Lv5Soup_c::isAreaCheck() {
+    cXyz dist = dComIfGp_getLinkPlayer()->mCurrent.mPosition - mCurrent.mPosition;
+    f32 boundX = mScale.x * 100.0f;
+    f32 boundY = mScale.y * 100.0f;
+
+    if (sqrtf(dist.abs2XZ()) < boundX && -boundY < dist.y && dist.y < boundY) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
 
 /* 80D5B06C-80D5B08C 00038C 0020+00 1/0 0/0 0/0 .text            daTag_Lv5Soup_Create__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTag_Lv5Soup_Create(void* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_lv5soup/d_a_tag_lv5soup/daTag_Lv5Soup_Create__FPv.s"
+static int daTag_Lv5Soup_Create(void* tag) {
+    return static_cast<daTag_Lv5Soup_c*>(tag)->create();
 }
-#pragma pop
 
 /* 80D5B08C-80D5B0AC 0003AC 0020+00 1/0 0/0 0/0 .text            daTag_Lv5Soup_Delete__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTag_Lv5Soup_Delete(void* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_lv5soup/d_a_tag_lv5soup/daTag_Lv5Soup_Delete__FPv.s"
+static int daTag_Lv5Soup_Delete(void* tag) {
+    return static_cast<daTag_Lv5Soup_c*>(tag)->Delete();
 }
-#pragma pop
 
 /* 80D5B0AC-80D5B0CC 0003CC 0020+00 1/0 0/0 0/0 .text            daTag_Lv5Soup_Execute__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTag_Lv5Soup_Execute(void* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_lv5soup/d_a_tag_lv5soup/daTag_Lv5Soup_Execute__FPv.s"
+static int daTag_Lv5Soup_Execute(void* tag) {
+    return static_cast<daTag_Lv5Soup_c*>(tag)->Execute();
 }
-#pragma pop
 
 /* 80D5B0CC-80D5B0EC 0003EC 0020+00 1/0 0/0 0/0 .text            daTag_Lv5Soup_Draw__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTag_Lv5Soup_Draw(void* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_lv5soup/d_a_tag_lv5soup/daTag_Lv5Soup_Draw__FPv.s"
+static int daTag_Lv5Soup_Draw(void* tag) {
+    return static_cast<daTag_Lv5Soup_c*>(tag)->Draw();
 }
-#pragma pop
 
 /* 80D5B0EC-80D5B0F4 00040C 0008+00 1/0 0/0 0/0 .text            daTag_Lv5Soup_IsDelete__FPv */
-static bool daTag_Lv5Soup_IsDelete(void* param_0) {
-    return true;
+static int daTag_Lv5Soup_IsDelete(void* tag) {
+    return 1;
 }
 
 /* 80D5B0F4-80D5B154 000414 0060+00 1/0 0/0 0/0 .text            __dt__15daTag_Lv5Soup_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm daTag_Lv5Soup_c::~daTag_Lv5Soup_c() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_lv5soup/d_a_tag_lv5soup/__dt__15daTag_Lv5Soup_cFv.s"
-}
-#pragma pop
+daTag_Lv5Soup_c::~daTag_Lv5Soup_c() {}

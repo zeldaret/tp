@@ -8,130 +8,81 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct daTagSetBall_c {
-    /* 80D601F8 */ void initBaseMtx();
-    /* 80D60218 */ void setBaseMtx();
-    /* 80D6021C */ void Create();
-    /* 80D6024C */ void create();
-    /* 80D602B4 */ bool execute();
-    /* 80D602BC */ bool _delete();
-};
-
-//
 // Forward References:
 //
 
-extern "C" void initBaseMtx__14daTagSetBall_cFv();
-extern "C" void setBaseMtx__14daTagSetBall_cFv();
-extern "C" void Create__14daTagSetBall_cFv();
-extern "C" void create__14daTagSetBall_cFv();
-extern "C" bool execute__14daTagSetBall_cFv();
-extern "C" bool _delete__14daTagSetBall_cFv();
-extern "C" static void daTagSetBall_Execute__FP14daTagSetBall_c();
-extern "C" static void daTagSetBall_Delete__FP14daTagSetBall_c();
-extern "C" static void daTagSetBall_Create__FP14daTagSetBall_c();
 extern "C" extern void* g_profile_Tag_SetBall[12];
 
 //
 // External References:
 //
 
-extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 
 //
 // Declarations:
 //
 
 /* 80D601F8-80D60218 000078 0020+00 1/1 0/0 0/0 .text            initBaseMtx__14daTagSetBall_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagSetBall_c::initBaseMtx() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_setBall/d_a_tag_setBall/initBaseMtx__14daTagSetBall_cFv.s"
+void daTagSetBall_c::initBaseMtx() {
+    setBaseMtx();
 }
-#pragma pop
 
 /* 80D60218-80D6021C 000098 0004+00 1/1 0/0 0/0 .text            setBaseMtx__14daTagSetBall_cFv */
-void daTagSetBall_c::setBaseMtx() {
-    /* empty function */
-}
+void daTagSetBall_c::setBaseMtx() {}
 
 /* 80D6021C-80D6024C 00009C 0030+00 1/1 0/0 0/0 .text            Create__14daTagSetBall_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagSetBall_c::Create() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_setBall/d_a_tag_setBall/Create__14daTagSetBall_cFv.s"
+int daTagSetBall_c::Create() {
+    mType = getType_private();
+    initBaseMtx();
+    return 1;
 }
-#pragma pop
 
 /* 80D6024C-80D602B4 0000CC 0068+00 1/1 0/0 0/0 .text            create__14daTagSetBall_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagSetBall_c::create() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_setBall/d_a_tag_setBall/func_80D6024C.s"
+int daTagSetBall_c::create() {
+    if (!fopAcM_CheckCondition(this, 8)) {
+        new (this) daTagSetBall_c();
+        fopAcM_OnCondition(this, 8);
+    }
+
+    if (!Create()) {
+        return 5;
+    } else {
+        return 4;
+    }
 }
-#pragma pop
 
 /* 80D602B4-80D602BC 000134 0008+00 1/1 0/0 0/0 .text            execute__14daTagSetBall_cFv */
-bool daTagSetBall_c::execute() {
-    return true;
+int daTagSetBall_c::execute() {
+    return 1;
 }
 
 /* 80D602BC-80D602C4 00013C 0008+00 1/1 0/0 0/0 .text            _delete__14daTagSetBall_cFv */
-bool daTagSetBall_c::_delete() {
-    return true;
+int daTagSetBall_c::_delete() {
+    return 1;
 }
 
 /* 80D602C4-80D602E4 000144 0020+00 1/0 0/0 0/0 .text daTagSetBall_Execute__FP14daTagSetBall_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagSetBall_Execute(daTagSetBall_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_setBall/d_a_tag_setBall/daTagSetBall_Execute__FP14daTagSetBall_c.s"
+static int daTagSetBall_Execute(daTagSetBall_c* tag) {
+    return tag->execute();
 }
-#pragma pop
 
 /* 80D602E4-80D60304 000164 0020+00 1/0 0/0 0/0 .text daTagSetBall_Delete__FP14daTagSetBall_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagSetBall_Delete(daTagSetBall_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_setBall/d_a_tag_setBall/daTagSetBall_Delete__FP14daTagSetBall_c.s"
+static int daTagSetBall_Delete(daTagSetBall_c* tag) {
+    return tag->_delete();
 }
-#pragma pop
 
 /* 80D60304-80D60324 000184 0020+00 1/0 0/0 0/0 .text daTagSetBall_Create__FP14daTagSetBall_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagSetBall_Create(daTagSetBall_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_setBall/d_a_tag_setBall/daTagSetBall_Create__FP14daTagSetBall_c.s"
+static int daTagSetBall_Create(daTagSetBall_c* tag) {
+    return tag->create();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D6032C-80D6034C -00001 0020+00 1/0 0/0 0/0 .data            l_daTagSetBall_Method */
 SECTION_DATA static void* l_daTagSetBall_Method[8] = {
-    (void*)daTagSetBall_Create__FP14daTagSetBall_c,
-    (void*)daTagSetBall_Delete__FP14daTagSetBall_c,
-    (void*)daTagSetBall_Execute__FP14daTagSetBall_c,
+    (void*)daTagSetBall_Create,
+    (void*)daTagSetBall_Delete,
+    (void*)daTagSetBall_Execute,
     (void*)NULL,
     (void*)NULL,
     (void*)NULL,

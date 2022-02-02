@@ -327,6 +327,14 @@ public:
     void changeDemoParam2(s16);
     void cancelOriginalDemo();
     void changeOriginalDemo();
+    /* 801829E0 */ void checkThrowDamage() const;
+    /* 80182A10 */ void checkGoronSideMove() const;
+    /* 80182AAC */ void getRightFootPosP();
+    /* 80182AB4 */ void getLeftFootPosP();
+    /* 80182ABC */ u32 getMidnaActor();
+    /* 80182AC4 */ void checkCopyRodThrowAfter() const;
+    /* 80182AD8 */ void checkRide() const;
+    /* 80182B9C */ void getRightHandPos() const;
 
     virtual cXyz* getMidnaAtnPos() const;
     virtual void setMidnaMsgNum(fopAc_ac_c*, u16);
