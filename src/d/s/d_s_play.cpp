@@ -256,7 +256,6 @@ static u8 g_preLoadHIO[4];
 extern s8 struct_80451124;
 s8 struct_80451124;
 
-extern s8 data_80451125;  // sPauseTimer
 s8 data_80451125;
 
 /* 80259400-80259440 253D40 0040+00 1/1 0/0 0/0 .text            calcPauseTimer__9dScnPly_cFv */

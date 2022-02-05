@@ -108,7 +108,9 @@ public:
     /* 0x534 */ f32 mMaxFallSpeed;
     /* 0x538 */ cXyz mEyePos;
     /* 0x544 */ actor_attention_types mAttentionInfo;
-    /* 0x560 */ u8 field_0x560[0x8];  // not 100% sure on this
+    /* 0x560 */ u8 field_0x560[0x2];
+    /* 0x562 */ s16 field_0x562;
+    /* 0x564 */ u8 field_0x564[0x4];
 
     fopAc_ac_c();
     ~fopAc_ac_c();

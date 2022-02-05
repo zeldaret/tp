@@ -521,6 +521,8 @@ public:
     bool getHeavyStateAndBoots() { return i_checkNoResetFlg0(HEAVY_STATE_BOOTS); }
     bool checkEnemyAttentionLock() const { return i_checkResetFlg0(ENEMY_ATTENTION_LOCK); }
     bool checkCanoeSlider() const { return mSpecialMode == 0x2D; }
+    u8 getCutType() const { return mCutType; }
+    u16 getSwordAtUpTime() const { return mSwordUpTimer; }
 
     // some functions use these function as an inline
     // is there a better way to handle this?
@@ -549,10 +551,10 @@ public:
     bool i_checkMidnaRide() const { return i_checkNoResetFlg0(MIDNA_RIDE); }
 
     inline static u32 getLastSceneMode();
-    inline bool checkWoodSwordEquip();
+    inline static bool checkWoodSwordEquip();
     inline BOOL i_checkSwordGet();
     inline bool i_checkShieldGet() const;
-    inline BOOL checkNowWolf();
+    inline static BOOL checkNowWolf();
     inline bool checkZoraWearFlg() const;
 
     static daMidna_c* getMidnaActor() { return m_midnaActor; }
