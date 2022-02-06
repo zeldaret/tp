@@ -86,6 +86,10 @@ public:
 
     f32 getRotOffsetY() const { return mRotateOffsetY; }
 
+    MtxP getGlbMtx() { return mGlobalMtx; }
+
+    void setMtx(Mtx m) { PSMTXCopy(m, mPositionMtx); }
+
     void translate(f32 transX, f32 transY) {
         mTranslateX = transX;
         mTranslateY = transY;

@@ -4,21 +4,17 @@
 //
 
 #include "d/d_kyeff.h"
-#include "d/kankyo/d_kankyo_wether.h"
+#include "Z2AudioLib/Z2EnvSeMgr.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/kankyo/d_kankyo.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-#include "d/com/d_com_inf_game.h"
 
 //
 // Types:
 //
 
 struct kankyo_class {};
-
-struct Z2EnvSeMgr {
-    /* 802C66B0 */ void framework();
-};
 
 //
 // Forward References:
@@ -45,69 +41,50 @@ extern "C" void dKyw_wether_draw__Fv();
 extern "C" void dKy_FiveSenses_fullthrottle_dark__Fv();
 extern "C" void framework__10Z2EnvSeMgrFv();
 extern "C" extern void* g_fopKy_Method[5 + 1 /* padding */];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_mEnvSeMgr[780];
+extern "C" extern dScnKy_env_light_c g_env_light;
+extern "C" extern Z2EnvSeMgr g_mEnvSeMgr;
 
 //
 // Declarations:
 //
+
+// move later
+inline void mDoAud_mEnvse_framework() {
+    g_mEnvSeMgr.framework();
+}
 
 /* 801ADD00-801ADD38 1A8640 0038+00 2/2 0/0 0/0 .text            dKankyo_DayProc__Fv */
 void dKankyo_DayProc() {
     dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[91]);
 }
 
-static bool dKyeff_Draw(dKyeff_c* ptr) {
+static int dKyeff_Draw(dKyeff_c* ptr) {
     dKyw_wether_draw();
-    return true;
+    return 1;
 }
 
-/* ############################################################################################## */
-/* 80394F38-80394F38 021598 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80394F38 = "Name";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80394F3D = "\0\0";
-#pragma pop
-
 /* 801ADD5C-801ADDB4 1A869C 0058+00 1/1 0/0 0/0 .text            execute__8dKyeff_cFv */
-// matching but need gameinfo setup
-#ifdef NONMATCHING
-bool dKyeff_c::execute() {
-    const char* stageName = dComIfGp_getStartStageName();
-    int strcmp_result = strcmp(stageName, "Name");  // strcmp(stageName,"Name");
-    if (strcmp_result != 0) {
+int dKyeff_c::execute() {
+    if (strcmp(dComIfGp_getStartStageName(), "Name")) {
         dKyw_wether_move();
     }
     dKyw_wether_move_draw();
     dKy_FiveSenses_fullthrottle_dark();
     mDoAud_mEnvse_framework();
-    return true;
+    return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dKyeff_c::execute() {
-    nofralloc
-#include "asm/d/d_kyeff/execute__8dKyeff_cFv.s"
-}
-#pragma pop
-#endif
 
-static bool dKyeff_Execute(dKyeff_c* ptr) {
+static int dKyeff_Execute(dKyeff_c* ptr) {
     return ptr->execute();
 }
 
-static bool dKyeff_IsDelete(dKyeff_c* ptr) {
-    return true;
+static int dKyeff_IsDelete(dKyeff_c* ptr) {
+    return 1;
 }
 
-static bool dKyeff_Delete(dKyeff_c* ptr) {
+static int dKyeff_Delete(dKyeff_c* ptr) {
     dKyw_wether_delete();
-    return true;
+    return 1;
 }
 
 /* ############################################################################################## */
@@ -132,25 +109,17 @@ SECTION_SDATA2 static f32 lit_3843 = 7.0f / 10.0f;
 SECTION_SDATA2 static f32 lit_3844 = 15.0f;
 
 /* 801ADE00-801ADEA0 1A8740 00A0+00 1/0 0/0 0/0 .text            dKyeff_Create__FP12kankyo_class */
-// matching but need gameinfo setup
+// float data
 #ifdef NONMATCHING
-u32 dKyeff_Create(kankyo_class* kankyo_class_ptr) {
-    int strcmp_result;
-    OSTime Time;
-    OSCalendarTime CalendarTime;
+static int dKyeff_Create(kankyo_class* kankyo) {
+    OSCalendarTime time;
 
     dKyw_wether_init();
-    strcmp_result = strcmp(dComIfGp_getStartStageName(), "Name");
-    if (strcmp_result == 0) {
-        Time = OSGetTime();
-        OSTicksToCalendarTime(
-            Time,
-            &CalendarTime);  // CONCAT44(iVar1,(int)((ulonglong)OVar2 >> 0x20)),&CalendarTime);
-        lbl_8042CA54.field_0xe48 = 1.0f;
-        lbl_8042CA54.field_0xe4c = 0.0f;
-        lbl_8042CA54.field_0xe50 = 0.0f;
-        lbl_8042CA54.field_0xe58 = 0.7f;
-        lbl_8042CA54.field_0x1244 = CalendarTime.hours * 15.0f;
+    if (!strcmp(dComIfGp_getStartStageName(), "Name")) {
+        OSTicksToCalendarTime(OSGetTime(), &time);
+        g_env_light.mWind.vec.set(1.0f, 0.0f, 0.0f);
+        g_env_light.mWind.pow = 0.7f;
+        g_env_light.mDaytime = time.hours * 15.0f;
     }
     return 4;
 }
@@ -158,7 +127,7 @@ u32 dKyeff_Create(kankyo_class* kankyo_class_ptr) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dKyeff_Create(kankyo_class* param_0) {
+static asm int dKyeff_Create(kankyo_class* param_0) {
     nofralloc
 #include "asm/d/d_kyeff/dKyeff_Create__FP12kankyo_class.s"
 }

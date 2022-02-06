@@ -6,17 +6,20 @@
 
 class daTagMmsg_c : public fopAc_ac_c {
 public:
+    daTagMmsg_c() {}
+
     /* 80D5B918 */ void create();
     /* 80D5BAB4 */ ~daTagMmsg_c();
     /* 80D5BB30 */ void execute();
 
     void onUseFlg() { mUseFlg = true; }
+    bool checkNoAttention() { return mAttention == 0xFF; }
 
 private:
     /* 0x568 */ u8 field_0x568;
     /* 0x569 */ u8 field_0x569;
     /* 0x56A */ u8 mAttention;
-    /* 0x56B */ u8 field_0x56b;
+    /* 0x56B */ bool field_0x56b;
     /* 0x56C */ bool mUseFlg;
     /* 0x56D */ u8 field_0x56d[3];
     /* 0x570 */ u16 field_0x570;

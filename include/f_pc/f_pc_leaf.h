@@ -25,7 +25,7 @@ typedef struct leaf_process_profile_definition {
     /* 0x1C */ leafdraw_method_class* mLfDrwMth;
     /* 0x20 */ s16 mPriority;
     /* 0x22 */ u8 unk22[2];
-    /* 0x24 */ s32 unk24;
+    /* 0x24 */ leafdraw_method_class* mMethods;
 } leaf_process_profile_definition;
 
 s32 fpcLf_GetPriority(const leafdraw_class* pLeaf);
@@ -37,5 +37,6 @@ s32 fpcLf_Delete(leafdraw_class* pLeaf);
 s32 fpcLf_Create(leafdraw_class* pLeaf);
 
 extern int g_fpcLf_type;
+extern leafdraw_method_class g_fpcLf_Method;
 
 #endif

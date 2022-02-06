@@ -556,8 +556,9 @@ public:
     /* 800248A8 */ void destroyMemoryBlock();
     /* 8002490C */ static void setArcBank(int, char const*);
     /* 80024940 */ static char* getArcBank(int);
-    /* 80024954 */ static int resetArchiveBank(int);
+    /* 80024954 */ static bool resetArchiveBank(int);
     /* 80024DB0 */ static void SetTimePass(int);
+    /* 8025BAAC */ void setZoneNo(int, int);
     static s32 GetTimePass();
 
     inline static s8 getStayNo() { return struct_80450D64; }
@@ -566,6 +567,10 @@ public:
         return cLib_checkBit(mStatus[i_roomNo].unk_0x3F4, flag);
     }
     static char* getDemoArcName() { return mDemoArcName; }
+    static char* getArcBankName() { return mArcBankName; }
+    static void setRoomReadId(s8 id) { data_804505F0 = id; }
+    static void offNoChangeRoom() { data_80450D68 = false; }
+    static void setProcID(u32 id) { mProcID = id; }
 
     static JKRExpHeap* mMemoryBlock[19];
     static char mArcBank[32][10];
@@ -606,10 +611,12 @@ public:
     }
     void set(const char*, s8, s16, s8, s8, u8);
     void offEnable() { enabled = 0; }
+    s8 isEnable() const { return enabled; }
+    s8 getWipe() const { return wipe; }
 
 private:
     s8 enabled;
-    u8 wipe;
+    s8 wipe;
     u8 wipe_speed;
 };
 
@@ -686,6 +693,8 @@ static int dStage_fieldMapMapPathInit(dStage_dt_c*, void*, int, void*);
 
 u8 dStage_roomRead_dt_c_GetReverbStage(roomRead_class&, int);
 void dStage_changeScene(int, f32, u32, s8, s16, int);
+void dStage_infoCreate();
+u8 dStage_stagInfo_GetParticleNo(stage_stag_info_class* p_info, int layer);
 
 inline u8 dStage_roomRead_dt_c_GetLoadRoomIndex(u8 param_0) {
     return param_0 & 0x3f;
@@ -701,6 +710,10 @@ inline u32 dStage_stagInfo_GetEscapeWarp(stage_stag_info_class* pstag) {
 
 inline u32 dStage_stagInfo_GetMiniMap(stage_stag_info_class* pstag) {
     return (pstag->field_0x0a >> 0xD) & 7;
+}
+
+inline u8 dStage_stagInfo_GetParticleNo(stage_stag_info_class* p_info) {
+    return (p_info->field_0x0a >> 0x3) & 0xFF;
 }
 
 inline s8 dStage_sclsInfo_getSceneLayer(stage_scls_info_class* p_info) {

@@ -85,7 +85,7 @@ base_process_class* fpcBs_Create(s16 pProcTypeID, unsigned int pProcID, void* pD
     base_process_class* procClass;
     u32 size;
 
-    procProfDef = fpcPf_Get(pProcTypeID);
+    procProfDef = (process_profile_definition*)fpcPf_Get(pProcTypeID);
     size = procProfDef->mSize + procProfDef->mSizeOther;
     procClass = (base_process_class*)cMl::memalignB(-4, size);
     if (procClass == NULL) {

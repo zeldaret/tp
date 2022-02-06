@@ -197,6 +197,9 @@ public:
     /* 8007378C */ void CheckObjectTarget(s32);
     /* 800737E4 */ bool LockonTruth();
     /* 80073838 */ void checkDistance(cXyz*, s16, cXyz*, f32, f32, f32, f32);
+    /* 8016E424 */ void LockEdge();
+    /* 80182994 */ void GetCheckObjectCount();
+    /* 80182AD0 */ void keepLock(int);
 
     dAttCatch_c& getCatghTarget() { return mCatghTarget; }
     bool chkFlag(u32 flag) { return mFlags & flag; }

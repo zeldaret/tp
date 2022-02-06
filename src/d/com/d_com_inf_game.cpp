@@ -1367,7 +1367,7 @@ asm void dComIfG_changeOpeningScene(scene_class* param_0, s16 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dComIfG_resetToOpening(scene_class* param_0) {
+asm BOOL dComIfG_resetToOpening(scene_class* param_0) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/dComIfG_resetToOpening__FP11scene_class.s"
 }

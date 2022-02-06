@@ -4,89 +4,27 @@
 //
 
 #include "d/s/d_s_room.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_scene.h"
 
 //
 // Types:
 //
 
-struct scene_class {};
-
-struct room_of_scene_class {};
-
-struct request_of_phase_process_class {};
-
-struct mDoRst {
-    static u8 mResetData[4 + 4 /* padding */];
-};
-
-struct layer_class {};
-
-struct dSv_zoneBit_c {
-    /* 80034CEC */ void clearRoomSwitch();
-    /* 80034CF8 */ void clearRoomItem();
-};
-
-struct dSv_info_c {
-    /* 800351A4 */ void createZone(int);
-};
-
-struct dStage_roomControl_c {
-    /* 80024384 */ void getStatusRoomDt(int);
-    /* 800243B0 */ void getMemoryBlock(int);
-    /* 8002490C */ void setArcBank(int, char const*);
-    /* 80024940 */ void getArcBank(int);
-    /* 80024954 */ void resetArchiveBank(int);
-    /* 8002D9B0 */ void getZoneNo(int);
-    /* 8025BAAC */ void setZoneNo(int, int);
-
-    static u8 mStatus[65792];
-    static u8 mDemoArcName[10 + 2 /* padding */];
-    static u8 mArcBankName[4];
-    static u8 mArcBankData[4];
-};
-
-struct dStage_dt_c {};
-
-struct dRes_info_c {};
-
-struct JKRHeap {
-    /* 802CE5CC */ void freeAll();
-};
-
-struct dRes_control_c {
-    /* 8003C078 */ void setRes(char const*, dRes_info_c*, int, char const*, u8, JKRHeap*);
-    /* 8003C160 */ void syncRes(char const*, dRes_info_c*, int);
-    /* 8003C194 */ void deleteRes(char const*, dRes_info_c*, int);
-    /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
-    /* 8003C5BC */ void setStageRes(char const*, JKRHeap*);
-};
-
-struct dPa_control_c {
-    struct level_c {
-        /* 8004B8E8 */ void allForceOnEventMove();
-    };
-};
-
-struct dEvent_manager_c {
-    /* 80046888 */ void demoInit();
-    /* 80046904 */ void roomInit(int);
-    /* 800469EC */ void roomFinish(int);
-};
-
-struct dComIfG_play_c {
-    /* 8002C97C */ void getLayerNo(int);
-};
-
-struct csXyz {};
-
-struct create_tag {};
-
-struct cXyz {};
-
-struct JKRExpHeap {
-    /* 802CFD64 */ void getTotalUsedSize() const;
+class room_of_scene_class : public process_node_class {
+public:
+    /* 0x1AC */ process_method_class* mpProcessMtd;
+    /* 0x1B0 */ scene_tag_class* field_0x1b0;
+    /* 0x1B4 */ u8 field_0x1b4[0x10];
+    /* 0x1C4 */ request_of_phase_process_class field_0x1c4;
+    /* 0x1CC */ void* field_0x1cc;
+    /* 0x1D0 */ dStage_roomDt_c* field_0x1d0;
+    /* 0x1D4 */ s8 field_0x1d4;
+    /* 0x1D5 */ s8 field_0x1d5;
+    /* 0x1D6 */ u8 field_0x1d6[2];
+    /* 0x1D8 */ u8 field_0x1d8;
 };
 
 //
@@ -121,7 +59,6 @@ extern "C" extern void* g_profile_ROOM_SCENE[10];
 // External References:
 //
 
-extern "C" void OSReport_Error();
 extern "C" void mDoExt_getArchiveHeap__Fv();
 extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
 extern "C" void fopAc_IsActor__FPv();
@@ -165,17 +102,12 @@ extern "C" void _restgpr_25();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void sprintf();
-extern "C" void strcmp();
 extern "C" void strnicmp();
 extern "C" extern void* g_fopScn_Method[5 + 1 /* padding */];
 extern "C" extern void* g_fpcNd_Method[5 + 1 /* padding */];
 extern "C" u8 mStatus__20dStage_roomControl_c[65792];
 extern "C" u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 g_fpcNd_type[4 + 4 /* padding */];
-extern "C" extern u8 struct_80450D64[4];
 extern "C" u8 mArcBankName__20dStage_roomControl_c[4];
 extern "C" u8 mArcBankData__20dStage_roomControl_c[4];
 extern "C" extern u8 struct_80451124[4];

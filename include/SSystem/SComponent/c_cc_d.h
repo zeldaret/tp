@@ -24,6 +24,8 @@ public:
     /* 0x1C vtable */
 
     struct Shape {
+        /* 80167BBC */ ~Shape();
+
         /* 0x00 */ u32 _0;
         /* 0x04 */ f32 _4;
         /* 0x08 */ f32 _8;

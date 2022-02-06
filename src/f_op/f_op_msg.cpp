@@ -8,18 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct process_method_class {};
-
-struct leafdraw_method_class {};
-
-struct leafdraw_class {};
-
-struct create_tag_class {};
-
-//
 // Forward References:
 //
 
@@ -28,7 +16,6 @@ extern "C" static void fopMsg_Execute__FPv();
 extern "C" static void fopMsg_IsDelete__FPv();
 extern "C" static void fopMsg_Delete__FPv();
 extern "C" static void fopMsg_Create__FPv();
-extern "C" extern void* g_fopMsg_Method[5 + 1 /* padding */];
 
 //
 // External References:
@@ -55,7 +42,7 @@ extern "C" extern u8 struct_80451124[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void fopMsg_Draw(void* param_0) {
+static asm int fopMsg_Draw(void* param_0) {
     nofralloc
 #include "asm/f_op/f_op_msg/fopMsg_Draw__FPv.s"
 }
@@ -65,7 +52,7 @@ static asm void fopMsg_Draw(void* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void fopMsg_Execute(void* param_0) {
+static asm int fopMsg_Execute(void* param_0) {
     nofralloc
 #include "asm/f_op/f_op_msg/fopMsg_Execute__FPv.s"
 }
@@ -75,7 +62,7 @@ static asm void fopMsg_Execute(void* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void fopMsg_IsDelete(void* param_0) {
+static asm int fopMsg_IsDelete(void* param_0) {
     nofralloc
 #include "asm/f_op/f_op_msg/fopMsg_IsDelete__FPv.s"
 }
@@ -85,7 +72,7 @@ static asm void fopMsg_IsDelete(void* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void fopMsg_Delete(void* param_0) {
+static asm int fopMsg_Delete(void* param_0) {
     nofralloc
 #include "asm/f_op/f_op_msg/fopMsg_Delete__FPv.s"
 }
@@ -99,7 +86,7 @@ static u8 fopMsg_MSG_TYPE[4 + 4 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void fopMsg_Create(void* param_0) {
+static asm int fopMsg_Create(void* param_0) {
     nofralloc
 #include "asm/f_op/f_op_msg/fopMsg_Create__FPv.s"
 }
@@ -107,12 +94,6 @@ static asm void fopMsg_Create(void* param_0) {
 
 /* ############################################################################################## */
 /* 803A3958-803A3970 -00001 0014+04 0/0 5/0 0/0 .data            g_fopMsg_Method */
-SECTION_DATA extern void* g_fopMsg_Method[5 + 1 /* padding */] = {
-    (void*)fopMsg_Create__FPv,
-    (void*)fopMsg_Delete__FPv,
-    (void*)fopMsg_Execute__FPv,
-    (void*)fopMsg_IsDelete__FPv,
-    (void*)fopMsg_Draw__FPv,
-    /* padding */
-    NULL,
+SECTION_DATA extern leafdraw_method_class g_fopMsg_Method = {
+    &fopMsg_Create, &fopMsg_Delete, &fopMsg_Execute, &fopMsg_IsDelete, &fopMsg_Draw,
 };

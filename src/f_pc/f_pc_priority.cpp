@@ -179,6 +179,4 @@ s32 fpcPi_Init(process_priority_class* pPi, void* pUserData, unsigned int layer,
 
 /* ############################################################################################## */
 /* 804505F0-804505F8 0008+00 s=0 e=5 z=1  None .sdata     None */
-SECTION_SDATA u8 data_804505F0[8] = {
-    0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA s8 data_804505F0 = 0xFF;

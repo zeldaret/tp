@@ -115,6 +115,7 @@ public:
     /* 802102F8 */ virtual ~dMeter2Draw_c();
 
     J2DScreen* getMainScreenPtr() { return mpScreen; }
+    bool isEmphasisC() { return field_0x766 == 7 ? true : false; }
 
 private:
     /* 0x004 */ f32 field_0x4;

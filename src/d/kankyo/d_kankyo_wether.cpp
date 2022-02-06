@@ -227,11 +227,6 @@ inline void mDoAud_rainPlay(s32 enable) {
     g_mEnvSeMgr.startRainSe(enable, 0);
 }
 
-inline void mDoAud_seStart(u32 sfx_id, const Vec* param_1, u32 param_2, s8 param_3) {
-    Z2AudioMgr::getInterface()->mSeMgr.seStart(sfx_id, param_1, param_2, param_3, 1.0f, 1.0f, -1.0f,
-                                               -1.0f, 0);
-}
-
 /* 80056AA8-80056AF8 0513E8 0050+00 3/3 0/0 0/0 .text dKyw_setDrawPacketList__FP9J3DPacketi */
 static J3DPacket* dKyw_setDrawPacketList(J3DPacket* p_packet, int param_1) {
     if (p_packet == NULL) {

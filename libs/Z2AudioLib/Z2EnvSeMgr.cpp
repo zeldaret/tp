@@ -23,79 +23,16 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct JAISoundHandle {
-    /* 802A2184 */ void releaseSound();
-};
-
 struct Z2SoundStarter {
     /* 802AAEDC */ void setPortData(JAISoundHandle*, u32, u16, s8);
-};
-
-struct JAISound {
-    /* 802A21A0 */ void releaseHandle();
-    /* 802A24DC */ void stop(u32);
 };
 
 struct Z2SoundMgr {
     /* 802AA270 */ void setIIR(JAISound*, s16 const*);
 };
 
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2MultiSeMgr {
-    /* 802AEB04 */ Z2MultiSeMgr();
-    /* 802AEB34 */ ~Z2MultiSeMgr();
-    /* 802AEB70 */ void registMultiSePos(Vec*);
-    /* 802AECBC */ void resetMultiSePos();
-    /* 802AECE0 */ void getPanPower();
-    /* 802AEDC0 */ void getDolbyPower();
-};
-
-struct Z2EnvSeDir {
-    /* 802C5C9C */ Z2EnvSeDir(Vec*);
-    /* 802C5D1C */ ~Z2EnvSeDir();
-    /* 802C5D70 */ void setPanDir(Vec*);
-    /* 802C5D9C */ void calcPan(f32);
-    /* 802C5E90 */ void startEnvSeDirLevel(JAISoundID, f32, f32);
-};
-
-struct Z2EnvSeBase {
-    /* 802C589C */ Z2EnvSeBase(Vec*);
-    /* 802C58AC */ ~Z2EnvSeBase();
-    /* 802C5908 */ void startEnvSe(JAISoundID, f32, f32, f32, f32, f32, u32);
-    /* 802C5AB4 */ void startEnvSeLevel(JAISoundID, f32, f32, f32, f32, f32, u32);
-};
-
-struct Z2EnvSeAutoPan {
-    /* 802C5ECC */ Z2EnvSeAutoPan();
-    /* 802C5F28 */ ~Z2EnvSeAutoPan();
-    /* 802C5F7C */ void setPanParam(f32, f32, bool, bool, f32, f32);
-    /* 802C5F98 */ void calcPan();
-    /* 802C60E0 */ void startEnvSeAutoPanLevel(JAISoundID, f32, f32, f32);
-};
-
 struct Z2CreatureLink {
     static u8 mLinkPtr[4 + 4 /* padding */];
-};
-
-struct Z2Calc {
-    struct CurveSign {};
-
-    struct FNoise1f {
-        /* 802A9944 */ void setParam(f32, f32, f32);
-        /* 802A99A0 */ void calcNoise1f();
-    };
-
-    /* 802A968C */ void linearTransform(f32, f32, f32, f32, f32, bool);
-    /* 802A96F4 */ void getParamByExp(f32, f32, f32, f32, f32, f32, Z2Calc::CurveSign);
-    /* 802A9814 */ void getRandom(f32, f32, f32);
-
-    static f32 cEqualCSlope;
-    static f32 cEqualPSlope;
 };
 
 struct Z2Audience {
@@ -105,27 +42,12 @@ struct Z2Audience {
     /* 802BDB44 */ void calcRelPosDolby(Vec const&, int);
 };
 
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
-
 struct JASCalc {
     static u8 const CUTOFF_TO_IIR_TABLE[1024];
 };
 
 struct JAISoundStarter {
     /* 802A2FEC */ void startLevelSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
-};
-
-struct JAISoundParamsMove {
-    /* 802A2DB4 */ void moveVolume(f32, u32);
-    /* 802A2E0C */ void movePitch(f32, u32);
-    /* 802A2E64 */ void moveFxMix(f32, u32);
-    /* 802A2EBC */ void movePan(f32, u32);
-    /* 802A2F14 */ void moveDolby(f32, u32);
 };
 
 //

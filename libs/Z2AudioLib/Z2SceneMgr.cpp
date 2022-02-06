@@ -940,7 +940,7 @@ asm void Z2SceneMgr::_load1stWaveInner_2() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2SceneMgr::check1stDynamicWave() {
+asm bool Z2SceneMgr::check1stDynamicWave() {
     nofralloc
 #include "asm/Z2AudioLib/Z2SceneMgr/check1stDynamicWave__10Z2SceneMgrFv.s"
 }

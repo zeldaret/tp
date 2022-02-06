@@ -3,7 +3,7 @@
 // Translation Unit: f_op/f_op_msg_mng
 //
 
-// #include "f_op/f_op_msg_mng.h"
+#include "f_op/f_op_msg_mng.h"
 #include "JSystem/J2DGraph/J2DPane.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
@@ -11,12 +11,6 @@
 //
 // Types:
 //
-
-struct process_priority_class {};
-
-struct layer_class {};
-
-struct fopAc_ac_c {};
 
 struct dStage_roomControl_c {
     static u8 mProcID[4];
@@ -46,10 +40,6 @@ struct cMl {
 
 struct JMath {
     static u8 sincosTable_[65536];
-};
-
-struct JKRExpHeap {
-    /* 802CEE2C */ void create(u32, JKRHeap*, bool);
 };
 
 struct J2DPicture {
@@ -283,7 +273,7 @@ asm void fopMsgM_setMessageID(unsigned int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fopMsgM_Create(s16 param_0, int (*param_1)(void*), void* param_2) {
+asm u32 fopMsgM_Create(s16 param_0, int (*param_1)(void*), void* param_2) {
     nofralloc
 #include "asm/f_op/f_op_msg_mng/fopMsgM_Create__FsPFPv_iPv.s"
 }

@@ -13,6 +13,10 @@
 
 void dKankyo_DayProc();
 void dKy_set_nexttime(f32);
+void dKy_itudemo_se();
+BOOL dKy_darkworld_spot_check(char const* stageName, int roomNo);
+void dKy_darkworld_Area_set(char const* stageName, int roomNo);
+void dKy_FiveSenses_fullthrottle_dark();
 
 struct LIGHT_INFLUENCE {
     /* 800CFC7C */ ~LIGHT_INFLUENCE();

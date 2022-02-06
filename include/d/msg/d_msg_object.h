@@ -104,7 +104,7 @@ public:
     /* 80237E58 */ void getSelectCursorPosLocal();
     /* 80237E68 */ void setSelectCursorPosLocal(u8);
     /* 80237F10 */ void setTalkActorLocal(fopAc_ac_c*);
-    /* 8023800C */ void readMessageGroup(mDoDvdThd_mountXArchive_c**);
+    /* 8023800C */ static void readMessageGroup(mDoDvdThd_mountXArchive_c**);
     /* 8023803C */ void changeFlowGroup(s32);
     /* 8023806C */ void demoMessageGroup();
     /* 80238098 */ void endFlowGroup();
@@ -161,6 +161,10 @@ inline dMsgObject_c* dMsgObject_getMsgObjectClass() {
 
 inline bool dMsgObject_isTalkNowCheck() {
     return dMsgObject_getMsgObjectClass()->getStatus() != 1 ? true : false;
+}
+
+inline void dMsgObject_readMessageGroup(mDoDvdThd_mountXArchive_c** param_0) {
+    dMsgObject_getMsgObjectClass()->readMessageGroup(param_0);
 }
 
 #endif /* D_MSG_D_MSG_OBJECT_H */

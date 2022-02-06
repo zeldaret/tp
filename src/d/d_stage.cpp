@@ -412,7 +412,6 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern J3DLightInfo const j3dDefaultLightInfo;
 extern "C" extern u8 g_save_bit_HIO[1184 + 4 /* padding */];
-extern "C" extern u8 data_804505F0[8];
 extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 
 //
@@ -1826,7 +1825,7 @@ int dStage_roomControl_c::resetArchiveBank(int i_bank) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int dStage_roomControl_c::resetArchiveBank(int param_0) {
+asm bool dStage_roomControl_c::resetArchiveBank(int param_0) {
     nofralloc
 #include "asm/d/d_stage/resetArchiveBank__20dStage_roomControl_cFi.s"
 }
@@ -2279,7 +2278,7 @@ static asm int dStage_lgtvInfoInit(dStage_dt_c* param_0, void* param_1, int para
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dStage_stagInfo_GetParticleNo(stage_stag_info_class* param_0, int param_1) {
+asm u8 dStage_stagInfo_GetParticleNo(stage_stag_info_class* param_0, int param_1) {
     nofralloc
 #include "asm/d/d_stage/dStage_stagInfo_GetParticleNo__FP21stage_stag_info_classi.s"
 }
