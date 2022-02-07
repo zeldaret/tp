@@ -43,15 +43,7 @@ struct stage_stag_info_class {
     /* 0x20 */ u8 field_0x20[8];
     /* 0x28 */ u8 mMsgGroup;
     /* 0x2A */ u16 mStageTitleNo;
-};  // Size: Unknown
-
-inline s16 dStage_stagInfo_GetUpButton(stage_stag_info_class* p_info) {
-    return p_info->field_0x0a & 7;
-}
-
-inline u32 dStage_stagInfo_GetArg0(stage_stag_info_class* p_info) {
-    return (p_info->field_0x0c >> 0x14) & 0xFF;
-}
+};  // Size: 0x2C
 
 struct stage_scls_info_class {
     /* 0x0 */ char mStage[8];
@@ -701,11 +693,11 @@ inline u8 dStage_roomRead_dt_c_GetLoadRoomIndex(u8 param_0) {
 }
 
 inline u32 dStage_stagInfo_GetSTType(stage_stag_info_class* pstag) {
-    return pstag->field_0x0c >> 0x10 & 7;
+    return (pstag->field_0x0c >> 16) & 7;
 }
 
-inline u32 dStage_stagInfo_GetEscapeWarp(stage_stag_info_class* pstag) {
-    return pstag->field_0x10 >> 0x18;
+inline int dStage_stagInfo_GetEscapeWarp(stage_stag_info_class* pstag) {
+    return (pstag->field_0x10 >> 24);
 }
 
 inline u32 dStage_stagInfo_GetMiniMap(stage_stag_info_class* pstag) {
@@ -714,6 +706,14 @@ inline u32 dStage_stagInfo_GetMiniMap(stage_stag_info_class* pstag) {
 
 inline u8 dStage_stagInfo_GetParticleNo(stage_stag_info_class* p_info) {
     return (p_info->field_0x0a >> 0x3) & 0xFF;
+}
+
+inline s16 dStage_stagInfo_GetUpButton(stage_stag_info_class* p_info) {
+    return p_info->field_0x0a & 7;
+}
+
+inline u32 dStage_stagInfo_GetArg0(stage_stag_info_class* p_info) {
+    return (p_info->field_0x0c >> 0x14) & 0xFF;
 }
 
 inline s8 dStage_sclsInfo_getSceneLayer(stage_scls_info_class* p_info) {

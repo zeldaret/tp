@@ -555,8 +555,6 @@ extern GXColor g_blackColor;
 extern GXColor g_clearColor;
 extern GXColor g_whiteColor;
 
-typedef int (**request_of_phase_process_fn)(void*);
-
 void dComIfGp_setItemLifeCount(float, u8);
 void dComIfGp_setItemRupeeCount(long);
 int dComIfGs_isItemFirstBit(u8);

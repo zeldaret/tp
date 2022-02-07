@@ -137,7 +137,7 @@ DynamicModuleControlBase::DynamicModuleControlBase() {
 
 /* 802622D0-80262364 25CC10 0094+00 0/0 2/2 0/0 .text            link__24DynamicModuleControlBaseFv
  */
-bool DynamicModuleControlBase::link() {
+BOOL DynamicModuleControlBase::link() {
     if (mLinkCount == 0) {
         do_load();
         if (do_link() == false) {
@@ -154,7 +154,7 @@ bool DynamicModuleControlBase::link() {
 }
 
 /* 80262364-802623EC 25CCA4 0088+00 0/0 1/1 0/0 .text unlink__24DynamicModuleControlBaseFv */
-bool DynamicModuleControlBase::unlink() {
+BOOL DynamicModuleControlBase::unlink() {
     if (mLinkCount != 0) {
         mLinkCount--;
         if (mLinkCount == 0) {
@@ -169,7 +169,7 @@ bool DynamicModuleControlBase::unlink() {
 }
 
 /* 802623EC-8026242C 25CD2C 0040+00 0/0 1/1 0/0 .text load_async__24DynamicModuleControlBaseFv */
-bool DynamicModuleControlBase::load_async() {
+BOOL DynamicModuleControlBase::load_async() {
     if (mLinkCount == 0) {
         return do_load_async();
     }
@@ -458,7 +458,7 @@ asm bool DynamicModuleControl::do_load() {
 #endif
 
 /* 80262AFC-80262BC4 25D43C 00C8+00 1/0 0/0 0/0 .text do_load_async__20DynamicModuleControlFv */
-bool DynamicModuleControl::do_load_async() {
+BOOL DynamicModuleControl::do_load_async() {
     if (mAsyncLoadCallback == NULL) {
         if (mModule != NULL) {
             return true;
@@ -743,7 +743,7 @@ bool DynamicModuleControlBase::do_unlink() {
 
 /* 802631F4-802631FC 25DB34 0008+00 1/0 0/0 0/0 .text do_load_async__24DynamicModuleControlBaseFv
  */
-bool DynamicModuleControlBase::do_load_async() {
+BOOL DynamicModuleControlBase::do_load_async() {
     return true;
 }
 

@@ -1,9 +1,9 @@
 #ifndef D_CC_D_CC_UTY_H
 #define D_CC_D_CC_UTY_H
 
+#include "d/com/d_com_inf_game.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
-#include "d/com/d_com_inf_game.h"
 
 struct dCcU_AtInfo {
     /* 0x00 */ cCcD_Obj* mpCollider;
