@@ -578,7 +578,7 @@ void dComIfGs_setWarpMarkFlag(u8);
 void dComIfGs_setSelectEquipSword(u8);
 void dComIfGs_setSelectEquipShield(u8);
 void* dComIfG_getStageRes(char const*);
-void dComLbG_PhaseHandler(request_of_phase_process_class*, request_of_phase_process_fn, void*);
+int dComLbG_PhaseHandler(request_of_phase_process_class*, request_of_phase_process_fn, void*);
 void dComIfGp_addSelectItemNum(int, s16);
 BOOL dComIfGs_isOneZoneSwitch(int, int);
 u8 dComIfGp_getSelectItem(int);

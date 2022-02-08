@@ -961,61 +961,32 @@ int cDylPhs::phase_01(void* param_0) {
 }
 
 /* 8001880C-80018844 01314C 0038+00 1/0 0/0 0/0 .text            phase_02__7cDylPhsFPs */
-// instructions switched
-#ifdef NONMATCHING
 int cDylPhs::phase_02(s16* p_profName) {
-    s32 temp_r3 = cDyl_LinkASync(*p_profName);
-    s32 phi_r0 = 2;
+    int ret = cDyl_LinkASync(*p_profName);
 
-    if (temp_r3 != 4) {
-        phi_r0 = temp_r3;
+    if (ret != 4) {
+        return ret;
     }
-    return phi_r0;
+    return 2;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int cDylPhs::phase_02(s16* param_0) {
-    nofralloc
-#include "asm/c/c_dylink/phase_02__7cDylPhsFPs.s"
-}
-#pragma pop
-#endif
 
 /* 80018844-8001884C 013184 0008+00 1/0 0/0 0/0 .text            phase_03__7cDylPhsFPv */
 int cDylPhs::phase_03(void* param_0) {
     return 0;
 }
 
-/* ############################################################################################## */
-/* 803A3590-803A35A0 -00001 000C+04 1/1 0/0 0/0 .data            l_method$3807 */
-SECTION_DATA static request_of_phase_process_fn l_method[3] = {
-    (request_of_phase_process_fn)cDylPhs::phase_01,
-    (request_of_phase_process_fn)cDylPhs::phase_02,
-    (request_of_phase_process_fn)cDylPhs::phase_03,
-};
-
 /* 8001884C-80018890 01318C 0044+00 0/0 2/2 0/0 .text
  * Link__7cDylPhsFP30request_of_phase_process_classs            */
-#ifdef NONMATCHING
 int cDylPhs::Link(request_of_phase_process_class* i_phase, s16 param_1) {
+    static int (*l_method[3])(void*) = {cDylPhs::phase_01, (int (*)(void*))cDylPhs::phase_02,
+                                        cDylPhs::phase_03};
+
     if (i_phase->mPhaseStep == 2) {
         return 4;
     }
 
-    dComLbG_PhaseHandler(i_phase, l_method[0], &param_1);
+    return dComLbG_PhaseHandler(i_phase, l_method, &param_1);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int cDylPhs::Link(request_of_phase_process_class* param_0, s16 param_1) {
-    nofralloc
-#include "asm/c/c_dylink/Link__7cDylPhsFP30request_of_phase_process_classs.s"
-}
-#pragma pop
-#endif
 
 /* 80018890-800188DC 0131D0 004C+00 0/0 1/1 0/0 .text
  * Unlink__7cDylPhsFP30request_of_phase_process_classs          */
