@@ -20,6 +20,8 @@ typedef struct request_of_phase_process_class {
     int mPhaseStep;
 } request_of_phase_process_class;
 
+typedef int (**request_of_phase_process_fn)(void*);
+
 void cPhs_Reset(request_of_phase_process_class* pPhase);
 void cPhs_Set(request_of_phase_process_class* pPhase, cPhs__Handler* pHandlerTable);
 void cPhs_UnCompleate(request_of_phase_process_class* pPhase);

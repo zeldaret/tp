@@ -9,12 +9,6 @@ import ctypes
 import oead
 
 
-def sha1_from_data(data):
-    sha1 = hashlib.sha1()
-    sha1.update(data)
-
-    return sha1.hexdigest().upper()
-
 def copy(path,destPath):
     for root,dirs,files in os.walk(str(path)):
         for file in files:
@@ -28,11 +22,7 @@ def copy(path,destPath):
                 print(str(inFile)+" -> "+str(outputFile))
                 shutil.copyfile(inFile,outputFile)
             else:
-                inf = open(inFile,"rb")
-                inSum = sha1_from_data(bytearray(inf.read()))
-                outf = open(outputFile,"rb")
-                outSum = sha1_from_data(bytearray(outf.read()))
-                if inSum!=outSum:
+                if os.path.getmtime(inFile)>os.path.getmtime(outputFile):
                     print(str(inFile)+" -> "+str(outputFile))
                     shutil.copyfile(inFile,outputFile)
 

@@ -2526,8 +2526,8 @@ BOOL dComIfGp_TransportWarp_check() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dComLbG_PhaseHandler(request_of_phase_process_class* param_0, int (**param_1)(void*),
-                              void* param_2) {
+asm int dComLbG_PhaseHandler(request_of_phase_process_class* param_0, int (**param_1)(void*),
+                             void* param_2) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv.s"
 }

@@ -460,7 +460,8 @@ fopAc_ac_c* cc_at_check(fopAc_ac_c* enemy, dCcU_AtInfo* info) {
 
         if (info->mpSound != NULL) {
             if (info->field_0x18 != 0) {
-                info->mpSound->startCollisionSE(getHitId(info->mpCollider, uvar8), info->field_0x18);
+                info->mpSound->startCollisionSE(getHitId(info->mpCollider, uvar8),
+                                                info->field_0x18);
             } else {
                 info->mpSound->startCollisionSE(getHitId(info->mpCollider, uvar8),
                                                 getMapInfo(info->mHitStatus));

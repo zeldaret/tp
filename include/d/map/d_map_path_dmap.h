@@ -2,24 +2,9 @@
 #define D_MAP_D_MAP_PATH_DMAP_H
 
 #include "d/d_stage.h"
+#include "d/d_tresure.h"
 #include "d/map/d_map_path.h"
 #include "dolphin/types.h"
-
-struct dTres_c {
-    struct data_s {};
-
-    struct typeGroupData_c {};
-
-    struct list_class {};
-
-    /* 8009BCB4 */ void addData(dTres_c::list_class*, s8);
-    /* 8009C360 */ void getFirstData(u8);
-    /* 8009C3B4 */ void getNextData(dTres_c::typeGroupData_c const*);
-    /* 8009C39C */ void getNextData(dTres_c::typeGroupData_c*);
-    /* 8009C4B0 */ void getTypeToTypeGroupNo(u8);
-
-    static u8 mTypeGroupListAll[204 + 4 /* padding */];
-};
 
 class dMpath_c {
 public:
