@@ -142,9 +142,9 @@ public:
     /* 80055768 */ void reset();
     /* 800557C8 */ void imageDraw(f32 (*)[4]);
     /* 80055A14 */ void draw(f32 (*)[4]);
-    /* 80055C74 */ void setReal(u32, s8, J3DModel*, cXyz*, f32, f32, dKy_tevstr_c*);
+    /* 80055C74 */ int setReal(u32, s8, J3DModel*, cXyz*, f32, f32, dKy_tevstr_c*);
     /* 80055F1C */ void addReal(u32, J3DModel*);
-    /* 80055F84 */ void setSimple(cXyz*, f32, f32, cXyz*, s16, f32, _GXTexObj*);
+    /* 80055F84 */ int setSimple(cXyz*, f32, f32, cXyz*, s16, f32, _GXTexObj*);
     /* 80055FE8 */ void setSimpleTex(ResTIMG const*);
 
     static u8 mSimpleTexObj[32];
@@ -218,6 +218,7 @@ public:
     view_class* getView() { return mView; }
     J3DDrawBuffer* getOpaListFilter() { return mListFilter; }
     J3DDrawBuffer* getOpaListP0() { return mListP0; }
+    J3DDrawBuffer* getOpaListPacket() { return mOpaListPacket; }
     void setXluDrawList(J3DDrawBuffer* buffer) { j3dSys.setDrawBuffer(buffer, XLU_BUFFER); }
     void setOpaDrawList(J3DDrawBuffer* buffer) { j3dSys.setDrawBuffer(buffer, OPA_BUFFER); }
     void setXluListSky() { setXluDrawList(mpXluListSky); }
@@ -225,7 +226,18 @@ public:
     void setOpaList() { setOpaDrawList(mOpaList); }
     void setXluList() { setXluDrawList(mXluList); }
     void setXluListBG() { setXluDrawList(mXluListBG); }
+    void setOpaListBG() { setOpaDrawList(mOpaListBG); }
     void setXluList2DScreen() { setXluDrawList(mList2DScreen); }
+
+    int setSimpleShadow(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3,
+                                  s16 param_4, f32 param_5, _GXTexObj* param_6) {
+        return mShadowControl.setSimple(param_0, param_1, param_2, param_3, param_4, param_5, param_6);
+    }
+
+    int setRealShadow(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3, f32 param_4,
+                      f32 param_5, dKy_tevstr_c* param_6) {
+        return mShadowControl.setReal(param_0, param_1, param_2, param_3, param_4, param_5, param_6);
+    }
 
     static void offWipe() { data_80450ED0 = 0; }
 

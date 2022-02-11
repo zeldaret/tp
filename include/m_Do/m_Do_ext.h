@@ -185,6 +185,7 @@ JKRSolidHeap* mDoExt_createSolidHeapToCurrent(JKRHeap**, u32, JKRHeap*, u32);
 JKRSolidHeap* mDoExt_createSolidHeapToCurrent(u32, JKRHeap*, u32);
 JKRSolidHeap* mDoExt_createSolidHeapFromGameToCurrent(u32, u32);
 JKRSolidHeap* mDoExt_createSolidHeapFromGameToCurrent(JKRHeap**, u32, u32);
+u32 mDoExt_adjustSolidHeapToSystem(JKRSolidHeap* pHeap);
 JKRHeap* mDoExt_getCurrentHeap();
 void mDoExt_removeMesgFont();
 void mDoExt_modelUpdateDL(J3DModel*);

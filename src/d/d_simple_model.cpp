@@ -6,98 +6,14 @@
 #include "d/d_simple_model.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct modelList_c {};
-
-struct J3DModelData {};
-
-struct diff_model_c {
-    /* 80048D60 */ diff_model_c();
-    /* 800490EC */ void create(J3DModelData*, int, u8);
-    /* 800491F4 */ void getModelData();
-    /* 80049210 */ void remove(int);
-    /* 80049270 */ void draw();
-    /* 80049368 */ void init();
-    /* 80049388 */ void isSame(J3DModelData*, int);
-    /* 800493FC */ void getRoomNo();
-    /* 80049408 */ void insert(modelList_c*);
-};
-
-struct dStage_roomControl_c {
-    static u8 mStatus[65792];
-};
-
-struct J3DModel {};
-
-struct dSmplMdl_draw_c {
-    /* 80048CB4 */ dSmplMdl_draw_c();
-    /* 80048D80 */ ~dSmplMdl_draw_c();
-    /* 80048E0C */ void draw();
-    /* 80048EBC */ void entry(J3DModel*, int);
-    /* 80048F70 */ void addModel(J3DModelData*, int, u8);
-    /* 80049058 */ void removeModel(J3DModelData*, int);
-};
-
-struct dKy_tevstr_c {};
-
-struct dScnKy_env_light_c {
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct JKRSolidHeap {};
-
-//
-// Forward References:
-//
-
-extern "C" static void dSmplMdl_modelUpdateDL__FP8J3DModel();
-extern "C" void __ct__15dSmplMdl_draw_cFv();
-extern "C" void __ct__12diff_model_cFv();
-extern "C" void __dt__15dSmplMdl_draw_cFv();
-extern "C" void draw__15dSmplMdl_draw_cFv();
-extern "C" void entry__15dSmplMdl_draw_cFP8J3DModeli();
-extern "C" void addModel__15dSmplMdl_draw_cFP12J3DModelDataiUc();
-extern "C" void removeModel__15dSmplMdl_draw_cFP12J3DModelDatai();
-extern "C" void create__12diff_model_cFP12J3DModelDataiUc();
-extern "C" void getModelData__12diff_model_cFv();
-extern "C" void remove__12diff_model_cFi();
-extern "C" void draw__12diff_model_cFv();
-extern "C" void init__12diff_model_cFv();
-extern "C" void isSame__12diff_model_cFP12J3DModelDatai();
-extern "C" void getRoomNo__12diff_model_cFv();
-extern "C" void insert__12diff_model_cFP11modelList_c();
+#include "d/com/d_com_inf_game.h"
+#include "m_Do/m_Do_mtx.h"
 
 //
 // External References:
 //
 
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_createSolidHeapFromGameToCurrent__FUlUl();
-extern "C" void mDoExt_adjustSolidHeapToSystem__FP12JKRSolidHeap();
-extern "C" void mDoExt_destroySolidHeap__FP12JKRSolidHeap();
-extern "C" void mDoExt_restoreCurrentHeap__Fv();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void __dl__FPv();
-extern "C" void PSMTXCopy();
-extern "C" void __construct_array();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
-extern "C" u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
+extern "C" extern dScnKy_env_light_c g_env_light;
 
 //
 // Declarations:
@@ -105,181 +21,212 @@ extern "C" extern u8 j3dSys[284];
 
 /* 80048C54-80048CB4 043594 0060+00 1/1 0/0 0/0 .text            dSmplMdl_modelUpdateDL__FP8J3DModel
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dSmplMdl_modelUpdateDL(J3DModel* param_0) {
-    nofralloc
-#include "asm/d/d_simple_model/dSmplMdl_modelUpdateDL__FP8J3DModel.s"
+static void dSmplMdl_modelUpdateDL(J3DModel* i_model) {
+    i_model->calc();
+    i_model->entry();
+    i_model->viewCalc();
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 803A82F8-803A8308 005418 000C+04 2/2 0/0 0/0 .data            __vt__15dSmplMdl_draw_c */
-SECTION_DATA extern void* __vt__15dSmplMdl_draw_c[3 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__15dSmplMdl_draw_cFv,
-    /* padding */
-    NULL,
-};
 
 /* 80048CB4-80048D60 0435F4 00AC+00 0/0 1/1 0/0 .text            __ct__15dSmplMdl_draw_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dSmplMdl_draw_c::dSmplMdl_draw_c() {
-    nofralloc
-#include "asm/d/d_simple_model/__ct__15dSmplMdl_draw_cFv.s"
+dSmplMdl_draw_c::dSmplMdl_draw_c() {
+    for (int i = 0; i < 8; i++) {
+        mModel[i].init();
+    }
+
+    for (int i = 0; i < 500; i++) {
+        mList[i].init();
+    }
+
+    mListCount = 0;
 }
-#pragma pop
 
 /* 80048D60-80048D80 0436A0 0020+00 1/1 0/0 0/0 .text            __ct__12diff_model_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm diff_model_c::diff_model_c() {
-    nofralloc
-#include "asm/d/d_simple_model/__ct__12diff_model_cFv.s"
+diff_model_c::diff_model_c() {
+    mpHeap = NULL;
+    mpModel = NULL;
+    mCreateNum = 0;
+    mpList = NULL;
+    mRoomNo = 63;
 }
-#pragma pop
 
 /* 80048D80-80048E0C 0436C0 008C+00 1/0 0/0 0/0 .text            __dt__15dSmplMdl_draw_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dSmplMdl_draw_c::~dSmplMdl_draw_c() {
-    nofralloc
-#include "asm/d/d_simple_model/__dt__15dSmplMdl_draw_cFv.s"
+dSmplMdl_draw_c::~dSmplMdl_draw_c() {
+    for (int i = 0; i < 8; i++) {
+        if (mModel[i].getModel() != NULL) {
+            mModel[i].remove(1);
+        }
+    }
 }
-#pragma pop
 
 /* 80048E0C-80048EBC 04374C 00B0+00 0/0 1/1 0/0 .text            draw__15dSmplMdl_draw_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSmplMdl_draw_c::draw() {
-    nofralloc
-#include "asm/d/d_simple_model/draw__15dSmplMdl_draw_cFv.s"
+void dSmplMdl_draw_c::draw() {
+    for (int i = 0; i < 8; i++) {
+        if (mModel[i].getModel() != NULL) {
+            mModel[i].draw();
+        }
+    }
+    mListCount = 0;
+
+    for (int i = 0; i < 500; i++) {
+        mList[i].init();
+    }
+
+    for (int i = 0; i < 8; i++) {
+        mModel[i].insert(NULL);
+    }
 }
-#pragma pop
 
 /* 80048EBC-80048F70 0437FC 00B4+00 0/0 1/1 0/0 .text entry__15dSmplMdl_draw_cFP8J3DModeli */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSmplMdl_draw_c::entry(J3DModel* param_0, int param_1) {
-    nofralloc
-#include "asm/d/d_simple_model/entry__15dSmplMdl_draw_cFP8J3DModeli.s"
+void dSmplMdl_draw_c::entry(J3DModel* i_model, int roomNo) {
+    if (i_model != NULL && mListCount < 500) {
+        mList[mListCount].set(i_model);
+        for (int i = 0; i < 8; i++) {
+            if (mModel[i].isSame(i_model->getModelData(), roomNo)) {
+                mModel[i].insert(&mList[mListCount]);
+                break;
+            }
+        }
+        mListCount++;
+    }
 }
-#pragma pop
 
 /* 80048F70-80049058 0438B0 00E8+00 0/0 1/1 0/0 .text
  * addModel__15dSmplMdl_draw_cFP12J3DModelDataiUc               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSmplMdl_draw_c::addModel(J3DModelData* param_0, int param_1, u8 param_2) {
-    nofralloc
-#include "asm/d/d_simple_model/addModel__15dSmplMdl_draw_cFP12J3DModelDataiUc.s"
+BOOL dSmplMdl_draw_c::addModel(J3DModelData* i_modelData, int roomNo, u8 drawBG) {
+    for (int i = 0; i < 8; i++) {
+        if (mModel[i].isSame(i_modelData, roomNo)) {
+            return mModel[i].create(i_modelData, roomNo, drawBG) ? TRUE : FALSE;
+        }
+    }
+
+    for (int i = 0; i < 8; i++) {
+        if (mModel[i].getModelData() == NULL) {
+            return mModel[i].create(i_modelData, roomNo, drawBG) ? TRUE : FALSE;
+        }
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 80049058-800490EC 043998 0094+00 0/0 1/1 0/0 .text
  * removeModel__15dSmplMdl_draw_cFP12J3DModelDatai              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSmplMdl_draw_c::removeModel(J3DModelData* param_0, int param_1) {
-    nofralloc
-#include "asm/d/d_simple_model/removeModel__15dSmplMdl_draw_cFP12J3DModelDatai.s"
-}
-#pragma pop
+int dSmplMdl_draw_c::removeModel(J3DModelData* i_modelData, int roomNo) {
+    if (i_modelData == NULL) {
+        return 0;
+    }
 
-/* ############################################################################################## */
-/* 80451F38-80451F40 000538 0004+04 1/1 0/0 0/0 .sdata2          @3763 */
-SECTION_SDATA2 static f32 lit_3763[1 + 1 /* padding */] = {
-    0.0f,
-    /* padding */
-    0.0f,
-};
+    for (int i = 0; i < 8; i++) {
+        if (mModel[i].isSame(i_modelData, roomNo)) {
+            mModel[i].remove(0);
+            return 0;
+        }
+    }
+    
+    return 0;
+}
 
 /* 800490EC-800491F4 043A2C 0108+00 1/1 0/0 0/0 .text create__12diff_model_cFP12J3DModelDataiUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void diff_model_c::create(J3DModelData* param_0, int param_1, u8 param_2) {
-    nofralloc
-#include "asm/d/d_simple_model/create__12diff_model_cFP12J3DModelDataiUc.s"
+BOOL diff_model_c::create(J3DModelData* i_modelData, int roomNo, u8 drawBG) {
+    if (mpHeap == NULL) {
+        mpHeap = mDoExt_createSolidHeapFromGameToCurrent(0x2000, 0x20);
+
+        if (mpHeap != NULL) {
+            mpModel = mDoExt_J3DModel__create(i_modelData, 0x80000, 0x11000084);
+
+            if (mpModel == NULL) {
+                remove(1);
+                mDoExt_restoreCurrentHeap();
+            } else {
+                mpModel->setBaseScale(cXyz(0.0f, 0.0f, 0.0f));
+                mpModel->i_setBaseTRMtx(g_mDoMtx_identity);
+                mCreateNum++;
+                mDoExt_adjustSolidHeapToSystem(mpHeap);
+                mRoomNo = roomNo;
+                mDrawBG = drawBG;
+                return 1;
+            }
+        }
+    } else {
+        mCreateNum++;
+        return 1;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 800491F4-80049210 043B34 001C+00 2/2 0/0 0/0 .text            getModelData__12diff_model_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void diff_model_c::getModelData() {
-    nofralloc
-#include "asm/d/d_simple_model/getModelData__12diff_model_cFv.s"
+J3DModelData* diff_model_c::getModelData() {
+    if (mpModel != NULL) {
+        return mpModel->getModelData();
+    }
+    return NULL;
 }
-#pragma pop
 
 /* 80049210-80049270 043B50 0060+00 3/3 0/0 0/0 .text            remove__12diff_model_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void diff_model_c::remove(int param_0) {
-    nofralloc
-#include "asm/d/d_simple_model/remove__12diff_model_cFi.s"
+void diff_model_c::remove(int param_0) {
+    mCreateNum--;
+    
+    if (mCreateNum == 0 || param_0 != 0) {
+        JKRSolidHeap* heap = mpHeap;
+        if (heap != NULL) {
+            mDoExt_destroySolidHeap(heap);
+            init();
+        }
+    }
 }
-#pragma pop
 
 /* 80049270-80049368 043BB0 00F8+00 1/1 0/0 0/0 .text            draw__12diff_model_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void diff_model_c::draw() {
-    nofralloc
-#include "asm/d/d_simple_model/draw__12diff_model_cFv.s"
+void diff_model_c::draw() {
+    modelList_c* list = mpList;
+    if (list != NULL) {
+        if (dComIfGp_roomControl_checkStatusFlag(getRoomNo(), 0x10)) {
+            dKy_tevstr_c* tevstr = dComIfGp_roomControl_getTevStr(getRoomNo());
+            g_env_light.setLightTevColorType_MAJI(mpModel, tevstr);
+
+            if (mDrawBG == 1) {
+                dComIfGd_setListBG();
+            }
+
+            for (; list != NULL; list = list->field_0x4) {
+                dSmplMdl_modelUpdateDL(list->mpModel);
+            }
+            mDoExt_modelUpdateDL(mpModel);
+            dComIfGd_setList();
+        }
+    }
 }
-#pragma pop
 
 /* 80049368-80049388 043CA8 0020+00 2/2 0/0 0/0 .text            init__12diff_model_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void diff_model_c::init() {
-    nofralloc
-#include "asm/d/d_simple_model/init__12diff_model_cFv.s"
+void diff_model_c::init() {
+    mpModel = NULL;
+    mpHeap = NULL;
+    mpList = NULL;
+    mCreateNum = 0;
+    mRoomNo = 63;
 }
-#pragma pop
 
 /* 80049388-800493FC 043CC8 0074+00 3/3 0/0 0/0 .text isSame__12diff_model_cFP12J3DModelDatai */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void diff_model_c::isSame(J3DModelData* param_0, int param_1) {
-    nofralloc
-#include "asm/d/d_simple_model/isSame__12diff_model_cFP12J3DModelDatai.s"
+BOOL diff_model_c::isSame(J3DModelData* i_modelData, int roomNo) {
+    if (mpModel != NULL) {
+        return getModelData() == i_modelData && roomNo == getRoomNo();
+    }
+
+    return FALSE;
 }
-#pragma pop
 
 /* 800493FC-80049408 043D3C 000C+00 2/2 0/0 0/0 .text            getRoomNo__12diff_model_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void diff_model_c::getRoomNo() {
-    nofralloc
-#include "asm/d/d_simple_model/getRoomNo__12diff_model_cFv.s"
+s32 diff_model_c::getRoomNo() {
+    return mRoomNo;
 }
-#pragma pop
 
 /* 80049408-80049420 043D48 0018+00 2/2 0/0 0/0 .text insert__12diff_model_cFP11modelList_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void diff_model_c::insert(modelList_c* param_0) {
-    nofralloc
-#include "asm/d/d_simple_model/insert__12diff_model_cFP11modelList_c.s"
+void diff_model_c::insert(modelList_c* list) {
+    modelList_c* prev = mpList;
+    mpList = list;
+
+    if (list == NULL) {
+        return;
+    }
+
+    list->field_0x4 = prev;
 }
-#pragma pop

@@ -97,13 +97,36 @@ inline s32 dStage_roomRead_dt_c_GetVrboxswitch(roomRead_data_class& data) {
     return data.field_0x2 & 8;
 }
 
-struct dStage_FileList2_dt_c {};
+class dStage_FileList2_dt_c {
+public:
+    /* 0x00 */ f32 mLeftRmX;
+    /* 0x04 */ f32 mInnerRmZ;
+    /* 0x08 */ f32 mRightRmX;
+    /* 0x0C */ f32 mFrontRmZ;
+    /* 0x10 */ u8 mMinFloorNo;
+    /* 0x11 */ u8 mMaxFloorNo;
+    /* 0x12 */ u8 field_0x12;
+    /* 0x13 */ u8 field_0x13;
+    /* 0x14 */ u8 field_0x14[8];
+    /* 0x1C */ s16 field_0x1c;
+};
 
 struct dStage_MemoryMap_c {};
 
 struct dStage_dPath_c {};
 
-struct dStage_Multi_c {};
+struct dStage_Mult_info {
+    /* 0x0 */ f32 mTransX;
+    /* 0x4 */ f32 mTransY;
+    /* 0x8 */ s16 mAngle;
+    /* 0xA */ u8 mRoomNo;
+};  // Size: 0xC
+
+class dStage_Multi_c {
+public:
+    /* 0x0 */ int field_0x0;
+    /* 0x4 */ dStage_Mult_info* mInfo;
+};
 
 struct dStage_SoundInfo_c {};
 
@@ -468,7 +491,7 @@ public:
     virtual void setElst(dStage_Elst_c*);
     virtual dStage_Elst_c* getElst(void);
 
-private:
+public:
     stage_pure_lightvec_info_class* mLightVecInfo;
     int mLightVecInfoNum;
     stage_map_info_class* mMapInfo;
@@ -505,7 +528,8 @@ public:
     /* 0x3F5 */ u8 unk_0x3F5[2];
     /* 0x3F7 */ s8 mZoneNo;
     /* 0x3F8 */ s8 mMemBlockID;
-    /* 0x3F9 */ s8 unk_3F9[0x404 - 0x3F9];
+    /* 0x3F9 */ u8 mRegionNo;
+    /* 0x3FA */ s8 unk_3FA[0x404 - 0x3FA];
 
     int getZoneNo() const { return mZoneNo; }
     /* 80028360 */ ~dStage_roomStatus_c() {}
@@ -554,7 +578,10 @@ public:
     static s32 GetTimePass();
 
     inline static s8 getStayNo() { return struct_80450D64; }
+    static u8 getRegionNo(int i_roomNo) { return mStatus[i_roomNo].mRegionNo; }
     s8 getMemoryBlockID(int i_roomNo) { return mStatus[i_roomNo].mMemBlockID; }
+    dKy_tevstr_c* getTevStr(int i_roomNo) { return &mStatus[i_roomNo].mKyTevStr; }
+    static dStage_FileList2_dt_c* getFileList2(int i_roomNo) { return mStatus[i_roomNo].mRoomDt.mFileList2Info; }
     bool checkStatusFlag(int i_roomNo, u8 flag) const {
         return cLib_checkBit(mStatus[i_roomNo].unk_0x3F4, flag);
     }

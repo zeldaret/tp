@@ -530,7 +530,6 @@ extern "C" void GXClearVtxDesc();
 extern "C" void GXGetTexObjWidth();
 extern "C" void GXGetTexObjHeight();
 extern "C" void GXSetTexCoordScaleManually();
-extern "C" void GXLoadNrmMtxImm();
 extern "C" void __construct_new_array();
 extern "C" void _savegpr_15();
 extern "C" void _savegpr_18();

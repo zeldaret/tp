@@ -1185,7 +1185,7 @@ void item_func_TKS_LETTER() {
 }
 
 void item_func_WEAR_CASUAL() {
-    dComIfGs_setSelectEquipClothes(WEARS_CASUAL);
+    dComIfGs_setSelectEquipClothes(WEAR_CASUAL);
 }
 
 void item_func_WEAR_KOKIRI() {
@@ -1868,7 +1868,7 @@ s32 item_getcheck_func_TKS_LETTER() {
 }
 
 s32 item_getcheck_func_WEAR_CASUAL() {
-    return dComIfGs_isItemFirstBit(WEARS_CASUAL);
+    return dComIfGs_isItemFirstBit(WEAR_CASUAL);
 }
 
 s32 item_getcheck_func_WEAR_KOKIRI() {

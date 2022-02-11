@@ -151,6 +151,7 @@ public:
     void onLifeGaugeSE() { mLifeGaugeSE = 1; }
     void offLifeGaugeSE() { mLifeGaugeSE = 0; }
     u8 getLifeGaugeSE() { return mLifeGaugeSE; }
+    const char* getSaveStageName() { return mSaveStageName; }
 
 public:
     /* 0x04 */ u8 unk4[4];
@@ -427,6 +428,10 @@ inline void dMeter2Info_offLifeGaugeSE() {
 
 inline u8 dMeter2Info_getLifeGaugeSE() {
     return g_meter2_info.getLifeGaugeSE();
+}
+
+inline const char* dMeter2Info_getSaveStageName() {
+    return g_meter2_info.getSaveStageName();
 }
 
 char* dMeter2Info_getNumberTextureName(int pIndex);

@@ -34,6 +34,7 @@ public:
 
 extern JKRSolidHeap* g_mDoAud_audioHeap;
 
+void mDoAud_resetProcess();
 bool mDoAud_resetRecover();
 void mDoAud_setSceneName(char const* spot, s32 room, s32 layer);
 s32 mDoAud_load1stDynamicWave();
@@ -73,6 +74,10 @@ inline void mDoAud_load2ndDynamicWave() {
 
 inline bool mDoAud_check1stDynamicWave() {
     return Z2AudioMgr::getInterface()->mSceneMgr.check1stDynamicWave();
+}
+
+inline void mDoAud_bgmStop(u32 param_0) {
+    Z2AudioMgr::getInterface()->mSeqMgr.bgmStop(param_0, 0);
 }
 
 #endif /* M_DO_M_DO_AUDIO_H */

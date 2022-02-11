@@ -17,6 +17,7 @@ void dKy_itudemo_se();
 BOOL dKy_darkworld_spot_check(char const* stageName, int roomNo);
 void dKy_darkworld_Area_set(char const* stageName, int roomNo);
 void dKy_FiveSenses_fullthrottle_dark();
+s32 dKy_daynight_check();
 
 struct LIGHT_INFLUENCE {
     /* 800CFC7C */ ~LIGHT_INFLUENCE();
@@ -132,8 +133,7 @@ public:
     /* 0x32C */ cXyz field_0x32c;
     /* 0x338 */ cXyz field_0x338;
     /* 0x344 */ f32 field_0x344;
-    /* 0x348 */ int field_0x348;
-    /* 0x34C */ int field_0x34c;
+    /* 0x348 */ GXColorS10 field_0x348;
     /* 0x350 */ int field_0x350;
     /* 0x354 */ int field_0x354;
     /* 0x358 */ u16 field_0x358;
@@ -199,6 +199,10 @@ public:
     /* 801A56DC */ void drawKankyo();
 
     /* 801ADBBC */ virtual ~dScnKy_env_light_c();
+
+    void setLightTevColorType_MAJI(J3DModel* i_model, dKy_tevstr_c* tevstr) {
+        setLightTevColorType_MAJI(i_model->getModelData(), tevstr);
+    }
 
 public:
     /* 0x0000 */  // vtable
@@ -489,5 +493,8 @@ s32 dKy_getdaytime_minute();
 s32 dKy_get_dayofweek();
 static void dKy_Sound_init();
 void dKy_setLight_nowroom(char);
+void dKy_setLight_nowroom_actor(dKy_tevstr_c*);
+void dKy_setLight_again();
+void dKy_GxFog_tevstr_set(dKy_tevstr_c*);
 
 #endif /* D_KANKYO_D_KANKYO_H */

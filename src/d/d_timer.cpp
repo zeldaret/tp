@@ -6,79 +6,15 @@
 #include "d/d_timer.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "d/com/d_com_inf_game.h"
 
 //
 // Types:
 //
 
-struct request_of_phase_process_class {};
-
-struct msg_class {};
-
-struct cXyz {};
-
-struct dTimer_c {
-    /* 8025CA0C */ void _create();
-    /* 8025CF04 */ void _execute();
-    /* 8025D33C */ void _draw();
-    /* 8025D3BC */ void _delete();
-    /* 8025D524 */ void deleteCheck();
-    /* 8025D618 */ void start(int, s16);
-    /* 8025D538 */ void start(int);
-    /* 8025D7C0 */ void stock_start(s16);
-    /* 8025D708 */ void stock_start();
-    /* 8025D7E8 */ void stop(u8);
-    /* 8025D86C */ void restart(u8);
-    /* 8025D920 */ void end(int);
-    /* 8025D9E0 */ void deleteRequest();
-    /* 8025D9F0 */ void getTimeMs();
-    /* 8025DA54 */ void getLimitTimeMs();
-    /* 8025DA9C */ void getRestTimeMs();
-    /* 8025DB10 */ void isStart();
-    /* 802613DC */ void createGetIn(cXyz);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C1E4 */ void getResInfo(char const*, dRes_info_c*, int);
-};
-
 struct dMsgObject_c {
     /* 8023822C */ void getStatus();
 };
-
-struct JMSMesgEntry_c {};
-
-struct dMeter2Info_c {
-    /* 8021C250 */ void getString(u32, char*, JMSMesgEntry_c*);
-};
-
-struct JUtility {
-    struct TColor {};
-};
-
-struct dMeter2Draw_c {
-    /* 802140DC */ void drawPikari(f32, f32, f32*, f32, JUtility::TColor, JUtility::TColor,
-                                   JUtility::TColor, JUtility::TColor, f32, u8);
-};
-
-struct dLib_time_c {
-    /* 80032804 */ void getTime();
-};
-
-struct dDlst_base_c {};
-
-struct dDlst_list_c {
-    /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
-};
-
-struct J2DPane {
-    /* 802F7AFC */ void getParentPane();
-    /* 802F7FCC */ void animationTransform();
-};
-
-struct JKRArchive {};
 
 struct dDlst_TimerScrnDraw_c {
     /* 8025DB38 */ dDlst_TimerScrnDraw_c();
@@ -109,18 +45,6 @@ struct dDlst_TimerScrnDraw_c {
     /* 80261394 */ ~dDlst_TimerScrnDraw_c();
 };
 
-struct dComIfG_play_c {
-    /* 8002CB9C */ void getTimerNowTimeMs();
-    /* 8002CBAC */ void getTimerLimitTimeMs();
-    /* 8002CBBC */ void getTimerMode();
-    /* 8002CBCC */ void getTimerType();
-    /* 8002CBDC */ void getTimerPtr();
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
@@ -129,42 +53,8 @@ struct Z2AudioMgr {
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
-struct JKRHeap {
-    /* 802CE784 */ void getTotalFreeSize();
-};
-
-struct JKRFileLoader {
-    /* 802D4270 */ void getGlbResource(char const*, JKRFileLoader*);
-};
-
-struct JKRExpHeap {};
-
-struct J2DTextBox {
-    /* 80300658 */ void getStringPtr() const;
-};
-
-struct J2DGrafContext {};
-
-struct J2DScreen {
-    /* 802F8498 */ J2DScreen();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-};
-
 struct J2DAnmLoaderDataBase {
     /* 80308A6C */ void load(void const*);
-};
-
-struct CPaneMgrAlpha {
-    /* 802555C8 */ void show();
-    /* 80255608 */ void hide();
-    /* 802557D0 */ void setAlphaRate(f32);
-};
-
-struct CPaneMgr {
-    /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 802545B0 */ void paneTrans(f32, f32);
-    /* 80254EBC */ void getGlobalVtxCenter(J2DPane*, bool, s16);
 };
 
 //
@@ -298,14 +188,9 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void __div2i();
-extern "C" void strcmp();
-extern "C" void strcpy();
 extern "C" extern void* g_fopMsg_Method[5 + 1 /* padding */];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_drawHIO[3880];
-extern "C" extern u8 g_meter2_info[248];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
@@ -378,7 +263,7 @@ asm void dTimer_c::_delete() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dTimer_c::deleteCheck() {
+asm int dTimer_c::deleteCheck() {
     nofralloc
 #include "asm/d/d_timer/deleteCheck__8dTimer_cFv.s"
 }

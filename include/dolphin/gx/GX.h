@@ -912,6 +912,7 @@ void GXInitLightSpot(GXLightObj*, f32, GXSpotFn);
 void GXInvalidateTexAll(void);
 void GXLoadLightObjImm(GXLightObj*, GXLightID);
 void GXLoadPosMtxImm(Mtx, u32);
+void GXLoadNrmMtxImm(Mtx, u32);
 void GXLoadTexMtxImm(Mtx, u32, GXTexMtxType);
 void GXPixModeSync(void);
 void GXProject(f32, f32, f32, Mtx, f32*, f32*, f32*, f32*, f32*);

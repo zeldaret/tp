@@ -91,8 +91,8 @@ public:
         /* 0x005 */ u8 field_0x5;
         /* 0x006 */ u8 field_0x6;
         /* 0x008 */ emitter_c mEmitter[0x80];
-        /* 0xC08 */
-    };
+        /* 0xC08 */ emitter_c* field_0xc08[0x100];
+    };  // Size: 0x1008
 
     /* 8004BACC */ dPa_control_c();
     /* 8004BB70 */ void getRM_ID(u16);
