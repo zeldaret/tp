@@ -80,9 +80,16 @@ struct stage_palette_info_class {
     // PAL
 };
 
-struct stage_map_info_dummy_class {};
+struct stage_map_info_class {
+    /* 0x00 */ u8 field_0x0[0x35];
+    /* 0x35 */ u8 field_0x35;
+    /* 0x36 */ u8 field_0x36[2];
+};  // Size: 0x38
 
-struct stage_map_info_class {};
+struct stage_map_info_dummy_class {
+    /* 0x0 */ int field_0x0;
+    /* 0x4 */ stage_map_info_class* mData;
+};
 
 struct stage_envr_info_class {
     // Env
@@ -251,7 +258,7 @@ public:
     /* vt[12] */ virtual roomRead_class* getRoom(void) const = 0;
     /* vt[13] */ virtual void setMapInfo(stage_map_info_class*) = 0;
     /* vt[14] */ virtual stage_map_info_class* getMapInfo(void) const = 0;
-    /* vt[15] */ virtual int getMapInfo2(int) const = 0;
+    /* vt[15] */ virtual stage_map_info_class* getMapInfo2(int) const = 0;
     /* vt[16] */ virtual void setMapInfoBase(stage_map_info_dummy_class*) = 0;
     /* vt[17] */ virtual stage_map_info_dummy_class* getMapInfoBase(void) const = 0;
     /* vt[18] */ virtual void setPaletteInfo(stage_palette_info_class*) = 0;
@@ -351,7 +358,7 @@ public:
     /* vt[12] */ virtual roomRead_class* getRoom(void) const;
     /* vt[13] */ virtual void setMapInfo(stage_map_info_class*);
     /* vt[14] */ virtual stage_map_info_class* getMapInfo(void) const;
-    /* vt[15] */ virtual int getMapInfo2(int) const;
+    /* vt[15] */ virtual stage_map_info_class* getMapInfo2(int) const;
     /* vt[16] */ virtual void setMapInfoBase(stage_map_info_dummy_class*);
     /* vt[17] */ virtual stage_map_info_dummy_class* getMapInfoBase(void) const;
     /* vt[18] */ virtual void setPaletteInfo(stage_palette_info_class*);
@@ -496,7 +503,7 @@ public:
     virtual roomRead_class* getRoom(void) const;
     virtual void setMapInfo(stage_map_info_class*);
     virtual stage_map_info_class* getMapInfo(void) const;
-    virtual int getMapInfo2(int) const;
+    virtual stage_map_info_class* getMapInfo2(int) const;
     virtual void setMapInfoBase(stage_map_info_dummy_class*);
     virtual stage_map_info_dummy_class* getMapInfoBase(void) const;
     virtual void setPaletteInfo(stage_palette_info_class*);

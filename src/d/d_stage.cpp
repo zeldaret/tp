@@ -7,26 +7,15 @@
 #include "JSystem/JKernel/JKRAramArchive.h"
 #include "SSystem/SComponent/c_malloc.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/com/d_com_static.h"
 #include "d/d_procname.h"
+#include "d/save/d_save_HIO.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_kankyo_mng.h"
 #include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_reset.h"
-
-//
-// Types:
-//
-
-struct daSus_c {
-    /* 80031434 */ static bool check(s8, cXyz const&);
-    /* 800315A4 */ static void execute();
-};
-
-struct dSvBit_HIO_c {
-    /* 8025C1F8 */ void init();
-};
 
 //
 // Forward References:
@@ -409,12 +398,16 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern J3DLightInfo const j3dDefaultLightInfo;
-extern "C" extern u8 g_save_bit_HIO[1184 + 4 /* padding */];
+extern "C" extern dSvBit_HIO_c g_save_bit_HIO;
 extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 
 //
 // Declarations:
 //
+
+inline u8 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
+    return param_0->field_0x09 >> 1 & 0x1f;
+}
 
 inline dStage_stageDt_c* dComIfGp_getStage() {
     return &g_dComIfG_gameInfo.play.getStage();
@@ -2134,7 +2127,7 @@ static int dStage_arrowInit(dStage_dt_c* i_stage, void* i_data, int param_2, voi
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int dStage_roomDt_c::getMapInfo2(int param_0) const {
+asm stage_map_info_class* dStage_roomDt_c::getMapInfo2(int param_0) const {
     nofralloc
 #include "asm/d/d_stage/getMapInfo2__15dStage_roomDt_cCFi.s"
 }
@@ -2150,7 +2143,7 @@ stage_map_info_dummy_class* dStage_roomDt_c::getMapInfoBase() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int dStage_stageDt_c::getMapInfo2(int param_0) const {
+asm stage_map_info_class* dStage_stageDt_c::getMapInfo2(int param_0) const {
     nofralloc
 #include "asm/d/d_stage/getMapInfo2__16dStage_stageDt_cCFi.s"
 }
@@ -2278,23 +2271,24 @@ asm u8 dStage_stagInfo_GetParticleNo(stage_stag_info_class* p_info, int layer) {
 #pragma pop
 #endif
 
-/* ############################################################################################## */
-/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80378B33 = "Xtg_00";
-#pragma pop
-
 /* 80025744-8002582C 020084 00E8+00 1/0 0/0 0/0 .text dStage_stagInfoInit__FP11dStage_dt_cPviPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int dStage_stagInfoInit(dStage_dt_c* param_0, void* param_1, int param_2,
+static int dStage_stagInfoInit(dStage_dt_c* stageDt, void* i_data, int entryNum,
                                    void* param_3) {
-    nofralloc
-#include "asm/d/d_stage/dStage_stagInfoInit__FP11dStage_dt_cPviPv.s"
+    dStage_nodeHeader* stag_info = (dStage_nodeHeader*)(i_data);
+    stageDt->setStagInfo((stage_stag_info_class*)stag_info->m_offset);
+    
+    if (!dStage_isBossStage(stageDt)) {
+        dComIfG_deleteStageRes("Xtg_00");
+        dComIfGp_resetOldMulti();
+    }
+
+    int stageNo = dStage_stagInfo_GetSaveTbl(stageDt->getStagInfo());
+    dComIfGs_getSave(stageNo);
+    g_save_bit_HIO.init();
+    dComIfGs_initDan(stageNo);
+    dStage_KeepDoorInfoInit(stageDt);
+    return 1;
 }
-#pragma pop
 
 /* 8002582C-80025838 02016C 000C+00 1/0 0/0 0/0 .text            resetOldMulti__16dStage_stageDt_cFv
  */
@@ -2924,10 +2918,6 @@ void dStage_Create() {
     }
 
     dComIfGp_evmng_create();
-}
-
-inline u8 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
-    return param_0->field_0x09 >> 1 & 0x1f;
 }
 
 /* 80026DF8-80026FDC 021738 01E4+00 0/0 1/1 0/7 .text            dStage_Delete__Fv */

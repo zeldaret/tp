@@ -1219,6 +1219,14 @@ inline void dComIfGs_putSave(int i_stageNo) {
     g_dComIfG_gameInfo.info.putSave(i_stageNo);
 }
 
+inline void dComIfGs_getSave(int i_stageNo) {
+    g_dComIfG_gameInfo.info.getSave(i_stageNo);
+}
+
+inline void dComIfGs_initDan(s8 i_stageNo) {
+    g_dComIfG_gameInfo.info.initDan(i_stageNo);
+}
+
 void dComIfGp_setItemLifeCount(f32 amount, u8 type);
 void dComIfGp_setItemRupeeCount(long amount);
 void dComIfGp_setSelectItem(int index);
