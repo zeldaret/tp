@@ -11,7 +11,6 @@
 #include "dolphin/types.h"
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
 
-
 //
 // Forward References:
 //
@@ -361,8 +360,7 @@ void dSv_horse_place_c::init() {
     mRoomNo = 0;
 }
 
-void dSv_horse_place_c::set(const char* i_name, const cXyz& i_pos, s16 i_angle,
-                            s8 i_roomNo) {
+void dSv_horse_place_c::set(const char* i_name, const cXyz& i_pos, s16 i_angle, s8 i_roomNo) {
     strcpy(mName, i_name);
     mPos = i_pos;
     mAngleY = i_angle;
@@ -397,9 +395,8 @@ void dSv_player_field_last_stay_info_c::init() {
     }
 }
 
-void dSv_player_field_last_stay_info_c::set(const char* i_name, const cXyz& i_pos,
-                                            s16 i_angle, s8 i_spawn,
-                                            u8 i_regionNo) {
+void dSv_player_field_last_stay_info_c::set(const char* i_name, const cXyz& i_pos, s16 i_angle,
+                                            s8 i_spawn, u8 i_regionNo) {
     strcpy(mName, i_name);
     mPos = i_pos;
     mAngleY = i_angle;
@@ -433,9 +430,8 @@ void dSv_player_last_mark_info_c::init() {
     }
 }
 
-void dSv_player_last_mark_info_c::setWarpItemData(const char* i_name,
-                                                  const cXyz& i_pos, s16 i_angle,
-                                                  s8 i_roomNo, u8 unk1, u8 unk2) {
+void dSv_player_last_mark_info_c::setWarpItemData(const char* i_name, const cXyz& i_pos,
+                                                  s16 i_angle, s8 i_roomNo, u8 unk1, u8 unk2) {
     strcpy(mName, i_name);
     mPos.set(i_pos);
     mAngleY = i_angle;
@@ -649,7 +645,8 @@ void dSv_player_item_c::setEmptyBottle(u8 i_itemNo) {
 void dSv_player_item_c::setEquipBottleItemIn(u8 curItemIn, u8 newItemIn) {
     u8 new_item = dSv_item_rename(newItemIn);
 
-    if (dComIfGs_getSelectItemIndex(curItemIn) >= SLOT_11 && dComIfGs_getSelectItemIndex(curItemIn) <= SLOT_14) {
+    if (dComIfGs_getSelectItemIndex(curItemIn) >= SLOT_11 &&
+        dComIfGs_getSelectItemIndex(curItemIn) <= SLOT_14) {
         if (new_item == HOT_SPRING) {
             dMeter2Info_setHotSpringTimer(dComIfGs_getSelectItemIndex(curItemIn));
         }
@@ -1185,7 +1182,7 @@ void dSv_fishing_info_c::addFishCount(u8 fish_index) {
 
 void dSv_player_info_c::init() {
     dMeter2Info_getString(0x382, mPlayerName, NULL);  // Link
-    dMeter2Info_getString(0x383, mHorseName, NULL);  // Epona
+    dMeter2Info_getString(0x383, mHorseName, NULL);   // Epona
 
     unk4 = 0;
     unk0 = 0;
@@ -1633,7 +1630,8 @@ void dSv_info_c::onSwitch(int i_no, int i_roomNo) {
         if (i_no < (MEMORY_SWITCH + DAN_SWITCH + ZONE_SWITCH)) {
             mZone[zoneId].getZoneBit().onSwitch(i_no - (MEMORY_SWITCH + DAN_SWITCH));
         } else {
-            mZone[zoneId].getZoneBit().onOneSwitch(i_no - (MEMORY_SWITCH + DAN_SWITCH + ZONE_SWITCH));
+            mZone[zoneId].getZoneBit().onOneSwitch(i_no -
+                                                   (MEMORY_SWITCH + DAN_SWITCH + ZONE_SWITCH));
         }
     }
 }
@@ -1652,7 +1650,8 @@ void dSv_info_c::offSwitch(int i_no, int i_roomNo) {
         if (i_no < (MEMORY_SWITCH + DAN_SWITCH + ZONE_SWITCH)) {
             mZone[zoneId].getZoneBit().offSwitch(i_no - (MEMORY_SWITCH + DAN_SWITCH));
         } else {
-            mZone[zoneId].getZoneBit().offOneSwitch(i_no - (MEMORY_SWITCH + DAN_SWITCH + ZONE_SWITCH));
+            mZone[zoneId].getZoneBit().offOneSwitch(i_no -
+                                                    (MEMORY_SWITCH + DAN_SWITCH + ZONE_SWITCH));
         }
     }
 }
@@ -1674,7 +1673,8 @@ BOOL dSv_info_c::isSwitch(int i_no, int i_roomNo) const {
             if (i_no < (MEMORY_SWITCH + DAN_SWITCH + ZONE_SWITCH)) {
                 return mZone[zoneId].getBit().isSwitch(i_no - (MEMORY_SWITCH + DAN_SWITCH));
             } else {
-                return mZone[zoneId].getBit().isOneSwitch(i_no - (MEMORY_SWITCH + DAN_SWITCH + ZONE_SWITCH));
+                return mZone[zoneId].getBit().isOneSwitch(
+                    i_no - (MEMORY_SWITCH + DAN_SWITCH + ZONE_SWITCH));
             }
         }
     }
@@ -1694,7 +1694,8 @@ BOOL dSv_info_c::revSwitch(int i_no, int i_roomNo) {
         if (i_no < (MEMORY_SWITCH + DAN_SWITCH + ZONE_SWITCH)) {
             return mZone[zoneNo].getZoneBit().revSwitch(i_no - (MEMORY_SWITCH + DAN_SWITCH));
         } else {
-            return mZone[zoneNo].getZoneBit().revOneSwitch(i_no - (MEMORY_SWITCH + DAN_SWITCH + ZONE_SWITCH));
+            return mZone[zoneNo].getZoneBit().revOneSwitch(
+                i_no - (MEMORY_SWITCH + DAN_SWITCH + ZONE_SWITCH));
         }
     }
 }

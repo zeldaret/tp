@@ -1238,10 +1238,9 @@ void item_func_HAWK_EYE() {
 #ifdef NONMATCHING
 void item_func_WOOD_STICK() {
     dComIfGs_setCollectSword(COLLECT_WOODEN_SWORD);
-    dComIfGs_setSelectEquipSword__FUc(WOOD_STICK);
+    dComIfGs_setSelectEquipSword(WOOD_STICK);
 
-    s8 stayNo = dComIfGp_roomControl_getStayNo();
-    dComIfGs_onSwitch(28, stayNo);  // wrong order
+    dComIfGs_onSwitch(28, dComIfGp_roomControl_getStayNo());  // wrong order
 }
 #else
 #pragma push
@@ -2471,12 +2470,10 @@ s32 isArrow(u8 item_no) {
 }
 
 /* 8009B708-8009B77C 096048 0074+00 0/0 4/4 1/1 .text            isBottleItem__FUc */
-// probably wrong cases or order
-#ifdef NONMATCHING
 bool isBottleItem(u8 item_no) {
-    bool is_bottle_item;
-
     switch (item_no) {
+    case OIL_BOTTLE3:
+    case EMPTY_BOTTLE:
     case RED_BOTTLE:
     case GREEN_BOTTLE:
     case BLUE_BOTTLE:
@@ -2489,10 +2486,8 @@ bool isBottleItem(u8 item_no) {
     case UGLY_SOUP:
     case HOT_SPRING:
     case FAIRY:
-    case HOT_SPRING_2:
-    case OIL2:
-    case OIL:
     case FAIRY_DROP:
+    case WORM:
     case BEE_CHILD:
     case CHUCHU_RARE:
     case CHUCHU_RED:
@@ -2503,29 +2498,16 @@ bool isBottleItem(u8 item_no) {
     case LV1_SOUP:
     case LV2_SOUP:
     case LV3_SOUP:
-    case CHUCHU_YELLOW2:
-    case OIL_BOTTLE3:
-    case SHOP_BEE_CHILD:
     case CHUCHU_BLACK:
-        is_bottle_item = true;
-        break;
+    case POU_FIRE1:
+    case POU_FIRE2:
+    case POU_FIRE3:
+    case POU_FIRE4:
+        return true;
     default:
-        is_bottle_item = false;
-        break;
+        return false;
     }
-
-    return is_bottle_item;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void isBottleItem(u8 param_0) {
-    nofralloc
-#include "asm/d/d_item/isBottleItem__FUc.s"
-}
-#pragma pop
-#endif
 
 BOOL isHeart(u8 item_no) {
     BOOL is_heart = false;

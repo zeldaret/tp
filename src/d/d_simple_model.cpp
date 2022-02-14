@@ -4,9 +4,9 @@
 //
 
 #include "d/d_simple_model.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "d/com/d_com_inf_game.h"
 #include "m_Do/m_Do_mtx.h"
 
 //
@@ -121,7 +121,7 @@ int dSmplMdl_draw_c::removeModel(J3DModelData* i_modelData, int roomNo) {
             return 0;
         }
     }
-    
+
     return 0;
 }
 
@@ -165,7 +165,7 @@ J3DModelData* diff_model_c::getModelData() {
 /* 80049210-80049270 043B50 0060+00 3/3 0/0 0/0 .text            remove__12diff_model_cFi */
 void diff_model_c::remove(int param_0) {
     mCreateNum--;
-    
+
     if (mCreateNum == 0 || param_0 != 0) {
         JKRSolidHeap* heap = mpHeap;
         if (heap != NULL) {

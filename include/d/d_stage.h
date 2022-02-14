@@ -9,48 +9,53 @@
 #include "f_op/f_op_actor.h"
 #include "f_op/f_op_actor_mng.h"
 
-struct stage_vrboxcol_info_class {};
+struct stage_vrboxcol_info_class {
+    // VRB
+};  // Size: 0x18
 
-struct stage_vrbox_info_class {};
+struct stage_vrbox_info_class {
+    // Virt
+};
 
-struct stage_tresure_class {};
-
-struct stage_tgsc_data_class {
-    /* 8002847C */ ~stage_tgsc_data_class() {}
-    /* 800284B8 */ stage_tgsc_data_class() {}
-    /* 0x00 */ u32 field_0x0;
-    /* 0x04 */ u32 field_0x4;
-    /* 0x08 */ fopAcM_prmBase_class field_0x8;
-    /* 0x20 */ u16 field_0x20;
-    /* 0x22 */ u8 field_0x22;
-};  // Size = 0x24
-
-STATIC_ASSERT(sizeof(stage_tgsc_data_class) == 0x24);
-
-struct stage_tgsc_class {};
+class stage_tresure_class {
+public:
+    /* 0x00 */ char mName[8];
+    /* 0x08 */ u8 field_0x8;
+    /* 0x09 */ u8 mTypeFlag;
+    /* 0x0A */ u8 field_0xa;  // part of flag
+    /* 0x0B */ u8 mAppearType;
+    /* 0x0C */ Vec mPosition;
+    /* 0x18 */ s16 mRoomNo;
+    /* 0x1A */ s16 mRotation;
+    /* 0x1C */ u8 mItem;
+    /* 0x1D */ u8 mFlagID;
+};  // Size: 0x20
 
 struct stage_stag_info_class {
-    /* 0x00 */ u8 field_0x00[8];
+    /* 0x00 */ f32 field_0x0;
+    /* 0x04 */ f32 field_0x4;
     /* 0x08 */ u8 mCameraType;
     /* 0x09 */ u8 field_0x09;
     /* 0x0A */ u16 field_0x0a;
     /* 0x0C */ u32 field_0x0c;
     /* 0x10 */ u32 field_0x10;
-    /* 0x14 */ u8 field_0x14[6];
+    /* 0x14 */ u8 field_0x14[6];  // usually all 0xFF
     /* 0x1A */ s16 mGapLevel;
     /* 0x1C */ s16 mRangeUp;
     /* 0x1E */ s16 mRangeDown;
-    /* 0x20 */ u8 field_0x20[8];
+    /* 0x20 */ f32 field_0x20;
+    /* 0x24 */ f32 field_0x24;
     /* 0x28 */ u8 mMsgGroup;
     /* 0x2A */ u16 mStageTitleNo;
-};  // Size: 0x2C
+    /* 0x2C */ u8 mParticleNo;
+};
 
 struct stage_scls_info_class {
     /* 0x0 */ char mStage[8];
     /* 0x8 */ u8 mStart;
     /* 0x9 */ s8 mRoom;
-    /* 0xA */ s8 field_0xa;
-    /* 0xB */ s8 field_0xb;
+    /* 0xA */ u8 field_0xa;
+    /* 0xB */ u8 field_0xb;
     /* 0xC */ s8 mWipe;
 };  // Size: 0xD
 
@@ -59,43 +64,96 @@ struct stage_scls_info_dummy_class {
     /* 0x04 */ stage_scls_info_class* mEntries;
 };
 
-struct stage_pure_lightvec_info_class {};
+struct stage_pure_lightvec_info_class {
+    // LGT
+};
 
-struct stage_pselect_info_class {};
+struct stage_pselect_info_class {
+    // Col
+};
 
-struct stage_plight_info_class {};
+struct stage_plight_info_class {
+    // LGHT
+};
 
-struct stage_palette_info_class {};
+struct stage_palette_info_class {
+    // PAL
+};
 
 struct stage_map_info_dummy_class {};
 
 struct stage_map_info_class {};
 
-struct stage_envr_info_class {};
+struct stage_envr_info_class {
+    // Env
+};
 
-struct stage_camera_class {};
+struct stage_camera2_data_class {
+    /* 0x00 */ int field_0x0;
+    /* 0x04 */ f32 field_0x4;
+    /* 0x08 */ f32 field_0x8;
+    /* 0x0C */ f32 field_0xc;
+    /* 0x10 */ u8 field_0x10;
+    /* 0x11 */ u8 field_0x11;
+    /* 0x12 */ u8 field_0x12;
+    /* 0x13 */ u8 field_0x13;
+    /* 0x14 */ u16 field_0x14;
+    /* 0x16 */ u16 field_0x16;
+};  // Size: 0x18
 
-struct stage_camera2_data_class {};
+struct stage_camera_class {
+    /* 0x0 */ int field_0x0;
+    /* 0x4 */ stage_camera2_data_class* field_0x4;
+};
 
-struct stage_arrow_class {};
+struct stage_arrow_class {
+    /* 0x00 */ cXyz mPosition;
+    /* 0x0C */ csXyz mAngle;
+};  // Size: 0x14
 
-struct stage_actor_data_class {};
+class stage_actor_data_class {
+public:
+    /* 0x00 */ char mName[8];
+    /* 0x08 */ u32 mParameter;
+    /* 0x0C */ cXyz mSpawnPos;
+    /* 0x18 */ csXyz mAngle;
+    /* 0x1E */ u16 mEnemyNo;
+};  // Size: 0x20
 
-struct stage_actor_class {};
+class stage_actor_class {
+public:
+    /* 0x0 */ int mEntryNum;
+    /* 0x4 */ stage_actor_data_class* mEntries;
+};
+
+struct stage_tgsc_data_class : public stage_actor_data_class {
+    /* 8002847C */ ~stage_tgsc_data_class() {}
+    /* 800284B8 */ stage_tgsc_data_class() {}
+
+    /* 0x20 */ u8 field_0x20;
+    /* 0x21 */ u8 field_0x21;
+    /* 0x22 */ u8 field_0x22;
+};  // Size: 0x24
+
+STATIC_ASSERT(sizeof(stage_tgsc_data_class) == 0x24);
+
+class stage_tgsc_class {
+public:
+    /* 0x00 */ int mEntryNum;
+    /* 0x04 */ stage_tgsc_data_class* mData;
+};
 
 struct roomRead_data_class {
-    /* 0x0 */ u8 field_0x0[2];
+    /* 0x0 */ u8 field_0x0;
+    /* 0x1 */ u8 field_0x1;
     /* 0x2 */ u8 field_0x2;
+    /* 0x4 */ u8* field_0x4;
 };
 
 struct roomRead_class {
     /* 0x0 */ int field_0x0;
     /* 0x4 */ roomRead_data_class** field_0x4;
 };
-
-inline s32 dStage_roomRead_dt_c_GetVrboxswitch(roomRead_data_class& data) {
-    return data.field_0x2 & 8;
-}
 
 class dStage_FileList2_dt_c {
 public:
@@ -109,7 +167,7 @@ public:
     /* 0x13 */ u8 field_0x13;
     /* 0x14 */ u8 field_0x14[8];
     /* 0x1C */ s16 field_0x1c;
-};
+};  // Size: 0x20
 
 struct dStage_MemoryMap_c {};
 
@@ -128,25 +186,51 @@ public:
     /* 0x4 */ dStage_Mult_info* mInfo;
 };
 
-struct dStage_SoundInfo_c {};
-
-struct dStage_FileList_dt_c {
-    /* 0x0 */ u32 field_0x0;
+struct dStage_SoundInfo_c {
+    // SOND
 };
 
-struct dStage_dPnt_c {};
+class dStage_FileList_dt_c {
+public:
+    /* 0x00 */ u32 mParameters;
+    /* 0x04 */ f32 mSeaLevel;
+    /* 0x08 */ f32 field_0x8;
+    /* 0x0C */ f32 field_0xc;
+    /* 0x10 */ u8 field_0x10[9];
+    /* 0x1A */ u8 mDefaultCamera;
+    /* 0x1C */ u16 mMsg;
+};  // Size: 0x20
 
-struct dStage_FloorInfo_c {};
+struct dStage_dPnt_c {
+    // PPNT
+};
 
-struct dStage_Lbnk_c {};
+struct dStage_FloorInfo_c {
+    // FLOR
+};
 
-struct dStage_Elst_c {};
+struct dStage_Lbnk_c {
+    // LBNK
+};
+
+struct dStage_Elst_c {
+    struct unkData {
+        u8 field_0x0[15];
+    };
+
+    /* 0x0 */ int field_0x0;
+    /* 0x4 */ unkData* field_0x4;
+};
 
 struct dStage_MemoryConfig_c {};
 
-struct dStage_DMap_c {};
+struct dStage_DMap_c {
+    // DMAP
+};
 
-struct dStage_MapEventInfo_c {};
+struct dStage_MapEventInfo_c {
+    // REVT
+};
 
 class dStage_dt_c {
 public:
@@ -348,48 +432,48 @@ public:
 
     void setTreasure(stage_tresure_class*);
 
-private:
-    stage_camera_class* mCamera;
-    stage_arrow_class* mArrow;
-    stage_actor_class* mPlayer;
-    roomRead_class* mRoom;
-    stage_map_info_class* mMapInfo;
-    stage_map_info_dummy_class* mMapInfoBase;
-    stage_palette_info_class* mPaletteInfo;
-    stage_pselect_info_class* mPselectInfo;
-    stage_envr_info_class* mEnvrInfo;
-    stage_vrbox_info_class* mVrboxInfo;
-    stage_vrboxcol_info_class* mVrboxcolInfo;
-    stage_plight_info_class* mPlightInfo;
-    dStage_MapEventInfo_c* mMapEventInfo;
-    u32 mPaletteNumInfo;
-    u32 mPselectNumInfo;
-    u32 mEnvrNumInfo;
-    u32 mVrboxNumInfo;
-    int mVrboxcolNumInfo;
-    u32 mPlightNumInfo;
-    u16 mPlayerNum;
-    u16 field_0x56;
-    u16 field_0x58;
-    u16 field_0x5a;
-    stage_stag_info_class* mStagInfo;
-    stage_scls_info_dummy_class* mSclsInfo;
-    dStage_dPnt_c* mPntInfo;
-    dStage_dPath_c* mPathInfo;
-    dStage_dPnt_c* mPnt2Inf;
-    dStage_dPath_c* mPath2Info;
-    dStage_SoundInfo_c* mSoundInf;
-    dStage_SoundInfo_c* mSoundInfCL;
-    dStage_FloorInfo_c* mFloorInfo;
-    dStage_MemoryConfig_c* mMemoryConfig;
-    dStage_MemoryMap_c* mMemoryMap;
-    dStage_Multi_c* mMulti;
-    dStage_Multi_c* mOldMulti;
-    stage_tresure_class* mTreasure;
-    dStage_DMap_c* mDMap;
-    stage_tgsc_class* mDrTg;
-    stage_tgsc_class* mDoor;
-    dStage_Elst_c* mElst;
+public:
+    /* 0x08 */ stage_camera_class* mCamera;
+    /* 0x0C */ stage_arrow_class* mArrow;
+    /* 0x10 */ stage_actor_class* mPlayer;
+    /* 0x14 */ roomRead_class* mRoom;
+    /* 0x18 */ stage_map_info_class* mMapInfo;
+    /* 0x1C */ stage_map_info_dummy_class* mMapInfoBase;
+    /* 0x20 */ stage_palette_info_class* mPaletteInfo;
+    /* 0x24 */ stage_pselect_info_class* mPselectInfo;
+    /* 0x28 */ stage_envr_info_class* mEnvrInfo;
+    /* 0x2C */ stage_vrbox_info_class* mVrboxInfo;
+    /* 0x30 */ stage_vrboxcol_info_class* mVrboxcolInfo;
+    /* 0x34 */ stage_plight_info_class* mPlightInfo;
+    /* 0x38 */ dStage_MapEventInfo_c* mMapEventInfo;
+    /* 0x3C */ u32 mPaletteNumInfo;
+    /* 0x40 */ u32 mPselectNumInfo;
+    /* 0x44 */ u32 mEnvrNumInfo;
+    /* 0x48 */ u32 mVrboxNumInfo;
+    /* 0x4C */ int mVrboxcolNumInfo;
+    /* 0x50 */ u32 mPlightNumInfo;
+    /* 0x54 */ u16 mPlayerNum;
+    /* 0x56 */ u16 field_0x56;
+    /* 0x58 */ u16 field_0x58;
+    /* 0x5A */ u16 field_0x5a;
+    /* 0x5C */ stage_stag_info_class* mStagInfo;
+    /* 0x60 */ stage_scls_info_dummy_class* mSclsInfo;
+    /* 0x64 */ dStage_dPnt_c* mPntInfo;
+    /* 0x68 */ dStage_dPath_c* mPathInfo;
+    /* 0x6C */ dStage_dPnt_c* mPnt2Inf;
+    /* 0x70 */ dStage_dPath_c* mPath2Info;
+    /* 0x74 */ dStage_SoundInfo_c* mSoundInf;
+    /* 0x78 */ dStage_SoundInfo_c* mSoundInfCL;
+    /* 0x7C */ dStage_FloorInfo_c* mFloorInfo;
+    /* 0x80 */ dStage_MemoryConfig_c* mMemoryConfig;
+    /* 0x84 */ dStage_MemoryMap_c* mMemoryMap;
+    /* 0x88 */ dStage_Multi_c* mMulti;
+    /* 0x8C */ dStage_Multi_c* mOldMulti;
+    /* 0x90 */ stage_tresure_class* mTreasure;
+    /* 0x94 */ dStage_DMap_c* mDMap;
+    /* 0x98 */ stage_tgsc_class* mDrTg;
+    /* 0x9C */ stage_tgsc_class* mDoor;
+    /* 0xA0 */ dStage_Elst_c* mElst;
 };
 
 class dStage_roomDt_c : public dStage_dt_c {
@@ -492,56 +576,58 @@ public:
     virtual dStage_Elst_c* getElst(void);
 
 public:
-    stage_pure_lightvec_info_class* mLightVecInfo;
-    int mLightVecInfoNum;
-    stage_map_info_class* mMapInfo;
-    stage_map_info_dummy_class* mMapInfoBase;
-    stage_vrbox_info_class* mVrboxInfo;
-    stage_vrboxcol_info_class* mVrboxcolInfo;
-    dStage_FileList2_dt_c* mFileList2Info;
-    dStage_FileList_dt_c* mFileListInfo;
-    stage_actor_class* mPlayer;
-    dStage_dPnt_c* mPnt2Info;
-    dStage_dPath_c* mPath2Info;
-    stage_camera_class* mCamera;
-    stage_arrow_class* mArrow;
-    dStage_MapEventInfo_c* mMapEventInfo;
-    dStage_SoundInfo_c* mSoundInf;
-    dStage_SoundInfo_c* mSoundInfCL;
-    stage_scls_info_dummy_class* mSclsInfo;
-    dStage_Lbnk_c* mLbnk;
-    stage_tresure_class* mTreasure;
-    stage_tgsc_class* mDrTg;
-    stage_tgsc_class* mDoor;
-    dStage_FloorInfo_c* mFloorInfo;
-    u16 mPlayerNum;
-    u16 field_0x62;
-    int mVrboxNumInfo;
-    int mVrboxcolNumInfo;
+    /* 0x08 */ stage_pure_lightvec_info_class* mLightVecInfo;
+    /* 0x0C */ int mLightVecInfoNum;
+    /* 0x10 */ stage_map_info_class* mMapInfo;
+    /* 0x14 */ stage_map_info_dummy_class* mMapInfoBase;
+    /* 0x18 */ stage_vrbox_info_class* mVrboxInfo;
+    /* 0x1C */ stage_vrboxcol_info_class* mVrboxcolInfo;
+    /* 0x20 */ dStage_FileList2_dt_c* mFileList2Info;
+    /* 0x24 */ dStage_FileList_dt_c* mFileListInfo;
+    /* 0x28 */ stage_actor_class* mPlayer;
+    /* 0x2C */ dStage_dPnt_c* mPnt2Info;
+    /* 0x30 */ dStage_dPath_c* mPath2Info;
+    /* 0x34 */ stage_camera_class* mCamera;
+    /* 0x38 */ stage_arrow_class* mArrow;
+    /* 0x3C */ dStage_MapEventInfo_c* mMapEventInfo;
+    /* 0x40 */ dStage_SoundInfo_c* mSoundInf;
+    /* 0x44 */ dStage_SoundInfo_c* mSoundInfCL;
+    /* 0x48 */ stage_scls_info_dummy_class* mSclsInfo;
+    /* 0x4C */ dStage_Lbnk_c* mLbnk;
+    /* 0x50 */ stage_tresure_class* mTreasure;
+    /* 0x54 */ stage_tgsc_class* mDrTg;
+    /* 0x58 */ stage_tgsc_class* mDoor;
+    /* 0x5C */ dStage_FloorInfo_c* mFloorInfo;
+    /* 0x60 */ u16 mPlayerNum;
+    /* 0x62 */ u16 field_0x62;
+    /* 0x64 */ int mVrboxNumInfo;
+    /* 0x68 */ int mVrboxcolNumInfo;
 };  // Size: 0x6C
 
 class dStage_roomStatus_c {
 public:
     /* 0x000 */ dStage_roomDt_c mRoomDt;
     /* 0x06C */ dKy_tevstr_c mKyTevStr;
-    /* 0x3F4 */ u8 unk_0x3F4;
-    /* 0x3F5 */ u8 unk_0x3F5[2];
+    /* 0x3F4 */ u8 mFlag;
+    /* 0x3F5 */ bool mDraw;
+    /* 0x3F6 */ s8 mZoneCount;
     /* 0x3F7 */ s8 mZoneNo;
     /* 0x3F8 */ s8 mMemBlockID;
     /* 0x3F9 */ u8 mRegionNo;
-    /* 0x3FA */ s8 unk_3FA[0x404 - 0x3FA];
+    /* 0x3FC */ int mProcID;
+    /* 0x400 */ int field_0x400;
 
     int getZoneNo() const { return mZoneNo; }
-    /* 80028360 */ ~dStage_roomStatus_c() {}
-    /* 8002839C */ dStage_roomStatus_c() {}
+    ~dStage_roomStatus_c() {}
+    dStage_roomStatus_c() {}
 };  // Size: 0x404
 
 STATIC_ASSERT(sizeof(dStage_roomStatus_c) == 0x404);
 
-extern s8 struct_80450D64;  // sStayNo
-extern s8 sLastStayNo;
-extern s8 sNextStayNo;
-extern s8 sTimePass;
+extern s8 struct_80450D64;  // gStayNo
+extern s8 gLastStayNo;
+extern s8 gNextStayNo;
+extern s8 gTimePass;
 extern u8 data_80450D68;
 
 class dStage_roomControl_c {
@@ -549,27 +635,31 @@ public:
     class roomDzs_c {
     public:
         roomDzs_c() { m_num = 0; }
-        /* 80024A34 */ void create(u8);
-        /* 80024ABC */ void remove();
-        /* 80024B44 */ void add(u8, u8);
+        void create(u8);
+        void remove();
+        void* add(u8, u8);
 
         /* 0x00 */ u8 m_num;
-        /* 0x04 */ JKRHeap* m_dzs;
+        /* 0x04 */ void** m_dzs;
     };
+
+    static void createRoomDzs(u8 i_num) { m_roomDzs.create(i_num); }
+    static void* addRoomDzs(u8 i_num, u8 roomNo) { return m_roomDzs.add(i_num, roomNo); }
+    static void removeRoomDzs() { m_roomDzs.remove(); }
 
     dStage_roomControl_c() {}
     void init(void);
     static int getZoneNo(int room);
     /* 80024338 */ void initZone();
     /* 80024384 */ dStage_roomStatus_c* getStatusRoomDt(int);
-    /* 800243B0 */ JKRExpHeap* getMemoryBlock(int);
+    /* 800243B0 */ static JKRExpHeap* getMemoryBlock(int);
     /* 800243E8 */ static void setStayNo(int);
     /* 80024424 */ static void setNextStayNo(int);
     /* 800244E8 */ bool checkRoomDisp(int) const;
-    /* 8002451C */ void loadRoom(int, u8*, bool);
+    /* 8002451C */ int loadRoom(int, u8*, bool);
     /* 8002471C */ void zoneCountCheck(int) const;
     /* 80024844 */ static JKRExpHeap* createMemoryBlock(int, u32);
-    /* 800248A8 */ void destroyMemoryBlock();
+    /* 800248A8 */ static void destroyMemoryBlock();
     /* 8002490C */ static void setArcBank(int, char const*);
     /* 80024940 */ static char* getArcBank(int);
     /* 80024954 */ static bool resetArchiveBank(int);
@@ -577,19 +667,28 @@ public:
     /* 8025BAAC */ void setZoneNo(int, int);
     static s32 GetTimePass();
 
-    inline static s8 getStayNo() { return struct_80450D64; }
+    static s8 getStayNo() { return struct_80450D64; }
     static u8 getRegionNo(int i_roomNo) { return mStatus[i_roomNo].mRegionNo; }
-    s8 getMemoryBlockID(int i_roomNo) { return mStatus[i_roomNo].mMemBlockID; }
+    static s8 getMemoryBlockID(int i_roomNo) { return mStatus[i_roomNo].mMemBlockID; }
     dKy_tevstr_c* getTevStr(int i_roomNo) { return &mStatus[i_roomNo].mKyTevStr; }
-    static dStage_FileList2_dt_c* getFileList2(int i_roomNo) { return mStatus[i_roomNo].mRoomDt.mFileList2Info; }
-    bool checkStatusFlag(int i_roomNo, u8 flag) const {
-        return cLib_checkBit(mStatus[i_roomNo].unk_0x3F4, flag);
+    void setStatusFlag(int i_roomNo, u8 flag) { mStatus[i_roomNo].mFlag = flag; }
+    static void onStatusDraw(int i_roomNo) { mStatus[i_roomNo].mDraw = true; }
+    static dStage_FileList2_dt_c* getFileList2(int i_roomNo) {
+        return mStatus[i_roomNo].mRoomDt.mFileList2Info;
     }
     static char* getDemoArcName() { return mDemoArcName; }
     static char* getArcBankName() { return mArcBankName; }
     static void setRoomReadId(s8 id) { data_804505F0 = id; }
+    static s8 getRoomReadId() { return data_804505F0; }
     static void offNoChangeRoom() { data_80450D68 = false; }
     static void setProcID(u32 id) { mProcID = id; }
+    static u32 getProcID() { return mProcID; }
+    static void setFileList2(int i_roomNo, dStage_FileList2_dt_c* list) {
+        mStatus[i_roomNo].mRoomDt.mFileList2Info = list;
+    }
+    bool checkStatusFlag(int i_roomNo, u8 flag) const {
+        return cLib_checkBit(mStatus[i_roomNo].mFlag, flag);
+    }
 
     static JKRExpHeap* mMemoryBlock[19];
     static char mArcBank[32][10];
@@ -601,7 +700,7 @@ public:
     static roomDzs_c m_roomDzs;
 
 private:
-    u8 field_0x0[4];
+    /* 0x0 */ u8 field_0x0[4];
 };
 
 class dStage_startStage_c {
@@ -656,8 +755,18 @@ public:
 typedef int (*dStage_Func)(dStage_dt_c*, void*, int, void*);
 
 struct FuncTable {
-    char identifier[8];
+    char identifier[5];
     dStage_Func function;
+};
+
+struct dStage_fileHeader {
+    /* 0x0 */ int chunkCount;
+};
+
+struct dStage_nodeHeader {
+    /* 0x0 */ u32 m_tag;
+    /* 0x4 */ int m_entryNum;
+    /* 0x8 */ u32 m_offset;
 };
 
 const char* dStage_getName2(s16, s8);
@@ -711,12 +820,24 @@ static int dStage_fieldMapFiliInfo2Init(dStage_dt_c*, void*, int, void*);
 static int dStage_fieldMapMapPathInit(dStage_dt_c*, void*, int, void*);
 
 u8 dStage_roomRead_dt_c_GetReverbStage(roomRead_class&, int);
-void dStage_changeScene(int, f32, u32, s8, s16, int);
+int dStage_changeScene(int, f32, u32, s8, s16, int);
 void dStage_infoCreate();
 u8 dStage_stagInfo_GetParticleNo(stage_stag_info_class* p_info, int layer);
 
+inline s32 dStage_roomRead_dt_c_GetVrboxswitch(roomRead_data_class& data) {
+    return data.field_0x2 & 8;
+}
+
+inline s32 dStage_roomRead_dt_c_GetTimePass(roomRead_data_class& data) {
+    return data.field_0x2 & 3;
+}
+
 inline u8 dStage_roomRead_dt_c_GetLoadRoomIndex(u8 param_0) {
     return param_0 & 0x3f;
+}
+
+inline u8 dStage_roomRead_dt_c_GetReverb(roomRead_data_class& room) {
+    return room.field_0x1 & 0x7F;
 }
 
 inline u32 dStage_stagInfo_GetSTType(stage_stag_info_class* pstag) {
@@ -755,12 +876,12 @@ inline s8 dStage_sclsInfo_getWipeTime(stage_scls_info_class* p_info) {
     return p_info->field_0xb >> 5;
 }
 
-inline s8 dStage_sclsInfo_getTimeH(stage_scls_info_class* p_info) {
-    return (p_info->field_0xa >> 4) | (p_info->field_0xb & 16);
+inline int dStage_sclsInfo_getTimeH(stage_scls_info_class* p_info) {
+    return ((p_info->field_0xb & 0xF0) >> 4) | ((p_info->field_0xa & 0x0F) << 4);
 }
 
 inline u32 dStage_FileList_dt_getMiniMap(dStage_FileList_dt_c* p_fList) {
-    return p_fList->field_0x0 >> 3 & 7;
+    return p_fList->mParameters >> 3 & 7;
 }
 
 #endif /* D_D_STAGE_H */

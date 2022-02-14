@@ -2664,7 +2664,7 @@ SECTION_SDATA2 static f32 lit_5553 = 0.0010000000474974513f;
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm int dDlst_shadowControl_c::setReal(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3,
-                                        f32 param_4, f32 param_5, dKy_tevstr_c* param_6) {
+                                       f32 param_4, f32 param_5, dKy_tevstr_c* param_6) {
     nofralloc
 #include "asm/d/d_drawlist/setReal__21dDlst_shadowControl_cFUlScP8J3DModelP4cXyzffP12dKy_tevstr_c.s"
 }
@@ -2687,7 +2687,7 @@ asm void dDlst_shadowControl_c::addReal(u32 param_0, J3DModel* param_1) {
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm int dDlst_shadowControl_c::setSimple(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3,
-                                          s16 param_4, f32 param_5, _GXTexObj* param_6) {
+                                         s16 param_4, f32 param_5, _GXTexObj* param_6) {
     nofralloc
 #include "asm/d/d_drawlist/setSimple__21dDlst_shadowControl_cFP4cXyzffP4cXyzsfP9_GXTexObj.s"
 }

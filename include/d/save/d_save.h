@@ -746,11 +746,13 @@ public:
     dSv_player_item_max_c& getItemMax() { return mItemMax; }
     dSv_player_last_mark_info_c& getPlayerLastMarkInfo() { return mPlayerLastMarkInfo; }
     dSv_player_return_place_c& getPlayerReturnPlace() { return mPlayerReturnPlace; }
-    dSv_player_field_last_stay_info_c& getPlayerFieldLastStayInfo() { return mPlayerFieldLastStayInfo; }
     dSv_light_drop_c& getLightDrop() { return mLightDrop; }
     dSv_player_get_item_c& getGetItem() { return mGetItem; }
     dSv_player_config_c& getConfig() { return mConfig; }
     dSv_letter_info_c& getLetterInfo() { return mLetterInfo; }
+    dSv_player_field_last_stay_info_c& getPlayerFieldLastStayInfo() {
+        return mPlayerFieldLastStayInfo;
+    }
 
 private:
     /* 0x000 */ dSv_player_status_a_c mPlayerStatusA;
@@ -945,6 +947,7 @@ public:
     const dSv_zoneActor_c& getActor() const { return mActor; }
 
     s8& getRoomNo() { return mRoomNo; }
+    void reset() { mRoomNo = -1; }
 
 private:
     /* 0x00 */ s8 mRoomNo;
@@ -970,6 +973,9 @@ public:
     s16 getStartPoint() const { return mStartPoint; }
     u32 getLastMode() const { return mLastMode; }
     s8 getRoomNo() const { return mRoomNo; }
+    u32 getRoomParam() const { return mRoomParam; }
+    cXyz& getRoomPos() { return mRoomPos; }
+    s16 getRoomAngleY() const { return mRoomAngleY; }
 
 private:
     /* 0x00 */ s8 mRoomNo;
@@ -992,6 +998,10 @@ public:
     };  // Size: 0x24
 
     void set(const cXyz& i_position, s16 i_angleY, s8, u32 i_param);
+
+    u32 getParam() const { return mParam; }
+    cXyz& getPos() { return mPosition; }
+    s16 getAngleY() const { return mAngleY; }
 
 private:
     /* 0x00 */ cXyz mPosition;
@@ -1066,6 +1076,7 @@ public:
     s64 getSaveTotalTime() const { return mSaveTotalTime; }
     void initDan(s8 i_stage) { mDan.init(i_stage); }
     u8 getDataNum() const { return mDataNum; }
+    void removeZone(int zoneNo) { mZone[zoneNo].reset(); }
 
     static const int MEMORY_SWITCH = 0x80;
     static const int DAN_SWITCH = 0x40;

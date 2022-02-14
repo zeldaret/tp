@@ -3,6 +3,9 @@
 
 #include "dolphin/types.h"
 
+struct JKRAramArchive;
+u32 dLib_getExpandSizeFromAramArchive(JKRAramArchive* arc, char const* resName);
+
 struct STControl {
     /* 80032044 */ STControl(s16, s16, s16, s16, f32, f32, s16, s16);
     /* 80032088 */ void setWaitParm(s16, s16, s16, s16, f32, f32, s16, s16);

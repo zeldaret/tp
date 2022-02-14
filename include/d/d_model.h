@@ -1,8 +1,8 @@
 #ifndef D_D_MODEL_H
 #define D_D_MODEL_H
 
-#include "dolphin/types.h"
 #include "d/com/d_com_inf_game.h"
+#include "dolphin/types.h"
 
 class dMdl_obj_c {
 public:

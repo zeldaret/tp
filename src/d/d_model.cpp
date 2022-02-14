@@ -61,8 +61,8 @@ void dMdl_c::draw() {
     mpModelData->getMaterialNodePointer(mMaterialId)->loadSharedDL();
     shape->loadPreDrawSetting();
 
-    GXColor amb_color = { mpTevstr->field_0x348.r, mpTevstr->field_0x348.g,
-                          mpTevstr->field_0x348.b, mpTevstr->field_0x348.a };
+    GXColor amb_color = {mpTevstr->field_0x348.r, mpTevstr->field_0x348.g, mpTevstr->field_0x348.b,
+                         mpTevstr->field_0x348.a};
     GXSetChanAmbColor(GX_COLOR0A0, amb_color);
     GXSetChanMatColor(GX_COLOR0A0, g_whiteColor);
     dKy_setLight_nowroom_actor(mpTevstr);
@@ -106,7 +106,8 @@ void dMdl_c::entryObj(dMdl_obj_c* i_obj) {
 dMdl_c* dMdl_mng_c::search(J3DModelData* i_modelData, u16 i_materialId, dKy_tevstr_c* i_tevstr) {
     dMdl_c* model = field_0x0;
     for (int i = field_0x80; i > 0; i--) {
-        if (model->getModelData() == i_modelData && model->getMaterialId() == i_materialId && model->getTevstr() == i_tevstr) {
+        if (model->getModelData() == i_modelData && model->getMaterialId() == i_materialId &&
+            model->getTevstr() == i_tevstr) {
             return model;
         }
         model++;

@@ -229,14 +229,16 @@ public:
     void setOpaListBG() { setOpaDrawList(mOpaListBG); }
     void setXluList2DScreen() { setXluDrawList(mList2DScreen); }
 
-    int setSimpleShadow(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3,
-                                  s16 param_4, f32 param_5, _GXTexObj* param_6) {
-        return mShadowControl.setSimple(param_0, param_1, param_2, param_3, param_4, param_5, param_6);
+    int setSimpleShadow(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3, s16 param_4,
+                        f32 param_5, _GXTexObj* param_6) {
+        return mShadowControl.setSimple(param_0, param_1, param_2, param_3, param_4, param_5,
+                                        param_6);
     }
 
     int setRealShadow(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3, f32 param_4,
                       f32 param_5, dKy_tevstr_c* param_6) {
-        return mShadowControl.setReal(param_0, param_1, param_2, param_3, param_4, param_5, param_6);
+        return mShadowControl.setReal(param_0, param_1, param_2, param_3, param_4, param_5,
+                                      param_6);
     }
 
     static void offWipe() { data_80450ED0 = 0; }

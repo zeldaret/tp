@@ -5,13 +5,13 @@
 
 #include "d/com/d_com_inf_game.h"
 #include "d/d_item.h"
+#include "d/d_procname.h"
+#include "d/d_timer.h"
 #include "d/kankyo/d_kankyo.h"
 #include "d/meter/d_meter2_info.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_audio.h"
-#include "d/d_procname.h"
-#include "d/d_timer.h"
 
 //
 // Forward References:
@@ -1138,7 +1138,8 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int dComIfG_play_c::getLayerNo_common_common(char const* i_stageName, int i_roomID, int i_layerOverride) {
+asm int dComIfG_play_c::getLayerNo_common_common(char const* i_stageName, int i_roomID,
+                                                 int i_layerOverride) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/getLayerNo_common_common__14dComIfG_play_cFPCcii.s"
 }
@@ -1295,8 +1296,7 @@ SECTION_SDATA extern GXColor g_blackColor = {0, 0, 0, 255};
 int dComIfG_changeOpeningScene(scene_class* scene, s16 procName) {
     dComIfGp_offEnableNextStage();
     dComIfGp_setNextStage("F_SP102", 100, 0, 10);
-    mDoAud_setSceneName(dComIfGp_getNextStageName(),
-                        dComIfGp_getNextStageRoomNo(),
+    mDoAud_setSceneName(dComIfGp_getNextStageName(), dComIfGp_getNextStageRoomNo(),
                         dComIfGp_getNextStageLayer());
     dComIfGs_setRestartRoomParam(0);
 
@@ -1312,7 +1312,8 @@ int dComIfG_changeOpeningScene(scene_class* scene, s16 procName) {
 
 /* 8002CD44-8002CDB8 027684 0074+00 0/0 2/2 0/0 .text dComIfG_resetToOpening__FP11scene_class */
 BOOL dComIfG_resetToOpening(scene_class* scene) {
-    if (mDoRst::isReturnToMenu() || !mDoRst::isReset() || mDoGph_gInf_c::getFader()->getStatus() == 2) {
+    if (mDoRst::isReturnToMenu() || !mDoRst::isReset() ||
+        mDoGph_gInf_c::getFader()->getStatus() == 2) {
         return 0;
     }
 
@@ -1351,12 +1352,13 @@ static int phase_3(char*) {
 /* 8002CEBC-8002CEFC 0277FC 0040+00 0/0 7/7 550/550 .text
  * dComIfG_resLoad__FP30request_of_phase_process_classPCc       */
 int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* arc_name) {
-    static int (*l_method[3])(void*) = {(int (*)(void*))phase_1, (int (*)(void*))phase_2, (int (*)(void*))phase_3};
+    static int (*l_method[3])(void*) = {(int (*)(void*))phase_1, (int (*)(void*))phase_2,
+                                        (int (*)(void*))phase_3};
 
     if (i_phase->mPhaseStep == 2) {
         return 4;
     }
-    
+
     return dComLbG_PhaseHandler(i_phase, l_method, (void*)arc_name);
 }
 
@@ -1386,9 +1388,9 @@ static int phase_03(phaseParam_c*) {
 
 /* 8002CFC0-8002D008 027900 0048+00 1/1 3/3 0/0 .text
  * dComIfG_resLoad__FP30request_of_phase_process_classPCcP7JKRHeap */
-int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* resName,
-                         JKRHeap* heap) {
-    static int (*l_method[3])(void*) = {(int (*)(void*))phase_01, (int (*)(void*))phase_02, (int (*)(void*))phase_03};
+int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* resName, JKRHeap* heap) {
+    static int (*l_method[3])(void*) = {(int (*)(void*))phase_01, (int (*)(void*))phase_02,
+                                        (int (*)(void*))phase_03};
 
     if (i_phase->mPhaseStep == 2) {
         return 4;
@@ -1414,15 +1416,16 @@ u8 dComIfGp_getReverb(int roomNo) {
     return dStage_roomRead_dt_c_GetReverbStage(*dComIfGp_getStageRoom(), roomNo);
 }
 
-inline int dComIfGd_setSimpleShadow(cXyz* pos, f32 param_1, f32 param_2, cXyz* param_3,
-                                  s16 angle, f32 param_5, _GXTexObj* tex) {
-    return g_dComIfG_gameInfo.drawlist.setSimpleShadow(pos, param_1, param_2, param_3, angle, param_5, tex);
+inline int dComIfGd_setSimpleShadow(cXyz* pos, f32 param_1, f32 param_2, cXyz* param_3, s16 angle,
+                                    f32 param_5, _GXTexObj* tex) {
+    return g_dComIfG_gameInfo.drawlist.setSimpleShadow(pos, param_1, param_2, param_3, angle,
+                                                       param_5, tex);
 }
 
 /* 8002D0B4-8002D1AC 0279F4 00F8+00 0/0 3/3 34/34 .text
  * dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj */
-int dComIfGd_setSimpleShadow(cXyz* pos, f32 param_1, f32 param_2, cBgS_PolyInfo& param_3,
-                                  s16 angle, f32 param_5, _GXTexObj* tex) {
+int dComIfGd_setSimpleShadow(cXyz* pos, f32 param_1, f32 param_2, cBgS_PolyInfo& param_3, s16 angle,
+                             f32 param_5, _GXTexObj* tex) {
     if (param_3.ChkSetInfo() && -1000000000.0f != param_1) {
         cM3dGPla plane;
         dComIfG_Bgsp().GetTriPla(param_3, &plane);
@@ -1486,21 +1489,23 @@ SECTION_DEAD static char const* const stringBase_80379089 = "";
 /* 8002D2FC-8002D554 027C3C 0258+00 2/2 7/7 4/4 .text dComIfGp_setNextStage__FPCcsScScfUliScsii */
 // 1 out of order instruction, small regalloc
 #ifdef NONMATCHING
-void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer,
-                               f32 lastSpeed, u32 lastMode, int param_6, s8 wipe, s16 lastAngle,
-                               int param_9, int param_10) {
+void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer, f32 lastSpeed,
+                           u32 lastMode, int param_6, s8 wipe, s16 lastAngle, int param_9,
+                           int param_10) {
     u32 mode = lastMode;
-    
+
     if (layer >= 15) {
         layer = -1;
     }
 
-    if (dComIfGs_isPlayerFieldLastStayFieldDataExistFlag() && daPy_getLinkPlayerActorClass() != NULL) {
+    if (dComIfGs_isPlayerFieldLastStayFieldDataExistFlag() &&
+        daPy_getLinkPlayerActorClass() != NULL) {
         s8 curPoint = (s8)daPy_getLinkPlayerActorClass()->mCurrent.mRoomNo;
         cXyz pos = dMapInfo_n::getMapPlayerPos();
         s16 angle = daPy_getLinkPlayerActorClass()->mCollisionRot.y;
         u8 level = dComIfGp_getNowLevel();
-        dComIfGs_setPlayerFieldLastStayInfo(dComIfGp_getStartStageName(), pos, angle, curPoint, level);
+        dComIfGs_setPlayerFieldLastStayInfo(dComIfGp_getStartStageName(), pos, angle, curPoint,
+                                            level);
     }
 
     if (!strcmp(stage, "F_SP121") && roomNo == 13 && (point == 99 || point == 98) && layer == 2) {
@@ -1508,12 +1513,13 @@ void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer,
     } else {
         dComIfGs_setKeyNum(6, 0);
     }
-    
+
     if (daAlink_getAlinkActorClass() != NULL) {
         daAlink_getAlinkActorClass()->setLastSceneMode(&mode);
     }
 
-    if (strcmp(dMeter2Info_getSaveStageName(), "") && strcmp(stage, dMeter2Info_getSaveStageName())) {
+    if (strcmp(dMeter2Info_getSaveStageName(), "") &&
+        strcmp(stage, dMeter2Info_getSaveStageName())) {
         dMeter2Info_setSaveStageName("");
     }
 
@@ -1546,9 +1552,9 @@ void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer,
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer,
-                               f32 lastSpeed, u32 lastMode, int param_6, s8 wipe, s16 lastAngle,
-                               int param_9, int param_10) {
+asm void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer, f32 lastSpeed,
+                               u32 lastMode, int param_6, s8 wipe, s16 lastAngle, int param_9,
+                               int param_10) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/dComIfGp_setNextStage__FPCcsScScfUliScsii.s"
 }
@@ -1556,8 +1562,7 @@ asm void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer
 #endif
 
 void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer) {
-    dComIfGp_setNextStage(stage, point, roomNo, layer, 0.0f, 0, 1, 0, 0, 1,
-                          0);
+    dComIfGp_setNextStage(stage, point, roomNo, layer, 0.0f, 0, 1, 0, 0, 1, 0);
 }
 
 BOOL dComIfGs_isStageTbox(int i_stageNo, int i_no) {
@@ -1652,8 +1657,8 @@ void dComIfGs_onZoneSwitch(int swBit, int roomNo) {
 
     if (dComIfGp_roomControl_getStayNo() >= 0) {
         int zoneNo = dStage_roomControl_c::getZoneNo(roomNo);
-        dComIfGs_onSvZoneSwitch(zoneNo, swBit);  
-    }     
+        dComIfGs_onSvZoneSwitch(zoneNo, swBit);
+    }
 }
 #else
 #pragma push
@@ -1802,9 +1807,10 @@ void dComIfGp_setSelectItem(int index) {
 u8 dComIfGp_getSelectItem(int index) {
     u8 playItem = g_dComIfG_gameInfo.play.getSelectItem(index);
 
-    if ((index == SELECT_ITEM_X || index == SELECT_ITEM_Y) && dComIfGs_getMixItemIndex(index) != NO_ITEM) {
+    if ((index == SELECT_ITEM_X || index == SELECT_ITEM_Y) &&
+        dComIfGs_getMixItemIndex(index) != NO_ITEM) {
         u8 saveItem = dComIfGs_getItem(dComIfGs_getMixItemIndex(index), false);
-        
+
         if (saveItem == BOW) {
             saveItem = playItem;
             playItem = BOW;
@@ -1824,8 +1830,7 @@ u8 dComIfGp_getSelectItem(int index) {
                 playItem = HAWK_ARROW;
                 break;
             }
-        }
-        else if (playItem == FISHING_ROD_1) {
+        } else if (playItem == FISHING_ROD_1) {
             switch (saveItem) {
             case BEE_CHILD:
                 playItem = BEE_ROD;
@@ -2078,21 +2083,22 @@ void dComIfGp_addSelectItemNum(int index, s16 num) {
     }
 }
 
-inline int dComIfGd_setRealShadow(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3, f32 param_4,
-                              f32 param_5, dKy_tevstr_c* param_6) {
-    return g_dComIfG_gameInfo.drawlist.setRealShadow(param_0, param_1, param_2, param_3, param_4, param_5, param_6);
+inline int dComIfGd_setRealShadow(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3,
+                                  f32 param_4, f32 param_5, dKy_tevstr_c* param_6) {
+    return g_dComIfG_gameInfo.drawlist.setRealShadow(param_0, param_1, param_2, param_3, param_4,
+                                                     param_5, param_6);
 }
 
 /* 8002E910-8002E974 029250 0064+00 0/0 5/5 137/137 .text
  * dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj */
 int dComIfGd_setShadow(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3, f32 param_4,
-                            f32 param_5, f32 param_6, f32 param_7, cBgS_PolyInfo& param_8,
-                            dKy_tevstr_c* param_9, s16 param_10, f32 param_11,
-                            _GXTexObj* param_12) {
+                       f32 param_5, f32 param_6, f32 param_7, cBgS_PolyInfo& param_8,
+                       dKy_tevstr_c* param_9, s16 param_10, f32 param_11, _GXTexObj* param_12) {
     if (param_7 <= -1000000000.0f) {
         return 0;
     } else {
-        return dComIfGd_setRealShadow(param_0, param_1, param_2, param_3, param_4, param_6 - param_7, param_9);
+        return dComIfGd_setRealShadow(param_0, param_1, param_2, param_3, param_4,
+                                      param_6 - param_7, param_9);
     }
 }
 
@@ -2167,7 +2173,8 @@ u8 dComIfGp_getNowLevel() {
 }
 
 void dComIfGs_setSelectEquipClothes(u8 i_itemNo) {
-    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setSelectEquip(COLLECT_CLOTHING, i_itemNo);
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setSelectEquip(COLLECT_CLOTHING,
+                                                                          i_itemNo);
 }
 
 /* 8002EEC0-8002EF94 029800 00D4+00 0/0 4/4 1/1 .text            dComIfGs_setSelectEquipSword__FUc
@@ -2223,13 +2230,13 @@ void dComIfGs_setKeyNum(int i_stageNo, u8 keyNum) {
 
 /* 8002F0E0-8002F128 029A20 0048+00 1/1 0/0 0/0 .text dComIfGs_setWarpItemData__FiPCc4cXyzsScUcUc
  */
-static void dComIfGs_setWarpItemData(int param_0, char const* stage, cXyz pos, s16 angle,
-                                     s8 roomNo, u8 param_5, u8 param_6) {
+static void dComIfGs_setWarpItemData(int param_0, char const* stage, cXyz pos, s16 angle, s8 roomNo,
+                                     u8 param_5, u8 param_6) {
     g_dComIfG_gameInfo.play.setWarpItemData(stage, pos, angle, roomNo, param_5, param_6);
 }
 
-void dComIfG_play_c::setWarpItemData(char const* stage, cXyz pos, s16 angle, s8 roomNo,
-                                     u8 param_4, u8 param_5) {
+void dComIfG_play_c::setWarpItemData(char const* stage, cXyz pos, s16 angle, s8 roomNo, u8 param_4,
+                                     u8 param_5) {
     strcpy(mWarpItemStage, stage);
     mWarpItemPos.set(pos);
     mWarpItemAngle = angle;
@@ -2238,8 +2245,8 @@ void dComIfG_play_c::setWarpItemData(char const* stage, cXyz pos, s16 angle, s8 
     field_0x4fab = param_4;
 }
 
-void dComIfGs_setWarpItemData(char const* stage, cXyz pos, s16 angle, s8 roomNo,
-                              u8 param_4, u8 param_5) {
+void dComIfGs_setWarpItemData(char const* stage, cXyz pos, s16 angle, s8 roomNo, u8 param_4,
+                              u8 param_5) {
     dComIfGs_setWarpItemData(0, stage, pos, angle, roomNo, param_4, param_5);
     dComIfGs_setLastWarpMarkItemData(stage, pos, angle, roomNo, param_4, param_5);
 }
@@ -2351,7 +2358,7 @@ int dComIfG_TimerStart(int mode, s16 time) {
             return 0;
         }
     }
-    
+
     return 0;
 }
 
@@ -2365,7 +2372,7 @@ int dComIfG_TimerStop(int mode) {
             return 0;
         }
     }
-    
+
     return 0;
 }
 
@@ -2379,7 +2386,7 @@ int dComIfG_TimerReStart(int mode) {
             return 0;
         }
     }
-    
+
     return 0;
 }
 
@@ -2393,7 +2400,7 @@ int dComIfG_TimerEnd(int mode, int param_1) {
             return 0;
         }
     }
-    
+
     return 0;
 }
 
@@ -2407,7 +2414,7 @@ int dComIfG_TimerDeleteCheck(int mode) {
             return 0;
         }
     }
-    
+
     return 0;
 }
 
@@ -2421,7 +2428,7 @@ int dComIfG_TimerDeleteRequest(int mode) {
             return 0;
         }
     }
-    
+
     return 0;
 }
 
@@ -2448,8 +2455,9 @@ u8 dComIfGs_Wolf_Change_Check() {
         is_wolf = false;
     }
     // Stage is Hyrule Field and Room is North Lanayru - Eldin Entrance
-    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") && dComIfGp_getStartStageRoomNo() == 9 &&
-             dComIfGp_getStartStagePoint() == 10 && !dComIfGs_isSaveSwitch(13)) {
+    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") &&
+             dComIfGp_getStartStageRoomNo() == 9 && dComIfGp_getStartStagePoint() == 10 &&
+             !dComIfGs_isSaveSwitch(13)) {
         is_wolf = false;
     }
 
@@ -2535,7 +2543,7 @@ BOOL dComIfGp_TransportWarp_check() {
  * dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv */
 #ifdef NONMATCHING
 int dComLbG_PhaseHandler(request_of_phase_process_class* param_0, int (**param_1)(void*),
-                             void* param_2) {
+                         void* param_2) {
     int ret = cPhs_Handler(param_0, param_1, param_2);
     if (ret != 2 && ret < 2) {
         return ret;
