@@ -33,14 +33,14 @@ private:
 class mDoExt_btkAnm : public mDoExt_baseAnm {
 public:
     mDoExt_btkAnm(void) { mBtkAnm = 0; }
-    /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
+    /* 8000D63C */ int init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
     /* 8000D6D8 */ void entry(J3DMaterialTable*, f32);
 
     void entry(J3DModelData* data) { entry(data, getFrame()); }
     void entry(J3DModelData* data, f32 frame) { entry(&data->getMaterialTable(), frame); }
-    void init(J3DModelData* data, J3DAnmTextureSRTKey* key, int param_2, int param_3, f32 param_4,
-              s16 param_5, s16 param_6) {
-        init(&data->getMaterialTable(), key, param_2, param_3, param_4, param_5, param_6);
+    int init(J3DModelData* data, J3DAnmTextureSRTKey* key, int param_2, int param_3, f32 param_4,
+             s16 param_5, s16 param_6) {
+        return init(&data->getMaterialTable(), key, param_2, param_3, param_4, param_5, param_6);
     }
 
 private:
@@ -52,8 +52,16 @@ STATIC_ASSERT(sizeof(mDoExt_btkAnm) == 0x18);
 class mDoExt_brkAnm : public mDoExt_baseAnm {
 public:
     mDoExt_brkAnm(void) { mBrkAnm = 0; }
-    /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
+    /* 8000D70C */ int init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
     /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
+
+    void entry(J3DModelData* data) { entry(data, getFrame()); }
+    void entry(J3DModelData* data, f32 frame) { entry(&data->getMaterialTable(), frame); }
+
+    int init(J3DModelData* data, J3DAnmTevRegKey* anmKey, int param_2, int param_3, f32 param_4,
+             s16 param_5, s16 param_6) {
+        return init(&data->getMaterialTable(), anmKey, param_2, param_3, param_4, param_5, param_6);
+    }
 
 private:
     /* 0x14 */ u32 mBrkAnm;
@@ -64,8 +72,17 @@ STATIC_ASSERT(sizeof(mDoExt_brkAnm) == 0x18);
 class mDoExt_bpkAnm : public mDoExt_baseAnm {
 public:
     mDoExt_bpkAnm(void) { mBpkAnm = 0; }
-    /* 8000D47C */ void init(J3DMaterialTable*, J3DAnmColor*, int, int, f32, s16, s16);
+    /* 8000D47C */ int init(J3DMaterialTable*, J3DAnmColor*, int, int, f32, s16, s16);
     /* 8000D518 */ void entry(J3DMaterialTable*, f32);
+
+    void entry(J3DModelData* data) { entry(data, getFrame()); }
+    void entry(J3DModelData* data, f32 frame) { entry(&data->getMaterialTable(), frame); }
+
+    int init(J3DModelData* data, J3DAnmColor* anmColor, int param_2, int param_3, f32 param_4,
+             s16 param_5, s16 param_6) {
+        return init(&data->getMaterialTable(), anmColor, param_2, param_3, param_4, param_5,
+                    param_6);
+    }
 
 private:
     /* 0x14 */ u32 mBpkAnm;
@@ -76,10 +93,12 @@ STATIC_ASSERT(sizeof(mDoExt_bpkAnm) == 0x18);
 class mDoExt_bckAnm : public mDoExt_baseAnm {
 public:
     mDoExt_bckAnm(void) { mAnm = 0; }
-    /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
+    /* 8000D7DC */ int init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
     /* 8000D990 */ void changeBckOnly(J3DAnmTransform*);
     /* 8000D9CC */ void entry(J3DModelData*, f32);
     /* 8000D9E8 */ void entryJoint(J3DModelData*, u16, f32);
+
+    void entry(J3DModelData* data) { entry(data, getFrame()); }
 
 private:
     /* 0x14 */ u32 mBckAnm;
@@ -87,6 +106,25 @@ private:
 };  // Size: 0x1C
 
 STATIC_ASSERT(sizeof(mDoExt_bckAnm) == 0x1C);
+
+class mDoExt_btpAnm : public mDoExt_baseAnm {
+public:
+    mDoExt_btpAnm() { mpAnm = NULL; }
+    /* 8000D54C */ int init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
+    /* 8000D5E8 */ void entry(J3DMaterialTable*, s16);
+
+    void entry(J3DModelData* data) { entry(data, getFrame()); }
+    void entry(J3DModelData* data, s16 frame) { entry(&data->getMaterialTable(), frame); }
+
+    int init(J3DModelData* data, J3DAnmTexPattern* anmPattern, int param_2, int param_3,
+             f32 param_4, s16 param_5, s16 param_6) {
+        return init(&data->getMaterialTable(), anmPattern, param_2, param_3, param_4, param_5,
+                    param_6);
+    }
+
+private:
+    /* 0x14 */ J3DAnmTexPattern* mpAnm;
+};
 
 class J3DTransformInfo;
 

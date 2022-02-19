@@ -2695,7 +2695,7 @@ asm int dDlst_shadowControl_c::setSimple(cXyz* param_0, f32 param_1, f32 param_2
 
 /* ############################################################################################## */
 /* 804248D0-804248F0 0515F0 0020+00 1/1 6/6 173/173 .bss mSimpleTexObj__21dDlst_shadowControl_c */
-u8 dDlst_shadowControl_c::mSimpleTexObj[32];
+GXTexObj dDlst_shadowControl_c::mSimpleTexObj;
 
 /* 80055FE8-80056018 050928 0030+00 0/0 1/1 0/0 .text
  * setSimpleTex__21dDlst_shadowControl_cFPC7ResTIMG             */

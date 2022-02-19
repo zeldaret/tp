@@ -37,11 +37,13 @@ public:
     static MtxP get() { return now; }
     static void transS(f32 x, f32 y, f32 z) { PSMTXTrans(now, x, y, z); }
     static void scaleS(f32 x, f32 y, f32 z) { PSMTXScale(now, x, y, z); }
+    static void multVec(const Vec* a, Vec* b) { PSMTXMultVec(now, a, b); }
     static void XYZrotS(s16 x, s16 y, s16 z) { mDoMtx_XYZrotS(now, x, y, z); }
     static void XYZrotM(s16 x, s16 y, s16 z) { mDoMtx_XYZrotM(now, x, y, z); }
     static void ZXYrotS(s16 x, s16 y, s16 z) { mDoMtx_ZXYrotS(now, x, y, z); }
     static void ZXYrotM(s16 x, s16 y, s16 z) { mDoMtx_ZXYrotM(now, x, y, z); }
     static void YrotM(s16 y) { mDoMtx_YrotM(now, y); }
+    static void YrotS(s16 y) { mDoMtx_YrotS(now, y); }
 
     static Mtx now;
     static Mtx buffer[16];

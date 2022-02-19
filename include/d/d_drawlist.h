@@ -147,7 +147,9 @@ public:
     /* 80055F84 */ int setSimple(cXyz*, f32, f32, cXyz*, s16, f32, _GXTexObj*);
     /* 80055FE8 */ void setSimpleTex(ResTIMG const*);
 
-    static u8 mSimpleTexObj[32];
+    static GXTexObj* getSimpleTex() { return &mSimpleTexObj; }
+
+    static GXTexObj mSimpleTexObj;
 
 private:
     /* 0x00000 */ u8 field_0x0;
@@ -223,6 +225,8 @@ public:
     void setOpaDrawList(J3DDrawBuffer* buffer) { j3dSys.setDrawBuffer(buffer, OPA_BUFFER); }
     void setXluListSky() { setXluDrawList(mpXluListSky); }
     void setOpaListSky() { setOpaDrawList(mOpaListSky); }
+    void setXluListDark() { setXluDrawList(mXluListDark); }
+    void setOpaListDark() { setOpaDrawList(mOpaListDark); }
     void setOpaList() { setOpaDrawList(mOpaList); }
     void setXluList() { setXluDrawList(mXluList); }
     void setXluListBG() { setXluDrawList(mXluListBG); }

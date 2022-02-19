@@ -601,6 +601,7 @@ char* dComIfG_getRoomArcName(int roomNo);
 void* dComIfG_getStageRes(char const* resName);
 void* dComIfG_getOldStageRes(char const* resName);
 void dComIfG_get_timelayer(int* layer);
+int dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* resName);
 
 inline void dComIfG_setBrightness(u8 brightness) {
     g_dComIfG_gameInfo.mFadeBrightness = brightness;
@@ -699,6 +700,7 @@ void dComIfGs_setSelectEquipSword(u8 i_itemNo);
 void dComIfGs_setSelectEquipShield(u8 i_itemNo);
 int dComIfGs_isItemFirstBit(u8 i_itemNo);
 u16 dComIfGs_getRupee();
+BOOL dComIfGs_isVisitedRoom(int i_roomNo);
 
 inline void dComIfGs_onDungeonItemMap() {
     g_dComIfG_gameInfo.info.getMemory().getBit().onDungeonItemMap();
@@ -1873,6 +1875,12 @@ inline u32 dComIfGp_particle_setPolyColor(u32 param_0, u16 param_1, cBgS_PolyInf
                                                           param_8, param_9, param_10);
 }
 
+int dComIfGd_setSimpleShadow(cXyz* pos, f32 param_1, f32 param_2, cBgS_PolyInfo& param_3, s16 angle,
+                             f32 param_5, _GXTexObj* tex);
+int dComIfGd_setShadow(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3, f32 param_4,
+                       f32 param_5, f32 param_6, f32 param_7, cBgS_PolyInfo& param_8,
+                       dKy_tevstr_c* param_9, s16 param_10, f32 param_11, _GXTexObj* param_12);
+
 inline void dComIfGd_drawListItem3d() {
     g_dComIfG_gameInfo.drawlist.drawOpaListItem3d();
     g_dComIfG_gameInfo.drawlist.drawXluListItem3d();
@@ -1911,6 +1919,11 @@ inline void dComIfGd_setListSky() {
     g_dComIfG_gameInfo.drawlist.setXluListSky();
 }
 
+inline void dComIfGd_setListDark() {
+    g_dComIfG_gameInfo.drawlist.setOpaListDark();
+    g_dComIfG_gameInfo.drawlist.setXluListDark();
+}
+
 inline void dComIfGd_setList() {
     g_dComIfG_gameInfo.drawlist.setOpaList();
     g_dComIfG_gameInfo.drawlist.setXluList();
@@ -1935,6 +1948,10 @@ inline void dComIfGd_init() {
 
 inline daPy_py_c* daPy_getLinkPlayerActorClass() {
     return dComIfGp_getLinkPlayer();
+}
+
+inline daPy_py_c* daPy_getPlayerActorClass() {
+    return (daPy_py_c*)dComIfGp_getPlayer(0);
 }
 
 inline daAlink_c* daAlink_getAlinkActorClass() {

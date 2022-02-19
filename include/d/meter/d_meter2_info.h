@@ -44,10 +44,6 @@ struct dMenu_Letter {
     static dMenu_LetterData letter_data[64];
 };
 
-struct dItem_data {
-    static void* item_resource[1530];
-};
-
 class dMw_c;
 class dMeter2_c;
 class J2DPicture;

@@ -1351,10 +1351,6 @@ asm void dMeter2_c::alphaAnimeButtonCross() {
 }
 #pragma pop
 
-inline daPy_py_c* daPy_getPlayerActorClass() {
-    return (daPy_py_c*)dComIfGp_getPlayer(0);
-}
-
 inline u16 dComIfGp_event_checkHind(u16 flag) {
     if (!dComIfGp_event_runCheck()) {
         return false;
