@@ -4,393 +4,283 @@
 //
 
 #include "d/a/d_a_itembase.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_item_data.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct request_of_phase_process_class {};
-
-struct J3DMaterialTable {};
-
-struct J3DAnmTexPattern {};
-
-struct mDoExt_btpAnm {
-    /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
-    /* 8000D5E8 */ void entry(J3DMaterialTable*, s16);
-};
-
-struct J3DAnmTextureSRTKey {};
-
-struct mDoExt_btkAnm {
-    /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
-    /* 8000D6D8 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct J3DAnmTevRegKey {};
-
-struct mDoExt_brkAnm {
-    /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
-    /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct J3DAnmColor {};
-
-struct mDoExt_bpkAnm {
-    /* 8000D47C */ void init(J3DMaterialTable*, J3DAnmColor*, int, int, f32, s16, s16);
-    /* 8000D518 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct J3DModelData {};
-
-struct J3DAnmTransform {};
-
-struct mDoExt_bckAnm {
-    /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
-    /* 8000D9CC */ void entry(J3DModelData*, f32);
-};
-
-struct mDoExt_baseAnm {
-    /* 8000D428 */ void play();
-};
-
-struct fopAc_ac_c {};
-
-struct dKy_tevstr_c {};
-
-struct cXyz {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dItem_data {
-    static void* item_resource[1530];
-    static u8 item_info[1020 + 4 /* padding */];
-};
-
-struct dDlst_shadowControl_c {
-    static u8 mSimpleTexObj[32];
-};
-
-struct cBgS_PolyInfo {};
-
-struct _GXTexObj {};
-
-struct J3DModel {};
-
-struct J3DFrameCtrl {
-    /* 803283FC */ void init(s16);
-};
-
-//
-// Forward References:
-//
-
-extern "C" void DeleteBase__12daItemBase_cFPCc();
-extern "C" bool clothCreate__12daItemBase_cFv();
-extern "C" bool __CreateHeap__12daItemBase_cFv();
-extern "C" void CreateItemHeap__12daItemBase_cFPCcsssssss();
-extern "C" void DrawBase__12daItemBase_cFv();
-extern "C" void RotateYBase__12daItemBase_cFv();
-extern "C" void setListStart__12daItemBase_cFv();
-extern "C" void setListEnd__12daItemBase_cFv();
-extern "C" void settingBeforeDraw__12daItemBase_cFv();
-extern "C" void setTevStr__12daItemBase_cFv();
-extern "C" void setShadow__12daItemBase_cFv();
-extern "C" void animEntry__12daItemBase_cFv();
-extern "C" void animPlay__12daItemBase_cFffffff();
-extern "C" void chkFlag__12daItemBase_cFi();
-extern "C" void getTevFrm__12daItemBase_cFv();
-extern "C" void getBtpFrm__12daItemBase_cFv();
-extern "C" void getShadowSize__12daItemBase_cFv();
-extern "C" void getCollisionH__12daItemBase_cFv();
-extern "C" void getCollisionR__12daItemBase_cFv();
-extern "C" extern void* __vt__12daItemBase_c[17 + 1 /* padding */];
 
 //
 // External References:
 //
 
-extern "C" void play__14mDoExt_baseAnmFv();
-extern "C" void init__13mDoExt_bpkAnmFP16J3DMaterialTableP11J3DAnmColoriifss();
-extern "C" void entry__13mDoExt_bpkAnmFP16J3DMaterialTablef();
-extern "C" void init__13mDoExt_btpAnmFP16J3DMaterialTableP16J3DAnmTexPatterniifss();
-extern "C" void entry__13mDoExt_btpAnmFP16J3DMaterialTables();
-extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
-extern "C" void entry__13mDoExt_btkAnmFP16J3DMaterialTablef();
-extern "C" void init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss();
-extern "C" void entry__13mDoExt_brkAnmFP16J3DMaterialTablef();
-extern "C" void init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb();
-extern "C" void entry__13mDoExt_bckAnmFP12J3DModelDataf();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj();
-extern "C" void
-dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void getData__12daItemBase_cFv();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void* __nw__FUl();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void _savefpr_27();
-extern "C" void _restfpr_27();
-extern "C" void _savegpr_21();
-extern "C" void _restgpr_21();
-extern "C" extern void* __vt__12J3DFrameCtrl[3];
-extern "C" void* item_resource__10dItem_data[1530];
-extern "C" u8 item_info__10dItem_data[1020 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
+extern "C" extern dScnKy_env_light_c g_env_light;
 
 //
 // Declarations:
 //
 
 /* 80144724-8014474C 13F064 0028+00 0/0 1/1 8/8 .text            DeleteBase__12daItemBase_cFPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daItemBase_c::DeleteBase(char const* param_0) {
-    nofralloc
-#include "asm/d/a/d_a_itembase/DeleteBase__12daItemBase_cFPCc.s"
+int daItemBase_c::DeleteBase(char const* res) {
+    dComIfG_resDelete(&mPhase, res);
+    return 1;
 }
-#pragma pop
 
 /* 8014474C-80144754 13F08C 0008+00 1/0 1/0 9/0 .text            clothCreate__12daItemBase_cFv */
-bool daItemBase_c::clothCreate() {
-    return true;
+int daItemBase_c::clothCreate() {
+    return 1;
 }
 
 /* 80144754-8014475C 13F094 0008+00 1/0 1/0 3/0 .text            __CreateHeap__12daItemBase_cFv */
-bool daItemBase_c::__CreateHeap() {
-    return true;
+int daItemBase_c::__CreateHeap() {
+    return 1;
 }
-
-/* ############################################################################################## */
-/* 804533A8-804533AC 0019A8 0004+00 2/2 0/0 0/0 .sdata2          @3881 */
-SECTION_SDATA2 static f32 lit_3881 = 1.0f;
 
 /* 8014475C-80144B94 13F09C 0438+00 0/0 3/3 0/0 .text CreateItemHeap__12daItemBase_cFPCcsssssss */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daItemBase_c::CreateItemHeap(char const* param_0, s16 param_1, s16 param_2, s16 param_3,
-                                      s16 param_4, s16 param_5, s16 param_6, s16 param_7) {
-    nofralloc
-#include "asm/d/a/d_a_itembase/CreateItemHeap__12daItemBase_cFPCcsssssss.s"
+int daItemBase_c::CreateItemHeap(char const* arcName, s16 bmdName, s16 btkName, s16 bpkName,
+                                 s16 bckName, s16 bxaName, s16 brkName, s16 btpName) {
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(arcName, bmdName);
+
+    u32 flags = 0x11000084;
+    u32 uvar7 = 0x80000;
+
+    if (btkName > 0) {
+        flags |= 0x200;
+    }
+
+    if (bpkName > 0) {
+        flags |= 0x1;
+    }
+
+    if (btpName > 0) {
+        flags |= 0x20000;
+    }
+
+    if (chkFlag(4)) {
+        uvar7 = 0;
+    }
+
+    mpModel = mDoExt_J3DModel__create(modelData, uvar7, flags);
+
+    if (mpModel == NULL) {
+        return 0;
+    } else {
+        field_0x578 = NULL;
+        if (btkName > 0) {
+            J3DAnmTextureSRTKey* pbtk =
+                (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(arcName, btkName);
+            field_0x578 = new mDoExt_btkAnm();
+
+            if (field_0x578 == NULL || !field_0x578->init(modelData, pbtk, 1, 2, 1.0f, 0, -1)) {
+                return 0;
+            }
+        }
+
+        field_0x57c = NULL;
+        if (bpkName > 0) {
+            J3DAnmColor* pbpk = (J3DAnmColor*)dComIfG_getObjectRes(arcName, bpkName);
+            field_0x57c = new mDoExt_bpkAnm();
+
+            if (field_0x57c == NULL || !field_0x57c->init(modelData, pbpk, 1, 2, 1.0f, 0, -1)) {
+                return 0;
+            }
+        }
+
+        field_0x584 = NULL;
+        if (bckName > 0) {
+            J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(arcName, bckName);
+            field_0x584 = new mDoExt_bckAnm();
+
+            if (field_0x584 == NULL || !field_0x584->init(pbck, 1, 2, 1.0f, 0, -1, false)) {
+                return 0;
+            }
+        }
+
+        field_0x580 = NULL;
+        if (brkName > 0) {
+            J3DAnmTevRegKey* pbrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(arcName, brkName);
+            s8 tevFrm = getTevFrm();
+            int tmp = 1;
+            if (tevFrm != -1) {
+                tmp = 0;
+            }
+
+            field_0x580 = new mDoExt_brkAnm();
+
+            if (field_0x580 == NULL || !field_0x580->init(modelData, pbrk, tmp, 2, 1.0f, 0, -1)) {
+                return 0;
+            }
+        }
+
+        field_0x588 = NULL;
+        if (btpName > 0) {
+            J3DAnmTexPattern* pbtp = (J3DAnmTexPattern*)dComIfG_getObjectRes(arcName, btpName);
+            field_0x588 = new mDoExt_btpAnm();
+
+            if (field_0x588 == NULL || !field_0x588->init(modelData, pbtp, 1, 2, 1.0f, 0, -1)) {
+                return 0;
+            }
+        }
+
+        if (!clothCreate()) {
+            return 0;
+        }
+    }
+
+    return __CreateHeap() ? 1 : 0;
 }
-#pragma pop
 
 /* 80144B94-80144C30 13F4D4 009C+00 1/0 1/0 9/0 .text            DrawBase__12daItemBase_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daItemBase_c::DrawBase() {
-    nofralloc
-#include "asm/d/a/d_a_itembase/DrawBase__12daItemBase_cFv.s"
+int daItemBase_c::DrawBase() {
+    setTevStr();
+    animEntry();
+    setListStart();
+    settingBeforeDraw();
+    mDoExt_modelUpdateDL(mpModel);
+    setListEnd();
+    setShadow();
+    return 1;
 }
-#pragma pop
 
 /* 80144C30-80144C7C 13F570 004C+00 1/0 1/0 9/0 .text            RotateYBase__12daItemBase_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daItemBase_c::RotateYBase() {
-    nofralloc
-#include "asm/d/a/d_a_itembase/RotateYBase__12daItemBase_cFv.s"
+void daItemBase_c::RotateYBase() {
+    mCollisionRot.y += (s16)(0xFFFF / getData().field_0x1c);
 }
-#pragma pop
 
 /* 80144C7C-80144CA0 13F5BC 0024+00 1/0 1/0 5/0 .text            setListStart__12daItemBase_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daItemBase_c::setListStart() {
-    nofralloc
-#include "asm/d/a/d_a_itembase/setListStart__12daItemBase_cFv.s"
+void daItemBase_c::setListStart() {
+    dComIfGd_setListDark();
 }
-#pragma pop
 
 /* 80144CA0-80144CC4 13F5E0 0024+00 1/1 0/0 0/0 .text            setListEnd__12daItemBase_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daItemBase_c::setListEnd() {
-    nofralloc
-#include "asm/d/a/d_a_itembase/setListEnd__12daItemBase_cFv.s"
+void daItemBase_c::setListEnd() {
+    dComIfGd_setList();
 }
-#pragma pop
 
 /* 80144CC4-80144D18 13F604 0054+00 1/0 1/0 9/0 .text            settingBeforeDraw__12daItemBase_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daItemBase_c::settingBeforeDraw() {
-    nofralloc
-#include "asm/d/a/d_a_itembase/settingBeforeDraw__12daItemBase_cFv.s"
+void daItemBase_c::settingBeforeDraw() {
+    if (chkFlag(4)) {
+        fopAcM_setEffectMtx(this, mpModel->getModelData());
+    }
 }
-#pragma pop
 
 /* 80144D18-80144D70 13F658 0058+00 1/0 0/0 8/0 .text            setTevStr__12daItemBase_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daItemBase_c::setTevStr() {
-    nofralloc
-#include "asm/d/a/d_a_itembase/setTevStr__12daItemBase_cFv.s"
+void daItemBase_c::setTevStr() {
+    g_env_light.settingTevStruct(0, &mCurrent.mPosition, &mTevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804533AC-804533B0 0019AC 0004+00 1/1 0/0 0/0 .sdata2          @3952 */
-SECTION_SDATA2 static u8 lit_3952[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 804533B0-804533B8 0019B0 0004+04 1/1 0/0 0/0 .sdata2          @3953 */
-SECTION_SDATA2 static f32 lit_3953[1 + 1 /* padding */] = {
-    150.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 804533B8-804533C0 0019B8 0008+00 1/1 0/0 0/0 .sdata2          @3955 */
-SECTION_SDATA2 static f64 lit_3955 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80144D70-80144EDC 13F6B0 016C+00 1/0 1/0 9/1 .text            setShadow__12daItemBase_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daItemBase_c::setShadow() {
-    nofralloc
-#include "asm/d/a/d_a_itembase/setShadow__12daItemBase_cFv.s"
-}
-#pragma pop
+void daItemBase_c::setShadow() {
+    f32 scale = mScale.x * getShadowSize();
 
-/* ############################################################################################## */
-/* 804533C0-804533C8 0019C0 0008+00 1/1 0/0 0/0 .sdata2          @4041 */
-SECTION_SDATA2 static f64 lit_4041 = 4503601774854144.0 /* cast s32 to float */;
+    if (!chkFlag(0x10)) {
+        if (getShadowSize() != 0.0f) {
+            dComIfGd_setSimpleShadow(&mCurrent.mPosition, field_0x58c.GetGroundH(), scale,
+                                     field_0x58c.m_gnd, 0, 1.0f,
+                                     dDlst_shadowControl_c::getSimpleTex());
+        }
+    } else {
+        f32 shadowSize = getShadowSize();
+        if (shadowSize == 0.0f) {
+            shadowSize = 150.0f;
+        }
+
+        field_0x91c =
+            dComIfGd_setShadow(field_0x91c, 3, mpModel, &mCurrent.mPosition, shadowSize, 0.0f,
+                               mCurrent.mPosition.y, field_0x58c.GetGroundH(), field_0x58c.m_gnd,
+                               &mTevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
+    }
+}
 
 /* 80144EDC-8014503C 13F81C 0160+00 1/0 1/0 9/0 .text            animEntry__12daItemBase_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daItemBase_c::animEntry() {
-    nofralloc
-#include "asm/d/a/d_a_itembase/animEntry__12daItemBase_cFv.s"
+void daItemBase_c::animEntry() {
+    if (field_0x580 != NULL) {
+        s8 tevFrm = getTevFrm();
+        if (tevFrm != -1) {
+            field_0x580->entry(mpModel->getModelData(), tevFrm);
+        } else {
+            field_0x580->entry(mpModel->getModelData());
+        }
+    }
+
+    if (field_0x588 != NULL) {
+        s8 btpFrm = getBtpFrm();
+        if (btpFrm != -1) {
+            field_0x588->entry(mpModel->getModelData(), btpFrm);
+        } else {
+            field_0x588->entry(mpModel->getModelData());
+        }
+    }
+
+    if (field_0x578 != NULL) {
+        field_0x578->entry(mpModel->getModelData());
+    }
+
+    if (field_0x584 != NULL) {
+        field_0x584->entry(mpModel->getModelData());
+    }
+
+    if (field_0x57c != NULL) {
+        field_0x57c->entry(mpModel->getModelData());
+    }
 }
-#pragma pop
 
 /* 8014503C-80145144 13F97C 0108+00 0/0 2/2 4/4 .text            animPlay__12daItemBase_cFffffff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daItemBase_c::animPlay(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
-                                f32 param_5) {
-    nofralloc
-#include "asm/d/a/d_a_itembase/animPlay__12daItemBase_cFffffff.s"
+void daItemBase_c::animPlay(f32 btkSpeed, f32 bpkSpeed, f32 bckSpeed, f32 param_3, f32 brkSpeed,
+                            f32 btpSpeed) {
+    if (field_0x580 != NULL && getTevFrm() == -1) {
+        field_0x580->setPlaySpeed(brkSpeed);
+        field_0x580->play();
+    }
+
+    if (field_0x588 != NULL && getBtpFrm() == -1) {
+        field_0x588->setPlaySpeed(btpSpeed);
+        field_0x588->play();
+    }
+
+    if (field_0x578 != NULL) {
+        field_0x578->setPlaySpeed(btkSpeed);
+        field_0x578->play();
+    }
+
+    if (field_0x57c != NULL) {
+        field_0x57c->setPlaySpeed(bpkSpeed);
+        field_0x57c->play();
+    }
+
+    if (field_0x584 != NULL) {
+        field_0x584->setPlaySpeed(bckSpeed);
+        field_0x584->play();
+    }
 }
-#pragma pop
 
 /* 80145144-80145164 13FA84 0020+00 1/0 1/0 8/0 .text            chkFlag__12daItemBase_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daItemBase_c::chkFlag(int param_0) {
-    nofralloc
-#include "asm/d/a/d_a_itembase/chkFlag__12daItemBase_cFi.s"
+BOOL daItemBase_c::chkFlag(int flag) {
+    return dItem_data::chkFlag(m_itemNo, flag);
 }
-#pragma pop
 
 /* 80145164-80145180 13FAA4 001C+00 1/0 1/0 8/0 .text            getTevFrm__12daItemBase_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daItemBase_c::getTevFrm() {
-    nofralloc
-#include "asm/d/a/d_a_itembase/getTevFrm__12daItemBase_cFv.s"
+s8 daItemBase_c::getTevFrm() {
+    return dItem_data::getTevFrm(m_itemNo);
 }
-#pragma pop
 
 /* 80145180-8014519C 13FAC0 001C+00 1/0 1/0 8/0 .text            getBtpFrm__12daItemBase_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daItemBase_c::getBtpFrm() {
-    nofralloc
-#include "asm/d/a/d_a_itembase/getBtpFrm__12daItemBase_cFv.s"
+s8 daItemBase_c::getBtpFrm() {
+    return dItem_data::getBtpFrm(m_itemNo);
 }
-#pragma pop
 
 /* 8014519C-801451B4 13FADC 0018+00 1/0 1/0 8/0 .text            getShadowSize__12daItemBase_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daItemBase_c::getShadowSize() {
-    nofralloc
-#include "asm/d/a/d_a_itembase/getShadowSize__12daItemBase_cFv.s"
+u8 daItemBase_c::getShadowSize() {
+    return dItem_data::getShadowSize(m_itemNo);
 }
-#pragma pop
 
 /* 801451B4-801451D0 13FAF4 001C+00 1/0 1/0 8/0 .text            getCollisionH__12daItemBase_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daItemBase_c::getCollisionH() {
-    nofralloc
-#include "asm/d/a/d_a_itembase/getCollisionH__12daItemBase_cFv.s"
+u8 daItemBase_c::getCollisionH() {
+    return dItem_data::getH(m_itemNo);
 }
-#pragma pop
 
 /* 801451D0-801451EC 13FB10 001C+00 1/0 1/0 8/0 .text            getCollisionR__12daItemBase_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daItemBase_c::getCollisionR() {
-    nofralloc
-#include "asm/d/a/d_a_itembase/getCollisionR__12daItemBase_cFv.s"
+u8 daItemBase_c::getCollisionR() {
+    return dItem_data::getR(m_itemNo);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 803B3610-803B3658 010730 0044+04 0/0 1/1 9/9 .data            __vt__12daItemBase_c */
-SECTION_DATA extern void* __vt__12daItemBase_c[17 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)DrawBase__12daItemBase_cFv,
-    (void*)setListStart__12daItemBase_cFv,
-    (void*)settingBeforeDraw__12daItemBase_cFv,
-    (void*)setTevStr__12daItemBase_cFv,
-    (void*)setShadow__12daItemBase_cFv,
-    (void*)animEntry__12daItemBase_cFv,
-    (void*)RotateYBase__12daItemBase_cFv,
-    (void*)clothCreate__12daItemBase_cFv,
-    (void*)__CreateHeap__12daItemBase_cFv,
-    (void*)chkFlag__12daItemBase_cFi,
-    (void*)getTevFrm__12daItemBase_cFv,
-    (void*)getBtpFrm__12daItemBase_cFv,
-    (void*)getShadowSize__12daItemBase_cFv,
-    (void*)getCollisionH__12daItemBase_cFv,
-    (void*)getCollisionR__12daItemBase_cFv,
-    /* padding */
-    NULL,
-};

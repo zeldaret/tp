@@ -443,7 +443,6 @@ extern "C" void entryTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern();
 extern "C" void entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
 extern "C" void GXInvalidateVtxCache();
 extern "C" void GXFlush();
-extern "C" void GXLoadNrmMtxImm();
 extern "C" void __register_global_object();
 extern "C" void __destroy_new_array();
 extern "C" void __construct_array();

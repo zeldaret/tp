@@ -18,11 +18,6 @@
 // Types:
 //
 
-struct mDoExt_btpAnm {
-    /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
-    /* 8000D5E8 */ void entry(J3DMaterialTable*, s16);
-};
-
 struct mDoExt_blkAnm {
     /* 8000DA08 */ void init(J3DDeformData*, J3DAnmCluster*, int, int, f32, s16, s16);
 };
@@ -530,7 +525,6 @@ extern "C" void GXClearVtxDesc();
 extern "C" void GXGetTexObjWidth();
 extern "C" void GXGetTexObjHeight();
 extern "C" void GXSetTexCoordScaleManually();
-extern "C" void GXLoadNrmMtxImm();
 extern "C" void __construct_new_array();
 extern "C" void _savegpr_15();
 extern "C" void _savegpr_18();
@@ -632,8 +626,8 @@ asm void mDoExt_baseAnm::play() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoExt_bpkAnm::init(J3DMaterialTable* param_0, J3DAnmColor* param_1, int param_2,
-                             int param_3, f32 param_4, s16 param_5, s16 param_6) {
+asm int mDoExt_bpkAnm::init(J3DMaterialTable* param_0, J3DAnmColor* param_1, int param_2,
+                            int param_3, f32 param_4, s16 param_5, s16 param_6) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/init__13mDoExt_bpkAnmFP16J3DMaterialTableP11J3DAnmColoriifss.s"
 }
@@ -655,8 +649,8 @@ asm void mDoExt_bpkAnm::entry(J3DMaterialTable* param_0, f32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoExt_btpAnm::init(J3DMaterialTable* param_0, J3DAnmTexPattern* param_1, int param_2,
-                             int param_3, f32 param_4, s16 param_5, s16 param_6) {
+asm int mDoExt_btpAnm::init(J3DMaterialTable* param_0, J3DAnmTexPattern* param_1, int param_2,
+                            int param_3, f32 param_4, s16 param_5, s16 param_6) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/init__13mDoExt_btpAnmFP16J3DMaterialTableP16J3DAnmTexPatterniifss.s"
 }
@@ -678,8 +672,8 @@ asm void mDoExt_btpAnm::entry(J3DMaterialTable* param_0, s16 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoExt_btkAnm::init(J3DMaterialTable* param_0, J3DAnmTextureSRTKey* param_1, int param_2,
-                             int param_3, f32 param_4, s16 param_5, s16 param_6) {
+asm int mDoExt_btkAnm::init(J3DMaterialTable* param_0, J3DAnmTextureSRTKey* param_1, int param_2,
+                            int param_3, f32 param_4, s16 param_5, s16 param_6) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss.s"
 }
@@ -701,8 +695,8 @@ asm void mDoExt_btkAnm::entry(J3DMaterialTable* param_0, f32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoExt_brkAnm::init(J3DMaterialTable* param_0, J3DAnmTevRegKey* param_1, int param_2,
-                             int param_3, f32 param_4, s16 param_5, s16 param_6) {
+asm int mDoExt_brkAnm::init(J3DMaterialTable* param_0, J3DAnmTevRegKey* param_1, int param_2,
+                            int param_3, f32 param_4, s16 param_5, s16 param_6) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss.s"
 }
@@ -1452,8 +1446,8 @@ SECTION_DATA extern void* __vt__10J3DMtxCalc[11 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoExt_bckAnm::init(J3DAnmTransform* param_0, int param_1, int param_2, f32 param_3,
-                             s16 param_4, s16 param_5, bool param_6) {
+asm int mDoExt_bckAnm::init(J3DAnmTransform* param_0, int param_1, int param_2, f32 param_3,
+                            s16 param_4, s16 param_5, bool param_6) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb.s"
 }

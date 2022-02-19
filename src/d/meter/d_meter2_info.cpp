@@ -1274,8 +1274,8 @@ asm void dMeter2Info_getPixel(f32 param_0, f32 param_1, f32 param_2, f32 param_3
 
 /* 8021E4B0-8021E530 218DF0 0080+00 0/0 2/2 1/1 .text            dMeter2Info_setCloth__FUcb */
 void dMeter2Info_setCloth(u8 i_clothId, bool param_1) {
-    if ((int)i_clothId >= MAGIC_LV1 || (int)i_clothId < WEARS_CASUAL) {
-        i_clothId = WEARS_CASUAL;
+    if ((int)i_clothId >= MAGIC_LV1 || (int)i_clothId < WEAR_CASUAL) {
+        i_clothId = WEAR_CASUAL;
         param_1 = false;
     }
 

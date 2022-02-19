@@ -35,7 +35,7 @@ public:
         mResetData->mResetPrepare = 0;
     }
     static u8 getLogoScnFlag() { return mResetData->mLogoScnFlag; }
-    static bool isReturnToMenu() { return mResetData->mReturnToMenu; }
+    static BOOL isReturnToMenu() { return mResetData->mReturnToMenu; }
     static bool isShutdown() { return mResetData->mShutdown; }
     static int isReset() { return mResetData->mReset; }
     static int get3ButtonResetPort() { return mResetData->m3ButtonResetPort; }

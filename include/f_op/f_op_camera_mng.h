@@ -18,6 +18,7 @@ public:
     /* 0x224 */ leafdraw_method_class* pMthd;
 };
 
+u32 fopCamM_Create(int i_cameraIdx, s16 pProcName, void* param_3);
 void fopCamM_Management(void);
 u32 fopCamM_GetParam(camera_class* pCamera);
 void fopCamM_Init(void);

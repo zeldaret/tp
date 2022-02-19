@@ -10,5 +10,6 @@ void* fopKyM_CreateAppend(void);
 f32* createAppend(int param_1, cXyz* param_2, cXyz* param_3);
 void fopKyM_Delete(void* param_1);
 void fopKyM_Create(s16 param_1, fopKyMCreateFunc param_2, void* param_3);
+void fopKyM_fastCreate(s16 param_0, int param_1, cXyz* param_2, cXyz* param_3, fopKyMCreateFunc);
 
 #endif

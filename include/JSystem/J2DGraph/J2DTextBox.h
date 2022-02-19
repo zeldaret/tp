@@ -57,15 +57,21 @@ public:
     /* 80300660 */ s32 setString(char const*, ...);
 
     void setFontSize(f32 sizeX, f32 sizeY) {
+        f32 x;
         if (sizeX > 0.0f) {
-            sizeX = 0.0f;
+            x = sizeX;
+        } else {
+            x = 0.0f;
         }
-        field_0x11c = sizeX;
+        field_0x11c = x;
 
+        f32 y;
         if (sizeY > 0.0f) {
-            sizeY = 0.0f;
+            y = sizeY;
+        } else {
+            y = 0.0f;
         }
-        field_0x120 = sizeY;
+        field_0x120 = y;
     }
 
     void setFontSize(TFontSize size) { setFontSize(size.mSizeX, size.mSizeY); }
