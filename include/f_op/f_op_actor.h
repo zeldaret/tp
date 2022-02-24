@@ -121,4 +121,6 @@ public:
     const csXyz& getAngle() const { return mCurrent.mAngle; }
 };  // Size: 0x568
 
+s32 fopAc_IsActor(void* actor);
+
 #endif

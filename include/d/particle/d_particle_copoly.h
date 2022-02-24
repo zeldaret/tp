@@ -28,4 +28,20 @@ public:
     /* 0x37 */ u8 field_0x37;
 };
 
+struct dPaPoT_c {
+    /* 8005115C */ void setEffectTwo(dKy_tevstr_c const*, cXyz const*, u32, u32, cXyz const*,
+                                     cXyz const*, cXyz const*, csXyz const*, cXyz const*, s8, f32,
+                                     f32);
+    /* 80051294 */ void clearTwoAllID();
+    /* 80051470 */ void getRightEffType(int) const;
+    /* 8005147C */ void getLeftEffType(int) const;
+    /* 80051494 */ void getRightEmitter(int, int);
+    /* 800514DC */ void getLeftEmitter(int, int);
+
+    static u8 m_typeTwoData[36];
+    static u8 m_emitterTwoData[36];
+
+    u8 field_0x0[0x80];
+};
+
 #endif /* D_PARTICLE_D_PARTICLE_COPOLY_H */

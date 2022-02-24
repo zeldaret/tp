@@ -22,10 +22,10 @@ public:
     /* 80249F48 */ ~dMsgFlow_c();
     /* 80249F90 */ void init(fopAc_ac_c*, int, int, fopAc_ac_c**);
     /* 8024A13C */ void checkOpenDoor(fopAc_ac_c*, int*);
-    /* 8024A2D8 */ void doFlow(fopAc_ac_c*, fopAc_ac_c**, int);
+    /* 8024A2D8 */ int doFlow(fopAc_ac_c*, fopAc_ac_c**, int);
     /* 8024A424 */ void checkEventRender(int*, int*, int*, int*);
     /* 8024A4C4 */ void remove();
-    /* 8024A528 */ void getEventId(int*);
+    /* 8024A528 */ u16 getEventId(int*);
     /* 8024A538 */ void getMsgNo();
     /* 8024A540 */ void getNowMsgNo();
     /* 8024A548 */ void getMsg();
@@ -47,7 +47,7 @@ public:
     /* 8024B180 */ void query002(mesg_flow_node_branch*, fopAc_ac_c*, int);
     /* 8024B208 */ void query003(mesg_flow_node_branch*, fopAc_ac_c*, int);
     /* 8024B250 */ void query004(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B2C0 */ void query005(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B2C0 */ u16 query005(mesg_flow_node_branch*, fopAc_ac_c*, int);
     /* 8024B2F8 */ void query006(mesg_flow_node_branch*, fopAc_ac_c*, int);
     /* 8024B32C */ void query007(mesg_flow_node_branch*, fopAc_ac_c*, int);
     /* 8024B45C */ void query008(mesg_flow_node_branch*, fopAc_ac_c*, int);
@@ -140,19 +140,23 @@ public:
     /* 8024DA78 */ void event041(mesg_flow_node_event*, fopAc_ac_c*);
     /* 8024DAA8 */ bool event042(mesg_flow_node_event*, fopAc_ac_c*);
 
+    u8 isSelectMessage() { return mSelectMessage; }
+    void onNonStopJunpFlowFlag() { mNonStopJunpFlowFlag = 1; }
+    u16 getSelectNum() { return query005(NULL, NULL, 0); }
+
     static u8 mQueryList[636];
     static u8 mEventList[516];
 
 private:
     /* 0x00 */ void* vtable;
-    /* 0x04 */ void* field_0x04;
-    /* 0x08 */ void* field_0x08;
-    /* 0x0C */ void* field_0x0c;
+    /* 0x04 */ void* mFlow_p;
+    /* 0x08 */ void* mLabelInfo_p;
+    /* 0x0C */ void* mFlowNodeTBL;
     /* 0x10 */ u16 field_0x10;
     /* 0x12 */ u16 field_0x12;
     /* 0x14 */ fopAc_ac_c* field_0x14;
     /* 0x18 */ int field_0x18;
-    /* 0x1C */ u16 field_0x1c;
+    /* 0x1C */ u16 mFlow;
     /* 0x1E */ u8 field_0x1e[2];
     /* 0x20 */ int mMsg;
     /* 0x24 */ u8 mSelectMessage;

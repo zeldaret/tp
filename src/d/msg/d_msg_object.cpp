@@ -1905,7 +1905,7 @@ asm void dMsgObject_c::offMsgSendControl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::isMsgSendControl() {
+asm int dMsgObject_c::isMsgSendControl() {
     nofralloc
 #include "asm/d/msg/d_msg_object/isMsgSendControl__12dMsgObject_cFv.s"
 }
@@ -1955,7 +1955,7 @@ asm void dMsgObject_c::isMouthCheck() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getMessageID() {
+asm u32 dMsgObject_c::getMessageID() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getMessageID__12dMsgObject_cFv.s"
 }

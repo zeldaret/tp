@@ -252,6 +252,16 @@ public:
         m3DSetFlag = flag;
     }
 
+    void setDoStatusForce(u8 status, u8 flag) {
+        mDoStatusForce = status;
+        mDoSetFlagForce = flag;
+    }
+
+    void setAStatusForce(u8 status, u8 flag) {
+        mAStatusForce = status;
+        mASetFlagForce = flag;
+    }
+
     void setItemRupeeCount(int rupees) { mItemRupeeCount += rupees; }
     void setItemMagicCount(s16 magic) { mItemMagicCount += magic; }
     void setItemMaxMagicCount(s16 max) { mItemMaxMagicCount += max; }
@@ -341,6 +351,7 @@ public:
     void offPauseFlag() { mPauseFlag = false; }
     void show2dOn() { mShow2D = 1; }
     s8 getLayerOld() { return mLayerOld; }
+    void setMesgCancelButton(u8 button) { mMesgCancelButton = button; }
 
 public:
     /* 0x00000 */ dBgS mBgs;
@@ -955,6 +966,10 @@ inline void dComIfGs_onSaveSwitch(int i_stageNo, int i_no) {
     g_dComIfG_gameInfo.info.getSavedata().getSave(i_stageNo).getBit().onSwitch(i_no);
 }
 
+inline void dComIfGs_onSaveSwitch(int i_no) {
+    g_dComIfG_gameInfo.info.getMemory().getBit().onSwitch(i_no);
+}
+
 inline void dComIfGs_offSaveSwitch(int i_stageNo, int i_no) {
     g_dComIfG_gameInfo.info.getSavedata().getSave(i_stageNo).getBit().offSwitch(i_no);
 }
@@ -1444,6 +1459,14 @@ inline void dComIfGp_setSButtonStatusForce(u8 status, u8 flag) {
     g_dComIfG_gameInfo.play.setSButtonStatusForce(status, flag);
 }
 
+inline void dComIfGp_setDoStatusForce(u8 status, u8 flag) {
+    g_dComIfG_gameInfo.play.setDoStatusForce(status, flag);
+}
+
+inline void dComIfGp_setAStatusForce(u8 status, u8 flag) {
+    g_dComIfG_gameInfo.play.setAStatusForce(status, flag);
+}
+
 inline u8 dComIfGp_getAStatus() {
     return g_dComIfG_gameInfo.play.getAStatus();
 }
@@ -1674,6 +1697,10 @@ inline bool dComIfGp_isCStickSetFlag(u8 flag) {
 
 inline void dComIfGp_offPauseFlag() {
     g_dComIfG_gameInfo.play.offPauseFlag();
+}
+
+inline void dComIfGp_setMesgCancelButton(u8 button) {
+    g_dComIfG_gameInfo.play.setMesgCancelButton(button);
 }
 
 inline s32 dComIfGp_checkStatus(u16 flags) {

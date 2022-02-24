@@ -79,7 +79,7 @@ public:
     /* 8023768C */ void getSelectBombPriceLocal();
     /* 8023773C */ void setEquipBombInfoLocal();
     /* 80237748 */ void updateEquipBombInfoLocal();
-    /* 802378B8 */ void setShopWaitTimer(u8);
+    /* 802378B8 */ static void setShopWaitTimer(u8);
     /* 802378CC */ void setSelectWordFlagLocal(u8);
     /* 802378D4 */ void isHowlHearingModeLocal();
     /* 80237934 */ void isCameraCancelFlag();
@@ -123,12 +123,12 @@ public:
     /* 8023826C */ void setTalkActor(fopAc_ac_c*);
     /* 8023829C */ void onMsgSendControl();
     /* 802382C8 */ void offMsgSendControl();
-    /* 802382F4 */ void isMsgSendControl();
-    /* 80238320 */ void onMsgSend();
+    /* 802382F4 */ static int isMsgSendControl();
+    /* 80238320 */ static void onMsgSend();
     /* 8023834C */ void offMsgSend();
     /* 80238378 */ void isMsgSend();
     /* 802383A4 */ void isMouthCheck();
-    /* 802383D0 */ void getMessageID();
+    /* 802383D0 */ static u32 getMessageID();
     /* 802383E4 */ void getSmellTypeMessageID();
     /* 80238410 */ void setSmellType(u8);
     /* 80238440 */ void getSelectCursorPos();
@@ -150,7 +150,16 @@ public:
     /* 80238638 */ void getItemEquipButton();
     /* 8023864C */ void setSelectCancelPos(u8);
 
+    void setShopWaitTimerLocal(u8 timer) { field_0x4c9 = timer; }
+    u8 getSelectPushFlag() { return mSelectPushFlag; }
+    u8 getSelectCancelPos() { return mSelectCancelPos; }
+
     /* 0x100 */ fopAc_ac_c* field_0x100;
+    /* 0x104 */ u8 field_0x104[0x9D];
+    /* 0x1A1 */ u8 mSelectCancelPos;
+    /* 0x1A2 */ u8 mSelectPushFlag;
+    /* 0x1A3 */ u8 field_0x1a3[0x326];
+    /* 0x4C9 */ u8 field_0x4c9;
 };
 
 s16 dMsgObject_getGroupID();
@@ -163,8 +172,16 @@ inline bool dMsgObject_isTalkNowCheck() {
     return dMsgObject_getMsgObjectClass()->getStatus() != 1 ? true : false;
 }
 
+inline u32 dMsgObject_getMessageID() {
+    return dMsgObject_c::getMessageID();
+}
+
 inline void dMsgObject_readMessageGroup(mDoDvdThd_mountXArchive_c** param_0) {
     dMsgObject_getMsgObjectClass()->readMessageGroup(param_0);
+}
+
+inline void dMsgObject_setShopWaitTimer(u8 timer) {
+    dMsgObject_c::setShopWaitTimer(timer);
 }
 
 #endif /* D_MSG_D_MSG_OBJECT_H */

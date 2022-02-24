@@ -6,212 +6,14 @@
 #include "d/shop/d_shop_system.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct mesg_flow_node_branch {};
-
-struct mDoCPd_c {
-    static u8 m_cpadInfo[256];
-};
-
-struct fopAc_ac_c {};
-
-struct daNpcT_motionAnmData_c {};
-
-struct daNpcT_faceMotionAnmData_c {};
-
-struct J3DModel {};
-
-struct J3DJoint {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-};
-
-struct daNpcT_c {
-    /* 801490D4 */ void ctrlBtk();
-    /* 8014951C */ void ctrlJoint(J3DJoint*, J3DModel*);
-    /* 8014997C */ void evtProc();
-    /* 80149BB4 */ void setFootPos();
-    /* 80149D7C */ void setFootPrtcl(cXyz*, f32, f32);
-    /* 8014A05C */ bool checkCullDraw();
-    /* 8014A064 */ void twilight();
-    /* 8014A0B0 */ void evtOrder();
-    /* 8014A224 */ void evtChange();
-    /* 8014A324 */ void clrParam();
-    /* 8014A628 */ void setMotionAnm(int, f32, int);
-    /* 8014BBF0 */ void initTalk(int, fopAc_ac_c**);
-    /* 8014CBF4 */ void decTmr();
-    /* 8014CC0C */ void setCollision();
-    /* 8014CC10 */ void setAttnPos();
-    /* 8014CC14 */ void ctrlSubFaceMotion(int);
-    /* 8014CC18 */ void afterMoved();
-    /* 8014CC1C */ void beforeMove();
-    /* 8014CC20 */ void action();
-    /* 8014CC24 */ void setParam();
-    /* 8014CC28 */ void drawOtherMdl();
-    /* 8014CC2C */ void drawGhost();
-    /* 8014CC30 */ bool drawDbgInfo();
-    /* 8014CC38 */ bool checkRemoveJoint(int);
-    /* 8014CC40 */ bool checkChangeJoint(int);
-    /* 8014CC48 */ void afterJntAnm(int);
-    /* 8014CC4C */ s32 getHeadJointNo();
-    /* 8014CC54 */ s32 getNeckJointNo();
-    /* 8014CC5C */ s32 getBackboneJointNo();
-    /* 8014CC64 */ void setAfterTalkMotion();
-    /* 8014CC68 */ bool evtCutProc();
-    /* 8014CC70 */ bool evtEndProc();
-    /* 8014CC78 */ bool evtTalk();
-    /* 8014CC80 */ bool checkChangeEvt();
-    /* 8014CC88 */ s32 getFootRJointNo();
-    /* 8014CC90 */ s32 getFootLJointNo();
-    /* 8014CC98 */ bool chkXYItems();
-    /* 8014CCA0 */ bool afterSetFaceMotionAnm(int, int, f32, int);
-    /* 8014CCA8 */ void changeBtp(int*, int*);
-    /* 8014CCAC */ void changeBck(int*, int*);
-    /* 8014CCB0 */ void getFaceMotionAnm(daNpcT_faceMotionAnmData_c);
-    /* 8014CCE0 */ bool afterSetMotionAnm(int, int, f32, int);
-    /* 8014CCE8 */ void changeBtk(int*, int*);
-    /* 8014CCEC */ void changeAnm(int*, int*);
-    /* 8014CCF0 */ void getMotionAnm(daNpcT_motionAnmData_c);
-    /* 8014CD20 */ ~daNpcT_c();
-    /* 8014D0A8 */ bool getEyeballLMaterialNo();
-    /* 8014D0B0 */ bool getEyeballRMaterialNo();
-    /* 8014D0B8 */ bool getEyeballMaterialNo();
-};
-
-struct daItemBase_c {
-    /* 80037A64 */ void hide();
-};
-
-struct dSv_memBit_c {
-    /* 80034810 */ void onSwitch(int);
-    /* 80034860 */ void isSwitch(int) const;
-};
-
-struct STControl {
-    /* 80032088 */ void setWaitParm(s16, s16, s16, s16, f32, f32, s16, s16);
-    /* 800320AC */ void init();
-    /* 8003219C */ void checkTrigger();
-    /* 8003242C */ void checkLeftTrigger();
-    /* 800324A8 */ void checkRightTrigger();
-    /* 80032524 */ void checkUpTrigger();
-    /* 800325A0 */ void checkDownTrigger();
-};
-
-struct dMsgFlow_c {
-    /* 8024A2D8 */ void doFlow(fopAc_ac_c*, fopAc_ac_c**, int);
-    /* 8024A528 */ void getEventId(int*);
-    /* 8024B2C0 */ void query005(mesg_flow_node_branch*, fopAc_ac_c*, int);
-};
-
-struct dShopSystem_c {
-    /* 80197338 */ void initShopSystem();
-    /* 801974E4 */ ~dShopSystem_c();
-    /* 801975C0 */ void onFlag(int);
-    /* 801975DC */ void offFlag(int);
-    /* 801975F8 */ void isFlag(int);
-    /* 80197618 */ void onSoldOutItemFlag(int);
-    /* 80197634 */ void offSoldOutItemFlag(int);
-    /* 80197650 */ void isSoldOutItemFlag(int);
-    /* 80197670 */ void checkController(u8, dMsgFlow_c*);
-    /* 80197808 */ void chooseItem3(u8);
-    /* 80197DD0 */ void chooseItem5(u8);
-    /* 80198250 */ void chooseItem4(u8);
-    /* 80198444 */ void moveCursor(int, u8);
-    /* 80198488 */ void moveCursor0(int, u8);
-    /* 80198708 */ void moveCursor1(int, u8);
-    /* 80198878 */ void drawCursor();
-    /* 80198950 */ void itemRotate();
-    /* 80198A2C */ void itemZoom(cXyz*);
-    /* 801990B0 */ bool seq_wait(fopAc_ac_c*, dMsgFlow_c*);
-    /* 801990B8 */ void seq_start(fopAc_ac_c*, dMsgFlow_c*);
-    /* 8019936C */ void seq_select_wait(fopAc_ac_c*, dMsgFlow_c*);
-    /* 801993C4 */ void seq_select_start(fopAc_ac_c*, dMsgFlow_c*);
-    /* 8019959C */ void seq_select(fopAc_ac_c*, dMsgFlow_c*);
-    /* 80199A18 */ void seq_moving(fopAc_ac_c*, dMsgFlow_c*);
-    /* 80199BF8 */ void seq_decide(fopAc_ac_c*, dMsgFlow_c*);
-    /* 80199D14 */ void seq_choose(fopAc_ac_c*, dMsgFlow_c*);
-    /* 80199E28 */ void seq_decide_yes(fopAc_ac_c*, dMsgFlow_c*);
-    /* 80199FA4 */ void seq_decide_no(fopAc_ac_c*, dMsgFlow_c*);
-    /* 8019A020 */ void seq_finish(fopAc_ac_c*, dMsgFlow_c*);
-    /* 8019A0C0 */ void seq_event(fopAc_ac_c*, dMsgFlow_c*);
-    /* 8019A0D0 */ void shop_init(bool);
-    /* 8019A158 */ void shop_process(fopAc_ac_c*, dMsgFlow_c*);
-    /* 8019A238 */ void createShopItem(int);
-    /* 8019A344 */ void setSeq(u8);
-    /* 8019A354 */ void setSoldOutFlag();
-    /* 8019A364 */ void setSoldOut();
-    /* 8019A4F4 */ void setSoldOutItemHide();
-    /* 8019A564 */ void deleteObject();
-    /* 8019A5D0 */ void searchItemActor();
-    /* 8019AB00 */ void getFlowNodeNum();
-    /* 8019AB1C */ void setSellItemMax(u8);
-    /* 8019AB24 */ void checkShopOpen();
-    /* 8019AB60 */ void checkLeftTrigger(STControl*);
-    /* 8019AB84 */ void checkRightTrigger(STControl*);
-    /* 8019ABA8 */ bool dpdMove();
-    /* 8019ACE0 */ bool beforeStartSeqAction(dMsgFlow_c*, int);
-    /* 8019ACE8 */ bool beforeSelectSeqAction(dMsgFlow_c*, int);
-    /* 8019ACF0 */ bool getResName2(int);
-};
-
-struct dShopItemCtrl_c {
-    /* 80196958 */ ~dShopItemCtrl_c();
-    /* 801969A0 */ void getCurrentPos(int);
-    /* 80196A3C */ void isHomePos(int);
-    /* 80196AF0 */ void setRotateAnime(int);
-    /* 80196BA4 */ void setZoomAnime(int, cXyz*, s16, bool);
-};
-
-struct JKRArchive {};
-
-struct dSelect_cursor_c {
-    /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
-    /* 801951B0 */ void setParam(f32, f32, f32, f32, f32);
-    /* 801951C8 */ void setScale(f32);
-    /* 80195330 */ void addAlpha();
-    /* 801953CC */ void decAlpha();
-};
-
-struct dMsgObject_c {
-    /* 802378B8 */ void setShopWaitTimer(u8);
-    /* 8023822C */ void getStatus();
-    /* 802382F4 */ void isMsgSendControl();
-    /* 80238320 */ void onMsgSend();
-    /* 802383D0 */ void getMessageID();
-};
-
-struct dDlst_base_c {};
-
-struct dDlst_list_c {
-    /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
-};
-
-struct csXyz {};
-
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct ShopCam_action_c {
-    /* 80196544 */ void setCamDataIdx(fopAc_ac_c*, fopAc_ac_c*, fopAc_ac_c*, fopAc_ac_c*, cXyz*,
-                                      cXyz*);
-    /* 80196608 */ void setCamDataIdx2(fopAc_ac_c*, fopAc_ac_c*, fopAc_ac_c*, fopAc_ac_c*,
-                                       fopAc_ac_c*, fopAc_ac_c*, fopAc_ac_c*, cXyz*, cXyz*);
-    /* 801968B8 */ void setMasterCamCtrPos(cXyz*);
-};
+#include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
+#include "d/d_item.h"
+#include "d/msg/d_msg_object.h"
+#include "m_Do/m_Do_audio.h"
+#include "d/meter/d_meter_HIO.h"
+#include "SSystem/SComponent/c_math.h"
+#include "m_Do/m_Do_lib.h"
 
 //
 // Forward References:
@@ -385,12 +187,8 @@ extern "C" void _restgpr_21();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strcmp();
 extern "C" extern void* __vt__9STControl[4];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_cursorHIO[68 + 4 /* padding */];
-extern "C" extern u8 g_meter2_info[248];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
@@ -404,35 +202,70 @@ SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
 };
 
 /* 803BB8A4-803BB8C0 0189C4 001C+00 6/6 0/0 0/0 .data            dShopSystem_itemActor */
-SECTION_DATA static u8 dShopSystem_itemActor[28] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_DATA static fopAc_ac_c* dShopSystem_itemActor[7] = {
+    NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 };
 
 /* 804506E8-804506F0 000168 0007+01 7/7 0/0 0/0 .sdata           dShopSystem_itemNo */
-SECTION_SDATA static u8 dShopSystem_itemNo[7 + 1 /* padding */] = {
-    0xFF,
-    0xFF,
-    0xFF,
-    0xFF,
-    0xFF,
-    0xFF,
-    0xFF,
-    /* padding */
-    0x00,
+SECTION_SDATA static u8 dShopSystem_itemNo[7] = {
+    NO_ITEM,
+    NO_ITEM,
+    NO_ITEM,
+    NO_ITEM,
+    NO_ITEM,
+    NO_ITEM,
+    NO_ITEM,
 };
 
 /* 80451058-8045105C 000558 0004+00 9/9 0/0 0/0 .sbss            None */
-static u8 data_80451058[4];
+static u8 data_80451058;  // sSellItemMax
 
 /* 8045105C-80451060 00055C 0004+00 6/6 0/0 0/0 .sbss            dShopSystem_item_count */
-static u8 dShopSystem_item_count[4];
+static int dShopSystem_item_count;
 
 /* 80451060-80451064 000560 0004+00 4/4 0/0 0/0 .sbss            None */
-static u8 data_80451060[4];
+static u8 data_80451060;
 
 /* 80197098-80197270 1919D8 01D8+00 1/1 0/0 0/0 .text            dShopSystem_searchItemActor__FPvPv
  */
+#ifdef NONMATCHING
+static int dShopSystem_searchItemActor(void* param_0, void* param_1) {
+    if (fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == PROC_TAG_SHOPITM) {
+        u32 param = fopAcM_GetParam(param_0);
+        if ((param & 0xF0000000) == (fopAcM_GetParam(param_1) & 0xF0000000) &&
+            dShopSystem_item_count < data_80451058) {
+            u32 param2 = (param >> 0x18) & 0xF;
+            
+            if (dShopSystem_itemActor[0] != param_0 && dShopSystem_itemActor[1] != param_0 &&
+                dShopSystem_itemActor[2] != param_0 && dShopSystem_itemActor[3] != param_0 &&
+                dShopSystem_itemActor[4] != param_0 && dShopSystem_itemActor[5] != param_0 &&
+                dShopSystem_itemActor[6] != param_0) {
+                u8 sw = static_cast<fopAc_ac_c*>(param_0)->mOrig.mAngle.z;
+                u8 sw2 = static_cast<fopAc_ac_c*>(param_0)->mOrig.mAngle.z >> 8;
+                u8 item_no = param;
+
+                if ((sw == 0xFF || !dComIfGs_isSaveSwitch(sw)) && (sw2 == 0xFF || dComIfGs_isSaveSwitch(sw2))) {
+                    if (sw != 0xFF && item_no == HYLIA_SHIELD && checkItemGet(item_no, true)) {
+                        dComIfGs_onSaveSwitch(sw);
+                    }
+                    
+                    if (param2 == 0) {
+                        data_80451060 = 1;
+                        dShopSystem_itemActor[dShopSystem_item_count] = param_0;
+                        dShopSystem_itemNo[dShopSystem_item_count] = item_no;
+                    } else if (dShopSystem_itemActor[param2 - 1] == NULL) {
+                        dShopSystem_itemActor[param2 - 1] = param_0;
+                        dShopSystem_itemNo[param2 - 1] = item_no;
+                    }
+                    dShopSystem_item_count++;
+                }
+            }
+        }
+    }
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -441,15 +274,16 @@ static asm void dShopSystem_searchItemActor(void* param_0, void* param_1) {
 #include "asm/d/shop/d_shop_system/dShopSystem_searchItemActor__FPvPv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804506F0-804506F8 000170 0008+00 6/6 0/0 0/0 .sdata           dShopSystem_cameraActor */
-SECTION_SDATA static u8 dShopSystem_cameraActor[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_SDATA static fopAc_ac_c* dShopSystem_cameraActor[2] = {
+    NULL, NULL
 };
 
 /* 80451064-80451068 000564 0004+00 5/5 0/0 0/0 .sbss            dShopSystem_camera_count */
-static u8 dShopSystem_camera_count[4];
+static int dShopSystem_camera_count;
 
 /* 80197270-80197338 191BB0 00C8+00 1/1 0/0 0/0 .text dShopSystem_searchCameraActor__FPvPv */
 #pragma push
@@ -479,6 +313,54 @@ SECTION_SDATA2 static f32 lit_4101 = 7.0f / 10.0f;
 
 /* 80197338-801974E4 191C78 01AC+00 0/0 0/0 19/19 .text            initShopSystem__13dShopSystem_cFv
  */
+// matches with literals
+#ifdef NONMATCHING
+void dShopSystem_c::initShopSystem() {
+    data_80451058 = 3;
+    data_80451060 = 0;
+
+    for (int i = 0; i < 7; i++) {
+        dShopSystem_itemActor[i] = NULL;
+        dShopSystem_itemNo[i] = NO_ITEM;
+    }
+    dShopSystem_item_count = 0;
+
+    for (int i = 0; i < 2; i++) {
+        dShopSystem_cameraActor[i] = NULL;
+    }
+    dShopSystem_camera_count = 0;
+
+    if (mpStick == NULL) {
+        mpStick = new STControl();
+    }
+
+    if (mpDrawCursor == NULL) {
+        mpDrawCursor = new dSelect_cursor_c(1, 1.0f, NULL);
+        mpDrawCursor->setParam(1.0f, 1.0f, 0.1f, 0.7f, 0.7f);
+    }
+
+    field_0xf64 = -1;
+    mEventParam = 0;
+    field_0xf58 = 0;
+    mFlag = 0;
+    mCursorPos = 0;
+    mLastCursorPos = 0;
+    field_0xf68 = 0;
+    mSeq = 0;
+    field_0xf71 = mSeq;
+    field_0xf79 = 0;
+    field_0xf7a = 0;
+    mWaitTimer = 0;
+    mSoldOutFlag = -1;
+    mSoldOutItemFlags = 0;
+    offSpMode();
+    field_0xf6c = 0;
+    field_0xf76 = 0;
+    field_0xf77 = 9;
+    field_0xf78 = -1;
+    mFlow.onNonStopJunpFlowFlag();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -487,13 +369,16 @@ asm void dShopSystem_c::initShopSystem() {
 #include "asm/d/shop/d_shop_system/initShopSystem__13dShopSystem_cFv.s"
 }
 #pragma pop
+#endif
+
+struct shop_item_data {
+    Vec mItemPos[3];
+};
 
 /* ############################################################################################## */
 /* 803BB8C0-803BB8E4 0189E0 0024+00 1/0 0/0 0/0 .data            item_seira_shop */
-SECTION_DATA static u8 item_seira_shop[36] = {
-    0x42, 0xDC, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00, 0xC2, 0xE6, 0x00, 0x00,
-    0x43, 0x20, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00, 0xC2, 0xE6, 0x00, 0x00,
-    0x43, 0x52, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00, 0xC2, 0xE6, 0x00, 0x00,
+SECTION_DATA static shop_item_data item_seira_shop = {
+    {{110.0f, 150.0f, -115.0f}, {160.0f, 150.0f, -115.0f}, {210.0f, 150.0f, -115.0f}}
 };
 
 /* 803BB8E4-803BB8F0 -00001 000C+00 0/1 0/0 0/0 .data            @4056 */
@@ -885,144 +770,105 @@ SECTION_DATA static u8 process[144 + 120 /* padding */] = {
     0x00,
 };
 
-/* 803BBA7C-803BBB50 018B9C 00D0+04 1/1 0/0 10/10 .data            __vt__13dShopSystem_c */
-SECTION_DATA extern void* __vt__13dShopSystem_c[52 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__13dShopSystem_cFv,
-    (void*)ctrlBtk__8daNpcT_cFv,
-    (void*)ctrlSubFaceMotion__8daNpcT_cFi,
-    (void*)checkChangeJoint__8daNpcT_cFi,
-    (void*)checkRemoveJoint__8daNpcT_cFi,
-    (void*)getBackboneJointNo__8daNpcT_cFv,
-    (void*)getNeckJointNo__8daNpcT_cFv,
-    (void*)getHeadJointNo__8daNpcT_cFv,
-    (void*)getFootLJointNo__8daNpcT_cFv,
-    (void*)getFootRJointNo__8daNpcT_cFv,
-    (void*)getEyeballLMaterialNo__8daNpcT_cFv,
-    (void*)getEyeballRMaterialNo__8daNpcT_cFv,
-    (void*)getEyeballMaterialNo__8daNpcT_cFv,
-    (void*)ctrlJoint__8daNpcT_cFP8J3DJointP8J3DModel,
-    (void*)afterJntAnm__8daNpcT_cFi,
-    (void*)setParam__8daNpcT_cFv,
-    (void*)checkChangeEvt__8daNpcT_cFv,
-    (void*)evtTalk__8daNpcT_cFv,
-    (void*)evtEndProc__8daNpcT_cFv,
-    (void*)evtCutProc__8daNpcT_cFv,
-    (void*)setAfterTalkMotion__8daNpcT_cFv,
-    (void*)evtProc__8daNpcT_cFv,
-    (void*)action__8daNpcT_cFv,
-    (void*)beforeMove__8daNpcT_cFv,
-    (void*)afterMoved__8daNpcT_cFv,
-    (void*)setAttnPos__8daNpcT_cFv,
-    (void*)setFootPos__8daNpcT_cFv,
-    (void*)setCollision__8daNpcT_cFv,
-    (void*)setFootPrtcl__8daNpcT_cFP4cXyzff,
-    (void*)checkCullDraw__8daNpcT_cFv,
-    (void*)twilight__8daNpcT_cFv,
-    (void*)chkXYItems__8daNpcT_cFv,
-    (void*)evtOrder__8daNpcT_cFv,
-    (void*)decTmr__8daNpcT_cFv,
-    (void*)clrParam__8daNpcT_cFv,
-    (void*)drawDbgInfo__8daNpcT_cFv,
-    (void*)drawOtherMdl__8daNpcT_cFv,
-    (void*)drawGhost__8daNpcT_cFv,
-    (void*)afterSetFaceMotionAnm__8daNpcT_cFiifi,
-    (void*)afterSetMotionAnm__8daNpcT_cFiifi,
-    (void*)getFaceMotionAnm__8daNpcT_cF26daNpcT_faceMotionAnmData_c,
-    (void*)getMotionAnm__8daNpcT_cF22daNpcT_motionAnmData_c,
-    (void*)changeAnm__8daNpcT_cFPiPi,
-    (void*)changeBck__8daNpcT_cFPiPi,
-    (void*)changeBtp__8daNpcT_cFPiPi,
-    (void*)changeBtk__8daNpcT_cFPiPi,
-    (void*)setMotionAnm__8daNpcT_cFifi,
-    (void*)getResName2__13dShopSystem_cFi,
-    (void*)beforeStartSeqAction__13dShopSystem_cFP10dMsgFlow_ci,
-    (void*)beforeSelectSeqAction__13dShopSystem_cFP10dMsgFlow_ci,
-    /* padding */
-    NULL,
-};
-
 /* 801974E4-801975C0 191E24 00DC+00 1/0 0/0 10/10 .text            __dt__13dShopSystem_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dShopSystem_c::~dShopSystem_c() {
-    nofralloc
-#include "asm/d/shop/d_shop_system/__dt__13dShopSystem_cFv.s"
+dShopSystem_c::~dShopSystem_c() {
+    deleteObject();
+    data_80451058 = 0;
+    data_80451060 = 0;
+
+    for (int i = 0; i < 7; i++) {
+        dShopSystem_itemActor[i] = NULL;
+        dShopSystem_itemNo[i] = NO_ITEM;
+    }
+    dShopSystem_item_count = 0;
+
+    for (int i = 0; i < 2; i++) {
+        dShopSystem_cameraActor[i] = NULL;
+    }
+    dShopSystem_camera_count = 0;
 }
-#pragma pop
 
 /* 801975C0-801975DC 191F00 001C+00 6/6 0/0 0/0 .text            onFlag__13dShopSystem_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::onFlag(int param_0) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/onFlag__13dShopSystem_cFi.s"
+void dShopSystem_c::onFlag(int flag) {
+    mFlag |= (u16)(1 << flag);
 }
-#pragma pop
 
 /* 801975DC-801975F8 191F1C 001C+00 7/7 0/0 0/0 .text            offFlag__13dShopSystem_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::offFlag(int param_0) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/offFlag__13dShopSystem_cFi.s"
+void dShopSystem_c::offFlag(int flag) {
+    mFlag &= ~(u16)(1 << flag);
 }
-#pragma pop
 
 /* 801975F8-80197618 191F38 0020+00 8/8 1/1 0/0 .text            isFlag__13dShopSystem_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::isFlag(int param_0) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/isFlag__13dShopSystem_cFi.s"
+BOOL dShopSystem_c::isFlag(int flag) {
+    return mFlag & (u16)(1 << flag) ? TRUE : FALSE;
 }
-#pragma pop
 
 /* 80197618-80197634 191F58 001C+00 1/1 0/0 0/0 .text onSoldOutItemFlag__13dShopSystem_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::onSoldOutItemFlag(int param_0) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/onSoldOutItemFlag__13dShopSystem_cFi.s"
+void dShopSystem_c::onSoldOutItemFlag(int flag) {
+    mSoldOutItemFlags |= (u8)(1 << flag);
 }
-#pragma pop
 
 /* 80197634-80197650 191F74 001C+00 1/1 0/0 0/0 .text offSoldOutItemFlag__13dShopSystem_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::offSoldOutItemFlag(int param_0) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/offSoldOutItemFlag__13dShopSystem_cFi.s"
+void dShopSystem_c::offSoldOutItemFlag(int flag) {
+    mSoldOutItemFlags &= ~(u8)(1 << flag);
 }
-#pragma pop
 
 /* 80197650-80197670 191F90 0020+00 2/2 0/0 0/0 .text isSoldOutItemFlag__13dShopSystem_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::isSoldOutItemFlag(int param_0) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/isSoldOutItemFlag__13dShopSystem_cFi.s"
+BOOL dShopSystem_c::isSoldOutItemFlag(int flag) {
+    return mSoldOutItemFlags & (u8)(1 << flag) ? TRUE : FALSE;
 }
-#pragma pop
 
 /* 80197670-80197808 191FB0 0198+00 3/3 0/0 0/0 .text
  * checkController__13dShopSystem_cFUcP10dMsgFlow_c             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::checkController(u8 param_0, dMsgFlow_c* param_1) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/checkController__13dShopSystem_cFUcP10dMsgFlow_c.s"
+int dShopSystem_c::checkController(u8 seq, dMsgFlow_c* p_flow) {
+    if (mWaitTimer != 0) {
+        if (mDoCPd_c::getTrigA(0)) {
+            dMsgObject_setShopWaitTimer(1);
+        }
+        return 0;
+    }
+
+    if (!dpdMove()) {
+        mpStick->checkTrigger();
+    }
+
+    int control_status;
+    if (data_80451058 == 4) {
+        control_status = chooseItem4(seq);
+    } else if (data_80451058 == 5) {
+        control_status = chooseItem5(seq);
+    } else {
+        control_status = chooseItem3(seq);
+    }
+
+    if (control_status != 0) {
+        return control_status;
+    }
+
+    dMsgObject_c* msg = dMsgObject_getMsgObjectClass();
+    if (msg->getSelectPushFlag() != 0) {
+        return msg->getSelectPushFlag() == 2 ? 2 : 1;
+    }
+
+    if (mDoCPd_c::getTrigA(0)) {
+        if (msg->getStatus() != 6 && msg->getStatus() != 8 && msg->getStatus() != 9 && msg->getStatus() != 20 && seq != SEQ_WAIT) {
+            return 1;
+        }
+    }
+    
+    if (mDoCPd_c::getTrigB(0)) {
+        if (seq != SEQ_SELECT_WAIT) {
+            mLastCursorPos = mCursorPos;
+            mCursorPos = 0;
+        }
+
+        if (!p_flow->isSelectMessage()) {
+            return 2;
+        }
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80453B14-80453B18 002114 0004+00 4/4 0/0 0/0 .sdata2          @4493 */
@@ -1038,84 +884,515 @@ SECTION_SDATA2 static f32 lit_4495 = 20.0f;
 SECTION_SDATA2 static f32 lit_4496 = 5.0f;
 
 /* 80197808-80197DD0 192148 05C8+00 1/1 0/0 0/0 .text            chooseItem3__13dShopSystem_cFUc */
+// matches with literals
+#ifdef NONMATCHING
+int dShopSystem_c::chooseItem3(u8 seq) {
+    u8 old_cursor = mLastCursorPos;
+    if (checkLeftTrigger(mpStick) && seq != SEQ_SELECT_WAIT) {
+        u8 cursor_pos = mCursorPos;
+
+        if (cursor_pos == 7) {
+            mCursorPos = mLastCursorPos;
+            mLastCursorPos = 7;
+            
+            if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
+                mCursorPos = mLastCursorPos;
+                mLastCursorPos = old_cursor;
+                goto right;
+            } else if (seq != SEQ_START) {
+                if (mCursorPos != 0) {
+                    mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                }
+                
+                mShopCamAction.SetSelectIdx(mCursorPos);
+            }
+
+            return 3;
+        } else if (cursor_pos == 4) {
+            mLastCursorPos = cursor_pos;
+            mCursorPos = 0;
+            
+            if (seq != SEQ_START) {
+                if (mCursorPos != 0) {
+                    mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                }
+
+                mShopCamAction.SetSelectIdx(mCursorPos);
+            }
+
+            return 3;
+        } else if (cursor_pos != 0) {
+            mLastCursorPos = cursor_pos;
+            mCursorPos--;
+            
+            if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
+                mCursorPos = mLastCursorPos;
+                mLastCursorPos = old_cursor;
+                goto right;
+            } else if (seq != SEQ_START) {
+                if (mCursorPos != 0) {
+                    mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                }
+                
+                mShopCamAction.SetSelectIdx(mCursorPos);
+            }
+            return 3;
+        }
+    }
+
+right:
+    if (checkRightTrigger(mpStick) && seq != SEQ_SELECT_WAIT) {
+        u8 cursor_pos = mCursorPos;
+
+        if (cursor_pos != 7) {
+            if (cursor_pos != 3 && cursor_pos != 6) {
+                mLastCursorPos = cursor_pos;
+                mCursorPos++;
+                
+                if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
+                    mCursorPos = mLastCursorPos;
+                    mLastCursorPos = old_cursor;
+                    goto up;
+                } else if (seq != SEQ_START) {
+                    mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                    mShopCamAction.SetSelectIdx(mCursorPos);
+                }
+                return 4;
+            }
+
+            if (data_80451058 == 7) {
+                mLastCursorPos = cursor_pos;
+                mCursorPos = 7;
+                
+                if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
+                    mCursorPos = mLastCursorPos;
+                    mLastCursorPos = old_cursor;
+                    goto up;
+                } else if (seq != SEQ_START) {
+                    mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                    mShopCamAction.SetSelectIdx(mCursorPos);
+                }
+                return 4;
+            }   
+        }        
+    }
+
+up:
+    if (data_80451058 >= 6) {
+        if (mpStick->checkUpTrigger() && seq != SEQ_SELECT_WAIT && mCursorPos <= 3) {
+            mLastCursorPos = mCursorPos;
+            mCursorPos += 3;
+            
+            if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
+                mCursorPos = mLastCursorPos;
+                mLastCursorPos = old_cursor;
+                goto down;
+            } else if (seq != SEQ_START) {
+                if (mCursorPos != 0) {
+                    mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                }
+                
+                mShopCamAction.SetSelectIdx(mCursorPos);
+            }
+
+            return 5;
+        }
+
+    down:
+        if (mpStick->checkDownTrigger() && seq != SEQ_SELECT_WAIT) {
+            u8 cursor_pos = mCursorPos;
+
+            if (cursor_pos > 3 && cursor_pos <= 6) {
+                mLastCursorPos = cursor_pos;
+                mCursorPos -= 3;
+                
+                if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
+                    mCursorPos = mLastCursorPos;
+                    mLastCursorPos = old_cursor;
+                    goto ret;
+                } else if (seq != SEQ_START) {
+                    mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                    mShopCamAction.SetSelectIdx(mCursorPos);
+                }
+                return 6;
+            }
+        }
+    }
+    
+ret:
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dShopSystem_c::chooseItem3(u8 param_0) {
+asm int dShopSystem_c::chooseItem3(u8 param_0) {
     nofralloc
 #include "asm/d/shop/d_shop_system/chooseItem3__13dShopSystem_cFUc.s"
 }
 #pragma pop
+#endif
 
 /* 80197DD0-80198250 192710 0480+00 1/1 0/0 0/0 .text            chooseItem5__13dShopSystem_cFUc */
+// matches with literals
+#ifdef NONMATCHING
+int dShopSystem_c::chooseItem5(u8 seq) {
+    u8 old_cursor = mLastCursorPos;
+    if (checkLeftTrigger(mpStick) && seq != SEQ_SELECT_WAIT) {
+        u8 cursor_pos = mCursorPos;
+
+        if (cursor_pos == 3) {
+            mLastCursorPos = cursor_pos;
+            mCursorPos = 0;
+            if (seq != SEQ_START) {
+                if (mCursorPos != 0) {
+                    mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                }
+
+                mShopCamAction.SetSelectIdx(mCursorPos);
+            }
+            return 3;
+        }
+
+        if (cursor_pos != 0) {
+            mLastCursorPos = cursor_pos;
+            mCursorPos--;
+            
+            if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
+                mCursorPos = mLastCursorPos;
+                mLastCursorPos = old_cursor;
+                goto right;
+            } else if (seq != SEQ_START) {
+                if (mCursorPos != 0) {
+                    mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                }
+                
+                mShopCamAction.SetSelectIdx(mCursorPos);
+            }
+            return 3;
+        }
+    }
+
+right:
+    if (checkRightTrigger(mpStick) && seq != SEQ_SELECT_WAIT) {
+        u8 cursor_pos = mCursorPos;
+
+        if (cursor_pos != 2 && cursor_pos != 5) {
+            mLastCursorPos = cursor_pos;
+            mCursorPos++;
+            
+            if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
+                mCursorPos = mLastCursorPos;
+                mLastCursorPos = old_cursor;
+                goto up;
+            } else if (seq != SEQ_START) {
+                mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                mShopCamAction.SetSelectIdx(mCursorPos);
+            }
+            return 4;
+        }
+    }
+
+up:
+    if (mpStick->checkUpTrigger() && seq != SEQ_SELECT_WAIT) {
+        u8 cursor_pos = mCursorPos;
+
+        if (cursor_pos == 3 || cursor_pos == 5) {
+            mLastCursorPos = cursor_pos;
+
+            if (mCursorPos == 3) {
+                mCursorPos = 1;
+            } else if (mCursorPos == 5) {
+                mCursorPos = 2;
+            }
+            
+            if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
+                mCursorPos = mLastCursorPos;
+                mLastCursorPos = old_cursor;
+                goto down;
+            } else if (seq != SEQ_START) {
+                if (mCursorPos != 0) {
+                    mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                }
+
+                mShopCamAction.SetSelectIdx(mCursorPos);
+            }
+            return 5;
+        }
+    }
+
+down:
+    if (mpStick->checkDownTrigger() && seq != SEQ_SELECT_WAIT) {
+        u8 cursor_pos = mCursorPos;
+
+        if (cursor_pos == 1 || cursor_pos == 2) {
+            mLastCursorPos = cursor_pos;
+
+            if (mCursorPos == 1) {
+                mCursorPos = 3;
+            } else if (mCursorPos == 2) {
+                mCursorPos = 5;
+            }
+            
+            if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
+                mCursorPos = mLastCursorPos;
+                mLastCursorPos = old_cursor;
+                goto ret;
+            } else if (seq != SEQ_START) {
+                mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                mShopCamAction.SetSelectIdx(mCursorPos);
+            }
+            return 6;
+        }
+    }
+
+ret:
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dShopSystem_c::chooseItem5(u8 param_0) {
+asm int dShopSystem_c::chooseItem5(u8 seq) {
     nofralloc
 #include "asm/d/shop/d_shop_system/chooseItem5__13dShopSystem_cFUc.s"
 }
 #pragma pop
+#endif
 
 /* 80198250-80198444 192B90 01F4+00 1/1 0/0 0/0 .text            chooseItem4__13dShopSystem_cFUc */
+// matches with literals. gotos can probably be removed
+#ifdef NONMATCHING
+int dShopSystem_c::chooseItem4(u8 seq) {
+    u8 old_cursor = mLastCursorPos;
+    if (checkLeftTrigger(mpStick) && seq != SEQ_SELECT_WAIT && mCursorPos != 0) {
+        mLastCursorPos = mCursorPos;
+        mCursorPos--;
+
+        if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
+            mCursorPos = mLastCursorPos;
+            mLastCursorPos = old_cursor;
+            goto right;
+        } else if (seq != SEQ_START) {
+            if (mCursorPos != 0) {
+                mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+            }
+
+            mShopCamAction.SetSelectIdx(mCursorPos);
+        }
+
+        return 3;
+    }
+
+right:
+    if (checkRightTrigger(mpStick) && seq != SEQ_SELECT_WAIT && mCursorPos < 4) {
+        mLastCursorPos = mCursorPos;
+        mCursorPos++;
+
+        if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
+            mCursorPos = mLastCursorPos;
+            mLastCursorPos = old_cursor;
+            goto ret;
+        } else if (seq != SEQ_START) {
+            mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+            mShopCamAction.SetSelectIdx(mCursorPos);
+        }
+        
+        return 4;
+    }
+
+ret:
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dShopSystem_c::chooseItem4(u8 param_0) {
+asm int dShopSystem_c::chooseItem4(u8 seq) {
     nofralloc
 #include "asm/d/shop/d_shop_system/chooseItem4__13dShopSystem_cFUc.s"
 }
 #pragma pop
+#endif
 
 /* 80198444-80198488 192D84 0044+00 5/5 0/0 0/0 .text            moveCursor__13dShopSystem_cFiUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::moveCursor(int param_0, u8 param_1) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/moveCursor__13dShopSystem_cFiUc.s"
+int dShopSystem_c::moveCursor(int control_status, u8 param_1) {
+    int cursor_status;
+    if (field_0xf60 >= 0) {
+        cursor_status = moveCursor0(control_status, param_1);
+    } else {
+        cursor_status = moveCursor1(control_status, param_1);
+    }
+
+    field_0xf6c = cursor_status;
+    return cursor_status;
 }
-#pragma pop
 
 /* 80198488-80198708 192DC8 0280+00 1/1 0/0 0/0 .text            moveCursor0__13dShopSystem_cFiUc */
+// matches with literals
+#ifdef NONMATCHING
+int dShopSystem_c::moveCursor0(int control_status, u8 param_1) {
+    offFlag(7);
+    
+    switch (control_status) {
+    case 3:
+        if (mCursorPos == 0) {
+            return getEventParamU8(mCursorPos) + 0x52;
+        }
+
+        return (getEventParamU8(mCursorPos) - 1) * 2 + 0x66;
+
+    case 4:
+        if (mCursorPos == 0) {
+            return getEventParamU8(mCursorPos) + 0x52;
+        }
+
+        return (getEventParamU8(mCursorPos) - 1) * 2 + 0x66;   
+
+    case 7:
+        if (mCursorPos == 0) {
+            return getEventParamU8(mCursorPos) + 0x52;
+        }
+
+        return (getEventParamU8(mCursorPos) - 1) * 2 + 0x66;
+
+    case 1:
+        if (mCursorPos == 0) {
+            return getEventParamU8(mCursorPos) + 0x52;
+        }
+
+        if (param_1 != 2) {
+            return (getEventParamU8(mCursorPos) - 1) * 2 + 0x65;
+        }
+
+        return (getEventParamU8(mCursorPos) - 1) * 2 + 0x66;
+
+    case 2:
+        onFlag(7);
+        mShopCamAction.SetSelectIdx(mCursorPos);
+
+        if (mCursorPos == 0) {
+            return getEventParamU8(mCursorPos) + 0x52;
+        }
+
+        if (param_1 != 2) {
+            return (getEventParamU8(mCursorPos) - 1) * 2 + 0x65;
+        }
+
+        return (getEventParamU8(mCursorPos) - 1) * 2 + 0x66; 
+    }
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dShopSystem_c::moveCursor0(int param_0, u8 param_1) {
+asm int dShopSystem_c::moveCursor0(int param_0, u8 param_1) {
     nofralloc
 #include "asm/d/shop/d_shop_system/moveCursor0__13dShopSystem_cFiUc.s"
 }
 #pragma pop
+#endif
 
 /* 80198708-80198878 193048 0170+00 1/1 0/0 0/0 .text            moveCursor1__13dShopSystem_cFiUc */
+#ifdef NONMATCHING
+int dShopSystem_c::moveCursor1(int control_status, u8 param_1) {
+    offFlag(7);
+    
+    switch (control_status) {
+    case 7:
+        if (mCursorPos == 0) {
+            return getFlowNodeNum() + 1;
+        }
+
+        return mItemCtrl.getMessageIndex(mCursorPos - 1) + 1;
+
+    case 1:
+        if (mCursorPos == 0) {
+            return getFlowNodeNum() + 1;
+        } else if (param_1 != 2) {
+            return mItemCtrl.getMessageIndex(mCursorPos - 1);
+        }
+
+        return mItemCtrl.getMessageIndex(mCursorPos - 1) + 1;
+
+    case 2:
+        onFlag(7);
+        mShopCamAction.SetSelectIdx(mCursorPos);
+
+        if (mCursorPos == 0) {
+            return getFlowNodeNum() + 1;
+        } else if (param_1 != 2) {
+            return mItemCtrl.getMessageIndex(mCursorPos - 1);
+        }
+
+        return mItemCtrl.getMessageIndex(mCursorPos - 1) + 1;
+
+    default:
+        return 0;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dShopSystem_c::moveCursor1(int param_0, u8 param_1) {
+asm int dShopSystem_c::moveCursor1(int param_0, u8 param_1) {
     nofralloc
 #include "asm/d/shop/d_shop_system/moveCursor1__13dShopSystem_cFiUc.s"
 }
 #pragma pop
+#endif
 
 /* 80198878-80198950 1931B8 00D8+00 0/0 0/0 9/9 .text            drawCursor__13dShopSystem_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::drawCursor() {
-    nofralloc
-#include "asm/d/shop/d_shop_system/drawCursor__13dShopSystem_cFv.s"
+int dShopSystem_c::drawCursor() {
+    if ((mSeq == 4 || mSeq == 5 || ((mSeq == 6 || mSeq == SEQ_SELECT_WAIT) && isFlag(mCursorPos - 1))) && mCursorPos != 0 && mItemCtrl.isHomePos(mCursorPos - 1)) {
+        mpDrawCursor->addAlpha();
+    } else {
+        mpDrawCursor->decAlpha();
+    }
+
+    mpDrawCursor->setScale(g_cursorHIO.mShopCursorScale);
+    if (mCursorPos != 0) {
+        dComIfGd_set2DOpa(mpDrawCursor);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 80198950-80198A2C 193290 00DC+00 0/0 0/0 9/9 .text            itemRotate__13dShopSystem_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::itemRotate() {
-    nofralloc
-#include "asm/d/shop/d_shop_system/itemRotate__13dShopSystem_cFv.s"
+int dShopSystem_c::itemRotate() {
+    u8 item_index = 0;
+    u8 cursor_pos = mCursorPos;
+
+    if (cursor_pos != 0 && mSeq != SEQ_WAIT) {
+        if (dShopSystem_itemNo[cursor_pos - 1] == ARMOR) {
+            int tmp_index;
+            if (isFlag(8) == false) {
+                tmp_index = 0;
+            } else {
+                tmp_index = mCursorPos;
+            }
+            item_index = tmp_index;
+        } else {
+            bool no_rotate = false;
+            int tmp_index;
+            if (isFlag(cursor_pos - 1) || isSoldOutItemFlag(mCursorPos - 1)) {
+                no_rotate = true;
+            } 
+            
+            if (no_rotate) {
+                tmp_index = 0;
+            } else {
+                tmp_index = mCursorPos;
+            }
+            item_index = tmp_index;
+        }
+    }
+
+    mItemCtrl.setRotateAnime(item_index);
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80394C10-80394C10 021270 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -1149,19 +1426,123 @@ SECTION_SDATA2 static f32 lit_5006 = 215.0f;
 SECTION_SDATA2 static f32 lit_5007 = 15.0f;
 
 /* 80198A2C-801990B0 19336C 0684+00 0/0 0/0 9/9 .text            itemZoom__13dShopSystem_cFP4cXyz */
+// matches with literals
+#ifdef NONMATCHING
+int dShopSystem_c::itemZoom(cXyz* param_0) {
+    cXyz local_1c;
+
+    if (field_0xf60 >= 0) {
+        local_1c.set(*param_0);
+
+        if (dShopSystem_itemNo[mCursorPos - 1] == OIL_BOTTLE) {
+            mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mSeraShopObjZoomAngleX + -5000, isFlag(8) ? true : false);
+        } else {
+            mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mSeraShopObjZoomAngleX, isFlag(8) ? true : false);
+        }
+    } else {
+        cXyz local_28;
+        cXyz local_34;
+
+        if (dShopSystem_itemActor[1] != NULL && dShopSystem_cameraActor[1] != NULL) {
+            cXyz local_40;
+            local_40.set(dShopSystem_itemActor[1]->mOrig.mPosition);
+            
+            f32 tmp_05 = 0.5f;
+            if (data_80451058 == 4) {
+                if (dShopSystem_itemActor[2] != NULL) {
+                    f32 tmp = (dShopSystem_itemActor[2]->mOrig.mPosition.x + dShopSystem_itemActor[1]->mOrig.mPosition.x);
+                    local_40.x = tmp * tmp_05;
+
+                    f32 tmp2 = (dShopSystem_itemActor[2]->mOrig.mPosition.y + dShopSystem_itemActor[1]->mOrig.mPosition.y);
+                    local_40.y = tmp2 * tmp_05;
+
+                    f32 tmp3 = (dShopSystem_itemActor[2]->mOrig.mPosition.z + dShopSystem_itemActor[1]->mOrig.mPosition.z);
+                    local_40.z = tmp3 * tmp_05;
+                }
+            } else if (data_80451058 == 5) {
+                f32 tmp = (dShopSystem_itemActor[2]->mOrig.mPosition.x + dShopSystem_itemActor[3]->mOrig.mPosition.x);
+                local_40.x = tmp * tmp_05;
+
+                local_40.y = dShopSystem_itemActor[0]->mOrig.mPosition.y;
+
+                f32 tmp3 = (dShopSystem_itemActor[2]->mOrig.mPosition.z + dShopSystem_itemActor[3]->mOrig.mPosition.z);
+                local_40.z = tmp3 * tmp_05;
+            }
+
+            cXyz local_4c = local_40 - dShopSystem_cameraActor[1]->mCurrent.mPosition;
+            s16 atan = cM_atan2s(local_4c.x, local_4c.z);
+            
+            if (!strcmp("R_SP01", dComIfGp_getStartStageName())) {
+                local_34.set(g_cursorHIO.mObjZoom.x, g_cursorHIO.mObjZoom.y + -25.0f, g_cursorHIO.mObjZoom.z + 150.0f);
+            } else {
+                if (field_0xf77 == 5) {
+                    if (dShopSystem_itemNo[mCursorPos - 1] == ARROW_10 || dShopSystem_itemNo[mCursorPos - 1] == ARROW_20 || dShopSystem_itemNo[mCursorPos - 1] == ARROW_30) {
+                        local_34.set(g_cursorHIO.mObjZoom.x, 5.0f + g_cursorHIO.mObjZoom.y + -50.0f, (g_cursorHIO.mObjZoom.z + 250.0f) - 60.0f);
+                    } else {
+                        local_34.set(g_cursorHIO.mObjZoom.x, 20.0f + g_cursorHIO.mObjZoom.y + -50.0f, (g_cursorHIO.mObjZoom.z + 250.0f) - 60.0f);
+                    }
+                } else if (mCursorPos == 7) {
+                    local_34.set(g_cursorHIO.mMagicArmorObjZoom.x, g_cursorHIO.mMagicArmorObjZoom.y + -130.0f, g_cursorHIO.mMagicArmorObjZoom.z + 215.0f);
+                } else {
+                    local_34.set(g_cursorHIO.mObjZoom.x, g_cursorHIO.mObjZoom.y + -50.0f, g_cursorHIO.mObjZoom.z + 250.0f);
+                }
+            }
+
+            cLib_offsetPos(&local_28, &dShopSystem_cameraActor[1]->mCurrent.mPosition, atan, &local_34);
+            if (data_80451058 == 6 || data_80451058 == 5) {
+                param_0->y += 15.0f;
+            }
+            local_1c.set(local_28.x + param_0->x, local_28.y + param_0->y, local_28.z + param_0->z);
+        } else {
+            local_28.set(*param_0);
+            local_1c.set(*param_0);
+        }
+
+        u8 dvar1 = field_0xf77;
+        if (dvar1 == 1) {
+            if (dShopSystem_itemNo[mCursorPos - 1] == OIL_BOTTLE) {
+                mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX + -7000, isFlag(8) ? true : false);
+            } else {
+                mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX, isFlag(8) ? true : false);
+            }
+        } else if (dvar1 == 2) {
+            if (dShopSystem_itemNo[mCursorPos - 1] == RED_BOTTLE) {
+                mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX - 3000, isFlag(8) ? true : false);
+            } else {
+                mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX, isFlag(8) ? true : false);
+            }
+        } else if (dvar1 == 5) {
+            if (dShopSystem_itemNo[mCursorPos - 1] == ARROW_10 || dShopSystem_itemNo[mCursorPos - 1] == ARROW_20 || dShopSystem_itemNo[mCursorPos - 1] == ARROW_30) {
+                mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX - 4000, isFlag(8) ? true : false);
+            } else {
+                mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX - 2000, isFlag(8) ? true : false);
+            }
+        } else if (mCursorPos == 7) {
+            mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mMagicArmorObjZoomAngleX, isFlag(8) ? true : false);
+        } else if (data_80451058 == 7) {
+            mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX - 3000, isFlag(8) ? true : false);
+        } else {
+            mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX, isFlag(8) ? true : false);
+        }
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dShopSystem_c::itemZoom(cXyz* param_0) {
+asm int dShopSystem_c::itemZoom(cXyz* param_0) {
     nofralloc
 #include "asm/d/shop/d_shop_system/itemZoom__13dShopSystem_cFP4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* 801990B0-801990B8 1939F0 0008+00 1/0 0/0 0/0 .text
  * seq_wait__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c         */
-bool dShopSystem_c::seq_wait(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
-    return false;
+int dShopSystem_c::seq_wait(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
+    return 0;
 }
 
 /* ############################################################################################## */
@@ -1173,49 +1554,282 @@ SECTION_SDATA2 static u8 lit_5084[4] = {
     0x00,
 };
 
+inline void pos3Dto2D(Vec* a, Vec* b) {
+    mDoLib_project(a, b);
+}
+
 /* 801990B8-8019936C 1939F8 02B4+00 1/0 0/0 0/0 .text
  * seq_start__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c        */
+// matches with literals
+#ifdef NONMATCHING
+int dShopSystem_c::seq_start(fopAc_ac_c* actor, dMsgFlow_c* p_flow) {
+    if (field_0xf79 != 0) {
+        dComIfGp_setDoStatusForce(0, 0);
+        dComIfGp_setAStatusForce(0, 0);
+        field_0xf79 = 0;
+    }
+
+    cXyz pos3d;
+    cXyz pos2d;
+    pos3d.set(mItemCtrl.getCurrentPos(0));
+    pos3Dto2D(&pos3d, &pos2d);
+    mpDrawCursor->setPos(pos2d.x, pos2d.y + g_cursorHIO.mShopCursorOffsetY);
+
+    if (chkSpMode() && !beforeStartSeqAction(p_flow, field_0xf5c)) {
+        return 0;
+    } else {
+        if (dMsgObject_c::isMsgSendControl()) {
+            dComIfGp_setDoStatusForce(0, 0);
+            dComIfGp_setAStatusForce(0x2A, 0);
+
+            int control_status = checkController(SEQ_WAIT, p_flow);
+            if (control_status != 0) {
+                dMsgObject_c::onMsgSend();
+                int cursor_status = moveCursor(control_status, 0);
+
+                if (chkSpMode()) {
+                    if (mCursorPos != 0) {
+                        field_0xf5c = cursor_status;
+                        mShopCamAction.setCameraSpeed(0.0f, 0.0f, 0.0f, 0.0f);
+                        setSeq(SEQ_SELECT);
+                    } else if (p_flow->doFlow(actor, NULL, cursor_status)) {
+                        mShopCamAction.setCameraSpeed(0.0f, 0.0f, 0.0f, 0.0f);
+                        setSeq(SEQ_FINISH);
+                    }
+                } else if (p_flow->doFlow(actor, NULL, cursor_status)) {
+                    if (mCursorPos == 0) {
+                        setSeq(SEQ_FINISH);
+                    } else {
+                        setSeq(SEQ_SELECT);
+                    }
+                }
+            }
+        } else {
+            if (p_flow->doFlow(actor, NULL, 0)) {
+                int itemNo;
+                if (mFlow.getEventId(&itemNo) == 1) {
+                    if (field_0xd90 == -1) {
+                        field_0xd90 = fopAcM_createItemForPresentDemo(&mCurrent.mPosition, itemNo, 0, -1, -1, NULL, NULL);
+                    }
+
+                    if (fpcEx_IsExist(field_0xd90)) {
+                        field_0xe30 = 1;
+                        evtChange();
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                } else {
+                    return 1;
+                }
+            }
+        }
+    }
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dShopSystem_c::seq_start(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
+asm int dShopSystem_c::seq_start(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
     nofralloc
 #include "asm/d/shop/d_shop_system/seq_start__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c.s"
 }
 #pragma pop
+#endif
 
 /* 8019936C-801993C4 193CAC 0058+00 1/0 0/0 0/0 .text
  * seq_select_wait__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::seq_select_wait(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/seq_select_wait__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c.s"
+int dShopSystem_c::seq_select_wait(fopAc_ac_c*, dMsgFlow_c*) {
+    if (mItemCtrl.isHomePos(mCursorPos - 1)) {
+        setSoldOut();
+        setSeq(SEQ_SELECT);
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 801993C4-8019959C 193D04 01D8+00 1/0 0/0 0/0 .text
  * seq_select_start__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c */
+// matches with literals
+#ifdef NONMATCHING
+int dShopSystem_c::seq_select_start(fopAc_ac_c*, dMsgFlow_c*) {
+    if (field_0xf60 < 0 && field_0xf76 == 0 && dShopSystem_item_count != -1) {
+        if (dShopSystem_item_count != data_80451058) {
+            return 0;
+        }
+        searchItemActor();
+    }
+
+    if (isFlag(mCursorPos - 1)) {
+        switch (mCursorPos) {
+        case 1:
+            mCursorPos = 2;
+            if (isFlag(mCursorPos - 1)) {
+                mCursorPos = 3;
+                if (isFlag(mCursorPos - 1)) {
+                    mCursorPos = 0;
+                }
+            }
+            break;
+
+        case 2:
+            mCursorPos = 1;
+            if (isFlag(mCursorPos - 1)) {
+                mCursorPos = 3;
+                if (isFlag(mCursorPos - 1)) {
+                    mCursorPos = 0;
+                }
+            }
+            break;
+        
+        case 3:
+            mCursorPos = 2;
+            if (isFlag(mCursorPos - 1)) {
+                mCursorPos = 1;
+                if (isFlag(mCursorPos - 1)) {
+                    mCursorPos = 0;
+                }
+            }
+            break;
+        }
+    }
+
+    mShopCamAction.SetSelectIdx(mCursorPos);
+    int cursor_status = moveCursor(4, 0);
+    initTalk(cursor_status, NULL);
+    setSeq(SEQ_SELECT);
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dShopSystem_c::seq_select_start(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
+asm int dShopSystem_c::seq_select_start(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
     nofralloc
 #include "asm/d/shop/d_shop_system/seq_select_start__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c.s"
 }
 #pragma pop
+#endif
 
 /* 8019959C-80199A18 193EDC 047C+00 1/0 0/0 0/0 .text
  * seq_select__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c       */
+// matches with literals
+#ifdef NONMATCHING
+int dShopSystem_c::seq_select(fopAc_ac_c* actor, dMsgFlow_c* p_flow) {
+    if (chkSpMode() && !beforeSelectSeqAction(p_flow, field_0xf5c)) {
+        return 0;
+    }
+
+    if (field_0xf76 != 0) {
+        field_0xf76 = 0;
+    }
+
+    int control_status = checkController(SEQ_START, p_flow);
+    dComIfGp_setDoStatusForce(0x22, 0);
+    dComIfGp_setAStatusForce(0x2A, 0);
+
+    if (control_status != 0) {
+        int cursor_status = moveCursor(control_status, 1);
+
+        int spMode = chkSpMode();
+        if (spMode && control_status == 2) {
+            field_0xf5c = cursor_status;
+            mShopCamAction.setCameraSpeed(0.0f, 0.0f, 0.0f, 0.0f);
+            setSeq(SEQ_FINISH);
+        } else if (spMode && mCursorPos == 0) {
+            field_0xf5c = cursor_status;
+            mShopCamAction.SetSelectIdx(mCursorPos);
+            mShopCamAction.setCameraSpeed(0.0f, 0.0f, 0.0f, 0.0f);
+            setSeq(SEQ_START);
+        } else if (p_flow->doFlow(actor, NULL, cursor_status)) {
+            if (control_status == 3) {
+                if (mCursorPos != 0) {
+                    mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                }
+
+                mShopCamAction.SetSelectIdx(mCursorPos);
+            } else if (control_status == 4 || control_status == 5 || control_status == 6) {
+                mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+
+                mShopCamAction.SetSelectIdx(mCursorPos);
+            }
+
+            dComIfGp_setMesgCancelButton(1);
+
+            if (control_status == 1) {
+                if (!isFlag(mCursorPos - 1) && !isSoldOutItemFlag(mCursorPos - 1)) {
+                    onFlag(8);
+                }
+                dMeter2Info_set2DVibrationM();
+                setSeq(SEQ_DECIDE);
+            } else if (control_status == 2) {
+                setSeq(SEQ_FINISH);
+            } else if (mCursorPos == 0) {
+                setSeq(SEQ_START);
+            } else {
+                field_0xf68 = 0;
+                setSeq(SEQ_MOVING);
+
+                if (mLastCursorPos != 0) {
+                    return 0;
+                }
+            }
+        } else if (control_status == 3 || control_status == 4 || control_status == 5 || control_status == 6 || control_status == 7 || control_status == 2) {
+            if (mLastCursorPos == 7) {
+                mLastCursorPos = mCursorPos;
+                mCursorPos = 7;
+            } else {
+                mCursorPos = mLastCursorPos;
+            }
+
+            field_0xf7a = 0;
+
+            if (control_status == 2) {
+                mShopCamAction.SetSelectIdx(mCursorPos);
+            }
+        }
+    } else {
+        p_flow->doFlow(actor, NULL, 0);
+    }
+
+    u8 old_cursor = 0;
+    if (mCursorPos != 0) {
+        old_cursor = mCursorPos;
+    } else if (mLastCursorPos != 0) {
+        old_cursor = mLastCursorPos;
+    }
+
+    if (old_cursor != 0) {
+        cXyz pos3d;
+        cXyz pos2d;
+        pos3d.set(mItemCtrl.getCurrentPos(old_cursor - 1));
+        pos3Dto2D(&pos3d, &pos2d);
+
+        if (old_cursor == 7) {
+            pos2d.x += g_cursorHIO.mMagicArmorCursorOffsetX;
+            pos2d.y += g_cursorHIO.mMagicArmorCursorOffsetY;
+        } else {
+            pos2d.y += g_cursorHIO.mShopCursorOffsetY;
+        }
+
+        mpDrawCursor->setPos(pos2d.x, pos2d.y);
+    }
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dShopSystem_c::seq_select(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
+asm int dShopSystem_c::seq_select(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
     nofralloc
 #include "asm/d/shop/d_shop_system/seq_select__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80453B48-80453B50 002148 0004+04 1/1 0/0 0/0 .sdata2          @5296 */
@@ -1230,90 +1844,213 @@ SECTION_SDATA2 static f64 lit_5298 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80199A18-80199BF8 194358 01E0+00 1/0 0/0 0/0 .text
  * seq_moving__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c       */
+// matches with literals
+#ifdef NONMATCHING
+int dShopSystem_c::seq_moving(fopAc_ac_c*, dMsgFlow_c*) {
+    field_0xf68++;
+
+    cXyz last_pos3d;
+    cXyz pos3d;
+    cXyz last_pos2d;
+    cXyz pos2d;
+    
+    pos3d.set(mItemCtrl.getCurrentPos(mCursorPos - 1));
+    pos3Dto2D(&pos3d, &pos2d);
+
+    if (mCursorPos == 7) {
+        pos2d.x += g_cursorHIO.mMagicArmorCursorOffsetX;
+        pos2d.y += g_cursorHIO.mMagicArmorCursorOffsetY;
+    } else {
+        pos2d.y += g_cursorHIO.mShopCursorOffsetY;
+    }
+
+    if (mLastCursorPos != 0) {
+        last_pos3d.set(mItemCtrl.getCurrentPos(mLastCursorPos - 1));
+        pos3Dto2D(&last_pos3d, &last_pos2d);
+
+        if (mLastCursorPos == 7) {
+            last_pos2d.x += g_cursorHIO.mMagicArmorCursorOffsetX;
+            last_pos2d.y += g_cursorHIO.mMagicArmorCursorOffsetY;
+        } else {
+            last_pos2d.y += g_cursorHIO.mShopCursorOffsetY;
+        }
+
+        f32 tmp = (f32)(field_0xf68 * field_0xf68) / 9.0f;
+        mpDrawCursor->setPos(last_pos2d.x + tmp * (pos2d.x - last_pos2d.x), last_pos2d.y + tmp * (pos2d.y - last_pos2d.y));
+
+    } else {
+        mpDrawCursor->setPos(pos2d.x, pos2d.y);
+    }
+
+    if (field_0xf68 >= 3) {
+        setSeq(SEQ_SELECT);
+    }
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dShopSystem_c::seq_moving(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
+asm int dShopSystem_c::seq_moving(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
     nofralloc
 #include "asm/d/shop/d_shop_system/seq_moving__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c.s"
 }
 #pragma pop
+#endif
 
 /* 80199BF8-80199D14 194538 011C+00 1/0 0/0 0/0 .text
  * seq_decide__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::seq_decide(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/seq_decide__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c.s"
+int dShopSystem_c::seq_decide(fopAc_ac_c* actor, dMsgFlow_c* p_flow) {
+    int control_status = checkController(SEQ_SELECT_WAIT, p_flow);
+    
+    dComIfGp_setDoStatusForce(0x22, 0);
+    if (!p_flow->isSelectMessage()) {
+        dComIfGp_setAStatusForce(0x2A, 0);
+    } else if (dMsgObject_getMsgObjectClass()->getSelectCancelPos() != 0) {
+        dComIfGp_setAStatusForce(0x2A, 0);
+    }
+
+    if (control_status != 0) {
+        int cursor_status = moveCursor(control_status, 2);
+
+        if (p_flow->doFlow(actor, NULL, cursor_status)) {
+            offFlag(8);
+            setSeq(SEQ_SELECT_WAIT);
+        } else if (p_flow->isSelectMessage()) {
+            field_0xf58 = control_status;
+            setSeq(SEQ_CHOOSE);
+        }
+    } else {
+        p_flow->doFlow(actor, NULL, 0);
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 80199D14-80199E28 194654 0114+00 1/0 0/0 0/0 .text
  * seq_choose__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::seq_choose(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/seq_choose__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c.s"
+int dShopSystem_c::seq_choose(fopAc_ac_c* actor, dMsgFlow_c* p_flow) {
+    dComIfGp_setDoStatusForce(0x22, 0);
+    if (!p_flow->isSelectMessage()) {
+        dComIfGp_setAStatusForce(0x2A, 0);
+    } else if (dMsgObject_getMsgObjectClass()->getSelectCancelPos() != 0) {
+        dComIfGp_setAStatusForce(0x2A, 0);
+    }
+
+    p_flow->doFlow(actor, NULL, 0);
+
+    u16 select_num = p_flow->getSelectNum();
+    if (dMsgObject_c::getStatus() != 6 && dMsgObject_c::getStatus() != 8 && dMsgObject_c::getStatus() != 9 && dMsgObject_c::getStatus() != 20) {
+        if (select_num == 0) {
+            setSeq(SEQ_DECIDE_YES);
+        } else {
+            setSeq(SEQ_DECIDE_NO);
+        }
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 80199E28-80199FA4 194768 017C+00 1/0 0/0 0/0 .text
  * seq_decide_yes__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c   */
+// matches with literals
+#ifdef NONMATCHING
+int dShopSystem_c::seq_decide_yes(fopAc_ac_c* actor, dMsgFlow_c* p_flow) {
+    if (dMsgObject_getMessageID() == 0x1B82) {
+        mShopCamAction.SetSelectIdx(0);
+        field_0xf76 = 1;
+    }
+
+    int itemNo;
+    if (mFlow.getEventId(&itemNo) == 1) {
+        if (p_flow->doFlow(actor, NULL, 0)) {
+            if (field_0xd90 == -1) {
+                field_0xd90 = fopAcM_createItemForPresentDemo(&mCurrent.mPosition, itemNo, 0, -1, -1, NULL, NULL);
+            }
+
+            if (fpcEx_IsExist(field_0xd90)) {
+                offFlag(8);
+                setSoldOutItemHide();
+                field_0xe30 = 1;
+                evtChange();
+                return 2;
+            }
+
+            return 0;
+        }
+    } else {
+        int flow;
+        if (field_0xf60 >= 0) {
+            flow = 100;
+        } else {
+            flow = mItemCtrl.getMessageIndex(mCursorPos - 1) + 1;
+        }
+
+        if (p_flow->doFlow(actor, NULL, flow)) {
+            offFlag(8);
+            setSeq(SEQ_SELECT_WAIT);
+        }
+    }
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dShopSystem_c::seq_decide_yes(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
+asm int dShopSystem_c::seq_decide_yes(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
     nofralloc
 #include "asm/d/shop/d_shop_system/seq_decide_yes__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c.s"
 }
 #pragma pop
+#endif
 
 /* 80199FA4-8019A020 1948E4 007C+00 1/0 0/0 0/0 .text
  * seq_decide_no__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::seq_decide_no(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/seq_decide_no__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c.s"
+int dShopSystem_c::seq_decide_no(fopAc_ac_c* actor, dMsgFlow_c* p_flow) {
+    if (p_flow->doFlow(actor, NULL, moveCursor(field_0xf58, 2))) {
+        offFlag(8);
+        setSeq(SEQ_SELECT_WAIT);
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 8019A020-8019A0C0 194960 00A0+00 1/0 0/0 0/0 .text
  * seq_finish__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::seq_finish(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/seq_finish__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c.s"
+int dShopSystem_c::seq_finish(fopAc_ac_c* actor, dMsgFlow_c* p_flow) {
+    if (chkSpMode() && !beforeStartSeqAction(p_flow, field_0xf5c)) {
+        return 0;
+    } else if (p_flow->doFlow(actor, NULL, 0)) {
+        setSeq(SEQ_WAIT);
+        return 1;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 8019A0C0-8019A0D0 194A00 0010+00 1/0 0/0 0/0 .text
  * seq_event__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::seq_event(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/seq_event__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c.s"
+bool dShopSystem_c::seq_event(fopAc_ac_c*, dMsgFlow_c*) {
+    return field_0xe30 == 0;
 }
-#pragma pop
 
 /* 8019A0D0-8019A158 194A10 0088+00 0/0 0/0 9/9 .text            shop_init__13dShopSystem_cFb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::shop_init(bool param_0) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/shop_init__13dShopSystem_cFb.s"
+int dShopSystem_c::shop_init(bool param_0) {
+    if (param_0) {
+        setSeq(SEQ_SELECT_START);
+        dMeter2Info_onShopTalkFlag();
+        setSoldOut();
+        return 1;
+    } else if (mSeq == SEQ_WAIT) {
+        setSeq(SEQ_START);
+        dMeter2Info_onShopTalkFlag();
+        return 1;
+    } else {
+        return 0;
+    }
 }
-#pragma pop
 
 /* 8019A158-8019A238 194A98 00E0+00 0/0 0/0 9/9 .text
  * shop_process__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c     */
@@ -1328,87 +2065,124 @@ asm void dShopSystem_c::shop_process(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
 
 /* ############################################################################################## */
 /* 804506F8-80450700 -00001 0004+04 1/1 0/0 0/0 .sdata           shop_item_pos_data_tbl */
-SECTION_SDATA static void* shop_item_pos_data_tbl[1 + 1 /* padding */] = {
-    (void*)&item_seira_shop,
-    /* padding */
-    NULL,
-};
+SECTION_SDATA static shop_item_data* shop_item_pos_data_tbl = &item_seira_shop;
 
 /* 80453B58-80453B60 002158 0006+02 1/1 0/0 0/0 .sdata2          item_no$5460 */
-SECTION_SDATA2 static u8 item_no[6 + 2 /* padding */] = {
-    0x64,
-    0x76,
-    0x4B,
-    0x64,
-    0x76,
-    0xFF,
-    /* padding */
-    0x00,
-    0x00,
+SECTION_SDATA2 static u8 item_no[6] = {
+    MILK_BOTTLE,
+    BEE_CHILD,
+    PACHINKO,
+    MILK_BOTTLE,
+    BEE_CHILD,
+    NO_ITEM,
 };
 
 /* 8019A238-8019A344 194B78 010C+00 0/0 0/0 1/1 .text            createShopItem__13dShopSystem_cFi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::createShopItem(int param_0) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/createShopItem__13dShopSystem_cFi.s"
+void dShopSystem_c::createShopItem(int itemType) {
+    if (itemType != -1) {
+        field_0xf60 = itemType;
+        mSoldOutFlag = -1;
+
+        cXyz pos;
+        for (int i = 0; i < 3; i++) {
+            u8* itemTbl = item_no + (itemType * 3);
+
+            pos.x = shop_item_pos_data_tbl->mItemPos[i].x + mCurrent.mPosition.x;
+            pos.y = shop_item_pos_data_tbl->mItemPos[i].y + mCurrent.mPosition.y;
+            pos.z = shop_item_pos_data_tbl->mItemPos[i].z + mCurrent.mPosition.z;
+
+            if (itemTbl[i] != NO_ITEM) {
+                u32 index = fopAcM_create(PROC_ShopItem, itemTbl[i], &pos, fopAcM_GetRoomNo(this), &mCurrent.mAngle, NULL, -1);
+                mItemCtrl.setItemIndex(i, index);
+                offFlag(i);
+            } else {
+                mItemCtrl.setItemIndex(i, -1);
+                onFlag(i);
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 8019A344-8019A354 194C84 0010+00 12/12 0/0 0/0 .text            setSeq__13dShopSystem_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::setSeq(u8 param_0) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/setSeq__13dShopSystem_cFUc.s"
+void dShopSystem_c::setSeq(u8 seq) {
+    mSeq = seq;
+    mWaitTimer = 2;
 }
-#pragma pop
 
 /* 8019A354-8019A364 194C94 0010+00 0/0 1/1 0/0 .text            setSoldOutFlag__13dShopSystem_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::setSoldOutFlag() {
-    nofralloc
-#include "asm/d/shop/d_shop_system/setSoldOutFlag__13dShopSystem_cFv.s"
+void dShopSystem_c::setSoldOutFlag() {
+    mSoldOutFlag = mCursorPos - 1;
 }
-#pragma pop
 
 /* 8019A364-8019A4F4 194CA4 0190+00 2/2 0/0 0/0 .text            setSoldOut__13dShopSystem_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::setSoldOut() {
-    nofralloc
-#include "asm/d/shop/d_shop_system/setSoldOut__13dShopSystem_cFv.s"
+void dShopSystem_c::setSoldOut() {
+    if (mSoldOutFlag != 0xFF) {
+        if (field_0xf60 < 0) {
+            u8 sw = (u8)dShopSystem_itemActor[mSoldOutFlag]->mOrig.mAngle.z & 0xFF;
+            if (sw != 0xFF && !dComIfGs_isSaveSwitch(sw)) {
+                dComIfGs_onSaveSwitch(sw);
+            }
+        }
+
+        int index = mSoldOutFlag;
+        mSoldOutFlag = -1;
+        if (field_0xf60 >= 0) {
+            fopAcM_delete(mItemCtrl.getItemIndex(index));
+            mItemCtrl.setItemIndex(index, -1);
+            onFlag(index);
+            return;
+        } else if (index == 0) {
+            dShopSystem_itemActor[0] = NULL;
+            dShopSystem_itemNo[0] = NO_ITEM;
+            dShopSystem_item_count = 2;
+        } else if (index == 1) {
+            dShopSystem_itemActor[1] = NULL;
+            dShopSystem_itemNo[1] = NO_ITEM;
+            dShopSystem_item_count = 2;
+        } else if (index == 2) {
+            dShopSystem_itemActor[2] = NULL;
+            dShopSystem_itemNo[2] = NO_ITEM;
+            dShopSystem_item_count = 2;
+        } else if (index == 6) {
+            dShopSystem_itemActor[6] = NULL;
+            dShopSystem_itemNo[6] = NO_ITEM;
+            dShopSystem_item_count = 6;
+        }
+
+        if (field_0xf76 != 0) {
+            onFlag(index);
+        }
+    }
 }
-#pragma pop
 
 /* 8019A4F4-8019A564 194E34 0070+00 1/1 0/0 0/0 .text setSoldOutItemHide__13dShopSystem_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::setSoldOutItemHide() {
-    nofralloc
-#include "asm/d/shop/d_shop_system/setSoldOutItemHide__13dShopSystem_cFv.s"
+void dShopSystem_c::setSoldOutItemHide() {
+    if (field_0xf60 < 0) {
+        fopAcM_delete(mItemCtrl.getItemIndex(mSoldOutFlag));
+    } else {
+        daShopItem_c* item = (daShopItem_c*)fopAcM_SearchByID(mItemCtrl.getItemIndex(mSoldOutFlag));
+
+        if (item != NULL) {
+            item->hide();
+        }
+    }
 }
-#pragma pop
 
 /* 8019A564-8019A5D0 194EA4 006C+00 1/1 0/0 10/10 .text            deleteObject__13dShopSystem_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::deleteObject() {
-    nofralloc
-#include "asm/d/shop/d_shop_system/deleteObject__13dShopSystem_cFv.s"
+void dShopSystem_c::deleteObject() {
+    if (mpStick != NULL) {
+        delete mpStick;
+        mpStick = NULL;
+    }
+
+    if (mpDrawCursor != NULL) {
+        delete mpDrawCursor;
+        mpDrawCursor = NULL;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80453B60-80453B64 002160 0004+00 1/1 0/0 0/0 .sdata2          @5687 */
@@ -1448,57 +2222,43 @@ asm void dShopSystem_c::searchItemActor() {
 
 /* 8019AB00-8019AB1C 195440 001C+00 1/1 0/0 0/0 .text            getFlowNodeNum__13dShopSystem_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::getFlowNodeNum() {
-    nofralloc
-#include "asm/d/shop/d_shop_system/getFlowNodeNum__13dShopSystem_cFv.s"
+int dShopSystem_c::getFlowNodeNum() {
+    u16 num = mOrig.mAngle.x;
+    if (num == 0xFFFF) {
+        return -1;
+    }
+
+    return num;
 }
-#pragma pop
 
 /* 8019AB1C-8019AB24 19545C 0008+00 0/0 0/0 8/8 .text            setSellItemMax__13dShopSystem_cFUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::setSellItemMax(u8 param_0) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/setSellItemMax__13dShopSystem_cFUc.s"
+void dShopSystem_c::setSellItemMax(u8 max) {
+    data_80451058 = max;
 }
-#pragma pop
 
 /* 8019AB24-8019AB60 195464 003C+00 0/0 0/0 9/9 .text            checkShopOpen__13dShopSystem_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::checkShopOpen() {
-    nofralloc
-#include "asm/d/shop/d_shop_system/checkShopOpen__13dShopSystem_cFv.s"
+bool dShopSystem_c::checkShopOpen() {
+    for (int i = 0; i < 2; i++) {
+        if (dShopSystem_cameraActor[i] != NULL) {
+            return true;
+        }
+    }
+
+    return dShopSystem_camera_count != 0;
 }
-#pragma pop
 
 /* 8019AB60-8019AB84 1954A0 0024+00 3/3 0/0 0/0 .text
  * checkLeftTrigger__13dShopSystem_cFP9STControl                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::checkLeftTrigger(STControl* param_0) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/checkLeftTrigger__13dShopSystem_cFP9STControl.s"
+bool dShopSystem_c::checkLeftTrigger(STControl* stick) {
+    return stick->checkLeftTrigger();
 }
-#pragma pop
 
 /* 8019AB84-8019ABA8 1954C4 0024+00 3/3 0/0 0/0 .text
  * checkRightTrigger__13dShopSystem_cFP9STControl               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::checkRightTrigger(STControl* param_0) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/checkRightTrigger__13dShopSystem_cFP9STControl.s"
+bool dShopSystem_c::checkRightTrigger(STControl* stick) {
+    return stick->checkRightTrigger();
 }
-#pragma pop
 
 /* 8019ABA8-8019ABB0 1954E8 0008+00 1/1 0/0 0/0 .text            dpdMove__13dShopSystem_cFv */
 bool dShopSystem_c::dpdMove() {
@@ -1522,14 +2282,14 @@ REGISTER_CTORS(0x8019ABB0, __sinit_d_shop_system_cpp);
 
 /* 8019ACE0-8019ACE8 195620 0008+00 1/0 0/0 0/0 .text
  * beforeStartSeqAction__13dShopSystem_cFP10dMsgFlow_ci         */
-bool dShopSystem_c::beforeStartSeqAction(dMsgFlow_c* param_0, int param_1) {
-    return true;
+int dShopSystem_c::beforeStartSeqAction(dMsgFlow_c* param_0, int param_1) {
+    return 1;
 }
 
 /* 8019ACE8-8019ACF0 195628 0008+00 1/0 0/0 0/0 .text
  * beforeSelectSeqAction__13dShopSystem_cFP10dMsgFlow_ci        */
-bool dShopSystem_c::beforeSelectSeqAction(dMsgFlow_c* param_0, int param_1) {
-    return true;
+int dShopSystem_c::beforeSelectSeqAction(dMsgFlow_c* param_0, int param_1) {
+    return 1;
 }
 
 /* 8019ACF0-8019ACF8 195630 0008+00 1/0 0/0 0/0 .text            getResName2__13dShopSystem_cFi */

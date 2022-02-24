@@ -1514,7 +1514,7 @@ asm void dMsgFlow_c::checkOpenDoor(fopAc_ac_c* param_0, int* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgFlow_c::doFlow(fopAc_ac_c* param_0, fopAc_ac_c** param_1, int param_2) {
+asm int dMsgFlow_c::doFlow(fopAc_ac_c* param_0, fopAc_ac_c** param_1, int param_2) {
     nofralloc
 #include "asm/d/msg/d_msg_flow/doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci.s"
 }
@@ -1544,7 +1544,7 @@ asm void dMsgFlow_c::remove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgFlow_c::getEventId(int* param_0) {
+asm u16 dMsgFlow_c::getEventId(int* param_0) {
     nofralloc
 #include "asm/d/msg/d_msg_flow/getEventId__10dMsgFlow_cFPi.s"
 }
@@ -1797,7 +1797,7 @@ asm void dMsgFlow_c::query004(mesg_flow_node_branch* param_0, fopAc_ac_c* param_
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgFlow_c::query005(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
+asm u16 dMsgFlow_c::query005(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
     nofralloc
 #include "asm/d/msg/d_msg_flow/query005__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
 }

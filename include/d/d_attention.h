@@ -200,6 +200,7 @@ public:
     /* 8016E424 */ void LockEdge();
     /* 80182994 */ void GetCheckObjectCount();
     /* 80182AD0 */ void keepLock(int);
+    /* 8014B010 */ void getDistTable(int);
 
     dAttCatch_c& getCatghTarget() { return mCatghTarget; }
     bool chkFlag(u32 flag) { return mFlags & flag; }

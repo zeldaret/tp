@@ -8,30 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct daShopItem_c {
-    /* 80037C14 */ void getRotateP();
-    /* 80037C1C */ void getPosP();
-};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-};
-
-struct dShopItemCtrl_c {
-    /* 80196914 */ dShopItemCtrl_c();
-    /* 80196958 */ ~dShopItemCtrl_c();
-    /* 801969A0 */ void getCurrentPos(int);
-    /* 80196A3C */ void isHomePos(int);
-    /* 80196AF0 */ void setRotateAnime(int);
-    /* 80196BA4 */ void setZoomAnime(int, cXyz*, s16, bool);
-};
-
-//
 // Forward References:
 //
 
@@ -54,46 +30,25 @@ extern "C" void __mi__4cXyzCFRC3Vec();
 extern "C" void cLib_addCalcPos2__FP4cXyzRC4cXyzff();
 extern "C" void cLib_addCalcAngleS__FPsssss();
 extern "C" void __dl__FPv();
-extern "C" void PSVECSquareMag();
 extern "C" void _savegpr_23();
 extern "C" void _savegpr_27();
 extern "C" void _restgpr_23();
 extern "C" void _restgpr_27();
-extern "C" extern u32 __float_nan;
 
 //
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 803BB888-803BB898 0189A8 000C+04 2/2 0/0 0/0 .data            __vt__15dShopItemCtrl_c */
-SECTION_DATA extern void* __vt__15dShopItemCtrl_c[3 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__15dShopItemCtrl_cFv,
-    /* padding */
-    NULL,
-};
-
 /* 80196914-80196958 191254 0044+00 0/0 0/0 10/10 .text            __ct__15dShopItemCtrl_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dShopItemCtrl_c::dShopItemCtrl_c() {
-    nofralloc
-#include "asm/d/shop/d_shop_item_ctrl/__ct__15dShopItemCtrl_cFv.s"
+dShopItemCtrl_c::dShopItemCtrl_c() {
+    for (int i = 0; i < 7; i++) {
+        mItemIndex[i] = -1;
+        mMessageIndex[i] = 0;
+    }
 }
-#pragma pop
 
 /* 80196958-801969A0 191298 0048+00 1/0 1/1 0/0 .text            __dt__15dShopItemCtrl_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dShopItemCtrl_c::~dShopItemCtrl_c() {
-    nofralloc
-#include "asm/d/shop/d_shop_item_ctrl/__dt__15dShopItemCtrl_cFv.s"
-}
-#pragma pop
+dShopItemCtrl_c::~dShopItemCtrl_c() {}
 
 /* ############################################################################################## */
 /* 80453AD0-80453AD8 0020D0 0004+04 2/2 0/0 0/0 .sdata2          @3659 */
@@ -105,35 +60,57 @@ SECTION_SDATA2 static f32 lit_3659[1 + 1 /* padding */] = {
 
 /* 801969A0-80196A3C 1912E0 009C+00 0/0 3/3 3/3 .text            getCurrentPos__15dShopItemCtrl_cFi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopItemCtrl_c::getCurrentPos(int param_0) {
-    nofralloc
-#include "asm/d/shop/d_shop_item_ctrl/getCurrentPos__15dShopItemCtrl_cFi.s"
+cXyz dShopItemCtrl_c::getCurrentPos(int item_index) {
+    f32 tmp = lit_3659[0];
+    cXyz item_pos(tmp, tmp, tmp);
+
+    if (mItemIndex[item_index] != -1) {
+        fopAc_ac_c* item = fopAcM_SearchByID(mItemIndex[item_index]);
+        if (item != NULL) {
+            item_pos.set(item->mCurrent.mPosition);
+        }
+    }
+
+    return item_pos;
 }
-#pragma pop
 
 /* 80196A3C-80196AF0 19137C 00B4+00 0/0 2/2 0/0 .text            isHomePos__15dShopItemCtrl_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopItemCtrl_c::isHomePos(int param_0) {
-    nofralloc
-#include "asm/d/shop/d_shop_item_ctrl/isHomePos__15dShopItemCtrl_cFi.s"
+bool dShopItemCtrl_c::isHomePos(int item_index) {
+    if (item_index >= 0 && item_index < 7 && mItemIndex[item_index] != -1) {
+        daShopItem_c* item = (daShopItem_c*)fopAcM_SearchByID(mItemIndex[item_index]);
+        if (item != NULL) {
+            cXyz* item_pos = item->getPosP();
+            cXyz item_home = item->mOrig.mPosition;
+
+            if (item_pos->x == item_home.x &&
+                item_pos->y == item_home.y &&
+                item_pos->z == item_home.z) {
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 80196AF0-80196BA4 191430 00B4+00 0/0 1/1 0/0 .text            setRotateAnime__15dShopItemCtrl_cFi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopItemCtrl_c::setRotateAnime(int param_0) {
-    nofralloc
-#include "asm/d/shop/d_shop_item_ctrl/setRotateAnime__15dShopItemCtrl_cFi.s"
+void dShopItemCtrl_c::setRotateAnime(int item_index) {
+    for (int i = 0; i < 7; i++) {
+        if (mItemIndex[i] != -1) {
+            daShopItem_c* item = (daShopItem_c*)fopAcM_SearchByID(mItemIndex[i]);
+            if (item != NULL) {
+                csXyz* item_rot = item->getRotateP();
+
+                if (i == item_index - 1) {
+                    item_rot->y += 0x200;
+                } else {
+                    cLib_addCalcAngleS(&item_rot->y, item->mOrig.mAngle.y, 4, 0x800, 0x80);
+                }
+            }
+        }
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80453AD8-80453AE0 0020D8 0008+00 1/1 0/0 0/0 .sdata2          @3838 */

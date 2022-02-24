@@ -218,7 +218,7 @@ static u8 g_fopAc_type[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fopAc_IsActor(void* param_0) {
+asm s32 fopAc_IsActor(void* param_0) {
     nofralloc
 #include "asm/f_op/f_op_actor/fopAc_IsActor__FPv.s"
 }

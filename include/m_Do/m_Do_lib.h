@@ -12,4 +12,6 @@ struct mDoLib_clipper {
     static f32 mFovyRate;
 };
 
+void mDoLib_project(Vec* param_0, Vec* param_1);
+
 #endif /* M_DO_M_DO_LIB_H */
