@@ -82,8 +82,7 @@ bool dShopItemCtrl_c::isHomePos(int item_index) {
             cXyz* item_pos = item->getPosP();
             cXyz item_home = item->mOrig.mPosition;
 
-            if (item_pos->x == item_home.x &&
-                item_pos->y == item_home.y &&
+            if (item_pos->x == item_home.x && item_pos->y == item_home.y &&
                 item_pos->z == item_home.z) {
                 return true;
             }

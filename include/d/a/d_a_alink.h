@@ -2338,7 +2338,7 @@ public:
         field_0x2844.clearData();
     }
     s32 checkPlayerDemoMode() const { return mDemo.getDemoType(); }
-    u16 getMidnaMsgNum() const { return mMidnaMsgNum; } 
+    u16 getMidnaMsgNum() const { return mMidnaMsgNum; }
 
     BOOL i_checkReinRide() const { return mRideStatus == 1 || mRideStatus == 2; }
 

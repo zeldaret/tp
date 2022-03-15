@@ -2684,7 +2684,7 @@ asm void daNpcT_c::getMotionAnm(daNpcT_motionAnmData_c param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-//asm daNpcT_c::~daNpcT_c() {
+// asm daNpcT_c::~daNpcT_c() {
 extern "C" asm void __dt__8daNpcT_cFv() {
     nofralloc
 #include "asm/d/a/d_a_npc/__dt__8daNpcT_cFv.s"

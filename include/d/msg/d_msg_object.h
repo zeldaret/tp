@@ -2,11 +2,11 @@
 #define D_MSG_D_MSG_OBJECT_H
 
 #include "JSystem/J2DGraph/J2DTextbox.h"
+#include "JSystem/JMessage/control.h"
+#include "JSystem/JMessage/processor.h"
+#include "JSystem/JMessage/resource.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/msg/d_msg_class.h"
-#include "JSystem/JMessage/control.h"
-#include "JSystem/JMessage/resource.h"
-#include "JSystem/JMessage/processor.h"
 #include "dolphin/types.h"
 
 class COutFont_c;

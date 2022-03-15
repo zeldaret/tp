@@ -1,9 +1,9 @@
 #ifndef D_SHOP_D_SHOP_SYSTEM_H
 #define D_SHOP_D_SHOP_SYSTEM_H
 
-#include "dolphin/types.h"
-#include "d/shop/d_shop_item_ctrl.h"
 #include "d/a/d_a_npc.h"
+#include "d/shop/d_shop_item_ctrl.h"
+#include "dolphin/types.h"
 
 typedef int (*ShopCam_actionFunc)(void);
 
@@ -124,7 +124,7 @@ public:
     /* 8019AB60 */ bool checkLeftTrigger(STControl*);
     /* 8019AB84 */ bool checkRightTrigger(STControl*);
     /* 8019ABA8 */ bool dpdMove();
-    
+
     /* 801974E4 */ virtual ~dShopSystem_c();
     /* 8019ACF0 */ virtual bool getResName2(int);
     /* 8019ACE0 */ virtual int beforeStartSeqAction(dMsgFlow_c*, int);
@@ -139,7 +139,7 @@ private:
     /* 0xE40 */ STControl* mpStick;
     /* 0xE44 */ dSelect_cursor_c* mpDrawCursor;
     /* 0xE48 */ dShopItemCtrl_c mItemCtrl;
-    /* 0xE78 */ ShopCam_action_c mShopCamAction; 
+    /* 0xE78 */ ShopCam_action_c mShopCamAction;
     /* 0xF54 */ u32 mEventParam;
     /* 0xF58 */ int field_0xf58;
     /* 0xF5C */ int field_0xf5c;

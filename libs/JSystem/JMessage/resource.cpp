@@ -4,9 +4,9 @@
 //
 
 #include "JSystem/JMessage/resource.h"
-#include "JSystem/JMessage/locale.h"
-#include "JSystem/JMessage/data.h"
 #include "JSystem/JGadget/binary.h"
+#include "JSystem/JMessage/data.h"
+#include "JSystem/JMessage/locale.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

@@ -4,15 +4,15 @@
 //
 
 #include "d/shop/d_shop_system.h"
+#include "SSystem/SComponent/c_math.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_item.h"
+#include "d/d_procname.h"
+#include "d/meter/d_meter_HIO.h"
+#include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/d_procname.h"
-#include "d/d_item.h"
-#include "d/msg/d_msg_object.h"
 #include "m_Do/m_Do_audio.h"
-#include "d/meter/d_meter_HIO.h"
-#include "SSystem/SComponent/c_math.h"
 #include "m_Do/m_Do_lib.h"
 
 //
@@ -208,13 +208,7 @@ SECTION_DATA static fopAc_ac_c* dShopSystem_itemActor[7] = {
 
 /* 804506E8-804506F0 000168 0007+01 7/7 0/0 0/0 .sdata           dShopSystem_itemNo */
 SECTION_SDATA static u8 dShopSystem_itemNo[7] = {
-    NO_ITEM,
-    NO_ITEM,
-    NO_ITEM,
-    NO_ITEM,
-    NO_ITEM,
-    NO_ITEM,
-    NO_ITEM,
+    NO_ITEM, NO_ITEM, NO_ITEM, NO_ITEM, NO_ITEM, NO_ITEM, NO_ITEM,
 };
 
 /* 80451058-8045105C 000558 0004+00 9/9 0/0 0/0 .sbss            None */
@@ -235,7 +229,7 @@ static int dShopSystem_searchItemActor(void* param_0, void* param_1) {
         if ((param & 0xF0000000) == (fopAcM_GetParam(param_1) & 0xF0000000) &&
             dShopSystem_item_count < data_80451058) {
             u32 param2 = (param >> 0x18) & 0xF;
-            
+
             if (dShopSystem_itemActor[0] != param_0 && dShopSystem_itemActor[1] != param_0 &&
                 dShopSystem_itemActor[2] != param_0 && dShopSystem_itemActor[3] != param_0 &&
                 dShopSystem_itemActor[4] != param_0 && dShopSystem_itemActor[5] != param_0 &&
@@ -244,11 +238,12 @@ static int dShopSystem_searchItemActor(void* param_0, void* param_1) {
                 u8 sw2 = static_cast<fopAc_ac_c*>(param_0)->mOrig.mAngle.z >> 8;
                 u8 item_no = param;
 
-                if ((sw == 0xFF || !dComIfGs_isSaveSwitch(sw)) && (sw2 == 0xFF || dComIfGs_isSaveSwitch(sw2))) {
+                if ((sw == 0xFF || !dComIfGs_isSaveSwitch(sw)) &&
+                    (sw2 == 0xFF || dComIfGs_isSaveSwitch(sw2))) {
                     if (sw != 0xFF && item_no == HYLIA_SHIELD && checkItemGet(item_no, true)) {
                         dComIfGs_onSaveSwitch(sw);
                     }
-                    
+
                     if (param2 == 0) {
                         data_80451060 = 1;
                         dShopSystem_itemActor[dShopSystem_item_count] = param_0;
@@ -278,9 +273,7 @@ static asm void dShopSystem_searchItemActor(void* param_0, void* param_1) {
 
 /* ############################################################################################## */
 /* 804506F0-804506F8 000170 0008+00 6/6 0/0 0/0 .sdata           dShopSystem_cameraActor */
-SECTION_SDATA static fopAc_ac_c* dShopSystem_cameraActor[2] = {
-    NULL, NULL
-};
+SECTION_SDATA static fopAc_ac_c* dShopSystem_cameraActor[2] = {NULL, NULL};
 
 /* 80451064-80451068 000564 0004+00 5/5 0/0 0/0 .sbss            dShopSystem_camera_count */
 static int dShopSystem_camera_count;
@@ -378,8 +371,7 @@ struct shop_item_data {
 /* ############################################################################################## */
 /* 803BB8C0-803BB8E4 0189E0 0024+00 1/0 0/0 0/0 .data            item_seira_shop */
 SECTION_DATA static shop_item_data item_seira_shop = {
-    {{110.0f, 150.0f, -115.0f}, {160.0f, 150.0f, -115.0f}, {210.0f, 150.0f, -115.0f}}
-};
+    {{110.0f, 150.0f, -115.0f}, {160.0f, 150.0f, -115.0f}, {210.0f, 150.0f, -115.0f}}};
 
 /* 803BB8E4-803BB8F0 -00001 000C+00 0/1 0/0 0/0 .data            @4056 */
 #pragma push
@@ -851,11 +843,12 @@ int dShopSystem_c::checkController(u8 seq, dMsgFlow_c* p_flow) {
     }
 
     if (mDoCPd_c::getTrigA(0)) {
-        if (msg->getStatus() != 6 && msg->getStatus() != 8 && msg->getStatus() != 9 && msg->getStatus() != 20 && seq != SEQ_WAIT) {
+        if (msg->getStatus() != 6 && msg->getStatus() != 8 && msg->getStatus() != 9 &&
+            msg->getStatus() != 20 && seq != SEQ_WAIT) {
             return 1;
         }
     }
-    
+
     if (mDoCPd_c::getTrigB(0)) {
         if (seq != SEQ_SELECT_WAIT) {
             mLastCursorPos = mCursorPos;
@@ -894,7 +887,7 @@ int dShopSystem_c::chooseItem3(u8 seq) {
         if (cursor_pos == 7) {
             mCursorPos = mLastCursorPos;
             mLastCursorPos = 7;
-            
+
             if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
                 mCursorPos = mLastCursorPos;
                 mLastCursorPos = old_cursor;
@@ -903,7 +896,7 @@ int dShopSystem_c::chooseItem3(u8 seq) {
                 if (mCursorPos != 0) {
                     mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
                 }
-                
+
                 mShopCamAction.SetSelectIdx(mCursorPos);
             }
 
@@ -911,7 +904,7 @@ int dShopSystem_c::chooseItem3(u8 seq) {
         } else if (cursor_pos == 4) {
             mLastCursorPos = cursor_pos;
             mCursorPos = 0;
-            
+
             if (seq != SEQ_START) {
                 if (mCursorPos != 0) {
                     mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
@@ -924,7 +917,7 @@ int dShopSystem_c::chooseItem3(u8 seq) {
         } else if (cursor_pos != 0) {
             mLastCursorPos = cursor_pos;
             mCursorPos--;
-            
+
             if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
                 mCursorPos = mLastCursorPos;
                 mLastCursorPos = old_cursor;
@@ -933,7 +926,7 @@ int dShopSystem_c::chooseItem3(u8 seq) {
                 if (mCursorPos != 0) {
                     mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
                 }
-                
+
                 mShopCamAction.SetSelectIdx(mCursorPos);
             }
             return 3;
@@ -948,7 +941,7 @@ right:
             if (cursor_pos != 3 && cursor_pos != 6) {
                 mLastCursorPos = cursor_pos;
                 mCursorPos++;
-                
+
                 if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
                     mCursorPos = mLastCursorPos;
                     mLastCursorPos = old_cursor;
@@ -963,7 +956,7 @@ right:
             if (data_80451058 == 7) {
                 mLastCursorPos = cursor_pos;
                 mCursorPos = 7;
-                
+
                 if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
                     mCursorPos = mLastCursorPos;
                     mLastCursorPos = old_cursor;
@@ -973,8 +966,8 @@ right:
                     mShopCamAction.SetSelectIdx(mCursorPos);
                 }
                 return 4;
-            }   
-        }        
+            }
+        }
     }
 
 up:
@@ -982,7 +975,7 @@ up:
         if (mpStick->checkUpTrigger() && seq != SEQ_SELECT_WAIT && mCursorPos <= 3) {
             mLastCursorPos = mCursorPos;
             mCursorPos += 3;
-            
+
             if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
                 mCursorPos = mLastCursorPos;
                 mLastCursorPos = old_cursor;
@@ -991,7 +984,7 @@ up:
                 if (mCursorPos != 0) {
                     mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
                 }
-                
+
                 mShopCamAction.SetSelectIdx(mCursorPos);
             }
 
@@ -1005,7 +998,7 @@ up:
             if (cursor_pos > 3 && cursor_pos <= 6) {
                 mLastCursorPos = cursor_pos;
                 mCursorPos -= 3;
-                
+
                 if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
                     mCursorPos = mLastCursorPos;
                     mLastCursorPos = old_cursor;
@@ -1018,7 +1011,7 @@ up:
             }
         }
     }
-    
+
 ret:
     return 0;
 }
@@ -1057,7 +1050,7 @@ int dShopSystem_c::chooseItem5(u8 seq) {
         if (cursor_pos != 0) {
             mLastCursorPos = cursor_pos;
             mCursorPos--;
-            
+
             if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
                 mCursorPos = mLastCursorPos;
                 mLastCursorPos = old_cursor;
@@ -1066,7 +1059,7 @@ int dShopSystem_c::chooseItem5(u8 seq) {
                 if (mCursorPos != 0) {
                     mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
                 }
-                
+
                 mShopCamAction.SetSelectIdx(mCursorPos);
             }
             return 3;
@@ -1080,7 +1073,7 @@ right:
         if (cursor_pos != 2 && cursor_pos != 5) {
             mLastCursorPos = cursor_pos;
             mCursorPos++;
-            
+
             if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
                 mCursorPos = mLastCursorPos;
                 mLastCursorPos = old_cursor;
@@ -1105,7 +1098,7 @@ up:
             } else if (mCursorPos == 5) {
                 mCursorPos = 2;
             }
-            
+
             if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
                 mCursorPos = mLastCursorPos;
                 mLastCursorPos = old_cursor;
@@ -1133,7 +1126,7 @@ down:
             } else if (mCursorPos == 2) {
                 mCursorPos = 5;
             }
-            
+
             if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
                 mCursorPos = mLastCursorPos;
                 mLastCursorPos = old_cursor;
@@ -1197,7 +1190,7 @@ right:
             mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
             mShopCamAction.SetSelectIdx(mCursorPos);
         }
-        
+
         return 4;
     }
 
@@ -1233,7 +1226,7 @@ int dShopSystem_c::moveCursor(int control_status, u8 param_1) {
 #ifdef NONMATCHING
 int dShopSystem_c::moveCursor0(int control_status, u8 param_1) {
     offFlag(7);
-    
+
     switch (control_status) {
     case 3:
         if (mCursorPos == 0) {
@@ -1247,7 +1240,7 @@ int dShopSystem_c::moveCursor0(int control_status, u8 param_1) {
             return getEventParamU8(mCursorPos) + 0x52;
         }
 
-        return (getEventParamU8(mCursorPos) - 1) * 2 + 0x66;   
+        return (getEventParamU8(mCursorPos) - 1) * 2 + 0x66;
 
     case 7:
         if (mCursorPos == 0) {
@@ -1279,7 +1272,7 @@ int dShopSystem_c::moveCursor0(int control_status, u8 param_1) {
             return (getEventParamU8(mCursorPos) - 1) * 2 + 0x65;
         }
 
-        return (getEventParamU8(mCursorPos) - 1) * 2 + 0x66; 
+        return (getEventParamU8(mCursorPos) - 1) * 2 + 0x66;
     }
 
     return 0;
@@ -1299,7 +1292,7 @@ asm int dShopSystem_c::moveCursor0(int param_0, u8 param_1) {
 #ifdef NONMATCHING
 int dShopSystem_c::moveCursor1(int control_status, u8 param_1) {
     offFlag(7);
-    
+
     switch (control_status) {
     case 7:
         if (mCursorPos == 0) {
@@ -1346,7 +1339,9 @@ asm int dShopSystem_c::moveCursor1(int param_0, u8 param_1) {
 
 /* 80198878-80198950 1931B8 00D8+00 0/0 0/0 9/9 .text            drawCursor__13dShopSystem_cFv */
 int dShopSystem_c::drawCursor() {
-    if ((mSeq == 4 || mSeq == 5 || ((mSeq == 6 || mSeq == SEQ_SELECT_WAIT) && isFlag(mCursorPos - 1))) && mCursorPos != 0 && mItemCtrl.isHomePos(mCursorPos - 1)) {
+    if ((mSeq == 4 || mSeq == 5 ||
+         ((mSeq == 6 || mSeq == SEQ_SELECT_WAIT) && isFlag(mCursorPos - 1))) &&
+        mCursorPos != 0 && mItemCtrl.isHomePos(mCursorPos - 1)) {
         mpDrawCursor->addAlpha();
     } else {
         mpDrawCursor->decAlpha();
@@ -1379,8 +1374,8 @@ int dShopSystem_c::itemRotate() {
             int tmp_index;
             if (isFlag(cursor_pos - 1) || isSoldOutItemFlag(mCursorPos - 1)) {
                 no_rotate = true;
-            } 
-            
+            }
+
             if (no_rotate) {
                 tmp_index = 0;
             } else {
@@ -1435,9 +1430,12 @@ int dShopSystem_c::itemZoom(cXyz* param_0) {
         local_1c.set(*param_0);
 
         if (dShopSystem_itemNo[mCursorPos - 1] == OIL_BOTTLE) {
-            mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mSeraShopObjZoomAngleX + -5000, isFlag(8) ? true : false);
+            mItemCtrl.setZoomAnime(mCursorPos, &local_1c,
+                                   g_cursorHIO.mSeraShopObjZoomAngleX + -5000,
+                                   isFlag(8) ? true : false);
         } else {
-            mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mSeraShopObjZoomAngleX, isFlag(8) ? true : false);
+            mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mSeraShopObjZoomAngleX,
+                                   isFlag(8) ? true : false);
         }
     } else {
         cXyz local_28;
@@ -1446,49 +1444,64 @@ int dShopSystem_c::itemZoom(cXyz* param_0) {
         if (dShopSystem_itemActor[1] != NULL && dShopSystem_cameraActor[1] != NULL) {
             cXyz local_40;
             local_40.set(dShopSystem_itemActor[1]->mOrig.mPosition);
-            
+
             f32 tmp_05 = 0.5f;
             if (data_80451058 == 4) {
                 if (dShopSystem_itemActor[2] != NULL) {
-                    f32 tmp = (dShopSystem_itemActor[2]->mOrig.mPosition.x + dShopSystem_itemActor[1]->mOrig.mPosition.x);
+                    f32 tmp = (dShopSystem_itemActor[2]->mOrig.mPosition.x +
+                               dShopSystem_itemActor[1]->mOrig.mPosition.x);
                     local_40.x = tmp * tmp_05;
 
-                    f32 tmp2 = (dShopSystem_itemActor[2]->mOrig.mPosition.y + dShopSystem_itemActor[1]->mOrig.mPosition.y);
+                    f32 tmp2 = (dShopSystem_itemActor[2]->mOrig.mPosition.y +
+                                dShopSystem_itemActor[1]->mOrig.mPosition.y);
                     local_40.y = tmp2 * tmp_05;
 
-                    f32 tmp3 = (dShopSystem_itemActor[2]->mOrig.mPosition.z + dShopSystem_itemActor[1]->mOrig.mPosition.z);
+                    f32 tmp3 = (dShopSystem_itemActor[2]->mOrig.mPosition.z +
+                                dShopSystem_itemActor[1]->mOrig.mPosition.z);
                     local_40.z = tmp3 * tmp_05;
                 }
             } else if (data_80451058 == 5) {
-                f32 tmp = (dShopSystem_itemActor[2]->mOrig.mPosition.x + dShopSystem_itemActor[3]->mOrig.mPosition.x);
+                f32 tmp = (dShopSystem_itemActor[2]->mOrig.mPosition.x +
+                           dShopSystem_itemActor[3]->mOrig.mPosition.x);
                 local_40.x = tmp * tmp_05;
 
                 local_40.y = dShopSystem_itemActor[0]->mOrig.mPosition.y;
 
-                f32 tmp3 = (dShopSystem_itemActor[2]->mOrig.mPosition.z + dShopSystem_itemActor[3]->mOrig.mPosition.z);
+                f32 tmp3 = (dShopSystem_itemActor[2]->mOrig.mPosition.z +
+                            dShopSystem_itemActor[3]->mOrig.mPosition.z);
                 local_40.z = tmp3 * tmp_05;
             }
 
             cXyz local_4c = local_40 - dShopSystem_cameraActor[1]->mCurrent.mPosition;
             s16 atan = cM_atan2s(local_4c.x, local_4c.z);
-            
+
             if (!strcmp("R_SP01", dComIfGp_getStartStageName())) {
-                local_34.set(g_cursorHIO.mObjZoom.x, g_cursorHIO.mObjZoom.y + -25.0f, g_cursorHIO.mObjZoom.z + 150.0f);
+                local_34.set(g_cursorHIO.mObjZoom.x, g_cursorHIO.mObjZoom.y + -25.0f,
+                             g_cursorHIO.mObjZoom.z + 150.0f);
             } else {
                 if (field_0xf77 == 5) {
-                    if (dShopSystem_itemNo[mCursorPos - 1] == ARROW_10 || dShopSystem_itemNo[mCursorPos - 1] == ARROW_20 || dShopSystem_itemNo[mCursorPos - 1] == ARROW_30) {
-                        local_34.set(g_cursorHIO.mObjZoom.x, 5.0f + g_cursorHIO.mObjZoom.y + -50.0f, (g_cursorHIO.mObjZoom.z + 250.0f) - 60.0f);
+                    if (dShopSystem_itemNo[mCursorPos - 1] == ARROW_10 ||
+                        dShopSystem_itemNo[mCursorPos - 1] == ARROW_20 ||
+                        dShopSystem_itemNo[mCursorPos - 1] == ARROW_30) {
+                        local_34.set(g_cursorHIO.mObjZoom.x, 5.0f + g_cursorHIO.mObjZoom.y + -50.0f,
+                                     (g_cursorHIO.mObjZoom.z + 250.0f) - 60.0f);
                     } else {
-                        local_34.set(g_cursorHIO.mObjZoom.x, 20.0f + g_cursorHIO.mObjZoom.y + -50.0f, (g_cursorHIO.mObjZoom.z + 250.0f) - 60.0f);
+                        local_34.set(g_cursorHIO.mObjZoom.x,
+                                     20.0f + g_cursorHIO.mObjZoom.y + -50.0f,
+                                     (g_cursorHIO.mObjZoom.z + 250.0f) - 60.0f);
                     }
                 } else if (mCursorPos == 7) {
-                    local_34.set(g_cursorHIO.mMagicArmorObjZoom.x, g_cursorHIO.mMagicArmorObjZoom.y + -130.0f, g_cursorHIO.mMagicArmorObjZoom.z + 215.0f);
+                    local_34.set(g_cursorHIO.mMagicArmorObjZoom.x,
+                                 g_cursorHIO.mMagicArmorObjZoom.y + -130.0f,
+                                 g_cursorHIO.mMagicArmorObjZoom.z + 215.0f);
                 } else {
-                    local_34.set(g_cursorHIO.mObjZoom.x, g_cursorHIO.mObjZoom.y + -50.0f, g_cursorHIO.mObjZoom.z + 250.0f);
+                    local_34.set(g_cursorHIO.mObjZoom.x, g_cursorHIO.mObjZoom.y + -50.0f,
+                                 g_cursorHIO.mObjZoom.z + 250.0f);
                 }
             }
 
-            cLib_offsetPos(&local_28, &dShopSystem_cameraActor[1]->mCurrent.mPosition, atan, &local_34);
+            cLib_offsetPos(&local_28, &dShopSystem_cameraActor[1]->mCurrent.mPosition, atan,
+                           &local_34);
             if (data_80451058 == 6 || data_80451058 == 5) {
                 param_0->y += 15.0f;
             }
@@ -1501,28 +1514,40 @@ int dShopSystem_c::itemZoom(cXyz* param_0) {
         u8 dvar1 = field_0xf77;
         if (dvar1 == 1) {
             if (dShopSystem_itemNo[mCursorPos - 1] == OIL_BOTTLE) {
-                mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX + -7000, isFlag(8) ? true : false);
+                mItemCtrl.setZoomAnime(mCursorPos, &local_1c,
+                                       g_cursorHIO.mShopObjZoomAngleX + -7000,
+                                       isFlag(8) ? true : false);
             } else {
-                mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX, isFlag(8) ? true : false);
+                mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX,
+                                       isFlag(8) ? true : false);
             }
         } else if (dvar1 == 2) {
             if (dShopSystem_itemNo[mCursorPos - 1] == RED_BOTTLE) {
-                mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX - 3000, isFlag(8) ? true : false);
+                mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX - 3000,
+                                       isFlag(8) ? true : false);
             } else {
-                mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX, isFlag(8) ? true : false);
+                mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX,
+                                       isFlag(8) ? true : false);
             }
         } else if (dvar1 == 5) {
-            if (dShopSystem_itemNo[mCursorPos - 1] == ARROW_10 || dShopSystem_itemNo[mCursorPos - 1] == ARROW_20 || dShopSystem_itemNo[mCursorPos - 1] == ARROW_30) {
-                mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX - 4000, isFlag(8) ? true : false);
+            if (dShopSystem_itemNo[mCursorPos - 1] == ARROW_10 ||
+                dShopSystem_itemNo[mCursorPos - 1] == ARROW_20 ||
+                dShopSystem_itemNo[mCursorPos - 1] == ARROW_30) {
+                mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX - 4000,
+                                       isFlag(8) ? true : false);
             } else {
-                mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX - 2000, isFlag(8) ? true : false);
+                mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX - 2000,
+                                       isFlag(8) ? true : false);
             }
         } else if (mCursorPos == 7) {
-            mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mMagicArmorObjZoomAngleX, isFlag(8) ? true : false);
+            mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mMagicArmorObjZoomAngleX,
+                                   isFlag(8) ? true : false);
         } else if (data_80451058 == 7) {
-            mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX - 3000, isFlag(8) ? true : false);
+            mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX - 3000,
+                                   isFlag(8) ? true : false);
         } else {
-            mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX, isFlag(8) ? true : false);
+            mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX,
+                                   isFlag(8) ? true : false);
         }
     }
 
@@ -1609,7 +1634,8 @@ int dShopSystem_c::seq_start(fopAc_ac_c* actor, dMsgFlow_c* p_flow) {
                 int itemNo;
                 if (mFlow.getEventId(&itemNo) == 1) {
                     if (field_0xd90 == -1) {
-                        field_0xd90 = fopAcM_createItemForPresentDemo(&mCurrent.mPosition, itemNo, 0, -1, -1, NULL, NULL);
+                        field_0xd90 = fopAcM_createItemForPresentDemo(&mCurrent.mPosition, itemNo,
+                                                                      0, -1, -1, NULL, NULL);
                     }
 
                     if (fpcEx_IsExist(field_0xd90)) {
@@ -1683,7 +1709,7 @@ int dShopSystem_c::seq_select_start(fopAc_ac_c*, dMsgFlow_c*) {
                 }
             }
             break;
-        
+
         case 3:
             mCursorPos = 2;
             if (isFlag(mCursorPos - 1)) {
@@ -1777,7 +1803,8 @@ int dShopSystem_c::seq_select(fopAc_ac_c* actor, dMsgFlow_c* p_flow) {
                     return 0;
                 }
             }
-        } else if (control_status == 3 || control_status == 4 || control_status == 5 || control_status == 6 || control_status == 7 || control_status == 2) {
+        } else if (control_status == 3 || control_status == 4 || control_status == 5 ||
+                   control_status == 6 || control_status == 7 || control_status == 2) {
             if (mLastCursorPos == 7) {
                 mLastCursorPos = mCursorPos;
                 mCursorPos = 7;
@@ -1853,7 +1880,7 @@ int dShopSystem_c::seq_moving(fopAc_ac_c*, dMsgFlow_c*) {
     cXyz pos3d;
     cXyz last_pos2d;
     cXyz pos2d;
-    
+
     pos3d.set(mItemCtrl.getCurrentPos(mCursorPos - 1));
     pos3Dto2D(&pos3d, &pos2d);
 
@@ -1876,7 +1903,8 @@ int dShopSystem_c::seq_moving(fopAc_ac_c*, dMsgFlow_c*) {
         }
 
         f32 tmp = (f32)(field_0xf68 * field_0xf68) / 9.0f;
-        mpDrawCursor->setPos(last_pos2d.x + tmp * (pos2d.x - last_pos2d.x), last_pos2d.y + tmp * (pos2d.y - last_pos2d.y));
+        mpDrawCursor->setPos(last_pos2d.x + tmp * (pos2d.x - last_pos2d.x),
+                             last_pos2d.y + tmp * (pos2d.y - last_pos2d.y));
 
     } else {
         mpDrawCursor->setPos(pos2d.x, pos2d.y);
@@ -1903,7 +1931,7 @@ asm int dShopSystem_c::seq_moving(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
  * seq_decide__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c       */
 int dShopSystem_c::seq_decide(fopAc_ac_c* actor, dMsgFlow_c* p_flow) {
     int control_status = checkController(SEQ_SELECT_WAIT, p_flow);
-    
+
     dComIfGp_setDoStatusForce(0x22, 0);
     if (!p_flow->isSelectMessage()) {
         dComIfGp_setAStatusForce(0x2A, 0);
@@ -1941,7 +1969,8 @@ int dShopSystem_c::seq_choose(fopAc_ac_c* actor, dMsgFlow_c* p_flow) {
     p_flow->doFlow(actor, NULL, 0);
 
     int select_num = p_flow->getSelectNum();
-    if (dMsgObject_c::getStatus() != 6 && dMsgObject_c::getStatus() != 8 && dMsgObject_c::getStatus() != 9 && dMsgObject_c::getStatus() != 20) {
+    if (dMsgObject_c::getStatus() != 6 && dMsgObject_c::getStatus() != 8 &&
+        dMsgObject_c::getStatus() != 9 && dMsgObject_c::getStatus() != 20) {
         if ((u16)select_num == 0) {
             setSeq(SEQ_DECIDE_YES);
         } else {
@@ -1966,7 +1995,8 @@ int dShopSystem_c::seq_decide_yes(fopAc_ac_c* actor, dMsgFlow_c* p_flow) {
     if (mFlow.getEventId(&itemNo) == 1) {
         if (p_flow->doFlow(actor, NULL, 0)) {
             if (field_0xd90 == -1) {
-                field_0xd90 = fopAcM_createItemForPresentDemo(&mCurrent.mPosition, itemNo, 0, -1, -1, NULL, NULL);
+                field_0xd90 = fopAcM_createItemForPresentDemo(&mCurrent.mPosition, itemNo, 0, -1,
+                                                              -1, NULL, NULL);
             }
 
             if (fpcEx_IsExist(field_0xd90)) {
@@ -2069,12 +2099,7 @@ SECTION_SDATA static shop_item_data* shop_item_pos_data_tbl = &item_seira_shop;
 
 /* 80453B58-80453B60 002158 0006+02 1/1 0/0 0/0 .sdata2          item_no$5460 */
 SECTION_SDATA2 static u8 item_no[6] = {
-    MILK_BOTTLE,
-    BEE_CHILD,
-    PACHINKO,
-    MILK_BOTTLE,
-    BEE_CHILD,
-    NO_ITEM,
+    MILK_BOTTLE, BEE_CHILD, PACHINKO, MILK_BOTTLE, BEE_CHILD, NO_ITEM,
 };
 
 /* 8019A238-8019A344 194B78 010C+00 0/0 0/0 1/1 .text            createShopItem__13dShopSystem_cFi
@@ -2093,7 +2118,8 @@ void dShopSystem_c::createShopItem(int itemType) {
             pos.z = shop_item_pos_data_tbl->mItemPos[i].z + mCurrent.mPosition.z;
 
             if (itemTbl[i] != NO_ITEM) {
-                u32 index = fopAcM_create(PROC_ShopItem, itemTbl[i], &pos, fopAcM_GetRoomNo(this), &mCurrent.mAngle, NULL, -1);
+                u32 index = fopAcM_create(PROC_ShopItem, itemTbl[i], &pos, fopAcM_GetRoomNo(this),
+                                          &mCurrent.mAngle, NULL, -1);
                 mItemCtrl.setItemIndex(i, index);
                 offFlag(i);
             } else {

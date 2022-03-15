@@ -1,9 +1,9 @@
 #ifndef D_MSG_D_MSG_FLOW_H
 #define D_MSG_D_MSG_FLOW_H
 
+#include "d/msg/d_msg_class.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
-#include "d/msg/d_msg_class.h"
 
 // all mesg_flow_node structs members might be wrong
 struct mesg_flow_node {
@@ -17,7 +17,7 @@ struct mesg_flow_node_branch {
     /* 0x00 */ u8 type;
     /* 0x01 */ u8 field_0x1;
     /* 0x02 */ u16 msg_index;
-    /* 0x04 */ u16 params[2]; 
+    /* 0x04 */ u16 params[2];
 };
 
 struct mesg_flow_node_event {

@@ -70,10 +70,11 @@ void CheckShopItemCreateHeap(fopAc_ac_c* actor) {
     daShopItem_c* item = static_cast<daShopItem_c*>(actor);
 
     u8 item_id = item->getShopItemID();
-    item->CreateItemHeap(daShopItem_c::mData[item_id].get_arcName(), daShopItem_c::mData[item_id].get_bmdName(),
-                         daShopItem_c::mData[item_id].get_btk1Name(), daShopItem_c::mData[item_id].get_bpk1Name(),
-                         daShopItem_c::mData[item_id].get_bck1Name(), daShopItem_c::mData[item_id].get_bxa1Name(),
-                         daShopItem_c::mData[item_id].get_brk1Name(), daShopItem_c::mData[item_id].get_btp1Name());
+    item->CreateItemHeap(
+        daShopItem_c::mData[item_id].get_arcName(), daShopItem_c::mData[item_id].get_bmdName(),
+        daShopItem_c::mData[item_id].get_btk1Name(), daShopItem_c::mData[item_id].get_bpk1Name(),
+        daShopItem_c::mData[item_id].get_bck1Name(), daShopItem_c::mData[item_id].get_bxa1Name(),
+        daShopItem_c::mData[item_id].get_brk1Name(), daShopItem_c::mData[item_id].get_btp1Name());
 }
 
 /* 80379738-80379738 005D98 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

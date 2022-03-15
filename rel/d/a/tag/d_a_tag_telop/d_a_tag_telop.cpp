@@ -51,7 +51,7 @@ int daTag_Telop_c::create() {
     } else {
         mMessageStatus = 99;
     }
-    
+
     return 4;
 }
 

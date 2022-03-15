@@ -1,8 +1,8 @@
 #ifndef D_A_D_A_NPC_H
 #define D_A_D_A_NPC_H
 
-#include "dolphin/types.h"
 #include "d/com/d_com_inf_game.h"
+#include "dolphin/types.h"
 #include "global.h"
 
 class daNpcT_MotionSeqMngr_c {
@@ -253,7 +253,7 @@ public:
     /* 8014BEE4 */ void getEvtAreaTagP(int, int);
     /* 8014BFB0 */ void getShopItemTagP();
     /* 8014C030 */ void setHitodamaPrtcl();
-    
+
     /* 8014CD20 */ virtual ~daNpcT_c();
     /* 801490D4 */ virtual void ctrlBtk();
     /* 8014CC14 */ virtual void ctrlSubFaceMotion(int);
@@ -301,7 +301,7 @@ public:
     /* 8014CCA8 */ virtual void changeBtp(int*, int*);
     /* 8014CCE8 */ virtual void changeBtk(int*, int*);
     /* 8014A628 */ virtual void setMotionAnm(int, f32, int);
-    
+
     static u8 const mCcDObjData[48];
     static u8 mCcDCyl[68];
     static u8 mCcDSph[64];

@@ -4,15 +4,15 @@
 //
 
 #include "d/msg/d_msg_flow.h"
+#include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/com/d_com_static.h"
+#include "d/d_item.h"
+#include "d/msg/d_msg_object.h"
+#include "d/shop/d_shop_system.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_msg_mng.h"
-#include "d/msg/d_msg_object.h"
-#include "SSystem/SComponent/c_math.h"
-#include "d/com/d_com_static.h"
-#include "d/shop/d_shop_system.h"
-#include "d/d_item.h"
 #include "m_Do/m_Do_audio.h"
 
 //
@@ -361,106 +361,35 @@ SECTION_DATA static void* lit_4936[19] = {
 
 /* 803C184C-803C1AC8 01E96C 027C+00 2/3 0/0 0/0 .data            mQueryList__10dMsgFlow_c */
 SECTION_DATA queryFunc dMsgFlow_c::mQueryList[53] = {
-    &dMsgFlow_c::query005,
-    &dMsgFlow_c::query001,
-    &dMsgFlow_c::query002,
-    &dMsgFlow_c::query003,
-    &dMsgFlow_c::query006,
-    &dMsgFlow_c::query007,
-    &dMsgFlow_c::query004,
-    &dMsgFlow_c::query008,
-    &dMsgFlow_c::query009,
-    &dMsgFlow_c::query010,
-    &dMsgFlow_c::query011,
-    &dMsgFlow_c::query012,
-    &dMsgFlow_c::query013,
-    &dMsgFlow_c::query014,
-    &dMsgFlow_c::query015,
-    &dMsgFlow_c::query016,
-    &dMsgFlow_c::query017,
-    &dMsgFlow_c::query018,
-    &dMsgFlow_c::query019,
-    &dMsgFlow_c::query020,
-    &dMsgFlow_c::query021,
-    &dMsgFlow_c::query022,
-    &dMsgFlow_c::query023,
-    &dMsgFlow_c::query024,
-    &dMsgFlow_c::query025,
-    &dMsgFlow_c::query026,
-    &dMsgFlow_c::query027,
-    &dMsgFlow_c::query028,
-    &dMsgFlow_c::query029,
-    &dMsgFlow_c::query030,
-    &dMsgFlow_c::query031,
-    &dMsgFlow_c::query032,
-    &dMsgFlow_c::query033,
-    &dMsgFlow_c::query034,
-    &dMsgFlow_c::query035,
-    &dMsgFlow_c::query036,
-    &dMsgFlow_c::query037,
-    &dMsgFlow_c::query038,
-    &dMsgFlow_c::query039,
-    &dMsgFlow_c::query040,
-    &dMsgFlow_c::query041,
-    &dMsgFlow_c::query042,
-    &dMsgFlow_c::query043,
-    &dMsgFlow_c::query044,
-    &dMsgFlow_c::query045,
-    &dMsgFlow_c::query046,
-    &dMsgFlow_c::query047,
-    &dMsgFlow_c::query048,
-    &dMsgFlow_c::query049,
-    &dMsgFlow_c::query050,
-    &dMsgFlow_c::query051,
-    &dMsgFlow_c::query052,
-    &dMsgFlow_c::query053,  
+    &dMsgFlow_c::query005, &dMsgFlow_c::query001, &dMsgFlow_c::query002, &dMsgFlow_c::query003,
+    &dMsgFlow_c::query006, &dMsgFlow_c::query007, &dMsgFlow_c::query004, &dMsgFlow_c::query008,
+    &dMsgFlow_c::query009, &dMsgFlow_c::query010, &dMsgFlow_c::query011, &dMsgFlow_c::query012,
+    &dMsgFlow_c::query013, &dMsgFlow_c::query014, &dMsgFlow_c::query015, &dMsgFlow_c::query016,
+    &dMsgFlow_c::query017, &dMsgFlow_c::query018, &dMsgFlow_c::query019, &dMsgFlow_c::query020,
+    &dMsgFlow_c::query021, &dMsgFlow_c::query022, &dMsgFlow_c::query023, &dMsgFlow_c::query024,
+    &dMsgFlow_c::query025, &dMsgFlow_c::query026, &dMsgFlow_c::query027, &dMsgFlow_c::query028,
+    &dMsgFlow_c::query029, &dMsgFlow_c::query030, &dMsgFlow_c::query031, &dMsgFlow_c::query032,
+    &dMsgFlow_c::query033, &dMsgFlow_c::query034, &dMsgFlow_c::query035, &dMsgFlow_c::query036,
+    &dMsgFlow_c::query037, &dMsgFlow_c::query038, &dMsgFlow_c::query039, &dMsgFlow_c::query040,
+    &dMsgFlow_c::query041, &dMsgFlow_c::query042, &dMsgFlow_c::query043, &dMsgFlow_c::query044,
+    &dMsgFlow_c::query045, &dMsgFlow_c::query046, &dMsgFlow_c::query047, &dMsgFlow_c::query048,
+    &dMsgFlow_c::query049, &dMsgFlow_c::query050, &dMsgFlow_c::query051, &dMsgFlow_c::query052,
+    &dMsgFlow_c::query053,
 };
 
 /* 803C1CCC-803C1ED0 01EDEC 0204+00 1/2 0/0 0/0 .data            mEventList__10dMsgFlow_c */
 SECTION_DATA eventFunc dMsgFlow_c::mEventList[43] = {
-    &dMsgFlow_c::event000,
-    &dMsgFlow_c::event001,
-    &dMsgFlow_c::event002,
-    &dMsgFlow_c::event003,
-    &dMsgFlow_c::event004,
-    &dMsgFlow_c::event005,
-    &dMsgFlow_c::event006,
-    &dMsgFlow_c::event007,
-    &dMsgFlow_c::event008,
-    &dMsgFlow_c::event009,
-    &dMsgFlow_c::event010,
-    &dMsgFlow_c::event011,
-    &dMsgFlow_c::event012,
-    &dMsgFlow_c::event013,
-    &dMsgFlow_c::event014,
-    &dMsgFlow_c::event015,
-    &dMsgFlow_c::event016,
-    &dMsgFlow_c::event017,
-    &dMsgFlow_c::event018,
-    &dMsgFlow_c::event019,
-    &dMsgFlow_c::event020,
-    &dMsgFlow_c::event021,
-    &dMsgFlow_c::event022,
-    &dMsgFlow_c::event023,
-    &dMsgFlow_c::event024,
-    &dMsgFlow_c::event025,
-    &dMsgFlow_c::event026,
-    &dMsgFlow_c::event027,
-    &dMsgFlow_c::event028,
-    &dMsgFlow_c::event029,
-    &dMsgFlow_c::event030,
-    &dMsgFlow_c::event031,
-    &dMsgFlow_c::event032,
-    &dMsgFlow_c::event033,
-    &dMsgFlow_c::event034,
-    &dMsgFlow_c::event035,
-    &dMsgFlow_c::event036,
-    &dMsgFlow_c::event037,
-    &dMsgFlow_c::event038,
-    &dMsgFlow_c::event039,
-    &dMsgFlow_c::event040,
-    &dMsgFlow_c::event041,
-    &dMsgFlow_c::event042,
+    &dMsgFlow_c::event000, &dMsgFlow_c::event001, &dMsgFlow_c::event002, &dMsgFlow_c::event003,
+    &dMsgFlow_c::event004, &dMsgFlow_c::event005, &dMsgFlow_c::event006, &dMsgFlow_c::event007,
+    &dMsgFlow_c::event008, &dMsgFlow_c::event009, &dMsgFlow_c::event010, &dMsgFlow_c::event011,
+    &dMsgFlow_c::event012, &dMsgFlow_c::event013, &dMsgFlow_c::event014, &dMsgFlow_c::event015,
+    &dMsgFlow_c::event016, &dMsgFlow_c::event017, &dMsgFlow_c::event018, &dMsgFlow_c::event019,
+    &dMsgFlow_c::event020, &dMsgFlow_c::event021, &dMsgFlow_c::event022, &dMsgFlow_c::event023,
+    &dMsgFlow_c::event024, &dMsgFlow_c::event025, &dMsgFlow_c::event026, &dMsgFlow_c::event027,
+    &dMsgFlow_c::event028, &dMsgFlow_c::event029, &dMsgFlow_c::event030, &dMsgFlow_c::event031,
+    &dMsgFlow_c::event032, &dMsgFlow_c::event033, &dMsgFlow_c::event034, &dMsgFlow_c::event035,
+    &dMsgFlow_c::event036, &dMsgFlow_c::event037, &dMsgFlow_c::event038, &dMsgFlow_c::event039,
+    &dMsgFlow_c::event040, &dMsgFlow_c::event041, &dMsgFlow_c::event042,
 };
 
 /* 803C1ED0-803C1EF0 -00001 0020+00 1/1 0/0 0/0 .data            @6324 */
@@ -597,7 +526,7 @@ int dMsgFlow_c::checkEventRender(int* param_0, int* param_1, int* param_2, int* 
             }
             *param_0 = tmp0;
         }
-        
+
         if (param_1 != NULL) {
             int tmp1;
             if (field_0x43 == 0xFF) {
@@ -853,13 +782,13 @@ int dMsgFlow_c::eventNodeProc(fopAc_ac_c* param_0, fopAc_ac_c** param_1) {
 
         break;
 
-
     case 9:
         if (getParam(node->params) == 0) {
             int msgNum = daAlink_getAlinkActorClass()->getMidnaMsgNum();
             if (msgNum == 0xFFFF) {
                 int stayNo = dComIfGp_roomControl_getStayNo();
-                msgNum = dComIfGp_roomControl_getStatusRoomDt(stayNo)->mRoomDt.getFileListInfo()->mMsg;
+                msgNum =
+                    dComIfGp_roomControl_getStatusRoomDt(stayNo)->mRoomDt.getFileListInfo()->mMsg;
             } else {
                 daAlink_getAlinkActorClass()->setMidnaMsg();
             }
@@ -881,7 +810,7 @@ int dMsgFlow_c::eventNodeProc(fopAc_ac_c* param_0, fopAc_ac_c** param_1) {
         }
 
         return 0;
-    
+
     case 21:
         if (field_0x3c != 0) {
             return 0;
@@ -979,7 +908,8 @@ BOOL daPy_py_c::checkNowWolf() {
 int dMsgFlow_c::query002(mesg_flow_node_branch*, fopAc_ac_c*, int) {
     if (daPy_py_c::checkNowWolf()) {
         return 1;
-    } else if (daPy_getPlayerActorClass()->checkHorseRide() || daPy_getPlayerActorClass()->checkBoarRide()) {
+    } else if (daPy_getPlayerActorClass()->checkHorseRide() ||
+               daPy_getPlayerActorClass()->checkBoarRide()) {
         return 2;
     }
 
@@ -1352,7 +1282,7 @@ int dMsgFlow_c::query036(mesg_flow_node_branch*, fopAc_ac_c*, int) {
     if (dMsgObject_getMsgObjectClass()->getSelectPushFlag() == 2) {
         tmp = 2;
     }
-    
+
     return tmp;
 }
 
@@ -1364,7 +1294,7 @@ int dMsgFlow_c::query037(mesg_flow_node_branch*, fopAc_ac_c*, int) {
     if (dMsgObject_getMsgObjectClass()->getSelectPushFlag() == 2) {
         tmp = 3;
     }
-    
+
     return tmp;
 }
 
@@ -1563,7 +1493,8 @@ inline bool dComIfGp_checkPlayerStatus0(int param_0, u32 param_1) {
  * query052__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
 int dMsgFlow_c::query052(mesg_flow_node_branch*, fopAc_ac_c*, int) {
     bool phi_r4 = false;
-    if (daPy_getPlayerActorClass()->checkWaterInMove() || dComIfGp_checkPlayerStatus0(0, 0x100000)) {
+    if (daPy_getPlayerActorClass()->checkWaterInMove() ||
+        dComIfGp_checkPlayerStatus0(0, 0x100000)) {
         phi_r4 = true;
     }
 
@@ -1869,14 +1800,14 @@ int dMsgFlow_c::event017(mesg_flow_node_event* flow_node, fopAc_ac_c*) {
         default:
             execItemGet(prm0);
         }
-        
+
         return 1;
     }
 
     for (int i = 0; i < prm1; i++) {
         execItemGet(prm0);
     }
-    
+
     return 1;
 }
 
@@ -1895,7 +1826,8 @@ int dMsgFlow_c::event018(mesg_flow_node_event* flow_node, fopAc_ac_c* actor) {
     if (actor != NULL) {
         int stayNo = dComIfGp_roomControl_getStayNo();
         if (stayNo != 0) {
-            mDoAud_messageSePlay(field_0x45, &actor->mCurrent.mPosition, dComIfGp_getReverb(stayNo));
+            mDoAud_messageSePlay(field_0x45, &actor->mCurrent.mPosition,
+                                 dComIfGp_getReverb(stayNo));
         } else {
             mDoAud_messageSePlay(field_0x45, &actor->mCurrent.mPosition, 0);
         }
@@ -2046,7 +1978,6 @@ int dMsgFlow_c::event026(mesg_flow_node_event*, fopAc_ac_c* actor) {
     if (actor != NULL) {
         if (fopAcM_GetName(actor) == PROC_OBJ_SSITEM || fopAcM_GetName(actor) == PROC_OBJ_SSDRINK ||
             fopAcM_GetName(actor) == PROC_TAG_SSDRINK) {
-            
         }
     }
 
@@ -2174,7 +2105,7 @@ int dMsgFlow_c::event028(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
     } else {
         for (int i = 0; i < 3; i++) {
             u8 select_item = dComIfGs_getSelectItemIndex(i);
-            
+
             if (SLOT_15 + bagID == select_item) {
                 u8 mix_item = dComIfGs_getMixItemIndex(i);
 
