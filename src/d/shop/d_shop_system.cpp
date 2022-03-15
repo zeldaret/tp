@@ -1940,9 +1940,9 @@ int dShopSystem_c::seq_choose(fopAc_ac_c* actor, dMsgFlow_c* p_flow) {
 
     p_flow->doFlow(actor, NULL, 0);
 
-    u16 select_num = p_flow->getSelectNum();
+    int select_num = p_flow->getSelectNum();
     if (dMsgObject_c::getStatus() != 6 && dMsgObject_c::getStatus() != 8 && dMsgObject_c::getStatus() != 9 && dMsgObject_c::getStatus() != 20) {
-        if (select_num == 0) {
+        if ((u16)select_num == 0) {
             setSeq(SEQ_DECIDE_YES);
         } else {
             setSeq(SEQ_DECIDE_NO);

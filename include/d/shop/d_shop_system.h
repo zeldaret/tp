@@ -133,6 +133,7 @@ public:
     bool chkSpMode() { return mSpMode == 1; }
     void offSpMode() { mSpMode = 0; }
     u8 getEventParamU8(int param_0) { return (mEventParam >> (3 - param_0) * 8) & 0xFF; }
+    void setEventParam(u32 param) { mEventParam = param; }
 
 private:
     /* 0xE40 */ STControl* mpStick;

@@ -149,6 +149,9 @@ public:
     u8 getLifeGaugeSE() { return mLifeGaugeSE; }
     const char* getSaveStageName() { return mSaveStageName; }
     void onShopTalkFlag() { mShopTalkFlag = true; }
+    void setLightDropGetFlag(int index, u8 flag) { mLightDropGetFlag[index] = flag; }
+    u8 getRentalBombBag() { return mRentalBombBag; }
+    void setTableMapRegionNo(u8 regionNo) { mTableMapRegionNo = regionNo; }
 
 public:
     /* 0x04 */ u8 unk4[4];
@@ -435,6 +438,25 @@ inline void dMeter2Info_onShopTalkFlag() {
     g_meter2_info.onShopTalkFlag();
 }
 
+inline void dMeter2Info_setLightDropGetFlag(int index, u8 flag) {
+    g_meter2_info.setLightDropGetFlag(index, flag);
+}
+
+inline u8 dMeter2Info_getRentalBombBag() {
+    return g_meter2_info.getRentalBombBag();
+}
+
+inline void dMeter2Info_resetMiniGameItem(bool param_0) {
+    g_meter2_info.resetMiniGameItem(param_0);
+}
+
+inline void dMeter2Info_setTableMapRegionNo(u8 regionNo) {
+    g_meter2_info.setTableMapRegionNo(regionNo);
+}
+
 char* dMeter2Info_getNumberTextureName(int pIndex);
+void dMeter2Info_recieveLetter();
+u8 dMeter2Info_getNewLetterNum();
+int dMeter2Info_setNewLetterSender();
 
 #endif /* D_METER_D_METER2_INFO_H */

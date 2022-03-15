@@ -19464,8 +19464,8 @@ BOOL daAlink_c::checkCutTurnCharge() const {
 }
 
 /* 800D0208-800D0228 0CAB48 0020+00 1/0 0/0 0/0 .text checkAcceptDungeonWarpAlink__9daAlink_cFi */
-void daAlink_c::checkAcceptDungeonWarpAlink(int param_0) {
-    checkAcceptWarp();
+bool daAlink_c::checkAcceptDungeonWarpAlink(int param_0) {
+    return checkAcceptWarp();
 }
 
 /* 800D0228-800D0274 0CAB68 004C+00 1/0 0/0 0/0 .text            getSpinnerActor__9daAlink_cFv */
@@ -30958,7 +30958,7 @@ static asm void daAlink_searchPortal(fopAc_ac_c* param_0, void* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkAcceptWarp() {
+asm bool daAlink_c::checkAcceptWarp() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkAcceptWarp__9daAlink_cFv.s"
 }

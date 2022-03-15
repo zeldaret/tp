@@ -129,7 +129,7 @@ asm void fopMsgM_setStageLayer(void* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fopMsgM_SearchByID(unsigned int param_0) {
+asm msg_class* fopMsgM_SearchByID(unsigned int param_0) {
     nofralloc
 #include "asm/f_op/f_op_msg_mng/fopMsgM_SearchByID__FUi.s"
 }

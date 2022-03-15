@@ -8,16 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct JMessage {
-    struct data {
-        static f32 ga4cSignature[1 + 1 /* padding */];
-    };
-};
-
-//
 // Forward References:
 //
 

@@ -8,17 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct JMessage {
-    struct locale {
-        /* 802A9528 */ void parseCharacter_ShiftJIS(char const**);
-        /* 802A958C */ void parseCharacter_UTF8(char const**);
-    };
-};
-
-//
 // Forward References:
 //
 

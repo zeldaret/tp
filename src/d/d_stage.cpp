@@ -2476,7 +2476,7 @@ static asm int dStage_roomReadInit(dStage_dt_c* param_0, void* param_1, int para
 
 /* 80025E40-80025E70 020780 0030+00 0/0 1/1 0/0 .text
  * dStage_roomRead_dt_c_GetReverbStage__FR14roomRead_classi     */
-u8 dStage_roomRead_dt_c_GetReverbStage(roomRead_class& room, int index) {
+s8 dStage_roomRead_dt_c_GetReverbStage(roomRead_class& room, int index) {
     if (index < 0 || index >= room.field_0x0) {
         index = 0;
     }

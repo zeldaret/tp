@@ -3,6 +3,7 @@
 
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
+#include "d/msg/d_msg_class.h"
 
 typedef int (*fopMsgCreateFunc)(void*);
 
@@ -12,5 +13,6 @@ void fopMsgM_setMessageID(unsigned int);
 void fopMsgM_destroyExpHeap(JKRExpHeap*);
 void fopMsgM_setStageLayer(void*);
 void fopMsgM_messageSetDemo(u32 param_0);
+msg_class* fopMsgM_SearchByID(unsigned int param_0);
 
 #endif
