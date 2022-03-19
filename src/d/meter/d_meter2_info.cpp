@@ -1418,7 +1418,7 @@ int dMeter2Info_setNewLetterSender() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Info_setNewLetterSender() {
+asm int dMeter2Info_setNewLetterSender() {
     nofralloc
 #include "asm/d/meter/d_meter2_info/dMeter2Info_setNewLetterSender__Fv.s"
 }

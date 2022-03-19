@@ -4,6 +4,8 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
+int daNpcKakashi_getSwdTutorialStep();
+
 class daSus_c {
 public:
     class data_c {

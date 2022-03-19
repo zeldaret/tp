@@ -42,7 +42,16 @@ public:
     /* 80194C30 */ virtual void draw();
     /* 801949EC */ virtual ~dSelect_cursor_c();
 
+    void setPos(f32 x, f32 y) {
+        field_0x58 = x;
+        field_0x5c = y;
+    }
+
 private:
+    u8 field_0x4[0x54];
+    f32 field_0x58;
+    f32 field_0x5c;
+    u8 field_0x60[0x58];
 };
 
 #endif /* D_D_SELECT_CURSOR_H */

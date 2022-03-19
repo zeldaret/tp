@@ -449,7 +449,7 @@ asm void daNpcKakashi_setSwdTutorialStep(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpcKakashi_getSwdTutorialStep() {
+asm int daNpcKakashi_getSwdTutorialStep() {
     nofralloc
 #include "asm/d/com/d_com_static/daNpcKakashi_getSwdTutorialStep__Fv.s"
 }

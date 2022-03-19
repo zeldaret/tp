@@ -8,17 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct daTagEscape_c {};
-
-//
 // Forward References:
 //
 
@@ -30,10 +19,7 @@ extern "C" extern void* g_profile_Tag_Escape[12];
 // External References:
 //
 
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
 extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 
 //
 // Declarations:
@@ -41,24 +27,20 @@ extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 
 /* 80D587D8-80D58828 000078 0050+00 1/0 0/0 0/0 .text            daTagEscape_Create__FP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagEscape_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_escape/d_a_tag_escape/daTagEscape_Create__FP10fopAc_ac_c.s"
+static int daTagEscape_Create(fopAc_ac_c* tag) {
+    if (!fopAcM_CheckCondition(tag, 8)) {
+        new (tag) daTagEscape_c();
+        fopAcM_OnCondition(tag, 8);
+    }
+
+    return 4;
 }
-#pragma pop
 
 /* 80D58828-80D58858 0000C8 0030+00 1/0 0/0 0/0 .text daTagEscape_Delete__FP13daTagEscape_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagEscape_Delete(daTagEscape_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_escape/d_a_tag_escape/daTagEscape_Delete__FP13daTagEscape_c.s"
+static int daTagEscape_Delete(daTagEscape_c* tag) {
+    tag->~daTagEscape_c();
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D58860-80D58880 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagEscape_Method */

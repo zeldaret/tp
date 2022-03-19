@@ -252,7 +252,17 @@ public:
         m3DSetFlag = flag;
     }
 
-    void setItemRupeeCount(int rupees) { mItemRupeeCount += rupees; }
+    void setDoStatusForce(u8 status, u8 flag) {
+        mDoStatusForce = status;
+        mDoSetFlagForce = flag;
+    }
+
+    void setAStatusForce(u8 status, u8 flag) {
+        mAStatusForce = status;
+        mASetFlagForce = flag;
+    }
+
+    void setItemRupeeCount(s32 rupees) { mItemRupeeCount += rupees; }
     void setItemMagicCount(s16 magic) { mItemMagicCount += magic; }
     void setItemMaxMagicCount(s16 max) { mItemMaxMagicCount += max; }
     void setItemArrowNumCount(s16 arrows) { mItemArrowNumCount += arrows; }
@@ -267,6 +277,7 @@ public:
     void setItemNowLife(u16 life) { mItemNowLife = life; }
     void setItemNowMagic(s16 magic) { mItemNowMagicCount = magic; }
     void setItemNowOil(s32 oil) { mItemNowOil = oil; }
+    void setItemOilCount(s32 oil) { mItemOilCount += oil; }
     s16 getItemMaxLifeCount() { return mItemMaxLifeCount; }
     f32 getItemLifeCount() { return mItemLifeCount; }
     void clearItemMaxLifeCount() { mItemMaxLifeCount = 0; }
@@ -341,6 +352,8 @@ public:
     void offPauseFlag() { mPauseFlag = false; }
     void show2dOn() { mShow2D = 1; }
     s8 getLayerOld() { return mLayerOld; }
+    void setMesgCancelButton(u8 button) { mMesgCancelButton = button; }
+    int getMessageCountNumber() { return mMessageCountNum; }
 
 public:
     /* 0x00000 */ dBgS mBgs;
@@ -392,15 +405,15 @@ public:
     /* 0x04E7C */ void* mPlayerPtr[2];  // 0: Player, 1: Horse ; type may be wrong
     /* 0x04E84 */ dMsgObject_c* mMsgObjectClass;
     /* 0x04E88 */ f32 mItemLifeCount;
-    /* 0x04E8C */ int mItemRupeeCount;
+    /* 0x04E8C */ s32 mItemRupeeCount;
     /* 0x04E90 */ s16 mItemKeyNumCount;
     /* 0x04E92 */ s16 mItemMaxLifeCount;
     /* 0x04E94 */ s16 mItemMagicCount;
     /* 0x04E96 */ s16 mItemNowMagicCount;
     /* 0x04E98 */ s16 mItemMaxMagicCount;
     /* 0x04E9A */ s16 field_0x4e9a;
-    /* 0x04E9C */ int mItemOilCount;
-    /* 0x04EA0 */ int mItemNowOil;
+    /* 0x04E9C */ s32 mItemOilCount;
+    /* 0x04EA0 */ s32 mItemNowOil;
     /* 0x04EA4 */ int mItemMaxOilCount;
     /* 0x04EA8 */ int mOxygen;
     /* 0x04EAC */ int mNowOxygen;
@@ -414,8 +427,8 @@ public:
     /* 0x04EC8 */ u8 field_0x4ec8[4];
     /* 0x04ECC */ s16 mItemMaxBombNumCount1;
     /* 0x04ECE */ s16 mItemMaxBombNumCount2;
-    /* 0x04ED0 */ u8 field_0x4ed0[6];
-    /* 0x04ED6 */ s16 mItemMaxBombNumCount3;
+    /* 0x04ED0 */ u8 field_0x4ed0[4];
+    /* 0x04ED4 */ int mMessageCountNum;
     /* 0x04ED8 */ u8 field_0x4ed8[6];
     /* 0x04EDE */ u16 mItemNowLife;
     /* 0x04EE0 */ u8 field_0x4ee0[2];
@@ -701,6 +714,11 @@ void dComIfGs_setSelectEquipShield(u8 i_itemNo);
 int dComIfGs_isItemFirstBit(u8 i_itemNo);
 u16 dComIfGs_getRupee();
 BOOL dComIfGs_isVisitedRoom(int i_roomNo);
+void dComIfGs_onZoneSwitch(int swBit, int roomNo);
+void dComIfGs_onOneZoneSwitch(int param_0, int param_1);
+void dComIfGs_offZoneSwitch(int param_0, int param_1);
+void dComIfGs_offOneZoneSwitch(int param_0, int param_1);
+s8 dComIfGp_getReverb(int roomNo);
 
 inline void dComIfGs_onDungeonItemMap() {
     g_dComIfG_gameInfo.info.getMemory().getBit().onDungeonItemMap();
@@ -951,8 +969,20 @@ inline BOOL dComIfGs_isSaveTbox(int i_stageNo, int i_no) {
     return g_dComIfG_gameInfo.info.getSavedata().getSave(i_stageNo).getBit().isTbox(i_no);
 }
 
+inline BOOL dComIfGs_isSaveDunSwitch(int i_no) {
+    return g_dComIfG_gameInfo.info.getDan().isSwitch(i_no);
+}
+
 inline void dComIfGs_onSaveSwitch(int i_stageNo, int i_no) {
     g_dComIfG_gameInfo.info.getSavedata().getSave(i_stageNo).getBit().onSwitch(i_no);
+}
+
+inline void dComIfGs_onSaveSwitch(int i_no) {
+    g_dComIfG_gameInfo.info.getMemory().getBit().onSwitch(i_no);
+}
+
+inline void dComIfGs_offSaveSwitch(int i_no) {
+    g_dComIfG_gameInfo.info.getMemory().getBit().offSwitch(i_no);
 }
 
 inline void dComIfGs_offSaveSwitch(int i_stageNo, int i_no) {
@@ -1017,6 +1047,10 @@ inline BOOL dComIfGs_isDarkClearLV(int i_no) {
 
 inline BOOL dComIfGs_isTmpBit(u16 flag) {
     return g_dComIfG_gameInfo.info.getTmp().isEventBit(flag);
+}
+
+inline void dComIfGs_onTmpBit(u16 flag) {
+    g_dComIfG_gameInfo.info.getTmp().onEventBit(flag);
 }
 
 inline BOOL dComIfGs_isTransformLV(int i_no) {
@@ -1151,6 +1185,10 @@ inline void dComIfGs_onSaveDunSwitch(int flag) {
     g_dComIfG_gameInfo.info.getDan().onSwitch(flag);
 }
 
+inline void dComIfGs_offSaveDunSwitch(int flag) {
+    g_dComIfG_gameInfo.info.getDan().offSwitch(flag);
+}
+
 inline u8 dComIfGs_getDataNum() {
     return g_dComIfG_gameInfo.info.getDataNum();
 }
@@ -1227,6 +1265,38 @@ inline void dComIfGs_getSave(int i_stageNo) {
 
 inline void dComIfGs_initDan(s8 i_stageNo) {
     g_dComIfG_gameInfo.info.initDan(i_stageNo);
+}
+
+inline u16 dComIfGs_getRupeeMax() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getRupeeMax();
+}
+
+inline void dComIfGs_onLightDropGetFlag(u8 level) {
+    g_dComIfG_gameInfo.info.getPlayer().getLightDrop().onLightDropGetFlag(level);
+}
+
+inline void dComIfGs_setTmpReg(u16 reg, u8 flag) {
+    g_dComIfG_gameInfo.info.getTmp().setEventReg(reg, flag);
+}
+
+inline u8 dComIfGs_getTmpReg(u16 reg) {
+    return g_dComIfG_gameInfo.info.getTmp().getEventReg(reg);
+}
+
+inline void dComIfGs_setWarashibeItem(u8 itemNo) {
+    g_dComIfG_gameInfo.info.getPlayer().getItem().setWarashibeItem(itemNo);
+}
+
+inline void dComIfGs_setBottleItemIn(u8 curItem, u8 newItem) {
+    g_dComIfG_gameInfo.info.getPlayer().getItem().setBottleItemIn(curItem, newItem);
+}
+
+inline u8 dComIfGs_checkInsectBottle() {
+    return g_dComIfG_gameInfo.info.getPlayer().getItem().checkInsectBottle();
+}
+
+inline u8 dComIfGs_checkBombBag(u8 i_itemNo) {
+    return g_dComIfG_gameInfo.info.getPlayer().getItem().checkBombBag(i_itemNo);
 }
 
 void dComIfGp_setItemLifeCount(f32 amount, u8 type);
@@ -1444,6 +1514,14 @@ inline void dComIfGp_setSButtonStatusForce(u8 status, u8 flag) {
     g_dComIfG_gameInfo.play.setSButtonStatusForce(status, flag);
 }
 
+inline void dComIfGp_setDoStatusForce(u8 status, u8 flag) {
+    g_dComIfG_gameInfo.play.setDoStatusForce(status, flag);
+}
+
+inline void dComIfGp_setAStatusForce(u8 status, u8 flag) {
+    g_dComIfG_gameInfo.play.setAStatusForce(status, flag);
+}
+
 inline u8 dComIfGp_getAStatus() {
     return g_dComIfG_gameInfo.play.getAStatus();
 }
@@ -1644,6 +1722,10 @@ inline void dComIfGp_setItemNowOil(s32 oil) {
     g_dComIfG_gameInfo.play.setItemNowOil(oil);
 }
 
+inline void dComIfGp_setItemOilCount(s32 oil) {
+    g_dComIfG_gameInfo.play.setItemOilCount(oil);
+}
+
 inline bool dComIfGp_isDoSetFlag(u8 flag) {
     return g_dComIfG_gameInfo.play.isDoSetFlag(flag);
 }
@@ -1674,6 +1756,10 @@ inline bool dComIfGp_isCStickSetFlag(u8 flag) {
 
 inline void dComIfGp_offPauseFlag() {
     g_dComIfG_gameInfo.play.offPauseFlag();
+}
+
+inline void dComIfGp_setMesgCancelButton(u8 button) {
+    g_dComIfG_gameInfo.play.setMesgCancelButton(button);
 }
 
 inline s32 dComIfGp_checkStatus(u16 flags) {
@@ -1710,6 +1796,10 @@ inline void dComIfGp_clearItemLifeCount() {
 
 inline u8 dComIfGp_getItemLifeCountType() {
     return g_dComIfG_gameInfo.play.getItemLifeCountType();
+}
+
+inline int dComIfGp_getMessageCountNumber() {
+    return g_dComIfG_gameInfo.play.getMessageCountNumber();
 }
 
 inline void dComIfGp_setCameraParamFileName(int i, char* name) {

@@ -21,11 +21,6 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct mDoExt_btpAnm {
-    /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
-    /* 8000D5E8 */ void entry(J3DMaterialTable*, s16);
-};
-
 struct mDoExt_3DlineMat1_c {
     /* 80013360 */ void init(u16, u16, ResTIMG*, int);
     /* 8001373C */ void update(int, f32, _GXColor&, u16, dKy_tevstr_c*);

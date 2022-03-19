@@ -12,28 +12,6 @@
 // Types:
 //
 
-struct jmessage_tControl {};
-
-struct jmessage_tReference {
-    /* 80228B04 */ jmessage_tReference();
-    /* 80229034 */ void pageSend();
-    /* 80229168 */ void selectMessage();
-    /* 802294A8 */ void inputNumber();
-    /* 802297E4 */ void shiftCharCountBuffer();
-    /* 80229810 */ void resetCharCountBuffer();
-    /* 8022994C */ void isLightEnd();
-    /* 80238C78 */ void setActorPos(cXyz);
-};
-
-struct jmessage_tSequenceProcessor {
-    /* 8022B558 */ jmessage_tSequenceProcessor(jmessage_tReference const*, jmessage_tControl*);
-};
-
-struct jmessage_tRenderingProcessor {
-    /* 8022CCB0 */ jmessage_tRenderingProcessor(jmessage_tReference const*);
-    /* 8022E12C */ void resetRendering();
-};
-
 struct dMsgString_c {
     /* 80249C20 */ dMsgString_c();
     /* 80249D28 */ ~dMsgString_c();
@@ -131,28 +109,6 @@ struct Z2SeMgr {
 
 struct Z2AudioMgr {
     static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JMessage {
-    struct TControl {
-        /* 802A75D4 */ void reset();
-        /* 802A7634 */ void update();
-        /* 802A76BC */ void render();
-        /* 802A77E8 */ void setMessageCode(u16, u16);
-        /* 802A78F4 */ void setMessageID(u32, u32, bool*);
-    };
-
-    struct TResourceContainer {
-        struct TCResource {
-            /* 802A8EF8 */ ~TCResource();
-        };
-
-        /* 802A906C */ TResourceContainer();
-    };
-
-    struct TParse {
-        /* 802A9130 */ TParse(JMessage::TResourceContainer*);
-    };
 };
 
 //
@@ -1125,7 +1081,7 @@ asm void dMsgObject_c::isHowlMessage() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::isMidonaMessage() {
+asm bool dMsgObject_c::isMidonaMessage() {
     nofralloc
 #include "asm/d/msg/d_msg_object/isMidonaMessage__12dMsgObject_cFv.s"
 }
@@ -1474,7 +1430,7 @@ asm void dMsgObject_c::offCameraCancelFlag() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::isKillMessageFlag() {
+asm bool dMsgObject_c::isKillMessageFlag() {
     nofralloc
 #include "asm/d/msg/d_msg_object/isKillMessageFlag__12dMsgObject_cFv.s"
 }
@@ -1781,7 +1737,7 @@ asm void dMsgObject_c::getString(u32 param_0, J2DTextBox* param_1, J2DTextBox* p
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getMsgDtPtr() {
+asm u8* dMsgObject_c::getMsgDtPtr() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getMsgDtPtr__12dMsgObject_cFv.s"
 }
@@ -1905,7 +1861,7 @@ asm void dMsgObject_c::offMsgSendControl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::isMsgSendControl() {
+asm int dMsgObject_c::isMsgSendControl() {
     nofralloc
 #include "asm/d/msg/d_msg_object/isMsgSendControl__12dMsgObject_cFv.s"
 }
@@ -1955,7 +1911,7 @@ asm void dMsgObject_c::isMouthCheck() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getMessageID() {
+asm u32 dMsgObject_c::getMessageID() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getMessageID__12dMsgObject_cFv.s"
 }
@@ -2121,7 +2077,7 @@ asm void dMsgObject_c::isHowlHearingMode() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getSelectBombBagID() {
+asm u8 dMsgObject_c::getSelectBombBagID() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getSelectBombBagID__12dMsgObject_cFv.s"
 }
@@ -2131,7 +2087,7 @@ asm void dMsgObject_c::getSelectBombBagID() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getSelectBombPrice() {
+asm s16 dMsgObject_c::getSelectBombPrice() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getSelectBombPrice__12dMsgObject_cFv.s"
 }
@@ -2232,7 +2188,7 @@ static asm void dMsgObject_addTotalPayment(s16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_getFundRaising() {
+asm u16 dMsgObject_getFundRaising() {
     nofralloc
 #include "asm/d/msg/d_msg_object/dMsgObject_getFundRaising__Fv.s"
 }
@@ -2262,7 +2218,7 @@ static asm void dMsgObject_addFundRaising(s16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_getOffering() {
+asm u16 dMsgObject_getOffering() {
     nofralloc
 #include "asm/d/msg/d_msg_object/dMsgObject_getOffering__Fv.s"
 }

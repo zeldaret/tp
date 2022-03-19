@@ -64,6 +64,10 @@ inline void mDoAud_seStart(u32 sfx_id, const Vec* param_1, u32 param_2, s8 param
                                                -1.0f, 0);
 }
 
+inline void mDoAud_messageSePlay(u16 param_0, Vec* position, s8 param_2) {
+    Z2AudioMgr::getInterface()->mSeMgr.messageSePlay(param_0, position, param_2);
+}
+
 inline void mDoAud_sceneBgmStart() {
     Z2AudioMgr::getInterface()->mSceneMgr.sceneBgmStart();
 }

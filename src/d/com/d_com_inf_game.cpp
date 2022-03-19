@@ -1412,7 +1412,7 @@ int dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* resNa
     return 1;
 }
 
-u8 dComIfGp_getReverb(int roomNo) {
+s8 dComIfGp_getReverb(int roomNo) {
     return dStage_roomRead_dt_c_GetReverbStage(*dComIfGp_getStageRoom(), roomNo);
 }
 

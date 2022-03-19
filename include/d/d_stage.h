@@ -204,7 +204,7 @@ public:
     /* 0x04 */ f32 mSeaLevel;
     /* 0x08 */ f32 field_0x8;
     /* 0x0C */ f32 field_0xc;
-    /* 0x10 */ u8 field_0x10[9];
+    /* 0x10 */ u8 field_0x10[10];
     /* 0x1A */ u8 mDefaultCamera;
     /* 0x1C */ u16 mMsg;
 };  // Size: 0x20
@@ -827,7 +827,7 @@ static int dStage_fieldMapTresureInit(dStage_dt_c*, void*, int, void*);
 static int dStage_fieldMapFiliInfo2Init(dStage_dt_c*, void*, int, void*);
 static int dStage_fieldMapMapPathInit(dStage_dt_c*, void*, int, void*);
 
-u8 dStage_roomRead_dt_c_GetReverbStage(roomRead_class&, int);
+s8 dStage_roomRead_dt_c_GetReverbStage(roomRead_class&, int);
 int dStage_changeScene(int, f32, u32, s8, s16, int);
 void dStage_infoCreate();
 u8 dStage_stagInfo_GetParticleNo(stage_stag_info_class* p_info, int layer);

@@ -419,9 +419,9 @@ public:
     virtual BOOL checkSingleBoarBattleSecondBowReady() const;
     virtual bool checkPointSubWindowMode() const;
     virtual void setClothesChange(int);
-    virtual void setPlayerPosAndAngle(float (*)[4]);
-    virtual void setPlayerPosAndAngle(cXyz const*, csXyz const*);
     virtual void setPlayerPosAndAngle(cXyz const*, short, int);
+    virtual void setPlayerPosAndAngle(cXyz const*, csXyz const*);
+    virtual void setPlayerPosAndAngle(float (*)[4]);
     virtual bool setThrowDamage(short, float, float, int, int, int);
     virtual bool checkSetNpcTks(cXyz*, int, int);
     virtual bool setRollJump(float, float, short);
@@ -523,6 +523,7 @@ public:
     bool checkCanoeSlider() const { return mSpecialMode == 0x2D; }
     u8 getCutType() const { return mCutType; }
     u16 getSwordAtUpTime() const { return mSwordUpTimer; }
+    bool checkWaterInMove() const { return i_checkNoResetFlg0(UNDER_WATER_MOVEMENT); }
 
     // some functions use these function as an inline
     // is there a better way to handle this?

@@ -154,6 +154,10 @@ inline void fopAcM_OnCondition(fopAc_ac_c* p_actor, u32 flag) {
     p_actor->mCondition |= flag;
 }
 
+inline BOOL fopAcM_IsActor(void* actor) {
+    return fopAc_IsActor(actor);
+}
+
 void* fopAcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3, void* pData);
 void fopAcM_setStageLayer(void*);
 int fopAcM_setRoomLayer(void*, int);

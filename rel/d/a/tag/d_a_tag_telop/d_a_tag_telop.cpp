@@ -6,24 +6,7 @@
 #include "rel/d/a/tag/d_a_tag_telop/d_a_tag_telop.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct daTag_Telop_c {
-    /* 80490A58 */ void create();
-    /* 80490AF8 */ void execute();
-};
-
-struct dSv_event_c {
-    /* 800349BC */ void isEventBit(u16) const;
-};
+#include "f_op/f_op_msg_mng.h"
 
 //
 // Forward References:
@@ -42,80 +25,78 @@ extern "C" extern void* g_profile_TAG_TELOP[12];
 // External References:
 //
 
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopMsgM_messageSetDemo__FUl();
-extern "C" void isEventBit__11dSv_event_cCFUs();
 extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
 // Declarations:
 //
 
-/* 80490A58-80490AF8 000078 00A0+00 1/1 0/0 0/0 .text            create__13daTag_Telop_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTag_Telop_c::create() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_telop/d_a_tag_telop/create__13daTag_Telop_cFv.s"
+inline int dComIfGs_isEventBit(u16 event) {
+    return g_dComIfG_gameInfo.info.getSavedata().getEvent().isEventBit(event);
 }
-#pragma pop
+
+/* 80490A58-80490AF8 000078 00A0+00 1/1 0/0 0/0 .text            create__13daTag_Telop_cFv */
+int daTag_Telop_c::create() {
+    if (!fopAcM_CheckCondition(this, 8)) {
+        new (this) daTag_Telop_c();
+        fopAcM_OnCondition(this, 8);
+    }
+
+    mMessageNo = getMessageNo();
+
+    if (dComIfGs_isTmpBit(0x1301)) {
+        mMessageStatus = 99;
+    } else if (mMessageNo != 0xFFFF) {
+        mMessageStatus = 0;
+    } else {
+        mMessageStatus = 99;
+    }
+
+    return 4;
+}
 
 /* 80490AF8-80490B5C 000118 0064+00 1/1 0/0 0/0 .text            execute__13daTag_Telop_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTag_Telop_c::execute() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_telop/d_a_tag_telop/execute__13daTag_Telop_cFv.s"
+void daTag_Telop_c::execute() {
+    switch (mMessageStatus) {
+    case 0:
+        fopMsgM_messageSetDemo(mMessageNo);
+        mMessageStatus = 99;
+        break;
+    case 99:
+        fopAcM_delete(this);
+        mMessageStatus = -1;
+        break;
+    }
 }
-#pragma pop
 
 /* 80490B5C-80490B64 00017C 0008+00 1/0 0/0 0/0 .text            daTag_Telop_Draw__FP13daTag_Telop_c
  */
-static bool daTag_Telop_Draw(daTag_Telop_c* param_0) {
-    return true;
+static int daTag_Telop_Draw(daTag_Telop_c* tag) {
+    return 1;
 }
 
 /* 80490B64-80490B88 000184 0024+00 1/0 0/0 0/0 .text daTag_Telop_Execute__FP13daTag_Telop_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTag_Telop_Execute(daTag_Telop_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_telop/d_a_tag_telop/daTag_Telop_Execute__FP13daTag_Telop_c.s"
+static int daTag_Telop_Execute(daTag_Telop_c* tag) {
+    tag->execute();
+    return 1;
 }
-#pragma pop
 
 /* 80490B88-80490B90 0001A8 0008+00 1/0 0/0 0/0 .text daTag_Telop_IsDelete__FP13daTag_Telop_c */
-static bool daTag_Telop_IsDelete(daTag_Telop_c* param_0) {
-    return true;
+static int daTag_Telop_IsDelete(daTag_Telop_c* tag) {
+    return 1;
 }
 
 /* 80490B90-80490BC0 0001B0 0030+00 1/0 0/0 0/0 .text daTag_Telop_Delete__FP13daTag_Telop_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTag_Telop_Delete(daTag_Telop_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_telop/d_a_tag_telop/daTag_Telop_Delete__FP13daTag_Telop_c.s"
+static int daTag_Telop_Delete(daTag_Telop_c* tag) {
+    tag->~daTag_Telop_c();
+    return 1;
 }
-#pragma pop
 
 /* 80490BC0-80490BE0 0001E0 0020+00 1/0 0/0 0/0 .text            daTag_Telop_Create__FP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTag_Telop_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_telop/d_a_tag_telop/daTag_Telop_Create__FP10fopAc_ac_c.s"
+static int daTag_Telop_Create(fopAc_ac_c* tag) {
+    return static_cast<daTag_Telop_c*>(tag)->create();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80490BE8-80490C08 -00001 0020+00 1/0 0/0 0/0 .data            l_daTag_Telop_Method */
