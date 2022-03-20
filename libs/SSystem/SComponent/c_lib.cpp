@@ -5,7 +5,7 @@
 
 #include "SSystem/SComponent/c_lib.h"
 #include "JSystem/JMath/JMath.h"
-#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/string.h"
+#include "msl_c/MSL_Common/Src/string.h"
 #include "SSystem/SComponent/c_math.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dol2asm.h"

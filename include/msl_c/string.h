@@ -4,7 +4,7 @@
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dolphin/types.h"
 
-// TODO: move to MSL_C.PPCEABI.bare.H/
+// TODO: move to msl_c/
 extern "C" {
 void memcpy(void*, const void*, s32);
 void* memset(void* dest, int ch, u32 count);

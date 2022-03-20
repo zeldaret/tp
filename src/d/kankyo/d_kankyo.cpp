@@ -4,7 +4,7 @@
 //
 
 #include "d/kankyo/d_kankyo.h"
-#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/mem.h"
+#include "msl_c/MSL_Common/Src/mem.h"
 #include "Z2AudioLib/Z2EnvSeMgr.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/kankyo/d_kankyo_data.h"

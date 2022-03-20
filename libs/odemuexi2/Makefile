@@ -3,10 +3,10 @@
 #
 
 LIBODEMUEXI2_A_CPP_FILES := \
-	libs/odemuexi2/src/OdemuExi2Lib/DebuggerDriver.cpp \
+	libs/odemuexi2/Src/OdemuExi2Lib/DebuggerDriver.cpp \
 
 LIBODEMUEXI2_A_O_FILES := \
-	$(BUILD_DIR)/libs/odemuexi2/src/OdemuExi2Lib/DebuggerDriver.o \
+	$(BUILD_DIR)/libs/odemuexi2/Src/OdemuExi2Lib/DebuggerDriver.o \
 
 LIBODEMUEXI2_A_CFLAGS := \
 

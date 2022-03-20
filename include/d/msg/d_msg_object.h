@@ -1,7 +1,7 @@
 #ifndef D_MSG_D_MSG_OBJECT_H
 #define D_MSG_D_MSG_OBJECT_H
 
-#include "JSystem/J2DGraph/J2DTextbox.h"
+#include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JMessage/control.h"
 #include "JSystem/JMessage/processor.h"
 #include "JSystem/JMessage/resource.h"

@@ -5,7 +5,7 @@
 
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf.h"
+#include "msl_c/MSL_Common/Src/printf.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
