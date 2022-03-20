@@ -1,0 +1,6 @@
+#ifndef MATH_DOUBLE_PRECISION_S_FREXP_H
+#define MATH_DOUBLE_PRECISION_S_FREXP_H
+
+#include "dolphin/types.h"
+
+#endif /* MATH_DOUBLE_PRECISION_S_FREXP_H */

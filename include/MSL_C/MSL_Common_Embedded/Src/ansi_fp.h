@@ -1,0 +1,6 @@
+#ifndef MSL_COMMON_EMBEDDED_SRC_ANSI_FP_H
+#define MSL_COMMON_EMBEDDED_SRC_ANSI_FP_H
+
+#include "dolphin/types.h"
+
+#endif /* MSL_COMMON_EMBEDDED_SRC_ANSI_FP_H */
