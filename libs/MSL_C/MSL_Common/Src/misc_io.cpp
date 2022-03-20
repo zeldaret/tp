@@ -3,7 +3,7 @@
 // Translation Unit: MSL_Common/Src/misc_io
 //
 
-#include "msl_c/MSL_Common/Src/misc_io.h"
+#include "MSL_C/MSL_Common/Src/misc_io.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -30,6 +30,6 @@ extern "C" extern u8 __stdio_exit[4];
 #pragma optimizewithasm off
 asm void __stdio_atexit() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/misc_io/__stdio_atexit.s"
+#include "asm/MSL_C/MSL_Common/Src/misc_io/__stdio_atexit.s"
 }
 #pragma pop

@@ -3,7 +3,7 @@
 // Translation Unit: Math/Double_precision/w_sqrt
 //
 
-#include "msl_c/Math/Double_precision/w_sqrt.h"
+#include "MSL_C/Math/Double_precision/w_sqrt.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -29,6 +29,6 @@ extern "C" void __ieee754_sqrt();
 #pragma optimizewithasm off
 asm void sqrt() {
     nofralloc
-#include "asm/msl_c/Math/Double_precision/w_sqrt/sqrt.s"
+#include "asm/MSL_C/Math/Double_precision/w_sqrt/sqrt.s"
 }
 #pragma pop

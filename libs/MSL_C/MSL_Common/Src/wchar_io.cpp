@@ -3,7 +3,7 @@
 // Translation Unit: MSL_Common/Src/wchar_io
 //
 
-#include "msl_c/MSL_Common/Src/wchar_io.h"
+#include "MSL_C/MSL_Common/Src/wchar_io.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -27,6 +27,6 @@ extern "C" void fwide();
 #pragma optimizewithasm off
 asm void fwide() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/wchar_io/fwide.s"
+#include "asm/MSL_C/MSL_Common/Src/wchar_io/fwide.s"
 }
 #pragma pop

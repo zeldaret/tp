@@ -3,7 +3,7 @@
 // Translation Unit: MSL_Common/Src/mem_funcs
 //
 
-#include "msl_c/MSL_Common/Src/mem_funcs.h"
+#include "MSL_C/MSL_Common/Src/mem_funcs.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -30,7 +30,7 @@ extern "C" void __copy_longs_aligned();
 #pragma optimizewithasm off
 asm void __copy_longs_rev_unaligned() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/mem_funcs/__copy_longs_rev_unaligned.s"
+#include "asm/MSL_C/MSL_Common/Src/mem_funcs/__copy_longs_rev_unaligned.s"
 }
 #pragma pop
 
@@ -40,7 +40,7 @@ asm void __copy_longs_rev_unaligned() {
 #pragma optimizewithasm off
 asm void __copy_longs_unaligned() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/mem_funcs/__copy_longs_unaligned.s"
+#include "asm/MSL_C/MSL_Common/Src/mem_funcs/__copy_longs_unaligned.s"
 }
 #pragma pop
 
@@ -50,7 +50,7 @@ asm void __copy_longs_unaligned() {
 #pragma optimizewithasm off
 asm void __copy_longs_rev_aligned() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/mem_funcs/__copy_longs_rev_aligned.s"
+#include "asm/MSL_C/MSL_Common/Src/mem_funcs/__copy_longs_rev_aligned.s"
 }
 #pragma pop
 
@@ -60,6 +60,6 @@ asm void __copy_longs_rev_aligned() {
 #pragma optimizewithasm off
 asm void __copy_longs_aligned() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/mem_funcs/__copy_longs_aligned.s"
+#include "asm/MSL_C/MSL_Common/Src/mem_funcs/__copy_longs_aligned.s"
 }
 #pragma pop

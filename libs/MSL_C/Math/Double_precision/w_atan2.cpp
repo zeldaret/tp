@@ -3,7 +3,7 @@
 // Translation Unit: Math/Double_precision/w_atan2
 //
 
-#include "msl_c/Math/Double_precision/w_atan2.h"
+#include "MSL_C/Math/Double_precision/w_atan2.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -29,6 +29,6 @@ extern "C" void __ieee754_atan2();
 #pragma optimizewithasm off
 asm void atan2() {
     nofralloc
-#include "asm/msl_c/Math/Double_precision/w_atan2/atan2.s"
+#include "asm/MSL_C/Math/Double_precision/w_atan2/atan2.s"
 }
 #pragma pop

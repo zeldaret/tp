@@ -3,7 +3,7 @@
 // Translation Unit: PPC_EABI/Src/critical_regions.gamecube
 //
 
-#include "msl_c/PPC_EABI/Src/critical_regions.gamecube.h"
+#include "MSL_C/PPC_EABI/Src/critical_regions.gamecube.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

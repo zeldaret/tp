@@ -4,7 +4,7 @@
 //
 
 #include "JSystem/JKernel/JKRFileLoader.h"
-#include "msl_c/MSL_Common/Src/string.h"
+#include "MSL_C/MSL_Common/Src/string.h"
 #include "dol2asm.h"
 #include "global.h"
 
@@ -193,10 +193,10 @@ SECTION_SDATA static u8 rootPath[2 + 6 /* padding */] = {
 // matches, but lbl_804508C0 is accessed through r13
 #ifdef NONMATCHING
 const char* JKRFileLoader::fetchVolumeName(char* buffer, long bufferSize, const char* path) {
-    // lbl_803D2D18 = msl_c::__lower_map
+    // lbl_803D2D18 = MSL_C::__lower_map
     // lbl_8039D150 = JKernel::@stringBase0 "/"
     // lbl_804508C0 = JKernel::rootPath$2498 "/"
-    // lbl_803D2D18 = msl_c::__lower_map
+    // lbl_803D2D18 = MSL_C::__lower_map
 
     if (strcmp(path, lbl_8039D150) == 0) {
         strcpy(buffer, lbl_804508C0);

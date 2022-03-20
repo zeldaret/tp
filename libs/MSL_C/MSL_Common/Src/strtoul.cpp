@@ -3,7 +3,7 @@
 // Translation Unit: MSL_Common/Src/strtoul
 //
 
-#include "msl_c/MSL_Common/Src/strtoul.h"
+#include "MSL_C/MSL_Common/Src/strtoul.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -34,7 +34,7 @@ extern "C" extern u8 errno[4 + 4 /* padding */];
 #pragma optimizewithasm off
 asm void strtol() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/strtoul/strtol.s"
+#include "asm/MSL_C/MSL_Common/Src/strtoul/strtol.s"
 }
 #pragma pop
 
@@ -44,7 +44,7 @@ asm void strtol() {
 #pragma optimizewithasm off
 asm void strtoul() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/strtoul/strtoul.s"
+#include "asm/MSL_C/MSL_Common/Src/strtoul/strtoul.s"
 }
 #pragma pop
 
@@ -78,6 +78,6 @@ SECTION_DATA static void* lit_431[17 + 1 /* padding */] = {
 #pragma optimizewithasm off
 asm void __strtoul() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/strtoul/__strtoul.s"
+#include "asm/MSL_C/MSL_Common/Src/strtoul/__strtoul.s"
 }
 #pragma pop

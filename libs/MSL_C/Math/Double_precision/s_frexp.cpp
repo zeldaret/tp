@@ -3,7 +3,7 @@
 // Translation Unit: Math/Double_precision/s_frexp
 //
 
-#include "msl_c/Math/Double_precision/s_frexp.h"
+#include "MSL_C/Math/Double_precision/s_frexp.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -31,6 +31,6 @@ SECTION_SDATA2 static f64 lit_57 = 1.8014398509481984e+16;
 #pragma optimizewithasm off
 asm void frexp() {
     nofralloc
-#include "asm/msl_c/Math/Double_precision/s_frexp/frexp.s"
+#include "asm/MSL_C/Math/Double_precision/s_frexp/frexp.s"
 }
 #pragma pop

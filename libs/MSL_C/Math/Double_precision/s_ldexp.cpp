@@ -3,7 +3,7 @@
 // Translation Unit: Math/Double_precision/s_ldexp
 //
 
-#include "msl_c/Math/Double_precision/s_ldexp.h"
+#include "MSL_C/Math/Double_precision/s_ldexp.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -47,6 +47,6 @@ SECTION_SDATA2 static f64 lit_95 = 5.551115123125783e-17;
 #pragma optimizewithasm off
 asm void ldexp() {
     nofralloc
-#include "asm/msl_c/Math/Double_precision/s_ldexp/ldexp.s"
+#include "asm/MSL_C/Math/Double_precision/s_ldexp/ldexp.s"
 }
 #pragma pop

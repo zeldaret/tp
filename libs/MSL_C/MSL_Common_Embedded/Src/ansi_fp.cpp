@@ -3,7 +3,7 @@
 // Translation Unit: MSL_Common_Embedded/Src/ansi_fp
 //
 
-#include "msl_c/MSL_Common_Embedded/Src/ansi_fp.h"
+#include "MSL_C/MSL_Common_Embedded/Src/ansi_fp.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -38,7 +38,7 @@ extern "C" void modf();
 #pragma optimizewithasm off
 asm void __num2dec() {
     nofralloc
-#include "asm/msl_c/MSL_Common_Embedded/Src/ansi_fp/__num2dec.s"
+#include "asm/MSL_C/MSL_Common_Embedded/Src/ansi_fp/__num2dec.s"
 }
 #pragma pop
 
@@ -54,7 +54,7 @@ SECTION_SDATA2 static u8 lit_824[8] = {
 #pragma optimizewithasm off
 asm void __num2dec_internal() {
     nofralloc
-#include "asm/msl_c/MSL_Common_Embedded/Src/ansi_fp/__num2dec_internal.s"
+#include "asm/MSL_C/MSL_Common_Embedded/Src/ansi_fp/__num2dec_internal.s"
 }
 #pragma pop
 
@@ -175,7 +175,7 @@ SECTION_DATA static void* lit_1710[73 + 1 /* padding */] = {
 #pragma optimizewithasm off
 asm void __two_exp() {
     nofralloc
-#include "asm/msl_c/MSL_Common_Embedded/Src/ansi_fp/__two_exp.s"
+#include "asm/MSL_C/MSL_Common_Embedded/Src/ansi_fp/__two_exp.s"
 }
 #pragma pop
 
@@ -185,7 +185,7 @@ asm void __two_exp() {
 #pragma optimizewithasm off
 asm void __timesdec() {
     nofralloc
-#include "asm/msl_c/MSL_Common_Embedded/Src/ansi_fp/__timesdec.s"
+#include "asm/MSL_C/MSL_Common_Embedded/Src/ansi_fp/__timesdec.s"
 }
 #pragma pop
 

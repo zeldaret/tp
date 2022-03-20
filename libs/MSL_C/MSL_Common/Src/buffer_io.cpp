@@ -3,7 +3,7 @@
 // Translation Unit: MSL_Common/Src/buffer_io
 //
 
-#include "msl_c/MSL_Common/Src/buffer_io.h"
+#include "MSL_C/MSL_Common/Src/buffer_io.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -28,7 +28,7 @@ extern "C" void __prep_buffer();
 #pragma optimizewithasm off
 asm void __flush_buffer() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/buffer_io/__flush_buffer.s"
+#include "asm/MSL_C/MSL_Common/Src/buffer_io/__flush_buffer.s"
 }
 #pragma pop
 
@@ -38,6 +38,6 @@ asm void __flush_buffer() {
 #pragma optimizewithasm off
 asm void __prep_buffer() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/buffer_io/__prep_buffer.s"
+#include "asm/MSL_C/MSL_Common/Src/buffer_io/__prep_buffer.s"
 }
 #pragma pop

@@ -6,7 +6,7 @@
 #include "JSystem/JKernel/JKRThread.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JUtility/JUTAssert.h"
-#include "msl_c/MSL_Common/Src/printf.h"
+#include "MSL_C/MSL_Common/Src/printf.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

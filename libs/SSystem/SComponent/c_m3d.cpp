@@ -15,7 +15,7 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "msl_c/math.h"
+#include "MSL_C/math.h"
 
 //
 // Forward References:

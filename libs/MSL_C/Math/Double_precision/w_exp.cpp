@@ -3,7 +3,7 @@
 // Translation Unit: Math/Double_precision/w_exp
 //
 
-#include "msl_c/Math/Double_precision/w_exp.h"
+#include "MSL_C/Math/Double_precision/w_exp.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -29,6 +29,6 @@ extern "C" void __ieee754_exp();
 #pragma optimizewithasm off
 asm void exp() {
     nofralloc
-#include "asm/msl_c/Math/Double_precision/w_exp/exp.s"
+#include "asm/MSL_C/Math/Double_precision/w_exp/exp.s"
 }
 #pragma pop

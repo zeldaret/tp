@@ -7,7 +7,7 @@
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTException.h"
-#include "msl_c/MSL_Common/Src/string.h"
+#include "MSL_C/MSL_Common/Src/string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

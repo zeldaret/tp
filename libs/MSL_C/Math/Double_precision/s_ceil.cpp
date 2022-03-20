@@ -3,7 +3,7 @@
 // Translation Unit: Math/Double_precision/s_ceil
 //
 
-#include "msl_c/Math/Double_precision/s_ceil.h"
+#include "MSL_C/Math/Double_precision/s_ceil.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -36,6 +36,6 @@ SECTION_SDATA2 static u8 lit_125[8] = {
 #pragma optimizewithasm off
 asm void ceil() {
     nofralloc
-#include "asm/msl_c/Math/Double_precision/s_ceil/ceil.s"
+#include "asm/MSL_C/Math/Double_precision/s_ceil/ceil.s"
 }
 #pragma pop

@@ -2,7 +2,7 @@
 #define C_M3D_H_
 
 #include "dolphin/types.h"
-#include "msl_c/math.h"
+#include "MSL_C/math.h"
 
 class cM3dGAab;
 class cM3dGCps;

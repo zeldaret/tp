@@ -3,7 +3,7 @@
 // Translation Unit: Math/Double_precision/e_asin
 //
 
-#include "msl_c/Math/Double_precision/e_asin.h"
+#include "MSL_C/Math/Double_precision/e_asin.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -82,6 +82,6 @@ SECTION_SDATA2 static f64 lit_110 = 0.7853981633974483;
 #pragma optimizewithasm off
 asm void __ieee754_asin() {
     nofralloc
-#include "asm/msl_c/Math/Double_precision/e_asin/__ieee754_asin.s"
+#include "asm/MSL_C/Math/Double_precision/e_asin/__ieee754_asin.s"
 }
 #pragma pop

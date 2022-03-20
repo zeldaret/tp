@@ -3,7 +3,7 @@
 // Translation Unit: MSL_Common/Src/ansi_files
 //
 
-#include "msl_c/MSL_Common/Src/ansi_files.h"
+#include "MSL_C/MSL_Common/Src/ansi_files.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -127,7 +127,7 @@ static u8 stdin_buff[256];
 #pragma optimizewithasm off
 asm void __flush_all() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/ansi_files/__flush_all.s"
+#include "asm/MSL_C/MSL_Common/Src/ansi_files/__flush_all.s"
 }
 #pragma pop
 
@@ -137,6 +137,6 @@ asm void __flush_all() {
 #pragma optimizewithasm off
 asm void __close_all() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/ansi_files/__close_all.s"
+#include "asm/MSL_C/MSL_Common/Src/ansi_files/__close_all.s"
 }
 #pragma pop

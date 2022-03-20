@@ -3,7 +3,7 @@
 // Translation Unit: Math/Double_precision/s_modf
 //
 
-#include "msl_c/Math/Double_precision/s_modf.h"
+#include "MSL_C/Math/Double_precision/s_modf.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -27,6 +27,6 @@ extern "C" void modf();
 #pragma optimizewithasm off
 asm void modf() {
     nofralloc
-#include "asm/msl_c/Math/Double_precision/s_modf/modf.s"
+#include "asm/MSL_C/Math/Double_precision/s_modf/modf.s"
 }
 #pragma pop

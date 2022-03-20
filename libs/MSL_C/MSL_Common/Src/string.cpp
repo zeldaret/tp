@@ -3,7 +3,7 @@
 // Translation Unit: MSL_Common/Src/string
 //
 
-#include "msl_c/MSL_Common/Src/string.h"
+#include "MSL_C/MSL_Common/Src/string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -23,7 +23,7 @@ extern "C" void _epilog();
 #pragma optimizewithasm off
 asm char* strrchr(const char*, int) {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/string/strrchr.s"
+#include "asm/MSL_C/MSL_Common/Src/string/strrchr.s"
 }
 #pragma pop
 
@@ -33,7 +33,7 @@ asm char* strrchr(const char*, int) {
 #pragma optimizewithasm off
 asm char* strchr(const char*, int) {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/string/strchr.s"
+#include "asm/MSL_C/MSL_Common/Src/string/strchr.s"
 }
 #pragma pop
 
@@ -43,7 +43,7 @@ asm char* strchr(const char*, int) {
 #pragma optimizewithasm off
 asm int strncmp(const char*, const char*, u32) {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/string/strncmp.s"
+#include "asm/MSL_C/MSL_Common/Src/string/strncmp.s"
 }
 #pragma pop
 
@@ -53,7 +53,7 @@ asm int strncmp(const char*, const char*, u32) {
 #pragma optimizewithasm off
 asm int strcmp(const char*, const char*) {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/string/strcmp.s"
+#include "asm/MSL_C/MSL_Common/Src/string/strcmp.s"
 }
 #pragma pop
 
@@ -63,7 +63,7 @@ asm int strcmp(const char*, const char*) {
 #pragma optimizewithasm off
 asm char* strcat(char*, const char*) {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/string/strcat.s"
+#include "asm/MSL_C/MSL_Common/Src/string/strcat.s"
 }
 #pragma pop
 
@@ -73,7 +73,7 @@ asm char* strcat(char*, const char*) {
 #pragma optimizewithasm off
 asm char* strncpy(char*, const char*, u32) {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/string/strncpy.s"
+#include "asm/MSL_C/MSL_Common/Src/string/strncpy.s"
 }
 #pragma pop
 
@@ -83,7 +83,7 @@ asm char* strncpy(char*, const char*, u32) {
 #pragma optimizewithasm off
 asm char* strcpy(char*, const char*) {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/string/strcpy.s"
+#include "asm/MSL_C/MSL_Common/Src/string/strcpy.s"
 }
 #pragma pop
 
@@ -93,6 +93,6 @@ asm char* strcpy(char*, const char*) {
 #pragma optimizewithasm off
 asm u32 strlen(const char*) {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/string/strlen.s"
+#include "asm/MSL_C/MSL_Common/Src/string/strlen.s"
 }
 #pragma pop

@@ -3,7 +3,7 @@
 // Translation Unit: Math/Double_precision/w_asin
 //
 
-#include "msl_c/Math/Double_precision/w_asin.h"
+#include "MSL_C/Math/Double_precision/w_asin.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -29,6 +29,6 @@ extern "C" void __ieee754_asin();
 #pragma optimizewithasm off
 asm void asin() {
     nofralloc
-#include "asm/msl_c/Math/Double_precision/w_asin/asin.s"
+#include "asm/MSL_C/Math/Double_precision/w_asin/asin.s"
 }
 #pragma pop

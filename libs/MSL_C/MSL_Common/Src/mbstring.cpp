@@ -3,7 +3,7 @@
 // Translation Unit: MSL_Common/Src/mbstring
 //
 
-#include "msl_c/MSL_Common/Src/mbstring.h"
+#include "MSL_C/MSL_Common/Src/mbstring.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -37,6 +37,6 @@ SECTION_SDATA2 static u32 lit_74[1 + 1 /* padding */] = {
 #pragma optimizewithasm off
 asm void wcstombs() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/mbstring/wcstombs.s"
+#include "asm/MSL_C/MSL_Common/Src/mbstring/wcstombs.s"
 }
 #pragma pop

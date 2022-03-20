@@ -3,7 +3,7 @@
 // Translation Unit: MSL_Common/Src/printf
 //
 
-#include "msl_c/MSL_Common/Src/printf.h"
+#include "MSL_C/MSL_Common/Src/printf.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
@@ -54,7 +54,7 @@ extern "C" extern u8 __ctype_map[256];
 #pragma optimizewithasm off
 asm size_t sprintf(const char*, const char*, ...) {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/printf/sprintf.s"
+#include "asm/MSL_C/MSL_Common/Src/printf/sprintf.s"
 }
 #pragma pop
 
@@ -64,7 +64,7 @@ asm size_t sprintf(const char*, const char*, ...) {
 #pragma optimizewithasm off
 asm size_t snprintf(const char*, size_t, const char*, ...) {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/printf/snprintf.s"
+#include "asm/MSL_C/MSL_Common/Src/printf/snprintf.s"
 }
 #pragma pop
 
@@ -74,7 +74,7 @@ asm size_t snprintf(const char*, size_t, const char*, ...) {
 #pragma optimizewithasm off
 asm size_t vsnprintf(char* buffer, size_t buffer_size, const char* format, va_list args) {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/printf/vsnprintf.s"
+#include "asm/MSL_C/MSL_Common/Src/printf/vsnprintf.s"
 }
 #pragma pop
 
@@ -84,7 +84,7 @@ asm size_t vsnprintf(char* buffer, size_t buffer_size, const char* format, va_li
 #pragma optimizewithasm off
 asm size_t vprintf(const char*, va_list) {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/printf/vprintf.s"
+#include "asm/MSL_C/MSL_Common/Src/printf/vprintf.s"
 }
 #pragma pop
 
@@ -94,7 +94,7 @@ asm size_t vprintf(const char*, va_list) {
 #pragma optimizewithasm off
 asm void fprintf() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/printf/fprintf.s"
+#include "asm/MSL_C/MSL_Common/Src/printf/fprintf.s"
 }
 #pragma pop
 
@@ -104,7 +104,7 @@ asm void fprintf() {
 #pragma optimizewithasm off
 asm size_t printf(const char*, ...) {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/printf/printf.s"
+#include "asm/MSL_C/MSL_Common/Src/printf/printf.s"
 }
 #pragma pop
 
@@ -114,7 +114,7 @@ asm size_t printf(const char*, ...) {
 #pragma optimizewithasm off
 asm void __StringWrite() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/printf/__StringWrite.s"
+#include "asm/MSL_C/MSL_Common/Src/printf/__StringWrite.s"
 }
 #pragma pop
 
@@ -124,7 +124,7 @@ asm void __StringWrite() {
 #pragma optimizewithasm off
 asm void __FileWrite() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/printf/__FileWrite.s"
+#include "asm/MSL_C/MSL_Common/Src/printf/__FileWrite.s"
 }
 #pragma pop
 
@@ -155,7 +155,7 @@ SECTION_SDATA static u8 data_80450AD8[2 + 6 /* padding */] = {
 asm void __pformatter() {
     nofralloc
 #undef __va_arg
-#include "asm/msl_c/MSL_Common/Src/printf/__pformatter.s"
+#include "asm/MSL_C/MSL_Common/Src/printf/__pformatter.s"
 }
 #pragma pop
 
@@ -186,7 +186,7 @@ SECTION_SDATA2 static u8 lit_1089[8] = {
 #pragma optimizewithasm off
 static asm void float2str() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/printf/float2str.s"
+#include "asm/MSL_C/MSL_Common/Src/printf/float2str.s"
 }
 #pragma pop
 
@@ -196,7 +196,7 @@ static asm void float2str() {
 #pragma optimizewithasm off
 static asm void round_decimal() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/printf/round_decimal.s"
+#include "asm/MSL_C/MSL_Common/Src/printf/round_decimal.s"
 }
 #pragma pop
 
@@ -206,7 +206,7 @@ static asm void round_decimal() {
 #pragma optimizewithasm off
 static asm void double2hex() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/printf/double2hex.s"
+#include "asm/MSL_C/MSL_Common/Src/printf/double2hex.s"
 }
 #pragma pop
 
@@ -238,7 +238,7 @@ SECTION_DATA static void* lit_1248[33] = {
 #pragma optimizewithasm off
 static asm void longlong2str() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/printf/longlong2str.s"
+#include "asm/MSL_C/MSL_Common/Src/printf/longlong2str.s"
 }
 #pragma pop
 
@@ -270,7 +270,7 @@ SECTION_DATA static void* lit_1307[33] = {
 #pragma optimizewithasm off
 static asm void long2str() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/printf/long2str.s"
+#include "asm/MSL_C/MSL_Common/Src/printf/long2str.s"
 }
 #pragma pop
 
@@ -336,7 +336,7 @@ SECTION_DATA static void* lit_1442[17 + 1 /* padding */] = {
 #pragma optimizewithasm off
 static asm void parse_format() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/printf/parse_format.s"
+#include "asm/MSL_C/MSL_Common/Src/printf/parse_format.s"
 }
 #pragma pop
 

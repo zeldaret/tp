@@ -7,7 +7,7 @@
 #include "dol2asm.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
-#include "msl_c/math.h"
+#include "MSL_C/math.h"
 
 //
 // Forward References:

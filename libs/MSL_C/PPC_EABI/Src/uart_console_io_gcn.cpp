@@ -3,7 +3,7 @@
 // Translation Unit: PPC_EABI/Src/uart_console_io_gcn
 //
 
-#include "msl_c/PPC_EABI/Src/uart_console_io_gcn.h"
+#include "MSL_C/PPC_EABI/Src/uart_console_io_gcn.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -42,6 +42,6 @@ static u8 initialized[4 + 4 /* padding */];
 #pragma optimizewithasm off
 asm void __write_console() {
     nofralloc
-#include "asm/msl_c/PPC_EABI/Src/uart_console_io_gcn/__write_console.s"
+#include "asm/MSL_C/PPC_EABI/Src/uart_console_io_gcn/__write_console.s"
 }
 #pragma pop

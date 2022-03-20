@@ -3,7 +3,7 @@
 // Translation Unit: MSL_Common/Src/signal
 //
 
-#include "msl_c/MSL_Common/Src/signal.h"
+#include "MSL_C/MSL_Common/Src/signal.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -35,6 +35,6 @@ static u8 signal_funcs[24];
 #pragma optimizewithasm off
 asm void raise() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/signal/raise.s"
+#include "asm/MSL_C/MSL_Common/Src/signal/raise.s"
 }
 #pragma pop

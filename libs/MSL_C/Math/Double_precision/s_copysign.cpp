@@ -3,7 +3,7 @@
 // Translation Unit: Math/Double_precision/s_copysign
 //
 
-#include "msl_c/Math/Double_precision/s_copysign.h"
+#include "MSL_C/Math/Double_precision/s_copysign.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -27,6 +27,6 @@ extern "C" void copysign();
 #pragma optimizewithasm off
 asm void copysign() {
     nofralloc
-#include "asm/msl_c/Math/Double_precision/s_copysign/copysign.s"
+#include "asm/MSL_C/Math/Double_precision/s_copysign/copysign.s"
 }
 #pragma pop

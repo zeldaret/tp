@@ -3,7 +3,7 @@
 // Translation Unit: MSL_Common/Src/mem
 //
 
-#include "msl_c/MSL_Common/Src/mem.h"
+#include "MSL_C/MSL_Common/Src/mem.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -34,7 +34,7 @@ extern "C" void __copy_longs_aligned();
 #pragma optimizewithasm off
 asm int memcmp(const void*, const void*, size_t) {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/mem/memcmp.s"
+#include "asm/MSL_C/MSL_Common/Src/mem/memcmp.s"
 }
 #pragma pop
 
@@ -44,7 +44,7 @@ asm int memcmp(const void*, const void*, size_t) {
 #pragma optimizewithasm off
 asm void __memrchr() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/mem/__memrchr.s"
+#include "asm/MSL_C/MSL_Common/Src/mem/__memrchr.s"
 }
 #pragma pop
 
@@ -54,7 +54,7 @@ asm void __memrchr() {
 #pragma optimizewithasm off
 asm void memchr() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/mem/memchr.s"
+#include "asm/MSL_C/MSL_Common/Src/mem/memchr.s"
 }
 #pragma pop
 
@@ -64,6 +64,6 @@ asm void memchr() {
 #pragma optimizewithasm off
 asm void memmove() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/mem/memmove.s"
+#include "asm/MSL_C/MSL_Common/Src/mem/memmove.s"
 }
 #pragma pop

@@ -6,7 +6,7 @@
 #include "JSystem/JStudio/JStudio/functionvalue.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "msl_c/math.h"
+#include "MSL_C/math.h"
 
 //
 // Types:

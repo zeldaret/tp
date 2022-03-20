@@ -3,7 +3,7 @@
 // Translation Unit: MSL_Common/Src/scanf
 //
 
-#include "msl_c/MSL_Common/Src/scanf.h"
+#include "MSL_C/MSL_Common/Src/scanf.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -27,6 +27,6 @@ extern "C" void __StringRead();
 #pragma optimizewithasm off
 asm void __StringRead() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/scanf/__StringRead.s"
+#include "asm/MSL_C/MSL_Common/Src/scanf/__StringRead.s"
 }
 #pragma pop

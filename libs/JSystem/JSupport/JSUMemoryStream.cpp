@@ -4,7 +4,7 @@
 //
 
 #include "JSystem/JSupport/JSUMemoryStream.h"
-#include "msl_c/MSL_Common/Src/string.h"
+#include "MSL_C/MSL_Common/Src/string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

@@ -3,7 +3,7 @@
 // Translation Unit: MSL_Common/Src/direct_io
 //
 
-#include "msl_c/MSL_Common/Src/direct_io.h"
+#include "MSL_C/MSL_Common/Src/direct_io.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -38,7 +38,7 @@ extern "C" void fwide();
 #pragma optimizewithasm off
 asm void __fwrite() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/direct_io/__fwrite.s"
+#include "asm/MSL_C/MSL_Common/Src/direct_io/__fwrite.s"
 }
 #pragma pop
 
@@ -48,6 +48,6 @@ asm void __fwrite() {
 #pragma optimizewithasm off
 asm void fwrite() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/direct_io/fwrite.s"
+#include "asm/MSL_C/MSL_Common/Src/direct_io/fwrite.s"
 }
 #pragma pop

@@ -3,7 +3,7 @@
 // Translation Unit: Math/Double_precision/w_fmod
 //
 
-#include "msl_c/Math/Double_precision/w_fmod.h"
+#include "MSL_C/Math/Double_precision/w_fmod.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -29,6 +29,6 @@ extern "C" void __ieee754_fmod();
 #pragma optimizewithasm off
 asm void fmod() {
     nofralloc
-#include "asm/msl_c/Math/Double_precision/w_fmod/fmod.s"
+#include "asm/MSL_C/Math/Double_precision/w_fmod/fmod.s"
 }
 #pragma pop

@@ -3,7 +3,7 @@
 // Translation Unit: MSL_Common/Src/file_io
 //
 
-#include "msl_c/MSL_Common/Src/file_io.h"
+#include "MSL_C/MSL_Common/Src/file_io.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -35,7 +35,7 @@ extern "C" extern u8 __lower_map[256];
 #pragma optimizewithasm off
 asm void __msl_strnicmp() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/file_io/__msl_strnicmp.s"
+#include "asm/MSL_C/MSL_Common/Src/file_io/__msl_strnicmp.s"
 }
 #pragma pop
 
@@ -45,7 +45,7 @@ asm void __msl_strnicmp() {
 #pragma optimizewithasm off
 asm void fflush() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/file_io/fflush.s"
+#include "asm/MSL_C/MSL_Common/Src/file_io/fflush.s"
 }
 #pragma pop
 
@@ -55,6 +55,6 @@ asm void fflush() {
 #pragma optimizewithasm off
 asm void fclose() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/file_io/fclose.s"
+#include "asm/MSL_C/MSL_Common/Src/file_io/fclose.s"
 }
 #pragma pop

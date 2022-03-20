@@ -1,7 +1,7 @@
 #ifndef MSL_MATH_H_
 #define MSL_MATH_H_
 
-#include "msl_c/MSL_Common/Src/float.h"
+#include "MSL_C/MSL_Common/Src/float.h"
 #include "dolphin/types.h"
 
 extern "C" {

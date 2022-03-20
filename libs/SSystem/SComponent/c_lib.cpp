@@ -5,13 +5,13 @@
 
 #include "SSystem/SComponent/c_lib.h"
 #include "JSystem/JMath/JMath.h"
-#include "msl_c/MSL_Common/Src/string.h"
+#include "MSL_C/MSL_Common/Src/string.h"
 #include "SSystem/SComponent/c_math.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
-#include "msl_c/math.h"
+#include "MSL_C/math.h"
 
 //
 // Declarations:

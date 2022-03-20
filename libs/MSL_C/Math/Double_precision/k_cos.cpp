@@ -3,7 +3,7 @@
 // Translation Unit: Math/Double_precision/k_cos
 //
 
-#include "msl_c/Math/Double_precision/k_cos.h"
+#include "MSL_C/Math/Double_precision/k_cos.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -55,6 +55,6 @@ SECTION_SDATA2 static f64 lit_73 = 0.28125;
 #pragma optimizewithasm off
 asm void __kernel_cos() {
     nofralloc
-#include "asm/msl_c/Math/Double_precision/k_cos/__kernel_cos.s"
+#include "asm/MSL_C/Math/Double_precision/k_cos/__kernel_cos.s"
 }
 #pragma pop

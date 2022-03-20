@@ -3,7 +3,7 @@
 // Translation Unit: Math/Double_precision/e_fmod
 //
 
-#include "msl_c/Math/Double_precision/e_fmod.h"
+#include "MSL_C/Math/Double_precision/e_fmod.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -34,6 +34,6 @@ COMPILER_STRIP_GATE(0x803A2370, &Zero);
 #pragma optimizewithasm off
 asm void __ieee754_fmod() {
     nofralloc
-#include "asm/msl_c/Math/Double_precision/e_fmod/__ieee754_fmod.s"
+#include "asm/MSL_C/Math/Double_precision/e_fmod/__ieee754_fmod.s"
 }
 #pragma pop

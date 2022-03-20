@@ -7,8 +7,8 @@
 #include "JSystem/JKernel/JKRDvdFile.h"
 #include "JSystem/JKernel/JKRFileFinder.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "msl_c/MSL_Common/Src/ctype.h"
-#include "msl_c/MSL_Common/Src/string.h"
+#include "MSL_C/MSL_Common/Src/ctype.h"
+#include "MSL_C/MSL_Common/Src/string.h"
 #include "dol2asm.h"
 #include "global.h"
 

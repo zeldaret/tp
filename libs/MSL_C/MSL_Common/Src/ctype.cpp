@@ -3,7 +3,7 @@
 // Translation Unit: MSL_Common/Src/ctype
 //
 
-#include "msl_c/MSL_Common/Src/ctype.h"
+#include "MSL_C/MSL_Common/Src/ctype.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -68,7 +68,7 @@ SECTION_DATA extern u8 __lower_map[256] = {
 #pragma optimizewithasm off
 asm int tolower(int) {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/ctype/tolower.s"
+#include "asm/MSL_C/MSL_Common/Src/ctype/tolower.s"
 }
 #pragma pop
 

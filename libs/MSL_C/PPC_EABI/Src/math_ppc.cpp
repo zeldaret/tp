@@ -3,7 +3,7 @@
 // Translation Unit: PPC_EABI/Src/math_ppc
 //
 
-#include "msl_c/PPC_EABI/Src/math_ppc.h"
+#include "MSL_C/PPC_EABI/Src/math_ppc.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -35,7 +35,7 @@ extern "C" void acos();
 #pragma optimizewithasm off
 asm void tanf() {
     nofralloc
-#include "asm/msl_c/PPC_EABI/Src/math_ppc/tanf.s"
+#include "asm/MSL_C/PPC_EABI/Src/math_ppc/tanf.s"
 }
 #pragma pop
 
@@ -45,7 +45,7 @@ asm void tanf() {
 #pragma optimizewithasm off
 asm void sinf() {
     nofralloc
-#include "asm/msl_c/PPC_EABI/Src/math_ppc/sinf.s"
+#include "asm/MSL_C/PPC_EABI/Src/math_ppc/sinf.s"
 }
 #pragma pop
 
@@ -55,7 +55,7 @@ asm void sinf() {
 #pragma optimizewithasm off
 asm void cosf() {
     nofralloc
-#include "asm/msl_c/PPC_EABI/Src/math_ppc/cosf.s"
+#include "asm/MSL_C/PPC_EABI/Src/math_ppc/cosf.s"
 }
 #pragma pop
 
@@ -65,6 +65,6 @@ asm void cosf() {
 #pragma optimizewithasm off
 asm void acosf() {
     nofralloc
-#include "asm/msl_c/PPC_EABI/Src/math_ppc/acosf.s"
+#include "asm/MSL_C/PPC_EABI/Src/math_ppc/acosf.s"
 }
 #pragma pop

@@ -3,7 +3,7 @@
 // Translation Unit: MSL_Common/Src/alloc
 //
 
-#include "msl_c/MSL_Common/Src/alloc.h"
+#include "MSL_C/MSL_Common/Src/alloc.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -40,7 +40,7 @@ static u8 protopool[56];
 #pragma optimizewithasm off
 asm void free() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/alloc/free.s"
+#include "asm/MSL_C/MSL_Common/Src/alloc/free.s"
 }
 #pragma pop
 
@@ -50,7 +50,7 @@ asm void free() {
 #pragma optimizewithasm off
 asm void __pool_free() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/alloc/__pool_free.s"
+#include "asm/MSL_C/MSL_Common/Src/alloc/__pool_free.s"
 }
 #pragma pop
 
@@ -68,7 +68,7 @@ COMPILER_STRIP_GATE(0x803A2220, &fix_pool_sizes);
 #pragma optimizewithasm off
 static asm void deallocate_from_fixed_pools() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/alloc/deallocate_from_fixed_pools.s"
+#include "asm/MSL_C/MSL_Common/Src/alloc/deallocate_from_fixed_pools.s"
 }
 #pragma pop
 
@@ -78,6 +78,6 @@ static asm void deallocate_from_fixed_pools() {
 #pragma optimizewithasm off
 static asm void deallocate_from_var_pools() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/alloc/deallocate_from_var_pools.s"
+#include "asm/MSL_C/MSL_Common/Src/alloc/deallocate_from_var_pools.s"
 }
 #pragma pop

@@ -3,7 +3,7 @@
 // Translation Unit: Math/Double_precision/e_acos
 //
 
-#include "msl_c/Math/Double_precision/e_acos.h"
+#include "MSL_C/Math/Double_precision/e_acos.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -84,6 +84,6 @@ SECTION_SDATA2 static f64 lit_99 = 2.0;
 #pragma optimizewithasm off
 asm void __ieee754_acos() {
     nofralloc
-#include "asm/msl_c/Math/Double_precision/e_acos/__ieee754_acos.s"
+#include "asm/MSL_C/Math/Double_precision/e_acos/__ieee754_acos.s"
 }
 #pragma pop

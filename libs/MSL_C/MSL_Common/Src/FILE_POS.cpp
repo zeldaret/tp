@@ -3,7 +3,7 @@
 // Translation Unit: MSL_Common/Src/FILE_POS
 //
 
-#include "msl_c/MSL_Common/Src/FILE_POS.h"
+#include "MSL_C/MSL_Common/Src/FILE_POS.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -34,7 +34,7 @@ extern "C" extern u8 errno[4 + 4 /* padding */];
 #pragma optimizewithasm off
 asm void fseek() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/FILE_POS/fseek.s"
+#include "asm/MSL_C/MSL_Common/Src/FILE_POS/fseek.s"
 }
 #pragma pop
 
@@ -44,7 +44,7 @@ asm void fseek() {
 #pragma optimizewithasm off
 static asm void _fseek() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/FILE_POS/_fseek.s"
+#include "asm/MSL_C/MSL_Common/Src/FILE_POS/_fseek.s"
 }
 #pragma pop
 
@@ -54,6 +54,6 @@ static asm void _fseek() {
 #pragma optimizewithasm off
 asm void ftell() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/FILE_POS/ftell.s"
+#include "asm/MSL_C/MSL_Common/Src/FILE_POS/ftell.s"
 }
 #pragma pop

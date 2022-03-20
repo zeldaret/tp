@@ -3,7 +3,7 @@
 // Translation Unit: Math/Double_precision/e_exp
 //
 
-#include "msl_c/Math/Double_precision/e_exp.h"
+#include "MSL_C/Math/Double_precision/e_exp.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -99,6 +99,6 @@ SECTION_SDATA2 static f64 lit_131 = 4503601774854144.0 /* cast s32 to float */;
 #pragma optimizewithasm off
 asm void __ieee754_exp() {
     nofralloc
-#include "asm/msl_c/Math/Double_precision/e_exp/__ieee754_exp.s"
+#include "asm/MSL_C/Math/Double_precision/e_exp/__ieee754_exp.s"
 }
 #pragma pop

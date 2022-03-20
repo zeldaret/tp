@@ -4,7 +4,7 @@
 //
 
 #include "JSystem/JUtility/JUTDirectPrint.h"
-#include "msl_c/MSL_Common/Src/printf.h"
+#include "MSL_C/MSL_Common/Src/printf.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSCache.h"

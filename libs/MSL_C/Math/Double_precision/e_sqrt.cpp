@@ -3,7 +3,7 @@
 // Translation Unit: Math/Double_precision/e_sqrt
 //
 
-#include "msl_c/Math/Double_precision/e_sqrt.h"
+#include "MSL_C/Math/Double_precision/e_sqrt.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -34,6 +34,6 @@ SECTION_SDATA2 static f64 lit_164 = 1.0;
 #pragma optimizewithasm off
 asm void __ieee754_sqrt() {
     nofralloc
-#include "asm/msl_c/Math/Double_precision/e_sqrt/__ieee754_sqrt.s"
+#include "asm/MSL_C/Math/Double_precision/e_sqrt/__ieee754_sqrt.s"
 }
 #pragma pop

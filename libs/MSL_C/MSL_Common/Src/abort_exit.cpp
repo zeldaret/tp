@@ -3,7 +3,7 @@
 // Translation Unit: MSL_Common/Src/abort_exit
 //
 
-#include "msl_c/MSL_Common/Src/abort_exit.h"
+#include "MSL_C/MSL_Common/Src/abort_exit.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -54,7 +54,7 @@ static u8 __console_exit[4];
 #pragma optimizewithasm off
 asm void exit() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/abort_exit/exit.s"
+#include "asm/MSL_C/MSL_Common/Src/abort_exit/exit.s"
 }
 #pragma pop
 
@@ -64,7 +64,7 @@ asm void exit() {
 #pragma optimizewithasm off
 asm void abort() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/abort_exit/abort.s"
+#include "asm/MSL_C/MSL_Common/Src/abort_exit/abort.s"
 }
 #pragma pop
 

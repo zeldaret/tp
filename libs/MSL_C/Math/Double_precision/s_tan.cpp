@@ -3,7 +3,7 @@
 // Translation Unit: Math/Double_precision/s_tan
 //
 
-#include "msl_c/Math/Double_precision/s_tan.h"
+#include "MSL_C/Math/Double_precision/s_tan.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -36,6 +36,6 @@ SECTION_SDATA2 static u8 lit_58[8] = {
 #pragma optimizewithasm off
 asm void tan() {
     nofralloc
-#include "asm/msl_c/Math/Double_precision/s_tan/tan.s"
+#include "asm/MSL_C/Math/Double_precision/s_tan/tan.s"
 }
 #pragma pop

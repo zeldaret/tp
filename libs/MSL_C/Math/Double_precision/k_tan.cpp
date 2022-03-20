@@ -3,7 +3,7 @@
 // Translation Unit: Math/Double_precision/k_tan
 //
 
-#include "msl_c/Math/Double_precision/k_tan.h"
+#include "MSL_C/Math/Double_precision/k_tan.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -63,6 +63,6 @@ SECTION_SDATA2 static f64 lit_101 = 4503601774854144.0 /* cast s32 to float */;
 #pragma optimizewithasm off
 asm void __kernel_tan() {
     nofralloc
-#include "asm/msl_c/Math/Double_precision/k_tan/__kernel_tan.s"
+#include "asm/MSL_C/Math/Double_precision/k_tan/__kernel_tan.s"
 }
 #pragma pop

@@ -3,7 +3,7 @@
 // Translation Unit: MSL_Common/Src/char_io
 //
 
-#include "msl_c/MSL_Common/Src/char_io.h"
+#include "MSL_C/MSL_Common/Src/char_io.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -35,7 +35,7 @@ extern "C" void fwide();
 #pragma optimizewithasm off
 asm int fputs(const char*, FILE*) {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/char_io/fputs.s"
+#include "asm/MSL_C/MSL_Common/Src/char_io/fputs.s"
 }
 #pragma pop
 
@@ -45,6 +45,6 @@ asm int fputs(const char*, FILE*) {
 #pragma optimizewithasm off
 asm void __put_char() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/char_io/__put_char.s"
+#include "asm/MSL_C/MSL_Common/Src/char_io/__put_char.s"
 }
 #pragma pop

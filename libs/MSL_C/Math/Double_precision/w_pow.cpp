@@ -3,7 +3,7 @@
 // Translation Unit: Math/Double_precision/w_pow
 //
 
-#include "msl_c/Math/Double_precision/w_pow.h"
+#include "MSL_C/Math/Double_precision/w_pow.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -29,6 +29,6 @@ extern "C" void __ieee754_pow();
 #pragma optimizewithasm off
 asm void pow() {
     nofralloc
-#include "asm/msl_c/Math/Double_precision/w_pow/pow.s"
+#include "asm/MSL_C/Math/Double_precision/w_pow/pow.s"
 }
 #pragma pop

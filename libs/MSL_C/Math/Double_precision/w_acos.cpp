@@ -3,7 +3,7 @@
 // Translation Unit: Math/Double_precision/w_acos
 //
 
-#include "msl_c/Math/Double_precision/w_acos.h"
+#include "MSL_C/Math/Double_precision/w_acos.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -29,6 +29,6 @@ extern "C" void __ieee754_acos();
 #pragma optimizewithasm off
 asm void acos() {
     nofralloc
-#include "asm/msl_c/Math/Double_precision/w_acos/acos.s"
+#include "asm/MSL_C/Math/Double_precision/w_acos/acos.s"
 }
 #pragma pop

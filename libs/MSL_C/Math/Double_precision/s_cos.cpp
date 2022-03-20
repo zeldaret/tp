@@ -3,7 +3,7 @@
 // Translation Unit: Math/Double_precision/s_cos
 //
 
-#include "msl_c/Math/Double_precision/s_cos.h"
+#include "MSL_C/Math/Double_precision/s_cos.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -37,6 +37,6 @@ SECTION_SDATA2 static u8 lit_67[8] = {
 #pragma optimizewithasm off
 asm void cos() {
     nofralloc
-#include "asm/msl_c/Math/Double_precision/s_cos/cos.s"
+#include "asm/MSL_C/Math/Double_precision/s_cos/cos.s"
 }
 #pragma pop

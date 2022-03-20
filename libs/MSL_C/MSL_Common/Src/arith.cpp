@@ -3,7 +3,7 @@
 // Translation Unit: MSL_Common/Src/arith
 //
 
-#include "msl_c/MSL_Common/Src/arith.h"
+#include "MSL_C/MSL_Common/Src/arith.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -28,7 +28,7 @@ extern "C" void abs();
 #pragma optimizewithasm off
 asm void div() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/arith/div.s"
+#include "asm/MSL_C/MSL_Common/Src/arith/div.s"
 }
 #pragma pop
 
@@ -38,6 +38,6 @@ asm void div() {
 #pragma optimizewithasm off
 asm void abs() {
     nofralloc
-#include "asm/msl_c/MSL_Common/Src/arith/abs.s"
+#include "asm/MSL_C/MSL_Common/Src/arith/abs.s"
 }
 #pragma pop

@@ -3,7 +3,7 @@
 // Translation Unit: Math/Double_precision/k_sin
 //
 
-#include "msl_c/Math/Double_precision/k_sin.h"
+#include "MSL_C/Math/Double_precision/k_sin.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -49,6 +49,6 @@ SECTION_SDATA2 static f64 lit_66 = 0.5;
 #pragma optimizewithasm off
 asm void __kernel_sin() {
     nofralloc
-#include "asm/msl_c/Math/Double_precision/k_sin/__kernel_sin.s"
+#include "asm/MSL_C/Math/Double_precision/k_sin/__kernel_sin.s"
 }
 #pragma pop
