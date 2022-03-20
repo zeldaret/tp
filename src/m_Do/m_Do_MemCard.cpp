@@ -4,12 +4,12 @@
 //
 
 #include "m_Do/m_Do_MemCard.h"
-#include "m_Do/m_Do_Reset.h"
-#include "m_Do/m_Do_Ext.h"
-#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/string.h"
 #include "JSystem/JKernel/JKRThread.h"
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "m_Do/m_Do_Ext.h"
+#include "m_Do/m_Do_Reset.h"
 
 //
 // Forward References:
@@ -83,7 +83,8 @@ void mDoMemCd_Ctrl_c::ThdInit() {
     OSInitCond(&mCond);
 
     int priority = OSGetThreadPriority(OSGetCurrentThread());
-    OSCreateThread(&MemCardThread, mDoMemCd_main, NULL, MemCardStack + sizeof(MemCardStack), sizeof(MemCardStack), priority + 1, 1);
+    OSCreateThread(&MemCardThread, mDoMemCd_main, NULL, MemCardStack + sizeof(MemCardStack),
+                   sizeof(MemCardStack), priority + 1, 1);
     OSResumeThread(&MemCardThread);
 }
 
@@ -226,7 +227,7 @@ void mDoMemCd_Ctrl_c::store() {
             setCardState(card_state);
         }
     }
-    
+
     if (mCardState == 1) {
         card_state = CARDOpen(mChannel, "gczelda2", &file);
         if (card_state == CARD_ERROR_READY) {
@@ -539,9 +540,7 @@ mDoMemCd_Ctrl_c g_mDoMemCd_control;
 
 /* 8001741C-80017470 011D5C 0054+00 1/1 0/0 0/0 .text            mDoMemCd_main__FPv */
 static int mDoMemCd_main(void*) {
-    {
-    JKRThread thread(OSGetCurrentThread(), 0);
-    }
+    { JKRThread thread(OSGetCurrentThread(), 0); }
 
     mDoExt_getAssertHeap()->becomeCurrentHeap();
 

@@ -1,9 +1,9 @@
 #ifndef MTX_H
 #define MTX_H
 
+#include "dolphin/mtx/mtx44.h"
 #include "dolphin/mtx/quat.h"
 #include "dolphin/mtx/vec.h"
-#include "dolphin/mtx/mtx44.h"
 #include "dolphin/types.h"
 
 typedef f32 Mtx[3][4];
@@ -34,10 +34,10 @@ void PSMTXMultVecSR(const Mtx m, const Vec* src, Vec* dst);
 void PSMTXMultVecArraySR(const Mtx m, const Vec* srcBase, Vec* dstBase, u32 count);
 
 void C_MTXLookAt(Mtx m, const Vec* camPos, const Vec* camUp, const Vec* target);
-void C_MTXLightPerspective(Mtx m, f32 fovY, f32 aspect, f32 scale_s, f32 scale_t,
-                           f32 trans_s, f32 trans_t);
-void C_MTXLightOrtho(Mtx m, f32 top, f32 bottom, f32 left, f32 right, f32 scale_s,
-                     f32 scale_t, f32 trans_s, f32 trans_t);
+void C_MTXLightPerspective(Mtx m, f32 fovY, f32 aspect, f32 scale_s, f32 scale_t, f32 trans_s,
+                           f32 trans_t);
+void C_MTXLightOrtho(Mtx m, f32 top, f32 bottom, f32 left, f32 right, f32 scale_s, f32 scale_t,
+                     f32 trans_s, f32 trans_t);
 }
 
 #endif /* MTX_H */

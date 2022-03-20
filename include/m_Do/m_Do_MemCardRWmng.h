@@ -1,8 +1,8 @@
 #ifndef M_DO_M_DO_MEMCARDRWMNG_H
 #define M_DO_M_DO_MEMCARDRWMNG_H
 
-#include "dolphin/types.h"
 #include "dolphin/card/card.h"
+#include "dolphin/types.h"
 
 struct mDoMemCdRWm_HeaderData {
     /* 0x0000 */ u8 mBannerTexData[0xC00];

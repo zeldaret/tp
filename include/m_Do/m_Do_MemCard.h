@@ -3,8 +3,8 @@
 
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
-#include "m_Do/m_Do_MemCardRWmng.h"
 #include "global.h"
+#include "m_Do/m_Do_MemCardRWmng.h"
 
 class mDoMemCd_Ctrl_c {
 public:

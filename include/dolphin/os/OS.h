@@ -158,7 +158,7 @@ s32 OSSuspendThread(OSThread* thread);
 s32 OSSetThreadPriority(OSThread* thread, u32 pri);
 s32 OSGetThreadPriority(OSThread* thread);
 BOOL OSCreateThread(OSThread* thread, void* func, void* param, void* stack, u32 stackSize,
-                   int priority, int attr);
+                    int priority, int attr);
 void OSCancelThread(OSThread* thread);
 void OSDetachThread(OSThread* thread);
 s32 OSResumeThread(OSThread* thread);

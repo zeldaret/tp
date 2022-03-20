@@ -4,18 +4,12 @@
 //
 
 #include "m_Do/m_Do_MemCardRWmng.h"
-#include "m_Do/m_Do_MemCard.h"
-#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/string.h"
 #include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf.h"
+#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/string.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-
+#include "m_Do/m_Do_MemCard.h"
 
 //
 // Forward References:
@@ -77,9 +71,11 @@ void mDoMemCdRWm_Store(CARDFileInfo* file, void* data, u32 length) {
         u32 checksum = mDoMemCdRWm_CalcCheckSum(sTmpBuf, 0x1FFC);
         *(u32*)(sTmpBuf + 0x1FFC) = checksum;
 
-        if (CARDWrite(file, sTmpBuf, sizeof(sTmpBuf) / 2, 0x4000) == CARD_ERROR_READY && CARDRead(file, sTmpBuf, sizeof(sTmpBuf) / 2, 0x4000) == CARD_ERROR_READY) {
+        if (CARDWrite(file, sTmpBuf, sizeof(sTmpBuf) / 2, 0x4000) == CARD_ERROR_READY &&
+            CARDRead(file, sTmpBuf, sizeof(sTmpBuf) / 2, 0x4000) == CARD_ERROR_READY) {
             if (checksum == mDoMemCdRWm_CalcCheckSum(sTmpBuf, 0x1FFC)) {
-                if (CARDWrite(file, sTmpBuf, sizeof(sTmpBuf) / 2, 0x6000) == CARD_ERROR_READY && CARDRead(file, sTmpBuf, sizeof(sTmpBuf) / 2, 0x6000) == CARD_ERROR_READY) {
+                if (CARDWrite(file, sTmpBuf, sizeof(sTmpBuf) / 2, 0x6000) == CARD_ERROR_READY &&
+                    CARDRead(file, sTmpBuf, sizeof(sTmpBuf) / 2, 0x6000) == CARD_ERROR_READY) {
                     if (checksum == mDoMemCdRWm_CalcCheckSum(sTmpBuf, 0x1FFC)) {
                         mDoMemCdRWm_SetCardStat(file);
                     }
@@ -116,17 +112,22 @@ static void mDoMemCdRWm_BuildHeader(mDoMemCdRWm_HeaderData* header) {
 
     OSCalendarTime time;
     OSTicksToCalendarTime(OSGetTime(), &time);
-    snprintf(header->mComment, sizeof(header->mComment), "%d/%d Save Data", time.month + 1, time.day_of_month);
+    snprintf(header->mComment, sizeof(header->mComment), "%d/%d Save Data", time.month + 1,
+             time.day_of_month);
 
-    ResTIMG* banner_data = (ResTIMG*)g_dComIfG_gameInfo.play.mCardIconResArchive->getResource("zelda2_gc_banner.bti");
-    ResTIMG* icon_data = (ResTIMG*)g_dComIfG_gameInfo.play.mCardIconResArchive->getResource("zelda2_gc_icon.bti");
+    ResTIMG* banner_data =
+        (ResTIMG*)g_dComIfG_gameInfo.play.mCardIconResArchive->getResource("zelda2_gc_banner.bti");
+    ResTIMG* icon_data =
+        (ResTIMG*)g_dComIfG_gameInfo.play.mCardIconResArchive->getResource("zelda2_gc_icon.bti");
 
-    memcpy(header->mBannerTexData, (u8*)banner_data + banner_data->texDataOffset, (banner_data->paletteCount * 2) + 0xC00);
+    memcpy(header->mBannerTexData, (u8*)banner_data + banner_data->texDataOffset,
+           (banner_data->paletteCount * 2) + 0xC00);
     memcpy(header->mIconTexData0, (u8*)icon_data + icon_data->texDataOffset, 0x400);
     memcpy(header->mIconTexData1, (u8*)icon_data + icon_data->texDataOffset, 0x400);
     memcpy(header->mIconTexData2, (u8*)icon_data + icon_data->texDataOffset, 0x400);
     memcpy(header->mIconTexData3, (u8*)icon_data + icon_data->texDataOffset, 0x400);
-    memcpy(header->mIconTexData4, (u8*)icon_data + icon_data->texDataOffset, (icon_data->paletteCount * 2) + 0x400);
+    memcpy(header->mIconTexData4, (u8*)icon_data + icon_data->texDataOffset,
+           (icon_data->paletteCount * 2) + 0x400);
     g_dComIfG_gameInfo.play.mCardIconResArchive->removeResourceAll();
 }
 
