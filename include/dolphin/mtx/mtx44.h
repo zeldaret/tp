@@ -6,10 +6,9 @@
 typedef float Mtx44[4][4];
 
 extern "C" {
-
-void C_MTXPerspective(Mtx44 matrix, float fov_y, float aspect, float near, float far);
-void C_MTXOrtho(Mtx44 matrix, float top, float bottom, float left, float right, float near,
-                float far);
+void C_MTXPerspective(Mtx44 m, f32 fovy, f32 aspect, f32 near, f32 far);
+void C_MTXOrtho(Mtx44 m, f32 top, f32 bottom, f32 left, f32 right, f32 near,
+                f32 far);
 }
 
 #endif /* MTX44_H */
