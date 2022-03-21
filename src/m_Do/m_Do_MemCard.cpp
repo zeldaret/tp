@@ -5,7 +5,7 @@
 
 #include "m_Do/m_Do_MemCard.h"
 #include "JSystem/JKernel/JKRThread.h"
-#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/string.h"
+#include "MSL_C/MSL_Common/Src/string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_Ext.h"
