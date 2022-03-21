@@ -139,8 +139,8 @@ J2DTevBlock4                    | 180
 J2DTevBlock8                    | 292
 J2DTevBlock16                   | 436
 J2DTexMtx                       | 84
-J2DTextbox                      | 312
-J2DTextboxEx                    | 328
+J2DTextBox                      | 312
+J2DTextBoxEx                    | 328
 J2DWindow                       | 328
 J2DWindowEx                     | 384
 J3DAnmClusterFull               | 20

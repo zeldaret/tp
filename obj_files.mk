@@ -280,7 +280,7 @@ LIBS := \
 	$(BUILD_DIR)/libgx.a \
 	$(BUILD_DIR)/libgd.a \
 	$(BUILD_DIR)/libRuntime.PPCEABI.H.a \
-	$(BUILD_DIR)/libMSL_C.PPCEABI.bare.H.a \
+	$(BUILD_DIR)/libMSL_C.a \
 	$(BUILD_DIR)/libTRK_MINNOW_DOLPHIN.a \
 	$(BUILD_DIR)/libamcstubs.a \
 	$(BUILD_DIR)/libodemuexi2.a \

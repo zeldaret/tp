@@ -5,8 +5,8 @@
 
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "MSL_C.PPCEABI.bare.H/MSL_Common/src/ctype.h"
-#include "MSL_C.PPCEABI.bare.H/MSL_Common/src/string.h"
+#include "MSL_C/MSL_Common/Src/ctype.h"
+#include "MSL_C/MSL_Common/Src/string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

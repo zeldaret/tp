@@ -5,7 +5,7 @@
 
 #include "JSystem/J3DGraphBase/J3DShapeDraw.h"
 #include "dol2asm.h"
-#include "dolphin/gx/gx.h"
+#include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 
 //

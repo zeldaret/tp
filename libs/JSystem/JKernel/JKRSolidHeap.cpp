@@ -7,7 +7,7 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "dol2asm.h"
 #include "global.h"
-#include "msl_c/math.h"
+#include "MSL_C/math.h"
 
 //
 // Forward References:
