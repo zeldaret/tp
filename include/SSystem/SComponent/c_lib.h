@@ -4,7 +4,7 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
-#include "msl_c/math.h"
+#include "MSL_C/math.h"
 
 inline bool cLib_IsZero(f32 f) {
     return fabsf(f) < 8e-11f;

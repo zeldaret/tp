@@ -7,7 +7,7 @@
 // #include "JSystem/JMath/JMATrigonometric.h"
 #include "dol2asm.h"
 #include "global.h"
-#include "msl_c/math.h"
+#include "MSL_C/math.h"
 
 namespace std {
 template <typename A1, typename B1>

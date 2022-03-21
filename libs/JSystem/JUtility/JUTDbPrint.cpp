@@ -6,8 +6,8 @@
 #include "JSystem/JUtility/JUTDbPrint.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "JSystem/JUtility/JUTVideo.h"
-#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf.h"
-#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/string.h"
+#include "MSL_C/MSL_Common/Src/printf.h"
+#include "MSL_C/MSL_Common/Src/string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

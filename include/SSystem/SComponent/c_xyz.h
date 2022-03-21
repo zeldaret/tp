@@ -3,7 +3,7 @@
 
 #include "dolphin/mtx/vec.h"
 #include "global.h"
-#include "msl_c/math.h"
+#include "MSL_C/math.h"
 
 struct cXyz : Vec {
     static const cXyz Zero;

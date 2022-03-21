@@ -15,7 +15,7 @@
 #include "f_op/f_op_kankyo_mng.h"
 #include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_ext.h"
-#include "m_Do/m_Do_reset.h"
+#include "m_Do/m_Do_Reset.h"
 
 //
 // Forward References:
