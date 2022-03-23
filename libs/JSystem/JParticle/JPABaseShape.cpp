@@ -114,7 +114,6 @@ extern "C" void setGX__12JPABaseShapeCFP18JPAEmitterWorkData();
 extern "C" void func_8027EEB0();
 extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
 extern "C" void load__10JUTTextureF11_GXTexMapID();
-extern "C" void PSMTXMultVecArraySR();
 extern "C" void _savegpr_22();
 extern "C" void _savegpr_24();
 extern "C" void _savegpr_28();
