@@ -4,9 +4,7 @@ This repo contains a WIP decompilation of The Legend of Zelda: Twilight Princess
 
 <!--ts-->
 * [Project Setup](#project-setup)
-* [Building The Game](#build-game)  
-* [Extract Game Assets](#extract-game-assets)
-* [Create Expected Directory](#create-expected-directory)
+* [Building The Game](#building-the-game)  
 * [Clean Directories](#clean-directories)
 * [Project Overview](#project-overview)
 * [Contributing](./docs/Contributing.md)
@@ -78,7 +76,7 @@ $ make assets
 
 Create Expected Directory
 
-1. [Build the DOL](#build-dol)
+1. Run `make`
 2. Run:
 
 ```bash

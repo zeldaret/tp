@@ -4,7 +4,7 @@ Ghidra Setup
 -----
 1. Install [Java 11 64-bit Runtime and Development Kit](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html).
 2. Download Ghidra from [here](https://github.com/NationalSecurityAgency/ghidra/releases).
-3. Request an account from Pheenoh#0001 on Discord (either ping him in one of the [Discord](https://discord.gg/Nshw5pHS4h) channeld or DM directly).
+3. Request an account from Pheenoh#0001 on Discord (either ping him in one of the [Discord](https://discord.gg/Nshw5pHS4h) channels or DM directly).
 4. Login using the following server info:  
 
 ```
