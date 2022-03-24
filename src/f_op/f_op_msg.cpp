@@ -4,6 +4,8 @@
 //
 
 #include "f_op/f_op_msg.h"
+#include "d/msg/d_msg_class.h"
+#include "d/s/d_s_play.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -32,55 +34,54 @@ extern "C" void fpcMtd_Execute__FP20process_method_classPv();
 extern "C" void fpcMtd_IsDelete__FP20process_method_classPv();
 extern "C" void fpcMtd_Delete__FP20process_method_classPv();
 extern "C" void fpcMtd_Create__FP20process_method_classPv();
-extern "C" extern u8 struct_80451124[4];
 
 //
 // Declarations:
 //
 
 /* 8001F488-8001F4B0 019DC8 0028+00 1/0 0/0 0/0 .text            fopMsg_Draw__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int fopMsg_Draw(void* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_msg/fopMsg_Draw__FPv.s"
+static int fopMsg_Draw(void* msg) {
+    msg_class* m = static_cast<msg_class*>(msg);
+    return fpcLf_DrawMethod(m->field_0xd8, msg);
 }
-#pragma pop
 
 /* 8001F4B0-8001F4E8 019DF0 0038+00 1/0 0/0 0/0 .text            fopMsg_Execute__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int fopMsg_Execute(void* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_msg/fopMsg_Execute__FPv.s"
+static int fopMsg_Execute(void* msg) {
+    msg_class* m = static_cast<msg_class*>(msg);
+
+    int stat = 1;
+    if (dScnPly_c::isPause()) {
+        stat = fpcMtd_Execute(&m->field_0xd8->mBase, msg);
+    }
+
+    return stat;
 }
-#pragma pop
 
 /* 8001F4E8-8001F53C 019E28 0054+00 1/0 0/0 0/0 .text            fopMsg_IsDelete__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int fopMsg_IsDelete(void* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_msg/fopMsg_IsDelete__FPv.s"
+static int fopMsg_IsDelete(void* msg) {
+    msg_class* m = static_cast<msg_class*>(msg);
+
+    int stat = fpcMtd_IsDelete(&m->field_0xd8->mBase, msg);
+    if (stat == 1) {
+        fopDwTg_DrawQTo(&m->field_0xc4);
+    }
+
+    return stat;
 }
-#pragma pop
 
 /* 8001F53C-8001F588 019E7C 004C+00 1/0 0/0 0/0 .text            fopMsg_Delete__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int fopMsg_Delete(void* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_msg/fopMsg_Delete__FPv.s"
+static int fopMsg_Delete(void* msg) {
+    msg_class* m = static_cast<msg_class*>(msg);
+
+    int stat = fpcMtd_Delete(&m->field_0xd8->mBase, msg);
+    fopDwTg_DrawQTo(&m->field_0xc4);
+
+    return stat;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450CF0-80450CF8 0001F0 0004+04 1/1 0/0 0/0 .sbss            fopMsg_MSG_TYPE */
-static u8 fopMsg_MSG_TYPE[4 + 4 /* padding */];
+static int fopMsg_MSG_TYPE;
 
 /* 8001F588-8001F660 019EC8 00D8+00 1/0 0/0 0/0 .text            fopMsg_Create__FPv */
 #pragma push

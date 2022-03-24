@@ -6,6 +6,7 @@
 #include "f_op/f_op_overlap.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_overlap_mng.h"
 
 //
 // Forward References:
@@ -34,44 +35,28 @@ extern "C" void cReq_Create__FP18request_base_classUc();
 //
 
 /* 8001E37C-8001E3A4 018CBC 0028+00 1/0 0/0 0/0 .text            fopOvlp_Draw__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void fopOvlp_Draw(void* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_overlap/fopOvlp_Draw__FPv.s"
+static s32 fopOvlp_Draw(void* ovlp) {
+    overlap_task_class* overlap = (overlap_task_class*)ovlp;
+    return fpcLf_DrawMethod(overlap->field_0xc0, ovlp);
 }
-#pragma pop
 
 /* 8001E3A4-8001E3CC 018CE4 0028+00 1/0 0/0 0/0 .text            fopOvlp_Execute__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void fopOvlp_Execute(void* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_overlap/fopOvlp_Execute__FPv.s"
+static s32 fopOvlp_Execute(void* ovlp) {
+    overlap_task_class* overlap = (overlap_task_class*)ovlp;
+    return fpcMtd_Execute(&overlap->field_0xc0->mBase, ovlp);
 }
-#pragma pop
 
 /* 8001E3CC-8001E3F4 018D0C 0028+00 1/0 0/0 0/0 .text            fopOvlp_IsDelete__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void fopOvlp_IsDelete(void* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_overlap/fopOvlp_IsDelete__FPv.s"
+static s32 fopOvlp_IsDelete(void* ovlp) {
+    overlap_task_class* overlap = (overlap_task_class*)ovlp;
+    return fpcMtd_IsDelete(&overlap->field_0xc0->mBase, ovlp);
 }
-#pragma pop
 
 /* 8001E3F4-8001E41C 018D34 0028+00 1/0 0/0 0/0 .text            fopOvlp_Delete__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void fopOvlp_Delete(void* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_overlap/fopOvlp_Delete__FPv.s"
+static s32 fopOvlp_Delete(void* ovlp) {
+    overlap_task_class* overlap = (overlap_task_class*)ovlp;
+    return fpcMtd_Delete(&overlap->field_0xc0->mBase, ovlp);
 }
-#pragma pop
 
 /* 8001E41C-8001E484 018D5C 0068+00 1/0 0/0 0/0 .text            fopOvlp_Create__FPv */
 #pragma push

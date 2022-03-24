@@ -9,10 +9,10 @@
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "JSystem/JKernel/JKRFile.h"
 #include "MSL_C/MSL_Common/Src/string.h"
+#include "MSL_C/math.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
 #include "dolphin/types.h"
-#include "MSL_C/math.h"
 
 //
 // Types:

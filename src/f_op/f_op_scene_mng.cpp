@@ -15,8 +15,8 @@
 //
 
 /* 8001ECB0-8001ECE0 0195F0 0030+00 0/0 7/7 1/1 .text            fopScnM_SearchByID__FUi */
-void* fopScnM_SearchByID(unsigned int id) {
-    return fopScnIt_Judge((fop_ScnItFunc)fpcSch_JudgeByID, &id);
+scene_class* fopScnM_SearchByID(unsigned int id) {
+    return (scene_class*)fopScnIt_Judge((fop_ScnItFunc)fpcSch_JudgeByID, &id);
 }
 
 /* ############################################################################################## */

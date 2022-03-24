@@ -123,7 +123,7 @@ public:
     /* 802381FC */ void setStatus(u16);
     /* 8023822C */ static u16 getStatus();
     /* 80238258 */ void getScrnDrawPtr();
-    /* 8023826C */ void setTalkActor(fopAc_ac_c*);
+    /* 8023826C */ static void setTalkActor(fopAc_ac_c*);
     /* 8023829C */ void onMsgSendControl();
     /* 802382C8 */ void offMsgSendControl();
     /* 802382F4 */ static int isMsgSendControl();
@@ -271,6 +271,12 @@ inline void dMsgObject_setShopWaitTimer(u8 timer) {
 
 inline void dMsgObject_changeFlowGroup(long flow) {
     dMsgObject_c::changeFlowGroup(flow);
+}
+
+inline void dMsgObject_setTalkActor(fopAc_ac_c* actor) {
+    if (dMsgObject_getMsgObjectClass() != NULL) {
+        dMsgObject_c::setTalkActor(actor);
+    }
 }
 
 #endif /* D_MSG_D_MSG_OBJECT_H */

@@ -3,10 +3,12 @@
 
 #include "SSystem/SComponent/c_request.h"
 #include "dolphin/types.h"
+#include "f_pc/f_pc_leaf.h"
 
 class overlap_task_class {
 public:
-    /* 0x00 */ u8 field_0x00[0xC4];
+    /* 0x00 */ u8 field_0x00[0xC0];
+    /* 0xC0 */ leafdraw_method_class* field_0xc0;
     /* 0xC4 */ u8 field_0xc4;
 };
 

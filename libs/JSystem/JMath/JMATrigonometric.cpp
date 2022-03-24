@@ -5,9 +5,9 @@
 
 // don't include header until this "zero" mess is figured out
 // #include "JSystem/JMath/JMATrigonometric.h"
+#include "MSL_C/math.h"
 #include "dol2asm.h"
 #include "global.h"
-#include "MSL_C/math.h"
 
 namespace std {
 template <typename A1, typename B1>

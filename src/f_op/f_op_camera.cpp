@@ -4,6 +4,8 @@
 //
 
 #include "f_op/f_op_camera.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/s/d_s_play.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_draw_tag.h"
@@ -33,40 +35,26 @@ extern "C" void fpcMtd_Execute__FP20process_method_classPv();
 extern "C" void fpcMtd_IsDelete__FP20process_method_classPv();
 extern "C" void fpcMtd_Delete__FP20process_method_classPv();
 extern "C" void fpcMtd_Create__FP20process_method_classPv();
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 struct_80451124[4];
 
 //
 // Declarations:
 //
 
 /* 8001E140-8001E180 018A80 0040+00 1/0 0/0 0/0 .text            fopCam_Draw__FP12camera_class */
-#if 0
-// TODO: move dComIfG
 static s32 fopCam_Draw(camera_class* pCamera) {
-    s32 tmp = 1;
+    s32 cam_proc = 1;
 
-    if (g_dComIfG_gameInfo.getPlay().isPauseFlag() == false) {
-        tmp = fpcLf_DrawMethod(pCamera->pMthd, pCamera);
+    if (!dComIfGp_isPauseFlag()) {
+        cam_proc = fpcLf_DrawMethod(pCamera->pMthd, pCamera);
     }
-    return tmp;
+    return cam_proc;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm s32 fopCam_Draw(camera_class* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_camera/fopCam_Draw__FP12camera_class.s"
-}
-#pragma pop
-#endif
 
 /* 8001E180-8001E1C8 018AC0 0048+00 1/0 0/0 0/0 .text            fopCam_Execute__FP12camera_class */
 // Matches, but wrong registers
 #ifdef NONMATCHING
 static void fopCam_Execute(camera_class* pCamera) {
-    if (!g_dComIfG_gameInfo.getPlay().isPauseFlag() && !lbl_80451124) {
+    if (!dComIfGp_isPauseFlag() && dScnPly_c::isPause()) {
         fpcMtd_Execute((process_method_class*)pCamera->pMthd, pCamera);
     }
 }
@@ -84,22 +72,22 @@ static asm void fopCam_Execute(camera_class* param_0) {
 /* 8001E1C8-8001E21C 018B08 0054+00 1/0 0/0 0/0 .text            fopCam_IsDelete__FP12camera_class
  */
 int fopCam_IsDelete(camera_class* pCamera) {
-    int tmp = fpcMtd_IsDelete((process_method_class*)pCamera->pMthd, pCamera);
-    if (tmp == 1) {
+    int delete_stat = fpcMtd_IsDelete((process_method_class*)pCamera->pMthd, pCamera);
+    if (delete_stat == 1) {
         fopDwTg_DrawQTo(&pCamera->pCreateTag);
     }
 
-    return tmp;
+    return delete_stat;
 }
 
 /* 8001E21C-8001E270 018B5C 0054+00 1/0 0/0 0/0 .text            fopCam_Delete__FP12camera_class */
 int fopCam_Delete(camera_class* pCamera) {
-    int tmp = fpcMtd_Delete((process_method_class*)pCamera->pMthd, pCamera);
-    if (tmp == 1) {
+    int delete_stat = fpcMtd_Delete((process_method_class*)pCamera->pMthd, pCamera);
+    if (delete_stat == 1) {
         fopDwTg_DrawQTo(&pCamera->pCreateTag);
     }
 
-    return tmp;
+    return delete_stat;
 }
 
 /* 8001E270-8001E308 018BB0 0098+00 1/0 0/0 0/0 .text            fopCam_Create__FPv */

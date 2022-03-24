@@ -36,7 +36,6 @@ extern "C" void cM_atan2s__Fff();
 extern "C" void cM_rndFX__Ff();
 extern "C" void _savegpr_25();
 extern "C" void _restgpr_25();
-extern "C" extern u8 struct_80451124[4];
 
 //
 // Declarations:
