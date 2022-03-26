@@ -1,9 +1,9 @@
 #ifndef C_XYZ_H
 #define C_XYZ_H
 
+#include "MSL_C/math.h"
 #include "dolphin/mtx/vec.h"
 #include "global.h"
-#include "MSL_C/math.h"
 
 struct cXyz : Vec {
     static const cXyz Zero;

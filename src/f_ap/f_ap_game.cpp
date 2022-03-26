@@ -28,8 +28,8 @@ fapGm_HIO_c::fapGm_HIO_c()
     mDisplayProcessID = false;
     mMemBlockOff = false;
     mColor.set(255, 255, 255, 255);
-    field_0xc = 0.9f;
-    field_0x10 = 0.6f;
+    mLROnValue = 0.9f;
+    mLROffValue = 0.6f;
     mLetterTopColor.set(255, 150, 0, 255);
     mLetterBottomColor.set(255, 120, 0, 255);
     mLetterTopShadowColor.set(0, 0, 0, 255);

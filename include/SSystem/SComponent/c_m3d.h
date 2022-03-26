@@ -1,8 +1,8 @@
 #ifndef C_M3D_H_
 #define C_M3D_H_
 
-#include "dolphin/types.h"
 #include "MSL_C/math.h"
+#include "dolphin/types.h"
 
 class cM3dGAab;
 class cM3dGCps;

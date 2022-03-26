@@ -7,6 +7,7 @@
 #include "f_pc/f_pc_base.h"
 #include "f_pc/f_pc_create_iter.h"
 #include "f_pc/f_pc_node_req.h"
+#include "f_pc/f_pc_stdcreate_req.h"
 
 typedef int (*FastCreateReqFunc)(void*);
 typedef void (*fpcM_ManagementFunc)(void);
@@ -24,6 +25,15 @@ inline u32 fpcM_GetParam(const void* pActor) {
 
 inline void fpcM_SetParam(void* p_actor, u32 param) {
     ((base_process_class*)p_actor)->mParameters = param;
+}
+
+inline int fpcM_Create(s16 procName, FastCreateReqFunc createFunc, void* process) {
+    return fpcSCtRq_Request(fpcLy_CurrentLayer(), procName, (stdCreateFunc)createFunc, NULL,
+                            process);
+}
+
+inline s32 fpcM_ChangeLayerID(void* proc, int layerID) {
+    return fpcPi_Change(&((base_process_class*)proc)->mPi, layerID, 0xFFFD, 0xFFFD);
 }
 
 void fpcM_Draw(void* pProc);

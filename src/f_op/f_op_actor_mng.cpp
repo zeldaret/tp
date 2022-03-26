@@ -6,20 +6,20 @@
 #include "f_op/f_op_actor_mng.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
+#include "MSL_C/math.h"
 #include "SSystem/SComponent/c_lib.h"
 #include "SSystem/SComponent/c_malloc.h"
 #include "dol2asm.h"
 #include "global.h"
-#include "MSL_C/math.h"
 // #include "d/com/d_com_inf_game.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "JSystem/J3DU/J3DUClipper.h"
+#include "MSL_C/math.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_stage.h"
 #include "f_op/f_op_actor.h"
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_lib.h"
-#include "MSL_C/math.h"
 
 //
 // Types:

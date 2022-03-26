@@ -4,6 +4,7 @@
 //
 
 #include "SSystem/SComponent/c_m3d.h"
+#include "MSL_C/math.h"
 #include "SSystem/SComponent/c_m3d_g_aab.h"
 #include "SSystem/SComponent/c_m3d_g_cps.h"
 #include "SSystem/SComponent/c_m3d_g_cyl.h"
@@ -15,7 +16,6 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "MSL_C/math.h"
 
 //
 // Forward References:

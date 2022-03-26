@@ -3,8 +3,8 @@
 
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JUtility/TColor.h"
-#include "SSystem/SComponent/c_xyz.h"
 #include "SSystem/SComponent/c_sxyz.h"
+#include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
 

@@ -3,6 +3,6 @@
 
 #include "dolphin/types.h"
 
-static void fopOvlp_Draw(void* param_1);
+static s32 fopOvlp_Draw(void* param_1);
 
 #endif

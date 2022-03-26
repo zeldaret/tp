@@ -7,40 +7,13 @@
 #include "SSystem/SComponent/c_lib.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Forward References:
-//
-
-extern "C" void create__8mDoCPd_cFv();
-extern "C" void read__8mDoCPd_cFv();
-extern "C" void convert__8mDoCPd_cFP27interface_of_controller_padP10JUTGamePad();
-extern "C" void LRlockCheck__8mDoCPd_cFP27interface_of_controller_pad();
-extern "C" void recalibrate__8mDoCPd_cFv();
-extern "C" u8 m_gamePad__8mDoCPd_c[16];
-extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
+#include "f_ap/f_ap_game.h"
 
 //
 // External References:
 //
 
-extern "C" void mDoRst_resetCallBack__FiPv();
-extern "C" void cLib_memSet__FPviUl();
-extern "C" void* __nw__FUl();
-extern "C" void __ct__10JUTGamePadFQ210JUTGamePad8EPadPort();
-extern "C" void read__10JUTGamePadFv();
-extern "C" void clearForReset__10JUTGamePadFv();
-extern "C" void getGamePad__10JUTGamePadFi();
-extern "C" void setEnabled__Q210JUTGamePad7CRumbleFUl();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-extern "C" extern u8 g_HIO[64 + 4 /* padding */];
 extern "C" extern s8 data_80450580;
-extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" u8 sAnalogMode__10JUTGamePad[4];
-extern "C" u8 sCallback__Q210JUTGamePad13C3ButtonReset[4];
-extern "C" u8 sCallbackArg__Q210JUTGamePad13C3ButtonReset[4 + 4 /* padding */];
-extern "C" extern bool struct_80451500;
 
 //
 // Declarations:
@@ -85,37 +58,32 @@ void mDoCPd_c::create() {
 }
 
 /* 80007A94-80007B7C 0023D4 00E8+00 0/0 1/1 0/0 .text            read__8mDoCPd_cFv */
-#ifdef NONMATCHING
 void mDoCPd_c::read() {
     JUTGamePad::read();
 
     if (!mDoRst::isReset() && mDoRst::is3ButtonReset()) {
         JUTGamePad* pad = JUTGamePad::getGamePad(mDoRst::get3ButtonResetPort());
 
-        if (!pad->isPushing3ButtonReset()) {  // Make the rumble thing right
+        if (!pad->isPushing3ButtonReset()) {
             mDoRst::off3ButtonReset();
         }
     }
 
-    for (int i = 0; i < 4; i++) {
-        if (m_gamePad[i] == NULL) {
-            cLib_memSet(m_gamePad[i], 0, 0x40);
+    JUTGamePad** pad = m_gamePad;
+    interface_of_controller_pad* interface = m_cpadInfo;
+
+    for (u32 i = 0; i < 4; i++) {
+        if (*pad == NULL) {
+            cLib_memSet(interface, 0, sizeof(interface_of_controller_pad));
         } else {
-            convert(&m_cpadInfo[i], m_gamePad[i]);
-            LRlockCheck(&m_cpadInfo[i]);
+            convert(interface, *pad);
+            LRlockCheck(interface);
         }
+
+        pad++;
+        interface++;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoCPd_c::read() {
-    nofralloc
-#include "asm/m_Do/m_Do_controller_pad/read__8mDoCPd_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80007B7C-80007CD0 0024BC 0154+00 1/1 0/0 0/0 .text
  * convert__8mDoCPd_cFP27interface_of_controller_padP10JUTGamePad */
@@ -141,44 +109,30 @@ void mDoCPd_c::convert(interface_of_controller_pad* pInterface, JUTGamePad* pPad
 
 /* 80007CD0-80007D74 002610 00A4+00 1/1 0/0 0/0 .text
  * LRlockCheck__8mDoCPd_cFP27interface_of_controller_pad        */
-#ifdef NONMATCHING
-void mDoCPd_c::LRlockCheck(interface_of_controller_pad* controllerInterface) {
-    float temp_1 = controllerInterface->trigger_left;  // not sure if temp is left or right
-    controllerInterface->field_0x3a = false;
-    controllerInterface->field_0x3c = false;
-    if (temp_1 <= g_HIO.float_global_1) {  // controllerInterface->trigger_left) {
-        if (temp_1 < g_HIO.float_global_2) {
-            controllerInterface->field_0x39 = false;
+void mDoCPd_c::LRlockCheck(interface_of_controller_pad* interface) {
+    f32 trig_left = interface->mTriggerLeft;
+    interface->mTrigLockL = false;
+    interface->mTrigLockR = false;
+
+    if (trig_left > fapGmHIO_getLROnValue()) {
+        if (interface->mHoldLockL != true) {
+            interface->mTrigLockL = true;
         }
-    } else {
-        if (controllerInterface->field_0x39 == false) {
-            controllerInterface->field_0x3a = true;
+        interface->mHoldLockL = true;
+    } else if (trig_left < fapGmHIO_getLROffValue()) {
+        interface->mHoldLockL = false;
+    }
+
+    f32 trig_right = interface->mTriggerRight;
+    if (trig_right > fapGmHIO_getLROnValue()) {
+        if (interface->mHoldLockR != true) {
+            interface->mTrigLockR = true;
         }
-        controllerInterface->field_0x39 = true;
+        interface->mHoldLockR = true;
+    } else if (trig_right < fapGmHIO_getLROffValue()) {
+        interface->mHoldLockR = false;
     }
-    if (controllerInterface->trigger_right > g_HIO.float_global_1) {
-        if (controllerInterface->field_0x3b == false) {
-            controllerInterface->field_0x3c = true;
-        }
-        controllerInterface->field_0x3b = true;
-        return;
-    }
-    if (controllerInterface->trigger_right >= g_HIO.float_global_2) {
-        return;
-    }
-    controllerInterface->field_0x3b = false;
-    return;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoCPd_c::LRlockCheck(interface_of_controller_pad* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_controller_pad/LRlockCheck__8mDoCPd_cFP27interface_of_controller_pad.s"
-}
-#pragma pop
-#endif
 
 void mDoCPd_c::recalibrate(void) {
     JUTGamePad::clearForReset();

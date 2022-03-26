@@ -57,6 +57,7 @@ private:
     /* 0x14 */ dScnPly_env_debugHIO_c mDebug;
 };
 
+extern s8 struct_80451124;
 extern s8 data_80451125;  // sPauseTimer
 
 class dScnPly_c : public scene_class {
@@ -65,6 +66,7 @@ public:
     /* 80259AC4 */ bool resetGame();
     /* 80259BFC */ void offReset();
 
+    static bool isPause() { return struct_80451124 == 0; }
     static void setPauseTimer(s8 time) { data_80451125 = time; }
 };
 
