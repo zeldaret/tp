@@ -389,7 +389,7 @@ ARCHIVES = [
     "build/dolzel2/libgx.a",
     "build/dolzel2/libgd.a",
     "build/dolzel2/libRuntime.PPCEABI.H.a",
-    "build/dolzel2/libMSL_C.PPCEABI.bare.H.a",
+    "build/dolzel2/libMSL_C.a",
     "build/dolzel2/libTRK_MINNOW_DOLPHIN.a",
     "build/dolzel2/libamcstubs.a",
     "build/dolzel2/libodemuexi2.a",

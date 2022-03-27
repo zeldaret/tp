@@ -4,6 +4,7 @@
 //
 
 #include "d/d_tresure.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -13,49 +14,6 @@
 
 struct mDoMtx_stack_c {
     static u8 now[48];
-};
-
-struct Vec {};
-
-struct dTres_c {
-    struct list_class {};
-
-    struct data_s {};
-
-    struct typeGroupData_c {};
-
-    /* 8009BBD8 */ void createWork();
-    /* 8009BC18 */ void create();
-    /* 8009BC60 */ void remove();
-    /* 8009BC6C */ void reset();
-    /* 8009BCB4 */ void addData(dTres_c::list_class*, s8);
-    /* 8009BE28 */ void checkTreasureBox(dTres_c::data_s*);
-    /* 8009C168 */ void onStatus(u8, int, int);
-    /* 8009C1F0 */ void offStatus(u8, int, int);
-    /* 8009C27C */ void getBossIconFloorNo(int*);
-    /* 8009C360 */ void getFirstData(u8);
-    /* 8009C39C */ void getNextData(dTres_c::typeGroupData_c*);
-    /* 8009C3B4 */ void getNextData(dTres_c::typeGroupData_c const*);
-    /* 8009C3CC */ void setPosition(int, u8, Vec const*, int);
-    /* 8009C49C */ void getTypeGroupNoToType(u8);
-    /* 8009C4B0 */ void getTypeToTypeGroupNo(u8);
-
-    static u8 const typeToTypeGroup[34 + 6 /* padding */];
-    static u8 mTypeGroupListAll[204 + 4 /* padding */];
-    static u8 mTypeGroupData[4];
-    static u8 mNum[2 + 2 /* padding */];
-};
-
-struct dSv_memBit_c {
-    /* 80034934 */ void isDungeonItem(int) const;
-};
-
-struct dSv_info_c {
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dMapInfo_n {
-    /* 8003ED60 */ void correctionOriginPos(s8, Vec*);
 };
 
 struct dMapInfo_c {
@@ -97,9 +55,6 @@ extern "C" void correctionOriginPos__10dMapInfo_nFScP3Vec();
 extern "C" void calcFloorNo__10dMapInfo_cFfbi();
 extern "C" void dPath_GetRoomPath__Fii();
 extern "C" void* __nwa__FUl();
-extern "C" void PSMTXMultVec();
-extern "C" void PSVECAdd();
-extern "C" void PSVECSquareDistance();
 extern "C" void __construct_new_array();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_27();
@@ -108,9 +63,7 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 data_80450680[8];
-extern "C" extern u32 __float_nan;
+extern "C" extern bool data_80450680;
 
 //
 // Declarations:
@@ -118,13 +71,13 @@ extern "C" extern u32 __float_nan;
 
 /* ############################################################################################## */
 /* 80450F98-80450F9C 000498 0004+00 2/2 0/0 0/0 .sbss            mTypeGroupData__7dTres_c */
-u8 dTres_c::mTypeGroupData[4];
+dTres_c::typeGroupData_c* dTres_c::mTypeGroupData;
 
 /* 8009BBD8-8009BC18 096518 0040+00 0/0 1/1 0/0 .text            createWork__7dTres_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dTres_c::createWork() {
+asm int dTres_c::createWork() {
     nofralloc
 #include "asm/d/d_tresure/createWork__7dTres_cFv.s"
 }
@@ -141,21 +94,16 @@ asm void dTres_c::create() {
 #pragma pop
 
 /* 8009BC60-8009BC6C 0965A0 000C+00 0/0 1/1 0/0 .text            remove__7dTres_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dTres_c::remove() {
-    nofralloc
-#include "asm/d/d_tresure/remove__7dTres_cFv.s"
+void dTres_c::remove() {
+    data_80450680 = true;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80425438-80425508 052158 00CC+04 6/6 3/3 0/0 .bss             mTypeGroupListAll__7dTres_c */
-u8 dTres_c::mTypeGroupListAll[204 + 4 /* padding */];
+dTres_c::list_class dTres_c::mTypeGroupListAll[17];
 
 /* 80450F9C-80450FA0 00049C 0002+02 2/2 0/0 0/0 .sbss            mNum__7dTres_c */
-u8 dTres_c::mNum[2 + 2 /* padding */];
+u16 dTres_c::mNum;
 
 /* 8009BC6C-8009BCB4 0965AC 0048+00 2/2 0/0 0/0 .text            reset__7dTres_cFv */
 #pragma push
@@ -290,48 +238,10 @@ asm void dTres_c::setPosition(int param_0, u8 param_1, Vec const* param_2, int p
 
 /* ############################################################################################## */
 /* 8037B0D8-8037B100 007738 0022+06 2/2 0/0 0/0 .rodata          typeToTypeGroup__7dTres_c */
-SECTION_RODATA u8 const dTres_c::typeToTypeGroup[34 + 6 /* padding */] = {
-    0xFF,
-    0x00,
-    0x00,
-    0x01,
-    0x01,
-    0x02,
-    0x02,
-    0x03,
-    0x03,
-    0x04,
-    0x04,
-    0x05,
-    0x05,
-    0x06,
-    0x06,
-    0x07,
-    0x07,
-    0x08,
-    0x80,
-    0x09,
-    0x81,
-    0x0A,
-    0x82,
-    0x0B,
-    0x83,
-    0x0C,
-    0x84,
-    0x0D,
-    0x85,
-    0x0E,
-    0x87,
-    0x0F,
-    0x88,
-    0x10,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_RODATA u8 const dTres_c::typeToTypeGroup[34] = {
+    0xFF, 0x00, 0x00, 0x01, 0x01, 0x02, 0x02, 0x03, 0x03, 0x04, 0x04, 0x05,
+    0x05, 0x06, 0x06, 0x07, 0x07, 0x08, 0x80, 0x09, 0x81, 0x0A, 0x82, 0x0B,
+    0x83, 0x0C, 0x84, 0x0D, 0x85, 0x0E, 0x87, 0x0F, 0x88, 0x10,
 };
 COMPILER_STRIP_GATE(0x8037B0D8, &dTres_c::typeToTypeGroup);
 
@@ -351,7 +261,7 @@ asm void dTres_c::getTypeGroupNoToType(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dTres_c::getTypeToTypeGroupNo(u8 param_0) {
+asm u8 dTres_c::getTypeToTypeGroupNo(u8 param_0) {
     nofralloc
 #include "asm/d/d_tresure/getTypeToTypeGroupNo__7dTres_cFUc.s"
 }

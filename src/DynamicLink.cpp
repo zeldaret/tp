@@ -6,7 +6,7 @@
 #include "DynamicLink.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "JSystem/JUtility/JUTConsole.h"
-#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf.h"
+#include "MSL_C/MSL_Common/Src/printf.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
@@ -58,7 +58,7 @@ DynamicModuleControlBase::DynamicModuleControlBase() {
 
 /* 802622D0-80262364 25CC10 0094+00 0/0 2/2 0/0 .text            link__24DynamicModuleControlBaseFv
  */
-bool DynamicModuleControlBase::link() {
+BOOL DynamicModuleControlBase::link() {
     if (mLinkCount == 0) {
         do_load();
         if (do_link() == false) {
@@ -75,7 +75,7 @@ bool DynamicModuleControlBase::link() {
 }
 
 /* 80262364-802623EC 25CCA4 0088+00 0/0 1/1 0/0 .text unlink__24DynamicModuleControlBaseFv */
-bool DynamicModuleControlBase::unlink() {
+BOOL DynamicModuleControlBase::unlink() {
     if (mLinkCount != 0) {
         mLinkCount--;
         if (mLinkCount == 0) {
@@ -90,7 +90,7 @@ bool DynamicModuleControlBase::unlink() {
 }
 
 /* 802623EC-8026242C 25CD2C 0040+00 0/0 1/1 0/0 .text load_async__24DynamicModuleControlBaseFv */
-bool DynamicModuleControlBase::load_async() {
+BOOL DynamicModuleControlBase::load_async() {
     if (mLinkCount == 0) {
         return do_load_async();
     }
@@ -107,6 +107,8 @@ bool DynamicModuleControlBase::force_unlink() {
     return true;
 }
 
+/* 80262470-80262660 25CDB0 01F0+00 2/0 2/2 0/0 .text            dump__24DynamicModuleControlBaseFv
+ */
 void DynamicModuleControlBase::dump() {
     u16 doLinkCount;
     u16 linkCount;
@@ -114,19 +116,20 @@ void DynamicModuleControlBase::dump() {
     size_t totalSize = 0;
     JUTReportConsole_f("\nDynamicModuleControlBase::dump()\n");
     JUTReportConsole_f("Do  Lnk Size      Name\n");
-    while (current!=NULL) {
+    while (current != NULL) {
         doLinkCount = current->mDoLinkCount;
         linkCount = current->mLinkCount;
-        if (doLinkCount!=0||linkCount!=0) {
+        if (doLinkCount != 0 || linkCount != 0) {
             u32 size = current->getModuleSize();
             const char* name = current->getModuleName();
-            if(size<0xFFFFFFFF) {
-                name = (name!=NULL) ? name : "(Null)";
+            if (size < 0xFFFFFFFF) {
+                name = (name != NULL) ? name : "(Null)";
                 const char* type = current->getModuleTypeString();
-                JUTReportConsole_f("%3d%3d%5.1f %05x %-4s %-24s ",doLinkCount,linkCount,size/1024.0f,size,type,name);
-                totalSize=totalSize+size;
-            }else{
-                name = (name!=NULL) ? name : "(Null)";
+                JUTReportConsole_f("%3d%3d%5.1f %05x %-4s %-24s ", doLinkCount, linkCount,
+                                   size / 1024.0f, size, type, name);
+                totalSize = totalSize + size;
+            } else {
+                name = (name != NULL) ? name : "(Null)";
                 const char* type = current->getModuleTypeString();
                 JUTReportConsole_f("%3d%3d ???? ????? %-4s %-24s ", doLinkCount, linkCount, type,
                                    name);
@@ -136,7 +139,7 @@ void DynamicModuleControlBase::dump() {
         }
         current = current->getNextClass();
     }
-    JUTReportConsole_f("TotalSize %6.2f %06x\n\n",totalSize/1024.0f,totalSize);
+    JUTReportConsole_f("TotalSize %6.2f %06x\n\n", totalSize / 1024.0f, totalSize);
 }
 
 /* 80262660-802626D0 25CFA0 0070+00 0/0 2/2 0/0 .text            __ct__20DynamicModuleControlFPCc */
@@ -215,51 +218,53 @@ bool DynamicModuleControl::do_load() {
     }
     JKRExpHeap* heap = mDoExt_getArchiveHeap();
     s32 i = 0;
-    while(true) {
-        if(mModule != NULL) {
+    while (true) {
+        if (mModule != NULL) {
             JKRFree(mModule);
             mModule = NULL;
         }
         char buffer[64];
-        snprintf(buffer,64,"%s.rel",mName);
-        if(mModule==NULL&&sArchive!=NULL) {
-            if(mModule==NULL) {
-                mModule = (OSModuleInfo*)JKRGetResource('MMEM',buffer,sArchive);
-                if(mModule!=NULL) {
+        snprintf(buffer, 64, "%s.rel", mName);
+        if (mModule == NULL && sArchive != NULL) {
+            if (mModule == NULL) {
+                mModule = (OSModuleInfo*)JKRGetResource('MMEM', buffer, sArchive);
+                if (mModule != NULL) {
                     mResourceType = 1;
                 }
             }
-            if(mModule==NULL) {
-                mModule = (OSModuleInfo*)JKRGetResource('AMEM',buffer,sArchive);
-                if(mModule!=NULL) {
+            if (mModule == NULL) {
+                mModule = (OSModuleInfo*)JKRGetResource('AMEM', buffer, sArchive);
+                if (mModule != NULL) {
                     mResourceType = 2;
                 }
             }
-            if(mModule==NULL) {
-                mModule = (OSModuleInfo*)JKRGetResource('DMEM',buffer,sArchive);
-                if(mModule!=NULL) {
+            if (mModule == NULL) {
+                mModule = (OSModuleInfo*)JKRGetResource('DMEM', buffer, sArchive);
+                if (mModule != NULL) {
                     mResourceType = 3;
                 }
             }
         }
         if (mModule != NULL) {
             mSize = sArchive->getExpandedResSize(mModule);
-            JKRDetachResource(mModule,NULL);
-        }else {
-            if(mModule==NULL){
-                snprintf(buffer,64,"/rel/Final/Release/%s.rel",mName);
-                mModule = (OSModuleInfo*)JKRDvdToMainRam(buffer,NULL,EXPAND_SWITCH_UNKNOWN1,NULL,heap,JKRDvdRipper::ALLOC_DIRECTION_FORWARD,0,NULL,NULL);
-                if(mModule!=NULL) {
+            JKRDetachResource(mModule, NULL);
+        } else {
+            if (mModule == NULL) {
+                snprintf(buffer, 64, "/rel/Final/Release/%s.rel", mName);
+                mModule = (OSModuleInfo*)JKRDvdToMainRam(
+                    buffer, NULL, EXPAND_SWITCH_UNKNOWN1, NULL, heap,
+                    JKRDvdRipper::ALLOC_DIRECTION_FORWARD, 0, NULL, NULL);
+                if (mModule != NULL) {
                     mSize = 0;
                     mResourceType = 7;
                 }
             }
-            if(mModule==NULL&&sFileCache!=NULL) {
-                mModule = (OSModuleInfo*)sFileCache->getResource('rels',buffer);
-                if(mModule!=NULL) {
+            if (mModule == NULL && sFileCache != NULL) {
+                mModule = (OSModuleInfo*)sFileCache->getResource('rels', buffer);
+                if (mModule != NULL) {
                     mSize = 0;
                     mResourceType = 11;
-                    JKRDetachResource(mModule,NULL);
+                    JKRDetachResource(mModule, NULL);
                 }
             }
         }
@@ -290,14 +295,14 @@ bool DynamicModuleControl::do_load() {
                         return false;
                     }
                 } else {
-                    if(unk_33<0xFF) {
+                    if (unk_33 < 0xFF) {
                         unk_33++;
                     }
                     break;
                 }
             }
         } else {
-            if(unk_33<0xFF) {
+            if (unk_33 < 0xFF) {
                 unk_33++;
             }
             break;
@@ -307,7 +312,7 @@ bool DynamicModuleControl::do_load() {
 }
 
 /* 80262AFC-80262BC4 25D43C 00C8+00 1/0 0/0 0/0 .text do_load_async__20DynamicModuleControlFv */
-bool DynamicModuleControl::do_load_async() {
+BOOL DynamicModuleControl::do_load_async() {
     if (mAsyncLoadCallback == NULL) {
         if (mModule != NULL) {
             return true;
@@ -349,67 +354,77 @@ void DynamicModuleControl::dump2() {
     }
 }
 
+/* 80262C5C-80262F28 25D59C 02CC+00 1/0 0/0 0/0 .text            do_link__20DynamicModuleControlFv
+ */
 BOOL DynamicModuleControl::do_link() {
     OSGetTime();
     if (mModule == NULL) {
         do_load();
     }
-    if(mModule!=NULL) {
+    if (mModule != NULL) {
         ASSERT(mModule->info.sectionInfoOffset < 0x80000000);
         ASSERT((u32)mModule + mModule->fixSize < 0x82000000);
         OSGetTime();
         OSGetTime();
-        if(mModule->mModuleVersion>=3) {
+        if (mModule->mModuleVersion >= 3) {
             u32 fixSizePtr;
             u32 fixSize = mModule->fixSize;
-            u32 fixSize2 = (fixSize+0x1f) & ~0x1f;
-            fixSizePtr = (u32)mModule+fixSize2;
-            s32 size = JKRGetMemBlockSize(NULL,mModule);
-            if(size<0) {
-                void* bss = JKRAlloc(mModule->mBssSize,0x20);
-                if (bss==NULL) {
-                    OSReport_Error("BSSメモリ確保失敗\n",bss);
+            u32 fixSize2 = (fixSize + 0x1f) & ~0x1f;
+            fixSizePtr = (u32)mModule + fixSize2;
+            s32 size = JKRGetMemBlockSize(NULL, mModule);
+            if (size < 0) {
+                void* bss = JKRAlloc(mModule->mBssSize, 0x20);
+                if (bss == NULL) {
+                    // "BSS Memory allocation failed\n"
+                    OSReport_Error("BSSメモリ確保失敗\n", bss);
                     goto error;
                 }
                 mBss = bss;
                 BOOL linkResult = OSLink(mModule);
-                if(linkResult==FALSE) {
+                if (linkResult == FALSE) {
+                    // "link failed\n"
                     OSReport_Error("リンク失敗\n");
                     goto error;
                 }
-            }else{
-                if(fixSize2+mModule->mBssSize<size) {
-                    BOOL linkResult = OSLinkFixed(mModule,fixSizePtr);
-                    if(linkResult==FALSE) {
+            } else {
+                if (fixSize2 + mModule->mBssSize < size) {
+                    BOOL linkResult = OSLinkFixed(mModule, fixSizePtr);
+                    if (linkResult == FALSE) {
+                        // "link failed\n"
                         OSReport_Error("リンク失敗\n");
                         goto error;
                     }
-                    s32 result = JKRResizeMemBlock(NULL,mModule,fixSize2+mModule->mBssSize);
-                    if (result<0) {
+                    s32 result = JKRResizeMemBlock(NULL, mModule, fixSize2 + mModule->mBssSize);
+                    if (result < 0) {
+                        // "Module size (resize) failed\n"
                         OSReport_Error("モジュールリサイズ(縮小)失敗\n");
                     }
-                }else{
-                    s32 result = JKRResizeMemBlock(NULL,mModule,fixSize2+mModule->mBssSize);
-                    if (result>0) {
-                        BOOL linkResult = OSLinkFixed(mModule,fixSizePtr);
-                        if(linkResult==FALSE) {
+                } else {
+                    s32 result = JKRResizeMemBlock(NULL, mModule, fixSize2 + mModule->mBssSize);
+                    if (result > 0) {
+                        BOOL linkResult = OSLinkFixed(mModule, fixSizePtr);
+                        if (linkResult == FALSE) {
+                            // "link failed\n"
                             OSReport_Error("リンク失敗\n");
                             goto error;
                         }
-                    }else{
-                        void* bss = JKRAlloc(mModule->mBssSize,0x20);
-                        if (bss==NULL) {
-                            OSReport_Error("BSSメモリ確保失敗 [%x]\n",mModule->mBssSize);
+                    } else {
+                        void* bss = JKRAlloc(mModule->mBssSize, 0x20);
+                        if (bss == NULL) {
+                            // "BSS Memory allocation failure [%x]\n"
+                            OSReport_Error("BSSメモリ確保失敗 [%x]\n", mModule->mBssSize);
                             goto error;
                         }
                         mBss = bss;
-                        BOOL linkResult = OSLinkFixed(mModule,(u32)bss);
-                        if (linkResult==FALSE) {
+                        BOOL linkResult = OSLinkFixed(mModule, (u32)bss);
+                        if (linkResult == FALSE) {
+                            // "link failed\n"
                             OSReport_Error("リンク失敗\n");
                             goto error;
                         }
-                        s32 result = JKRResizeMemBlock(NULL,mModule,fixSize);
-                        if (result<0) {
+                        s32 result = JKRResizeMemBlock(NULL, mModule, fixSize);
+                        if (result < 0) {
+                            // "Module size (resize) failed\n"
                             OSReport_Error("モジュールリサイズ(縮小)失敗\n");
                         }
                     }
@@ -541,7 +556,7 @@ bool DynamicModuleControlBase::do_unlink() {
 
 /* 802631F4-802631FC 25DB34 0008+00 1/0 0/0 0/0 .text do_load_async__24DynamicModuleControlBaseFv
  */
-bool DynamicModuleControlBase::do_load_async() {
+BOOL DynamicModuleControlBase::do_load_async() {
     return true;
 }
 

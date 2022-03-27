@@ -6,6 +6,7 @@
 #include "rel/f_pc/f_pc_profile_lst/f_pc_profile_lst.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_pc/f_pc_leaf.h"
 
 //
 // Forward References:
@@ -54,7 +55,6 @@ extern "C" extern void* g_profile_WARNING2_SCENE[10];
 extern "C" extern void* g_profile_TIMER[10];
 extern "C" extern void* g_profile_WMARK[10 + 1 /* padding */];
 extern "C" extern void* g_profile_WPILLAR[10 + 1 /* padding */];
-extern "C" extern u8 g_fpcPf_ProfileList_p[4 + 4 /* padding */];
 extern "C" extern void* g_profile_ANDSW[12];
 extern "C" extern void* g_profile_BG[13];
 extern "C" extern void* g_profile_BG_OBJ[12];

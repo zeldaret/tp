@@ -60,4 +60,8 @@ public:
     static JKRFileCache* mount(const char*, JKRHeap*, const char*);
 };
 
+inline JKRFileCache* JKRMountDvdDrive(const char* path, JKRHeap* heap, const char* param_2) {
+    return JKRFileCache::mount(path, heap, param_2);
+}
+
 #endif /* JKRFILECACHE_H */

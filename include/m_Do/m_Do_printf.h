@@ -1,8 +1,8 @@
 #ifndef M_DO_M_DO_PRINTF_H
 #define M_DO_M_DO_PRINTF_H
 
-#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/char_io.h"
-#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf.h"
+#include "MSL_C/MSL_Common/Src/char_io.h"
+#include "MSL_C/MSL_Common/Src/printf.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_main.h"

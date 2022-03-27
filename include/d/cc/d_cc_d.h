@@ -136,6 +136,9 @@ public:
     void SetSe(u8 se) { mSe = se; }
     void SetMtrl(u8 mtrl) { mMtrl = mtrl; }
     void SetAtSpl(dCcG_At_Spl spl) { mSpl = spl; }
+    u8 GetSe() { return mSe; }
+    u8 GetSpl() { return mSpl; }
+    u8 GetMtrl() { return mMtrl; }
 
     // private:
     /* 0x1C */ u8 mSe;
@@ -207,6 +210,9 @@ public:
     cXyz* GetAtVecP() { return mGObjAt.GetVecP(); }
     void SetAtSpl(dCcG_At_Spl spl) { mGObjAt.SetAtSpl(spl); }
     void SetAtHitCallback(dCcD_AtHitCallback callback) { mGObjAt.SetHitCallback(callback); }
+    u8 GetAtSe() { return mGObjAt.GetSe(); }
+    s32 GetAtSpl() { return mGObjAt.GetSpl(); }
+    u8 GetAtMtrl() { return mGObjAt.GetMtrl(); }
 
     static u32 const m_hitSeID[24];
 

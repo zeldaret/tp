@@ -4,10 +4,10 @@
 //
 
 #include "SSystem/SComponent/c_math.h"
+#include "MSL_C/math.h"
 #include "SSystem/SComponent/c_m3d.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "msl_c/math.h"
 
 //
 // Declarations:

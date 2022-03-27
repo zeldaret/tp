@@ -4,18 +4,15 @@
 //
 
 #include "d/map/d_map_path_dmap.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/meter/d_meter_HIO.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "m_Do/m_Do_mtx.h"
 
 //
 // Types:
 //
-
-struct mDoMtx_stack_c {
-    /* 8000CE38 */ void scaleM(f32, f32, f32);
-
-    static u8 now[48];
-};
 
 struct dMpath_n {
     struct dTexObjAggregate_c {
@@ -181,76 +178,64 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 m_texObjAgg__8dMpath_n[28];
 extern "C" u8 mTypeGroupListAll__7dTres_c[204 + 4 /* padding */];
-extern "C" extern u8 g_fmapHIO[1188];
 
 //
 // Declarations:
 //
 
 /* 8003ECA0-8003ECD8 0395E0 0038+00 0/0 3/3 0/0 .text            chkGetCompass__10dMapInfo_nFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMapInfo_n::chkGetCompass() {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/chkGetCompass__10dMapInfo_nFv.s"
+bool dMapInfo_n::chkGetCompass() {
+    return dComIfGs_isDungeonItemCompass() ? true : false;
 }
-#pragma pop
 
 /* 8003ECD8-8003ED10 039618 0038+00 0/0 4/4 0/0 .text            chkGetMap__10dMapInfo_nFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMapInfo_n::chkGetMap() {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/chkGetMap__10dMapInfo_nFv.s"
+bool dMapInfo_n::chkGetMap() {
+    return dComIfGs_isDungeonItemMap() ? true : false;
 }
-#pragma pop
 
 /* 8003ED10-8003ED60 039650 0050+00 2/2 7/7 0/0 .text            isVisitedRoom__10dMapInfo_nFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMapInfo_n::isVisitedRoom(int param_0) {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/isVisitedRoom__10dMapInfo_nFi.s"
+bool dMapInfo_n::isVisitedRoom(int i_roomNo) {
+    return g_fmapHIO.mAllRegionsUnlocked || dComIfGs_isVisitedRoom(i_roomNo);
 }
-#pragma pop
 
 /* 8003ED60-8003EDC0 0396A0 0060+00 1/1 2/2 0/0 .text correctionOriginPos__10dMapInfo_nFScP3Vec */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMapInfo_n::correctionOriginPos(s8 param_0, Vec* param_1) {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/correctionOriginPos__10dMapInfo_nFScP3Vec.s"
+void dMapInfo_n::correctionOriginPos(s8 i_roomNo, Vec* pos_p) {
+    dStage_FileList2_dt_c* filelist = dStage_roomControl_c::getFileList2(i_roomNo);
+
+    if (pos_p != NULL) {
+        rotAngle(filelist, pos_p);
+        offsetPlus(filelist, pos_p);
+    }
 }
-#pragma pop
 
 /* 8003EDC0-8003EDEC 039700 002C+00 3/3 0/0 0/0 .text
  * offsetPlus__10dMapInfo_nFPC21dStage_FileList2_dt_cP3Vec      */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMapInfo_n::offsetPlus(dStage_FileList2_dt_c const* param_0, Vec* param_1) {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/offsetPlus__10dMapInfo_nFPC21dStage_FileList2_dt_cP3Vec.s"
+void dMapInfo_n::offsetPlus(dStage_FileList2_dt_c const* filelist, Vec* p_pos) {
+    if (filelist == NULL) {
+        return;
+    }
+
+    p_pos->x += filelist->field_0x14;
+    p_pos->z += filelist->field_0x18;
 }
-#pragma pop
 
 /* 8003EDEC-8003EE5C 03972C 0070+00 3/3 0/0 0/0 .text
  * rotAngle__10dMapInfo_nFPC21dStage_FileList2_dt_cP3Vec        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMapInfo_n::rotAngle(dStage_FileList2_dt_c const* param_0, Vec* param_1) {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/rotAngle__10dMapInfo_nFPC21dStage_FileList2_dt_cP3Vec.s"
+void dMapInfo_n::rotAngle(dStage_FileList2_dt_c const* filelist, Vec* p_pos) {
+    s16 rot = 0;
+
+    if (filelist != NULL) {
+        rot = filelist->field_0x1c;
+    }
+    mDoMtx_stack_c::YrotS(rot);
+
+    Vec mult;
+    mDoMtx_stack_c::multVec(p_pos, &mult);
+
+    *p_pos = mult;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451E28-80451E2C 000428 0004+00 6/6 0/0 0/0 .sdata2          @3796 */
@@ -262,6 +247,30 @@ SECTION_SDATA2 static u8 lit_3796[4] = {
 };
 
 /* 8003EE5C-8003EF20 03979C 00C4+00 1/1 6/6 0/0 .text            getMapPlayerPos__10dMapInfo_nFv */
+// stayNo / mStatus loads switched
+#ifdef NONMATCHING
+Vec dMapInfo_n::getMapPlayerPos() {
+    Vec pos;
+    fopAc_ac_c* player = daPy_getPlayerActorClass();
+    if (player != NULL) {
+        pos = player->mCurrent.mPosition;
+    } else {
+        f32 tmp = FLOAT_LABEL(lit_3796);
+        pos.x = tmp;
+        pos.y = tmp;
+        pos.z = tmp;
+    }
+
+    s8 stayNo = dComIfGp_roomControl_getStayNo();
+    dStage_FileList2_dt_c* fileList2_p = dStage_roomControl_c::getFileList2(stayNo);
+    if (fileList2_p != NULL) {
+        rotAngle(fileList2_p, &pos);
+        offsetPlus(fileList2_p, &pos);
+    }
+
+    return pos;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -270,6 +279,7 @@ asm Vec dMapInfo_n::getMapPlayerPos() {
 #include "asm/d/map/d_map_path_dmap/getMapPlayerPos__10dMapInfo_nFv.s"
 }
 #pragma pop
+#endif
 
 /* 8003EF20-8003EF70 039860 0050+00 1/1 1/1 0/0 .text            getMapPlayerAngleY__10dMapInfo_nFv
  */

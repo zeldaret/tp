@@ -226,11 +226,11 @@ inline u32 JKRGetMemBlockSize(JKRHeap* heap, void* block) {
 }
 
 inline void* JKRAlloc(u32 size, int alignment) {
-    return JKRHeap::alloc(size,alignment,NULL);
+    return JKRHeap::alloc(size, alignment, NULL);
 }
 
-inline s32 JKRResizeMemBlock(JKRHeap* heap, void* block, u32 size) {
-    return JKRHeap::resize(block,size,heap);
+inline s32 JKRResizeMemBlock(JKRHeap* heap, void* ptr, u32 size) {
+    return JKRHeap::resize(ptr, size, heap);
 }
 
 #endif /* JKRHEAP_H */

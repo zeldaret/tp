@@ -87,8 +87,18 @@ public:
         return syncRes(name, &mObjectInfo[0], ARRAY_SIZE(mObjectInfo));
     }
 
+    int syncStageRes(const char* name) {
+        return syncRes(name, &mStageInfo[0], ARRAY_SIZE(mStageInfo));
+    }
+
+    int syncAllObjectRes() { return syncAllRes(&mObjectInfo[0], ARRAY_SIZE(mObjectInfo)); }
+
     int deleteObjectRes(const char* name) {
         return deleteRes(name, &mObjectInfo[0], ARRAY_SIZE(mObjectInfo));
+    }
+
+    int deleteStageRes(const char* name) {
+        return deleteRes(name, &mStageInfo[0], ARRAY_SIZE(mStageInfo));
     }
 
     void* getStageRes(const char* arcName, const char* resName) {
@@ -97,6 +107,10 @@ public:
 
     dRes_info_c* getObjectResInfo(const char* arcName) {
         return getResInfo(arcName, &mObjectInfo[0], ARRAY_SIZE(mObjectInfo));
+    }
+
+    dRes_info_c* getStageResInfo(const char* arcName) {
+        return getResInfo(arcName, &mStageInfo[0], ARRAY_SIZE(mStageInfo));
     }
 
     /* 0x0000 */ dRes_info_c mObjectInfo[0x80];

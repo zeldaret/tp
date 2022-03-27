@@ -4,10 +4,10 @@
 //
 
 #include "SSystem/SComponent/c_xyz.h"
+#include "MSL_C/math.h"
 #include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
 #include "global.h"
-#include "msl_c/math.h"
 
 //
 // Declarations:

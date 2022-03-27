@@ -11,17 +11,10 @@
 // Types:
 //
 
-struct fopAc_ac_c {};
-
 struct daYkgr_c {
     static u8 m_aim_rate[4];
     static u8 m_path[4];
     static u8 m_emitter[4];
-};
-
-struct cXyz {
-    /* 80009184 */ ~cXyz();
-    /* 800125DC */ cXyz();
 };
 
 struct daTagStream_c {
@@ -43,34 +36,6 @@ struct daTagMagne_c {
     /* 80031C9C */ void checkMagneC();
 
     static u8 mTagMagne[4];
-};
-
-struct daSus_c {
-    struct data_c {
-        /* 80030F14 */ void set(s8, cXyz const&, cXyz const&, u8, u8, u8);
-        /* 80030FBC */ void reset();
-        /* 80030FCC */ void isSwitch();
-        /* 800310C8 */ void check(fopAc_ac_c*);
-        /* 80031038 */ void check(cXyz const&);
-        /* 80031150 */ void execute();
-        /* 80031F28 */ ~data_c();
-        /* 80031F64 */ data_c();
-    };
-
-    struct room_c {
-        /* 80031190 */ void add(daSus_c::data_c*);
-        /* 800311FC */ void reset();
-        /* 80031EE4 */ room_c();
-    };
-
-    /* 80031248 */ void newData(s8, cXyz const&, cXyz const&, u8, u8, u8);
-    /* 800313BC */ void reset();
-    /* 800314D4 */ void check(fopAc_ac_c*);
-    /* 80031434 */ void check(s8, cXyz const&);
-    /* 800315A4 */ void execute();
-
-    static u8 mData[1152];
-    static u8 mRoom[256];
 };
 
 struct daSetBgObj_c {
@@ -99,8 +64,6 @@ struct daObjCarry_c {
     static u8 mSttsFlag[5 + 3 /* padding */];
     static u8 mRoomNo[5 + 3 /* padding */];
 };
-
-struct J3DModel {};
 
 struct daMirror_c {
     /* 8003194C */ void entry(J3DModel*);
@@ -418,7 +381,7 @@ asm void daSus_c::reset() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daSus_c::check(s8 param_0, cXyz const& param_1) {
+asm bool daSus_c::check(s8 param_0, cXyz const& param_1) {
     nofralloc
 #include "asm/d/com/d_com_static/check__7daSus_cFScRC4cXyz.s"
 }
@@ -486,7 +449,7 @@ asm void daNpcKakashi_setSwdTutorialStep(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpcKakashi_getSwdTutorialStep() {
+asm int daNpcKakashi_getSwdTutorialStep() {
     nofralloc
 #include "asm/d/com/d_com_static/daNpcKakashi_getSwdTutorialStep__Fv.s"
 }

@@ -5,9 +5,9 @@
 
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "JSystem/JUtility/JUTAssert.h"
+#include "MSL_C/math.h"
 #include "dol2asm.h"
 #include "global.h"
-#include "msl_c/math.h"
 
 //
 // Forward References:

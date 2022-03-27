@@ -15,12 +15,6 @@ struct mDoCPd_c {
     static u8 m_cpadInfo[256];
 };
 
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-};
-
 struct jmessage_tControl {
     /* 802299EC */ jmessage_tControl();
 };
@@ -549,7 +543,6 @@ extern "C" void __dl__FPv();
 extern "C" void getBounds__7J2DPaneFv();
 extern "C" void getParentPane__7J2DPaneFv();
 extern "C" void getStringPtr__10J2DTextBoxCFv();
-extern "C" void PSVECSquareMag();
 extern "C" void _savefpr_27();
 extern "C" void _restfpr_27();
 extern "C" void _savegpr_24();

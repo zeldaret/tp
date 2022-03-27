@@ -51,6 +51,8 @@ public:
     /* 0x10 */ void* mData;
 };  // Size: 0x14
 
+extern u8 data_80450EC4;
+
 class dPa_control_c {
 public:
     class level_c {
@@ -89,8 +91,8 @@ public:
         /* 0x005 */ u8 field_0x5;
         /* 0x006 */ u8 field_0x6;
         /* 0x008 */ emitter_c mEmitter[0x80];
-        /* 0xC08 */
-    };
+        /* 0xC08 */ emitter_c* field_0xc08[0x100];
+    };  // Size: 0x1008
 
     /* 8004BACC */ dPa_control_c();
     /* 8004BB70 */ void getRM_ID(u16);
@@ -133,6 +135,7 @@ public:
 
     void forceOnEventMove(u32 param_0) { field_0x210.forceOnEventMove(param_0); }
     level_c::emitter_c* getEmitter(u32 param_0) { return field_0x210.getEmitter(param_0); }
+
     u32 setNormal(u32 param_0, u16 param_1, const cXyz* param_2, const dKy_tevstr_c* param_3,
                   const csXyz* param_4, const cXyz* param_5, u8 param_6,
                   dPa_levelEcallBack* param_7, s8 param_8, const GXColor* param_9,
@@ -148,6 +151,8 @@ public:
         return set(0, param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8,
                    param_9, param_10, param_11, param_12);
     }
+
+    static void onStatus(u8 status) { data_80450EC4 |= status; }
 
     static u8 mTsubo[64];
     static u8 mLifeBall[24];

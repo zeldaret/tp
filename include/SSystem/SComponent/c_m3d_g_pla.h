@@ -20,6 +20,7 @@ public:
     void Set(const cM3dGPla*);
     f32 getPlaneFunc(const Vec* pPoint) const { return mD + PSVECDotProduct(&mNormal, pPoint); }
     const cXyz& GetNP() const { return mNormal; }
+    void GetNP();
     f32 GetD() const { return mD; }
 };
 

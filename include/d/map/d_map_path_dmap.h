@@ -2,24 +2,9 @@
 #define D_MAP_D_MAP_PATH_DMAP_H
 
 #include "d/d_stage.h"
+#include "d/d_tresure.h"
 #include "d/map/d_map_path.h"
 #include "dolphin/types.h"
-
-struct dTres_c {
-    struct data_s {};
-
-    struct typeGroupData_c {};
-
-    struct list_class {};
-
-    /* 8009BCB4 */ void addData(dTres_c::list_class*, s8);
-    /* 8009C360 */ void getFirstData(u8);
-    /* 8009C3B4 */ void getNextData(dTres_c::typeGroupData_c const*);
-    /* 8009C39C */ void getNextData(dTres_c::typeGroupData_c*);
-    /* 8009C4B0 */ void getTypeToTypeGroupNo(u8);
-
-    static u8 mTypeGroupListAll[204 + 4 /* padding */];
-};
 
 class dMpath_c {
 public:
@@ -44,12 +29,12 @@ public:
 };
 
 struct dMapInfo_n {
-    /* 8003ECA0 */ void chkGetCompass();
-    /* 8003ECD8 */ void chkGetMap();
-    /* 8003ED10 */ void isVisitedRoom(int);
-    /* 8003ED60 */ void correctionOriginPos(s8, Vec*);
-    /* 8003EDC0 */ void offsetPlus(dStage_FileList2_dt_c const*, Vec*);
-    /* 8003EDEC */ void rotAngle(dStage_FileList2_dt_c const*, Vec*);
+    /* 8003ECA0 */ bool chkGetCompass();
+    /* 8003ECD8 */ bool chkGetMap();
+    /* 8003ED10 */ static bool isVisitedRoom(int);
+    /* 8003ED60 */ static void correctionOriginPos(s8, Vec*);
+    /* 8003EDC0 */ static void offsetPlus(dStage_FileList2_dt_c const*, Vec*);
+    /* 8003EDEC */ static void rotAngle(dStage_FileList2_dt_c const*, Vec*);
     /* 8003EE5C */ static Vec getMapPlayerPos();
     /* 8003EF20 */ void getMapPlayerAngleY();
     /* 8003EF70 */ void getConstRestartIconPointer();

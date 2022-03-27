@@ -7,12 +7,6 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-struct counter_class {
-    s32 mCounter0;
-    s32 mCounter1;
-    s32 mTimer;
-};
-
 /* ############################################################################################## */
 /* 80430CD8-80430CE8 000C+04 s=1 e=12 z=22  None .bss       g_Counter */
 counter_class g_Counter;

@@ -5,7 +5,7 @@
 
 class dKyeff_c {
 public:
-    bool execute();
+    int execute();
 };
 
 #endif /* D_D_KYEFF_H */

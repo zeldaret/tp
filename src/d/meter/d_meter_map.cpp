@@ -106,10 +106,6 @@ inline dStage_stageDt_c* dComIfGp_getStage() {
     return &g_dComIfG_gameInfo.play.getStage();
 }
 
-inline daPy_py_c* daPy_getPlayerActorClass() {
-    return (daPy_py_c*)dComIfGp_getPlayer(0);
-}
-
 inline BOOL dComIfGs_isEventBit(u16 id) {
     return g_dComIfG_gameInfo.info.getEvent().isEventBit(id);
 }

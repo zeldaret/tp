@@ -1,10 +1,10 @@
 #ifndef C_LIB_H_
 #define C_LIB_H_
 
+#include "MSL_C/math.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
-#include "msl_c/math.h"
 
 inline bool cLib_IsZero(f32 f) {
     return fabsf(f) < 8e-11f;

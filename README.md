@@ -2,46 +2,138 @@
 
 This repo contains a WIP decompilation of The Legend of Zelda: Twilight Princess (GCN USA).
 
-It builds the following DOL:
+<!--ts-->
+* [Project Setup](#project-setup)
+* [Building The Game](#building-the-game)  
+* [Clean Directories](#clean-directories)
+* [Project Overview](#project-overview)
+* [Contributing](./docs/Contributing.md)
+* [FAQ](https://zelda64.dev/games/tp)
+        
+<!--te-->
 
-main.dol - `sha1: 4997D93B9692620C40E90374A0F1DBF0E4889395`
+Project Setup
+=================
 
-And will eventually build all the [RELs](./docs/rels_sha1.md).
-
-## Windows Prerequisites
-
-1. Download and run the latest release of the [Windows devkitpro installer](https://github.com/devkitPro/installer/releases)
-2. Run the executable located at `devkitPro\msys2\msys2.exe`
-3. Update pacman by running the following command: `pacman -Syu`
-4. Install the necessary dependencies by running the following command: `pacman -S python3-pip base-devel gcc vim cmake`
-5. Change to the directory of where you cloned this repository
-6. Install the required python dependencies with `python3 -mpip install -r tools/requirements.txt`
-
-## Build Instructions
-
-1. Obtain a clean DOL of TP (GCN USA) and place it at the root of the repo and name it `baserom.dol`.
-2. Obtain a copy of the MWCC PowerPC compiler (version 2.7 to be exact). See below for a link to our Discord server which has the CodeWarrior compilers pinned in the #tp-decomp channel.
-3. Replace `tools/mwcc_compiler/2.7/mwcceppc.exe` with the custom one also pinned in the #tp-decomp channel.
-4. Run `make` at the root of the repo.
-
-## Dump Assets
-
-1. Place a vanilla copy of the NTSC-U version at the root of the folder and call it `gz2e01.iso`.
-2. Make the game directory.
+1. Clone down project
 
 ```bash
-mkdir game
+$ git clone https://github.com/zeldaret/tp
 ```
 
-3. Run make assets.
+2. Setup compiler directory
 
 ```bash
-make assets
-````
+$ mkdir -p tools/mwcc_compiler/
+```
+
+3. Download `GC_COMPILERS.zip` from the [Discord](https://discord.gg/Nshw5pHS4h) server. See the pins in the `#tp-decomp` channel under the Twilight Princess group.
+
+4. Extract `GC_COMPILERS.zip` into the previously created `mwcc_compiler` directory
+
+```bash
+$ unzip GC_COMPILERS.zip -d tools/mwcc_compiler/
+```
+
+5. Place a copy of NTSC-U GCN Twilight Princess in the root directory and call it `gz2e01.iso` (find this on your own)
+
+6. Setup the project
+
+```bash
+$ ./tp setup
+```
+
+Building The Game
+-----
+
+1. To build a playable game, complete the [Project Setup](#project-setup) steps, then run
+
+```bash
+$ make game
+```
+
+The completed build is under `build/dolzel2/game/sys/main.dol`
+
+Build DOL
+
+```bash
+$ make
+```
+
+Build RELs
+
+```bash
+$ make rels
+```
+
+The completed RELs will be under `build/dolzel2/rel`
+
+Extract Game Assets
+
+```bash
+$ make assets
+```
+
+Create Expected Directory
+
+1. Run `make`
+2. Run:
+
+```bash
+$ ./tp expected
+```
 
 
-## Contributions
+Clean Directories
+-----
 
-All contributions are welcome. This is a group effort, and even small contributions can make a difference. Some tasks also don't require much knowledge to get started.
+Clean RELs
 
-Most discussions happen on our [Discord Server](https://discord.zelda64.dev/), where you are welcome to ask if you need help getting started, or if you have any questions regarding this project and other decompilation projects.
+```bash
+$ make clean_rels
+```
+
+Clean Game Directory
+
+```bash
+$ make clean_game
+```
+
+Clean Build Directory
+
+```bash
+$ make clean_all
+```
+
+Clean everything
+
+```bash
+$ make clean
+```
+
+
+Project Overview
+=================
+```
+tp/
+├── .github          # Github actions for this project.
+├── asm              # The assembly for unmatched functions.
+├── defs             # Python modules used by dol2asm.
+├── docs             # Notes and documentation about this project.
+├── include          # Header files used by this project.
+├── libs             # Source code for the libraries based on the symbol map.
+├── rel              # Source code for the game RELs.
+├── src              # Source code for the main game.
+├── tools            # Various tools to support the project.
+├── .clang-format    # Clang format file.
+├── .gitignore       # Files/folders to ignore changes to when making commits.
+├── Doxyfile         # Doxygen configuration file.
+├── Makefile         # Makefile for the project containing various targets.
+├── README.md        # The file you're currently reading.
+├── diff.py          # Python script to diff two functions.
+├── diff_settings.py # Settings for the diff.py script.
+├── dolzel2.sha1     # SHA1 of the dol.
+├── include_link.mk  # Makefiles to include in the main Makefile.
+├── obj_files.mk     # Object files to include in the main Makefile.
+└── tp               # Bash script used to call the main tp python script in tools directory.
+```

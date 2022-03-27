@@ -287,7 +287,7 @@ asm void dLib_checkActorInRectangle(fopAc_ac_c* param_0, fopAc_ac_c* param_1, cX
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dLib_getExpandSizeFromAramArchive(JKRAramArchive* param_0, char const* param_1) {
+asm u32 dLib_getExpandSizeFromAramArchive(JKRAramArchive* param_0, char const* param_1) {
     nofralloc
 #include "asm/d/d_lib/dLib_getExpandSizeFromAramArchive__FP14JKRAramArchivePCc.s"
 }

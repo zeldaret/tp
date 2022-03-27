@@ -1,38 +1,43 @@
 #ifndef MTX_H
 #define MTX_H
 
+#include "dolphin/mtx/mtx44.h"
 #include "dolphin/mtx/quat.h"
 #include "dolphin/mtx/vec.h"
 #include "dolphin/types.h"
 
-typedef float Mtx[3][4];
-typedef float Mtx33[3][3];
-typedef float Mtx23[2][3];
+typedef f32 Mtx[3][4];
+typedef f32 Mtx33[3][3];
+typedef f32 Mtx23[2][3];
 typedef f32 (*MtxP)[4];
 typedef const f32 (*CMtxP)[4];  // Change name later?
 
 extern "C" {
-void PSMTXIdentity(Mtx matrix);
+void PSMTXIdentity(Mtx m);
 void PSMTXCopy(const Mtx src, Mtx dst);
-void PSMTXConcat(const Mtx src_a, const Mtx src_b, Mtx dst);
-u32 PSMTXInverse(const Mtx src, Mtx dst);
-void PSMTXRotRad(Mtx matrix, u8 axis, float rad);
-void PSMTXRotTrig(Mtx matrix, u8 axis, float sin, float cos);
-double __PSMTXRotAxisRadInternal(double param_1, double param_2, int param_3, int param_4);
-void PSMTXRotAxisRad(Mtx matrix, const Vec* axis, float rad);
-void PSMTXTrans(Mtx matrix, float x_trans, float y_trans, float z_trans);
-void PSMTXTransApply(const Mtx src, Mtx dst, float x, float y, float z);
-void PSMTXScale(Mtx matrix, float x_scale, float y_scale, float z_scale);
-void PSMTXScaleApply(const Mtx src, Mtx dst, float x_scale, float y_scale, float z_scale);
-void PSMTXQuat(Mtx matrix, const Quaternion* quat);
-void PSMTXMultVec(const Mtx matrix, const Vec* src, Vec* dst);
-void PSMTXMultVecSR(const Mtx matrix, const Vec* src, Vec* dst);
+void PSMTXConcat(const Mtx a, const Mtx b, Mtx ab);
+u32 PSMTXInverse(const Mtx src, Mtx inv);
+void PSMTXRotRad(Mtx m, u8 axis, f32 rad);
+void PSMTXRotTrig(Mtx m, u8 axis, f32 sin, f32 cos);
+f64 __PSMTXRotAxisRadInternal(f64 param_1, f64 param_2, int param_3, int param_4);
+void PSMTXRotAxisRad(Mtx m, const Vec* axis, f32 rad);
+void PSMTXTrans(Mtx m, f32 x_trans, f32 y_trans, f32 z_trans);
+void PSMTXTransApply(const Mtx src, Mtx dst, f32 x, f32 y, f32 z);
+void PSMTXScale(Mtx m, f32 x_scale, f32 y_scale, f32 z_scale);
+void PSMTXScaleApply(const Mtx src, Mtx dst, f32 x_scale, f32 y_scale, f32 z_scale);
+void PSMTXQuat(Mtx m, const Quaternion* q);
+void PSMTXMultVec(const Mtx m, const Vec* src, Vec* dst);
+void PSMTXMultVecSR(const Mtx m, const Vec* src, Vec* dst);
+void PSMTXMultVec(const Mtx m, const Vec* src, Vec* dst);
+void PSMTXMultVecArray(const Mtx m, const Vec* srcBase, Vec* dstBase, u32 count);
+void PSMTXMultVecSR(const Mtx m, const Vec* src, Vec* dst);
+void PSMTXMultVecArraySR(const Mtx m, const Vec* srcBase, Vec* dstBase, u32 count);
 
-void C_MTXLookAt(Mtx param_1, const Vec* param_2, const Vec* param_3, const Vec* param_4);
-void C_MTXLightPerspective(Mtx matrix, float fov_y, float aspect, float scale_s, float scale_t,
-                           float trans_s, float trans_t);
-void C_MTXLightOrtho(Mtx matrix, float top, float bottom, float left, float right, float scale_s,
-                     float scale_t, float trans_s, float trans_t);
+void C_MTXLookAt(Mtx m, const Vec* camPos, const Vec* camUp, const Vec* target);
+void C_MTXLightPerspective(Mtx m, f32 fovY, f32 aspect, f32 scale_s, f32 scale_t, f32 trans_s,
+                           f32 trans_t);
+void C_MTXLightOrtho(Mtx m, f32 top, f32 bottom, f32 left, f32 right, f32 scale_s, f32 scale_t,
+                     f32 trans_s, f32 trans_t);
 }
 
 #endif /* MTX_H */

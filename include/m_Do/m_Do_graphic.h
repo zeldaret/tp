@@ -8,6 +8,9 @@
 
 int mDoGph_Create();
 
+extern u8 struct_80450BE4;  // Blure
+extern u8 data_80450BE6;    // Fade
+
 struct ResTIMG;
 class mDoGph_gInf_c {
 public:
@@ -40,8 +43,10 @@ public:
     static JUTFader* getFader() { return mFader; }
     static int startFadeOut(int param_0) { return JFWDisplay::getManager()->startFadeOut(param_0); }
     static int startFadeIn(int param_0) { return JFWDisplay::getManager()->startFadeIn(param_0); }
-    static void setFadeColor(JUtility::TColor color) { mFader->setColor(color); }
+    static void setFadeColor(JUtility::TColor& color) { mFader->setColor(color); }
     static void endFrame() { JFWDisplay::getManager()->endFrame(); }
+    static void offFade() { data_80450BE6 = 0; }
+    static void offBlure() { struct_80450BE4 = 0; }
 
     static GXTexObj mFrameBufferTexObj;
     static GXTexObj mZbufferTexObj;

@@ -79,19 +79,6 @@ struct dDlst_2DM_c {
     /* 80052C58 */ void draw();
 };
 
-class cM_rnd_c {
-public:
-    /* 80053CDC */ void init(int, int, int);
-    /* 80053CEC */ f32 get();
-    /* 80053DE0 */ f32 getF(f32);
-    /* 80053E18 */ f32 getFX(f32);
-    /* 80053E60 */ f32 getValue(f32, f32);
-
-    /* 0x0 */ int seed0;
-    /* 0x4 */ int seed1;
-    /* 0x8 */ int seed2;
-};
-
 struct cBgS_ShdwDraw {
     /* 80267F88 */ cBgS_ShdwDraw();
     /* 80267FD0 */ ~cBgS_ShdwDraw();
@@ -2676,8 +2663,8 @@ SECTION_SDATA2 static f32 lit_5553 = 0.0010000000474974513f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dDlst_shadowControl_c::setReal(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3,
-                                        f32 param_4, f32 param_5, dKy_tevstr_c* param_6) {
+asm int dDlst_shadowControl_c::setReal(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3,
+                                       f32 param_4, f32 param_5, dKy_tevstr_c* param_6) {
     nofralloc
 #include "asm/d/d_drawlist/setReal__21dDlst_shadowControl_cFUlScP8J3DModelP4cXyzffP12dKy_tevstr_c.s"
 }
@@ -2699,8 +2686,8 @@ asm void dDlst_shadowControl_c::addReal(u32 param_0, J3DModel* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dDlst_shadowControl_c::setSimple(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3,
-                                          s16 param_4, f32 param_5, _GXTexObj* param_6) {
+asm int dDlst_shadowControl_c::setSimple(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3,
+                                         s16 param_4, f32 param_5, _GXTexObj* param_6) {
     nofralloc
 #include "asm/d/d_drawlist/setSimple__21dDlst_shadowControl_cFP4cXyzffP4cXyzsfP9_GXTexObj.s"
 }
@@ -2708,7 +2695,7 @@ asm void dDlst_shadowControl_c::setSimple(cXyz* param_0, f32 param_1, f32 param_
 
 /* ############################################################################################## */
 /* 804248D0-804248F0 0515F0 0020+00 1/1 6/6 173/173 .bss mSimpleTexObj__21dDlst_shadowControl_c */
-u8 dDlst_shadowControl_c::mSimpleTexObj[32];
+GXTexObj dDlst_shadowControl_c::mSimpleTexObj;
 
 /* 80055FE8-80056018 050928 0030+00 0/0 1/1 0/0 .text
  * setSimpleTex__21dDlst_shadowControl_cFPC7ResTIMG             */
@@ -3027,8 +3014,7 @@ SECTION_SDATA u8 dDlst_list_c::mWipeColor[4] = {
 };
 
 /* 80450ED0-80450ED4 0003D0 0004+00 2/2 1/1 0/0 .sbss            None */
-extern u8 data_80450ED0[4];
-u8 data_80450ED0[4];
+u8 data_80450ED0;
 
 /* 80450ED4-80450ED8 0003D4 0004+00 2/2 1/1 0/0 .sbss            mWipeRate__12dDlst_list_c */
 f32 dDlst_list_c::mWipeRate;

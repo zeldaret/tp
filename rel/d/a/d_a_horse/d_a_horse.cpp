@@ -21,11 +21,6 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct mDoExt_btpAnm {
-    /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
-    /* 8000D5E8 */ void entry(J3DMaterialTable*, s16);
-};
-
 struct mDoExt_3DlineMat1_c {
     /* 80013360 */ void init(u16, u16, ResTIMG*, int);
     /* 8001373C */ void update(int, f32, _GXColor&, u16, dKy_tevstr_c*);
@@ -501,7 +496,6 @@ extern "C" extern void* __vt__19mDoExt_3DlineMat1_c[5];
 extern "C" extern void* __vt__28mDoExt_MtxCalcAnmBlendTblOld[11];
 extern "C" extern void* __vt__25mDoExt_MtxCalcAnmBlendTbl[11];
 extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 m_typeFourData__8dPaPoF_c[60];
 extern "C" u8 m_emitterFourData__8dPaPoF_c[60 + 28 /* padding */];
 extern "C" extern void* __vt__8dCcD_Sph[36];

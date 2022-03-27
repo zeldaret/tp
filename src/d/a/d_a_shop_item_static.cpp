@@ -8,23 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct fopAc_ac_c {};
-
-struct daShopItem_c {
-    /* 80037C14 */ void getRotateP();
-    /* 80037C1C */ void getPosP();
-
-    static void* const mData[276];
-};
-
-struct daItemBase_c {
-    /* 8014475C */ void CreateItemHeap(char const*, s16, s16, s16, s16, s16, s16, s16);
-};
-
-//
 // Forward References:
 //
 
@@ -45,402 +28,53 @@ extern "C" void CreateItemHeap__12daItemBase_cFPCcsssssss();
 //
 
 /* 80037C14-80037C1C 032554 0008+00 0/0 1/1 0/0 .text            getRotateP__12daShopItem_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daShopItem_c::getRotateP() {
-    nofralloc
-#include "asm/d/a/d_a_shop_item_static/getRotateP__12daShopItem_cFv.s"
+csXyz* daShopItem_c::getRotateP() {
+    return &mCurrent.mAngle;
 }
-#pragma pop
 
 /* 80037C1C-80037C24 03255C 0008+00 0/0 2/2 0/0 .text            getPosP__12daShopItem_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daShopItem_c::getPosP() {
-    nofralloc
-#include "asm/d/a/d_a_shop_item_static/getPosP__12daShopItem_cFv.s"
+cXyz* daShopItem_c::getPosP() {
+    return &mCurrent.mPosition;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80379738-80379742 005D98 000A+00 1/0 0/0 0/0 .rodata          None */
-extern "C" char const* const stringBase_80379738;
-
-/* 80379742-8037974B 005DA2 0009+00 1/0 0/0 0/0 .rodata          None */
-extern "C" char const* const stringBase_80379742;
-
-/* 8037974B-80379754 005DAB 0009+00 1/0 0/0 0/0 .rodata          None */
-extern "C" char const* const stringBase_8037974B;
-
-/* 80379754-8037975E 005DB4 000A+00 1/0 0/0 0/0 .rodata          None */
-extern "C" char const* const stringBase_80379754;
-
-/* 8037975E-80379768 005DBE 000A+00 1/0 0/0 0/0 .rodata          None */
-extern "C" char const* const stringBase_8037975E;
-
-/* 80379768-80379771 005DC8 0009+00 1/0 0/0 0/0 .rodata          None */
-extern "C" char const* const stringBase_80379768;
-
-/* 80379771-8037977A 005DD1 0009+00 1/0 0/0 0/0 .rodata          None */
-extern "C" char const* const stringBase_80379771;
-
-/* 8037977A-80379783 005DDA 0009+00 1/0 0/0 0/0 .rodata          None */
-extern "C" char const* const stringBase_8037977A;
-
-/* 80379783-8037978D 005DE3 000A+00 1/0 0/0 0/0 .rodata          None */
-extern "C" char const* const stringBase_80379783;
-
-/* 8037978D-80379795 005DED 0008+00 1/0 0/0 0/0 .rodata          None */
-extern "C" char const* const stringBase_8037978D;
-
-/* 80379795-8037979D 005DF5 0008+00 1/0 0/0 0/0 .rodata          None */
-extern "C" char const* const stringBase_80379795;
-
-/* 8037979D-803797A7 005DFD 000A+00 1/0 0/0 0/0 .rodata          None */
-extern "C" char const* const stringBase_8037979D;
-
-/* 803797A7-803797B1 005E07 000A+00 1/0 0/0 0/0 .rodata          None */
-extern "C" char const* const stringBase_803797A7;
-
-/* 803797B1-803797BB 005E11 000A+00 1/0 0/0 0/0 .rodata          None */
-extern "C" char const* const stringBase_803797B1;
-
-/* 803797BB-803797C5 005E1B 000A+00 1/0 0/0 0/0 .rodata          None */
-extern "C" char const* const stringBase_803797BB;
-
-/* 803797C5-803797CF 005E25 000A+00 1/0 0/0 0/0 .rodata          None */
-extern "C" char const* const stringBase_803797C5;
-
-/* 803797CF-803797D9 005E2F 000A+00 1/0 0/0 0/0 .rodata          None */
-extern "C" char const* const stringBase_803797CF;
-
-/* 803797D9-803797E3 005E39 000A+00 1/0 0/0 0/0 .rodata          None */
-extern "C" char const* const stringBase_803797D9;
-
-/* 803797E3-803797ED 005E43 000A+00 1/0 0/0 0/0 .rodata          None */
-extern "C" char const* const stringBase_803797E3;
-
-/* 803797ED-803797F8 005E4D 000A+01 1/0 0/0 0/0 .rodata          None */
-extern "C" char const* const stringBase_803797ED;
 
 /* 803792E8-80379738 -00001 0450+00 1/1 0/0 9/9 .rodata          mData__12daShopItem_c */
-SECTION_RODATA void* const daShopItem_c::mData[276] = {
-    (void*)&d_a_d_a_shop_item_static__stringBase0,
-    (void*)0x0003FFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFF0000,
-    (void*)NULL,
-    (void*)0x3F800000,
-    (void*)NULL,
-    (void*)0x80000000,
-    (void*)NULL,
-    (void*)0x000000FF,
-    (void*)0xFF000000,
-    (void*)(((char*)&d_a_d_a_shop_item_static__stringBase0) + 0xA),
-    (void*)0x0003FFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFF0000,
-    (void*)NULL,
-    (void*)0x3F800000,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)0x000000FF,
-    (void*)0xFF000000,
-    (void*)(((char*)&d_a_d_a_shop_item_static__stringBase0) + 0x13),
-    (void*)0x0003FFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFF50000,
-    (void*)NULL,
-    (void*)0x3F800000,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)0x000000FF,
-    (void*)0xFF000000,
-    (void*)(((char*)&d_a_d_a_shop_item_static__stringBase0) + 0x1C),
-    (void*)0x0003FFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFF0000,
-    (void*)NULL,
-    (void*)0x3F800000,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)0x000000FF,
-    (void*)0xFF000000,
-    (void*)(((char*)&d_a_d_a_shop_item_static__stringBase0) + 0x26),
-    (void*)0x0006000C,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFF0009,
-    (void*)0x000F0000,
-    (void*)NULL,
-    (void*)0x3F800000,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)0x00000004,
-    (void*)0x00000003,
-    (void*)0x01000000,
-    (void*)(((char*)&d_a_d_a_shop_item_static__stringBase0) + 0x30),
-    (void*)0x0003FFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFF0000,
-    (void*)NULL,
-    (void*)0x3F800000,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)0x000000FF,
-    (void*)0xFF000000,
-    (void*)(((char*)&d_a_d_a_shop_item_static__stringBase0) + 0x39),
-    (void*)0x0003FFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFF0000,
-    (void*)0x41F00000,
-    (void*)0x3F800000,
-    (void*)NULL,
-    (void*)0x7FFF0000,
-    (void*)NULL,
-    (void*)0x000000FF,
-    (void*)0xFF000000,
-    (void*)(((char*)&d_a_d_a_shop_item_static__stringBase0) + 0x42),
-    (void*)0x0003FFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFF0000,
-    (void*)0x41F00000,
-    (void*)0x3F800000,
-    (void*)NULL,
-    (void*)0x7FFF0000,
-    (void*)NULL,
-    (void*)0x000000FF,
-    (void*)0xFF000000,
-    (void*)(((char*)&d_a_d_a_shop_item_static__stringBase0) + 0x4B),
-    (void*)0x0003FFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFF0000,
-    (void*)NULL,
-    (void*)0x3F800000,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)0xFF000000,
-    (void*)(((char*)&d_a_d_a_shop_item_static__stringBase0) + 0x55),
-    (void*)0x0003FFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFF0000,
-    (void*)NULL,
-    (void*)0x3F800000,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)0xFF000000,
-    (void*)(((char*)&d_a_d_a_shop_item_static__stringBase0) + 0x5D),
-    (void*)0x0003FFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFF0000,
-    (void*)NULL,
-    (void*)0x3F800000,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)0xFF000000,
-    (void*)(((char*)&d_a_d_a_shop_item_static__stringBase0) + 0x65),
-    (void*)0x0003FFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFF0000,
-    (void*)NULL,
-    (void*)0x3F800000,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)0xFF000000,
-    (void*)(((char*)&d_a_d_a_shop_item_static__stringBase0) + 0x6F),
-    (void*)0x0003FFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFF0000,
-    (void*)NULL,
-    (void*)0x3F800000,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)0xFF000000,
-    (void*)(((char*)&d_a_d_a_shop_item_static__stringBase0) + 0x79),
-    (void*)0x0003FFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFF0000,
-    (void*)NULL,
-    (void*)0x3F800000,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)0xFF000000,
-    (void*)(((char*)&d_a_d_a_shop_item_static__stringBase0) + 0x26),
-    (void*)0x0006000C,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFF0009,
-    (void*)0x000F0000,
-    (void*)NULL,
-    (void*)0x3F800000,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)0x00000004,
-    (void*)0x00000001,
-    (void*)NULL,
-    (void*)(((char*)&d_a_d_a_shop_item_static__stringBase0) + 0x83),
-    (void*)0x0003FFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFF0000,
-    (void*)NULL,
-    (void*)0x3F800000,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)0x000000FF,
-    (void*)0xFF000000,
-    (void*)(((char*)&d_a_d_a_shop_item_static__stringBase0) + 0x8D),
-    (void*)0x0003FFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFF0000,
-    (void*)NULL,
-    (void*)0x3F800000,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)0x000000FF,
-    (void*)0xFF000000,
-    (void*)(((char*)&d_a_d_a_shop_item_static__stringBase0) + 0x97),
-    (void*)0x0003FFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFF50000,
-    (void*)NULL,
-    (void*)0x3F800000,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)0x000000FF,
-    (void*)0xFF000000,
-    (void*)(((char*)&d_a_d_a_shop_item_static__stringBase0) + 0xA1),
-    (void*)0x0003FFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFF0000,
-    (void*)NULL,
-    (void*)0x3F800000,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)0x000000FF,
-    (void*)0xFF000000,
-    (void*)(((char*)&d_a_d_a_shop_item_static__stringBase0) + 0xAB),
-    (void*)0x0003FFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFF0000,
-    (void*)NULL,
-    (void*)0x3F800000,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)0x000000FF,
-    (void*)0xFF000000,
-    (void*)(((char*)&d_a_d_a_shop_item_static__stringBase0) + 0xAB),
-    (void*)0x0004FFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFF0000,
-    (void*)NULL,
-    (void*)0x3F800000,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)0x000000FF,
-    (void*)0xFF000000,
-    (void*)(((char*)&d_a_d_a_shop_item_static__stringBase0) + 0xB5),
-    (void*)0x0003FFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFF0000,
-    (void*)NULL,
-    (void*)0x3F800000,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)0x000000FF,
-    (void*)0xFF000000,
-    (void*)(((char*)&d_a_d_a_shop_item_static__stringBase0) + 0x26),
-    (void*)0x0006000C,
-    (void*)0xFFFFFFFF,
-    (void*)0xFFFF0009,
-    (void*)0x000F0000,
-    (void*)NULL,
-    (void*)0x3F800000,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)0x00000004,
-    (void*)0x0000000C,
-    (void*)NULL,
+SECTION_RODATA ResourceData const daShopItem_c::mData[23] = {
+    {"B_mD_sold", 3, -1, -1, -1, -1, -1, -1, 0.0f, 1.0f, 0, {0, 0x8000, 0}, 0, 0, 0, 0, -1, -1},
+    {"B_mD_oil", 3, -1, -1, -1, -1, -1, -1, 0.0f, 1.0f, 0, {0, 0, 0}, 0, 0, 0, 0, -1, -1},
+    {"O_mD_red", 3, -1, -1, -1, -1, -1, -11, 0.0f, 1.0f, 0, {0, 0, 0}, 0, 0, 0, 0, -1, -1},
+    {"B_mD_milk", 3, -1, -1, -1, -1, -1, -1, 0.0f, 1.0f, 0, {0, 0, 0}, 0, 0, 0, 0, -1, -1},
+    {"O_mD_bott", 6, 12, -1, -1, -1, 9, 15, 0.0f, 1.0f, 0, {0, 0, 0}, 4, 0, 0, 0, 3, 1},
+    {"O_mD_arw", 3, -1, -1, -1, -1, -1, -1, 0.0f, 1.0f, 0, {0, 0, 0}, 0, 0, 0, 0, -1, -1},
+    {"O_mD_SHB", 3, -1, -1, -1, -1, -1, -1, 30.0f, 1.0f, 0, {0, 0x7FFF, 0}, 0, 0, 0, 0, -1, -1},
+    {"O_mD_SHA", 3, -1, -1, -1, -1, -1, -1, 30.0f, 1.0f, 0, {0, 0x7FFF, 0}, 0, 0, 0, 0, -1, -1},
+    {"O_mD_bomb", 3, -1, -1, -1, -1, -1, -1, 0.0f, 1.0f, 0, {0, 0, 0}, 0, 0, 0, 0, 0, -1},
+    {"O_mD_pg", 3, -1, -1, -1, -1, -1, -1, 0.0f, 1.0f, 0, {0, 0, 0}, 0, 0, 0, 0, 0, -1},
+    {"O_mD_bi", 3, -1, -1, -1, -1, -1, -1, 0.0f, 1.0f, 0, {0, 0, 0}, 0, 0, 0, 0, 0, -1},
+    {"O_mD_bmcs", 3, -1, -1, -1, -1, -1, -1, 0.0f, 1.0f, 0, {0, 0, 0}, 0, 0, 0, 0, 0, -1},
+    {"O_mD_bmc2", 3, -1, -1, -1, -1, -1, -1, 0.0f, 1.0f, 0, {0, 0, 0}, 0, 0, 0, 0, 0, -1},
+    {"O_mD_jira", 3, -1, -1, -1, -1, -1, -1, 0.0f, 1.0f, 0, {0, 0, 0}, 0, 0, 0, 0, 0, -1},
+    {"O_mD_bott", 6, 12, -1, -1, -1, 9, 15, 0.0f, 1.0f, 0, {0, 0, 0}, 4, 0, 0, 0, 1, 0},
+    {"O_mD_hati", 3, -1, -1, -1, -1, -1, -1, 0.0f, 1.0f, 0, {0, 0, 0}, 0, 0, 0, 0, -1, -1},
+    {"O_mD_pach", 3, -1, -1, -1, -1, -1, -1, 0.0f, 1.0f, 0, {0, 0, 0}, 0, 0, 0, 0, -1, -1},
+    {"O_mD_blue", 3, -1, -1, -1, -1, -1, -11, 0.0f, 1.0f, 0, {0, 0, 0}, 0, 0, 0, 0, -1, -1},
+    {"O_mD_hawk", 3, -1, -1, -1, -1, -1, -1, 0.0f, 1.0f, 0, {0, 0, 0}, 0, 0, 0, 0, -1, -1},
+    {"O_mD_marm", 3, -1, -1, -1, -1, -1, -1, 0.0f, 1.0f, 0, {0, 0, 0}, 0, 0, 0, 0, -1, -1},
+    {"O_mD_marm", 4, -1, -1, -1, -1, -1, -1, 0.0f, 1.0f, 0, {0, 0, 0}, 0, 0, 0, 0, -1, -1},
+    {"O_mD_gren", 3, -1, -1, -1, -1, -1, -1, 0.0f, 1.0f, 0, {0, 0, 0}, 0, 0, 0, 0, -1, -1},
+    {"O_mD_bott", 6, 12, -1, -1, -1, 9, 15, 0.0f, 1.0f, 0, {0, 0, 0}, 4, 0, 0, 0, 12, 0},
 };
 COMPILER_STRIP_GATE(0x803792E8, &daShopItem_c::mData);
 
-/* 80379738-80379738 005D98 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80379738 = "B_mD_sold";
-SECTION_DEAD static char const* const stringBase_80379742 = "B_mD_oil";
-SECTION_DEAD static char const* const stringBase_8037974B = "O_mD_red";
-SECTION_DEAD static char const* const stringBase_80379754 = "B_mD_milk";
-SECTION_DEAD static char const* const stringBase_8037975E = "O_mD_bott";
-SECTION_DEAD static char const* const stringBase_80379768 = "O_mD_arw";
-SECTION_DEAD static char const* const stringBase_80379771 = "O_mD_SHB";
-SECTION_DEAD static char const* const stringBase_8037977A = "O_mD_SHA";
-SECTION_DEAD static char const* const stringBase_80379783 = "O_mD_bomb";
-SECTION_DEAD static char const* const stringBase_8037978D = "O_mD_pg";
-SECTION_DEAD static char const* const stringBase_80379795 = "O_mD_bi";
-SECTION_DEAD static char const* const stringBase_8037979D = "O_mD_bmcs";
-SECTION_DEAD static char const* const stringBase_803797A7 = "O_mD_bmc2";
-SECTION_DEAD static char const* const stringBase_803797B1 = "O_mD_jira";
-SECTION_DEAD static char const* const stringBase_803797BB = "O_mD_hati";
-SECTION_DEAD static char const* const stringBase_803797C5 = "O_mD_pach";
-SECTION_DEAD static char const* const stringBase_803797CF = "O_mD_blue";
-SECTION_DEAD static char const* const stringBase_803797D9 = "O_mD_hawk";
-SECTION_DEAD static char const* const stringBase_803797E3 = "O_mD_marm";
-SECTION_DEAD static char const* const stringBase_803797ED = "O_mD_gren";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803797F7 = "";
-#pragma pop
-
 /* 80037C24-80037C7C 032564 0058+00 0/0 0/0 1/1 .text CheckShopItemCreateHeap__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CheckShopItemCreateHeap(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/a/d_a_shop_item_static/CheckShopItemCreateHeap__FP10fopAc_ac_c.s"
+void CheckShopItemCreateHeap(fopAc_ac_c* actor) {
+    daShopItem_c* item = static_cast<daShopItem_c*>(actor);
+
+    u8 item_id = item->getShopItemID();
+    item->CreateItemHeap(
+        daShopItem_c::mData[item_id].get_arcName(), daShopItem_c::mData[item_id].get_bmdName(),
+        daShopItem_c::mData[item_id].get_btk1Name(), daShopItem_c::mData[item_id].get_bpk1Name(),
+        daShopItem_c::mData[item_id].get_bck1Name(), daShopItem_c::mData[item_id].get_bxa1Name(),
+        daShopItem_c::mData[item_id].get_brk1Name(), daShopItem_c::mData[item_id].get_btp1Name());
 }
-#pragma pop
 
 /* 80379738-80379738 005D98 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

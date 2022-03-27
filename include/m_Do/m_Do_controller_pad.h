@@ -14,7 +14,7 @@ public:
     static void create();
     static void read();
     static void convert(interface_of_controller_pad*, JUTGamePad*);
-    void LRlockCheck(interface_of_controller_pad*);
+    static void LRlockCheck(interface_of_controller_pad*);
     void recalibrate();
 
     static interface_of_controller_pad& getCpadInfo(u32 pad) { return m_cpadInfo[pad]; }

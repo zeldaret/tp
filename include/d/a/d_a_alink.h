@@ -1815,7 +1815,7 @@ public:
     /* 8011F0F4 */ void procDungeonWarp();
     /* 8011F360 */ void procDungeonWarpSceneStartInit();
     /* 8011F460 */ void procDungeonWarpSceneStart();
-    /* 8011F658 */ void checkAcceptWarp();
+    /* 8011F658 */ bool checkAcceptWarp();
     /* 8011F7D8 */ void dungeonReturnWarp();
     /* 8011F9EC */ void checkWarpStart();
     /* 8011FBC0 */ void warpModelTexScroll();
@@ -2130,6 +2130,12 @@ public:
     /* 80140888 */ void statusWindowExecute(cXyz const*, s16);
     /* 80140984 */ void statusWindowDraw();
     /* 80140AC8 */ void resetStatusWindow();
+    /* 8018280C */ void getChainGrabActor();
+    /* 80182814 */ void checkCokkoGlide() const;
+    /* 8018283C */ void checkCameraLargeDamage() const;
+    /* 80182870 */ void getHsSubChainTopPos() const;
+    /* 80182888 */ void checkCutHeadProc() const;
+    /* 8018289C */ void getRideActor();
 
     virtual cXyz* getMidnaAtnPos() const;
     virtual void setMidnaMsgNum(fopAc_ac_c*, u16);
@@ -2207,9 +2213,9 @@ public:
     virtual bool checkIronBallGroundStop() const;
     virtual BOOL checkSingleBoarBattleSecondBowReady() const;
     virtual void setClothesChange(int);
-    virtual void setPlayerPosAndAngle(float (*)[4]);
-    virtual void setPlayerPosAndAngle(cXyz const*, csXyz const*);
     virtual void setPlayerPosAndAngle(cXyz const*, short, int);
+    virtual void setPlayerPosAndAngle(cXyz const*, csXyz const*);
+    virtual void setPlayerPosAndAngle(float (*)[4]);
     virtual bool setThrowDamage(short, float, float, int, int, int);
     virtual bool checkSetNpcTks(cXyz*, int, int);
     virtual bool setRollJump(float, float, short);
@@ -2253,7 +2259,7 @@ public:
     virtual void skipPortalObjWarp();
     virtual bool checkTreasureRupeeReturn(int) const;
     virtual void setSumouReady(fopAc_ac_c*);
-    virtual void checkAcceptDungeonWarpAlink(int);
+    virtual bool checkAcceptDungeonWarpAlink(int);
     virtual s16 getSumouCounter() const;
     virtual s16 checkSumouWithstand() const;
     virtual void cancelGoronThrowEvent();
@@ -2332,6 +2338,7 @@ public:
         field_0x2844.clearData();
     }
     s32 checkPlayerDemoMode() const { return mDemo.getDemoType(); }
+    u16 getMidnaMsgNum() const { return mMidnaMsgNum; }
 
     BOOL i_checkReinRide() const { return mRideStatus == 1 || mRideStatus == 2; }
 
@@ -4366,6 +4373,8 @@ public:
         FORCE_PANIC = 8,
     };
 
+    enum daMidna_FLG0 { NPC_NEAR = 0x100000, NPC_FAR = 0x40000 };
+
     enum daMidna_FLG1 { FORCE_NORMAL_COLOR = 8, FORCE_TIRED_COLOR = 4 };
 
     enum daMidna_ANM {};
@@ -4421,12 +4430,15 @@ public:
     /* 804C61A4 */ ~daMidna_c();
 
     void onEndResetStateFlg0(daMidna_ERFLG0 pFlg) { mEndResetStateFlg0 |= pFlg; }
-    u32 checkStateFlg1(daMidna_FLG1 pFlg) const { return mStateFlg1 & pFlg; }
+    u32 checkStateFlg0(daMidna_FLG0 flag) const { return mStateFlg0 & flag; }
+    u32 checkStateFlg1(daMidna_FLG1 flag) const { return mStateFlg1 & flag; }
     void setFaceNum(int num) { mFaceNum = num; }
     void setMotionNum(int num) { mMotionNum = num; }
     bool checkDemoTypeNone() const { return mDemoType == 0; }
     void changeOriginalDemo() { mDemoType = 3; }
     void changeDemoMode(u32 mode) { mDemoMode = mode; }
+    BOOL checkNpcNear() { return checkStateFlg0(NPC_NEAR); }
+    BOOL checkNpcFar() { return checkStateFlg0(NPC_FAR); }
 
     inline bool checkMidnaRealBody();
 

@@ -8,9 +8,12 @@
 
 void dKyw_wether_draw();
 void dKyw_wether_delete();
+void dKyw_wether_move();
+void dKyw_wether_move_draw();
 void dKyw_wether_move_draw2();
 void dKyw_wether_draw2();
 void dKyw_wether_delete2();
+void dKyw_wether_init();
 void dKyw_wether_init2();
 static void dKyw_wind_init();
 static void dKyw_pntwind_init();

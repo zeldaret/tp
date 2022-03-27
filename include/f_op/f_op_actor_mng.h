@@ -102,6 +102,10 @@ inline u32 fopAcM_GetParam(const void* pActor) {
     return fpcM_GetParam(pActor);
 }
 
+inline u8 fopAcM_GetParamBit(void* ac, u8 shift, u8 bit) {
+    return (fopAcM_GetParam(ac) >> shift) & ((1 << bit) - 1);
+}
+
 inline void fopAcM_SetParam(void* p_actor, u32 param) {
     fpcM_SetParam(p_actor, param);
 }
@@ -148,6 +152,10 @@ inline bool fopAcM_CheckCondition(fopAc_ac_c* p_actor, u32 flag) {
 
 inline void fopAcM_OnCondition(fopAc_ac_c* p_actor, u32 flag) {
     p_actor->mCondition |= flag;
+}
+
+inline BOOL fopAcM_IsActor(void* actor) {
+    return fopAc_IsActor(actor);
 }
 
 void* fopAcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3, void* pData);
@@ -354,9 +362,9 @@ void fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci(void);
 void fopAcM_riverStream__FP4cXyzPsPff(void);
 void fopAcM_carryOffRevise__FP10fopAc_ac_c(void);
 void fopAcM_searchFromName4Event__FPCcs(void);
-void fopAcM_GetName__FPv(void);    // mostly inlined
-void fopAcM_GetID__FPCv(void);     // mostly inlined
-void fopAcM_GetParam__FPCv(void);  // mostly inlined
+void fopAcM_GetName__FPv(void);                  // mostly inlined
+void fopAcM_GetID__FPCv(void);                   // mostly inlined
+static void fopAcM_GetParam__FPCv(void const*);  // mostly inlined
 }
 
 #endif

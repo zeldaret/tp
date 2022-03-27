@@ -137,7 +137,7 @@ struct OSAlarmLink {
     /* 0x4 */ OSAlarm* next;
 };
 
-typedef void (*OSAlarmHandler)(OSAlarm*, OSContext*);
+typedef void (*OSAlarmHandler)(OSAlarm* alarm, OSContext* context);
 
 struct OSAlarm {
     /* 0x00 */ OSAlarmHandler handler;
@@ -157,13 +157,13 @@ OSThread* OSGetCurrentThread(void);
 s32 OSSuspendThread(OSThread* thread);
 s32 OSSetThreadPriority(OSThread* thread, u32 pri);
 s32 OSGetThreadPriority(OSThread* thread);
-s32 OSCreateThread(OSThread* thread, void* func, void* param, void* stack, u32 stackSize,
-                   int param_6, int param_7);
+BOOL OSCreateThread(OSThread* thread, void* func, void* param, void* stack, u32 stackSize,
+                    int priority, int attr);
 void OSCancelThread(OSThread* thread);
 void OSDetachThread(OSThread* thread);
 s32 OSResumeThread(OSThread* thread);
 void OSExitThread(void* exit_val);
-bool OSIsThreadSuspended(OSThread* thread);
+BOOL OSIsThreadSuspended(OSThread* thread);
 BOOL OSIsThreadTerminated(OSThread* thread);
 OSSwitchThreadCallback OSSetSwitchThreadCallback(OSSwitchThreadCallback callback);
 
@@ -197,21 +197,19 @@ OSTick OSGetTick(void);
 
 u32 OSGetArenaLo();
 u32 OSGetArenaHi();
-u32 OSInitAlloc(u32 low, u32 high, int param_3);
-void OSSetArenaLo(u32 param_1);
-void OSSetArenaHi(u32 param_1);
+u32 OSInitAlloc(u32 low, u32 high, int maxHeaps);
+void OSSetArenaLo(u32 newLo);
+void OSSetArenaHi(u32 newHi);
 void* OSAllocFromArenaLo(u32 size, int alignment);
-
-// void OSCancelAlarm(OSAlarm *alarm);
 
 void OSInitMutex(OSMutex* mutex);
 void OSLockMutex(OSMutex* mutex);
-void OSTryLockMutex(OSMutex* mutex);
+BOOL OSTryLockMutex(OSMutex* mutex);
 void OSUnlockMutex(OSMutex* mutex);
 
-s32 OSDisableInterrupts();
-s32 OSEnableInterrupts();
-s32 OSRestoreInterrupts(s32 level);
+BOOL OSDisableInterrupts();
+BOOL OSEnableInterrupts();
+BOOL OSRestoreInterrupts(s32 level);
 
 void OSResetSystem(s32 param_1, u32 param_2, s32 param_3);
 
@@ -223,9 +221,13 @@ void OSReportInit__Fv(void);  // needed for inline asm
 
 u8* OSGetStackPointer(void);
 
-void OSCreateAlarm(OSAlarm*);
-void OSCancelAlarm(OSAlarm*);
-void OSSetAlarm(OSAlarm*, OSTime, OSAlarmHandler);
+void OSCreateAlarm(OSAlarm* alarm);
+void OSCancelAlarm(OSAlarm* alarm);
+void OSSetAlarm(OSAlarm* alarm, OSTime time, OSAlarmHandler handler);
+
+void OSInitCond(OSCond* cond);
+void OSWaitCond(OSCond* cond, OSMutex* mutex);
+void OSSignalCond(OSCond* cond);
 
 inline s16 __OSf32tos16(register f32 inF) {
     register s16 out;

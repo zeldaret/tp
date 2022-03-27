@@ -4,6 +4,8 @@
 #include "d/com/d_com_inf_game.h"
 #include "dolphin/types.h"
 
+void execItemGet(u8 item_id);
+
 void item_func_HEART();
 void item_func_GREEN_RUPEE();
 void item_func_BLUE_RUPEE();

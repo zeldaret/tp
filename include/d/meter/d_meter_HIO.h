@@ -3,8 +3,8 @@
 
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JUtility/TColor.h"
-#include "SSystem/SComponent/c_Xyz.h"
-#include "SSystem/SComponent/c_sXyz.h"
+#include "SSystem/SComponent/c_sxyz.h"
+#include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
 
@@ -601,7 +601,7 @@ public:
     /* 80201128 */ virtual ~dMeter_drawHIO_c();
 
     /* 0x000 */  // vtable
-    /* 0x004 */ u8 field_0x04[4];
+    /* 0x004 */ s8 field_0x4;
     /* 0x008 */ f32 mLifeTopPosX;
     /* 0x00C */ f32 mLifeTopPosY;
     /* 0x010 */ f32 mNoMagicPosY;
@@ -995,7 +995,7 @@ public:
     };
 
     /* 0x000 */  // vtable
-    /* 0x004 */ u8 field_0x4[4];
+    /* 0x004 */ s8 field_0x4;
     /* 0x008 */ f32 mRingRadiusH;
     /* 0x00C */ f32 mRingRadiusV;
     /* 0x010 */ f32 field_0x10;
@@ -1248,7 +1248,7 @@ public:
     /* 802006C8 */ dMeter_fmapHIO_c();
     /* 80200BCC */ virtual ~dMeter_fmapHIO_c();
 
-    /* 0x004 */ u8 field_0x4[4];
+    /* 0x004 */ s8 field_0x4;
     /* 0x008 */ JKRArchive* field_0x8;
     /* 0x00C */ void* field_0xc;
     /* 0x010 */ void* field_0x10;
@@ -1361,7 +1361,7 @@ public:
     /* 80200CD4 */ dMeter_cursorHIO_c();
     /* 80201098 */ virtual ~dMeter_cursorHIO_c();
 
-    /* 0x04 */ u8 field_0x4[4];
+    /* 0x04 */ s8 field_0x4;
     /* 0x08 */ cXyz mSeraShopObjZoom;
     /* 0x14 */ cXyz mObjZoom;
     /* 0x20 */ cXyz mMagicArmorObjZoom;

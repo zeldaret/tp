@@ -3,7 +3,7 @@
 
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JUtility/TColor.h"
-#include "MSL_C.PPCEABI.bare.H/MSL_Common/Src/printf.h"
+#include "MSL_C/MSL_Common/Src/printf.h"
 #include "dolphin/types.h"
 
 class J2DPrint {

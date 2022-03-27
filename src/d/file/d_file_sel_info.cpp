@@ -8,63 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct dSv_save_c {};
-
-struct JMSMesgEntry_c {};
-
-struct dMeter2Info_c {
-    /* 8021C250 */ void getString(u32, char*, JMSMesgEntry_c*);
-};
-
-struct JKRArchive {};
-
-struct dFile_info_c {
-    /* 80192434 */ dFile_info_c(JKRArchive*, u8);
-    /* 801924A0 */ ~dFile_info_c();
-    /* 80192570 */ void screenSet();
-    /* 80192954 */ void setSaveData(dSv_save_c*, int, u8);
-    /* 80192AA0 */ void setHeartCnt(dSv_save_c*);
-    /* 80192C08 */ void setSaveDate(dSv_save_c*);
-    /* 80192C70 */ void setPlayTime(dSv_save_c*);
-    /* 80192D58 */ void modeWait();
-    /* 80192D5C */ void modeMove();
-    /* 80192D60 */ void _draw();
-};
-
-struct dDlst_base_c {};
-
-struct dDlst_list_c {
-    /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
-};
-
-struct dDlst_FileInfo_c {
-    /* 80192D9C */ void draw();
-    /* 80192EC8 */ ~dDlst_FileInfo_c();
-};
-
-struct JKRExpHeap {};
-
-struct J2DTextBox {
-    /* 80300658 */ void getStringPtr() const;
-    /* 8030074C */ void setString(s16, char const*, ...);
-};
-
-struct J2DGrafContext {};
-
-struct J2DScreen {
-    /* 802F8498 */ J2DScreen();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-};
-
-struct CPaneMgrAlpha {
-    /* 802553FC */ CPaneMgrAlpha(J2DScreen*, u64, u8, JKRExpHeap*);
-};
-
-//
 // Forward References:
 //
 
@@ -99,10 +42,6 @@ extern "C" void setPriority__9J2DScreenFPCcUlP10JKRArchive();
 extern "C" void draw__9J2DScreenFffPC14J2DGrafContext();
 extern "C" void getStringPtr__10J2DTextBoxCFv();
 extern "C" void setString__10J2DTextBoxFsPCce();
-extern "C" void OSTicksToCalendarTime();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXConcat();
-extern "C" void PSMTXScale();
 extern "C" void _savegpr_22();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_28();
@@ -113,11 +52,7 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void __div2i();
 extern "C" void __mod2i();
-extern "C" void sprintf();
-extern "C" void strcpy();
 extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
 
 //
 // Declarations:
@@ -154,25 +89,18 @@ SECTION_DATA static u8 cNullVec__6Z2Calc[12 + 4 /* padding */] = {
 };
 
 /* 803BB4A8-803BB548 0185C8 00A0+00 1/1 0/0 0/0 .data            l_htag$3879 */
-SECTION_DATA static u8 l_htag[160] = {
-    0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x32, 0x30, 0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x32, 0x31,
-    0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x32, 0x32, 0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x32, 0x33,
-    0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x32, 0x34, 0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x32, 0x35,
-    0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x32, 0x36, 0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x32, 0x37,
-    0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x32, 0x38, 0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x32, 0x39,
-    0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x33, 0x30, 0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x33, 0x31,
-    0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x33, 0x32, 0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x33, 0x33,
-    0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x33, 0x34, 0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x33, 0x35,
-    0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x33, 0x36, 0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x33, 0x37,
-    0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x33, 0x38, 0x00, 0x68, 0x65, 0x61, 0x72, 0x5F, 0x33, 0x39,
+SECTION_DATA static u64 l_htag[20] = {
+    'hear_20', 'hear_21', 'hear_22', 'hear_23', 'hear_24', 'hear_25', 'hear_26',
+    'hear_27', 'hear_28', 'hear_29', 'hear_30', 'hear_31', 'hear_32', 'hear_33',
+    'hear_34', 'hear_35', 'hear_36', 'hear_37', 'hear_38', 'hear_39',
 };
 
 /* 803BB548-803BB558 -00001 0010+00 1/1 0/0 0/0 .data            amariheartTex$3880 */
-SECTION_DATA static void* amariheartTex[4] = {
-    (void*)(((char*)&d_file_d_file_sel_info__stringBase0) + 0x21),
-    (void*)(((char*)&d_file_d_file_sel_info__stringBase0) + 0x21),
-    (void*)(((char*)&d_file_d_file_sel_info__stringBase0) + 0x21),
-    (void*)(((char*)&d_file_d_file_sel_info__stringBase0) + 0x21),
+SECTION_DATA static char* amariheartTex[4] = {
+    "tt_heart_00.bti",
+    "tt_heart_00.bti",
+    "tt_heart_00.bti",
+    "tt_heart_00.bti",
 };
 
 /* 803BB558-803BB564 -00001 000C+00 0/1 0/0 0/0 .data            @3953 */
@@ -224,47 +152,144 @@ SECTION_DATA extern void* __vt__12dFile_info_c[3 + 3 /* padding */] = {
 };
 
 /* 80192434-801924A0 18CD74 006C+00 0/0 3/3 0/0 .text __ct__12dFile_info_cFP10JKRArchiveUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dFile_info_c::dFile_info_c(JKRArchive* param_0, u8 param_1) {
-    nofralloc
-#include "asm/d/file/d_file_sel_info/__ct__12dFile_info_cFP10JKRArchiveUc.s"
+dFile_info_c::dFile_info_c(JKRArchive* arc, u8 param_1) {
+    mArchive = arc;
+    field_0x22 = param_1;
+    mFileInfo.mBasePane = NULL;
+    screenSet();
+    field_0x20 = 0;
 }
-#pragma pop
 
 /* 801924A0-80192570 18CDE0 00D0+00 1/0 0/0 0/0 .text            __dt__12dFile_info_cFv */
+#ifdef NONMATCHING
+dFile_info_c::~dFile_info_c() {
+    delete mFileInfo.Scr;
+    delete mDatBase;
+    delete mNoDatBase;
+
+    mDoExt_removeMesgFont();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dFile_info_c::~dFile_info_c() {
+// asm dFile_info_c::~dFile_info_c() {
+extern "C" asm void __dt__12dFile_info_cFv() {
     nofralloc
 #include "asm/d/file/d_file_sel_info/__dt__12dFile_info_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80192570-80192954 18CEB0 03E4+00 1/1 0/0 0/0 .text            screenSet__12dFile_info_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_info_c::screenSet() {
-    nofralloc
-#include "asm/d/file/d_file_sel_info/screenSet__12dFile_info_cFv.s"
+void dFile_info_c::screenSet() {
+    mFileInfo.Scr = new J2DScreen();
+    mFileInfo.Scr->setPriority("zelda_file_select_info_text.blo", 0x1100000, mArchive);
+    mFileInfo.mFont = mDoExt_getMesgFont();
+    mFileInfo.Scr->search('w_cp_ef1')->hide();
+    mFileInfo.field_0x10 = mFileInfo.Scr->search('w_dat_i1');
+    mDatBase = new CPaneMgrAlpha(mFileInfo.Scr, 'w_dat_i1', 2, NULL);
+    mNoDatBase = new CPaneMgrAlpha(mFileInfo.Scr, 'w_nda_i1', 2, NULL);
+
+    J2DTextBox* tboxs[4];
+    tboxs[0] = (J2DTextBox*)mFileInfo.Scr->search('f_s_t_02');
+    tboxs[1] = (J2DTextBox*)mFileInfo.Scr->search('f_p_t_02');
+    mFileInfo.Scr->search('w_s_t_01')->hide();
+    mFileInfo.Scr->search('w_p_t_01')->hide();
+
+    for (int i = 0; i < 2; i++) {
+        tboxs[i]->setFont(mFileInfo.mFont);
+        tboxs[i]->setString(0x20, "");
+    }
+    dMeter2Info_getString(0x3D0, tboxs[0]->getStringPtr(), NULL);  // Save time
+    dMeter2Info_getString(0x3D1, tboxs[1]->getStringPtr(), NULL);  // Total play time
+
+    tboxs[0] = (J2DTextBox*)mFileInfo.Scr->search('f_name01');
+    tboxs[1] = (J2DTextBox*)mFileInfo.Scr->search('f_new_1');
+    mFileInfo.Scr->search('w_name01')->hide();
+    mFileInfo.Scr->search('w_new_1')->hide();
+
+    tboxs[2] = (J2DTextBox*)mFileInfo.Scr->search('w_time01');
+    tboxs[3] = (J2DTextBox*)mFileInfo.Scr->search('w_ptim01');
+
+    for (int i = 0; i < 4; i++) {
+        tboxs[i]->setFont(mFileInfo.mFont);
+        tboxs[i]->setString(0x40, "");
+    }
+    mPlayerName = tboxs[0]->getStringPtr();
+    mSaveStatus = tboxs[1]->getStringPtr();
+    mSaveDate = tboxs[2]->getStringPtr();
+    mPlayTime = tboxs[3]->getStringPtr();
 }
-#pragma pop
+
+inline u16 dComIfGs_getLife() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getLife();
+}
 
 /* 80192954-80192AA0 18D294 014C+00 0/0 3/3 0/0 .text setSaveData__12dFile_info_cFP10dSv_save_ciUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_info_c::setSaveData(dSv_save_c* param_0, int param_1, u8 param_2) {
-    nofralloc
-#include "asm/d/file/d_file_sel_info/setSaveData__12dFile_info_cFP10dSv_save_ciUc.s"
+int dFile_info_c::setSaveData(dSv_save_c* save, int param_1, u8 data_num) {
+    if (param_1 != 0) {
+        char* player_name = save->getPlayer().getPlayerInfo().getLinkName();
+        if (*player_name == NULL) {
+            if (field_0x22 == 1 && data_num == dComIfGs_getDataNum()) {
+                save->getPlayer().getPlayerStatusA().setLife(dComIfGs_getLife());
+                setHeartCnt(save);
+                save->getPlayer().getPlayerStatusA().setLife(12);
+                strcpy(mPlayerName, dComIfGs_getPlayerName());
+                strcpy(mSaveDate, "");
+                strcpy(mPlayTime, "");
+                dMeter2Info_getString(0x4D, mSaveStatus, NULL);  // New Quest Log
+                return 2;
+            } else {
+                dMeter2Info_getString(0x4D, mSaveStatus, NULL);  // New Quest Log
+                return 1;
+            }
+        } else {
+            setHeartCnt(save);
+            strcpy(mPlayerName, player_name);
+            setSaveDate(save);
+            setPlayTime(save);
+            return 0;
+        }
+    } else {
+        dMeter2Info_getString(0x51, mSaveStatus, NULL);  // This Quest Log is Corrupted
+        return -1;
+    }
 }
-#pragma pop
 
 /* 80192AA0-80192C08 18D3E0 0168+00 1/1 0/0 0/0 .text setHeartCnt__12dFile_info_cFP10dSv_save_c */
+// close
+#ifdef NONMATCHING
+void dFile_info_c::setHeartCnt(dSv_save_c* save) {
+    u16 life = save->getPlayer().getPlayerStatusA().getLife();
+    s32 count = (u8)(life) / 5;
+    s32 quarter_count = life % 5;
+    if (quarter_count != 0) {
+        count++;
+    }
+
+    J2DPicture* heartP[20];
+    for (int i = 0; i < 20; i++) {
+        heartP[i] = (J2DPicture*)mFileInfo.Scr->search(l_htag[i]);
+
+        if (i < save->getPlayer().getPlayerStatusA().getMaxLife() / 5) {
+            heartP[i]->show();
+            if (i < count) {
+                if (quarter_count != 0 && i == --count) {
+                    heartP[i]->changeTexture(amariheartTex[quarter_count - 1], 0);
+                } else {
+                    heartP[i]->changeTexture("tt_heart_00.bti", 0);
+                }
+            } else {
+                heartP[i]->changeTexture("tt_heart_00.bti", 0);
+            }
+        } else {
+            heartP[i]->hide();
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -273,43 +298,29 @@ asm void dFile_info_c::setHeartCnt(dSv_save_c* param_0) {
 #include "asm/d/file/d_file_sel_info/setHeartCnt__12dFile_info_cFP10dSv_save_c.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 803948B8-803948B8 020F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803948E9 = "%02d/%02d/%d %02d:%02d";
-#pragma pop
+#endif
 
 /* 80192C08-80192C70 18D548 0068+00 1/1 0/0 0/0 .text setSaveDate__12dFile_info_cFP10dSv_save_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_info_c::setSaveDate(dSv_save_c* param_0) {
-    nofralloc
-#include "asm/d/file/d_file_sel_info/setSaveDate__12dFile_info_cFP10dSv_save_c.s"
+void dFile_info_c::setSaveDate(dSv_save_c* save) {
+    OSCalendarTime time;
+    OSTicksToCalendarTime(save->getPlayer().getPlayerStatusB().getDateIpl(), &time);
+    sprintf(mSaveDate, "%02d/%02d/%d %02d:%02d", time.month + 1, time.day_of_month, time.year,
+            time.hours, time.minutes);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 803948B8-803948B8 020F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80394900 = "999:59";
-SECTION_DEAD static char const* const stringBase_80394907 = "%d:%02d";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039490F = "";
-#pragma pop
 
 /* 80192C70-80192D58 18D5B0 00E8+00 1/1 0/0 0/0 .text setPlayTime__12dFile_info_cFP10dSv_save_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_info_c::setPlayTime(dSv_save_c* param_0) {
-    nofralloc
-#include "asm/d/file/d_file_sel_info/setPlayTime__12dFile_info_cFP10dSv_save_c.s"
+void dFile_info_c::setPlayTime(dSv_save_c* save) {
+    s64 time = save->getPlayer().getPlayerInfo().getTotalTime() / (OS_BUS_CLOCK / 4);
+
+    // 3599940 = 999:59 in seconds
+    if (time >= 3599940) {
+        sprintf(mPlayTime, "999:59");
+    } else {
+        u32 min = (time % 3600) / 60;
+        u32 hours = time / 3600;
+        sprintf(mPlayTime, "%d:%02d", hours, min);
+    }
 }
-#pragma pop
 
 /* 80192D58-80192D5C 18D698 0004+00 1/0 0/0 0/0 .text            modeWait__12dFile_info_cFv */
 void dFile_info_c::modeWait() {
@@ -322,14 +333,9 @@ void dFile_info_c::modeMove() {
 }
 
 /* 80192D60-80192D9C 18D6A0 003C+00 0/0 2/2 0/0 .text            _draw__12dFile_info_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_info_c::_draw() {
-    nofralloc
-#include "asm/d/file/d_file_sel_info/_draw__12dFile_info_cFv.s"
+void dFile_info_c::_draw() {
+    dComIfGd_set2DOpa(&mFileInfo);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804539F8-804539FC 001FF8 0004+00 1/1 0/0 0/0 .sdata2          @4000 */
@@ -344,14 +350,32 @@ SECTION_SDATA2 static u8 lit_4001[4] = {
 };
 
 /* 80192D9C-80192E88 18D6DC 00EC+00 1/0 0/0 0/0 .text            draw__16dDlst_FileInfo_cFv */
+// close
+#ifdef NONMATCHING
+void dDlst_FileInfo_c::draw() {
+    Mtx m;
+    J2DGrafContext* ctx = dComIfGp_getCurrentGrafPort();
+
+    if (mBasePane != NULL) {
+        MtxP glbMtx = mBasePane->getGlbMtx();
+        PSMTXScale(m, mBasePane->getWidth() / field_0x10->getWidth(),
+                   mBasePane->getHeight() / field_0x10->getHeight(), 1.0f);
+        PSMTXConcat(glbMtx, m, glbMtx);
+        Scr->search('Nm_02')->setMtx(glbMtx);
+    }
+    Scr->draw(0.0f, 0.0f, ctx);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dDlst_FileInfo_c::draw() {
+// asm void dDlst_FileInfo_c::draw() {
+extern "C" asm void draw__16dDlst_FileInfo_cFv() {
     nofralloc
 #include "asm/d/file/d_file_sel_info/draw__16dDlst_FileInfo_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80192E88-80192EC8 18D7C8 0040+00 0/0 1/0 0/0 .text            __sinit_d_file_sel_info_cpp */
 #pragma push

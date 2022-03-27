@@ -26,12 +26,34 @@ private:
     /* 0x10 */ mDoExt_3DlineMat_c* mp3DlineMat;
 };
 
-class dDlst_FileInfo_c {
+class cM_rnd_c {
 public:
-    void draw(void);
-    ~dDlst_FileInfo_c();
+    /* 80053CDC */ void init(int, int, int);
+    /* 80053CEC */ f32 get();
+    /* 80053DE0 */ f32 getF(f32);
+    /* 80053E18 */ f32 getFX(f32);
+    /* 80053E60 */ f32 getValue(f32, f32);
 
-private:
+    /* 0x0 */ int seed0;
+    /* 0x4 */ int seed1;
+    /* 0x8 */ int seed2;
+};
+
+class dDlst_base_c {
+public:
+    virtual void draw();
+};
+
+class dDlst_FileInfo_c : public dDlst_base_c {
+public:
+    dDlst_FileInfo_c() {}
+    virtual void draw(void);
+    virtual ~dDlst_FileInfo_c();  // inlined
+
+    /* 0x04 */ J2DScreen* Scr;
+    /* 0x08 */ JUTFont* mFont;
+    /* 0x0C */ J2DPane* mBasePane;
+    /* 0x10 */ J2DPane* field_0x10;
 };
 
 class dDlst_peekZ_c {
@@ -120,12 +142,14 @@ public:
     /* 80055768 */ void reset();
     /* 800557C8 */ void imageDraw(f32 (*)[4]);
     /* 80055A14 */ void draw(f32 (*)[4]);
-    /* 80055C74 */ void setReal(u32, s8, J3DModel*, cXyz*, f32, f32, dKy_tevstr_c*);
+    /* 80055C74 */ int setReal(u32, s8, J3DModel*, cXyz*, f32, f32, dKy_tevstr_c*);
     /* 80055F1C */ void addReal(u32, J3DModel*);
-    /* 80055F84 */ void setSimple(cXyz*, f32, f32, cXyz*, s16, f32, _GXTexObj*);
+    /* 80055F84 */ int setSimple(cXyz*, f32, f32, cXyz*, s16, f32, _GXTexObj*);
     /* 80055FE8 */ void setSimpleTex(ResTIMG const*);
 
-    static u8 mSimpleTexObj[32];
+    static GXTexObj* getSimpleTex() { return &mSimpleTexObj; }
+
+    static GXTexObj mSimpleTexObj;
 
 private:
     /* 0x00000 */ u8 field_0x0;
@@ -172,10 +196,7 @@ struct view_class {
     /* 0xD0 */ f32 field_0xd0;
 };
 
-class dDlst_base_c {
-public:
-    virtual void draw();
-};
+extern u8 data_80450ED0;  // Wipe
 
 class dDlst_list_c {
 public:
@@ -199,14 +220,32 @@ public:
     view_class* getView() { return mView; }
     J3DDrawBuffer* getOpaListFilter() { return mListFilter; }
     J3DDrawBuffer* getOpaListP0() { return mListP0; }
+    J3DDrawBuffer* getOpaListPacket() { return mOpaListPacket; }
     void setXluDrawList(J3DDrawBuffer* buffer) { j3dSys.setDrawBuffer(buffer, XLU_BUFFER); }
     void setOpaDrawList(J3DDrawBuffer* buffer) { j3dSys.setDrawBuffer(buffer, OPA_BUFFER); }
     void setXluListSky() { setXluDrawList(mpXluListSky); }
     void setOpaListSky() { setOpaDrawList(mOpaListSky); }
+    void setXluListDark() { setXluDrawList(mXluListDark); }
+    void setOpaListDark() { setOpaDrawList(mOpaListDark); }
     void setOpaList() { setOpaDrawList(mOpaList); }
     void setXluList() { setXluDrawList(mXluList); }
     void setXluListBG() { setXluDrawList(mXluListBG); }
+    void setOpaListBG() { setOpaDrawList(mOpaListBG); }
     void setXluList2DScreen() { setXluDrawList(mList2DScreen); }
+
+    int setSimpleShadow(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3, s16 param_4,
+                        f32 param_5, _GXTexObj* param_6) {
+        return mShadowControl.setSimple(param_0, param_1, param_2, param_3, param_4, param_5,
+                                        param_6);
+    }
+
+    int setRealShadow(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3, f32 param_4,
+                      f32 param_5, dKy_tevstr_c* param_6) {
+        return mShadowControl.setReal(param_0, param_1, param_2, param_3, param_4, param_5,
+                                      param_6);
+    }
+
+    static void offWipe() { data_80450ED0 = 0; }
 
     static u8 mWipeDlst[72];
     static u8 mWipeColor[4];

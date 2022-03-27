@@ -6,6 +6,7 @@
 #include "rel/d/a/kytag/d_a_kytag05/d_a_kytag05.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Forward References:
@@ -24,7 +25,6 @@ extern "C" extern void* g_profile_KYTAG05[12];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 
 //
 // Declarations:
@@ -32,40 +32,44 @@ extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 
 /* 80528A58-80528A60 000078 0008+00 1/0 0/0 0/0 .text            daKytag05_Draw__FP13kytag05_class
  */
-static bool daKytag05_Draw(kytag05_class* param_0) {
-    return true;
+static int daKytag05_Draw(kytag05_class* ac) {
+    return 1;
 }
 
 /* 80528A60-80528A68 000080 0008+00 1/0 0/0 0/0 .text daKytag05_Execute__FP13kytag05_class */
-static bool daKytag05_Execute(kytag05_class* param_0) {
-    return true;
+static int daKytag05_Execute(kytag05_class* ac) {
+    return 1;
 }
 
 /* 80528A68-80528A70 000088 0008+00 1/0 0/0 0/0 .text daKytag05_IsDelete__FP13kytag05_class */
-static bool daKytag05_IsDelete(kytag05_class* param_0) {
-    return true;
+static int daKytag05_IsDelete(kytag05_class* ac) {
+    return 1;
 }
 
 /* 80528A70-80528A78 000090 0008+00 1/0 0/0 0/0 .text            daKytag05_Delete__FP13kytag05_class
  */
-static bool daKytag05_Delete(kytag05_class* param_0) {
-    return true;
+static int daKytag05_Delete(kytag05_class* ac) {
+    return 1;
 }
-
-/* ############################################################################################## */
-/* 80528B18-80528B1C 000000 0004+00 1/1 0/0 0/0 .rodata          @3665 */
-SECTION_RODATA static f32 const lit_3665 = 100.0f;
-COMPILER_STRIP_GATE(0x80528B18, &lit_3665);
 
 /* 80528A78-80528B10 000098 0098+00 1/0 0/0 0/0 .text            daKytag05_Create__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag05_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag05/d_a_kytag05/daKytag05_Create__FP10fopAc_ac_c.s"
+static int daKytag05_Create(fopAc_ac_c* ac) {
+    if (!fopAcM_CheckCondition(ac, 8)) {
+        new (ac) kytag05_class();
+        fopAcM_OnCondition(ac, 8);
+    }
+    kytag05_class* tag = static_cast<kytag05_class*>(ac);
+
+    tag->field_0x56c = fopAcM_GetParam(tag) >> 8;
+    tag->mSceneListID = fopAcM_GetParam(tag);
+    tag->field_0x568 = 100.0f * tag->mScale.x;
+
+    if (!tag->field_0x56c) {
+        *(char*)((char*)&tag->mAttentionInfo.mDistance2 + 3) = 0x21;
+        tag->mAttentionInfo.setFlag(0x80);
+    }
+    return 4;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80528B1C-80528B3C -00001 0020+00 1/0 0/0 0/0 .data            l_daKytag05_Method */

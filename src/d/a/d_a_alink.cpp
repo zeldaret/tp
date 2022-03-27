@@ -3239,7 +3239,6 @@ extern "C" void entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
 extern "C" void load__20J3DAnmLoaderDataBaseFPCv24J3DAnmLoaderDataBaseFlag();
 extern "C" void JMAEulerToQuat__FsssP10Quaternion();
 extern "C" void GXClearVtxDesc();
-extern "C" void GXLoadNrmMtxImm();
 extern "C" void __register_global_object();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
@@ -3285,7 +3284,6 @@ extern "C" extern void* __vt__19JPAParticleCallBack[5];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" extern void* __vt__14dBgS_ObjGndChk[12 + 1 /* padding */];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" extern void* __vt__8cM3dGCyl[3];
 extern "C" extern void* __vt__8cM3dGAab[3];
@@ -19466,8 +19464,8 @@ BOOL daAlink_c::checkCutTurnCharge() const {
 }
 
 /* 800D0208-800D0228 0CAB48 0020+00 1/0 0/0 0/0 .text checkAcceptDungeonWarpAlink__9daAlink_cFi */
-void daAlink_c::checkAcceptDungeonWarpAlink(int param_0) {
-    checkAcceptWarp();
+bool daAlink_c::checkAcceptDungeonWarpAlink(int param_0) {
+    return checkAcceptWarp();
 }
 
 /* 800D0228-800D0274 0CAB68 004C+00 1/0 0/0 0/0 .text            getSpinnerActor__9daAlink_cFv */
@@ -30960,7 +30958,7 @@ static asm void daAlink_searchPortal(fopAc_ac_c* param_0, void* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkAcceptWarp() {
+asm bool daAlink_c::checkAcceptWarp() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkAcceptWarp__9daAlink_cFv.s"
 }
