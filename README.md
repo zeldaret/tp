@@ -3,6 +3,7 @@
 This repo contains a WIP decompilation of The Legend of Zelda: Twilight Princess (GCN USA).
 
 <!--ts-->
+* [Progress](./Progress.md)
 * [Project Setup](#project-setup)
 * [Building The Game](#building-the-game)  
 * [Clean Directories](#clean-directories)
@@ -60,6 +61,8 @@ Build DOL
 $ make
 ```
 
+(Note that any time you run make you can add the -j# argument where # is the amount of threads your system has in order to greatly speed up build times)
+
 Build RELs
 
 ```bash
@@ -105,7 +108,7 @@ Clean Build Directory
 $ make clean_all
 ```
 
-Clean everything
+Clean Dol
 
 ```bash
 $ make clean
@@ -129,6 +132,7 @@ tp/
 ├── .gitignore       # Files/folders to ignore changes to when making commits.
 ├── Doxyfile         # Doxygen configuration file.
 ├── Makefile         # Makefile for the project containing various targets.
+├── Progress.md      # Markdown file that displays the current progress of the project.
 ├── README.md        # The file you're currently reading.
 ├── diff.py          # Python script to diff two functions.
 ├── diff_settings.py # Settings for the diff.py script.
