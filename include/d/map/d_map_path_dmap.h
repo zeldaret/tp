@@ -10,7 +10,7 @@ class dMpath_c {
 public:
     /* 8003F758 */ static u8 isExistMapPathData();
     /* 8003F760 */ void getTopBottomFloorNo(s8*, s8*);
-    /* 8003F7E8 */ void createWork();
+    /* 8003F7E8 */ static void createWork();
     /* 8003FA40 */ void setPointer(s8, void*, int);
     /* 8003F810 */ void setPointer(dDrawPath_c::room_class*, s8*, s8*);
     /* 8003FB70 */ void create();

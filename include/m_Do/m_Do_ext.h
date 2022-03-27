@@ -228,9 +228,12 @@ JKRHeap* mDoExt_getCurrentHeap();
 void mDoExt_removeMesgFont();
 void mDoExt_modelUpdateDL(J3DModel*);
 J3DModel* mDoExt_J3DModel__create(J3DModelData*, u32, u32);
+void mDoExt_setAraCacheSize(u32 param_0);
 
 struct JUTFont;
 JUTFont* mDoExt_getMesgFont();
+void mDoExt_getSubFont();
+void mDoExt_getRubyFont();
 
 extern JKRExpHeap* zeldaHeap;
 extern JKRExpHeap* gameHeap;

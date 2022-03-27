@@ -332,7 +332,28 @@ public:
     JKRArchive* getAnmArchive() { return mAnmArchive; }
     JKRArchive* getCollectResArchive() { return mCollectResArchive; }
     JKRArchive* getItemIconArchive() { return mItemIconArchive; }
-    JKRAramArchive* getFieldMapArchive2() { return mFieldMapArchive2; }
+    JKRAramArchive* getFieldMapArchive2() { return (JKRAramArchive*)mFieldMapArchive2; }
+
+    void setFieldMapArchive2(JKRArchive* arc) { mFieldMapArchive2 = arc; }
+    void setAnmArchive(JKRArchive* arc) { mAnmArchive = arc; }
+    void setFmapResArchive(JKRArchive* arc) { mFmapResArchive = arc; }
+    void setDmapResArchive(JKRArchive* arc) { mDmapResArchive = arc; }
+    void setCollectResArchive(JKRArchive* arc) { mCollectResArchive = arc; }
+    void setItemIconArchive(JKRArchive* arc) { mItemIconArchive = arc; }
+    void setAllMapArchive(JKRArchive* arc) { mAllMapArchive = arc; }
+    void setRingResArchive(JKRArchive* arc) { mRingResArchive = arc; }
+    void setNameResArchive(JKRArchive* arc) { mNameResArchive = arc; }
+    void setDemoMsgArchive(JKRArchive* arc) { mDemoMsgArchive = arc; }
+    void setMeterButtonArchive(JKRArchive* arc) { mMeterButtonArchive = arc; }
+    void setErrorResArchive(JKRArchive* arc) { mErrorResArchive = arc; }
+    void setCardIconResArchive(JKRArchive* arc) { mCardIconResArchive = arc; }
+    void setMsgDtArchive(int i, JKRArchive* arc) { mMsgDtArchive[i] = arc; }
+    void setMsgCommonArchive(JKRArchive* arc) { mMsgCommonArchive = arc; }
+    void setMsgArchive(int i, JKRArchive* arc) { mMsgArchive[i] = arc; }
+    void setFontArchive(JKRArchive* arc) { mFontArchive = arc; }
+    void setRubyArchive(JKRArchive* arc) { mRubyArchive = arc; }
+    void setMain2DArchive(JKRArchive* arc) { mMain2DArchive = arc; }
+    void setItemTable(void* data) { mItemTable = data; }
 
     void setPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[i] |= flag; }
     void clearPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[i] &= ~flag; }
@@ -367,7 +388,7 @@ public:
     /* 0x04780 */ dAttention_c mAttention;
     /* 0x04C9C */ dVibration_c mVibration;
     /* 0x04D2C */ u8 field_0x4d2c[4];
-    /* 0x04D30 */ JKRAramArchive* mFieldMapArchive2;
+    /* 0x04D30 */ JKRArchive* mFieldMapArchive2;
     /* 0x04D34 */ JKRArchive* mMsgArchive[11];
     /* 0x04D60 */ JKRArchive* mDemoMsgArchive;
     /* 0x04D64 */ JKRArchive* mMeterButtonArchive;
@@ -615,6 +636,7 @@ void* dComIfG_getStageRes(char const* resName);
 void* dComIfG_getOldStageRes(char const* resName);
 void dComIfG_get_timelayer(int* layer);
 int dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* resName);
+int dComIfG_changeOpeningScene(scene_class* scene, s16 procName);
 
 inline void dComIfG_setBrightness(u8 brightness) {
     g_dComIfG_gameInfo.mFadeBrightness = brightness;
@@ -1382,6 +1404,86 @@ inline JKRArchive* dComIfGp_getMsgDtArchive(int idx) {
     return g_dComIfG_gameInfo.play.getMsgDtArchive(idx);
 }
 
+inline void dComIfGp_setFieldMapArchive2(JKRArchive* arc) {
+    g_dComIfG_gameInfo.play.setFieldMapArchive2(arc);
+}
+
+inline void dComIfGp_setAnmArchive(JKRArchive* arc) {
+    g_dComIfG_gameInfo.play.setAnmArchive(arc);
+}
+
+inline void dComIfGp_setFmapResArchive(JKRArchive* arc) {
+    g_dComIfG_gameInfo.play.setFmapResArchive(arc);
+}
+
+inline void dComIfGp_setDmapResArchive(JKRArchive* arc) {
+    g_dComIfG_gameInfo.play.setDmapResArchive(arc);
+}
+
+inline void dComIfGp_setCollectResArchive(JKRArchive* arc) {
+    g_dComIfG_gameInfo.play.setCollectResArchive(arc);
+}
+
+inline void dComIfGp_setItemIconArchive(JKRArchive* arc) {
+    g_dComIfG_gameInfo.play.setItemIconArchive(arc);
+}
+
+inline void dComIfGp_setAllMapArchive(JKRArchive* arc) {
+    g_dComIfG_gameInfo.play.setAllMapArchive(arc);
+}
+
+inline void dComIfGp_setRingResArchive(JKRArchive* arc) {
+    g_dComIfG_gameInfo.play.setRingResArchive(arc);
+}
+
+inline void dComIfGp_setNameResArchive(JKRArchive* arc) {
+    g_dComIfG_gameInfo.play.setNameResArchive(arc);
+}
+
+inline void dComIfGp_setDemoMsgArchive(JKRArchive* arc) {
+    g_dComIfG_gameInfo.play.setDemoMsgArchive(arc);
+}
+
+inline void dComIfGp_setMeterButtonArchive(JKRArchive* arc) {
+    g_dComIfG_gameInfo.play.setMeterButtonArchive(arc);
+}
+
+inline void dComIfGp_setErrorResArchive(JKRArchive* arc) {
+    g_dComIfG_gameInfo.play.setErrorResArchive(arc);
+}
+
+inline void dComIfGp_setCardIconResArchive(JKRArchive* arc) {
+    g_dComIfG_gameInfo.play.setCardIconResArchive(arc);
+}
+
+inline void dComIfGp_setMsgDtArchive(int i, JKRArchive* arc) {
+    g_dComIfG_gameInfo.play.setMsgDtArchive(i, arc);
+}
+
+inline void dComIfGp_setMsgCommonArchive(JKRArchive* arc) {
+    g_dComIfG_gameInfo.play.setMsgCommonArchive(arc);
+}
+
+inline void dComIfGp_setMsgArchive(int i, JKRArchive* arc) {
+    g_dComIfG_gameInfo.play.setMsgArchive(i, arc);
+}
+
+inline void dComIfGp_setFontArchive(JKRArchive* arc) {
+    g_dComIfG_gameInfo.play.setFontArchive(arc);
+}
+
+inline void dComIfGp_setRubyArchive(JKRArchive* arc) {
+    g_dComIfG_gameInfo.play.setRubyArchive(arc);
+}
+
+inline void dComIfGp_setMain2DArchive(JKRArchive* arc) {
+    g_dComIfG_gameInfo.play.setMain2DArchive(arc);
+}
+
+inline void dComIfGp_setItemTable(void* data) {
+    g_dComIfG_gameInfo.play.setItemTable(data);
+}
+
 inline JKRExpHeap* dComIfGp_getExpHeap2D() {
     return g_dComIfG_gameInfo.play.getExpHeap2D();
 }
@@ -1904,6 +2006,18 @@ inline void dComIfGp_evmng_create() {
 
 inline void dComIfGp_evmng_remove() {
     g_dComIfG_gameInfo.play.getEvtManager().remove();
+}
+
+inline void dComIfGp_particle_createCommon(const void* data) {
+    g_dComIfG_gameInfo.play.getParticle()->createCommon(data);
+}
+
+inline void dComIfGp_particle_create() {
+    g_dComIfG_gameInfo.play.createParticle();
+}
+
+inline JKRExpHeap* dComIfGp_particle_getResHeap() {
+    return g_dComIfG_gameInfo.play.getParticle()->getResHeap();
 }
 
 inline void dComIfGp_particle_readScene(u8 particle_no, mDoDvdThd_toMainRam_c** param_1) {

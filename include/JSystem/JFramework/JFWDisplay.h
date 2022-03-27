@@ -77,6 +77,11 @@ public:
         return 1;
     }
 
+    void setTickRate(u32 rate) {
+        mTickRate = rate;
+        mFrameRate = 0;
+    }
+
     static JFWDisplay* sManager;
 
 private:

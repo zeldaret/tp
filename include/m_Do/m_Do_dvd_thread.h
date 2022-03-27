@@ -28,6 +28,8 @@ public:
     /* 8001645C */ virtual ~mDoDvdThd_toMainRam_c();
     /* 800164BC */ virtual s32 execute();
 
+    void* getMemAddress() const { return mData; }
+
 private:
     /* 0x14 */ u8 mMountDirection;
     /* 0x18 */ s32 mEntryNum;
@@ -60,6 +62,8 @@ public:
     /* 800161E0 */ static mDoDvdThd_mountXArchive_c* create(char const*, u8, JKRArchive::EMountMode,
                                                             JKRHeap*);
     /* 800162B0 */ virtual s32 execute();
+
+    JKRArchive* getArchive() const { return mArchive; }
 
 private:
     /* 0x14 */ u8 mMountDirection;

@@ -47,6 +47,8 @@ public:
     static void endFrame() { JFWDisplay::getManager()->endFrame(); }
     static void offFade() { data_80450BE6 = 0; }
     static void offBlure() { struct_80450BE4 = 0; }
+    static void setTickRate(u32 rate) { JFWDisplay::getManager()->setTickRate(rate); }
+    static void waitBlanking(int wait) { JFWDisplay::getManager()->waitBlanking(wait); }
 
     static GXTexObj mFrameBufferTexObj;
     static GXTexObj mZbufferTexObj;

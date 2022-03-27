@@ -152,6 +152,8 @@ public:
                    param_9, param_10, param_11, param_12);
     }
 
+    JKRExpHeap* getResHeap() { return m_resHeap; }
+
     static void onStatus(u8 status) { data_80450EC4 |= status; }
 
     static u8 mTsubo[64];
