@@ -226,8 +226,4 @@ inline void* JKRGetTypeResource(u32 tag, const char* name, JKRArchive* arc) {
     return JKRArchive::getGlbResource(tag, name, arc);
 }
 
-inline void* JKRGetResource(u32 tag, const char* name, JKRArchive* arc) {
-    return JKRArchive::getGlbResource(tag, name, arc);
-}
-
 #endif

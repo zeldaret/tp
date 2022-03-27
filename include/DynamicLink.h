@@ -43,10 +43,7 @@ struct DynamicModuleControl : DynamicModuleControlBase {
     /* 80263218 */ virtual const char* getModuleName() const;
     /* 80263000 */ virtual int getModuleSize() const;
     /* 80263070 */ virtual const char* getModuleTypeString() const;
-<<<<<<< HEAD
-    virtual void dump();
-=======
->>>>>>> upstream/master
+    //virtual void dump();
     /* 80262C0C */ virtual void dump2();
     /* 802627E8 */ virtual bool do_load();
     /* 80262AFC */ virtual BOOL do_load_async();
