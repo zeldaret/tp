@@ -26,39 +26,20 @@
 #include "f_pc/f_pc_priority.h"
 #include "f_pc/f_pc_profile.h"
 
+#include "d/com/d_com_inf_game.h"
+#include "m_Do/m_Do_audio.h"
+#include "SSystem/SComponent/c_API_graphic.h"
+
 //
 // Types:
 //
 
 struct dShutdownErrorMsg_c {
-    /* 8009D790 */ void execute();
-};
-
-struct dLib_time_c {
-    /* 80032880 */ void stopTime();
-    /* 800328BC */ void startTime();
+    /* 8009D790 */ static bool execute();
 };
 
 struct dDvdErrorMsg_c {
-    /* 8009D354 */ void execute();
-};
-
-struct dDlst_peekZ_c {
-    /* 80056080 */ void peekData();
-};
-
-struct dComIfG_play_c {
-    /* 8002CAC4 */ void drawSimpleModel();
-};
-
-struct Z2SoundMgr {
-    /* 802AA6B0 */ void pauseAllGameSound(bool);
-};
-
-struct JUTGamePad {
-    struct CRumble {
-        /* 802E1948 */ void stopPatternedRumble(s16);
-    };
+    /* 8009D354 */ static u8 execute();
 };
 
 //
@@ -116,17 +97,22 @@ extern "C" void stopPatternedRumble__Q210JUTGamePad7CRumbleFs();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
 extern "C" extern u8 m_gamePad__8mDoCPd_c[16];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 data_80450B60[4];
-extern "C" extern u8 struct_80450D38[8];
-extern "C" extern u8 data_80450EC4[4];
+extern "C" extern Z2SoundMgr* data_80450B60;
+extern "C" extern u8 struct_80450D38;
 
 //
 // Declarations:
 //
 
+// move / fix for JASGlobalInstance eventually
+inline Z2SoundMgr* Z2GetSoundMgr() {
+    return data_80450B60;
+}
+
 /* 80450D38-80450D40 0008+00 s=0 e=1 z=0  None .sbss      None */
-u8 struct_80450D38[8];
+u8 struct_80450D38;
+
+s8 data_80450D39;
 
 /* 800220A0-800220C0 0020+00 s=1 e=1 z=0  None .text      fpcM_Draw__FPv */
 void fpcM_Draw(void* pProc) {
@@ -139,8 +125,8 @@ s32 fpcM_DrawIterater(fpcM_DrawIteraterFunc pFunc) {
 }
 
 /* 800220F8-80022118 0020+00 s=1 e=0 z=1  None .text      fpcM_Execute__FPv */
-void fpcM_Execute(void* pProc) {
-    fpcEx_Execute((base_process_class*)pProc);
+s32 fpcM_Execute(void* pProc) {
+    return fpcEx_Execute((base_process_class*)pProc);
 }
 
 /* 80022118-80022138 0020+00 s=0 e=7 z=0  None .text      fpcM_Delete__FPv */
@@ -153,16 +139,55 @@ BOOL fpcM_IsCreating(unsigned int pID) {
     return fpcCt_IsCreatingByID(pID);
 }
 
-// TODO, uses a lot of functions outside f_pc/SSystem
 /* 80022158-800222B8 0160+00 s=0 e=1 z=0  None .text      fpcM_Management__FPFv_vPFv_v */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcM_Management(fpcM_ManagementFunc, fpcM_ManagementFunc) {
-    nofralloc
-#include "asm/f_pc/f_pc_manager/fpcM_Management__FPFv_vPFv_v.s"
+void fpcM_Management(fpcM_ManagementFunc func1, fpcM_ManagementFunc func2) {
+    MtxInit();
+    dComIfGd_peekZdata();
+
+    if (!dShutdownErrorMsg_c::execute()) {
+        if (data_80450D39 == 0) {
+            struct_80450D38 = 0;
+            data_80450D39 = 1;
+        }
+
+        if (!dDvdErrorMsg_c::execute()) {
+            if (struct_80450D38 != 0) {
+                dLib_time_c::startTime();
+                Z2GetSoundMgr()->pauseAllGameSound(false);
+                struct_80450D38 = 0;
+            }
+
+            cAPIGph_Painter();
+
+            if (!dPa_control_c::isStatus(1)) {
+                fpcDt_Handler();
+            } else {
+                dPa_control_c::offStatus(1);
+            }
+
+            fpcPi_Handler();
+            fpcCt_Handler();
+
+            if (func1 != NULL) {
+                func1();
+            }
+
+            fpcEx_Handler((fpcLnIt_QueueFunc)fpcM_Execute);
+            fpcDw_Handler((fpcDw_HandlerFuncFunc)fpcM_DrawIterater, (fpcDw_HandlerFunc)fpcM_Draw);
+
+            if (func2 != NULL) {
+                func2();
+            }
+
+            dComIfGp_drawSimpleModel();
+        } else if (struct_80450D38 == 0) {
+            dLib_time_c::stopTime();
+            Z2GetSoundMgr()->pauseAllGameSound(true);
+            mDoCPd_c::stopMotorWaveHard(0);
+            struct_80450D38 = 1;
+        }
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803F4DB0-803F4DDC 002C+00 s=1 e=0 z=0  None .bss       rootlayer$3716 */

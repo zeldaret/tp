@@ -252,6 +252,8 @@ public:
     void setOpaListBG() { setOpaDrawList(mOpaListBG); }
     void setXluList2DScreen() { setXluDrawList(mList2DScreen); }
 
+    void peekZdata() { mPeekZ.peekData(); }
+
     int setSimpleShadow(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3, s16 param_4,
                         f32 param_5, _GXTexObj* param_6) {
         return mShadowControl.setSimple(param_0, param_1, param_2, param_3, param_4, param_5,

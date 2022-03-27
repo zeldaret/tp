@@ -155,6 +155,8 @@ public:
     JKRExpHeap* getResHeap() { return m_resHeap; }
 
     static void onStatus(u8 status) { data_80450EC4 |= status; }
+    static void offStatus(u8 status) { data_80450EC4 &= ~status; }
+    static bool isStatus(u8 status) { return data_80450EC4 & status; }
 
     static u8 mTsubo[64];
     static u8 mLifeBall[24];

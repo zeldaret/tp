@@ -708,9 +708,11 @@ void main01(void) {
     }
 
     JUTConsole* console = JFWSystem::getSystemConsole();
+    u32 output = JUTConsole::OUTPUT_OSREPORT | JUTConsole::OUTPUT_CONSOLE;
     if (data_80450580 != 0) {
-        console->setOutput(JUTConsole::OUTPUT_OSREPORT | JUTConsole::OUTPUT_CONSOLE);
+        data_80450580 = JUTConsole::OUTPUT_NONE;
     }
+    console->setOutput(output);
 
     console->setPosition(32, 42);
 
@@ -724,13 +726,14 @@ void main01(void) {
 
     do {
         frame++;
-
-        if (data_80450B00 && frame == data_80450B00 * (frame / data_80450B00)) {
+        if (data_80450B00 != 0 && frame % data_80450B00 == 0) {
             mDoMch_HeapCheckAll__Fv();
         }
+
         if (struct_80450C80[0]) {
             g_mDoMemCd_control.update();
         }
+
         mDoCPd_c::read();
         fapGm_Execute__Fv();
         mDoAud_Execute__Fv();

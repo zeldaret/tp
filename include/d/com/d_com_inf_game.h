@@ -1928,6 +1928,10 @@ inline void dComIfGp_setStartStageLayer(s8 layer) {
     g_dComIfG_gameInfo.play.setStartStageLayer(layer);
 }
 
+inline void dComIfGp_drawSimpleModel() {
+    g_dComIfG_gameInfo.play.drawSimpleModel();
+}
+
 inline dStage_Multi_c* dComIfGp_getMulti() {
     return g_dComIfG_gameInfo.play.getStage().getMulti();
 }
@@ -2148,6 +2152,10 @@ inline void dComIfGd_setListBG() {
 
 inline void dComIfGd_init() {
     g_dComIfG_gameInfo.drawlist.init();
+}
+
+inline void dComIfGd_peekZdata() {
+    g_dComIfG_gameInfo.drawlist.peekZdata();
 }
 
 inline daPy_py_c* daPy_getLinkPlayerActorClass() {

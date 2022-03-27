@@ -60,8 +60,8 @@ struct CSTControl : public STControl {
 
 struct dLib_time_c {
     /* 80032804 */ void getTime();
-    /* 80032880 */ void stopTime();
-    /* 800328BC */ void startTime();
+    /* 80032880 */ static void stopTime();
+    /* 800328BC */ static void startTime();
 
     static u8 m_diffTime[4];
     static u8 m_stopTime[4];
