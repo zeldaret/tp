@@ -356,7 +356,7 @@ bool JUTException::searchPartialModule(u32 address, u32* module_id, u32* section
             }
         }
 
-        module = module->mNext;
+        module = (OSModuleInfo*)module->mNext;
     }
 
     return false;

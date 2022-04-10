@@ -12,85 +12,6 @@
 #include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
 
-//
-// Forward References:
-//
-
-extern "C" void __dt__24DynamicModuleControlBaseFv();
-extern "C" void __ct__24DynamicModuleControlBaseFv();
-extern "C" void link__24DynamicModuleControlBaseFv();
-extern "C" void unlink__24DynamicModuleControlBaseFv();
-extern "C" void load_async__24DynamicModuleControlBaseFv();
-extern "C" void force_unlink__24DynamicModuleControlBaseFv();
-extern "C" void dump__24DynamicModuleControlBaseFv();
-extern "C" void __ct__20DynamicModuleControlFPCc();
-extern "C" void mountCallback__20DynamicModuleControlFPv();
-extern "C" void initialize__20DynamicModuleControlFv();
-extern "C" void callback__20DynamicModuleControlFPv();
-extern "C" static void calcSum2__FPCUsUl();
-extern "C" void do_load__20DynamicModuleControlFv();
-extern "C" void do_load_async__20DynamicModuleControlFv();
-extern "C" void do_unload__20DynamicModuleControlFv();
-extern "C" void dump2__20DynamicModuleControlFv();
-extern "C" void do_link__20DynamicModuleControlFv();
-extern "C" void do_unlink__20DynamicModuleControlFv();
-extern "C" void getModuleSize__20DynamicModuleControlCFv();
-extern "C" void getModuleTypeString__20DynamicModuleControlCFv();
-extern "C" void ModuleProlog();
-extern "C" void ModuleEpilog();
-extern "C" void ModuleUnresolved();
-extern "C" void ModuleConstructorsX(void (**ctors)());
-extern "C" void ModuleDestructorsX(void (**dtors)());
-extern "C" bool do_link__24DynamicModuleControlBaseFv();
-extern "C" bool do_load__24DynamicModuleControlBaseFv();
-extern "C" bool do_unload__24DynamicModuleControlBaseFv();
-extern "C" bool do_unlink__24DynamicModuleControlBaseFv();
-extern "C" bool do_load_async__24DynamicModuleControlBaseFv();
-extern "C" void dump2__24DynamicModuleControlBaseFv();
-extern "C" void getModuleTypeString__24DynamicModuleControlBaseCFv();
-extern "C" bool getModuleSize__24DynamicModuleControlBaseCFv();
-extern "C" void getModuleName__20DynamicModuleControlCFv();
-extern "C" extern char const* const DynamicLink__stringBase0;
-extern "C" u8 mFirst__24DynamicModuleControlBase[4];
-extern "C" u8 mLast__24DynamicModuleControlBase[4];
-extern "C" u8 sAllocBytes__20DynamicModuleControl[4];
-extern "C" u8 sArchive__20DynamicModuleControl[4];
-extern "C" u8 sFileCache__20DynamicModuleControl[4 + 4 /* padding */];
-
-//
-// External References:
-//
-
-extern "C" void mDoExt_getArchiveHeap__Fv();
-extern "C" void create__20mDoDvdThd_callback_cFPFPv_PvPv();
-extern "C" bool getModuleName__24DynamicModuleControlBaseCFv();
-extern "C" void __dt__20DynamicModuleControlFv();
-extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
-extern "C" void free__7JKRHeapFPvP7JKRHeap();
-extern "C" void resize__7JKRHeapFPvUlP7JKRHeap();
-extern "C" void getSize__7JKRHeapFPvP7JKRHeap();
-extern "C" void __dl__FPv();
-extern "C" void detachResource__13JKRFileLoaderFPvP13JKRFileLoader();
-extern "C" void mount__12JKRFileCacheFPCcP7JKRHeapPCc();
-extern "C" void
-mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection();
-extern "C" void getGlbResource__10JKRArchiveFUlPCcP10JKRArchive();
-extern "C" void
-loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-
-//
-// Declarations:
-//
-
-extern "C" void* __vt__20DynamicModuleControl[13];
-extern "C" void* __vt__24DynamicModuleControlBase[13];
-
 /* 80451138-8045113C 000638 0004+00 3/3 0/0 0/0 .sbss            mFirst__24DynamicModuleControlBase
  */
 DynamicModuleControlBase* DynamicModuleControlBase::mFirst;
@@ -246,10 +167,7 @@ JKRArchive* DynamicModuleControl::sArchive;
  */
 JKRFileCache* DynamicModuleControl::sFileCache;
 
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039A57B = "Base";
-#pragma pop
+static const char* baseString = "Base";
 
 /* 802626D0-8026275C 25D010 008C+00 1/1 0/0 0/0 .text mountCallback__20DynamicModuleControlFPv */
 JKRArchive* DynamicModuleControl::mountCallback(void* param_0) {
@@ -538,7 +456,7 @@ error:
  */
 bool DynamicModuleControl::do_unlink() {
     OSTime time1 = OSGetTime();
-    mModule->epilog();
+    ((void(*)())mModule->epilog)();
     OSTime time2 = OSGetTime();
     BOOL unklink = OSUnlink(mModule);
     OSTime time3 = OSGetTime();
@@ -575,23 +493,6 @@ const char* DynamicModuleControl::getModuleTypeString() const {
     static const char* strings[4] = {"????", "MEM", "ARAM", "DVD"};
     return strings[mResourceType & 3];
 }
-
-/* 803C34C0-803C34F4 0205E0 0034+00 1/1 2/2 0/0 .data            __vt__20DynamicModuleControl */
-SECTION_DATA extern void* __vt__20DynamicModuleControl[13] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__20DynamicModuleControlFv,
-    (void*)getModuleName__20DynamicModuleControlCFv,
-    (void*)getModuleSize__20DynamicModuleControlCFv,
-    (void*)getModuleTypeString__20DynamicModuleControlCFv,
-    (void*)dump__24DynamicModuleControlBaseFv,
-    (void*)dump2__20DynamicModuleControlFv,
-    (void*)do_load__20DynamicModuleControlFv,
-    (void*)do_load_async__20DynamicModuleControlFv,
-    (void*)do_unload__20DynamicModuleControlFv,
-    (void*)do_link__20DynamicModuleControlFv,
-    (void*)do_unlink__20DynamicModuleControlFv,
-};
 
 /* 80263088-8026308C 25D9C8 0004+00 0/0 0/0 756/756 .text            ModuleProlog */
 extern "C" void ModuleProlog() {
@@ -682,4 +583,35 @@ const char* DynamicModuleControl::getModuleName() const {
     return mName;
 }
 
-/* 8039A4A0-8039A4A0 026B00 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+extern "C" void dump__24DynamicModuleControlBaseFv();
+extern "C" void __ct__20DynamicModuleControlFPCc();
+extern "C" void mountCallback__20DynamicModuleControlFPv();
+extern "C" void initialize__20DynamicModuleControlFv();
+extern "C" void callback__20DynamicModuleControlFPv();
+extern "C" void do_load__20DynamicModuleControlFv();
+extern "C" void do_load_async__20DynamicModuleControlFv();
+extern "C" void do_unload__20DynamicModuleControlFv();
+extern "C" void dump2__20DynamicModuleControlFv();
+extern "C" void do_link__20DynamicModuleControlFv();
+extern "C" void do_unlink__20DynamicModuleControlFv();
+extern "C" void getModuleSize__20DynamicModuleControlCFv();
+extern "C" void getModuleTypeString__20DynamicModuleControlCFv();
+extern "C" void getModuleName__20DynamicModuleControlCFv();
+extern "C" void __dt__20DynamicModuleControlFv();
+
+/* 803C34C0-803C34F4 0205E0 0034+00 1/1 2/2 0/0 .data            __vt__20DynamicModuleControl */
+SECTION_DATA extern void* __vt__20DynamicModuleControl[13] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)__dt__20DynamicModuleControlFv,
+    (void*)getModuleName__20DynamicModuleControlCFv,
+    (void*)getModuleSize__20DynamicModuleControlCFv,
+    (void*)getModuleTypeString__20DynamicModuleControlCFv,
+    (void*)dump__24DynamicModuleControlBaseFv,
+    (void*)dump2__20DynamicModuleControlFv,
+    (void*)do_load__20DynamicModuleControlFv,
+    (void*)do_load_async__20DynamicModuleControlFv,
+    (void*)do_unload__20DynamicModuleControlFv,
+    (void*)do_link__20DynamicModuleControlFv,
+    (void*)do_unlink__20DynamicModuleControlFv,
+};

@@ -295,7 +295,7 @@ def setup(debug, game_path, tools_path):
 @tp.command(name="progress")
 @click.option("--debug/--no-debug")
 @click.option("--matching/--no-matching", default=True, is_flag=True)
-@click.option("--print-rels", default=False, is_flag=True)
+@click.option("--print-rels", default=True, is_flag=True)
 @click.option(
     "--format",
     "-f",
@@ -522,6 +522,7 @@ def calculate_progress(build_path, matching, format, print_rels):
     decompiled_size = dol_progress.decompiled + rel_decompiled
 
     if format == "FANCY":
+        tableString = "# Twilight Princess Decompilation Progress\n\n## Dol\n\nSection | Percentage | Decompiled (bytes) | Total (bytes)\n---|---|---|---\n"
         table = Table(title="main.dol")
         table.add_column("Section", justify="right", style="cyan", no_wrap=True)
         table.add_column("Percentage", style="green")
@@ -535,6 +536,7 @@ def calculate_progress(build_path, matching, format, print_rels):
                 f"{section.decompiled}",
                 f"{section.size}",
             )
+            tableString = tableString+name+" | "+f"{section.percentage:10.6f}%"+" | "+f"{section.decompiled}"+" | "+f"{section.size}"+"\n"
 
         table.add_row("", "", "", "")
         table.add_row(
@@ -543,9 +545,19 @@ def calculate_progress(build_path, matching, format, print_rels):
             f"{dol_progress.decompiled}",
             f"{dol_progress.size}",
         )
+        tableString = tableString+"Total | "+f"{dol_progress.percentage:10.6f}%"+" | "+f"{dol_progress.decompiled}"+" | "+f"{dol_progress.size}"+"\n\n"
+
         CONSOLE.print(table)
 
+        tableString = tableString+"## Total\n\nSection | Percentage | Decompiled (bytes) | Total (bytes)\n---|---|---|---\n"
+        tableString = tableString+"main.dol | "+f"{dol_progress.percentage:10.6f}%"+" | "+f"{dol_progress.decompiled}"+" | "+f"{dol_progress.size}"+"\n"
         if print_rels:
+            tableString = tableString+"RELs | "+f"{100 * (rel_decompiled / rel_size):10.6f}%"+" | "+f"{rel_decompiled}"+" | "+f"{rel_size}"+"\n"
+        tableString = tableString+"Total | "+f"{100 * (decompiled_size / total_size):10.6f}%"+" | "+f"{decompiled_size}"+" | "+f"{total_size}"+"\n\n"
+
+
+        if print_rels:
+            tableString = tableString+"## RELs\n\nSection | Percentage | Decompiled (bytes) | Total (bytes)\n---|---|---|---\n"
             table = Table(title="RELs")
             table.add_column("Section", justify="right", style="cyan", no_wrap=True)
             table.add_column("Percentage", style="green")
@@ -561,6 +573,7 @@ def calculate_progress(build_path, matching, format, print_rels):
                     f"{rel.decompiled}",
                     f"{rel.size}",
                 )
+                tableString = tableString+rel.name+" | "+f"{rel.percentage:10.6f}%"+" | "+f"{rel.decompiled}"+" | "+f"{rel.size}"+"\n"
 
             table.add_row("", "", "", "")
             table.add_row(
@@ -569,8 +582,10 @@ def calculate_progress(build_path, matching, format, print_rels):
                 f"{rel_decompiled}",
                 f"{rel_size}",
             )
+            tableString = tableString+"Total | "+f"{100 * (rel_decompiled / rel_size):10.6f}%"+" | "+f"{rel_decompiled}"+" | "+f"{rel_size}"+"\n"
             CONSOLE.print(table)
 
+        
         table = Table(title="Total")
         table.add_column("Section", justify="right", style="cyan", no_wrap=True)
         table.add_column("Percentage", style="green")
@@ -583,6 +598,7 @@ def calculate_progress(build_path, matching, format, print_rels):
             f"{dol_progress.decompiled}",
             f"{dol_progress.size}",
         )
+       
         if rels_progress:
             table.add_row(
                 "RELs",
@@ -602,6 +618,7 @@ def calculate_progress(build_path, matching, format, print_rels):
             f"{total_size}",
         )
         CONSOLE.print(table)
+        open("Progress.md","w").write(tableString)
     elif format == "CSV":
         version = 1
         git_object = git.Repo().head.object
@@ -675,6 +692,7 @@ def calculate_progress(build_path, matching, format, print_rels):
         print(100 * (rel_decompiled / rel_size))
         print(100 * (decompiled_size / total_size))
         LOG.error("unknown format: '{format}'")
+
 
 
 def find_function_range(asm):

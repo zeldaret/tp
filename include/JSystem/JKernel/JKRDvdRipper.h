@@ -43,11 +43,10 @@ inline void* JKRDvdToMainRam(s32 entryNum, u8* dst, JKRExpandSwitch expandSwitch
                                        offset, compression, returnSize);
 }
 
-inline void* JKRDvdToMainRam(char const* param_0, u8* dst, JKRExpandSwitch expandSwitch,
-                             u32 dstLength, JKRHeap* heap,
-                             JKRDvdRipper::EAllocDirection allocDirection, u32 offset,
-                             JKRCompression* compression, u32* returnSize) {
-    return JKRDvdRipper::loadToMainRAM(param_0, dst, expandSwitch, dstLength, heap, allocDirection,
+inline void* JKRDvdToMainRam(const char* name, u8* dst, JKRExpandSwitch expandSwitch, u32 dstLength,
+                             JKRHeap* heap, JKRDvdRipper::EAllocDirection allocDirection,
+                             u32 offset, JKRCompression* compression, u32* returnSize) {
+    return JKRDvdRipper::loadToMainRAM(name, dst, expandSwitch, dstLength, heap, allocDirection,
                                        offset, compression, returnSize);
 }
 

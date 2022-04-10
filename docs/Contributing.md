@@ -34,6 +34,7 @@ The TP Nvidia Shield Debug Rom contains extra useful info, as it was compiled wi
 - `-m` will run make before opening diff.
 - `-w` will automatically update the diff when you save your changes.
 - `-o` will diff only the necessary `.o` file, which is recommended for this project.
+- `-f` can be used to specify a specific object file to use when diffing with `-o` (Used to diff rels)
 - You can find the mangled symbol name in the function info comment. (Ex. `onEventBit__11dSv_event_cFUs`)
 
 NOTE: You must run `./tp expected` with an OK build before diffing to have a correct binary to compare to.
