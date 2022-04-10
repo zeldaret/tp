@@ -35,6 +35,8 @@ public:
         mResetData->mResetPrepare = 0;
     }
     static u8 getLogoScnFlag() { return mResetData->mLogoScnFlag; }
+    static u8 getProgSeqFlag() { return mResetData->mProgSeqFlag; }
+    static u8 getWarningDispFlag() { return mResetData->mWarningDispFlag; }
     static BOOL isReturnToMenu() { return mResetData->mReturnToMenu; }
     static bool isShutdown() { return mResetData->mShutdown; }
     static int isReset() { return mResetData->mReset; }

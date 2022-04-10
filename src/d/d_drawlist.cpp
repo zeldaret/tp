@@ -44,11 +44,6 @@ struct dDlst_2Dm_c {
     /* 8005312C */ void draw();
 };
 
-struct dDlst_2D_c {
-    /* 80053A00 */ dDlst_2D_c(ResTIMG*, s16, s16, s16, s16, u8);
-    /* 80053A9C */ void draw();
-};
-
 struct dDlst_2DTri_c {
     /* 80051AF0 */ void draw();
 };
@@ -100,13 +95,6 @@ struct JMath {
 struct J3DUClipper {
     /* 8027378C */ void calcViewFrustum();
     /* 80273A44 */ void clip(f32 const (*)[4], Vec*, Vec*) const;
-};
-
-struct J2DPicture {
-    /* 800539DC */ void getTexture(u8) const;
-    /* 80053C44 */ void setWhite(JUtility::TColor);
-    /* 80053C6C */ void setBlack(JUtility::TColor);
-    /* 802FC050 */ J2DPicture();
 };
 
 //
@@ -2156,7 +2144,8 @@ asm dDlst_2D_c::dDlst_2D_c(ResTIMG* param_0, s16 param_1, s16 param_2, s16 param
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dDlst_2D_c::draw() {
+// asm void dDlst_2D_c::draw() {
+extern "C" asm void draw__10dDlst_2D_cFv() {
     nofralloc
 #include "asm/d/d_drawlist/draw__10dDlst_2D_cFv.s"
 }

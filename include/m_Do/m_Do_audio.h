@@ -23,6 +23,7 @@ public:
     ~mDoAud_zelAudio_c() {}
 
     static void onInitFlag() { struct_80450BB8 = true; }
+    static bool isInitFlag() { return struct_80450BB8; }
     static bool isResetFlag() { return sResetFlag; }
     static void onResetFlag() { sResetFlag = true; }
     static void offResetFlag() { sResetFlag = false; }

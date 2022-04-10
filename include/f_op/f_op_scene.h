@@ -22,8 +22,6 @@ public:
     /* 0x1B4 */ u8 field_0x1b4[0x10];
     /* 0x1C4 */ request_of_phase_process_class field_0x1c4;
     /* 0x1CC */ mDoDvdThd_toMainRam_c* sceneCommand;
-    /* 0x1D0 */ mDoDvdThd_mountXArchive_c* field_0x1d0;
-    /* 0x1D4 */ u8 field_0x1d4;
 };
 
 #endif

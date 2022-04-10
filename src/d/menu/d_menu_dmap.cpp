@@ -72,12 +72,6 @@ struct dMeterHaihai_c {
     /* 8020BC20 */ void setScale(f32);
 };
 
-struct J2DPicture {
-    /* 801BDD40 */ void append(ResTIMG const*, f32);
-    /* 801BDD70 */ void insert(ResTIMG const*, u8, f32);
-    /* 802FC708 */ J2DPicture(ResTIMG const*);
-};
-
 struct JMSMesgEntry_c {};
 
 struct dMeter2Info_c {

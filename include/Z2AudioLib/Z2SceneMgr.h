@@ -21,7 +21,7 @@ public:
     void load2ndDynamicWave();
     void sceneBgmStart();
     void loadStaticWaves();
-    bool checkFirstWaves();
+    BOOL checkFirstWaves();
     void eraseSeWave(u32);
     void eraseBgmWave(u32);
     void getWaveLoadStatus(u32, u32);

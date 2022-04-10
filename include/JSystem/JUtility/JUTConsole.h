@@ -36,7 +36,7 @@ public:
 
     /* 802E755C */ virtual ~JUTConsole();
 
-    void setOutput(u32 output) { mOutput = output; }
+    void setOutput(unsigned int output) { mOutput = output; }
     void setPosition(int x, int y) {
         mPositionX = x;
         mPositionY = y;

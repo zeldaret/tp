@@ -1070,7 +1070,7 @@ asm void Z2SceneMgr::loadStaticWaves() {
 #pragma pop
 
 /* 802BA5C0-802BA5C8 2B4F00 0008+00 0/0 1/1 0/0 .text            checkFirstWaves__10Z2SceneMgrFv */
-bool Z2SceneMgr::checkFirstWaves() {
+BOOL Z2SceneMgr::checkFirstWaves() {
     return false;
 }
 

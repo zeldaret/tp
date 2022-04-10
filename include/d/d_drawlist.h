@@ -1,6 +1,7 @@
 #ifndef D_D_DRAWLIST_H
 #define D_D_DRAWLIST_H
 
+#include "JSystem/J2DGraph/J2DPicture.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
@@ -54,6 +55,24 @@ public:
     /* 0x08 */ JUTFont* mFont;
     /* 0x0C */ J2DPane* mBasePane;
     /* 0x10 */ J2DPane* field_0x10;
+};
+
+class dDlst_2D_c : public dDlst_base_c {
+public:
+    /* 80053A00 */ dDlst_2D_c(ResTIMG* image, s16 posX, s16 posY, s16 width, s16 height, u8 alpha);
+    /* 80053A9C */ virtual void draw();
+
+    void setAlpha(u8 alpha) { mAlpha = alpha; }
+    J2DPicture* getPicture() { return &mpPicture; }
+
+private:
+    /* 0x004 */ u8 field_0x4;
+    /* 0x008 */ J2DPicture mpPicture;
+    /* 0x158 */ s16 mPosX;
+    /* 0x15A */ s16 mPosY;
+    /* 0x15C */ s16 mSizeX;
+    /* 0x15E */ s16 mSizeY;
+    /* 0x160 */ u8 mAlpha;
 };
 
 class dDlst_peekZ_c {
@@ -145,7 +164,7 @@ public:
     /* 80055C74 */ int setReal(u32, s8, J3DModel*, cXyz*, f32, f32, dKy_tevstr_c*);
     /* 80055F1C */ void addReal(u32, J3DModel*);
     /* 80055F84 */ int setSimple(cXyz*, f32, f32, cXyz*, s16, f32, _GXTexObj*);
-    /* 80055FE8 */ void setSimpleTex(ResTIMG const*);
+    /* 80055FE8 */ static void setSimpleTex(ResTIMG const*);
 
     static GXTexObj* getSimpleTex() { return &mSimpleTexObj; }
 
@@ -232,6 +251,8 @@ public:
     void setXluListBG() { setXluDrawList(mXluListBG); }
     void setOpaListBG() { setOpaDrawList(mOpaListBG); }
     void setXluList2DScreen() { setXluDrawList(mList2DScreen); }
+
+    void peekZdata() { mPeekZ.peekData(); }
 
     int setSimpleShadow(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3, s16 param_4,
                         f32 param_5, _GXTexObj* param_6) {

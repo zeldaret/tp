@@ -38,7 +38,7 @@ inline s32 fpcM_ChangeLayerID(void* proc, int layerID) {
 
 void fpcM_Draw(void* pProc);
 s32 fpcM_DrawIterater(fpcM_DrawIteraterFunc pFunc);
-void fpcM_Execute(void* pProc);
+s32 fpcM_Execute(void* pProc);
 s32 fpcM_Delete(void* pProc);
 BOOL fpcM_IsCreating(unsigned int pID);
 void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2);

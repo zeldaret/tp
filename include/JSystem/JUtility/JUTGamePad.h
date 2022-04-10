@@ -180,6 +180,8 @@ public:
         /* 0xF */ s8 field_0xf;
     };  // Size: 0x10
 
+    void stopMotorWaveHard() { mRumble.stopPatternedRumble(mPortNum); }
+
     struct CRumble {
         static PADMask sChannelMask[4];
         static bool mStatus[4];
