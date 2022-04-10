@@ -678,7 +678,7 @@ def calculate_progress(build_path, matching, format, print_rels):
 
 
 def find_function_range(asm):
-    with asm.open("r") as file:
+    with asm.open("r", encoding="utf-8") as file:
         lines = file.readlines()
         for line in lines:
             if line.startswith("/* "):
@@ -970,13 +970,13 @@ def find_used_asm_files(non_matching, use_progress_bar=True):
             task = progress.add_task(f"preprocessing...", total=len(cpp_files))
 
             for cpp_file in cpp_files:
-                with cpp_file.open("r") as file:
+                with cpp_file.open("r", encoding="utf-8") as file:
                     includes.update(find_includes(file.readlines(), non_matching))
 
                 progress.update(task, advance=1)
     else:
         for cpp_file in cpp_files:
-            with cpp_file.open("r") as file:
+            with cpp_file.open("r", encoding="utf-8") as file:
                 includes.update(find_includes(file.readlines(), non_matching))
 
     # TODO: NON_MATCHING
