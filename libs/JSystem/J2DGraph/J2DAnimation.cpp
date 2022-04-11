@@ -544,27 +544,27 @@ void J2DAnmTextureSRTKey::searchUpdateMaterialID(J2DScreen* pScreen) {
 /* 8030BD10-8030BEE8 306650 01D8+00 1/0 0/0 0/0 .text
  * searchUpdateMaterialID__16J2DAnmTexPatternFP9J2DScreen       */
 void J2DAnmTexPattern::searchUpdateMaterialID(J2DScreen* pScreen) {
-    if (pScreen != NULL && pScreen->mNameTable != NULL && pScreen->field_0x108 != NULL) {
+    if (pScreen != NULL && pScreen->mNameTable != NULL && pScreen->mTexRes != NULL) {
         for (u16 entry = 0; entry < this->getUpdateMaterialNum(); entry++) {
             s32 idx = pScreen->mNameTable->getIndex(field_0x20.getName(entry));
             if (idx != -1) {
-                mUpdaterMaterialID[entry] = idx;
+                mUpdateMaterialID[entry] = idx;
             } else {
-                mUpdaterMaterialID[entry] = 0xFFFF;
+                mUpdateMaterialID[entry] = 0xFFFF;
             }
         }
         delete[] mTIMGPtrArray;
-        mTIMGPtrArray = new J2DAnmTexPatternTIMGPointer[pScreen->field_0x108->mCount];
+        mTIMGPtrArray = new J2DAnmTexPatternTIMGPointer[pScreen->mTexRes->mCount];
         if (mTIMGPtrArray != NULL) {
             JUTResReference resRef;
-            for (u16 i = 0; i < pScreen->field_0x108->mCount; i++) {
-                s8* var1 = pScreen->field_0x108->getResReference(i);
+            for (u16 i = 0; i < pScreen->mTexRes->mCount; i++) {
+                s8* var1 = pScreen->mTexRes->getResReference(i);
                 ResTIMG* var2 = NULL;
                 if (var1 != NULL) {
                     var2 = (ResTIMG*)resRef.getResource(var1, 'TIMG', NULL);
                     if (var2 == NULL && J2DScreen::getDataManage() != NULL) {
                         var2 = (ResTIMG*)J2DScreen::getDataManage()->get(
-                            pScreen->field_0x108->getName(i));
+                            pScreen->mTexRes->getName(i));
                     }
                 }
                 mTIMGPtrArray[i].mRes = var2;

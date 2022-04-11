@@ -217,7 +217,7 @@ struct J3DAnmTexPatternFullData {
     /* 0x0E */ u16 field_0xe;
     /* 0x10 */ s32 mTableOffset;
     /* 0x14 */ s32 mValuesOffset;
-    /* 0x18 */ s32 mUpdaterMaterialIDOffset;
+    /* 0x18 */ s32 mUpdateMaterialIDOffset;
     /* 0x1C */ s32 mNameTabOffset;
 };  // Size = 0x20
 
