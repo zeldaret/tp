@@ -55,7 +55,7 @@ struct J3DAnmTransformFullTable {
 struct J3DAnmTexPatternFullTable {
     /* 0x00 */ u16 mMaxFrame;
     /* 0x02 */ u16 mOffset;
-    /* 0x04 */ u16 _4;
+    /* 0x04 */ u8 _4;
     /* 0x06 */ u16 _6;
 };  // Size = 0x8
 
@@ -64,7 +64,8 @@ struct J3DAnmCRegKeyTable {
     /* 0x06 */ J3DAnmKeyTableBase mGTable;
     /* 0x0C */ J3DAnmKeyTableBase mBTable;
     /* 0x12 */ J3DAnmKeyTableBase mATable;
-    /* 0x18 */ u8 _18[4];
+    /* 0x18 */ u8 _18;
+    u8 padding[3];
 };  // Size = 0x1C
 
 struct J3DAnmKRegKeyTable {
@@ -72,7 +73,8 @@ struct J3DAnmKRegKeyTable {
     /* 0x06 */ J3DAnmKeyTableBase mGTable;
     /* 0x0C */ J3DAnmKeyTableBase mBTable;
     /* 0x12 */ J3DAnmKeyTableBase mATable;
-    /* 0x18 */ u8 _18[4];
+    /* 0x18 */ u8 _18;
+    u8 padding[3];
 };  // Size = 0x1C
 
 struct J3DAnmDataBlockHeader {  // actual name unknown

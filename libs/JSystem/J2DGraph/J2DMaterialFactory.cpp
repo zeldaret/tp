@@ -95,7 +95,6 @@ extern "C" extern u16 j2dDefaultIndTexOrderNull[1 + 1 /* padding */];
 extern "C" extern u8 j2dDefaultIndTexCoordScaleInfo[2 + 2 /* padding */];
 extern "C" extern u8 j2dDefaultTevSwapMode[4];
 extern "C" extern u32 j2dDefaultTevSwapModeTable;
-extern "C" extern u32 j2dDefaultBlendInfo;
 extern "C" extern u32 j2dDefaultColorChanInfo;
 extern "C" extern u16 j2dDefaultAlphaCmp;
 

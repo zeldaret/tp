@@ -247,6 +247,7 @@ public:
     /* 8030BD10 */ virtual void searchUpdateMaterialID(J2DScreen*);
     u16 getUpdateMaterialNum() const { return mUpdateMaterialNum; }
     u16 getUpdateMaterialID(u16 i) const { return mUpdateMaterialID[i]; }
+    J3DAnmTexPatternFullTable* getAnmTable() const { return mAnmTable; }
 
     /* 0x10 */ u16* mValues;
     /* 0x14 */ J3DAnmTexPatternFullTable* mAnmTable;
@@ -293,6 +294,9 @@ public:
 
     u16 getKRegUpdateMaterialNum() const { return mKRegUpdateMaterialNum; }
     u16 getKRegUpdateMaterialID(u16 i) const { return mKRegUpdateMaterialID[i]; }
+
+    J3DAnmCRegKeyTable* getAnmCRegKeyTable() const { return mAnmCRegKeyTable; }
+    J3DAnmKRegKeyTable* getAnmKRegKeyTable() const { return mAnmKRegKeyTable; }
 
     /* 0x10 */ u16 mCRegUpdateMaterialNum;
     /* 0x12 */ u16 mKRegUpdateMaterialNum;

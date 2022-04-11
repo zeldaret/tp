@@ -92,7 +92,6 @@ extern "C" extern void* __vt__11J2DTevBlock[47];
 extern "C" extern void* __vt__14J2DTexGenBlock[3 + 1 /* padding */];
 extern "C" extern u16 j2dDefaultIndTexOrderNull[1 + 1 /* padding */];
 extern "C" extern u8 j2dDefaultIndTexCoordScaleInfo[2 + 2 /* padding */];
-extern "C" extern u32 j2dDefaultBlendInfo;
 extern "C" extern u32 j2dDefaultColorChanInfo;
 extern "C" extern u16 j2dDefaultAlphaCmp;
 
@@ -152,6 +151,17 @@ SECTION_DATA extern void* __vt__13J2DColorBlock[3] = {
 };
 
 /* 802EA1AC-802EA2CC 2E4AEC 0120+00 0/0 1/1 0/0 .text            __ct__11J2DMaterialFv */
+#ifdef NONMATCHING
+J2DMaterial::J2DMaterial() {
+    field_0x4 = 0;
+    mIndex = -1;
+    mTevBlock = NULL;
+    mIndBlock = NULL;
+    mAnmPointer = NULL;
+    field_0x8 = 1;
+    mVisible = true;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -160,6 +170,7 @@ asm J2DMaterial::J2DMaterial() {
 #include "asm/JSystem/J2DGraph/J2DMaterial/__ct__11J2DMaterialFv.s"
 }
 #pragma pop
+#endif
 
 /* 802EA2CC-802EA38C 2E4C0C 00C0+00 1/0 2/2 0/0 .text            __dt__11J2DMaterialFv */
 #pragma push
@@ -173,99 +184,243 @@ extern "C" asm void __dt__11J2DMaterialFv() {
 #pragma pop
 
 /* 802EA38C-802EA410 2E4CCC 0084+00 0/0 8/8 0/0 .text            setGX__11J2DMaterialFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DMaterial::setGX() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMaterial/setGX__11J2DMaterialFv.s"
+void J2DMaterial::setGX() {
+    if (mVisible) {
+        getColorBlock()->setGX();
+        getTexGenBlock()->setGX();
+
+        if (getTevBlock() != NULL) {
+            getTevBlock()->setGX();
+        }
+
+        if (getIndBlock() != NULL) {
+            getIndBlock()->setGX();
+        }
+
+        getPEBlock()->setGX();
+    }
 }
-#pragma pop
 
 /* 802EA410-802EA5C4 2E4D50 01B4+00 0/0 1/1 0/0 .text            createTevBlock__11J2DMaterialFib */
+#ifdef NONMATCHING
+J2DTevBlock* J2DMaterial::createTevBlock(int block_type, bool noAlign) {
+    J2DTevBlock* block;
+
+    if (noAlign) {
+        if (block_type <= 1) {
+            block = new J2DTevBlock1();
+        } else if (block_type == 2) {
+            block = new J2DTevBlock2();
+        } else if (block_type <= 4) {
+            block = new J2DTevBlock4();
+        } else if (block_type <= 8) {
+            block = new J2DTevBlock8();
+        } else {
+            block = new J2DTevBlock16();
+        }
+    } else {
+        if (block_type <= 1) {
+            block = new (-4) J2DTevBlock1();
+        } else if (block_type == 2) {
+            block = new (-4) J2DTevBlock2();
+        } else if (block_type <= 4) {
+            block = new (-4) J2DTevBlock4();
+        } else if (block_type <= 8) {
+            block = new (-4) J2DTevBlock8();
+        } else {
+            block = new (-4) J2DTevBlock16();
+        }
+    }
+
+    return block;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DMaterial::createTevBlock(int param_0, bool param_1) {
+asm J2DTevBlock* J2DMaterial::createTevBlock(int param_0, bool param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterial/createTevBlock__11J2DMaterialFib.s"
 }
 #pragma pop
+#endif
 
 /* 802EA5C4-802EA79C 2E4F04 01D8+00 0/0 1/1 0/0 .text            createIndBlock__11J2DMaterialFib */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DMaterial::createIndBlock(int param_0, bool param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMaterial/createIndBlock__11J2DMaterialFib.s"
+J2DIndBlock* J2DMaterial::createIndBlock(int block_type, bool noAlign) {
+    J2DIndBlock* block;
+
+    if (noAlign) {
+        if (block_type != 0) {
+            block = new J2DIndBlockFull();
+        } else {
+            block = new J2DIndBlockNull();
+        }
+    } else {
+        if (block_type != 0) {
+            block = new (-4) J2DIndBlockFull();
+        } else {
+            block = new (-4) J2DIndBlockNull();
+        }
+    }
+
+    return block;
 }
-#pragma pop
 
 /* 802EA79C-802EA84C 2E50DC 00B0+00 1/1 0/0 0/0 .text
  * __ct__Q211J2DMaterial21J2DMaterialAnmPointerFv               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J2DMaterial::J2DMaterialAnmPointer::J2DMaterialAnmPointer() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMaterial/__ct__Q211J2DMaterial21J2DMaterialAnmPointerFv.s"
+J2DMaterial::J2DMaterialAnmPointer::J2DMaterialAnmPointer() {
+    field_0x0 = NULL;
+    field_0x10 = -1;
+    field_0x4 = 0;
+
+    for (int i = 0; i < 8; i++) {
+        field_0x12[i] = -1;
+    }
+    field_0x8 = 0;
+
+    for (int i = 0; i < 8; i++) {
+        field_0x22[i] = -1;
+    }
+    field_0xc = 0;
+
+    for (int i = 0; i < 4; i++) {
+        field_0x32[i] = -1;
+    }
+
+    for (int i = 0; i < 4; i++) {
+        field_0x3a[i] = -1;
+    }
 }
-#pragma pop
 
 /* 802EA84C-802EA89C 2E518C 0050+00 4/4 0/0 0/0 .text            makeAnmPointer__11J2DMaterialFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DMaterial::makeAnmPointer() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMaterial/makeAnmPointer__11J2DMaterialFv.s"
+void J2DMaterial::makeAnmPointer() {
+    if (mAnmPointer == NULL) {
+        mAnmPointer = new J2DMaterialAnmPointer();
+    }
 }
-#pragma pop
 
 /* 802EA89C-802EA94C 2E51DC 00B0+00 0/0 4/4 0/0 .text setAnimation__11J2DMaterialFP11J2DAnmColor
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DMaterial::setAnimation(J2DAnmColor* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMaterial/setAnimation__11J2DMaterialFP11J2DAnmColor.s"
+void J2DMaterial::setAnimation(J2DAnmColor* anm) {
+    if (anm != NULL || mAnmPointer != NULL) {
+        makeAnmPointer();
+        mAnmPointer->field_0x0 = anm;
+        mAnmPointer->field_0x10 = -1;
+
+        if (anm != NULL) {
+            u16 matNum = anm->getUpdateMaterialNum();
+            u16 index = getIndex();
+
+            for (u16 i = 0; i < matNum; i++) {
+                u16 matID = anm->getUpdateMaterialID(i);
+
+                if (index == matID) {
+                    mAnmPointer->field_0x10 = i;
+                    return;
+                }
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 802EA94C-802EAA2C 2E528C 00E0+00 0/0 4/4 0/0 .text
  * setAnimation__11J2DMaterialFP19J2DAnmTextureSRTKey           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DMaterial::setAnimation(J2DAnmTextureSRTKey* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMaterial/setAnimation__11J2DMaterialFP19J2DAnmTextureSRTKey.s"
+void J2DMaterial::setAnimation(J2DAnmTextureSRTKey* anm) {
+    if (anm != NULL || mAnmPointer != NULL) {
+        makeAnmPointer();
+        mAnmPointer->field_0x4 = anm;
+
+        for (int i = 0; i < 8; i++) {
+            mAnmPointer->field_0x12[i] = -1;
+        }
+
+        if (anm != NULL) {
+            u16 matNum = anm->getUpdateMaterialNum();
+            u16 index = getIndex();
+
+            for (u16 i = 0; i < matNum; i++) {
+                u16 matID = anm->getUpdateMaterialID(i);
+
+                if (index == matID) {
+                    u8 mtxID = anm->getUpdateTexMtxID(i);
+                    mAnmPointer->field_0x12[mtxID] = i;
+                }
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 802EAA2C-802EAB0C 2E536C 00E0+00 0/0 4/4 0/0 .text
  * setAnimation__11J2DMaterialFP16J2DAnmTexPattern              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DMaterial::setAnimation(J2DAnmTexPattern* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMaterial/setAnimation__11J2DMaterialFP16J2DAnmTexPattern.s"
+void J2DMaterial::setAnimation(J2DAnmTexPattern* anm) {
+    if (anm != NULL || mAnmPointer != NULL) {
+        makeAnmPointer();
+        mAnmPointer->field_0x8 = anm;
+
+        for (int i = 0; i < 8; i++) {
+            mAnmPointer->field_0x22[i] = -1;
+        }
+
+        if (anm != NULL) {
+            u16 matNum = anm->getUpdateMaterialNum();
+            u16 index = getIndex();
+            J3DAnmTexPatternFullTable* anmTbl = anm->getAnmTable();
+
+            for (u16 i = 0; i < matNum; i++) {
+                u16 matID = anm->getUpdateMaterialID(i);
+
+                if (index == matID) {
+                    mAnmPointer->field_0x22[anmTbl[i]._4] = i;
+                }
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 802EAB0C-802EAC78 2E544C 016C+00 0/0 4/4 0/0 .text
  * setAnimation__11J2DMaterialFP15J2DAnmTevRegKey               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DMaterial::setAnimation(J2DAnmTevRegKey* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMaterial/setAnimation__11J2DMaterialFP15J2DAnmTevRegKey.s"
+void J2DMaterial::setAnimation(J2DAnmTevRegKey* anm) {
+    if (anm != NULL || mAnmPointer != NULL) {
+        makeAnmPointer();
+        mAnmPointer->field_0xc = anm;
+
+        for (int i = 0; i < 4; i++) {
+            mAnmPointer->field_0x32[i] = -1;
+        }
+
+        if (anm != NULL) {
+            u16 matNum = anm->getCRegUpdateMaterialNum();
+            u16 index = getIndex();
+
+            for (u16 i = 0; i < matNum; i++) {
+                u16 matID = anm->getCRegUpdateMaterialID(i);
+
+                if (index == matID) {
+                    J3DAnmCRegKeyTable* anmTbl = anm->getAnmCRegKeyTable();
+                    mAnmPointer->field_0x32[anmTbl[i]._18] = i;
+                }
+            }
+        }
+
+        for (int i = 0; i < 4; i++) {
+            mAnmPointer->field_0x3a[i] = -1;
+        }
+
+        if (anm != NULL) {
+            u16 matNum = anm->getKRegUpdateMaterialNum();
+            u16 index = getIndex();
+
+            for (u16 i = 0; i < matNum; i++) {
+                u16 matID = anm->getKRegUpdateMaterialID(i);
+
+                if (index == matID) {
+                    J3DAnmKRegKeyTable* anmTbl = anm->getAnmKRegKeyTable();
+                    mAnmPointer->field_0x3a[anmTbl[i]._18] = i;
+                }
+            }
+        }
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804561B0-804561B4 0047B0 0004+00 1/1 0/0 0/0 .sdata2          @1943 */
