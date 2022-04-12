@@ -7,7 +7,26 @@
 #include "JSystem/JUtility/JUTNameTab.h"
 #include "dolphin/types.h"
 
-struct J2DScrnBlockHeader {};
+struct J2DScrnHeader {
+    /* 0x00 */ u32 mTag;
+    /* 0x04 */ u32 mType;
+    /* 0x08 */ u32 mFileSize;
+    /* 0x0C */ u32 mBlockNum;
+    /* 0x10 */ u8 padding[0x10];
+};
+
+struct J2DScrnInfoHeader {
+    /* 0x0 */ u32 mTag;
+    /* 0x4 */ u32 mSize;
+    /* 0x8 */ u16 mWidth;
+    /* 0xA */ u16 mHeight;
+    /* 0xC */ u32 mColor;
+};
+
+struct J2DScrnBlockHeader {
+    /* 0x00 */ u32 mTag;
+    /* 0x04 */ s32 mSize;
+};
 
 class J2DScreen : public J2DPane {
 public:
@@ -30,22 +49,22 @@ public:
     /* 802F9A54 */ virtual void setAnimation(J2DAnmBase*);
     /* 802F9A74 */ virtual void setAnimationVF(J2DAnmVisibilityFull*);
     /* 802F9A78 */ virtual void setAnimationVC(J2DAnmVtxColor*);
-    /* 802F99E8 */ virtual void createPane(J2DScrnBlockHeader const&, JSURandomInputStream*,
+    /* 802F99E8 */ virtual J2DPane* createPane(J2DScrnBlockHeader const&, JSURandomInputStream*,
                                            J2DPane*, u32);
-    /* 802F8B98 */ virtual void createPane(J2DScrnBlockHeader const&, JSURandomInputStream*,
+    /* 802F8B98 */ virtual J2DPane* createPane(J2DScrnBlockHeader const&, JSURandomInputStream*,
                                            J2DPane*, u32, JKRArchive*);
 
     /* 802F8498 */ J2DScreen();
     /* 802F85A8 */ void clean();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
+    /* 802F8648 */ bool setPriority(char const*, u32, JKRArchive*);
     /* 802F8748 */ bool setPriority(JSURandomInputStream*, u32, JKRArchive*);
     /* 802F8778 */ bool private_set(JSURandomInputStream*, u32, JKRArchive*);
     /* 802F8834 */ bool checkSignature(JSURandomInputStream*);
-    /* 802F8894 */ void getScreenInformation(JSURandomInputStream*);
-    /* 802F8990 */ void makeHierarchyPanes(J2DPane*, JSURandomInputStream*, u32, JKRArchive*);
+    /* 802F8894 */ bool getScreenInformation(JSURandomInputStream*);
+    /* 802F8990 */ s32 makeHierarchyPanes(J2DPane*, JSURandomInputStream*, u32, JKRArchive*);
     /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-    /* 802F9280 */ void getResReference(JSURandomInputStream*, u32);
-    /* 802F937C */ void createMaterial(JSURandomInputStream*, u32, JKRArchive*);
+    /* 802F9280 */ J2DResReference* getResReference(JSURandomInputStream*, u32);
+    /* 802F937C */ bool createMaterial(JSURandomInputStream*, u32, JKRArchive*);
     /* 802F9640 */ static void* getNameResource(char const*);
     /* 802F9690 */ void animation();
 
@@ -53,14 +72,13 @@ public:
 
     static J2DDataManage* mDataManage;
 
-    // private:
     /* 0x100 */ bool mScissor;
     /* 0x102 */ u16 mMaterialNum;
     /* 0x104 */ J2DMaterial* mMaterials;
-    /* 0x108 */ J2DResReference* field_0x108;
-    /* 0x10C */ J2DResReference* field_0x10c;
+    /* 0x108 */ J2DResReference* mTexRes;
+    /* 0x10C */ J2DResReference* mFontRes;
     /* 0x110 */ JUTNameTab* mNameTable;
-    /* 0x114 */ u32 field_0x114;
+    /* 0x114 */ JUtility::TColor mColor;
 };
 
 #endif /* J2DSCREEN_H */
