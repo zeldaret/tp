@@ -119,6 +119,7 @@ LIBMSL_C_PPCEABI_BARE_H_A_O_FILES := \
 	$(BUILD_DIR)/libs/MSL_C/MSL_Common/Src/extras.o \
 
 LIBMSL_C_PPCEABI_BARE_H_A_CFLAGS := \
+	-O4 \
 
 LIBMSL_C_PPCEABI_BARE_H_A_LDFLAGS := \
 	-nodefaults \
