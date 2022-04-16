@@ -19,18 +19,19 @@ extern "C" {
 /* Sometimes it's necessary to define __LITTLE_ENDIAN explicitly
    but these catch some common cases. */
 
-#if defined(i386) || defined(i486) || defined(intel) || defined(x86) || defined(i86pc) || defined(__alpha) || defined(__osf__)
+#if defined(i386) || defined(i486) || defined(intel) || defined(x86) || defined(i86pc) ||          \
+    defined(__alpha) || defined(__osf__)
 #define __LITTLE_ENDIAN
 #endif
 
 #ifdef __LITTLE_ENDIAN
-#define __HI(x)  *(1 + (int*)&x)
-#define __LO(x)  *(int*)&x
+#define __HI(x) *(1 + (int*)&x)
+#define __LO(x) *(int*)&x
 #define __HIp(x) *(1 + (int*)x)
 #define __LOp(x) *(int*)x
 #else
-#define __HI(x)  *(int*)&x
-#define __LO(x)  *(1 + (int*)&x)
+#define __HI(x) *(int*)&x
+#define __LO(x) *(1 + (int*)&x)
 #define __HIp(x) *(int*)x
 #define __LOp(x) *(1 + (int*)x)
 #endif
@@ -53,7 +54,7 @@ extern int signgam;
 enum fdversion { fdlibm_ieee = -1, fdlibm_svid, fdlibm_xopen, fdlibm_posix };
 
 #define _LIB_VERSION_TYPE enum fdversion
-#define _LIB_VERSION      _fdlib_version
+#define _LIB_VERSION _fdlib_version
 
 /* if global variable _LIB_VERSION is not desirable, one may
  * change the following to be a constant by:
@@ -64,17 +65,17 @@ enum fdversion { fdlibm_ieee = -1, fdlibm_svid, fdlibm_xopen, fdlibm_posix };
  */
 extern _LIB_VERSION_TYPE _LIB_VERSION;
 
-#define _IEEE_  fdlibm_ieee
-#define _SVID_  fdlibm_svid
+#define _IEEE_ fdlibm_ieee
+#define _SVID_ fdlibm_svid
 #define _XOPEN_ fdlibm_xopen
 #define _POSIX_ fdlibm_posix
 
 struct exception {
-	int type;
-	char* name;
-	double arg1;
-	double arg2;
-	double retval;
+    int type;
+    char* name;
+    double arg1;
+    double arg2;
+    double retval;
 };
 
 #define HUGE MAXFLOAT
@@ -86,12 +87,12 @@ struct exception {
 
 #define X_TLOSS 1.41484755040568800000e+16
 
-#define DOMAIN    1
-#define SING      2
-#define OVERFLOW  3
+#define DOMAIN 1
+#define SING 2
+#define OVERFLOW 3
 #define UNDERFLOW 4
-#define TLOSS     5
-#define PLOSS     6
+#define TLOSS 5
+#define PLOSS 6
 
 /*
  * ANSI/POSIX
@@ -224,4 +225,4 @@ extern int __kernel_rem_pio2 __P((double*, double*, int, int, int, const int*));
 };
 #endif
 
-#endif  /* FDLIBM_H */
+#endif /* FDLIBM_H */

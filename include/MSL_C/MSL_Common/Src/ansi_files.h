@@ -2,10 +2,10 @@
 #define MSL_COMMON_SRC_ANSI_FILES_H
 
 enum __file_kinds {
-    /* 0x0 */ CLOSED_FILE, 
+    /* 0x0 */ CLOSED_FILE,
     /* 0x1 */ DISK_FILE,
     /* 0x2 */ CONSOLE_FILE,
-    /* 0x3 */ UNAVAILABLE_FILE, 
+    /* 0x3 */ UNAVAILABLE_FILE,
 };
 
 enum __file_orientation {
@@ -19,15 +19,15 @@ typedef struct _file_modes {
     unsigned int io_mode : 3;
     unsigned int buffer_mode : 2;
     unsigned int file_kind : 3;
-	unsigned int file_orientation : 2;
+    unsigned int file_orientation : 2;
     unsigned int binary_io : 1;
 } file_modes;
 
 typedef struct _file_states {
-	unsigned int io_state : 3;
-	unsigned int free_buffer : 1;
-	unsigned char eof;
-	unsigned char error;
+    unsigned int io_state : 3;
+    unsigned int free_buffer : 1;
+    unsigned char eof;
+    unsigned char error;
 } file_states;
 
 typedef struct _FILE {

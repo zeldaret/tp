@@ -11,7 +11,6 @@
 // Forward References:
 //
 
-
 unsigned int __flush_all();
 void __close_all();
 
@@ -43,115 +42,140 @@ static u8 stdout_buff[0x100];
 static u8 stderr_buff[0x100];
 
 /* 803D29B0-803D2AF0 -00001 0140+00 3/2 15/15 0/0 .data            __files */
-SECTION_DATA extern files __files = {{0,
-                                      0, 1, 1, 2, 0, 0, 0,
-                                      0, 0, 0, 0,
-                                      0,
-                                      0,
-                                      {0, 0},
-                                      {0, 0},
-                                      0,
-                                      stdin_buff,
-                                      0x00000100,
-                                      stdin_buff,
-                                      0,
-                                      0,
-                                      0,
-                                      0,
-                                      NULL,
-                                      __read_console,
-                                      __write_console,
-                                      __close_console,
-                                      NULL,
-                                      &__files.stdout},
-                                     {1,
-                                      0, 2, 1, 2, 0, 0, 0,
-                                      0, 0, 0, 0,
-                                      0,
-                                      0,
-                                      {0, 0},
-                                      {0, 0},
-                                      0,
-                                      stdout_buff,
-                                      0x00000100,
-                                      stdout_buff,
-                                      0,
-                                      0,
-                                      0,
-                                      0,
-                                      NULL,
-                                      __read_console,
-                                      __write_console,
-                                      __close_console,
-                                      NULL,
-                                      &__files.stderr},
-                                     {2,
-                                      0, 2, 0, 2, 0, 0, 0,
-                                      0, 0, 0, 0,
-                                      0,
-                                      0,
-                                      {0, 0},
-                                      {0, 0},
-                                      0,
-                                      stderr_buff,
-                                      0x00000100,
-                                      stderr_buff,
-                                      0,
-                                      0,
-                                      0,
-                                      0,
-                                      NULL,
-                                      __read_console,
-                                      __write_console,
-                                      __close_console,
-                                      NULL,
-                                      &__files.empty},
-                                     {0,
-                                     0, 0, 0, 0, 0, 0, 0,
-                                    0, 0, 0, 0,
-                                    0,    0,   {0, 0}, {0, 0},
-                                      0,    NULL,       0x00000000, NULL, 0,    0,   0,      0,
-                                      NULL, NULL,       NULL,       NULL, NULL, NULL},};
+SECTION_DATA extern files __files = {
+    {0,
+     0,
+     1,
+     1,
+     2,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     {0, 0},
+     {0, 0},
+     0,
+     stdin_buff,
+     0x00000100,
+     stdin_buff,
+     0,
+     0,
+     0,
+     0,
+     NULL,
+     __read_console,
+     __write_console,
+     __close_console,
+     NULL,
+     &__files.stdout},
+    {1,
+     0,
+     2,
+     1,
+     2,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     {0, 0},
+     {0, 0},
+     0,
+     stdout_buff,
+     0x00000100,
+     stdout_buff,
+     0,
+     0,
+     0,
+     0,
+     NULL,
+     __read_console,
+     __write_console,
+     __close_console,
+     NULL,
+     &__files.stderr},
+    {2,
+     0,
+     2,
+     0,
+     2,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     {0, 0},
+     {0, 0},
+     0,
+     stderr_buff,
+     0x00000100,
+     stderr_buff,
+     0,
+     0,
+     0,
+     0,
+     NULL,
+     __read_console,
+     __write_console,
+     __close_console,
+     NULL,
+     &__files.empty},
+    {0,      0, 0,    0,          0,    0, 0, 0, 0, 0,    0,    0,    0,    0,    {0, 0},
+     {0, 0}, 0, NULL, 0x00000000, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL},
+};
 
 /* 8036300C-8036307C 35D94C 0070+00 0/0 2/2 0/0 .text            __flush_all */
 unsigned int __flush_all(void) {
-  unsigned int ret = 0;
-	FILE* file = &__files.stdin;
+    unsigned int ret = 0;
+    FILE* file = &__files.stdin;
 
-	while (file) {
-		if (file->file_mode.file_kind != 0 && fflush(file)) {
-			ret = -1;
-		}
-		file = file->next_file;
-	}
+    while (file) {
+        if (file->file_mode.file_kind != 0 && fflush(file)) {
+            ret = -1;
+        }
+        file = file->next_file;
+    }
 
-	return ret;
+    return ret;
 }
 
 /* 8036307C-80363124 35D9BC 00A8+00 0/0 1/1 0/0 .text            __close_all */
 void __close_all(void) {
-	FILE* file = &__files.stdin;
-	FILE* last_file;
+    FILE* file = &__files.stdin;
+    FILE* last_file;
 
-	__begin_critical_region(2);
+    __begin_critical_region(2);
 
-	while (file != NULL) {
-		if (file->file_mode.file_kind != CLOSED_FILE) {
-			fclose(file);
-		}
+    while (file != NULL) {
+        if (file->file_mode.file_kind != CLOSED_FILE) {
+            fclose(file);
+        }
 
-		last_file = file;
-		file = file->next_file;
+        last_file = file;
+        file = file->next_file;
 
-		if (last_file->flag) {
-			free(last_file);
-    } else {
-			last_file->file_mode.file_kind = UNAVAILABLE_FILE;
-			if (file != NULL && file->flag) {
-				last_file->next_file = NULL;
-      }
-		}
-	}
+        if (last_file->flag) {
+            free(last_file);
+        } else {
+            last_file->file_mode.file_kind = UNAVAILABLE_FILE;
+            if (file != NULL && file->flag) {
+                last_file->next_file = NULL;
+            }
+        }
+    }
 
-	__end_critical_region(2);
+    __end_critical_region(2);
 }

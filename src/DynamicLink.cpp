@@ -456,7 +456,7 @@ error:
  */
 bool DynamicModuleControl::do_unlink() {
     OSTime time1 = OSGetTime();
-    ((void(*)())mModule->epilog)();
+    ((void (*)())mModule->epilog)();
     OSTime time2 = OSGetTime();
     BOOL unklink = OSUnlink(mModule);
     OSTime time3 = OSGetTime();

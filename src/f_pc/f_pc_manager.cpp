@@ -26,9 +26,9 @@
 #include "f_pc/f_pc_priority.h"
 #include "f_pc/f_pc_profile.h"
 
+#include "SSystem/SComponent/c_API_graphic.h"
 #include "d/com/d_com_inf_game.h"
 #include "m_Do/m_Do_audio.h"
-#include "SSystem/SComponent/c_API_graphic.h"
 
 //
 // Types:

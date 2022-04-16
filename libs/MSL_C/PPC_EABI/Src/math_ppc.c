@@ -4,9 +4,9 @@
 //
 
 #include "MSL_C/PPC_EABI/Src/math_ppc.h"
-#include "fdlibm.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "fdlibm.h"
 
 //
 // Forward References:

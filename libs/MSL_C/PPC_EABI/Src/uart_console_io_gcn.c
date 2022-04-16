@@ -36,26 +36,26 @@ int __close_console() {
 int __write_console(s32 param_0, s32 param_1, s32* param_2, s32 param_3) {
     static int initialized;
 
-	if ((OSGetConsoleType() & 0x20000000) == 0) {
-		int uart_init = 0;
-		if (initialized == FALSE) {
-			uart_init = InitializeUART(0xE100);
-			
-			if (uart_init == 0) {
-				initialized = 1;
-			}
-		}
+    if ((OSGetConsoleType() & 0x20000000) == 0) {
+        int uart_init = 0;
+        if (initialized == FALSE) {
+            uart_init = InitializeUART(0xE100);
 
-		if (uart_init != 0) {
-			return 1;
-		}
+            if (uart_init == 0) {
+                initialized = 1;
+            }
+        }
 
-		if (WriteUARTN(param_1, *param_2) != 0) {
-			*param_2 = 0;
-			return 1;
-		}
-	}
+        if (uart_init != 0) {
+            return 1;
+        }
 
-	__TRK_write_console(param_0, param_1, param_2, param_3);
-	return 0;
+        if (WriteUARTN(param_1, *param_2) != 0) {
+            *param_2 = 0;
+            return 1;
+        }
+    }
+
+    __TRK_write_console(param_0, param_1, param_2, param_3);
+    return 0;
 }

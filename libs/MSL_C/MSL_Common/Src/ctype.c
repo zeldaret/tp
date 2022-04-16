@@ -64,13 +64,13 @@ SECTION_DATA extern unsigned char __lower_map[256] = {
 
 /* 80365470-80365494 35FDB0 0024+00 0/0 4/4 0/0 .text            tolower */
 int tolower(int __c) {
-	{
-		if (__c == -1) {
-			return 0xffffffff;
-		}
+    {
+        if (__c == -1) {
+            return 0xffffffff;
+        }
 
-		return (unsigned int)__lower_map[__c & 0xff];
-	}
+        return (unsigned int)__lower_map[__c & 0xff];
+    }
 }
 
 /* ############################################################################################## */
