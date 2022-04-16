@@ -14,6 +14,7 @@
 
 #define fpclassify(x) ((sizeof(x) == sizeof(float)) ? __fpclassifyf(x) : __fpclassifyd(x))
 #define signbit(x) ((sizeof(x) == sizeof(float)) ? __signbitf(x) : __signbitd(x))
+#define isfinite(x) ((fpclassify(x) > 2))
 
 #define __signbitf(x) ((*(u8*)&(x)) & 0x80)
 

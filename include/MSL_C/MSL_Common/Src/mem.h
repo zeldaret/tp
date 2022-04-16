@@ -3,6 +3,14 @@
 
 #include "dolphin/types.h"
 
-extern "C" int memcmp(const void*, const void*, size_t);
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+int memcmp(const void*, const void*, size_t);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* MSL_COMMON_SRC_MEM_H */

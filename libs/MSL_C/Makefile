@@ -3,62 +3,62 @@
 #
 
 LIBMSL_C_PPCEABI_BARE_H_A_CPP_FILES := \
-	libs/MSL_C/MSL_Common/Src/abort_exit.cpp \
-	libs/MSL_C/MSL_Common/Src/alloc.cpp \
-	libs/MSL_C/MSL_Common/Src/errno.cpp \
-	libs/MSL_C/MSL_Common/Src/ansi_files.cpp \
-	libs/MSL_C/MSL_Common_Embedded/Src/ansi_fp.cpp \
-	libs/MSL_C/MSL_Common/Src/arith.cpp \
-	libs/MSL_C/MSL_Common/Src/buffer_io.cpp \
-	libs/MSL_C/MSL_Common/Src/char_io.cpp \
-	libs/MSL_C/PPC_EABI/Src/critical_regions.gamecube.cpp \
-	libs/MSL_C/MSL_Common/Src/ctype.cpp \
-	libs/MSL_C/MSL_Common/Src/direct_io.cpp \
-	libs/MSL_C/MSL_Common/Src/file_io.cpp \
-	libs/MSL_C/MSL_Common/Src/FILE_POS.cpp \
-	libs/MSL_C/MSL_Common/Src/mbstring.cpp \
-	libs/MSL_C/MSL_Common/Src/mem.cpp \
-	libs/MSL_C/MSL_Common/Src/mem_funcs.cpp \
-	libs/MSL_C/MSL_Common/Src/misc_io.cpp \
-	libs/MSL_C/MSL_Common/Src/printf.cpp \
-	libs/MSL_C/MSL_Common/Src/scanf.cpp \
-	libs/MSL_C/MSL_Common/Src/float.cpp \
-	libs/MSL_C/MSL_Common/Src/signal.cpp \
-	libs/MSL_C/MSL_Common/Src/string.cpp \
-	libs/MSL_C/MSL_Common/Src/strtoul.cpp \
-	libs/MSL_C/MSL_Common/Src/wchar_io.cpp \
-	libs/MSL_C/PPC_EABI/Src/uart_console_io_gcn.cpp \
-	libs/MSL_C/Math/Double_precision/e_acos.cpp \
-	libs/MSL_C/Math/Double_precision/e_asin.cpp \
-	libs/MSL_C/Math/Double_precision/e_atan2.cpp \
-	libs/MSL_C/Math/Double_precision/e_exp.cpp \
-	libs/MSL_C/Math/Double_precision/e_fmod.cpp \
-	libs/MSL_C/Math/Double_precision/e_pow.cpp \
-	libs/MSL_C/Math/Double_precision/e_rem_pio2.cpp \
-	libs/MSL_C/Math/Double_precision/k_cos.cpp \
-	libs/MSL_C/Math/Double_precision/k_rem_pio2.cpp \
-	libs/MSL_C/Math/Double_precision/k_sin.cpp \
-	libs/MSL_C/Math/Double_precision/k_tan.cpp \
-	libs/MSL_C/Math/Double_precision/s_atan.cpp \
-	libs/MSL_C/Math/Double_precision/s_ceil.cpp \
-	libs/MSL_C/Math/Double_precision/s_copysign.cpp \
-	libs/MSL_C/Math/Double_precision/s_cos.cpp \
-	libs/MSL_C/Math/Double_precision/s_floor.cpp \
-	libs/MSL_C/Math/Double_precision/s_frexp.cpp \
-	libs/MSL_C/Math/Double_precision/s_ldexp.cpp \
-	libs/MSL_C/Math/Double_precision/s_modf.cpp \
-	libs/MSL_C/Math/Double_precision/s_sin.cpp \
-	libs/MSL_C/Math/Double_precision/s_tan.cpp \
-	libs/MSL_C/Math/Double_precision/w_acos.cpp \
-	libs/MSL_C/Math/Double_precision/w_asin.cpp \
-	libs/MSL_C/Math/Double_precision/w_atan2.cpp \
-	libs/MSL_C/Math/Double_precision/w_exp.cpp \
-	libs/MSL_C/Math/Double_precision/w_fmod.cpp \
-	libs/MSL_C/Math/Double_precision/w_pow.cpp \
-	libs/MSL_C/Math/Double_precision/e_sqrt.cpp \
-	libs/MSL_C/PPC_EABI/Src/math_ppc.cpp \
-	libs/MSL_C/Math/Double_precision/w_sqrt.cpp \
-	libs/MSL_C/MSL_Common/Src/extras.cpp \
+	libs/MSL_C/MSL_Common/Src/abort_exit.c \
+	libs/MSL_C/MSL_Common/Src/alloc.c \
+	libs/MSL_C/MSL_Common/Src/errno.c \
+	libs/MSL_C/MSL_Common/Src/ansi_files.c \
+	libs/MSL_C/MSL_Common_Embedded/Src/ansi_fp.c \
+	libs/MSL_C/MSL_Common/Src/arith.c \
+	libs/MSL_C/MSL_Common/Src/buffer_io.c \
+	libs/MSL_C/MSL_Common/Src/char_io.c \
+	libs/MSL_C/PPC_EABI/Src/critical_regions.gamecube.c \
+	libs/MSL_C/MSL_Common/Src/ctype.c \
+	libs/MSL_C/MSL_Common/Src/direct_io.c \
+	libs/MSL_C/MSL_Common/Src/file_io.c \
+	libs/MSL_C/MSL_Common/Src/FILE_POS.c \
+	libs/MSL_C/MSL_Common/Src/mbstring.c \
+	libs/MSL_C/MSL_Common/Src/mem.c \
+	libs/MSL_C/MSL_Common/Src/mem_funcs.c \
+	libs/MSL_C/MSL_Common/Src/misc_io.c \
+	libs/MSL_C/MSL_Common/Src/printf.c \
+	libs/MSL_C/MSL_Common/Src/scanf.c \
+	libs/MSL_C/MSL_Common/Src/float.c \
+	libs/MSL_C/MSL_Common/Src/signal.c \
+	libs/MSL_C/MSL_Common/Src/string.c \
+	libs/MSL_C/MSL_Common/Src/strtoul.c \
+	libs/MSL_C/MSL_Common/Src/wchar_io.c \
+	libs/MSL_C/PPC_EABI/Src/uart_console_io_gcn.c \
+	libs/MSL_C/Math/Double_precision/e_acos.c \
+	libs/MSL_C/Math/Double_precision/e_asin.c \
+	libs/MSL_C/Math/Double_precision/e_atan2.c \
+	libs/MSL_C/Math/Double_precision/e_exp.c \
+	libs/MSL_C/Math/Double_precision/e_fmod.c \
+	libs/MSL_C/Math/Double_precision/e_pow.c \
+	libs/MSL_C/Math/Double_precision/e_rem_pio2.c \
+	libs/MSL_C/Math/Double_precision/k_cos.c \
+	libs/MSL_C/Math/Double_precision/k_rem_pio2.c \
+	libs/MSL_C/Math/Double_precision/k_sin.c \
+	libs/MSL_C/Math/Double_precision/k_tan.c \
+	libs/MSL_C/Math/Double_precision/s_atan.c \
+	libs/MSL_C/Math/Double_precision/s_ceil.c \
+	libs/MSL_C/Math/Double_precision/s_copysign.c \
+	libs/MSL_C/Math/Double_precision/s_cos.c \
+	libs/MSL_C/Math/Double_precision/s_floor.c \
+	libs/MSL_C/Math/Double_precision/s_frexp.c \
+	libs/MSL_C/Math/Double_precision/s_ldexp.c \
+	libs/MSL_C/Math/Double_precision/s_modf.c \
+	libs/MSL_C/Math/Double_precision/s_sin.c \
+	libs/MSL_C/Math/Double_precision/s_tan.c \
+	libs/MSL_C/Math/Double_precision/w_acos.c \
+	libs/MSL_C/Math/Double_precision/w_asin.c \
+	libs/MSL_C/Math/Double_precision/w_atan2.c \
+	libs/MSL_C/Math/Double_precision/w_exp.c \
+	libs/MSL_C/Math/Double_precision/w_fmod.c \
+	libs/MSL_C/Math/Double_precision/w_pow.c \
+	libs/MSL_C/Math/Double_precision/e_sqrt.c \
+	libs/MSL_C/PPC_EABI/Src/math_ppc.c \
+	libs/MSL_C/Math/Double_precision/w_sqrt.c \
+	libs/MSL_C/MSL_Common/Src/extras.c \
 
 LIBMSL_C_PPCEABI_BARE_H_A_O_FILES := \
 	$(BUILD_DIR)/libs/MSL_C/MSL_Common/Src/abort_exit.o \
@@ -119,7 +119,8 @@ LIBMSL_C_PPCEABI_BARE_H_A_O_FILES := \
 	$(BUILD_DIR)/libs/MSL_C/MSL_Common/Src/extras.o \
 
 LIBMSL_C_PPCEABI_BARE_H_A_CFLAGS := \
-	-O4 \
+	-O4,p \
+	-lang=c \
 
 LIBMSL_C_PPCEABI_BARE_H_A_LDFLAGS := \
 	-nodefaults \
@@ -132,9 +133,9 @@ $(BUILD_DIR)/libMSL_C.a: $(LIBMSL_C_PPCEABI_BARE_H_A_O_FILES)
 	@echo $(LIBMSL_C_PPCEABI_BARE_H_A_O_FILES) > build/LIBMSL_C_PPCEABI_BARE_H_A_ofiles
 	@$(LD) -xm l $(LIBMSL_C_PPCEABI_BARE_H_A_LDFLAGS) -o $(BUILD_DIR)/libMSL_C.a @build/LIBMSL_C_PPCEABI_BARE_H_A_ofiles
 
-$(BUILD_DIR)/libs/MSL_C/%.o: libs/MSL_C/%.cpp
+$(BUILD_DIR)/libs/MSL_C/%.o: libs/MSL_C/%.c
 	@mkdir -p $(@D)
 	@echo building... $<
-	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBMSL_C_PPCEABI_BARE_H_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
+	@$(CC) $(CFLAGS) $(LIBMSL_C_PPCEABI_BARE_H_A_CFLAGS) -c -o $@ $(basename $@).c
 

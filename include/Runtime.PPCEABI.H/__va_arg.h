@@ -7,11 +7,15 @@
 // OK when the struct is 12 bytes.
 typedef struct __va_list_struct {
     u8 data[12];
-};
+} _va_list_struct;
 
-typedef __va_list_struct __va_list[1];
+typedef _va_list_struct __va_list[1];
 
+#ifdef __cplusplus
 extern "C" void __va_arg(void*, int);
+#else
+void __va_arg(void*, int);
+#endif
 
 #if IN_VSCODE_EDITOR
 #define __builtin_va_info(...)

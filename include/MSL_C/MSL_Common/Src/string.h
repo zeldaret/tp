@@ -3,7 +3,10 @@
 
 #include "dolphin/types.h"
 
+#ifdef __cplusplus
 extern "C" {
+#endif
+
 void* memcpy(void*, const void*, s32);
 void* memset(void*, int, u32);
 char* strrchr(const char*, int);
@@ -16,6 +19,9 @@ char* strcpy(char*, const char*);
 u32 strlen(const char*);
 
 int stricmp(const char*, const char*);
-};
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* MSL_COMMON_SRC_STRING_H */
