@@ -189,6 +189,8 @@ public:
     /* 80184274 */ virtual ~J2DAnmTextureSRTKey() {}
     /* 8030BC60 */ virtual void searchUpdateMaterialID(J2DScreen*);
     u16 getUpdateMaterialNum() const { return mUpdateMaterialNum / 3; }
+    u16 getUpdateMaterialID(u16 i) const { return mUpdateMaterialID[i]; }
+    u8 getUpdateTexMtxID(u16 i) const { return mUpdateTexMtxID[i]; }
 
     /* 0x10 */ int field_0x10;
     /* 0x14 */ J3DAnmTransformKeyTable* mInfoTable;
@@ -233,7 +235,7 @@ public:
         mAnmTable = NULL;
         mKind = KIND_TEX_PATTERN;
         mUpdateMaterialNum = 0;
-        mUpdaterMaterialID = NULL;
+        mUpdateMaterialID = NULL;
         mTIMGPtrArray = NULL;
     }
 
@@ -244,12 +246,14 @@ public:
     /* 8030CB90 */ virtual ~J2DAnmTexPattern() { delete[] mTIMGPtrArray; }
     /* 8030BD10 */ virtual void searchUpdateMaterialID(J2DScreen*);
     u16 getUpdateMaterialNum() const { return mUpdateMaterialNum; }
+    u16 getUpdateMaterialID(u16 i) const { return mUpdateMaterialID[i]; }
+    J3DAnmTexPatternFullTable* getAnmTable() const { return mAnmTable; }
 
     /* 0x10 */ u16* mValues;
     /* 0x14 */ J3DAnmTexPatternFullTable* mAnmTable;
     /* 0x18 */ u16 field_0x18;
     /* 0x1A */ u16 mUpdateMaterialNum;
-    /* 0x1C */ u16* mUpdaterMaterialID;
+    /* 0x1C */ u16* mUpdateMaterialID;
     /* 0x20 */ JUTNameTab field_0x20;
     /* 0x30 */ J2DAnmTexPatternTIMGPointer* mTIMGPtrArray;
 };
@@ -284,6 +288,15 @@ public:
 
     /* 801841EC */ virtual ~J2DAnmTevRegKey() {}
     /* 8030C678 */ virtual void searchUpdateMaterialID(J2DScreen* pScreen);
+
+    u16 getCRegUpdateMaterialNum() const { return mCRegUpdateMaterialNum; }
+    u16 getCRegUpdateMaterialID(u16 i) const { return mCRegUpdateMaterialID[i]; }
+
+    u16 getKRegUpdateMaterialNum() const { return mKRegUpdateMaterialNum; }
+    u16 getKRegUpdateMaterialID(u16 i) const { return mKRegUpdateMaterialID[i]; }
+
+    J3DAnmCRegKeyTable* getAnmCRegKeyTable() const { return mAnmCRegKeyTable; }
+    J3DAnmKRegKeyTable* getAnmKRegKeyTable() const { return mAnmKRegKeyTable; }
 
     /* 0x10 */ u16 mCRegUpdateMaterialNum;
     /* 0x12 */ u16 mKRegUpdateMaterialNum;
@@ -326,6 +339,7 @@ public:
     /* 8030AF24 */ virtual void searchUpdateMaterialID(J2DScreen*);
     /* 802EB390 */ virtual void getColor(u16, _GXColor*) const;
     u16 getUpdateMaterialNum() const { return mUpdateMaterialNum; }
+    u16 getUpdateMaterialID(u16 i) const { return mUpdateMaterialID[i]; }
 
     /* 0x10 */ u16 field_0x10;
     /* 0x12 */ u16 field_0x12;

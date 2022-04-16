@@ -438,8 +438,8 @@ void J2DAnmFullLoader_v15::setAnmTexPattern(J2DAnmTexPattern* pAnm,
     pAnm->mAnmTable =
         JSUConvertOffsetToPtr<J3DAnmTexPatternFullTable>(pData, (void*)pData->mTableOffset);
     pAnm->mValues = JSUConvertOffsetToPtr<u16>(pData, (void*)pData->mValuesOffset);
-    pAnm->mUpdaterMaterialID =
-        JSUConvertOffsetToPtr<u16>(pData, (void*)pData->mUpdaterMaterialIDOffset);
+    pAnm->mUpdateMaterialID =
+        JSUConvertOffsetToPtr<u16>(pData, (void*)pData->mUpdateMaterialIDOffset);
     pAnm->field_0x20.setResource(
         JSUConvertOffsetToPtr<ResNTAB>(pData, (void*)pData->mNameTabOffset));
 }

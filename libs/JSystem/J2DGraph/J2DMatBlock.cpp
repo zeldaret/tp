@@ -359,7 +359,6 @@ extern "C" extern u8 j2dDefaultIndTexCoordScaleInfo[2 + 2 /* padding */];
 extern "C" extern u32 j2dDefaultTevKColor;
 extern "C" extern u8 j2dDefaultTevSwapMode[4];
 extern "C" extern u32 j2dDefaultTevSwapModeTable;
-extern "C" extern u32 j2dDefaultBlendInfo;
 extern "C" extern u8 data_804561A4[4];
 extern "C" extern u32 j2dDefaultColorChanInfo;
 extern "C" extern u16 data_804561AC;
@@ -826,7 +825,7 @@ extern "C" asm void initialize__12J2DTevBlock1Fv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock1::prepareTexture(u8 param_0) {
+asm bool J2DTevBlock1::prepareTexture(u8 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/prepareTexture__12J2DTevBlock1FUc.s"
 }
@@ -837,7 +836,7 @@ asm void J2DTevBlock1::prepareTexture(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock1::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPalette* param_2) {
+asm bool J2DTevBlock1::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPalette* param_2) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__12J2DTevBlock1FUlPC7ResTIMGP10JUTPalette.s"
 }
@@ -848,7 +847,7 @@ asm void J2DTevBlock1::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPal
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock1::insertTexture(u32 param_0, JUTTexture* param_1) {
+asm bool J2DTevBlock1::insertTexture(u32 param_0, JUTTexture* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__12J2DTevBlock1FUlP10JUTTexture.s"
 }
@@ -858,7 +857,7 @@ asm void J2DTevBlock1::insertTexture(u32 param_0, JUTTexture* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock1::setTexture(u32 param_0, ResTIMG const* param_1) {
+asm bool J2DTevBlock1::setTexture(u32 param_0, ResTIMG const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setTexture__12J2DTevBlock1FUlPC7ResTIMG.s"
 }
@@ -869,7 +868,7 @@ asm void J2DTevBlock1::setTexture(u32 param_0, ResTIMG const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock1::setTexture(u32 param_0, JUTTexture* param_1) {
+asm bool J2DTevBlock1::setTexture(u32 param_0, JUTTexture* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setTexture__12J2DTevBlock1FUlP10JUTTexture.s"
 }
@@ -879,7 +878,7 @@ asm void J2DTevBlock1::setTexture(u32 param_0, JUTTexture* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock1::removeTexture(u32 param_0) {
+asm bool J2DTevBlock1::removeTexture(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/removeTexture__12J2DTevBlock1FUl.s"
 }
@@ -890,7 +889,7 @@ asm void J2DTevBlock1::removeTexture(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock1::setFont(ResFONT* param_0) {
+asm bool J2DTevBlock1::setFont(ResFONT* param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setFont__12J2DTevBlock1FP7ResFONT.s"
 }
@@ -901,7 +900,7 @@ asm void J2DTevBlock1::setFont(ResFONT* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock1::setFont(JUTFont* param_0) {
+asm bool J2DTevBlock1::setFont(JUTFont* param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setFont__12J2DTevBlock1FP7JUTFont.s"
 }
@@ -911,7 +910,7 @@ asm void J2DTevBlock1::setFont(JUTFont* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock1::setPalette(u32 param_0, ResTLUT const* param_1) {
+asm bool J2DTevBlock1::setPalette(u32 param_0, ResTLUT const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setPalette__12J2DTevBlock1FUlPC7ResTLUT.s"
 }
@@ -985,7 +984,7 @@ extern "C" asm void initialize__12J2DTevBlock2Fv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::prepareTexture(u8 param_0) {
+asm bool J2DTevBlock2::prepareTexture(u8 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/prepareTexture__12J2DTevBlock2FUc.s"
 }
@@ -996,7 +995,7 @@ asm void J2DTevBlock2::prepareTexture(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPalette* param_2) {
+asm bool J2DTevBlock2::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPalette* param_2) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__12J2DTevBlock2FUlPC7ResTIMGP10JUTPalette.s"
 }
@@ -1007,7 +1006,7 @@ asm void J2DTevBlock2::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPal
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::insertTexture(u32 param_0, JUTTexture* param_1) {
+asm bool J2DTevBlock2::insertTexture(u32 param_0, JUTTexture* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__12J2DTevBlock2FUlP10JUTTexture.s"
 }
@@ -1017,7 +1016,7 @@ asm void J2DTevBlock2::insertTexture(u32 param_0, JUTTexture* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::setTexture(u32 param_0, ResTIMG const* param_1) {
+asm bool J2DTevBlock2::setTexture(u32 param_0, ResTIMG const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setTexture__12J2DTevBlock2FUlPC7ResTIMG.s"
 }
@@ -1028,7 +1027,7 @@ asm void J2DTevBlock2::setTexture(u32 param_0, ResTIMG const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::setTexture(u32 param_0, JUTTexture* param_1) {
+asm bool J2DTevBlock2::setTexture(u32 param_0, JUTTexture* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setTexture__12J2DTevBlock2FUlP10JUTTexture.s"
 }
@@ -1038,7 +1037,7 @@ asm void J2DTevBlock2::setTexture(u32 param_0, JUTTexture* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::removeTexture(u32 param_0) {
+asm bool J2DTevBlock2::removeTexture(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/removeTexture__12J2DTevBlock2FUl.s"
 }
@@ -1049,7 +1048,7 @@ asm void J2DTevBlock2::removeTexture(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::setFont(ResFONT* param_0) {
+asm bool J2DTevBlock2::setFont(ResFONT* param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setFont__12J2DTevBlock2FP7ResFONT.s"
 }
@@ -1060,7 +1059,7 @@ asm void J2DTevBlock2::setFont(ResFONT* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::setFont(JUTFont* param_0) {
+asm bool J2DTevBlock2::setFont(JUTFont* param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setFont__12J2DTevBlock2FP7JUTFont.s"
 }
@@ -1070,7 +1069,7 @@ asm void J2DTevBlock2::setFont(JUTFont* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::setPalette(u32 param_0, ResTLUT const* param_1) {
+asm bool J2DTevBlock2::setPalette(u32 param_0, ResTLUT const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setPalette__12J2DTevBlock2FUlPC7ResTLUT.s"
 }
@@ -1144,7 +1143,7 @@ extern "C" asm void initialize__12J2DTevBlock4Fv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::prepareTexture(u8 param_0) {
+asm bool J2DTevBlock4::prepareTexture(u8 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/prepareTexture__12J2DTevBlock4FUc.s"
 }
@@ -1155,7 +1154,7 @@ asm void J2DTevBlock4::prepareTexture(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPalette* param_2) {
+asm bool J2DTevBlock4::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPalette* param_2) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__12J2DTevBlock4FUlPC7ResTIMGP10JUTPalette.s"
 }
@@ -1166,7 +1165,7 @@ asm void J2DTevBlock4::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPal
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::insertTexture(u32 param_0, JUTTexture* param_1) {
+asm bool J2DTevBlock4::insertTexture(u32 param_0, JUTTexture* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__12J2DTevBlock4FUlP10JUTTexture.s"
 }
@@ -1176,7 +1175,7 @@ asm void J2DTevBlock4::insertTexture(u32 param_0, JUTTexture* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::setTexture(u32 param_0, ResTIMG const* param_1) {
+asm bool J2DTevBlock4::setTexture(u32 param_0, ResTIMG const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setTexture__12J2DTevBlock4FUlPC7ResTIMG.s"
 }
@@ -1187,7 +1186,7 @@ asm void J2DTevBlock4::setTexture(u32 param_0, ResTIMG const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::setTexture(u32 param_0, JUTTexture* param_1) {
+asm bool J2DTevBlock4::setTexture(u32 param_0, JUTTexture* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setTexture__12J2DTevBlock4FUlP10JUTTexture.s"
 }
@@ -1197,7 +1196,7 @@ asm void J2DTevBlock4::setTexture(u32 param_0, JUTTexture* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::removeTexture(u32 param_0) {
+asm bool J2DTevBlock4::removeTexture(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/removeTexture__12J2DTevBlock4FUl.s"
 }
@@ -1208,7 +1207,7 @@ asm void J2DTevBlock4::removeTexture(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::setFont(ResFONT* param_0) {
+asm bool J2DTevBlock4::setFont(ResFONT* param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setFont__12J2DTevBlock4FP7ResFONT.s"
 }
@@ -1219,7 +1218,7 @@ asm void J2DTevBlock4::setFont(ResFONT* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::setFont(JUTFont* param_0) {
+asm bool J2DTevBlock4::setFont(JUTFont* param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setFont__12J2DTevBlock4FP7JUTFont.s"
 }
@@ -1229,7 +1228,7 @@ asm void J2DTevBlock4::setFont(JUTFont* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::setPalette(u32 param_0, ResTLUT const* param_1) {
+asm bool J2DTevBlock4::setPalette(u32 param_0, ResTLUT const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setPalette__12J2DTevBlock4FUlPC7ResTLUT.s"
 }
@@ -1303,7 +1302,7 @@ extern "C" asm void initialize__12J2DTevBlock8Fv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::prepareTexture(u8 param_0) {
+asm bool J2DTevBlock8::prepareTexture(u8 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/prepareTexture__12J2DTevBlock8FUc.s"
 }
@@ -1314,7 +1313,7 @@ asm void J2DTevBlock8::prepareTexture(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPalette* param_2) {
+asm bool J2DTevBlock8::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPalette* param_2) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__12J2DTevBlock8FUlPC7ResTIMGP10JUTPalette.s"
 }
@@ -1325,7 +1324,7 @@ asm void J2DTevBlock8::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPal
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::insertTexture(u32 param_0, JUTTexture* param_1) {
+asm bool J2DTevBlock8::insertTexture(u32 param_0, JUTTexture* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__12J2DTevBlock8FUlP10JUTTexture.s"
 }
@@ -1335,7 +1334,7 @@ asm void J2DTevBlock8::insertTexture(u32 param_0, JUTTexture* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::setTexture(u32 param_0, ResTIMG const* param_1) {
+asm bool J2DTevBlock8::setTexture(u32 param_0, ResTIMG const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setTexture__12J2DTevBlock8FUlPC7ResTIMG.s"
 }
@@ -1346,7 +1345,7 @@ asm void J2DTevBlock8::setTexture(u32 param_0, ResTIMG const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::setTexture(u32 param_0, JUTTexture* param_1) {
+asm bool J2DTevBlock8::setTexture(u32 param_0, JUTTexture* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setTexture__12J2DTevBlock8FUlP10JUTTexture.s"
 }
@@ -1356,7 +1355,7 @@ asm void J2DTevBlock8::setTexture(u32 param_0, JUTTexture* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::removeTexture(u32 param_0) {
+asm bool J2DTevBlock8::removeTexture(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/removeTexture__12J2DTevBlock8FUl.s"
 }
@@ -1367,7 +1366,7 @@ asm void J2DTevBlock8::removeTexture(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::setFont(ResFONT* param_0) {
+asm bool J2DTevBlock8::setFont(ResFONT* param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setFont__12J2DTevBlock8FP7ResFONT.s"
 }
@@ -1378,7 +1377,7 @@ asm void J2DTevBlock8::setFont(ResFONT* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::setFont(JUTFont* param_0) {
+asm bool J2DTevBlock8::setFont(JUTFont* param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setFont__12J2DTevBlock8FP7JUTFont.s"
 }
@@ -1388,7 +1387,7 @@ asm void J2DTevBlock8::setFont(JUTFont* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::setPalette(u32 param_0, ResTLUT const* param_1) {
+asm bool J2DTevBlock8::setPalette(u32 param_0, ResTLUT const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setPalette__12J2DTevBlock8FUlPC7ResTLUT.s"
 }
@@ -1462,7 +1461,7 @@ extern "C" asm void initialize__13J2DTevBlock16Fv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::prepareTexture(u8 param_0) {
+asm bool J2DTevBlock16::prepareTexture(u8 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/prepareTexture__13J2DTevBlock16FUc.s"
 }
@@ -1473,7 +1472,7 @@ asm void J2DTevBlock16::prepareTexture(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPalette* param_2) {
+asm bool J2DTevBlock16::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPalette* param_2) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__13J2DTevBlock16FUlPC7ResTIMGP10JUTPalette.s"
 }
@@ -1484,7 +1483,7 @@ asm void J2DTevBlock16::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPa
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::insertTexture(u32 param_0, JUTTexture* param_1) {
+asm bool J2DTevBlock16::insertTexture(u32 param_0, JUTTexture* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__13J2DTevBlock16FUlP10JUTTexture.s"
 }
@@ -1494,7 +1493,7 @@ asm void J2DTevBlock16::insertTexture(u32 param_0, JUTTexture* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::setTexture(u32 param_0, ResTIMG const* param_1) {
+asm bool J2DTevBlock16::setTexture(u32 param_0, ResTIMG const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setTexture__13J2DTevBlock16FUlPC7ResTIMG.s"
 }
@@ -1505,7 +1504,7 @@ asm void J2DTevBlock16::setTexture(u32 param_0, ResTIMG const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::setTexture(u32 param_0, JUTTexture* param_1) {
+asm bool J2DTevBlock16::setTexture(u32 param_0, JUTTexture* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setTexture__13J2DTevBlock16FUlP10JUTTexture.s"
 }
@@ -1516,7 +1515,7 @@ asm void J2DTevBlock16::setTexture(u32 param_0, JUTTexture* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::removeTexture(u32 param_0) {
+asm bool J2DTevBlock16::removeTexture(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/removeTexture__13J2DTevBlock16FUl.s"
 }
@@ -1527,7 +1526,7 @@ asm void J2DTevBlock16::removeTexture(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::setFont(ResFONT* param_0) {
+asm bool J2DTevBlock16::setFont(ResFONT* param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setFont__13J2DTevBlock16FP7ResFONT.s"
 }
@@ -1538,7 +1537,7 @@ asm void J2DTevBlock16::setFont(ResFONT* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::setFont(JUTFont* param_0) {
+asm bool J2DTevBlock16::setFont(JUTFont* param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setFont__13J2DTevBlock16FP7JUTFont.s"
 }
@@ -1548,7 +1547,7 @@ asm void J2DTevBlock16::setFont(JUTFont* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::setPalette(u32 param_0, ResTLUT const* param_1) {
+asm bool J2DTevBlock16::setPalette(u32 param_0, ResTLUT const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/setPalette__13J2DTevBlock16FUlPC7ResTLUT.s"
 }
@@ -1701,7 +1700,7 @@ void J2DIndBlockFull::setIndTexStageNum(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DIndBlockFull::getIndTexStageNum() const {
+asm bool J2DIndBlockFull::getIndTexStageNum() const {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getIndTexStageNum__15J2DIndBlockFullCFv.s"
 }
@@ -1722,7 +1721,7 @@ asm void J2DIndBlockFull::setIndTexOrder(u32 param_0, J2DIndTexOrder param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DIndBlockFull::getIndTexOrder(u32 param_0) {
+asm bool J2DIndBlockFull::getIndTexOrder(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getIndTexOrder__15J2DIndBlockFullFUl.s"
 }
@@ -1744,7 +1743,7 @@ asm void J2DIndBlockFull::setIndTexMtx(u32 param_0, J2DIndTexMtx param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DIndBlockFull::getIndTexMtx(u32 param_0) {
+asm bool J2DIndBlockFull::getIndTexMtx(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getIndTexMtx__15J2DIndBlockFullFUl.s"
 }
@@ -1765,7 +1764,7 @@ asm void J2DIndBlockFull::setIndTexCoordScale(u32 param_0, J2DIndTexCoordScale p
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DIndBlockFull::getIndTexCoordScale(u32 param_0) {
+asm bool J2DIndBlockFull::getIndTexCoordScale(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getIndTexCoordScale__15J2DIndBlockFullFUl.s"
 }
@@ -1810,7 +1809,7 @@ asm void J2DTevBlock16::setTexNo(u32 param_0, u16 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::getTexNo(u32 param_0) const {
+asm u32 J2DTevBlock16::getTexNo(u32 param_0) const {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTexNo__13J2DTevBlock16CFUl.s"
 }
@@ -1825,7 +1824,7 @@ void J2DTevBlock16::setFontNo(u16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::getFontNo() const {
+asm u32 J2DTevBlock16::getFontNo() const {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getFontNo__13J2DTevBlock16CFv.s"
 }
@@ -1846,7 +1845,7 @@ asm void J2DTevBlock16::setTevOrder(u32 param_0, J2DTevOrder param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::getTevOrder(u32 param_0) {
+asm bool J2DTevBlock16::getTevOrder(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevOrder__13J2DTevBlock16FUl.s"
 }
@@ -1867,7 +1866,7 @@ asm void J2DTevBlock16::setTevColor(u32 param_0, J2DGXColorS10 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::getTevColor(u32 param_0) {
+asm bool J2DTevBlock16::getTevColor(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevColor__13J2DTevBlock16FUl.s"
 }
@@ -1888,7 +1887,7 @@ asm void J2DTevBlock16::setTevKColor(u32 param_0, JUtility::TColor param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::getTevKColor(u32 param_0) {
+asm bool J2DTevBlock16::getTevKColor(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKColor__13J2DTevBlock16FUl.s"
 }
@@ -1909,7 +1908,7 @@ asm void J2DTevBlock16::setTevKColorSel(u32 param_0, u8 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::getTevKColorSel(u32 param_0) {
+asm bool J2DTevBlock16::getTevKColorSel(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKColorSel__13J2DTevBlock16FUl.s"
 }
@@ -1930,7 +1929,7 @@ asm void J2DTevBlock16::setTevKAlphaSel(u32 param_0, u8 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::getTevKAlphaSel(u32 param_0) {
+asm bool J2DTevBlock16::getTevKAlphaSel(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKAlphaSel__13J2DTevBlock16FUl.s"
 }
@@ -1947,7 +1946,7 @@ void J2DTevBlock16::setTevStageNum(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::getTevStageNum() const {
+asm bool J2DTevBlock16::getTevStageNum() const {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevStageNum__13J2DTevBlock16CFv.s"
 }
@@ -1968,7 +1967,7 @@ asm void J2DTevBlock16::setTevStage(u32 param_0, J2DTevStage param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::getTevStage(u32 param_0) {
+asm bool J2DTevBlock16::getTevStage(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevStage__13J2DTevBlock16FUl.s"
 }
@@ -2000,7 +1999,7 @@ asm void J2DTevBlock16::setTevSwapModeTable(u32 param_0, J2DTevSwapModeTable par
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::getTevSwapModeTable(u32 param_0) {
+asm bool J2DTevBlock16::getTevSwapModeTable(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevSwapModeTable__13J2DTevBlock16FUl.s"
 }
@@ -2022,7 +2021,7 @@ asm void J2DTevBlock16::setIndTevStage(u32 param_0, J2DIndTevStage param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::getIndTevStage(u32 param_0) {
+asm bool J2DTevBlock16::getIndTevStage(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getIndTevStage__13J2DTevBlock16FUl.s"
 }
@@ -2033,7 +2032,7 @@ asm void J2DTevBlock16::getIndTevStage(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::insertTexture(u32 param_0, ResTIMG const* param_1) {
+asm bool J2DTevBlock16::insertTexture(u32 param_0, ResTIMG const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__13J2DTevBlock16FUlPC7ResTIMG.s"
 }
@@ -2043,7 +2042,7 @@ asm void J2DTevBlock16::insertTexture(u32 param_0, ResTIMG const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::getTexture(u32 param_0) {
+asm bool J2DTevBlock16::getTexture(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTexture__13J2DTevBlock16FUl.s"
 }
@@ -2053,7 +2052,7 @@ asm void J2DTevBlock16::getTexture(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::getPalette(u32 param_0) {
+asm bool J2DTevBlock16::getPalette(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getPalette__13J2DTevBlock16FUl.s"
 }
@@ -2063,7 +2062,7 @@ asm void J2DTevBlock16::getPalette(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock16::getFont() {
+asm bool J2DTevBlock16::getFont() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getFont__13J2DTevBlock16Fv.s"
 }
@@ -2119,7 +2118,7 @@ asm void J2DTevBlock8::setTexNo(u32 param_0, u16 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::getTexNo(u32 param_0) const {
+asm u32 J2DTevBlock8::getTexNo(u32 param_0) const {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTexNo__12J2DTevBlock8CFUl.s"
 }
@@ -2134,7 +2133,7 @@ void J2DTevBlock8::setFontNo(u16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::getFontNo() const {
+asm u32 J2DTevBlock8::getFontNo() const {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getFontNo__12J2DTevBlock8CFv.s"
 }
@@ -2155,7 +2154,7 @@ asm void J2DTevBlock8::setTevOrder(u32 param_0, J2DTevOrder param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::getTevOrder(u32 param_0) {
+asm bool J2DTevBlock8::getTevOrder(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevOrder__12J2DTevBlock8FUl.s"
 }
@@ -2176,7 +2175,7 @@ asm void J2DTevBlock8::setTevColor(u32 param_0, J2DGXColorS10 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::getTevColor(u32 param_0) {
+asm bool J2DTevBlock8::getTevColor(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevColor__12J2DTevBlock8FUl.s"
 }
@@ -2197,7 +2196,7 @@ asm void J2DTevBlock8::setTevKColor(u32 param_0, JUtility::TColor param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::getTevKColor(u32 param_0) {
+asm bool J2DTevBlock8::getTevKColor(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKColor__12J2DTevBlock8FUl.s"
 }
@@ -2218,7 +2217,7 @@ asm void J2DTevBlock8::setTevKColorSel(u32 param_0, u8 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::getTevKColorSel(u32 param_0) {
+asm bool J2DTevBlock8::getTevKColorSel(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKColorSel__12J2DTevBlock8FUl.s"
 }
@@ -2239,7 +2238,7 @@ asm void J2DTevBlock8::setTevKAlphaSel(u32 param_0, u8 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::getTevKAlphaSel(u32 param_0) {
+asm bool J2DTevBlock8::getTevKAlphaSel(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKAlphaSel__12J2DTevBlock8FUl.s"
 }
@@ -2256,7 +2255,7 @@ void J2DTevBlock8::setTevStageNum(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::getTevStageNum() const {
+asm bool J2DTevBlock8::getTevStageNum() const {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevStageNum__12J2DTevBlock8CFv.s"
 }
@@ -2277,7 +2276,7 @@ asm void J2DTevBlock8::setTevStage(u32 param_0, J2DTevStage param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::getTevStage(u32 param_0) {
+asm bool J2DTevBlock8::getTevStage(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevStage__12J2DTevBlock8FUl.s"
 }
@@ -2309,7 +2308,7 @@ asm void J2DTevBlock8::setTevSwapModeTable(u32 param_0, J2DTevSwapModeTable para
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::getTevSwapModeTable(u32 param_0) {
+asm bool J2DTevBlock8::getTevSwapModeTable(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevSwapModeTable__12J2DTevBlock8FUl.s"
 }
@@ -2331,7 +2330,7 @@ asm void J2DTevBlock8::setIndTevStage(u32 param_0, J2DIndTevStage param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::getIndTevStage(u32 param_0) {
+asm bool J2DTevBlock8::getIndTevStage(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getIndTevStage__12J2DTevBlock8FUl.s"
 }
@@ -2342,7 +2341,7 @@ asm void J2DTevBlock8::getIndTevStage(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::insertTexture(u32 param_0, ResTIMG const* param_1) {
+asm bool J2DTevBlock8::insertTexture(u32 param_0, ResTIMG const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__12J2DTevBlock8FUlPC7ResTIMG.s"
 }
@@ -2352,7 +2351,7 @@ asm void J2DTevBlock8::insertTexture(u32 param_0, ResTIMG const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::getTexture(u32 param_0) {
+asm bool J2DTevBlock8::getTexture(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTexture__12J2DTevBlock8FUl.s"
 }
@@ -2362,7 +2361,7 @@ asm void J2DTevBlock8::getTexture(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::getPalette(u32 param_0) {
+asm bool J2DTevBlock8::getPalette(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getPalette__12J2DTevBlock8FUl.s"
 }
@@ -2372,7 +2371,7 @@ asm void J2DTevBlock8::getPalette(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock8::getFont() {
+asm bool J2DTevBlock8::getFont() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getFont__12J2DTevBlock8Fv.s"
 }
@@ -2428,7 +2427,7 @@ asm void J2DTevBlock4::setTexNo(u32 param_0, u16 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::getTexNo(u32 param_0) const {
+asm u32 J2DTevBlock4::getTexNo(u32 param_0) const {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTexNo__12J2DTevBlock4CFUl.s"
 }
@@ -2443,7 +2442,7 @@ void J2DTevBlock4::setFontNo(u16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::getFontNo() const {
+asm u32 J2DTevBlock4::getFontNo() const {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getFontNo__12J2DTevBlock4CFv.s"
 }
@@ -2464,7 +2463,7 @@ asm void J2DTevBlock4::setTevOrder(u32 param_0, J2DTevOrder param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::getTevOrder(u32 param_0) {
+asm bool J2DTevBlock4::getTevOrder(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevOrder__12J2DTevBlock4FUl.s"
 }
@@ -2485,7 +2484,7 @@ asm void J2DTevBlock4::setTevColor(u32 param_0, J2DGXColorS10 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::getTevColor(u32 param_0) {
+asm bool J2DTevBlock4::getTevColor(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevColor__12J2DTevBlock4FUl.s"
 }
@@ -2506,7 +2505,7 @@ asm void J2DTevBlock4::setTevKColor(u32 param_0, JUtility::TColor param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::getTevKColor(u32 param_0) {
+asm bool J2DTevBlock4::getTevKColor(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKColor__12J2DTevBlock4FUl.s"
 }
@@ -2527,7 +2526,7 @@ asm void J2DTevBlock4::setTevKColorSel(u32 param_0, u8 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::getTevKColorSel(u32 param_0) {
+asm bool J2DTevBlock4::getTevKColorSel(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKColorSel__12J2DTevBlock4FUl.s"
 }
@@ -2548,7 +2547,7 @@ asm void J2DTevBlock4::setTevKAlphaSel(u32 param_0, u8 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::getTevKAlphaSel(u32 param_0) {
+asm bool J2DTevBlock4::getTevKAlphaSel(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKAlphaSel__12J2DTevBlock4FUl.s"
 }
@@ -2565,7 +2564,7 @@ void J2DTevBlock4::setTevStageNum(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::getTevStageNum() const {
+asm bool J2DTevBlock4::getTevStageNum() const {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevStageNum__12J2DTevBlock4CFv.s"
 }
@@ -2586,7 +2585,7 @@ asm void J2DTevBlock4::setTevStage(u32 param_0, J2DTevStage param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::getTevStage(u32 param_0) {
+asm bool J2DTevBlock4::getTevStage(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevStage__12J2DTevBlock4FUl.s"
 }
@@ -2618,7 +2617,7 @@ asm void J2DTevBlock4::setTevSwapModeTable(u32 param_0, J2DTevSwapModeTable para
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::getTevSwapModeTable(u32 param_0) {
+asm bool J2DTevBlock4::getTevSwapModeTable(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevSwapModeTable__12J2DTevBlock4FUl.s"
 }
@@ -2640,7 +2639,7 @@ asm void J2DTevBlock4::setIndTevStage(u32 param_0, J2DIndTevStage param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::getIndTevStage(u32 param_0) {
+asm bool J2DTevBlock4::getIndTevStage(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getIndTevStage__12J2DTevBlock4FUl.s"
 }
@@ -2651,7 +2650,7 @@ asm void J2DTevBlock4::getIndTevStage(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::insertTexture(u32 param_0, ResTIMG const* param_1) {
+asm bool J2DTevBlock4::insertTexture(u32 param_0, ResTIMG const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__12J2DTevBlock4FUlPC7ResTIMG.s"
 }
@@ -2661,7 +2660,7 @@ asm void J2DTevBlock4::insertTexture(u32 param_0, ResTIMG const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::getTexture(u32 param_0) {
+asm bool J2DTevBlock4::getTexture(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTexture__12J2DTevBlock4FUl.s"
 }
@@ -2671,7 +2670,7 @@ asm void J2DTevBlock4::getTexture(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::getPalette(u32 param_0) {
+asm bool J2DTevBlock4::getPalette(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getPalette__12J2DTevBlock4FUl.s"
 }
@@ -2681,7 +2680,7 @@ asm void J2DTevBlock4::getPalette(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock4::getFont() {
+asm bool J2DTevBlock4::getFont() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getFont__12J2DTevBlock4Fv.s"
 }
@@ -2737,7 +2736,7 @@ asm void J2DTevBlock2::setTexNo(u32 param_0, u16 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::getTexNo(u32 param_0) const {
+asm u32 J2DTevBlock2::getTexNo(u32 param_0) const {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTexNo__12J2DTevBlock2CFUl.s"
 }
@@ -2752,7 +2751,7 @@ void J2DTevBlock2::setFontNo(u16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::getFontNo() const {
+asm u32 J2DTevBlock2::getFontNo() const {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getFontNo__12J2DTevBlock2CFv.s"
 }
@@ -2773,7 +2772,7 @@ asm void J2DTevBlock2::setTevOrder(u32 param_0, J2DTevOrder param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::getTevOrder(u32 param_0) {
+asm bool J2DTevBlock2::getTevOrder(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevOrder__12J2DTevBlock2FUl.s"
 }
@@ -2794,7 +2793,7 @@ asm void J2DTevBlock2::setTevColor(u32 param_0, J2DGXColorS10 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::getTevColor(u32 param_0) {
+asm bool J2DTevBlock2::getTevColor(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevColor__12J2DTevBlock2FUl.s"
 }
@@ -2815,7 +2814,7 @@ asm void J2DTevBlock2::setTevKColor(u32 param_0, JUtility::TColor param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::getTevKColor(u32 param_0) {
+asm bool J2DTevBlock2::getTevKColor(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKColor__12J2DTevBlock2FUl.s"
 }
@@ -2836,7 +2835,7 @@ asm void J2DTevBlock2::setTevKColorSel(u32 param_0, u8 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::getTevKColorSel(u32 param_0) {
+asm bool J2DTevBlock2::getTevKColorSel(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKColorSel__12J2DTevBlock2FUl.s"
 }
@@ -2857,7 +2856,7 @@ asm void J2DTevBlock2::setTevKAlphaSel(u32 param_0, u8 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::getTevKAlphaSel(u32 param_0) {
+asm bool J2DTevBlock2::getTevKAlphaSel(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKAlphaSel__12J2DTevBlock2FUl.s"
 }
@@ -2874,7 +2873,7 @@ void J2DTevBlock2::setTevStageNum(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::getTevStageNum() const {
+asm bool J2DTevBlock2::getTevStageNum() const {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevStageNum__12J2DTevBlock2CFv.s"
 }
@@ -2895,7 +2894,7 @@ asm void J2DTevBlock2::setTevStage(u32 param_0, J2DTevStage param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::getTevStage(u32 param_0) {
+asm bool J2DTevBlock2::getTevStage(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevStage__12J2DTevBlock2FUl.s"
 }
@@ -2927,7 +2926,7 @@ asm void J2DTevBlock2::setTevSwapModeTable(u32 param_0, J2DTevSwapModeTable para
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::getTevSwapModeTable(u32 param_0) {
+asm bool J2DTevBlock2::getTevSwapModeTable(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevSwapModeTable__12J2DTevBlock2FUl.s"
 }
@@ -2949,7 +2948,7 @@ asm void J2DTevBlock2::setIndTevStage(u32 param_0, J2DIndTevStage param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::getIndTevStage(u32 param_0) {
+asm bool J2DTevBlock2::getIndTevStage(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getIndTevStage__12J2DTevBlock2FUl.s"
 }
@@ -2960,7 +2959,7 @@ asm void J2DTevBlock2::getIndTevStage(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::insertTexture(u32 param_0, ResTIMG const* param_1) {
+asm bool J2DTevBlock2::insertTexture(u32 param_0, ResTIMG const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__12J2DTevBlock2FUlPC7ResTIMG.s"
 }
@@ -2970,7 +2969,7 @@ asm void J2DTevBlock2::insertTexture(u32 param_0, ResTIMG const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::getTexture(u32 param_0) {
+asm bool J2DTevBlock2::getTexture(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTexture__12J2DTevBlock2FUl.s"
 }
@@ -2980,7 +2979,7 @@ asm void J2DTevBlock2::getTexture(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::getPalette(u32 param_0) {
+asm bool J2DTevBlock2::getPalette(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getPalette__12J2DTevBlock2FUl.s"
 }
@@ -2990,7 +2989,7 @@ asm void J2DTevBlock2::getPalette(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock2::getFont() {
+asm bool J2DTevBlock2::getFont() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getFont__12J2DTevBlock2Fv.s"
 }
@@ -3046,7 +3045,7 @@ asm void J2DTevBlock1::setTexNo(u32 param_0, u16 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock1::getTexNo(u32 param_0) const {
+asm u32 J2DTevBlock1::getTexNo(u32 param_0) const {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTexNo__12J2DTevBlock1CFUl.s"
 }
@@ -3061,7 +3060,7 @@ void J2DTevBlock1::setFontNo(u16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock1::getFontNo() const {
+asm u32 J2DTevBlock1::getFontNo() const {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getFontNo__12J2DTevBlock1CFv.s"
 }
@@ -3082,7 +3081,7 @@ asm void J2DTevBlock1::setTevOrder(u32 param_0, J2DTevOrder param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock1::getTevOrder(u32 param_0) {
+asm bool J2DTevBlock1::getTevOrder(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevOrder__12J2DTevBlock1FUl.s"
 }
@@ -3103,7 +3102,7 @@ asm void J2DTevBlock1::setTevColor(u32 param_0, J2DGXColorS10 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock1::getTevColor(u32 param_0) {
+asm bool J2DTevBlock1::getTevColor(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevColor__12J2DTevBlock1FUl.s"
 }
@@ -3124,7 +3123,7 @@ asm void J2DTevBlock1::setTevKColor(u32 param_0, JUtility::TColor param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock1::getTevKColor(u32 param_0) {
+asm bool J2DTevBlock1::getTevKColor(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKColor__12J2DTevBlock1FUl.s"
 }
@@ -3145,7 +3144,7 @@ asm void J2DTevBlock1::setTevKColorSel(u32 param_0, u8 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock1::getTevKColorSel(u32 param_0) {
+asm bool J2DTevBlock1::getTevKColorSel(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKColorSel__12J2DTevBlock1FUl.s"
 }
@@ -3166,7 +3165,7 @@ asm void J2DTevBlock1::setTevKAlphaSel(u32 param_0, u8 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock1::getTevKAlphaSel(u32 param_0) {
+asm bool J2DTevBlock1::getTevKAlphaSel(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKAlphaSel__12J2DTevBlock1FUl.s"
 }
@@ -3199,7 +3198,7 @@ asm void J2DTevBlock1::setTevStage(u32 param_0, J2DTevStage param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock1::getTevStage(u32 param_0) {
+asm bool J2DTevBlock1::getTevStage(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevStage__12J2DTevBlock1FUl.s"
 }
@@ -3231,7 +3230,7 @@ asm void J2DTevBlock1::setTevSwapModeTable(u32 param_0, J2DTevSwapModeTable para
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock1::getTevSwapModeTable(u32 param_0) {
+asm bool J2DTevBlock1::getTevSwapModeTable(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTevSwapModeTable__12J2DTevBlock1FUl.s"
 }
@@ -3253,7 +3252,7 @@ asm void J2DTevBlock1::setIndTevStage(u32 param_0, J2DIndTevStage param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock1::getIndTevStage(u32 param_0) {
+asm bool J2DTevBlock1::getIndTevStage(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getIndTevStage__12J2DTevBlock1FUl.s"
 }
@@ -3264,7 +3263,7 @@ asm void J2DTevBlock1::getIndTevStage(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock1::insertTexture(u32 param_0, ResTIMG const* param_1) {
+asm bool J2DTevBlock1::insertTexture(u32 param_0, ResTIMG const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__12J2DTevBlock1FUlPC7ResTIMG.s"
 }
@@ -3274,7 +3273,7 @@ asm void J2DTevBlock1::insertTexture(u32 param_0, ResTIMG const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock1::getTexture(u32 param_0) {
+asm bool J2DTevBlock1::getTexture(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getTexture__12J2DTevBlock1FUl.s"
 }
@@ -3284,7 +3283,7 @@ asm void J2DTevBlock1::getTexture(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock1::getPalette(u32 param_0) {
+asm bool J2DTevBlock1::getPalette(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getPalette__12J2DTevBlock1FUl.s"
 }
@@ -3294,7 +3293,7 @@ asm void J2DTevBlock1::getPalette(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTevBlock1::getFont() {
+asm bool J2DTevBlock1::getFont() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/getFont__12J2DTevBlock1Fv.s"
 }
