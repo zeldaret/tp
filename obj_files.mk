@@ -3,6 +3,7 @@
 #
 
 O_FILES := \
+	$(BUILD_DIR)/src/__start.o \
 	$(BUILD_DIR)/src/init.o \
 	$(BUILD_DIR)/src/unknown_translation_unit.o \
 	$(BUILD_DIR)/src/m_Do/m_Do_main.o \

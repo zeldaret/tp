@@ -42,7 +42,6 @@ public:
     J2DTevBlock* getTevBlock() { return mTevBlock; }
     J2DIndBlock* getIndBlock() { return mIndBlock; }
 
-
 private:
     /* 0x04 */ int field_0x4;
     /* 0x08 */ int field_0x8;

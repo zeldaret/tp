@@ -8,20 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct daBg_c {
-    /* 804582B8 */ void createHeap();
-};
-
-struct daBgObj_c {
-    struct spec_data_c {
-        /* 80459904 */ void Set(void*);
-    };
-};
-
-//
 // Forward References:
 //
 
@@ -33,74 +19,38 @@ SECTION_INIT void __init_registers();
 SECTION_INIT void __init_data();
 SECTION_INIT void __init_hardware();
 SECTION_INIT void __flush_cache();
-SECTION_INIT void __fill_mem();
-SECTION_INIT void TRK_memset();
-SECTION_INIT void TRK_memcpy();
-extern "C" extern u8 const __TRK_unknown_data[7988];
+SECTION_INIT void __fill_mem(void*, int, u32);
+SECTION_INIT void* TRK_memset(void*, int, size_t);
+SECTION_INIT void* TRK_memcpy(void* dst, const void* src, size_t n);
+extern u8 const __TRK_unknown_data[7988];
 SECTION_INIT void __TRK_reset();
-extern "C" extern u8 const _rom_copy_info[132];
-extern "C" extern u8 const _bss_init_info[32];
+extern u8 const _rom_copy_info[132];
+extern u8 const _bss_init_info[32];
 
 //
 // External References:
 //
 
-extern "C" void main();
-extern "C" void __OSFPRInit();
-extern "C" void OSInit();
-extern "C" void __OSPSInit();
-extern "C" void __OSCacheInit();
-extern "C" void OSResetSystem();
-extern "C" void __init_user();
-extern "C" void DBInit();
-extern "C" void exit();
-extern "C" void TRK_fill_mem();
-extern "C" void InitMetroTRK();
-extern "C" void InitMetroTRK_BBA();
-extern "C" extern u8 data_804516D0[8];
-extern "C" void _epilog();
-extern "C" void createHeap__6daBg_cFv();
-extern "C" void Set__Q29daBgObj_c11spec_data_cFPv();
+void main();
+void __OSFPRInit();
+void OSInit();
+void __OSPSInit();
+void __OSCacheInit();
+void OSResetSystem(s32, s32, s32);
+void __init_user();
+void DBInit();
+void exit();
+void TRK_fill_mem(void* dst, int val, size_t n);
+void InitMetroTRK();
+void InitMetroTRK_BBA();
+extern u8 data_804516D0;
+void _epilog();
+void createHeap__6daBg_cFv();
+void Set__Q29daBgObj_c11spec_data_cFPv();
 
 //
 // Declarations:
 //
-
-/* ############################################################################################## */
-/* 80003100-80003140 000000 0040+00 1/1 0/0 0/0 .init            __check_pad3 */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-SECTION_INIT asm void __check_pad3() {
-    nofralloc
-#include "asm/init/__check_pad3.s"
-}
-#pragma pop
-
-/* 80003140-8000314C 000040 000C+00 1/1 0/0 0/0 .init            __set_debug_bba */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-SECTION_INIT asm void __set_debug_bba() {
-    nofralloc
-#include "asm/init/__set_debug_bba.s"
-}
-#pragma pop
-
-/* 8000314C-80003154 -00001 0008+00 0/0 0/0 0/0 .init            __get_debug_bba */
-SECTION_INIT u8 __get_debug_bba() {
-    return *(u8*)(&data_804516D0);
-}
-
-/* 80003154-800032B0 000054 015C+00 0/0 1/0 0/0 .init            __start */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-SECTION_INIT asm void __start() {
-    nofralloc
-#include "asm/init/__start.s"
-}
-#pragma pop
 
 extern void* _stack_end;
 extern void* _SDA2_BASE_;
@@ -147,54 +97,109 @@ SECTION_INIT asm void __flush_cache() {
 #pragma pop
 
 /* 80003458-80003488 000358 0030+00 1/1 55/55 137/137 .init            memset */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-SECTION_INIT asm void* memset(void*, int, u32) {
-    nofralloc
-#include "asm/init/memset.s"
+SECTION_INIT void* memset(void* dst, int val, size_t n) {
+    __fill_mem(dst, val, n);
+
+    return dst;
 }
-#pragma pop
 
 /* 80003488-80003540 000388 00B8+00 1/1 0/0 0/0 .init            __fill_mem */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-SECTION_INIT asm void __fill_mem() {
-    nofralloc
-#include "asm/init/__fill_mem.s"
+SECTION_INIT void __fill_mem(void* dst, int val, size_t n) {
+    unsigned long v = (unsigned char)val;
+    unsigned long i;
+
+    ((unsigned char*)dst) = ((unsigned char*)dst) - 1;
+
+    if (n >= 32) {
+        i = (~(unsigned long)dst) & 3;
+
+        if (i) {
+            n -= i;
+
+            do {
+                *++(((unsigned char*)dst)) = v;
+            } while (--i);
+        }
+
+        if (v)
+            v |= v << 24 | v << 16 | v << 8;
+
+        ((unsigned long*)dst) = ((unsigned long*)(((unsigned char*)dst) + 1)) - 1;
+
+        i = n >> 5;
+
+        if (i) {
+            do {
+                *++((unsigned long*)dst) = v;
+                *++((unsigned long*)dst) = v;
+                *++((unsigned long*)dst) = v;
+                *++((unsigned long*)dst) = v;
+                *++((unsigned long*)dst) = v;
+                *++((unsigned long*)dst) = v;
+                *++((unsigned long*)dst) = v;
+                *++((unsigned long*)dst) = v;
+            } while (--i);
+        }
+
+        i = (n & 31) >> 2;
+
+        if (i) {
+            do {
+                *++((unsigned long*)dst) = v;
+            } while (--i);
+        }
+
+        ((unsigned char*)dst) = ((unsigned char*)(((unsigned long*)dst) + 1)) - 1;
+
+        n &= 3;
+    }
+
+    if (n)
+        do {
+            *++((unsigned char*)dst) = v;
+        } while (--n);
+
+    return;
 }
-#pragma pop
 
 /* 80003540-80003590 000440 0050+00 1/1 63/63 6/6 .init            memcpy */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-SECTION_INIT asm void* memcpy(void*, const void*, s32) {
-    nofralloc
-#include "asm/init/memcpy.s"
+SECTION_INIT void* memcpy(void* dst, const void* src, size_t n) {
+    const unsigned char* s;
+    unsigned char* d;
+
+    if ((unsigned long)src >= (unsigned long)dst) {
+        s = (const unsigned char*)src - 1;
+        d = (unsigned char*)dst - 1;
+        n++;
+        while (--n != 0)
+            *++d = *++s;
+    } else {
+        s = (const unsigned char*)src + n;
+        d = (unsigned char*)dst + n;
+        n++;
+        while (--n != 0)
+            *--d = *--s;
+    }
+    return dst;
 }
-#pragma pop
 
 /* 80003590-800035C0 000490 0030+00 0/0 1/1 0/0 .init            TRK_memset */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-SECTION_INIT asm void TRK_memset() {
-    nofralloc
-#include "asm/init/TRK_memset.s"
+SECTION_INIT void* TRK_memset(void* dst, int val, size_t n) {
+    TRK_fill_mem(dst, val, n);
+
+    return dst;
 }
-#pragma pop
 
 /* 800035C0-800035E4 0004C0 0024+00 0/0 12/12 0/0 .init            TRK_memcpy */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-SECTION_INIT asm void TRK_memcpy() {
-    nofralloc
-#include "asm/init/TRK_memcpy.s"
+SECTION_INIT void* TRK_memcpy(void* dst, const void* src, size_t n) {
+    const unsigned char* s = (const unsigned char*)src - 1;
+    unsigned char* d = (unsigned char*)dst - 1;
+
+    n++;
+    while (--n != 0)
+        *++d = *++s;
+    return dst;
 }
-#pragma pop
 
 /* 800035E4-80005518 0004E4 1F34+00 0/0 1/1 0/0 .init            __TRK_unknown_data */
 SECTION_INIT extern u8 const __TRK_unknown_data[7988] = {
@@ -701,14 +706,9 @@ SECTION_INIT extern u8 const __TRK_unknown_data[7988] = {
 };
 
 /* 80005518-80005544 002418 002C+00 0/0 1/1 0/0 .init            __TRK_reset */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-SECTION_INIT asm void __TRK_reset() {
-    nofralloc
-#include "asm/init/__TRK_reset.s"
+SECTION_INIT void __TRK_reset() {
+    OSResetSystem(0, 0, 0);
 }
-#pragma pop
 
 /* 80005544-800055C8 002444 0084+00 1/1 0/0 0/0 .init            _rom_copy_info */
 /* generated by the linker */

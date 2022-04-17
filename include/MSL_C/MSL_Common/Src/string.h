@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-void* memcpy(void*, const void*, s32);
+void* memcpy(void*, const void*, size_t);
 void* memset(void*, int, u32);
 char* strrchr(const char*, int);
 char* strchr(const char*, int);

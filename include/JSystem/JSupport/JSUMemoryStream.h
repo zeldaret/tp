@@ -6,9 +6,7 @@
 
 class JSUMemoryInputStream : JSURandomInputStream {
 public:
-    JSUMemoryInputStream(const void* res, u32 size) {
-        setBuffer(res, size);
-    }
+    JSUMemoryInputStream(const void* res, u32 size) { setBuffer(res, size); }
 
     /* 802552B8 */ ~JSUMemoryInputStream() {}
     /* 802DC520 */ void setBuffer(void const*, s32);
