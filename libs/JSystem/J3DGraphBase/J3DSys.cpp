@@ -85,25 +85,21 @@ asm J3DSys::J3DSys() {
 }
 #pragma pop
 
-/* 8030FEC0-8030FEE4 30A800 0024+00 0/0 1/1 0/0 .text            loadPosMtxIndx__6J3DSysCFiUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DSys::loadPosMtxIndx(int param_0, u16 param_1) const {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DSys/loadPosMtxIndx__6J3DSysCFiUs.s"
+static inline void J3DFifoLoadIndx(u8 cmd, u16 indx, u16 addr) {
+    GFX_FIFO(u8) = cmd;
+    GFX_FIFO(u16) = indx;
+    GFX_FIFO(u16) = addr;
 }
-#pragma pop
+
+/* 8030FEC0-8030FEE4 30A800 0024+00 0/0 1/1 0/0 .text            loadPosMtxIndx__6J3DSysCFiUs */
+void J3DSys::loadPosMtxIndx(int addr, u16 indx) const {
+    J3DFifoLoadIndx(GX_CMD_LOAD_INDX_A, indx, 0xB000 | ((u16)(addr * 0x0C)));
+}
 
 /* 8030FEE4-8030FF0C 30A824 0028+00 0/0 1/1 0/0 .text            loadNrmMtxIndx__6J3DSysCFiUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DSys::loadNrmMtxIndx(int param_0, u16 param_1) const {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DSys/loadNrmMtxIndx__6J3DSysCFiUs.s"
+void J3DSys::loadNrmMtxIndx(int addr, u16 indx) const {
+    J3DFifoLoadIndx(GX_CMD_LOAD_INDX_B, indx, 0x8000 | ((u16)((addr * 0x09) + 0x400)));
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803A1DF8-803A1E08 02E458 0010+00 1/1 0/0 0/0 .rodata          @695 */
