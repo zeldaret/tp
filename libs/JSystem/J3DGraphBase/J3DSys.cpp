@@ -49,11 +49,11 @@ extern "C" void _savegpr_28();
 extern "C" void _restgpr_25();
 extern "C" void _restgpr_28();
 extern "C" extern u8 const j3dDefaultTexCoordInfo[32];
-extern "C" extern u32 j3dDefaultColInfo;
-extern "C" extern u32 data_804563C8;
+extern "C" extern GXColor j3dDefaultColInfo;
+extern "C" extern u8 data_804563C8;
 extern "C" extern u32 j3dDefaultTevColor;
 extern "C" extern u32 data_804563D8;
-extern "C" extern u32 j3dDefaultTevKColor;
+extern "C" extern GXColor j3dDefaultTevKColor;
 
 //
 // Declarations:

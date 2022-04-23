@@ -52,15 +52,15 @@ extern "C" void loadTexMtx__9J3DTexMtxCFUl();
 extern "C" void loadPostTexMtx__9J3DTexMtxCFUl();
 extern "C" static void J3DGDLoadTexMtxImm__FPA4_fUl13_GXTexMtxType();
 extern "C" static void J3DGDLoadPostTexMtxImm__FPA4_fUl();
-extern "C" extern u32 j3dDefaultColInfo;
+extern "C" extern GXColor j3dDefaultColInfo;
 extern "C" extern u32 j3dDefaultAmbInfo;
-extern "C" extern u32 data_804563C8;
+extern "C" extern u8 data_804563C8;
 extern "C" extern u32 j3dDefaultTevOrderInfoNull;
 extern "C" extern u32 j3dDefaultIndTexOrderNull;
 extern "C" extern u32 j3dDefaultTevColor;
 extern "C" extern u32 data_804563D8;
 extern "C" extern u8 j3dDefaultIndTexCoordScaleInfo[4];
-extern "C" extern u32 j3dDefaultTevKColor;
+extern "C" extern GXColor j3dDefaultTevKColor;
 extern "C" extern u8 j3dDefaultTevSwapMode[4];
 extern "C" extern u32 j3dDefaultTevSwapModeTable;
 extern "C" extern u32 j3dDefaultBlendInfo;
@@ -465,13 +465,13 @@ static asm void J3DGDLoadPostTexMtxImm(f32 (*param_0)[4], u32 param_1) {
 
 /* ############################################################################################## */
 /* 804563C0-804563C4 0049C0 0004+00 0/0 4/4 0/0 .sdata2          j3dDefaultColInfo */
-SECTION_SDATA2 extern u32 j3dDefaultColInfo = 0xFFFFFFFF;
+SECTION_SDATA2 extern GXColor j3dDefaultColInfo = { 0xFF, 0xFF, 0xFF, 0xFF };
 
 /* 804563C4-804563C8 0049C4 0004+00 0/0 2/2 0/0 .sdata2          j3dDefaultAmbInfo */
 SECTION_SDATA2 extern u32 j3dDefaultAmbInfo = 0x32323232;
 
 /* 804563C8-804563CC 0049C8 0004+00 0/0 1/1 0/0 .sdata2          None */
-SECTION_SDATA2 extern u32 data_804563C8 = 0x01000000;
+SECTION_SDATA2 extern u8 data_804563C8 = 0x01;
 
 /* 804563CC-804563D0 0049CC 0004+00 0/0 3/3 0/0 .sdata2          j3dDefaultTevOrderInfoNull */
 SECTION_SDATA2 extern u32 j3dDefaultTevOrderInfoNull = 0xFFFFFF00;
@@ -494,7 +494,7 @@ SECTION_SDATA2 extern u8 j3dDefaultIndTexCoordScaleInfo[4] = {
 };
 
 /* 804563E0-804563E4 0049E0 0004+00 0/0 5/5 0/0 .sdata2          j3dDefaultTevKColor */
-SECTION_SDATA2 extern u32 j3dDefaultTevKColor = 0xFFFFFFFF;
+SECTION_SDATA2 extern GXColor j3dDefaultTevKColor = { 0xFF, 0xFF, 0xFF, 0xFF };
 
 /* 804563E4-804563E8 0049E4 0004+00 0/0 2/2 0/0 .sdata2          j3dDefaultTevSwapMode */
 SECTION_SDATA2 extern u8 j3dDefaultTevSwapMode[4] = {
