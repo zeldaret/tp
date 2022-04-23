@@ -143,24 +143,17 @@ asm void J3DShape::countBumpMtxNum() const {
 #pragma pop
 
 /* 80314E98-80314EB0 30F7D8 0018+00 1/1 0/0 0/0 .text            J3DLoadCPCmd__FUcUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void J3DLoadCPCmd(u8 param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DShape/J3DLoadCPCmd__FUcUl.s"
+void J3DLoadCPCmd(u8 cmd, u32 param) {
+    GFX_FIFO(u8) = GX_CMD_LOAD_CP_CMD;
+    GFX_FIFO(u8) = cmd;
+    GFX_FIFO(u32) = param;
 }
-#pragma pop
 
 /* 80314EB0-80314EEC 30F7F0 003C+00 1/1 0/0 0/0 .text            J3DLoadArrayBasePtr__F7_GXAttrPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void J3DLoadArrayBasePtr(_GXAttr param_0, void* param_1) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DShape/J3DLoadArrayBasePtr__F7_GXAttrPv.s"
+static void J3DLoadArrayBasePtr(_GXAttr attr, void* data) {
+    u32 idx = (attr == GX_VA_NBT) ? 1 : (attr - GX_VA_POS);
+    J3DLoadCPCmd(0xA0 + idx, ((u32)data & 0x7FFFFFFF));
 }
-#pragma pop
 
 /* 80314EEC-80314F5C 30F82C 0070+00 3/3 0/0 0/0 .text            loadVtxArray__8J3DShapeCFv */
 void J3DShape::loadVtxArray() const {

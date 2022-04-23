@@ -171,16 +171,16 @@ typedef enum _GXColorSrc {
 } GXColorSrc;
 
 typedef enum _GXLightID {
-    /* 0x000 */ GX_LIGHT_NULL,
-    /* 0x001 */ GX_LIGHT0,
-    /* 0x002 */ GX_LIGHT1,
-    /* 0x004 */ GX_LIGHT2 = 0x4,
-    /* 0x008 */ GX_LIGHT3 = 0x8,
-    /* 0x010 */ GX_LIGHT4 = 0x10,
-    /* 0x020 */ GX_LIGHT5 = 0x20,
-    /* 0x040 */ GX_LIGHT6 = 0x40,
-    /* 0x080 */ GX_LIGHT7 = 0x80,
-    /* 0x100 */ GX_MAX_LIGHT = 0x100,
+    /* 0x000 */ GX_LIGHT_NULL = 0,
+    /* 0x001 */ GX_LIGHT0 = 1 << 0,
+    /* 0x002 */ GX_LIGHT1 = 1 << 1,
+    /* 0x004 */ GX_LIGHT2 = 1 << 2,
+    /* 0x008 */ GX_LIGHT3 = 1 << 3,
+    /* 0x010 */ GX_LIGHT4 = 1 << 4,
+    /* 0x020 */ GX_LIGHT5 = 1 << 5,
+    /* 0x040 */ GX_LIGHT6 = 1 << 6,
+    /* 0x080 */ GX_LIGHT7 = 1 << 7,
+    /* 0x100 */ GX_MAX_LIGHT = 1 << 8,
 } GXLightID;
 
 typedef enum _GXDiffuseFn {
@@ -860,7 +860,7 @@ void GXSetNumChans(u8);
 void GXSetNumTevStages(u8);
 void GXSetNumTexGens(u8);
 void GXSetTevOrder(GXTevStageID, GXTexCoordID, GXTexMapID, GXChannelID);
-void GXSetChanCtrl(GXChannelID, GXBool, GXColorSrc, GXColorSrc, GXLightID, GXDiffuseFn, GXAttnFn);
+void GXSetChanCtrl(GXChannelID, GXBool, GXColorSrc, GXColorSrc, u32, GXDiffuseFn, GXAttnFn);
 void GXSetTevOp(GXTevStageID, GXTevMode);
 void GXSetTevColor(GXTevRegID, GXColor);
 void GXSetTevColorIn(GXTevStageID, GXTevColorArg, GXTevColorArg, GXTevColorArg, GXTevColorArg);
@@ -955,6 +955,17 @@ void GXReadXfRasMetric(u32*, u32*, u32*, u32*);
 void GXInitFifoBase(GXFifoObj*, void*, u32);
 void GXInitFifoPtrs(GXFifoObj*, void*, void*);
 void GXSaveCPUFifo(GXFifoObj*);
+void GXSetMisc(u32 opt, u32 val);
+
+typedef enum _GXCommand
+{
+    GX_CMD_LOAD_INDX_A = 0x20,
+    GX_CMD_LOAD_INDX_B = 0x28,
+    GX_CMD_LOAD_INDX_C = 0x30,
+    GX_CMD_LOAD_INDX_D = 0x38,
+
+    GX_CMD_LOAD_CP_CMD = 0x08,
+} GXCommand;
 
 #define GFX_FIFO(T) (*(volatile T*)0xCC008000)
 
