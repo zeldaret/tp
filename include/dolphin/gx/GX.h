@@ -12,14 +12,6 @@ typedef struct _GXColor {
     /* 0x1 */ u8 g;
     /* 0x2 */ u8 b;
     /* 0x3 */ u8 a;
-
-    _GXColor& operator=(const _GXColor& o) {
-        r = o.r;
-        g = o.g;
-        b = o.b;
-        a = o.a;
-        return *this;
-    }
 } GXColor;
 
 typedef struct _GXColorS10 {
