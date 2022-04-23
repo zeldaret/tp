@@ -38,10 +38,10 @@ extern "C" extern u8 j3dDefaultViewNo[4 + 4 /* padding */];
 
 extern void J3DFifoLoadTexCached(GXTexMapID, u32, GXTexCacheSize, u32, GXTexCacheSize);
 
-extern "C" void makeTexCoordTable__Fv();
-extern "C" void makeAlphaCmpTable__Fv();
-extern "C" void makeZModeTable__Fv();
-extern "C" void makeTevSwapTable__Fv();
+extern void makeTexCoordTable();
+extern void makeAlphaCmpTable();
+extern void makeZModeTable();
+extern void makeTevSwapTable();
 extern "C" void GXInvalidateVtxCache();
 extern "C" void GXFlush();
 extern "C" void _savegpr_25();
@@ -73,17 +73,39 @@ Vec J3DSys::mCurrentS;
 Vec J3DSys::mParentS;
 
 /* 80434C2C-80434C70 06194C 0040+04 1/1 17/17 0/0 .bss             sTexCoordScaleTable__6J3DSys */
-u16 J3DSys::sTexCoordScaleTable[34];
+u16 J3DSys::sTexCoordScaleTable[32];
 
 /* 8030FDE8-8030FEC0 30A728 00D8+00 1/1 0/0 0/0 .text            __ct__6J3DSysFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DSys::J3DSys() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DSys/__ct__6J3DSysFv.s"
+J3DSys::J3DSys() {
+    makeTexCoordTable();
+    makeTevSwapTable();
+    makeAlphaCmpTable();
+    makeZModeTable();
+
+    mFlags = 0;
+    PSMTXIdentity(mViewMtx);
+    mDrawMode = 1;
+    mMaterialMode = 0;
+    mModel = NULL;
+    mShape = NULL;
+    for (u32 i = 0; i < ARRAY_SIZE(mDrawBuffer); i++)
+        mDrawBuffer[i] = NULL;
+    mTexture = NULL;
+    mMatPacket = NULL;
+    mShapePacket = NULL;
+    mModelDrawMtx = NULL;
+    mModelNrmMtx = NULL;
+    mVtxPos = NULL;
+    mVtxNrm = NULL;
+    mVtxCol = NULL;
+
+    for (u32 i = 0; i < 32; i += 4) {
+        sTexCoordScaleTable[i + 0] = 1;
+        sTexCoordScaleTable[i + 1] = 1;
+        sTexCoordScaleTable[i + 2] = 0;
+        sTexCoordScaleTable[i + 3] = 0;
+    }
 }
-#pragma pop
 
 static inline void J3DFifoLoadIndx(u8 cmd, u16 indx, u16 addr) {
     GFX_FIFO(u8) = cmd;

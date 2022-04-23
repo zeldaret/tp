@@ -47,7 +47,7 @@ struct J3DSys {
     /* 0x064 */ GXTexRegion mTexCacheRegion[8];
     /* 0x0E4 */ u8 field_0xe4[0x20];
     /* 0x104 */ Mtx* mModelDrawMtx;
-    /* 0x104 */ Mtx33* mModelNrmMtx;
+    /* 0x108 */ Mtx33* mModelNrmMtx;
     /* 0x10C */ void* mVtxPos;
     /* 0x110 */ void* mVtxNrm;
     /* 0x114 */ _GXColor* mVtxCol;
@@ -123,7 +123,7 @@ struct J3DSys {
     static Mtx mCurrentMtx;
     static Vec mCurrentS;
     static Vec mParentS;
-    static u16 sTexCoordScaleTable[34];
+    static u16 sTexCoordScaleTable[32];
 };
 
 extern J3DSys j3dSys;
