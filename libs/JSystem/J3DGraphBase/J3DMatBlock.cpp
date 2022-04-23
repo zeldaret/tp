@@ -605,7 +605,7 @@ extern "C" extern u8 j3dZModeTable[96];
 extern "C" extern u8 __GDCurrentDL[4];
 extern "C" extern GXColor j3dDefaultColInfo;
 extern "C" extern u32 j3dDefaultAmbInfo;
-extern "C" extern u32 j3dDefaultTevColor;
+extern "C" extern GXColorS10 j3dDefaultTevColor;
 extern "C" extern GXColor j3dDefaultTevKColor;
 
 //

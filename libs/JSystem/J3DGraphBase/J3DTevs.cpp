@@ -47,8 +47,7 @@ extern "C" extern u32 j3dDefaultAmbInfo;
 extern "C" extern u8 data_804563C8;
 extern "C" extern u32 j3dDefaultTevOrderInfoNull;
 extern "C" extern u32 j3dDefaultIndTexOrderNull;
-extern "C" extern u32 j3dDefaultTevColor;
-extern "C" extern u32 data_804563D8;
+extern "C" extern GXColorS10 j3dDefaultTevColor;
 extern "C" extern u8 j3dDefaultIndTexCoordScaleInfo[4];
 extern "C" extern GXColor j3dDefaultTevKColor;
 extern "C" extern u8 j3dDefaultTevSwapMode[4];
@@ -472,10 +471,7 @@ SECTION_SDATA2 extern u32 j3dDefaultTevOrderInfoNull = 0xFFFFFF00;
 SECTION_SDATA2 extern u32 j3dDefaultIndTexOrderNull = 0xFFFF0000;
 
 /* 804563D4-804563D8 0049D4 0004+00 0/0 5/5 0/0 .sdata2          j3dDefaultTevColor */
-SECTION_SDATA2 extern u32 j3dDefaultTevColor = 0x00FF00FF;
-
-/* 804563D8-804563DC 0049D8 0004+00 0/0 1/5 0/0 .sdata2          None */
-SECTION_SDATA2 extern u32 data_804563D8 = 0x00FF00FF;
+SECTION_SDATA2 extern GXColorS10 j3dDefaultTevColor = { 0xFF, 0xFF, 0xFF, 0xFF };
 
 /* 804563DC-804563E0 0049DC 0004+00 0/0 2/2 0/0 .sdata2          j3dDefaultIndTexCoordScaleInfo */
 SECTION_SDATA2 extern u8 j3dDefaultIndTexCoordScaleInfo[4] = {
