@@ -73,6 +73,8 @@ extern "C" extern u16 j3dDefaultZModeID[1 + 1 /* padding */];
 // External References:
 //
 
+extern void J3DGDSetTexImgPtrRaw(_GXTexMapID param_0, u32 param_1);
+
 extern "C" void J3DGDSetLightAttn__F10_GXLightIDffffff();
 extern "C" void J3DGDSetLightColor__F10_GXLightID8_GXColor();
 extern "C" void J3DGDSetLightPos__F10_GXLightIDfff();
@@ -82,7 +84,6 @@ extern "C" void
 J3DGDSetTexLookupMode__F11_GXTexMapID14_GXTexWrapMode14_GXTexWrapMode12_GXTexFilter12_GXTexFilterfffUcUc13_GXAnisotropy();
 extern "C" void J3DGDSetTexImgAttr__F11_GXTexMapIDUsUs9_GXTexFmt();
 extern "C" void J3DGDSetTexImgPtr__F11_GXTexMapIDPv();
-extern "C" void J3DGDSetTexImgPtrRaw__F11_GXTexMapIDUl();
 extern "C" void J3DGDSetTexTlut__F11_GXTexMapIDUl10_GXTlutFmt();
 extern "C" void J3DGDLoadTlut__FPvUl11_GXTlutSize();
 extern "C" void J3DGetTextureMtx__FRC17J3DTextureSRTInfoRC3VecPA4_f();
@@ -261,14 +262,9 @@ asm void loadTexNo(u32 param_0, u16 const& param_1) {
 #pragma pop
 
 /* 8032413C-80324160 31EA7C 0024+00 0/0 2/2 0/0 .text            patchTexNo_PtrToIdx__FUlRCUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void patchTexNo_PtrToIdx(u32 param_0, u16 const& param_1) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DTevs/patchTexNo_PtrToIdx__FUlRCUs.s"
+void patchTexNo_PtrToIdx(u32 texID, u16 const& idx) {
+    J3DGDSetTexImgPtrRaw((GXTexMapID) texID, idx);
 }
-#pragma pop
 
 /* 80324160-80324194 31EAA0 0034+00 0/0 2/2 0/0 .text            loadNBTScale__FR11J3DNBTScale */
 #pragma push
