@@ -42,7 +42,10 @@ struct J3DSys {
     /* 0x050 */ u32 mDrawMode;
     /* 0x054 */ u32 mMaterialMode;
     /* 0x058 */ J3DTexture* mTexture;
-    /* 0x05C */ u8 field_0x5c[0x104 - 0x5C];
+    /* 0x05C */ u8 field_0x5c[0x04];
+    /* 0x060 */ u32 mTexCacheRegionNum;
+    /* 0x064 */ GXTexRegion mTexCacheRegion[8];
+    /* 0x0E4 */ u8 field_0xe4[0x20];
     /* 0x104 */ Mtx* mModelDrawMtx;
     /* 0x104 */ Mtx33* mModelNrmMtx;
     /* 0x10C */ void* mVtxPos;

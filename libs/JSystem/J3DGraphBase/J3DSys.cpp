@@ -36,14 +36,14 @@ extern "C" extern u8 j3dDefaultViewNo[4 + 4 /* padding */];
 // External References:
 //
 
-extern "C" void J3DFifoLoadTexCached__F11_GXTexMapIDUl15_GXTexCacheSizeUl15_GXTexCacheSize();
+extern void J3DFifoLoadTexCached(GXTexMapID, u32, GXTexCacheSize, u32, GXTexCacheSize);
+
 extern "C" void makeTexCoordTable__Fv();
 extern "C" void makeAlphaCmpTable__Fv();
 extern "C" void makeZModeTable__Fv();
 extern "C" void makeTevSwapTable__Fv();
 extern "C" void GXInvalidateVtxCache();
 extern "C" void GXFlush();
-extern "C" void GXInitTexCacheRegion();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_25();
@@ -101,29 +101,32 @@ void J3DSys::loadNrmMtxIndx(int addr, u16 indx) const {
     J3DFifoLoadIndx(GX_CMD_LOAD_INDX_B, indx, 0x8000 | ((u16)((addr * 0x09) + 0x400)));
 }
 
-/* ############################################################################################## */
-/* 803A1DF8-803A1E08 02E458 0010+00 1/1 0/0 0/0 .rodata          @695 */
-SECTION_RODATA static u8 const lit_695[16] = {
-    0x00, 0x00, 0x80, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x803A1DF8, &lit_695);
-
-/* 803A1E08-803A1E18 02E468 0010+00 1/1 0/0 0/0 .rodata          @696 */
-SECTION_RODATA static u8 const lit_696[16] = {
-    0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x803A1E08, &lit_696);
-
 /* 8030FF0C-803100BC 30A84C 01B0+00 1/1 0/0 0/0 .text setTexCacheRegion__6J3DSysF15_GXTexCacheSize
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DSys::setTexCacheRegion(_GXTexCacheSize param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DSys/setTexCacheRegion__6J3DSysF15_GXTexCacheSize.s"
+void J3DSys::setTexCacheRegion(GXTexCacheSize size) {
+    const u32 kSize[] = { 0x00008000, 0x00020000, 0x00080000, 0x00000000, };
+    const u32 kRegionNum[] = { 8, 4, 1, 0 };
+
+    u32 regionNum = kRegionNum[size];
+    mTexCacheRegionNum = regionNum;
+
+    if (!!(mFlags & 0x80000000)) {
+        for (u32 i = 0; i < regionNum; i++) {
+            if (!!(i & 1)) {
+                GXInitTexCacheRegion(&mTexCacheRegion[i], GX_FALSE, i * kSize[size] + 0x80000, size, i * kSize[size], size);
+                J3DFifoLoadTexCached((GXTexMapID) i, i * kSize[size] + 0x80000, size, i * kSize[size], size);
+            } else {
+                GXInitTexCacheRegion(&mTexCacheRegion[i], GX_FALSE, i * kSize[size], size, i * kSize[size] + 0x80000, size);
+                J3DFifoLoadTexCached((GXTexMapID) i, i * kSize[size], size, i * kSize[size] + 0x80000, size);
+            }
+        }
+    } else {
+        for (u32 i = 0; i < regionNum; i++) {
+            GXInitTexCacheRegion(&mTexCacheRegion[i], GX_FALSE, i * kSize[size], size, i * kSize[size] + 0x80000, size);
+            J3DFifoLoadTexCached((GXTexMapID) i, i * kSize[size], size, i * kSize[size] + 0x80000, size);
+        }
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803A1E18-803A1E30 02E478 0018+00 1/1 0/0 0/0 .rodata          @737 */
