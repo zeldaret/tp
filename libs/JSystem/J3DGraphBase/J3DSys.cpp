@@ -4,9 +4,12 @@
 //
 
 #include "JSystem/J3DGraphBase/J3DSys.h"
+
 #include "dol2asm.h"
 #include "dolphin/gx/GXPixel.h"
 #include "dolphin/types.h"
+
+#include "JSystem/J3DGraphBase/J3DTexture.h"
 
 //
 // Forward References:
@@ -48,12 +51,12 @@ extern "C" void _savegpr_25();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_25();
 extern "C" void _restgpr_28();
-extern "C" extern u8 const j3dDefaultTexCoordInfo[32];
-extern "C" extern GXColor j3dDefaultColInfo;
+extern "C" extern J3DDefaultTexCoordInfo const j3dDefaultTexCoordInfo[8];
+extern "C" extern const GXColor j3dDefaultColInfo;
 extern "C" extern u8 data_804563C8;
 extern "C" extern u32 j3dDefaultTevColor;
 extern "C" extern u32 data_804563D8;
-extern "C" extern GXColor j3dDefaultTevKColor;
+extern "C" extern const GXColor j3dDefaultTevKColor;
 
 //
 // Declarations:

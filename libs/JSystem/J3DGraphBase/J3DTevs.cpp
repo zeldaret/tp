@@ -5,23 +5,13 @@
 
 #include "JSystem/J3DGraphBase/J3DTevs.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
+#include "JSystem/J3DGraphBase/J3DTexture.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
 //
 // Types:
 //
-
-struct J3DTexMtx {
-    /* 803238C4 */ void load(u32) const;
-    /* 80323900 */ void calc(f32 const (*)[4]);
-    /* 80323920 */ void calcTexMtx(f32 const (*)[4]);
-    /* 80323C0C */ void calcPostTexMtx(f32 const (*)[4]);
-    /* 80324358 */ void loadTexMtx(u32) const;
-    /* 803243BC */ void loadPostTexMtx(u32) const;
-};
-
-struct J3DTexCoord {};
 
 struct J3DNBTScale {};
 
@@ -287,9 +277,15 @@ SECTION_RODATA extern u8 const j3dDefaultLightInfo[52] = {
 COMPILER_STRIP_GATE(0x803A1EC8, &j3dDefaultLightInfo);
 
 /* 803A1EFC-803A1F1C 02E55C 0020+00 0/0 5/5 0/0 .rodata          j3dDefaultTexCoordInfo */
-SECTION_RODATA extern u8 const j3dDefaultTexCoordInfo[32] = {
-    0x01, 0x04, 0x3C, 0x00, 0x01, 0x05, 0x3C, 0x00, 0x01, 0x06, 0x3C, 0x00, 0x01, 0x07, 0x3C, 0x00,
-    0x01, 0x08, 0x3C, 0x00, 0x01, 0x09, 0x3C, 0x00, 0x01, 0x0A, 0x3C, 0x00, 0x01, 0x0B, 0x3C, 0x00,
+SECTION_RODATA extern J3DDefaultTexCoordInfo const j3dDefaultTexCoordInfo[8] = {
+    { GX_MTX2x4, GX_TG_TEX0, GX_IDENTITY, 0 },
+    { GX_MTX2x4, GX_TG_TEX1, GX_IDENTITY, 0 },
+    { GX_MTX2x4, GX_TG_TEX2, GX_IDENTITY, 0 },
+    { GX_MTX2x4, GX_TG_TEX3, GX_IDENTITY, 0 },
+    { GX_MTX2x4, GX_TG_TEX4, GX_IDENTITY, 0 },
+    { GX_MTX2x4, GX_TG_TEX5, GX_IDENTITY, 0 },
+    { GX_MTX2x4, GX_TG_TEX6, GX_IDENTITY, 0 },
+    { GX_MTX2x4, GX_TG_TEX7, GX_IDENTITY, 0 },
 };
 COMPILER_STRIP_GATE(0x803A1EFC, &j3dDefaultTexCoordInfo);
 
