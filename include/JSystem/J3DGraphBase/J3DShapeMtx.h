@@ -41,6 +41,7 @@ public:
 
     static void setCurrentPipeline(u32 pipeline) { sCurrentPipeline = pipeline; }
     static void setLODFlag(u8 flag) { struct_804515B0[1] = flag; }
+    static void resetMtxLoadCache();
 
 private:
     /* 0x04 */ u16 mUseMtxIndex;

@@ -861,7 +861,8 @@ typedef enum _GXCommand
     GX_CMD_LOAD_INDX_C = 0x30,
     GX_CMD_LOAD_INDX_D = 0x38,
 
-    GX_CMD_LOAD_CP_CMD = 0x08,
+    GX_CMD_LOAD_CP_REG = 0x08,
+    GX_CMD_LOAD_XF_REG = 0x10,
 } GXCommand;
 
 extern "C" {

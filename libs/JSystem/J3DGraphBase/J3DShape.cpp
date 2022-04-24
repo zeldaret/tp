@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/J3DGraphBase/J3DShape.h"
+#include "JSystem/J3DGraphBase/J3DPacket.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "JSystem/J3DGraphBase/J3DVertex.h"
 #include "dol2asm.h"
@@ -41,6 +42,8 @@ extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 //
 
 void J3DGDSetVtxAttrFmtv(_GXVtxFmt, GXVtxAttrFmtList const*, bool);
+void J3DFifoLoadPosMtxImm(Mtx, u32);
+void J3DFifoLoadNrmMtxImm(Mtx, u32);
 
 extern "C" void* __nwa__FUl();
 extern "C" void J3DGDSetVtxAttrFmtv__F9_GXVtxFmtPC17_GXVtxAttrFmtListb();
@@ -64,6 +67,10 @@ extern "C" u32 sTexMtxLoadType__11J3DShapeMtx;
 //
 // Declarations:
 //
+
+enum {
+    kVcdVatDLSize = 0xC0,
+};
 
 /* ############################################################################################## */
 /* 804563A0-804563A8 0049A0 0004+04 1/1 0/0 0/0 .sdata2          @687 */
@@ -133,7 +140,7 @@ asm void J3DShape::countBumpMtxNum() const {
 
 /* 80314E98-80314EB0 30F7D8 0018+00 1/1 0/0 0/0 .text            J3DLoadCPCmd__FUcUl */
 void J3DLoadCPCmd(u8 cmd, u32 param) {
-    GFX_FIFO(u8) = GX_CMD_LOAD_CP_CMD;
+    GFX_FIFO(u8) = GX_CMD_LOAD_CP_REG;
     GFX_FIFO(u8) = cmd;
     GFX_FIFO(u32) = param;
 }
@@ -157,7 +164,7 @@ void J3DShape::loadVtxArray() const {
 bool J3DShape::isSameVcdVatCmd(J3DShape* other) {
     u8 *a = other->mVcdVatCmd;
     u8 *b = mVcdVatCmd;
-    for (u32 i = 0; i < 0xC0; i++)
+    for (u32 i = 0; i < kVcdVatDLSize; i++)
         if (a[i] != b[i])
             return false;
     return true;
@@ -189,7 +196,7 @@ void J3DShape::makeVcdVatCmd() {
     OSDisableScheduler();
 
     GDLObj gdl_obj;
-    GDInitGDLObj(&gdl_obj, mVcdVatCmd, 0xC0);
+    GDInitGDLObj(&gdl_obj, mVcdVatCmd, kVcdVatDLSize);
     GDSetCurrent(&gdl_obj);
     GDSetVtxDescv(mVtxDesc);
     makeVtxArrayCmd();
@@ -234,6 +241,38 @@ void J3DShape::setArrayAndBindPipeline() const {
 }
 
 /* 8031544C-803155E0 30FD8C 0194+00 1/0 0/0 0/0 .text            drawFast__8J3DShapeCFv */
+#ifdef NONMATCHING
+void J3DShape::drawFast() const {
+    if (sOldVcdVatCmd != mVcdVatCmd) {
+        GXCallDisplayList(mVcdVatCmd, kVcdVatDLSize);
+        sOldVcdVatCmd = mVcdVatCmd;
+    }
+
+    if (data_804515D4[0] != 0 && !mHasPNMTXIdx)
+        mCurrentMtx.load();
+
+    setArrayAndBindPipeline();
+    if (!checkFlag(J3DShpFlag_NoMtx)) {
+        // LOD flag shenanigans
+        if (J3DShapeMtx::getLODFlag() != 0)
+            J3DShapeMtx::resetMtxLoadCache();
+
+        for (u16 n = mMtxGroupNum, i = 0; i < n; i++) {
+            if (mShapeMtx[i] != NULL)
+                mShapeMtx[i]->load();
+            if (mShapeDraw[i] != NULL)
+                mShapeDraw[i]->draw();
+        }
+    } else {
+        J3DFifoLoadPosMtxImm(*j3dSys.mShapePacket->getBaseMtxPtr(), GX_PNMTX0);
+        J3DFifoLoadNrmMtxImm(*j3dSys.mShapePacket->getBaseMtxPtr(), GX_PNMTX0);
+        for (u16 n = mMtxGroupNum, i = 0; i < n; i++)
+            if (mShapeDraw[i] != NULL)
+                mShapeDraw[i]->draw();
+    }
+}
+#else
+
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -243,15 +282,14 @@ asm void J3DShape::drawFast() const {
 }
 #pragma pop
 
+#endif
+
 /* 803155E0-80315628 30FF20 0048+00 1/0 0/0 0/0 .text            draw__8J3DShapeCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DShape::draw() const {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DShape/draw__8J3DShapeCFv.s"
+void J3DShape::draw() const {
+    sOldVcdVatCmd = NULL;
+    loadPreDrawSetting();
+    drawFast();
 }
-#pragma pop
 
 /* 80315628-803156AC 30FF68 0084+00 1/0 0/0 0/0 .text            simpleDraw__8J3DShapeCFv */
 void J3DShape::simpleDraw() const {
@@ -267,11 +305,17 @@ void J3DShape::simpleDraw() const {
 }
 
 /* 803156AC-803157A0 30FFEC 00F4+00 1/0 0/0 0/0 .text            simpleDrawCache__8J3DShapeCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DShape::simpleDrawCache() const {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DShape/simpleDrawCache__8J3DShapeCFv.s"
+void J3DShape::simpleDrawCache() const {
+    if (sOldVcdVatCmd != mVcdVatCmd) {
+        GXCallDisplayList(mVcdVatCmd, kVcdVatDLSize);
+        sOldVcdVatCmd = mVcdVatCmd;
+    }
+
+    if (data_804515D4[0] != 0 && !mHasPNMTXIdx)
+        mCurrentMtx.load();
+
+    loadVtxArray();
+    for (u16 n = mMtxGroupNum, i = 0; i < n; i++)
+        if (mShapeDraw[i] != NULL)
+            mShapeDraw[i]->draw();
 }
-#pragma pop

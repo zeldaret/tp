@@ -13,10 +13,30 @@ public:
     u32 mMtxIdxRegB;
 };
 
+static inline void J3DFifoWriteCPCmd(u8 cmd, u32 param) {
+    GFX_FIFO(u8) = GX_CMD_LOAD_CP_REG;
+    GFX_FIFO(u8) = cmd;
+    GFX_FIFO(u32) = param;
+}
+
+static inline void J3DFifoWriteXFCmd(u16 cmd, u16 len) {
+    GFX_FIFO(u8) = GX_CMD_LOAD_XF_REG;
+    GFX_FIFO(u16) = (len - 1);
+    GFX_FIFO(u16) = cmd;
+}
+
 class J3DCurrentMtx : public J3DCurrentMtxInfo {
 public:
     u32 getMtxIdxRegA() const { return mMtxIdxRegA; }
     u32 getMtxIdxRegB() const { return mMtxIdxRegB; }
+
+    inline void load() const {
+        J3DFifoWriteCPCmd(0x30, getMtxIdxRegA()); // CP_MATINDEX_A
+        J3DFifoWriteCPCmd(0x40, getMtxIdxRegB()); // CP_MATINDEX_B
+        J3DFifoWriteXFCmd(0x1018, 2);
+        GFX_FIFO(u32) = getMtxIdxRegA();
+        GFX_FIFO(u32) = getMtxIdxRegB();
+    }
 };
 
 class J3DMaterial;
@@ -24,11 +44,12 @@ class J3DVertexData;
 class J3DDrawMtxData;
 
 enum J3DShpFlag {
-    J3DShpFlag_Visible    = 0x0001,
-    J3DShpFlag_SkinPosCpu = 0x0004,
-    J3DShpFlag_SkinNrmCpu = 0x0008,
-    J3DShpFlag_Hidden     = 0x0010,
-    J3DShpFlag_EnableLod  = 0x0100,
+    J3DShpFlag_Visible     = 0x0001,
+    J3DShpFlag_SkinPosCpu  = 0x0004,
+    J3DShpFlag_SkinNrmCpu  = 0x0008,
+    J3DShpFlag_Hidden      = 0x0010,
+    J3DShpFlag_EnableLod   = 0x0100,
+    J3DShpFlag_NoMtx       = 0x0200,
 };
 
 class J3DShape {
@@ -52,7 +73,7 @@ public:
 
     void onFlag(u32 flag) { mFlags |= flag; }
     void offFlag(u32 flag) { mFlags &= ~flag; }
-    bool checkFlag(u32 flag) { return !!(mFlags & flag); }
+    bool checkFlag(u32 flag) const { return !!(mFlags & flag); }
     void setDrawMtxDataPointer(J3DDrawMtxData* pMtxData) { mDrawMtxData = pMtxData; }
     void setVertexDataPointer(J3DVertexData* pVtxData) { mVertexData = pVtxData; }
     void* getVcdVatCmd() const { return mVcdVatCmd; }

@@ -123,6 +123,7 @@ public:
 
     J3DShape* getShape() const { return mpShape; }
     J3DModel* getModel() const { return mpModel; }
+    Mtx* getBaseMtxPtr() const { return mpBaseMtxPtr; }
 
 public:
     /* 0x28 */ J3DShape* mpShape;
