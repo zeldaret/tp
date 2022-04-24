@@ -38,8 +38,8 @@ private:
     /* 0x00 */ u32 mVtxNum;
     /* 0x04 */ u32 mNrmNum;
     /* 0x08 */ u32 mColNum;
-    /* 0x0C */ u32 field_0xc;
-    /* 0x10 */ u32 field_0x10;
+    /* 0x0C */ u32 mTexCoordNum;
+    /* 0x10 */ u32 mPacketNum;
     /* 0x14 */ GXVtxAttrFmtList* mVtxAttrFmtList;
     /* 0x18 */ void* mVtxPosArray;
     /* 0x1C */ void* mVtxNrmArray;

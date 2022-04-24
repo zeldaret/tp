@@ -12,60 +12,24 @@
 #include "dolphin/types.h"
 #include "init.h"
 
-//
-// Forward References:
-//
-
-extern "C" void __ct__13J3DVertexDataFv();
-extern "C" void setVertexData__15J3DVertexBufferFP13J3DVertexData();
-extern "C" void init__15J3DVertexBufferFv();
-extern "C" void __dt__15J3DVertexBufferFv();
-extern "C" void setArray__15J3DVertexBufferCFv();
-extern "C" void copyLocalVtxPosArray__15J3DVertexBufferFUl();
-extern "C" void copyLocalVtxNrmArray__15J3DVertexBufferFUl();
-extern "C" void copyLocalVtxArray__15J3DVertexBufferFUl();
-extern "C" void allocTransformedVtxPosArray__15J3DVertexBufferFv();
-extern "C" void allocTransformedVtxNrmArray__15J3DVertexBufferFv();
-extern "C" void __ct__14J3DDrawMtxDataFv();
-extern "C" void __dt__14J3DDrawMtxDataFv();
-
-//
-// External References:
-//
-
-extern "C" void* __nwa__FUli();
-extern "C" void __dl__FPv();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-
-//
-// Declarations:
-//
-
 /* 80310EF8-80310F78 30B838 0080+00 0/0 1/1 0/0 .text            __ct__13J3DVertexDataFv */
 J3DVertexData::J3DVertexData() {
     mVtxNum = 0;
     mNrmNum = 0;
     mColNum = 0;
-    field_0xc = 0;
-    field_0x10 = 0;
+    mTexCoordNum = 0;
+    mPacketNum = 0;
 
     mVtxAttrFmtList = NULL;
     mVtxPosArray = NULL;
     mVtxNrmArray = NULL;
     mVtxNBTArray = NULL;
 
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < ARRAY_SIZE(mVtxColorArray); i++)
         mVtxColorArray[i] = NULL;
-    }
 
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < ARRAY_SIZE(mVtxTexCoordArray); i++)
         mVtxTexCoordArray[i] = NULL;
-    }
 
     mVtxPosFrac = 0;
     mVtxPosType = GX_F32;
