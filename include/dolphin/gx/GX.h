@@ -85,13 +85,6 @@ typedef struct _GXTexRegion {
     /* 0x00 */ u8 dummy[0x10];
 } GXTexRegion; // Size: 0x10
 
-typedef struct _GXVtxAttrFmtList {
-    /* 0x00 */ u32 mAttrib; // GXAttr
-    /* 0x04 */ u32 mCompCnt; // GXCompCnt
-    /* 0x08 */ u32 mCompType; // GXCompType
-    /* 0x0C */ u8 mCompShift;
-} GXVtxAttrFmtList; // Size: 0x10
-
 typedef enum _GXPrimitive {
     /* 0x80 */ GX_QUADS = 0x80,
     /* 0x90 */ GX_TRIANGLES = 0x90,
@@ -829,6 +822,13 @@ typedef struct _GXVtxDescList {
     /* 0x0 */ GXAttr attr;
     /* 0x4 */ GXAttrType type;
 } GXVtxDescList; // Size: 0x08
+
+typedef struct _GXVtxAttrFmtList {
+    /* 0x00 */ GXAttr mAttrib;
+    /* 0x04 */ GXCompCnt mCompCnt;
+    /* 0x08 */ GXCompType mCompType;
+    /* 0x0C */ u8 mCompShift;
+} GXVtxAttrFmtList; // Size: 0x10
 
 typedef enum _GXFBClamp {
     /* 0x0 */ GX_CLAMP_NONE,

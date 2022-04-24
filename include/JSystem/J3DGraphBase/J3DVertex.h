@@ -21,16 +21,18 @@ public:
     J3DVertexData();
 
     void* getVtxPosArray() const { return mVtxPosArray; }
-
     void* getVtxNrmArray() const { return mVtxNrmArray; }
-
-    _GXColor* getVtxColorArray(u8 idx) const { return mVtxColorArray[idx]; }
-
+    GXColor* getVtxColorArray(u8 idx) const { return mVtxColorArray[idx]; }
+    void* getVtxTexCoordArray(u8 idx) const { return mVtxTexCoordArray[idx]; }
+    void* getVtxNBTArray() const { return mVtxNBTArray; }
     u32 getNrmNum() const { return mNrmNum; }
-
     u32 getVtxNum() const { return mVtxNum; }
-
     GXVtxAttrFmtList* getVtxAttrFmtList() { return mVtxAttrFmtList; }
+
+    void setVtxPosFrac(u8 frac) { mVtxPosFrac = frac; }
+    void setVtxPosType(GXCompType type) { mVtxPosType = type; }
+    void setVtxNrmFrac(u8 frac) { mVtxNrmFrac = frac; }
+    void setVtxNrmType(GXCompType type) { mVtxNrmType = type; }
 
 private:
     /* 0x00 */ u32 mVtxNum;

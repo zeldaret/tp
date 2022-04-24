@@ -90,6 +90,9 @@ public:
     inline J3DMaterial* getMaterial() const { return mMaterial; }
     inline u32 getPipeline() const { return (mFlags >> 2) & 0x07; }
     inline u32 getTexMtxLoadType() const { return mFlags & 0xF000; }
+    inline u32 getMtxGroupNum() const { return mMtxGroupNum; }
+    inline J3DShapeDraw* getShapeDraw(u32 idx) const { return mShapeDraw[idx]; }
+    inline J3DShapeMtx* getShapeMtx(u32 idx) const { return mShapeMtx[idx]; }
     static void resetVcdVatCache() { sOldVcdVatCmd = NULL; }
 
     static void* sOldVcdVatCmd;
