@@ -50,9 +50,9 @@ public:
     /* 802F9A74 */ virtual void setAnimationVF(J2DAnmVisibilityFull*);
     /* 802F9A78 */ virtual void setAnimationVC(J2DAnmVtxColor*);
     /* 802F99E8 */ virtual J2DPane* createPane(J2DScrnBlockHeader const&, JSURandomInputStream*,
-                                           J2DPane*, u32);
+                                               J2DPane*, u32);
     /* 802F8B98 */ virtual J2DPane* createPane(J2DScrnBlockHeader const&, JSURandomInputStream*,
-                                           J2DPane*, u32, JKRArchive*);
+                                               J2DPane*, u32, JKRArchive*);
 
     /* 802F8498 */ J2DScreen();
     /* 802F85A8 */ void clean();

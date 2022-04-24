@@ -84,6 +84,14 @@ LDFLAGS := -unused -map $(MAP) -fp hard -nodefaults -w off
 # Compiler flags
 CFLAGS  += -Cpp_exceptions off -proc gekko -fp hard -O3 -nodefaults -str pool,readonly,reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)
 
+# O4,p for init.c
+$(BUILD_DIR)/src/init.o: CFLAGS := -Cpp_exceptions off -proc gekko -fp hard -O4,p -nodefaults -str pool,readonly,reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)
+
+# __start.c needs mwcc 1.2.5 and O4,p
+$(BUILD_DIR)/src/__start.o: CFLAGS := -Cpp_exceptions off -proc gekko -fp hard -O4,p -nodefaults -str pool,readonly,reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)
+$(BUILD_DIR)/src/__start.o: MWCC_VERSION := 1.2.5
+$(BUILD_DIR)/src/__start.o: CC := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc.exe
+
 # elf2dol needs to know these in order to calculate sbss correctly.
 SDATA_PDHR := 9
 SBSS_PDHR := 10
@@ -169,6 +177,12 @@ rungame: game
 	dolphin-emu $(BUILD_DIR)/game/sys/main.dol
 
 #
+$(BUILD_DIR)/%.o: %.c
+	@mkdir -p $(@D)
+	@echo building... $<
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
+	@$(CC) $(CFLAGS) -c -o $@ $(basename $@).c
+
 $(BUILD_DIR)/%.o: %.cpp
 	@mkdir -p $(@D)
 	@echo building... $<

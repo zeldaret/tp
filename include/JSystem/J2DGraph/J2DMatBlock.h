@@ -422,21 +422,18 @@ struct J2DBlendInfo {
         mType = other.mType;
         mSrcFactor = other.mSrcFactor;
         mDstFactor = other.mDstFactor;
-        //mOp = other.mOp;
+        // mOp = other.mOp;
     }
 
     /* 0x0 */ u8 mType;
     /* 0x1 */ u8 mSrcFactor;
     /* 0x2 */ u8 mDstFactor;
-    
 };
 
 extern J2DBlendInfo j2dDefaultBlendInfo;
 
 struct J2DBlend {
-    J2DBlend() {
-        mBlendInfo = j2dDefaultBlendInfo;
-    }
+    J2DBlend() { mBlendInfo = j2dDefaultBlendInfo; }
 
     /* 0x0 */ J2DBlendInfo mBlendInfo;
     /* 0x3 */ u8 mOp;
@@ -444,9 +441,7 @@ struct J2DBlend {
 
 class J2DPEBlock {
 public:
-    J2DPEBlock() {
-        initialize();
-    }
+    J2DPEBlock() { initialize(); }
 
     /* 802F17FC */ void initialize();
     /* 802F1840 */ void setGX();
@@ -475,10 +470,8 @@ public:
 
 class J2DIndBlockFull : public J2DIndBlock {
 public:
-    J2DIndBlockFull() {
-        initialize();
-    }
-    
+    J2DIndBlockFull() { initialize(); }
+
     /* 802F1664 */ virtual void initialize();
     /* 802F1730 */ virtual void setGX();
     /* 802F1B94 */ virtual void getType();
@@ -515,9 +508,7 @@ private:
     /* 0x24 */ J2DTexMtx* mTexMtx[8];
 
 public:
-    J2DTexGenBlock() {
-        initialize();
-    }
+    J2DTexGenBlock() { initialize(); }
 
     /* 802EB510 */ void initialize();
     /* 802EB570 */ void setGX();
@@ -547,9 +538,7 @@ private:
     /* 0x12 */ u8 mCullMode;
 
 public:
-    J2DColorBlock() {
-        initialize();
-    }
+    J2DColorBlock() { initialize(); }
 
     /* 802EB394 */ void initialize();
     /* 802EB424 */ void setGX();

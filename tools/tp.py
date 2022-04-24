@@ -921,8 +921,8 @@ def find_all_header_files():
     return files
 
 
-def find_all_cpp_files():
-    """Recursivly find all files in the 'cpp/' folder"""
+def find_all_files():
+    """Recursively find all c/cpp files in '/src/', '/libs/', and '/rel/' """
 
     files = set()
 
@@ -938,7 +938,7 @@ def find_all_cpp_files():
             if path.is_dir():
                 recursive(path)
             else:
-                if path.suffix == ".cpp":
+                if path.suffix == ".cpp" or path.suffix == ".c":
                     files.add(path)
 
     src_root = Path("./src/")
@@ -952,7 +952,7 @@ def find_all_cpp_files():
     recursive(libs_root)
     recursive(rel_root)
 
-    LOG.debug(f"find_all_cpp_files: found {len(files)} .cpp files")
+    LOG.debug(f"find_all_files: found {len(files)} .c/.cpp files")
     return files
 
 
@@ -978,7 +978,7 @@ def find_includes(lines, non_matching, ext=".s"):
 
 def find_used_asm_files(non_matching, use_progress_bar=True):
 
-    cpp_files = find_all_cpp_files()
+    cpp_files = find_all_files()
     includes = set()
 
     if use_progress_bar:

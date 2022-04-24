@@ -219,7 +219,7 @@ inline JKRCompression JKRConvertAttrToCompressionType(u32 attr) {
 }
 
 inline void* JKRGetResource(u32 node, const char* path, JKRArchive* archive) {
-    return JKRArchive::getGlbResource(node,path,archive);
+    return JKRArchive::getGlbResource(node, path, archive);
 }
 
 inline void* JKRGetTypeResource(u32 tag, const char* name, JKRArchive* arc) {
