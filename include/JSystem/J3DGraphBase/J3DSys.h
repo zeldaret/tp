@@ -118,6 +118,9 @@ struct J3DSys {
     // Type 1: Xlu Buffer
     J3DDrawBuffer* getDrawBuffer(int type) { return mDrawBuffer[type]; }
 
+    Mtx& getModelDrawMtx(u16 no) const { return mModelDrawMtx[no]; }
+    J3DShapePacket* getShapePacket() const { return mShapePacket; }
+
     void setViewMtx(Mtx m) { PSMTXCopy(m, mViewMtx); }
 
     static Mtx mCurrentMtx;

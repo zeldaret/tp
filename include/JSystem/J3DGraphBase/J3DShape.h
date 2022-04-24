@@ -58,7 +58,7 @@ public:
     /* 80314BB8 */ void addTexMtxIndexInDL(_GXAttr, u32);
     /* 80314CBC */ void addTexMtxIndexInVcd(_GXAttr);
     /* 80314DA8 */ void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
-    /* 80314E28 */ void countBumpMtxNum() const;
+    /* 80314E28 */ u32 countBumpMtxNum() const;
     /* 80314EEC */ void loadVtxArray() const;
     /* 80314F5C */ bool isSameVcdVatCmd(J3DShape*);
     /* 80314F98 */ void makeVtxArrayCmd();

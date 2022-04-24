@@ -90,6 +90,36 @@ asm void J3DShape::initialize() {
 }
 #pragma pop
 
+/* 80314BB8-80314CBC 30F4F8 0104+00 0/0 1/1 0/0 .text addTexMtxIndexInDL__8J3DShapeF7_GXAttrUl */
+#ifdef NONMATCHING
+void J3DShape::addTexMtxIndexInDL(GXAttr attr, u32 param_1) {
+    u32 kSize[] = { 0, 1, 1, 2 };
+
+    s32 pnmtxidxOffs = -1;
+    s32 attrOffs = -1;
+    u32 stride = 0;
+    bool found = false;
+
+    for (GXVtxDescList* vtxDesc = mVtxDesc; vtxDesc->attr != GX_VA_NULL; vtxDesc++) {
+        if (vtxDesc->attr == GX_VA_PNMTXIDX)
+            pnmtxidxOffs = stride;
+
+        if (attr < vtxDesc->attr && !found) {
+            attrOffs = stride;
+            found = true;
+        }
+
+        stride = stride + kSize[vtxDesc->type];
+    }
+
+    if (pnmtxidxOffs == -1)
+        return;
+
+    for (u16 i = 0; i < mMtxGroupNum; i++)
+        mShapeDraw[i]->addTexMtxIndexInDL(stride, attrOffs, param_1);
+}
+#else
+
 /* ############################################################################################## */
 /* 803A1E98-803A1EA8 02E4F8 0010+00 1/1 0/0 0/0 .rodata          @697 */
 SECTION_RODATA static u8 const lit_697[16] = {
@@ -97,7 +127,6 @@ SECTION_RODATA static u8 const lit_697[16] = {
 };
 COMPILER_STRIP_GATE(0x803A1E98, &lit_697);
 
-/* 80314BB8-80314CBC 30F4F8 0104+00 0/0 1/1 0/0 .text addTexMtxIndexInDL__8J3DShapeF7_GXAttrUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -107,36 +136,58 @@ asm void J3DShape::addTexMtxIndexInDL(_GXAttr param_0, u32 param_1) {
 }
 #pragma pop
 
+#endif
+
 /* 80314CBC-80314DA8 30F5FC 00EC+00 0/0 1/1 0/0 .text addTexMtxIndexInVcd__8J3DShapeF7_GXAttr */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DShape::addTexMtxIndexInVcd(_GXAttr param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DShape/addTexMtxIndexInVcd__8J3DShapeF7_GXAttr.s"
+void J3DShape::addTexMtxIndexInVcd(GXAttr attr) {
+    s32 attrIdx = -1;
+    GXVtxDescList* vtxDesc = mVtxDesc;
+    s32 attrCount = 0;
+
+    for (; vtxDesc->attr != GX_VA_NULL; attrCount++, vtxDesc++) {
+        if (vtxDesc->attr == GX_VA_PNMTXIDX)
+            attrIdx = 0;
+    }
+
+    if (attrIdx == -1)
+        return;
+
+    GXVtxDescList* newVtxDesc = new GXVtxDescList[attrCount + 2];
+    bool inserted = false;
+
+    vtxDesc = mVtxDesc;
+    GXVtxDescList* dst = newVtxDesc;
+    for (; vtxDesc->attr != GX_VA_NULL; dst++, vtxDesc++) {
+        if ((attr < vtxDesc->attr) && !inserted) {
+            dst->attr = attr;
+            dst->type = GX_DIRECT;
+            inserted = true;
+            dst++;
+        }
+
+        *dst = *vtxDesc;
+    }
+
+    dst->attr = GX_VA_NULL;
+    dst->type = GX_NONE;
+    mVtxDesc = newVtxDesc;
+    makeVcdVatCmd();
 }
-#pragma pop
 
 /* 80314DA8-80314E28 30F6E8 0080+00 0/0 1/1 0/0 .text
  * calcNBTScale__8J3DShapeFRC3VecPA3_A3_fPA3_A3_f               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DShape::calcNBTScale(Vec const& param_0, f32 (*param_1)[3][3], f32 (*param_2)[3][3]) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DShape/calcNBTScale__8J3DShapeFRC3VecPA3_A3_fPA3_A3_f.s"
+void J3DShape::calcNBTScale(Vec const& param_0, f32 (*param_1)[3][3], f32 (*param_2)[3][3]) {
+    for (u16 i = 0; i < mMtxGroupNum; i++)
+        mShapeMtx[i]->calcNBTScale(param_0, param_1, param_2);
 }
-#pragma pop
 
 /* 80314E28-80314E98 30F768 0070+00 0/0 1/1 0/0 .text            countBumpMtxNum__8J3DShapeCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DShape::countBumpMtxNum() const {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DShape/countBumpMtxNum__8J3DShapeCFv.s"
+u32 J3DShape::countBumpMtxNum() const {
+    u32 num = 0;
+    for (u16 i = 0; i < mMtxGroupNum; i++)
+        num += mShapeMtx[i]->getUseMtxNum();
+    return num;
 }
-#pragma pop
 
 /* 80314E98-80314EB0 30F7D8 0018+00 1/1 0/0 0/0 .text            J3DLoadCPCmd__FUcUl */
 void J3DLoadCPCmd(u8 cmd, u32 param) {

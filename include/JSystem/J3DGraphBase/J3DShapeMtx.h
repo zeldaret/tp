@@ -9,7 +9,12 @@ class J3DTexGenBlock;
 
 class J3DDifferedTexMtx {
 public:
-    /* 8031322C */ void loadExecute(f32 const (*)[4]);
+    /* 8031322C */ static void loadExecute(f32 const (*)[4]);
+
+    static inline void load(Mtx m) {
+        if (sTexGenBlock != NULL)
+            loadExecute(m);
+    }
 
     static J3DTexGenBlock* sTexGenBlock;
     static J3DTexMtx* sTexMtxObj;
@@ -26,9 +31,9 @@ public:
     /* 803131D4 */ void loadMtxIndx_PNCPU(int, u16) const;
 
     /* 80314798 */ virtual ~J3DShapeMtx();
-    /* 803147E0 */ virtual void getType() const;
-    /* 80273E08 */ virtual bool getUseMtxNum() const;
-    /* 8031459C */ virtual void getUseMtxIndex(u16) const;
+    /* 803147E0 */ virtual u32 getType() const;
+    /* 80273E08 */ virtual u32 getUseMtxNum() const;
+    /* 8031459C */ virtual u32 getUseMtxIndex(u16) const;
     /* 80313B94 */ virtual void load() const;
     /* 80313BF0 */ virtual void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
 
@@ -50,7 +55,7 @@ private:
 class J3DShapeMtxConcatView : public J3DShapeMtx {
 public:
     /* 80314730 */ virtual ~J3DShapeMtxConcatView();
-    /* 8031478C */ virtual void getType() const;
+    /* 803147E0 */ virtual u32 getType() const;
     /* 80313C54 */ virtual void load() const;
     /* 80314598 */ virtual void loadNrmMtx(int, u16) const;
     /* 80313D28 */ virtual void loadNrmMtx(int, u16, f32 (*)[4]) const;
@@ -69,23 +74,23 @@ public:
 class J3DShapeMtxYBBoardConcatView : public J3DShapeMtxConcatView {
 public:
     /* 80314520 */ virtual ~J3DShapeMtxYBBoardConcatView();
-    /* 8031458C */ virtual void getType() const;
+    /* 803147E0 */ virtual u32 getType() const;
     /* 803143E4 */ virtual void load() const;
 };
 
 class J3DShapeMtxBBoardConcatView : public J3DShapeMtxConcatView {
 public:
     /* 803145A4 */ virtual ~J3DShapeMtxBBoardConcatView();
-    /* 80314610 */ virtual void getType() const;
+    /* 803147E0 */ virtual u32 getType() const;
     /* 803142D4 */ virtual void load() const;
 };
 
 class J3DShapeMtxMulti : public J3DShapeMtx {
 public:
     /* 803146B0 */ virtual ~J3DShapeMtxMulti();
-    /* 8031470C */ virtual void getType() const;
-    /* 80314718 */ virtual void getUseMtxNum() const;
-    /* 80314720 */ virtual void getUseMtxIndex(u16) const;
+    /* 803147E0 */ virtual u32 getType() const;
+    /* 80273E08 */ virtual u32 getUseMtxNum() const;
+    /* 8031459C */ virtual u32 getUseMtxIndex(u16) const;
     /* 80313E4C */ virtual void load() const;
     /* 80313EEC */ virtual void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
 
@@ -97,9 +102,9 @@ private:
 class J3DShapeMtxMultiConcatView : public J3DShapeMtx {
 public:
     /* 8031461C */ virtual ~J3DShapeMtxMultiConcatView();
-    /* 80314688 */ virtual void getType() const;
-    /* 80314694 */ virtual void getUseMtxNum() const;
-    /* 8031469C */ virtual void getUseMtxIndex(u16) const;
+    /* 803147E0 */ virtual u32 getType() const;
+    /* 80273E08 */ virtual u32 getUseMtxNum() const;
+    /* 8031459C */ virtual u32 getUseMtxIndex(u16) const;
     /* 80313FA4 */ virtual void load() const;
     /* 803146AC */ virtual void loadNrmMtx(int, u16) const;
     /* 8031419C */ virtual void loadNrmMtx(int, u16, f32 (*)[4]) const;

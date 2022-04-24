@@ -826,9 +826,9 @@ typedef enum _GXPTTexMtx {
 };
 
 typedef struct _GXVtxDescList {
-    GXAttr attr;
-    GXAttrType type;
-} GXVtxDescList;
+    /* 0x0 */ GXAttr attr;
+    /* 0x4 */ GXAttrType type;
+} GXVtxDescList; // Size: 0x08
 
 typedef enum _GXFBClamp {
     /* 0x0 */ GX_CLAMP_NONE,
