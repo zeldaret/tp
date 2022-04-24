@@ -85,6 +85,13 @@ typedef struct _GXTexRegion {
     /* 0x00 */ u8 dummy[0x10];
 } GXTexRegion; // Size: 0x10
 
+typedef struct _GXVtxAttrFmtList {
+    /* 0x00 */ u32 mAttrib; // GXAttr
+    /* 0x04 */ u32 mCompCnt; // GXCompCnt
+    /* 0x08 */ u32 mCompType; // GXCompType
+    /* 0x0C */ u8 mCompShift;
+} GXVtxAttrFmtList; // Size: 0x10
+
 typedef enum _GXPrimitive {
     /* 0x80 */ GX_QUADS = 0x80,
     /* 0x90 */ GX_TRIANGLES = 0x90,

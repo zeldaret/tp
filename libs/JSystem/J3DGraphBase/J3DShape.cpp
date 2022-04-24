@@ -5,14 +5,12 @@
 
 #include "JSystem/J3DGraphBase/J3DShape.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
+#include "JSystem/J3DGraphBase/J3DVertex.h"
 #include "dol2asm.h"
+#include "dolphin/gd/GDBase.h"
+#include "dolphin/gd/GDGeometry.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct _GXVtxAttrFmtList {};
 
 //
 // Forward References:
@@ -42,6 +40,8 @@ extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 // External References:
 //
 
+void J3DGDSetVtxAttrFmtv(_GXVtxFmt, GXVtxAttrFmtList const*, bool);
+
 extern "C" void* __nwa__FUl();
 extern "C" void J3DGDSetVtxAttrFmtv__F9_GXVtxFmtPC17_GXVtxAttrFmtListb();
 extern "C" void J3DFifoLoadPosMtxImm__FPA4_fUl();
@@ -49,16 +49,6 @@ extern "C" void J3DFifoLoadNrmMtxImm__FPA4_fUl();
 extern "C" void resetMtxLoadCache__11J3DShapeMtxFv();
 extern "C" void addTexMtxIndexInDL__12J3DShapeDrawFUlUlUl();
 extern "C" void draw__12J3DShapeDrawCFv();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void OSDisableScheduler();
-extern "C" void OSEnableScheduler();
-extern "C" void GDInitGDLObj();
-extern "C" void GDFlushCurrToMem();
-extern "C" void GDPadCurr32();
-extern "C" void GDSetVtxDescv();
-extern "C" void GDSetArray();
-extern "C" void GDSetArrayRaw();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
@@ -70,7 +60,6 @@ extern "C" u32 sCurrentPipeline__11J3DShapeMtx;
 extern "C" u32 sCurrentScaleFlag__11J3DShapeMtx;
 extern "C" extern u8 struct_804515B0[4];
 extern "C" u32 sTexMtxLoadType__11J3DShapeMtx;
-extern "C" extern u8 __GDCurrentDL[4];
 
 //
 // Declarations:
@@ -165,14 +154,14 @@ void J3DShape::loadVtxArray() const {
 }
 
 /* 80314F5C-80314F98 30F89C 003C+00 0/0 1/1 0/0 .text isSameVcdVatCmd__8J3DShapeFP8J3DShape */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J3DShape::isSameVcdVatCmd(J3DShape* param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DShape/isSameVcdVatCmd__8J3DShapeFP8J3DShape.s"
+bool J3DShape::isSameVcdVatCmd(J3DShape* other) {
+    u8 *a = other->mVcdVatCmd;
+    u8 *b = mVcdVatCmd;
+    for (u32 i = 0; i < 0xC0; i++)
+        if (a[i] != b[i])
+            return false;
+    return true;
 }
-#pragma pop
 
 /* 80314F98-80315260 30F8D8 02C8+00 1/1 0/0 0/0 .text            makeVtxArrayCmd__8J3DShapeFv */
 #pragma push
@@ -186,20 +175,31 @@ asm void J3DShape::makeVtxArrayCmd() {
 
 /* ############################################################################################## */
 /* 804515C8-804515CC 000AC8 0004+00 1/1 0/0 0/0 .sbss            sInterruptFlag$903 */
-static u8 sInterruptFlag[4];
+static s32 sInterruptFlag;
 
 /* 804515CC-804515D0 000ACC 0004+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_804515CC[4];
+static s8 sInitInterruptFlag;
 
 /* 80315260-80315300 30FBA0 00A0+00 1/1 2/2 0/0 .text            makeVcdVatCmd__8J3DShapeFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DShape::makeVcdVatCmd() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DShape/makeVcdVatCmd__8J3DShapeFv.s"
+void J3DShape::makeVcdVatCmd() {
+    if (!sInitInterruptFlag) {
+        sInterruptFlag = OSDisableInterrupts();
+        sInitInterruptFlag = true;
+    }
+    OSDisableScheduler();
+
+    GDLObj gdl_obj;
+    GDInitGDLObj(&gdl_obj, mVcdVatCmd, 0xC0);
+    GDSetCurrent(&gdl_obj);
+    GDSetVtxDescv(mVtxDesc);
+    makeVtxArrayCmd();
+    J3DGDSetVtxAttrFmtv(GX_VTXFMT0, mVertexData->getVtxAttrFmtList(), mHasNBT);
+    GDPadCurr32();
+    GDFlushCurrToMem();
+    GDSetCurrent(NULL);
+    OSEnableScheduler();
+    OSRestoreInterrupts(sInterruptFlag);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804515D0-804515D4 000AD0 0004+00 5/5 25/25 9/9 .sbss            sOldVcdVatCmd__8J3DShape */

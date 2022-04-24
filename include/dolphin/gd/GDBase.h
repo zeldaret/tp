@@ -10,8 +10,6 @@ struct GDLObj {
     /* 0xC */ u8* end;
 };  // Size: 0x10
 
-extern "C" void GDInitGDLObj(GDLObj*, u8*, u32);
-
 extern GDLObj* __GDCurrentDL;
 
 inline void GDSetCurrent(GDLObj* obj) {
@@ -20,6 +18,14 @@ inline void GDSetCurrent(GDLObj* obj) {
 
 inline u32 GDGetGDLObjOffset(GDLObj* obj) {
     return (u32)(obj->ptr - obj->start);
+}
+
+extern "C" {
+
+void GDInitGDLObj(GDLObj*, u8*, u32);
+void GDFlushCurrToMem();
+void GDPadCurr32();
+
 }
 
 #endif /* GDBASE_H */

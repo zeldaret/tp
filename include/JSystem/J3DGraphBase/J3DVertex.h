@@ -30,22 +30,24 @@ public:
 
     u32 getVtxNum() const { return mVtxNum; }
 
+    GXVtxAttrFmtList* getVtxAttrFmtList() { return mVtxAttrFmtList; }
+
 private:
     /* 0x00 */ u32 mVtxNum;
     /* 0x04 */ u32 mNrmNum;
     /* 0x08 */ u32 mColNum;
     /* 0x0C */ u32 field_0xc;
     /* 0x10 */ u32 field_0x10;
-    /* 0x14 */ void* mVtxAttrFmtList;
+    /* 0x14 */ GXVtxAttrFmtList* mVtxAttrFmtList;
     /* 0x18 */ void* mVtxPosArray;
     /* 0x1C */ void* mVtxNrmArray;
     /* 0x20 */ void* mVtxNBTArray;
-    /* 0x24 */ _GXColor* mVtxColorArray[2];
+    /* 0x24 */ GXColor* mVtxColorArray[2];
     /* 0x2C */ void* mVtxTexCoordArray[8];
     /* 0x4C */ u8 mVtxPosFrac;
-    /* 0x50 */ _GXCompType mVtxPosType;
+    /* 0x50 */ GXCompType mVtxPosType;
     /* 0x54 */ u8 mVtxNrmFrac;
-    /* 0x58 */ _GXCompType mVtxNrmType;
+    /* 0x58 */ GXCompType mVtxNrmType;
 };
 
 class J3DVertexBuffer {
@@ -64,7 +66,7 @@ public:
 
     void setCurrentVtxNrm(void* pVtxNrm) { mCurrentVtxNrm = pVtxNrm; }
 
-    void setCurrentVtxCol(_GXColor* pVtxCol) { mCurrentVtxCol = pVtxCol; }
+    void setCurrentVtxCol(GXColor* pVtxCol) { mCurrentVtxCol = pVtxCol; }
 
     void frameInit() {
         setCurrentVtxPos(mVtxPosArray[0]);
@@ -76,12 +78,12 @@ private:
     /* 0x00 */ J3DVertexData* mVtxData;
     /* 0x04 */ void* mVtxPosArray[2];
     /* 0x0C */ void* mVtxNrmArray[2];
-    /* 0x14 */ _GXColor* mVtxColArray[2];
+    /* 0x14 */ GXColor* mVtxColArray[2];
     /* 0x1C */ void* mTransformedVtxPosArray[2];
     /* 0x24 */ void* mTransformedVtxNrmArray[2];
     /* 0x2C */ void* mCurrentVtxPos;
     /* 0x30 */ void* mCurrentVtxNrm;
-    /* 0x34 */ _GXColor* mCurrentVtxCol;
+    /* 0x34 */ GXColor* mCurrentVtxCol;
 };  // Size: 0x38
 
 struct VertexNormal {

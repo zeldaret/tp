@@ -56,7 +56,7 @@ public:
     void setDrawMtxDataPointer(J3DDrawMtxData* pMtxData) { mDrawMtxData = pMtxData; }
     void setVertexDataPointer(J3DVertexData* pVtxData) { mVertexData = pVtxData; }
     void* getVcdVatCmd() const { return mVcdVatCmd; }
-    void setVcdVatCmd(void* pVatCmd) { mVcdVatCmd = pVatCmd; }
+    void setVcdVatCmd(void* pVatCmd) { mVcdVatCmd = (u8*)pVatCmd; }
     void show() { offFlag(J3DShpFlag_Visible); }
     void hide() { onFlag(J3DShpFlag_Visible); }
     void setCurrentViewNoPtr(u32* pViewNoPtr) { mCurrentViewNo = pViewNoPtr; }
@@ -81,7 +81,7 @@ private:
     /* 0x10 */ f32 mRadius;
     /* 0x14 */ Vec mMin;
     /* 0x20 */ Vec mMax;
-    /* 0x2C */ void* mVcdVatCmd;
+    /* 0x2C */ u8* mVcdVatCmd;
     /* 0x30 */ GXVtxDescList* mVtxDesc;
     /* 0x34 */ bool mHasNBT;
     /* 0x38 */ J3DShapeMtx** mShapeMtx;
