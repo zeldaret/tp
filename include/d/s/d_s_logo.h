@@ -62,6 +62,7 @@ public:
     /* 8025854C */ void setRenderMode();
 
 public:
+    /* 0x1CC */ mDoDvdThd_toMainRam_c* sceneCommand;
     /* 0x1D0 */ JKRExpHeap* field_0x1d0;
     /* 0x1D4 */ JKRExpHeap* field_0x1d4;
     /* 0x1D8 */ JKRHeap* mpHeap;

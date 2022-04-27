@@ -332,6 +332,7 @@ public:
     JKRArchive* getAnmArchive() { return mAnmArchive; }
     JKRArchive* getCollectResArchive() { return mCollectResArchive; }
     JKRArchive* getItemIconArchive() { return mItemIconArchive; }
+    JKRArchive* getNameResArchive() { return mNameResArchive; }
     JKRAramArchive* getFieldMapArchive2() { return (JKRAramArchive*)mFieldMapArchive2; }
 
     void setFieldMapArchive2(JKRArchive* arc) { mFieldMapArchive2 = arc; }
@@ -1398,6 +1399,10 @@ inline JKRArchive* dComIfGp_getCollectResArchive() {
 
 inline JKRArchive* dComIfGp_getItemIconArchive() {
     return g_dComIfG_gameInfo.play.getItemIconArchive();
+}
+
+inline JKRArchive* dComIfGp_getNameResArchive() {
+    return g_dComIfG_gameInfo.play.getNameResArchive();
 }
 
 inline JKRArchive* dComIfGp_getMsgDtArchive(int idx) {

@@ -4,144 +4,11 @@
 //
 
 #include "d/d_name.h"
+#include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct mDoCPd_c {
-    static u8 m_cpadInfo[256];
-};
-
-struct J2DPane {};
-
-struct JKRArchive {};
-
-struct dSelect_cursor_c {
-    /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
-    /* 801950F4 */ void setPos(f32, f32, J2DPane*, bool);
-    /* 801951B0 */ void setParam(f32, f32, f32, f32, f32);
-    /* 801952A0 */ void setAlphaRate(f32);
-};
-
-struct dNm_HIO_c {
-    /* 8024E3E0 */ dNm_HIO_c();
-    /* 802511A4 */ ~dNm_HIO_c();
-};
-
-struct dName_c {
-    /* 8024E408 */ dName_c(J2DPane*);
-    /* 8024E468 */ ~dName_c();
-    /* 8024E62C */ void _create();
-    /* 8024E6D4 */ void init();
-    /* 8024E7A4 */ void initial();
-    /* 8024E7EC */ void showIcon();
-    /* 8024E9A0 */ void _move();
-    /* 8024EC10 */ void nameCheck();
-    /* 8024EC4C */ void playNameSet(int);
-    /* 8024EC84 */ void cursorAnm();
-    /* 8024ED48 */ void Wait();
-    /* 8024ED4C */ void MojiSelect();
-    /* 8024F034 */ void MojiSelectAnmInit();
-    /* 8024F0E0 */ void MojiSelectAnm();
-    /* 8024F164 */ void MojiSelectAnm2();
-    /* 8024F1E8 */ void MojiSelectAnm3();
-    /* 8024F1EC */ void mojiChange(u8);
-    /* 8024F55C */ void selectMojiSet();
-    /* 8024F59C */ void getMoji();
-    /* 8024F634 */ void setMoji(int);
-    /* 8024F88C */ void setNameText();
-    /* 8024F914 */ void nameCursorMove();
-    /* 8024F994 */ void selectCursorMove();
-    /* 8024FAF4 */ void menuCursorPosSet();
-    /* 8024FB08 */ void MenuSelect();
-    /* 8024FDA0 */ void MenuSelectAnmInit();
-    /* 8024FDF4 */ void MenuSelectAnm();
-    /* 8024FEB4 */ void MenuSelectAnm2();
-    /* 8024FFA0 */ void MenuSelectAnm3();
-    /* 8024FFA4 */ void menuAbtnSelect();
-    /* 80250074 */ void backSpace();
-    /* 802501B0 */ void mojiListChange();
-    /* 80250284 */ void menuCursorMove();
-    /* 80250380 */ void menuCursorMove2();
-    /* 802504A0 */ void selectCursorPosSet(int);
-    /* 80250560 */ void _draw();
-    /* 802505CC */ void screenSet();
-    /* 80250CEC */ void displayInit();
-    /* 80250E54 */ void NameStrSet();
-    /* 80251048 */ void getMenuPosIdx(u8);
-};
-
-struct dDlst_base_c {};
-
-struct dDlst_list_c {
-    /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
-};
-
-struct dDlst_NameIN_c {
-    /* 80251094 */ void draw();
-    /* 8025115C */ ~dDlst_NameIN_c();
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct STControl {
-    /* 80032044 */ STControl(s16, s16, s16, s16, f32, f32, s16, s16);
-    /* 8003219C */ void checkTrigger();
-    /* 8003242C */ void checkLeftTrigger();
-    /* 800324A8 */ void checkRightTrigger();
-    /* 80032524 */ void checkUpTrigger();
-    /* 800325A0 */ void checkDownTrigger();
-};
-
-struct JKRFileLoader {
-    /* 802D4270 */ void getGlbResource(char const*, JKRFileLoader*);
-};
-
-struct JKRExpHeap {};
-
-struct J2DTextBox {
-    /* 80300658 */ void getStringPtr() const;
-    /* 80300660 */ void setString(char const*, ...);
-    /* 8030074C */ void setString(s16, char const*, ...);
-};
-
-struct J2DGrafContext {};
-
-struct J2DScreen {
-    /* 802F8498 */ J2DScreen();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-    /* 802F9690 */ void animation();
-};
-
-struct J2DAnmLoaderDataBase {
-    /* 80308A6C */ void load(void const*);
-};
-
-struct CPaneMgrAlpha {
-    /* 802553FC */ CPaneMgrAlpha(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 802555C8 */ void show();
-    /* 80255608 */ void hide();
-};
-
-struct CPaneMgr {
-    /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 802547CC */ void scaleAnime(s16, f32, f32, u8);
-    /* 80254EBC */ void getGlobalVtxCenter(J2DPane*, bool, s16);
-};
+#include "f_op/f_op_msg_mng.h"
+#include "m_Do/m_Do_audio.h"
 
 //
 // Forward References:
@@ -231,9 +98,6 @@ extern "C" void getStringPtr__10J2DTextBoxCFv();
 extern "C" void setString__10J2DTextBoxFPCce();
 extern "C" void setString__10J2DTextBoxFsPCce();
 extern "C" void load__20J2DAnmLoaderDataBaseFPCv();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXConcat();
-extern "C" void PSMTXScale();
 extern "C" void __register_global_object();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_19();
@@ -248,256 +112,13 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void sprintf();
-extern "C" void strcat();
-extern "C" void strcpy();
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
 //
-
-/* ############################################################################################## */
-/* 80399CC8-80399CC8 026328 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80399CC8 = "あ";
-SECTION_DEAD static char const* const stringBase_80399CCB = "い";
-SECTION_DEAD static char const* const stringBase_80399CCE = "う";
-SECTION_DEAD static char const* const stringBase_80399CD1 = "え";
-SECTION_DEAD static char const* const stringBase_80399CD4 = "お";
-SECTION_DEAD static char const* const stringBase_80399CD7 = "か";
-SECTION_DEAD static char const* const stringBase_80399CDA = "き";
-SECTION_DEAD static char const* const stringBase_80399CDD = "く";
-SECTION_DEAD static char const* const stringBase_80399CE0 = "け";
-SECTION_DEAD static char const* const stringBase_80399CE3 = "こ";
-SECTION_DEAD static char const* const stringBase_80399CE6 = "さ";
-SECTION_DEAD static char const* const stringBase_80399CE9 = "し";
-SECTION_DEAD static char const* const stringBase_80399CEC = "す";
-SECTION_DEAD static char const* const stringBase_80399CEF = "せ";
-SECTION_DEAD static char const* const stringBase_80399CF2 = "そ";
-SECTION_DEAD static char const* const stringBase_80399CF5 = "た";
-SECTION_DEAD static char const* const stringBase_80399CF8 = "ち";
-SECTION_DEAD static char const* const stringBase_80399CFB = "つ";
-SECTION_DEAD static char const* const stringBase_80399CFE = "て";
-SECTION_DEAD static char const* const stringBase_80399D01 = "と";
-SECTION_DEAD static char const* const stringBase_80399D04 = "な";
-SECTION_DEAD static char const* const stringBase_80399D07 = "に";
-SECTION_DEAD static char const* const stringBase_80399D0A = "ぬ";
-SECTION_DEAD static char const* const stringBase_80399D0D = "ね";
-SECTION_DEAD static char const* const stringBase_80399D10 = "の";
-SECTION_DEAD static char const* const stringBase_80399D13 = "は";
-SECTION_DEAD static char const* const stringBase_80399D16 = "ひ";
-SECTION_DEAD static char const* const stringBase_80399D19 = "ふ";
-SECTION_DEAD static char const* const stringBase_80399D1C = "へ";
-SECTION_DEAD static char const* const stringBase_80399D1F = "ほ";
-SECTION_DEAD static char const* const stringBase_80399D22 = "ま";
-SECTION_DEAD static char const* const stringBase_80399D25 = "み";
-SECTION_DEAD static char const* const stringBase_80399D28 = "む";
-SECTION_DEAD static char const* const stringBase_80399D2B = "め";
-SECTION_DEAD static char const* const stringBase_80399D2E = "も";
-SECTION_DEAD static char const* const stringBase_80399D31 = "や";
-SECTION_DEAD static char const* const stringBase_80399D34 = "　";
-SECTION_DEAD static char const* const stringBase_80399D37 = "ゆ";
-SECTION_DEAD static char const* const stringBase_80399D3A = "よ";
-SECTION_DEAD static char const* const stringBase_80399D3D = "ら";
-SECTION_DEAD static char const* const stringBase_80399D40 = "り";
-SECTION_DEAD static char const* const stringBase_80399D43 = "る";
-SECTION_DEAD static char const* const stringBase_80399D46 = "れ";
-SECTION_DEAD static char const* const stringBase_80399D49 = "ろ";
-SECTION_DEAD static char const* const stringBase_80399D4C = "わ";
-SECTION_DEAD static char const* const stringBase_80399D4F = "を";
-SECTION_DEAD static char const* const stringBase_80399D52 = "ん";
-SECTION_DEAD static char const* const stringBase_80399D55 = "ぁ";
-SECTION_DEAD static char const* const stringBase_80399D58 = "ぃ";
-SECTION_DEAD static char const* const stringBase_80399D5B = "ぅ";
-SECTION_DEAD static char const* const stringBase_80399D5E = "ぇ";
-SECTION_DEAD static char const* const stringBase_80399D61 = "ぉ";
-SECTION_DEAD static char const* const stringBase_80399D64 = "ゃ";
-SECTION_DEAD static char const* const stringBase_80399D67 = "ゅ";
-SECTION_DEAD static char const* const stringBase_80399D6A = "ょ";
-SECTION_DEAD static char const* const stringBase_80399D6D = "っ";
-SECTION_DEAD static char const* const stringBase_80399D70 = "ー";
-SECTION_DEAD static char const* const stringBase_80399D73 = "゛";
-SECTION_DEAD static char const* const stringBase_80399D76 = "゜";
-SECTION_DEAD static char const* const stringBase_80399D79 = "￥";
-SECTION_DEAD static char const* const stringBase_80399D7C = "が";
-SECTION_DEAD static char const* const stringBase_80399D7F = "ぎ";
-SECTION_DEAD static char const* const stringBase_80399D82 = "ぐ";
-SECTION_DEAD static char const* const stringBase_80399D85 = "げ";
-SECTION_DEAD static char const* const stringBase_80399D88 = "ご";
-SECTION_DEAD static char const* const stringBase_80399D8B = "ざ";
-SECTION_DEAD static char const* const stringBase_80399D8E = "じ";
-SECTION_DEAD static char const* const stringBase_80399D91 = "ず";
-SECTION_DEAD static char const* const stringBase_80399D94 = "ぜ";
-SECTION_DEAD static char const* const stringBase_80399D97 = "ぞ";
-SECTION_DEAD static char const* const stringBase_80399D9A = "だ";
-SECTION_DEAD static char const* const stringBase_80399D9D = "ぢ";
-SECTION_DEAD static char const* const stringBase_80399DA0 = "づ";
-SECTION_DEAD static char const* const stringBase_80399DA3 = "で";
-SECTION_DEAD static char const* const stringBase_80399DA6 = "ど";
-SECTION_DEAD static char const* const stringBase_80399DA9 = "ば";
-SECTION_DEAD static char const* const stringBase_80399DAC = "び";
-SECTION_DEAD static char const* const stringBase_80399DAF = "ぶ";
-SECTION_DEAD static char const* const stringBase_80399DB2 = "べ";
-SECTION_DEAD static char const* const stringBase_80399DB5 = "ぼ";
-SECTION_DEAD static char const* const stringBase_80399DB8 = "ぱ";
-SECTION_DEAD static char const* const stringBase_80399DBB = "ぴ";
-SECTION_DEAD static char const* const stringBase_80399DBE = "ぷ";
-SECTION_DEAD static char const* const stringBase_80399DC1 = "ぺ";
-SECTION_DEAD static char const* const stringBase_80399DC4 = "ぽ";
-SECTION_DEAD static char const* const stringBase_80399DC7 = "ア";
-SECTION_DEAD static char const* const stringBase_80399DCA = "イ";
-SECTION_DEAD static char const* const stringBase_80399DCD = "ウ";
-SECTION_DEAD static char const* const stringBase_80399DD0 = "エ";
-SECTION_DEAD static char const* const stringBase_80399DD3 = "オ";
-SECTION_DEAD static char const* const stringBase_80399DD6 = "カ";
-SECTION_DEAD static char const* const stringBase_80399DD9 = "キ";
-SECTION_DEAD static char const* const stringBase_80399DDC = "ク";
-SECTION_DEAD static char const* const stringBase_80399DDF = "ケ";
-SECTION_DEAD static char const* const stringBase_80399DE2 = "コ";
-SECTION_DEAD static char const* const stringBase_80399DE5 = "サ";
-SECTION_DEAD static char const* const stringBase_80399DE8 = "シ";
-SECTION_DEAD static char const* const stringBase_80399DEB = "ス";
-SECTION_DEAD static char const* const stringBase_80399DEE = "セ";
-// MWCC ignores mapping of some japanese characters using the
-// byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
-SECTION_DEAD static char const* const stringBase_80399DF1 = "\x83\x5C";
-SECTION_DEAD static char const* const stringBase_80399DF4 = "タ";
-SECTION_DEAD static char const* const stringBase_80399DF7 = "チ";
-SECTION_DEAD static char const* const stringBase_80399DFA = "ツ";
-SECTION_DEAD static char const* const stringBase_80399DFD = "テ";
-SECTION_DEAD static char const* const stringBase_80399E00 = "ト";
-SECTION_DEAD static char const* const stringBase_80399E03 = "ナ";
-SECTION_DEAD static char const* const stringBase_80399E06 = "ニ";
-SECTION_DEAD static char const* const stringBase_80399E09 = "ヌ";
-SECTION_DEAD static char const* const stringBase_80399E0C = "ネ";
-SECTION_DEAD static char const* const stringBase_80399E0F = "ノ";
-SECTION_DEAD static char const* const stringBase_80399E12 = "ハ";
-SECTION_DEAD static char const* const stringBase_80399E15 = "ヒ";
-SECTION_DEAD static char const* const stringBase_80399E18 = "フ";
-SECTION_DEAD static char const* const stringBase_80399E1B = "ヘ";
-SECTION_DEAD static char const* const stringBase_80399E1E = "ホ";
-SECTION_DEAD static char const* const stringBase_80399E21 = "マ";
-SECTION_DEAD static char const* const stringBase_80399E24 = "ミ";
-SECTION_DEAD static char const* const stringBase_80399E27 = "ム";
-SECTION_DEAD static char const* const stringBase_80399E2A = "メ";
-SECTION_DEAD static char const* const stringBase_80399E2D = "モ";
-SECTION_DEAD static char const* const stringBase_80399E30 = "ヤ";
-SECTION_DEAD static char const* const stringBase_80399E33 = "ユ";
-SECTION_DEAD static char const* const stringBase_80399E36 = "ヨ";
-SECTION_DEAD static char const* const stringBase_80399E39 = "ラ";
-SECTION_DEAD static char const* const stringBase_80399E3C = "リ";
-SECTION_DEAD static char const* const stringBase_80399E3F = "ル";
-SECTION_DEAD static char const* const stringBase_80399E42 = "レ";
-SECTION_DEAD static char const* const stringBase_80399E45 = "ロ";
-SECTION_DEAD static char const* const stringBase_80399E48 = "ワ";
-SECTION_DEAD static char const* const stringBase_80399E4B = "ヲ";
-SECTION_DEAD static char const* const stringBase_80399E4E = "ン";
-SECTION_DEAD static char const* const stringBase_80399E51 = "ァ";
-SECTION_DEAD static char const* const stringBase_80399E54 = "ィ";
-SECTION_DEAD static char const* const stringBase_80399E57 = "ゥ";
-SECTION_DEAD static char const* const stringBase_80399E5A = "ェ";
-SECTION_DEAD static char const* const stringBase_80399E5D = "ォ";
-SECTION_DEAD static char const* const stringBase_80399E60 = "ャ";
-SECTION_DEAD static char const* const stringBase_80399E63 = "ュ";
-SECTION_DEAD static char const* const stringBase_80399E66 = "ョ";
-SECTION_DEAD static char const* const stringBase_80399E69 = "ッ";
-SECTION_DEAD static char const* const stringBase_80399E6C = "ヴ";
-SECTION_DEAD static char const* const stringBase_80399E6F = "ガ";
-SECTION_DEAD static char const* const stringBase_80399E72 = "ギ";
-SECTION_DEAD static char const* const stringBase_80399E75 = "グ";
-SECTION_DEAD static char const* const stringBase_80399E78 = "ゲ";
-SECTION_DEAD static char const* const stringBase_80399E7B = "ゴ";
-SECTION_DEAD static char const* const stringBase_80399E7E = "ザ";
-SECTION_DEAD static char const* const stringBase_80399E81 = "ジ";
-SECTION_DEAD static char const* const stringBase_80399E84 = "ズ";
-SECTION_DEAD static char const* const stringBase_80399E87 = "ゼ";
-SECTION_DEAD static char const* const stringBase_80399E8A = "ゾ";
-SECTION_DEAD static char const* const stringBase_80399E8D = "ダ";
-SECTION_DEAD static char const* const stringBase_80399E90 = "ヂ";
-SECTION_DEAD static char const* const stringBase_80399E93 = "ヅ";
-SECTION_DEAD static char const* const stringBase_80399E96 = "デ";
-SECTION_DEAD static char const* const stringBase_80399E99 = "ド";
-SECTION_DEAD static char const* const stringBase_80399E9C = "バ";
-SECTION_DEAD static char const* const stringBase_80399E9F = "ビ";
-SECTION_DEAD static char const* const stringBase_80399EA2 = "ブ";
-SECTION_DEAD static char const* const stringBase_80399EA5 = "ベ";
-SECTION_DEAD static char const* const stringBase_80399EA8 = "ボ";
-SECTION_DEAD static char const* const stringBase_80399EAB = "パ";
-SECTION_DEAD static char const* const stringBase_80399EAE = "ピ";
-SECTION_DEAD static char const* const stringBase_80399EB1 = "プ";
-SECTION_DEAD static char const* const stringBase_80399EB4 = "ペ";
-SECTION_DEAD static char const* const stringBase_80399EB7 = "ポ";
-SECTION_DEAD static char const* const stringBase_80399EBA = "A";
-SECTION_DEAD static char const* const stringBase_80399EBC = "N";
-SECTION_DEAD static char const* const stringBase_80399EBE = "a";
-SECTION_DEAD static char const* const stringBase_80399EC0 = "n";
-SECTION_DEAD static char const* const stringBase_80399EC2 = "1";
-SECTION_DEAD static char const* const stringBase_80399EC4 = "B";
-SECTION_DEAD static char const* const stringBase_80399EC6 = "O";
-SECTION_DEAD static char const* const stringBase_80399EC8 = "b";
-SECTION_DEAD static char const* const stringBase_80399ECA = "o";
-SECTION_DEAD static char const* const stringBase_80399ECC = "2";
-SECTION_DEAD static char const* const stringBase_80399ECE = "C";
-SECTION_DEAD static char const* const stringBase_80399ED0 = "P";
-SECTION_DEAD static char const* const stringBase_80399ED2 = "c";
-SECTION_DEAD static char const* const stringBase_80399ED4 = "p";
-SECTION_DEAD static char const* const stringBase_80399ED6 = "3";
-SECTION_DEAD static char const* const stringBase_80399ED8 = "D";
-SECTION_DEAD static char const* const stringBase_80399EDA = "Q";
-SECTION_DEAD static char const* const stringBase_80399EDC = "d";
-SECTION_DEAD static char const* const stringBase_80399EDE = "q";
-SECTION_DEAD static char const* const stringBase_80399EE0 = "4";
-SECTION_DEAD static char const* const stringBase_80399EE2 = "E";
-SECTION_DEAD static char const* const stringBase_80399EE4 = "R";
-SECTION_DEAD static char const* const stringBase_80399EE6 = "e";
-SECTION_DEAD static char const* const stringBase_80399EE8 = "r";
-SECTION_DEAD static char const* const stringBase_80399EEA = "5";
-SECTION_DEAD static char const* const stringBase_80399EEC = "F";
-SECTION_DEAD static char const* const stringBase_80399EEE = "S";
-SECTION_DEAD static char const* const stringBase_80399EF0 = "f";
-SECTION_DEAD static char const* const stringBase_80399EF2 = "s";
-SECTION_DEAD static char const* const stringBase_80399EF4 = "6";
-SECTION_DEAD static char const* const stringBase_80399EF6 = "G";
-SECTION_DEAD static char const* const stringBase_80399EF8 = "T";
-SECTION_DEAD static char const* const stringBase_80399EFA = "g";
-SECTION_DEAD static char const* const stringBase_80399EFC = "t";
-SECTION_DEAD static char const* const stringBase_80399EFE = "7";
-SECTION_DEAD static char const* const stringBase_80399F00 = "H";
-SECTION_DEAD static char const* const stringBase_80399F02 = "U";
-SECTION_DEAD static char const* const stringBase_80399F04 = "h";
-SECTION_DEAD static char const* const stringBase_80399F06 = "u";
-SECTION_DEAD static char const* const stringBase_80399F08 = "8";
-SECTION_DEAD static char const* const stringBase_80399F0A = "I";
-SECTION_DEAD static char const* const stringBase_80399F0C = "V";
-SECTION_DEAD static char const* const stringBase_80399F0E = "i";
-SECTION_DEAD static char const* const stringBase_80399F10 = "v";
-SECTION_DEAD static char const* const stringBase_80399F12 = "9";
-SECTION_DEAD static char const* const stringBase_80399F14 = "J";
-SECTION_DEAD static char const* const stringBase_80399F16 = "W";
-SECTION_DEAD static char const* const stringBase_80399F18 = "j";
-SECTION_DEAD static char const* const stringBase_80399F1A = "w";
-SECTION_DEAD static char const* const stringBase_80399F1C = "0";
-SECTION_DEAD static char const* const stringBase_80399F1E = "K";
-SECTION_DEAD static char const* const stringBase_80399F20 = "X";
-SECTION_DEAD static char const* const stringBase_80399F22 = "k";
-SECTION_DEAD static char const* const stringBase_80399F24 = "x";
-SECTION_DEAD static char const* const stringBase_80399F26 = ",";
-SECTION_DEAD static char const* const stringBase_80399F28 = "L";
-SECTION_DEAD static char const* const stringBase_80399F2A = "Y";
-SECTION_DEAD static char const* const stringBase_80399F2C = "l";
-SECTION_DEAD static char const* const stringBase_80399F2E = "y";
-SECTION_DEAD static char const* const stringBase_80399F30 = ".";
-SECTION_DEAD static char const* const stringBase_80399F32 = "M";
-SECTION_DEAD static char const* const stringBase_80399F34 = "Z";
-SECTION_DEAD static char const* const stringBase_80399F36 = "m";
-SECTION_DEAD static char const* const stringBase_80399F38 = "z";
-SECTION_DEAD static char const* const stringBase_80399F3A = " ";
-#pragma pop
 
 /* 803C1F50-803C1F5C 01F070 000C+00 5/5 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -505,609 +126,76 @@ SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
 };
 
 /* 803C1F5C-803C2060 -00001 0104+00 0/3 0/0 0/0 .data            l_mojiHira */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_mojiHira[65] = {
-    (void*)&d_d_name__stringBase0,
-    (void*)(((char*)&d_d_name__stringBase0) + 0x3),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x6),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x9),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xC),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xF),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x12),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x15),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x18),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1B),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1E),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x21),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x24),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x27),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x2A),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x2D),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x30),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x33),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x36),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x39),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x3C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x3F),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x42),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x45),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x48),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x4B),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x4E),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x51),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x54),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x57),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x5A),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x5D),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x60),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x63),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x66),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x69),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x6C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x6F),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x6C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x72),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x75),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x78),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x7B),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x7E),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x81),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x84),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x6C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x87),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x6C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x8A),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x8D),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x90),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x93),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x96),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x99),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x9C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x6C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x9F),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x6C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xA2),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xA5),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x6C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xA8),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xAB),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xAE),
+SECTION_DATA static char* l_mojiHira[65] = {
+    "あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ", "さ", "し", "す",
+    "せ", "そ", "た", "ち", "つ", "て", "と", "な", "に", "ぬ", "ね", "の", "は",
+    "ひ", "ふ", "へ", "ほ", "ま", "み", "む", "め", "も", "や", "　", "ゆ", "　",
+    "よ", "ら", "り", "る", "れ", "ろ", "わ", "　", "を", "　", "ん", "ぁ", "ぃ",
+    "ぅ", "ぇ", "ぉ", "ゃ", "　", "ゅ", "　", "ょ", "っ", "　", "ー", "゛", "゜",
 };
-#pragma pop
 
 /* 803C2060-803C2164 -00001 0104+00 0/1 0/0 0/0 .data            l_mojiHira2 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_mojiHira2[65] = {
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB4),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB7),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xBA),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xBD),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xC0),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xC3),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xC6),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xC9),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xCC),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xCF),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xD2),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xD5),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xD8),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xDB),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xDE),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xE1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xE4),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xE7),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xEA),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xED),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
+SECTION_DATA static char* l_mojiHira2[65] = {
+    "￥", "￥", "￥", "￥", "￥", "が", "ぎ", "ぐ", "げ", "ご", "ざ", "じ", "ず",
+    "ぜ", "ぞ", "だ", "ぢ", "づ", "で", "ど", "￥", "￥", "￥", "￥", "￥", "ば",
+    "び", "ぶ", "べ", "ぼ", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
+    "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
+    "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
 };
-#pragma pop
 
 /* 803C2164-803C2268 -00001 0104+00 0/1 0/0 0/0 .data            l_mojiHira3 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_mojiHira3[65] = {
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xF0),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xF3),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xF6),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xF9),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xFC),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
+SECTION_DATA static char* l_mojiHira3[65] = {
+    "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
+    "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "ぱ",
+    "ぴ", "ぷ", "ぺ", "ぽ", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
+    "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
+    "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
 };
-#pragma pop
 
 /* 803C2268-803C236C -00001 0104+00 0/3 0/0 0/0 .data            l_mojikata */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_mojikata[65] = {
-    (void*)(((char*)&d_d_name__stringBase0) + 0xFF),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x102),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x105),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x108),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x10B),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x10E),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x111),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x114),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x117),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x11A),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x11D),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x120),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x123),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x126),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x129),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x12C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x12F),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x132),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x135),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x138),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x13B),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x13E),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x141),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x144),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x147),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x14A),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x14D),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x150),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x153),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x156),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x159),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x15C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x15F),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x162),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x165),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x168),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x6C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x16B),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x6C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x16E),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x171),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x174),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x177),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x17A),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x17D),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x180),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x6C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x183),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x6C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x186),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x189),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x18C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x18F),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x192),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x195),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x198),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x6C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x19B),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x6C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x19E),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1A1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x6C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xA8),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xAB),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xAE),
+SECTION_DATA static char* l_mojikata[65] = {
+    "ア", "イ",       "ウ", "エ", "オ", "カ", "キ", "ク", "ケ", "コ", "サ", "シ", "ス",
+    "セ", "\x83\x5C", "タ", "チ", "ツ", "テ", "ト", "ナ", "ニ", "ヌ", "ネ", "ノ", "ハ",
+    "ヒ", "フ",       "ヘ", "ホ", "マ", "ミ", "ム", "メ", "モ", "ヤ", "　", "ユ", "　",
+    "ヨ", "ラ",       "リ", "ル", "レ", "ロ", "ワ", "　", "ヲ", "　", "ン", "ァ", "ィ",
+    "ゥ", "ェ",       "ォ", "ャ", "　", "ュ", "　", "ョ", "ッ", "　", "ー", "゛", "゜",
 };
-#pragma pop
 
 /* 803C236C-803C2470 -00001 0104+00 0/1 0/0 0/0 .data            l_mojikata2 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_mojikata2[65] = {
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1A4),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1A7),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1AA),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1AD),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1B0),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1B3),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1B6),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1B9),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1BC),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1BF),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1C2),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1C5),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1C8),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1CB),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1CE),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1D1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1D4),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1D7),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1DA),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1DD),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1E0),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
+SECTION_DATA static char* l_mojikata2[65] = {
+    "￥", "￥", "ヴ", "￥", "￥", "ガ", "ギ", "グ", "ゲ", "ゴ", "ザ", "ジ", "ズ",
+    "ゼ", "ゾ", "ダ", "ヂ", "ヅ", "デ", "ド", "￥", "￥", "￥", "￥", "￥", "バ",
+    "ビ", "ブ", "ベ", "ボ", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
+    "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
+    "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
 };
-#pragma pop
 
 /* 803C2470-803C2574 -00001 0104+00 0/1 0/0 0/0 .data            l_mojikata3 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_mojikata3[65] = {
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1E3),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1E6),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1E9),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1EC),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1EF),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
-    (void*)(((char*)&d_d_name__stringBase0) + 0xB1),
+SECTION_DATA static char* l_mojikata3[65] = {
+    "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
+    "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "パ",
+    "ピ", "プ", "ペ", "ポ", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
+    "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
+    "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
 };
-#pragma pop
 
 /* 803C2574-803C2678 -00001 0104+00 0/3 0/0 0/0 .data            l_mojiEisu */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_mojiEisu[65] = {
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1F2),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1F4),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1F6),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1F8),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1FA),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1FC),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x1FE),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x200),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x202),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x204),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x206),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x208),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x20A),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x20C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x20E),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x210),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x212),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x214),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x216),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x218),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x21A),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x21C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x21E),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x220),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x222),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x224),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x226),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x228),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x22A),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x22C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x22E),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x230),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x232),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x234),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x236),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x238),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x23A),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x23C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x23E),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x240),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x242),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x244),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x246),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x248),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x24A),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x24C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x24E),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x250),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x252),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x254),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x256),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x258),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x25A),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x25C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x25E),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x260),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x262),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x264),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x266),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x268),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x26A),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x26C),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x26E),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x270),
-    (void*)(((char*)&d_d_name__stringBase0) + 0x272),
+SECTION_DATA static char* l_mojiEisu[65] = {
+    "A", "N", "a", "n", "1", "B", "O", "b", "o", "2", "C", "P", "c", "p", "3", "D", "Q",
+    "d", "q", "4", "E", "R", "e", "r", "5", "F", "S", "f", "s", "6", "G", "T", "g", "t",
+    "7", "H", "U", "h", "u", "8", "I", "V", "i", "v", "9", "J", "W", "j", "w", "0", "K",
+    "X", "k", "x", ",", "L", "Y", "l", "y", ".", "M", "Z", "m", "z", " ",
 };
-#pragma pop
 
-/* 803C2678-803C2684 -00001 000C+00 0/1 0/0 0/0 .data            @3825 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3825[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)MojiSelect__7dName_cFv,
-};
-#pragma pop
-
-/* 803C2684-803C2690 -00001 000C+00 0/1 0/0 0/0 .data            @3826 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3826[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)MojiSelectAnm__7dName_cFv,
-};
-#pragma pop
-
-/* 803C2690-803C269C -00001 000C+00 0/1 0/0 0/0 .data            @3827 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3827[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)MojiSelectAnm2__7dName_cFv,
-};
-#pragma pop
-
-/* 803C269C-803C26A8 -00001 000C+00 0/1 0/0 0/0 .data            @3828 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3828[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)MojiSelectAnm3__7dName_cFv,
-};
-#pragma pop
-
-/* 803C26A8-803C26B4 -00001 000C+00 0/1 0/0 0/0 .data            @3829 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3829[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)MenuSelect__7dName_cFv,
-};
-#pragma pop
-
-/* 803C26B4-803C26C0 -00001 000C+00 0/1 0/0 0/0 .data            @3830 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3830[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)MenuSelectAnm__7dName_cFv,
-};
-#pragma pop
-
-/* 803C26C0-803C26CC -00001 000C+00 0/1 0/0 0/0 .data            @3831 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3831[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)MenuSelectAnm2__7dName_cFv,
-};
-#pragma pop
-
-/* 803C26CC-803C26D8 -00001 000C+00 0/1 0/0 0/0 .data            @3832 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3832[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)MenuSelectAnm3__7dName_cFv,
-};
-#pragma pop
-
-/* 803C26D8-803C26E4 -00001 000C+00 0/1 0/0 0/0 .data            @3833 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3833[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)Wait__7dName_cFv,
-};
-#pragma pop
+/* 80430734-80430748 05D454 0014+00 9/9 0/0 0/0 .bss             g_nmHIO */
+static dNm_HIO_c g_nmHIO;
 
 /* 803C26E4-803C2750 01F804 006C+00 1/2 0/0 0/0 .data            SelProc */
-SECTION_DATA static u8 SelProc[108] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+typedef void (dName_c::*selProcFunc)(void);
+SECTION_DATA static selProcFunc SelProc[9] = {
+    &dName_c::MojiSelect,     &dName_c::MojiSelectAnm,  &dName_c::MojiSelectAnm2,
+    &dName_c::MojiSelectAnm3, &dName_c::MenuSelect,     &dName_c::MenuSelectAnm,
+    &dName_c::MenuSelectAnm2, &dName_c::MenuSelectAnm3, &dName_c::Wait};
 
 /* 803C2750-803C2788 -00001 0034+04 1/1 0/0 0/0 .data            @4121 */
 SECTION_DATA static void* lit_4121[13 + 1 /* padding */] = {
@@ -1131,116 +219,78 @@ SECTION_DATA static void* lit_4121[13 + 1 /* padding */] = {
 /* 803C2788-803C27C8 01F8A8 0040+00 0/1 0/0 0/0 .data            l_cur0TagName$4610 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_cur0TagName[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x73, 0x5F, 0x30, 0x30, 0x00, 0x00, 0x00, 0x00, 0x73, 0x5F, 0x30, 0x31,
-    0x00, 0x00, 0x00, 0x00, 0x73, 0x5F, 0x30, 0x32, 0x00, 0x00, 0x00, 0x00, 0x73, 0x5F, 0x30, 0x33,
-    0x00, 0x00, 0x00, 0x00, 0x73, 0x5F, 0x30, 0x34, 0x00, 0x00, 0x00, 0x00, 0x73, 0x5F, 0x30, 0x35,
-    0x00, 0x00, 0x00, 0x00, 0x73, 0x5F, 0x30, 0x36, 0x00, 0x00, 0x00, 0x00, 0x73, 0x5F, 0x30, 0x37,
+SECTION_DATA static u64 l_cur0TagName[8] = {
+    's_00', 's_01', 's_02', 's_03', 's_04', 's_05', 's_06', 's_07',
 };
 #pragma pop
 
 /* 803C27C8-803C2808 01F8E8 0040+00 0/1 0/0 0/0 .data            l_cur1TagName$4611 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_cur1TagName[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x73, 0x5F, 0x30, 0x72, 0x00, 0x00, 0x00, 0x73, 0x5F, 0x30, 0x31, 0x72,
-    0x00, 0x00, 0x00, 0x73, 0x5F, 0x30, 0x32, 0x72, 0x00, 0x00, 0x00, 0x73, 0x5F, 0x30, 0x33, 0x72,
-    0x00, 0x00, 0x00, 0x73, 0x5F, 0x30, 0x34, 0x72, 0x00, 0x00, 0x00, 0x73, 0x5F, 0x30, 0x35, 0x72,
-    0x00, 0x00, 0x00, 0x73, 0x5F, 0x30, 0x36, 0x72, 0x00, 0x00, 0x00, 0x73, 0x5F, 0x30, 0x37, 0x72,
+SECTION_DATA static u64 l_cur1TagName[8] = {
+    's_0r', 's_01r', 's_02r', 's_03r', 's_04r', 's_05r', 's_06r', 's_07r',
 };
 #pragma pop
 
 /* 803C2808-803C2828 01F928 0020+00 0/1 0/0 0/0 .data            l_menu_icon_tag$4617 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_menu_icon_tag[32] = {
-    0x00, 0x70, 0x5F, 0x41, 0x42, 0x43, 0x5F, 0x6E, 0x00, 0x70, 0x5F, 0x61, 0x62, 0x63, 0x5F, 0x6E,
-    0x6A, 0x5F, 0x65, 0x69, 0x67, 0x6F, 0x5F, 0x6E, 0x00, 0x70, 0x5F, 0x65, 0x6E, 0x64, 0x5F, 0x6E,
+SECTION_DATA static u64 l_menu_icon_tag[4] = {
+    'p_ABC_n',
+    'p_abc_n',
+    'j_eigo_n',
+    'p_end_n',
 };
 #pragma pop
 
 /* 803C2828-803C28A0 01F948 0078+00 0/1 0/0 0/0 .data            l_menu_tag$4618 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_menu_tag[120] = {
-    0x00, 0x70, 0x5F, 0x41, 0x42, 0x43, 0x5F, 0x30, 0x00, 0x70, 0x5F, 0x41, 0x42, 0x43, 0x5F,
-    0x31, 0x00, 0x70, 0x5F, 0x41, 0x42, 0x43, 0x5F, 0x32, 0x00, 0x70, 0x5F, 0x61, 0x62, 0x63,
-    0x5F, 0x30, 0x00, 0x70, 0x5F, 0x61, 0x62, 0x63, 0x5F, 0x31, 0x00, 0x70, 0x5F, 0x61, 0x62,
-    0x63, 0x5F, 0x32, 0x6D, 0x5F, 0x65, 0x69, 0x67, 0x6F, 0x5F, 0x30, 0x6D, 0x5F, 0x65, 0x69,
-    0x67, 0x6F, 0x5F, 0x31, 0x6D, 0x5F, 0x65, 0x69, 0x67, 0x6F, 0x5F, 0x32, 0x00, 0x70, 0x5F,
-    0x65, 0x6E, 0x64, 0x5F, 0x30, 0x00, 0x70, 0x5F, 0x65, 0x6E, 0x64, 0x5F, 0x31, 0x00, 0x70,
-    0x5F, 0x65, 0x6E, 0x64, 0x5F, 0x32, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_DATA static u64 l_menu_tag[15] = {
+    'p_ABC_0',  'p_ABC_1',  'p_ABC_2',  'p_abc_0', 'p_abc_1', 'p_abc_2',
+    'm_eigo_0', 'm_eigo_1', 'm_eigo_2', 'p_end_0', 'p_end_1', 'p_end_2',
 };
 #pragma pop
 
 /* 803C28A0-803C28B0 01F9C0 0010+00 0/1 0/0 0/0 .data            l_menu_msg$4619 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_menu_msg[16] = {
-    0x00, 0x00, 0x03, 0x8B, 0x00, 0x00, 0x03, 0x8C, 0x00, 0x00, 0x03, 0x88, 0x00, 0x00, 0x03, 0x8E,
+SECTION_DATA static u32 l_menu_msg[4] = {
+    0x38B,
+    0x38C,
+    0x388,
+    0x38E,
 };
 #pragma pop
 
 /* 803C28B0-803C2AB8 01F9D0 0208+00 0/1 0/0 0/0 .data            l_tagName$4635 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName[520] = {
-    0x00, 0x00, 0x6D, 0x5F, 0x30, 0x30, 0x5F, 0x30, 0x00, 0x00, 0x6D, 0x5F, 0x30, 0x30, 0x5F, 0x31,
-    0x00, 0x00, 0x6D, 0x5F, 0x30, 0x30, 0x5F, 0x32, 0x00, 0x00, 0x6D, 0x5F, 0x30, 0x30, 0x5F, 0x33,
-    0x00, 0x00, 0x6D, 0x5F, 0x30, 0x30, 0x5F, 0x34, 0x00, 0x00, 0x6D, 0x5F, 0x30, 0x31, 0x5F, 0x30,
-    0x00, 0x00, 0x6D, 0x5F, 0x30, 0x31, 0x5F, 0x31, 0x00, 0x00, 0x6D, 0x5F, 0x30, 0x31, 0x5F, 0x32,
-    0x00, 0x00, 0x6D, 0x5F, 0x30, 0x31, 0x5F, 0x33, 0x00, 0x00, 0x6D, 0x5F, 0x30, 0x31, 0x5F, 0x34,
-    0x00, 0x00, 0x6D, 0x5F, 0x30, 0x32, 0x5F, 0x30, 0x00, 0x00, 0x6D, 0x5F, 0x30, 0x32, 0x5F, 0x31,
-    0x00, 0x00, 0x6D, 0x5F, 0x30, 0x32, 0x5F, 0x32, 0x00, 0x00, 0x6D, 0x5F, 0x30, 0x32, 0x5F, 0x33,
-    0x00, 0x00, 0x6D, 0x5F, 0x30, 0x32, 0x5F, 0x34, 0x00, 0x00, 0x00, 0x6D, 0x30, 0x33, 0x5F, 0x30,
-    0x00, 0x00, 0x00, 0x6D, 0x30, 0x33, 0x5F, 0x31, 0x00, 0x00, 0x00, 0x6D, 0x30, 0x33, 0x5F, 0x32,
-    0x00, 0x00, 0x00, 0x6D, 0x30, 0x33, 0x5F, 0x33, 0x00, 0x00, 0x00, 0x6D, 0x30, 0x33, 0x5F, 0x34,
-    0x00, 0x00, 0x6D, 0x5F, 0x30, 0x34, 0x5F, 0x30, 0x00, 0x00, 0x6D, 0x5F, 0x30, 0x34, 0x5F, 0x31,
-    0x00, 0x00, 0x6D, 0x5F, 0x30, 0x34, 0x5F, 0x32, 0x00, 0x00, 0x6D, 0x5F, 0x30, 0x34, 0x5F, 0x33,
-    0x00, 0x00, 0x6D, 0x5F, 0x30, 0x34, 0x5F, 0x34, 0x00, 0x00, 0x6D, 0x5F, 0x30, 0x35, 0x5F, 0x30,
-    0x00, 0x00, 0x6D, 0x5F, 0x30, 0x35, 0x5F, 0x31, 0x00, 0x00, 0x6D, 0x5F, 0x30, 0x35, 0x5F, 0x32,
-    0x00, 0x00, 0x6D, 0x5F, 0x30, 0x35, 0x5F, 0x33, 0x00, 0x00, 0x6D, 0x5F, 0x30, 0x35, 0x5F, 0x34,
-    0x00, 0x00, 0x6D, 0x5F, 0x30, 0x36, 0x5F, 0x30, 0x00, 0x00, 0x6D, 0x5F, 0x30, 0x36, 0x5F, 0x31,
-    0x00, 0x00, 0x6D, 0x5F, 0x30, 0x36, 0x5F, 0x32, 0x00, 0x00, 0x6D, 0x5F, 0x30, 0x36, 0x5F, 0x33,
-    0x00, 0x00, 0x6D, 0x5F, 0x30, 0x36, 0x5F, 0x34, 0x00, 0x00, 0x6D, 0x5F, 0x30, 0x37, 0x5F, 0x30,
-    0x00, 0x00, 0x6D, 0x5F, 0x30, 0x37, 0x5F, 0x31, 0x00, 0x00, 0x6D, 0x5F, 0x30, 0x37, 0x5F, 0x32,
-    0x00, 0x00, 0x6D, 0x5F, 0x30, 0x37, 0x5F, 0x33, 0x00, 0x00, 0x6D, 0x5F, 0x30, 0x37, 0x5F, 0x34,
-    0x00, 0x00, 0x6D, 0x5F, 0x30, 0x38, 0x5F, 0x30, 0x00, 0x00, 0x6D, 0x5F, 0x30, 0x38, 0x5F, 0x31,
-    0x00, 0x00, 0x6D, 0x5F, 0x30, 0x38, 0x5F, 0x32, 0x00, 0x00, 0x6D, 0x5F, 0x30, 0x38, 0x5F, 0x33,
-    0x00, 0x00, 0x6D, 0x5F, 0x30, 0x38, 0x5F, 0x34, 0x00, 0x00, 0x6D, 0x5F, 0x30, 0x39, 0x5F, 0x30,
-    0x00, 0x00, 0x6D, 0x5F, 0x30, 0x39, 0x5F, 0x31, 0x00, 0x00, 0x6D, 0x5F, 0x30, 0x39, 0x5F, 0x32,
-    0x00, 0x00, 0x6D, 0x5F, 0x30, 0x39, 0x5F, 0x33, 0x00, 0x00, 0x6D, 0x5F, 0x30, 0x39, 0x5F, 0x34,
-    0x00, 0x00, 0x6D, 0x5F, 0x31, 0x30, 0x5F, 0x30, 0x00, 0x00, 0x6D, 0x5F, 0x31, 0x30, 0x5F, 0x31,
-    0x00, 0x00, 0x6D, 0x5F, 0x31, 0x30, 0x5F, 0x32, 0x00, 0x00, 0x6D, 0x5F, 0x31, 0x30, 0x5F, 0x33,
-    0x00, 0x00, 0x6D, 0x5F, 0x31, 0x30, 0x5F, 0x34, 0x00, 0x00, 0x6D, 0x5F, 0x31, 0x31, 0x5F, 0x30,
-    0x00, 0x00, 0x6D, 0x5F, 0x31, 0x31, 0x5F, 0x31, 0x00, 0x00, 0x6D, 0x5F, 0x31, 0x31, 0x5F, 0x32,
-    0x00, 0x00, 0x6D, 0x5F, 0x31, 0x31, 0x5F, 0x33, 0x00, 0x00, 0x6D, 0x5F, 0x31, 0x31, 0x5F, 0x34,
-    0x00, 0x00, 0x00, 0x6D, 0x31, 0x32, 0x5F, 0x30, 0x00, 0x00, 0x00, 0x6D, 0x31, 0x32, 0x5F, 0x31,
-    0x00, 0x00, 0x00, 0x6D, 0x31, 0x32, 0x5F, 0x32, 0x00, 0x00, 0x00, 0x6D, 0x31, 0x32, 0x5F, 0x33,
-    0x00, 0x00, 0x00, 0x6D, 0x31, 0x32, 0x5F, 0x34,
+SECTION_DATA static u64 l_tagName[65] = {
+    'm_00_0', 'm_00_1', 'm_00_2', 'm_00_3', 'm_00_4', 'm_01_0', 'm_01_1', 'm_01_2', 'm_01_3',
+    'm_01_4', 'm_02_0', 'm_02_1', 'm_02_2', 'm_02_3', 'm_02_4', 'm03_0',  'm03_1',  'm03_2',
+    'm03_3',  'm03_4',  'm_04_0', 'm_04_1', 'm_04_2', 'm_04_3', 'm_04_4', 'm_05_0', 'm_05_1',
+    'm_05_2', 'm_05_3', 'm_05_4', 'm_06_0', 'm_06_1', 'm_06_2', 'm_06_3', 'm_06_4', 'm_07_0',
+    'm_07_1', 'm_07_2', 'm_07_3', 'm_07_4', 'm_08_0', 'm_08_1', 'm_08_2', 'm_08_3', 'm_08_4',
+    'm_09_0', 'm_09_1', 'm_09_2', 'm_09_3', 'm_09_4', 'm_10_0', 'm_10_1', 'm_10_2', 'm_10_3',
+    'm_10_4', 'm_11_0', 'm_11_1', 'm_11_2', 'm_11_3', 'm_11_4', 'm12_0',  'm12_1',  'm12_2',
+    'm12_3',  'm12_4',
 };
 #pragma pop
 
 /* 803C2AB8-803C2AF8 01FBD8 0040+00 0/1 0/0 0/0 .data            l_nameTagName$4642 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_nameTagName[64] = {
-    0x00, 0x6E, 0x61, 0x6D, 0x65, 0x5F, 0x30, 0x30, 0x00, 0x6E, 0x61, 0x6D, 0x65, 0x5F, 0x30, 0x31,
-    0x00, 0x6E, 0x61, 0x6D, 0x65, 0x5F, 0x30, 0x32, 0x00, 0x6E, 0x61, 0x6D, 0x65, 0x5F, 0x30, 0x33,
-    0x00, 0x6E, 0x61, 0x6D, 0x65, 0x5F, 0x30, 0x34, 0x00, 0x6E, 0x61, 0x6D, 0x65, 0x5F, 0x30, 0x35,
-    0x00, 0x6E, 0x61, 0x6D, 0x65, 0x5F, 0x30, 0x36, 0x00, 0x6E, 0x61, 0x6D, 0x65, 0x5F, 0x30, 0x37,
+SECTION_DATA static u64 l_nameTagName[8] = {
+    'name_00', 'name_01', 'name_02', 'name_03', 'name_04', 'name_05', 'name_06', 'name_07',
 };
 #pragma pop
 
 /* 803C2AF8-803C2B38 01FC18 0040+00 0/1 0/0 0/0 .data            l_nameCurTagName$4643 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_nameCurTagName[64] = {
-    0x00, 0x73, 0x5F, 0x5F, 0x6E, 0x5F, 0x30, 0x30, 0x00, 0x73, 0x5F, 0x5F, 0x6E, 0x5F, 0x30, 0x31,
-    0x00, 0x73, 0x5F, 0x5F, 0x6E, 0x5F, 0x30, 0x32, 0x00, 0x73, 0x5F, 0x5F, 0x6E, 0x5F, 0x30, 0x33,
-    0x00, 0x73, 0x5F, 0x5F, 0x6E, 0x5F, 0x30, 0x34, 0x00, 0x73, 0x5F, 0x5F, 0x6E, 0x5F, 0x30, 0x35,
-    0x00, 0x73, 0x5F, 0x5F, 0x6E, 0x5F, 0x30, 0x36, 0x00, 0x73, 0x5F, 0x5F, 0x6E, 0x5F, 0x30, 0x37,
+SECTION_DATA static u64 l_nameCurTagName[8] = {
+    's__n_00', 's__n_01', 's__n_02', 's__n_03', 's__n_04', 's__n_05', 's__n_06', 's__n_07',
 };
 #pragma pop
 
@@ -1271,111 +321,206 @@ SECTION_DATA extern void* __vt__7dName_c[3 + 3 /* padding */] = {
     NULL,
 };
 
-/* 803C2B7C-803C2B88 01FC9C 000C+00 2/2 0/0 0/0 .data            __vt__9dNm_HIO_c */
-SECTION_DATA extern void* __vt__9dNm_HIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__9dNm_HIO_cFv,
-};
-
-/* 80454DB0-80454DB4 0033B0 0004+00 1/1 0/0 0/0 .sdata2          @3665 */
-SECTION_SDATA2 static f32 lit_3665 = 13.0f / 10.0f;
-
-/* 80454DB4-80454DB8 0033B4 0004+00 1/1 0/0 0/0 .sdata2          @3666 */
-SECTION_SDATA2 static f32 lit_3666 = 7.0f / 5.0f;
-
 /* 8024E3E0-8024E408 248D20 0028+00 1/1 0/0 0/0 .text            __ct__9dNm_HIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dNm_HIO_c::dNm_HIO_c() {
-    nofralloc
-#include "asm/d/d_name/__ct__9dNm_HIO_cFv.s"
+dNm_HIO_c::dNm_HIO_c() {
+    mMenuScale = 1.3f;
+    mSelCharScale = 1.4f;
+    field_0x10 = 10;
 }
-#pragma pop
 
 /* 8024E408-8024E468 248D48 0060+00 0/0 1/1 0/0 .text            __ct__7dName_cFP7J2DPane */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dName_c::dName_c(J2DPane* param_0) {
-    nofralloc
-#include "asm/d/d_name/__ct__7dName_cFP7J2DPane.s"
+dName_c::dName_c(J2DPane* pane) {
+    nameIn.field_0xc = pane;
+    _create();
+    init();
 }
-#pragma pop
 
 /* 8024E468-8024E62C 248DA8 01C4+00 1/0 0/0 0/0 .text            __dt__7dName_cFv */
+#ifdef NONMATCHING
+dName_c::~dName_c() {
+    delete stick;
+    delete nameIn.NameInScr;
+    mDoExt_removeMesgFont();
+
+    for (int i = 0; i < 8; i++) {
+        delete mNameCursor[i];
+    }
+
+    for (int i = 0; i < 65; i++) {
+        delete mMojiIcon[i];
+    }
+
+    for (int i = 0; i < 4; i++) {
+        if (mMenuIcon[i] != NULL) {
+            delete mMenuIcon[i];
+        }
+    }
+
+    delete mCursorColorKey;
+    delete mCursorTexKey;
+    delete mSelIcon;
+    archive->removeResourceAll();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dName_c::~dName_c() {
+// asm dName_c::~dName_c() {
+extern "C" asm void __dt__7dName_cFv() {
     nofralloc
 #include "asm/d/d_name/__dt__7dName_cFv.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 80430728-80430734 05D448 000C+00 1/1 0/0 0/0 .bss             @3660 */
-static u8 lit_3660[12];
-
-/* 80430734-80430748 05D454 0014+00 9/9 0/0 0/0 .bss             g_nmHIO */
-static u8 g_nmHIO[20];
-
-/* 80454DB8-80454DBC 0033B8 0004+00 1/1 0/0 0/0 .sdata2          @3755 */
-SECTION_SDATA2 static f32 lit_3755 = 9.0f / 10.0f;
-
-/* 80454DBC-80454DC0 0033BC 0004+00 1/1 0/0 0/0 .sdata2          @3756 */
-SECTION_SDATA2 static f32 lit_3756 = 0.5f;
+#endif
 
 /* 8024E62C-8024E6D4 248F6C 00A8+00 1/1 0/0 0/0 .text            _create__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::_create() {
-    nofralloc
-#include "asm/d/d_name/_create__7dName_cFv.s"
+void dName_c::_create() {
+    stick = new STControl(5, 2, 2, 1, 0.9f, 0.5f, 0, 0x800);
+    stick->setFirstWaitTime(5);
+    nameIn.font = mDoExt_getMesgFont();
+    g_nmHIO.field_0x4 = -1;
+    screenSet();
+
+    mNextNameStr[0] = 0;
+    mCursorDelay = 1;
+    displayInit();
 }
-#pragma pop
 
 /* 8024E6D4-8024E7A4 249014 00D0+00 1/1 0/0 0/0 .text            init__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::init() {
-    nofralloc
-#include "asm/d/d_name/init__7dName_cFv.s"
+void dName_c::init() {
+    mCurPos = 0;
+    mLastCurPos = 0;
+    nameCursorMove();
+    mLastCurPos = mCurPos;
+
+    for (int i = 0; i < 4; i++) {
+        field_0x30c[i][2] = 0;
+    }
+
+    mCharColumn = 0;
+    mCharRow = 0;
+    mPrevColumn = 0;
+    mPrevRow = 0;
+    field_0x30c[0][0] = 0;
+    field_0x30c[0][1] = 0;
+    field_0x30c[0][2] = 1;
+
+    selectCursorMove();
+    mSelProc = PROC_MOJI_SELECT;
+    field_0x2ac = mSelProc;
+    field_0x2ad = mSelProc;
+    field_0x2ae = field_0x2ac;
+    mMojiSet = MOJI_EIGO;
+    mPrevMojiSet = 255;
+    mSelMenu = MENU_END;
+    mPrevSelMenu = MENU_END;
+    mojiListChange();
 }
-#pragma pop
 
 /* 8024E7A4-8024E7EC 2490E4 0048+00 0/0 4/4 0/0 .text            initial__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::initial() {
-    nofralloc
-#include "asm/d/d_name/initial__7dName_cFv.s"
+void dName_c::initial() {
+    displayInit();
+
+    if (mNextNameStr[0] != 0) {
+        NameStrSet();
+        mNextNameStr[0] = 0;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80454DC0-80454DC4 0033C0 0004+00 16/16 0/0 0/0 .sdata2          @3820 */
 SECTION_SDATA2 static f32 lit_3820 = 1.0f;
 
 /* 8024E7EC-8024E9A0 24912C 01B4+00 0/0 2/2 0/0 .text            showIcon__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::showIcon() {
-    nofralloc
-#include "asm/d/d_name/showIcon__7dName_cFv.s"
+void dName_c::showIcon() {
+    Vec pos;
+
+    switch (mSelProc) {
+    case PROC_MOJI_SELECT:
+        if (mCharColumn != 255 && mCharRow != 255) {
+            pos = mMojiIcon[mCharRow + mCharColumn * 5]->getGlobalVtxCenter(false, 0);
+            mSelIcon->setPos(pos.x, pos.y, mMojiIcon[mCharRow + mCharColumn * 5]->getPanePtr(),
+                             true);
+            ((J2DTextBox*)mMojiIcon[mCharRow + mCharColumn * 5]->getPanePtr())
+                ->setWhite(JUtility::TColor(0xC8, 0xC8, 0xC8, 0xFF));
+            mSelIcon->setAlphaRate(lit_3820);
+        }
+        break;
+    case PROC_MENU_SELECT:
+        if (mSelMenu != 255) {
+            int menu_i = getMenuPosIdx(mSelMenu);
+
+            pos = mMenuIcon[menu_i]->getGlobalVtxCenter(false, 0);
+            mSelIcon->setPos(pos.x, pos.y, mMenuIcon[menu_i]->getPanePtr(), true);
+            mMenuText[menu_i]->setWhite(JUtility::TColor(0xC8, 0xC8, 0xC8, 0xFF));
+            mSelIcon->setAlphaRate(lit_3820);
+        }
+        break;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80454DC4-80454DC8 0033C4 0004+00 6/6 0/0 0/0 .sdata2          @3886 */
 SECTION_SDATA2 static f32 lit_3886 = -1.0f;
 
 /* 8024E9A0-8024EC10 2492E0 0270+00 0/0 2/2 0/0 .text            _move__7dName_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dName_c::_move() {
+    stick->checkTrigger();
+    (this->*SelProc[mSelProc])();
+
+    if (mDoCPd_c::getTrigRight(0)) {
+        // BUG: this check only fails if the cursor is at exactly 7
+        // setMoji allows the cursor to reach 8, which is out of bounds here
+        if (mCurPos != 7) {
+            mDoAud_seStart(Z2SE_SY_DUMMY, 0, 0, 0);
+            mLastCurPos = mCurPos;
+            mCurPos++;
+            nameCursorMove();
+        }
+    } else if (mDoCPd_c::getTrigLeft(0)) {
+        if (mCurPos != 0) {
+            mDoAud_seStart(Z2SE_SY_DUMMY, 0, 0, 0);
+            mLastCurPos = mCurPos;
+            mCurPos--;
+            nameCursorMove();
+        }
+    } else if (mDoCPd_c::getTrigB(0)) {
+        if (mCurPos == 0) {
+            mDoAud_seStart(Z2SE_SY_MENU_BACK, 0, 0, 0);
+            field_0x2ac = mSelProc;
+            field_0x2ae = mSelProc;
+            mSelProc = PROC_WAIT;
+            mIsInputEnd = true;
+        } else {
+            backSpace();
+        }
+    } else if (mDoCPd_c::getTrigStart(0)) {
+        if ((mSelProc != PROC_MENU_SELECT || mSelMenu != MENU_END) &&
+            (mSelProc == PROC_MENU_SELECT || mSelProc == PROC_MOJI_SELECT)) {
+            mDoAud_seStart(Z2SE_SY_CURSOR_OPTION, 0, 0, 0);
+            mPrevSelMenu = mSelMenu;
+            mSelMenu = MENU_END;
+
+            switch (mSelProc) {
+            case PROC_MOJI_SELECT:
+                mPrevColumn = mCharColumn;
+                mPrevRow = mCharRow;
+                MojiSelectAnmInit();
+                mSelProc = PROC_MOJI_SEL_ANM2;
+                break;
+            case PROC_MENU_SELECT:
+                MenuSelectAnmInit();
+                mSelProc = PROC_MENU_SEL_ANM;
+                break;
+            }
+        }
+    }
+
+    cursorAnm();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1384,40 +529,48 @@ asm void dName_c::_move() {
 #include "asm/d/d_name/_move__7dName_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8024EC10-8024EC4C 249550 003C+00 3/3 0/0 0/0 .text            nameCheck__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::nameCheck() {
-    nofralloc
-#include "asm/d/d_name/nameCheck__7dName_cFv.s"
+int dName_c::nameCheck() {
+    for (int i = 8, len = 7; i > 0; i--) {
+        if (mChrInfo[len].mCharacter != ' ') {
+            return len + 1;
+        }
+        len--;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 8024EC4C-8024EC84 24958C 0038+00 1/1 0/0 0/0 .text            playNameSet__7dName_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::playNameSet(int param_0) {
-    nofralloc
-#include "asm/d/d_name/playNameSet__7dName_cFi.s"
-}
-#pragma pop
+void dName_c::playNameSet(int nameLength) {
+    char* str = mInputStr;
 
-/* ############################################################################################## */
-/* 80454DC8-80454DD0 0033C8 0008+00 1/1 0/0 0/0 .sdata2          @3936 */
-SECTION_SDATA2 static f64 lit_3936 = 4503601774854144.0 /* cast s32 to float */;
+    for (int i = 0; i < nameLength; i++) {
+        *str = mChrInfo[i].mCharacter;
+        str++;
+    }
+
+    *str = 0;
+}
 
 /* 8024EC84-8024ED48 2495C4 00C4+00 1/1 0/0 0/0 .text            cursorAnm__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::cursorAnm() {
-    nofralloc
-#include "asm/d/d_name/cursorAnm__7dName_cFv.s"
+void dName_c::cursorAnm() {
+    mCurColAnmF += 2;
+    if (mCurColAnmF >= mCursorColorKey->getFrameMax()) {
+        mCurColAnmF -= mCursorColorKey->getFrameMax();
+    }
+    mCursorColorKey->setFrame(mCurColAnmF);
+
+    mCurTexAnmF += 2;
+    if (mCurTexAnmF >= mCursorTexKey->getFrameMax()) {
+        mCurTexAnmF -= mCursorTexKey->getFrameMax();
+    }
+    mCursorTexKey->setFrame(mCurTexAnmF);
+
+    nameIn.NameInScr->animation();
 }
-#pragma pop
 
 /* 8024ED48-8024ED4C 249688 0004+00 1/0 0/0 0/0 .text            Wait__7dName_cFv */
 void dName_c::Wait() {
@@ -1425,6 +578,66 @@ void dName_c::Wait() {
 }
 
 /* 8024ED4C-8024F034 24968C 02E8+00 1/0 0/0 0/0 .text            MojiSelect__7dName_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dName_c::MojiSelect() {
+    if (mDoCPd_c::getTrigA(0)) {
+        selectMojiSet();
+    } else if (stick->checkRightTrigger()) {
+        mDoAud_seStart(Z2SE_SY_NAME_CURSOR, 0, 0, 0);
+        mPrevColumn = mCharColumn;
+        mPrevRow = mCharRow;
+        mCharColumn++;
+
+        if (mCharColumn > 12) {
+            mCharColumn = 0;
+        }
+        MojiSelectAnmInit();
+        mSelProc = PROC_MOJI_SEL_ANM;
+    } else if (stick->checkLeftTrigger()) {
+        mDoAud_seStart(Z2SE_SY_NAME_CURSOR, 0, 0, 0);
+        mPrevColumn = mCharColumn;
+        mPrevRow = mCharRow;
+
+        if (mCharColumn == 0) {
+            mCharColumn = 12;
+        } else {
+            mCharColumn--;
+        }
+        MojiSelectAnmInit();
+        mSelProc = PROC_MOJI_SEL_ANM;
+    } else if (stick->checkUpTrigger()) {
+        mPrevColumn = mCharColumn;
+        mPrevRow = mCharRow;
+        MojiSelectAnmInit();
+
+        if (mCharRow == 0) {
+            mDoAud_seStart(Z2SE_SY_CURSOR_OPTION, 0, 0, 0);
+            menuCursorPosSet();
+            mSelProc = PROC_MOJI_SEL_ANM2;
+        } else {
+            mDoAud_seStart(Z2SE_SY_NAME_CURSOR, 0, 0, 0);
+            mCharRow--;
+            mSelProc = PROC_MOJI_SEL_ANM;
+        }
+    } else if (stick->checkDownTrigger()) {
+        mPrevColumn = mCharColumn;
+        mPrevRow = mCharRow;
+        MojiSelectAnmInit();
+        mCharRow++;
+
+        if (mCharRow > 4) {
+            mCharRow = 4;
+            mDoAud_seStart(Z2SE_SY_CURSOR_OPTION, 0, 0, 0);
+            menuCursorPosSet();
+            mSelProc = PROC_MOJI_SEL_ANM2;
+        } else {
+            mDoAud_seStart(Z2SE_SY_NAME_CURSOR, 0, 0, 0);
+            mSelProc = PROC_MOJI_SEL_ANM;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1433,6 +646,7 @@ asm void dName_c::MojiSelect() {
 #include "asm/d/d_name/MojiSelect__7dName_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80454DD0-80454DD4 0033D0 0004+00 5/5 0/0 0/0 .sdata2          @4009 */
@@ -1444,34 +658,32 @@ SECTION_SDATA2 static u8 lit_4009[4] = {
 };
 
 /* 8024F034-8024F0E0 249974 00AC+00 2/2 0/0 0/0 .text            MojiSelectAnmInit__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::MojiSelectAnmInit() {
-    nofralloc
-#include "asm/d/d_name/MojiSelectAnmInit__7dName_cFv.s"
+void dName_c::MojiSelectAnmInit() {
+    mSelIcon->setAlphaRate(FLOAT_LABEL(lit_4009));
+    mMojiIcon[mPrevRow + mPrevColumn * 5]->scaleAnimeStart(0);
+    ((J2DTextBox*)mMojiIcon[mPrevRow + mPrevColumn * 5]->getPanePtr())
+        ->setWhite(JUtility::TColor(0x96, 0x96, 0x96, 0xFF));
 }
-#pragma pop
 
 /* 8024F0E0-8024F164 249A20 0084+00 1/0 0/0 0/0 .text            MojiSelectAnm__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::MojiSelectAnm() {
-    nofralloc
-#include "asm/d/d_name/MojiSelectAnm__7dName_cFv.s"
+void dName_c::MojiSelectAnm() {
+    if (mMojiIcon[mPrevRow + mPrevColumn * 5]->scaleAnime(mCursorDelay, g_nmHIO.mSelCharScale,
+                                                          lit_3820, 0) == 1) {
+        selectCursorMove();
+        mSelProc = PROC_MOJI_SELECT;
+        field_0x2ad = mSelProc;
+    }
 }
-#pragma pop
 
 /* 8024F164-8024F1E8 249AA4 0084+00 1/0 0/0 0/0 .text            MojiSelectAnm2__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::MojiSelectAnm2() {
-    nofralloc
-#include "asm/d/d_name/MojiSelectAnm2__7dName_cFv.s"
+void dName_c::MojiSelectAnm2() {
+    if (mMojiIcon[mPrevRow + mPrevColumn * 5]->scaleAnime(mCursorDelay, g_nmHIO.mSelCharScale,
+                                                          lit_3820, 0) == 1) {
+        menuCursorMove2();
+        mSelProc = PROC_MENU_SELECT;
+        field_0x2ad = mSelProc;
+    }
 }
-#pragma pop
 
 /* 8024F1E8-8024F1EC 249B28 0004+00 1/0 0/0 0/0 .text            MojiSelectAnm3__7dName_cFv */
 void dName_c::MojiSelectAnm3() {
@@ -1479,36 +691,181 @@ void dName_c::MojiSelectAnm3() {
 }
 
 /* 8024F1EC-8024F55C 249B2C 0370+00 1/0 0/0 0/0 .text            mojiChange__7dName_cFUc */
+// weird pattern
+#ifdef NONMATCHING
+int dName_c::mojiChange(u8 idx) {
+    if (mChrInfo[idx].field_0x3 == 0 || mChrInfo[idx].mMojiSet == MOJI_EIGO ||
+        mChrInfo[idx].mCharacter == '　') {
+        return 0;
+    }
+
+    if (mChrInfo[idx].mColumn == 4 || mChrInfo[idx].mColumn == 6 || mChrInfo[idx].mColumn == 8 ||
+        mChrInfo[idx].mColumn == 9) {
+        return 0;
+    }
+
+    switch (mChrInfo[idx].mColumn) {
+    case 0:
+    case 10:
+        if (mChrInfo[idx].mCharacter == 'ウ' || mChrInfo[idx].mCharacter == 'ゥ' ||
+            mChrInfo[idx].mCharacter == 'ヴ') {
+            mChrInfo[idx].mCharacter++;
+
+            if (mChrInfo[idx].mCharacter == 'ェ') {
+                mChrInfo[idx].mCharacter = 'ヴ';
+            }
+
+            if (mChrInfo[idx].mCharacter == 'ヵ') {
+                mChrInfo[idx].mCharacter = 'ゥ';
+            }
+        } else {
+            int c = 'ァ';
+            if (mChrInfo[idx].mMojiSet != MOJI_HIRA) {
+                c = 'ぁ';
+            }
+            bool check = mChrInfo[idx].mCharacter - c == 0 ? 1 : 0;
+
+            if (check) {
+                --mChrInfo[idx].mCharacter;
+            } else {
+                ++mChrInfo[idx].mCharacter;
+            }
+        }
+        break;
+    case 1:
+        int c = 'か';
+        if (mChrInfo[idx].mMojiSet != MOJI_HIRA) {
+            c = 'カ';
+        }
+
+        mChrInfo[idx].mCharacter == c ? mChrInfo[idx].mCharacter++ : mChrInfo[idx].mCharacter--;
+        break;
+    case 2:
+        int c2 = 'さ';
+        if (mChrInfo[idx].mMojiSet != MOJI_HIRA) {
+            c2 = 'サ';
+        }
+
+        mChrInfo[idx].mCharacter == c ? mChrInfo[idx].mCharacter++ : mChrInfo[idx].mCharacter--;
+        break;
+    case 3:
+    case 12:
+        if (mChrInfo[idx].mCharacter != 0x815b) {
+            int c = 'ぢ';
+            if (mChrInfo[idx].mMojiSet != MOJI_HIRA) {
+                c = 'ヂ';
+            }
+
+            if (c < mChrInfo[idx].mCharacter) {
+                int c2 = 'ぢ';
+                if (mChrInfo[idx].mMojiSet != MOJI_HIRA) {
+                    c2 = 'ヂ';
+                }
+
+                mChrInfo[idx].mCharacter == c2 ? mChrInfo[idx].mCharacter++ :
+                                                 mChrInfo[idx].mCharacter--;
+            }
+        }
+        break;
+    case 5:
+
+        break;
+    case 7:
+    case 11:
+
+        break;
+    }
+
+    setNameText();
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dName_c::mojiChange(u8 param_0) {
+asm int dName_c::mojiChange(u8 param_0) {
     nofralloc
 #include "asm/d/d_name/mojiChange__7dName_cFUc.s"
 }
 #pragma pop
+#endif
 
 /* 8024F55C-8024F59C 249E9C 0040+00 1/1 0/0 0/0 .text            selectMojiSet__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::selectMojiSet() {
-    nofralloc
-#include "asm/d/d_name/selectMojiSet__7dName_cFv.s"
+void dName_c::selectMojiSet() {
+    setMoji(getMoji());
+    setNameText();
 }
-#pragma pop
 
 /* 8024F59C-8024F634 249EDC 0098+00 1/1 0/0 0/0 .text            getMoji__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::getMoji() {
-    nofralloc
-#include "asm/d/d_name/getMoji__7dName_cFv.s"
+int dName_c::getMoji() {
+    char* moji;
+
+    switch (mMojiSet) {
+    case MOJI_HIRA:
+        moji = l_mojiHira[mCharRow + mCharColumn * 5];
+        break;
+    case MOJI_KATA:
+        moji = l_mojikata[mCharRow + mCharColumn * 5];
+        break;
+    case MOJI_EIGO:
+        moji = l_mojiEisu[mCharRow + mCharColumn * 5];
+        break;
+    }
+
+    return *moji;
 }
-#pragma pop
 
 /* 8024F634-8024F88C 249F74 0258+00 1/1 0/0 0/0 .text            setMoji__7dName_cFi */
+// matches with literals
+#ifdef NONMATCHING
+void dName_c::setMoji(int moji) {
+    if (mCurPos == 8 || nameCheck() == 8) {
+        mDoAud_seStart(Z2SE_SYS_ERROR, NULL, 0, 0);
+    } else {
+        mDoAud_seStart(Z2SE_SY_NAME_INPUT, NULL, 0, 0);
+
+        s32 notEmpty = false;
+        for (int i = mCurPos; i < 8; i++) {
+            if (mChrInfo[i].mCharacter != ' ') {
+                notEmpty = true;
+                break;
+            }
+        }
+
+        if (notEmpty) {
+            if (mChrInfo[7].mCharacter == ' ') {
+                for (int i = 6; i >= mCurPos; i--) {
+                    mChrInfo[i + 1] = mChrInfo[i];
+                }
+
+                mChrInfo[mCurPos].mColumn = mCharColumn;
+                mChrInfo[mCurPos].mRow = mCharRow;
+                mChrInfo[mCurPos].mMojiSet = mMojiSet;
+                mChrInfo[mCurPos].field_0x3 = 1;
+                mChrInfo[mCurPos].mCharacter = moji;
+
+                if (mCurPos != 8) {
+                    mLastCurPos = mCurPos;
+                    mCurPos++;
+                    nameCursorMove();
+                }
+            }
+        } else {
+            mChrInfo[mCurPos].mColumn = mCharColumn;
+            mChrInfo[mCurPos].mRow = mCharRow;
+            mChrInfo[mCurPos].mMojiSet = mMojiSet;
+            mChrInfo[mCurPos].field_0x3 = 1;
+            mChrInfo[mCurPos].mCharacter = moji;
+
+            if (mCurPos != 8) {
+                mLastCurPos = mCurPos;
+                mCurPos++;
+                nameCursorMove();
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1517,69 +874,103 @@ asm void dName_c::setMoji(int param_0) {
 #include "asm/d/d_name/setMoji__7dName_cFi.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 80399CC8-80399CC8 026328 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80399F3C = ""
-                                                            "\x1B"
-                                                            "CD"
-                                                            "\x1B"
-                                                            "CR"
-                                                            "\x1B"
-                                                            "CC[000000]"
-                                                            "\x1B"
-                                                            "GM[0]%c"
-                                                            "\x1B"
-                                                            "HM"
-                                                            "\x1B"
-                                                            "CC[ffffff]"
-                                                            "\x1B"
-                                                            "GM[0]%c";
-#pragma pop
+#endif
 
 /* 8024F88C-8024F914 24A1CC 0088+00 4/4 0/0 0/0 .text            setNameText__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::setNameText() {
-    nofralloc
-#include "asm/d/d_name/setNameText__7dName_cFv.s"
+void dName_c::setNameText() {
+    for (int i = 0; i < 8; i++) {
+        if (mChrInfo[i].field_0x3 != 0) {
+            sprintf(mNameText[i],
+                    "\x1b"
+                    "CD\x1b"
+                    "CR\x1b"
+                    "CC[000000]\x1bGM[0]%c\x1bHM\x1b"
+                    "CC[ffffff]\x1bGM[0]%c",
+                    (u8)mChrInfo[i].mCharacter, (u8)mChrInfo[i].mCharacter);
+        }
+    }
 }
-#pragma pop
 
 /* 8024F914-8024F994 24A254 0080+00 5/5 0/0 0/0 .text            nameCursorMove__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::nameCursorMove() {
-    nofralloc
-#include "asm/d/d_name/nameCursorMove__7dName_cFv.s"
+void dName_c::nameCursorMove() {
+    if (mCurPos <= 8) {
+        u8 position = mCurPos;
+
+        if (position > 7) {
+            position = 7;
+        }
+
+        if (mLastCurPos != 255 && mLastCurPos < 8) {
+            mNameCursor[mLastCurPos]->hide();
+        }
+
+        mNameCursor[position]->show();
+    }
 }
-#pragma pop
 
 /* 8024F994-8024FAF4 24A2D4 0160+00 3/3 0/0 0/0 .text            selectCursorMove__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::selectCursorMove() {
-    nofralloc
-#include "asm/d/d_name/selectCursorMove__7dName_cFv.s"
+void dName_c::selectCursorMove() {
+    field_0x30c[3][0] = mCharColumn;
+    field_0x30c[3][1] = mCharRow;
+    field_0x30c[3][2] = 1;
+
+    mMojiIcon[mCharRow + mCharColumn * 5]->getPanePtr()->scale(g_nmHIO.mSelCharScale,
+                                                               g_nmHIO.mSelCharScale);
+    ((J2DTextBox*)mMojiIcon[mCharRow + mCharColumn * 5]->getPanePtr())
+        ->setWhite(JUtility::TColor(0xC8, 0xC8, 0xC8, 0xFF));
+
+    Vec pos = mMojiIcon[mCharRow + mCharColumn * 5]->getGlobalVtxCenter(false, 0);
+    mSelIcon->setPos(pos.x, pos.y, mMojiIcon[mCharRow + mCharColumn * 5]->getPanePtr(), true);
+    mSelIcon->setAlphaRate(lit_3820);
 }
-#pragma pop
 
 /* 8024FAF4-8024FB08 24A434 0014+00 1/1 0/0 0/0 .text            menuCursorPosSet__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::menuCursorPosSet() {
-    nofralloc
-#include "asm/d/d_name/menuCursorPosSet__7dName_cFv.s"
+void dName_c::menuCursorPosSet() {
+    mPrevSelMenu = mSelMenu;
+    mSelMenu = MENU_END;
 }
-#pragma pop
 
 /* 8024FB08-8024FDA0 24A448 0298+00 1/0 0/0 0/0 .text            MenuSelect__7dName_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dName_c::MenuSelect() {
+    if (!stick->checkRightTrigger() && !stick->checkLeftTrigger()) {
+        if (stick->checkUpTrigger()) {
+            mDoAud_seStart(Z2SE_SY_NAME_CURSOR, NULL, 0, 0);
+            mPrevSelMenu = mSelMenu;
+            selectCursorPosSet(4);
+            MenuSelectAnmInit();
+            mSelProc = PROC_MENU_SEL_ANM2;
+        } else if (stick->checkDownTrigger()) {
+            mDoAud_seStart(Z2SE_SY_NAME_CURSOR, NULL, 0, 0);
+            mPrevSelMenu = mSelMenu;
+            selectCursorPosSet(0);
+            MenuSelectAnmInit();
+            mSelProc = PROC_MENU_SEL_ANM2;
+        } else if (mDoCPd_c::getTrigA(0)) {
+            if (mSelMenu == MENU_END) {
+                if (nameCheck() != 0) {
+                    mDoAud_seStart(Z2SE_SY_NAME_OK, NULL, 0, 0);
+                } else {
+                    mDoAud_seStart(Z2SE_SYS_ERROR, NULL, 0, 0);
+                }
+            } else {
+                mDoAud_seStart(Z2SE_SY_CURSOR_OK, NULL, 0, 0);
+            }
+            menuAbtnSelect();
+        } else if (mDoCPd_c::getTrigStart(0)) {
+            if (mSelMenu == MENU_END) {
+                if (nameCheck() != 0) {
+                    mDoAud_seStart(Z2SE_SY_NAME_OK, NULL, 0, 0);
+                } else {
+                    mDoAud_seStart(Z2SE_SYS_ERROR, NULL, 0, 0);
+                }
+                menuAbtnSelect();
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1588,36 +979,47 @@ asm void dName_c::MenuSelect() {
 #include "asm/d/d_name/MenuSelect__7dName_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8024FDA0-8024FDF4 24A6E0 0054+00 2/2 0/0 0/0 .text            MenuSelectAnmInit__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::MenuSelectAnmInit() {
-    nofralloc
-#include "asm/d/d_name/MenuSelectAnmInit__7dName_cFv.s"
+void dName_c::MenuSelectAnmInit() {
+    mSelIcon->setAlphaRate(FLOAT_LABEL(lit_4009));
+
+    int prevMenu_i = getMenuPosIdx(mPrevSelMenu);
+    mMenuIcon[prevMenu_i]->scaleAnimeStart(0);
 }
-#pragma pop
 
 /* 8024FDF4-8024FEB4 24A734 00C0+00 1/0 0/0 0/0 .text            MenuSelectAnm__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::MenuSelectAnm() {
-    nofralloc
-#include "asm/d/d_name/MenuSelectAnm__7dName_cFv.s"
+void dName_c::MenuSelectAnm() {
+    int prevMenu_i = getMenuPosIdx(mPrevSelMenu);
+
+    if (mMenuIcon[prevMenu_i]->scaleAnime(mCursorDelay, g_nmHIO.mMenuScale, lit_3820, 0) == 1) {
+        mMenuText[prevMenu_i]->setWhite(JUtility::TColor(0x96, 0x96, 0x96, 0xFF));
+        menuCursorMove();
+        mSelProc = PROC_MENU_SELECT;
+        field_0x2ad = mSelProc;
+    }
 }
-#pragma pop
 
 /* 8024FEB4-8024FFA0 24A7F4 00EC+00 1/0 0/0 0/0 .text            MenuSelectAnm2__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::MenuSelectAnm2() {
-    nofralloc
-#include "asm/d/d_name/MenuSelectAnm2__7dName_cFv.s"
+void dName_c::MenuSelectAnm2() {
+    int prevMenu_i = getMenuPosIdx(mPrevSelMenu);
+    int mojiSet_i = getMenuPosIdx(mMojiSet);
+
+    bool canMove = true;
+    if (prevMenu_i != mojiSet_i) {
+        canMove = mMenuIcon[prevMenu_i]->scaleAnime(mCursorDelay, g_nmHIO.mMenuScale, lit_3820, 0);
+    }
+
+    if (canMove == true) {
+        if (prevMenu_i != mojiSet_i) {
+            mMenuText[prevMenu_i]->setWhite(JUtility::TColor(0x96, 0x96, 0x96, 0xFF));
+        }
+        selectCursorMove();
+        mSelProc = PROC_MOJI_SELECT;
+        field_0x2ad = mSelProc;
+    }
 }
-#pragma pop
 
 /* 8024FFA0-8024FFA4 24A8E0 0004+00 1/0 0/0 0/0 .text            MenuSelectAnm3__7dName_cFv */
 void dName_c::MenuSelectAnm3() {
@@ -1625,6 +1027,34 @@ void dName_c::MenuSelectAnm3() {
 }
 
 /* 8024FFA4-80250074 24A8E4 00D0+00 1/1 0/0 0/0 .text            menuAbtnSelect__7dName_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dName_c::menuAbtnSelect() {
+    switch (mSelMenu) {
+    case MENU_HIRA:
+    case MENU_KATA:
+    case MENU_EIGO:
+        if (mSelMenu != mMojiSet) {
+            mPrevMojiSet = mMojiSet;
+            mMojiSet = mSelMenu;
+            mojiListChange();
+        }
+        break;
+    case MENU_END:
+        int nameNum = nameCheck();
+        if (nameNum != 0) {
+            playNameSet(nameNum);
+            field_0x2ac = mSelProc;
+            field_0x2ae = mSelProc;
+            mSelProc = PROC_WAIT;
+            mIsInputEnd = 2;
+        } else {
+            mDoAud_seStart(Z2SE_SY_DUMMY, NULL, 0, 0);
+        }
+        break;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1633,8 +1063,39 @@ asm void dName_c::menuAbtnSelect() {
 #include "asm/d/d_name/menuAbtnSelect__7dName_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80250074-802501B0 24A9B4 013C+00 1/1 0/0 0/0 .text            backSpace__7dName_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dName_c::backSpace() {
+    if (mCurPos != 0) {
+        mDoAud_seStart(Z2SE_SY_NAME_DELETE, NULL, 0, 0);
+
+        if (mCurPos == 8 && mChrInfo[7].mCharacter != ' ') {
+            mChrInfo[7].mColumn = 7;
+            mChrInfo[7].mRow = 1;
+            mChrInfo[7].mMojiSet = MOJI_EIGO;
+            mChrInfo[7].field_0x3 = 1;
+            mChrInfo[7].mCharacter = ' ';
+        } else {
+            for (int i = mCurPos - 1; i < 7; i++) {
+                mChrInfo[i] = mChrInfo[i + 1];
+            }
+            mChrInfo[7].mColumn = 7;
+            mChrInfo[7].mRow = 1;
+            mChrInfo[7].mMojiSet = MOJI_EIGO;
+            mChrInfo[7].field_0x3 = 1;
+            mChrInfo[7].mCharacter = ' ';
+        }
+
+        setNameText();
+        mLastCurPos = mCurPos;
+        mCurPos--;
+        nameCursorMove();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1643,78 +1104,105 @@ asm void dName_c::backSpace() {
 #include "asm/d/d_name/backSpace__7dName_cFv.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 80399CC8-80399CC8 026328 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80399F6C = ""
-                                                            "\x1B"
-                                                            "CD"
-                                                            "\x1B"
-                                                            "CR"
-                                                            "\x1B"
-                                                            "CC[000000]"
-                                                            "\x1B"
-                                                            "GM[0]";
-SECTION_DEAD static char const* const stringBase_80399F84 = ""
-                                                            "\x1B"
-                                                            "HM"
-                                                            "\x1B"
-                                                            "CC[ffffff]"
-                                                            "\x1B"
-                                                            "GM[0]";
-#pragma pop
+#endif
 
 /* 802501B0-80250284 24AAF0 00D4+00 2/2 0/0 0/0 .text            mojiListChange__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::mojiListChange() {
-    nofralloc
-#include "asm/d/d_name/mojiListChange__7dName_cFv.s"
+void dName_c::mojiListChange() {
+    char** mojiSet;
+
+    switch (mMojiSet) {
+    case MOJI_HIRA:
+        mojiSet = l_mojiHira;
+        break;
+    case MOJI_KATA:
+        mojiSet = l_mojikata;
+        break;
+    case MOJI_EIGO:
+        mojiSet = l_mojiEisu;
+        break;
+    }
+
+    char buf[74];
+    for (int i = 0; i < 65; i++) {
+        strcpy(buf, "\x1B"
+                    "CD"
+                    "\x1B"
+                    "CR"
+                    "\x1B"
+                    "CC[000000]"
+                    "\x1B"
+                    "GM[0]");
+        strcat(buf, mojiSet[i]);
+        strcat(buf, "\x1B"
+                    "HM"
+                    "\x1B"
+                    "CC[ffffff]"
+                    "\x1B"
+                    "GM[0]");
+        strcat(buf, mojiSet[i]);
+        strcpy(mMojiText[i], buf);
+    }
 }
-#pragma pop
 
 /* 80250284-80250380 24ABC4 00FC+00 1/1 0/0 0/0 .text            menuCursorMove__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::menuCursorMove() {
-    nofralloc
-#include "asm/d/d_name/menuCursorMove__7dName_cFv.s"
+void dName_c::menuCursorMove() {
+    int menu_i = getMenuPosIdx(mSelMenu);
+    mMenuIcon[menu_i]->scale(g_nmHIO.mMenuScale, g_nmHIO.mMenuScale);
+    mMenuText[menu_i]->setWhite(JUtility::TColor(0xC8, 0xC8, 0xC8, 0xFF));
+
+    Vec pos = mMenuIcon[menu_i]->getGlobalVtxCenter(false, 0);
+    mSelIcon->setPos(pos.x, pos.y, mMenuIcon[menu_i]->getPanePtr(), true);
+    mSelIcon->setAlphaRate(lit_3820);
 }
-#pragma pop
 
 /* 80250380-802504A0 24ACC0 0120+00 1/1 0/0 0/0 .text            menuCursorMove2__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::menuCursorMove2() {
-    nofralloc
-#include "asm/d/d_name/menuCursorMove2__7dName_cFv.s"
+void dName_c::menuCursorMove2() {
+    int menu_i = getMenuPosIdx(mSelMenu);
+    int mojiSet_i = getMenuPosIdx(mMojiSet);
+
+    if (menu_i != mojiSet_i) {
+        mMenuIcon[menu_i]->scale(g_nmHIO.mMenuScale, g_nmHIO.mMenuScale);
+        mMenuText[menu_i]->setWhite(JUtility::TColor(0xC8, 0xC8, 0xC8, 0xFF));
+    }
+
+    Vec pos = mMenuIcon[menu_i]->getGlobalVtxCenter(false, 0);
+    mSelIcon->setPos(pos.x, pos.y, mMenuIcon[menu_i]->getPanePtr(), true);
+    mSelIcon->setAlphaRate(lit_3820);
 }
-#pragma pop
 
 /* 802504A0-80250560 24ADE0 00C0+00 1/1 0/0 0/0 .text            selectCursorPosSet__7dName_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::selectCursorPosSet(int param_0) {
-    nofralloc
-#include "asm/d/d_name/selectCursorPosSet__7dName_cFi.s"
+void dName_c::selectCursorPosSet(int row) {
+    if (field_0x30c[mSelMenu][2] == 1) {
+        mCharColumn = field_0x30c[mSelMenu][0];
+        mCharRow = row;
+    } else {
+        switch (mSelMenu) {
+        case MENU_HIRA:
+            mCharColumn = 0;
+            break;
+        case MENU_KATA:
+            mCharColumn = 3;
+            break;
+        case MENU_EIGO:
+            mCharColumn = 6;
+            break;
+        case MENU_END:
+            mCharColumn = 8;
+            break;
+        }
+
+        mCharRow = row;
+        field_0x30c[mSelMenu][0] = mCharColumn;
+        field_0x30c[mSelMenu][1] = mCharRow;
+        field_0x30c[mSelMenu][2] = 1;
+    }
 }
-#pragma pop
 
 /* 80250560-802505CC 24AEA0 006C+00 0/0 1/1 0/0 .text            _draw__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::_draw() {
-    nofralloc
-#include "asm/d/d_name/_draw__7dName_cFv.s"
+void dName_c::_draw() {
+    dComIfGd_set2DOpa(&nameIn);
+    dComIfGd_set2DOpa(mSelIcon);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80399CC8-80399CC8 026328 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -1745,6 +1233,98 @@ SECTION_SDATA2 static f32 lit_4725[1 + 1 /* padding */] = {
 };
 
 /* 802505CC-80250CEC 24AF0C 0720+00 1/1 0/0 0/0 .text            screenSet__7dName_cFv */
+#ifdef NONMATCHING
+void dName_c::screenSet() {
+    nameIn.NameInScr = new J2DScreen();
+    archive = dComIfGp_getNameResArchive();
+    nameIn.NameInScr->setPriority("zelda_player_name.blo", 0x100000, archive);
+    dPaneClass_showNullPane(nameIn.NameInScr);
+    nameIn.field_0x10 = nameIn.NameInScr->search('name_n');
+
+    void* bpk = JKRFileLoader::getGlbResource("zelda_player_name.bpk", archive);
+    mCursorColorKey = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(bpk);
+    mCursorColorKey->searchUpdateMaterialID(nameIn.NameInScr);
+
+    void* btk = JKRFileLoader::getGlbResource("zelda_player_name.btk", archive);
+    mCursorTexKey = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(btk);
+    mCursorTexKey->searchUpdateMaterialID(nameIn.NameInScr);
+
+    J2DPane* panes0[8];
+    J2DPane* panes1[8];
+    for (int i = 0; i < 8; i++) {
+        panes0[i] = nameIn.NameInScr->search(l_cur0TagName[i]);
+        panes1[i] = nameIn.NameInScr->search(l_cur1TagName[i]);
+
+        panes0[i]->setAnimation(mCursorTexKey);
+        panes0[i]->setAnimation(mCursorColorKey);
+        panes1[i]->setAnimation(mCursorTexKey);
+        panes1[i]->setAnimation(mCursorColorKey);
+    }
+
+    nameIn.NameInScr->search('jpn_n')->hide();
+    mMenuPane = nameIn.NameInScr->search('pal_n');
+    mMenuPane->show();
+
+    nameIn.NameInScr->search('j_hira_n')->scale(0.0f, 0.0f);
+    nameIn.NameInScr->search('j_kata_n')->scale(0.0f, 0.0f);
+    nameIn.NameInScr->search('j_eigo_n')->scale(0.0f, 0.0f);
+    nameIn.NameInScr->search('j_end_n')->scale(0.0f, 0.0f);
+
+    J2DTextBox* menuPane[3];
+    for (int i = 0; i < 4; i++) {
+        if (i == 2) {
+            mMenuIcon[i] = NULL;
+            mMenuText[i] = NULL;
+        } else {
+            mMenuIcon[i] = new CPaneMgr(nameIn.NameInScr, l_menu_icon_tag[i], 1, NULL);
+
+            char buf[16];
+            fopMsgM_messageGet(buf, l_menu_msg[i]);
+
+            for (int j = 0; j < 3; j++) {
+                menuPane[j] = (J2DTextBox*)nameIn.NameInScr->search(l_menu_tag[j]);
+
+                if (j == 0) {
+                    mMenuText[i] = menuPane[j];
+                }
+
+                menuPane[j]->setFont(nameIn.font);
+                menuPane[j]->setString(buf);
+            }
+        }
+    }
+
+    mMenuIcon[0]->hide();
+    mMenuIcon[1]->hide();
+    mMojiPane = nameIn.NameInScr->search('moji_n');
+
+    for (int i = 0; i < 65; i++) {
+        mMojiIcon[i] = new CPaneMgr(nameIn.NameInScr, l_tagName[i], 2, NULL);
+        ((J2DTextBox*)mMojiIcon[i]->getPanePtr())->setFont(nameIn.font);
+        ((J2DTextBox*)mMojiIcon[i]->getPanePtr())->setString(72, "");
+        mMojiText[i] = ((J2DTextBox*)mMojiIcon[i]->getPanePtr())->getStringPtr();
+    }
+
+    J2DPane* nameTagPane[8];
+    for (int i = 0; i < 8; i++) {
+        mNameCursor[i] = new CPaneMgrAlpha(nameIn.NameInScr, l_nameCurTagName[i], 2, NULL);
+        nameTagPane[i] = nameIn.NameInScr->search(l_nameTagName[i]);
+        ((J2DTextBox*)nameTagPane[i])->setFont(nameIn.font);
+        ((J2DTextBox*)nameTagPane[i])->setString(72, "");
+        ((J2DTextBox*)nameTagPane[i])->setWhite(JUtility::TColor(0xC8, 0xC8, 0xC8, 0xFF));
+        mNameText[i] = ((J2DTextBox*)nameTagPane[i])->getStringPtr();
+    }
+
+    mCharColumn = 0;
+    mCharRow = 0;
+
+    mSelIcon = new dSelect_cursor_c(0, 1.0f, NULL);
+    mSelIcon->setParam(0.82f, 0.77f, 0.05f, 0.4f, 0.4f);
+    Vec pos = mMojiIcon[mCharRow + mCharColumn * 5]->getGlobalVtxCenter(false, 0);
+    mSelIcon->setPos(pos.x, pos.y, mMojiIcon[mCharRow + mCharColumn * 5]->getPanePtr(), true);
+    mSelIcon->setAlphaRate(0.0f);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1753,80 +1333,118 @@ asm void dName_c::screenSet() {
 #include "asm/d/d_name/screenSet__7dName_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80250CEC-80250E54 24B62C 0168+00 2/2 0/0 0/0 .text            displayInit__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::displayInit() {
-    nofralloc
-#include "asm/d/d_name/displayInit__7dName_cFv.s"
+void dName_c::displayInit() {
+    mSelIcon->setAlphaRate(FLOAT_LABEL(lit_4009));
+    mCurColAnmF = 0;
+    mCurTexAnmF = 0;
+    mSelProc = field_0x2ac;
+    field_0x2ad = field_0x2ae;
+
+    for (int i = 0; i < 65; i++) {
+        ((J2DTextBox*)mMojiIcon[i]->getPanePtr())
+            ->setWhite(JUtility::TColor(0x96, 0x96, 0x96, 0xFF));
+    }
+
+    for (int i = 0; i < 4; i++) {
+        if (mMenuText[i] != NULL) {
+            mMenuText[i]->setWhite(JUtility::TColor(0x96, 0x96, 0x96, 0xFF));
+        }
+    }
+
+    for (int i = 0; i < 8; i++) {
+        mNameCursor[i]->hide();
+        mChrInfo[i].mColumn = 7;
+        mChrInfo[i].mRow = 1;
+        mChrInfo[i].mMojiSet = MOJI_EIGO;
+        mChrInfo[i].field_0x3 = 1;
+        mChrInfo[i].mCharacter = ' ';
+    }
+
+    mIsInputEnd = false;
 }
-#pragma pop
 
 /* 80250E54-80251048 24B794 01F4+00 1/1 0/0 0/0 .text            NameStrSet__7dName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::NameStrSet() {
-    nofralloc
-#include "asm/d/d_name/NameStrSet__7dName_cFv.s"
+void dName_c::NameStrSet() {
+    char* moji = mNextNameStr;
+
+    int i = 0;
+    while (*moji != 0) {
+        if (*(u8*)moji >> 4 == 8 || *(u8*)moji >> 4 == 9) {
+            mChrInfo[i].mCharacter = *(u16*)moji;
+
+            for (int j = 0; j < 65; j++) {
+                if (mChrInfo[i].mCharacter == *(u16*)l_mojiHira[j] ||
+                    mChrInfo[i].mCharacter == *(u16*)l_mojiHira2[j] ||
+                    mChrInfo[i].mCharacter == *(u16*)l_mojiHira3[j]) {
+                    mChrInfo[i].mColumn = j / 5;
+                    mChrInfo[i].mRow = j % 5;
+                    mChrInfo[i].mMojiSet = MOJI_HIRA;
+                    break;
+                } else if (mChrInfo[i].mCharacter == *(u16*)l_mojikata[j] ||
+                           mChrInfo[i].mCharacter == *(u16*)l_mojikata2[j] ||
+                           mChrInfo[i].mCharacter == *(u16*)l_mojikata3[j]) {
+                    mChrInfo[i].mColumn = j / 5;
+                    mChrInfo[i].mRow = j % 5;
+                    mChrInfo[i].mMojiSet = MOJI_KATA;
+                    break;
+                }
+            }
+            moji += 2;
+            i++;
+        } else {
+            mChrInfo[i].mCharacter = *moji;
+
+            for (int j = 0; j < 65; j++) {
+                if (mChrInfo[i].mCharacter == *(u8*)l_mojiEisu[j]) {
+                    mChrInfo[i].mColumn = j / 5;
+                    mChrInfo[i].mRow = j % 5;
+                    mChrInfo[i].mMojiSet = MOJI_EIGO;
+                    break;
+                }
+            }
+            moji++;
+            i++;
+        }
+    }
+
+    mLastCurPos = mCurPos;
+    mCurPos = i;
+    setNameText();
+    nameCursorMove();
 }
-#pragma pop
 
 /* 80251048-80251094 24B988 004C+00 6/6 0/0 0/0 .text            getMenuPosIdx__7dName_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::getMenuPosIdx(u8 param_0) {
-    nofralloc
-#include "asm/d/d_name/getMenuPosIdx__7dName_cFUc.s"
+s32 dName_c::getMenuPosIdx(u8 selPos) {
+    switch (selPos) {
+    case 0:
+        return 0;
+    case 1:
+        return 1;
+    case 2:
+        return 2;
+    case 3:
+        return 3;
+    }
 }
-#pragma pop
 
 /* 80251094-8025115C 24B9D4 00C8+00 1/0 0/0 0/0 .text            draw__14dDlst_NameIN_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dDlst_NameIN_c::draw() {
+// asm void dDlst_NameIN_c::draw() {
+extern "C" asm void draw__14dDlst_NameIN_cFv() {
     nofralloc
 #include "asm/d/d_name/draw__14dDlst_NameIN_cFv.s"
 }
 #pragma pop
 
 /* 8025115C-802511A4 24BA9C 0048+00 1/0 0/0 0/0 .text            __dt__14dDlst_NameIN_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dDlst_NameIN_c::~dDlst_NameIN_c() {
-    nofralloc
-#include "asm/d/d_name/__dt__14dDlst_NameIN_cFv.s"
-}
-#pragma pop
+dDlst_NameIN_c::~dDlst_NameIN_c() {}
 
 /* 802511A4-802511EC 24BAE4 0048+00 2/1 0/0 0/0 .text            __dt__9dNm_HIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dNm_HIO_c::~dNm_HIO_c() {
-    nofralloc
-#include "asm/d/d_name/__dt__9dNm_HIO_cFv.s"
-}
-#pragma pop
-
-/* 802511EC-80251314 24BB2C 0128+00 0/0 1/0 0/0 .text            __sinit_d_name_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_name_cpp() {
-    nofralloc
-#include "asm/d/d_name/__sinit_d_name_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x802511EC, __sinit_d_name_cpp);
-#pragma pop
+dNm_HIO_c::~dNm_HIO_c() {}
 
 /* 80399CC8-80399CC8 026328 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

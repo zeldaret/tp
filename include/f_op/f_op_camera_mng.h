@@ -1,21 +1,26 @@
 #ifndef F_F_OP_CAMERA_MNG_H_
 #define F_F_OP_CAMERA_MNG_H_
 
+#include "SSystem/SComponent/c_phase.h"
+#include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_draw_tag.h"
+#include "f_op/f_op_view.h"
 #include "f_pc/f_pc_leaf.h"
 
-class camera_class {
+class camera_class : public view_class {
 public:
-    /* 0x000 */ u8 field_0x00[0xB0];
-    /* 0x0B0 */ u32 parameter;
-    /* 0x0B4 */ u8 field_0xB4[0x24];
-    /* 0x0D8 */ cXyz field_0xd8;
-    /* 0x0E4 */ cXyz field_0xe4;
-    /* 0x0F0 */ u8 field_0xf0[0x120];
+    /* 0x170 */ u8 field_0x170[0xa0];
     /* 0x210 */ create_tag_class pCreateTag;
     /* 0x224 */ leafdraw_method_class* pMthd;
+    /* 0x228 */ u8 field_0x228[4];
+    /* 0x22C */ s8 mPrm1;
+    /* 0x22D */ s8 mPrm2;
+    /* 0x22E */ s8 mPrm3;
+    /* 0x22F */ u8 field_0x22f;
+    /* 0x230 */ csXyz mAngle;
+    /* 0x238 */ int field_0x238;
 };
 
 u32 fopCamM_Create(int i_cameraIdx, s16 pProcName, void* param_3);

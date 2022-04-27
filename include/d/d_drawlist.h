@@ -208,14 +208,10 @@ private:
 
 STATIC_ASSERT(sizeof(dDlst_window_c) == 0x2C);
 
-struct view_port_class {};
-
-struct view_class {
-    /* 0x00 */ u8 field_0x0[0xD0];
-    /* 0xD0 */ f32 field_0xd0;
-};
-
 extern u8 data_80450ED0;  // Wipe
+
+struct view_port_class;
+struct view_class;
 
 class dDlst_list_c {
 public:

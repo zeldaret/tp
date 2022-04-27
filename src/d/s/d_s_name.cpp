@@ -4,36 +4,17 @@
 //
 
 #include "d/s/d_s_name.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "m_Do/m_Do_audio.h"
 
 //
 // Types:
 //
 
-struct scene_class {};
-
-struct request_of_phase_process_class {};
-
-struct mDoRst {
-    static u8 mResetData[4 + 4 /* padding */];
-};
-
 struct mDoMch_render_c {
     static void* mRenderModeObj[1 + 1 /* padding */];
-};
-
-struct mDoGph_gInf_c {
-    static u8 mFader[4];
-};
-
-struct dVibration_c {
-    /* 8006F268 */ void Run();
-    /* 8006FF04 */ void Init();
-};
-
-struct dSv_player_get_item_c {
-    /* 80033E94 */ void offFirstBit(u8);
 };
 
 struct dSn_HIO_c {
@@ -41,11 +22,26 @@ struct dSn_HIO_c {
     /* 802592DC */ ~dSn_HIO_c();
 };
 
-struct dScnName_camera_c {
-    /* 80259294 */ ~dScnName_camera_c();
+class dScnName_camera_c : public camera_class {
+public:
+    /* 80259294 */ virtual ~dScnName_camera_c();
 };
 
-struct dScnName_c {
+struct dFile_select_c {
+    /* 8018366C */ dFile_select_c(JKRArchive*);
+    /* 801843CC */ void _create();
+    /* 801844FC */ void _move();
+    /* 8018DD38 */ void _draw();
+};
+
+struct dBrightCheck_c {
+    /* 80192F10 */ dBrightCheck_c(JKRArchive*);
+    /* 801934D0 */ void _move();
+    /* 80193594 */ void _draw();
+};
+
+class dScnName_c : public scene_class {
+public:
     /* 802588A0 */ void create();
     /* 80258B2C */ void setView();
     /* 80258BC8 */ void execute();
@@ -58,69 +54,18 @@ struct dScnName_c {
     /* 80258FD4 */ void brightCheckOpen();
     /* 80259008 */ void brightCheck();
     /* 802590F8 */ void changeGameScene();
-};
 
-struct dRes_info_c {};
-
-struct JKRHeap {
-    /* 802CE438 */ void becomeCurrentHeap();
-    /* 802CE448 */ void destroy();
-};
-
-struct dRes_control_c {
-    /* 8003C078 */ void setRes(char const*, dRes_info_c*, int, char const*, u8, JKRHeap*);
-    /* 8003C160 */ void syncRes(char const*, dRes_info_c*, int);
-    /* 8003C194 */ void deleteRes(char const*, dRes_info_c*, int);
-    /* 8003C1E4 */ void getResInfo(char const*, dRes_info_c*, int);
-};
-
-struct dPa_control_c {
-    /* 8004C054 */ void cleanup();
-};
-
-struct dMeter2Info_c {
-    /* 8021DD5C */ void changeWater(u8);
-};
-
-struct JKRArchive {};
-
-struct dFile_select_c {
-    /* 8018366C */ dFile_select_c(JKRArchive*);
-    /* 801843CC */ void _create();
-    /* 801844FC */ void _move();
-    /* 8018DD38 */ void _draw();
-};
-
-struct dDlst_window_c {
-    /* 80051AC0 */ void setViewPort(f32, f32, f32, f32, f32, f32);
-    /* 80051ADC */ void setScissor(f32, f32, f32, f32);
-};
-
-struct dBrightCheck_c {
-    /* 80192F10 */ dBrightCheck_c(JKRArchive*);
-    /* 801934D0 */ void _move();
-    /* 80193594 */ void _draw();
-};
-
-struct Z2SeqMgr {
-    /* 802AF010 */ void bgmStart(u32, u32, s32);
-    /* 802AF408 */ void bgmStop(u32, s32);
-    /* 802AFB94 */ void bgmStreamPrepare(u32);
-    /* 802AFE18 */ void bgmStreamPlay();
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct Vec {};
-
-struct JKRExpHeap {
-    /* 802CEE2C */ void create(u32, JKRHeap*, bool);
-};
-
-struct JFWDisplay {
-    static u8 sManager[4];
+private:
+    /* 0x1CC */ JKRExpHeap* mHeap;
+    /* 0x1D0 */ JKRExpHeap* field_0x1d0;
+    /* 0x1D4 */ dScnName_camera_c mCamera;
+    /* 0x414 */ dFile_select_c* dFs_c;
+    /* 0x418 */ dBrightCheck_c* mBrightCheck;
+    /* 0x41C */ u8 field_0x41c;
+    /* 0x41D */ u8 field_0x41d;
+    /* 0x41E */ u8 field_0x41e;
+    /* 0x41F */ u8 field_0x41f;
+    /* 0x420 */ u8 field_0x420;
 };
 
 //
@@ -196,23 +141,14 @@ extern "C" void destroy__7JKRHeapFv();
 extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();
 extern "C" void create__10JKRExpHeapFUlP7JKRHeapb();
-extern "C" void OSGetTime();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXInverse();
-extern "C" void C_MTXPerspective();
 extern "C" void __register_global_object();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
 extern "C" extern void* g_fopScn_Method[5 + 1 /* padding */];
 extern "C" extern void* g_fpcNd_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 j3dSys[284];
 extern "C" void* mRenderModeObj__15mDoMch_render_c[1 + 1 /* padding */];
-extern "C" extern u32 g_blackColor;
 extern "C" u8 mFader__13mDoGph_gInf_c[4];
-extern "C" extern u8 struct_80450BE4[4];
 extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 extern "C" u8 sManager__10JFWDisplay[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
@@ -355,50 +291,34 @@ asm dSn_HIO_c::dSn_HIO_c() {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 8039A2A8-8039A2A8 026908 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039A2A8 = "/res/Object/";
-#pragma pop
-
 /* 802587A4-80258820 2530E4 007C+00 1/0 0/0 0/0 .text            phase_1__FPc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void phase_1(char* param_0) {
-    nofralloc
-#include "asm/d/s/d_s_name/phase_1__FPc.s"
+static s32 phase_1(char* resName) {
+    mDoAud_bgmStart(-1);
+    if (dComIfG_setObjectRes(resName, 0, NULL) == 0) {
+        return 5;
+    }
+
+    return 2;
 }
-#pragma pop
 
 /* 80258820-80258878 253160 0058+00 1/0 0/0 0/0 .text            phase_2__FPc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void phase_2(char* param_0) {
-    nofralloc
-#include "asm/d/s/d_s_name/phase_2__FPc.s"
-}
-#pragma pop
+static s32 phase_2(char* resName) {
+    int syncStatus = dComIfG_syncObjectRes(resName);
 
-/* ############################################################################################## */
-/* 80450758-80450760 -00001 0008+00 1/1 0/0 0/0 .sdata           l_method$3851 */
-SECTION_SDATA static void* l_method[2] = {
-    (void*)phase_1__FPc,
-    (void*)phase_2__FPc,
-};
+    if (syncStatus < 0) {
+        return 5;
+    } else {
+        return syncStatus > 0 ? 0 : 4;
+    }
+}
 
 /* 80258878-802588A0 2531B8 0028+00 1/1 0/0 0/0 .text
  * resLoad__FP30request_of_phase_process_classPc                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void resLoad(request_of_phase_process_class* param_0, char* param_1) {
-    nofralloc
-#include "asm/d/s/d_s_name/resLoad__FP30request_of_phase_process_classPc.s"
+static s32 resLoad(request_of_phase_process_class* i_phase, char* param_1) {
+    static s32 (*l_method[2])(char*) = {phase_1, phase_2};
+
+    return dComLbG_PhaseHandler(i_phase, (request_of_phase_process_fn)l_method, param_1);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039A2A8-8039A2A8 026908 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -620,7 +540,8 @@ static asm void dScnName_Create(scene_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dScnName_camera_c::~dScnName_camera_c() {
+// asm dScnName_camera_c::~dScnName_camera_c() {
+extern "C" asm void __dt__17dScnName_camera_cFv() {
     nofralloc
 #include "asm/d/s/d_s_name/__dt__17dScnName_camera_cFv.s"
 }

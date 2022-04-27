@@ -504,7 +504,7 @@ asm void CPaneMgr::getGlobalVtx(J2DPane* param_0, f32 (*param_1)[3][4], u8 param
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void CPaneMgr::getGlobalVtxCenter(J2DPane* param_0, bool param_1, s16 param_2) {
+asm Vec CPaneMgr::getGlobalVtxCenter(J2DPane* param_0, bool param_1, s16 param_2) {
     nofralloc
 #include "asm/d/pane/d_pane_class/getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs.s"
 }

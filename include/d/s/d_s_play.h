@@ -69,6 +69,7 @@ public:
     static bool isPause() { return struct_80451124 == 0; }
     static void setPauseTimer(s8 time) { data_80451125 = time; }
 
+    /* 0x1CC */ mDoDvdThd_toMainRam_c* sceneCommand;
     /* 0x1D0 */ mDoDvdThd_mountXArchive_c* field_0x1d0;
     /* 0x1D4 */ u8 field_0x1d4;
 };
