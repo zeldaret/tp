@@ -160,7 +160,6 @@ extern "C" void getNextData__7dTres_cFPQ27dTres_c15typeGroupData_c();
 extern "C" void getNextData__7dTres_cFPCQ27dTres_c15typeGroupData_c();
 extern "C" void* __nw__FUl();
 extern "C" void GXClearVtxDesc();
-extern "C" void GXSetMisc();
 extern "C" void GXInvalidateTexAll();
 extern "C" void _savegpr_20();
 extern "C" void _savegpr_24();

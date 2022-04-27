@@ -3,7 +3,6 @@
 // Translation Unit: GDGeometry
 //
 
-#include "dolphin/gd/GDGeometry.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

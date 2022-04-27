@@ -603,10 +603,10 @@ extern "C" extern u8 j3dTevSwapTableTable[1024];
 extern "C" extern u8 j3dAlphaCmpTable[768];
 extern "C" extern u8 j3dZModeTable[96];
 extern "C" extern u8 __GDCurrentDL[4];
-extern "C" extern u32 j3dDefaultColInfo;
+extern "C" extern GXColor j3dDefaultColInfo;
 extern "C" extern u32 j3dDefaultAmbInfo;
-extern "C" extern u32 j3dDefaultTevColor;
-extern "C" extern u32 j3dDefaultTevKColor;
+extern "C" extern GXColorS10 j3dDefaultTevColor;
+extern "C" extern GXColor j3dDefaultTevKColor;
 
 //
 // Declarations:

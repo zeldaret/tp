@@ -12,60 +12,24 @@
 #include "dolphin/types.h"
 #include "init.h"
 
-//
-// Forward References:
-//
-
-extern "C" void __ct__13J3DVertexDataFv();
-extern "C" void setVertexData__15J3DVertexBufferFP13J3DVertexData();
-extern "C" void init__15J3DVertexBufferFv();
-extern "C" void __dt__15J3DVertexBufferFv();
-extern "C" void setArray__15J3DVertexBufferCFv();
-extern "C" void copyLocalVtxPosArray__15J3DVertexBufferFUl();
-extern "C" void copyLocalVtxNrmArray__15J3DVertexBufferFUl();
-extern "C" void copyLocalVtxArray__15J3DVertexBufferFUl();
-extern "C" void allocTransformedVtxPosArray__15J3DVertexBufferFv();
-extern "C" void allocTransformedVtxNrmArray__15J3DVertexBufferFv();
-extern "C" void __ct__14J3DDrawMtxDataFv();
-extern "C" void __dt__14J3DDrawMtxDataFv();
-
-//
-// External References:
-//
-
-extern "C" void* __nwa__FUli();
-extern "C" void __dl__FPv();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-
-//
-// Declarations:
-//
-
 /* 80310EF8-80310F78 30B838 0080+00 0/0 1/1 0/0 .text            __ct__13J3DVertexDataFv */
 J3DVertexData::J3DVertexData() {
     mVtxNum = 0;
     mNrmNum = 0;
     mColNum = 0;
-    field_0xc = 0;
-    field_0x10 = 0;
+    mTexCoordNum = 0;
+    mPacketNum = 0;
 
     mVtxAttrFmtList = NULL;
     mVtxPosArray = NULL;
     mVtxNrmArray = NULL;
     mVtxNBTArray = NULL;
 
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < ARRAY_SIZE(mVtxColorArray); i++)
         mVtxColorArray[i] = NULL;
-    }
 
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < ARRAY_SIZE(mVtxTexCoordArray); i++)
         mVtxTexCoordArray[i] = NULL;
-    }
 
     mVtxPosFrac = 0;
     mVtxPosType = GX_F32;
@@ -130,13 +94,13 @@ void J3DVertexBuffer::setArray() const {
 
 /* 80311090-803111B0 30B9D0 0120+00 1/1 0/0 0/0 .text copyLocalVtxPosArray__15J3DVertexBufferFUl
  */
-s32 J3DVertexBuffer::copyLocalVtxPosArray(u32 flags) {
-    if (flags & 1) {
+s32 J3DVertexBuffer::copyLocalVtxPosArray(u32 flag) {
+    if (flag & 1) {
         for (int i = 0; i < 2; i++) {
             mVtxPosArray[i] = new (0x20) VertexPosition[mVtxData->getVtxNum()];
 
             if (mVtxPosArray[i] == NULL) {
-                return 4;
+                return kJ3DError_Alloc;
             }
             memcpy(mVtxPosArray[i], mVtxData->getVtxPosArray(), mVtxData->getVtxNum() * 12);
             DCStoreRange(mVtxPosArray[i], mVtxData->getVtxNum() * 12);
@@ -147,24 +111,25 @@ s32 J3DVertexBuffer::copyLocalVtxPosArray(u32 flags) {
         if (mVtxPosArray[1] == NULL) {
             mVtxPosArray[1] = new (0x20) VertexPosition[mVtxData->getVtxNum()];
             if (mVtxPosArray[1] == NULL) {
-                return 4;
+                return kJ3DError_Alloc;
             }
         }
         memcpy(mVtxPosArray[1], mVtxData->getVtxPosArray(), mVtxData->getVtxNum() * 12);
         DCStoreRange(mVtxPosArray[1], mVtxData->getVtxNum() * 12);
     }
-    return 0;
+
+    return kJ3DError_Success;
 }
 
 /* 803111B0-803112D0 30BAF0 0120+00 1/1 0/0 0/0 .text copyLocalVtxNrmArray__15J3DVertexBufferFUl
  */
-s32 J3DVertexBuffer::copyLocalVtxNrmArray(u32 param_0) {
-    if (param_0 & 1) {
+s32 J3DVertexBuffer::copyLocalVtxNrmArray(u32 flag) {
+    if (flag & 1) {
         for (int i = 0; i < 2; i++) {
             mVtxNrmArray[i] = new (0x20) VertexNormal[mVtxData->getNrmNum()];
 
             if (mVtxNrmArray[i] == NULL) {
-                return 4;
+                return kJ3DError_Alloc;
             }
             memcpy(mVtxNrmArray[i], mVtxData->getVtxNrmArray(), mVtxData->getNrmNum() * 12);
             DCStoreRange(mVtxNrmArray[i], mVtxData->getNrmNum() * 12);
@@ -175,119 +140,99 @@ s32 J3DVertexBuffer::copyLocalVtxNrmArray(u32 param_0) {
         if (mVtxNrmArray[1] == NULL) {
             mVtxNrmArray[1] = new (0x20) VertexNormal[mVtxData->getNrmNum()];
             if (mVtxNrmArray[1] == NULL) {
-                return 4;
+                return kJ3DError_Alloc;
             }
         }
         memcpy(mVtxNrmArray[1], mVtxData->getVtxNrmArray(), mVtxData->getNrmNum() * 12);
         DCStoreRange(mVtxNrmArray[1], mVtxData->getNrmNum() * 12);
     }
-    return 0;
+
+    return kJ3DError_Success;
 }
 
 /* 803112D0-80311478 30BC10 01A8+00 0/0 1/1 0/0 .text copyLocalVtxArray__15J3DVertexBufferFUl */
-#ifdef NONMATCHING
-s32 J3DVertexBuffer::copyLocalVtxArray(u32 param_0) {
-    void* local_30[5];
+s32 J3DVertexBuffer::copyLocalVtxArray(u32 flag) {
+    void* oldPosArray[2];
+    void* oldNrmArray[2];
 
-    for (int i = 0; i < 2; i++) {
-        local_30[i] = mVtxPosArray[i];
-    }
+    for (int i = 0; i < 2; i++)
+        oldPosArray[i] = mVtxPosArray[i];
 
-    if (~param_0 & 2) {
-        s32 tmp = copyLocalVtxPosArray(param_0);
-        if (tmp != 0) {
+    if (~flag & 2) {
+        s32 ret = copyLocalVtxPosArray(flag);
+        if (ret != 0) {
             for (int i = 0; i < 2; i++) {
-                if (local_30[i + 2] != mVtxPosArray[i]) {
-                    if (mVtxPosArray[i] != mVtxData->getVtxPosArray()) {
+                if (oldPosArray[i] != mVtxPosArray[i]) {
+                    if (mVtxPosArray[i] != mVtxData->getVtxPosArray())
                         delete mVtxPosArray[i];
-                    }
-                    mVtxPosArray[i] = local_30[i + 2];
+                    mVtxPosArray[i] = oldPosArray[i];
                 }
             }
-            return tmp;
+            return ret;
         }
     } else {
-        void* vtxPosArray = mVtxData->getVtxPosArray();
-        mVtxPosArray[1] = vtxPosArray;
-        mVtxPosArray[0] = vtxPosArray;
+        mVtxPosArray[0] = mVtxPosArray[1] = mVtxData->getVtxPosArray();
     }
 
-    for (int i = 0; i < 2; i++) {
-        local_30[i] = mVtxNrmArray[i];
-    }
+    for (int i = 0; i < 2; i++)
+        oldNrmArray[i] = mVtxNrmArray[i];
 
-    if (~param_0 & 4) {
-        s32 tmp = copyLocalVtxNrmArray(param_0);
-        if (tmp != 0) {
+    if (~flag & 4) {
+        s32 ret = copyLocalVtxNrmArray(flag);
+        if (ret != 0) {
             for (int i = 0; i < 2; i++) {
-                if (local_30[i + 2] != mVtxPosArray[i]) {
-                    if (mVtxPosArray[i] != mVtxData->getVtxPosArray()) {
+                if (oldPosArray[i] != mVtxPosArray[i]) {
+                    if (mVtxPosArray[i] != mVtxData->getVtxPosArray())
                         delete mVtxPosArray[i];
-                    }
-                    mVtxPosArray[i] = local_30[i + 2];
+                    mVtxPosArray[i] = oldPosArray[i];
                 }
-                if (local_30[i] != mVtxNrmArray[i]) {
-                    if (mVtxNrmArray[i] != mVtxData->getVtxNrmArray()) {
+                if (oldNrmArray[i] != mVtxNrmArray[i]) {
+                    if (mVtxNrmArray[i] != mVtxData->getVtxNrmArray())
                         delete mVtxNrmArray[i];
-                    }
-                    mVtxNrmArray[i] = local_30[i];
+                    mVtxNrmArray[i] = oldNrmArray[i];
                 }
             }
-            return tmp;
+            return ret;
         }
     } else {
-        void* vtxNrmArray = mVtxData->getVtxNrmArray();
-        mVtxNrmArray[1] = vtxNrmArray;
-        mVtxNrmArray[0] = vtxNrmArray;
+        mVtxNrmArray[0] = mVtxNrmArray[1] = mVtxData->getVtxNrmArray();
     }
 
-    return 0;
+    return kJ3DError_Success;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 J3DVertexBuffer::copyLocalVtxArray(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DVertex/copyLocalVtxArray__15J3DVertexBufferFUl.s"
-}
-#pragma pop
-#endif
 
 /* 80311478-8031152C 30BDB8 00B4+00 0/0 1/1 0/0 .text
  * allocTransformedVtxPosArray__15J3DVertexBufferFv             */
 s32 J3DVertexBuffer::allocTransformedVtxPosArray() {
-    if (mTransformedVtxPosArray[0] != NULL && mTransformedVtxPosArray[1] != NULL) {
-        return 0;
-    }
+    if (mTransformedVtxPosArray[0] != NULL && mTransformedVtxPosArray[1] != NULL)
+        return kJ3DError_Success;
 
     for (int i = 0; i < 2; i++) {
         if (i == 0 || mTransformedVtxPosArray[i] == NULL) {
             mTransformedVtxPosArray[i] = new (0x20) VertexPosition[mVtxData->getVtxNum()];
-            if (mTransformedVtxPosArray[i] == NULL) {
-                return 4;
-            }
+            if (mTransformedVtxPosArray[i] == NULL)
+                return kJ3DError_Alloc;
         }
     }
-    return 0;
+
+    return kJ3DError_Success;
 }
 
 /* 8031152C-803115E0 30BE6C 00B4+00 0/0 1/1 0/0 .text
  * allocTransformedVtxNrmArray__15J3DVertexBufferFv             */
 s32 J3DVertexBuffer::allocTransformedVtxNrmArray() {
-    if (mTransformedVtxNrmArray[0] != NULL && mTransformedVtxNrmArray[1] != NULL) {
-        return 0;
-    }
+    if (mTransformedVtxNrmArray[0] != NULL && mTransformedVtxNrmArray[1] != NULL)
+        return kJ3DError_Success;
 
     for (int i = 0; i < 2; i++) {
         if (i == 0 || mTransformedVtxNrmArray[i] == NULL) {
             mTransformedVtxNrmArray[i] = new (0x20) VertexNormal[mVtxData->getNrmNum()];
-            if (mTransformedVtxNrmArray[i] == NULL) {
-                return 4;
-            }
+            if (mTransformedVtxNrmArray[i] == NULL)
+                return kJ3DError_Alloc;
         }
     }
-    return 0;
+
+    return kJ3DError_Success;
 }
 
 /* 803115E0-803115F4 30BF20 0014+00 0/0 1/1 0/0 .text            __ct__14J3DDrawMtxDataFv */

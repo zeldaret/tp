@@ -7,62 +7,63 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-//
-// Forward References:
-//
-
-extern "C" void loadGX__10J3DTextureCFUs11_GXTexMapID();
-extern "C" void entryNum__10J3DTextureFUs();
-extern "C" void addResTIMG__10J3DTextureFUsPC7ResTIMG();
-
-//
-// External References:
-//
-
-extern "C" void* __nwa__FUl();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_28();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 80456388-8045638C 004988 0004+00 1/1 0/0 0/0 .sdata2          @284 */
-SECTION_SDATA2 static f32 lit_284 = 0.125f;
-
-/* 8045638C-80456390 00498C 0004+00 1/1 0/0 0/0 .sdata2          @285 */
-SECTION_SDATA2 static f32 lit_285 = 1.0f / 100.0f;
-
-/* 80456390-80456398 004990 0008+00 1/1 0/0 0/0 .sdata2          @288 */
-SECTION_SDATA2 static f64 lit_288 = 4503601774854144.0 /* cast s32 to float */;
-
 /* 8031204C-803121A4 30C98C 0158+00 0/0 1/1 0/0 .text loadGX__10J3DTextureCFUs11_GXTexMapID */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DTexture::loadGX(u16 param_0, _GXTexMapID param_1) const {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DTexture/loadGX__10J3DTextureCFUs11_GXTexMapID.s"
+void J3DTexture::loadGX(u16 idx, GXTexMapID texMapID) const {
+    ResTIMG* timg = getResTIMG(idx);
+    GXTexObj texObj;
+
+    if (!timg->palettesEnabled) {
+        GXInitTexObj(&texObj, ((u8*)timg) + timg->texDataOffset, timg->width, timg->height,
+            (GXTexFmt)timg->format, (GXTexWrapMode)timg->wrapS, (GXTexWrapMode)timg->wrapT,
+            (GXBool)timg->mipmapEnabled);
+    } else {
+        GXTlutObj tlutObj;
+
+        GXInitTexObjCI(&texObj, ((u8*)timg) + timg->texDataOffset, timg->width, timg->height,
+            (GXCITexFmt)timg->format, (GXTexWrapMode)timg->wrapS, (GXTexWrapMode)timg->wrapT,
+            (GXBool)timg->mipmapEnabled, (u32)texMapID);
+        GXInitTlutObj(&tlutObj, ((u8*)timg) + timg->paletteOffset, (GXTlutFmt)timg->paletteFormat, timg->paletteCount);
+        GXLoadTlut(&tlutObj, texMapID);
+    }
+
+    const f32 kLODClampScale = 1.0f / 8.0f;
+    const f32 kLODBiasScale = 1.0f / 100.0f;
+    GXInitTexObjLOD(&texObj, (GXTexFilter) timg->minFilter, (GXTexFilter) timg->magFilter,
+        timg->minLOD * kLODClampScale, timg->maxLOD * kLODClampScale, timg->LODBias * kLODBiasScale,
+        (GXBool) timg->biasClamp, (GXBool) timg->doEdgeLOD, (GXAnisotropy) timg->maxAnisotropy);
+    GXLoadTexObj(&texObj, texMapID);
 }
-#pragma pop
 
 /* 803121A4-8031221C 30CAE4 0078+00 1/1 0/0 0/0 .text            entryNum__10J3DTextureFUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DTexture::entryNum(u16 param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DTexture/entryNum__10J3DTextureFUs.s"
+void J3DTexture::entryNum(u16 num) {
+    mNum = num;
+    mpRes = new ResTIMG[num]();
+
+    for (s32 i = 0; i < mNum; i++) {
+        mpRes[i].paletteOffset = 0;
+        mpRes[i].texDataOffset = 0;
+    }
 }
-#pragma pop
 
 /* 8031221C-80312488 30CB5C 026C+00 0/0 1/1 0/0 .text addResTIMG__10J3DTextureFUsPC7ResTIMG */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DTexture::addResTIMG(u16 param_0, ResTIMG const* param_1) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DTexture/addResTIMG__10J3DTextureFUsPC7ResTIMG.s"
+void J3DTexture::addResTIMG(u16 newNum, ResTIMG const* newRes) {
+    if (newNum == 0)
+        return;
+
+    u16 oldNum = mNum;
+    ResTIMG* oldRes = mpRes;
+
+    entryNum(mNum + newNum);
+
+    for (u16 i = 0; i < oldNum; i++) {
+        mpRes[i] = oldRes[i];
+        mpRes[i].texDataOffset = (u32)(&oldRes[i]) + mpRes[i].texDataOffset - (u32)(&mpRes[i]);
+        mpRes[i].paletteOffset = (u32)(&oldRes[i]) + mpRes[i].paletteOffset - (u32)(&mpRes[i]);
+    }
+
+    for (u16 i = oldNum; i < mNum; i++) {
+        mpRes[i] = newRes[i];
+        mpRes[i].texDataOffset = (u32)(&newRes[i]) + mpRes[i].texDataOffset - (u32)(&mpRes[i]);
+        mpRes[i].paletteOffset = (u32)(&newRes[i]) + mpRes[i].paletteOffset - (u32)(&mpRes[i]);
+    }
 }
-#pragma pop
