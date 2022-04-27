@@ -5,23 +5,13 @@
 
 #include "JSystem/J3DGraphBase/J3DTevs.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
+#include "JSystem/J3DGraphBase/J3DTexture.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
 //
 // Types:
 //
-
-struct J3DTexMtx {
-    /* 803238C4 */ void load(u32) const;
-    /* 80323900 */ void calc(f32 const (*)[4]);
-    /* 80323920 */ void calcTexMtx(f32 const (*)[4]);
-    /* 80323C0C */ void calcPostTexMtx(f32 const (*)[4]);
-    /* 80324358 */ void loadTexMtx(u32) const;
-    /* 803243BC */ void loadPostTexMtx(u32) const;
-};
-
-struct J3DTexCoord {};
 
 struct J3DNBTScale {};
 
@@ -52,15 +42,14 @@ extern "C" void loadTexMtx__9J3DTexMtxCFUl();
 extern "C" void loadPostTexMtx__9J3DTexMtxCFUl();
 extern "C" static void J3DGDLoadTexMtxImm__FPA4_fUl13_GXTexMtxType();
 extern "C" static void J3DGDLoadPostTexMtxImm__FPA4_fUl();
-extern "C" extern u32 j3dDefaultColInfo;
+extern "C" extern GXColor j3dDefaultColInfo;
 extern "C" extern u32 j3dDefaultAmbInfo;
-extern "C" extern u32 data_804563C8;
+extern "C" extern u8 data_804563C8;
 extern "C" extern u32 j3dDefaultTevOrderInfoNull;
 extern "C" extern u32 j3dDefaultIndTexOrderNull;
-extern "C" extern u32 j3dDefaultTevColor;
-extern "C" extern u32 data_804563D8;
+extern "C" extern GXColorS10 j3dDefaultTevColor;
 extern "C" extern u8 j3dDefaultIndTexCoordScaleInfo[4];
-extern "C" extern u32 j3dDefaultTevKColor;
+extern "C" extern GXColor j3dDefaultTevKColor;
 extern "C" extern u8 j3dDefaultTevSwapMode[4];
 extern "C" extern u32 j3dDefaultTevSwapModeTable;
 extern "C" extern u32 j3dDefaultBlendInfo;
@@ -73,6 +62,8 @@ extern "C" extern u16 j3dDefaultZModeID[1 + 1 /* padding */];
 // External References:
 //
 
+extern void J3DGDSetTexImgPtrRaw(_GXTexMapID param_0, u32 param_1);
+
 extern "C" void J3DGDSetLightAttn__F10_GXLightIDffffff();
 extern "C" void J3DGDSetLightColor__F10_GXLightID8_GXColor();
 extern "C" void J3DGDSetLightPos__F10_GXLightIDfff();
@@ -82,7 +73,6 @@ extern "C" void
 J3DGDSetTexLookupMode__F11_GXTexMapID14_GXTexWrapMode14_GXTexWrapMode12_GXTexFilter12_GXTexFilterfffUcUc13_GXAnisotropy();
 extern "C" void J3DGDSetTexImgAttr__F11_GXTexMapIDUsUs9_GXTexFmt();
 extern "C" void J3DGDSetTexImgPtr__F11_GXTexMapIDPv();
-extern "C" void J3DGDSetTexImgPtrRaw__F11_GXTexMapIDUl();
 extern "C" void J3DGDSetTexTlut__F11_GXTexMapIDUl10_GXTlutFmt();
 extern "C" void J3DGDLoadTlut__FPvUl11_GXTlutSize();
 extern "C" void J3DGetTextureMtx__FRC17J3DTextureSRTInfoRC3VecPA4_f();
@@ -261,14 +251,9 @@ asm void loadTexNo(u32 param_0, u16 const& param_1) {
 #pragma pop
 
 /* 8032413C-80324160 31EA7C 0024+00 0/0 2/2 0/0 .text            patchTexNo_PtrToIdx__FUlRCUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void patchTexNo_PtrToIdx(u32 param_0, u16 const& param_1) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DTevs/patchTexNo_PtrToIdx__FUlRCUs.s"
+void patchTexNo_PtrToIdx(u32 texID, u16 const& idx) {
+    J3DGDSetTexImgPtrRaw((GXTexMapID) texID, idx);
 }
-#pragma pop
 
 /* 80324160-80324194 31EAA0 0034+00 0/0 2/2 0/0 .text            loadNBTScale__FR11J3DNBTScale */
 #pragma push
@@ -291,9 +276,15 @@ SECTION_RODATA extern u8 const j3dDefaultLightInfo[52] = {
 COMPILER_STRIP_GATE(0x803A1EC8, &j3dDefaultLightInfo);
 
 /* 803A1EFC-803A1F1C 02E55C 0020+00 0/0 5/5 0/0 .rodata          j3dDefaultTexCoordInfo */
-SECTION_RODATA extern u8 const j3dDefaultTexCoordInfo[32] = {
-    0x01, 0x04, 0x3C, 0x00, 0x01, 0x05, 0x3C, 0x00, 0x01, 0x06, 0x3C, 0x00, 0x01, 0x07, 0x3C, 0x00,
-    0x01, 0x08, 0x3C, 0x00, 0x01, 0x09, 0x3C, 0x00, 0x01, 0x0A, 0x3C, 0x00, 0x01, 0x0B, 0x3C, 0x00,
+SECTION_RODATA extern J3DDefaultTexCoordInfo const j3dDefaultTexCoordInfo[8] = {
+    { GX_MTX2x4, GX_TG_TEX0, GX_IDENTITY, 0 },
+    { GX_MTX2x4, GX_TG_TEX1, GX_IDENTITY, 0 },
+    { GX_MTX2x4, GX_TG_TEX2, GX_IDENTITY, 0 },
+    { GX_MTX2x4, GX_TG_TEX3, GX_IDENTITY, 0 },
+    { GX_MTX2x4, GX_TG_TEX4, GX_IDENTITY, 0 },
+    { GX_MTX2x4, GX_TG_TEX5, GX_IDENTITY, 0 },
+    { GX_MTX2x4, GX_TG_TEX6, GX_IDENTITY, 0 },
+    { GX_MTX2x4, GX_TG_TEX7, GX_IDENTITY, 0 },
 };
 COMPILER_STRIP_GATE(0x803A1EFC, &j3dDefaultTexCoordInfo);
 
@@ -465,13 +456,13 @@ static asm void J3DGDLoadPostTexMtxImm(f32 (*param_0)[4], u32 param_1) {
 
 /* ############################################################################################## */
 /* 804563C0-804563C4 0049C0 0004+00 0/0 4/4 0/0 .sdata2          j3dDefaultColInfo */
-SECTION_SDATA2 extern u32 j3dDefaultColInfo = 0xFFFFFFFF;
+SECTION_SDATA2 extern GXColor j3dDefaultColInfo = { 0xFF, 0xFF, 0xFF, 0xFF };
 
 /* 804563C4-804563C8 0049C4 0004+00 0/0 2/2 0/0 .sdata2          j3dDefaultAmbInfo */
 SECTION_SDATA2 extern u32 j3dDefaultAmbInfo = 0x32323232;
 
 /* 804563C8-804563CC 0049C8 0004+00 0/0 1/1 0/0 .sdata2          None */
-SECTION_SDATA2 extern u32 data_804563C8 = 0x01000000;
+SECTION_SDATA2 extern u8 data_804563C8 = 0x01;
 
 /* 804563CC-804563D0 0049CC 0004+00 0/0 3/3 0/0 .sdata2          j3dDefaultTevOrderInfoNull */
 SECTION_SDATA2 extern u32 j3dDefaultTevOrderInfoNull = 0xFFFFFF00;
@@ -480,10 +471,7 @@ SECTION_SDATA2 extern u32 j3dDefaultTevOrderInfoNull = 0xFFFFFF00;
 SECTION_SDATA2 extern u32 j3dDefaultIndTexOrderNull = 0xFFFF0000;
 
 /* 804563D4-804563D8 0049D4 0004+00 0/0 5/5 0/0 .sdata2          j3dDefaultTevColor */
-SECTION_SDATA2 extern u32 j3dDefaultTevColor = 0x00FF00FF;
-
-/* 804563D8-804563DC 0049D8 0004+00 0/0 1/5 0/0 .sdata2          None */
-SECTION_SDATA2 extern u32 data_804563D8 = 0x00FF00FF;
+SECTION_SDATA2 extern GXColorS10 j3dDefaultTevColor = { 0xFF, 0xFF, 0xFF, 0xFF };
 
 /* 804563DC-804563E0 0049DC 0004+00 0/0 2/2 0/0 .sdata2          j3dDefaultIndTexCoordScaleInfo */
 SECTION_SDATA2 extern u8 j3dDefaultIndTexCoordScaleInfo[4] = {
@@ -494,7 +482,7 @@ SECTION_SDATA2 extern u8 j3dDefaultIndTexCoordScaleInfo[4] = {
 };
 
 /* 804563E0-804563E4 0049E0 0004+00 0/0 5/5 0/0 .sdata2          j3dDefaultTevKColor */
-SECTION_SDATA2 extern u32 j3dDefaultTevKColor = 0xFFFFFFFF;
+SECTION_SDATA2 extern GXColor j3dDefaultTevKColor = { 0xFF, 0xFF, 0xFF, 0xFF };
 
 /* 804563E4-804563E8 0049E4 0004+00 0/0 2/2 0/0 .sdata2          j3dDefaultTevSwapMode */
 SECTION_SDATA2 extern u8 j3dDefaultTevSwapMode[4] = {

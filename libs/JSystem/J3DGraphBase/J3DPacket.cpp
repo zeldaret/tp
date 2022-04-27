@@ -247,61 +247,37 @@ J3DDrawPacket::J3DDrawPacket() {
 }
 
 /* 803127B0-8031280C 30D0F0 005C+00 3/2 0/0 0/0 .text            __dt__13J3DDrawPacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DDrawPacket::~J3DDrawPacket() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/__dt__13J3DDrawPacketFv.s"
+J3DDrawPacket::~J3DDrawPacket() {
 }
-#pragma pop
 
 /* 8031280C-80312898 30D14C 008C+00 1/1 1/1 0/0 .text            newDisplayList__13J3DDrawPacketFUl
  */
-#ifdef NONMATCHING
-J3DError J3DDrawPacket::newDisplayList(u32 param_0) {
+J3DError J3DDrawPacket::newDisplayList(u32 size) {
     mpDisplayListObj = new J3DDisplayListObj();
 
-    if (mpDisplayListObj == NULL) {
+    if (mpDisplayListObj == NULL)
         return kJ3DError_Alloc;
-    } else if (mpDisplayListObj->newDisplayList(param_0)) {
-        return kJ3DError_Success;
-    }
-    return 0;
+
+    J3DError ret = mpDisplayListObj->newDisplayList(size);
+    if (ret != kJ3DError_Success)
+        return ret;
+
+    return kJ3DError_Success;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DError J3DDrawPacket::newDisplayList(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/newDisplayList__13J3DDrawPacketFUl.s"
-}
-#pragma pop
-#endif
 
 /* 80312898-80312924 30D1D8 008C+00 0/0 1/1 0/0 .text newSingleDisplayList__13J3DDrawPacketFUl */
-#ifdef NONMATCHING
-J3DError J3DDrawPacket::newSingleDisplayList(u32 param_0) {
+J3DError J3DDrawPacket::newSingleDisplayList(u32 size) {
     mpDisplayListObj = new J3DDisplayListObj();
 
-    if (mpDisplayListObj == NULL) {
+    if (mpDisplayListObj == NULL)
         return kJ3DError_Alloc;
-    } else if (mpDisplayListObj->newSingleDisplayList(param_0)) {
-        return kJ3DError_Success;
-    }
-    return 0;
+
+    J3DError ret = mpDisplayListObj->newSingleDisplayList(size);
+    if (ret != kJ3DError_Success)
+        return ret;
+
+    return kJ3DError_Success;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DError J3DDrawPacket::newSingleDisplayList(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/newSingleDisplayList__13J3DDrawPacketFUl.s"
-}
-#pragma pop
-#endif
 
 void J3DDrawPacket::draw() {
     mpDisplayListObj->callDL();

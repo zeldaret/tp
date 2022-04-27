@@ -33,12 +33,13 @@ public:
     J3DShape* getShapeNodePointer(u16 idx) const { return mShapeTable.getShapeNodePointer(idx); }
     J3DJoint* getJointNodePointer(u16 idx) const { return mJointTree.getJointNodePointer(idx); }
     J3DJointTree& getJointTree() { return mJointTree; }
+    Mtx& getInvJointMtx(s32 idx) const { return mJointTree.getInvJointMtx(idx); }
     J3DTexture* getTexture() const { return mMaterialTable.getTexture(); }
     JUTNameTab* getTextureName() const { return mMaterialTable.getTextureName(); }
     u16 getWEvlpMtxNum() const { return mJointTree.getWEvlpMtxNum(); }
     void* getVtxPosArray() const { return mVertexData.getVtxPosArray(); }
     void* getVtxNrmArray() const { return mVertexData.getVtxNrmArray(); }
-    _GXColor* getVtxColorArray(u8 idx) const { return mVertexData.getVtxColorArray(idx); }
+    GXColor* getVtxColorArray(u8 idx) const { return mVertexData.getVtxColorArray(idx); }
     bool checkFlag(u32 flag) const { return !!(mFlags & flag); }
     bool checkBumpFlag() const { return mbHasBumpArray; }
     bool checkBBoardFlag() const { return mbHasBillboard == 1; }

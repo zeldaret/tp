@@ -67,4 +67,11 @@ struct J3DTexCoord : public J3DTexCoordInfo {
     /* 0x4 */ u16 mTexMtxReg;
 };  // Size: 0x6
 
+struct J3DDefaultTexCoordInfo {
+    /* 0x0 */ u8 mTexGenType;
+    /* 0x1 */ u8 mTexGenSrc;
+    /* 0x2 */ u8 mTexGenMtx;
+    /* 0x3 */ u8 pad;
+};
+
 #endif /* J3DTEXTURE_H */

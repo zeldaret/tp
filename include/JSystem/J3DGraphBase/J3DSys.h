@@ -42,9 +42,12 @@ struct J3DSys {
     /* 0x050 */ u32 mDrawMode;
     /* 0x054 */ u32 mMaterialMode;
     /* 0x058 */ J3DTexture* mTexture;
-    /* 0x05C */ u8 field_0x5c[0x104 - 0x5C];
+    /* 0x05C */ u8 field_0x5c[0x04];
+    /* 0x060 */ u32 mTexCacheRegionNum;
+    /* 0x064 */ GXTexRegion mTexCacheRegion[8];
+    /* 0x0E4 */ u8 field_0xe4[0x20];
     /* 0x104 */ Mtx* mModelDrawMtx;
-    /* 0x104 */ Mtx33* mModelNrmMtx;
+    /* 0x108 */ Mtx33* mModelNrmMtx;
     /* 0x10C */ void* mVtxPos;
     /* 0x110 */ void* mVtxNrm;
     /* 0x114 */ _GXColor* mVtxCol;
@@ -115,12 +118,15 @@ struct J3DSys {
     // Type 1: Xlu Buffer
     J3DDrawBuffer* getDrawBuffer(int type) { return mDrawBuffer[type]; }
 
+    Mtx& getModelDrawMtx(u16 no) const { return mModelDrawMtx[no]; }
+    J3DShapePacket* getShapePacket() const { return mShapePacket; }
+
     void setViewMtx(Mtx m) { PSMTXCopy(m, mViewMtx); }
 
     static Mtx mCurrentMtx;
     static Vec mCurrentS;
     static Vec mParentS;
-    static u16 sTexCoordScaleTable[34];
+    static u16 sTexCoordScaleTable[32];
 };
 
 extern J3DSys j3dSys;

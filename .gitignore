@@ -28,3 +28,6 @@ docs/doxygen/
 
 # Python
 __pycache__/
+
+m2ctx.py
+ctx.c

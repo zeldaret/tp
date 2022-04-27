@@ -12,14 +12,6 @@ typedef struct _GXColor {
     /* 0x1 */ u8 g;
     /* 0x2 */ u8 b;
     /* 0x3 */ u8 a;
-
-    _GXColor& operator=(const _GXColor& o) {
-        r = o.r;
-        g = o.g;
-        b = o.b;
-        a = o.a;
-        return *this;
-    }
 } GXColor;
 
 typedef struct _GXColorS10 {
@@ -88,6 +80,10 @@ typedef struct _GXFifoObj {
     /* 0x22 */ bool gp_fifo_ready;
     /* 0x23 */ u8 field_0x23[93];
 } GXFifoObj;  // Size: 0x80
+
+typedef struct _GXTexRegion {
+    /* 0x00 */ u8 dummy[0x10];
+} GXTexRegion; // Size: 0x10
 
 typedef enum _GXPrimitive {
     /* 0x80 */ GX_QUADS = 0x80,
@@ -179,16 +175,16 @@ typedef enum _GXColorSrc {
 } GXColorSrc;
 
 typedef enum _GXLightID {
-    /* 0x000 */ GX_LIGHT_NULL,
-    /* 0x001 */ GX_LIGHT0,
-    /* 0x002 */ GX_LIGHT1,
-    /* 0x004 */ GX_LIGHT2 = 0x4,
-    /* 0x008 */ GX_LIGHT3 = 0x8,
-    /* 0x010 */ GX_LIGHT4 = 0x10,
-    /* 0x020 */ GX_LIGHT5 = 0x20,
-    /* 0x040 */ GX_LIGHT6 = 0x40,
-    /* 0x080 */ GX_LIGHT7 = 0x80,
-    /* 0x100 */ GX_MAX_LIGHT = 0x100,
+    /* 0x000 */ GX_LIGHT_NULL = 0,
+    /* 0x001 */ GX_LIGHT0 = 1 << 0,
+    /* 0x002 */ GX_LIGHT1 = 1 << 1,
+    /* 0x004 */ GX_LIGHT2 = 1 << 2,
+    /* 0x008 */ GX_LIGHT3 = 1 << 3,
+    /* 0x010 */ GX_LIGHT4 = 1 << 4,
+    /* 0x020 */ GX_LIGHT5 = 1 << 5,
+    /* 0x040 */ GX_LIGHT6 = 1 << 6,
+    /* 0x080 */ GX_LIGHT7 = 1 << 7,
+    /* 0x100 */ GX_MAX_LIGHT = 1 << 8,
 } GXLightID;
 
 typedef enum _GXDiffuseFn {
@@ -823,9 +819,16 @@ typedef enum _GXPTTexMtx {
 };
 
 typedef struct _GXVtxDescList {
-    GXAttr attr;
-    GXAttrType type;
-} GXVtxDescList;
+    /* 0x0 */ GXAttr attr;
+    /* 0x4 */ GXAttrType type;
+} GXVtxDescList; // Size: 0x08
+
+typedef struct _GXVtxAttrFmtList {
+    /* 0x00 */ GXAttr mAttrib;
+    /* 0x04 */ GXCompCnt mCompCnt;
+    /* 0x08 */ GXCompType mCompType;
+    /* 0x0C */ u8 mCompShift;
+} GXVtxAttrFmtList; // Size: 0x10
 
 typedef enum _GXFBClamp {
     /* 0x0 */ GX_CLAMP_NONE,
@@ -851,6 +854,17 @@ typedef enum _GXZFmt16 {
     /* 0x3 */ GX_ZC_FAR,
 } GXZFmt16;
 
+typedef enum _GXCommand
+{
+    GX_CMD_LOAD_INDX_A = 0x20,
+    GX_CMD_LOAD_INDX_B = 0x28,
+    GX_CMD_LOAD_INDX_C = 0x30,
+    GX_CMD_LOAD_INDX_D = 0x38,
+
+    GX_CMD_LOAD_CP_REG = 0x08,
+    GX_CMD_LOAD_XF_REG = 0x10,
+} GXCommand;
+
 extern "C" {
 f32 GXGetYScaleFactor(u16 efb_height, u16 xfb_height);
 u16 GXGetNumXfbLines(u32 efb_height, f32 y_scale);
@@ -868,7 +882,7 @@ void GXSetNumChans(u8);
 void GXSetNumTevStages(u8);
 void GXSetNumTexGens(u8);
 void GXSetTevOrder(GXTevStageID, GXTexCoordID, GXTexMapID, GXChannelID);
-void GXSetChanCtrl(GXChannelID, GXBool, GXColorSrc, GXColorSrc, GXLightID, GXDiffuseFn, GXAttnFn);
+void GXSetChanCtrl(GXChannelID, GXBool, GXColorSrc, GXColorSrc, u32, GXDiffuseFn, GXAttnFn);
 void GXSetTevOp(GXTevStageID, GXTevMode);
 void GXSetTevColor(GXTevRegID, GXColor);
 void GXSetTevColorIn(GXTevStageID, GXTevColorArg, GXTevColorArg, GXTevColorArg, GXTevColorArg);
@@ -963,6 +977,8 @@ void GXReadXfRasMetric(u32*, u32*, u32*, u32*);
 void GXInitFifoBase(GXFifoObj*, void*, u32);
 void GXInitFifoPtrs(GXFifoObj*, void*, void*);
 void GXSaveCPUFifo(GXFifoObj*);
+void GXSetMisc(u32 opt, u32 val);
+void GXInitTexCacheRegion(GXTexRegion *region, GXBool, u32, GXTexCacheSize, u32, GXTexCacheSize);
 
 #define GFX_FIFO(T) (*(volatile T*)0xCC008000)
 

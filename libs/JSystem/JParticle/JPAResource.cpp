@@ -134,7 +134,6 @@ extern "C" void func_80280588();
 extern "C" void JPAGetXYZRotateMtx__FsssPA4_f();
 extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
 extern "C" void load__10JUTTextureF11_GXTexMapID();
-extern "C" void GXSetMisc();
 extern "C" void __save_gpr();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_27();
