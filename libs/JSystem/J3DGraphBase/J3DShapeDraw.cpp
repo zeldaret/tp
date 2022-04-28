@@ -5,11 +5,11 @@
 
 #include "JSystem/J3DGraphBase/J3DShapeDraw.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "dol2asm.h"
-#include "dolphin/os/OSCache.h"
-#include "dolphin/gx/GX.h"
-#include "dolphin/types.h"
 #include "MSL_C/MSL_Common/Src/string.h"
+#include "dol2asm.h"
+#include "dolphin/gx/GX.h"
+#include "dolphin/os/OSCache.h"
+#include "dolphin/types.h"
 
 //
 // External References:

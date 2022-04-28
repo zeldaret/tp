@@ -44,6 +44,18 @@ inline void mDoAud_bgmSetSwordUsing(s32 id) {
     Z2AudioMgr::getInterface()->mSeqMgr.bgmSetSwordUsing(id);
 }
 
+inline void mDoAud_bgmStart(u32 id) {
+    Z2AudioMgr::getInterface()->mSeqMgr.bgmStart(id, 0, 0);
+}
+
+inline void mDoAud_bgmStreamPrepare(u32 param_0) {
+    Z2AudioMgr::getInterface()->mSeqMgr.bgmStreamPrepare(param_0);
+}
+
+inline void mDoAud_bgmStreamPlay() {
+    Z2AudioMgr::getInterface()->mSeqMgr.bgmStreamPlay();
+}
+
 inline void mDoAud_setHour(s32 hour) {
     Z2AudioMgr::getInterface()->mStatusMgr.setHour(hour);
 }

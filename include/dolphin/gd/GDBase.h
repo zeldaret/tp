@@ -25,7 +25,6 @@ extern "C" {
 void GDInitGDLObj(GDLObj*, u8*, u32);
 void GDFlushCurrToMem();
 void GDPadCurr32();
-
 }
 
 #endif /* GDBASE_H */

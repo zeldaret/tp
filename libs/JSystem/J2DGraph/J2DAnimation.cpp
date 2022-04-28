@@ -563,8 +563,8 @@ void J2DAnmTexPattern::searchUpdateMaterialID(J2DScreen* pScreen) {
                 if (var1 != NULL) {
                     var2 = (ResTIMG*)resRef.getResource(var1, 'TIMG', NULL);
                     if (var2 == NULL && J2DScreen::getDataManage() != NULL) {
-                        var2 = (ResTIMG*)J2DScreen::getDataManage()->get(
-                            pScreen->mTexRes->getName(i));
+                        var2 =
+                            (ResTIMG*)J2DScreen::getDataManage()->get(pScreen->mTexRes->getName(i));
                     }
                 }
                 mTIMGPtrArray[i].mRes = var2;

@@ -38,5 +38,6 @@ void fopMsgM_destroyExpHeap(JKRExpHeap*);
 s32 fopMsgM_setStageLayer(void*);
 void fopMsgM_messageSetDemo(u32 param_0);
 msg_class* fopMsgM_SearchByID(unsigned int param_0);
+char* fopMsgM_messageGet(char* msg, u32 string_id);
 
 #endif

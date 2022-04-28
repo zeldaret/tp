@@ -888,6 +888,8 @@ public:
     void onItem(int i_no);
     BOOL isItem(int i_no) const;
 
+    void reset() { mStageNo = -1; }
+
 private:
     /* 0x00 */ s8 mStageNo;
     /* 0x01 */ u8 unk1;
@@ -1074,9 +1076,13 @@ public:
     dSv_danBit_c& getDan() { return mDan; }
     s64 getStartTime() const { return mStartTime; }
     s64 getSaveTotalTime() const { return mSaveTotalTime; }
+    void setStartTime(s64 time) { mStartTime = time; }
+    void setSaveTotalTime(s64 time) { mSaveTotalTime = time; }
     void initDan(s8 i_stage) { mDan.init(i_stage); }
+    void resetDan() { mDan.reset(); }
     u8 getDataNum() const { return mDataNum; }
     void removeZone(int zoneNo) { mZone[zoneNo].reset(); }
+    void setNoFile(u8 file) { mNoFile = file; }
 
     static const int MEMORY_SWITCH = 0x80;
     static const int DAN_SWITCH = 0x40;

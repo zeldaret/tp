@@ -252,7 +252,7 @@ asm void loadTexNo(u32 param_0, u16 const& param_1) {
 
 /* 8032413C-80324160 31EA7C 0024+00 0/0 2/2 0/0 .text            patchTexNo_PtrToIdx__FUlRCUs */
 void patchTexNo_PtrToIdx(u32 texID, u16 const& idx) {
-    J3DGDSetTexImgPtrRaw((GXTexMapID) texID, idx);
+    J3DGDSetTexImgPtrRaw((GXTexMapID)texID, idx);
 }
 
 /* 80324160-80324194 31EAA0 0034+00 0/0 2/2 0/0 .text            loadNBTScale__FR11J3DNBTScale */
@@ -277,14 +277,10 @@ COMPILER_STRIP_GATE(0x803A1EC8, &j3dDefaultLightInfo);
 
 /* 803A1EFC-803A1F1C 02E55C 0020+00 0/0 5/5 0/0 .rodata          j3dDefaultTexCoordInfo */
 SECTION_RODATA extern J3DDefaultTexCoordInfo const j3dDefaultTexCoordInfo[8] = {
-    { GX_MTX2x4, GX_TG_TEX0, GX_IDENTITY, 0 },
-    { GX_MTX2x4, GX_TG_TEX1, GX_IDENTITY, 0 },
-    { GX_MTX2x4, GX_TG_TEX2, GX_IDENTITY, 0 },
-    { GX_MTX2x4, GX_TG_TEX3, GX_IDENTITY, 0 },
-    { GX_MTX2x4, GX_TG_TEX4, GX_IDENTITY, 0 },
-    { GX_MTX2x4, GX_TG_TEX5, GX_IDENTITY, 0 },
-    { GX_MTX2x4, GX_TG_TEX6, GX_IDENTITY, 0 },
-    { GX_MTX2x4, GX_TG_TEX7, GX_IDENTITY, 0 },
+    {GX_MTX2x4, GX_TG_TEX0, GX_IDENTITY, 0}, {GX_MTX2x4, GX_TG_TEX1, GX_IDENTITY, 0},
+    {GX_MTX2x4, GX_TG_TEX2, GX_IDENTITY, 0}, {GX_MTX2x4, GX_TG_TEX3, GX_IDENTITY, 0},
+    {GX_MTX2x4, GX_TG_TEX4, GX_IDENTITY, 0}, {GX_MTX2x4, GX_TG_TEX5, GX_IDENTITY, 0},
+    {GX_MTX2x4, GX_TG_TEX6, GX_IDENTITY, 0}, {GX_MTX2x4, GX_TG_TEX7, GX_IDENTITY, 0},
 };
 COMPILER_STRIP_GATE(0x803A1EFC, &j3dDefaultTexCoordInfo);
 
@@ -456,7 +452,7 @@ static asm void J3DGDLoadPostTexMtxImm(f32 (*param_0)[4], u32 param_1) {
 
 /* ############################################################################################## */
 /* 804563C0-804563C4 0049C0 0004+00 0/0 4/4 0/0 .sdata2          j3dDefaultColInfo */
-SECTION_SDATA2 extern GXColor j3dDefaultColInfo = { 0xFF, 0xFF, 0xFF, 0xFF };
+SECTION_SDATA2 extern GXColor j3dDefaultColInfo = {0xFF, 0xFF, 0xFF, 0xFF};
 
 /* 804563C4-804563C8 0049C4 0004+00 0/0 2/2 0/0 .sdata2          j3dDefaultAmbInfo */
 SECTION_SDATA2 extern u32 j3dDefaultAmbInfo = 0x32323232;
@@ -471,7 +467,7 @@ SECTION_SDATA2 extern u32 j3dDefaultTevOrderInfoNull = 0xFFFFFF00;
 SECTION_SDATA2 extern u32 j3dDefaultIndTexOrderNull = 0xFFFF0000;
 
 /* 804563D4-804563D8 0049D4 0004+00 0/0 5/5 0/0 .sdata2          j3dDefaultTevColor */
-SECTION_SDATA2 extern GXColorS10 j3dDefaultTevColor = { 0xFF, 0xFF, 0xFF, 0xFF };
+SECTION_SDATA2 extern GXColorS10 j3dDefaultTevColor = {0xFF, 0xFF, 0xFF, 0xFF};
 
 /* 804563DC-804563E0 0049DC 0004+00 0/0 2/2 0/0 .sdata2          j3dDefaultIndTexCoordScaleInfo */
 SECTION_SDATA2 extern u8 j3dDefaultIndTexCoordScaleInfo[4] = {
@@ -482,7 +478,7 @@ SECTION_SDATA2 extern u8 j3dDefaultIndTexCoordScaleInfo[4] = {
 };
 
 /* 804563E0-804563E4 0049E0 0004+00 0/0 5/5 0/0 .sdata2          j3dDefaultTevKColor */
-SECTION_SDATA2 extern GXColor j3dDefaultTevKColor = { 0xFF, 0xFF, 0xFF, 0xFF };
+SECTION_SDATA2 extern GXColor j3dDefaultTevKColor = {0xFF, 0xFF, 0xFF, 0xFF};
 
 /* 804563E4-804563E8 0049E4 0004+00 0/0 2/2 0/0 .sdata2          j3dDefaultTevSwapMode */
 SECTION_SDATA2 extern u8 j3dDefaultTevSwapMode[4] = {

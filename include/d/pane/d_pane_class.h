@@ -28,12 +28,17 @@ public:
     /* 802548BC */ void colorAnime(s16, JUtility::TColor, JUtility::TColor, JUtility::TColor,
                                    JUtility::TColor, u8);
     /* 80254C90 */ void getGlobalVtx(J2DPane*, f32 (*)[3][4], u8, bool, s16);
-    /* 80254EBC */ void getGlobalVtxCenter(J2DPane*, bool, s16);
+    /* 80254EBC */ Vec getGlobalVtxCenter(J2DPane*, bool, s16);
     /* 80254FB8 */ void getBounds(J2DPane*);
+
+    Vec getGlobalVtxCenter(bool param_0, s16 param_1) {
+        return getGlobalVtxCenter(getPanePtr(), param_0, param_1);
+    }
 
     void translate(f32 x, f32 y) { getPanePtr()->translate(x, y); }
 
     void scale(f32 h, f32 v) { getPanePtr()->scale(h, v); }
+    void scaleAnimeStart(s16 v) { mScaleAnime = v; }
 
     f32 getPosX() { return getPanePtr()->getBounds().i.x; }
     f32 getPosY() { return getPanePtr()->getBounds().i.y; }

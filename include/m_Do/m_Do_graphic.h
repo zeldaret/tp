@@ -10,6 +10,7 @@ int mDoGph_Create();
 
 extern u8 struct_80450BE4;  // Blure
 extern u8 data_80450BE6;    // Fade
+extern bool data_80450BE7;  // AutoForcus
 
 struct ResTIMG;
 class mDoGph_gInf_c {
@@ -47,8 +48,11 @@ public:
     static void endFrame() { JFWDisplay::getManager()->endFrame(); }
     static void offFade() { data_80450BE6 = 0; }
     static void offBlure() { struct_80450BE4 = 0; }
+    static void offAutoForcus() { data_80450BE7 = 0; }
     static void setTickRate(u32 rate) { JFWDisplay::getManager()->setTickRate(rate); }
     static void waitBlanking(int wait) { JFWDisplay::getManager()->waitBlanking(wait); }
+    static f32 getWidthF() { return 608.0f; }
+    static f32 getHeightF() { return 448.0f; }
 
     static GXTexObj mFrameBufferTexObj;
     static GXTexObj mZbufferTexObj;

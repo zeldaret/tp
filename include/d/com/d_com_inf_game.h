@@ -332,6 +332,7 @@ public:
     JKRArchive* getAnmArchive() { return mAnmArchive; }
     JKRArchive* getCollectResArchive() { return mCollectResArchive; }
     JKRArchive* getItemIconArchive() { return mItemIconArchive; }
+    JKRArchive* getNameResArchive() { return mNameResArchive; }
     JKRAramArchive* getFieldMapArchive2() { return (JKRAramArchive*)mFieldMapArchive2; }
 
     void setFieldMapArchive2(JKRArchive* arc) { mFieldMapArchive2 = arc; }
@@ -355,12 +356,14 @@ public:
     void setMain2DArchive(JKRArchive* arc) { mMain2DArchive = arc; }
     void setItemTable(void* data) { mItemTable = data; }
 
+    void setPlayer(int i, fopAc_ac_c* player) { mPlayer[i] = (daAlink_c*)player; }
     void setPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[i] |= flag; }
     void clearPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[i] &= ~flag; }
     bool checkPlayerStatus(int param_0, int i, u32 flag) { return flag & mPlayerStatus[i]; }
 
     s8 getPlayerCameraID(int i) { return mPlayerCameraID[i]; }
     void setCameraParamFileName(int i, char* name) { mCameraInfo[i].mCameraParamFileName = name; }
+    void setCamera(int i, camera_class* cam) { mCameraInfo[i].mCamera = cam; }
     const char* getCameraParamFileName(int i) { return mCameraInfo[i].mCameraParamFileName; }
     BOOL checkCameraAttentionStatus(int i, u32 flag) {
         return mCameraInfo[i].mCameraAttentionStatus & flag;
@@ -375,6 +378,16 @@ public:
     s8 getLayerOld() { return mLayerOld; }
     void setMesgCancelButton(u8 button) { mMesgCancelButton = button; }
     int getMessageCountNumber() { return mMessageCountNum; }
+
+    void setWindowNum(u8 num) { mWindowNum = num; }
+    dDlst_window_c* getWindow(int i) { return &mWindow[i]; }
+    void setWindow(int i, f32 param_1, f32 param_2, f32 param_3, f32 param_4, f32 param_5,
+                   f32 param_6, int camID, int mode) {
+        mWindow[i].setViewPort(param_1, param_2, param_3, param_4, param_5, param_6);
+        mWindow[i].setScissor(param_1, param_2, param_3, param_4);
+        mWindow[i].setCameraID(camID);
+        mWindow[i].setMode(mode);
+    }
 
 public:
     /* 0x00000 */ dBgS mBgs;
@@ -741,6 +754,7 @@ void dComIfGs_onOneZoneSwitch(int param_0, int param_1);
 void dComIfGs_offZoneSwitch(int param_0, int param_1);
 void dComIfGs_offOneZoneSwitch(int param_0, int param_1);
 s8 dComIfGp_getReverb(int roomNo);
+void dComIfGs_gameStart();
 
 inline void dComIfGs_onDungeonItemMap() {
     g_dComIfG_gameInfo.info.getMemory().getBit().onDungeonItemMap();
@@ -1289,6 +1303,10 @@ inline void dComIfGs_initDan(s8 i_stageNo) {
     g_dComIfG_gameInfo.info.initDan(i_stageNo);
 }
 
+inline void dComIfGs_resetDan() {
+    g_dComIfG_gameInfo.info.resetDan();
+}
+
 inline u16 dComIfGs_getRupeeMax() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getRupeeMax();
 }
@@ -1319,6 +1337,22 @@ inline u8 dComIfGs_checkInsectBottle() {
 
 inline u8 dComIfGs_checkBombBag(u8 i_itemNo) {
     return g_dComIfG_gameInfo.info.getPlayer().getItem().checkBombBag(i_itemNo);
+}
+
+inline s64 dComIfGs_getTotalTime() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerInfo().getTotalTime();
+}
+
+inline void dComIfGs_setSaveTotalTime(s64 time) {
+    g_dComIfG_gameInfo.info.setSaveTotalTime(time);
+}
+
+inline void dComIfGs_setSaveStartTime(s64 time) {
+    g_dComIfG_gameInfo.info.setStartTime(time);
+}
+
+inline void dComIfGs_setNoFile(u8 file) {
+    g_dComIfG_gameInfo.info.setNoFile(file);
 }
 
 void dComIfGp_setItemLifeCount(f32 amount, u8 type);
@@ -1398,6 +1432,10 @@ inline JKRArchive* dComIfGp_getCollectResArchive() {
 
 inline JKRArchive* dComIfGp_getItemIconArchive() {
     return g_dComIfG_gameInfo.play.getItemIconArchive();
+}
+
+inline JKRArchive* dComIfGp_getNameResArchive() {
+    return g_dComIfG_gameInfo.play.getNameResArchive();
 }
 
 inline JKRArchive* dComIfGp_getMsgDtArchive(int idx) {
@@ -1772,6 +1810,10 @@ inline void dComIfGp_setStatus(u16 status) {
     g_dComIfG_gameInfo.play.setStatus(status);
 }
 
+inline void dComIfGp_setPlayer(int i, fopAc_ac_c* player) {
+    g_dComIfG_gameInfo.play.setPlayer(i, player);
+}
+
 inline void dComIfGp_setPlayerStatus0(int param_0, u32 flag) {
     g_dComIfG_gameInfo.play.setPlayerStatus(param_0, 0, flag);
 }
@@ -1908,8 +1950,26 @@ inline void dComIfGp_setCameraParamFileName(int i, char* name) {
     g_dComIfG_gameInfo.play.setCameraParamFileName(i, name);
 }
 
+inline void dComIfGp_setCamera(int i, camera_class* cam) {
+    g_dComIfG_gameInfo.play.setCamera(i, cam);
+}
+
 inline const char* dComIfGp_getCameraParamFileName(int i) {
     return g_dComIfG_gameInfo.play.getCameraParamFileName(i);
+}
+
+inline void dComIfGp_setWindowNum(int num) {
+    g_dComIfG_gameInfo.play.setWindowNum(num);
+}
+
+inline dDlst_window_c* dComIfGp_getWindow(int i) {
+    return g_dComIfG_gameInfo.play.getWindow(i);
+}
+
+inline void dComIfGp_setWindow(u8 i, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
+                               f32 param_5, f32 param_6, int camID, int mode) {
+    g_dComIfG_gameInfo.play.setWindow(i, param_1, param_2, param_3, param_4, param_5, param_6,
+                                      camID, mode);
 }
 
 inline s8 dComIfGp_getLayerOld() {
@@ -2040,6 +2100,10 @@ inline void dComIfGp_particle_cleanup() {
     g_dComIfG_gameInfo.play.getParticle()->cleanup();
 }
 
+inline void dComIfGp_particle_removeScene(bool param_0) {
+    g_dComIfG_gameInfo.play.getParticle()->removeScene(param_0);
+}
+
 inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* param_2,
                                  const dKy_tevstr_c* param_3, const csXyz* param_4,
                                  const cXyz* param_5, u8 param_6, dPa_levelEcallBack* param_7,
@@ -2156,6 +2220,18 @@ inline void dComIfGd_init() {
 
 inline void dComIfGd_peekZdata() {
     g_dComIfG_gameInfo.drawlist.peekZdata();
+}
+
+inline void dComIfGd_setView(view_class* view) {
+    g_dComIfG_gameInfo.drawlist.setView(view);
+}
+
+inline void dComIfGd_setWindow(dDlst_window_c* window) {
+    g_dComIfG_gameInfo.drawlist.setWindow(window);
+}
+
+inline void dComIfGd_setViewport(view_port_class* port) {
+    g_dComIfG_gameInfo.drawlist.setViewport(port);
 }
 
 inline daPy_py_c* daPy_getLinkPlayerActorClass() {

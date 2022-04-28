@@ -14,23 +14,25 @@ void J3DTexture::loadGX(u16 idx, GXTexMapID texMapID) const {
 
     if (!timg->palettesEnabled) {
         GXInitTexObj(&texObj, ((u8*)timg) + timg->texDataOffset, timg->width, timg->height,
-            (GXTexFmt)timg->format, (GXTexWrapMode)timg->wrapS, (GXTexWrapMode)timg->wrapT,
-            (GXBool)timg->mipmapEnabled);
+                     (GXTexFmt)timg->format, (GXTexWrapMode)timg->wrapS, (GXTexWrapMode)timg->wrapT,
+                     (GXBool)timg->mipmapEnabled);
     } else {
         GXTlutObj tlutObj;
 
         GXInitTexObjCI(&texObj, ((u8*)timg) + timg->texDataOffset, timg->width, timg->height,
-            (GXCITexFmt)timg->format, (GXTexWrapMode)timg->wrapS, (GXTexWrapMode)timg->wrapT,
-            (GXBool)timg->mipmapEnabled, (u32)texMapID);
-        GXInitTlutObj(&tlutObj, ((u8*)timg) + timg->paletteOffset, (GXTlutFmt)timg->paletteFormat, timg->paletteCount);
+                       (GXCITexFmt)timg->format, (GXTexWrapMode)timg->wrapS,
+                       (GXTexWrapMode)timg->wrapT, (GXBool)timg->mipmapEnabled, (u32)texMapID);
+        GXInitTlutObj(&tlutObj, ((u8*)timg) + timg->paletteOffset, (GXTlutFmt)timg->paletteFormat,
+                      timg->paletteCount);
         GXLoadTlut(&tlutObj, texMapID);
     }
 
     const f32 kLODClampScale = 1.0f / 8.0f;
     const f32 kLODBiasScale = 1.0f / 100.0f;
-    GXInitTexObjLOD(&texObj, (GXTexFilter) timg->minFilter, (GXTexFilter) timg->magFilter,
-        timg->minLOD * kLODClampScale, timg->maxLOD * kLODClampScale, timg->LODBias * kLODBiasScale,
-        (GXBool) timg->biasClamp, (GXBool) timg->doEdgeLOD, (GXAnisotropy) timg->maxAnisotropy);
+    GXInitTexObjLOD(&texObj, (GXTexFilter)timg->minFilter, (GXTexFilter)timg->magFilter,
+                    timg->minLOD * kLODClampScale, timg->maxLOD * kLODClampScale,
+                    timg->LODBias * kLODBiasScale, (GXBool)timg->biasClamp, (GXBool)timg->doEdgeLOD,
+                    (GXAnisotropy)timg->maxAnisotropy);
     GXLoadTexObj(&texObj, texMapID);
 }
 

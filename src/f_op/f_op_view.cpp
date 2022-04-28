@@ -34,23 +34,23 @@ extern "C" void fpcMtd_Create__FP20process_method_classPv();
 
 /* 8001F1A8-8001F1D0 019AE8 0028+00 1/0 0/0 0/0 .text            fopVw_Draw__FP10view_class */
 void fopVw_Draw(view_class* pView) {
-    fpcLf_DrawMethod((leafdraw_method_class*)pView->pmProcessMtd, pView);
+    fpcLf_DrawMethod(pView->mpLeafdrawMtd, pView);
 }
 
 /* 8001F1D0-8001F1F8 019B10 0028+00 1/0 0/0 0/0 .text            fopVw_Execute__FP10view_class */
 void fopVw_Execute(view_class* pView) {
-    fpcMtd_Execute(pView->pmProcessMtd, pView);
+    fpcMtd_Execute((process_method_class*)pView->mpLeafdrawMtd, pView);
 }
 
 /* 8001F1F8-8001F220 019B38 0028+00 1/0 0/0 0/0 .text            fopVw_IsDelete__FPv */
 s32 fopVw_IsDelete(void* param_1) {
     view_class* pView = (view_class*)param_1;
-    return fpcMtd_IsDelete(pView->pmProcessMtd, pView);
+    return fpcMtd_IsDelete((process_method_class*)pView->mpLeafdrawMtd, pView);
 }
 
 /* 8001F220-8001F248 019B60 0028+00 1/0 0/0 0/0 .text            fopVw_Delete__FP10view_class */
 s32 fopVw_Delete(view_class* pView) {
-    return fpcMtd_Delete(pView->pmProcessMtd, pView);
+    return fpcMtd_Delete((process_method_class*)pView->mpLeafdrawMtd, pView);
 }
 
 /* 8001F248-8001F284 019B88 003C+00 1/0 0/0 0/0 .text            fopVw_Create__FPv */

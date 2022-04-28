@@ -21,7 +21,6 @@ public:
     /* 0x1B0 */ scene_tag_class* field_0x1b0;
     /* 0x1B4 */ u8 field_0x1b4[0x10];
     /* 0x1C4 */ request_of_phase_process_class field_0x1c4;
-    /* 0x1CC */ mDoDvdThd_toMainRam_c* sceneCommand;
 };
 
 #endif

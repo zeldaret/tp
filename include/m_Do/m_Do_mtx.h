@@ -16,6 +16,8 @@ void mDoMtx_YrotS(Mtx, s16);
 void mDoMtx_XrotS(Mtx, s16);
 void mDoMtx_YrotM(Mtx, s16);
 void mDoMtx_MtxToRot(CMtxP, csXyz*);
+void mDoMtx_lookAt(f32 (*param_0)[4], Vec const* param_1, Vec const* param_2, s16 param_3);
+void mDoMtx_concatProjView(f32 const (*param_0)[4], f32 const (*param_1)[4], f32 (*param_2)[4]);
 
 class mDoMtx_stack_c {
 public:

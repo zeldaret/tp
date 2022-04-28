@@ -18,6 +18,8 @@ BOOL dKy_darkworld_spot_check(char const* stageName, int roomNo);
 void dKy_darkworld_Area_set(char const* stageName, int roomNo);
 void dKy_FiveSenses_fullthrottle_dark();
 s32 dKy_daynight_check();
+void dKy_clear_game_init();
+void dKy_setLight_init();
 
 struct LIGHT_INFLUENCE {
     /* 800CFC7C */ ~LIGHT_INFLUENCE();
