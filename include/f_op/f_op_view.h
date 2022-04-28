@@ -13,7 +13,9 @@ public:
     /* 0x18 */ cXyz mUp;
 };
 
-struct view_port_class {};
+struct view_port_class {
+    f32 field_0x0;
+};
 
 struct view_class : public leafdraw_class {
     /* 0x0C0 */ leafdraw_method_class* mpLeafdrawMtd;

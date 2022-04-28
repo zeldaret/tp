@@ -5,47 +5,82 @@
 
 #include "d/s/d_s_name.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_overlap_mng.h"
 #include "m_Do/m_Do_audio.h"
+#include "m_Do/m_Do_machine.h"
+#include "m_Do/m_Do_mtx.h"
 
 //
 // Types:
 //
 
-struct mDoMch_render_c {
-    static void* mRenderModeObj[1 + 1 /* padding */];
-};
-
-struct dSn_HIO_c {
+class dSn_HIO_c {
+public:
     /* 8025878C */ dSn_HIO_c();
-    /* 802592DC */ ~dSn_HIO_c();
+    /* 802592DC */ virtual ~dSn_HIO_c() {}
+
+    /* 0x4 */ s8 field_0x4;
+    /* 0x5 */ u8 mFileSelWaitTime;
 };
 
 class dScnName_camera_c : public camera_class {
 public:
-    /* 80259294 */ virtual ~dScnName_camera_c();
+    dScnName_camera_c() { field_0x22f = 84; }
+    /* 80259294 */ virtual ~dScnName_camera_c() {}
 };
 
-struct dFile_select_c {
+class dFile_select_c {
+public:
     /* 8018366C */ dFile_select_c(JKRArchive*);
+    /* 8018375C */ virtual ~dFile_select_c();
     /* 801843CC */ void _create();
     /* 801844FC */ void _move();
     /* 8018DD38 */ void _draw();
+
+    bool getFadeFlag() { return mFadeFlag; }
+    int isDataNew(u8 i) { return mDataNew[i]; }
+    int isSelectEnd() { return mSelectEnd; }
+    u8 getSelectNum() { return mSelectNum; }
+    void setUseType(u8 type) { mUseType = type; }
+
+private:
+    u8 field_0x4[0x254];
+    /* 0x0258 */ u8 mDataNew[3];
+    /* 0x025B */ u8 field_0x25b[0x265 - 0x25b];
+    /* 0x0265 */ u8 mSelectNum;
+    /* 0x0266 */ u8 field_0x266[0x270 - 0x266];
+    /* 0x0270 */ bool mSelectEnd;
+    /* 0x0271 */ u8 field_0x271[0x3b0 - 0x271];
+    /* 0x03B0 */ u8 mUseType;
+    /* 0x03B1 */ u8 field_0x3b1[0x2374 - 0x3b1];
+    /* 0x2374 */ bool mFadeFlag;
+    /* 0x2375 */ u8 field_0x2375[0x237c - 0x2375];
 };
 
-struct dBrightCheck_c {
+class dBrightCheck_c {
+public:
     /* 80192F10 */ dBrightCheck_c(JKRArchive*);
+    /* 80192F98 */ virtual ~dBrightCheck_c();
     /* 801934D0 */ void _move();
     /* 80193594 */ void _draw();
+
+    bool isEnd() { return mEnd; }
+
+    u8 field_0x4[0x15];
+    /* 0x19 */ bool mEnd;
 };
 
 class dScnName_c : public scene_class {
 public:
-    /* 802588A0 */ void create();
+    dScnName_c() {}
+
+    /* 802588A0 */ s32 create();
     /* 80258B2C */ void setView();
-    /* 80258BC8 */ void execute();
-    /* 80258C5C */ void draw();
+    /* 80258BC8 */ s32 execute();
+    /* 80258C5C */ s32 draw();
     /* 80258CC8 */ ~dScnName_c();
     /* 80258DD0 */ void FileSelectOpen();
     /* 80258E34 */ void FileSelectMain();
@@ -163,73 +198,14 @@ SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803C304C-803C3058 -00001 000C+00 0/1 0/0 0/0 .data            @3942 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3942[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)FileSelectOpen__10dScnName_cFv,
-};
-#pragma pop
-
-/* 803C3058-803C3064 -00001 000C+00 0/1 0/0 0/0 .data            @3943 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3943[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)FileSelectMain__10dScnName_cFv,
-};
-#pragma pop
-
-/* 803C3064-803C3070 -00001 000C+00 0/1 0/0 0/0 .data            @3944 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3944[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)FileSelectClose__10dScnName_cFv,
-};
-#pragma pop
-
-/* 803C3070-803C307C -00001 000C+00 0/1 0/0 0/0 .data            @3945 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3945[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)brightCheckOpen__10dScnName_cFv,
-};
-#pragma pop
-
-/* 803C307C-803C3088 -00001 000C+00 0/1 0/0 0/0 .data            @3946 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3946[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)brightCheck__10dScnName_cFv,
-};
-#pragma pop
-
-/* 803C3088-803C3094 -00001 000C+00 0/1 0/0 0/0 .data            @3947 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3947[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)changeGameScene__10dScnName_cFv,
-};
-#pragma pop
+/* 804510F0-804510F8 0005F0 0008+00 2/2 0/0 0/0 .sbss            g_snHIO */
+static dSn_HIO_c g_snHIO;
 
 /* 803C3094-803C30DC 0201B4 0048+00 1/2 0/0 0/0 .data            MainProc */
-SECTION_DATA static u8 MainProc[72] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+typedef void (dScnName_c::*mainProcFunc)(void);
+SECTION_DATA static mainProcFunc MainProc[6] = {
+    &dScnName_c::FileSelectOpen,  &dScnName_c::FileSelectMain, &dScnName_c::FileSelectClose,
+    &dScnName_c::brightCheckOpen, &dScnName_c::brightCheck,    &dScnName_c::changeGameScene,
 };
 
 /* 803C30DC-803C30F0 -00001 0014+00 2/0 0/0 0/0 .data            l_dScnName_Method */
@@ -267,29 +243,10 @@ SECTION_DATA extern void* g_profile_NAMEEX_SCENE[10] = {
     (void*)NULL,
 };
 
-/* 803C3140-803C314C 020260 000C+00 3/3 0/0 0/0 .data            __vt__17dScnName_camera_c */
-SECTION_DATA extern void* __vt__17dScnName_camera_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__17dScnName_camera_cFv,
-};
-
-/* 803C314C-803C3158 02026C 000C+00 2/2 0/0 0/0 .data            __vt__9dSn_HIO_c */
-SECTION_DATA extern void* __vt__9dSn_HIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__9dSn_HIO_cFv,
-};
-
 /* 8025878C-802587A4 2530CC 0018+00 1/1 0/0 0/0 .text            __ct__9dSn_HIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dSn_HIO_c::dSn_HIO_c() {
-    nofralloc
-#include "asm/d/s/d_s_name/__ct__9dSn_HIO_cFv.s"
+dSn_HIO_c::dSn_HIO_c() {
+    mFileSelWaitTime = 15;
 }
-#pragma pop
 
 /* 802587A4-80258820 2530E4 007C+00 1/0 0/0 0/0 .text            phase_1__FPc */
 static s32 phase_1(char* resName) {
@@ -327,9 +284,6 @@ static s32 resLoad(request_of_phase_process_class* i_phase, char* param_1) {
 SECTION_DEAD static char const* const stringBase_8039A2B5 = "fileSel";
 #pragma pop
 
-/* 804510F0-804510F8 0005F0 0008+00 2/2 0/0 0/0 .sbss            g_snHIO */
-static u8 g_snHIO[8];
-
 /* 80454EF8-80454EFC 0034F8 0004+00 2/2 0/0 0/0 .sdata2          @3923 */
 SECTION_SDATA2 static u8 lit_3923[4] = {
     0x00,
@@ -357,76 +311,172 @@ SECTION_SDATA2 static f32 lit_3928 = -1000.0f;
 SECTION_SDATA2 static f64 lit_3930 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802588A0-80258B2C 2531E0 028C+00 1/1 0/0 0/0 .text            create__10dScnName_cFv */
+#ifdef NONMATCHING
+s32 dScnName_c::create() {
+    int loadStat = resLoad(&field_0x1c4, "fileSel");
+    if (loadStat == 4) {
+        mHeap = JKRExpHeap::create(0x180000, mDoExt_getGameHeap(), false);
+        JKRExpHeap* heap = mHeap;
+        mDoExt_setCurrentHeap(heap);
+        field_0x1d0 = heap;
+
+        dRes_info_c* res = dComIfG_getObjectResInfo("fileSel");
+        dFs_c = new dFile_select_c(res->getArchive());
+        dFs_c->_create();
+
+        if (fpcM_GetName(this) == PROC_NAME_SCENE) {
+            dFs_c->setUseType(0);
+            dComIfGs_setNoFile(0);
+        }
+
+        mBrightCheck = new dBrightCheck_c(res->getArchive());
+
+        field_0x420 = 0;
+        g_snHIO.field_0x4 = -1;
+        field_0x1d0->becomeCurrentHeap();
+
+        dComIfGp_setWindowNum(1);
+        dComIfGp_setWindow(0, 0.0f, 0.0f, mDoMch_render_c::getFbWidth(),
+                           mDoMch_render_c::getEfbHeight(), 0.0f, 1.0f, 0, 2);
+        dComIfGp_setCamera(0, &mCamera);
+        // dDlst_window_c* window = &g_dComIfG_gameInfo.play.mWindow[0];
+
+        /* fopCamM_SetNear(&mCamera, 1.0f);
+        fopCamM_SetFar(&mCamera, 100000.0f);
+        fopCamM_SetFovy(&mCamera, 45.0f);
+        fopCamM_SetAspect(&mCamera, mDoGph_gInf_c::getWidthF() / mDoGph_gInf_c::getHeightF());
+        fopCamM_SetEye(&mCamera, 0.0f, 0.0f, -1000.0f);
+        fopCamM_SetCenter(&mCamera, 0.0f, 0.0f, 0.0f);
+        fopCamM_SetBank(&mCamera, 0); */
+
+        mCamera.mNear = 1.0f;
+        mCamera.mFar = 100000.0f;
+        mCamera.mFovy = 45.0f;
+        mCamera.mAspect = mDoGph_gInf_c::getWidthF() / mDoGph_gInf_c::getHeightF();
+        mCamera.field_0xd8.mEye.set(0.0f, 0.0f, -1000.0f);
+        mCamera.field_0xd8.mCenter.set(0.0f, 0.0f, 0.0f);
+        mCamera.mBank = 0;
+
+        dComIfGp_setPlayer(0, NULL);
+        dComIfGd_setWindow(g_dComIfG_gameInfo.play.mWindow);
+        dComIfGd_setViewport(g_dComIfG_gameInfo.play.mWindow->getViewPort());
+        dComIfGd_setView(&mCamera);
+        mDoGph_gInf_c::offAutoForcus();
+        setView();
+
+        dKy_setLight_init();
+        field_0x41e = g_snHIO.mFileSelWaitTime;
+        field_0x41c = 0;
+        field_0x41d = 0;
+        mDoGph_gInf_c::setTickRate((OS_BUS_CLOCK / 4) / 30);
+        dComIfGp_getVibration().Init();
+    }
+    return loadStat;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dScnName_c::create() {
+asm s32 dScnName_c::create() {
     nofralloc
 #include "asm/d/s/d_s_name/create__10dScnName_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80258B2C-80258BC8 25346C 009C+00 1/1 0/0 0/0 .text            setView__10dScnName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dScnName_c::setView() {
-    nofralloc
-#include "asm/d/s/d_s_name/setView__10dScnName_cFv.s"
+void dScnName_c::setView() {
+    C_MTXPerspective(mCamera.field_0x100, mCamera.mFovy, mCamera.mAspect, mCamera.mNear,
+                     mCamera.mFar);
+    mDoMtx_lookAt(mCamera.field_0x140, &mCamera.field_0xd8.mEye, &mCamera.field_0xd8.mCenter,
+                  mCamera.mBank);
+    PSMTXInverse(mCamera.field_0x140, mCamera.field_0x170);
+    PSMTXCopy(mCamera.field_0x140, mCamera.field_0x1e0);
+    f32 tmp_0 = FLOAT_LABEL(lit_3923);
+    mCamera.field_0x1e0[0][3] = tmp_0;
+    mCamera.field_0x1e0[1][3] = tmp_0;
+    mCamera.field_0x1e0[2][3] = tmp_0;
+    PSMTXCopy(mCamera.field_0x140, j3dSys.mViewMtx);
+    mDoMtx_concatProjView(mCamera.field_0x100, mCamera.field_0x140, mCamera.field_0x1a0);
 }
-#pragma pop
 
 /* 80258BC8-80258C5C 253508 0094+00 1/1 0/0 0/0 .text            execute__10dScnName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dScnName_c::execute() {
-    nofralloc
-#include "asm/d/s/d_s_name/execute__10dScnName_cFv.s"
+s32 dScnName_c::execute() {
+    if (fopOvlpM_IsPeek() == 0) {
+        dComIfG_resetToOpening(this);
+    }
+
+    if (mDoRst::isReset() && field_0x420 == 0 && !dFs_c->getFadeFlag()) {
+        return 1;
+    }
+
+    (this->*MainProc[field_0x41d])();
+    return 1;
 }
-#pragma pop
 
 /* 80258C5C-80258CC8 25359C 006C+00 1/1 0/0 0/0 .text            draw__10dScnName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dScnName_c::draw() {
-    nofralloc
-#include "asm/d/s/d_s_name/draw__10dScnName_cFv.s"
+s32 dScnName_c::draw() {
+    dComIfGp_getVibration().Run();
+
+    switch (field_0x41c) {
+    case 0:
+        dFs_c->_draw();
+        break;
+    case 1:
+        mBrightCheck->_draw();
+        break;
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 80258CC8-80258DD0 253608 0108+00 1/1 0/0 0/0 .text            __dt__10dScnName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dScnName_c::~dScnName_c() {
-    nofralloc
-#include "asm/d/s/d_s_name/__dt__10dScnName_cFv.s"
+dScnName_c::~dScnName_c() {
+    delete dFs_c;
+    delete mBrightCheck;
+    dComIfG_deleteObjectResMain("fileSel");
+    mHeap->destroy();
+
+    for (int i = 0; i < 4; i++) {
+        dMeter2Info_changeWater(i + SLOT_11);
+    }
+
+    dComIfGp_setWindowNum(0);
+    dComIfGd_setView(NULL);
 }
-#pragma pop
 
 /* 80258DD0-80258E34 253710 0064+00 1/0 0/0 0/0 .text            FileSelectOpen__10dScnName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dScnName_c::FileSelectOpen() {
-    nofralloc
-#include "asm/d/s/d_s_name/FileSelectOpen__10dScnName_cFv.s"
+void dScnName_c::FileSelectOpen() {
+    if (field_0x41e != 0) {
+        field_0x41e--;
+    } else {
+        mDoAud_bgmStreamPrepare(0x2000000);
+        mDoAud_bgmStreamPlay();
+        field_0x41d = 1;
+    }
 }
-#pragma pop
 
 /* 80258E34-80258E78 253774 0044+00 1/0 0/0 0/0 .text            FileSelectMain__10dScnName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dScnName_c::FileSelectMain() {
-    nofralloc
-#include "asm/d/s/d_s_name/FileSelectMain__10dScnName_cFv.s"
+void dScnName_c::FileSelectMain() {
+    dFs_c->_move();
+
+    if (fpcM_GetName(this) == PROC_NAME_SCENE) {
+        FileSelectMainNormal();
+    }
 }
-#pragma pop
 
 /* 80258E78-80258F20 2537B8 00A8+00 1/1 0/0 0/0 .text FileSelectMainNormal__10dScnName_cFv */
+#ifdef NONMATCHING
+void dScnName_c::FileSelectMainNormal() {
+    if (dFs_c->isSelectEnd() == true) {
+        field_0x41e = 15;
+        mDoGph_gInf_c::setFadeColor(*(JUtility::TColor*)&g_blackColor);
+        mDoGph_gInf_c::startFadeOut(15);
+        field_0x41d = 2;
+        field_0x420 = 1;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -435,8 +485,23 @@ asm void dScnName_c::FileSelectMainNormal() {
 #include "asm/d/s/d_s_name/FileSelectMainNormal__10dScnName_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80258F20-80258FD4 253860 00B4+00 1/0 0/0 0/0 .text            FileSelectClose__10dScnName_cFv */
+#ifdef NONMATCHING
+void dScnName_c::FileSelectClose() {
+    field_0x41e--;
+
+    if (field_0x41e == 0) {
+        field_0x41d = 3;
+        field_0x41e = 15;
+        field_0x41c = 1;
+        mDoGph_gInf_c::setFadeColor(*(JUtility::TColor*)&g_blackColor);
+        mDoGph_gInf_c::startFadeIn(15);
+        field_0x420 = 0;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -445,26 +510,38 @@ asm void dScnName_c::FileSelectClose() {
 #include "asm/d/s/d_s_name/FileSelectClose__10dScnName_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80258FD4-80259008 253914 0034+00 1/0 0/0 0/0 .text            brightCheckOpen__10dScnName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dScnName_c::brightCheckOpen() {
-    nofralloc
-#include "asm/d/s/d_s_name/brightCheckOpen__10dScnName_cFv.s"
+void dScnName_c::brightCheckOpen() {
+    if (!mDoRst::isReset()) {
+        field_0x41e--;
+        if (field_0x41e == 0) {
+            field_0x41d = 4;
+        }
+    }
 }
-#pragma pop
 
 /* 80259008-802590F8 253948 00F0+00 1/0 0/0 0/0 .text            brightCheck__10dScnName_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dScnName_c::brightCheck() {
-    nofralloc
-#include "asm/d/s/d_s_name/brightCheck__10dScnName_cFv.s"
+void dScnName_c::brightCheck() {
+    mBrightCheck->_move();
+
+    if (mBrightCheck->isEnd()) {
+        dComIfGs_setSaveTotalTime(dComIfGs_getTotalTime());
+        dComIfGs_setSaveStartTime(OSGetTime());
+
+        mDoAud_bgmStop(0x2D);
+        field_0x41f = 0;
+        field_0x41d = 5;
+        dComIfGs_offItemFirstBit(GREEN_RUPEE);
+        dComIfGs_offItemFirstBit(BLUE_RUPEE);
+        dComIfGs_offItemFirstBit(YELLOW_RUPEE);
+        dComIfGs_offItemFirstBit(RED_RUPEE);
+        dComIfGs_offItemFirstBit(PURPLE_RUPEE);
+        dComIfGs_offItemFirstBit(ORANGE_RUPEE);
+        dComIfGs_offItemFirstBit(SILVER_RUPEE);
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039A2A8-8039A2A8 026908 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -476,6 +553,23 @@ SECTION_DEAD static char const* const pad_8039A2C5 = "\0\0";
 #pragma pop
 
 /* 802590F8-802591C0 253A38 00C8+00 1/0 0/0 0/0 .text            changeGameScene__10dScnName_cFv */
+// weird comparison in changeReq
+#ifdef NONMATCHING
+void dScnName_c::changeGameScene() {
+    if (!mDoRst::isReset() && !fopOvlpM_IsPeek()) {
+        dComIfGs_gameStart();
+        fopScnM_ChangeReq(this, field_0x41f == 0 ? PROC_PLAY_SCENE : 10, 0, 5);
+        dComIfGp_offEnableNextStage();
+
+        if (dFs_c->isDataNew(dFs_c->getSelectNum())) {
+            dComIfGp_setNextStage("F_SP108", 21, 1, 13);
+        }
+        dKy_clear_game_init();
+        dComIfGs_resetDan();
+        dComIfGs_setRestartRoomParam(0);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -484,96 +578,35 @@ asm void dScnName_c::changeGameScene() {
 #include "asm/d/s/d_s_name/changeGameScene__10dScnName_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 802591C0-802591E0 253B00 0020+00 1/0 0/0 0/0 .text            dScnName_Draw__FP10dScnName_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dScnName_Draw(dScnName_c* param_0) {
-    nofralloc
-#include "asm/d/s/d_s_name/dScnName_Draw__FP10dScnName_c.s"
+static void dScnName_Draw(dScnName_c* scn) {
+    scn->draw();
 }
-#pragma pop
 
 /* 802591E0-80259200 253B20 0020+00 1/0 0/0 0/0 .text            dScnName_Execute__FP10dScnName_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dScnName_Execute(dScnName_c* param_0) {
-    nofralloc
-#include "asm/d/s/d_s_name/dScnName_Execute__FP10dScnName_c.s"
+static void dScnName_Execute(dScnName_c* scn) {
+    scn->execute();
 }
-#pragma pop
 
 /* 80259200-80259230 253B40 0030+00 1/0 0/0 0/0 .text            dScnName_IsDelete__FP10dScnName_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dScnName_IsDelete(dScnName_c* param_0) {
-    nofralloc
-#include "asm/d/s/d_s_name/dScnName_IsDelete__FP10dScnName_c.s"
+static s32 dScnName_IsDelete(dScnName_c*) {
+    dComIfGp_particle_cleanup();
+    return 1;
 }
-#pragma pop
 
 /* 80259230-80259258 253B70 0028+00 1/0 0/0 0/0 .text            dScnName_Delete__FP10dScnName_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dScnName_Delete(dScnName_c* param_0) {
-    nofralloc
-#include "asm/d/s/d_s_name/dScnName_Delete__FP10dScnName_c.s"
+static s32 dScnName_Delete(dScnName_c* scn) {
+    scn->~dScnName_c();
+    return 1;
 }
-#pragma pop
 
 /* 80259258-80259294 253B98 003C+00 1/0 0/0 0/0 .text            dScnName_Create__FP11scene_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dScnName_Create(scene_class* param_0) {
-    nofralloc
-#include "asm/d/s/d_s_name/dScnName_Create__FP11scene_class.s"
+static void dScnName_Create(scene_class* scn) {
+    new (scn) dScnName_c();
+    static_cast<dScnName_c*>(scn)->create();
 }
-#pragma pop
-
-/* 80259294-802592DC 253BD4 0048+00 1/0 0/0 0/0 .text            __dt__17dScnName_camera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dScnName_camera_c::~dScnName_camera_c() {
-extern "C" asm void __dt__17dScnName_camera_cFv() {
-    nofralloc
-#include "asm/d/s/d_s_name/__dt__17dScnName_camera_cFv.s"
-}
-#pragma pop
-
-/* 802592DC-80259324 253C1C 0048+00 2/1 0/0 0/0 .text            __dt__9dSn_HIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dSn_HIO_c::~dSn_HIO_c() {
-    nofralloc
-#include "asm/d/s/d_s_name/__dt__9dSn_HIO_cFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80430768-80430778 05D488 000C+04 1/1 0/0 0/0 .bss             @3822 */
-static u8 lit_3822[12 + 4 /* padding */];
-
-/* 80259324-80259400 253C64 00DC+00 0/0 1/0 0/0 .text            __sinit_d_s_name_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_s_name_cpp() {
-    nofralloc
-#include "asm/d/s/d_s_name/__sinit_d_s_name_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80259324, __sinit_d_s_name_cpp);
-#pragma pop
 
 /* 8039A2A8-8039A2A8 026908 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -247,8 +247,7 @@ J3DDrawPacket::J3DDrawPacket() {
 }
 
 /* 803127B0-8031280C 30D0F0 005C+00 3/2 0/0 0/0 .text            __dt__13J3DDrawPacketFv */
-J3DDrawPacket::~J3DDrawPacket() {
-}
+J3DDrawPacket::~J3DDrawPacket() {}
 
 /* 8031280C-80312898 30D14C 008C+00 1/1 1/1 0/0 .text            newDisplayList__13J3DDrawPacketFUl
  */

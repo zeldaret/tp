@@ -454,6 +454,10 @@ inline void dMeter2Info_setTableMapRegionNo(u8 regionNo) {
     g_meter2_info.setTableMapRegionNo(regionNo);
 }
 
+inline void dMeter2Info_changeWater(u8 bottleIdx) {
+    g_meter2_info.changeWater(bottleIdx);
+}
+
 char* dMeter2Info_getNumberTextureName(int pIndex);
 void dMeter2Info_recieveLetter();
 u8 dMeter2Info_getNewLetterNum();

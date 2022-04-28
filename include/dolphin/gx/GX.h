@@ -83,7 +83,7 @@ typedef struct _GXFifoObj {
 
 typedef struct _GXTexRegion {
     /* 0x00 */ u8 dummy[0x10];
-} GXTexRegion; // Size: 0x10
+} GXTexRegion;  // Size: 0x10
 
 typedef enum _GXPrimitive {
     /* 0x80 */ GX_QUADS = 0x80,
@@ -821,14 +821,14 @@ typedef enum _GXPTTexMtx {
 typedef struct _GXVtxDescList {
     /* 0x0 */ GXAttr attr;
     /* 0x4 */ GXAttrType type;
-} GXVtxDescList; // Size: 0x08
+} GXVtxDescList;  // Size: 0x08
 
 typedef struct _GXVtxAttrFmtList {
     /* 0x00 */ GXAttr mAttrib;
     /* 0x04 */ GXCompCnt mCompCnt;
     /* 0x08 */ GXCompType mCompType;
     /* 0x0C */ u8 mCompShift;
-} GXVtxAttrFmtList; // Size: 0x10
+} GXVtxAttrFmtList;  // Size: 0x10
 
 typedef enum _GXFBClamp {
     /* 0x0 */ GX_CLAMP_NONE,
@@ -854,8 +854,7 @@ typedef enum _GXZFmt16 {
     /* 0x3 */ GX_ZC_FAR,
 } GXZFmt16;
 
-typedef enum _GXCommand
-{
+typedef enum _GXCommand {
     GX_CMD_LOAD_INDX_A = 0x20,
     GX_CMD_LOAD_INDX_B = 0x28,
     GX_CMD_LOAD_INDX_C = 0x30,
@@ -978,7 +977,7 @@ void GXInitFifoBase(GXFifoObj*, void*, u32);
 void GXInitFifoPtrs(GXFifoObj*, void*, void*);
 void GXSaveCPUFifo(GXFifoObj*);
 void GXSetMisc(u32 opt, u32 val);
-void GXInitTexCacheRegion(GXTexRegion *region, GXBool, u32, GXTexCacheSize, u32, GXTexCacheSize);
+void GXInitTexCacheRegion(GXTexRegion* region, GXBool, u32, GXTexCacheSize, u32, GXTexCacheSize);
 
 #define GFX_FIFO(T) (*(volatile T*)0xCC008000)
 

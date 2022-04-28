@@ -11,7 +11,10 @@
 
 class camera_class : public view_class {
 public:
-    /* 0x170 */ u8 field_0x170[0xa0];
+    /* 0x170 */ Mtx field_0x170;
+    /* 0x1A0 */ Mtx field_0x1a0;
+    /* 0x1D0 */ u8 field_0x1d0[0x10];
+    /* 0x1E0 */ Mtx field_0x1e0;
     /* 0x210 */ create_tag_class pCreateTag;
     /* 0x224 */ leafdraw_method_class* pMthd;
     /* 0x228 */ u8 field_0x228[4];
@@ -22,6 +25,34 @@ public:
     /* 0x230 */ csXyz mAngle;
     /* 0x238 */ int field_0x238;
 };
+
+/* void fopCamM_SetNear(camera_class* cam, f32 near) {
+    cam->mNear = near;
+}
+
+void fopCamM_SetFar(camera_class* cam, f32 far) {
+    cam->mFar = far;
+}
+
+void fopCamM_SetFovy(camera_class* cam, f32 fovy) {
+    cam->mFovy = fovy;
+}
+
+void fopCamM_SetAspect(camera_class* cam, f32 aspect) {
+    cam->mAspect = aspect;
+}
+
+void fopCamM_SetEye(camera_class* cam, f32 x, f32 y, f32 z) {
+    cam->field_0xd8.mEye.set(x, y, z);
+}
+
+void fopCamM_SetCenter(camera_class* cam, f32 x, f32 y, f32 z) {
+    cam->field_0xd8.mCenter.set(x, y, z);
+}
+
+void fopCamM_SetBank(camera_class* cam, s16 bank) {
+    cam->mBank = bank;
+} */
 
 u32 fopCamM_Create(int i_cameraIdx, s16 pProcName, void* param_3);
 void fopCamM_Management(void);

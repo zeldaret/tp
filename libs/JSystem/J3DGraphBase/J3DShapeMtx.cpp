@@ -778,8 +778,7 @@ u32 J3DShapeMtxConcatView::getType() const {
 }
 
 /* 80314798-803147E0 30F0D8 0048+00 1/0 0/0 0/0 .text            __dt__11J3DShapeMtxFv */
-J3DShapeMtx::~J3DShapeMtx() {
-}
+J3DShapeMtx::~J3DShapeMtx() {}
 
 /* 803147E0-803147EC 30F120 000C+00 1/0 0/0 0/0 .text            getType__11J3DShapeMtxCFv */
 u32 J3DShapeMtx::getType() const {

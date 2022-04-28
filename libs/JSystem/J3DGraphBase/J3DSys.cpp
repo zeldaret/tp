@@ -6,9 +6,9 @@
 #include "JSystem/J3DGraphBase/J3DSys.h"
 
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "dolphin/gx/GXPixel.h"
 #include "dolphin/os/OS.h"
+#include "dolphin/types.h"
 
 #include "JSystem/J3DGraphBase/J3DTevs.h"
 
@@ -102,8 +102,13 @@ void J3DSys::loadNrmMtxIndx(int addr, u16 indx) const {
 /* 8030FF0C-803100BC 30A84C 01B0+00 1/1 0/0 0/0 .text setTexCacheRegion__6J3DSysF15_GXTexCacheSize
  */
 void J3DSys::setTexCacheRegion(GXTexCacheSize size) {
-    const u32 kSize[] = { 0x00008000, 0x00020000, 0x00080000, 0x00000000, };
-    const u32 kRegionNum[] = { 8, 4, 1, 0 };
+    const u32 kSize[] = {
+        0x00008000,
+        0x00020000,
+        0x00080000,
+        0x00000000,
+    };
+    const u32 kRegionNum[] = {8, 4, 1, 0};
 
     u32 regionNum = kRegionNum[size];
     mTexCacheRegionNum = regionNum;
@@ -111,17 +116,23 @@ void J3DSys::setTexCacheRegion(GXTexCacheSize size) {
     if (!!(mFlags & 0x80000000)) {
         for (u32 i = 0; i < regionNum; i++) {
             if (!!(i & 1)) {
-                GXInitTexCacheRegion(&mTexCacheRegion[i], GX_FALSE, i * kSize[size] + 0x80000, size, i * kSize[size], size);
-                J3DFifoLoadTexCached((GXTexMapID) i, i * kSize[size] + 0x80000, size, i * kSize[size], size);
+                GXInitTexCacheRegion(&mTexCacheRegion[i], GX_FALSE, i * kSize[size] + 0x80000, size,
+                                     i * kSize[size], size);
+                J3DFifoLoadTexCached((GXTexMapID)i, i * kSize[size] + 0x80000, size,
+                                     i * kSize[size], size);
             } else {
-                GXInitTexCacheRegion(&mTexCacheRegion[i], GX_FALSE, i * kSize[size], size, i * kSize[size] + 0x80000, size);
-                J3DFifoLoadTexCached((GXTexMapID) i, i * kSize[size], size, i * kSize[size] + 0x80000, size);
+                GXInitTexCacheRegion(&mTexCacheRegion[i], GX_FALSE, i * kSize[size], size,
+                                     i * kSize[size] + 0x80000, size);
+                J3DFifoLoadTexCached((GXTexMapID)i, i * kSize[size], size,
+                                     i * kSize[size] + 0x80000, size);
             }
         }
     } else {
         for (u32 i = 0; i < regionNum; i++) {
-            GXInitTexCacheRegion(&mTexCacheRegion[i], GX_FALSE, i * kSize[size], size, i * kSize[size] + 0x80000, size);
-            J3DFifoLoadTexCached((GXTexMapID) i, i * kSize[size], size, i * kSize[size] + 0x80000, size);
+            GXInitTexCacheRegion(&mTexCacheRegion[i], GX_FALSE, i * kSize[size], size,
+                                 i * kSize[size] + 0x80000, size);
+            J3DFifoLoadTexCached((GXTexMapID)i, i * kSize[size], size, i * kSize[size] + 0x80000,
+                                 size);
         }
     }
 }
@@ -133,9 +144,7 @@ SECTION_DATA static u8 NullTexData[16] = {
 
 /* 803CD8B0-803CD8E0 02A9D0 0030+00 1/1 0/0 0/0 .data            j3dIdentityMtx */
 SECTION_DATA static Mtx j3dIdentityMtx = {
-    1.0f, 0.0f, 0.0f, 0.0f,
-    0.0f, 1.0f, 0.0f, 0.0f,
-    0.0f, 0.0f, 1.0f, 0.0f,
+    1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f,
 };
 
 /* 803100BC-8031073C 30A9FC 0680+00 0/0 3/3 0/0 .text            drawInit__6J3DSysFv */
@@ -188,8 +197,8 @@ void J3DSys::drawInit() {
         GXLoadTexMtxImm(j3dIdentityMtx, GX_TEXMTX0 + i * 3, GX_MTX3x4);
 
     Mtx23 indTexMtx = {
-        { 0.5f, 0.0f, 0.0f },
-        { 0.0f, 0.5f, 0.0f },
+        {0.5f, 0.0f, 0.0f},
+        {0.0f, 0.5f, 0.0f},
     };
 
     u8 i;
@@ -206,7 +215,9 @@ void J3DSys::drawInit() {
     GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_CLAMP, GX_AF_NONE);
 
     for (i = 0; i < GX_MAX_TEXMAP; i++)
-        GXSetTexCoordGen2((GXTexCoordID)i, (GXTexGenType) j3dDefaultTexCoordInfo[i].mTexGenType, (GXTexGenSrc) j3dDefaultTexCoordInfo[i].mTexGenSrc, j3dDefaultTexCoordInfo[i].mTexGenMtx, GX_FALSE, GX_PTIDENTITY);
+        GXSetTexCoordGen2((GXTexCoordID)i, (GXTexGenType)j3dDefaultTexCoordInfo[i].mTexGenType,
+                          (GXTexGenSrc)j3dDefaultTexCoordInfo[i].mTexGenSrc,
+                          j3dDefaultTexCoordInfo[i].mTexGenMtx, GX_FALSE, GX_PTIDENTITY);
 
     for (i = 0; i < GX_MAX_INDTEXSTAGE; i++)
         GXSetIndTexCoordScale((GXIndTexStageID)i, GX_ITS_1, GX_ITS_1);
@@ -219,9 +230,11 @@ void J3DSys::drawInit() {
 
     for (i = 0; i < GX_MAX_TEVSTAGE; i++) {
         GXSetTevColorIn((GXTevStageID)i, GX_CC_RASC, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO);
-        GXSetTevColorOp((GXTevStageID)i, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+        GXSetTevColorOp((GXTevStageID)i, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE,
+                        GX_TEVPREV);
         GXSetTevAlphaIn((GXTevStageID)i, GX_CA_RASA, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO);
-        GXSetTevAlphaOp((GXTevStageID)i, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+        GXSetTevAlphaOp((GXTevStageID)i, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE,
+                        GX_TEVPREV);
     }
 
     for (i = 0; i < GX_MAX_TEVSTAGE; i++)
@@ -233,7 +246,8 @@ void J3DSys::drawInit() {
     GXSetTevSwapModeTable(GX_TEV_SWAP3, GX_CH_BLUE, GX_CH_BLUE, GX_CH_BLUE, GX_CH_ALPHA);
 
     for (i = 0; i < GX_MAX_TEVSTAGE; i++)
-        GXSetTevIndirect((GXTevStageID)i, GX_INDTEXSTAGE0, GX_ITF_8, GX_ITB_NONE, GX_ITM_OFF, GX_ITW_OFF, GX_ITW_OFF, GX_FALSE, GX_FALSE, GX_ITBA_OFF);
+        GXSetTevIndirect((GXTevStageID)i, GX_INDTEXSTAGE0, GX_ITF_8, GX_ITB_NONE, GX_ITM_OFF,
+                         GX_ITW_OFF, GX_ITW_OFF, GX_FALSE, GX_FALSE, GX_ITBA_OFF);
 
     OSInitFastCast();
     setTexCacheRegion(GX_TEXCACHE_32K);

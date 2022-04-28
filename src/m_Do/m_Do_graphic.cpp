@@ -239,7 +239,7 @@ static bool data_80450BE5;
 
 u8 data_80450BE6;
 
-static bool data_80450BE7;
+bool data_80450BE7;
 #pragma pop
 
 /* 80007E44-80007F90 002784 014C+00 1/1 0/0 0/0 .text            create__13mDoGph_gInf_cFv */

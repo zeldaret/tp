@@ -191,6 +191,10 @@ public:
     /* 80051AC0 */ void setViewPort(f32, f32, f32, f32, f32, f32);
     /* 80051ADC */ void setScissor(f32, f32, f32, f32);
 
+    void setCameraID(int id) { mCameraID = id; }
+    void setMode(int mode) { mMode = mode; }
+    f32 getViewPort() { return mViewport; }
+
 private:
     /* 0x00 */ f32 mViewport;
     /* 0x04 */ f32 field_0x04;
@@ -233,6 +237,9 @@ public:
     void set2DOpa(dDlst_base_c* dlst) { set(field_0x1b4, field_0x1b8, dlst); }
     void set2DOpaTop(dDlst_base_c* dlst) { set(field_0xac, field_0xb0, dlst); }
     view_class* getView() { return mView; }
+    void setView(view_class* view) { mView = view; }
+    void setWindow(dDlst_window_c* window) { mWindow = window; }
+    void setViewport(view_port_class* port) { mViewport = port; }
     J3DDrawBuffer* getOpaListFilter() { return mListFilter; }
     J3DDrawBuffer* getOpaListP0() { return mListP0; }
     J3DDrawBuffer* getOpaListPacket() { return mOpaListPacket; }
