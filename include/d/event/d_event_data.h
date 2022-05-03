@@ -52,6 +52,8 @@ public:
     void startCheck();
 
     int getDataTop() { return mDataTop; }
+    int getFlagId() { return mFlagId; }
+    char* getName() { return mName; }
 
 private:
     /* 0x00 */ char mName[32];
@@ -98,9 +100,9 @@ public:
     int getCurrentCut() { return mCurrentCut; }
     int getStartCut() { return mStartCut; }
 
-private:
+    // private:
     /* 0x00 */ char mName[32];
-    /* 0x20 */ u32 mTagID;
+    /* 0x20 */ s32 mTagID;
     /* 0x24 */ u32 mIndex;
     /* 0x28 */ u32 mFlagID;
     /* 0x2C */ int mType;
@@ -108,7 +110,7 @@ private:
     /* 0x34 */ u8 field_0x34[2];
     /* 0x36 */ s16 field_0x36;
     /* 0x38 */ int mCurrentCut;
-    /* 0x3C */ u32 field_0x3c;
+    /* 0x3C */ s32 field_0x3c;
     /* 0x40 */ bool field_0x40;
     /* 0x41 */ bool field_0x41;
     /* 0x42 */ s16 field_0x42;
@@ -118,11 +120,13 @@ private:
 
 class dEvDtEvent_c {
 public:
-    void finishCheck();
+    int finishCheck();
     void forceFinish();
     void specialStaffProc(dEvDtStaff_c*);
     int getNStaff() { return mNStaff; }
     int getStaff(int idx) { return mStaff[idx]; }
+    char* getName() { return mName; }
+    int getPriority() { return mPriority; }
 
     /* 0x00 */ char mName[32];
     /* 0x20 */ u32 mIndex;
@@ -156,7 +160,7 @@ private:
 
 class dEvDtBase_c {
 public:
-    dEvDtBase_c();
+    dEvDtBase_c() { init(); }
     ~dEvDtBase_c() {}
     int init();
     int init(char*, int);
@@ -168,6 +172,7 @@ public:
     dEvDtEvent_c* getEventP(int i) { return &mEventP[i]; }
     dEvDtData_c* getDataP(int i) { return &mDataP[i]; }
     dEvDtCut_c* getCutP(int i) { return &mCutP[i]; }
+    char* getEventName(int i) { return mEventP[i].getName(); }
     int getStaffCurrentCut(int i) { return mStaffP[i].getCurrentCut(); }
     dEvDtCut_c* getCutStaffCurrentCutP(int i) { return getCutP(getStaffCurrentCut(i)); }
     int getStaffStartCut(int i) { return mStaffP[i].getStartCut(); }
@@ -200,7 +205,7 @@ public:
     void setIDataP(int* p_idata) { mIDataP = p_idata; }
     void setSDataP(char* p_sdata) { mSDataP = p_sdata; }
 
-private:
+    // private:
     /* 0x00 */ event_binary_data_header* mHeaderP;
     /* 0x04 */ dEvDtEvent_c* mEventP;
     /* 0x08 */ dEvDtStaff_c* mStaffP;

@@ -62,13 +62,13 @@ public:
     void moveApproval(void*);
     BOOL compulsory(void*, char const*, u16);
     void remove();
-    void* getStageEventDt();  // ret type probably wrong, fix later
+    dStage_MapEvent_dt_c* getStageEventDt();
     void sceneChange(int);
     u32 getPId(void*);
-    void convPId(unsigned int);
+    void* convPId(unsigned int);
     void getStbDemoData(char*);
-    static void searchMapEventData(u8, s32);
-    static void searchMapEventData(u8);
+    static u8* searchMapEventData(u8, s32);  // ret type probably wrong, fix later
+    static u8* searchMapEventData(u8);       // ret type probably wrong, fix later
     s16 runningEventID(s16);
     void setPt1(void*);
     void setPt2(void*);
@@ -82,11 +82,14 @@ public:
     u16 chkFlag2(u16 flag) { return flag & mFlag2; }
     bool runCheck() { return field_0xe5 != 0; }
     u16 chkEventFlag(u16 flag) { return flag & mEventFlag; }
+    void onEventFlag(u16 flag) { mEventFlag |= flag; }
     u8 getMode() const { return mMode; }
     u16 checkHind(u16 flag) { return flag & mHindFlag; }
     u8 checkCompulsory() { return mCompulsory; }
 
     bool i_isOrderOK() { return field_0xe5 == 0 || field_0xe5 == 2; }
+    void* getPt1() { return convPId(mPt1); }
+    void* getPt2() { return convPId(mPt2); }
 
 public:
     /* 0x000 */ u8 field_0x0[4];
@@ -116,7 +119,7 @@ public:
     /* 0x0EE */ u8 mPreItemNo;
     /* 0x0EF */ u8 mGtItm;
     /* 0x0F0 */ float mCullRate;
-    /* 0x0F4 */ void* mStageEventDt;
+    /* 0x0F4 */ dStage_MapEvent_dt_c* mStageEventDt;
     /* 0x0F8 */ void* mChangeOK;
     /* 0x0FC */ u8 field_0xfc[4];
     /* 0x100 */ SkipFunc mSkipFunc;
@@ -129,5 +132,10 @@ public:
     /* 0x129 */ bool field_0x129;
     /* 0x12C */ int field_0x12c;
 };  // Size = 0x130
+
+int dEv_defaultSkipProc(void* param_0, int param_1);
+int dEv_defaultSkipZev(void* param_0, int param_1);
+int dEv_defaultSkipStb(void* param_0, int param_1);
+int dEv_noFinishSkipProc(void* param_0, int param_1);
 
 #endif /* D_EVENT_D_EVENT_H */
