@@ -51,31 +51,58 @@ asm JGadget::TNodeLinkList::~TNodeLinkList() {
 
 /* 802DCA58-802DCAA0 2D7398 0048+00 0/0 2/2 0/0 .text
  * erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iterator */
+#if NONMATCHING
+JGadget::TNodeLinkList::iterator
+JGadget::TNodeLinkList::erase(JGadget::TNodeLinkList::iterator it) {
+    TLinkListNode* node = it.node;
+    TLinkListNode* next = node->mNext;
+    iterator start(node);
+    iterator end(next);
+    return erase(start, end);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JGadget::TNodeLinkList::erase(JGadget::TNodeLinkList::iterator param_0) {
+asm JGadget::TNodeLinkList::iterator
+JGadget::TNodeLinkList::erase(JGadget::TNodeLinkList::iterator param_0) {
     nofralloc
 #include "asm/JSystem/JGadget/linklist/erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iterator.s"
 }
 #pragma pop
+#endif
 
 /* 802DCAA0-802DCB08 2D73E0 0068+00 1/1 0/0 0/0 .text
  * erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorQ37JGadget13TNodeLinkList8iterator
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JGadget::TNodeLinkList::erase(JGadget::TNodeLinkList::iterator param_0,
-                                       JGadget::TNodeLinkList::iterator param_1) {
-    nofralloc
-#include "asm/JSystem/JGadget/linklist/func_802DCAA0.s"
+JGadget::TNodeLinkList::iterator JGadget::TNodeLinkList::erase(iterator start, iterator end) {
+    TLinkListNode* startNode = start.node;
+    TLinkListNode* endNode = end.node;
+    while (startNode != endNode) {
+        TLinkListNode* nextNode = startNode->mNext;
+        Erase(startNode);
+        startNode = nextNode;
+    }
+    return iterator(end.node);
 }
-#pragma pop
 
 /* 802DCB08-802DCBA8 2D7448 00A0+00 1/1 0/0 0/0 .text
  * splice__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorRQ27JGadget13TNodeLinkListQ37JGadget13TNodeLinkList8iterator
  */
+#if NONMATCHING
+void JGadget::TNodeLinkList::splice(iterator myIt, TNodeLinkList& otherList, iterator otherIt) {
+    TLinkListNode* otherNode = otherIt;
+    TLinkListNode* otherNextNode = otherNode->mNext;
+
+    if (myIt == otherIt) {
+        return;
+    }
+    if (myIt.node != otherNextNode) {
+        otherList.Erase(otherNode);
+        Insert(myIt, otherNode);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -86,33 +113,49 @@ asm void JGadget::TNodeLinkList::splice(JGadget::TNodeLinkList::iterator param_0
 #include "asm/JSystem/JGadget/linklist/func_802DCB08.s"
 }
 #pragma pop
+#endif
 
 /* 802DCBA8-802DCBD4 2D74E8 002C+00 1/1 7/7 0/0 .text
  * Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JGadget::TNodeLinkList::Insert(JGadget::TNodeLinkList::iterator param_0,
-                                        JGadget::TLinkListNode* param_1) {
-    nofralloc
-#include "asm/JSystem/JGadget/linklist/func_802DCBA8.s"
+JGadget::TNodeLinkList::iterator JGadget::TNodeLinkList::Insert(iterator it, TLinkListNode* node) {
+    TLinkListNode* itNode = it.node;
+    TLinkListNode* prev = itNode->mPrev;
+    node->mNext = itNode;
+    node->mPrev = prev;
+    itNode->mPrev = node;
+    prev->mNext = node;
+    this->count++;
+    return iterator(node);
 }
-#pragma pop
 
 /* 802DCBD4-802DCBF8 2D7514 0024+00 2/2 4/4 0/0 .text
  * Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JGadget::TNodeLinkList::iterator
-JGadget::TNodeLinkList::Erase(JGadget::TLinkListNode* param_0) {
-    nofralloc
-#include "asm/JSystem/JGadget/linklist/Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode.s"
+JGadget::TNodeLinkList::iterator JGadget::TNodeLinkList::Erase(TLinkListNode* node) {
+    TLinkListNode* next = node->mNext;
+    TLinkListNode* prev = node->mPrev;
+    next->mPrev = prev;
+    prev->mNext = next;
+    this->count--;
+    return iterator(next);
 }
-#pragma pop
 
 /* 802DCBF8-802DCCC8 2D7538 00D0+00 0/0 2/2 0/0 .text
  * Remove__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode */
+#if NONMATCHING
+void JGadget::TNodeLinkList::Remove(TLinkListNode* node) {
+    TNodeLinkList trashList;
+    TLinkListNode* myNode = this->ocObject_.mNext;
+    while (myNode != end().node) {
+        if (myNode == node) {
+            TLinkListNode* next = myNode->mNext;
+            trashList.splice(&trashList.ocObject_, *this, myNode);
+            myNode = next;
+        } else {
+            myNode = myNode->mNext;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -121,3 +164,4 @@ asm void JGadget::TNodeLinkList::Remove(JGadget::TLinkListNode* param_0) {
 #include "asm/JSystem/JGadget/linklist/Remove__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode.s"
 }
 #pragma pop
+#endif
