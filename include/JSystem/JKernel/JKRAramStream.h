@@ -2,9 +2,9 @@
 #define JKRARAMSTREAM_H
 
 #include "JSystem/JKernel/JKRThread.h"
-#include "JSystem/JSupport/JSUFileStream.h"
-#include "JSystem/JSupport/JSURandomInputStream.h"
 #include "dolphin/types.h"
+
+class JSUFileInputStream;
 
 class JKRAramStreamCommand {
 public:

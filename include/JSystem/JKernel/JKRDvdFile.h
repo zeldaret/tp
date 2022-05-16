@@ -7,6 +7,7 @@
 #include "dolphin/types.h"
 
 class JKRADCommand;
+class JKRAramBlock;
 class JSUFileInputStream;
 class JKRDvdFile : public JKRFile {
 public:
@@ -35,9 +36,9 @@ private:
     /* 0x04 */  // JKRFile
     /* 0x1C */ OSMutex mMutex1;
     /* 0x34 */ OSMutex mMutex2;
-    /* 0x4C */ u32 field_0x4c;
-    /* 0x50 */ u32 field_0x50;
-    /* 0x54 */ u32 field_0x54;
+    /* 0x4C */ JKRAramBlock* mBlock;
+    /* 0x50 */ OSThread* field_0x50;
+    /* 0x54 */ JSUFileInputStream* mFileStream;
     /* 0x58 */ u32 field_0x58;
     /* 0x5C */ DVDFileInfo mFileInfo;
     /* 0x98 */ JKRDvdFile* mDvdFile;
