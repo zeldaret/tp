@@ -51,8 +51,8 @@ bool JKRArchive::isSameName(JKRArchive::CArcName& name, u32 nameOffset, u16 name
 }
 
 /* 802D63E0-802D641C 2D0D20 003C+00 1/1 0/0 0/0 .text            findResType__10JKRArchiveCFUl */
-JKRArchive::SDirEntry* JKRArchive::findResType(u32 type) const {
-    SDirEntry* node = mNodes;
+JKRArchive::SDIDirEntry* JKRArchive::findResType(u32 type) const {
+    SDIDirEntry* node = mNodes;
     u32 count = 0;
     while (count < mArcInfoBlock->num_nodes) {
         if (node->type == type) {
@@ -68,13 +68,13 @@ JKRArchive::SDirEntry* JKRArchive::findResType(u32 type) const {
 
 /* 802D641C-802D64F4 2D0D5C 00D8+00 0/0 3/3 0/0 .text            findDirectory__10JKRArchiveCFPCcUl
  */
-JKRArchive::SDirEntry* JKRArchive::findDirectory(const char* name, u32 directoryId) const {
+JKRArchive::SDIDirEntry* JKRArchive::findDirectory(const char* name, u32 directoryId) const {
     if (name == NULL) {
         return mNodes + directoryId;
     }
 
     CArcName arcName(&name, '/');
-    SDirEntry* dirEntry = mNodes + directoryId;
+    SDIDirEntry* dirEntry = mNodes + directoryId;
     SDIFileEntry* fileEntry = mFiles + dirEntry->first_file_index;
 
     for (int i = 0; i < dirEntry->num_entries; fileEntry++, i++) {
@@ -94,7 +94,7 @@ JKRArchive::SDirEntry* JKRArchive::findDirectory(const char* name, u32 directory
 JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(u32 type, const char* name) const {
     if (type) {
         CArcName arcName(name);
-        SDirEntry* dirEntry = findResType(type);
+        SDIDirEntry* dirEntry = findResType(type);
         if (dirEntry) {
             SDIFileEntry* fileEntry = mFiles + dirEntry->first_file_index;
             for (int i = 0; i < dirEntry->num_entries; fileEntry++, i++) {
@@ -113,7 +113,7 @@ JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(u32 type, const char* nam
 JKRArchive::SDIFileEntry* JKRArchive::findFsResource(const char* name, u32 directoryId) const {
     if (name) {
         CArcName arcName(&name, '/');
-        SDirEntry* dirEntry = mNodes + directoryId;
+        SDIDirEntry* dirEntry = mNodes + directoryId;
         SDIFileEntry* fileEntry = mFiles + dirEntry->first_file_index;
         for (int i = 0; i < dirEntry->num_entries; fileEntry++, i++) {
             // regalloc doesn't like fileEntry->getNameHash()

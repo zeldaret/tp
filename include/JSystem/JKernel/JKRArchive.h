@@ -51,16 +51,15 @@ extern u32 sCurrentDirID__10JKRArchive;  // JKRArchive::sCurrentDirID
 class JKRArchive : public JKRFileLoader {
 public:
     struct SDirEntry {
-        union {
-            u32 type;
-            struct {
-                u8 flags;
-                u8 padding;
-                u16 id;
-            } other;
-        };
-
+        u8 flags;
+        u8 padding;
+        u16 id;
         const char* name;
+    };
+
+    struct SDIDirEntry {
+        u32 type;
+        u32 name_offset;
         u16 field_0x8;
         u16 num_entries;
         s32 first_file_index;
@@ -139,8 +138,8 @@ public:
 
 protected:
     bool isSameName(CArcName&, u32, u16) const;
-    SDirEntry* findResType(u32) const;
-    SDirEntry* findDirectory(const char*, u32) const;
+    SDIDirEntry* findResType(u32) const;
+    SDIDirEntry* findDirectory(const char*, u32) const;
     SDIFileEntry* findTypeResource(u32, const char*) const;
     SDIFileEntry* findFsResource(const char*, u32) const;
     SDIFileEntry* findIdxResource(u32) const;
@@ -175,7 +174,7 @@ protected:
     /* 0x3D */ u8 field_0x3d[3];
     /* 0x40 */ s32 mEntryNum;
     /* 0x44 */ SArcDataInfo* mArcInfoBlock;
-    /* 0x48 */ SDirEntry* mNodes;
+    /* 0x48 */ SDIDirEntry* mNodes;
 
 public:
     /* 0x4C */ SDIFileEntry* mFiles;

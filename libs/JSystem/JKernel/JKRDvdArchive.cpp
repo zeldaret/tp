@@ -91,7 +91,7 @@ JKRDvdArchive::JKRDvdArchive(s32 entryNum, JKRArchive::EMountDirection mountDire
         return;
 
     mVolumeType = 'RARC';
-    mVolumeName = mStringTable + (u32)mNodes->name;
+    mVolumeName = mStringTable + mNodes->name_offset;
     getVolumeList().prepend(&mFileLoaderLink);
     mIsMounted = true;
 }
@@ -169,7 +169,7 @@ bool JKRDvdArchive::open(s32 entryNum) {
                     sizeof(SArcHeader), NULL, NULL);
     DCInvalidateRange(mArcInfoBlock, arcHeader->file_data_offset);
 
-    mNodes = (SDirEntry*)((int)&mArcInfoBlock->num_nodes + mArcInfoBlock->node_offset);
+    mNodes = (SDIDirEntry*)((int)&mArcInfoBlock->num_nodes + mArcInfoBlock->node_offset);
     mFiles = (SDIFileEntry*)((int)&mArcInfoBlock->num_nodes + mArcInfoBlock->file_entry_offset);
     mStringTable = (char*)((int)&mArcInfoBlock->num_nodes + mArcInfoBlock->string_table_offset);
     mExpandedSize = NULL;

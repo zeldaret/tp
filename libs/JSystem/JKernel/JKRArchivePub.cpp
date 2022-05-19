@@ -113,7 +113,7 @@ JKRArchive* JKRArchive::mount(s32 entryNum, JKRArchive::EMountMode mountMode, JK
 
 /* 802D5A38-802D5AC0 2D0378 0088+00 1/0 4/0 0/0 .text            becomeCurrent__10JKRArchiveFPCc */
 bool JKRArchive::becomeCurrent(const char* path) {
-    SDirEntry* dirEntry;
+    SDIDirEntry* dirEntry;
     if (*path == '/') {
         path++;
 
@@ -140,8 +140,8 @@ bool JKRArchive::getDirEntry(SDirEntry* dirEntry, u32 index) const {
     if (!fileEntry)
         return false;
 
-    dirEntry->other.flags = fileEntry->getFlags();
-    dirEntry->other.id = fileEntry->getFileID();
+    dirEntry->flags = fileEntry->getFlags();
+    dirEntry->id = fileEntry->getFileID();
     dirEntry->name = mStringTable + fileEntry->getNameOffset();
     return true;
 }
@@ -338,7 +338,7 @@ u32 JKRArchive::countResource(void) const {
 
 /* 802D6150-802D61B0 2D0A90 0060+00 1/0 4/0 0/0 .text            countFile__10JKRArchiveCFPCc */
 u32 JKRArchive::countFile(const char* path) const {
-    SDirEntry* dirEntry;
+    SDIDirEntry* dirEntry;
     if (*path == '/') {
         path++;
 
@@ -358,7 +358,7 @@ u32 JKRArchive::countFile(const char* path) const {
 
 /* 802D61B0-802D625C 2D0AF0 00AC+00 1/0 4/0 0/0 .text            getFirstFile__10JKRArchiveCFPCc */
 JKRFileFinder* JKRArchive::getFirstFile(const char* path) const {
-    SDirEntry* dirEntry;
+    SDIDirEntry* dirEntry;
     if (*path == '/') {
         path++;
 
