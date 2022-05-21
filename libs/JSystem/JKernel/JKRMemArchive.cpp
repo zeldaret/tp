@@ -156,7 +156,7 @@ JKRMemArchive::JKRMemArchive(long entryNum, JKRArchive::EMountDirection mountDir
     }
 
     mVolumeType = 'RARC';
-    mVolumeName = mStringTable + (u32)mNodes->name;
+    mVolumeName = mStringTable + mNodes->name_offset;
 
     getVolumeList().prepend(&mFileLoaderLink);
     mIsMounted = true;
@@ -172,7 +172,7 @@ JKRMemArchive::JKRMemArchive(void* buffer, u32 bufferSize, JKRMemBreakFlag param
     }
 
     mVolumeType = 'RARC';
-    mVolumeName = mStringTable + (u32)mNodes->name;
+    mVolumeName = mStringTable + mNodes->name_offset;
 
     getVolumeList().prepend(&mFileLoaderLink);
     mIsMounted = true;
@@ -230,7 +230,7 @@ bool JKRMemArchive::open(long entryNum, JKRArchive::EMountDirection mountDirecti
     } else {
         ASSERT(mArcHeader->signature == 'RARC');
         mArcInfoBlock = (SArcDataInfo*)((u8*)mArcHeader + mArcHeader->header_length);
-        mNodes = (SDirEntry*)((u8*)&mArcInfoBlock->num_nodes + mArcInfoBlock->node_offset);
+        mNodes = (SDIDirEntry*)((u8*)&mArcInfoBlock->num_nodes + mArcInfoBlock->node_offset);
         mFiles = (SDIFileEntry*)((u8*)&mArcInfoBlock->num_nodes + mArcInfoBlock->file_entry_offset);
         mStringTable = (char*)((u8*)&mArcInfoBlock->num_nodes + mArcInfoBlock->string_table_offset);
 
@@ -263,7 +263,7 @@ bool JKRMemArchive::open(void* buffer, u32 bufferSize, JKRMemBreakFlag flag) {
 
     ASSERT(mArcHeader->signature == 'RARC');
     mArcInfoBlock = (SArcDataInfo*)((u8*)mArcHeader + mArcHeader->header_length);
-    mNodes = (SDirEntry*)((u8*)&mArcInfoBlock->num_nodes + mArcInfoBlock->node_offset);
+    mNodes = (SDIDirEntry*)((u8*)&mArcInfoBlock->num_nodes + mArcInfoBlock->node_offset);
     mFiles = (SDIFileEntry*)((u8*)&mArcInfoBlock->num_nodes + mArcInfoBlock->file_entry_offset);
     mStringTable = (char*)((u8*)&mArcInfoBlock->num_nodes + mArcInfoBlock->string_table_offset);
     mArchiveData =

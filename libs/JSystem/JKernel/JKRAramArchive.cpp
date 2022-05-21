@@ -116,7 +116,7 @@ JKRAramArchive::JKRAramArchive(s32 param_0, JKRArchive::EMountDirection mountDir
         return;
     }
     mVolumeType = 'RARC';
-    mVolumeName = mStringTable + (int)mNodes->name;
+    mVolumeName = mStringTable + mNodes->name_offset;
     JKRFileLoader::sVolumeList.prepend(&mFileLoaderLink);
     mIsMounted = true;
 }
@@ -190,7 +190,7 @@ bool JKRAramArchive::open(s32 entryNum) {
             JKRDvdToMainRam(entryNum, (u8*)mArcInfoBlock, EXPAND_SWITCH_UNKNOWN1, blockSize, NULL,
                             JKRDvdRipper::ALLOC_DIRECTION_FORWARD, 0x20, NULL, NULL);
             DCInvalidateRange(mArcInfoBlock, blockSize);
-            mNodes = (SDirEntry*)((s32)mArcInfoBlock + mArcInfoBlock->node_offset);
+            mNodes = (SDIDirEntry*)((s32)mArcInfoBlock + mArcInfoBlock->node_offset);
             mFiles = (SDIFileEntry*)((s32)mArcInfoBlock + mArcInfoBlock->file_entry_offset);
             mStringTable = (char*)((s32)mArcInfoBlock + mArcInfoBlock->string_table_offset);
             mExpandedSize = NULL;
