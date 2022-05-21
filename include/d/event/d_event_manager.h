@@ -69,12 +69,14 @@ public:
 
     void setStartDemo(int param_0) { mEventException.setStartDemo(param_0); }
     void setCameraPlay(int status) { mCameraPlay = status; }
-    dEvDtBase_c& getBase() { return mEventList[field_0x1b4]; }
+    dEvDtBase_c& getBase() { return mEventList[mCurrentEventType]; }
 
     void setFlag(int flag) { mFlags.flagSet(flag); }
 
     static int getIndexCompositId(s16 param_0) { return param_0 != -1 ? (u8)param_0 : -1; }
     static int getTypeCompositId(s16 param_0) { return param_0 == -1 ? 0 : param_0 >> 8; }
+
+    static s16 makeCompositId(s16 a, int b) { return a | (b << 8); }
 
 private:
     /* 0x0000 */ dEvDtBase_c mEventList[11];
@@ -82,10 +84,10 @@ private:
     /* 0x0190 */ dEvent_exception_c mEventException;
     /* 0x019C */ cXyz mGoal;
     /* 0x01A8 */ u8 field_0x1a8[2];
-    /* 0x01AA */ s16 field_0x1aa;
+    /* 0x01AA */ s16 mCurrentEventCompositId;
     /* 0x01AC */ u8 field_0x1ac[4];
     /* 0x01B0 */ int mRoomNo;
-    /* 0x01B4 */ u32 field_0x1b4;
+    /* 0x01B4 */ u32 mCurrentEventType;
     /* 0x01B8 */ s32 field_0x1b8;
     /* 0x01BC */ dEvDtFlag_c mFlags;
     /* 0x06BC */ bool mDataLoaded;

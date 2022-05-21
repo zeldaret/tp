@@ -657,13 +657,12 @@ void dEvt_control_c::remove() {
 
 /* 80043278-80043280 03DBB8 0008+00 2/2 2/2 0/0 .text            getStageEventDt__14dEvt_control_cFv
  */
-// ret type probably wrong, fix later
 dStage_MapEvent_dt_c* dEvt_control_c::getStageEventDt() {
     return mStageEventDt;
 }
 
-void dEvt_control_c::sceneChange(int param_0) {
-    dStage_changeScene4Event__FiScibfUlsi(param_0, field_0x12c, -1, field_0x129, 0.0f, 0, 0, -1);
+void dEvt_control_c::sceneChange(int exitId) {
+    dStage_changeScene4Event__FiScibfUlsi(exitId, field_0x12c, -1, field_0x129, 0.0f, 0, 0, -1);
 }
 
 u32 dEvt_control_c::getPId(void* param_0) {
@@ -683,7 +682,7 @@ void* dEvt_control_c::convPId(unsigned int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void *dEvt_control_c::convPId(unsigned int param_0) {
+asm void* dEvt_control_c::convPId(unsigned int param_0) {
     nofralloc
 #include "asm/d/event/d_event/convPId__14dEvt_control_cFUi.s"
 }
@@ -738,7 +737,7 @@ void dEvt_info_c::beforeProc() {
 }
 
 /* 800434D8-80043500 03DE18 0028+00 0/0 4/4 1/1 .text searchMapEventData__14dEvt_control_cFUc */
-u8* dEvt_control_c::searchMapEventData(u8 param_0) {
+dStage_MapEvent_dt_c* dEvt_control_c::searchMapEventData(u8 param_0) {
     return searchMapEventData(param_0, (s32)struct_80450D64);
 }
 
@@ -746,7 +745,7 @@ u8* dEvt_control_c::searchMapEventData(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u8* dEvt_control_c::searchMapEventData(u8 param_0, s32 param_1) {
+asm dStage_MapEvent_dt_c* dEvt_control_c::searchMapEventData(u8 param_0, s32 param_1) {
     nofralloc
 #include "asm/d/event/d_event/searchMapEventData__14dEvt_control_cFUcl.s"
 }

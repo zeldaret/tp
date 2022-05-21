@@ -237,7 +237,7 @@ struct dStage_DMap_c {
 };
 
 struct dStage_MapEvent_dt_c {
-    u8 _0;
+    u8 mType;
     u8 field_0x1[3 - 1];
     u8 field_0x3;
     u8 field_0x4[7 - 4];
@@ -248,7 +248,8 @@ struct dStage_MapEvent_dt_c {
     char mName[10];
     u8 field_0x17;
     u8 field_0x18;
-    u8 field_0x19[0x1C - 0x19];
+    u8 field_0x19[0x1B - 0x19];
+    u8 field_0x1B;
 };  // SIZE = 0x1C
 
 struct dStage_MapEventInfo_c {

@@ -67,8 +67,8 @@ public:
     u32 getPId(void*);
     void* convPId(unsigned int);
     void getStbDemoData(char*);
-    static u8* searchMapEventData(u8, s32);  // ret type probably wrong, fix later
-    static u8* searchMapEventData(u8);       // ret type probably wrong, fix later
+    static dStage_MapEvent_dt_c* searchMapEventData(u8, s32);
+    static dStage_MapEvent_dt_c* searchMapEventData(u8);
     s16 runningEventID(s16);
     void setPt1(void*);
     void setPt2(void*);
