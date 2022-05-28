@@ -23,10 +23,6 @@ struct dEvt_control_c {
 
 struct JKRExpandSwitch {};
 
-struct JKRArchive {
-    /* 802D65A4 */ void findFsResource(char const*, u32) const;
-};
-
 struct JKRAramArchive {
     /* 802D781C */ void getAramAddress(char const*);
 };

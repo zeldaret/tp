@@ -12,14 +12,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-//
 // Forward References:
 //
 

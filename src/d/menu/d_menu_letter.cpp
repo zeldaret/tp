@@ -64,16 +64,6 @@ struct dMenu_Letter {
     static u8 letter_data[512];
 };
 
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
 //
 // Forward References:
 //

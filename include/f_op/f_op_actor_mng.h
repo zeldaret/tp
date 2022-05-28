@@ -158,6 +158,10 @@ inline BOOL fopAcM_IsActor(void* actor) {
     return fopAc_IsActor(actor);
 }
 
+inline void fopAcM_SetRoomNo(fopAc_ac_c* actor, s8 roomNo) {
+    actor->mCurrent.mRoomNo = roomNo;
+}
+
 void* fopAcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3, void* pData);
 void fopAcM_setStageLayer(void*);
 int fopAcM_setRoomLayer(void*, int);

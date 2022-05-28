@@ -114,7 +114,7 @@ bool J3DMaterialTable::removeMatColorAnimator(J3DAnmColor* pAnmColor) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DMaterialTable::removeMatColorAnimator(J3DAnmColor* param_0) {
+asm int J3DMaterialTable::removeMatColorAnimator(J3DAnmColor* param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DMaterialAttach/removeMatColorAnimator__16J3DMaterialTableFP11J3DAnmColor.s"
 }
@@ -126,7 +126,7 @@ asm bool J3DMaterialTable::removeMatColorAnimator(J3DAnmColor* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DMaterialTable::removeTexNoAnimator(J3DAnmTexPattern* param_0) {
+asm int J3DMaterialTable::removeTexNoAnimator(J3DAnmTexPattern* param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DMaterialAttach/removeTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern.s"
 }
@@ -137,7 +137,7 @@ asm void J3DMaterialTable::removeTexNoAnimator(J3DAnmTexPattern* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DMaterialTable::removeTexMtxAnimator(J3DAnmTextureSRTKey* param_0) {
+asm int J3DMaterialTable::removeTexMtxAnimator(J3DAnmTextureSRTKey* param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DMaterialAttach/removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey.s"
 }
@@ -148,7 +148,7 @@ asm void J3DMaterialTable::removeTexMtxAnimator(J3DAnmTextureSRTKey* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DMaterialTable::removeTevRegAnimator(J3DAnmTevRegKey* param_0) {
+asm int J3DMaterialTable::removeTevRegAnimator(J3DAnmTevRegKey* param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DMaterialAttach/removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey.s"
 }

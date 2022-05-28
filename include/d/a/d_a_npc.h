@@ -7,21 +7,30 @@
 
 class daNpcT_MotionSeqMngr_c {
 public:
-    struct sequenceStepData_c {};
+    class sequenceStepData_c {
+    public:
+        s16 field_0x0;
+        s8 field_0x2;
+        s8 field_0x3;
+    };  // Size: 0x4?
 
     /* 80145898 */ void initialize();
-    /* 801458C0 */ void play(u16, int*, f32*);
-    /* 80145A24 */ void checkEndSequence();
+    /* 801458C0 */ int play(u16, int*, f32*);
+    /* 80145A24 */ s32 checkEndSequence();
+
+    bool checkEntryNewMotion() {
+        return mStepNo == 0 && field_0x14 == -1;
+    }
 
 private:
-    /* 0x00 */ sequenceStepData_c* field_0x0;
+    /* 0x00 */ sequenceStepData_c* mpSeqData;
     /* 0x04 */ int field_0x4;
     /* 0x08 */ int mNo;
     /* 0x0C */ int mOffset;
     /* 0x10 */ int mStepNo;
     /* 0x14 */ int field_0x14;
     /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ u8 field_0x1c;
+    /* 0x1C */ bool mEndSequence;
 
 public:
     /* 8014D0C0 */ virtual ~daNpcT_MotionSeqMngr_c();
@@ -35,14 +44,14 @@ public:
     /* 801456D4 */ void initialize();
     /* 801456E0 */ void entry(fopAc_ac_c*);
     /* 801456FC */ void remove();
-    /* 80145708 */ void getActorP();
+    /* 80145708 */ fopAc_ac_c* getActorP();
 
     /* 8014D108 */ virtual ~daNpcT_ActorMngr_c();
 };
 
 class daNpcT_JntAnm_c {
 private:
-    /* 0x000 */ daNpcT_ActorMngr_c field_0x0;
+    /* 0x000 */ daNpcT_ActorMngr_c mActrMngr;
     /* 0x008 */ cXyz field_0x8;
     /* 0x014 */ cXyz field_0x14;
     /* 0x020 */ cXyz* field_0x20;
@@ -77,6 +86,8 @@ public:
     /* 80147C38 */ void calcJntRad(f32, f32, f32);
 
     /* 8014D150 */ virtual ~daNpcT_JntAnm_c();
+
+    void clrDirectFlag() { mDirectFlag = 0; }
 };
 
 class daNpcT_DmgStagger_c {
@@ -98,7 +109,9 @@ struct daNpcT_faceMotionAnmData_c {};
 
 struct daNpcT_pntData_c {};
 
-struct daNpcT_motionAnmData_c {};
+struct daNpcT_motionAnmData_c {
+    u8 data[8];
+};
 
 class mDoExt_McaMorfSO;
 
@@ -197,28 +210,31 @@ public:
     /* 0xE32 */ u8 field_0xe32;
     /* 0xE33 */ u8 field_0xe33;
     /* 0xE34 */ u8 field_0xe34;
-    /* 0xE35 */ u8 field_0xe35[7];
+    /* 0xE35 */ u8 field_0xe35;
+    /* 0xE36 */ u8 field_0xe36;
+    /* 0xE37 */ u8 field_0xe37;
+    /* 0xE38 */ u8 field_0xe38;
     /* 0xE3C vtable */
 
 public:
     /* 80147FA4 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
-    /* 80147FD4 */ void srchActor(void*, void*);
-    /* 80148058 */ void getTrnsfrmAnmP(char const*, int);
-    /* 80148094 */ void getTrnsfrmKeyAnmP(char const*, int);
-    /* 801480D0 */ void getTexPtrnAnmP(char const*, int);
-    /* 8014810C */ void getTexSRTKeyAnmP(char const*, int);
-    /* 80148148 */ void getTevRegKeyAnmP(char const*, int);
-    /* 80148184 */ void getColorAnmP(char const*, int);
+    /* 80147FD4 */ static int srchActor(void*, void*);
+    /* 80148058 */ J3DAnmTransform* getTrnsfrmAnmP(char const*, int);
+    /* 80148094 */ J3DAnmTransformKey* getTrnsfrmKeyAnmP(char const*, int);
+    /* 801480D0 */ J3DAnmTexPattern* getTexPtrnAnmP(char const*, int);
+    /* 8014810C */ J3DAnmTextureSRTKey* getTexSRTKeyAnmP(char const*, int);
+    /* 80148148 */ J3DAnmTevRegKey* getTevRegKeyAnmP(char const*, int);
+    /* 80148184 */ J3DAnmColor* getColorAnmP(char const*, int);
     /* 801481C0 */ void setBckAnm(J3DAnmTransform*, f32, int, int, int, bool);
-    /* 80148204 */ void setMcaMorfAnm(J3DAnmTransformKey*, f32, f32, int, int, int);
+    /* 80148204 */ int setMcaMorfAnm(J3DAnmTransformKey*, f32, f32, int, int, int);
     /* 801482F8 */ void setBtpAnm(J3DAnmTexPattern*, J3DModelData*, f32, int);
     /* 80148338 */ void setBtkAnm(J3DAnmTextureSRTKey*, J3DModelData*, f32, int);
     /* 80148378 */ void setBrkAnm(J3DAnmTevRegKey*, J3DModelData*, f32, int);
     /* 801483B8 */ void setBpkAnm(J3DAnmColor*, J3DModelData*, f32, int);
-    /* 801483F8 */ void loadRes(s8 const*, char const**);
+    /* 801483F8 */ int loadRes(s8 const*, char const**);
     /* 801484AC */ void deleteRes(s8 const*, char const**);
-    /* 8014852C */ void execute();
-    /* 8014886C */ void draw(int, int, f32, _GXColorS10*, f32, int, int, int);
+    /* 8014852C */ int execute();
+    /* 8014886C */ int draw(int, int, f32, _GXColorS10*, f32, int, int, int);
     /* 80148C70 */ void setEnvTevColor();
     /* 80148CCC */ void setRoomNo();
     /* 80148D10 */ void checkEndAnm(f32);
@@ -233,7 +249,7 @@ public:
     /* 8014A908 */ void setPos(cXyz);
     /* 8014AA18 */ void setAngle(s16);
     /* 8014A99C */ void setAngle(csXyz);
-    /* 8014AA40 */ void hitChk(dCcD_GObjInf*, u32);
+    /* 8014AA40 */ fopAc_ac_c* hitChk(dCcD_GObjInf*, u32);
     /* 8014AAD0 */ void setDamage(int, int, int);
     /* 8014ABD0 */ void chkActorInSight(fopAc_ac_c*, f32, s16);
     /* 8014ACF0 */ void chkPointInArea(cXyz, cXyz, f32, f32, f32, s16);
@@ -275,7 +291,7 @@ public:
     /* 8014CC70 */ virtual bool evtEndProc();
     /* 8014CC68 */ virtual bool evtCutProc();
     /* 8014CC64 */ virtual void setAfterTalkMotion();
-    /* 8014997C */ virtual void evtProc();
+    /* 8014997C */ virtual int evtProc();
     /* 8014CC20 */ virtual void action();
     /* 8014CC1C */ virtual void beforeMove();
     /* 8014CC18 */ virtual void afterMoved();
@@ -289,7 +305,7 @@ public:
     /* 8014A0B0 */ virtual void evtOrder();
     /* 8014CBF4 */ virtual void decTmr();
     /* 8014A324 */ virtual void clrParam();
-    /* 8014CC30 */ virtual bool drawDbgInfo();
+    /* 8014CC30 */ virtual int drawDbgInfo();
     /* 8014CC28 */ virtual void drawOtherMdl();
     /* 8014CC2C */ virtual void drawGhost();
     /* 8014CCA0 */ virtual bool afterSetFaceMotionAnm(int, int, f32, int);
@@ -302,12 +318,16 @@ public:
     /* 8014CCE8 */ virtual void changeBtk(int*, int*);
     /* 8014A628 */ virtual void setMotionAnm(int, f32, int);
 
+    bool checkHide() {
+        return !field_0xe25 && (!dComIfGs_wolfeye_effect_check() && field_0xa89);
+    }
+
     static u8 const mCcDObjData[48];
     static u8 mCcDCyl[68];
     static u8 mCcDSph[64];
-    static u8 mFindActorPtrs[200];
-    static u8 mSrchName[2 + 2 /* padding */];
-    static u8 mFindCount[4];
+    static fopAc_ac_c* mFindActorPtrs[50];
+    static s16 mSrchName;
+    static s32 mFindCount;
 };
 
 STATIC_ASSERT(sizeof(daNpcT_c) == 0xE40);

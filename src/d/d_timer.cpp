@@ -45,14 +45,6 @@ struct dDlst_TimerScrnDraw_c {
     /* 80261394 */ ~dDlst_TimerScrnDraw_c();
 };
 
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
 struct J2DAnmLoaderDataBase {
     /* 80308A6C */ void load(void const*);
 };

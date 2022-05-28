@@ -52,7 +52,6 @@ public:
 class JSUPtrList {
 public:
     JSUPtrList() { this->initiate(); }
-
     JSUPtrList(bool init);
     ~JSUPtrList();
 
@@ -80,7 +79,6 @@ template <typename T>
 class JSUList : public JSUPtrList {
 public:
     JSUList() : JSUPtrList() {}
-
     JSUList(bool init) : JSUPtrList(init) {}
 
     ~JSUList() {}

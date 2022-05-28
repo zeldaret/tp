@@ -18,10 +18,6 @@
 // Types:
 //
 
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
 struct J2DPrint {
     /* 802F4658 */ void setBuffer(u32);
 };

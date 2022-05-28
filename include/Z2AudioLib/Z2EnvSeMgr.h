@@ -118,6 +118,10 @@ struct Z2EnvSeMgr {
     /* 0x188 */ u8 field_0x188;
     /* 0x18C */ Z2Calc::FNoise1f field_0x18c;
     /* 0x19C */ Z2Calc::FNoise1f field_0x19c;
+    /* 0x1AC */ f32 field_0x1ac;
+    /* 0x1B0 */ f32 field_0x1b0;
+    /* 0x1B4 */ f32 field_0x1b4;
+    /* 0x1B8 */ u8 field_0x1b8;
     /* 0x1BC */ Z2MultiSeMgr field_0x1bc;
     /* 0x1D8 */ Z2EnvSeBase field_0x1d8;
     /* 0x1E0 */ u8 field_0x1e0;
@@ -155,5 +159,7 @@ struct Z2EnvSeMgr {
     /* 0x2F8 */ Z2Calc::FNoise1f field_0x2f8;
     /* 0x308 */ f32 field_0x308;
 };  // Size: 0x30C
+
+STATIC_ASSERT(sizeof(Z2EnvSeMgr) == 0x30C);
 
 #endif /* Z2ENVSEMGR_H */

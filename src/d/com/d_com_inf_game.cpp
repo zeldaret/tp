@@ -2503,7 +2503,7 @@ int dComIfGs_wolfeye_effect_check() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dComIfGs_wolfeye_effect_check() {
+asm int dComIfGs_wolfeye_effect_check() {
     nofralloc
 #include "asm/d/com/d_com_inf_game/dComIfGs_wolfeye_effect_check__Fv.s"
 }

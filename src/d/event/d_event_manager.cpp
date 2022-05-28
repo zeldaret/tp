@@ -17,22 +17,6 @@ struct dCamera_c {
     /* 80181E98 */ void Center();
 };
 
-struct Z2StatusMgr {
-    /* 802B61E8 */ void setDemoName(char*);
-};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
 //
 // Forward References:
 //

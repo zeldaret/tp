@@ -276,6 +276,7 @@ public:
     void SetWeight(u8 weight) { mWeight = weight; }
     fopAc_ac_c* GetAc() { return mActor; }
     void SetActor(void* ac) { mActor = (fopAc_ac_c*)ac; }
+    cXyz* GetCCMoveP() { return &mXyz; }
 };  // Size = 0x1C
 
 STATIC_ASSERT(0x1C == sizeof(cCcD_Stts));

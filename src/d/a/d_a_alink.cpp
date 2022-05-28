@@ -27,14 +27,6 @@
 // Types:
 //
 
-struct mDoExt_blkAnm {
-    /* 8000DA08 */ void init(J3DDeformData*, J3DAnmCluster*, int, int, f32, s16, s16);
-};
-
-struct mDoExt_MtxCalcAnmBlendTbl {
-    /* 800D00BC */ void getAnm(int);
-};
-
 struct fopEn_enemy_c {};
 
 struct daTagMist_c {

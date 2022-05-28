@@ -5,8 +5,8 @@ lbl_802E0CD8:
 /* 802E0CE4  39 61 00 20 */	addi r11, r1, 0x20
 /* 802E0CE8  48 08 14 F1 */	bl _savegpr_28
 /* 802E0CEC  7C 7E 1B 78 */	mr r30, r3
-/* 802E0CF0  3C 60 80 43 */	lis r3, lit_525@ha /* 0x804343D8@ha */
-/* 802E0CF4  38 63 43 D8 */	addi r3, r3, lit_525@l /* 0x804343D8@l */
+/* 802E0CF0  3C 60 80 43 */	lis r3, mPadList__10JUTGamePad-0xC@ha /* 0x804343D8@ha */
+/* 802E0CF4  38 63 43 D8 */	addi r3, r3, mPadList__10JUTGamePad-0xC@l /* 0x804343D8@l */
 /* 802E0CF8  A8 9E 00 7C */	lha r4, 0x7c(r30)
 /* 802E0CFC  2C 04 FF FF */	cmpwi r4, -1
 /* 802E0D00  41 82 02 8C */	beq lbl_802E0F8C

@@ -4,8 +4,8 @@ lbl_801A572C:
 /* 801A5734  90 01 00 34 */	stw r0, 0x34(r1)
 /* 801A5738  39 61 00 30 */	addi r11, r1, 0x30
 /* 801A573C  48 1B CA 9D */	bl _savegpr_28
-/* 801A5740  3C 60 80 43 */	lis r3, lit_4112@ha /* 0x8042CA48@ha */
-/* 801A5744  3B E3 CA 48 */	addi r31, r3, lit_4112@l /* 0x8042CA48@l */
+/* 801A5740  3C 60 80 43 */	lis r3, g_env_light-0xC@ha /* 0x8042CA48@ha */
+/* 801A5744  3B E3 CA 48 */	addi r31, r3, g_env_light-0xC@l /* 0x8042CA48@l */
 /* 801A5748  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
 /* 801A574C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801A5750  83 A3 5D 74 */	lwz r29, 0x5d74(r3)

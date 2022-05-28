@@ -163,21 +163,6 @@ struct dMenuMapCommon_c {
     /* 801C443C */ void clearIconInfo();
 };
 
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
 struct J2DAnmLoaderDataBase {
     /* 80308A6C */ void load(void const*);
 };

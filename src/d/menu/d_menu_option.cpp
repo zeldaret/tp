@@ -67,18 +67,6 @@ struct dComIfG_play_c {
     /* 8002B3B0 */ void getNowVibration();
 };
 
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    /* 802CD888 */ void setOutputMode(u32);
-
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
 struct JUTGamePad {
     struct CRumble {
         struct ERumble {};

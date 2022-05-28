@@ -11,6 +11,8 @@
 #include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
 
+class cBgS_PolyInfo;
+
 void dKankyo_DayProc();
 void dKy_set_nexttime(f32);
 void dKy_itudemo_se();
@@ -20,6 +22,7 @@ void dKy_FiveSenses_fullthrottle_dark();
 s32 dKy_daynight_check();
 void dKy_clear_game_init();
 void dKy_setLight_init();
+u8 dKy_pol_sound_get(cBgS_PolyInfo const* param_0);
 
 struct LIGHT_INFLUENCE {
     /* 800CFC7C */ ~LIGHT_INFLUENCE();
@@ -141,7 +144,7 @@ public:
     /* 0x358 */ u16 field_0x358;
     /* 0x35A */ u16 field_0x35a;
     /* 0x35C */ u16 field_0x35c;
-    /* 0x35E */ u8 field_0x35e[2];
+    /* 0x35E */ u16 field_0x35e;
     /* 0x360 */ u8 field_0x360;
     /* 0x361 */ u8 field_0x361;
     /* 0x362 */ u8 field_0x362;

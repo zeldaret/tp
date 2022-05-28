@@ -177,10 +177,6 @@ struct cBgS {
     /* 80074744 */ void GetTriPla(cBgS_PolyInfo const&, cM3dGPla*) const;
 };
 
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
 struct J3DUClipper {
     /* 802738FC */ void clip(f32 const (*)[4], Vec, f32) const;
 };

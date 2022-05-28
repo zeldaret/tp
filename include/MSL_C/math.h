@@ -71,6 +71,10 @@ inline float sqrtf(float mag) {
     }
 }
 
+inline float atan2f(float y, float x) {
+    return (f32)atan2(y, x);
+}
+
 #ifdef __cplusplus
 };
 #endif

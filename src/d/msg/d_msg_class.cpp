@@ -236,21 +236,6 @@ struct dMsgObject_c {
     /* 80238638 */ void getItemEquipButton();
 };
 
-struct Z2SpeechMgr2 {
-    /* 802CBD88 */ void setString(u16 const*, s16, u8, u16);
-    /* 802CCA18 */ void playOneShotVoice(u8, u16, Vec*, s8);
-};
-
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
 struct STControl {
     /* 80032044 */ STControl(s16, s16, s16, s16, f32, f32, s16, s16);
     /* 80032088 */ void setWaitParm(s16, s16, s16, s16, f32, f32, s16, s16);

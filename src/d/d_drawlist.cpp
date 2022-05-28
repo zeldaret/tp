@@ -88,10 +88,6 @@ struct ShdwDrawPoly_c {
     /* 80054A6C */ ~ShdwDrawPoly_c();
 };
 
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
 struct J3DUClipper {
     /* 8027378C */ void calcViewFrustum();
     /* 80273A44 */ void clip(f32 const (*)[4], Vec*, Vec*) const;

@@ -15,10 +15,6 @@ struct cM3dGTri {
     /* 8026F8C8 */ void set(Vec const*, Vec const*, Vec const*, Vec const*);
 };
 
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
 //
 // Forward References:
 //
