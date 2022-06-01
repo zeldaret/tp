@@ -3337,7 +3337,8 @@ extern "C" asm void func_80015034(void* _this, Vec const& param_0, f32 const (&p
 /* 8001505C-80015084 00F99C 0028+00 7/0 0/0 0/0 .text
  * init__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf
  */
-void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya>::init(Vec const& param_0, f32 const (&param_1)[3][4]) {
+void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya>::init(
+    Vec const& param_0, f32 const (&param_1)[3][4]) {
     J3DMtxCalcJ3DSysInitMaya::init(param_0, param_1);
 }
 

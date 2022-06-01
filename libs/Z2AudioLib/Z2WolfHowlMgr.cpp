@@ -130,15 +130,9 @@ SECTION_DATA static u16 sNewSong3[9] = {
 
 /* 803CBCC0-803CBD08 -00001 0048+00 1/1 0/0 0/0 .data            sGuideData */
 SECTION_DATA static Z2WolfHowlData sGuideData[9] = {
-    {4, sHowlTobikusa},
-    {6, sHowlUmakusa},
-    {6, sHowlZeldaSong},
-    {6, sHealingSong},
-    {6, sHowlSoulRequiem},
-    {6, sHowlLightPrelude},
-    {7, sNewSong1},
-    {8, sNewSong2},
-    {9, sNewSong3},
+    {4, sHowlTobikusa}, {6, sHowlUmakusa},     {6, sHowlZeldaSong},
+    {6, sHealingSong},  {6, sHowlSoulRequiem}, {6, sHowlLightPrelude},
+    {7, sNewSong1},     {8, sNewSong2},        {9, sNewSong3},
 };
 
 /* 80450880-80450884 000300 0004+00 2/2 0/0 0/0 .sdata           cPitchDown */
@@ -182,7 +176,10 @@ SECTION_SDATA static f32 sStickCenter = 1.0f / 5.0f;
 
 /* 804508A0-804508A8 000320 0008+00 1/0 0/0 0/0 .sdata           sHowlTobikusa */
 SECTION_SDATA static u16 sHowlTobikusa[4] = {
-    0x011E, 0x031E, 0x011E, 0x031E,
+    0x011E,
+    0x031E,
+    0x011E,
+    0x031E,
 };
 
 /* 80455E60-80455E64 004460 0004+00 8/8 0/0 0/0 .sdata2          @3485 */

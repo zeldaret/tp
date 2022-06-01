@@ -1147,12 +1147,10 @@ static asm void dungeonlight_init() {
 /* 8019EAA0-8019EBD0 1993E0 0130+00 1/1 0/0 0/0 .text            undwater_init__Fv */
 static void undwater_init() {
     J3DModelData* modelData2 = (J3DModelData*)dComIfG_getObjectRes("Always", 0x1D);
-    g_env_light.field_0xf38 =
-        mDoExt_createSolidHeapFromGameToCurrent(0x600, 0x20);
+    g_env_light.field_0xf38 = mDoExt_createSolidHeapFromGameToCurrent(0x600, 0x20);
 
     if (g_env_light.field_0xf38 != NULL) {
-        g_env_light.field_0xf30 =
-            mDoExt_J3DModel__create(modelData2, 0x80000, 0x11020202);
+        g_env_light.field_0xf30 = mDoExt_J3DModel__create(modelData2, 0x80000, 0x11020202);
 
         if (g_env_light.field_0xf30 != NULL) {
             g_env_light.field_0x105c = new mDoExt_btkAnm();
@@ -1160,8 +1158,7 @@ static void undwater_init() {
             if (g_env_light.field_0x105c != NULL) {
                 J3DAnmTextureSRTKey* key =
                     (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Always", 0x3C);
-                g_env_light
-                    .field_0x105c->init(modelData2, key, 1, 2, lit_4505, 0, -1);
+                g_env_light.field_0x105c->init(modelData2, key, 1, 2, lit_4505, 0, -1);
             }
         }
         mDoExt_restoreCurrentHeap();

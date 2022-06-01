@@ -2485,7 +2485,7 @@ private:
     /* 0x02118 */ daPy_anmHeap_c mAnmHeap5;
     /* 0x0212C */ daPy_anmHeap_c mAnmHeap6;
     /* 0x02140 */ daPy_anmHeap_c mAnmHeap7;
-    /* 0x02154 */ mDoExt_bckAnm field_0x2154;  // issue here?
+    /* 0x02154 */ mDoExt_bckAnm field_0x2154;
     /* 0x02170 */ u8 field_0x2170[0x18];
     /* 0x02188 */ dEyeHL_c mEyeHL1;
     /* 0x0219C */ dEyeHL_c mEyeHL2;

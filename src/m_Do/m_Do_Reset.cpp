@@ -4,17 +4,17 @@
 //
 
 #include "m_Do/m_Do_Reset.h"
-#include "m_Do/m_Do_DVDError.h"
-#include "m_Do/m_Do_Audio.h"
-#include "m_Do/m_Do_MemCard.h"
-#include "dol2asm.h"
-#include "dolphin/gx/GX.h"
-#include "dolphin/types.h"
+#include "JSystem/JAudio2/JASDvdThread.h"
 #include "JSystem/JUtility/JUTGamePad.h"
 #include "JSystem/JUtility/JUTVideo.h"
 #include "JSystem/JUtility/JUTXfb.h"
-#include "JSystem/JAudio2/JASDvdThread.h"
 #include "SSystem/SComponent/c_API_controller_pad.h"
+#include "dol2asm.h"
+#include "dolphin/gx/GX.h"
+#include "dolphin/types.h"
+#include "m_Do/m_Do_Audio.h"
+#include "m_Do/m_Do_DVDError.h"
+#include "m_Do/m_Do_MemCard.h"
 
 //
 // Forward References:

@@ -48,10 +48,7 @@ class daPy_anmHeap_c {
 public:
     enum daAlinkHEAP_TYPE {};
 
-    /* 80140DCC */ void __defctor();
-    daPy_anmHeap_c() {
-        __defctor();
-    }
+    /* 80140DCC */ void __defctor();  // supposed to be the ctor?
 
     daPy_anmHeap_c(u32);
     ~daPy_anmHeap_c();

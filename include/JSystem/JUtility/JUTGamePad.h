@@ -111,7 +111,7 @@ public:
     u8 getAnalogR() const { return mButton.mAnalogR; }
 
     s8 getErrorStatus() const { return mErrorStatus; }
-    
+
     s16 getPortNum() const { return mPortNum; }
 
     JUTGamePadRecordBase* getPadReplay() const { return mPadReplay; }
@@ -215,7 +215,7 @@ public:
         static void setEnabled(u32 pad_mask);
 
         void stopMotorHard(int portNo) { stopMotor(portNo, true); }
-        
+
         static bool isEnabled(u32 mask) { return mEnabled & mask; }
         static bool isEnabledPort(int port) { return isEnabled(sChannelMask[port]); }
 

@@ -28036,7 +28036,7 @@ asm void daAlink_c::hookshotAtHitCallBack(dCcD_GObjInf* param_0, fopAc_ac_c* par
 /* 8010859C-801085BC 102EDC 0020+00 1/1 0/0 0/0 .text
  * daAlink_hookshotAtHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
 static void daAlink_hookshotAtHitCallBack(fopAc_ac_c* player, dCcD_GObjInf* param_1,
-                                              fopAc_ac_c* param_2, dCcD_GObjInf* param_3) {
+                                          fopAc_ac_c* param_2, dCcD_GObjInf* param_3) {
     ((daAlink_c*)player)->hookshotAtHitCallBack(param_1, param_2, param_3);
 }
 
@@ -28051,7 +28051,8 @@ cXyz* daAlink_c::getHookshotTopPos() {
 
 /* 80108600-80108668 102F40 0068+00 1/0 0/0 0/0 .text checkHookshotReturnMode__9daAlink_cCFv */
 bool daAlink_c::checkHookshotReturnMode() const {
-    return checkHookshotItem(mEquipItem) && (mHookshotMode == 4 || mHookshotMode == 5 || mHookshotMode == 6);
+    return checkHookshotItem(mEquipItem) &&
+           (mHookshotMode == 4 || mHookshotMode == 5 || mHookshotMode == 6);
 }
 
 /* 80108668-801086DC 102FA8 0074+00 1/0 0/0 0/0 .text checkHookshotShootReturnMode__9daAlink_cCFv
@@ -28121,7 +28122,8 @@ void daAlink_c::changeHookshotDrawModel() {
 
 /* 801088A0-801088C8 1031E0 0028+00 6/6 0/0 0/0 .text checkHookshotRoofLv7Boss__9daAlink_cFv */
 BOOL daAlink_c::checkHookshotRoofLv7Boss() {
-    return mCargoCarryActor.getActor() != NULL && fopAcM_GetName(mCargoCarryActor.getActor()) == PROC_B_DR;
+    return mCargoCarryActor.getActor() != NULL &&
+           fopAcM_GetName(mCargoCarryActor.getActor()) == PROC_B_DR;
 }
 
 /* 801088C8-80108980 103208 00B8+00 2/2 0/0 0/0 .text            checkChaseHookshot__9daAlink_cFv */
@@ -28138,7 +28140,9 @@ BOOL daAlink_c::checkChaseHookshot() {
 
     if (mTargetedActor != NULL) {
         s16 actorName = fopAcM_GetName(mTargetedActor);
-        return field_0x2804 == mTargetedActor && (checkBossOctaIealRoom() || actorName == PROC_Obj_FallObj || actorName == PROC_B_DR || actorName == PROC_E_PH);
+        return field_0x2804 == mTargetedActor &&
+               (checkBossOctaIealRoom() || actorName == PROC_Obj_FallObj ||
+                actorName == PROC_B_DR || actorName == PROC_E_PH);
     }
 
     return false;
@@ -28186,7 +28190,8 @@ bool daAlink_c::setHookshotCarryOffset(unsigned int actorID, cXyz const* offset)
     if (i_dComIfGp_checkPlayerStatus1(0, 0x10000)) {
         fopAc_ac_c* carryActor = mCargoCarryActor.getActor();
 
-        if (carryActor != NULL && fopAcM_checkHookCarryNow(carryActor) && actorID == mCargoCarryActor.getID()) {
+        if (carryActor != NULL && fopAcM_checkHookCarryNow(carryActor) &&
+            actorID == mCargoCarryActor.getID()) {
             field_0x37c8 = *offset;
             return true;
         }
@@ -28204,7 +28209,7 @@ bool daAlink_c::setHookshotCarryOffset(unsigned int actorID, cXyz const* offset)
 /* 80108B34-80108DB4 103474 0280+00 1/1 0/0 0/0 .text            setHookshotModel__9daAlink_cFv */
 void daAlink_c::setHookshotModel() {
     J3DAnmTransform* bck = (J3DAnmTransform*)mAnmHeap9.loadDataIdx(0x17E);
-    
+
     JKRHeap* heap = setItemHeap();
     field_0x730.init(bck, 0, 2, lit_6040, 0, -1, false);
 
@@ -28263,7 +28268,8 @@ asm void daAlink_c::setHookshotSight() {
 
 /* 80108EEC-80108F64 10382C 0078+00 1/1 0/0 0/0 .text            cancelHookshotShot__9daAlink_cFv */
 void daAlink_c::cancelHookshotShot() {
-    if (checkHookshotItem(mEquipItem) && (mHookshotMode == 3 || mHookshotMode == 5 || mHookshotMode == 4)) {
+    if (checkHookshotItem(mEquipItem) &&
+        (mHookshotMode == 3 || mHookshotMode == 5 || mHookshotMode == 4)) {
         if (mActionID != 0xC5 && mActionID != 0xC6 && mActionID != 0xC4) {
             mHookshotMode = 6;
         }
@@ -28275,7 +28281,8 @@ void daAlink_c::cancelHookshotShot() {
 #ifdef NONMATCHING
 bool daAlink_c::cancelHookshotMove() {
     if (mFastShotTime == 0 && mHookshotMode == 0) {
-        if (checkHookshotAnime() && (mTargetedActor == NULL && !i_checkAttentionLock() || !itemButton())) {
+        if (checkHookshotAnime() &&
+            (mTargetedActor == NULL && !i_checkAttentionLock() || !itemButton())) {
             resetUpperAnime(UPPER_NOW, -1.0f);
             return 1;
         }

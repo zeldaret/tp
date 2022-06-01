@@ -409,7 +409,7 @@ asm bool Z2AudioMgr::hasReset() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-//asm void Z2AudioMgr::startSound(JAISoundID param_0, JAISoundHandle* param_1,
+// asm void Z2AudioMgr::startSound(JAISoundID param_0, JAISoundHandle* param_1,
 //                                JGeometry::TVec3<f32> const* param_2) {
 extern "C" asm void func_802CDB1C() {
     nofralloc

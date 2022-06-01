@@ -4,11 +4,11 @@
 //
 
 #include "d/a/d_a_npc.h"
+#include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_mtx.h"
 #include "rel/d/a/npc/d_a_npc_tk/d_a_npc_tk.h"
-#include "d/d_procname.h"
 
 //
 // Types:
@@ -1594,8 +1594,8 @@ J3DAnmColor* daNpcT_c::getColorAnmP(char const* arcName, int fileIdx) {
 
 /* 801481C0-80148204 142B00 0044+00 1/1 0/0 0/0 .text setBckAnm__8daNpcT_cFP15J3DAnmTransformfiiib
  */
-void daNpcT_c::setBckAnm(J3DAnmTransform* bck, f32 rate, int attr, int startF,
-                             int endF, bool modify) {
+void daNpcT_c::setBckAnm(J3DAnmTransform* bck, f32 rate, int attr, int startF, int endF,
+                         bool modify) {
     mBckAnm.init(bck, TRUE, attr, rate, startF, endF, modify);
 }
 
@@ -1603,13 +1603,13 @@ void daNpcT_c::setBckAnm(J3DAnmTransform* bck, f32 rate, int attr, int startF,
  * setMcaMorfAnm__8daNpcT_cFP18J3DAnmTransformKeyffiii          */
 // matches with literals
 #ifdef NONMATCHING
-int daNpcT_c::setMcaMorfAnm(J3DAnmTransformKey* bck, f32 morf, f32 frame, int mode,
-                                 int startF, int endF) {
+int daNpcT_c::setMcaMorfAnm(J3DAnmTransformKey* bck, f32 morf, f32 frame, int mode, int startF,
+                            int endF) {
     f32 start = startF;
     f32 end = endF;
 
     mMcaMorfAnm[0]->setAnm(bck, mode, frame, morf, start, end);
-    
+
     if (mMcaMorfAnm[1] != NULL) {
         mMcaMorfAnm[1]->setAnm(bck, mode, frame, morf, start, end);
     }
@@ -1621,7 +1621,7 @@ int daNpcT_c::setMcaMorfAnm(J3DAnmTransformKey* bck, f32 morf, f32 frame, int mo
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm int daNpcT_c::setMcaMorfAnm(J3DAnmTransformKey* param_0, f32 param_1, f32 param_2, int param_3,
-                                 int param_4, int param_5) {
+                                int param_4, int param_5) {
     nofralloc
 #include "asm/d/a/d_a_npc/setMcaMorfAnm__8daNpcT_cFP18J3DAnmTransformKeyffiii.s"
 }
@@ -1631,28 +1631,27 @@ asm int daNpcT_c::setMcaMorfAnm(J3DAnmTransformKey* param_0, f32 param_1, f32 pa
 /* 801482F8-80148338 142C38 0040+00 1/1 0/0 1/1 .text
  * setBtpAnm__8daNpcT_cFP16J3DAnmTexPatternP12J3DModelDatafi    */
 void daNpcT_c::setBtpAnm(J3DAnmTexPattern* param_0, J3DModelData* modelData, f32 param_2,
-                             int param_3) {
+                         int param_3) {
     mBtpAnm.init(modelData, param_0, 1, param_3, param_2, 0, -1);
 }
 
 /* 80148338-80148378 142C78 0040+00 1/1 0/0 6/6 .text
  * setBtkAnm__8daNpcT_cFP19J3DAnmTextureSRTKeyP12J3DModelDatafi */
 void daNpcT_c::setBtkAnm(J3DAnmTextureSRTKey* param_0, J3DModelData* modelData, f32 param_2,
-                             int param_3) {
+                         int param_3) {
     mBtkAnm.init(modelData, param_0, 1, param_3, param_2, 0, -1);
 }
 
 /* 80148378-801483B8 142CB8 0040+00 0/0 0/0 9/9 .text
  * setBrkAnm__8daNpcT_cFP15J3DAnmTevRegKeyP12J3DModelDatafi     */
 void daNpcT_c::setBrkAnm(J3DAnmTevRegKey* param_0, J3DModelData* modelData, f32 param_2,
-                             int param_3) {
+                         int param_3) {
     mBrkAnm.init(modelData, param_0, 1, param_3, param_2, 0, -1);
 }
 
 /* 801483B8-801483F8 142CF8 0040+00 0/0 0/0 2/2 .text
  * setBpkAnm__8daNpcT_cFP11J3DAnmColorP12J3DModelDatafi         */
-void daNpcT_c::setBpkAnm(J3DAnmColor* param_0, J3DModelData* modelData, f32 param_2,
-                             int param_3) {
+void daNpcT_c::setBpkAnm(J3DAnmColor* param_0, J3DModelData* modelData, f32 param_2, int param_3) {
     mBpkAnm.init(modelData, param_0, 1, param_3, param_2, 0, -1);
 }
 
@@ -1670,7 +1669,7 @@ int daNpcT_c::loadRes(s8 const* resNoList, char const** resNameList) {
         if (status == cPhs_COMPLEATE_e) {
             resLoad_cnt++;
         }
-        
+
         if (status == cPhs_ERROR_e || status == 3) {
             return cPhs_ERROR_e;
         }
@@ -1706,7 +1705,7 @@ int daNpcT_c::execute() {
     if (!evtProc()) {
         action();
     }
-    
+
     beforeMove();
     fopAcM_posMoveF(this, field_0x864.GetCCMoveP());
     field_0x68c.CrrPos(dComIfG_Bgsp());
@@ -1775,11 +1774,11 @@ SECTION_SDATA2 static f32 lit_5794 = 20.0f;
 // close. literals + few wrong areas
 #ifdef NONMATCHING
 int daNpcT_c::draw(int param_0, int param_1, f32 param_2, GXColorS10* color, f32 param_4,
-                        int param_5, int param_6, int param_7) {
+                   int param_5, int param_6, int param_7) {
     J3DModel* model = mMcaMorfAnm[0]->getModel();
     J3DModelData* modelData = model->getModelData();
     field_0xe34 = 1;
-    
+
     if (drawDbgInfo() || checkHide() || field_0xe2b) {
         return 1;
     }
@@ -1857,9 +1856,12 @@ int daNpcT_c::draw(int param_0, int param_1, f32 param_2, GXColorS10* color, f32
 
     if (param_6 == 0) {
         if (param_7 == 0) {
-            field_0xd94 = dComIfGd_setShadow(field_0xd94, 1, model, &mCurrent.mPosition, param_2, param_4, mCurrent.mPosition.y, field_0xdf4, field_0x930, &mTevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
+            field_0xd94 = dComIfGd_setShadow(
+                field_0xd94, 1, model, &mCurrent.mPosition, param_2, param_4, mCurrent.mPosition.y,
+                field_0xdf4, field_0x930, &mTevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
         } else {
-            dComIfGd_setSimpleShadow(&mCurrent.mPosition, field_0xdf4, param_4, field_0x930, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
+            dComIfGd_setSimpleShadow(&mCurrent.mPosition, field_0xdf4, param_4, field_0x930, 0,
+                                     1.0f, dDlst_shadowControl_c::getSimpleTex());
         }
     }
 
@@ -1871,7 +1873,7 @@ int daNpcT_c::draw(int param_0, int param_1, f32 param_2, GXColorS10* color, f32
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm int daNpcT_c::draw(int param_0, int param_1, f32 param_2, _GXColorS10* param_3, f32 param_4,
-                        int param_5, int param_6, int param_7) {
+                       int param_5, int param_6, int param_7) {
     nofralloc
 #include "asm/d/a/d_a_npc/draw__8daNpcT_cFiifP11_GXColorS10fiii.s"
 }
@@ -2107,7 +2109,7 @@ void daNpcT_c::setPos(cXyz i_pos) {
     i_pos.y += 300.0f;
     field_0x930.SetPos(&i_pos);
     i_pos.y = dComIfG_Bgsp().GroundCross(&field_0x930);
-    
+
     mCurrent.mPosition = i_pos;
     mNext.mPosition = mCurrent.mPosition;
 }
@@ -2137,7 +2139,7 @@ fopAc_ac_c* daNpcT_c::hitChk(dCcD_GObjInf* i_objInf, u32 param_1) {
 
     if (mTimer == 0) {
         fopAc_ac_c* hitAc = i_objInf->GetTgHitAc();
-        
+
         if (hitAc != NULL) {
             if (fopAcM_GetName(hitAc) == PROC_NPC_TK && param_1 & 1) {
                 ((daNPC_TK_c*)hitAc)->setBump();

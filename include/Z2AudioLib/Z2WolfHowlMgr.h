@@ -8,7 +8,7 @@
  * Z2WolfHowlData
  * mLineNum: Number of lines/points within the song
  * mSongData: u16 array which corresponds to each line/point
- * 
+ *
  * The high byte of each u16 line corresponds to bar type (low, middle, high)
  * The low byte of each u16 line corresponds to length of note
  */

@@ -6,8 +6,8 @@
 #include "JSystem/JKernel/JKRAssertHeap.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
-#include "m_Do/m_Do_audio.h"
 #include "global.h"
+#include "m_Do/m_Do_audio.h"
 
 class mDoExt_baseAnm {
 public:
@@ -193,8 +193,8 @@ public:
 class mDoExt_McaMorfCallBack2_c {};
 
 class mDoExt_morf_c {
-// : public J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya>
-// inheritance causing issues, fix later
+    // : public J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya>
+    // inheritance causing issues, fix later
 public:
     /* 8000F950 */ mDoExt_morf_c();
     /* 8000FB7C */ void setMorf(f32);

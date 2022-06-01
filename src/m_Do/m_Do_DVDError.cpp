@@ -4,11 +4,11 @@
 //
 
 #include "m_Do/m_Do_DVDError.h"
-#include "m_Do/m_Do_dvd_thread.h"
-#include "m_Do/m_Do_reset.h"
-#include "m_Do/m_Do_ext.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "m_Do/m_Do_dvd_thread.h"
+#include "m_Do/m_Do_ext.h"
+#include "m_Do/m_Do_reset.h"
 
 //
 // Declarations:
@@ -34,7 +34,8 @@ void mDoDvdErr_ThdInit() {
         OSThread* curThread = OSGetCurrentThread();
         s32 priority = OSGetThreadPriority(curThread);
 
-        OSCreateThread(&DvdErr_thread, mDoDvdErr_Watch, NULL, DvdErr_stack + sizeof(DvdErr_stack), sizeof(DvdErr_stack), priority - 3, 1);
+        OSCreateThread(&DvdErr_thread, mDoDvdErr_Watch, NULL, DvdErr_stack + sizeof(DvdErr_stack),
+                       sizeof(DvdErr_stack), priority - 3, 1);
         OSResumeThread(&DvdErr_thread);
         OSCreateAlarm(&Alarm);
         OSSetPeriodicAlarm(&Alarm, time, OS_BUS_CLOCK / 4, AlarmHandler);

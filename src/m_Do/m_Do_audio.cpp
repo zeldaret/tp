@@ -4,11 +4,11 @@
 //
 
 #include "m_Do/m_Do_audio.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_dvd_thread.h"
-#include "d/com/d_com_inf_game.h"
 
 //
 // Types:
@@ -156,7 +156,8 @@ static void mDoAud_Create() {
     }
 
     if (l_arcCommand == NULL) {
-        l_arcCommand = mDoDvdThd_mountXArchive_c::create("/Audiores/Seqs/Z2SoundSeqs.arc", 0, JKRArchive::MOUNT_DVD, NULL);
+        l_arcCommand = mDoDvdThd_mountXArchive_c::create("/Audiores/Seqs/Z2SoundSeqs.arc", 0,
+                                                         JKRArchive::MOUNT_DVD, NULL);
 
         if (l_arcCommand == NULL) {
             return;
@@ -166,7 +167,9 @@ static void mDoAud_Create() {
     if (l_affCommand->sync() && l_arcCommand->sync()) {
         if (g_mDoAud_audioHeap != NULL) {
             s32 groupID = JKRHeap::sCurrentHeap->changeGroupID(5);
-            (*(mDoAud_zelAudio_c*)g_mDoAud_zelAudio).mAudioMgr.init(g_mDoAud_audioHeap, 0xA00000, l_affCommand->getMemAddress(), l_arcCommand->getArchive());
+            (*(mDoAud_zelAudio_c*)g_mDoAud_zelAudio)
+                .mAudioMgr.init(g_mDoAud_audioHeap, 0xA00000, l_affCommand->getMemAddress(),
+                                l_arcCommand->getArchive());
             JKRHeap::sCurrentHeap->changeGroupID(groupID);
             g_mDoAud_audioHeap->adjustSize();
         } else {
@@ -174,7 +177,8 @@ static void mDoAud_Create() {
             OSReport_Error("ヒープ確保失敗につきオーディオ初期化できません\n");
         }
 
-        (*(mDoAud_zelAudio_c*)g_mDoAud_zelAudio).mAudioMgr.mStatusMgr.setEventBit(dComIfGs_getPEventBit());
+        (*(mDoAud_zelAudio_c*)g_mDoAud_zelAudio)
+            .mAudioMgr.mStatusMgr.setEventBit(dComIfGs_getPEventBit());
         (*(mDoAud_zelAudio_c*)g_mDoAud_zelAudio).reset();
 
         u32 soundMode = OSGetSoundMode();

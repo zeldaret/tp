@@ -18,9 +18,7 @@ public:
     /* 801458C0 */ int play(u16, int*, f32*);
     /* 80145A24 */ s32 checkEndSequence();
 
-    bool checkEntryNewMotion() {
-        return mStepNo == 0 && field_0x14 == -1;
-    }
+    bool checkEntryNewMotion() { return mStepNo == 0 && field_0x14 == -1; }
 
 private:
     /* 0x00 */ sequenceStepData_c* mpSeqData;
@@ -318,9 +316,7 @@ public:
     /* 8014CCE8 */ virtual void changeBtk(int*, int*);
     /* 8014A628 */ virtual void setMotionAnm(int, f32, int);
 
-    bool checkHide() {
-        return !field_0xe25 && (!dComIfGs_wolfeye_effect_check() && field_0xa89);
-    }
+    bool checkHide() { return !field_0xe25 && (!dComIfGs_wolfeye_effect_check() && field_0xa89); }
 
     static u8 const mCcDObjData[48];
     static u8 mCcDCyl[68];
@@ -448,7 +444,7 @@ public:
     /* 80152614 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
     /* 80152654 */ void srchAttnActor1(void*, void*);
     /* 801526E8 */ void srchActor(void*, void*);
-    
+
     /* 801528C8 */ void initialize();
     /* 80152B2C */ void getTrnsfrmKeyAnmP(char*, int);
     /* 80152B68 */ void getTexPtrnAnmP(char*, int);

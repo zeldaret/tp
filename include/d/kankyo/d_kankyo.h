@@ -6,11 +6,11 @@
 #include "JSystem/JParticle/JPAParticle.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
+#include "Z2AudioLib/Z2EnvSeMgr.h"
 #include "d/kankyo/d_kankyo_wether.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
-#include "Z2AudioLib/Z2EnvSeMgr.h"
 
 class cBgS_PolyInfo;
 

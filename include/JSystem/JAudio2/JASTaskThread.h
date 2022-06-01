@@ -1,8 +1,8 @@
 #ifndef JASTASKTHREAD_H
 #define JASTASKTHREAD_H
 
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRThread.h"
+#include "dolphin/types.h"
 
 class JASTaskThread : public JKRThread {
 public:

@@ -4,6 +4,7 @@
 //
 
 #include "m_Do/m_Do_main.h"
+#include "DynamicLink.h"
 #include "JSystem/JFramework/JFWSystem.h"
 #include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JUtility/JUTAssert.h"
@@ -18,7 +19,6 @@
 #include "m_Do/m_Do_dvd_thread.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_machine.h"
-#include "DynamicLink.h"
 
 //
 // Forward References:
@@ -389,7 +389,8 @@ bool Debug_console(u32 i_padNo) {
             console_scroll_init = 1;
         }
 
-        if (mDoCPd_c::getTrig(i_padNo) & CButton::Z && !(mDoCPd_c::getHold(i_padNo) & ~CButton::Z)) {
+        if (mDoCPd_c::getTrig(i_padNo) & CButton::Z &&
+            !(mDoCPd_c::getHold(i_padNo) & ~CButton::Z)) {
             console->setVisible(console->isVisible() == false);
             JUTAssertion::setMessageCount(0);
         }
@@ -440,9 +441,8 @@ bool Debug_console(u32 i_padNo) {
                 JUTReport(30, 390, 1, "Press X+Y+START to CLEAR console.");
                 JUTReport(30, 400, 1, "3DStick UP/Down to scroll");
                 JUTReport(30, 410, 1, "Press A to output terminal from console.");
-                JUTReport(30, 420, 1, "SCROLL：%3d %3d %3d Output=%1x",
-                          console->getLineOffset(), console->getPositionX(),
-                          console->getPositionY(), console->getOutput());
+                JUTReport(30, 420, 1, "SCROLL：%3d %3d %3d Output=%1x", console->getLineOffset(),
+                          console->getPositionX(), console->getPositionY(), console->getOutput());
             } else {
                 u32 pressButtons = mDoCPd_c::getTrig(i_padNo);
 
@@ -527,7 +527,8 @@ static void debug() {
         if (struct_80450B18) {
             if ((mDoCPd_c::getGamePad(PAD_3)->getButton() & ~CButton::Z) == CButton::L &&
                 mDoCPd_c::getGamePad(PAD_3)->testTrigger(CButton::Z)) {
-                mDoMain::mHeapBriefType < 5 ? mDoMain::mHeapBriefType++ : mDoMain::mHeapBriefType = 1;
+                mDoMain::mHeapBriefType < 5 ? mDoMain::mHeapBriefType++ :
+                                              mDoMain::mHeapBriefType = 1;
             }
 
             debugDisplay();
