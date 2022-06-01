@@ -86,91 +86,59 @@ extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 804508A0-804508A8 000320 0008+00 1/0 0/0 0/0 .sdata           sHowlTobikusa */
-extern "C" u8 sHowlTobikusa[8];
+extern "C" u16 sHowlTobikusa[4];
 
 /* 803CBC50-803CBC5C 028D70 000C+00 1/0 0/0 0/0 .data            sHowlUmakusa */
-SECTION_DATA static u8 sHowlUmakusa[12] = {
-    0x01, 0x0F, 0x02, 0x0F, 0x03, 0x3C, 0x01, 0x0F, 0x02, 0x0F, 0x03, 0x3C,
+SECTION_DATA static u16 sHowlUmakusa[6] = {
+    0x010F, 0x020F, 0x033C, 0x010F, 0x020F, 0x033C,
 };
 
 /* 803CBC5C-803CBC68 028D7C 000C+00 1/0 0/0 0/0 .data            sHowlZeldaSong */
-SECTION_DATA static u8 sHowlZeldaSong[12] = {
-    0x02, 0x1E, 0x01, 0x0F, 0x03, 0x2D, 0x02, 0x1E, 0x01, 0x0F, 0x03, 0x2D,
+SECTION_DATA static u16 sHowlZeldaSong[6] = {
+    0x021E, 0x010F, 0x032D, 0x021E, 0x010F, 0x032D,
 };
 
 /* 803CBC68-803CBC74 028D88 000C+00 1/0 0/0 0/0 .data            sHowlLightPrelude */
-SECTION_DATA static u8 sHowlLightPrelude[12] = {
-    0x01, 0x14, 0x03, 0x28, 0x01, 0x14, 0x03, 0x14, 0x02, 0x14, 0x01, 0x1E,
+SECTION_DATA static u16 sHowlLightPrelude[6] = {
+    0x0114, 0x0328, 0x0114, 0x0314, 0x0214, 0x011E,
 };
 
 /* 803CBC74-803CBC80 028D94 000C+00 1/0 0/0 0/0 .data            sHowlSoulRequiem */
-SECTION_DATA static u8 sHowlSoulRequiem[12] = {
-    0x03, 0x1E, 0x02, 0x0F, 0x03, 0x0F, 0x01, 0x1E, 0x02, 0x1E, 0x03, 0x1E,
+SECTION_DATA static u16 sHowlSoulRequiem[6] = {
+    0x031E, 0x020F, 0x030F, 0x011E, 0x021E, 0x031E,
 };
 
 /* 803CBC80-803CBC8C 028DA0 000C+00 1/0 0/0 0/0 .data            sHealingSong */
-SECTION_DATA static u8 sHealingSong[12] = {
-    0x01, 0x1E, 0x02, 0x1E, 0x03, 0x1E, 0x01, 0x1E, 0x02, 0x1E, 0x03, 0x1E,
+SECTION_DATA static u16 sHealingSong[6] = {
+    0x011E, 0x021E, 0x031E, 0x011E, 0x021E, 0x031E,
 };
 
 /* 803CBC8C-803CBC9C 028DAC 000E+02 1/0 0/0 0/0 .data            sNewSong1 */
-SECTION_DATA static u8 sNewSong1[14 + 2 /* padding */] = {
-    0x03,
-    0x1E,
-    0x02,
-    0x1E,
-    0x01,
-    0x1E,
-    0x03,
-    0x28,
-    0x02,
-    0x14,
-    0x03,
-    0x1E,
-    0x01,
-    0x1E,
-    /* padding */
-    0x00,
-    0x00,
+SECTION_DATA static u16 sNewSong1[7] = {
+    0x031E, 0x021E, 0x011E, 0x0328, 0x0214, 0x031E, 0x011E,
 };
 
 /* 803CBC9C-803CBCAC 028DBC 0010+00 1/0 0/0 0/0 .data            sNewSong2 */
-SECTION_DATA static u8 sNewSong2[16] = {
-    0x01, 0x14, 0x02, 0x14, 0x03, 0x14, 0x02, 0x3C, 0x03, 0x14, 0x01, 0x14, 0x02, 0x14, 0x03, 0x1E,
+SECTION_DATA static u16 sNewSong2[8] = {
+    0x0114, 0x0214, 0x0314, 0x023C, 0x0314, 0x0114, 0x0214, 0x031E,
 };
 
 /* 803CBCAC-803CBCC0 028DCC 0012+02 1/0 0/0 0/0 .data            sNewSong3 */
-SECTION_DATA static u8 sNewSong3[18 + 2 /* padding */] = {
-    0x02,
-    0x1E,
-    0x03,
-    0x3C,
-    0x02,
-    0x28,
-    0x01,
-    0x14,
-    0x03,
-    0x3C,
-    0x01,
-    0x14,
-    0x02,
-    0x14,
-    0x01,
-    0x14,
-    0x02,
-    0x2D,
-    /* padding */
-    0x00,
-    0x00,
+SECTION_DATA static u16 sNewSong3[9] = {
+    0x021E, 0x033C, 0x0228, 0x0114, 0x033C, 0x0114, 0x0214, 0x0114, 0x022D,
 };
 
 /* 803CBCC0-803CBD08 -00001 0048+00 1/1 0/0 0/0 .data            sGuideData */
-SECTION_DATA static void* sGuideData[18] = {
-    (void*)0x04000000, (void*)&sHowlTobikusa,    (void*)0x06000000, (void*)&sHowlUmakusa,
-    (void*)0x06000000, (void*)&sHowlZeldaSong,   (void*)0x06000000, (void*)&sHealingSong,
-    (void*)0x06000000, (void*)&sHowlSoulRequiem, (void*)0x06000000, (void*)&sHowlLightPrelude,
-    (void*)0x07000000, (void*)&sNewSong1,        (void*)0x08000000, (void*)&sNewSong2,
-    (void*)0x09000000, (void*)&sNewSong3,
+SECTION_DATA static Z2WolfHowlData sGuideData[9] = {
+    {4, sHowlTobikusa},
+    {6, sHowlUmakusa},
+    {6, sHowlZeldaSong},
+    {6, sHealingSong},
+    {6, sHowlSoulRequiem},
+    {6, sHowlLightPrelude},
+    {7, sNewSong1},
+    {8, sNewSong2},
+    {9, sNewSong3},
 };
 
 /* 80450880-80450884 000300 0004+00 2/2 0/0 0/0 .sdata           cPitchDown */
@@ -213,8 +181,8 @@ SECTION_SDATA static f32 sStickHigh = 0.5f;
 SECTION_SDATA static f32 sStickCenter = 1.0f / 5.0f;
 
 /* 804508A0-804508A8 000320 0008+00 1/0 0/0 0/0 .sdata           sHowlTobikusa */
-SECTION_SDATA static u8 sHowlTobikusa[8] = {
-    0x01, 0x1E, 0x03, 0x1E, 0x01, 0x1E, 0x03, 0x1E,
+SECTION_SDATA static u16 sHowlTobikusa[4] = {
+    0x011E, 0x031E, 0x011E, 0x031E,
 };
 
 /* 80455E60-80455E64 004460 0004+00 8/8 0/0 0/0 .sdata2          @3485 */

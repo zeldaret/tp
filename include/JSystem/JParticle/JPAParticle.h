@@ -287,6 +287,7 @@ public:
 
 class JPAParticleCallBack {
 public:
+    JPAParticleCallBack() {}
     virtual ~JPAParticleCallBack();
     virtual void execute(JPABaseEmitter*, JPABaseParticle*);
     virtual void draw(JPABaseEmitter*, JPABaseParticle*);

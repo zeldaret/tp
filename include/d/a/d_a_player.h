@@ -13,6 +13,7 @@
 
 class daPy_sightPacket_c : public dDlst_base_c {
 public:
+    daPy_sightPacket_c() {}
     /* 8015F1A0 */ virtual void draw();
     /* 80140CDC */ virtual ~daPy_sightPacket_c();
 
@@ -48,6 +49,10 @@ public:
     enum daAlinkHEAP_TYPE {};
 
     /* 80140DCC */ void __defctor();
+    daPy_anmHeap_c() {
+        __defctor();
+    }
+
     daPy_anmHeap_c(u32);
     ~daPy_anmHeap_c();
     void initData();
@@ -480,7 +485,7 @@ public:
     virtual void setGoronSideMove(fopAc_ac_c*);
     virtual void setCargoCarry(fopAc_ac_c*);
     virtual bool getDpdFarFlg() const;
-    virtual bool getHookshotTopPos();
+    virtual cXyz* getHookshotTopPos();
     virtual bool checkHookshotReturnMode() const;
     virtual bool checkHookshotShootReturnMode() const;
     virtual bool checkOctaIealHang() const;

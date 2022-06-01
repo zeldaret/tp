@@ -13,6 +13,7 @@ public:
 
 class dBgS_LinkGndChk : public dBgS_GndChk {
 public:
+    dBgS_LinkGndChk() { SetLink(); }
     /* 80140EB8 */ virtual ~dBgS_LinkGndChk();
 };
 

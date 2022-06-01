@@ -180,6 +180,9 @@ public:
 };
 
 class dBgS_LinkAcch : public dBgS_Acch {
+public:
+    dBgS_LinkAcch() { SetLink(); }
+
     /* 80140F30 */ virtual ~dBgS_LinkAcch();
 };
 

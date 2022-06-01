@@ -25,7 +25,7 @@ public:
     /* vt[16] */ virtual s32 do_getFreeSize(void);        /* override */
     /* vt[17] */ virtual void* do_getMaxFreeBlock(void);  /* override */
     /* vt[18] */ virtual s32 do_getTotalFreeSize(void);   /* override */
-    /* vt[19] */ virtual u8 do_changeGroupID(u8 param_1); /* override */
+    /* vt[19] */ virtual s32 do_changeGroupID(u8 param_1); /* override */
     /* vt[20] */ virtual u8 do_getCurrentGroupId(void);   /* override */
 
 public:

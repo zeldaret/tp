@@ -114,6 +114,8 @@ private:
 
 class J3DMaterialAnm {
 public:
+    J3DMaterialAnm() { initialize(); }
+
     /* 8032C320 */ void initialize();
     /* 8032C5A4 */ void setMatColorAnm(int, J3DMatColorAnm*);
     /* 8032C5E4 */ void setTexMtxAnm(int, J3DTexMtxAnm*);

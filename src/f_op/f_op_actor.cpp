@@ -126,7 +126,6 @@ extern "C" void __construct_array();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
 extern "C" f32 Zero__4cXyz[3];
 extern "C" extern u8 g_dComIfAc_gameInfo[8];
 extern "C" u8 m_object__7dDemo_c[4];

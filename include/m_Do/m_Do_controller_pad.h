@@ -6,11 +6,11 @@
 #include "dolphin/types.h"
 #include "m_Do/m_Do_Reset.h"
 
+// Controller Ports 1 - 4
+enum { PAD_1, PAD_2, PAD_3, PAD_4 };
+
 class mDoCPd_c {
 public:
-    // Controller Ports 1 - 4
-    enum { PAD_0, PAD_1, PAD_2, PAD_3 };
-
     static void create();
     static void read();
     static void convert(interface_of_controller_pad*, JUTGamePad*);

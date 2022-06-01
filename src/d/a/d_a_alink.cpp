@@ -13,6 +13,7 @@
 #include "d/a/d_a_horse_static.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_bomb.h"
+#include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
@@ -3307,7 +3308,6 @@ extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
 extern "C" u8 mWaterCheck__11fopAcM_wt_c[84 + 4 /* padding */];
 extern "C" u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
 extern "C" f32 Zero__4cXyz[3];
 extern "C" u8 BaseX__4cXyz[12];
 extern "C" u8 BaseY__4cXyz[12];
@@ -3345,6 +3345,10 @@ inline u16 i_dComIfGs_getLife() {
 
 inline BOOL i_dComIfGs_isEventBit(u16 id) {
     return g_dComIfG_gameInfo.info.getEvent().isEventBit(id);
+}
+
+inline bool i_dComIfGp_checkPlayerStatus1(int param_0, u32 flag) {
+    return g_dComIfG_gameInfo.play.checkPlayerStatus(param_0, 1, flag);
 }
 
 /* 8009D87C-8009D884 0981BC 0008+00 0/0 1/1 0/0 .text            getE3Zhint__9daAlink_cFv */
@@ -15665,8 +15669,8 @@ BOOL daAlink_c::itemButtonCheck(u8 pButton) {
     return mItemButton & pButton;
 }
 
-void daAlink_c::itemButton() {
-    itemButtonCheck(1 << mSelectItemId);
+BOOL daAlink_c::itemButton() {
+    return itemButtonCheck(1 << mSelectItemId);
 }
 
 void daAlink_c::itemTrigger() {
@@ -17152,7 +17156,7 @@ asm J3DModelData* daAlink_c::loadAramBmd(u16 param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::loadAram(u16 param_0, u32 param_1) {
+asm void* daAlink_c::loadAram(u16 param_0, u32 param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/loadAram__9daAlink_cFUsUl.s"
 }
@@ -28031,164 +28035,141 @@ asm void daAlink_c::hookshotAtHitCallBack(dCcD_GObjInf* param_0, fopAc_ac_c* par
 
 /* 8010859C-801085BC 102EDC 0020+00 1/1 0/0 0/0 .text
  * daAlink_hookshotAtHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daAlink_hookshotAtHitCallBack(fopAc_ac_c* param_0, dCcD_GObjInf* param_1,
+static void daAlink_hookshotAtHitCallBack(fopAc_ac_c* player, dCcD_GObjInf* param_1,
                                               fopAc_ac_c* param_2, dCcD_GObjInf* param_3) {
-    nofralloc
-#include "asm/d/a/d_a_alink/daAlink_hookshotAtHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf.s"
+    ((daAlink_c*)player)->hookshotAtHitCallBack(param_1, param_2, param_3);
 }
-#pragma pop
 
 /* 801085BC-80108600 102EFC 0044+00 1/0 0/0 0/0 .text            getHookshotTopPos__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool daAlink_c::getHookshotTopPos() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getHookshotTopPos__9daAlink_cFv.s"
+cXyz* daAlink_c::getHookshotTopPos() {
+    if (checkHookshotItem(mEquipItem)) {
+        return &mHookshotTopPos;
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 80108600-80108668 102F40 0068+00 1/0 0/0 0/0 .text checkHookshotReturnMode__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool daAlink_c::checkHookshotReturnMode() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkHookshotReturnMode__9daAlink_cCFv.s"
+bool daAlink_c::checkHookshotReturnMode() const {
+    return checkHookshotItem(mEquipItem) && (mHookshotMode == 4 || mHookshotMode == 5 || mHookshotMode == 6);
 }
-#pragma pop
 
 /* 80108668-801086DC 102FA8 0074+00 1/0 0/0 0/0 .text checkHookshotShootReturnMode__9daAlink_cCFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool daAlink_c::checkHookshotShootReturnMode() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkHookshotShootReturnMode__9daAlink_cCFv.s"
+bool daAlink_c::checkHookshotShootReturnMode() const {
+    return (checkHookshotItem(mEquipItem) && mHookshotMode == 3) || checkHookshotReturnMode();
 }
-#pragma pop
 
 /* 801086DC-8010871C 10301C 0040+00 6/6 0/0 0/0 .text            resetHookshotMode__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::resetHookshotMode() {
-    nofralloc
-#include "asm/d/a/d_a_alink/resetHookshotMode__9daAlink_cFv.s"
+void daAlink_c::resetHookshotMode() {
+    mHookshotMode = 0;
+    initLockAt();
+    mSearchBallScale = __float_max[0];
 }
-#pragma pop
 
 /* 8010871C-80108784 10305C 0068+00 0/0 0/0 1/1 .text
  * setEnemyBombHookshot__9daAlink_cFP10fopAc_ac_c               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setEnemyBombHookshot(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setEnemyBombHookshot__9daAlink_cFP10fopAc_ac_c.s"
+bool daAlink_c::setEnemyBombHookshot(fopAc_ac_c* actor) {
+    if (field_0x284c.getActor() != NULL) {
+        cancelHookshotCarry();
+        field_0x284c.setData(actor);
+        fopAcM_setHookCarryNow(actor);
+        return true;
+    }
+    return false;
 }
-#pragma pop
 
 /* 80108784-801087B0 1030C4 002C+00 3/3 0/0 0/0 .text            checkLv7BossRoom__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkLv7BossRoom() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkLv7BossRoom__9daAlink_cFv.s"
+bool daAlink_c::checkLv7BossRoom() {
+    return checkStageName("D_MN07A");
 }
-#pragma pop
 
 /* 801087B0-80108828 1030F0 0078+00 6/6 0/0 0/0 .text
  * checkHookshotStickBG__9daAlink_cFR13cBgS_PolyInfo            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkHookshotStickBG(cBgS_PolyInfo& param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkHookshotStickBG__9daAlink_cFR13cBgS_PolyInfo.s"
+bool daAlink_c::checkHookshotStickBG(cBgS_PolyInfo& poly) {
+    if (dComIfG_Bgsp().ChkPolyHSStick(poly)) {
+        dBgW_Base* bgw = dComIfG_Bgsp().GetBgWBasePointer(poly);
+        if (bgw != NULL && bgw->ChkPushPullOk()) {
+            return true;
+        }
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 80108828-80108864 103168 003C+00 4/4 0/0 0/0 .text            cancelHookshotCarry__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::cancelHookshotCarry() {
-    nofralloc
-#include "asm/d/a/d_a_alink/cancelHookshotCarry__9daAlink_cFv.s"
+void daAlink_c::cancelHookshotCarry() {
+    if (field_0x284c.getActor() != NULL) {
+        fopAcM_cancelHookCarryNow(field_0x284c.getActor());
+        field_0x284c.clearData();
+    }
 }
-#pragma pop
 
 /* 80108864-801088A0 1031A4 003C+00 2/2 0/0 0/0 .text changeHookshotDrawModel__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::changeHookshotDrawModel() {
-    nofralloc
-#include "asm/d/a/d_a_alink/changeHookshotDrawModel__9daAlink_cFv.s"
+void daAlink_c::changeHookshotDrawModel() {
+    if (mEquipItem == HOOKSHOT && field_0x3020 == 1) {
+        J3DModel* old_item = mHeldItemModel;
+        mHeldItemModel = field_0x0710;
+        field_0x0710 = old_item;
+
+        J3DModel* old_item2 = field_0x070c;
+        field_0x070c = field_0x0714;
+        field_0x0714 = old_item2;
+    }
 }
-#pragma pop
 
 /* 801088A0-801088C8 1031E0 0028+00 6/6 0/0 0/0 .text checkHookshotRoofLv7Boss__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkHookshotRoofLv7Boss() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkHookshotRoofLv7Boss__9daAlink_cFv.s"
+BOOL daAlink_c::checkHookshotRoofLv7Boss() {
+    return mCargoCarryActor.getActor() != NULL && fopAcM_GetName(mCargoCarryActor.getActor()) == PROC_B_DR;
 }
-#pragma pop
 
 /* 801088C8-80108980 103208 00B8+00 2/2 0/0 0/0 .text            checkChaseHookshot__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkChaseHookshot() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkChaseHookshot__9daAlink_cFv.s"
+BOOL daAlink_c::checkChaseHookshot() {
+    if (field_0x2804 == NULL) {
+        if (mTargetedActor != NULL) {
+            field_0x2804 = mTargetedActor;
+        } else {
+            field_0x2804 = this;
+        }
+    } else if (field_0x2804 != mTargetedActor) {
+        field_0x2804 = this;
+    }
+
+    if (mTargetedActor != NULL) {
+        s16 actorName = fopAcM_GetName(mTargetedActor);
+        return field_0x2804 == mTargetedActor && (checkBossOctaIealRoom() || actorName == PROC_Obj_FallObj || actorName == PROC_B_DR || actorName == PROC_E_PH);
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 80108980-801089E8 1032C0 0068+00 2/2 0/0 0/0 .text checkOctaIealSpecialCollect__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkOctaIealSpecialCollect() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkOctaIealSpecialCollect__9daAlink_cFv.s"
+BOOL daAlink_c::checkOctaIealSpecialCollect() {
+    return mActionID == 0xC6 && checkHookshotItem(mEquipItem) && checkBossOctaIealRoom();
 }
-#pragma pop
 
 /* 801089E8-80108A18 103328 0030+00 5/5 0/0 0/0 .text            checkBossOctaIealRoom__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkBossOctaIealRoom() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkBossOctaIealRoom__9daAlink_cFv.s"
+BOOL daAlink_c::checkBossOctaIealRoom() {
+    return checkStageName("D_MN01A");
 }
-#pragma pop
 
 /* 80108A18-80108A3C 103358 0024+00 19/19 0/0 0/0 .text            checkHookshotWait__9daAlink_cCFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkHookshotWait() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkHookshotWait__9daAlink_cCFv.s"
+BOOL daAlink_c::checkHookshotWait() const {
+    return mHookshotMode == 0 || mHookshotMode == 1;
 }
-#pragma pop
 
 /* 80108A3C-80108A90 10337C 0054+00 1/1 0/0 0/0 .text            setHookshotCatchNow__9daAlink_cFv
  */
+// matches with literals
+#ifdef NONMATCHING
+void daAlink_c::setHookshotCatchNow() {
+    field_0x3026 = 5;
+    dComIfGp_getVibration().StartShock(4, 1, cXyz(0.0f, 1.0f, 0.0f));
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -28197,27 +28178,78 @@ asm void daAlink_c::setHookshotCatchNow() {
 #include "asm/d/a/d_a_alink/setHookshotCatchNow__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80108A90-80108B34 1033D0 00A4+00 1/0 0/0 0/0 .text setHookshotCarryOffset__9daAlink_cFUiPC4cXyz
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool daAlink_c::setHookshotCarryOffset(unsigned int param_0, cXyz const* param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setHookshotCarryOffset__9daAlink_cFUiPC4cXyz.s"
+bool daAlink_c::setHookshotCarryOffset(unsigned int actorID, cXyz const* offset) {
+    if (i_dComIfGp_checkPlayerStatus1(0, 0x10000)) {
+        fopAc_ac_c* carryActor = mCargoCarryActor.getActor();
+
+        if (carryActor != NULL && fopAcM_checkHookCarryNow(carryActor) && actorID == mCargoCarryActor.getID()) {
+            field_0x37c8 = *offset;
+            return true;
+        }
+    }
+
+    fopAc_ac_c* actor = field_0x284c.getActor();
+    if (actor != NULL && fopAcM_checkHookCarryNow(actor) && actorID == field_0x284c.getID()) {
+        field_0x37f8 = *offset;
+        return true;
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 80108B34-80108DB4 103474 0280+00 1/1 0/0 0/0 .text            setHookshotModel__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setHookshotModel() {
-    nofralloc
-#include "asm/d/a/d_a_alink/setHookshotModel__9daAlink_cFv.s"
+void daAlink_c::setHookshotModel() {
+    J3DAnmTransform* bck = (J3DAnmTransform*)mAnmHeap9.loadDataIdx(0x17E);
+    
+    JKRHeap* heap = setItemHeap();
+    field_0x730.init(bck, 0, 2, lit_6040, 0, -1, false);
+
+    J3DModelData* heldItem_modelData = loadAramBmd(0x316, 0x5C00);
+    mHeldItemModel = initModel(heldItem_modelData, 0x80000, 0);
+
+    J3DModelData* modelData = loadAramBmd(0x318, 0x3800);
+    field_0x070c = initModel(modelData, 0x80000, 0);
+    field_0x0710 = initModel(mHeldItemModel->getModelData(), 0x80000, 0);
+    field_0x0714 = initModel(field_0x070c->getModelData(), 0x80000, 0);
+
+    field_0x0768 = loadAramBmd(0x317, 0x1000);
+    field_0x770 = new hsChainShape_c();
+    field_0x076c = new Z2SoundObjSimple();
+
+    mpHookshotLinChk = new dBgS_ObjLinChk();
+    mpHookshotLinChk->OffFullGrp();
+    mpHookshotLinChk->OnWaterGrp();
+
+    J3DAnmTransform* bck2 = (J3DAnmTransform*)loadAram(0x17F, 0x800);
+    field_0x74C.init(bck2, 0, 2, lit_6040, 0, -1, false);
+    mDoExt_setCurrentHeap(heap);
+
+    resetHookshotMode();
+    field_0x770->setUserArea((u32)this);
+    field_0x2f94 = 1;
+    if (mEquipItem == W_HOOKSHOT) {
+        field_0x2f95 = 6;
+    }
+
+    field_0x3020 = 0;
+    field_0x3024 = 0;
+
+    field_0x122C[0].SetAtSpl(dCcG_At_Spl_UNK_0);
+    field_0x122C[0].OffAtNoHitMark();
+    field_0x122C[0].SetAtAtp(0);
+    field_0x122C[0].SetR(lit_7808);
+    field_0x122C[0].SetAtSe(8);
+    field_0x122C[0].SetAtType(0x4000);
+    field_0x122C[0].SetAtHitMark(1);
+    field_0x122C[0].OnAtSetBit();
+    field_0x122C[0].SetAtHitCallback(daAlink_hookshotAtHitCallBack);
+    field_0x122C[0].SetAtMtrl(0);
+    field_0x076c->init(&mHookshotTopPos, 1);
 }
-#pragma pop
 
 /* 80108DB4-80108EEC 1036F4 0138+00 6/6 0/0 0/0 .text            setHookshotSight__9daAlink_cFv */
 #pragma push
@@ -28230,24 +28262,37 @@ asm void daAlink_c::setHookshotSight() {
 #pragma pop
 
 /* 80108EEC-80108F64 10382C 0078+00 1/1 0/0 0/0 .text            cancelHookshotShot__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::cancelHookshotShot() {
-    nofralloc
-#include "asm/d/a/d_a_alink/cancelHookshotShot__9daAlink_cFv.s"
+void daAlink_c::cancelHookshotShot() {
+    if (checkHookshotItem(mEquipItem) && (mHookshotMode == 3 || mHookshotMode == 5 || mHookshotMode == 4)) {
+        if (mActionID != 0xC5 && mActionID != 0xC6 && mActionID != 0xC4) {
+            mHookshotMode = 6;
+        }
+    }
 }
-#pragma pop
 
 /* 80108F64-8010903C 1038A4 00D8+00 4/4 0/0 0/0 .text            cancelHookshotMove__9daAlink_cFv */
+// checkAttentionLock has weird codegen
+#ifdef NONMATCHING
+bool daAlink_c::cancelHookshotMove() {
+    if (mFastShotTime == 0 && mHookshotMode == 0) {
+        if (checkHookshotAnime() && (mTargetedActor == NULL && !i_checkAttentionLock() || !itemButton())) {
+            resetUpperAnime(UPPER_NOW, -1.0f);
+            return 1;
+        }
+    }
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::cancelHookshotMove() {
+asm bool daAlink_c::cancelHookshotMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/cancelHookshotMove__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8010903C-80109070 10397C 0034+00 2/2 0/0 0/0 .text
  * checkHookshotReadyMaterialOffMode__9daAlink_cCFv             */
@@ -32159,10 +32204,6 @@ asm void daAlink_c::checkWolfLandAction(int param_0) {
 }
 #pragma pop
 
-inline bool i_dComIfGp_checkPlayerStatus1(int param_0, u32 flag) {
-    return g_dComIfG_gameInfo.play.checkPlayerStatus(param_0, 1, flag);
-}
-
 /* 80129958-801299A8 124298 0050+00 1/1 0/0 1/1 .text            checkMidnaUseAbility__9daAlink_cCFv
  */
 BOOL daAlink_c::checkMidnaUseAbility() const {
@@ -35893,8 +35934,8 @@ bool daPy_py_c::getDpdFarFlg() const {
 }
 
 /* 8014188C-80141894 13C1CC 0008+00 1/0 0/0 0/0 .text            getHookshotTopPos__9daPy_py_cFv */
-bool daPy_py_c::getHookshotTopPos() {
-    return false;
+cXyz* daPy_py_c::getHookshotTopPos() {
+    return NULL;
 }
 
 /* 80141894-8014189C 13C1D4 0008+00 1/0 0/0 0/0 .text checkHookshotReturnMode__9daPy_py_cCFv */

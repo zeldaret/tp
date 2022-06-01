@@ -162,6 +162,14 @@ inline void fopAcM_SetRoomNo(fopAc_ac_c* actor, s8 roomNo) {
     actor->mCurrent.mRoomNo = roomNo;
 }
 
+inline void fopAcM_setHookCarryNow(fopAc_ac_c* actor) {
+    fopAcM_OnStatus(actor, 0x100000);
+}
+
+inline void fopAcM_cancelHookCarryNow(fopAc_ac_c* actor) {
+    fopAcM_OffStatus(actor, 0x100000);
+}
+
 void* fopAcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3, void* pData);
 void fopAcM_setStageLayer(void*);
 int fopAcM_setRoomLayer(void*, int);

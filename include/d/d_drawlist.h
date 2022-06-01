@@ -29,6 +29,7 @@ public:
 
 class dDlst_base_c {
 public:
+    dDlst_base_c() {}
     virtual void draw();
 };
 

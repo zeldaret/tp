@@ -33,6 +33,7 @@ class J2DAnmBase;
 
 class daAlink_lockCursor_c : public dDlst_base_c {
 public:
+    daAlink_lockCursor_c() {}
     /* 80125F14 */ BOOL create();
     /* 80126358 */ void update();
     /* 80126424 */ virtual void draw();
@@ -64,6 +65,7 @@ private:
 
 class daAlink_sight_c : public daPy_sightPacket_c {
 public:
+    daAlink_sight_c() {}
     /* 80126650 */ bool create();
     /* 80126710 */ void onLockFlg();
 
@@ -78,6 +80,7 @@ private:
 
 class daAlink_blur_c : public J3DPacket {
 public:
+    daAlink_blur_c() {}
     /* 801256EC */ void initBlur(f32, int, cXyz const*, cXyz const*, cXyz const*);
     /* 8012589C */ void copyBlur(cXyz const*, cXyz const*, cXyz const*);
     /* 80125B0C */ void traceBlur(cXyz const*, cXyz const*, s16);
@@ -100,8 +103,15 @@ private:
 
 class dAlink_bottleWaterPcallBack_c : public JPAParticleCallBack {
 public:
+    dAlink_bottleWaterPcallBack_c() { initialize(0.0f); }
     /* 80124A2C */ virtual void execute(JPABaseEmitter*, JPABaseParticle*);
     /* 800CFCF8 */ virtual ~dAlink_bottleWaterPcallBack_c();
+
+    void initialize(f32 minY) {
+        mHitFlg = 0;
+        mAppearFlg = 0;
+        mKeepMinY = minY;
+    }
 
 private:
     /* 0x04 */ s16 mHitFlg;
@@ -127,6 +137,8 @@ STATIC_ASSERT(sizeof(daAlink_footData_c) == 0xA4);
 
 class daAlink_matAnm_c : public J3DMaterialAnm {
 public:
+    daAlink_matAnm_c() { init(); }
+
     /* 8009D8E4 */ void init();
     /* 800D0180 */ void offSetFlg();
 
@@ -423,9 +435,10 @@ public:
 
     class hsChainShape_c : public J3DPacket {
     public:
+        hsChainShape_c() {}
         /* 80107900 */ virtual void draw();
         /* 800D0CDC */ virtual ~hsChainShape_c();
-    };
+    };  // Size: 0x10
 
     /* 8009D87C */ bool getE3Zhint();
     /* 8009D884 */ char* getAlinkArcName();
@@ -574,7 +587,7 @@ public:
     /* 800B21EC */ BOOL checkSlope() const;
     /* 800B25CC */ BOOL itemTriggerCheck(u8);
     /* 800B25E8 */ BOOL itemButtonCheck(u8);
-    /* 800B2604 */ void itemButton();
+    /* 800B2604 */ BOOL itemButton();
     /* 800B2634 */ void itemTrigger();
     /* 800B2664 */ void spActionButton();
     /* 800B2688 */ void spActionTrigger();
@@ -702,7 +715,7 @@ public:
     /* 800BFDB0 */ BOOL checkZoraWearAbility() const;
     /* 800BFDFC */ BOOL checkMagicArmorWearAbility() const;
     /* 800BFE48 */ J3DModelData* loadAramBmd(u16, u32);
-    /* 800BFF04 */ void loadAram(u16, u32);
+    /* 800BFF04 */ void* loadAram(u16, u32);
     /* 800BFF70 */ J3DAnmTevRegKey* loadAramItemBrk(u16, J3DModel*);
     /* 800BFFCC */ void loadAramItemBtk(u16, J3DModel*);
     /* 800C0028 */ void loadAramItemBtp(u16, J3DModel*);
@@ -1567,21 +1580,21 @@ public:
     /* 80107744 */ void procBoardCutTurn();
     /* 801083C8 */ void hookshotAtHitCallBack(dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
     /* 801086DC */ void resetHookshotMode();
-    /* 8010871C */ void setEnemyBombHookshot(fopAc_ac_c*);
-    /* 80108784 */ void checkLv7BossRoom();
-    /* 801087B0 */ void checkHookshotStickBG(cBgS_PolyInfo&);
+    /* 8010871C */ bool setEnemyBombHookshot(fopAc_ac_c*);
+    /* 80108784 */ bool checkLv7BossRoom();
+    /* 801087B0 */ bool checkHookshotStickBG(cBgS_PolyInfo&);
     /* 80108828 */ void cancelHookshotCarry();
     /* 80108864 */ void changeHookshotDrawModel();
-    /* 801088A0 */ void checkHookshotRoofLv7Boss();
-    /* 801088C8 */ void checkChaseHookshot();
-    /* 80108980 */ void checkOctaIealSpecialCollect();
-    /* 801089E8 */ void checkBossOctaIealRoom();
-    /* 80108A18 */ void checkHookshotWait() const;
+    /* 801088A0 */ BOOL checkHookshotRoofLv7Boss();
+    /* 801088C8 */ BOOL checkChaseHookshot();
+    /* 80108980 */ BOOL checkOctaIealSpecialCollect();
+    /* 801089E8 */ BOOL checkBossOctaIealRoom();
+    /* 80108A18 */ BOOL checkHookshotWait() const;
     /* 80108A3C */ void setHookshotCatchNow();
     /* 80108B34 */ void setHookshotModel();
     /* 80108DB4 */ void setHookshotSight();
     /* 80108EEC */ void cancelHookshotShot();
-    /* 80108F64 */ void cancelHookshotMove();
+    /* 80108F64 */ bool cancelHookshotMove();
     /* 8010903C */ void checkHookshotReadyMaterialOffMode() const;
     /* 80109070 */ void setHookshotReadyMaterial();
     /* 801090EC */ void initHookshotUpperAnimeSpeed(int);
@@ -2269,7 +2282,7 @@ public:
     virtual s16 getGiantPuzzleAimAngle() const;
     virtual void setGoronSideMove(fopAc_ac_c*);
     virtual void setCargoCarry(fopAc_ac_c*);
-    virtual bool getHookshotTopPos();
+    virtual cXyz* getHookshotTopPos();
     virtual bool checkHookshotReturnMode() const;
     virtual bool checkHookshotShootReturnMode() const;
     virtual bool checkOctaIealHang() const;
@@ -2427,7 +2440,12 @@ private:
     /* 0x0072C */ J3DAnmBase* field_0x072c;
     /* 0x00730 */ mDoExt_bckAnm field_0x730;
     /* 0x0074C */ mDoExt_bckAnm field_0x74C;
-    /* 0x00768 */ u8 field_0x0768[0x5C];
+    /* 0x00768 */ J3DModelData* field_0x0768;
+    /* 0x0076C */ Z2SoundObjSimple* field_0x076c;
+    /* 0x00770 */ hsChainShape_c* field_0x770;
+    /* 0x00774 */ u8 field_0x0774[0x77C - 0x774];
+    /* 0x0077C */ dBgS_ObjLinChk* mpHookshotLinChk;
+    /* 0x00780 */ u8 field_0x780[0x7C4 - 0x780];
     /* 0x007C4 */ daPy_actorKeep_c mWolfLockAcKeep[10];
     /* 0x00814 */ dCcD_Stts field_0x814;
     /* 0x00850 */ dCcD_Cyl field_0x850[3];
@@ -2467,7 +2485,7 @@ private:
     /* 0x02118 */ daPy_anmHeap_c mAnmHeap5;
     /* 0x0212C */ daPy_anmHeap_c mAnmHeap6;
     /* 0x02140 */ daPy_anmHeap_c mAnmHeap7;
-    /* 0x02154 */ mDoExt_bckAnm field_0x2154;
+    /* 0x02154 */ mDoExt_bckAnm field_0x2154;  // issue here?
     /* 0x02170 */ u8 field_0x2170[0x18];
     /* 0x02188 */ dEyeHL_c mEyeHL1;
     /* 0x0219C */ dEyeHL_c mEyeHL2;
@@ -2644,7 +2662,7 @@ private:
     /* 0x03014 */ s16 mFallVoiceInit;
     /* 0x03016 */ u8 field_0x3016[2];
     /* 0x03018 */ s16 field_0x3018;
-    /* 0x0301A */ s16 field_0x301a;
+    /* 0x0301A */ s16 mHookshotMode;
     /* 0x0301C */ s16 field_0x301c;
     /* 0x0301E */ s16 field_0x301e;
     /* 0x03020 */ s16 field_0x3020;
@@ -2950,7 +2968,7 @@ private:
     /* 0x037C8 */ cXyz field_0x37c8;
     /* 0x037D4 */ cXyz field_0x37d4;
     /* 0x037E0 */ cXyz field_0x37e0;
-    /* 0x037EC */ cXyz field_0x37ec;
+    /* 0x037EC */ cXyz mHookshotTopPos;
     /* 0x037F8 */ cXyz field_0x37f8;
     /* 0x03804 */ cXyz field_0x3804;
     /* 0x03810 */ cXyz field_0x3810;

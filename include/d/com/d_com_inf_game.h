@@ -1357,6 +1357,10 @@ inline void dComIfGs_setNoFile(u8 file) {
     g_dComIfG_gameInfo.info.setNoFile(file);
 }
 
+inline void* dComIfGs_getPEventBit() {
+    return g_dComIfG_gameInfo.info.getEvent().getPEventBit();
+}
+
 void dComIfGp_setItemLifeCount(f32 amount, u8 type);
 void dComIfGp_setItemRupeeCount(long amount);
 void dComIfGp_setSelectItem(int index);

@@ -4,40 +4,17 @@
 //
 
 #include "m_Do/m_Do_Reset.h"
+#include "m_Do/m_Do_DVDError.h"
+#include "m_Do/m_Do_Audio.h"
+#include "m_Do/m_Do_MemCard.h"
 #include "dol2asm.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct Z2AudioMgr {
-    /* 802CDA6C */ void hasReset() const;
-
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JUTXfb {
-    /* 802E5214 */ void clearIndex();
-
-    static u8 sManager[4 + 4 /* padding */];
-};
-
-struct JUTVideo {
-    /* 802E4CAC */ void destroyManager();
-};
-
-struct JUTGamePad {
-    struct C3ButtonReset {
-        static u8 sCallback[4];
-        static u8 sCallbackArg[4 + 4 /* padding */];
-    };
-};
-
-struct JASTaskThread {
-    /* 8028FE88 */ void pause(bool);
-};
+#include "JSystem/JUtility/JUTGamePad.h"
+#include "JSystem/JUtility/JUTVideo.h"
+#include "JSystem/JUtility/JUTXfb.h"
+#include "JSystem/JAudio2/JASDvdThread.h"
+#include "SSystem/SComponent/c_API_controller_pad.h"
 
 //
 // Forward References:
@@ -51,13 +28,11 @@ extern "C" u32 getResetData__6mDoRstFv();
 extern "C" extern char const* const m_Do_m_Do_Reset__stringBase0;
 extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 extern "C" extern u8 struct_80450C80;
-extern "C" extern u8 data_80450C88[8];
 
 //
 // External References:
 //
 
-extern "C" void OSAttention();
 extern "C" void mDoDvdErr_ThdCleanup__Fv();
 extern "C" void cAPICPad_recalibrate__Fv();
 extern "C" void pause__13JASTaskThreadFb();
@@ -66,29 +41,15 @@ extern "C" void hasReset__10Z2AudioMgrCFv();
 extern "C" void destroyManager__8JUTVideoFv();
 extern "C" void clearIndex__6JUTXfbFv();
 extern "C" void LCDisable();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void OSSetSaveRegion();
-extern "C" void OSResetSystem();
-extern "C" void OSGetCurrentThread();
-extern "C" void OSCancelThread();
-extern "C" void OSDetachThread();
-extern "C" void OSSuspendThread();
-extern "C" void DVDGetDriveStatus();
-extern "C" void DVDCheckDisk();
 extern "C" void VIWaitForRetrace();
 extern "C" void VIFlush();
-extern "C" void VISetBlack(s32);
 extern "C" void GXFlush();
 extern "C" void GXAbortFrame();
 extern "C" void GXDrawDone();
 extern "C" void _savegpr_27();
-extern "C" extern u8 g_mDoMemCd_control[8192];
-extern "C" extern u8 struct_80450BB8[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" u8 sCallback__Q210JUTGamePad13C3ButtonReset[4];
 extern "C" u8 sCallbackArg__Q210JUTGamePad13C3ButtonReset[4 + 4 /* padding */];
-extern "C" extern u8 struct_80451500[4];
 extern "C" u8 sManager__6JUTXfb[4 + 4 /* padding */];
 
 //
@@ -100,7 +61,7 @@ static void my_OSCancelAlarmAll() {
 }
 
 static void destroyVideo() {
-    destroyManager__8JUTVideoFv();
+    JUTVideo::destroyManager();
     GXSetDrawDoneCallback(NULL);
     VISetBlack(1);
     VIFlush();
@@ -108,40 +69,30 @@ static void destroyVideo() {
     return;
 }
 
-/* ############################################################################################## */
-/* 80374198-80374198 0007F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80374198 = "DVD_STATE_BUSY\n";
-#pragma pop
-
 /* 80450C78-80450C80 000178 0004+04 3/2 42/42 2/2 .sbss            mResetData__6mDoRst */
 mDoRstData* mDoRst::mResetData;
 
 /* 80015614-8001574C 00FF54 0138+00 0/0 3/3 0/0 .text            mDoRst_reset__FiUli */
-#ifdef NONMATCHING
-void mDoRst_reset(int p1, u32 p2, int p3) {
-    mDoCPd_c* pmVar1;
-    u32 uVar2;
-    DVDState DVar3;
-    OSThread* thread;
-    s32 enable;
-    /* sManager */ lbl_80451550->clearIndex();
-    mDoDvdErr_ThdCleanup__Fv();
-    cAPICPad_recalibrate__Fv();
-    if (lbl_80450BB8 != false) {
+void mDoRst_reset(int param_0, u32 param_1, int param_2) {
+    JUTXfb::getManager()->clearIndex();
+    mDoDvdErr_ThdCleanup();
+    cAPICPad_recalibrate();
+
+    if (mDoAud_zelAudio_c::isInitFlag()) {
+        bool audioReset;
         do {
-            uVar2 = lbl_80451368->hasReset();
-        } while ((uVar2 & 0xff) == 0);
+            audioReset = Z2AudioMgr::getInterface()->hasReset();
+        } while (!audioReset);
     }
 
-    if ((s32)DVDGetDriveStatus() == (s32)DVD_STATE_BUSY) {
-        OSAttention(lbl_80374198);
+    if (DVDGetDriveStatus() == DVD_STATE_BUSY) {
+        OSAttention("DVD_STATE_BUSY\n");
     }
-    JASTaskThread* task_thread = getThreadPointer__6JASDvdFv();
+
+    JASTaskThread* task_thread = JASDvd::getThreadPointer();
     if (task_thread != NULL) {
-        pause__13JASTaskThreadFb(task_thread, true);
-        thread = task_thread->thread;
+        task_thread->pause(true);
+        OSThread* thread = task_thread->getThreadRecord();
         if (thread != NULL) {
             OSSuspendThread(thread);
             OSDetachThread(thread);
@@ -152,79 +103,57 @@ void mDoRst_reset(int p1, u32 p2, int p3) {
     VIWaitForRetrace();
     VIWaitForRetrace();
 
-    thread = GXGetCurrentGXThread();
-    enable = OSDisableInterrupts();
-    OSThread* ourThread = OSGetCurrentThread();
-    if (thread != ourThread) {
-        OSCancelThread(thread);
+    OSThread* gxThread = GXGetCurrentGXThread();
+    s32 enable = OSDisableInterrupts();
+
+    if (gxThread != OSGetCurrentThread()) {
+        OSCancelThread(gxThread);
         GXSetCurrentGXThread();
     }
+
     GXFlush();
     GXAbortFrame();
     GXDrawDone();
-
     OSRestoreInterrupts(enable);
     destroyVideo();
 
-    while (mDoMemCd_isCardCommNone() != 0) {
+    while (!mDoMemCd_isCardCommNone()) {
         VIWaitForRetrace();
     }
 
     my_OSCancelAlarmAll();
     LCDisable();
-    // probably false match; check out 80015728 or thereabouts in Ghidra
-    OSSetSaveRegion(mDoRst::mResetData, (u8*)(&mDoRst::getResetData()) + 0x18);
-    OSResetSystem(p1, p2, p3);
+    OSSetSaveRegion(mDoRst::mResetData, (u8*)&mDoRst::getResetData + 0x18);
+    OSResetSystem(param_0, param_1, param_2);
+
     do {
         VIWaitForRetrace();
     } while (true);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoRst_reset(int param_0, u32 param_1, int param_2) {
-    nofralloc
-#include "asm/m_Do/m_Do_Reset/mDoRst_reset__FiUli.s"
-}
-#pragma pop
-#endif
 
 /* 8001574C-800157F4 01008C 00A8+00 0/0 3/3 0/0 .text            mDoRst_resetCallBack__FiPv */
-// fix JUTGamePad data
-#ifdef NONMATCHING
-void mDoRst_resetCallBack(int port, void* p2) {
+void mDoRst_resetCallBack(int port, void*) {
     if (!mDoRst::isReset()) {
         if (port == -1) {
-            cAPICPad_recalibrate__Fv();
+            cAPICPad_recalibrate();
         } else {
-            if (mDoRst::is3ButtonReset() != 0) {
-                lbl_80451501 = false;
-                /* sCallback */ lbl_804514EC = &mDoRst_resetCallBack;
-                /* sCallbackArg */ lbl_804514F0 = 0;
+            if (mDoRst::is3ButtonReset()) {
+                struct_80451501 = false;
+                JUTGamePad::C3ButtonReset::sCallback = mDoRst_resetCallBack;
+                JUTGamePad::C3ButtonReset::sCallbackArg = NULL;
                 return;
             }
             mDoRst::on3ButtonReset();
             mDoRst::set3ButtonResetPort(port);
-            cAPICPad_recalibrate__Fv();
+            cAPICPad_recalibrate();
         }
 
-        if ((DVDCheckDisk() == 0) && (DVDGetDriveStatus() != DVD_STATE_FATAL_ERROR)) {
+        if (DVDCheckDisk() == 0 && DVDGetDriveStatus() != DVD_STATE_FATAL_ERROR) {
             mDoRst::onReturnToMenu();
         }
         mDoRst::onReset();
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoRst_resetCallBack(int param_0, void* param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_Reset/mDoRst_resetCallBack__FiPv.s"
-}
-#pragma pop
-#endif
 
 /* 800157F4-800157FC -00001 0008+00 0/0 0/0 0/0 .text            getResetData__6mDoRstFv */
 mDoRstData* mDoRst::getResetData() {
@@ -253,7 +182,6 @@ u8 struct_80450C87;
 #pragma pop
 
 /* 80450C88-80450C90 000188 0008+00 0/0 2/2 0/0 .sbss            None */
-extern u8 data_80450C88[8];
-u8 data_80450C88[8];
+u8 data_80450C88;
 
 /* 80374198-80374198 0007F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

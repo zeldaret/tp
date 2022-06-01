@@ -154,7 +154,6 @@ extern "C" void _restgpr_29();
 extern "C" void memcmp();
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_env_light[4880];
 extern "C" u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
 extern "C" u8 mZbufferTimg__13mDoGph_gInf_c[4];
 extern "C" u8 sCurrentHeap__7JKRHeap[4];

@@ -5,7 +5,6 @@
 
 #include "d/kankyo/d_kankyo.h"
 #include "MSL_C/MSL_Common/Src/mem.h"
-#include "Z2AudioLib/Z2EnvSeMgr.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/kankyo/d_kankyo_data.h"
 #include "d/msg/d_msg_object.h"
@@ -1934,7 +1933,6 @@ asm void dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz* param_0, dKy_
 #pragma pop
 
 /* 8042DD70-8042E07C 05AA90 030C+00 1/2 8/8 9/9 .bss             g_mEnvSeMgr */
-extern Z2EnvSeMgr g_mEnvSeMgr;
 Z2EnvSeMgr g_mEnvSeMgr;
 
 /* 8042E07C-8042E7BC 05AD9C 0740+00 5/4 0/0 0/0 .bss             lightStatusData */

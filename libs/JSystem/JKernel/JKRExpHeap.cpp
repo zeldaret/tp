@@ -558,7 +558,7 @@ void JKRExpHeap::do_fillFreeArea() {
 
 /* 802CF928-802CF978 2CA268 0050+00 1/0 0/0 0/0 .text            do_changeGroupID__10JKRExpHeapFUc
  */
-u8 JKRExpHeap::do_changeGroupID(u8 param_0) {
+s32 JKRExpHeap::do_changeGroupID(u8 param_0) {
     lock();
     u8 prev = mCurrentGroupId;
     mCurrentGroupId = param_0;

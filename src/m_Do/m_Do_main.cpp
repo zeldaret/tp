@@ -17,14 +17,8 @@
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_dvd_thread.h"
 #include "m_Do/m_Do_graphic.h"
-
-//
-// Types:
-//
-
-struct DynamicModuleControlBase {
-    /* 80262470 */ void dump();
-};
+#include "m_Do/m_Do_machine.h"
+#include "DynamicLink.h"
 
 //
 // Forward References:
@@ -220,21 +214,21 @@ static HeapCheck CommandHeapCheck;
 
 /* 8000578C-80005848 0000CC 00BC+00 1/1 0/0 0/0 .text            CheckHeap__FUl */
 void CheckHeap(u32 i_padNo) {
-    mDoMch_HeapCheckAll__Fv();
+    mDoMch_HeapCheckAll();
     OSCheckActiveThreads();
 
     bool comboCheck = false;
 
-    // if L + R + Z is pressed...
+    // if L + R + Z is pressed
     if ((mDoCPd_c::getHold(i_padNo) & ~CButton::Z) == (CButton::L + CButton::R) &&
         mDoCPd_c::getTrig(i_padNo) & CButton::Z) {
         comboCheck = true;
     }
 
-    int unk2 = comboCheck;
+    int saveRel = comboCheck;
     for (int i = 0; i < 8; i++) {
         HeapCheckTable[i]->CheckHeap1();
-        if (unk2) {
+        if (saveRel) {
             HeapCheckTable[i]->saveRelBase();
         }
     }
@@ -266,58 +260,23 @@ void HeapCheck::heapDisplay() const {
     s32 total_free_size = mHeap->getTotalFreeSize();
     s32 heap_free_size = mHeap->getFreeSize();
 
-    JUTReport(0x64, 0xd4, "[%sName]", mName);
-    JUTReport(0x64, 0xe3, "HeapSize         %8ld", heap_size);
-    JUTReport(0x64, 0xf0, "TargetHeapSize   %8ld", mTargetHeapSize);
-    JUTReport(0x64, 0xfd, "TotalFree        %8ld", total_free_size - used_count);
-    JUTReport(0x64, 0x10a, "FreeSize         %8ld", heap_free_size - used_count);
-    JUTReport(0x64, 0x117, "TotalUsedSize    %8ld", total_used_size);
-    JUTReport(0x64, 0x124, "TotalUsedRate        %3ld%%",
+    JUTReport(100, 212, "[%sName]", mName);
+    JUTReport(100, 227, "HeapSize         %8ld", heap_size);
+    JUTReport(100, 240, "TargetHeapSize   %8ld", mTargetHeapSize);
+    JUTReport(100, 253, "TotalFree        %8ld", total_free_size - used_count);
+    JUTReport(100, 266, "FreeSize         %8ld", heap_free_size - used_count);
+    JUTReport(100, 279, "TotalUsedSize    %8ld", total_used_size);
+    JUTReport(100, 292, "TotalUsedRate        %3ld%%",
               (int)(total_used_size * 0x64) / (int)mTargetHeapSize);
-    JUTReport(0x64, 0x131, "MaxTotalUsedSize %8ld", mMaxTotalUsedSize);
-    JUTReport(0x64, 0x13e, "MaxTotalUsedRate     %3ld%%",
+    JUTReport(100, 305, "MaxTotalUsedSize %8ld", mMaxTotalUsedSize);
+    JUTReport(100, 318, "MaxTotalUsedRate     %3ld%%",
               (mMaxTotalUsedSize * 0x64) / (int)mTargetHeapSize);
-    JUTReport(0x64, 0x14b, "MinFreeSize      %8ld", mMaxTotalFreeSize - used_count);
-    JUTReport(0x64, 0x158, "MinFreeRate          %3ld%%",
+    JUTReport(100, 331, "MinFreeSize      %8ld", mMaxTotalFreeSize - used_count);
+    JUTReport(100, 344, "MinFreeRate          %3ld%%",
               ((mMaxTotalFreeSize - used_count) * 0x64) / (int)mTargetHeapSize);
     used_count = countUsed(mHeap);
-    JUTReport(0x64, 0x165, "UsedCount             %3ld%", used_count);
+    JUTReport(100, 357, "UsedCount             %3ld%", used_count);
 }
-
-/* ############################################################################################## */
-/* 803739A0-803739A0 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80373AEF = "";
-SECTION_DEAD static char const* const stringBase_80373AF0 = "TotalFree";
-SECTION_DEAD static char const* const stringBase_80373AFA = "MaxUsed  ";
-SECTION_DEAD static char const* const stringBase_80373B04 = "Used     ";
-SECTION_DEAD static char const* const stringBase_80373B0E = "RelUsed  ";
-SECTION_DEAD static char const* const stringBase_80373B18 = "/ MaxFree";
-SECTION_DEAD static char const* const stringBase_80373B22 = "/HeapSize";
-SECTION_DEAD static char const* const stringBase_80373B2C = "Blk/Bytes";
-SECTION_DEAD static char const* const stringBase_80373B36 = "ARAM Free";
-SECTION_DEAD static char const* const stringBase_80373B40 = "%d";
-SECTION_DEAD static char const* const stringBase_80373B43 = "%s";
-SECTION_DEAD static char const* const stringBase_80373B46 = " [%s]";
-SECTION_DEAD static char const* const stringBase_80373B4C = "%10d";
-#pragma pop
-
-/* 803A2F14-803A2F28 -00001 0014+00 0/1 0/0 0/0 .data            desc1$3717 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char* desc1[5] = {
-    "", "TotalFree", "MaxUsed  ", "Used     ", "RelUsed  ",
-};
-#pragma pop
-
-/* 803A2F28-803A2F40 -00001 0014+04 0/1 0/0 0/0 .data            desc2$3718 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char* desc2[5] = {
-    "", "/ MaxFree", "/HeapSize", "Blk/Bytes", "Blk/Bytes",
-};
-#pragma pop
 
 /* 80450580-80450584 000000 0004+00 3/3 6/6 0/0 .sdata           None */
 SECTION_SDATA s8 data_80450580 = 0xFF;
@@ -326,10 +285,7 @@ SECTION_SDATA s8 data_80450580 = 0xFF;
 SECTION_SDATA u32 mDoMain::memMargin = 0xFFFFFFFF;
 
 /* 80450588-80450590 000008 0008+00 2/2 0/0 0/0 .sdata           None */
-// 0x04 is mDoMain::mHeapBriefType
-SECTION_SDATA static u8 data_80450588[8] = {
-    0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA u8 mDoMain::mHeapBriefType = 4;
 
 /* 80450B00-80450B08 000000 0008+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_80450B00;
@@ -344,201 +300,135 @@ OSTime mDoMain::sHungUpTime;
 /* 80450B18 0001+00 data_80450B18 None */
 /* 80450B19 0001+00 data_80450B19 None */
 /* 80450B1A 0002+00 data_80450B1A None */
-static u8 struct_80450B18[2];
-
-static u8 data_80450B1A;
-static u8 data_80450B1B;
+static bool struct_80450B18;  // sDisplayHeapDebug
+static u8 sDisplayHeap;
+static bool sCheckHeap;
 
 /* 80005AD8-80005D4C 000418 0274+00 1/1 0/0 0/0 .text            debugDisplay__Fv */
-#ifdef NONMATCHING
-void debugDisplay(void) {
-    int tmp1;
-    int tmp2;
+void debugDisplay() {
+    static char* desc1[5] = {
+        "", "TotalFree", "MaxUsed  ", "Used     ", "RelUsed  ",
+    };
 
-    if (struct_80450B18[1] >= 1 && struct_80450B18[1] <= 6) {
-        HeapCheckTable[struct_80450B18[1]]->heapDisplay();
+    static char* desc2[5] = {
+        "", "/ MaxFree", "/HeapSize", "Blk/Bytes", "Blk/Bytes",
+    };
+
+    if (sDisplayHeap >= 1 && sDisplayHeap <= 6) {
+        HeapCheckTable[sDisplayHeap - 1]->heapDisplay();
     }
 
-    if (data_80450588[0] == 5) {
+    if (mDoMain::mHeapBriefType == 5) {
         JKRAramHeap* heap = JKRAram::getAramHeap();
         if (heap) {
-            JUTReport(0x1db, 100, "ARAM Free");
-            JUTReport(0x1db, 0x72, "%d", heap->getFreeSize());
-            JUTReport(0x1db, 0x80, "TotalFree");
-            JUTReport(0x1db, 0x8e, "%d", heap->getTotalFreeSize());
+            JUTReport(475, 100, "ARAM Free");
+            JUTReport(475, 114, "%d", heap->getFreeSize());
+            JUTReport(475, 128, "TotalFree");
+            JUTReport(475, 142, "%d", heap->getTotalFreeSize());
+            return;
         }
-    } else {
-        if (data_80450588[0] != 0) {
-            JUTReport(0x1db, 100, "%s", desc1[data_80450588[0]]);
-            JUTReport(0x1db, 0x72, "%s", lbl_803A2F28[data_80450588[0]]);
+    } else if (mDoMain::mHeapBriefType != 0) {
+        JUTReport(475, 100, "%s", desc1[mDoMain::mHeapBriefType]);
+        JUTReport(475, 114, "%s", desc2[mDoMain::mHeapBriefType]);
 
-            int k = 0;
-            for (int i = 0; i < 8; i++, k += 0x2C) {
-                HeapCheck* heap_check = HeapCheckTable[i];
+        for (int i = 0; i < 8; i++) {
+            HeapCheck* heap_check = HeapCheckTable[i];
+            JKRExpHeap* expHeap = heap_check->getHeap();
 
-                switch (data_80450588[0]) {
-                case 3: {
-                    tmp1 = heap_check->getUsedCount();
-                    tmp2 = heap_check->getHeap()->getTotalUsedSize();
-                    break;
-                }
-                case 1: {
-                    tmp1 = heap_check->getHeap()->getTotalFreeSize();
-                    tmp2 = heap_check->getHeap()->getFreeSize();
-                    break;
-                }
-                case 2: {
-                    tmp1 = heap_check->getMaxTotalUsedSize();
-                    tmp2 = heap_check->getHeap()->getSize();
-                    break;
-                }
-                case 4: {
-                    tmp1 = heap_check->getUsedCount() - heap_check->getUsedCountRef();
-                    tmp2 = heap_check->getHeap()->getTotalUsedSize() -
-                           heap_check->getTotalUsedSizeRef();
-                    break;
-                }
-
-                    JUTReport(0x1db, k + 0x96, " [%s]", heap_check->getName());
-                    JUTReport(0x1db, k + 0xA4, "%10d", tmp1);
-                    JUTReport(0x1db, k + 0xB2, "%10d", tmp2);
-                }
+            s32 check1;
+            s32 check2;
+            switch (mDoMain::mHeapBriefType) {
+            case 1:
+                check1 = expHeap->getTotalFreeSize();
+                check2 = expHeap->getFreeSize();
+                break;
+            case 2:
+                check1 = heap_check->getMaxTotalUsedSize();
+                check2 = expHeap->getHeapSize();
+                break;
+            case 3:
+                check1 = heap_check->getUsedCount();
+                check2 = expHeap->getTotalUsedSize();
+                break;
+            case 4:
+                check1 = heap_check->getRelUsedCount();
+                check2 = heap_check->getRelTotalUsedSize();
+                break;
             }
+
+            JUTReport(475, (i * 44) + 150, " [%s]", heap_check->getName());
+            JUTReport(475, (i * 44) + 164, "%10d", check1);
+            JUTReport(475, (i * 44) + 178, "%10d", check2);
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void debugDisplay() {
-    nofralloc
-#include "asm/m_Do/m_Do_main/debugDisplay__Fv.s"
-}
-#pragma pop
-#endif
-
-/* ############################################################################################## */
-/* 803739A0-803739A0 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80373B51 = "Press X+Y+START to CLEAR console.";
-SECTION_DEAD static char const* const stringBase_80373B73 = "3DStick UP/Down to scroll";
-SECTION_DEAD static char const* const stringBase_80373B8D =
-    "Press A to output terminal from console.";
-SECTION_DEAD static char const* const stringBase_80373BB6 = "SCROLL：%3d %3d %3d Output=%1x";
-SECTION_DEAD static char const* const stringBase_80373BD5 = "Press L+R trigger to control console.";
-SECTION_DEAD static char const* const stringBase_80373BFB =
-    "Press [Z] trigger to close this window.";
-#pragma pop
-
-/* 80450B1C-80450B20 00001C 0004+00 1/1 0/0 0/0 .sbss            console_position_x$3776 */
-static f32 console_position_x;
-
-/* 80450B20-80450B24 000020 0004+00 1/1 0/0 0/0 .sbss            None */
-static s8 data_80450B20;
-
-/* 80450B24-80450B28 000024 0004+00 1/1 0/0 0/0 .sbss            console_position_y$3779 */
-static f32 console_position_y;
-
-/* 80450B28-80450B2C 000028 0004+00 1/1 0/0 0/0 .sbss            None */
-static s8 data_80450B28;
-
-/* 80450B2C-80450B30 00002C 0004+00 1/1 0/0 0/0 .sbss            console_scroll$3782 */
-static f32 console_scroll;
-
-/* 80450B30-80450B34 000030 0004+00 1/1 0/0 0/0 .sbss            None */
-static s8 data_80450B30;
-
-/* 80451A00-80451A04 000000 0004+00 1/1 0/0 0/0 .sdata2          @3884 */
-SECTION_SDATA2 static f32 lit_3884 = 20.0f;
-
-/* 80451A04-80451A08 000004 0004+00 1/1 0/0 0/0 .sdata2          @3885 */
-SECTION_SDATA2 static f32 lit_3885 = 30.0f;
-
-/* 80451A08-80451A0C 000008 0004+00 1/1 0/0 0/0 .sdata2          @3886 */
-SECTION_SDATA2 static u8 lit_3886[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80451A0C-80451A10 00000C 0004+00 1/1 0/0 0/0 .sdata2          @3887 */
-SECTION_SDATA2 static f32 lit_3887 = 1.0f;
-
-/* 80451A10-80451A18 000010 0004+04 1/1 0/0 0/0 .sdata2          @3888 */
-SECTION_SDATA2 static f32 lit_3888[1 + 1 /* padding */] = {
-    -1.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80451A18-80451A20 000018 0008+00 1/1 0/0 0/0 .sdata2          @3890 */
-SECTION_SDATA2 static f64 lit_3890 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80005D4C-8000614C 00068C 0400+00 1/1 0/0 0/0 .text            Debug_console__FUl */
-// middle section has lots of issues
-#ifdef NONMATCHING
 bool Debug_console(u32 i_padNo) {
-    float tmp2;
-    float tmp3;
-    int tmp6;
+    static f32 console_position_x;
+    static s8 console_x_init;
+
+    static f32 console_position_y;
+    static s8 console_y_init;
+
+    static f32 console_scroll;
+    static s8 console_scroll_init;
 
     JUTConsole* console = JFWSystem::getSystemConsole();
     if (console) {
-        if (!data_80450B20) {
+        if (!console_x_init) {
             console_position_x = 20.0f;
-            data_80450B20 = 1;
+            console_x_init = 1;
         }
-        if (!data_80450B28) {
+        if (!console_y_init) {
             console_position_y = 30.0f;
-            data_80450B28 = 1;
+            console_y_init = 1;
         }
-        if (!data_80450B30) {
+        if (!console_scroll_init) {
             console_scroll = 0.0f;
-            data_80450B30 = 1;
+            console_scroll_init = 1;
         }
 
-        if (mDoCPd_c::getTrig(i_padNo) & CButton::Z &&
-            !(mDoCPd_c::getHold(i_padNo) & ~CButton::Z)) {
-            bool visible = console->isVisible() == false;
-            console->setVisible(visible);
+        if (mDoCPd_c::getTrig(i_padNo) & CButton::Z && !(mDoCPd_c::getHold(i_padNo) & ~CButton::Z)) {
+            console->setVisible(console->isVisible() == false);
             JUTAssertion::setMessageCount(0);
         }
 
         if (console->isVisible()) {
-            // if R and L are pressed
-            if ((mDoCPd_c::getHold(i_padNo) & CButton::L &&
-                 mDoCPd_c::getHold(i_padNo) & CButton::R) ||
-                ((mDoCPd_c::getAnalogL(i_padNo) > 0.0f &&
-                  (0.0f > mDoCPd_c::getAnalogR(i_padNo))))) {
-                if (mDoCPd_c::getTrig(i_padNo) & (CButton::Y | CButton::X) &&
+            u32 holdButtons = mDoCPd_c::getHold(i_padNo);
+            if ((holdButtons & CButton::L && holdButtons & CButton::R) ||
+                ((mDoCPd_c::getAnalogL(i_padNo) > 0.0f && mDoCPd_c::getAnalogR(i_padNo) > 0.0f))) {
+                f32 stick_x = mDoCPd_c::getStickX(i_padNo);
+                f32 stick_y = mDoCPd_c::getStickY(i_padNo);
+
+                if (holdButtons & (CButton::Y | CButton::X) &&
                     mDoCPd_c::getTrig(i_padNo) & CButton::START) {
                     console->clear();
                 }
 
                 if (!(mDoCPd_c::getHold(i_padNo) & (CButton::Y | CButton::X))) {
-                    // subtract console scroll value from stick Y
-                    console_scroll -= mDoCPd_c::getStickY(i_padNo);
-                    int tmp;
-                    if (1.0f <= console_scroll) {
-                        -1.0f <= console_scroll ? tmp = 0 : tmp = -console_scroll;
+                    console_scroll -= stick_y;
+
+                    int scrollAmount;
+                    if (console_scroll > 1.0f) {
+                        scrollAmount = console_scroll;
+                    } else if (console_scroll < -1.0f) {
+                        scrollAmount = -(int)-console_scroll;
                     } else {
-                        tmp = mDoCPd_c::getStickX(i_padNo) - mDoCPd_c::getStickY(i_padNo);
+                        scrollAmount = 0;
                     }
 
-                    if (tmp) {
-                        console_scroll -= tmp;
-                        console->scroll(tmp);
+                    if (scrollAmount != 0) {
+                        console_scroll -= scrollAmount;
+                        console->scroll(scrollAmount);
                     }
                 } else {
                     if (mDoCPd_c::getHold(i_padNo) & CButton::X) {
-                        console_position_x += mDoCPd_c::getStickX(i_padNo);
+                        console_position_x += stick_x;
                     }
 
                     if (mDoCPd_c::getHold(i_padNo) & CButton::Y) {
-                        console_position_y -= mDoCPd_c::getStickY(i_padNo);
+                        console_position_y -= stick_y;
                     }
                 }
 
@@ -547,54 +437,46 @@ bool Debug_console(u32 i_padNo) {
                     console->setOutput(JUTConsole::OUTPUT_OSREPORT | JUTConsole::OUTPUT_CONSOLE);
                 }
 
-                JUTReport(0x1E, 0x186, 1, "Press X+Y+START to CLEAR console.");
-                JUTReport(0x1E, 400, 1, "3DStick UP/Down to scroll");
-                JUTReport(0x1E, 0x19A, 1, "Press A to output terminal from console.");
-                JUTReport(0x1E, 0x1A4, 1, "SCROLL：%3d %3d %3d Output=%1x",
+                JUTReport(30, 390, 1, "Press X+Y+START to CLEAR console.");
+                JUTReport(30, 400, 1, "3DStick UP/Down to scroll");
+                JUTReport(30, 410, 1, "Press A to output terminal from console.");
+                JUTReport(30, 420, 1, "SCROLL：%3d %3d %3d Output=%1x",
                           console->getLineOffset(), console->getPositionX(),
                           console->getPositionY(), console->getOutput());
-            }
-        } else {
-            if (mDoCPd_c::getTrig(i_padNo) & CButton::DPAD_DOWN) {
-                g_HIO.mDisplayMeter ^= 1;
-            }
+            } else {
+                u32 pressButtons = mDoCPd_c::getTrig(i_padNo);
 
-            if (mDoCPd_c::getTrig(i_padNo) & CButton::DPAD_LEFT) {
-                if (JKRAram::getAramHeap()) {
-                    JKRAram::getAramHeap()->dump();
+                if (pressButtons & CButton::DPAD_DOWN) {
+                    g_HIO.mDisplayMeter ^= 1;
                 }
 
-                dump__24DynamicModuleControlBaseFv();
-                g_dComIfG_gameInfo.mResControl.dump();
-            }
+                if (pressButtons & CButton::DPAD_LEFT) {
+                    if (JKRAram::getAramHeap()) {
+                        JKRAram::getAramHeap()->dump();
+                    }
 
-            if (mDoCPd_c::getTrig(i_padNo) & CButton::DPAD_RIGHT) {
-                JKRHeap::getSystemHeap()->dump_sort();
-            }
+                    dump__24DynamicModuleControlBaseFv();
+                    g_dComIfG_gameInfo.mResControl.dump();
+                }
 
-            if (mDoCPd_c::getTrig(i_padNo) & CButton::DPAD_UP) {
-                zeldaHeap->dump_sort();
-                gameHeap->dump_sort();
-                archiveHeap->dump_sort();
+                if (mDoCPd_c::getTrig(i_padNo) & CButton::DPAD_RIGHT) {
+                    JKRHeap::getSystemHeap()->dump_sort();
+                }
+
+                if (mDoCPd_c::getTrig(i_padNo) & CButton::DPAD_UP) {
+                    zeldaHeap->dump_sort();
+                    gameHeap->dump_sort();
+                    archiveHeap->dump_sort();
+                }
+                JUTReport(30, 440, 1, "Press L+R trigger to control console.");
+                JUTReport(30, 450, 1, "Press [Z] trigger to close this window.");
             }
-            JUTReport(0x1E, 0x1B8, 1, "Press L+R trigger to control console.");
-            JUTReport(0x1E, 0x1C2, 1, "Press [Z] trigger to close this window.");
+            console->setPosition(console_position_x, console_position_y);
+            return 1;
         }
-        console->setPosition(console_position_x, console_position_y);
-        return 1;
     }
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void Debug_console(u32 param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_main/Debug_console__FUl.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 803739A0-803739A0 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -633,25 +515,25 @@ asm void* LOAD_COPYDATE(void* param_0) {
 
 static void debug() {
     if (data_80450580) {
-        if (data_80450B1A) {
-            CheckHeap(2);
+        if (sCheckHeap) {
+            CheckHeap(PAD_3);
         }
 
-        if ((mDoCPd_c::getGamePad(2)->getButton() & ~CButton::Z) == CButton::R &&
-            mDoCPd_c::getGamePad(2)->testTrigger(CButton::Z)) {
-            struct_80450B18[0] ^= 0x1;
+        if ((mDoCPd_c::getGamePad(PAD_3)->getButton() & ~CButton::Z) == CButton::R &&
+            mDoCPd_c::getGamePad(PAD_3)->testTrigger(CButton::Z)) {
+            struct_80450B18 ^= 1;
         }
 
-        if (struct_80450B18[0]) {
-            if ((mDoCPd_c::getGamePad(2)->getButton() & ~CButton::Z) == CButton::L &&
-                mDoCPd_c::getGamePad(2)->testTrigger(CButton::Z)) {
-                data_80450588[0] < 0x5 ? data_80450588[0]++ : data_80450588[0] = 0x1;
+        if (struct_80450B18) {
+            if ((mDoCPd_c::getGamePad(PAD_3)->getButton() & ~CButton::Z) == CButton::L &&
+                mDoCPd_c::getGamePad(PAD_3)->testTrigger(CButton::Z)) {
+                mDoMain::mHeapBriefType < 5 ? mDoMain::mHeapBriefType++ : mDoMain::mHeapBriefType = 1;
             }
 
             debugDisplay();
         }
 
-        Debug_console(2);
+        Debug_console(PAD_3);
     }
 }
 
@@ -660,7 +542,7 @@ static void debug() {
 static u32 frame;
 
 /* 8000628C-80006454 000BCC 01C8+00 1/1 0/0 0/0 .text            main01__Fv */
-// almost
+// only issue is output check section with weird code gen
 #ifdef NONMATCHING
 void main01(void) {
     mDoMch_Create__Fv();
@@ -708,18 +590,18 @@ void main01(void) {
     }
 
     JUTConsole* console = JFWSystem::getSystemConsole();
-    u32 output = JUTConsole::OUTPUT_OSREPORT | JUTConsole::OUTPUT_CONSOLE;
+    s32 output = 0;
     if (data_80450580 != 0) {
-        data_80450580 = JUTConsole::OUTPUT_NONE;
+        output = JUTConsole::OUTPUT_OSREPORT | JUTConsole::OUTPUT_CONSOLE;
     }
-    console->setOutput(output);
 
+    console->setOutput(output);
     console->setPosition(32, 42);
 
     mDoDvdThd_callback_c::create(LOAD_COPYDATE, NULL);
     fapGm_Create__Fv();
     fopAcM_initManager__Fv();
-    struct_80450B18[0] = 0;
+    struct_80450B18 = 0;
     cDyl_InitAsync__Fv();
 
     g_mDoAud_audioHeap = JKRSolidHeap::create(0x14D800, JKRHeap::getCurrentHeap(), false);
@@ -761,7 +643,7 @@ static OSThread mainThread;
 /* 80006454-800065D8 000D94 0184+00 0/0 1/1 0/0 .text            main */
 void main() {
     OSThread* current_thread = OSGetCurrentThread();
-    u8* stack = &mainThreadStack[0];
+    u8* stack = mainThreadStack;
     mDoMain::sPowerOnTime = OSGetTime();
     OSReportInit();
     version_check();
@@ -795,7 +677,7 @@ void main() {
             data_80450580 = 1;
         } else if (disk_id->game_version > 0x80) {
             u32 consoleType = OSGetConsoleType();
-            data_80450580 = (consoleType >> 0x1c) & 1;
+            data_80450580 = (consoleType >> 0x1C) & 1;
         } else {
             data_80450580 = 0;
         }

@@ -109,7 +109,7 @@ bool JKRAssertHeap::dump_sort() {
 
 /* 802D142C-802D1434 2CBD6C 0008+00 1/0 0/0 0/0 .text do_changeGroupID__13JKRAssertHeapFUc */
 
-u8 JKRAssertHeap::do_changeGroupID(u8) {
+s32 JKRAssertHeap::do_changeGroupID(u8) {
     return 0;
 }
 

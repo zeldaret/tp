@@ -8,7 +8,8 @@ class dBgS_GrpPassChk : public cBgS_GrpPassChk {
 public:
     enum {
         /* 0x1 */ NORMAL_GRP = 1,
-        /* 0x2 */ WATER_GRP
+        /* 0x2 */ WATER_GRP,
+        /* 0x3 */ FULL_GRP
     };
 
     /* 80077BA0 */ dBgS_GrpPassChk();
@@ -19,6 +20,7 @@ public:
     void OnSpl() { mGrp |= WATER_GRP; }
     void OnNormalGrp() { mGrp |= NORMAL_GRP; }
     void OffNormalGrp() { mGrp &= ~NORMAL_GRP; }
+    void OffFullGrp() { mGrp &= ~FULL_GRP; }
 
 private:
     /* 0x4 */ u32 mGrp;

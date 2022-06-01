@@ -37,80 +37,6 @@ struct daNpcT_MatAnm_c {
     /* 8014D24C */ ~daNpcT_MatAnm_c();
 };
 
-struct daNpcF_c {
-    struct daNpcF_anmPlayData {};
-
-    /* 80152014 */ void execute();
-    /* 801522AC */ void draw(int, int, f32, _GXColorS10*, int);
-    /* 80152614 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
-    /* 80152654 */ void srchAttnActor1(void*, void*);
-    /* 801526E8 */ void srchActor(void*, void*);
-    /* 8015276C */ void setMtx();
-    /* 801527FC */ void setMtx2();
-    /* 801528C8 */ void initialize();
-    /* 80152B2C */ void getTrnsfrmKeyAnmP(char*, int);
-    /* 80152B68 */ void getTexPtrnAnmP(char*, int);
-    /* 80152BA4 */ void getTexSRTKeyAnmP(char*, int);
-    /* 80152BE0 */ void getTevRegKeyAnmP(char*, int);
-    /* 80152C1C */ void setMcaMorfAnm(J3DAnmTransformKey*, f32, f32, int, int, int);
-    /* 80152C80 */ void setBckAnm(J3DAnmTransform*, f32, int, int, int, bool);
-    /* 80152CC4 */ void setBtpAnm(J3DAnmTexPattern*, J3DModelData*, f32, int);
-    /* 80152D04 */ void setBtkAnm(J3DAnmTextureSRTKey*, J3DModelData*, f32, int);
-    /* 80152D44 */ void setBrkAnm(J3DAnmTevRegKey*, J3DModelData*, f32, int);
-    /* 80152D84 */ void setEnvTevColor();
-    /* 80152DE0 */ void setRoomNo();
-    /* 80152E24 */ void chkEndAnm(f32);
-    /* 80152EC4 */ void chkEndAnm(J3DFrameCtrl*, f32);
-    /* 80152F40 */ void playAllAnm();
-    /* 80153150 */ void playExpressionAnm(daNpcF_c::daNpcF_anmPlayData***);
-    /* 80153264 */ void playMotionAnm(daNpcF_c::daNpcF_anmPlayData***);
-    /* 8015337C */ void setLookatMtx(int, int*, f32);
-    /* 80153578 */ void hitChk2(dCcD_Cyl*, int, int);
-    /* 80153658 */ void setDamage(int, int, int);
-    /* 80153718 */ void ctrlMsgAnm(int&, int&, fopAc_ac_c*, int);
-    /* 8015387C */ void orderEvent(int, char*, u16, u16, u8, u16);
-    /* 80153954 */ void changeEvent(char*, char*, u16, u16);
-    /* 801539F0 */ void chkActorInSight(fopAc_ac_c*, f32);
-    /* 80153A78 */ void chkActorInArea(fopAc_ac_c*, cXyz, cXyz, s16);
-    /* 80153BDC */ void chkActorInAttnArea(fopAc_ac_c*, fopAc_ac_c*, int);
-    /* 80153D1C */ void initTalk(int, fopAc_ac_c**);
-    /* 80153D84 */ void talkProc(int*, int, fopAc_ac_c**);
-    /* 80153EF4 */ void turn(s16, f32, int);
-    /* 801540A4 */ void step(s16, int, int, int);
-    /* 80154250 */ void setAngle(s16);
-    /* 80154278 */ void getDistTableIdx(int, int);
-    /* 801542A0 */ void getEvtAreaTagP(int, int);
-    /* 8015436C */ void getAttnActorP(int, void* (*)(void*, void*), f32, f32, f32, f32, s16, int,
-                                      int);
-    /* 80154730 */ void chkActorInSight2(fopAc_ac_c*, f32, s16);
-    /* 80154834 */ void chkPointInArea(cXyz, cXyz, f32, f32, f32, s16);
-    /* 801548F4 */ void chkPointInArea(cXyz, cXyz, cXyz, s16);
-    /* 8015496C */ void getAttentionPos(fopAc_ac_c*);
-    /* 801549E0 */ void chkFindPlayer2(int, s16);
-    /* 80154BD8 */ void setHitodamaPrtcl();
-    /* 80155BB4 */ void setCollisions();
-    /* 80155BB8 */ void setAttnPos();
-    /* 80155BBC */ void adjustShapeAngle();
-    /* 80155BC0 */ bool main();
-    /* 80155BC8 */ void setParam();
-    /* 80155BCC */ void drawOtherMdls();
-    /* 80155BD0 */ bool drawDbgInfo();
-    /* 80155BD8 */ bool ctrlBtk();
-    /* 80155BE0 */ bool setExpressionAnm(int, bool);
-    /* 80155BE8 */ void setMotionAnm(int, f32);
-    /* 80155BEC */ void setMotion(int, f32, int);
-    /* 80155BF0 */ void setExpression(int, f32);
-    /* 80155BF4 */ ~daNpcF_c();
-    /* 80155EC8 */ bool setExpressionBtp(int);
-
-    static u8 const mCcDObjInfo[48];
-    static u8 mCcDCyl[68];
-    static u8 mCcDSph[64];
-    static u8 mFindActorPList[400];
-    static u8 mFindCount[4];
-    static u8 mSrchActorName[2 + 2 /* padding */];
-};
-
 struct dPath {};
 
 struct daNpcF_SPCurve_c {
@@ -161,15 +87,6 @@ struct daNpcF_Lookat_c {
     /* 80151B68 */ void calcMoveDisAngle(int, cXyz*, csXyz*, cXyz, int, int);
     /* 80151F54 */ void setRotAngle();
     /* 80151FE0 */ void clrRotAngle();
-};
-
-struct daNpcF_ActorMngr_c {
-    /* 801506B0 */ void initialize();
-    /* 801506D8 */ void entry(unsigned int);
-    /* 801506BC */ void entry(fopAc_ac_c*);
-    /* 801506E0 */ void remove();
-    /* 801506EC */ void getActorP();
-    /* 80155E40 */ ~daNpcF_ActorMngr_c();
 };
 
 struct daBaseNpc_path_c {
@@ -4762,7 +4679,8 @@ void daNpcF_c::setExpression(int param_0, f32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm daNpcF_c::~daNpcF_c() {
+// asm daNpcF_c::~daNpcF_c() {
+extern "C" asm void __dt__8daNpcF_cFv() {
     nofralloc
 #include "asm/d/a/d_a_npc/__dt__8daNpcF_cFv.s"
 }
@@ -4772,7 +4690,8 @@ asm daNpcF_c::~daNpcF_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm daNpcF_ActorMngr_c::~daNpcF_ActorMngr_c() {
+// asm daNpcF_ActorMngr_c::~daNpcF_ActorMngr_c() {
+extern "C" asm void __dt__18daNpcF_ActorMngr_cFv() {
     nofralloc
 #include "asm/d/a/d_a_npc/__dt__18daNpcF_ActorMngr_cFv.s"
 }

@@ -24,8 +24,9 @@ private:
     /* 0x4C */ f32 mNowY;
 };  // Size: 0x50
 
-class dBgS_LinkRoofChk : dBgS_RoofChk {
+class dBgS_LinkRoofChk : public dBgS_RoofChk {
 public:
+    dBgS_LinkRoofChk() { SetLink(); }
     /* 80140E40 */ virtual ~dBgS_LinkRoofChk();
 };
 

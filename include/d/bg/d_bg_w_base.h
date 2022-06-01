@@ -57,7 +57,7 @@ public:
     virtual void GetPolyCamThrough(int) = 0;
     virtual void GetPolyLinkThrough(int) = 0;
     virtual void GetPolyArrowThrough(int) = 0;
-    virtual bool GetPolyHSStick(int) = 0;
+    virtual u32 GetPolyHSStick(int) = 0;
     virtual void GetPolyBoomerangThrough(int) = 0;
     virtual void GetPolyRopeThrough(int) = 0;
     virtual void GetPolyBombThrough(int) = 0;
@@ -88,6 +88,7 @@ public:
     u8 GetRoomId() { return m_roomId; }
     bool chkStickWall() { return field_0xb & 1; }
     bool chkStickRoof() { return field_0xb & 2; }
+    bool ChkPushPullOk() const { return m_pushPull_Ok; }
 
 private:
     /* 0x08 */ u8 m_priority;

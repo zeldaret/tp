@@ -224,6 +224,7 @@ u8* OSGetStackPointer(void);
 void OSCreateAlarm(OSAlarm* alarm);
 void OSCancelAlarm(OSAlarm* alarm);
 void OSSetAlarm(OSAlarm* alarm, OSTime time, OSAlarmHandler handler);
+void OSSetPeriodicAlarm(OSAlarm*, OSTime, OSTime, OSAlarmHandler);
 
 void OSInitCond(OSCond* cond);
 void OSWaitCond(OSCond* cond, OSMutex* mutex);
