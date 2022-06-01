@@ -14,7 +14,7 @@ public:
     dEvt_info_c();
     virtual ~dEvt_info_c();
     void setEventName(char*);
-    s16 getEventName();
+    char* getEventName();
     void beforeProc();
     void onCondition(u16);
     void offCondition(u16);
@@ -29,7 +29,7 @@ public:
     void setArchiveName(char* name) { mArchiveName = name; }
     u8 getMapToolId() { return mMapToolId; }
     s16 getEventId() { return mEventId; }
-    u8 getIdx() { return mIndex; }
+    s16 getIdx() { return mIndex; }
     char* getArchiveName() { return mArchiveName; }
     bool chkCondition(u16 condition) { return mCondition == condition; }
 
@@ -40,7 +40,7 @@ public:
     /* 0x06 */ u16 mCondition;
     /* 0x08 */ s16 mEventId;
     /* 0x0A */ u8 mMapToolId;
-    /* 0x0B */ u8 mIndex;
+    /* 0x0B */ s8 mIndex;
     /* 0x0C */ char* mArchiveName;
     /* 0x10 */ void* field_0x10;
     /* 0x14 */ void* field_0x14;
@@ -119,6 +119,7 @@ public:
 
     const cXyz& getPosition() const { return mCurrent.mPosition; }
     const csXyz& getAngle() const { return mCurrent.mAngle; }
+    s8 getRoomNo() const { return mCurrent.mRoomNo; }
 };  // Size: 0x568
 
 s32 fopAc_IsActor(void* actor);

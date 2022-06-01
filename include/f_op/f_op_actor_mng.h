@@ -110,6 +110,10 @@ inline void fopAcM_SetParam(void* p_actor, u32 param) {
     fpcM_SetParam(p_actor, param);
 }
 
+inline s16 fpcAcM_GetProfName(void* pActor) {
+    return fpcM_GetProfName(pActor);
+}
+
 inline u8 fopAcM_GetGroup(const fopAc_ac_c* p_actor) {
     return p_actor->mGroup;
 }
@@ -120,6 +124,10 @@ inline void fopAcM_OnStatus(fopAc_ac_c* pActor, u32 flag) {
 
 inline void fopAcM_OffStatus(fopAc_ac_c* pActor, u32 flag) {
     pActor->mStatus &= ~flag;
+}
+
+inline fopAc_ac_c* fopAcM_Search(fopAcIt_JudgeFunc func, void* param) {
+    return (fopAc_ac_c*)fopAcIt_Judge(func, param);
 }
 
 inline fopAc_ac_c* fopAcM_SearchByID(unsigned int id) {
@@ -362,9 +370,8 @@ void fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci(void);
 void fopAcM_riverStream__FP4cXyzPsPff(void);
 void fopAcM_carryOffRevise__FP10fopAc_ac_c(void);
 void fopAcM_searchFromName4Event__FPCcs(void);
-void fopAcM_GetName__FPv(void);                  // mostly inlined
-void fopAcM_GetID__FPCv(void);                   // mostly inlined
-static void fopAcM_GetParam__FPCv(void const*);  // mostly inlined
+void fopAcM_GetName__FPv(void);  // mostly inlined
+void fopAcM_GetID__FPCv(void);   // mostly inlined
 }
 
 #endif

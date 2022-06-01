@@ -27,6 +27,10 @@ inline void fpcM_SetParam(void* p_actor, u32 param) {
     ((base_process_class*)p_actor)->mParameters = param;
 }
 
+inline s16 fpcM_GetProfName(void* pActor) {
+    return ((base_process_class*)pActor)->mBsTypeId;
+}
+
 inline int fpcM_Create(s16 procName, FastCreateReqFunc createFunc, void* process) {
     return fpcSCtRq_Request(fpcLy_CurrentLayer(), procName, (stdCreateFunc)createFunc, NULL,
                             process);
