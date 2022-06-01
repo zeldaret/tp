@@ -195,7 +195,7 @@ dEvt_order_c::dEvt_order_c() {
  */
 bool dEvt_control_c::orderOld(u16 param_0, u16 param_1, u16 param_2, u16 param_3, void* param_4,
                               void* param_5, void const* param_6) {
-    s16 eventIdx = dComIfGp_getEventManager().getEventIdx((char*)param_6, -1, -1);
+    int eventIdx = dComIfGp_getEventManager().getEventIdx((char*)param_6, -1, -1);
     return order(param_0, param_1, param_2, param_3, param_4, param_5, eventIdx, -1);
 }
 
@@ -649,13 +649,12 @@ void dEvt_control_c::remove() {
 
 /* 80043278-80043280 03DBB8 0008+00 2/2 2/2 0/0 .text            getStageEventDt__14dEvt_control_cFv
  */
-// ret type probably wrong, fix later
-void* dEvt_control_c::getStageEventDt() {
+dStage_MapEvent_dt_c* dEvt_control_c::getStageEventDt() {
     return mStageEventDt;
 }
 
-void dEvt_control_c::sceneChange(int param_0) {
-    dStage_changeScene4Event__FiScibfUlsi(param_0, field_0x12c, -1, field_0x129, 0.0f, 0, 0, -1);
+void dEvt_control_c::sceneChange(int exitId) {
+    dStage_changeScene4Event__FiScibfUlsi(exitId, field_0x12c, -1, field_0x129, 0.0f, 0, 0, -1);
 }
 
 u32 dEvt_control_c::getPId(void* param_0) {
@@ -668,14 +667,14 @@ u32 dEvt_control_c::getPId(void* param_0) {
 
 /* 800432EC-8004331C 03DC2C 0030+00 7/7 13/13 16/16 .text            convPId__14dEvt_control_cFUi */
 #ifdef NONMATCHING
-void dEvt_control_c::convPId(unsigned int param_0) {
-    fopAcIt_Judge(fpcSch_JudgeByID, (void*)param_0);
+void* dEvt_control_c::convPId(unsigned int param_0) {
+    return fopAcIt_Judge(fpcSch_JudgeByID, (void*)param_0);
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_control_c::convPId(unsigned int param_0) {
+asm void* dEvt_control_c::convPId(unsigned int param_0) {
     nofralloc
 #include "asm/d/event/d_event/convPId__14dEvt_control_cFUi.s"
 }
@@ -712,14 +711,15 @@ void dEvt_info_c::setEventName(char* param_0) {
 }
 
 /* 80043480-800434CC 03DDC0 004C+00 1/1 0/0 0/0 .text            getEventName__11dEvt_info_cFv */
-// fake match?
-s16 dEvt_info_c::getEventName() {
+char* dEvt_info_c::getEventName() {
     if (mEventId == -1) {
         return 0;
     } else {
         dEvDtEvent_c* data = dComIfGp_getEventManager().getEventData(mEventId);
         if (data == NULL) {
             return 0;
+        } else {
+            return data->getName();
         }
     }
 }
@@ -729,15 +729,15 @@ void dEvt_info_c::beforeProc() {
 }
 
 /* 800434D8-80043500 03DE18 0028+00 0/0 4/4 1/1 .text searchMapEventData__14dEvt_control_cFUc */
-void dEvt_control_c::searchMapEventData(u8 param_0) {
-    searchMapEventData(param_0, (s32)struct_80450D64);
+dStage_MapEvent_dt_c* dEvt_control_c::searchMapEventData(u8 param_0) {
+    return searchMapEventData(param_0, (s32)struct_80450D64);
 }
 
 /* 80043500-8004360C 03DE40 010C+00 3/3 7/7 5/5 .text searchMapEventData__14dEvt_control_cFUcl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_control_c::searchMapEventData(u8 param_0, s32 param_1) {
+asm dStage_MapEvent_dt_c* dEvt_control_c::searchMapEventData(u8 param_0, s32 param_1) {
     nofralloc
 #include "asm/d/event/d_event/searchMapEventData__14dEvt_control_cFUcl.s"
 }

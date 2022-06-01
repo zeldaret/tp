@@ -1374,6 +1374,7 @@ u8 dComIfGp_getSelectItem(int index);
 u8 dComIfGp_TargetWarpPt_get();
 void dComIfGp_TargetWarpPt_set(u8);
 BOOL dComIfGp_TransportWarp_check();
+u8 dComIfGp_SelectWarpPt_get();
 void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer, f32 lastSpeed,
                            u32 lastMode, int, s8 wipe, s16 lastAngle, int, int);
 void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer);

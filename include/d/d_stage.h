@@ -236,8 +236,26 @@ struct dStage_DMap_c {
     // DMAP
 };
 
+struct dStage_MapEvent_dt_c {
+    u8 mType;
+    u8 field_0x1[3 - 1];
+    u8 field_0x3;
+    u8 field_0x4[7 - 4];
+    u8 field_0x7;
+    u8 field_0x8;
+    u8 field_0x9;
+    u8 field_0xA[0xD - 0xA];
+    char mName[10];
+    u8 field_0x17;
+    u8 field_0x18;
+    u8 field_0x19[0x1B - 0x19];
+    u8 field_0x1B;
+};  // SIZE = 0x1C
+
 struct dStage_MapEventInfo_c {
     // REVT
+    int mCount;
+    dStage_MapEvent_dt_c* mData;
 };
 
 class dStage_dt_c {
@@ -890,6 +908,14 @@ inline int dStage_sclsInfo_getTimeH(stage_scls_info_class* p_info) {
 
 inline u32 dStage_FileList_dt_getMiniMap(dStage_FileList_dt_c* p_fList) {
     return p_fList->mParameters >> 3 & 7;
+}
+
+inline int dStage_MapEvent_dt_c_getEventSCutSW(dStage_MapEvent_dt_c* event) {
+    return event->field_0x8 & 1;
+}
+
+inline int dStage_MapEvent_dt_c_getEventSCutType(dStage_MapEvent_dt_c* event) {
+    return event->field_0x8 >> 1 & 3;
 }
 
 #endif /* D_D_STAGE_H */

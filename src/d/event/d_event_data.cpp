@@ -404,7 +404,7 @@ void dEvDtFlag_c::init() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvDtEvent_c::finishCheck() {
+asm int dEvDtEvent_c::finishCheck() {
     nofralloc
 #include "asm/d/event/d_event_data/finishCheck__12dEvDtEvent_cFv.s"
 }
