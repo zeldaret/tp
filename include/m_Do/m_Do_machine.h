@@ -14,6 +14,7 @@ bool exceptionReadPad(u32*, u32*);
 void exceptionRestart();
 void myExceptionCallback(u16, OSContext*, u32, u32);
 void my_SysPrintHeap(char const*, void*, u32);
+void mDoMch_HeapCheckAll();
 
 extern GXRenderModeObj g_ntscZeldaProg;
 

@@ -280,26 +280,6 @@ struct cM3dGCyl {
     /* 8026F0A8 */ cM3dGCyl(cXyz const*, f32, f32);
 };
 
-struct Z2StatusMgr {
-    /* 802B6760 */ void setCameraPolygonPos(Vec*);
-    /* 802B6784 */ void setCameraGroupInfo(u8);
-    /* 802B6788 */ void setCameraInWaterDepth(f32);
-};
-
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct Z2Audience {
-    /* 802BD2DC */ void setAudioCamera(f32 (*)[4], Vec&, Vec&, f32, f32, bool, int, bool);
-};
-
 //
 // Forward References:
 //

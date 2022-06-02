@@ -24,14 +24,6 @@ struct dCamera_c {
     /* 801614C4 */ void QuickStart();
 };
 
-struct Z2StatusMgr {
-    /* 802B61E8 */ void setDemoName(char*);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
 //
 // Forward References:
 //

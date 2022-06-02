@@ -20,6 +20,7 @@ extern bool sResetFlag;
 class mDoAud_zelAudio_c {
 public:
     void reset();
+    mDoAud_zelAudio_c() {}
     ~mDoAud_zelAudio_c() {}
 
     static void onInitFlag() { struct_80450BB8 = true; }
@@ -28,6 +29,7 @@ public:
     static void onResetFlag() { sResetFlag = true; }
     static void offResetFlag() { sResetFlag = false; }
     static bool isBgmSet() { return data_80450bba; }
+    static void onBgmSet() { data_80450bba = true; }
     static void offBgmSet() { data_80450bba = false; }
 
     Z2AudioMgr mAudioMgr;

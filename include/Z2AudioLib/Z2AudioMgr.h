@@ -38,11 +38,7 @@ public:
     /* 0x04A4 */ Z2SceneMgr mSceneMgr;
     /* 0x04C4 */ Z2StatusMgr mStatusMgr;
     /* 0x04F4 */ Z2SoundObjMgr mSoundObjMgr;
-
-    /* 0x0514 */ /* virtual */ void startSound(JAISoundID, JAISoundHandle*,
-                                               JGeometry::TVec3<f32> const*);
-    /* 0x0514 */ void* vtable;  // remove later
-
+    /* 0x0514 */ virtual void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
     /* 0x0518 */ bool mResettingFlag;
     /* 0x0519 */ bool field_0x519;
     /* 0x051C */ JASAudioReseter mAudioReseter;

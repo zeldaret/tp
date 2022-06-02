@@ -11,26 +11,6 @@
 // Types:
 //
 
-struct JKRHeap {
-    static u8 sSystemHeap[4];
-};
-
-struct JKRThread {
-    /* 802D1610 */ JKRThread(JKRHeap*, u32, int, int);
-    /* 802D1758 */ ~JKRThread();
-};
-
-struct JASTaskThread {
-    /* 8028F6C4 */ JASTaskThread(int, int, u32);
-    /* 8028F724 */ ~JASTaskThread();
-    /* 8028F9EC */ void allocCallStack(void (*)(void*), void*);
-    /* 8028F850 */ void allocCallStack(void (*)(void*), void const*, u32);
-    /* 8028FC54 */ void sendCmdMsg(void (*)(void*), void*);
-    /* 8028FB5C */ void sendCmdMsg(void (*)(void*), void const*, u32);
-    /* 8028FD4C */ void run();
-    /* 8028FE88 */ void pause(bool);
-};
-
 struct JASCalc {
     /* 8028F354 */ void bcopy(void const*, void*, u32);
 };
@@ -59,12 +39,6 @@ extern "C" void* __nw__FUlP7JKRHeapi();
 extern "C" void __dl__FPv();
 extern "C" void __ct__9JKRThreadFP7JKRHeapUlii();
 extern "C" void __dt__9JKRThreadFv();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void OSSendMessage();
-extern "C" void OSReceiveMessage();
-extern "C" void OSLockMutex();
-extern "C" void OSUnlockMutex();
 extern "C" void OSInitThreadQueue();
 extern "C" void OSSleepThread();
 extern "C" void OSWakeupThread();
@@ -104,7 +78,8 @@ asm JASTaskThread::JASTaskThread(int param_0, int param_1, u32 param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JASTaskThread::~JASTaskThread() {
+// asm JASTaskThread::~JASTaskThread() {
+extern "C" asm void __dt__13JASTaskThreadFv() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASTaskThread/__dt__13JASTaskThreadFv.s"
 }

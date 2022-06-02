@@ -10,6 +10,20 @@ void* LOAD_COPYDATE(void*);
 
 class HeapCheck {
 public:
+    // needed for sinit
+    /* HeapCheck(JKRExpHeap* heap, const char* name, const char* jName) {
+        mName = name;
+        mJName = jName;
+        setHeap(heap);
+        mMaxTotalUsedSize = 0;
+        mMaxTotalFreeSize = 0;
+        field_0x14 = 0;
+        field_0x18 = 0;
+        mTargetHeapSize = 0;
+        mUsedCount = 0;
+        mTotalUsedSize = 0;
+    } */
+
     void CheckHeap1(void);
     s32 getUsedCount(void) const;
     void heapDisplay(void) const;
@@ -21,19 +35,23 @@ public:
     void setHeapSize(u32 i_size) { mTargetHeapSize = i_size; }
     s32 getMaxTotalUsedSize() { return mMaxTotalUsedSize; }
     s32 getMaxTotalFreeSize() { return mMaxTotalFreeSize; }
-    char* getName() const { return mName; }
+    const char* getName() const { return mName; }
     void saveRelBase() {
         mUsedCount = getUsedCount();
         mTotalUsedSize = mHeap->getTotalUsedSize();
     }
 
+    u32 getRelUsedCount() const { return getUsedCount() - mUsedCount; }
+    u32 getRelTotalUsedSize() const { return mHeap->getTotalUsedSize() - mTotalUsedSize; }
+
 private:
-    /* 0x00 */ char* mName;
-    /* 0x04 */ char* mJName;
+    /* 0x00 */ const char* mName;
+    /* 0x04 */ const char* mJName;
     /* 0x08 */ JKRExpHeap* mHeap;
     /* 0x0C */ s32 mMaxTotalUsedSize;
     /* 0x10 */ s32 mMaxTotalFreeSize;
-    /* 0x14 */ u8 unk20[8];
+    /* 0x14 */ s32 field_0x14;
+    /* 0x18 */ s32 field_0x18;
     /* 0x1C */ u32 mTargetHeapSize;
     /* 0x20 */ u32 mUsedCount;
     /* 0x24 */ u32 mTotalUsedSize;
@@ -47,7 +65,7 @@ struct mDoMain {
     static OSTime sHungUpTime;
 };
 
-extern s8 data_80450580;
+extern s8 data_80450580;  // Debug enabled
 
 extern bool sOSReportDisabled;
 extern bool data_80450B99;

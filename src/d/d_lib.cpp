@@ -23,10 +23,6 @@ struct dEvt_control_c {
 
 struct JKRExpandSwitch {};
 
-struct JKRArchive {
-    /* 802D65A4 */ void findFsResource(char const*, u32) const;
-};
-
 struct JKRAramArchive {
     /* 802D781C */ void getAramAddress(char const*);
 };
@@ -167,19 +163,19 @@ asm void STControl::Yinit() {
 #endif
 
 f32 STControl::getValueStick() {
-    return mDoCPd_c::getStickValue(mDoCPd_c::PAD_0);
+    return mDoCPd_c::getStickValue(PAD_1);
 }
 
 s16 STControl::getAngleStick() {
-    return mDoCPd_c::getStickAngle(mDoCPd_c::PAD_0);
+    return mDoCPd_c::getStickAngle(PAD_1);
 }
 
 f32 CSTControl::getValueStick() {
-    return mDoCPd_c::getSubStickValue(mDoCPd_c::PAD_0);
+    return mDoCPd_c::getSubStickValue(PAD_1);
 }
 
 s16 CSTControl::getAngleStick() {
-    return mDoCPd_c::getSubStickAngle(mDoCPd_c::PAD_0);
+    return mDoCPd_c::getSubStickAngle(PAD_1);
 }
 
 /* 8003219C-8003242C 02CADC 0290+00 0/0 24/24 0/0 .text            checkTrigger__9STControlFv */

@@ -43,10 +43,10 @@ struct JPADynamicsBlockData {
 typedef void (*JPADynamicsCalcVolumeFunc)(JPAEmitterWorkData*);
 
 enum {
-    JPADynFlag_FixedDensity   = 0x01,
-    JPADynFlag_FixedInterval  = 0x02,
-    JPADynFlag_InheritScale   = 0x04,
-    JPADynFlag_FollowEmtr     = 0x08,
+    JPADynFlag_FixedDensity = 0x01,
+    JPADynFlag_FixedInterval = 0x02,
+    JPADynFlag_InheritScale = 0x04,
+    JPADynFlag_FollowEmtr = 0x08,
     JPADynFlag_FollowEmtrChld = 0x10,
 };
 

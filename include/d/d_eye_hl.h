@@ -26,6 +26,12 @@ public:
 
 class dEyeHL_c : public dEyeHL_mng_c {
 public:
+    dEyeHL_c() {
+        m_timg = NULL;
+        m_pre = NULL;
+        m_next = NULL;
+    }
+
     /* 8009C964 */ void entry(J3DModelData*, char const*);
     /* 8009CA28 */ void remove();
     /* 80140C80 */ ~dEyeHL_c();

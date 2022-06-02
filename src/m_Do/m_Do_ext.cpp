@@ -18,111 +18,7 @@
 // Types:
 //
 
-struct mDoExt_blkAnm {
-    /* 8000DA08 */ void init(J3DDeformData*, J3DAnmCluster*, int, int, f32, s16, s16);
-};
-
-struct mDoExt_MtxCalcAnmBlendTblOld {
-    /* 8000F4B0 */ void calc();
-    /* 80014EB0 */ ~mDoExt_MtxCalcAnmBlendTblOld();
-};
-
-struct mDoExt_MtxCalcAnmBlendTbl {
-    /* 8000F26C */ void calc();
-    /* 80014F3C */ ~mDoExt_MtxCalcAnmBlendTbl();
-};
-
-struct mDoExt_McaMorfCallBack2_c {};
-
-struct Z2Creature {
-    /* 802C0628 */ void initAnime(void*, bool, f32, f32);
-    /* 802C06D0 */ void updateAnime(f32, f32);
-};
-
-struct mDoExt_McaMorfSO {
-    /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
-                                    mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, int, f32, int,
-                                    int, Z2Creature*, u32, u32);
-    /* 80010888 */ ~mDoExt_McaMorfSO();
-    /* 800108F0 */ void create(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
-                               mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, int, f32, int, int,
-                               Z2Creature*, u32, u32);
-    /* 80010B68 */ void calc();
-    /* 80010E70 */ void setAnm(J3DAnmTransform*, int, f32, f32, f32, f32);
-    /* 800110B0 */ void play(u32, s8);
-    /* 80011154 */ void updateDL();
-    /* 800111C0 */ void entryDL();
-    /* 800111EC */ void modelCalc();
-    /* 80011250 */ void getTransform(u16, J3DTransformInfo*);
-    /* 80011310 */ void stopZelAnime();
-};
-
-struct mDoExt_McaMorf2 {
-    /* 80011348 */ mDoExt_McaMorf2(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
-                                   mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, J3DAnmTransform*,
-                                   int, f32, int, int, Z2Creature*, u32, u32);
-    /* 800113FC */ ~mDoExt_McaMorf2();
-    /* 80011464 */ void create(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
-                               mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, J3DAnmTransform*, int,
-                               f32, int, int, Z2Creature*, u32, u32);
-    /* 800116B4 */ void ERROR_EXIT();
-    /* 800116F4 */ void calc();
-    /* 80011D70 */ void setAnm(J3DAnmTransform*, J3DAnmTransform*, f32, int, f32, f32, f32, f32);
-    /* 80011FCC */ void setAnmRate(f32);
-    /* 800120A0 */ void play(u32, s8);
-    /* 80012144 */ void entryDL();
-    /* 80012170 */ void modelCalc();
-    /* 800121E8 */ void stopZelAnime();
-};
-
-struct mDoExt_McaMorf {
-    /* 8000FC4C */ mDoExt_McaMorf(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
-                                  mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, int, f32, int, int,
-                                  int, void*, u32, u32);
-    /* 8000FD10 */ ~mDoExt_McaMorf();
-    /* 8000FD94 */ void create(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
-                               mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, int, f32, int, int,
-                               int, void*, u32, u32);
-    /* 80010074 */ void calc();
-    /* 8001037C */ void setAnm(J3DAnmTransform*, int, f32, f32, f32, f32, void*);
-    /* 800105C8 */ void play(Vec*, u32, s8);
-    /* 80010680 */ void entryDL();
-    /* 800106AC */ void modelCalc();
-    /* 80010710 */ void getTransform(u16, J3DTransformInfo*);
-};
-
-struct mDoExt_3Dline_c {
-    /* 800123D0 */ void init(u16, int, int);
-    /* 800126BC */ mDoExt_3Dline_c();
-};
-
-struct mDoExt_3DlineMat_c {};
-
-struct mDoExt_3DlineMatSortPacket {
-    /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
-    /* 8001479C */ void draw();
-    /* 80014E20 */ ~mDoExt_3DlineMatSortPacket();
-};
-
 struct dKy_tevstr_c {};
-
-struct mDoExt_3DlineMat1_c {
-    /* 80013360 */ void init(u16, u16, ResTIMG*, int);
-    /* 800134F8 */ void setMaterial();
-    /* 800135D0 */ void draw();
-    /* 80013FB0 */ void update(int, _GXColor&, dKy_tevstr_c*);
-    /* 8001373C */ void update(int, f32, _GXColor&, u16, dKy_tevstr_c*);
-    /* 80014E7C */ bool getMaterialID();
-};
-
-struct mDoExt_3DlineMat0_c {
-    /* 800125E0 */ void init(u16, u16, int);
-    /* 800126C0 */ void setMaterial();
-    /* 80012774 */ void draw();
-    /* 80012874 */ void update(int, f32, _GXColor&, u16, dKy_tevstr_c*);
-    /* 80012E3C */ void update(int, _GXColor&, dKy_tevstr_c*);
-    /* 80014E84 */ bool getMaterialID();
-};
 
 struct J3DDrawBuffer;
 
@@ -132,25 +28,6 @@ struct J3DDrawBuffer {
 
 struct dDlst_list_c {
     /* 800565EC */ void entryZSortXluDrawList(J3DDrawBuffer*, J3DPacket*, cXyz&);
-};
-
-struct JAISoundID {};
-
-struct Z2SoundHandlePool {};
-
-struct Z2SoundObjBase {
-    /* 802BE038 */ void framework(u32, s8);
-    /* 802BE070 */ void dispose();
-    /* 802BE104 */ void stopOK(Z2SoundHandlePool&);
-    /* 802BE144 */ void startSound(JAISoundID, u32, s8);
-    /* 802BE2D4 */ void startLevelSound(JAISoundID, u32, s8);
-};
-
-struct Z2SoundObjAnime {
-    /* 802BEB94 */ Z2SoundObjAnime();
-    /* 802BEBDC */ void init(Vec*, u8);
-    /* 802BEBFC */ void initAnime(void*, bool, f32, f32);
-    /* 802BEED4 */ void updateAnime(f32, f32);
 };
 
 struct ResFONT {};
@@ -1446,8 +1323,8 @@ SECTION_DATA extern void* __vt__10J3DMtxCalc[11 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int mDoExt_bckAnm::init(J3DAnmTransform* param_0, int param_1, int param_2, f32 param_3,
-                            s16 param_4, s16 param_5, bool param_6) {
+asm int mDoExt_bckAnm::init(J3DAnmTransform* i_bck, int i_play, int i_attr, f32 i_rate,
+                            s16 i_startF, s16 i_endF, bool i_modify) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb.s"
 }
@@ -2539,7 +2416,8 @@ asm mDoExt_McaMorf::mDoExt_McaMorf(J3DModelData* param_0, mDoExt_McaMorfCallBack
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm mDoExt_McaMorf::~mDoExt_McaMorf() {
+// asm mDoExt_McaMorf::~mDoExt_McaMorf() {
+extern "C" asm void __dt__14mDoExt_McaMorfFv() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/__dt__14mDoExt_McaMorfFv.s"
 }
@@ -2647,7 +2525,8 @@ asm mDoExt_McaMorfSO::mDoExt_McaMorfSO(J3DModelData* param_0, mDoExt_McaMorfCall
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm mDoExt_McaMorfSO::~mDoExt_McaMorfSO() {
+// asm mDoExt_McaMorfSO::~mDoExt_McaMorfSO() {
+extern "C" asm void __dt__16mDoExt_McaMorfSOFv() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/__dt__16mDoExt_McaMorfSOFv.s"
 }
@@ -2774,7 +2653,8 @@ asm mDoExt_McaMorf2::mDoExt_McaMorf2(J3DModelData* param_0, mDoExt_McaMorfCallBa
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm mDoExt_McaMorf2::~mDoExt_McaMorf2() {
+// asm mDoExt_McaMorf2::~mDoExt_McaMorf2() {
+extern "C" asm void __dt__15mDoExt_McaMorf2Fv() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/__dt__15mDoExt_McaMorf2Fv.s"
 }
@@ -3080,7 +2960,8 @@ asm void mDoExt_3DlineMatSortPacket::setMat(mDoExt_3DlineMat_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoExt_3DlineMatSortPacket::draw() {
+// asm void mDoExt_3DlineMatSortPacket::draw() {
+extern "C" asm void draw__26mDoExt_3DlineMatSortPacketFv() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/draw__26mDoExt_3DlineMatSortPacketFv.s"
 }
@@ -3456,25 +3337,16 @@ extern "C" asm void func_80015034(void* _this, Vec const& param_0, f32 const (&p
 /* 8001505C-80015084 00F99C 0028+00 7/0 0/0 0/0 .text
  * init__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void func_8001505C(void* _this, Vec const& param_0, f32 const (&param_1)[3][4]) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/func_8001505C.s"
+void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya>::init(
+    Vec const& param_0, f32 const (&param_1)[3][4]) {
+    J3DMtxCalcJ3DSysInitMaya::init(param_0, param_1);
 }
-#pragma pop
 
 /* 80015084-800150AC 00F9C4 0028+00 2/0 0/0 0/0 .text
  * calc__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void func_80015084(void* _this) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/func_80015084.s"
+void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya>::calc() {
+    calcTransform(getJoint()->getTransformInfo());
 }
-#pragma pop
 
 /* 800150AC-8001513C 00F9EC 0090+00 1/0 0/0 0/0 .text
  * calc__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv

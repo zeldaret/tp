@@ -352,7 +352,7 @@ s32 JKRHeap::getTotalFreeSize() {
 }
 
 /* 802CE7B0-802CE7DC 2C90F0 002C+00 0/0 1/1 0/0 .text            changeGroupID__7JKRHeapFUc */
-u8 JKRHeap::changeGroupID(u8 param_1) {
+s32 JKRHeap::changeGroupID(u8 param_1) {
     return do_changeGroupID(param_1);
 }
 
@@ -624,7 +624,7 @@ void JKRHeap::state_dump(JKRHeap::TState const& p) const {
 }
 
 /* 802CEDA4-802CEDAC 2C96E4 0008+00 1/0 1/0 0/0 .text            do_changeGroupID__7JKRHeapFUc */
-u8 JKRHeap::do_changeGroupID(u8 param_0) {
+s32 JKRHeap::do_changeGroupID(u8 param_0) {
     return 0;
 }
 

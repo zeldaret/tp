@@ -34,12 +34,13 @@ public:
     JPARandom() { mSeed = 0; }
     void set_seed(u32 seed) { mSeed = seed; }
 
-    u32 get_rndm_u() {
-        return mSeed = mSeed * 0x19660du + 0x3c6ef35fu;
-    }
+    u32 get_rndm_u() { return mSeed = mSeed * 0x19660du + 0x3c6ef35fu; }
 
     f32 get_rndm_f() {
-        union { u32 u; f32 f; } a;
+        union {
+            u32 u;
+            f32 f;
+        } a;
         a.u = ((get_rndm_u() >> 9) | 0x3f800000);
         return a.f - 1.0f;
     }
@@ -54,9 +55,7 @@ public:
         return f - 1.0f;
     }
 
-    s16 get_rndm_ss() {
-        return ((s16)get_rndm_u()) >> 16;
-    }
+    s16 get_rndm_ss() { return ((s16)get_rndm_u()) >> 16; }
 
 public:
     u32 mSeed;
@@ -203,9 +202,9 @@ public:
 };
 
 enum {
-    JPAEmtrStts_StopEmit     = 0x01,
-    JPAEmtrStts_StopCalc     = 0x02,
-    JPAEmtrStts_FirstEmit    = 0x10,
+    JPAEmtrStts_StopEmit = 0x01,
+    JPAEmtrStts_StopCalc = 0x02,
+    JPAEmtrStts_FirstEmit = 0x10,
     JPAEmtrStts_RateStepEmit = 0x20,
 };
 
@@ -287,6 +286,7 @@ public:
 
 class JPAParticleCallBack {
 public:
+    JPAParticleCallBack() {}
     virtual ~JPAParticleCallBack();
     virtual void execute(JPABaseEmitter*, JPABaseParticle*);
     virtual void draw(JPABaseEmitter*, JPABaseParticle*);

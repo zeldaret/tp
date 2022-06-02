@@ -117,7 +117,7 @@ public:
     virtual void GetPolyCamThrough(int) = 0;
     virtual void GetPolyLinkThrough(int) = 0;
     virtual void GetPolyArrowThrough(int) = 0;
-    virtual bool GetPolyHSStick(int) = 0;
+    virtual u32 GetPolyHSStick(int) = 0;
     virtual void GetPolyBoomerangThrough(int) = 0;
     virtual void GetPolyRopeThrough(int) = 0;
     virtual void GetPolyBombThrough(int) = 0;
@@ -216,7 +216,7 @@ public:
     /* 8007B504 */ virtual void GetPolyCamThrough(int);
     /* 8007B52C */ virtual void GetPolyLinkThrough(int);
     /* 8007B550 */ virtual void GetPolyArrowThrough(int);
-    /* 8007B574 */ virtual bool GetPolyHSStick(int);
+    /* 8007B574 */ virtual u32 GetPolyHSStick(int);
     /* 8007B598 */ virtual void GetPolyBoomerangThrough(int);
     /* 8007B5BC */ virtual void GetPolyRopeThrough(int);
     /* 8007B5E0 */ virtual void GetPolyBombThrough(int);

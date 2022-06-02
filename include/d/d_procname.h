@@ -1,8 +1,6 @@
-
 #pragma once
 
-enum
-{
+enum {
     PROC_OVERLAP0          = 0x0000,
     PROC_OVERLAP1          = 0x0001,
     PROC_OVERLAP3          = 0x0002,

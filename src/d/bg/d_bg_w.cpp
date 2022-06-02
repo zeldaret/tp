@@ -1076,7 +1076,7 @@ asm void dBgW::GetPolyArrowThrough(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool dBgW::GetPolyHSStick(int param_0) {
+asm u32 dBgW::GetPolyHSStick(int param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetPolyHSStick__4dBgWFi.s"
 }

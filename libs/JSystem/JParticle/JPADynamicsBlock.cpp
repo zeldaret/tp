@@ -4,8 +4,8 @@
 //
 
 #include "JSystem/JParticle/JPADynamicsBlock.h"
-#include "JSystem/JParticle/JPAParticle.h"
 #include "JSystem/JMath/JMATrigonometric.h"
+#include "JSystem/JParticle/JPAParticle.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -64,7 +64,8 @@ SECTION_SDATA2 static f32 lit_2289[1 + 1 /* padding */] = {
 // bug in diff.py preventing me from seeing what's wrong
 void JPAVolumePoint(JPAEmitterWorkData* work) {
     work->mVolumePos.zero();
-    work->mVelOmni.set(work->mpEmtr->get_r_zh(), work->mpEmtr->get_r_zh(), work->mpEmtr->get_r_zh());
+    work->mVelOmni.set(work->mpEmtr->get_r_zh(), work->mpEmtr->get_r_zh(),
+                       work->mpEmtr->get_r_zh());
     work->mVelAxis.set(work->mVelOmni.x, 0.0f, work->mVelOmni.z);
 }
 
@@ -91,7 +92,9 @@ SECTION_SDATA2 static f64 lit_2321 = 4503601774854144.0 /* cast s32 to float */;
 // bug in diff.py preventing me from seeing what's wrong
 void JPAVolumeLine(JPAEmitterWorkData* work) {
     if (work->mpEmtr->checkFlag(JPADynFlag_FixedInterval)) {
-        work->mVolumePos.set(0.0f, 0.0f, work->mVolumeSize * (s32)((work->mVolumeEmitIdx / (work->mEmitCount - 1.0f) - 0.5f)));
+        work->mVolumePos.set(0.0f, 0.0f,
+                             work->mVolumeSize *
+                                 (s32)((work->mVolumeEmitIdx / (work->mEmitCount - 1.0f) - 0.5f)));
         work->mVolumeEmitIdx++;
     } else {
         work->mVolumePos.set(0.0f, 0.0f, work->mVolumeSize * work->mpEmtr->get_r_zh());
@@ -158,7 +161,8 @@ static asm void JPAVolumeCircle(JPAEmitterWorkData* param_0) {
 // bug in diff.py preventing me from seeing what's wrong
 void JPAVolumeCube(JPAEmitterWorkData* work) {
     f32 size = work->mVolumeSize;
-    work->mVolumePos.set(size * work->mpEmtr->get_r_zh(), size * work->mpEmtr->get_r_zh(), size * work->mpEmtr->get_r_zh());
+    work->mVolumePos.set(size * work->mpEmtr->get_r_zh(), size * work->mpEmtr->get_r_zh(),
+                         size * work->mpEmtr->get_r_zh());
     work->mVelOmni.mul(work->mVolumePos, work->mGlobalScl);
     work->mVelAxis.set(work->mVolumePos.x, 0.0f, work->mVolumePos.z);
 }
@@ -224,25 +228,39 @@ JPADynamicsBlock::JPADynamicsBlock(u8 const* data) {
 }
 
 enum {
-    VOL_Cube     = 0x00,
-    VOL_Sphere   = 0x01,
+    VOL_Cube = 0x00,
+    VOL_Sphere = 0x01,
     VOL_Cylinder = 0x02,
-    VOL_Torus    = 0x03,
-    VOL_Point    = 0x04,
-    VOL_Circle   = 0x05,
-    VOL_Line     = 0x06,
+    VOL_Torus = 0x03,
+    VOL_Point = 0x04,
+    VOL_Circle = 0x05,
+    VOL_Line = 0x06,
 };
 
 /* 8027BB4C-8027BBE8 27648C 009C+00 2/1 0/0 0/0 .text            init__16JPADynamicsBlockFv */
 void JPADynamicsBlock::init() {
     switch (getVolumeType()) {
-    case VOL_Cube:     mpCalcVolumeFunc = &JPAVolumeCube;     break;
-    case VOL_Sphere:   mpCalcVolumeFunc = &JPAVolumeSphere;   break;
-    case VOL_Cylinder: mpCalcVolumeFunc = &JPAVolumeCylinder; break;
-    case VOL_Torus:    mpCalcVolumeFunc = &JPAVolumeTorus;    break;
-    case VOL_Point:    mpCalcVolumeFunc = &JPAVolumePoint;    break;
-    case VOL_Circle:   mpCalcVolumeFunc = &JPAVolumeCircle;   break;
-    case VOL_Line:     mpCalcVolumeFunc = &JPAVolumeLine;     break;
+    case VOL_Cube:
+        mpCalcVolumeFunc = &JPAVolumeCube;
+        break;
+    case VOL_Sphere:
+        mpCalcVolumeFunc = &JPAVolumeSphere;
+        break;
+    case VOL_Cylinder:
+        mpCalcVolumeFunc = &JPAVolumeCylinder;
+        break;
+    case VOL_Torus:
+        mpCalcVolumeFunc = &JPAVolumeTorus;
+        break;
+    case VOL_Point:
+        mpCalcVolumeFunc = &JPAVolumePoint;
+        break;
+    case VOL_Circle:
+        mpCalcVolumeFunc = &JPAVolumeCircle;
+        break;
+    case VOL_Line:
+        mpCalcVolumeFunc = &JPAVolumeLine;
+        break;
     }
 }
 
@@ -269,13 +287,15 @@ void JPADynamicsBlock::create(JPAEmitterWorkData* work) {
 
             work->mVolumeEmitIdx = 0;
         } else {
-            f32 newPtclCount = work->mpEmtr->mRate * (getRateRndm() * work->mpEmtr->get_r_zp() + 1.0f);
+            f32 newPtclCount =
+                work->mpEmtr->mRate * (getRateRndm() * work->mpEmtr->get_r_zp() + 1.0f);
             f32 newEmitCount = work->mpEmtr->mEmitCount + newPtclCount;
             work->mpEmtr->mEmitCount = newEmitCount;
             emitCount = (s32)newEmitCount;
             work->mpEmtr->mEmitCount -= emitCount;
 
-            if (work->mpEmtr->checkStatus(JPAEmtrStts_FirstEmit) && 0.0f < newPtclCount && newPtclCount < 1.0f)
+            if (work->mpEmtr->checkStatus(JPAEmtrStts_FirstEmit) && 0.0f < newPtclCount &&
+                newPtclCount < 1.0f)
                 emitCount = 1;
         }
 

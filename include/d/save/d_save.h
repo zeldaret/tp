@@ -833,6 +833,8 @@ public:
     void setEventReg(u16 i_reg, u8 i_no);
     u8 getEventReg(u16 i_reg) const;
 
+    void* getPEventBit() { return (void*)mEvent; }
+
 private:
     /* 0x0 */ u8 mEvent[256];
 };  // Size: 0x100

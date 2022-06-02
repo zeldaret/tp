@@ -53,7 +53,7 @@ public:
     /* 80082B98 */ virtual void GetPolyCamThrough(int);
     /* 80082BC4 */ virtual void GetPolyLinkThrough(int);
     /* 80082BF0 */ virtual void GetPolyArrowThrough(int);
-    /* 80082C1C */ virtual void GetPolyHSStick(int);
+    /* 80082C1C */ virtual u32 GetPolyHSStick(int);
     /* 80082C48 */ virtual void GetPolyBoomerangThrough(int);
     /* 80082C74 */ virtual void GetPolyRopeThrough(int);
     /* 80082CA0 */ virtual void GetPolyBombThrough(int);

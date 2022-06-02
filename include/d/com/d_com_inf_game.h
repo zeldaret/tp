@@ -650,6 +650,7 @@ void* dComIfG_getOldStageRes(char const* resName);
 void dComIfG_get_timelayer(int* layer);
 int dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* resName);
 int dComIfG_changeOpeningScene(scene_class* scene, s16 procName);
+int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* arc_name);
 
 inline void dComIfG_setBrightness(u8 brightness) {
     g_dComIfG_gameInfo.mFadeBrightness = brightness;
@@ -755,6 +756,7 @@ void dComIfGs_offZoneSwitch(int param_0, int param_1);
 void dComIfGs_offOneZoneSwitch(int param_0, int param_1);
 s8 dComIfGp_getReverb(int roomNo);
 void dComIfGs_gameStart();
+int dComIfGs_wolfeye_effect_check();
 
 inline void dComIfGs_onDungeonItemMap() {
     g_dComIfG_gameInfo.info.getMemory().getBit().onDungeonItemMap();
@@ -1353,6 +1355,10 @@ inline void dComIfGs_setSaveStartTime(s64 time) {
 
 inline void dComIfGs_setNoFile(u8 file) {
     g_dComIfG_gameInfo.info.setNoFile(file);
+}
+
+inline void* dComIfGs_getPEventBit() {
+    return g_dComIfG_gameInfo.info.getEvent().getPEventBit();
 }
 
 void dComIfGp_setItemLifeCount(f32 amount, u8 type);

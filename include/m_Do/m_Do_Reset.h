@@ -38,7 +38,7 @@ public:
     static u8 getProgSeqFlag() { return mResetData->mProgSeqFlag; }
     static u8 getWarningDispFlag() { return mResetData->mWarningDispFlag; }
     static BOOL isReturnToMenu() { return mResetData->mReturnToMenu; }
-    static bool isShutdown() { return mResetData->mShutdown; }
+    static BOOL isShutdown() { return mResetData->mShutdown; }
     static int isReset() { return mResetData->mReset; }
     static int get3ButtonResetPort() { return mResetData->m3ButtonResetPort; }
     static int is3ButtonReset() { return mResetData->m3ButtonReset; }
@@ -53,5 +53,7 @@ public:
 
     static mDoRstData* mResetData;
 };
+
+extern u8 data_80450C88;
 
 #endif /* M_DO_M_DO_RESET_H */

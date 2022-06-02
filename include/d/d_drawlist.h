@@ -14,19 +14,6 @@
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 
-struct mDoExt_3DlineMat_c {};
-
-class mDoExt_3DlineMatSortPacket : public J3DPacket {
-public:
-    mDoExt_3DlineMatSortPacket();
-
-    virtual void draw();
-    virtual ~mDoExt_3DlineMatSortPacket();
-
-private:
-    /* 0x10 */ mDoExt_3DlineMat_c* mp3DlineMat;
-};
-
 class cM_rnd_c {
 public:
     /* 80053CDC */ void init(int, int, int);
@@ -42,6 +29,7 @@ public:
 
 class dDlst_base_c {
 public:
+    dDlst_base_c() {}
     virtual void draw();
 };
 

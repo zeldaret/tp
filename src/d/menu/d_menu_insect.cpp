@@ -65,16 +65,6 @@ struct dMeter2Info_c {
                                         J2DPicture*, void*, J2DPicture*, int);
 };
 
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
 //
 // Forward References:
 //

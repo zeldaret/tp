@@ -277,15 +277,15 @@ inline BOOL dComIfGp_event_runCheck() {
 }
 
 BOOL dMw_UP_TRIGGER() {
-    return (bool)mDoCPd_c::getTrigUp(mDoCPd_c::PAD_0);
+    return (bool)mDoCPd_c::getTrigUp(PAD_1);
 }
 
 bool dMw_DOWN_TRIGGER() {
-    return mDoCPd_c::getTrigDown(mDoCPd_c::PAD_0);
+    return mDoCPd_c::getTrigDown(PAD_1);
 }
 
 BOOL dMw_LEFT_TRIGGER() {
-    if (mDoCPd_c::getTrigLeft(mDoCPd_c::PAD_0) && !dMw_UP_TRIGGER()) {
+    if (mDoCPd_c::getTrigLeft(PAD_1) && !dMw_UP_TRIGGER()) {
         return true;
     } else {
         return false;
@@ -293,7 +293,7 @@ BOOL dMw_LEFT_TRIGGER() {
 }
 
 BOOL dMw_RIGHT_TRIGGER() {
-    if (mDoCPd_c::getTrigRight(mDoCPd_c::PAD_0) && !dMw_UP_TRIGGER()) {
+    if (mDoCPd_c::getTrigRight(PAD_1) && !dMw_UP_TRIGGER()) {
         return true;
     } else {
         return false;
@@ -301,19 +301,19 @@ BOOL dMw_RIGHT_TRIGGER() {
 }
 
 bool dMw_A_TRIGGER() {
-    return mDoCPd_c::getTrigA(mDoCPd_c::PAD_0);
+    return mDoCPd_c::getTrigA(PAD_1);
 }
 
 BOOL dMw_B_TRIGGER() {
-    return (bool)mDoCPd_c::getTrigB(mDoCPd_c::PAD_0);
+    return (bool)mDoCPd_c::getTrigB(PAD_1);
 }
 
 bool dMw_Z_TRIGGER() {
-    return mDoCPd_c::getTrigZ(mDoCPd_c::PAD_0);
+    return mDoCPd_c::getTrigZ(PAD_1);
 }
 
 BOOL dMw_START_TRIGGER() {
-    return (bool)mDoCPd_c::getTrigStart(mDoCPd_c::PAD_0);
+    return (bool)mDoCPd_c::getTrigStart(PAD_1);
 }
 
 void dMw_onPauseWindow() {
@@ -2011,9 +2011,9 @@ void dMw_c::dMw_collect_create() {
     mpMenuCollect = new dMenu_Collect_c(mpHeap, mpStick, mpCStick);
     mpMenuCollect->_create();
 
-    if (mDoCPd_c::getHoldLockL(mDoCPd_c::PAD_0)) {
+    if (mDoCPd_c::getHoldLockL(PAD_1)) {
         dMw_onButtonBit(1);
-    } else if (mDoCPd_c::getHoldLockR(mDoCPd_c::PAD_0)) {
+    } else if (mDoCPd_c::getHoldLockR(PAD_1)) {
         dMw_onButtonBit(2);
     }
 }

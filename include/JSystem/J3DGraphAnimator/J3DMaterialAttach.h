@@ -15,10 +15,10 @@ class J3DMaterialTable {
 public:
     /* 8032F5A8 */ void clear();
     /* 8032F5D0 */ J3DMaterialTable();
-    /* 8032F64C */ bool removeMatColorAnimator(J3DAnmColor*);
-    /* 8032F6F8 */ void removeTexNoAnimator(J3DAnmTexPattern*);
-    /* 8032F7B4 */ void removeTexMtxAnimator(J3DAnmTextureSRTKey*);
-    /* 8032F880 */ void removeTevRegAnimator(J3DAnmTevRegKey*);
+    /* 8032F64C */ int removeMatColorAnimator(J3DAnmColor*);
+    /* 8032F6F8 */ int removeTexNoAnimator(J3DAnmTexPattern*);
+    /* 8032F7B4 */ int removeTexMtxAnimator(J3DAnmTextureSRTKey*);
+    /* 8032F880 */ int removeTevRegAnimator(J3DAnmTevRegKey*);
     /* 8032F9C0 */ void createTexMtxForAnimator(J3DAnmTextureSRTKey*);
     /* 8032FAF4 */ void entryMatColorAnimator(J3DAnmColor*);
     /* 8032FBC8 */ void entryTexNoAnimator(J3DAnmTexPattern*);

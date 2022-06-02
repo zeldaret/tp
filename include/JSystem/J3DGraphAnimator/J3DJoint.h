@@ -19,7 +19,7 @@ public:
     /* 80014E94 */ virtual bool getAnmTransform(u8);
     /* 80014EA4 */ virtual void setWeight(u8, f32);
     /* 80014EA8 */ virtual void getWeight(u8) const;
-    virtual void init(Vec const&, Mtx*) = 0;
+    virtual void init(Vec const& param_0, Mtx*) = 0;
     virtual void calc() = 0;
 
     static J3DMtxBuffer* getMtxBuffer() { return mMtxBuffer; }
@@ -34,8 +34,14 @@ public:
     /* 8000FA8C */ virtual ~J3DMtxCalcNoAnmBase();
 };
 
-template <typename A, typename B>
-class J3DMtxCalcNoAnm : public J3DMtxCalcNoAnmBase, public A, public B {};
+template <class A, class B>
+class J3DMtxCalcNoAnm : public J3DMtxCalcNoAnmBase, public A, public B {
+public:
+    J3DMtxCalcNoAnm() {}
+    virtual ~J3DMtxCalcNoAnm() {}
+    virtual void init(Vec const& param_0, f32 const (&param_1)[3][4]);
+    virtual void calc();
+};
 
 class J3DJoint;
 typedef int (*J3DJointCallBack)(J3DJoint*, int);
@@ -53,6 +59,7 @@ public:
     J3DJoint* getYounger() { return mYounger; }
     void setYounger(J3DJoint* pYounger) { mYounger = pYounger; }
     void setCurrentMtxCalc(J3DMtxCalc* pMtxCalc) { mCurrentMtxCalc = pMtxCalc; }
+    J3DTransformInfo& getTransformInfo() { return mTransformInfo; }
 
     static J3DMtxCalc* mCurrentMtxCalc;
 

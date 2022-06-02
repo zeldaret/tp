@@ -31,8 +31,8 @@ public:
     u32 getMtxIdxRegB() const { return mMtxIdxRegB; }
 
     inline void load() const {
-        J3DFifoWriteCPCmd(0x30, getMtxIdxRegA()); // CP_MATINDEX_A
-        J3DFifoWriteCPCmd(0x40, getMtxIdxRegB()); // CP_MATINDEX_B
+        J3DFifoWriteCPCmd(0x30, getMtxIdxRegA());  // CP_MATINDEX_A
+        J3DFifoWriteCPCmd(0x40, getMtxIdxRegB());  // CP_MATINDEX_B
         J3DFifoWriteXFCmd(0x1018, 2);
         GFX_FIFO(u32) = getMtxIdxRegA();
         GFX_FIFO(u32) = getMtxIdxRegB();
@@ -44,12 +44,12 @@ class J3DVertexData;
 class J3DDrawMtxData;
 
 enum J3DShpFlag {
-    J3DShpFlag_Visible     = 0x0001,
-    J3DShpFlag_SkinPosCpu  = 0x0004,
-    J3DShpFlag_SkinNrmCpu  = 0x0008,
-    J3DShpFlag_Hidden      = 0x0010,
-    J3DShpFlag_EnableLod   = 0x0100,
-    J3DShpFlag_NoMtx       = 0x0200,
+    J3DShpFlag_Visible = 0x0001,
+    J3DShpFlag_SkinPosCpu = 0x0004,
+    J3DShpFlag_SkinNrmCpu = 0x0008,
+    J3DShpFlag_Hidden = 0x0010,
+    J3DShpFlag_EnableLod = 0x0100,
+    J3DShpFlag_NoMtx = 0x0200,
 };
 
 class J3DShape {

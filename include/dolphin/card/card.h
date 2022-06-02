@@ -3,23 +3,23 @@
 
 #include "dolphin/types.h"
 
-#define CARD_ERROR_UNLOCKED			1
-#define CARD_ERROR_READY            0
-#define CARD_ERROR_BUSY            -1
-#define CARD_ERROR_WRONGDEVICE     -2
-#define CARD_ERROR_NOCARD          -3
-#define CARD_ERROR_NOFILE          -4
-#define CARD_ERROR_IOERROR         -5
-#define CARD_ERROR_BROKEN          -6
-#define CARD_ERROR_EXIST           -7
-#define CARD_ERROR_NOENT           -8
-#define CARD_ERROR_INSSPACE        -9
-#define CARD_ERROR_NOPERM          -10
-#define CARD_ERROR_LIMIT           -11
-#define CARD_ERROR_NAMETOOLONG     -12
-#define CARD_ERROR_ENCODING        -13
-#define CARD_ERROR_CANCELED        -14
-#define CARD_ERROR_FATAL_ERROR     -128
+#define CARD_ERROR_UNLOCKED 1
+#define CARD_ERROR_READY 0
+#define CARD_ERROR_BUSY -1
+#define CARD_ERROR_WRONGDEVICE -2
+#define CARD_ERROR_NOCARD -3
+#define CARD_ERROR_NOFILE -4
+#define CARD_ERROR_IOERROR -5
+#define CARD_ERROR_BROKEN -6
+#define CARD_ERROR_EXIST -7
+#define CARD_ERROR_NOENT -8
+#define CARD_ERROR_INSSPACE -9
+#define CARD_ERROR_NOPERM -10
+#define CARD_ERROR_LIMIT -11
+#define CARD_ERROR_NAMETOOLONG -12
+#define CARD_ERROR_ENCODING -13
+#define CARD_ERROR_CANCELED -14
+#define CARD_ERROR_FATAL_ERROR -128
 
 struct CARDFileInfo {
     /* 0x00 */ s32 channel;
@@ -69,6 +69,5 @@ s32 CARDGetStatus(s32 channel, s32 fileNo, CARDStat* stat);
 s32 CARDSetStatus(s32 channel, s32 fileNo, CARDStat* stat);
 s32 CARDGetSerialNo(s32 channel, u32* serial1, u32* serial2);
 };
-
 
 #endif /* CARD_H */

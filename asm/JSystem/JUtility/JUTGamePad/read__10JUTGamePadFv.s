@@ -4,8 +4,8 @@ lbl_802E08E4:
 /* 802E08EC  90 01 00 44 */	stw r0, 0x44(r1)
 /* 802E08F0  39 61 00 40 */	addi r11, r1, 0x40
 /* 802E08F4  48 08 18 CD */	bl _savegpr_22
-/* 802E08F8  3C 60 80 43 */	lis r3, lit_525@ha /* 0x804343D8@ha */
-/* 802E08FC  3B E3 43 D8 */	addi r31, r3, lit_525@l /* 0x804343D8@l */
+/* 802E08F8  3C 60 80 43 */	lis r3, mPadList__10JUTGamePad-0xC@ha /* 0x804343D8@ha */
+/* 802E08FC  3B E3 43 D8 */	addi r31, r3, mPadList__10JUTGamePad-0xC@l /* 0x804343D8@l */
 /* 802E0900  38 7F 00 18 */	addi r3, r31, 0x18
 /* 802E0904  48 06 E5 9D */	bl PADRead
 /* 802E0908  90 6D 8F 60 */	stw r3, sRumbleSupported__10JUTGamePad(r13)

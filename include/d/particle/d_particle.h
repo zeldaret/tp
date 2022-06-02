@@ -13,6 +13,8 @@ public:
 
 class dPa_hermiteEcallBack_c : public dPa_levelEcallBack {
 public:
+    dPa_hermiteEcallBack_c() {}
+
     /* 8004F6B8 */ void setOldPosP(cXyz const*, cXyz const*);
 
     /* 8004FCC8 */ virtual ~dPa_hermiteEcallBack_c();

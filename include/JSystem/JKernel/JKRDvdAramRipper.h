@@ -37,7 +37,8 @@ class JKRDvdAramRipper {
 public:
     static JKRAramBlock* loadToAram(long, u32, JKRExpandSwitch, u32, u32, u32*);
     static JKRAramBlock* loadToAram(JKRDvdFile*, u32, JKRExpandSwitch, u32, u32, u32*);
-    static JKRADCommand* loadToAram_Async(JKRDvdFile*, u32, JKRExpandSwitch, void (*)(u32), u32, u32, u32*);
+    static JKRADCommand* loadToAram_Async(JKRDvdFile*, u32, JKRExpandSwitch, void (*)(u32), u32,
+                                          u32, u32*);
     static JKRADCommand* callCommand_Async(JKRADCommand*);
     static bool syncAram(JKRADCommand*, int);
 

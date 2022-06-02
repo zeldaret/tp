@@ -7,7 +7,7 @@
 
 // Cylinder
 struct cM3dGCylS {
-    /* 0x00 */ cXyz mCenter;
+    /* 0x00 */ Vec mCenter;
     /* 0x0C */ f32 mRadius;
     /* 0x10 */ f32 mHeight;
 };  // Size = 0x14

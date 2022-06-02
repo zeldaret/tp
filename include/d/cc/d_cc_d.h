@@ -58,6 +58,8 @@ public:
     /* 8008523C */ virtual ~dCcD_GStts() {}
     void ClrTg() { mTg = 0; }
     void SetAtApid(unsigned int id) { mAtApid = id; }
+    u8 GetRoomId() { return mRoomId; }
+    void SetRoomId(int id) { mRoomId = id; }
 
     // private:
     /* 0x04 */ u8 mAt;
@@ -213,6 +215,7 @@ public:
     u8 GetAtSe() { return mGObjAt.GetSe(); }
     s32 GetAtSpl() { return mGObjAt.GetSpl(); }
     u8 GetAtMtrl() { return mGObjAt.GetMtrl(); }
+    fopAc_ac_c* GetTgHitAc() { return mGObjTg.GetAc(); }
 
     static u32 const m_hitSeID[24];
 

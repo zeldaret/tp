@@ -88,10 +88,6 @@ struct ShdwDrawPoly_c {
     /* 80054A6C */ ~ShdwDrawPoly_c();
 };
 
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
 struct J3DUClipper {
     /* 8027378C */ void calcViewFrustum();
     /* 80273A44 */ void clip(f32 const (*)[4], Vec*, Vec*) const;
@@ -267,7 +263,6 @@ extern "C" extern void* __vt__9J3DPacket[5];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mClipper__14mDoLib_clipper[92];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_envHIO[68];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" u8 mBackColor__13mDoGph_gInf_c[4];

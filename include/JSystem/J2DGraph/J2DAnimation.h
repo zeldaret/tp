@@ -11,13 +11,13 @@
 class J2DScreen;
 
 enum J2DAnmKind {
-    KIND_TRANSFORM   = 0,
-    KIND_COLOR       = 1,
+    KIND_TRANSFORM = 0,
+    KIND_COLOR = 1,
     KIND_TEX_PATTERN = 2,
     KIND_TEXTURE_SRT = 4,
-    KIND_TEV_REG     = 5,
-    KIND_VISIBILITY  = 6,
-    KIND_VTX_COLOR   = 7
+    KIND_TEV_REG = 5,
+    KIND_VISIBILITY = 6,
+    KIND_VTX_COLOR = 7
 };
 
 class J2DAnmBase {

@@ -117,16 +117,6 @@ struct dMenu_Fishing_c {
     /* 801C5470 */ void _close();
 };
 
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
 struct J3DTexNoAnm {
     /* 8003B1F8 */ ~J3DTexNoAnm();
     /* 8003B240 */ J3DTexNoAnm();
@@ -437,7 +427,6 @@ extern "C" extern void* __vt__8J3DModel[9];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_drawHIO[3880];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" f32 Zero__4cXyz[3];

@@ -90,27 +90,6 @@ struct dDemo_c {
     static u8 m_mesgControl[4];
 };
 
-struct Z2StatusMgr {
-    /* 802B60CC */ void talkIn();
-    /* 802B6104 */ void talkOut();
-};
-
-struct Z2SpeechMgr2 {
-    /* 802CBF60 */ void setTextCount(s16);
-};
-
-struct Z2SeqMgr {
-    /* 802AFF8C */ void changeBgmStatus(s32);
-};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
 //
 // Forward References:
 //

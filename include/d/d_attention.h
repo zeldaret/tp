@@ -203,17 +203,15 @@ public:
     /* 8014B010 */ void getDistTable(int);
 
     dAttCatch_c& getCatghTarget() { return mCatghTarget; }
-    bool chkFlag(u32 flag) { return mFlags & flag; }
-    BOOL Lockon() {
-        bool chk = true;
-        if (!LockonTruth()) {
-            if (!chkFlag(0x20000000)) {
-                chk = false;
-            }
+    BOOL chkFlag(u32 flag) { return mFlags & flag; }
+    s8 Lockon() {
+        /* s32 chk = true;
+        if (!LockonTruth() && !chkFlag(0x20000000)) {
+            chk = false;
         }
-        return chk;
+        return chk; */
 
-        // return !LockonTruth() && !chkFlag(0x20000000);
+        return !LockonTruth() && !chkFlag(0x20000000);
     }
 
     static u8 loc_type_tbl[12];

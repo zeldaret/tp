@@ -39,6 +39,8 @@ public:
     /* 800172D4 */ s32 checkspace();
     /* 80017360 */ void setCardState(s32);
 
+    bool isCardCommNone() { return mCardCommand == CARD_NO_COMMAND; }
+
     /* 0x0000 */ u8 mData[0x1FBC];
     /* 0x1FBC */ u8 mChannel;
     /* 0x1FBD */ u8 mCopyToPos;
@@ -58,5 +60,9 @@ STATIC_ASSERT(sizeof(mDoMemCd_Ctrl_c) == 8192);
 static int mDoMemCd_main(void*);
 
 extern mDoMemCd_Ctrl_c g_mDoMemCd_control;
+
+inline bool mDoMemCd_isCardCommNone() {
+    return g_mDoMemCd_control.isCardCommNone();
+}
 
 #endif /* M_DO_M_DO_MEMCARD_H */

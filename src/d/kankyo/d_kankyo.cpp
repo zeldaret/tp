@@ -5,7 +5,6 @@
 
 #include "d/kankyo/d_kankyo.h"
 #include "MSL_C/MSL_Common/Src/mem.h"
-#include "Z2AudioLib/Z2EnvSeMgr.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/kankyo/d_kankyo_data.h"
 #include "d/msg/d_msg_object.h"
@@ -755,12 +754,8 @@ static asm void dKy_pos2_get_angle(cXyz* param_0, cXyz* param_1, s16* param_2, s
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 8042CA48-8042CA54 059768 000C+00 2/2 0/0 0/0 .bss             @4112 */
-static u8 lit_4112[12];
-
 /* 8042CA54-8042DD64 059774 1310+00 116/118 128/128 649/649 .bss             g_env_light */
-u8 g_env_light[4880];
+dScnKy_env_light_c g_env_light;
 
 /* 80453C28-80453C2C 002228 0004+00 1/1 0/0 0/0 .sdata2          @4441 */
 SECTION_SDATA2 static f32 lit_4441 = 0.0054931640625f;
@@ -1018,7 +1013,7 @@ static asm void dKy_eflight_influence_id(cXyz param_0, int param_1) {
 
 /* 8019E404-8019E430 198D44 002C+00 1/1 0/0 0/0 .text            dKy_light_influence_col__Fi */
 static GXColorS10 dKy_light_influence_col(int param_0) {
-    dScnKy_env_light_c* env_light = ((dScnKy_env_light_c*)g_env_light);
+    dScnKy_env_light_c* env_light = &g_env_light;
     return env_light->mPointLight[param_0 >= 0 ? param_0 : 0]->mColor;
 }
 
@@ -1038,13 +1033,13 @@ asm void dKy_light_influence_col(_GXColor* param_0, f32 param_1) {
 
 /* 8019E520-8019E548 198E60 0028+00 1/1 0/0 0/0 .text            dKy_light_influence_power__Fi */
 static f32 dKy_light_influence_power(int param_0) {
-    dScnKy_env_light_c* env_light = ((dScnKy_env_light_c*)g_env_light);
+    dScnKy_env_light_c* env_light = &g_env_light;
     return env_light->mPointLight[param_0 >= 0 ? param_0 : 0]->mPow;
 }
 
 /* 8019E548-8019E570 198E88 0028+00 1/1 0/0 0/0 .text            dKy_light_influence_yuragi__Fi */
 static f32 dKy_light_influence_yuragi(int param_0) {
-    dScnKy_env_light_c* env_light = ((dScnKy_env_light_c*)g_env_light);
+    dScnKy_env_light_c* env_light = &g_env_light;
     return env_light->mPointLight[param_0 >= 0 ? param_0 : 0]->mFluctuation;
 }
 
@@ -1064,25 +1059,25 @@ SECTION_SDATA2 static f32 lit_5077 = 99999.8984375f;
 
 /* 8019E694-8019E708 198FD4 0074+00 2/2 0/0 0/0 .text            plight_init__Fv */
 static void plight_init() {
-    (*(dScnKy_env_light_c*)g_env_light).field_0x38[0].mPow = lit_5077;
+    g_env_light.field_0x38[0].mPow = lit_5077;
 
     for (int i = 0; i < 100; i++) {
-        (*(dScnKy_env_light_c*)g_env_light).mPointLight[i] = NULL;
+        g_env_light.mPointLight[i] = NULL;
     }
 
     for (int i = 0; i < 5; i++) {
-        (*(dScnKy_env_light_c*)g_env_light).mEfPLight[i] = NULL;
-        (*(dScnKy_env_light_c*)g_env_light).field_0x72c[i] = NULL;
+        g_env_light.mEfPLight[i] = NULL;
+        g_env_light.field_0x72c[i] = NULL;
     }
 
-    (*(dScnKy_env_light_c*)g_env_light).field_0x12a4 = -1;
-    (*(dScnKy_env_light_c*)g_env_light).field_0x12a8 = -1;
+    g_env_light.field_0x12a4 = -1;
+    g_env_light.field_0x12a8 = -1;
 }
 
 /* 8019E708-8019E734 199048 002C+00 1/1 0/0 0/0 .text            darkmist_init__Fv */
 static void darkmist_init() {
     for (int i = 0; i < 10; i++) {
-        (*(dScnKy_env_light_c*)g_env_light).mDalkmistInf[i] = NULL;
+        g_env_light.mDalkmistInf[i] = NULL;
     }
 }
 
@@ -1152,25 +1147,22 @@ static asm void dungeonlight_init() {
 /* 8019EAA0-8019EBD0 1993E0 0130+00 1/1 0/0 0/0 .text            undwater_init__Fv */
 static void undwater_init() {
     J3DModelData* modelData2 = (J3DModelData*)dComIfG_getObjectRes("Always", 0x1D);
-    (*(dScnKy_env_light_c*)g_env_light).field_0xf38 =
-        mDoExt_createSolidHeapFromGameToCurrent(0x600, 0x20);
+    g_env_light.field_0xf38 = mDoExt_createSolidHeapFromGameToCurrent(0x600, 0x20);
 
-    if ((*(dScnKy_env_light_c*)g_env_light).field_0xf38 != NULL) {
-        (*(dScnKy_env_light_c*)g_env_light).field_0xf30 =
-            mDoExt_J3DModel__create(modelData2, 0x80000, 0x11020202);
+    if (g_env_light.field_0xf38 != NULL) {
+        g_env_light.field_0xf30 = mDoExt_J3DModel__create(modelData2, 0x80000, 0x11020202);
 
-        if ((*(dScnKy_env_light_c*)g_env_light).field_0xf30 != NULL) {
-            (*(dScnKy_env_light_c*)g_env_light).field_0x105c = new mDoExt_btkAnm();
+        if (g_env_light.field_0xf30 != NULL) {
+            g_env_light.field_0x105c = new mDoExt_btkAnm();
 
-            if ((*(dScnKy_env_light_c*)g_env_light).field_0x105c != NULL) {
+            if (g_env_light.field_0x105c != NULL) {
                 J3DAnmTextureSRTKey* key =
                     (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Always", 0x3C);
-                (*(dScnKy_env_light_c*)g_env_light)
-                    .field_0x105c->init(modelData2, key, 1, 2, lit_4505, 0, -1);
+                g_env_light.field_0x105c->init(modelData2, key, 1, 2, lit_4505, 0, -1);
             }
         }
         mDoExt_restoreCurrentHeap();
-        mDoExt_adjustSolidHeap((*(dScnKy_env_light_c*)g_env_light).field_0xf38);
+        mDoExt_adjustSolidHeap(g_env_light.field_0xf38);
     }
 }
 
@@ -1182,7 +1174,7 @@ static void dKy_light_size_get(char const* stage) {
     if (!dKy_darkworld_check()) {
         for (int i = 0; i < 36; i++) {
             if (!strcmp(stage, lightTbl->stageName)) {
-                (*(dScnKy_env_light_c*)g_env_light).field_0x1309 = lightTbl->size;
+                g_env_light.field_0x1309 = lightTbl->size;
                 return;
             }
             lightTbl++;
@@ -1190,7 +1182,7 @@ static void dKy_light_size_get(char const* stage) {
     } else {
         for (int i = 0; i < 9; i++) {
             if (!strcmp(stage, lightTwTbl->stageName)) {
-                (*(dScnKy_env_light_c*)g_env_light).field_0x1309 = lightTwTbl->size;
+                g_env_light.field_0x1309 = lightTwTbl->size;
                 return;
             }
             lightTwTbl++;
@@ -1603,7 +1595,7 @@ void dScnKy_env_light_c::setDaytime() {
     mDoAud_setMinute(dKy_getdaytime_minute());
     mDoAud_setWeekday(dKy_get_dayofweek());
     dComIfGs_setDate(mDate);
-    (*(dScnKy_env_light_c*)g_env_light).field_0x12fb = 0;
+    g_env_light.field_0x12fb = 0;
 }
 #else
 #pragma push
@@ -1704,7 +1696,7 @@ s32 dKy_daynight_check() {
 
 /* 8019FAF4-8019FB30 19A434 003C+00 0/0 0/0 22/22 .text            dKy_getDarktime_hour__Fv */
 s32 dKy_getDarktime_hour() {
-    return (*(dScnKy_env_light_c*)g_env_light).getDarkDaytime() / lit_5347;
+    return g_env_light.getDarkDaytime() / lit_5347;
 }
 
 /* 8019FB30-8019FBBC 19A470 008C+00 0/0 0/0 19/19 .text            dKy_getDarktime_minute__Fv */
@@ -1719,7 +1711,7 @@ asm void dKy_getDarktime_minute() {
 
 /* 8019FBBC-8019FBCC 19A4FC 0010+00 0/0 0/0 8/8 .text            dKy_getDarktime_week__Fv */
 s32 dKy_getDarktime_week() {
-    return (*(dScnKy_env_light_c*)g_env_light).mDarktimeWeek;
+    return g_env_light.mDarktimeWeek;
 }
 
 /* 8019FBCC-8019FBD4 19A50C 0008+00 2/2 0/0 0/0 .text getDarkDaytime__18dScnKy_env_light_cFv */
@@ -1937,16 +1929,8 @@ asm void dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz* param_0, dKy_
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 8042DD64-8042DD70 05AA84 000C+00 0/1 0/0 0/0 .bss             @4113 */
-#pragma push
-#pragma force_active on
-static u8 lit_4113[12];
-#pragma pop
-
 /* 8042DD70-8042E07C 05AA90 030C+00 1/2 8/8 9/9 .bss             g_mEnvSeMgr */
-extern u8 g_mEnvSeMgr[780];
-u8 g_mEnvSeMgr[780];
+Z2EnvSeMgr g_mEnvSeMgr;
 
 /* 8042E07C-8042E7BC 05AD9C 0740+00 5/4 0/0 0/0 .bss             lightStatusData */
 static u8 lightStatusData[1856];
@@ -2148,7 +2132,7 @@ void dScnKy_env_light_c::drawKankyo() {
     setSunpos();
     SetBaseLight();
     setLight();
-    dKy_setLight_nowroom((*(dScnKy_env_light_c*)g_env_light).mNowRoom);
+    dKy_setLight_nowroom(g_env_light.mNowRoom);
 }
 
 /* ############################################################################################## */
@@ -2370,13 +2354,13 @@ static cXyz dKy_light_influence_pos(int param_0) {
         param_0 = 0;
     }
 
-    dScnKy_env_light_c* env_light = ((dScnKy_env_light_c*)g_env_light);
+    dScnKy_env_light_c* env_light = &g_env_light;
     return env_light->mPointLight[param_0]->mPosition;
 }
 
 /* 801A7714-801A7738 1A2054 0024+00 0/0 1/1 0/0 .text            dKy_plight_near_pos__Fv */
 cXyz dKy_plight_near_pos() {
-    return (*(dScnKy_env_light_c*)g_env_light).mPLightNearPos;
+    return g_env_light.mPLightNearPos;
 }
 
 /* 801A7738-801A7790 1A2078 0058+00 0/0 0/0 1/1 .text
@@ -3131,7 +3115,7 @@ asm void dKy_pol_efftype2_get(cBgS_PolyInfo const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dKy_pol_sound_get(cBgS_PolyInfo const* param_0) {
+asm u8 dKy_pol_sound_get(cBgS_PolyInfo const* param_0) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_pol_sound_get__FPC13cBgS_PolyInfo.s"
 }
@@ -3491,17 +3475,17 @@ static asm void dKy_murky_set(J3DMaterial* param_0) {
 
 /* 801ACCDC-801ACCF4 1A761C 0018+00 2/2 1/1 0/0 .text            dKy_shadow_mode_set__FUc */
 void dKy_shadow_mode_set(u8 mode) {
-    (*(dScnKy_env_light_c*)g_env_light).mShadowMode |= mode;
+    g_env_light.mShadowMode |= mode;
 }
 
 /* 801ACCF4-801ACD0C 1A7634 0018+00 2/2 1/1 0/0 .text            dKy_shadow_mode_reset__FUc */
 void dKy_shadow_mode_reset(u8 mode) {
-    (*(dScnKy_env_light_c*)g_env_light).mShadowMode &= ~mode;
+    g_env_light.mShadowMode &= ~mode;
 }
 
 /* 801ACD0C-801ACD24 1A764C 0018+00 3/3 0/0 1/1 .text            dKy_shadow_mode_check__FUc */
 u8 dKy_shadow_mode_check(u8 mode) {
-    return (*(dScnKy_env_light_c*)g_env_light).mShadowMode & mode;
+    return g_env_light.mShadowMode & mode;
 }
 
 /* ############################################################################################## */
@@ -3619,21 +3603,6 @@ extern "C" asm void __dt__18dScnKy_env_light_cFv() {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/__dt__18dScnKy_env_light_cFv.s"
 }
-#pragma pop
-
-/* 801ADCA4-801ADD00 1A85E4 005C+00 0/0 1/0 0/0 .text            __sinit_d_kankyo_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_kankyo_cpp() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/__sinit_d_kankyo_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x801ADCA4, __sinit_d_kankyo_cpp);
 #pragma pop
 
 /* ############################################################################################## */

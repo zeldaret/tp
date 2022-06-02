@@ -99,21 +99,6 @@ struct dFile_info_c {
     /* 80192D60 */ void _draw();
 };
 
-struct Z2SeqMgr {
-    /* 802B3EAC */ void checkBgmIDPlaying(u32);
-};
-
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
 struct JFWDisplay {
     static u8 sManager[4];
 };

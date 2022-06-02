@@ -14,8 +14,8 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_kankyo_mng.h"
 #include "f_op/f_op_msg_mng.h"
-#include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_Reset.h"
+#include "m_Do/m_Do_ext.h"
 
 //
 // Forward References:
@@ -597,7 +597,8 @@ dStage_roomStatus_c* dStage_roomControl_c::getStatusRoomDt(int i_statusIdx) {
     return &mStatus[i_statusIdx];
 }
 
-#define OBJNAME(name, proc, sub) { name, proc, sub }
+#define OBJNAME(name, proc, sub)                                                                   \
+    { name, proc, sub }
 
 /* ############################################################################################## */
 /* 803A3B18-803A65CC 000C38 2AB4+00 2/2 0/0 0/0 .data            l_objectName */
@@ -2272,11 +2273,10 @@ asm u8 dStage_stagInfo_GetParticleNo(stage_stag_info_class* p_info, int layer) {
 #endif
 
 /* 80025744-8002582C 020084 00E8+00 1/0 0/0 0/0 .text dStage_stagInfoInit__FP11dStage_dt_cPviPv */
-static int dStage_stagInfoInit(dStage_dt_c* stageDt, void* i_data, int entryNum,
-                                   void* param_3) {
+static int dStage_stagInfoInit(dStage_dt_c* stageDt, void* i_data, int entryNum, void* param_3) {
     dStage_nodeHeader* stag_info = (dStage_nodeHeader*)(i_data);
     stageDt->setStagInfo((stage_stag_info_class*)stag_info->m_offset);
-    
+
     if (!dStage_isBossStage(stageDt)) {
         dComIfG_deleteStageRes("Xtg_00");
         dComIfGp_resetOldMulti();

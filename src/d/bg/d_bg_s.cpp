@@ -671,7 +671,7 @@ bool dBgS::GetPolyAttackThrough(cBgS_PolyInfo const& poly) {
 }
 
 /* 800751F8-8007524C 06FB38 0054+00 0/0 1/1 0/0 .text ChkPolyHSStick__4dBgSFRC13cBgS_PolyInfo */
-bool dBgS::ChkPolyHSStick(cBgS_PolyInfo const& poly) {
+u32 dBgS::ChkPolyHSStick(cBgS_PolyInfo const& poly) {
     int bg_index = poly.GetBgIndex();
     if (m_chk_element[bg_index].ChkUsed()) {
         return m_chk_element[bg_index].m_bgw_base_ptr->GetPolyHSStick(poly.GetPolyIndex());

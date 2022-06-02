@@ -6,63 +6,9 @@
 #include "m_Do/m_Do_DVDError.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct mDoDvdThd {
-    /* 800158B4 */ void suspend();
-};
-
-struct OSThread {};
-
-struct OSContext {};
-
-struct OSAlarm {};
-
-struct JKRThread {
-    /* 802D16B8 */ JKRThread(OSThread*, int);
-    /* 802D1758 */ ~JKRThread();
-};
-
-struct JKRHeap {
-    /* 802CE438 */ void becomeCurrentHeap();
-};
-
-//
-// Forward References:
-//
-
-extern "C" void mDoDvdErr_ThdInit__Fv();
-extern "C" void mDoDvdErr_ThdCleanup__Fv();
-extern "C" static void mDoDvdErr_Watch__FPv();
-extern "C" static void AlarmHandler__FP7OSAlarmP9OSContext();
-
-//
-// External References:
-//
-
-extern "C" void mDoExt_getAssertHeap__Fv();
-extern "C" void suspend__9mDoDvdThdFv();
-extern "C" void becomeCurrentHeap__7JKRHeapFv();
-extern "C" void __ct__9JKRThreadFP8OSThreadi();
-extern "C" void __dt__9JKRThreadFv();
-extern "C" void OSCreateAlarm();
-extern "C" void OSSetPeriodicAlarm();
-extern "C" void OSCancelAlarm();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSGetCurrentThread();
-extern "C" void OSCreateThread();
-extern "C" void OSCancelThread();
-extern "C" void OSResumeThread();
-extern "C" void OSSuspendThread();
-extern "C" void OSGetThreadPriority();
-extern "C" void OSGetTime();
-extern "C" void DVDGetDriveStatus();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-extern "C" extern u8 data_80450C88[8];
+#include "m_Do/m_Do_dvd_thread.h"
+#include "m_Do/m_Do_ext.h"
+#include "m_Do/m_Do_reset.h"
 
 //
 // Declarations:
@@ -70,54 +16,60 @@ extern "C" extern u8 data_80450C88[8];
 
 /* ############################################################################################## */
 /* 803DECC0-803DEFE0 00B9E0 0318+08 4/4 0/0 0/0 .bss             DvdErr_thread */
-static u8 DvdErr_thread[792 + 8 /* padding */];
+static OSThread DvdErr_thread;
 
 /* 803DEFE0-803DFBE0 00BD00 0C00+00 0/1 0/0 0/0 .bss             DvdErr_stack */
 #pragma push
 #pragma force_active on
-static u8 DvdErr_stack[3072];
+static u8 DvdErr_stack[3072] ALIGN_DECL(16);
 #pragma pop
 
 /* 803DFBE0-803DFC20 00C900 0028+18 1/2 0/0 0/0 .bss             Alarm */
-static u8 Alarm[40 + 24 /* padding */];
+static OSAlarm Alarm;
 
 /* 8001659C-8001665C 010EDC 00C0+00 0/0 1/1 0/0 .text            mDoDvdErr_ThdInit__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoDvdErr_ThdInit() {
-    nofralloc
-#include "asm/m_Do/m_Do_DVDError/mDoDvdErr_ThdInit__Fv.s"
+void mDoDvdErr_ThdInit() {
+    if (!data_80450C88) {
+        OSTime time = OSGetTime();
+        OSThread* curThread = OSGetCurrentThread();
+        s32 priority = OSGetThreadPriority(curThread);
+
+        OSCreateThread(&DvdErr_thread, mDoDvdErr_Watch, NULL, DvdErr_stack + sizeof(DvdErr_stack),
+                       sizeof(DvdErr_stack), priority - 3, 1);
+        OSResumeThread(&DvdErr_thread);
+        OSCreateAlarm(&Alarm);
+        OSSetPeriodicAlarm(&Alarm, time, OS_BUS_CLOCK / 4, AlarmHandler);
+
+        data_80450C88 = 1;
+    }
 }
-#pragma pop
 
 /* 8001665C-800166A4 010F9C 0048+00 0/0 1/1 0/0 .text            mDoDvdErr_ThdCleanup__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoDvdErr_ThdCleanup() {
-    nofralloc
-#include "asm/m_Do/m_Do_DVDError/mDoDvdErr_ThdCleanup__Fv.s"
+void mDoDvdErr_ThdCleanup() {
+    if (data_80450C88) {
+        OSCancelThread(&DvdErr_thread);
+        OSCancelAlarm(&Alarm);
+        data_80450C88 = 0;
+    }
 }
-#pragma pop
 
 /* 800166A4-80016704 010FE4 0060+00 1/1 0/0 0/0 .text            mDoDvdErr_Watch__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void mDoDvdErr_Watch(void* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_DVDError/mDoDvdErr_Watch__FPv.s"
+static void mDoDvdErr_Watch(void*) {
+    OSDisableInterrupts();
+    { JKRThread thread(OSGetCurrentThread(), 0); }
+
+    mDoExt_getAssertHeap()->becomeCurrentHeap();
+
+    do {
+        if (DVDGetDriveStatus() == DVD_STATE_FATAL_ERROR) {
+            mDoDvdThd::suspend();
+        }
+        OSSuspendThread(&DvdErr_thread);
+    } while (true);
 }
-#pragma pop
 
 /* 80016704-8001672C 011044 0028+00 1/1 0/0 0/0 .text            AlarmHandler__FP7OSAlarmP9OSContext
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void AlarmHandler(OSAlarm* param_0, OSContext* param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_DVDError/AlarmHandler__FP7OSAlarmP9OSContext.s"
+static void AlarmHandler(OSAlarm*, OSContext*) {
+    OSResumeThread(&DvdErr_thread);
 }
-#pragma pop

@@ -4,24 +4,15 @@
 //
 
 #include "m_Do/m_Do_audio.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "m_Do/m_Do_Reset.h"
+#include "m_Do/m_Do_dvd_thread.h"
 
 //
 // Types:
 //
-
-struct mDoRst {
-    static u8 mResetData[4 + 4 /* padding */];
-};
-
-struct mDoDvdThd_toMainRam_c {
-    /* 80016394 */ void create(char const*, u8, JKRHeap*);
-};
-
-struct mDoDvdThd_mountXArchive_c {
-    /* 800161E0 */ void create(char const*, u8, JKRArchive::EMountMode, JKRHeap*);
-};
 
 struct JAIStreamDataMgr {
     /* 802A3AD8 */ ~JAIStreamDataMgr();
@@ -96,7 +87,6 @@ extern "C" extern void* __vt__14Z2SoundStarter[5 + 1 /* padding */];
 extern "C" extern void* __vt__11Z2SoundInfo[20];
 extern "C" extern void* __vt__15Z2SpeechStarter[5];
 extern "C" extern void* __vt__10Z2AudioMgr[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 data_80450B40[4];
 extern "C" extern u8 data_80450B48[4];
 extern "C" extern u8 data_80450B4C[4];
@@ -112,7 +102,7 @@ extern "C" extern u8 data_80450B80[4];
 extern "C" extern u8 data_80450B84[4];
 extern "C" extern u8 data_80450B88[4];
 extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 struct_80450C80[8];
+extern "C" extern bool struct_80450C80;
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" u8 sCurrentHeap__7JKRHeap[4];
 
@@ -140,18 +130,6 @@ void mDoAud_zelAudio_c::reset() {
     data_80450bba = false;
 }
 
-/* ############################################################################################## */
-/* 80373D68-80373D68 0003C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80373D68 = "/Audiores/Z2Sound.baa";
-SECTION_DEAD static char const* const stringBase_80373D7E = "/Audiores/Seqs/Z2SoundSeqs.arc";
-SECTION_DEAD static char const* const stringBase_80373D9D =
-    "ヒープ確保失敗につきオーディオ初期化できません\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80373DCD = "\0\0";
-#pragma pop
-
 /* 803DBF40-803DBF4C 008C60 000C+00 1/1 0/1 0/0 .bss             @3620 */
 static u8 lit_3620[12];
 
@@ -168,24 +146,62 @@ static mDoDvdThd_toMainRam_c* l_affCommand;
 static mDoDvdThd_mountXArchive_c* l_arcCommand;
 
 /* 80006FC0-80007164 001900 01A4+00 1/1 0/0 0/0 .text            mDoAud_Create__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void mDoAud_Create() {
-    nofralloc
-#include "asm/m_Do/m_Do_audio/mDoAud_Create__Fv.s"
+static void mDoAud_Create() {
+    if (l_affCommand == NULL) {
+        l_affCommand = mDoDvdThd_toMainRam_c::create("/Audiores/Z2Sound.baa", 2, NULL);
+
+        if (l_affCommand == NULL) {
+            return;
+        }
+    }
+
+    if (l_arcCommand == NULL) {
+        l_arcCommand = mDoDvdThd_mountXArchive_c::create("/Audiores/Seqs/Z2SoundSeqs.arc", 0,
+                                                         JKRArchive::MOUNT_DVD, NULL);
+
+        if (l_arcCommand == NULL) {
+            return;
+        }
+    }
+
+    if (l_affCommand->sync() && l_arcCommand->sync()) {
+        if (g_mDoAud_audioHeap != NULL) {
+            s32 groupID = JKRHeap::sCurrentHeap->changeGroupID(5);
+            (*(mDoAud_zelAudio_c*)g_mDoAud_zelAudio)
+                .mAudioMgr.init(g_mDoAud_audioHeap, 0xA00000, l_affCommand->getMemAddress(),
+                                l_arcCommand->getArchive());
+            JKRHeap::sCurrentHeap->changeGroupID(groupID);
+            g_mDoAud_audioHeap->adjustSize();
+        } else {
+            // "Cannot initialize audio due to heap allocation failure\n"
+            OSReport_Error("ヒープ確保失敗につきオーディオ初期化できません\n");
+        }
+
+        (*(mDoAud_zelAudio_c*)g_mDoAud_zelAudio)
+            .mAudioMgr.mStatusMgr.setEventBit(dComIfGs_getPEventBit());
+        (*(mDoAud_zelAudio_c*)g_mDoAud_zelAudio).reset();
+
+        u32 soundMode = OSGetSoundMode();
+        Z2AudioMgr::getInterface()->setOutputMode(soundMode);
+        JKRHeap::free(l_affCommand->getMemAddress(), NULL);
+        l_affCommand->destroy();
+        l_arcCommand->destroy();
+
+        mDoAud_zelAudio_c::onInitFlag();
+        struct_80450C80 = true;
+    }
 }
-#pragma pop
 
 /* 80007164-800071BC 001AA4 0058+00 0/0 1/1 0/0 .text            mDoAud_Execute__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoAud_Execute() {
-    nofralloc
-#include "asm/m_Do/m_Do_audio/mDoAud_Execute__Fv.s"
+void mDoAud_Execute() {
+    if (!mDoAud_zelAudio_c::isInitFlag()) {
+        if (!mDoRst::isShutdown() && !mDoRst::isReturnToMenu()) {
+            mDoAud_Create();
+        }
+    } else {
+        (*(mDoAud_zelAudio_c*)g_mDoAud_zelAudio).mAudioMgr.gframeProcess();
+    }
 }
-#pragma pop
 
 /* 800071BC-800071F8 001AFC 003C+00 0/0 3/3 0/0 .text            mDoAud_setSceneName__FPCcll */
 void mDoAud_setSceneName(char const* spot, s32 room, s32 layer) {

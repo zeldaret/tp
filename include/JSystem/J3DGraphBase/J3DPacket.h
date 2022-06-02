@@ -64,6 +64,8 @@ public:
         mpFirstChild = NULL;
     }
 
+    void setUserArea(u32 area) { mpUserData = (void*)area; }
+
     virtual bool entry(J3DDrawBuffer*);
     virtual void draw();
     virtual ~J3DPacket() {}

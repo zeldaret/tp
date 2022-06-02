@@ -8,26 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct JKRHeap {
-    static u8 sSystemHeap[4];
-    static u8 sCurrentHeap[4];
-};
-
-struct JASTaskThread {
-    /* 8028F6C4 */ JASTaskThread(int, int, u32);
-};
-
-struct JASDvd {
-    /* 8028FEFC */ u32 getThreadPointer();
-    /* 8028FF04 */ void createThread(s32, int, u32);
-
-    static u8 sThread[4 + 4 /* padding */];
-};
-
-//
 // Forward References:
 //
 
@@ -41,7 +21,6 @@ extern "C" u8 sThread__6JASDvd[4 + 4 /* padding */];
 
 extern "C" void __ct__13JASTaskThreadFiiUl();
 extern "C" void* __nw__FUlP7JKRHeapi();
-extern "C" void OSResumeThread();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
 extern "C" extern u8 JASDram[4];
@@ -54,11 +33,11 @@ extern "C" u8 sCurrentHeap__7JKRHeap[4];
 
 /* ############################################################################################## */
 /* 80451208-80451210 000708 0004+04 2/1 0/0 0/0 .sbss            sThread__6JASDvd */
-u8 JASDvd::sThread[4 + 4 /* padding */];
+JASTaskThread* JASDvd::sThread;
 
 /* 8028FEFC-8028FF04 -00001 0008+00 0/0 0/0 0/0 .text            getThreadPointer__6JASDvdFv */
-u32 JASDvd::getThreadPointer() {
-    return *(u32*)(&JASDvd::sThread);
+JASTaskThread* JASDvd::getThreadPointer() {
+    return JASDvd::sThread;
 }
 
 /* 8028FF04-8028FFA8 28A844 00A4+00 0/0 1/1 0/0 .text            createThread__6JASDvdFliUl */
