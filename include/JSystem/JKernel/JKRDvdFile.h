@@ -20,7 +20,7 @@ public:
     s32 sync(void);
 
     u32 getFileID() const { return mFileInfo.start_address; }
-    const DVDFileInfo& getFileInfo() const { return mFileInfo; }
+    DVDFileInfo* getFileInfo() { return &mFileInfo; }
     int getStatus() { return DVDGetCommandBlockStatus(&mFileInfo.block); }
 
 public:

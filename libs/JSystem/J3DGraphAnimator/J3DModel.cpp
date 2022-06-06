@@ -80,7 +80,6 @@ extern "C" void calc__15J3DVtxColorCalcFP8J3DModel();
 extern "C" void offAllFlag__13J3DDeformDataFUl();
 extern "C" void deform__13J3DDeformDataFP8J3DModel();
 extern "C" void entryIn__8J3DJointFv();
-extern "C" void DCStoreRangeNoSync();
 extern "C" void __construct_new_array();
 extern "C" void _savegpr_23();
 extern "C" void _savegpr_25();
