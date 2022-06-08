@@ -890,7 +890,7 @@ inline u32 dStage_stagInfo_GetArg0(stage_stag_info_class* p_info) {
     return (p_info->field_0x0c >> 0x14) & 0xFF;
 }
 
-inline s8 dStage_sclsInfo_getSceneLayer(stage_scls_info_class* p_info) {
+inline int dStage_sclsInfo_getSceneLayer(stage_scls_info_class* p_info) {
     return p_info->field_0xb & 0xF;
 }
 
@@ -898,12 +898,12 @@ inline s8 dStage_sclsInfo_getWipe(stage_scls_info_class* p_info) {
     return p_info->mWipe;
 }
 
-inline s8 dStage_sclsInfo_getWipeTime(stage_scls_info_class* p_info) {
-    return p_info->field_0xb >> 5;
+inline u32 dStage_sclsInfo_getWipeTime(stage_scls_info_class* p_info) {
+    return (p_info->field_0xb & 0xF0) >> 5;
 }
 
 inline int dStage_sclsInfo_getTimeH(stage_scls_info_class* p_info) {
-    return ((p_info->field_0xb & 0xF0) >> 4) | ((p_info->field_0xa & 0x0F) << 4);
+    return ((p_info->field_0xa & 0xF0) >> 4) | (p_info->field_0xb & 0x10);
 }
 
 inline u32 dStage_FileList_dt_getMiniMap(dStage_FileList_dt_c* p_fList) {

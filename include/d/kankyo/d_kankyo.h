@@ -24,6 +24,8 @@ s32 dKy_daynight_check();
 void dKy_clear_game_init();
 void dKy_setLight_init();
 u8 dKy_pol_sound_get(cBgS_PolyInfo const* param_0);
+void dKy_instant_rainchg();
+void dKy_instant_timechg(f32);
 
 struct LIGHT_INFLUENCE {
     /* 800CFC7C */ ~LIGHT_INFLUENCE();

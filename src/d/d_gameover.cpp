@@ -13,8 +13,6 @@
 
 struct request_of_phase_process_class {};
 
-struct msg_class {};
-
 struct mDoRst {
     static u8 mResetData[4 + 4 /* padding */];
 };
@@ -27,8 +25,6 @@ struct mDoGph_gInf_c {
     static u8 mZbufferTex[4];
     static f32 mFadeRate;
 };
-
-struct fopAc_ac_c {};
 
 struct dSv_player_item_c {
     /* 80032FB8 */ void setItem(int, u8);
@@ -86,31 +82,6 @@ struct dGov_HIO_c {
     /* 8019C06C */ ~dGov_HIO_c();
 };
 
-struct dGameover_c {
-    /* 8019B044 */ void _create();
-    /* 8019B2F4 */ void _execute();
-    /* 8019B384 */ void playerAnmWait_init();
-    /* 8019B388 */ void playerAnmWait_proc();
-    /* 8019B3A0 */ void dispFadeOut_init();
-    /* 8019B3E8 */ void dispFadeOut_proc();
-    /* 8019B40C */ void dispWait_init();
-    /* 8019B454 */ void dispWait_proc();
-    /* 8019B478 */ void demoFadeIn_init();
-    /* 8019B484 */ void demoFadeIn_proc();
-    /* 8019B4D8 */ void demoFadeOut_init();
-    /* 8019B4E4 */ void demoFadeOut_proc();
-    /* 8019B560 */ void saveOpen_init();
-    /* 8019B564 */ void saveOpen_proc();
-    /* 8019B5A4 */ void saveMove_init();
-    /* 8019B5A8 */ void saveMove_proc();
-    /* 8019B5F0 */ void saveClose_init();
-    /* 8019B5F4 */ void saveClose_proc();
-    /* 8019B7BC */ void deleteWait_init();
-    /* 8019B7C0 */ void deleteWait_proc();
-    /* 8019B7C4 */ void _draw();
-    /* 8019B864 */ void _delete();
-};
-
 struct dDlst_base_c {};
 
 struct dDlst_list_c {
@@ -122,31 +93,11 @@ struct dDlst_Gameover_CAPTURE_c {
     /* 8019C2CC */ ~dDlst_Gameover_CAPTURE_c();
 };
 
-struct JKRArchive {};
-
 struct dDlst_GameOverScrnDraw_c {
     /* 8019B940 */ dDlst_GameOverScrnDraw_c(JKRArchive*);
     /* 8019BBFC */ ~dDlst_GameOverScrnDraw_c();
     /* 8019BCB0 */ void setBackAlpha(f32);
     /* 8019BCF4 */ void draw();
-};
-
-struct cXyz {};
-
-struct ResTLUT {};
-
-struct ResTIMG {};
-
-struct JKRHeap {
-    /* 802CE5CC */ void freeAll();
-    /* 802CE784 */ void getTotalFreeSize();
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TBox2 {};
-    /* TBox2<f32> */
-    struct TBox2__template0 {};
 };
 
 struct JFWDisplay {
@@ -254,38 +205,6 @@ extern "C" void setPriority__9J2DScreenFPCcUlP10JKRArchive();
 extern "C" void draw__9J2DScreenFffPC14J2DGrafContext();
 extern "C" void func_802FC800();
 extern "C" void setString__10J2DTextBoxFPCce();
-extern "C" void C_MTXOrtho();
-extern "C" void GXSetVtxDesc();
-extern "C" void GXClearVtxDesc();
-extern "C" void GXSetVtxAttrFmt();
-extern "C" void GXSetTexCoordGen2();
-extern "C" void GXSetNumTexGens();
-extern "C" void GXPixModeSync();
-extern "C" void GXBegin();
-extern "C" void GXSetCullMode();
-extern "C" void GXSetTexCopySrc();
-extern "C" void GXSetTexCopyDst();
-extern "C" void GXCopyTex();
-extern "C" void GXSetNumChans();
-extern "C" void GXInitTexObj();
-extern "C" void GXInitTexObjLOD();
-extern "C" void GXLoadTexObj();
-extern "C" void GXSetTevColorIn();
-extern "C" void GXSetTevAlphaIn();
-extern "C" void GXSetTevColorOp();
-extern "C" void GXSetTevAlphaOp();
-extern "C" void GXSetAlphaCompare();
-extern "C" void GXSetTevOrder();
-extern "C" void GXSetNumTevStages();
-extern "C" void GXSetFog();
-extern "C" void GXSetFogRangeAdj();
-extern "C" void GXSetBlendMode();
-extern "C" void GXSetZMode();
-extern "C" void GXSetZCompLoc();
-extern "C" void GXSetDither();
-extern "C" void GXSetProjection();
-extern "C" void GXLoadPosMtxImm();
-extern "C" void GXSetCurrentMtx();
 extern "C" void __register_global_object();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_24();
@@ -297,7 +216,6 @@ extern "C" void _restgpr_29();
 extern "C" void strcmp();
 extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
 extern "C" extern void* g_fopMsg_Method[5 + 1 /* padding */];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__14mDoHIO_entry_c[3];
@@ -981,7 +899,7 @@ static asm void dGameover_Create(msg_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void d_GameOver_Create(u8 param_0) {
+asm s32 d_GameOver_Create(u8 param_0) {
     nofralloc
 #include "asm/d/d_gameover/d_GameOver_Create__FUc.s"
 }

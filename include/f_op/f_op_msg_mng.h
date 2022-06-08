@@ -36,7 +36,8 @@ u32 fopMsgM_Create(s16, fopMsgCreateFunc, void*);
 void fopMsgM_setMessageID(unsigned int);
 void fopMsgM_destroyExpHeap(JKRExpHeap*);
 s32 fopMsgM_setStageLayer(void*);
-void fopMsgM_messageSetDemo(u32 param_0);
+int fopMsgM_messageSet(u32 param_0, u32 param_1);
+int fopMsgM_messageSetDemo(u32 param_0);
 msg_class* fopMsgM_SearchByID(unsigned int param_0);
 char* fopMsgM_messageGet(char* msg, u32 string_id);
 

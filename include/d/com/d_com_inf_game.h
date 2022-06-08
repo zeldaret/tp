@@ -389,6 +389,10 @@ public:
         mWindow[i].setMode(mode);
     }
 
+    char* getLastPlayStageName() { return mLastPlayStageName; }
+
+    u8 getGameoverStatus() { return mGameoverStatus; }
+
 public:
     /* 0x00000 */ dBgS mBgs;
     /* 0x01404 */ dCcS mCcs;
@@ -651,6 +655,7 @@ void dComIfG_get_timelayer(int* layer);
 int dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* resName);
 int dComIfG_changeOpeningScene(scene_class* scene, s16 procName);
 int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* arc_name);
+BOOL dComIfGs_isStageSwitch(int i_stageNo, int i_no);
 
 inline void dComIfG_setBrightness(u8 brightness) {
     g_dComIfG_gameInfo.mFadeBrightness = brightness;
@@ -2059,6 +2064,14 @@ inline void dComIfGp_evmng_cutEnd(int param_0) {
     dComIfGp_getPEvtManager()->cutEnd(param_0);
 }
 
+inline int i_dComIfGp_evmng_getMyStaffId(const char* pName, fopAc_ac_c* pActor, int param_2) {
+    return dComIfGp_getPEvtManager()->getMyStaffId(pName, pActor, param_2);
+}
+
+inline int dComIfGp_evmng_getIsAddvance(int param_0) {
+    return dComIfGp_getPEvtManager()->getIsAddvance(param_0);
+}
+
 inline int* dComIfGp_evmng_getMyIntegerP(int index, char* name) {
     return (int*)dComIfGp_getPEvtManager()->getMySubstanceP(index, name, dEvDtData_c::TYPE_INT);
 }
@@ -2069,6 +2082,14 @@ inline char* dComIfGp_evmng_getMyStringP(int index, char* name) {
 
 inline f32* dComIfGp_evmng_getMyFloatP(int index, char* name) {
     return (f32*)dComIfGp_getPEvtManager()->getMySubstanceP(index, name, dEvDtData_c::TYPE_FLOAT);
+}
+
+inline cXyz* dComIfGp_evmng_getMyXyzP(int index, char* name) {
+    return (cXyz*)dComIfGp_getPEvtManager()->getMySubstanceP(index, name, dEvDtData_c::TYPE_VEC);
+}
+
+inline int dComIfGp_evmng_getMySubstanceNum(int index, char* name) {
+    return dComIfGp_getPEvtManager()->getMySubstanceNum(index, name);
 }
 
 inline void dComIfGp_evmng_create() {
@@ -2251,6 +2272,14 @@ inline daPy_py_c* daPy_getPlayerActorClass() {
 
 inline daAlink_c* daAlink_getAlinkActorClass() {
     return (daAlink_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR);
+}
+
+inline char* dComIfGp_getLastPlayStageName() {
+    return g_dComIfG_gameInfo.play.getLastPlayStageName();
+}
+
+inline u8 dComIfGp_getGameoverStatus() {
+    return g_dComIfG_gameInfo.play.getGameoverStatus();
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

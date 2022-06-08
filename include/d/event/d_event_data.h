@@ -2,6 +2,7 @@
 #define D_EVENT_D_EVENT_DATA_H
 
 #include "d/d_stage.h"
+#include "d/msg/d_msg_class.h"
 #include "d/save/d_save.h"
 #include "dolphin/types.h"
 
@@ -81,6 +82,14 @@ public:
         /* 0xC */ TYPE_CREATE,
     };
 
+    struct StaffWork {
+        unsigned int _0;
+        msg_class* mLMsg;
+        unsigned int mMsgNo;
+        s32 mMsgSubstanceNum;
+        int* mMsgSubstanceP;
+    };
+
     void specialProc_WaitStart(int);
     void specialProc_WaitProc(int);
     void specialProc();
@@ -101,7 +110,9 @@ public:
     int getStartCut() { return mStartCut; }
 
     // private:
-    /* 0x00 */ char mName[32];
+    /* 0x00 */ char mName[8];
+    /* 0x08 */ StaffWork mWork;
+    /* 0x0C */ u8 field_0x1C[0x20 - 0x1C];
     /* 0x20 */ s32 mTagID;
     /* 0x24 */ u32 mIndex;
     /* 0x28 */ u32 mFlagID;
@@ -121,7 +132,7 @@ public:
 class dEvDtEvent_c {
 public:
     int finishCheck();
-    void forceFinish();
+    int forceFinish();
     void specialStaffProc(dEvDtStaff_c*);
     int getNStaff() { return mNStaff; }
     int getStaff(int idx) { return mStaff[idx]; }
@@ -136,8 +147,7 @@ public:
     /* 0x7C */ int mNStaff;
     /* 0x80 */ u8 field_0x80[4];
     /* 0x84 */ int field_0x84;
-    /* 0x88 */ int field_0x88[2];
-    /* 0x90 */ int field_0x90;
+    /* 0x88 */ int field_0x88[3];
     /* 0x94 */ bool mPlaySound;
     /* 0x95 */ u8 field_0x95[0xF];
     /* 0xA4 */ int mEventState;
@@ -147,9 +157,9 @@ public:
 class dEvDtFlag_c {
 public:
     dEvDtFlag_c() {}
-    void flagCheck(int);
-    void flagSet(int);
-    bool flagMaxCheck(int);
+    BOOL flagCheck(int);
+    BOOL flagSet(int);
+    BOOL flagMaxCheck(int);
     void init();
 
 #define FlagMax 0x2800

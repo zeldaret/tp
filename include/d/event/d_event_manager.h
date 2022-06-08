@@ -72,6 +72,7 @@ public:
     dEvDtBase_c& getBase() { return mEventList[mCurrentEventType]; }
 
     void setFlag(int flag) { mFlags.flagSet(flag); }
+    int flagCheck(int flag) { return mFlags.flagCheck(flag); }
 
     static int getIndexCompositId(s16 param_0) { return param_0 != -1 ? (u8)param_0 : -1; }
     static int getTypeCompositId(s16 param_0) { return param_0 == -1 ? 0 : param_0 >> 8; }
