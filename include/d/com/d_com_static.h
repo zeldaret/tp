@@ -29,7 +29,7 @@ public:
 
     /* 80031248 */ void newData(s8, cXyz const&, cXyz const&, u8, u8, u8);
     /* 800313BC */ void reset();
-    /* 800314D4 */ void check(fopAc_ac_c*);
+    /* 800314D4 */ static void check(fopAc_ac_c*);
     /* 80031434 */ static bool check(s8, cXyz const&);
     /* 800315A4 */ static void execute();
 

@@ -65,7 +65,7 @@ static int daKytag05_Create(fopAc_ac_c* ac) {
     tag->field_0x568 = 100.0f * tag->mScale.x;
 
     if (!tag->field_0x56c) {
-        *(char*)((char*)&tag->mAttentionInfo.mDistance2 + 3) = 0x21;
+        tag->mAttentionInfo.field_0x4[3] = 0x21;
         tag->mAttentionInfo.setFlag(0x80);
     }
     return 4;

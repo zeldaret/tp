@@ -385,6 +385,7 @@ s32 item_getcheck_func_KEY_OF_FILONE();
 s32 item_getcheck_func_noentry();
 
 s32 checkItemGet(u8, int);
+BOOL isHeart(u8 item_no);
 s32 isBomb(u8);
 s32 isArrow(u8);
 void addBombCount(u8, u8);

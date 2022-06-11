@@ -109,7 +109,7 @@ public:
     /* 8007B0E4 */ virtual s32 GetGrpRoomIndex(cBgS_PolyInfo const&) const;
     virtual s32 GetExitId(cBgS_PolyInfo const&) = 0;
     virtual s32 GetPolyColor(cBgS_PolyInfo const&) = 0;
-    virtual bool GetHorseNoEntry(cBgS_PolyInfo const&) = 0;
+    virtual BOOL GetHorseNoEntry(cBgS_PolyInfo const&) = 0;
     virtual bool GetSpecialCode(cBgS_PolyInfo const&) = 0;
     virtual void GetSpecialCode(int) = 0;
     virtual bool GetMagnetCode(cBgS_PolyInfo const&) = 0;
@@ -125,7 +125,7 @@ public:
     virtual bool GetUnderwaterRoofCode(int) = 0;
     virtual bool GetMonkeyBarsCode(cBgS_PolyInfo const&) = 0;
     virtual s32 GetWallCode(cBgS_PolyInfo const&) = 0;
-    virtual bool GetPolyAtt0(cBgS_PolyInfo const&) = 0;
+    virtual BOOL GetPolyAtt0(cBgS_PolyInfo const&) = 0;
     virtual bool GetPolyAtt1(cBgS_PolyInfo const&) = 0;
     virtual bool GetGroundCode(cBgS_PolyInfo const&) = 0;
     virtual void GetIronBallThrough(int) = 0;
@@ -208,7 +208,7 @@ public:
     /* 8007DF00 */ virtual void SphChk(dBgS_SphChk*, virtual void*);
     /* 8007B3AC */ virtual s32 GetExitId(cBgS_PolyInfo const&);
     /* 8007B3D8 */ virtual s32 GetPolyColor(cBgS_PolyInfo const&);
-    /* 8007B404 */ virtual bool GetHorseNoEntry(cBgS_PolyInfo const&);
+    /* 8007B404 */ virtual BOOL GetHorseNoEntry(cBgS_PolyInfo const&);
     /* 8007B430 */ virtual bool GetSpecialCode(cBgS_PolyInfo const&);
     /* 8007B460 */ virtual void GetSpecialCode(int);
     /* 8007B488 */ virtual bool GetMagnetCode(cBgS_PolyInfo const&);
@@ -225,7 +225,7 @@ public:
     /* 8007B4B4 */ virtual bool GetMonkeyBarsCode(cBgS_PolyInfo const&);
     /* 8007B6AC */ virtual void GetLinkNo(cBgS_PolyInfo const&);
     /* 8007B6D8 */ virtual s32 GetWallCode(cBgS_PolyInfo const&);
-    /* 8007B704 */ virtual bool GetPolyAtt0(cBgS_PolyInfo const&);
+    /* 8007B704 */ virtual BOOL GetPolyAtt0(cBgS_PolyInfo const&);
     /* 8007B734 */ virtual bool GetPolyAtt1(cBgS_PolyInfo const&);
     /* 8007B760 */ virtual bool GetGroundCode(cBgS_PolyInfo const&);
     /* 8007B7DC */ virtual void GetIronBallThrough(int);

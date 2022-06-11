@@ -46,6 +46,7 @@ public:
     static void ZXYrotM(s16 x, s16 y, s16 z) { mDoMtx_ZXYrotM(now, x, y, z); }
     static void YrotM(s16 y) { mDoMtx_YrotM(now, y); }
     static void YrotS(s16 y) { mDoMtx_YrotS(now, y); }
+    static void inverse() { PSMTXInverse(now, now); }
 
     static Mtx now;
     static Mtx buffer[16];

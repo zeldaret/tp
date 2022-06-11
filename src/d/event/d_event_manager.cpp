@@ -1109,7 +1109,7 @@ struct FindShtrCbPrms {
 /* 8004846C-80048520 042DAC 00B4+00 1/1 0/0 0/0 .text findShutterCallBack__FP10fopAc_ac_cPv */
 static fopAc_ac_c* findShutterCallBack(fopAc_ac_c* pActor, void* param_1) {
     FindShtrCbPrms* prms = (FindShtrCbPrms*)param_1;
-    if (prms->mBsTypeId != fpcAcM_GetProfName(pActor)) {
+    if (prms->mBsTypeId != fopAcM_GetProfName(pActor)) {
         return NULL;
     }
     cXyz diff = pActor->mOrig.mPosition - prms->mActor->mOrig.mPosition;

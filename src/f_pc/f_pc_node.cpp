@@ -92,6 +92,7 @@ s32 fpcNd_Delete(process_node_class* pProcNode) {
     }
 }
 
+
 /* 80022728-800227C4 009C+00 s=1 e=0 z=0  None .text      fpcNd_Create__FP18process_node_class */
 s32 fpcNd_Create(process_node_class* pProcNode1) {
     // this cast looks like a fake match, but it doesn't match without the cast, naive approach
@@ -103,7 +104,7 @@ s32 fpcNd_Create(process_node_class* pProcNode1) {
         node_process_profile_definition* pProcProfileDef =
             (node_process_profile_definition*)pProcNode->mBase.mpProf;
         pProcNode->mBase.mSubType = fpcBs_MakeOfType(&g_fpcNd_type);
-        pProcNode->mpNodeMtd = pProcProfileDef->mNDrwMthCls;
+        pProcNode->mpNodeMtd = (nodedraw_method_class*)pProcProfileDef->mBase.mLfDrwMth;
         fpcLy_Create(&pProcNode->mLayer, pProcNode, pProcNode->mLayerNodeLists, 0x10);
         pProcNode->mUnk0 = 0;
     }

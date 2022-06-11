@@ -3,6 +3,7 @@
 
 #include "d/com/d_com_inf_game.h"
 #include "dolphin/types.h"
+#include "SSystem/SComponent/c_lib.h"
 
 class dLog_HIO_c {
 public:
@@ -118,8 +119,5 @@ public:
 static int phase_0(dScnLogo_c* logo);
 static int phase_1(dScnLogo_c* logo);
 static int phase_2(dScnLogo_c* logo);
-
-template <typename T>
-T cLib_calcTimer(T* val);
 
 #endif /* D_S_D_S_LOGO_H */

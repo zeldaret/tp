@@ -31,8 +31,9 @@ typedef int (*SkipFunc)(void*, int);
 class dEvt_control_c {
 public:
     dEvt_control_c();
-    bool orderOld(u16, u16, u16, u16, void*, void*, void const*);
-    bool order(u16, u16, u16, u16, void*, void*, s16, u8);
+    s32 orderOld(u16, u16, u16, u16, void*, void*, void const*);
+    s32 order(u16 eventType, u16 priority, u16 flag, u16 param_3, void* param_4,
+              void* param_5, s16 eventID, u8 infoIdx);
     void setParam(dEvt_order_c*);
     s32 beforeFlagProc(dEvt_order_c*);
     void afterFlagProc(dEvt_order_c*);
@@ -59,7 +60,7 @@ public:
     void offSkipFade();
     void skipper();
     void Step();
-    void moveApproval(void*);
+    int moveApproval(void*);
     BOOL compulsory(void*, char const*, u16);
     void remove();
     dStage_MapEvent_dt_c* getStageEventDt();
@@ -90,6 +91,8 @@ public:
     bool i_isOrderOK() { return field_0xe5 == 0 || field_0xe5 == 2; }
     void* getPt1() { return convPId(mPt1); }
     void* getPt2() { return convPId(mPt2); }
+    void* getPtT() { return convPId(mPtT); }
+    bool isChangeOK(void* param_0) { return mChangeOK == param_0; }
 
 public:
     /* 0x000 */ u8 field_0x0[4];

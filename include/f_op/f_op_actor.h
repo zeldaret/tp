@@ -12,7 +12,7 @@ struct JKRSolidHeap;
 class dEvt_info_c {
 public:
     dEvt_info_c();
-    virtual ~dEvt_info_c();
+    virtual ~dEvt_info_c() {}
     void setEventName(char*);
     char* getEventName();
     void beforeProc();
@@ -32,9 +32,17 @@ public:
     s16 getIdx() { return mIndex; }
     char* getArchiveName() { return mArchiveName; }
     bool chkCondition(u16 condition) { return mCondition == condition; }
+    void i_onCondition(u16 cond) { mCondition |= cond; }
 
     bool checkCommandTalk() { return mCommand == 1; }
     bool checkCommandItem() { return mCommand == 4; }
+    BOOL i_checkCommandDoor() { return mCommand == 3; }
+
+    void suspendProc(void* actor) {
+        if (field_0x10 != NULL) {
+            field_0x14(actor);
+        }
+    }
 
     /* 0x04 */ u16 mCommand;
     /* 0x06 */ u16 mCondition;
@@ -42,24 +50,26 @@ public:
     /* 0x0A */ u8 mMapToolId;
     /* 0x0B */ s8 mIndex;
     /* 0x0C */ char* mArchiveName;
-    /* 0x10 */ void* field_0x10;
-    /* 0x14 */ void* field_0x14;
+    /* 0x10 */ u8 field_0x10;
+    /* 0x14 */ void (*field_0x14)(void*);
 };  // Size = 0x18
 
 struct actor_place {
-    /* 807E2468 */ void operator=(actor_place const&);
+    /* 807E2468 */ //void operator=(actor_place const&);
 
-    cXyz mPosition;
-    csXyz mAngle;
-    s8 mRoomNo;
+    /* 0x00 */ cXyz mPosition;
+    /* 0x0C */ csXyz mAngle;
+    /* 0x12 */ s8 mRoomNo;
+    /* 0x13 */ u8 field_0x13;
 };
 
 struct actor_attention_types {
     void setFlag(u32 flags) { mFlags |= flags; }
 
-    /* 0x00 */ u32 mDistance1;
-    /* 0x04 */ u32 mDistance2;
-    /* 0x08 */ u32 mDistance3;
+    /* 0x00 */ u8 field_0x0[4];
+    /* 0x04 */ u8 field_0x4[4];
+    /* 0x08 */ u8 field_0x8[2];
+    /* 0x0A */ u16 field_0xa;
     /* 0x0C */ cXyz mPosition;
     /* 0x18 */ u32 mFlags;
 };  // Size = 0x1C
@@ -75,7 +85,7 @@ public:
     /* 0x0F0 */ JKRSolidHeap* mHeap;
     /* 0x0F4 */ dEvt_info_c mEvtInfo;
     /* 0x10C */ dKy_tevstr_c mTevStr;
-    /* 0x494 */ s16 mSetID;
+    /* 0x494 */ u16 mSetID;
     /* 0x496 */ u8 mGroup;
     /* 0x497 */ u8 mCullType;
     /* 0x498 */ u8 mDemoActorId;

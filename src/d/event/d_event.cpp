@@ -193,7 +193,7 @@ dEvt_order_c::dEvt_order_c() {
 
 /* 800415D8-80041668 03BF18 0090+00 1/1 0/0 0/0 .text orderOld__14dEvt_control_cFUsUsUsUsPvPvPCv
  */
-bool dEvt_control_c::orderOld(u16 param_0, u16 param_1, u16 param_2, u16 param_3, void* param_4,
+s32 dEvt_control_c::orderOld(u16 param_0, u16 param_1, u16 param_2, u16 param_3, void* param_4,
                               void* param_5, void const* param_6) {
     int eventIdx = dComIfGp_getEventManager().getEventIdx((char*)param_6, -1, -1);
     return order(param_0, param_1, param_2, param_3, param_4, param_5, eventIdx, -1);
@@ -203,8 +203,8 @@ bool dEvt_control_c::orderOld(u16 param_0, u16 param_1, u16 param_2, u16 param_3
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool dEvt_control_c::order(u16 param_0, u16 param_1, u16 param_2, u16 param_3, void* param_4,
-                               void* param_5, s16 param_6, u8 param_7) {
+asm s32 dEvt_control_c::order(u16 eventType, u16 priority, u16 flag, u16 param_3, void* param_4,
+                               void* param_5, s16 eventID, u8 infoIdx) {
     nofralloc
 #include "asm/d/event/d_event/order__14dEvt_control_cFUsUsUsUsPvPvsUc.s"
 }
@@ -591,7 +591,7 @@ asm void dEvt_control_c::Step() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_control_c::moveApproval(void* param_0) {
+asm int dEvt_control_c::moveApproval(void* param_0) {
     nofralloc
 #include "asm/d/event/d_event/moveApproval__14dEvt_control_cFPv.s"
 }

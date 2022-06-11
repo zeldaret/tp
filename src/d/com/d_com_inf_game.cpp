@@ -1479,21 +1479,10 @@ stage_arrow_class* dComIfGp_getRoomArrow(int roomNo) {
     return status->mRoomDt.getArrow();
 }
 
-/* ############################################################################################## */
-/* 80378F38-80378F38 005598 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80379089 = "";
-#pragma pop
-
 /* 8002D2FC-8002D554 027C3C 0258+00 2/2 7/7 4/4 .text dComIfGp_setNextStage__FPCcsScScfUliScsii */
-// 1 out of order instruction, small regalloc
-#ifdef NONMATCHING
 void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer, f32 lastSpeed,
-                           u32 lastMode, int param_6, s8 wipe, s16 lastAngle, int param_9,
-                           int param_10) {
-    u32 mode = lastMode;
-
+                           u32 lastMode, int setPoint, s8 wipe, s16 lastAngle, int param_9,
+                           int wipeSpeedT) {
     if (layer >= 15) {
         layer = -1;
     }
@@ -1508,6 +1497,7 @@ void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer, f3
                                             level);
     }
 
+    // Set Key Num to 2 if loading Wagon Escort after King Bulblin 2
     if (!strcmp(stage, "F_SP121") && roomNo == 13 && (point == 99 || point == 98) && layer == 2) {
         dComIfGs_setKeyNum(6, 2);
     } else {
@@ -1515,16 +1505,16 @@ void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer, f3
     }
 
     if (daAlink_getAlinkActorClass() != NULL) {
-        daAlink_getAlinkActorClass()->setLastSceneMode(&mode);
+        daAlink_getAlinkActorClass()->setLastSceneMode(&lastMode);
     }
 
-    if (strcmp(dMeter2Info_getSaveStageName(), "") &&
-        strcmp(stage, dMeter2Info_getSaveStageName())) {
+    char* saveName = (char*)dMeter2Info_getSaveStageName();
+    if (strcmp(saveName, "") && strcmp(stage, saveName)) {
         dMeter2Info_setSaveStageName("");
     }
 
     u8 wipe_speed;
-    switch (param_10) {
+    switch (wipeSpeedT) {
     case 0:
         wipe_speed = 26;
         break;
@@ -1543,23 +1533,11 @@ void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer, f3
     }
 
     g_dComIfG_gameInfo.play.setNextStage(stage, roomNo, point, layer, wipe, wipe_speed);
-    g_dComIfG_gameInfo.info.getRestart().setLastSceneInfo(lastSpeed, mode, lastAngle);
-    if (param_6 != 0) {
+    g_dComIfG_gameInfo.info.getRestart().setLastSceneInfo(lastSpeed, lastMode, lastAngle);
+    if (setPoint) {
         dComIfGs_setStartPoint(point);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer, f32 lastSpeed,
-                               u32 lastMode, int param_6, s8 wipe, s16 lastAngle, int param_9,
-                               int param_10) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGp_setNextStage__FPCcsScScfUliScsii.s"
-}
-#pragma pop
-#endif
 
 void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer) {
     dComIfGp_setNextStage(stage, point, roomNo, layer, 0.0f, 0, 1, 0, 0, 1, 0);
@@ -2433,8 +2411,8 @@ int dComIfG_TimerDeleteRequest(int mode) {
 }
 
 /* 8002F810-8002F9F0 02A150 01E0+00 0/0 1/1 0/0 .text            dComIfGs_Wolf_Change_Check__Fv */
-u8 dComIfGs_Wolf_Change_Check() {
-    u8 is_wolf = false;
+BOOL dComIfGs_Wolf_Change_Check() {
+    BOOL is_wolf = false;
 
     // Transforming Unlocked
     if (dComIfGs_isEventBit(0x0D04)) {

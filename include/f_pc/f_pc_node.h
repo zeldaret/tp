@@ -21,10 +21,10 @@ typedef struct process_node_class {
 
 typedef struct node_process_profile_definition {
     process_profile_definition mBase;
-    nodedraw_method_class* mNDrwMthCls;
+    /* nodedraw_method_class* mNDrwMthCls;
     s16 unk20;
     u8 unk22[2];
-    s32 unk24;
+    s32 unk24; */
 } node_process_profile_definition;
 
 s32 fpcNd_DrawMethod(nodedraw_method_class* pNodeMethod, void* pData);

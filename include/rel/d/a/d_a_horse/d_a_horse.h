@@ -152,11 +152,16 @@ public:
     bool checkResetStateFlg0(daHorse_RFLG0 flag) { return mResetStateFlg0 & flag; }
     bool checkEndResetStateFlg0(daHorse_ERFLG0 flag) { return mEndResetStateFlg0 & flag; }
     bool checkStateFlg0(daHorse_FLG0 flag) { return mStateFlg0 & flag; }
+    f32 getNormalMaxSpeedF() { return mNormalMaxSpeedF; }
+    void changeDemoMoveAngle(s16 angle) { mDemoMoveAngle = angle; }
+    void setDemoStickR(f32 stick) { mDemoStickR = stick; }
+    void i_changeDemoMode(u32 param_0, int param_1) { field_0x1740 = param_0; field_0x1728 = param_1; }
+    void i_changeOriginalDemo() { field_0x16b8 = 3; field_0x1728 = 0; }
 
     static u8 const m_footJointTable[8];
     static f32 const m_callLimitDistance2;
 
-private:
+//private:
     /* 0x0568 */ u8 field_0x568[8];
     /* 0x0570 */ J3DModel* field_0x570;
     /* 0x0574 */ void* field_0x574;
@@ -190,7 +195,7 @@ private:
     /* 0x16BB */ u8 mRodeoPointCnt;
     /* 0x16BC */ u8 field_0x16bc[0x36];
     /* 0x16F2 */ s16 mAimNeckAngleY;
-    /* 0x16F4 */ u8 field_0x16f4[0xA];
+    /* 0x16F4 */ u8 field_0x16f4[0x8];
     /* 0x16FC */ s16 mDemoMoveAngle;
     /* 0x16FE */ u8 field_0x16fe[4];
     /* 0x1702 */ s16 field_0x1702;

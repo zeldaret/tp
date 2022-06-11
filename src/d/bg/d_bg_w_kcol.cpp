@@ -767,7 +767,7 @@ asm s32 dBgWKCol::GetWallCode(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgWKCol::GetPolyAtt0(cBgS_PolyInfo const& param_0) {
+asm BOOL dBgWKCol::GetPolyAtt0(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w_kcol/GetPolyAtt0__8dBgWKColFRC13cBgS_PolyInfo.s"
 }

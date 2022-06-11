@@ -64,38 +64,38 @@ int daItemBase_c::CreateItemHeap(char const* arcName, s16 bmdName, s16 btkName, 
     if (mpModel == NULL) {
         return 0;
     } else {
-        field_0x578 = NULL;
+        mpBtkAnm = NULL;
         if (btkName > 0) {
             J3DAnmTextureSRTKey* pbtk =
                 (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(arcName, btkName);
-            field_0x578 = new mDoExt_btkAnm();
+            mpBtkAnm = new mDoExt_btkAnm();
 
-            if (field_0x578 == NULL || !field_0x578->init(modelData, pbtk, 1, 2, 1.0f, 0, -1)) {
+            if (mpBtkAnm == NULL || !mpBtkAnm->init(modelData, pbtk, 1, 2, 1.0f, 0, -1)) {
                 return 0;
             }
         }
 
-        field_0x57c = NULL;
+        mpBpkAnm = NULL;
         if (bpkName > 0) {
             J3DAnmColor* pbpk = (J3DAnmColor*)dComIfG_getObjectRes(arcName, bpkName);
-            field_0x57c = new mDoExt_bpkAnm();
+            mpBpkAnm = new mDoExt_bpkAnm();
 
-            if (field_0x57c == NULL || !field_0x57c->init(modelData, pbpk, 1, 2, 1.0f, 0, -1)) {
+            if (mpBpkAnm == NULL || !mpBpkAnm->init(modelData, pbpk, 1, 2, 1.0f, 0, -1)) {
                 return 0;
             }
         }
 
-        field_0x584 = NULL;
+        mpBckAnm = NULL;
         if (bckName > 0) {
             J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(arcName, bckName);
-            field_0x584 = new mDoExt_bckAnm();
+            mpBckAnm = new mDoExt_bckAnm();
 
-            if (field_0x584 == NULL || !field_0x584->init(pbck, 1, 2, 1.0f, 0, -1, false)) {
+            if (mpBckAnm == NULL || !mpBckAnm->init(pbck, 1, 2, 1.0f, 0, -1, false)) {
                 return 0;
             }
         }
 
-        field_0x580 = NULL;
+        mpBrkAnm = NULL;
         if (brkName > 0) {
             J3DAnmTevRegKey* pbrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(arcName, brkName);
             s8 tevFrm = getTevFrm();
@@ -104,19 +104,19 @@ int daItemBase_c::CreateItemHeap(char const* arcName, s16 bmdName, s16 btkName, 
                 tmp = 0;
             }
 
-            field_0x580 = new mDoExt_brkAnm();
+            mpBrkAnm = new mDoExt_brkAnm();
 
-            if (field_0x580 == NULL || !field_0x580->init(modelData, pbrk, tmp, 2, 1.0f, 0, -1)) {
+            if (mpBrkAnm == NULL || !mpBrkAnm->init(modelData, pbrk, tmp, 2, 1.0f, 0, -1)) {
                 return 0;
             }
         }
 
-        field_0x588 = NULL;
+        mpBtpAnm = NULL;
         if (btpName > 0) {
             J3DAnmTexPattern* pbtp = (J3DAnmTexPattern*)dComIfG_getObjectRes(arcName, btpName);
-            field_0x588 = new mDoExt_btpAnm();
+            mpBtpAnm = new mDoExt_btpAnm();
 
-            if (field_0x588 == NULL || !field_0x588->init(modelData, pbtp, 1, 2, 1.0f, 0, -1)) {
+            if (mpBtpAnm == NULL || !mpBtpAnm->init(modelData, pbtp, 1, 2, 1.0f, 0, -1)) {
                 return 0;
             }
         }
@@ -176,8 +176,8 @@ void daItemBase_c::setShadow() {
 
     if (!chkFlag(0x10)) {
         if (getShadowSize() != 0.0f) {
-            dComIfGd_setSimpleShadow(&mCurrent.mPosition, field_0x58c.GetGroundH(), scale,
-                                     field_0x58c.m_gnd, 0, 1.0f,
+            dComIfGd_setSimpleShadow(&mCurrent.mPosition, mAcch.GetGroundH(), scale,
+                                     mAcch.m_gnd, 0, 1.0f,
                                      dDlst_shadowControl_c::getSimpleTex());
         }
     } else {
@@ -188,70 +188,70 @@ void daItemBase_c::setShadow() {
 
         field_0x91c =
             dComIfGd_setShadow(field_0x91c, 3, mpModel, &mCurrent.mPosition, shadowSize, 0.0f,
-                               mCurrent.mPosition.y, field_0x58c.GetGroundH(), field_0x58c.m_gnd,
+                               mCurrent.mPosition.y, mAcch.GetGroundH(), mAcch.m_gnd,
                                &mTevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
     }
 }
 
 /* 80144EDC-8014503C 13F81C 0160+00 1/0 1/0 9/0 .text            animEntry__12daItemBase_cFv */
 void daItemBase_c::animEntry() {
-    if (field_0x580 != NULL) {
+    if (mpBrkAnm != NULL) {
         s8 tevFrm = getTevFrm();
         if (tevFrm != -1) {
-            field_0x580->entry(mpModel->getModelData(), tevFrm);
+            mpBrkAnm->entry(mpModel->getModelData(), tevFrm);
         } else {
-            field_0x580->entry(mpModel->getModelData());
+            mpBrkAnm->entry(mpModel->getModelData());
         }
     }
 
-    if (field_0x588 != NULL) {
+    if (mpBtpAnm != NULL) {
         s8 btpFrm = getBtpFrm();
         if (btpFrm != -1) {
-            field_0x588->entry(mpModel->getModelData(), btpFrm);
+            mpBtpAnm->entry(mpModel->getModelData(), btpFrm);
         } else {
-            field_0x588->entry(mpModel->getModelData());
+            mpBtpAnm->entry(mpModel->getModelData());
         }
     }
 
-    if (field_0x578 != NULL) {
-        field_0x578->entry(mpModel->getModelData());
+    if (mpBtkAnm != NULL) {
+        mpBtkAnm->entry(mpModel->getModelData());
     }
 
-    if (field_0x584 != NULL) {
-        field_0x584->entry(mpModel->getModelData());
+    if (mpBckAnm != NULL) {
+        mpBckAnm->entry(mpModel->getModelData());
     }
 
-    if (field_0x57c != NULL) {
-        field_0x57c->entry(mpModel->getModelData());
+    if (mpBpkAnm != NULL) {
+        mpBpkAnm->entry(mpModel->getModelData());
     }
 }
 
 /* 8014503C-80145144 13F97C 0108+00 0/0 2/2 4/4 .text            animPlay__12daItemBase_cFffffff */
 void daItemBase_c::animPlay(f32 btkSpeed, f32 bpkSpeed, f32 bckSpeed, f32 param_3, f32 brkSpeed,
                             f32 btpSpeed) {
-    if (field_0x580 != NULL && getTevFrm() == -1) {
-        field_0x580->setPlaySpeed(brkSpeed);
-        field_0x580->play();
+    if (mpBrkAnm != NULL && getTevFrm() == -1) {
+        mpBrkAnm->setPlaySpeed(brkSpeed);
+        mpBrkAnm->play();
     }
 
-    if (field_0x588 != NULL && getBtpFrm() == -1) {
-        field_0x588->setPlaySpeed(btpSpeed);
-        field_0x588->play();
+    if (mpBtpAnm != NULL && getBtpFrm() == -1) {
+        mpBtpAnm->setPlaySpeed(btpSpeed);
+        mpBtpAnm->play();
     }
 
-    if (field_0x578 != NULL) {
-        field_0x578->setPlaySpeed(btkSpeed);
-        field_0x578->play();
+    if (mpBtkAnm != NULL) {
+        mpBtkAnm->setPlaySpeed(btkSpeed);
+        mpBtkAnm->play();
     }
 
-    if (field_0x57c != NULL) {
-        field_0x57c->setPlaySpeed(bpkSpeed);
-        field_0x57c->play();
+    if (mpBpkAnm != NULL) {
+        mpBpkAnm->setPlaySpeed(bpkSpeed);
+        mpBpkAnm->play();
     }
 
-    if (field_0x584 != NULL) {
-        field_0x584->setPlaySpeed(bckSpeed);
-        field_0x584->play();
+    if (mpBckAnm != NULL) {
+        mpBckAnm->setPlaySpeed(bckSpeed);
+        mpBckAnm->play();
     }
 }
 

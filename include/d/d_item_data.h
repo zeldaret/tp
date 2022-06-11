@@ -78,6 +78,8 @@ struct dItem_data {
 
     static u8 getR(u8 index) { return item_info[index].mR; }
 
+    static u16 getFieldHeapSize(u8 index) { return field_item_res[index].mHeapSize; } 
+
     static dItem_itemResource item_resource[255];
     static dItem_fieldItemResource field_item_res[255];
     static dItem_itemInfo item_info[255];

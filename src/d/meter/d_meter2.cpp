@@ -1485,7 +1485,7 @@ SECTION_DATA static leafdraw_method_class l_dMeter2_Method = {
 };
 
 /* 803BFA68-803BFA90 -00001 0028+00 0/0 0/0 1/0 .data            g_profile_METER2 */
-SECTION_DATA extern leaf_process_profile_definition g_profile_METER2 = {
+SECTION_DATA extern process_profile_definition g_profile_METER2 = {
     -3,     12,
     -3,     0x0316,
     0,      (process_method_class*)&g_fpcLf_Method,

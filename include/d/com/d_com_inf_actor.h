@@ -3,4 +3,16 @@
 
 #include "dolphin/types.h"
 
+class dComIfAc_info_c {
+public:
+    /* 0x0 */ int field_0x0;
+    /* 0x4 */ bool mPause;
+};
+
+extern dComIfAc_info_c g_dComIfAc_gameInfo;
+
+inline bool dComIfA_PauseCheck() {
+    return g_dComIfAc_gameInfo.mPause;
+}
+
 #endif /* D_COM_D_COM_INF_ACTOR_H */

@@ -4,10 +4,16 @@
 //
 
 #include "f_op/f_op_actor.h"
+#include "f_op/f_op_actor_tag.h"
 #include "d/d_stage.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/com/d_com_static.h"
+#include "d/com/d_com_inf_actor.h"
+#include "d/s/d_s_play.h"
+#include "d/d_demo.h"
 
 //
 // Types:
@@ -18,40 +24,6 @@ struct fopEn_enemy_c {
     /* 800194FC */ void checkBallModelDraw();
     /* 80019520 */ void setBallModelEffect(dKy_tevstr_c*);
     /* 800196A0 */ void drawBallModel(dKy_tevstr_c*);
-};
-
-struct daSus_c {
-    /* 800314D4 */ void check(fopAc_ac_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dPa_levelEcallBack {};
-
-struct dPa_control_c {
-    /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
-                            cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
-                            _GXColor const*, cXyz const*, f32);
-};
-
-struct dEvt_control_c {
-    /* 80042FA8 */ void moveApproval(void*);
-};
-
-struct dDemo_object_c {
-    /* 80039088 */ void getActor(u8);
-};
-
-struct dDemo_c {
-    static u8 m_object[4];
-};
-
-struct dDemo_actor_c {
-    /* 8003815C */ void setActor(fopAc_ac_c*);
 };
 
 //
@@ -125,25 +97,15 @@ extern "C" void entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
 extern "C" void __construct_array();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" f32 Zero__4cXyz[3];
-extern "C" extern u8 g_dComIfAc_gameInfo[8];
 extern "C" u8 m_object__7dDemo_c[4];
-extern "C" extern u8 struct_80451124[4];
 
 //
 // Declarations:
 //
 
 /* 80018B64-80018BD0 0134A4 006C+00 0/0 7/7 562/562 .text            __ct__10fopAc_ac_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm fopAc_ac_c::fopAc_ac_c() {
-    nofralloc
-#include "asm/f_op/f_op_actor/__ct__10fopAc_ac_cFv.s"
-}
-#pragma pop
+fopAc_ac_c::fopAc_ac_c() {}
 
 /* 80018BD0-80018C0C 013510 003C+00 0/0 12/12 0/0 .text            __dt__5csXyzFv */
 #pragma push
@@ -193,78 +155,117 @@ SECTION_DATA extern void* __vt__11dEvt_info_c[3 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dEvt_info_c::~dEvt_info_c() {
+// asm dEvt_info_c::~dEvt_info_c() {
+extern "C" asm void __dt__11dEvt_info_cFv() {
     nofralloc
 #include "asm/f_op/f_op_actor/__dt__11dEvt_info_cFv.s"
 }
 #pragma pop
 
+
 /* 80018C8C-80018CE0 0135CC 0054+00 0/0 5/5 270/270 .text            __dt__10fopAc_ac_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm fopAc_ac_c::~fopAc_ac_c() {
-    nofralloc
-#include "asm/f_op/f_op_actor/__dt__10fopAc_ac_cFv.s"
-}
-#pragma pop
+fopAc_ac_c::~fopAc_ac_c() {}
 
 /* ############################################################################################## */
 /* 80450CB8-80450CBC 0001B8 0004+00 2/2 0/0 0/0 .sbss            g_fopAc_type */
-static u8 g_fopAc_type[4];
+static int g_fopAc_type;
 
 /* 80018CE0-80018D0C 013620 002C+00 0/0 12/12 391/391 .text            fopAc_IsActor__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAc_IsActor(void* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_actor/fopAc_IsActor__FPv.s"
+s32 fopAc_IsActor(void* actor) {
+    return fpcM_IsJustType(g_fopAc_type, ((fopAc_ac_c*)actor)->mAcType);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450CBC-80450CC0 0001BC 0004+00 2/2 1/1 0/0 .sbss            stopStatus__10fopAc_ac_c */
 u32 fopAc_ac_c::stopStatus;
 
 /* 80018D0C-80018DD8 01364C 00CC+00 1/0 0/0 0/0 .text            fopAc_Draw__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void fopAc_Draw(void* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_actor/fopAc_Draw__FPv.s"
+static int fopAc_Draw(void* actor) {
+    fopAc_ac_c* ac = (fopAc_ac_c*)actor;
+
+    int ret = 1;
+    if (!dComIfGp_isPauseFlag()) {
+        if ((dComIfGp_event_moveApproval(ac) == 2 || (!fopAcM_checkStatus(ac, fopAc_ac_c::stopStatus) && (!fopAcM_checkStatus(ac, 0x100) || !fopAcM_cullingCheck(ac)))) && !fopAcM_checkStatus(ac, 0x21000000)) {
+            fopAcM_OffCondition(ac, 4);
+            ret = fpcLf_DrawMethod((leafdraw_method_class*)ac->mSubMtd, ac);
+        } else {
+            fopAcM_OnCondition(ac, 4);
+        }
+
+        fopAcM_OffStatus(ac, 0x1000000);
+    }
+
+    return ret;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80451BC8-80451BCC 0001C8 0004+00 1/1 0/0 0/0 .sdata2          @4324 */
-SECTION_SDATA2 static f32 lit_4324 = 5000.0f;
-
-/* 80451BCC-80451BD0 0001CC 0004+00 1/1 0/0 0/0 .sdata2          @4325 */
-SECTION_SDATA2 static f32 lit_4325 = -9.999999848243207e+30f;
 
 /* 80018DD8-80018F78 013718 01A0+00 1/0 0/0 0/0 .text            fopAc_Execute__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void fopAc_Execute(void* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_actor/fopAc_Execute__FPv.s"
+static int fopAc_Execute(void* actor) {
+    fopAc_ac_c* ac = (fopAc_ac_c*)actor;
+
+    int ret = 1;
+    if (!dComIfGp_isPauseFlag() && dScnPly_c::isPause()) {
+        if (!dComIfA_PauseCheck()) {
+            daSus_c::check(ac);
+            ac->mEvtInfo.beforeProc();
+            s32 move = dComIfGp_event_moveApproval(actor);
+            fopAcM_OffStatus(ac, 0x40000000);
+
+            if (!fopAcM_checkStatus(ac, 0x20000000) && (move == 2 || (move != 0 && !fopAcM_checkStatus(ac, fopAc_ac_c::stopStatus) && (!fopAcM_checkStatus(ac, 0x80) || !fopAcM_CheckCondition(ac, 4))))) {
+                fopAcM_OffCondition(ac, 2);
+                ac->mNext = ac->mCurrent;
+                ret = fpcMtd_Execute((process_method_class*)ac->mSubMtd, ac);
+            } else {
+                ac->mEvtInfo.suspendProc(ac);
+                fopAcM_OnCondition(ac, 2);
+            }
+
+            if (fopAcM_checkStatus(ac, 0x20) && ac->mOrig.mPosition.y - ac->mCurrent.mPosition.y > 5000.0f) {
+                fopAcM_delete(ac);
+            }
+
+            if (ac->mCurrent.mPosition.y < -9.999999848243207e+30f) {
+                ac->mCurrent.mPosition.y = -9.999999848243207e+30f;
+            }
+
+            dKy_depth_dist_set(ac);
+        }
+    }
+
+    return ret;
 }
-#pragma pop
 
 /* 80018F78-80018FCC 0138B8 0054+00 1/0 0/0 0/0 .text            fopAc_IsDelete__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void fopAc_IsDelete(void* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_actor/fopAc_IsDelete__FPv.s"
+static int fopAc_IsDelete(void* actor) {
+    fopAc_ac_c* ac = (fopAc_ac_c*)actor;
+
+    int isDelete = fpcMtd_IsDelete((process_method_class*)ac->mSubMtd, ac);
+    if (isDelete == true) {
+        fopDwTg_DrawQTo(&ac->mDwTg);
+    }
+
+    return isDelete;
 }
-#pragma pop
 
 /* 80018FCC-8001904C 01390C 0080+00 1/0 0/0 0/0 .text            fopAc_Delete__FPv */
+#ifdef NONMATCHING
+static int fopAc_Delete(void* actor) {
+    fopAc_ac_c* ac = (fopAc_ac_c*)actor;
+
+    int deleted = fpcMtd_Delete((process_method_class*)ac->mSubMtd, ac);
+    if (deleted == true) {
+        fopAcTg_ActorQTo(&ac->mAcTg);
+        fopDwTg_DrawQTo(&ac->mDwTg);
+        fopAcM_DeleteHeap(ac);
+        
+        dDemo_actor_c* demoAc = dDemo_c::getActor(ac->mDemoActorId);
+        if (demoAc != NULL) {
+            demoAc->setActor(NULL);
+        }
+    }
+
+    return deleted;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -273,6 +274,7 @@ static asm void fopAc_Delete(void* param_0) {
 #include "asm/f_op/f_op_actor/fopAc_Delete__FPv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80451BD0-80451BD4 0001D0 0004+00 2/2 0/0 0/0 .sdata2          @4431 */
@@ -285,14 +287,99 @@ SECTION_SDATA2 static f32 lit_4432 = -100.0f;
 SECTION_SDATA2 static f64 lit_4434 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8001904C-800193FC 01398C 03B0+00 1/0 0/0 0/0 .text            fopAc_Create__FPv */
+// swapped registers
+#ifdef NONMATCHING
+static int fopAc_Create(void* actor) {
+    fopAc_ac_c* ac = (fopAc_ac_c*)actor;
+
+    if (fpcM_IsFirstCreating(actor)) {
+        leaf_process_profile_definition* profile = fpcM_GetProfile(actor);
+        ac->mAcType = fpcBs_MakeOfType(&g_fopAc_type);
+        ac->mSubMtd = (profile_method_class*)profile->mBase.mMethods;
+
+        fopAcTg_Init(&ac->mAcTg, ac);
+        fopAcTg_ToActorQ(&ac->mAcTg);
+        fopDwTg_Init(&ac->mDwTg, ac);
+
+        ac->mStatus = profile->field_0x28;
+        ac->mGroup = profile->field_0x2c;
+        ac->mCullType = profile->field_0x2d;
+
+        fopAcM_prm_class* append = fopAcM_GetAppend(ac);
+        if (append != NULL) {
+            fopAcM_SetParam(ac, append->mParameter);
+            ac->mOrig.mPosition = append->mPos;
+            ac->mOrig.mAngle = append->mAngle;
+            ac->mCollisionRot = append->mAngle;
+            ac->mParentPcId = append->mParentPId;
+            ac->mSubtype = append->mSubtype;
+            ac->mScale.set(append->mScale[0] * 0.1f, append->mScale[1] * 0.1f, append->mScale[2] * 0.1f);
+            ac->mSetID = append->mEnemyNo;
+            ac->mOrig.mRoomNo = append->mRoomNo;
+        }
+
+        ac->mNext = ac->mOrig;
+        ac->mCurrent = ac->mOrig;
+        ac->mEyePos = ac->mOrig.mPosition;
+        ac->mMaxFallSpeed = -100.0f;
+        ac->mAttentionInfo.field_0x0[0] = 1;
+        ac->mAttentionInfo.field_0x0[1] = 2;
+        ac->mAttentionInfo.field_0x0[2] = 3;
+        ac->mAttentionInfo.field_0x0[3] = 5;
+        ac->mAttentionInfo.field_0x4[0] = 6;
+        ac->mAttentionInfo.field_0x4[3] = 14;
+        ac->mAttentionInfo.field_0x4[1] = 15;
+        ac->mAttentionInfo.field_0x4[2] = 15;
+        ac->mAttentionInfo.field_0x8[0] = 51;
+        ac->mAttentionInfo.mPosition = ac->mOrig.mPosition;
+        ac->mAttentionInfo.field_0xa = 30;
+        dKy_tevstr_init(&ac->mTevStr, ac->mOrig.mRoomNo, -1);
+
+        int roomNo = dComIfGp_roomControl_getStayNo();
+        if (roomNo >= 0) {
+            dComIfGp_roomControl_getStatusRoomDt(roomNo)->mRoomDt.getFileListInfo();
+        }
+
+        dStage_FileList_dt_c* filelist = NULL;
+        if (ac->mOrig.mRoomNo >= 0) {
+            filelist = dComIfGp_roomControl_getStatusRoomDt(ac->mOrig.mRoomNo)->mRoomDt.getFileListInfo();
+        }
+
+        if (filelist != NULL) {
+            if (!dStage_FileList_dt_GetEnemyAppear1Flag(filelist)) {
+                u32 sw = dStage_FileList_dt_GetBitSw(filelist);
+                if (sw != 0xFF && dComIfGs_isSwitch(sw, ac->mOrig.mRoomNo) && profile->field_0x2c == 2) {
+                    return 5;
+                }
+            } else {
+                u32 sw = dStage_FileList_dt_GetBitSw(filelist);
+                if (sw != 0xFF && !dComIfGs_isSwitch(sw, ac->mOrig.mRoomNo) && profile->field_0x2c == 2) {
+                    return 5;
+                }
+            }
+        }
+    }
+
+    int ret = fpcMtd_Create((process_method_class*)ac->mSubMtd, ac);
+    if (ret == 4) {
+        s16 priority = fpcLf_GetPriority(ac);
+        fopDwTg_ToDrawQ(&ac->mDwTg, priority);
+    } else if (ret == 5) {
+        fopAcM_OnCondition(ac, 0x10);
+    }
+
+    return ret;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void fopAc_Create(void* param_0) {
+static asm int fopAc_Create(void* param_0) {
     nofralloc
 #include "asm/f_op/f_op_actor/fopAc_Create__FPv.s"
 }
 #pragma pop
+#endif
 
 /* 800193FC-80019404 013D3C 0008+00 0/0 1/0 0/0 .text getFileListInfo__15dStage_roomDt_cCFv */
 #pragma push

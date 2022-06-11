@@ -194,10 +194,11 @@ struct JPAEmitterWorkData {
 
 class JPAEmitterCallBack {
 public:
-    /* 80050368 */ void execute(JPABaseEmitter*);
-    /* 8005036C */ void draw(JPABaseEmitter*);
-    /* 80050370 */ void drawAfter(JPABaseEmitter*);
-    /* 80050374 */ void executeAfter(JPABaseEmitter*);
+    /* 80050368 */ virtual void execute(JPABaseEmitter*);
+    /* 80050374 */ virtual void executeAfter(JPABaseEmitter*);
+    /* 8005036C */ virtual void draw(JPABaseEmitter*);
+    /* 80050370 */ virtual void drawAfter(JPABaseEmitter*);
+    
     /* 8027E6A4 */ ~JPAEmitterCallBack();
 };
 
@@ -230,6 +231,7 @@ public:
     u8 getResourceManagerID() const { return mResMgrID; }
     u8 getGroupID() const { return mGroupID; }
     u8 getDrawTimes() const { return mDrawTimes; }
+    void setRate(f32 rate) { mRate = rate; }
 
     f32 get_r_f() { return mRndm.get_rndm_f(); }
     f32 get_r_zp() { return mRndm.get_rndm_zp(); }

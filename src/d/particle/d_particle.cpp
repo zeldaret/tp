@@ -150,16 +150,6 @@ struct dPa_fsenthPcallBack {
     /* 8004FE6C */ ~dPa_fsenthPcallBack();
 };
 
-struct dPa_followEcallBack {
-    /* 80049580 */ dPa_followEcallBack(u8, u8);
-    /* 800495BC */ void execute(JPABaseEmitter*);
-    /* 800496B0 */ void draw(JPABaseEmitter*);
-    /* 800496B4 */ void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
-    /* 8004974C */ void end();
-    /* 80050200 */ ~dPa_followEcallBack();
-    /* 80050284 */ void cleanup();
-};
-
 struct cBgS_PolyInfo {};
 
 struct dJntCol_c {
@@ -1498,7 +1488,7 @@ asm void dPa_control_c::level_c::allForceOnEventMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dPa_control_c::level_c::emitter_c* dPa_control_c::level_c::getEmitter(u32 param_0) {
+asm JPABaseEmitter* dPa_control_c::level_c::getEmitter(u32 param_0) {
     nofralloc
 #include "asm/d/particle/d_particle/getEmitter__Q213dPa_control_c7level_cFUl.s"
 }
@@ -2472,7 +2462,8 @@ asm void dPa_light8EcallBack::drawAfter(JPABaseEmitter* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dPa_followEcallBack::~dPa_followEcallBack() {
+// asm dPa_followEcallBack::~dPa_followEcallBack() {
+extern "C" asm void __dt__19dPa_followEcallBackFv() {
     nofralloc
 #include "asm/d/particle/d_particle/__dt__19dPa_followEcallBackFv.s"
 }

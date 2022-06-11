@@ -458,6 +458,14 @@ inline void dMeter2Info_changeWater(u8 bottleIdx) {
     g_meter2_info.changeWater(bottleIdx);
 }
 
+inline void dMeter2Info_warpInProc() {
+    g_meter2_info.warpInProc();
+}
+
+inline void dMeter2Info_warpOutProc() {
+    g_meter2_info.warpOutProc();
+}
+
 char* dMeter2Info_getNumberTextureName(int pIndex);
 void dMeter2Info_recieveLetter();
 u8 dMeter2Info_getNewLetterNum();

@@ -122,18 +122,6 @@ struct cBgS {
     /* 80074744 */ void GetTriPla(cBgS_PolyInfo const&, cM3dGPla*) const;
 };
 
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
 struct J2DAnmLoaderDataBase {
     /* 80308A6C */ void load(void const*);
 };
@@ -354,7 +342,6 @@ extern "C" extern void* __vt__16Z2SoundObjSimple[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mRoofCheck__11fopAcM_rc_c[80];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" f32 mRoofY__11fopAcM_rc_c;

@@ -91,13 +91,13 @@ enum dCcG_At_Spl {
 };
 
 class dCcD_GObjInf;
-typedef void (*dCcD_AtHitCallback)(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
+typedef void (*dCcD_HitCallback)(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
 
 class dCcD_GAtTgCoCommonBase {
 public:
     /* 0x00 */ u32 mGFlag;
     /* 0x04 */ u32 mRPrm;
-    /* 0x08 */ dCcD_AtHitCallback mHitCallback;
+    /* 0x08 */ dCcD_HitCallback mHitCallback;
     /* 0x0C */ u32 mApid;
     /* 0x10 */ fopAc_ac_c* mAc;
     /* 0x14 */ s8 mEffCounter;
@@ -124,7 +124,7 @@ public:
     void OnSPrm(u32 flag) { mGFlag |= flag; }
     void OffSPrm(u32 flag) { mGFlag &= ~flag; }
     bool ChkRPrm(u32 flag) const { return MskRPrm(flag); }
-    void SetHitCallback(dCcD_AtHitCallback callback) { mHitCallback = callback; }
+    void SetHitCallback(dCcD_HitCallback callback) { mHitCallback = callback; }
 };  // Size = 0x1C
 
 class dCcD_GObjAt : public dCcD_GAtTgCoCommonBase {
@@ -157,6 +157,8 @@ public:
     /* 80083BE8 */ virtual ~dCcD_GObjTg() {}
     void SetVec(cXyz& vec) { mVec = vec; }
     cXyz& GetVec() { return mVec; }
+    void SetShieldFrontRangeYAngle(s16* angle) { mShieldFrontRangeYAngle = angle; }
+    void SetMtrl(u8 mtrl) { mMtrl = mtrl; }
 
 private:
     /* 0x1C */ u8 mSe;
@@ -186,7 +188,7 @@ public:
     /* 800843A8 */ cCcD_GObjInf* GetAtHitGObj();
     /* 800843DC */ bool ChkAtNoGuard();
     /* 800843FC */ void ClrTgHit();
-    /* 80084460 */ bool ChkTgHit();
+    /* 80084460 */ u32 ChkTgHit();
     /* 800844B8 */ void ResetTgHit();
     /* 800844F8 */ cCcD_Obj* GetTgHitObj();
     /* 80084548 */ dCcD_GObjInf* GetTgHitGObj();
@@ -202,21 +204,27 @@ public:
     bool ChkAtNoMass() const { return mGObjAt.ChkSPrm(8); }
     void OnAtNoHitMark() { mGObjAt.OnSPrm(2); }
     void OffAtNoHitMark() { mGObjAt.OffSPrm(2); }
+    void OnTgNoHitMark() { mGObjTg.OnSPrm(4); }
     void OnAtNoConHit() { mGObjAt.OnSPrm(1); }
     void OffAtNoConHit() { mGObjAt.OffSPrm(1); }
+    void OnTgNoConHit() { mGObjTg.OnSPrm(2); }
     void SetAtHitMark(u8 mark) { mGObjAt.SetHitMark(mark); }
     void SetAtSe(u8 se) { mGObjAt.SetSe(se); }
     void SetAtMtrl(u8 mtrl) { mGObjAt.SetMtrl(mtrl); }
+    void SetTgMtrl(u8 mtrl) { mGObjTg.SetMtrl(mtrl); }
     fopAc_ac_c* GetAtHitAc() { return mGObjAt.GetAc(); }
     bool ChkAtShieldHit() { return mGObjAt.ChkRPrm(1); }
     cXyz* GetAtVecP() { return mGObjAt.GetVecP(); }
     void SetAtSpl(dCcG_At_Spl spl) { mGObjAt.SetAtSpl(spl); }
-    void SetAtHitCallback(dCcD_AtHitCallback callback) { mGObjAt.SetHitCallback(callback); }
+    void SetAtHitCallback(dCcD_HitCallback callback) { mGObjAt.SetHitCallback(callback); }
+    void SetTgHitCallback(dCcD_HitCallback callback) { mGObjTg.SetHitCallback(callback); }
+    void SetCoHitCallback(dCcD_HitCallback callback) { mGObjCo.SetHitCallback(callback); }
     u8 GetAtSe() { return mGObjAt.GetSe(); }
     s32 GetAtSpl() { return mGObjAt.GetSpl(); }
     u8 GetAtMtrl() { return mGObjAt.GetMtrl(); }
     fopAc_ac_c* GetTgHitAc() { return mGObjTg.GetAc(); }
-
+    void SetTgShieldFrontRangeYAngle(s16* angle) { mGObjTg.SetShieldFrontRangeYAngle(angle); }
+    
     static u32 const m_hitSeID[24];
 
 protected:

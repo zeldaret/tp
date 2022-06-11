@@ -21,11 +21,6 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct mDoExt_3DlineMat1_c {
-    /* 80013360 */ void init(u16, u16, ResTIMG*, int);
-    /* 8001373C */ void update(int, f32, _GXColor&, u16, dKy_tevstr_c*);
-};
-
 struct mDoCPd_c {
     static u8 m_cpadInfo[256];
 };
@@ -140,22 +135,6 @@ struct camera_class {};
 
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct Z2SeqMgr {
-    /* 802AF49C */ void subBgmStart(u32);
-};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
 };
 
 //
@@ -511,7 +490,6 @@ extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
 extern "C" u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" f32 Zero__4cXyz[3];
 extern "C" u8 BaseX__4cXyz[12];

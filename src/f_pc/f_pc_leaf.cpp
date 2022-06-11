@@ -55,9 +55,9 @@ int g_fpcLf_type;
 
 /* 80021B14-80021B88 0074+00 s=1 e=0 z=0  None .text      fpcLf_Create__FP14leafdraw_class */
 s32 fpcLf_Create(leafdraw_class* pLeaf) {
-    leaf_process_profile_definition* profDef;
+    process_profile_definition* profDef;
     if (pLeaf->mBase.mInitState == 0) {
-        profDef = (leaf_process_profile_definition*)pLeaf->mBase.mpProf;
+        profDef = (process_profile_definition*)pLeaf->mBase.mpProf;
         pLeaf->mpDrawMtd = profDef->mLfDrwMth;
         pLeaf->mBase.mSubType = fpcBs_MakeOfType(&g_fpcLf_type);
         fpcDwPi_Init(&pLeaf->mDwPi, profDef->mPriority);

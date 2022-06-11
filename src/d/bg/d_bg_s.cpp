@@ -481,7 +481,7 @@ s32 dBgS::GetPolyColor(cBgS_PolyInfo const& poly) {
 }
 
 /* 80074C6C-80074CBC 06F5AC 0050+00 0/0 1/1 2/2 .text GetHorseNoEntry__4dBgSFRC13cBgS_PolyInfo */
-bool dBgS::GetHorseNoEntry(cBgS_PolyInfo const& poly) {
+BOOL dBgS::GetHorseNoEntry(cBgS_PolyInfo const& poly) {
     int bg_index = poly.GetBgIndex();
     if (m_chk_element[bg_index].ChkUsed()) {
         return m_chk_element[bg_index].m_bgw_base_ptr->GetHorseNoEntry(poly);
@@ -543,7 +543,7 @@ s32 dBgS::GetWallCode(cBgS_PolyInfo const& poly) {
 }
 
 /* 80074E50-80074EA0 06F790 0050+00 0/0 29/29 28/28 .text GetPolyAtt0__4dBgSFRC13cBgS_PolyInfo */
-bool dBgS::GetPolyAtt0(cBgS_PolyInfo const& poly) {
+BOOL dBgS::GetPolyAtt0(cBgS_PolyInfo const& poly) {
     int bg_index = poly.GetBgIndex();
     if (m_chk_element[bg_index].ChkUsed()) {
         return m_chk_element[bg_index].m_bgw_base_ptr->GetPolyAtt0(poly);

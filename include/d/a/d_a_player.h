@@ -46,7 +46,13 @@ private:
 
 class daPy_anmHeap_c {
 public:
-    enum daAlinkHEAP_TYPE {};
+    enum daAlinkHEAP_TYPE {
+        HEAP_TYPE_1 = 1,
+        HEAP_TYPE_2,
+        HEAP_TYPE_3,
+        HEAP_TYPE_4,
+        HEAP_TYPE_5,
+    };
 
     /* 80140DCC */ void __defctor();  // supposed to be the ctor?
 
@@ -67,6 +73,8 @@ public:
     void resetArcNo() { mArcNo = 0xffff; }
     bool checkNoSetArcNo() const { return mArcNo == 0xFFFF; }
     void setBufferSize(u32 size) { mBufferSize = size; }
+    void setBuffer(u8* buf) { mBuffer = buf; }
+    u8* getBuffer() { return mBuffer; }
 
 private:
     /* 0x00 */ u16 mIdx;
@@ -74,7 +82,7 @@ private:
     /* 0x04 */ u16 mArcNo;
     /* 0x06 */ u16 field_0x06;
     /* 0x08 */ u32 mBufferSize;
-    /* 0x0C */ void* mBuffer;
+    /* 0x0C */ u8* mBuffer;
     /* 0x10 */ JKRSolidHeap* mAnimeHeap;
 };  // Size = 0x14
 
@@ -130,7 +138,11 @@ public:
     void setDemoMode(u32 mode) { mDemoMode = mode; }
     u32 getDemoMode() const { return mDemoMode; }
     int getParam1() const { return mParam1; }
+    void setOriginalDemoType() { setDemoType(3); }
     void i_setSpecialDemoType() { setDemoType(5); }
+    void setStick(f32 stick) { mStick = stick; }
+    void setMoveAngle(s16 angle) { mDemoMoveAngle = angle; }
+    s16 getMoveAngle() const { return mDemoMoveAngle; }
 
 private:
     /* 0x00 */ u16 mDemoType;
@@ -164,9 +176,10 @@ public:
     /* 0x058C */ u32 mEndResetFlg1;
     /* 0x0590 */ u32 mEndResetFlg2;
     /* 0x0594 */ f32 field_0x594;
-    /* 0x0598 */ u8 field_0x598[0x4];
+    /* 0x0598 */ f32 field_0x598;
     /* 0x059C */ s16 mLookAngleY;
-    /* 0x059E */ u8 field_0x59e[0x6];
+    /* 0x059E */ s16 field_0x59e;
+    /* 0x05A0 */ u8 field_0x5a0[0x4];
     /* 0x05A4 */ cXyz mHeadTopPos;
     /* 0x05B0 */ cXyz mItemPos;
     /* 0x05BC */ cXyz mSwordTopPos;
@@ -187,6 +200,7 @@ public:
         FLG0_UNK_80000 = 0x80000,
         FLG0_UNK_20000 = 0x20000,
         FLG0_UNK_8000 = 0x8000,
+        FLG0_UNK_4000 = 0x4000,
         MAGNE_BOOTS_ON = 0x1000,
         FLG0_UNK_80 = 0x80,
         FLG0_UNK_40 = 0x40,
@@ -204,11 +218,14 @@ public:
         BOAR_SINGLE_BATTLE = 0x1800000,
         STATUS_WINDOW_DRAW = 0x400000,
         UNK_ARMOR = 0x80000,
+        SCENE_CHANGE_START = 0x8000,
+        FLG2_UNK_4000 = 0x4000,
         UNK_FLG2_2 = 2,
         UNK_DAPY_FLG2_1 = 1
     };
     enum daPy_FLG3 {
         FLG3_UNK_2000000 = 0x2000000,
+        FLG3_UNK_1000000 = 0x1000000,
         FLG3_UNK_100000 = 0x100000,
         COPY_ROD_THROW_AFTER = 0x40000
     };
@@ -337,6 +354,15 @@ public:
     /* 80182AC4 */ void checkCopyRodThrowAfter() const;
     /* 80182AD8 */ void checkRide() const;
     /* 80182B9C */ void getRightHandPos() const;
+    /* 8015DFD8 */ const cXyz getItemPos() const;
+    /* 8015DFF4 */ const cXyz& getLeftHandPos() const;
+
+    /* const cXyz* getItemPos() const {
+        return &mItemPos;
+    }
+    const cXyz* getLeftHandPos() const {
+        return &mLeftHandPos;
+    } */
 
     virtual cXyz* getMidnaAtnPos() const;
     virtual void setMidnaMsgNum(fopAc_ac_c*, u16);
@@ -526,6 +552,7 @@ public:
     u8 getCutType() const { return mCutType; }
     u16 getSwordAtUpTime() const { return mSwordUpTimer; }
     bool checkWaterInMove() const { return i_checkNoResetFlg0(UNDER_WATER_MOVEMENT); }
+    bool checkSceneChangeAreaStart() const { return i_checkNoResetFlg2(SCENE_CHANGE_START); }
 
     // some functions use these function as an inline
     // is there a better way to handle this?
@@ -553,6 +580,7 @@ public:
     BOOL i_checkMagneBootsOn() const { return i_checkNoResetFlg0(MAGNE_BOOTS_ON); }
     bool i_checkMidnaRide() const { return i_checkNoResetFlg0(MIDNA_RIDE); }
 
+    inline static u32 i_getLastSceneMode();
     inline static u32 getLastSceneMode();
     inline static bool checkWoodSwordEquip();
     inline BOOL i_checkSwordGet();

@@ -22,10 +22,9 @@ typedef struct leafdraw_class {
 
 typedef struct leaf_process_profile_definition {
     /* 0x00 */ process_profile_definition mBase;
-    /* 0x1C */ leafdraw_method_class* mLfDrwMth;
-    /* 0x20 */ s16 mPriority;
-    /* 0x22 */ u8 unk22[2];
-    /* 0x24 */ leafdraw_method_class* mMethods;
+    /* 0x28 */ int field_0x28;
+    /* 0x2C */ u8 field_0x2c;
+    /* 0x2D */ u8 field_0x2d;
 } leaf_process_profile_definition;
 
 s32 fpcLf_GetPriority(const leafdraw_class* pLeaf);

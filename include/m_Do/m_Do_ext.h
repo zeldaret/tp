@@ -154,6 +154,7 @@ public:
 
     void setRatio(f32 ratio) { mRatio = ratio; }
     J3DAnmTransform* getAnmTransform() { return mAnmTransform; }
+    void setAnmTransform(J3DAnmTransform* anm) { mAnmTransform = anm; }
 
 private:
     /* 0x0 */ f32 mRatio;

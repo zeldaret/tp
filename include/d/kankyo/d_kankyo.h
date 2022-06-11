@@ -24,6 +24,7 @@ s32 dKy_daynight_check();
 void dKy_clear_game_init();
 void dKy_setLight_init();
 u8 dKy_pol_sound_get(cBgS_PolyInfo const* param_0);
+void dKy_depth_dist_set(void* param_0);
 
 struct LIGHT_INFLUENCE {
     /* 800CFC7C */ ~LIGHT_INFLUENCE();
@@ -505,5 +506,8 @@ void dKy_setLight_nowroom(char);
 void dKy_setLight_nowroom_actor(dKy_tevstr_c*);
 void dKy_setLight_again();
 void dKy_GxFog_tevstr_set(dKy_tevstr_c*);
+void dKy_plight_set(LIGHT_INFLUENCE* param_0);
+void dKy_tevstr_init(dKy_tevstr_c* param_0, s8 param_1, u8 param_2);
+SND_INFLUENCE* dKy_Sound_get();
 
 #endif /* D_KANKYO_D_KANKYO_H */

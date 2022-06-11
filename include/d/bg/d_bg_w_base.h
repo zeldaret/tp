@@ -49,7 +49,7 @@ public:
     virtual s32 GetGrpRoomIndex(cBgS_PolyInfo const&) const = 0;
     virtual s32 GetExitId(cBgS_PolyInfo const&) = 0;
     virtual s32 GetPolyColor(cBgS_PolyInfo const&) = 0;
-    virtual bool GetHorseNoEntry(cBgS_PolyInfo const&) = 0;
+    virtual BOOL GetHorseNoEntry(cBgS_PolyInfo const&) = 0;
     virtual bool GetSpecialCode(cBgS_PolyInfo const&) = 0;
     virtual void GetSpecialCode(int) = 0;
     virtual bool GetMagnetCode(cBgS_PolyInfo const&) = 0;
@@ -66,7 +66,7 @@ public:
     virtual bool GetMonkeyBarsCode(cBgS_PolyInfo const&) = 0;
     virtual void GetLinkNo(cBgS_PolyInfo const&) = 0;
     virtual s32 GetWallCode(cBgS_PolyInfo const&) = 0;
-    virtual bool GetPolyAtt0(cBgS_PolyInfo const&) = 0;
+    virtual BOOL GetPolyAtt0(cBgS_PolyInfo const&) = 0;
     virtual bool GetPolyAtt1(cBgS_PolyInfo const&) = 0;
     virtual bool GetGroundCode(cBgS_PolyInfo const&) = 0;
     virtual void GetIronBallThrough(int) = 0;
