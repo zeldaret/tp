@@ -39,6 +39,7 @@ public:
     J2DPane* getPanePtr() { return (J2DPane*)mWindow; }
     u8 getAlpha() { return getPanePtr()->getAlpha(); }
     s16 getAlphaTimer() { return mAlphaTimer; }
+    void alphaAnimeStart(s16 start) { mAlphaTimer = start; }
 
     /* 0x04 */ J2DWindow* mWindow;
     /* 0x08 */ JKRExpHeap* heap;

@@ -2298,6 +2298,11 @@ inline void dComIfGd_setList() {
     g_dComIfG_gameInfo.drawlist.setXluList();
 }
 
+inline void dComIfGd_setListItem3D() {
+    g_dComIfG_gameInfo.drawlist.setOpaListItem3D();
+    g_dComIfG_gameInfo.drawlist.setXluListItem3D();
+}
+
 inline void dComIfGd_setXluList2DScreen() {
     g_dComIfG_gameInfo.drawlist.setXluList2DScreen();
 }

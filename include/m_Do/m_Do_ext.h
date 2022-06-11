@@ -17,6 +17,15 @@ public:
 
     void setPlaySpeed(f32 speed) { mFrameCtrl.setRate(speed); }
     f32 getFrame() { return mFrameCtrl.getFrame(); }
+    f32 getEndFrame() { return mFrameCtrl.getEnd(); }
+    void setFrame(f32 frame) { mFrameCtrl.setFrame(frame); }
+    bool isStop() {
+        bool stopped = true;
+        if (!mFrameCtrl.checkState(1) && mFrameCtrl.getRate() != 0.0f) {
+            stopped = false;
+        }
+        return stopped;
+    }
 
 private:
     /* 0x0 */ J3DFrameCtrl mFrameCtrl;
