@@ -265,21 +265,26 @@ SECTION_SDATA2 static f32 lit_4265 = 15.0f;
 SECTION_SDATA2 static f64 lit_4267 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80043A14-80043D60 03E354 034C+00 1/1 0/0 0/0 .text            dEvDt_Next_Stage__Fii */
-// bunch of issues with sclsInfo section. regalloc for the rest
-// TODO: try struct on stack
 #ifdef NONMATCHING
+// matches besides floats
 static int dEvDt_Next_Stage(int index, int wipe_type) {
     char* stage;
     s16 point;
+    int mode;
     s8 roomNo;
     s8 layer;
-    u32 mode = 0;         // uvar8 - retail
-    s8 wipe = wipe_type;  // ivar10
-    int noVisit = true;
-    int wipe_time = 0;                  // bvar9
-    f32 speed = FLOAT_LABEL(lit_4264);  // dvar12
-    bool setHour = false;               // bvar2
-    f32 hour = speed;                   // set to 0.0f dvar13
+    s8 wipe;
+    s32 noVisit;
+    s32 wipe_time;
+    f32 hour;
+    f32 speed;
+    mode = 0;          // uvar8 - retail
+    wipe = wipe_type;  // ivar10
+    noVisit = true;
+    wipe_time = 0;         // bvar9
+    hour = 0;              // dvar12
+    bool setHour = false;  // bvar2
+    speed = 0;             // set to 0.0f dvar13
 
     int* p_id = dComIfGp_evmng_getMyIntegerP(index, "ID");
     if (p_id != NULL) {
@@ -296,9 +301,10 @@ static int dEvDt_Next_Stage(int index, int wipe_type) {
             stage_scls_info_class* stgInfo = &info->mEntries[id];
             stage = stgInfo->mStage;
             point = stgInfo->mStart;
-            roomNo = stgInfo->mRoom;
+            roomNo = (s8)stgInfo->mRoom;
+            int tmp;  // might be fake idk
             layer = dStage_sclsInfo_getSceneLayer(stgInfo);
-            wipe = dStage_sclsInfo_getWipe(stgInfo);
+            wipe = (s8)dStage_sclsInfo_getWipe(stgInfo);
             wipe_time = dStage_sclsInfo_getWipeTime(stgInfo);
 
             if (wipe == 15) {
@@ -325,7 +331,7 @@ static int dEvDt_Next_Stage(int index, int wipe_type) {
 
     int* roomP = dComIfGp_evmng_getMyIntegerP(index, "RoomNo");
     if (roomP != NULL) {
-        roomNo = *roomP;
+        roomNo = (s8)*roomP;
     }
 
     int* layerP = dComIfGp_evmng_getMyIntegerP(index, "Layer");
