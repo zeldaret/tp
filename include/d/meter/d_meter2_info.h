@@ -65,7 +65,7 @@ public:
     virtual ~dMeter2Info_c();
     void init(void);
     int setFloatingMessage(u16, s16, bool);
-    void setFloatingFlow(u16, s16, bool);
+    int setFloatingFlow(u16, s16, bool);
     int isFloatingMessageVisible(void);
     int decFloatingMessageTimer(void);
     void resetFloatingMessage(void);
@@ -73,8 +73,8 @@ public:
     void getString(u32, char*, JMSMesgEntry_c*);  // define JMSMesgEntry
     void getStringKana(u32, char*, JMSMesgEntry_c*);
     void getStringKanji(u32, char*, JMSMesgEntry_c*);
-    double getStringLength(J2DTextBox*, char*);  // define J2DTextBox
-    dMeter2Info_c* getStringLength(JUTFont*, f32, f32, char*);
+    f32 getStringLength(J2DTextBox*, char*);
+    f32 getStringLength(JUTFont*, f32, f32, char*);
     void onDirectUseItem(int);
     bool isDirectUseItem(int);
     int setMeterString(s32);
@@ -84,12 +84,12 @@ public:
     void resetMeterString(void);
     void setWarpInfo(const char*, const cXyz&, s16, u8, u8, u8);
     u8 getItemType(u8);
-    u8 readItemTexture(u8, void*, J2DPicture*, void*, J2DPicture*, void*, J2DPicture*, void*,
-                       J2DPicture*, int);  // define J2DPicture
+    int readItemTexture(u8, void*, J2DPicture*, void*, J2DPicture*, void*, J2DPicture*, void*,
+                       J2DPicture*, int);
     void setItemColor(u8, J2DPicture*, J2DPicture*, J2DPicture*, J2DPicture*);
-    s8 get2ndTexture(u8);
-    s8 get3rdTexture(u8);
-    s8 get4thTexture(u8);
+    s16 get2ndTexture(u8);
+    s16 get3rdTexture(u8);
+    s16 get4thTexture(u8);
     void set1stColor(u8, J2DPicture*);
     void set2ndColor(u8, J2DPicture*);
     void set3rdColor(u8, J2DPicture*);
@@ -150,8 +150,9 @@ public:
     const char* getSaveStageName() { return mSaveStageName; }
     void onShopTalkFlag() { mShopTalkFlag = true; }
     void setLightDropGetFlag(int index, u8 flag) { mLightDropGetFlag[index] = flag; }
-    u8 getRentalBombBag() { return mRentalBombBag; }
+    u8 getRentalBombBag() { return mRentalBombBagIdx; }
     void setTableMapRegionNo(u8 regionNo) { mTableMapRegionNo = regionNo; }
+    dMeter2_c* getMeterClass() { return mMeterClass; }
 
 public:
     /* 0x04 */ u8 unk4[4];
@@ -178,7 +179,7 @@ public:
     /* 0x80 */ f32 unk128;
     /* 0x84 */ u32 mTimeMs;
     /* 0x88 */ u32 mMsgTimeMs;
-    /* 0x8C */ u32 mMeterString;
+    /* 0x8C */ s32 mMeterString;
     /* 0x90 */ u32 mTempBits;
     /* 0x94 */ s16 mMsgKeyWaitTimer;
     /* 0x96 */ u16 mHorseLifeCount;
@@ -207,19 +208,19 @@ public:
     /* 0xC1 */ u8 mPauseStatus;
     /* 0xC2 */ u8 mGameOverType;
     /* 0xC3 */ u8 mInsectSelectType;
-    /* 0xC4 */ u8 unk196[4];
-    /* 0xC8 */ u8 unk200[4];
-    /* 0xCC */ u8 unk204;
-    /* 0xCD */ u8 unk205;  // arrow num
-    /* 0xCE */ u8 unk206;  // item 1
-    /* 0xCF */ u8 unk207;  // item 2
-    /* 0xD0 */ u8 unk208[4];
-    /* 0xD4 */ u8 unk212[4];
-    /* 0xD8 */ u8 unk216;  // bomb num
-    /* 0xD9 */ u8 unk217;  // arrow num?
-    /* 0xDA */ u8 unk218;  // item 1?
-    /* 0xDB */ u8 unk219;  // item 2
-    /* 0xDC */ u8 mRentalBombBag;
+    /* 0xC4 */ u8 mSaveSelItemIdx[4];
+    /* 0xC8 */ u8 mSaveMixItemIdx[4];
+    /* 0xCC */ u8 mSaveBombNum;
+    /* 0xCD */ u8 mSaveArrowNum;
+    /* 0xCE */ u8 mSaveBowItem;
+    /* 0xCF */ u8 mSaveBombItem;
+    /* 0xD0 */ u8 mSaveSelItemIdxMG[4];
+    /* 0xD4 */ u8 mSaveMixItemIdxMG[4];
+    /* 0xD8 */ u8 mSaveBombNumMG;
+    /* 0xD9 */ u8 mSaveArrowNumMG;
+    /* 0xDA */ u8 mSaveBowItemMG;
+    /* 0xDB */ u8 mSaveBombItemMG;
+    /* 0xDC */ u8 mRentalBombBagIdx;
     /* 0xDD */ u8 mMiniGameItemSetFlag;  // 1: rented in game, 3: rented not in game
     /* 0xDE */ u8 mMiniGameCount;
     /* 0xDF */ u8 mCollectCursorPosX;
@@ -464,6 +465,10 @@ inline void dMeter2Info_warpInProc() {
 
 inline void dMeter2Info_warpOutProc() {
     g_meter2_info.warpOutProc();
+}
+
+inline dMeter2_c* dMeter2Info_getMeterClass() {
+    return g_meter2_info.getMeterClass();
 }
 
 char* dMeter2Info_getNumberTextureName(int pIndex);

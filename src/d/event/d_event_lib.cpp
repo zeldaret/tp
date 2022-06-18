@@ -6,38 +6,42 @@
 #include "d/event/d_event_lib.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "d/com/d_com_inf_game.h"
 
 //
 // Types:
 //
 
-struct fopAc_ac_c {};
+template <typename T>
+class action_class {
+public:
+    action_class(bool (T::*init)(), bool (T::*execute)()) {
+        mInit = init;
+        mExecute = execute;
+    }
 
-struct dEvt_control_c {
-    /* 80042468 */ void reset();
+    /* 0x0 */ bool (T::*mInit)();
+    /* 0xC */ bool (T::*mExecute)();
 };
 
-struct dEvent_manager_c {
-    /* 80047698 */ void getEventIdx(fopAc_ac_c*, u8);
-    /* 80047A78 */ void endCheck(s16);
-};
-
-template <typename A0>
-struct action_class {};
-/* action_class<dEvLib_callback_c> */
-struct action_class__template0 {};
-
-struct dEvLib_callback_c {
-    /* 8004886C */ void eventUpdate();
-    /* 800488A4 */ void setEvent(int, int, int);
+class dEvLib_callback_c {
+public:
+    /* 8004886C */ bool eventUpdate();
+    /* 800488A4 */ bool setEvent(int, int, int);
     /* 80048940 */ void orderEvent(int, int, int);
-    /* 80048970 */ void setAction(action_class<dEvLib_callback_c>*);
-    /* 800489A8 */ void initAction();
-    /* 800489F8 */ void executeAction();
-    /* 80048A50 */ void initStart();
-    /* 80048A70 */ void executeStart();
-    /* 80048B1C */ void initRun();
-    /* 80048B48 */ void executeRun();
+    /* 80048970 */ bool setAction(action_class<dEvLib_callback_c>*);
+    /* 800489A8 */ bool initAction();
+    /* 800489F8 */ bool executeAction();
+    /* 80048A50 */ bool initStart();
+    /* 80048A70 */ bool executeStart();
+    /* 80048B1C */ bool initRun();
+    /* 80048B48 */ bool executeRun();
+
+private:
+    /* 0x0 */ u32 field_0x0;
+    /* 0x4 */ fopAc_ac_c* field_0x4;
+    /* 0x8 */ action_class<dEvLib_callback_c>* mpAction;
+    /* 0xC */ u16 field_0xc;
 };
 
 //
@@ -67,38 +71,65 @@ extern "C" void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc();
 extern "C" void endCheck__16dEvent_manager_cFs();
 extern "C" void __ptmf_test();
 extern "C" void __ptmf_scall();
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
 // Declarations:
 //
 
-/* 8004886C-800488A4 0431AC 0038+00 0/0 0/0 23/23 .text eventUpdate__17dEvLib_callback_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvLib_callback_c::eventUpdate() {
-    nofralloc
-#include "asm/d/event/d_event_lib/eventUpdate__17dEvLib_callback_cFv.s"
+inline dEvent_manager_c& dComIfGp_getEventManager() {
+    return g_dComIfG_gameInfo.play.getEvtManager();
 }
-#pragma pop
+
+/* ############################################################################################## */
+/* 803A82B8-803A82C4 0053D8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
+SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+/* 8004886C-800488A4 0431AC 0038+00 0/0 0/0 23/23 .text eventUpdate__17dEvLib_callback_cFv */
+bool dEvLib_callback_c::eventUpdate() {
+    if (mpAction == NULL) {
+        return 0;
+    }
+
+    executeAction();
+    return 1;
+}
 
 /* ############################################################################################## */
 /* 804246E0-804246F8 051400 0018+00 2/2 0/0 0/0 .bss             l_startAction */
-static u8 l_startAction[24];
+static action_class<dEvLib_callback_c> l_startAction(&dEvLib_callback_c::initStart, &dEvLib_callback_c::executeStart);
 
 /* 800488A4-80048940 0431E4 009C+00 1/1 0/0 1/1 .text            setEvent__17dEvLib_callback_cFiii
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvLib_callback_c::setEvent(int param_0, int param_1, int param_2) {
-    nofralloc
-#include "asm/d/event/d_event_lib/setEvent__17dEvLib_callback_cFiii.s"
+bool dEvLib_callback_c::setEvent(int toolID, int eventID, int param_2) {
+    if (mpAction != NULL) {
+        return 0;
+    }
+
+    field_0x4->mEvtInfo.setMapToolId(toolID);
+    if (toolID != 0xFF && eventID == 0xFF) {
+        eventID = dComIfGp_getEventManager().getEventIdx(field_0x4, toolID);
+    }
+
+    field_0x4->mEvtInfo.setEventId(eventID);
+    field_0xc = param_2;
+    return setAction(&l_startAction);
 }
-#pragma pop
 
 /* 80048940-80048970 043280 0030+00 0/0 0/0 21/21 .text orderEvent__17dEvLib_callback_cFiii */
+#ifdef NONMATCHING
+void dEvLib_callback_c::orderEvent(int toolID, int eventID, int param_2) {
+    s32 var_r6;
+
+    var_r6 = 1;
+    if (param_2 != 0) {
+        var_r6 = 0x101;
+    }
+
+    setEvent(toolID, eventID, var_r6);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -107,24 +138,26 @@ asm void dEvLib_callback_c::orderEvent(int param_0, int param_1, int param_2) {
 #include "asm/d/event/d_event_lib/orderEvent__17dEvLib_callback_cFiii.s"
 }
 #pragma pop
+#endif
 
 /* 80048970-800489A8 0432B0 0038+00 3/3 0/0 0/0 .text
  * setAction__17dEvLib_callback_cFP33action_class<17dEvLib_callback_c> */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvLib_callback_c::setAction(action_class<dEvLib_callback_c>* param_0) {
-    nofralloc
-#include "asm/d/event/d_event_lib/func_80048970.s"
+bool dEvLib_callback_c::setAction(action_class<dEvLib_callback_c>* p_action) {
+    mpAction = p_action;
+
+    if (mpAction == NULL) {
+        return 0;
+    }
+
+    return initAction();
 }
-#pragma pop
 
 /* 800489A8-800489F8 0432E8 0050+00 1/1 0/0 0/0 .text            initAction__17dEvLib_callback_cFv
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvLib_callback_c::initAction() {
+asm bool dEvLib_callback_c::initAction() {
     nofralloc
 #include "asm/d/event/d_event_lib/initAction__17dEvLib_callback_cFv.s"
 }
@@ -134,42 +167,46 @@ asm void dEvLib_callback_c::initAction() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvLib_callback_c::executeAction() {
+asm bool dEvLib_callback_c::executeAction() {
     nofralloc
 #include "asm/d/event/d_event_lib/executeAction__17dEvLib_callback_cFv.s"
 }
 #pragma pop
 
 /* 80048A50-80048A70 043390 0020+00 1/0 0/0 0/0 .text            initStart__17dEvLib_callback_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvLib_callback_c::initStart() {
-    nofralloc
-#include "asm/d/event/d_event_lib/initStart__17dEvLib_callback_cFv.s"
+bool dEvLib_callback_c::initStart() {
+    return executeStart();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804246F8-80424710 051418 0018+00 2/2 0/0 0/0 .bss             l_runAction */
-static u8 l_runAction[24];
+static action_class<dEvLib_callback_c> l_runAction(&dEvLib_callback_c::initRun, &dEvLib_callback_c::executeRun);
 
 /* 80048A70-80048B1C 0433B0 00AC+00 2/1 0/0 0/0 .text            executeStart__17dEvLib_callback_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvLib_callback_c::executeStart() {
-    nofralloc
-#include "asm/d/event/d_event_lib/executeStart__17dEvLib_callback_cFv.s"
+bool dEvLib_callback_c::executeStart() {
+    if (!field_0x4->mEvtInfo.i_checkCommandDemoAccrpt()) {
+        u8 toolID = field_0x4->mEvtInfo.getMapToolId();
+
+        if (field_0x4->mEvtInfo.getMapToolId() != 0xFF) {
+            s16 eventID = field_0x4->mEvtInfo.getEventId();
+            fopAcM_orderMapToolEvent(field_0x4, toolID, eventID, 0xFFFF, field_0xc, 0);
+        } else {
+            s16 eventID = field_0x4->mEvtInfo.getEventId();
+            fopAcM_orderOtherEventId(field_0x4, eventID, toolID, 0xFFFF, 0, field_0xc);
+        }
+        field_0x4->mEvtInfo.i_onCondition(2);
+        return 1;
+    }
+
+    return setAction(&l_runAction);
 }
-#pragma pop
 
 /* 80048B1C-80048B48 04345C 002C+00 1/0 0/0 0/0 .text            initRun__17dEvLib_callback_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvLib_callback_c::initRun() {
+asm bool dEvLib_callback_c::initRun() {
     nofralloc
 #include "asm/d/event/d_event_lib/initRun__17dEvLib_callback_cFv.s"
 }
@@ -180,71 +217,8 @@ asm void dEvLib_callback_c::initRun() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvLib_callback_c::executeRun() {
+asm bool dEvLib_callback_c::executeRun() {
     nofralloc
 #include "asm/d/event/d_event_lib/executeRun__17dEvLib_callback_cFv.s"
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 803A82B8-803A82C4 0053D8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 803A82C4-803A82D0 -00001 000C+00 0/1 0/0 0/0 .data            @3617 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3617[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initStart__17dEvLib_callback_cFv,
-};
-#pragma pop
-
-/* 803A82D0-803A82DC -00001 000C+00 0/1 0/0 0/0 .data            @3618 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3618[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executeStart__17dEvLib_callback_cFv,
-};
-#pragma pop
-
-/* 803A82DC-803A82E8 -00001 000C+00 0/1 0/0 0/0 .data            @3621 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3621[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initRun__17dEvLib_callback_cFv,
-};
-#pragma pop
-
-/* 803A82E8-803A82F8 -00001 000C+04 0/1 0/0 0/0 .data            @3622 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3622[3 + 1 /* padding */] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executeRun__17dEvLib_callback_cFv,
-    /* padding */
-    NULL,
-};
-#pragma pop
-
-/* 80048BD8-80048C54 043518 007C+00 0/0 1/0 0/0 .text            __sinit_d_event_lib_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_event_lib_cpp() {
-    nofralloc
-#include "asm/d/event/d_event_lib/__sinit_d_event_lib_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80048BD8, __sinit_d_event_lib_cpp);
 #pragma pop

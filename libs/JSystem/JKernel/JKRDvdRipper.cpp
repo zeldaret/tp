@@ -47,7 +47,6 @@ extern "C" void __dt__10JSUPtrListFv();
 extern "C" void initiate__10JSUPtrListFv();
 extern "C" void panic_f__12JUTExceptionFPCciPCce();
 extern "C" void DCInvalidateRange();
-extern "C" void DCStoreRangeNoSync();
 extern "C" void VIWaitForRetrace();
 extern "C" void __register_global_object();
 extern "C" void _savegpr_18();

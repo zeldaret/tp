@@ -112,7 +112,7 @@ public:
     virtual BOOL GetHorseNoEntry(cBgS_PolyInfo const&) = 0;
     virtual bool GetSpecialCode(cBgS_PolyInfo const&) = 0;
     virtual void GetSpecialCode(int) = 0;
-    virtual bool GetMagnetCode(cBgS_PolyInfo const&) = 0;
+    virtual int GetMagnetCode(cBgS_PolyInfo const&) = 0;
     virtual void GetPolyObjThrough(int) = 0;
     virtual void GetPolyCamThrough(int) = 0;
     virtual void GetPolyLinkThrough(int) = 0;
@@ -211,7 +211,7 @@ public:
     /* 8007B404 */ virtual BOOL GetHorseNoEntry(cBgS_PolyInfo const&);
     /* 8007B430 */ virtual bool GetSpecialCode(cBgS_PolyInfo const&);
     /* 8007B460 */ virtual void GetSpecialCode(int);
-    /* 8007B488 */ virtual bool GetMagnetCode(cBgS_PolyInfo const&);
+    /* 8007B488 */ virtual int GetMagnetCode(cBgS_PolyInfo const&);
     /* 8007B4E0 */ virtual void GetPolyObjThrough(int);
     /* 8007B504 */ virtual void GetPolyCamThrough(int);
     /* 8007B52C */ virtual void GetPolyLinkThrough(int);

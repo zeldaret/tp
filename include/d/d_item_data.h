@@ -54,6 +54,8 @@ struct dItem_data {
 
     static s8 getBtpFrm(u8 index) { return item_resource[index].mBtpFrm; }
 
+    static s16 getTexture(u8 index) { return item_resource[index].mTexture; }
+
     static char* getFieldArc(u8 index) { return field_item_res[index].mFieldArc; }
 
     static s16 getItemBmdName(u8 index) { return field_item_res[index].mItemBmdName; }

@@ -31,12 +31,13 @@ public:
     s16 getEventId() { return mEventId; }
     s16 getIdx() { return mIndex; }
     char* getArchiveName() { return mArchiveName; }
-    bool chkCondition(u16 condition) { return mCondition == condition; }
+    BOOL chkCondition(u16 condition) { return mCondition & condition; }
     void i_onCondition(u16 cond) { mCondition |= cond; }
 
     bool checkCommandTalk() { return mCommand == 1; }
     bool checkCommandItem() { return mCommand == 4; }
     BOOL i_checkCommandDoor() { return mCommand == 3; }
+    bool i_checkCommandDemoAccrpt() { return mCommand == 2; }
 
     void suspendProc(void* actor) {
         if (field_0x10 != NULL) {

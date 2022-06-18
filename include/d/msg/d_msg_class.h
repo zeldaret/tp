@@ -4,10 +4,8 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
-class msg_class {
+class msg_class : public leafdraw_class {
 public:
-    /* 0x00 */ base_process_class field_0x0;
-    /* 0xB8 */ u8 field_0xb8[8];
     /* 0xC0 */ int field_0xc0;
     /* 0xC4 */ create_tag_class field_0xc4;
     /* 0xD8 */ leafdraw_method_class* field_0xd8;

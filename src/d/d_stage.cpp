@@ -3009,7 +3009,7 @@ SECTION_SDATA2 static f64 lit_5317 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80027170-800272E0 021AB0 0170+00 1/1 10/10 63/63 .text            dStage_changeScene__FifUlScsi
  */
-// swapped regs
+// matches with literals
 #ifdef NONMATCHING
 int dStage_changeScene(int i_exitId, f32 speed, u32 mode, s8 room_no, s16 angle, int param_5) {
     stage_scls_info_dummy_class* scls;
@@ -3025,25 +3025,24 @@ int dStage_changeScene(int i_exitId, f32 speed, u32 mode, s8 room_no, s16 angle,
     }
 
     stage_scls_info_class* scls_info = &scls->mEntries[i_exitId];
-    u8 wipe = dStage_sclsInfo_getWipe(scls_info);
-    u8 wipe_time = dStage_sclsInfo_getWipeTime(scls_info);
-    s8 layer = dStage_sclsInfo_getSceneLayer(scls_info);
-    s32 new_layer = layer;
+    s32 wipe = dStage_sclsInfo_getWipe(scls_info);
+    s32 wipe_time = dStage_sclsInfo_getWipeTime(scls_info);
+    s32 layer = dStage_sclsInfo_getSceneLayer(scls_info);
     int timeH = dStage_sclsInfo_getTimeH(scls_info);
 
     if (layer >= 15) {
-        new_layer = -1;
+        layer = -1;
     }
 
-    if (new_layer == -1 && param_5 != -1) {
-        new_layer = param_5;
+    if (layer == -1 && param_5 != -1) {
+        layer = param_5;
     }
 
     if (timeH < 31) {
         dKy_set_nexttime(15.0f * timeH);
     }
 
-    dComIfGp_setNextStage(scls_info->mStage, scls_info->mStart, (s8)scls_info->mRoom, (s8)new_layer, speed,
+    dComIfGp_setNextStage(scls_info->mStage, scls_info->mStart, (s8)scls_info->mRoom, (s8)layer, speed,
                           mode, 1, wipe == 15 ? 0 : wipe, angle, 1, wipe_time);
     return 1;
 }
@@ -3098,8 +3097,8 @@ int dStage_changeScene4Event(int i_exitId, s8 room_no, int i_wipe, bool param_3,
 
     stage_scls_info_class* scls_info = &scls->mEntries[i_exitId];
 
-    int wipe;
-    int wipe_time;
+    s32 wipe;
+    s32 wipe_time;
     if (i_wipe == -1) {
         wipe = dStage_sclsInfo_getWipe(scls_info);
     } else {
@@ -3112,23 +3111,22 @@ int dStage_changeScene4Event(int i_exitId, s8 room_no, int i_wipe, bool param_3,
         wipe_time = 0;
     }
     
-    s8 layer = dStage_sclsInfo_getSceneLayer(scls_info);
-    s32 new_layer = layer;
+    s32 layer = dStage_sclsInfo_getSceneLayer(scls_info);
     int timeH = dStage_sclsInfo_getTimeH(scls_info);
 
     if (layer >= 15) {
-        new_layer = -1;
+        layer = -1;
     }
 
-    if (new_layer == -1 && param_7 != -1) {
-        new_layer = param_7;
+    if (layer == -1 && param_7 != -1) {
+        layer = param_7;
     }
 
     if (timeH < 31) {
         dKy_set_nexttime(15.0f * timeH);
     }
 
-    dComIfGp_setNextStage(scls_info->mStage, scls_info->mStart, (s8)scls_info->mRoom, (s8)new_layer, speed,
+    dComIfGp_setNextStage(scls_info->mStage, scls_info->mStart, (s8)scls_info->mRoom, (s8)layer, speed,
                           mode, 1, wipe == 15 ? 0 : wipe, angle, param_3 != false, wipe_time);
     return 1;
 }
@@ -3136,7 +3134,7 @@ int dStage_changeScene4Event(int i_exitId, s8 room_no, int i_wipe, bool param_3,
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dStage_changeScene4Event(int param_0, s8 param_1, int param_2, bool param_3, f32 param_4,
+asm int dStage_changeScene4Event(int param_0, s8 param_1, int param_2, bool param_3, f32 param_4,
                                   u32 param_5, s16 param_6, int param_7) {
     nofralloc
 #include "asm/d/d_stage/dStage_changeScene4Event__FiScibfUlsi.s"

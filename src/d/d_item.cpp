@@ -2597,51 +2597,72 @@ u8 check_itemno(int i_itemId) {
 
 /* 8009B940-8009BBD8 096280 0298+00 11/11 0/0 0/0 .text            addBombCount__FUcUc */
 #ifdef NONMATCHING
-static u8 addBombCount(u8 param_0, u8 param_1) {
-    u8 count[4];
-    u8 count2[3];
+int addBombCount(u8 i_bombType, u8 i_addNum) {
+    u8 bombType[3];
+    s32 bombNum[3];
+    s32 var_r22;
+    s32 bombIdx;
 
-    int uvar6;
+    for (u8 i = 0; i < 3; i++) {
+        bombType[i] = dComIfGs_getItem(i + SLOT_15, false);
 
-    for (int i = 0; i < 3; i++) {
-        u8 tmp = dComIfGs_getItem(i + SLOT_15, false);
-        count[i] = tmp;
-
-        if (count[i] == 0x50) {
-            count2[i] = 0;
+        if (bombType[i] == BOMB_BAG_LV1) {
+            bombNum[i] = 0;
+        } else if (bombType[i] == i_bombType) {
+            bombNum[i] = dComIfGs_getBombNum(i);
         } else {
-            if (count[i] == param_0) {
-                count2[i] = dComIfGs_getBombNum(i);
+            bombNum[i] = -1;
+        }
+    }
+
+    for (u8 i = 0; i < 3; i++) {
+        bombIdx = -1;
+        var_r22 = -1;
+    
+        for (u8 j = 0; j < 3; j++) {
+            if (bombNum[j] == 0) {
+                bombIdx = j;
+                var_r22 = 0;
+            }
+        }
+
+        for (u8 k = 0; k < 3; k++) {
+            if (bombNum[k] > 0 && bombNum[k] > var_r22 && bombNum[k] != dComIfGs_getBombMax(bombType[k])) {
+                bombIdx = k;
+                var_r22 = bombNum[k];
+            }
+        }
+
+        if (bombIdx == -1) {  // issue here?
+            return i_addNum;
+        } else if (var_r22 == 0) {
+            if (dComIfGs_getBombMax(i_bombType) >= i_addNum) {
+                dComIfGs_setEmptyBombBagItemIn(i_bombType, i_addNum, true);
+                return 0;
             } else {
-                count2[i] = -1;
+                dComIfGs_setEmptyBombBagItemIn(i_bombType, i_addNum, true);
+                i_addNum -= (int)dComIfGs_getBombMax(i_bombType);
+            }
+        } else {
+            if (dComIfGs_getBombMax(bombType[bombIdx]) >= var_r22 + i_addNum) {
+                dComIfGp_setItemBombNumCount(bombIdx, i_addNum);
+                return 0;
+            } else {
+                dComIfGp_setItemBombNumCount(bombIdx, i_addNum);
+                i_addNum -= (int)dComIfGs_getBombMax(bombType[bombIdx]) - var_r22;
             }
         }
+
+        bombNum[bombIdx] = dComIfGs_getBombMax(bombType[bombIdx]);
     }
 
-    for (int i = 0; i < 3; i++) {
-        uvar6 = -1;
-        for (int j = 0; j < 3; j++) {
-            if (count2[j] == 0) {
-                uvar6 = 0;
-            }
-        }
-
-        for (int k = 0; k < 3; k++) {
-            if (count2[k] > 0 && uvar6 < count2[k] && count2[k] != dComIfGs_getBombMax(count2[k])) {
-                uvar6 = count2[k];
-            }
-        }
-
-        if ()
-    }
-
-    return param_1;
+    return i_addNum;
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void addBombCount(u8 param_0, u8 param_1) {
+asm int addBombCount(u8 param_0, u8 param_1) {
     nofralloc
 #include "asm/d/d_item/addBombCount__FUcUc.s"
 }

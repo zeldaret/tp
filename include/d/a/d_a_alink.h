@@ -57,10 +57,10 @@ private:
     /* 0x20 */ J2DAnmTevRegKey* field_0x20;
     /* 0x24 */ J2DAnmColorKey* field_0x24;
     /* 0x28 */ J2DAnmTransformKey* field_0x28;
-    /* 0x2C */ float field_0x2c;
-    /* 0x30 */ float field_0x30;
-    /* 0x34 */ float field_0x34;
-    /* 0x38 */ float field_0x38;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ f32 field_0x30;
+    /* 0x34 */ f32 field_0x34;
+    /* 0x38 */ f32 field_0x38;
 };
 
 class daAlink_sight_c : public daPy_sightPacket_c {
@@ -116,7 +116,7 @@ public:
 private:
     /* 0x04 */ s16 mHitFlg;
     /* 0x06 */ s16 mAppearFlg;
-    /* 0x08 */ float mKeepMinY;
+    /* 0x08 */ f32 mKeepMinY;
     /* 0x0C */ cXyz mHitPos;
 };  // Size = 0x18
 
@@ -172,6 +172,9 @@ struct daAlink_WlAnmData {
     /* 0x7 */ u8 field_0x7;
 };  // Size: 0x8
 
+class daAlink_c;
+typedef int (daAlink_c::*daAlink_procFunc)();
+
 class daAlink_c : public daPy_py_c {
 public:
     enum daAlink_ANM {
@@ -198,8 +201,13 @@ public:
 
         /* 0xFD */ ANM_TRANSFORM_WOLF = 0xFD,  // verify
 
+        /* 0x188 */ ANM_DUNGEON_WARP_READY_INIT = 0x188,
+
         /* 0x18D */ ANM_CUT_JUMP_LARGE = 0x18D,  // verify
-        ANM_GANON_FINISH = 408                   // name probably wrong, fix later
+        /* 0x18F */ ANM_MASTER_SWORD_STICK_INIT = 0x18F,
+        /* 0x190 */ ANM_MASTER_SWORD_STICK,
+        /* 0x191 */ ANM_MASTER_SWORD_PULL_INIT,
+        /* 0x198 */ ANM_GANON_FINISH = 408,                   // name probably wrong, fix later
     };
 
     enum daAlink_UPPER {
@@ -614,6 +622,16 @@ public:
         ANM_WOLF_ENEMY_THROW_RIGHT,
     };
 
+    enum daAlink_ITEM_BTN {
+        /* 0x01 */ BTN_X = (1 << 0),
+        /* 0x02 */ BTN_Y = (1 << 1),
+        /* 0x04 */ BTN_Z = (1 << 2),
+        /* 0x08 */ BTN_B = (1 << 3),
+        /* 0x10 */ BTN_A = (1 << 4),
+        /* 0x20 */ BTN_L = (1 << 5),
+        /* 0x40 */ BTN_R = (1 << 6),
+    };
+
     class firePointEff_c {
     public:
         /* 800CFC3C */ ~firePointEff_c();
@@ -812,8 +830,8 @@ public:
     /* 800B477C */ void checkRequestTalkActor(dAttList_c*, fopAc_ac_c*);
     /* 800B47B4 */ void checkServiceWaitMode();
     /* 800B48D0 */ void setJumpMode();
-    /* 800B4908 */ float getMetamorphoseNearDis() const;
-    /* 800B4918 */ float getMetamorphoseFarDis() const;
+    /* 800B4908 */ f32 getMetamorphoseNearDis() const;
+    /* 800B4918 */ f32 getMetamorphoseFarDis() const;
     /* 800B4928 */ s16 getMetamorphoseFarAngle() const;
     /* 800B4938 */ void setMidnaMsg();
     /* 800B4950 */ bool notTalk();
@@ -913,9 +931,9 @@ public:
     /* 800BFFCC */ void loadAramItemBtk(u16, J3DModel*);
     /* 800C0028 */ void loadAramItemBtp(u16, J3DModel*);
     /* 800C0084 */ void changeItemBck(u16, f32);
-    /* 800C0114 */ void checkGroupItem(int, int) const;
-    /* 800C0164 */ void checkSetItemTrigger(int);
-    /* 800C0208 */ void checkItemSetButton(int);
+    /* 800C0114 */ int checkGroupItem(int, int) const;
+    /* 800C0164 */ int checkSetItemTrigger(int);
+    /* 800C0208 */ int checkItemSetButton(int);
     /* 800C0284 */ static bool checkField();
     /* 800C02C8 */ static bool checkBossRoom();
     /* 800C0310 */ static bool checkDungeon();
@@ -1291,16 +1309,16 @@ public:
     /* 800E23FC */ void concatMagneBootMtx();
     /* 800E243C */ void concatMagneBootInvMtx();
     /* 800E247C */ void multVecMagneBootInvMtx(cXyz*);
-    /* 800E24B0 */ void commonMagneLineCheck(cXyz*, cXyz*);
+    /* 800E24B0 */ int commonMagneLineCheck(cXyz*, cXyz*);
     /* 800E251C */ void checkBootsMoveAnime(int);
     /* 800E2580 */ void setHeavyBoots(int);
-    /* 800E2738 */ void getMagneBootsLocalAngleY(s16, int);
+    /* 800E2738 */ s16 getMagneBootsLocalAngleY(s16, int);
     /* 800E2808 */ void setMagneBootsMtx(cBgS_PolyInfo*, int);
     /* 800E2DC4 */ void cancelMagneBootsOn();
-    /* 800E2F88 */ void checkMagneBootsFly();
+    /* 800E2F88 */ int checkMagneBootsFly();
     /* 800E3048 */ void procBootsEquipInit();
     /* 800E30DC */ void procBootsEquip();
-    /* 800E3218 */ void procMagneBootsFlyInit();
+    /* 800E3218 */ int procMagneBootsFlyInit();
     /* 800E3454 */ void procMagneBootsFly();
     /* 800E3760 */ s16 getBombExplodeTime() const;
     /* 800E3770 */ f32 getBombGravity() const;
@@ -1378,7 +1396,7 @@ public:
     /* 800E8148 */ void checkPullBehindWall();
     /* 800E8298 */ void offGoatStopGame();
     /* 800E82B0 */ BOOL checkGoatCatchActor(fopAc_ac_c*);
-    /* 800E8314 */ float getGoatCatchDistance2();
+    /* 800E8314 */ f32 getGoatCatchDistance2();
     /* 800E8334 */ void endPushPull();
     /* 800E8354 */ void getPushPullAnimeSpeed();
     /* 800E8428 */ void procCoPushPullWaitInit(int);
@@ -1932,7 +1950,7 @@ public:
     /* 80118AD0 */ void checkFinalBattle();
     /* 80118B34 */ void checkRestartDead(int, int);
     /* 80118BF4 */ void setDeadRideSyncPos();
-    /* 80118C98 */ void checkDeadHP();
+    /* 80118C98 */ BOOL checkDeadHP();
     /* 80118D7C */ void checkDeadAction(int);
     /* 80118FF8 */ void setHighModelBck(mDoExt_bckAnm*, u16);
     /* 801190A4 */ void setHighModelFaceBtk(u16);
@@ -2010,12 +2028,12 @@ public:
     /* 8011EA78 */ bool procGanonFinish();
     /* 8011EAE8 */ void procCutFastReadyInit();
     /* 8011EB8C */ void procCutFastReady();
-    /* 8011EBDC */ void procMasterSwordStickInit();
-    /* 8011EC60 */ void procMasterSwordStick();
-    /* 8011ED18 */ bool procMasterSwordPullInit();
+    /* 8011EBDC */ int procMasterSwordStickInit();
+    /* 8011EC60 */ int procMasterSwordStick();
+    /* 8011ED18 */ int procMasterSwordPullInit();
     /* 8011ED8C */ void procMasterSwordPull();
     /* 8011EE40 */ static BOOL checkLv7DungeonShop();
-    /* 8011EE94 */ void procDungeonWarpReadyInit();
+    /* 8011EE94 */ int procDungeonWarpReadyInit();
     /* 8011EFB8 */ void procDungeonWarpReady();
     /* 8011F084 */ void procDungeonWarpInit();
     /* 8011F0F4 */ int procDungeonWarp();
@@ -2395,7 +2413,7 @@ public:
     virtual BOOL checkBoarRun() const;
     virtual f32 getBaseAnimeFrameRate() const;
     virtual f32 getBaseAnimeFrame() const;
-    virtual void setAnimeFrame(float);
+    virtual void setAnimeFrame(f32);
     virtual bool checkWolfLock(fopAc_ac_c*) const;
     virtual bool cancelWolfLock(fopAc_ac_c*);
     virtual s32 getAtnActorID() const;
@@ -2408,8 +2426,8 @@ public:
     virtual void voiceStart(u32);
     virtual void seStartOnlyReverb(u32);
     virtual void seStartOnlyReverbLevel(u32);
-    virtual void setOutPower(float, short, int);
-    virtual void setGrabCollisionOffset(float, float, cBgS_PolyInfo*);
+    virtual void setOutPower(f32, short, int);
+    virtual void setGrabCollisionOffset(f32, f32, cBgS_PolyInfo*);
     virtual void onFrollCrashFlg(u8, int);
     virtual MtxP getModelJointMtx(u16);
     virtual MtxP getHeadMtx();
@@ -2421,10 +2439,10 @@ public:
     virtual void setClothesChange(int);
     virtual void setPlayerPosAndAngle(cXyz const*, short, int);
     virtual void setPlayerPosAndAngle(cXyz const*, csXyz const*);
-    virtual void setPlayerPosAndAngle(float (*)[4]);
-    virtual bool setThrowDamage(short, float, float, int, int, int);
+    virtual void setPlayerPosAndAngle(f32 (*)[4]);
+    virtual bool setThrowDamage(short, f32, f32, int, int, int);
     virtual bool checkSetNpcTks(cXyz*, int, int);
-    virtual bool setRollJump(float, float, short);
+    virtual int setRollJump(f32, f32, short);
     virtual void playerStartCollisionSE(u32, u32);
     virtual void cancelDungeonWarpReadyNeck();
     virtual void onSceneChangeArea(u8, u8, fopAc_ac_c*);
@@ -2452,7 +2470,7 @@ public:
     virtual bool onWolfEnemyBiteAll(fopAc_ac_c*, daPy_FLG2);
     virtual bool checkWolfEnemyBiteAllOwn(fopAc_ac_c const*) const;
     virtual void setWolfEnemyHangBiteAngle(short);
-    virtual void setKandelaarMtx(float (*)[4], int, int);
+    virtual void setKandelaarMtx(f32 (*)[4], int, int);
     virtual bool getStickAngleFromPlayerShape(short*) const;
     virtual bool checkSpinnerPathMove();
     virtual bool checkSpinnerTriggerAttack();
@@ -2492,7 +2510,7 @@ public:
     virtual BOOL checkBootsOrArmorHeavy() const;
     virtual s32 getBottleOpenAppearItem() const;
     virtual bool checkItemSwordEquip() const;
-    virtual float getSinkShapeOffset() const;
+    virtual f32 getSinkShapeOffset() const;
     virtual BOOL checkSinkDead() const;
     virtual BOOL checkHorseStart();
     virtual Z2WolfHowlMgr* getWolfHowlMgrP();
@@ -2547,8 +2565,39 @@ public:
     s32 checkPlayerDemoMode() const { return mDemo.getDemoType(); }
     u16 getMidnaMsgNum() const { return mMidnaMsgNum; }
     u32 getStartEvent() { return fopAcM_GetParam(this) >> 0x18; }
+    const daAlink_AnmData* getAnmData(daAlink_ANM anmID) const { return &m_anmDataTable[anmID]; }
 
     BOOL i_checkReinRide() const { return mRideStatus == 1 || mRideStatus == 2; }
+
+    bool checkFishingCastMode() const {
+        bool var_r4 = 1;
+        bool var_r3 = 0;
+        
+        if (mProcID == PROC_FISHING_CAST) {
+            bool var_r5 = 0;
+
+            if (mItemActor.getActor() != NULL && mItemActor.getActor()->mEvtInfo.i_checkCommandDemoAccrpt() != 0) {
+                var_r5 = 1;
+            }
+
+            if (!var_r5) {
+                var_r3 = 1;
+            }
+        }
+
+        if (!var_r3) {
+            bool var_r3_2 = 0;
+            if (mProcID != PROC_FISHING_CAST && i_checkNoResetFlg2(FLG2_UNK_20000000)) {
+                var_r3_2 = 1;
+            }
+
+            if (!var_r3_2) {
+                var_r4 = 0;
+            }
+        }
+
+        return var_r4;
+    }
 
     inline void startRestartRoomFromOut(int, u32, int);
     inline u16 getReadyItem();
@@ -2657,7 +2706,7 @@ private:
     /* 0x01C98 */ dBgS_ArrowLinChk mArrowLinChk;
     /* 0x01D08 */ dBgS_LinkGndChk mLinkGndChk;
     /* 0x01D5C */ dBgS_LinkRoofChk mLinkRoofChk;
-    /* 0x01DAC */ dBgS_LinkLinChk mLinkLinChk2;
+    /* 0x01DAC */ dBgS_LinkLinChk mMagneLineChk;
     /* 0x01E1C */ cBgS_PolyInfo mPolyInfo1;
     /* 0x01E2C */ cBgS_PolyInfo mPolyInfo2;
     /* 0x01E3C */ cBgS_PolyInfo mPolyInfo3;
@@ -2718,18 +2767,18 @@ private:
     /* 0x02900 */ u32 field_0x2900;
     /* 0x02904 */ daAlink_footData_c mFootData1[2];
     /* 0x02A4C */ daAlink_footData_c mFootData2[2];
-    /* 0x02B94 */ float* field_0x2b94;
-    /* 0x02B98 */ float field_0x2b98;
-    /* 0x02B98 */ float* field_0x2b9c;
-    /* 0x02BA0 */ float* field_0x2ba0;
-    /* 0x02BA4 */ float* field_0x2ba4;
+    /* 0x02B94 */ f32* field_0x2b94;
+    /* 0x02B98 */ f32 field_0x2b98;
+    /* 0x02B98 */ f32* field_0x2b9c;
+    /* 0x02BA0 */ f32* field_0x2ba0;
+    /* 0x02BA4 */ f32* field_0x2ba4;
     /* 0x02BA8 */ f32 mSinkShapeOffset;
     /* 0x02BAC */ cXyz field_0x2bac;
     /* 0x02BB8 */ Mtx mInvMtx;
     /* 0x02BE8 */ Mtx field_0x2be8;
     /* 0x02C18 */ Mtx mRootMtx;
-    /* 0x02C48 */ Mtx field_0x2c48;
-    /* 0x02C78 */ Mtx field_0x2c78;
+    /* 0x02C48 */ Mtx mMagneBootMtx;
+    /* 0x02C78 */ Mtx mMagneBootInvMtx;
     /* 0x02CA8 */ Z2CreatureLink mZ2Link;
     /* 0x02D78 */ void* field_0x2d78;
     /* 0x02D7C */ daPy_frameCtrl_c* field_0x2d7c;
@@ -3042,70 +3091,70 @@ private:
     /* 0x032D0 */ u32 field_0x32d0;
     /* 0x032D4 */ u32 field_0x32d4;
     /* 0x032D8 */ firePointEff_c field_0x32d8[4];
-    /* 0x03398 */ float mNormalSpeed;
-    /* 0x0339C */ float mSpeedModifier;
-    /* 0x033A0 */ float field_0x33a0;
-    /* 0x033A4 */ float field_0x33a4;
-    /* 0x033A8 */ float field_0x33a8;
-    /* 0x033AC */ float field_0x33ac;
-    /* 0x033B0 */ float field_0x33b0;
-    /* 0x033B4 */ float mWaterY;
-    /* 0x033B8 */ float field_0x33b8;
-    /* 0x033BC */ float field_0x33bc;
-    /* 0x033C0 */ float field_0x33c0;
-    /* 0x033C4 */ float mFallHeight;
-    /* 0x033C8 */ float field_0x33c8;
-    /* 0x033CC */ float field_0x33cc;
-    /* 0x033D0 */ float field_0x33d0;
-    /* 0x033D4 */ float field_0x33d4;
-    /* 0x033D8 */ float field_0x33d8;
-    /* 0x033DC */ float field_0x33dc;
-    /* 0x033E0 */ float field_0x33e0;
-    /* 0x033E4 */ float field_0x33e4;
-    /* 0x033E8 */ float field_0x33e8;
-    /* 0x033EC */ float field_0x33ec;
-    /* 0x033F0 */ float field_0x33f0;
-    /* 0x033F4 */ float field_0x33f4;
-    /* 0x033F8 */ float field_0x33f8;
-    /* 0x033FC */ float field_0x33fc;
-    /* 0x03400 */ float field_0x3400;
-    /* 0x03404 */ float field_0x3404;
-    /* 0x03408 */ float field_0x3408;
-    /* 0x0340C */ float field_0x340c;
-    /* 0x03410 */ float field_0x3410;
-    /* 0x03414 */ float field_0x3414;
-    /* 0x03418 */ float field_0x3418;
-    /* 0x0341C */ float field_0x341c;
-    /* 0x03420 */ float field_0x3420;
-    /* 0x03424 */ float field_0x3424;
-    /* 0x03428 */ float field_0x3428;
-    /* 0x0342C */ float field_0x342c;
-    /* 0x03430 */ float field_0x3430;
-    /* 0x03434 */ float mHeavySpeedMultiplier;
-    /* 0x03438 */ float field_0x3438;
-    /* 0x0343C */ float field_0x343c;
-    /* 0x03440 */ float field_0x3440;
-    /* 0x03444 */ float field_0x3444;
-    /* 0x03448 */ float field_0x3448;
-    /* 0x0344C */ float field_0x344c;
+    /* 0x03398 */ f32 mNormalSpeed;
+    /* 0x0339C */ f32 mSpeedModifier;
+    /* 0x033A0 */ f32 field_0x33a0;
+    /* 0x033A4 */ f32 field_0x33a4;
+    /* 0x033A8 */ f32 field_0x33a8;
+    /* 0x033AC */ f32 field_0x33ac;
+    /* 0x033B0 */ f32 field_0x33b0;
+    /* 0x033B4 */ f32 mWaterY;
+    /* 0x033B8 */ f32 field_0x33b8;
+    /* 0x033BC */ f32 field_0x33bc;
+    /* 0x033C0 */ f32 field_0x33c0;
+    /* 0x033C4 */ f32 mFallHeight;
+    /* 0x033C8 */ f32 field_0x33c8;
+    /* 0x033CC */ f32 field_0x33cc;
+    /* 0x033D0 */ f32 field_0x33d0;
+    /* 0x033D4 */ f32 field_0x33d4;
+    /* 0x033D8 */ f32 field_0x33d8;
+    /* 0x033DC */ f32 field_0x33dc;
+    /* 0x033E0 */ f32 field_0x33e0;
+    /* 0x033E4 */ f32 field_0x33e4;
+    /* 0x033E8 */ f32 field_0x33e8;
+    /* 0x033EC */ f32 field_0x33ec;
+    /* 0x033F0 */ f32 field_0x33f0;
+    /* 0x033F4 */ f32 field_0x33f4;
+    /* 0x033F8 */ f32 field_0x33f8;
+    /* 0x033FC */ f32 field_0x33fc;
+    /* 0x03400 */ f32 field_0x3400;
+    /* 0x03404 */ f32 field_0x3404;
+    /* 0x03408 */ f32 field_0x3408;
+    /* 0x0340C */ f32 field_0x340c;
+    /* 0x03410 */ f32 field_0x3410;
+    /* 0x03414 */ f32 field_0x3414;
+    /* 0x03418 */ f32 field_0x3418;
+    /* 0x0341C */ f32 field_0x341c;
+    /* 0x03420 */ f32 field_0x3420;
+    /* 0x03424 */ f32 field_0x3424;
+    /* 0x03428 */ f32 field_0x3428;
+    /* 0x0342C */ f32 field_0x342c;
+    /* 0x03430 */ f32 field_0x3430;
+    /* 0x03434 */ f32 mHeavySpeedMultiplier;
+    /* 0x03438 */ f32 field_0x3438;
+    /* 0x0343C */ f32 field_0x343c;
+    /* 0x03440 */ f32 field_0x3440;
+    /* 0x03444 */ f32 field_0x3444;
+    /* 0x03448 */ f32 field_0x3448;
+    /* 0x0344C */ f32 field_0x344c;
     /* 0x03450 */ u8 field_0x3450[4];
-    /* 0x03454 */ float field_0x3454;
-    /* 0x03458 */ float field_0x3458;
-    /* 0x0345C */ float field_0x345c;
-    /* 0x03460 */ float field_0x3460;
-    /* 0x03464 */ float field_0x3464;
-    /* 0x03468 */ float field_0x3468;
-    /* 0x0346C */ float field_0x346c;
-    /* 0x03470 */ float field_0x3470;
-    /* 0x03474 */ float mSwordUpColorIntensity;
-    /* 0x03478 */ float field_0x3478;
-    /* 0x0347C */ float field_0x347c;
-    /* 0x03480 */ float field_0x3480;
-    /* 0x03484 */ float field_0x3484;
-    /* 0x03488 */ float field_0x3488;
-    /* 0x0348C */ float field_0x348c;
-    /* 0x03490 */ float mSearchBallScale;
-    /* 0x03494 */ float field_0x3494;
+    /* 0x03454 */ f32 field_0x3454;
+    /* 0x03458 */ f32 field_0x3458;
+    /* 0x0345C */ f32 field_0x345c;
+    /* 0x03460 */ f32 field_0x3460;
+    /* 0x03464 */ f32 field_0x3464;
+    /* 0x03468 */ f32 field_0x3468;
+    /* 0x0346C */ f32 field_0x346c;
+    /* 0x03470 */ f32 field_0x3470;
+    /* 0x03474 */ f32 mSwordUpColorIntensity;
+    /* 0x03478 */ f32 field_0x3478;
+    /* 0x0347C */ f32 field_0x347c;
+    /* 0x03480 */ f32 field_0x3480;
+    /* 0x03484 */ f32 field_0x3484;
+    /* 0x03488 */ f32 field_0x3488;
+    /* 0x0348C */ f32 field_0x348c;
+    /* 0x03490 */ f32 mSearchBallScale;
+    /* 0x03494 */ f32 field_0x3494;
     /* 0x03498 */ cXyz field_0x3498;
     /* 0x034A4 */ cXyz field_0x34a4;
     /* 0x034B0 */ cXyz field_0x34b0;
@@ -3171,10 +3220,8 @@ private:
     /* 0x03840 */ cXyz* mIronBallChainPos;
     /* 0x03844 */ csXyz* mIronBallChainAngle;
     /* 0x03848 */ void* field_0x3848;
-    /* 0x0384C */ float* field_0x384c;
-    /* 0x03850 */ u32 field_0x3850;
-    /* 0x03854 */ u32 field_0x3854;
-    /* 0x03858 */ u32 field_0x3858;
+    /* 0x0384C */ f32* field_0x384c;
+    /* 0x03850 */ daAlink_procFunc mpProcFunc;
 };  // Size: 0x38BC
 
 struct daAlinkHIO_anm_c {

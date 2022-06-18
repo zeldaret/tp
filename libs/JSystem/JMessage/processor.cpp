@@ -214,7 +214,8 @@ bool JMessage::TReference::do_word(u32 param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JMessage::TProcessor::~TProcessor() {
+// asm JMessage::TProcessor::~TProcessor() {
+extern "C" asm void __dt__Q28JMessage10TProcessorFv() {
     nofralloc
 #include "asm/JSystem/JMessage/processor/__dt__Q28JMessage10TProcessorFv.s"
 }
@@ -457,7 +458,8 @@ asm JMessage::TSequenceProcessor::TSequenceProcessor(JMessage::TReference const*
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JMessage::TSequenceProcessor::~TSequenceProcessor() {
+// asm JMessage::TSequenceProcessor::~TSequenceProcessor() {
+extern "C" asm void __dt__Q28JMessage18TSequenceProcessorFv() {
     nofralloc
 #include "asm/JSystem/JMessage/processor/__dt__Q28JMessage18TSequenceProcessorFv.s"
 }
@@ -741,7 +743,8 @@ asm JMessage::TRenderingProcessor::TRenderingProcessor(JMessage::TReference cons
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JMessage::TRenderingProcessor::~TRenderingProcessor() {
+//asm JMessage::TRenderingProcessor::~TRenderingProcessor() {
+extern "C" asm void __dt__Q28JMessage19TRenderingProcessorFv() {
     nofralloc
 #include "asm/JSystem/JMessage/processor/__dt__Q28JMessage19TRenderingProcessorFv.s"
 }

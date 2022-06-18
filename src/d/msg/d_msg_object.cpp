@@ -4,6 +4,7 @@
 //
 
 #include "d/msg/d_msg_object.h"
+#include "d/msg/d_msg_out_font.h"
 #include "JSystem/JGadget/binary.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
@@ -69,20 +70,6 @@ struct dMsgScrnBase_c {
     /* 80238C74 */ void dotAnimeInit();
     /* 8023C360 */ void setString(char*, char*);
     /* 8023C3EC */ void setRubyString(char*);
-};
-
-struct COutFont_c {
-    /* 80225C94 */ COutFont_c(u8);
-};
-
-struct dMsgObject_HowlHIO_c {
-    /* 80232AEC */ dMsgObject_HowlHIO_c();
-    /* 80238B94 */ ~dMsgObject_HowlHIO_c();
-};
-
-struct dMsgObject_HIO_c {
-    /* 80232D6C */ dMsgObject_HIO_c();
-    /* 80238BDC */ ~dMsgObject_HIO_c();
 };
 
 struct dDemo_c {
@@ -378,11 +365,11 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 804510C8-804510D0 0005C8 0002+06 5/4 0/0 0/0 .sbss            s_groupID */
-static u8 s_groupID[2 + 6 /* padding */];
+static s16 s_groupID;
 
 /* 80232A3C-80232A44 -00001 0008+00 0/0 0/0 0/0 .text            dMsgObject_getGroupID__Fv */
 s16 dMsgObject_getGroupID() {
-    return (s32) * (s16*)(&s_groupID);
+    return s_groupID;
 }
 
 /* 80232A44-80232AEC 22D384 00A8+00 1/1 0/0 0/0 .text            dMsgObject_searchSSItem__FPvPv */
@@ -733,7 +720,7 @@ asm void dMsgObject_c::getMessageIDAlways(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getMessageGroup(u32 param_0) {
+asm s16 dMsgObject_c::getMessageGroup(u32 param_0) {
     nofralloc
 #include "asm/d/msg/d_msg_object/getMessageGroup__12dMsgObject_cFUl.s"
 }
@@ -945,59 +932,44 @@ asm void dMsgObject_c::isSend() {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80399660-80399660 025CC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803996CF = "/res/Msgus/bmgres%d.arc";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803996E7 = "";
-#pragma pop
-
-/* 8043069C-804306B8 05D3BC 0016+06 1/1 0/0 0/0 .bss             arcName$6106 */
-static u8 arcName[22 + 6 /* padding */];
+inline dStage_stageDt_c* dComIfGp_getStage() {
+    return &g_dComIfG_gameInfo.play.getStage();
+}
 
 /* 80236BF8-80236C90 231538 0098+00 1/1 0/0 0/0 .text
  * readMessageGroupLocal__12dMsgObject_cFPP25mDoDvdThd_mountXArchive_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgObject_c::readMessageGroupLocal(mDoDvdThd_mountXArchive_c** param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_object/readMessageGroupLocal__12dMsgObject_cFPP25mDoDvdThd_mountXArchive_c.s"
+void dMsgObject_c::readMessageGroupLocal(mDoDvdThd_mountXArchive_c** p_arcMount) {
+    static char arcName[22];
+
+    int msgGroup = dStage_stagInfo_GetMsgGroup(dComIfGp_getStage()->getStagInfo());
+    sprintf(arcName, "/res/Msgus/bmgres%d.arc", msgGroup);
+
+    *p_arcMount = mDoDvdThd_mountXArchive_c::create(arcName, 0, JKRArchive::MOUNT_MEM, NULL);
+
+    if (msgGroup == 99) {
+        msgGroup = 9;
+    }
+
+    s_groupID = msgGroup;
 }
-#pragma pop
 
 /* 80236C90-80236CD4 2315D0 0044+00 1/1 0/0 0/0 .text changeFlowGroupLocal__12dMsgObject_cFl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgObject_c::changeFlowGroupLocal(s32 param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_object/changeFlowGroupLocal__12dMsgObject_cFl.s"
+void dMsgObject_c::changeFlowGroupLocal(s32 param_0) {
+    mFlowChk = 1;
+    changeGroup(param_0 >= 3000 ? (s16)0 : s_groupID);
 }
-#pragma pop
 
 /* 80236CD4-80236D00 231614 002C+00 1/1 0/0 0/0 .text demoMessageGroupLocal__12dMsgObject_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgObject_c::demoMessageGroupLocal() {
-    nofralloc
-#include "asm/d/msg/d_msg_object/demoMessageGroupLocal__12dMsgObject_cFv.s"
+void dMsgObject_c::demoMessageGroupLocal() {
+    mFlowChk = 0;
+    changeGroup(0);
 }
-#pragma pop
 
 /* 80236D00-80236D0C 231640 000C+00 1/1 0/0 0/0 .text            endFlowGroupLocal__12dMsgObject_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgObject_c::endFlowGroupLocal() {
-    nofralloc
-#include "asm/d/msg/d_msg_object/endFlowGroupLocal__12dMsgObject_cFv.s"
+void dMsgObject_c::endFlowGroupLocal() {
+    mFlowChk = 0;
 }
-#pragma pop
 
 /* 80236D0C-80236DE4 23164C 00D8+00 1/1 0/0 0/0 .text            changeGroupLocal__12dMsgObject_cFs
  */
@@ -1025,35 +997,23 @@ asm void dMsgObject_c::getStringLocal(u32 param_0, J2DTextBox* param_1, J2DTextB
 
 /* 802370A8-802370BC 2319E8 0014+00 0/0 1/1 0/0 .text            isGetItemMessage__12dMsgObject_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgObject_c::isGetItemMessage() {
-    nofralloc
-#include "asm/d/msg/d_msg_object/isGetItemMessage__12dMsgObject_cFv.s"
+BOOL dMsgObject_c::isGetItemMessage() {
+    return mFukiKind == 9;
 }
-#pragma pop
 
 /* 802370BC-802370E8 2319FC 002C+00 4/4 2/2 0/0 .text            isKanbanMessage__12dMsgObject_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgObject_c::isKanbanMessage() {
-    nofralloc
-#include "asm/d/msg/d_msg_object/isKanbanMessage__12dMsgObject_cFv.s"
+BOOL dMsgObject_c::isKanbanMessage() {
+    if (mFukiKind == 2 || mFukiKind == 6 || mFukiKind == 15) {
+        return true;
+    }
+    return false;
 }
-#pragma pop
 
 /* 802370E8-802370FC 231A28 0014+00 6/6 3/3 0/0 .text            isHowlMessage__12dMsgObject_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgObject_c::isHowlMessage() {
-    nofralloc
-#include "asm/d/msg/d_msg_object/isHowlMessage__12dMsgObject_cFv.s"
+BOOL dMsgObject_c::isHowlMessage() {
+    return mFukiKind == 17;
 }
-#pragma pop
 
 /* 802370FC-80237138 231A3C 003C+00 3/3 2/2 0/0 .text            isMidonaMessage__12dMsgObject_cFv
  */
@@ -1311,7 +1271,7 @@ asm void dMsgObject_c::resetSelectBomBag() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getSelectBombBagIDLocal() {
+asm u8 dMsgObject_c::getSelectBombBagIDLocal() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getSelectBombBagIDLocal__12dMsgObject_cFv.s"
 }
@@ -1321,7 +1281,7 @@ asm void dMsgObject_c::getSelectBombBagIDLocal() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getSelectBombPriceLocal() {
+asm s16 dMsgObject_c::getSelectBombPriceLocal() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getSelectBombPriceLocal__12dMsgObject_cFv.s"
 }
@@ -1368,7 +1328,7 @@ void dMsgObject_c::setSelectWordFlagLocal(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::isHowlHearingModeLocal() {
+asm bool dMsgObject_c::isHowlHearingModeLocal() {
     nofralloc
 #include "asm/d/msg/d_msg_object/isHowlHearingModeLocal__12dMsgObject_cFv.s"
 }
@@ -2043,65 +2003,35 @@ asm void dMsgObject_c::getSelectWordFlag() {
 
 /* 80238588-802385B4 232EC8 002C+00 0/0 1/1 0/0 .text            isHowlHearingMode__12dMsgObject_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgObject_c::isHowlHearingMode() {
-    nofralloc
-#include "asm/d/msg/d_msg_object/isHowlHearingMode__12dMsgObject_cFv.s"
+bool dMsgObject_c::isHowlHearingMode() {
+    return dMsgObject_getMsgObjectClass()->isHowlHearingModeLocal();
 }
-#pragma pop
 
 /* 802385B4-802385E0 232EF4 002C+00 0/0 1/1 0/0 .text getSelectBombBagID__12dMsgObject_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u8 dMsgObject_c::getSelectBombBagID() {
-    nofralloc
-#include "asm/d/msg/d_msg_object/getSelectBombBagID__12dMsgObject_cFv.s"
+u8 dMsgObject_c::getSelectBombBagID() {
+    return dMsgObject_getMsgObjectClass()->getSelectBombBagIDLocal();
 }
-#pragma pop
 
 /* 802385E0-8023860C 232F20 002C+00 0/0 6/6 0/0 .text getSelectBombPrice__12dMsgObject_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s16 dMsgObject_c::getSelectBombPrice() {
-    nofralloc
-#include "asm/d/msg/d_msg_object/getSelectBombPrice__12dMsgObject_cFv.s"
+s16 dMsgObject_c::getSelectBombPrice() {
+    return dMsgObject_getMsgObjectClass()->getSelectBombPriceLocal();
 }
-#pragma pop
 
 /* 8023860C-80238638 232F4C 002C+00 0/0 1/1 0/0 .text            setEquipBombInfo__12dMsgObject_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgObject_c::setEquipBombInfo() {
-    nofralloc
-#include "asm/d/msg/d_msg_object/setEquipBombInfo__12dMsgObject_cFv.s"
+void dMsgObject_c::setEquipBombInfo() {
+    dMsgObject_getMsgObjectClass()->setEquipBombInfoLocal();
 }
-#pragma pop
 
 /* 80238638-8023864C 232F78 0014+00 0/0 2/2 0/0 .text getItemEquipButton__12dMsgObject_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgObject_c::getItemEquipButton() {
-    nofralloc
-#include "asm/d/msg/d_msg_object/getItemEquipButton__12dMsgObject_cFv.s"
+u8 dMsgObject_c::getItemEquipButton() {
+    return dMsgObject_getMsgObjectClass()->getItemEquipButtonLocal();
 }
-#pragma pop
 
 /* 8023864C-80238660 232F8C 0014+00 0/0 2/2 0/0 .text setSelectCancelPos__12dMsgObject_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgObject_c::setSelectCancelPos(u8 param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_object/setSelectCancelPos__12dMsgObject_cFUc.s"
+void dMsgObject_c::setSelectCancelPos(u8 pos) {
+    dMsgObject_getMsgObjectClass()->setSelectCancelPosLocal(pos);
 }
-#pragma pop
 
 /* 80238660-802386C8 232FA0 0068+00 1/1 0/0 3/3 .text            dMsgObject_getTotalPrice__Fv */
 #pragma push
@@ -2232,7 +2162,8 @@ REGISTER_CTORS(0x80238B58, __sinit_d_msg_object_cpp);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMsgObject_HowlHIO_c::~dMsgObject_HowlHIO_c() {
+// asm dMsgObject_HowlHIO_c::~dMsgObject_HowlHIO_c() {
+extern "C" asm void __dt__20dMsgObject_HowlHIO_cFv() {
     nofralloc
 #include "asm/d/msg/d_msg_object/__dt__20dMsgObject_HowlHIO_cFv.s"
 }
@@ -2242,7 +2173,8 @@ asm dMsgObject_HowlHIO_c::~dMsgObject_HowlHIO_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMsgObject_HIO_c::~dMsgObject_HIO_c() {
+// asm dMsgObject_HIO_c::~dMsgObject_HIO_c() {
+extern "C" asm void __dt__16dMsgObject_HIO_cFv() {
     nofralloc
 #include "asm/d/msg/d_msg_object/__dt__16dMsgObject_HIO_cFv.s"
 }
@@ -2314,7 +2246,8 @@ void dMsgScrnBase_c::dotAnimeInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void jmessage_tReference::setActorPos(cXyz param_0) {
+// asm void jmessage_tReference::setActorPos(cXyz param_0) {
+extern "C" asm void setActorPos__19jmessage_tReferenceF4cXyz() {
     nofralloc
 #include "asm/d/msg/d_msg_object/setActorPos__19jmessage_tReferenceF4cXyz.s"
 }

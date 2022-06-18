@@ -14,10 +14,15 @@ void mDoMtx_ZXYrotM(Mtx, s16, s16, s16);
 void mDoMtx_ZrotS(Mtx, s16);
 void mDoMtx_YrotS(Mtx, s16);
 void mDoMtx_XrotS(Mtx, s16);
+void mDoMtx_XrotM(Mtx mtx, s16 x);
 void mDoMtx_YrotM(Mtx, s16);
 void mDoMtx_MtxToRot(CMtxP, csXyz*);
 void mDoMtx_lookAt(f32 (*param_0)[4], Vec const* param_1, Vec const* param_2, s16 param_3);
 void mDoMtx_concatProjView(f32 const (*param_0)[4], f32 const (*param_1)[4], f32 (*param_2)[4]);
+
+inline void mDoMtx_multVecSR(Mtx m, const Vec* src, Vec* dst) {
+    PSMTXMultVecSR(m, src, dst);
+}
 
 class mDoMtx_stack_c {
 public:
@@ -46,7 +51,9 @@ public:
     static void ZXYrotM(s16 x, s16 y, s16 z) { mDoMtx_ZXYrotM(now, x, y, z); }
     static void YrotM(s16 y) { mDoMtx_YrotM(now, y); }
     static void YrotS(s16 y) { mDoMtx_YrotS(now, y); }
+    static void XrotM(s16 x) { mDoMtx_XrotM(now, x); }
     static void inverse() { PSMTXInverse(now, now); }
+    static void concat(const Mtx m) { PSMTXConcat(now, m, now); }
 
     static Mtx now;
     static Mtx buffer[16];

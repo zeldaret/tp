@@ -36,7 +36,7 @@ public:
     /* 80300490 */ virtual void draw(f32, f32, f32, J2DTextBoxHBinding);
     /* 803002E8 */ virtual void draw(f32, f32);
     /* 80300278 */ virtual void setFont(JUTFont*);
-    /* 8021C7F4 */ virtual void getFont() const;
+    /* 8021C7F4 */ virtual JUTFont* getFont() const;
     /* 80254408 */ virtual bool setBlack(JUtility::TColor);
     /* 80186C84 */ virtual void setWhite(JUtility::TColor);
     /* 8019230C */ virtual void setBlackWhite(JUtility::TColor, JUtility::TColor);
@@ -75,8 +75,13 @@ public:
     }
 
     void setFontSize(TFontSize size) { setFontSize(size.mSizeX, size.mSizeY); }
+    void getFontSize(TFontSize& size) const {
+        size.mSizeX = field_0x11c;
+        size.mSizeY = field_0x120;
+    }
 
     void setCharSpace(f32 space) { mCharSpacing = space; }
+    f32 getCharSpace() const { return mCharSpacing; }
 
 private:
     /* 0x0100 */ JUTFont* mFont;

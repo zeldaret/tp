@@ -74,7 +74,7 @@ public:
     /* 0x24 */ virtual s32 getHeight() const = 0;
     /* 0x28 */ virtual s32 getWidth() const = 0;
     /* 0x2C */ virtual void getWidthEntry(int i_no, TWidth* width) const;
-    /* 0x30 */ virtual u16 getCellWidth() const;
+    /* 0x30 */ virtual int getCellWidth() const;
     /* 0x34 */ virtual u16 getCellHeight() const;
     /* 0x38 */ virtual u16 getFontType() const = 0;
     /* 0x3C */ virtual ResFONT* getResFont() const = 0;
@@ -95,6 +95,12 @@ public:
 
     void drawString_size(int param_0, int param_1, const char* str, u32 len, bool param_4) {
         drawString_size_scale(param_0, param_1, getWidth(), getHeight(), str, len, param_4);
+    }
+
+    int getWidth(int i_no) const {
+        TWidth width;
+        getWidthEntry(i_no, &width);
+        return width.field_0x1;
     }
 
     /* 0x04 */ bool mValid;

@@ -52,7 +52,7 @@ public:
     virtual BOOL GetHorseNoEntry(cBgS_PolyInfo const&) = 0;
     virtual bool GetSpecialCode(cBgS_PolyInfo const&) = 0;
     virtual void GetSpecialCode(int) = 0;
-    virtual bool GetMagnetCode(cBgS_PolyInfo const&) = 0;
+    virtual int GetMagnetCode(cBgS_PolyInfo const&) = 0;
     virtual void GetPolyObjThrough(int) = 0;
     virtual void GetPolyCamThrough(int) = 0;
     virtual void GetPolyLinkThrough(int) = 0;

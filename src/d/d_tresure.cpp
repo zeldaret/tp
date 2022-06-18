@@ -12,10 +12,6 @@
 // Types:
 //
 
-struct mDoMtx_stack_c {
-    static u8 now[48];
-};
-
 struct dMapInfo_c {
     /* 8003F40C */ void calcFloorNo(f32, bool, int);
 };

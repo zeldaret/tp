@@ -15,16 +15,6 @@
 #include "rel/d/a/d_a_boomerang/d_a_boomerang.h"
 
 //
-// Types:
-//
-
-struct mDoMtx_stack_c {
-    /* 8000CE38 */ void scaleM(f32, f32, f32);
-
-    static u8 now[48];
-};
-
-//
 // Forward References:
 //
 

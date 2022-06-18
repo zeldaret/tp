@@ -22,10 +22,6 @@
 // Types:
 //
 
-struct mDoMtx_stack_c {
-    static u8 now[48];
-};
-
 struct dBgWKCol {
     /* 8007E7D0 */ void initKCollision(void*);
 };

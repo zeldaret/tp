@@ -213,6 +213,7 @@ public:
     };
     enum daPy_FLG1 { IS_WOLF = 0x2000000, FLG1_UNK_10000 = 0x10000, THROW_DAMAGE = 0x4000 };
     enum daPy_FLG2 {
+        FLG2_UNK_20000000 = 0x20000000,
         FLG2_UNK_4080000 = 0x4080000,
         FLG2_UNK_2080000 = 0x2080000,
         BOAR_SINGLE_BATTLE = 0x1800000,
@@ -587,6 +588,7 @@ public:
     inline bool i_checkShieldGet() const;
     inline static BOOL checkNowWolf();
     inline bool checkZoraWearFlg() const;
+    inline bool checkMagicArmorWearFlg() const;
 
     static daMidna_c* getMidnaActor() { return m_midnaActor; }
 

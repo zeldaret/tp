@@ -6,62 +6,51 @@
 #include "rel/d/a/npc/d_a_npc_tr/d_a_npc_tr.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "d/com/d_com_inf_game.h"
+#include "m_Do/m_Do_mtx.h"
+#include "SSystem/SComponent/c_math.h"
+#include "JSystem/JMath/JMath.h"
 
 //
 // Types:
 //
 
-struct request_of_phase_process_class {};
-
-struct npc_tr_class {};
-
-struct mDoMtx_stack_c {
-    /* 8000CE38 */ void scaleM(f32, f32, f32);
-
-    static u8 now[48];
+class npc_tr_class : public fopAc_ac_c {
+public:
+    /* 0x568 */ u8 field_0x568[0x5AC - 0x568];
+    /* 0x5AC */ request_of_phase_process_class mPhaseReq;
+    /* 0x5B4 */ u8 field_0x5b4;
+    /* 0x5B8 */ J3DModel* field_0x5b8;
+    /* 0x5BC */ s16 field_0x5bc;
+    /* 0x5BE */ s16 field_0x5be;
+    /* 0x5C0 */ s16 field_0x5c0;
+    /* 0x5C4 */ cXyz field_0x5c4;
+    /* 0x5D0 */ u8 field_0x5d0[0x8];
+    /* 0x5D8 */ f32 field_0x5d8;
+    /* 0x5DC */ s16 field_0x5dc[4];
+    /* 0x5E4 */ f32 field_0x5e4;
+    /* 0x5E8 */ f32 field_0x5e8;
+    /* 0x5EC */ s16 field_0x5ec;
+    /* 0x5EE */ s16 field_0x5ee;
+    /* 0x5F0 */ s16 field_0x5f0;
+    /* 0x5F2 */ s16 field_0x5f2[3];
+    /* 0x5F8 */ f32 field_0x5f8;
+    /* 0x5FC */ f32 field_0x5fc;
+    /* 0x600 */ u8 field_0x600;
 };
 
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct daNPC_TR_HIO_c {
+class daNPC_TR_HIO_c {
+public:
     /* 80B25A0C */ daNPC_TR_HIO_c();
-    /* 80B264E4 */ ~daNPC_TR_HIO_c();
+    /* 80B264E4 */ virtual ~daNPC_TR_HIO_c();
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 field_0x8;
+    /* 0x0C */ f32 field_0xc;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
 };
-
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-struct J3DSys {
-    static u8 mCurrentMtx[48];
-};
-
-struct J3DModel {};
-
-struct J3DJoint {};
 
 //
 // Forward References:
@@ -107,22 +96,12 @@ extern "C" void cLib_addCalc2__FPffff();
 extern "C" void cLib_addCalcAngleS2__FPssss();
 extern "C" void MtxPosition__FP4cXyzP4cXyz();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
-extern "C" void PSVECAdd();
-extern "C" void PSVECSquareMag();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
 extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
 extern "C" void __register_global_object();
 
 //
@@ -189,6 +168,17 @@ SECTION_DATA extern void* __vt__14daNPC_TR_HIO_c[3] = {
 };
 
 /* 80B25A0C-80B25A54 0000EC 0048+00 1/1 0/0 0/0 .text            __ct__14daNPC_TR_HIO_cFv */
+// matches with literals
+#ifdef NONMATCHING
+daNPC_TR_HIO_c::daNPC_TR_HIO_c() {
+    field_0x4 = -1;
+    field_0x8 = 0.8f;
+    field_0xc = 15.0f;
+    field_0x10 = 0.3f;
+    field_0x14 = 0.6f;
+    field_0x18 = 250.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -197,26 +187,48 @@ asm daNPC_TR_HIO_c::daNPC_TR_HIO_c() {
 #include "asm/rel/d/a/npc/d_a_npc_tr/d_a_npc_tr/__ct__14daNPC_TR_HIO_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80B25A54-80B25B78 000134 0124+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
+#ifdef NONMATCHING
+static int nodeCallBack(J3DJoint* p_joint, int param_1) {
+    if (param_1 == 0) {
+        int jointNo = p_joint->getJntNo();
+        J3DModel* sysModel = j3dSys.mModel;
+        npc_tr_class* npc_tr = (npc_tr_class*)sysModel->mUserArea;
+
+        PSMTXCopy(sysModel->i_getAnmMtx(jointNo), *calc_mtx);
+
+        if (jointNo == 1) {
+            mDoMtx_YrotM(*calc_mtx, npc_tr->field_0x5f2[0] + (s16)(npc_tr->field_0x5f8 * 0.3f));
+        } else if (jointNo >= 1 && jointNo <= 3) {
+            mDoMtx_YrotM(*calc_mtx, npc_tr->field_0x5f2[jointNo - 1] + (s16)(npc_tr->field_0x5f8));
+        }
+
+        PSMTXCopy(*calc_mtx, sysModel->i_getAnmMtx(jointNo));
+        PSMTXCopy(*calc_mtx, j3dSys.mCurrentMtx);
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void nodeCallBack(J3DJoint* param_0, int param_1) {
+static asm int nodeCallBack(J3DJoint* param_0, int param_1) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_tr/d_a_npc_tr/nodeCallBack__FP8J3DJointi.s"
 }
 #pragma pop
+#endif
 
 /* 80B25B78-80B25BDC 000258 0064+00 1/0 0/0 0/0 .text            daNPC_TR_Draw__FP12npc_tr_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daNPC_TR_Draw(npc_tr_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/npc/d_a_npc_tr/d_a_npc_tr/daNPC_TR_Draw__FP12npc_tr_class.s"
+static int daNPC_TR_Draw(npc_tr_class* npc_tr) {
+    g_env_light.settingTevStruct(0, &npc_tr->mCurrent.mPosition, &npc_tr->mTevStr);
+    g_env_light.setLightTevColorType_MAJI(npc_tr->field_0x5b8->mModelData, &npc_tr->mTevStr);
+    mDoExt_modelUpdateDL(npc_tr->field_0x5b8);
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80B26590-80B26594 000014 0004+00 0/0 0/0 0/0 .rodata          @3849 */
@@ -360,15 +372,83 @@ COMPILER_STRIP_GATE(0x80B265E4, &lit_3947);
 #pragma pop
 
 /* 80B26678-80B2667C 000008 0004+00 2/2 0/0 0/0 .bss             None */
-static u8 data_80B26678[4];
+static u8 data_80B26678;
 
 /* 80B2667C-80B26688 00000C 000C+00 1/1 0/0 0/0 .bss             @3763 */
-static u8 lit_3763[12];
+//static u8 lit_3763[12];
 
 /* 80B26688-80B266A4 000018 001C+00 5/5 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[28];
+static daNPC_TR_HIO_c l_HIO;
 
 /* 80B25BDC-80B25FE0 0002BC 0404+00 1/1 0/0 0/0 .text            npc_tr_move__FP12npc_tr_class */
+#ifdef NONMATCHING
+static void npc_tr_move(npc_tr_class* npc_tr) {
+    f32 var_f31;
+    s16 var_r29;
+
+    switch (npc_tr->field_0x5c0) {
+    case 0:
+        if (npc_tr->field_0x5dc[0] == 0) {
+            for (int i = 0; i < 100; i++) {
+                npc_tr->field_0x5c4.x = npc_tr->mOrig.mPosition.x + cM_rndFX(1000.0f);
+                npc_tr->field_0x5c4.y = npc_tr->mOrig.mPosition.y + cM_rndFX(200.0f);
+                npc_tr->field_0x5c4.z = npc_tr->mOrig.mPosition.z + cM_rndFX(1000.0f);
+
+                cXyz distance = npc_tr->field_0x5c4 - npc_tr->mCurrent.mPosition;
+                distance.y = 0.0f;
+
+                if (distance.abs() > 500.0f) {
+                    npc_tr->field_0x5c0 = 1;
+                    npc_tr->field_0x5dc[0] = (s16)(cM_rndF(30.0f) + 30.0f);
+                    break;
+                }
+            }
+        }
+        npc_tr->field_0x5e8 = 0.1f;
+        var_r29 = 0;
+        var_f31 = 0.05f;
+        break;
+    case 1:
+        if (npc_tr->field_0x5dc[0] == 0) {
+            npc_tr->field_0x5c0 = 0;
+            npc_tr->field_0x5dc[0] = (s16)(cM_rndF(30.0f) + 30.0f);
+        }
+        npc_tr->field_0x5e8 = l_HIO.field_0x10;
+        var_r29 = 0x400;
+        var_f31 = 0.5f;
+        break;
+    }
+
+    if (npc_tr->field_0x5dc[1] != 0) {
+        var_f31 = 0.5f;
+        npc_tr->field_0x5e8 = l_HIO.field_0x14;
+        var_r29 = 0x600;
+    } else if (npc_tr->field_0x5d8 < l_HIO.field_0x18) {
+        npc_tr->field_0x5dc[1] = (s16)(cM_rndF(20.0f) + 20.0f);
+        
+        if (npc_tr->field_0x5c0 == 1) {
+            npc_tr->field_0x5c0 = 0;
+        }
+    }
+
+    cXyz distance = npc_tr->field_0x5c4 - npc_tr->mCurrent.mPosition;
+    s16 angle = npc_tr->mCurrent.mAngle.y;
+    cLib_addCalcAngleS2(&npc_tr->mCurrent.mAngle.y, cM_atan2s(distance.x, distance.z), 4, var_r29);
+    
+    f32 var_f2 = JMAFastSqrt((distance.x * distance.x) + (distance.z * distance.z));
+    cLib_addCalcAngleS2(&npc_tr->mCurrent.mAngle.x, -cM_atan2s(distance.y, var_f2), 4, var_r29);
+
+    f32 var_f1_2 = (f32)(angle - npc_tr->mCurrent.mAngle.y) * 5.0f;
+    if (var_f1_2 > 4000.0f) {
+        var_f1_2 = 4000.0f;
+    } else if (var_f1_2 < -4000.0f) {
+        var_f1_2 = -4000.0f;
+    }
+
+    cLib_addCalc2(&npc_tr->field_0x5f8, var_f1_2, 0.5f, 1000.0f);
+    cLib_addCalc2(&npc_tr->mSpeedF, npc_tr->field_0x5e4 * l_HIO.field_0xc, 1.0f, var_f31);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -377,6 +457,7 @@ static asm void npc_tr_move(npc_tr_class* param_0) {
 #include "asm/rel/d/a/npc/d_a_npc_tr/d_a_npc_tr/npc_tr_move__FP12npc_tr_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80B265EC-80B265F8 000070 000C+00 0/1 0/0 0/0 .rodata          @3953 */
@@ -428,14 +509,27 @@ static asm void action(npc_tr_class* param_0) {
 
 /* 80B261D8-80B262D0 0008B8 00F8+00 2/1 0/0 0/0 .text            daNPC_TR_Execute__FP12npc_tr_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daNPC_TR_Execute(npc_tr_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/npc/d_a_npc_tr/d_a_npc_tr/daNPC_TR_Execute__FP12npc_tr_class.s"
+static int daNPC_TR_Execute(npc_tr_class* npc_tr) {
+    npc_tr->field_0x5bc++;
+    npc_tr->field_0x5d8 = fopAcM_searchActorDistance(npc_tr, (fopAc_ac_c*)dComIfGp_getPlayer(0));
+
+    for (int i = 0; i < 4; i++) {
+        if (npc_tr->field_0x5dc[i] != 0) {
+            npc_tr->field_0x5dc[i]--;
+        }
+    }
+    action(npc_tr);
+
+    mDoMtx_stack_c::transS(npc_tr->mCurrent.mPosition.x, npc_tr->mCurrent.mPosition.y, npc_tr->mCurrent.mPosition.z);
+    mDoMtx_stack_c::YrotM(npc_tr->mCollisionRot.y + npc_tr->field_0x5f0);
+    mDoMtx_stack_c::XrotM(npc_tr->mCollisionRot.x);
+
+    f32 scale = npc_tr->mScale.x * l_HIO.field_0x8;
+    mDoMtx_stack_c::scaleM(scale, scale, scale);
+    PSMTXCopy(mDoMtx_stack_c::get(), npc_tr->field_0x5b8->mBaseTransformMtx);
+
+    return 1;
 }
-#pragma pop
 
 /* 80B262D0-80B262D8 0009B0 0008+00 1/0 0/0 0/0 .text            daNPC_TR_IsDelete__FP12npc_tr_class
  */
@@ -443,67 +537,79 @@ static bool daNPC_TR_IsDelete(npc_tr_class* param_0) {
     return true;
 }
 
-/* ############################################################################################## */
-/* 80B26608-80B26608 00008C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80B26608 = "NPC_TR";
-#pragma pop
-
 /* 80B262D8-80B2632C 0009B8 0054+00 1/0 0/0 0/0 .text            daNPC_TR_Delete__FP12npc_tr_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daNPC_TR_Delete(npc_tr_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/npc/d_a_npc_tr/d_a_npc_tr/daNPC_TR_Delete__FP12npc_tr_class.s"
+static int daNPC_TR_Delete(npc_tr_class* npc_tr) {
+    dComIfG_resDelete(&npc_tr->mPhaseReq, "NPC_TR");
+
+    if (npc_tr->field_0x600) {
+        data_80B26678 = 0;
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 80B2632C-80B263E4 000A0C 00B8+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void useHeapInit(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/npc/d_a_npc_tr/d_a_npc_tr/useHeapInit__FP10fopAc_ac_c.s"
+static int useHeapInit(fopAc_ac_c* actor) {
+    npc_tr_class* npc_tr = (npc_tr_class*)actor;
+
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("NPC_TR", 3);
+    npc_tr->field_0x5b8 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+
+    if (npc_tr->field_0x5b8 == NULL) {
+        return 0;
+    }
+
+    npc_tr->field_0x5b8->setUserArea((u32)actor);
+
+    for (u16 i = 0; i < npc_tr->field_0x5b8->getModelData()->getJointNum(); i++) {
+        npc_tr->field_0x5b8->getModelData()->getJointNodePointer(i)->setCallBack(nodeCallBack);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 80B263E4-80B264E4 000AC4 0100+00 1/0 0/0 0/0 .text            daNPC_TR_Create__FP10fopAc_ac_c */
+// matches with literals
+#ifdef NONMATCHING
+static int daNPC_TR_Create(fopAc_ac_c* ac) {
+    if (!fopAcM_CheckCondition(ac, 8)) {
+        new (ac) npc_tr_class();
+        fopAcM_OnCondition(ac, 8);
+    }
+    npc_tr_class* npc_tr = (npc_tr_class*)ac;
+    
+    int load = dComIfG_resLoad(&npc_tr->mPhaseReq, "NPC_TR");
+    if (load == 4) {
+        npc_tr->field_0x5b4 = fopAcM_GetParam(npc_tr);
+
+        if (!fopAcM_entrySolidHeap(npc_tr, useHeapInit, 0x4B000)) {
+            return 5;
+        }
+
+        if (!data_80B26678) {
+            npc_tr->field_0x600 = 1;
+            data_80B26678 = 1;
+            l_HIO.field_0x4 = -1;
+        }
+
+        npc_tr->mCullMtx = npc_tr->field_0x5b8->getBaseTRMtx();
+        npc_tr->mScale.x = cM_rndFX(0.1f) + 0.8f;
+        daNPC_TR_Execute(npc_tr);
+    }
+
+    return load;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daNPC_TR_Create(fopAc_ac_c* param_0) {
+static asm int daNPC_TR_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_tr/d_a_npc_tr/daNPC_TR_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* 80B264E4-80B2652C 000BC4 0048+00 2/1 0/0 0/0 .text            __dt__14daNPC_TR_HIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm daNPC_TR_HIO_c::~daNPC_TR_HIO_c() {
-    nofralloc
-#include "asm/rel/d/a/npc/d_a_npc_tr/d_a_npc_tr/__dt__14daNPC_TR_HIO_cFv.s"
-}
-#pragma pop
-
-/* 80B2652C-80B26568 000C0C 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_npc_tr_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_a_npc_tr_cpp() {
-    nofralloc
-#include "asm/rel/d/a/npc/d_a_npc_tr/d_a_npc_tr/__sinit_d_a_npc_tr_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80B2652C, __sinit_d_a_npc_tr_cpp);
-#pragma pop
-
-/* 80B26608-80B26608 00008C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+daNPC_TR_HIO_c::~daNPC_TR_HIO_c() {}

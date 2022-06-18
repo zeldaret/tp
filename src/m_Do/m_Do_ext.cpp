@@ -397,7 +397,6 @@ extern "C" void entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey()
 extern "C" void entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
 extern "C" void JMAEulerToQuat__FsssP10Quaternion();
 extern "C" void JMAQuatLerp__FPC10QuaternionPC10QuaternionfP10Quaternion();
-extern "C" void DCStoreRangeNoSync();
 extern "C" void GXClearVtxDesc();
 extern "C" void GXGetTexObjWidth();
 extern "C" void GXGetTexObjHeight();

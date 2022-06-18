@@ -384,7 +384,7 @@ public:
     int isMagicFlag(u8 i_magic) const;
 
     u16 getMaxLife() { return mMaxLife; }
-    u16 getLife() { return mLife; }
+    u16 getLife() const { return mLife; }
     u16 getRupee() { return mRupee; }
     u16 getOil() { return mOil; }
     u16 getMaxOil() const { return mMaxOil; }
@@ -515,6 +515,7 @@ public:
     s8 getRoomNo() { return mRoomNo; }
     char getWarpAcceptStage() { return mWarpAcceptStage; }
     void resetWarpAcceptStage() { mWarpAcceptStage = -1; }
+    void setWarpAcceptStage(s8 accept) { mWarpAcceptStage = accept; }
 
 private:
     /* 0x00 */ cXyz mPos;
@@ -522,7 +523,7 @@ private:
     /* 0x0E */ char mName[8];
     /* 0x16 */ u8 mSpawnId;
     /* 0x17 */ s8 mRoomNo;
-    /* 0x18 */ char mWarpAcceptStage;
+    /* 0x18 */ s8 mWarpAcceptStage;
     /* 0x19 */ u8 unk25[3];
 };  // Size: 0x1C
 

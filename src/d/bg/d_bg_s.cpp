@@ -501,13 +501,13 @@ bool dBgS::GetSpecialCode(cBgS_PolyInfo const& poly) {
 }
 
 /* 80074D0C-80074D5C 06F64C 0050+00 0/0 2/2 2/2 .text GetMagnetCode__4dBgSFRC13cBgS_PolyInfo */
-bool dBgS::GetMagnetCode(cBgS_PolyInfo const& poly) {
+int dBgS::GetMagnetCode(cBgS_PolyInfo const& poly) {
     int bg_index = poly.GetBgIndex();
     if (m_chk_element[bg_index].ChkUsed()) {
         return m_chk_element[bg_index].m_bgw_base_ptr->GetMagnetCode(poly);
     }
 
-    return false;
+    return 0;
 }
 
 /* 80074D5C-80074DAC 06F69C 0050+00 0/0 5/5 0/0 .text GetMonkeyBarsCode__4dBgSFRC13cBgS_PolyInfo

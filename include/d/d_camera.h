@@ -14,11 +14,20 @@ struct dCamMapToolData {
     /* 8015FEB8 */ void Set(s32, s32, fopAc_ac_c*, u16, u8);
 };
 
-struct dCamera_c {
-    struct dCamInfo_c {
+class dCamera_c {
+public:
+    class dCamInfo_c {
+    public:
         /* 8018291C */ dCamInfo_c();
         /* 80182920 */ ~dCamInfo_c();
-    };
+
+    private:
+        /* 0x00 */ cXyz field_0x0;
+        /* 0x0C */ cXyz field_0xc;
+        /* 0x18 */ f32 field_0x18;
+        /* 0x1C */ cSAngle field_0x1c;
+        /* 0x1E */ s16 field_0x1e;
+    };  // Size: 0x20
 
     /* 8008908C */ void getEvIntData(int*, char*, int);
     /* 80088CB0 */ void getEvIntData(int*, char*);
@@ -185,9 +194,50 @@ struct dCamera_c {
     /* 80182980 */ void chkFlag(u32);
     /* 801829AC */ void Bank();
 
+    bool Active() { return field_0x24 == 0; }
+
     static u8 engine_tbl[240];
+
+    /* 0x000 */ cXyz field_0x0;
+    /* 0x00C */ cXyz field_0xc;
+    /* 0x018 */ f32 field_0x18;
+    /* 0x01C */ cSAngle field_0x1c;
+    /* 0x01E */ s16 field_0x1e;
+    /* 0x020 */ u8 field_0x20;
+    /* 0x021 */ u8 field_0x21;
+    /* 0x022 */ u8 field_0x22[0x24 - 0x22];
+    /* 0x024 */ int field_0x24;
+    /* 0x028 */ u8 field_0x28[0x30 - 0x28];
+    /* 0x030 */ cXyz field_0x30;
+    /* 0x03C */ cXyz field_0x3c;
+    /* 0x048 */ cXyz field_0x48;
+    /* 0x054 */ cSAngle field_0x54;
+    /* 0x058 */ f32 field_0x58;
+    class {
+    public:
+        /* 0x00 */ cSGlobe field_0x0;
+        /* 0x08 */ cXyz field_0x8;
+        /* 0x14 */ cXyz field_0x14;
+        /* 0x20 */ cSAngle field_0x20;
+    }
+    /* 0x05C */ field_0x5c;
+    /* 0x07C */ u8 field_0x7c[0x8C - 0x7C];
+    /* 0x08C */ cSAngle field_0x8c;
+    /* 0x090 */ cXyz field_0x90;
+    /* 0x09C */ cXyz field_0x9c;
+    /* 0x0A8 */ u8 field_0xa8[0xB0 - 0xA8];
+    /* 0x0B0 */ dCamInfo_c field_0xb0;
+    /* 0x0D0 */ dCamInfo_c field_0xd0[2];
+    class {
+    public:
+        /* 0x00 */ u8 field_0x0[8];
+        /* 0x08 */ dCamInfo_c field_0x8;
+        /* 0x28 */ cXyz field_0x28;
+    }
+    /* 0x110 */ field_0x110;
 };
 
 dCamera_c* dCam_getBody();
+dCamera_c* dCam_getCamera();
 
 #endif /* D_D_CAMERA_H */

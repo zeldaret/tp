@@ -145,7 +145,6 @@ extern "C" void __ct__7cSGlobeFRC4cXyz();
 extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void bgmNowBattle__8Z2SeqMgrFf();
 extern "C" void __dl__FPv();
-extern "C" void DCStoreRangeNoSync();
 extern "C" void __register_global_object();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();

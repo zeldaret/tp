@@ -62,6 +62,7 @@ public:
     J3DTransformInfo& getTransformInfo() { return mTransformInfo; }
     Vec* getMax() { return &mMax; }
     Vec* getMin() { return &mMin; }
+    void setCallBack(J3DJointCallBack callback) { mCallBack = callback; }
 
     static J3DMtxCalc* mCurrentMtxCalc;
 

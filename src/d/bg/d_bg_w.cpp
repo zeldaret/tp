@@ -1015,7 +1015,7 @@ asm void dBgW::GetSpecialCode(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool dBgW::GetMagnetCode(cBgS_PolyInfo const& param_0) {
+asm int dBgW::GetMagnetCode(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetMagnetCode__4dBgWFRC13cBgS_PolyInfo.s"
 }

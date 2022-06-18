@@ -376,6 +376,7 @@ public:
 
     bool& isPauseFlag() { return mPauseFlag; }
     void offPauseFlag() { mPauseFlag = false; }
+    void onPauseFlag() { mPauseFlag = true; }
     void show2dOn() { mShow2D = 1; }
     s8 getLayerOld() { return mLayerOld; }
     void setMesgCancelButton(u8 button) { mMesgCancelButton = button; }
@@ -389,6 +390,11 @@ public:
         mWindow[i].setScissor(param_1, param_2, param_3, param_4);
         mWindow[i].setCameraID(camID);
         mWindow[i].setMode(mode);
+    }
+
+    void setLastPlayStageName(char* name) {
+        strncpy(mLastPlayStageName, name, 7);
+        mLastPlayStageName[7] = 0;
     }
 
 public:
@@ -761,6 +767,9 @@ s8 dComIfGp_getReverb(int roomNo);
 void dComIfGs_gameStart();
 int dComIfGs_wolfeye_effect_check();
 BOOL dComIfGs_Wolf_Change_Check();
+void dComIfGs_onVisitedRoom(int param_0);
+void dComIfGs_setWarpItemData(char const* stage, cXyz pos, s16 angle, s8 roomNo, u8 param_4,
+                              u8 param_5);
 
 inline void dComIfGs_onDungeonItemMap() {
     g_dComIfG_gameInfo.info.getMemory().getBit().onDungeonItemMap();
@@ -860,6 +869,10 @@ inline void dComIfGs_setEmptyBombBag(u8 newBomb, u8 bombNum) {
 
 inline void dComIfGs_setEmptyBombBagItemIn(u8 newBomb, bool setNum) {
     g_dComIfG_gameInfo.info.getPlayer().getItem().setEmptyBombBagItemIn(newBomb, setNum);
+}
+
+inline void dComIfGs_setEmptyBombBagItemIn(u8 newBomb, u8 bombNum, bool setNum) {
+    g_dComIfG_gameInfo.info.getPlayer().getItem().setEmptyBombBagItemIn(newBomb, bombNum, setNum);
 }
 
 inline void dComIfGs_setEmptyBottle() {
@@ -1377,6 +1390,10 @@ inline void dComIfGs_onActor(int bitNo, int roomNo) {
     g_dComIfG_gameInfo.info.onActor(bitNo, roomNo);
 }
 
+inline void dComIfGs_setLastWarpAcceptStage(s8 param_0) {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerLastMarkInfo().setWarpAcceptStage(param_0);
+}
+
 void dComIfGp_setItemLifeCount(f32 amount, u8 type);
 void dComIfGp_setItemRupeeCount(long amount);
 void dComIfGp_setSelectItem(int index);
@@ -1615,6 +1632,10 @@ inline bool dComIfGp_isEnableNextStage() {
 
 inline s16 dComIfGp_getNextStagePoint() {
     return g_dComIfG_gameInfo.play.getNextStagePoint();
+}
+
+inline void dComIfGp_setLastPlayStageName(char* name) {
+    g_dComIfG_gameInfo.play.setLastPlayStageName(name);
 }
 
 inline u32 dComIfGp_getNowVibration() {
@@ -2029,6 +2050,10 @@ inline dStage_Multi_c* dComIfGp_getMulti() {
 
 inline JKRAramArchive* dComIfGp_getFieldMapArchive2() {
     return g_dComIfG_gameInfo.play.getFieldMapArchive2();
+}
+
+inline void dComIfGp_onPauseFlag() {
+    g_dComIfG_gameInfo.play.onPauseFlag();
 }
 
 inline s32 dComIfGp_roomControl_getStayNo() {

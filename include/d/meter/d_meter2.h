@@ -222,6 +222,9 @@ public:
     void onRupeeSoundBit(int bit) { mRupeeSound |= (1 << bit); }
     void offRupeeSoundBit(int bit) { mRupeeSound &= ~(1 << bit); }
     bool isRupeeSoundBit(int bit) { return mRupeeSound & (1 << bit); }
+    s16 getNowLifeGauge() { return mNowLifeGauge; }
+    u8 getSubContents() { return mSubContents; }
+    u16 getSubContentsStringType() { return mSubContentsStringType; }
 
 private:
     /* 0x100 */ JKRExpHeap* mpHeap;

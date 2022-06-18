@@ -48,7 +48,7 @@ public:
     /* 80082A80 */ virtual void GetHorseNoEntry(cBgS_PolyInfo const&);
     /* 80082AB0 */ virtual void GetSpecialCode(cBgS_PolyInfo const&);
     /* 80082AE0 */ virtual void GetSpecialCode(int);
-    /* 80082B0C */ virtual void GetMagnetCode(cBgS_PolyInfo const&);
+    /* 80082B0C */ virtual int GetMagnetCode(cBgS_PolyInfo const&);
     /* 80082B6C */ virtual void GetPolyObjThrough(int);
     /* 80082B98 */ virtual void GetPolyCamThrough(int);
     /* 80082BC4 */ virtual void GetPolyLinkThrough(int);

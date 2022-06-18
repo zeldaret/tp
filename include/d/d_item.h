@@ -388,6 +388,6 @@ s32 checkItemGet(u8, int);
 BOOL isHeart(u8 item_no);
 s32 isBomb(u8);
 s32 isArrow(u8);
-void addBombCount(u8, u8);
+int addBombCount(u8, u8);
 
 #endif /* D_D_ITEM_H */

@@ -18,10 +18,6 @@
 
 struct sub_kankyo__class {};
 
-struct mDoMtx_stack_c {
-    static u8 now[48];
-};
-
 struct color_RGB_class {};
 
 //

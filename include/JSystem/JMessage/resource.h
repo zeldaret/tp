@@ -2,9 +2,11 @@
 #define RESOURCE_H
 
 #include "dolphin/types.h"
+#include "JSystem/JGadget/linklist.h"
+#include "JSystem/JStudio/JStudio/fvb-data.h"
 
 namespace JMessage {
-struct TResource {
+struct TResource : public JGadget::TLinkListNode {
     /* 802A8CDC */ void toMessageIndex_messageID(u32, u32, bool*) const;
 };
 

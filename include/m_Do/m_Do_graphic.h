@@ -53,6 +53,12 @@ public:
     static void waitBlanking(int wait) { JFWDisplay::getManager()->waitBlanking(wait); }
     static f32 getWidthF() { return 608.0f; }
     static f32 getHeightF() { return 448.0f; }
+    static int getMinY() { return 0; }
+    static int getMinX() { return 0; }
+    static int getMaxY() { return 448; }
+    static int getMaxX() { return 608; }
+    static ResTIMG* getFrameBufferTimg() { return mFrameBufferTimg; }
+    static void* getFrameBufferTex() { return mFrameBufferTex; }
 
     static GXTexObj mFrameBufferTexObj;
     static GXTexObj mZbufferTexObj;
