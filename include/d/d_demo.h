@@ -51,12 +51,12 @@ public:
 
 class dDemo_c {
 public:
-    /* 80039678 */ void create();
+    /* 80039678 */ static void create();
     /* 80039910 */ void remove();
     /* 80039B6C */ void start(u8 const*, cXyz*, f32);
     /* 80039CF8 */ static void end();
     /* 80039D4C */ void branch();
-    /* 80039DA4 */ void update();
+    /* 80039DA4 */ static void update();
     /* 80039EDC */ void setBranchType(u16);
     /* 80039EEC */ void setBranchId(u16, s16);
     /* 80039F04 */ void reset();

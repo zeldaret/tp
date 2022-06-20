@@ -240,6 +240,8 @@ public:
 extern dMeter2Info_c g_meter2_info;
 
 void dMeter2Info_setSword(u8, bool);
+void dMeter2Info_setCloth(u8 i_clothId, bool param_1);
+void dMeter2Info_setShield(u8 i_itemId, bool param_1);
 void dMeter2Info_set2DVibration();
 void dMeter2Info_set2DVibrationM();
 

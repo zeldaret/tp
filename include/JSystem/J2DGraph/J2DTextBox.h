@@ -82,6 +82,8 @@ public:
 
     void setCharSpace(f32 space) { mCharSpacing = space; }
     f32 getCharSpace() const { return mCharSpacing; }
+    void setLineSpace(f32 space) { mLineSpacing = space; }
+    f32 getLineSpace() const { return mLineSpacing; }
 
 private:
     /* 0x0100 */ JUTFont* mFont;

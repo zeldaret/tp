@@ -52,7 +52,9 @@ public:
 
     /* 0x00 */ camera_class* mCamera;
     /* 0x04 */ u8 field_0x4;
-    /* 0x05 */ u8 field_0x5[3];
+    /* 0x05 */ u8 field_0x5;
+    /* 0x06 */ s8 field_0x6;
+    /* 0x07 */ u8 field_0x7;
     /* 0x08 */ u32 mCameraAttentionStatus;
     /* 0x0C */ f32 mCameraZoomScale;
     /* 0x10 */ f32 mCameraZoomForcus;
@@ -326,8 +328,11 @@ public:
     JKRExpHeap* getMsgExpHeap() { return mMsgExpHeap; }
     JKRExpHeap* getSubExpHeap2D(int idx) { return mSubExpHeap2D[idx]; }
     void setSubExpHeap2D(int idx, void* heap) { mSubExpHeap2D[idx] = (JKRExpHeap*)heap; }
+    void setExpHeap2D(void* heap) { mExpHeap2D = (JKRExpHeap*)heap; }
+    void setMsgExpHeap(void* heap) { mMsgExpHeap = (JKRExpHeap*)heap; }
 
     JKRArchive* getMsgDtArchive(int idx) { return mMsgDtArchive[idx]; }
+    JKRArchive* getMsgArchive(int idx) { return mMsgArchive[idx]; }
     JKRArchive* getMain2DArchive() { return mMain2DArchive; }
     JKRArchive* getAnmArchive() { return mAnmArchive; }
     JKRArchive* getCollectResArchive() { return mCollectResArchive; }
@@ -359,6 +364,7 @@ public:
 
     void setPlayerPtr(int i, fopAc_ac_c* ptr) { mPlayerPtr[i] = ptr; }
     void setPlayer(int i, fopAc_ac_c* player) { mPlayer[i] = (daAlink_c*)player; }
+    void setPlayerInfo(int i, fopAc_ac_c* ptr, int camIdx) { mPlayer[i] = (daAlink_c*)ptr; mPlayerCameraID[camIdx] = 0; }
     void setPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[i] |= flag; }
     void clearPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[i] &= ~flag; }
     bool checkPlayerStatus(int param_0, int i, u32 flag) { return flag & mPlayerStatus[i]; }
@@ -369,6 +375,14 @@ public:
     const char* getCameraParamFileName(int i) { return mCameraInfo[i].mCameraParamFileName; }
     BOOL checkCameraAttentionStatus(int i, u32 flag) {
         return mCameraInfo[i].mCameraAttentionStatus & flag;
+    }
+    void setCameraAttentionStatus(int i, u32 flag) { mCameraInfo[i].mCameraAttentionStatus = flag; }
+    void setCameraInfo(int camIdx, camera_class* p_cam, int param_2, int param_3, int param_4) {
+        mCameraInfo[camIdx].mCamera = p_cam;
+        mCameraInfo[camIdx].field_0x4 = param_2;
+        mCameraInfo[camIdx].field_0x5 = param_3;
+        mCameraInfo[camIdx].field_0x6 = param_4;
+        setCameraAttentionStatus(camIdx, 0);
     }
 
     void setStatus(u16 status) { mStatus = status; }
@@ -770,6 +784,10 @@ BOOL dComIfGs_Wolf_Change_Check();
 void dComIfGs_onVisitedRoom(int param_0);
 void dComIfGs_setWarpItemData(char const* stage, cXyz pos, s16 angle, s8 roomNo, u8 param_4,
                               u8 param_5);
+
+inline void dComIfGs_init() {
+    g_dComIfG_gameInfo.info.init();
+}
 
 inline void dComIfGs_onDungeonItemMap() {
     g_dComIfG_gameInfo.info.getMemory().getBit().onDungeonItemMap();
@@ -1394,6 +1412,10 @@ inline void dComIfGs_setLastWarpAcceptStage(s8 param_0) {
     g_dComIfG_gameInfo.info.getPlayer().getPlayerLastMarkInfo().setWarpAcceptStage(param_0);
 }
 
+inline void dComIfGs_setOptPointer(u8 i_pointer) {
+    g_dComIfG_gameInfo.info.getPlayer().getConfig().setPointer(i_pointer);
+}
+
 void dComIfGp_setItemLifeCount(f32 amount, u8 type);
 void dComIfGp_setItemRupeeCount(long amount);
 void dComIfGp_setSelectItem(int index);
@@ -1421,6 +1443,7 @@ u8 dComIfGp_world_dark_get();
 JKRExpHeap* dComIfGp_getSubHeap2D(int flag);
 void dComIfGp_world_dark_set(u8);
 u8 dComIfGp_getNowLevel();
+void dComIfGp_calcNowRegion();
 
 inline dStage_startStage_c* dComIfGp_getStartStage() {
     return g_dComIfG_gameInfo.play.getStartStage();
@@ -1480,6 +1503,10 @@ inline JKRArchive* dComIfGp_getNameResArchive() {
 
 inline JKRArchive* dComIfGp_getMsgDtArchive(int idx) {
     return g_dComIfG_gameInfo.play.getMsgDtArchive(idx);
+}
+
+inline JKRArchive* dComIfGp_getMsgArchive(int idx) {
+    return g_dComIfG_gameInfo.play.getMsgArchive(idx);
 }
 
 inline void dComIfGp_setFieldMapArchive2(JKRArchive* arc) {
@@ -1834,6 +1861,14 @@ inline void dComIfGp_setSubExpHeap2D(int idx, void* heap) {
     g_dComIfG_gameInfo.play.setSubExpHeap2D(idx, heap);
 }
 
+inline void dComIfGp_setExpHeap2D(void* heap) {
+    g_dComIfG_gameInfo.play.setExpHeap2D(heap);
+}
+
+inline void dComIfGp_setMsgExpHeap(void* heap) {
+    g_dComIfG_gameInfo.play.setMsgExpHeap(heap);
+}
+
 inline void dComIfGp_offEnableNextStage() {
     g_dComIfG_gameInfo.play.offEnableNextStage();
 }
@@ -1862,8 +1897,16 @@ inline void dComIfGp_setLinkPlayer(fopAc_ac_c* ptr) {
     g_dComIfG_gameInfo.play.setPlayerPtr(0, ptr);
 }
 
+inline void dComIfGp_setPlayerPtr(int i, fopAc_ac_c* ptr) {
+    g_dComIfG_gameInfo.play.setPlayerPtr(i, ptr);
+}
+
 inline void dComIfGp_setPlayer(int i, fopAc_ac_c* player) {
     g_dComIfG_gameInfo.play.setPlayer(i, player);
+}
+
+inline void dComIfGp_setPlayerInfo(int plyrIdx, fopAc_ac_c* ptr, int camIdx) {
+    g_dComIfG_gameInfo.play.setPlayerInfo(plyrIdx, ptr, camIdx);
 }
 
 inline void dComIfGp_setPlayerStatus0(int param_0, u32 flag) {
@@ -1876,6 +1919,10 @@ inline void dComIfGp_setPlayerStatus1(int param_0, u32 flag) {
 
 inline BOOL dComIfGp_checkCameraAttentionStatus(int i, u32 flag) {
     return g_dComIfG_gameInfo.play.checkCameraAttentionStatus(i, flag);
+}
+
+inline void dComIfGp_setCameraInfo(int camIdx, camera_class* p_cam, int param_2, int param_3, int param_4) {
+    g_dComIfG_gameInfo.play.setCameraInfo(camIdx, p_cam, param_2, param_3, param_4);
 }
 
 inline void dComIfGp_clearPlayerStatus0(int param_0, u32 flag) {
@@ -2056,6 +2103,10 @@ inline void dComIfGp_onPauseFlag() {
     g_dComIfG_gameInfo.play.onPauseFlag();
 }
 
+inline void dComIfGp_createSimpleModel() {
+    g_dComIfG_gameInfo.play.createSimpleModel();
+}
+
 inline s32 dComIfGp_roomControl_getStayNo() {
     return dStage_roomControl_c::getStayNo();
 }
@@ -2179,6 +2230,10 @@ inline void dComIfGp_particle_createCommon(const void* data) {
 
 inline void dComIfGp_particle_create() {
     g_dComIfG_gameInfo.play.createParticle();
+}
+
+inline void dComIfGp_particle_createScene(const void* param_0) {
+    g_dComIfG_gameInfo.play.getParticle()->createScene(param_0);
 }
 
 inline JKRExpHeap* dComIfGp_particle_getResHeap() {

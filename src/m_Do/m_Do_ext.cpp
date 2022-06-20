@@ -3094,7 +3094,7 @@ static asm void mDoExt_initFont1() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoExt_getRubyFont() {
+asm JUTFont* mDoExt_getRubyFont() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/mDoExt_getRubyFont__Fv.s"
 }

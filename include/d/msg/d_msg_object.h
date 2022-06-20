@@ -10,6 +10,7 @@
 #include "dolphin/types.h"
 
 class COutFont_c;
+class dMsgScrnBase_c;
 
 class dMsgObject_c : public msg_class {
 public:
@@ -160,7 +161,7 @@ public:
     u8 getSelectCancelPos() { return mSelectCancelPos; }
 
     /* 0x100 */ msg_class* field_0x100;
-    /* 0x104 */ int mpScrnDraw;
+    /* 0x104 */ dMsgScrnBase_c* mpScrnDraw;
     /* 0x108 */ dMsgString_c* mpMsgString;
     /* 0x10C */ COutFont_c* mpOutFont;
     /* 0x110 */ JMessage::TResourceContainer* mpResCont;

@@ -857,6 +857,7 @@ u8 dStage_stagInfo_GetParticleNo(stage_stag_info_class* p_info, int layer);
 int dStage_changeSceneExitId(cBgS_PolyInfo& param_0, f32 speed, u32 mode, s8 roomNo, s16 angle);
 int dStage_changeScene4Event(int i_exitId, s8 room_no, int i_wipe, bool param_3, f32 speed,
                                   u32 mode, s16 angle, int param_7);
+void dStage_Create();
 
 inline s32 dStage_roomRead_dt_c_GetVrboxswitch(roomRead_data_class& data) {
     return data.field_0x2 & 8;

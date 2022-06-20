@@ -407,7 +407,7 @@ void mDoExt_setAraCacheSize(u32 param_0);
 struct JUTFont;
 JUTFont* mDoExt_getMesgFont();
 void mDoExt_getSubFont();
-void mDoExt_getRubyFont();
+JUTFont* mDoExt_getRubyFont();
 
 extern JKRExpHeap* zeldaHeap;
 extern JKRExpHeap* gameHeap;

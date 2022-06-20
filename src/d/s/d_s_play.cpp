@@ -14,30 +14,19 @@
 #include "f_op/f_op_overlap_mng.h"
 #include "f_op/f_op_scene_mng.h"
 #include "m_Do/m_Do_audio.h"
+#include "d/d_demo.h"
+#include "d/d_model.h"
+#include "d/d_procname.h"
+#include "f_op/f_op_msg_mng.h"
+#include "d/save/d_save_HIO.h"
 
 //
 // Types:
 //
 
-struct daYkgr_c {
-    static u8 m_emitter[4];
-};
-
 struct daSus_c {
     /* 800313BC */ void reset();
     /* 800315A4 */ static void execute();
-};
-
-struct dMdl_mng_c {
-    /* 8009C7AC */ void create();
-    /* 8009C864 */ void remove();
-    /* 8009C8C0 */ static void reset();
-};
-
-struct dDemo_c {
-    /* 80039678 */ void create();
-    /* 80039910 */ void remove();
-    /* 80039DA4 */ static void update();
 };
 
 struct cDylPhs {
@@ -202,7 +191,7 @@ extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
 extern "C" u8 mRoofCheck__11fopAcM_rc_c[80];
 extern "C" u8 mWaterCheck__11fopAcM_wt_c[84 + 4 /* padding */];
 extern "C" extern dScnKy_env_light_c g_env_light;
-extern "C" extern u8 g_save_bit_HIO[1184 + 4 /* padding */];
+extern "C" extern dSvBit_HIO_c g_save_bit_HIO;
 extern "C" extern GXColor g_saftyWhiteColor;
 extern "C" u8 mFader__13mDoGph_gInf_c[4];
 extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
@@ -236,6 +225,7 @@ static u8 dylPreLoadTime1[4];
 static u8 data_8045110C[4];
 
 /* 80451110-80451114 000610 0004+00 1/1 0/0 0/0 .sbss            resPreLoadTime0 */
+//static OSTime resPreLoadTime0;
 static u8 resPreLoadTime0[4];
 
 /* 80451114-80451118 000614 0004+00 1/1 0/0 0/0 .sbss            None */
@@ -433,7 +423,7 @@ static int dScnPly_Draw(dScnPly_c* scn) {
     dMdl_mng_c::reset();
 
     if (!dComIfGp_isPauseFlag() && struct_80451124 == 0) {
-        if (fpcM_GetName(scn) == 0xB) {
+        if (fpcM_GetName(scn) == PROC_PLAY_SCENE) {
             dComIfGp_getVibration().Run();
         }
         daSus_c::execute();
@@ -537,12 +527,12 @@ SECTION_DEAD static char const* const stringBase_8039A2DF = "T_JOINT";
 SECTION_SDATA static char* T_JOINT_resName = "Always";
 
 /* 80450764-80450768 -00001 0004+00 4/4 0/0 0/0 .sdata           None */
-SECTION_SDATA static u8 struct_80450764[2] = {
-    /* 80450764 0001+00 data_80450764 None */
-    0xFF,
-    /* 80450765 0003+00 data_80450765 None */
-    0x01,
-};
+SECTION_SDATA static s8 struct_80450764 = 0xFF;
+
+#pragma push
+#pragma force_active on
+SECTION_SDATA static u8 data_80450765 = 1;
+#pragma pop
 
 /* 802598AC-80259AC4 2541EC 0218+00 1/0 0/0 0/0 .text            dScnPly_Delete__FP9dScnPly_c */
 #pragma push
@@ -556,7 +546,7 @@ static asm void dScnPly_Delete(dScnPly_c* param_0) {
 
 /* 80259AC4-80259BFC 254404 0138+00 1/1 0/0 0/0 .text            resetGame__9dScnPly_cFv */
 bool dScnPly_c::resetGame() {
-    if (fpcM_GetName(this) == 0xC) {
+    if (fpcM_GetName(this) == PROC_OPENING_SCENE) {
         if (!dStage_roomControl_c::resetArchiveBank(0)) {
             return false;
         }
@@ -847,8 +837,8 @@ static u8 lit_4050[12];
 #pragma pop
 
 /* 8043079C-804307E0 05D4BC 0044+00 1/2 3/3 0/0 .bss             g_envHIO */
-extern u8 g_envHIO[68];
-u8 g_envHIO[68];
+extern s8 g_envHIO[68];
+s8 g_envHIO[68];
 
 /* 80454F30-80454F34 003530 0004+00 1/1 0/0 0/0 .sdata2          @4804 */
 SECTION_SDATA2 static f32 lit_4804 = 608.0f;
@@ -863,7 +853,99 @@ SECTION_SDATA2 static f32 lit_4806[1 + 1 /* padding */] = {
     0.0f,
 };
 
+class daYkgr_c {
+public:
+    static void init() {
+        m_emitter = 0;
+        *struct_80450D8C = 0;
+        *(struct_80450D8C + 1) = 1;
+        *(struct_80450D8C + 2) = 0xFF;
+    }
+
+    static u32 m_emitter;
+};
+
 /* 8025A654-8025A9F4 254F94 03A0+00 1/0 0/0 0/0 .text            phase_4__FP9dScnPly_c */
+#ifdef NONMATCHING
+static int phase_4(dScnPly_c* i_this) {
+    if (i_this->sceneCommand) {
+        dComIfGp_particle_createScene(i_this->sceneCommand->getMemAddress());
+        i_this->sceneCommand->destroy();
+    } else {
+        dComIfGp_particle_createScene(NULL);
+    }
+
+    if (i_this->field_0x1d0 != NULL) {
+        dComIfGp_setMsgDtArchive(1, i_this->field_0x1d0->getArchive());
+        i_this->field_0x1d0->destroy();
+    }
+
+    dComIfGp_calcNowRegion();
+    dComIfG_Bgsp().Ct();
+    fopAcM_lc_c::getLineCheck()->ClearPi();
+    fopAcM_gc_c::getGroundCheck()->ClearPi();
+    fopAcM_rc_c::getRoofCheck()->ClearPi();
+    fopAcM_wt_c::getWaterCheck()->ClearPi();
+    dComIfG_Ccsp()->Ct();
+    dDemo_c::create();
+
+    dComIfGp_setPlayerInfo(0, NULL, 0);
+    for (int i = 0; i < 2; i++) {
+        dComIfGp_setPlayerPtr(i, NULL);
+    }
+
+    dComIfGp_setWindow(0, 0.0f, 0.0f, 608.0f, 448.0f, 0.0f, 1.0f, 0, 2);
+    dComIfGp_setCameraInfo(0, NULL, 0, 0, -1);
+    dComIfGd_setWindow(NULL);
+    dComIfGd_setViewport(NULL);
+    dComIfGd_setView(NULL);
+
+    dComIfGp_setExpHeap2D(fopMsgM_createExpHeap(0xBB800, NULL));
+    dComIfGp_setMsgExpHeap(fopMsgM_createExpHeap(0xA800, NULL));
+
+    if (fpcM_GetName(i_this) == PROC_OPENING_SCENE) {
+        fopAcM_create(PROC_TITLE, 0, NULL, -1, NULL, NULL, -1);
+        dComIfGs_init();
+        dComIfGs_setOptPointer(0);
+        dComIfGs_setLife(12);
+        dMeter2Info_setCloth(WEAR_KOKIRI, false);
+        dMeter2Info_setSword(SWORD, false);
+        dMeter2Info_setShield(HYLIA_SHIELD, false);
+        dComIfGs_onEventBit(0x0601);  // Epona Tamed
+    }
+
+    dMpath_c::create();
+    dTres_c::create();
+    dStage_Create();
+    dComIfGp_createSimpleModel();
+    dMdl_mng_c::create();
+
+    mDoGph_gInf_c::setTickRate((OS_BUS_CLOCK / 4) / 30);
+    g_envHIO[4] = -1;
+    g_save_bit_HIO.field_0x4 = -1;
+    new (&dComIfGp_getAttention()) dAttention_c((fopAc_ac_c*)dComIfGp_getPlayer(0), 0);
+    dComIfGp_getVibration().Init();
+    daYkgr_c::init();
+    
+    dComIfG_setBrightness(255);
+    mDoGph_gInf_c::offFade();
+    mDoAud_zelAudio_c::onBgmSet();
+    struct_80451124 = 0;
+    data_80451125 = 0;
+    struct_80450764 = -1;
+
+    if (data_80450765 != 0 && !strcmp(dComIfGp_getStartStageName(), (char*)PreLoadInfoT[0])) {
+        struct_80450764 = 0;
+    }
+
+    if (struct_80450764 < 0) {
+        return 4;
+    }
+
+    resPreLoadTime0 = OSGetTime();
+    return 2;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -872,6 +954,7 @@ static asm void phase_4(dScnPly_c* param_0) {
 #include "asm/d/s/d_s_play/phase_4__FP9dScnPly_c.s"
 }
 #pragma pop
+#endif
 
 /* 8025A9F4-8025AAC0 255334 00CC+00 1/0 0/0 0/0 .text            phase_5__FP9dScnPly_c */
 #pragma push
