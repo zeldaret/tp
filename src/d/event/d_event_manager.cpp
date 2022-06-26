@@ -820,7 +820,7 @@ int dEvent_manager_c::getMyStaffId(char const* pStaffName, fopAc_ac_c* pActor, i
                 for (i = 0; i < staffCount; i++) {
                     staffNum = event->getStaff(i);
                     dEvDtStaff_c* staff = getBase().getStaffP(staffNum);
-                    if (staff->mType != 1) {
+                    if (staff->mType != dEvDtStaff_c::TYPE_ALL) {
                         char buf[0x18];
                         strcpy(buf, staff->mName);
                         char* ptr = NULL;

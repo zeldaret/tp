@@ -75,7 +75,8 @@ public:
         /* 0x0 */ TYPE_DEFAULT,
         /* 0x1 */ TYPE_ALL,
         /* 0x2 */ TYPE_CAMERA,
-        /* 0x4 */ TYPE_TIMEKEEPER = 4,
+        /* 0x3 */ TYPE_EFFECT,
+        /* 0x4 */ TYPE_TIMEKEEPER,
         /* 0x6 */ TYPE_DIRECTOR = 6,
         /* 0x7 */ TYPE_MESSAGE,
         /* 0x8 */ TYPE_SOUND,
@@ -144,7 +145,7 @@ public:
     /* 0x2C */ int mType;
     /* 0x30 */ int mStartCut;
     /* 0x34 */ u8 field_0x34[2];
-    /* 0x36 */ s16 field_0x36;
+    /* 0x36 */ s16 mWaitTimer;
     /* 0x38 */ int mCurrentCut;
     /* 0x3C */ s32 field_0x3c;
     /* 0x40 */ bool field_0x40;

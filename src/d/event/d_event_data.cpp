@@ -124,13 +124,13 @@ extern "C" u8 m_mode__7dDemo_c[4];
 extern "C" f32 mWipeRate__12dDlst_list_c;
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
-inline dEvent_manager_c& dComIfGp_getEventManager() {
-    return g_dComIfG_gameInfo.play.getEvtManager();
-}
-
 //
 // Declarations:
 //
+
+inline dEvent_manager_c& dComIfGp_getEventManager() {
+    return g_dComIfG_gameInfo.play.getEvtManager();
+}
 
 inline BOOL dComIfGs_isEventBit(u16 id) {
     return g_dComIfG_gameInfo.info.getEvent().isEventBit(id);
@@ -288,13 +288,13 @@ static int dEvDt_Next_Stage(int index, int wipe_type) {
     s32 wipe_time;
     f32 hour;
     f32 speed;
-    mode = 0;          // uvar8 - retail
-    wipe = wipe_type;  // ivar10
+    mode = 0;
+    wipe = wipe_type;
     noVisit = true;
-    wipe_time = 0;         // bvar9
-    hour = 0;              // dvar12
-    bool setHour = false;  // bvar2
-    speed = 0;             // set to 0.0f dvar13
+    wipe_time = 0;
+    hour = 0;
+    bool setHour = false;
+    speed = 0;
 
     int* p_id = dComIfGp_evmng_getMyIntegerP(index, "ID");
     if (p_id != NULL) {
@@ -312,7 +312,6 @@ static int dEvDt_Next_Stage(int index, int wipe_type) {
             stage = stgInfo->mStage;
             point = stgInfo->mStart;
             roomNo = (s8)stgInfo->mRoom;
-            int tmp;  // might be fake idk
             layer = dStage_sclsInfo_getSceneLayer(stgInfo);
             wipe = (s8)dStage_sclsInfo_getWipe(stgInfo);
             wipe_time = dStage_sclsInfo_getWipeTime(stgInfo);
@@ -481,16 +480,16 @@ SECTION_DEAD static char const* const stringBase_80379E0D = "Timer";
 void dEvDtStaff_c::specialProc_WaitStart(int param_0) {
     int* timer = dComIfGp_evmng_getMyIntegerP(param_0, "Timer");
     if (timer == NULL) {
-        field_0x36 = 0;
+        mWaitTimer = 0;
     } else {
-        field_0x36 = *timer;
+        mWaitTimer = *timer;
     }
 }
 
 /* 8004403C-80044080 03E97C 0044+00 4/4 0/0 0/0 .text specialProc_WaitProc__12dEvDtStaff_cFi */
 void dEvDtStaff_c::specialProc_WaitProc(int param_0) {
-    if (field_0x36 > 0) {
-        field_0x36--;
+    if (mWaitTimer > 0) {
+        mWaitTimer--;
     } else {
         dComIfGp_evmng_cutEnd(param_0);
     }
@@ -499,32 +498,32 @@ void dEvDtStaff_c::specialProc_WaitProc(int param_0) {
 /* 80044080-80044134 03E9C0 00B4+00 2/1 0/0 0/0 .text            specialProc__12dEvDtStaff_cFv */
 void dEvDtStaff_c::specialProc() {
     switch (mType) {
-    case 0xB:
+    case TYPE_PACKAGE:
         specialProcPackage();
         break;
-    case 6:
+    case TYPE_DIRECTOR:
         specialProcDirector();
         break;
-    case 4:
+    case TYPE_TIMEKEEPER:
         specialProcTimekeeper();
         break;
-    case 1:
+    case TYPE_ALL:
         dComIfGp_evmng_cutEnd(mIndex);
         break;
-    case 3:
+    case TYPE_EFFECT:
         specialProcEffect();
         break;
-    case 0xC:
+    case TYPE_CREATE:
         specialProcCreate();
         dComIfGp_evmng_cutEnd(mIndex);
         break;
-    case 8:
+    case TYPE_SOUND:
         specialProcSound();
         break;
-    case 7:
+    case TYPE_MESSAGE:
         specialProcMessage();
         break;
-    case 9:
+    case TYPE_LIGHT:
         specialProcLight();
         break;
     }
@@ -574,11 +573,10 @@ SECTION_SDATA2 static f64 lit_4461 = 24.0;
 void dEvDtStaff_c::specialProcLight() {
     int staffId = i_dComIfGp_evmng_getMyStaffId("LIGHT", NULL, 0);
     if (staffId != -1) {
-        char* nowCutNameP = dComIfGp_getEventManager().getMyNowCutName(staffId);
+        char* nowCutName = dComIfGp_getEventManager().getMyNowCutName(staffId);
         if (dComIfGp_evmng_getIsAddvance(staffId)) {
-            int nowCutName = *(int*)nowCutNameP;
             f32* hourP;
-            switch (nowCutName) {
+            switch (*(int*)nowCutName) {
             case 'CHAN':
                 hourP = dComIfGp_evmng_getMyFloatP(staffId, "Hour");
                 if (hourP != NULL) {
