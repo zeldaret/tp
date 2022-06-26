@@ -219,7 +219,7 @@ public:
     /* 80056794 */ int set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
     /* 800567C4 */ void draw(dDlst_base_c**, dDlst_base_c**);
     /* 8005681C */ void wipeIn(f32, _GXColor&);
-    /* 800568D8 */ void wipeIn(f32);
+    /* 800568D8 */ static void wipeIn(f32);
     /* 80056900 */ void calcWipe();
 
     void set2DOpa(dDlst_base_c* dlst) { set(field_0x1b4, field_0x1b8, dlst); }
@@ -258,6 +258,7 @@ public:
     }
 
     static void offWipe() { data_80450ED0 = 0; }
+    static f32 getWipeRate() { return mWipeRate; }
 
     static u8 mWipeDlst[72];
     static u8 mWipeColor[4];

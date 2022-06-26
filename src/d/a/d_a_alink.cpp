@@ -19218,7 +19218,7 @@ MtxP daAlink_c::getRightItemMatrix() {
 /* 800CF344-800CF380 0C9C84 003C+00 1/0 0/0 0/0 .text            checkPlayerNoDraw__9daAlink_cFv */
 BOOL daAlink_c::checkPlayerNoDraw() {
     return dComIfGp_checkCameraAttentionStatus(field_0x317c, 2) ||
-           i_checkNoResetFlg0(FLG0_UNK_8000000);
+           i_checkNoResetFlg0(PLAYER_NO_DRAW);
 }
 
 /* 800CF380-800CFC3C 0C9CC0 08BC+00 1/1 0/0 0/0 .text            __ct__9daAlink_cFv */

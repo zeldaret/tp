@@ -66,7 +66,7 @@ public:
     void sceneChange(int);
     u32 getPId(void*);
     void* convPId(unsigned int);
-    void getStbDemoData(char*);
+    void* getStbDemoData(char*);
     static dStage_MapEvent_dt_c* searchMapEventData(u8, s32);
     static dStage_MapEvent_dt_c* searchMapEventData(u8);
     s16 runningEventID(s16);
@@ -86,6 +86,7 @@ public:
     u8 getMode() const { return mMode; }
     u16 checkHind(u16 flag) { return flag & mHindFlag; }
     u8 checkCompulsory() { return mCompulsory; }
+    void setCullRate(f32 f) { mCullRate = f; }
 
     bool i_isOrderOK() { return field_0xe5 == 0 || field_0xe5 == 2; }
     void* getPt1() { return convPId(mPt1); }

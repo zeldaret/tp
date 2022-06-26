@@ -617,6 +617,7 @@ public:
     dComIfG_inf_c() { this->ct(); }
     ~dComIfG_inf_c() {}
     void ct();
+    dComIfG_play_c& getPlay() { return play; }
 
     /* 0x00000 */ dSv_info_c info;
     /* 0x00F38 */ dComIfG_play_c play;
@@ -656,6 +657,8 @@ int dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* resNa
 int dComIfG_changeOpeningScene(scene_class* scene, s16 procName);
 int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* arc_name);
 BOOL dComIfGs_isStageSwitch(int i_stageNo, int i_no);
+void dComIfGs_onStageSwitch(int i_stageNo, int i_no);
+void dComIfGs_offStageSwitch(int i_stageNo, int i_no);
 
 inline void dComIfG_setBrightness(u8 brightness) {
     g_dComIfG_gameInfo.mFadeBrightness = brightness;

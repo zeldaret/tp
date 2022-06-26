@@ -249,7 +249,9 @@ struct dStage_MapEvent_dt_c {
     u8 field_0x8;
     u8 field_0x9;
     u8 field_0xA[0xD - 0xA];
-    char mName[10];
+    char mName[6];
+    u16 field_0x14;
+    u8 field_0x16;
     u8 field_0x17;
     u8 field_0x18;
     u8 field_0x19[0x1B - 0x19];

@@ -109,7 +109,7 @@ public:
     /* 80237F10 */ void setTalkActorLocal(fopAc_ac_c*);
     /* 8023800C */ static void readMessageGroup(mDoDvdThd_mountXArchive_c**);
     /* 8023803C */ static void changeFlowGroup(s32);
-    /* 8023806C */ void demoMessageGroup();
+    /* 8023806C */ static void demoMessageGroup();
     /* 80238098 */ void endFlowGroup();
     /* 802380C4 */ void changeGroup(s16);
     /* 802380F4 */ void getString(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, char*,
@@ -247,6 +247,9 @@ u16 dMsgObject_getOffering();
 
 inline dMsgObject_c* dMsgObject_getMsgObjectClass() {
     return dComIfGp_getMsgObjectClass();
+}
+inline void dMsgObject_demoMessageGroup() {
+    dMsgObject_c::demoMessageGroup();
 }
 
 inline bool dMsgObject_isTalkNowCheck() {

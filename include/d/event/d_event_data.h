@@ -50,11 +50,13 @@ public:
 
 class dEvDtCut_c {
 public:
-    void startCheck();
+    int startCheck();
 
     int getDataTop() { return mDataTop; }
     int getFlagId() { return mFlagId; }
     char* getName() { return mName; }
+    int getNext() { return mNext; }
+    int getStartFlag(int idx) { return mFlags[idx]; }
 
 private:
     /* 0x00 */ char mName[32];
@@ -88,6 +90,29 @@ public:
         unsigned int mMsgNo;
         s32 mMsgSubstanceNum;
         int* mMsgSubstanceP;
+    };
+
+    struct MessageData {
+        s16 unk;
+    };
+
+    struct SoundData {
+        s16 unk;
+        s16 timer;
+    };
+
+    struct TimerKeeperData {
+        s32 timer;
+    };
+
+    struct DirectorData {
+        s16 unk;
+        s16 unk2;
+    };
+
+    struct EffectData {
+        u8 pad[8];
+        s32 unk;
     };
 
     void specialProc_WaitStart(int);
@@ -124,10 +149,10 @@ public:
     /* 0x3C */ s32 field_0x3c;
     /* 0x40 */ bool field_0x40;
     /* 0x41 */ bool field_0x41;
-    /* 0x42 */ s16 field_0x42;
-    /* 0x44 */ s16 mSoundWait;
-    /* 0x46 */ u8 field_0x46[10];
+    /* 0x42 */ u8 mData[0x50 - 0x42];
 };  // Size: 0x50
+
+STATIC_ASSERT(sizeof(dEvDtStaff_c) == 0x50);
 
 class dEvDtEvent_c {
 public:
@@ -175,7 +200,7 @@ public:
     int init();
     int init(char*, int);
     void advanceCut(dEvDtEvent_c*);
-    void advanceCutLocal(dEvDtStaff_c*);
+    BOOL advanceCutLocal(dEvDtStaff_c*);
 
     event_binary_data_header* getHeaderP() { return mHeaderP; }
     dEvDtStaff_c* getStaffP(int i) { return &mStaffP[i]; }
