@@ -17,10 +17,12 @@ public:
     char* getEventName();
     void beforeProc();
     void onCondition(u16);
+    void i_onCondition(u16 cond) { mCondition |= cond; }
     void offCondition(u16);
+    void i_offCondition(u16 cond) { mCondition &= ~cond; }
     bool checkCommandCatch();
     BOOL checkCommandDoor();
-    bool checkCommandDemoAccrpt();
+    BOOL checkCommandDemoAccrpt() { return mCommand == 2; }
 
     void setCommand(u16 command) { mCommand = command; }
     void setMapToolId(u8 id) { mMapToolId = id; }
