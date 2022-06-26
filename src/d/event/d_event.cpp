@@ -686,7 +686,7 @@ asm void* dEvt_control_c::convPId(unsigned int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_control_c::getStbDemoData(char* param_0) {
+asm void* dEvt_control_c::getStbDemoData(char* param_0) {
     nofralloc
 #include "asm/d/event/d_event/getStbDemoData__14dEvt_control_cFPc.s"
 }
