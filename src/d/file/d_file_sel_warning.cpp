@@ -16,69 +16,13 @@ struct dMsgString_c {
     /* 80249D28 */ ~dMsgString_c();
 };
 
-struct JUtility {
-    struct TColor {};
-};
-
-struct JKRArchive {};
-
-struct dFile_warning_c {
-    /* 80191BAC */ dFile_warning_c(JKRArchive*, u8);
-    /* 80191C18 */ ~dFile_warning_c();
-    /* 80191CF4 */ void screenSet();
-    /* 80191F18 */ void _move();
-    /* 80191F90 */ void modeWait();
-    /* 80191F94 */ void modeMove();
-    /* 80191FD4 */ void baseMoveAnm();
-    /* 801920B8 */ void openInit();
-    /* 8019210C */ void closeInit();
-    /* 80192160 */ void init();
-    /* 80192190 */ void _draw();
-    /* 801921CC */ void drawSelf();
-    /* 801921F8 */ void setText(u32);
-    /* 80192240 */ void setFontColor(JUtility::TColor, JUtility::TColor);
-};
-
-struct dDlst_base_c {};
-
-struct dDlst_list_c {
-    /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
-};
-
 struct dDlst_FileWarn_c {
     /* 80192354 */ void draw();
     /* 801923CC */ ~dDlst_FileWarn_c();
 };
 
-struct JKRFileLoader {
-    /* 802D4270 */ void getGlbResource(char const*, JKRFileLoader*);
-};
-
-struct JKRExpHeap {};
-
-struct J2DTextBox {
-    /* 8019230C */ void setBlackWhite(JUtility::TColor, JUtility::TColor);
-    /* 8030074C */ void setString(s16, char const*, ...);
-};
-
-struct J2DAnmTransform {};
-
-struct J2DGrafContext {};
-
-struct J2DScreen {
-    /* 80192414 */ void setAnimation(J2DAnmTransform*);
-    /* 802F8498 */ J2DScreen();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-    /* 802F9690 */ void animation();
-};
-
 struct J2DAnmLoaderDataBase {
     /* 80308A6C */ void load(void const*);
-};
-
-struct CPaneMgr {
-    /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
 };
 
 //
@@ -128,7 +72,6 @@ extern "C" void setString__10J2DTextBoxFsPCce();
 extern "C" void load__20J2DAnmLoaderDataBaseFPCv();
 extern "C" void __ptmf_scall();
 extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
 // Declarations:
@@ -217,7 +160,8 @@ asm dFile_warning_c::dFile_warning_c(JKRArchive* param_0, u8 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dFile_warning_c::~dFile_warning_c() {
+// asm dFile_warning_c::~dFile_warning_c() {
+extern "C" asm void __dt__15dFile_warning_cFv() {
     nofralloc
 #include "asm/d/file/d_file_sel_warning/__dt__15dFile_warning_cFv.s"
 }

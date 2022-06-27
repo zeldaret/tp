@@ -9,7 +9,7 @@
 #include "m_Do/m_Do_main.h"
 
 void myHeapCheckRecursive(JKRHeap*);
-u8 mDoMch_IsProgressiveMode();
+BOOL mDoMch_IsProgressiveMode();
 bool exceptionReadPad(u32*, u32*);
 void exceptionRestart();
 void myExceptionCallback(u16, OSContext*, u32, u32);

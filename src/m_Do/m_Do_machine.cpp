@@ -5,46 +5,22 @@
 
 #include "m_Do/m_Do_machine.h"
 #include "JSystem/JFramework/JFWSystem.h"
+#include "JSystem/JKernel/JKRAram.h"
+#include "JSystem/JKernel/JKRAramStream.h"
+#include "JSystem/JKernel/JKRDvdAramRipper.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTDbPrint.h"
 #include "JSystem/JUtility/JUTException.h"
+#include "SSystem/SComponent/c_API_controller_pad.h"
+#include "SSystem/SComponent/c_malloc.h"
+#include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct mDoMemCd_Ctrl_c {
-    /* 80016730 */ void ThdInit();
-};
-
-struct mDoDvdThd {
-    /* 80015858 */ void create(s32);
-};
-
-struct cMl {
-    /* 80263220 */ void init(JKRHeap*);
-};
-
-struct JUTAssertion {
-    /* 802E4C34 */ static void setVisible(bool);
-};
-
-struct JKRDvdRipper {
-    static u32 sSZSBufferSize;
-};
-
-struct JKRDvdAramRipper {
-    static u32 sSZSBufferSize;
-};
-
-struct JKRAramStream {
-    /* 802D4034 */ void setTransBuffer(u8*, u32, JKRHeap*);
-};
-
-struct JKRAram {
-    static u32 sSZSBufferSize[1 + 1 /* padding */];
-};
+#include "m_Do/m_Do_DVDError.h"
+#include "m_Do/m_Do_MemCard.h"
+#include "m_Do/m_Do_dvd_thread.h"
+#include "m_Do/m_Do_ext.h"
+#include "m_Do/m_Do_machine_exception.h"
 
 //
 // Forward References:
@@ -124,11 +100,10 @@ extern "C" void drawDirect__17JUTConsoleManagerCFb();
 extern "C" void setDirectConsole__17JUTConsoleManagerFP10JUTConsole();
 extern "C" void PPCHalt();
 extern "C" u32 OSGetProgressiveMode();
-extern "C" void OSSetProgressiveMode();
-extern "C" void VIGetDTVStatus();
+extern "C" void OSSetProgressiveMode(u32);
+extern "C" u32 VIGetDTVStatus();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
-extern "C" extern u8 g_mDoMemCd_control[8192];
 extern "C" extern s8 data_80450580;
 extern "C" u32 memMargin__7mDoMain;
 extern "C" u32 maxStdHeaps__Q29JFWSystem11CSetUpParam;
@@ -137,16 +112,11 @@ extern "C" u32 fifoBufSize__Q29JFWSystem11CSetUpParam;
 extern "C" u32 aramAudioBufSize__Q29JFWSystem11CSetUpParam;
 extern "C" u32 aramGraphBufSize__Q29JFWSystem11CSetUpParam;
 extern "C" void* renderMode__Q29JFWSystem11CSetUpParam;
-extern "C" extern u8 data_804508B0[8];
 extern "C" u32 sSZSBufferSize__7JKRAram[1 + 1 /* padding */];
 extern "C" u32 sSZSBufferSize__12JKRDvdRipper;
 extern "C" u32 sSZSBufferSize__16JKRDvdAramRipper;
 extern "C" u8 sHungUpTime__7mDoMain[4];
 extern "C" extern u8 data_80450B14[4];
-extern "C" extern u8 gameHeap[4];
-extern "C" extern u8 zeldaHeap[4];
-extern "C" extern u8 commandHeap[4];
-extern "C" extern u8 archiveHeap[4];
 extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 extern "C" u8 systemHeap__9JFWSystem[4];
 extern "C" u8 systemConsole__9JFWSystem[4];
@@ -162,147 +132,193 @@ extern "C" u8 sManager__17JUTConsoleManager[4];
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 80373DE8-80373DE8 000448 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80373DE8 = "SystemHeap";
-SECTION_DEAD static char const* const stringBase_80373DF3 = "ZeldaHeap";
-SECTION_DEAD static char const* const stringBase_80373DFD = "GameHeap";
-SECTION_DEAD static char const* const stringBase_80373E06 = "ArchiveHeap";
-SECTION_DEAD static char const* const stringBase_80373E12 = "CommandHeap";
-SECTION_DEAD static char const* const stringBase_80373E1E = "DbPrintHeap";
-SECTION_DEAD static char const* const stringBase_80373E2A = "J2dHeap";
-SECTION_DEAD static char const* const stringBase_80373E32 = "ASTH";
-SECTION_DEAD static char const* const stringBase_80373E37 = "EXPH";
-SECTION_DEAD static char const* const stringBase_80373E3C = "SLID";
-SECTION_DEAD static char const* const stringBase_80373E41 = "STDH";
-SECTION_DEAD static char const* const stringBase_80373E46 = "UNIT";
-SECTION_DEAD static char const* const stringBase_80373E4B = "(Null)";
-#pragma pop
-
 /* 80450BF0-80450BF4 0000F0 0004+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_80450BF0[4];
+static u8 data_80450BF0;
 
 /* 80450BF4-80450BF8 0000F4 0004+00 1/1 0/0 0/0 .sbss            solidHeapErrors */
-static u8 solidHeapErrors[4];
+static int solidHeapErrors;
 
 /* 80450BF8-80450BFC 0000F8 0004+00 1/1 0/0 0/0 .sbss            gameHeapErrors */
-static u8 gameHeapErrors[4];
+static int gameHeapErrors;
 
 /* 80450BFC-80450C00 0000FC 0004+00 1/1 0/0 0/0 .sbss            zeldaHeapErrors */
-static u8 zeldaHeapErrors[4];
+static int zeldaHeapErrors;
 
 /* 80450C00-80450C04 000100 0004+00 1/1 0/0 0/0 .sbss            commandHeapErrors */
-static u8 commandHeapErrors[4];
+static int commandHeapErrors;
 
 /* 80450C04-80450C08 000104 0004+00 1/1 0/0 0/0 .sbss            archiveHeapErrors */
-static u8 archiveHeapErrors[4];
+static int archiveHeapErrors;
 
 /* 80450C08-80450C0C 000108 0004+00 1/1 0/0 0/0 .sbss            unknownHeapErrors */
-static u8 unknownHeapErrors[4];
+static int unknownHeapErrors;
 
 /* 80450C0C-80450C10 00010C 0004+00 1/1 0/0 0/0 .sbss            heapErrors */
-static u8 heapErrors[4];
-
-/* 80450C10-80450C18 -00001 0008+00 2/2 0/0 0/0 .sbss            None */
-/* 80450C10 0005+00 data_80450C10 tmpString$3651 */
-/* 80450C15 0001+00 data_80450C15 None */
-/* 80450C16 0001+00 data_80450C16 None */
-/* 80450C17 0001+00 data_80450C17 None */
-static u8 struct_80450C10[8];
+static u32 heapErrors;
 
 /* 8000B1EC-8000B3EC 005B2C 0200+00 2/2 0/0 0/0 .text            myGetHeapTypeByString__FP7JKRHeap
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm char* myGetHeapTypeByString(JKRHeap* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_machine/myGetHeapTypeByString__FP7JKRHeap.s"
-}
-#pragma pop
+static char* myGetHeapTypeByString(JKRHeap* p_heap) {
+    static char tmpString[5];
 
-/* ############################################################################################## */
-/* 80373DE8-80373DE8 000448 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80373E52 =
-    "エラー: メモリを確保できません %d(0x%x)バイト、 %d バイトアライメント from "
-    "%08x\n";
-SECTION_DEAD static char const* const stringBase_80373EA3 =
-    "FreeSize=%08x TotalFreeSize=%08x HeapType=%08x(%"
-    "c%c%c%c) HeapSize=%08x %s\n";
-#pragma pop
+    if (p_heap == JKRHeap::getSystemHeap()) {
+        return "SystemHeap";
+    }
+
+    if (p_heap == mDoExt_getZeldaHeap()) {
+        return "ZeldaHeap";
+    }
+
+    if (p_heap == mDoExt_getGameHeap()) {
+        return "GameHeap";
+    }
+
+    if (p_heap == mDoExt_getArchiveHeap()) {
+        return "ArchiveHeap";
+    }
+
+    if (p_heap == mDoExt_getCommandHeap()) {
+        return "CommandHeap";
+    }
+
+    if (p_heap == mDoExt_getDbPrintHeap()) {
+        return "DbPrintHeap";
+    }
+
+    if (p_heap == mDoExt_getJ2dHeap()) {
+        return "J2dHeap";
+    }
+
+    u32 heapType = p_heap->getHeapType();
+    switch (heapType) {
+    case 'ASTH':
+        return "ASTH";
+    case 'EXPH':
+        return "EXPH";
+    case 'SLID':
+        return "SLID";
+    case 'STDH':
+        return "STDH";
+    case 'UNIT':
+        return "UNIT";
+    case 0:
+        return "(Null)";
+    default:
+        u32 tmpType = heapType;
+        char* typeStr = (char*)&tmpType;
+
+        tmpString[0] = typeStr[0];
+        tmpString[1] = typeStr[1];
+        tmpString[2] = typeStr[2];
+        tmpString[3] = typeStr[3];
+        tmpString[4] = 0;
+        return tmpString;
+    }
+}
 
 /* 8000B3EC-8000B5C8 005D2C 01DC+00 1/1 0/0 0/0 .text            myMemoryErrorRoutine__FPvUli */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void myMemoryErrorRoutine(void* param_0, u32 param_1, int param_2) {
-    nofralloc
-#include "asm/m_Do/m_Do_machine/myMemoryErrorRoutine__FPvUli.s"
-}
-#pragma pop
+static void myMemoryErrorRoutine(void* p_heap, u32 size, int alignment) {
+    JKRHeap* heap = (JKRHeap*)p_heap;
 
-/* ############################################################################################## */
-/* 80373DE8-80373DE8 000448 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80373EEE = "error in %08x(%s)\n";
-#pragma pop
+    BOOL notSolidHeap = true;
+    if (heap->getHeapType() == 'SLID') {
+        notSolidHeap = false;
+    }
+
+    if (notSolidHeap) {
+        // "Error: Can't allocate memory %d(0x%x)Bytes, %d Byte Alignment from %08x\n"
+        OSReport_Error(
+            "エラー: メモリを確保できません %d(0x%x)バイト、 %d バイトアライメント from %08x\n",
+            size, size, alignment, p_heap);
+    }
+
+    u32 heapType = heap->getHeapType();
+    u8* tmpString = (u8*)&heapType;
+    if (notSolidHeap) {
+        OSReport_Error(
+            "FreeSize=%08x TotalFreeSize=%08x HeapType=%08x(%c%c%c%c) HeapSize=%08x %s\n",
+            heap->getFreeSize(), heap->getTotalFreeSize(), heapType, tmpString[0], tmpString[1],
+            tmpString[2], tmpString[3], heap->getHeapSize(), myGetHeapTypeByString(heap));
+    }
+
+    if (heapErrors == 0) {
+        heap->dump_sort();
+    }
+    heapErrors++;
+
+    if (p_heap == zeldaHeap) {
+        zeldaHeapErrors++;
+    } else if (p_heap == gameHeap) {
+        gameHeapErrors++;
+    } else if (p_heap == commandHeap) {
+        commandHeapErrors++;
+    } else if (p_heap == archiveHeap) {
+        archiveHeapErrors++;
+    } else if (heap->getHeapType() == 'SLID') {
+        solidHeapErrors++;
+    } else {
+        unknownHeapErrors++;
+    }
+}
 
 /* 8000B5C8-8000B668 005F08 00A0+00 1/1 0/0 0/0 .text            myHeapCheckRecursive__FP7JKRHeap */
-#ifdef NONMATCHING
-void myHeapCheckRecursive(JKRHeap* param_0) {
-    if (!param_0->check()) {
-        char* type = myGetHeapTypeByString(param_0);
-        OSReport_Error("error in %08x(%s)\n", param_0, type);
+void myHeapCheckRecursive(JKRHeap* p_heap) {
+    if (!p_heap->check()) {
+        char* type = myGetHeapTypeByString(p_heap);
+        OSReport_Error("error in %08x(%s)\n", p_heap, type);
     }
 
-    JSUTree<JKRHeap> heapTree = param_0->getHeapTree();
-    for (heapTree.getFirstChild(); heapTree.getNextChild() != NULL; heapTree--) {
-        /* if (heapTree->getNextChild() == NULL) {
-            heapTree--;
-        } */
-        JKRHeap* heap = (JKRHeap*)heapTree.getObject();
-        myHeapCheckRecursive(heap);
+    JSUTree<JKRHeap>* heapTree = &p_heap->getHeapTree();
+    for (JSUTree<JKRHeap>* i = heapTree->getFirstChild(); i != NULL; i = i->getNextChild()) {
+        myHeapCheckRecursive(i->getObject());
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void myHeapCheckRecursive(JKRHeap* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_machine/myHeapCheckRecursive__FP7JKRHeap.s"
-}
-#pragma pop
-#endif
 
 /* 8000B668-8000B68C 005FA8 0024+00 0/0 2/2 0/0 .text            mDoMch_HeapCheckAll__Fv */
 void mDoMch_HeapCheckAll() {
     myHeapCheckRecursive(JKRHeap::sRootHeap);
 }
 
+static u8 debug_key0;
+static u8 debug_key1;
+static u8 debug_key2;
+
 /* 8000B68C-8000B73C 005FCC 00B0+00 1/1 0/0 0/0 .text            developKeyCheck__FUlUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void developKeyCheck(u32 param_0, u32 param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_machine/developKeyCheck__FUlUl.s"
+static int developKeyCheck(u32 btnTrig, u32 btnHold) {
+    if (btnHold == (CButton::L | CButton::R | CButton::Z | CButton::DPAD_DOWN) &&
+        btnTrig == CButton::DPAD_DOWN) {
+        if (debug_key0 == 3 && debug_key1 == 6 && debug_key2 == 5) {
+            data_80450580 = 1;
+        } else {
+            debug_key0 = 0;
+            debug_key1 = 0;
+            debug_key2 = 0;
+        }
+    }
+
+    if (btnHold == (CButton::L | CButton::DPAD_RIGHT) && btnTrig == CButton::L) {
+        debug_key0++;
+    }
+
+    if (btnHold == (CButton::R | CButton::DPAD_UP) && btnTrig == CButton::R) {
+        debug_key1++;
+    }
+
+    if (btnHold == (CButton::Z | CButton::DPAD_LEFT) && btnTrig == CButton::Z) {
+        debug_key2++;
+    }
+
+    return data_80450580;
 }
-#pragma pop
 
 /* 8000B73C-8000B768 00607C 002C+00 1/1 0/0 0/0 .text            mDoMch_IsProgressiveMode__Fv */
-u8 mDoMch_IsProgressiveMode() {
+BOOL mDoMch_IsProgressiveMode() {
     return OSGetProgressiveMode() == true;
 }
 
 /* 8000B768-8000B798 0060A8 0030+00 2/2 0/0 0/0 .text            exceptionReadPad__FPUlPUl */
-bool exceptionReadPad(u32* param_0, u32* param_1) {
-    return JUTException::getManager()->readPad(param_0, param_1);
+bool exceptionReadPad(u32* p_btnTrig, u32* p_btnHold) {
+    return JUTException::getManager()->readPad(p_btnTrig, p_btnHold);
 }
 
 /* 8000B798-8000B7C8 0060D8 0030+00 1/1 0/0 0/0 .text            exceptionRestart__Fv */
@@ -314,13 +330,13 @@ void exceptionRestart() {
 }
 
 /* 8000B7C8-8000B95C 006108 0194+00 1/1 0/0 0/0 .text myExceptionCallback__FUsP9OSContextUlUl */
-void myExceptionCallback(u16 param_0, OSContext* param_1, u32 param_2, u32 param_3) {
-    u32 tmp1;
-    u32 tmp2;
+void myExceptionCallback(u16, OSContext*, u32, u32) {
+    u32 btnHold;
+    u32 btnTrig;
 
     mDoMain::sHungUpTime = OSGetTime();
     OSReportEnable();
-    cAPICPad_recalibrate__Fv();
+    cAPICPad_recalibrate();
     // "Vibration stopping & resetting to default\n"
     OSReport("振動停止＆原点復帰\n");
 
@@ -341,8 +357,8 @@ void myExceptionCallback(u16 param_0, OSContext* param_1, u32 param_2, u32 param
                 // "Accepting Key input\n"
                 OSReport("キー入力を受け付けています\n");
                 while (data_80450580 == 0) {
-                    exceptionReadPad(&tmp2, &tmp1);
-                    developKeyCheck(tmp2, tmp1);
+                    exceptionReadPad(&btnTrig, &btnHold);
+                    developKeyCheck(btnTrig, btnHold);
                     JUTException::waitTime(30);
                     if (struct_80451501) {
                         exceptionRestart();
@@ -365,7 +381,7 @@ void myExceptionCallback(u16 param_0, OSContext* param_1, u32 param_2, u32 param
     }
     DVDChangeDir("/map/Final/Release");
     JUTVideo::destroyManager();
-    GXSetDrawDoneCallback(0);
+    GXSetDrawDoneCallback(NULL);
     VISetBlack(0);
     VIFlush();
 }
@@ -388,6 +404,143 @@ SECTION_SDATA2 static f32 lit_3940 = 8.0f;
 SECTION_SDATA2 static f32 lit_3941 = 6.0f;
 
 /* 8000B95C-8000BCF4 00629C 0398+00 1/1 0/0 0/0 .text fault_callback_scroll__FUsP9OSContextUlUl */
+#ifdef NONMATCHING
+static void fault_callback_scroll(u16, OSContext* p_context, u32, u32) {
+    JUTException* manager = JUTException::getManager();
+    JUTConsole* exConsole = manager->getConsole();
+
+    u32 srr0 = p_context->srr0 & -4;
+    if (srr0 >= 0x8000000C && srr0 < 0x82FFFFFF) {
+        exConsole->print_f("(SRR0-3):%08X %08X %08X %08X\n", *(u32*)(srr0 - 0xC),
+                           *(u32*)(srr0 - 0x8), *(u32*)(srr0 - 0x4), *(u32*)srr0);
+    }
+
+    JUTGamePad pad(JUTGamePad::Port_1);
+    manager->setGamePad(&pad);
+
+    BOOL padDisabled = manager->isEnablePad() == false;
+    if (!padDisabled) {
+        exConsole->print("PUSH START BUTTON TO ADDITIONAL INFOMATION\n");
+        exConsole->print("--------------------------------------\n");
+        JUTConsoleManager::getManager()->drawDirect(true);
+        OSEnableInterrupts();
+        int holdUpCount = 0;
+        int holdDownCount = 0;
+
+        while (true) {
+            u32 btnHold, btnTrig;
+            exceptionReadPad(&btnTrig, &btnHold);
+
+            if (struct_80451501) {
+                OSResetSystem(1, 0, 0);
+            }
+
+            bool waitRetrace = false;
+            if (btnTrig == CButton::START) {
+                exception_addition(exConsole);
+                waitRetrace = true;
+            }
+
+            if (btnTrig == CButton::Z) {
+                JUTConsole* sysConsole = JFWSystem::getSystemConsole();
+                if (JUTConsoleManager::getManager()->getDirectConsole() != sysConsole) {
+                    exConsole = sysConsole;
+                    exConsole->setFontSize(8.0f, 6.0f);
+                    exConsole->setPosition(8, 32);
+                    exConsole->setHeight(23);
+                    exConsole->setVisible(true);
+                    exConsole->setOutput(JUTConsole::OUTPUT_CONSOLE | JUTConsole::OUTPUT_OSREPORT);
+                } else {
+                    exConsole = JUTException::getConsole();
+                }
+                JUTConsoleManager::getManager()->setDirectConsole(exConsole);
+                waitRetrace = true;
+            }
+
+            if (btnTrig == CButton::A) {
+                exConsole->scrollToLastLine();
+                waitRetrace = true;
+            }
+
+            if (btnTrig == CButton::B) {
+                exConsole->scrollToFirstLine();
+                waitRetrace = true;
+            }
+
+            if (btnHold == CButton::DPAD_UP) {
+                int scrollAmnt;
+                if (holdUpCount < 3) {
+                    scrollAmnt = -1;
+                } else if (holdUpCount < 5) {
+                    scrollAmnt = -2;
+                } else {
+                    scrollAmnt = -8;
+                    if (holdUpCount < 7) {
+                        scrollAmnt = -4;
+                    }
+                }
+                exConsole->scroll(scrollAmnt);
+                waitRetrace = true;
+                holdDownCount = 0;
+                holdUpCount++;
+            } else if (btnHold == CButton::DPAD_DOWN) {
+                int scrollAmnt;
+                if (holdDownCount < 3) {
+                    scrollAmnt = 1;
+                } else if (holdDownCount < 5) {
+                    scrollAmnt = 2;
+                } else {
+                    scrollAmnt = 8;
+                    if (holdDownCount < 7) {
+                        scrollAmnt = 4;
+                    }
+                }
+                exConsole->scroll(scrollAmnt);
+                waitRetrace = true;
+                holdUpCount = 0;
+                holdDownCount++;
+            } else {
+                holdUpCount = 0;
+                holdDownCount = 0;
+            }
+
+            if (waitRetrace == true) {
+                u32 count = VIGetRetraceCount();
+                do {
+                } while (count == VIGetRetraceCount());
+                JUTConsoleManager::getManager()->drawDirect(true);
+            }
+
+            JUTException::waitTime(30);
+        }
+    }
+
+    exception_addition(exConsole);
+    JUTConsoleManager::getManager()->drawDirect(true);
+
+    do {
+        exConsole->scrollToFirstLine();
+        JUTConsoleManager::getManager()->drawDirect(true);
+        JUTException::waitTime(2000);
+
+        do {
+            for (u32 i = exConsole->getHeight(); i != 0; i--) {
+                exConsole->scroll(1);
+                JUTConsoleManager::getManager()->drawDirect(true);
+
+                if ((exConsole->getUsedLine() - exConsole->getHeight()) + 1 <=
+                    exConsole->getLineOffset()) {
+                    break;
+                }
+                JUTException::waitTime(20);
+            }
+
+            JUTException::waitTime(3000);
+        } while ((exConsole->getUsedLine() - exConsole->getHeight()) + 1 <=
+                 exConsole->getLineOffset());
+    } while (true);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -396,9 +549,10 @@ static asm void fault_callback_scroll(u16 param_0, OSContext* param_1, u32 param
 #include "asm/m_Do/m_Do_machine/fault_callback_scroll__FUsP9OSContextUlUl.s"
 }
 #pragma pop
+#endif
 
 /* 8000BCF4-8000BCF8 006634 0004+00 1/1 0/0 0/0 .text            my_PrintHeap__FPCcUl */
-static void my_PrintHeap(char const* param_0, u32 param_1) {
+static void my_PrintHeap(char const* heapName, u32 heapSize) {
     /* empty function */
 }
 
@@ -422,7 +576,7 @@ SECTION_DEAD static char const* const stringBase_80374017 = ""
 void my_SysPrintHeap(char const* message, void* start, u32 size) {
     // "32m%-24s = %08x-%08x size=%d KB\n"
     OSReport_System("\x1b[32m%-24s = %08x-%08x size=%d KB\n\x1b[m", message, start,
-                    (u32)start + size, size >> 10);
+                    (u32)start + size, size / 1024);
 }
 
 /* ############################################################################################## */
@@ -440,69 +594,171 @@ SECTION_DEAD static char const* const stringBase_8037409E = "/map/Final/Release/
 #pragma pop
 
 /* 803A2F60-803A2F9C 000080 003C+00 1/0 0/0 0/0 .data            g_ntscZeldaIntDf */
-SECTION_DATA static _GXRenderModeObj g_ntscZeldaIntDf = {0,
-                                                         608,
-                                                         448,
-                                                         448,
-                                                         27,
-                                                         16,
-                                                         666,
-                                                         448,
-                                                         1,
-                                                         0,
-                                                         0,
-                                                         {{6, 6},
-                                                          {6, 6},
-                                                          {6, 6},
-                                                          {6, 6},
-                                                          {6, 6},
-                                                          {6, 6},
-                                                          {6, 6},
-                                                          {6, 6},
-                                                          {6, 6},
-                                                          {6, 6},
-                                                          {6, 6},
-                                                          {6, 6}},
-                                                         {8, 8, 10, 12, 10, 8, 8}};
+SECTION_DATA static _GXRenderModeObj g_ntscZeldaIntDf = {
+    0,
+    608,
+    448,
+    448,
+    27,
+    16,
+    666,
+    448,
+    1,
+    0,
+    0,
+    {{6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6}},
+    {8, 8, 10, 12, 10, 8, 8},
+};
 
 /* 803A2F9C-803A2FD8 0000BC 003C+00 1/1 1/1 0/0 .data            g_ntscZeldaProg */
-SECTION_DATA extern _GXRenderModeObj g_ntscZeldaProg = {2,
-                                                        608,
-                                                        448,
-                                                        448,
-                                                        27,
-                                                        16,
-                                                        666,
-                                                        448,
-                                                        0,
-                                                        0,
-                                                        0,
-                                                        {{6, 6},
-                                                         {6, 6},
-                                                         {6, 6},
-                                                         {6, 6},
-                                                         {6, 6},
-                                                         {6, 6},
-                                                         {6, 6},
-                                                         {6, 6},
-                                                         {6, 6},
-                                                         {6, 6},
-                                                         {6, 6},
-                                                         {6, 6}},
-                                                        {0, 0, 21, 22, 21, 0, 0}};
+SECTION_DATA extern _GXRenderModeObj g_ntscZeldaProg = {
+    2,
+    608,
+    448,
+    448,
+    27,
+    16,
+    666,
+    448,
+    0,
+    0,
+    0,
+    {{6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6}},
+    {0, 0, 21, 22, 21, 0, 0},
+};
 
 /* 804505A0-804505A8 -00001 0004+04 1/1 3/3 0/0 .sdata           mRenderModeObj__15mDoMch_render_c
  */
-SECTION_SDATA _GXRenderModeObj* mDoMch_render_c::mRenderModeObj = &g_ntscZeldaIntDf;
+SECTION_SDATA GXRenderModeObj* mDoMch_render_c::mRenderModeObj = &g_ntscZeldaIntDf;
 
 /* 8000BD44-8000C0CC 006684 0388+00 0/0 2/1 0/0 .text            mDoMch_Create__Fv */
+// reg alloc r30 - r31
+#ifdef NONMATCHING
+int mDoMch_Create() {
+    if (data_80450580 == 0 || !(OSGetConsoleType() & 0x10000000)) {
+        OSReportDisable();
+    }
+
+    JKRHeap::setDefaultDebugFill(data_80450BF0);
+    JFWSystem::setMaxStdHeap(1);
+
+    u32 arenaHi = OSGetArenaHi();
+    u32 arenaLo = OSGetArenaLo();
+    if (arenaHi > 0x81800000 && arenaHi - 0x1800000 > arenaLo) {
+        OSSetArenaHi(arenaHi - 0x1800000);
+    }
+
+    u32 arenaSize = (OSGetArenaHi() - OSGetArenaLo()) - 0xF0;
+    my_PrintHeap("アリーナ", arenaSize);
+
+    if (mDoMain::memMargin != -1) {
+        arenaSize += mDoMain::memMargin;
+    }
+
+    JFWSystem::setSysHeapSize(arenaSize - 0xDACD30);
+    my_PrintHeap("システムヒープ", arenaSize - 0xDACD30);
+
+    JFWSystem::setFifoBufSize(0xA0000);
+    JFWSystem::setAramAudioBufSize(0xA00000);
+    JFWSystem::setAramGraphBufSize(-1);
+
+    if (!(OSGetResetCode() >> 0x1F)) {
+        if (VIGetDTVStatus() == 0) {
+            OSSetProgressiveMode(0);
+        }
+    } else if (mDoRst::getProgSeqFlag() != 0) {
+        if (VIGetDTVStatus() != 0 && mDoMch_IsProgressiveMode()) {
+            mDoMch_render_c::setProgressiveMode();
+        }
+    }
+
+    JFWSystem::setRenderMode(mDoMch_render_c::getRenderModeObj());
+    JFWSystem::firstInit();
+    JUTDbPrint::start(NULL, mDoExt_createDbPrintHeap(0x1800, JKRHeap::getRootHeap()));
+    mDoExt_createAssertHeap(JKRHeap::getRootHeap());
+    JFWSystem::init();
+
+    if (data_80450580 == 0) {
+        JUTAssertion::setVisible(false);
+        JUTDbPrint::getManager()->setVisible(false);
+    }
+
+    JKRHeap::setErrorHandler(myMemoryErrorRoutine);
+    JKRHeap::getRootHeap()->setErrorFlag(true);
+    JFWSystem::getSystemHeap()->setErrorFlag(true);
+
+    JKRHeap* rootHeap = JKRHeap::getRootHeap();
+    // Command Heap size: 4 KB
+    my_SysPrintHeap("コマンドヒープ", mDoExt_createCommandHeap(0x1000, rootHeap), 0x1000);
+
+    // Archive Heap size: 9085 KB
+    my_SysPrintHeap("アーカイブヒープ", mDoExt_createArchiveHeap(0x8DF400, rootHeap), 0x8DF400);
+
+    // J2D Heap size: 500 KB
+    my_SysPrintHeap("Ｊ２Ｄ用ヒープ", mDoExt_createJ2dHeap(0x7D000, rootHeap), 0x7D000);
+
+    // Game Heap size: 4408 KB
+    my_SysPrintHeap("ゲームヒープ", mDoExt_createGameHeap(0x44E000, rootHeap), 0x44E000);
+
+    JKRHeap* sysHeap = JKRHeap::getSystemHeap();
+    u32 zeldaHeapSize = sysHeap->getFreeSize() - 0x10000;
+    JKRHeap* zeldaHeap = mDoExt_createZeldaHeap(zeldaHeapSize, sysHeap);
+    my_SysPrintHeap("ゼルダヒープ", zeldaHeap, zeldaHeapSize);
+    zeldaHeap->becomeCurrentHeap();
+
+    JKRAramStream::setTransBuffer(NULL, 0x2000, JKRHeap::getSystemHeap());
+    JKRThreadSwitch::createManager(NULL);
+    JKRThread* thread = new JKRThread(OSGetCurrentThread(), 0);
+
+    JUTConsole* sysConsole = JFWSystem::getSystemConsole();
+    sysConsole->setOutput(JUTConsole::OUTPUT_CONSOLE | JUTConsole::OUTPUT_OSREPORT);
+    sysConsole->setPosition(16, 42);
+
+    JUTException::appendMapFile("/map/Final/Release/frameworkF.map");
+    JUTException::setPreUserCallback(myExceptionCallback);
+    JUTException::setPostUserCallback(fault_callback_scroll);
+
+    cMl::init(mDoExt_getZeldaHeap());
+    cM_initRnd(100, 100, 100);
+    JKRDvdRipper::setSZSBufferSize(0x4000);
+    JKRDvdAramRipper::setSZSBufferSize(0x4000);
+    JKRAram::setSZSBufferSize(0x2000);
+    mDoDvdThd::create(OSGetThreadPriority(OSGetCurrentThread()) - 2);
+    mDoDvdErr_ThdInit();
+    mDoMemCd_ThdInit();
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoMch_Create() {
+asm int mDoMch_Create() {
     nofralloc
 #include "asm/m_Do/m_Do_machine/mDoMch_Create__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 80373DE8-80373DE8 000448 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

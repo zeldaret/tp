@@ -1078,6 +1078,10 @@ inline s32 dComIfGs_isDungeonItemWarp() {
     return g_dComIfG_gameInfo.info.getMemory().getBit().isDungeonItemWarp();
 }
 
+inline s32 dComIfGs_isStageBossEnemy() {
+    return g_dComIfG_gameInfo.info.getMemory().getBit().isStageBossEnemy();
+}
+
 inline void dComIfGs_setKeyNum(u8 keyNum) {
     g_dComIfG_gameInfo.info.getMemory().getBit().setKeyNum(keyNum);
 }
@@ -1414,6 +1418,18 @@ inline void dComIfGs_setLastWarpAcceptStage(s8 param_0) {
 
 inline void dComIfGs_setOptPointer(u8 i_pointer) {
     g_dComIfG_gameInfo.info.getPlayer().getConfig().setPointer(i_pointer);
+}
+
+inline u8 dComIfGs_getNewFile() {
+    return g_dComIfG_gameInfo.info.getNewFile();
+}
+
+inline void dComIfGs_setInitDataToCard(u8* p_saveData, int dataNum) {
+    g_dComIfG_gameInfo.info.initdata_to_card((char*)p_saveData, dataNum);
+}
+
+inline void dComIfGs_setMemoryToCard(u8* p_saveData, int dataNum) {
+    g_dComIfG_gameInfo.info.memory_to_card((char*)p_saveData, dataNum);
 }
 
 void dComIfGp_setItemLifeCount(f32 amount, u8 type);

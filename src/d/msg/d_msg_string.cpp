@@ -8,41 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct J2DTextBox {};
-
-struct JUTFont {};
-
-struct COutFont_c {
-    /* 80225C94 */ COutFont_c(u8);
-};
-
-struct dMsgString_c {
-    /* 80191B6C */ void getString(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, u8);
-    /* 801E1D10 */ void getStringPage(u32, u8, u8, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*,
-                                      u8);
-    /* 80249C20 */ dMsgString_c();
-    /* 80249CA0 */ dMsgString_c(u8);
-    /* 80249D28 */ ~dMsgString_c();
-    /* 80249DB4 */ void resetStringLocal(J2DTextBox*);
-    /* 80249DE4 */ void drawOutFontLocal(J2DTextBox*, f32);
-    /* 80249ED0 */ void drawFontLocal(J2DTextBox*, u8, f32, f32, f32, f32, u32, u8);
-};
-
-struct dMsgStringBase_c {
-    /* 802493B4 */ dMsgStringBase_c();
-    /* 80249528 */ ~dMsgStringBase_c();
-    /* 80249700 */ void getResource();
-    /* 80249BF8 */ void getMessage(u32, char*);
-};
-
-struct J2DPane {
-    /* 802F79A8 */ void getGlbVtx(u8) const;
-};
-
-//
 // Forward References:
 //
 

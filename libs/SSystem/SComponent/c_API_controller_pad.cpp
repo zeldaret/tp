@@ -49,7 +49,7 @@ asm void cAPICPad_recalibrate() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cAPICPad_ANY_BUTTON(u32 param_0) {
+asm u32 cAPICPad_ANY_BUTTON(u32 param_0) {
     nofralloc
 #include "asm/SSystem/SComponent/c_API_controller_pad/cAPICPad_ANY_BUTTON__FUl.s"
 }

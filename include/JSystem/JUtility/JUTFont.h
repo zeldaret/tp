@@ -87,14 +87,20 @@ public:
     void initialize_state();
     void setCharColor(JUtility::TColor col1);
     void setGradColor(JUtility::TColor col1, JUtility::TColor col2);
-    f32 drawString_size_scale(f32 a1, f32 a2, f32 a3, f32 a4, const char* a5, u32 usz, bool a7);
+    f32 drawString_size_scale(f32 posX, f32 posY, f32 width, f32 height, const char* str, u32 usz,
+                              bool visible);
 
-    void drawString(int param_0, int param_1, const char* str, bool param_3) {
-        drawString_size(param_0, param_1, str, strlen(str), param_3);
+    void drawString(int posX, int posY, const char* str, bool visible) {
+        drawString_size(posX, posY, str, strlen(str), visible);
     }
 
-    void drawString_size(int param_0, int param_1, const char* str, u32 len, bool param_4) {
-        drawString_size_scale(param_0, param_1, getWidth(), getHeight(), str, len, param_4);
+    void drawString_size(int posX, int posY, const char* str, u32 len, bool visible) {
+        drawString_size_scale(posX, posY, getWidth(), getHeight(), str, len, visible);
+    }
+
+    void drawString_scale(f32 posX, f32 posY, f32 width, f32 height, const char* str,
+                          bool visible) {
+        drawString_size_scale(posX, posY, width, height, str, strlen(str), visible);
     }
 
     int getWidth(int i_no) const {
@@ -102,6 +108,8 @@ public:
         getWidthEntry(i_no, &width);
         return width.field_0x1;
     }
+
+    bool isValid() const { return mValid; }
 
     /* 0x04 */ bool mValid;
     /* 0x05 */ bool mFixed;

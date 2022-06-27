@@ -12,14 +12,26 @@ struct STControl {
         init();
     }
 
-    /* 80032044 */ STControl(s16, s16, s16, s16, f32, f32, s16, s16);
+    enum EStickDir {
+        TRIG_LEFT = 1,
+        TRIG_RIGHT,
+        TRIG_UP = 4,
+        TRIG_UP_LEFT,
+        TRIG_UP_RIGHT,
+        TRIG_DOWN = 8,
+        TRIG_DOWN_LEFT,
+        TRIG_DOWN_RIGHT,
+    };
+
+    /* 80032044 */ STControl(s16 delayY, s16 delayX, s16 param_2, s16 param_3, f32 threshold,
+                             f32 param_5, s16 param_6, s16 param_7);
     /* 80032088 */ void setWaitParm(s16, s16, s16, s16, f32, f32, s16, s16);
     /* 800320AC */ void init();
     /* 800320FC */ void Xinit();
     /* 8003212C */ void Yinit();
     /* 8003215C */ virtual f32 getValueStick();
     /* 8003216C */ virtual s16 getAngleStick();
-    /* 8003219C */ void checkTrigger();
+    /* 8003219C */ u8 checkTrigger();
     /* 8003242C */ bool checkLeftTrigger();
     /* 800324A8 */ bool checkRightTrigger();
     /* 80032524 */ bool checkUpTrigger();
@@ -27,14 +39,14 @@ struct STControl {
 
     void setFirstWaitTime(s16 time) { mFirstWaitTime = time; }
 
-    /* 0x04 */ f32 field_0x04;
+    /* 0x04 */ f32 mThreshold;
     /* 0x08 */ f32 field_0x08;
-    /* 0x0C */ u8 field_0x0c;
+    /* 0x0C */ u8 mDirectionTrig;
     /* 0x0D */ u8 field_0x0d;
     /* 0x0E */ s16 field_0x0e;
     /* 0x10 */ s16 field_0x10;
-    /* 0x12 */ s16 field_0x12;
-    /* 0x14 */ s16 field_0x14;
+    /* 0x12 */ s16 mRepeatDelayY;
+    /* 0x14 */ s16 mRepeatDelayX;
     /* 0x16 */ s16 field_0x16;
     /* 0x18 */ s16 mXwaitTimer;
     /* 0x1A */ s16 mYwaitTimer;

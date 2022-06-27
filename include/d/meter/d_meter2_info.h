@@ -153,6 +153,8 @@ public:
     u8 getRentalBombBag() { return mRentalBombBagIdx; }
     void setTableMapRegionNo(u8 regionNo) { mTableMapRegionNo = regionNo; }
     dMeter2_c* getMeterClass() { return mMeterClass; }
+    u8 getMiniGameItemSetFlag() { return mMiniGameItemSetFlag; }
+    s16 getMsgKeyWaitTimer() { return mMsgKeyWaitTimer; }
 
 public:
     /* 0x04 */ u8 unk4[4];
@@ -449,6 +451,10 @@ inline u8 dMeter2Info_getRentalBombBag() {
     return g_meter2_info.getRentalBombBag();
 }
 
+inline u8 dMeter2Info_getMiniGameItemSetFlag() {
+    return g_meter2_info.getMiniGameItemSetFlag();
+}
+
 inline void dMeter2Info_resetMiniGameItem(bool param_0) {
     g_meter2_info.resetMiniGameItem(param_0);
 }
@@ -471,6 +477,10 @@ inline void dMeter2Info_warpOutProc() {
 
 inline dMeter2_c* dMeter2Info_getMeterClass() {
     return g_meter2_info.getMeterClass();
+}
+
+inline s16 dMeter2Info_getMsgKeyWaitTimer() {
+    return g_meter2_info.getMsgKeyWaitTimer();
 }
 
 char* dMeter2Info_getNumberTextureName(int pIndex);

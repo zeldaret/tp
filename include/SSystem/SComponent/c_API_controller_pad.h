@@ -33,5 +33,6 @@ struct interface_of_controller_pad {
 };
 
 void cAPICPad_recalibrate(void);
+u32 cAPICPad_ANY_BUTTON(u32 param_0);
 
 #endif

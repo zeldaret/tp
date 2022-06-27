@@ -814,6 +814,7 @@ public:
         onDungeonItem(STAGE_BOSS_ENEMY);
         onDungeonItem(OOCCOO_NOTE);
     }
+    s32 isStageBossEnemy() const { return isDungeonItem(STAGE_BOSS_ENEMY); }
     s32 isDungeonItemWarp() const { return isDungeonItem(OOCCOO_NOTE); }
     void onStageLife() { onDungeonItem(STAGE_LIFE); }
 
@@ -1086,6 +1087,7 @@ public:
     u8 getDataNum() const { return mDataNum; }
     void removeZone(int zoneNo) { mZone[zoneNo].reset(); }
     void setNoFile(u8 file) { mNoFile = file; }
+    u8 getNewFile() const { return mNewFile; }
 
     static const int MEMORY_SWITCH = 0x80;
     static const int DAN_SWITCH = 0x40;

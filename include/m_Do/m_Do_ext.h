@@ -393,6 +393,14 @@ JKRExpHeap* mDoExt_getCommandHeap();
 JKRExpHeap* mDoExt_getZeldaHeap();
 JKRExpHeap* mDoExt_getJ2dHeap();
 JKRExpHeap* mDoExt_getHostIOHeap();
+JKRExpHeap* mDoExt_getDbPrintHeap();
+JKRExpHeap* mDoExt_createDbPrintHeap(u32 param_0, JKRHeap* param_1);
+JKRAssertHeap* mDoExt_createAssertHeap(JKRHeap* param_0);
+JKRExpHeap* mDoExt_createCommandHeap(u32 param_0, JKRHeap* param_1);
+JKRExpHeap* mDoExt_createArchiveHeap(u32 param_0, JKRHeap* param_1);
+JKRExpHeap* mDoExt_createJ2dHeap(u32 param_0, JKRHeap* param_1);
+JKRExpHeap* mDoExt_createZeldaHeap(u32 param_0, JKRHeap* param_1);
+JKRExpHeap* mDoExt_createGameHeap(u32 param_0, JKRHeap* param_1);
 JKRSolidHeap* mDoExt_createSolidHeapToCurrent(JKRHeap**, u32, JKRHeap*, u32);
 JKRSolidHeap* mDoExt_createSolidHeapToCurrent(u32, JKRHeap*, u32);
 JKRSolidHeap* mDoExt_createSolidHeapFromGameToCurrent(u32, u32);
@@ -408,9 +416,11 @@ struct JUTFont;
 JUTFont* mDoExt_getMesgFont();
 void mDoExt_getSubFont();
 JUTFont* mDoExt_getRubyFont();
+void mDoExt_removeSubFont();
 
 extern JKRExpHeap* zeldaHeap;
 extern JKRExpHeap* gameHeap;
 extern JKRExpHeap* archiveHeap;
+extern JKRExpHeap* commandHeap;
 
 #endif /* M_DO_M_DO_EXT_H */
