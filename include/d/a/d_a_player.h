@@ -181,7 +181,7 @@ public:
     enum daPy_FLG0 {
         FLG0_UNK_40000000 = 0x40000000,
         EQUIP_HEAVY_BOOTS = 0x2000000,
-        FLG0_UNK_8000000 = 0x8000000,
+        PLAYER_NO_DRAW = 0x8000000,
         FLG0_UNK_1000000 = 0x1000000,
         UNDER_WATER_MOVEMENT = 0x800000,
         FLG0_UNK_80000 = 0x80000,
@@ -552,6 +552,8 @@ public:
     BOOL i_checkEquipHeavyBoots() const { return i_checkNoResetFlg0(EQUIP_HEAVY_BOOTS); }
     BOOL i_checkMagneBootsOn() const { return i_checkNoResetFlg0(MAGNE_BOOTS_ON); }
     bool i_checkMidnaRide() const { return i_checkNoResetFlg0(MIDNA_RIDE); }
+    void i_onPlayerNoDraw() { i_onNoResetFlg0(PLAYER_NO_DRAW); }
+    void i_offPlayerNoDraw() { i_offNoResetFlg0(PLAYER_NO_DRAW); }
 
     inline static u32 getLastSceneMode();
     inline static bool checkWoodSwordEquip();

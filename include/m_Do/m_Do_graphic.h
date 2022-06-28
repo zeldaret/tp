@@ -47,12 +47,15 @@ public:
     static void setFadeColor(JUtility::TColor& color) { mFader->setColor(color); }
     static void endFrame() { JFWDisplay::getManager()->endFrame(); }
     static void offFade() { data_80450BE6 = 0; }
+    static u8 isFade() { return data_80450BE6; }
     static void offBlure() { struct_80450BE4 = 0; }
     static void offAutoForcus() { data_80450BE7 = 0; }
     static void setTickRate(u32 rate) { JFWDisplay::getManager()->setTickRate(rate); }
     static void waitBlanking(int wait) { JFWDisplay::getManager()->waitBlanking(wait); }
     static f32 getWidthF() { return 608.0f; }
     static f32 getHeightF() { return 448.0f; }
+    static void setFadeRate(f32 rate) { mFadeRate = rate; }
+    static f32 getFadeRate() { return mFadeRate; }
 
     static GXTexObj mFrameBufferTexObj;
     static GXTexObj mZbufferTexObj;

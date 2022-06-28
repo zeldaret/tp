@@ -201,7 +201,7 @@ asm void fopMsgM_messageSet(u32 param_0, fopAc_ac_c* param_1, u32 param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fopMsgM_messageSet(u32 param_0, u32 param_1) {
+asm int fopMsgM_messageSet(u32 param_0, u32 param_1) {
     nofralloc
 #include "asm/f_op/f_op_msg_mng/fopMsgM_messageSet__FUlUl.s"
 }
@@ -211,7 +211,7 @@ asm void fopMsgM_messageSet(u32 param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fopMsgM_messageSetDemo(u32 param_0) {
+asm int fopMsgM_messageSetDemo(u32 param_0) {
     nofralloc
 #include "asm/f_op/f_op_msg_mng/fopMsgM_messageSetDemo__FUl.s"
 }

@@ -35,6 +35,12 @@ struct SVec {
         y = oY;
         z = oZ;
     }
+
+    void setall(s16 val) {
+        x = val;
+        y = val;
+        z = val;
+    }
 };
 
 extern "C" {

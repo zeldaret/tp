@@ -1428,6 +1428,7 @@ s32 dName_c::getMenuPosIdx(u8 selPos) {
     case 3:
         return 3;
     }
+    //!@bug UB: no default return
 }
 
 /* 80251094-8025115C 24B9D4 00C8+00 1/0 0/0 0/0 .text            draw__14dDlst_NameIN_cFv */

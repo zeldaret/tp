@@ -72,11 +72,7 @@ struct cXyz : Vec {
     /* 80267128 */ s16 atan2sX_Z() const;
     /* 80267150 */ s16 atan2sY_XZ() const;
 
-    void setAll(f32 f) {
-        z = f;
-        y = f;
-        x = f;
-    }
+    void setAll(f32 f) { set(f, f, f); }
 
     void setMin(const cXyz& other) {
         if (x > other.x) {
