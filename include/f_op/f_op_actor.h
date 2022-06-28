@@ -20,7 +20,7 @@ public:
     void offCondition(u16);
     bool checkCommandCatch();
     BOOL checkCommandDoor();
-    bool checkCommandDemoAccrpt();
+    BOOL checkCommandDemoAccrpt() { return mCommand == 2; }
 
     void setCommand(u16 command) { mCommand = command; }
     void setMapToolId(u8 id) { mMapToolId = id; }
@@ -33,6 +33,7 @@ public:
     char* getArchiveName() { return mArchiveName; }
     BOOL chkCondition(u16 condition) { return mCondition & condition; }
     void i_onCondition(u16 cond) { mCondition |= cond; }
+    void i_offCondition(u16 cond) { mCondition &= ~cond; }
 
     bool checkCommandTalk() { return mCommand == 1; }
     bool checkCommandItem() { return mCommand == 4; }

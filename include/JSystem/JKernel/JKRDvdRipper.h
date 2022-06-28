@@ -10,6 +10,11 @@ enum JKRExpandSwitch {
     EXPAND_SWITCH_UNKNOWN2 = 2,
 };
 
+struct SYaz0Header {
+    u32 signature;
+    u32 length;
+};
+
 class JKRHeap;
 class JKRDvdFile;
 class JKRDvdRipper {
@@ -33,7 +38,7 @@ public:
     static void* loadToMainRAM(JKRDvdFile*, u8*, JKRExpandSwitch, u32, JKRHeap*, EAllocDirection,
                                u32, JKRCompression*, u32*);
 
-    u8 isErrorRetry(void);
+    static u8 isErrorRetry(void);
 };
 
 // void JKRDecompressFromDVD(JKRDvdFile*, void*, u32, u32, u32, u32, u32*);

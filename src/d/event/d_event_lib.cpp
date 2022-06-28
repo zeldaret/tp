@@ -4,73 +4,11 @@
 //
 
 #include "d/event/d_event_lib.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/event/d_event_manager.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "d/com/d_com_inf_game.h"
-
-//
-// Types:
-//
-
-template <typename T>
-class action_class {
-public:
-    action_class(bool (T::*init)(), bool (T::*execute)()) {
-        mInit = init;
-        mExecute = execute;
-    }
-
-    /* 0x0 */ bool (T::*mInit)();
-    /* 0xC */ bool (T::*mExecute)();
-};
-
-class dEvLib_callback_c {
-public:
-    /* 8004886C */ bool eventUpdate();
-    /* 800488A4 */ bool setEvent(int, int, int);
-    /* 80048940 */ void orderEvent(int, int, int);
-    /* 80048970 */ bool setAction(action_class<dEvLib_callback_c>*);
-    /* 800489A8 */ bool initAction();
-    /* 800489F8 */ bool executeAction();
-    /* 80048A50 */ bool initStart();
-    /* 80048A70 */ bool executeStart();
-    /* 80048B1C */ bool initRun();
-    /* 80048B48 */ bool executeRun();
-
-private:
-    /* 0x0 */ u32 field_0x0;
-    /* 0x4 */ fopAc_ac_c* field_0x4;
-    /* 0x8 */ action_class<dEvLib_callback_c>* mpAction;
-    /* 0xC */ u16 field_0xc;
-};
-
-//
-// Forward References:
-//
-
-extern "C" void eventUpdate__17dEvLib_callback_cFv();
-extern "C" void setEvent__17dEvLib_callback_cFiii();
-extern "C" void orderEvent__17dEvLib_callback_cFiii();
-extern "C" void func_80048970();
-extern "C" void initAction__17dEvLib_callback_cFv();
-extern "C" void executeAction__17dEvLib_callback_cFv();
-extern "C" void initStart__17dEvLib_callback_cFv();
-extern "C" void executeStart__17dEvLib_callback_cFv();
-extern "C" void initRun__17dEvLib_callback_cFv();
-extern "C" void executeRun__17dEvLib_callback_cFv();
-extern "C" void __sinit_d_event_lib_cpp();
-
-//
-// External References:
-//
-
-extern "C" void fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs();
-extern "C" void fopAcM_orderMapToolEvent__FP10fopAc_ac_cUcsUsUsUs();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc();
-extern "C" void endCheck__16dEvent_manager_cFs();
-extern "C" void __ptmf_test();
-extern "C" void __ptmf_scall();
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Declarations:
@@ -80,6 +18,10 @@ inline dEvent_manager_c& dComIfGp_getEventManager() {
     return g_dComIfG_gameInfo.play.getEvtManager();
 }
 
+inline dEvt_control_c& dComIfGp_getEvent() {
+    return g_dComIfG_gameInfo.play.getEvent();
+}
+
 /* ############################################################################################## */
 /* 803A82B8-803A82C4 0053D8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -87,138 +29,110 @@ SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
 };
 
 /* 8004886C-800488A4 0431AC 0038+00 0/0 0/0 23/23 .text eventUpdate__17dEvLib_callback_cFv */
-bool dEvLib_callback_c::eventUpdate() {
-    if (mpAction == NULL) {
-        return 0;
+BOOL dEvLib_callback_c::eventUpdate() {
+    if (mAction == NULL) {
+        return FALSE;
+    } else {
+        executeAction();
+        return TRUE;
     }
-
-    executeAction();
-    return 1;
 }
 
 /* ############################################################################################## */
 /* 804246E0-804246F8 051400 0018+00 2/2 0/0 0/0 .bss             l_startAction */
-static action_class<dEvLib_callback_c> l_startAction(&dEvLib_callback_c::initStart, &dEvLib_callback_c::executeStart);
+static action_class<dEvLib_callback_c> l_startAction(&dEvLib_callback_c::initStart,
+                                                     &dEvLib_callback_c::executeStart);
+/* 804246F8-80424710 051418 0018+00 2/2 0/0 0/0 .bss             l_runAction */
+static action_class<dEvLib_callback_c> l_runAction(&dEvLib_callback_c::initRun,
+                                                   &dEvLib_callback_c::executeRun);
 
 /* 800488A4-80048940 0431E4 009C+00 1/1 0/0 1/1 .text            setEvent__17dEvLib_callback_cFiii
  */
-bool dEvLib_callback_c::setEvent(int toolID, int eventID, int param_2) {
-    if (mpAction != NULL) {
-        return 0;
+BOOL dEvLib_callback_c::setEvent(int mapToolId, int eventIdx, int param_2) {
+    if (mAction != NULL) {
+        return FALSE;
+    } else {
+        mActor->mEvtInfo.setMapToolId(mapToolId);
+        if (mapToolId != 0xFF && eventIdx == 0xFF) {
+            eventIdx = dComIfGp_getEventManager().getEventIdx(mActor, mapToolId);
+        }
+        mActor->mEvtInfo.setEventId(eventIdx);
+        _C = param_2;
+        return setAction(&l_startAction);
     }
-
-    field_0x4->mEvtInfo.setMapToolId(toolID);
-    if (toolID != 0xFF && eventID == 0xFF) {
-        eventID = dComIfGp_getEventManager().getEventIdx(field_0x4, toolID);
-    }
-
-    field_0x4->mEvtInfo.setEventId(eventID);
-    field_0xc = param_2;
-    return setAction(&l_startAction);
 }
 
 /* 80048940-80048970 043280 0030+00 0/0 0/0 21/21 .text orderEvent__17dEvLib_callback_cFiii */
-#ifdef NONMATCHING
-void dEvLib_callback_c::orderEvent(int toolID, int eventID, int param_2) {
-    s32 var_r6;
-
-    var_r6 = 1;
-    if (param_2 != 0) {
-        var_r6 = 0x101;
-    }
-
-    setEvent(toolID, eventID, var_r6);
+void dEvLib_callback_c::orderEvent(int param_0, int param_1, int param_2) {
+    setEvent(param_0, param_1, param_2 != 0 ? 0x101 : 1);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvLib_callback_c::orderEvent(int param_0, int param_1, int param_2) {
-    nofralloc
-#include "asm/d/event/d_event_lib/orderEvent__17dEvLib_callback_cFiii.s"
-}
-#pragma pop
-#endif
 
 /* 80048970-800489A8 0432B0 0038+00 3/3 0/0 0/0 .text
  * setAction__17dEvLib_callback_cFP33action_class<17dEvLib_callback_c> */
-bool dEvLib_callback_c::setAction(action_class<dEvLib_callback_c>* p_action) {
-    mpAction = p_action;
-
-    if (mpAction == NULL) {
-        return 0;
+BOOL dEvLib_callback_c::setAction(action_class<dEvLib_callback_c>* action) {
+    mAction = action;
+    if (mAction == NULL) {
+        return FALSE;
+    } else {
+        return initAction();
     }
-
-    return initAction();
 }
 
 /* 800489A8-800489F8 0432E8 0050+00 1/1 0/0 0/0 .text            initAction__17dEvLib_callback_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dEvLib_callback_c::initAction() {
-    nofralloc
-#include "asm/d/event/d_event_lib/initAction__17dEvLib_callback_cFv.s"
+BOOL dEvLib_callback_c::initAction() {
+    if (!mAction->getInit()) {
+        return TRUE;
+    } else {
+        return (this->*(mAction->getInit()))();
+    }
 }
-#pragma pop
 
 /* 800489F8-80048A50 043338 0058+00 1/1 0/0 0/0 .text executeAction__17dEvLib_callback_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dEvLib_callback_c::executeAction() {
-    nofralloc
-#include "asm/d/event/d_event_lib/executeAction__17dEvLib_callback_cFv.s"
+BOOL dEvLib_callback_c::executeAction() {
+    if (!mAction->getExecute()) {
+        return TRUE;
+    } else {
+        return (this->*(mAction->getExecute()))();
+    }
 }
-#pragma pop
 
 /* 80048A50-80048A70 043390 0020+00 1/0 0/0 0/0 .text            initStart__17dEvLib_callback_cFv */
-bool dEvLib_callback_c::initStart() {
+BOOL dEvLib_callback_c::initStart() {
     return executeStart();
 }
 
-/* ############################################################################################## */
-/* 804246F8-80424710 051418 0018+00 2/2 0/0 0/0 .bss             l_runAction */
-static action_class<dEvLib_callback_c> l_runAction(&dEvLib_callback_c::initRun, &dEvLib_callback_c::executeRun);
-
 /* 80048A70-80048B1C 0433B0 00AC+00 2/1 0/0 0/0 .text            executeStart__17dEvLib_callback_cFv
  */
-bool dEvLib_callback_c::executeStart() {
-    if (!field_0x4->mEvtInfo.i_checkCommandDemoAccrpt()) {
-        u8 toolID = field_0x4->mEvtInfo.getMapToolId();
-
-        if (field_0x4->mEvtInfo.getMapToolId() != 0xFF) {
-            s16 eventID = field_0x4->mEvtInfo.getEventId();
-            fopAcM_orderMapToolEvent(field_0x4, toolID, eventID, 0xFFFF, field_0xc, 0);
+BOOL dEvLib_callback_c::executeStart() {
+    if (!mActor->mEvtInfo.checkCommandDemoAccrpt()) {
+        if (mActor->mEvtInfo.getMapToolId() != 0xFF) {
+            fopAcM_orderMapToolEvent(mActor, mActor->mEvtInfo.getMapToolId(),
+                                     mActor->mEvtInfo.getEventId(), 0xFFFF, _C, 0);
         } else {
-            s16 eventID = field_0x4->mEvtInfo.getEventId();
-            fopAcM_orderOtherEventId(field_0x4, eventID, toolID, 0xFFFF, 0, field_0xc);
+            fopAcM_orderOtherEventId(mActor, mActor->mEvtInfo.getEventId(),
+                                     mActor->mEvtInfo.getMapToolId(), 0xFFFF, 0, _C);
         }
-        field_0x4->mEvtInfo.i_onCondition(2);
-        return 1;
+        mActor->mEvtInfo.i_onCondition(2);
+        return TRUE;
+    } else {
+        return setAction(&l_runAction);
     }
-
-    return setAction(&l_runAction);
 }
 
 /* 80048B1C-80048B48 04345C 002C+00 1/0 0/0 0/0 .text            initRun__17dEvLib_callback_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dEvLib_callback_c::initRun() {
-    nofralloc
-#include "asm/d/event/d_event_lib/initRun__17dEvLib_callback_cFv.s"
+BOOL dEvLib_callback_c::initRun() {
+    return eventStart();
 }
-#pragma pop
 
 /* 80048B48-80048BD8 043488 0090+00 1/0 0/0 0/0 .text            executeRun__17dEvLib_callback_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dEvLib_callback_c::executeRun() {
-    nofralloc
-#include "asm/d/event/d_event_lib/executeRun__17dEvLib_callback_cFv.s"
+BOOL dEvLib_callback_c::executeRun() {
+    if (!dComIfGp_getEventManager().endCheck(mActor->mEvtInfo.getEventId())) {
+        return eventRun();
+    } else {
+        dComIfGp_getEvent().reset();
+        setAction(NULL);
+        return eventEnd();
+    }
 }
-#pragma pop

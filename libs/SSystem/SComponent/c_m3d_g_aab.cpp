@@ -39,8 +39,12 @@ bool cM3dGAab::TopPlaneYUnder(f32 pY) const {
 
 /* 8026ECF8-8026ED1C 0024+00 s=0 e=6 z=0  None .text      ClearForMinMax__8cM3dGAabFv */
 void cM3dGAab::ClearForMinMax(void) {
-    mMin.setAll(1000000000.0f);
-    mMax.setAll(-1000000000.0f);
+    mMin.z = 1000000000.0f;
+    mMin.y = 1000000000.0f;
+    mMin.x = 1000000000.0f;
+    mMax.z = -1000000000.0f;
+    mMax.y = -1000000000.0f;
+    mMax.x = -1000000000.0f;
 }
 
 /* 8026ED1C-8026ED60 0044+00 s=1 e=3 z=0  None .text      SetMinMax__8cM3dGAabFRC4cXyz */

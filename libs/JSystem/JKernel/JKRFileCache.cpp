@@ -222,14 +222,14 @@ void* JKRFileCache::getResource(const char* path) {
         CCacheBlock* cacheBlock = findCacheBlock(dvdFile.getFileID());
         if (!cacheBlock) {
             // dvdFile.getFileSize() not inlined
-            u32 fileSize = dvdFile.getFileInfo().length;
+            u32 fileSize = dvdFile.getFileInfo()->length;
             u32 alignedSize = ALIGN_NEXT(fileSize, 0x20);
             buffer = JKRAllocFromHeap(mParentHeap, alignedSize, 0x20);
             if (buffer) {
                 dvdFile.read(buffer, alignedSize, 0);
 
                 cacheBlock = new (JKRHeap::getSystemHeap(), 0)
-                    CCacheBlock(dvdFile.getFileID(), dvdFile.getFileInfo().length, buffer);
+                    CCacheBlock(dvdFile.getFileID(), dvdFile.getFileInfo()->length, buffer);
                 mCacheBlockList.append(&cacheBlock->mCacheBlockLink);
             }
         } else {
@@ -273,7 +273,7 @@ u32 JKRFileCache::readResource(void* dst, u32 dstLength, const char* path) {
 loop:
     if (dvdFile.isAvailable()) {
         // dvdFile.getFileSize() not inlined
-        u32 fileSize = dvdFile.getFileInfo().length;
+        u32 fileSize = dvdFile.getFileInfo()->length;
         resourceSize = ALIGN_NEXT(fileSize, 0x20);
         dstLength = ALIGN_PREV(dstLength, 0x20);
         if (resourceSize > dstLength) {

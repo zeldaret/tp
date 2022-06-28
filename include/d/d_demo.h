@@ -1,6 +1,7 @@
 #ifndef D_D_DEMO_H
 #define D_D_DEMO_H
 
+#include "JSystem/JStudio/JStudio/stb.h"
 #include "dolphin/types.h"
 
 struct cXyz;
@@ -62,10 +63,13 @@ public:
     /* 80039F04 */ void reset();
 
     static dDemo_actor_c* getActor(u8 param_0) { return m_object->getActor(param_0); }
+    static u32 getFrameNoMsg() { return m_frameNoMsg; }
+    static s32 getMode() { return m_mode; }
+    static JStudio::stb::TControl* getControl() { return m_control; }
 
     static u16 m_branchId[1 + 3 /* padding */];
     static u8 m_system[4];
-    static u8 m_control[4];
+    static JStudio::stb::TControl* m_control;
     static u8 m_stage[4];
     static u8 m_audio[4];
     static u8 m_particle[4];
@@ -77,8 +81,8 @@ public:
     static u8 m_frame[4];
     static u8 m_translation[4];
     static f32 m_rotationY;
-    static u8 m_frameNoMsg[4];
-    static u8 m_mode[4];
+    static u32 m_frameNoMsg;
+    static s32 m_mode;
     static u8 m_status[4];
     static u8 m_branchType[2 + 2 /* padding */];
     static u8 m_branchData[4];

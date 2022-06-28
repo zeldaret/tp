@@ -2519,26 +2519,19 @@ BOOL dComIfGp_TransportWarp_check() {
 
 /* 8002FB20-8002FB80 02A460 0060+00 2/2 6/6 0/0 .text
  * dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv */
-#ifdef NONMATCHING
-int dComLbG_PhaseHandler(request_of_phase_process_class* param_0, int (**param_1)(void*),
+int dComLbG_PhaseHandler(request_of_phase_process_class* param_0, cPhs__Handler* param_1,
                          void* param_2) {
     int ret = cPhs_Handler(param_0, param_1, param_2);
-    if (ret != 2 && ret < 2) {
-        return ret;
+    switch (ret) {
+    case 2:
+        ret = dComLbG_PhaseHandler(param_0, param_1, param_2);
+        break;
+    case 1:
+    case 3:
+        break;
     }
-    return dComLbG_PhaseHandler(param_0, param_1, param_2);
+    return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dComLbG_PhaseHandler(request_of_phase_process_class* param_0, int (**param_1)(void*),
-                             void* param_2) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv.s"
-}
-#pragma pop
-#endif
 
 /* 8002FB80-8002FC3C 02A4C0 00BC+00 0/0 1/1 1/1 .text            dComIfGs_onVisitedRoom__Fi */
 #pragma push

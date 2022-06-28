@@ -251,13 +251,13 @@ static u8* szpBuf;
 static u8* szpEnd;
 
 /* 804513D4-804513D8 0008D4 0004+00 2/2 0/0 0/0 .sbss            refBuf */
-static u8 refBuf[4];
+static u8* refBuf;
 
 /* 804513D8-804513DC 0008D8 0004+00 2/2 0/0 0/0 .sbss            refEnd */
-static u8 refEnd[4];
+static u8* refEnd;
 
 /* 804513DC-804513E0 0008DC 0004+00 2/2 0/0 0/0 .sbss            refCurrent */
-static u8 refCurrent[4];
+static u8* refCurrent;
 
 /* 804513E0-804513E4 0008E0 0004+00 3/3 0/0 0/0 .sbss            srcOffset */
 static u32 srcOffset;
@@ -266,28 +266,28 @@ static u32 srcOffset;
 static u32 transLeft;
 
 /* 804513E8-804513EC 0008E8 0004+00 3/3 0/0 0/0 .sbss            srcLimit */
-static u32 srcLimit;
+static u8* srcLimit;
 
 /* 804513EC-804513F0 0008EC 0004+00 3/3 0/0 0/0 .sbss            srcAddress */
 static u32 srcAddress;
 
 /* 804513F0-804513F4 0008F0 0004+00 2/2 0/0 0/0 .sbss            fileOffset */
-static u8 fileOffset[4];
+static u32 fileOffset;
 
 /* 804513F4-804513F8 0008F4 0004+00 2/2 0/0 0/0 .sbss            readCount */
-static u8 readCount[4];
+static u32 readCount;
 
 /* 804513F8-804513FC 0008F8 0004+00 2/2 0/0 0/0 .sbss            maxDest */
-static u8 maxDest[4];
+static u32 maxDest;
 
 /* 804513FC-80451400 0008FC 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_804513FC[4];
 
 /* 80451400-80451404 000900 0004+00 2/2 0/0 0/0 .sbss            tsPtr */
-static u8 tsPtr[4];
+static u32* tsPtr;
 
 /* 80451404-80451408 000904 0004+00 1/1 0/0 0/0 .sbss            tsArea */
-static u8 tsArea[4];
+static u32 tsArea;
 
 /* 802D2830-802D29A0 2CD170 0170+00 1/1 0/0 0/0 .text
  * JKRDecompressFromAramToMainRam__FUlPvUlUlUlPUl               */
@@ -370,7 +370,7 @@ static asm void JKRDecompressFromAramToMainRam(u32 param_0, void* param_1, u32 p
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void decompSZS_subroutine(u8* param_0, u8* param_1) {
+static asm int decompSZS_subroutine(u8* param_0, u8* param_1) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRAram/decompSZS_subroutine__FPUcPUc.s"
 }
@@ -378,7 +378,7 @@ static asm void decompSZS_subroutine(u8* param_0, u8* param_1) {
 
 /* 802D2C40-802D2CE4 2CD580 00A4+00 1/1 0/0 0/0 .text            firstSrcData__Fv */
 static u8* firstSrcData(void) {
-    srcLimit = (u32)(szpEnd - 0x19);
+    srcLimit = szpEnd - 0x19;
     u8* buffer = szpBuf;
 
     u32 length;
@@ -397,7 +397,7 @@ static u8* firstSrcData(void) {
     srcOffset += length;
     transLeft -= length;
     if (!transLeft) {
-        srcLimit = (u32)(buffer + length);
+        srcLimit = buffer + length;
     }
 
     return buffer;
@@ -440,7 +440,7 @@ static u8* nextSrcData(u8* current) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void nextSrcData(u8* param_0) {
+static asm u8* nextSrcData(u8* param_0) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRAram/nextSrcData__FPUc.s"
 }

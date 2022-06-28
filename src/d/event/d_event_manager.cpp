@@ -823,7 +823,7 @@ int dEvent_manager_c::endCheckOld(char const* pName) {
 
 /* 80047B1C-80047D4C 04245C 0230+00 1/1 10/10 210/210 .text
  * getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci           */
-s32 dEvent_manager_c::getMyStaffId(char const* pStaffName, fopAc_ac_c* pActor, int tagId) {
+int dEvent_manager_c::getMyStaffId(char const* pStaffName, fopAc_ac_c* pActor, int tagId) {
     int staffNum;
     int i;
     int evtIdx = -1;
@@ -848,7 +848,7 @@ s32 dEvent_manager_c::getMyStaffId(char const* pStaffName, fopAc_ac_c* pActor, i
                 for (i = 0; i < staffCount; i++) {
                     staffNum = event->getStaff(i);
                     dEvDtStaff_c* staff = getBase().getStaffP(staffNum);
-                    if (staff->mType != 1) {
+                    if (staff->mType != dEvDtStaff_c::TYPE_ALL) {
                         char buf[0x18];
                         strcpy(buf, staff->mName);
                         char* ptr = NULL;

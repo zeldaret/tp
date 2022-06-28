@@ -56,7 +56,11 @@ struct stage_scls_info_class {
     /* 0x9 */ s8 mRoom;
     /* 0xA */ u8 field_0xa;
     /* 0xB */ u8 field_0xb;
-    /* 0xC */ u8 mWipe;
+    /* 0xC */ s8 mWipe;
+
+    char* getStage() { return mStage; }
+
+    int getRoom() { return mRoom; }
 };  // Size: 0xD
 
 struct stage_scls_info_dummy_class {
@@ -238,22 +242,23 @@ struct dStage_DMap_c {
 };
 
 struct dStage_MapEvent_dt_c {
-    /* 0x00 */ u8 mType;
-    /* 0x01 */ u8 field_0x1[3 - 1];
-    /* 0x03 */ u8 field_0x3;
-    /* 0x04 */ u8 field_0x4;
-    /* 0x05 */ u8 field_0x5;
-    /* 0x06 */ u8 field_0x6;
-    /* 0x07 */ u8 field_0x7;
-    /* 0x08 */ u8 field_0x8;
-    /* 0x09 */ u8 field_0x9;
-    /* 0x0A */ u8 field_0xA[0xD - 0xA];
-    /* 0x0D */ char mName[9];
-    /* 0x16 */ u8 field_0x16;
-    /* 0x17 */ u8 field_0x17;
-    /* 0x18 */ u8 field_0x18;
-    /* 0x19 */ u8 field_0x19[0x1B - 0x19];
-    /* 0x1B */ u8 field_0x1B;
+    u8 mType;
+    u8 field_0x1[3 - 1];
+    u8 field_0x3;
+    u8 field_0x4;
+    u8 field_0x5;
+    u8 field_0x6;
+    u8 field_0x7;
+    u8 field_0x8;
+    u8 field_0x9;
+    u8 field_0xA[0xD - 0xA];
+    char mName[6];
+    u16 field_0x14;
+    u8 field_0x16;
+    u8 field_0x17;
+    u8 field_0x18;
+    u8 field_0x19[0x1B - 0x19];
+    u8 field_0x1B;
 };  // SIZE = 0x1C
 
 struct dStage_MapEventInfo_c {
@@ -903,7 +908,7 @@ inline int dStage_stagInfo_GetMsgGroup(stage_stag_info_class* p_info) {
     return p_info->mMsgGroup;
 }
 
-inline s8 dStage_sclsInfo_getSceneLayer(stage_scls_info_class* p_info) {
+inline u32 dStage_sclsInfo_getSceneLayer(stage_scls_info_class* p_info) {
     return p_info->field_0xb & 0xF;
 }
 
@@ -911,12 +916,12 @@ inline s32 dStage_sclsInfo_getWipe(stage_scls_info_class* p_info) {
     return p_info->mWipe;
 }
 
-inline int dStage_sclsInfo_getTimeH(stage_scls_info_class* p_info) {
-    return (u8)((p_info->field_0xa >> 4) & 0xF) | (p_info->field_0xb & 0x10 & ~0xF);
-}
-
 inline s32 dStage_sclsInfo_getWipeTime(stage_scls_info_class* p_info) {
     return (p_info->field_0xb >> 5) & 7;
+}
+
+inline int dStage_sclsInfo_getTimeH(stage_scls_info_class* p_info) {
+    return (u8)((p_info->field_0xa >> 4) & 0xF) | (p_info->field_0xb & 0x10 & ~0xF);
 }
 
 inline u32 dStage_FileList_dt_getMiniMap(dStage_FileList_dt_c* p_fList) {

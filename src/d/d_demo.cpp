@@ -906,7 +906,7 @@ static u8 dummy[20];
 u8 dDemo_c::m_system[4];
 
 /* 80450E04-80450E08 000304 0004+00 6/6 3/3 0/0 .sbss            m_control__7dDemo_c */
-u8 dDemo_c::m_control[4];
+JStudio::stb::TControl* dDemo_c::m_control;
 
 /* 80450E08-80450E0C 000308 0004+00 2/2 0/0 0/0 .sbss            m_stage__7dDemo_c */
 u8 dDemo_c::m_stage[4];
@@ -942,10 +942,10 @@ u8 dDemo_c::m_translation[4];
 f32 dDemo_c::m_rotationY;
 
 /* 80450E34-80450E38 000334 0004+00 2/2 1/1 0/0 .sbss            m_frameNoMsg__7dDemo_c */
-u8 dDemo_c::m_frameNoMsg[4];
+u32 dDemo_c::m_frameNoMsg;
 
 /* 80450E38-80450E3C 000338 0004+00 4/4 4/4 0/0 .sbss            m_mode__7dDemo_c */
-u8 dDemo_c::m_mode[4];
+s32 dDemo_c::m_mode;
 
 /* 80450E3C-80450E40 00033C 0004+00 2/2 1/1 0/0 .sbss            m_status__7dDemo_c */
 u8 dDemo_c::m_status[4];

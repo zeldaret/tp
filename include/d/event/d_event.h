@@ -67,7 +67,7 @@ public:
     void sceneChange(int);
     u32 getPId(void*);
     void* convPId(unsigned int);
-    void getStbDemoData(char*);
+    void* getStbDemoData(char*);
     static dStage_MapEvent_dt_c* searchMapEventData(u8, s32);
     static dStage_MapEvent_dt_c* searchMapEventData(u8);
     s16 runningEventID(s16);
@@ -91,6 +91,7 @@ public:
     u8 getMapToolId() { return mMapToolId; }
     void onFlag2(u16 flag) { mFlag2 |= flag; }
     void offFlag2(u16 flag) { mFlag2 &= ~flag; }
+    void setCullRate(f32 f) { mCullRate = f; }
 
     bool i_isOrderOK() { return mEventStatus == 0 || mEventStatus == 2; }
     void* getPt1() { return convPId(mPt1); }

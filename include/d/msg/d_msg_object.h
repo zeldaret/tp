@@ -113,6 +113,8 @@ public:
     /* 8023806C */ void demoMessageGroup();
     /* 80238098 */ static void endFlowGroup();
     /* 802380C4 */ static void changeGroup(s16);
+    /* 8023806C */ static void demoMessageGroup();
+    /* 80238098 */ void endFlowGroup();
     /* 802380F4 */ void getString(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, char*,
                                   char*, char*, s16*);
     /* 80238174 */ static u8* getMsgDtPtr();
@@ -250,6 +252,9 @@ u16 dMsgObject_getOffering();
 
 inline dMsgObject_c* dMsgObject_getMsgObjectClass() {
     return dComIfGp_getMsgObjectClass();
+}
+inline void dMsgObject_demoMessageGroup() {
+    dMsgObject_c::demoMessageGroup();
 }
 
 inline bool dMsgObject_isTalkNowCheck() {

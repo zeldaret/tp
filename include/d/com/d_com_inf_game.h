@@ -410,6 +410,9 @@ public:
         strncpy(mLastPlayStageName, name, 7);
         mLastPlayStageName[7] = 0;
     }
+    char* getLastPlayStageName() { return mLastPlayStageName; }
+
+    u8 getGameoverStatus() { return mGameoverStatus; }
 
 public:
     /* 0x00000 */ dBgS mBgs;
@@ -635,6 +638,7 @@ public:
     dComIfG_inf_c() { this->ct(); }
     ~dComIfG_inf_c() {}
     void ct();
+    dComIfG_play_c& getPlay() { return play; }
 
     /* 0x00000 */ dSv_info_c info;
     /* 0x00F38 */ dComIfG_play_c play;
@@ -784,6 +788,9 @@ BOOL dComIfGs_Wolf_Change_Check();
 void dComIfGs_onVisitedRoom(int param_0);
 void dComIfGs_setWarpItemData(char const* stage, cXyz pos, s16 angle, s8 roomNo, u8 param_4,
                               u8 param_5);
+BOOL dComIfGs_isStageSwitch(int i_stageNo, int i_no);
+void dComIfGs_onStageSwitch(int i_stageNo, int i_no);
+void dComIfGs_offStageSwitch(int i_stageNo, int i_no);
 
 inline void dComIfGs_init() {
     g_dComIfG_gameInfo.info.init();
@@ -2220,6 +2227,14 @@ inline void* dComIfGp_event_getPt2() {
     return g_dComIfG_gameInfo.play.getEvent().convPId(pt2);
 }
 
+inline int i_dComIfGp_evmng_getMyStaffId(const char* pName, fopAc_ac_c* pActor, int param_2) {
+    return dComIfGp_getPEvtManager()->getMyStaffId(pName, pActor, param_2);
+}
+
+inline int dComIfGp_evmng_getIsAddvance(int param_0) {
+    return dComIfGp_getPEvtManager()->getIsAddvance(param_0);
+}
+
 inline int* dComIfGp_evmng_getMyIntegerP(int index, char* name) {
     return (int*)dComIfGp_getPEvtManager()->getMySubstanceP(index, name, dEvDtData_c::TYPE_INT);
 }
@@ -2230,6 +2245,14 @@ inline char* dComIfGp_evmng_getMyStringP(int index, char* name) {
 
 inline f32* dComIfGp_evmng_getMyFloatP(int index, char* name) {
     return (f32*)dComIfGp_getPEvtManager()->getMySubstanceP(index, name, dEvDtData_c::TYPE_FLOAT);
+}
+
+inline cXyz* dComIfGp_evmng_getMyXyzP(int index, char* name) {
+    return (cXyz*)dComIfGp_getPEvtManager()->getMySubstanceP(index, name, dEvDtData_c::TYPE_VEC);
+}
+
+inline int dComIfGp_evmng_getMySubstanceNum(int index, char* name) {
+    return dComIfGp_getPEvtManager()->getMySubstanceNum(index, name);
 }
 
 inline void dComIfGp_evmng_create() {
@@ -2442,6 +2465,14 @@ inline daPy_py_c* daPy_getPlayerActorClass() {
 
 inline daAlink_c* daAlink_getAlinkActorClass() {
     return (daAlink_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR);
+}
+
+inline char* dComIfGp_getLastPlayStageName() {
+    return g_dComIfG_gameInfo.play.getLastPlayStageName();
+}
+
+inline u8 dComIfGp_getGameoverStatus() {
+    return g_dComIfG_gameInfo.play.getGameoverStatus();
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

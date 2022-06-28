@@ -48,7 +48,7 @@ public:
     int startCheckOld(char const*);
     int endCheck(s16);
     int endCheckOld(char const*);
-    s32 getMyStaffId(char const*, fopAc_ac_c*, int);
+    int getMyStaffId(char const*, fopAc_ac_c*, int);
     int getIsAddvance(int);
     int getMyActIdx(int, char const* const*, int, int, int);
     char* getMyNowCutName(int);
@@ -72,6 +72,7 @@ public:
     dEvDtBase_c& getBase() { return mEventList[mCurrentEventType]; }
     void setFlag(int flag) { mFlags.flagSet(flag); }
     bool dataLoaded() { return mDataLoaded; } 
+    int flagCheck(int flag) { return mFlags.flagCheck(flag); }
 
     static int getIndexCompositId(s16 param_0) { return param_0 != -1 ? (u8)param_0 : -1; }
     static int getTypeCompositId(s16 param_0) { return param_0 == -1 ? 0 : param_0 >> 8; }

@@ -121,40 +121,27 @@ JKRSolidHeap::~JKRSolidHeap(void) {
 }
 
 /* 802D0BF4-802D0CB0 2CB534 00BC+00 0/0 5/5 1/1 .text            adjustSize__12JKRSolidHeapFv */
-#ifdef NONMATCHING
 s32 JKRSolidHeap::adjustSize(void) {
     JKRHeap* parent = getParent();
     if (parent) {
         lock();
-        s32 start = mStart;
-        s32 newSize = (s32)this->mSolidHead - ALIGN_NEXT(start, 0x20);
-        s32 newSizeThis = newSize + (start - (s32)this);
-        s32 actualSize = parent->resize(this, newSizeThis);
-        if (actualSize != -1) {
+        u32 thisSize = (u32)mStart - (u32)this;
+        u32 newSize = ALIGN_NEXT(mSolidHead - mStart, 0x20);
+        if (parent->resize(this, thisSize + newSize) != -1) {
             mFreeSize = 0;
             mSize = newSize;
             mEnd = mStart + mSize;
-            mSolidHead = (void*)mEnd;
-            mSolidTail = (void*)mEnd;
+            mSolidHead = mEnd;
+            mSolidTail = mEnd;
         }
 
         unlock();
 
-        return newSizeThis;
+        return thisSize + newSize;
     }
 
     return -1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 JKRSolidHeap::adjustSize() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRSolidHeap/adjustSize__12JKRSolidHeapFv.s"
-}
-#pragma pop
-#endif
 
 /* 802D0CB0-802D0D58 2CB5F0 00A8+00 1/0 0/0 0/0 .text            do_alloc__12JKRSolidHeapFUli */
 void* JKRSolidHeap::do_alloc(u32 size, int alignment) {
@@ -190,28 +177,14 @@ void* JKRSolidHeap::do_alloc(u32 size, int alignment) {
     return ptr;
 }
 
-/* ############################################################################################## */
-/* 8039CE50-8039CE50 0294B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039CE50 =
-    "allocFromHead: cannot alloc memory (0x%x byte).\n";
-#pragma pop
-
 /* 802D0D58-802D0E20 2CB698 00C8+00 1/1 0/0 0/0 .text            allocFromHead__12JKRSolidHeapFUli
  */
-#ifdef NONMATCHING
 void* JKRSolidHeap::allocFromHead(u32 size, int alignment) {
-    void* ptr;
-    u32 offset;
-    u32 alignedSize;
-    u32 alignedStart;
-    u32 totalSize;
-    alignedSize = ALIGN_NEXT(size, 0x4);
-    ptr = NULL;
-    alignedStart = (alignment - 1 + (u32)mSolidHead) & ~(alignment - 1);
-    offset = alignedStart - (u32)mSolidHead;
-    totalSize = alignedSize + offset;
+    size = ALIGN_NEXT(size, 0x4);
+    void* ptr = NULL;
+    u32 alignedStart = (alignment - 1 + (u32)mSolidHead) & ~(alignment - 1);
+    u32 offset = alignedStart - (u32)mSolidHead;
+    u32 totalSize = size + offset;
     if (totalSize <= mFreeSize) {
         ptr = (void*)alignedStart;
         mSolidHead += totalSize;
@@ -219,41 +192,32 @@ void* JKRSolidHeap::allocFromHead(u32 size, int alignment) {
     } else {
         JUTWarningConsole_f("allocFromHead: cannot alloc memory (0x%x byte).\n", totalSize);
         if (getErrorFlag() == true) {
-            callErrorHandler(this, alignedSize, alignment);
+            callErrorHandler(this, size, alignment);
         }
     }
 
     return ptr;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void* JKRSolidHeap::allocFromHead(u32 param_0, int param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRSolidHeap/allocFromHead__12JKRSolidHeapFUli.s"
-}
-#pragma pop
-#endif
-
-/* ############################################################################################## */
-/* 8039CE50-8039CE50 0294B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039CE81 =
-    "allocFromTail: cannot alloc memory (0x%x byte).\n";
-#pragma pop
 
 /* 802D0E20-802D0EE4 2CB760 00C4+00 1/1 0/0 0/0 .text            allocFromTail__12JKRSolidHeapFUli
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void* JKRSolidHeap::allocFromTail(u32 param_0, int param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRSolidHeap/allocFromTail__12JKRSolidHeapFUli.s"
+void* JKRSolidHeap::allocFromTail(u32 size, int alignment) {
+    size = ALIGN_NEXT(size, 4);
+    void* ptr = NULL;
+    u32 alignedStart = ALIGN_PREV((u32)mSolidTail - size, alignment);
+    u32 totalSize = (u32)mSolidTail - (u32)alignedStart;
+    if (totalSize <= mFreeSize) {
+        ptr = (void*)alignedStart;
+        mSolidTail -= totalSize;
+        mFreeSize -= totalSize;
+    } else {
+        JUTWarningConsole_f("allocFromTail: cannot alloc memory (0x%x byte).\n", totalSize);
+        if (getErrorFlag() == true) {
+            callErrorHandler(this, size, alignment);
+        }
+    }
+    return ptr;
 }
-#pragma pop
 
 /* 802D0EE4-802D0F14 2CB824 0030+00 1/0 0/0 0/0 .text            do_free__12JKRSolidHeapFPv */
 void JKRSolidHeap::do_free(void* ptr) {

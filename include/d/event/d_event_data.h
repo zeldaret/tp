@@ -2,6 +2,7 @@
 #define D_EVENT_D_EVENT_DATA_H
 
 #include "d/d_stage.h"
+#include "d/msg/d_msg_class.h"
 #include "d/save/d_save.h"
 #include "dolphin/types.h"
 
@@ -49,11 +50,13 @@ public:
 
 class dEvDtCut_c {
 public:
-    void startCheck();
+    int startCheck();
 
     int getDataTop() { return mDataTop; }
     int getFlagId() { return mFlagId; }
     char* getName() { return mName; }
+    int getNext() { return mNext; }
+    int getStartFlag(int idx) { return mFlags[idx]; }
 
 private:
     /* 0x00 */ char mName[32];
@@ -72,13 +75,45 @@ public:
         /* 0x0 */ TYPE_DEFAULT,
         /* 0x1 */ TYPE_ALL,
         /* 0x2 */ TYPE_CAMERA,
-        /* 0x4 */ TYPE_TIMEKEEPER = 4,
+        /* 0x3 */ TYPE_EFFECT,
+        /* 0x4 */ TYPE_TIMEKEEPER,
         /* 0x6 */ TYPE_DIRECTOR = 6,
         /* 0x7 */ TYPE_MESSAGE,
         /* 0x8 */ TYPE_SOUND,
         /* 0x9 */ TYPE_LIGHT,
         /* 0xB */ TYPE_PACKAGE = 11,
         /* 0xC */ TYPE_CREATE,
+    };
+
+    struct StaffWork {
+        unsigned int _0;
+        msg_class* mLMsg;
+        unsigned int mMsgNo;
+        s32 mMsgSubstanceNum;
+        int* mMsgSubstanceP;
+    };
+
+    struct MessageData {
+        s16 unk;
+    };
+
+    struct SoundData {
+        s16 unk;
+        s16 timer;
+    };
+
+    struct TimerKeeperData {
+        s32 timer;
+    };
+
+    struct DirectorData {
+        s16 unk;
+        s16 unk2;
+    };
+
+    struct EffectData {
+        u8 pad[8];
+        s32 unk;
     };
 
     void specialProc_WaitStart(int);
@@ -101,27 +136,29 @@ public:
     int getStartCut() { return mStartCut; }
 
     // private:
-    /* 0x00 */ char mName[32];
+    /* 0x00 */ char mName[8];
+    /* 0x08 */ StaffWork mWork;
+    /* 0x0C */ u8 field_0x1C[0x20 - 0x1C];
     /* 0x20 */ s32 mTagID;
     /* 0x24 */ u32 mIndex;
     /* 0x28 */ u32 mFlagID;
     /* 0x2C */ int mType;
     /* 0x30 */ int mStartCut;
     /* 0x34 */ u8 field_0x34[2];
-    /* 0x36 */ s16 field_0x36;
+    /* 0x36 */ s16 mWaitTimer;
     /* 0x38 */ int mCurrentCut;
     /* 0x3C */ s32 field_0x3c;
     /* 0x40 */ bool field_0x40;
     /* 0x41 */ bool field_0x41;
-    /* 0x42 */ s16 field_0x42;
-    /* 0x44 */ s16 mSoundWait;
-    /* 0x46 */ u8 field_0x46[10];
+    /* 0x42 */ u8 mData[0x50 - 0x42];
 };  // Size: 0x50
+
+STATIC_ASSERT(sizeof(dEvDtStaff_c) == 0x50);
 
 class dEvDtEvent_c {
 public:
     int finishCheck();
-    void forceFinish();
+    int forceFinish();
     void specialStaffProc(dEvDtStaff_c*);
     int getNStaff() { return mNStaff; }
     int getStaff(int idx) { return mStaff[idx]; }
@@ -136,8 +173,7 @@ public:
     /* 0x7C */ int mNStaff;
     /* 0x80 */ u8 field_0x80[4];
     /* 0x84 */ int field_0x84;
-    /* 0x88 */ int field_0x88[2];
-    /* 0x90 */ int field_0x90;
+    /* 0x88 */ int field_0x88[3];
     /* 0x94 */ bool mPlaySound;
     /* 0x95 */ u8 field_0x95[0xF];
     /* 0xA4 */ int mEventState;
@@ -147,9 +183,9 @@ public:
 class dEvDtFlag_c {
 public:
     dEvDtFlag_c() {}
-    void flagCheck(int);
-    void flagSet(int);
-    bool flagMaxCheck(int);
+    BOOL flagCheck(int);
+    BOOL flagSet(int);
+    BOOL flagMaxCheck(int);
     void init();
 
 #define FlagMax 0x2800
@@ -165,7 +201,7 @@ public:
     int init();
     int init(char*, int);
     void advanceCut(dEvDtEvent_c*);
-    void advanceCutLocal(dEvDtStaff_c*);
+    BOOL advanceCutLocal(dEvDtStaff_c*);
 
     event_binary_data_header* getHeaderP() { return mHeaderP; }
     dEvDtStaff_c* getStaffP(int i) { return &mStaffP[i]; }
