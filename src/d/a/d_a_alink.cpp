@@ -22133,16 +22133,8 @@ asm void daAlink_c::checkElecReturnDamage(dCcD_GObjInf& param_0, fopAc_ac_c** pa
 #pragma pop
 
 /* 800D7B18-800D7BE8 0D2458 00D0+00 1/1 0/0 0/0 .text            damageTimerCount__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::damageTimerCount() {
-    nofralloc
-#include "asm/d/a/d_a_alink/damageTimerCount__9daAlink_cFv.s"
-}
-#pragma pop
-
-/* void daAlink_c::damageTimerCount() {
+#ifdef NONMATCHING
+void daAlink_c::damageTimerCount() {
     if (!i_checkModeFlg(8)) {
         if (mDamageColorTime != 0) {
             mDamageColorTime--;
@@ -22162,7 +22154,17 @@ asm void daAlink_c::damageTimerCount() {
 
         }
     }
-} */
+}
+#else
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void daAlink_c::damageTimerCount() {
+    nofralloc
+#include "asm/d/a/d_a_alink/damageTimerCount__9daAlink_cFv.s"
+}
+#pragma pop
+#endif
 
 /* 800D7BE8-800D7C14 0D2528 002C+00 3/3 0/0 0/0 .text            checkHugeAttack__9daAlink_cCFi */
 #pragma push

@@ -2045,15 +2045,6 @@ asm s32 fopAcM_effSmokeSet1(u32* param_0, u32* param_1, cXyz const* param_2, csX
 }
 #pragma pop
 
-/* s32 fopAcM_effSmokeSet1(u32* param_0, u32* param_1, cXyz const* param_2, csXyz const* param_3,
-                            f32 param_4, dKy_tevstr_c const* param_5, int param_6) {
-    cXyz tmp(param_2->x, param_2->y + 100.0f, param_2->z);
-    
-    if (fopAcM_gc_c::gndCheck(&tmp)) {
-        dComIfGp_particle_setSimpleFoot(*param_0, *param_1, fopAcM_gc_c::getGroundCheck(), );
-    }
-} */
-
 /* ############################################################################################## */
 /* 80451C50-80451C54 000250 0004+00 1/1 0/0 0/0 .sdata2          hamon_name$6107 */
 SECTION_SDATA2 static u16 hamon_name[2] = {
