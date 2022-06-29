@@ -336,6 +336,7 @@ public:
     /* 802648B0 */ void ClrHit();
     /* 802648C8 */ void SetHit(cCcD_Obj*);
     int GetType() const { return mType; }
+    void SetType(u32 type) { mType = type; }
     u32 GetGrp() const { return MskSPrm(0x1E); }
     bool ChkSet() const { return MskSPrm(1); }
 
@@ -358,6 +359,7 @@ public:
     u32 GetIGrp() const { return MskSPrm(0xE); }
     u32 ChkNoCrr() const { return MskSPrm(0x100); }
     u32 ChkSph3DCrr() const { return MskSPrm(0x80); }
+    void ClrSet() { OffSPrmBit(1); }
 };
 
 STATIC_ASSERT(0x10 == sizeof(cCcD_ObjCo));
@@ -398,9 +400,13 @@ public:
     u32 ChkCoSph3DCrr() const { return mObjCo.ChkSph3DCrr(); }
     void OnAtSPrmBit(u32 flag) { mObjAt.OnSPrmBit(flag); }
     void OffAtSPrmBit(u32 flag) { mObjAt.OffSPrmBit(flag); }
+    void OffCoSPrmBit(u32 flag) { mObjCo.OffSPrmBit(flag); }
     void SetAtType(u32 type) { mObjAt.SetType(type); }
     void OnAtSetBit() { mObjAt.OnSPrmBit(1); }
     void SetAtAtp(int atp) { mObjAt.SetAtp(atp); }
+    void OffCoSetBit() { mObjCo.ClrSet(); }
+    void SetTgType(u32 type) { mObjTg.SetType(type); }
+    void OnTgSPrmBit(u32 flag) { mObjTg.OnSPrmBit(flag); }
 
 };  // Size = 0x40
 
@@ -422,6 +428,7 @@ public:
     fopAc_ac_c* GetAc();
 
     cCcD_Stts* GetStts() { return mStts; }
+    void SetStts(cCcD_Stts* stts) { mStts = stts; }
     cCcD_DivideInfo& GetDivideInfo() { return mDivideInfo; }
     int ChkBsRevHit() const { return field_0x40 & 2; }
 

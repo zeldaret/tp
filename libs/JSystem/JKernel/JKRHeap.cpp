@@ -93,7 +93,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern bool data_804508B0;
 extern "C" void* __vt__7JKRHeap;
 
 //

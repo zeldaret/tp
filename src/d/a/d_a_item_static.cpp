@@ -21,11 +21,11 @@ u32 daItem_c::startCtrl() {
 }
 
 u32 daItem_c::startControl() {
-    unk2378 = 1;
+    mStatus = 1;
     return 1;
 }
 
 u32 daItem_c::endControl() {
-    unk2378 = 0;
+    mStatus = 0;
     return 1;
 }

@@ -54,6 +54,8 @@ struct dItem_data {
 
     static s8 getBtpFrm(u8 index) { return item_resource[index].mBtpFrm; }
 
+    static s16 getTexture(u8 index) { return item_resource[index].mTexture; }
+
     static char* getFieldArc(u8 index) { return field_item_res[index].mFieldArc; }
 
     static s16 getItemBmdName(u8 index) { return field_item_res[index].mItemBmdName; }
@@ -77,6 +79,8 @@ struct dItem_data {
     static u8 getH(u8 index) { return item_info[index].mH; }
 
     static u8 getR(u8 index) { return item_info[index].mR; }
+
+    static u16 getFieldHeapSize(u8 index) { return field_item_res[index].mHeapSize; } 
 
     static dItem_itemResource item_resource[255];
     static dItem_fieldItemResource field_item_res[255];

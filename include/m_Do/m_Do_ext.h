@@ -17,6 +17,15 @@ public:
 
     void setPlaySpeed(f32 speed) { mFrameCtrl.setRate(speed); }
     f32 getFrame() { return mFrameCtrl.getFrame(); }
+    f32 getEndFrame() { return mFrameCtrl.getEnd(); }
+    void setFrame(f32 frame) { mFrameCtrl.setFrame(frame); }
+    bool isStop() {
+        bool stopped = true;
+        if (!mFrameCtrl.checkState(1) && mFrameCtrl.getRate() != 0.0f) {
+            stopped = false;
+        }
+        return stopped;
+    }
 
 private:
     /* 0x0 */ J3DFrameCtrl mFrameCtrl;
@@ -154,6 +163,7 @@ public:
 
     void setRatio(f32 ratio) { mRatio = ratio; }
     J3DAnmTransform* getAnmTransform() { return mAnmTransform; }
+    void setAnmTransform(J3DAnmTransform* anm) { mAnmTransform = anm; }
 
 private:
     /* 0x0 */ f32 mRatio;
@@ -383,6 +393,14 @@ JKRExpHeap* mDoExt_getCommandHeap();
 JKRExpHeap* mDoExt_getZeldaHeap();
 JKRExpHeap* mDoExt_getJ2dHeap();
 JKRExpHeap* mDoExt_getHostIOHeap();
+JKRExpHeap* mDoExt_getDbPrintHeap();
+JKRExpHeap* mDoExt_createDbPrintHeap(u32 param_0, JKRHeap* param_1);
+JKRAssertHeap* mDoExt_createAssertHeap(JKRHeap* param_0);
+JKRExpHeap* mDoExt_createCommandHeap(u32 param_0, JKRHeap* param_1);
+JKRExpHeap* mDoExt_createArchiveHeap(u32 param_0, JKRHeap* param_1);
+JKRExpHeap* mDoExt_createJ2dHeap(u32 param_0, JKRHeap* param_1);
+JKRExpHeap* mDoExt_createZeldaHeap(u32 param_0, JKRHeap* param_1);
+JKRExpHeap* mDoExt_createGameHeap(u32 param_0, JKRHeap* param_1);
 JKRSolidHeap* mDoExt_createSolidHeapToCurrent(JKRHeap**, u32, JKRHeap*, u32);
 JKRSolidHeap* mDoExt_createSolidHeapToCurrent(u32, JKRHeap*, u32);
 JKRSolidHeap* mDoExt_createSolidHeapFromGameToCurrent(u32, u32);
@@ -397,10 +415,12 @@ void mDoExt_setAraCacheSize(u32 param_0);
 struct JUTFont;
 JUTFont* mDoExt_getMesgFont();
 void mDoExt_getSubFont();
-void mDoExt_getRubyFont();
+JUTFont* mDoExt_getRubyFont();
+void mDoExt_removeSubFont();
 
 extern JKRExpHeap* zeldaHeap;
 extern JKRExpHeap* gameHeap;
 extern JKRExpHeap* archiveHeap;
+extern JKRExpHeap* commandHeap;
 
 #endif /* M_DO_M_DO_EXT_H */

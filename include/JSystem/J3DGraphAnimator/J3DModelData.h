@@ -43,6 +43,8 @@ public:
     bool checkFlag(u32 flag) const { return !!(mFlags & flag); }
     bool checkBumpFlag() const { return mbHasBumpArray; }
     bool checkBBoardFlag() const { return mbHasBillboard == 1; }
+    void entryTexMtxAnimator(J3DAnmTextureSRTKey* anm) { mMaterialTable.entryTexMtxAnimator(anm); }
+    void entryTevRegAnimator(J3DAnmTevRegKey* anm) { mMaterialTable.entryTevRegAnimator(anm); }
     int removeTexNoAnimator(J3DAnmTexPattern* anm) {
         return mMaterialTable.removeTexNoAnimator(anm);
     }

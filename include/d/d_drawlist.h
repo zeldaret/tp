@@ -239,6 +239,8 @@ public:
     void setOpaListDark() { setOpaDrawList(mOpaListDark); }
     void setOpaList() { setOpaDrawList(mOpaList); }
     void setXluList() { setXluDrawList(mXluList); }
+    void setOpaListItem3D() { setOpaDrawList(mOpaListItem3d); }
+    void setXluListItem3D() { setXluDrawList(mXluListItem3d); }
     void setXluListBG() { setXluDrawList(mXluListBG); }
     void setOpaListBG() { setOpaDrawList(mOpaListBG); }
     void setXluList2DScreen() { setXluDrawList(mList2DScreen); }

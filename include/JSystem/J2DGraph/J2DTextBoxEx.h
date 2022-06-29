@@ -37,7 +37,7 @@ public:
     /* 803078AC */ virtual void draw(f32, f32);
     /* 80307AF0 */ virtual void draw(f32, f32, f32, J2DTextBoxHBinding);
     /* 80307D5C */ virtual void setFont(JUTFont*);
-    /* 80307DC0 */ virtual void getFont() const;
+    /* 80307DC0 */ virtual JUTFont* getFont() const;
     /* 8030823C */ virtual void setBlack(JUtility::TColor);
     /* 803082C4 */ virtual void setWhite(JUtility::TColor);
     /* 8030834C */ virtual void setBlackWhite(JUtility::TColor, JUtility::TColor);

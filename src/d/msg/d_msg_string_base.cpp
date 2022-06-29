@@ -16,10 +16,6 @@ struct jmessage_string_tControl {
     /* 8022FB5C */ jmessage_string_tControl();
 };
 
-struct J2DTextBox {};
-
-struct JUTFont {};
-
 struct COutFont_c {};
 
 struct jmessage_string_tReference {
@@ -35,49 +31,6 @@ struct jmessage_string_tSequenceProcessor {
 
 struct jmessage_string_tRenderingProcessor {
     /* 80230BC8 */ jmessage_string_tRenderingProcessor(jmessage_string_tReference const*);
-};
-
-struct dMsgStringBase_c {
-    /* 802493B4 */ dMsgStringBase_c();
-    /* 80249528 */ ~dMsgStringBase_c();
-    /* 80249700 */ void getResource();
-    /* 80249768 */ void getStringLocal(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, u8);
-    /* 802498D8 */ void getStringPageLocal(u32, u8, u8, J2DTextBox*, J2DTextBox*, JUTFont*,
-                                           COutFont_c*, u8);
-    /* 80249A48 */ void getPageMax(int);
-    /* 80249A70 */ void getMessageLocal(u32, char*);
-    /* 80249BAC */ void drawFontLocal(J2DTextBox*, u8, f32, f32, f32, f32, u32, u8);
-    /* 80249BB0 */ void getString(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, u8);
-    /* 80249BD0 */ void getStringPage(u32, u8, u8, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*,
-                                      u8);
-    /* 80249BF8 */ void getMessage(u32, char*);
-    /* 80249C18 */ void resetStringLocal(J2DTextBox*);
-    /* 80249C1C */ void drawOutFontLocal(J2DTextBox*, f32);
-};
-
-struct JMessage {
-    struct TControl {
-        /* 802A75D4 */ void reset();
-        /* 802A7634 */ void update();
-        /* 802A76BC */ void render();
-        /* 802A78F4 */ void setMessageID(u32, u32, bool*);
-    };
-
-    struct TResourceContainer {
-        struct TCResource {
-            /* 802A8EF8 */ ~TCResource();
-        };
-
-        /* 802A906C */ TResourceContainer();
-    };
-
-    struct TParse {
-        /* 802A9130 */ TParse(JMessage::TResourceContainer*);
-    };
-};
-
-struct JKRArchive {
-    /* 802D5B38 */ void getGlbResource(u32, char const*, JKRArchive*);
 };
 
 //
@@ -135,9 +88,6 @@ extern "C" void _restgpr_23();
 extern "C" void _restgpr_25();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strcpy();
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
 
 //
 // Declarations:

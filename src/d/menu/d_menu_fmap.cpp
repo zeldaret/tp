@@ -418,7 +418,6 @@ extern "C" void getTotalFreeSize__7JKRHeapFv();
 extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();
 extern "C" void create__10JKRExpHeapFUlP7JKRHeapb();
-extern "C" void DCStoreRangeNoSync();
 extern "C" void __register_global_object();
 extern "C" void __destroy_arr();
 extern "C" void __ptmf_scall();

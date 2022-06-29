@@ -91,7 +91,7 @@ msg_class* fopMsgM_SearchByID(unsigned int id) {
 /* 8001FA44-8001FA4C 01A384 0008+00 0/0 2/2 0/0 .text            fopMsgM_GetAppend__FPv */
 fopMsg_prm_class* fopMsgM_GetAppend(void* msg) {
     msg_class* m = static_cast<msg_class*>(msg);
-    return (fopMsg_prm_class*)m->field_0x0.mpUserData;
+    return (fopMsg_prm_class*)m->mBase.mpUserData;
 }
 
 /* 8001FA4C-8001FA6C 01A38C 0020+00 0/0 2/2 0/0 .text            fopMsgM_Delete__FPv */

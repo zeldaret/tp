@@ -11,7 +11,7 @@
 #include "SSystem/SComponent/c_malloc.h"
 #include "dol2asm.h"
 #include "global.h"
-// #include "d/com/d_com_inf_game.h"
+#include "d/com/d_com_inf_game.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "JSystem/J3DU/J3DUClipper.h"
 #include "MSL_C/math.h"
@@ -20,14 +20,13 @@
 #include "f_op/f_op_actor.h"
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_lib.h"
+#include "d/d_procname.h"
+#include "m_Do/m_Do_mtx.h"
+#include "SSystem/SComponent/c_lib.h"
 
 //
 // Types:
 //
-
-struct mDoMtx_stack_c {
-    static u8 now[48];
-};
 
 struct l_HIO {
     /* 8001E098 */ ~l_HIO();
@@ -39,107 +38,9 @@ struct daTagStream_c {
     static u8 m_top[4];
 };
 
-struct daPy_py_c {
-    /* 8001E11C */ void onFrollCrashFlg(u8, int);
-    /* 8001E120 */ bool checkWolfDash() const;
-    /* 8001E128 */ bool checkFrontRoll() const;
-    /* 8001E130 */ bool checkHorseRide() const;
-    /* 8001E138 */ s32 getGrabActorID() const;
-};
-
-struct dPa_levelEcallBack {};
-
-struct cBgS_PolyInfo {};
-
-struct dPa_control_c {
-    struct level_c {
-        /* 8004B918 */ void getEmitter(u32);
-    };
-
-    /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
-                            cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
-                            _GXColor const*, cXyz const*, f32);
-    /* 8004D7C4 */ void setSimpleFoot(u32, u32*, cBgS_PolyInfo&, cXyz const*, dKy_tevstr_c const*,
-                                      int, csXyz const*, cXyz const*, dPa_levelEcallBack*, s8,
-                                      cXyz const*);
-};
-
-struct dEvt_control_c {
-    /* 80041668 */ void order(u16, u16, u16, u16, void*, void*, s16, u8);
-    /* 800432EC */ void convPId(unsigned int);
-    /* 80043500 */ void searchMapEventData(u8, s32);
-};
-
-struct dEvent_manager_c {
-    /* 80047698 */ void getEventIdx(fopAc_ac_c*, u8);
-    /* 80047758 */ void getEventIdx(fopAc_ac_c*, char const*, u8);
-    /* 800481F4 */ void getEventPrio(fopAc_ac_c*, s16);
-};
-
-struct dEnemyItem_c {
-    static u8 mData[4 + 4 /* padding */];
-};
-
-struct dBgS_WtrChk {
-    /* 8001DF30 */ ~dBgS_WtrChk();
-    /* 80079164 */ dBgS_WtrChk();
-};
-
-struct dBgS_SplGrpChk {
-    /* 80078B90 */ void Set(cXyz&, f32);
-    /* 80078C78 */ ~dBgS_SplGrpChk();
-};
-
-struct dBgS_RoofChk {
-    /* 80078FF4 */ dBgS_RoofChk();
-    /* 80079090 */ ~dBgS_RoofChk();
-};
-
-struct dBgS_PolyPassChk {
-    /* 80078E68 */ void SetObj();
-};
-
-struct dBgS_ObjRoofChk {
-    /* 8001DFA8 */ ~dBgS_ObjRoofChk();
-};
-
-struct dBgS_ObjLinChk {
-    /* 80077F5C */ dBgS_ObjLinChk();
-    /* 80077FB8 */ ~dBgS_ObjLinChk();
-};
-
-struct dBgS_ObjGndChk {
-    /* 8001E020 */ ~dBgS_ObjGndChk();
-};
-
-struct dBgS_LinChk {
-    /* 80077C68 */ dBgS_LinChk();
-    /* 80077CDC */ ~dBgS_LinChk();
-    /* 80077D64 */ void Set(cXyz const*, cXyz const*, fopAc_ac_c const*);
-};
-
-struct dBgS_GndChk {
-    /* 8007757C */ dBgS_GndChk();
-    /* 800775F0 */ ~dBgS_GndChk();
-};
-
-struct dBgS {
-    /* 80074E50 */ void GetPolyAtt0(cBgS_PolyInfo const&);
-    /* 8007549C */ void RoofChk(dBgS_RoofChk*);
-    /* 80075564 */ void SplGrpChk(dBgS_SplGrpChk*);
-};
-
-struct cBgS_LinChk {};
-
-struct cBgS_GndChk {
-    /* 80267D28 */ void SetPos(cXyz const*);
-};
-
-struct cBgS {
-    /* 800743B4 */ void LineCross(cBgS_LinChk*);
-    /* 800744A0 */ void GroundCross(cBgS_GndChk*);
-    /* 80074660 */ void ChkPolySafe(cBgS_PolyInfo const&);
-    /* 80074744 */ void GetTriPla(cBgS_PolyInfo const&, cM3dGPla*) const;
+class dEnemyItem_c {
+public:
+    static u8* mData;
 };
 
 //
@@ -282,8 +183,6 @@ extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
 u32 check_itemno(int param1);
 BOOL isHeart(u8);
 
-extern "C" void* calc_mtx;
-
 //
 // External References:
 //
@@ -381,7 +280,6 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_29();
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" f32 Zero__4cXyz[3];
 extern "C" u8 BaseY__4cXyz[12];
 extern "C" u8 sincosTable___5JMath[65536];
@@ -398,37 +296,31 @@ extern "C" extern u8 data_80451164[4];
 //
 
 /* 800198A4-800198C4 0141E4 0020+00 0/0 1/1 0/0 .text            fopAcM_FastCreate__FsPFPv_iPvPv */
-void* fopAcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3, void* pData) {
-    return fpcM_FastCreate(pProcTypeID, param_2, param_3, pData);
+void* fopAcM_FastCreate(s16 procName, FastCreateReqFunc createFunc, void* param_3, void* p_data) {
+    return fpcM_FastCreate(procName, createFunc, param_3, p_data);
 }
 
 /* 800198C4-80019934 014204 0070+00 1/1 5/5 18/18 .text            fopAcM_setStageLayer__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopAcM_setStageLayer(void* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_setStageLayer__FPv.s"
+void fopAcM_setStageLayer(void* p_proc) {
+    scene_class* stageProc = fopScnM_SearchByID(dStage_roomControl_c::getProcID());
+    fpcM_ChangeLayerID(p_proc, fopScnM_LayerID(stageProc));
 }
-#pragma pop
 
 /* 80019934-800199BC 014274 0088+00 1/1 0/0 2/2 .text            fopAcM_setRoomLayer__FPvi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int fopAcM_setRoomLayer(void* param_0, int param_1) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_setRoomLayer__FPvi.s"
+void fopAcM_setRoomLayer(void* p_proc, int roomNo) {
+    if (roomNo >= 0) {
+        scene_class* roomProc = fopScnM_SearchByID(dStage_roomControl_c::getStatusProcID(roomNo));
+        fpcM_ChangeLayerID(p_proc, fopScnM_LayerID(roomProc));
+    }
 }
-#pragma pop
 
 /* 800199BC-80019A2C 0142FC 0070+00 0/0 4/4 114/114 .text fopAcM_SearchByID__FUiPP10fopAc_ac_c */
-s32 fopAcM_SearchByID(unsigned int id, fopAc_ac_c** actor) {
-    if (fpcM_IsCreating(id) != 0) {
-        *actor = NULL;
+s32 fopAcM_SearchByID(unsigned int id, fopAc_ac_c** p_actor) {
+    if (fpcM_IsCreating(id)) {
+        *p_actor = NULL;
     } else {
-        *actor = (fopAc_ac_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)fpcSch_JudgeByID, &id);
-        if (*actor == NULL) {
+        *p_actor = (fopAc_ac_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)fpcSch_JudgeByID, &id);
+        if (*p_actor == NULL) {
             return 0;
         }
     }
@@ -436,217 +328,201 @@ s32 fopAcM_SearchByID(unsigned int id, fopAc_ac_c** actor) {
 }
 
 /* 80019A2C-80019AA8 01436C 007C+00 0/0 0/0 28/28 .text fopAcM_SearchByName__FsPP10fopAc_ac_c */
-s32 fopAcM_SearchByName(s16 procName, fopAc_ac_c** actor) {
-    *actor = (fopAc_ac_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)fpcSch_JudgeForPName, &procName);
-    if (*actor == NULL) {
+s32 fopAcM_SearchByName(s16 procName, fopAc_ac_c** p_actor) {
+    *p_actor = (fopAc_ac_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)fpcSch_JudgeForPName, &procName);
+    if (*p_actor == NULL) {
         return 0;
     } else {
-        if (fpcM_IsCreating(fopAcM_GetID(*actor)) != 0) {
-            *actor = NULL;
+        if (fpcM_IsCreating(fopAcM_GetID(*p_actor))) {
+            *p_actor = NULL;
         }
         return 1;
     }
 }
 
 /* 80019AA8-80019B1C 0143E8 0074+00 1/1 7/7 0/0 .text            fopAcM_CreateAppend__Fv */
-fopAcM_prm_class* fopAcM_CreateAppend(void) {
+fopAcM_prm_class* fopAcM_CreateAppend() {
     fopAcM_prm_class* params =
         static_cast<fopAcM_prm_class*>(cMl::memalignB(-4, sizeof(fopAcM_prm_class)));
     if (params != NULL) {
         cLib_memSet(params, 0, sizeof(fopAcM_prm_class));
         params->mEnemyNo = 0xFFFF;
         params->mRoomNo = -1;
-        params->mScale[0] = 0xA;
-        params->mScale[1] = 0xA;
-        params->mScale[2] = 0xA;
+        params->mScale[0] = 10;
+        params->mScale[1] = 10;
+        params->mScale[2] = 10;
         params->mParentPId = -1;
         params->mSubtype = -1;
     }
     return params;
 }
 
-/* ############################################################################################## */
-/* 80451C00-80451C04 000200 0004+00 1/1 0/0 0/0 .sdata2          @4263 */
-SECTION_SDATA2 static f32 lit_4263 = 10.0f;
-
 /* 80019B1C-80019C78 01445C 015C+00 4/4 0/0 0/0 .text
  * createAppend__FUsUlPC4cXyziPC5csXyzPC4cXyzScUi               */
-fopAcM_prm_class* createAppend(u16 enemyNo, u32 parameter, const cXyz* pPos, int roomNo,
-                               const csXyz* pAngle, const cXyz* pScale, s8 subType,
+fopAcM_prm_class* createAppend(u16 enemyNo, u32 parameters, const cXyz* p_pos, int roomNo,
+                               const csXyz* p_angle, const cXyz* p_scale, s8 subType,
                                unsigned int parentPId) {
     fopAcM_prm_class* params = fopAcM_CreateAppend();
     if (params == NULL) {
         return NULL;
     } else {
         params->mEnemyNo = enemyNo;
-        if (pPos != NULL) {
-            params->mPos = *pPos;
+
+        if (p_pos != NULL) {
+            params->mPos = *p_pos;
         } else {
             params->mPos = cXyz::Zero;
         }
+
         params->mRoomNo = roomNo;
-        if (pAngle != NULL) {
-            params->mAngle = *pAngle;
+
+        if (p_angle != NULL) {
+            params->mAngle = *p_angle;
         } else {
             params->mAngle = csXyz::Zero;
         }
-        if (pScale != NULL) {
-            f32 ten = FLOAT_LABEL(lit_4263);  // temp not necessary when using literal
-            params->mScale[0] = ten * pScale->x;
-            params->mScale[1] = ten * pScale->y;
-            params->mScale[2] = ten * pScale->z;
+
+        if (p_scale != NULL) {
+            params->mScale[0] = 10.0f * p_scale->x;
+            params->mScale[1] = 10.0f * p_scale->y;
+            params->mScale[2] = 10.0f * p_scale->z;
         } else {
-            params->mScale[0] = 0xA;
-            params->mScale[1] = 0xA;
-            params->mScale[2] = 0xA;
+            params->mScale[0] = 10;
+            params->mScale[1] = 10;
+            params->mScale[2] = 10;
         }
-        params->mParameter = parameter;
+
+        params->mParameter = parameters;
         params->mParentPId = parentPId;
         params->mSubtype = subType;
+
         return params;
     }
 }
 
 /* 80019C78-80019C7C 0145B8 0004+00 3/3 0/0 0/0 .text            fopAcM_Log__FPC10fopAc_ac_cPCc */
-void fopAcM_Log(fopAc_ac_c const* param_0, char const* param_1) {
+void fopAcM_Log(fopAc_ac_c const* p_actor, char const* str) {
     /* empty function */
 }
 
 /* 80019C7C-80019CB8 0145BC 003C+00 0/0 10/10 483/483 .text            fopAcM_delete__FP10fopAc_ac_c
  */
-void fopAcM_delete(fopAc_ac_c* pActor) {
+void fopAcM_delete(fopAc_ac_c* p_actor) {
     // "Deleting Actor"
-    fopAcM_Log(pActor, "アクターの削除");
-    fpcM_Delete(pActor);
+    fopAcM_Log(p_actor, "アクターの削除");
+    fpcM_Delete(p_actor);
 }
 
 /* 80019CB8-80019D18 0145F8 0060+00 0/0 3/3 12/12 .text            fopAcM_delete__FUi */
-#ifdef NON_MATCHING
-s32 fopAcM_delete(unsigned int pID) {
-    void* searchResult = (void*)fopAcIt_Judge((fopAcIt_JudgeFunc)fpcSch_JudgeByID, &pID);
-    const fopAc_ac_c* actor = (fopAc_ac_c*)searchResult;
-    // original moves r3 -> r0, then r0 -> r31 for 0 check
-    // this generates r3 -> r31 with 0 check directly
-    if (searchResult != NULL) {
+s32 fopAcM_delete(unsigned int actorID) {
+    void* actor = fopAcM_SearchByID(actorID);
+
+    if (actor != NULL) {
         // "Deleting Actor"
-        fopAcM_Log(actor, "アクターの削除");
-        return fpcM_Delete(searchResult);
+        fopAcM_Log((fopAc_ac_c*)actor, "アクターの削除");
+        return fpcM_Delete(actor);
     } else {
         return 1;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_delete(unsigned int param_0) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_delete__FUi.s"
-}
-#pragma pop
-#endif
 
 /* 80019D18-80019D98 014658 0080+00 2/2 0/0 0/0 .text
  * fopAcM_create__FsUsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i         */
-s32 fopAcM_create(s16 procName, u16 enemyNo, u32 parameter, const cXyz* pPos, int roomNo,
-                  const csXyz* pRot, const cXyz* pScale, s8 subType, createFunc pCreateFunc) {
+s32 fopAcM_create(s16 procName, u16 enemyNo, u32 parameter, const cXyz* p_pos, int roomNo,
+                  const csXyz* p_angle, const cXyz* p_scale, s8 subType, createFunc p_createFunc) {
     fopAcM_prm_class* params =
-        createAppend(enemyNo, parameter, pPos, roomNo, pRot, pScale, subType, 0xFFFFFFFF);
+        createAppend(enemyNo, parameter, p_pos, roomNo, p_angle, p_scale, subType, 0xFFFFFFFF);
     if (params == NULL) {
         return -1;
     } else {
-        return fpcSCtRq_Request(fpcLy_CurrentLayer(), procName, (stdCreateFunc)pCreateFunc, NULL,
-                                params);
+        return fpcM_Create(procName, p_createFunc, params);
     }
 }
 
 /* 80019D98-80019E04 0146D8 006C+00 3/3 11/11 70/70 .text
  * fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc                 */
-s32 fopAcM_create(s16 procName, u32 parameter, const cXyz* pPos, int roomNo, const csXyz* pRot,
-                  const cXyz* pScale, s8 subType) {
-    return fopAcM_create(procName, 0xFFFF, parameter, pPos, roomNo, pRot, pScale, subType, NULL);
+s32 fopAcM_create(s16 procName, u32 parameter, const cXyz* p_pos, int roomNo, const csXyz* p_angle,
+                  const cXyz* p_scale, s8 subType) {
+    return fopAcM_create(procName, 0xFFFF, parameter, p_pos, roomNo, p_angle, p_scale, subType, NULL);
 }
 
 /* 80019E04-80019E6C 014744 0068+00 5/5 6/6 18/18 .text
  * fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv     */
-void* fopAcM_fastCreate(s16 procTypeID, u32 parameter, const cXyz* pPos, int roomNo,
-                        const csXyz* pRot, const cXyz* pScale, s8 subType, createFunc pCreateFunc,
-                        void* pCreateFuncData) {
+void* fopAcM_fastCreate(s16 procName, u32 parameter, const cXyz* p_pos, int roomNo,
+                        const csXyz* p_angle, const cXyz* p_scale, s8 subType, createFunc p_createFunc,
+                        void* p_createFuncData) {
     fopAcM_prm_class* prmClass =
-        createAppend(0xFFFF, parameter, pPos, roomNo, pRot, pScale, subType, 0xFFFFFFFF);
+        createAppend(0xFFFF, parameter, p_pos, roomNo, p_angle, p_scale, subType, 0xFFFFFFFF);
     if (prmClass == NULL) {
         return NULL;
     } else {
-        return fpcM_FastCreate(procTypeID, pCreateFunc, pCreateFuncData, prmClass);
+        return fpcM_FastCreate(procName, p_createFunc, p_createFuncData, prmClass);
     }
 }
 
 /* 80019E6C-80019EF0 0147AC 0084+00 0/0 1/1 0/0 .text
  * fopAcM_fastCreate__FPCcUlPC4cXyziPC5csXyzPC4cXyzPFPv_iPv     */
-void* fopAcM_fastCreate(const char* pActorName, u32 parameter, const cXyz* pActorPos, int roomNo,
-                        const csXyz* pActorRot, const cXyz* pScale, createFunc pCreateFunc,
-                        void* pCreateFuncData) {
-    dStage_objectNameInf* nameInfo = dStage_searchName(pActorName);
+void* fopAcM_fastCreate(const char* p_actorName, u32 parameter, const cXyz* p_pos, int roomNo,
+                        const csXyz* p_angle, const cXyz* p_scale, createFunc p_createFunc,
+                        void* p_createFuncData) {
+    dStage_objectNameInf* nameInfo = dStage_searchName(p_actorName);
     if (nameInfo == NULL) {
         return NULL;
     } else {
-        return fopAcM_fastCreate(nameInfo->mProcName, parameter, pActorPos, roomNo, pActorRot,
-                                 pScale, nameInfo->mSubtype, pCreateFunc, pCreateFuncData);
+        return fopAcM_fastCreate(nameInfo->mProcName, parameter, p_pos, roomNo, p_angle,
+                                 p_scale, nameInfo->mSubtype, p_createFunc, p_createFuncData);
     }
 }
 
 /* 80019EF0-80019F78 014830 0088+00 0/0 1/1 105/105 .text
  * fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i    */
-s32 fopAcM_createChild(s16 pProcTypeID, unsigned int pParentPId, u32 pParameter, const cXyz* pPos,
-                       int pRoomNo, const csXyz* pAngle, const cXyz* pScale, s8 pSubType,
-                       createFunc param_9) {
+s32 fopAcM_createChild(s16 procName, unsigned int parentPId, u32 parameters, const cXyz* p_pos,
+                       int roomNo, const csXyz* p_angle, const cXyz* p_scale, s8 subType,
+                       createFunc p_createFunc) {
     fopAcM_prm_class* paramClass =
-        createAppend(0xFFFF, pParameter, pPos, pRoomNo, pAngle, pScale, pSubType, pParentPId);
+        createAppend(0xFFFF, parameters, p_pos, roomNo, p_angle, p_scale, subType, parentPId);
     if (paramClass == NULL) {
         return -1;
     } else {
-        return fpcSCtRq_Request(fpcLy_CurrentLayer(), pProcTypeID, (stdCreateFunc)param_9, NULL,
-                                paramClass);
+        return fpcM_Create(procName, p_createFunc, paramClass);
     }
 }
 
 /* 80019F78-8001A138 0148B8 01C0+00 0/0 0/0 6/6 .text
  * fopAcM_createChildFromOffset__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i */
-s32 fopAcM_createChildFromOffset(s16 procTypeID, unsigned int parentProcID, u32 actorParams,
-                                 const cXyz* pActorPos, int roomNo, const csXyz* pActorRot,
-                                 const cXyz* pScale, s8 subType, createFunc pCreateFunc) {
-    struct {
-        s32 procID;
-    } searchParams;
-    searchParams.procID = parentProcID;
-    fopAc_ac_c* parentActor =
-        static_cast<fopAc_ac_c*>(fopAcIt_Judge((fopAcIt_JudgeFunc)fpcSch_JudgeByID, &searchParams));
-    s16 parentRotY = parentActor->getAngle().GetY();
+s32 fopAcM_createChildFromOffset(s16 procName, unsigned int parentProcID, u32 actorParams,
+                                 const cXyz* p_pos, int roomNo, const csXyz* p_angle,
+                                 const cXyz* p_scale, s8 subType, createFunc p_createFunc) {
+    fopAc_ac_c* parentActor = fopAcM_SearchByID(parentProcID);
+    s16 parent_angleY = parentActor->mCurrent.mAngle.y;
+
     cXyz tmpPos;
-    if (pActorPos == NULL) {
+    if (p_pos == NULL) {
         tmpPos = cXyz::Zero;
     } else {
-        tmpPos = *pActorPos;
+        tmpPos = *p_pos;
     }
+
     csXyz tmpRot;
-    if (pActorRot == NULL) {
+    if (p_angle == NULL) {
         tmpRot = csXyz::Zero;
     } else {
-        tmpRot = *pActorRot;
+        tmpRot = *p_angle;
     }
-    cXyz parentPos = parentActor->getPosition();
-    csXyz tmpRotCopy(tmpRot);
-    tmpRotCopy.y += parentRotY;
-    parentPos.x += tmpPos.z * cM_ssin(parentRotY) + tmpPos.x * cM_scos(parentRotY);
+    cXyz parentPos = parentActor->mCurrent.mPosition;
+    csXyz newAngle(tmpRot);
+
+    newAngle.y += parent_angleY;
+    parentPos.x += tmpPos.z * cM_ssin(parent_angleY) + tmpPos.x * cM_scos(parent_angleY);
     parentPos.y += tmpPos.y;
-    parentPos.z += tmpPos.z * cM_scos(parentRotY) - tmpPos.x * cM_ssin(parentRotY);
-    fopAcM_prm_class* prmClass = createAppend(0xFFFF, actorParams, &parentPos, roomNo, &tmpRotCopy,
-                                              pScale, subType, parentProcID);
+    parentPos.z += tmpPos.z * cM_scos(parent_angleY) - tmpPos.x * cM_ssin(parent_angleY);
+
+    fopAcM_prm_class* prmClass = createAppend(0xFFFF, actorParams, &parentPos, roomNo, &newAngle,
+                                              p_scale, subType, parentProcID);
     if (prmClass == NULL) {
         return -1;
     } else {
-        return fpcSCtRq_Request(fpcLy_CurrentLayer(), procTypeID, (stdCreateFunc)pCreateFunc, NULL,
-                                prmClass);
+        return fpcM_Create(procName, p_createFunc, prmClass);
     }
 }
 
@@ -654,27 +530,29 @@ s32 fopAcM_createChildFromOffset(s16 procTypeID, unsigned int parentProcID, u32 
 /* 803788C8-803788C8 004F28 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 #pragma push
 #pragma force_active on
+// "Creating Actor Heap"
 SECTION_DEAD static char const* const stringBase_803788D7 = "アクターのヒープの生成";
+
+// "fopAcM_createHeap allocation failure\n"
 SECTION_DEAD static char const* const stringBase_803788EE = "fopAcM_createHeap 確保失敗\n";
-SECTION_DEAD static char const* const stringBase_8037890A = "アクターのヒープの破壊";
 #pragma pop
 
 /* 8001A138-8001A188 014A78 0050+00 0/0 1/1 1/1 .text            fopAcM_DeleteHeap__FP10fopAc_ac_c
  */
-void fopAcM_DeleteHeap(fopAc_ac_c* pActor) {
+void fopAcM_DeleteHeap(fopAc_ac_c* p_actor) {
     // "Destroying actor's heap"
-    fopAcM_Log(pActor, "アクターのヒープの破壊");
-    if (pActor->mHeap != NULL) {
-        mDoExt_destroySolidHeap(pActor->mHeap);
-        pActor->mHeap = NULL;
+    fopAcM_Log(p_actor, "アクターのヒープの破壊");
+    if (p_actor->mHeap != NULL) {
+        mDoExt_destroySolidHeap(p_actor->mHeap);
+        p_actor->mHeap = NULL;
     }
 }
 
 /* 8001A188-8001A1E8 014AC8 0060+00 1/1 0/0 0/0 .text
  * fopAcM_callCallback__FP10fopAc_ac_cPFP10fopAc_ac_c_iP7JKRHeap */
-s32 fopAcM_callCallback(fopAc_ac_c* pActor, heapCallbackFunc pCallbackFunc, JKRHeap* pHeap) {
-    JKRHeap* oldHeap = mDoExt_setCurrentHeap(pHeap);
-    s32 ret = pCallbackFunc(pActor);
+s32 fopAcM_callCallback(fopAc_ac_c* p_actor, heapCallbackFunc p_callbackFunc, JKRHeap* p_heap) {
+    JKRHeap* oldHeap = mDoExt_setCurrentHeap(p_heap);
+    s32 ret = p_callbackFunc(p_actor);
     mDoExt_setCurrentHeap(oldHeap);
     return ret;
 }
@@ -687,30 +565,33 @@ static u8 lbl_80450CC9;
 
 /* 8001A1E8-8001A4B0 014B28 02C8+00 1/1 0/0 0/0 .text
  * fopAcM_entrySolidHeap___FP10fopAc_ac_cPFP10fopAc_ac_c_iUl    */
-bool fopAcM_entrySolidHeap_(fopAc_ac_c* pActor, heapCallbackFunc pHeapCallback, u32 pSize) {
-    const char* procNameString = fopAcM_getProcNameString(pActor);
+bool fopAcM_entrySolidHeap_(fopAc_ac_c* p_actor, heapCallbackFunc p_heapCallback, u32 size) {
+    const char* procNameString = fopAcM_getProcNameString(p_actor);
     JKRSolidHeap* heap00 = NULL;
-    if (pSize != 0) {
-        pSize = ALIGN_NEXT(pSize, 0x10);
+
+    if (size != 0) {
+        size = ALIGN_NEXT(size, 0x10);
     }
+
     while (true) {
-        if (pSize != 0) {
-            heap00 = mDoExt_createSolidHeapFromGame(pSize, 0x20);
+        if (size != 0) {
+            heap00 = mDoExt_createSolidHeapFromGame(size, 0x20);
             if (heap00 != NULL) {
-                bool status = fopAcM_callCallback(pActor, pHeapCallback, heap00) != 0;
+                bool status = fopAcM_callCallback(p_actor, p_heapCallback, heap00) != 0;
                 if (!status) {
                     // "Entry for estimated heap size(%08x) failed. %08x[%s]\n"
                     OSReport_Error("見積もりヒープサイズ(%08x)で登録失敗しました。%08x[%s]\n",
-                                   pSize, heap00->getFreeSize(), procNameString);
+                                   size, heap00->getFreeSize(), procNameString);
                     mDoExt_destroySolidHeap(heap00);
                     heap00 = NULL;
                 }
             } else {
                 // "Could not allocate estimated heap. %08x [%s]\n"
-                OSReport_Error("見積もりヒープが確保できませんでした。 %08x [%s]\n", pSize,
+                OSReport_Error("見積もりヒープが確保できませんでした。 %08x [%s]\n", size,
                                procNameString);
             }
         }
+
         if (heap00 == NULL) {
             heap00 = mDoExt_createSolidHeapFromGame(0xFFFFFFFF, 0x20);
             if (heap00 == NULL) {
@@ -718,7 +599,8 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* pActor, heapCallbackFunc pHeapCallback, 
                 OSReport_Error("最大空きヒープサイズで確保失敗。[%s]\n", procNameString);
                 return false;
             }
-            bool status = fopAcM_callCallback(pActor, pHeapCallback, heap00) != 0;
+
+            bool status = fopAcM_callCallback(p_actor, p_heapCallback, heap00) != 0;
             if (!status) {
                 // "Entry failed for maximum heap size. %08x[%s]\n"
                 OSReport_Error("最大空きヒープサイズで登録失敗。%08x[%s]\n", heap00->getFreeSize(),
@@ -727,12 +609,14 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* pActor, heapCallbackFunc pHeapCallback, 
                 return false;
             }
         }
+
         if (heap00 == NULL) {
             break;
         }
+
         if (lbl_80450CC8 == 0) {
             mDoExt_adjustSolidHeap(heap00);
-            pActor->mHeap = heap00;
+            p_actor->mHeap = heap00;
             return true;
         } else {
             JKRSolidHeap* heap = NULL;
@@ -741,11 +625,12 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* pActor, heapCallbackFunc pHeapCallback, 
             if (alignedSize + 0x90 < mDoExt_getGameHeap()->getFreeSize()) {
                 heap = mDoExt_createSolidHeapFromGame(alignedSize, 0x20);
             }
+
             if (heap != NULL) {
                 if (heap < heap00) {
                     mDoExt_destroySolidHeap(heap00);
                     heap00 = NULL;
-                    bool status = fopAcM_callCallback(pActor, pHeapCallback, heap) != 0;
+                    bool status = fopAcM_callCallback(p_actor, p_heapCallback, heap) != 0;
                     if (!status) {
                         // "Entry fails at exact size? (Bug)\n"
                         OSReport_Error("ぴったりサイズで、登録失敗？(バグ)\n");
@@ -757,16 +642,19 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* pActor, heapCallbackFunc pHeapCallback, 
                     heap = NULL;
                 }
             }
+
             if (heap != NULL) {
                 mDoExt_adjustSolidHeap(heap);
-                pActor->mHeap = heap;
+                p_actor->mHeap = heap;
                 return true;
             }
+
             if (heap00 != NULL) {
                 mDoExt_adjustSolidHeap(heap00);
-                pActor->mHeap = heap00;
+                p_actor->mHeap = heap00;
                 return true;
             }
+
             OSReport_Error("ばぐばぐです\n");  // "There's a big bug\n"
             OSReport_Error("緊急回避措置\n");  // "Emergency action\n"
             lbl_80450CC8 = 0;
@@ -779,87 +667,89 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* pActor, heapCallbackFunc pHeapCallback, 
 
 /* 8001A4B0-8001A528 014DF0 0078+00 0/0 4/4 446/446 .text
  * fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl     */
-bool fopAcM_entrySolidHeap(fopAc_ac_c* pActor, heapCallbackFunc pHeapCallback, u32 size) {
+bool fopAcM_entrySolidHeap(fopAc_ac_c* p_actor, heapCallbackFunc p_heapCallback, u32 size) {
     u8 oldCC9 = lbl_80450CC9;
     if (size & 0x80000000) {
         lbl_80450CC9 = 1;
     }
+
     u8 oldCC8 = lbl_80450CC8;
     if (size & 0x20000000) {
         lbl_80450CC8 = 0;
     } else if (size & 0x10000000) {
         lbl_80450CC8 = 1;
     }
-    bool result = fopAcM_entrySolidHeap_(pActor, pHeapCallback, size & 0xFFFFFF);
+
+    bool result = fopAcM_entrySolidHeap_(p_actor, p_heapCallback, size & 0xFFFFFF);
     lbl_80450CC9 = oldCC9;
     lbl_80450CC8 = oldCC8;
     return result;
 }
 
 /* 8001A528-8001A538 014E68 0010+00 0/0 0/0 136/136 .text fopAcM_SetMin__FP10fopAc_ac_cfff */
-void fopAcM_SetMin(fopAc_ac_c* pActor, f32 minX, f32 minY, f32 minZ) {
-    pActor->mCull.mBox.mMin.set(minX, minY, minZ);
+void fopAcM_SetMin(fopAc_ac_c* p_actor, f32 minX, f32 minY, f32 minZ) {
+    p_actor->mCull.mBox.mMin.set(minX, minY, minZ);
 }
 
 /* 8001A538-8001A548 014E78 0010+00 0/0 0/0 136/136 .text fopAcM_SetMax__FP10fopAc_ac_cfff */
-void fopAcM_SetMax(fopAc_ac_c* pActor, f32 maxX, f32 maxY, f32 maxZ) {
-    pActor->mCull.mBox.mMax.set(maxX, maxY, maxZ);
+void fopAcM_SetMax(fopAc_ac_c* p_actor, f32 maxX, f32 maxY, f32 maxZ) {
+    p_actor->mCull.mBox.mMax.set(maxX, maxY, maxZ);
 }
 
 /* 8001A548-8001A564 014E88 001C+00 1/1 0/0 260/260 .text
  * fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff                  */
-void fopAcM_setCullSizeBox(fopAc_ac_c* pActor, f32 minX, f32 minY, f32 minZ, f32 maxX, f32 maxY,
+void fopAcM_setCullSizeBox(fopAc_ac_c* p_actor, f32 minX, f32 minY, f32 minZ, f32 maxX, f32 maxY,
                            f32 maxZ) {
-    pActor->mCull.mBox.mMin.set(minX, minY, minZ);
-    pActor->mCull.mBox.mMax.set(maxX, maxY, maxZ);
+    p_actor->mCull.mBox.mMin.set(minX, minY, minZ);
+    p_actor->mCull.mBox.mMax.set(maxX, maxY, maxZ);
 }
 
 /* 8001A564-8001A578 014EA4 0014+00 0/0 0/0 4/4 .text fopAcM_setCullSizeSphere__FP10fopAc_ac_cffff
  */
-void fopAcM_setCullSizeSphere(fopAc_ac_c* pActor, f32 minX, f32 minY, f32 minZ, f32 radius) {
-    pActor->mCull.mSphere.mCenter.set(minX, minY, minZ);
-    pActor->mCull.mSphere.mRadius = radius;
+void fopAcM_setCullSizeSphere(fopAc_ac_c* p_actor, f32 minX, f32 minY, f32 minZ, f32 radius) {
+    p_actor->mCull.mSphere.mCenter.set(minX, minY, minZ);
+    p_actor->mCull.mSphere.mRadius = radius;
 }
 
 /* 8001A578-8001A5DC 014EB8 0064+00 0/0 0/0 123/123 .text
  * fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopAcM_setCullSizeBox2(fopAc_ac_c* param_0, J3DModelData* param_1) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData.s"
+void fopAcM_setCullSizeBox2(fopAc_ac_c* p_actor, J3DModelData* p_modelData) {
+    J3DJoint* jointNode = p_modelData->getJointNodePointer(0);
+
+    f32 minX = p_actor->mScale.x * jointNode->getMin()->x;
+    f32 minY = p_actor->mScale.y * jointNode->getMin()->y;
+    f32 minZ = p_actor->mScale.z * jointNode->getMin()->z;
+    f32 maxX = p_actor->mScale.x * jointNode->getMax()->x;
+    f32 maxY = p_actor->mScale.y * jointNode->getMax()->y;
+    f32 maxZ = p_actor->mScale.z * jointNode->getMax()->z;
+    
+    fopAcM_setCullSizeBox(p_actor, minX, minY, minZ, maxX, maxY, maxZ);
 }
-#pragma pop
 
 /* 8001A5DC-8001A60C 014F1C 0030+00 0/0 0/0 1/1 .text            fopAcM_addAngleY__FP10fopAc_ac_css
  */
-bool fopAcM_addAngleY(fopAc_ac_c* pActor, s16 target, s16 step) {
-    return cLib_chaseAngleS(&fopAcM_GetAngle_p(pActor).y, target, step);
+bool fopAcM_addAngleY(fopAc_ac_c* p_actor, s16 target, s16 step) {
+    return cLib_chaseAngleS(&fopAcM_GetAngle_p(p_actor).y, target, step);
 }
 
-inline void fopAcM_SetSpeed(fopAc_ac_c* pActor, f32 speedX, f32 speedY, f32 speedZ) {
-    pActor->mSpeed.set(speedX, speedY, speedZ);
+inline f32 fopAcM_GetSpeedF(const fopAc_ac_c* p_actor) {
+    return p_actor->mSpeedF;
 }
 
-inline f32 fopAcM_GetSpeedF(const fopAc_ac_c* pActor) {
-    return pActor->mSpeedF;
+inline f32 fopAcM_GetGravity(const fopAc_ac_c* p_actor) {
+    return p_actor->mGravity;
 }
 
-inline f32 fopAcM_GetGravity(const fopAc_ac_c* pActor) {
-    return pActor->mGravity;
+inline f32 fopAcM_GetMaxFallSpeed(const fopAc_ac_c* p_actor) {
+    return p_actor->mMaxFallSpeed;
 }
 
-inline f32 fopAcM_GetMaxFallSpeed(const fopAc_ac_c* pActor) {
-    return pActor->mMaxFallSpeed;
+inline const cXyz& fopAcM_GetSpeed_p(const fopAc_ac_c* p_actor) {
+    return p_actor->mSpeed;
 }
 
-inline const cXyz& fopAcM_GetSpeed_p(const fopAc_ac_c* pActor) {
-    return pActor->mSpeed;
-}
-
-inline const cXyz& fopAcM_GetPosition_p(const fopAc_ac_c* pActor) {
-    return pActor->mCurrent.mPosition;
+inline const cXyz& fopAcM_GetPosition_p(const fopAc_ac_c* p_actor) {
+    return p_actor->mCurrent.mPosition;
 }
 
 inline void clampMin(f32& val, f32 min) {
@@ -869,35 +759,36 @@ inline void clampMin(f32& val, f32 min) {
 }
 
 /* 8001A60C-8001A660 014F4C 0054+00 1/1 0/0 8/8 .text            fopAcM_calcSpeed__FP10fopAc_ac_c */
-void fopAcM_calcSpeed(fopAc_ac_c* pActor) {
-    f32 speedF = fopAcM_GetSpeedF(pActor);
-    f32 gravity = fopAcM_GetGravity(pActor);
-    f32 xSpeed = speedF * cM_ssin(pActor->getAngle().GetY());
-    f32 ySpeed = pActor->mSpeed.y + gravity;
-    f32 zSpeed = speedF * cM_scos(pActor->getAngle().GetY());
-    clampMin(ySpeed, fopAcM_GetMaxFallSpeed(pActor));
-    fopAcM_SetSpeed(pActor, xSpeed, ySpeed, zSpeed);
+void fopAcM_calcSpeed(fopAc_ac_c* p_actor) {
+    f32 speedF = fopAcM_GetSpeedF(p_actor);
+    f32 gravity = fopAcM_GetGravity(p_actor);
+    f32 xSpeed = speedF * cM_ssin(p_actor->getAngle().GetY());
+    f32 ySpeed = p_actor->mSpeed.y + gravity;
+    f32 zSpeed = speedF * cM_scos(p_actor->getAngle().GetY());
+
+    clampMin(ySpeed, fopAcM_GetMaxFallSpeed(p_actor));
+    fopAcM_SetSpeed(p_actor, xSpeed, ySpeed, zSpeed);
 }
 
 /* 8001A660-8001A6CC 014FA0 006C+00 1/1 1/1 17/17 .text fopAcM_posMove__FP10fopAc_ac_cPC4cXyz */
-void fopAcM_posMove(fopAc_ac_c* pActor, const cXyz* pXyz) {
-    pActor->mCurrent.mPosition += pActor->mSpeed;
-    if (pXyz != NULL) {
-        pActor->mCurrent.mPosition += *pXyz;
+void fopAcM_posMove(fopAc_ac_c* p_actor, const cXyz* p_movePos) {
+    p_actor->mCurrent.mPosition += p_actor->mSpeed;
+    if (p_movePos != NULL) {
+        p_actor->mCurrent.mPosition += *p_movePos;
     }
 }
 
 /* 8001A6CC-8001A710 01500C 0044+00 0/0 5/5 137/137 .text fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz
  */
-void fopAcM_posMoveF(fopAc_ac_c* pActor, const cXyz* pXyz) {
-    fopAcM_calcSpeed(pActor);
-    fopAcM_posMove(pActor, pXyz);
+void fopAcM_posMoveF(fopAc_ac_c* p_actor, const cXyz* p_movePos) {
+    fopAcM_calcSpeed(p_actor);
+    fopAcM_posMove(p_actor, p_movePos);
 }
 
 /* 8001A710-8001A738 015050 0028+00 1/1 26/26 596/596 .text
  * fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c      */
-s16 fopAcM_searchActorAngleY(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActorB) {
-    return cLib_targetAngleY(&pActorA->mCurrent.mPosition, &pActorB->mCurrent.mPosition);
+s16 fopAcM_searchActorAngleY(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB) {
+    return cLib_targetAngleY(&p_actorA->mCurrent.mPosition, &p_actorB->mCurrent.mPosition);
 }
 
 /* ############################################################################################## */
@@ -923,9 +814,9 @@ inline f32 square(f32 f) {
 /* 8001A738-8001A79C 015078 0064+00 0/0 0/0 13/13 .text
  * fopAcM_searchActorAngleX__FPC10fopAc_ac_cPC10fopAc_ac_c      */
 #ifdef NON_MATCHING
-s16 fopAcM_searchActorAngleX(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActorB) {
-    const cXyz& posA = fopAcM_GetPosition_p(pActorA);
-    const cXyz& posB = fopAcM_GetPosition_p(pActorB);
+s16 fopAcM_searchActorAngleX(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB) {
+    const cXyz& posA = fopAcM_GetPosition_p(p_actorA);
+    const cXyz& posB = fopAcM_GetPosition_p(p_actorB);
     return cM_atan2s(posB.y - posA.y,
                      JMAFastSqrt__Ff(square(posB.x - posA.x) + square(posB.z - posA.z)));
 }
@@ -933,7 +824,7 @@ s16 fopAcM_searchActorAngleX(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActor
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm s16 fopAcM_searchActorAngleX(fopAc_ac_c const* param_0, fopAc_ac_c const* param_1) {
+asm s16 fopAcM_searchActorAngleX(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_searchActorAngleX__FPC10fopAc_ac_cPC10fopAc_ac_c.s"
 }
@@ -942,10 +833,10 @@ asm s16 fopAcM_searchActorAngleX(fopAc_ac_c const* param_0, fopAc_ac_c const* pa
 
 /* 8001A79C-8001A7E0 0150DC 0044+00 0/0 3/3 15/15 .text
  * fopAcM_seenActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c        */
-s32 fopAcM_seenActorAngleY(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActorB) {
+s32 fopAcM_seenActorAngleY(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB) {
     return abs(static_cast<s16>(
-        cLib_targetAngleY(&pActorA->mCurrent.mPosition, &pActorB->mCurrent.mPosition) -
-        pActorA->mCollisionRot.y));
+        cLib_targetAngleY(&p_actorA->mCurrent.mPosition, &p_actorB->mCurrent.mPosition) -
+        p_actorA->mCollisionRot.y));
 }
 
 /* ############################################################################################## */
@@ -977,15 +868,15 @@ inline f32 local_sqrtf(f32 mag) {
 
 /* 8001A7E0-8001A914 015120 0134+00 0/0 5/5 188/188 .text
  * fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c    */
-f32 fopAcM_searchActorDistance(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActorB) {
-    cXyz tmp = (pActorB->mCurrent.mPosition - pActorA->mCurrent.mPosition);
+f32 fopAcM_searchActorDistance(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB) {
+    cXyz tmp = (p_actorB->mCurrent.mPosition - p_actorA->mCurrent.mPosition);
     return local_sqrtf(tmp.abs2());
 }
 
 /* 8001A914-8001A964 015254 0050+00 0/0 0/0 2/2 .text
  * fopAcM_searchActorDistance2__FPC10fopAc_ac_cPC10fopAc_ac_c   */
-f32 fopAcM_searchActorDistance2(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActorB) {
-    cXyz tmp = (pActorB->mCurrent.mPosition - pActorA->mCurrent.mPosition);
+f32 fopAcM_searchActorDistance2(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB) {
+    cXyz tmp = (p_actorB->mCurrent.mPosition - p_actorA->mCurrent.mPosition);
     return tmp.abs2();
 }
 
@@ -993,16 +884,16 @@ f32 fopAcM_searchActorDistance2(const fopAc_ac_c* pActorA, const fopAc_ac_c* pAc
  * fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c  */
 #ifdef NON_MATCHING
 // matches besides data
-f32 fopAcM_searchActorDistanceXZ(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActorB) {
-    const cXyz& posA = fopAcM_GetPosition_p(pActorA);
-    const cXyz& posB = fopAcM_GetPosition_p(pActorB);
+f32 fopAcM_searchActorDistanceXZ(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB) {
+    const cXyz& posA = fopAcM_GetPosition_p(p_actorA);
+    const cXyz& posB = fopAcM_GetPosition_p(p_actorB);
     return sqrtf((posB - posA).abs2XZ());
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm f32 fopAcM_searchActorDistanceXZ(fopAc_ac_c const* param_0, fopAc_ac_c const* param_1) {
+asm f32 fopAcM_searchActorDistanceXZ(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c.s"
 }
@@ -1013,9 +904,9 @@ asm f32 fopAcM_searchActorDistanceXZ(fopAc_ac_c const* param_0, fopAc_ac_c const
  * fopAcM_searchActorDistanceXZ2__FPC10fopAc_ac_cPC10fopAc_ac_c */
 #ifdef NON_MATCHING
 // matches besides data
-f32 fopAcM_searchActorDistanceXZ2(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActorB) {
-    const cXyz& posA = fopAcM_GetPosition_p(pActorA);
-    const cXyz& posB = fopAcM_GetPosition_p(pActorB);
+f32 fopAcM_searchActorDistanceXZ2(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB) {
+    const cXyz& posA = fopAcM_GetPosition_p(p_actorA);
+    const cXyz& posB = fopAcM_GetPosition_p(p_actorB);
     return (posB - posA).abs2XZ();
 }
 #else
@@ -1029,24 +920,55 @@ asm f32 fopAcM_searchActorDistanceXZ2(fopAc_ac_c const* param_0, fopAc_ac_c cons
 #pragma pop
 #endif
 
-/* ############################################################################################## */
-/* 80451C20-80451C24 000220 0004+00 1/1 0/0 0/0 .sdata2          @4922 */
-SECTION_SDATA2 static f32 lit_4922 = 40.0f;
+BOOL daPy_py_c::checkNowWolf() {
+    return dComIfGp_getLinkPlayer()->i_checkWolf();
+}
 
-/* 80451C24-80451C28 000224 0004+00 1/1 0/0 0/0 .sdata2          @4923 */
-SECTION_SDATA2 static f32 lit_4923 = 55.0f;
+inline f32 fopAcM_searchActorDistanceY(const fopAc_ac_c* actorA, const fopAc_ac_c* actorB) {
+    return actorB->mCurrent.mPosition.y - actorA->mCurrent.mPosition.y;
+}
+
+inline s16 fopAcM_searchPlayerAngleY(const fopAc_ac_c* actor) {
+    return fopAcM_searchActorAngleY(actor, (fopAc_ac_c*)dComIfGp_getPlayer(0));
+}
+
+inline f32 fopAcM_searchPlayerDistanceY(const fopAc_ac_c* actor) {
+    return fopAcM_searchActorDistanceY(actor, (fopAc_ac_c*)dComIfGp_getPlayer(0));
+}
+
+inline f32 fopAcM_searchPlayerDistanceXZ2(const fopAc_ac_c* actor) {
+    return fopAcM_searchActorDistanceXZ2(actor, (fopAc_ac_c*)dComIfGp_getPlayer(0));
+}
 
 /* 8001AAE0-8001AC40 015420 0160+00 0/0 0/0 2/2 .text
  * fopAcM_rollPlayerCrash__FPC10fopAc_ac_cfUlffif               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_rollPlayerCrash(fopAc_ac_c const* param_0, f32 param_1, u32 param_2, f32 param_3,
+s32 fopAcM_rollPlayerCrash(fopAc_ac_c const* actor, f32 param_1, u32 param_2, f32 param_3,
                                f32 param_4, int param_5, f32 param_6) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_rollPlayerCrash__FPC10fopAc_ac_cfUlffif.s"
+    daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
+
+    if (player != dComIfGp_getLinkPlayer()) {
+        return 0;
+    }
+
+    f32 tmp = param_1 + 40.0f;
+
+    if (daPy_py_c::checkNowWolf()) {
+        tmp += 55.0f;
+    }
+
+    f32 y_dist = fopAcM_searchPlayerDistanceY(actor);
+    if (y_dist > param_4 && y_dist < param_3 && 
+        (player->checkFrontRoll() || player->checkWolfDash()) &&
+        fopAcM_searchPlayerDistanceXZ2(actor) < (tmp * tmp)) {
+        
+        if (cM_scos(player->mCurrent.mAngle.y - fopAcM_searchPlayerAngleY(actor)) < param_6) {
+            player->onFrollCrashFlg(param_2, param_5);
+            return 1;
+        }
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 8001AC40-8001ACEC 015580 00AC+00 0/0 0/0 2/2 .text fopAcM_checkCullingBox__FPA4_fffffff */
 s32 fopAcM_checkCullingBox(Mtx pMtx, f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2) {
@@ -1106,40 +1028,59 @@ asm s32 fopAcM_cullingCheck(fopAc_ac_c const* param_0) {
 #pragma pop
 
 /* 8001B058-8001B068 015998 0010+00 5/5 0/0 0/0 .text            event_second_actor__FUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 event_second_actor(u16 param_0) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/event_second_actor__FUs.s"
+void* event_second_actor(u16) {
+    return dComIfGp_getPlayer(0);
 }
-#pragma pop
+
+inline dEvt_control_c& dComIfGp_getEvent() {
+    return g_dComIfG_gameInfo.play.getEvent();
+}
 
 /* 8001B068-8001B0FC 0159A8 0094+00 0/0 3/3 0/0 .text
  * fopAcM_orderTalkEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_orderTalkEvent(fopAc_ac_c* param_0, fopAc_ac_c* param_1, u16 param_2, u16 param_3) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_orderTalkEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs.s"
+s32 fopAcM_orderTalkEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, u16 priority, u16 flag) {
+    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actorA))) {
+        return 0;
+    }
+
+    if (priority == 0) {
+        priority = 0x1FF;
+    }
+
+    return dComIfGp_event_order(0, priority, flag, 0x14F, actorA, actorB, -1, -1);
 }
-#pragma pop
 
 /* 8001B0FC-8001B19C 015A3C 00A0+00 0/0 1/1 0/0 .text
  * fopAcM_orderTalkItemBtnEvent__FUsP10fopAc_ac_cP10fopAc_ac_cUsUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_orderTalkItemBtnEvent(u16 param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2,
-                                     u16 param_3, u16 param_4) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_orderTalkItemBtnEvent__FUsP10fopAc_ac_cP10fopAc_ac_cUsUs.s"
+s32 fopAcM_orderTalkItemBtnEvent(u16 eventType, fopAc_ac_c* actorA, fopAc_ac_c* actorB,
+                                     u16 priority, u16 flag) {
+    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actorA))) {
+        return 0;
+    }
+
+    if (priority == 0) {
+        priority = 0x1F4;
+    }
+
+    return dComIfGp_event_order(eventType, priority, flag, 0x14F, actorA, actorB, -1, -1);
 }
-#pragma pop
 
 /* 8001B19C-8001B244 015ADC 00A8+00 0/0 3/3 16/16 .text fopAcM_orderSpeakEvent__FP10fopAc_ac_cUsUs
  */
+// wrong load order
+#ifdef NONMATCHING
+s32 fopAcM_orderSpeakEvent(fopAc_ac_c* actor, u16 priority, u16 flag) {
+    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actor))) {
+        return 0;
+    }
+
+    if (priority == 0) {
+        priority = 0x1EA;
+    }
+
+    return dComIfGp_event_order(0, priority, flag, 0x14F, dComIfGp_getPlayer(0), actor, -1, -1);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1148,113 +1089,212 @@ asm s32 fopAcM_orderSpeakEvent(fopAc_ac_c* param_0, u16 param_1, u16 param_2) {
 #include "asm/f_op/f_op_actor_mng/fopAcM_orderSpeakEvent__FP10fopAc_ac_cUsUs.s"
 }
 #pragma pop
+#endif
+
+inline dEvent_manager_c& dComIfGp_getEventManager() {
+    return g_dComIfG_gameInfo.play.getEvtManager();
+}
 
 /* 8001B244-8001B334 015B84 00F0+00 0/0 2/2 0/0 .text
  * fopAcM_orderDoorEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_orderDoorEvent(fopAc_ac_c* param_0, fopAc_ac_c* param_1, u16 param_2, u16 param_3) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_orderDoorEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs.s"
+s32 fopAcM_orderDoorEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, u16 priority, u16 flag) {
+    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actorA))) {
+        return 0;
+    }
+
+    if (priority == 0) {
+        priority = 0xFF;
+    }
+
+    s16 eventID = actorB->mEvtInfo.getEventId();
+    u8 toolID = actorB->mEvtInfo.getMapToolId();
+
+    if (fopAcM_GetProfName(actorB) == 0x55 && toolID != 0xFF) {
+        eventID = dComIfGp_getEventManager().getEventIdx(actorA, NULL, toolID);
+    }
+
+    return dComIfGp_event_order(1, priority, flag, -1, actorA, actorB, eventID, toolID);
 }
-#pragma pop
 
 /* 8001B334-8001B3CC 015C74 0098+00 0/0 1/1 0/0 .text
  * fopAcM_orderCatchEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs      */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_orderCatchEvent(fopAc_ac_c* param_0, fopAc_ac_c* param_1, u16 param_2, u16 param_3) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_orderCatchEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs.s"
+s32 fopAcM_orderCatchEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, u16 priority, u16 flag) {
+    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actorA))) {
+        return 0;
+    }
+
+    if (priority == 0) {
+        priority = 2;
+    }
+
+    return dComIfGp_event_order(10, priority, flag, -1, actorA, actorB, -1, -1);
 }
-#pragma pop
 
 /* 8001B3CC-8001B4E0 015D0C 0114+00 0/0 2/2 6/6 .text
  * fopAcM_orderOtherEvent__FP10fopAc_ac_cPCcUsUsUs              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_orderOtherEvent(fopAc_ac_c* param_0, char const* param_1, u16 param_2, u16 param_3,
-                               u16 param_4) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_orderOtherEvent__FP10fopAc_ac_cPCcUsUsUs.s"
+s32 fopAcM_orderOtherEvent(fopAc_ac_c* actor, char const* param_1, u16 param_2, u16 flag,
+                               u16 priority) {
+    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actor))) {
+        return 0;
+    }
+
+    s16 eventIdx = dComIfGp_getEventManager().getEventIdx(actor, param_1, -1);
+    if (eventIdx < 0) {
+        return 0;
+    }
+
+    u16 eventPrio = dComIfGp_getEventManager().getEventPrio(actor, eventIdx);
+    if (eventPrio == 0) {
+        eventPrio = 0xFF;
+    }
+
+    if (priority != 0) {
+        eventPrio = priority;
+    }
+
+    return dComIfGp_event_order(2, eventPrio, flag, param_2, actor, event_second_actor(flag), eventIdx, -1);
 }
-#pragma pop
 
 /* 8001B4E0-8001B5E4 015E20 0104+00 0/0 1/1 2/2 .text
  * fopAcM_orderOtherEvent__FP10fopAc_ac_cP10fopAc_ac_cPCcUsUsUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_orderOtherEvent(fopAc_ac_c* param_0, fopAc_ac_c* param_1, char const* param_2,
-                               u16 param_3, u16 param_4, u16 param_5) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_orderOtherEvent__FP10fopAc_ac_cP10fopAc_ac_cPCcUsUsUs.s"
+s32 fopAcM_orderOtherEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, char const* param_2,
+                               u16 param_3, u16 flag, u16 priority) {
+    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actorA))) {
+        return 0;
+    }
+
+    s16 eventIdx = dComIfGp_getEventManager().getEventIdx(actorA, param_2, -1);
+    if (eventIdx < 0) {
+        return 0;
+    }
+
+    u16 eventPrio = dComIfGp_getEventManager().getEventPrio(actorA, eventIdx);
+    if (eventPrio == 0) {
+        eventPrio = 0xFF;
+    }
+
+    if (priority != 0) {
+        eventPrio = priority;
+    }
+
+    return dComIfGp_event_order(2, eventPrio, flag, param_3, actorA, actorB, eventIdx, -1);
 }
-#pragma pop
 
 /* 8001B5E4-8001B67C 015F24 0098+00 0/0 2/2 41/41 .text
  * fopAcM_orderChangeEventId__FP10fopAc_ac_csUsUs               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_orderChangeEventId(fopAc_ac_c* param_0, s16 param_1, u16 param_2, u16 param_3) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_orderChangeEventId__FP10fopAc_ac_csUsUs.s"
+s32 fopAcM_orderChangeEventId(fopAc_ac_c* actor, s16 eventID, u16 flag, u16 param_3) {
+    u16 eventPrio = dComIfGp_getEventManager().getEventPrio(actor, eventID);
+    if (eventPrio == 0) {
+        eventPrio = 0xFF;
+    }
+
+    return dComIfGp_event_order(2, eventPrio, flag | 0x400, param_3, actor, event_second_actor(flag), eventID, -1);
 }
-#pragma pop
 
 /* 8001B67C-8001B7B4 015FBC 0138+00 0/0 10/10 101/101 .text
  * fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_orderOtherEventId(fopAc_ac_c* param_0, s16 param_1, u8 param_2, u16 param_3,
-                                 u16 param_4, u16 param_5) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs.s"
+s32 fopAcM_orderOtherEventId(fopAc_ac_c* actor, s16 eventID, u8 param_2, u16 param_3,
+                                 u16 priority, u16 flag) {
+    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actor))) {
+        return 0;
+    }
+
+    u16 newPriority = 50;
+    s32 roomNo = dComIfGp_roomControl_getStayNo();
+    if (actor != NULL) {
+        roomNo = fopAcM_GetRoomNo(actor);
+    }
+
+    if (priority != 0) {
+        newPriority = priority;
+    } else if (actor != NULL) {
+        u16 eventPrio = dComIfGp_getEventManager().getEventPrio(actor, eventID);
+
+        if (eventPrio != 0) {
+            newPriority = eventPrio;
+        } else if (param_2 != 0xFF) {
+            dStage_MapEvent_dt_c* dt = dEvt_control_c::searchMapEventData(param_2, roomNo);
+
+            if (dt != NULL) {
+                newPriority = dt->field_0x6;
+            }
+        }
+    }
+
+    return dComIfGp_event_order(2, newPriority, flag, param_3, actor, event_second_actor(flag), eventID, param_2);
 }
-#pragma pop
 
 /* 8001B7B4-8001B8E0 0160F4 012C+00 1/1 1/1 4/4 .text
  * fopAcM_orderMapToolEvent__FP10fopAc_ac_cUcsUsUsUs            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_orderMapToolEvent(fopAc_ac_c* param_0, u8 param_1, s16 param_2, u16 param_3,
-                                 u16 param_4, u16 param_5) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_orderMapToolEvent__FP10fopAc_ac_cUcsUsUsUs.s"
+s32 fopAcM_orderMapToolEvent(fopAc_ac_c* actor, u8 param_1, s16 eventID, u16 param_3,
+                                 u16 flag, u16 param_5) {
+    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actor))) {
+        return 0;
+    }
+
+    u16 newPriority = 100;
+    s32 roomNo = dComIfGp_roomControl_getStayNo();
+    if (actor != NULL) {
+        roomNo = fopAcM_GetRoomNo(actor);
+    }
+
+    dStage_MapEvent_dt_c* dt = dEvt_control_c::searchMapEventData(param_1, roomNo);
+    if (dt != NULL) {
+        newPriority = dt->field_0x6;
+
+        if (eventID == 0xFF) {
+            eventID = dComIfGp_getEventManager().getEventIdx(actor, param_1);
+        }
+    }
+
+    if (flag & 0x100) {
+        newPriority = 3;
+    }
+
+    if (param_5 != 0) {
+        newPriority = param_5;
+    }
+
+    return dComIfGp_event_order(2, newPriority, flag, param_3, actor, event_second_actor(flag), eventID, param_1);
 }
-#pragma pop
 
 /* 8001B8E0-8001B908 016220 0028+00 0/0 1/1 1/1 .text
  * fopAcM_orderMapToolAutoNextEvent__FP10fopAc_ac_cUcsUsUsUs    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_orderMapToolAutoNextEvent(fopAc_ac_c* param_0, u8 param_1, s16 param_2, u16 param_3,
-                                         u16 param_4, u16 param_5) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_orderMapToolAutoNextEvent__FP10fopAc_ac_cUcsUsUsUs.s"
+s32 fopAcM_orderMapToolAutoNextEvent(fopAc_ac_c* actor, u8 param_1, s16 eventID, u16 param_3,
+                                         u16 flag, u16 param_5) {
+    return fopAcM_orderMapToolEvent(actor, param_1, eventID, param_3, flag | 0x100, param_5);
 }
-#pragma pop
 
 /* 8001B908-8001B9D0 016248 00C8+00 0/0 0/0 106/106 .text
  * fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_orderPotentialEvent(fopAc_ac_c* param_0, u16 param_1, u16 param_2, u16 param_3) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs.s"
+s32 fopAcM_orderPotentialEvent(fopAc_ac_c* actor, u16 flag, u16 param_2, u16 priority) {
+    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actor))) {
+        return 0;
+    }
+
+    if (priority == 0) {
+        priority = 0xFF;
+    }
+
+    return dComIfGp_event_order(4, priority, flag, param_2, actor, event_second_actor(flag), -1, -1);
 }
-#pragma pop
 
 /* 8001B9D0-8001BA7C 016310 00AC+00 0/0 3/3 12/12 .text fopAcM_orderItemEvent__FP10fopAc_ac_cUsUs
  */
+// load order
+#ifdef NONMATCHING
+s32 fopAcM_orderItemEvent(fopAc_ac_c* actor, u16 priority, u16 flag) {
+    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actor))) {
+        return 0;
+    }
+
+    if (priority == 0) {
+        priority = 0xFF;
+    }
+
+    return dComIfGp_event_order(5, priority, flag, -1, dComIfGp_getPlayer(0), actor, -1, -1);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1263,91 +1303,176 @@ asm s32 fopAcM_orderItemEvent(fopAc_ac_c* param_0, u16 param_1, u16 param_2) {
 #include "asm/f_op/f_op_actor_mng/fopAcM_orderItemEvent__FP10fopAc_ac_cUsUs.s"
 }
 #pragma pop
+#endif
 
 /* 8001BA7C-8001BB14 0163BC 0098+00 0/0 1/1 0/0 .text
  * fopAcM_orderTreasureEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs   */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_orderTreasureEvent(fopAc_ac_c* param_0, fopAc_ac_c* param_1, u16 param_2,
-                                  u16 param_3) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_orderTreasureEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs.s"
+s32 fopAcM_orderTreasureEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, u16 priority,
+                                  u16 flag) {
+    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actorA))) {
+        return 0;
+    }
+
+    if (priority == 0) {
+        priority = 0xFF;
+    }
+
+    return dComIfGp_event_order(11, priority, flag, -1, actorA, actorB, -1, -1);
 }
-#pragma pop
 
 /* 8001BB14-8001BB44 016454 0030+00 0/0 11/11 10/10 .text
  * fopAcM_getTalkEventPartner__FPC10fopAc_ac_c                  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_getTalkEventPartner(fopAc_ac_c const* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_getTalkEventPartner__FPC10fopAc_ac_c.s"
+void* fopAcM_getTalkEventPartner(fopAc_ac_c const*) {
+    return dComIfGp_event_getTalkPartner();
 }
-#pragma pop
 
 /* 8001BB44-8001BB74 016484 0030+00 0/0 5/5 0/0 .text fopAcM_getItemEventPartner__FPC10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_getItemEventPartner(fopAc_ac_c const* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_getItemEventPartner__FPC10fopAc_ac_c.s"
+void* fopAcM_getItemEventPartner(fopAc_ac_c const*) {
+    return dComIfGp_event_getItemPartner();
 }
-#pragma pop
 
 /* 8001BB74-8001BBE8 0164B4 0074+00 0/0 1/1 0/0 .text fopAcM_getEventPartner__FPC10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_getEventPartner(fopAc_ac_c const* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_getEventPartner__FPC10fopAc_ac_c.s"
+void* fopAcM_getEventPartner(fopAc_ac_c const* actor) {
+    if (dComIfGp_event_getPt1() != actor) {
+        return dComIfGp_event_getPt1();
+    }
+    
+    return dComIfGp_event_getPt2();
 }
-#pragma pop
 
 /* 8001BBE8-8001BC74 016528 008C+00 0/0 5/5 43/43 .text
  * fopAcM_createItemForPresentDemo__FPC4cXyziUciiPC5csXyzPC4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_createItemForPresentDemo(cXyz const* param_0, int param_1, u8 param_2, int param_3,
-                                        int param_4, csXyz const* param_5, cXyz const* param_6) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_createItemForPresentDemo__FPC4cXyziUciiPC5csXyzPC4cXyz.s"
+s32 fopAcM_createItemForPresentDemo(cXyz const* p_pos, int i_itemNo, u8 param_2, int i_itemBitNo,
+                                        int i_roomNo, csXyz const* p_angle, cXyz const* p_scale) {
+    dComIfGp_event_setGtItm(i_itemNo);
+
+    if (i_itemNo == NO_ITEM) {
+        return -1;
+    } else {
+        return fopAcM_createDemoItem(p_pos, i_itemNo, i_itemBitNo, p_angle, i_roomNo, p_scale, param_2);
+    }
 }
-#pragma pop
 
 /* 8001BC74-8001BCFC 0165B4 0088+00 0/0 2/2 10/10 .text
  * fopAcM_createItemForTrBoxDemo__FPC4cXyziiiPC5csXyzPC4cXyz    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_createItemForTrBoxDemo(cXyz const* param_0, int param_1, int param_2, int param_3,
-                                      csXyz const* param_4, cXyz const* param_5) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_createItemForTrBoxDemo__FPC4cXyziiiPC5csXyzPC4cXyz.s"
+s32 fopAcM_createItemForTrBoxDemo(cXyz const* p_pos, int i_itemNo, int i_itemBitNo, int i_roomNo,
+                                    csXyz const* p_angle, cXyz const* p_scale) {
+    dComIfGp_event_setGtItm(i_itemNo);
+
+    if (i_itemNo == NO_ITEM) {
+        return -1;
+    } else {
+        return fopAcM_createDemoItem(p_pos, i_itemNo, i_itemBitNo, p_angle, i_roomNo, p_scale, 0);
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451C28-80451C2C 000228 0004+00 1/1 0/0 0/0 .sdata2          @5584 */
 SECTION_SDATA2 static f32 lit_5584 = 15.999899864196777f;
 
+struct ItemTableList {
+    /* 0x00 */ char mListName[11];
+    /* 0x0B */ u8 mTableNum;
+    /* 0x0C */ u8 padding[4];
+    /* 0x10 */ u8 mTables[255][16];
+};
+
+inline u16 dComIfGs_getLife() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getLife();
+}
+
 /* 8001BCFC-8001BE14 01663C 0118+00 2/2 0/0 0/0 .text            fopAcM_getItemNoFromTableNo__FUc */
+// out of order instructions / regalloc
+#ifdef NONMATCHING
+u8 fopAcM_getItemNoFromTableNo(u8 i_tableNo) {
+    u8 tableNo = i_tableNo;
+    ItemTableList* tableList = (ItemTableList*)dComIfGp_getItemTable();
+
+    if (i_tableNo == 255) {
+        return i_tableNo;
+    }
+
+    u8 hp_percent = (dComIfGs_getLife() * 100) / (((dComIfGs_getMaxLife() / 5) * 4) & 0xFC);
+
+    switch (i_tableNo) {
+    case 150:
+    case 160:
+    case 170:
+    case 180:
+    case 190:
+        if (hp_percent < 80) {
+            if (hp_percent >= 60) {
+                tableNo = i_tableNo + 1;
+            } else if (hp_percent >= 40) {
+                tableNo = i_tableNo + 2;
+            } else if (hp_percent >= 20) {
+                tableNo = i_tableNo + 3;
+            } else {
+                tableNo = i_tableNo + 4;
+            }
+        }
+        break;
+    }
+
+    return tableList->mTables[tableNo][(int)cM_rndF(15.999f)];
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm s32 fopAcM_getItemNoFromTableNo(u8 param_0) {
+asm u8 fopAcM_getItemNoFromTableNo(u8 param_0) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_getItemNoFromTableNo__FUc.s"
 }
 #pragma pop
+#endif
+
+struct EnemyTableList {
+    /* 0x0 */ u32 mTag;
+    /* 0x4 */ int field_0x4;  // mTableNum?
+    /* 0x8 */ u8 mData;
+};
+
+struct EnemyTable {
+    /* 0x0 */ u8 mEnemyID;
+    /* 0x1 */ u8 mItemTableNo;
+    /* 0x2 */ char mStage[8];
+};
 
 /* 8001BE14-8001BF64 016754 0150+00 0/0 0/0 9/9 .text
  * fopAcM_createItemFromEnemyID__FUcPC4cXyziiPC5csXyzPC4cXyzPfPf */
+// matches with literals
+#ifdef NONMATCHING
+s32 fopAcM_createItemFromEnemyID(u8 i_enemyID, cXyz const* p_pos, int i_itemBitNo, int i_roomNo,
+                                     csXyz const* p_angle, cXyz const* p_scale, f32* speedF,
+                                     f32* speedY) {
+    int tableNo = 0xFF;
+    EnemyTableList* tblList = (EnemyTableList*)dEnemyItem_c::mData;
+    int tableNum = tblList->field_0x4;
+    EnemyTable* table = (EnemyTable*)&tblList->mData;
+
+    for (u32 i = 0; i < tableNum; i++) {
+        if (i_enemyID == table->mEnemyID) {
+            if (table->mStage[0] == '#') {
+                tableNo = table->mItemTableNo;
+            } else if (!strcmp(dComIfGp_getStartStageName(), table->mStage)) {
+                tableNo = table->mItemTableNo;
+                break;
+            }
+        }
+        table++;
+    }
+
+    if (daPy_getPlayerActorClass()->checkHorseRide()) {
+        int itemNo = fopAcM_getItemNoFromTableNo(tableNo);
+        void* ac = fopAcM_createItemForDirectGet(p_pos, itemNo, i_roomNo, NULL, NULL, 0.0f, 0.0f);
+        return fopAcM_GetID(ac);
+    }
+
+    return fopAcM_createItemFromTable(p_pos, tableNo, i_itemBitNo, i_roomNo, p_angle, 0, p_scale, speedF, speedY, false);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1358,9 +1483,36 @@ asm s32 fopAcM_createItemFromEnemyID(u8 param_0, cXyz const* param_1, int param_
 #include "asm/f_op/f_op_actor_mng/fopAcM_createItemFromEnemyID__FUcPC4cXyziiPC5csXyzPC4cXyzPfPf.s"
 }
 #pragma pop
+#endif
 
 /* 8001BF64-8001C078 0168A4 0114+00 1/1 0/0 11/11 .text
  * fopAcM_createItemFromTable__FPC4cXyziiiPC5csXyziPC4cXyzPfPfb */
+// matches with literals
+#ifdef NONMATCHING
+s32 fopAcM_createItemFromTable(cXyz const* p_pos, int i_tableNo, int i_itemBitNo, int i_roomNo,
+                                   csXyz const* p_angle, int param_5, cXyz const* p_scale,
+                                   f32* speedF, f32* speedY, bool createDirect) {
+    if (i_tableNo == 0xFF) {
+        return -1;
+    }
+
+    s32 itemNo = fopAcM_getItemNoFromTableNo(i_tableNo);
+    if (itemNo == NO_ITEM) {
+        return -1;
+    }
+
+    void* ac;
+    if (createDirect) {
+        ac = fopAcM_createItemForDirectGet(p_pos, itemNo, i_roomNo, NULL, NULL, 0.0f, 0.0f);
+    } else if (speedF == NULL && speedY == NULL) {
+        ac = fopAcM_fastCreateItem2(p_pos, itemNo, i_itemBitNo, i_roomNo, param_5, p_angle, p_scale);
+    } else {
+        ac = fopAcM_fastCreateItem(p_pos, itemNo, i_roomNo, p_angle, p_scale, speedF, speedY, i_itemBitNo, param_5, NULL);
+    }
+
+    return fopAcM_GetID(ac);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1371,29 +1523,28 @@ asm s32 fopAcM_createItemFromTable(cXyz const* param_0, int param_1, int param_2
 #include "asm/f_op/f_op_actor_mng/fopAcM_createItemFromTable__FPC4cXyziiiPC5csXyziPC4cXyzPfPfb.s"
 }
 #pragma pop
+#endif
 
 /* 8001C078-8001C0D4 0169B8 005C+00 2/2 0/0 0/0 .text
  * fopAcM_createDemoItem__FPC4cXyziiPC5csXyziPC4cXyzUc          */
-s32 fopAcM_createDemoItem(const cXyz* pPos, int itemNo, int itemBitNo, const csXyz* pRot,
+s32 fopAcM_createDemoItem(const cXyz* p_pos, int itemNo, int itemBitNo, const csXyz* p_angle,
                           int roomNo, const cXyz* scale, u8 param_7) {
-    if (itemNo == 0xFF) {
+    if (itemNo == NO_ITEM) {
         return -1;
     } else {
-        // TODO: actor enum
-        return fopAcM_create(0x21d, (itemNo & 0xFF) | (itemBitNo & 0x7F) << 0x8 | (param_7 << 0x10),
-                             pPos, roomNo, pRot, scale, -1);
+        return fopAcM_create(PROC_Demo_Item, (itemNo & 0xFF) | (itemBitNo & 0x7F) << 0x8 | (param_7 << 0x10),
+                             p_pos, roomNo, p_angle, scale, -1);
     }
 }
 
 /* 8001C0D4-8001C174 016A14 00A0+00 0/0 0/0 18/18 .text
  * fopAcM_createItemForBoss__FPC4cXyziiPC5csXyzPC4cXyzffi       */
-s32 fopAcM_createItemForBoss(const cXyz* pPos, int param_2, int roomNo, const csXyz* pRot,
-                             const cXyz* pScale, f32 speed, f32 speedY, int param_8) {
-    fopAc_ac_c* actor = static_cast<fopAc_ac_c*>(
-        fopAcM_fastCreate(0x21b, 0xFFFF0000 | param_8 << 0x8 | (param_2 & 0xFF), pPos, roomNo, pRot,
-                          pScale, -1, NULL, NULL));
+s32 fopAcM_createItemForBoss(const cXyz* p_pos, int param_2, int roomNo, const csXyz* p_angle,
+                             const cXyz* p_scale, f32 speedF, f32 speedY, int param_8) {
+    fopAc_ac_c* actor = (fopAc_ac_c*)fopAcM_fastCreate(PROC_Obj_LifeContainer, 0xFFFF0000 | param_8 << 0x8 | (param_2 & 0xFF), p_pos, roomNo, p_angle,
+                          p_scale, -1, NULL, NULL);
     if (actor != NULL) {
-        actor->mSpeedF = speed;
+        actor->mSpeedF = speedF;
         actor->mSpeed.y = speedY;
     }
     return fopAcM_GetID(actor);
@@ -1401,24 +1552,24 @@ s32 fopAcM_createItemForBoss(const cXyz* pPos, int param_2, int roomNo, const cs
 
 /* 8001C174-8001C1B8 016AB4 0044+00 0/0 0/0 2/2 .text
  * fopAcM_createItemForMidBoss__FPC4cXyziiPC5csXyzPC4cXyzii     */
-s32 fopAcM_createItemForMidBoss(const cXyz* pPos, int param_2, int param_3, const csXyz* pRot,
-                                const cXyz* param_5, int param_6, int param_7) {
-    return fopAcM_createItem(pPos, param_2, param_7, param_3, &csXyz(csXyz::Zero), param_5, 0x6);
+s32 fopAcM_createItemForMidBoss(const cXyz* p_pos, int i_itemNo, int i_roomNo, const csXyz* p_angle,
+                                const cXyz* p_scale, int param_6, int param_7) {
+    return fopAcM_createItem(p_pos, i_itemNo, param_7, i_roomNo, &csXyz(csXyz::Zero), p_scale, 0x6);
 }
 
 /* 8001C1B8-8001C1FC 016AF8 0044+00 2/2 0/0 1/1 .text
  * fopAcM_createItemForDirectGet__FPC4cXyziiPC5csXyzPC4cXyzff   */
-void* fopAcM_createItemForDirectGet(const cXyz* pPos, int param_2, int param_3, const csXyz* pRot,
-                                    const cXyz* param_5, f32 param_6, f32 param_7) {
-    return fopAcM_fastCreateItem(pPos, param_2, param_3, pRot, param_5, &param_6, &param_7, -1, 0x7,
+void* fopAcM_createItemForDirectGet(const cXyz* p_pos, int i_itemNo, int i_roomNo, const csXyz* p_angle,
+                                    const cXyz* p_scale, f32 speedF, f32 speedY) {
+    return fopAcM_fastCreateItem(p_pos, i_itemNo, i_roomNo, p_angle, p_scale, &speedF, &speedY, -1, 0x7,
                                  NULL);
 }
 
 /* 8001C1FC-8001C240 016B3C 0044+00 0/0 2/2 3/3 .text
  * fopAcM_createItemForSimpleDemo__FPC4cXyziiPC5csXyzPC4cXyzff  */
-void* fopAcM_createItemForSimpleDemo(const cXyz* pPos, int param_2, int param_3, const csXyz* pRot,
-                                     const cXyz* param_5, f32 param_6, f32 param_7) {
-    return fopAcM_fastCreateItem(pPos, param_2, param_3, pRot, param_5, &param_6, &param_7, -1, 0x4,
+void* fopAcM_createItemForSimpleDemo(const cXyz* p_pos, int i_itemNo, int i_roomNo, const csXyz* p_angle,
+                                     const cXyz* p_scale, f32 speedF, f32 speedY) {
+    return fopAcM_fastCreateItem(p_pos, i_itemNo, i_roomNo, p_angle, p_scale, &speedF, &speedY, -1, 0x4,
                                  NULL);
 }
 
@@ -1427,89 +1578,79 @@ inline u32 maskShift(int val, int bits, int shift) {
 }
 
 inline u32 makeItemParams(int iNo, int p8, int unk, int p9) {
-    // iNo = ;
-    // u32 part1 = (p8 & 0xFF) << 0x8;
-    // iNo &= 0xFF;
-    // u32 part2 = (iNo);
-    // u32 part3 = (unk & 0xFF) << 0x10;
-    // u32 part4 = ((p9 & 0xF) << 0x18);
-    // return part1 | part2 | part3 | part4;
-    // u32 part2 = (p8 & 0xFF) << 0x8;
-    // u32 part2 = maskShift(p8, 8, 0x8);
-    // part2 |= maskShift(iNo, 8, 0);
-    // part2 |= maskShift(unk, 8, 0x10);
-    // part2 |= maskShift(p9, 4, 0x18);
-    // return part2;
     return maskShift(p8, 8, 0x8) | maskShift(iNo, 8, 0) | maskShift(unk, 8, 0x10) |
            maskShift(p9, 4, 0x18);
 }
 
-/* ############################################################################################## */
-/* 80451C2C-80451C30 00022C 0004+00 2/2 0/0 0/0 .sdata2          @5711 */
-SECTION_SDATA2 static f32 lit_5711 = 32767.0f;
-
 /* 8001C240-8001C3E0 016B80 01A0+00 1/1 1/1 17/17 .text
  * fopAcM_createItem__FPC4cXyziiiPC5csXyzPC4cXyzi               */
-s32 fopAcM_createItem(const cXyz* pPos, int itemNo, int param_3, int roomNo, const csXyz* pRot,
-                      const cXyz* pScale, int param_7) {
-    if (itemNo == 0xFF) {
-        return 0xFFFFFFFF;
+s32 fopAcM_createItem(const cXyz* p_pos, int itemNo, int param_3, int roomNo, const csXyz* p_angle,
+                      const cXyz* p_scale, int param_7) {
+    if (itemNo == NO_ITEM) {
+        return -1;
     }
-    csXyz tmps(csXyz::Zero);
-    if (pRot != NULL) {
-        tmps = *pRot;
+
+    csXyz item_angle(csXyz::Zero);
+    if (p_angle != NULL) {
+        item_angle = *p_angle;
     } else {
-        tmps.y = cM_rndFX(FLOAT_LABEL(/* 32767.0f */ lit_5711));
+        item_angle.y = cM_rndFX(32767.0f);
     }
-    tmps.z = 0xFF;
+    item_angle.z = 0xFF;
+
     u32 itemActorParams = makeItemParams(check_itemno(itemNo), param_3, 0xFF, param_7);
+
     switch (itemNo) {
     case RECOVERY_FAILY:
-        return fopAcM_create(0x13f, 0xFFFFFFFF, pPos, roomNo, pRot, pScale, -1);
+        return fopAcM_create(PROC_Obj_Yousei, 0xFFFFFFFF, p_pos, roomNo, p_angle, p_scale, -1);
     case KAKERA_HEART:
     case UTAWA_HEART:
-        return fopAcM_create(0x21b, itemActorParams, pPos, roomNo, pRot, pScale, -1);
+        return fopAcM_create(PROC_Obj_LifeContainer, itemActorParams, p_pos, roomNo, p_angle, p_scale, -1);
     case TRIPLE_HEART:
         for (int i = 0; i < 2; i++) {
-            fopAcM_create(0x218, itemActorParams, pPos, roomNo, &tmps, pScale, -1);
-            tmps.y = cM_rndFX(FLOAT_LABEL(lit_5711));
+            fopAcM_create(PROC_ITEM, itemActorParams, p_pos, roomNo, &item_angle, p_scale, -1);
+            item_angle.y = cM_rndFX(32767.0f);
         }
     default:
-        return fopAcM_create(0x218, itemActorParams, pPos, roomNo, &tmps, pScale, -1);
+        return fopAcM_create(PROC_ITEM, itemActorParams, p_pos, roomNo, &item_angle, p_scale, -1);
     }
 }
 
 /* 8001C3E0-8001C5B0 016D20 01D0+00 1/1 0/0 0/0 .text
  * fopAcM_fastCreateItem2__FPC4cXyziiiiPC5csXyzPC4cXyz          */
-void* fopAcM_fastCreateItem2(const cXyz* pPos, int itemNo, int param_3, int roomNo, int param_5,
-                             const csXyz* pRot, const cXyz* pScale) {
-    csXyz tmps(csXyz::Zero);
-    if (itemNo == 0xFF) {
+void* fopAcM_fastCreateItem2(const cXyz* p_pos, int itemNo, int param_3, int roomNo, int param_5,
+                             const csXyz* p_angle, const cXyz* p_scale) {
+    csXyz item_angle(csXyz::Zero);
+
+    if (itemNo == NO_ITEM) {
         return NULL;
     }
-    if (pRot != NULL) {
-        tmps = *pRot;
+
+    if (p_angle != NULL) {
+        item_angle = *p_angle;
     } else {
-        tmps.y = cM_rndFX(FLOAT_LABEL(/* 32767.0f */ lit_5711));
+        item_angle.y = cM_rndFX(32767.0f);
     }
-    tmps.z = 0xFF;
+    item_angle.z = 0xFF;
+
     int tmpItemNo = check_itemno(itemNo);
     u32 itemActorParams =
         (param_3 & 0xFF) << 0x8 | (tmpItemNo & 0xFF) | 0xFF << 0x10 | ((param_5 & 0xF) << 0x18);
+
     switch (itemNo) {
     case RECOVERY_FAILY:
-        return fopAcM_fastCreate(0x13f, 0xFFFFFFFF, pPos, roomNo, pRot, pScale, -1, NULL, NULL);
+        return fopAcM_fastCreate(PROC_Obj_Yousei, 0xFFFFFFFF, p_pos, roomNo, p_angle, p_scale, -1, NULL, NULL);
     case KAKERA_HEART:
     case UTAWA_HEART:
-        return fopAcM_fastCreate(0x21b, itemActorParams, pPos, roomNo, pRot, pScale, -1, NULL,
+        return fopAcM_fastCreate(PROC_Obj_LifeContainer, itemActorParams, p_pos, roomNo, p_angle, p_scale, -1, NULL,
                                  NULL);
     case TRIPLE_HEART:
         for (int i = 0; i < 2; i++) {
-            fopAcM_fastCreate(0x218, itemActorParams, pPos, roomNo, &tmps, pScale, -1, NULL, NULL);
-            tmps.y = cM_rndFX(FLOAT_LABEL(lit_5711));
+            fopAcM_fastCreate(PROC_ITEM, itemActorParams, p_pos, roomNo, &item_angle, p_scale, -1, NULL, NULL);
+            item_angle.y = cM_rndFX(32767.0f);
         }
     default:
-        return fopAcM_fastCreate(0x218, itemActorParams, pPos, roomNo, &tmps, pScale, -1, NULL,
+        return fopAcM_fastCreate(PROC_ITEM, itemActorParams, p_pos, roomNo, &item_angle, p_scale, -1, NULL,
                                  NULL);
     }
 }
@@ -1532,69 +1673,72 @@ SECTION_SDATA2 static f32 lit_5812 = 1.0f / 5.0f;
 
 /* 8001C5B0-8001C870 016EF0 02C0+00 3/3 0/0 4/4 .text
  * fopAcM_fastCreateItem__FPC4cXyziiPC5csXyzPC4cXyzPfPfiiPFPv_i */
+// issue with makeItemParams
 #ifdef NON_MATCHING
-void* fopAcM_fastCreateItem(const cXyz* pPos, int param_2, int param_3, const csXyz* pRot,
-                            const cXyz* param_5, f32* param_6, f32* param_7, int param_8,
-                            int param_9, createFunc param_10) {
-    // regalloc: r30 -> r29, r31 -> r30, r29 -> r31
-    if (param_2 == 0xFF) {
+void* fopAcM_fastCreateItem(const cXyz* p_pos, int i_itemNo, int i_roomNo, const csXyz* p_angle,
+                            const cXyz* p_scale, f32* p_speedF, f32* p_speedY, int param_8,
+                            int param_9, createFunc p_createFunc) {    
+    csXyz angle;
+
+    if (i_itemNo == NO_ITEM) {
         return NULL;
     }
-    csXyz tmps;
-    u32 tmpItemNo = check_itemno(param_2);
-    // u32 itemActorParams;
-    // make_prm_item(&itemActorParams, tmpItemNo, param_8, param_9);
-    u32 itemActorParams =
-        makeItemParams(tmpItemNo, param_8, 0xFF, param_9);  // uses r0 instead of r3
-    if (param_6 != NULL && isHeart(param_2) != false) {
-        *param_6 = FLOAT_LABEL(/* 2.0f */ lit_5808) * *param_6;
+
+    u32 itemActorParams = makeItemParams(check_itemno(i_itemNo), param_8, 0xFF, param_9);
+
+    if (p_speedF != NULL && isHeart(i_itemNo)) {
+        *p_speedF = *p_speedF * 2.0f;
     }
-    switch (param_2) {
+
+    switch (i_itemNo) {
     case RECOVERY_FAILY:
-        return fopAcM_fastCreate(0x13f, 0xFFFFFFFF, pPos, param_3, pRot, param_5, -1, NULL, NULL);
+        return fopAcM_fastCreate(PROC_Obj_Yousei, 0xFFFFFFFF, p_pos, i_roomNo, p_angle, p_scale, -1, NULL, NULL);
     case KAKERA_HEART:
     case UTAWA_HEART:
-        return fopAcM_fastCreate(0x21b, itemActorParams, pPos, param_3, pRot, param_5, -1, NULL,
+        return fopAcM_fastCreate(PROC_Obj_LifeContainer, itemActorParams, p_pos, i_roomNo, p_angle, p_scale, -1, NULL,
                                  NULL);
     case TRIPLE_HEART:
         for (int i = 0; i < 2; i++) {
-            if (pRot != NULL) {
-                tmps = *pRot;
+            if (p_angle != NULL) {
+                angle = *p_angle;
             } else {
-                tmps = csXyz::Zero;
+                angle = csXyz::Zero;
             }
-            tmps.z = 0xFF;
-            tmps.y += (s16)cM_rndFX(FLOAT_LABEL(/* 8192.0f */ lit_5809));
-            fopAc_ac_c* actor = static_cast<fopAc_ac_c*>(fopAcM_fastCreate(
-                0x218, itemActorParams, pPos, param_3, &tmps, param_5, -1, param_10, NULL));
+            angle.z = 0xFF;
+            angle.y += (s16)cM_rndFX(8192.0f);
+
+            fopAc_ac_c* actor = (fopAc_ac_c*)fopAcM_fastCreate(PROC_ITEM, itemActorParams, p_pos, i_roomNo, &angle, p_scale, -1, p_createFunc, NULL);
+
             if (actor != NULL) {
-                if (param_6 != NULL) {
-                    actor->mSpeedF = *param_6 * (FLOAT_LABEL(/* 1.0f */ lit_5810) +
-                                                 cM_rndFX(FLOAT_LABEL(/* 0.3f */ lit_5811)));
+                if (p_speedF != NULL) {
+                    actor->mSpeedF = *p_speedF * (1.0f + cM_rndFX(0.3f));
                 }
-                if (param_7 != NULL) {
-                    actor->mSpeed.y = *param_7 * (FLOAT_LABEL(/* 1.0f */ lit_5810) +
-                                                  cM_rndFX(FLOAT_LABEL(/* 0.2f */ lit_5812)));
+
+                if (p_speedY != NULL) {
+                    actor->mSpeed.y = *p_speedY * (1.0f + cM_rndFX(0.2f));
                 }
             }
         }
     default:
-        if (pRot != NULL) {
-            tmps = *pRot;
+        if (p_angle != NULL) {
+            angle = *p_angle;
         } else {
-            tmps = csXyz::Zero;
+            angle = csXyz::Zero;
         }
-        tmps.z = 0xFF;
-        fopAc_ac_c* actor = static_cast<fopAc_ac_c*>(fopAcM_fastCreate(
-            0x218, itemActorParams, pPos, param_3, &tmps, param_5, -1, param_10, NULL));
+        angle.z = 0xFF;
+
+        fopAc_ac_c* actor = (fopAc_ac_c*)fopAcM_fastCreate(PROC_ITEM, itemActorParams, p_pos, i_roomNo, &angle, p_scale, -1, p_createFunc, NULL);
+
         if (actor != NULL) {
-            if (param_6 != NULL) {
-                actor->mSpeedF = *param_6;
+            if (p_speedF != NULL) {
+                actor->mSpeedF = *p_speedF;
             }
-            if (param_7 != NULL) {
-                actor->mSpeed.y = *param_7;
+
+            if (p_speedY != NULL) {
+                actor->mSpeed.y = *p_speedY;
             }
         }
+
         return actor;
     }
 }
@@ -1602,39 +1746,34 @@ void* fopAcM_fastCreateItem(const cXyz* pPos, int param_2, int param_3, const cs
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void* fopAcM_fastCreateItem(cXyz const* param_0, int param_1, int param_2, csXyz const* param_3,
-                                cXyz const* param_4, f32* param_5, f32* param_6, int param_7,
-                                int param_8, int (*param_9)(void*)) {
+asm void* fopAcM_fastCreateItem(const cXyz* p_pos, int i_itemNo, int i_roomNo, const csXyz* p_angle,
+                                const cXyz* p_scale, f32* p_speedF, f32* p_speedY, int param_8,
+                                int param_9, createFunc p_createFunc) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_fastCreateItem__FPC4cXyziiPC5csXyzPC4cXyzPfPfiiPFPv_i.s"
 }
 #pragma pop
 #endif
 
-/* ############################################################################################## */
-/* 80451C44-80451C48 000244 0004+00 1/1 0/0 0/0 .sdata2          @5845 */
-SECTION_SDATA2 static f32 lit_5845 = 2048.0f;
-
-inline void make_prm_bokkuri(u32* pActorParams, csXyz* pRot, u8 param_2, u8 param_3, u8 param_4,
+inline void make_prm_bokkuri(u32* pActorParams, csXyz* p_angle, u8 param_2, u8 param_3, u8 param_4,
                              u8 param_5, u8 param_6) {
-    pRot->x = (param_4 << 0x8) | (param_3 & 0xFF);
-    pRot->z = (param_6 << 0xD) | (param_2 << 0x1) | param_5;
+    p_angle->x = (param_4 << 0x8) | (param_3 & 0xFF);
+    p_angle->z = (param_6 << 0xD) | (param_2 << 0x1) | param_5;
 }
 
 /* 8001C870-8001C95C 0171B0 00EC+00 0/0 0/0 1/1 .text fopAcM_createBokkuri__FUsPC4cXyziiiPC4cXyzii
  */
-s32 fopAcM_createBokkuri(u16 enemyNo, const cXyz* pPos, int param_3, int param_4, int roomNo,
+s32 fopAcM_createBokkuri(u16 enemyNo, const cXyz* p_pos, int param_3, int param_4, int roomNo,
                          const cXyz* param_6, int param_7, int param_8) {
-    csXyz tmps(0, 0, 0);
+    csXyz angle(0, 0, 0);
     if (param_6 != NULL) {
-        tmps.y = param_6->atan2sX_Z();
-        tmps.y += static_cast<s16>(FLOAT_LABEL(/* 2048.0f */ lit_5845) *
-                                   cM_rndFX(FLOAT_LABEL(/* 1.0f */ lit_5810)));
+        angle.y = param_6->atan2sX_Z();
+        angle.y += static_cast<s16>(2048.0f * cM_rndFX(FLOAT_LABEL(/* 1.0f */ lit_5810)));
         param_8 = 1;
     }
     u32 actorParams = 0;
-    make_prm_bokkuri(&actorParams, &tmps, 6, param_3, param_4, param_7, param_8);
-    return fopAcM_create(0x2fc, enemyNo, actorParams, pPos, roomNo, &tmps, NULL, 0xFF, NULL);
+    make_prm_bokkuri(&actorParams, &angle, 6, param_3, param_4, param_7, param_8);
+    return fopAcM_create(PROC_Obj_Carry, enemyNo, actorParams, p_pos, roomNo, &angle, NULL, -1, NULL);
 }
 
 inline void make_prm_warp_hole(u32* actorParams, u8 p1, u8 p2, u8 p3) {
@@ -1646,78 +1785,138 @@ inline void make_prm_warp_hole(u32* actorParams, u8 p1, u8 p2, u8 p3) {
 
 /* 8001C95C-8001C9CC 01729C 0070+00 0/0 0/0 12/12 .text
  * fopAcM_createWarpHole__FPC4cXyzPC5csXyziUcUcUc               */
-s32 fopAcM_createWarpHole(const cXyz* pPos, const csXyz* pRot, int roomNo, u8 param_4, u8 param_5,
+s32 fopAcM_createWarpHole(const cXyz* p_pos, const csXyz* p_angle, int roomNo, u8 param_4, u8 param_5,
                           u8 param_6) {
     if (param_6 == 0xFF) {
         param_6 = param_4;
     }
     u32 actorParams;
     make_prm_warp_hole(&actorParams, param_5, param_6, param_4);
-    return fopAcM_create(0x163, actorParams, pPos, roomNo, pRot, NULL, -1);
+    return fopAcM_create(PROC_Obj_BossWarp, actorParams, p_pos, roomNo, p_angle, NULL, -1);
 }
 
 s32 fopAc_IsActor(void*);
 
 /* 8001C9CC-8001CA1C 01730C 0050+00 1/1 0/0 0/0 .text            enemySearchJugge__FPvPv */
-void* enemySearchJugge(void* pActor, void* pData) {
-    if (pActor != NULL && fopAc_IsActor(pActor) && static_cast<fopAc_ac_c*>(pActor)->mGroup == 2) {
-        return pActor;
+void* enemySearchJugge(void* p_actor, void* p_data) {
+    if (p_actor != NULL && fopAc_IsActor(p_actor) && static_cast<fopAc_ac_c*>(p_actor)->mGroup == 2) {
+        return p_actor;
     } else {
         return NULL;
     }
 }
 
 /* 8001CA1C-8001CAD8 01735C 00BC+00 0/0 0/0 6/6 .text            fopAcM_myRoomSearchEnemy__FSc */
+#ifdef NONMATCHING
+void fopAcM_myRoomSearchEnemy(s8 roomNo) {
+    int procID = dStage_roomControl_c::getStatusProcID(roomNo);
+    scene_class* roomProc = fopScnM_SearchByID(procID);
+
+    u32 actorID = ((daPy_py_c*)dComIfGp_getPlayer(0))->getGrabActorID();
+    fopAc_ac_c* actor = fopAcM_SearchByID(actorID);
+
+    if (actor != NULL && fopAcM_GetGroup(actor) != 2) {
+        return;
+    }
+
+    fpcM_JudgeInLayer(fpcM_LayerID(roomProc), enemySearchJugge, NULL);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm s32 fopAcM_myRoomSearchEnemy(s8 param_0) {
+asm void fopAcM_myRoomSearchEnemy(s8 param_0) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_myRoomSearchEnemy__FSc.s"
 }
 #pragma pop
+#endif
 
 /* 8001CAD8-8001CB48 017418 0070+00 0/0 0/0 81/81 .text
  * fopAcM_createDisappear__FPC10fopAc_ac_cPC4cXyzUcUcUc         */
-s32 fopAcM_createDisappear(const fopAc_ac_c* pActor, const cXyz* pPos, u8 param_3, u8 param_4,
+s32 fopAcM_createDisappear(const fopAc_ac_c* p_actor, const cXyz* p_pos, u8 param_3, u8 param_4,
                            u8 param_5) {
-    s8 roomNo = pActor->mCurrent.mRoomNo;
-    return fopAcM_GetID(fopAcM_fastCreate(0x139, (param_5 << 0x10) | (param_3 << 0x8) | param_4,
-                                          pPos, roomNo, &pActor->mCurrent.mAngle, NULL, 0xFF, NULL,
+    s8 roomNo = p_actor->mCurrent.mRoomNo;
+    return fopAcM_GetID(fopAcM_fastCreate(PROC_DISAPPEAR, (param_5 << 0x10) | (param_3 << 0x8) | param_4,
+                                          p_pos, roomNo, &p_actor->mCurrent.mAngle, NULL, 0xFF, NULL,
                                           NULL));
+}
+
+inline u16 fopAcM_GetSetId(const fopAc_ac_c* p_actor) {
+    return p_actor->mSetID;
+}
+
+inline void fopAcM_onActor(const fopAc_ac_c* p_actor) {
+    int setId = fopAcM_GetSetId(p_actor);
+    dComIfGs_onActor(setId, fopAcM_GetHomeRoomNo(p_actor));
 }
 
 /* 8001CB48-8001CBA0 017488 0058+00 0/0 6/6 7/7 .text            fopAcM_setCarryNow__FP10fopAc_ac_ci
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_setCarryNow(fopAc_ac_c* param_0, int param_1) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_setCarryNow__FP10fopAc_ac_ci.s"
+void fopAcM_setCarryNow(fopAc_ac_c* p_actor, int param_1) {
+    p_actor->mStatus |= 0x2000;
+
+    if (param_1 != 0) {
+        fopAcM_setStageLayer(p_actor);
+        fopAcM_onActor(p_actor);
+    }
 }
-#pragma pop
+
+inline BOOL dComIfGp_event_runCheck() {
+    return g_dComIfG_gameInfo.play.getEvent().runCheck();
+}
 
 /* 8001CBA0-8001CC5C 0174E0 00BC+00 0/0 5/5 21/21 .text fopAcM_cancelCarryNow__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_cancelCarryNow(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_cancelCarryNow__FP10fopAc_ac_c.s"
+void fopAcM_cancelCarryNow(fopAc_ac_c* p_actor) {
+    if (fopAcM_checkCarryNow(p_actor)) {
+        p_actor->mStatus &= ~0x2000;
+
+        s8 roomNo = fopAcM_GetHomeRoomNo(p_actor);
+        if (roomNo != -1) {
+            int procID = dStage_roomControl_c::getStatusProcID(fopAcM_GetRoomNo(p_actor));
+            scene_class* roomProc = fopScnM_SearchByID(procID);
+
+            if (roomProc != NULL) {
+                fopAcM_setRoomLayer(p_actor, fopAcM_GetRoomNo(p_actor));
+            }
+        }
+
+        p_actor->mCollisionRot.z = 0;
+        p_actor->mCollisionRot.x = 0;
+
+        if (dComIfGp_event_runCheck() && fopAcM_GetGroup(p_actor) != 2) {
+            p_actor->mStatus |= 0x800;
+        }
+    }
 }
-#pragma pop
 
 /* 8001CC5C-8001CDFC 01759C 01A0+00 0/0 0/0 9/9 .text            fopAcM_otoCheck__FPC10fopAc_ac_cf
  */
+// matches with literals
+#ifdef NONMATCHING
+s32 fopAcM_otoCheck(fopAc_ac_c const* p_actor, f32 param_1) {
+    SND_INFLUENCE* sound = dKy_Sound_get();
+    
+    if (sound->field_0x14 != -1 && fopAcM_GetID(p_actor) != sound->field_0x14) {
+        cXyz tmp = sound->field_0x0 - p_actor->mCurrent.mPosition;
+        
+        if (tmp.abs() < param_1) {
+            return sound->field_0xc;
+        }
+    }
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm f32 fopAcM_otoCheck(fopAc_ac_c const* param_0, f32 param_1) {
+asm s32 fopAcM_otoCheck(fopAc_ac_c const* param_0, f32 param_1) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_otoCheck__FPC10fopAc_ac_cf.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80451C48-80451C4C 000248 0004+00 2/2 0/0 0/0 .sdata2          @6035 */
@@ -1725,38 +1924,62 @@ SECTION_SDATA2 static f32 lit_6035 = 100.0f;
 
 /* 8001CDFC-8001CED0 01773C 00D4+00 0/0 0/0 49/49 .text
  * fopAcM_otherBgCheck__FPC10fopAc_ac_cPC10fopAc_ac_c           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_otherBgCheck(fopAc_ac_c const* param_0, fopAc_ac_c const* param_1) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_otherBgCheck__FPC10fopAc_ac_cPC10fopAc_ac_c.s"
-}
-#pragma pop
+s32 fopAcM_otherBgCheck(fopAc_ac_c const* param_0, fopAc_ac_c const* param_1) {
+    dBgS_LinChk linChk;
+    cXyz tmp1;
+    cXyz tmp0;
 
-/* ############################################################################################## */
-/* 80451C4C-80451C50 00024C 0004+00 1/1 0/0 0/0 .sdata2          @6068 */
-SECTION_SDATA2 static f32 lit_6068 = 50.0f;
+    tmp0 = param_1->mCurrent.mPosition;
+    tmp0.y += lit_6035;
+
+    tmp1 = param_0->mCurrent.mPosition;
+    tmp1.y = param_0->mEyePos.y;
+
+    linChk.Set(&tmp1, &tmp0, param_0);
+
+    if (dComIfG_Bgsp().LineCross(&linChk)) {
+        return 1;
+    }
+
+    return 0;
+}
 
 /* 8001CED0-8001CFD8 017810 0108+00 0/0 0/0 18/18 .text fopAcM_wayBgCheck__FPC10fopAc_ac_cff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_wayBgCheck(fopAc_ac_c const* param_0, f32 param_1, f32 param_2) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_wayBgCheck__FPC10fopAc_ac_cff.s"
+s32 fopAcM_wayBgCheck(fopAc_ac_c const* param_0, f32 param_1, f32 param_2) {
+    dBgS_LinChk linChk;
+    cXyz tmp1;
+    cXyz tmp0;
+    cXyz tmp2;
+
+    tmp0 = param_0->mCurrent.mPosition;
+    tmp0.y += param_2;
+    mDoMtx_YrotS((MtxP)calc_mtx, param_0->mCollisionRot.y);
+
+    tmp1.x = FLOAT_LABEL(lit_4645);
+    tmp1.y = 50.0f;
+    tmp1.z = param_1;
+
+    MtxPosition(&tmp1, &tmp2);
+    PSVECAdd(&tmp2, &param_0->mCurrent.mPosition, &tmp2);
+
+    linChk.Set(&tmp0, &tmp2, param_0);
+
+    if (dComIfG_Bgsp().LineCross(&linChk)) {
+        return 1;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 8001CFD8-8001D020 017918 0048+00 0/0 0/0 2/2 .text fopAcM_plAngleCheck__FPC10fopAc_ac_cs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_plAngleCheck(fopAc_ac_c const* param_0, s16 param_1) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_plAngleCheck__FPC10fopAc_ac_cs.s"
+s32 fopAcM_plAngleCheck(fopAc_ac_c const* p_actor, s16 i_angle) {
+    s16 angle = p_actor->mCollisionRot.y - ((fopAc_ac_c*)dComIfGp_getPlayer(0))->mCollisionRot.y;
+    if (angle <= i_angle && angle >= (s16)-i_angle) {
+        return 0;
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803F1C00-803F1C0C 01E920 000C+00 1/1 0/0 0/0 .bss             @4176 */
@@ -1824,42 +2047,75 @@ asm s32 fopAcM_effSmokeSet1(u32* param_0, u32* param_1, cXyz const* param_2, csX
 
 /* ############################################################################################## */
 /* 80451C50-80451C54 000250 0004+00 1/1 0/0 0/0 .sdata2          hamon_name$6107 */
-SECTION_SDATA2 static u8 hamon_name[4] = {
-    0x01,
-    0xB2,
-    0x01,
-    0xB3,
+SECTION_SDATA2 static u16 hamon_name[2] = {
+    0x01B2,
+    0x01B3,
 };
 
 /* 8001D10C-8001D1F4 017A4C 00E8+00 0/0 1/1 41/41 .text            fopAcM_effHamonSet__FPUlPC4cXyzff
  */
+// matches with literals
+#ifdef NONMATCHING
+void fopAcM_effHamonSet(u32* param_0, cXyz const* param_1, f32 param_2, f32 emitRate) {
+    cXyz tmp(param_2, param_2, param_2);
+
+    for (int i = 0; i < 2; i++) {
+        *param_0 = dComIfGp_particle_set(*param_0, hamon_name[i], param_1, NULL, &tmp);
+
+        JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(*param_0);
+        if (emitter != NULL) {
+            emitter->setRate(emitRate);
+        }
+        param_0++;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm s32 fopAcM_effHamonSet(u32* param_0, cXyz const* param_1, f32 param_2, f32 param_3) {
+asm void fopAcM_effHamonSet(u32* param_0, cXyz const* param_1, f32 param_2, f32 param_3) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_effHamonSet__FPUlPC4cXyzff.s"
 }
 #pragma pop
+#endif
 
 /* 8001D1F4-8001D1FC 017B34 0008+00 0/0 0/0 7/7 .text            fopAcM_riverStream__FP4cXyzPsPff */
 s32 fopAcM_riverStream(cXyz* param_0, s16* param_1, f32* param_2, f32 param_3) {
     return 0;
 }
 
-/* ############################################################################################## */
-/* 80451C54-80451C58 000254 0004+00 1/1 0/0 0/0 .sdata2          @6174 */
-SECTION_SDATA2 static f32 lit_6174 = 150.0f;
-
 /* 8001D1FC-8001D32C 017B3C 0130+00 0/0 0/0 12/12 .text fopAcM_carryOffRevise__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_carryOffRevise(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_carryOffRevise__FP10fopAc_ac_c.s"
+s32 fopAcM_carryOffRevise(fopAc_ac_c* param_0) {
+    fopAc_ac_c* player = (fopAc_ac_c*)dComIfGp_getPlayer(0);
+    dBgS_LinChk linChk;
+    cXyz tmp1;
+    cXyz tmp0;
+    cXyz tmp2;
+
+    tmp0 = player->mCurrent.mPosition;
+    tmp0.y = param_0->mCurrent.mPosition.y;
+    mDoMtx_YrotS((MtxP)calc_mtx, player->mCollisionRot.y);
+
+    tmp1.x = FLOAT_LABEL(lit_4645);
+    tmp1.y = param_0->mCurrent.mPosition.y - player->mCurrent.mPosition.y;
+    tmp1.z = 150.0f;
+
+    MtxPosition(&tmp1, &tmp2);
+    PSVECAdd(&tmp2, &player->mCurrent.mPosition, &tmp2);
+
+    linChk.Set(&tmp0, &tmp2, param_0);
+
+    if (dComIfG_Bgsp().LineCross(&linChk)) {
+        param_0->mCurrent.mPosition.x = player->mCurrent.mPosition.x;
+        param_0->mCurrent.mPosition.z = player->mCurrent.mPosition.z;
+        param_0->mNext.mPosition = param_0->mCurrent.mPosition;
+        param_0->mSpeedF = FLOAT_LABEL(lit_4645);
+        return 1;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 8001D32C-8001D3D4 017C6C 00A8+00 1/1 0/0 0/0 .text            vectle_calc__FPC10DOUBLE_POSP4cXyz
  */
@@ -1907,52 +2163,104 @@ asm void fopAcM_setEffectMtx(fopAc_ac_c const* param_0, J3DModelData const* para
 #pragma pop
 
 /* 8001D5A4-8001D5EC 017EE4 0048+00 1/1 0/0 0/0 .text fopAcM_getProcNameString__FPC10fopAc_ac_c */
-static const char* fopAcM_getProcNameString(const fopAc_ac_c* pActor) {
-    const char* name = dStage_getName2(pActor->mBase.mBsTypeId, pActor->mSubtype);
+static const char* fopAcM_getProcNameString(const fopAc_ac_c* p_actor) {
+    const char* name = dStage_getName2(p_actor->mBase.mBsTypeId, p_actor->mSubtype);
     return name != NULL ? name : "UNKOWN";
 }
 
 /* 8001D5EC-8001D698 017F2C 00AC+00 1/1 0/0 0/0 .text fopAcM_findObjectCB__FPC10fopAc_ac_cPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm s32 fopAcM_findObjectCB(fopAc_ac_c const* param_0, void* param_1) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_findObjectCB__FPC10fopAc_ac_cPv.s"
+static const fopAc_ac_c* fopAcM_findObjectCB(fopAc_ac_c const* p_actor, void* p_data) {
+    fopAcM_search_prm* prm = (fopAcM_search_prm*)p_data;
+
+    if (!fopAcM_IsExecuting(fopAcM_GetID(p_actor))) {
+        return NULL;
+    }
+
+    if (prm->mProcName == fopAcM_GetProfName(p_actor) && prm->mSubType == p_actor->mSubtype) {
+        if (prm->mParam0 == 0 || prm->mParam1 == (prm->mParam0 & fopAcM_GetParam(p_actor))) {
+            return p_actor;
+        }
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 8001D698-8001D6F0 017FD8 0058+00 0/0 1/1 1/1 .text            fopAcM_searchFromName__FPCcUlUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_searchFromName(char const* param_0, u32 param_1, u32 param_2) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_searchFromName__FPCcUlUl.s"
+fopAc_ac_c* fopAcM_searchFromName(char const* name, u32 param0, u32 param1) {
+    fopAcM_search_prm prm;
+    prm.mParam0 = param0;
+    prm.mParam1 = param1;
+
+    dStage_objectNameInf* objInf = dStage_searchName(name);
+    if (objInf == NULL) {
+        return NULL;
+    }
+
+    prm.mProcName = objInf->mProcName;
+    prm.mSubType = objInf->mSubtype;
+    return fopAcM_Search((fopAcIt_JudgeFunc)fopAcM_findObjectCB, &prm);
 }
-#pragma pop
 
 /* 8001D6F0-8001D7A0 018030 00B0+00 1/1 0/0 0/0 .text fopAcM_findObject4EventCB__FP10fopAc_ac_cPv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_findObject4EventCB(fopAc_ac_c* param_0, void* param_1) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_findObject4EventCB__FP10fopAc_ac_cPv.s"
+fopAc_ac_c* fopAcM_findObject4EventCB(fopAc_ac_c* p_actor, void* p_data) {
+    fopAcM_search4ev_prm* prm = (fopAcM_search4ev_prm*)p_data;
+
+    if (p_data == NULL || !fopAcM_IsExecuting(fopAcM_GetID(p_actor))) {
+        return NULL;
+    }
+
+    if (prm->mProcName == fopAcM_GetProfName(p_actor) && prm->mSubType == p_actor->mSubtype) {
+        if (prm->mEventID < 0 || prm->mEventID == p_actor->mEvtInfo.getIdx()) {
+            return p_actor;
+        }
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 8001D7A0-8001D890 0180E0 00F0+00 0/0 7/7 0/0 .text            fopAcM_searchFromName4Event__FPCcs
  */
+#ifdef NONMATCHING
+fopAc_ac_c* fopAcM_searchFromName4Event(char const* name, s16 eventID) {
+    fopAcM_search4ev_prm prm;
+    prm.field_0x1e = eventID;
+    strcpy(prm.mName, name);
+
+    char* chr = strchr(prm.mName, ':');
+    if (chr != NULL) {
+        chr[0] = 0;
+        prm.mEventID = 0;
+
+        chr++;
+        for (; *chr != 0; chr++) {
+            if (*chr < '0' || *chr > '9') {
+                prm.mEventID = 0xFFFF;
+                break;
+            }
+            prm.mEventID += chr[0] - 0x30;  // ?
+        }
+    }
+
+    dStage_objectNameInf* objInf = dStage_searchName(prm.mName);
+    if (objInf == NULL) {
+        return 0;
+    }
+
+    prm.mProcName = objInf->mProcName;
+    prm.mSubType = objInf->mSubtype;
+    return fopAcM_Search((fopAcIt_JudgeFunc)fopAcM_findObject4EventCB, &prm);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm fopAc_ac_c* fopAcM_searchFromName4Event(char const* param_0, s16 param_1) {
+asm fopAc_ac_c* fopAcM_searchFromName4Event(char const* name, s16 eventID) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_searchFromName4Event__FPCcs.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803F1D18-803F1D24 01EA38 000C+00 0/1 0/0 0/0 .bss             @6509 */
@@ -1994,14 +2302,14 @@ asm s32 fopAcM_getWaterY(cXyz const* param_0, f32* param_1) {
 
 /* 8001D900-8001D9A8 018240 00A8+00 0/0 2/2 2/2 .text
  * fpoAcM_relativePos__FPC10fopAc_ac_cPC4cXyzP4cXyz             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpoAcM_relativePos(fopAc_ac_c const* param_0, cXyz const* param_1, cXyz* param_2) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fpoAcM_relativePos__FPC10fopAc_ac_cPC4cXyzP4cXyz.s"
+void fpoAcM_relativePos(fopAc_ac_c const* actor, cXyz const* p_inPos, cXyz* p_outPos) {
+    s16 angle = -actor->mCollisionRot.y;
+    cXyz pos = *p_inPos - actor->mCurrent.mPosition;
+    
+    p_outPos->x = (pos.z * cM_ssin(angle)) + (pos.x * cM_scos(angle));
+    p_outPos->y = pos.y;
+    p_outPos->z = (pos.z * cM_scos(angle)) - (pos.x * cM_ssin(angle));
 }
-#pragma pop
 
 /* 8001D9A8-8001DAE4 0182E8 013C+00 0/0 1/1 9/9 .text
  * fopAcM_getWaterStream__FPC4cXyzRC13cBgS_PolyInfoP4cXyzPii    */
@@ -2025,6 +2333,21 @@ SECTION_DATA extern void* __vt__8cM3dGPla[3] = {
 
 /* 8001DAE4-8001DB90 018424 00AC+00 0/0 2/2 8/8 .text fopAcM_getPolygonAngle__FRC13cBgS_PolyInfos
  */
+// matches when TU vtable data is correct
+#ifdef NONMATCHING
+s16 fopAcM_getPolygonAngle(cBgS_PolyInfo const& poly, s16 param_1) {
+    if (!dComIfG_Bgsp().ChkPolySafe(poly)) {
+        return 0;
+    }
+
+    cM3dGPla plane;
+    if (!dComIfG_Bgsp().GetTriPla(poly, &plane)) {
+        return 0;
+    }
+
+    return fopAcM_getPolygonAngle(&plane, param_1);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2033,6 +2356,7 @@ asm s16 fopAcM_getPolygonAngle(cBgS_PolyInfo const& param_0, s16 param_1) {
 #include "asm/f_op/f_op_actor_mng/fopAcM_getPolygonAngle__FRC13cBgS_PolyInfos.s"
 }
 #pragma pop
+#endif
 
 /* 8001DB90-8001DBD8 0184D0 0048+00 1/0 9/9 0/0 .text            __dt__8cM3dGPlaFv */
 #pragma push
@@ -2045,14 +2369,28 @@ extern "C" asm void __dt__8cM3dGPlaFv() {
 #pragma pop
 
 /* 8001DBD8-8001DC68 018518 0090+00 1/1 5/5 18/18 .text fopAcM_getPolygonAngle__FPC8cM3dGPlas */
+// sqrt issues
+#ifdef NONMATCHING
+s16 fopAcM_getPolygonAngle(cM3dGPla const* p_plane, s16 param_1) {
+    if (p_plane == NULL) {
+        return 0;
+    }
+
+    s16 atan = p_plane->mNormal.atan2sX_Z() - param_1;
+    f32 cos = cM_scos(atan);
+    f32 sqrt = JMAFastSqrt__Ff(square(p_plane->mNormal.x) + square(p_plane->mNormal.z));
+    return cM_atan2s(sqrt * cos, p_plane->mNormal.y);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fopAcM_getPolygonAngle(cM3dGPla const* param_0, s16 param_1) {
+asm s16 fopAcM_getPolygonAngle(cM3dGPla const* param_0, s16 param_1) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_getPolygonAngle__FPC8cM3dGPlas.s"
 }
 #pragma pop
+#endif
 
 /* 8001DC68-8001DCBC 0185A8 0054+00 0/0 5/5 21/21 .text
  * lineCheck__11fopAcM_lc_cFPC4cXyzPC4cXyzPC10fopAc_ac_c        */
@@ -2184,7 +2522,8 @@ REGISTER_CTORS(0x8001DE14, __sinit_f_op_actor_mng_cpp);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_WtrChk::~dBgS_WtrChk() {
+// asm dBgS_WtrChk::~dBgS_WtrChk() {
+extern "C" asm void __dt__11dBgS_WtrChkFv() {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/__dt__11dBgS_WtrChkFv.s"
 }
@@ -2194,7 +2533,8 @@ asm dBgS_WtrChk::~dBgS_WtrChk() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_ObjRoofChk::~dBgS_ObjRoofChk() {
+// asm dBgS_ObjRoofChk::~dBgS_ObjRoofChk() {
+extern "C" asm void __dt__15dBgS_ObjRoofChkFv() {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/__dt__15dBgS_ObjRoofChkFv.s"
 }
@@ -2204,7 +2544,8 @@ asm dBgS_ObjRoofChk::~dBgS_ObjRoofChk() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_ObjGndChk::~dBgS_ObjGndChk() {
+// asm dBgS_ObjGndChk::~dBgS_ObjGndChk() {
+extern "C" asm void __dt__14dBgS_ObjGndChkFv() {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/__dt__14dBgS_ObjGndChkFv.s"
 }
@@ -2316,17 +2657,17 @@ void daPy_py_c::onFrollCrashFlg(u8 param_0, int param_1) {
 }
 
 /* 8001E120-8001E128 018A60 0008+00 0/0 1/0 0/0 .text            checkWolfDash__9daPy_py_cCFv */
-bool daPy_py_c::checkWolfDash() const {
+int daPy_py_c::checkWolfDash() const {
     return false;
 }
 
 /* 8001E128-8001E130 018A68 0008+00 0/0 1/0 0/0 .text            checkFrontRoll__9daPy_py_cCFv */
-bool daPy_py_c::checkFrontRoll() const {
+int daPy_py_c::checkFrontRoll() const {
     return false;
 }
 
 /* 8001E130-8001E138 018A70 0008+00 0/0 1/0 0/0 .text            checkHorseRide__9daPy_py_cCFv */
-bool daPy_py_c::checkHorseRide() const {
+u32 daPy_py_c::checkHorseRide() const {
     return false;
 }
 

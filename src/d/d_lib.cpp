@@ -4,6 +4,7 @@
 //
 
 #include "d/d_lib.h"
+#include "SSystem/SComponent/c_m3d.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
@@ -73,7 +74,6 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 //
 // Declarations:
@@ -101,19 +101,19 @@ SECTION_DATA extern void* __vt__9STControl[4] = {
     (void*)getAngleStick__9STControlFv,
 };
 
-STControl::STControl(s16 param_0, s16 param_1, s16 param_2, s16 param_3, f32 param_4, f32 param_5,
+STControl::STControl(s16 delayY, s16 delayX, s16 param_2, s16 param_3, f32 threshold, f32 param_5,
                      s16 param_6, s16 param_7) {
-    setWaitParm(param_0, param_1, param_2, param_3, param_4, param_5, param_6, param_7);
+    setWaitParm(delayY, delayX, param_2, param_3, threshold, param_5, param_6, param_7);
     init();
 }
 
-void STControl::setWaitParm(s16 param_0, s16 param_1, s16 param_2, s16 param_3, f32 param_4,
+void STControl::setWaitParm(s16 delayY, s16 delayX, s16 param_2, s16 param_3, f32 threshold,
                             f32 param_5, s16 param_6, s16 param_7) {
-    field_0x12 = param_0;
-    field_0x14 = param_1;
+    mRepeatDelayY = delayY;
+    mRepeatDelayX = delayX;
     field_0x16 = param_2;
     field_0x1c = param_3;
-    field_0x04 = param_4;
+    mThreshold = threshold;
     field_0x08 = param_5;
     field_0x24 = param_6;
     field_0x26 = param_7;
@@ -123,10 +123,10 @@ void STControl::init() {
     field_0x0e = 0;
     field_0x10 = 0;
     field_0x0d = 0;
-    field_0x0c = 0;
+    mDirectionTrig = 0;
     field_0x22 = 0;
-    mXwaitTimer = field_0x12;
-    mYwaitTimer = field_0x12;
+    mXwaitTimer = mRepeatDelayY;
+    mYwaitTimer = mRepeatDelayY;
     field_0x1e = field_0x1c;
     field_0x20 = field_0x1c;
     mFirstWaitTime = 0;
@@ -136,31 +136,20 @@ void STControl::init() {
 
 void STControl::Xinit() {
     field_0x0e = 0;
-    field_0x0c &= 0xfc;
-    mXwaitTimer = field_0x12;
+    mDirectionTrig &= ~0x03;
+    mXwaitTimer = mRepeatDelayY;
     field_0x1e = field_0x1c;
     field_0x2a = mFirstWaitTime;
 }
 
 /* 8003212C-8003215C 02CA6C 0030+00 1/1 0/0 0/0 .text            Yinit__9STControlFv */
-#ifdef NONMATCHING
 void STControl::Yinit() {
     field_0x10 = 0;
-    field_0x0c &= 0xf3;
-    mYwaitTimer = field_0x12;
+    mDirectionTrig &= ~0x0C;
+    mYwaitTimer = mRepeatDelayY;
     field_0x20 = field_0x1c;
     field_0x2c = mFirstWaitTime;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void STControl::Yinit() {
-    nofralloc
-#include "asm/d/d_lib/Yinit__9STControlFv.s"
-}
-#pragma pop
-#endif
 
 f32 STControl::getValueStick() {
     return mDoCPd_c::getStickValue(PAD_1);
@@ -179,23 +168,100 @@ s16 CSTControl::getAngleStick() {
 }
 
 /* 8003219C-8003242C 02CADC 0290+00 0/0 24/24 0/0 .text            checkTrigger__9STControlFv */
+#ifdef NONMATCHING
+u8 STControl::checkTrigger() {
+    field_0x0d = mDirectionTrig;
+    f32 stickValue = getValueStick();
+    s16 stickAngle_ = getAngleStick();
+    u8 var_r6 = 0;
+    s16 temp_r7 = 0x2000 - field_0x26 >> 1;
+
+    if (!cM3d_IsZero(stickValue)) {
+        int stickAngle = stickAngle_;
+        s16 temp_r4 = field_0x22;
+        int temp_r3 = temp_r4 + temp_r7;
+
+        if (stickAngle < temp_r3 - 0x7000) {
+            var_r6 |= TRIG_UP;
+        } else if (stickAngle < (temp_r4 - 0x5000) - temp_r7) {
+            var_r6 |= TRIG_UP_LEFT;
+        } else if (stickAngle < temp_r3 - 0x3000) {
+            var_r6 |= TRIG_LEFT;
+        } else if (stickAngle < (temp_r4 - 0x1000) - temp_r7) {
+            var_r6 |= TRIG_DOWN_LEFT;
+        } else if (stickAngle < temp_r3 + 0x1000) {
+            var_r6 |= TRIG_DOWN;
+        } else if (stickAngle < (temp_r4 + 0x3000) - temp_r7) {
+            var_r6 |= TRIG_DOWN_RIGHT;
+        } else if (stickAngle < temp_r3 + 0x5000) {
+            var_r6 |= TRIG_RIGHT;
+        } else if (stickAngle < (temp_r4 + 0x7000) - temp_r7) {
+            var_r6 |= TRIG_UP_RIGHT;
+        } else {
+            var_r6 |= TRIG_UP;
+        }
+
+        if (stickValue >= mThreshold) {
+            mDirectionTrig = var_r6;
+        } else if (stickValue < field_0x08) {
+            mDirectionTrig = 0;
+        } else {
+            mDirectionTrig &= ~var_r6;
+        }
+
+        u8 temp_r3_2 = mDirectionTrig;
+        if (temp_r3_2 != field_0x0d) {
+            if (temp_r3_2 == 0) {
+                field_0x22 = 0;
+            } else if ((stickAngle & 0x1FFF) > 0x1000) {
+                field_0x22 = field_0x24;
+            } else {
+                field_0x22 = -field_0x24;
+            }
+        }
+
+        if (!(mDirectionTrig & 3)) {
+            Xinit();
+        }
+
+        if (!(mDirectionTrig & 0xC)) {
+            Yinit();
+        }
+    } else {
+        mDirectionTrig = 0;
+        Xinit();
+        Yinit();
+    }
+
+    if ((field_0x0d & mDirectionTrig & 3) && field_0x0e > 0) {
+        field_0x0e--;
+    }
+
+    if ((field_0x0d & mDirectionTrig & 0xC) && field_0x10 > 0) {
+        field_0x10--;
+    }
+
+    return mDirectionTrig;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void STControl::checkTrigger() {
+asm u8 STControl::checkTrigger() {
     nofralloc
 #include "asm/d/d_lib/checkTrigger__9STControlFv.s"
 }
 #pragma pop
+#endif
 
 bool STControl::checkLeftTrigger() {
-    if ((field_0x0e == 0) && ((field_0x0c & 1) != 0)) {
+    if (field_0x0e == 0 && mDirectionTrig & TRIG_LEFT) {
         field_0x0e = mXwaitTimer + field_0x2a;
         field_0x2a = 0;
         if ((int)field_0x1e == 0) {
             mXwaitTimer -= field_0x16;
-            if (mXwaitTimer < field_0x14) {
-                mXwaitTimer = field_0x14;
+            if (mXwaitTimer < mRepeatDelayX) {
+                mXwaitTimer = mRepeatDelayX;
             }
         } else {
             field_0x1e--;
@@ -206,13 +272,13 @@ bool STControl::checkLeftTrigger() {
 }
 
 bool STControl::checkRightTrigger() {
-    if ((field_0x0e == 0) && ((field_0x0c & 2) != 0)) {
+    if (field_0x0e == 0 && mDirectionTrig & TRIG_RIGHT) {
         field_0x0e = mXwaitTimer + field_0x2a;
         field_0x2a = 0;
         if ((int)field_0x1e == 0) {
             mXwaitTimer -= field_0x16;
-            if (mXwaitTimer < field_0x14) {
-                mXwaitTimer = field_0x14;
+            if (mXwaitTimer < mRepeatDelayX) {
+                mXwaitTimer = mRepeatDelayX;
             }
         } else {
             field_0x1e--;
@@ -223,13 +289,13 @@ bool STControl::checkRightTrigger() {
 }
 
 bool STControl::checkUpTrigger() {
-    if ((field_0x10 == 0) && ((field_0x0c & 4) != 0)) {
+    if (field_0x10 == 0 && mDirectionTrig & TRIG_UP) {
         field_0x10 = mYwaitTimer + field_0x2c;
         field_0x2c = 0;
         if ((int)field_0x20 == 0) {
             mYwaitTimer -= field_0x16;
-            if (mYwaitTimer < field_0x14) {
-                mYwaitTimer = field_0x14;
+            if (mYwaitTimer < mRepeatDelayX) {
+                mYwaitTimer = mRepeatDelayX;
             }
         } else {
             field_0x20--;
@@ -240,13 +306,13 @@ bool STControl::checkUpTrigger() {
 }
 
 bool STControl::checkDownTrigger() {
-    if ((field_0x10 == 0) && ((field_0x0c & 8) != 0)) {
+    if (field_0x10 == 0 && mDirectionTrig & TRIG_DOWN) {
         field_0x10 = mYwaitTimer + field_0x2c;
         field_0x2c = 0;
         if ((int)field_0x20 == 0) {
             mYwaitTimer -= field_0x16;
-            if (mYwaitTimer < field_0x14) {
-                mYwaitTimer = field_0x14;
+            if (mYwaitTimer < mRepeatDelayX) {
+                mYwaitTimer = mRepeatDelayX;
             }
         } else {
             field_0x20--;

@@ -6,325 +6,154 @@
 #include "msg/scrn/d_msg_scrn_base.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct dMsgScrnBase_c {
-    /* 80238C3C */ void exec();
-    /* 80238C40 */ void setSelectRubyString(char*, char*, char*);
-    /* 80238C44 */ void setSelectString(char*, char*, char*);
-    /* 80238C48 */ bool selectAnimeMove(u8, u8, bool);
-    /* 80238C50 */ void selectAnimeInit(u8, u8, f32, u8);
-    /* 80238C54 */ void arwAnimeMove();
-    /* 80238C58 */ void arwAnimeInit();
-    /* 80238C5C */ void fukiPosCalc(u8);
-    /* 80238C60 */ bool isSelect();
-    /* 80238C68 */ bool selectAnimeEnd();
-    /* 80238C70 */ void dotAnimeMove();
-    /* 80238C74 */ void dotAnimeInit();
-    /* 8023C0DC */ dMsgScrnBase_c();
-    /* 8023C124 */ ~dMsgScrnBase_c();
-    /* 8023C16C */ void init();
-    /* 8023C234 */ void multiDraw();
-    /* 8023C274 */ void draw();
-    /* 8023C300 */ void drawSelf();
-    /* 8023C32C */ void drawOutFont(f32, f32, f32);
-    /* 8023C360 */ void setString(char*, char*);
-    /* 8023C3EC */ void setRubyString(char*);
-    /* 8023C458 */ void fukiScale(f32);
-    /* 8023C480 */ void fukiTrans(f32, f32);
-    /* 8023C4A4 */ void fukiAlpha(f32);
-    /* 8023C4F4 */ void fontAlpha(f32);
-    /* 8023C574 */ void isTalkNow();
-};
-
-struct dMsgObject_c {
-    /* 8023822C */ void getStatus();
-};
-
-struct dDlst_base_c {};
-
-struct dDlst_list_c {
-    /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
-};
-
-struct J2DTextBox {
-    /* 80300658 */ void getStringPtr() const;
-};
-
-struct J2DGrafContext {};
-
-struct J2DScreen {
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-};
-
-struct CPaneMgrAlpha {
-    /* 802557D0 */ void setAlphaRate(f32);
-};
-
-struct CPaneMgr {
-    /* 802545B0 */ void paneTrans(f32, f32);
-    /* 80254638 */ void paneScale(f32, f32);
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__14dMsgScrnBase_cFv();
-extern "C" void __dt__14dMsgScrnBase_cFv();
-extern "C" void init__14dMsgScrnBase_cFv();
-extern "C" void multiDraw__14dMsgScrnBase_cFv();
-extern "C" void draw__14dMsgScrnBase_cFv();
-extern "C" void drawSelf__14dMsgScrnBase_cFv();
-extern "C" void drawOutFont__14dMsgScrnBase_cFfff();
-extern "C" void setString__14dMsgScrnBase_cFPcPc();
-extern "C" void setRubyString__14dMsgScrnBase_cFPc();
-extern "C" void fukiScale__14dMsgScrnBase_cFf();
-extern "C" void fukiTrans__14dMsgScrnBase_cFff();
-extern "C" void fukiAlpha__14dMsgScrnBase_cFf();
-extern "C" void fontAlpha__14dMsgScrnBase_cFf();
-extern "C" void isTalkNow__14dMsgScrnBase_cFv();
-
-//
-// External References:
-//
-
-extern "C" void set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c();
-extern "C" void getStatus__12dMsgObject_cFv();
-extern "C" void exec__14dMsgScrnBase_cFv();
-extern "C" void setSelectRubyString__14dMsgScrnBase_cFPcPcPc();
-extern "C" void setSelectString__14dMsgScrnBase_cFPcPcPc();
-extern "C" bool selectAnimeMove__14dMsgScrnBase_cFUcUcb();
-extern "C" void selectAnimeInit__14dMsgScrnBase_cFUcUcfUc();
-extern "C" void arwAnimeMove__14dMsgScrnBase_cFv();
-extern "C" void arwAnimeInit__14dMsgScrnBase_cFv();
-extern "C" void fukiPosCalc__14dMsgScrnBase_cFUc();
-extern "C" bool isSelect__14dMsgScrnBase_cFv();
-extern "C" bool selectAnimeEnd__14dMsgScrnBase_cFv();
-extern "C" void dotAnimeMove__14dMsgScrnBase_cFv();
-extern "C" void dotAnimeInit__14dMsgScrnBase_cFv();
-extern "C" void paneTrans__8CPaneMgrFff();
-extern "C" void paneScale__8CPaneMgrFff();
-extern "C" void setAlphaRate__13CPaneMgrAlphaFf();
-extern "C" void __dl__FPv();
-extern "C" void draw__9J2DScreenFffPC14J2DGrafContext();
-extern "C" void getStringPtr__10J2DTextBoxCFv();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void strcpy();
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 803C0D08-803C0D58 -00001 0050+00 1/1 0/0 0/0 .data            @3949 */
-SECTION_DATA static void* lit_3949[20] = {
-    (void*)(((char*)isTalkNow__14dMsgScrnBase_cFv) + 0x38),
-    (void*)(((char*)isTalkNow__14dMsgScrnBase_cFv) + 0x38),
-    (void*)(((char*)isTalkNow__14dMsgScrnBase_cFv) + 0x38),
-    (void*)(((char*)isTalkNow__14dMsgScrnBase_cFv) + 0x38),
-    (void*)(((char*)isTalkNow__14dMsgScrnBase_cFv) + 0x38),
-    (void*)(((char*)isTalkNow__14dMsgScrnBase_cFv) + 0x40),
-    (void*)(((char*)isTalkNow__14dMsgScrnBase_cFv) + 0x40),
-    (void*)(((char*)isTalkNow__14dMsgScrnBase_cFv) + 0x40),
-    (void*)(((char*)isTalkNow__14dMsgScrnBase_cFv) + 0x40),
-    (void*)(((char*)isTalkNow__14dMsgScrnBase_cFv) + 0x40),
-    (void*)(((char*)isTalkNow__14dMsgScrnBase_cFv) + 0x38),
-    (void*)(((char*)isTalkNow__14dMsgScrnBase_cFv) + 0x38),
-    (void*)(((char*)isTalkNow__14dMsgScrnBase_cFv) + 0x40),
-    (void*)(((char*)isTalkNow__14dMsgScrnBase_cFv) + 0x40),
-    (void*)(((char*)isTalkNow__14dMsgScrnBase_cFv) + 0x40),
-    (void*)(((char*)isTalkNow__14dMsgScrnBase_cFv) + 0x38),
-    (void*)(((char*)isTalkNow__14dMsgScrnBase_cFv) + 0x40),
-    (void*)(((char*)isTalkNow__14dMsgScrnBase_cFv) + 0x40),
-    (void*)(((char*)isTalkNow__14dMsgScrnBase_cFv) + 0x40),
-    (void*)(((char*)isTalkNow__14dMsgScrnBase_cFv) + 0x38),
-};
-
-/* 803C0D58-803C0DB0 01DE78 0058+00 2/2 0/0 0/0 .data            __vt__14dMsgScrnBase_c */
-SECTION_DATA extern void* __vt__14dMsgScrnBase_c[22] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__14dMsgScrnBase_cFv,
-    (void*)__dt__14dMsgScrnBase_cFv,
-    (void*)exec__14dMsgScrnBase_cFv,
-    (void*)multiDraw__14dMsgScrnBase_cFv,
-    (void*)drawSelf__14dMsgScrnBase_cFv,
-    (void*)setSelectString__14dMsgScrnBase_cFPcPcPc,
-    (void*)setSelectRubyString__14dMsgScrnBase_cFPcPcPc,
-    (void*)arwAnimeInit__14dMsgScrnBase_cFv,
-    (void*)arwAnimeMove__14dMsgScrnBase_cFv,
-    (void*)dotAnimeInit__14dMsgScrnBase_cFv,
-    (void*)dotAnimeMove__14dMsgScrnBase_cFv,
-    (void*)isSelect__14dMsgScrnBase_cFv,
-    (void*)selectAnimeInit__14dMsgScrnBase_cFUcUcfUc,
-    (void*)selectAnimeMove__14dMsgScrnBase_cFUcUcb,
-    (void*)selectAnimeEnd__14dMsgScrnBase_cFv,
-    (void*)fukiScale__14dMsgScrnBase_cFf,
-    (void*)fukiTrans__14dMsgScrnBase_cFff,
-    (void*)fukiAlpha__14dMsgScrnBase_cFf,
-    (void*)fontAlpha__14dMsgScrnBase_cFf,
-    (void*)fukiPosCalc__14dMsgScrnBase_cFUc,
-};
+#include "d/msg/d_msg_object.h"
 
 /* 8023C0DC-8023C124 236A1C 0048+00 0/0 9/9 0/0 .text            __ct__14dMsgScrnBase_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMsgScrnBase_c::dMsgScrnBase_c() {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_base/__ct__14dMsgScrnBase_cFv.s"
+dMsgScrnBase_c::dMsgScrnBase_c() {
+    init();
 }
-#pragma pop
 
 /* 8023C124-8023C16C 236A64 0048+00 1/0 9/9 0/0 .text            __dt__14dMsgScrnBase_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMsgScrnBase_c::~dMsgScrnBase_c() {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_base/__dt__14dMsgScrnBase_cFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80454BA8-80454BAC 0031A8 0004+00 3/3 0/0 0/0 .sdata2          @3820 */
-SECTION_SDATA2 static u8 lit_3820[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80454BAC-80454BB0 0031AC 0004+00 2/2 0/0 0/0 .sdata2          @3821 */
-SECTION_SDATA2 static f32 lit_3821 = 1.0f;
+dMsgScrnBase_c::~dMsgScrnBase_c() {}
 
 /* 8023C16C-8023C234 236AAC 00C8+00 1/1 9/9 0/0 .text            init__14dMsgScrnBase_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnBase_c::init() {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_base/init__14dMsgScrnBase_cFv.s"
+void dMsgScrnBase_c::init() {
+    mpScreen = NULL;
+    mpPmp_c = NULL;
+    field_0x54 = 0;
+
+    for (int i = 0; i < 7; i++) {
+        mpTm_c[i] = NULL;
+        mpTmr_c[i] = NULL;
+    }
+
+    mpOutFont = NULL;
+    field_0x48 = NULL;
+    field_0x4c = 0;
+    mCharInfoPtr = NULL;
+
+    mFontSize.mSizeY = 0.0f;
+    mFontSize.mSizeX = 0.0f;
+    mRubySize = 0.0f;
+    mTextBoxPosX = 0.0f;
+    mTextBoxPosY = 0.0f;
+    mTextBoxScaleX = 1.0f;
+    mTextBoxScaleY = 1.0f;
+    mTBoxWidth = 0.0f;
+    mTBoxHeight = 0.0f;
+    mLineSpace = 0.0f;
+    mCharSpace = 0.0f;
+    mRubyCharSpace = 0.0f;
+    mSelFontSize = 0.0f;
+    mSelRubySize = 0.0f;
+
+    for (int i = 0; i < 3; i++) {
+        mSelTextBoxPosX[i] = 0.0f;
+        mSelTextBoxPosY[i] = 0.0f;
+    }
+
+    mSelTBoxWidth = 0.0f;
+    mSelCharSpace = 0.0f;
+    mSelRubyCharSpace = 0.0f;
+    mTextBoxPosOffsetY = 0.0f;
+    field_0xb8 = 0.0f;
+    mCharAlphaRate = 1.0f;
 }
-#pragma pop
 
 /* 8023C234-8023C274 236B74 0040+00 1/0 9/0 0/0 .text            multiDraw__14dMsgScrnBase_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnBase_c::multiDraw() {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_base/multiDraw__14dMsgScrnBase_cFv.s"
+void dMsgScrnBase_c::multiDraw() {
+    if (field_0x48 != NULL) {
+        dComIfGd_set2DOpa(field_0x48);
+    }
 }
-#pragma pop
 
 /* 8023C274-8023C300 236BB4 008C+00 1/0 7/0 0/0 .text            draw__14dMsgScrnBase_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnBase_c::draw() {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_base/draw__14dMsgScrnBase_cFv.s"
+void dMsgScrnBase_c::draw() {
+    J2DGrafContext* ctx = dComIfGp_getCurrentGrafPort();
+
+    ctx->setup2D();
+    mpScreen->draw(0.0f, 0.0f, ctx);
+    drawSelf();
+    ctx->setup2D();
 }
-#pragma pop
 
 /* 8023C300-8023C32C 236C40 002C+00 1/0 2/0 0/0 .text            drawSelf__14dMsgScrnBase_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnBase_c::drawSelf() {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_base/drawSelf__14dMsgScrnBase_cFv.s"
+void dMsgScrnBase_c::drawSelf() {
+    drawOutFont(0.0f, 0.0f, 1.0f);
 }
-#pragma pop
 
 /* 8023C32C-8023C360 236C6C 0034+00 1/1 6/6 0/0 .text            drawOutFont__14dMsgScrnBase_cFfff
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnBase_c::drawOutFont(f32 param_0, f32 param_1, f32 param_2) {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_base/drawOutFont__14dMsgScrnBase_cFfff.s"
+void dMsgScrnBase_c::drawOutFont(f32 param_0, f32 param_1, f32 param_2) {
+    mpOutFont->draw(NULL, param_0, param_1, param_2);
 }
-#pragma pop
 
 /* 8023C360-8023C3EC 236CA0 008C+00 0/0 2/2 0/0 .text            setString__14dMsgScrnBase_cFPcPc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnBase_c::setString(char* param_0, char* param_1) {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_base/setString__14dMsgScrnBase_cFPcPc.s"
+void dMsgScrnBase_c::setString(char* str1, char* str2) {
+    for (int i = 0; i < 7; i++) {
+        if (mpTm_c[i] != NULL) {
+            if (i == 0) {
+                strcpy(((J2DTextBox*)mpTm_c[i]->getPanePtr())->getStringPtr(), str1);
+            } else {
+                strcpy(((J2DTextBox*)mpTm_c[i]->getPanePtr())->getStringPtr(), str2);
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 8023C3EC-8023C458 236D2C 006C+00 0/0 2/2 0/0 .text            setRubyString__14dMsgScrnBase_cFPc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnBase_c::setRubyString(char* param_0) {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_base/setRubyString__14dMsgScrnBase_cFPc.s"
+void dMsgScrnBase_c::setRubyString(char* str) {
+    for (int i = 0; i < 3; i++) {
+        if (mpTmr_c[i] != NULL) {
+            strcpy(((J2DTextBox*)mpTmr_c[i]->getPanePtr())->getStringPtr(), str);
+        }
+    }
 }
-#pragma pop
 
 /* 8023C458-8023C480 236D98 0028+00 1/0 0/0 0/0 .text            fukiScale__14dMsgScrnBase_cFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnBase_c::fukiScale(f32 param_0) {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_base/fukiScale__14dMsgScrnBase_cFf.s"
+void dMsgScrnBase_c::fukiScale(f32 scale) {
+    mpPmp_c->paneScale(scale, scale);
 }
-#pragma pop
 
 /* 8023C480-8023C4A4 236DC0 0024+00 1/0 0/0 0/0 .text            fukiTrans__14dMsgScrnBase_cFff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnBase_c::fukiTrans(f32 param_0, f32 param_1) {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_base/fukiTrans__14dMsgScrnBase_cFff.s"
+void dMsgScrnBase_c::fukiTrans(f32 posX, f32 posY) {
+    mpPmp_c->paneTrans(posX, posY);
 }
-#pragma pop
 
 /* 8023C4A4-8023C4F4 236DE4 0050+00 1/0 0/0 0/0 .text            fukiAlpha__14dMsgScrnBase_cFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnBase_c::fukiAlpha(f32 param_0) {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_base/fukiAlpha__14dMsgScrnBase_cFf.s"
+void dMsgScrnBase_c::fukiAlpha(f32 alpha) {
+    fontAlpha(alpha);
+    mpPmp_c->setAlphaRate(alpha);
 }
-#pragma pop
 
 /* 8023C4F4-8023C574 236E34 0080+00 1/0 5/0 0/0 .text            fontAlpha__14dMsgScrnBase_cFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnBase_c::fontAlpha(f32 param_0) {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_base/fontAlpha__14dMsgScrnBase_cFf.s"
+void dMsgScrnBase_c::fontAlpha(f32 alpha) {
+    for (int i = 0; i < 7; i++) {
+        if (mpTm_c[i] != NULL) {
+            mpTm_c[i]->setAlphaRate(alpha);
+        }
+
+        if (mpTmr_c[i] != NULL) {
+            mpTmr_c[i]->setAlphaRate(alpha);
+        }
+    }
 }
-#pragma pop
 
 /* 8023C574-8023C5C8 236EB4 0054+00 1/0 8/8 0/0 .text            isTalkNow__14dMsgScrnBase_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnBase_c::isTalkNow() {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_base/isTalkNow__14dMsgScrnBase_cFv.s"
+bool dMsgScrnBase_c::isTalkNow() {
+    switch (dMsgObject_c::getStatus()) {
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+    case 9:
+    case 15:
+    case 16:
+    case 20:
+    case 24:
+        return true;
+    default:
+        return false;
+    }
 }
-#pragma pop

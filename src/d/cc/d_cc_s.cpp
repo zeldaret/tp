@@ -9,16 +9,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct mDoMtx_stack_c {
-    /* 8000CF0C */ void ZXYrotS(csXyz const&);
-
-    static u8 now[48];
-};
-
-//
 // Forward References:
 //
 

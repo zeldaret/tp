@@ -6,6 +6,9 @@
 #include "d/com/d_com_static.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.h"
+#include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
+#include "d/com/d_com_inf_game.h"
 
 //
 // Types:
@@ -27,17 +30,6 @@ struct daTagMist_c {
     /* 80031CF0 */ void getPlayerNo();
 };
 
-struct cBgS_PolyInfo {};
-
-struct daTagMagne_c {
-    /* 80031B50 */ void checkMagnetCode(cBgS_PolyInfo&);
-    /* 80031BF4 */ void checkMagneA();
-    /* 80031C48 */ void checkMagneB();
-    /* 80031C9C */ void checkMagneC();
-
-    static u8 mTagMagne[4];
-};
-
 struct daSetBgObj_c {
     /* 80031870 */ void getArcName(fopAc_ac_c*);
 };
@@ -46,23 +38,6 @@ struct daObjMovebox {
     struct Act_c {
         static void* M_dir_base[2];
     };
-};
-
-struct daObjCarry_c {
-    /* 80031CF8 */ void clrSaveFlag();
-    /* 80031D04 */ void setSaveFlag();
-    /* 80031D10 */ void chkSaveFlag();
-    /* 80031D24 */ void getPos(int);
-    /* 80031D38 */ void savePos(int, cXyz);
-    /* 80031D64 */ void onSttsFlag(int, u8);
-    /* 80031D78 */ void offSttsFlag(int, u8);
-    /* 80031D8C */ void chkSttsFlag(int, u8);
-    /* 80031DAC */ void setRoomNo(int, s8);
-    /* 80031DB8 */ void getRoomNo(int);
-
-    static u8 mPos[60];
-    static u8 mSttsFlag[5 + 3 /* padding */];
-    static u8 mRoomNo[5 + 3 /* padding */];
 };
 
 struct daMirror_c {
@@ -103,18 +78,6 @@ struct daDsh_c {
     static f32 CLOSE_BOUND_RATIO;
 };
 
-struct dSv_info_c {
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dSv_event_c {
-    /* 8003498C */ void onEventBit(u16);
-    /* 800349A4 */ void offEventBit(u16);
-    /* 800349BC */ void isEventBit(u16) const;
-    /* 800349E0 */ void setEventReg(u16, u8);
-    /* 80034A04 */ void getEventReg(u16) const;
-};
-
 struct dGrass_packet_c {
     static u8 m_deleteRoom[12];
 };
@@ -125,14 +88,6 @@ struct dFlower_packet_c {
 
 struct dDemo_c {
     static u8 m_status[4];
-};
-
-struct dComIfG_play_c {
-    /* 8002C97C */ void getLayerNo(int);
-};
-
-struct dBgS {
-    /* 80074D0C */ void GetMagnetCode(cBgS_PolyInfo const&);
 };
 
 //
@@ -248,10 +203,7 @@ extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void sprintf();
-extern "C" void strcmp();
 extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 m_status__7dDemo_c[4];
 
 //
@@ -709,55 +661,64 @@ asm void daMP_c::daMP_c_THPPlayerPause() {
 
 /* ############################################################################################## */
 /* 80450DBC-80450DC0 0002BC 0004+00 1/1 0/0 3/3 .sbss            mTagMagne__12daTagMagne_c */
-u8 daTagMagne_c::mTagMagne[4];
+daTagMagne_c* daTagMagne_c::mTagMagne;
 
 /* 80031B50-80031BF4 02C490 00A4+00 0/0 4/4 0/0 .text
  * checkMagnetCode__12daTagMagne_cFR13cBgS_PolyInfo             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagMagne_c::checkMagnetCode(cBgS_PolyInfo& param_0) {
-    nofralloc
-#include "asm/d/com/d_com_static/checkMagnetCode__12daTagMagne_cFR13cBgS_PolyInfo.s"
+int daTagMagne_c::checkMagnetCode(cBgS_PolyInfo& poly) {
+    if (mTagMagne == NULL) {
+        return 0;
+    }
+
+    int magCode = dComIfG_Bgsp().GetMagnetCode(poly);
+    if ((magCode == 1 && mTagMagne->checkMagneA()) || 
+        (magCode == 2 && mTagMagne->checkMagneB()) || 
+        (magCode == 3 && mTagMagne->checkMagneC())) {
+        return 1;
+    }
+
+    return 0;
 }
-#pragma pop
+
+inline bool fopAcM_isSwitch(const fopAc_ac_c* item, int sw) {
+    return dComIfGs_isSwitch(sw, fopAcM_GetHomeRoomNo(item));
+}
 
 /* 80031BF4-80031C48 02C534 0054+00 1/1 0/0 0/0 .text            checkMagneA__12daTagMagne_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagMagne_c::checkMagneA() {
-    nofralloc
-#include "asm/d/com/d_com_static/checkMagneA__12daTagMagne_cFv.s"
+int daTagMagne_c::checkMagneA() {
+    if (mSwNo1 == 0xFF || fopAcM_isSwitch(this, mSwNo1)) {
+        return 1;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 80031C48-80031C9C 02C588 0054+00 1/1 0/0 0/0 .text            checkMagneB__12daTagMagne_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagMagne_c::checkMagneB() {
-    nofralloc
-#include "asm/d/com/d_com_static/checkMagneB__12daTagMagne_cFv.s"
+int daTagMagne_c::checkMagneB() {
+    if (mSwNo2 == 0xFF || fopAcM_isSwitch(this, mSwNo2)) {
+        return 1;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 80031C9C-80031CF0 02C5DC 0054+00 1/1 0/0 0/0 .text            checkMagneC__12daTagMagne_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagMagne_c::checkMagneC() {
-    nofralloc
-#include "asm/d/com/d_com_static/checkMagneC__12daTagMagne_cFv.s"
+int daTagMagne_c::checkMagneC() {
+    if (mSwNo3 == 0xFF || fopAcM_isSwitch(this, mSwNo3)) {
+        return 1;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450DC0-80450DC4 -00001 0004+00 4/4 0/0 2/2 .sbss            None */
 /* 80450DC0 0001+00 data_80450DC0 None */
+extern u8 struct_80450DC0;
+u8 struct_80450DC0;
+
 /* 80450DC1 0003+00 data_80450DC1 None */
-extern u8 struct_80450DC0[4];
-u8 struct_80450DC0[4];
+bool daObjCarry_c::mSaveFlag;
 
 /* 80031CF0-80031CF8 02C630 0008+00 0/0 1/1 0/0 .text            getPlayerNo__11daTagMist_cFv */
 #pragma push
@@ -770,34 +731,19 @@ asm void daTagMist_c::getPlayerNo() {
 #pragma pop
 
 /* 80031CF8-80031D04 02C638 000C+00 0/0 1/1 0/0 .text            clrSaveFlag__12daObjCarry_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::clrSaveFlag() {
-    nofralloc
-#include "asm/d/com/d_com_static/clrSaveFlag__12daObjCarry_cFv.s"
+void daObjCarry_c::clrSaveFlag() {
+    mSaveFlag = false;
 }
-#pragma pop
 
 /* 80031D04-80031D10 02C644 000C+00 0/0 1/1 0/0 .text            setSaveFlag__12daObjCarry_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::setSaveFlag() {
-    nofralloc
-#include "asm/d/com/d_com_static/setSaveFlag__12daObjCarry_cFv.s"
+void daObjCarry_c::setSaveFlag() {
+    mSaveFlag = true;
 }
-#pragma pop
 
 /* 80031D10-80031D24 02C650 0014+00 0/0 0/0 1/1 .text            chkSaveFlag__12daObjCarry_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::chkSaveFlag() {
-    nofralloc
-#include "asm/d/com/d_com_static/chkSaveFlag__12daObjCarry_cFv.s"
+bool daObjCarry_c::chkSaveFlag() {
+    return mSaveFlag == true;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804245A0-804245AC 0512C0 000C+00 0/1 0/0 0/0 .bss             @4480 */
@@ -831,61 +777,36 @@ asm void daObjCarry_c::savePos(int param_0, cXyz param_1) {
 
 /* ############################################################################################## */
 /* 80450DC4-80450DCC 0002C4 0005+03 3/3 0/0 0/0 .sbss            mSttsFlag__12daObjCarry_c */
-u8 daObjCarry_c::mSttsFlag[5 + 3 /* padding */];
+u8 daObjCarry_c::mSttsFlag[5];
 
 /* 80031D64-80031D78 02C6A4 0014+00 0/0 0/0 1/1 .text            onSttsFlag__12daObjCarry_cFiUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::onSttsFlag(int param_0, u8 param_1) {
-    nofralloc
-#include "asm/d/com/d_com_static/onSttsFlag__12daObjCarry_cFiUc.s"
+void daObjCarry_c::onSttsFlag(int idx, u8 flag) {
+    mSttsFlag[idx] |= flag;
 }
-#pragma pop
 
 /* 80031D78-80031D8C 02C6B8 0014+00 0/0 0/0 1/1 .text            offSttsFlag__12daObjCarry_cFiUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::offSttsFlag(int param_0, u8 param_1) {
-    nofralloc
-#include "asm/d/com/d_com_static/offSttsFlag__12daObjCarry_cFiUc.s"
+void daObjCarry_c::offSttsFlag(int idx, u8 flag) {
+    mSttsFlag[idx] &= ~flag;
 }
-#pragma pop
 
 /* 80031D8C-80031DAC 02C6CC 0020+00 0/0 0/0 1/1 .text            chkSttsFlag__12daObjCarry_cFiUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::chkSttsFlag(int param_0, u8 param_1) {
-    nofralloc
-#include "asm/d/com/d_com_static/chkSttsFlag__12daObjCarry_cFiUc.s"
+u8 daObjCarry_c::chkSttsFlag(int idx, u8 flag) {
+    return (u8)(mSttsFlag[idx] & flag) ? 1 : 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450DCC-80450DD4 0002CC 0005+03 2/2 0/0 0/0 .sbss            mRoomNo__12daObjCarry_c */
-u8 daObjCarry_c::mRoomNo[5 + 3 /* padding */];
+s8 daObjCarry_c::mRoomNo[5];
 
 /* 80031DAC-80031DB8 02C6EC 000C+00 0/0 0/0 2/2 .text            setRoomNo__12daObjCarry_cFiSc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::setRoomNo(int param_0, s8 param_1) {
-    nofralloc
-#include "asm/d/com/d_com_static/setRoomNo__12daObjCarry_cFiSc.s"
+void daObjCarry_c::setRoomNo(int idx, s8 roomNo) {
+    mRoomNo[idx] = roomNo;
 }
-#pragma pop
 
 /* 80031DB8-80031DC4 02C6F8 000C+00 0/0 0/0 1/1 .text            getRoomNo__12daObjCarry_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::getRoomNo(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_static/getRoomNo__12daObjCarry_cFi.s"
+s8 daObjCarry_c::getRoomNo(int idx) {
+    return mRoomNo[idx];
 }
-#pragma pop
 
 /* 80031DC4-80031EAC 02C704 00E8+00 0/0 1/0 0/0 .text            __sinit_d_com_static_cpp */
 #pragma push

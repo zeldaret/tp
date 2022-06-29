@@ -210,6 +210,7 @@ public:
     /* 0x0C */ f32 field_0xc;
     /* 0x10 */ u8 field_0x10[10];
     /* 0x1A */ u8 mDefaultCamera;
+    /* 0x1B */ u8 mBitSw;
     /* 0x1C */ u16 mMsg;
 };  // Size: 0x20
 
@@ -244,7 +245,9 @@ struct dStage_MapEvent_dt_c {
     u8 mType;
     u8 field_0x1[3 - 1];
     u8 field_0x3;
-    u8 field_0x4[7 - 4];
+    u8 field_0x4;
+    u8 field_0x5;
+    u8 field_0x6;
     u8 field_0x7;
     u8 field_0x8;
     u8 field_0x9;
@@ -715,6 +718,7 @@ public:
     static void offNoChangeRoom() { data_80450D68 = false; }
     static void setProcID(u32 id) { mProcID = id; }
     static u32 getProcID() { return mProcID; }
+    static int getStatusProcID(int i_roomNo) { return mStatus[i_roomNo].mProcID; }
     static void setFileList2(int i_roomNo, dStage_FileList2_dt_c* list) {
         mStatus[i_roomNo].mRoomDt.mFileList2Info = list;
     }
@@ -855,6 +859,10 @@ s8 dStage_roomRead_dt_c_GetReverbStage(roomRead_class&, int);
 int dStage_changeScene(int, f32, u32, s8, s16, int);
 void dStage_infoCreate();
 u8 dStage_stagInfo_GetParticleNo(stage_stag_info_class* p_info, int layer);
+int dStage_changeSceneExitId(cBgS_PolyInfo& param_0, f32 speed, u32 mode, s8 roomNo, s16 angle);
+int dStage_changeScene4Event(int i_exitId, s8 room_no, int i_wipe, bool param_3, f32 speed,
+                                  u32 mode, s16 angle, int param_7);
+void dStage_Create();
 
 inline s32 dStage_roomRead_dt_c_GetVrboxswitch(roomRead_data_class& data) {
     return data.field_0x2 & 8;
@@ -895,11 +903,16 @@ inline s16 dStage_stagInfo_GetUpButton(stage_stag_info_class* p_info) {
 inline u32 dStage_stagInfo_GetArg0(stage_stag_info_class* p_info) {
     return (p_info->field_0x0c >> 0x14) & 0xFF;
 }
+
+inline int dStage_stagInfo_GetMsgGroup(stage_stag_info_class* p_info) {
+    return p_info->mMsgGroup;
+}
+
 inline u32 dStage_sclsInfo_getSceneLayer(stage_scls_info_class* p_info) {
     return p_info->field_0xb & 0xF;
 }
 
-inline s8 dStage_sclsInfo_getWipe(stage_scls_info_class* p_info) {
+inline s32 dStage_sclsInfo_getWipe(stage_scls_info_class* p_info) {
     return p_info->mWipe;
 }
 
@@ -913,6 +926,14 @@ inline int dStage_sclsInfo_getTimeH(stage_scls_info_class* p_info) {
 
 inline u32 dStage_FileList_dt_getMiniMap(dStage_FileList_dt_c* p_fList) {
     return p_fList->mParameters >> 3 & 7;
+}
+
+inline u32 dStage_FileList_dt_GetEnemyAppear1Flag(dStage_FileList_dt_c* p_fList) {
+    return p_fList->mParameters & 0x20000000;
+}
+
+inline int dStage_FileList_dt_GetBitSw(dStage_FileList_dt_c* p_fList) {
+    return p_fList->mBitSw;
 }
 
 inline int dStage_MapEvent_dt_c_getEventSCutSW(dStage_MapEvent_dt_c* event) {

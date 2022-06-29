@@ -62,6 +62,7 @@ public:
         /* 0x000080 */ GROUND_LANDING = (1 << 7),
         /* 0x000100 */ GROUND_AWAY = (1 << 8),
         /* 0x000200 */ ROOF_HIT = (1 << 9),
+        /* 0x000400 */ WATER_NONE = (1 << 10),
         /* 0x000800 */ WATER_HIT = (1 << 11),
         /* 0x001000 */ WATER_IN = (1 << 12),
         /* 0x002000 */ LINE_CHECK = (1 << 13),
@@ -139,6 +140,14 @@ public:
     void SetGroundAway() { m_flags |= GROUND_AWAY; }
     const u32 MaskWaterHit() { return m_flags & WATER_HIT; }
     const bool ChkWaterHit() { return MaskWaterHit(); }
+    void ClrWaterNone() { m_flags &= ~WATER_NONE; }
+    void SetWaterCheckOffset(f32 offset) { m_wtr_chk_offset = offset; }
+    void OnLineCheck() { m_flags |= LINE_CHECK; }
+    void ClrRoofNone() { m_flags &= ~ROOF_NONE; }
+    void SetRoofCrrHeight(f32 height) { m_roof_crr_height = height; }
+    void SetWtrChkMode(int mode) { m_wtr_mode = mode; }
+    void SetGrndNone() { m_flags |= GRND_NONE; }
+    void ClrGrndNone() { m_flags &= ~GRND_NONE; }
 
     // inline dupe
     void i_ClrGroundHit() { m_flags &= ~GROUND_HIT; }
@@ -187,6 +196,11 @@ public:
 };
 
 class dBgS_ObjAcch : public dBgS_Acch {
+public:
+    dBgS_ObjAcch() {
+        SetObj();
+    }
+
     /* 80BB336C */ virtual ~dBgS_ObjAcch();
 };
 

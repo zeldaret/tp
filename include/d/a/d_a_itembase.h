@@ -8,7 +8,7 @@
 #include "f_op/f_op_actor.h"
 
 struct daItemBase_data {
-    /* 0x00 */ f32 field_0x0;
+    /* 0x00 */ f32 mGravity;
     /* 0x04 */ f32 field_0x4;
     /* 0x08 */ f32 field_0x8;
     /* 0x0C */ f32 field_0xc;
@@ -41,7 +41,7 @@ public:
     int DeleteBase(char const*);
     void setListEnd();
     void animPlay(f32, f32, f32, f32, f32, f32);
-    daItemBase_data& getData();
+    const daItemBase_data& getData();
 
     virtual int DrawBase();
     virtual void setListStart();
@@ -61,20 +61,21 @@ public:
 
     static daItemBase_data const m_data;
 
-private:
     /* 0x56C */ request_of_phase_process_class mPhase;
     /* 0x574 */ J3DModel* mpModel;
-    /* 0x578 */ mDoExt_btkAnm* field_0x578;
-    /* 0x57C */ mDoExt_bpkAnm* field_0x57c;
-    /* 0x580 */ mDoExt_brkAnm* field_0x580;
-    /* 0x584 */ mDoExt_bckAnm* field_0x584;
-    /* 0x588 */ mDoExt_btpAnm* field_0x588;
-    /* 0x58C */ dBgS_ObjAcch field_0x58c;
-    /* 0x764 */ dBgS_AcchCir field_0x764;
-    /* 0x7A4 */ dCcD_Stts field_0x7a4;
-    /* 0x7E0 */ dCcD_Cyl field_0x7e0;
+    /* 0x578 */ mDoExt_btkAnm* mpBtkAnm;
+    /* 0x57C */ mDoExt_bpkAnm* mpBpkAnm;
+    /* 0x580 */ mDoExt_brkAnm* mpBrkAnm;
+    /* 0x584 */ mDoExt_bckAnm* mpBckAnm;
+    /* 0x588 */ mDoExt_btpAnm* mpBtpAnm;
+    /* 0x58C */ dBgS_ObjAcch mAcch;
+    /* 0x764 */ dBgS_AcchCir mAcchCir;
+    /* 0x7A4 */ dCcD_Stts mColStatus;
+    /* 0x7E0 */ dCcD_Cyl mCollider;
     /* 0x91C */ u32 field_0x91c;
-    /* 0x920 */ u8 field_0x920[0xA];
+    /* 0x920 */ u32 field_0x920;
+    /* 0x924 */ int field_0x924;
+    /* 0x928 */ s16 field_0x928;
     /* 0x92A */ u8 m_itemNo;
     /* 0x92B */ u8 field_0x92b;
 };

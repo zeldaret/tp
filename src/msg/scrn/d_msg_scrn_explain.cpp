@@ -11,44 +11,9 @@
 // Types:
 //
 
-struct mDoCPd_c {
-    static u8 m_cpadInfo[256];
-};
-
 struct dMsgString_c {
     /* 80249C20 */ dMsgString_c();
     /* 80249D28 */ ~dMsgString_c();
-};
-
-struct STControl {
-    /* 8003219C */ void checkTrigger();
-    /* 80032524 */ void checkUpTrigger();
-    /* 800325A0 */ void checkDownTrigger();
-};
-
-struct J2DOrthoGraph {};
-
-struct dMsgScrnExplain_c {
-    /* 8023CC88 */ dMsgScrnExplain_c(STControl*, u8, bool, u8);
-    /* 8023D538 */ ~dMsgScrnExplain_c();
-    /* 8023D7D8 */ void move();
-    /* 8023D918 */ void draw(J2DOrthoGraph*);
-    /* 8023DAD0 */ void wait_init();
-    /* 8023DAD4 */ void wait_proc();
-    /* 8023DAD8 */ void open_request_init();
-    /* 8023DADC */ void open_request_proc();
-    /* 8023DBE4 */ void open_init();
-    /* 8023DC7C */ void open_proc();
-    /* 8023DD90 */ void move_init();
-    /* 8023DDB4 */ void move_proc();
-    /* 8023DE8C */ void move_select_init();
-    /* 8023E0F4 */ void move_select_proc();
-    /* 8023E43C */ void close_init();
-    /* 8023E448 */ void close_proc();
-    /* 8023E558 */ void openExplain(u32, u8, u8, u8, bool);
-    /* 8023E5CC */ void getAlphaRatio();
-    /* 8023E640 */ void checkTriggerA();
-    /* 8023E654 */ void checkTriggerB();
 };
 
 struct dMsgScrnArrow_c {
@@ -73,75 +38,9 @@ struct dMsgScrn3Select_c {
     /* 8023A97C */ void getCharSpace();
 };
 
-struct J2DTextBox {
-    /* 80300658 */ void getStringPtr() const;
-    /* 8030074C */ void setString(s16, char const*, ...);
-};
-
-struct JUTFont {};
-
-struct COutFont_c {
-    /* 80225C94 */ COutFont_c(u8);
-};
-
 struct dMsgObject_c {
     /* 802380F4 */ void getString(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, char*,
                                   char*, char*, s16*);
-};
-
-struct JMSMesgEntry_c {};
-
-struct dMeter2Info_c {
-    /* 8021C250 */ void getString(u32, char*, JMSMesgEntry_c*);
-    /* 8021C7FC */ void getStringLength(JUTFont*, f32, f32, char*);
-};
-
-struct Z2SpeechMgr2 {
-    /* 802CBF60 */ void setTextCount(s16);
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct ResTIMG {};
-
-struct JKRExpHeap {};
-
-struct JKRArchive {};
-
-struct J2DGrafContext {};
-
-struct J2DScreen {
-    /* 802F8498 */ J2DScreen();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-};
-
-struct J2DPicture {
-    /* 802FC708 */ J2DPicture(ResTIMG const*);
-};
-
-struct J2DPane {
-    /* 802F7100 */ void getBounds();
-};
-
-struct CPaneMgrAlpha {
-    /* 802557D0 */ void setAlphaRate(f32);
-};
-
-struct CPaneMgr {
-    /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 802545B0 */ void paneTrans(f32, f32);
-    /* 80254EBC */ void getGlobalVtxCenter(J2DPane*, bool, s16);
 };
 
 //
@@ -228,12 +127,7 @@ extern "C" void _restgpr_24();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void snprintf();
-extern "C" void strcat();
-extern "C" void strcpy();
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 g_MsgObject_HIO_c[1040];
 extern "C" extern u8 data_80450B70[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
@@ -436,7 +330,8 @@ asm dMsgScrnExplain_c::dMsgScrnExplain_c(STControl* param_0, u8 param_1, bool pa
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMsgScrnExplain_c::~dMsgScrnExplain_c() {
+// asm dMsgScrnExplain_c::~dMsgScrnExplain_c() {
+extern "C" asm void __dt__17dMsgScrnExplain_cFv() {
     nofralloc
 #include "asm/msg/scrn/d_msg_scrn_explain/__dt__17dMsgScrnExplain_cFv.s"
 }
@@ -617,7 +512,7 @@ asm void dMsgScrnExplain_c::close_proc() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgScrnExplain_c::openExplain(u32 param_0, u8 param_1, u8 param_2, u8 param_3,
+asm bool dMsgScrnExplain_c::openExplain(u32 param_0, u8 param_1, u8 param_2, u8 param_3,
                                         bool param_4) {
     nofralloc
 #include "asm/msg/scrn/d_msg_scrn_explain/openExplain__17dMsgScrnExplain_cFUlUcUcUcb.s"

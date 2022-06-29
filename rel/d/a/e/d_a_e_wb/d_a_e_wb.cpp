@@ -29,25 +29,6 @@ struct mDoGph_gInf_c {
     /* 807DFAB4 */ void fadeIn(f32, _GXColor&);
 };
 
-struct mDoExt_McaMorfCallBack2_c {};
-
-struct mDoExt_McaMorfSO {
-    /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
-                                    mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, int, f32, int,
-                                    int, Z2Creature*, u32, u32);
-    /* 80010E70 */ void setAnm(J3DAnmTransform*, int, f32, f32, f32, f32);
-    /* 800110B0 */ void play(u32, s8);
-    /* 800111C0 */ void entryDL();
-    /* 800111EC */ void modelCalc();
-    /* 80011310 */ void stopZelAnime();
-};
-
-struct mDoExt_3DlineMat1_c {
-    /* 80013360 */ void init(u16, u16, ResTIMG*, int);
-    /* 80013FB0 */ void update(int, _GXColor&, dKy_tevstr_c*);
-    /* 807E1CB0 */ mDoExt_3DlineMat1_c();
-};
-
 struct mDoCPd_c {
     static u8 m_cpadInfo[256];
 };
@@ -134,28 +115,6 @@ struct camera_class {};
 
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct Z2SeqMgr {
-    /* 802AF010 */ void bgmStart(u32, u32, s32);
-    /* 802AF408 */ void bgmStop(u32, s32);
-    /* 802AF49C */ void subBgmStart(u32);
-    /* 802AFB94 */ void bgmStreamPrepare(u32);
-    /* 802AFE18 */ void bgmStreamPlay();
-    /* 802AFEDC */ void bgmStreamStop(u32);
-};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
 };
 
 //
@@ -480,11 +439,10 @@ extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 g_blackColor;
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
+//extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 extern "C" extern u8 struct_80450C98[4];
 extern "C" f32 mGroundY__11fopAcM_gc_c;
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
@@ -4453,7 +4411,8 @@ static asm void daE_WB_Create(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm mDoExt_3DlineMat1_c::mDoExt_3DlineMat1_c() {
+// asm mDoExt_3DlineMat1_c::mDoExt_3DlineMat1_c() {
+extern "C" asm void __ct__19mDoExt_3DlineMat1_cFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/__ct__19mDoExt_3DlineMat1_cFv.s"
 }
@@ -4740,7 +4699,8 @@ static asm void dComIfGs_onEventBit(u16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void Z2GetAudioMgr() {
+// static asm void Z2GetAudioMgr() {
+extern "C" asm void Z2GetAudioMgr__Fv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/Z2GetAudioMgr__Fv.s"
 }
@@ -4791,7 +4751,8 @@ static asm void daPy_getPlayerActorClass() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void actor_place::operator=(actor_place const& param_0) {
+//asm void actor_place::operator=(actor_place const& param_0) {
+extern "C" asm void __as__11actor_placeFRC11actor_place() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/__as__11actor_placeFRC11actor_place.s"
 }

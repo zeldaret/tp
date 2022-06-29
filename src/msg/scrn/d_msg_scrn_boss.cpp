@@ -4,246 +4,131 @@
 //
 
 #include "msg/scrn/d_msg_scrn_boss.h"
+#include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct dMsgScrnBoss_c {
-    /* 8023C5C8 */ dMsgScrnBoss_c();
-    /* 8023C928 */ ~dMsgScrnBoss_c();
-    /* 8023CA88 */ void exec();
-    /* 8023CB98 */ void drawSelf();
-    /* 8023CBF0 */ void fukiAlpha(f32);
-    /* 8023CC7C */ void fukiScale(f32);
-    /* 8023CC80 */ void fukiTrans(f32, f32);
-    /* 8023CC84 */ void fontAlpha(f32);
-};
-
-struct dMsgScrnBase_c {
-    /* 80238C40 */ void setSelectRubyString(char*, char*, char*);
-    /* 80238C44 */ void setSelectString(char*, char*, char*);
-    /* 80238C48 */ bool selectAnimeMove(u8, u8, bool);
-    /* 80238C50 */ void selectAnimeInit(u8, u8, f32, u8);
-    /* 80238C54 */ void arwAnimeMove();
-    /* 80238C58 */ void arwAnimeInit();
-    /* 80238C5C */ void fukiPosCalc(u8);
-    /* 80238C60 */ bool isSelect();
-    /* 80238C68 */ bool selectAnimeEnd();
-    /* 80238C70 */ void dotAnimeMove();
-    /* 80238C74 */ void dotAnimeInit();
-    /* 8023C0DC */ dMsgScrnBase_c();
-    /* 8023C124 */ ~dMsgScrnBase_c();
-    /* 8023C16C */ void init();
-    /* 8023C234 */ void multiDraw();
-    /* 8023C274 */ void draw();
-    /* 8023C32C */ void drawOutFont(f32, f32, f32);
-    /* 8023C574 */ void isTalkNow();
-};
-
-struct JKRExpHeap {};
-
-struct JKRArchive {};
-
-struct J2DTextBox {
-    /* 8030074C */ void setString(s16, char const*, ...);
-};
-
-struct J2DScreen {
-    /* 802F8498 */ J2DScreen();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
-};
-
-struct CPaneMgrAlpha {
-    /* 802557D0 */ void setAlphaRate(f32);
-};
-
-struct CPaneMgr {
-    /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 802542E8 */ void getGlobalPosX();
-    /* 80254364 */ void getGlobalPosY();
-    /* 802545B0 */ void paneTrans(f32, f32);
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__14dMsgScrnBoss_cFv();
-extern "C" void __dt__14dMsgScrnBoss_cFv();
-extern "C" void exec__14dMsgScrnBoss_cFv();
-extern "C" void drawSelf__14dMsgScrnBoss_cFv();
-extern "C" void fukiAlpha__14dMsgScrnBoss_cFf();
-extern "C" void fukiScale__14dMsgScrnBoss_cFf();
-extern "C" void fukiTrans__14dMsgScrnBoss_cFff();
-extern "C" void fontAlpha__14dMsgScrnBoss_cFf();
-extern "C" extern char const* const msg_scrn_d_msg_scrn_boss__stringBase0;
 
 //
 // External References:
 //
 
-extern "C" void mDoExt_getRubyFont__Fv();
-extern "C" void setSelectRubyString__14dMsgScrnBase_cFPcPcPc();
-extern "C" void setSelectString__14dMsgScrnBase_cFPcPcPc();
-extern "C" bool selectAnimeMove__14dMsgScrnBase_cFUcUcb();
-extern "C" void selectAnimeInit__14dMsgScrnBase_cFUcUcfUc();
-extern "C" void arwAnimeMove__14dMsgScrnBase_cFv();
-extern "C" void arwAnimeInit__14dMsgScrnBase_cFv();
-extern "C" void fukiPosCalc__14dMsgScrnBase_cFUc();
-extern "C" bool isSelect__14dMsgScrnBase_cFv();
-extern "C" bool selectAnimeEnd__14dMsgScrnBase_cFv();
-extern "C" void dotAnimeMove__14dMsgScrnBase_cFv();
-extern "C" void dotAnimeInit__14dMsgScrnBase_cFv();
-extern "C" void __ct__14dMsgScrnBase_cFv();
-extern "C" void __dt__14dMsgScrnBase_cFv();
-extern "C" void init__14dMsgScrnBase_cFv();
-extern "C" void multiDraw__14dMsgScrnBase_cFv();
-extern "C" void draw__14dMsgScrnBase_cFv();
-extern "C" void drawOutFont__14dMsgScrnBase_cFfff();
-extern "C" void isTalkNow__14dMsgScrnBase_cFv();
-extern "C" void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap();
-extern "C" void getGlobalPosX__8CPaneMgrFv();
-extern "C" void getGlobalPosY__8CPaneMgrFv();
-extern "C" void paneTrans__8CPaneMgrFff();
-extern "C" void dPaneClass_showNullPane__FP9J2DScreen();
-extern "C" void setAlphaRate__13CPaneMgrAlphaFf();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void __ct__9J2DScreenFv();
-extern "C" void setPriority__9J2DScreenFPCcUlP10JKRArchive();
-extern "C" void setString__10J2DTextBoxFsPCce();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_29();
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_MsgObject_HIO_c[1040];
+extern "C" extern dMsgObject_HIO_c g_MsgObject_HIO_c;
 
 //
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 803998F8-803998F8 025F58 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803998F8 = "zelda_boss_name.blo";
-SECTION_DEAD static char const* const stringBase_8039990C = "";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039990D = "\0\0";
-#pragma pop
-
-/* 803C0DB0-803C0DE8 01DED0 0038+00 1/1 0/0 0/0 .data            t_tag$3759 */
-SECTION_DATA static u8 t_tag[56] = {
-    0x00, 0x73, 0x66, 0x6F, 0x6E, 0x74, 0x62, 0x30, 0x00, 0x73, 0x66, 0x6F, 0x6E, 0x74,
-    0x62, 0x31, 0x00, 0x73, 0x66, 0x6F, 0x6E, 0x74, 0x62, 0x32, 0x00, 0x73, 0x66, 0x6F,
-    0x6E, 0x74, 0x6C, 0x30, 0x00, 0x73, 0x66, 0x6F, 0x6E, 0x74, 0x6C, 0x31, 0x00, 0x73,
-    0x66, 0x6F, 0x6E, 0x74, 0x6C, 0x32, 0x00, 0x73, 0x66, 0x6F, 0x6E, 0x74, 0x30, 0x30,
-};
-
-/* 803C0DE8-803C0E40 01DF08 0058+00 2/2 0/0 0/0 .data            __vt__14dMsgScrnBoss_c */
-SECTION_DATA extern void* __vt__14dMsgScrnBoss_c[22] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__14dMsgScrnBase_cFv,
-    (void*)__dt__14dMsgScrnBoss_cFv,
-    (void*)exec__14dMsgScrnBoss_cFv,
-    (void*)multiDraw__14dMsgScrnBase_cFv,
-    (void*)drawSelf__14dMsgScrnBoss_cFv,
-    (void*)setSelectString__14dMsgScrnBase_cFPcPcPc,
-    (void*)setSelectRubyString__14dMsgScrnBase_cFPcPcPc,
-    (void*)arwAnimeInit__14dMsgScrnBase_cFv,
-    (void*)arwAnimeMove__14dMsgScrnBase_cFv,
-    (void*)dotAnimeInit__14dMsgScrnBase_cFv,
-    (void*)dotAnimeMove__14dMsgScrnBase_cFv,
-    (void*)isSelect__14dMsgScrnBase_cFv,
-    (void*)selectAnimeInit__14dMsgScrnBase_cFUcUcfUc,
-    (void*)selectAnimeMove__14dMsgScrnBase_cFUcUcb,
-    (void*)selectAnimeEnd__14dMsgScrnBase_cFv,
-    (void*)fukiScale__14dMsgScrnBoss_cFf,
-    (void*)fukiTrans__14dMsgScrnBoss_cFff,
-    (void*)fukiAlpha__14dMsgScrnBoss_cFf,
-    (void*)fontAlpha__14dMsgScrnBoss_cFf,
-    (void*)fukiPosCalc__14dMsgScrnBase_cFUc,
-};
-
-/* 80454BB0-80454BB4 0031B0 0004+00 3/3 0/0 0/0 .sdata2          @3854 */
-SECTION_SDATA2 static f32 lit_3854 = 1.0f;
-
 /* 8023C5C8-8023C928 236F08 0360+00 0/0 1/1 0/0 .text            __ct__14dMsgScrnBoss_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMsgScrnBoss_c::dMsgScrnBoss_c() {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_boss/__ct__14dMsgScrnBoss_cFv.s"
+dMsgScrnBoss_c::dMsgScrnBoss_c() {
+    static u64 t_tag[7] = {
+        'sfontb0', 'sfontb1', 'sfontb2', 'sfontl0',
+        'sfontl1', 'sfontl2', 'sfont00',
+    };
+
+    init();
+
+    mpScreen = new J2DScreen();
+    mpScreen->setPriority("zelda_boss_name.blo", 0x20000, dComIfGp_getMsgArchive(4));
+    dPaneClass_showNullPane(mpScreen);
+
+    mpPmp_c = new CPaneMgr(mpScreen, 'n_all', 2, NULL);
+    mpPmp_c->scale(g_MsgObject_HIO_c.mBossNameScaleX, g_MsgObject_HIO_c.mBossNameScaleY);
+
+    mpFontParent = new CPaneMgr(mpScreen, 's_font_n', 0, NULL);
+    mpFontParent->scale(g_MsgObject_HIO_c.mBossNameCharSizeX, g_MsgObject_HIO_c.mBossNameCharSizeY);
+    mpFontParent->paneTrans(g_MsgObject_HIO_c.mBossNameCharPosX, g_MsgObject_HIO_c.mBossNameCharPosY);
+
+    mpBaseParent = new CPaneMgr(mpScreen, 'base_n', 2, NULL);
+    mpBaseParent->scale(g_MsgObject_HIO_c.mBossNameBaseSizeX, g_MsgObject_HIO_c.mBossNameBaseSizeY);
+    mpBaseParent->paneTrans(g_MsgObject_HIO_c.mBossNameBasePosX, g_MsgObject_HIO_c.mBossNameBasePosY);
+
+    for (int i = 0; i < 7; i++) {
+        mpTm_c[i] = new CPaneMgr(mpScreen, t_tag[i], 0, NULL);
+        ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setFont(mDoExt_getRubyFont());
+        ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setCharSpace(1.0f);
+        ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setString(0x100, "");
+    }
+
+    ((J2DTextBox*)mpTm_c[0]->getPanePtr())->getFontSize(mFontSize);
+    mTBoxWidth = mpTm_c[0]->getSizeX();
+    mTBoxHeight = mpTm_c[0]->getSizeY();
+    mLineSpace = ((J2DTextBox*)mpTm_c[0]->getPanePtr())->getLineSpace();
+    mCharSpace = ((J2DTextBox*)mpTm_c[0]->getPanePtr())->getCharSpace();
+
+    for (int i = 0; i < 7; i++) {
+        ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setLineSpace(mLineSpace);
+    }
+
+    mTextBoxPosX = mpTm_c[0]->getGlobalPosX();
+    mTextBoxPosY = mpTm_c[0]->getGlobalPosY();
 }
-#pragma pop
 
 /* 8023C928-8023CA88 237268 0160+00 1/0 0/0 0/0 .text            __dt__14dMsgScrnBoss_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMsgScrnBoss_c::~dMsgScrnBoss_c() {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_boss/__dt__14dMsgScrnBoss_cFv.s"
+dMsgScrnBoss_c::~dMsgScrnBoss_c() {
+    delete mpScreen;
+    mpScreen = NULL;
+
+    delete mpPmp_c;
+    mpPmp_c = NULL;
+
+    delete mpFontParent;
+    mpFontParent = NULL;
+
+    delete mpBaseParent;
+    mpBaseParent = NULL;
+
+    for (int i = 0; i < 7; i++) {
+        delete mpTm_c[i];
+        mpTm_c[i] = NULL;
+    }
+
+    dComIfGp_getMsgArchive(4)->removeResourceAll();
 }
-#pragma pop
 
 /* 8023CA88-8023CB98 2373C8 0110+00 1/0 0/0 0/0 .text            exec__14dMsgScrnBoss_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnBoss_c::exec() {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_boss/exec__14dMsgScrnBoss_cFv.s"
-}
-#pragma pop
+void dMsgScrnBoss_c::exec() {
+    mpPmp_c->scale(g_MsgObject_HIO_c.mBossNameScaleX, g_MsgObject_HIO_c.mBossNameScaleY);
 
-/* ############################################################################################## */
-/* 80454BB4-80454BB8 0031B4 0004+00 1/1 0/0 0/0 .sdata2          @3916 */
-SECTION_SDATA2 static u8 lit_3916[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
+    mpFontParent->scale(g_MsgObject_HIO_c.mBossNameCharSizeX, g_MsgObject_HIO_c.mBossNameCharSizeY);
+    mpFontParent->paneTrans(g_MsgObject_HIO_c.mBossNameCharPosX, g_MsgObject_HIO_c.mBossNameCharPosY);
+
+    mpBaseParent->scale(g_MsgObject_HIO_c.mBossNameBaseSizeX, g_MsgObject_HIO_c.mBossNameBaseSizeY);
+    mpBaseParent->paneTrans(g_MsgObject_HIO_c.mBossNameBasePosX, g_MsgObject_HIO_c.mBossNameBasePosY);
+
+    if (isTalkNow()) {
+        fukiAlpha(1.0f);
+    }
+}
 
 /* 8023CB98-8023CBF0 2374D8 0058+00 1/0 0/0 0/0 .text            drawSelf__14dMsgScrnBoss_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnBoss_c::drawSelf() {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_boss/drawSelf__14dMsgScrnBoss_cFv.s"
+void dMsgScrnBoss_c::drawSelf() {
+    J2DGrafContext* ctx = dComIfGp_getCurrentGrafPort();
+    ctx->setup2D();
+    drawOutFont(0.0f, 0.0f, 1.0f);
 }
-#pragma pop
 
 /* 8023CBF0-8023CC7C 237530 008C+00 1/0 0/0 0/0 .text            fukiAlpha__14dMsgScrnBoss_cFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnBoss_c::fukiAlpha(f32 param_0) {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_boss/fukiAlpha__14dMsgScrnBoss_cFf.s"
+void dMsgScrnBoss_c::fukiAlpha(f32 alpha) {
+    mpPmp_c->setAlphaRate(alpha);
+    mpBaseParent->setAlphaRate(alpha * g_MsgObject_HIO_c.mBossNameBaseAlpha);
+
+    for (int i = 0; i < 7; i++) {
+        mpTm_c[i]->setAlphaRate(alpha);
+    }
 }
-#pragma pop
 
 /* 8023CC7C-8023CC80 2375BC 0004+00 1/0 0/0 0/0 .text            fukiScale__14dMsgScrnBoss_cFf */
-void dMsgScrnBoss_c::fukiScale(f32 param_0) {
+void dMsgScrnBoss_c::fukiScale(f32) {
     /* empty function */
 }
 
 /* 8023CC80-8023CC84 2375C0 0004+00 1/0 0/0 0/0 .text            fukiTrans__14dMsgScrnBoss_cFff */
-void dMsgScrnBoss_c::fukiTrans(f32 param_0, f32 param_1) {
+void dMsgScrnBoss_c::fukiTrans(f32, f32) {
     /* empty function */
 }
 
 /* 8023CC84-8023CC88 2375C4 0004+00 1/0 0/0 0/0 .text            fontAlpha__14dMsgScrnBoss_cFf */
-void dMsgScrnBoss_c::fontAlpha(f32 param_0) {
+void dMsgScrnBoss_c::fontAlpha(f32) {
     /* empty function */
 }
 

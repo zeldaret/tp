@@ -201,8 +201,7 @@ public:
 
     /* 8025C6FC */ virtual ~dSvBit_HIO_c();
 
-private:
-    /* 0x004 */ u8 field_0x4;
+    /* 0x004 */ s8 field_0x4;
     /* 0x008 */ dSvBit_childSwitchHIO_c mSwitch;
     /* 0x210 */ dSvBit_childItemHIO_c mItem;
     /* 0x3D8 */ dSvBit_childTreasureHIO_c mTreasure;

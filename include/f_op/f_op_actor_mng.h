@@ -36,21 +36,49 @@ struct fopAcM_prm_class {
     /* 0x21 */ s8 mRoomNo;
 };
 
+struct fopAcM_search4ev_prm {
+    fopAcM_search4ev_prm() { clear(); }
+    void clear() {
+        mName[0] = 0;
+        mEventID = -1;
+        mProcName = 11;
+        mSubType = 0;
+    }
+
+    /* 0x00 */ char mName[30];
+    /* 0x1E */ s16 mEventID;
+    /* 0x20 */ s16 mProcName;
+    /* 0x22 */ s8 mSubType;
+};
+
+struct fopAcM_search_prm {
+    /* 0x00 */ u32 mParam0;
+    /* 0x04 */ u32 mParam1;
+    /* 0x08 */ s16 mProcName;
+    /* 0x0A */ s8 mSubType;
+};
+
+class dBgS_LinChk;
 class fopAcM_lc_c {
 public:
+    static dBgS_LinChk* getLineCheck() { return (dBgS_LinChk*)&mLineCheck; }
     static bool lineCheck(const cXyz*, const cXyz*, const fopAc_ac_c*);
     static u8 mLineCheck[112];
 };
 
+class dBgS_RoofChk;
 class fopAcM_rc_c {
 public:
+    static dBgS_RoofChk* getRoofCheck() { return (dBgS_RoofChk*)&mRoofCheck; }
     static bool roofCheck(const cXyz*);
     static u8 mRoofCheck[80];
     static f32 mRoofY;
 };
 
+class dBgS_GndChk;
 class fopAcM_gc_c {
 public:
+    static dBgS_GndChk* getGroundCheck() { return (dBgS_GndChk*)&mGndCheck; }
     static bool gndCheck(const cXyz*);
     static u8 mGndCheck[84];
     static f32 mGroundY;
@@ -58,8 +86,10 @@ public:
     static f32 getGroundY() { return mGroundY; }
 };
 
+class dBgS_WtrChk;
 class fopAcM_wt_c {
 public:
+    static dBgS_WtrChk* getWaterCheck() { return (dBgS_WtrChk*)&mWaterCheck; }
     static bool waterCheck(const cXyz*);
     static u8 mWaterCheck[84 + 4 /* padding */];
     static f32 mWaterY[1 + 1 /* padding */];
@@ -110,7 +140,7 @@ inline void fopAcM_SetParam(void* p_actor, u32 param) {
     fpcM_SetParam(p_actor, param);
 }
 
-inline s16 fpcAcM_GetProfName(void* pActor) {
+inline s16 fopAcM_GetProfName(const void* pActor) {
     return fpcM_GetProfName(pActor);
 }
 
@@ -162,6 +192,10 @@ inline void fopAcM_OnCondition(fopAc_ac_c* p_actor, u32 flag) {
     p_actor->mCondition |= flag;
 }
 
+inline void fopAcM_OffCondition(fopAc_ac_c* p_actor, u32 flag) {
+    p_actor->mCondition &= ~flag;
+}
+
 inline BOOL fopAcM_IsActor(void* actor) {
     return fopAc_IsActor(actor);
 }
@@ -178,51 +212,127 @@ inline void fopAcM_cancelHookCarryNow(fopAc_ac_c* actor) {
     fopAcM_OffStatus(actor, 0x100000);
 }
 
+inline s8 fopAcM_GetHomeRoomNo(const fopAc_ac_c* pActor) {
+    return pActor->mOrig.mRoomNo;
+}
+
+inline void fopAcM_SetGravity(fopAc_ac_c* actor, f32 gravity) {
+    actor->mGravity = gravity;
+}
+
+inline void fopAcM_SetMtx(fopAc_ac_c* actor, MtxP m) {
+    actor->mCullMtx = m;
+}
+
+inline void fopAcM_SetSpeed(fopAc_ac_c* actor, f32 x, f32 y, f32 z) {
+    actor->mSpeed.set(x, y, z);
+}
+
+inline void fopAcM_SetSpeedF(fopAc_ac_c* actor, f32 f) {
+    actor->mSpeedF = f;
+}
+
+inline void fopAcM_SetStatus(fopAc_ac_c* actor, u32 status) {
+    actor->mStatus = status;
+}
+
+inline fopAcM_prm_class* fopAcM_GetAppend(void* actor) {
+    return (fopAcM_prm_class*)fpcM_GetAppend(actor);
+}
+
+inline BOOL fopAcM_IsExecuting(unsigned int id) {
+    return fpcM_IsExecuting(id);
+}
+
 void* fopAcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3, void* pData);
-void fopAcM_setStageLayer(void*);
-int fopAcM_setRoomLayer(void*, int);
-s32 fopAcM_SearchByID(unsigned int id, fopAc_ac_c** actor);
-s32 fopAcM_SearchByName(s16 procName, fopAc_ac_c** actor);
-fopAcM_prm_class* fopAcM_CreateAppend(void);
-fopAcM_prm_class* createAppend(u16, u32, const cXyz*, int, const csXyz*, const cXyz*, s8,
-                               unsigned int);
-void fopAcM_Log(const fopAc_ac_c*, const char*);
-void fopAcM_delete(fopAc_ac_c*);
-s32 fopAcM_delete(unsigned int);
-s32 fopAcM_create(s16, u16, u32, const cXyz*, int, const csXyz*, const cXyz*, s8, createFunc);
-s32 fopAcM_create(s16, u32, const cXyz*, int, const csXyz*, const cXyz*, s8);
-void* fopAcM_fastCreate(s16, u32, const cXyz*, int, const csXyz*, const cXyz*, s8, createFunc,
-                        void*);
-void* fopAcM_fastCreate(const char*, u32, const cXyz*, int, const csXyz*, const cXyz*, createFunc,
-                        void*);
-s32 fopAcM_createChild(s16, unsigned int, u32, const cXyz*, int, const csXyz*, const cXyz*, s8,
-                       createFunc);
-s32 fopAcM_createChildFromOffset(s16, unsigned int, u32, const cXyz*, int, const csXyz*,
-                                 const cXyz*, s8, createFunc);
-void fopAcM_DeleteHeap(fopAc_ac_c*);
-s32 fopAcM_callCallback(fopAc_ac_c*, heapCallbackFunc, JKRHeap*);
-bool fopAcM_entrySolidHeap_(fopAc_ac_c*, heapCallbackFunc, u32);
-bool fopAcM_entrySolidHeap(fopAc_ac_c*, heapCallbackFunc, u32);
-void fopAcM_SetMin(fopAc_ac_c*, f32, f32, f32);
-void fopAcM_SetMax(fopAc_ac_c*, f32, f32, f32);
-void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
-void fopAcM_setCullSizeSphere(fopAc_ac_c*, f32, f32, f32, f32);
-void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
-bool fopAcM_addAngleY(fopAc_ac_c*, s16, s16);
-void fopAcM_calcSpeed(fopAc_ac_c*);
-void fopAcM_posMove(fopAc_ac_c*, const cXyz*);
-void fopAcM_posMoveF(fopAc_ac_c*, const cXyz*);
-s16 fopAcM_searchActorAngleY(const fopAc_ac_c*, const fopAc_ac_c*);
-s16 fopAcM_searchActorAngleX(const fopAc_ac_c*, const fopAc_ac_c*);
+
+void fopAcM_setStageLayer(void* p_proc);
+
+void fopAcM_setRoomLayer(void* p_proc, int roomNo);
+
+s32 fopAcM_SearchByID(unsigned int id, fopAc_ac_c** p_actor);
+
+s32 fopAcM_SearchByName(s16 procName, fopAc_ac_c** p_actor);
+
+fopAcM_prm_class* fopAcM_CreateAppend();
+
+fopAcM_prm_class* createAppend(u16 enemyNo, u32 parameters, const cXyz* p_pos, int roomNo,
+                               const csXyz* p_angle, const cXyz* p_scale, s8 subType,
+                               unsigned int parentPId);
+
+void fopAcM_Log(fopAc_ac_c const* p_actor, char const* str);
+
+void fopAcM_delete(fopAc_ac_c* p_actor);
+
+s32 fopAcM_delete(unsigned int actorID);
+
+s32 fopAcM_create(s16 procName, u16 enemyNo, u32 parameter, const cXyz* p_pos, int roomNo,
+                  const csXyz* p_angle, const cXyz* p_scale, s8 subType, createFunc p_createFunc);
+
+s32 fopAcM_create(s16 procName, u32 parameter, const cXyz* p_pos, int roomNo, const csXyz* p_angle,
+                  const cXyz* p_scale, s8 subType);
+
+void* fopAcM_fastCreate(s16 procName, u32 parameter, const cXyz* p_pos, int roomNo,
+                        const csXyz* p_angle, const cXyz* p_scale, s8 subType, createFunc p_createFunc,
+                        void* p_createFuncData);
+
+void* fopAcM_fastCreate(const char* p_actorName, u32 parameter, const cXyz* pActorPos, int roomNo,
+                        const csXyz* p_angle, const cXyz* p_scale, createFunc p_createFunc,
+                        void* p_createFuncData);
+
+s32 fopAcM_createChild(s16 procName, unsigned int parentPId, u32 parameters, const cXyz* p_pos,
+                       int roomNo, const csXyz* p_angle, const cXyz* p_scale, s8 subType,
+                       createFunc p_createFunc);
+
+s32 fopAcM_createChildFromOffset(s16 procName, unsigned int parentProcID, u32 actorParams,
+                                 const cXyz* p_pos, int roomNo, const csXyz* p_angle,
+                                 const cXyz* p_scale, s8 subType, createFunc p_createFunc);
+
+void fopAcM_DeleteHeap(fopAc_ac_c* p_actor);
+
+s32 fopAcM_callCallback(fopAc_ac_c* p_actor, heapCallbackFunc p_callbackFunc, JKRHeap* p_heap);
+
+bool fopAcM_entrySolidHeap_(fopAc_ac_c* p_actor, heapCallbackFunc p_heapCallback, u32 size);
+
+bool fopAcM_entrySolidHeap(fopAc_ac_c* p_actor, heapCallbackFunc p_heapCallback, u32 size);
+
+void fopAcM_SetMin(fopAc_ac_c* p_actor, f32 minX, f32 minY, f32 minZ);
+
+void fopAcM_SetMax(fopAc_ac_c* p_actor, f32 maxX, f32 maxY, f32 maxZ);
+
+void fopAcM_setCullSizeBox(fopAc_ac_c* p_actor, f32 minX, f32 minY, f32 minZ, f32 maxX, f32 maxY,
+                           f32 maxZ);
+
+void fopAcM_setCullSizeSphere(fopAc_ac_c* p_actor, f32 minX, f32 minY, f32 minZ, f32 radius);
+
+void fopAcM_setCullSizeBox2(fopAc_ac_c* p_actor, J3DModelData* p_modelData);
+
+bool fopAcM_addAngleY(fopAc_ac_c* p_actor, s16 target, s16 step);
+
+void fopAcM_calcSpeed(fopAc_ac_c* p_actor);
+
+void fopAcM_posMove(fopAc_ac_c* p_actor, const cXyz* p_movePos);
+
+void fopAcM_posMoveF(fopAc_ac_c* p_actor, const cXyz* p_movePos);
+
+s16 fopAcM_searchActorAngleY(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB);
+
+s16 fopAcM_searchActorAngleX(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB);
+
 s32 fopAcM_seenActorAngleY(const fopAc_ac_c*, const fopAc_ac_c*);
-f32 fopAcM_searchActorDistance(const fopAc_ac_c*, const fopAc_ac_c*);
-f32 fopAcM_searchActorDistance2(const fopAc_ac_c*, const fopAc_ac_c*);
-f32 fopAcM_searchActorDistanceXZ(const fopAc_ac_c*, const fopAc_ac_c*);
-f32 fopAcM_searchActorDistanceXZ2(const fopAc_ac_c*, const fopAc_ac_c*);
+
+f32 fopAcM_searchActorDistance(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB);
+
+f32 fopAcM_searchActorDistance2(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB);
+
+f32 fopAcM_searchActorDistanceXZ(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB);
+
+f32 fopAcM_searchActorDistanceXZ2(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB);
+
 s32 fopAcM_rollPlayerCrash(const fopAc_ac_c*, f32, u32, f32, f32, int, f32);
 s32 fopAcM_checkCullingBox(f32[3][4], f32, f32, f32, f32, f32, f32);
 s32 fopAcM_cullingCheck(const fopAc_ac_c*);
-s32 event_second_actor(u16);
+void* event_second_actor(u16);
 s32 fopAcM_orderTalkEvent(fopAc_ac_c*, fopAc_ac_c*, u16, u16);
 s32 fopAcM_orderTalkItemBtnEvent(u16, fopAc_ac_c*, fopAc_ac_c*, u16, u16);
 s32 fopAcM_orderSpeakEvent(fopAc_ac_c*, u16, u16);
@@ -237,50 +347,86 @@ s32 fopAcM_orderMapToolAutoNextEvent(fopAc_ac_c*, u8, s16, u16, u16, u16);
 s32 fopAcM_orderPotentialEvent(fopAc_ac_c*, u16, u16, u16);
 s32 fopAcM_orderItemEvent(fopAc_ac_c*, u16, u16);
 s32 fopAcM_orderTreasureEvent(fopAc_ac_c*, fopAc_ac_c*, u16, u16);
-s32 fopAcM_getTalkEventPartner(const fopAc_ac_c*);
-s32 fopAcM_getItemEventPartner(const fopAc_ac_c*);
-s32 fopAcM_getEventPartner(const fopAc_ac_c*);
-s32 fopAcM_createItemForPresentDemo(const cXyz*, int, u8, int, int, const csXyz*, const cXyz*);
-s32 fopAcM_createItemForTrBoxDemo(const cXyz*, int, int, int, const csXyz*, const cXyz*);
-// s32 fopAcM_getItemNoFromTableNo(u8);
-s32 fopAcM_createItemFromEnemyID(u8, const cXyz*, int, int, const csXyz*, const cXyz*, f32*, f32*);
-s32 fopAcM_createItemFromTable(const cXyz*, int, int, int, const csXyz*, int, const cXyz*, f32*,
-                               f32*, bool);
-s32 fopAcM_createDemoItem(const cXyz*, int, int, const csXyz*, int, const cXyz*, u8);
-s32 fopAcM_createItemForBoss(const cXyz*, int, int, const csXyz*, const cXyz*, f32, f32, int);
-s32 fopAcM_createItemForMidBoss(const cXyz*, int, int, const csXyz*, const cXyz*, int, int);
-void* fopAcM_createItemForDirectGet(const cXyz*, int, int, const csXyz*, const cXyz*, f32, f32);
-void* fopAcM_createItemForSimpleDemo(const cXyz*, int, int, const csXyz*, const cXyz*, f32, f32);
-s32 fopAcM_createItem(const cXyz*, int, int, int, const csXyz*, const cXyz*, int);
-void* fopAcM_fastCreateItem2(const cXyz*, int, int, int, int, const csXyz*, const cXyz*);
-void* fopAcM_fastCreateItem(const cXyz*, int, int, const csXyz*, const cXyz*, f32*, f32*, int, int,
-                            createFunc);
+void* fopAcM_getTalkEventPartner(const fopAc_ac_c*);
+void* fopAcM_getItemEventPartner(const fopAc_ac_c*);
+void* fopAcM_getEventPartner(const fopAc_ac_c*);
+
+s32 fopAcM_createItemForPresentDemo(cXyz const* p_pos, int i_itemNo, u8 param_2, int i_itemBitNo,
+                                        int i_roomNo, csXyz const* p_angle, cXyz const* p_scale);
+
+s32 fopAcM_createItemForTrBoxDemo(cXyz const* p_pos, int i_itemNo, int i_itemBitNo, int i_roomNo,
+                                    csXyz const* p_angle, cXyz const* p_scale);
+
+u8 fopAcM_getItemNoFromTableNo(u8 i_tableNo);
+
+s32 fopAcM_createItemFromEnemyID(u8 i_enemyID, cXyz const* p_pos, int i_itemBitNo, int i_roomNo,
+                                csXyz const* p_angle, cXyz const* p_scale, f32* speedF,
+                                f32* speedY);
+
+s32 fopAcM_createItemFromTable(cXyz const* p_pos, int i_tableNo, int i_itemBitNo, int i_roomNo,
+                                   csXyz const* p_angle, int param_5, cXyz const* p_scale,
+                                   f32* speedF, f32* speedY, bool createDirect);
+
+s32 fopAcM_createDemoItem(const cXyz* p_pos, int itemNo, int itemBitNo, const csXyz* p_angle,
+                          int roomNo, const cXyz* scale, u8 param_7);
+
+s32 fopAcM_createItemForBoss(const cXyz* p_pos, int param_2, int roomNo, const csXyz* p_angle,
+                             const cXyz* p_scale, f32 speedF, f32 speedY, int param_8);
+
+s32 fopAcM_createItemForMidBoss(const cXyz* p_pos, int i_itemNo, int i_roomNo, const csXyz* p_angle,
+                                const cXyz* p_scale, int param_6, int param_7);
+
+void* fopAcM_createItemForDirectGet(const cXyz* p_pos, int i_itemNo, int i_roomNo, const csXyz* p_angle,
+                                    const cXyz* p_scale, f32 speedF, f32 speedY);
+
+void* fopAcM_createItemForSimpleDemo(const cXyz* p_pos, int i_itemNo, int i_roomNo, const csXyz* p_angle,
+                                     const cXyz* p_scale, f32 speedF, f32 speedY);
+
+s32 fopAcM_createItem(const cXyz* p_pos, int itemNo, int param_3, int roomNo, const csXyz* p_angle,
+                      const cXyz* p_scale, int param_7);
+
+void* fopAcM_fastCreateItem2(const cXyz* p_pos, int itemNo, int param_3, int roomNo, int param_5,
+                             const csXyz* p_angle, const cXyz* p_scale);
+                             
+void* fopAcM_fastCreateItem(const cXyz* p_pos, int i_itemNo, int i_roomNo, const csXyz* p_angle,
+                            const cXyz* p_scale, f32* p_speedF, f32* p_speedY, int param_8,
+                            int param_9, createFunc p_createFunc);
+
 s32 fopAcM_createBokkuri(u16, const cXyz*, int, int, int, const cXyz*, int, int);
 s32 fopAcM_createWarpHole(const cXyz*, const csXyz*, int, u8, u8, u8);
-s32 fopAcM_myRoomSearchEnemy(s8);
+
+void fopAcM_myRoomSearchEnemy(s8 roomNo);
+
 s32 fopAcM_createDisappear(const fopAc_ac_c*, const cXyz*, u8, u8, u8);
-s32 fopAcM_setCarryNow(fopAc_ac_c*, int);
-s32 fopAcM_cancelCarryNow(fopAc_ac_c*);
-f32 fopAcM_otoCheck(const fopAc_ac_c*, f32);
+void fopAcM_setCarryNow(fopAc_ac_c*, int);
+void fopAcM_cancelCarryNow(fopAc_ac_c*);
+s32 fopAcM_otoCheck(const fopAc_ac_c*, f32);
 s32 fopAcM_otherBgCheck(const fopAc_ac_c*, const fopAc_ac_c*);
 s32 fopAcM_wayBgCheck(const fopAc_ac_c*, f32, f32);
 s32 fopAcM_plAngleCheck(const fopAc_ac_c*, s16);
 s32 fopAcM_effSmokeSet1(u32*, u32*, const cXyz*, const csXyz*, f32, const dKy_tevstr_c*, int);
-s32 fopAcM_effHamonSet(u32*, const cXyz*, f32, f32);
+void fopAcM_effHamonSet(u32*, const cXyz*, f32, f32);
 s32 fopAcM_riverStream(cXyz*, s16*, f32*, f32);
 s32 fopAcM_carryOffRevise(fopAc_ac_c*);
 // void vectle_calc(const DOUBLE_POS*, cXyz*);
 // void get_vectle_calc(const cXyz*, const cXyz*, cXyz*);
 void fopAcM_setEffectMtx(const fopAc_ac_c*, const J3DModelData*);
-static const char* fopAcM_getProcNameString(const fopAc_ac_c*);
-// s32 fopAcM_findObjectCB(const fopAc_ac_c*, void*);
-s32 fopAcM_searchFromName(const char*, u32, u32);
-s32 fopAcM_findObject4EventCB(fopAc_ac_c*, void*);
-fopAc_ac_c* fopAcM_searchFromName4Event(const char*, s16);
+
+static const char* fopAcM_getProcNameString(const fopAc_ac_c* p_actor);
+
+static const fopAc_ac_c* fopAcM_findObjectCB(fopAc_ac_c const* p_actor, void* p_data);
+
+fopAc_ac_c* fopAcM_searchFromName(char const* name, u32 param0, u32 param1);
+
+fopAc_ac_c* fopAcM_findObject4EventCB(fopAc_ac_c* p_actor, void* p_data);
+
+fopAc_ac_c* fopAcM_searchFromName4Event(char const* name, s16 eventID);
+
 s32 fopAcM_getWaterY(const cXyz*, f32*);
-void fpoAcM_relativePos(const fopAc_ac_c*, const cXyz*, cXyz*);
+void fpoAcM_relativePos(fopAc_ac_c const* actor, cXyz const* p_inPos, cXyz* p_outPos);
 s32 fopAcM_getWaterStream(const cXyz*, const cBgS_PolyInfo&, cXyz*, int*, int);
 s16 fopAcM_getPolygonAngle(const cBgS_PolyInfo&, s16);
+s16 fopAcM_getPolygonAngle(cM3dGPla const* param_0, s16 param_1);
 
 extern "C" {
 void fopAcM_initManager__Fv(void);
@@ -353,7 +499,6 @@ void fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData(void);
 void fopAcM_setRoomLayer__FPvi(void);
 void fopAcM_setStageLayer__FPv(void);
 void waterCheck__11fopAcM_wt_cFPC4cXyz(void);
-void fopScnM_SearchByID(void);
 void fpoAcM_relativePos__FPC10fopAc_ac_cPC4cXyzP4cXyz(void);
 void fopAcM_SearchByName__FsPP10fopAc_ac_c(void);
 void fopAcM_createChildFromOffset__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i(void);

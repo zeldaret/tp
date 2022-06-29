@@ -71,7 +71,7 @@ asm void dPath_GetPnt(dPath const* param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dPath_GetRoomPath(int param_0, int param_1) {
+asm u16* dPath_GetRoomPath(int param_0, int param_1) {
     nofralloc
 #include "asm/d/d_path/dPath_GetRoomPath__Fii.s"
 }

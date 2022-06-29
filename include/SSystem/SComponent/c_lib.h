@@ -25,7 +25,7 @@ void cLib_addCalcAngleS2(short*, short, short, short);
 
 int cLib_chaseUC(unsigned char*, unsigned char, unsigned char);
 int cLib_chaseS(short*, short, short);
-int cLib_chaseF(float*, float, float);
+int cLib_chaseF(float* value, float target, float step);
 int cLib_chasePos(cXyz*, const cXyz&, float);
 int cLib_chasePosXZ(cXyz*, const cXyz&, float);
 int cLib_chaseAngleS(short*, short, short);
@@ -61,11 +61,16 @@ inline T cLib_minMaxLimit(T val, T min, T max) {
     return ret;
 }
 
+template <typename T>
+T cLib_calcTimer(T* val);
+
 void MtxInit(void);
 void MtxTrans(float, float, float, unsigned char);
 void MtxScale(float, float, float, unsigned char);
 void MtxPosition(cXyz*, cXyz*);
 void MtxPush(void);
 Mtx* MtxPull(void);
+
+extern Mtx* calc_mtx;
 
 #endif

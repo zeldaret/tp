@@ -62,7 +62,6 @@ extern "C" void checkCompressed__9JKRDecompFPUc();
 extern "C" void __dt__10JSUPtrListFv();
 extern "C" void initiate__10JSUPtrListFv();
 extern "C" void panic_f__12JUTExceptionFPCciPCce();
-extern "C" void DCStoreRangeNoSync();
 extern "C" void ARQInit();
 extern "C" void __register_global_object();
 extern "C" void _savegpr_22();

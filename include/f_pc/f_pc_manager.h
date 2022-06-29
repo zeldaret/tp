@@ -8,6 +8,7 @@
 #include "f_pc/f_pc_create_iter.h"
 #include "f_pc/f_pc_node_req.h"
 #include "f_pc/f_pc_stdcreate_req.h"
+#include "f_pc/f_pc_executor.h"
 
 typedef int (*FastCreateReqFunc)(void*);
 typedef void (*fpcM_ManagementFunc)(void);
@@ -27,7 +28,7 @@ inline void fpcM_SetParam(void* p_actor, u32 param) {
     ((base_process_class*)p_actor)->mParameters = param;
 }
 
-inline s16 fpcM_GetProfName(void* pActor) {
+inline s16 fpcM_GetProfName(const void* pActor) {
     return ((base_process_class*)pActor)->mBsTypeId;
 }
 
@@ -38,6 +39,26 @@ inline int fpcM_Create(s16 procName, FastCreateReqFunc createFunc, void* process
 
 inline s32 fpcM_ChangeLayerID(void* proc, int layerID) {
     return fpcPi_Change(&((base_process_class*)proc)->mPi, layerID, 0xFFFD, 0xFFFD);
+}
+
+inline s32 fpcM_IsJustType(int type1, int type2) {
+    return fpcBs_Is_JustOfType(type1, type2);
+}
+
+inline bool fpcM_IsFirstCreating(void* proc) {
+    return ((base_process_class*)proc)->mInitState == 0;
+}
+
+inline leaf_process_profile_definition* fpcM_GetProfile(void* proc) {
+    return (leaf_process_profile_definition*)((base_process_class*)proc)->mpProf;
+}
+
+inline void* fpcM_GetAppend(const void* proc) {
+    return ((base_process_class*)proc)->mpUserData;
+}
+
+inline BOOL fpcM_IsExecuting(unsigned int id) {
+    return fpcEx_IsExist(id);
 }
 
 void fpcM_Draw(void* pProc);

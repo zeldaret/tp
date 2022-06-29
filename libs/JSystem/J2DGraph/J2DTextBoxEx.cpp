@@ -256,7 +256,7 @@ asm void J2DTextBoxEx::setFont(JUTFont* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTextBoxEx::getFont() const {
+asm JUTFont* J2DTextBoxEx::getFont() const {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DTextBoxEx/getFont__12J2DTextBoxExCFv.s"
 }

@@ -18,10 +18,6 @@
 
 struct sub_kankyo__class {};
 
-struct mDoMtx_stack_c {
-    static u8 now[48];
-};
-
 struct color_RGB_class {};
 
 //
@@ -2628,7 +2624,7 @@ asm void dKy_Sound_set(cXyz param_0, int param_1, unsigned int param_2, int para
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dKy_Sound_get() {
+asm SND_INFLUENCE* dKy_Sound_get() {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_Sound_get__Fv.s"
 }

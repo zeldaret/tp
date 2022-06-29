@@ -4,48 +4,10 @@
 //
 
 #include "d/msg/d_msg_out_font.h"
+#include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct ResTIMG {};
-
-struct J2DTextBox {};
-
-struct J2DRotateAxis {};
-
-struct J2DPicture {
-    /* 802FC708 */ J2DPicture(ResTIMG const*);
-};
-
-struct J2DPane {
-    /* 802F71DC */ void rotate(f32, f32, J2DRotateAxis, f32);
-    /* 802F7AFC */ void getParentPane();
-};
-
-struct COutFont_c {
-    /* 80225C94 */ COutFont_c(u8);
-    /* 80225D60 */ ~COutFont_c();
-    /* 80225E7C */ void setPane(J2DPicture*);
-    /* 80225EA8 */ void createPane();
-    /* 80226CF8 */ void initialize();
-    /* 80226D4C */ void drawFont(J2DTextBox*, u8, f32, f32, f32, f32, u32, u8);
-    /* 80226DA8 */ void setAlphaRatio(f32);
-    /* 80226DB0 */ void draw(J2DTextBox*, f32, f32, f32);
-    /* 80228448 */ void reset(J2DTextBox*);
-    /* 80228490 */ void setBlendAnime(J2DPicture*, s16);
-    /* 80228530 */ void getBtiName(int);
-};
-
-struct COutFontSet_c {
-    /* 80225BB8 */ COutFontSet_c();
-    /* 80225BF4 */ ~COutFontSet_c();
-    /* 80225C3C */ void initialize();
-    /* 80225C70 */ void drawFont(J2DTextBox*, u8, f32, f32, f32, f32, u32, u8);
-};
+#include "d/com/d_com_inf_game.h"
 
 //
 // Forward References:
@@ -85,8 +47,7 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_24();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_29();
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_MsgObject_HIO_c[1040];
+extern "C" extern dMsgObject_HIO_c g_MsgObject_HIO_c;
 
 //
 // Declarations:
@@ -291,121 +252,13 @@ SECTION_DATA static void* lit_5000[65] = {
     (void*)(((char*)draw__10COutFont_cFP10J2DTextBoxfff) + 0x1248),
 };
 
-/* 803BFCAC-803BFDC4 -00001 0118+00 1/1 0/0 0/0 .data            mpIconName$5045 */
-SECTION_DATA static void* mpIconName[70] = {
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x4B),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x57),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x63),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x6F),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x7B),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x87),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x93),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x9F),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0xAB),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0xB7),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0xC6),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0xC6),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0xC6),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0xC6),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0xB7),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0xB7),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0xB7),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0xB7),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0xB7),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0xB7),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0xD2),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0xD2),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0xD2),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0xDE),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0xD2),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0xEA),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x10B),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x121),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x12D),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0xC6),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x139),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x158),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x158),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x158),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x158),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x158),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x158),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x158),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x158),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x158),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x158),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x159),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x16D),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x179),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x185),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x191),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x19D),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0xF),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x19D),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x1A9),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x1B5),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x1C1),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x1CD),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x1D9),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x1E5),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x1F1),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x1FD),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x27),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x33),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x1F1),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x1FD),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x209),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x215),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x221),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x22D),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x239),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x245),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x251),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x25D),
-    (void*)(((char*)&d_msg_d_msg_out_font__stringBase0) + 0x269),
-};
-
-/* 803BFDC4-803BFDE8 01CEE4 0024+00 2/2 0/0 0/0 .data            __vt__10COutFont_c */
-SECTION_DATA extern void* __vt__10COutFont_c[9] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10COutFont_cFv,
-    (void*)setPane__10COutFont_cFP10J2DPicture,
-    (void*)createPane__10COutFont_cFv,
-    (void*)draw__10COutFont_cFP10J2DTextBoxfff,
-    (void*)reset__10COutFont_cFP10J2DTextBox,
-    (void*)drawFont__10COutFont_cFP10J2DTextBoxUcffffUlUc,
-    (void*)setAlphaRatio__10COutFont_cFf,
-};
-
-/* 803BFDE8-803BFDF8 01CF08 000C+04 2/2 0/0 0/0 .data            __vt__13COutFontSet_c */
-SECTION_DATA extern void* __vt__13COutFontSet_c[3 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__13COutFontSet_cFv,
-    /* padding */
-    NULL,
-};
-
 /* 80225BB8-80225BF4 2204F8 003C+00 1/1 0/0 0/0 .text            __ct__13COutFontSet_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm COutFontSet_c::COutFontSet_c() {
-    nofralloc
-#include "asm/d/msg/d_msg_out_font/__ct__13COutFontSet_cFv.s"
+COutFontSet_c::COutFontSet_c() {
+    initialize();
 }
-#pragma pop
 
 /* 80225BF4-80225C3C 220534 0048+00 1/0 0/0 0/0 .text            __dt__13COutFontSet_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm COutFontSet_c::~COutFontSet_c() {
-    nofralloc
-#include "asm/d/msg/d_msg_out_font/__dt__13COutFontSet_cFv.s"
-}
-#pragma pop
+COutFontSet_c::~COutFontSet_c() {}
 
 /* ############################################################################################## */
 /* 80454A10-80454A14 003010 0004+00 4/4 0/0 0/0 .sdata2          @3748 */
@@ -420,57 +273,85 @@ SECTION_SDATA2 static u8 lit_3748[4] = {
 SECTION_SDATA2 static f32 lit_3749 = 1.0f;
 
 /* 80225C3C-80225C70 22057C 0034+00 2/2 0/0 0/0 .text            initialize__13COutFontSet_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void COutFontSet_c::initialize() {
-    nofralloc
-#include "asm/d/msg/d_msg_out_font/initialize__13COutFontSet_cFv.s"
+void COutFontSet_c::initialize() {
+    mpTextBoxPtr = NULL;
+    f32 tmp_0 = FLOAT_LABEL(lit_3748);
+    mPosX = tmp_0;
+    mPosY = tmp_0;
+    f32 tmp_1 = lit_3749;
+    mSizeX = tmp_1;
+    mSizeY = tmp_1;
+    mAlpha = 255;
+    mType = 0x47;
 }
-#pragma pop
 
 /* 80225C70-80225C94 2205B0 0024+00 1/1 0/0 0/0 .text
  * drawFont__13COutFontSet_cFP10J2DTextBoxUcffffUlUc            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void COutFontSet_c::drawFont(J2DTextBox* param_0, u8 param_1, f32 param_2, f32 param_3,
-                                 f32 param_4, f32 param_5, u32 param_6, u8 param_7) {
-    nofralloc
-#include "asm/d/msg/d_msg_out_font/drawFont__13COutFontSet_cFP10J2DTextBoxUcffffUlUc.s"
+void COutFontSet_c::drawFont(J2DTextBox* p_textBox, u8 type, f32 posX, f32 posY,
+                                 f32 sizeX, f32 sizeY, u32 color, u8 alpha) {
+    mpTextBoxPtr = p_textBox;
+    mPosX = posX;
+    mPosY = posY;
+    mSizeX = sizeX;
+    mSizeY = sizeY;
+    mAlpha = alpha;
+    mColor = color;
+    mType = type;
 }
-#pragma pop
 
 /* 80225C94-80225D60 2205D4 00CC+00 0/0 5/5 0/0 .text            __ct__10COutFont_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm COutFont_c::COutFont_c(u8 param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_out_font/__ct__10COutFont_cFUc.s"
+COutFont_c::COutFont_c(u8 param_0) {
+    field_0x242 = param_0;
+
+    for (int i = 0; i < 35; i++) {
+        mpOfs[i] = new COutFontSet_c();
+    }
+
+    for (int i = 0; i < 70; i++) {
+        mpPane[i] = NULL;
+        field_0x1b4[i] = 0;
+    }
+
+    mAlphaRatio = FLOAT_LABEL(lit_3748);
+    f32 tmp_1 = lit_3749;
+    field_0x1b0 = tmp_1;
+    field_0x1ac = tmp_1;
+    field_0x240 = 0;
+    mRupeeColor = 0;
 }
-#pragma pop
 
 /* 80225D60-80225E7C 2206A0 011C+00 1/0 0/0 0/0 .text            __dt__10COutFont_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm COutFont_c::~COutFont_c() {
-    nofralloc
-#include "asm/d/msg/d_msg_out_font/__dt__10COutFont_cFv.s"
+COutFont_c::~COutFont_c() {
+    for (int i = 0; i < 35; i++) {
+        delete mpOfs[i];
+        mpOfs[i] = NULL;
+    }
+
+    if (field_0x240) {
+        field_0x240 = 0;
+
+        for (int i = 0; i < 70; i++) {
+            if (mpPane[i] != NULL) {
+                delete mpPane[i];
+                mpPane[i] = NULL;
+            }
+        }
+    }
+
+    if (dComIfGp_getExpHeap2D() == NULL) {
+        dComIfGp_getItemIconArchive()->removeResourceAll();
+    }
 }
-#pragma pop
 
 /* 80225E7C-80225EA8 2207BC 002C+00 1/0 0/0 0/0 .text            setPane__10COutFont_cFP10J2DPicture
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void COutFont_c::setPane(J2DPicture* param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_out_font/setPane__10COutFont_cFP10J2DPicture.s"
+void COutFont_c::setPane(J2DPicture* p_pic) {
+    for (int i = 0; i < 70; i++) {
+        mpPane[i] = p_pic;
+        p_pic++;
+    }
+    field_0x240 = false;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80454A18-80454A20 003018 0008+00 2/2 0/0 0/0 .sdata2          @4397 */
@@ -487,36 +368,29 @@ asm void COutFont_c::createPane() {
 #pragma pop
 
 /* 80226CF8-80226D4C 221638 0054+00 0/0 2/2 0/0 .text            initialize__10COutFont_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void COutFont_c::initialize() {
-    nofralloc
-#include "asm/d/msg/d_msg_out_font/initialize__10COutFont_cFv.s"
+void COutFont_c::initialize() {
+    for (int i = 0; i < 35; i++) {
+        mpOfs[i]->initialize();
+    }
 }
-#pragma pop
 
 /* 80226D4C-80226DA8 22168C 005C+00 1/0 0/0 0/0 .text
  * drawFont__10COutFont_cFP10J2DTextBoxUcffffUlUc               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void COutFont_c::drawFont(J2DTextBox* param_0, u8 param_1, f32 param_2, f32 param_3,
-                              f32 param_4, f32 param_5, u32 param_6, u8 param_7) {
-    nofralloc
-#include "asm/d/msg/d_msg_out_font/drawFont__10COutFont_cFP10J2DTextBoxUcffffUlUc.s"
+void COutFont_c::drawFont(J2DTextBox* p_textBox, u8 type, f32 posX, f32 posY,
+                              f32 sizeX, f32 sizeY, u32 color, u8 alpha) {
+    posY += lit_3749;
+    for (int i = 0; i < 35; i++) {
+        if (mpOfs[i]->getType() == 0x47) {
+            mpOfs[i]->drawFont(p_textBox, type, posX, posY, sizeX, sizeY, color, alpha);
+            return;
+        }
+    }
 }
-#pragma pop
 
 /* 80226DA8-80226DB0 2216E8 0008+00 1/0 0/0 0/0 .text            setAlphaRatio__10COutFont_cFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void COutFont_c::setAlphaRatio(f32 param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_out_font/setAlphaRatio__10COutFont_cFf.s"
+void COutFont_c::setAlphaRatio(f32 ratio) {
+    mAlphaRatio = ratio;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80454A20-80454A24 003020 0004+00 1/1 0/0 0/0 .sdata2          @4986 */
@@ -560,6 +434,336 @@ SECTION_SDATA2 static f64 lit_5001 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80226DB0-80228448 2216F0 1698+00 2/0 0/0 0/0 .text            draw__10COutFont_cFP10J2DTextBoxfff
  */
+#ifdef NONMATCHING
+void COutFont_c::draw(J2DTextBox* p_textBox, f32 param_1, f32 param_2, f32 param_3) {
+    s16 sp256[70];
+
+    for (int i = 0; i < 70; i++) {
+        sp256[i] = field_0x1b4[i];
+    }
+
+    for (int i = 0; i < 35; i++) {
+        u8 type = mpOfs[i]->getType();
+        J2DTextBox* tbox = mpOfs[i]->getTextBoxPtr();
+
+        if (p_textBox == tbox && type != 0x47) {
+            f32 local_10c = 1.0f;
+            f32 local_110 = 1.0f;
+
+            if (p_textBox != NULL) {
+                for (J2DPane* pane = p_textBox; pane != NULL; pane = pane->getParentPane()) {
+                    local_10c *= pane->getScaleX();
+                    local_110 *= pane->getScaleY();
+                }
+            }
+
+            f32 posX = param_1 + param_3 * (local_10c * mpOfs[i]->getPosX());
+            f32 posY = param_2 + (local_110 * mpOfs[i]->getPosY());
+            f32 sizeX = local_10c * mpOfs[i]->getSizeX();
+            f32 sizeY = local_110 * mpOfs[i]->getSizeY();
+
+            if (mpPane[type] != NULL) {
+                mpPane[type]->setAlpha(mAlphaRatio * mpPane[i]->getAlpha());
+                
+                switch (type) {
+                case 10:
+                    mpPane[type]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 255));
+                    mpPane[type]->draw(2.0f + posX, 2.0f + posY, sizeX, sizeY, false, false, true);
+
+                    mpPane[type]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), mpOfs[i]->getColor());
+                    mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, true);
+                    break;
+                case 11:
+                    mpPane[type]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 255));
+                    mpPane[type]->draw(2.0f + posX, 2.0f + posY, sizeX, sizeY, false, true, true);
+
+                    mpPane[type]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), mpOfs[i]->getColor());
+                    mpPane[type]->draw(posX, posY, sizeX, sizeY, false, true, true);
+                    break;
+                case 29:
+                    mpPane[type]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 255));
+                    mpPane[type]->draw(2.0f + posX, 2.0f + posY, sizeX, sizeY, false, true, true);
+
+                    mpPane[type]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 80, 80, 255));
+                    mpPane[type]->draw(posX, posY, sizeX, sizeY, false, true, true);
+                    break;
+                case 12:
+                    mpPane[type]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 255));
+                    mpPane[type]->draw(2.0f + posX, 2.0f + posY, sizeX, sizeY, false, true, false);
+
+                    mpPane[type]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), mpOfs[i]->getColor());
+                    mpPane[type]->draw(posX, posY, sizeX, sizeY, false, true, false);
+                    break;
+                case 5:
+                case 6: {
+                    posY += 1.0f;
+                    sizeY -= 3.0f;
+                    JUtility::TColor black = mpPane[type]->getBlack();
+                    JUtility::TColor white = mpPane[type]->getWhite();
+
+                    mpPane[type]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 255));
+                    mpPane[type]->draw(2.0f + posX, 2.0f + posY, sizeX, sizeY, false, false, false);
+
+                    mpPane[type]->setBlackWhite(black, white);
+                    mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, false);
+                    break;
+                }
+                case 9:
+                    if (sp256[type] == field_0x1b4[type]) {
+                        field_0x1b4[type]++;
+
+                        if (field_0x1b4[type] >= 80) {
+                            field_0x1b4[type] = 0;
+                        }
+                        setBlendAnime(mpPane[type], field_0x1b4[type]);
+                    }
+
+                    if (field_0x1b4[type] < 20) {
+                        mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, true);
+                    } else if (field_0x1b4[type] < 40) {
+                        mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, false);
+                    } else if (field_0x1b4[type] < 60) {
+                        mpPane[type]->draw(posX, posY, sizeX, sizeY, true, true, true);
+                    } else {
+                        mpPane[type]->draw(posX, posY, sizeX, sizeY, true, true, false);
+                    }
+                    break;
+                case 14:
+                    if (sp256[type] == field_0x1b4[type]) {
+                        field_0x1b4[type]++;
+
+                        if (field_0x1b4[type] >= 20) {
+                            field_0x1b4[type] = 0;
+                        }
+                        setBlendAnime(mpPane[type], field_0x1b4[type]);
+                    }
+                    mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, true);
+                    break;
+                case 15:
+                    if (sp256[type] == field_0x1b4[type]) {
+                        field_0x1b4[type]++;
+
+                        if (field_0x1b4[type] >= 20) {
+                            field_0x1b4[type] = 0;
+                        }
+                        setBlendAnime(mpPane[type], field_0x1b4[type]);
+                    }
+                    mpPane[type]->draw(posX, posY, sizeX, sizeY, true, true, true);
+                    break;
+                case 16:
+                    if (sp256[type] == field_0x1b4[type]) {
+                        field_0x1b4[type]++;
+
+                        if (field_0x1b4[type] >= 20) {
+                            field_0x1b4[type] = 0;
+                        }
+                        setBlendAnime(mpPane[type], field_0x1b4[type]);
+                    }
+                    mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, false);
+                    break;
+                case 17:
+                    if (sp256[type] == field_0x1b4[type]) {
+                        field_0x1b4[type]++;
+
+                        if (field_0x1b4[type] >= 20) {
+                            field_0x1b4[type] = 0;
+                        }
+                        setBlendAnime(mpPane[type], field_0x1b4[type]);
+                    }
+                    mpPane[type]->draw(posX, posY, sizeX, sizeY, true, true, false);
+                    break;
+                case 18:
+                    if (sp256[type] == field_0x1b4[type]) {
+                        field_0x1b4[type]++;
+
+                        if (field_0x1b4[type] >= 40) {
+                            field_0x1b4[type] = 0;
+                        }
+                        setBlendAnime(mpPane[type], field_0x1b4[type]);
+                    }
+
+                    if (field_0x1b4[type] < 20) {
+                        mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, true);
+                    } else {
+                        mpPane[type]->draw(posX, posY, sizeX, sizeY, true, true, true);
+                    }                    
+                    break;
+                case 19:
+                    if (sp256[type] == field_0x1b4[type]) {
+                        field_0x1b4[type]++;
+
+                        if (field_0x1b4[type] >= 40) {
+                            field_0x1b4[type] = 0;
+                        }
+                        setBlendAnime(mpPane[type], field_0x1b4[type]);
+                    }
+
+                    if (field_0x1b4[type] < 20) {
+                        mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, false);
+                    } else {
+                        mpPane[type]->draw(posX, posY, sizeX, sizeY, true, true, false);
+                    }                    
+                    break;
+                case 13:
+                    mpPane[type]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 255));
+                    mpPane[type]->draw(2.0f + posX, 2.0f + posY, sizeX, sizeY, false, false, false);
+
+                    mpPane[type]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), mpOfs[i]->getColor());
+                    mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, false);
+                    break;
+                case 24:
+                case 27:
+                case 28:
+                case 43:
+                    mpPane[type]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), mpOfs[i]->getColor());
+                    mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, false);
+                    break;
+                case 42:
+                    mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, false);
+                    break;
+                case 20:
+                case 21:
+                case 22:
+                    field_0x1b4[type]++;
+                    if (field_0x1b4[type] >= 28) {
+                        field_0x1b4[type] = 0;
+                    }
+
+                    mpPane[type]->rotate(0.5f * posX, 0.5f * posY, ROTATE_Z, (360.0f * (f32)field_0x1b4[type]) / 28.0f);
+                    mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, false);
+                    break;
+                case 25:  // some issues in here, 2020
+                    if (sp256[type] == field_0x1b4[type]) {
+                        field_0x1b4[type]++;
+
+                        if (field_0x1b4[type] >= 18) {
+                            field_0x1b4[type] -= 18;
+                        }
+                    }
+
+                    f32 alpha;
+                    if (field_0x1b4[type] < 9) {
+                        alpha = field_0x1b4[type];
+                    } else {
+                        alpha = 18.0f - field_0x1b4[type];
+                    }
+
+                    mpPane[26]->setAlpha(((alpha / 9.0f) * 205.0f + 50.0f) * mAlphaRatio);
+                    f32 tmpX = 0.5f * (g_MsgObject_HIO_c.mPortalIconScale - 1.0f) * sizeX;
+                    f32 tmpY = 0.5f * (g_MsgObject_HIO_c.mPortalIconScale - 1.0f) * sizeY;
+                    mpPane[26]->draw(posX - tmpX, posY - tmpY, g_MsgObject_HIO_c.mPortalIconScale * sizeX, g_MsgObject_HIO_c.mPortalIconScale * sizeY, false, false, false);
+                    mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, false);
+                    break;
+                case 26:
+                    mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, false);
+                    break;
+                case 30:
+                    mpPane[type]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 255, 255, 255));
+                    mpPane[type]->draw(posX + (0.5f * (sizeX * (field_0x1ac - 1.0f))), posY + (0.5f * (sizeY * (field_0x1b0 - 1.0f))), sizeX * field_0x1ac, sizeY * field_0x1b0, false, false, false);
+                    break;
+                case 31:
+                case 32:
+                case 33:
+                case 34:
+                case 35:
+                case 36:
+                case 37:
+                case 38:
+                case 39:
+                case 40:
+                    mpPane[type]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), mpOfs[i]->getColor());
+                    mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, false);
+                    break;
+                case 41:
+                    mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, false);
+                    break;
+                case 44:
+                    mpPane[type]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 255));
+                    mpPane[type]->draw(2.0f + posX, 2.0f + ((posY + -3.0f) - 4.0f), sizeX, sizeY * 1.25f, false, false, false);
+
+                    mpPane[type]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), mpOfs[i]->getColor());
+                    mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, false);
+                    break;
+                case 45:
+                    mpPane[type]->draw(posX, (posY + -3.0f) - 4.0f, sizeX, sizeY * 1.25f, false, false, false);
+                    break;
+                case 46:
+                case 47:
+                case 55:
+                case 56:
+                case 57:
+                case 58:
+                case 61:
+                case 69:
+                    mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, false);
+                    break;
+                case 49:
+                case 50:
+                case 65:
+                case 66:
+                case 67:
+                case 68:
+                    if (sp256[type] == field_0x1b4[type]) {
+                        field_0x1b4[type]++;
+
+                        if (field_0x1b4[type] >= 40) {
+                            field_0x1b4[type] = 0;
+                        }
+                        setBlendAnime(mpPane[type], field_0x1b4[type]);
+                    }
+
+                    mpPane[type]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 255));
+                    mpPane[type]->draw(2.0f + posX, 2.0f + posY, sizeX, sizeY, false, false, false);
+
+                    mpPane[type]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 255, 255, 255));
+                    mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, false);
+                    break;
+                case 48:
+                case 59:
+                case 60:
+                    if (sp256[type] == field_0x1b4[type]) {
+                        field_0x1b4[type]++;
+
+                        if (field_0x1b4[type] >= 40) {
+                            field_0x1b4[type] = 0;
+                        }
+                        setBlendAnime(mpPane[type], field_0x1b4[type]);
+                    }
+                    mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, false);
+                    break;
+                case 62:
+                    if (sp256[type] == field_0x1b4[type]) {
+                        field_0x1b4[type]++;
+
+                        if (field_0x1b4[type] >= 10) {
+                            field_0x1b4[type] = 0;
+                        }
+                        
+                        if (field_0x1b4[type] < 5) {
+                            mpPane[type]->setBlendRatio(1.0f, 0.0f);
+                        } else {
+                            mpPane[type]->setBlendRatio(0.0f, 1.0f);
+                        }
+                    }
+
+                    mpPane[type]->draw(posX, -3.0f + posY, sizeX, 1.25f * sizeY, false, false, false);
+                    break;
+                default:
+                    JUtility::TColor black = mpPane[type]->getBlack();
+                    JUtility::TColor white = mpPane[type]->getWhite();
+
+                    mpPane[type]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 255));
+                    mpPane[type]->draw(2.0f + posX, 2.0f + posY, sizeX, sizeY, false, false, false);
+
+                    mpPane[type]->setBlackWhite(black, white);
+                    mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, false);
+                    break;
+                }
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -568,17 +772,20 @@ asm void COutFont_c::draw(J2DTextBox* param_0, f32 param_1, f32 param_2, f32 par
 #include "asm/d/msg/d_msg_out_font/draw__10COutFont_cFP10J2DTextBoxfff.s"
 }
 #pragma pop
+#endif
 
 /* 80228448-80228490 222D88 0048+00 1/0 0/0 0/0 .text            reset__10COutFont_cFP10J2DTextBox
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void COutFont_c::reset(J2DTextBox* param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_out_font/reset__10COutFont_cFP10J2DTextBox.s"
+void COutFont_c::reset(J2DTextBox* p_textBox) {
+    if (p_textBox != NULL) {
+        for (int i = 0; i < 35; i++) {
+            if (p_textBox == mpOfs[i]->getTextBoxPtr()) {
+                mpOfs[i]->setTextBoxPtr(NULL);
+                mpOfs[i]->resetType();
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 80228490-80228530 222DD0 00A0+00 1/1 0/0 0/0 .text setBlendAnime__10COutFont_cFP10J2DPictures
  */
@@ -592,13 +799,85 @@ asm void COutFont_c::setBlendAnime(J2DPicture* param_0, s16 param_1) {
 #pragma pop
 
 /* 80228530-80228578 222E70 0048+00 1/1 0/0 0/0 .text            getBtiName__10COutFont_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void COutFont_c::getBtiName(int param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_out_font/getBtiName__10COutFont_cFi.s"
+const char* COutFont_c::getBtiName(int nameIdx) {
+    static char* mpIconName[70] = {
+        "font_00.bti",
+        "font_01.bti",
+        "font_09.bti",
+        "font_04.bti",
+        "font_05.bti",
+        "font_02.bti",
+        "font_03.bti",
+        "font_06.bti",
+        "font_08.bti",
+        "font_07_01.bti",
+        "font_10.bti",
+        "font_10.bti",
+        "font_10.bti",
+        "font_10.bti",
+        "font_07_01.bti",
+        "font_07_01.bti",
+        "font_07_01.bti",
+        "font_07_01.bti",
+        "font_07_01.bti",
+        "font_07_01.bti",
+        "font_15.bti",
+        "font_15.bti",
+        "font_15.bti",
+        "font_12.bti",
+        "font_15.bti",
+        "im_map_icon_portal_4ia_40_05.bti",
+        "font_16_backlight.bti",
+        "font_13.bti",
+        "font_14.bti",
+        "font_10.bti",
+        "im_zelda_item_icon_rupy_13.bti",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "st_bompoach_lv1.bti",
+        "font_46.bti",
+        "font_47.bti",
+        "font_35.bti",
+        "font_36.bti",
+        "font_19.bti",
+        "font_20.bti",
+        "font_19.bti",
+        "font_22.bti",
+        "font_23.bti",
+        "font_24.bti",
+        "font_25.bti",
+        "font_40.bti",
+        "font_39.bti",
+        "font_29.bti",
+        "font_28.bti",
+        "font_30.bti",
+        "font_31.bti",
+        "font_29.bti",
+        "font_28.bti",
+        "font_32.bti",
+        "font_33.bti",
+        "font_41.bti",
+        "font_42.bti",
+        "font_50.bti",
+        "font_49.bti",
+        "font_51.bti",
+        "font_52.bti",
+        "font_53.bti",
+    };
+
+    if (nameIdx >= 31 && nameIdx <= 40) {
+        return dMeter2Info_getNumberTextureName(nameIdx - 31);
+    }
+
+    return mpIconName[nameIdx];
 }
-#pragma pop
 
 /* 80399350-80399350 0259B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

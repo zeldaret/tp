@@ -6,48 +6,8 @@
 #include "rel/d/a/d_a_scene_exit/d_a_scene_exit.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct mDoMtx_stack_c {
-    static u8 now[48];
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct daScex_c {
-    /* 80485838 */ void checkWork();
-    /* 80485A50 */ void execute();
-};
-
-struct dSv_info_c {
-    /* 80035200 */ void onSwitch(int, int);
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dSv_event_flag_c {
-    static u8 saveBitLabels[1644 + 4 /* padding */];
-};
-
-struct dSv_event_c {
-    /* 800349BC */ void isEventBit(u16) const;
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
+#include "d/com/d_com_inf_game.h"
+#include "m_Do/m_Do_mtx.h"
 
 //
 // Forward References:
@@ -69,31 +29,53 @@ extern "C" void isEventBit__11dSv_event_cCFUs();
 extern "C" void onSwitch__10dSv_info_cFii();
 extern "C" void isSwitch__10dSv_info_cCFii();
 extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void PSMTXInverse();
-extern "C" void PSMTXTrans();
-extern "C" void PSMTXMultVec();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
 extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
 //
 
-/* 80485838-80485974 000078 013C+00 1/1 0/0 0/0 .text            checkWork__8daScex_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daScex_c::checkWork() {
-    nofralloc
-#include "asm/rel/d/a/d_a_scene_exit/d_a_scene_exit/checkWork__8daScex_cFv.s"
+inline bool fopAcM_isSwitch(const fopAc_ac_c* item, int sw) {
+    return dComIfGs_isSwitch(sw, fopAcM_GetHomeRoomNo(item));
 }
-#pragma pop
+
+inline void fopAcM_onSwitch(const fopAc_ac_c* pActor, int sw) {
+    return dComIfGs_onSwitch(sw, fopAcM_GetHomeRoomNo(pActor));
+}
+
+inline BOOL dComIfGs_isEventBit(u16 id) {
+    return g_dComIfG_gameInfo.info.getEvent().isEventBit(id);
+}
+
+/* 80485838-80485974 000078 013C+00 1/1 0/0 0/0 .text            checkWork__8daScex_cFv */
+int daScex_c::checkWork() {
+    if (getArg1() == 0xFF || getArg1() == 0 || getArg1() == 3) {
+        if (fopAcM_isSwitch(this, getSwNo())) {
+            return 0;
+        }
+    } else if ((getArg1() == 1 || getArg1() == 2 || getArg1() == 4) && getSwNo() != 0xFF) {
+        if (!fopAcM_isSwitch(this, getSwNo())) {
+            return 0;
+        }
+    }
+
+    u16 offBit = getOffEventBit();
+    if (offBit != 0x0FFF && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[offBit])) {
+        return 0;
+    }
+
+    u16 onBit = getOnEventBit();
+    if (onBit != 0x0FFF && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[onBit])) {
+        return 0;
+    }
+
+    return 1;
+}
 
 /* ############################################################################################## */
 /* 80485C98-80485C9C 000000 0004+00 2/2 0/0 0/0 .rodata          @3758 */
@@ -105,6 +87,25 @@ SECTION_RODATA static f32 const lit_3759 = 150.0f;
 COMPILER_STRIP_GATE(0x80485C9C, &lit_3759);
 
 /* 80485974-80485A30 0001B4 00BC+00 1/0 0/0 0/0 .text            daScex_Create__FP10fopAc_ac_c */
+// matches with literals
+#ifdef NONMATCHING
+static int daScex_Create(fopAc_ac_c* ac) {
+    if (!fopAcM_CheckCondition(ac, 8)) {
+        new (ac) daScex_c();
+        fopAcM_OnCondition(ac, 8);
+    }
+    daScex_c* scex = static_cast<daScex_c*>(ac);
+
+    mDoMtx_stack_c::transS(scex->mCurrent.mPosition.x, scex->mCurrent.mPosition.y, scex->mCurrent.mPosition.z);
+    mDoMtx_stack_c::YrotM(scex->mCollisionRot.y);
+    PSMTXInverse(mDoMtx_stack_c::get(), scex->mMatrix);
+    scex->mScale.x *= 75.0f;
+    scex->mScale.z *= 75.0f;
+    scex->mScale.y *= 150.0f;
+
+    return 4;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -113,6 +114,7 @@ static asm void daScex_Create(fopAc_ac_c* param_0) {
 #include "asm/rel/d/a/d_a_scene_exit/d_a_scene_exit/daScex_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* 80485A30-80485A50 000270 0020+00 1/0 0/0 0/0 .text            daScex_Execute__FP8daScex_c */
 #pragma push
@@ -152,14 +154,59 @@ COMPILER_STRIP_GATE(0x80485CA8, &lit_3842);
 #pragma pop
 
 /* 80485A50-80485C90 000290 0240+00 1/1 0/0 0/0 .text            execute__8daScex_cFv */
+// regalloc
+#ifdef NONMATCHING
+int daScex_c::execute() {
+    Vec spC;
+    daPy_py_c* player = daPy_getPlayerActorClass();
+
+    if (checkWork()) {
+        PSMTXMultVec(mMatrix, &player->mCurrent.mPosition, &spC);
+
+        if (spC.y >= 0.0f && spC.y <= mScale.y && fabsf(spC.x) <= mScale.x && fabsf(spC.z) <= mScale.z) {
+            switch (getArg1()) {
+            case 0xFF:
+            case 1:
+                player->onSceneChangeArea(getArg0(), ((fopAcM_GetParam(this) >> 0x10) & 0xFF), this);
+                break;
+            case 2:
+            case 0:
+                player->onSceneChangeAreaJump(getArg0(), ((fopAcM_GetParam(this) >> 0x10) & 0xFF), this);
+                break;
+            case 3:
+            case 4:
+                player->onSceneChangeAreaJump(getArg0(), ((fopAcM_GetParam(this) >> 0x10) & 0xFF), this);
+                break;
+            }
+        }
+    }
+
+    if (mSceneChangeOK && player->checkSceneChangeAreaStart()) {
+        if ((getArg1() == 3 || getArg1() == 4) && field_0x598 == 0) {
+            mDoAud_seStart(Z2SE_FORCE_BACK, NULL, 0, 0);
+            player->voiceStart(Z2SE_WL_V_FALL_TO_RESTART);
+            field_0x598 = 1;
+        }
+
+        if (getArg1() == 0xFF || getArg1() == 0 || getArg1() == 3) {
+            if (getSwNo() != 0xFF) {
+                fopAcM_onSwitch(this, getSwNo());
+            }
+        }
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daScex_c::execute() {
+asm int daScex_c::execute() {
     nofralloc
 #include "asm/rel/d/a/d_a_scene_exit/d_a_scene_exit/execute__8daScex_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80485CAC-80485CCC -00001 0020+00 1/0 0/0 0/0 .data            l_daScex_Method */

@@ -27,6 +27,14 @@ struct JFWSystem {
     /* 80271D18 */ static void init();
 
     static JUTConsole* getSystemConsole() { return systemConsole; }
+    static JKRExpHeap* getSystemHeap() { return systemHeap; }
+
+    static void setMaxStdHeap(s32 max) { CSetUpParam::maxStdHeaps = max; }
+    static void setSysHeapSize(u32 size) { CSetUpParam::sysHeapSize = size; }
+    static void setFifoBufSize(u32 size) { CSetUpParam::fifoBufSize = size; }
+    static void setAramAudioBufSize(u32 size) { CSetUpParam::aramAudioBufSize = size; }
+    static void setAramGraphBufSize(u32 size) { CSetUpParam::aramGraphBufSize = size; }
+    static void setRenderMode(GXRenderModeObj* p_modeObj) { CSetUpParam::renderMode = p_modeObj; }
 
     static JKRExpHeap* rootHeap;
     static JKRExpHeap* systemHeap;

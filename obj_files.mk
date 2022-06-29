@@ -149,11 +149,11 @@ O_FILES := \
 	$(BUILD_DIR)/src/d/a/d_a_itembase.o \
 	$(BUILD_DIR)/src/d/a/d_a_no_chg_room.o \
 	$(BUILD_DIR)/src/d/a/d_a_npc.o \
-	$(BUILD_DIR)/src/a/npc/d_a_npc_cd.o \
-	$(BUILD_DIR)/src/a/npc/d_a_npc_cd2.o \
-	$(BUILD_DIR)/src/a/obj/d_a_obj_item.o \
+	$(BUILD_DIR)/src/d/a/d_a_npc_cd.o \
+	$(BUILD_DIR)/src/d/a/d_a_npc_cd2.o \
+	$(BUILD_DIR)/src/d/a/d_a_obj_item.o \
 	$(BUILD_DIR)/src/d/d_insect.o \
-	$(BUILD_DIR)/src/a/obj/d_a_obj_ss_base.o \
+	$(BUILD_DIR)/src/d/a/d_a_obj_ss_base.o \
 	$(BUILD_DIR)/src/d/a/d_a_player.o \
 	$(BUILD_DIR)/src/d/d_camera.o \
 	$(BUILD_DIR)/src/d/d_envse.o \

@@ -60,6 +60,9 @@ public:
     void setYounger(J3DJoint* pYounger) { mYounger = pYounger; }
     void setCurrentMtxCalc(J3DMtxCalc* pMtxCalc) { mCurrentMtxCalc = pMtxCalc; }
     J3DTransformInfo& getTransformInfo() { return mTransformInfo; }
+    Vec* getMax() { return &mMax; }
+    Vec* getMin() { return &mMin; }
+    void setCallBack(J3DJointCallBack callback) { mCallBack = callback; }
 
     static J3DMtxCalc* mCurrentMtxCalc;
 

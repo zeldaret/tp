@@ -88,6 +88,7 @@ public:
     /* 802E3980 */ static void waitTime(s32);
 
     static JUTException* getManager() { return sErrorManager; }
+    static JUTConsole* getConsole() { return sConsole; }
 
     JUTExternalFB* getFrameMemory() const { return mFrameMemory; }
 

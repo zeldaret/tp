@@ -65,4 +65,8 @@ inline bool mDoMemCd_isCardCommNone() {
     return g_mDoMemCd_control.isCardCommNone();
 }
 
+inline void mDoMemCd_ThdInit() {
+    g_mDoMemCd_control.ThdInit();
+}
+
 #endif /* M_DO_M_DO_MEMCARD_H */

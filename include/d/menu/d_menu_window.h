@@ -8,6 +8,7 @@
 #include "dolphin/types.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
+#include "m_Do/m_Do_mtx.h"
 
 class dMenu_Ring_c;
 class dMenu_Dmap_c;
@@ -15,7 +16,62 @@ class dMenu_Fmap_c;
 
 class dDlst_MENU_CAPTURE_c : public dDlst_base_c {
 public:
-    /* 801FDFCC */ virtual void draw();
+    /* 801FDFCC */ virtual void draw();/*  {
+        if (getDrawFlag() == 1) {
+            setDrawFlag();
+            dComIfGp_onPauseFlag();
+            GXSetTexCopySrc(0, 0, 608, 448);
+            GXSetTexCopyDst(304, 224, (GXTexFmt)mDoGph_gInf_c::getFrameBufferTimg()->format, GX_ENABLE);
+            GXCopyTex(mDoGph_gInf_c::getFrameBufferTex(), GX_FALSE);
+            GXPixModeSync();
+        } else {
+            GXTexObj tex;
+            GXInitTexObj(&tex, mDoGph_gInf_c::getFrameBufferTex(), 304, 224, 
+                        (GXTexFmt)mDoGph_gInf_c::getFrameBufferTimg()->format, GX_CLAMP, GX_CLAMP, GX_FALSE);
+            GXInitTexObjLOD(&tex, GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
+            GXLoadTexObj(&tex, GX_TEXMAP0);
+            GXSetNumChans(0);
+            GXSetNumTexGens(1);
+            GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 60, GX_FALSE, 125);
+            GXSetNumTevStages(1);
+            GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
+            GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, GX_CC_TEXC);
+            GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+            GXColor color = {0xFF, 0xFF, 0xFF, mAlpha};
+            GXSetTevColor(GX_TEVREG0, color);
+            GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_A0);
+            GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+            GXSetZCompLoc(GX_TRUE);
+            GXSetZMode(GX_FALSE, GX_ALWAYS, GX_FALSE);
+            GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_OR);
+            GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
+            GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, g_clearColor);
+            GXSetFogRangeAdj(GX_FALSE, 0, NULL);
+            GXSetCullMode(GX_CULL_NONE);
+            GXSetDither(GX_TRUE);
+            GXLoadPosMtxImm(g_mDoMtx_identity, GX_PNMTX0);
+            GXSetCurrentMtx(0);
+            GXClearVtxDesc();
+            GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+            GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+            GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
+            GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGB8, 0);
+
+            GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+            GXPosition3s16(mDoGph_gInf_c::getMinX(), mDoGph_gInf_c::getMinY(), 0);
+            GXTexCoord2s8(0, 0);
+
+            GXPosition3s16(mDoGph_gInf_c::getMaxX(), mDoGph_gInf_c::getMinY(), 0);
+            GXTexCoord2s8(1, 0);
+
+            GXPosition3s16(mDoGph_gInf_c::getMaxX(), mDoGph_gInf_c::getMaxY(), 0);
+            GXTexCoord2s8(1, 1);
+
+            GXPosition3s16(mDoGph_gInf_c::getMinX(), mDoGph_gInf_c::getMaxY(), 0);
+            GXTexCoord2s8(0, 1);
+            GXEnd();
+        }
+    } */
     /* 801FE2E8 */ virtual ~dDlst_MENU_CAPTURE_c();
 
     dDlst_MENU_CAPTURE_c() {
@@ -28,6 +84,8 @@ public:
     bool checkDraw() { return mFlag; }
     u8 getAlpha() { return mAlpha; }
     u8 getTopFlag() { return mTopFlag; }
+    u8 getDrawFlag() { return mFlag; }
+    void setDrawFlag() { mFlag = 3; }
 
 private:
     /* 0x4 */ u8 mFlag;

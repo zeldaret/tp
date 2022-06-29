@@ -985,7 +985,7 @@ asm s32 dBgW::GetPolyColor(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool dBgW::GetHorseNoEntry(cBgS_PolyInfo const& param_0) {
+asm BOOL dBgW::GetHorseNoEntry(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetHorseNoEntry__4dBgWFRC13cBgS_PolyInfo.s"
 }
@@ -1015,7 +1015,7 @@ asm void dBgW::GetSpecialCode(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool dBgW::GetMagnetCode(cBgS_PolyInfo const& param_0) {
+asm int dBgW::GetMagnetCode(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetMagnetCode__4dBgWFRC13cBgS_PolyInfo.s"
 }
@@ -1167,7 +1167,7 @@ asm s32 dBgW::GetWallCode(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool dBgW::GetPolyAtt0(cBgS_PolyInfo const& param_0) {
+asm BOOL dBgW::GetPolyAtt0(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetPolyAtt0__4dBgWFRC13cBgS_PolyInfo.s"
 }

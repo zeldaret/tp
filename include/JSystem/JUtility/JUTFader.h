@@ -24,7 +24,7 @@ public:
     s32 getStatus() const { return mStatus; }
     void setColor(JUtility::TColor color) { mColor.set(color); }
 
-private:
+//private:
     /* 0x04 */ s32 mStatus;
     /* 0x08 */ u16 field_0x8;
     /* 0x0A */ u16 field_0xa;

@@ -74,13 +74,13 @@ public:
     bool ChkMoveBG_NoDABg(cBgS_PolyInfo const&);
     s32 GetExitId(cBgS_PolyInfo const&);
     s32 GetPolyColor(cBgS_PolyInfo const&);
-    bool GetHorseNoEntry(cBgS_PolyInfo const&);
+    BOOL GetHorseNoEntry(cBgS_PolyInfo const&);
     bool GetSpecialCode(cBgS_PolyInfo const&);
-    bool GetMagnetCode(cBgS_PolyInfo const&);
+    int GetMagnetCode(cBgS_PolyInfo const&);
     bool GetMonkeyBarsCode(cBgS_PolyInfo const&);
     bool GetUnderwaterRoofCode(cBgS_PolyInfo const&);
     s32 GetWallCode(cBgS_PolyInfo const&);
-    bool GetPolyAtt0(cBgS_PolyInfo const&);
+    BOOL GetPolyAtt0(cBgS_PolyInfo const&);
     bool GetPolyAtt1(cBgS_PolyInfo const&);
     bool GetGroundCode(cBgS_PolyInfo const&);
     s32 GetCamMoveBG(cBgS_PolyInfo const&);

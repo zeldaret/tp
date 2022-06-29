@@ -8,22 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct daTagMagne_c {
-    /* 805A5498 */ void Create();
-    /* 805A54DC */ void create();
-    /* 805A5578 */ void _delete();
-
-    static u8 mTagMagne[4];
-};
-
-//
 // Forward References:
 //
 
@@ -40,7 +24,6 @@ extern "C" extern void* g_profile_Tag_Magne[12];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 mTagMagne__12daTagMagne_c[4];
 
 //
@@ -48,34 +31,42 @@ extern "C" u8 mTagMagne__12daTagMagne_c[4];
 //
 
 /* 805A5498-805A54DC 000078 0044+00 1/1 0/0 0/0 .text            Create__12daTagMagne_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagMagne_c::Create() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_magne/d_a_tag_magne/Create__12daTagMagne_cFv.s"
+int daTagMagne_c::Create() {
+    if (mTagMagne != NULL) {
+        return 0;
+    }
+
+    mTagMagne = this;
+    mSwNo1 = getSwNo1();
+    mSwNo2 = getSwNo2();
+    mSwNo3 = getSwNo3();
+
+    return 1;
 }
-#pragma pop
 
 /* 805A54DC-805A5578 0000BC 009C+00 1/1 0/0 0/0 .text            create__12daTagMagne_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagMagne_c::create() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_magne/d_a_tag_magne/func_805A54DC.s"
+int daTagMagne_c::create() {
+    if (!fopAcM_CheckCondition(this, 8)) {
+        new (this) daTagMagne_c();
+        fopAcM_OnCondition(this, 8);
+    }
+    
+    if (mTagMagne != NULL && mTagMagne->mCurrent.mRoomNo != mCurrent.mRoomNo) {
+        return 0;
+    }
+
+    if (!Create()) {
+        return 5;
+    }
+
+    return 4;
 }
-#pragma pop
 
 /* 805A5578-805A558C 000158 0014+00 1/1 0/0 0/0 .text            _delete__12daTagMagne_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagMagne_c::_delete() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_magne/d_a_tag_magne/_delete__12daTagMagne_cFv.s"
+int daTagMagne_c::_delete() {
+    mTagMagne = NULL;
+    return 1;
 }
-#pragma pop
 
 /* 805A558C-805A55AC 00016C 0020+00 1/0 0/0 0/0 .text            daTagMagne_Delete__FP12daTagMagne_c
  */

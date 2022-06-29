@@ -27,14 +27,14 @@ public:
 
     /* 80031CF8 */ static void clrSaveFlag();
     /* 80031D04 */ static void setSaveFlag();
-    /* 80031D10 */ void chkSaveFlag();
+    /* 80031D10 */ static bool chkSaveFlag();
     /* 80031D24 */ void getPos(int);
     /* 80031D38 */ void savePos(int, cXyz);
-    /* 80031D64 */ void onSttsFlag(int, u8);
-    /* 80031D78 */ void offSttsFlag(int, u8);
-    /* 80031D8C */ void chkSttsFlag(int, u8);
-    /* 80031DAC */ void setRoomNo(int, s8);
-    /* 80031DB8 */ void getRoomNo(int);
+    /* 80031D64 */ static void onSttsFlag(int, u8);
+    /* 80031D78 */ static void offSttsFlag(int, u8);
+    /* 80031D8C */ static u8 chkSttsFlag(int, u8);
+    /* 80031DAC */ static void setRoomNo(int, s8);
+    /* 80031DB8 */ static s8 getRoomNo(int);
     /* 8046F6A4 */ void data();
     /* 8046F6BC */ void getArcName();
     /* 8046F6D4 */ void getBmdName();
@@ -184,6 +184,10 @@ public:
     s32 getType() { return mType; }
 
     static u8 const mData[2072];
+    static u8 mPos[60];
+    static u8 mSttsFlag[5];
+    static s8 mRoomNo[5];
+    static bool mSaveFlag;
 
 private:
     /* 0x568 */ u8 field_0x568[8];

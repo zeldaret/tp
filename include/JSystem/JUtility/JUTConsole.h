@@ -11,7 +11,9 @@
 class JUTConsole : public JKRDisposer {
 public:
     enum EConsoleType {
-        UNK_TYPE2 = 2,
+        CONSOLE_TYPE_0 = 0,
+        CONSOLE_TYPE_1 = 1,
+        CONSOLE_TYPE_2 = 2,
     };
 
     enum OutputFlag {
@@ -47,8 +49,8 @@ public:
     }
     void setHeight(u32 height) {
         mHeight = height;
-        if (mHeight > field_0x24) {
-            mHeight = field_0x24;
+        if (mHeight > mMaxLines) {
+            mHeight = mMaxLines;
         }
     }
 
@@ -72,18 +74,27 @@ public:
         if (diff >= 0) {
             return diff;
         }
-        return diff += field_0x24;
+        return diff += mMaxLines;
     }
 
-    void scrollToLastLine() { scroll(field_0x24); }
-    void scrollToFirstLine() { scroll(-field_0x24); }
+    int nextIndex(int param_0) const {
+        int index = param_0 + 1;
+        if (mMaxLines <= index) {
+            index = 0;
+        }
+
+        return index;
+    }
+
+    void scrollToLastLine() { scroll(mMaxLines); }
+    void scrollToFirstLine() { scroll(-mMaxLines); }
 
 private:
     /* 0x18 */ JGadget::TLinkListNode mListNode;
 
 private:
     /* 0x20 */ u32 field_0x20;
-    /* 0x24 */ u32 field_0x24;
+    /* 0x24 */ u32 mMaxLines;
     /* 0x28 */ u8* mBuf;
     /* 0x2C */ bool field_0x2c;
     /* 0x30 */ int field_0x30;
@@ -115,6 +126,8 @@ public:
     /* 802E8384 */ void draw() const;
     /* 802E8450 */ void drawDirect(bool) const;
     /* 802E84C4 */ void setDirectConsole(JUTConsole*);
+
+    JUTConsole* getDirectConsole() const { return mDirectConsole; }
 
     static JUTConsoleManager* getManager() { return sManager; }
 

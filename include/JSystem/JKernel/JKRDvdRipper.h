@@ -29,6 +29,8 @@ public:
         ALLOC_DIRECTION_BACKWARD = 2,
     };
 
+    static void setSZSBufferSize(u32 size) { sSZSBufferSize = size; }
+
     static void* loadToMainRAM(char const*, u8*, JKRExpandSwitch, u32, JKRHeap*, EAllocDirection,
                                u32, JKRCompression*, u32*);
     static void* loadToMainRAM(long, u8*, JKRExpandSwitch, u32, JKRHeap*, EAllocDirection, u32,

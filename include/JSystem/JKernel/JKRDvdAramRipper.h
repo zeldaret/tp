@@ -42,6 +42,8 @@ public:
     static JKRADCommand* callCommand_Async(JKRADCommand*);
     static bool syncAram(JKRADCommand*, int);
 
+    static void setSZSBufferSize(u32 size) { sSZSBufferSize = size; }
+
     // TODO: fix type
     static u8 sDvdAramAsyncList[12];
     static u32 sSZSBufferSize;

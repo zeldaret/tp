@@ -514,4 +514,7 @@ public:
 
 STATIC_ASSERT(sizeof(daNpcF_c) == 0xB48);
 
+void daNpcF_getPlayerInfoFromPlayerList(int param_0, int param_1, cXyz& param_2,
+                                            csXyz& param_3);
+
 #endif /* D_A_D_A_NPC_H */

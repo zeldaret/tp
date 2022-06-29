@@ -65,9 +65,9 @@ void dispHeapInfo() {
     u32 archiveTotal = archive->getTotalFreeSize();
 
     print("-- Heap Free / TotalFree (KB) --\n");
-    print_f("  Zelda %5d / %5d\n", zeldaFree >> 10, zeldaTotal >> 10);
-    print_f("   Game %5d / %5d\n", gameFree >> 10, gameTotal >> 10);
-    print_f("Archive %5d / %5d\n", archiveFree >> 10, archiveTotal >> 10);
+    print_f("  Zelda %5d / %5d\n", zeldaFree / 1024, zeldaTotal / 1024);
+    print_f("   Game %5d / %5d\n", gameFree / 1024, gameTotal / 1024);
+    print_f("Archive %5d / %5d\n", archiveFree / 1024, archiveTotal / 1024);
     print("--------------------------------\n");
 
     if (JKRAram::getAramHeap()) {

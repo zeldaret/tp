@@ -5,37 +5,133 @@
 #include "d/d_lib.h"
 #include "d/d_select_cursor.h"
 #include "dolphin/types.h"
+#include "m_Do/m_Do_dvd_thread.h"
 
 class dMsgString_c;
-class mDoDvdThd_command_c;
 class dFile_warning_c;
 class dFile_info_c;
 class dMsgScrnExplain_c;
 
 class dDlst_MenuSaveExplain_c : public dDlst_base_c {
 public:
+    dDlst_MenuSaveExplain_c() { mpScrn = NULL; }
+
     /* 801F6ADC */ virtual void draw();
     /* 801F6B8C */ virtual ~dDlst_MenuSaveExplain_c();
 
+    void setScrnExplain(dMsgScrnExplain_c* p_scrn) { mpScrn = p_scrn; }
+
 private:
-    /* 0x4 */ int field_0x4;
+    /* 0x4 */ dMsgScrnExplain_c* mpScrn;
 };
 
 class dDlst_MenuSave_c : public dDlst_base_c {
 public:
+    dDlst_MenuSave_c() {
+        Scr = NULL;
+        mMsgString = NULL;
+    }
+
     /* 801F6B0C */ virtual void draw();
     /* 801F6B44 */ virtual ~dDlst_MenuSave_c();
+
+    /* 0x04 */ J2DScreen* Scr;
+    /* 0x08 */ JUTFont* font[2];
+    /* 0x10 */ dMsgString_c* mMsgString;
+};
+
+class dMs_HIO_c {
+public:
+    /* 801EF654 */ dMs_HIO_c();
+    /* 801F6BD4 */ virtual ~dMs_HIO_c();
+
+    /* 0x4 */ s8 field_0x4;
+    /* 0x5 */ u8 mDisplayWaitFrames;
+    /* 0x6 */ u8 mCardWaitFrames;
+    /* 0x7 */ u8 mEffectDispFrames;
+    /* 0x8 */ u8 mCharSwitchFrames;
+    /* 0x9 */ u8 mSelectIcon;
+    /* 0xA */ u8 mSelectFrames;
+    /* 0xB */ u8 mFadeOutTimer;
+    /* 0xC */ bool mTitleMsgCheck;
+    /* 0xD */ u8 field_0xd;
+    /* 0xE */ bool mErrorMsgCheck;
+    /* 0xF */ u8 field_0xf;
 };
 
 class dMenu_save_c {
 public:
+    enum {
+        /* 0x00 */ PROC_SAVE_QUESTION,
+        /* 0x01 */ PROC_SAVE_QUESTION2,
+        /* 0x02 */ PROC_SAVE_QUESTION21,
+        /* 0x03 */ PROC_SAVE_QUESTION3,
+        /* 0x04 */ PROC_SAVE_QUESTION4,
+        /* 0x05 */ PROC_SAVE_GUIDE,
+        /* 0x06 */ PROC_MEMCARD_CHECK,
+        /* 0x07 */ PROC_BACK_SAVE_QUESTION,
+        /* 0x08 */ PROC_BACK_SAVE_QUESTION2,
+        /* 0x09 */ PROC_MEMCARD_ERRMSG_WAIT_KEY,
+        /* 0x0A */ PROC_IPL_SELECT_DISP1,
+        /* 0x0B */ PROC_IPL_SELECT_DISP2,
+        /* 0x0C */ PROC_MEMCARD_ERR_GO_IPL_SEL,
+        /* 0x0D */ PROC_IPL_SELECT2_DISP,
+        /* 0x0E */ PROC_MEMCARD_ERR_GO_IPL_SEL2,
+        /* 0x0F */ PROC_MEMCARD_ERR_GOTO_IPL,
+        /* 0x10 */ PROC_MEMCARD_ERRMSG_WAIT_FORMAT_SEL,
+        /* 0x11 */ PROC_CARD_FORMAT_YES_SEL_DISP,
+        /* 0x12 */ PROC_CARD_FORMAT_NO_SEL_DISP,
+        /* 0x13 */ PROC_MEMCARD_ERRMSG_WAIT_FORMAT_SEL2,
+        /* 0x14 */ PROC_CARD_FORMAT_YES_SEL2_DISP,
+        /* 0x15 */ PROC_MEMCARD_FORMAT,
+        /* 0x16 */ PROC_MEMCARD_FORMAT_WAIT,
+        /* 0x17 */ PROC_MAKE_GAME_FILE_SEL_DISP,
+        /* 0x18 */ PROC_MEMCARD_MAKE_GAME_FILE_SEL,
+        /* 0x19 */ PROC_MAKE_GAME_FILE_DISP,
+        /* 0x1A */ PROC_MEMCARD_MAKE_GAME_FILE,
+        /* 0x1B */ PROC_MEMCARD_MAKE_GAME_FILE_WAIT,
+        /* 0x1C */ PROC_MEMCARD_COMMAND_END,
+        /* 0x1D */ PROC_MEMCARD_COMMAND_END2,
+        /* 0x1E */ PROC_MEMCARD_DATA_LOAD_WAIT,
+        /* 0x1F */ PROC_MEMCARD_DATA_SAVE_WAIT,
+        /* 0x20 */ PROC_MEMCARD_DATA_SAVE_WAIT2,
+        /* 0x21 */ PROC_GAME_CONTINUE_DISP,
+        /* 0x22 */ PROC_GAME_CONTINUE,
+        /* 0x23 */ PROC_GAME_CONTINUE2,
+        /* 0x24 */ PROC_GAME_CONTINUE3,
+        /* 0x25 */ PROC_SAVE_END,
+        /* 0x26 */ PROC_ENDING_NO_SAVE,
+        /* 0x27 */ PROC_ENDING_NO_SAVE2,
+        /* 0x28 */ PROC_ENDING_DATA_CHECK,
+        /* 0x29 */ PROC_SAVE_WAIT,
+        /* 0x2A */ PROC_MESSAGE_CHANGE,
+        /* 0x2B */ PROC_RETRY_QUESTION0,
+        /* 0x2C */ PROC_RETRY_QUESTION1,
+        /* 0x2D */ PROC_RETRY_QUESTION2,
+        /* 0x2E */ PROC_OPEN_SAVE_SELECT,
+        /* 0x2F */ PROC_OPEN_SAVE_SELECT2,
+        /* 0x30 */ PROC_OPEN_SAVE_SELECT3,
+        /* 0x31 */ PROC_SAVE_SELECT,
+        /* 0x32 */ PROC_SAVE_SELECT_MOVE_ANM,
+        /* 0x33 */ PROC_SELECT_DATA_OPEN_MOVE,
+        /* 0x34 */ PROC_SAVE_YES_NO_SELECT,
+        /* 0x35 */ PROC_YES_NO_CURSOR_MOVE_ANM,
+        /* 0x36 */ PROC_SAVE_YES_NO_CANCEL_MOVE,
+        /* 0x37 */ PROC_SAVE_MOVE_DISP,
+        /* 0x38 */ PROC_SAVE_MOVE_DISP2,
+        /* 0x39 */ PROC_MSG_WINDOW_INIT_OPEN,
+        /* 0x3A */ PROC_MSG_WINDOW_OPEN,
+        /* 0x3B */ PROC_MSG_WINDOW_CLOSE,
+        /* 0x3C */ PROC_ERR_YES_NO_CURSOR_MOVE_ANM,
+    };
+
     /* 801EF6A0 */ dMenu_save_c();
     /* 801EF7AC */ void _create();
     /* 801EF904 */ void screenSet();
     /* 801F0938 */ void initialize();
     /* 801F0958 */ void displayInit();
     /* 801F09AC */ bool _open();
-    /* 801F0B10 */ void _close();
+    /* 801F0B10 */ int _close();
     /* 801F0B28 */ void _delete();
     /* 801F1048 */ void _move();
     /* 801F1100 */ void saveSelAnm();
@@ -96,7 +192,7 @@ public:
     /* 801F30B8 */ void restartInit();
     /* 801F31B0 */ void saveWait();
     /* 801F31B4 */ void messageChange();
-    /* 801F328C */ void YesNoSelect();
+    /* 801F328C */ int YesNoSelect();
     /* 801F34BC */ void msgTxtSet(u16, bool);
     /* 801F3588 */ void openSaveSelect();
     /* 801F36B4 */ void openSaveSelect2();
@@ -120,11 +216,11 @@ public:
     /* 801F4B84 */ void msgWindowInitOpen();
     /* 801F4D10 */ void msgWindowOpen();
     /* 801F4DAC */ void msgWindowClose();
-    /* 801F4E48 */ void errYesNoSelect(u8, u8);
+    /* 801F4E48 */ bool errYesNoSelect(u8, u8);
     /* 801F4FB4 */ void errCurMove(u8, u8);
     /* 801F5054 */ void errYesNoCursorMoveAnm();
     /* 801F50C4 */ void errorTxtSet(u16);
-    /* 801F5190 */ void errorTxtChangeAnm();
+    /* 801F5190 */ bool errorTxtChangeAnm();
     /* 801F5278 */ void saveSelectOpenInit();
     /* 801F533C */ void selectDataBaseMoveAnmInitSet(int, int);
     /* 801F53D4 */ void selectDataBaseMoveAnm();
@@ -132,7 +228,7 @@ public:
     /* 801F5508 */ void selectDataMoveAnmInitSet(int, int);
     /* 801F5600 */ void selectDataMoveAnm();
     /* 801F5744 */ void yesnoMenuMoveAnmInitSet(int, int, u8);
-    /* 801F58C8 */ void yesnoMenuMoveAnm();
+    /* 801F58C8 */ bool yesnoMenuMoveAnm();
     /* 801F5AE4 */ void yesnoSelectMoveAnm(u8);
     /* 801F5D84 */ void yesnoCursorShow();
     /* 801F5EF4 */ void errorMoveAnmInitSet(int, int);
@@ -140,7 +236,7 @@ public:
     /* 801F60A4 */ void modoruTxtDispAnmInit(u8);
     /* 801F6120 */ void modoruTxtDispAnm();
     /* 801F61FC */ void ketteiTxtDispAnmInit(u8);
-    /* 801F6278 */ void ketteiTxtDispAnm();
+    /* 801F6278 */ bool ketteiTxtDispAnm();
     /* 801F6354 */ void selectWakuAlpahAnmInit(u8, u8, u8, u8);
     /* 801F6390 */ void selectWakuAlpahAnm(u8);
     /* 801F6458 */ void selFileCursorShow();
@@ -157,38 +253,33 @@ public:
     u8 getSaveStatus() { return mSaveStatus; }
     void setUseType(u8 type) { mUseType = type; }
 
-    struct SaveSel {
-        /* 0x00 */ J2DScreen* Scr;
-        /* 0x04 */ JUTFont* font[2];
-        /* 0x0C */ dMsgString_c* mMsgString;
-    };  // Size: 0x10
-
 private:
-    /* 0x0004 */ JKRArchive* field_0x4;
-    /* 0x0008 */ mDoDvdThd_command_c* field_0x8;
+    /* 0x0004 */ JKRArchive* mpArchive;
+    /* 0x0008 */ mDoDvdThd_mountArchive_c* mpMount;
     /* 0x000C */ STControl* stick;
-    /* 0x0010 */ dDlst_MenuSaveExplain_c field_0x10;
-    /* 0x0018 */ dDlst_MenuSave_c field_0x18;
-    /* 0x001C */ SaveSel mSaveSel;
+    /* 0x0010 */ dDlst_MenuSaveExplain_c mMenuSaveExplain;
+    /* 0x0018 */ dDlst_MenuSave_c mMenuSave;
     /* 0x002C */ dSelect_cursor_c* mSelIcon;
-    /* 0x0030 */ dFile_warning_c* field_0x30;
-    /* 0x0034 */ dFile_info_c* field_0x34[3];
-    /* 0x0040 */ void* field_0x40;
-    /* 0x0044 */ void* field_0x44;
-    /* 0x0048 */ void* field_0x48;
-    /* 0x004C */ void* field_0x4c;
+    /* 0x0030 */ dFile_warning_c* mWarning;
+    /* 0x0034 */ dFile_info_c* mFileInfo[3];
+    /* 0x0040 */ J2DAnmTransformKey* field_0x40;
+    /* 0x0044 */ J2DAnmTransformKey* field_0x44;
+    /* 0x0048 */ J2DAnmTransformKey* field_0x48;
+    /* 0x004C */ J2DAnmTransformKey* field_0x4c;
     /* 0x0050 */ s32 field_0x50;
     /* 0x0054 */ u8 field_0x54;
     /* 0x0058 */ CPaneMgr* field_0x58;
     /* 0x005C */ int field_0x5c;
     /* 0x0060 */ int field_0x60;
     /* 0x0064 */ u8 field_0x64;
-    /* 0x0064 */ u8 field_0x65;
+    /* 0x0065 */ u8 field_0x65;
     /* 0x0068 */ CPaneMgr* field_0x68[3];
     /* 0x0074 */ u8 field_0x74[0x10];
     /* 0x0084 */ CPaneMgr* field_0x84[2];
     /* 0x008C */ u8 field_0x8c[0x10];
     /* 0x009C */ u8 field_0x9c;
+    /* 0x009D */ u8 field_0x9d;
+    /* 0x009E */ u8 field_0x9e;
     /* 0x00A0 */ int field_0xa0;
     /* 0x00A4 */ u8 field_0xa4[0x10];
     /* 0x00B4 */ J2DPane* field_0xb4;
@@ -197,7 +288,7 @@ private:
     /* 0x00C0 */ CPaneMgr* field_0xc0[2];
     /* 0x00C8 */ char* field_0xc8[2];
     /* 0x00D0 */ u8 field_0xd0;
-    /* 0x00D2 */ u8 field_0xd1;
+    /* 0x00D1 */ u8 field_0xd1;
     /* 0x00D2 */ u8 field_0xd2;
     /* 0x00D3 */ u8 field_0xd3;
     /* 0x00D4 */ CPaneMgr* field_0xd4[3];
@@ -215,22 +306,24 @@ private:
     /* 0x0132 */ u8 field_0x132[2];
     /* 0x0134 */ u8 field_0x134[2];
     /* 0x0138 */ CPaneMgr* field_0x138[2];
-    /* 0x0140 */ void* field_0x140;
+    /* 0x0140 */ J2DAnmColorKey* field_0x140;
     /* 0x0144 */ int field_0x144;
-    /* 0x0148 */ void* field_0x148;
+    /* 0x0148 */ J2DAnmTextureSRTKey* field_0x148;
     /* 0x014C */ int field_0x14c;
-    /* 0x0150 */ void* field_0x150;
+    /* 0x0150 */ J2DAnmColorKey* field_0x150;
     /* 0x0154 */ int field_0x154;
-    /* 0x0158 */ void* field_0x158;
+    /* 0x0158 */ J2DAnmTextureSRTKey* field_0x158;
     /* 0x015C */ int field_0x15c;
-    /* 0x0160 */ void* field_0x160;
+    /* 0x0160 */ J2DAnmTevRegKey* field_0x160;
     /* 0x0164 */ int field_0x164;
     /* 0x0168 */ CPaneMgr* field_0x168[2];
-    /* 0x0170 */ u8 field_0x170[8];
+    /* 0x0170 */ char* field_0x170[2];
     /* 0x0178 */ u8 field_0x178;
     /* 0x0179 */ u8 field_0x179;
     /* 0x017A */ u8 field_0x17a;
-    /* 0x017B */ u8 field_0x17b[0x19];
+    /* 0x017B */ u8 field_0x17b;
+    /* 0x017C */ CPaneMgr* field_0x17c[3];
+    /* 0x0188 */ CPaneMgr* field_0x188[3];
     /* 0x0194 */ CPaneMgr* field_0x194;
     /* 0x0198 */ CPaneMgr* field_0x198;
     /* 0x019C */ u8 field_0x19c;
@@ -243,7 +336,7 @@ private:
     /* 0x01AD */ u8 field_0x1ad[3];
     /* 0x01B0 */ u8 field_0x1b0;
     /* 0x01B1 */ u8 field_0x1b1;
-    /* 0x01B2 */ u8 field_0x1b2;
+    /* 0x01B2 */ u8 mMenuProc;
     /* 0x01B3 */ u8 field_0x1b3;
     /* 0x01B4 */ u8 field_0x1b4;
     /* 0x01B5 */ u8 field_0x1b5;
@@ -254,21 +347,19 @@ private:
     /* 0x01BA */ u8 mSaveStatus;
     /* 0x01BB */ u8 mEndStatus;
     /* 0x01BC */ u8 mUseType;
-    /* 0x01BD */ u8 field_0x1bd;
+    /* 0x01BD */ u8 mWaitTimer;
     /* 0x01BE */ u8 field_0x1be;
     /* 0x01BF */ u8 field_0x1bf;
     /* 0x01C0 */ u8 field_0x1c0;
-    /* 0x01C4 */ int field_0x1c4;
-    /* 0x01C8 */ int field_0x1c8;
-    /* 0x01CC */ void* field_0x1cc;
-    /* 0x01D0 */ u8 field_0x1d0[0xA94 * 3];
+    /* 0x01CC */ void (dMenu_save_c::*field_0x1cc)();
+    /* 0x01D0 */ u8 mSaveBuffer[0xA94 * 3];
     /* 0x218C */ dMsgScrnExplain_c* mpScrnExplain;
     /* 0x2190 */ u8 field_0x2190;
     /* 0x2192 */ u16 field_0x2192;
     /* 0x2194 */ u8 field_0x2194;
     /* 0x2195 */ u8 field_0x2195;
-    /* 0x2198 */ int field_0x2198;
-    /* 0x219C */ u8 field_0x219c;
+    /* 0x2198 */ int mCmdState;
+    /* 0x219C */ bool field_0x219c;
     /* 0x219D */ u8 field_0x219d;
     /* 0x219E */ u8 field_0x219e;
     /* 0x219F */ u8 field_0x219f;

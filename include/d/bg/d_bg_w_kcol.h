@@ -48,7 +48,7 @@ public:
     /* 80082A80 */ virtual void GetHorseNoEntry(cBgS_PolyInfo const&);
     /* 80082AB0 */ virtual void GetSpecialCode(cBgS_PolyInfo const&);
     /* 80082AE0 */ virtual void GetSpecialCode(int);
-    /* 80082B0C */ virtual void GetMagnetCode(cBgS_PolyInfo const&);
+    /* 80082B0C */ virtual int GetMagnetCode(cBgS_PolyInfo const&);
     /* 80082B6C */ virtual void GetPolyObjThrough(int);
     /* 80082B98 */ virtual void GetPolyCamThrough(int);
     /* 80082BC4 */ virtual void GetPolyLinkThrough(int);
@@ -62,7 +62,7 @@ public:
     /* 80082B3C */ virtual void GetMonkeyBarsCode(cBgS_PolyInfo const&);
     /* 80082D24 */ virtual void GetLinkNo(cBgS_PolyInfo const&);
     /* 80082D54 */ virtual s32 GetWallCode(cBgS_PolyInfo const&);
-    /* 80082D84 */ virtual void GetPolyAtt0(cBgS_PolyInfo const&);
+    /* 80082D84 */ virtual BOOL GetPolyAtt0(cBgS_PolyInfo const&);
     /* 80082DB4 */ virtual void GetPolyAtt1(cBgS_PolyInfo const&);
     /* 80082DE4 */ virtual void GetGroundCode(cBgS_PolyInfo const&);
     /* 80082E14 */ virtual void GetIronBallThrough(int);

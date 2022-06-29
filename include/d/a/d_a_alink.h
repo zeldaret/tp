@@ -26,7 +26,7 @@ class fopEn_enemy_c;
 class daAlinkHIO_anm_c;
 class J3DAnmTevRegKey;
 class dDemo_actor_c;
-
+class daScex_c;
 class J2DScreen;
 class J2DPane;
 class J2DAnmBase;
@@ -57,10 +57,10 @@ private:
     /* 0x20 */ J2DAnmTevRegKey* field_0x20;
     /* 0x24 */ J2DAnmColorKey* field_0x24;
     /* 0x28 */ J2DAnmTransformKey* field_0x28;
-    /* 0x2C */ float field_0x2c;
-    /* 0x30 */ float field_0x30;
-    /* 0x34 */ float field_0x34;
-    /* 0x38 */ float field_0x38;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ f32 field_0x30;
+    /* 0x34 */ f32 field_0x34;
+    /* 0x38 */ f32 field_0x38;
 };
 
 class daAlink_sight_c : public daPy_sightPacket_c {
@@ -88,7 +88,7 @@ public:
     /* 80125BF4 */ virtual void draw();
     /* 800CFD58 */ virtual ~daAlink_blur_c();
 
-private:
+// private:
     /* 0x010 */ void* m_blurTex;
     /* 0x014 */ int field_0x14;
     /* 0x018 */ u8 field_0x18[4];
@@ -116,7 +116,7 @@ public:
 private:
     /* 0x04 */ s16 mHitFlg;
     /* 0x06 */ s16 mAppearFlg;
-    /* 0x08 */ float mKeepMinY;
+    /* 0x08 */ f32 mKeepMinY;
     /* 0x0C */ cXyz mHitPos;
 };  // Size = 0x18
 
@@ -172,6 +172,9 @@ struct daAlink_WlAnmData {
     /* 0x7 */ u8 field_0x7;
 };  // Size: 0x8
 
+class daAlink_c;
+typedef int (daAlink_c::*daAlink_procFunc)();
+
 class daAlink_c : public daPy_py_c {
 public:
     enum daAlink_ANM {
@@ -198,8 +201,13 @@ public:
 
         /* 0xFD */ ANM_TRANSFORM_WOLF = 0xFD,  // verify
 
+        /* 0x188 */ ANM_DUNGEON_WARP_READY_INIT = 0x188,
+
         /* 0x18D */ ANM_CUT_JUMP_LARGE = 0x18D,  // verify
-        ANM_GANON_FINISH = 408                   // name probably wrong, fix later
+        /* 0x18F */ ANM_MASTER_SWORD_STICK_INIT = 0x18F,
+        /* 0x190 */ ANM_MASTER_SWORD_STICK,
+        /* 0x191 */ ANM_MASTER_SWORD_PULL_INIT,
+        /* 0x198 */ ANM_GANON_FINISH = 408,                   // name probably wrong, fix later
     };
 
     enum daAlink_UPPER {
@@ -251,165 +259,358 @@ public:
     };
 
     enum daAlink_PROC {
-        /* 0x000 */ PREACTION_UNEQUIP,
-        /* 0x001 */ SERVICE_WAIT,
-        /* 0x003 */ HUMAN_WAIT = 3,
-        /* 0x004 */ HUMAN_MOVE,
-        /* 0x005 */ HUMAN_ATN_MOVE,
-        /* 0x006 */ HUMAN_ATN_ACTOR_WAIT,
-        /* 0x007 */ HUMAN_ATN_ACTOR_MOVE,
-        /* 0x008 */ HUMAN_WAIT_TURN,
-        /* 0x009 */ HUMAN_MOVE_TURN,
-        /* 0x00A */ HUMAN_SIDESTEP,
-        /* 0x00B */ HUMAN_SIDESTEP_LAND,
-        /* 0x00C */ HUMAN_SLIDE,
-        /* 0x00D */ HUMAN_SLIDE_LAND,
-        /* 0x00E */ FRONT_ROLL,
-        /* 0x00F */ FRONT_ROLL_CRASH,
-        /* 0x010 */ HUMAN_KNOCKBACK,
-        /* 0x011 */ SIDE_ROLL,
-        /* 0x012 */ BACK_JUMP,
-        /* 0x013 */ BACK_JUMP_LAND,
-        /* 0x014 */ SLIP,
-        /* 0x015 */ HUMAN_AUTOJUMP,
-        /* 0x016 */ DIVE_JUMP,
-        /* 0x017 */ ROLL_JUMP,
-        /* 0x018 */ FALL,
-        /* 0x019 */ LAND,
-        /* 0x01A */ SMALL_JUMP,
-        /* 0x01B */ STEP_MOVE,
-        /* 0x01D */ GUARD_SLIP = 29,
-        /* 0x01E */ GUARD_ATTACK,
-        /* 0x01F */ GUARD_BREAK,
-        /* 0x020 */ TURN_MOVE,
-        /* 0x021 */ CUT_NORMAL,
-        /* 0x022 */ CUT_FINISH,
-        /* 0x023 */ CUT_FINISH_JUMP_UP,
-        /* 0x024 */ CUT_FINISH_JUMP_UP_LAND,
-        /* 0x025 */ CUT_REVERSE,
-        /* 0x026 */ CUT_JUMP,
-        /* 0x027 */ CUT_JUMP_LAND,
-        /* 0x028 */ COMBO_CUT_TURN,
-        /* 0x029 */ CUT_CHARGE,
-        /* 0x02A */ CUT_TURN_MOVE,
-        /* 0x02B */ CUT_DOWN,
-        /* 0x02C */ CUT_DOWN_LAND,
-        /* 0x02D */ CUT_HEAD,
-        /* 0x02E */ CUT_HEAD_LAND,
-        /* 0x02F */ CUT_LARGE_JUMP_CHARGE,
-        /* 0x030 */ CUT_LARGE_JUMP,
-        /* 0x031 */ CUT_LARGE_JUMP_LAND,
-        /* 0x032 */ DAMAGE,
-        /* 0x034 */ LAND_DAMAGE = 52,
-        /* 0x035 */ CRAWL_START,
-        /* 0x036 */ CRAWL_MOVE,
-        /* 0x037 */ CRAWL_AUTOMOVE,
-        /* 0x038 */ CRAWL_END,
-        /* 0x039 */ PULL_MOVE,
-        /* 0x03A */ HORSE_RIDE,
-        /* 0x03B */ HORSE_GETOFF,
-        /* 0x03D */ HORSE_TURN = 61,
-        /* 0x03E */ HORSE_JUMP,
-        /* 0x03F */ HORSE_LAND,
-        /* 0x040 */ HORSE_SUBJECTIVITY,
-        /* 0x041 */ HORSE_CUT,
-        /* 0x042 */ HORSE_CUT_CHARGE_READY,
-        /* 0x043 */ HORSE_CUT_TURN,
-        /* 0x044 */ HORSE_DAMAGE,
-        /* 0x045 */ RIDE_BOW_READY,
-        /* 0x04C */ HORSE_BOTTLE_DRINK = 76,
-        /* 0x04E */ HORSE_KANDELAAR_POUR = 78,
-        /* 0x04F */ HORSE_RUN,
-        /* 0x050 */ HORSE_HANG,
-        /* 0x053 */ BOAR_RUN = 83,
-        /* 0x055 */ HANG_START = 85,
-        /* 0x056 */ HANG_FALL_START,
-        /* 0x057 */ HANG_UP,
-        /* 0x058 */ HANG_WAIT,
-        /* 0x059 */ HANG_MOVE,
-        /* 0x065 */ COPY_ROD_SWING = 101,
-        /* 0x06B */ CLIMB_MOVE_LADDER = 107,
-        /* 0x06C */ GRAB_READY = 108,
-        /* 0x06D */ GRAB_UP,
-        /* 0x06F */ GRAB_THROW = 111,
-        /* 0x070 */ GRAB_DOWN,
-        /* 0x072 */ GRAB_REBOUND = 114,
-        /* 0x073 */ GRAB_STAND,
-        /* 0x074 */ INSECT_CATCH,
-        /* 0x075 */ PICK_UP,
-        /* 0x076 */ PICK_PUT,
-        /* 0x077 */ HUMAN_ST_ESCAPE,
-        /* 0x082 */ CLIMB_MOVE_VERTICAL = 130,
-        /* 0x083 */ CLIMB_MOVE_HORIZONTAL,
-        /* 0x084 */ CLIMB_HANG,
-        /* 0x08C */ CANOE_RIDE = 140,
-        /* 0x08D */ CANOE_JUMP_RIDE,
-        /* 0x08E */ CANOE_GETOFF,
-        /* 0x090 */ CANOE_ROW = 144,
-        /* 0x091 */ CANOE_PADDLE_SHIFT,
-        /* 0x092 */ CANOE_PADDLE_PUT,
-        /* 0x093 */ CANOE_PADDLE_GRAB,
-        /* 0x094 */ CANOE_ROD_GRAB,
-        /* 0x096 */ CANOE_FISHING_REEL = 150,
-        /* 0x097 */ CANOE_FISHING_GET,
-        /* 0x098 */ CANOE_SUBJECTIVITY,
-        /* 0x0A0 */ CANOE_BOTTLE_DRINK = 160,
-        /* 0x0A1 */ CANOE_KANDELAAR_POUR,
-        /* 0x0A3 */ FISHING_FOOD = 163,
-        /* 0x0AD */ BOARD_CUT_TURN = 173,
-        /* 0x0AF */ FM_CHAIN_UP,
-        /* 0x0B3 */ BOTTLE_DRINK = 179,
-        /* 0x0B5 */ BOTTLE_SWING = 181,
-        /* 0x0BA */ GRASS_WHISTLE = 186,
-        /* 0x0BC */ HAWK_WAIT = 188,
-        /* 0x0BD */ FLOOR_DOWN_REBOUND = 189,
-        /* 0x0BE */ GORON_RIDE_WAIT,
-        /* 0x0C0 */ GOAT_THROW = 192,
-        /* 0x0C1 */ GOAT_STROKE,
-        /* 0x0CC */ MAGNE_BOOTS_FLY = 204,
-        /* 0x0CD */ BOOTS_EQUIP,
-        /* 0x0CF */ SUMOU_PUSH = 207,
-        /* 0x0D0 */ SUMOU_SIDE_MOVE,
-        /* 0x0D1 */ SUMOU_ACTION,
-        /* 0x0D2 */ SUMOU_STAGGER,
-        /* 0x0D3 */ SUMOU_WIN_LOSE,
-        /* 0x0DC */ BOSS_ENEMY_HANG = 220,
-        /* 0x0DE */ SCREAM_WAIT = 222,
-        /* 0x0EA */ DUNGEON_WARP_READY = 234,
-        /* 0x0ED */ WOLF_HOWL = 237,
-        /* 0x0F1 */ WOLF_WAIT = 241,
-        /* 0x0F2 */ WOLF_MOVE,
-        /* 0x0F3 */ WOLF_DASH,
-        /* 0x0F4 */ WOLF_KNOCKBACK,
-        /* 0x0F6 */ WOLF_ATN_WAIT = 246,
-        /* 0x0F7 */ WOLF_SIDESTEP,
-        /* 0x0F8 */ WOLF_SIDESTEP_LAND,
-        /* 0x0F9 */ WOLF_BACKFLIP,
-        /* 0x0FA */ WOLF_BACKFLIP_LAND,
-        /* 0x0FC */ WOLF_AUTOJUMP = 252,
-        /* 0x0FF */ WOLF_RSIT = 255,
-        /* 0x107 */ WOLF_DAMAGE = 263,
-        /* 0x10F */ WOLF_SLIDE = 271,
-        /* 0x114 */ WOLF_ROPE_HANG = 276,
-        /* 0x118 */ WOLF_TAGLOCK_JUMP = 280,
-        /* 0x119 */ WOLF_TAGLOCK_LAND,
-        /* 0x11C */ WOLF_JUMPATTACK = 284,
-        /* 0x121 */ WOLF_ST_ESCAPE = 289,
-        /* 0x123 */ WOLF_DOWNATTACK_PULLOUT = 291,
-        /* 0x131 */ WOLF_CHAIN = 305,
-        /* 0x132 */ WOLF_DIG,
-        /* 0x136 */ WOLF_ENEMY_HANG_BITE = 310,
-        /* 0x13E */ SUBJECTIVITY = 318,
-        /* 0x141 */ POLY_DAMAGE = 321,
-        /* 0x142 */ ELEC_DAMAGE,
-        /* 0x143 */ PUSH_PULL_WAIT,
-        /* 0x144 */ PUSH_MOVE,
-        /* 0x148 */ TRESURE_STAND = 328,
-        /* 0x14D */ METAMORPHOSE = 333,
-        /* 0x14F */ WARP = 335,
-        /* 0x150 */ DEAD,
-        /* 0x159 */ LARGE_DAMAGE = 345,
-        /* 0x15A */ LARGE_DAMAGE_WALL,
+        /* 0x000 */ PROC_PREACTION_UNEQUIP,
+        /* 0x001 */ PROC_SERVICE_WAIT,
+        /* 0x002 */ PROC_TIRED_WAIT,
+        /* 0x003 */ PROC_WAIT,
+        /* 0x004 */ PROC_MOVE,
+        /* 0x005 */ PROC_ATN_MOVE,
+        /* 0x006 */ PROC_ATN_ACTOR_WAIT,
+        /* 0x007 */ PROC_ATN_ACTOR_MOVE,
+        /* 0x008 */ PROC_WAIT_TURN,
+        /* 0x009 */ PROC_MOVE_TURN,
+        /* 0x00A */ PROC_SIDESTEP,
+        /* 0x00B */ PROC_SIDESTEP_LAND,
+        /* 0x00C */ PROC_SLIDE,
+        /* 0x00D */ PROC_SLIDE_LAND,
+        /* 0x00E */ PROC_FRONT_ROLL,
+        /* 0x00F */ PROC_FRONT_ROLL_CRASH,
+        /* 0x010 */ PROC_FRONT_ROLL_SUCCESS,
+        /* 0x011 */ PROC_SIDE_ROLL,
+        /* 0x012 */ PROC_BACK_JUMP,
+        /* 0x013 */ PROC_BACK_JUMP_LAND,
+        /* 0x014 */ PROC_SLIP,
+        /* 0x015 */ PROC_AUTO_JUMP,
+        /* 0x016 */ PROC_DIVE_JUMP,
+        /* 0x017 */ PROC_ROLL_JUMP,
+        /* 0x018 */ PROC_FALL,
+        /* 0x019 */ PROC_LAND,
+        /* 0x01A */ PROC_SMALL_JUMP,
+        /* 0x01B */ PROC_STEP_MOVE,
+        /* 0x01C */ PROC_CROUCH,
+        /* 0x01D */ PROC_GUARD_SLIP,
+        /* 0x01E */ PROC_GUARD_ATTACK,
+        /* 0x01F */ PROC_GUARD_BREAK,
+        /* 0x020 */ PROC_TURN_MOVE,
+        /* 0x021 */ PROC_CUT_NORMAL,
+        /* 0x022 */ PROC_CUT_FINISH,
+        /* 0x023 */ PROC_CUT_FINISH_JUMP_UP,
+        /* 0x024 */ PROC_CUT_FINISH_JUMP_UP_LAND,
+        /* 0x025 */ PROC_CUT_REVERSE,
+        /* 0x026 */ PROC_CUT_JUMP,
+        /* 0x027 */ PROC_CUT_JUMP_LAND,
+        /* 0x028 */ PROC_CUT_TURN,
+        /* 0x029 */ PROC_CUT_TURN_CHARGE,
+        /* 0x02A */ PROC_CUT_TURN_MOVE,
+        /* 0x02B */ PROC_CUT_DOWN,
+        /* 0x02C */ PROC_CUT_DOWN_LAND,
+        /* 0x02D */ PROC_CUT_HEAD,
+        /* 0x02E */ PROC_CUT_HEAD_LAND,
+        /* 0x02F */ PROC_CUT_LARGE_JUMP_CHARGE,
+        /* 0x030 */ PROC_CUT_LARGE_JUMP,
+        /* 0x031 */ PROC_CUT_LARGE_JUMP_LAND,
+        /* 0x032 */ PROC_DAMAGE,
+        /* 0x033 */ PROC_LARGE_DAMAGE_UP,
+        /* 0x034 */ PROC_LAND_DAMAGE,
+        /* 0x035 */ PROC_CRAWL_START,
+        /* 0x036 */ PROC_CRAWL_MOVE,
+        /* 0x037 */ PROC_CRAWL_AUTO_MOVE,
+        /* 0x038 */ PROC_CRAWL_END,
+        /* 0x039 */ PROC_PULL_MOVE,
+        /* 0x03A */ PROC_HORSE_RIDE,
+        /* 0x03B */ PROC_HORSE_GETOFF,
+        /* 0x03C */ PROC_HORSE_WAIT,
+        /* 0x03D */ PROC_HORSE_TURN,
+        /* 0x03E */ PROC_HORSE_JUMP,
+        /* 0x03F */ PROC_HORSE_LAND,
+        /* 0x040 */ PROC_HORSE_SUBJECTIVITY,
+        /* 0x041 */ PROC_HORSE_CUT,
+        /* 0x042 */ PROC_HORSE_CUT_CHARGE_READY,
+        /* 0x043 */ PROC_HORSE_CUT_TURN,
+        /* 0x044 */ PROC_HORSE_DAMAGE,
+        /* 0x045 */ PROC_HORSE_BOW_SUBJECT,
+        /* 0x046 */ PROC_HORSE_BOW_MOVE,
+        /* 0x047 */ PROC_HORSE_GRAB_MOVE,
+        /* 0x048 */ PROC_HORSE_BOOMERANG_SUBJECT,
+        /* 0x049 */ PROC_HORSE_BOOMERANG_MOVE,
+        /* 0x04A */ PROC_HORSE_HOOKSHOT_SUBJECT,
+        /* 0x04B */ PROC_HORSE_HOOKSHOT_MOVE,
+        /* 0x04C */ PROC_HORSE_BOTTLE_DRINK,
+        /* 0x04D */ PROC_HORSE_COMEBACK,
+        /* 0x04E */ PROC_HORSE_KANDELAAR_POUR,
+        /* 0x04F */ PROC_HORSE_RUN,
+        /* 0x050 */ PROC_HORSE_HANG,
+        /* 0x051 */ PROC_HORSE_GET_KEY,
+        /* 0x052 */ PROC_HORSE_LOOK_DOWN,
+        /* 0x053 */ PROC_BOAR_RUN,
+        /* 0x054 */ PROC_SWORD_UNEQUIP_SP,
+        /* 0x055 */ PROC_HANG_START,
+        /* 0x056 */ PROC_HANG_FALL_START,
+        /* 0x057 */ PROC_HANG_UP,
+        /* 0x058 */ PROC_HANG_WAIT,
+        /* 0x059 */ PROC_HANG_MOVE,
+        /* 0x05A */ PROC_HANG_CLIMB,
+        /* 0x05B */ PROC_HANG_WALL_CATCH,
+        /* 0x05C */ PROC_HANG_READY,
+        /* 0x05D */ PROC_HANG_LEVER_DOWN,
+        /* 0x05E */ PROC_BOW_SUBJECT,
+        /* 0x05F */ PROC_BOW_MOVE,
+        /* 0x060 */ PROC_BOOMERANG_SUBJECT,
+        /* 0x061 */ PROC_BOOMERANG_MOVE,
+        /* 0x062 */ PROC_BOOMERANG_CATCH,
+        /* 0x063 */ PROC_COPY_ROD_SUBJECT,
+        /* 0x064 */ PROC_COPY_ROD_MOVE,
+        /* 0x065 */ PROC_COPY_ROD_SWING,
+        /* 0x066 */ PROC_COPY_ROD_REVIVE,
+        /* 0x067 */ PROC_LADDER_UP_START,
+        /* 0x068 */ PROC_LADDER_UP_END,
+        /* 0x069 */ PROC_LADDER_DOWN_START,
+        /* 0x06A */ PROC_LADDER_DOWN_END,
+        /* 0x06B */ PROC_LADDER_MOVE,
+        /* 0x06C */ PROC_GRAB_READY,
+        /* 0x06D */ PROC_GRAB_UP,
+        /* 0x06E */ PROC_GRAB_MISS,
+        /* 0x06F */ PROC_GRAB_THROW,
+        /* 0x070 */ PROC_GRAB_PUT,
+        /* 0x071 */ PROC_GRAB_WAIT,
+        /* 0x072 */ PROC_GRAB_REBOUND,
+        /* 0x073 */ PROC_GRAB_STAND,
+        /* 0x074 */ PROC_INSECT_CATCH,
+        /* 0x075 */ PROC_PICK_UP,
+        /* 0x076 */ PROC_PICK_PUT,
+        /* 0x077 */ PROC_HUMAN_ST_ESCAPE,
+        /* 0x078 */ PROC_DK_CAUGHT,
+        /* 0x079 */ PROC_SWIM_UP,
+        /* 0x07A */ PROC_SWIM_WAIT,
+        /* 0x07B */ PROC_SWIM_MOVE,
+        /* 0x07C */ PROC_SWIM_DIVE,
+        /* 0x07D */ PROC_SWIM_HOOKSHOT_SUBJECT,
+        /* 0x07E */ PROC_SWIM_HOOKSHOT_MOVE,
+        /* 0x07F */ PROC_SWIM_DAMAGE,
+        /* 0x080 */ PROC_CLIMB_UP_START,
+        /* 0x081 */ PROC_CLIMB_DOWN_START,
+        /* 0x082 */ PROC_CLIMB_MOVE_UPDOWN,
+        /* 0x083 */ PROC_CLIMB_MOVE_SIDE,
+        /* 0x084 */ PROC_CLIMB_WAIT,
+        /* 0x085 */ PROC_CLIMB_TO_ROOF,
+        /* 0x086 */ PROC_ROOF_HANG_START,
+        /* 0x087 */ PROC_ROOF_HANG_WAIT,
+        /* 0x088 */ PROC_ROOF_HANG_FRONT_MOVE,
+        /* 0x089 */ PROC_ROOF_HANG_SIDE_MOVE,
+        /* 0x08A */ PROC_ROOF_HANG_TURN,
+        /* 0x08B */ PROC_ROOF_SWITCH_HANG,
+        /* 0x08C */ PROC_CANOE_RIDE,
+        /* 0x08D */ PROC_CANOE_JUMP_RIDE,
+        /* 0x08E */ PROC_CANOE_GETOFF,
+        /* 0x08F */ PROC_CANOE_WAIT,
+        /* 0x090 */ PROC_CANOE_ROW,
+        /* 0x091 */ PROC_CANOE_PADDLE_SHIFT,
+        /* 0x092 */ PROC_CANOE_PADDLE_PUT,
+        /* 0x093 */ PROC_CANOE_PADDLE_GRAB,
+        /* 0x094 */ PROC_CANOE_ROD_GRAB,
+        /* 0x095 */ PROC_CANOE_FISHING_WAIT,
+        /* 0x096 */ PROC_CANOE_FISHING_REEL,
+        /* 0x097 */ PROC_CANOE_FISHING_GET,
+        /* 0x098 */ PROC_CANOE_SUBJECTIVITY,
+        /* 0x099 */ PROC_CANOE_BOW_SUBJECT,
+        /* 0x09A */ PROC_CANOE_BOW_MOVE,
+        /* 0x09B */ PROC_CANOE_GRAB_MOVE,
+        /* 0x09C */ PROC_CANOE_BOOMERANG_SUBJECT,
+        /* 0x09D */ PROC_CANOE_BOOMERANG_MOVE,
+        /* 0x09E */ PROC_CANOE_HOOKSHOT_SUBJECT,
+        /* 0x09F */ PROC_CANOE_HOOKSHOT_MOVE,
+        /* 0x0A0 */ PROC_CANOE_BOTTLE_DRINK,
+        /* 0x0A1 */ PROC_CANOE_KANDELAAR_POUR,
+        /* 0x0A2 */ PROC_FISHING_CAST,
+        /* 0x0A3 */ PROC_FISHING_FOOD,
+        /* 0x0A4 */ PROC_SPINNER_READY,
+        /* 0x0A5 */ PROC_SPINNER_WAIT,
+        /* 0x0A6 */ PROC_BOARD_RIDE,
+        /* 0x0A7 */ PROC_BOARD_WAIT,
+        /* 0x0A8 */ PROC_BOARD_ROW,
+        /* 0x0A9 */ PROC_BOARD_TURN,
+        /* 0x0AA */ PROC_BOARD_JUMP,
+        /* 0x0AB */ PROC_BOARD_SUBJECTIVITY,
+        /* 0x0AC */ PROC_BOARD_CUT,
+        /* 0x0AD */ PROC_BOARD_CUT_TURN,
+        /* 0x0AE */ PROC_CHAIN_UP,
+        /* 0x0AF */ PROC_CHAIN_STRONG_PULL,
+        /* 0x0B0 */ PROC_DOOR_OPEN,
+        /* 0x0B1 */ PROC_MONKEY_MOVE,
+        /* 0x0B2 */ PROC_DEMO_BOOMERANG_CATCH,
+        /* 0x0B3 */ PROC_BOTTLE_DRINK,
+        /* 0x0B4 */ PROC_BOTTLE_OPEN,
+        /* 0x0B5 */ PROC_BOTTLE_SWING,
+        /* 0x0B6 */ PROC_BOTTLE_GET,
+        /* 0x0B7 */ PROC_KANDELAAR_SWING,
+        /* 0x0B8 */ PROC_KANDELAAR_POUR,
+        /* 0x0B9 */ PROC_GRASS_WHISTLE_GET,
+        /* 0x0BA */ PROC_GRASS_WHISTLE_WAIT,
+        /* 0x0BB */ PROC_HAWK_CATCH,
+        /* 0x0BC */ PROC_HAWK_SUBJECT,
+        /* 0x0BD */ PROC_FLOOR_DOWN_REBOUND,
+        /* 0x0BE */ PROC_GORON_RIDE_WAIT,
+        /* 0x0BF */ PROC_GOAT_MOVE,
+        /* 0x0C0 */ PROC_GOAT_CATCH,
+        /* 0x0C1 */ PROC_GOAT_STROKE,
+        /* 0x0C2 */ PROC_GORON_MOVE,
+        /* 0x0C3 */ PROC_BOSS_ATN_WAIT,
+        /* 0x0C4 */ PROC_HOOKSHOT_SUBJECT,
+        /* 0x0C5 */ PROC_HOOKSHOT_MOVE,
+        /* 0x0C6 */ PROC_HOOKSHOT_FLY,
+        /* 0x0C7 */ PROC_HOOKSHOT_ROOF_WAIT,
+        /* 0x0C8 */ PROC_HOOKSHOT_ROOF_SHOOT,
+        /* 0x0C9 */ PROC_HOOKSHOT_ROOF_BOOTS,
+        /* 0x0CA */ PROC_HOOKSHOT_WALL_WAIT,
+        /* 0x0CB */ PROC_HOOKSHOT_WALL_SHOOT,
+        /* 0x0CC */ PROC_MAGNE_BOOTS_FLY,
+        /* 0x0CD */ PROC_BOOTS_EQUIP,
+        /* 0x0CE */ PROC_SUMOU_READY,
+        /* 0x0CF */ PROC_SUMOU_MOVE,
+        /* 0x0D0 */ PROC_SUMOU_SIDE_MOVE,
+        /* 0x0D1 */ PROC_SUMOU_ACTION,
+        /* 0x0D2 */ PROC_SUMOU_STAGGER,
+        /* 0x0D3 */ PROC_SUMOU_WIN_LOSE,
+        /* 0x0D4 */ PROC_SUMOU_SHIKO,
+        /* 0x0D5 */ PROC_LOOK_UP,
+        /* 0x0D6 */ PROC_LOOK_UP_TO_GET_ITEM,
+        /* 0x0D7 */ PROC_HAND_PAT,
+        /* 0x0D8 */ PROC_IRON_BALL_SUBJECT,
+        /* 0x0D9 */ PROC_IRON_BALL_MOVE,
+        /* 0x0DA */ PROC_IRON_BALL_THROW,
+        /* 0x0DB */ PROC_IRON_BALL_RETURN,
+        /* 0x0DC */ PROC_BOSS_BODY_HANG,
+        /* 0x0DD */ PROC_OCTAIEAL_SPIT,
+        /* 0x0DE */ PROC_SCREAM_WAIT,
+        /* 0x0DF */ PROC_GOAT_STOP_READY,
+        /* 0x0E0 */ PROC_ZORA_MOVE,
+        /* 0x0E1 */ PROC_LOOK_AROUND_TURN,
+        /* 0x0E2 */ PROC_TRADE_ITEM_OUT,
+        /* 0x0E3 */ PROC_NOT_USE_ITEM,
+        /* 0x0E4 */ PROC_SWORD_READY,
+        /* 0x0E5 */ PROC_SWORD_PUSH,
+        /* 0x0E6 */ PROC_GANON_FINISH,
+        /* 0x0E7 */ PROC_CUT_FAST_READY,
+        /* 0x0E8 */ PROC_MASTER_SWORD_STICK,
+        /* 0x0E9 */ PROC_MASTER_SWORD_PULL,
+        /* 0x0EA */ PROC_DUNGEON_WARP_READY,
+        /* 0x0EB */ PROC_DUNEGON_WARP,
+        /* 0x0EC */ PROC_DUNEGON_WARP_SCN_START,
+        /* 0x0ED */ PROC_WOLF_HOWL_DEMO,
+        /* 0x0EE */ PROC_WOLF_SERVICE_WAIT,
+        /* 0x0EF */ PROC_WOLF_TIRED_WAIT,
+        /* 0x0F0 */ PROC_WOLF_MIDNA_RIDE_SHOCK,
+        /* 0x0F1 */ PROC_WOLF_WAIT,
+        /* 0x0F2 */ PROC_WOLF_MOVE,
+        /* 0x0F3 */ PROC_WOLF_DASH,
+        /* 0x0F4 */ PROC_WOLF_DASH_REVERSE,
+        /* 0x0F5 */ PROC_WOLF_WAIT_TURN,
+        /* 0x0F6 */ PROC_WOLF_ATN_AC_MOVE,
+        /* 0x0F7 */ PROC_WOLF_SIDESTEP,
+        /* 0x0F8 */ PROC_WOLF_SIDESTEP_LAND,
+        /* 0x0F9 */ PROC_WOLF_BACKJUMP,
+        /* 0x0FA */ PROC_WOLF_BACKJUMP_LAND,
+        /* 0x0FB */ PROC_WOLF_HOWL,
+        /* 0x0FC */ PROC_WOLF_AUTO_JUMP,
+        /* 0x0FD */ PROC_WOLF_FALL,
+        /* 0x0FE */ PROC_WOLF_LAND,
+        /* 0x0FF */ PROC_WOLF_SIT,
+        /* 0x100 */ PROC_WOLF_LIE_START,
+        /* 0x101 */ PROC_WOLF_LIE_MOVE,
+        /* 0x102 */ PROC_WOLF_LIE_AUTO_MOVE,
+        /* 0x103 */ PROC_WOLF_HANG_READY,
+        /* 0x104 */ PROC_WOLF_STEP_MOVE,
+        /* 0x105 */ PROC_WOLF_HANG_WALL_CATCH,
+        /* 0x106 */ PROC_WOLF_HANG_FALL_START,
+        /* 0x107 */ PROC_WOLF_DAMAGE,
+        /* 0x108 */ PROC_WOLF_LARGE_DAMAGE_UP,
+        /* 0x109 */ PROC_WOLF_LAND_DAMAGE,
+        /* 0x10A */ PROC_WOLF_SCREAM_WAIT,
+        /* 0x10B */ PROC_WOLF_SLIP,
+        /* 0x10C */ PROC_WOLF_SLIP_TURN,
+        /* 0x10D */ PROC_WOLF_SLIP_TURN_LAND,
+        /* 0x10E */ PROC_WOLF_SLIDE_READY,
+        /* 0x10F */ PROC_WOLF_SLIDE,
+        /* 0x110 */ PROC_WOLF_SLIDE_LAND,
+        /* 0x111 */ PROC_WOLF_WAIT_SLIP,
+        /* 0x112 */ PROC_WOLF_SLOPE_START,
+        /* 0x113 */ PROC_WOLF_ROPE_MOVE,
+        /* 0x114 */ PROC_WOLF_ROPE_HANG,
+        /* 0x115 */ PROC_WOLF_ROPE_TURN,
+        /* 0x116 */ PROC_WOLF_ROPE_STAGGER,
+        /* 0x117 */ PROC_WOLF_ROPE_SUBJECTIVITY,
+        /* 0x118 */ PROC_WOLF_TAG_JUMP,
+        /* 0x119 */ PROC_WOLF_TAG_JUMP_LAND,
+        /* 0x11A */ PROC_WOLF_ROLL_ATTACK_CHARGE,
+        /* 0x11B */ PROC_WOLF_ROLL_ATTACK_MOVE,
+        /* 0x11C */ PROC_WOLF_JUMP_ATTACK,
+        /* 0x11D */ PROC_WOLF_JUMP_AT_KICK,
+        /* 0x11E */ PROC_WOLF_JUMP_AT_SLIDE_LAND,
+        /* 0x11F */ PROC_WOLF_JUMP_AT_NORMAL_LAND,
+        /* 0x120 */ PROC_WOLF_WAIT_ATTACK,
+        /* 0x121 */ PROC_WOLF_ROLL_ATTACK,
+        /* 0x122 */ PROC_WOLF_DOWN_ATTACK,
+        /* 0x123 */ PROC_WOLF_DOWN_AT_LAND,
+        /* 0x124 */ PROC_WOLF_DOWN_AT_MISS_LAND,
+        /* 0x125 */ PROC_WOLF_LOCK_ATTACK,
+        /* 0x126 */ PROC_WOLF_LOCK_ATTACK_TURN,
+        /* 0x127 */ PROC_WOLF_SWIM_UP,
+        /* 0x128 */ PROC_WOLF_SWIM_WAIT,
+        /* 0x129 */ PROC_WOLF_SWIM_MOVE,
+        /* 0x12A */ PROC_WOLF_SWIM_END_WAIT,
+        /* 0x12B */ PROC_WOLF_GRAB_UP,
+        /* 0x12C */ PROC_WOLF_GRAB_PUT,
+        /* 0x12D */ PROC_WOLF_GRAB_THROW,
+        /* 0x12E */ PROC_WOLF_CHAIN_UP,
+        /* 0x12F */ PROC_WOLF_PUSH,
+        /* 0x130 */ PROC_WOLF_CHAIN_READY,
+        /* 0x131 */ PROC_WOLF_CHAIN_WAIT,
+        /* 0x132 */ PROC_WOLF_DIG,
+        /* 0x133 */ PROC_WOLF_DIG_THROUGH,
+        /* 0x134 */ PROC_WOLF_ATTACK_REVERSE,
+        /* 0x135 */ PROC_WOLF_ENEMY_THROW,
+        /* 0x136 */ PROC_WOLF_ENEMY_HANG_BITE,
+        /* 0x137 */ PROC_WOLF_GIANT_PUZZLE,
+        /* 0x138 */ PROC_WOLF_CARGO_CARRY,
+        /* 0x139 */ PROC_WOLF_GET_SMELL,
+        /* 0x13A */ PROC_WOLF_SMELL_WAIT,
+        /* 0x13B */ PROC_WOLF_SNOW_ESCAPE,
+        /* 0x13C */ PROC_WOLF_GANON_CATCH,
+        /* 0x13D */ PROC_TOOL_DEMO,
+        /* 0x13E */ PROC_SUBJECTIVITY,
+        /* 0x13F */ PROC_SWIM_SUBJECTIVITY,
+        /* 0x140 */ PROC_PEEP_SUBJECTIVITY,
+        /* 0x141 */ PROC_POLY_DAMAGE,
+        /* 0x142 */ PROC_ELEC_DAMAGE,
+        /* 0x143 */ PROC_PUSH_PULL_WAIT,
+        /* 0x144 */ PROC_PUSH_MOVE,
+        /* 0x145 */ PROC_TALK,
+        /* 0x146 */ PROC_OPEN_TREASURE,
+        /* 0x147 */ PROC_UNEQUIP,
+        /* 0x148 */ PROC_GET_ITEM,
+        /* 0x149 */ PROC_TURN_BACK,
+        /* 0x14A */ PROC_LOOK_WAIT,
+        /* 0x14B */ PROC_DEMO_PUSH_PULL_WAIT,
+        /* 0x14C */ PROC_DEMO_PUSH_MOVE,
+        /* 0x14D */ PROC_METAMORPHOSE,
+        /* 0x14E */ PROC_METAMORPHOSE_ONLY,
+        /* 0x14F */ PROC_WARP,
+        /* 0x150 */ PROC_DEAD,
+        /* 0x151 */ PROC_FOG_DEAD,
+        /* 0x152 */ PROC_LOOK_AROUND,
+        /* 0x153 */ PROC_CAUGHT,
+        /* 0x154 */ PROC_SAND_WALL_HIT,
+        /* 0x155 */ PROC_LAVA_RETURN,
+        /* 0x156 */ PROC_SWIM_FREEZE_RETURN,
+        /* 0x157 */ PROC_GET_READY_SIT,
+        /* 0x158 */ PROC_TW_GATE,
+        /* 0x159 */ PROC_LARGE_DAMAGE,
+        /* 0x15A */ PROC_LARGE_DAMAGE_WALL,
+        /* 0x15B */ PROC_NOD,
+        /* 0x15C */ PROC_EYE_AWAY,
+        /* 0x15D */ PROC_GLARE,
+        /* 0x15E */ PROC_HORSE_CALL_WAIT,
+        /* 0x15F */ PROC_QUAKE_WAIT,
     };
 
     // this might be one of the above enums, but not clear yet
@@ -419,6 +620,16 @@ public:
         ANM_WOLF_CHAIN_GRAB = 672,
         ANM_WOLF_ENEMY_THROW_LEFT = 701,
         ANM_WOLF_ENEMY_THROW_RIGHT,
+    };
+
+    enum daAlink_ITEM_BTN {
+        /* 0x01 */ BTN_X = (1 << 0),
+        /* 0x02 */ BTN_Y = (1 << 1),
+        /* 0x04 */ BTN_Z = (1 << 2),
+        /* 0x08 */ BTN_B = (1 << 3),
+        /* 0x10 */ BTN_A = (1 << 4),
+        /* 0x20 */ BTN_L = (1 << 5),
+        /* 0x40 */ BTN_R = (1 << 6),
     };
 
     class firePointEff_c {
@@ -481,14 +692,14 @@ public:
     /* 800A3E98 */ void initModelEnv(u16, u32);
     /* 800A3F00 */ void initDemoModel(J3DModel**, char const*, u32);
     /* 800A3F98 */ void initDemoBck(mDoExt_bckAnm**, char const*);
-    /* 800A4068 */ static void createHeap();
+    /* 800A4068 */ int createHeap();
     /* 800A4910 */ void setSelectEquipItem(int);
     /* 800A4BC8 */ BOOL checkBoarStart();
     /* 800A4C40 */ BOOL checkCanoeStart();
     /* 800A4CB4 */ void playerInit();
     /* 800A54F4 */ BOOL checkHorseStart(u32, int);
-    /* 800A551C */ void setStartProcInit();
-    /* 800A5CC8 */ void create();
+    /* 800A551C */ int setStartProcInit();
+    /* 800A5CC8 */ int create();
     /* 800A662C */ void setRoomInfo();
     /* 800A67E0 */ void setShapeAngleOnGround();
     /* 800A6B0C */ void setStepsOffset();
@@ -503,7 +714,7 @@ public:
     /* 800A8310 */ void setBodyPartPos();
     /* 800A87F8 */ void setAttentionPos();
     /* 800A8CE4 */ void setMatrix();
-    /* 800A9248 */ void simpleAnmPlay(J3DAnmBase*);
+    /* 800A9248 */ static void simpleAnmPlay(J3DAnmBase*);
     /* 800A92F0 */ void setSwordPos();
     /* 800A9450 */ void setItemMatrix(int);
     /* 800A9F4C */ void setWolfItemMatrix();
@@ -619,8 +830,8 @@ public:
     /* 800B477C */ void checkRequestTalkActor(dAttList_c*, fopAc_ac_c*);
     /* 800B47B4 */ void checkServiceWaitMode();
     /* 800B48D0 */ void setJumpMode();
-    /* 800B4908 */ float getMetamorphoseNearDis() const;
-    /* 800B4918 */ float getMetamorphoseFarDis() const;
+    /* 800B4908 */ f32 getMetamorphoseNearDis() const;
+    /* 800B4918 */ f32 getMetamorphoseFarDis() const;
     /* 800B4928 */ s16 getMetamorphoseFarAngle() const;
     /* 800B4938 */ void setMidnaMsg();
     /* 800B4950 */ bool notTalk();
@@ -676,7 +887,7 @@ public:
     /* 800BA6A0 */ void commonChangeItem();
     /* 800BA914 */ void setItemAction();
     /* 800BAF08 */ void checkNextActionFromCrouch(int);
-    /* 800BAF80 */ void checkUpperReadyThrowAnime() const;
+    /* 800BAF80 */ int checkUpperReadyThrowAnime() const;
     /* 800BB020 */ void getBodyAngleXBasePos(cXyz*);
     /* 800BB084 */ void getBodyAngleXAtnActor(int);
     /* 800BB2B0 */ void setBodyAngleXReadyAnime(int);
@@ -696,8 +907,8 @@ public:
     /* 800BE26C */ void checkCoachGuardGame();
     /* 800BE2C0 */ void checkRoofRestart();
     /* 800BE3E4 */ void checkRestartRoom();
-    /* 800BE9D4 */ void getSceneExitMoveAngle();
-    /* 800BEAF8 */ void checkSceneChange(int);
+    /* 800BE9D4 */ s16 getSceneExitMoveAngle();
+    /* 800BEAF8 */ int checkSceneChange(int);
     /* 800BF0B8 */ void voiceStartLevel(u32);
     /* 800BF0EC */ void seStartSwordCut(u32);
     /* 800BF194 */ void seStartMapInfo(u32);
@@ -720,12 +931,12 @@ public:
     /* 800BFFCC */ void loadAramItemBtk(u16, J3DModel*);
     /* 800C0028 */ void loadAramItemBtp(u16, J3DModel*);
     /* 800C0084 */ void changeItemBck(u16, f32);
-    /* 800C0114 */ void checkGroupItem(int, int) const;
-    /* 800C0164 */ void checkSetItemTrigger(int);
-    /* 800C0208 */ void checkItemSetButton(int);
-    /* 800C0284 */ void checkField();
-    /* 800C02C8 */ void checkBossRoom();
-    /* 800C0310 */ void checkDungeon();
+    /* 800C0114 */ int checkGroupItem(int, int) const;
+    /* 800C0164 */ int checkSetItemTrigger(int);
+    /* 800C0208 */ int checkItemSetButton(int);
+    /* 800C0284 */ static bool checkField();
+    /* 800C02C8 */ static bool checkBossRoom();
+    /* 800C0310 */ static bool checkDungeon();
     /* 800C0358 */ static bool checkCastleTown();
     /* 800C03A0 */ static bool checkCloudSea();
     /* 800C03E8 */ static bool checkRoomOnly();
@@ -1098,16 +1309,16 @@ public:
     /* 800E23FC */ void concatMagneBootMtx();
     /* 800E243C */ void concatMagneBootInvMtx();
     /* 800E247C */ void multVecMagneBootInvMtx(cXyz*);
-    /* 800E24B0 */ void commonMagneLineCheck(cXyz*, cXyz*);
+    /* 800E24B0 */ int commonMagneLineCheck(cXyz*, cXyz*);
     /* 800E251C */ void checkBootsMoveAnime(int);
     /* 800E2580 */ void setHeavyBoots(int);
-    /* 800E2738 */ void getMagneBootsLocalAngleY(s16, int);
+    /* 800E2738 */ s16 getMagneBootsLocalAngleY(s16, int);
     /* 800E2808 */ void setMagneBootsMtx(cBgS_PolyInfo*, int);
     /* 800E2DC4 */ void cancelMagneBootsOn();
-    /* 800E2F88 */ void checkMagneBootsFly();
+    /* 800E2F88 */ int checkMagneBootsFly();
     /* 800E3048 */ void procBootsEquipInit();
     /* 800E30DC */ void procBootsEquip();
-    /* 800E3218 */ void procMagneBootsFlyInit();
+    /* 800E3218 */ int procMagneBootsFlyInit();
     /* 800E3454 */ void procMagneBootsFly();
     /* 800E3760 */ s16 getBombExplodeTime() const;
     /* 800E3770 */ f32 getBombGravity() const;
@@ -1185,7 +1396,7 @@ public:
     /* 800E8148 */ void checkPullBehindWall();
     /* 800E8298 */ void offGoatStopGame();
     /* 800E82B0 */ BOOL checkGoatCatchActor(fopAc_ac_c*);
-    /* 800E8314 */ float getGoatCatchDistance2();
+    /* 800E8314 */ f32 getGoatCatchDistance2();
     /* 800E8334 */ void endPushPull();
     /* 800E8354 */ void getPushPullAnimeSpeed();
     /* 800E8428 */ void procCoPushPullWaitInit(int);
@@ -1511,7 +1722,7 @@ public:
     /* 8010163C */ void setRoofHangSwitch();
     /* 801016AC */ void procRoofSwitchHangInit(fopAc_ac_c*);
     /* 801017AC */ void procRoofSwitchHang();
-    /* 80101890 */ void checkZoraWearMaskDraw();
+    /* 80101890 */ BOOL checkZoraWearMaskDraw();
     /* 801018E4 */ void checkAcceptUseItemInWater(u16) const;
     /* 80101934 */ void swimDeleteItem();
     /* 801019B8 */ void getZoraSwim() const;
@@ -1739,7 +1950,7 @@ public:
     /* 80118AD0 */ void checkFinalBattle();
     /* 80118B34 */ void checkRestartDead(int, int);
     /* 80118BF4 */ void setDeadRideSyncPos();
-    /* 80118C98 */ void checkDeadHP();
+    /* 80118C98 */ BOOL checkDeadHP();
     /* 80118D7C */ void checkDeadAction(int);
     /* 80118FF8 */ void setHighModelBck(mDoExt_bckAnm*, u16);
     /* 801190A4 */ void setHighModelFaceBtk(u16);
@@ -1817,15 +2028,15 @@ public:
     /* 8011EA78 */ bool procGanonFinish();
     /* 8011EAE8 */ void procCutFastReadyInit();
     /* 8011EB8C */ void procCutFastReady();
-    /* 8011EBDC */ void procMasterSwordStickInit();
-    /* 8011EC60 */ void procMasterSwordStick();
-    /* 8011ED18 */ bool procMasterSwordPullInit();
+    /* 8011EBDC */ int procMasterSwordStickInit();
+    /* 8011EC60 */ int procMasterSwordStick();
+    /* 8011ED18 */ int procMasterSwordPullInit();
     /* 8011ED8C */ void procMasterSwordPull();
     /* 8011EE40 */ static BOOL checkLv7DungeonShop();
-    /* 8011EE94 */ void procDungeonWarpReadyInit();
+    /* 8011EE94 */ int procDungeonWarpReadyInit();
     /* 8011EFB8 */ void procDungeonWarpReady();
     /* 8011F084 */ void procDungeonWarpInit();
-    /* 8011F0F4 */ void procDungeonWarp();
+    /* 8011F0F4 */ int procDungeonWarp();
     /* 8011F360 */ void procDungeonWarpSceneStartInit();
     /* 8011F460 */ void procDungeonWarpSceneStart();
     /* 8011F658 */ bool checkAcceptWarp();
@@ -2202,7 +2413,7 @@ public:
     virtual BOOL checkBoarRun() const;
     virtual f32 getBaseAnimeFrameRate() const;
     virtual f32 getBaseAnimeFrame() const;
-    virtual void setAnimeFrame(float);
+    virtual void setAnimeFrame(f32);
     virtual bool checkWolfLock(fopAc_ac_c*) const;
     virtual bool cancelWolfLock(fopAc_ac_c*);
     virtual s32 getAtnActorID() const;
@@ -2215,8 +2426,8 @@ public:
     virtual void voiceStart(u32);
     virtual void seStartOnlyReverb(u32);
     virtual void seStartOnlyReverbLevel(u32);
-    virtual void setOutPower(float, short, int);
-    virtual void setGrabCollisionOffset(float, float, cBgS_PolyInfo*);
+    virtual void setOutPower(f32, short, int);
+    virtual void setGrabCollisionOffset(f32, f32, cBgS_PolyInfo*);
     virtual void onFrollCrashFlg(u8, int);
     virtual MtxP getModelJointMtx(u16);
     virtual MtxP getHeadMtx();
@@ -2228,10 +2439,10 @@ public:
     virtual void setClothesChange(int);
     virtual void setPlayerPosAndAngle(cXyz const*, short, int);
     virtual void setPlayerPosAndAngle(cXyz const*, csXyz const*);
-    virtual void setPlayerPosAndAngle(float (*)[4]);
-    virtual bool setThrowDamage(short, float, float, int, int, int);
+    virtual void setPlayerPosAndAngle(f32 (*)[4]);
+    virtual bool setThrowDamage(short, f32, f32, int, int, int);
     virtual bool checkSetNpcTks(cXyz*, int, int);
-    virtual bool setRollJump(float, float, short);
+    virtual int setRollJump(f32, f32, short);
     virtual void playerStartCollisionSE(u32, u32);
     virtual void cancelDungeonWarpReadyNeck();
     virtual void onSceneChangeArea(u8, u8, fopAc_ac_c*);
@@ -2259,7 +2470,7 @@ public:
     virtual bool onWolfEnemyBiteAll(fopAc_ac_c*, daPy_FLG2);
     virtual bool checkWolfEnemyBiteAllOwn(fopAc_ac_c const*) const;
     virtual void setWolfEnemyHangBiteAngle(short);
-    virtual void setKandelaarMtx(float (*)[4], int, int);
+    virtual void setKandelaarMtx(f32 (*)[4], int, int);
     virtual bool getStickAngleFromPlayerShape(short*) const;
     virtual bool checkSpinnerPathMove();
     virtual bool checkSpinnerTriggerAttack();
@@ -2299,7 +2510,7 @@ public:
     virtual BOOL checkBootsOrArmorHeavy() const;
     virtual s32 getBottleOpenAppearItem() const;
     virtual bool checkItemSwordEquip() const;
-    virtual float getSinkShapeOffset() const;
+    virtual f32 getSinkShapeOffset() const;
     virtual BOOL checkSinkDead() const;
     virtual BOOL checkHorseStart();
     virtual Z2WolfHowlMgr* getWolfHowlMgrP();
@@ -2327,6 +2538,7 @@ public:
     BOOL checkBoomerangReadyAnime() const {
         return (mEquipItem == BOOMERANG || mEquipItem == 0x102) && checkUpperAnime(0x54);
     }
+    bool checkDkCaught2Anime() const { return checkUpperAnime(0x262); }
 
     s16 checkWolfEyeUp() const { return mWolfEyeUp; }
     void onModeFlg(u32 flag) { mModeFlg |= flag; }
@@ -2352,8 +2564,40 @@ public:
     }
     s32 checkPlayerDemoMode() const { return mDemo.getDemoType(); }
     u16 getMidnaMsgNum() const { return mMidnaMsgNum; }
+    u32 getStartEvent() { return fopAcM_GetParam(this) >> 0x18; }
+    const daAlink_AnmData* getAnmData(daAlink_ANM anmID) const { return &m_anmDataTable[anmID]; }
 
     BOOL i_checkReinRide() const { return mRideStatus == 1 || mRideStatus == 2; }
+
+    bool checkFishingCastMode() const {
+        bool var_r4 = 1;
+        bool var_r3 = 0;
+        
+        if (mProcID == PROC_FISHING_CAST) {
+            bool var_r5 = 0;
+
+            if (mItemActor.getActor() != NULL && mItemActor.getActor()->mEvtInfo.i_checkCommandDemoAccrpt() != 0) {
+                var_r5 = 1;
+            }
+
+            if (!var_r5) {
+                var_r3 = 1;
+            }
+        }
+
+        if (!var_r3) {
+            bool var_r3_2 = 0;
+            if (mProcID != PROC_FISHING_CAST && i_checkNoResetFlg2(FLG2_UNK_20000000)) {
+                var_r3_2 = 1;
+            }
+
+            if (!var_r3_2) {
+                var_r4 = 0;
+            }
+        }
+
+        return var_r4;
+    }
 
     inline void startRestartRoomFromOut(int, u32, int);
     inline u16 getReadyItem();
@@ -2373,14 +2617,12 @@ public:
     static u8 m_fEffParamProc[72];
 
 private:
-    /* 0x0062C */ void* field_0x062C;
-    /* 0x00630 */ int field_0x0630;
+    /* 0x0062C */ request_of_phase_process_class mPhaseReq;
     /* 0x00634 */ char* mArcName;
-    /* 0x00638 */ JKRExpHeap** field_0x0638;
-    /* 0x0063C */ void* field_0x063C;
-    /* 0x00640 */ int field_0x0640;
+    /* 0x00638 */ JKRExpHeap* field_0x0638;
+    /* 0x0063C */ request_of_phase_process_class mShieldPhaseReq;
     /* 0x00644 */ char* mShieldArcName;
-    /* 0x00648 */ JKRExpHeap** field_0x0648;
+    /* 0x00648 */ JKRExpHeap* field_0x0648;
     /* 0x0064C */ J3DModelData* field_0x064C;
     /* 0x00650 */ J3DModel* field_0x0650;
     /* 0x00654 */ J3DModel* field_0x0654;
@@ -2411,18 +2653,18 @@ private:
     /* 0x006B8 */ J3DModel* mSwordModel;
     /* 0x006BC */ J3DModel* field_0x06bc;
     /* 0x006C0 */ J3DModelData* field_0x06c0;
-    /* 0x006C4 */ J3DAnmBase* m_nSwordBtk;
-    /* 0x006C8 */ J3DAnmBase* m_mSwordBtk;
-    /* 0x006CC */ J3DAnmBase* m_mSwordBck;
+    /* 0x006C4 */ J3DAnmTextureSRTKey* m_nSwordBtk;
+    /* 0x006C8 */ J3DAnmTextureSRTKey* m_mSwordBtk;
+    /* 0x006CC */ J3DAnmTevRegKey* m_mSwordBrk;
     /* 0x006D0 */ void* field_0x06d0;
     /* 0x006D4 */ void* field_0x06d4;
     /* 0x006D8 */ void* field_0x06d8;
     /* 0x006DC */ void* field_0x06dc;
     /* 0x006E0 */ void* field_0x06e0;
-    /* 0x006E4 */ void* field_0x06e4;
+    /* 0x006E4 */ J3DShape* field_0x06e4;
     /* 0x006E8 */ void* field_0x06e8;
-    /* 0x006EC */ void* field_0x06ec;
-    /* 0x006F0 */ void* field_0x06f0;
+    /* 0x006EC */ J3DShape* field_0x06ec;
+    /* 0x006F0 */ J3DShape* field_0x06f0;
     /* 0x006F4 */ J3DAnmBase* field_0x06f4;
     /* 0x006F8 */ J3DAnmBase* field_0x06f8;
     /* 0x006FC */ J3DModel* field_0x06fc;
@@ -2464,7 +2706,7 @@ private:
     /* 0x01C98 */ dBgS_ArrowLinChk mArrowLinChk;
     /* 0x01D08 */ dBgS_LinkGndChk mLinkGndChk;
     /* 0x01D5C */ dBgS_LinkRoofChk mLinkRoofChk;
-    /* 0x01DAC */ dBgS_LinkLinChk mLinkLinChk2;
+    /* 0x01DAC */ dBgS_LinkLinChk mMagneLineChk;
     /* 0x01E1C */ cBgS_PolyInfo mPolyInfo1;
     /* 0x01E2C */ cBgS_PolyInfo mPolyInfo2;
     /* 0x01E3C */ cBgS_PolyInfo mPolyInfo3;
@@ -2504,7 +2746,7 @@ private:
     /* 0x027FC */ fopAc_ac_c* field_0x27fc;
     /* 0x02800 */ daTagMmsg_c* mMidnaMsg;
     /* 0x02804 */ fopAc_ac_c* field_0x2804;
-    /* 0x02808 */ fopAc_ac_c* field_0x2808;
+    /* 0x02808 */ daScex_c* mpScnChg;
     /* 0x0280C */ daPy_actorKeep_c field_0x280c;
     /* 0x02814 */ daPy_actorKeep_c mRideActor;  // daspinnerc?
     /* 0x0281C */ daPy_actorKeep_c field_0x281c;
@@ -2517,26 +2759,26 @@ private:
     /* 0x02854 */ daPy_actorKeep_c mCargoCarryActor;
     /* 0x0285C */ daPy_actorKeep_c field_0x285c;
     /* 0x02864 */ dMsgFlow_c mMsgFlow;
-    /* 0x028B0 */ u8 field_0x28b0[0x40];
+    /* 0x028B0 */ int field_0x28b0[0x10];
     /* 0x028F0 */ int field_0x28f0;
     /* 0x028F4 */ int mAtnActorID;
     /* 0x028F8 */ int field_0x28f8;
     /* 0x028FC */ int field_0x28fc;
-    /* 0x02900 */ void* field_0x2900;
+    /* 0x02900 */ u32 field_0x2900;
     /* 0x02904 */ daAlink_footData_c mFootData1[2];
     /* 0x02A4C */ daAlink_footData_c mFootData2[2];
-    /* 0x02B94 */ float* field_0x2b94;
-    /* 0x02B98 */ float* field_0x2b98;
-    /* 0x02B98 */ float* field_0x2b9c;
-    /* 0x02BA0 */ float* field_0x2ba0;
-    /* 0x02BA4 */ float* field_0x2ba4;
+    /* 0x02B94 */ f32* field_0x2b94;
+    /* 0x02B98 */ f32 field_0x2b98;
+    /* 0x02B98 */ f32* field_0x2b9c;
+    /* 0x02BA0 */ f32* field_0x2ba0;
+    /* 0x02BA4 */ f32* field_0x2ba4;
     /* 0x02BA8 */ f32 mSinkShapeOffset;
     /* 0x02BAC */ cXyz field_0x2bac;
     /* 0x02BB8 */ Mtx mInvMtx;
     /* 0x02BE8 */ Mtx field_0x2be8;
     /* 0x02C18 */ Mtx mRootMtx;
-    /* 0x02C48 */ Mtx field_0x2c48;
-    /* 0x02C78 */ Mtx field_0x2c78;
+    /* 0x02C48 */ Mtx mMagneBootMtx;
+    /* 0x02C78 */ Mtx mMagneBootInvMtx;
     /* 0x02CA8 */ Z2CreatureLink mZ2Link;
     /* 0x02D78 */ void* field_0x2d78;
     /* 0x02D7C */ daPy_frameCtrl_c* field_0x2d7c;
@@ -2585,7 +2827,7 @@ private:
     /* 0x02FA9 */ u8 field_0x2fa9;
     /* 0x02FAA */ u8 mRideStatus;
     /* 0x02FAB */ u8 field_0x2fab;
-    /* 0x02FAC */ u8 field_0x2fac;
+    /* 0x02FAC */ u8 mExitDirection;
     /* 0x02FAD */ u8 field_0x2fad;
     /* 0x02FAE */ u8 field_0x2fae;
     /* 0x02FAF */ u8 field_0x2faf;
@@ -2594,7 +2836,7 @@ private:
     /* 0x02FB2 */ u8 mMidnaTalkDelayTimer;
     /* 0x02FB3 */ u8 field_0x2fb3;
     /* 0x02FB4 */ u8 field_0x2fb4;
-    /* 0x02FB5 */ u8 field_0x2fb5;
+    /* 0x02FB5 */ u8 mDamageColorTime;
     /* 0x02FB6 */ u8 field_0x2fb6;
     /* 0x02FB7 */ u8 field_0x2fb7;
     /* 0x02FB8 */ u8 field_0x2fb8;
@@ -2637,7 +2879,7 @@ private:
     /* 0x02FE2 */ s16 field_0x2fe2;
     /* 0x02FE4 */ s16 field_0x2fe4;
     /* 0x02FE6 */ s16 field_0x2fe6;
-    /* 0x02FE8 */ u16 mActionID;
+    /* 0x02FE8 */ u16 mProcID;
     /* 0x02FEA */ u16 field_0x2fea;
     /* 0x02FEC */ s16 field_0x2fec;
     /* 0x02FEE */ s16 field_0x2fee;
@@ -2772,7 +3014,7 @@ private:
     /* 0x0310C */ s16 field_0x310c;
     /* 0x0310E */ s16 field_0x310e;
     /* 0x03110 */ s16 field_0x3110;
-    /* 0x03112 */ u16 field_0x3112;
+    /* 0x03112 */ u16 mExitID;
     /* 0x03114 */ s16 field_0x3114;
     /* 0x03116 */ s16 field_0x3116;
     /* 0x03118 */ s16 field_0x3118;
@@ -2797,7 +3039,7 @@ private:
     /* 0x0317C */ int field_0x317c;
     /* 0x03180 */ int field_0x3180;
     /* 0x03184 */ int field_0x3184;
-    /* 0x03184 */ int field_0x3188;
+    /* 0x03188 */ int field_0x3188;
     /* 0x0318C */ int field_0x318c;
     /* 0x03190 */ int field_0x3190;
     /* 0x03194 */ int field_0x3194;
@@ -2849,70 +3091,70 @@ private:
     /* 0x032D0 */ u32 field_0x32d0;
     /* 0x032D4 */ u32 field_0x32d4;
     /* 0x032D8 */ firePointEff_c field_0x32d8[4];
-    /* 0x03398 */ float mNormalSpeed;
-    /* 0x0339C */ float mSpeedModifier;
-    /* 0x033A0 */ float field_0x33a0;
-    /* 0x033A4 */ float field_0x33a4;
-    /* 0x033A8 */ float field_0x33a8;
-    /* 0x033AC */ float field_0x33ac;
-    /* 0x033B0 */ float field_0x33b0;
-    /* 0x033B4 */ float mWaterY;
-    /* 0x033B8 */ float field_0x33b8;
-    /* 0x033BC */ float field_0x33bc;
-    /* 0x033C0 */ float field_0x33c0;
-    /* 0x033C4 */ float mFallHeight;
-    /* 0x033C8 */ float field_0x33c8;
-    /* 0x033CC */ float field_0x33cc;
-    /* 0x033D0 */ float field_0x33d0;
-    /* 0x033D4 */ float field_0x33d4;
-    /* 0x033D8 */ float field_0x33d8;
-    /* 0x033DC */ float field_0x33dc;
-    /* 0x033E0 */ float field_0x33e0;
-    /* 0x033E4 */ float field_0x33e4;
-    /* 0x033E8 */ float field_0x33e8;
-    /* 0x033EC */ float field_0x33ec;
-    /* 0x033F0 */ float field_0x33f0;
-    /* 0x033F4 */ float field_0x33f4;
-    /* 0x033F8 */ float field_0x33f8;
-    /* 0x033FC */ float field_0x33fc;
-    /* 0x03400 */ float field_0x3400;
-    /* 0x03404 */ float field_0x3404;
-    /* 0x03408 */ float field_0x3408;
-    /* 0x0340C */ float field_0x340c;
-    /* 0x03410 */ float field_0x3410;
-    /* 0x03414 */ float field_0x3414;
-    /* 0x03418 */ float field_0x3418;
-    /* 0x0341C */ float field_0x341c;
-    /* 0x03420 */ float field_0x3420;
-    /* 0x03424 */ float field_0x3424;
-    /* 0x03428 */ float field_0x3428;
-    /* 0x0342C */ float field_0x342c;
-    /* 0x03430 */ float field_0x3430;
-    /* 0x03434 */ float mHeavySpeedMultiplier;
-    /* 0x03438 */ float field_0x3438;
-    /* 0x0343C */ float field_0x343c;
-    /* 0x03440 */ float field_0x3440;
-    /* 0x03444 */ float field_0x3444;
-    /* 0x03448 */ float field_0x3448;
-    /* 0x0344C */ float field_0x344c;
+    /* 0x03398 */ f32 mNormalSpeed;
+    /* 0x0339C */ f32 mSpeedModifier;
+    /* 0x033A0 */ f32 field_0x33a0;
+    /* 0x033A4 */ f32 field_0x33a4;
+    /* 0x033A8 */ f32 field_0x33a8;
+    /* 0x033AC */ f32 field_0x33ac;
+    /* 0x033B0 */ f32 field_0x33b0;
+    /* 0x033B4 */ f32 mWaterY;
+    /* 0x033B8 */ f32 field_0x33b8;
+    /* 0x033BC */ f32 field_0x33bc;
+    /* 0x033C0 */ f32 field_0x33c0;
+    /* 0x033C4 */ f32 mFallHeight;
+    /* 0x033C8 */ f32 field_0x33c8;
+    /* 0x033CC */ f32 field_0x33cc;
+    /* 0x033D0 */ f32 field_0x33d0;
+    /* 0x033D4 */ f32 field_0x33d4;
+    /* 0x033D8 */ f32 field_0x33d8;
+    /* 0x033DC */ f32 field_0x33dc;
+    /* 0x033E0 */ f32 field_0x33e0;
+    /* 0x033E4 */ f32 field_0x33e4;
+    /* 0x033E8 */ f32 field_0x33e8;
+    /* 0x033EC */ f32 field_0x33ec;
+    /* 0x033F0 */ f32 field_0x33f0;
+    /* 0x033F4 */ f32 field_0x33f4;
+    /* 0x033F8 */ f32 field_0x33f8;
+    /* 0x033FC */ f32 field_0x33fc;
+    /* 0x03400 */ f32 field_0x3400;
+    /* 0x03404 */ f32 field_0x3404;
+    /* 0x03408 */ f32 field_0x3408;
+    /* 0x0340C */ f32 field_0x340c;
+    /* 0x03410 */ f32 field_0x3410;
+    /* 0x03414 */ f32 field_0x3414;
+    /* 0x03418 */ f32 field_0x3418;
+    /* 0x0341C */ f32 field_0x341c;
+    /* 0x03420 */ f32 field_0x3420;
+    /* 0x03424 */ f32 field_0x3424;
+    /* 0x03428 */ f32 field_0x3428;
+    /* 0x0342C */ f32 field_0x342c;
+    /* 0x03430 */ f32 field_0x3430;
+    /* 0x03434 */ f32 mHeavySpeedMultiplier;
+    /* 0x03438 */ f32 field_0x3438;
+    /* 0x0343C */ f32 field_0x343c;
+    /* 0x03440 */ f32 field_0x3440;
+    /* 0x03444 */ f32 field_0x3444;
+    /* 0x03448 */ f32 field_0x3448;
+    /* 0x0344C */ f32 field_0x344c;
     /* 0x03450 */ u8 field_0x3450[4];
-    /* 0x03454 */ float field_0x3454;
-    /* 0x03458 */ float field_0x3458;
-    /* 0x0345C */ float field_0x345c;
-    /* 0x03460 */ float field_0x3460;
-    /* 0x03464 */ float field_0x3464;
-    /* 0x03468 */ float field_0x3468;
-    /* 0x0346C */ float field_0x346c;
-    /* 0x03470 */ float field_0x3470;
-    /* 0x03474 */ float mSwordUpColorIntensity;
-    /* 0x03478 */ float field_0x3478;
-    /* 0x0347C */ float field_0x347c;
-    /* 0x03480 */ float field_0x3480;
-    /* 0x03484 */ float field_0x3484;
-    /* 0x03488 */ float field_0x3488;
-    /* 0x0348C */ float field_0x348c;
-    /* 0x03490 */ float mSearchBallScale;
-    /* 0x03494 */ float field_0x3494;
+    /* 0x03454 */ f32 field_0x3454;
+    /* 0x03458 */ f32 field_0x3458;
+    /* 0x0345C */ f32 field_0x345c;
+    /* 0x03460 */ f32 field_0x3460;
+    /* 0x03464 */ f32 field_0x3464;
+    /* 0x03468 */ f32 field_0x3468;
+    /* 0x0346C */ f32 field_0x346c;
+    /* 0x03470 */ f32 field_0x3470;
+    /* 0x03474 */ f32 mSwordUpColorIntensity;
+    /* 0x03478 */ f32 field_0x3478;
+    /* 0x0347C */ f32 field_0x347c;
+    /* 0x03480 */ f32 field_0x3480;
+    /* 0x03484 */ f32 field_0x3484;
+    /* 0x03488 */ f32 field_0x3488;
+    /* 0x0348C */ f32 field_0x348c;
+    /* 0x03490 */ f32 mSearchBallScale;
+    /* 0x03494 */ f32 field_0x3494;
     /* 0x03498 */ cXyz field_0x3498;
     /* 0x034A4 */ cXyz field_0x34a4;
     /* 0x034B0 */ cXyz field_0x34b0;
@@ -2978,11 +3220,9 @@ private:
     /* 0x03840 */ cXyz* mIronBallChainPos;
     /* 0x03844 */ csXyz* mIronBallChainAngle;
     /* 0x03848 */ void* field_0x3848;
-    /* 0x0384C */ float* field_0x384c;
-    /* 0x03850 */ u32 field_0x3850;
-    /* 0x03854 */ u32 field_0x3854;
-    /* 0x03858 */ u32 field_0x3858;
-};
+    /* 0x0384C */ f32* field_0x384c;
+    /* 0x03850 */ daAlink_procFunc mpProcFunc;
+};  // Size: 0x38BC
 
 struct daAlinkHIO_anm_c {
     /* 0x00 */ s16 field_0x00;  // end f?
@@ -4555,5 +4795,10 @@ private:
     /* 0x09A0 */ u8 field_0x9a0[0x14];
     /* 0x09C4 */ cXyz field_0x9c4;
 };
+
+static void* daAlink_searchPortal(fopAc_ac_c* param_0, void* param_1);
+static void* daAlink_searchCanoe(fopAc_ac_c* param_0, void* param_1);
+static void* daAlink_searchBoar(fopAc_ac_c* param_0, void* param_1);
+static fopAc_ac_c* daAlink_searchLightBall(fopAc_ac_c* p_actor, void* param_1);
 
 #endif /* D_A_D_A_ALINK_H */

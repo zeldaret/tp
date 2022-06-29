@@ -9,20 +9,9 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_iter.h"
 #include "f_op/f_op_actor_mng.h"
-
-//
-// Types:
-//
-
-struct dDemo_c {
-    /* 80039CF8 */ void end();
-
-    static u8 m_mode[4];
-};
-
-struct dCamera_c {
-    /* 801614C4 */ void QuickStart();
-};
+#include "d/d_demo.h"
+#include "d/d_camera.h"
+#include "d/msg/d_msg_object.h"
 
 //
 // Forward References:
@@ -162,6 +151,14 @@ inline dEvt_control_c& dComIfGp_getEvent() {
     return g_dComIfG_gameInfo.play.getEvent();
 }
 
+inline u16 dComIfGs_getLife() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getLife();
+}
+
+inline dStage_stageDt_c* dComIfGp_getStage() {
+    return &g_dComIfG_gameInfo.play.getStage();
+}
+
 /* 80041480-80041488 03BDC0 0008+00 1/1 0/0 0/0 .text event_debug_evnt__21@unnamed@d_event_cpp@Fv
  */
 static bool func_80041480() {
@@ -193,70 +190,173 @@ dEvt_order_c::dEvt_order_c() {
 
 /* 800415D8-80041668 03BF18 0090+00 1/1 0/0 0/0 .text orderOld__14dEvt_control_cFUsUsUsUsPvPvPCv
  */
-bool dEvt_control_c::orderOld(u16 param_0, u16 param_1, u16 param_2, u16 param_3, void* param_4,
+s32 dEvt_control_c::orderOld(u16 param_0, u16 param_1, u16 param_2, u16 param_3, void* param_4,
                               void* param_5, void const* param_6) {
     int eventIdx = dComIfGp_getEventManager().getEventIdx((char*)param_6, -1, -1);
     return order(param_0, param_1, param_2, param_3, param_4, param_5, eventIdx, -1);
 }
 
 /* 80041668-80041804 03BFA8 019C+00 3/3 13/13 0/0 .text order__14dEvt_control_cFUsUsUsUsPvPvsUc */
+#ifdef NONMATCHING
+s32 dEvt_control_c::order(u16 eventType, u16 priority, u16 flag, u16 param_3, void* param_4,
+                               void* param_5, s16 eventID, u8 infoIdx) {
+    if (!(flag & 0x400) && infoIdx != 0xFF) {
+        int roomNo = dComIfGp_roomControl_getStayNo();
+        dStage_MapEvent_dt_c* data = searchMapEventData(infoIdx, roomNo);
+
+        if (data != NULL && data->field_0x1B != 0xFF) {
+            if (dComIfGs_isSwitch(data->field_0x1B, roomNo)) {
+                return 0;
+            }
+        }
+    }
+
+    if (mNum >= 8) {
+        return 0;
+    }
+
+    dEvt_order_c* order = &mOrder[mNum];
+    order->mEventType = eventType;
+    order->mPriority = priority;
+    order->mFlag = flag;
+    order->mActor1 = (fopAc_ac_c*)param_4;
+    order->mActor2 = (fopAc_ac_c*)param_5;
+    order->mEventId = eventID;
+    order->field_0x04 = param_3;
+    order->mEventInfoIdx = infoIdx;
+
+    if (order->mPriority == 0) {
+        order->mPriority = 1;
+    }
+
+    if (mNum == 0) {
+        field_0xe3 = 0;
+        order->mNextOrderIdx = -1;
+    } else {
+        s8 tmp_e3 = field_0xe3;
+        dEvt_order_c* order2 = &mOrder[tmp_e3];
+
+        if (order->mPriority < order2->mPriority) {
+            field_0xe3 = mNum;
+            order->mNextOrderIdx = tmp_e3;
+        } else {
+
+            while (order2->mNextOrderIdx >= 0) {
+                if (order->mPriority >= mOrder[order2->mNextOrderIdx].mPriority) {
+                    order2++;
+                }
+            }
+
+            order->mNextOrderIdx = order2->mNextOrderIdx;
+            order2->mNextOrderIdx = mNum;
+        }
+        mNum++;
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool dEvt_control_c::order(u16 param_0, u16 param_1, u16 param_2, u16 param_3, void* param_4,
-                               void* param_5, s16 param_6, u8 param_7) {
+asm s32 dEvt_control_c::order(u16 eventType, u16 priority, u16 flag, u16 param_3, void* param_4,
+                               void* param_5, s16 eventID, u8 infoIdx) {
     nofralloc
 #include "asm/d/event/d_event/order__14dEvt_control_cFUsUsUsUsPvPvsUc.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 80451EC0-80451EC4 0004C0 0004+00 1/1 0/0 0/0 .sdata2          @4361 */
-SECTION_SDATA2 static f32 lit_4361 = 1.0f;
+#endif
 
 /* 80041804-80041934 03C144 0130+00 5/5 0/0 0/0 .text setParam__14dEvt_control_cFP12dEvt_order_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvt_control_c::setParam(dEvt_order_c* param_0) {
-    nofralloc
-#include "asm/d/event/d_event/setParam__14dEvt_control_cFP12dEvt_order_c.s"
+void dEvt_control_c::setParam(dEvt_order_c* p_order) {
+    setPt1(p_order->mActor1);
+    setPt2(p_order->mActor2);
+    
+    mSpecifiedEvent = p_order->mEventId;
+    mHindFlag = p_order->field_0x04;
+
+    if (dComIfGp_getPlayer(0) != p_order->mActor1) {
+        setPtT(p_order->mActor1);
+        setPtI(p_order->mActor1);
+    } else {
+        setPtT(p_order->mActor2);
+        setPtI(p_order->mActor2);
+    }
+
+    mMapToolId = p_order->mEventInfoIdx;
+    field_0xea = 0xFF;
+    field_0xec = 0xFF;
+
+    int roomNo = dComIfGp_roomControl_getStayNo();
+    dStage_MapEvent_dt_c* data = searchMapEventData(mMapToolId, roomNo);
+    mStageEventDt = data;
+
+    if (data != NULL) {
+        field_0xea = data->field_0x16;
+
+        if (data->field_0x1B != 0xFF) {
+            dComIfGs_onSwitch(data->field_0x1B, roomNo);
+        }
+
+        if (p_order->mFlag & 0x300) {
+            field_0xec = data->field_0x5;
+        }
+    }
+
+    if (!(p_order->mFlag & 0x200)) {
+        field_0xe0 = p_order->mEventId;
+    }
+
+    mCullRate = 1.0f;
+    mEventFlag = 0;
 }
-#pragma pop
 
 /* 80041934-80041964 03C274 0030+00 2/2 0/0 0/0 .text
  * beforeFlagProc__14dEvt_control_cFP12dEvt_order_c             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 dEvt_control_c::beforeFlagProc(dEvt_order_c* param_0) {
-    nofralloc
-#include "asm/d/event/d_event/beforeFlagProc__14dEvt_control_cFP12dEvt_order_c.s"
+s32 dEvt_control_c::beforeFlagProc(dEvt_order_c* p_order) {
+    fopAc_ac_c* actor = p_order->mActor2;
+
+    if (p_order->mFlag & 4 && actor->mEvtInfo.chkCondition(1) != true) {
+        return 0;
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80379D80-80379D80 0063E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 #pragma push
 #pragma force_active on
 SECTION_DEAD static char const* const stringBase_80379D80 = "？？？";
-SECTION_DEAD static char const* const stringBase_80379D87 = "ALL";
 #pragma pop
 
 /* 80041964-800419A8 03C2A4 0044+00 2/2 0/0 0/0 .text
  * afterFlagProc__14dEvt_control_cFP12dEvt_order_c              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvt_control_c::afterFlagProc(dEvt_order_c* param_0) {
-    nofralloc
-#include "asm/d/event/d_event/afterFlagProc__14dEvt_control_cFP12dEvt_order_c.s"
+void dEvt_control_c::afterFlagProc(dEvt_order_c* p_order) {
+    if (p_order->mFlag & 2) {
+        dComIfGp_getEventManager().issueStaff("ALL");
+    }
 }
-#pragma pop
 
 /* 800419A8-80041A20 03C2E8 0078+00 4/4 0/0 0/0 .text
  * commonCheck__14dEvt_control_cFP12dEvt_order_cUsUs            */
+#ifdef NONMATCHING
+int dEvt_control_c::commonCheck(dEvt_order_c* p_order, u16 param_1, u16 param_2) {
+    fopAc_ac_c* actor1 = p_order->mActor1;
+    fopAc_ac_c* actor2 = p_order->mActor2;
+
+    if ((actor1 != NULL && actor1->mEvtInfo.chkCondition(param_1) == param_1) &&
+        (actor2 != NULL && actor2->mEvtInfo.chkCondition(param_1) == param_1)) {
+        actor1->mEvtInfo.setCommand(param_2);
+        actor2->mEvtInfo.setCommand(param_2);
+        setParam(p_order);
+        return 1;
+    }
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -265,6 +365,7 @@ asm int dEvt_control_c::commonCheck(dEvt_order_c* param_0, u16 param_1, u16 para
 #include "asm/d/event/d_event/commonCheck__14dEvt_control_cFP12dEvt_order_cUsUs.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80379D80-80379D80 0063E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -279,7 +380,7 @@ SECTION_DEAD static char const* const stringBase_80379D98 = "MHINT_TALK";
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_control_c::talkCheck(dEvt_order_c* param_0) {
+asm int dEvt_control_c::talkCheck(dEvt_order_c* param_0) {
     nofralloc
 #include "asm/d/event/d_event/talkCheck__14dEvt_control_cFP12dEvt_order_c.s"
 }
@@ -297,7 +398,7 @@ SECTION_DEAD static char const* const stringBase_80379DA3 = "DEFAULT_TALK_XY";
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_control_c::talkXyCheck(dEvt_order_c* param_0) {
+asm int dEvt_control_c::talkXyCheck(dEvt_order_c* param_0) {
     nofralloc
 #include "asm/d/event/d_event/talkXyCheck__14dEvt_control_cFP12dEvt_order_c.s"
 }
@@ -308,7 +409,7 @@ asm void dEvt_control_c::talkXyCheck(dEvt_order_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_control_c::catchCheck(dEvt_order_c* param_0) {
+asm int dEvt_control_c::catchCheck(dEvt_order_c* param_0) {
     nofralloc
 #include "asm/d/event/d_event/catchCheck__14dEvt_control_cFP12dEvt_order_c.s"
 }
@@ -329,7 +430,7 @@ asm void dEvt_control_c::talkEnd() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_control_c::demoCheck(dEvt_order_c* param_0) {
+asm int dEvt_control_c::demoCheck(dEvt_order_c* param_0) {
     nofralloc
 #include "asm/d/event/d_event/demoCheck__14dEvt_control_cFP12dEvt_order_c.s"
 }
@@ -345,7 +446,7 @@ asm void dEvt_control_c::demoEnd() {
 }
 #pragma pop
 
-s32 dEvt_control_c::potentialCheck(dEvt_order_c* param_0) {
+int dEvt_control_c::potentialCheck(dEvt_order_c* param_0) {
     fopAc_ac_c* actor = param_0->mActor1;
     s32 ret;
     s32 tmp = beforeFlagProc(param_0);
@@ -367,7 +468,7 @@ s32 dEvt_control_c::potentialCheck(dEvt_order_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_control_c::doorCheck(dEvt_order_c* param_0) {
+asm int dEvt_control_c::doorCheck(dEvt_order_c* param_0) {
     nofralloc
 #include "asm/d/event/d_event/doorCheck__14dEvt_control_cFP12dEvt_order_c.s"
 }
@@ -375,10 +476,10 @@ asm void dEvt_control_c::doorCheck(dEvt_order_c* param_0) {
 
 /* 8004212C-800421C0 03CA6C 0094+00 1/1 0/0 0/0 .text itemCheck__14dEvt_control_cFP12dEvt_order_c
  */
-int dEvt_control_c::itemCheck(dEvt_order_c* param_0) {
+int dEvt_control_c::itemCheck(dEvt_order_c* p_order) {
     const char* event = "DEFAULT_GETITEM";
 
-    if (commonCheck(param_0, 8, 4)) {
+    if (commonCheck(p_order, 8, 4)) {
         mMode = 2;
         mSpecifiedEvent = dComIfGp_getEventManager().getEventIdx(event, -1, -1);
         dComIfGp_getEventManager().order(mSpecifiedEvent);
@@ -389,6 +490,7 @@ int dEvt_control_c::itemCheck(dEvt_order_c* param_0) {
 }
 
 /* 800421C0-80042254 03CB00 0094+00 1/1 0/0 0/0 .text            endProc__14dEvt_control_cFv */
+// missing extra branch
 #ifdef NONMATCHING
 int dEvt_control_c::endProc() {
     switch (mMode) {
@@ -406,7 +508,7 @@ int dEvt_control_c::endProc() {
     mStageEventDt = NULL;
     field_0xec = 255;
     field_0xed = 0;
-    field_0xe0 = -1;
+    field_0xe0 = 255;
     mPreItemNo = 255;
     dComIfGp_getEventManager().setStartDemo(-2);
     return 1;
@@ -423,69 +525,131 @@ asm int dEvt_control_c::endProc() {
 #endif
 
 /* 80042254-800422C0 03CB94 006C+00 1/1 0/0 0/0 .text            change__14dEvt_control_cFv */
+// reg swap
+#ifdef NONMATCHING
+int dEvt_control_c::change() {
+    if (mNum != 0) {
+        s8 var_r7 = field_0xe3;
+
+        do {
+            dEvt_order_c* order = &mOrder[var_r7];
+
+            if (order->mFlag & 0xE00 && order->mActor1 == mChangeOK) {
+                field_0xe3 = var_r7;
+                mNum = 1;
+                order->mNextOrderIdx = -1;
+                return var_r7;
+            }
+
+            var_r7 = order->mNextOrderIdx;
+        } while (var_r7 >= 0);
+    }
+
+    return -1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_control_c::change() {
+asm int dEvt_control_c::change() {
     nofralloc
 #include "asm/d/event/d_event/change__14dEvt_control_cFv.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 803A7F78-803A7FB0 -00001 0038+00 1/1 0/0 0/0 .data            @4719 */
-SECTION_DATA static void* lit_4719[14] = {
-    (void*)(((char*)entry__14dEvt_control_cFv) + 0x70),
-    (void*)(((char*)entry__14dEvt_control_cFv) + 0xB8),
-    (void*)(((char*)entry__14dEvt_control_cFv) + 0x94),
-    (void*)(((char*)entry__14dEvt_control_cFv) + 0xDC),
-    (void*)(((char*)entry__14dEvt_control_cFv) + 0xF4),
-    (void*)(((char*)entry__14dEvt_control_cFv) + 0x118),
-    (void*)(((char*)entry__14dEvt_control_cFv) + 0x13C),
-    (void*)(((char*)entry__14dEvt_control_cFv) + 0x13C),
-    (void*)(((char*)entry__14dEvt_control_cFv) + 0x184),
-    (void*)(((char*)entry__14dEvt_control_cFv) + 0x184),
-    (void*)(((char*)entry__14dEvt_control_cFv) + 0x160),
-    (void*)(((char*)entry__14dEvt_control_cFv) + 0xB8),
-    (void*)(((char*)entry__14dEvt_control_cFv) + 0x184),
-    (void*)(((char*)entry__14dEvt_control_cFv) + 0x184),
-};
+#endif
 
 /* 800422C0-80042468 03CC00 01A8+00 2/1 0/0 0/0 .text            entry__14dEvt_control_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvt_control_c::entry() {
-    nofralloc
-#include "asm/d/event/d_event/entry__14dEvt_control_cFv.s"
+int dEvt_control_c::entry() {
+    if (mNum != 0) {
+        s8 orderIdx = field_0xe3;
+        mNum = 0;
+
+        do {
+            dEvt_order_c* order = &mOrder[orderIdx];
+            orderIdx = order->mNextOrderIdx;
+
+            switch (order->mEventType) {
+            case 0:
+                if (dComIfGs_getLife() != 0 && talkCheck(order) != 0) {
+                    return 1;
+                }
+                break;
+            case 2:
+                if (dComIfGs_getLife() != 0 && demoCheck(order) != 0) {
+                    return 1;
+                }
+                break;
+            case 1:
+            case 11:
+                if (dComIfGs_getLife() != 0 && doorCheck(order) != 0) {
+                    return 1;
+                }
+                break;
+            case 3:
+                mMode = 3;
+                setParam(order);
+                return 1;
+            case 4:
+                if (dComIfGs_getLife() != 0 && potentialCheck(order) != 0) {
+                    return 1;
+                }
+                break;
+            case 5:
+                if (dComIfGs_getLife() != 0 && itemCheck(order) != 0) {
+                    return 1;
+                }
+                break;
+            case 6:
+            case 7:
+                if (dComIfGs_getLife() != 0 && talkXyCheck(order) != 0) {
+                    return 1;
+                }
+                break;
+            case 10:
+                if (dComIfGs_getLife() != 0 && catchCheck(order) != 0) {
+                    return 1;
+                }
+                break;
+            case 13:
+                break;
+            }
+        } while (orderIdx >= 0);
+    }
+    
+    return 0;
 }
-#pragma pop
 
 /* 80042468-80042518 03CDA8 00B0+00 1/1 8/8 388/388 .text            reset__14dEvt_control_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvt_control_c::reset() {
-    nofralloc
-#include "asm/d/event/d_event/reset__14dEvt_control_cFv.s"
+void dEvt_control_c::reset() {
+    if (field_0xec != 0xFF) {
+        void* pt1 = getPt1();
+        s16 eventIdx = dComIfGp_getEventManager().getEventIdx(NULL, field_0xec, -1);
+        void* pt2 = getPt2();
+
+        order(2, 3, 0x201, mHindFlag, pt1, pt2, eventIdx, field_0xec);
+        mChangeOK = pt1;
+    }
+
+    onEventFlag(8);
 }
-#pragma pop
 
 /* 80042518-800425B4 03CE58 009C+00 3/3 3/3 46/46 .text            reset__14dEvt_control_cFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvt_control_c::reset(void* param_0) {
-    nofralloc
-#include "asm/d/event/d_event/reset__14dEvt_control_cFPv.s"
+void dEvt_control_c::reset(void* param_0) {
+    if (field_0xec != 0xFF) {
+        s16 eventIdx = dComIfGp_getEventManager().getEventIdx((fopAc_ac_c*)param_0, field_0xec);
+        void* pt2 = getPt2();
+        order(2, 3, 0x201, mHindFlag, param_0, pt2, eventIdx, field_0xec);
+    }
+
+    mChangeOK = param_0;
+    onEventFlag(8);
 }
-#pragma pop
 
 void dEvt_control_c::clearSkipSystem() {
     mSkipFunc = NULL;
     field_0x104 = -1;
     field_0x10c = 0;
-    field_0x108 = 0;
+    mSkipTimer = 0;
 
     if (!chkFlag2(3)) {
         mSkipFade = 0;
@@ -494,40 +658,99 @@ void dEvt_control_c::clearSkipSystem() {
 }
 
 /* 800425E8-8004261C 03CF28 0034+00 0/0 2/2 5/5 .text            dEv_defaultSkipProc__FPvi */
-int dEv_defaultSkipProc(void* param_0, int param_1) {
+int dEv_defaultSkipProc(void* param_0, int) {
     dComIfGp_getEvent().reset(param_0);
     return 1;
 }
 
-/* ############################################################################################## */
-/* 80379D80-80379D80 0063E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80379DC3 = "$0";
-#pragma pop
-
 /* 8004261C-80042778 03CF5C 015C+00 1/1 1/1 0/0 .text            dEv_defaultSkipZev__FPvi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dEv_defaultSkipZev(void* param_0, int param_1) {
-    nofralloc
-#include "asm/d/event/d_event/dEv_defaultSkipZev__FPvi.s"
+int dEv_defaultSkipZev(void* param_0, int param_1) {
+    dEvt_control_c* evControl = &dComIfGp_getEvent();
+
+    s16 eventID = -1;
+    dStage_MapEvent_dt_c* data = evControl->getStageEventDt();
+    bool var_r27 = true;
+
+    if (data != NULL) {
+        if (data->field_0x9 != 0xFF) {
+            var_r27 = false;
+        } else if (data->field_0x7 != 0xFF) {
+            var_r27 = false;
+        }
+    }
+
+    switch (param_1) {
+    case 0:
+        char eventName[32];
+        strcpy(eventName, data->mName);
+        strcat(eventName, "$0");
+        eventID = dComIfGp_getEventManager().getEventIdx(eventName, 0xFF, -1);
+        break;
+    case 1:
+        char* skipName = dComIfGp_getEvent().getSkipEventName();
+        eventID = dComIfGp_getEventManager().getEventIdx(skipName, 0xFF, -1);
+        break;
+    }
+
+    if (eventID != -1) {
+        evControl->reset(param_0);
+        fopAcM_orderOtherEventId((fopAc_ac_c*)param_0, eventID, evControl->getMapToolId(), -1, 3, 0x400);
+        return 2;
+    } else if (var_r27) {
+        evControl->reset(param_0);
+        return 1;
+    } else {
+        evControl->reset(param_0);
+        return 1;
+    }
 }
-#pragma pop
 
 /* 80042778-800428DC 03D0B8 0164+00 0/0 1/1 0/0 .text            dEv_defaultSkipStb__FPvi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dEv_defaultSkipStb(void* param_0, int param_1) {
-    nofralloc
-#include "asm/d/event/d_event/dEv_defaultSkipStb__FPvi.s"
+int dEv_defaultSkipStb(void* param_0, int param_1) {
+    dEvt_control_c* evControl = &dComIfGp_getEvent();
+
+    s16 eventID = -1;
+    dStage_MapEvent_dt_c* data = evControl->getStageEventDt();
+    bool var_r27 = true;
+
+    if (data != NULL) {
+        if (data->field_0x9 != 0xFF) {
+            var_r27 = false;
+        } else if (data->field_0x7 != 0xFF) {
+            var_r27 = false;
+        }
+    }
+
+    switch (param_1) {
+    case 0:
+        char eventName[32];
+        strcpy(eventName, data->mName);
+        strcat(eventName, "$0");
+        eventID = dComIfGp_getEventManager().getEventIdx(eventName, 0xFF, -1);
+        break;
+    case 1:
+        char* skipName = dComIfGp_getEvent().getSkipEventName();
+        eventID = dComIfGp_getEventManager().getEventIdx(skipName, 0xFF, -1);
+        break;
+    }
+
+    if (eventID != -1) {
+        evControl->reset(param_0);
+        dDemo_c::end();
+        fopAcM_orderOtherEventId((fopAc_ac_c*)param_0, eventID, evControl->getMapToolId(), -1, 3, 0x400);
+        return 2;
+    } else if (var_r27) {
+        evControl->reset(param_0);
+        dDemo_c::end();
+        return 1;
+    } else {
+        evControl->reset(param_0);
+        return 1;
+    }
 }
-#pragma pop
 
 /* 800428DC-8004290C 03D21C 0030+00 0/0 1/1 33/33 .text            dEv_noFinishSkipProc__FPvi */
-int dEv_noFinishSkipProc(void* param_0, int param_1) {
+int dEv_noFinishSkipProc(void*, int) {
     dComIfGp_getEvent().offSkipFade();
     return 0;
 }
@@ -542,9 +765,9 @@ void dEvt_control_c::setSkipProc(void* param_0, SkipFunc skipFunc, int param_2) 
     field_0x10c = param_2;
 }
 
-void dEvt_control_c::setSkipZev(void* param_0, char* pName) {
+void dEvt_control_c::setSkipZev(void* param_0, char* evtName) {
     setSkipProc(param_0, dEv_defaultSkipZev, 1);
-    strcpy(mSkipEventName, pName);
+    strcpy(mSkipEventName, evtName);
 }
 
 void dEvt_control_c::onSkipFade() {
@@ -558,74 +781,248 @@ void dEvt_control_c::offSkipFade() {
     mSkipFade = 0;
 }
 
-/* ############################################################################################## */
-/* 80451EC4-80451EC8 0004C4 0004+00 1/1 0/0 0/0 .sdata2          @4904 */
-SECTION_SDATA2 static f32 lit_4904 = 1.0f / 10.0f;
-
 /* 800429D4-80042BBC 03D314 01E8+00 1/1 0/0 0/0 .text            skipper__14dEvt_control_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvt_control_c::skipper() {
-    nofralloc
-#include "asm/d/event/d_event/skipper__14dEvt_control_cFv.s"
+bool dEvt_control_c::skipper() {
+    bool startSkip = false;
+    bool canSkip = false;
+
+    offFlag2(8);
+    if (mEventStatus == 1) {
+        if (mSkipFunc != NULL) {
+            canSkip = true;
+        }
+
+        if (mDoCPd_c::getTrigStart(PAD_1)) {
+            if (mSkipTimer > 0) {
+                mSkipTimer = -1;
+
+                if (canSkip && mSkipFade) {
+                    mDoGph_gInf_c::fadeOut(0.1f);
+                }
+            } else if (mSkipTimer == 0) {
+                mSkipTimer = 1;
+            }
+        }
+
+        if (mSkipTimer > 0) {
+            if (canSkip) {
+                dComIfGp_setSButtonStatusForce(0x43, 1);
+            } else {
+                dComIfGp_setSButtonStatusForce(0x4D, 1);
+            }
+
+            int curTimer = mSkipTimer;
+            mSkipTimer++;
+            if (curTimer > 45) {
+                mSkipTimer = 0;
+            }
+        } else if (mSkipTimer != 0) {
+            if (canSkip && mSkipFade) {
+                int curTimer = mSkipTimer;
+                mSkipTimer--;
+
+                if (curTimer < -20) {
+                    startSkip = true;
+                    mSkipTimer = 0;
+                }
+            } else {
+                if (canSkip) {
+                    startSkip = true;
+                }
+                mSkipTimer = 0;
+            }
+        }
+
+        if (startSkip) {
+            dMsgObject_onKillMessageFlag();
+
+            void* ptr = convPId(field_0x104);
+            if (ptr == NULL) {
+                ptr = dComIfGp_getPlayer(0);
+            }
+
+            int skipRet = mSkipFunc(ptr, field_0x10c);
+            onFlag2(8);
+
+            if (skipRet != 0) {
+                mSkipFunc = NULL;
+
+                if (skipRet == 2) {
+                    onFlag2(1);
+                } else {
+                    onFlag2(2);
+                }
+            }
+        }
+    }
+
+    return startSkip;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451EC8-80451ECC 0004C8 0004+00 1/1 0/0 0/0 .sdata2          @5013 */
 SECTION_SDATA2 static f32 lit_5013 = -1.0f / 20.0f;
 
 /* 80042BBC-80042FA8 03D4FC 03EC+00 0/0 1/1 0/0 .text            Step__14dEvt_control_cFv */
+// small regalloc in checkFishingCastMode
+#ifdef NONMATCHING
+int dEvt_control_c::Step() {
+    dEvent_manager_c* evtMng = &dComIfGp_getEventManager();
+    
+    field_0xe7 = 0;
+    field_0xe8 = mNum;
+    skipper();
+    
+    if (chkEventFlag(8)) {
+        if (mEventStatus == 1) {
+            mEventStatus = 5;
+
+            if (dMsgObject_getMsgObjectClass() != NULL) {
+                dMsgObject_endFlowGroup();
+            }
+        }
+
+        dEvDtEvent_c* eventDt = evtMng->getEventData(mSpecifiedEvent);
+        if (eventDt != NULL) {
+            eventDt->forceFinish();
+        }
+        offEventFlag(8);
+    }
+
+    if (mEventStatus != 0) {
+        evtMng->Sequencer();
+    }
+    offEventFlag(0x300);
+
+    if (mEventStatus == 2) {
+        evtMng->cancelStaff("ALL");
+        evtMng->setCameraPlay(0);
+        mEventFlag = 0;
+        onEventFlag(0x200);
+        mEventStatus = 0;
+    } else if (mEventStatus == 0) {
+        mEventFlag = 0;
+    }
+
+    if (mEventStatus == 5 && !dComIfGp_isEnableNextStage()) {
+        if (chkFlag2(2) || mSkipTimer < 0) {
+            if (mSkipFade) {
+                mDoGph_gInf_c::fadeOut(-0.05f);
+            }
+            offFlag2(2);
+            func_80041488();
+        }
+
+        endProc();
+        if (!chkFlag2(3)) {
+            mSkipFade = false;
+            evtMng->setObjectArchive(NULL);
+        }
+        mEventStatus = 2;
+    } else if (mEventStatus == 5 && (chkFlag2(2) || mSkipTimer < 0)) {
+        func_80041488();
+    }
+
+    if (change() != -1) {
+        evtMng->cancelStaff("ALL");
+        evtMng->setCameraPlay(0);
+        onEventFlag(0x200);
+        mEventStatus = 0;
+
+        if (chkFlag2(1)) {
+            offFlag2(1);
+            onFlag2(2);
+        }
+    }
+    mCompulsory = 0;
+
+    int roomNo = dComIfGp_roomControl_getStayNo();
+    if (mRoomNo != roomNo) {
+        field_0x129 = 0;
+        mRoomNo = roomNo;
+    }
+
+    if (mEventStatus == 0 && entry() != 0) {
+        if (dMsgObject_getMsgObjectClass() != NULL) {
+            dMsgObject_setKillMessageFlag();
+        }
+        onEventFlag(0x100);
+
+        dComIfGp_getVibration().StopQuake(31);
+        daAlink_c* player = daAlink_getAlinkActorClass();
+
+        if (!dCam_getBody()->Active() && player->checkFishingCastMode()) {
+            dCam_getBody()->QuickStart();
+        }
+        mEventStatus = 1;
+        clearSkipSystem();
+    }
+
+    mNum = 0;
+    mChangeOK = NULL;
+
+    if (chkEventFlag(0x200)) {
+        Z2AudioMgr::getInterface()->mStatusMgr.setDemoName(NULL);
+    }
+
+    if (mEventStatus != 0) {
+        evtMng->Experts();
+        return 1;
+    } else {
+        if (!field_0x129) {
+            char lastStageName[7];
+            strncpy(lastStageName, dComIfGp_getStartStageName(), 7);
+            lastStageName[7] = 0;
+
+            dComIfGp_setLastPlayStageName(lastStageName);
+            dComIfGs_onVisitedRoom(mRoomNo);
+        }
+        field_0x129 = 1;        
+    }
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_control_c::Step() {
+asm int dEvt_control_c::Step() {
     nofralloc
 #include "asm/d/event/d_event/Step__14dEvt_control_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80042FA8-8004316C 03D8E8 01C4+00 0/0 2/2 0/0 .text            moveApproval__14dEvt_control_cFPv
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_control_c::moveApproval(void* param_0) {
+asm int dEvt_control_c::moveApproval(void* param_0) {
     nofralloc
 #include "asm/d/event/d_event/moveApproval__14dEvt_control_cFPv.s"
 }
 #pragma pop
 
 /* 8004316C-800431E8 03DAAC 007C+00 0/0 28/28 0/0 .text compulsory__14dEvt_control_cFPvPCcUs */
-#ifdef NONMATCHING
-bool dEvt_control_c::compulsory(void* param_0, char const* param_1, u16 param_2) {
+BOOL dEvt_control_c::compulsory(void* param_0, char const* param_1, u16 param_2) {
     bool check = false;
-    if (field_0xe5 == 0 || field_0xe5 == 2) {
+    u8 temp_r4 = mEventStatus;
+    if (temp_r4 == 0 || temp_r4 == 2) {
         check = true;
     }
 
     if (!check || mCompulsory) {
-        return false;
-    } else {
-        mCompulsory = 1;
-        return orderOld(3, 2, 0, param_2, param_0, NULL, param_1);
+        return 0;
     }
+
+    mCompulsory = 1;
+    return orderOld(3, 2, 0, param_2, param_0, NULL, param_1);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL dEvt_control_c::compulsory(void* param_0, char const* param_1, u16 param_2) {
-    nofralloc
-#include "asm/d/event/d_event/compulsory__14dEvt_control_cFPvPCcUs.s"
-}
-#pragma pop
-#endif
 
 void dEvt_control_c::remove() {
     mMode = 0;
-    field_0xe5 = 0;
+    mEventStatus = 0;
     mNum = 0;
     mDebugStb = 0;
     field_0xe6 = 0;
@@ -644,7 +1041,7 @@ void dEvt_control_c::remove() {
     clearSkipSystem();
     mCompulsory = 0;
     field_0x129 = 0;
-    field_0x12c = -1;
+    mRoomNo = -1;
 }
 
 /* 80043278-80043280 03DBB8 0008+00 2/2 2/2 0/0 .text            getStageEventDt__14dEvt_control_cFv
@@ -654,14 +1051,14 @@ dStage_MapEvent_dt_c* dEvt_control_c::getStageEventDt() {
 }
 
 void dEvt_control_c::sceneChange(int exitId) {
-    dStage_changeScene4Event__FiScibfUlsi(exitId, field_0x12c, -1, field_0x129, 0.0f, 0, 0, -1);
+    dStage_changeScene4Event(exitId, mRoomNo, -1, field_0x129, 0.0f, 0, 0, -1);
 }
 
-u32 dEvt_control_c::getPId(void* param_0) {
-    if (param_0 == NULL) {
-        return 0xffffffff;
+u32 dEvt_control_c::getPId(void* actor) {
+    if (actor == NULL) {
+        return 0xFFFFFFFF;
     } else {
-        return fopAcM_GetID(param_0);
+        return fopAcM_GetID(actor);
     }
 }
 
@@ -702,11 +1099,11 @@ dEvt_info_c::dEvt_info_c() {
 }
 
 /* 80043428-80043480 03DD68 0058+00 0/0 0/0 4/4 .text            setEventName__11dEvt_info_cFPc */
-void dEvt_info_c::setEventName(char* param_0) {
-    if (param_0 == NULL) {
+void dEvt_info_c::setEventName(char* name) {
+    if (name == NULL) {
         mEventId = -1;
     } else {
-        mEventId = dComIfGp_getEventManager().getEventIdx(param_0, -1, -1);
+        mEventId = dComIfGp_getEventManager().getEventIdx(name, -1, -1);
     }
 }
 
@@ -729,50 +1126,71 @@ void dEvt_info_c::beforeProc() {
 }
 
 /* 800434D8-80043500 03DE18 0028+00 0/0 4/4 1/1 .text searchMapEventData__14dEvt_control_cFUc */
-dStage_MapEvent_dt_c* dEvt_control_c::searchMapEventData(u8 param_0) {
-    return searchMapEventData(param_0, (s32)struct_80450D64);
+dStage_MapEvent_dt_c* dEvt_control_c::searchMapEventData(u8 mapToolID) {
+    return searchMapEventData(mapToolID, dComIfGp_roomControl_getStayNo());
 }
 
 /* 80043500-8004360C 03DE40 010C+00 3/3 7/7 5/5 .text searchMapEventData__14dEvt_control_cFUcl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dStage_MapEvent_dt_c* dEvt_control_c::searchMapEventData(u8 param_0, s32 param_1) {
-    nofralloc
-#include "asm/d/event/d_event/searchMapEventData__14dEvt_control_cFUcl.s"
+dStage_MapEvent_dt_c* dEvt_control_c::searchMapEventData(u8 mapToolID, s32 roomNo) {
+    if (mapToolID == 0xFF) {
+        return NULL;
+    }
+
+    dStage_roomStatus_c* room = dComIfGp_roomControl_getStatusRoomDt(roomNo);
+    if (room != NULL) {
+        dStage_MapEventInfo_c* roomDt = room->mRoomDt.getMapEventInfo();
+
+        if (roomDt != NULL) {
+            for (int i = 0; i < roomDt->mCount; i++) {
+                if (mapToolID == roomDt->mData[i].field_0x4) {
+                    return &roomDt->mData[i];
+                }
+            }
+        }
+    }
+
+    dStage_MapEventInfo_c* stageDt = dComIfGp_getStage()->getMapEventInfo();
+    if (stageDt != NULL) {
+        for (int i = 0; i < stageDt->mCount; i++) {
+            if (mapToolID == stageDt->mData[i].field_0x4) {
+                return &stageDt->mData[i];
+            }
+        }
+    }
+
+    return NULL;
 }
-#pragma pop
 
 s16 dEvt_control_c::runningEventID(s16 param_0) {
     return param_0 == field_0xe0 ? mSpecifiedEvent : param_0;
 }
 
-void dEvt_control_c::setPt1(void* param_0) {
-    mPt1 = getPId(param_0);
+void dEvt_control_c::setPt1(void* ptr) {
+    mPt1 = getPId(ptr);
 }
 
-void dEvt_control_c::setPt2(void* param_0) {
-    mPt2 = getPId(param_0);
+void dEvt_control_c::setPt2(void* ptr) {
+    mPt2 = getPId(ptr);
 }
 
-void dEvt_control_c::setPtT(void* param_0) {
-    mPtT = getPId(param_0);
+void dEvt_control_c::setPtT(void* ptr) {
+    mPtT = getPId(ptr);
 }
 
-void dEvt_control_c::setPtI(void* param_0) {
-    mPtI = getPId(param_0);
+void dEvt_control_c::setPtI(void* ptr) {
+    mPtI = getPId(ptr);
 }
 
-void dEvt_control_c::setPtI_Id(unsigned int param_0) {
-    mPtI = param_0;
+void dEvt_control_c::setPtI_Id(unsigned int id) {
+    mPtI = id;
 }
 
-void dEvt_control_c::setPtD(void* param_0) {
-    mPtd = getPId(param_0);
+void dEvt_control_c::setPtD(void* ptr) {
+    mPtd = getPId(ptr);
 }
 
-void dEvt_control_c::setGtItm(u8 param_0) {
-    mGtItm = param_0;
+void dEvt_control_c::setGtItm(u8 itemNo) {
+    mGtItm = itemNo;
 }
 
 /* ############################################################################################## */

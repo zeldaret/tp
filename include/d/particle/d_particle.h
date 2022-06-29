@@ -53,6 +53,28 @@ public:
     /* 0x10 */ void* mData;
 };  // Size: 0x14
 
+class dPa_followEcallBack : public dPa_levelEcallBack {
+public:
+    /* 80049580 */ dPa_followEcallBack(u8, u8);
+
+    /* 80050200 */ virtual ~dPa_followEcallBack();
+    /* 800495BC */ virtual void execute(JPABaseEmitter*);
+    /* 800496B0 */ virtual void draw(JPABaseEmitter*);
+    /* 800496B4 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
+    /* 80050284 */ virtual void cleanup();
+    /* 8004974C */ virtual void end();
+
+    void remove() { end(); }
+
+    /* 0x04 */ JPABaseEmitter* mpEmitter;
+    /* 0x08 */ cXyz* field_0x8;
+    /* 0x0C */ csXyz* field_0xc;
+    /* 0x10 */ u8 field_0x10;
+    /* 0x11 */ u8 field_0x11;
+    /* 0x12 */ u8 field_0x12;
+    /* 0x13 */ u8 field_0x13;
+};
+
 extern u8 data_80450EC4;
 
 class dPa_control_c {
@@ -65,6 +87,8 @@ public:
             /* 8004B544 */ void entry(u32, u16, JPABaseEmitter*, dPa_levelEcallBack*);
             /* 8004B5AC */ void cleanup();
             /* 8004FBFC */ emitter_c();
+
+            JPABaseEmitter* getEmitter() { return mEmitter; }
 
         private:
             /* 0x00 */ u32 mId;
@@ -83,7 +107,7 @@ public:
         /* 8004B874 */ void get(u32);
         /* 8004B8B4 */ void forceOnEventMove(u32);
         /* 8004B8E8 */ void allForceOnEventMove();
-        /* 8004B918 */ emitter_c* getEmitter(u32);
+        /* 8004B918 */ JPABaseEmitter* getEmitter(u32);
         /* 8004B94C */ void entry(u16, JPABaseEmitter*, dPa_levelEcallBack*);
         /* 8004BA40 */ void addTable(dPa_control_c::level_c::emitter_c*);
         /* 8004BA74 */ void cutTable(dPa_control_c::level_c::emitter_c*);
@@ -136,7 +160,7 @@ public:
                                       dKy_tevstr_c const*, u32, u32, csXyz const*, cXyz const*, s8);
 
     void forceOnEventMove(u32 param_0) { field_0x210.forceOnEventMove(param_0); }
-    level_c::emitter_c* getEmitter(u32 param_0) { return field_0x210.getEmitter(param_0); }
+    JPABaseEmitter* getEmitter(u32 param_0) { return field_0x210.getEmitter(param_0); }
 
     u32 setNormal(u32 param_0, u16 param_1, const cXyz* param_2, const dKy_tevstr_c* param_3,
                   const csXyz* param_4, const cXyz* param_5, u8 param_6,

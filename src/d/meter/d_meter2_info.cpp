@@ -9,6 +9,8 @@
 #include "d/save/d_save.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "d/a/d_a_npc.h"
+#include "d/d_item_data.h"
 
 //
 // Forward References:
@@ -111,7 +113,6 @@ extern "C" void __ct__5csXyzFsss();
 extern "C" void __dl__FPv();
 extern "C" void getGlbResource__10JKRArchiveFUlPCcP10JKRArchive();
 extern "C" void readIdxResource__10JKRArchiveFPvUlUl();
-extern "C" void DCStoreRangeNoSync();
 extern "C" void __register_global_object();
 extern "C" void __cvt_fp2unsigned();
 extern "C" void _savegpr_19();
@@ -139,126 +140,17 @@ inline s8 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
     return param_0->field_0x09 >> 1 & 0x1f;
 }
 
+inline BOOL dComIfGp_event_runCheck() {
+    return g_dComIfG_gameInfo.play.getEvent().runCheck();
+}
+
 /* ############################################################################################## */
 /* 80399168-80399168 0257C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 #pragma push
 #pragma force_active on
 SECTION_DEAD static char const* const stringBase_80399168 = "";
 SECTION_DEAD static char const* const stringBase_80399169 = "zel_00.bmg";
-SECTION_DEAD static char const* const stringBase_80399174 = "D_MN01";
-SECTION_DEAD static char const* const stringBase_8039917B = "D_MN07";
-SECTION_DEAD static char const* const stringBase_80399182 =
-    "im_font_number_32_32_ganshinkyo_0_02.bti";
-SECTION_DEAD static char const* const stringBase_803991AB =
-    "im_font_number_32_32_ganshinkyo_1_02.bti";
-SECTION_DEAD static char const* const stringBase_803991D4 =
-    "im_font_number_32_32_ganshinkyo_2_02.bti";
-SECTION_DEAD static char const* const stringBase_803991FD =
-    "im_font_number_32_32_ganshinkyo_3_02.bti";
-SECTION_DEAD static char const* const stringBase_80399226 =
-    "im_font_number_32_32_ganshinkyo_4_03.bti";
-SECTION_DEAD static char const* const stringBase_8039924F =
-    "im_font_number_32_32_ganshinkyo_5_02.bti";
-SECTION_DEAD static char const* const stringBase_80399278 =
-    "im_font_number_32_32_ganshinkyo_6_02.bti";
-SECTION_DEAD static char const* const stringBase_803992A1 =
-    "im_font_number_32_32_ganshinkyo_7_02.bti";
-SECTION_DEAD static char const* const stringBase_803992CA =
-    "im_font_number_32_32_ganshinkyo_8_02.bti";
-SECTION_DEAD static char const* const stringBase_803992F3 =
-    "im_font_number_32_32_ganshinkyo_9_02.bti";
 #pragma pop
-
-/* 803BF760-803BF7F4 -00001 0094+00 1/1 0/0 0/0 .data            @4572 */
-SECTION_DATA static void* lit_4572[37] = {
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x64),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x24),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x24),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x24),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x24),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x24),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x24),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x24),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x2C),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x2C),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x2C),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x2C),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x2C),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x2C),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x2C),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x2C),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x2C),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x2C),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x2C),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x2C),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x2C),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x2C),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x2C),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x2C),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x2C),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x2C),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x2C),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x34),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x3C),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x44),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x4C),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x2C),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x64),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x54),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x54),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x54),
-    (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x5C),
-};
-
-/* 803BF7F4-803BF81C -00001 0028+00 1/1 0/0 0/0 .data            tex_name$5183 */
-SECTION_DATA static char* tex_name_5183[10] = {
-    (char*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x1A),
-    (char*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x43),
-    (char*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x6C),
-    (char*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x95),
-    (char*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0xBE),
-    (char*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0xE7),
-    (char*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x110),
-    (char*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x139),
-    (char*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x162),
-    (char*)(((char*)&d_meter_d_meter2_info__stringBase0) + 0x18B),
-};
-
-/* 803BF81C-803BFA1C 01C93C 0200+00 3/3 6/6 0/0 .data            letter_data__12dMenu_Letter */
-SECTION_DATA dMenu_LetterData dMenu_Letter::letter_data[64] = {
-    {0x09C5, 0x0A29, 0x0A8D, 0x010B}, {0x09C6, 0x0A2A, 0x0A8E, 0x0237},
-    {0x09C7, 0x0A2B, 0x0A8F, 0x0236}, {0x09C8, 0x0A2C, 0x0A90, 0x0037},
-    {0x09C9, 0x0A2D, 0x0A91, 0x0039}, {0x09CA, 0x0A2E, 0x0A92, 0x0067},
-    {0x09CB, 0x0A2F, 0x0A93, 0x0109}, {0x09CC, 0x0A30, 0x0A94, 0x004D},
-    {0x09CD, 0x0A31, 0x0A95, 0x0119}, {0x09CE, 0x0A32, 0x0A96, 0x0108},
-    {0x09CF, 0x0A33, 0x0A97, 0x010C}, {0x09D4, 0x0A38, 0x0A9E, 0x010C},
-    {0x09D1, 0x0A35, 0x0A9B, 0x00B6}, {0x09D2, 0x0A36, 0x0A9C, 0x0067},
-    {0x09D5, 0x0A39, 0x0AA0, 0x031C}, {0x09D6, 0x0A3A, 0x0AA1, 0x010A},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
-};
 
 /* 8021BDDC-8021BE20 21671C 0044+00 1/1 0/0 0/0 .text            __ct__13dMeter2Info_cFv */
 dMeter2Info_c::dMeter2Info_c() {
@@ -366,21 +258,21 @@ void dMeter2Info_c::init() {
     }
 
     for (int i = 0; i < 4; i++) {
-        unk196[i] = 0;
-        unk200[i] = 0;
-        unk208[i] = 0;
-        unk212[i] = 0;
+        mSaveSelItemIdx[i] = 0;
+        mSaveMixItemIdx[i] = 0;
+        mSaveSelItemIdxMG[i] = 0;
+        mSaveMixItemIdxMG[i] = 0;
     }
 
-    unk204 = 0;
-    unk205 = 0;
-    unk206 = 0;
-    unk207 = 0;
-    unk216 = 0;
-    unk217 = 0;
-    unk218 = 0;
-    unk219 = 0;
-    mRentalBombBag = 0xFF;
+    mSaveBombNum = 0;
+    mSaveArrowNum = 0;
+    mSaveBowItem = 0;
+    mSaveBombItem = 0;
+    mSaveBombNumMG = 0;
+    mSaveArrowNumMG = 0;
+    mSaveBowItemMG = 0;
+    mSaveBombItemMG = 0;
+    mRentalBombBagIdx = 0xFF;
     mMiniGameItemSetFlag = 0;
     mMiniGameCount = 0;
     setSaveStageName("");
@@ -413,24 +305,36 @@ asm void dMeter2Info_c::init() {
 #endif
 
 /* 8021C0E0-8021C11C 216A20 003C+00 0/0 1/1 2/2 .text setFloatingMessage__13dMeter2Info_cFUssb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMeter2Info_c::setFloatingMessage(u16 param_0, s16 param_1, bool param_2) {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/setFloatingMessage__13dMeter2Info_cFUssb.s"
+int dMeter2Info_c::setFloatingMessage(u16 msgID, s16 msgTimer, bool wakuVisible) {
+    if (dComIfGp_event_runCheck()) {
+        return 0;
+    }
+
+    mFloatingFlowID = 0xFFFF;
+    mFloatingMessageID = msgID;
+    mFloatingMessageTimer = msgTimer;
+    mFloatingMessageWakuVisible = wakuVisible;
+    return 1;
 }
-#pragma pop
 
 /* 8021C11C-8021C1DC 216A5C 00C0+00 0/0 0/0 1/1 .text setFloatingFlow__13dMeter2Info_cFUssb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_c::setFloatingFlow(u16 param_0, s16 param_1, bool param_2) {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/setFloatingFlow__13dMeter2Info_cFUssb.s"
+int dMeter2Info_c::setFloatingFlow(u16 flowID, s16 msgTimer, bool wakuVisible) {
+    if (dComIfGp_event_runCheck()) {
+        return 0;
+    }
+
+    mFloatingFlowID = flowID;
+
+    dMsgFlow_c flow;
+    flow.init(NULL, flowID, 0, NULL);
+    flow.doFlow(NULL, NULL, 0);
+
+    mFloatingFlowID = 0xFFFF;
+    mFloatingMessageID = flow.getMsgNo();
+    mFloatingMessageTimer = msgTimer;
+    mFloatingMessageWakuVisible = wakuVisible;
+    return 1;
 }
-#pragma pop
 
 /* 8021C1DC-8021C1F0 216B1C 0014+00 0/0 4/4 0/0 .text isFloatingMessageVisible__13dMeter2Info_cFv
  */
@@ -468,23 +372,37 @@ void dMeter2Info_c::decMsgKeyWaitTimer() {
 
 /* 8021C250-8021C370 216B90 0120+00 0/0 16/16 0/0 .text
  * getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c             */
+// missing branch + some regalloc
 #ifdef NONMATCHING
-void dMeter2Info_c::getString(u32 param_0, char* param_1, JMSMesgEntry_c* param_2) {
-    strcpy(param_1, "");
+void dMeter2Info_c::getString(u32 stringID, char* outStr, JMSMesgEntry_c* p_msgEntry) {
+    strcpy(outStr, "");
 
-    bmgHeader* res;
-    if (mMsgResource == NULL) {
+    u8* msgRes = (u8*)mMsgResource;
+    if (msgRes == NULL) {
         JKRArchive* msgDtArc = dComIfGp_getMsgDtArchive(0);
-        res = (bmgHeader*)JKRArchive::getGlbResource('ROOT', "zel_00.bmg", msgDtArc);
-        if (res == NULL) {
+        msgRes = (u8*)JKRArchive::getGlbResource('ROOT', "zel_00.bmg", msgDtArc);
+        if (msgRes == NULL) {
             return;
         }
-    } else {
-        for (u16 i = bmgHeader->unk1; i < bmgHeader->entrycount; i++) {
-            JMSMesgEntry_c* entry = (JMSMesgEntry_c*)res + 0x20 + i;
-            if (param_0 == entry->mStringId) {
-                strcpy(param_1, (char*)&res + 0x20 + 0x24 + 8 + 0x14);
+    }
+
+    u8* inf = msgRes + 0x20;
+    u32 stringOffset = (*(u32*)(msgRes + 0x24));
+    u8* strPtr = inf + stringOffset + 8;
+
+    u16 i = 0;
+    u16 entryCount = *(u16*)(inf + 8);
+
+    for (; i < entryCount; i++) {
+        u8* entry = (inf + (i * 0x14));
+
+        if (stringID == *(u16*)(entry + 0x14)) {
+            strcpy(outStr, (char*)(strPtr + *(u32*)(entry + 0x10)));
+            if (p_msgEntry == NULL) {
+                return;    
             }
+            memcpy(p_msgEntry, entry + 0x10, 0x14);
+            return;
         }
     }
 
@@ -496,7 +414,7 @@ void dMeter2Info_c::getString(u32 param_0, char* param_1, JMSMesgEntry_c* param_
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Info_c::getString(u32 param_0, char* param_1, JMSMesgEntry_c* param_2) {
+asm void dMeter2Info_c::getString(u32 stringID, char* outStr, JMSMesgEntry_c* p_msgEntry) {
     nofralloc
 #include "asm/d/meter/d_meter2_info/getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c.s"
 }
@@ -531,20 +449,49 @@ SECTION_SDATA2 static f64 lit_4108 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8021C6A4-8021C7F4 216FE4 0150+00 0/0 1/1 0/0 .text
  * getStringLength__13dMeter2Info_cFP10J2DTextBoxPc             */
+#ifdef NONMATCHING
+f32 dMeter2Info_c::getStringLength(J2DTextBox* p_textBox, char* str) {
+    f32 strWidth = 0.0f;
+    f32 strLength = strWidth;
+
+    JUTFont* font = p_textBox->getFont();
+    f32 charSpace = p_textBox->getCharSpace();
+    J2DTextBox::TFontSize fontSize;
+    p_textBox->getFontSize(fontSize);
+
+    for (; *str != 0; str++) {
+        if (*str == '\n') {
+            if (strLength < strWidth) {
+                strLength = strWidth;
+            }
+            strWidth = 0.0f;
+        } else {
+            strWidth += charSpace + (fontSize.mSizeX * ((f32)font->getWidth(*str) / (f32)font->getCellWidth()));
+        }
+    }
+
+    if (strLength < strWidth) {
+        strLength = strWidth;
+    }
+
+    return strLength;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm double dMeter2Info_c::getStringLength(J2DTextBox* param_0, char* param_1) {
+asm f32 dMeter2Info_c::getStringLength(J2DTextBox* param_0, char* param_1) {
     nofralloc
 #include "asm/d/meter/d_meter2_info/getStringLength__13dMeter2Info_cFP10J2DTextBoxPc.s"
 }
 #pragma pop
+#endif
 
 /* 8021C7F4-8021C7FC 217134 0008+00 0/0 1/0 0/0 .text            getFont__10J2DTextBoxCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTextBox::getFont() const {
+asm JUTFont* J2DTextBox::getFont() const {
     nofralloc
 #include "asm/d/meter/d_meter2_info/getFont__10J2DTextBoxCFv.s"
 }
@@ -555,7 +502,7 @@ asm void J2DTextBox::getFont() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMeter2Info_c* dMeter2Info_c::getStringLength(JUTFont* param_0, f32 param_1, f32 param_2,
+asm f32 dMeter2Info_c::getStringLength(JUTFont* param_0, f32 param_1, f32 param_2,
                                                   char* param_3) {
     nofralloc
 #include "asm/d/meter/d_meter2_info/getStringLength__13dMeter2Info_cFP7JUTFontffPc.s"
@@ -579,14 +526,24 @@ dMeter2Info_c g_meter2_info;
 
 /* 8021C970-8021C9DC 2172B0 006C+00 0/0 0/0 5/5 .text            setMeterString__13dMeter2Info_cFl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMeter2Info_c::setMeterString(s32 param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/setMeterString__13dMeter2Info_cFl.s"
+int dMeter2Info_c::setMeterString(s32 meterStr) {
+    if (mMeterString != 0) {
+        return 0;
+    }
+
+    if (meterStr == 0) {
+        return 0;
+    }
+
+    if (dMeter2Info_getMeterClass() != NULL && 
+       (dMeter2Info_getMeterClass()->getSubContents() == 0 ||
+       (dMeter2Info_getMeterClass()->getSubContents() == 5 && dMeter2Info_getMeterClass()->getSubContentsStringType() == 0))) {
+        mMeterString = meterStr;
+        return 1;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 8021C9DC-8021CA04 21731C 0028+00 1/1 3/3 0/0 .text            resetWarpStatus__13dMeter2Info_cFv
  */
@@ -608,14 +565,38 @@ void dMeter2Info_c::warpInProc() {
 }
 
 /* 8021CA70-8021CC00 2173B0 0190+00 0/0 1/1 0/0 .text            warpOutProc__13dMeter2Info_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_c::warpOutProc() {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/warpOutProc__13dMeter2Info_cFv.s"
+void dMeter2Info_c::warpOutProc() {
+    stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
+    s8 saveTbl = dStage_stagInfo_GetSaveTbl(stag_info);
+    dComIfGs_setLastWarpAcceptStage(saveTbl);
+
+    cXyz warpPos(dComIfGs_getRestartRoomPos());
+    csXyz warpAngle(0, dComIfGs_getRestartRoomAngleY(), 0);
+
+    s8 warpRoomNo = dComIfGs_getRestartRoomNo();
+    if (!strcmp(dComIfGp_getStartStageName(), "D_MN01")) {
+        s32 index = -1;
+        if (warpRoomNo == 0) {
+            index = 1;
+        } else if (warpRoomNo == 5) {
+            index = 2;
+        } else if (warpRoomNo == 6) {
+            index = 2;
+        } else if (warpRoomNo == 9) {
+            index = 4;
+        }
+
+        if (index != -1) {
+            daNpcF_getPlayerInfoFromPlayerList(index, warpRoomNo, warpPos, warpAngle);
+        }
+    } else if (!strcmp(dComIfGp_getStartStageName(), "D_MN07") && warpRoomNo == 0) {
+        daNpcF_getPlayerInfoFromPlayerList(5, warpRoomNo, warpPos, warpAngle);
+    }
+
+    dComIfGs_setWarpItemData(dComIfGp_getStartStageName(), warpPos, warpAngle.y, warpRoomNo, 0, 1);
+    dComIfGs_setItem(SLOT_18, DUNGEON_BACK);
 }
-#pragma pop
+
 
 /* 8021CC00-8021CC0C 217540 000C+00 0/0 1/1 1/1 .text            resetMeterString__13dMeter2Info_cFv
  */
@@ -636,6 +617,94 @@ void dMeter2Info_c::setWarpInfo(const char* i_stageName, const cXyz& i_position,
 }
 
 /* 8021CC80-8021CF08 2175C0 0288+00 2/2 0/0 0/0 .text            getItemType__13dMeter2Info_cFUc */
+// probably missing fallthrough cases
+#ifdef NONMATCHING
+u8 dMeter2Info_c::getItemType(u8 itemNo) {
+    switch (itemNo) {
+    case 1:
+        return 1;
+    case 2:
+        return 2;
+    case 3:
+        return 3;
+    case 4:
+        return 4;
+    case 5:
+    case 0xED:
+        return 5;
+    case 6:
+        return 6;
+    case 7:
+        return 7;
+    case 0x60:
+        return 8;
+    case 0x61:
+    case 0x69:
+        return 9;
+    case 0x62:
+        return 10;
+    case 0x63:
+        return 11;
+    case 0x64:
+        return 12;
+    case 0x65:
+        return 13;
+    case 0x66:
+    case 0x68:
+    case 0x9D:
+        return 14;
+    case 0x67:
+        return 15;
+    case 0x6B:
+    case 0x6D:
+        return 0x10;
+        // case 0x6E:
+    case 0x6F:
+    case 0x7D:
+        return 0x11;
+    case 0x7F:
+        return 0x12;
+    case 0x6A:
+        return 0x13;
+    case 0x78:
+        return 0x14;
+    case 0x79:
+        return 0x15;
+    case 0x7A:
+        return 0x16;
+    case 0x7B:
+        case 0x7E:
+        return 0x17;
+    case 0x7C:
+        return 0x18;
+    case 0x77:
+        return 0x19;
+    case 0x9F:
+        return 0x1A;
+    case 0xF2:
+        return 0x1B;
+    case 0x6C:
+        return 0x1C;
+    case 0x76:
+    case 0x9E:
+        return 0x1D;
+    case 0x70:
+        case 0x71:
+        case 0x72:
+        case 0x74:
+        return 0x1E;
+    case 0x73:
+    case 0x75:
+        return 0x1F;
+    case 0x59:
+        return 33;
+    case 0x5A:
+        return 34;
+    default:
+        return 0;   
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -644,20 +713,97 @@ asm u8 dMeter2Info_c::getItemType(u8 param_0) {
 #include "asm/d/meter/d_meter2_info/getItemType__13dMeter2Info_cFUc.s"
 }
 #pragma pop
+#endif
 
 /* 8021CF08-8021D36C 217848 0464+00 0/0 9/9 0/0 .text
  * readItemTexture__13dMeter2Info_cFUcPvP10J2DPicturePvP10J2DPicturePvP10J2DPicturePvP10J2DPicturei
  */
+#ifdef NONMATCHING
+int dMeter2Info_c::readItemTexture(u8 itemNo, void* param_1, J2DPicture* param_2, void* param_3,
+                                      J2DPicture* param_4, void* param_5, J2DPicture* param_6,
+                                      void* param_7, J2DPicture* param_8, int param_9) {
+    u8 itemType = getItemType(itemNo);
+    int ret = 0;
+
+    if (param_1 != NULL) {
+        if ((itemNo == KANTERA && dComIfGs_getOil() == 0) || itemNo == KANTERA2) {
+            dComIfGp_getItemIconArchive()->readIdxResource(param_1, 0xC00, 0x23);
+        } else if (itemNo == COPY_ROD && !daPy_getPlayerActorClass()->checkCopyRodTopUse() && param_9 == -1) {
+            dComIfGp_getItemIconArchive()->readIdxResource(param_1, 0xC00, 0x57);
+        } else if ((itemType == 0x1B || itemType == 0x1C || itemType == 0x1D || itemType == 0x1E) && param_5 == NULL) {
+            dComIfGp_getItemIconArchive()->readIdxResource(param_1, 0xC00, get2ndTexture(itemType));
+        } else if (param_9 >= 0) {
+            dComIfGp_getItemIconArchive()->readIdxResource(param_1, 0xC00, param_9);
+        } else {
+            dComIfGp_getItemIconArchive()->readIdxResource(param_1, 0xC00, dItem_data::getTexture(itemNo));
+        }
+
+        DCStoreRangeNoSync(param_1, 0xC00);
+        if (param_2 != NULL) {
+            if ((itemType == 0x1B || itemType == 0x1C || itemType == 0x1D || itemType == 0x1E) && param_5 == NULL) {
+                set2ndColor(itemType, param_2);
+            } else {
+                set1stColor(itemType, param_2);
+            }
+            param_2->changeTexture((ResTIMG*)param_1, 0);
+        }
+
+        ret = 1;
+        if (param_3 != NULL && get2ndTexture(itemType) > 0) {
+            if ((itemType == 0x1B || itemType == 0x1C || itemType == 0x1D || itemType == 0x1E) && param_5 == NULL) {
+                dComIfGp_getItemIconArchive()->readIdxResource(param_3, 0xC00, get3rdTexture(itemType));
+                DCStoreRangeNoSync(param_3, 0xC00);
+                if (param_4 != NULL) {
+                    set3rdColor(itemType, param_4);
+                    param_4->changeTexture((ResTIMG*)param_3, 0);
+                }
+                ret = 2;
+            } else {
+                dComIfGp_getItemIconArchive()->readIdxResource(param_3, 0xC00, get2ndTexture(itemType));
+                DCStoreRangeNoSync(param_3, 0xC00);
+                if (param_4 != NULL) {
+                    set2ndColor(itemType, param_4);
+                    param_4->changeTexture((ResTIMG*)param_3, 0);
+                }
+                ret = 2;
+
+                if (param_5 != NULL && get3rdTexture(itemType) > 0) {
+                    dComIfGp_getItemIconArchive()->readIdxResource(param_5, 0xC00, get3rdTexture(itemType));
+                    DCStoreRangeNoSync(param_5, 0xC00);
+                    if (param_6 != NULL) {
+                        set3rdColor(itemType, param_6);
+                        param_6->changeTexture((ResTIMG*)param_5, 0);
+                    }
+                    ret = 3;
+
+                    if (param_7 != NULL && get4thTexture(itemType) > 0) {
+                        dComIfGp_getItemIconArchive()->readIdxResource(param_3, 0xC00, get4thTexture(itemType));
+                        DCStoreRangeNoSync(param_7, 0xC00);
+                        if (param_8 != NULL) {
+                            set4thColor(itemType, param_8);
+                            param_8->changeTexture((ResTIMG*)param_7, 0);
+                        }
+                        ret = 4;
+                    }
+                } 
+            }
+        }
+    }
+
+    return ret;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u8 dMeter2Info_c::readItemTexture(u8 param_0, void* param_1, J2DPicture* param_2, void* param_3,
+asm int dMeter2Info_c::readItemTexture(u8 param_0, void* param_1, J2DPicture* param_2, void* param_3,
                                       J2DPicture* param_4, void* param_5, J2DPicture* param_6,
                                       void* param_7, J2DPicture* param_8, int param_9) {
     nofralloc
 #include "asm/d/meter/d_meter2_info/func_8021CF08.s"
 }
 #pragma pop
+#endif
 
 /* 8021D36C-8021D44C 217CAC 00E0+00 0/0 2/2 0/0 .text
  * setItemColor__13dMeter2Info_cFUcP10J2DPictureP10J2DPictureP10J2DPictureP10J2DPicture */
@@ -673,10 +819,8 @@ asm void dMeter2Info_c::setItemColor(u8 param_0, J2DPicture* param_1, J2DPicture
 
 /* 8021D44C-8021D4B8 217D8C 006C+00 2/1 0/0 0/0 .text            get2ndTexture__13dMeter2Info_cFUc
  */
-// switch label weirdness
-#ifdef NONMATCHING
-s8 dMeter2Info_c::get2ndTexture(u8 param_0) {
-    switch (param_0) {
+s16 dMeter2Info_c::get2ndTexture(u8 itemType) {
+    switch (itemType) {
     case 1:
     case 2:
     case 3:
@@ -720,28 +864,18 @@ s8 dMeter2Info_c::get2ndTexture(u8 param_0) {
         return 0x69;
     case 36:
         return 0x2a;
-    case 32:
     default:
+    case 32:
         return -1;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s8 dMeter2Info_c::get2ndTexture(u8 param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/get2ndTexture__13dMeter2Info_cFUc.s"
-}
-#pragma pop
-#endif
 
 /* 8021D4B8-8021D4FC 217DF8 0044+00 1/1 0/0 0/0 .text            get3rdTexture__13dMeter2Info_cFUc
  */
 // one instruction off
 #ifdef NONMATCHING
-s8 dMeter2Info_c::get3rdTexture(u8 p1) {
-    switch (p1) {
+s16 dMeter2Info_c::get3rdTexture(u8 itemType) {
+    switch (itemType) {
     case 1:
     case 2:
     case 3:
@@ -779,7 +913,7 @@ s8 dMeter2Info_c::get3rdTexture(u8 p1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm s8 dMeter2Info_c::get3rdTexture(u8 param_0) {
+asm s16 dMeter2Info_c::get3rdTexture(u8 param_0) {
     nofralloc
 #include "asm/d/meter/d_meter2_info/get3rdTexture__13dMeter2Info_cFUc.s"
 }
@@ -788,8 +922,8 @@ asm s8 dMeter2Info_c::get3rdTexture(u8 param_0) {
 
 /* 8021D4FC-8021D524 217E3C 0028+00 1/1 0/0 0/0 .text            get4thTexture__13dMeter2Info_cFUc
  */
-s8 dMeter2Info_c::get4thTexture(u8 p1) {
-    switch (p1) {
+s16 dMeter2Info_c::get4thTexture(u8 itemType) {
+    switch (itemType) {
     case 1:
     case 2:
     case 3:
@@ -803,16 +937,9 @@ s8 dMeter2Info_c::get4thTexture(u8 p1) {
     }
 }
 
-struct TColor {
-    u8 r;
-    u8 g;
-    u8 b;
-    u8 a;
-};
-
 /* ############################################################################################## */
 /* 80398A78-80398B0C 0250D8 0094+00 2/2 0/0 0/0 .rodata          black_color$4634 */
-SECTION_RODATA static TColor const black_color_4634[37] = {
+SECTION_RODATA static GXColor const black_color_4634[37] = {
     {0x00, 0x00, 0x00, 0x00}, {0x00, 0x60, 0x00, 0x00}, {0x00, 0x00, 0xC0, 0x00},
     {0xA0, 0x60, 0x00, 0x00}, {0xA0, 0x00, 0x00, 0x00}, {0x40, 0x00, 0x60, 0x00},
     {0xE0, 0x00, 0x00, 0x00}, {0x40, 0x40, 0x40, 0x00}, {0x6E, 0x6E, 0x64, 0x00},
@@ -832,7 +959,7 @@ COMPILER_STRIP_GATE(0x80398A78, &black_color_4634);
 /* 80398B0C-80398BA0 02516C 0094+00 0/1 0/0 0/0 .rodata          white_color$4635 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static TColor const white_color_4635[37] = {
+SECTION_RODATA static GXColor const white_color_4635[37] = {
     {0xFF, 0xFF, 0xFF, 0xFF}, {0x60, 0xFF, 0x00, 0xFF}, {0x00, 0xFF, 0xFF, 0xFF},
     {0xFF, 0xFF, 0x00, 0xFF}, {0xFF, 0x80, 0x80, 0xFF}, {0xBE, 0x40, 0xFF, 0xFF},
     {0xFF, 0xC0, 0x00, 0xFF}, {0xC0, 0xC0, 0xC0, 0xFF}, {0xF5, 0xF5, 0xFF, 0xFF},
@@ -1076,8 +1203,8 @@ asm void dMeter2Info_c::set4thColor(u8 param_0, J2DPicture* param_1) {
 #pragma pop
 
 /* 8021DCC4-8021DCE0 218604 001C+00 0/0 2/2 0/0 .text setHotSpringTimer__13dMeter2Info_cFUc */
-void dMeter2Info_c::setHotSpringTimer(u8 p1) {
-    int i_bottleIdx = p1 - 11;
+void dMeter2Info_c::setHotSpringTimer(u8 slotNo) {
+    int i_bottleIdx = slotNo - 11;
     mHotSpringTimer[i_bottleIdx] = 900;
 }
 
@@ -1087,7 +1214,7 @@ void dMeter2Info_c::decHotSpringTimer() {
         if (mHotSpringTimer[i] != 0) {
             mHotSpringTimer[i]--;
             if (mHotSpringTimer[i] == 0) {
-                changeWater(i + 11);
+                changeWater(i + SLOT_11);
             }
         }
     }
@@ -1111,116 +1238,116 @@ void dMeter2Info_c::changeWater(u8 i_slotNo) {
 
 /* 8021DE18-8021E0C4 218758 02AC+00 0/0 3/3 3/3 .text            setMiniGameItem__13dMeter2Info_cFUc
  */
-void dMeter2Info_c::setMiniGameItem(u8 param_0) {
-    bool bvar1 = false;
+void dMeter2Info_c::setMiniGameItem(u8 minigameFlag) {
+    bool mgItemSet = false;
 
-    if (mMiniGameItemSetFlag) {
-        bvar1 = true;
+    if (mMiniGameItemSetFlag != 0) {
+        mgItemSet = true;
     }
 
-    if (mRentalBombBag == 0xFF) {
-        bool bvar2 = false;
+    if (mRentalBombBagIdx == 0xFF) {
+        bool setRentBagIdx = false;
 
         for (int bagIdx = 0; bagIdx < 3; bagIdx++) {
-            if (!bvar2 && dComIfGs_getItem((u8)(bagIdx + SLOT_15), true) == 0xFF) {
-                mRentalBombBag = bagIdx;
-                bvar2 = true;
+            if (!setRentBagIdx && dComIfGs_getItem((u8)(bagIdx + SLOT_15), true) == NO_ITEM) {
+                mRentalBombBagIdx = bagIdx;
+                setRentBagIdx = true;
             }
         }
-        if (!bvar2) {
-            mRentalBombBag = 2;
+        if (!setRentBagIdx) {
+            mRentalBombBagIdx = 2;
         }
     }
 
-    mMiniGameItemSetFlag = param_0;
+    mMiniGameItemSetFlag = minigameFlag;
 
     for (int i = 0; i < 2; i++) {
-        unk200[i] = dComIfGs_getMixItemIndex(i);
-        unk196[i] = dComIfGs_getSelectItemIndex(i);
+        mSaveMixItemIdx[i] = dComIfGs_getMixItemIndex(i);
+        mSaveSelItemIdx[i] = dComIfGs_getSelectItemIndex(i);
     }
 
-    unk204 = dComIfGs_getBombNum(mRentalBombBag);
-    unk205 = dComIfGs_getArrowNum();
-    unk206 = dComIfGs_getItem(SLOT_4, false);
-    unk207 = dComIfGs_getItem((u8)(mRentalBombBag + SLOT_15), false);
+    mSaveBombNum = dComIfGs_getBombNum(mRentalBombBagIdx);
+    mSaveArrowNum = dComIfGs_getArrowNum();
+    mSaveBowItem = dComIfGs_getItem(SLOT_4, false);
+    mSaveBombItem = dComIfGs_getItem((u8)(mRentalBombBagIdx + SLOT_15), false);
 
-    if (bvar1) {
+    if (mgItemSet) {
         for (int i = 0; i < 2; i++) {
-            dComIfGs_setMixItemIndex(i, unk212[i]);
-            dComIfGs_setSelectItemIndex(i, unk208[i]);
+            dComIfGs_setMixItemIndex(i, mSaveMixItemIdxMG[i]);
+            dComIfGs_setSelectItemIndex(i, mSaveSelItemIdxMG[i]);
         }
-        dComIfGs_setItem(SLOT_4, unk218);
-        dComIfGp_setItem(SLOT_4, unk218);
-        dComIfGs_setItem((u8)(mRentalBombBag + SLOT_15), unk219);
-        dComIfGp_setItem((u8)(mRentalBombBag + SLOT_15), unk219);
-        dComIfGs_setBombNum(mRentalBombBag, unk216);
-        dComIfGs_setArrowNum(unk217);
+        dComIfGs_setItem(SLOT_4, mSaveBowItemMG);
+        dComIfGp_setItem(SLOT_4, mSaveBowItemMG);
+        dComIfGs_setItem((u8)(mRentalBombBagIdx + SLOT_15), mSaveBombItemMG);
+        dComIfGp_setItem((u8)(mRentalBombBagIdx + SLOT_15), mSaveBombItemMG);
+        dComIfGs_setBombNum(mRentalBombBagIdx, mSaveBombNumMG);
+        dComIfGs_setArrowNum(mSaveArrowNumMG);
     }
 
-    dComIfGs_setItem((u8)(mRentalBombBag + SLOT_15), NORMAL_BOMB);
-    dComIfGp_setItem((u8)(mRentalBombBag + SLOT_15), NORMAL_BOMB);
+    dComIfGs_setItem((u8)(mRentalBombBagIdx + SLOT_15), NORMAL_BOMB);
+    dComIfGp_setItem((u8)(mRentalBombBagIdx + SLOT_15), NORMAL_BOMB);
 
     if (mMiniGameItemSetFlag != 3) {
         dComIfGs_setItem(SLOT_4, BOW);
         dComIfGp_setItem(SLOT_4, BOW);
-        dComIfGs_setMixItemIndex(1, 0xFF);
-        dComIfGs_setSelectItemIndex(1, 0xFF);
-        dComIfGs_setMixItemIndex(0, 4);
-        dComIfGs_setSelectItemIndex(0, (u8)(mRentalBombBag + SLOT_15));
+        dComIfGs_setMixItemIndex(SELECT_ITEM_Y, 0xFF);
+        dComIfGs_setSelectItemIndex(SELECT_ITEM_Y, 0xFF);
+        dComIfGs_setMixItemIndex(SELECT_ITEM_X, SLOT_4);
+        dComIfGs_setSelectItemIndex(SELECT_ITEM_X, (u8)(mRentalBombBagIdx + SLOT_15));
     }
 
-    if (!bvar1) {
-        dComIfGs_setBombNum(mRentalBombBag, 30);
+    if (!mgItemSet) {
+        dComIfGs_setBombNum(mRentalBombBagIdx, 30);
         u8 arrow_max = dComIfGs_getArrowMax();
         dComIfGs_setArrowNum(arrow_max);
     }
 }
 
 /* 8021E0C4-8021E268 218A04 01A4+00 0/0 3/3 4/4 .text resetMiniGameItem__13dMeter2Info_cFb */
-void dMeter2Info_c::resetMiniGameItem(bool param_0) {
-    if (mMiniGameItemSetFlag) {
-        if (param_0) {
+void dMeter2Info_c::resetMiniGameItem(bool saveMGItem) {
+    if (mMiniGameItemSetFlag != 0) {
+        if (saveMGItem) {
             for (int i = 0; i < 2; i++) {
-                unk212[i] = dComIfGs_getMixItemIndex(i);
-                unk208[i] = dComIfGs_getSelectItemIndex(i);
+                mSaveMixItemIdxMG[i] = dComIfGs_getMixItemIndex(i);
+                mSaveSelItemIdxMG[i] = dComIfGs_getSelectItemIndex(i);
             }
 
-            unk216 = dComIfGs_getBombNum(mRentalBombBag);
-            unk217 = dComIfGs_getArrowNum();
-            unk218 = dComIfGs_getItem(SLOT_4, false);
-            unk219 = dComIfGs_getItem((u8)(mRentalBombBag + SLOT_15), false);
+            mSaveBombNumMG = dComIfGs_getBombNum(mRentalBombBagIdx);
+            mSaveArrowNumMG = dComIfGs_getArrowNum();
+            mSaveBowItemMG = dComIfGs_getItem(SLOT_4, false);
+            mSaveBombItemMG = dComIfGs_getItem((u8)(mRentalBombBagIdx + SLOT_15), false);
         }
 
         for (int i = 0; i < 2; i++) {
-            dComIfGs_setMixItemIndex(i, unk200[i]);
-            dComIfGs_setSelectItemIndex(i, unk196[i]);
+            dComIfGs_setMixItemIndex(i, mSaveMixItemIdx[i]);
+            dComIfGs_setSelectItemIndex(i, mSaveSelItemIdx[i]);
         }
 
-        dComIfGs_setItem(SLOT_4, unk206);
-        dComIfGp_setItem(SLOT_4, unk206);
+        dComIfGs_setItem(SLOT_4, mSaveBowItem);
+        dComIfGp_setItem(SLOT_4, mSaveBowItem);
 
-        dComIfGs_setItem((u8)(mRentalBombBag + SLOT_15), unk207);
-        dComIfGp_setItem((u8)(mRentalBombBag + SLOT_15), unk207);
+        dComIfGs_setItem((u8)(mRentalBombBagIdx + SLOT_15), mSaveBombItem);
+        dComIfGp_setItem((u8)(mRentalBombBagIdx + SLOT_15), mSaveBombItem);
 
-        dComIfGs_setBombNum(mRentalBombBag, unk204);
-        dComIfGs_setArrowNum(unk205);
+        dComIfGs_setBombNum(mRentalBombBagIdx, mSaveBombNum);
+        dComIfGs_setArrowNum(mSaveArrowNum);
 
-        if (!param_0) {
+        if (!saveMGItem) {
             mMiniGameItemSetFlag = 0;
-            mRentalBombBag = 0xFF;
+            mRentalBombBagIdx = 0xFF;
         }
     }
 }
 
 /* 8021E268-8021E290 218BA8 0028+00 0/0 0/0 5/5 .text setMiniGameCount__13dMeter2Info_cFSc */
-void dMeter2Info_c::setMiniGameCount(s8 pCount) {
-    if (pCount < -99) {
-        pCount = -99;
+void dMeter2Info_c::setMiniGameCount(s8 count) {
+    if (count < -99) {
+        count = -99;
     }
-    if (pCount > 99) {
-        pCount = 99;
+    if (count > 99) {
+        count = 99;
     }
-    mMiniGameCount = pCount;
+    mMiniGameCount = count;
 }
 
 /* 8021E290-8021E2B4 218BD0 0024+00 1/1 2/2 0/0 .text setSaveStageName__13dMeter2Info_cFPCc */
@@ -1229,32 +1356,37 @@ void dMeter2Info_c::setSaveStageName(const char* i_stageName) {
 }
 
 /* 8021E2B4-8021E2C8 218BF4 0014+00 0/0 0/0 1/1 .text            dMeter2Info_getNowLifeGauge__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_getNowLifeGauge() {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/dMeter2Info_getNowLifeGauge__Fv.s"
+s16 dMeter2Info_getNowLifeGauge() {
+    return dMeter2Info_getMeterClass()->getNowLifeGauge();
 }
-#pragma pop
 
 /* 8021E2C8-8021E2DC 218C08 0014+00 0/0 11/11 3/3 .text dMeter2Info_getNumberTextureName__Fi */
-char* dMeter2Info_getNumberTextureName(int pIndex) {
-    return tex_name_5183[pIndex];
+char* dMeter2Info_getNumberTextureName(int nameIdx) {
+    static char* tex_name[10] = {
+        "im_font_number_32_32_ganshinkyo_0_02.bti",
+        "im_font_number_32_32_ganshinkyo_1_02.bti",
+        "im_font_number_32_32_ganshinkyo_2_02.bti",
+        "im_font_number_32_32_ganshinkyo_3_02.bti",
+        "im_font_number_32_32_ganshinkyo_4_03.bti",
+        "im_font_number_32_32_ganshinkyo_5_02.bti",
+        "im_font_number_32_32_ganshinkyo_6_02.bti",
+        "im_font_number_32_32_ganshinkyo_7_02.bti",
+        "im_font_number_32_32_ganshinkyo_8_02.bti",
+        "im_font_number_32_32_ganshinkyo_9_02.bti",
+    };
+
+    return tex_name[nameIdx];
 }
 
-/* 804510B8-804510BC 0005B8 0004+00 1/1 0/0 0/0 .sbss            tex_name$5188 */
-static char* tex_name_5188;
-
-/* 804510BC-804510C0 0005BC 0004+00 1/1 0/0 0/0 .sbss            None */
-static s8 data_804510BC;
-
 char* dMeter2Info_getPlusTextureName() {
-    if (data_804510BC == 0) {
-        tex_name_5188 = "im_plus_metal_24ｘ24_00.bti";
-        data_804510BC = 1;
+    static char* tex_name;
+    static s8 initTexName;
+
+    if (!initTexName) {
+        tex_name = "im_plus_metal_24ｘ24_00.bti";
+        initTexName = true;
     }
-    return tex_name_5188;
+    return tex_name;
 }
 
 /* ############################################################################################## */
@@ -1274,7 +1406,13 @@ asm void dMeter2Info_getPixel(f32 param_0, f32 param_1, f32 param_2, f32 param_3
 
 /* 8021E4B0-8021E530 218DF0 0080+00 0/0 2/2 1/1 .text            dMeter2Info_setCloth__FUcb */
 void dMeter2Info_setCloth(u8 i_clothId, bool param_1) {
-    if ((int)i_clothId >= MAGIC_LV1 || (int)i_clothId < WEAR_CASUAL) {
+    switch (i_clothId) {
+    case WEAR_CASUAL:
+    case WEAR_KOKIRI:
+    case ARMOR:
+    case WEAR_ZORA:
+        break;
+    default:
         i_clothId = WEAR_CASUAL;
         param_1 = false;
     }
@@ -1342,25 +1480,48 @@ bool dMeter2Info_isMapOpenCheck() {
 }
 
 /* 8021E688-8021E6E4 218FC8 005C+00 0/0 2/2 0/0 .text            dMeter2Info_isItemOpenCheck__Fv */
-#ifdef NONMATCHING
 bool dMeter2Info_isItemOpenCheck() {
-    if (!daPy_getPlayerActorClass()->checkCanoeSlider()) {
-        if (!daPy_getPlayerActorClass()->getSumouMode() && !dMeter2Info_isSub2DStatus(1)) {
-            return true;
-        }
+    if (daPy_getPlayerActorClass()->checkCanoeSlider() || daPy_getPlayerActorClass()->i_getSumouMode() || dMeter2Info_isSub2DStatus(1)) {
+        return false;
     }
-    return false;
+    return true;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Info_isItemOpenCheck() {
-    nofralloc
-#include "asm/d/meter/d_meter2_info/dMeter2Info_isItemOpenCheck__Fv.s"
-}
-#pragma pop
-#endif
+
+/* 803BF81C-803BFA1C 01C93C 0200+00 3/3 6/6 0/0 .data            letter_data__12dMenu_Letter */
+SECTION_DATA dMenu_LetterData dMenu_Letter::letter_data[64] = {
+    {0x09C5, 0x0A29, 0x0A8D, 0x010B}, {0x09C6, 0x0A2A, 0x0A8E, 0x0237},
+    {0x09C7, 0x0A2B, 0x0A8F, 0x0236}, {0x09C8, 0x0A2C, 0x0A90, 0x0037},
+    {0x09C9, 0x0A2D, 0x0A91, 0x0039}, {0x09CA, 0x0A2E, 0x0A92, 0x0067},
+    {0x09CB, 0x0A2F, 0x0A93, 0x0109}, {0x09CC, 0x0A30, 0x0A94, 0x004D},
+    {0x09CD, 0x0A31, 0x0A95, 0x0119}, {0x09CE, 0x0A32, 0x0A96, 0x0108},
+    {0x09CF, 0x0A33, 0x0A97, 0x010C}, {0x09D4, 0x0A38, 0x0A9E, 0x010C},
+    {0x09D1, 0x0A35, 0x0A9B, 0x00B6}, {0x09D2, 0x0A36, 0x0A9C, 0x0067},
+    {0x09D5, 0x0A39, 0x0AA0, 0x031C}, {0x09D6, 0x0A3A, 0x0AA1, 0x010A},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+    {0x0000, 0x0000, 0x0000, 0x0000}, {0x0000, 0x0000, 0x0000, 0x0000},
+};
 
 /* 8021E6E4-8021E754 219024 0070+00 1/1 2/2 0/0 .text            dMeter2Info_getRecieveLetterNum__Fv
  */

@@ -8,6 +8,8 @@
 class JKRHeap;
 typedef void (*JKRErrorHandler)(void*, u32, int);
 
+extern bool data_804508B0;
+
 class JKRHeap : public JKRDisposer {
 public:
     class TState {
@@ -134,6 +136,7 @@ public:
 
     static JKRErrorHandler setErrorHandler(JKRErrorHandler errorHandler);
 
+    static void setDefaultDebugFill(bool status) { data_804508B0 = status; }
     static void* getCodeStart(void) { return mCodeStart; }
     static void* getCodeEnd(void) { return mCodeEnd; }
     static void* getUserRamStart(void) { return mUserRamStart; }

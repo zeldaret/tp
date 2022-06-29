@@ -15,16 +15,6 @@
 #include "rel/d/a/d_a_boomerang/d_a_boomerang.h"
 
 //
-// Types:
-//
-
-struct mDoMtx_stack_c {
-    /* 8000CE38 */ void scaleM(f32, f32, f32);
-
-    static u8 now[48];
-};
-
-//
 // Forward References:
 //
 
@@ -422,7 +412,7 @@ void daPy_anmHeap_c::initData() {
 
 /* 8015EDC4-8015EE00 159704 003C+00 0/0 1/1 1/1 .text            mallocBuffer__14daPy_anmHeap_cFv */
 void* daPy_anmHeap_c::mallocBuffer() {
-    mBuffer = new (0x20) char[mBufferSize];
+    mBuffer = new (0x20) u8[mBufferSize];
     return mBuffer;
 }
 

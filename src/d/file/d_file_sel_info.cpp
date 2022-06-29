@@ -228,8 +228,8 @@ inline u16 dComIfGs_getLife() {
 
 /* 80192954-80192AA0 18D294 014C+00 0/0 3/3 0/0 .text setSaveData__12dFile_info_cFP10dSv_save_ciUc
  */
-int dFile_info_c::setSaveData(dSv_save_c* save, int param_1, u8 data_num) {
-    if (param_1 != 0) {
+int dFile_info_c::setSaveData(dSv_save_c* save, int checksumValid, u8 data_num) {
+    if (checksumValid) {
         char* player_name = save->getPlayer().getPlayerInfo().getLinkName();
         if (*player_name == NULL) {
             if (field_0x22 == 1 && data_num == dComIfGs_getDataNum()) {

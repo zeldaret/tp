@@ -397,7 +397,6 @@ extern "C" void entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey()
 extern "C" void entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
 extern "C" void JMAEulerToQuat__FsssP10Quaternion();
 extern "C" void JMAQuatLerp__FPC10QuaternionPC10QuaternionfP10Quaternion();
-extern "C" void DCStoreRangeNoSync();
 extern "C" void GXClearVtxDesc();
 extern "C" void GXGetTexObjWidth();
 extern "C" void GXGetTexObjHeight();
@@ -3095,7 +3094,7 @@ static asm void mDoExt_initFont1() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoExt_getRubyFont() {
+asm JUTFont* mDoExt_getRubyFont() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/mDoExt_getRubyFont__Fv.s"
 }

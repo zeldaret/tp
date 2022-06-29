@@ -230,6 +230,8 @@ void OSInitCond(OSCond* cond);
 void OSWaitCond(OSCond* cond, OSMutex* mutex);
 void OSSignalCond(OSCond* cond);
 
+void DCStoreRangeNoSync(void*, u32);
+
 inline s16 __OSf32tos16(register f32 inF) {
     register s16 out;
     u32 tmp;

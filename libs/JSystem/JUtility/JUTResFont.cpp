@@ -380,7 +380,7 @@ u16 JUTResFont::getCellWidth() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u16 JUTResFont::getCellWidth() const {
+asm int JUTResFont::getCellWidth() const {
     nofralloc
 #include "asm/JSystem/JUtility/JUTResFont/getCellWidth__10JUTResFontCFv.s"
 }
