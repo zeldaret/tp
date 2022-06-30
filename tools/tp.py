@@ -1077,63 +1077,21 @@ class CheckException(Exception):
 
 
 def check_sha1(game_path: Path, build_path: Path, include_rels: bool):
-    if include_rels:
-        rel_path = game_path.joinpath("rel/Final/Release")
-        if not rel_path.exists():
-            raise CheckException(f"Path not found: '{rel_path}'")
-
-        rels_path = get_files_with_ext(rel_path, ".rel")
-        rels_archive_path = game_path.joinpath("RELS.arc")
-        if not rels_archive_path.exists():
-            raise CheckException(f"File not found: '{rels_archive_path}'")
-
-        LOG.debug(f"RELs Path: '{rel_path}' (found {len(rels_path)} RELs)")
-        LOG.debug(f"RELs Archive Path: '{rels_archive_path}'")
-
     EXPECTED = {}
     EXPECTED[0] = (
         "",
         "4997D93B9692620C40E90374A0F1DBF0E4889395",
-        "4997D93B9692620C40E90374A0F1DBF0E4889395",
     )
-
     if include_rels:
-        for rel_filepath in rels_path:
-            with rel_filepath.open("rb") as file:
-                data = bytearray(file.read())
-                yaz0_data = data
-                if struct.unpack(">I", data[:4])[0] == 0x59617A30:
-                    data = yaz0.decompress(io.BytesIO(data))
-
-                rel = librel.read(data)
-                EXPECTED[rel.index] = (
-                    str(rel_filepath),
-                    sha1_from_data(yaz0_data),
-                    sha1_from_data(data),
-                )
-
-        with rels_archive_path.open("rb") as file:
-            rarc = libarc.read(file.read())
-            for depth, file in rarc.files_and_folders:
-                if not isinstance(file, libarc.File):
-                    continue
-
-                if file.name.endswith(".rel"):
-                    data = file.data
-                    yaz0_data = data
-                    if struct.unpack(">I", data[:4])[0] == 0x59617A30:
-                        data = yaz0.decompress(io.BytesIO(data))
-
-                    xxx_path = Path("build").joinpath(file.name)
-                    with xxx_path.open("wb") as write_file:
-                        write_file.write(data)
-
-                    rel = librel.read(data)
-                    EXPECTED[rel.index] = (
-                        file.name,
-                        sha1_from_data(yaz0_data),
-                        sha1_from_data(data),
-                    )
+        with open('sha1sums.json') as f:
+            rel_shas = json.load(f)
+        for num, (name, sha) in enumerate(rel_shas.items()):
+            if num == 0:
+                continue
+            EXPECTED[num] = (
+                name,
+                sha
+            )
 
     if not build_path.exists():
         raise CheckException(f"Path not found: '{build_path}'")
@@ -1147,7 +1105,6 @@ def check_sha1(game_path: Path, build_path: Path, include_rels: bool):
         data = file.read()
         CURRENT[0] = (
             str(build_dol_path),
-            sha1_from_data(data),
             sha1_from_data(data),
         )
 
@@ -1163,7 +1120,6 @@ def check_sha1(game_path: Path, build_path: Path, include_rels: bool):
                 rel = librel.read(data)
                 CURRENT[rel.index] = (
                     str(rel_filepath),
-                    sha1_from_data(yaz0_data),
                     sha1_from_data(data),
                 )
 
@@ -1180,9 +1136,9 @@ def check_sha1(game_path: Path, build_path: Path, include_rels: bool):
         if key in current_keys:
             expected = EXPECTED[key]
             current = CURRENT[key]
-            if current[2] != expected[2]:
+            if current[1] != expected[1]:
                 errors += 1
-                LOG.error(f"{current[2]} {expected[2]} {current[0]} ({expected[0]})")
+                LOG.error(f"{current[1]} {expected[1]} {current[0]} ({expected[0]})")
 
     if errors > 0:
         raise CheckException("NO MATCH!")
