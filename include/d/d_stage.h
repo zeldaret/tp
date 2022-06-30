@@ -7,7 +7,6 @@
 #include "d/save/d_save.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
-#include "f_op/f_op_actor_mng.h"
 
 struct stage_vrboxcol_info_class {
     // VRB
@@ -906,6 +905,10 @@ inline u32 dStage_stagInfo_GetArg0(stage_stag_info_class* p_info) {
 
 inline int dStage_stagInfo_GetMsgGroup(stage_stag_info_class* p_info) {
     return p_info->mMsgGroup;
+}
+
+inline s32 i_dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
+    return param_0->field_0x09 >> 1 & 0x1f;
 }
 
 inline u32 dStage_sclsInfo_getSceneLayer(stage_scls_info_class* p_info) {

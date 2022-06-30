@@ -222,10 +222,6 @@ void dFile_info_c::screenSet() {
     mPlayTime = tboxs[3]->getStringPtr();
 }
 
-inline u16 dComIfGs_getLife() {
-    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getLife();
-}
-
 /* 80192954-80192AA0 18D294 014C+00 0/0 3/3 0/0 .text setSaveData__12dFile_info_cFP10dSv_save_ciUc
  */
 int dFile_info_c::setSaveData(dSv_save_c* save, int checksumValid, u8 data_num) {
@@ -233,7 +229,7 @@ int dFile_info_c::setSaveData(dSv_save_c* save, int checksumValid, u8 data_num) 
         char* player_name = save->getPlayer().getPlayerInfo().getLinkName();
         if (*player_name == NULL) {
             if (field_0x22 == 1 && data_num == dComIfGs_getDataNum()) {
-                save->getPlayer().getPlayerStatusA().setLife(dComIfGs_getLife());
+                save->getPlayer().getPlayerStatusA().setLife(i_dComIfGs_getLife());
                 setHeartCnt(save);
                 save->getPlayer().getPlayerStatusA().setLife(12);
                 strcpy(mPlayerName, dComIfGs_getPlayerName());

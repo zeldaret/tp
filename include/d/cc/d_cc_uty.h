@@ -3,7 +3,7 @@
 
 #include "d/com/d_com_inf_game.h"
 #include "dolphin/types.h"
-#include "f_op/f_op_actor_mng.h"
+#include "f_op/f_op_actor.h"
 
 struct dCcU_AtInfo {
     /* 0x00 */ cCcD_Obj* mpCollider;

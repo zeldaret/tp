@@ -14,14 +14,6 @@
 // Declarations:
 //
 
-inline dEvent_manager_c& dComIfGp_getEventManager() {
-    return g_dComIfG_gameInfo.play.getEvtManager();
-}
-
-inline dEvt_control_c& dComIfGp_getEvent() {
-    return g_dComIfG_gameInfo.play.getEvent();
-}
-
 /* ############################################################################################## */
 /* 803A82B8-803A82C4 0053D8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -54,7 +46,7 @@ BOOL dEvLib_callback_c::setEvent(int mapToolId, int eventIdx, int param_2) {
     } else {
         mActor->mEvtInfo.setMapToolId(mapToolId);
         if (mapToolId != 0xFF && eventIdx == 0xFF) {
-            eventIdx = dComIfGp_getEventManager().getEventIdx(mActor, mapToolId);
+            eventIdx = i_dComIfGp_getEventManager().getEventIdx(mActor, mapToolId);
         }
         mActor->mEvtInfo.setEventId(eventIdx);
         _C = param_2;
@@ -128,10 +120,10 @@ BOOL dEvLib_callback_c::initRun() {
 /* 80048B48-80048BD8 043488 0090+00 1/0 0/0 0/0 .text            executeRun__17dEvLib_callback_cFv
  */
 BOOL dEvLib_callback_c::executeRun() {
-    if (!dComIfGp_getEventManager().endCheck(mActor->mEvtInfo.getEventId())) {
+    if (!i_dComIfGp_getEventManager().endCheck(mActor->mEvtInfo.getEventId())) {
         return eventRun();
     } else {
-        dComIfGp_getEvent().reset();
+        i_dComIfGp_getEvent().reset();
         setAction(NULL);
         return eventEnd();
     }

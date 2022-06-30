@@ -261,30 +261,6 @@ SECTION_SDATA2 static u8 lit_4662[4] = {
 /* 804549CC-804549D0 002FCC 0004+00 13/13 0/0 0/0 .sdata2          @4663 */
 SECTION_SDATA2 static f32 lit_4663 = 1.0f;
 
-inline u16 dComIfGs_getLife() {
-    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getLife();
-}
-
-inline u16 i_dComIfGs_getRupee() {
-    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getRupee();
-}
-
-inline u8 dComIfGp_getRStatus() {
-    return g_dComIfG_gameInfo.play.getRStatus();
-}
-
-inline void dComIfGp_setBottleStatus(u8 param_0, u8 param_1) {
-    g_dComIfG_gameInfo.play.setBottleStatus(param_0, param_1);
-}
-
-inline u8 dComIfGp_getDoStatus() {
-    return g_dComIfG_gameInfo.play.getDoStatus();
-}
-
-inline void dMeter2Info_offUseButton(int flag) {
-    g_meter2_info.offUseButton(flag);
-}
-
 /* 8021EA14-8021F128 219354 0714+00 1/1 0/0 0/0 .text            _create__9dMeter2_cFv */
 // this can be cleaned up with float literals when everything else is decompiled
 int dMeter2_c::_create() {
@@ -342,7 +318,7 @@ int dMeter2_c::_create() {
     field_0x1ed = 0;
     field_0x1ee = 0;
 
-    mNowLifeGauge = dComIfGs_getLife();
+    mNowLifeGauge = i_dComIfGs_getLife();
     dComIfGp_setItemNowLife((u8)mNowLifeGauge);
 
     mMaxLife = dComIfGs_getMaxLife();
@@ -372,7 +348,7 @@ int dMeter2_c::_create() {
     mRupeeNum = i_dComIfGs_getRupee();
     mKeyNum = dComIfGs_getKeyNum();
 
-    mDoStatus = dComIfGp_getDoStatus();
+    mDoStatus = i_dComIfGp_getDoStatus();
     mDoSetFlag = dComIfGp_isDoSetFlag(2);
 
     int i = 0;
@@ -406,7 +382,7 @@ int dMeter2_c::_create() {
     field_0x201 = 0;
 
     mCollectSmell = dComIfGs_getCollectSmell();
-    mRStatus = dComIfGp_getRStatus();
+    mRStatus = i_dComIfGp_getRStatus();
     mRSetFlag = dComIfGp_isRSetFlag(2);
     mXSetFlag = dComIfGp_isXSetFlag(2);
     mYSetFlag = dComIfGp_isYSetFlag(2);
@@ -511,23 +487,15 @@ int dMeter2_c::_create() {
     return 4;
 }
 
-inline BOOL dComIfGs_isEventBit(u16 id) {
-    return g_dComIfG_gameInfo.info.getSavedata().getEvent().isEventBit(id);
-}
-
-inline BOOL dComIfGp_event_runCheck() {
-    return g_dComIfG_gameInfo.play.getEvent().runCheck();
-}
-
 /* 8021F128-8021F370 219A68 0248+00 1/1 0/0 0/0 .text            _execute__9dMeter2_cFv */
 int dMeter2_c::_execute() {
     JKRHeap* heap = mDoExt_setCurrentHeap(mpHeap);
 
-    if (!dComIfGs_isCollectMirror(0) && dComIfGs_isEventBit(0x5420)) {
+    if (!dComIfGs_isCollectMirror(0) && i_dComIfGs_isEventBit(0x5420)) {
         dComIfGs_onCollectMirror(0);
     }
 
-    if (!dComIfGs_isCollectCrystal(3) && dComIfGs_isEventBit(0x5410)) {
+    if (!dComIfGs_isCollectCrystal(3) && i_dComIfGs_isEventBit(0x5410)) {
         dComIfGs_onCollectCrystal(3);
     }
 
@@ -564,18 +532,18 @@ int dMeter2_c::_execute() {
     moveSubContents();
     move2DContents();
 
-    if (!dComIfGp_isPauseFlag() && !dComIfGp_event_runCheck()) {
+    if (!dComIfGp_isPauseFlag() && !i_dComIfGp_event_runCheck()) {
         dMeter2Info_decHotSpringTimer();
     }
 
     dMeter2Info_allUseButton();
-    dMeter2Info_offUseButton(0x800);
+    i_dMeter2Info_offUseButton(0x800);
     dMeter2Info_resetGameStatus();
     dComIfGp_setNunStatus(0, 0, 0);
     dComIfGp_setRemoConStatus(0, 0, 0);
     dComIfGp_setNunZStatus(0, 0);
     dComIfGp_setNunCStatus(0, 0);
-    dComIfGp_setBottleStatus(0, 0);
+    i_dComIfGp_setBottleStatus(0, 0);
     dComIfGp_setCStickStatus(0, 0, 0);
 
     mDoExt_setCurrentHeap(heap);
@@ -703,10 +671,6 @@ int dMeter2_c::emphasisButtonDelete() {
     return 1;
 }
 
-inline void i_dComIfGp_setItemLifeCount(f32 amount, u8 type) {
-    g_dComIfG_gameInfo.play.setItemLifeCount(amount, type);
-}
-
 /* 8021F780-8021F7B0 21A0C0 0030+00 0/0 0/0 1/1 .text            setLifeZero__9dMeter2_cFv */
 void dMeter2_c::setLifeZero() {
     dComIfGs_setLife(1);
@@ -747,18 +711,6 @@ SECTION_SDATA2 static f64 lit_5267 = 4503601774854144.0 /* cast s32 to float */;
 /* 804549E0-804549E8 002FE0 0008+00 2/2 0/0 0/0 .sdata2          @5268 */
 SECTION_SDATA2 static f64 lit_5268 = 4503599627370496.0 /* cast u32 to float */;
 
-inline bool i_dComIfGp_checkPlayerStatus1(int param_0, u32 flag) {
-    return g_dComIfG_gameInfo.play.checkPlayerStatus(param_0, 1, flag);
-}
-
-inline bool dComIfGp_checkPlayerStatus0(int param_0, u32 param_1) {
-    return g_dComIfG_gameInfo.play.checkPlayerStatus(param_0, 0, param_1);
-}
-
-inline void dComIfGp_setItemLifeCount(float amount, u8 type) {
-    g_dComIfG_gameInfo.play.setItemLifeCount(amount, type);
-}
-
 /* 8021FD60-80220180 21A6A0 0420+00 1/1 0/0 0/0 .text            moveLife__9dMeter2_cFv */
 // small type issue
 #ifdef NONMATCHING
@@ -779,8 +731,8 @@ void dMeter2_c::moveLife() {
 
         life_count = (max_count / 5) * 4;
         dComIfGs_setMaxLife(max_count);
-        s16 current_life = life_count - dComIfGs_getLife();
-        dComIfGp_setItemLifeCount(current_life, 0);
+        s16 current_life = life_count - i_dComIfGs_getLife();
+        i_dComIfGp_setItemLifeCount(current_life, 0);
         dComIfGp_clearItemMaxLifeCount();
         setDraw = true;
     }
@@ -792,7 +744,7 @@ void dMeter2_c::moveLife() {
             life_count = (dComIfGs_getMaxLife() / 5) * 4;
         }
 
-        s16 tmp = dComIfGs_getLife() + dComIfGp_getItemLifeCount();
+        s16 tmp = i_dComIfGs_getLife() + dComIfGp_getItemLifeCount();
         if (tmp > life_count) {
             tmp = life_count;
         } else if (tmp < 0) {
@@ -821,12 +773,12 @@ void dMeter2_c::moveLife() {
         }
     }
 
-    u16 current_life = dComIfGs_getLife();
+    u16 current_life = i_dComIfGs_getLife();
     if (mNowLifeGauge != current_life) {
         if (mNowLifeGauge < current_life) {
             mNowLifeGauge++;
             if (i_dComIfGp_checkPlayerStatus1(0, 0x2000) ||
-                dComIfGp_checkPlayerStatus0(0, 0x20000000) || dMeter2Info_getLifeGaugeSE()) {
+                i_dComIfGp_checkPlayerStatus0(0, 0x20000000) || dMeter2Info_getLifeGaugeSE()) {
                 if (mNowLifeGauge % 4 == 0) {
                     mDoAud_seStart(Z2SE_HP_GAUGE_INC, 0, 0, 0);
                 }
@@ -836,7 +788,7 @@ void dMeter2_c::moveLife() {
                 }
             }
 
-            u16 life = dComIfGs_getLife();
+            u16 life = i_dComIfGs_getLife();
             if (mNowLifeGauge == life && field_0x1ee != 0) {
                 field_0x1ee = 0;
             }
@@ -1350,13 +1302,6 @@ asm void dMeter2_c::alphaAnimeButtonCross() {
 #include "asm/d/meter/d_meter2/alphaAnimeButtonCross__9dMeter2_cFv.s"
 }
 #pragma pop
-
-inline u16 dComIfGp_event_checkHind(u16 flag) {
-    if (!dComIfGp_event_runCheck()) {
-        return false;
-    }
-    return g_dComIfG_gameInfo.play.getEvent().checkHind(flag);
-}
 
 /* 802256DC-802258A0 22001C 01C4+00 3/3 0/0 0/0 .text            isShowLightDrop__9dMeter2_cFv */
 bool dMeter2_c::isShowLightDrop() {

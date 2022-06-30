@@ -2,6 +2,7 @@
 #define M_DO_M_DO_AUDIO_H
 
 #include "Z2AudioLib/Z2AudioMgr.h"
+#include "Z2AudioLib/Z2EnvSeMgr.h"
 #include "dolphin/types.h"
 
 // move/fix later
@@ -79,6 +80,11 @@ inline void mDoAud_seStart(u32 sfx_id, const Vec* param_1, u32 param_2, s8 param
                                                -1.0f, 0);
 }
 
+inline void i_mDoAud_seStartLevel(u32 sfx_id, const Vec* param_1, u32 param_2, s8 param_3) {
+    Z2AudioMgr::getInterface()->mSeMgr.seStartLevel(sfx_id, param_1, param_2, param_3, 1.0f, 1.0f,
+                                                    -1.0f, -1.0f, 0);
+}
+
 inline void mDoAud_messageSePlay(u16 param_0, Vec* position, s8 param_2) {
     Z2AudioMgr::getInterface()->mSeMgr.messageSePlay(param_0, position, param_2);
 }
@@ -97,6 +103,14 @@ inline bool mDoAud_check1stDynamicWave() {
 
 inline void mDoAud_bgmStop(u32 param_0) {
     Z2AudioMgr::getInterface()->mSeqMgr.bgmStop(param_0, 0);
+}
+
+inline void mDoAud_rainPlay(s32 enable) {
+    g_mEnvSeMgr.startRainSe(enable, 0);
+}
+
+inline void mDoAud_mEnvse_framework() {
+    g_mEnvSeMgr.framework();
 }
 
 #endif /* M_DO_M_DO_AUDIO_H */

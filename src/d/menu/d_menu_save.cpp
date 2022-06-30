@@ -265,15 +265,6 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-inline u8 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
-    return param_0->field_0x09 >> 1 & 0x1f;
-}
-
-inline void mDoAud_seStartLevel(u32 sfx_id, const Vec* param_1, u32 param_2, s8 param_3) {
-    Z2AudioMgr::getInterface()->mSeMgr.seStartLevel(sfx_id, param_1, param_2, param_3, 1.0f, 1.0f,
-                                                    -1.0f, -1.0f, 0);
-}
-
 /* ############################################################################################## */
 /* 803BDF78-803BDF84 01B098 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -1675,7 +1666,7 @@ asm void dMenu_save_c::memCardDataLoadWait() {
 
 /* 801F2840-801F28E4 1ED180 00A4+00 2/2 0/0 0/0 .text            dataWrite__12dMenu_save_cFv */
 void dMenu_save_c::dataWrite() {
-    int stageNo = dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo());
+    int stageNo = i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo());
 
     dComIfGs_putSave(stageNo);
     dComIfGs_setMemoryToCard(mSaveBuffer, field_0x54);
@@ -1701,7 +1692,7 @@ SECTION_DEAD static char const* const stringBase_80397A06 = "save cmdState %d\n"
 // matches with literals
 #ifdef NONMATCHING
 void dMenu_save_c::memCardDataSaveWait() {
-    mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
+    i_mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
 
     if (mWaitTimer != 0) {
         mWaitTimer--;

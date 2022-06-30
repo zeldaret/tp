@@ -11,57 +11,7 @@
 // Types:
 //
 
-struct _GXVtxFmt {};
-
-struct _GXVtxAttrFmtList {};
-
 struct _GXTlutSize {};
-
-struct _GXTlutFmt {};
-
-struct _GXTexWrapMode {};
-
-struct _GXTexMapID {};
-
-struct _GXTexGenType {};
-
-struct _GXTexGenSrc {};
-
-struct _GXTexFmt {};
-
-struct _GXTexFilter {};
-
-struct _GXTexCoordID {};
-
-struct _GXTexCacheSize {};
-
-struct _GXTevStageID {};
-
-struct _GXTevRegID {};
-
-struct _GXTevKColorID {};
-
-struct _GXLightID {};
-
-struct _GXIndTexStageID {};
-
-struct _GXIndTexScale {};
-
-struct _GXIndTexMtxID {};
-
-struct _GXFogType {};
-
-struct _GXFogAdjTable {};
-
-struct _GXCullMode {};
-
-struct _GXColorS10 {};
-
-struct _GXColor {};
-
-struct _GXChannelID {};
-
-struct _GXAnisotropy {};
 
 //
 // Forward References:

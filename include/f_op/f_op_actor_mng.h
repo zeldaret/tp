@@ -244,6 +244,68 @@ inline BOOL fopAcM_IsExecuting(unsigned int id) {
     return fpcM_IsExecuting(id);
 }
 
+inline f32 fopAcM_GetSpeedF(const fopAc_ac_c* p_actor) {
+    return p_actor->mSpeedF;
+}
+
+inline f32 fopAcM_GetGravity(const fopAc_ac_c* p_actor) {
+    return p_actor->mGravity;
+}
+
+inline f32 fopAcM_GetMaxFallSpeed(const fopAc_ac_c* p_actor) {
+    return p_actor->mMaxFallSpeed;
+}
+
+inline const cXyz& fopAcM_GetSpeed_p(const fopAc_ac_c* p_actor) {
+    return p_actor->mSpeed;
+}
+
+inline const cXyz& fopAcM_GetPosition_p(const fopAc_ac_c* p_actor) {
+    return p_actor->mCurrent.mPosition;
+}
+
+inline void dComIfGs_onSwitch(int i_no, int i_roomNo);
+inline void dComIfGs_offSwitch(int i_no, int i_roomNo);
+inline BOOL dComIfGs_isSwitch(int i_no, int i_roomNo);
+
+inline void i_fopAcM_onSwitch(const fopAc_ac_c* pActor, int sw) {
+    return dComIfGs_onSwitch(sw, fopAcM_GetHomeRoomNo(pActor));
+}
+
+inline void i_fopAcM_offSwitch(const fopAc_ac_c* pActor, int sw) {
+    return dComIfGs_offSwitch(sw, fopAcM_GetHomeRoomNo(pActor));
+}
+
+inline bool i_fopAcM_isSwitch(const fopAc_ac_c* item, int sw) {
+    return dComIfGs_isSwitch(sw, fopAcM_GetHomeRoomNo(item));
+}
+
+inline void dComIfGs_onItem(int bitNo, int roomNo);
+inline void fopAcM_onItem(const fopAc_ac_c* item, int bitNo) {
+    dComIfGs_onItem(bitNo, fopAcM_GetHomeRoomNo(item));
+}
+
+
+inline bool dComIfGs_isItem(int bitNo, int roomNo);
+inline bool fopAcM_isItem(const fopAc_ac_c* item, int bitNo) {
+    return dComIfGs_isItem(bitNo, fopAcM_GetHomeRoomNo(item));
+}
+
+inline f32 fopAcM_searchActorDistanceY(const fopAc_ac_c* actorA, const fopAc_ac_c* actorB) {
+    return actorB->mCurrent.mPosition.y - actorA->mCurrent.mPosition.y;
+}
+
+inline u16 fopAcM_GetSetId(const fopAc_ac_c* p_actor) {
+    return p_actor->mSetID;
+}
+
+inline void dComIfGs_onActor(int bitNo, int roomNo);
+
+inline void fopAcM_onActor(const fopAc_ac_c* p_actor) {
+    int setId = fopAcM_GetSetId(p_actor);
+    dComIfGs_onActor(setId, fopAcM_GetHomeRoomNo(p_actor));
+}
+
 void* fopAcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3, void* pData);
 
 void fopAcM_setStageLayer(void* p_proc);
@@ -427,6 +489,39 @@ void fpoAcM_relativePos(fopAc_ac_c const* actor, cXyz const* p_inPos, cXyz* p_ou
 s32 fopAcM_getWaterStream(const cXyz*, const cBgS_PolyInfo&, cXyz*, int*, int);
 s16 fopAcM_getPolygonAngle(const cBgS_PolyInfo&, s16);
 s16 fopAcM_getPolygonAngle(cM3dGPla const* param_0, s16 param_1);
+
+
+inline void make_prm_warp_hole(u32* actorParams, u8 p1, u8 p2, u8 p3) {
+    u32 pp1 = (p3 << 0x8);
+    u32 pp2 = (p2 << 0x10);
+    u32 pp3 = (p1 << 0x1B) | 0x170000FF;
+    *actorParams = pp2 | pp3 | pp1;
+}
+
+inline void make_prm_bokkuri(u32* pActorParams, csXyz* p_angle, u8 param_2, u8 param_3, u8 param_4,
+                             u8 param_5, u8 param_6) {
+    p_angle->x = (param_4 << 0x8) | (param_3 & 0xFF);
+    p_angle->z = (param_6 << 0xD) | (param_2 << 0x1) | param_5;
+}
+
+
+inline void* dComIfGp_getPlayer(int);
+
+inline s16 fopAcM_searchPlayerAngleY(const fopAc_ac_c* actor) {
+    return fopAcM_searchActorAngleY(actor, (fopAc_ac_c*)dComIfGp_getPlayer(0));
+}
+
+inline f32 fopAcM_searchPlayerDistanceY(const fopAc_ac_c* actor) {
+    return fopAcM_searchActorDistanceY(actor, (fopAc_ac_c*)dComIfGp_getPlayer(0));
+}
+
+inline f32 fopAcM_searchPlayerDistanceXZ2(const fopAc_ac_c* actor) {
+    return fopAcM_searchActorDistanceXZ2(actor, (fopAc_ac_c*)dComIfGp_getPlayer(0));
+}
+
+inline f32 fopAcM_searchPlayerDistance(const fopAc_ac_c* actor) {
+    return fopAcM_searchActorDistance(actor, (fopAc_ac_c*)dComIfGp_getPlayer(0));
+}
 
 extern "C" {
 void fopAcM_initManager__Fv(void);

@@ -21,10 +21,6 @@
 // Declarations:
 //
 
-static inline u32 COLOR_MULTI(u32 a, u32 b) {
-    return ((a * (b + 1)) * 0x10000) >> 24;
-}
-
 /* 8027AEBC-8027AFDC 2757FC 0120+00 0/0 1/1 0/0 .text JPARegistChildPrmEnv__FP18JPAEmitterWorkData
  */
 void JPARegistChildPrmEnv(JPAEmitterWorkData* work) {

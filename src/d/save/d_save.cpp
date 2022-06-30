@@ -220,14 +220,6 @@ extern "C" u8 sRumbleSupported__10JUTGamePad[4];
 // Declarations:
 //
 
-inline int dComIfGs_isItemFirstBit(u8 i_no) {
-    return g_dComIfG_gameInfo.info.getPlayer().getGetItem().isFirstBit(i_no);
-}
-
-inline BOOL dComIfGs_isEventBit(u16 id) {
-    return g_dComIfG_gameInfo.info.getSavedata().getEvent().isEventBit(id);
-}
-
 static u8 dSv_item_rename(u8 i_itemNo) {
     switch (i_itemNo) {
     case OIL_BOTTLE_2:
@@ -318,7 +310,7 @@ u16 dSv_player_status_a_c::getRupeeMax() const {
 
 BOOL dSv_player_status_a_c::isMagicFlag(u8 i_magic) const {
     if (i_magic == 0) {
-        return dComIfGs_isEventBit(0x2304);  // Magic Unlocked
+        return i_dComIfGs_isEventBit(0x2304);  // Magic Unlocked
     }
     return (mMagicFlag & (u8)(1 << i_magic)) ? TRUE : FALSE;
 }
@@ -760,8 +752,8 @@ u16 dSv_event_flag_c::saveBitLabels[822] = {
 
 BOOL dSv_player_item_c::checkInsectBottle() {
     for (int i = 0; i < 24; i++) {
-        if (dComIfGs_isItemFirstBit(M_BEETLE + i) &&
-            !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x191 + i])) {
+        if (i_dComIfGs_isItemFirstBit(M_BEETLE + i) &&
+            !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x191 + i])) {
             return TRUE;
         }
     }
@@ -902,17 +894,17 @@ void dSv_player_item_c::setRodTypeLevelUp() {
 void dSv_player_item_c::setBaitItem(u8 i_itemNo) {
     switch (i_itemNo) {
     case BEE_CHILD: {
-        dComIfGs_isItemFirstBit(ZORAS_JEWEL) ? mItems[SLOT_20] = JEWEL_BEE_ROD :
+        i_dComIfGs_isItemFirstBit(ZORAS_JEWEL) ? mItems[SLOT_20] = JEWEL_BEE_ROD :
                                                mItems[SLOT_20] = BEE_ROD;
         break;
     }
     case WORM: {
-        dComIfGs_isItemFirstBit(ZORAS_JEWEL) ? mItems[SLOT_20] = JEWEL_WORM_ROD :
+        i_dComIfGs_isItemFirstBit(ZORAS_JEWEL) ? mItems[SLOT_20] = JEWEL_WORM_ROD :
                                                mItems[SLOT_20] = WORM_ROD;
         break;
     }
     case NO_ITEM: {
-        dComIfGs_isItemFirstBit(ZORAS_JEWEL) ? mItems[SLOT_20] = JEWEL_ROD :
+        i_dComIfGs_isItemFirstBit(ZORAS_JEWEL) ? mItems[SLOT_20] = JEWEL_ROD :
                                                mItems[SLOT_20] = FISHING_ROD_1;
         break;
     }
@@ -1042,7 +1034,7 @@ void dSv_player_item_max_c::setBombNum(u8 bomb_id, u8 bomb_max) {
 
 u8 dSv_player_item_max_c::getBombNum(u8 bombId) const {
     u8 lv_multiplier = 1;
-    if (dComIfGs_isItemFirstBit(BOMB_BAG_LV2)) {
+    if (i_dComIfGs_isItemFirstBit(BOMB_BAG_LV2)) {
         lv_multiplier = 2;
     }
 
@@ -1783,15 +1775,15 @@ int dSv_info_c::memory_to_card(char* card_ptr, int dataNum) {
     bool phi_r30 = false;
     u16 current_lantern_oil = 0;
 
-    if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[226])) {
-        lantern_stolen = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[224]);
-        lantern_dropped = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[225]);
+    if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[226])) {
+        lantern_stolen = i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[224]);
+        lantern_dropped = i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[225]);
         dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[224]);
         dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[225]);
         lantern_not_recovered = true;
     }
 
-    if (dComIfGs_isItemFirstBit(KANTERA) && dComIfGs_getItem(SLOT_1, 1) == NO_ITEM) {
+    if (i_dComIfGs_isItemFirstBit(KANTERA) && dComIfGs_getItem(SLOT_1, 1) == NO_ITEM) {
         dComIfGs_setItem(SLOT_1, KANTERA);
         current_lantern_oil = dComIfGs_getOil();
         dComIfGs_setOil(dMeter2Info_getOilGaugeBackUp());

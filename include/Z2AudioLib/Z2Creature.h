@@ -93,6 +93,10 @@ private:
     /* 0xCC */ u8 mFlags2;
 };  // Size: 0xD0
 
+inline Z2CreatureLink* Z2GetLink() {
+    return Z2CreatureLink::mLinkPtr;
+}
+
 class Z2CreatureRide;
 struct Z2RideSoundStarter : public Z2SoundStarter {
     /* 802C5234 */ Z2RideSoundStarter(Z2CreatureRide*);

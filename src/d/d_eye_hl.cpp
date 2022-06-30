@@ -75,17 +75,13 @@ SECTION_SDATA2 static f32 lit_3862 = 2.0f;
 /* 80452C14-80452C18 001214 0004+00 1/1 0/0 0/0 .sdata2          @3863 */
 SECTION_SDATA2 static f32 lit_3863 = 45.0f;
 
-inline BOOL dComIfGp_event_runCheck() {
-    return g_dComIfG_gameInfo.play.getEvent().runCheck();
-}
-
 /* 8009CA48-8009CB14 097388 00CC+00 0/0 1/1 0/0 .text            update__12dEyeHL_mng_cFv */
 // small issue with cLib_minMaxLimit
 #ifdef NONMATCHING
 void dEyeHL_mng_c::update() {
     dEyeHL_mng_c* obj = m_obj;
 
-    if (g_envHIO[0x10] == 0 || !dComIfGp_event_runCheck()) {
+    if (g_envHIO[0x10] == 0 || !i_dComIfGp_event_runCheck()) {
         for (; obj != NULL; obj = obj->m_next) {
             obj->m_timg->LODBias = obj->m_lodBias;
         }
