@@ -3335,10 +3335,6 @@ extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 // Declarations:
 //
 
-inline s32 i_dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
-    return param_0->field_0x09 >> 1 & 0x1f;
-}
-
 /* 8009D87C-8009D884 0981BC 0008+00 0/0 1/1 0/0 .text            getE3Zhint__9daAlink_cFv */
 bool daAlink_c::getE3Zhint() {
     return false;
