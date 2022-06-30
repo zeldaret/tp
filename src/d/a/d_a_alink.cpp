@@ -3335,56 +3335,8 @@ extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 // Declarations:
 //
 
-inline Z2CreatureLink* Z2GetLink() {
-    return Z2CreatureLink::mLinkPtr;
-}
-
-inline u16 i_dComIfGs_getLife() {
-    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getLife();
-}
-
-inline BOOL i_dComIfGs_isEventBit(u16 id) {
-    return g_dComIfG_gameInfo.info.getEvent().isEventBit(id);
-}
-
-inline bool i_dComIfGp_checkPlayerStatus1(int param_0, u32 flag) {
-    return g_dComIfG_gameInfo.play.checkPlayerStatus(param_0, 1, flag);
-}
-
-inline dStage_stageDt_c* i_dComIfGp_getStage() {
-    return &g_dComIfG_gameInfo.play.getStage();
-}
-
-inline dEvt_control_c& i_dComIfGp_getEvent() {
-    return g_dComIfG_gameInfo.play.getEvent();
-}
-
-inline dEvent_manager_c& i_dComIfGp_getEventManager() {
-    return g_dComIfG_gameInfo.play.getEvtManager();
-}
-
-inline s8 i_dComIfGp_getPlayerCameraID(int idx) {
-    return g_dComIfG_gameInfo.play.getPlayerCameraID(idx);
-}
-
-inline daHorse_c* i_dComIfGp_getHorseActor() {
-    return (daHorse_c*)g_dComIfG_gameInfo.play.getPlayerPtr(1);
-}
-
 inline s32 i_dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
     return param_0->field_0x09 >> 1 & 0x1f;
-}
-
-inline void i_fopAcM_onSwitch(const fopAc_ac_c* pActor, int sw) {
-    return dComIfGs_onSwitch(sw, fopAcM_GetHomeRoomNo(pActor));
-}
-
-inline void i_fopAcM_offSwitch(const fopAc_ac_c* pActor, int sw) {
-    return dComIfGs_offSwitch(sw, fopAcM_GetHomeRoomNo(pActor));
-}
-
-inline int i_dComIfGs_isItemFirstBit(u8 i_no) {
-    return g_dComIfG_gameInfo.info.getPlayer().getGetItem().isFirstBit(i_no);
 }
 
 /* 8009D87C-8009D884 0981BC 0008+00 0/0 1/1 0/0 .text            getE3Zhint__9daAlink_cFv */
@@ -16808,10 +16760,6 @@ asm void daAlink_c::checkItemChangeAutoAction() {
 }
 #pragma pop
 
-inline bool i_dComIfGp_checkPlayerStatus0(int param_0, u32 flag) {
-    return g_dComIfG_gameInfo.play.checkPlayerStatus(param_0, 0, flag);
-}
-
 /* 800B7168-800B7190 0B1AA8 0028+00 7/7 0/0 0/0 .text            setFastShotTimer__9daAlink_cFv */
 void daAlink_c::setFastShotTimer() {
     if (!i_dComIfGp_checkPlayerStatus0(0, 0x2000)) {
@@ -17294,10 +17242,6 @@ asm void daAlink_c::setMagicArmorBrk(int param_0) {
 #include "asm/d/a/d_a_alink/setMagicArmorBrk__9daAlink_cFi.s"
 }
 #pragma pop
-
-inline u16 i_dComIfGs_getRupee() {
-    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getRupee();
-}
 
 /* 800BB408-800BB458 0B5D48 0050+00 6/6 0/0 0/0 .text            checkMagicArmorHeavy__9daAlink_cCFv
  */
@@ -21216,10 +21160,6 @@ void daAlink_c::setComboReserb() {
 /* 800D2188-800D21D0 0CCAC8 0048+00 1/1 0/0 0/0 .text            checkComboReserb__9daAlink_cFv */
 BOOL daAlink_c::checkComboReserb() {
     return i_checkNoResetFlg2(UNK_FLG2_2) && !checkEventRun();
-}
-
-inline u8 i_dComIfGp_getDoStatus() {
-    return g_dComIfG_gameInfo.play.getDoStatus();
 }
 
 /* 800D21D0-800D2284 0CCB10 00B4+00 1/1 0/0 0/0 .text            commonCutAction__9daAlink_cFv */
@@ -30641,10 +30581,6 @@ asm void daAlink_c::procIronBallReturn() {
 #include "asm/d/a/d_a_alink/procIronBallReturn__9daAlink_cFv.s"
 }
 #pragma pop
-
-inline BOOL i_dComIfGp_event_runCheck() {
-    return g_dComIfG_gameInfo.play.getEvent().runCheck();
-}
 
 /* 80115C20-80115C50 110560 0030+00 72/72 0/0 0/0 .text            checkEventRun__9daAlink_cCFv */
 BOOL daAlink_c::checkEventRun() const {

@@ -5,7 +5,7 @@
 #include "d/bg/d_bg_s_acch.h"
 #include "d/cc/d_cc_d.h"
 #include "d/kankyo/d_kankyo.h"
-#include "f_op/f_op_actor.h"
+#include "f_op/f_op_actor_mng.h"
 
 class daNbomb_c {
 public:

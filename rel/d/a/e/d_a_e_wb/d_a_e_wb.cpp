@@ -4794,7 +4794,8 @@ asm void dEvt_info_c::onCondition(u16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool dEvt_info_c::checkCommandDemoAccrpt() {
+// asm bool dEvt_info_c::checkCommandDemoAccrpt() {
+extern "C" asm void checkCommandDemoAccrpt__11dEvt_info_cFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/checkCommandDemoAccrpt__11dEvt_info_cFv.s"
 }

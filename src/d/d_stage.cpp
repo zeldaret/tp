@@ -405,14 +405,6 @@ extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 // Declarations:
 //
 
-inline u8 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
-    return param_0->field_0x09 >> 1 & 0x1f;
-}
-
-inline dStage_stageDt_c* dComIfGp_getStage() {
-    return &g_dComIfG_gameInfo.play.getStage();
-}
-
 void dStage_nextStage_c::set(const char* i_stage, s8 i_roomId, s16 i_point, s8 i_layer, s8 i_wipe,
                              u8 i_speed) {
     if (!enabled) {
@@ -1687,7 +1679,7 @@ void dStage_roomControl_c::zoneCountCheck(int stayNo) const {
             dComIfGs_clearRoomSwitch(status->mZoneNo);
             dComIfGs_clearRoomItem(status->mZoneNo);
 
-            if (dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) != 0 &&
+            if (dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) != 0 &&
                 stayNo != gLastStayNo) {
                 if (--status->mZoneCount == 0) {
                     dComIfGs_removeZone(status->mZoneNo);
@@ -2282,7 +2274,7 @@ static int dStage_stagInfoInit(dStage_dt_c* stageDt, void* i_data, int entryNum,
         dComIfGp_resetOldMulti();
     }
 
-    int stageNo = dStage_stagInfo_GetSaveTbl(stageDt->getStagInfo());
+    int stageNo = i_dStage_stagInfo_GetSaveTbl(stageDt->getStagInfo());
     dComIfGs_getSave(stageNo);
     g_save_bit_HIO.init();
     dComIfGs_initDan(stageNo);
@@ -2694,8 +2686,8 @@ static void readMult(dStage_dt_c* stageDt, dStage_Multi_c* multi, bool useOldRes
     if (multi != NULL) {
         dStage_Mult_info* info = multi->mInfo;
 
-        if (dStage_stagInfo_GetUpButton(dComIfGp_getStage()->getStagInfo()) == 0 ||
-            dStage_stagInfo_GetUpButton(dComIfGp_getStage()->getStagInfo()) == 6) {
+        if (dStage_stagInfo_GetUpButton(i_dComIfGp_getStage()->getStagInfo()) == 0 ||
+            dStage_stagInfo_GetUpButton(i_dComIfGp_getStage()->getStagInfo()) == 6) {
             dStage_roomControl_c::m_roomDzs.create(multi->field_0x0);
         }
 
@@ -2833,7 +2825,7 @@ static void layerTableLoader(void* i_data, dStage_dt_c* stageDt, int roomNo) {
                            dComIfG_play_c::getLayerNo(0));
     dStage_dt_c_decode(i_data, stageDt, l_layerFuncTableA, ARRAY_SIZE(l_layerFuncTableA));
 
-    dStage_Elst_c* elst = dComIfGp_getStage()->getElst();
+    dStage_Elst_c* elst = i_dComIfGp_getStage()->getElst();
     if (elst != NULL && newRoomNo >= 0 && elst->field_0x0 > newRoomNo) {
         dStage_Elst_c::unkData* d = elst->field_0x4;
         int layer = dComIfG_play_c::getLayerNo(0);
@@ -2893,7 +2885,7 @@ void dStage_infoCreate() {
     void* stageRsrc = dComIfG_getStageRes("stage.dzs");
 
     dComIfGp_roomControl_init();
-    dStage_dt_c_stageInitLoader(stageRsrc, dComIfGp_getStage());
+    dStage_dt_c_stageInitLoader(stageRsrc, i_dComIfGp_getStage());
 }
 
 /* 80406194-804061A0 032EB4 000A+02 2/2 14/14 7/7 .bss mDemoArcName__20dStage_roomControl_c */
@@ -2902,7 +2894,7 @@ char dStage_roomControl_c::mDemoArcName[10];
 /* 80026D38-80026DF8 021678 00C0+00 0/0 1/1 0/0 .text            dStage_Create__Fv */
 void dStage_Create() {
     void* stageRsrc = dComIfG_getStageRes("stage.dzs");
-    dStage_dt_c_stageLoader(stageRsrc, dComIfGp_getStage());
+    dStage_dt_c_stageLoader(stageRsrc, i_dComIfGp_getStage());
     daSus_c::execute();
 
     if (dComIfGp_getStartStageRoomNo() >= 0) {
@@ -2926,7 +2918,7 @@ void dStage_Delete() {
         dComIfG_deleteObjectResMain(dStage_roomControl_c::getDemoArcName());
     }
 
-    int stageNo = dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo());
+    int stageNo = i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo());
     dComIfGs_putSave(stageNo);
     dStage_roomControl_c::removeRoomDzs();
 
@@ -2948,7 +2940,7 @@ void dStage_Delete() {
     dComIfG_deleteObjectResMain("Event");
     dComIfG_deleteObjectResMain(dComIfGp_getCameraParamFileName(0));
     dComIfGp_evmng_remove();
-    dComIfGp_getStage()->init();
+    i_dComIfGp_getStage()->init();
 }
 
 /* 80026FDC-80026FE8 02191C 000C+00 1/0 0/0 0/0 .text            setOldMulti__16dStage_stageDt_cFv

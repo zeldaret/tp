@@ -350,12 +350,6 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-// TODO: Temporarily putting here. There is said to be some issues in `d_com_inf_game.h` which need
-// to be sorted out before we can correctly use this function from there.
-inline BOOL dComIfGs_isEventBit(u16 id) {
-    return g_dComIfG_gameInfo.info.getSavedata().getEvent().isEventBit(id);
-}
-
 /* 8019C388-8019C3A4 196CC8 001C+00 2/2 0/0 0/0 .text dKy_WolfPowerup_AmbCol__FP11_GXColorS10 */
 static void dKy_WolfPowerup_AmbCol(GXColorS10* in_col_p) {
     in_col_p->r = 40;
@@ -1528,10 +1522,6 @@ SECTION_SDATA2 static f32 lit_5555 = 150.0f;
 /* 80453CC4-80453CC8 0022C4 0004+00 1/1 0/0 0/0 .sdata2          @5556 */
 SECTION_SDATA2 static f32 lit_5556 = 195.0f;
 
-inline BOOL dComIfGp_event_runCheck() {
-    return g_dComIfG_gameInfo.play.getEvent().runCheck();
-}
-
 /* 8019F4FC-8019F780 199E3C 0284+00 1/1 0/0 0/0 .text            setDaytime__18dScnKy_env_light_cFv
  */
 // matches with literals
@@ -1542,7 +1532,7 @@ void dScnKy_env_light_c::setDaytime() {
 
     if (field_0x12fb == 0) {
         if (!dKy_darkworld_check()) {
-            if (!dComIfGp_event_runCheck()) {
+            if (!i_dComIfGp_event_runCheck()) {
                 fopAc_ac_c* ac = dMsgObject_c::getActor();
                 bool tmp = true;
 
@@ -3350,7 +3340,7 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, i
 
     // Prevent twilight if stage depends on Faron Twilight cleared status (Faron Woods, Coro's
     // Lantern Shop, Faron Woods Cave) but haven't finished Ordon Day 2.
-    if (darkworldTbl[tblIndex].darkLv == FARON && !dComIfGs_isEventBit(0x4510)) {
+    if (darkworldTbl[tblIndex].darkLv == FARON && !i_dComIfGs_isEventBit(0x4510)) {
         result = -1;
     }
 

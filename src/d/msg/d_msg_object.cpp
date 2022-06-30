@@ -932,16 +932,12 @@ asm void dMsgObject_c::isSend() {
 }
 #pragma pop
 
-inline dStage_stageDt_c* dComIfGp_getStage() {
-    return &g_dComIfG_gameInfo.play.getStage();
-}
-
 /* 80236BF8-80236C90 231538 0098+00 1/1 0/0 0/0 .text
  * readMessageGroupLocal__12dMsgObject_cFPP25mDoDvdThd_mountXArchive_c */
 void dMsgObject_c::readMessageGroupLocal(mDoDvdThd_mountXArchive_c** p_arcMount) {
     static char arcName[22];
 
-    int msgGroup = dStage_stagInfo_GetMsgGroup(dComIfGp_getStage()->getStagInfo());
+    int msgGroup = dStage_stagInfo_GetMsgGroup(i_dComIfGp_getStage()->getStagInfo());
     sprintf(arcName, "/res/Msgus/bmgres%d.arc", msgGroup);
 
     *p_arcMount = mDoDvdThd_mountXArchive_c::create(arcName, 0, JKRArchive::MOUNT_MEM, NULL);

@@ -48,11 +48,6 @@ extern "C" extern Z2EnvSeMgr g_mEnvSeMgr;
 // Declarations:
 //
 
-// move later
-inline void mDoAud_mEnvse_framework() {
-    g_mEnvSeMgr.framework();
-}
-
 /* 801ADD00-801ADD38 1A8640 0038+00 2/2 0/0 0/0 .text            dKankyo_DayProc__Fv */
 void dKankyo_DayProc() {
     dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[91]);

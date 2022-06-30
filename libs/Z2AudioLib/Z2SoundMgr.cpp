@@ -110,7 +110,6 @@ extern "C" void _restgpr_28();
 extern "C" void sprintf();
 extern "C" u8 const CUTOFF_TO_IIR_TABLE__7JASCalc[1024];
 extern "C" extern u8 data_80450B4C[4];
-extern "C" extern u8 data_80450B60[4];
 extern "C" extern u8 data_80450B70[4];
 extern "C" extern u8 data_80450B80[4];
 extern "C" extern u8 data_80450B84[4];

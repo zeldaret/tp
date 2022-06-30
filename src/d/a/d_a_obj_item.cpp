@@ -631,10 +631,6 @@ SECTION_DATA extern void* __vt__8daItem_c[17 + 36 /* padding */] = {
     NULL,
 };
 
-inline bool fopAcM_isItem(const fopAc_ac_c* item, int bitNo) {
-    return dComIfGs_isItem(bitNo, fopAcM_GetHomeRoomNo(item));
-}
-
 /* 8015B7D4-8015BA3C 156114 0268+00 1/1 0/0 0/0 .text            _daItem_create__8daItem_cFv */
 // matches, but issues with vtable
 #ifdef NONMATCHING
@@ -710,10 +706,6 @@ SECTION_SDATA2 static f32 lit_4320 = 300.0f;
 
 /* 80453594-80453598 001B94 0004+00 1/1 0/0 0/0 .sdata2          @4321 */
 SECTION_SDATA2 static f32 lit_4321 = 18.0f;
-
-inline f32 fopAcM_searchPlayerDistance(const fopAc_ac_c* actor) {
-    return fopAcM_searchActorDistance(actor, (fopAc_ac_c*)dComIfGp_getPlayer(0));
-}
 
 /* 8015BA9C-8015BD84 1563DC 02E8+00 1/1 0/0 0/0 .text            _daItem_execute__8daItem_cFv */
 // eyepos.y issue / need sinit for mFuncPtr
@@ -1009,13 +1001,9 @@ void daItem_c::procInitSwOnWait() {
     setStatus(6);
 }
 
-inline bool fopAcM_isSwitch(const fopAc_ac_c* item, int sw) {
-    return dComIfGs_isSwitch(sw, fopAcM_GetHomeRoomNo(item));
-}
-
 /* 8015C648-8015C708 156F88 00C0+00 1/0 0/0 0/0 .text            procMainSwOnWait__8daItem_cFv */
 void daItem_c::procMainSwOnWait() {
-    if (fopAcM_isSwitch(this, field_0x93c)) {
+    if (i_fopAcM_isSwitch(this, field_0x93c)) {
         mAcch.CrrPos(dComIfG_Bgsp());
 
         if (mAcch.ChkWaterHit() && mAcch.m_wtr.GetHeight() > lit_4070[0] + mOrig.mPosition.y) {
@@ -1192,10 +1180,6 @@ void daItem_c::setTevStr() {
     g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
 }
 
-inline void fopAcM_onItem(const fopAc_ac_c* item, int bitNo) {
-    dComIfGs_onItem(bitNo, fopAcM_GetHomeRoomNo(item));
-}
-
 /* 8015CEEC-8015D0A8 15782C 01BC+00 6/6 0/0 0/0 .text            itemGetNextExecute__8daItem_cFv */
 void daItem_c::itemGetNextExecute() {
     if (!checkFlag(0x20) && !checkFlag(0x10)) {
@@ -1307,10 +1291,6 @@ asm void daItem_c::itemGet() {
 #pragma pop
 #endif
 
-inline BOOL dComIfGp_event_runCheck() {
-    return g_dComIfG_gameInfo.play.getEvent().runCheck();
-}
-
 /* 8015D370-8015D3CC 157CB0 005C+00 1/1 0/0 0/0 .text            checkCountTimer__8daItem_cFv */
 BOOL daItem_c::checkCountTimer() {
     BOOL count = true;
@@ -1323,7 +1303,7 @@ BOOL daItem_c::checkCountTimer() {
         count = false;
     }
 
-    if (dComIfGp_event_runCheck()) {
+    if (i_dComIfGp_event_runCheck()) {
         count = false;
     }
     

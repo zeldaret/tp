@@ -53,7 +53,6 @@ extern "C" extern u8 data_80450B50[4];
 extern "C" extern u8 data_80450B54[4];
 extern "C" extern u8 data_80450B58[4];
 extern "C" extern u8 data_80450B5C[4];
-extern "C" extern u8 data_80450B60[4];
 extern "C" extern u8 data_80450B64[4];
 extern "C" extern u8 data_80450B68[4];
 extern "C" extern u8 data_80450B6C[4];
@@ -787,8 +786,8 @@ u8 data_80450B5C[4];
 
 /* 80450B60-80450B64 000060 0004+00 0/0 29/29 0/0 .sbss
  * sInstance__31JASGlobalInstance<10Z2SoundMgr>                 */
-extern u8 data_80450B60[4];
-u8 data_80450B60[4];
+// TODO: fix type
+Z2SoundMgr* data_80450B60;
 
 /* 80450B64-80450B68 000064 0004+00 0/0 2/2 0/0 .sbss
  * sInstance__33JASGlobalInstance<12JAIStreamMgr>               */

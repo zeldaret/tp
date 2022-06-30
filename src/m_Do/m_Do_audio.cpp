@@ -91,7 +91,6 @@ extern "C" extern u8 data_80450B40[4];
 extern "C" extern u8 data_80450B48[4];
 extern "C" extern u8 data_80450B4C[4];
 extern "C" extern u8 data_80450B50[4];
-extern "C" extern u8 data_80450B60[4];
 extern "C" extern u8 data_80450B64[4];
 extern "C" extern u8 data_80450B68[4];
 extern "C" extern u8 data_80450B6C[4];

@@ -132,18 +132,6 @@ extern "C" void* item_resource__10dItem_data[1530];
 // Declarations:
 //
 
-inline BOOL dComIfGs_isEventBit(u16 id) {
-    return g_dComIfG_gameInfo.info.getSavedata().getEvent().isEventBit(id);
-}
-
-inline s8 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
-    return param_0->field_0x09 >> 1 & 0x1f;
-}
-
-inline BOOL dComIfGp_event_runCheck() {
-    return g_dComIfG_gameInfo.play.getEvent().runCheck();
-}
-
 /* ############################################################################################## */
 /* 80399168-80399168 0257C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 #pragma push
@@ -306,7 +294,7 @@ asm void dMeter2Info_c::init() {
 
 /* 8021C0E0-8021C11C 216A20 003C+00 0/0 1/1 2/2 .text setFloatingMessage__13dMeter2Info_cFUssb */
 int dMeter2Info_c::setFloatingMessage(u16 msgID, s16 msgTimer, bool wakuVisible) {
-    if (dComIfGp_event_runCheck()) {
+    if (i_dComIfGp_event_runCheck()) {
         return 0;
     }
 
@@ -319,7 +307,7 @@ int dMeter2Info_c::setFloatingMessage(u16 msgID, s16 msgTimer, bool wakuVisible)
 
 /* 8021C11C-8021C1DC 216A5C 00C0+00 0/0 0/0 1/1 .text setFloatingFlow__13dMeter2Info_cFUssb */
 int dMeter2Info_c::setFloatingFlow(u16 flowID, s16 msgTimer, bool wakuVisible) {
-    if (dComIfGp_event_runCheck()) {
+    if (i_dComIfGp_event_runCheck()) {
         return 0;
     }
 
@@ -567,7 +555,7 @@ void dMeter2Info_c::warpInProc() {
 /* 8021CA70-8021CC00 2173B0 0190+00 0/0 1/1 0/0 .text            warpOutProc__13dMeter2Info_cFv */
 void dMeter2Info_c::warpOutProc() {
     stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
-    s8 saveTbl = dStage_stagInfo_GetSaveTbl(stag_info);
+    s32 saveTbl = i_dStage_stagInfo_GetSaveTbl(stag_info);
     dComIfGs_setLastWarpAcceptStage(saveTbl);
 
     cXyz warpPos(dComIfGs_getRestartRoomPos());
@@ -1543,7 +1531,7 @@ u8 dMeter2Info_getNewLetterNum() {
     for (int i = 0; i < 0x40; i++) {
         if (!dComIfGs_isLetterGetFlag(i) && dMenu_Letter::getLetterName(i) != 0) {
             u16 letterEvent = dMenu_Letter::getLetterEventFlag(i);
-            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[letterEvent])) {
+            if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[letterEvent])) {
                 letterNum++;
             }
         }
@@ -1561,7 +1549,7 @@ int dMeter2Info_setNewLetterSender() {
     for (int i = 0; i < 0x40; i++) {
         if (!dComIfGs_isLetterGetFlag(i) && dMenu_Letter::getLetterName(i) != 0) {
             u16 letterEvent = dMenu_Letter::getLetterEventFlag(i);
-            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[letterEvent])) {
+            if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[letterEvent])) {
                 if (check == 0) {
                     u16 letterName = dMenu_Letter::getLetterName(i);
                     dMsgObject_c::setLetterNameID(letterName);

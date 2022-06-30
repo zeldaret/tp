@@ -8,6 +8,7 @@
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/J3DGraphBase/J3DPacket.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
+#include "JSystem/J3DGraphBase/J3DGD.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -129,12 +130,6 @@ void J3DShapeMtx::resetMtxLoadCache() {
     sMtxLoadCache[2] = 0xFFFF;
     sMtxLoadCache[1] = 0xFFFF;
     sMtxLoadCache[0] = 0xFFFF;
-}
-
-static inline void J3DFifoLoadIndx(u8 cmd, u16 indx, u16 addr) {
-    GFX_FIFO(u8) = cmd;
-    GFX_FIFO(u16) = indx;
-    GFX_FIFO(u16) = addr;
 }
 
 /* 803130E4-80313128 30DA24 0044+00 1/0 0/0 0/0 .text loadMtxIndx_PNGP__11J3DShapeMtxCFiUs */

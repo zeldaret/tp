@@ -36,4 +36,10 @@ private:
 
 STATIC_ASSERT(sizeof(Z2SoundMgr) == 0x810);
 
+extern Z2SoundMgr* data_80450B60;
+
+inline Z2SoundMgr* Z2GetSoundMgr() {
+    return data_80450B60;
+}
+
 #endif /* Z2SOUNDMGR_H */

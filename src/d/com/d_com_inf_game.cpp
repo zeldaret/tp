@@ -358,18 +358,6 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-inline s32 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
-    return param_0->field_0x09 >> 1 & 0x1f;
-}
-
-inline BOOL dComIfGs_isEventBit(u16 id) {
-    return g_dComIfG_gameInfo.info.getEvent().isEventBit(id);
-}
-
-inline int dComIfGs_isItemFirstBit(u8 i_no) {
-    return g_dComIfG_gameInfo.info.getPlayer().getGetItem().isFirstBit(i_no);
-}
-
 void dComIfG_play_c::ct() {
     mWindowNum = 0;
     mParticle = NULL;
@@ -513,17 +501,17 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
             // Stage is Snowpeak Ruins or Snowpeak
             if (!strcmp(stageName, "D_MN11") || !strcmp(stageName, "F_SP114")) {
                 // Cleared Snowpeak Ruins
-                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[266])) {
+                if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[266])) {
                     layer = 3;
                 }
 
                 // Talked with Yeta after giving Cheese
-                else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[163])) {
+                else if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[163])) {
                     layer = 2;
                 }
 
                 // Talked with Yeta after giving Pumpkin
-                else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[162])) {
+                else if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[162])) {
                     layer = 1;
                 }
             }
@@ -531,22 +519,22 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
             // Stage is Faron Woods
             else if (!strcmp(stageName, "F_SP108")) {
                 // Cleared Snowpeak Ruins
-                if (dComIfGs_isEventBit(0x2008)) {
+                if (i_dComIfGs_isEventBit(0x2008)) {
                     layer = 5;
                 }
 
                 // Completed Midna's Desperate Hour
-                else if (dComIfGs_isEventBit(0x1E08)) {
+                else if (i_dComIfGs_isEventBit(0x1E08)) {
                     layer = 3;
                 }
 
                 // Cleared Forest Temple
-                else if (dComIfGs_isEventBit(0x0602)) {
+                else if (i_dComIfGs_isEventBit(0x0602)) {
                     layer = 2;
                 }
 
                 // Haven't finished Ordon Day 2
-                else if (!dComIfGs_isEventBit(0x4510)) {
+                else if (!i_dComIfGs_isEventBit(0x4510)) {
                     layer = 1;
                 }
             }
@@ -554,12 +542,12 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
             // Stage is Faron Woods Interiors
             else if (!strcmp(stageName, "R_SP108")) {
                 // Cleared Forest Temple
-                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[55])) {
+                if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[55])) {
                     layer = 2;
                 }
 
                 // Haven't finished Ordon Day 2
-                else if (!dComIfGs_isEventBit(0x4510)) {
+                else if (!i_dComIfGs_isEventBit(0x4510)) {
                     layer = 1;
                 }
             }
@@ -567,35 +555,35 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
             // Stage is Kakariko Village or Kakariko Graveyard
             else if (!strcmp(stageName, "F_SP109") || !strcmp(stageName, "F_SP111")) {
                 // Obtained Zora's Armor
-                if (dComIfGs_isEventBit(0x0804)) {
+                if (i_dComIfGs_isEventBit(0x0804)) {
                     layer = 2;
                     dComIfG_get_timelayer(&layer);
                 }
 
                 // Finished Telma Wagon Escort
-                else if (dComIfGs_isEventBit(0x0810)) {
+                else if (i_dComIfGs_isEventBit(0x0810)) {
                     layer = 4;
                 }
 
                 // Watched cutscene after leaving Goron Mines
-                else if (dComIfGs_isEventBit(0x1320)) {
+                else if (i_dComIfGs_isEventBit(0x1320)) {
                     layer = 2;
                     dComIfG_get_timelayer(&layer);
                 }
 
                 // Cleared Goron Mines
-                else if (dComIfGs_isEventBit(0x0701)) {
+                else if (i_dComIfGs_isEventBit(0x0701)) {
                     layer = 12;
                 }
 
                 // Defeated King Bulblin 1
-                else if (dComIfGs_isEventBit(0x0A08)) {
+                else if (i_dComIfGs_isEventBit(0x0A08)) {
                     layer = 2;
                     dComIfG_get_timelayer(&layer);
                 }
 
                 // King Bulblin 1 trigger activated
-                else if (dComIfGs_isEventBit(0x0608)) {
+                else if (i_dComIfGs_isEventBit(0x0608)) {
                     layer = 1;
                 }
             }
@@ -603,19 +591,19 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
             // Stage is Kakariko Village Interiors or Graveyard Interiors
             else if (!strcmp(stageName, "R_SP109") || !strcmp(stageName, "R_SP209")) {
                 // Stage is Kakariko Interiors and room is Barnes shop and Cleared Lakebed Temple
-                if (!strcmp(stageName, "R_SP109") && roomId == 1 && dComIfGs_isEventBit(0x0904)) {
+                if (!strcmp(stageName, "R_SP109") && roomId == 1 && i_dComIfGs_isEventBit(0x0904)) {
                     layer = 4;
                     dComIfG_get_timelayer(&layer);
 
                 } else {
                     // Defeated King Bulblin 1
-                    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[85])) {
+                    if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[85])) {
                         layer = 2;
                         dComIfG_get_timelayer(&layer);
                     }
 
                     // King Bulblin 1 trigger activated
-                    else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[53])) {
+                    else if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[53])) {
                         layer = 1;
                     }
                 }
@@ -624,7 +612,7 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
             // Stage is Death Mountain
             else if (!strcmp(stageName, "F_SP110")) {
                 // Cleared Goron Mines
-                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[64])) {
+                if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[64])) {
                     layer = 2;
                 }
             }
@@ -632,22 +620,22 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
             // Stage is Death Mountain Interiors
             else if (!strcmp(stageName, "R_SP110")) {
                 // Returned Wood Statue to Ilia
-                if (dComIfGs_isEventBit(0x2320)) {
+                if (i_dComIfGs_isEventBit(0x2320)) {
                     layer = 3;
                 }
 
                 // Cleared Temple of Time
-                else if (dComIfGs_isEventBit(0x2004)) {
+                else if (i_dComIfGs_isEventBit(0x2004)) {
                     layer = 4;
                 }
 
                 // Obtained Master Sword
-                else if (dComIfGs_isEventBit(0x2020)) {
+                else if (i_dComIfGs_isEventBit(0x2020)) {
                     layer = 2;
                 }
 
                 // Cleared Goron Mines
-                else if (dComIfGs_isEventBit(0x0701)) {
+                else if (i_dComIfGs_isEventBit(0x0701)) {
                     layer = 1;
                 }
             }
@@ -659,29 +647,29 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                 // Stage is Lake Hylia and room is Lake
                 if (!strcmp(stageName, "F_SP115") && roomId == 0) {
                     // Repaired Sky Cannon
-                    if (dComIfGs_isEventBit(0x3B08)) {
+                    if (i_dComIfGs_isEventBit(0x3B08)) {
                         layer = 3;
                     }
 
                     // Warped Sky Cannon to Lake Hylia
-                    else if (dComIfGs_isEventBit(0x3120)) {
+                    else if (i_dComIfGs_isEventBit(0x3120)) {
                         layer = 1;
                     }
 
                     // Cleared Lakebed Temple
-                    else if (dComIfGs_isEventBit(0x0904)) {
+                    else if (i_dComIfGs_isEventBit(0x0904)) {
                         layer = 2;
                     }
                 }
 
                 // Stage is Telma's Bar and room is Bar and Obtained Master Sword
                 else if (!strcmp(stageName, "R_SP116") && roomId == 5 &&
-                         dComIfGs_isEventBit(0x2020)) {
+                         i_dComIfGs_isEventBit(0x2020)) {
                     layer = 4;
                 }
 
                 // Completed Midna's Desperate Hour and Stage is Castle Town
-                else if (dComIfGs_isEventBit(0x1E08) && !strcmp(stageName, "F_SP116")) {
+                else if (i_dComIfGs_isEventBit(0x1E08) && !strcmp(stageName, "F_SP116")) {
                     // Room is not East, South, or North Castle Town
                     if (roomId != 4 && roomId != 3 && roomId != 1) {
                         layer = 0;
@@ -690,11 +678,11 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                     }
                 } else {
                     // Cleared Lakebed Temple
-                    if (dComIfGs_isEventBit(0x0904)) {
+                    if (i_dComIfGs_isEventBit(0x0904)) {
                         // Stage is Lake Hylia and room is Fountain and haven't started Midna's
                         // Desperate Hour
                         if ((!strcmp(stageName, "F_SP115") && roomId == 1) &&
-                            !dComIfGs_isEventBit(0x0C01)) {
+                            !i_dComIfGs_isEventBit(0x0C01)) {
                             layer = 9;
                         } else {
                             layer = 2;
@@ -703,7 +691,7 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                         // Stage is Castle Town and room is South Castle Town and Finished Telma
                         // Wagon Escort
                         if ((!strcmp(stageName, "F_SP116") && roomId == 3) &&
-                            dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[68])) {
+                            i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[68])) {
                             layer = 1;
                         }
                     }
@@ -713,7 +701,7 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
             // Stage is Zora's Domain
             else if (!strcmp(stageName, "F_SP113")) {
                 // Cleared Snowpeak Ruins
-                if (dComIfGs_isEventBit(0x2008)) {
+                if (i_dComIfGs_isEventBit(0x2008)) {
                     layer = 2;
                 }
             }
@@ -721,7 +709,7 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
             // Stage is Upper Zora's River
             else if (!strcmp(stageName, "F_SP126")) {
                 // Unlocked Iza's River Ride (1)
-                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[95])) {
+                if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[95])) {
                     layer = 1;
                 }
             }
@@ -731,7 +719,7 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                 layer = 8;
 
                 // Used Sky Cannon to go to Desert
-                if (dComIfGs_isEventBit(0x4008)) {
+                if (i_dComIfGs_isEventBit(0x4008)) {
                     layer = 0;
                 }
             }
@@ -739,12 +727,12 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
             // Stage is Zora's River
             else if (!strcmp(stageName, "F_SP112")) {
                 // Unlocked Iza's River Ride (1)
-                if (dComIfGs_isEventBit(0x0B01)) {
+                if (i_dComIfGs_isEventBit(0x0B01)) {
                     layer = 1;
                 }
 
                 // Started Iza's River Ride (1)
-                else if (dComIfGs_isEventBit(0x0902)) {
+                else if (i_dComIfGs_isEventBit(0x0902)) {
                     layer = 2;
                 }
             }
@@ -754,7 +742,7 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                 // Room is Main Village
                 if (roomId == 0) {
                     // Tamed Epona
-                    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[56])) {
+                    if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[56])) {
                         layer = 4;
                         dComIfG_get_timelayer(&layer);
                     }
@@ -766,17 +754,17 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                     }
 
                     // Escaped Hyrule Castle Sewers (1st Time)
-                    else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[47])) {
+                    else if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[47])) {
                         layer = 1;
                     }
 
                     // Finished Ordon Day 2
-                    else if (dComIfGs_isEventBit(0x4510)) {
+                    else if (i_dComIfGs_isEventBit(0x4510)) {
                         layer = 7;
                     }
 
                     // Finished Ordon Day 1
-                    else if (dComIfGs_isEventBit(0x4A40)) {
+                    else if (i_dComIfGs_isEventBit(0x4A40)) {
                         layer = 0;
                     } else {
                         layer = 6;
@@ -791,17 +779,17 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                     }
 
                     // Escaped Hyrule Castle Sewers (1st Time)
-                    else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[47])) {
+                    else if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[47])) {
                         layer = 1;
                     }
 
                     // Finished Ordon Day 2
-                    else if (dComIfGs_isEventBit(0x4510)) {
+                    else if (i_dComIfGs_isEventBit(0x4510)) {
                         layer = 0;
                     }
 
                     // Finished Ordon Day 1
-                    else if (dComIfGs_isEventBit(0x4A40)) {
+                    else if (i_dComIfGs_isEventBit(0x4A40)) {
                         layer = 4;
                     } else {
                         layer = 3;
@@ -822,7 +810,7 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                 // Room is Shield house
                 else if (roomId == 2) {
                     // Watched cutscene after defeating King Bulblin 1
-                    if (dComIfGs_isEventBit(0x0780)) {
+                    if (i_dComIfGs_isEventBit(0x0780)) {
                         layer = 3;
                     }
 
@@ -832,7 +820,7 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                     }
 
                     // Escaped Hyrule Castle Sewers (1st Time)
-                    else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[47])) {
+                    else if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[47])) {
                         layer = 1;
                     }
                 }
@@ -840,7 +828,7 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                 // Room is Rusl and Uli's house
                 else if (roomId == 5) {
                     // Tamed Epona
-                    if (dComIfGs_isEventBit(0x0601)) {
+                    if (i_dComIfGs_isEventBit(0x0601)) {
                         layer = 4;
                     }
 
@@ -861,17 +849,17 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                     }
 
                     // Escaped Hyrule Castle Sewers (1st Time)
-                    else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[47])) {
+                    else if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[47])) {
                         layer = 4;
                     }
 
                     // Finished Ordon Day 2
-                    else if (dComIfGs_isEventBit(0x4510)) {
+                    else if (i_dComIfGs_isEventBit(0x4510)) {
                         layer = 0;
                     }
 
                     // Finished Ordon Day 1
-                    else if (dComIfGs_isEventBit(0x4A20)) {
+                    else if (i_dComIfGs_isEventBit(0x4A20)) {
                         layer = 3;
                     } else {
                         layer = 1;
@@ -884,7 +872,7 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                 }
 
                 // Escaped Hyrule Castle Sewers (1st Time)
-                else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[47])) {
+                else if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[47])) {
                     layer = 4;
                 }
             }
@@ -898,22 +886,22 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                 }
 
                 // Escaped Hyrule Castle Sewers (1st Time)
-                else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[47])) {
+                else if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[47])) {
                     layer = 1;
                 }
 
                 // Watched cutscene after herding goats on Ordon Day 3
-                else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[169])) {
+                else if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[169])) {
                     layer = 10;
                 }
 
                 // Finished Ordon Day 2
-                else if (dComIfGs_isEventBit(0x4510)) {
+                else if (i_dComIfGs_isEventBit(0x4510)) {
                     layer = 9;
                 }
 
                 // Finished Ordon Day 1
-                else if (dComIfGs_isEventBit(0x4A40)) {
+                else if (i_dComIfGs_isEventBit(0x4A40)) {
                     layer = 11;
                 } else {
                     layer = 12;
@@ -923,17 +911,17 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
             // Stage is Hyrule Field
             else if (!strcmp(stageName, "F_SP121")) {
                 // Completed Midna's Desperate Hour
-                if (dComIfGs_isEventBit(0x1E08)) {
+                if (i_dComIfGs_isEventBit(0x1E08)) {
                     layer = 6;
                 }
 
                 // Started Midna's Desperate Hour
-                else if (dComIfGs_isEventBit(0x0C01)) {
+                else if (i_dComIfGs_isEventBit(0x0C01)) {
                     layer = 4;
                 }
 
                 // Finished Telma Wagon Escort
-                else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[68])) {
+                else if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[68])) {
                     layer = 0;
                 }
 
@@ -951,12 +939,12 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                 // Room is Outside Castle Town - West
                 if (roomId == 8) {
                     // Completed Midna's Desperate Hour
-                    if (dComIfGs_isEventBit(0x1E08)) {
+                    if (i_dComIfGs_isEventBit(0x1E08)) {
                         layer = 6;
                     }
 
                     // Started Midna's Desperate Hour
-                    else if (dComIfGs_isEventBit(0x0C01)) {
+                    else if (i_dComIfGs_isEventBit(0x0C01)) {
                         layer = 4;
                     }
                 }
@@ -964,22 +952,22 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                 // Room is Outside Castle Town - South
                 else if (roomId == 16) {
                     // Obtained Wood Statue
-                    if (dComIfGs_isEventBit(0x2204)) {
+                    if (i_dComIfGs_isEventBit(0x2204)) {
                         layer = 6;
                     }
 
                     // Talked to Louise after getting Medicine Scent
-                    else if (dComIfGs_isEventBit(0x2102)) {
+                    else if (i_dComIfGs_isEventBit(0x2102)) {
                         layer = 1;
                     }
 
                     // Completed Midna's Desperate Hour
-                    else if (dComIfGs_isEventBit(0x1E08)) {
+                    else if (i_dComIfGs_isEventBit(0x1E08)) {
                         layer = 6;
                     }
 
                     // Started Midna's Desperate Hour
-                    else if (dComIfGs_isEventBit(0x0C01)) {
+                    else if (i_dComIfGs_isEventBit(0x0C01)) {
                         layer = 4;
                     }
                 }
@@ -987,12 +975,12 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                 // Room is Outside Castle Town - East
                 else if (roomId == 17) {
                     // Completed Midna's Desperate Hour
-                    if (dComIfGs_isEventBit(0x1E08)) {
+                    if (i_dComIfGs_isEventBit(0x1E08)) {
                         layer = 0;
                     }
 
                     // Started Midna's Desperate Hour
-                    else if (dComIfGs_isEventBit(0x0C01)) {
+                    else if (i_dComIfGs_isEventBit(0x0C01)) {
                         layer = 4;
                     }
                 }
@@ -1000,7 +988,7 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
 
             // Stage is Hidden Village
             else if (!strcmp(stageName, "F_SP128")) {
-                if (dComIfGs_isEventBit(0x2320)) {
+                if (i_dComIfGs_isEventBit(0x2320)) {
                     layer = 1;
                 }
             }
@@ -1010,7 +998,7 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                 // Room is Jovani's house
                 if (roomId == 5) {
                     // Completed Midna's Desperate Hour
-                    if (dComIfGs_isEventBit(0x1E08)) {
+                    if (i_dComIfGs_isEventBit(0x1E08)) {
                         layer = 0;
                     } else {
                         layer = 1;
@@ -1018,7 +1006,7 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
                 }
 
                 // Fundraised Malo Mart Castle Town branch
-                else if (dComIfGs_isEventBit(0x2210)) {
+                else if (i_dComIfGs_isEventBit(0x2210)) {
                     layer = 1;
                 }
             }
@@ -1026,7 +1014,7 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
             // Stage is Sacred Grove
             else if (!strcmp(stageName, "F_SP117")) {
                 // Cleared Snowpeak Ruins
-                if (dComIfGs_isEventBit(0x2008)) {
+                if (i_dComIfGs_isEventBit(0x2008)) {
                     layer = 2;
                 }
             }
@@ -1034,17 +1022,17 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
             // Stage is Bulblin Camp
             else if (!strcmp(stageName, "F_SP118")) {
                 // Fixed the Mirror of Twilight
-                if (dComIfGs_isEventBit(0x2B08)) {
+                if (i_dComIfGs_isEventBit(0x2B08)) {
                     layer = 3;
                 }
 
                 // Cleared Arbiter's Grounds
-                else if (dComIfGs_isEventBit(0x2010)) {
+                else if (i_dComIfGs_isEventBit(0x2010)) {
                     layer = 2;
                 }
 
                 // Escaped the burning tent
-                else if (dComIfGs_isEventBit(0x0B40)) {
+                else if (i_dComIfGs_isEventBit(0x0B40)) {
                     layer = 1;
                 }
             }
@@ -1052,7 +1040,7 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
             // Stage is Faron Woods Cave
             else if (!strcmp(stageName, "D_SB10")) {
                 // Finished Ordon Day 2
-                if (dComIfGs_isEventBit(0x4510)) {
+                if (i_dComIfGs_isEventBit(0x4510)) {
                     layer = 1;
                 }
             }
@@ -1095,7 +1083,7 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
     if (layer == 14) {
         int tmp = layer;
         // Warped meteor to Zora's Domain
-        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[65])) {
+        if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[65])) {
             // Stage is Zora's River, Zora's Domain, Lake Hylia, Castle Town, Telma's Bar, R_SP115,
             // Hyrule Field, Upper Zora's River, or Outside Castle Town
             if (!strcmp(stageName, "F_SP112") || !strcmp(stageName, "F_SP113") ||
@@ -1117,14 +1105,14 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
         // Stage is Hyrule Castle Sewers and room is Prison Cell
         if (!strcmp(stageName, "R_SP107") && roomId == 0) {
             // Haven't been to Hyrule Castle Sewers
-            if (!dComIfGs_isEventBit(0x4D08)) {
+            if (!i_dComIfGs_isEventBit(0x4D08)) {
                 layer = 11;
             }
         }
         // Stage and room is Zant Throne Room
         else if (!strcmp(stageName, "D_MN08A") && roomId == 10) {
             // Defeated Zant
-            if (dComIfGs_isEventBit(0x5410)) {
+            if (i_dComIfGs_isEventBit(0x5410)) {
                 layer = 1;
             } else {
                 layer = 0;
@@ -1416,12 +1404,6 @@ s8 dComIfGp_getReverb(int roomNo) {
     return dStage_roomRead_dt_c_GetReverbStage(*dComIfGp_getStageRoom(), roomNo);
 }
 
-inline int dComIfGd_setSimpleShadow(cXyz* pos, f32 param_1, f32 param_2, cXyz* param_3, s16 angle,
-                                    f32 param_5, _GXTexObj* tex) {
-    return g_dComIfG_gameInfo.drawlist.setSimpleShadow(pos, param_1, param_2, param_3, angle,
-                                                       param_5, tex);
-}
-
 /* 8002D0B4-8002D1AC 0279F4 00F8+00 0/0 3/3 34/34 .text
  * dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj */
 int dComIfGd_setSimpleShadow(cXyz* pos, f32 param_1, f32 param_2, cBgS_PolyInfo& param_3, s16 angle,
@@ -1546,7 +1528,7 @@ void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer) {
 BOOL dComIfGs_isStageTbox(int i_stageNo, int i_no) {
     stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
 
-    if (i_stageNo == dStage_stagInfo_GetSaveTbl(stag_info)) {
+    if (i_stageNo == i_dStage_stagInfo_GetSaveTbl(stag_info)) {
         return dComIfGs_isTbox(i_no);
     } else {
         return dComIfGs_isSaveTbox(i_stageNo, i_no);
@@ -1556,7 +1538,7 @@ BOOL dComIfGs_isStageTbox(int i_stageNo, int i_no) {
 void dComIfGs_onStageSwitch(int i_stageNo, int i_no) {
     stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
 
-    if (i_stageNo == dStage_stagInfo_GetSaveTbl(stag_info)) {
+    if (i_stageNo == i_dStage_stagInfo_GetSaveTbl(stag_info)) {
         dComIfGs_onSwitch(i_no, -1);
     }
 
@@ -1566,7 +1548,7 @@ void dComIfGs_onStageSwitch(int i_stageNo, int i_no) {
 void dComIfGs_offStageSwitch(int i_stageNo, int i_no) {
     stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
 
-    if (i_stageNo == dStage_stagInfo_GetSaveTbl(stag_info)) {
+    if (i_stageNo == i_dStage_stagInfo_GetSaveTbl(stag_info)) {
         dComIfGs_offSwitch(i_no, -1);
     }
 
@@ -1576,7 +1558,7 @@ void dComIfGs_offStageSwitch(int i_stageNo, int i_no) {
 BOOL dComIfGs_isStageSwitch(int i_stageNo, int i_no) {
     stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
 
-    if (i_stageNo == dStage_stagInfo_GetSaveTbl(stag_info)) {
+    if (i_stageNo == i_dStage_stagInfo_GetSaveTbl(stag_info)) {
         return dComIfGs_isSwitch(i_no, -1);
     } else {
         return dComIfGs_isSaveSwitch(i_stageNo, i_no);
@@ -1586,7 +1568,7 @@ BOOL dComIfGs_isStageSwitch(int i_stageNo, int i_no) {
 void dComIfGs_onStageBossEnemy(int i_stageNo) {
     stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
 
-    if (i_stageNo == dStage_stagInfo_GetSaveTbl(stag_info)) {
+    if (i_stageNo == i_dStage_stagInfo_GetSaveTbl(stag_info)) {
         dComIfGs_onStageBossEnemy();
     }
 
@@ -1596,7 +1578,7 @@ void dComIfGs_onStageBossEnemy(int i_stageNo) {
 s32 dComIfGs_isDungeonItemWarp(int i_stageNo) {
     stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
 
-    if (i_stageNo == dStage_stagInfo_GetSaveTbl(stag_info)) {
+    if (i_stageNo == i_dStage_stagInfo_GetSaveTbl(stag_info)) {
         return dComIfGs_isDungeonItemWarp();
     } else {
         return g_dComIfG_gameInfo.info.getSavedata()
@@ -1620,10 +1602,6 @@ void dComIfGs_sense_type_change_Set(s8 param_0) {
 
 s8 dComIfGs_sense_type_change_Get() {
     return g_dComIfG_gameInfo.field_0x1ddfa;
-}
-
-inline void dComIfGs_onSvZoneSwitch(int zoneNo, int swBit) {
-    g_dComIfG_gameInfo.info.getZone(zoneNo).getZoneBit().onSwitch(swBit);
 }
 
 /* 8002D94C-8002D9B0 02828C 0064+00 0/0 1/1 17/17 .text            dComIfGs_onZoneSwitch__Fii */
@@ -1835,7 +1813,7 @@ void dComIfGp_mapHide() {
 }
 
 bool dComIfGp_checkMapShow() {
-    return !dComIfGs_isEventBit(0x1D01);
+    return !i_dComIfGs_isEventBit(0x1D01);
 }
 
 /* 8002E0E0-8002E188 028A20 00A8+00 0/0 9/9 0/0 .text            dComIfGp_setHeapLockFlag__FUc */
@@ -1947,8 +1925,8 @@ int dComIfGs_checkGetInsectNum() {
     for (int i = 0; i < ARRAY_SIZE(l_itemno); i++) {
         u8 insectId = *insectList;
         insectList++;
-        if (dComIfGs_isItemFirstBit(insectId) &&
-            dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x191 + i])) {
+        if (i_dComIfGs_isItemFirstBit(insectId) &&
+            i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x191 + i])) {
             insectCount++;
         }
     }
@@ -2059,12 +2037,6 @@ void dComIfGp_addSelectItemNum(int index, s16 num) {
         selectItem = dComIfGs_getSelectItemIndex(index);
         dComIfGs_addBottleNum(selectItem - SLOT_11, num);
     }
-}
-
-inline int dComIfGd_setRealShadow(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3,
-                                  f32 param_4, f32 param_5, dKy_tevstr_c* param_6) {
-    return g_dComIfG_gameInfo.drawlist.setRealShadow(param_0, param_1, param_2, param_3, param_4,
-                                                     param_5, param_6);
 }
 
 /* 8002E910-8002E974 029250 0064+00 0/0 5/5 137/137 .text
@@ -2198,7 +2170,7 @@ void dComIfGs_setKeyNum(int i_stageNo, u8 keyNum) {
     if (dComIfGp_getStageStagInfo()) {
         stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
 
-        if (i_stageNo == dStage_stagInfo_GetSaveTbl(stag_info)) {
+        if (i_stageNo == i_dStage_stagInfo_GetSaveTbl(stag_info)) {
             dComIfGs_setKeyNum(keyNum);
         }
     }
@@ -2415,7 +2387,7 @@ BOOL dComIfGs_Wolf_Change_Check() {
     BOOL is_wolf = false;
 
     // Transforming Unlocked
-    if (dComIfGs_isEventBit(0x0D04)) {
+    if (i_dComIfGs_isEventBit(0x0D04)) {
         is_wolf = dComIfGs_getTransformStatus();
     } else if (dComIfGs_isTransformLV(0) && !dComIfGs_isDarkClearLV(0)) {
         is_wolf = true;
@@ -2552,10 +2524,6 @@ asm void dComIfGs_offVisitedRoom(int param_0) {
 #include "asm/d/com/d_com_inf_game/dComIfGs_offVisitedRoom__Fi.s"
 }
 #pragma pop
-
-inline BOOL dComIfGs_isSaveVisitedRoom(int param_0, int param_1) {
-    return g_dComIfG_gameInfo.info.getSavedata().getSave2(param_0)->isVisitedRoom(param_1);
-}
 
 /* 8002FC98-8002FCF4 02A5D8 005C+00 0/0 1/1 0/0 .text            dComIfGs_isVisitedRoom__Fi */
 // instructions swapped

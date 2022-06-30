@@ -222,11 +222,6 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-// move these later
-inline void mDoAud_rainPlay(s32 enable) {
-    g_mEnvSeMgr.startRainSe(enable, 0);
-}
-
 /* 80056AA8-80056AF8 0513E8 0050+00 3/3 0/0 0/0 .text dKyw_setDrawPacketList__FP9J3DPacketi */
 static J3DPacket* dKyw_setDrawPacketList(J3DPacket* p_packet, int param_1) {
     if (p_packet == NULL) {

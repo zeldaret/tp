@@ -97,17 +97,11 @@ extern "C" void stopPatternedRumble__Q210JUTGamePad7CRumbleFs();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
 extern "C" extern u8 m_gamePad__8mDoCPd_c[16];
-extern "C" extern Z2SoundMgr* data_80450B60;
 extern "C" extern u8 struct_80450D38;
 
 //
 // Declarations:
 //
-
-// move / fix for JASGlobalInstance eventually
-inline Z2SoundMgr* Z2GetSoundMgr() {
-    return data_80450B60;
-}
 
 /* 80450D38-80450D40 0008+00 s=0 e=1 z=0  None .sbss      None */
 u8 struct_80450D38;

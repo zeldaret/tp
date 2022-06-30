@@ -212,10 +212,6 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-inline bool dComIfGp_checkPlayerStatus0(int param_0, u32 param_1) {
-    return g_dComIfG_gameInfo.play.checkPlayerStatus(param_0, 0, param_1);
-}
-
 /* ############################################################################################## */
 /* 80398258-80398280 0248B8 0028+00 4/4 0/0 0/0 .rodata          a_tag$3949 */
 static u64 const a_tag[5] = {
@@ -2474,7 +2470,7 @@ asm void dMeter2Draw_c::getItemSubject() {
 /* 8021BCAC-8021BCC0 2165EC 0014+00 0/0 1/1 0/0 .text            getPlayerSubject__13dMeter2Draw_cFv
  */
 bool dMeter2Draw_c::getPlayerSubject() {
-    return dComIfGp_checkPlayerStatus0(0, 0x8000000);
+    return i_dComIfGp_checkPlayerStatus0(0, 0x8000000);
 }
 
 /* 8021BCC0-8021BDD0 216600 0110+00 2/2 2/2 0/0 .text            isBButtonShow__13dMeter2Draw_cFb */

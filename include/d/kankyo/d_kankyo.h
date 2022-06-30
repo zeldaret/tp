@@ -490,7 +490,6 @@ public:
 };  // Size: 0x1310
 
 extern dScnKy_env_light_c g_env_light;
-extern Z2EnvSeMgr g_mEnvSeMgr;
 
 STATIC_ASSERT(sizeof(dScnKy_env_light_c) == 4880);
 

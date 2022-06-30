@@ -65,10 +65,6 @@ extern "C" extern bool data_80450680;
 // Declarations:
 //
 
-inline dStage_stageDt_c* dComIfGp_getStage() {
-    return &g_dComIfG_gameInfo.play.getStage();
-}
-
 /* ############################################################################################## */
 /* 80450F98-80450F9C 000498 0004+00 2/2 0/0 0/0 .sbss            mTypeGroupData__7dTres_c */
 dTres_c::typeGroupData_c* dTres_c::mTypeGroupData;
@@ -85,7 +81,7 @@ asm int dTres_c::createWork() {
 
 /* 8009BC18-8009BC60 096558 0048+00 0/0 1/1 0/0 .text            create__7dTres_cFv */
 void dTres_c::create() {
-    if (dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) != 3) {
+    if (dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) != 3) {
         reset();
     }
 }
@@ -120,7 +116,7 @@ void dTres_c::reset() {
  */
 #ifdef NONMATCHING
 void dTres_c::addData(dTres_c::list_class* p_list, s8 roomNo) {
-    if (dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) != 3) {
+    if (dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) != 3) {
         reset();
 
         typeGroupData_c* listData = p_list->field_0x4;
