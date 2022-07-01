@@ -21,11 +21,9 @@ try:
     import click
     import logging
     import hashlib
-    import git
     import libdol
     import librel
     import libarc
-    import yaz0
     import io
     import extract_game_assets
 
@@ -621,9 +619,15 @@ def calculate_progress(build_path: Path, matching: bool, format: str, print_rels
         open("Progress.md","w").write(tableString)
     elif format == "CSV":
         version = 1
-        git_object = git.Repo().head.object
-        timestamp = str(git_object.committed_date)
-        git_hash = git_object.hexsha
+        try:
+            import git
+            git_object = git.Repo().head.object
+            timestamp = str(git_object.committed_date)
+            git_hash = git_object.hexsha
+        except ImportError:
+            LOG.warning("can't import git, some fields will be missing!")
+            timestamp = ""
+            git_hash = ""
 
         data = [
             str(version),
@@ -1113,10 +1117,6 @@ def check_sha1(game_path: Path, build_path: Path, include_rels: bool):
         for rel_filepath in build_rels_path:
             with rel_filepath.open("rb") as file:
                 data = bytearray(file.read())
-                yaz0_data = data
-                if struct.unpack(">I", data[:4])[0] == 0x59617A30:
-                    data = yaz0.decompress(io.BytesIO(data))
-
                 rel = librel.read(data)
                 CURRENT[rel.index] = (
                     str(rel_filepath),
