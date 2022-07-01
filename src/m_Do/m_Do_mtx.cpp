@@ -310,26 +310,14 @@ SECTION_SDATA Mtx* mDoMtx_stack_c::next = (Mtx*)&mDoMtx_stack_c::buffer;
 SECTION_SDATA Mtx* mDoMtx_stack_c::end = (Mtx*)&lit_4048;
 
 /* 8000CCC8-8000CD14 007608 004C+00 0/0 0/0 24/24 .text            push__14mDoMtx_stack_cFv */
-// regalloc
-#ifdef NONMATCHING
 bool mDoMtx_stack_c::push() {
     if (next >= end) {
         return false;
     }
-    next++;
-    PSMTXCopy(now, *next);
+    Mtx* old = next++;
+    PSMTXCopy(now, *old);
     return true;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool mDoMtx_stack_c::push() {
-    nofralloc
-#include "asm/m_Do/m_Do_mtx/push__14mDoMtx_stack_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8000CD14-8000CD64 007654 0050+00 0/0 0/0 24/24 .text            pop__14mDoMtx_stack_cFv */
 bool mDoMtx_stack_c::pop() {

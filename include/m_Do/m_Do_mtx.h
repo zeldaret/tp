@@ -26,8 +26,8 @@ inline void mDoMtx_multVecSR(Mtx m, const Vec* src, Vec* dst) {
 
 class mDoMtx_stack_c {
 public:
-    /* 8000CCC8 */ bool push();
-    /* 8000CD14 */ bool pop();
+    /* 8000CCC8 */ static bool push();
+    /* 8000CD14 */ static bool pop();
     /* 8000CD64 */ static void transS(cXyz const&);
     /* 8000CDD4 */ static void transM(cXyz const&);
     /* 8000CD9C */ static void transM(f32, f32, f32);

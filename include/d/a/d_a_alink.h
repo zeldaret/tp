@@ -2572,11 +2572,12 @@ public:
     BOOL i_checkReinRide() const { return mRideStatus == 1 || mRideStatus == 2; }
 
     bool checkFishingCastMode() const {
+        bool var_r5;
         bool var_r4 = 1;
         bool var_r3 = 0;
         
         if (mProcID == PROC_FISHING_CAST) {
-            bool var_r5 = 0;
+            var_r5 = 0;
 
             if (mItemActor.getActor() != NULL && mItemActor.getActor()->mEvtInfo.i_checkCommandDemoAccrpt() != 0) {
                 var_r5 = 1;
@@ -4633,7 +4634,7 @@ public:
         FORCE_PANIC = 8,
     };
 
-    enum daMidna_FLG0 { NPC_NEAR = 0x100000, NPC_FAR = 0x40000 };
+    enum daMidna_FLG0 { NPC_NEAR = 0x100000, NPC_FAR = 0x40000, NO_DRAW = 0x2000 };
 
     enum daMidna_FLG1 { FORCE_NORMAL_COLOR = 8, FORCE_TIRED_COLOR = 4 };
 
@@ -4699,6 +4700,7 @@ public:
     void changeDemoMode(u32 mode) { mDemoMode = mode; }
     BOOL checkNpcNear() { return checkStateFlg0(NPC_NEAR); }
     BOOL checkNpcFar() { return checkStateFlg0(NPC_FAR); }
+    BOOL checkNoDraw() const { return checkStateFlg0(NO_DRAW); }
 
     inline bool checkMidnaRealBody();
 

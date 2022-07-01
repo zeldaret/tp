@@ -16,13 +16,6 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
-struct daTagMhint_c {
-    /* 805A56B8 */ void create();
-    /* 805A58E8 */ ~daTagMhint_c();
-    /* 805A5974 */ void eventOrder();
-    /* 805A5AE4 */ void execute();
-};
-
 struct daPy_py_c {
     static u8 m_midnaActor[4];
 };

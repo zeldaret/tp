@@ -32,8 +32,8 @@ class dEvt_control_c {
 public:
     dEvt_control_c();
     s32 orderOld(u16, u16, u16, u16, void*, void*, void const*);
-    s32 order(u16 eventType, u16 priority, u16 flag, u16 param_3, void* param_4,
-              void* param_5, s16 eventID, u8 infoIdx);
+    s32 order(u16 eventType, u16 priority, u16 flag, u16 param_3, void* param_4, void* param_5,
+              s16 eventID, u8 infoIdx);
     void setParam(dEvt_order_c*);
     s32 beforeFlagProc(dEvt_order_c*);
     void afterFlagProc(dEvt_order_c*);
@@ -41,9 +41,9 @@ public:
     int talkCheck(dEvt_order_c*);
     int talkXyCheck(dEvt_order_c*);
     int catchCheck(dEvt_order_c*);
-    void talkEnd();
+    int talkEnd();
     int demoCheck(dEvt_order_c*);
-    void demoEnd();
+    int demoEnd();
     int potentialCheck(dEvt_order_c*);
     int doorCheck(dEvt_order_c*);
     int itemCheck(dEvt_order_c*);

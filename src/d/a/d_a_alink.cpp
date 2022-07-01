@@ -35974,7 +35974,8 @@ BOOL daPy_py_c::checkEquipHeavyBoots() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fopAcM_GetName(void* param_0) {
+// asm void fopAcM_GetName(void* param_0) {
+extern "C" asm void fopAcM_GetName__FPv() {
     nofralloc
 #include "asm/d/a/d_a_alink/fopAcM_GetName__FPv.s"
 }
