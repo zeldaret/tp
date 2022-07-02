@@ -6,6 +6,7 @@
 #include "d/d_camera.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "SSystem/SComponent/c_m3d_g_pla.h"
 
 //
 // Types:

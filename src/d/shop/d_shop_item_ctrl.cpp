@@ -6,6 +6,7 @@
 #include "d/shop/d_shop_item_ctrl.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Forward References:

@@ -13,6 +13,7 @@
 #include "JSystem/J3DGraphBase/J3DTevs.h"
 
 #include "JSystem/J3DGraphBase/J3DTexture.h"
+#include "JSystem/J3DGraphBase/J3DGD.h"
 
 //
 // Forward References:
@@ -81,12 +82,6 @@ J3DSys::J3DSys() {
         sTexCoordScaleTable[i + 2] = 0;
         sTexCoordScaleTable[i + 3] = 0;
     }
-}
-
-static inline void J3DFifoLoadIndx(u8 cmd, u16 indx, u16 addr) {
-    GFX_FIFO(u8) = cmd;
-    GFX_FIFO(u16) = indx;
-    GFX_FIFO(u16) = addr;
 }
 
 /* 8030FEC0-8030FEE4 30A800 0024+00 0/0 1/1 0/0 .text            loadPosMtxIndx__6J3DSysCFiUs */

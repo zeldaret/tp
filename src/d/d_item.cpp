@@ -456,16 +456,6 @@ extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 // Declarations:
 //
 
-inline void dComIfGp_setItemLifeCount(float amount, u8 type) {
-    g_dComIfG_gameInfo.play.setItemLifeCount(amount, type);
-}
-inline void dComIfGp_setItemRupeeCount(int amount) {
-    g_dComIfG_gameInfo.play.setItemRupeeCount(amount);
-}
-inline int dComIfGs_isItemFirstBit(u8 i_no) {
-    return g_dComIfG_gameInfo.info.getPlayer().getGetItem().isFirstBit(i_no);
-}
-
 static void (*item_func_ptr[256])() = {
     item_func_HEART,
     item_func_GREEN_RUPEE,
@@ -724,10 +714,6 @@ static void (*item_func_ptr[256])() = {
     item_func_KEY_OF_FILONE,
     item_func_noentry,
 };
-
-inline u8 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
-    return param_0->field_0x09 >> 1 & 0x1f;
-}
 
 inline void getItemFunc(u8 i_no) {
     dComIfGs_onItemFirstBit(i_no);
@@ -1010,35 +996,35 @@ s32 checkItemGet(u8 item_id, int param_2) {
 }
 
 void item_func_HEART() {
-    dComIfGp_setItemLifeCount(4.0f, 0);
+    i_dComIfGp_setItemLifeCount(4.0f, 0);
 }
 
 void item_func_GREEN_RUPEE() {
-    dComIfGp_setItemRupeeCount(1);
+    i_dComIfGp_setItemRupeeCount(1);
 }
 
 void item_func_BLUE_RUPEE() {
-    dComIfGp_setItemRupeeCount(5);
+    i_dComIfGp_setItemRupeeCount(5);
 }
 
 void item_func_YELLOW_RUPEE() {
-    dComIfGp_setItemRupeeCount(10);
+    i_dComIfGp_setItemRupeeCount(10);
 }
 
 void item_func_RED_RUPEE() {
-    dComIfGp_setItemRupeeCount(20);
+    i_dComIfGp_setItemRupeeCount(20);
 }
 
 void item_func_PURPLE_RUPEE() {
-    dComIfGp_setItemRupeeCount(50);
+    i_dComIfGp_setItemRupeeCount(50);
 }
 
 void item_func_ORANGE_RUPEE() {
-    dComIfGp_setItemRupeeCount(100);
+    i_dComIfGp_setItemRupeeCount(100);
 }
 
 void item_func_SILVER_RUPEE() {
-    dComIfGp_setItemRupeeCount(200);
+    i_dComIfGp_setItemRupeeCount(200);
 }
 
 void item_func_S_MAGIC() {
@@ -1116,7 +1102,7 @@ void item_func_BOMB_INSECT_20() {
 void item_func_BOMB_INSECT_30() {}
 
 void item_func_RECOVER_FAILY() {
-    dComIfGp_setItemLifeCount(32.0f, 0);
+    i_dComIfGp_setItemLifeCount(32.0f, 0);
 }
 
 void item_func_TRIPLE_HEART() {}
@@ -1133,10 +1119,10 @@ void item_func_UTUWA_HEART() {
     dComIfGp_setItemMaxLifeCount(5);
 
     f32 max_life = dComIfGs_getMaxLifeGauge();
-    dComIfGp_setItemLifeCount(max_life, 0);
+    i_dComIfGp_setItemLifeCount(max_life, 0);
 
     stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
-    int tmp = dStage_stagInfo_GetSaveTbl(stag_info);
+    int tmp = i_dStage_stagInfo_GetSaveTbl(stag_info);
     dComIfGs_onStageLife();
 }
 
@@ -1643,7 +1629,7 @@ void item_func_LV7_DUNGEON_EXIT() {
 }
 
 void item_func_LINKS_SAVINGS() {
-    dComIfGp_setItemRupeeCount(50);
+    i_dComIfGp_setItemRupeeCount(50);
 }
 
 void item_func_SMALL_KEY2() {
@@ -1699,31 +1685,31 @@ s32 item_getcheck_func_HEART() {
 }
 
 s32 item_getcheck_func_GREEN_RUPEE() {
-    return dComIfGs_isItemFirstBit(GREEN_RUPEE);
+    return i_dComIfGs_isItemFirstBit(GREEN_RUPEE);
 }
 
 s32 item_getcheck_func_BLUE_RUPEE() {
-    return dComIfGs_isItemFirstBit(BLUE_RUPEE);
+    return i_dComIfGs_isItemFirstBit(BLUE_RUPEE);
 }
 
 s32 item_getcheck_func_YELLOW_RUPEE() {
-    return dComIfGs_isItemFirstBit(YELLOW_RUPEE);
+    return i_dComIfGs_isItemFirstBit(YELLOW_RUPEE);
 }
 
 s32 item_getcheck_func_RED_RUPEE() {
-    return dComIfGs_isItemFirstBit(RED_RUPEE);
+    return i_dComIfGs_isItemFirstBit(RED_RUPEE);
 }
 
 s32 item_getcheck_func_PURPLE_RUPEE() {
-    return dComIfGs_isItemFirstBit(PURPLE_RUPEE);
+    return i_dComIfGs_isItemFirstBit(PURPLE_RUPEE);
 }
 
 s32 item_getcheck_func_ORANGE_RUPEE() {
-    return dComIfGs_isItemFirstBit(ORANGE_RUPEE);
+    return i_dComIfGs_isItemFirstBit(ORANGE_RUPEE);
 }
 
 s32 item_getcheck_func_SILVER_RUPEE() {
-    return dComIfGs_isItemFirstBit(SILVER_RUPEE);
+    return i_dComIfGs_isItemFirstBit(SILVER_RUPEE);
 }
 
 s32 item_getcheck_func_S_MAGIC() {
@@ -1735,39 +1721,39 @@ s32 item_getcheck_func_L_MAGIC() {
 }
 
 s32 item_getcheck_func_BOMB_5() {
-    return dComIfGs_isItemFirstBit(BOMB_5);
+    return i_dComIfGs_isItemFirstBit(BOMB_5);
 }
 
 s32 item_getcheck_func_BOMB_10() {
-    return dComIfGs_isItemFirstBit(BOMB_10);
+    return i_dComIfGs_isItemFirstBit(BOMB_10);
 }
 
 s32 item_getcheck_func_BOMB_20() {
-    return dComIfGs_isItemFirstBit(BOMB_20);
+    return i_dComIfGs_isItemFirstBit(BOMB_20);
 }
 
 s32 item_getcheck_func_BOMB_30() {
-    return dComIfGs_isItemFirstBit(BOMB_30);
+    return i_dComIfGs_isItemFirstBit(BOMB_30);
 }
 
 s32 item_getcheck_func_ARROW_10() {
-    return dComIfGs_isItemFirstBit(ARROW_10);
+    return i_dComIfGs_isItemFirstBit(ARROW_10);
 }
 
 s32 item_getcheck_func_ARROW_20() {
-    return dComIfGs_isItemFirstBit(ARROW_20);
+    return i_dComIfGs_isItemFirstBit(ARROW_20);
 }
 
 s32 item_getcheck_func_ARROW_30() {
-    return dComIfGs_isItemFirstBit(ARROW_30);
+    return i_dComIfGs_isItemFirstBit(ARROW_30);
 }
 
 s32 item_getcheck_func_ARROW_1() {
-    return dComIfGs_isItemFirstBit(ARROW_1);
+    return i_dComIfGs_isItemFirstBit(ARROW_1);
 }
 
 s32 item_getcheck_func_PACHINKO_SHOT() {
-    return dComIfGs_isItemFirstBit(PACHINKO_SHOT);
+    return i_dComIfGs_isItemFirstBit(PACHINKO_SHOT);
 }
 
 s32 item_getcheck_func_WATER_BOMB_5() {
@@ -1791,15 +1777,15 @@ s32 item_getcheck_func_BOMB_INSECT_5() {
 }
 
 s32 item_getcheck_func_BOMB_INSECT_10() {
-    return dComIfGs_isItemFirstBit(BOMB_INSECT_10);
+    return i_dComIfGs_isItemFirstBit(BOMB_INSECT_10);
 }
 
 s32 item_getcheck_func_BOMB_INSECT_20() {
-    return dComIfGs_isItemFirstBit(BOMB_INSECT_20);
+    return i_dComIfGs_isItemFirstBit(BOMB_INSECT_20);
 }
 
 s32 item_getcheck_func_BOMB_INSECT_30() {
-    return dComIfGs_isItemFirstBit(BOMB_INSECT_30);
+    return i_dComIfGs_isItemFirstBit(BOMB_INSECT_30);
 }
 
 s32 item_getcheck_func_RECOVER_FAILY() {
@@ -1851,15 +1837,15 @@ s32 item_getcheck_func_MASTER_SWORD() {
 }
 
 s32 item_getcheck_func_WOOD_SHIELD() {
-    return dComIfGs_isItemFirstBit(WOOD_SHIELD);
+    return i_dComIfGs_isItemFirstBit(WOOD_SHIELD);
 }
 
 s32 item_getcheck_func_SHIELD() {
-    return dComIfGs_isItemFirstBit(SHIELD);
+    return i_dComIfGs_isItemFirstBit(SHIELD);
 }
 
 s32 item_getcheck_func_HYLIA_SHIELD() {
-    return dComIfGs_isItemFirstBit(HYLIA_SHIELD);
+    return i_dComIfGs_isItemFirstBit(HYLIA_SHIELD);
 }
 
 s32 item_getcheck_func_TKS_LETTER() {
@@ -1867,7 +1853,7 @@ s32 item_getcheck_func_TKS_LETTER() {
 }
 
 s32 item_getcheck_func_WEAR_CASUAL() {
-    return dComIfGs_isItemFirstBit(WEAR_CASUAL);
+    return i_dComIfGs_isItemFirstBit(WEAR_CASUAL);
 }
 
 s32 item_getcheck_func_WEAR_KOKIRI() {
@@ -1875,11 +1861,11 @@ s32 item_getcheck_func_WEAR_KOKIRI() {
 }
 
 s32 item_getcheck_func_ARMOR() {
-    return dComIfGs_isItemFirstBit(ARMOR);
+    return i_dComIfGs_isItemFirstBit(ARMOR);
 }
 
 s32 item_getcheck_func_WEAR_ZORA() {
-    return dComIfGs_isItemFirstBit(WEAR_ZORA);
+    return i_dComIfGs_isItemFirstBit(WEAR_ZORA);
 }
 
 s32 item_getcheck_func_MAGIC_LV1() {
@@ -1907,11 +1893,11 @@ s32 item_getcheck_func_ZORAS_JEWEL() {
 }
 
 s32 item_getcheck_func_HAWK_EYE() {
-    return dComIfGs_isItemFirstBit(HAWK_EYE);
+    return i_dComIfGs_isItemFirstBit(HAWK_EYE);
 }
 
 s32 item_getcheck_func_WOOD_STICK() {
-    return dComIfGs_isItemFirstBit(WOOD_STICK);
+    return i_dComIfGs_isItemFirstBit(WOOD_STICK);
 }
 
 s32 item_getcheck_func_BOOMERANG() {
@@ -1973,19 +1959,19 @@ s32 item_getcheck_func_COPY_ROD_2() {
 }
 
 s32 item_getcheck_func_BOMB_BAG_LV2() {
-    return dComIfGs_isItemFirstBit(BOMB_BAG_LV2);
+    return i_dComIfGs_isItemFirstBit(BOMB_BAG_LV2);
 }
 
 s32 item_getcheck_func_BOMB_BAG_LV1() {
-    return dComIfGs_isItemFirstBit(BOMB_BAG_LV1);
+    return i_dComIfGs_isItemFirstBit(BOMB_BAG_LV1);
 }
 
 s32 item_getcheck_func_BOMB_IN_BAG() {
-    return dComIfGs_isItemFirstBit(BOMB_IN_BAG);
+    return i_dComIfGs_isItemFirstBit(BOMB_IN_BAG);
 }
 
 s32 item_getcheck_func_LIGHT_ARROW() {
-    return dComIfGs_isItemFirstBit(LIGHT_ARROW);
+    return i_dComIfGs_isItemFirstBit(LIGHT_ARROW);
 }
 
 s32 item_getcheck_func_ARROW_LV1() {
@@ -2097,15 +2083,15 @@ s32 item_getcheck_func_OIL() {
 }
 
 s32 item_getcheck_func_NORMAL_BOMB() {
-    return dComIfGs_isItemFirstBit(NORMAL_BOMB);
+    return i_dComIfGs_isItemFirstBit(NORMAL_BOMB);
 }
 
 s32 item_getcheck_func_WATER_BOMB() {
-    return dComIfGs_isItemFirstBit(WATER_BOMB);
+    return i_dComIfGs_isItemFirstBit(WATER_BOMB);
 }
 
 s32 item_getcheck_func_POKE_BOMB() {
-    return dComIfGs_isItemFirstBit(POKE_BOMB);
+    return i_dComIfGs_isItemFirstBit(POKE_BOMB);
 }
 
 s32 item_getcheck_func_FAIRY_DROP() {
@@ -2117,7 +2103,7 @@ s32 item_getcheck_func_WORM() {
 }
 
 s32 item_getcheck_func_DROP_BOTTLE() {
-    return dComIfGs_isItemFirstBit(DROP_BOTTLE);
+    return i_dComIfGs_isItemFirstBit(DROP_BOTTLE);
 }
 
 s32 item_getcheck_func_BEE_CHILD() {
@@ -2149,15 +2135,15 @@ s32 item_getcheck_func_CHUCHU_PURPLE() {
 }
 
 s32 item_getcheck_func_LV1_SOUP() {
-    return dComIfGs_isItemFirstBit(LV1_SOUP);
+    return i_dComIfGs_isItemFirstBit(LV1_SOUP);
 }
 
 s32 item_getcheck_func_LV2_SOUP() {
-    return dComIfGs_isItemFirstBit(LV2_SOUP);
+    return i_dComIfGs_isItemFirstBit(LV2_SOUP);
 }
 
 s32 item_getcheck_func_LV3_SOUP() {
-    return dComIfGs_isItemFirstBit(LV3_SOUP);
+    return i_dComIfGs_isItemFirstBit(LV3_SOUP);
 }
 
 s32 item_getcheck_func_LETTER() {
@@ -2205,7 +2191,7 @@ s32 item_getcheck_func_CHUCHU_BLACK() {
 }
 
 s32 item_getcheck_func_LIGHT_DROP() {
-    return dComIfGs_isItemFirstBit(LIGHT_DROP);
+    return i_dComIfGs_isItemFirstBit(LIGHT_DROP);
 }
 
 s32 item_getcheck_func_DROP_CONTAINER() {
@@ -2261,99 +2247,99 @@ s32 item_getcheck_func_SMELL_MEDICINE() {
 }
 
 s32 item_getcheck_func_M_BEETLE() {
-    return dComIfGs_isItemFirstBit(M_BEETLE);
+    return i_dComIfGs_isItemFirstBit(M_BEETLE);
 }
 
 s32 item_getcheck_func_F_BEETLE() {
-    return dComIfGs_isItemFirstBit(F_BEETLE);
+    return i_dComIfGs_isItemFirstBit(F_BEETLE);
 }
 
 s32 item_getcheck_func_M_BUTTERFLY() {
-    return dComIfGs_isItemFirstBit(M_BUTTERFLY);
+    return i_dComIfGs_isItemFirstBit(M_BUTTERFLY);
 }
 
 s32 item_getcheck_func_F_BUTTERFLY() {
-    return dComIfGs_isItemFirstBit(F_BUTTERFLY);
+    return i_dComIfGs_isItemFirstBit(F_BUTTERFLY);
 }
 
 s32 item_getcheck_func_M_STAG_BEETLE() {
-    return dComIfGs_isItemFirstBit(M_STAG_BEETLE);
+    return i_dComIfGs_isItemFirstBit(M_STAG_BEETLE);
 }
 
 s32 item_getcheck_func_F_STAG_BEETLE() {
-    return dComIfGs_isItemFirstBit(F_STAG_BEETLE);
+    return i_dComIfGs_isItemFirstBit(F_STAG_BEETLE);
 }
 
 s32 item_getcheck_func_M_GRASSHOPPER() {
-    return dComIfGs_isItemFirstBit(M_GRASSHOPPER);
+    return i_dComIfGs_isItemFirstBit(M_GRASSHOPPER);
 }
 
 s32 item_getcheck_func_F_GRASSHOPPER() {
-    return dComIfGs_isItemFirstBit(F_GRASSHOPPER);
+    return i_dComIfGs_isItemFirstBit(F_GRASSHOPPER);
 }
 
 s32 item_getcheck_func_M_NANAFUSHI() {
-    return dComIfGs_isItemFirstBit(M_NANAFUSHI);
+    return i_dComIfGs_isItemFirstBit(M_NANAFUSHI);
 }
 
 s32 item_getcheck_func_F_NANAFUSHI() {
-    return dComIfGs_isItemFirstBit(F_NANAFUSHI);
+    return i_dComIfGs_isItemFirstBit(F_NANAFUSHI);
 }
 
 s32 item_getcheck_func_M_DANGOMUSHI() {
-    return dComIfGs_isItemFirstBit(M_DANGOMUSHI);
+    return i_dComIfGs_isItemFirstBit(M_DANGOMUSHI);
 }
 
 s32 item_getcheck_func_F_DANGOMUSHI() {
-    return dComIfGs_isItemFirstBit(F_DANGOMUSHI);
+    return i_dComIfGs_isItemFirstBit(F_DANGOMUSHI);
 }
 
 s32 item_getcheck_func_M_MANTIS() {
-    return dComIfGs_isItemFirstBit(M_MANTIS);
+    return i_dComIfGs_isItemFirstBit(M_MANTIS);
 }
 
 s32 item_getcheck_func_F_MANTIS() {
-    return dComIfGs_isItemFirstBit(F_MANTIS);
+    return i_dComIfGs_isItemFirstBit(F_MANTIS);
 }
 
 s32 item_getcheck_func_M_LADYBUG() {
-    return dComIfGs_isItemFirstBit(M_LADYBUG);
+    return i_dComIfGs_isItemFirstBit(M_LADYBUG);
 }
 
 s32 item_getcheck_func_F_LADYBUG() {
-    return dComIfGs_isItemFirstBit(F_LADYBUG);
+    return i_dComIfGs_isItemFirstBit(F_LADYBUG);
 }
 
 s32 item_getcheck_func_M_SNAIL() {
-    return dComIfGs_isItemFirstBit(M_SNAIL);
+    return i_dComIfGs_isItemFirstBit(M_SNAIL);
 }
 
 s32 item_getcheck_func_F_SNAIL() {
-    return dComIfGs_isItemFirstBit(F_SNAIL);
+    return i_dComIfGs_isItemFirstBit(F_SNAIL);
 }
 
 s32 item_getcheck_func_M_DRAGONFLY() {
-    return dComIfGs_isItemFirstBit(M_DRAGONFLY);
+    return i_dComIfGs_isItemFirstBit(M_DRAGONFLY);
 }
 
 s32 item_getcheck_func_F_DRAGONFLY() {
-    return dComIfGs_isItemFirstBit(F_DRAGONFLY);
+    return i_dComIfGs_isItemFirstBit(F_DRAGONFLY);
 }
 
 s32 item_getcheck_func_M_ANT() {
-    return dComIfGs_isItemFirstBit(M_ANT);
+    return i_dComIfGs_isItemFirstBit(M_ANT);
 }
 
 s32 item_getcheck_func_F_ANT() {
-    return dComIfGs_isItemFirstBit(F_ANT);
+    return i_dComIfGs_isItemFirstBit(F_ANT);
 }
 
 s32 item_getcheck_func_M_MAYFLY() {
-    return dComIfGs_isItemFirstBit(M_MAYFLY);
+    return i_dComIfGs_isItemFirstBit(M_MAYFLY);
 }
 
 s32 item_getcheck_func_F_MAYFLY() {
-    return dComIfGs_isItemFirstBit(F_MAYFLY);
+    return i_dComIfGs_isItemFirstBit(F_MAYFLY);
 }
 
 s32 item_getcheck_func_POU_SPIRIT() {
@@ -2405,11 +2391,11 @@ s32 item_getcheck_func_BOSSRIDER_KEY() {
 }
 
 s32 item_getcheck_func_TOMATO_PUREE() {
-    return dComIfGs_isItemFirstBit(TOMATO_PUREE);
+    return i_dComIfGs_isItemFirstBit(TOMATO_PUREE);
 }
 
 s32 item_getcheck_func_TASTE() {
-    return dComIfGs_isItemFirstBit(TASTE);
+    return i_dComIfGs_isItemFirstBit(TASTE);
 }
 
 s32 item_getcheck_func_LV5_BOSS_KEY() {
@@ -2425,19 +2411,19 @@ s32 item_getcheck_func_KANTERA2() {
 }
 
 s32 item_getcheck_func_L2_KEY_PIECES1() {
-    return dComIfGs_isItemFirstBit(L2_KEY_PIECES1);
+    return i_dComIfGs_isItemFirstBit(L2_KEY_PIECES1);
 }
 
 s32 item_getcheck_func_L2_KEY_PIECES2() {
-    return dComIfGs_isItemFirstBit(L2_KEY_PIECES2);
+    return i_dComIfGs_isItemFirstBit(L2_KEY_PIECES2);
 }
 
 s32 item_getcheck_func_L2_KEY_PIECES3() {
-    return dComIfGs_isItemFirstBit(L2_KEY_PIECES3);
+    return i_dComIfGs_isItemFirstBit(L2_KEY_PIECES3);
 }
 
 s32 item_getcheck_func_KEY_OF_CARAVAN() {
-    return dComIfGs_isItemFirstBit(KEY_OF_CARAVAN);
+    return i_dComIfGs_isItemFirstBit(KEY_OF_CARAVAN);
 }
 
 s32 item_getcheck_func_LV2_BOSS_KEY() {
@@ -2559,12 +2545,12 @@ u8 check_itemno(int i_itemId) {
     }
 
     if (i_itemId == ARROW_1) {
-        if (!dComIfGs_isItemFirstBit(BOW)) {
+        if (!i_dComIfGs_isItemFirstBit(BOW)) {
             return GREEN_RUPEE;
         }
     } else {
         if (isArrow(i_itemId)) {
-            if (!dComIfGs_isItemFirstBit(BOW)) {
+            if (!i_dComIfGs_isItemFirstBit(BOW)) {
                 return GREEN_RUPEE;
             }
 
@@ -2579,7 +2565,7 @@ u8 check_itemno(int i_itemId) {
         }
     }
 
-    if (!dComIfGs_isItemFirstBit(BOMB_BAG_LV1) && isBomb(i_itemId)) {
+    if (!i_dComIfGs_isItemFirstBit(BOMB_BAG_LV1) && isBomb(i_itemId)) {
         return GREEN_RUPEE;
     } else {
         if (i_itemId == TRIPLE_HEART) {

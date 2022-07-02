@@ -774,8 +774,13 @@ u16 dComIfGs_getMaxLifeGauge();
 void dComIfGs_setWarpMarkFlag(u8);
 void dComIfGs_setSelectEquipSword(u8 i_itemNo);
 void dComIfGs_setSelectEquipShield(u8 i_itemNo);
-int dComIfGs_isItemFirstBit(u8 i_itemNo);
-u16 dComIfGs_getRupee();
+inline int i_dComIfGs_isItemFirstBit(u8 i_no) {
+    return g_dComIfG_gameInfo.info.getPlayer().getGetItem().isFirstBit(i_no);
+}
+
+inline u16 i_dComIfGs_getRupee() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getRupee();
+}
 BOOL dComIfGs_isVisitedRoom(int i_roomNo);
 void dComIfGs_onZoneSwitch(int swBit, int roomNo);
 void dComIfGs_onOneZoneSwitch(int param_0, int param_1);
@@ -920,6 +925,10 @@ inline void dComIfGs_onEventBit(u16 id) {
     g_dComIfG_gameInfo.info.getSavedata().getEvent().onEventBit(id);
 }
 
+inline BOOL i_dComIfGs_isEventBit(u16 id) {
+    return g_dComIfG_gameInfo.info.getEvent().isEventBit(id);
+}
+
 inline void dComIfGs_onLightDropFlag(u8 i_nowLevel) {
     g_dComIfG_gameInfo.info.getPlayer().getLightDrop().onLightDropGetFlag(i_nowLevel);
 }
@@ -934,6 +943,10 @@ inline void dComIfGs_offSwitch(int i_no, int i_roomNo) {
 
 inline BOOL dComIfGs_isSwitch(int i_no, int i_roomNo) {
     return g_dComIfG_gameInfo.info.isSwitch(i_no, i_roomNo);
+}
+
+inline void dComIfGs_onSvZoneSwitch(int zoneNo, int swBit) {
+    g_dComIfG_gameInfo.info.getZone(zoneNo).getZoneBit().onSwitch(swBit);
 }
 
 inline s32 dComIfGs_isDungeonItemMap() {
@@ -991,6 +1004,10 @@ inline void dComIfGs_onItemFirstBit(u8 i_itemNo) {
 
 inline u16 dComIfGs_getMaxLife() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getMaxLife();
+}
+
+inline u16 i_dComIfGs_getLife() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getLife();
 }
 
 inline void dComIfGs_offEventBit(u16 event) {
@@ -1091,6 +1108,10 @@ inline s32 dComIfGs_isStageBossEnemy() {
 
 inline void dComIfGs_setKeyNum(u8 keyNum) {
     g_dComIfG_gameInfo.info.getMemory().getBit().setKeyNum(keyNum);
+}
+
+inline BOOL dComIfGs_isSaveVisitedRoom(int param_0, int param_1) {
+    return g_dComIfG_gameInfo.info.getSavedata().getSave2(param_0)->isVisitedRoom(param_1);
 }
 
 inline s16 dComIfGs_getOil() {
@@ -1395,6 +1416,14 @@ inline u8 dComIfGs_checkBombBag(u8 i_itemNo) {
     return g_dComIfG_gameInfo.info.getPlayer().getItem().checkBombBag(i_itemNo);
 }
 
+inline bool i_dComIfGp_checkPlayerStatus0(int param_0, u32 flag) {
+    return g_dComIfG_gameInfo.play.checkPlayerStatus(param_0, 0, flag);
+}
+
+inline bool i_dComIfGp_checkPlayerStatus1(int param_0, u32 flag) {
+    return g_dComIfG_gameInfo.play.checkPlayerStatus(param_0, 1, flag);
+}
+
 inline s64 dComIfGs_getTotalTime() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerInfo().getTotalTime();
 }
@@ -1447,8 +1476,7 @@ inline void dComIfGs_setMemoryToCard(u8* p_saveData, int dataNum) {
     g_dComIfG_gameInfo.info.memory_to_card((char*)p_saveData, dataNum);
 }
 
-void dComIfGp_setItemLifeCount(f32 amount, u8 type);
-void dComIfGp_setItemRupeeCount(long amount);
+
 void dComIfGp_setSelectItem(int index);
 s32 dComIfGp_offHeapLockFlag(int flag);
 void dComIfGp_createSubExpHeap2D();
@@ -1476,6 +1504,13 @@ void dComIfGp_world_dark_set(u8);
 u8 dComIfGp_getNowLevel();
 void dComIfGp_calcNowRegion();
 
+inline void i_dComIfGp_setItemLifeCount(float amount, u8 type) {
+    g_dComIfG_gameInfo.play.setItemLifeCount(amount, type);
+}
+inline void i_dComIfGp_setItemRupeeCount(int amount) {
+    g_dComIfG_gameInfo.play.setItemRupeeCount(amount);
+}
+
 inline dStage_startStage_c* dComIfGp_getStartStage() {
     return g_dComIfG_gameInfo.play.getStartStage();
 }
@@ -1502,6 +1537,14 @@ inline daPy_py_c* dComIfGp_getLinkPlayer() {
 
 inline void* dComIfGp_getPlayer(int idx) {
     return g_dComIfG_gameInfo.play.getPlayer(idx);
+}
+
+inline s8 i_dComIfGp_getPlayerCameraID(int idx) {
+    return g_dComIfG_gameInfo.play.getPlayerCameraID(idx);
+}
+
+inline daHorse_c* i_dComIfGp_getHorseActor() {
+    return (daHorse_c*)g_dComIfG_gameInfo.play.getPlayerPtr(1);
 }
 
 inline dMsgObject_c* dComIfGp_getMsgObjectClass() {
@@ -1960,6 +2003,10 @@ inline void dComIfGp_clearPlayerStatus0(int param_0, u32 flag) {
     g_dComIfG_gameInfo.play.clearPlayerStatus(param_0, 0, flag);
 }
 
+inline dStage_stageDt_c* i_dComIfGp_getStage() {
+    return &g_dComIfG_gameInfo.play.getStage();
+}
+
 inline stage_scls_info_dummy_class* dComIfGp_getStageSclsInfo() {
     return g_dComIfG_gameInfo.play.getStage().getSclsInfo();
 }
@@ -2182,6 +2229,26 @@ inline void dComIfGp_roomControl_zoneCountCheck(int i_roomNo) {
     g_dComIfG_gameInfo.play.mRoomControl.zoneCountCheck(i_roomNo);
 }
 
+inline u8 i_dComIfGp_getRStatus() {
+    return g_dComIfG_gameInfo.play.getRStatus();
+}
+
+inline void i_dComIfGp_setBottleStatus(u8 param_0, u8 param_1) {
+    g_dComIfG_gameInfo.play.setBottleStatus(param_0, param_1);
+}
+
+inline u8 i_dComIfGp_getDoStatus() {
+    return g_dComIfG_gameInfo.play.getDoStatus();
+}
+
+inline dEvt_control_c& i_dComIfGp_getEvent() {
+    return g_dComIfG_gameInfo.play.getEvent();
+}
+
+inline dEvent_manager_c& i_dComIfGp_getEventManager() {
+    return g_dComIfG_gameInfo.play.getEvtManager();
+}
+
 inline BOOL dComIfGp_event_compulsory(void* param_0, const char* param_1, u16 param_2) {
     return g_dComIfG_gameInfo.play.getEvent().compulsory(param_0, param_1, param_2);
 }
@@ -2233,6 +2300,25 @@ inline void* dComIfGp_event_getPt1() {
 inline void* dComIfGp_event_getPt2() {
     u32 pt2 = g_dComIfG_gameInfo.play.getEvent().mPt2;
     return g_dComIfG_gameInfo.play.getEvent().convPId(pt2);
+}
+
+inline BOOL i_dComIfGp_event_runCheck() {
+    return g_dComIfG_gameInfo.play.getEvent().runCheck();
+}
+
+inline u16 dComIfGp_event_checkHind(u16 flag) {
+    if (!i_dComIfGp_event_runCheck()) {
+        return false;
+    }
+    return g_dComIfG_gameInfo.play.getEvent().checkHind(flag);
+}
+
+inline u16 i_dComIfGp_event_chkEventFlag(u16 flag) {
+    return g_dComIfG_gameInfo.play.getEvent().chkEventFlag(flag);
+}
+
+inline void dComIfGp_event_setCullRate(f32 f) {
+    g_dComIfG_gameInfo.play.getEvent().setCullRate(f);
 }
 
 inline int i_dComIfGp_evmng_getMyStaffId(const char* pName, fopAc_ac_c* pActor, int param_2) {
@@ -2376,6 +2462,19 @@ int dComIfGd_setSimpleShadow(cXyz* pos, f32 param_1, f32 param_2, cBgS_PolyInfo&
 int dComIfGd_setShadow(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3, f32 param_4,
                        f32 param_5, f32 param_6, f32 param_7, cBgS_PolyInfo& param_8,
                        dKy_tevstr_c* param_9, s16 param_10, f32 param_11, _GXTexObj* param_12);
+
+
+inline int dComIfGd_setRealShadow(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3,
+                                  f32 param_4, f32 param_5, dKy_tevstr_c* param_6) {
+    return g_dComIfG_gameInfo.drawlist.setRealShadow(param_0, param_1, param_2, param_3, param_4,
+                                                     param_5, param_6);
+}
+
+inline int dComIfGd_setSimpleShadow(cXyz* pos, f32 param_1, f32 param_2, cXyz* param_3, s16 angle,
+                                    f32 param_5, _GXTexObj* tex) {
+    return g_dComIfG_gameInfo.drawlist.setSimpleShadow(pos, param_1, param_2, param_3, angle,
+                                                       param_5, tex);
+}
 
 inline void dComIfGd_drawListItem3d() {
     g_dComIfG_gameInfo.drawlist.drawOpaListItem3d();

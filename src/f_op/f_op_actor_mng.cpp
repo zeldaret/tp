@@ -732,26 +732,6 @@ bool fopAcM_addAngleY(fopAc_ac_c* p_actor, s16 target, s16 step) {
     return cLib_chaseAngleS(&fopAcM_GetAngle_p(p_actor).y, target, step);
 }
 
-inline f32 fopAcM_GetSpeedF(const fopAc_ac_c* p_actor) {
-    return p_actor->mSpeedF;
-}
-
-inline f32 fopAcM_GetGravity(const fopAc_ac_c* p_actor) {
-    return p_actor->mGravity;
-}
-
-inline f32 fopAcM_GetMaxFallSpeed(const fopAc_ac_c* p_actor) {
-    return p_actor->mMaxFallSpeed;
-}
-
-inline const cXyz& fopAcM_GetSpeed_p(const fopAc_ac_c* p_actor) {
-    return p_actor->mSpeed;
-}
-
-inline const cXyz& fopAcM_GetPosition_p(const fopAc_ac_c* p_actor) {
-    return p_actor->mCurrent.mPosition;
-}
-
 inline void clampMin(f32& val, f32 min) {
     if (val < min) {
         val = min;
@@ -924,22 +904,6 @@ BOOL daPy_py_c::checkNowWolf() {
     return dComIfGp_getLinkPlayer()->i_checkWolf();
 }
 
-inline f32 fopAcM_searchActorDistanceY(const fopAc_ac_c* actorA, const fopAc_ac_c* actorB) {
-    return actorB->mCurrent.mPosition.y - actorA->mCurrent.mPosition.y;
-}
-
-inline s16 fopAcM_searchPlayerAngleY(const fopAc_ac_c* actor) {
-    return fopAcM_searchActorAngleY(actor, (fopAc_ac_c*)dComIfGp_getPlayer(0));
-}
-
-inline f32 fopAcM_searchPlayerDistanceY(const fopAc_ac_c* actor) {
-    return fopAcM_searchActorDistanceY(actor, (fopAc_ac_c*)dComIfGp_getPlayer(0));
-}
-
-inline f32 fopAcM_searchPlayerDistanceXZ2(const fopAc_ac_c* actor) {
-    return fopAcM_searchActorDistanceXZ2(actor, (fopAc_ac_c*)dComIfGp_getPlayer(0));
-}
-
 /* 8001AAE0-8001AC40 015420 0160+00 0/0 0/0 2/2 .text
  * fopAcM_rollPlayerCrash__FPC10fopAc_ac_cfUlffif               */
 s32 fopAcM_rollPlayerCrash(fopAc_ac_c const* actor, f32 param_1, u32 param_2, f32 param_3,
@@ -1032,14 +996,10 @@ void* event_second_actor(u16) {
     return dComIfGp_getPlayer(0);
 }
 
-inline dEvt_control_c& dComIfGp_getEvent() {
-    return g_dComIfG_gameInfo.play.getEvent();
-}
-
 /* 8001B068-8001B0FC 0159A8 0094+00 0/0 3/3 0/0 .text
  * fopAcM_orderTalkEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs       */
 s32 fopAcM_orderTalkEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, u16 priority, u16 flag) {
-    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actorA))) {
+    if (!i_dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !i_dComIfGp_getEvent().isChangeOK(actorA))) {
         return 0;
     }
 
@@ -1054,7 +1014,7 @@ s32 fopAcM_orderTalkEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, u16 priority, 
  * fopAcM_orderTalkItemBtnEvent__FUsP10fopAc_ac_cP10fopAc_ac_cUsUs */
 s32 fopAcM_orderTalkItemBtnEvent(u16 eventType, fopAc_ac_c* actorA, fopAc_ac_c* actorB,
                                      u16 priority, u16 flag) {
-    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actorA))) {
+    if (!i_dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !i_dComIfGp_getEvent().isChangeOK(actorA))) {
         return 0;
     }
 
@@ -1070,7 +1030,7 @@ s32 fopAcM_orderTalkItemBtnEvent(u16 eventType, fopAc_ac_c* actorA, fopAc_ac_c* 
 // wrong load order
 #ifdef NONMATCHING
 s32 fopAcM_orderSpeakEvent(fopAc_ac_c* actor, u16 priority, u16 flag) {
-    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actor))) {
+    if (!i_dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !i_dComIfGp_getEvent().isChangeOK(actor))) {
         return 0;
     }
 
@@ -1091,14 +1051,10 @@ asm s32 fopAcM_orderSpeakEvent(fopAc_ac_c* param_0, u16 param_1, u16 param_2) {
 #pragma pop
 #endif
 
-inline dEvent_manager_c& dComIfGp_getEventManager() {
-    return g_dComIfG_gameInfo.play.getEvtManager();
-}
-
 /* 8001B244-8001B334 015B84 00F0+00 0/0 2/2 0/0 .text
  * fopAcM_orderDoorEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs       */
 s32 fopAcM_orderDoorEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, u16 priority, u16 flag) {
-    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actorA))) {
+    if (!i_dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !i_dComIfGp_getEvent().isChangeOK(actorA))) {
         return 0;
     }
 
@@ -1110,7 +1066,7 @@ s32 fopAcM_orderDoorEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, u16 priority, 
     u8 toolID = actorB->mEvtInfo.getMapToolId();
 
     if (fopAcM_GetProfName(actorB) == 0x55 && toolID != 0xFF) {
-        eventID = dComIfGp_getEventManager().getEventIdx(actorA, NULL, toolID);
+        eventID = i_dComIfGp_getEventManager().getEventIdx(actorA, NULL, toolID);
     }
 
     return dComIfGp_event_order(1, priority, flag, -1, actorA, actorB, eventID, toolID);
@@ -1119,7 +1075,7 @@ s32 fopAcM_orderDoorEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, u16 priority, 
 /* 8001B334-8001B3CC 015C74 0098+00 0/0 1/1 0/0 .text
  * fopAcM_orderCatchEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs      */
 s32 fopAcM_orderCatchEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, u16 priority, u16 flag) {
-    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actorA))) {
+    if (!i_dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !i_dComIfGp_getEvent().isChangeOK(actorA))) {
         return 0;
     }
 
@@ -1134,16 +1090,16 @@ s32 fopAcM_orderCatchEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, u16 priority,
  * fopAcM_orderOtherEvent__FP10fopAc_ac_cPCcUsUsUs              */
 s32 fopAcM_orderOtherEvent(fopAc_ac_c* actor, char const* param_1, u16 param_2, u16 flag,
                                u16 priority) {
-    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actor))) {
+    if (!i_dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !i_dComIfGp_getEvent().isChangeOK(actor))) {
         return 0;
     }
 
-    s16 eventIdx = dComIfGp_getEventManager().getEventIdx(actor, param_1, -1);
+    s16 eventIdx = i_dComIfGp_getEventManager().getEventIdx(actor, param_1, -1);
     if (eventIdx < 0) {
         return 0;
     }
 
-    u16 eventPrio = dComIfGp_getEventManager().getEventPrio(actor, eventIdx);
+    u16 eventPrio = i_dComIfGp_getEventManager().getEventPrio(actor, eventIdx);
     if (eventPrio == 0) {
         eventPrio = 0xFF;
     }
@@ -1159,16 +1115,16 @@ s32 fopAcM_orderOtherEvent(fopAc_ac_c* actor, char const* param_1, u16 param_2, 
  * fopAcM_orderOtherEvent__FP10fopAc_ac_cP10fopAc_ac_cPCcUsUsUs */
 s32 fopAcM_orderOtherEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, char const* param_2,
                                u16 param_3, u16 flag, u16 priority) {
-    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actorA))) {
+    if (!i_dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !i_dComIfGp_getEvent().isChangeOK(actorA))) {
         return 0;
     }
 
-    s16 eventIdx = dComIfGp_getEventManager().getEventIdx(actorA, param_2, -1);
+    s16 eventIdx = i_dComIfGp_getEventManager().getEventIdx(actorA, param_2, -1);
     if (eventIdx < 0) {
         return 0;
     }
 
-    u16 eventPrio = dComIfGp_getEventManager().getEventPrio(actorA, eventIdx);
+    u16 eventPrio = i_dComIfGp_getEventManager().getEventPrio(actorA, eventIdx);
     if (eventPrio == 0) {
         eventPrio = 0xFF;
     }
@@ -1183,7 +1139,7 @@ s32 fopAcM_orderOtherEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, char const* p
 /* 8001B5E4-8001B67C 015F24 0098+00 0/0 2/2 41/41 .text
  * fopAcM_orderChangeEventId__FP10fopAc_ac_csUsUs               */
 s32 fopAcM_orderChangeEventId(fopAc_ac_c* actor, s16 eventID, u16 flag, u16 param_3) {
-    u16 eventPrio = dComIfGp_getEventManager().getEventPrio(actor, eventID);
+    u16 eventPrio = i_dComIfGp_getEventManager().getEventPrio(actor, eventID);
     if (eventPrio == 0) {
         eventPrio = 0xFF;
     }
@@ -1195,7 +1151,7 @@ s32 fopAcM_orderChangeEventId(fopAc_ac_c* actor, s16 eventID, u16 flag, u16 para
  * fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs            */
 s32 fopAcM_orderOtherEventId(fopAc_ac_c* actor, s16 eventID, u8 param_2, u16 param_3,
                                  u16 priority, u16 flag) {
-    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actor))) {
+    if (!i_dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !i_dComIfGp_getEvent().isChangeOK(actor))) {
         return 0;
     }
 
@@ -1208,7 +1164,7 @@ s32 fopAcM_orderOtherEventId(fopAc_ac_c* actor, s16 eventID, u8 param_2, u16 par
     if (priority != 0) {
         newPriority = priority;
     } else if (actor != NULL) {
-        u16 eventPrio = dComIfGp_getEventManager().getEventPrio(actor, eventID);
+        u16 eventPrio = i_dComIfGp_getEventManager().getEventPrio(actor, eventID);
 
         if (eventPrio != 0) {
             newPriority = eventPrio;
@@ -1228,7 +1184,7 @@ s32 fopAcM_orderOtherEventId(fopAc_ac_c* actor, s16 eventID, u8 param_2, u16 par
  * fopAcM_orderMapToolEvent__FP10fopAc_ac_cUcsUsUsUs            */
 s32 fopAcM_orderMapToolEvent(fopAc_ac_c* actor, u8 param_1, s16 eventID, u16 param_3,
                                  u16 flag, u16 param_5) {
-    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actor))) {
+    if (!i_dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !i_dComIfGp_getEvent().isChangeOK(actor))) {
         return 0;
     }
 
@@ -1243,7 +1199,7 @@ s32 fopAcM_orderMapToolEvent(fopAc_ac_c* actor, u8 param_1, s16 eventID, u16 par
         newPriority = dt->field_0x6;
 
         if (eventID == 0xFF) {
-            eventID = dComIfGp_getEventManager().getEventIdx(actor, param_1);
+            eventID = i_dComIfGp_getEventManager().getEventIdx(actor, param_1);
         }
     }
 
@@ -1268,7 +1224,7 @@ s32 fopAcM_orderMapToolAutoNextEvent(fopAc_ac_c* actor, u8 param_1, s16 eventID,
 /* 8001B908-8001B9D0 016248 00C8+00 0/0 0/0 106/106 .text
  * fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs             */
 s32 fopAcM_orderPotentialEvent(fopAc_ac_c* actor, u16 flag, u16 param_2, u16 priority) {
-    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actor))) {
+    if (!i_dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !i_dComIfGp_getEvent().isChangeOK(actor))) {
         return 0;
     }
 
@@ -1284,7 +1240,7 @@ s32 fopAcM_orderPotentialEvent(fopAc_ac_c* actor, u16 flag, u16 param_2, u16 pri
 // load order
 #ifdef NONMATCHING
 s32 fopAcM_orderItemEvent(fopAc_ac_c* actor, u16 priority, u16 flag) {
-    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actor))) {
+    if (!i_dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !i_dComIfGp_getEvent().isChangeOK(actor))) {
         return 0;
     }
 
@@ -1309,7 +1265,7 @@ asm s32 fopAcM_orderItemEvent(fopAc_ac_c* param_0, u16 param_1, u16 param_2) {
  * fopAcM_orderTreasureEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs   */
 s32 fopAcM_orderTreasureEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, u16 priority,
                                   u16 flag) {
-    if (!dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actorA))) {
+    if (!i_dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !i_dComIfGp_getEvent().isChangeOK(actorA))) {
         return 0;
     }
 
@@ -1378,10 +1334,6 @@ struct ItemTableList {
     /* 0x10 */ u8 mTables[255][16];
 };
 
-inline u16 dComIfGs_getLife() {
-    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getLife();
-}
-
 /* 8001BCFC-8001BE14 01663C 0118+00 2/2 0/0 0/0 .text            fopAcM_getItemNoFromTableNo__FUc */
 // out of order instructions / regalloc
 #ifdef NONMATCHING
@@ -1393,7 +1345,7 @@ u8 fopAcM_getItemNoFromTableNo(u8 i_tableNo) {
         return i_tableNo;
     }
 
-    u8 hp_percent = (dComIfGs_getLife() * 100) / (((dComIfGs_getMaxLife() / 5) * 4) & 0xFC);
+    u8 hp_percent = (i_dComIfGs_getLife() * 100) / (((dComIfGs_getMaxLife() / 5) * 4) & 0xFC);
 
     switch (i_tableNo) {
     case 150:
@@ -1755,12 +1707,6 @@ asm void* fopAcM_fastCreateItem(const cXyz* p_pos, int i_itemNo, int i_roomNo, c
 #pragma pop
 #endif
 
-inline void make_prm_bokkuri(u32* pActorParams, csXyz* p_angle, u8 param_2, u8 param_3, u8 param_4,
-                             u8 param_5, u8 param_6) {
-    p_angle->x = (param_4 << 0x8) | (param_3 & 0xFF);
-    p_angle->z = (param_6 << 0xD) | (param_2 << 0x1) | param_5;
-}
-
 /* 8001C870-8001C95C 0171B0 00EC+00 0/0 0/0 1/1 .text fopAcM_createBokkuri__FUsPC4cXyziiiPC4cXyzii
  */
 s32 fopAcM_createBokkuri(u16 enemyNo, const cXyz* p_pos, int param_3, int param_4, int roomNo,
@@ -1774,13 +1720,6 @@ s32 fopAcM_createBokkuri(u16 enemyNo, const cXyz* p_pos, int param_3, int param_
     u32 actorParams = 0;
     make_prm_bokkuri(&actorParams, &angle, 6, param_3, param_4, param_7, param_8);
     return fopAcM_create(PROC_Obj_Carry, enemyNo, actorParams, p_pos, roomNo, &angle, NULL, -1, NULL);
-}
-
-inline void make_prm_warp_hole(u32* actorParams, u8 p1, u8 p2, u8 p3) {
-    u32 pp1 = (p3 << 0x8);
-    u32 pp2 = (p2 << 0x10);
-    u32 pp3 = (p1 << 0x1B) | 0x170000FF;
-    *actorParams = pp2 | pp3 | pp1;
 }
 
 /* 8001C95C-8001C9CC 01729C 0070+00 0/0 0/0 12/12 .text
@@ -1842,15 +1781,6 @@ s32 fopAcM_createDisappear(const fopAc_ac_c* p_actor, const cXyz* p_pos, u8 para
                                           NULL));
 }
 
-inline u16 fopAcM_GetSetId(const fopAc_ac_c* p_actor) {
-    return p_actor->mSetID;
-}
-
-inline void fopAcM_onActor(const fopAc_ac_c* p_actor) {
-    int setId = fopAcM_GetSetId(p_actor);
-    dComIfGs_onActor(setId, fopAcM_GetHomeRoomNo(p_actor));
-}
-
 /* 8001CB48-8001CBA0 017488 0058+00 0/0 6/6 7/7 .text            fopAcM_setCarryNow__FP10fopAc_ac_ci
  */
 void fopAcM_setCarryNow(fopAc_ac_c* p_actor, int param_1) {
@@ -1860,10 +1790,6 @@ void fopAcM_setCarryNow(fopAc_ac_c* p_actor, int param_1) {
         fopAcM_setStageLayer(p_actor);
         fopAcM_onActor(p_actor);
     }
-}
-
-inline BOOL dComIfGp_event_runCheck() {
-    return g_dComIfG_gameInfo.play.getEvent().runCheck();
 }
 
 /* 8001CBA0-8001CC5C 0174E0 00BC+00 0/0 5/5 21/21 .text fopAcM_cancelCarryNow__FP10fopAc_ac_c */
@@ -1884,7 +1810,7 @@ void fopAcM_cancelCarryNow(fopAc_ac_c* p_actor) {
         p_actor->mCollisionRot.z = 0;
         p_actor->mCollisionRot.x = 0;
 
-        if (dComIfGp_event_runCheck() && fopAcM_GetGroup(p_actor) != 2) {
+        if (i_dComIfGp_event_runCheck() && fopAcM_GetGroup(p_actor) != 2) {
             p_actor->mStatus |= 0x800;
         }
     }

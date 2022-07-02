@@ -162,4 +162,6 @@ struct Z2EnvSeMgr {
 
 STATIC_ASSERT(sizeof(Z2EnvSeMgr) == 0x30C);
 
+extern Z2EnvSeMgr g_mEnvSeMgr;
+
 #endif /* Z2ENVSEMGR_H */

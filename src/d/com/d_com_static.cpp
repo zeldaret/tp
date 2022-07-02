@@ -680,13 +680,9 @@ int daTagMagne_c::checkMagnetCode(cBgS_PolyInfo& poly) {
     return 0;
 }
 
-inline bool fopAcM_isSwitch(const fopAc_ac_c* item, int sw) {
-    return dComIfGs_isSwitch(sw, fopAcM_GetHomeRoomNo(item));
-}
-
 /* 80031BF4-80031C48 02C534 0054+00 1/1 0/0 0/0 .text            checkMagneA__12daTagMagne_cFv */
 int daTagMagne_c::checkMagneA() {
-    if (mSwNo1 == 0xFF || fopAcM_isSwitch(this, mSwNo1)) {
+    if (mSwNo1 == 0xFF || i_fopAcM_isSwitch(this, mSwNo1)) {
         return 1;
     }
 
@@ -695,7 +691,7 @@ int daTagMagne_c::checkMagneA() {
 
 /* 80031C48-80031C9C 02C588 0054+00 1/1 0/0 0/0 .text            checkMagneB__12daTagMagne_cFv */
 int daTagMagne_c::checkMagneB() {
-    if (mSwNo2 == 0xFF || fopAcM_isSwitch(this, mSwNo2)) {
+    if (mSwNo2 == 0xFF || i_fopAcM_isSwitch(this, mSwNo2)) {
         return 1;
     }
 
@@ -704,7 +700,7 @@ int daTagMagne_c::checkMagneB() {
 
 /* 80031C9C-80031CF0 02C5DC 0054+00 1/1 0/0 0/0 .text            checkMagneC__12daTagMagne_cFv */
 int daTagMagne_c::checkMagneC() {
-    if (mSwNo3 == 0xFF || fopAcM_isSwitch(this, mSwNo3)) {
+    if (mSwNo3 == 0xFF || i_fopAcM_isSwitch(this, mSwNo3)) {
         return 1;
     }
 

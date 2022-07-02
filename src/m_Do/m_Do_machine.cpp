@@ -280,6 +280,10 @@ void mDoMch_HeapCheckAll() {
     myHeapCheckRecursive(JKRHeap::sRootHeap);
 }
 
+static u8 debug_key0;
+static u8 debug_key1;
+static u8 debug_key2;
+
 /* 8000B68C-8000B73C 005FCC 00B0+00 1/1 0/0 0/0 .text            developKeyCheck__FUlUl */
 static int developKeyCheck(u32 btnTrig, u32 btnHold) {
     static u8 key_link;
@@ -761,6 +765,5 @@ asm int mDoMch_Create() {
 }
 #pragma pop
 #endif
-
 
 /* 80373DE8-80373DE8 000448 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

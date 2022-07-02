@@ -85,7 +85,7 @@ asm int dTres_c::createWork() {
 
 /* 8009BC18-8009BC60 096558 0048+00 0/0 1/1 0/0 .text            create__7dTres_cFv */
 void dTres_c::create() {
-    if (dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) != 3) {
+    if (dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) != 3) {
         reset();
     }
 }
@@ -120,7 +120,7 @@ void dTres_c::reset() {
  */
 #ifdef NONMATCHING
 void dTres_c::addData(dTres_c::list_class* p_list, s8 roomNo) {
-    if (dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) != 3) {
+    if (dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) != 3) {
         reset();
 
         typeGroupData_c* listData = p_list->field_0x4;

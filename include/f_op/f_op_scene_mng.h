@@ -1,7 +1,7 @@
 #ifndef F_F_OP_SCENE_MNG_H_
 #define F_F_OP_SCENE_MNG_H_
 
-#include "f_op/f_op_actor_mng.h"
+#include "f_pc/f_pc_manager.h"
 #include "f_op/f_op_scene_pause.h"
 
 scene_class* fopScnM_SearchByID(unsigned int id);

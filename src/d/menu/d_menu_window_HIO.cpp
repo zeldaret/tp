@@ -12,10 +12,6 @@
 // Declarations:
 //
 
-inline int dComIfGs_isItemFirstBit(u8 i_no) {
-    return g_dComIfG_gameInfo.info.getPlayer().getGetItem().isFirstBit(i_no);
-}
-
 /* 801F9AFC-801F9B38 1F443C 003C+00 1/1 0/0 0/0 .text            __ct__9dMw_HIO_cFv */
 dMw_HIO_c::dMw_HIO_c() {
     init();
@@ -108,17 +104,17 @@ void dMw_HIO_c::init() {
     field_0xea = 0;
 
     for (int i = 0; i < 4; i++) {
-        bool swordBit = dComIfGs_isItemFirstBit(m_sword_item[i]);
+        bool swordBit = i_dComIfGs_isItemFirstBit(m_sword_item[i]);
         mSwordsCopy[i] = swordBit;
         mSwords[i] = swordBit;
     }
 
     for (int i = 0; i < 3; i++) {
-        bool shieldBit = dComIfGs_isItemFirstBit(m_shield_item[i]);
+        bool shieldBit = i_dComIfGs_isItemFirstBit(m_shield_item[i]);
         mShieldsCopy[i] = shieldBit;
         mShields[i] = shieldBit;
 
-        bool clothesBit = dComIfGs_isItemFirstBit(m_cloth_item[i]);
+        bool clothesBit = i_dComIfGs_isItemFirstBit(m_cloth_item[i]);
         mClothesCopy[i] = clothesBit;
         mClothes[i] = clothesBit;
     }

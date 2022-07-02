@@ -1689,14 +1689,6 @@ void daNpcT_c::deleteRes(s8 const* resNoList, char const** resNameList) {
 /* 80453440-80453444 001A40 0004+00 3/3 0/0 0/0 .sdata2          @5667 */
 SECTION_SDATA2 static f32 lit_5667 = -1000000000.0f;
 
-inline dEvt_control_c& dComIfGp_getEvent() {
-    return g_dComIfG_gameInfo.play.getEvent();
-}
-
-inline BOOL dComIfGp_event_runCheck() {
-    return g_dComIfG_gameInfo.play.getEvent().runCheck();
-}
-
 /* 8014852C-8014886C 142E6C 0340+00 0/0 0/0 59/59 .text            execute__8daNpcT_cFv */
 // matches with literals
 #ifdef NONMATCHING
@@ -1746,7 +1738,7 @@ int daNpcT_c::execute() {
     setCollision();
 
     if (!field_0xe2c) {
-        if ((field_0xe33 && dComIfGp_getEvent().i_isOrderOK()) || !dComIfGp_event_runCheck()) {
+        if ((field_0xe33 && dComIfGp_getEvent().i_isOrderOK()) || !i_dComIfGp_event_runCheck()) {
             evtOrder();
         }
     }

@@ -2,6 +2,7 @@
 #define A_OBJ_D_A_OBJ_ITEM_H
 
 #include "d/a/d_a_item_static.h"
+#include "f_op/f_op_actor_mng.h"
 
 namespace daItem_prm {
     static inline u8 getItemNo(daItem_c* item) {

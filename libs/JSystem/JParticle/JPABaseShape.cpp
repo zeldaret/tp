@@ -159,10 +159,6 @@ void JPASetLineWidth(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
     GXSetLineWidth((u8)(lit_2262[0] * work->mGlobalPtclScl.x * ptcl->mParticleScaleX), GX_TO_ONE);
 }
 
-static inline u8 COLOR_MULTI(u32 a, u32 b) {
-    return ((a * (b + 1)) * 0x10000) >> 24;
-}
-
 /* 80276B90-80276C2C 2714D0 009C+00 0/0 1/1 0/0 .text JPARegistPrm__FP18JPAEmitterWorkData */
 void JPARegistPrm(JPAEmitterWorkData* work) {
     JPABaseEmitter* emtr = work->mpEmtr;

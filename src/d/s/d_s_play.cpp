@@ -208,10 +208,6 @@ extern "C" u8 sCallbackArg__Q210JUTGamePad13C3ButtonReset[4 + 4 /* padding */];
 // Declarations:
 //
 
-inline dEvt_control_c& dComIfGp_getEvent() {
-    return g_dComIfG_gameInfo.play.getEvent();
-}
-
 /* ############################################################################################## */
 /* 804510F8-80451100 0005F8 0008+00 2/2 0/0 0/0 .sbss            resPhase */
 static request_of_phase_process_class resPhase;
@@ -486,7 +482,7 @@ static int dScnPly_Execute(dScnPly_c* scnPly) {
     dKy_itudemo_se();
     if (!dComIfGp_isPauseFlag()) {
         dDemo_c::update();
-        dComIfGp_getEvent().Step();
+        i_dComIfGp_getEvent().Step();
         dComIfGp_getAttention().Run();
     }
     return 1;
@@ -775,10 +771,6 @@ static int phase_1_0(dScnPly_c* param_0) {
     }
 }
 
-inline dStage_stageDt_c* dComIfGp_getStage() {
-    return &g_dComIfG_gameInfo.play.getStage();
-}
-
 /* 8025A4F8-8025A5D4 254E38 00DC+00 1/0 0/0 0/0 .text            phase_2__FP9dScnPly_c */
 // extra mr
 #ifdef NONMATCHING
@@ -788,11 +780,11 @@ static int phase_2(dScnPly_c* scn) {
         return 0;
     }
     int layer = dComIfG_play_c::getLayerNo(0);
-    stage_stag_info_class* stag_info = dComIfGp_getStage()->getStagInfo();
+    stage_stag_info_class* stag_info = i_dComIfGp_getStage()->getStagInfo();
 
     u8 particle_no = dStage_stagInfo_GetParticleNo(stag_info, layer);
     if (particle_no == 255) {
-        particle_no = dStage_stagInfo_GetParticleNo(dComIfGp_getStage()->getStagInfo());
+        particle_no = dStage_stagInfo_GetParticleNo(i_dComIfGp_getStage()->getStagInfo());
     }
 
     dComIfGp_particle_readScene(particle_no, &scn->sceneCommand);

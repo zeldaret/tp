@@ -21,6 +21,8 @@
 #include "dolphin/types.h"
 #include "rel/d/a/kytag/d_a_kytag05/d_a_kytag05.h"
 #include "rel/d/a/tag/d_a_tag_mmsg/d_a_tag_mmsg.h"
+#include "f_op/f_op_scene.h"
+#include "f_op/f_op_actor_mng.h"
 
 class fopEn_enemy_c;
 class daAlinkHIO_anm_c;

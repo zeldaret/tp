@@ -131,10 +131,6 @@ extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 // Declarations:
 //
 
-inline s8 dComIfGp_getPlayerCameraID(int idx) {
-    return g_dComIfG_gameInfo.play.getPlayerCameraID(idx);
-}
-
 /* ############################################################################################## */
 /* 80453600-80453608 001C00 0004+04 6/6 0/0 0/0 .sdata2          @4215 */
 SECTION_SDATA2 static f32 lit_4215[1 + 1 /* padding */] = {
@@ -656,10 +652,6 @@ s16 daPy_py_c::checkNowWolfEyeUp() {
 
 /* 8015F438-8015F478 159D78 0040+00 0/0 0/0 1/1 .text            forceRestartRoom__9daPy_py_cFiUli
  */
-// move these inlines?
-inline BOOL i_dComIfGp_event_runCheck() {
-    return g_dComIfG_gameInfo.play.getEvent().runCheck();
-}
 
 void daAlink_c::startRestartRoomFromOut(int param_0, u32 param_1, int param_2) {
     startRestartRoom(param_1, param_2, param_0, i_dComIfGp_event_runCheck());
@@ -694,10 +686,6 @@ void daPy_py_c::setPlayerSe(u32 se_id) {
  * linkGrabSubjectNoDraw__9daPy_py_cFP10fopAc_ac_c              */
 // regalloc
 #ifdef NONMATCHING
-inline daPy_py_c* daPy_getPlayerActorClass() {
-    return (daPy_py_c*)dComIfGp_getPlayer(0);
-}
-
 bool daPy_py_c::linkGrabSubjectNoDraw(fopAc_ac_c* p_ac) {
     bool check_carry = false;
     bool ret = false;
@@ -708,7 +696,7 @@ bool daPy_py_c::linkGrabSubjectNoDraw(fopAc_ac_c* p_ac) {
         }
     }
 
-    if (check_carry && dComIfGp_checkCameraAttentionStatus(dComIfGp_getPlayerCameraID(0), 2) != 0) {
+    if (check_carry && dComIfGp_checkCameraAttentionStatus(i_dComIfGp_getPlayerCameraID(0), 2) != 0) {
         ret = true;
     }
 
@@ -752,18 +740,10 @@ bool daPy_py_c::checkRoomRestartStart() {
     }
 }
 
-inline dStage_stageDt_c* dComIfGp_getStage() {
-    return &g_dComIfG_gameInfo.play.getStage();
-}
-
-inline s32 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
-    return param_0->field_0x09 >> 1 & 0x1f;
-}
-
 /* 8015F698-8015F730 159FD8 0098+00 0/0 2/2 1/1 .text checkCarryStartLightBallA__9daPy_py_cFv */
 u32 daPy_py_c::checkCarryStartLightBallA() {
-    if (checkRoomRestartStart() || !dComIfGp_getStage() || !dComIfGp_getStage()->getStagInfo() ||
-        dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x17) {
+    if (checkRoomRestartStart() || !i_dComIfGp_getStage() || !i_dComIfGp_getStage()->getStagInfo() ||
+        i_dStage_stagInfo_GetSaveTbl(i_dComIfGp_getStage()->getStagInfo()) != 0x17) {
         return FALSE;
     }
     return dComIfGs_getLastSceneMode() & 0x100000;
@@ -771,8 +751,8 @@ u32 daPy_py_c::checkCarryStartLightBallA() {
 
 /* 8015F730-8015F7C8 15A070 0098+00 0/0 2/2 1/1 .text checkCarryStartLightBallB__9daPy_py_cFv */
 u32 daPy_py_c::checkCarryStartLightBallB() {
-    if (checkRoomRestartStart() || !dComIfGp_getStage() || !dComIfGp_getStage()->getStagInfo() ||
-        dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x17) {
+    if (checkRoomRestartStart() || !i_dComIfGp_getStage() || !i_dComIfGp_getStage()->getStagInfo() ||
+        i_dStage_stagInfo_GetSaveTbl(i_dComIfGp_getStage()->getStagInfo()) != 0x17) {
         return FALSE;
     }
     return dComIfGs_getLastSceneMode() & 0x80000;
