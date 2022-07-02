@@ -1514,6 +1514,10 @@ inline dAttention_c& dComIfGp_getAttention() {
     return g_dComIfG_gameInfo.play.getAttention();
 }
 
+inline u8 dComIfGp_att_getCatchChgItem() {
+    return dComIfGp_getAttention().getCatchChgItem();
+}
+
 inline J2DGrafContext* dComIfGp_getCurrentGrafPort() {
     return g_dComIfG_gameInfo.play.getCurrentGrafPort();
 }

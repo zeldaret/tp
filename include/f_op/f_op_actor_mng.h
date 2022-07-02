@@ -112,7 +112,7 @@ inline u32 fopAcM_GetID(const void* pActor) {
     return fpcM_GetID(pActor);
 }
 
-inline s16 fopAcM_GetName(fopAc_ac_c* pActor) {
+inline s16 fopAcM_GetName(void* pActor) {
     return fpcM_GetName(pActor);
 }
 

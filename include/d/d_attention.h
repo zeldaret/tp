@@ -31,6 +31,7 @@ public:
     void request(fopAc_ac_c*, u8, f32, f32, f32, s16, int);
 
     s32 getCatghTarget() { return convPId(field_0x10); }
+    u8 getChangeItem() { return mChangeItem; }
 
 private:
     void* field_0x0;
@@ -203,6 +204,7 @@ public:
     /* 8014B010 */ void getDistTable(int);
 
     dAttCatch_c& getCatghTarget() { return mCatghTarget; }
+    u8 getCatchChgItem() { return mCatghTarget.getChangeItem(); }
     BOOL chkFlag(u32 flag) { return mFlags & flag; }
     s8 Lockon() {
         /* s32 chk = true;

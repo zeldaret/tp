@@ -157,6 +157,8 @@ private:
 };  // Size: 0x24
 
 class daMidna_c;
+class daPy_py_c;
+inline daPy_py_c* dComIfGp_getLinkPlayer();
 
 class daPy_py_c : public fopAc_ac_c {
 public:
@@ -351,7 +353,7 @@ public:
     /* 80182A10 */ void checkGoronSideMove() const;
     /* 80182AAC */ void getRightFootPosP();
     /* 80182AB4 */ void getLeftFootPosP();
-    /* 80182ABC */ u32 getMidnaActor();
+    /* 80182ABC */ //u32 getMidnaActor();
     /* 80182AC4 */ void checkCopyRodThrowAfter() const;
     /* 80182AD8 */ void checkRide() const;
     /* 80182B9C */ void getRightHandPos() const;
@@ -589,6 +591,9 @@ public:
     inline BOOL i_checkSwordGet();
     inline bool i_checkShieldGet() const;
     inline static BOOL checkNowWolf();
+    inline static BOOL i_checkNowWolf() {
+        return dComIfGp_getLinkPlayer()->i_checkWolf();
+    }
     inline bool checkZoraWearFlg() const;
     inline bool checkMagicArmorWearFlg() const;
 

@@ -31,7 +31,7 @@ public:
     s16 getEventId() { return mEventId; }
     s16 getIdx() { return mIndex; }
     char* getArchiveName() { return mArchiveName; }
-    BOOL chkCondition(u16 condition) { return mCondition & condition; }
+    BOOL chkCondition(u16 condition) { return (mCondition & condition) == condition; }
     void i_onCondition(u16 cond) { mCondition |= cond; }
     void i_offCondition(u16 cond) { mCondition &= ~cond; }
 
