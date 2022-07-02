@@ -7,6 +7,7 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/d_camera.h"
 #include "d/d_demo.h"
+#include "d/d_procname.h"
 #include "d/d_stage.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
@@ -348,9 +349,9 @@ SECTION_DEAD static char const* const stringBase_80379D98 = "MHINT_TALK";
 int dEvt_control_c::talkCheck(dEvt_order_c* p_order) {
     char* event = "DEFAULT_TALK";
     fopAc_ac_c* actor = p_order->mActor2;
-    if ((fopAcM_GetName(actor) == 0x2C1 && ((daTagMhint_c*)actor)->checkNoAttention()) ||
-        (fopAcM_GetName(actor) == 0x2C4 && ((daTagMstop_c*)actor)->checkNoAttention()) ||
-        fopAcM_GetName(actor) == 0xFF) {
+    if ((fopAcM_GetName(actor) == PROC_Tag_Mhint && ((daTagMhint_c*)actor)->checkNoAttention()) ||
+        (fopAcM_GetName(actor) == PROC_Tag_Mstop && ((daTagMstop_c*)actor)->checkNoAttention()) ||
+        fopAcM_GetName(actor) == PROC_MIDNA) {
         daMidna_c* midna = daPy_py_c::getMidnaActor();
         if (!daPy_py_c::i_checkNowWolf() || midna->checkNoDraw()) {
             event = "MHINT_TALK";
@@ -462,7 +463,7 @@ int dEvt_control_c::talkEnd() {
         mSpecifiedEvent = -1;
     }
     daItemBase_c* item = (daItemBase_c*)fopAcM_getItemEventPartner(NULL);
-    if (item != NULL && fopAcM_GetName(item) == 0x218) {
+    if (item != NULL && fopAcM_GetName(item) == PROC_ITEM) {
         item->dead();
     }
     return 1;
