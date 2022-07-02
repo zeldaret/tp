@@ -420,8 +420,8 @@ lbl_805D5794:
 /* 805D5914  4B A7 7B B9 */	bl set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 805D5918  90 7B 2D EC */	stw r3, 0x2dec(r27)
 /* 805D591C  38 00 00 05 */	li r0, 5
-/* 805D5920  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha /* 0x80451125@ha */
-/* 805D5924  98 03 11 25 */	stb r0, struct_80451124+0x1@l(r3)  /* 0x80451125@l */
+/* 805D5920  3C 60 80 45 */	lis r3, pauseTimer__9dScnPly_c+0x1@ha /* 0x80451125@ha */
+/* 805D5924  98 03 11 25 */	stb r0, pauseTimer__9dScnPly_c+0x1@l(r3)  /* 0x80451125@l */
 /* 805D5928  C0 3D 00 04 */	lfs f1, 4(r29)
 /* 805D592C  D0 21 00 78 */	stfs f1, 0x78(r1)
 /* 805D5930  C0 1D 00 08 */	lfs f0, 8(r29)

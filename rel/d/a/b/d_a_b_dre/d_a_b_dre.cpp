@@ -352,7 +352,7 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80450BE4[4];
+extern "C" extern u8 mBlureFlag__13mDoGph_gInf_c[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 

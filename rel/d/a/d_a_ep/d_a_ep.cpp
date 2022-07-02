@@ -394,7 +394,7 @@ extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 extern "C" extern u32 __float_nan;
 extern "C" f32 mSystemFar__14mDoLib_clipper;
 extern "C" f32 mGroundY__11fopAcM_gc_c;
-extern "C" extern u8 struct_80451124[4];
+extern "C" extern u8 pauseTimer__9dScnPly_c[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //

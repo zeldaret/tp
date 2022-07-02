@@ -57,8 +57,8 @@ private:
     /* 0x14 */ dScnPly_env_debugHIO_c mDebug;
 };
 
-extern s8 struct_80451124;
-extern s8 data_80451125;  // sPauseTimer
+extern s8 pauseTimer__9dScnPly_c;
+extern s8 nextPauseTimer__9dScnPly_c;  // sPauseTimer
 
 class dScnPly_c : public scene_class {
 public:
@@ -66,8 +66,11 @@ public:
     /* 80259AC4 */ bool resetGame();
     /* 80259BFC */ void offReset();
 
-    static bool isPause() { return struct_80451124 == 0; }
-    static void setPauseTimer(s8 time) { data_80451125 = time; }
+    static bool isPause() { return pauseTimer == 0; }
+    static void setPauseTimer(s8 time) { nextPauseTimer = time; }
+
+    static s8 pauseTimer;
+    static s8 nextPauseTimer;
 
     /* 0x1CC */ mDoDvdThd_toMainRam_c* sceneCommand;
     /* 0x1D0 */ mDoDvdThd_mountXArchive_c* field_0x1d0;

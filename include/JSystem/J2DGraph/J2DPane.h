@@ -134,6 +134,7 @@ public:
     void animationTransform();
     void updateTransform(const J2DAnmTransform* transform);
     void setUserInfo(u64 info) { mUserInfoTag = info; }
+    const Mtx* getMtx() const { return &mPositionMtx; }
 
     static JGeometry::TBox2<f32> static_mBounds;
 

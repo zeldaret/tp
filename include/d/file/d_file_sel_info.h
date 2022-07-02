@@ -18,6 +18,10 @@ public:
 
     /* 801924A0 */ virtual ~dFile_info_c();
 
+    void setBasePane(J2DPane* pane) { mFileInfo.mBasePane = pane; }
+    CPaneMgrAlpha* getDatBase() { return mDatBase; }
+    CPaneMgrAlpha* getNoDatBase() { return mNoDatBase; }
+
 private:
     /* 0x04 */ JKRArchive* mArchive;
     /* 0x08 */ dDlst_FileInfo_c mFileInfo;

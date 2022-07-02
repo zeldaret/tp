@@ -29,7 +29,7 @@ static OSAlarm Alarm;
 
 /* 8001659C-8001665C 010EDC 00C0+00 0/0 1/1 0/0 .text            mDoDvdErr_ThdInit__Fv */
 void mDoDvdErr_ThdInit() {
-    if (!data_80450C88) {
+    if (!mDoDvdErr_initialized) {
         OSTime time = OSGetTime();
         OSThread* curThread = OSGetCurrentThread();
         s32 priority = OSGetThreadPriority(curThread);
@@ -40,16 +40,16 @@ void mDoDvdErr_ThdInit() {
         OSCreateAlarm(&Alarm);
         OSSetPeriodicAlarm(&Alarm, time, OS_BUS_CLOCK / 4, AlarmHandler);
 
-        data_80450C88 = 1;
+        mDoDvdErr_initialized = true;
     }
 }
 
 /* 8001665C-800166A4 010F9C 0048+00 0/0 1/1 0/0 .text            mDoDvdErr_ThdCleanup__Fv */
 void mDoDvdErr_ThdCleanup() {
-    if (data_80450C88) {
+    if (mDoDvdErr_initialized) {
         OSCancelThread(&DvdErr_thread);
         OSCancelAlarm(&Alarm);
-        data_80450C88 = 0;
+        mDoDvdErr_initialized = false;
     }
 }
 

@@ -174,8 +174,8 @@ lbl_80B29E1C:
 /* 80B29E2C  40 80 00 08 */	bge lbl_80B29E34
 /* 80B29E30  48 00 00 54 */	b lbl_80B29E84
 lbl_80B29E34:
-/* 80B29E34  3C 60 80 45 */	lis r3, struct_80450BE4+0x2@ha /* 0x80450BE6@ha */
-/* 80B29E38  88 03 0B E6 */	lbz r0, struct_80450BE4+0x2@l(r3)  /* 0x80450BE6@l */
+/* 80B29E34  3C 60 80 45 */	lis r3, mBlureFlag__13mDoGph_gInf_c+0x2@ha /* 0x80450BE6@ha */
+/* 80B29E38  88 03 0B E6 */	lbz r0, mBlureFlag__13mDoGph_gInf_c+0x2@l(r3)  /* 0x80450BE6@l */
 /* 80B29E3C  28 00 00 00 */	cmplwi r0, 0
 /* 80B29E40  41 82 00 44 */	beq lbl_80B29E84
 /* 80B29E44  3B A0 00 01 */	li r29, 1

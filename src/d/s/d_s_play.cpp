@@ -197,6 +197,7 @@ extern "C" u8 mFader__13mDoGph_gInf_c[4];
 extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 extern "C" u8 mProcID__20dStage_roomControl_c[4];
 extern "C" extern u8 struct_80450D8C[4];
+extern "C" extern u8 mBgmSet__17mDoAud_zelAudio_c;
 extern "C" u8 m_emitter__8daYkgr_c[4];
 extern "C" u8 sManager__10JFWDisplay[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
@@ -242,19 +243,19 @@ static u8 g_preLoadHIO[4];
 
 /* 80451124-80451128 -00001 0004+00 3/3 7/7 38/38 .sbss            None */
 /* 80451124 0001+00 data_80451124 None */
-/* 80451125 0003+00 data_80451125 None */
-s8 struct_80451124;
+/* 80451125 0003+00 nextPauseTimer__9dScnPly_c None */
+s8 dScnPly_c::pauseTimer;
 
-s8 data_80451125;
+s8 dScnPly_c::nextPauseTimer;
 
 /* 80259400-80259440 253D40 0040+00 1/1 0/0 0/0 .text            calcPauseTimer__9dScnPly_cFv */
 s8 dScnPly_c::calcPauseTimer() {
-    if (data_80451125 != 0) {
-        struct_80451124 = data_80451125;
-        data_80451125 = 0;
-        return struct_80451124;
+    if (nextPauseTimer != 0) {
+        pauseTimer = nextPauseTimer;
+        nextPauseTimer = 0;
+        return pauseTimer;
     } else {
-        return func_80252E70(&struct_80451124);  // cLib_calcTimer<s8> : 80252E70
+        return func_80252E70(&pauseTimer);  // cLib_calcTimer<s8> : 80252E70
     }
 }
 
@@ -422,7 +423,7 @@ static int dScnPly_Draw(dScnPly_c* scn) {
     }
     dMdl_mng_c::reset();
 
-    if (!dComIfGp_isPauseFlag() && struct_80451124 == 0) {
+    if (!dComIfGp_isPauseFlag() && pauseTimer == 0) {
         if (fpcM_GetName(scn) == PROC_PLAY_SCENE) {
             dComIfGp_getVibration().Run();
         }
@@ -433,9 +434,9 @@ static int dScnPly_Draw(dScnPly_c* scn) {
         cCt_execCounter();
     } else {
         dPa_control_c::onStatus(1);
-        if (struct_80451124 == 0) {
+        if (pauseTimer == 0) {
             dPa_control_c::onStatus(2);
-            if (struct_80451124 == 0) {
+            if (pauseTimer == 0) {
                 dComIfGp_getVibration().Pause();
             }
         }
@@ -527,11 +528,11 @@ SECTION_DEAD static char const* const stringBase_8039A2DF = "T_JOINT";
 SECTION_SDATA static char* T_JOINT_resName = "Always";
 
 /* 80450764-80450768 -00001 0004+00 4/4 0/0 0/0 .sdata           None */
-SECTION_SDATA static s8 struct_80450764 = 0xFF;
+SECTION_SDATA static s8 preLoadNo = 0xFF;
 
 #pragma push
 #pragma force_active on
-SECTION_SDATA static u8 data_80450765 = 1;
+SECTION_SDATA static u8 doPreLoad = 1;
 #pragma pop
 
 /* 802598AC-80259AC4 2541EC 0218+00 1/0 0/0 0/0 .text            dScnPly_Delete__FP9dScnPly_c */
@@ -580,7 +581,7 @@ void dScnPly_c::offReset() {
     if (field_0x1d4 != 0 && !fopOvlpM_IsPeek()) {
         mDoRst::offReset();
         mDoRst::offResetPrepare();
-        struct_80451501 = false;
+        JUTGamePad::C3ButtonReset::sResetOccurred = false;
         JUTGamePad::setResetCallback(mDoRst_resetCallBack, NULL);
         field_0x1d4 = 0;
     }
@@ -930,15 +931,15 @@ static int phase_4(dScnPly_c* i_this) {
     dComIfG_setBrightness(255);
     mDoGph_gInf_c::offFade();
     mDoAud_zelAudio_c::onBgmSet();
-    struct_80451124 = 0;
-    data_80451125 = 0;
-    struct_80450764 = -1;
+    dScnPly_c::pauseTimer = 0;
+    dScnPly_c::nextPauseTimer = 0;
+    preLoadNo = -1;
 
-    if (data_80450765 != 0 && !strcmp(dComIfGp_getStartStageName(), (char*)PreLoadInfoT[0])) {
-        struct_80450764 = 0;
+    if (doPreLoad != 0 && !strcmp(dComIfGp_getStartStageName(), (char*)PreLoadInfoT[0])) {
+        preLoadNo = 0;
     }
 
-    if (struct_80450764 < 0) {
+    if (preLoadNo < 0) {
         return 4;
     }
 

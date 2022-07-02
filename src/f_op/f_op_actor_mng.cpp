@@ -560,8 +560,8 @@ s32 fopAcM_callCallback(fopAc_ac_c* p_actor, heapCallbackFunc p_callbackFunc, JK
 /* 80450CC8-80450CCC -00001 0004+00 2/2 0/0 0/0 .sbss            None */
 /* 80450CC8 0001+00 data_80450CC8 None */
 /* 80450CC9 0003+00 data_80450CC9 None */
-static u8 lbl_80450CC8;
-static u8 lbl_80450CC9;
+static u8 HeapAdjustEntry;
+static u8 HeapAdjustVerbose;
 
 /* 8001A1E8-8001A4B0 014B28 02C8+00 1/1 0/0 0/0 .text
  * fopAcM_entrySolidHeap___FP10fopAc_ac_cPFP10fopAc_ac_c_iUl    */
@@ -614,7 +614,7 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* p_actor, heapCallbackFunc p_heapCallback
             break;
         }
 
-        if (lbl_80450CC8 == 0) {
+        if (HeapAdjustEntry == 0) {
             mDoExt_adjustSolidHeap(heap00);
             p_actor->mHeap = heap00;
             return true;
@@ -657,7 +657,7 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* p_actor, heapCallbackFunc p_heapCallback
 
             OSReport_Error("ばぐばぐです\n");  // "There's a big bug\n"
             OSReport_Error("緊急回避措置\n");  // "Emergency action\n"
-            lbl_80450CC8 = 0;
+            HeapAdjustEntry = 0;
         }
     }
     // "fopAcM_entrySolidHeap didn't work [%s]\n"
@@ -668,21 +668,21 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* p_actor, heapCallbackFunc p_heapCallback
 /* 8001A4B0-8001A528 014DF0 0078+00 0/0 4/4 446/446 .text
  * fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl     */
 bool fopAcM_entrySolidHeap(fopAc_ac_c* p_actor, heapCallbackFunc p_heapCallback, u32 size) {
-    u8 oldCC9 = lbl_80450CC9;
+    u8 oldCC9 = HeapAdjustVerbose;
     if (size & 0x80000000) {
-        lbl_80450CC9 = 1;
+        HeapAdjustVerbose = 1;
     }
 
-    u8 oldCC8 = lbl_80450CC8;
+    u8 oldCC8 = HeapAdjustEntry;
     if (size & 0x20000000) {
-        lbl_80450CC8 = 0;
+        HeapAdjustEntry = 0;
     } else if (size & 0x10000000) {
-        lbl_80450CC8 = 1;
+        HeapAdjustEntry = 1;
     }
 
     bool result = fopAcM_entrySolidHeap_(p_actor, p_heapCallback, size & 0xFFFFFF);
-    lbl_80450CC9 = oldCC9;
-    lbl_80450CC8 = oldCC8;
+    HeapAdjustVerbose = oldCC9;
+    HeapAdjustEntry = oldCC8;
     return result;
 }
 

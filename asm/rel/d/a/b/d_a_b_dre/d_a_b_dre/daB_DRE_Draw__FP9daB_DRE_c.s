@@ -93,14 +93,14 @@ lbl_805CA8D0:
 /* 805CA8E0  FC 00 08 1E */	fctiwz f0, f1
 /* 805CA8E4  D8 01 00 18 */	stfd f0, 0x18(r1)
 /* 805CA8E8  80 01 00 1C */	lwz r0, 0x1c(r1)
-/* 805CA8EC  3C 60 80 45 */	lis r3, struct_80450BE4+0x1@ha /* 0x80450BE5@ha */
-/* 805CA8F0  98 03 0B E5 */	stb r0, struct_80450BE4+0x1@l(r3)  /* 0x80450BE5@l */
+/* 805CA8EC  3C 60 80 45 */	lis r3, mBlureFlag__13mDoGph_gInf_c+0x1@ha /* 0x80450BE5@ha */
+/* 805CA8F0  98 03 0B E5 */	stb r0, mBlureFlag__13mDoGph_gInf_c+0x1@l(r3)  /* 0x80450BE5@l */
 /* 805CA8F4  4B A3 D7 85 */	bl onBlure__13mDoGph_gInf_cFv
 /* 805CA8F8  48 00 00 10 */	b lbl_805CA908
 lbl_805CA8FC:
 /* 805CA8FC  38 00 00 00 */	li r0, 0
-/* 805CA900  3C 60 80 45 */	lis r3, struct_80450BE4+0x0@ha /* 0x80450BE4@ha */
-/* 805CA904  98 03 0B E4 */	stb r0, struct_80450BE4+0x0@l(r3)  /* 0x80450BE4@l */
+/* 805CA900  3C 60 80 45 */	lis r3, mBlureFlag__13mDoGph_gInf_c+0x0@ha /* 0x80450BE4@ha */
+/* 805CA904  98 03 0B E4 */	stb r0, mBlureFlag__13mDoGph_gInf_c+0x0@l(r3)  /* 0x80450BE4@l */
 lbl_805CA908:
 /* 805CA908  38 60 00 01 */	li r3, 1
 /* 805CA90C  39 61 00 30 */	addi r11, r1, 0x30

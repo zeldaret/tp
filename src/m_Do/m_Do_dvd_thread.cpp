@@ -13,6 +13,7 @@
 #include "dolphin/os/OSThread.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
+#include "m_Do/m_Do_reset.h"
 
 //
 // Types:
@@ -25,9 +26,6 @@ struct JASTaskThread {
 struct JASDvd {
     static JASTaskThread* getThreadPointer();
 };
-
-extern "C" extern u8 struct_80450C80;
-extern "C" extern u8 struct_80450C81;
 
 //
 // Declarations:
@@ -132,7 +130,7 @@ void mDoDvdThd_param_c::mainLoop() {
     while (this->waitForKick() != 0) {
         while (mDoDvdThd_command_c* command = this->getFirstCommand()) {
             this->cut(command);
-            if (struct_80450C80 != 0) {
+            if (SyncWidthSound) {
                 JASDvd::getThreadPointer()->sendCmdMsg(cb, &command, 4);
             } else {
                 cb(&command);
@@ -187,7 +185,7 @@ mDoDvdThd_mountArchive_c::mDoDvdThd_mountArchive_c(u8 param_0) {
     mArchive = NULL;
     mHeap = NULL;
     if (param_0 == 0) {
-        mMountDirection = struct_80450C81;
+        mMountDirection = sDefaultDirection;
     }
 }
 
@@ -278,7 +276,7 @@ mDoDvdThd_mountXArchive_c::mDoDvdThd_mountXArchive_c(u8 param_0, JKRArchive::EMo
     mMountMode = param_1;
     mHeap = NULL;
     if (param_0 == 0) {
-        mMountDirection = struct_80450C81;
+        mMountDirection = sDefaultDirection;
     }
 }
 
@@ -319,7 +317,7 @@ s32 mDoDvdThd_mountXArchive_c::execute() {
 mDoDvdThd_toMainRam_c::mDoDvdThd_toMainRam_c(u8 param_0) {
     mMountDirection = param_0;
     if (param_0 == 0) {
-        mMountDirection = struct_80450C81;
+        mMountDirection = sDefaultDirection;
     }
 }
 

@@ -6,6 +6,7 @@
 #include "d/msg/d_msg_string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "JSystem/JGeometry.h"
 
 //
 // Forward References:
@@ -52,82 +53,50 @@ SECTION_DATA extern void* __vt__12dMsgString_c[8] = {
 };
 
 /* 80249C20-80249CA0 244560 0080+00 0/0 15/15 0/0 .text            __ct__12dMsgString_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMsgString_c::dMsgString_c() {
-    nofralloc
-#include "asm/d/msg/d_msg_string/__ct__12dMsgString_cFv.s"
+dMsgString_c::dMsgString_c() {
+    field_0x28 = 0;
+    mpOutFont = new COutFont_c(field_0x28);
+    mpOutFont->createPane();
+    getResource();
 }
-#pragma pop
 
 /* 80249CA0-80249D28 2445E0 0088+00 0/0 1/1 0/0 .text            __ct__12dMsgString_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMsgString_c::dMsgString_c(u8 param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_string/__ct__12dMsgString_cFUc.s"
+dMsgString_c::dMsgString_c(u8 param_0) {
+    field_0x28 = param_0;
+    mpOutFont = new COutFont_c(field_0x28);
+    mpOutFont->createPane();
+    getResource();
 }
-#pragma pop
 
 /* 80249D28-80249DB4 244668 008C+00 0/0 17/17 0/0 .text            __dt__12dMsgString_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMsgString_c::~dMsgString_c() {
-    nofralloc
-#include "asm/d/msg/d_msg_string/__dt__12dMsgString_cFv.s"
+dMsgString_c::~dMsgString_c() {
+    delete mpOutFont;
+    mpOutFont = NULL;
 }
-#pragma pop
 
 /* 80249DB4-80249DE4 2446F4 0030+00 1/0 0/0 0/0 .text
  * resetStringLocal__12dMsgString_cFP10J2DTextBox               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgString_c::resetStringLocal(J2DTextBox* param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_string/resetStringLocal__12dMsgString_cFP10J2DTextBox.s"
+void dMsgString_c::resetStringLocal(J2DTextBox* p_textBox) {
+    mpOutFont->reset(p_textBox);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80454D78-80454D7C 003378 0004+00 1/1 0/0 0/0 .sdata2          @3777 */
-SECTION_SDATA2 static f32 lit_3777 = 255.0f;
-
-/* 80454D7C-80454D80 00337C 0004+00 1/1 0/0 0/0 .sdata2          @3778 */
-SECTION_SDATA2 static f32 lit_3778 = -1.0f;
-
-/* 80454D80-80454D88 003380 0004+04 1/1 0/0 0/0 .sdata2          @3779 */
-SECTION_SDATA2 static f32 lit_3779[1 + 1 /* padding */] = {
-    1.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80454D88-80454D90 003388 0008+00 1/1 0/0 0/0 .sdata2          @3781 */
-SECTION_SDATA2 static f64 lit_3781 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80249DE4-80249ED0 244724 00EC+00 1/0 0/0 0/0 .text
  * drawOutFontLocal__12dMsgString_cFP10J2DTextBoxf              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgString_c::drawOutFontLocal(J2DTextBox* param_0, f32 param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_string/drawOutFontLocal__12dMsgString_cFP10J2DTextBoxf.s"
+void dMsgString_c::drawOutFontLocal(J2DTextBox* p_textBox, f32 i_alpha) {
+    JGeometry::TVec3<f32> pos = p_textBox->getGlbVtx(0);
+    f32 y = pos.y;
+
+    if (i_alpha == -1.0f) {
+        i_alpha = p_textBox->getAlpha() / 255.0f;
+    }
+
+    mpOutFont->setAlphaRatio(i_alpha);
+    mpOutFont->draw(p_textBox, pos.x, y, 1.0f);
 }
-#pragma pop
 
 /* 80249ED0-80249F00 244810 0030+00 1/0 0/0 0/0 .text
  * drawFontLocal__12dMsgString_cFP10J2DTextBoxUcffffUlUc        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgString_c::drawFontLocal(J2DTextBox* param_0, u8 param_1, f32 param_2, f32 param_3,
-                                     f32 param_4, f32 param_5, u32 param_6, u8 param_7) {
-    nofralloc
-#include "asm/d/msg/d_msg_string/drawFontLocal__12dMsgString_cFP10J2DTextBoxUcffffUlUc.s"
+void dMsgString_c::drawFontLocal(J2DTextBox* p_textBox, u8 type, f32 posX, f32 posY,
+                              f32 sizeX, f32 sizeY, u32 color, u8 alpha) {
+    mpOutFont->drawFont(p_textBox, type, posX, posY, sizeX, sizeY, color, alpha);
 }
-#pragma pop

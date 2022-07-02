@@ -182,8 +182,8 @@ lbl_805F9AFC:
 /* 805F9B9C  B0 1C 0C 58 */	sth r0, 0xc58(r28)
 /* 805F9BA0  98 7C 0C 7C */	stb r3, 0xc7c(r28)
 /* 805F9BA4  38 00 00 07 */	li r0, 7
-/* 805F9BA8  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha /* 0x80451125@ha */
-/* 805F9BAC  98 03 11 25 */	stb r0, struct_80451124+0x1@l(r3)  /* 0x80451125@l */
+/* 805F9BA8  3C 60 80 45 */	lis r3, pauseTimer__9dScnPly_c+0x1@ha /* 0x80451125@ha */
+/* 805F9BAC  98 03 11 25 */	stb r0, pauseTimer__9dScnPly_c+0x1@l(r3)  /* 0x80451125@l */
 /* 805F9BB0  38 00 00 64 */	li r0, 0x64
 /* 805F9BB4  B0 1C 05 62 */	sth r0, 0x562(r28)
 /* 805F9BB8  48 00 00 14 */	b lbl_805F9BCC

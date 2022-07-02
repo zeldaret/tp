@@ -110,7 +110,7 @@ extern "C" u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
 extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 extern "C" u8 mArcBankName__20dStage_roomControl_c[4];
 extern "C" u8 mArcBankData__20dStage_roomControl_c[4];
-extern "C" extern u8 struct_80451124[4];
+extern "C" extern u8 pauseTimer__9dScnPly_c[4];
 
 //
 // Declarations:

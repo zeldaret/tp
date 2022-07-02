@@ -55,8 +55,8 @@ lbl_80C3E948:
 /* 80C3E9B0  7F E3 FB 78 */	mr r3, r31
 /* 80C3E9B4  4B FF ED 99 */	bl break_eff__FP14obj_kbox_class
 /* 80C3E9B8  38 00 00 03 */	li r0, 3
-/* 80C3E9BC  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha /* 0x80451125@ha */
-/* 80C3E9C0  98 03 11 25 */	stb r0, struct_80451124+0x1@l(r3)  /* 0x80451125@l */
+/* 80C3E9BC  3C 60 80 45 */	lis r3, pauseTimer__9dScnPly_c+0x1@ha /* 0x80451125@ha */
+/* 80C3E9C0  98 03 11 25 */	stb r0, pauseTimer__9dScnPly_c+0x1@l(r3)  /* 0x80451125@l */
 /* 80C3E9C4  3C 60 00 08 */	lis r3, 0x0008 /* 0x0008014E@ha */
 /* 80C3E9C8  38 03 01 4E */	addi r0, r3, 0x014E /* 0x0008014E@l */
 /* 80C3E9CC  90 01 00 08 */	stw r0, 8(r1)

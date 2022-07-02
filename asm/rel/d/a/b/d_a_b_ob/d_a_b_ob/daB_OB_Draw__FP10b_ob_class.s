@@ -336,14 +336,14 @@ lbl_806113C4:
 /* 806113C4  A8 1F 5D 0A */	lha r0, 0x5d0a(r31)
 /* 806113C8  2C 00 00 02 */	cmpwi r0, 2
 /* 806113CC  40 81 00 14 */	ble lbl_806113E0
-/* 806113D0  3C 60 80 45 */	lis r3, struct_80450BE4+0x1@ha /* 0x80450BE5@ha */
-/* 806113D4  98 03 0B E5 */	stb r0, struct_80450BE4+0x1@l(r3)  /* 0x80450BE5@l */
+/* 806113D0  3C 60 80 45 */	lis r3, mBlureFlag__13mDoGph_gInf_c+0x1@ha /* 0x80450BE5@ha */
+/* 806113D4  98 03 0B E5 */	stb r0, mBlureFlag__13mDoGph_gInf_c+0x1@l(r3)  /* 0x80450BE5@l */
 /* 806113D8  4B 9F 6C A1 */	bl onBlure__13mDoGph_gInf_cFv
 /* 806113DC  48 00 00 10 */	b lbl_806113EC
 lbl_806113E0:
 /* 806113E0  38 00 00 00 */	li r0, 0
-/* 806113E4  3C 60 80 45 */	lis r3, struct_80450BE4+0x0@ha /* 0x80450BE4@ha */
-/* 806113E8  98 03 0B E4 */	stb r0, struct_80450BE4+0x0@l(r3)  /* 0x80450BE4@l */
+/* 806113E4  3C 60 80 45 */	lis r3, mBlureFlag__13mDoGph_gInf_c+0x0@ha /* 0x80450BE4@ha */
+/* 806113E8  98 03 0B E4 */	stb r0, mBlureFlag__13mDoGph_gInf_c+0x0@l(r3)  /* 0x80450BE4@l */
 lbl_806113EC:
 /* 806113EC  38 60 00 01 */	li r3, 1
 /* 806113F0  39 61 00 50 */	addi r11, r1, 0x50

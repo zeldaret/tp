@@ -38,8 +38,8 @@ lbl_807E5708:
 /* 807E575C  39 20 00 00 */	li r9, 0
 /* 807E5760  4B 86 6A B9 */	bl setHitMark__13dPa_control_cFUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl
 /* 807E5764  38 00 00 04 */	li r0, 4
-/* 807E5768  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha /* 0x80451125@ha */
-/* 807E576C  98 03 11 25 */	stb r0, struct_80451124+0x1@l(r3)  /* 0x80451125@l */
+/* 807E5768  3C 60 80 45 */	lis r3, pauseTimer__9dScnPly_c+0x1@ha /* 0x80451125@ha */
+/* 807E576C  98 03 11 25 */	stb r0, pauseTimer__9dScnPly_c+0x1@l(r3)  /* 0x80451125@l */
 /* 807E5770  3C 60 00 07 */	lis r3, 0x0007 /* 0x00070171@ha */
 /* 807E5774  38 03 01 71 */	addi r0, r3, 0x0171 /* 0x00070171@l */
 /* 807E5778  90 01 00 0C */	stw r0, 0xc(r1)

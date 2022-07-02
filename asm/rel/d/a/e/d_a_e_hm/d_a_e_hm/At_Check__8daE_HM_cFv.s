@@ -90,8 +90,8 @@ lbl_806E39B4:
 /* 806E39C0  41 82 00 08 */	beq lbl_806E39C8
 /* 806E39C4  3B E0 00 04 */	li r31, 4
 lbl_806E39C8:
-/* 806E39C8  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha /* 0x80451125@ha */
-/* 806E39CC  9B E3 11 25 */	stb r31, struct_80451124+0x1@l(r3)  /* 0x80451125@l */
+/* 806E39C8  3C 60 80 45 */	lis r3, pauseTimer__9dScnPly_c+0x1@ha /* 0x80451125@ha */
+/* 806E39CC  9B E3 11 25 */	stb r31, pauseTimer__9dScnPly_c+0x1@l(r3)  /* 0x80451125@l */
 lbl_806E39D0:
 /* 806E39D0  39 61 00 20 */	addi r11, r1, 0x20
 /* 806E39D4  4B C7 E8 51 */	bl _restgpr_28

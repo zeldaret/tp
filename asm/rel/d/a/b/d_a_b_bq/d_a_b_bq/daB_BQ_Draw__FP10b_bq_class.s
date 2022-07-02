@@ -193,14 +193,14 @@ lbl_805B3A78:
 /* 805B3A78  A8 1D 12 AC */	lha r0, 0x12ac(r29)
 /* 805B3A7C  2C 00 00 02 */	cmpwi r0, 2
 /* 805B3A80  40 81 00 14 */	ble lbl_805B3A94
-/* 805B3A84  3C 60 80 45 */	lis r3, struct_80450BE4+0x1@ha /* 0x80450BE5@ha */
-/* 805B3A88  98 03 0B E5 */	stb r0, struct_80450BE4+0x1@l(r3)  /* 0x80450BE5@l */
+/* 805B3A84  3C 60 80 45 */	lis r3, mBlureFlag__13mDoGph_gInf_c+0x1@ha /* 0x80450BE5@ha */
+/* 805B3A88  98 03 0B E5 */	stb r0, mBlureFlag__13mDoGph_gInf_c+0x1@l(r3)  /* 0x80450BE5@l */
 /* 805B3A8C  4B A5 45 ED */	bl onBlure__13mDoGph_gInf_cFv
 /* 805B3A90  48 00 00 10 */	b lbl_805B3AA0
 lbl_805B3A94:
 /* 805B3A94  38 00 00 00 */	li r0, 0
-/* 805B3A98  3C 60 80 45 */	lis r3, struct_80450BE4+0x0@ha /* 0x80450BE4@ha */
-/* 805B3A9C  98 03 0B E4 */	stb r0, struct_80450BE4+0x0@l(r3)  /* 0x80450BE4@l */
+/* 805B3A98  3C 60 80 45 */	lis r3, mBlureFlag__13mDoGph_gInf_c+0x0@ha /* 0x80450BE4@ha */
+/* 805B3A9C  98 03 0B E4 */	stb r0, mBlureFlag__13mDoGph_gInf_c+0x0@l(r3)  /* 0x80450BE4@l */
 lbl_805B3AA0:
 /* 805B3AA0  38 60 00 01 */	li r3, 1
 lbl_805B3AA4:

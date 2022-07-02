@@ -90,8 +90,8 @@ lbl_80804E50:
 /* 80804E88  B0 9E 06 70 */	sth r4, 0x670(r30)
 /* 80804E8C  38 00 00 C8 */	li r0, 0xc8
 /* 80804E90  B0 1E 06 AA */	sth r0, 0x6aa(r30)
-/* 80804E94  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha /* 0x80451125@ha */
-/* 80804E98  98 83 11 25 */	stb r4, struct_80451124+0x1@l(r3)  /* 0x80451125@l */
+/* 80804E94  3C 60 80 45 */	lis r3, pauseTimer__9dScnPly_c+0x1@ha /* 0x80451125@ha */
+/* 80804E98  98 83 11 25 */	stb r4, pauseTimer__9dScnPly_c+0x1@l(r3)  /* 0x80451125@l */
 /* 80804E9C  3C 60 00 07 */	lis r3, 0x0007 /* 0x000701CB@ha */
 /* 80804EA0  38 03 01 CB */	addi r0, r3, 0x01CB /* 0x000701CB@l */
 /* 80804EA4  90 01 00 0C */	stw r0, 0xc(r1)

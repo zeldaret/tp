@@ -60,8 +60,8 @@ lbl_80007EC0:
 /* 80007F28  38 60 04 00 */	li r3, 0x400
 /* 80007F2C  48 2E C7 2D */	bl setBuffer__8J2DPrintFUl
 /* 80007F30  38 00 00 00 */	li r0, 0
-/* 80007F34  98 0D 86 64 */	stb r0, struct_80450BE4+0x0(r13)
-/* 80007F38  98 0D 86 66 */	stb r0, struct_80450BE4+0x2(r13)
+/* 80007F34  98 0D 86 64 */	stb r0, mBlureFlag__13mDoGph_gInf_c+0x0(r13)
+/* 80007F38  98 0D 86 66 */	stb r0, mBlureFlag__13mDoGph_gInf_c+0x2(r13)
 /* 80007F3C  88 0D 80 80 */	lbz r0, g_clearColor(r13)
 /* 80007F40  98 0D 80 10 */	stb r0, mBackColor__13mDoGph_gInf_c(r13)
 /* 80007F44  38 8D 80 80 */	la r4, g_clearColor(r13) /* 80450600-_SDA_BASE_ */

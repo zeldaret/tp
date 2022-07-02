@@ -150,7 +150,7 @@ lbl_80180F40:
 /* 80180F54  FC 00 00 1E */	fctiwz f0, f0
 /* 80180F58  D8 01 00 58 */	stfd f0, 0x58(r1)
 /* 80180F5C  80 01 00 5C */	lwz r0, 0x5c(r1)
-/* 80180F60  98 0D 86 65 */	stb r0, struct_80450BE4+0x1(r13)
+/* 80180F60  98 0D 86 65 */	stb r0, mBlureFlag__13mDoGph_gInf_c+0x1(r13)
 /* 80180F64  4B E8 71 15 */	bl onBlure__13mDoGph_gInf_cFv
 /* 80180F68  48 00 00 70 */	b lbl_80180FD8
 lbl_80180F6C:

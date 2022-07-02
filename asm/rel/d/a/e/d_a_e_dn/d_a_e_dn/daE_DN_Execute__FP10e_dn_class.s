@@ -686,8 +686,8 @@ lbl_804ED4B4:
 /* 804ED56C  3C 60 80 4F */	lis r3, l_HIO@ha /* 0x804EEF3C@ha */
 /* 804ED570  38 63 EF 3C */	addi r3, r3, l_HIO@l /* 0x804EEF3C@l */
 /* 804ED574  A8 03 00 1C */	lha r0, 0x1c(r3)
-/* 804ED578  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha /* 0x80451125@ha */
-/* 804ED57C  98 03 11 25 */	stb r0, struct_80451124+0x1@l(r3)  /* 0x80451125@l */
+/* 804ED578  3C 60 80 45 */	lis r3, pauseTimer__9dScnPly_c+0x1@ha /* 0x80451125@ha */
+/* 804ED57C  98 03 11 25 */	stb r0, pauseTimer__9dScnPly_c+0x1@l(r3)  /* 0x80451125@l */
 /* 804ED580  38 00 00 0A */	li r0, 0xa
 /* 804ED584  B0 1F 06 EC */	sth r0, 0x6ec(r31)
 /* 804ED588  3C 60 80 45 */	lis r3, calc_mtx@ha /* 0x80450768@ha */

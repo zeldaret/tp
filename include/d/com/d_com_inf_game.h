@@ -1277,6 +1277,14 @@ inline u8 dComIfGs_getDataNum() {
     return g_dComIfG_gameInfo.info.getDataNum();
 }
 
+inline void dComIfGs_setDataNum(u8 num) {
+    return g_dComIfG_gameInfo.info.setDataNum(num);
+}
+
+inline void dComIfGs_setNewFile(u8 file) {
+    return g_dComIfG_gameInfo.info.setNewFile(file);
+}
+
 inline char* dComIfGs_getPlayerName() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerInfo().getLinkName();
 }

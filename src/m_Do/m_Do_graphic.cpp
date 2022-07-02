@@ -144,6 +144,7 @@ extern "C" f32 Zero__4cXyz[3];
 extern "C" u8 mPadStatus__10JUTGamePad[48];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern s8 data_80450580;
+extern "C" extern s8 developmentMode__7mDoMain;
 extern "C" void* mRenderModeObj__15mDoMch_render_c[1 + 1 /* padding */];
 extern "C" u8 systemConsole__9JFWSystem[4];
 extern "C" u8 sManager__10JFWDisplay[4];
@@ -222,16 +223,15 @@ f32 mDoGph_gInf_c::mFadeSpeed;
 /* 80450BE4-80450BE8 -00001 0004+00 8/8 9/9 11/11 .sbss            None */
 /* 80450BE4 0001+00 data_80450BE4 None */
 /* 80450BE5 0001+00 data_80450BE5 None */
-/* 80450BE6 0001+00 data_80450BE6 None */
+/* 80450BE6 0001+00 mFade__13mDoGph_gInf_c None */
 /* 80450BE7 0001+00 data_80450BE7 None */
-extern u8 struct_80450BE4;
-u8 struct_80450BE4;
+bool mDoGph_gInf_c::mBlureFlag;
 
 #pragma push
 #pragma force_active on
 static bool data_80450BE5;
 
-u8 data_80450BE6;
+u8 mDoGph_gInf_c::mFade;
 
 bool data_80450BE7;
 #pragma pop
@@ -272,7 +272,7 @@ SECTION_SDATA2 static f32 lit_4063 = 1.0f;
 
 /* 80007FD8-80008028 002918 0050+00 1/1 6/4 15/15 .text fadeOut__13mDoGph_gInf_cFfR8_GXColor */
 void mDoGph_gInf_c::fadeOut(f32 fadeSpeed, GXColor& fadeColor) {
-    data_80450BE6 = 1;
+    mFade = 1;
     mFadeSpeed = fadeSpeed;
     mFadeColor = fadeColor;
 
@@ -286,7 +286,7 @@ void mDoGph_gInf_c::fadeOut(f32 fadeSpeed, GXColor& fadeColor) {
 
 /* 80008028-80008078 002968 0050+00 0/0 0/0 2/2 .text fadeOut_f__13mDoGph_gInf_cFfR8_GXColor */
 void mDoGph_gInf_c::fadeOut_f(f32 fadeSpeed, GXColor& fadeColor) {
-    data_80450BE6 = 129;
+    mFade = 129;
     mFadeSpeed = fadeSpeed;
     mFadeColor = fadeColor;
 
@@ -319,7 +319,7 @@ Mtx mDoGph_gInf_c::mBlureMtx;
 
 /* 800080A0-800080D0 0029E0 0030+00 1/1 1/1 0/0 .text            onBlure__13mDoGph_gInf_cFPA4_Cf */
 void mDoGph_gInf_c::onBlure(const Mtx m) {
-    struct_80450BE4 = 1;
+    mBlureFlag = true;
     PSMTXCopy(m, mBlureMtx);
 }
 
@@ -393,12 +393,12 @@ SECTION_SDATA2 static f32 lit_4131 = 255.0f;
 // li instead of addi
 #ifdef NONMATCHING
 void mDoGph_gInf_c::calcFade() {
-    if (data_80450BE6) {
+    if (mDoGph_gInf_c::mFade == 1) {
         mFadeRate += mFadeSpeed;
 
         if (mFadeRate < 0.0f) {
             mFadeRate = 0.0f;
-            data_80450BE6 = false;
+            mDoGph_gInf_c::mFade = 0;
         } else {
             if (mFadeRate > 1.0f) {
                 mFadeRate = 1.0f;
@@ -468,7 +468,7 @@ int mDoGph_AfterOfDraw() {
         BOOL console_visible = port3_connected && fapGmHIO_isPrint();
 
         // Dev mode check
-        if (!data_80450580) {
+        if (!mDoMain::developmentMode) {
             procBar_visible = false;
             console_visible = false;
         }

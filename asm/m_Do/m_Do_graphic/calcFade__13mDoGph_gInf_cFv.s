@@ -2,7 +2,7 @@ lbl_80008330:
 /* 80008330  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80008334  7C 08 02 A6 */	mflr r0
 /* 80008338  90 01 00 24 */	stw r0, 0x24(r1)
-/* 8000833C  88 0D 86 66 */	lbz r0, struct_80450BE4+0x2(r13)
+/* 8000833C  88 0D 86 66 */	lbz r0, mBlureFlag__13mDoGph_gInf_c+0x2(r13)
 /* 80008340  28 00 00 00 */	cmplwi r0, 0
 /* 80008344  41 82 00 64 */	beq lbl_800083A8
 /* 80008348  C0 2D 86 5C */	lfs f1, mFadeRate__13mDoGph_gInf_c(r13)
@@ -14,7 +14,7 @@ lbl_80008330:
 /* 80008360  40 80 00 14 */	bge lbl_80008374
 /* 80008364  D0 0D 86 5C */	stfs f0, mFadeRate__13mDoGph_gInf_c(r13)
 /* 80008368  38 00 00 00 */	li r0, 0
-/* 8000836C  98 0D 86 66 */	stb r0, struct_80450BE4+0x2(r13)
+/* 8000836C  98 0D 86 66 */	stb r0, mBlureFlag__13mDoGph_gInf_c+0x2(r13)
 /* 80008370  48 00 00 14 */	b lbl_80008384
 lbl_80008374:
 /* 80008374  C0 02 80 3C */	lfs f0, lit_4063(r2)

@@ -121,8 +121,8 @@ lbl_8063EAEC:
 /* 8063EAF8  54 00 01 4B */	rlwinm. r0, r0, 0, 5, 5
 /* 8063EAFC  40 82 00 10 */	bne lbl_8063EB0C
 /* 8063EB00  38 00 00 00 */	li r0, 0
-/* 8063EB04  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha /* 0x80451125@ha */
-/* 8063EB08  98 03 11 25 */	stb r0, struct_80451124+0x1@l(r3)  /* 0x80451125@l */
+/* 8063EB04  3C 60 80 45 */	lis r3, pauseTimer__9dScnPly_c+0x1@ha /* 0x80451125@ha */
+/* 8063EB08  98 03 11 25 */	stb r0, pauseTimer__9dScnPly_c+0x1@l(r3)  /* 0x80451125@l */
 lbl_8063EB0C:
 /* 8063EB0C  80 78 0C 50 */	lwz r3, 0xc50(r24)
 /* 8063EB10  80 03 00 10 */	lwz r0, 0x10(r3)

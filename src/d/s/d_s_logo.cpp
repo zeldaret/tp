@@ -137,6 +137,7 @@ extern "C" extern void* g_fpcNd_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__10dDlst_2D_c[3];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" void* mRenderModeObj__15mDoMch_render_c[1 + 1 /* padding */];
+extern "C" extern u8 mInitFlag__17mDoAud_zelAudio_c[4];
 extern "C" u8 mFader__13mDoGph_gInf_c[4];
 extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 extern "C" u8 mData__12dEnemyItem_c[4 + 4 /* padding */];

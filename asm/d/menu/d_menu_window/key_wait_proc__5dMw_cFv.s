@@ -88,7 +88,7 @@ lbl_801FAB0C:
 /* 801FAB7C  4B E2 3A 2D */	bl fopOvlpM_IsDoingReq__Fv
 /* 801FAB80  2C 03 00 00 */	cmpwi r3, 0
 /* 801FAB84  40 82 04 40 */	bne lbl_801FAFC4
-/* 801FAB88  88 0D 86 66 */	lbz r0, struct_80450BE4+0x2(r13)
+/* 801FAB88  88 0D 86 66 */	lbz r0, mBlureFlag__13mDoGph_gInf_c+0x2(r13)
 /* 801FAB8C  28 00 00 00 */	cmplwi r0, 0
 /* 801FAB90  40 82 04 34 */	bne lbl_801FAFC4
 /* 801FAB94  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */

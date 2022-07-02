@@ -733,7 +733,7 @@ extern "C" extern u8 data_804505F0[8];
 extern "C" extern u32 __float_nan;
 extern "C" extern u8 struct_80450D64[4];
 extern "C" extern u8 data_80450D68[4];
-extern "C" extern u8 struct_80451124[4];
+extern "C" extern u8 pauseTimer__9dScnPly_c[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 extern "C" void setSnortEffect__11daB_ZANTZ_cFi();

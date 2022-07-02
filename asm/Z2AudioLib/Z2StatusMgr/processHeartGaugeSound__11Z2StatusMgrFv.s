@@ -10,7 +10,7 @@ lbl_802B5F7C:
 /* 802B5F9C  88 83 00 2D */	lbz r4, 0x2d(r3)
 /* 802B5FA0  28 04 00 00 */	cmplwi r4, 0
 /* 802B5FA4  41 82 01 18 */	beq lbl_802B60BC
-/* 802B5FA8  88 0D 8B A4 */	lbz r0, struct_80451124+0x0(r13)
+/* 802B5FA8  88 0D 8B A4 */	lbz r0, pauseTimer__9dScnPly_c+0x0(r13)
 /* 802B5FAC  7C 00 07 75 */	extsb. r0, r0
 /* 802B5FB0  40 82 00 0C */	bne lbl_802B5FBC
 /* 802B5FB4  38 04 FF FF */	addi r0, r4, -1

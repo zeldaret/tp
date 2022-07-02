@@ -128,8 +128,8 @@ lbl_805EA8E8:
 /* 805EA910  41 82 00 08 */	beq lbl_805EA918
 /* 805EA914  3B C0 00 04 */	li r30, 4
 lbl_805EA918:
-/* 805EA918  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha /* 0x80451125@ha */
-/* 805EA91C  9B C3 11 25 */	stb r30, struct_80451124+0x1@l(r3)  /* 0x80451125@l */
+/* 805EA918  3C 60 80 45 */	lis r3, pauseTimer__9dScnPly_c+0x1@ha /* 0x80451125@ha */
+/* 805EA91C  9B C3 11 25 */	stb r30, pauseTimer__9dScnPly_c+0x1@l(r3)  /* 0x80451125@l */
 lbl_805EA920:
 /* 805EA920  39 61 00 20 */	addi r11, r1, 0x20
 /* 805EA924  4B D7 78 FD */	bl _restgpr_27

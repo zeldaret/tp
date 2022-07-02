@@ -45,7 +45,7 @@ extern "C" void fpcMtd_IsDelete__FP20process_method_classPv();
 extern "C" void fpcMtd_Delete__FP20process_method_classPv();
 extern "C" void fpcMtd_Create__FP20process_method_classPv();
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 struct_80451124[4];
+extern "C" extern u8 pauseTimer__9dScnPly_c[4];
 
 //
 // Declarations:

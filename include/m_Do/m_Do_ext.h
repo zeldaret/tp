@@ -414,7 +414,7 @@ void mDoExt_setAraCacheSize(u32 param_0);
 
 struct JUTFont;
 JUTFont* mDoExt_getMesgFont();
-void mDoExt_getSubFont();
+JUTFont* mDoExt_getSubFont();
 JUTFont* mDoExt_getRubyFont();
 void mDoExt_removeSubFont();
 

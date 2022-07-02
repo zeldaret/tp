@@ -4,7 +4,7 @@
 #include "JSystem/JSupport/JSURandomInputStream.h"
 #include "dolphin/types.h"
 
-class JSUMemoryInputStream : JSURandomInputStream {
+class JSUMemoryInputStream : public JSURandomInputStream {
 public:
     JSUMemoryInputStream(const void* res, u32 size) { setBuffer(res, size); }
 

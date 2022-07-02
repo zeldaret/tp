@@ -102,7 +102,6 @@ extern "C" extern u8 data_80450B80[4];
 extern "C" extern u8 data_80450B84[4];
 extern "C" extern u8 data_80450B88[4];
 extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern bool struct_80450C80;
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" u8 sCurrentHeap__7JKRHeap[4];
 
@@ -115,19 +114,18 @@ extern "C" u8 sCurrentHeap__7JKRHeap[4];
 /* 80450BB8 0001+00 data_80450BB8 None */
 /* 80450BB9 0001+00 data_80450BB9 None */
 /* 80450BBA 0002+00 data_80450BBA None */
-bool struct_80450BB8;
-
 #pragma push
 #pragma force_active on
-bool sResetFlag;
+bool mDoAud_zelAudio_c::mInitFlag;
 
-extern bool data_80450bba;
-bool data_80450bba;
+bool mDoAud_zelAudio_c::mResetFlag;
+
+bool mDoAud_zelAudio_c::mBgmSet;
 #pragma pop
 
 /* 80006FB4-80006FC0 0018F4 000C+00 1/1 0/0 0/0 .text            reset__17mDoAud_zelAudio_cFv */
 void mDoAud_zelAudio_c::reset() {
-    data_80450bba = false;
+    mBgmSet = false;
 }
 
 /* 803DBF40-803DBF4C 008C60 000C+00 1/1 0/1 0/0 .bss             @3620 */
@@ -188,7 +186,7 @@ static void mDoAud_Create() {
         l_arcCommand->destroy();
 
         mDoAud_zelAudio_c::onInitFlag();
-        struct_80450C80 = true;
+        SyncWidthSound = true;
     }
 }
 

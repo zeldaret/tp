@@ -4,9 +4,8 @@
 #include "d/msg/d_msg_string_base.h"
 #include "d/msg/d_msg_out_font.h"
 
-class dMsgString_c {
+class dMsgString_c : public dMsgStringBase_c {
 public:
-    
     /* 80249C20 */ dMsgString_c();
     /* 80249CA0 */ dMsgString_c(u8);
     /* 80249D28 */ ~dMsgString_c();

@@ -43,6 +43,7 @@ extern "C" u8 COPYDATE_STRING__7mDoMain[18 + 2 /* padding */];
 extern "C" u32 memMargin__7mDoMain;
 extern "C" u8 sPowerOnTime__7mDoMain[4];
 extern "C" u8 sHungUpTime__7mDoMain[4];
+extern "C" s8 developmentMode__7mDoMain;
 extern "C" extern u8 data_80450B38[4];
 extern "C" extern u8 data_80450B3C[4];
 extern "C" extern u8 data_80450B40[4];
@@ -119,7 +120,6 @@ extern "C" u8 m_gamePad__8mDoCPd_c[16];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" extern JKRSolidHeap* g_mDoAud_audioHeap;
 extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 struct_80450C80[8];
 extern "C" u8 systemConsole__9JFWSystem[4];
 extern "C" u8 sSystemHeap__7JKRHeap[4];
 extern "C" u8 sCurrentHeap__7JKRHeap[4];
@@ -279,7 +279,7 @@ void HeapCheck::heapDisplay() const {
 }
 
 /* 80450580-80450584 000000 0004+00 3/3 6/6 0/0 .sdata           None */
-SECTION_SDATA s8 data_80450580 = 0xFF;
+SECTION_SDATA s8 mDoMain::developmentMode = -1;
 
 /* 80450584-80450588 000004 0004+00 0/0 1/1 0/0 .sdata           memMargin__7mDoMain */
 SECTION_SDATA u32 mDoMain::memMargin = 0xFFFFFFFF;
@@ -288,7 +288,7 @@ SECTION_SDATA u32 mDoMain::memMargin = 0xFFFFFFFF;
 SECTION_SDATA u8 mDoMain::mHeapBriefType = 4;
 
 /* 80450B00-80450B08 000000 0008+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_80450B00;
+static u8 fillcheck_check_frame;
 
 /* 80450B08-80450B0C 000008 0004+00 1/1 1/1 0/0 .sbss            sPowerOnTime__7mDoMain */
 OSTime mDoMain::sPowerOnTime;
@@ -300,7 +300,7 @@ OSTime mDoMain::sHungUpTime;
 /* 80450B18 0001+00 data_80450B18 None */
 /* 80450B19 0001+00 data_80450B19 None */
 /* 80450B1A 0002+00 data_80450B1A None */
-static bool struct_80450B18;  // sDisplayHeapDebug
+static bool mDisplayHeapSize;  // sDisplayHeapDebug
 static u8 sDisplayHeap;
 static bool sCheckHeap;
 
@@ -514,17 +514,17 @@ asm void* LOAD_COPYDATE(void* param_0) {
 #endif
 
 static void debug() {
-    if (data_80450580) {
+    if (mDoMain::developmentMode) {
         if (sCheckHeap) {
             CheckHeap(PAD_3);
         }
 
         if ((mDoCPd_c::getGamePad(PAD_3)->getButton() & ~CButton::Z) == CButton::R &&
             mDoCPd_c::getGamePad(PAD_3)->testTrigger(CButton::Z)) {
-            struct_80450B18 ^= 1;
+            mDisplayHeapSize ^= 1;
         }
 
-        if (struct_80450B18) {
+        if (mDisplayHeapSize) {
             if ((mDoCPd_c::getGamePad(PAD_3)->getButton() & ~CButton::Z) == CButton::L &&
                 mDoCPd_c::getGamePad(PAD_3)->testTrigger(CButton::Z)) {
                 mDoMain::mHeapBriefType < 5 ? mDoMain::mHeapBriefType++ :
@@ -592,7 +592,7 @@ void main01(void) {
 
     JUTConsole* console = JFWSystem::getSystemConsole();
     s32 output = 0;
-    if (data_80450580 != 0) {
+    if (mDoMain::developmentMode != 0) {
         output = JUTConsole::OUTPUT_OSREPORT | JUTConsole::OUTPUT_CONSOLE;
     }
 
@@ -602,18 +602,18 @@ void main01(void) {
     mDoDvdThd_callback_c::create(LOAD_COPYDATE, NULL);
     fapGm_Create__Fv();
     fopAcM_initManager__Fv();
-    struct_80450B18 = 0;
+    mDisplayHeapSize = 0;
     cDyl_InitAsync__Fv();
 
     g_mDoAud_audioHeap = JKRSolidHeap::create(0x14D800, JKRHeap::getCurrentHeap(), false);
 
     do {
         frame++;
-        if (data_80450B00 != 0 && frame % data_80450B00 == 0) {
+        if (fillcheck_check_frame != 0 && frame % fillcheck_check_frame == 0) {
             mDoMch_HeapCheckAll__Fv();
         }
 
-        if (struct_80450C80[0]) {
+        if (SyncWidthSound) {
             g_mDoMemCd_control.update();
         }
 
@@ -671,16 +671,16 @@ void main() {
 
     g_dComIfG_gameInfo.ct();
 
-    if (data_80450580 < 0) {
+    if (mDoMain::developmentMode < 0) {
         DVDDiskID* disk_id = DVDGetCurrentDiskID();
 
         if (disk_id->game_version > 0x90) {
-            data_80450580 = 1;
+            mDoMain::developmentMode = 1;
         } else if (disk_id->game_version > 0x80) {
             u32 consoleType = OSGetConsoleType();
-            data_80450580 = (consoleType >> 0x1C) & 1;
+            mDoMain::developmentMode = (consoleType >> 0x1C) & 1;
         } else {
-            data_80450580 = 0;
+            mDoMain::developmentMode = 0;
         }
     }
 

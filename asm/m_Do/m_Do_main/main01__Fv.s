@@ -73,7 +73,7 @@ lbl_80006374:
 /* 8000638C  90 04 00 1C */	stw r0, 0x1c(r4)
 lbl_80006390:
 /* 80006390  80 6D 8C 38 */	lwz r3, systemConsole__9JFWSystem(r13)
-/* 80006394  88 0D 80 00 */	lbz r0, data_80450580(r13)
+/* 80006394  88 0D 80 00 */	lbz r0, developmentMode__7mDoMain(r13)
 /* 80006398  7C 00 07 75 */	extsb. r0, r0
 /* 8000639C  38 00 00 00 */	li r0, 0
 /* 800063A0  41 82 00 08 */	beq lbl_800063A8
@@ -91,7 +91,7 @@ lbl_800063A8:
 /* 800063CC  48 01 26 D5 */	bl fapGm_Create__Fv
 /* 800063D0  48 01 7A 41 */	bl fopAcM_initManager__Fv
 /* 800063D4  38 00 00 00 */	li r0, 0
-/* 800063D8  98 0D 85 98 */	stb r0, struct_80450B18+0x0(r13)
+/* 800063D8  98 0D 85 98 */	stb r0, mDisplayHeapSize(r13)
 /* 800063DC  48 01 23 89 */	bl cDyl_InitAsync__Fv
 /* 800063E0  3C 60 00 15 */	lis r3, 0x0015 /* 0x0014D800@ha */
 /* 800063E4  38 63 D8 00 */	addi r3, r3, 0xD800 /* 0x0014D800@l */
@@ -105,7 +105,7 @@ lbl_80006400:
 /* 80006400  80 6D 85 B4 */	lwz r3, frame(r13)
 /* 80006404  38 63 00 01 */	addi r3, r3, 1
 /* 80006408  90 6D 85 B4 */	stw r3, frame(r13)
-/* 8000640C  88 8D 85 80 */	lbz r4, data_80450B00(r13)
+/* 8000640C  88 8D 85 80 */	lbz r4, fillcheck_check_frame(r13)
 /* 80006410  28 04 00 00 */	cmplwi r4, 0
 /* 80006414  41 82 00 18 */	beq lbl_8000642C
 /* 80006418  7C 03 23 96 */	divwu r0, r3, r4
@@ -114,7 +114,7 @@ lbl_80006400:
 /* 80006424  40 82 00 08 */	bne lbl_8000642C
 /* 80006428  48 00 52 41 */	bl mDoMch_HeapCheckAll__Fv
 lbl_8000642C:
-/* 8000642C  88 0D 87 00 */	lbz r0, struct_80450C80+0x0(r13)
+/* 8000642C  88 0D 87 00 */	lbz r0, SyncWidthSound(r13)
 /* 80006430  28 00 00 00 */	cmplwi r0, 0
 /* 80006434  41 82 00 0C */	beq lbl_80006440
 /* 80006438  7F E3 FB 78 */	mr r3, r31

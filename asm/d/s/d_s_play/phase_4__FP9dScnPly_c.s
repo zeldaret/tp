@@ -204,13 +204,13 @@ lbl_8025A93C:
 /* 8025A964  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025A968  3C 63 00 02 */	addis r3, r3, 2
 /* 8025A96C  98 03 DD F8 */	stb r0, -0x2208(r3)
-/* 8025A970  98 AD 86 66 */	stb r5, struct_80450BE4+0x2(r13)
-/* 8025A974  98 8D 86 3A */	stb r4, struct_80450BB8+0x2(r13)
-/* 8025A978  98 AD 8B A4 */	stb r5, struct_80451124+0x0(r13)
-/* 8025A97C  98 AD 8B A5 */	stb r5, struct_80451124+0x1(r13)
+/* 8025A970  98 AD 86 66 */	stb r5, mBlureFlag__13mDoGph_gInf_c+0x2(r13)
+/* 8025A974  98 8D 86 3A */	stb r4, mBgmSet__17mDoAud_zelAudio_c(r13)
+/* 8025A978  98 AD 8B A4 */	stb r5, pauseTimer__9dScnPly_c+0x0(r13)
+/* 8025A97C  98 AD 8B A5 */	stb r5, pauseTimer__9dScnPly_c+0x1(r13)
 /* 8025A980  38 00 FF FF */	li r0, -1
-/* 8025A984  98 0D 81 E4 */	stb r0, struct_80450764+0x0(r13)
-/* 8025A988  88 0D 81 E5 */	lbz r0, struct_80450764+0x1(r13)
+/* 8025A984  98 0D 81 E4 */	stb r0, preLoadNo+0x0(r13)
+/* 8025A988  88 0D 81 E5 */	lbz r0, preLoadNo+0x1(r13)
 /* 8025A98C  28 00 00 00 */	cmplwi r0, 0
 /* 8025A990  41 82 00 28 */	beq lbl_8025A9B8
 /* 8025A994  38 7E 3E C8 */	addi r3, r30, 0x3ec8
@@ -221,9 +221,9 @@ lbl_8025A93C:
 /* 8025A9A8  48 10 DF ED */	bl strcmp
 /* 8025A9AC  2C 03 00 00 */	cmpwi r3, 0
 /* 8025A9B0  40 82 00 08 */	bne lbl_8025A9B8
-/* 8025A9B4  9B 8D 81 E4 */	stb r28, struct_80450764+0x0(r13)
+/* 8025A9B4  9B 8D 81 E4 */	stb r28, preLoadNo+0x0(r13)
 lbl_8025A9B8:
-/* 8025A9B8  88 0D 81 E4 */	lbz r0, struct_80450764+0x0(r13)
+/* 8025A9B8  88 0D 81 E4 */	lbz r0, preLoadNo+0x0(r13)
 /* 8025A9BC  7C 00 07 75 */	extsb. r0, r0
 /* 8025A9C0  40 80 00 0C */	bge lbl_8025A9CC
 /* 8025A9C4  38 60 00 04 */	li r3, 4

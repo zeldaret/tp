@@ -3,7 +3,7 @@ lbl_8001F2C0:
 /* 8001F2C4  7C 08 02 A6 */	mflr r0
 /* 8001F2C8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8001F2CC  7C 64 1B 78 */	mr r4, r3
-/* 8001F2D0  88 0D 8B A4 */	lbz r0, struct_80451124+0x0(r13)
+/* 8001F2D0  88 0D 8B A4 */	lbz r0, pauseTimer__9dScnPly_c+0x0(r13)
 /* 8001F2D4  7C 00 07 75 */	extsb. r0, r0
 /* 8001F2D8  40 82 00 2C */	bne lbl_8001F304
 /* 8001F2DC  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */

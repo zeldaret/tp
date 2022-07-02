@@ -693,7 +693,7 @@ extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 g_saftyWhiteColor;
 extern "C" extern u32 __float_nan;
 extern "C" f32 mFadeRate__13mDoGph_gInf_c;
-extern "C" extern u8 struct_80450BE4[4];
+extern "C" extern u8 mBlureFlag__13mDoGph_gInf_c[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
