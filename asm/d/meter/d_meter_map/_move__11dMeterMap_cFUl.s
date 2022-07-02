@@ -43,7 +43,7 @@ lbl_8020DD6C:
 /* 8020DD84  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8020DD88  98 03 00 C1 */	stb r0, 0xc1(r3)
 lbl_8020DD8C:
-/* 8020DD8C  8B AD 87 E4 */	lbz r29, struct_80450D64+0x0(r13)
+/* 8020DD8C  8B AD 87 E4 */	lbz r29, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8020DD90  7F BD 07 74 */	extsb r29, r29
 /* 8020DD94  93 FE 00 14 */	stw r31, 0x14(r30)
 /* 8020DD98  7F C3 F3 78 */	mr r3, r30

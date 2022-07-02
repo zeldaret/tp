@@ -356,8 +356,8 @@ lbl_8064CA20:
 /* 8064CA68  7F C3 F3 78 */	mr r3, r30
 /* 8064CA6C  4B FF E8 05 */	bl calcMahojinAnime__10daB_ZANT_cFv
 /* 8064CA70  38 00 00 01 */	li r0, 1
-/* 8064CA74  3C 60 80 45 */	lis r3, data_80450D68@ha /* 0x80450D68@ha */
-/* 8064CA78  98 03 0D 68 */	stb r0, data_80450D68@l(r3)  /* 0x80450D68@l */
+/* 8064CA74  3C 60 80 45 */	lis r3, mNoChangeRoom__20dStage_roomControl_c@ha /* 0x80450D68@ha */
+/* 8064CA78  98 03 0D 68 */	stb r0, mNoChangeRoom__20dStage_roomControl_c@l(r3)  /* 0x80450D68@l */
 /* 8064CA7C  88 1E 06 FB */	lbz r0, 0x6fb(r30)
 /* 8064CA80  3C 60 80 65 */	lis r3, data_8064F030@ha /* 0x8064F030@ha */
 /* 8064CA84  38 63 F0 30 */	addi r3, r3, data_8064F030@l /* 0x8064F030@l */

@@ -50,7 +50,7 @@ lbl_801A8EC0:
 /* 801A8EDC  8A 03 00 1B */	lbz r16, 0x1b(r3)
 /* 801A8EE0  48 00 00 C0 */	b lbl_801A8FA0
 lbl_801A8EE4:
-/* 801A8EE4  8A 8D 87 E4 */	lbz r20, struct_80450D64+0x0(r13)
+/* 801A8EE4  8A 8D 87 E4 */	lbz r20, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 801A8EE8  7E 94 07 74 */	extsb r20, r20
 /* 801A8EEC  48 00 32 7D */	bl dKy_SunMoon_Light_Check__Fv
 /* 801A8EF0  2C 03 00 01 */	cmpwi r3, 1
@@ -204,7 +204,7 @@ lbl_801A90C4:
 /* 801A9114  4E 80 04 21 */	bctrl 
 /* 801A9118  48 00 00 48 */	b lbl_801A9160
 lbl_801A911C:
-/* 801A911C  88 8D 87 E4 */	lbz r4, struct_80450D64+0x0(r13)
+/* 801A911C  88 8D 87 E4 */	lbz r4, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 801A9120  7C 84 07 74 */	extsb r4, r4
 /* 801A9124  7D E3 7B 78 */	mr r3, r15
 /* 801A9128  4B E7 B2 5D */	bl getStatusRoomDt__20dStage_roomControl_cFi
@@ -213,7 +213,7 @@ lbl_801A911C:
 /* 801A9134  7D 89 03 A6 */	mtctr r12
 /* 801A9138  4E 80 04 21 */	bctrl 
 /* 801A913C  7C 74 1B 78 */	mr r20, r3
-/* 801A9140  88 8D 87 E4 */	lbz r4, struct_80450D64+0x0(r13)
+/* 801A9140  88 8D 87 E4 */	lbz r4, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 801A9144  7C 84 07 74 */	extsb r4, r4
 /* 801A9148  7D E3 7B 78 */	mr r3, r15
 /* 801A914C  4B E7 B2 39 */	bl getStatusRoomDt__20dStage_roomControl_cFi
@@ -241,7 +241,7 @@ lbl_801A9160:
 /* 801A91A0  7C 60 1B 78 */	mr r0, r3
 /* 801A91A4  48 00 00 0C */	b lbl_801A91B0
 lbl_801A91A8:
-/* 801A91A8  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 801A91A8  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 801A91AC  7C 00 07 74 */	extsb r0, r0
 lbl_801A91B0:
 /* 801A91B0  7E 83 A3 78 */	mr r3, r20

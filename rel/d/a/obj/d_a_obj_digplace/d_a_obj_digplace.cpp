@@ -92,7 +92,7 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u32 g_whiteColor;
 extern "C" extern u32 __float_nan;
 extern "C" extern u32 __float_max;
-extern "C" extern u8 struct_80450D64[4];
+extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 
 //
 // Declarations:

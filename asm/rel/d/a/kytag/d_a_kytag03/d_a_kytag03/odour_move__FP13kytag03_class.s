@@ -42,8 +42,8 @@ lbl_80856378:
 /* 80856418  88 9D 05 8E */	lbz r4, 0x58e(r29)
 /* 8085641C  28 04 00 FF */	cmplwi r4, 0xff
 /* 80856420  41 82 00 20 */	beq lbl_80856440
-/* 80856424  3C A0 80 45 */	lis r5, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80856428  38 A5 0D 64 */	addi r5, r5, struct_80450D64+0x0@l /* 0x80450D64@l */
+/* 80856424  3C A0 80 45 */	lis r5, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80856428  38 A5 0D 64 */	addi r5, r5, mStayNo__20dStage_roomControl_c+0x0@l /* 0x80450D64@l */
 /* 8085642C  88 A5 00 00 */	lbz r5, 0(r5)
 /* 80856430  7C A5 07 74 */	extsb r5, r5
 /* 80856434  4B 7D EF 2D */	bl isSwitch__10dSv_info_cCFii

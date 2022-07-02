@@ -19,8 +19,8 @@ lbl_80498518:
 /* 8049855C  38 60 00 01 */	li r3, 1
 /* 80498560  48 00 01 38 */	b lbl_80498698
 lbl_80498564:
-/* 80498564  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80498568  88 83 0D 64 */	lbz r4, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80498564  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80498568  88 83 0D 64 */	lbz r4, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 8049856C  7C 84 07 75 */	extsb. r4, r4
 /* 80498570  41 80 00 28 */	blt lbl_80498598
 /* 80498574  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */

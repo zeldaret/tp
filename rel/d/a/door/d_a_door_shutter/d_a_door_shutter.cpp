@@ -576,7 +576,7 @@ extern "C" u8 sincosTable___5JMath[65536];
 extern "C" u32 mNextRoomNo__10dMapInfo_c;
 extern "C" f32 mGroundY__11fopAcM_gc_c;
 extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
-extern "C" extern u8 struct_80450D64[4];
+extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //

@@ -9,8 +9,8 @@ lbl_80489F74:
 /* 80489F90  3B E4 A5 90 */	addi r31, r4, lit_3874@l /* 0x8048A590@l */
 /* 80489F94  88 03 04 E2 */	lbz r0, 0x4e2(r3)
 /* 80489F98  7C 05 07 74 */	extsb r5, r0
-/* 80489F9C  3C 80 80 45 */	lis r4, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80489FA0  88 04 0D 64 */	lbz r0, struct_80450D64+0x0@l(r4)  /* 0x80450D64@l */
+/* 80489F9C  3C 80 80 45 */	lis r4, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80489FA0  88 04 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r4)  /* 0x80450D64@l */
 /* 80489FA4  7C 00 07 74 */	extsb r0, r0
 /* 80489FA8  7C 05 00 00 */	cmpw r5, r0
 /* 80489FAC  41 82 00 0C */	beq lbl_80489FB8

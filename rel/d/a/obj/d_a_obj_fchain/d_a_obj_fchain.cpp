@@ -183,7 +183,7 @@ extern "C" f32 Zero__4cXyz[3];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 g_whiteColor;
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80450D64[4];
+extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 
 //

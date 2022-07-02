@@ -9,8 +9,8 @@ lbl_80BA60D4:
 /* 80BA60F0  3B E3 6C 10 */	addi r31, r3, m__22daObj_AutoMata_Param_c@l /* 0x80BA6C10@l */
 /* 80BA60F4  88 1E 04 BA */	lbz r0, 0x4ba(r30)
 /* 80BA60F8  7C 04 07 74 */	extsb r4, r0
-/* 80BA60FC  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80BA6100  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80BA60FC  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80BA6100  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80BA6104  7C 00 07 74 */	extsb r0, r0
 /* 80BA6108  7C 04 00 00 */	cmpw r4, r0
 /* 80BA610C  40 82 02 74 */	bne lbl_80BA6380

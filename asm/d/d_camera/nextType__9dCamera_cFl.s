@@ -333,7 +333,7 @@ lbl_80164208:
 /* 8016420C  2C 04 00 FF */	cmpwi r4, 0xff
 /* 80164210  41 82 00 4C */	beq lbl_8016425C
 /* 80164214  38 77 07 AC */	addi r3, r23, 0x7ac
-/* 80164218  88 AD 87 E4 */	lbz r5, struct_80450D64+0x0(r13)
+/* 80164218  88 AD 87 E4 */	lbz r5, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8016421C  7C A5 07 74 */	extsb r5, r5
 /* 80164220  38 C0 00 00 */	li r6, 0
 /* 80164224  38 E0 00 FF */	li r7, 0xff

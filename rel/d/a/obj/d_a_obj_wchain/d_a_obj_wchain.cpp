@@ -222,7 +222,7 @@ extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 g_whiteColor;
 extern "C" extern u32 __float_nan;
 extern "C" f32 mRoofY__11fopAcM_rc_c;
-extern "C" extern u8 struct_80450D64[4];
+extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 

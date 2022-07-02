@@ -17,7 +17,7 @@ lbl_80041668:
 /* 800416A4  40 82 00 54 */	bne lbl_800416F8
 /* 800416A8  28 16 00 FF */	cmplwi r22, 0xff
 /* 800416AC  41 82 00 4C */	beq lbl_800416F8
-/* 800416B0  8A ED 87 E4 */	lbz r23, struct_80450D64+0x0(r13)
+/* 800416B0  8A ED 87 E4 */	lbz r23, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 800416B4  7E F7 07 74 */	extsb r23, r23
 /* 800416B8  7E C3 B3 78 */	mr r3, r22
 /* 800416BC  7E E4 BB 78 */	mr r4, r23

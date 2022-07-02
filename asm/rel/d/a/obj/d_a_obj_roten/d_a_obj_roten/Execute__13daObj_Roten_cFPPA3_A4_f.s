@@ -9,8 +9,8 @@ lbl_80CC1038:
 /* 80CC1054  88 03 05 C4 */	lbz r0, 0x5c4(r3)
 /* 80CC1058  28 00 00 00 */	cmplwi r0, 0
 /* 80CC105C  41 82 00 B0 */	beq lbl_80CC110C
-/* 80CC1060  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80CC1064  38 63 0D 64 */	addi r3, r3, struct_80450D64+0x0@l /* 0x80450D64@l */
+/* 80CC1060  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80CC1064  38 63 0D 64 */	addi r3, r3, mStayNo__20dStage_roomControl_c+0x0@l /* 0x80450D64@l */
 /* 80CC1068  88 63 00 00 */	lbz r3, 0(r3)
 /* 80CC106C  7C 63 07 75 */	extsb. r3, r3
 /* 80CC1070  41 82 00 54 */	beq lbl_80CC10C4

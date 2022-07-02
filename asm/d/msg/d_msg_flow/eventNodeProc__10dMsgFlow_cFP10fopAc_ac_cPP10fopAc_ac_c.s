@@ -72,7 +72,7 @@ lbl_8024AED8:
 /* 8024AEF8  A0 03 31 20 */	lhz r0, 0x3120(r3)
 /* 8024AEFC  28 00 FF FF */	cmplwi r0, 0xffff
 /* 8024AF00  40 82 00 2C */	bne lbl_8024AF2C
-/* 8024AF04  88 8D 87 E4 */	lbz r4, struct_80450D64+0x0(r13)
+/* 8024AF04  88 8D 87 E4 */	lbz r4, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8024AF08  7C 84 07 74 */	extsb r4, r4
 /* 8024AF0C  38 65 4E C4 */	addi r3, r5, 0x4ec4
 /* 8024AF10  4B DD 94 75 */	bl getStatusRoomDt__20dStage_roomControl_cFi

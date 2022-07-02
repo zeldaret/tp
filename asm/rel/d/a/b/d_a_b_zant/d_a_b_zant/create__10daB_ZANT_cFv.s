@@ -296,8 +296,8 @@ lbl_8064E5FC:
 /* 8064E608  42 00 FF F4 */	bdnz lbl_8064E5FC
 /* 8064E60C  38 00 FF FF */	li r0, -1
 /* 8064E610  90 1F 07 24 */	stw r0, 0x724(r31)
-/* 8064E614  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 8064E618  38 63 0D 64 */	addi r3, r3, struct_80450D64+0x0@l /* 0x80450D64@l */
+/* 8064E614  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 8064E618  38 63 0D 64 */	addi r3, r3, mStayNo__20dStage_roomControl_c+0x0@l /* 0x80450D64@l */
 /* 8064E61C  88 63 00 00 */	lbz r3, 0(r3)
 /* 8064E620  7C 63 07 74 */	extsb r3, r3
 /* 8064E624  2C 03 00 3C */	cmpwi r3, 0x3c

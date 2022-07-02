@@ -159,7 +159,7 @@ lbl_801AE68C:
 /* 801AE6A8  48 1B A2 ED */	bl strcmp
 /* 801AE6AC  2C 03 00 00 */	cmpwi r3, 0
 /* 801AE6B0  40 82 00 20 */	bne lbl_801AE6D0
-/* 801AE6B4  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 801AE6B4  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 801AE6B8  2C 00 00 04 */	cmpwi r0, 4
 /* 801AE6BC  40 82 00 14 */	bne lbl_801AE6D0
 /* 801AE6C0  C3 82 A4 80 */	lfs f28, lit_3923(r2)
@@ -274,7 +274,7 @@ lbl_801AE7B0:
 /* 801AE860  48 1B A1 35 */	bl strcmp
 /* 801AE864  2C 03 00 00 */	cmpwi r3, 0
 /* 801AE868  40 82 00 40 */	bne lbl_801AE8A8
-/* 801AE86C  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 801AE86C  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 801AE870  2C 00 00 04 */	cmpwi r0, 4
 /* 801AE874  40 82 00 34 */	bne lbl_801AE8A8
 /* 801AE878  C0 22 A4 E4 */	lfs f1, lit_4095(r2)

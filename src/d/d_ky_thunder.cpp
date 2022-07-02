@@ -128,7 +128,7 @@ extern "C" extern u8 g_mEnvSeMgr[780];
 extern "C" extern u8 g_Counter[12 + 4 /* padding */];
 extern "C" extern u8 j3dSys[284];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u8 struct_80450D64[4];
+extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 extern "C" extern u8 struct_80451070[8];
 
 //

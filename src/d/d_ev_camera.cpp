@@ -402,7 +402,7 @@ extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" f32 Zero__4cXyz[3];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80450D64[4];
+extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 extern "C" u8 m_object__7dDemo_c[4];
 extern "C" extern u8 struct_80450F88[8];
 extern "C" u8 m_midnaActor__9daPy_py_c[4];

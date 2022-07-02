@@ -294,8 +294,8 @@ lbl_804A5D5C:
 /* 804A5D88  28 03 00 00 */	cmplwi r3, 0
 /* 804A5D8C  41 82 00 9C */	beq lbl_804A5E28
 /* 804A5D90  D3 E3 00 1C */	stfs f31, 0x1c(r3)
-/* 804A5D94  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 804A5D98  8B 83 0D 64 */	lbz r28, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 804A5D94  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 804A5D98  8B 83 0D 64 */	lbz r28, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 804A5D9C  7F 9C 07 74 */	extsb r28, r28
 /* 804A5DA0  38 80 00 00 */	li r4, 0
 /* 804A5DA4  7C 83 23 78 */	mr r3, r4

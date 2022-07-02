@@ -411,7 +411,7 @@ extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 extern "C" f32 mSystemFar__14mDoLib_clipper;
 extern "C" f32 mGroundY__11fopAcM_gc_c;
-extern "C" extern u8 struct_80450D64[4];
+extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 extern "C" u8 m_myObj__9daGrass_c[4];
 extern "C" u8 m_grass__9daGrass_c[4];
 extern "C" u8 m_flower__9daGrass_c[4];

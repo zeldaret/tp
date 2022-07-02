@@ -86,8 +86,8 @@ lbl_8057C070:
 /* 8057C0D4  D0 1E 05 3C */	stfs f0, 0x53c(r30)
 /* 8057C0D8  C0 1E 05 58 */	lfs f0, 0x558(r30)
 /* 8057C0DC  D0 1E 05 40 */	stfs f0, 0x540(r30)
-/* 8057C0E0  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 8057C0E4  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 8057C0E0  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 8057C0E4  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 8057C0E8  98 1E 04 8C */	stb r0, 0x48c(r30)
 /* 8057C0EC  7F C3 F3 78 */	mr r3, r30
 /* 8057C0F0  C0 3F 00 00 */	lfs f1, 0(r31)

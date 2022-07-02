@@ -50,7 +50,7 @@ lbl_800902E4:
 /* 800902E4  38 60 00 01 */	li r3, 1
 /* 800902E8  48 00 01 78 */	b lbl_80090460
 lbl_800902EC:
-/* 800902EC  8B AD 87 E4 */	lbz r29, struct_80450D64+0x0(r13)
+/* 800902EC  8B AD 87 E4 */	lbz r29, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 800902F0  7F BD 07 74 */	extsb r29, r29
 /* 800902F4  88 63 00 04 */	lbz r3, 4(r3)
 /* 800902F8  4B FF 87 01 */	bl func_800889F8

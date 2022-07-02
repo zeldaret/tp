@@ -88,8 +88,8 @@ lbl_80D300EC:
 /* 80D30108  38 60 00 05 */	li r3, 5
 /* 80D3010C  48 00 02 50 */	b lbl_80D3035C
 lbl_80D30110:
-/* 80D30110  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80D30114  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80D30110  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80D30114  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80D30118  98 1D 04 8C */	stb r0, 0x48c(r29)
 /* 80D3011C  C0 1D 04 D0 */	lfs f0, 0x4d0(r29)
 /* 80D30120  D0 1D 05 50 */	stfs f0, 0x550(r29)

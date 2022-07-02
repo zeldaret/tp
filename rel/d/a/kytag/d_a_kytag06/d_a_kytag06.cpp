@@ -128,7 +128,7 @@ extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_mEnvSeMgr[780];
 extern "C" extern u8 g_Counter[12 + 4 /* padding */];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80450D64[4];
+extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 extern "C" void __register_global_object();
 
 //

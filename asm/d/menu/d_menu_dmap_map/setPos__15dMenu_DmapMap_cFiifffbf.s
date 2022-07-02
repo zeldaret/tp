@@ -13,13 +13,13 @@ lbl_801C0E4C:
 /* 801C0E78  FF A0 10 90 */	fmr f29, f2
 /* 801C0E7C  FF C0 18 90 */	fmr f30, f3
 /* 801C0E80  FF E0 20 90 */	fmr f31, f4
-/* 801C0E84  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 801C0E84  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 801C0E88  7C 04 07 74 */	extsb r4, r0
 /* 801C0E8C  D3 E3 00 38 */	stfs f31, 0x38(r3)
 /* 801C0E90  38 7E 00 04 */	addi r3, r30, 4
 /* 801C0E94  7C C5 07 74 */	extsb r5, r6
 /* 801C0E98  4B E7 EE 71 */	bl entry__16renderingDAmap_cFfffiSc
-/* 801C0E9C  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 801C0E9C  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 801C0EA0  7C 04 07 74 */	extsb r4, r0
 /* 801C0EA4  D3 FE 00 70 */	stfs f31, 0x70(r30)
 /* 801C0EA8  38 7E 00 3C */	addi r3, r30, 0x3c

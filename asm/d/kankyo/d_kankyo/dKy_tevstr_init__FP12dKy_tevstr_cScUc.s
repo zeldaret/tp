@@ -13,7 +13,7 @@ lbl_801A88EC:
 /* 801A8918  7F A0 07 74 */	extsb r0, r29
 /* 801A891C  2C 00 FF FF */	cmpwi r0, -1
 /* 801A8920  40 82 00 10 */	bne lbl_801A8930
-/* 801A8924  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 801A8924  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 801A8928  98 1F 03 80 */	stb r0, 0x380(r31)
 /* 801A892C  48 00 00 08 */	b lbl_801A8934
 lbl_801A8930:

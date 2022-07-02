@@ -27,8 +27,8 @@ lbl_80470CF0:
 /* 80470D54  7F 83 E3 78 */	mr r3, r28
 /* 80470D58  38 80 27 40 */	li r4, 0x2740
 /* 80470D5C  4B BC 3C 49 */	bl offEventBit__11dSv_event_cFUs
-/* 80470D60  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80470D64  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80470D60  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80470D64  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80470D68  7C 00 07 74 */	extsb r0, r0
 /* 80470D6C  2C 00 00 33 */	cmpwi r0, 0x33
 /* 80470D70  40 82 00 14 */	bne lbl_80470D84
@@ -68,8 +68,8 @@ lbl_80470DE0:
 /* 80470DE0  7F A3 EB 78 */	mr r3, r29
 /* 80470DE4  38 80 00 01 */	li r4, 1
 /* 80470DE8  4B BA BD 61 */	bl fopAcM_setCarryNow__FP10fopAc_ac_ci
-/* 80470DEC  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80470DF0  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80470DEC  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80470DF0  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80470DF4  7C 00 07 75 */	extsb. r0, r0
 /* 80470DF8  40 82 02 B8 */	bne lbl_804710B0
 /* 80470DFC  3C 60 80 47 */	lis r3, s_setA_sub__FPvPv@ha /* 0x8046F59C@ha */
@@ -109,8 +109,8 @@ lbl_80470E1C:
 /* 80470E80  4B BC 3B 3D */	bl isEventBit__11dSv_event_cCFUs
 /* 80470E84  2C 03 00 00 */	cmpwi r3, 0
 /* 80470E88  40 82 00 38 */	bne lbl_80470EC0
-/* 80470E8C  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80470E90  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80470E8C  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80470E90  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80470E94  2C 00 00 33 */	cmpwi r0, 0x33
 /* 80470E98  41 82 02 18 */	beq lbl_804710B0
 /* 80470E9C  7F E3 FB 78 */	mr r3, r31
@@ -129,8 +129,8 @@ lbl_80470EC0:
 /* 80470EC8  4B BC 3A F5 */	bl isEventBit__11dSv_event_cCFUs
 /* 80470ECC  2C 03 00 00 */	cmpwi r3, 0
 /* 80470ED0  41 82 00 14 */	beq lbl_80470EE4
-/* 80470ED4  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80470ED8  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80470ED4  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80470ED8  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80470EDC  7C 00 07 75 */	extsb. r0, r0
 /* 80470EE0  40 82 00 AC */	bne lbl_80470F8C
 lbl_80470EE4:
@@ -139,8 +139,8 @@ lbl_80470EE4:
 /* 80470EEC  4B BC 3A D1 */	bl isEventBit__11dSv_event_cCFUs
 /* 80470EF0  2C 03 00 00 */	cmpwi r3, 0
 /* 80470EF4  41 82 00 20 */	beq lbl_80470F14
-/* 80470EF8  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80470EFC  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80470EF8  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80470EFC  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80470F00  7C 00 07 74 */	extsb r0, r0
 /* 80470F04  2C 00 00 01 */	cmpwi r0, 1
 /* 80470F08  41 82 00 0C */	beq lbl_80470F14
@@ -152,8 +152,8 @@ lbl_80470F14:
 /* 80470F1C  4B BC 3A A1 */	bl isEventBit__11dSv_event_cCFUs
 /* 80470F20  2C 03 00 00 */	cmpwi r3, 0
 /* 80470F24  41 82 00 14 */	beq lbl_80470F38
-/* 80470F28  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80470F2C  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80470F28  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80470F2C  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80470F30  2C 00 00 33 */	cmpwi r0, 0x33
 /* 80470F34  40 82 00 58 */	bne lbl_80470F8C
 lbl_80470F38:
@@ -162,8 +162,8 @@ lbl_80470F38:
 /* 80470F40  4B BC 3A 7D */	bl isEventBit__11dSv_event_cCFUs
 /* 80470F44  2C 03 00 00 */	cmpwi r3, 0
 /* 80470F48  41 82 00 14 */	beq lbl_80470F5C
-/* 80470F4C  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80470F50  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80470F4C  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80470F50  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80470F54  2C 00 00 34 */	cmpwi r0, 0x34
 /* 80470F58  40 82 00 34 */	bne lbl_80470F8C
 lbl_80470F5C:
@@ -172,8 +172,8 @@ lbl_80470F5C:
 /* 80470F64  4B BC 3A 59 */	bl isEventBit__11dSv_event_cCFUs
 /* 80470F68  2C 03 00 00 */	cmpwi r3, 0
 /* 80470F6C  41 82 00 50 */	beq lbl_80470FBC
-/* 80470F70  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80470F74  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80470F70  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80470F74  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80470F78  7C 00 07 74 */	extsb r0, r0
 /* 80470F7C  2C 00 00 04 */	cmpwi r0, 4
 /* 80470F80  41 82 00 3C */	beq lbl_80470FBC
@@ -195,8 +195,8 @@ lbl_80470FB4:
 /* 80470FB4  38 60 00 05 */	li r3, 5
 /* 80470FB8  48 00 01 7C */	b lbl_80471134
 lbl_80470FBC:
-/* 80470FBC  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80470FC0  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80470FBC  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80470FC0  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80470FC4  7C 00 07 75 */	extsb. r0, r0
 /* 80470FC8  40 82 00 C4 */	bne lbl_8047108C
 /* 80470FCC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
@@ -259,8 +259,8 @@ lbl_8047108C:
 /* 80471094  38 60 00 05 */	li r3, 5
 /* 80471098  48 00 00 9C */	b lbl_80471134
 lbl_8047109C:
-/* 8047109C  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 804710A0  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 8047109C  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 804710A0  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 804710A4  98 1D 04 E2 */	stb r0, 0x4e2(r29)
 /* 804710A8  88 1D 04 E2 */	lbz r0, 0x4e2(r29)
 /* 804710AC  98 1D 04 8C */	stb r0, 0x48c(r29)

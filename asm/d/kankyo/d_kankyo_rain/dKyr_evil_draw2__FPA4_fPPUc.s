@@ -255,7 +255,7 @@ lbl_8006DDDC:
 /* 8006DE64  48 2F AB 31 */	bl strcmp
 /* 8006DE68  2C 03 00 00 */	cmpwi r3, 0
 /* 8006DE6C  40 82 00 2C */	bne lbl_8006DE98
-/* 8006DE70  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 8006DE70  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8006DE74  2C 00 00 01 */	cmpwi r0, 1
 /* 8006DE78  40 82 00 20 */	bne lbl_8006DE98
 /* 8006DE7C  2C 1A 06 40 */	cmpwi r26, 0x640
@@ -396,7 +396,7 @@ lbl_8006E03C:
 /* 8006E05C  EC 00 07 B2 */	fmuls f0, f0, f30
 /* 8006E060  EC 01 00 2A */	fadds f0, f1, f0
 /* 8006E064  EF BD 00 32 */	fmuls f29, f29, f0
-/* 8006E068  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 8006E068  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8006E06C  7C 00 07 75 */	extsb. r0, r0
 /* 8006E070  40 82 00 08 */	bne lbl_8006E078
 /* 8006E074  C3 A2 89 A4 */	lfs f29, lit_6355(r2)

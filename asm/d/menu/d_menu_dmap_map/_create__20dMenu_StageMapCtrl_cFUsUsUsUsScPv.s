@@ -10,7 +10,7 @@ lbl_801C235C:
 /* 801C237C  7C DD 33 78 */	mr r29, r6
 /* 801C2380  7C FE 3B 78 */	mr r30, r7
 /* 801C2384  7D 3F 4B 78 */	mr r31, r9
-/* 801C2388  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 801C2388  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 801C238C  98 03 00 E6 */	stb r0, 0xe6(r3)
 /* 801C2390  99 03 00 E7 */	stb r8, 0xe7(r3)
 /* 801C2394  88 03 00 E7 */	lbz r0, 0xe7(r3)

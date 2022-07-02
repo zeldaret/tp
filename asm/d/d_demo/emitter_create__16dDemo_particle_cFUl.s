@@ -12,7 +12,7 @@ lbl_80039F1C:
 /* 80039F44  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
 /* 80039F48  38 80 00 00 */	li r4, 0
 /* 80039F4C  90 81 00 08 */	stw r4, 8(r1)
-/* 80039F50  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 80039F50  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 80039F54  7C 00 07 74 */	extsb r0, r0
 /* 80039F58  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80039F5C  90 81 00 10 */	stw r4, 0x10(r1)

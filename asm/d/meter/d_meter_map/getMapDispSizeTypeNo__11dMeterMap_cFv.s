@@ -5,7 +5,7 @@ lbl_8020D528:
 /* 8020D534  39 61 00 20 */	addi r11, r1, 0x20
 /* 8020D538  48 15 4C A5 */	bl _savegpr_29
 /* 8020D53C  3B A0 00 07 */	li r29, 7
-/* 8020D540  88 8D 87 E4 */	lbz r4, struct_80450D64+0x0(r13)
+/* 8020D540  88 8D 87 E4 */	lbz r4, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8020D544  7C 84 07 74 */	extsb r4, r4
 /* 8020D548  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
 /* 8020D54C  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */

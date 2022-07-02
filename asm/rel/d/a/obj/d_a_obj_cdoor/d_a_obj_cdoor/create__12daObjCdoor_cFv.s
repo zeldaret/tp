@@ -73,8 +73,8 @@ lbl_80BC7040:
 /* 80BC7040  80 7E 05 A8 */	lwz r3, 0x5a8(r30)
 /* 80BC7044  38 03 00 24 */	addi r0, r3, 0x24
 /* 80BC7048  90 1E 05 04 */	stw r0, 0x504(r30)
-/* 80BC704C  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80BC7050  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80BC704C  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80BC7050  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80BC7054  98 1E 04 8C */	stb r0, 0x48c(r30)
 /* 80BC7058  80 7E 05 A8 */	lwz r3, 0x5a8(r30)
 /* 80BC705C  80 83 00 04 */	lwz r4, 4(r3)

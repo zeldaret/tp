@@ -109,7 +109,7 @@ extern "C" extern void* __vt__8cM3dGLin[3];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_mEnvSeMgr[780];
 extern "C" extern u32 __float_max;
-extern "C" extern u8 struct_80450D64[4];
+extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 
 //
 // Declarations:

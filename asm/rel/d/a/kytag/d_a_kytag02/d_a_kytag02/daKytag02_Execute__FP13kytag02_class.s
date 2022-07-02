@@ -121,8 +121,8 @@ lbl_80855C68:
 /* 80855C78  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l /* 0x8042DD70@l */
 /* 80855C7C  7F E4 FB 78 */	mr r4, r31
 /* 80855C80  4B A7 23 49 */	bl setWindDirection__10Z2EnvSeMgrFP3Vec
-/* 80855C84  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80855C88  38 63 0D 64 */	addi r3, r3, struct_80450D64+0x0@l /* 0x80450D64@l */
+/* 80855C84  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80855C88  38 63 0D 64 */	addi r3, r3, mStayNo__20dStage_roomControl_c+0x0@l /* 0x80450D64@l */
 /* 80855C8C  88 63 00 00 */	lbz r3, 0(r3)
 /* 80855C90  7C 63 07 74 */	extsb r3, r3
 /* 80855C94  4B 7D 73 D9 */	bl dComIfGp_getReverb__Fi

@@ -86,8 +86,8 @@ lbl_80BE619C:
 /* 80BE61B8  38 60 00 05 */	li r3, 5
 /* 80BE61BC  48 00 01 34 */	b lbl_80BE62F0
 lbl_80BE61C0:
-/* 80BE61C0  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80BE61C4  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80BE61C0  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80BE61C4  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80BE61C8  98 1E 04 8C */	stb r0, 0x48c(r30)
 /* 80BE61CC  93 DE 05 80 */	stw r30, 0x580(r30)
 /* 80BE61D0  C0 3E 04 D4 */	lfs f1, 0x4d4(r30)

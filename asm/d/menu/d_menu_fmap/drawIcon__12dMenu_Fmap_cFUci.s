@@ -10,7 +10,7 @@ lbl_801CD10C:
 /* 801CD12C  3C 80 80 3A */	lis r4, __vt__19dMenuFmapIconDisp_c@ha /* 0x803A7D74@ha */
 /* 801CD130  38 04 7D 74 */	addi r0, r4, __vt__19dMenuFmapIconDisp_c@l /* 0x803A7D74@l */
 /* 801CD134  90 01 00 4C */	stw r0, 0x4c(r1)
-/* 801CD138  8B AD 87 E4 */	lbz r29, struct_80450D64+0x0(r13)
+/* 801CD138  8B AD 87 E4 */	lbz r29, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 801CD13C  7F BD 07 74 */	extsb r29, r29
 /* 801CD140  83 C3 02 0C */	lwz r30, 0x20c(r3)
 /* 801CD144  48 00 02 25 */	bl getNowFmapStageData__12dMenu_Fmap_cFv

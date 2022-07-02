@@ -46,7 +46,7 @@ lbl_801A5C8C:
 /* 801A5CC8  48 00 24 C9 */	bl dKy_Sound_init__Fv
 /* 801A5CCC  4B EB 48 F5 */	bl dKyw_wind_set__Fv
 /* 801A5CD0  4B FF 8B A5 */	bl dungeonlight_init__Fv
-/* 801A5CD4  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 801A5CD4  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 801A5CD8  7C 03 07 74 */	extsb r3, r0
 /* 801A5CDC  48 00 0F 45 */	bl dKy_setLight_nowroom__Fc
 /* 801A5CE0  3C 60 80 39 */	lis r3, d_kankyo_d_kankyo__stringBase0@ha /* 0x80394C6C@ha */

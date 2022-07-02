@@ -153,7 +153,7 @@ lbl_8001919C:
 /* 800192A4  88 9F 04 BA */	lbz r4, 0x4ba(r31)
 /* 800192A8  38 A0 00 FF */	li r5, 0xff
 /* 800192AC  48 18 F6 41 */	bl dKy_tevstr_init__FP12dKy_tevstr_cScUc
-/* 800192B0  88 8D 87 E4 */	lbz r4, struct_80450D64+0x0(r13)
+/* 800192B0  88 8D 87 E4 */	lbz r4, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 800192B4  7C 84 07 75 */	extsb. r4, r4
 /* 800192B8  41 80 00 24 */	blt lbl_800192DC
 /* 800192BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */

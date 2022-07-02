@@ -26,7 +26,7 @@ lbl_80043370:
 lbl_80043378:
 /* 80043378  4B FF E1 09 */	bl func_80041480
 lbl_8004337C:
-/* 8004337C  88 6D 87 E4 */	lbz r3, struct_80450D64+0x0(r13)
+/* 8004337C  88 6D 87 E4 */	lbz r3, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 80043380  7C 63 07 74 */	extsb r3, r3
 /* 80043384  4B FE C1 39 */	bl dComIfG_getRoomArcName__Fi
 /* 80043388  7F C4 F3 78 */	mr r4, r30

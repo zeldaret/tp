@@ -459,7 +459,7 @@ lbl_801A68F8:
 /* 801A6938  88 01 00 0F */	lbz r0, 0xf(r1)
 /* 801A693C  98 03 00 03 */	stb r0, 3(r3)
 lbl_801A6940:
-/* 801A6940  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 801A6940  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 801A6944  7C 00 07 74 */	extsb r0, r0
 /* 801A6948  7C 1B 00 00 */	cmpw r27, r0
 /* 801A694C  40 82 00 A0 */	bne lbl_801A69EC

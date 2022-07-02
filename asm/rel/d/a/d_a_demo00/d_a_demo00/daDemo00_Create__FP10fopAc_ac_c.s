@@ -87,8 +87,8 @@ lbl_804A8574:
 /* 804A8628  D0 03 00 04 */	stfs f0, 4(r3)
 /* 804A862C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 804A8630  38 7F 01 0C */	addi r3, r31, 0x10c
-/* 804A8634  3C 80 80 45 */	lis r4, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 804A8638  88 04 0D 64 */	lbz r0, struct_80450D64+0x0@l(r4)  /* 0x80450D64@l */
+/* 804A8634  3C 80 80 45 */	lis r4, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 804A8638  88 04 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r4)  /* 0x80450D64@l */
 /* 804A863C  7C 04 07 74 */	extsb r4, r0
 /* 804A8640  38 A0 00 FF */	li r5, 0xff
 /* 804A8644  4B D0 02 A9 */	bl dKy_tevstr_init__FP12dKy_tevstr_cScUc

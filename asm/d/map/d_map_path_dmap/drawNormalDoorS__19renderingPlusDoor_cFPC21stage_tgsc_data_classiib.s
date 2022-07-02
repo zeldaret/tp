@@ -7,7 +7,7 @@ lbl_80040838:
 /* 8004084C  7C 9D 23 78 */	mr r29, r4
 /* 80040850  7C BE 2B 78 */	mr r30, r5
 /* 80040854  7C FF 3B 78 */	mr r31, r7
-/* 80040858  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 80040858  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8004085C  7C 00 07 74 */	extsb r0, r0
 /* 80040860  7C 1E 00 00 */	cmpw r30, r0
 /* 80040864  41 82 00 0C */	beq lbl_80040870

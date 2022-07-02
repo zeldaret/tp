@@ -9,7 +9,7 @@ lbl_80182FD8:
 /* 80182FF4  7C 7E 1B 78 */	mr r30, r3
 /* 80182FF8  7C BD 2B 78 */	mr r29, r5
 /* 80182FFC  7C D6 33 78 */	mr r22, r6
-/* 80183000  8B 6D 87 E4 */	lbz r27, struct_80450D64+0x0(r13)
+/* 80183000  8B 6D 87 E4 */	lbz r27, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 80183004  7F 7B 07 74 */	extsb r27, r27
 /* 80183008  7F 7C DB 78 */	mr r28, r27
 /* 8018300C  3B 20 00 00 */	li r25, 0

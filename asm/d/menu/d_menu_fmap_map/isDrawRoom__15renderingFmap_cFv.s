@@ -16,7 +16,7 @@ lbl_801CE4DC:
 /* 801CE514  7C 03 00 00 */	cmpw r3, r0
 /* 801CE518  40 82 00 18 */	bne lbl_801CE530
 /* 801CE51C  80 7E 00 9C */	lwz r3, 0x9c(r30)
-/* 801CE520  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 801CE520  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 801CE524  7C 00 07 74 */	extsb r0, r0
 /* 801CE528  7C 03 00 00 */	cmpw r3, r0
 /* 801CE52C  41 82 00 14 */	beq lbl_801CE540

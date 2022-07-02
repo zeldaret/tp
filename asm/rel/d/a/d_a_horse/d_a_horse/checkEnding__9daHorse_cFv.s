@@ -24,8 +24,8 @@ lbl_80839444:
 /* 80839460  4B 7F 35 1D */	bl getLayerNo__14dComIfG_play_cFi
 /* 80839464  2C 03 00 0C */	cmpwi r3, 0xc
 /* 80839468  40 82 00 18 */	bne lbl_80839480
-/* 8083946C  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80839470  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 8083946C  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80839470  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80839474  2C 00 00 01 */	cmpwi r0, 1
 /* 80839478  40 82 00 08 */	bne lbl_80839480
 lbl_8083947C:

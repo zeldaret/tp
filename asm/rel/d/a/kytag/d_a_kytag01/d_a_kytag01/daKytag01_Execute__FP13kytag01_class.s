@@ -26,8 +26,8 @@ lbl_80855698:
 /* 8085569C  40 82 01 24 */	bne lbl_808557C0
 /* 808556A0  88 BE 04 BA */	lbz r5, 0x4ba(r30)
 /* 808556A4  7C A5 07 74 */	extsb r5, r5
-/* 808556A8  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 808556AC  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 808556A8  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 808556AC  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 808556B0  7C 00 07 74 */	extsb r0, r0
 /* 808556B4  7C 05 00 00 */	cmpw r5, r0
 /* 808556B8  40 82 01 08 */	bne lbl_808557C0

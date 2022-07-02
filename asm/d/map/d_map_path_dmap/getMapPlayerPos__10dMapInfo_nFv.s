@@ -23,7 +23,7 @@ lbl_8003EEA4:
 /* 8003EEAC  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 8003EEB0  D0 01 00 10 */	stfs f0, 0x10(r1)
 lbl_8003EEB4:
-/* 8003EEB4  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 8003EEB4  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8003EEB8  7C 00 07 74 */	extsb r0, r0
 /* 8003EEBC  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
 /* 8003EEC0  38 63 60 94 */	addi r3, r3, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */

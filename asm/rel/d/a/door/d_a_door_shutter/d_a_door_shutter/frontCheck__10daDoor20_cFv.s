@@ -5,8 +5,8 @@ lbl_80464C68:
 /* 80464C74  39 61 00 20 */	addi r11, r1, 0x20
 /* 80464C78  4B EF D5 65 */	bl _savegpr_29
 /* 80464C7C  7C 7D 1B 78 */	mr r29, r3
-/* 80464C80  3C 80 80 45 */	lis r4, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80464C84  8B E4 0D 64 */	lbz r31, struct_80450D64+0x0@l(r4)  /* 0x80450D64@l */
+/* 80464C80  3C 80 80 45 */	lis r4, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80464C84  8B E4 0D 64 */	lbz r31, mStayNo__20dStage_roomControl_c+0x0@l(r4)  /* 0x80450D64@l */
 /* 80464C88  7F FF 07 74 */	extsb r31, r31
 /* 80464C8C  4B BD 55 2D */	bl getFRoomNo__13door_param2_cFP10fopAc_ac_c
 /* 80464C90  54 7E 06 3E */	clrlwi r30, r3, 0x18

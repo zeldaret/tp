@@ -7,8 +7,8 @@ lbl_804904DC:
 /* 804904F0  7C 7E 1B 78 */	mr r30, r3
 /* 804904F4  88 03 04 BA */	lbz r0, 0x4ba(r3)
 /* 804904F8  7C 04 07 74 */	extsb r4, r0
-/* 804904FC  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80490500  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 804904FC  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80490500  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80490504  7C 00 07 74 */	extsb r0, r0
 /* 80490508  7C 04 00 00 */	cmpw r4, r0
 /* 8049050C  40 82 01 94 */	bne lbl_804906A0

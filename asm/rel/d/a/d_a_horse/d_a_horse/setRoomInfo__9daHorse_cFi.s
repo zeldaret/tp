@@ -98,8 +98,8 @@ lbl_8083D8CC:
 /* 8083D8D4  7C 00 07 74 */	extsb r0, r0
 /* 8083D8D8  2C 00 FF FF */	cmpwi r0, -1
 /* 8083D8DC  40 82 00 10 */	bne lbl_8083D8EC
-/* 8083D8E0  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 8083D8E4  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 8083D8E0  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 8083D8E4  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 8083D8E8  98 1D 04 8C */	stb r0, 0x48c(r29)
 lbl_8083D8EC:
 /* 8083D8EC  7F E3 FB 78 */	mr r3, r31

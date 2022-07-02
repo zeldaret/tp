@@ -365,7 +365,7 @@ extern "C" u8 mStatus__20dStage_roomControl_c[65792];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mTypeGroupListAll__7dTres_c[204 + 4 /* padding */];
 extern "C" extern u32 __float_max;
-extern "C" extern u8 struct_80450D64[4];
+extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 extern "C" extern u8 data_80450E58[4];
 extern "C" extern u8 data_80450E60[4];
 extern "C" u8 mLayerList__8dMpath_c[4];

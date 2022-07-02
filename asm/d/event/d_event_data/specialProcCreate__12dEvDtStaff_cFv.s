@@ -135,7 +135,7 @@ lbl_80044EA8:
 /* 80044EA8  A8 7D 00 08 */	lha r3, 8(r29)
 /* 80044EAC  7F 84 E3 78 */	mr r4, r28
 /* 80044EB0  38 A1 00 1C */	addi r5, r1, 0x1c
-/* 80044EB4  88 CD 87 E4 */	lbz r6, struct_80450D64+0x0(r13)
+/* 80044EB4  88 CD 87 E4 */	lbz r6, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 80044EB8  7C C6 07 74 */	extsb r6, r6
 /* 80044EBC  38 E1 00 08 */	addi r7, r1, 8
 /* 80044EC0  39 01 00 10 */	addi r8, r1, 0x10

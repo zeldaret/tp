@@ -46,7 +46,7 @@ lbl_800660DC:
 /* 800660F4  48 30 28 A1 */	bl strcmp
 /* 800660F8  2C 03 00 00 */	cmpwi r3, 0
 /* 800660FC  40 82 00 5C */	bne lbl_80066158
-/* 80066100  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 80066100  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 80066104  2C 00 00 01 */	cmpwi r0, 1
 /* 80066108  40 82 00 50 */	bne lbl_80066158
 /* 8006610C  C0 7E 00 E0 */	lfs f3, 0xe0(r30)

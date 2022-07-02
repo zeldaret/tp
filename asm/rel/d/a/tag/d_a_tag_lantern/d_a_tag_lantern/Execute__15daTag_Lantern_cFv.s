@@ -76,8 +76,8 @@ lbl_8048EEAC:
 /* 8048EEF8  98 7F 04 8D */	stb r3, 0x48d(r31)
 /* 8048EEFC  48 00 00 10 */	b lbl_8048EF0C
 lbl_8048EF00:
-/* 8048EF00  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 8048EF04  8B A3 0D 64 */	lbz r29, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 8048EF00  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 8048EF04  8B A3 0D 64 */	lbz r29, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 8048EF08  7F BD 07 74 */	extsb r29, r29
 lbl_8048EF0C:
 /* 8048EF0C  9B BF 04 8C */	stb r29, 0x48c(r31)

@@ -330,8 +330,8 @@ lbl_80A5AC74:
 /* 80A5AC7C  D0 1F 04 FC */	stfs f0, 0x4fc(r31)
 /* 80A5AC80  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80A5AC84  7C 18 07 74 */	extsb r24, r0
-/* 80A5AC88  3C 60 80 45 */	lis r3, struct_80450D64+0x2@ha /* 0x80450D66@ha */
-/* 80A5AC8C  8A E3 0D 66 */	lbz r23, struct_80450D64+0x2@l(r3)  /* 0x80450D66@l */
+/* 80A5AC88  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x2@ha /* 0x80450D66@ha */
+/* 80A5AC8C  8A E3 0D 66 */	lbz r23, mStayNo__20dStage_roomControl_c+0x2@l(r3)  /* 0x80450D66@l */
 /* 80A5AC90  7E F7 07 74 */	extsb r23, r23
 /* 80A5AC94  7C 18 B8 00 */	cmpw r24, r23
 /* 80A5AC98  41 82 00 C8 */	beq lbl_80A5AD60

@@ -9,8 +9,8 @@ lbl_8085912C:
 /* 80859148  4B 7D 38 35 */	bl getLayerNo__14dComIfG_play_cFi
 /* 8085914C  2C 03 00 0E */	cmpwi r3, 0xe
 /* 80859150  40 82 00 44 */	bne lbl_80859194
-/* 80859154  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80859158  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80859154  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80859158  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 8085915C  7C 00 07 74 */	extsb r0, r0
 /* 80859160  2C 00 00 08 */	cmpwi r0, 8
 /* 80859164  41 82 00 28 */	beq lbl_8085918C

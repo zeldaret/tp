@@ -8,7 +8,7 @@ lbl_8002DB00:
 /* 8002DB18  41 80 00 08 */	blt lbl_8002DB20
 /* 8002DB1C  48 00 00 10 */	b lbl_8002DB2C
 lbl_8002DB20:
-/* 8002DB20  88 8D 87 E4 */	lbz r4, struct_80450D64+0x0(r13)
+/* 8002DB20  88 8D 87 E4 */	lbz r4, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8002DB24  7C 84 07 75 */	extsb. r4, r4
 /* 8002DB28  41 80 00 28 */	blt lbl_8002DB50
 lbl_8002DB2C:

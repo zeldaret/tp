@@ -148,7 +148,7 @@ lbl_80042D74:
 lbl_80042DD0:
 /* 80042DD0  38 60 00 00 */	li r3, 0
 /* 80042DD4  98 7D 01 28 */	stb r3, 0x128(r29)
-/* 80042DD8  88 8D 87 E4 */	lbz r4, struct_80450D64+0x0(r13)
+/* 80042DD8  88 8D 87 E4 */	lbz r4, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 80042DDC  7C 84 07 74 */	extsb r4, r4
 /* 80042DE0  80 1D 01 2C */	lwz r0, 0x12c(r29)
 /* 80042DE4  7C 00 20 00 */	cmpw r0, r4

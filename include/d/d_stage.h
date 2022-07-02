@@ -658,11 +658,11 @@ public:
 
 STATIC_ASSERT(sizeof(dStage_roomStatus_c) == 0x404);
 
-extern s8 struct_80450D64;  // gStayNo
-extern s8 gLastStayNo;
-extern s8 gNextStayNo;
-extern s8 gTimePass;
-extern u8 data_80450D68;
+extern s8 mStayNo__20dStage_roomControl_c;  // gStayNo
+extern s8 mOldStayNo__20dStage_roomControl_c;
+extern s8 mNextStayNo__20dStage_roomControl_c;
+extern s8 m_time_pass__20dStage_roomControl_c;
+extern u8 mNoChangeRoom__20dStage_roomControl_c;
 
 class dStage_roomControl_c {
 public:
@@ -701,7 +701,7 @@ public:
     /* 8025BAAC */ void setZoneNo(int, int);
     static s32 GetTimePass();
 
-    static s8 getStayNo() { return struct_80450D64; }
+    static s8 getStayNo() { return mStayNo; }
     static u8 getRegionNo(int i_roomNo) { return mStatus[i_roomNo].mRegionNo; }
     static s8 getMemoryBlockID(int i_roomNo) { return mStatus[i_roomNo].mMemBlockID; }
     dKy_tevstr_c* getTevStr(int i_roomNo) { return &mStatus[i_roomNo].mKyTevStr; }
@@ -714,7 +714,7 @@ public:
     static char* getArcBankName() { return mArcBankName; }
     static void setRoomReadId(s8 id) { data_804505F0 = id; }
     static s8 getRoomReadId() { return data_804505F0; }
-    static void offNoChangeRoom() { data_80450D68 = false; }
+    static void offNoChangeRoom() { mNoChangeRoom = false; }
     static void setProcID(u32 id) { mProcID = id; }
     static u32 getProcID() { return mProcID; }
     static int getStatusProcID(int i_roomNo) { return mStatus[i_roomNo].mProcID; }
@@ -733,6 +733,11 @@ public:
     static char* mArcBankName;
     static char* mArcBankData;
     static roomDzs_c m_roomDzs;
+    static s8 mStayNo;
+    static s8 mOldStayNo;
+    static s8 mNextStayNo;
+    static s8 m_time_pass;
+    static u8 mNoChangeRoom;
 
 private:
     /* 0x0 */ u8 field_0x0[4];

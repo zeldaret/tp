@@ -513,8 +513,8 @@ lbl_80463734:
 lbl_80463744:
 /* 80463744  80 7F 05 C4 */	lwz r3, 0x5c4(r31)
 /* 80463748  4B C1 82 79 */	bl Move__4dBgWFv
-/* 8046374C  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80463750  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 8046374C  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80463750  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80463754  98 1F 05 C8 */	stb r0, 0x5c8(r31)
 /* 80463758  7F A3 EB 78 */	mr r3, r29
 /* 8046375C  80 9F 06 CC */	lwz r4, 0x6cc(r31)

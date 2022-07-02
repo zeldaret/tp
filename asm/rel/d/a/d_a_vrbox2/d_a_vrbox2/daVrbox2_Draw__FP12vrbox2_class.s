@@ -120,8 +120,8 @@ lbl_80498C68:
 /* 80498C7C  4B B7 4A 5D */	bl entry__13mDoExt_btkAnmFP16J3DMaterialTablef
 /* 80498C80  7F A3 EB 78 */	mr r3, r29
 /* 80498C84  48 00 04 59 */	bl daVrbox2_color_set__FP12vrbox2_class
-/* 80498C88  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80498C8C  88 83 0D 64 */	lbz r4, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80498C88  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80498C8C  88 83 0D 64 */	lbz r4, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80498C90  7C 84 07 75 */	extsb. r4, r4
 /* 80498C94  41 80 00 28 */	blt lbl_80498CBC
 /* 80498C98  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */

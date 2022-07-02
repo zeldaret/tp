@@ -7,8 +7,8 @@ lbl_804876B8:
 /* 804876CC  7C 7B 1B 78 */	mr r27, r3
 /* 804876D0  88 03 04 BA */	lbz r0, 0x4ba(r3)
 /* 804876D4  7C 05 07 74 */	extsb r5, r0
-/* 804876D8  3C 80 80 45 */	lis r4, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 804876DC  88 04 0D 64 */	lbz r0, struct_80450D64+0x0@l(r4)  /* 0x80450D64@l */
+/* 804876D8  3C 80 80 45 */	lis r4, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 804876DC  88 04 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r4)  /* 0x80450D64@l */
 /* 804876E0  7C 00 07 74 */	extsb r0, r0
 /* 804876E4  7C 05 00 00 */	cmpw r5, r0
 /* 804876E8  40 82 05 58 */	bne lbl_80487C40

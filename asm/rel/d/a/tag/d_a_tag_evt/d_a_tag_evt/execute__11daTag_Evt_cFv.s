@@ -22,8 +22,8 @@ lbl_8048BA0C:
 /* 8048BA5C  D0 03 05 54 */	stfs f0, 0x554(r3)
 /* 8048BA60  C0 03 05 40 */	lfs f0, 0x540(r3)
 /* 8048BA64  D0 03 05 58 */	stfs f0, 0x558(r3)
-/* 8048BA68  3C 80 80 45 */	lis r4, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 8048BA6C  88 04 0D 64 */	lbz r0, struct_80450D64+0x0@l(r4)  /* 0x80450D64@l */
+/* 8048BA68  3C 80 80 45 */	lis r4, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 8048BA6C  88 04 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r4)  /* 0x80450D64@l */
 /* 8048BA70  98 03 04 E2 */	stb r0, 0x4e2(r3)
 /* 8048BA74  88 83 05 E4 */	lbz r4, 0x5e4(r3)
 /* 8048BA78  7C 80 07 75 */	extsb. r0, r4

@@ -4,7 +4,7 @@ lbl_8002FC3C:
 /* 8002FC44  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8002FC48  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8002FC4C  7C 7F 1B 78 */	mr r31, r3
-/* 8002FC50  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 8002FC50  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8002FC54  7C 00 07 74 */	extsb r0, r0
 /* 8002FC58  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
 /* 8002FC5C  38 63 60 94 */	addi r3, r3, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */

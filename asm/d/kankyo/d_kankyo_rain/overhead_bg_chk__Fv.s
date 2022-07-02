@@ -65,7 +65,7 @@ lbl_8005CDD0:
 /* 8005CECC  48 30 BA C9 */	bl strcmp
 /* 8005CED0  2C 03 00 00 */	cmpwi r3, 0
 /* 8005CED4  40 82 00 30 */	bne lbl_8005CF04
-/* 8005CED8  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 8005CED8  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8005CEDC  2C 00 00 11 */	cmpwi r0, 0x11
 /* 8005CEE0  40 82 00 24 */	bne lbl_8005CF04
 /* 8005CEE4  38 61 00 14 */	addi r3, r1, 0x14

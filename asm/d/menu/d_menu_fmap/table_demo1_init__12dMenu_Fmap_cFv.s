@@ -34,7 +34,7 @@ lbl_801CA8E0:
 /* 801CA8F0  80 A3 00 44 */	lwz r5, 0x44(r3)
 /* 801CA8F4  28 05 00 00 */	cmplwi r5, 0
 /* 801CA8F8  41 82 00 94 */	beq lbl_801CA98C
-/* 801CA8FC  89 0D 87 E4 */	lbz r8, struct_80450D64+0x0(r13)
+/* 801CA8FC  89 0D 87 E4 */	lbz r8, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 801CA900  7D 08 07 74 */	extsb r8, r8
 /* 801CA904  38 61 00 18 */	addi r3, r1, 0x18
 /* 801CA908  38 C0 00 05 */	li r6, 5

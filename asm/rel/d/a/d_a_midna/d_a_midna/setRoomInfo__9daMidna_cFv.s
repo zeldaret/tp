@@ -25,8 +25,8 @@ lbl_804BED1C:
 /* 804BED78  98 7C 04 8D */	stb r3, 0x48d(r28)
 /* 804BED7C  48 00 00 10 */	b lbl_804BED8C
 lbl_804BED80:
-/* 804BED80  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 804BED84  8B A3 0D 64 */	lbz r29, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 804BED80  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 804BED84  8B A3 0D 64 */	lbz r29, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 804BED88  7F BD 07 74 */	extsb r29, r29
 lbl_804BED8C:
 /* 804BED8C  9B BC 04 8C */	stb r29, 0x48c(r28)

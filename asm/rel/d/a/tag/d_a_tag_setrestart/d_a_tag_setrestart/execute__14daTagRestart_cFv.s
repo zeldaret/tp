@@ -45,8 +45,8 @@ lbl_80D60560:
 /* 80D6060C  C0 1D 05 8C */	lfs f0, 0x58c(r29)
 /* 80D60610  FC 00 10 40 */	fcmpo cr0, f0, f2
 /* 80D60614  40 81 01 0C */	ble lbl_80D60720
-/* 80D60618  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80D6061C  38 63 0D 64 */	addi r3, r3, struct_80450D64+0x0@l /* 0x80450D64@l */
+/* 80D60618  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80D6061C  38 63 0D 64 */	addi r3, r3, mStayNo__20dStage_roomControl_c+0x0@l /* 0x80450D64@l */
 /* 80D60620  88 63 00 00 */	lbz r3, 0(r3)
 /* 80D60624  7C 63 07 74 */	extsb r3, r3
 /* 80D60628  88 1D 05 68 */	lbz r0, 0x568(r29)

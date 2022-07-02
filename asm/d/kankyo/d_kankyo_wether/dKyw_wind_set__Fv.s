@@ -100,7 +100,7 @@ lbl_8005A718:
 lbl_8005A724:
 /* 8005A724  3B 60 00 00 */	li r27, 0
 /* 8005A728  3B 40 00 00 */	li r26, 0
-/* 8005A72C  88 8D 87 E4 */	lbz r4, struct_80450D64+0x0(r13)
+/* 8005A72C  88 8D 87 E4 */	lbz r4, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8005A730  7C 84 07 75 */	extsb. r4, r4
 /* 8005A734  41 80 00 28 */	blt lbl_8005A75C
 /* 8005A738  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
@@ -120,7 +120,7 @@ lbl_8005A75C:
 /* 8005A76C  80 1B 00 00 */	lwz r0, 0(r27)
 /* 8005A770  54 1C 8F 7E */	rlwinm r28, r0, 0x11, 0x1d, 0x1f
 lbl_8005A774:
-/* 8005A774  88 8D 87 E4 */	lbz r4, struct_80450D64+0x0(r13)
+/* 8005A774  88 8D 87 E4 */	lbz r4, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8005A778  7C 84 07 74 */	extsb r4, r4
 /* 8005A77C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
 /* 8005A780  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
@@ -129,7 +129,7 @@ lbl_8005A774:
 /* 8005A78C  4B FC 9B F9 */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 8005A790  28 03 00 00 */	cmplwi r3, 0
 /* 8005A794  41 82 00 58 */	beq lbl_8005A7EC
-/* 8005A798  88 8D 87 E4 */	lbz r4, struct_80450D64+0x0(r13)
+/* 8005A798  88 8D 87 E4 */	lbz r4, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8005A79C  7C 84 07 74 */	extsb r4, r4
 /* 8005A7A0  7F E3 FB 78 */	mr r3, r31
 /* 8005A7A4  4B FC 9B E1 */	bl getStatusRoomDt__20dStage_roomControl_cFi
@@ -207,13 +207,13 @@ lbl_8005A864:
 /* 8005A8A4  80 1B 00 00 */	lwz r0, 0(r27)
 /* 8005A8A8  54 1A 77 BE */	rlwinm r26, r0, 0xe, 0x1e, 0x1f
 lbl_8005A8AC:
-/* 8005A8AC  88 8D 87 E4 */	lbz r4, struct_80450D64+0x0(r13)
+/* 8005A8AC  88 8D 87 E4 */	lbz r4, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8005A8B0  7C 84 07 74 */	extsb r4, r4
 /* 8005A8B4  7F E3 FB 78 */	mr r3, r31
 /* 8005A8B8  4B FC 9A CD */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 8005A8BC  28 03 00 00 */	cmplwi r3, 0
 /* 8005A8C0  41 82 00 44 */	beq lbl_8005A904
-/* 8005A8C4  88 8D 87 E4 */	lbz r4, struct_80450D64+0x0(r13)
+/* 8005A8C4  88 8D 87 E4 */	lbz r4, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8005A8C8  7C 84 07 74 */	extsb r4, r4
 /* 8005A8CC  7F E3 FB 78 */	mr r3, r31
 /* 8005A8D0  4B FC 9A B5 */	bl getStatusRoomDt__20dStage_roomControl_cFi
@@ -273,7 +273,7 @@ lbl_8005A96C:
 /* 8005A984  48 30 E0 11 */	bl strcmp
 /* 8005A988  2C 03 00 00 */	cmpwi r3, 0
 /* 8005A98C  40 82 00 88 */	bne lbl_8005AA14
-/* 8005A990  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 8005A990  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8005A994  7C 00 07 75 */	extsb. r0, r0
 /* 8005A998  41 82 00 1C */	beq lbl_8005A9B4
 /* 8005A99C  2C 00 00 03 */	cmpwi r0, 3
@@ -302,7 +302,7 @@ lbl_8005A9E8:
 /* 8005A9F0  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l /* 0x8042DD70@l */
 /* 8005A9F4  98 03 01 60 */	stb r0, 0x160(r3)
 lbl_8005A9F8:
-/* 8005A9F8  88 6D 87 E4 */	lbz r3, struct_80450D64+0x0(r13)
+/* 8005A9F8  88 6D 87 E4 */	lbz r3, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8005A9FC  7C 63 07 74 */	extsb r3, r3
 /* 8005AA00  4B FD 26 6D */	bl dComIfGp_getReverb__Fi
 /* 8005AA04  7C 64 1B 78 */	mr r4, r3
