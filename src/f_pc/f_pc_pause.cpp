@@ -13,22 +13,14 @@
 //
 
 /* 80023844-80023868 0024+00 s=0 e=3 z=0  None .text      fpcPause_IsEnable__FPvUc */
-#ifdef NON_MATCHING
 s32 fpcPause_IsEnable(void* pProcess, u8 flag) {
     base_process_class* pProc = (base_process_class*)pProcess;
-    // extra addic/subfe?
-    return (pProc->mPauseFlag & flag) == flag;
+    if ((pProc->mPauseFlag & flag) == flag) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fpcPause_IsEnable(void* param_0, u8 param_1) {
-    nofralloc
-#include "asm/f_pc/f_pc_pause/fpcPause_IsEnable__FPvUc.s"
-}
-#pragma pop
-#endif
 
 /* 80023868-800238D4 006C+00 s=0 e=1 z=0  None .text      fpcPause_Enable__FPvUc */
 s32 fpcPause_Enable(void* pProcess, u8 flag) {

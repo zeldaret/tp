@@ -51,25 +51,14 @@ static s32 fopScn_IsDelete(void* param_1) {
 }
 
 /* 8001EBAC-8001EC00 0194EC 0054+00 1/0 0/0 0/0 .text            fopScn_Delete__FPv */
-#ifdef NON_MATCHING
 static s32 fopScn_Delete(void* param_1) {
     scene_class* pScene = (scene_class*)param_1;
-    s32 ret = fpcMtd_Delete(pScene->mpProcessMtd, param_1);
+    s32 ret = fpcMtd_Delete(pScene->mpProcessMtd, pScene);
     if (ret == 1) {
-        fopScnTg_QueueTo(pScene->field_0x1b0);
+        fopScnTg_QueueTo(&pScene->field_0x1b0);
     }
     return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm s32 fopScn_Delete(void* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_scene/fopScn_Delete__FPv.s"
-}
-#pragma pop
-#endif
 
 /* 8001EC00-8001EC74 019540 0074+00 1/0 0/0 0/0 .text            fopScn_Create__FPv */
 #pragma push
