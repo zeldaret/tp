@@ -13,104 +13,6 @@
 #include "JSystem/JSupport/JSUMemoryStream.h"
 #include "d/d_lib.h"
 
-//
-// Types:
-//
-
-struct JKRAramArchive {};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__8CPaneMgrFv();
-extern "C" void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap();
-extern "C" void __dt__8CPaneMgrFv();
-extern "C" void setAlpha__8CPaneMgrFUc();
-extern "C" void reinit__8CPaneMgrFv();
-extern "C" void initiate__8CPaneMgrFP7J2DPaneP10JKRExpHeap();
-extern "C" void getBlack__9J2DWindowCFv();
-extern "C" void getWhite__9J2DWindowCFv();
-extern "C" void childPaneGetSize__8CPaneMgrFP7J2DPane();
-extern "C" void childPaneSetSize__8CPaneMgrFP7J2DPaneff();
-extern "C" void getGlobalPosX__8CPaneMgrFv();
-extern "C" void getGlobalPosY__8CPaneMgrFv();
-extern "C" void setWhite__9J2DWindowFQ28JUtility6TColor();
-extern "C" void setBlack__10J2DTextBoxFQ28JUtility6TColor();
-extern "C" void setBlack__9J2DWindowFQ28JUtility6TColor();
-extern "C" void setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor();
-extern "C" void setBlackWhite__9J2DWindowFQ28JUtility6TColorQ28JUtility6TColor();
-extern "C" void paneTrans__8CPaneMgrFff();
-extern "C" void paneScale__8CPaneMgrFff();
-extern "C" void scaleAnime__8CPaneMgrFsffUc();
-extern "C" void
-colorAnime__8CPaneMgrFsQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorUc();
-extern "C" void getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbs();
-extern "C" void getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs();
-extern "C" void getBounds__8CPaneMgrFP7J2DPane();
-extern "C" void dPaneClass_showNullPane__FP9J2DScreen();
-extern "C" void dPaneClass_showNullPane__FP7J2DPane();
-extern "C" void dPaneClass_setPriority__FPPvP7JKRHeapP9J2DScreenPCcUlP10JKRArchive();
-extern "C" void __dt__20JSUMemoryInputStreamFv();
-extern "C" void __dt__20JSURandomInputStreamFv();
-extern "C" void __dt__10JSUIosBaseFv();
-extern "C" void __sinit_d_pane_class_cpp();
-
-//
-// External References:
-//
-
-extern "C" void mDoExt_getCurrentHeap__Fv();
-extern "C" void dLib_getExpandSizeFromAramArchive__FP14JKRAramArchivePCc();
-extern "C" void __ct__13CPaneMgrAlphaFv();
-extern "C" void __dt__13CPaneMgrAlphaFv();
-extern "C" void rateCalc__13CPaneMgrAlphaFssUc();
-extern "C" void childPaneCount__13CPaneMgrAlphaFP7J2DPane();
-extern "C" void childPaneGetAlpha__13CPaneMgrAlphaFP7J2DPane();
-extern "C" void childPaneSetAlpha__13CPaneMgrAlphaFP7J2DPaneUc();
-extern "C" void alloc__7JKRHeapFUli();
-extern "C" void free__7JKRHeapFPv();
-extern "C" void __dl__FPv();
-extern "C" void __dt__14JSUInputStreamFv();
-extern "C" void setBuffer__20JSUMemoryInputStreamFPCvl();
-extern "C" void __ct__13J2DOrthoGraphFffffff();
-extern "C" void func_802E980C();
-extern "C" void getBounds__7J2DPaneFv();
-extern "C" void rotate__7J2DPaneFff13J2DRotateAxisf();
-extern "C" void getFirstChildPane__7J2DPaneFv();
-extern "C" void getNextChildPane__7J2DPaneFv();
-extern "C" void getParentPane__7J2DPaneFv();
-extern "C" void setPriority__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__20JSURandomInputStream[9];
-extern "C" extern void* __vt__14JSUInputStream[6 + 1 /* padding */];
-extern "C" extern void* __vt__20JSUMemoryInputStream[9 + 1 /* padding */];
-extern "C" extern void* __vt__14J2DGrafContext[10];
-extern "C" extern void* __vt__13J2DOrthoGraph[10];
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 803C2DF8-803C2E04 01FF18 000C+00 2/2 4/4 0/0 .data            __vt__10JSUIosBase */
-SECTION_DATA extern void* __vt__10JSUIosBase[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10JSUIosBaseFv,
-};
-
 /* 80253930-80253984 24E270 0054+00 0/0 11/11 0/0 .text            __ct__8CPaneMgrFv */
 CPaneMgr::CPaneMgr() {
     mpFirstStackAlpha = NULL;
@@ -119,10 +21,10 @@ CPaneMgr::CPaneMgr() {
 
 /* 80253984-80253A18 24E2C4 0094+00 0/0 58/58 2/2 .text
  * __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap                 */
-CPaneMgr::CPaneMgr(J2DScreen* pScrn, u64 tag, u8 flags, JKRExpHeap* pHeap) {
-    J2DPane* pane = pScrn->search(tag);
+CPaneMgr::CPaneMgr(J2DScreen* p_scrn, u64 tag, u8 flags, JKRExpHeap* p_heap) {
+    J2DPane* pane = p_scrn->search(tag);
     mFlags = flags;
-    initiate(pane, pHeap);
+    initiate(pane, p_heap);
 }
 
 /* 80253A18-80253AB4 24E358 009C+00 1/0 11/11 0/0 .text            __dt__8CPaneMgrFv */
@@ -143,6 +45,7 @@ void CPaneMgr::setAlpha(u8 alpha) {
         field_0x10 = (u8*)mpFirstStackAlpha;
         childPaneSetAlpha(getPanePtr()->getFirstChildPane(), alpha);
     }
+
     getPanePtr()->setAlpha(alpha);
 }
 
@@ -172,6 +75,7 @@ void CPaneMgr::reinit() {
  */
 void CPaneMgr::initiate(J2DPane* p_pane, JKRExpHeap* p_heap) {
     mPane = p_pane;
+
     if (p_heap) {
         heap = p_heap;
     } else {
@@ -278,20 +182,7 @@ void CPaneMgr::childPaneGetSize(J2DPane* p_pane) {
     }
 }
 
-/* ############################################################################################## */
-/* 80454E88-80454E90 003488 0004+04 4/4 0/0 0/0 .sdata2          @3858 */
-SECTION_SDATA2 static f32 lit_3858[1 + 1 /* padding */] = {
-    0.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80454E90-80454E98 003490 0008+00 2/2 0/0 0/0 .sdata2          @3860 */
-SECTION_SDATA2 static f64 lit_3860 = 4503601774854144.0 /* cast s32 to float */;
-
 /* 80254134-802542E8 24EA74 01B4+00 1/1 0/0 0/0 .text childPaneSetSize__8CPaneMgrFP7J2DPaneff */
-// matches with literals
-#ifdef NONMATCHING
 void CPaneMgr::childPaneSetSize(J2DPane* p_pane, f32 param_1, f32 param_2) {
     if (p_pane != NULL) {
         p_pane->move(field_0x20[0] * param_1, field_0x20[1] * param_2);
@@ -307,16 +198,6 @@ void CPaneMgr::childPaneSetSize(J2DPane* p_pane, f32 param_1, f32 param_2) {
         childPaneSetSize(p_pane->getNextChildPane(), param_1, param_2);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgr::childPaneSetSize(J2DPane* param_0, f32 param_1, f32 param_2) {
-    nofralloc
-#include "asm/d/pane/d_pane_class/childPaneSetSize__8CPaneMgrFP7J2DPaneff.s"
-}
-#pragma pop
-#endif
 
 /* 802542E8-80254364 24EC28 007C+00 2/2 18/18 0/0 .text            getGlobalPosX__8CPaneMgrFv */
 f32 CPaneMgr::getGlobalPosX() {
@@ -383,36 +264,14 @@ bool J2DWindow::setBlackWhite(JUtility::TColor black, JUtility::TColor white) {
     return true;
 }
 
-/* ############################################################################################## */
-/* 80454E98-80454EA0 003498 0004+04 3/3 0/0 0/0 .sdata2          @4046 */
-SECTION_SDATA2 static f32 lit_4046[1 + 1 /* padding */] = {
-    0.5f,
-    /* padding */
-    0.0f,
-};
-
 /* 802545B0-80254638 24EEF0 0088+00 0/0 51/51 3/3 .text            paneTrans__8CPaneMgrFff */
-// matches with literals
-#ifdef NONMATCHING
 void CPaneMgr::paneTrans(f32 x, f32 y) {
     f32 moveX = x + getInitCenterPosX() - getSizeX() * 0.5f;
     f32 moveY = y + getInitCenterPosY() - getSizeY() * 0.5f;
     getPanePtr()->move(moveX, moveY);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgr::paneTrans(f32 param_0, f32 param_1) {
-    nofralloc
-#include "asm/d/pane/d_pane_class/paneTrans__8CPaneMgrFff.s"
-}
-#pragma pop
-#endif
 
 /* 80254638-802547CC 24EF78 0194+00 0/0 5/5 0/0 .text            paneScale__8CPaneMgrFff */
-// matches with literals
-#ifdef NONMATCHING
 void CPaneMgr::paneScale(f32 x, f32 y) {
     f32 moveX = getPosX() + getSizeX() * 0.5f;
     f32 moveY = getPosY() + getSizeY() * 0.5f;
@@ -432,16 +291,6 @@ void CPaneMgr::paneScale(f32 x, f32 y) {
         childPaneSetSize(getPanePtr()->getFirstChildPane(), x, y);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgr::paneScale(f32 param_0, f32 param_1) {
-    nofralloc
-#include "asm/d/pane/d_pane_class/paneScale__8CPaneMgrFff.s"
-}
-#pragma pop
-#endif
 
 /* 802547CC-802548BC 24F10C 00F0+00 0/0 10/10 0/0 .text            scaleAnime__8CPaneMgrFsffUc */
 bool CPaneMgr::scaleAnime(s16 param_0, f32 param_1, f32 param_2, u8 param_3) {
@@ -458,111 +307,79 @@ bool CPaneMgr::scaleAnime(s16 param_0, f32 param_1, f32 param_2, u8 param_3) {
     return false;
 }
 
-/* ############################################################################################## */
-/* 80454EA0-80454EA8 0034A0 0008+00 1/1 0/0 0/0 .sdata2          @4349 */
-SECTION_SDATA2 static f64 lit_4349 = 4503599627370496.0 /* cast u32 to float */;
-
 /* 802548BC-80254C90 24F1FC 03D4+00 0/0 4/4 0/0 .text
  * colorAnime__8CPaneMgrFsQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorUc
  */
-// matches with literals
-#ifdef NONMATCHING
-bool CPaneMgr::colorAnime(s16 param_0, JUtility::TColor param_1, JUtility::TColor param_2,
-                              JUtility::TColor param_3, JUtility::TColor param_4, u8 param_5) {
-    if (mColorAnime < param_0 - 1) {
+bool CPaneMgr::colorAnime(s16 anmTimer, JUtility::TColor startBlack, JUtility::TColor endBlack,
+                              JUtility::TColor startWhite, JUtility::TColor endWhite, u8 calcType) {
+    if (mColorAnime < anmTimer - 1) {
         mColorAnime++;
-        f32 rate = rateCalc(param_0, mColorAnime, param_5);
+        f32 rate = rateCalc(anmTimer, mColorAnime, calcType);
 
         JUtility::TColor black;
         JUtility::TColor white;
 
-        if (param_1.r != param_2.r) {
-            black.r = param_1.r + rate * (param_2.r - param_1.r);
+        if (startBlack.r != endBlack.r) {
+            black.r = startBlack.r + rate * (endBlack.r - startBlack.r);
         } else {
-            black.r = param_2.r;
+            black.r = endBlack.r;
         }
 
-        if (param_1.g != param_2.g) {
-            black.g = param_1.g + rate * (param_2.g - param_1.g);
+        if (startBlack.g != endBlack.g) {
+            black.g = startBlack.g + rate * (endBlack.g - startBlack.g);
         } else {
-            black.g = param_2.g;
+            black.g = endBlack.g;
         }
 
-        if (param_1.b != param_2.b) {
-            black.b = param_1.b + rate * (param_2.b - param_1.b);
+        if (startBlack.b != endBlack.b) {
+            black.b = startBlack.b + rate * (endBlack.b - startBlack.b);
         } else {
-            black.b = param_2.b;
+            black.b = endBlack.b;
         }
 
-        if (param_1.a != param_2.a) {
-            black.a = param_1.a + rate * (param_2.a - param_1.a);
+        if (startBlack.a != endBlack.a) {
+            black.a = startBlack.a + rate * (endBlack.a - startBlack.a);
         } else {
-            black.a = param_2.a;
+            black.a = endBlack.a;
         }
 
 
-        if (param_3.r != param_4.r) {
-            white.r = param_3.r + rate * (param_4.r - param_3.r);
+        if (startWhite.r != endWhite.r) {
+            white.r = startWhite.r + rate * (endWhite.r - startWhite.r);
         } else {
-            white.r = param_4.r;
+            white.r = endWhite.r;
         }
 
-        if (param_3.g != param_4.g) {
-            white.g  = param_3.g + rate * (param_4.g - param_3.g);
+        if (startWhite.g != endWhite.g) {
+            white.g  = startWhite.g + rate * (endWhite.g - startWhite.g);
         } else {
-            white.g = param_4.g;
+            white.g = endWhite.g;
         }
 
-        if (param_3.b != param_4.b) {
-            white.b = param_3.b + rate * (param_4.b - param_3.b);
+        if (startWhite.b != endWhite.b) {
+            white.b = startWhite.b + rate * (endWhite.b - startWhite.b);
         } else {
-            white.b = param_4.b;
+            white.b = endWhite.b;
         }
 
-        if (param_3.a != param_4.a) {
-            white.a = param_3.a + rate * (param_4.a - param_3.a);
+        if (startWhite.a != endWhite.a) {
+            white.a = startWhite.a + rate * (endWhite.a - startWhite.a);
         } else {
-            white.a = param_4.a;
+            white.a = endWhite.a;
         }
 
         setBlackWhite(black, white);
     } else {
-        mColorAnime = param_0;
-        setBlackWhite(param_2, param_4);
+        mColorAnime = anmTimer;
+        setBlackWhite(endBlack, endWhite);
         return true;
     }
 
     return false;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool CPaneMgr::colorAnime(s16 param_0, JUtility::TColor param_1, JUtility::TColor param_2,
-                              JUtility::TColor param_3, JUtility::TColor param_4, u8 param_5) {
-    nofralloc
-#include "asm/d/pane/d_pane_class/func_802548BC.s"
-}
-#pragma pop
-#endif
-
-/* ############################################################################################## */
-/* 80454EA8-80454EAC 0034A8 0004+00 1/1 0/0 0/0 .sdata2          @4473 */
-SECTION_SDATA2 static f32 lit_4473 = 608.0f;
-
-/* 80454EAC-80454EB0 0034AC 0004+00 1/1 0/0 0/0 .sdata2          @4474 */
-SECTION_SDATA2 static f32 lit_4474 = 448.0f;
-
-/* 80454EB0-80454EB4 0034B0 0004+00 1/1 0/0 0/0 .sdata2          @4475 */
-SECTION_SDATA2 static f32 lit_4475 = -1.0f;
-
-/* 80454EB4-80454EB8 0034B4 0004+00 1/1 0/0 0/0 .sdata2          @4476 */
-SECTION_SDATA2 static f32 lit_4476 = 1.0f;
 
 /* 80254C90-80254EBC 24F5D0 022C+00 1/1 9/9 0/0 .text
  * getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbs                */
-// missing branches
-#ifdef NONMATCHING
 Vec CPaneMgr::getGlobalVtx(J2DPane* p_pane, Mtx* param_1, u8 param_2, bool param_3,
                                 s16 param_4) {
     Mtx m;
@@ -589,48 +406,25 @@ Vec CPaneMgr::getGlobalVtx(J2DPane* p_pane, Mtx* param_1, u8 param_2, bool param
 
         return outVec;
     } else {
-        JGeometry::TBox2<f32>* bounds = getBounds(p_pane);
-        f32 var_f0 = bounds->i.x;
-        f32 var_f1 = bounds->i.y;
-        f32 var_f3 = bounds->f.x;
-        f32 var_f4 = bounds->f.y;
+        JGeometry::TBox2<f32> bounds = *getBounds(p_pane);
+        f32 x2 = (param_2 & 1) ? bounds.f.x : bounds.i.x;
+        f32 y2 = (param_2 & 2) ? bounds.f.y : bounds.i.y;
 
-        if (param_2 & 1) {
-            var_f3 = var_f0;
-        }
-
-        if (param_2 & 2) {
-            var_f4 = var_f1;
-        }
-
-        outVec.x = mp[0][3] + (var_f3 * mp[0][0] + (var_f4 * mp[0][1]));
-        outVec.y = mp[1][3] + (var_f3 * mp[1][0] + (var_f4 * mp[1][1]));
-        outVec.z = mp[2][3] + (var_f3 * mp[2][0] + (var_f4 * mp[2][1]));
+        outVec.x = mp[0][3] + (x2 * mp[0][0] + (y2 * mp[0][1]));
+        outVec.y = mp[1][3] + (x2 * mp[1][0] + (y2 * mp[1][1]));
+        outVec.z = mp[2][3] + (x2 * mp[2][0] + (y2 * mp[2][1]));
 
         return outVec;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm Vec CPaneMgr::getGlobalVtx(J2DPane* param_0, Mtx* param_1, u8 param_2, bool param_3,
-                                s16 param_4) {
-    nofralloc
-#include "asm/d/pane/d_pane_class/getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbs.s"
-}
-#pragma pop
-#endif
 
 /* 80254EBC-80254FB8 24F7FC 00FC+00 0/0 56/56 1/1 .text tCenter__8CPaneMgrFP7J2DPanebs
  */
-// matches with literals
-#ifdef NONMATCHING
-Vec CPaneMgr::getGlobalVtxCenter(J2DPane* param_0, bool param_1, s16 param_2) {
+Vec CPaneMgr::getGlobalVtxCenter(J2DPane* p_pane, bool param_1, s16) {
     Mtx m;
     Vec vtxCenter;
-    Vec v1 = getGlobalVtx(param_0, &m, 0, param_1, 0);
-    Vec v2 = getGlobalVtx(param_0, &m, 3, param_1, 0);
+    Vec v1 = getGlobalVtx(p_pane, &m, 0, param_1, 0);
+    Vec v2 = getGlobalVtx(p_pane, &m, 3, param_1, 0);
     
     vtxCenter.x = (v1.x + v2.x) * 0.5f;
     vtxCenter.y = (v1.y + v2.y) * 0.5f;
@@ -638,25 +432,12 @@ Vec CPaneMgr::getGlobalVtxCenter(J2DPane* param_0, bool param_1, s16 param_2) {
 
     return vtxCenter;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm Vec CPaneMgr::getGlobalVtxCenter(J2DPane* param_0, bool param_1, s16 param_2) {
-    nofralloc
-#include "asm/d/pane/d_pane_class/getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80430748-80430758 05D468 0010+00 2/2 0/0 0/0 .bss             static_mBounds */
-static f32 static_mBounds[4];
-//static JGeometry::TBox2<f32> static_mBounds(0.0f, 0.0f, 0.0f, 0.0f);
+static JGeometry::TBox2<f32> static_mBounds(0.0f, 0.0f, 0.0f, 0.0f);
 
 /* 80254FB8-802550E8 24F8F8 0130+00 1/1 0/0 0/0 .text            getBounds__8CPaneMgrFP7J2DPane */
-// matches with literals
-#ifdef NONMATCHING
 JGeometry::TBox2<f32>* CPaneMgr::getBounds(J2DPane* p_pane) {
     JGeometry::TBox2<f32> bounds(p_pane->getBounds());
     
@@ -677,21 +458,11 @@ JGeometry::TBox2<f32>* CPaneMgr::getBounds(J2DPane* p_pane) {
     static_mBounds = bounds;
     return &static_mBounds;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JGeometry::TBox2<f32>* CPaneMgr::getBounds(J2DPane* param_0) {
-    nofralloc
-#include "asm/d/pane/d_pane_class/getBounds__8CPaneMgrFP7J2DPane.s"
-}
-#pragma pop
-#endif
 
 /* 802550E8-8025512C 24FA28 0044+00 0/0 54/54 3/3 .text dPaneClass_showNullPane__FP9J2DScreen */
-void dPaneClass_showNullPane(J2DScreen* pScrn) {
-    if (pScrn) {
-        dPaneClass_showNullPane(pScrn->search('ROOT'));
+void dPaneClass_showNullPane(J2DScreen* p_scrn) {
+    if (p_scrn) {
+        dPaneClass_showNullPane(p_scrn->search('ROOT'));
     }
 }
 
@@ -730,51 +501,3 @@ bool dPaneClass_setPriority(void** i_data, JKRHeap* p_heap, J2DScreen* p_screen,
 
     return false;
 }
-
-/* 802552B8-80255328 24FBF8 0070+00 0/0 1/0 0/0 .text            __dt__20JSUMemoryInputStreamFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm JSUMemoryInputStream::~JSUMemoryInputStream() {
-extern "C" asm void __dt__20JSUMemoryInputStreamFv() {
-    nofralloc
-#include "asm/d/pane/d_pane_class/__dt__20JSUMemoryInputStreamFv.s"
-}
-#pragma pop
-
-/* 80255328-80255388 24FC68 0060+00 0/0 1/0 0/0 .text            __dt__20JSURandomInputStreamFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm JSURandomInputStream::~JSURandomInputStream() {
-extern "C" asm void __dt__20JSURandomInputStreamFv() {
-    nofralloc
-#include "asm/d/pane/d_pane_class/__dt__20JSURandomInputStreamFv.s"
-}
-#pragma pop
-
-/* 80255388-802553D0 24FCC8 0048+00 1/0 0/0 0/0 .text            __dt__10JSUIosBaseFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm JSUIosBase::~JSUIosBase() {
-extern "C" asm void __dt__10JSUIosBaseFv() {
-    nofralloc
-#include "asm/d/pane/d_pane_class/__dt__10JSUIosBaseFv.s"
-}
-#pragma pop
-
-/* 802553D0-802553EC 24FD10 001C+00 0/0 1/0 0/0 .text            __sinit_d_pane_class_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_pane_class_cpp() {
-    nofralloc
-#include "asm/d/pane/d_pane_class/__sinit_d_pane_class_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x802553D0, __sinit_d_pane_class_cpp);
-#pragma pop
