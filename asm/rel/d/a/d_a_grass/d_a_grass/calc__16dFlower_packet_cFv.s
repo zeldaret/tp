@@ -43,8 +43,8 @@ lbl_805227C8:
 /* 80522814  39 08 00 38 */	addi r8, r8, 0x38
 /* 80522818  38 63 00 FA */	addi r3, r3, 0xfa
 /* 8052281C  42 00 FF AC */	bdnz lbl_805227C8
-/* 80522820  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80522824  8B C3 0D 64 */	lbz r30, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80522820  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80522824  8B C3 0D 64 */	lbz r30, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80522828  7F DE 07 74 */	extsb r30, r30
 /* 8052282C  3C 9B 00 01 */	addis r4, r27, 1
 /* 80522830  57 C0 10 3A */	slwi r0, r30, 2

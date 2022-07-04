@@ -495,16 +495,16 @@ lbl_806AE4F0:
 /* 806AE500  FC 00 00 1E */	fctiwz f0, f0
 /* 806AE504  D8 01 00 60 */	stfd f0, 0x60(r1)
 /* 806AE508  80 01 00 64 */	lwz r0, 0x64(r1)
-/* 806AE50C  3C 60 80 45 */	lis r3, struct_80450BE4+0x1@ha /* 0x80450BE5@ha */
-/* 806AE510  98 03 0B E5 */	stb r0, struct_80450BE4+0x1@l(r3)  /* 0x80450BE5@l */
+/* 806AE50C  3C 60 80 45 */	lis r3, mBlureFlag__13mDoGph_gInf_c+0x1@ha /* 0x80450BE5@ha */
+/* 806AE510  98 03 0B E5 */	stb r0, mBlureFlag__13mDoGph_gInf_c+0x1@l(r3)  /* 0x80450BE5@l */
 /* 806AE514  4B 95 9B 65 */	bl onBlure__13mDoGph_gInf_cFv
 /* 806AE518  48 00 00 18 */	b lbl_806AE530
 lbl_806AE51C:
 /* 806AE51C  28 00 00 02 */	cmplwi r0, 2
 /* 806AE520  40 82 00 10 */	bne lbl_806AE530
 /* 806AE524  38 00 00 00 */	li r0, 0
-/* 806AE528  3C 60 80 45 */	lis r3, struct_80450BE4+0x0@ha /* 0x80450BE4@ha */
-/* 806AE52C  98 03 0B E4 */	stb r0, struct_80450BE4+0x0@l(r3)  /* 0x80450BE4@l */
+/* 806AE528  3C 60 80 45 */	lis r3, mBlureFlag__13mDoGph_gInf_c+0x0@ha /* 0x80450BE4@ha */
+/* 806AE52C  98 03 0B E4 */	stb r0, mBlureFlag__13mDoGph_gInf_c+0x0@l(r3)  /* 0x80450BE4@l */
 lbl_806AE530:
 /* 806AE530  38 60 00 01 */	li r3, 1
 lbl_806AE534:

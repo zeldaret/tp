@@ -5,7 +5,7 @@ lbl_80163340:
 /* 8016334C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80163350  93 C1 00 08 */	stw r30, 8(r1)
 /* 80163354  7C 7F 1B 78 */	mr r31, r3
-/* 80163358  8B CD 87 E4 */	lbz r30, struct_80450D64+0x0(r13)
+/* 80163358  8B CD 87 E4 */	lbz r30, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8016335C  7F DE 07 74 */	extsb r30, r30
 /* 80163360  7F C3 F3 78 */	mr r3, r30
 /* 80163364  4B EC 9E F9 */	bl dComIfGp_getRoomCamera__Fi

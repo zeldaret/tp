@@ -83,8 +83,8 @@ lbl_8065600C:
 /* 80656048  98 7F 04 8D */	stb r3, 0x48d(r31)
 /* 8065604C  48 00 00 10 */	b lbl_8065605C
 lbl_80656050:
-/* 80656050  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80656054  8B A3 0D 64 */	lbz r29, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80656050  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80656054  8B A3 0D 64 */	lbz r29, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80656058  7F BD 07 74 */	extsb r29, r29
 lbl_8065605C:
 /* 8065605C  9B BF 04 8C */	stb r29, 0x48c(r31)

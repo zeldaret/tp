@@ -283,7 +283,7 @@ lbl_80068A08:
 /* 80068A34  48 2F FF 61 */	bl strcmp
 /* 80068A38  2C 03 00 00 */	cmpwi r3, 0
 /* 80068A3C  40 82 00 14 */	bne lbl_80068A50
-/* 80068A40  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 80068A40  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 80068A44  7C 00 07 75 */	extsb. r0, r0
 /* 80068A48  40 82 00 08 */	bne lbl_80068A50
 lbl_80068A4C:

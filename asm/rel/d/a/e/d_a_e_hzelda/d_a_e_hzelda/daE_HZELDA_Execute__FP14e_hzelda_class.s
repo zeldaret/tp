@@ -520,8 +520,8 @@ lbl_806F3C88:
 /* 806F3D6C  C0 3E 00 A0 */	lfs f1, 0xa0(r30)
 /* 806F3D70  4B FF E2 35 */	bl ball_crash_eff_set__FP14e_hzelda_classf
 /* 806F3D74  38 00 00 02 */	li r0, 2
-/* 806F3D78  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha /* 0x80451125@ha */
-/* 806F3D7C  98 03 11 25 */	stb r0, struct_80451124+0x1@l(r3)  /* 0x80451125@l */
+/* 806F3D78  3C 60 80 45 */	lis r3, pauseTimer__9dScnPly_c+0x1@ha /* 0x80451125@ha */
+/* 806F3D7C  98 03 11 25 */	stb r0, pauseTimer__9dScnPly_c+0x1@l(r3)  /* 0x80451125@l */
 /* 806F3D80  C0 21 00 B4 */	lfs f1, 0xb4(r1)
 /* 806F3D84  C0 1E 01 1C */	lfs f0, 0x11c(r30)
 /* 806F3D88  EC 01 00 2A */	fadds f0, f1, f0
@@ -645,8 +645,8 @@ lbl_806F3EA0:
 /* 806F3F40  C0 3E 00 A0 */	lfs f1, 0xa0(r30)
 /* 806F3F44  4B FF E0 61 */	bl ball_crash_eff_set__FP14e_hzelda_classf
 /* 806F3F48  38 00 00 02 */	li r0, 2
-/* 806F3F4C  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha /* 0x80451125@ha */
-/* 806F3F50  98 03 11 25 */	stb r0, struct_80451124+0x1@l(r3)  /* 0x80451125@l */
+/* 806F3F4C  3C 60 80 45 */	lis r3, pauseTimer__9dScnPly_c+0x1@ha /* 0x80451125@ha */
+/* 806F3F50  98 03 11 25 */	stb r0, pauseTimer__9dScnPly_c+0x1@l(r3)  /* 0x80451125@l */
 /* 806F3F54  C0 21 00 B4 */	lfs f1, 0xb4(r1)
 /* 806F3F58  C0 1E 01 1C */	lfs f0, 0x11c(r30)
 /* 806F3F5C  EC 01 00 2A */	fadds f0, f1, f0

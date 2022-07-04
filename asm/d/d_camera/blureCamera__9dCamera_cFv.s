@@ -118,11 +118,11 @@ lbl_80181340:
 /* 8018144C  83 C1 00 4C */	lwz r30, 0x4c(r1)
 /* 80181450  38 61 00 14 */	addi r3, r1, 0x14
 /* 80181454  4B E8 BA 1D */	bl scaleM__14mDoMtx_stack_cFRC4cXyz
-/* 80181458  9B CD 86 65 */	stb r30, struct_80450BE4+0x1(r13)
+/* 80181458  9B CD 86 65 */	stb r30, mBlureFlag__13mDoGph_gInf_c+0x1(r13)
 /* 8018145C  48 00 00 10 */	b lbl_8018146C
 lbl_80181460:
 /* 80181460  38 00 00 00 */	li r0, 0
-/* 80181464  98 0D 86 64 */	stb r0, struct_80450BE4+0x0(r13)
+/* 80181464  98 0D 86 64 */	stb r0, mBlureFlag__13mDoGph_gInf_c+0x0(r13)
 /* 80181468  90 1F 07 04 */	stw r0, 0x704(r31)
 lbl_8018146C:
 /* 8018146C  80 7F 07 04 */	lwz r3, 0x704(r31)

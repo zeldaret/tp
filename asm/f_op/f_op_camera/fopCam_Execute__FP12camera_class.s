@@ -8,7 +8,7 @@ lbl_8001E180:
 /* 8001E198  88 05 5E B5 */	lbz r0, 0x5eb5(r5)
 /* 8001E19C  28 00 00 00 */	cmplwi r0, 0
 /* 8001E1A0  40 82 00 18 */	bne lbl_8001E1B8
-/* 8001E1A4  88 0D 8B A4 */	lbz r0, struct_80451124+0x0(r13)
+/* 8001E1A4  88 0D 8B A4 */	lbz r0, pauseTimer__9dScnPly_c+0x0(r13)
 /* 8001E1A8  7C 00 07 75 */	extsb. r0, r0
 /* 8001E1AC  40 82 00 0C */	bne lbl_8001E1B8
 /* 8001E1B0  80 64 02 24 */	lwz r3, 0x224(r4)

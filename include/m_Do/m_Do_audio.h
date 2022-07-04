@@ -15,8 +15,6 @@ public:
 };
 
 extern bool struct_80450BB8;  // sInitFlag
-extern bool data_80450bba;    // sBgmSet
-extern bool sResetFlag;
 
 class mDoAud_zelAudio_c {
 public:
@@ -24,14 +22,18 @@ public:
     mDoAud_zelAudio_c() {}
     ~mDoAud_zelAudio_c() {}
 
-    static void onInitFlag() { struct_80450BB8 = true; }
-    static bool isInitFlag() { return struct_80450BB8; }
-    static bool isResetFlag() { return sResetFlag; }
-    static void onResetFlag() { sResetFlag = true; }
-    static void offResetFlag() { sResetFlag = false; }
-    static bool isBgmSet() { return data_80450bba; }
-    static void onBgmSet() { data_80450bba = true; }
-    static void offBgmSet() { data_80450bba = false; }
+    static void onInitFlag() { mInitFlag = true; }
+    static bool isInitFlag() { return mInitFlag; }
+    static bool isResetFlag() { return mResetFlag; }
+    static void onResetFlag() { mResetFlag = true; }
+    static void offResetFlag() { mResetFlag = false; }
+    static bool isBgmSet() { return mBgmSet; }
+    static void onBgmSet() { mBgmSet = true; }
+    static void offBgmSet() { mBgmSet = false; }
+
+    static bool mInitFlag;
+    static bool mResetFlag;
+    static bool mBgmSet;
 
     Z2AudioMgr mAudioMgr;
 };

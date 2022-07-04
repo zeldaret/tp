@@ -105,6 +105,7 @@ extern "C" u32 VIGetDTVStatus();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
 extern "C" extern s8 data_80450580;
+extern "C" extern s8 developmentMode__7mDoMain;
 extern "C" u32 memMargin__7mDoMain;
 extern "C" u32 maxStdHeaps__Q29JFWSystem11CSetUpParam;
 extern "C" u32 sysHeapSize__Q29JFWSystem11CSetUpParam;
@@ -123,7 +124,7 @@ extern "C" u8 systemConsole__9JFWSystem[4];
 extern "C" u8 sSystemHeap__7JKRHeap[4];
 extern "C" u8 sRootHeap__7JKRHeap[4];
 extern "C" u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
-extern "C" extern bool struct_80451500;
+extern "C" extern bool sResetSwitchPushing__Q210JUTGamePad13C3ButtonReset;
 extern "C" u8 sErrorManager__12JUTException[4];
 extern "C" u8 sConsole__12JUTException[4];
 extern "C" u8 sManager__17JUTConsoleManager[4];
@@ -133,7 +134,7 @@ extern "C" u8 sManager__17JUTConsoleManager[4];
 //
 
 /* 80450BF0-80450BF4 0000F0 0004+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_80450BF0;
+static u8 mDebugFill;
 
 /* 80450BF4-80450BF8 0000F4 0004+00 1/1 0/0 0/0 .sbss            solidHeapErrors */
 static int solidHeapErrors;
@@ -285,30 +286,34 @@ static u8 debug_key2;
 
 /* 8000B68C-8000B73C 005FCC 00B0+00 1/1 0/0 0/0 .text            developKeyCheck__FUlUl */
 static int developKeyCheck(u32 btnTrig, u32 btnHold) {
+    static u8 key_link;
+    static u8 key_ganon;
+    static u8 key_zelda;
+
     if (btnHold == (CButton::L | CButton::R | CButton::Z | CButton::DPAD_DOWN) &&
         btnTrig == CButton::DPAD_DOWN) {
-        if (debug_key0 == 3 && debug_key1 == 6 && debug_key2 == 5) {
-            data_80450580 = 1;
+        if (key_link == 3 && key_ganon == 6 && key_zelda == 5) {
+            mDoMain::developmentMode = 1;
         } else {
-            debug_key0 = 0;
-            debug_key1 = 0;
-            debug_key2 = 0;
+            key_link = 0;
+            key_ganon = 0;
+            key_zelda = 0;
         }
     }
 
     if (btnHold == (CButton::L | CButton::DPAD_RIGHT) && btnTrig == CButton::L) {
-        debug_key0++;
+        key_link++;
     }
 
     if (btnHold == (CButton::R | CButton::DPAD_UP) && btnTrig == CButton::R) {
-        debug_key1++;
+        key_ganon++;
     }
 
     if (btnHold == (CButton::Z | CButton::DPAD_LEFT) && btnTrig == CButton::Z) {
-        debug_key2++;
+        key_zelda++;
     }
 
-    return data_80450580;
+    return mDoMain::developmentMode;
 }
 
 /* 8000B73C-8000B768 00607C 002C+00 1/1 0/0 0/0 .text            mDoMch_IsProgressiveMode__Fv */
@@ -348,7 +353,7 @@ void myExceptionCallback(u16, OSContext*, u32, u32) {
         PPCHalt();
     } else {
         manager->setTraceSuppress(0x80);
-        if (data_80450580 == 0) {
+        if (mDoMain::developmentMode == 0) {
             JUTGamePad pad(JUTGamePad::Port_1);
             manager->setGamePad(&pad);
 
@@ -356,11 +361,11 @@ void myExceptionCallback(u16, OSContext*, u32, u32) {
                 OSEnableInterrupts();
                 // "Accepting Key input\n"
                 OSReport("キー入力を受け付けています\n");
-                while (data_80450580 == 0) {
+                while (mDoMain::developmentMode == 0) {
                     exceptionReadPad(&btnTrig, &btnHold);
                     developKeyCheck(btnTrig, btnHold);
                     JUTException::waitTime(30);
-                    if (struct_80451501) {
+                    if (JUTGamePad::C3ButtonReset::sResetOccurred) {
                         exceptionRestart();
                     }
                 }
@@ -431,7 +436,7 @@ static void fault_callback_scroll(u16, OSContext* p_context, u32, u32) {
             u32 btnHold, btnTrig;
             exceptionReadPad(&btnTrig, &btnHold);
 
-            if (struct_80451501) {
+            if (JUTGamePad::C3ButtonReset::sResetOccurred) {
                 OSResetSystem(1, 0, 0);
             }
 
@@ -657,11 +662,11 @@ SECTION_SDATA GXRenderModeObj* mDoMch_render_c::mRenderModeObj = &g_ntscZeldaInt
 // reg alloc r30 - r31
 #ifdef NONMATCHING
 int mDoMch_Create() {
-    if (data_80450580 == 0 || !(OSGetConsoleType() & 0x10000000)) {
+    if (mDoMain::developmentMode == 0 || !(OSGetConsoleType() & 0x10000000)) {
         OSReportDisable();
     }
 
-    JKRHeap::setDefaultDebugFill(data_80450BF0);
+    JKRHeap::setDefaultDebugFill(mDebugFill);
     JFWSystem::setMaxStdHeap(1);
 
     u32 arenaHi = OSGetArenaHi();
@@ -700,7 +705,7 @@ int mDoMch_Create() {
     mDoExt_createAssertHeap(JKRHeap::getRootHeap());
     JFWSystem::init();
 
-    if (data_80450580 == 0) {
+    if (mDoMain::developmentMode == 0) {
         JUTAssertion::setVisible(false);
         JUTDbPrint::getManager()->setVisible(false);
     }

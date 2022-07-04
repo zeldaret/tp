@@ -256,8 +256,8 @@ lbl_804FC41C:
 /* 804FC4D8  2C 00 00 01 */	cmpwi r0, 1
 /* 804FC4DC  40 82 00 10 */	bne lbl_804FC4EC
 /* 804FC4E0  38 00 00 04 */	li r0, 4
-/* 804FC4E4  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha /* 0x80451125@ha */
-/* 804FC4E8  98 03 11 25 */	stb r0, struct_80451124+0x1@l(r3)  /* 0x80451125@l */
+/* 804FC4E4  3C 60 80 45 */	lis r3, pauseTimer__9dScnPly_c+0x1@ha /* 0x80451125@ha */
+/* 804FC4E8  98 03 11 25 */	stb r0, pauseTimer__9dScnPly_c+0x1@l(r3)  /* 0x80451125@l */
 lbl_804FC4EC:
 /* 804FC4EC  39 61 00 70 */	addi r11, r1, 0x70
 /* 804FC4F0  4B E6 5D 29 */	bl _restgpr_25

@@ -138,7 +138,7 @@ lbl_80261608:
 /* 80261608  C0 02 B5 B4 */	lfs f0, lit_3719(r2)
 /* 8026160C  D0 1F 04 90 */	stfs f0, 0x490(r31)
 /* 80261610  38 7F 01 00 */	addi r3, r31, 0x100
-/* 80261614  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 80261614  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 80261618  7C 04 07 74 */	extsb r4, r0
 /* 8026161C  38 A0 00 FF */	li r5, 0xff
 /* 80261620  4B F4 72 CD */	bl dKy_tevstr_init__FP12dKy_tevstr_cScUc

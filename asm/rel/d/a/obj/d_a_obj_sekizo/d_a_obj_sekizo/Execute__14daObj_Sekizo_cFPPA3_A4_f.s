@@ -6,8 +6,8 @@ lbl_80CCDE3C:
 /* 80CCDE4C  7C 7F 1B 78 */	mr r31, r3
 /* 80CCDE50  88 03 04 BA */	lbz r0, 0x4ba(r3)
 /* 80CCDE54  7C 06 07 74 */	extsb r6, r0
-/* 80CCDE58  3C A0 80 45 */	lis r5, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80CCDE5C  88 05 0D 64 */	lbz r0, struct_80450D64+0x0@l(r5)  /* 0x80450D64@l */
+/* 80CCDE58  3C A0 80 45 */	lis r5, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80CCDE5C  88 05 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r5)  /* 0x80450D64@l */
 /* 80CCDE60  7C 00 07 74 */	extsb r0, r0
 /* 80CCDE64  7C 06 00 00 */	cmpw r6, r0
 /* 80CCDE68  40 82 00 74 */	bne lbl_80CCDEDC

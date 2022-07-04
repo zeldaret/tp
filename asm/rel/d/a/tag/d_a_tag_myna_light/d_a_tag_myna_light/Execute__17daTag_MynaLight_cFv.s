@@ -61,8 +61,8 @@ lbl_80D5CCD0:
 /* 80D5CCD0  88 1E 05 79 */	lbz r0, 0x579(r30)
 /* 80D5CCD4  28 00 00 00 */	cmplwi r0, 0
 /* 80D5CCD8  41 82 00 A0 */	beq lbl_80D5CD78
-/* 80D5CCDC  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80D5CCE0  38 63 0D 64 */	addi r3, r3, struct_80450D64+0x0@l /* 0x80450D64@l */
+/* 80D5CCDC  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80D5CCE0  38 63 0D 64 */	addi r3, r3, mStayNo__20dStage_roomControl_c+0x0@l /* 0x80450D64@l */
 /* 80D5CCE4  88 63 00 00 */	lbz r3, 0(r3)
 /* 80D5CCE8  7C 63 07 75 */	extsb. r3, r3
 /* 80D5CCEC  41 82 00 4C */	beq lbl_80D5CD38

@@ -145,8 +145,8 @@ lbl_807A3D1C:
 /* 807A3D4C  38 C0 00 00 */	li r6, 0
 /* 807A3D50  4B 8E 37 C5 */	bl def_se_set__FP10Z2CreatureP8cCcD_ObjUlP10fopAc_ac_c
 /* 807A3D54  38 00 00 04 */	li r0, 4
-/* 807A3D58  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha /* 0x80451125@ha */
-/* 807A3D5C  98 03 11 25 */	stb r0, struct_80451124+0x1@l(r3)  /* 0x80451125@l */
+/* 807A3D58  3C 60 80 45 */	lis r3, pauseTimer__9dScnPly_c+0x1@ha /* 0x80451125@ha */
+/* 807A3D5C  98 03 11 25 */	stb r0, pauseTimer__9dScnPly_c+0x1@l(r3)  /* 0x80451125@l */
 /* 807A3D60  38 00 00 0A */	li r0, 0xa
 /* 807A3D64  B0 1E 06 8C */	sth r0, 0x68c(r30)
 /* 807A3D68  3C 60 80 45 */	lis r3, calc_mtx@ha /* 0x80450768@ha */

@@ -165,8 +165,8 @@ lbl_80673AF0:
 /* 80673B40  7F C4 F3 78 */	mr r4, r30
 /* 80673B44  4B FF ED 71 */	bl calcMtx__13dDoor_stop2_cFP10fopAc_ac_c
 lbl_80673B48:
-/* 80673B48  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80673B4C  8B 63 0D 64 */	lbz r27, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80673B48  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80673B4C  8B 63 0D 64 */	lbz r27, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80673B50  7F 7B 07 74 */	extsb r27, r27
 /* 80673B54  7F C3 F3 78 */	mr r3, r30
 /* 80673B58  4B 9C 66 61 */	bl getFRoomNo__13door_param2_cFP10fopAc_ac_c

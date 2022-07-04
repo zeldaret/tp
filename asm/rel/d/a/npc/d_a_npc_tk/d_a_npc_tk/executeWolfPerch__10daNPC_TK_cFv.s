@@ -374,8 +374,8 @@ lbl_80B08924:
 /* 80B0893C  4B 86 00 59 */	bl strcmp
 /* 80B08940  2C 03 00 00 */	cmpwi r3, 0
 /* 80B08944  40 82 00 48 */	bne lbl_80B0898C
-/* 80B08948  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80B0894C  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80B08948  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80B0894C  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80B08950  7C 00 07 75 */	extsb. r0, r0
 /* 80B08954  40 82 00 38 */	bne lbl_80B0898C
 /* 80B08958  38 60 00 00 */	li r3, 0

@@ -222,8 +222,8 @@ lbl_80C29A40:
 /* 80C29A78  4B 73 EF 1D */	bl strcmp
 /* 80C29A7C  2C 03 00 00 */	cmpwi r3, 0
 /* 80C29A80  40 82 00 1C */	bne lbl_80C29A9C
-/* 80C29A84  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80C29A88  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80C29A84  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80C29A88  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80C29A8C  2C 00 00 01 */	cmpwi r0, 1
 /* 80C29A90  40 82 00 0C */	bne lbl_80C29A9C
 /* 80C29A94  38 00 00 01 */	li r0, 1

@@ -34,8 +34,8 @@ lbl_8077BCFC:
 /* 8077BD00  88 9E 05 B7 */	lbz r4, 0x5b7(r30)
 /* 8077BD04  28 04 00 FF */	cmplwi r4, 0xff
 /* 8077BD08  41 82 00 30 */	beq lbl_8077BD38
-/* 8077BD0C  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 8077BD10  88 A3 0D 64 */	lbz r5, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 8077BD0C  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 8077BD10  88 A3 0D 64 */	lbz r5, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 8077BD14  7C A5 07 74 */	extsb r5, r5
 /* 8077BD18  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
 /* 8077BD1C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */

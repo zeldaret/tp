@@ -170,7 +170,7 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u8 g_clearColor[4];
 extern "C" extern u8 data_80450688[8];
-extern "C" extern u8 struct_80450BB8[4];
+extern "C" extern u8 mInitFlag__17mDoAud_zelAudio_c[4];
 extern "C" u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
 extern "C" u8 mFrameBufferTex__13mDoGph_gInf_c[4];
 extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];

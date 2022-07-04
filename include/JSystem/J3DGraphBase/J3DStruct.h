@@ -12,13 +12,9 @@ public:
 
     /* 0x00 */ Vec mLightPosition;
     /* 0x0C */ Vec mLightDirection;
-    /* 0x18 */ _GXColor mColor;
-    /* 0x1C */ f32 mA0;
-    /* 0x20 */ f32 mA1;
-    /* 0x24 */ f32 mA2;
-    /* 0x28 */ f32 mK0;
-    /* 0x2C */ f32 mK1;
-    /* 0x30 */ f32 mK2;
+    /* 0x18 */ GXColor mColor;
+    /* 0x1C */ Vec mCosAtten;
+    /* 0x28 */ Vec mDistAtten;
 };  // Size = 0x34
 
 extern "C" extern J3DLightInfo const j3dDefaultLightInfo;

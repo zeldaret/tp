@@ -30,8 +30,8 @@ lbl_8049F9F0:
 /* 8049FA60  98 7D 04 8D */	stb r3, 0x48d(r29)
 /* 8049FA64  48 00 00 10 */	b lbl_8049FA74
 lbl_8049FA68:
-/* 8049FA68  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 8049FA6C  8B C3 0D 64 */	lbz r30, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 8049FA68  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 8049FA6C  8B C3 0D 64 */	lbz r30, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 8049FA70  7F DE 07 74 */	extsb r30, r30
 lbl_8049FA74:
 /* 8049FA74  9B DD 04 8C */	stb r30, 0x48c(r29)

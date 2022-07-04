@@ -148,8 +148,8 @@ lbl_8073A700:
 /* 8073A728  38 9E 0B 5C */	addi r4, r30, 0xb5c
 /* 8073A72C  4B 94 D4 D9 */	bl cc_at_check__FP10fopAc_ac_cP11dCcU_AtInfo
 /* 8073A730  38 00 00 00 */	li r0, 0
-/* 8073A734  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha /* 0x80451125@ha */
-/* 8073A738  98 03 11 25 */	stb r0, struct_80451124+0x1@l(r3)  /* 0x80451125@l */
+/* 8073A734  3C 60 80 45 */	lis r3, pauseTimer__9dScnPly_c+0x1@ha /* 0x80451125@ha */
+/* 8073A738  98 03 11 25 */	stb r0, pauseTimer__9dScnPly_c+0x1@l(r3)  /* 0x80451125@l */
 /* 8073A73C  80 7E 0B 5C */	lwz r3, 0xb5c(r30)
 /* 8073A740  80 63 00 10 */	lwz r3, 0x10(r3)
 /* 8073A744  54 60 06 F7 */	rlwinm. r0, r3, 0, 0x1b, 0x1b

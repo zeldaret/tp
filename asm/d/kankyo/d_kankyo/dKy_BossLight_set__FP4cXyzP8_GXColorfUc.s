@@ -29,7 +29,7 @@ lbl_801A9D60:
 /* 801A9DCC  48 1B EB C9 */	bl strcmp
 /* 801A9DD0  2C 03 00 00 */	cmpwi r3, 0
 /* 801A9DD4  41 82 00 58 */	beq lbl_801A9E2C
-/* 801A9DD8  88 8D 87 E4 */	lbz r4, struct_80450D64+0x0(r13)
+/* 801A9DD8  88 8D 87 E4 */	lbz r4, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 801A9DDC  3B B5 4E C4 */	addi r29, r21, 0x4ec4
 /* 801A9DE0  7F A3 EB 78 */	mr r3, r29
 /* 801A9DE4  7C 95 23 78 */	mr r21, r4

@@ -28,7 +28,7 @@ lbl_80043A14:
 /* 80043A7C  28 03 00 00 */	cmplwi r3, 0
 /* 80043A80  41 82 00 E0 */	beq lbl_80043B60
 /* 80043A84  82 83 00 00 */	lwz r20, 0(r3)
-/* 80043A88  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 80043A88  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 80043A8C  7C 04 07 74 */	extsb r4, r0
 /* 80043A90  2C 04 FF FF */	cmpwi r4, -1
 /* 80043A94  40 82 00 1C */	bne lbl_80043AB0

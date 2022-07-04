@@ -121,8 +121,8 @@ lbl_808596E8:
 /* 808596E8  88 9D 05 95 */	lbz r4, 0x595(r29)
 /* 808596EC  28 04 00 FF */	cmplwi r4, 0xff
 /* 808596F0  41 82 03 7C */	beq lbl_80859A6C
-/* 808596F4  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 808596F8  88 A3 0D 64 */	lbz r5, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 808596F4  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 808596F8  88 A3 0D 64 */	lbz r5, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 808596FC  7C A5 07 74 */	extsb r5, r5
 /* 80859700  7F E3 FB 78 */	mr r3, r31
 /* 80859704  4B 7D BC 5D */	bl isSwitch__10dSv_info_cCFii

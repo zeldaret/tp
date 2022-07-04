@@ -64,8 +64,8 @@ lbl_80685E98:
 /* 80685EAC  3C 60 00 08 */	lis r3, 0x0008 /* 0x0008000A@ha */
 /* 80685EB0  38 03 00 0A */	addi r0, r3, 0x000A /* 0x0008000A@l */
 /* 80685EB4  90 01 00 20 */	stw r0, 0x20(r1)
-/* 80685EB8  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80685EBC  38 63 0D 64 */	addi r3, r3, struct_80450D64+0x0@l /* 0x80450D64@l */
+/* 80685EB8  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80685EBC  38 63 0D 64 */	addi r3, r3, mStayNo__20dStage_roomControl_c+0x0@l /* 0x80450D64@l */
 /* 80685EC0  88 63 00 00 */	lbz r3, 0(r3)
 /* 80685EC4  7C 63 07 74 */	extsb r3, r3
 /* 80685EC8  4B 9A 71 A5 */	bl dComIfGp_getReverb__Fi

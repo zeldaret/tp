@@ -351,8 +351,8 @@ lbl_8062D290:
 /* 8062D2A8  4B D3 B6 ED */	bl strcmp
 /* 8062D2AC  2C 03 00 00 */	cmpwi r3, 0
 /* 8062D2B0  40 82 00 1C */	bne lbl_8062D2CC
-/* 8062D2B4  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 8062D2B8  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 8062D2B4  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 8062D2B8  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 8062D2BC  2C 00 00 02 */	cmpwi r0, 2
 /* 8062D2C0  40 82 00 0C */	bne lbl_8062D2CC
 /* 8062D2C4  38 00 00 01 */	li r0, 1

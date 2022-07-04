@@ -3131,7 +3131,7 @@ static asm void mDoExt_initFont2() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoExt_getSubFont() {
+asm JUTFont* mDoExt_getSubFont() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/mDoExt_getSubFont__Fv.s"
 }

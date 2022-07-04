@@ -68,7 +68,7 @@ lbl_80261C14:
 /* 80261C58  54 65 06 3E */	clrlwi r5, r3, 0x18
 /* 80261C5C  48 00 00 10 */	b lbl_80261C6C
 lbl_80261C60:
-/* 80261C60  8B 8D 87 E4 */	lbz r28, struct_80450D64+0x0(r13)
+/* 80261C60  8B 8D 87 E4 */	lbz r28, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 80261C64  7F 9C 07 74 */	extsb r28, r28
 /* 80261C68  38 A0 00 FF */	li r5, 0xff
 lbl_80261C6C:

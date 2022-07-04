@@ -29,7 +29,7 @@ lbl_8006B1A8:
 /* 8006B214  48 2F D7 81 */	bl strcmp
 /* 8006B218  2C 03 00 00 */	cmpwi r3, 0
 /* 8006B21C  40 82 00 14 */	bne lbl_8006B230
-/* 8006B220  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 8006B220  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8006B224  2C 00 00 04 */	cmpwi r0, 4
 /* 8006B228  40 82 00 08 */	bne lbl_8006B230
 /* 8006B22C  3B A0 00 02 */	li r29, 2

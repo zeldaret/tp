@@ -4,8 +4,8 @@ lbl_8048D9C4:
 /* 8048D9CC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8048D9D0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8048D9D4  7C 7F 1B 78 */	mr r31, r3
-/* 8048D9D8  3C 80 80 45 */	lis r4, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 8048D9DC  88 04 0D 64 */	lbz r0, struct_80450D64+0x0@l(r4)  /* 0x80450D64@l */
+/* 8048D9D8  3C 80 80 45 */	lis r4, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 8048D9DC  88 04 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r4)  /* 0x80450D64@l */
 /* 8048D9E0  98 03 04 E2 */	stb r0, 0x4e2(r3)
 /* 8048D9E4  38 00 00 00 */	li r0, 0
 /* 8048D9E8  90 03 05 5C */	stw r0, 0x55c(r3)

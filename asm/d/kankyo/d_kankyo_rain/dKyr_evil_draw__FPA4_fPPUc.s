@@ -452,7 +452,7 @@ lbl_8006ED20:
 /* 8006ED64  80 01 01 2C */	lwz r0, 0x12c(r1)
 /* 8006ED68  98 01 00 1E */	stb r0, 0x1e(r1)
 lbl_8006ED6C:
-/* 8006ED6C  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 8006ED6C  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8006ED70  7C 00 07 75 */	extsb. r0, r0
 /* 8006ED74  40 82 00 58 */	bne lbl_8006EDCC
 /* 8006ED78  C0 7A 00 14 */	lfs f3, 0x14(r26)

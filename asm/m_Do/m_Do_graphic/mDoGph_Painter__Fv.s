@@ -592,7 +592,7 @@ lbl_8000AEC0:
 /* 8000AEDC  48 35 DA B9 */	bl strcmp
 /* 8000AEE0  2C 03 00 00 */	cmpwi r3, 0
 /* 8000AEE4  41 82 00 14 */	beq lbl_8000AEF8
-/* 8000AEE8  88 0D 86 66 */	lbz r0, struct_80450BE4+0x2(r13)
+/* 8000AEE8  88 0D 86 66 */	lbz r0, mBlureFlag__13mDoGph_gInf_c+0x2(r13)
 /* 8000AEEC  54 00 06 31 */	rlwinm. r0, r0, 0, 0x18, 0x18
 /* 8000AEF0  40 82 00 08 */	bne lbl_8000AEF8
 /* 8000AEF4  4B FF D4 3D */	bl calcFade__13mDoGph_gInf_cFv
@@ -700,7 +700,7 @@ lbl_8000B064:
 /* 8000B07C  48 35 D9 19 */	bl strcmp
 /* 8000B080  2C 03 00 00 */	cmpwi r3, 0
 /* 8000B084  41 82 00 10 */	beq lbl_8000B094
-/* 8000B088  88 0D 86 66 */	lbz r0, struct_80450BE4+0x2(r13)
+/* 8000B088  88 0D 86 66 */	lbz r0, mBlureFlag__13mDoGph_gInf_c+0x2(r13)
 /* 8000B08C  54 00 06 31 */	rlwinm. r0, r0, 0, 0x18, 0x18
 /* 8000B090  41 82 00 08 */	beq lbl_8000B098
 lbl_8000B094:

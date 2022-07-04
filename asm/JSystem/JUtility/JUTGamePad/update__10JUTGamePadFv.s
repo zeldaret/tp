@@ -100,7 +100,7 @@ lbl_802E0E54:
 /* 802E0E58  98 1E 00 98 */	stb r0, 0x98(r30)
 /* 802E0E5C  48 00 00 50 */	b lbl_802E0EAC
 lbl_802E0E60:
-/* 802E0E60  88 0D 8F 81 */	lbz r0, struct_80451500+0x1(r13)
+/* 802E0E60  88 0D 8F 81 */	lbz r0, sResetSwitchPushing__Q210JUTGamePad13C3ButtonReset+0x1(r13)
 /* 802E0E64  28 00 00 00 */	cmplwi r0, 0
 /* 802E0E68  40 82 00 44 */	bne lbl_802E0EAC
 /* 802E0E6C  88 1E 00 98 */	lbz r0, 0x98(r30)

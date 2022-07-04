@@ -62,8 +62,8 @@ lbl_80472538:
 lbl_8047253C:
 /* 8047253C  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 80472540  41 82 01 24 */	beq lbl_80472664
-/* 80472544  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80472548  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80472544  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80472548  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 8047254C  7C 00 07 75 */	extsb. r0, r0
 /* 80472550  40 82 01 14 */	bne lbl_80472664
 /* 80472554  80 7A 05 70 */	lwz r3, 0x570(r26)

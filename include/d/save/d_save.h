@@ -1085,9 +1085,11 @@ public:
     void initDan(s8 i_stage) { mDan.init(i_stage); }
     void resetDan() { mDan.reset(); }
     u8 getDataNum() const { return mDataNum; }
+    void setDataNum(u8 num) { mDataNum = num; }
     void removeZone(int zoneNo) { mZone[zoneNo].reset(); }
     void setNoFile(u8 file) { mNoFile = file; }
     u8 getNewFile() const { return mNewFile; }
+    void setNewFile(u8 file) { mNewFile |= file; }
 
     static const int MEMORY_SWITCH = 0x80;
     static const int DAN_SWITCH = 0x40;

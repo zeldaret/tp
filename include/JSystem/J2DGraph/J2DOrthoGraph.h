@@ -15,8 +15,14 @@ public:
     /* 802E97B4 */ virtual void setPort();
     /* 802E9C88 */ virtual s32 getGrafType() const { return 1; }
     /* 802E9840 */ virtual void setLookat();
+
     f32 getWidthPower() const { return mBounds.getWidth() / mOrtho.getWidth(); }
     f32 getHeightPower() const { return mBounds.getHeight() / mOrtho.getHeight(); }
+
+    void setOrtho(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4, f32 param_5) {
+        JGeometry::TBox2<f32> ortho(param_0, param_1, param_0 + param_2, param_1 + param_3);
+        setOrtho(ortho, param_4, param_5);
+    }
 
 private:
     /* 0xBC */ JGeometry::TBox2<f32> mOrtho;

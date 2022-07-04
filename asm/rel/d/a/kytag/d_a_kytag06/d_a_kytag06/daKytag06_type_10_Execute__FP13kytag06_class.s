@@ -61,8 +61,8 @@ lbl_80858DF8:
 /* 80858DF8  38 60 00 00 */	li r3, 0
 /* 80858DFC  4B 94 F9 E9 */	bl dKy_change_colpat__FUc
 lbl_80858E00:
-/* 80858E00  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80858E04  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80858E00  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80858E04  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80858E08  2C 00 00 04 */	cmpwi r0, 4
 /* 80858E0C  40 82 02 0C */	bne lbl_80859018
 /* 80858E10  38 C0 00 00 */	li r6, 0
@@ -254,8 +254,8 @@ lbl_808590AC:
 /* 808590C4  80 81 00 24 */	lwz r4, 0x24(r1)
 /* 808590C8  4B A6 EE ED */	bl setSnowPower__10Z2EnvSeMgrFSc
 lbl_808590CC:
-/* 808590CC  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 808590D0  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 808590CC  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 808590D0  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 808590D4  7C 00 07 75 */	extsb. r0, r0
 /* 808590D8  41 82 00 3C */	beq lbl_80859114
 /* 808590DC  2C 00 00 03 */	cmpwi r0, 3

@@ -907,7 +907,7 @@ asm void dMenu_Letter_c::screenSetMenu() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTextBox::getWhite() const {
+asm JUtility::TColor J2DTextBox::getWhite() const {
     nofralloc
 #include "asm/d/menu/d_menu_letter/getWhite__10J2DTextBoxCFv.s"
 }
@@ -917,7 +917,7 @@ asm void J2DTextBox::getWhite() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTextBox::getBlack() const {
+asm JUtility::TColor J2DTextBox::getBlack() const {
     nofralloc
 #include "asm/d/menu/d_menu_letter/getBlack__10J2DTextBoxCFv.s"
 }

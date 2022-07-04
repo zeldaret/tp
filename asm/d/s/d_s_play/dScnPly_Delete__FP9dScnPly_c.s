@@ -69,7 +69,7 @@ lbl_802598AC:
 /* 802599B8  9B C3 00 7C */	stb r30, 0x7c(r3)
 /* 802599BC  9B C3 5D 44 */	stb r30, 0x5d44(r3)
 /* 802599C0  93 C3 61 B0 */	stw r30, 0x61b0(r3)
-/* 802599C4  88 8D 81 E4 */	lbz r4, struct_80450764+0x0(r13)
+/* 802599C4  88 8D 81 E4 */	lbz r4, preLoadNo+0x0(r13)
 /* 802599C8  7C 80 07 75 */	extsb. r0, r4
 /* 802599CC  41 80 00 CC */	blt lbl_80259A98
 /* 802599D0  3C 60 80 3A */	lis r3, PreLoadInfoT@ha /* 0x8039A2C8@ha */
@@ -101,7 +101,7 @@ lbl_80259A28:
 lbl_80259A30:
 /* 80259A30  3C 60 80 3A */	lis r3, PreLoadInfoT@ha /* 0x8039A2C8@ha */
 /* 80259A34  38 63 A2 C8 */	addi r3, r3, PreLoadInfoT@l /* 0x8039A2C8@l */
-/* 80259A38  88 0D 81 E4 */	lbz r0, struct_80450764+0x0(r13)
+/* 80259A38  88 0D 81 E4 */	lbz r0, preLoadNo+0x0(r13)
 /* 80259A3C  7C 00 07 74 */	extsb r0, r0
 /* 80259A40  54 00 20 36 */	slwi r0, r0, 4
 /* 80259A44  7C 63 02 14 */	add r3, r3, r0

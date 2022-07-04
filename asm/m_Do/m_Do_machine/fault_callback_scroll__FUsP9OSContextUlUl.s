@@ -61,7 +61,7 @@ lbl_8000BA40:
 /* 8000BA40  38 61 00 08 */	addi r3, r1, 8
 /* 8000BA44  38 81 00 0C */	addi r4, r1, 0xc
 /* 8000BA48  4B FF FD 21 */	bl exceptionReadPad__FPUlPUl
-/* 8000BA4C  88 0D 8F 81 */	lbz r0, struct_80451500+0x1(r13)
+/* 8000BA4C  88 0D 8F 81 */	lbz r0, sResetSwitchPushing__Q210JUTGamePad13C3ButtonReset+0x1(r13)
 /* 8000BA50  28 00 00 00 */	cmplwi r0, 0
 /* 8000BA54  41 82 00 14 */	beq lbl_8000BA68
 /* 8000BA58  38 60 00 01 */	li r3, 1

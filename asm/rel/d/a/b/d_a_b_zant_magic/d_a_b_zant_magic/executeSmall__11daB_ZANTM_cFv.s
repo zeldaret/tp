@@ -27,8 +27,8 @@ lbl_8064FAA0:
 /* 8064FAAC  80 61 00 10 */	lwz r3, 0x10(r1)
 /* 8064FAB0  28 03 00 00 */	cmplwi r3, 0
 /* 8064FAB4  41 82 00 2C */	beq lbl_8064FAE0
-/* 8064FAB8  3C 80 80 45 */	lis r4, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 8064FABC  88 04 0D 64 */	lbz r0, struct_80450D64+0x0@l(r4)  /* 0x80450D64@l */
+/* 8064FAB8  3C 80 80 45 */	lis r4, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 8064FABC  88 04 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r4)  /* 0x80450D64@l */
 /* 8064FAC0  2C 00 00 37 */	cmpwi r0, 0x37
 /* 8064FAC4  40 82 00 10 */	bne lbl_8064FAD4
 /* 8064FAC8  4B FF 0B 9D */	bl getMagicWaterSpeed__10daB_ZANT_cFv
@@ -39,8 +39,8 @@ lbl_8064FAD4:
 /* 8064FAD8  FF E0 08 90 */	fmr f31, f1
 /* 8064FADC  48 00 00 20 */	b lbl_8064FAFC
 lbl_8064FAE0:
-/* 8064FAE0  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 8064FAE4  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 8064FAE0  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 8064FAE4  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 8064FAE8  2C 00 00 37 */	cmpwi r0, 0x37
 /* 8064FAEC  40 82 00 0C */	bne lbl_8064FAF8
 /* 8064FAF0  C3 FF 00 14 */	lfs f31, 0x14(r31)
@@ -84,8 +84,8 @@ lbl_8064FB18:
 /* 8064FB7C  EC 01 00 28 */	fsubs f0, f1, f0
 /* 8064FB80  EC 03 00 2A */	fadds f0, f3, f0
 /* 8064FB84  D0 01 00 18 */	stfs f0, 0x18(r1)
-/* 8064FB88  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 8064FB8C  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 8064FB88  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 8064FB8C  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 8064FB90  2C 00 00 37 */	cmpwi r0, 0x37
 /* 8064FB94  41 82 00 20 */	beq lbl_8064FBB4
 /* 8064FB98  38 7E 04 D0 */	addi r3, r30, 0x4d0

@@ -62,8 +62,8 @@ public:
     /* 80082B3C */ virtual void GetMonkeyBarsCode(cBgS_PolyInfo const&);
     /* 80082D24 */ virtual void GetLinkNo(cBgS_PolyInfo const&);
     /* 80082D54 */ virtual s32 GetWallCode(cBgS_PolyInfo const&);
-    /* 80082D84 */ virtual BOOL GetPolyAtt0(cBgS_PolyInfo const&);
-    /* 80082DB4 */ virtual void GetPolyAtt1(cBgS_PolyInfo const&);
+    /* 80082D84 */ virtual int GetPolyAtt0(cBgS_PolyInfo const&);
+    /* 80082DB4 */ virtual int GetPolyAtt1(cBgS_PolyInfo const&);
     /* 80082DE4 */ virtual void GetGroundCode(cBgS_PolyInfo const&);
     /* 80082E14 */ virtual void GetIronBallThrough(int);
     /* 80082E40 */ virtual void GetAttackThrough(int);

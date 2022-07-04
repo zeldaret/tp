@@ -6,8 +6,8 @@ lbl_8048F9E8:
 /* 8048F9F8  4B ED 27 D9 */	bl _savegpr_26
 /* 8048F9FC  7C 7D 1B 78 */	mr r29, r3
 /* 8048FA00  3B C0 00 01 */	li r30, 1
-/* 8048FA04  3C 80 80 45 */	lis r4, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 8048FA08  88 04 0D 64 */	lbz r0, struct_80450D64+0x0@l(r4)  /* 0x80450D64@l */
+/* 8048FA04  3C 80 80 45 */	lis r4, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 8048FA08  88 04 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r4)  /* 0x80450D64@l */
 /* 8048FA0C  98 03 04 E2 */	stb r0, 0x4e2(r3)
 /* 8048FA10  C0 43 04 D8 */	lfs f2, 0x4d8(r3)
 /* 8048FA14  3C 80 80 49 */	lis r4, lit_3757@ha /* 0x8049017C@ha */

@@ -571,7 +571,7 @@ lbl_80045720:
 /* 80045728  4B FF E9 15 */	bl specialProc_WaitProc__12dEvDtStaff_cFi
 /* 8004572C  48 00 01 34 */	b lbl_80045860
 lbl_80045730:
-/* 80045730  88 0D 86 66 */	lbz r0, struct_80450BE4+0x2(r13)
+/* 80045730  88 0D 86 66 */	lbz r0, mBlureFlag__13mDoGph_gInf_c+0x2(r13)
 /* 80045734  28 00 00 00 */	cmplwi r0, 0
 /* 80045738  40 82 00 14 */	bne lbl_8004574C
 /* 8004573C  7F C3 F3 78 */	mr r3, r30

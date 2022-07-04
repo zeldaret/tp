@@ -469,7 +469,7 @@ extern "C" extern u32 g_whiteColor;
 extern "C" u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
 extern "C" extern u8 JPTracePCB4[4];
 extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
-extern "C" extern u8 struct_80450D64[4];
+extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 
 //

@@ -63,9 +63,8 @@ struct mDoMain {
     static u8 mHeapBriefType;
     static OSTime sPowerOnTime;
     static OSTime sHungUpTime;
+    static s8 developmentMode;
 };
-
-extern s8 data_80450580;  // Debug enabled
 
 extern bool sOSReportDisabled;
 extern bool data_80450B99;

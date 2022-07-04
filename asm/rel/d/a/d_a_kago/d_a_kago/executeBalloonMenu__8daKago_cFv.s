@@ -105,8 +105,8 @@ lbl_80849AF0:
 /* 80849AFC  40 82 00 64 */	bne lbl_80849B60
 /* 80849B00  38 00 00 03 */	li r0, 3
 /* 80849B04  98 1F 06 EB */	stb r0, 0x6eb(r31)
-/* 80849B08  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80849B0C  8B E3 0D 64 */	lbz r31, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80849B08  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80849B0C  8B E3 0D 64 */	lbz r31, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80849B10  7F FF 07 74 */	extsb r31, r31
 /* 80849B14  38 60 00 00 */	li r3, 0
 /* 80849B18  4B 7E 2E 65 */	bl getLayerNo__14dComIfG_play_cFi

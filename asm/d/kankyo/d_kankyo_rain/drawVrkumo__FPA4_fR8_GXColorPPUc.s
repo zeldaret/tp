@@ -67,7 +67,7 @@ lbl_8006A164:
 /* 8006A18C  80 17 61 B0 */	lwz r0, 0x61b0(r23)
 /* 8006A190  28 00 00 00 */	cmplwi r0, 0
 /* 8006A194  41 82 00 30 */	beq lbl_8006A1C4
-/* 8006A198  88 8D 87 E4 */	lbz r4, struct_80450D64+0x0(r13)
+/* 8006A198  88 8D 87 E4 */	lbz r4, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8006A19C  7C 84 07 75 */	extsb. r4, r4
 /* 8006A1A0  41 80 00 24 */	blt lbl_8006A1C4
 /* 8006A1A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
@@ -988,7 +988,7 @@ lbl_8006AEC4:
 /* 8006AF60  48 2F DA 35 */	bl strcmp
 /* 8006AF64  2C 03 00 00 */	cmpwi r3, 0
 /* 8006AF68  40 82 01 68 */	bne lbl_8006B0D0
-/* 8006AF6C  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 8006AF6C  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8006AF70  7C 00 07 75 */	extsb. r0, r0
 /* 8006AF74  40 82 01 5C */	bne lbl_8006B0D0
 lbl_8006AF78:

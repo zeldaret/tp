@@ -19,13 +19,15 @@ static void dKyw_wind_init();
 static void dKyw_pntwind_init();
 f32 dKyw_get_wind_pow();
 static void squal_proc();
+void dKyw_rain_set(int count);
+void dKyw_wind_set();
 
 class dKankyo_sun_Packet : public J3DPacket {
 public:
     virtual void draw();
     virtual ~dKankyo_sun_Packet();
 
-    /* 0x10 */ cXyz field_0x10[2];
+    /* 0x10 */ cXyz mPos[2];
     /* 0x28 */ u8 field_0x28;
     /* 0x29 */ u8 field_0x29;
     /* 0x2C */ u8* mpResMoon;
@@ -54,29 +56,35 @@ public:
     virtual void draw();
     virtual ~dKankyo_sunlenz_Packet();
 
-    /* 0x10 */ GXColor field_0x10;
+    /* 0x10 */ GXColor mColor;
     /* 0x14 */ u8* mpResBall;
     /* 0x18 */ u8 field_0x18[4];
     /* 0x1C */ u8* mpResRing_A;
     /* 0x20 */ u8* mpResLenz;
-    /* 0x24 */ cXyz field_0x24[8];
+    /* 0x24 */ cXyz mPositions[8];
     /* 0x84 */ u8 field_0x84[8];
     /* 0x8C */ f32 field_0x8c;
     /* 0x90 */ f32 field_0x90;
     /* 0x94 */ u8 field_0x94[4];
     /* 0x98 */ f32 field_0x98;
     /* 0x9C */ u8 field_0x9c[2];
-    /* 0x9E */ u8 field_0x9e;
+    /* 0x9E */ bool mDrawLenzInSky;
 };  // Size: 0xA0
 
 struct RAIN_EFF {
     /* 80056CD0 */ ~RAIN_EFF();
     /* 80056D0C */ RAIN_EFF();
 
-    /* 0x00 */ u8 field_0x0[4];
-    /* 0x04 */ cXyz field_0x04;
-    /* 0x10 */ cXyz field_0x10;
-    /* 0x1C */ u8 field_0x1c[0x1c];
+    /* 0x00 */ u8 mStatus;
+    /* 0x04 */ cXyz mPosition;
+    /* 0x10 */ cXyz mBasePos;
+    /* 0x1C */ f32 field_0x1c;
+    /* 0x20 */ f32 field_0x20;
+    /* 0x24 */ f32 field_0x24;
+    /* 0x28 */ f32 mAlpha;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ f32 field_0x30;
+    /* 0x34 */ s16 mTimer;
 };  // Size: 0x38
 
 class dKankyo_rain_Packet : public J3DPacket {
@@ -85,20 +93,39 @@ public:
     virtual ~dKankyo_rain_Packet();
 
 private:
-    /* 0x0010 */ u8* field_0x10;
-    /* 0x0014 */ u8 field_0x14[4];
-    /* 0x0018 */ RAIN_EFF field_0x18[250];
-    /* 0x36C8 */ u8 field_0x36c8[0x50];
+    /* 0x0010 */ u8* mpTex;
+    /* 0x0014 */ u8* mpTex2;
+    /* 0x0018 */ RAIN_EFF mRainEff[250];
+    /* 0x36C8 */ f32 field_0x36c8;
+    /* 0x36CC */ f32 field_0x36cc;
+    /* 0x36D0 */ s16 mRainCount;
+    /* 0x36D2 */ u8 field_0x36D2[6];
+    /* 0x36D8 */ cXyz mCamEyePos;
+    /* 0x36E4 */ cXyz mCamCenterPos;
+    /* 0x36F0 */ cXyz mCenterDelta;
+    /* 0x36FC */ f32 mCenterDeltaMul;
+    /* 0x3700 */ f32 field_0x3700;
+    /* 0x3704 */ f32 mSibukiAlpha;
+    /* 0x3708 */ f32 mOverheadFade;
+    /* 0x370C */ f32 mFwdFade1;
+    /* 0x3710 */ f32 mFwdFade2;
+    /* 0x3714 */ u8 mStatus;
 };  // Size: 0x3718
 
 struct SNOW_EFF {
     /* 80056D58 */ ~SNOW_EFF();
     /* 80056D94 */ SNOW_EFF();
 
-    /* 0x00 */ u8 field_0x0[4];
-    /* 0x04 */ cXyz field_0x04;
-    /* 0x10 */ cXyz field_0x10;
-    /* 0x1C */ u8 field_0x1c[0x1c];
+    /* 0x00 */ u8 mStatus;
+    /* 0x04 */ cXyz mPosition;
+    /* 0x10 */ cXyz mBasePos;
+    /* 0x1C */ f32 mPosWaveX;
+    /* 0x20 */ f32 mPosWaveZ;
+    /* 0x24 */ f32 mGravity;
+    /* 0x28 */ f32 mWindSpeed;
+    /* 0x2C */ f32 mScale;
+    /* 0x30 */ u8 field_0x30[4];
+    /* 0x34 */ s16 mTimer;
 };  // Size: 0x38
 
 class dKankyo_snow_Packet : public J3DPacket {
@@ -107,8 +134,8 @@ public:
     virtual ~dKankyo_snow_Packet();
 
 private:
-    /* 0x10 */ u8* field_0x10;
-    /* 0x14 */ SNOW_EFF field_0x14[500];
+    /* 0x10 */ u8* mpTex;
+    /* 0x14 */ SNOW_EFF mSnowEff[500];
 };
 
 struct STAR_EFF {
@@ -135,11 +162,14 @@ struct HOUSI_EFF {
     /* 80056EA8 */ ~HOUSI_EFF();
     /* 80056EE4 */ HOUSI_EFF();
 
-    /* 0x00 */ u8 field_0x0;
-    /* 0x04 */ cXyz field_0x04;
-    /* 0x10 */ cXyz field_0x10;
-    /* 0x1C */ cXyz field_0x1c;
-    /* 0x28 */ u8 field_0x28[0x28];
+    /* 0x00 */ u8 mStatus;
+    /* 0x04 */ cXyz mPosition;
+    /* 0x10 */ cXyz mBasePos;
+    /* 0x1C */ cXyz mSpeed;
+    /* 0x28 */ cXyz mScale;
+    /* 0x34 */ u8 field_0x34[0x40 - 0x34];
+    /* 0x40 */ f32 mAlpha;
+    /* 0x44 */ u8 field_0x44[0x50 - 0x44];
 };  // Size: 0x50
 
 class dKankyo_housi_Packet : public J3DPacket {
@@ -149,7 +179,7 @@ public:
 
     /* 0x0010 */ cXyz field_0x10;
     /* 0x001C */ u8* mpResTex;
-    /* 0x0020 */ HOUSI_EFF field_0x18[300];
+    /* 0x0020 */ HOUSI_EFF mHousiEff[300];
     /* 0x5DE0 */ u8 field_0x5de0[8];
     /* 0x5DE8 */ f32 field_0x5de8;
     /* 0x5DEC */ u8 field_0x5dec[4];
@@ -159,10 +189,10 @@ struct CLOUD_EFF {
     /* 80056E38 */ ~CLOUD_EFF();
     /* 80056E74 */ CLOUD_EFF();
 
-    /* 0x00 */ u8 field_0x0;
-    /* 0x04 */ cXyz field_0x04;
-    /* 0x10 */ cXyz field_0x10;
-    /* 0x1C */ cXyz field_0x1c;
+    /* 0x00 */ u8 mStatus;
+    /* 0x04 */ cXyz mPosition;
+    /* 0x10 */ cXyz mBasePos;
+    /* 0x1C */ cXyz mPntWindSpeed;
     /* 0x28 */ u8 field_0x28[0x10];
 };  // Size: 0x38
 
@@ -172,18 +202,21 @@ public:
     virtual ~dKankyo_cloud_Packet();
 
     /* 0x10 */ u8* mpResTex;
-    /* 0x14 */ int field_0x14;
-    /* 0x18 */ CLOUD_EFF field_0x18[50];
+    /* 0x14 */ int mCount;
+    /* 0x18 */ CLOUD_EFF mCloudEff[50];
 };  // Size: 0xB08
 
 struct VRKUMO_EFF {
     /* 80056F18 */ ~VRKUMO_EFF();
     /* 80056F54 */ VRKUMO_EFF();
 
-    /* 0x00 */ u8 field_0x0[4];
-    /* 0x04 */ cXyz field_0x04;
-    /* 0x10 */ cXyz field_0x10;
-    /* 0x1C */ u8 field_0x1c[0x10];
+    /* 0x00 */ u8 mStatus;
+    /* 0x04 */ cXyz mPosition;
+    /* 0x10 */ cXyz mBasePos;
+    /* 0x1C */ f32 mHeight;
+    /* 0x20 */ f32 mAlpha;
+    /* 0x24 */ f32 mDistFalloff;
+    /* 0x28 */ f32 mSpeed;
 };  // Size: 0x2C
 
 class dKankyo_vrkumo_Packet : public J3DPacket {
@@ -192,11 +225,11 @@ public:
     virtual ~dKankyo_vrkumo_Packet();
 
 private:
-    /* 0x0010 */ GXColor field_0x10;
+    /* 0x0010 */ GXColor mColor;
     /* 0x0014 */ u8* mpResCloudtx_01;
     /* 0x0018 */ u8* mpResCloudtx_02;
     /* 0x001C */ u8* mpResCloudtx_03;
-    /* 0x0020 */ VRKUMO_EFF field_0x20[100];
+    /* 0x0020 */ VRKUMO_EFF mVrkumoEff[100];
     /* 0x1150 */ f32 field_0x1150;
     /* 0x1154 */ f32 field_0x1154;
 };  // Size: 0x1158
@@ -208,9 +241,9 @@ struct EF_ODOUR_EFF {
     /* 80056F8C */ ~EF_ODOUR_EFF();
     /* 80056FC8 */ EF_ODOUR_EFF();
 
-    /* 0x00 */ u8 field_0x0[4];
-    /* 0x04 */ cXyz field_0x04;
-    /* 0x10 */ cXyz field_0x10;
+    /* 0x00 */ u8 mStatus;
+    /* 0x04 */ cXyz mPosition;
+    /* 0x10 */ cXyz mBasePos;
     /* 0x1C */ u8 field_0x1c[0x14];
 };  // Size: 0x30
 
@@ -220,7 +253,7 @@ public:
     virtual ~dKankyo_odour_Packet();
 
     /* 0x00010 */ u8* mpResTex;
-    /* 0x00014 */ EF_ODOUR_EFF field_0x18[2000];
+    /* 0x00014 */ EF_ODOUR_EFF mOdourEff[2000];
     /* 0x17714 */ u8 field_0x17714[0x14];
 };  // Size: 0x17728
 
@@ -228,9 +261,9 @@ struct EF_MUD_EFF {
     /* 80056FFC */ ~EF_MUD_EFF();
     /* 80057038 */ EF_MUD_EFF();
 
-    /* 0x00 */ u8 field_0x0[4];
-    /* 0x04 */ cXyz field_0x04;
-    /* 0x10 */ cXyz field_0x10;
+    /* 0x00 */ u8 mStatus;
+    /* 0x04 */ cXyz mPosition;
+    /* 0x10 */ cXyz mBasePos;
     /* 0x1C */ cXyz field_0x1c;
     /* 0x28 */ u8 field_0x28[0x20];
 };  // Size: 0x48
@@ -250,9 +283,9 @@ struct EF_EVIL_EFF {
     /* 8005706C */ ~EF_EVIL_EFF();
     /* 800570A8 */ EF_EVIL_EFF();
 
-    /* 0x00 */ u8 field_0x0[4];
-    /* 0x04 */ cXyz field_0x04;
-    /* 0x10 */ cXyz field_0x10;
+    /* 0x00 */ u8 mStatus;
+    /* 0x04 */ cXyz mPosition;
+    /* 0x10 */ cXyz mBasePos;
     /* 0x1C */ csXyz field_0x1c;
     /* 0x22 */ u8 field_0x22[0x22];
 };  // Size: 0x44

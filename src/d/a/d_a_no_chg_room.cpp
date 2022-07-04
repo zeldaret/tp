@@ -83,7 +83,7 @@ extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
 extern "C" u8 mStatus__20dStage_roomControl_c[65792];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 data_804505F0[8];
-extern "C" extern u8 data_80450D68[4];
+extern "C" extern u8 mNoChangeRoom__20dStage_roomControl_c[4];
 
 //
 // Declarations:

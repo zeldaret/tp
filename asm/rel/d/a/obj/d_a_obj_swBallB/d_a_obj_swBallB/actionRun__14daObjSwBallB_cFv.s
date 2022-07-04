@@ -96,8 +96,8 @@ lbl_80CF5010:
 /* 80CF5020  C0 1E 00 3C */	lfs f0, 0x3c(r30)
 /* 80CF5024  80 7F 05 88 */	lwz r3, 0x588(r31)
 /* 80CF5028  D0 03 00 0C */	stfs f0, 0xc(r3)
-/* 80CF502C  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80CF5030  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80CF502C  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80CF5030  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80CF5034  7C 00 07 75 */	extsb. r0, r0
 /* 80CF5038  41 82 00 20 */	beq lbl_80CF5058
 /* 80CF503C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
@@ -137,8 +137,8 @@ lbl_80CF50B8:
 /* 80CF50BC  4B 31 83 6D */	bl play__14mDoExt_baseAnmFv
 /* 80CF50C0  2C 03 00 00 */	cmpwi r3, 0
 /* 80CF50C4  41 82 01 18 */	beq lbl_80CF51DC
-/* 80CF50C8  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80CF50CC  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80CF50C8  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80CF50CC  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80CF50D0  7C 00 07 75 */	extsb. r0, r0
 /* 80CF50D4  40 82 00 CC */	bne lbl_80CF51A0
 /* 80CF50D8  80 1F 05 9C */	lwz r0, 0x59c(r31)

@@ -796,6 +796,7 @@ void dComIfGs_setWarpItemData(char const* stage, cXyz pos, s16 angle, s8 roomNo,
 BOOL dComIfGs_isStageSwitch(int i_stageNo, int i_no);
 void dComIfGs_onStageSwitch(int i_stageNo, int i_no);
 void dComIfGs_offStageSwitch(int i_stageNo, int i_no);
+void dComIfGs_PolyDamageOff_Set(s8 param_0);
 
 inline void dComIfGs_init() {
     g_dComIfG_gameInfo.info.init();
@@ -1298,6 +1299,14 @@ inline u8 dComIfGs_getDataNum() {
     return g_dComIfG_gameInfo.info.getDataNum();
 }
 
+inline void dComIfGs_setDataNum(u8 num) {
+    return g_dComIfG_gameInfo.info.setDataNum(num);
+}
+
+inline void dComIfGs_setNewFile(u8 file) {
+    return g_dComIfG_gameInfo.info.setNewFile(file);
+}
+
 inline char* dComIfGs_getPlayerName() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerInfo().getLinkName();
 }
@@ -1469,12 +1478,6 @@ inline void dComIfGs_setMemoryToCard(u8* p_saveData, int dataNum) {
 }
 
 
-inline void i_dComIfGp_setItemLifeCount(float amount, u8 type) {
-    g_dComIfG_gameInfo.play.setItemLifeCount(amount, type);
-}
-inline void i_dComIfGp_setItemRupeeCount(int amount) {
-    g_dComIfG_gameInfo.play.setItemRupeeCount(amount);
-}
 void dComIfGp_setSelectItem(int index);
 s32 dComIfGp_offHeapLockFlag(int flag);
 void dComIfGp_createSubExpHeap2D();
@@ -1501,6 +1504,13 @@ JKRExpHeap* dComIfGp_getSubHeap2D(int flag);
 void dComIfGp_world_dark_set(u8);
 u8 dComIfGp_getNowLevel();
 void dComIfGp_calcNowRegion();
+
+inline void i_dComIfGp_setItemLifeCount(float amount, u8 type) {
+    g_dComIfG_gameInfo.play.setItemLifeCount(amount, type);
+}
+inline void i_dComIfGp_setItemRupeeCount(int amount) {
+    g_dComIfG_gameInfo.play.setItemRupeeCount(amount);
+}
 
 inline dStage_startStage_c* dComIfGp_getStartStage() {
     return g_dComIfG_gameInfo.play.getStartStage();
@@ -1912,6 +1922,22 @@ inline roomRead_class* dComIfGp_getStageRoom() {
 
 inline stage_stag_info_class* dComIfGp_getStageStagInfo() {
     return g_dComIfG_gameInfo.play.getStage().getStagInfo();
+}
+
+inline stage_envr_info_class* dComIfGp_getStageEnvrInfo() {
+    return g_dComIfG_gameInfo.play.getStage().getEnvrInfo();
+}
+
+inline stage_palette_info_class* dComIfGp_getStagePaletteInfo() {
+    return g_dComIfG_gameInfo.play.getStage().getPaletteInfo();
+}
+
+inline stage_pselect_info_class* dComIfGp_getStagePselectInfo() {
+    return g_dComIfG_gameInfo.play.getStage().getPselectInfo();
+}
+
+inline stage_vrbox_info_class* dComIfGp_getStageVrboxcolInfo() {
+    return g_dComIfG_gameInfo.play.getStage().getVrboxInfo();
 }
 
 inline u8 dComIfGp_isHeapLockFlag() {

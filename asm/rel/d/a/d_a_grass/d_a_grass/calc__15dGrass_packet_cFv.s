@@ -204,8 +204,8 @@ lbl_8051FD20:
 /* 8051FDC4  3A F7 00 38 */	addi r23, r23, 0x38
 /* 8051FDC8  3A 94 0B EA */	addi r20, r20, 0xbea
 /* 8051FDCC  41 80 FF 04 */	blt lbl_8051FCD0
-/* 8051FDD0  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 8051FDD4  8B A3 0D 64 */	lbz r29, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 8051FDD0  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 8051FDD4  8B A3 0D 64 */	lbz r29, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 8051FDD8  7F BD 07 74 */	extsb r29, r29
 /* 8051FDDC  3C 75 00 02 */	addis r3, r21, 2
 /* 8051FDE0  57 A0 10 3A */	slwi r0, r29, 2

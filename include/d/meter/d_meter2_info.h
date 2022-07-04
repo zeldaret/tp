@@ -459,6 +459,10 @@ inline u8 dMeter2Info_getMiniGameItemSetFlag() {
     return g_meter2_info.getMiniGameItemSetFlag();
 }
 
+inline void dMeter2Info_setMiniGameItem(u8 item) {
+    g_meter2_info.setMiniGameItem(item);
+}
+
 inline void dMeter2Info_resetMiniGameItem(bool param_0) {
     g_meter2_info.resetMiniGameItem(param_0);
 }

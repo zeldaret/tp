@@ -30,8 +30,8 @@ lbl_80AEB6DC:
 /* 80AEB74C  98 7D 04 8D */	stb r3, 0x48d(r29)
 /* 80AEB750  48 00 00 10 */	b lbl_80AEB760
 lbl_80AEB754:
-/* 80AEB754  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80AEB758  8B C3 0D 64 */	lbz r30, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80AEB754  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80AEB758  8B C3 0D 64 */	lbz r30, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80AEB75C  7F DE 07 74 */	extsb r30, r30
 lbl_80AEB760:
 /* 80AEB760  9B DD 04 8C */	stb r30, 0x48c(r29)

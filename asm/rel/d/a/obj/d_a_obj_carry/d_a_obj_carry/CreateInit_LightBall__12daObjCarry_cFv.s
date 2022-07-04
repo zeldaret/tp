@@ -11,8 +11,8 @@ lbl_804709DC:
 /* 80470A00  81 8C 00 14 */	lwz r12, 0x14(r12)
 /* 80470A04  7D 89 03 A6 */	mtctr r12
 /* 80470A08  4E 80 04 21 */	bctrl 
-/* 80470A0C  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80470A10  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80470A0C  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80470A10  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80470A14  7C 00 07 75 */	extsb. r0, r0
 /* 80470A18  41 82 00 10 */	beq lbl_80470A28
 /* 80470A1C  80 1F 04 9C */	lwz r0, 0x49c(r31)

@@ -12,8 +12,8 @@ lbl_8048E010:
 /* 8048E038  3B 80 00 00 */	li r28, 0
 /* 8048E03C  88 03 04 BA */	lbz r0, 0x4ba(r3)
 /* 8048E040  7C 05 07 74 */	extsb r5, r0
-/* 8048E044  3C 80 80 45 */	lis r4, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 8048E048  88 04 0D 64 */	lbz r0, struct_80450D64+0x0@l(r4)  /* 0x80450D64@l */
+/* 8048E044  3C 80 80 45 */	lis r4, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 8048E048  88 04 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r4)  /* 0x80450D64@l */
 /* 8048E04C  7C 00 07 74 */	extsb r0, r0
 /* 8048E050  7C 05 00 00 */	cmpw r5, r0
 /* 8048E054  40 82 08 40 */	bne lbl_8048E894

@@ -8,8 +8,8 @@
 
 int mDoGph_Create();
 
-extern u8 struct_80450BE4;  // Blure
-extern u8 data_80450BE6;    // Fade
+extern u8 mBlureFlag__13mDoGph_gInf_c;  // Blure
+extern u8 mFade__13mDoGph_gInf_c;    // Fade
 extern bool data_80450BE7;  // AutoForcus
 
 struct ResTIMG;
@@ -46,14 +46,16 @@ public:
     static int startFadeIn(int param_0) { return JFWDisplay::getManager()->startFadeIn(param_0); }
     static void setFadeColor(JUtility::TColor& color) { mFader->setColor(color); }
     static void endFrame() { JFWDisplay::getManager()->endFrame(); }
-    static void offFade() { data_80450BE6 = 0; }
-    static u8 isFade() { return data_80450BE6; }
-    static void offBlure() { struct_80450BE4 = 0; }
+    static void offFade() { mFade = 0; }
+    static u8 isFade() { return mFade; }
+    static void offBlure() { mBlureFlag = false; }
     static void offAutoForcus() { data_80450BE7 = 0; }
     static void setTickRate(u32 rate) { JFWDisplay::getManager()->setTickRate(rate); }
     static void waitBlanking(int wait) { JFWDisplay::getManager()->waitBlanking(wait); }
     static f32 getWidthF() { return 608.0f; }
     static f32 getHeightF() { return 448.0f; }
+    static f32 getMinYF() { return 0.0f; }
+    static f32 getMinXF() { return 0.0f; }
     static int getMinY() { return 0; }
     static int getMinX() { return 0; }
     static int getMaxY() { return 448; }
@@ -62,6 +64,7 @@ public:
     static void* getFrameBufferTex() { return mFrameBufferTex; }
     static void setFadeRate(f32 rate) { mFadeRate = rate; }
     static f32 getFadeRate() { return mFadeRate; }
+    static bloom_c* getBloom() { return &m_bloom; }
 
     static GXTexObj mFrameBufferTexObj;
     static GXTexObj mZbufferTexObj;
@@ -76,6 +79,8 @@ public:
     static void* mZbufferTex;
     static f32 mFadeRate;
     static f32 mFadeSpeed;
+    static bool mBlureFlag;
+    static u8 mFade;
 };
 
 #endif /* M_DO_M_DO_GRAPHIC_H */

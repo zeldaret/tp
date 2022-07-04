@@ -18079,32 +18079,32 @@ int daAlink_c::checkItemSetButton(int i_itemNo) {
 
 /* 800C0284-800C02C8 0BABC4 0044+00 1/1 0/0 0/0 .text            checkField__9daAlink_cFv */
 bool daAlink_c::checkField() {
-    return dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) == 0;
+    return dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) == ST_FIELD;
 }
 
 /* 800C02C8-800C0310 0BAC08 0048+00 6/6 0/0 0/0 .text            checkBossRoom__9daAlink_cFv */
 bool daAlink_c::checkBossRoom() {
-    return dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) == 3;
+    return dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) == ST_BOSS_ROOM;
 }
 
 /* 800C0310-800C0358 0BAC50 0048+00 4/4 0/0 0/0 .text            checkDungeon__9daAlink_cFv */
 bool daAlink_c::checkDungeon() {
-    return dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) == 1;
+    return dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) == ST_DUNGEON;
 }
 
 /* 800C0358-800C03A0 0BAC98 0048+00 3/3 0/0 0/0 .text            checkCastleTown__9daAlink_cFv */
 bool daAlink_c::checkCastleTown() {
-    return dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) == 4;
+    return dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) == ST_CASTLE_TOWN;
 }
 
 /* 800C03A0-800C03E8 0BACE0 0048+00 6/6 0/0 1/1 .text            checkCloudSea__9daAlink_cFv */
 bool daAlink_c::checkCloudSea() {
-    return dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) == 5;
+    return dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) == ST_CLOUD_SEA;
 }
 
 /* 800C03E8-800C044C 0BAD28 0064+00 5/5 0/0 0/0 .text            checkRoomOnly__9daAlink_cFv */
 bool daAlink_c::checkRoomOnly() {
-    return dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) == 2 || checkLv7DungeonShop();
+    return dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) == ST_ROOM || checkLv7DungeonShop();
 }
 
 /* 800C044C-800C04B4 0BAD8C 0068+00 3/3 0/0 0/0 .text checkLv2DungeonRoomSpecial__9daAlink_cFv */
@@ -19697,9 +19697,9 @@ asm void daAlink_c::setWaterDropColor(J3DGXColorS10 const* param_0) {
 /* 800CC7DC-800CC7FC 0C711C 0020+00 2/2 0/0 0/0 .text            initTevCustomColor__9daAlink_cFv */
 void daAlink_c::initTevCustomColor() {
     mTevStr.field_0x367 = 0;
-    mTevStr.field_0x358 = 0;
-    mTevStr.field_0x35a = 0;
-    mTevStr.field_0x35c = 0;
+    mTevStr.mFogColor.r = 0;
+    mTevStr.mFogColor.g = 0;
+    mTevStr.mFogColor.b = 0;
     mTevStr.field_0x360 = 0;
     mTevStr.field_0x362 = 0;
 }
@@ -20034,7 +20034,14 @@ daAlink_c::firePointEff_c::firePointEff_c() {
 }
 
 /* 800CFC7C-800CFCB8 0CA5BC 003C+00 0/0 2/2 0/0 .text            __dt__15LIGHT_INFLUENCEFv */
-LIGHT_INFLUENCE::~LIGHT_INFLUENCE() {}
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void __dt__15LIGHT_INFLUENCEFv() {
+    nofralloc
+#include "asm/d/a/d_a_alink/__dt__15LIGHT_INFLUENCEFv.s"
+}
+#pragma pop
 
 /* 800CFCB8-800CFCF4 0CA5F8 003C+00 2/2 0/0 0/0 .text            __dt__18daAlink_footData_cFv */
 daAlink_footData_c::~daAlink_footData_c() {}

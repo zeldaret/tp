@@ -218,7 +218,7 @@ lbl_8019E044:
 /* 8019E064  48 1C A9 31 */	bl strcmp
 /* 8019E068  2C 03 00 00 */	cmpwi r3, 0
 /* 8019E06C  40 82 00 30 */	bne lbl_8019E09C
-/* 8019E070  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 8019E070  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8019E074  7C 00 07 75 */	extsb. r0, r0
 /* 8019E078  40 82 00 24 */	bne lbl_8019E09C
 /* 8019E07C  C0 22 A2 60 */	lfs f1, lit_4529(r2)

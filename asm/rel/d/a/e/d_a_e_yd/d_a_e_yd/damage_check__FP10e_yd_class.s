@@ -156,8 +156,8 @@ lbl_807F33EC:
 /* 807F3400  2C 00 00 01 */	cmpwi r0, 1
 /* 807F3404  40 82 00 10 */	bne lbl_807F3414
 /* 807F3408  38 00 00 04 */	li r0, 4
-/* 807F340C  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha /* 0x80451125@ha */
-/* 807F3410  98 03 11 25 */	stb r0, struct_80451124+0x1@l(r3)  /* 0x80451125@l */
+/* 807F340C  3C 60 80 45 */	lis r3, pauseTimer__9dScnPly_c+0x1@ha /* 0x80451125@ha */
+/* 807F3410  98 03 11 25 */	stb r0, pauseTimer__9dScnPly_c+0x1@l(r3)  /* 0x80451125@l */
 lbl_807F3414:
 /* 807F3414  39 61 00 40 */	addi r11, r1, 0x40
 /* 807F3418  4B B6 EE 01 */	bl _restgpr_25

@@ -241,8 +241,8 @@ lbl_80D5A14C:
 /* 80D5A1A0  4B 2C CF D1 */	bl dStage_changeScene__FifUlScsi
 /* 80D5A1A4  48 00 00 54 */	b lbl_80D5A1F8
 lbl_80D5A1A8:
-/* 80D5A1A8  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80D5A1AC  8B 63 0D 64 */	lbz r27, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80D5A1A8  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80D5A1AC  8B 63 0D 64 */	lbz r27, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80D5A1B0  7F 7B 07 74 */	extsb r27, r27
 /* 80D5A1B4  38 60 00 00 */	li r3, 0
 /* 80D5A1B8  4B 2D 27 C5 */	bl getLayerNo__14dComIfG_play_cFi

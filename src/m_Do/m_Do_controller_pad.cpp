@@ -4,16 +4,11 @@
 //
 
 #include "m_Do/m_Do_controller_pad.h"
+#include "m_Do/m_Do_main.h"
 #include "SSystem/SComponent/c_lib.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "f_ap/f_ap_game.h"
-
-//
-// External References:
-//
-
-extern "C" extern s8 data_80450580;
 
 //
 // Declarations:
@@ -31,7 +26,7 @@ void mDoCPd_c::create() {
     JUTGamePad* pad = new JUTGamePad(JUTGamePad::Port_1);
     m_gamePad[0] = pad;
 
-    if (data_80450580 != 0) {
+    if (mDoMain::developmentMode != 0) {
         m_gamePad[1] = new JUTGamePad(JUTGamePad::Port_2);
         m_gamePad[2] = new JUTGamePad(JUTGamePad::Port_3);
         m_gamePad[3] = new JUTGamePad(JUTGamePad::Port_4);

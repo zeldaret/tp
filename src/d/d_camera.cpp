@@ -816,7 +816,7 @@ extern "C" f32 Zero__4cXyz[3];
 extern "C" u8 BaseY__4cXyz[12];
 extern "C" extern u8 g_dComIfGoat_gameInfo[4 + 4 /* padding */];
 extern "C" extern u8 data_80450B44[4];
-extern "C" extern u8 struct_80450BE4[4];
+extern "C" extern u8 mBlureFlag__13mDoGph_gInf_c[4];
 extern "C" u8 stopStatus__10fopAc_ac_c[4];
 extern "C" u8 m_object__7dDemo_c[4];
 extern "C" u8 m_midnaActor__9daPy_py_c[4];

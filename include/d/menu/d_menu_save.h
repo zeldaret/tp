@@ -62,6 +62,17 @@ public:
 class dMenu_save_c {
 public:
     enum {
+        TYPE_DEFAULT = 1,
+        TYPE_WHITE_EVENT = 3,
+        TYPE_BLACK_EVENT
+    };
+
+    enum {
+        CURSOR_NO,
+        CURSOR_YES,
+    };
+
+    enum {
         /* 0x00 */ PROC_SAVE_QUESTION,
         /* 0x01 */ PROC_SAVE_QUESTION2,
         /* 0x02 */ PROC_SAVE_QUESTION21,
@@ -211,7 +222,7 @@ public:
     /* 801F4724 */ void yesnoCancelAnmSet();
     /* 801F47DC */ void saveYesNoCancelMove();
     /* 801F485C */ void headerTxtSet(u16);
-    /* 801F4928 */ void headerTxtChangeAnm();
+    /* 801F4928 */ bool headerTxtChangeAnm();
     /* 801F4A10 */ void errDispInitSet(int);
     /* 801F4B84 */ void msgWindowInitOpen();
     /* 801F4D10 */ void msgWindowOpen();
@@ -223,25 +234,25 @@ public:
     /* 801F5190 */ bool errorTxtChangeAnm();
     /* 801F5278 */ void saveSelectOpenInit();
     /* 801F533C */ void selectDataBaseMoveAnmInitSet(int, int);
-    /* 801F53D4 */ void selectDataBaseMoveAnm();
+    /* 801F53D4 */ bool selectDataBaseMoveAnm();
     /* 801F54C0 */ void saveSelectOpenAnmSet();
     /* 801F5508 */ void selectDataMoveAnmInitSet(int, int);
-    /* 801F5600 */ void selectDataMoveAnm();
-    /* 801F5744 */ void yesnoMenuMoveAnmInitSet(int, int, u8);
+    /* 801F5600 */ bool selectDataMoveAnm();
+    /* 801F5744 */ void yesnoMenuMoveAnmInitSet(int anmFrame, int frameMax, u8 param_2);
     /* 801F58C8 */ bool yesnoMenuMoveAnm();
-    /* 801F5AE4 */ void yesnoSelectMoveAnm(u8);
+    /* 801F5AE4 */ bool yesnoSelectMoveAnm(u8);
     /* 801F5D84 */ void yesnoCursorShow();
     /* 801F5EF4 */ void errorMoveAnmInitSet(int, int);
-    /* 801F5F84 */ void errorMoveAnm();
+    /* 801F5F84 */ bool errorMoveAnm();
     /* 801F60A4 */ void modoruTxtDispAnmInit(u8);
-    /* 801F6120 */ void modoruTxtDispAnm();
+    /* 801F6120 */ bool modoruTxtDispAnm();
     /* 801F61FC */ void ketteiTxtDispAnmInit(u8);
     /* 801F6278 */ bool ketteiTxtDispAnm();
     /* 801F6354 */ void selectWakuAlpahAnmInit(u8, u8, u8, u8);
-    /* 801F6390 */ void selectWakuAlpahAnm(u8);
+    /* 801F6390 */ bool selectWakuAlpahAnm(u8);
     /* 801F6458 */ void selFileCursorShow();
     /* 801F6608 */ void yesnoWakuAlpahAnmInit(u8, u8, u8, u8);
-    /* 801F6654 */ void yesnoWakuAlpahAnm(u8);
+    /* 801F6654 */ bool yesnoWakuAlpahAnm(u8);
     /* 801F67B8 */ void dataSave();
     /* 801F67F0 */ void setSaveData();
     /* 801F6954 */ void setInitSaveData();
@@ -258,7 +269,7 @@ private:
     /* 0x0008 */ mDoDvdThd_mountArchive_c* mpMount;
     /* 0x000C */ STControl* stick;
     /* 0x0010 */ dDlst_MenuSaveExplain_c mMenuSaveExplain;
-    /* 0x0018 */ dDlst_MenuSave_c mMenuSave;
+    /* 0x0018 */ dDlst_MenuSave_c mSaveSel;
     /* 0x002C */ dSelect_cursor_c* mSelIcon;
     /* 0x0030 */ dFile_warning_c* mWarning;
     /* 0x0034 */ dFile_info_c* mFileInfo[3];
@@ -267,81 +278,85 @@ private:
     /* 0x0048 */ J2DAnmTransformKey* field_0x48;
     /* 0x004C */ J2DAnmTransformKey* field_0x4c;
     /* 0x0050 */ s32 field_0x50;
-    /* 0x0054 */ u8 field_0x54;
-    /* 0x0058 */ CPaneMgr* field_0x58;
-    /* 0x005C */ int field_0x5c;
-    /* 0x0060 */ int field_0x60;
+    /* 0x0054 */ u8 mSelectedFile;
+    /* 0x0055 */ u8 mLastSelFile;
+    /* 0x0058 */ CPaneMgr* mpSelectMoveBase;
+    /* 0x005C */ int mDataBaseMoveAnmFrame;
+    /* 0x0060 */ int mDataBaseMoveFrameMax;
     /* 0x0064 */ u8 field_0x64;
     /* 0x0065 */ u8 field_0x65;
-    /* 0x0068 */ CPaneMgr* field_0x68[3];
-    /* 0x0074 */ u8 field_0x74[0x10];
-    /* 0x0084 */ CPaneMgr* field_0x84[2];
-    /* 0x008C */ u8 field_0x8c[0x10];
+    /* 0x0068 */ CPaneMgr* mpSelData[3];
+    /* 0x0074 */ int field_0x74[3];
+    /* 0x0080 */ int field_0x80;
+    /* 0x0084 */ CPaneMgr* mpNoYes[2];
+    /* 0x008C */ int field_0x8c[2];
+    /* 0x0094 */ int mYesNoMoveAnmFrame;
+    /* 0x0098 */ int mYesNoMoveAnmMax;
     /* 0x009C */ u8 field_0x9c;
     /* 0x009D */ u8 field_0x9d;
     /* 0x009E */ u8 field_0x9e;
-    /* 0x00A0 */ int field_0xa0;
+    /* 0x00A0 */ J2DPane* field_0xa0;
     /* 0x00A4 */ u8 field_0xa4[0x10];
     /* 0x00B4 */ J2DPane* field_0xb4;
     /* 0x00B8 */ int field_0xb8;
     /* 0x00BC */ int field_0xbc;
-    /* 0x00C0 */ CPaneMgr* field_0xc0[2];
-    /* 0x00C8 */ char* field_0xc8[2];
-    /* 0x00D0 */ u8 field_0xd0;
-    /* 0x00D1 */ u8 field_0xd1;
+    /* 0x00C0 */ CPaneMgrAlpha* mpErrTxtPane[2];
+    /* 0x00C8 */ char* mpErrTxt[2];
+    /* 0x00D0 */ u8 mErrTxtType;
+    /* 0x00D1 */ u8 mErrTxtAnmComplete;
     /* 0x00D2 */ u8 field_0xd2;
     /* 0x00D3 */ u8 field_0xd3;
-    /* 0x00D4 */ CPaneMgr* field_0xd4[3];
-    /* 0x00E0 */ CPaneMgr* field_0xe0[3];
-    /* 0x00EC */ CPaneMgr* field_0xec[3];
-    /* 0x00F8 */ CPaneMgr* field_0xf8[3];
+    /* 0x00D4 */ CPaneMgr* mpSelWakuMoyo[3];
+    /* 0x00E0 */ CPaneMgr* mpSelWakuGold[3];
+    /* 0x00EC */ CPaneMgr* mpSelWakuGold2[3];
+    /* 0x00F8 */ CPaneMgr* mpBookWaku[3];
     /* 0x0104 */ u8 field_0x104[3];
     /* 0x0107 */ u8 field_0x107[3];
     /* 0x010A */ u8 field_0x10a[3];
     /* 0x010D */ u8 field_0x10d[11];
-    /* 0x0118 */ CPaneMgr* field_0x118[2];
-    /* 0x0120 */ CPaneMgr* field_0x120[2];
-    /* 0x0128 */ CPaneMgr* field_0x128[2];
-    /* 0x0130 */ u8 field_0x130[2];
-    /* 0x0132 */ u8 field_0x132[2];
-    /* 0x0134 */ u8 field_0x134[2];
-    /* 0x0138 */ CPaneMgr* field_0x138[2];
-    /* 0x0140 */ J2DAnmColorKey* field_0x140;
-    /* 0x0144 */ int field_0x144;
-    /* 0x0148 */ J2DAnmTextureSRTKey* field_0x148;
-    /* 0x014C */ int field_0x14c;
+    /* 0x0118 */ CPaneMgr* mNoYesBase[2];
+    /* 0x0120 */ CPaneMgr* mNoYesGold[2];
+    /* 0x0128 */ CPaneMgr* mNoYesGold2[2];
+    /* 0x0130 */ u8 mNoYesWakuStartAlpha[2];
+    /* 0x0132 */ u8 mNoYesWakuEndAlpha[2];
+    /* 0x0134 */ u8 mNoYesWakuAnmTimer[2];
+    /* 0x0138 */ CPaneMgr* mpNoYesTxt[2];
+    /* 0x0140 */ J2DAnmColorKey* mpFileWakuAnm;
+    /* 0x0144 */ int mFileWakuAnmFrame;
+    /* 0x0148 */ J2DAnmTextureSRTKey* mpFileWakuRotAnm;
+    /* 0x014C */ int mFileWakuRotAnmFrame;
     /* 0x0150 */ J2DAnmColorKey* field_0x150;
     /* 0x0154 */ int field_0x154;
     /* 0x0158 */ J2DAnmTextureSRTKey* field_0x158;
     /* 0x015C */ int field_0x15c;
     /* 0x0160 */ J2DAnmTevRegKey* field_0x160;
     /* 0x0164 */ int field_0x164;
-    /* 0x0168 */ CPaneMgr* field_0x168[2];
-    /* 0x0170 */ char* field_0x170[2];
-    /* 0x0178 */ u8 field_0x178;
-    /* 0x0179 */ u8 field_0x179;
+    /* 0x0168 */ CPaneMgrAlpha* mpHeaderTxtPane[2];
+    /* 0x0170 */ char* mpHeaderTxt[2];
+    /* 0x0178 */ u8 mHeaderTxtType;  // 0: Select Menu  1: YesNo Menu
+    /* 0x0179 */ u8 mHeaderAnmComplete;
     /* 0x017A */ u8 field_0x17a;
     /* 0x017B */ u8 field_0x17b;
-    /* 0x017C */ CPaneMgr* field_0x17c[3];
-    /* 0x0188 */ CPaneMgr* field_0x188[3];
-    /* 0x0194 */ CPaneMgr* field_0x194;
-    /* 0x0198 */ CPaneMgr* field_0x198;
+    /* 0x017C */ CPaneMgrAlpha* mpDataBase[3];
+    /* 0x0188 */ CPaneMgrAlpha* mpNoDataBase[3];
+    /* 0x0194 */ CPaneMgrAlpha* mpBBtnIcon;
+    /* 0x0198 */ CPaneMgrAlpha* mpABtnIcon;
     /* 0x019C */ u8 field_0x19c;
     /* 0x019D */ u8 field_0x19d;
-    /* 0x01A0 */ CPaneMgr* field_0x1a0;
-    /* 0x01A4 */ CPaneMgr* field_0x1a4;
+    /* 0x01A0 */ CPaneMgrAlpha* mpBackTxt;
+    /* 0x01A4 */ CPaneMgrAlpha* mpConfirmTxt;
     /* 0x01A8 */ u8 field_0x1a8;
     /* 0x01A9 */ u8 field_0x1a9;
     /* 0x01AA */ u8 field_0x1aa[3];
     /* 0x01AD */ u8 field_0x1ad[3];
-    /* 0x01B0 */ u8 field_0x1b0;
+    /* 0x01B0 */ u8 mDisplayMenu;
     /* 0x01B1 */ u8 field_0x1b1;
     /* 0x01B2 */ u8 mMenuProc;
     /* 0x01B3 */ u8 field_0x1b3;
     /* 0x01B4 */ u8 field_0x1b4;
-    /* 0x01B5 */ u8 field_0x1b5;
-    /* 0x01B6 */ u8 field_0x1b6;
-    /* 0x01B7 */ u8 field_0x1b7;
+    /* 0x01B5 */ u8 mErrProc;
+    /* 0x01B6 */ u8 mYesNoCursor;
+    /* 0x01B7 */ u8 mYesNoPrevCursor;
     /* 0x01B8 */ u8 field_0x1b8;
     /* 0x01B9 */ u8 field_0x1b9;
     /* 0x01BA */ u8 mSaveStatus;
@@ -351,7 +366,7 @@ private:
     /* 0x01BE */ u8 field_0x1be;
     /* 0x01BF */ u8 field_0x1bf;
     /* 0x01C0 */ u8 field_0x1c0;
-    /* 0x01CC */ void (dMenu_save_c::*field_0x1cc)();
+    /* 0x01CC */ void (dMenu_save_c::*mpErrFunc)();
     /* 0x01D0 */ u8 mSaveBuffer[0xA94 * 3];
     /* 0x218C */ dMsgScrnExplain_c* mpScrnExplain;
     /* 0x2190 */ u8 field_0x2190;

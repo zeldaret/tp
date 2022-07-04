@@ -32,7 +32,8 @@ public:
     /* 8023D538 */ virtual ~dMsgScrnExplain_c();
 
     u8 getStatus() { return mStatus; }
-    void setForceSelect() { mForceSelect = 1; }
+    u8 getSelectCursor() { return mSelCursor; }
+    void onForceSelect() { mForceSelect = 1; }
     void setKeyWaitTimer(s16 timer) { mKeyWaitTimer = timer; }
 
 private:

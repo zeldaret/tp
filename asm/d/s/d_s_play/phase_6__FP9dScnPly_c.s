@@ -4,7 +4,7 @@ lbl_8025AAC0:
 /* 8025AAC8  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8025AACC  39 61 00 20 */	addi r11, r1, 0x20
 /* 8025AAD0  48 10 77 01 */	bl _savegpr_26
-/* 8025AAD4  88 8D 81 E4 */	lbz r4, struct_80450764+0x0(r13)
+/* 8025AAD4  88 8D 81 E4 */	lbz r4, preLoadNo+0x0(r13)
 /* 8025AAD8  7C 80 07 75 */	extsb. r0, r4
 /* 8025AADC  41 80 00 94 */	blt lbl_8025AB70
 /* 8025AAE0  3B A0 00 02 */	li r29, 2

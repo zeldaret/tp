@@ -4,11 +4,11 @@
 #include "JSystem/JSupport/JSURandomInputStream.h"
 #include "dolphin/types.h"
 
-class JSUMemoryInputStream : JSURandomInputStream {
+class JSUMemoryInputStream : public JSURandomInputStream {
 public:
     JSUMemoryInputStream(const void* res, u32 size) { setBuffer(res, size); }
 
-    /* 802552B8 */ ~JSUMemoryInputStream() {}
+    /* 802552B8 */ virtual ~JSUMemoryInputStream() {}
     /* 802DC520 */ void setBuffer(void const*, s32);
     /* 802DC534 */ u32 readData(void*, s32);
     /* 802DC5AC */ s32 seekPos(s32, JSUStreamSeekFrom);

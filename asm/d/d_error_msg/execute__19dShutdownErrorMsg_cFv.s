@@ -27,7 +27,7 @@ lbl_8009D7C0:
 /* 8009D7F0  38 60 00 01 */	li r3, 1
 /* 8009D7F4  48 00 00 78 */	b lbl_8009D86C
 lbl_8009D7F8:
-/* 8009D7F8  88 0D 86 38 */	lbz r0, struct_80450BB8+0x0(r13)
+/* 8009D7F8  88 0D 86 38 */	lbz r0, mInitFlag__17mDoAud_zelAudio_c+0x0(r13)
 /* 8009D7FC  28 00 00 00 */	cmplwi r0, 0
 /* 8009D800  41 82 00 14 */	beq lbl_8009D814
 /* 8009D804  80 6D 8D E8 */	lwz r3, mAudioMgrPtr__10Z2AudioMgr(r13)

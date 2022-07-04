@@ -443,8 +443,8 @@ lbl_80AB043C:
 /* 80AB0468  D0 19 06 1C */	stfs f0, 0x61c(r25)
 /* 80AB046C  48 00 00 18 */	b lbl_80AB0484
 lbl_80AB0470:
-/* 80AB0470  3C 60 80 45 */	lis r3, struct_80450BE4+0x2@ha /* 0x80450BE6@ha */
-/* 80AB0474  88 03 0B E6 */	lbz r0, struct_80450BE4+0x2@l(r3)  /* 0x80450BE6@l */
+/* 80AB0470  3C 60 80 45 */	lis r3, mBlureFlag__13mDoGph_gInf_c+0x2@ha /* 0x80450BE6@ha */
+/* 80AB0474  88 03 0B E6 */	lbz r0, mBlureFlag__13mDoGph_gInf_c+0x2@l(r3)  /* 0x80450BE6@l */
 /* 80AB0478  28 00 00 00 */	cmplwi r0, 0
 /* 80AB047C  40 82 00 08 */	bne lbl_80AB0484
 /* 80AB0480  3B C0 00 01 */	li r30, 1

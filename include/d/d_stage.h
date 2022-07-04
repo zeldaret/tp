@@ -30,6 +30,15 @@ public:
     /* 0x1D */ u8 mFlagID;
 };  // Size: 0x20
 
+enum StageType {
+    /* 0x0 */ ST_FIELD,
+    /* 0x1 */ ST_DUNGEON,
+    /* 0x2 */ ST_ROOM,
+    /* 0x3 */ ST_BOSS_ROOM,
+    /* 0x4 */ ST_CASTLE_TOWN,
+    /* 0x5 */ ST_CLOUD_SEA,
+};
+
 struct stage_stag_info_class {
     /* 0x00 */ f32 field_0x0;
     /* 0x04 */ f32 field_0x4;
@@ -95,8 +104,8 @@ struct stage_map_info_dummy_class {
 };
 
 struct stage_envr_info_class {
-    // Env
-};
+    /* 0x0 */ u8 field_0x0[0x41];
+};  // Size: 0x41
 
 struct stage_camera2_data_class {
     /* 0x00 */ int field_0x0;
@@ -658,11 +667,11 @@ public:
 
 STATIC_ASSERT(sizeof(dStage_roomStatus_c) == 0x404);
 
-extern s8 struct_80450D64;  // gStayNo
-extern s8 gLastStayNo;
-extern s8 gNextStayNo;
-extern s8 gTimePass;
-extern u8 data_80450D68;
+extern s8 mStayNo__20dStage_roomControl_c;  // gStayNo
+extern s8 mOldStayNo__20dStage_roomControl_c;
+extern s8 mNextStayNo__20dStage_roomControl_c;
+extern s8 m_time_pass__20dStage_roomControl_c;
+extern u8 mNoChangeRoom__20dStage_roomControl_c;
 
 class dStage_roomControl_c {
 public:
@@ -701,7 +710,7 @@ public:
     /* 8025BAAC */ void setZoneNo(int, int);
     static s32 GetTimePass();
 
-    static s8 getStayNo() { return struct_80450D64; }
+    static s8 getStayNo() { return mStayNo; }
     static u8 getRegionNo(int i_roomNo) { return mStatus[i_roomNo].mRegionNo; }
     static s8 getMemoryBlockID(int i_roomNo) { return mStatus[i_roomNo].mMemBlockID; }
     dKy_tevstr_c* getTevStr(int i_roomNo) { return &mStatus[i_roomNo].mKyTevStr; }
@@ -714,7 +723,7 @@ public:
     static char* getArcBankName() { return mArcBankName; }
     static void setRoomReadId(s8 id) { data_804505F0 = id; }
     static s8 getRoomReadId() { return data_804505F0; }
-    static void offNoChangeRoom() { data_80450D68 = false; }
+    static void offNoChangeRoom() { mNoChangeRoom = false; }
     static void setProcID(u32 id) { mProcID = id; }
     static u32 getProcID() { return mProcID; }
     static int getStatusProcID(int i_roomNo) { return mStatus[i_roomNo].mProcID; }
@@ -733,6 +742,11 @@ public:
     static char* mArcBankName;
     static char* mArcBankData;
     static roomDzs_c m_roomDzs;
+    static s8 mStayNo;
+    static s8 mOldStayNo;
+    static s8 mNextStayNo;
+    static s8 m_time_pass;
+    static u8 mNoChangeRoom;
 
 private:
     /* 0x0 */ u8 field_0x0[4];
@@ -909,6 +923,10 @@ inline int dStage_stagInfo_GetMsgGroup(stage_stag_info_class* p_info) {
 
 inline s32 i_dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
     return param_0->field_0x09 >> 1 & 0x1f;
+}
+
+inline s8 dStage_stagInfo_GetTimeH(stage_stag_info_class* p_info) {
+    return p_info->field_0x0c >> 8;
 }
 
 inline u32 dStage_sclsInfo_getSceneLayer(stage_scls_info_class* p_info) {

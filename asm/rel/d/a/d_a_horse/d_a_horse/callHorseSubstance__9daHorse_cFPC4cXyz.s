@@ -12,8 +12,8 @@ lbl_808411D0:
 /* 808411F8  7C 9D 23 78 */	mr r29, r4
 /* 808411FC  3C 60 80 84 */	lis r3, lit_3894@ha /* 0x808454AC@ha */
 /* 80841200  3B E3 54 AC */	addi r31, r3, lit_3894@l /* 0x808454AC@l */
-/* 80841204  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80841208  8B 63 0D 64 */	lbz r27, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80841204  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80841208  8B 63 0D 64 */	lbz r27, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 8084120C  7F 7B 07 74 */	extsb r27, r27
 /* 80841210  80 1C 17 44 */	lwz r0, 0x1744(r28)
 /* 80841214  54 00 00 01 */	rlwinm. r0, r0, 0, 0, 0

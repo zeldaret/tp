@@ -9,8 +9,8 @@ lbl_80CDD71C:
 /* 80CDD738  3B E3 E3 5C */	addi r31, r3, m__20daObj_SMTile_Param_c@l /* 0x80CDE35C@l */
 /* 80CDD73C  88 1E 04 BA */	lbz r0, 0x4ba(r30)
 /* 80CDD740  7C 04 07 74 */	extsb r4, r0
-/* 80CDD744  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80CDD748  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80CDD744  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80CDD748  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80CDD74C  7C 00 07 74 */	extsb r0, r0
 /* 80CDD750  7C 04 00 00 */	cmpw r4, r0
 /* 80CDD754  40 82 03 28 */	bne lbl_80CDDA7C

@@ -213,7 +213,7 @@ lbl_80059A20:
 /* 80059A3C  28 03 00 00 */	cmplwi r3, 0
 /* 80059A40  41 82 00 30 */	beq lbl_80059A70
 /* 80059A44  80 03 00 00 */	lwz r0, 0(r3)
-/* 80059A48  88 8D 87 E4 */	lbz r4, struct_80450D64+0x0(r13)
+/* 80059A48  88 8D 87 E4 */	lbz r4, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 80059A4C  7C 84 07 74 */	extsb r4, r4
 /* 80059A50  7C 00 20 00 */	cmpw r0, r4
 /* 80059A54  40 81 00 1C */	ble lbl_80059A70

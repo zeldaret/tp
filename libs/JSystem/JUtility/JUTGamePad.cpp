@@ -325,8 +325,8 @@ OSTime JUTGamePad::C3ButtonReset::sThreshold = (OSTime)((OS_BUS_CLOCK / 4) / 60)
 /* 80451500-80451504 -00001 0004+00 3/3 6/6 0/0 .sbss            None */
 /* 80451500 0001+00 data_80451500 None */
 /* 80451501 0003+00 data_80451501 None */
-bool struct_80451500;
-bool struct_80451501;
+bool JUTGamePad::C3ButtonReset::sResetSwitchPushing;
+bool JUTGamePad::C3ButtonReset::sResetOccurred;
 
 /* 80451504-80451508 000A04 0004+00 2/2 0/0 0/0 .sbss
  * sResetOccurredPort__Q210JUTGamePad13C3ButtonReset            */
@@ -339,7 +339,7 @@ void JUTGamePad::checkResetCallback(OSTime holdTime) {
         return;
     }
 
-    struct_80451501 = true;
+    JUTGamePad::C3ButtonReset::sResetOccurred = true;
     JUTGamePad::C3ButtonReset::sResetOccurredPort = mPortNum;
 
     if (JUTGamePad::C3ButtonReset::sCallback != NULL) {
@@ -380,7 +380,7 @@ void JUTGamePad::update() {
         if (field_0xa8 == 0 ||
             (mButton.mButton & C3ButtonReset::sResetMaskPattern) != C3ButtonReset::sResetPattern) {
             mButtonReset.mReset = false;
-        } else if (!struct_80451501) {
+        } else if (!JUTGamePad::C3ButtonReset::sResetOccurred) {
             if (mButtonReset.mReset == true) {
                 checkResetCallback(OSGetTime() - mResetTime);
             } else {
@@ -425,19 +425,19 @@ asm void JUTGamePad::update() {
 
 /* 802E0FA4-802E1024 2DB8E4 0080+00 1/1 0/0 0/0 .text            checkResetSwitch__10JUTGamePadFv */
 void JUTGamePad::checkResetSwitch() {
-    if (!struct_80451501) {
+    if (!JUTGamePad::C3ButtonReset::sResetOccurred) {
         if (OSGetResetSwitchState()) {
-            struct_80451500 = true;
+            C3ButtonReset::sResetSwitchPushing = true;
         } else {
-            if (struct_80451500 == true) {
-                struct_80451501 = true;
+            if (C3ButtonReset::sResetSwitchPushing == true) {
+                C3ButtonReset::sResetOccurred = true;
                 C3ButtonReset::sResetOccurredPort = -1;
 
                 if (C3ButtonReset::sCallback != NULL) {
                     C3ButtonReset::sCallback(-1, C3ButtonReset::sCallbackArg);
                 }
             }
-            struct_80451500 = false;
+            C3ButtonReset::sResetSwitchPushing = false;
         }
     }
 }

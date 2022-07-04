@@ -37,7 +37,7 @@ lbl_80160470:
 /* 801604FC  48 00 10 55 */	bl initPad__9dCamera_cFv
 /* 80160500  38 7C 02 28 */	addi r3, r28, 0x228
 /* 80160504  48 02 1F C5 */	bl Init__14dCamForcusLineFv
-/* 80160508  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 80160508  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8016050C  7C 00 07 74 */	extsb r0, r0
 /* 80160510  90 1C 00 04 */	stw r0, 4(r28)
 /* 80160514  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
@@ -612,7 +612,7 @@ lbl_80160DB4:
 /* 80160DC8  90 7C 06 94 */	stw r3, 0x694(r28)
 lbl_80160DCC:
 /* 80160DCC  3B 60 00 FF */	li r27, 0xff
-/* 80160DD0  8B 4D 87 E4 */	lbz r26, struct_80450D64+0x0(r13)
+/* 80160DD0  8B 4D 87 E4 */	lbz r26, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 80160DD4  7F 5A 07 74 */	extsb r26, r26
 /* 80160DD8  38 7D 3F 8C */	addi r3, r29, 0x3f8c
 /* 80160DDC  7F 44 D3 78 */	mr r4, r26

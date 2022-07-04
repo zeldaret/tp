@@ -16,7 +16,7 @@ lbl_801A37C4:
 /* 801A37FC  88 06 03 80 */	lbz r0, 0x380(r6)
 /* 801A3800  7C 00 07 75 */	extsb. r0, r0
 /* 801A3804  40 80 00 0C */	bge lbl_801A3810
-/* 801A3808  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 801A3808  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 801A380C  98 1C 03 80 */	stb r0, 0x380(r28)
 lbl_801A3810:
 /* 801A3810  28 1D 00 00 */	cmplwi r29, 0
@@ -59,7 +59,7 @@ lbl_801A3888:
 /* 801A3898  28 00 00 7C */	cmplwi r0, 0x7c
 /* 801A389C  41 82 00 18 */	beq lbl_801A38B4
 /* 801A38A0  7F 83 E3 78 */	mr r3, r28
-/* 801A38A4  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 801A38A4  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 801A38A8  7C 04 07 74 */	extsb r4, r0
 /* 801A38AC  38 A0 00 FF */	li r5, 0xff
 /* 801A38B0  48 00 50 3D */	bl dKy_tevstr_init__FP12dKy_tevstr_cScUc
@@ -508,7 +508,7 @@ lbl_801A3F24:
 /* 801A3F24  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
 /* 801A3F28  38 83 CA 54 */	addi r4, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A3F2C  88 64 09 8C */	lbz r3, 0x98c(r4)
-/* 801A3F30  8B 2D 87 E4 */	lbz r25, struct_80450D64+0x0(r13)
+/* 801A3F30  8B 2D 87 E4 */	lbz r25, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 801A3F34  7F 39 07 74 */	extsb r25, r25
 /* 801A3F38  57 20 06 3E */	clrlwi r0, r25, 0x18
 /* 801A3F3C  7C 03 00 40 */	cmplw r3, r0

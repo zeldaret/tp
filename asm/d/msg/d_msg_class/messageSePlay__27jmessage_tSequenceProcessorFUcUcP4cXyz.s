@@ -13,7 +13,7 @@ lbl_8022CB10:
 /* 8022CB3C  88 03 04 CB */	lbz r0, 0x4cb(r3)
 /* 8022CB40  28 00 00 00 */	cmplwi r0, 0
 /* 8022CB44  41 82 00 44 */	beq lbl_8022CB88
-/* 8022CB48  88 6D 87 E4 */	lbz r3, struct_80450D64+0x0(r13)
+/* 8022CB48  88 6D 87 E4 */	lbz r3, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8022CB4C  7C 63 07 75 */	extsb. r3, r3
 /* 8022CB50  41 82 00 24 */	beq lbl_8022CB74
 /* 8022CB54  4B E0 05 19 */	bl dComIfGp_getReverb__Fi
@@ -31,7 +31,7 @@ lbl_8022CB74:
 /* 8022CB80  48 09 FE 99 */	bl playOneShotVoice__12Z2SpeechMgr2FUcUsP3VecSc
 /* 8022CB84  48 00 00 48 */	b lbl_8022CBCC
 lbl_8022CB88:
-/* 8022CB88  88 6D 87 E4 */	lbz r3, struct_80450D64+0x0(r13)
+/* 8022CB88  88 6D 87 E4 */	lbz r3, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8022CB8C  7C 63 07 75 */	extsb. r3, r3
 /* 8022CB90  41 82 00 24 */	beq lbl_8022CBB4
 /* 8022CB94  4B E0 04 D9 */	bl dComIfGp_getReverb__Fi

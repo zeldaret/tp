@@ -156,7 +156,7 @@ lbl_8019EEF0:
 /* 8019EEF8  38 84 CA 54 */	addi r4, r4, g_env_light@l /* 0x8042CA54@l */
 /* 8019EEFC  90 64 00 14 */	stw r3, 0x14(r4)
 lbl_8019EF00:
-/* 8019EF00  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 8019EF00  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8019EF04  7C 00 07 74 */	extsb r0, r0
 /* 8019EF08  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
 /* 8019EF0C  3B C3 CA 54 */	addi r30, r3, g_env_light@l /* 0x8042CA54@l */
@@ -341,7 +341,7 @@ lbl_8019F15C:
 /* 8019F19C  4B FF F9 05 */	bl undwater_init__Fv
 /* 8019F1A0  38 60 00 00 */	li r3, 0
 /* 8019F1A4  4B E9 08 4D */	bl dComIfGs_PolyDamageOff_Set__FSc
-/* 8019F1A8  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 8019F1A8  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8019F1AC  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
 /* 8019F1B0  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019F1B4  98 03 09 8C */	stb r0, 0x98c(r3)

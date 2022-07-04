@@ -11,8 +11,8 @@ lbl_80595F84:
 /* 80595FA8  4B DD 29 ED */	bl strcmp
 /* 80595FAC  2C 03 00 00 */	cmpwi r3, 0
 /* 80595FB0  40 82 00 1C */	bne lbl_80595FCC
-/* 80595FB4  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80595FB8  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80595FB4  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80595FB8  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80595FBC  2C 00 00 07 */	cmpwi r0, 7
 /* 80595FC0  40 82 00 0C */	bne lbl_80595FCC
 /* 80595FC4  38 60 00 01 */	li r3, 1

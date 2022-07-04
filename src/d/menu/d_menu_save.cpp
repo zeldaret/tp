@@ -4,22 +4,16 @@
 //
 
 #include "d/menu/d_menu_save.h"
+#include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/file/d_file_sel_info.h"
 #include "d/file/d_file_sel_warning.h"
+#include "d/msg/d_msg_string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_MemCard.h"
 #include "msg/scrn/d_msg_scrn_explain.h"
-#include "d/msg/d_msg_string.h"
-
-//
-// Types:
-//
-
-struct J2DAnmLoaderDataBase {
-    /* 80308A6C */ void load(void const*);
-};
 
 //
 // Forward References:
@@ -261,10 +255,6 @@ extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 extern "C" u8 sManager__10JFWDisplay[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
-//
-// Declarations:
-//
-
 /* ############################################################################################## */
 /* 803BDF78-803BDF84 01B098 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -272,191 +262,138 @@ SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
 };
 
 /* 803BDF84-803BDF90 01B0A4 000C+00 3/3 0/0 0/0 .data            SelStartFrameTbl */
-SECTION_DATA static u8 SelStartFrameTbl[12] = {
-    0x00, 0x00, 0x00, 0x3B, 0x00, 0x00, 0x00, 0x63, 0x00, 0x00, 0x00, 0x8B,
+SECTION_DATA static int SelStartFrameTbl[3] = {
+    59,
+    99,
+    139,
 };
 
 /* 803BDF90-803BDF9C 01B0B0 000C+00 3/3 0/0 0/0 .data            SelEndFrameTbl */
-SECTION_DATA static u8 SelEndFrameTbl[12] = {
-    0x00, 0x00, 0x00, 0x45, 0x00, 0x00, 0x00, 0x6D, 0x00, 0x00, 0x00, 0x95,
+SECTION_DATA static int SelEndFrameTbl[3] = {
+    69,
+    109,
+    149,
 };
 
 /* 803BDF9C-803BDFA8 01B0BC 000C+00 2/2 0/0 0/0 .data            SelOpenStartFrameTbl */
-SECTION_DATA static u8 SelOpenStartFrameTbl[12] = {
-    0x00, 0x00, 0x00, 0xF9, 0x00, 0x00, 0x01, 0xC0, 0x00, 0x00, 0x02, 0x88,
+SECTION_DATA static int SelOpenStartFrameTbl[3] = {
+    249,
+    448,
+    648,
 };
 
 /* 803BDFA8-803BDFB4 01B0C8 000C+00 2/2 0/0 0/0 .data            SelOpenEndFrameTbl */
-SECTION_DATA static u8 SelOpenEndFrameTbl[12] = {
-    0x00, 0x00, 0x01, 0x03, 0x00, 0x00, 0x01, 0xCC, 0x00, 0x00, 0x02, 0x93,
+SECTION_DATA static int SelOpenEndFrameTbl[3] = {
+    259,
+    460,
+    659,
 };
 
 /* 803BDFB4-803BDFC4 01B0D4 0010+00 2/2 0/0 0/0 .data            YnSelStartFrameTbl */
-SECTION_DATA static u8 YnSelStartFrameTbl[16] = {
-    0x00, 0x00, 0x08, 0x66, 0x00, 0x00, 0x0C, 0x6D, 0x00, 0x00, 0x08, 0x5B, 0x00, 0x00, 0x0C, 0x63,
+SECTION_DATA static int YnSelStartFrameTbl[2][2] = {
+    {2150, 3181},
+    {2139, 3171},
 };
 
 /* 803BDFC4-803BDFD8 01B0E4 0010+04 2/2 0/0 0/0 .data            YnSelEndFrameTbl */
-SECTION_DATA static u8 YnSelEndFrameTbl[16 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x08,
-    0x5A,
-    0x00,
-    0x00,
-    0x0C,
-    0x63,
-    0x00,
-    0x00,
-    0x08,
-    0x66,
-    0x00,
-    0x00,
-    0x0C,
-    0x6D,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_DATA static int YnSelEndFrameTbl[2][2] = {{2138, 3171}, {2150, 3181}};
 
 /* 803BDFD8-803BDFF0 01B0F8 0018+00 0/1 0/0 0/0 .data            l_tagName0$3857 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName0[24] = {
-    0x77, 0x5F, 0x73, 0x65, 0x6C, 0x5F, 0x30, 0x30, 0x77, 0x5F, 0x73, 0x65,
-    0x6C, 0x5F, 0x30, 0x31, 0x77, 0x5F, 0x73, 0x65, 0x6C, 0x5F, 0x30, 0x32,
-};
+SECTION_DATA static u64 l_tagName0[3] = {'w_sel_00', 'w_sel_01', 'w_sel_02'};
 #pragma pop
 
 /* 803BDFF0-803BE000 01B110 0010+00 0/1 0/0 0/0 .data            l_tagName000$3866 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName000[16] = {
-    0x00, 0x00, 0x77, 0x5F, 0x6E, 0x6F, 0x5F, 0x74, 0x00, 0x77, 0x5F, 0x79, 0x65, 0x73, 0x5F, 0x74,
-};
+SECTION_DATA static u64 l_tagName000[2] = {'w_no_t', 'w_yes_t'};
 #pragma pop
 
 /* 803BE000-803BE010 01B120 0010+00 0/1 0/0 0/0 .data            l_tagName000U$3867 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName000U[16] = {
-    0x00, 0x00, 0x66, 0x5F, 0x6E, 0x6F, 0x5F, 0x74, 0x00, 0x66, 0x5F, 0x79, 0x65, 0x73, 0x5F, 0x74,
-};
+SECTION_DATA static u64 l_tagName000U[2] = {'f_no_t', 'f_yes_t'};
 #pragma pop
 
 /* 803BE010-803BE020 01B130 0010+00 0/1 0/0 0/0 .data            l_tagName00$3879 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName00[16] = {
-    0x00, 0x00, 0x77, 0x5F, 0x6D, 0x6F, 0x64, 0x6F, 0x00, 0x00, 0x77, 0x5F, 0x6B, 0x65, 0x74, 0x65,
-};
+SECTION_DATA static u64 l_tagName00[2] = {'w_modo', 'w_kete'};
 #pragma pop
 
 /* 803BE020-803BE030 01B140 0010+00 0/1 0/0 0/0 .data            l_tagName00U$3880 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName00U[16] = {
-    0x00, 0x00, 0x66, 0x5F, 0x6D, 0x6F, 0x64, 0x6F, 0x00, 0x00, 0x66, 0x5F, 0x6B, 0x65, 0x74, 0x65,
-};
+SECTION_DATA static u64 l_tagName00U[2] = {'f_modo', 'f_kete'};
 #pragma pop
 
 /* 803BE030-803BE048 01B150 0018+00 0/1 0/0 0/0 .data            l_tagName3$3887 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName3[24] = {
-    0x77, 0x5F, 0x6D, 0x6F, 0x79, 0x6F, 0x30, 0x30, 0x77, 0x5F, 0x6D, 0x6F,
-    0x79, 0x6F, 0x30, 0x31, 0x77, 0x5F, 0x6D, 0x6F, 0x79, 0x6F, 0x30, 0x32,
-};
+SECTION_DATA static u64 l_tagName3[3] = {'w_moyo00', 'w_moyo01', 'w_moyo02'};
 #pragma pop
 
 /* 803BE048-803BE060 01B168 0018+00 0/1 0/0 0/0 .data            l_tagName4$3888 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName4[24] = {
-    0x77, 0x5F, 0x67, 0x6F, 0x6C, 0x64, 0x30, 0x30, 0x77, 0x5F, 0x67, 0x6F,
-    0x6C, 0x64, 0x30, 0x31, 0x77, 0x5F, 0x67, 0x6F, 0x6C, 0x64, 0x30, 0x32,
-};
+SECTION_DATA static u64 l_tagName4[3] = {'w_gold00', 'w_gold01', 'w_gold02'};
 #pragma pop
 
 /* 803BE060-803BE078 01B180 0018+00 0/1 0/0 0/0 .data            l_tagName5$3889 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName5[24] = {
-    0x77, 0x5F, 0x67, 0x6F, 0x32, 0x5F, 0x30, 0x30, 0x77, 0x5F, 0x67, 0x6F,
-    0x32, 0x5F, 0x30, 0x31, 0x77, 0x5F, 0x67, 0x6F, 0x32, 0x5F, 0x30, 0x32,
-};
+SECTION_DATA static u64 l_tagName5[3] = {'w_go2_00', 'w_go2_01', 'w_go2_02'};
 #pragma pop
 
 /* 803BE078-803BE088 01B198 0010+00 0/1 0/0 0/0 .data            l_tagName9$3898 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName9[16] = {
-    0x00, 0x00, 0x77, 0x5F, 0x6E, 0x6F, 0x5F, 0x6D, 0x00, 0x77, 0x5F, 0x79, 0x65, 0x73, 0x5F, 0x6D,
-};
+SECTION_DATA static u64 l_tagName9[2] = {'w_no_m', 'w_yes_m'};
 #pragma pop
 
 /* 803BE088-803BE098 01B1A8 0010+00 0/1 0/0 0/0 .data            l_tagName10$3899 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName10[16] = {
-    0x00, 0x00, 0x77, 0x5F, 0x6E, 0x6F, 0x5F, 0x67, 0x00, 0x77, 0x5F, 0x79, 0x65, 0x73, 0x5F, 0x67,
-};
+SECTION_DATA static u64 l_tagName10[2] = {'w_no_g', 'w_yes_g'};
 #pragma pop
 
 /* 803BE098-803BE0A8 01B1B8 0010+00 0/1 0/0 0/0 .data            l_tagName11$3900 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName11[16] = {
-    0x00, 0x77, 0x5F, 0x6E, 0x6F, 0x5F, 0x67, 0x72, 0x77, 0x5F, 0x79, 0x65, 0x73, 0x5F, 0x67, 0x72,
-};
+SECTION_DATA static u64 l_tagName11[2] = {'w_no_gr', 'w_yes_gr'};
 #pragma pop
 
 /* 803BE0A8-803BE0C0 01B1C8 0018+00 0/1 0/0 0/0 .data            l_tagName12$3909 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName12[24] = {
-    0x77, 0x5F, 0x62, 0x6B, 0x5F, 0x6C, 0x30, 0x30, 0x77, 0x5F, 0x62, 0x6B,
-    0x5F, 0x6C, 0x30, 0x31, 0x77, 0x5F, 0x62, 0x6B, 0x5F, 0x6C, 0x30, 0x32,
-};
+SECTION_DATA static u64 l_tagName12[3] = {'w_bk_l00', 'w_bk_l01', 'w_bk_l02'};
 #pragma pop
 
 /* 803BE0C0-803BE0D0 01B1E0 0010+00 0/1 0/0 0/0 .data            l_tagName21$3916 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName21[16] = {
-    0x00, 0x00, 0x00, 0x74, 0x5F, 0x66, 0x6F, 0x72, 0x00, 0x00, 0x74, 0x5F, 0x66, 0x6F, 0x72, 0x31,
-};
+SECTION_DATA static u64 l_tagName21[2] = {'t_for', 't_for1'};
 #pragma pop
 
 /* 803BE0D0-803BE120 01B1F0 0050+00 0/1 0/0 0/0 .data            l_tagName211$3917 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName211[80] = {
-    0x74, 0x6D, 0x6F, 0x79, 0x6F, 0x75, 0x30, 0x30, 0x74, 0x6D, 0x6F, 0x79, 0x6F, 0x75, 0x30, 0x31,
-    0x74, 0x6D, 0x6F, 0x79, 0x6F, 0x75, 0x30, 0x32, 0x74, 0x6D, 0x6F, 0x79, 0x6F, 0x75, 0x30, 0x33,
-    0x74, 0x6D, 0x6F, 0x79, 0x6F, 0x75, 0x30, 0x34, 0x74, 0x6D, 0x6F, 0x79, 0x6F, 0x75, 0x30, 0x35,
-    0x74, 0x6D, 0x6F, 0x79, 0x6F, 0x75, 0x30, 0x36, 0x74, 0x6D, 0x6F, 0x79, 0x6F, 0x75, 0x30, 0x37,
-    0x74, 0x6D, 0x6F, 0x79, 0x6F, 0x75, 0x30, 0x38, 0x74, 0x6D, 0x6F, 0x79, 0x6F, 0x75, 0x30, 0x39,
-};
+SECTION_DATA static u64 l_tagName211[10] = {'tmoyou00', 'tmoyou01', 'tmoyou02', 'tmoyou03',
+                                            'tmoyou04', 'tmoyou05', 'tmoyou06', 'tmoyou07',
+                                            'tmoyou08', 'tmoyou09'};
 #pragma pop
 
 /* 803BE120-803BE130 01B240 0010+00 0/1 0/0 0/0 .data            l_tagName20$3929 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName20[16] = {
-    0x00, 0x65, 0x72, 0x5F, 0x66, 0x6F, 0x72, 0x30, 0x00, 0x65, 0x72, 0x5F, 0x66, 0x6F, 0x72, 0x31,
-};
+SECTION_DATA static u64 l_tagName20[2] = {'er_for0', 'er_for1'};
 #pragma pop
 
 /* 803BE130-803BE148 01B250 0018+00 0/1 0/0 0/0 .data            l_tagName13$3937 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName13[24] = {
-    0x77, 0x5F, 0x64, 0x61, 0x74, 0x5F, 0x69, 0x30, 0x77, 0x5F, 0x64, 0x61,
-    0x74, 0x5F, 0x69, 0x31, 0x77, 0x5F, 0x64, 0x61, 0x74, 0x5F, 0x69, 0x32,
-};
+SECTION_DATA static u64 l_tagName13[3] = {'w_dat_i0', 'w_dat_i1', 'w_dat_i2'};
 #pragma pop
 
 /* 8042E84C-8042E860 05B56C 0010+04 21/21 0/0 0/0 .bss             g_msHIO */
@@ -623,52 +560,45 @@ dMenu_save_c::dMenu_save_c() {
     mSelIcon = NULL;
 
     for (int i = 0; i < 3; i++) {
-        field_0xd4[i] = NULL;
-        field_0xe0[i] = NULL;
-        field_0xec[i] = NULL;
-        field_0xf8[i] = NULL;
-        field_0x68[i] = NULL;
+        mpSelWakuMoyo[i] = NULL;
+        mpSelWakuGold[i] = NULL;
+        mpSelWakuGold2[i] = NULL;
+        mpBookWaku[i] = NULL;
+        mpSelData[i] = NULL;
         mFileInfo[i] = NULL;
     }
-    field_0x58 = NULL;
+    mpSelectMoveBase = NULL;
 
     for (int i = 0; i < 2; i++) {
-        field_0x84[i] = NULL;
-        field_0x118[i] = NULL;
-        field_0x120[i] = NULL;
-        field_0x128[i] = NULL;
-        field_0x168[i] = NULL;
-        field_0xc0[i] = NULL;
-        field_0x138[i] = NULL;
+        mpNoYes[i] = NULL;
+        mNoYesBase[i] = NULL;
+        mNoYesGold[i] = NULL;
+        mNoYesGold2[i] = NULL;
+        mpHeaderTxtPane[i] = NULL;
+        mpErrTxtPane[i] = NULL;
+        mpNoYesTxt[i] = NULL;
     }
 
     field_0x40 = NULL;
     field_0x44 = NULL;
     field_0x48 = NULL;
-    field_0x140 = NULL;
-    field_0x148 = NULL;
+    mpFileWakuAnm = NULL;
+    mpFileWakuRotAnm = NULL;
     field_0x150 = NULL;
     field_0x158 = NULL;
     field_0x160 = NULL;
     field_0x4c = NULL;
-    field_0x194 = NULL;
-    field_0x198 = NULL;
-    field_0x1a0 = NULL;
-    field_0x1a4 = NULL;
+    mpBBtnIcon = NULL;
+    mpABtnIcon = NULL;
+    mpBackTxt = NULL;
+    mpConfirmTxt = NULL;
     mpArchive = NULL;
 
-    field_0x1b0 = 0;
+    mDisplayMenu = false;
     mpMount = NULL;
     field_0x21a2 = 0;
     field_0x21a1 = 0;
 }
-
-/* ############################################################################################## */
-/* 80397960-80397960 023FC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80397960 = "/res/Layout/saveres.arc";
-#pragma pop
 
 /* 80454438-8045443C 002A38 0004+00 1/1 0/0 0/0 .sdata2          @3849 */
 SECTION_SDATA2 static f32 lit_3849 = 9.0f / 10.0f;
@@ -680,22 +610,22 @@ SECTION_SDATA2 static f32 lit_3850 = 0.5f;
 void dMenu_save_c::_create() {
     stick = new STControl(2, 2, 1, 1, lit_3849, lit_3850, 0, 0x2000);
 
-    if (mUseType == 1 || mUseType == 3 || mUseType == 4) {
+    if (mUseType == TYPE_DEFAULT || mUseType == TYPE_WHITE_EVENT || mUseType == TYPE_BLACK_EVENT) {
         mpMount =
             mDoDvdThd_mountArchive_c::create("/res/Layout/saveres.arc", 0, mDoExt_getJ2dHeap());
     }
 
-    if (mUseType == 2 || mUseType == 3 || mUseType == 4) {
+    if (mUseType == 2 || mUseType == TYPE_WHITE_EVENT || mUseType == TYPE_BLACK_EVENT) {
         u8 var_r31;
         switch (mUseType) {
         case 2:
             var_r31 = 2;
             break;
-        case 4:
+        case TYPE_BLACK_EVENT:
             var_r31 = 3;
             break;
         default:
-        case 3:
+        case TYPE_WHITE_EVENT:
             var_r31 = 1;
             break;
         }
@@ -726,21 +656,15 @@ SECTION_DEAD static char const* const stringBase_80397A05 = "";
 #pragma pop
 
 /* 80450740-80450744 0001C0 0002+02 1/1 0/0 0/0 .sdata           l_msgNum0$3868 */
-SECTION_SDATA static u8 l_msgNum0[2 + 2 /* padding */] = {
+SECTION_SDATA static u8 l_msgNum0[2] = {
     0x08,
     0x07,
-    /* padding */
-    0x00,
-    0x00,
 };
 
 /* 80450744-80450748 0001C4 0002+02 1/1 0/0 0/0 .sdata           l_msgNum$3881 */
-SECTION_SDATA static u8 l_msgNum[2 + 2 /* padding */] = {
+SECTION_SDATA static u8 l_msgNum[2] = {
     0x54,
     0x55,
-    /* padding */
-    0x00,
-    0x00,
 };
 
 /* 80454440-80454444 002A40 0004+00 1/1 0/0 0/0 .sdata2          @4173 */
@@ -789,6 +713,204 @@ SECTION_SDATA2 static f32 lit_4183[1 + 1 /* padding */] = {
 SECTION_SDATA2 static f64 lit_4185 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 801EF904-801F0938 1EA244 1034+00 1/1 0/0 0/0 .text            screenSet__12dMenu_save_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::screenSet() {
+    mSaveSel.Scr = new J2DScreen();
+    mSaveSel.Scr->setPriority("zelda_file_select2.blo", 0x1100000, mpArchive);
+    dPaneClass_showNullPane(mSaveSel.Scr);
+
+    mSaveSel.font[0] = mDoExt_getMesgFont();
+    mSaveSel.font[1] = mDoExt_getSubFont();
+    mSaveSel.mMsgString = new dMsgString_c();
+
+    void* bck = JKRGetNameResource("zelda_file_select2.bck", mpArchive);
+    field_0x40 = (J2DAnmTransformKey*)J2DAnmLoaderDataBase::load(bck);
+    field_0x44 = (J2DAnmTransformKey*)J2DAnmLoaderDataBase::load(bck);
+    field_0x48 = (J2DAnmTransformKey*)J2DAnmLoaderDataBase::load(bck);
+    field_0x4c = (J2DAnmTransformKey*)J2DAnmLoaderDataBase::load(bck);
+    field_0x40->searchUpdateMaterialID(mSaveSel.Scr);
+    field_0x44->searchUpdateMaterialID(mSaveSel.Scr);
+    field_0x48->searchUpdateMaterialID(mSaveSel.Scr);
+    field_0x4c->searchUpdateMaterialID(mSaveSel.Scr);
+
+    mpSelectMoveBase = new CPaneMgr(mSaveSel.Scr, 'w_move_n', 0, NULL);
+    field_0xa0 = mSaveSel.Scr->search('wmenu_n');
+
+    for (int i = 0; i < 3; i++) {
+        mpSelData[i] = new CPaneMgr(mSaveSel.Scr, l_tagName0[i], 0, NULL);
+    }
+
+    mpNoYes[0] = new CPaneMgr(mSaveSel.Scr, 'w_no_n', 0, NULL);
+    mpNoYes[1] = new CPaneMgr(mSaveSel.Scr, 'w_yes_n', 0, NULL);
+
+    for (int i = 0; i < 2; i++) {
+        mpNoYesTxt[i] = new CPaneMgr(mSaveSel.Scr, l_tagName000U[i], 0, NULL);
+        mSaveSel.Scr->search(l_tagName000[i])->hide();
+        ((J2DTextBox*)mpNoYesTxt[i]->getPanePtr())->setFont(mSaveSel.font[0]);
+
+        char message[32];
+        fopMsgM_messageGet(message, l_msgNum0[i]);
+        ((J2DTextBox*)mpNoYesTxt[i]->getPanePtr())->setString(message);
+    }
+
+    mSaveSel.Scr->search('Wi_btn_n')->hide();
+    mSaveSel.Scr->search('GC_btn_n')->show();
+
+    mpBBtnIcon = new CPaneMgrAlpha(mSaveSel.Scr, 'w_nbbtn', 2, NULL);
+    mpABtnIcon = new CPaneMgrAlpha(mSaveSel.Scr, 'w_nabtn', 2, NULL);
+    mpBackTxt = new CPaneMgrAlpha(mSaveSel.Scr, 'f_modo', 2, NULL);
+    mpConfirmTxt = new CPaneMgrAlpha(mSaveSel.Scr, 'f_kete', 2, NULL);
+
+    mpBackTxt->setAlpha(0);
+    mpConfirmTxt->setAlpha(0);
+    mpBBtnIcon->setAlpha(128);
+    mpABtnIcon->setAlpha(128);
+
+    for (int i = 0; i < 2; i++) {
+        J2DTextBox* tbox[2];
+        tbox[i] = (J2DTextBox*)mSaveSel.Scr->search(l_tagName00U[i]);
+        mSaveSel.Scr->search(l_tagName00[i])->hide();
+        tbox[i]->setFont(mSaveSel.font[0]);
+
+        char message[32];
+        fopMsgM_messageGet(message, l_msgNum[i]);
+        tbox[i]->setString(message);
+    }
+
+    const void* bpk = JKRFileLoader::getGlbResource("zelda_file_select2.bpk", mpArchive);
+    mpFileWakuAnm = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(bpk);
+    mpFileWakuAnm->searchUpdateMaterialID(mSaveSel.Scr);
+    mFileWakuAnmFrame = 0;
+
+    const void* btk = JKRFileLoader::getGlbResource("zelda_file_select2_02.btk", mpArchive);
+    mpFileWakuRotAnm = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(btk);
+    mpFileWakuRotAnm->searchUpdateMaterialID(mSaveSel.Scr);
+    mFileWakuRotAnmFrame = 0;
+
+    for (int i = 0; i < 3; i++) {
+        mpSelWakuMoyo[i] = new CPaneMgr(mSaveSel.Scr, l_tagName3[i], 0, NULL);
+        mpSelWakuGold[i] = new CPaneMgr(mSaveSel.Scr, l_tagName4[i], 0, NULL);
+        mpSelWakuGold2[i] = new CPaneMgr(mSaveSel.Scr, l_tagName5[i], 0, NULL);
+
+        mpSelWakuMoyo[i]->getPanePtr()->setAnimation(mpFileWakuAnm);
+        mpSelWakuGold[i]->getPanePtr()->setAnimation(mpFileWakuAnm);
+        mpSelWakuGold2[i]->getPanePtr()->setAnimation(mpFileWakuAnm);
+        mpSelWakuGold[i]->getPanePtr()->setAnimation(mpFileWakuRotAnm);
+        mpSelWakuGold2[i]->getPanePtr()->setAnimation(mpFileWakuRotAnm);
+    }
+
+    for (int i = 0; i < 2; i++) {
+        mNoYesBase[i] = new CPaneMgr(mSaveSel.Scr, l_tagName9[i], 0, NULL);
+        mNoYesGold[i] = new CPaneMgr(mSaveSel.Scr, l_tagName10[i], 0, NULL);
+        mNoYesGold2[i] = new CPaneMgr(mSaveSel.Scr, l_tagName11[i], 0, NULL);
+
+        mNoYesBase[i]->getPanePtr()->setAnimation(mpFileWakuAnm);
+        mNoYesGold[i]->getPanePtr()->setAnimation(mpFileWakuAnm);
+        mNoYesGold2[i]->getPanePtr()->setAnimation(mpFileWakuAnm);
+        mNoYesGold[i]->getPanePtr()->setAnimation(mpFileWakuRotAnm);
+        mNoYesGold2[i]->getPanePtr()->setAnimation(mpFileWakuRotAnm);
+        mNoYesBase[i]->setAlpha(0);
+        mNoYesGold[i]->setAlpha(0);
+        mNoYesGold2[i]->setAlpha(0);
+    }
+
+    field_0x150 = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(bpk);
+    field_0x150->searchUpdateMaterialID(mSaveSel.Scr);
+
+    const void* btk2 = JKRFileLoader::getGlbResource("zelda_file_select2.btk", mpArchive);
+    field_0x158 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(btk2);
+    field_0x158->searchUpdateMaterialID(mSaveSel.Scr);
+
+    const void* brk = JKRFileLoader::getGlbResource("zelda_file_select2.brk", mpArchive);
+    field_0x160 = (J2DAnmTevRegKey*)J2DAnmLoaderDataBase::load(brk);
+    field_0x160->searchUpdateMaterialID(mSaveSel.Scr);
+
+    field_0x154 = 0;
+    field_0x15c = 0;
+    field_0x164 = 0;
+
+    for (int i = 0; i < 3; i++) {
+        mpBookWaku[i] = new CPaneMgr(mSaveSel.Scr, l_tagName12[i], 0, NULL);
+
+        mpBookWaku[i]->getPanePtr()->setAnimation(field_0x150);
+        mpBookWaku[i]->getPanePtr()->setAnimation(field_0x158);
+        mpBookWaku[i]->getPanePtr()->setAnimation(field_0x160);
+        mpBookWaku[i]->setAlpha(0);
+    }
+
+    mSaveSel.Scr->search('w_tabi_s')->hide();
+    mSaveSel.Scr->search('w_tabi_x')->hide();
+
+    for (int i = 0; i < 10; i++) {
+        mSaveSel.Scr->search(l_tagName211[i])->hide();
+    }
+
+    for (int i = 0; i < 2; i++) {
+        mpHeaderTxtPane[i] = new CPaneMgrAlpha(mSaveSel.Scr, l_tagName21[i], 0, NULL);
+
+        ((J2DTextBox*)mpHeaderTxtPane[i]->getPanePtr())->setFont(mSaveSel.font[0]);
+        ((J2DTextBox*)mpHeaderTxtPane[i]->getPanePtr())->setString(0x100, "");
+        ((J2DTextBox*)mpHeaderTxtPane[i]->getPanePtr())->setFontSize(19.0f, 19.0f);
+        ((J2DTextBox*)mpHeaderTxtPane[i]->getPanePtr())->setLineSpace(20.0f);
+        ((J2DTextBox*)mpHeaderTxtPane[i]->getPanePtr())->setCharSpace(0.0f);
+        mpHeaderTxt[i] = ((J2DTextBox*)mpHeaderTxtPane[i]->getPanePtr())->getStringPtr();
+    }
+
+    mpHeaderTxtPane[0]->setAlpha(255);
+    mpHeaderTxtPane[1]->setAlpha(0);
+    mHeaderTxtType = 0;
+
+    field_0xb4 = mSaveSel.Scr->search('w_er_n');
+    mSaveSel.Scr->search('w_er_msg')->hide();
+    mSaveSel.Scr->search('w_er_msR')->hide();
+
+    for (int i = 0; i < 2; i++) {
+        mpErrTxtPane[i] = new CPaneMgrAlpha(mSaveSel.Scr, l_tagName20[i], 0, NULL);
+
+        ((J2DTextBox*)mpErrTxtPane[i]->getPanePtr())->setFont(mSaveSel.font[0]);
+        ((J2DTextBox*)mpErrTxtPane[i]->getPanePtr())->setString(0x200, "");
+        ((J2DTextBox*)mpErrTxtPane[i]->getPanePtr())->resize(440.0f, 198.0f);
+        ((J2DTextBox*)mpErrTxtPane[i]->getPanePtr())->setFontSize(21.0f, 21.0f);
+        ((J2DTextBox*)mpErrTxtPane[i]->getPanePtr())->setLineSpace(21.0f);
+        ((J2DTextBox*)mpErrTxtPane[i]->getPanePtr())->setCharSpace(1.0f);
+        mpErrTxt[i] = ((J2DTextBox*)mpErrTxtPane[i]->getPanePtr())->getStringPtr();
+        mpErrTxtPane[i]->show();
+    }
+
+    mErrTxtType = 0;
+    mpErrTxtPane[mErrTxtType]->setAlpha(255);
+    mpErrTxtPane[mErrTxtType ^ 1]->setAlpha(0);
+
+    mSelectedFile = dComIfGs_getDataNum();
+    mSelIcon = new dSelect_cursor_c(0, 1.0f, NULL);
+    mSelIcon->setParam(0.96f, 0.94f, 0.03f, 0.7f, 0.7f);
+
+    Vec* pos = &mpSelData[mSelectedFile]->getGlobalVtxCenter(false, 0);
+    mSelIcon->setPos(pos->x, pos->y, mpSelData[mSelectedFile]->getPanePtr(), true);
+    mSelIcon->setAlphaRate(0.0f);
+
+    J2DPane* pane = mSaveSel.Scr->search('Nm_02');
+    pane->setAnimation(field_0x40);
+    field_0x64 = 0;
+    field_0x50 = 1;
+    field_0x40->setFrame(field_0x50);
+    pane->animationTransform();
+    pane->setAnimation((J2DAnmTransformKey*)NULL);
+
+    mpHeaderTxtPane[0]->getPanePtr()->scale(1.0f, 1.0f);
+    mpHeaderTxtPane[1]->getPanePtr()->scale(1.0f, 1.0f);
+
+    for (int i = 0; i < 3; i++) {
+        mFileInfo[i] = new dFile_info_c(mpArchive, 1);
+        mFileInfo[i]->setBasePane(mSaveSel.Scr->search(l_tagName13[i]));
+        mpDataBase[i] = mFileInfo[i]->getDatBase();
+        mpNoDataBase[i] = mFileInfo[i]->getNoDatBase();
+    }
+
+    mWarning = new dFile_warning_c(mpArchive, 0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -797,6 +919,7 @@ asm void dMenu_save_c::screenSet() {
 #include "asm/d/menu/d_menu_save/screenSet__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F0938-801F0958 1EB278 0020+00 0/0 2/2 0/0 .text            initialize__12dMenu_save_cFv */
 void dMenu_save_c::initialize() {
@@ -827,7 +950,7 @@ void dMenu_save_c::displayInit() {
 bool dMenu_save_c::_open() {
     field_0x1bf = 1;
 
-    if (mUseType == 1 || mUseType == 3 || mUseType == 4) {
+    if (mUseType == TYPE_DEFAULT || mUseType == TYPE_WHITE_EVENT || mUseType == TYPE_BLACK_EVENT) {
         if (!mpMount->sync()) {
             return false;
         }
@@ -836,8 +959,8 @@ bool dMenu_save_c::_open() {
             mpArchive = mpMount->getArchive();
             screenSet();
 
-            if (mUseType == 1) {
-                field_0x1b0 = 1;
+            if (mUseType == TYPE_DEFAULT) {
+                mDisplayMenu = true;
                 field_0x1bf = 0;
             }
 
@@ -847,16 +970,16 @@ bool dMenu_save_c::_open() {
         }
     }
 
-    field_0x1b6 = 0;
+    mYesNoCursor = CURSOR_NO;
     field_0x2190 = 1;
 
     switch (mUseType) {
-    case 1:
+    case TYPE_DEFAULT:
         mMenuProc = PROC_MEMCARD_CHECK;
         break;
-    case 3:
-    case 4:
-        field_0x1b6 = 1;
+    case TYPE_WHITE_EVENT:
+    case TYPE_BLACK_EVENT:
+        mYesNoCursor = CURSOR_YES;
         msgTxtSet(0x3CE, true);  // "Do you want to save?"
         mMenuProc = PROC_SAVE_QUESTION;
         break;
@@ -892,33 +1015,33 @@ void dMenu_save_c::_delete() {
         mpScrnExplain = NULL;
     }
 
-    if (mMenuSave.mMsgString != NULL) {
-        delete mMenuSave.mMsgString;
+    if (mSaveSel.mMsgString != NULL) {
+        delete mSaveSel.mMsgString;
     }
 
-    if (mMenuSave.Scr != NULL) {
-        delete mMenuSave.Scr;
+    if (mSaveSel.Scr != NULL) {
+        delete mSaveSel.Scr;
     }
 
     for (int i = 0; i < 3; i++) {
-        if (field_0xd4[i] != NULL) {
-            delete field_0xd4[i];
+        if (mpSelWakuMoyo[i] != NULL) {
+            delete mpSelWakuMoyo[i];
         }
 
-        if (field_0xe0[i] != NULL) {
-            delete field_0xe0[i];
+        if (mpSelWakuGold[i] != NULL) {
+            delete mpSelWakuGold[i];
         }
 
-        if (field_0xec[i] != NULL) {
-            delete field_0xec[i];
+        if (mpSelWakuGold2[i] != NULL) {
+            delete mpSelWakuGold2[i];
         }
 
-        if (field_0xf8[i] != NULL) {
-            delete field_0xf8[i];
+        if (mpBookWaku[i] != NULL) {
+            delete mpBookWaku[i];
         }
 
-        if (field_0x68[i] != NULL) {
-            delete field_0x68[i];
+        if (mpSelData[i] != NULL) {
+            delete mpSelData[i];
         }
 
         if (mFileInfo[i] != NULL) {
@@ -926,37 +1049,37 @@ void dMenu_save_c::_delete() {
         }
     }
 
-    if (field_0x58 != NULL) {
-        delete field_0x58;
+    if (mpSelectMoveBase != NULL) {
+        delete mpSelectMoveBase;
     }
 
     for (int i = 0; i < 2; i++) {
-        if (field_0x84[i] != NULL) {
-            delete field_0x84[i];
+        if (mpNoYes[i] != NULL) {
+            delete mpNoYes[i];
         }
 
-        if (field_0x118[i] != NULL) {
-            delete field_0x118[i];
+        if (mNoYesBase[i] != NULL) {
+            delete mNoYesBase[i];
         }
 
-        if (field_0x120[i] != NULL) {
-            delete field_0x120[i];
+        if (mNoYesGold[i] != NULL) {
+            delete mNoYesGold[i];
         }
 
-        if (field_0x128[i] != NULL) {
-            delete field_0x128[i];
+        if (mNoYesGold2[i] != NULL) {
+            delete mNoYesGold2[i];
         }
 
-        if (field_0x168[i] != NULL) {
-            delete field_0x168[i];
+        if (mpHeaderTxtPane[i] != NULL) {
+            delete mpHeaderTxtPane[i];
         }
 
-        if (field_0xc0[i] != NULL) {
-            delete field_0xc0[i];
+        if (mpErrTxtPane[i] != NULL) {
+            delete mpErrTxtPane[i];
         }
 
-        if (field_0x138[i] != NULL) {
-            delete field_0x138[i];
+        if (mpNoYesTxt[i] != NULL) {
+            delete mpNoYesTxt[i];
         }
     }
 
@@ -972,12 +1095,12 @@ void dMenu_save_c::_delete() {
         delete field_0x48;
     }
 
-    if (field_0x140 != NULL) {
-        delete field_0x140;
+    if (mpFileWakuAnm != NULL) {
+        delete mpFileWakuAnm;
     }
 
-    if (field_0x148 != NULL) {
-        delete field_0x148;
+    if (mpFileWakuRotAnm != NULL) {
+        delete mpFileWakuRotAnm;
     }
 
     if (field_0x150 != NULL) {
@@ -996,20 +1119,20 @@ void dMenu_save_c::_delete() {
         delete field_0x4c;
     }
 
-    if (field_0x194 != NULL) {
-        delete field_0x194;
+    if (mpBBtnIcon != NULL) {
+        delete mpBBtnIcon;
     }
 
-    if (field_0x198 != NULL) {
-        delete field_0x198;
+    if (mpABtnIcon != NULL) {
+        delete mpABtnIcon;
     }
 
-    if (field_0x1a0 != NULL) {
-        delete field_0x1a0;
+    if (mpBackTxt != NULL) {
+        delete mpBackTxt;
     }
 
-    if (field_0x1a4 != NULL) {
-        delete field_0x1a4;
+    if (mpConfirmTxt != NULL) {
+        delete mpConfirmTxt;
     }
 
     if (mSelIcon != NULL) {
@@ -1061,10 +1184,10 @@ void dMenu_save_c::_move() {
 
 /* 801F1100-801F1148 1EBA40 0048+00 1/1 0/0 0/0 .text            saveSelAnm__12dMenu_save_cFv */
 void dMenu_save_c::saveSelAnm() {
-    if (field_0x1b0 != 0) {
+    if (mDisplayMenu) {
         selFileWakuAnm();
         bookIconAnm();
-        mMenuSave.Scr->animation();
+        mSaveSel.Scr->animation();
     }
 }
 
@@ -1072,17 +1195,17 @@ void dMenu_save_c::saveSelAnm() {
 // matches with literals
 #ifdef NONMATCHING
 void dMenu_save_c::selFileWakuAnm() {
-    field_0x144 += 2;
-    if (field_0x144 >= field_0x140->getFrameMax()) {
-        field_0x144 -= field_0x140->getFrameMax();
+    mFileWakuAnmFrame += 2;
+    if (mFileWakuAnmFrame >= mpFileWakuAnm->getFrameMax()) {
+        mFileWakuAnmFrame -= mpFileWakuAnm->getFrameMax();
     }
-    field_0x140->setFrame(field_0x144);
+    mpFileWakuAnm->setFrame(mFileWakuAnmFrame);
 
-    field_0x14c += 2;
-    if (field_0x14c >= field_0x148->getFrameMax()) {
-        field_0x14c -= field_0x148->getFrameMax();
+    mFileWakuRotAnmFrame += 2;
+    if (mFileWakuRotAnmFrame >= mpFileWakuRotAnm->getFrameMax()) {
+        mFileWakuRotAnmFrame -= mpFileWakuRotAnm->getFrameMax();
     }
-    field_0x148->setFrame(field_0x14c);
+    mpFileWakuRotAnm->setFrame(mFileWakuRotAnmFrame);
 }
 #else
 #pragma push
@@ -1146,7 +1269,7 @@ void dMenu_save_c::memCardWatch() {
         if (mpScrnExplain != NULL) {
             u8 status = mpScrnExplain->getStatus();
             if (status != 0 && (status == 3 || status == 4)) {
-                mpScrnExplain->setForceSelect();
+                mpScrnExplain->onForceSelect();
             }
         }
         mMenuProc = PROC_MEMCARD_CHECK;
@@ -1160,34 +1283,34 @@ void dMenu_save_c::memCardWatch() {
 #ifdef NONMATCHING
 void dMenu_save_c::saveQuestion() {
     if (YesNoSelect()) {
-        if (field_0x1b6 == 1) {
+        if (mYesNoCursor == CURSOR_YES) {
             field_0x1c0 = 1;
 
-            J2DPane* pane = mMenuSave.Scr->search('Nm_02');
+            J2DPane* pane = mSaveSel.Scr->search('Nm_02');
             pane->setAnimation(field_0x40);
 
             field_0xd2 = 0;
             field_0x9c = 0;
             field_0x17a = 0;
 
-            strcpy(field_0x170[field_0x178], "");
-            strcpy(field_0x170[field_0x178 ^ 1], "");
+            strcpy(mpHeaderTxt[mHeaderTxtType], "");
+            strcpy(mpHeaderTxt[mHeaderTxtType ^ 1], "");
             field_0x64 = 0;
             field_0x50 = 1;
             field_0x40->setFrame(field_0x50);
             pane->animationTransform();
             pane->setAnimation((J2DAnmTransformKey*)NULL);
-            field_0x168[0]->getPanePtr()->scale(1.0f, 1.0f);
-            field_0x168[1]->getPanePtr()->scale(1.0f, 1.0f);
+            mpHeaderTxtPane[0]->getPanePtr()->scale(1.0f, 1.0f);
+            mpHeaderTxtPane[1]->getPanePtr()->scale(1.0f, 1.0f);
             mMenuProc = PROC_SAVE_QUESTION2;
         } else {
             switch (mUseType) {
-            case 3:
+            case TYPE_WHITE_EVENT:
                 mEndStatus = 1;
                 mSaveStatus = 3;
                 mMenuProc = PROC_SAVE_WAIT;
                 break;
-            case 4:
+            case TYPE_BLACK_EVENT:
                 field_0x2190 = 0;
                 msgTxtSet(0x4E4, true);  // To save your progress, press START then choose Save
                 mMenuProc = PROC_SAVE_GUIDE;
@@ -1208,90 +1331,99 @@ asm void dMenu_save_c::saveQuestion() {
 #endif
 
 /* 801F1558-801F1620 1EBE98 00C8+00 1/0 0/0 0/0 .text            saveQuestion2__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::saveQuestion2() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/saveQuestion2__12dMenu_save_cFv.s"
+void dMenu_save_c::saveQuestion2() {
+    if (mpScrnExplain != NULL && mpScrnExplain->getStatus() == 0) {
+        if (mUseType == TYPE_BLACK_EVENT) {
+            mWaitTimer = g_msHIO.mFadeOutTimer;
+            mDoGph_gInf_c::startFadeOut(mWaitTimer);
+            field_0x21a0 = 1;
+            mMenuProc = PROC_SAVE_QUESTION21;
+        } else {
+            mDoGph_gInf_c::startFadeOut(1);
+            field_0x21a0 = 1;
+            mMenuProc = PROC_SAVE_QUESTION3;
+        }
+    }
 }
-#pragma pop
 
 /* 801F1620-801F1644 1EBF60 0024+00 1/0 0/0 0/0 .text            saveQuestion21__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::saveQuestion21() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/saveQuestion21__12dMenu_save_cFv.s"
+void dMenu_save_c::saveQuestion21() {
+    if (mWaitTimer != 0) {
+        mWaitTimer--;
+        return;
+    }
+
+    mMenuProc = PROC_SAVE_QUESTION3;
 }
-#pragma pop
 
 /* 801F1644-801F16B8 1EBF84 0074+00 1/0 0/0 0/0 .text            saveQuestion3__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::saveQuestion3() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/saveQuestion3__12dMenu_save_cFv.s"
+void dMenu_save_c::saveQuestion3() {
+    mDisplayMenu = true;
+    mWaitTimer = g_msHIO.mFadeOutTimer;
+    mDoGph_gInf_c::startFadeIn(mWaitTimer);
+    field_0x21a0 = 0;
+    mMenuProc = PROC_SAVE_QUESTION4;
 }
-#pragma pop
 
 /* 801F16B8-801F16F4 1EBFF8 003C+00 1/0 0/0 0/0 .text            saveQuestion4__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::saveQuestion4() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/saveQuestion4__12dMenu_save_cFv.s"
+void dMenu_save_c::saveQuestion4() {
+    if (mDoRst::isReset()) {
+        return;
+    }
+
+    if (mWaitTimer != 0) {
+        mWaitTimer--;
+        return;
+    }
+
+    field_0x1bf = 0;
+    mMenuProc = PROC_MEMCARD_CHECK;
 }
-#pragma pop
 
 /* 801F16F4-801F1720 1EC034 002C+00 1/0 0/0 0/0 .text            saveGuide__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::saveGuide() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/saveGuide__12dMenu_save_cFv.s"
+void dMenu_save_c::saveGuide() {
+    if (mpScrnExplain->getStatus() == 0) {
+        mEndStatus = 1;
+        mSaveStatus = 3;
+        mMenuProc = PROC_SAVE_WAIT;
+    }
 }
-#pragma pop
 
 /* 801F1720-801F191C 1EC060 01FC+00 2/0 0/0 0/0 .text            memCardCheck__12dMenu_save_cFv */
 // matches with literals
 #ifdef NONMATCHING
 void dMenu_save_c::memCardCheck() {
-    u32 cardState = g_mDoMemCd_control.getStatus(0);
+    u32 cardStatus = g_mDoMemCd_control.getStatus(0);
 
-    if (cardState != 14) {
-        switch (cardState) {
+    if (cardStatus != 14) {
+        switch (cardStatus) {
         case 0:
             field_0x1c0 = 0;
             errDispInitSet(0x3AB);  // There is no Memory Card in Slot A.
             field_0x9e = 0;
             field_0x1b4 = 9;
-            field_0x1b5 = 0x3d;
+            mErrProc = 0x3D;
             break;
         case 8:
             field_0x1c0 = 0;
             errDispInitSet(0x3AC);  // The Memory Card in Slot A is damaged
             field_0x9e = 0;
             field_0x1b4 = 9;
-            field_0x1b5 = 0x3d;
+            mErrProc = 0x3D;
             break;
         case 9:
             field_0x1c0 = 0;
             errDispInitSet(0x3AD);  // Wrong Device in Slot A.
             field_0x9e = 0;
             field_0x1b4 = 9;
-            field_0x1b5 = 0x3d;
+            mErrProc = 0x3D;
             break;
         case 10:
             field_0x1c0 = 0;
             errDispInitSet(0x3AE);  // The Memory Card in Slot A is not compatible.
             field_0x9e = 0;
             field_0x1b4 = 9;
-            field_0x1b5 = 0x3d;
+            mErrProc = 0x3D;
             break;
         case 6:
         case 7:
@@ -1305,8 +1437,8 @@ void dMenu_save_c::memCardCheck() {
             field_0x1c0 = 0;
             errDispInitSet(0x3B4);  // There is Insufficient space on the Memory Card in Slot A.
             field_0x9e = 0;
-            field_0x1cc = &iplSelMsgInitSet;
-            field_0x1b5 = 10;
+            mpErrFunc = &iplSelMsgInitSet;
+            mErrProc = PROC_IPL_SELECT_DISP1;
             field_0x1b4 = 9;
             break;
         case 2:
@@ -1317,8 +1449,8 @@ void dMenu_save_c::memCardCheck() {
             field_0x1c0 = 0;
             errDispInitSet(0x3C4);  // There is no save for this game on the Memory Card in Slot A.
             field_0x9e = 0;
-            field_0x1cc = &gameFileMakeSelInitSet;
-            field_0x1b5 = 0x17;
+            mpErrFunc = &gameFileMakeSelInitSet;
+            mErrProc = PROC_MAKE_GAME_FILE_SEL_DISP;
             field_0x1b4 = 9;
             break;
         case 3:
@@ -1342,54 +1474,94 @@ asm void dMenu_save_c::memCardCheck() {
 /* 801F191C-801F19A8 1EC25C 008C+00 1/0 0/0 0/0 .text memCardErrMsgWaitKey__12dMenu_save_cFv */
 void dMenu_save_c::memCardErrMsgWaitKey() {
     if (cAPICPad_ANY_BUTTON(PAD_1) && dMeter2Info_getMsgKeyWaitTimer() == 0) {
-        if (field_0x1b5 == 0x3D) {
+        if (mErrProc == 0x3D) {
             closeSelect();
         } else {
-            if (field_0x1cc != NULL) {
-                (this->*field_0x1cc)();
+            if (mpErrFunc != NULL) {
+                (this->*mpErrFunc)();
             }
-            mMenuProc = field_0x1b5;
+            mMenuProc = mErrProc;
         }
     }
 }
 
 /* 801F19A8-801F19DC 1EC2E8 0034+00 1/1 0/0 0/0 .text backSaveQuestionInitSet__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::backSaveQuestionInitSet() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/backSaveQuestionInitSet__12dMenu_save_cFv.s"
+void dMenu_save_c::backSaveQuestionInitSet() {
+    field_0x2190 = 1;
+    mYesNoCursor = CURSOR_YES;
+    msgTxtSet(0x3CE, true);  // Do you want to save?
 }
-#pragma pop
 
 /* 801F19DC-801F1A48 1EC31C 006C+00 1/0 0/0 0/0 .text            backSaveQuestion__12dMenu_save_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::backSaveQuestion() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/backSaveQuestion__12dMenu_save_cFv.s"
+void dMenu_save_c::backSaveQuestion() {
+    mWaitTimer = g_msHIO.mFadeOutTimer;
+    mDoGph_gInf_c::startFadeOut(mWaitTimer);
+    field_0x21a0 = 1;
+    mMenuProc = PROC_BACK_SAVE_QUESTION2;
 }
-#pragma pop
 
 /* 801F1A48-801F1B38 1EC388 00F0+00 1/0 0/0 0/0 .text            backSaveQuestion2__12dMenu_save_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::backSaveQuestion2() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/backSaveQuestion2__12dMenu_save_cFv.s"
+void dMenu_save_c::backSaveQuestion2() {
+    if (mWaitTimer != 0) {
+        mWaitTimer--;
+        return;
+    }
+
+    if (mUseType == TYPE_BLACK_EVENT) {
+        if (field_0x21a2 == 1) {
+            field_0x2190 = 0;
+            mYesNoCursor = CURSOR_YES;
+            msgTxtSet(0x4E4, true);  // To save your progress, press START then choose Save
+        } else {
+            backSaveQuestionInitSet();
+        }
+    } else {
+        backSaveQuestionInitSet();
+    }
+
+    mDoGph_gInf_c::startFadeIn(1);
+    field_0x21a0 = 0;
+    field_0x1c0 = 0;
+    field_0x1bf = 1;
+    mDisplayMenu = false;
+
+    if (mUseType == TYPE_BLACK_EVENT) {
+        if (field_0x21a2 == 1) {
+            mMenuProc = PROC_SAVE_GUIDE;
+        } else {
+            mMenuProc = PROC_SAVE_QUESTION;
+        }
+    } else {
+        mMenuProc = PROC_SAVE_QUESTION;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80454478-8045447C 002A78 0004+00 16/16 0/0 0/0 .sdata2          @4879 */
 SECTION_SDATA2 static f32 lit_4879 = -1.0f;
 
 /* 801F1B38-801F1BF8 1EC478 00C0+00 5/5 0/0 0/0 .text            closeSelect__12dMenu_save_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::closeSelect() {
+    mDoAud_seStart(Z2SE_SY_MENU_BACK, NULL, 0, 0);
+    mSelIcon->setAlphaRate(0.0f);
+
+    if (mUseType != TYPE_WHITE_EVENT && mUseType != TYPE_BLACK_EVENT) {
+        mSaveStatus = 3;
+        if (dMeter2Info_getMiniGameItemSetFlag() != 0) {
+            dMeter2Info_setMiniGameItem(dMeter2Info_getMiniGameItemSetFlag());
+        }
+        mMenuProc = PROC_SAVE_WAIT;
+    } else {
+        field_0x1bf = 1;
+        field_0x21a2 = 0;
+        mMenuProc = PROC_BACK_SAVE_QUESTION;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1398,8 +1570,18 @@ asm void dMenu_save_c::closeSelect() {
 #include "asm/d/menu/d_menu_save/closeSelect__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F1BF8-801F1C70 1EC538 0078+00 2/2 0/0 0/0 .text            closeSelect2__12dMenu_save_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::closeSelect2() {
+    mDoAud_seStart(Z2SE_SY_CURSOR_OK, NULL, 0, 0);
+    mSelIcon->setAlphaRate(0.0f);
+    field_0x21a2 = 1;
+    mMenuProc = PROC_BACK_SAVE_QUESTION;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1408,6 +1590,7 @@ asm void dMenu_save_c::closeSelect2() {
 #include "asm/d/menu/d_menu_save/closeSelect2__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F1C70-801F1C94 1EC5B0 0024+00 1/0 0/0 0/0 .text            iplSelMsgInitSet__12dMenu_save_cFv
  */
@@ -1416,16 +1599,24 @@ void dMenu_save_c::iplSelMsgInitSet() {
 }
 
 /* 801F1C94-801F1CEC 1EC5D4 0058+00 1/0 0/0 0/0 .text            iplSelInitSet__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::iplSelInitSet() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/iplSelInitSet__12dMenu_save_cFv.s"
+void dMenu_save_c::iplSelInitSet() {
+    errorTxtSet(0x3C0);  // Would you like to manage the contents of your Memory Card?
+    mYesNoCursor = CURSOR_NO;
+    ketteiTxtDispAnmInit(1);
+    yesnoMenuMoveAnmInitSet(2999, 3009, 0);
 }
-#pragma pop
 
 /* 801F1CEC-801F1D54 1EC62C 0068+00 1/0 0/0 0/0 .text            IPLSelectDisp1__12dMenu_save_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::IPLSelectDisp1() {
+    if (errorTxtChangeAnm() == true) {
+        mpErrFunc = &iplSelInitSet;
+        mErrProc = PROC_IPL_SELECT_DISP2;
+        mMenuProc = PROC_MEMCARD_ERRMSG_WAIT_KEY;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1434,109 +1625,148 @@ asm void dMenu_save_c::IPLSelectDisp1() {
 #include "asm/d/menu/d_menu_save/IPLSelectDisp1__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F1D54-801F1DD4 1EC694 0080+00 1/0 0/0 0/0 .text            IPLSelectDisp2__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::IPLSelectDisp2() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/IPLSelectDisp2__12dMenu_save_cFv.s"
+void dMenu_save_c::IPLSelectDisp2() {
+    bool txtAnmComplete = errorTxtChangeAnm();
+    bool moveAnmComplete = yesnoMenuMoveAnm();
+    bool ketteiAnmComplete = ketteiTxtDispAnm();
+
+    if (txtAnmComplete == true && moveAnmComplete == true && ketteiAnmComplete == true) {
+        yesnoCursorShow();
+        mMenuProc = PROC_MEMCARD_ERR_GO_IPL_SEL;
+    }
 }
-#pragma pop
 
 /* 801F1DD4-801F1E58 1EC714 0084+00 1/0 0/0 0/0 .text memCardErrGoIPLSel__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::memCardErrGoIPLSel() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/memCardErrGoIPLSel__12dMenu_save_cFv.s"
+void dMenu_save_c::memCardErrGoIPLSel() {
+    if (errYesNoSelect(1, 0)) {
+        if (mYesNoCursor != CURSOR_NO) {
+            errorTxtSet(0x3BD);  // The current game data will not be saved
+            mYesNoPrevCursor = mYesNoCursor;
+            mYesNoCursor = CURSOR_NO;
+            yesnoSelectAnmSet(1);
+            mMenuProc = PROC_IPL_SELECT2_DISP;
+        } else {
+            closeSelect();
+        }
+    }
 }
-#pragma pop
 
 /* 801F1E58-801F1EE0 1EC798 0088+00 1/0 0/0 0/0 .text            IPLSelect2Disp__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::IPLSelect2Disp() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/IPLSelect2Disp__12dMenu_save_cFv.s"
+void dMenu_save_c::IPLSelect2Disp() {
+    bool txtAnmComplete = errorTxtChangeAnm();
+    bool moveAnmComplete = yesnoSelectMoveAnm(1);
+    bool wakuAnmComplete = yesnoWakuAlpahAnm(mYesNoPrevCursor);
+
+    if (txtAnmComplete == true && moveAnmComplete == true && wakuAnmComplete == true) {
+        yesnoCursorShow();
+        mMenuProc = PROC_MEMCARD_ERR_GO_IPL_SEL2;
+    }
 }
-#pragma pop
 
 /* 801F1EE0-801F1F80 1EC820 00A0+00 1/0 0/0 0/0 .text memCardErrGoIPLSel2__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::memCardErrGoIPLSel2() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/memCardErrGoIPLSel2__12dMenu_save_cFv.s"
+void dMenu_save_c::memCardErrGoIPLSel2() {
+    if (errYesNoSelect(1, 0)) {
+        if (mYesNoCursor != CURSOR_NO) {
+            field_0x1bf = 1;
+            mWaitTimer = g_msHIO.mFadeOutTimer;
+            mDoGph_gInf_c::startFadeOut(mWaitTimer);
+            field_0x21a0 = 1;
+            mMenuProc = PROC_MEMCARD_ERR_GOTO_IPL;
+        } else {
+            closeSelect();
+        }
+    }
 }
-#pragma pop
 
 /* 801F1F80-801F2000 1EC8C0 0080+00 1/0 0/0 0/0 .text            memCardErrGotoIPL__12dMenu_save_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::memCardErrGotoIPL() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/memCardErrGotoIPL__12dMenu_save_cFv.s"
+void dMenu_save_c::memCardErrGotoIPL() {
+    if (mWaitTimer != 0) {
+        mWaitTimer--;
+        return;
+    }
+
+    field_0x21a1 = 1;
+    mDoGph_gInf_c::startFadeIn(0);
+    field_0x21a0 = 0;
+    mDoRst::onShutdown();
 }
-#pragma pop
 
 /* 801F2000-801F20AC 1EC940 00AC+00 1/0 0/0 0/0 .text memCardErrMsgWaitFormatSel__12dMenu_save_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::memCardErrMsgWaitFormatSel() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/memCardErrMsgWaitFormatSel__12dMenu_save_cFv.s"
+void dMenu_save_c::memCardErrMsgWaitFormatSel() {
+    if (errYesNoSelect(1, 0)) {
+        if (mYesNoCursor != CURSOR_NO) {
+            errorTxtSet(0x3B9);  // Formatting the Card in Slot A will erase all save data
+            mYesNoPrevCursor = mYesNoCursor;
+            mYesNoCursor = CURSOR_NO;
+            yesnoSelectAnmSet(1);
+            mMenuProc = PROC_CARD_FORMAT_YES_SEL_DISP;
+        } else {
+            errorTxtSet(0x3BC);  // Unable to save. The Card in Slot A cannot be used
+            field_0x9e = 0;
+            yesnoMenuMoveAnmInitSet(3009, 2999, 0);
+            mMenuProc = PROC_CARD_FORMAT_NO_SEL_DISP;
+        }
+    }
 }
-#pragma pop
 
 /* 801F20AC-801F2134 1EC9EC 0088+00 1/0 0/0 0/0 .text cardFormatYesSelDisp__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::cardFormatYesSelDisp() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/cardFormatYesSelDisp__12dMenu_save_cFv.s"
+void dMenu_save_c::cardFormatYesSelDisp() {
+    bool txtChangeAnm = errorTxtChangeAnm();
+    bool moveAnm = yesnoSelectMoveAnm(1);
+    bool wakuAlphaAnm = yesnoWakuAlpahAnm(mYesNoPrevCursor);
+
+    if (txtChangeAnm == true && moveAnm == true && wakuAlphaAnm == true) {
+        yesnoCursorShow();
+        mMenuProc = PROC_MEMCARD_ERRMSG_WAIT_FORMAT_SEL2;
+    }
 }
-#pragma pop
 
 /* 801F2134-801F219C 1ECA74 0068+00 1/0 0/0 0/0 .text cardFormatNoSelDisp__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::cardFormatNoSelDisp() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/cardFormatNoSelDisp__12dMenu_save_cFv.s"
+void dMenu_save_c::cardFormatNoSelDisp() {
+    bool txtChangeAnm = errorTxtChangeAnm();
+    bool moveAnm = yesnoMenuMoveAnm();
+
+    if (txtChangeAnm == true && moveAnm == true) {
+        mMenuProc = PROC_MEMCARD_ERRMSG_WAIT_KEY;
+        mErrProc = 0x3D;
+    }
 }
-#pragma pop
 
 /* 801F219C-801F2250 1ECADC 00B4+00 1/0 0/0 0/0 .text
  * memCardErrMsgWaitFormatSel2__12dMenu_save_cFv                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::memCardErrMsgWaitFormatSel2() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/memCardErrMsgWaitFormatSel2__12dMenu_save_cFv.s"
+void dMenu_save_c::memCardErrMsgWaitFormatSel2() {
+    if (errYesNoSelect(1, 0)) {
+        if (mYesNoCursor != CURSOR_NO) {
+            field_0x1bf = 1;
+            errorTxtSet(0x3B8);  // Formatting...
+            field_0x9e = 0;
+            yesnoMenuMoveAnmInitSet(3009, 2999, 0);
+            mMenuProc = PROC_CARD_FORMAT_YES_SEL2_DISP;
+        } else {
+            errorTxtSet(0x3BC);  // Unable to save. The Card in Slot A cannot be used
+            field_0x9e = 0;
+            yesnoMenuMoveAnmInitSet(3009, 2999, 0);
+            mMenuProc = PROC_CARD_FORMAT_NO_SEL_DISP;
+        }
+    }
 }
-#pragma pop
 
 /* 801F2250-801F22CC 1ECB90 007C+00 1/0 0/0 0/0 .text cardFormatYesSel2Disp__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::cardFormatYesSel2Disp() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/cardFormatYesSel2Disp__12dMenu_save_cFv.s"
+void dMenu_save_c::cardFormatYesSel2Disp() {
+    bool txtChangeAnm = errorTxtChangeAnm();
+    bool moveAnm = yesnoMenuMoveAnm();
+
+    if (txtChangeAnm == true && moveAnm == true) {
+        mWaitTimer = g_msHIO.mCardWaitFrames;
+        g_mDoMemCd_control.command_format();
+        mMenuProc = PROC_MEMCARD_FORMAT;
+    }
 }
-#pragma pop
 
 /* 801F22CC-801F232C 1ECC0C 0060+00 1/0 0/0 0/0 .text            memCardFormat__12dMenu_save_cFv */
 void dMenu_save_c::memCardFormat() {
@@ -1553,20 +1783,26 @@ void dMenu_save_c::memCardFormat() {
 
 /* 801F232C-801F23A4 1ECC6C 0078+00 1/0 0/0 0/0 .text            memCardFormatWait__12dMenu_save_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::memCardFormatWait() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/memCardFormatWait__12dMenu_save_cFv.s"
+void dMenu_save_c::memCardFormatWait() {
+    if (mWaitTimer != 0) {
+        mWaitTimer--;
+        return;
+    }
+
+    if (mCmdState == 2) {
+        errorTxtSet(0x399);  // An error might have occurred in formatting.
+        mMenuProc = PROC_MEMCARD_COMMAND_END;
+    } else if (mCmdState == 1) {
+        errorTxtSet(0x39A);  // Formatted.
+        mMenuProc = PROC_MEMCARD_COMMAND_END;
+    }
 }
-#pragma pop
 
 /* 801F23A4-801F23FC 1ECCE4 0058+00 1/0 0/0 0/0 .text gameFileMakeSelInitSet__12dMenu_save_cFv */
 void dMenu_save_c::gameFileMakeSelInitSet() {
     errorTxtSet(0x3C1);  // Create a save file on the Memory Card in Slot A?
     ketteiTxtDispAnmInit(1);
-    field_0x1b6 = 0;
+    mYesNoCursor = CURSOR_NO;
     yesnoMenuMoveAnmInitSet(2999, 3009, 0);
 }
 
@@ -1585,7 +1821,7 @@ void dMenu_save_c::makeGameFileSelDisp() {
 /* 801F247C-801F2514 1ECDBC 0098+00 1/0 0/0 0/0 .text memCardMakeGameFileSel__12dMenu_save_cFv */
 void dMenu_save_c::memCardMakeGameFileSel() {
     if (errYesNoSelect(1, 0)) {
-        if (field_0x1b6 != 0) {
+        if (mYesNoCursor != CURSOR_NO) {
             field_0x1bf = 1;
             errorTxtSet(0x3C5);  // Creating a file...
             ketteiTxtDispAnmInit(0);
@@ -1614,63 +1850,81 @@ void dMenu_save_c::makeGameFileDisp() {
 }
 
 /* 801F25AC-801F260C 1ECEEC 0060+00 1/0 0/0 0/0 .text memCardMakeGameFile__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::memCardMakeGameFile() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/memCardMakeGameFile__12dMenu_save_cFv.s"
+void dMenu_save_c::memCardMakeGameFile() {
+    if (mWaitTimer != 0) {
+        mWaitTimer--;
+    }
+
+    mCmdState = g_mDoMemCd_control.SaveSync();
+
+    if (mCmdState != 0) {
+        mMenuProc = PROC_MEMCARD_MAKE_GAME_FILE_WAIT;
+    }
 }
-#pragma pop
 
 /* 801F260C-801F2698 1ECF4C 008C+00 1/0 0/0 0/0 .text memCardMakeGameFileWait__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::memCardMakeGameFileWait() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/memCardMakeGameFileWait__12dMenu_save_cFv.s"
+void dMenu_save_c::memCardMakeGameFileWait() {
+    if (mWaitTimer != 0) {
+        mWaitTimer--;
+        return;
+    }
+
+    if (mCmdState == 2) {
+        errorTxtSet(0x3C6);  // An error might have occurred when creating a save file.
+        mMenuProc = PROC_MEMCARD_COMMAND_END;
+    } else if (mCmdState == 1) {
+        dComIfGs_setNewFile(1);
+        errorTxtSet(0x3C7);  // A save file has been created.
+        mMenuProc = PROC_MEMCARD_COMMAND_END;
+    }
 }
-#pragma pop
 
 /* 801F2698-801F2708 1ECFD8 0070+00 1/0 0/0 0/0 .text            memCardCommandEnd__12dMenu_save_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::memCardCommandEnd() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/memCardCommandEnd__12dMenu_save_cFv.s"
+void dMenu_save_c::memCardCommandEnd() {
+    if (errorTxtChangeAnm() == true) {
+        mpErrFunc = NULL;
+        mErrProc = PROC_MEMCARD_CHECK;
+        mMenuProc = PROC_MEMCARD_ERRMSG_WAIT_KEY;
+        field_0x1bf = 0;
+    }
 }
-#pragma pop
 
 /* 801F2708-801F27CC 1ED048 00C4+00 1/0 0/0 0/0 .text memCardCommandEnd2__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::memCardCommandEnd2() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/memCardCommandEnd2__12dMenu_save_cFv.s"
+void dMenu_save_c::memCardCommandEnd2() {
+    bool headerTxtChanged = headerTxtChangeAnm();
+    bool ketteiDispAnm = ketteiTxtDispAnm();
+    bool modoruDispAnm = modoruTxtDispAnm();
+    u32 check = mWarning->getStatus() != 0;
+
+    if (headerTxtChanged == true && ketteiDispAnm == true && modoruDispAnm == true && check == 1) {
+        mpErrFunc = NULL;
+        mErrProc = PROC_MEMCARD_CHECK;
+        mMenuProc = PROC_MEMCARD_ERRMSG_WAIT_KEY;
+        field_0x1bf = 0;
+    }
 }
-#pragma pop
 
 /* 801F27CC-801F2840 1ED10C 0074+00 1/0 0/0 0/0 .text memCardDataLoadWait__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::memCardDataLoadWait() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/memCardDataLoadWait__12dMenu_save_cFv.s"
+void dMenu_save_c::memCardDataLoadWait() {
+    int cardState = g_mDoMemCd_control.LoadSync(mSaveBuffer, sizeof(mSaveBuffer), 0);
+    if (cardState != 0) {
+        if (cardState == 2) {
+            field_0x1c0 = 0;
+            mMenuProc = PROC_MEMCARD_CHECK;
+        } else if (cardState == 1) {
+            saveSelectOpenInit();
+        }
+    }
 }
-#pragma pop
 
 /* 801F2840-801F28E4 1ED180 00A4+00 2/2 0/0 0/0 .text            dataWrite__12dMenu_save_cFv */
 void dMenu_save_c::dataWrite() {
     int stageNo = i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo());
 
     dComIfGs_putSave(stageNo);
-    dComIfGs_setMemoryToCard(mSaveBuffer, field_0x54);
-    mDoMemCdRWm_SetCheckSumGameData(mSaveBuffer, field_0x54);
+    dComIfGs_setMemoryToCard(mSaveBuffer, mSelectedFile);
+    mDoMemCdRWm_SetCheckSumGameData(mSaveBuffer, mSelectedFile);
 
     u8* save = mSaveBuffer;
     for (int i = 0; i < 3; i++) {
@@ -1716,6 +1970,44 @@ asm void dMenu_save_c::memCardDataSaveWait() {
 #endif
 
 /* 801F298C-801F2B5C 1ED2CC 01D0+00 1/0 0/0 0/0 .text memCardDataSaveWait2__12dMenu_save_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::memCardDataSaveWait2() {
+    if (mWaitTimer != 0) {
+        i_mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
+        mWaitTimer--;
+        return;
+    }
+
+    if (mCmdState == 1) {
+        mDoAud_seStart(Z2SE_SY_FILE_SAVE_OK, NULL, 0, 0);
+        dComIfGs_setDataNum(mSelectedFile);
+        dComIfGs_setNoFile(0);
+
+        if (mUseType == TYPE_WHITE_EVENT || mUseType == TYPE_BLACK_EVENT) {
+            headerTxtSet(0x530);  // Saved.
+            mWarning->closeInit();
+            ketteiTxtDispAnmInit(1);
+            mMenuProc = PROC_SAVE_END;
+        } else {
+            headerTxtSet(0x3CA);  // Saved. Continue Playing?
+            mWarning->closeInit();
+            mYesNoCursor = CURSOR_YES;
+            yesnoMenuMoveAnmInitSet(2259, 2249, 1);
+            ketteiTxtDispAnmInit(1);
+            mMenuProc = PROC_GAME_CONTINUE_DISP;
+        }
+        setSaveData();
+    } else if (mCmdState == 2) {
+        mDoAud_seStart(Z2SE_SY_FILE_ERROR, NULL, 0, 0);
+        headerTxtSet(0x3CD);  // An error might have occurred when saving.
+        mWarning->closeInit();
+        ketteiTxtDispAnmInit(1);
+        modoruTxtDispAnmInit(1);
+        mMenuProc = PROC_MEMCARD_COMMAND_END2;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1724,19 +2016,72 @@ asm void dMenu_save_c::memCardDataSaveWait2() {
 #include "asm/d/menu/d_menu_save/memCardDataSaveWait2__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F2B5C-801F2BF8 1ED49C 009C+00 1/0 0/0 0/0 .text            gameContinueDisp__12dMenu_save_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::gameContinueDisp() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/gameContinueDisp__12dMenu_save_cFv.s"
+void dMenu_save_c::gameContinueDisp() {
+    bool headerTxtChanged = headerTxtChangeAnm();
+    bool moveAnm = yesnoMenuMoveAnm();
+    bool ketteiDispAnm = ketteiTxtDispAnm();
+    u32 check = mWarning->getStatus() != 0;
+
+    if (headerTxtChanged == true && moveAnm == true && ketteiDispAnm == true && check == 1) {
+        yesnoCursorShow();
+        mMenuProc = PROC_GAME_CONTINUE;
+    }
 }
-#pragma pop
 
 /* 801F2BF8-801F2D78 1ED538 0180+00 1/0 0/0 0/0 .text            gameContinue__12dMenu_save_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::gameContinue() {
+    if (errYesNoSelect(0, 1)) {
+        if (mYesNoCursor == CURSOR_YES) {
+            mDoAud_seStart(Z2SE_SY_CONTINUE_OK, NULL, 0, 0);
+
+            switch (mUseType) {
+            case TYPE_WHITE_EVENT:
+                break;
+            case TYPE_DEFAULT:
+            case 2:
+            case TYPE_BLACK_EVENT:
+                mEndStatus = 1;
+                if (dMeter2Info_getMiniGameItemSetFlag()) {
+                    dMeter2Info_setMiniGameItem(dMeter2Info_getMiniGameItemSetFlag());
+                }
+                break;
+            }
+            mSelIcon->setAlphaRate(0.0f);
+            mSaveStatus = 4;
+
+            if (mUseType == TYPE_BLACK_EVENT) {
+                closeSelect2();
+            } else {
+                mMenuProc = PROC_SAVE_WAIT;
+            }
+            return;
+        }
+
+        mDoAud_seStart(Z2SE_QUIT_GAME, NULL, 0, 0);
+
+        if (mUseType == 2 || mUseType == TYPE_WHITE_EVENT) {
+            mWaitTimer = 15;
+            mMenuProc = PROC_GAME_CONTINUE3;
+            return;
+        }
+
+        if (mUseType == TYPE_BLACK_EVENT) {
+            mSaveStatus = 4;
+            closeSelect2();
+            return;
+        }
+
+        mWaitTimer = 30;
+        mMenuProc = PROC_GAME_CONTINUE2;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1745,107 +2090,140 @@ asm void dMenu_save_c::gameContinue() {
 #include "asm/d/menu/d_menu_save/gameContinue__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F2D78-801F2DA0 1ED6B8 0028+00 1/0 0/0 0/0 .text            gameContinue2__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::gameContinue2() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/gameContinue2__12dMenu_save_cFv.s"
+void dMenu_save_c::gameContinue2() {
+    if (mWaitTimer != 0) {
+        mWaitTimer--;
+        return;
+    }
+
+    mDoRst::onReset();
 }
-#pragma pop
 
 /* 801F2DA0-801F2DD4 1ED6E0 0034+00 1/0 0/0 0/0 .text            gameContinue3__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::gameContinue3() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/gameContinue3__12dMenu_save_cFv.s"
+void dMenu_save_c::gameContinue3() {
+    if (mWaitTimer != 0) {
+        mWaitTimer--;
+        return;
+    }
+
+    mMenuProc = PROC_SAVE_WAIT;
+    mSaveStatus = 3;
+    mEndStatus = 0;
 }
-#pragma pop
 
 /* 801F2DD4-801F2E88 1ED714 00B4+00 1/0 0/0 0/0 .text            saveEnd__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::saveEnd() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/saveEnd__12dMenu_save_cFv.s"
+void dMenu_save_c::saveEnd() {
+    bool headerTxtChanged = headerTxtChangeAnm();
+    bool ketteiDispAnm = ketteiTxtDispAnm();
+    u32 check = mWarning->getStatus() != 0;
+
+    if (headerTxtChanged == true && ketteiDispAnm == true && check == 1) {
+        if (mUseType == TYPE_BLACK_EVENT) {
+            mSaveStatus = 4;
+            closeSelect2();
+        } else {
+            mEndStatus = 1;
+            restartInit();
+            mSaveStatus = 3;
+            mMenuProc = PROC_SAVE_WAIT;
+        }
+    }
 }
-#pragma pop
 
 /* 801F2E88-801F2F08 1ED7C8 0080+00 1/0 0/0 0/0 .text            endingNoSave__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::endingNoSave() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/endingNoSave__12dMenu_save_cFv.s"
+void dMenu_save_c::endingNoSave() {
+    if (YesNoSelect()) {
+        if (mYesNoCursor != CURSOR_NO) {
+            mEndStatus = 0;
+            mMenuProc = PROC_SAVE_WAIT;
+            mSaveStatus = 3;
+        } else {
+            field_0x2190 = 1;
+            mYesNoCursor = CURSOR_YES;
+            msgTxtSet(0x3CF, false);  // Do you want to continue playing?
+            mMenuProc = PROC_ENDING_NO_SAVE2;
+        }
+    }
 }
-#pragma pop
 
 /* 801F2F08-801F2F38 1ED848 0030+00 1/0 0/0 0/0 .text            endingNoSave2__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::endingNoSave2() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/endingNoSave2__12dMenu_save_cFv.s"
+void dMenu_save_c::endingNoSave2() {
+    if (mpScrnExplain != NULL && mpScrnExplain->getStatus() == 0) {
+        field_0x2190 = 0;
+    }
+
+    mYesNoCursor = CURSOR_NO;
+    mMenuProc = PROC_SAVE_QUESTION;
 }
-#pragma pop
 
 /* 801F2F38-801F2F4C 1ED878 0014+00 1/0 0/0 0/0 .text            endingDataCheck__12dMenu_save_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::endingDataCheck() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/endingDataCheck__12dMenu_save_cFv.s"
+void dMenu_save_c::endingDataCheck() {
+    mMenuProc = PROC_SAVE_WAIT;
+    mSaveStatus = 3;
 }
-#pragma pop
 
 /* 801F2F4C-801F2FB4 1ED88C 0068+00 1/0 0/0 0/0 .text            retryQuestion0__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::retryQuestion0() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/retryQuestion0__12dMenu_save_cFv.s"
+void dMenu_save_c::retryQuestion0() {
+    if (Z2GetAudioMgr()->mSeqMgr.checkBgmIDPlaying(Z2BGM_GAME_OVER) != true) {
+        mYesNoCursor = CURSOR_YES;
+        msgTxtSet(0x4BC, false);  // Retry?
+        mMenuProc = PROC_RETRY_QUESTION1;
+    }
 }
-#pragma pop
 
 /* 801F2FB4-801F3040 1ED8F4 008C+00 1/0 0/0 0/0 .text            retryQuestion1__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::retryQuestion1() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/retryQuestion1__12dMenu_save_cFv.s"
+void dMenu_save_c::retryQuestion1() {
+    if (YesNoSelect()) {
+        if (mYesNoCursor == CURSOR_YES) {
+            mEndStatus = 1;
+            restartInit();
+            mSaveStatus = 3;
+            mMenuProc = PROC_SAVE_WAIT;
+        } else {
+            field_0x2190 = 1;
+            mYesNoCursor = CURSOR_NO;
+            msgTxtSet(0x4BF, false);  // Return to the title screen?
+            mMenuProc = PROC_RETRY_QUESTION2;
+        }
+    }
 }
-#pragma pop
 
 /* 801F3040-801F30B8 1ED980 0078+00 1/0 0/0 0/0 .text            retryQuestion2__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::retryQuestion2() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/retryQuestion2__12dMenu_save_cFv.s"
+void dMenu_save_c::retryQuestion2() {
+    if (YesNoSelect()) {
+        if (mYesNoCursor == CURSOR_YES) {
+            mWaitTimer = 15;
+            mMenuProc = PROC_GAME_CONTINUE3;
+        } else {
+            field_0x2190 = 1;
+            mYesNoCursor = CURSOR_YES;
+            msgTxtSet(0x4BC, false);  // Retry?
+            mMenuProc = PROC_RETRY_QUESTION1;
+        }
+    }
 }
-#pragma pop
 
 /* 801F30B8-801F31B0 1ED9F8 00F8+00 2/2 0/0 0/0 .text            restartInit__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::restartInit() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/restartInit__12dMenu_save_cFv.s"
+void dMenu_save_c::restartInit() {
+    // if monkey lantern sequence not completed
+    if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[226])) {
+        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[224]);  // Lantern stolen
+        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[225]);  // Monkey dropped lantern
+    }
+
+    if (i_dComIfGs_isItemFirstBit(KANTERA) && dComIfGs_getItem(SLOT_1, true) == NO_ITEM) {
+        dComIfGs_setItem(SLOT_1, KANTERA);
+        dComIfGs_setOil(dMeter2Info_getOilGaugeBackUp());
+    }
+
+    if (dMeter2Info_getMiniGameItemSetFlag()) {
+        dMeter2Info_setMiniGameItem(dMeter2Info_getMiniGameItemSetFlag());
+    }
 }
-#pragma pop
 
 /* 801F31B0-801F31B4 1EDAF0 0004+00 1/0 0/0 0/0 .text            saveWait__12dMenu_save_cFv */
 void dMenu_save_c::saveWait() {
@@ -1853,16 +2231,89 @@ void dMenu_save_c::saveWait() {
 }
 
 /* 801F31B4-801F328C 1EDAF4 00D8+00 1/0 0/0 0/0 .text            messageChange__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::messageChange() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/messageChange__12dMenu_save_cFv.s"
+void dMenu_save_c::messageChange() {
+    if (mpScrnExplain != NULL) {
+        field_0x219d = mpScrnExplain->getStatus();
+
+        u8 explainStatus = mpScrnExplain->getStatus();
+        if (explainStatus != 0) {
+            if (explainStatus == 3 || explainStatus == 4) {
+                mpScrnExplain->onForceSelect();
+            }
+            mpScrnExplain->move();
+            return;
+        }
+
+        bool var_r3;
+        if (field_0x2190 == 1) {
+            var_r3 = mpScrnExplain->openExplain(field_0x2192, 1, mYesNoCursor == CURSOR_NO, -1,
+                                                field_0x219c);
+            mpScrnExplain->setKeyWaitTimer(30);
+        } else {
+            var_r3 = mpScrnExplain->openExplain(field_0x2192, 0, 0, -1, true);
+        }
+
+        if (var_r3 == true) {
+            mMenuProc = field_0x2194;
+        }
+    }
 }
-#pragma pop
 
 /* 801F328C-801F34BC 1EDBCC 0230+00 4/4 0/0 0/0 .text            YesNoSelect__12dMenu_save_cFv */
+// matches with literals
+#ifdef NONMATCHING
+int dMenu_save_c::YesNoSelect() {
+    int ret = 0;
+
+    if (mDoRst::isReset()) {
+        return 0;
+    }
+
+    if (mpScrnExplain == NULL) {
+        return 0;
+    }
+
+    if (field_0x219d != 5 && mpScrnExplain->getStatus() == 5) {
+        switch (mpScrnExplain->getSelectCursor()) {
+        case 0:
+            if (mMenuProc == PROC_RETRY_QUESTION2) {
+                mDoAud_seStart(Z2SE_QUIT_GAME, NULL, 0, 0);
+            } else if (mMenuProc == PROC_RETRY_QUESTION1) {
+                mDoAud_seStart(Z2SE_SY_CONTINUE_OK, NULL, 0, 0);
+            } else {
+                mDoAud_seStart(Z2SE_SY_CURSOR_OK, NULL, 0, 0);
+            }
+            break;
+        case 1:
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_CANCEL, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                            -1.0f, 0);
+            break;
+        case 255:
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_CANCEL, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                            -1.0f, 0);
+            break;
+        }
+    }
+
+    if (mpScrnExplain->getStatus() == 0) {
+        field_0x2190 = 0;
+        switch (mpScrnExplain->getSelectCursor()) {
+        case 0:
+            mYesNoCursor = CURSOR_YES;
+            break;
+        case 1:
+            mYesNoCursor = CURSOR_NO;
+            break;
+        case 255:
+            mYesNoCursor = 2;
+            break;
+        }
+        ret = 1;
+    }
+
+    return ret;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1871,6 +2322,7 @@ asm int dMenu_save_c::YesNoSelect() {
 #include "asm/d/menu/d_menu_save/YesNoSelect__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F34BC-801F3588 1EDDFC 00CC+00 8/8 0/0 0/0 .text            msgTxtSet__12dMenu_save_cFUsb */
 void dMenu_save_c::msgTxtSet(u16 msgID, bool param_1) {
@@ -1880,7 +2332,7 @@ void dMenu_save_c::msgTxtSet(u16 msgID, bool param_1) {
         if (mpScrnExplain == NULL) {
             check = false;
         } else if (field_0x2190 == 1) {
-            check = mpScrnExplain->openExplain(msgID, 1, field_0x1b6 == 0, 0xFF, param_1);
+            check = mpScrnExplain->openExplain(msgID, 1, mYesNoCursor == CURSOR_NO, 0xFF, param_1);
             mpScrnExplain->setKeyWaitTimer(30);
         } else {
             check = mpScrnExplain->openExplain(msgID, 0, 0, 0xFF, true);
@@ -1898,6 +2350,35 @@ void dMenu_save_c::msgTxtSet(u16 msgID, bool param_1) {
 }
 
 /* 801F3588-801F36B4 1EDEC8 012C+00 1/0 0/0 0/0 .text            openSaveSelect__12dMenu_save_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::openSaveSelect() {
+    bool headerTxtChanged = headerTxtChangeAnm();
+
+    bool dataMoveAnmComplete = true;
+    if (field_0x64 != 0 || field_0x65 != 0) {
+        dataMoveAnmComplete = selectDataBaseMoveAnm();
+    }
+
+    bool errMoveAnmComplete = true;
+    if (field_0xd2 != 0 || field_0xd3 != 0) {
+        errMoveAnmComplete = errorMoveAnm();
+    }
+
+    bool yesnoMoveAnmComplete = true;
+    if (field_0x9c != 0 || field_0x9d != 0) {
+        yesnoMoveAnmComplete = yesnoMenuMoveAnm();
+    }
+
+    if (headerTxtChanged == true && dataMoveAnmComplete == true && errMoveAnmComplete == true &&
+        yesnoMoveAnmComplete == true) {
+        headerTxtSet(0x4CA);  // Save to which log?
+        saveSelectOpenAnmSet();
+        mDoAud_seStart(Z2SE_SY_FILE_MENU_SLIDE_IN, NULL, 0, 0);
+        mMenuProc = PROC_OPEN_SAVE_SELECT2;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1906,20 +2387,62 @@ asm void dMenu_save_c::openSaveSelect() {
 #include "asm/d/menu/d_menu_save/openSaveSelect__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F36B4-801F37A0 1EDFF4 00EC+00 1/0 0/0 0/0 .text            openSaveSelect2__12dMenu_save_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::openSaveSelect2() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/openSaveSelect2__12dMenu_save_cFv.s"
+void dMenu_save_c::openSaveSelect2() {
+    bool headerTxtChanged = headerTxtChangeAnm();
+    bool dataMoveAnm = selectDataBaseMoveAnm();
+
+    if (headerTxtChanged == true && dataMoveAnm == true) {
+        modoruTxtDispAnmInit(1);
+        mSelectedFile = dComIfGs_getDataNum();
+        mLastSelFile = mSelectedFile;
+        mpBookWaku[mSelectedFile]->alphaAnimeStart(0);
+        mpSelData[mSelectedFile]->getPanePtr()->setAnimation(field_0x40);
+        field_0x74[mSelectedFile] = SelStartFrameTbl[mSelectedFile];
+        ketteiTxtDispAnmInit(1);
+        mMenuProc = PROC_OPEN_SAVE_SELECT3;
+    }
 }
-#pragma pop
 
 /* 801F37A0-801F3934 1EE0E0 0194+00 1/0 0/0 0/0 .text            openSaveSelect3__12dMenu_save_cFv
  */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::openSaveSelect3() {
+    bool modoruTxtDisp = modoruTxtDispAnm();
+    bool var_r30 = true;
+    bool var_r29 = true;
+    bool var_r28 = true;
+
+    if (mSelectedFile != 0xFF) {
+        var_r30 = mpBookWaku[mSelectedFile]->alphaAnime(g_msHIO.mEffectDispFrames, 0, 0xFF, 1);
+        var_r29 = ketteiTxtDispAnm();
+
+        if (field_0x74[mSelectedFile] != SelEndFrameTbl[mSelectedFile]) {
+            field_0x74[mSelectedFile] += 2;
+
+            if (field_0x74[mSelectedFile] > SelEndFrameTbl[mSelectedFile]) {
+                field_0x74[mSelectedFile] = SelEndFrameTbl[mSelectedFile];
+            }
+
+            field_0x40->setFrame(field_0x74[mSelectedFile]);
+            mpSelData[mSelectedFile]->getPanePtr()->animationTransform();
+            var_r28 = false;
+        }
+    }
+
+    if (modoruTxtDisp == true && var_r30 == true && var_r29 == true && var_r28 == true) {
+        if (mSelectedFile != 0xFF) {
+            mpSelData[mSelectedFile]->getPanePtr()->setAnimation((J2DAnmTransformKey*)NULL);
+            selFileCursorShow();
+        }
+        mMenuProc = PROC_SAVE_SELECT;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1928,8 +2451,39 @@ asm void dMenu_save_c::openSaveSelect3() {
 #include "asm/d/menu/d_menu_save/openSaveSelect3__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F3934-801F3A94 1EE274 0160+00 1/0 0/0 0/0 .text            saveSelect__12dMenu_save_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::saveSelect() {
+    if (!mDoRst::isReset()) {
+        stick->checkTrigger();
+
+        if (mDoCPd_c::getTrigA(PAD_1)) {
+            saveSelectStart();
+        } else if (mDoCPd_c::getTrigB(PAD_1)) {
+            closeSelect();
+        } else if (stick->checkUpTrigger()) {
+            if (mSelectedFile != 0) {
+                mDoAud_seStart(Z2SE_FILE_SELECT_CURSOR, NULL, 0, 0);
+                mLastSelFile = mSelectedFile;
+                mSelectedFile--;
+                dataSelectAnmSet();
+                mMenuProc = PROC_SAVE_SELECT_MOVE_ANM;
+            }
+        } else if (stick->checkDownTrigger()) {
+            if (mSelectedFile != 2) {
+                mDoAud_seStart(Z2SE_FILE_SELECT_CURSOR, NULL, 0, 0);
+                mLastSelFile = mSelectedFile;
+                mSelectedFile++;
+                dataSelectAnmSet();
+                mMenuProc = PROC_SAVE_SELECT_MOVE_ANM;
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1938,9 +2492,37 @@ asm void dMenu_save_c::saveSelect() {
 #include "asm/d/menu/d_menu_save/saveSelect__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F3A94-801F3BE0 1EE3D4 014C+00 1/1 0/0 0/0 .text            saveSelectStart__12dMenu_save_cFv
  */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::saveSelectStart() {
+    mDoAud_seStart(Z2SE_SY_CURSOR_OK, NULL, 0, 0);
+    selectDataMoveAnmInitSet(SelOpenStartFrameTbl[mSelectedFile],
+                             SelOpenEndFrameTbl[mSelectedFile]);
+    mSelIcon->setAlphaRate(0.0f);
+    selectWakuAlpahAnmInit(mSelectedFile, 255, 0, g_msHIO.mSelectFrames);
+
+    if (field_0x1aa[mSelectedFile] != 0) {
+        u8* saveData = mSaveBuffer;
+        for (int i = 0; i < 3; i++) {
+            mDoMemCdRWm_TestCheckSumGameData(saveData);
+            saveData += 0xA94;
+        }
+        headerTxtSet(0x3A);  // Saving...
+        mWarning->openInit();
+        ketteiTxtDispAnmInit(0);
+        modoruTxtDispAnmInit(0);
+        mMenuProc = PROC_SAVE_MOVE_DISP2;
+    } else {
+        yesnoMenuMoveAnmInitSet(2089, 2099, 0);
+        headerTxtSet(0x4CB);  // Overwrite this log?
+        mMenuProc = PROC_SELECT_DATA_OPEN_MOVE;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1949,19 +2531,46 @@ asm void dMenu_save_c::saveSelectStart() {
 #include "asm/d/menu/d_menu_save/saveSelectStart__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F3BE0-801F3C7C 1EE520 009C+00 1/0 0/0 0/0 .text selectDataOpenMove__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::selectDataOpenMove() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/selectDataOpenMove__12dMenu_save_cFv.s"
+void dMenu_save_c::selectDataOpenMove() {
+    bool headerTxtChanged = headerTxtChangeAnm();
+    bool selDataAnmComplete = selectDataMoveAnm();
+    bool yesnoAnmComplete = yesnoMenuMoveAnm();
+    bool wakuAnmComplete = selectWakuAlpahAnm(mSelectedFile);
+
+    if (headerTxtChanged == true && selDataAnmComplete == true && yesnoAnmComplete == true &&
+        wakuAnmComplete == true) {
+        yesnoCursorShow();
+        mMenuProc = PROC_SAVE_YES_NO_SELECT;
+    }
 }
-#pragma pop
 
 /* 801F3C7C-801F3E30 1EE5BC 01B4+00 1/1 0/0 0/0 .text            dataSelectAnmSet__12dMenu_save_cFv
  */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::dataSelectAnmSet() {
+    if (mSelectedFile != 0xFF) {
+        mpSelData[mSelectedFile]->getPanePtr()->setAnimation(field_0x40);
+        field_0x74[mSelectedFile] = SelStartFrameTbl[mSelectedFile];
+        field_0x40->setFrame(field_0x74[mSelectedFile]);
+        mpSelData[mSelectedFile]->getPanePtr()->animationTransform();
+        mpBookWaku[mSelectedFile]->alphaAnimeStart(0);
+    }
+
+    if (mLastSelFile != 0xFF) {
+        selectWakuAlpahAnmInit(mLastSelFile, 255, 0, g_msHIO.mSelectFrames);
+        mpSelData[mLastSelFile]->getPanePtr()->setAnimation(field_0x44);
+        field_0x74[mLastSelFile] = SelEndFrameTbl[mLastSelFile];
+        field_0x44->setFrame(field_0x74[mLastSelFile]);
+        mpSelData[mLastSelFile]->getPanePtr()->animationTransform();
+        mpBookWaku[mLastSelFile]->alphaAnimeStart(0);
+        mSelIcon->setAlphaRate(0.0f);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1970,8 +2579,65 @@ asm void dMenu_save_c::dataSelectAnmSet() {
 #include "asm/d/menu/d_menu_save/dataSelectAnmSet__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F3E30-801F40D8 1EE770 02A8+00 1/0 0/0 0/0 .text saveSelectMoveAnime__12dMenu_save_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::saveSelectMoveAnime() {
+    bool bookWakuAnmComplete = true;
+    bool selWakuAnmComplete = true;
+    bool var_r29 = true;
+
+    if (mLastSelFile != 0xFF) {
+        bookWakuAnmComplete = mpBookWaku[mLastSelFile]->alphaAnime(g_msHIO.mEffectDispFrames, 255, 0, 1);
+        selWakuAnmComplete = selectWakuAlpahAnm(mLastSelFile);
+
+        if (field_0x74[mLastSelFile] != SelStartFrameTbl[mLastSelFile]) {
+            field_0x74[mLastSelFile] -= 2;
+
+            if (field_0x74[mLastSelFile] < SelStartFrameTbl[mLastSelFile]) {
+                field_0x74[mLastSelFile] = SelStartFrameTbl[mLastSelFile];
+            }
+
+            field_0x44->setFrame(field_0x74[mLastSelFile]);
+            mpSelData[mLastSelFile]->getPanePtr()->animationTransform();
+            var_r29 = false;
+        }
+    }
+
+    bool var_r28 = true;
+    bool var_r27 = true;
+    if (mSelectedFile != 0xFF) {
+        var_r28 = mpBookWaku[mSelectedFile]->alphaAnime(g_msHIO.mEffectDispFrames, 0, 0xFF, 1);
+
+        if (field_0x74[mSelectedFile] != SelEndFrameTbl[mSelectedFile]) {
+            field_0x74[mSelectedFile] += 2;
+
+            if (field_0x74[mSelectedFile] > SelEndFrameTbl[mSelectedFile]) {
+                field_0x74[mSelectedFile] = SelEndFrameTbl[mSelectedFile];
+            }
+
+            field_0x40->setFrame(field_0x74[mSelectedFile]);
+            mpSelData[mSelectedFile]->getPanePtr()->animationTransform();
+            var_r27 = false;
+        }
+    }
+
+    if (bookWakuAnmComplete == true && selWakuAnmComplete == true && var_r29 == true && var_r28 == true &&
+        var_r27 == true) {
+        if (mSelectedFile != 0xFF) {
+            mpSelData[mSelectedFile]->getPanePtr()->setAnimation((J2DAnmTransformKey*)NULL);
+            selFileCursorShow();
+        }
+
+        if (mLastSelFile != 0xFF) {
+            mpSelData[mLastSelFile]->getPanePtr()->setAnimation((J2DAnmTransformKey*)NULL);
+        }
+        mMenuProc = PROC_SAVE_SELECT;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1980,9 +2646,40 @@ asm void dMenu_save_c::saveSelectMoveAnime() {
 #include "asm/d/menu/d_menu_save/saveSelectMoveAnime__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F40D8-801F4238 1EEA18 0160+00 1/0 0/0 0/0 .text            saveYesNoSelect__12dMenu_save_cFv
  */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::saveYesNoSelect() {
+    if (!mDoRst::isReset()) {
+        stick->checkTrigger();
+
+        if (mDoCPd_c::getTrigA(PAD_1)) {
+            yesnoSelectStart();
+        } else if (mDoCPd_c::getTrigB(PAD_1)) {
+            yesnoCancelAnmSet();
+        } else if (stick->checkRightTrigger()) {
+            if (mYesNoCursor != CURSOR_NO) {
+                mDoAud_seStart(Z2SE_SY_MENU_CURSOR_COMMON, NULL, 0, 0);
+                mYesNoPrevCursor = mYesNoCursor;
+                mYesNoCursor = CURSOR_NO;
+                yesnoSelectAnmSet(0);
+                mMenuProc = PROC_YES_NO_CURSOR_MOVE_ANM;
+            }
+        } else if (stick->checkLeftTrigger()) {
+            if (mYesNoCursor != CURSOR_YES) {
+                mDoAud_seStart(Z2SE_SY_MENU_CURSOR_COMMON, NULL, 0, 0);
+                mYesNoPrevCursor = mYesNoCursor;
+                mYesNoCursor = CURSOR_YES;
+                yesnoSelectAnmSet(0);
+                mMenuProc = PROC_YES_NO_CURSOR_MOVE_ANM;
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1991,9 +2688,27 @@ asm void dMenu_save_c::saveYesNoSelect() {
 #include "asm/d/menu/d_menu_save/saveYesNoSelect__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F4238-801F42FC 1EEB78 00C4+00 1/1 0/0 0/0 .text            yesnoSelectStart__12dMenu_save_cFv
  */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::yesnoSelectStart() {
+    if (mYesNoCursor != CURSOR_NO) {
+        mDoAud_seStart(Z2SE_SY_CURSOR_OK, NULL, 0, 0);
+        mSelIcon->setAlphaRate(0.0f);
+        yesnoMenuMoveAnmInitSet(2099, 2089, 0);
+        headerTxtSet(0x3A);  // Saving...
+        mWarning->openInit();
+        ketteiTxtDispAnmInit(0);
+        modoruTxtDispAnmInit(0);
+        mMenuProc = PROC_SAVE_MOVE_DISP;
+    } else {
+        yesnoCancelAnmSet();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2002,8 +2717,28 @@ asm void dMenu_save_c::yesnoSelectStart() {
 #include "asm/d/menu/d_menu_save/yesnoSelectStart__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F42FC-801F43F8 1EEC3C 00FC+00 1/0 0/0 0/0 .text            saveMoveDisp__12dMenu_save_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::saveMoveDisp() {
+    i_mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
+
+    bool headerTxtChanged = headerTxtChangeAnm();
+    bool yesnoAnmComplete = yesnoMenuMoveAnm();
+    bool ketteiAnmComplete = ketteiTxtDispAnm();
+    bool modoruAnmComplete = modoruTxtDispAnm();
+    u32 check = mWarning->getStatus() != 0;
+
+    if (headerTxtChanged == true && yesnoAnmComplete == true && ketteiAnmComplete == true &&
+        modoruAnmComplete == 1 && check == 1) {
+        mWaitTimer = g_msHIO.mCardWaitFrames;
+        dataWrite();
+        mMenuProc = PROC_MEMCARD_DATA_SAVE_WAIT;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2012,8 +2747,29 @@ asm void dMenu_save_c::saveMoveDisp() {
 #include "asm/d/menu/d_menu_save/saveMoveDisp__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F43F8-801F4510 1EED38 0118+00 1/0 0/0 0/0 .text            saveMoveDisp2__12dMenu_save_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::saveMoveDisp2() {
+    i_mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
+
+    bool headerTxtChanged = headerTxtChangeAnm();
+    bool dataMoveAnm = selectDataMoveAnm();
+    bool wakuAnmComplete = selectWakuAlpahAnm(mSelectedFile);
+    bool ketteiAnmComplete = ketteiTxtDispAnm();
+    bool modoruAnmComplete = modoruTxtDispAnm();
+    u32 check = mWarning->getStatus() != 0;
+
+    if (headerTxtChanged == true && dataMoveAnm == true && wakuAnmComplete == true &&
+        ketteiAnmComplete == true && modoruAnmComplete == 1 && check == 1) {
+        mWaitTimer = g_msHIO.mCardWaitFrames;
+        dataWrite();
+        mMenuProc = PROC_MEMCARD_DATA_SAVE_WAIT;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2022,8 +2778,29 @@ asm void dMenu_save_c::saveMoveDisp2() {
 #include "asm/d/menu/d_menu_save/saveMoveDisp2__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F4510-801F46B4 1EEE50 01A4+00 4/4 0/0 0/0 .text yesnoSelectAnmSet__12dMenu_save_cFUc */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::yesnoSelectAnmSet(u8 param_0) {
+    if (mYesNoPrevCursor != 0xFF) {
+        yesnoWakuAlpahAnmInit(mYesNoPrevCursor, 255, 0, g_msHIO.mSelectFrames);
+        mpNoYes[mYesNoPrevCursor]->getPanePtr()->setAnimation(field_0x40);
+        field_0x8c[mYesNoPrevCursor] = YnSelEndFrameTbl[mYesNoPrevCursor][param_0];
+        field_0x40->setFrame(field_0x8c[mYesNoPrevCursor]);
+        mpNoYes[mYesNoPrevCursor]->getPanePtr()->animationTransform();
+        mSelIcon->setAlphaRate(0.0f);
+    }
+
+    if (mYesNoCursor != 0xFF) {
+        mpNoYes[mYesNoCursor]->getPanePtr()->setAnimation(field_0x44);
+        field_0x8c[mYesNoCursor] = YnSelStartFrameTbl[mYesNoCursor][param_0];
+        field_0x44->setFrame(field_0x8c[mYesNoCursor]);
+        mpNoYes[mYesNoCursor]->getPanePtr()->animationTransform();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2032,19 +2809,33 @@ asm void dMenu_save_c::yesnoSelectAnmSet(u8 param_0) {
 #include "asm/d/menu/d_menu_save/yesnoSelectAnmSet__12dMenu_save_cFUc.s"
 }
 #pragma pop
+#endif
 
 /* 801F46B4-801F4724 1EEFF4 0070+00 1/0 0/0 0/0 .text yesNoCursorMoveAnm__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::yesNoCursorMoveAnm() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/yesNoCursorMoveAnm__12dMenu_save_cFv.s"
+void dMenu_save_c::yesNoCursorMoveAnm() {
+    bool selAnmComplete = yesnoSelectMoveAnm(0);
+    bool wakuAnmComplete = yesnoWakuAlpahAnm(mYesNoPrevCursor);
+
+    if (selAnmComplete == true && wakuAnmComplete == true) {
+        yesnoCursorShow();
+        mMenuProc = PROC_SAVE_YES_NO_SELECT;
+    }
 }
-#pragma pop
 
 /* 801F4724-801F47DC 1EF064 00B8+00 2/2 0/0 0/0 .text            yesnoCancelAnmSet__12dMenu_save_cFv
  */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::yesnoCancelAnmSet() {
+    mDoAud_seStart(Z2SE_SY_CURSOR_CANCEL, NULL, 0, 0);
+    mSelIcon->setAlphaRate(0.0f);
+    headerTxtSet(0x4CA);
+    selectDataMoveAnmInitSet(SelOpenEndFrameTbl[mSelectedFile],
+                             SelOpenStartFrameTbl[mSelectedFile]);
+    yesnoMenuMoveAnmInitSet(2099, 2089, 0);
+    mMenuProc = PROC_SAVE_YES_NO_CANCEL_MOVE;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2053,41 +2844,87 @@ asm void dMenu_save_c::yesnoCancelAnmSet() {
 #include "asm/d/menu/d_menu_save/yesnoCancelAnmSet__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F47DC-801F485C 1EF11C 0080+00 1/0 0/0 0/0 .text saveYesNoCancelMove__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::saveYesNoCancelMove() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/saveYesNoCancelMove__12dMenu_save_cFv.s"
+void dMenu_save_c::saveYesNoCancelMove() {
+    bool headerTxtChanged = headerTxtChangeAnm();
+    bool yesnoAnmComplete = yesnoMenuMoveAnm();
+    bool dataAnmComplete = selectDataMoveAnm();
+
+    if (headerTxtChanged == true && yesnoAnmComplete == true && dataAnmComplete == true) {
+        selFileCursorShow();
+        mMenuProc = PROC_SAVE_SELECT;
+    }
 }
-#pragma pop
 
 /* 801F485C-801F4928 1EF19C 00CC+00 7/7 0/0 0/0 .text            headerTxtSet__12dMenu_save_cFUs */
 void dMenu_save_c::headerTxtSet(u16 msgID) {
     if (msgID == 0xFFFF) {
-        strcpy(field_0x170[field_0x178 ^ 1], "");
+        strcpy(mpHeaderTxt[mHeaderTxtType ^ 1], "");
     } else {
-        mMenuSave.mMsgString->getString(msgID, (J2DTextBox*)field_0x168[field_0x178 ^ 1]->getPanePtr(), NULL, mMenuSave.font[0], NULL, 0);
+        mSaveSel.mMsgString->getString(
+            msgID, (J2DTextBox*)mpHeaderTxtPane[mHeaderTxtType ^ 1]->getPanePtr(), NULL,
+            mSaveSel.font[0], NULL, 0);
     }
 
-    field_0x168[field_0x178]->alphaAnimeStart(0);
-    field_0x168[field_0x178 ^ 1]->alphaAnimeStart(0);
-    field_0x179 = 0;
+    mpHeaderTxtPane[mHeaderTxtType]->alphaAnimeStart(0);
+    mpHeaderTxtPane[mHeaderTxtType ^ 1]->alphaAnimeStart(0);
+    mHeaderAnmComplete = false;
 }
 
 /* 801F4928-801F4A10 1EF268 00E8+00 10/10 0/0 0/0 .text headerTxtChangeAnm__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::headerTxtChangeAnm() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/headerTxtChangeAnm__12dMenu_save_cFv.s"
+bool dMenu_save_c::headerTxtChangeAnm() {
+    if (mHeaderAnmComplete) {
+        return true;
+    }
+
+    bool changed = false;
+    bool curHeaderAnmComplete =
+        mpHeaderTxtPane[mHeaderTxtType]->alphaAnime(g_msHIO.mCharSwitchFrames, 255, 0, 0);
+    bool newHeaderAnmComplete =
+        mpHeaderTxtPane[mHeaderTxtType ^ 1]->alphaAnime(g_msHIO.mCharSwitchFrames, 0, 255, 0);
+    int msgWaitTimer = dMeter2Info_getMsgKeyWaitTimer();
+
+    if (curHeaderAnmComplete == true && newHeaderAnmComplete == true && msgWaitTimer == 0) {
+        mHeaderTxtType ^= 1;
+        mHeaderAnmComplete = true;
+        changed = true;
+    }
+
+    return changed;
 }
-#pragma pop
 
 /* 801F4A10-801F4B84 1EF350 0174+00 1/1 0/0 0/0 .text            errDispInitSet__12dMenu_save_cFi */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::errDispInitSet(int param_0) {
+    headerTxtSet(1);
+    mpErrTxtPane[mErrTxtType]->setAlpha(255);
+    mpErrTxtPane[mErrTxtType ^ 1]->setAlpha(0);
+
+    mSaveSel.mMsgString->getString(param_0, (J2DTextBox*)mpErrTxtPane[mErrTxtType]->getPanePtr(),
+                                   NULL, mSaveSel.font[0], NULL, 0);
+
+    if (field_0xd2 != 0 || field_0xd3 != 0) {
+        errorMoveAnmInitSet(2859, 2849);
+    }
+
+    if (field_0x64 != 0 || field_0x65 != 0) {
+        selectDataBaseMoveAnmInitSet(33, 1);
+    }
+
+    if (field_0x9c != 0 || field_0x9d != 0) {
+        yesnoMenuMoveAnmInitSet(2099, 2089, 0);
+    }
+
+    modoruTxtDispAnmInit(0);
+    ketteiTxtDispAnmInit(0);
+    mWarning->init();
+    mSelIcon->setAlphaRate(0.0f);
+    mMenuProc = PROC_MSG_WINDOW_INIT_OPEN;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2096,40 +2933,130 @@ asm void dMenu_save_c::errDispInitSet(int param_0) {
 #include "asm/d/menu/d_menu_save/errDispInitSet__12dMenu_save_cFi.s"
 }
 #pragma pop
+#endif
 
 /* 801F4B84-801F4D10 1EF4C4 018C+00 1/0 0/0 0/0 .text            msgWindowInitOpen__12dMenu_save_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::msgWindowInitOpen() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/msgWindowInitOpen__12dMenu_save_cFv.s"
+void dMenu_save_c::msgWindowInitOpen() {
+    bool headerTxtChanged = true;
+
+    if (field_0x17a == 0) {
+        headerTxtChanged = headerTxtChangeAnm();
+    }
+
+    bool dataAnmComplete = true;
+    bool yesnoAnmComplete = true;
+    bool errorAnmComplete = true;
+
+    if (field_0x64 != 0 || field_0x65 != 0) {
+        dataAnmComplete = selectDataBaseMoveAnm();
+    }
+
+    if (field_0x9c != 0 || field_0x9d != 0) {
+        yesnoAnmComplete = yesnoMenuMoveAnm();
+    }
+
+    if (field_0xd2 != 0 || field_0xd3 != 0) {
+        errorAnmComplete = errorMoveAnm();
+    }
+
+    bool modoruAnmComplete = modoruTxtDispAnm();
+    bool ketteiAnmComplete = ketteiTxtDispAnm();
+
+    if (headerTxtChanged == true && dataAnmComplete == true && yesnoAnmComplete == true && errorAnmComplete == true &&
+        modoruAnmComplete == true && ketteiAnmComplete == true) {
+        mSaveSel.Scr->clearAnmTransform();
+        errorMoveAnmInitSet(2849, 2859);
+
+        if (field_0x9e != 0) {
+            yesnoMenuMoveAnmInitSet(2999, 3009, 0);
+            ketteiTxtDispAnmInit(1);
+        } else {
+            ketteiTxtDispAnmInit(0);
+        }
+
+        field_0x17a = 1;
+        mMenuProc = PROC_MSG_WINDOW_OPEN;
+    }
 }
-#pragma pop
 
 /* 801F4D10-801F4DAC 1EF650 009C+00 1/0 0/0 0/0 .text            msgWindowOpen__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::msgWindowOpen() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/msgWindowOpen__12dMenu_save_cFv.s"
+void dMenu_save_c::msgWindowOpen() {
+    bool errorAnmComplete = errorMoveAnm();
+    bool yesnoAnmComplete = true;
+
+    if (field_0x9e != 0) {
+        yesnoAnmComplete = yesnoMenuMoveAnm();
+    }
+
+    bool ketteiAnmComplete = ketteiTxtDispAnm();
+
+    if (errorAnmComplete == true && yesnoAnmComplete == true && ketteiAnmComplete == true) {
+        if (field_0x9e != 0) {
+            yesnoCursorShow();
+        }
+
+        mMenuProc = field_0x1b4;
+    }
 }
-#pragma pop
 
 /* 801F4DAC-801F4E48 1EF6EC 009C+00 1/0 0/0 0/0 .text            msgWindowClose__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::msgWindowClose() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/msgWindowClose__12dMenu_save_cFv.s"
+void dMenu_save_c::msgWindowClose() {
+    bool errorAnmComplete = errorMoveAnm();
+    bool yenoAnmComplete = true;
+
+    if (field_0x9c != 0) {
+        yenoAnmComplete = yesnoMenuMoveAnm();
+    }
+
+    if (errorAnmComplete == true && yenoAnmComplete == true) {
+        field_0x9e = 0;
+
+        if (mpErrFunc != NULL) {
+            (this->*mpErrFunc)();
+        } else {
+            mMenuProc = field_0x1b4;
+        }
+    }
 }
-#pragma pop
 
 /* 801F4E48-801F4FB4 1EF788 016C+00 6/6 0/0 0/0 .text            errYesNoSelect__12dMenu_save_cFUcUc
  */
+// matches with literals
+#ifdef NONMATCHING
+bool dMenu_save_c::errYesNoSelect(u8 param_0, u8 param_1) {
+    bool yesnoSelected = false;
+
+    if (mDoRst::isReset()) {
+        return false;
+    }
+
+    stick->checkTrigger();
+
+    if (mDoCPd_c::getTrigA(PAD_1)) {
+        if (mYesNoCursor != CURSOR_NO) {
+            if (param_1 == 0) {
+                mDoAud_seStart(Z2SE_SY_CURSOR_OK, NULL, 0, 0);
+            }
+        } else if (param_1 == 0) {
+            mDoAud_seStart(Z2SE_SY_CURSOR_CANCEL, NULL, 0, 0);
+        }
+
+        mSelIcon->setAlphaRate(0.0f);
+        yesnoSelected = true;
+    } else if (stick->checkRightTrigger()) {
+        if (mYesNoCursor != CURSOR_NO) {
+            errCurMove(param_0, 0);
+        }
+    } else if (stick->checkLeftTrigger()) {
+        if (mYesNoCursor != CURSOR_YES) {
+            errCurMove(param_0, 0);
+        }
+    }
+
+    return yesnoSelected;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2138,8 +3065,22 @@ asm bool dMenu_save_c::errYesNoSelect(u8 param_0, u8 param_1) {
 #include "asm/d/menu/d_menu_save/errYesNoSelect__12dMenu_save_cFUcUc.s"
 }
 #pragma pop
+#endif
 
 /* 801F4FB4-801F5054 1EF8F4 00A0+00 1/1 0/0 0/0 .text            errCurMove__12dMenu_save_cFUcUc */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::errCurMove(u8 param_0, u8 param_1) {
+    mYesNoPrevCursor = mYesNoCursor;
+    mYesNoCursor ^= 1;
+    field_0x2195 = param_0;
+
+    mDoAud_seStart(Z2SE_SY_MENU_CURSOR_COMMON, NULL, param_1, 0);
+    yesnoSelectAnmSet(param_0);
+    field_0x1b3 = mMenuProc;
+    mMenuProc = PROC_ERR_YES_NO_CURSOR_MOVE_ANM;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2148,54 +3089,90 @@ asm void dMenu_save_c::errCurMove(u8 param_0, u8 param_1) {
 #include "asm/d/menu/d_menu_save/errCurMove__12dMenu_save_cFUcUc.s"
 }
 #pragma pop
+#endif
 
 /* 801F5054-801F50C4 1EF994 0070+00 1/0 0/0 0/0 .text errYesNoCursorMoveAnm__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::errYesNoCursorMoveAnm() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/errYesNoCursorMoveAnm__12dMenu_save_cFv.s"
+void dMenu_save_c::errYesNoCursorMoveAnm() {
+    bool moveAnmComplete = yesnoSelectMoveAnm(field_0x2195);
+    bool wakuAnmComplete = yesnoWakuAlpahAnm(mYesNoPrevCursor);
+
+    if (moveAnmComplete == true && wakuAnmComplete == true) {
+        yesnoCursorShow();
+        mMenuProc = field_0x1b3;
+    }
 }
-#pragma pop
 
 /* 801F50C4-801F5190 1EFA04 00CC+00 9/9 0/0 0/0 .text            errorTxtSet__12dMenu_save_cFUs */
 void dMenu_save_c::errorTxtSet(u16 msgID) {
     if (msgID == 0xFFFF) {
-        strcpy(field_0xc8[field_0xd0 ^ 1], "");
+        strcpy(mpErrTxt[mErrTxtType ^ 1], "");
     } else {
-        J2DTextBox* tbox = (J2DTextBox*)field_0xc0[field_0xd0 ^ 1]->getPanePtr();
-        mMenuSave.mMsgString->getString(msgID, tbox, NULL, mMenuSave.font[0], NULL, 0);
+        J2DTextBox* tbox = (J2DTextBox*)mpErrTxtPane[mErrTxtType ^ 1]->getPanePtr();
+        mSaveSel.mMsgString->getString(msgID, tbox, NULL, mSaveSel.font[0], NULL, 0);
     }
 
-    field_0xc0[field_0xd0]->alphaAnimeStart(0);
-    field_0xc0[field_0xd0 ^ 1]->alphaAnimeStart(0);
-    field_0xd1 = 0;
+    mpErrTxtPane[mErrTxtType]->alphaAnimeStart(0);
+    mpErrTxtPane[mErrTxtType ^ 1]->alphaAnimeStart(0);
+    mErrTxtAnmComplete = false;
 }
 
 /* 801F5190-801F5278 1EFAD0 00E8+00 9/9 0/0 0/0 .text            errorTxtChangeAnm__12dMenu_save_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dMenu_save_c::errorTxtChangeAnm() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/errorTxtChangeAnm__12dMenu_save_cFv.s"
+bool dMenu_save_c::errorTxtChangeAnm() {
+    if (mErrTxtAnmComplete) {
+        return true;
+    }
+
+    bool anmComplete = false;
+    bool errTxtAnm1Complete =
+        mpErrTxtPane[mErrTxtType]->alphaAnime(g_msHIO.mCharSwitchFrames, 255, 0, 0);
+    bool errTxtAnm2Complete =
+        mpErrTxtPane[mErrTxtType ^ 1]->alphaAnime(g_msHIO.mCharSwitchFrames, 0, 255, 0);
+    int msgWaitTimer = dMeter2Info_getMsgKeyWaitTimer();
+
+    if (errTxtAnm1Complete == true && errTxtAnm2Complete == true && msgWaitTimer == 0) {
+        mErrTxtType ^= 1;
+        mErrTxtAnmComplete = true;
+        anmComplete = true;
+    }
+
+    return anmComplete;
 }
-#pragma pop
 
 /* 801F5278-801F533C 1EFBB8 00C4+00 1/1 0/0 0/0 .text saveSelectOpenInit__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::saveSelectOpenInit() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/saveSelectOpenInit__12dMenu_save_cFv.s"
+void dMenu_save_c::saveSelectOpenInit() {
+    if (field_0x64 != 0 || field_0x65 != 0) {
+        selectDataBaseMoveAnmInitSet(0x21, 1);
+    }
+
+    if (field_0xd2 != 0 || field_0xd3 != 0) {
+        errorMoveAnmInitSet(0xB2B, 0xB21);
+    }
+
+    if (field_0x9c != 0 || field_0x9c != 0) {
+        yesnoMenuMoveAnmInitSet(2099, 2089, 0);
+    }
+
+    mWarning->init();
+    headerTxtSet(0xFFFF);
+    field_0x17a = 0;
+    mMenuProc = PROC_OPEN_SAVE_SELECT;
 }
-#pragma pop
 
 /* 801F533C-801F53D4 1EFC7C 0098+00 3/3 0/0 0/0 .text
  * selectDataBaseMoveAnmInitSet__12dMenu_save_cFii              */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::selectDataBaseMoveAnmInitSet(int param_0, int param_1) {
+    mpSelectMoveBase->getPanePtr()->setAnimation(field_0x40);
+    mDataBaseMoveAnmFrame = param_0;
+    mDataBaseMoveFrameMax = param_1;
+
+    field_0x40->setFrame(mDataBaseMoveAnmFrame);
+    mpSelectMoveBase->getPanePtr()->animationTransform();
+    field_0x65 = 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2204,29 +3181,80 @@ asm void dMenu_save_c::selectDataBaseMoveAnmInitSet(int param_0, int param_1) {
 #include "asm/d/menu/d_menu_save/selectDataBaseMoveAnmInitSet__12dMenu_save_cFii.s"
 }
 #pragma pop
+#endif
 
 /* 801F53D4-801F54C0 1EFD14 00EC+00 3/3 0/0 0/0 .text selectDataBaseMoveAnm__12dMenu_save_cFv */
+// matches with literals
+#ifdef NONMATCHING
+bool dMenu_save_c::selectDataBaseMoveAnm() {
+    if (mDataBaseMoveAnmFrame != mDataBaseMoveFrameMax) {
+        if (mDataBaseMoveAnmFrame < mDataBaseMoveFrameMax) {
+            mDataBaseMoveAnmFrame += 2;
+
+            if (mDataBaseMoveAnmFrame > mDataBaseMoveFrameMax) {
+                mDataBaseMoveAnmFrame = mDataBaseMoveFrameMax;
+            }
+        } else {
+            mDataBaseMoveAnmFrame -= 2;
+
+            if (mDataBaseMoveAnmFrame < mDataBaseMoveFrameMax) {
+                mDataBaseMoveAnmFrame = mDataBaseMoveFrameMax;
+            }
+        }
+
+        field_0x40->setFrame(mDataBaseMoveAnmFrame);
+        mpSelectMoveBase->getPanePtr()->animationTransform();
+        return false;
+    } else {
+        if (mDataBaseMoveAnmFrame == 33) {
+            field_0x64 = 1;
+            field_0x65 = 0;
+        } else {
+            field_0x64 = 0;
+        }
+
+        mpSelectMoveBase->getPanePtr()->setAnimation((J2DAnmTransformKey*)NULL);
+        return true;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_save_c::selectDataBaseMoveAnm() {
+asm bool dMenu_save_c::selectDataBaseMoveAnm() {
     nofralloc
 #include "asm/d/menu/d_menu_save/selectDataBaseMoveAnm__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F54C0-801F5508 1EFE00 0048+00 1/1 0/0 0/0 .text saveSelectOpenAnmSet__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::saveSelectOpenAnmSet() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/saveSelectOpenAnmSet__12dMenu_save_cFv.s"
+void dMenu_save_c::saveSelectOpenAnmSet() {
+    setSaveData();
+
+    if (field_0x64 == 0) {
+        selectDataBaseMoveAnmInitSet(1, 0x21);
+    }
 }
-#pragma pop
 
 /* 801F5508-801F5600 1EFE48 00F8+00 2/2 0/0 0/0 .text selectDataMoveAnmInitSet__12dMenu_save_cFii
  */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::selectDataMoveAnmInitSet(int param_0, int param_1) {
+    mpSelData[0]->getPanePtr()->setAnimation(field_0x40);
+    mpSelData[1]->getPanePtr()->setAnimation(field_0x40);
+    mpSelData[2]->getPanePtr()->setAnimation(field_0x40);
+
+    field_0x74[mSelectedFile] = param_0;
+    field_0x80 = param_1;
+    field_0x40->setFrame(field_0x74[mSelectedFile]);
+
+    mpSelData[0]->getPanePtr()->animationTransform();
+    mpSelData[1]->getPanePtr()->animationTransform();
+    mpSelData[2]->getPanePtr()->animationTransform();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2235,20 +3263,81 @@ asm void dMenu_save_c::selectDataMoveAnmInitSet(int param_0, int param_1) {
 #include "asm/d/menu/d_menu_save/selectDataMoveAnmInitSet__12dMenu_save_cFii.s"
 }
 #pragma pop
+#endif
 
 /* 801F5600-801F5744 1EFF40 0144+00 3/3 0/0 0/0 .text            selectDataMoveAnm__12dMenu_save_cFv
  */
+// matches with literals
+#ifdef NONMATCHING
+bool dMenu_save_c::selectDataMoveAnm() {
+    if (field_0x74[mSelectedFile] != field_0x80) {
+        if (field_0x74[mSelectedFile] < field_0x80) {
+            field_0x74[mSelectedFile] += 2;
+
+            if (field_0x74[mSelectedFile] > field_0x80) {
+                field_0x74[mSelectedFile] = field_0x80;
+            }
+        } else {
+            field_0x74[mSelectedFile] -= 2;
+
+            if (field_0x74[mSelectedFile] < field_0x80) {
+                field_0x74[mSelectedFile] = field_0x80;
+            }
+        }
+
+        field_0x40->setFrame(field_0x74[mSelectedFile]);
+        for (int i = 0; i < 3; i++) {
+            mpSelData[i]->getPanePtr()->animationTransform();
+        }
+
+        return false;
+    } else {
+        for (int i = 0; i < 3; i++) {
+            mpSelData[i]->getPanePtr()->setAnimation((J2DAnmTransformKey*)NULL);
+        }
+        return true;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_save_c::selectDataMoveAnm() {
+asm bool dMenu_save_c::selectDataMoveAnm() {
     nofralloc
 #include "asm/d/menu/d_menu_save/selectDataMoveAnm__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F5744-801F58C8 1F0084 0184+00 12/12 0/0 0/0 .text
  * yesnoMenuMoveAnmInitSet__12dMenu_save_cFiiUc                 */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::yesnoMenuMoveAnmInitSet(int anmFrame, int frameMax, u8 param_2) {
+    if (param_2 == 0 && field_0x9c == 0) {
+        mYesNoCursor = CURSOR_NO;
+        mYesNoPrevCursor = 1;
+    }
+
+    if (anmFrame == 2089) {
+        ((J2DTextBox*)mpNoYesTxt[mYesNoCursor]->getPanePtr())
+            ->setWhite(JUtility::TColor(255, 255, 255, 255));
+        ((J2DTextBox*)mpNoYesTxt[mYesNoPrevCursor]->getPanePtr())
+            ->setWhite(JUtility::TColor(150, 150, 150, 255));
+    }
+
+    mSelIcon->setAlphaRate(0.0f);
+    mpNoYes[0]->getPanePtr()->setAnimation(field_0x48);
+    mpNoYes[1]->getPanePtr()->setAnimation(field_0x48);
+    mYesNoMoveAnmFrame = anmFrame;
+    mYesNoMoveAnmMax = frameMax;
+
+    field_0x48->setFrame(mYesNoMoveAnmFrame);
+    mpNoYes[0]->getPanePtr()->animationTransform();
+    mpNoYes[1]->getPanePtr()->animationTransform();
+    field_0x9d = 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2257,8 +3346,59 @@ asm void dMenu_save_c::yesnoMenuMoveAnmInitSet(int param_0, int param_1, u8 para
 #include "asm/d/menu/d_menu_save/yesnoMenuMoveAnmInitSet__12dMenu_save_cFiiUc.s"
 }
 #pragma pop
+#endif
 
 /* 801F58C8-801F5AE4 1F0208 021C+00 13/13 0/0 0/0 .text yesnoMenuMoveAnm__12dMenu_save_cFv */
+// matches with literals
+#ifdef NONMATCHING
+bool dMenu_save_c::yesnoMenuMoveAnm() {
+    if (mYesNoMoveAnmFrame != mYesNoMoveAnmMax) {
+        if (mYesNoMoveAnmFrame < mYesNoMoveAnmMax) {
+            mYesNoMoveAnmFrame += 2;
+
+            if (mYesNoMoveAnmFrame > mYesNoMoveAnmMax) {
+                mYesNoMoveAnmFrame = mYesNoMoveAnmMax;
+            }
+        } else {
+            mYesNoMoveAnmFrame -= 2;
+
+            if (mYesNoMoveAnmFrame < mYesNoMoveAnmMax) {
+                mYesNoMoveAnmFrame = mYesNoMoveAnmMax;
+            }
+        }
+
+        field_0x48->setFrame(mYesNoMoveAnmFrame);
+        mpNoYes[0]->getPanePtr()->animationTransform();
+        mpNoYes[1]->getPanePtr()->animationTransform();
+        return false;
+    } else {
+        mpNoYes[0]->getPanePtr()->setAnimation((J2DAnmTransformKey*)NULL);
+        mpNoYes[1]->getPanePtr()->setAnimation((J2DAnmTransformKey*)NULL);
+
+        if (mYesNoMoveAnmFrame == 0x833 || mYesNoMoveAnmFrame == 0x8C9 ||
+            mYesNoMoveAnmFrame == 0xBC1) {
+            field_0x9c = 1;
+
+            if (mYesNoCursor != 0xFF) {
+                mNoYesBase[mYesNoCursor]->setAlpha(255);
+                mNoYesGold[mYesNoCursor]->setAlpha(255);
+                mNoYesGold2[mYesNoCursor]->setAlpha(255);
+            }
+        } else {
+            field_0x9c = 0;
+
+            if (mYesNoCursor != 0xFF) {
+                mNoYesBase[mYesNoCursor]->setAlpha(0);
+                mNoYesGold[mYesNoCursor]->setAlpha(0);
+                mNoYesGold2[mYesNoCursor]->setAlpha(0);
+            }
+        }
+        field_0x9d = 0;
+
+        return true;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2267,16 +3407,82 @@ asm bool dMenu_save_c::yesnoMenuMoveAnm() {
 #include "asm/d/menu/d_menu_save/yesnoMenuMoveAnm__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F5AE4-801F5D84 1F0424 02A0+00 4/4 0/0 0/0 .text yesnoSelectMoveAnm__12dMenu_save_cFUc */
+// matches with literals
+#ifdef NONMATCHING
+bool dMenu_save_c::yesnoSelectMoveAnm(u8 param_0) {
+    bool ret = false;
+    bool var_r30 = true;
+    if (mYesNoPrevCursor != 0xFF) {
+        if (field_0x8c[mYesNoPrevCursor] != YnSelStartFrameTbl[mYesNoPrevCursor][param_0]) {
+            if (field_0x8c[mYesNoPrevCursor] < YnSelStartFrameTbl[mYesNoPrevCursor][param_0]) {
+                field_0x8c[mYesNoPrevCursor] += 2;
+
+                if (field_0x8c[mYesNoPrevCursor] > YnSelStartFrameTbl[mYesNoPrevCursor][param_0]) {
+                    field_0x8c[mYesNoPrevCursor] = YnSelStartFrameTbl[mYesNoPrevCursor][param_0];
+                }
+            } else {
+                field_0x8c[mYesNoPrevCursor] -= 2;
+
+                if (field_0x8c[mYesNoPrevCursor] < YnSelStartFrameTbl[mYesNoPrevCursor][param_0]) {
+                    field_0x8c[mYesNoPrevCursor] = YnSelStartFrameTbl[mYesNoPrevCursor][param_0];
+                }
+            }
+
+            field_0x40->setFrame(field_0x8c[mYesNoPrevCursor]);
+            mpNoYes[mYesNoPrevCursor]->getPanePtr()->animationTransform();
+            var_r30 = false;
+        }
+    }
+
+    bool var_r7 = true;
+    if (mYesNoCursor != 0xFF) {
+        if (field_0x8c[mYesNoCursor] != YnSelEndFrameTbl[mYesNoCursor][param_0]) {
+            if (field_0x8c[mYesNoCursor] < YnSelEndFrameTbl[mYesNoCursor][param_0]) {
+                field_0x8c[mYesNoCursor] += 2;
+
+                if (field_0x8c[mYesNoCursor] > YnSelEndFrameTbl[mYesNoCursor][param_0]) {
+                    field_0x8c[mYesNoCursor] = YnSelEndFrameTbl[mYesNoCursor][param_0];
+                }
+            } else {
+                field_0x8c[mYesNoCursor] -= 2;
+
+                if (field_0x8c[mYesNoCursor] < YnSelEndFrameTbl[mYesNoCursor][param_0]) {
+                    field_0x8c[mYesNoCursor] = YnSelEndFrameTbl[mYesNoCursor][param_0];
+                }
+            }
+
+            field_0x44->setFrame(field_0x8c[mYesNoCursor]);
+            mpNoYes[mYesNoCursor]->getPanePtr()->animationTransform();
+            var_r7 = false;
+        }
+    }
+
+    if (var_r30 == true && var_r7 == true) {
+        if (mYesNoPrevCursor != 0xFF) {
+            mpNoYes[mYesNoPrevCursor]->getPanePtr()->setAnimation((J2DAnmTransformKey*)NULL);
+        }
+
+        if (mYesNoCursor != 0xFF) {
+            mpNoYes[mYesNoCursor]->getPanePtr()->setAnimation((J2DAnmTransformKey*)NULL);
+        }
+        ret = true;
+    }
+
+    return ret;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_save_c::yesnoSelectMoveAnm(u8 param_0) {
+asm bool dMenu_save_c::yesnoSelectMoveAnm(u8 param_0) {
     nofralloc
 #include "asm/d/menu/d_menu_save/yesnoSelectMoveAnm__12dMenu_save_cFUc.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8045447C-80454480 002A7C 0004+00 1/1 0/0 0/0 .sdata2          @6327 */
@@ -2291,6 +3497,24 @@ SECTION_SDATA2 static f32 lit_6328[1 + 1 /* padding */] = {
 
 /* 801F5D84-801F5EF4 1F06C4 0170+00 9/9 0/0 0/0 .text            yesnoCursorShow__12dMenu_save_cFv
  */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::yesnoCursorShow() {
+    if (mYesNoCursor != 0xFF) {
+        ((J2DTextBox*)mpNoYesTxt[mYesNoCursor]->getPanePtr())
+            ->setWhite(JUtility::TColor(255, 255, 255, 255));
+
+        mNoYesBase[mYesNoCursor]->setAlpha(255);
+        mNoYesGold[mYesNoCursor]->setAlpha(255);
+        mNoYesGold2[mYesNoCursor]->setAlpha(255);
+
+        Vec pos = mpNoYes[mYesNoCursor]->getGlobalVtxCenter(false, 0);
+        mSelIcon->setPos(pos.x, pos.y, mpNoYes[mYesNoCursor]->getPanePtr(), true);
+        mSelIcon->setAlphaRate(1.0f);
+        mSelIcon->setParam(0.96f, 0.84f, 0.06f, 0.5f, 0.5f);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2299,8 +3523,20 @@ asm void dMenu_save_c::yesnoCursorShow() {
 #include "asm/d/menu/d_menu_save/yesnoCursorShow__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F5EF4-801F5F84 1F0834 0090+00 3/3 0/0 0/0 .text errorMoveAnmInitSet__12dMenu_save_cFii */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::errorMoveAnmInitSet(int param_0, int param_1) {
+    field_0xb4->setAnimation(field_0x4c);
+    field_0xb8 = param_0;
+    field_0xbc = param_1;
+    field_0x4c->setFrame(field_0xb8);
+    field_0xb4->animationTransform();
+    field_0xd3 = 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2309,81 +3545,171 @@ asm void dMenu_save_c::errorMoveAnmInitSet(int param_0, int param_1) {
 #include "asm/d/menu/d_menu_save/errorMoveAnmInitSet__12dMenu_save_cFii.s"
 }
 #pragma pop
+#endif
 
 /* 801F5F84-801F60A4 1F08C4 0120+00 4/4 0/0 0/0 .text            errorMoveAnm__12dMenu_save_cFv */
+// matches with literals
+#ifdef NONMATCHING
+bool dMenu_save_c::errorMoveAnm() {
+    if (field_0xb8 != field_0xbc) {
+        if (field_0xb8 < field_0xbc) {
+            field_0xb8 += 2;
+
+            if (field_0xb8 > field_0xbc) {
+                field_0xb8 = field_0xbc;
+            }
+        } else {
+            field_0xb8 -= 2;
+
+            if (field_0xb8 < field_0xbc) {
+                field_0xb8 = field_0xbc;
+            }
+        }
+
+        field_0x4c->setFrame(field_0xb8);
+        field_0xb4->animationTransform();
+        return 0;
+    } else {
+        field_0x4c->setFrame(field_0xbc);
+        field_0xb4->animationTransform();
+        field_0xb4->setAnimation((J2DAnmTransformKey*)NULL);
+
+        if (field_0xbc == 2859) {
+            field_0xd2 = 1;
+        } else {
+            field_0xd2 = 0;
+        }
+        field_0xd3 = 0;
+        return 1;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_save_c::errorMoveAnm() {
+asm bool dMenu_save_c::errorMoveAnm() {
     nofralloc
 #include "asm/d/menu/d_menu_save/errorMoveAnm__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F60A4-801F6120 1F09E4 007C+00 5/5 0/0 0/0 .text modoruTxtDispAnmInit__12dMenu_save_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::modoruTxtDispAnmInit(u8 param_0) {
-    nofralloc
-#include "asm/d/menu/d_menu_save/modoruTxtDispAnmInit__12dMenu_save_cFUc.s"
+void dMenu_save_c::modoruTxtDispAnmInit(u8 param_0) {
+    field_0x1a8 = param_0;
+    if ((param_0 != 0 || mpBackTxt->getAlpha() != 0) &&
+        (param_0 != 1 || mpBackTxt->getAlpha() != 255)) {
+        mpBackTxt->alphaAnimeStart(0);
+        mpBBtnIcon->alphaAnimeStart(0);
+        return;
+    }
+
+    mpBackTxt->alphaAnimeStart(g_msHIO.mCharSwitchFrames);
+    mpBBtnIcon->alphaAnimeStart(g_msHIO.mCharSwitchFrames);
 }
-#pragma pop
 
 /* 801F6120-801F61FC 1F0A60 00DC+00 5/5 0/0 0/0 .text            modoruTxtDispAnm__12dMenu_save_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::modoruTxtDispAnm() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/modoruTxtDispAnm__12dMenu_save_cFv.s"
+bool dMenu_save_c::modoruTxtDispAnm() {
+    bool txtAnmComplete;
+    bool btnAnmComplete;
+
+    if (field_0x1a8 != 0) {
+        txtAnmComplete = mpBackTxt->alphaAnime(g_msHIO.mCharSwitchFrames, 0, 255, 0);
+        btnAnmComplete = mpBBtnIcon->alphaAnime(g_msHIO.mCharSwitchFrames, 128, 255, 0);
+    } else {
+        txtAnmComplete = mpBackTxt->alphaAnime(g_msHIO.mCharSwitchFrames, 255, 0, 0);
+        btnAnmComplete = mpBBtnIcon->alphaAnime(g_msHIO.mCharSwitchFrames, 255, 128, 0);
+    }
+
+    if (txtAnmComplete == true && btnAnmComplete == true) {
+        return true;
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 801F61FC-801F6278 1F0B3C 007C+00 9/9 0/0 0/0 .text ketteiTxtDispAnmInit__12dMenu_save_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::ketteiTxtDispAnmInit(u8 param_0) {
-    nofralloc
-#include "asm/d/menu/d_menu_save/ketteiTxtDispAnmInit__12dMenu_save_cFUc.s"
+void dMenu_save_c::ketteiTxtDispAnmInit(u8 param_0) {
+    field_0x1a9 = param_0;
+    if ((param_0 != 0 || mpConfirmTxt->getAlpha() != 0) &&
+        (param_0 != 1 || mpConfirmTxt->getAlpha() != 255)) {
+        mpConfirmTxt->alphaAnimeStart(0);
+        mpABtnIcon->alphaAnimeStart(0);
+        return;
+    }
+
+    mpConfirmTxt->alphaAnimeStart(g_msHIO.mCharSwitchFrames);
+    mpABtnIcon->alphaAnimeStart(g_msHIO.mCharSwitchFrames);
 }
-#pragma pop
 
 /* 801F6278-801F6354 1F0BB8 00DC+00 11/11 0/0 0/0 .text ketteiTxtDispAnm__12dMenu_save_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dMenu_save_c::ketteiTxtDispAnm() {
-    nofralloc
-#include "asm/d/menu/d_menu_save/ketteiTxtDispAnm__12dMenu_save_cFv.s"
+bool dMenu_save_c::ketteiTxtDispAnm() {
+    bool txtAnmComplete;
+    bool btnAnmComplete;
+
+    if (field_0x1a9 != 0) {
+        txtAnmComplete = mpConfirmTxt->alphaAnime(g_msHIO.mCharSwitchFrames, 0, 255, 0);
+        btnAnmComplete = mpABtnIcon->alphaAnime(g_msHIO.mCharSwitchFrames, 128, 255, 0);
+    } else {
+        txtAnmComplete = mpConfirmTxt->alphaAnime(g_msHIO.mCharSwitchFrames, 255, 0, 0);
+        btnAnmComplete = mpABtnIcon->alphaAnime(g_msHIO.mCharSwitchFrames, 255, 128, 0);
+    }
+
+    if (txtAnmComplete == true && btnAnmComplete == true) {
+        return true;
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 801F6354-801F6390 1F0C94 003C+00 2/2 0/0 0/0 .text
  * selectWakuAlpahAnmInit__12dMenu_save_cFUcUcUcUc              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::selectWakuAlpahAnmInit(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
-    nofralloc
-#include "asm/d/menu/d_menu_save/selectWakuAlpahAnmInit__12dMenu_save_cFUcUcUcUc.s"
+void dMenu_save_c::selectWakuAlpahAnmInit(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
+    mpSelWakuMoyo[param_0]->alphaAnimeStart(0);
+    mpSelWakuGold[param_0]->alphaAnimeStart(0);
+    mpSelWakuGold2[param_0]->alphaAnimeStart(0);
+    field_0x104[param_0] = param_1;
+    field_0x107[param_0] = param_2;
+    field_0x10a[param_0] = param_3;
 }
-#pragma pop
 
 /* 801F6390-801F6458 1F0CD0 00C8+00 3/3 0/0 0/0 .text selectWakuAlpahAnm__12dMenu_save_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::selectWakuAlpahAnm(u8 param_0) {
-    nofralloc
-#include "asm/d/menu/d_menu_save/selectWakuAlpahAnm__12dMenu_save_cFUc.s"
+bool dMenu_save_c::selectWakuAlpahAnm(u8 param_0) {
+    bool anmComplete = false;
+    bool moyoAnmComplete = mpSelWakuMoyo[param_0]->alphaAnime(
+        field_0x10a[param_0], field_0x104[param_0], field_0x107[param_0], 0);
+    bool goldAnmComplete = mpSelWakuGold[param_0]->alphaAnime(
+        field_0x10a[param_0], field_0x104[param_0], field_0x107[param_0], 0);
+    bool gold2AnmComplete = mpSelWakuGold2[param_0]->alphaAnime(
+        field_0x10a[param_0], field_0x104[param_0], field_0x107[param_0], 0);
+
+    if (moyoAnmComplete == true && goldAnmComplete == true && gold2AnmComplete == true) {
+        anmComplete = true;
+    }
+
+    return anmComplete;
 }
-#pragma pop
 
 /* 801F6458-801F6608 1F0D98 01B0+00 3/3 0/0 0/0 .text            selFileCursorShow__12dMenu_save_cFv
  */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_save_c::selFileCursorShow() {
+    mpSelWakuMoyo[mSelectedFile]->getPanePtr()->scale(1.0f, 1.0f);
+    mpSelWakuGold[mSelectedFile]->getPanePtr()->scale(1.0f, 1.0f);
+    mpSelWakuGold2[mSelectedFile]->getPanePtr()->scale(1.0f, 1.0f);
+
+    mpSelWakuMoyo[mSelectedFile]->setAlpha(255);
+    mpSelWakuGold[mSelectedFile]->setAlpha(255);
+    mpSelWakuGold2[mSelectedFile]->setAlpha(255);
+
+    Vec pos = mpSelData[mSelectedFile]->getGlobalVtxCenter(false, 0);
+    mSelIcon->setPos(pos.x, pos.y, mpSelData[mSelectedFile]->getPanePtr(), true);
+    mSelIcon->setAlphaRate(0.0f);
+    mSelIcon->setParam(0.96f, 0.94f, 0.03f, 0.7f, 0.7f);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2392,27 +3718,53 @@ asm void dMenu_save_c::selFileCursorShow() {
 #include "asm/d/menu/d_menu_save/selFileCursorShow__12dMenu_save_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F6608-801F6654 1F0F48 004C+00 1/1 0/0 0/0 .text
  * yesnoWakuAlpahAnmInit__12dMenu_save_cFUcUcUcUc               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::yesnoWakuAlpahAnmInit(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
-    nofralloc
-#include "asm/d/menu/d_menu_save/yesnoWakuAlpahAnmInit__12dMenu_save_cFUcUcUcUc.s"
+void dMenu_save_c::yesnoWakuAlpahAnmInit(u8 yesnoIdx, u8 startAlpha, u8 endAlpha, u8 anmTimer) {
+    if (yesnoIdx != 0xFF) {
+        mNoYesBase[yesnoIdx]->alphaAnimeStart(0);
+        mNoYesGold[yesnoIdx]->alphaAnimeStart(0);
+        mNoYesGold2[yesnoIdx]->alphaAnimeStart(0);
+        mNoYesWakuStartAlpha[yesnoIdx] = startAlpha;
+        mNoYesWakuEndAlpha[yesnoIdx] = endAlpha;
+        mNoYesWakuAnmTimer[yesnoIdx] = anmTimer;
+        mpNoYesTxt[yesnoIdx]->colorAnimeStart(0);
+    }
 }
-#pragma pop
 
 /* 801F6654-801F67B8 1F0F94 0164+00 4/4 0/0 0/0 .text yesnoWakuAlpahAnm__12dMenu_save_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_save_c::yesnoWakuAlpahAnm(u8 param_0) {
-    nofralloc
-#include "asm/d/menu/d_menu_save/yesnoWakuAlpahAnm__12dMenu_save_cFUc.s"
+bool dMenu_save_c::yesnoWakuAlpahAnm(u8 yesnoIdx) {
+    if (yesnoIdx == 0xFF) {
+        return true;
+    }
+
+    bool anmComplete = false;
+    bool baseAnmComplete = mNoYesBase[yesnoIdx]->alphaAnime(mNoYesWakuAnmTimer[yesnoIdx],
+                                                            mNoYesWakuStartAlpha[yesnoIdx],
+                                                            mNoYesWakuEndAlpha[yesnoIdx], 0);
+
+    bool goldAnmComplete = mNoYesGold[yesnoIdx]->alphaAnime(mNoYesWakuAnmTimer[yesnoIdx],
+                                                            mNoYesWakuStartAlpha[yesnoIdx],
+                                                            mNoYesWakuEndAlpha[yesnoIdx], 0);
+
+    bool gold2AnmComplete = mNoYesGold2[yesnoIdx]->alphaAnime(mNoYesWakuAnmTimer[yesnoIdx],
+                                                              mNoYesWakuStartAlpha[yesnoIdx],
+                                                              mNoYesWakuEndAlpha[yesnoIdx], 0);
+
+    bool txtAnmComplete = mpNoYesTxt[yesnoIdx]->colorAnime(
+        mNoYesWakuAnmTimer[yesnoIdx], mpNoYesTxt[yesnoIdx]->getInitBlack(),
+        mpNoYesTxt[yesnoIdx]->getInitBlack(), JUtility::TColor(255, 255, 255, 255),
+        JUtility::TColor(150, 150, 150, 255), 0);
+
+    if (baseAnmComplete == true && goldAnmComplete == true && gold2AnmComplete == true &&
+        txtAnmComplete == true) {
+        anmComplete = true;
+    }
+
+    return anmComplete;
 }
-#pragma pop
 
 /* 801F67B8-801F67F0 1F10F8 0038+00 2/2 0/0 0/0 .text            dataSave__12dMenu_save_cFv */
 void dMenu_save_c::dataSave() {
@@ -2441,11 +3793,11 @@ void dMenu_save_c::setSaveData() {
         }
 
         if (field_0x1ad[i] != 0 || field_0x1aa[i] == 1) {
-            field_0x17c[i]->setAlpha(0);
-            field_0x188[i]->setAlpha(255);
+            mpDataBase[i]->setAlpha(0);
+            mpNoDataBase[i]->setAlpha(255);
         } else {
-            field_0x17c[i]->setAlpha(255);
-            field_0x188[i]->setAlpha(0);
+            mpDataBase[i]->setAlpha(255);
+            mpNoDataBase[i]->setAlpha(0);
         }
 
         if (field_0x1aa[i] == 2) {
@@ -2479,8 +3831,8 @@ void dMenu_save_c::_draw2() {
             dComIfGd_set2DOpa(&mMenuSaveExplain);
         }
 
-        if (field_0x1b0 != 0) {
-            dComIfGd_set2DOpa(&mMenuSave);
+        if (mDisplayMenu) {
+            dComIfGd_set2DOpa(&mSaveSel);
 
             for (int i = 0; i < 3; i++) {
                 mFileInfo[i]->_draw();
@@ -2496,6 +3848,12 @@ void dMenu_save_c::_draw2() {
 
 /* 801F6ADC-801F6B0C 1F141C 0030+00 1/0 0/0 0/0 .text            draw__23dDlst_MenuSaveExplain_cFv
  */
+// matches with vtable data
+#ifdef NONMATCHING
+void dDlst_MenuSaveExplain_c::draw() {
+    mpScrn->draw((J2DOrthoGraph*)dComIfGp_getCurrentGrafPort());
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2505,8 +3863,15 @@ extern "C" asm void draw__23dDlst_MenuSaveExplain_cFv() {
 #include "asm/d/menu/d_menu_save/draw__23dDlst_MenuSaveExplain_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F6B0C-801F6B44 1F144C 0038+00 1/0 0/0 0/0 .text            draw__16dDlst_MenuSave_cFv */
+// matches with vtable data
+#ifdef NONMATCHING
+void dDlst_MenuSave_c::draw() {
+    Scr->draw(0.0f, 0.0f, dComIfGp_getCurrentGrafPort());
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2516,6 +3881,7 @@ extern "C" asm void draw__16dDlst_MenuSave_cFv() {
 #include "asm/d/menu/d_menu_save/draw__16dDlst_MenuSave_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801F6B44-801F6B8C 1F1484 0048+00 1/0 0/0 0/0 .text            __dt__16dDlst_MenuSave_cFv */
 dDlst_MenuSave_c::~dDlst_MenuSave_c() {}

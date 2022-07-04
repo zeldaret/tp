@@ -1775,22 +1775,22 @@ int daNpcT_c::draw(int param_0, int param_1, f32 param_2, GXColorS10* color, f32
         return 1;
     }
 
-    mTevStr.field_0x358 = 0;
-    mTevStr.field_0x35a = 0;
-    mTevStr.field_0x35c = 0;
-    mTevStr.field_0x35e = 0;
+    mTevStr.mFogColor.r = 0;
+    mTevStr.mFogColor.g = 0;
+    mTevStr.mFogColor.b = 0;
+    mTevStr.mFogColor.a = 0;
 
     if (color != NULL) {
-        mTevStr.field_0x358 = color->r;
-        mTevStr.field_0x35a = color->g;
-        mTevStr.field_0x35c = color->b;
-        mTevStr.field_0x35e = color->a;
+        mTevStr.mFogColor.r = color->r;
+        mTevStr.mFogColor.g = color->g;
+        mTevStr.mFogColor.b = color->b;
+        mTevStr.mFogColor.a = color->a;
     }
 
     if (field_0xdb8 != 0 && mTimer != 0) {
         f32 r = (f32)field_0xdb8 / (f32)mTimer;
         if (!cM3d_IsZero(r)) {
-            mTevStr.field_0x358 = r * 20.0f;
+            mTevStr.mFogColor.r = r * 20.0f;
         }
     } else if (param_0 != 0) {
         mTevStr.field_0x35a = 20;
@@ -1874,8 +1874,8 @@ asm int daNpcT_c::draw(int param_0, int param_1, f32 param_2, _GXColorS10* param
 
 /* 80148C70-80148CCC 1435B0 005C+00 1/1 0/0 58/58 .text            setEnvTevColor__8daNpcT_cFv */
 void daNpcT_c::setEnvTevColor() {
-    mTevStr.field_0x381 = dComIfG_Bgsp().GetPolyColor(field_0x930);
-    mTevStr.field_0x380 = dComIfG_Bgsp().GetRoomId(field_0x930);
+    mTevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(field_0x930);
+    mTevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(field_0x930);
 }
 
 /* 80148CCC-80148D10 14360C 0044+00 1/1 0/0 58/58 .text            setRoomNo__8daNpcT_cFv */

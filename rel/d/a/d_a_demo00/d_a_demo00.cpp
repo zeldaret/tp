@@ -488,7 +488,7 @@ extern "C" extern u32 g_saftyWhiteColor;
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 extern "C" extern u32 __float_nan;
 extern "C" u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
-extern "C" extern u8 struct_80450D64[4];
+extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 extern "C" u8 m_object__7dDemo_c[4];
 extern "C" void __register_global_object();
 

@@ -134,7 +134,7 @@ lbl_8025899C:
 /* 80258AA4  93 83 61 A8 */	stw r28, 0x61a8(r3)
 /* 80258AA8  93 83 61 AC */	stw r28, 0x61ac(r3)
 /* 80258AAC  90 03 61 B0 */	stw r0, 0x61b0(r3)
-/* 80258AB0  98 8D 86 67 */	stb r4, struct_80450BE4+0x3(r13)
+/* 80258AB0  98 8D 86 67 */	stb r4, mBlureFlag__13mDoGph_gInf_c+0x3(r13)
 /* 80258AB4  7F A3 EB 78 */	mr r3, r29
 /* 80258AB8  48 00 00 75 */	bl setView__10dScnName_cFv
 /* 80258ABC  4B F4 D3 99 */	bl dKy_setLight_init__Fv

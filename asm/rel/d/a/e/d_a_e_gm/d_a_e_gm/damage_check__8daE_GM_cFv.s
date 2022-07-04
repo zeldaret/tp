@@ -64,8 +64,8 @@ lbl_806D63EC:
 /* 806D63FC  98 1E 0A 72 */	stb r0, 0xa72(r30)
 lbl_806D6400:
 /* 806D6400  38 00 00 00 */	li r0, 0
-/* 806D6404  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha /* 0x80451125@ha */
-/* 806D6408  98 03 11 25 */	stb r0, struct_80451124+0x1@l(r3)  /* 0x80451125@l */
+/* 806D6404  3C 60 80 45 */	lis r3, pauseTimer__9dScnPly_c+0x1@ha /* 0x80451125@ha */
+/* 806D6408  98 03 11 25 */	stb r0, pauseTimer__9dScnPly_c+0x1@l(r3)  /* 0x80451125@l */
 /* 806D640C  88 1E 0A 6F */	lbz r0, 0xa6f(r30)
 /* 806D6410  28 00 00 03 */	cmplwi r0, 3
 /* 806D6414  40 82 00 EC */	bne lbl_806D6500

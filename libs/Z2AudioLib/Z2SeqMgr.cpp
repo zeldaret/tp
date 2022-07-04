@@ -1062,7 +1062,7 @@ asm void Z2SeqMgr::processBgmFramework() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2SeqMgr::checkBgmIDPlaying(u32 param_0) {
+asm bool Z2SeqMgr::checkBgmIDPlaying(u32 param_0) {
     nofralloc
 #include "asm/Z2AudioLib/Z2SeqMgr/checkBgmIDPlaying__8Z2SeqMgrFUl.s"
 }

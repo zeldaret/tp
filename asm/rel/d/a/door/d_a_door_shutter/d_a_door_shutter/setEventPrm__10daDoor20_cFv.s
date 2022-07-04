@@ -19,8 +19,8 @@ lbl_8046129C:
 /* 804612E0  54 65 06 3E */	clrlwi r5, r3, 0x18
 /* 804612E4  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
 /* 804612E8  38 83 60 94 */	addi r4, r3, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */
-/* 804612EC  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 804612F0  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 804612EC  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 804612F0  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 804612F4  7C 00 07 74 */	extsb r0, r0
 /* 804612F8  7C 1C 00 00 */	cmpw r28, r0
 /* 804612FC  7F 80 E3 78 */	mr r0, r28

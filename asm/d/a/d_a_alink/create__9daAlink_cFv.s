@@ -43,7 +43,7 @@ lbl_800A5D20:
 /* 800A5D60  4B FF 7D 01 */	bl checkStageName__9daAlink_cFPCc
 /* 800A5D64  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800A5D68  41 82 00 34 */	beq lbl_800A5D9C
-/* 800A5D6C  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 800A5D6C  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 800A5D70  7C 00 07 75 */	extsb. r0, r0
 /* 800A5D74  40 82 00 28 */	bne lbl_800A5D9C
 /* 800A5D78  38 60 00 00 */	li r3, 0
@@ -581,7 +581,7 @@ lbl_800A64FC:
 /* 800A652C  38 C6 61 C0 */	addi r6, r6, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800A6530  80 C6 5D B4 */	lwz r6, 0x5db4(r6)
 /* 800A6534  38 C6 04 D0 */	addi r6, r6, 0x4d0
-/* 800A6538  88 ED 87 E4 */	lbz r7, struct_80450D64+0x0(r13)
+/* 800A6538  88 ED 87 E4 */	lbz r7, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 800A653C  7C E7 07 74 */	extsb r7, r7
 /* 800A6540  39 01 00 1C */	addi r8, r1, 0x1c
 /* 800A6544  39 20 00 00 */	li r9, 0

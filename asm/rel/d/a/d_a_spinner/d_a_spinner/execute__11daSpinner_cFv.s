@@ -71,16 +71,16 @@ lbl_804D4060:
 /* 804D4090  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 804D4094  41 82 00 4C */	beq lbl_804D40E0
 /* 804D4098  38 60 00 06 */	li r3, 6
-/* 804D409C  3C 80 80 45 */	lis r4, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 804D40A0  38 84 0D 64 */	addi r4, r4, struct_80450D64+0x0@l /* 0x80450D64@l */
+/* 804D409C  3C 80 80 45 */	lis r4, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 804D40A0  38 84 0D 64 */	addi r4, r4, mStayNo__20dStage_roomControl_c+0x0@l /* 0x80450D64@l */
 /* 804D40A4  88 84 00 00 */	lbz r4, 0(r4)
 /* 804D40A8  7C 84 07 74 */	extsb r4, r4
 /* 804D40AC  4B B5 99 85 */	bl dComIfGs_isZoneSwitch__Fii
 /* 804D40B0  2C 03 00 00 */	cmpwi r3, 0
 /* 804D40B4  41 82 00 2C */	beq lbl_804D40E0
 /* 804D40B8  38 60 00 07 */	li r3, 7
-/* 804D40BC  3C 80 80 45 */	lis r4, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 804D40C0  38 84 0D 64 */	addi r4, r4, struct_80450D64+0x0@l /* 0x80450D64@l */
+/* 804D40BC  3C 80 80 45 */	lis r4, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 804D40C0  38 84 0D 64 */	addi r4, r4, mStayNo__20dStage_roomControl_c+0x0@l /* 0x80450D64@l */
 /* 804D40C4  88 84 00 00 */	lbz r4, 0(r4)
 /* 804D40C8  7C 84 07 74 */	extsb r4, r4
 /* 804D40CC  4B B5 99 65 */	bl dComIfGs_isZoneSwitch__Fii

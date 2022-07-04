@@ -27,7 +27,6 @@ extern "C" void mDoRst_resetCallBack__FiPv();
 extern "C" u32 getResetData__6mDoRstFv();
 extern "C" extern char const* const m_Do_m_Do_Reset__stringBase0;
 extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 struct_80450C80;
 
 //
 // External References:
@@ -138,7 +137,7 @@ void mDoRst_resetCallBack(int port, void*) {
             cAPICPad_recalibrate();
         } else {
             if (mDoRst::is3ButtonReset()) {
-                struct_80451501 = false;
+                JUTGamePad::C3ButtonReset::sResetOccurred = false;
                 JUTGamePad::C3ButtonReset::sCallback = mDoRst_resetCallBack;
                 JUTGamePad::C3ButtonReset::sCallbackArg = NULL;
                 return;
@@ -171,8 +170,10 @@ u8 struct_80450C7C;
 u8 struct_80450C7D;
 u8 struct_80450C7E;
 u8 struct_80450C7F;
-u8 struct_80450C80;
-u8 struct_80450C81;
+
+bool SyncWidthSound;
+u8 sDefaultDirection;
+
 u8 struct_80450C82;
 u8 struct_80450C83;
 u8 struct_80450C84;
@@ -182,6 +183,6 @@ u8 struct_80450C87;
 #pragma pop
 
 /* 80450C88-80450C90 000188 0008+00 0/0 2/2 0/0 .sbss            None */
-u8 data_80450C88;
+bool mDoDvdErr_initialized;
 
 /* 80374198-80374198 0007F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

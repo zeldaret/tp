@@ -14,7 +14,7 @@ fapGm_HIO_c::fapGm_HIO_c()
       mLetterBottomShadowColor(-1) {
     mUsingHostIO = true;
 
-    if (data_80450580) {
+    if (mDoMain::developmentMode) {
         mDisplayMeter = true;
         mDisplayPrint = true;
     } else {

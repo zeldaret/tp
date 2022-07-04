@@ -536,7 +536,7 @@ lbl_80067C8C:
 /* 80067C9C  48 30 0C F9 */	bl strcmp
 /* 80067CA0  2C 03 00 00 */	cmpwi r3, 0
 /* 80067CA4  40 82 00 B8 */	bne lbl_80067D5C
-/* 80067CA8  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 80067CA8  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 80067CAC  2C 00 00 04 */	cmpwi r0, 4
 /* 80067CB0  40 82 00 A0 */	bne lbl_80067D50
 /* 80067CB4  C0 41 00 64 */	lfs f2, 0x64(r1)
@@ -881,7 +881,7 @@ lbl_800681B4:
 /* 800681BC  88 0E 0E 90 */	lbz r0, 0xe90(r14)
 /* 800681C0  28 00 00 00 */	cmplwi r0, 0
 /* 800681C4  41 82 00 20 */	beq lbl_800681E4
-/* 800681C8  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 800681C8  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 800681CC  7C 00 07 75 */	extsb. r0, r0
 /* 800681D0  40 82 00 14 */	bne lbl_800681E4
 /* 800681D4  C0 21 00 6C */	lfs f1, 0x6c(r1)
@@ -889,7 +889,7 @@ lbl_800681B4:
 /* 800681DC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800681E0  41 80 00 2C */	blt lbl_8006820C
 lbl_800681E4:
-/* 800681E4  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 800681E4  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 800681E8  7C 00 07 74 */	extsb r0, r0
 /* 800681EC  2C 00 00 03 */	cmpwi r0, 3
 /* 800681F0  41 82 00 1C */	beq lbl_8006820C
@@ -915,7 +915,7 @@ lbl_8006820C:
 /* 8006823C  38 60 00 01 */	li r3, 1
 /* 80068240  38 81 00 0C */	addi r4, r1, 0xc
 /* 80068244  48 2F 71 39 */	bl GXSetTevColor
-/* 80068248  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 80068248  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8006824C  7C 00 07 75 */	extsb. r0, r0
 /* 80068250  40 82 00 0C */	bne lbl_8006825C
 /* 80068254  C0 22 8B 48 */	lfs f1, lit_9400(r2)

@@ -44,8 +44,8 @@ lbl_804E0178:
 /* 804E0178  88 1D 09 2A */	lbz r0, 0x92a(r29)
 /* 804E017C  28 00 00 21 */	cmplwi r0, 0x21
 /* 804E0180  40 82 08 A0 */	bne lbl_804E0A20
-/* 804E0184  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 804E0188  8B E3 0D 64 */	lbz r31, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 804E0184  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 804E0188  8B E3 0D 64 */	lbz r31, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 804E018C  7F FF 07 74 */	extsb r31, r31
 /* 804E0190  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
 /* 804E0194  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */

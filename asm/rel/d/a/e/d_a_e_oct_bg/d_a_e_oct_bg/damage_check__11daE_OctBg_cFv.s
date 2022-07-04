@@ -98,8 +98,8 @@ lbl_80738F8C:
 /* 80738F9C  98 1E 0B AD */	stb r0, 0xbad(r30)
 lbl_80738FA0:
 /* 80738FA0  38 00 00 00 */	li r0, 0
-/* 80738FA4  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha /* 0x80451125@ha */
-/* 80738FA8  98 03 11 25 */	stb r0, struct_80451124+0x1@l(r3)  /* 0x80451125@l */
+/* 80738FA4  3C 60 80 45 */	lis r3, pauseTimer__9dScnPly_c+0x1@ha /* 0x80451125@ha */
+/* 80738FA8  98 03 11 25 */	stb r0, pauseTimer__9dScnPly_c+0x1@l(r3)  /* 0x80451125@l */
 /* 80738FAC  38 7E 08 C0 */	addi r3, r30, 0x8c0
 /* 80738FB0  81 9E 08 FC */	lwz r12, 0x8fc(r30)
 /* 80738FB4  81 8C 00 24 */	lwz r12, 0x24(r12)

@@ -1,5 +1,5 @@
 lbl_8003EF20:
-/* 8003EF20  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 8003EF20  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8003EF24  7C 00 07 74 */	extsb r0, r0
 /* 8003EF28  38 60 00 00 */	li r3, 0
 /* 8003EF2C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */

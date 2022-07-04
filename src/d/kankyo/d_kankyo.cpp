@@ -11,6 +11,8 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_audio.h"
+#include "SSystem/SComponent/c_math.h"
+#include "SSystem/SComponent/c_counter.h"
 
 //
 // Types:
@@ -305,7 +307,6 @@ extern "C" void __as__12J3DLightInfoFRC12J3DLightInfo();
 extern "C" void setEffectMtx__13J3DTexMtxInfoFPA4_f();
 extern "C" void simpleCalcMaterial__12J3DModelDataFUsPA4_f();
 extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void GXInitLightAttn();
 extern "C" void __register_global_object();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
@@ -342,7 +343,6 @@ extern "C" extern void* g_fopKy_Method[5 + 1 /* padding */];
 extern "C" u8 m_bloom__13mDoGph_gInf_c[20];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" extern u8 g_Counter[12 + 4 /* padding */];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
@@ -545,7 +545,7 @@ SECTION_DATA static u8 lightStatusBase[232] = {
 
 /* 803BBEAC-803BBEBC 018FCC 0010+00 4/4 0/0 0/0 .data            lightMaskData */
 SECTION_DATA static u16 lightMaskData[8] = {
-    0x0001, 0x0002, 0x0004, 0x0008, 0x0010, 0x0020, 0x0040, 0x0080,
+    GX_LIGHT0, GX_LIGHT1, GX_LIGHT2, GX_LIGHT3, GX_LIGHT4, GX_LIGHT5, GX_LIGHT6, GX_LIGHT7,
 };
 
 /* 8019CB0C-8019CCDC 19744C 01D0+00 3/2 0/0 0/0 .text dKy_WolfPowerup_BgAmbCol__FP11_GXColorS10 */
@@ -1049,7 +1049,7 @@ SECTION_SDATA2 static f32 lit_5077 = 99999.8984375f;
 
 /* 8019E694-8019E708 198FD4 0074+00 2/2 0/0 0/0 .text            plight_init__Fv */
 static void plight_init() {
-    g_env_light.field_0x38[0].mPow = lit_5077;
+    g_env_light.mLightInfluence[0].mPow = lit_5077;
 
     for (int i = 0; i < 100; i++) {
         g_env_light.mPointLight[i] = NULL;
@@ -1060,8 +1060,8 @@ static void plight_init() {
         g_env_light.field_0x72c[i] = NULL;
     }
 
-    g_env_light.field_0x12a4 = -1;
-    g_env_light.field_0x12a8 = -1;
+    g_env_light.mPlayerPLightIdx = -1;
+    g_env_light.mPlayerEfLightIdx = -1;
 }
 
 /* 8019E708-8019E734 199048 002C+00 1/1 0/0 0/0 .text            darkmist_init__Fv */
@@ -1206,6 +1206,186 @@ SECTION_SDATA2 static f32 lit_5348 = 360.0f;
 SECTION_SDATA2 static f32 lit_5349 = 0.012000000104308128f;
 
 /* 8019EC98-8019F264 1995D8 05CC+00 1/1 0/0 0/0 .text            envcolor_init__Fv */
+#ifdef NONMATCHING
+static void envcolor_init() {
+    stage_palette_info_class* palette = dComIfGp_getStagePaletteInfo();
+    stage_pselect_info_class* pselect = dComIfGp_getStagePselectInfo();
+    stage_envr_info_class* envr = dComIfGp_getStageEnvrInfo();
+    stage_vrbox_info_class* vrbox = dComIfGp_getStageVrboxcolInfo();
+
+    dKy_actor_addcol_set(0, 0, 0, 0.0f);
+    dKy_fog_startendz_set(0.0f, 0.0f, 0.0f);
+    dKy_vrbox_addcol_set(0, 0, 0, 0.0f);
+
+    g_env_light.field_0x1280 = 0;
+    g_env_light.mInitAnmTimer = 1;
+    g_env_light.mSchBit = 0;
+    g_env_light.mSchbitTimer = 0;
+    
+    g_env_light.mVrboxInvisible = false;
+    g_env_light.mContrastFlag = 0;
+    g_env_light.mFogAdjEnable = true;
+    g_env_light.mFogAdjTableType = 0;
+    g_env_light.mFogAdjCenter = 0x140;
+    dKyd_xfog_table_set(0);
+
+    g_env_light.mColAllcolRatio = 1.0f;
+    g_env_light.mColActColRatio = 1.0f;
+    g_env_light.mColBgColRatio = 1.0f;
+    g_env_light.mColFogColRatio = 1.0f;
+    g_env_light.mColVrboxSoraColRatio = 1.0f;
+    g_env_light.mColVrboxKumocolRatio = 1.0f;
+    g_env_light.field_0x1210 = 1.0f;
+
+    g_env_light.mAllcolRatio = 1.0f;
+    g_env_light.mActcolRatio = 1.0f;
+    g_env_light.mBgcolRatio = 1.0f;
+    g_env_light.mFogcolRatio = 1.0f;
+    g_env_light.mVrboxSoracolRatio = 1.0f;
+    g_env_light.mVrboxKumocolRatio = 1.0f;
+    g_env_light.field_0x122c = 1.0f;
+
+    g_env_light.mItemGetCol_chg = 0;
+    g_env_light.field_0x1240 = 0.0f;
+    g_env_light.field_0x1230 = 0.0f;
+    g_env_light.field_0x1234 = 0.0f;
+
+    g_env_light.mThunderEff.mStateTimer = 0;
+    g_env_light.field_0x1238 = 0.0f;
+    g_env_light.field_0x123c = 0.0f;
+    g_env_light.field_0x12d6 = 0;
+    g_env_light.mShadowMode = 0;
+    g_env_light.mCameraInWater = 0;
+
+    g_env_light.field_0x1258 = 0.0f;
+    g_env_light.mActorLightEffect = 100;
+    g_env_light.mPaletteTerrainLightEffect = 1.0f;
+    g_env_light.field_0x1064 = 0.0f;
+    g_env_light.field_0x1068 = -1.0f;
+    g_env_light.field_0x106c = -1.0f;
+    g_env_light.mDemoAttentionPoint = 0.0f;
+
+    if (!strcmp(dComIfGp_getStartStageName(), "R_SP127")) {
+        g_env_light.mDemoAttentionPoint = 0.11f;
+    }
+
+    g_env_light.field_0x1308 = 0;
+    g_env_light.field_0x130b = 0;
+    g_env_light.field_0x1309 = 1;
+    dKy_light_size_get(dComIfGp_getStartStageName());
+    g_env_light.mGrassLightEffectRate = 1.0f;
+    g_env_light.field_0x12fc = -1;
+    g_env_light.field_0x1278 = 0.0f;
+    g_env_light.field_0x1264 = -255.0f;
+    g_env_light.field_0x1268 = 999999.0f;
+    g_env_light.field_0x126c = 999999.0f;
+    g_env_light.field_0x127c = 200.0f;
+
+    if (dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) == ST_BOSS_ROOM) {
+        g_env_light.mpSchedule = dKyd_schejule_boss_getp();
+    } else {
+        g_env_light.mpSchedule = dKyd_schejule_getp();
+    }
+
+    g_env_light.mNowRoom = dComIfGp_roomControl_getStayNo();
+    g_env_light.mEnvrIdxCurr = dComIfGp_roomControl_getStayNo();
+    g_env_light.mColPatBlend = 1.0f;
+    g_env_light.field_0x12b0 = 0;
+    g_env_light.mColpatWeather = 0;
+    g_env_light.field_0xecc = 0.0f;
+
+    if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") || !strcmp(dComIfGp_getStartStageName(), "R_SP127")) {
+        if (g_env_light.field_0x12cc >= 7) {
+            g_env_light.mColpatWeather = 2;
+        } else if (g_env_light.field_0x12cc != 0) {
+            g_env_light.mColpatWeather = 1;
+        }
+    } else if (!strcmp(dComIfGp_getStartStageName(), "D_MN07A")) {
+        if (g_env_light.field_0x12cc == 1) {
+            g_env_light.mColpatWeather = 1;
+        } else if (g_env_light.field_0x12cc == 2) {
+            g_env_light.mColpatWeather = 2;
+        }
+    } else {
+        g_env_light.field_0x12cc = 0;
+    }
+
+    g_env_light.mRainCountOrig = 0;
+    g_env_light.field_0x12a0 = 0;
+    g_env_light.mDiceWeatherMode = 0;
+    g_env_light.mDiceWeatherChangeTime = dComIfGs_getTime() + (cM_rndF(g_Counter.mCounter0 & 0x1F) * 15.0f);
+    if (g_env_light.mDiceWeatherChangeTime >= 360.0f) {
+        g_env_light.mDiceWeatherChangeTime -= 360.0f;
+    }
+
+    g_env_light.mDiceWeatherState = 0;
+    g_env_light.mDiceWeatherCurrPattern = 0;
+    g_env_light.mDiceWeatherCounter = 0;
+    g_env_light.mDiceWeatherTime = 0.0f;
+
+    g_env_light.mColPatPrev = g_env_light.mColpatWeather;
+    g_env_light.mColPatCurr = g_env_light.mColpatWeather;
+    g_env_light.mColpatPrevGather = 0xFF;
+    g_env_light.mColpatCurrGather = 0xFF;
+    g_env_light.mColPatBlendGather = -1.0f;
+    g_env_light.mColPatMode = 0;
+    g_env_light.mColPatModeGather = 0;
+
+    if (envr != NULL) {
+        g_env_light.mpDmEnvr = envr;
+    } else {
+        g_env_light.mpDmEnvr = (stage_envr_info_class*)dKyd_dmenvr_getp();
+    }
+
+    if (palette != NULL) {
+        g_env_light.mpDmPalet = palette;
+    } else {
+        g_env_light.mpDmPalet = (stage_palette_info_class*)dKyd_dmpalet_getp();
+    }
+
+    if (pselect != NULL) {
+        g_env_light.mpDmPselect = pselect;
+    } else {
+        g_env_light.mpDmPselect = (stage_pselect_info_class*)dKyd_dmpselect_getp();
+    }
+
+    if (vrbox != NULL) {
+        g_env_light.mpDmVrbox = vrbox;
+    } else {
+        g_env_light.mpDmVrbox = (stage_vrbox_info_class*)dKyd_dmvrbox_getp();
+    }
+
+    plight_init();
+    plight_set();
+    darkmist_init();
+    bgparts_activelight_init();
+
+    g_env_light.field_0x11c8 = 1.0f;
+    g_env_light.field_0x11cc = 1.0f;
+    g_env_light.field_0x11d0 = 1.0f;
+    g_env_light.field_0xf2c = 0;
+    g_env_light.field_0xf30 = NULL;
+    g_env_light.field_0xf34 = 0.0f;
+    g_env_light.field_0xf38 = NULL;
+
+    undwater_init();
+    dComIfGs_PolyDamageOff_Set(0);
+    g_env_light.field_0x98c = dComIfGp_roomControl_getStayNo();
+    g_env_light.field_0x12fa = 0;
+    g_env_light.field_0x12fb = 0;
+    g_env_light.field_0x1300 = -1;
+    g_env_light.field_0x1302 = -1;
+    g_env_light.mWaterSurfaceShineRate = 1.0f;
+
+    int timeH = dStage_stagInfo_GetTimeH(i_dComIfGp_getStage()->getStagInfo());
+    if (timeH >= 0) {
+        dComIfGs_setTime(timeH * 15.0f);
+    }
+    g_env_light.mTimeSpeed = 0.012f;
+
+    memset(&g_env_light.mMoyaSE, 0, 0x10);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1214,12 +1394,37 @@ static asm void envcolor_init() {
 #include "asm/d/kankyo/d_kankyo/envcolor_init__Fv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80453CB8-80453CBC 0022B8 0004+00 3/3 0/0 0/0 .sdata2          @5365 */
 SECTION_SDATA2 static f32 lit_5365 = 120.0f;
 
 /* 8019F264-8019F2E8 199BA4 0084+00 1/1 1/1 0/0 .text            dKy_clear_game_init__Fv */
+// matches with literals
+#ifdef NONMATCHING
+void dKy_clear_game_init() {
+    dKy_actor_addcol_set(0, 0, 0, 0.0f);
+
+    g_env_light.mSunPos.x = 1.0f;
+    g_env_light.mSunPos.y = 0.0f;
+    g_env_light.mSunPos.z = 0.0f;
+
+    g_env_light.mMoonPos.x = -1.0f;
+    g_env_light.mMoonPos.y = 0.0f;
+    g_env_light.mMoonPos.z = 0.0f;
+
+    g_env_light.mNexttime = -1.0f;
+    g_env_light.mTime = -1.0f;
+    g_env_light.mDarkDaytime = 120.0f;
+    
+    g_env_light.mDarktimeWeek = 0;
+    g_env_light.field_0x12fe = 0;
+    g_env_light.field_0x130a = 0;
+    g_env_light.field_0x12cc = 0;
+    g_env_light.field_0x130c = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1228,6 +1433,7 @@ asm void dKy_clear_game_init() {
 #include "asm/d/kankyo/d_kankyo/dKy_clear_game_init__Fv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803BBFD0-803BBFF0 -00001 0020+00 1/1 0/0 0/0 .data            @5842 */
@@ -1508,7 +1714,7 @@ WIND_INF_ENTITY::WIND_INF_ENTITY() {
 }
 
 /* 8019F4F8-8019F4FC 199E38 0004+00 1/1 0/0 0/0 .text            __ct__15LIGHT_INFLUENCEFv */
-LIGHT_INFLUENCE::LIGHT_INFLUENCE() {
+extern "C" void __ct__15LIGHT_INFLUENCEFv() {
     /* empty function */
 }
 
@@ -1919,7 +2125,7 @@ asm void dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz* param_0, dKy_
 Z2EnvSeMgr g_mEnvSeMgr;
 
 /* 8042E07C-8042E7BC 05AD9C 0740+00 5/4 0/0 0/0 .bss             lightStatusData */
-static u8 lightStatusData[1856];
+static LightStatus lightStatusData[8];
 
 /* 80453D4C-80453D50 00234C 0004+00 1/1 0/0 0/0 .sdata2          @7011 */
 SECTION_SDATA2 static f32 lit_7011 = 30000.0f;
@@ -2214,14 +2420,70 @@ SECTION_DEAD static char const* const stringBase_80394E5E = "colordata_tbl.dat";
 #pragma pop
 
 /* 801A5C1C-801A5E54 1A055C 0238+00 1/0 0/0 0/0 .text            dKy_Create__FPv */
+// matches with literals
+#ifdef NONMATCHING
+static int dKy_Create(void*) {
+    BOOL setNextTime = false;
+    stage_envr_info_class* envr = dComIfGp_getStageEnvrInfo();
+    if (envr != NULL && dComIfGp_getStartStageRoomNo() != -1) {
+        if (envr[dComIfGp_getStartStageRoomNo()].field_0x0[0x40] != 0) {
+            mDoGph_gInf_c::getBloom()->create();
+        }
+    }
+
+    envcolor_init();
+    g_env_light.field_0x12b0 = 0;
+    g_env_light.field_0x1254 = 1.0f;
+    g_env_light.mPLightNearPos.x = 0.0f;
+    g_env_light.mPLightNearPos.y = 0.0f;
+    g_env_light.mPLightNearPos.z = 0.0f;
+    g_env_light.field_0xf3c = 0;
+    g_env_light.field_0xf40 = 0.0f;
+    g_env_light.field_0xf3d = 0;
+
+    dKy_setLight_init();
+    dKy_Sound_init();
+    dKyw_wind_set();
+    dungeonlight_init();
+    dKy_setLight_nowroom(dComIfGp_roomControl_getStayNo());
+
+    g_env_light.mResPolEfftbl = (dKy_pol_efftbl_struct*)dComIfG_getStageRes("pol_efftbl.dat");
+    g_env_light.mResPolEffcol = (dKy_pol_effcol_struct*)dComIfG_getStageRes("pol_effcol.dat");
+    g_env_light.mResPolEfftbl2 = (dKy_pol_efftbl_struct*)dComIfG_getStageRes("pol_efftbl2.dat");
+    g_env_light.mResPolEffcol2 = (dKy_pol_effcol_struct*)dComIfG_getStageRes("pol_effcol2.dat");
+    g_env_light.mResPolSound = (dKy_pol_sound_struct*)dComIfG_getStageRes("pol_sound.dat");
+    g_env_light.mResPolArg = (dKy_pol_arg_struct*)dComIfG_getStageRes("pol_arg.dat");
+    g_env_light.mResColorDataTbl = (dKy_color_data_struct*)dComIfG_getStageRes("colordata_tbl.dat");
+
+    if (g_env_light.mNexttime != -1.0f) {
+        setNextTime = true;
+        dComIfGs_setTime(g_env_light.mNexttime);
+    }
+
+    if (dKy_darkworld_check()) {
+        if (g_env_light.mTime == -1.0f) {
+            g_env_light.mTime = dComIfGs_getTime();
+        }
+    } else if (g_env_light.mTime != -1.0f) {
+        if (!setNextTime) {
+            dComIfGs_setTime(g_env_light.mTime);
+        }
+        g_env_light.mTime = -1.0f;
+    }
+
+    g_env_light.mNexttime = -1.0f;
+    return 4;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dKy_Create(void* param_0) {
+static asm int dKy_Create(void* param_0) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_Create__FPv.s"
 }
 #pragma pop
+#endif
 
 /* 801A5E54-801A60BC 1A0794 0268+00 1/1 1/1 0/0 .text            dKy_setLight_init__Fv */
 #pragma push
@@ -2234,14 +2496,9 @@ asm void dKy_setLight_init() {
 #pragma pop
 
 /* 801A60BC-801A60E0 1A09FC 0024+00 0/0 1/1 0/0 .text            dKy_setLight__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_setLight() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_setLight__Fv.s"
+void dKy_setLight() {
+    g_env_light.mSunPos2 = g_env_light.mSunPos;
 }
-#pragma pop
 
 /* 801A60E0-801A61F4 1A0A20 0114+00 2/2 0/0 0/0 .text            dKy_GlobalLight_set__Fv */
 #pragma push
@@ -2553,14 +2810,11 @@ asm void dKy_vrbox_addcol_kasumi_set(s16 param_0, s16 param_1, s16 param_2, f32 
 #pragma pop
 
 /* 801A8060-801A80D0 1A29A0 0070+00 1/1 0/0 0/0 .text            dKy_vrbox_addcol_set__Fsssf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKy_vrbox_addcol_set(s16 param_0, s16 param_1, s16 param_2, f32 param_3) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_vrbox_addcol_set__Fsssf.s"
+static void dKy_vrbox_addcol_set(s16 param_0, s16 param_1, s16 param_2, f32 param_3) {
+    dKy_vrbox_addcol_sky0_set(param_0, param_1, param_2, param_3);
+    dKy_vrbox_addcol_kasumi_set(param_0, param_1, param_2, param_3);
+    dKy_addcol_fog_set(param_0, param_1, param_2, param_3);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -2581,24 +2835,24 @@ asm void dKy_fog_startendz_set(f32 param_0, f32 param_1, f32 param_2) {
 #pragma pop
 
 /* 801A8168-801A8190 1A2AA8 0028+00 0/0 1/1 0/0 .text            dKy_Itemgetcol_chg_on__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_Itemgetcol_chg_on() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_Itemgetcol_chg_on__Fv.s"
+void dKy_Itemgetcol_chg_on() {
+    if (g_env_light.mItemGetCol_chg != 0 && g_env_light.mItemGetCol_chg != 6) {
+        return;
+    }
+
+    g_env_light.mItemGetCol_chg = 1;
 }
-#pragma pop
 
 /* 801A8190-801A81C0 1A2AD0 0030+00 2/2 0/0 0/0 .text            dKy_Sound_init__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKy_Sound_init() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_Sound_init__Fv.s"
+static void dKy_Sound_init() {
+    f32 tmp = lit_5346;
+    g_env_light.mSound.field_0x0.x = tmp;
+    g_env_light.mSound.field_0x0.y = tmp;
+    g_env_light.mSound.field_0x0.z = tmp;
+    g_env_light.mSound.field_0xc = 0;
+    g_env_light.mSound.field_0x14 = -1;
+    g_env_light.mSound.field_0x10 = 0;
 }
-#pragma pop
 
 /* 801A81C0-801A8474 1A2B00 02B4+00 0/0 5/5 27/27 .text            dKy_Sound_set__F4cXyziUii */
 #pragma push
@@ -2611,14 +2865,9 @@ asm void dKy_Sound_set(cXyz param_0, int param_1, unsigned int param_2, int para
 #pragma pop
 
 /* 801A8474-801A8484 1A2DB4 0010+00 0/0 1/1 8/8 .text            dKy_Sound_get__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm SND_INFLUENCE* dKy_Sound_get() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_Sound_get__Fv.s"
+SND_INFLUENCE* dKy_Sound_get() {
+    return &g_env_light.mSound;
 }
-#pragma pop
 
 /* 801A8484-801A8538 1A2DC4 00B4+00 0/0 2/2 0/0 .text            dKy_SordFlush_set__F4cXyzi */
 #pragma push
@@ -2695,37 +2944,96 @@ static asm void GxXFog_set() {
 #pragma pop
 
 /* 801A87E4-801A880C 1A3124 0028+00 0/0 0/0 52/52 .text            dKy_change_colpat__FUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_change_colpat(u8 param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_change_colpat__FUc.s"
+void dKy_change_colpat(u8 colpat) {
+    g_env_light.mColpatCurrGather = colpat;
+    if (g_env_light.mColPatCurr == colpat) {
+        return;
+    }
+
+    g_env_light.mColPatBlendGather = FLOAT_LABEL(lit_4409);
 }
-#pragma pop
 
 /* 801A880C-801A8854 1A314C 0048+00 0/0 0/0 25/25 .text            dKy_custom_colset__FUcUcf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_custom_colset(u8 param_0, u8 param_1, f32 param_2) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_custom_colset__FUcUcf.s"
+void dKy_custom_colset(u8 prevGather, u8 curGather, f32 blend) {
+    if (g_env_light.mInitAnmTimer != 1) {
+        if (blend < lit_4505) {
+            g_env_light.mColpatPrevGather = prevGather;
+        } else {
+            g_env_light.mColpatPrevGather = curGather;
+        }
+
+        g_env_light.mColpatCurrGather = curGather;
+        g_env_light.mColPatBlendGather = blend;
+        g_env_light.mColPatModeGather = 1;
+    }
 }
-#pragma pop
 
 /* 801A8854-801A88EC 1A3194 0098+00 0/0 0/0 2/2 .text            dKy_setLight_mine__FP12dKy_tevstr_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_setLight_mine(dKy_tevstr_c* param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_setLight_mine__FP12dKy_tevstr_c.s"
+void dKy_setLight_mine(dKy_tevstr_c* p_tevstr) {
+    GXLightObj light;
+
+    GXInitLightPos(&light, p_tevstr->mLightObj.mInfo.mLightPosition.x,
+                   p_tevstr->mLightObj.mInfo.mLightPosition.y,
+                   p_tevstr->mLightObj.mInfo.mLightPosition.z);
+    GXInitLightDir(&light, p_tevstr->mLightObj.mInfo.mLightDirection.x,
+                   p_tevstr->mLightObj.mInfo.mLightDirection.y,
+                   p_tevstr->mLightObj.mInfo.mLightDirection.z);
+    GXInitLightColor(&light, p_tevstr->mLightObj.mInfo.mColor);
+    GXInitLightAttn(&light, p_tevstr->mLightObj.mInfo.mCosAtten.x,
+                    p_tevstr->mLightObj.mInfo.mCosAtten.y, p_tevstr->mLightObj.mInfo.mCosAtten.z,
+                    p_tevstr->mLightObj.mInfo.mDistAtten.x, p_tevstr->mLightObj.mInfo.mDistAtten.y,
+                    p_tevstr->mLightObj.mInfo.mDistAtten.z);
+    GXLoadLightObjImm(&light, (GXLightID)*lightMaskData);
 }
-#pragma pop
 
 /* 801A88EC-801A8A34 1A322C 0148+00 2/2 5/5 11/11 .text dKy_tevstr_init__FP12dKy_tevstr_cScUc */
+// almost
+#ifdef NONMATCHING
+void dKy_tevstr_init(dKy_tevstr_c* p_tevstr, s8 roomNo, u8 param_2) {
+    memset(p_tevstr, 0, sizeof(dKy_tevstr_c));
+
+    if (roomNo == -1) {
+        p_tevstr->mRoomNo = dComIfGp_roomControl_getStayNo();
+    } else {
+        p_tevstr->mRoomNo = roomNo;
+    }
+
+    p_tevstr->mEnvrIdxCurr = p_tevstr->mRoomNo;
+    p_tevstr->mEnvrIdxPrev = p_tevstr->mRoomNo;
+    p_tevstr->mEnvrIdxOverride = param_2;
+    p_tevstr->mInitTimer = 1;
+    p_tevstr->mInitType = 0x7B;
+    p_tevstr->mColorC0.a = 0;
+    p_tevstr->mColorK0.a = 255;
+    p_tevstr->field_0x378 = 0;
+    p_tevstr->field_0x374 = 1.0f;
+    p_tevstr->field_0x384 = 0;
+
+    p_tevstr->mLightObj.mInfo.mColor.g = 0;
+    p_tevstr->mLightObj.mInfo.mColor.b = 0;
+    p_tevstr->mLightObj.mInfo.mColor.a = 255;
+    p_tevstr->mLightObj.mInfo.mCosAtten.x = 1.0f;
+    p_tevstr->mLightObj.mInfo.mCosAtten.y = 0.0f;
+    p_tevstr->mLightObj.mInfo.mCosAtten.z = 0.0f;
+    p_tevstr->mLightObj.mInfo.mDistAtten.x = 1.0f;
+    p_tevstr->mLightObj.mInfo.mDistAtten.y = 0.0f;
+    p_tevstr->mLightObj.mInfo.mDistAtten.z = 0.0f;
+
+    for (int i = 0; i < 6; i++) {
+        J3DLightObj* light = &p_tevstr->field_0x074[i];
+
+        lightStatusData[i].field_0x0 = light->mInfo.mLightPosition;
+        lightStatusData[i].field_0x18 = light->mInfo.mColor;
+        lightStatusData[i].field_0x1c.x = 1.0f;
+        lightStatusData[i].field_0x1c.y = 0.0f;
+        lightStatusData[i].field_0x1c.z = 0.0f;
+        lightStatusData[i].field_0x28.x = 1.0f;
+        lightStatusData[i].field_0x28.y = 0.0f;
+        lightStatusData[i].field_0x28.z = 0.0f;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2734,88 +3042,58 @@ asm void dKy_tevstr_init(dKy_tevstr_c* param_0, s8 param_1, u8 param_2) {
 #include "asm/d/kankyo/d_kankyo/dKy_tevstr_init__FP12dKy_tevstr_cScUc.s"
 }
 #pragma pop
+#endif
 
 /* 801A8A34-801A8A44 1A3374 0010+00 0/0 1/1 0/0 .text            dKy_rain_check__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_rain_check() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_rain_check__Fv.s"
+int dKy_rain_check() {
+    return g_env_light.mRainCount;
 }
-#pragma pop
 
 /* 801A8A44-801A8A54 1A3384 0010+00 0/0 0/0 5/5 .text            dKy_set_allcol_ratio__Ff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_set_allcol_ratio(f32 param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_set_allcol_ratio__Ff.s"
+void dKy_set_allcol_ratio(f32 ratio) {
+    g_env_light.mAllcolRatio = ratio;
 }
-#pragma pop
 
 /* 801A8A54-801A8A64 1A3394 0010+00 0/0 1/1 1/1 .text            dKy_set_actcol_ratio__Ff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_set_actcol_ratio(f32 param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_set_actcol_ratio__Ff.s"
+void dKy_set_actcol_ratio(f32 ratio) {
+    g_env_light.mActcolRatio = ratio;
 }
-#pragma pop
 
 /* 801A8A64-801A8A74 1A33A4 0010+00 0/0 1/1 1/1 .text            dKy_set_bgcol_ratio__Ff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_set_bgcol_ratio(f32 param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_set_bgcol_ratio__Ff.s"
+void dKy_set_bgcol_ratio(f32 ratio) {
+    g_env_light.mBgcolRatio = ratio;
 }
-#pragma pop
 
 /* 801A8A74-801A8A84 1A33B4 0010+00 0/0 1/1 1/1 .text            dKy_set_fogcol_ratio__Ff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_set_fogcol_ratio(f32 param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_set_fogcol_ratio__Ff.s"
+void dKy_set_fogcol_ratio(f32 ratio) {
+    g_env_light.mFogcolRatio = ratio;
 }
-#pragma pop
 
 /* 801A8A84-801A8AB8 1A33C4 0034+00 0/0 1/1 0/0 .text            dKy_set_vrboxcol_ratio__Ff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_set_vrboxcol_ratio(f32 param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_set_vrboxcol_ratio__Ff.s"
+void dKy_set_vrboxcol_ratio(f32 ratio) {
+    dKy_set_vrboxsoracol_ratio(ratio);
+    dKy_set_vrboxkumocol_ratio(ratio);
 }
-#pragma pop
 
 /* 801A8AB8-801A8AC8 1A33F8 0010+00 1/1 0/0 0/0 .text            dKy_set_vrboxsoracol_ratio__Ff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKy_set_vrboxsoracol_ratio(f32 param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_set_vrboxsoracol_ratio__Ff.s"
+static void dKy_set_vrboxsoracol_ratio(f32 ratio) {
+    g_env_light.mVrboxSoracolRatio = ratio;
 }
-#pragma pop
 
 /* 801A8AC8-801A8AD8 1A3408 0010+00 1/1 0/0 0/0 .text            dKy_set_vrboxkumocol_ratio__Ff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKy_set_vrboxkumocol_ratio(f32 param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_set_vrboxkumocol_ratio__Ff.s"
+static void dKy_set_vrboxkumocol_ratio(f32 ratio) {
+    g_env_light.mVrboxKumocolRatio = ratio;
 }
-#pragma pop
 
 /* 801A8AD8-801A8B38 1A3418 0060+00 0/0 1/1 0/0 .text            dKy_itudemo_se__Fv */
+// matches with literals
+#ifdef NONMATCHING
+void dKy_itudemo_se() {
+    if (g_env_light.mMoyaSE != 0) {
+        mDoAud_seStart(g_env_light.mMoyaSE, NULL, 0, 0);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2824,46 +3102,35 @@ asm void dKy_itudemo_se() {
 #include "asm/d/kankyo/d_kankyo/dKy_itudemo_se__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 801A8B38-801A8B58 1A3478 0020+00 1/1 2/2 11/11 .text            dKy_get_dayofweek__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 dKy_get_dayofweek() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_get_dayofweek__Fv.s"
+s32 dKy_get_dayofweek() {
+    return dComIfGs_getDate() % 7;
 }
-#pragma pop
 
 /* 801A8B58-801A8B68 1A3498 0010+00 0/0 3/3 0/0 .text            dKy_set_nexttime__Ff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_set_nexttime(f32 param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_set_nexttime__Ff.s"
+void dKy_set_nexttime(f32 nextTime) {
+    g_env_light.mNexttime = nextTime;
 }
-#pragma pop
 
 /* 801A8B68-801A8BC8 1A34A8 0060+00 0/0 1/1 0/0 .text            dKy_instant_timechg__Ff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_instant_timechg(f32 param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_instant_timechg__Ff.s"
+void dKy_instant_timechg(f32 time) {
+    if (time < g_env_light.getDaytime()) {
+        dComIfGs_setDate(dComIfGs_getDate() + 1);
+        dKankyo_DayProc();
+    }
+
+    dComIfGs_setTime(time);
 }
-#pragma pop
 
 /* 801A8BC8-801A8C04 1A3508 003C+00 0/0 1/1 0/0 .text            dKy_instant_rainchg__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_instant_rainchg() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_instant_rainchg__Fv.s"
+void dKy_instant_rainchg() {
+    dKyw_rain_set(250);
+    g_env_light.mColpatWeather = 1;
+    g_env_light.mColPatPrev = 1;
+    g_env_light.mColPatCurr = 1;
 }
-#pragma pop
 
 /* 801A8C04-801A8E20 1A3544 021C+00 3/3 0/0 0/0 .text            NewAmbColGet__FP11_GXColorS10 */
 #pragma push
@@ -3051,24 +3318,14 @@ static asm void dKy_WaterIn_Light_set() {
 
 /* 801AB270-801AB280 1A5BB0 0010+00 0/0 2/2 0/0 .text            dKy_camera_water_in_status_set__FUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_camera_water_in_status_set(u8 param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_camera_water_in_status_set__FUc.s"
+void dKy_camera_water_in_status_set(u8 status) {
+    g_env_light.mCameraInWater = status;
 }
-#pragma pop
 
 /* 801AB280-801AB290 1A5BC0 0010+00 3/3 1/1 5/5 .text dKy_camera_water_in_status_check__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL dKy_camera_water_in_status_check() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_camera_water_in_status_check__Fv.s"
+BOOL dKy_camera_water_in_status_check() {
+    return g_env_light.mCameraInWater;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -3108,14 +3365,26 @@ asm u8 dKy_pol_sound_get(cBgS_PolyInfo const* param_0) {
 #pragma pop
 
 /* 801AB59C-801AB668 1A5EDC 00CC+00 0/0 5/5 0/0 .text dKy_pol_argument_get__FPC13cBgS_PolyInfo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_pol_argument_get(cBgS_PolyInfo const* param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_pol_argument_get__FPC13cBgS_PolyInfo.s"
+u8 dKy_pol_argument_get(cBgS_PolyInfo const* p_poly) {
+    dScnKy_env_light_c* envLight = &g_env_light;
+
+    if (p_poly == NULL || &dComIfG_Bgsp() == NULL) {
+        return 0;
+    }
+
+    int att0 = dComIfG_Bgsp().GetPolyAtt0(*p_poly);
+    if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") && g_env_light.field_0x12fe == 4 &&
+        att0 == 4) {
+        att0 = 13;
+    }
+
+    int att1 = dComIfG_Bgsp().GetPolyAtt1(*p_poly);
+    if (envLight->mResPolArg != NULL) {
+        return envLight->mResPolArg[att0].data[att1];
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 801AB668-801AB7D0 1A5FA8 0168+00 0/0 1/1 2/2 .text
  * dKy_pol_eff_prim_get__FPC13cBgS_PolyInfoP8_GXColor           */
@@ -3127,6 +3396,33 @@ asm void dKy_pol_eff_prim_get(cBgS_PolyInfo const* param_0, _GXColor* param_1) {
 #include "asm/d/kankyo/d_kankyo/dKy_pol_eff_prim_get__FPC13cBgS_PolyInfoP8_GXColor.s"
 }
 #pragma pop
+
+/* u8 dKy_pol_eff_prim_get(cBgS_PolyInfo const* p_poly, GXColor* p_color) {
+    dScnKy_env_light_c* envLight = &g_env_light;
+
+    if (p_poly == NULL || p_color == NULL || &dComIfG_Bgsp() == NULL) {
+        return 0xFF;
+    }
+
+    int att0 = dComIfG_Bgsp().GetPolyAtt0(*p_poly);
+    if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") && g_env_light.field_0x12fe == 4 && att0 ==
+4) { att0 = 13; } else if (!strcmp(dComIfGp_getStartStageName(), "D_MN05A") &&
+dComIfGs_isStageBossEnemy() && att0 == 11) { att0 = 7;
+    }
+
+    int att1 = dComIfG_Bgsp().GetPolyAtt1(*p_poly);
+    if (envLight->mResPolEffcol == NULL || ) {
+        u32 index = envLight->mResPolEffcol[att0].data[att1];
+
+        if (index >= 100) {
+            return 0xFF;
+        }
+
+        p_color->r = envLight->mResColorDataTbl[index].data[0];
+        p_color->g = envLight->mResColorDataTbl[index].data[1];
+        p_color->b = envLight->mResColorDataTbl[index].data[2];
+    }
+} */
 
 /* 801AB7D0-801AB93C 1A6110 016C+00 0/0 1/1 2/2 .text
  * dKy_pol_eff_env_get__FPC13cBgS_PolyInfoP8_GXColor            */
@@ -3204,44 +3500,55 @@ asm void dKy_pol_eff2_ratio_get(cBgS_PolyInfo const* param_0) {
 #pragma pop
 
 /* 801AC140-801AC168 1A6A80 0028+00 0/0 2/2 0/0 .text            dKy_TeachWind_existence_chk__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_TeachWind_existence_chk() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_TeachWind_existence_chk__Fv.s"
+BOOL dKy_TeachWind_existence_chk() {
+    if (g_env_light.mTeachWindExist == 0xFF) {
+        return -1;
+    }
+
+    return g_env_light.mTeachWindExist ? TRUE : FALSE;
 }
-#pragma pop
 
 /* 801AC168-801AC228 1A6AA8 00C0+00 4/4 0/0 2/2 .text            dKy_SunMoon_Light_Check__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_SunMoon_Light_Check() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_SunMoon_Light_Check__Fv.s"
+bool dKy_SunMoon_Light_Check() {
+    bool check = false;
+    if (g_env_light.mSunInitialized && !dKy_darkworld_check()) {
+        // stage is not City in the Sky, Hyrule Castle, or Hidden Skill area
+        if (memcmp(dComIfGp_getStartStageName(), "D_MN07", 6) &&
+            memcmp(dComIfGp_getStartStageName(), "D_MN09", 6) &&
+            strcmp(dComIfGp_getStartStageName(), "F_SP200")) {
+            check = true;
+        }
+    }
+
+    return check;
 }
-#pragma pop
 
 /* 801AC228-801AC28C 1A6B68 0064+00 3/3 0/0 0/0 .text            dKy_Outdoor_check__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int dKy_Outdoor_check() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_Outdoor_check__Fv.s"
+static int dKy_Outdoor_check() {
+    BOOL outdoors = false;
+    u32 type = ST_FIELD;
+
+    if (i_dComIfGp_getStage() != NULL) {
+        type = dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo());
+    }
+
+    if (type == ST_FIELD) {
+        outdoors = true;
+    }
+
+    return outdoors;
 }
-#pragma pop
 
 /* 801AC28C-801AC2E0 1A6BCC 0054+00 1/1 0/0 0/0 .text            dKy_Indoor_check__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKy_Indoor_check() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_Indoor_check__Fv.s"
+static int dKy_Indoor_check() {
+    BOOL indoors = false;
+
+    if (dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) != ST_FIELD) {
+        indoors = true;
+    }
+
+    return indoors;
 }
-#pragma pop
 
 /* 801AC2E0-801AC2E8 1A6C20 0008+00 0/0 1/1 0/0 .text            dKy_withwarp_capture_check__Fv */
 BOOL dKy_withwarp_capture_check() {
@@ -3266,14 +3573,15 @@ asm void dKy_depth_dist_set(void* param_0) {
 #pragma pop
 
 /* 801AC57C-801AC5BC 1A6EBC 0040+00 13/13 21/21 134/134 .text            dKy_darkworld_check__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dKy_darkworld_check() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_darkworld_check__Fv.s"
+bool dKy_darkworld_check() {
+    bool check = false;
+
+    if (dComIfGp_world_dark_get() == 1) {
+        check = true;
+    }
+
+    return check;
 }
-#pragma pop
 
 /**
  * @brief Returns the following info about a room: (1) if the room must not be in twilight and (2)

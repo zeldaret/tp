@@ -11,15 +11,15 @@ lbl_804E432C:
 /* 804E4350  4B E8 46 45 */	bl strcmp
 /* 804E4354  2C 03 00 00 */	cmpwi r3, 0
 /* 804E4358  40 82 00 1C */	bne lbl_804E4374
-/* 804E435C  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 804E4360  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 804E435C  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 804E4360  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 804E4364  2C 00 00 0A */	cmpwi r0, 0xa
 /* 804E4368  40 82 00 24 */	bne lbl_804E438C
 /* 804E436C  38 60 00 00 */	li r3, 0
 /* 804E4370  48 00 00 20 */	b lbl_804E4390
 lbl_804E4374:
-/* 804E4374  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 804E4378  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 804E4374  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 804E4378  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 804E437C  2C 00 00 32 */	cmpwi r0, 0x32
 /* 804E4380  40 82 00 0C */	bne lbl_804E438C
 /* 804E4384  38 60 00 00 */	li r3, 0

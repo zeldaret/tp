@@ -6,330 +6,300 @@
 #include "d/pane/d_pane_class_alpha.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__13CPaneMgrAlphaFv();
-extern "C" void __ct__13CPaneMgrAlphaFP9J2DScreenUxUcP10JKRExpHeap();
-extern "C" void __dt__13CPaneMgrAlphaFv();
-extern "C" void initiateAlpha__13CPaneMgrAlphaFP7J2DPaneP10JKRExpHeap();
-extern "C" void show__13CPaneMgrAlphaFv();
-extern "C" void hide__13CPaneMgrAlphaFv();
-extern "C" void isVisible__13CPaneMgrAlphaFv();
-extern "C" void rateCalc__13CPaneMgrAlphaFssUc();
-extern "C" void setAlpha__13CPaneMgrAlphaFUc();
-extern "C" void setAlphaRate__13CPaneMgrAlphaFf();
-extern "C" void getAlphaRate__13CPaneMgrAlphaFv();
-extern "C" void alphaAnime__13CPaneMgrAlphaFsUcUcUc();
-extern "C" void alphaAnimeLoop__13CPaneMgrAlphaFsUcUcUc();
-extern "C" void childPaneCount__13CPaneMgrAlphaFP7J2DPane();
-extern "C" void childPaneGetAlpha__13CPaneMgrAlphaFP7J2DPane();
-extern "C" void childPaneSetAlpha__13CPaneMgrAlphaFP7J2DPaneUc();
-extern "C" void __ct__17CPaneMgrAlphaMorfFP9J2DScreenUxUcP10JKRExpHeap();
-extern "C" void __dt__17CPaneMgrAlphaMorfFv();
-extern "C" void initiateAlphaMorf__17CPaneMgrAlphaMorfFv();
-extern "C" void setBackupAlpha__17CPaneMgrAlphaMorfFv();
-extern "C" void setAlphaMorfRate__17CPaneMgrAlphaMorfFf();
-extern "C" void childPaneBackupAlpha__17CPaneMgrAlphaMorfFP7J2DPane();
-extern "C" void childPaneSetAlphaMorf__17CPaneMgrAlphaMorfFP7J2DPanef();
-
-//
-// External References:
-//
-
-extern "C" void mDoExt_getCurrentHeap__Fv();
-extern "C" void alloc__7JKRHeapFUli();
-extern "C" void free__7JKRHeapFPv();
-extern "C" void __dl__FPv();
-extern "C" void getFirstChildPane__7J2DPaneFv();
-extern "C" void getNextChildPane__7J2DPaneFv();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 803C2E18-803C2E28 01FF38 0010+00 2/2 0/0 0/0 .data            __vt__17CPaneMgrAlphaMorf */
-SECTION_DATA extern void* __vt__17CPaneMgrAlphaMorf[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__17CPaneMgrAlphaMorfFv,
-    (void*)setAlpha__13CPaneMgrAlphaFUc,
-};
-
-/* 803C2E28-803C2E38 01FF48 0010+00 3/3 0/0 0/0 .data            __vt__13CPaneMgrAlpha */
-SECTION_DATA extern void* __vt__13CPaneMgrAlpha[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__13CPaneMgrAlphaFv,
-    (void*)setAlpha__13CPaneMgrAlphaFUc,
-};
+#include "m_Do/m_Do_ext.h"
 
 /* 802553EC-802553FC 24FD2C 0010+00 0/0 2/2 0/0 .text            __ct__13CPaneMgrAlphaFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm CPaneMgrAlpha::CPaneMgrAlpha() {
-    nofralloc
-#include "asm/d/pane/d_pane_class_alpha/__ct__13CPaneMgrAlphaFv.s"
-}
-#pragma pop
+CPaneMgrAlpha::CPaneMgrAlpha() {}
 
 /* 802553FC-8025546C 24FD3C 0070+00 1/1 9/9 1/1 .text
  * __ct__13CPaneMgrAlphaFP9J2DScreenUxUcP10JKRExpHeap           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm CPaneMgrAlpha::CPaneMgrAlpha(J2DScreen* param_0, u64 param_1, u8 param_2, JKRExpHeap* param_3) {
-    nofralloc
-#include "asm/d/pane/d_pane_class_alpha/__ct__13CPaneMgrAlphaFP9J2DScreenUxUcP10JKRExpHeap.s"
+CPaneMgrAlpha::CPaneMgrAlpha(J2DScreen* p_screen, u64 tag, u8 flags, JKRExpHeap* p_heap) {
+    J2DPane* pane = p_screen->search(tag);
+    mFlags = flags;
+    initiateAlpha(pane, p_heap);
 }
-#pragma pop
 
 /* 8025546C-802554E0 24FDAC 0074+00 2/1 1/1 0/0 .text            __dt__13CPaneMgrAlphaFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm CPaneMgrAlpha::~CPaneMgrAlpha() {
-    nofralloc
-#include "asm/d/pane/d_pane_class_alpha/__dt__13CPaneMgrAlphaFv.s"
+CPaneMgrAlpha::~CPaneMgrAlpha() {
+    if (mpFirstStackAlpha != NULL) {
+        heap->free(mpFirstStackAlpha);
+        mpFirstStackAlpha = NULL;
+    }
 }
-#pragma pop
 
 /* 802554E0-802555C8 24FE20 00E8+00 1/1 0/0 0/0 .text
  * initiateAlpha__13CPaneMgrAlphaFP7J2DPaneP10JKRExpHeap        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgrAlpha::initiateAlpha(J2DPane* param_0, JKRExpHeap* param_1) {
-    nofralloc
-#include "asm/d/pane/d_pane_class_alpha/initiateAlpha__13CPaneMgrAlphaFP7J2DPaneP10JKRExpHeap.s"
+void CPaneMgrAlpha::initiateAlpha(J2DPane* p_pane, JKRExpHeap* p_heap) {
+    mPane = p_pane;
+
+    if (p_heap != NULL) {
+        heap = p_heap;
+    } else {
+        heap = (JKRExpHeap*)mDoExt_getCurrentHeap();
+    }
+
+    mpFirstStackAlpha = NULL;
+    field_0x10 = NULL;
+    mChildPaneCount = 0;
+
+    if (mFlags != 0) {
+        childPaneCount(mPane->getFirstChildPane());
+
+        if (mFlags & 2) {
+            mpFirstStackAlpha = heap->alloc(mChildPaneCount, 0x20);
+            field_0x10 = (u8*)mpFirstStackAlpha;
+            childPaneGetAlpha(mPane->getFirstChildPane());
+        }
+    }
+
+    if (p_pane->getKind() == 'PAN2') {
+        mInitAlpha = 255;
+    } else {
+        mInitAlpha = p_pane->getAlpha();
+    }
+
+    mAlphaTimer = 0;
 }
-#pragma pop
 
 /* 802555C8-80255608 24FF08 0040+00 0/0 40/40 2/2 .text            show__13CPaneMgrAlphaFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgrAlpha::show() {
-    nofralloc
-#include "asm/d/pane/d_pane_class_alpha/show__13CPaneMgrAlphaFv.s"
+void CPaneMgrAlpha::show() {
+    if (!isVisible()) {
+        mPane->show();
+    }
 }
-#pragma pop
 
 /* 80255608-8025564C 24FF48 0044+00 0/0 46/46 2/2 .text            hide__13CPaneMgrAlphaFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgrAlpha::hide() {
-    nofralloc
-#include "asm/d/pane/d_pane_class_alpha/hide__13CPaneMgrAlphaFv.s"
+void CPaneMgrAlpha::hide() {
+    if (isVisible() == true) {
+        mPane->hide();
+    }
 }
-#pragma pop
 
 /* 8025564C-80255658 24FF8C 000C+00 2/2 12/12 0/0 .text            isVisible__13CPaneMgrAlphaFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgrAlpha::isVisible() {
-    nofralloc
-#include "asm/d/pane/d_pane_class_alpha/isVisible__13CPaneMgrAlphaFv.s"
+bool CPaneMgrAlpha::isVisible() {
+    return mPane->isVisible();
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80454EB8-80454EC0 0034B8 0004+04 1/1 0/0 0/0 .sdata2          @3692 */
-SECTION_SDATA2 static f32 lit_3692[1 + 1 /* padding */] = {
-    1.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80454EC0-80454EC8 0034C0 0008+00 3/3 0/0 0/0 .sdata2          @3694 */
-SECTION_SDATA2 static f64 lit_3694 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80255658-80255758 24FF98 0100+00 2/2 2/2 0/0 .text            rateCalc__13CPaneMgrAlphaFssUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 CPaneMgrAlpha::rateCalc(s16 param_0, s16 param_1, u8 param_2) {
-    nofralloc
-#include "asm/d/pane/d_pane_class_alpha/rateCalc__13CPaneMgrAlphaFssUc.s"
+f32 CPaneMgrAlpha::rateCalc(s16 maxTimer, s16 curTimer, u8 calcType) {
+    if (maxTimer <= curTimer) {
+        return 1.0f;
+    }
+
+    switch (calcType) {
+    case 1:
+        return (f32)(curTimer * curTimer) / (f32)(maxTimer * maxTimer);
+    case 2:
+        return (f32)((maxTimer - curTimer) * (maxTimer - curTimer)) / (f32)(maxTimer * maxTimer);
+    default:
+        return (f32)curTimer / (f32)maxTimer;
+    }
 }
-#pragma pop
 
 /* 80255758-802557D0 250098 0078+00 2/0 0/0 0/0 .text            setAlpha__13CPaneMgrAlphaFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgrAlpha::setAlpha(u8 param_0) {
-    nofralloc
-#include "asm/d/pane/d_pane_class_alpha/setAlpha__13CPaneMgrAlphaFUc.s"
+void CPaneMgrAlpha::setAlpha(u8 alpha) {
+    if (mFlags & 2) {
+        field_0x10 = (u8*)mpFirstStackAlpha;
+        childPaneSetAlpha(mPane->getFirstChildPane(), alpha);
+    }
+    mPane->setAlpha(alpha);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80454EC8-80454ED0 0034C8 0008+00 6/6 0/0 0/0 .sdata2          @3708 */
-SECTION_SDATA2 static f64 lit_3708 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802557D0-80255828 250110 0058+00 1/1 173/173 5/5 .text            setAlphaRate__13CPaneMgrAlphaFf
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgrAlpha::setAlphaRate(f32 param_0) {
-    nofralloc
-#include "asm/d/pane/d_pane_class_alpha/setAlphaRate__13CPaneMgrAlphaFf.s"
+void CPaneMgrAlpha::setAlphaRate(f32 rate) {
+    setAlpha(mInitAlpha * rate);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80454ED0-80454ED8 0034D0 0004+04 2/2 0/0 0/0 .sdata2          @3721 */
-SECTION_SDATA2 static f32 lit_3721[1 + 1 /* padding */] = {
-    0.0f,
-    /* padding */
-    0.0f,
-};
 
 /* 80255828-80255878 250168 0050+00 0/0 107/107 2/2 .text            getAlphaRate__13CPaneMgrAlphaFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 CPaneMgrAlpha::getAlphaRate() {
-    nofralloc
-#include "asm/d/pane/d_pane_class_alpha/getAlphaRate__13CPaneMgrAlphaFv.s"
+f32 CPaneMgrAlpha::getAlphaRate() {
+    f32 rate = 0.0f;
+
+    if (mInitAlpha != 0) {
+        rate = getAlpha() / (f32)mInitAlpha;
+    }
+
+    return rate;
 }
-#pragma pop
 
 /* 80255878-80255964 2501B8 00EC+00 0/0 31/31 1/1 .text alphaAnime__13CPaneMgrAlphaFsUcUcUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgrAlpha::alphaAnime(s16 param_0, u8 param_1, u8 param_2, u8 param_3) {
-    nofralloc
-#include "asm/d/pane/d_pane_class_alpha/alphaAnime__13CPaneMgrAlphaFsUcUcUc.s"
+bool CPaneMgrAlpha::alphaAnime(s16 timer, u8 startAlpha, u8 endAlpha, u8 calcType) {
+    if (mAlphaTimer < timer - 1) {
+        mAlphaTimer++;
+        f32 rate = rateCalc(timer, mAlphaTimer, calcType);
+        setAlpha(startAlpha + rate * (f32)(endAlpha - startAlpha));
+    } else {
+        mAlphaTimer = timer;
+        setAlpha(endAlpha);
+        return true;
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 80255964-80255A60 2502A4 00FC+00 0/0 0/0 1/1 .text alphaAnimeLoop__13CPaneMgrAlphaFsUcUcUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgrAlpha::alphaAnimeLoop(s16 param_0, u8 param_1, u8 param_2, u8 param_3) {
-    nofralloc
-#include "asm/d/pane/d_pane_class_alpha/alphaAnimeLoop__13CPaneMgrAlphaFsUcUcUc.s"
+bool CPaneMgrAlpha::alphaAnimeLoop(s16 param_0, u8 param_1, u8 param_2, u8 param_3) {
+    bool ret = false;
+    s16 temp_r4 = param_0 / 2;
+
+    mAlphaTimer++;
+
+    if (mAlphaTimer >= param_0) {
+        mAlphaTimer = 0;
+        ret = true;
+    }
+
+    s16 tmp;
+    if (mAlphaTimer < temp_r4) {
+        tmp = mAlphaTimer;
+    } else {
+        tmp = param_0 - mAlphaTimer;
+    }
+
+    f32 rate = rateCalc(temp_r4, tmp, param_3);
+    setAlpha(param_1 + rate * (f32)(param_2 - param_1));
+
+    return ret;
 }
-#pragma pop
 
 /* 80255A60-80255ACC 2503A0 006C+00 1/1 1/1 0/0 .text childPaneCount__13CPaneMgrAlphaFP7J2DPane */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgrAlpha::childPaneCount(J2DPane* param_0) {
-    nofralloc
-#include "asm/d/pane/d_pane_class_alpha/childPaneCount__13CPaneMgrAlphaFP7J2DPane.s"
+void CPaneMgrAlpha::childPaneCount(J2DPane* p_pane) {
+    if (p_pane != NULL) {
+        mChildPaneCount++;
+        childPaneCount(p_pane->getFirstChildPane());
+        childPaneCount(p_pane->getNextChildPane());
+    }
 }
-#pragma pop
 
 /* 80255ACC-80255B5C 25040C 0090+00 1/1 1/1 0/0 .text childPaneGetAlpha__13CPaneMgrAlphaFP7J2DPane
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgrAlpha::childPaneGetAlpha(J2DPane* param_0) {
-    nofralloc
-#include "asm/d/pane/d_pane_class_alpha/childPaneGetAlpha__13CPaneMgrAlphaFP7J2DPane.s"
+void CPaneMgrAlpha::childPaneGetAlpha(J2DPane* p_pane) {
+    if (p_pane != NULL) {
+        u8 alpha;
+        if (p_pane->getKind() == 'PAN2') {
+            alpha = 255;
+        } else {
+            alpha = p_pane->getAlpha();
+        }
+
+        *field_0x10 = alpha;
+        field_0x10++;
+        childPaneGetAlpha(p_pane->getFirstChildPane());
+        childPaneGetAlpha(p_pane->getNextChildPane());
+    }
 }
-#pragma pop
 
 /* 80255B5C-80255C68 25049C 010C+00 1/1 1/1 0/0 .text
  * childPaneSetAlpha__13CPaneMgrAlphaFP7J2DPaneUc               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgrAlpha::childPaneSetAlpha(J2DPane* param_0, u8 param_1) {
-    nofralloc
-#include "asm/d/pane/d_pane_class_alpha/childPaneSetAlpha__13CPaneMgrAlphaFP7J2DPaneUc.s"
+void CPaneMgrAlpha::childPaneSetAlpha(J2DPane* p_pane, u8 alpha) {
+    if (p_pane != NULL) {
+        if (!p_pane->mIsInfluencedAlpha) {
+            f32 tmp;
+            if (mInitAlpha == 0) {
+                tmp = 0.0f;
+            } else {
+                tmp = (f32)alpha / (f32)mInitAlpha;
+            }
+
+            p_pane->setAlpha(*field_0x10 * tmp);
+        }
+        
+        field_0x10++;
+        childPaneSetAlpha(p_pane->getFirstChildPane(), alpha);
+        childPaneSetAlpha(p_pane->getNextChildPane(), alpha);
+    }
 }
-#pragma pop
 
 /* 80255C68-80255CAC 2505A8 0044+00 0/0 5/5 0/0 .text
  * __ct__17CPaneMgrAlphaMorfFP9J2DScreenUxUcP10JKRExpHeap       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm CPaneMgrAlphaMorf::CPaneMgrAlphaMorf(J2DScreen* param_0, u64 param_1, u8 param_2,
-                                         JKRExpHeap* param_3) {
-    nofralloc
-#include "asm/d/pane/d_pane_class_alpha/__ct__17CPaneMgrAlphaMorfFP9J2DScreenUxUcP10JKRExpHeap.s"
+CPaneMgrAlphaMorf::CPaneMgrAlphaMorf(J2DScreen* p_screen, u64 tag, u8 flags,
+                                         JKRExpHeap* p_heap)
+    : CPaneMgrAlpha(p_screen, tag, flags, p_heap) {
+    initiateAlphaMorf();
 }
-#pragma pop
 
 /* 80255CAC-80255D48 2505EC 009C+00 1/0 0/0 0/0 .text            __dt__17CPaneMgrAlphaMorfFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm CPaneMgrAlphaMorf::~CPaneMgrAlphaMorf() {
-    nofralloc
-#include "asm/d/pane/d_pane_class_alpha/__dt__17CPaneMgrAlphaMorfFv.s"
+CPaneMgrAlphaMorf::~CPaneMgrAlphaMorf() {
+    if (mpFirstSaveAlpha != NULL) {
+        heap->free(mpFirstSaveAlpha);
+        mpFirstSaveAlpha = NULL;
+    }
+
+    if (mpFirstGetAlpha != NULL) {
+        heap->free(mpFirstGetAlpha);
+        mpFirstGetAlpha = NULL;
+    }
 }
-#pragma pop
 
 /* 80255D48-80255DD0 250688 0088+00 1/1 0/0 0/0 .text initiateAlphaMorf__17CPaneMgrAlphaMorfFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgrAlphaMorf::initiateAlphaMorf() {
-    nofralloc
-#include "asm/d/pane/d_pane_class_alpha/initiateAlphaMorf__17CPaneMgrAlphaMorfFv.s"
+void CPaneMgrAlphaMorf::initiateAlphaMorf() {
+    mpFirstSaveAlpha = NULL;
+    field_0x20 = NULL;
+
+    mpFirstGetAlpha = NULL;
+    field_0x28 = NULL;
+
+    if (mpFirstStackAlpha != NULL) {
+        mpFirstSaveAlpha = heap->alloc(mChildPaneCount, 0x20);
+        field_0x20 = (u8*)mpFirstSaveAlpha;
+
+        mpFirstGetAlpha = heap->alloc(mChildPaneCount, 0x20);
+        field_0x28 = (u8*)mpFirstGetAlpha;
+        setBackupAlpha();
+    }
 }
-#pragma pop
 
 /* 80255DD0-80255E28 250710 0058+00 1/1 3/3 0/0 .text setBackupAlpha__17CPaneMgrAlphaMorfFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgrAlphaMorf::setBackupAlpha() {
-    nofralloc
-#include "asm/d/pane/d_pane_class_alpha/setBackupAlpha__17CPaneMgrAlphaMorfFv.s"
+void CPaneMgrAlphaMorf::setBackupAlpha() {
+    if (mpFirstStackAlpha != NULL) {
+        field_0x20 = (u8*)mpFirstSaveAlpha;
+        field_0x28 = (u8*)mpFirstGetAlpha;
+
+        childPaneBackupAlpha(mPane->getFirstChildPane());
+    }
 }
-#pragma pop
 
 /* 80255E28-80255E98 250768 0070+00 0/0 3/3 0/0 .text setAlphaMorfRate__17CPaneMgrAlphaMorfFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgrAlphaMorf::setAlphaMorfRate(f32 param_0) {
-    nofralloc
-#include "asm/d/pane/d_pane_class_alpha/setAlphaMorfRate__17CPaneMgrAlphaMorfFf.s"
+void CPaneMgrAlphaMorf::setAlphaMorfRate(f32 rate) {
+    if (mpFirstStackAlpha != NULL) {
+        field_0x20 = (u8*)mpFirstSaveAlpha;
+        field_0x28 = (u8*)mpFirstGetAlpha;
+
+        childPaneSetAlphaMorf(mPane->getFirstChildPane(), rate);
+    } else {
+        setAlphaRate(rate);
+    }
 }
-#pragma pop
 
 /* 80255E98-80255F28 2507D8 0090+00 1/1 0/0 0/0 .text
  * childPaneBackupAlpha__17CPaneMgrAlphaMorfFP7J2DPane          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgrAlphaMorf::childPaneBackupAlpha(J2DPane* param_0) {
-    nofralloc
-#include "asm/d/pane/d_pane_class_alpha/childPaneBackupAlpha__17CPaneMgrAlphaMorfFP7J2DPane.s"
+void CPaneMgrAlphaMorf::childPaneBackupAlpha(J2DPane* p_pane) {
+    if (p_pane != NULL) {
+        *field_0x20 = p_pane->getAlpha();
+        field_0x20++;
+
+        *field_0x28 = p_pane->getAlpha();
+        field_0x28++;
+
+        childPaneBackupAlpha(p_pane->getFirstChildPane());
+        childPaneBackupAlpha(p_pane->getNextChildPane());
+    }
 }
-#pragma pop
 
 /* 80255F28-80256018 250868 00F0+00 1/1 0/0 0/0 .text
  * childPaneSetAlphaMorf__17CPaneMgrAlphaMorfFP7J2DPanef        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CPaneMgrAlphaMorf::childPaneSetAlphaMorf(J2DPane* param_0, f32 param_1) {
-    nofralloc
-#include "asm/d/pane/d_pane_class_alpha/childPaneSetAlphaMorf__17CPaneMgrAlphaMorfFP7J2DPanef.s"
+void CPaneMgrAlphaMorf::childPaneSetAlphaMorf(J2DPane* p_pane, f32 morf) {
+    if (p_pane != NULL) {
+        if (*field_0x20 == *field_0x28) {
+            p_pane->setAlpha(*field_0x20 * morf);
+        } else {
+            *field_0x20 = *field_0x28;
+        }
+        field_0x20++;
+        field_0x28++;
+
+        childPaneSetAlphaMorf(p_pane->getFirstChildPane(), morf);
+        childPaneSetAlphaMorf(p_pane->getNextChildPane(), morf);
+    }
 }
-#pragma pop

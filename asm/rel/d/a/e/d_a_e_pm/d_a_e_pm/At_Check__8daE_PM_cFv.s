@@ -117,8 +117,8 @@ lbl_8074A3A8:
 /* 8074A3B4  41 82 00 08 */	beq lbl_8074A3BC
 /* 8074A3B8  3B E0 00 04 */	li r31, 4
 lbl_8074A3BC:
-/* 8074A3BC  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha /* 0x80451125@ha */
-/* 8074A3C0  9B E3 11 25 */	stb r31, struct_80451124+0x1@l(r3)  /* 0x80451125@l */
+/* 8074A3BC  3C 60 80 45 */	lis r3, pauseTimer__9dScnPly_c+0x1@ha /* 0x80451125@ha */
+/* 8074A3C0  9B E3 11 25 */	stb r31, pauseTimer__9dScnPly_c+0x1@l(r3)  /* 0x80451125@l */
 lbl_8074A3C4:
 /* 8074A3C4  39 61 00 20 */	addi r11, r1, 0x20
 /* 8074A3C8  4B C1 7E 5D */	bl _restgpr_28

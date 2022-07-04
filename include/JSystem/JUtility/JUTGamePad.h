@@ -26,8 +26,7 @@ enum {
 };
 }
 
-extern bool struct_80451500;
-extern bool struct_80451501;  // sResetOccured
+extern bool sResetSwitchPushing__Q210JUTGamePad13C3ButtonReset;
 
 struct JUTGamePadRecordBase {
     virtual void unk0() {}
@@ -75,7 +74,7 @@ public:
         PADSetAnalogMode(mode);
     }
 
-    static void clearResetOccurred() { struct_80451501 = false; }
+    static void clearResetOccurred() { C3ButtonReset::sResetOccurred = false; }
 
     static void setResetCallback(callbackFn callback, void* param_0) {
         C3ButtonReset::sCallback = callback;
@@ -165,6 +164,8 @@ public:
         static void* sCallbackArg;
         static OSTime sThreshold;
         static s32 sResetOccurredPort;
+        static bool sResetOccurred;
+        static bool sResetSwitchPushing;
 
         /* 0x0 */ bool mReset;
     };  // Size: 0x4

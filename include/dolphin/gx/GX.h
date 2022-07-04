@@ -923,6 +923,7 @@ void GXInitLightDistAttn(GXLightObj*, f32, f32, GXDistAttnFn);
 void GXInitLightPos(GXLightObj*, f32, f32, f32);
 void GXInitLightSpot(GXLightObj*, f32, GXSpotFn);
 void GXInvalidateTexAll(void);
+void GXInitLightAttn(GXLightObj*, f32, f32, f32, f32, f32, f32);
 void GXLoadLightObjImm(GXLightObj*, GXLightID);
 void GXLoadPosMtxImm(Mtx, u32);
 void GXLoadNrmMtxImm(Mtx, u32);

@@ -16,8 +16,8 @@ lbl_80964D20:
 /* 80964D58  4B A0 3C 3D */	bl strcmp
 /* 80964D5C  2C 03 00 00 */	cmpwi r3, 0
 /* 80964D60  40 82 00 18 */	bne lbl_80964D78
-/* 80964D64  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80964D68  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80964D64  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80964D68  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80964D6C  2C 00 00 01 */	cmpwi r0, 1
 /* 80964D70  40 82 00 08 */	bne lbl_80964D78
 /* 80964D74  3B E0 00 01 */	li r31, 1

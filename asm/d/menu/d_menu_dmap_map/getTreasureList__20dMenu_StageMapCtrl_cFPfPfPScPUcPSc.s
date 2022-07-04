@@ -21,7 +21,7 @@ lbl_801C102C:
 /* 801C1040  C0 04 00 0C */	lfs f0, 0xc(r4)
 /* 801C1044  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 801C1048  38 7A 00 04 */	addi r3, r26, 4
-/* 801C104C  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 801C104C  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 801C1050  7C 05 07 74 */	extsb r5, r0
 /* 801C1054  88 DA 00 F7 */	lbz r6, 0xf7(r26)
 /* 801C1058  7C C6 07 74 */	extsb r6, r6

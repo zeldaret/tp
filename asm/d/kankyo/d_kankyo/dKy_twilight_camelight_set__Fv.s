@@ -18,7 +18,7 @@ lbl_801AAD50:
 /* 801AAD90  48 1B DC 05 */	bl strcmp
 /* 801AAD94  2C 03 00 00 */	cmpwi r3, 0
 /* 801AAD98  40 82 00 24 */	bne lbl_801AADBC
-/* 801AAD9C  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 801AAD9C  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 801AADA0  2C 00 00 03 */	cmpwi r0, 3
 /* 801AADA4  40 82 00 18 */	bne lbl_801AADBC
 /* 801AADA8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */

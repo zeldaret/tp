@@ -14,7 +14,7 @@ lbl_8000A290:
 /* 8000A2C0  38 63 D3 E8 */	addi r3, r3, mFrameBufferTexObj__13mDoGph_gInf_c@l /* 0x803DD3E8@l */
 /* 8000A2C4  38 80 00 00 */	li r4, 0
 /* 8000A2C8  48 35 41 4D */	bl GXLoadTexObj
-/* 8000A2CC  88 0D 86 65 */	lbz r0, struct_80450BE4+0x1(r13)
+/* 8000A2CC  88 0D 86 65 */	lbz r0, mBlureFlag__13mDoGph_gInf_c+0x1(r13)
 /* 8000A2D0  98 01 00 13 */	stb r0, 0x13(r1)
 /* 8000A2D4  38 60 00 00 */	li r3, 0
 /* 8000A2D8  48 35 38 59 */	bl GXSetNumChans
@@ -143,7 +143,7 @@ lbl_8000A290:
 /* 8000A4C4  38 80 00 00 */	li r4, 0
 /* 8000A4C8  48 35 5C 0D */	bl GXSetProjection
 lbl_8000A4CC:
-/* 8000A4CC  88 0D 86 64 */	lbz r0, struct_80450BE4+0x0(r13)
+/* 8000A4CC  88 0D 86 64 */	lbz r0, mBlureFlag__13mDoGph_gInf_c+0x0(r13)
 /* 8000A4D0  28 00 00 00 */	cmplwi r0, 0
 /* 8000A4D4  41 82 00 10 */	beq lbl_8000A4E4
 /* 8000A4D8  38 00 00 01 */	li r0, 1

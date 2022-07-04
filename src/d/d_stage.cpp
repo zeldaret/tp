@@ -442,7 +442,7 @@ static u8 dStage_isBossStage(dStage_dt_c* stageDt) {
         return false;
     }
 
-    return dStage_stagInfo_GetSTType(pstag) == 3;
+    return dStage_stagInfo_GetSTType(pstag) == ST_BOSS_ROOM;
 }
 
 /* 80023F50-80023F84 01E890 0034+00 1/1 0/0 0/1 .text dStage_KeepDoorInfoInit__FP11dStage_dt_c */
@@ -503,40 +503,12 @@ void dStage_startStage_c::set(const char* i_Name, s8 i_RoomNo, s16 i_Point, s8 i
 /* 803F6094-80406194 022DB4 10100+00 12/12 31/31 16/16 .bss mStatus__20dStage_roomControl_c */
 dStage_roomStatus_c dStage_roomControl_c::mStatus[0x40];
 
-/* 80450D58-80450D60 000258 0008+00 1/1 0/0 0/0 .sbss            tmp_name$4456 */
-static char tmp_name[8];
-
-/* 80450D60-80450D64 000260 0004+00 1/1 3/3 1/1 .sbss            mProcID__20dStage_roomControl_c */
-u32 dStage_roomControl_c::mProcID;
-
-/* 80450D64-80450D68 -00001 0004+00 6/6 94/94 101/101 .sbss            None */
-/* 80450D64 0001+00 data_80450D64 None */
-s8 struct_80450D64;
-
-/* 80450D65 0001+00 data_80450D65 None */
-s8 gLastStayNo;
-
-/* 80450D66 0001+00 data_80450D66 None */
-s8 gNextStayNo;
-
-/* 80450D67 0001+00 data_80450D67 None */
-s8 gTimePass;
-
-/* 80450D68-80450D6C 000268 0004+00 2/2 2/2 1/1 .sbss            None */
-u8 data_80450D68;
-
-/* 80450D6C-80450D70 00026C 0004+00 1/1 2/2 0/0 .sbss mArcBankName__20dStage_roomControl_c */
-char* dStage_roomControl_c::mArcBankName;
-
-/* 80450D70-80450D74 000270 0004+00 1/1 1/1 0/0 .sbss mArcBankData__20dStage_roomControl_c */
-char* dStage_roomControl_c::mArcBankData;
-
 /* 800241E8-80024338 01EB28 0150+00 1/1 0/0 0/4 .text            init__20dStage_roomControl_cFv */
 void dStage_roomControl_c::init() {
-    struct_80450D64 = -1;
-    gLastStayNo = -1;
-    gNextStayNo = -1;
-    data_80450D68 = 0;
+    mStayNo = -1;
+    mOldStayNo = -1;
+    mNextStayNo = -1;
+    mNoChangeRoom = 0;
     data_804505F0 = -1;
 
     if (dComIfGp_getStartStagePoint() >= 0 || dComIfGp_getStartStagePoint() == -4) {
@@ -1610,20 +1582,20 @@ JKRExpHeap* dStage_roomControl_c::getMemoryBlock(int i_roomNo) {
 /* 800243E8-80024424 01ED28 003C+00 2/2 0/0 0/0 .text            setStayNo__20dStage_roomControl_cFi
  */
 void dStage_roomControl_c::setStayNo(int stayNo) {
-    gLastStayNo = struct_80450D64;
-    struct_80450D64 = stayNo;
-    gNextStayNo = struct_80450D64;
+    mOldStayNo = mStayNo;
+    mStayNo = stayNo;
+    mNextStayNo = mStayNo;
 
-    if (struct_80450D64 < 0) {
+    if (mStayNo < 0) {
         return;
     }
 
-    onStatusDraw(struct_80450D64);
+    onStatusDraw(mStayNo);
 }
 
 /* 80024424-8002442C 01ED64 0008+00 0/0 0/0 1/1 .text setNextStayNo__20dStage_roomControl_cFi */
 void dStage_roomControl_c::setNextStayNo(int nextStayNo) {
-    gNextStayNo = nextStayNo;
+    mNextStayNo = nextStayNo;
 }
 
 static int stayRoomCheck(int param_0, u8* param_1, int param_2) {
@@ -1679,8 +1651,8 @@ void dStage_roomControl_c::zoneCountCheck(int stayNo) const {
             dComIfGs_clearRoomSwitch(status->mZoneNo);
             dComIfGs_clearRoomItem(status->mZoneNo);
 
-            if (dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) != 0 &&
-                stayNo != gLastStayNo) {
+            if (dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) != ST_FIELD &&
+                stayNo != mOldStayNo) {
                 if (--status->mZoneCount == 0) {
                     dComIfGs_removeZone(status->mZoneNo);
                     status->mZoneNo = -1;
@@ -1928,7 +1900,7 @@ static int dStage_roomInit(int stayNo) {
 
 /* 80024DB0-80024DB8 01F6F0 0008+00 2/2 0/0 0/0 .text SetTimePass__20dStage_roomControl_cFi */
 void dStage_roomControl_c::SetTimePass(int isPassing) {
-    gTimePass = isPassing;
+    m_time_pass = isPassing;
 }
 
 roomRead_class* dStage_stageDt_c::getRoom() const {
@@ -1948,6 +1920,8 @@ dStage_objectNameInf* dStage_searchName(char const* objName) {
 }
 
 static const char* dStage_getName(s16 procName, s8 subtype) {
+    static char tmp_name[8];
+
     dStage_objectNameInf* obj = &l_objectName[0];
     char* tmp = NULL;
 
@@ -1973,6 +1947,31 @@ static const char* dStage_getName(s16 procName, s8 subtype) {
 const char* dStage_getName2(s16 procName, s8 subtype) {
     return dStage_getName(procName, subtype);
 }
+
+/* 80450D60-80450D64 000260 0004+00 1/1 3/3 1/1 .sbss            mProcID__20dStage_roomControl_c */
+u32 dStage_roomControl_c::mProcID;
+
+/* 80450D64-80450D68 -00001 0004+00 6/6 94/94 101/101 .sbss            None */
+/* 80450D64 0001+00 data_80450D64 None */
+s8 dStage_roomControl_c::mStayNo;
+
+/* 80450D65 0001+00 data_80450D65 None */
+s8 dStage_roomControl_c::mOldStayNo;
+
+/* 80450D66 0001+00 data_80450D66 None */
+s8 dStage_roomControl_c::mNextStayNo;
+
+/* 80450D67 0001+00 data_80450D67 None */
+s8 dStage_roomControl_c::m_time_pass;
+
+/* 80450D68-80450D6C 000268 0004+00 2/2 2/2 1/1 .sbss            None */
+u8 dStage_roomControl_c::mNoChangeRoom;
+
+/* 80450D6C-80450D70 00026C 0004+00 1/1 2/2 0/0 .sbss mArcBankName__20dStage_roomControl_c */
+char* dStage_roomControl_c::mArcBankName;
+
+/* 80450D70-80450D74 000270 0004+00 1/1 1/1 0/0 .sbss mArcBankData__20dStage_roomControl_c */
+char* dStage_roomControl_c::mArcBankData;
 
 /* 80024EFC-80024F98 01F83C 009C+00 7/7 0/0 0/0 .text
  * dStage_actorCreate__FP22stage_actor_data_classP16fopAcM_prm_class */
@@ -2926,7 +2925,7 @@ void dStage_Delete() {
         strcmp(dComIfGp_getNextStageName(), dComIfGp_getStartStageName())) {
         dStage_roomControl_c::destroyMemoryBlock();
 
-        if (dStage_stagInfo_GetSTType(dComIfGp_getStageStagInfo()) == 1) {
+        if (dStage_stagInfo_GetSTType(dComIfGp_getStageStagInfo()) == ST_DUNGEON) {
             dRes_info_c* info = dComIfG_getStageResInfo("Stg_00");
             *info->getArchiveName() = 'X';
             dComIfGp_setOldMulti();

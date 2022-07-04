@@ -779,8 +779,8 @@ lbl_805871F0:
 /* 805872AC  48 00 03 15 */	bl setEnvTevColor__15daObj_KBacket_cFv
 /* 805872B0  7F 63 DB 78 */	mr r3, r27
 /* 805872B4  48 00 03 69 */	bl setRoomNo__15daObj_KBacket_cFv
-/* 805872B8  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 805872BC  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 805872B8  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 805872BC  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 805872C0  7C 03 07 74 */	extsb r3, r0
 /* 805872C4  88 1B 04 E2 */	lbz r0, 0x4e2(r27)
 /* 805872C8  7C 00 07 74 */	extsb r0, r0

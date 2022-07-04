@@ -80,8 +80,8 @@ public:
     bool GetMonkeyBarsCode(cBgS_PolyInfo const&);
     bool GetUnderwaterRoofCode(cBgS_PolyInfo const&);
     s32 GetWallCode(cBgS_PolyInfo const&);
-    BOOL GetPolyAtt0(cBgS_PolyInfo const&);
-    bool GetPolyAtt1(cBgS_PolyInfo const&);
+    int GetPolyAtt0(cBgS_PolyInfo const&);
+    int GetPolyAtt1(cBgS_PolyInfo const&);
     bool GetGroundCode(cBgS_PolyInfo const&);
     s32 GetCamMoveBG(cBgS_PolyInfo const&);
     s32 GetRoomCamId(cBgS_PolyInfo const&);

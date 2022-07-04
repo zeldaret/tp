@@ -532,7 +532,7 @@ extern "C" extern u8 g_env_light[4880];
 extern "C" extern u32 g_blackColor;
 extern "C" extern u32 __float_max;
 extern "C" extern u8 data_80450B74[4];
-extern "C" extern u8 struct_80450D64[4];
+extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 extern "C" u8 mEmitterMng__13dPa_control_c[4];
 
 //

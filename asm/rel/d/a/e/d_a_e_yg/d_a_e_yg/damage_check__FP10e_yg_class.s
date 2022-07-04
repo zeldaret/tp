@@ -65,8 +65,8 @@ lbl_807FA390:
 /* 807FA3D0  B0 9F 05 B4 */	sth r4, 0x5b4(r31)
 /* 807FA3D4  38 00 00 C8 */	li r0, 0xc8
 /* 807FA3D8  B0 1F 06 8E */	sth r0, 0x68e(r31)
-/* 807FA3DC  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha /* 0x80451125@ha */
-/* 807FA3E0  98 83 11 25 */	stb r4, struct_80451124+0x1@l(r3)  /* 0x80451125@l */
+/* 807FA3DC  3C 60 80 45 */	lis r3, pauseTimer__9dScnPly_c+0x1@ha /* 0x80451125@ha */
+/* 807FA3E0  98 83 11 25 */	stb r4, pauseTimer__9dScnPly_c+0x1@l(r3)  /* 0x80451125@l */
 /* 807FA3E4  48 00 00 7C */	b lbl_807FA460
 lbl_807FA3E8:
 /* 807FA3E8  38 00 00 04 */	li r0, 4

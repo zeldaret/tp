@@ -73,8 +73,8 @@ lbl_80A4B8AC:
 /* 80A4B8C0  4B FF D7 95 */	bl checkDoorDemo__Fv
 /* 80A4B8C4  2C 03 00 00 */	cmpwi r3, 0
 /* 80A4B8C8  41 82 01 34 */	beq lbl_80A4B9FC
-/* 80A4B8CC  3C 60 80 45 */	lis r3, struct_80450D64+0x2@ha /* 0x80450D66@ha */
-/* 80A4B8D0  38 63 0D 66 */	addi r3, r3, struct_80450D64+0x2@l /* 0x80450D66@l */
+/* 80A4B8CC  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x2@ha /* 0x80450D66@ha */
+/* 80A4B8D0  38 63 0D 66 */	addi r3, r3, mStayNo__20dStage_roomControl_c+0x2@l /* 0x80450D66@l */
 /* 80A4B8D4  88 63 00 00 */	lbz r3, 0(r3)
 /* 80A4B8D8  7C 63 07 74 */	extsb r3, r3
 /* 80A4B8DC  88 1E 04 E2 */	lbz r0, 0x4e2(r30)

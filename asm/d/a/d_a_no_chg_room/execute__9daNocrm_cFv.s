@@ -141,7 +141,7 @@ lbl_801454C8:
 /* 801454DC  48 00 00 10 */	b lbl_801454EC
 lbl_801454E0:
 /* 801454E0  38 00 00 01 */	li r0, 1
-/* 801454E4  98 0D 87 E8 */	stb r0, data_80450D68(r13)
+/* 801454E4  98 0D 87 E8 */	stb r0, mNoChangeRoom__20dStage_roomControl_c(r13)
 /* 801454E8  98 1F 05 CA */	stb r0, 0x5ca(r31)
 lbl_801454EC:
 /* 801454EC  38 60 00 01 */	li r3, 1

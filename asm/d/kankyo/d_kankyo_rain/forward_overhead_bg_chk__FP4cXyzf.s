@@ -90,7 +90,7 @@ lbl_8005CF78:
 /* 8005D0D8  48 30 B8 BD */	bl strcmp
 /* 8005D0DC  2C 03 00 00 */	cmpwi r3, 0
 /* 8005D0E0  40 82 00 30 */	bne lbl_8005D110
-/* 8005D0E4  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 8005D0E4  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8005D0E8  2C 00 00 11 */	cmpwi r0, 0x11
 /* 8005D0EC  40 82 00 24 */	bne lbl_8005D110
 /* 8005D0F0  38 61 00 20 */	addi r3, r1, 0x20

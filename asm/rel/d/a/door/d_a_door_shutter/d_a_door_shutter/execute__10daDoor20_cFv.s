@@ -57,8 +57,8 @@ lbl_804642F0:
 /* 804642F8  7F E3 FB 78 */	mr r3, r31
 /* 804642FC  4B FF EC E5 */	bl demoProc__10daDoor20_cFv
 lbl_80464300:
-/* 80464300  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 80464304  8C 03 0D 64 */	lbzu r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 80464300  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 80464304  8C 03 0D 64 */	lbzu r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 80464308  98 1F 06 7D */	stb r0, 0x67d(r31)
 /* 8046430C  8B C3 00 00 */	lbz r30, 0(r3)
 /* 80464310  7F DE 07 74 */	extsb r30, r30

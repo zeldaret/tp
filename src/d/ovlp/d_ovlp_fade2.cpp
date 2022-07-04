@@ -137,7 +137,7 @@ extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_clearColor[4];
 extern "C" u8 mFrameBufferTex__13mDoGph_gInf_c[4];
-extern "C" extern u8 struct_80450BE4[4];
+extern "C" extern u8 mBlureFlag__13mDoGph_gInf_c[4];
 extern "C" u8 sManager__10JFWDisplay[4];
 
 //

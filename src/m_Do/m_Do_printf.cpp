@@ -113,16 +113,16 @@ static u32 print_warings;
 static u32 print_systems;
 
 /* 80450BB4-80450BB8 -00001 0004+00 3/3 0/0 0/0 .sbss            None */
-static bool sOSReportInit;
+static bool print_initialized;
 
 static bool data_80450BB5;
 
 /* 800068C4-800068DC 001204 0018+00 1/1 1/1 0/0 .text            OSReportInit__Fv */
 void OSReportInit() {
-    if (sOSReportInit) {
+    if (print_initialized) {
         return;
     }
-    sOSReportInit = true;
+    print_initialized = true;
 }
 
 /* ############################################################################################## */
@@ -166,7 +166,7 @@ void mDoPrintf_vprintf(char const* fmt, va_list args) {
 
 /* 80006A10-80006A9C 001350 008C+00 1/1 0/0 0/0 .text            mDoPrintf_VReport */
 void mDoPrintf_VReport(const char* fmt, va_list args) {
-    if (!sOSReportInit) {
+    if (!print_initialized) {
         OSReportInit();
     }
     if (sOSReportForceEnable || !sOSReportDisabled) {

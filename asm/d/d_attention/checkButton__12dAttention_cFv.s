@@ -7,7 +7,7 @@ lbl_800720F8:
 /* 8007210C  88 0D 89 D8 */	lbz r0, data_80450F58(r13)
 /* 80072110  28 00 00 00 */	cmplwi r0, 0
 /* 80072114  41 82 00 60 */	beq lbl_80072174
-/* 80072118  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 80072118  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8007211C  7C 00 07 75 */	extsb. r0, r0
 /* 80072120  40 82 00 54 */	bne lbl_80072174
 /* 80072124  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */

@@ -42,7 +42,7 @@ lbl_8025B5D8:
 /* 8025B5FC  28 00 00 00 */	cmplwi r0, 0
 /* 8025B600  40 82 00 58 */	bne lbl_8025B658
 /* 8025B604  80 7F 00 B0 */	lwz r3, 0xb0(r31)
-/* 8025B608  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 8025B608  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 8025B60C  7C 00 07 74 */	extsb r0, r0
 /* 8025B610  7C 03 00 00 */	cmpw r3, r0
 /* 8025B614  40 82 00 44 */	bne lbl_8025B658
@@ -60,7 +60,7 @@ lbl_8025B638:
 /* 8025B63C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8025B640  41 82 00 10 */	beq lbl_8025B650
 /* 8025B644  38 00 00 02 */	li r0, 2
-/* 8025B648  98 0D 8B A5 */	stb r0, struct_80451124+0x1(r13)
+/* 8025B648  98 0D 8B A5 */	stb r0, pauseTimer__9dScnPly_c+0x1(r13)
 /* 8025B64C  48 00 00 0C */	b lbl_8025B658
 lbl_8025B650:
 /* 8025B650  38 00 00 00 */	li r0, 0

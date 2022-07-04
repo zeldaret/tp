@@ -13,7 +13,7 @@ lbl_801A4DA0:
 /* 801A4DCC  28 00 00 7B */	cmplwi r0, 0x7b
 /* 801A4DD0  41 82 00 18 */	beq lbl_801A4DE8
 /* 801A4DD4  7F A3 EB 78 */	mr r3, r29
-/* 801A4DD8  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
+/* 801A4DD8  88 0D 87 E4 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0(r13)
 /* 801A4DDC  7C 04 07 74 */	extsb r4, r0
 /* 801A4DE0  38 A0 00 FF */	li r5, 0xff
 /* 801A4DE4  48 00 3B 09 */	bl dKy_tevstr_init__FP12dKy_tevstr_cScUc

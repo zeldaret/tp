@@ -855,8 +855,8 @@ lbl_8085DE24:
 /* 8085DE2C  41 80 F4 A8 */	blt lbl_8085D2D4
 /* 8085DE30  2C 16 00 00 */	cmpwi r22, 0
 /* 8085DE34  41 82 00 38 */	beq lbl_8085DE6C
-/* 8085DE38  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
-/* 8085DE3C  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
+/* 8085DE38  3C 60 80 45 */	lis r3, mStayNo__20dStage_roomControl_c+0x0@ha /* 0x80450D64@ha */
+/* 8085DE3C  88 03 0D 64 */	lbz r0, mStayNo__20dStage_roomControl_c+0x0@l(r3)  /* 0x80450D64@l */
 /* 8085DE40  2C 00 00 0B */	cmpwi r0, 0xb
 /* 8085DE44  40 82 00 10 */	bne lbl_8085DE54
 /* 8085DE48  38 00 00 3C */	li r0, 0x3c
