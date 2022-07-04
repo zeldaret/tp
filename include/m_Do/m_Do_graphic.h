@@ -64,6 +64,7 @@ public:
     static void* getFrameBufferTex() { return mFrameBufferTex; }
     static void setFadeRate(f32 rate) { mFadeRate = rate; }
     static f32 getFadeRate() { return mFadeRate; }
+    static bloom_c* getBloom() { return &m_bloom; }
 
     static GXTexObj mFrameBufferTexObj;
     static GXTexObj mZbufferTexObj;

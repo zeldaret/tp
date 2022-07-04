@@ -66,8 +66,8 @@ public:
     virtual bool GetMonkeyBarsCode(cBgS_PolyInfo const&) = 0;
     virtual void GetLinkNo(cBgS_PolyInfo const&) = 0;
     virtual s32 GetWallCode(cBgS_PolyInfo const&) = 0;
-    virtual BOOL GetPolyAtt0(cBgS_PolyInfo const&) = 0;
-    virtual bool GetPolyAtt1(cBgS_PolyInfo const&) = 0;
+    virtual int GetPolyAtt0(cBgS_PolyInfo const&) = 0;
+    virtual int GetPolyAtt1(cBgS_PolyInfo const&) = 0;
     virtual bool GetGroundCode(cBgS_PolyInfo const&) = 0;
     virtual void GetIronBallThrough(int) = 0;
     virtual u32 GetAttackThrough(int) = 0;

@@ -129,6 +129,7 @@ extern "C" void dKyw_evt_wind_set_go__Fv();
 extern "C" void dKyw_rain_set__Fi();
 extern "C" extern char const* const d_kankyo_d_kankyo_wether__stringBase0;
 
+
 //
 // External References:
 //
@@ -270,12 +271,12 @@ static J3DPacket* dKyw_setDrawPacketListXluBg(J3DPacket* p_packet, int type) {
 
 /* 80056C60-80056C98 0515A0 0038+00 1/0 0/0 0/0 .text            draw__18dKankyo_sun_PacketFv */
 void dKankyo_sun_Packet::draw() {
-    dKyr_drawSun(j3dSys.getViewMtx(), &field_0x10[0], mColor, &mpResMoon);
+    dKyr_drawSun(j3dSys.getViewMtx(), mPos, mColor, &mpResMoon);
 }
 
 /* 80056C98-80056CD0 0515D8 0038+00 1/0 0/0 0/0 .text            draw__22dKankyo_sunlenz_PacketFv */
 void dKankyo_sunlenz_Packet::draw() {
-    dKyr_drawLenzflare(j3dSys.getViewMtx(), &field_0x24[0], field_0x10, &mpResBall);
+    dKyr_drawLenzflare(j3dSys.getViewMtx(), mPositions, mColor, &mpResBall);
 }
 
 /* 80056CD0-80056D0C 051610 003C+00 2/2 0/0 0/0 .text            __dt__8RAIN_EFFFv */
@@ -288,8 +289,8 @@ RAIN_EFF::RAIN_EFF() {
 
 /* 80056D10-80056D58 051650 0048+00 1/0 0/0 0/0 .text            draw__19dKankyo_rain_PacketFv */
 void dKankyo_rain_Packet::draw() {
-    dKyr_drawSibuki(j3dSys.getViewMtx(), &field_0x10);
-    dKyr_drawRain(j3dSys.getViewMtx(), &field_0x10);
+    dKyr_drawSibuki(j3dSys.getViewMtx(), &mpTex);
+    dKyr_drawRain(j3dSys.getViewMtx(), &mpTex);
 }
 
 /* 80056D58-80056D94 051698 003C+00 1/1 1/1 0/0 .text            __dt__8SNOW_EFFFv */
@@ -302,7 +303,7 @@ SNOW_EFF::SNOW_EFF() {
 
 /* 80056D98-80056DC8 0516D8 0030+00 1/0 0/0 0/0 .text            draw__19dKankyo_snow_PacketFv */
 void dKankyo_snow_Packet::draw() {
-    dKyr_drawSnow(j3dSys.getViewMtx(), &field_0x10);
+    dKyr_drawSnow(j3dSys.getViewMtx(), &mpTex);
 }
 
 /* 80056DC8-80056E04 051708 003C+00 1/1 1/1 0/0 .text            __dt__8STAR_EFFFv */
@@ -354,7 +355,7 @@ VRKUMO_EFF::VRKUMO_EFF() {
 
 /* 80056F58-80056F8C 051898 0034+00 1/0 0/0 0/0 .text            draw__21dKankyo_vrkumo_PacketFv */
 void dKankyo_vrkumo_Packet::draw() {
-    drawVrkumo(j3dSys.getViewMtx(), field_0x10, &mpResCloudtx_01);
+    drawVrkumo(j3dSys.getViewMtx(), mColor, &mpResCloudtx_01);
 }
 
 /* 80056F8C-80056FC8 0518CC 003C+00 2/2 0/0 0/0 .text            __dt__12EF_ODOUR_EFFFv */
@@ -408,7 +409,7 @@ static void dKyw_Sun_Draw() {
 
 /* 80057130-80057174 051A70 0044+00 1/1 0/0 0/0 .text            dKyw_drawSunlenz__Fi */
 static void dKyw_drawSunlenz(int type) {
-    if (g_env_light.mpSunLenzPacket->field_0x9e == 0) {
+    if (g_env_light.mpSunLenzPacket->mDrawLenzInSky == false) {
         dKyw_setDrawPacketListIndScreen(g_env_light.mpSunLenzPacket, type);
     } else {
         dKyw_setDrawPacketListSky(g_env_light.mpSunLenzPacket, type);
@@ -550,35 +551,35 @@ inline u32 tmp_dComIfGp_particle_set(u16 param_0, const cXyz* param_1, const csX
 
 /* 800574E0-800579EC 051E20 050C+00 0/0 1/1 0/0 .text            dKyw_wether_init__Fv */
 void dKyw_wether_init() {
-    g_env_light.mSunPacketEnabled = false;
-    g_env_light.field_0xed4.field_0x0 = 0;
-    g_env_light.field_0xed4.field_0x4 = 0;
-    g_env_light.mRainPacketEnabled = 0;
+    g_env_light.mSunInitialized = false;
+    g_env_light.mThunderEff.mStatus = 0;
+    g_env_light.mThunderEff.mMode = 0;
+    g_env_light.mRainInitialized = false;
     g_env_light.mRainCount = 0;
-    g_env_light.mSnowPacketEnabled = 0;
+    g_env_light.mSnowInitialized = false;
     g_env_light.field_0xe92 = 0;
     g_env_light.mSnowCount = 0;
     g_env_light.field_0xe90 = 0;
     g_env_light.field_0xe91 = 0;
-    g_env_light.mStarPacketEnabled = false;
+    g_env_light.mStarInitialized = false;
     g_env_light.mStarCount = 0;
     f32 tmp0 = FLOAT_LABEL(lit_4378);
     g_env_light.mStarDensity = tmp0;
-    g_env_light.mCloudPacketEnabled = 0;
-    g_env_light.field_0xeb8 = 0;
+    g_env_light.mCloudInitialized = 0;
+    g_env_light.mMoyaCount = 0;
     g_env_light.field_0xebc = tmp0;
-    g_env_light.field_0xeb5 = 0;
-    g_env_light.mHousiPacketEnabled = false;
-    g_env_light.field_0xeac = 0;
+    g_env_light.mMoyaMode = 0;
+    g_env_light.mHousiInitialized = false;
+    g_env_light.mHousiCount = 0;
     g_env_light.mOdourPacketStatus = 0;
     g_env_light.field_0xf24 = 0;
     g_env_light.field_0xf21 = 0;
     g_env_light.mpOdourPacket = NULL;
     g_env_light.field_0x1038 = 0;
     g_env_light.field_0x103c = 0;
-    g_env_light.mMudPacketEnabled = 0;
+    g_env_light.mMudInitialized = 0;
     g_env_light.field_0x1048 = 0;
-    g_env_light.mEvilPacketEnabled = 0;
+    g_env_light.mEvilInitialized = 0;
     g_env_light.field_0x1054 = 0;
     g_env_light.field_0x1051 = 0;
     g_env_light.field_0xe60 = tmp0;
@@ -622,41 +623,41 @@ void dKyw_wether_init() {
 
 /* 800579EC-80057A04 05232C 0018+00 0/0 1/1 0/0 .text            dKyw_wether_init2__Fv */
 void dKyw_wether_init2() {
-    g_env_light.field_0xec4 = 0;
-    g_env_light.field_0xec8 = 0;
+    g_env_light.mVrkumoStatus = 0;
+    g_env_light.mVrkumoCount = 0;
 }
 
 /* 80057A04-80057C84 052344 0280+00 0/0 1/1 0/0 .text            dKyw_wether_delete__Fv */
 void dKyw_wether_delete() {
-    if (g_env_light.mSunPacketEnabled) {
+    if (g_env_light.mSunInitialized) {
         delete g_env_light.mpSunPacket;
         delete g_env_light.mpSunLenzPacket;
         g_env_light.mpSunPacket = NULL;
         g_env_light.mpSunLenzPacket = NULL;
     }
 
-    if (g_env_light.mRainPacketEnabled) {
+    if (g_env_light.mRainInitialized) {
         delete g_env_light.mpRainPacket;
         g_env_light.mpRainPacket = NULL;
     }
 
-    if (g_env_light.mSnowPacketEnabled) {
+    if (g_env_light.mSnowInitialized) {
         delete g_env_light.mpSnowPacket;
         g_env_light.mpSnowPacket = NULL;
         g_env_light.field_0xe90 = 0;
     }
 
-    if (g_env_light.mStarPacketEnabled) {
+    if (g_env_light.mStarInitialized) {
         delete g_env_light.mpStarPacket;
         g_env_light.mpStarPacket = NULL;
     }
 
-    if (g_env_light.mHousiPacketEnabled) {
+    if (g_env_light.mHousiInitialized) {
         delete g_env_light.mpHousiPacket;
         g_env_light.mpHousiPacket = NULL;
     }
 
-    if (g_env_light.mCloudPacketEnabled) {
+    if (g_env_light.mCloudInitialized) {
         delete g_env_light.mpCloudPacket;
         g_env_light.mpCloudPacket = NULL;
     }
@@ -666,12 +667,12 @@ void dKyw_wether_delete() {
         g_env_light.mpOdourPacket = NULL;
     }
 
-    if (g_env_light.mMudPacketEnabled) {
+    if (g_env_light.mMudInitialized) {
         delete g_env_light.mpMudPacket;
         g_env_light.mpMudPacket = NULL;
     }
 
-    if (g_env_light.mEvilPacketEnabled) {
+    if (g_env_light.mEvilInitialized) {
         delete g_env_light.mpEvilPacket;
         g_env_light.mpEvilPacket = NULL;
     }
@@ -739,7 +740,7 @@ dKankyo_sun_Packet::~dKankyo_sun_Packet() {}
 
 /* 800581AC-8005820C 052AEC 0060+00 0/0 1/1 0/0 .text            dKyw_wether_delete2__Fv */
 void dKyw_wether_delete2() {
-    if (g_env_light.field_0xec4 != 0) {
+    if (g_env_light.mVrkumoStatus != 0) {
         delete g_env_light.mpVrkumoPacket;
         g_env_light.mpVrkumoPacket = NULL;
     }
@@ -750,11 +751,11 @@ dKankyo_vrkumo_Packet::~dKankyo_vrkumo_Packet() {}
 
 /* 80058290-800582F8 052BD0 0068+00 1/1 0/0 0/0 .text            wether_move_thunder__Fv */
 static void wether_move_thunder() {
-    switch (g_env_light.field_0xed4.field_0x0) {
+    switch (g_env_light.mThunderEff.mStatus) {
     case 0:
-        if (g_env_light.field_0xed4.field_0x4 != 0) {
+        if (g_env_light.mThunderEff.mMode != 0) {
             dKyr_thunder_init();
-            g_env_light.field_0xed4.field_0x0 = 1;
+            g_env_light.mThunderEff.mStatus = 1;
         }
         break;
     case 1:
@@ -777,7 +778,7 @@ SECTION_SDATA2 static f32 lit_4611 = 1000000000.0f;
 /* 80058318-80058894 052C58 057C+00 1/1 0/0 0/0 .text            wether_move_sun__Fv */
 static void wether_move_sun() {
     s32 sunVisible = false;
-    if (dComIfGp_checkStatus(1) && !g_env_light.field_0x12d4) {
+    if (dComIfGp_checkStatus(1) && !g_env_light.mVrboxInvisible) {
         roomRead_class* room = dComIfGp_getStageRoom();
         if (room != NULL && room->field_0x0 > dComIfGp_roomControl_getStayNo()) {
             sunVisible = dStage_roomRead_dt_c_GetVrboxswitch(
@@ -793,7 +794,7 @@ static void wether_move_sun() {
             sunVisible = false;
         }
 
-        switch (g_env_light.mSunPacketEnabled) {
+        switch (g_env_light.mSunInitialized) {
         case FALSE:
             if (sunVisible && dKy_darkworld_check() != true) {
                 g_env_light.mpSunPacket = new (0x20) dKankyo_sun_Packet();
@@ -854,16 +855,16 @@ static void wether_move_sun() {
                     f32 tmp0_2 = FLOAT_LABEL(lit_4378);
                     g_env_light.mpSunLenzPacket->field_0x90 = tmp0_2;
                     g_env_light.mpSunLenzPacket->field_0x98 = tmp0_2;
-                    g_env_light.mpSunLenzPacket->field_0x9e = 0;
+                    g_env_light.mpSunLenzPacket->mDrawLenzInSky = false;
                     dKyr_sun_move();
                     dKyr_lenzflare_move();
-                    g_env_light.mSunPacketEnabled = true;
+                    g_env_light.mSunInitialized = true;
                 }
             }
             break;
         case TRUE:
             if (!sunVisible) {
-                g_env_light.mSunPacketEnabled = false;
+                g_env_light.mSunInitialized = false;
                 delete g_env_light.mpSunPacket;
                 delete g_env_light.mpSunLenzPacket;
                 g_env_light.mpSunPacket = NULL;
@@ -897,7 +898,7 @@ SECTION_SDATA2 static f64 lit_4671 = 4503601774854144.0 /* cast s32 to float */;
 // matches with literals
 #ifdef NONMATCHING
 static void wether_move_rain() {
-    switch (g_env_light.mRainPacketEnabled) {
+    switch (g_env_light.mRainInitialized) {
     case FALSE:
         if (g_env_light.mRainCount > 3) {
             g_env_light.mpRainPacket = new (32) dKankyo_rain_Packet();
@@ -905,7 +906,7 @@ static void wether_move_rain() {
             if (g_env_light.mpRainPacket != NULL) {
                 dKyr_rain_init();
                 dKyr_rain_move();
-                g_env_light.mRainPacketEnabled = 1;
+                g_env_light.mRainInitialized = 1;
 
                 if (g_env_light.mRainCount != 250) {
                     mDoAud_seStart(JA_SE_ATM_RAIN_START, NULL, 0, 0);
@@ -929,7 +930,7 @@ static void wether_move_rain() {
         }
 
         if (g_env_light.mRainCount <= 3) {
-            g_env_light.mRainPacketEnabled = 0;
+            g_env_light.mRainInitialized = 0;
             mDoAud_seStart(JA_SE_ATM_RAIN_END, NULL, 0, 0);
             delete g_env_light.mpRainPacket;
             g_env_light.mpRainPacket = NULL;
@@ -950,13 +951,13 @@ static asm void wether_move_rain() {
 
 /* 80058B00-80058B8C 053440 008C+00 1/1 0/0 0/0 .text            wether_move_snow__Fv */
 static void wether_move_snow() {
-    switch (g_env_light.mSnowPacketEnabled) {
+    switch (g_env_light.mSnowInitialized) {
     case FALSE:
         if (g_env_light.mSnowCount != 0 || g_env_light.field_0xe90 != 0) {
             dKyr_snow_init();
             if (g_env_light.mpSnowPacket != NULL) {
                 dKyr_snow_move();
-                g_env_light.mSnowPacketEnabled = 1;
+                g_env_light.mSnowInitialized = 1;
             }
         }
         break;
@@ -1020,7 +1021,7 @@ static void wether_move_star() {
         return;
     } else {
         // Stage is Hero Shade arena
-        if ((dComIfGp_checkStatus(1) && !g_env_light.field_0x12d4) ||
+        if ((dComIfGp_checkStatus(1) && !g_env_light.mVrboxInvisible) ||
             !strcmp(dComIfGp_getStartStageName(), "F_SP200")) {
             roomRead_class* room = dComIfGp_getStageRoom();
             if (room != NULL && room->field_0x0 > dComIfGp_roomControl_getStayNo()) {
@@ -1048,11 +1049,11 @@ static void wether_move_star() {
                     }
                 }
 
-                if (g_env_light.field_0x12c8 != 0) {
+                if (g_env_light.mColpatWeather != 0) {
                     density = FLOAT_LABEL(lit_4378);
                 }
 
-                if (g_env_light.field_0x12c3 != 0 && g_env_light.field_0x11dc > lit_4767) {
+                if (g_env_light.mColPatCurr != 0 && g_env_light.mColPatBlend > lit_4767) {
                     density = FLOAT_LABEL(lit_4378);
                 }
 
@@ -1071,7 +1072,7 @@ static void wether_move_star() {
                     g_env_light.mStarCount = (s16)(lit_4772 * g_env_light.mStarDensity);
                 }
 
-                switch (g_env_light.mStarPacketEnabled) {
+                switch (g_env_light.mStarInitialized) {
                 case FALSE:
                     if (g_env_light.mStarCount != 0) {
                         dKyr_star_init();
@@ -1080,7 +1081,7 @@ static void wether_move_star() {
                         if (g_env_light.mpStarPacket != NULL) {
                             dKyr_star_move();
                             dKyr_shstar_move();
-                            g_env_light.mStarPacketEnabled = true;
+                            g_env_light.mStarInitialized = true;
                         }
                     }
                     break;
@@ -1089,7 +1090,7 @@ static void wether_move_star() {
                     dKyr_shstar_move();
 
                     if (g_env_light.mStarCount == 0) {
-                        g_env_light.mStarPacketEnabled = false;
+                        g_env_light.mStarInitialized = false;
 
                         delete g_env_light.mpStarPacket;
                         g_env_light.mpStarPacket = NULL;
@@ -1117,9 +1118,9 @@ static void wether_move_housi() {
     if (dKy_darkworld_check() == true ||
         (!strcmp(dComIfGp_getStartStageName(), "F_SP115") &&
          dComIfGp_roomControl_getStayNo() == 1 && dComIfGp_getStartStageLayer() == 9)) {
-        if (g_env_light.field_0x12d2 != 0) {
+        if (g_env_light.mInitAnmTimer != 0) {
             g_env_light.field_0xea9 = 0;
-            g_env_light.field_0xeac = 200;
+            g_env_light.mHousiCount = 200;
 
             // Stage is Faron Woods and Room is Faron Spring or
             // Stage is Castle Town and Room is Castle Town Center or
@@ -1133,14 +1134,14 @@ static void wether_move_housi() {
                  dComIfGp_getStartStageRoomNo() == 0 && dComIfGp_getStartStageLayer() == 9) ||
                 (!strcmp(dComIfGp_getStartStageName(), "F_SP115") &&
                  dComIfGp_getStartStageLayer() == 9)) {
-                g_env_light.field_0xeac = 0;
+                g_env_light.mHousiCount = 0;
             }
         }
     }
 
-    switch (g_env_light.mHousiPacketEnabled) {
+    switch (g_env_light.mHousiInitialized) {
     case FALSE:
-        if (g_env_light.field_0xeac != 0) {
+        if (g_env_light.mHousiCount != 0) {
             g_env_light.mpHousiPacket = new (32) dKankyo_housi_Packet();
 
             if (g_env_light.mpHousiPacket != NULL) {
@@ -1173,23 +1174,23 @@ static void wether_move_housi() {
                 g_env_light.mpHousiPacket->field_0x5de8 = tmp0;
                 g_env_light.mpHousiPacket->field_0x10.set(tmp0, tmp0, tmp0);
                 for (int i = 0; i < 300; i++) {
-                    g_env_light.mpHousiPacket->field_0x18[i].field_0x0 = 0;
+                    g_env_light.mpHousiPacket->mHousiEff[i].mStatus = 0;
                 }
                 dKyr_housi_move();
-                g_env_light.mHousiPacketEnabled = true;
+                g_env_light.mHousiInitialized = true;
             }
         }
         break;
     case TRUE:
-        if (g_env_light.field_0xeac == 0 &&
+        if (g_env_light.mHousiCount == 0 &&
             g_env_light.mpHousiPacket->field_0x5de8 <= FLOAT_LABEL(lit_4378)) {
-            g_env_light.mHousiPacketEnabled = false;
+            g_env_light.mHousiInitialized = false;
             delete g_env_light.mpHousiPacket;
             g_env_light.mpHousiPacket = NULL;
         } else {
             dKyr_housi_move();
             if (!dKy_darkworld_check()) {
-                g_env_light.field_0xeac = 0;
+                g_env_light.mHousiCount = 0;
             }
         }
         break;
@@ -1233,32 +1234,32 @@ static void wether_move_odour() {
 
 /* 80059580-80059728 053EC0 01A8+00 1/1 0/0 0/0 .text            wether_move_moya__Fv */
 static void wether_move_moya() {
-    switch (g_env_light.mCloudPacketEnabled) {
+    switch (g_env_light.mCloudInitialized) {
     case 0:
-        if (g_env_light.field_0xeb8 != 0) {
+        if (g_env_light.mMoyaCount != 0) {
             g_env_light.mpCloudPacket = new (32) dKankyo_cloud_Packet();
 
             if (g_env_light.mpCloudPacket != NULL) {
                 g_env_light.mpCloudPacket->mpResTex = (u8*)dComIfG_getObjectRes("Always", 0x53);
 
                 for (int i = 0; i < 50; i++) {
-                    g_env_light.mpCloudPacket->field_0x18[i].field_0x0 = 0;
+                    g_env_light.mpCloudPacket->mCloudEff[i].mStatus = 0;
                 }
-                g_env_light.mpCloudPacket->field_0x14 = 0;
+                g_env_light.mpCloudPacket->mCount = 0;
                 cloud_shadow_move();
-                g_env_light.mCloudPacketEnabled++;
+                g_env_light.mCloudInitialized++;
             }
         }
         break;
     case 1:
-        if (g_env_light.field_0xeb5 == 0) {
+        if (g_env_light.mMoyaMode == 0) {
             dKyw_get_wind_pow();
         }
 
         cloud_shadow_move();
 
-        if (g_env_light.field_0xeb8 == 0 && g_env_light.mpCloudPacket->field_0x14 == 0) {
-            g_env_light.mCloudPacketEnabled = 0;
+        if (g_env_light.mMoyaCount == 0 && g_env_light.mpCloudPacket->mCount == 0) {
+            g_env_light.mCloudInitialized = 0;
 
             delete g_env_light.mpCloudPacket;
             g_env_light.mpCloudPacket = NULL;
@@ -1336,7 +1337,7 @@ static asm void wether_move_vrkumo() {
 
 /* 80059E38-80059F74 054778 013C+00 1/1 0/0 0/0 .text            wether_move_mud__Fv */
 static void wether_move_mud() {
-    switch (g_env_light.mMudPacketEnabled) {
+    switch (g_env_light.mMudInitialized) {
     case 0:
         if (g_env_light.field_0x1048 != 0) {
             g_env_light.mpMudPacket = new (32) dKankyo_mud_Packet();
@@ -1344,7 +1345,7 @@ static void wether_move_mud() {
             if (g_env_light.mpMudPacket != NULL) {
                 dKyr_mud_init();
                 dKyr_mud_move();
-                g_env_light.mMudPacketEnabled++;
+                g_env_light.mMudInitialized++;
             }
         }
         break;
@@ -1352,7 +1353,7 @@ static void wether_move_mud() {
         dKyr_mud_move();
 
         if (g_env_light.field_0x1048 == 0 && g_env_light.mpMudPacket->field_0x10 == 0) {
-            g_env_light.mMudPacketEnabled = 0;
+            g_env_light.mMudInitialized = 0;
 
             delete g_env_light.mpMudPacket;
             g_env_light.mpMudPacket = NULL;
@@ -1363,7 +1364,7 @@ static void wether_move_mud() {
 
 /* 80059F74-8005A0B8 0548B4 0144+00 1/1 0/0 0/0 .text            wether_move_evil__Fv */
 static void wether_move_evil() {
-    switch (g_env_light.mEvilPacketEnabled & 0xF) {
+    switch (g_env_light.mEvilInitialized & 0xF) {
     case 0:
         if (g_env_light.field_0x1054 != 0) {
             g_env_light.mpEvilPacket = new (32) dKankyo_evil_Packet();
@@ -1371,7 +1372,7 @@ static void wether_move_evil() {
             if (g_env_light.mpEvilPacket != NULL) {
                 dKyr_evil_init();
                 dKyr_evil_move();
-                g_env_light.mEvilPacketEnabled++;
+                g_env_light.mEvilInitialized++;
             }
         }
         break;
@@ -1379,7 +1380,7 @@ static void wether_move_evil() {
         dKyr_evil_move();
 
         if (g_env_light.field_0x1054 == 0 && g_env_light.mpEvilPacket->field_0x10 == 0) {
-            g_env_light.mEvilPacketEnabled = 0;
+            g_env_light.mEvilInitialized = 0;
 
             delete g_env_light.mpEvilPacket;
             g_env_light.mpEvilPacket = NULL;
@@ -1390,7 +1391,7 @@ static void wether_move_evil() {
 
 /* 8005A0B8-8005A154 0549F8 009C+00 0/0 1/1 0/0 .text            dKyw_wether_move_draw__Fv */
 void dKyw_wether_move_draw() {
-    g_env_light.field_0x1288 = 0;
+    g_env_light.mMoyaSE = 0;
 
     if (strcmp(dComIfGp_getStartStageName(), "Name")) {
         wether_move_sun();
@@ -1415,11 +1416,11 @@ void dKyw_wether_move_draw2() {
 
 /* 8005A174-8005A304 054AB4 0190+00 0/0 1/1 0/0 .text            dKyw_wether_draw__Fv */
 void dKyw_wether_draw() {
-    if (strcmp(dComIfGp_getStartStageName(), "Name") && g_env_light.mCloudPacketEnabled != 0) {
+    if (strcmp(dComIfGp_getStartStageName(), "Name") && g_env_light.mCloudInitialized != 0) {
         dKyw_Cloud_Draw();
     }
 
-    if (strcmp(dComIfGp_getStartStageName(), "Name") && g_env_light.mSunPacketEnabled) {
+    if (strcmp(dComIfGp_getStartStageName(), "Name") && g_env_light.mSunInitialized) {
         stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
 
         if (dStage_stagInfo_GetArg0(stag_info) != 0) {
@@ -1428,21 +1429,21 @@ void dKyw_wether_draw() {
         }
     }
 
-    if (g_env_light.mStarPacketEnabled) {
+    if (g_env_light.mStarInitialized) {
         dKyw_Star_Draw();
         dKyw_shstar_Draw();
     }
 
     if (strcmp(dComIfGp_getStartStageName(), "Name")) {
-        if (g_env_light.mRainPacketEnabled) {
+        if (g_env_light.mRainInitialized) {
             dKyw_Rain_Draw();
         }
 
-        if (g_env_light.mSnowPacketEnabled) {
+        if (g_env_light.mSnowInitialized) {
             dKyw_Snow_Draw();
         }
 
-        if (g_env_light.mHousiPacketEnabled) {
+        if (g_env_light.mHousiInitialized) {
             dKyw_Housi_Draw();
         }
 
@@ -1450,11 +1451,11 @@ void dKyw_wether_draw() {
             dKyw_Odour_Draw();
         }
 
-        if (g_env_light.mMudPacketEnabled != 0) {
+        if (g_env_light.mMudInitialized != 0) {
             dKyw_mud_Draw();
         }
 
-        if (g_env_light.mEvilPacketEnabled != 0) {
+        if (g_env_light.mEvilInitialized != 0) {
             dKyw_evil_Draw();
         }
 
@@ -1464,7 +1465,7 @@ void dKyw_wether_draw() {
 
 /* 8005A304-8005A340 054C44 003C+00 0/0 1/1 0/0 .text            dKyw_wether_draw2__Fv */
 void dKyw_wether_draw2() {
-    if (g_env_light.field_0xec4 != 0 && g_env_light.field_0xec4 < 99) {
+    if (g_env_light.mVrkumoStatus != 0 && g_env_light.mVrkumoStatus < 99) {
         dKyw_Vrkumo_Draw();
     }
 }
@@ -1512,13 +1513,13 @@ void dKyw_wether_proc() {
                     g_env_light.field_0x12c9 >= 1 && g_env_light.field_0x12c9 < 6) {
                     dKy_get_dayofweek();
                     cLib_addCalc(&g_env_light.field_0xebc, lit_4379, lit_5362, lit_5363, lit_4770);
-                    g_env_light.field_0xeb5 = 7;
-                    g_env_light.field_0xeb8 = 49;
+                    g_env_light.mMoyaMode = 7;
+                    g_env_light.mMoyaCount = 49;
                 } else {
                     cLib_addCalc(&g_env_light.field_0xebc, FLOAT_LABEL(lit_4378), lit_5362,
                                  lit_5363, lit_5364[0]);
-                    if (g_env_light.field_0xebc <= lit_4769 && g_env_light.field_0xeb8 == 49) {
-                        g_env_light.field_0xeb8 = 0;
+                    if (g_env_light.field_0xebc <= lit_4769 && g_env_light.mMoyaCount == 49) {
+                        g_env_light.mMoyaCount = 0;
                     }
                 }
             }
@@ -1529,9 +1530,9 @@ void dKyw_wether_proc() {
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") &&
         (g_env_light.field_0x12fe == 1 || g_env_light.field_0x12fe == 3)) {
         if (g_env_light.field_0x12fe == 1) {
-            g_env_light.field_0xeac = 35;
+            g_env_light.mHousiCount = 35;
         } else {
-            g_env_light.field_0xeac = 30;
+            g_env_light.mHousiCount = 30;
         }
         g_env_light.field_0xea9 = 2;
     }
@@ -1560,8 +1561,8 @@ static void dKyw_wind_init() {
     g_env_light.field_0xe66 = 0;
     g_env_light.mWind.field_0xc = 0;
     g_env_light.custom_windpower = tmp_0;
-    g_env_light.field_0xe6d = 0;
-    g_env_light.field_0xe6e = 0;
+    g_env_light.mEvtWindSet = 0;
+    g_env_light.mTeachWindExist = 0;
 }
 
 /* ############################################################################################## */
@@ -1649,7 +1650,7 @@ static void dKyw_pntwind_init() {
     }
 
     for (int i = 0; i < 5; i++) {
-        g_env_light.field_0x848[i].field_0x0[0] = 0;
+        g_env_light.mWindInfluenceEntity[i].mInUse = 0;
     }
 }
 
@@ -1671,14 +1672,14 @@ static void pntwind_set(WIND_INFLUENCE* pntwind) {
 
 /* 8005ADFC-8005AE28 05573C 002C+00 0/0 0/0 5/5 .text dKyw_pntwind_set__FP14WIND_INFLUENCE */
 void dKyw_pntwind_set(WIND_INFLUENCE* pntwind) {
-    pntwind->field_0x28 = 0;
+    pntwind->mConstant = 0;
     pntwind->field_0x29 = 0;
     pntwind_set(pntwind);
 }
 
 /* 8005AE28-8005AE58 055768 0030+00 1/1 0/0 0/0 .text dKyw_pntlight_set__FP14WIND_INFLUENCE */
 static void dKyw_pntlight_set(WIND_INFLUENCE* pntwind) {
-    pntwind->field_0x28 = 0;
+    pntwind->mConstant = 0;
     pntwind->field_0x29 = 1;
     pntwind_set(pntwind);
 }
@@ -1786,21 +1787,21 @@ void dKyw_custom_windpower(f32 pow) {
 }
 
 /* 8005B61C-8005B638 055F5C 001C+00 0/0 0/0 6/6 .text            dKyw_evt_wind_set__Fss */
-void dKyw_evt_wind_set(s16 param_0, s16 param_1) {
-    g_env_light.field_0xe6d = 1;
-    g_env_light.field_0xe68 = param_0;
-    g_env_light.field_0xe6a = param_1;
+void dKyw_evt_wind_set(s16 angleX, s16 angleY) {
+    g_env_light.mEvtWindSet = 1;
+    g_env_light.mEvtWindAngleX = angleX;
+    g_env_light.mEvtWindAngleY = angleY;
 }
 
 /* 8005B638-8005B64C 055F78 0014+00 0/0 0/0 3/3 .text            dKyw_evt_wind_set_go__Fv */
 void dKyw_evt_wind_set_go() {
-    g_env_light.field_0xe6d = 1;
+    g_env_light.mEvtWindSet = 1;
 }
 
 /* 8005B64C-8005B660 055F8C 0014+00 0/0 1/1 5/5 .text            dKyw_rain_set__Fi */
 void dKyw_rain_set(int count) {
     g_env_light.mRainCount = count;
-    g_env_light.field_0x129c = count;
+    g_env_light.mRainCountOrig = count;
 }
 
 /* 8037A368-8037A368 0069C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

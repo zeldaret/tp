@@ -442,7 +442,7 @@ static u8 dStage_isBossStage(dStage_dt_c* stageDt) {
         return false;
     }
 
-    return dStage_stagInfo_GetSTType(pstag) == 3;
+    return dStage_stagInfo_GetSTType(pstag) == ST_BOSS_ROOM;
 }
 
 /* 80023F50-80023F84 01E890 0034+00 1/1 0/0 0/1 .text dStage_KeepDoorInfoInit__FP11dStage_dt_c */
@@ -1651,7 +1651,7 @@ void dStage_roomControl_c::zoneCountCheck(int stayNo) const {
             dComIfGs_clearRoomSwitch(status->mZoneNo);
             dComIfGs_clearRoomItem(status->mZoneNo);
 
-            if (dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) != 0 &&
+            if (dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) != ST_FIELD &&
                 stayNo != mOldStayNo) {
                 if (--status->mZoneCount == 0) {
                     dComIfGs_removeZone(status->mZoneNo);
@@ -2925,7 +2925,7 @@ void dStage_Delete() {
         strcmp(dComIfGp_getNextStageName(), dComIfGp_getStartStageName())) {
         dStage_roomControl_c::destroyMemoryBlock();
 
-        if (dStage_stagInfo_GetSTType(dComIfGp_getStageStagInfo()) == 1) {
+        if (dStage_stagInfo_GetSTType(dComIfGp_getStageStagInfo()) == ST_DUNGEON) {
             dRes_info_c* info = dComIfG_getStageResInfo("Stg_00");
             *info->getArchiveName() = 'X';
             dComIfGp_setOldMulti();

@@ -40,18 +40,6 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-inline bool fopAcM_isSwitch(const fopAc_ac_c* item, int sw) {
-    return dComIfGs_isSwitch(sw, fopAcM_GetHomeRoomNo(item));
-}
-
-inline void fopAcM_onSwitch(const fopAc_ac_c* pActor, int sw) {
-    return dComIfGs_onSwitch(sw, fopAcM_GetHomeRoomNo(pActor));
-}
-
-inline BOOL dComIfGs_isEventBit(u16 id) {
-    return g_dComIfG_gameInfo.info.getEvent().isEventBit(id);
-}
-
 /* 80485838-80485974 000078 013C+00 1/1 0/0 0/0 .text            checkWork__8daScex_cFv */
 int daScex_c::checkWork() {
     if (getArg1() == 0xFF || getArg1() == 0 || getArg1() == 3) {

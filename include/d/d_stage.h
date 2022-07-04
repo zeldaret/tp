@@ -30,6 +30,15 @@ public:
     /* 0x1D */ u8 mFlagID;
 };  // Size: 0x20
 
+enum StageType {
+    /* 0x0 */ ST_FIELD,
+    /* 0x1 */ ST_DUNGEON,
+    /* 0x2 */ ST_ROOM,
+    /* 0x3 */ ST_BOSS_ROOM,
+    /* 0x4 */ ST_CASTLE_TOWN,
+    /* 0x5 */ ST_CLOUD_SEA,
+};
+
 struct stage_stag_info_class {
     /* 0x00 */ f32 field_0x0;
     /* 0x04 */ f32 field_0x4;
@@ -95,8 +104,8 @@ struct stage_map_info_dummy_class {
 };
 
 struct stage_envr_info_class {
-    // Env
-};
+    /* 0x0 */ u8 field_0x0[0x41];
+};  // Size: 0x41
 
 struct stage_camera2_data_class {
     /* 0x00 */ int field_0x0;
@@ -914,6 +923,10 @@ inline int dStage_stagInfo_GetMsgGroup(stage_stag_info_class* p_info) {
 
 inline s32 i_dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
     return param_0->field_0x09 >> 1 & 0x1f;
+}
+
+inline s8 dStage_stagInfo_GetTimeH(stage_stag_info_class* p_info) {
+    return p_info->field_0x0c >> 8;
 }
 
 inline u32 dStage_sclsInfo_getSceneLayer(stage_scls_info_class* p_info) {

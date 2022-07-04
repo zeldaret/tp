@@ -1338,7 +1338,7 @@ int dMsgFlow_c::query042(mesg_flow_node_branch*, fopAc_ac_c*, int) {
         ret = 1;
     } else if (midna->checkNpcFar()) {
         ret = 2;
-    } else if (g_env_light.mEvilPacketEnabled & 0x80) {
+    } else if (g_env_light.mEvilInitialized & 0x80) {
         ret = 3;
     }
 

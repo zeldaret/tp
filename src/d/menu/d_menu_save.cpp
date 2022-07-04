@@ -255,27 +255,6 @@ extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 extern "C" u8 sManager__10JFWDisplay[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
-//
-// Declarations:
-//
-
-inline u8 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
-    return param_0->field_0x09 >> 1 & 0x1f;
-}
-
-inline void mDoAud_seStartLevel(u32 sfx_id, const Vec* param_1, u32 param_2, s8 param_3) {
-    Z2AudioMgr::getInterface()->mSeMgr.seStartLevel(sfx_id, param_1, param_2, param_3, 1.0f, 1.0f,
-                                                    -1.0f, -1.0f, 0);
-}
-
-inline BOOL dComIfGs_isEventBit(u16 id) {
-    return g_dComIfG_gameInfo.info.getEvent().isEventBit(id);
-}
-
-inline int dComIfGs_isItemFirstBit(u8 i_no) {
-    return g_dComIfG_gameInfo.info.getPlayer().getGetItem().isFirstBit(i_no);
-}
-
 /* ############################################################################################## */
 /* 803BDF78-803BDF84 01B098 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -1941,7 +1920,7 @@ void dMenu_save_c::memCardDataLoadWait() {
 
 /* 801F2840-801F28E4 1ED180 00A4+00 2/2 0/0 0/0 .text            dataWrite__12dMenu_save_cFv */
 void dMenu_save_c::dataWrite() {
-    int stageNo = dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo());
+    int stageNo = i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo());
 
     dComIfGs_putSave(stageNo);
     dComIfGs_setMemoryToCard(mSaveBuffer, mSelectedFile);
@@ -1967,7 +1946,7 @@ SECTION_DEAD static char const* const stringBase_80397A06 = "save cmdState %d\n"
 // matches with literals
 #ifdef NONMATCHING
 void dMenu_save_c::memCardDataSaveWait() {
-    mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
+    i_mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
 
     if (mWaitTimer != 0) {
         mWaitTimer--;
@@ -1995,7 +1974,7 @@ asm void dMenu_save_c::memCardDataSaveWait() {
 #ifdef NONMATCHING
 void dMenu_save_c::memCardDataSaveWait2() {
     if (mWaitTimer != 0) {
-        mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
+        i_mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
         mWaitTimer--;
         return;
     }
@@ -2231,12 +2210,12 @@ void dMenu_save_c::retryQuestion2() {
 /* 801F30B8-801F31B0 1ED9F8 00F8+00 2/2 0/0 0/0 .text            restartInit__12dMenu_save_cFv */
 void dMenu_save_c::restartInit() {
     // if monkey lantern sequence not completed
-    if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[226])) {
+    if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[226])) {
         dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[224]);  // Lantern stolen
         dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[225]);  // Monkey dropped lantern
     }
 
-    if (dComIfGs_isItemFirstBit(KANTERA) && dComIfGs_getItem(SLOT_1, true) == NO_ITEM) {
+    if (i_dComIfGs_isItemFirstBit(KANTERA) && dComIfGs_getItem(SLOT_1, true) == NO_ITEM) {
         dComIfGs_setItem(SLOT_1, KANTERA);
         dComIfGs_setOil(dMeter2Info_getOilGaugeBackUp());
     }
@@ -2744,7 +2723,7 @@ asm void dMenu_save_c::yesnoSelectStart() {
 // matches with literals
 #ifdef NONMATCHING
 void dMenu_save_c::saveMoveDisp() {
-    mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
+    i_mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
 
     bool headerTxtChanged = headerTxtChangeAnm();
     bool yesnoAnmComplete = yesnoMenuMoveAnm();
@@ -2774,7 +2753,7 @@ asm void dMenu_save_c::saveMoveDisp() {
 // matches with literals
 #ifdef NONMATCHING
 void dMenu_save_c::saveMoveDisp2() {
-    mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
+    i_mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
 
     bool headerTxtChanged = headerTxtChangeAnm();
     bool dataMoveAnm = selectDataMoveAnm();
