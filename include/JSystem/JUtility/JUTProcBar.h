@@ -45,7 +45,7 @@ public:
 
     /* 802E5888 */ JUTProcBar();
     /* 802E599C */ ~JUTProcBar();
-    /* 802E59E0 */ static void create();
+    /* 802E59E0 */ static JUTProcBar* create();
     /* 802E5A28 */ static void destroy();
     /* 802E5A60 */ static void clear();
     /* 802E5B30 */ void bar_subroutine(int, int, int, int, int, int, int, JUtility::TColor,
