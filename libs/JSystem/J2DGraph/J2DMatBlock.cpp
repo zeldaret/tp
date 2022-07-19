@@ -987,16 +987,8 @@ void J2DTevBlock1::shiftDeleteFlag(u8, bool) {
 }
 
 /* 802EC328-802EC570 2E6C68 0248+00 1/0 0/0 0/0 .text            setGX__12J2DTevBlock1Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock1::setGX() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setGX__12J2DTevBlock1Fv.s"
-}
-#pragma pop
-
-/* void J2DTevBlock1::setGX() {
+#ifdef NONMATCHING
+void J2DTevBlock1::setGX() {
     loadTexture(GX_TEXMAP0, 0);
     GXSetTevOrder(GX_TEVSTAGE0, mTevOrder[0].getTexCoord(), mTevOrder[0].getTexMap(), mTevOrder[0].getColor());
 
@@ -1014,7 +1006,17 @@ asm void J2DTevBlock1::setGX() {
 
     GXSetNumTevStages(1);
     GXSetTevColorIn(GX_TEVSTAGE0, )
-} */
+}
+#else
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DTevBlock1::setGX() {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DMatBlock/setGX__12J2DTevBlock1Fv.s"
+}
+#pragma pop
+#endif
 
 /* 802EC570-802EC5B8 2E6EB0 0048+00 1/0 0/0 0/0 .text loadTexture__12J2DTevBlock1F11_GXTexMapIDUl
  */
@@ -1084,16 +1086,8 @@ bool J2DTevBlock2::prepareTexture(u8 param_0) {
 
 /* 802ECAE8-802ECDE8 2E7428 0300+00 1/0 0/0 0/0 .text
  * insertTexture__12J2DTevBlock2FUlPC7ResTIMGP10JUTPalette      */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock2::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPalette* param_2) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__12J2DTevBlock2FUlPC7ResTIMGP10JUTPalette.s"
-}
-#pragma pop
-
-/* bool J2DTevBlock2::insertTexture(u32 param_0, ResTIMG const* p_timg, JUTPalette* p_tlut) {
+#ifdef NONMATCHING
+bool J2DTevBlock2::insertTexture(u32 param_0, ResTIMG const* p_timg, JUTPalette* p_tlut) {
     if (param_0 >= 2 || p_timg == NULL) {
         return false;
     }
@@ -1177,7 +1171,17 @@ asm bool J2DTevBlock2::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPal
     mPalette[param_0] = NULL;
     mTexNo[param_0] = -1;
     return true;
-} */
+}
+#else
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm bool J2DTevBlock2::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPalette* param_2) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__12J2DTevBlock2FUlPC7ResTIMGP10JUTPalette.s"
+}
+#pragma pop
+#endif
 
 /* 802ECDE8-802ECF48 2E7728 0160+00 1/0 0/0 0/0 .text
  * insertTexture__12J2DTevBlock2FUlP10JUTTexture                */
@@ -1224,16 +1228,8 @@ bool J2DTevBlock2::insertTexture(u32 param_0, JUTTexture* p_tex) {
 }
 
 /* 802ECF48-802ED16C 2E7888 0224+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock2FUlPC7ResTIMG */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock2::setTexture(u32 param_0, ResTIMG const* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTexture__12J2DTevBlock2FUlPC7ResTIMG.s"
-}
-#pragma pop
-
-/* bool J2DTevBlock2::setTexture(u32 param_0, ResTIMG const* p_timg) {
+#ifdef NONMATCHING
+bool J2DTevBlock2::setTexture(u32 param_0, ResTIMG const* p_timg) {
     if (param_0 >= 2) {
         return false;
     }
@@ -1295,7 +1291,17 @@ asm bool J2DTevBlock2::setTexture(u32 param_0, ResTIMG const* param_1) {
     mPalette[param_0] = NULL;
     mTexNo[param_0] = -1;
     return true;
-} */
+}
+#else
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm bool J2DTevBlock2::setTexture(u32 param_0, ResTIMG const* param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DMatBlock/setTexture__12J2DTevBlock2FUlPC7ResTIMG.s"
+}
+#pragma pop
+#endif
 
 /* 802ED16C-802ED21C 2E7AAC 00B0+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock2FUlP10JUTTexture
  */
@@ -1407,16 +1413,8 @@ bool J2DTevBlock2::setPalette(u32 param_0, ResTLUT const* p_tlut) {
 
 /* 802ED4FC-802ED584 2E7E3C 0088+00 1/0 0/0 0/0 .text            shiftDeleteFlag__12J2DTevBlock2FUcb
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock2::shiftDeleteFlag(u8 param_0, bool param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/shiftDeleteFlag__12J2DTevBlock2FUcb.s"
-}
-#pragma pop
-
-/* void J2DTevBlock2::shiftDeleteFlag(u8 param_0, bool param_1) {
+#ifdef NONMATCHING
+void J2DTevBlock2::shiftDeleteFlag(u8 param_0, bool param_1) {
     u8 tmpFlags = mUndeleteFlag;
     mUndeleteFlag = (u8)(tmpFlags & 0x7F);
 
@@ -1428,7 +1426,17 @@ asm void J2DTevBlock2::shiftDeleteFlag(u8 param_0, bool param_1) {
     }
 
     mUndeleteFlag |= (tmpFlags & 0x80);
-} */
+}
+#else
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void J2DTevBlock2::shiftDeleteFlag(u8 param_0, bool param_1) {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DMatBlock/shiftDeleteFlag__12J2DTevBlock2FUcb.s"
+}
+#pragma pop
+#endif
 
 /* 802ED584-802ED874 2E7EC4 02F0+00 1/0 0/0 0/0 .text            setGX__12J2DTevBlock2Fv */
 #pragma push
@@ -2272,10 +2280,6 @@ asm J2DIndTevStage::J2DIndTevStage() {
 #include "asm/JSystem/J2DGraph/J2DMatBlock/__ct__14J2DIndTevStageFv.s"
 }
 #pragma pop
-
-/* J2DIndTevStage::J2DIndTevStage() {
-    mFlags = J2DCalcIndTevStage(j2dDefaultIndTevStageInfo);
-} */
 
 /* 802F1934-802F1940 2EC274 000C+00 5/5 0/0 0/0 .text            __ct__19J2DTevSwapModeTableFv */
 #pragma push
