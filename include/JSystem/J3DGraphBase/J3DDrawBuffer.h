@@ -32,17 +32,19 @@ public:
     void drawTail() const;
 
     inline void calcZRatio();
+    void setNonSort() { mSortType = 5; }
+    void setZSort() { mSortType = 2; }
 
 public:
-    J3DPacket** mpBuf;
-    u32 mBufSize;
-    u32 mDrawType;
-    u32 mSortType;
-    float mZNear;
-    float mZFar;
-    float mZRatio;
-    Mtx* mpZMtx;
-    J3DPacket* mpCallBackPacket;
+    /* 0x00 */ J3DPacket** mpBuf;
+    /* 0x04 */ u32 mBufSize;
+    /* 0x08 */ u32 mDrawType;
+    /* 0x0C */ u32 mSortType;
+    /* 0x10 */ f32 mZNear;
+    /* 0x14 */ f32 mZFar;
+    /* 0x18 */ f32 mZRatio;
+    /* 0x1C */ Mtx* mpZMtx;
+    /* 0x20 */ J3DPacket* mpCallBackPacket;
 
     static u8 sortFuncTable[72];
     static u8 drawFuncTable[24];

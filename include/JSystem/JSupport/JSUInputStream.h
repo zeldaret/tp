@@ -25,6 +25,12 @@ public:
         return val;
     }
 
+    s32 readS32() {
+        s32 val;
+        this->read(&val, sizeof(val));
+        return val;
+    }
+
     s16 readS16() {
         s16 val;
         this->read(&val, sizeof(val));
@@ -39,6 +45,18 @@ public:
 
     u8 readU8() {
         u8 val;
+        this->read(&val, sizeof(val));
+        return val;
+    }
+
+    u8 read8b() {
+        u8 val;
+        this->read(&val, sizeof(val));
+        return val;
+    }
+
+    u16 read16b() {
+        u16 val;
         this->read(&val, sizeof(val));
         return val;
     }

@@ -456,7 +456,8 @@ asm J2DColorBlock::~J2DColorBlock() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DIndBlock::~J2DIndBlock() {
+// asm J2DIndBlock::~J2DIndBlock() {
+extern "C" asm void __dt__11J2DIndBlockFv() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterial/__dt__11J2DIndBlockFv.s"
 }
@@ -466,7 +467,8 @@ asm J2DIndBlock::~J2DIndBlock() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DTevBlock::~J2DTevBlock() {
+// asm J2DTevBlock::~J2DTevBlock() {
+extern "C" asm void __dt__11J2DTevBlockFv() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterial/__dt__11J2DTevBlockFv.s"
 }
@@ -508,7 +510,7 @@ extern "C" void setGX__15J2DIndBlockNullFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DIndBlockNull::getType() {
+asm u32 J2DIndBlockNull::getType() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterial/getType__15J2DIndBlockNullFv.s"
 }

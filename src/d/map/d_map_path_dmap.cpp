@@ -4,24 +4,17 @@
 //
 
 #include "d/map/d_map_path_dmap.h"
+#include "d/map/d_map_path.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/meter/d_meter_HIO.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_mtx.h"
+#include "MSL_C/math.h"
 
 //
 // Types:
 //
-
-struct dMpath_n {
-    struct dTexObjAggregate_c {
-        /* 8003C85C */ void create();
-        /* 8003C8F4 */ void remove();
-    };
-
-    static u8 m_texObjAgg[28];
-};
 
 struct dMapInfo_c {
     /* 8003F40C */ void calcFloorNo(f32, bool, int);
@@ -614,7 +607,7 @@ asm void renderingDAmap_c::entry(f32 param_0, f32 param_1, f32 param_2, int para
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void renderingDAmap_c::isSwitch(dDrawPath_c::group_class const* param_0) {
+asm bool renderingDAmap_c::isSwitch(dDrawPath_c::group_class const* param_0) {
     nofralloc
 #include "asm/d/map/d_map_path_dmap/isSwitch__16renderingDAmap_cFPCQ211dDrawPath_c11group_class.s"
 }
@@ -654,7 +647,7 @@ asm GXColor* renderingDAmap_c::getBackColor() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void renderingDAmap_c::isRenderingFloor(int param_0) {
+asm bool renderingDAmap_c::isRenderingFloor(int param_0) {
     nofralloc
 #include "asm/d/map/d_map_path_dmap/isRenderingFloor__16renderingDAmap_cFi.s"
 }
@@ -743,7 +736,7 @@ asm void renderingDAmap_c::getNextDrawRoomNo(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void renderingDAmap_c::getFirstRoomPointer() {
+asm dDrawPath_c::room_class* renderingDAmap_c::getFirstRoomPointer() {
     nofralloc
 #include "asm/d/map/d_map_path_dmap/getFirstRoomPointer__16renderingDAmap_cFv.s"
 }
@@ -753,7 +746,7 @@ asm void renderingDAmap_c::getFirstRoomPointer() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void renderingDAmap_c::getNextRoomPointer() {
+asm dDrawPath_c::room_class* renderingDAmap_c::getNextRoomPointer() {
     nofralloc
 #include "asm/d/map/d_map_path_dmap/getNextRoomPointer__16renderingDAmap_cFv.s"
 }
@@ -763,7 +756,7 @@ asm void renderingDAmap_c::getNextRoomPointer() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void renderingDAmap_c::isDrawPath() {
+asm bool renderingDAmap_c::isDrawPath() {
     nofralloc
 #include "asm/d/map/d_map_path_dmap/isDrawPath__16renderingDAmap_cFv.s"
 }

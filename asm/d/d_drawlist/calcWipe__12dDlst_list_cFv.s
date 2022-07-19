@@ -2,7 +2,7 @@ lbl_80056900:
 /* 80056900  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80056904  7C 08 02 A6 */	mflr r0
 /* 80056908  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8005690C  88 0D 89 50 */	lbz r0, data_80450ED0(r13)
+/* 8005690C  88 0D 89 50 */	lbz r0, mWipe__12dDlst_list_c(r13)
 /* 80056910  28 00 00 00 */	cmplwi r0, 0
 /* 80056914  41 82 00 7C */	beq lbl_80056990
 /* 80056918  C0 2D 89 54 */	lfs f1, mWipeRate__12dDlst_list_c(r13)
@@ -20,7 +20,7 @@ lbl_8005693C:
 /* 80056944  40 81 00 10 */	ble lbl_80056954
 /* 80056948  D0 0D 89 54 */	stfs f0, mWipeRate__12dDlst_list_c(r13)
 /* 8005694C  38 00 00 00 */	li r0, 0
-/* 80056950  98 0D 89 50 */	stb r0, data_80450ED0(r13)
+/* 80056950  98 0D 89 50 */	stb r0, mWipe__12dDlst_list_c(r13)
 lbl_80056954:
 /* 80056954  C0 22 86 48 */	lfs f1, lit_4806(r2)
 /* 80056958  C0 0D 89 54 */	lfs f0, mWipeRate__12dDlst_list_c(r13)

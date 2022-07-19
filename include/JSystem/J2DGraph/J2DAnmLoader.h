@@ -14,7 +14,8 @@ public:
     virtual void* load(void const*) = 0;
     virtual void setResource(J2DAnmBase*, void const*) = 0;
     /* 8030A410 */ virtual ~J2DAnmLoader() {}
-    void* _4;
+
+    void* mpResource;
 };
 
 struct J3DAnmTransformKeyData {

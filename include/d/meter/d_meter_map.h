@@ -19,8 +19,8 @@ public:
 
     /* 800284D0 */ virtual void draw();
     /* 8002ADB0 */ virtual ~renderingAmap_c();
-    /* 80028EE4 */ virtual void getLineColor(int, int);
-    /* 80028DD4 */ virtual void getLineWidth(int);
+    /* 80028EE4 */ virtual GXColor* getLineColor(int, int);
+    /* 80028DD4 */ virtual int getLineWidth(int);
     /* 80028A10 */ virtual void drawPath();
     /* 80028A30 */ virtual void rendering(dDrawPath_c::line_class const*);
     /* 80028B3C */ virtual void rendering(dDrawPath_c::poly_class const*);
@@ -68,8 +68,8 @@ public:
     /* 8002AB54 */ void _draw();
 
     /* 8002AF20 */ virtual ~dMap_c();
-    /* 800296EC */ virtual void isDrawType(int);
-    /* 80028DF4 */ virtual void getColor(int);
+    /* 800296EC */ virtual bool isDrawType(int);
+    /* 80028DF4 */ virtual GXColor* getColor(int);
     /* 800296F8 */ virtual void isRendAllRoom() const;
     /* 8002A254 */ virtual void getRoomNoSingle();
     /* 8002A1DC */ virtual void isDrawRoom(int, int) const;

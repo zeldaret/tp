@@ -77,10 +77,18 @@ struct dMenu_save_c {
     /* 801F69FC */ void _draw2();
 };
 
-struct dGov_HIO_c {
+class dGov_HIO_c {
+public:
     /* 8019AFE0 */ dGov_HIO_c();
-    /* 8019C06C */ ~dGov_HIO_c();
-};
+    /* 8019C06C */ virtual ~dGov_HIO_c();
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 mScale;
+    /* 0x0C */ f32 mAlpha;
+    /* 0x10 */ f32 mAnimSpeed;
+    /* 0x14 */ GXColor mBlack;
+    /* 0x18 */ GXColor mWhite;
+};  // Size: 0x1C
 
 struct dDlst_base_c {};
 
@@ -919,7 +927,8 @@ asm void d_GameOver_Delete(unsigned int& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dGov_HIO_c::~dGov_HIO_c() {
+// asm dGov_HIO_c::~dGov_HIO_c() {
+extern "C" asm void __dt__10dGov_HIO_cFv() {
     nofralloc
 #include "asm/d/d_gameover/__dt__10dGov_HIO_cFv.s"
 }

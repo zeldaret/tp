@@ -349,7 +349,7 @@ extern "C" void _restgpr_29();
 extern "C" extern u8 const j2dDefaultTexCoordInfo[32];
 extern "C" extern u8 const j2dDefaultIndTexMtxInfo[28];
 extern "C" extern u8 const j2dDefaultTevStageInfo[20];
-extern "C" extern u8 const j2dDefaultIndTevStageInfo[12];
+extern "C" extern J2DIndTevStageInfo const j2dDefaultIndTevStageInfo;
 extern "C" extern void* __vt__11J2DIndBlock[14];
 extern "C" extern u32 j2dDefaultColInfo;
 extern "C" extern u32 j2dDefaultTevOrderInfoNull;
@@ -689,75 +689,14 @@ SECTION_DATA extern void* __vt__12J2DTevBlock1[47] = {
     (void*)__dt__12J2DTevBlock1Fv,
 };
 
-/* 803CCE74-803CCF30 029F94 00BC+00 10/10 1/1 0/0 .data            __vt__11J2DTevBlock */
-SECTION_DATA extern void* __vt__11J2DTevBlock[47] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)initialize__11J2DTevBlockFv,
-    (void*)setGX__11J2DTevBlockFv,
-    (void*)loadTexture__11J2DTevBlockF11_GXTexMapIDUl,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)setTexNo__11J2DTevBlockFUlUs,
-    (void*)getTexNo__11J2DTevBlockCFUl,
-    (void*)setFontNo__11J2DTevBlockFUs,
-    (void*)getFontNo__11J2DTevBlockCFv,
-    (void*)setTevOrder__11J2DTevBlockFUl11J2DTevOrder,
-    (void*)getTevOrder__11J2DTevBlockFUl,
-    (void*)setTevColor__11J2DTevBlockFUl13J2DGXColorS10,
-    (void*)getTevColor__11J2DTevBlockFUl,
-    (void*)setTevKColor__11J2DTevBlockFUlQ28JUtility6TColor,
-    (void*)getTevKColor__11J2DTevBlockFUl,
-    (void*)setTevKColorSel__11J2DTevBlockFUlUc,
-    (void*)getTevKColorSel__11J2DTevBlockFUl,
-    (void*)setTevKAlphaSel__11J2DTevBlockFUlUc,
-    (void*)getTevKAlphaSel__11J2DTevBlockFUl,
-    (void*)setTevStageNum__11J2DTevBlockFUc,
-    (void*)getTevStageNum__11J2DTevBlockCFv,
-    (void*)setTevStage__11J2DTevBlockFUl11J2DTevStage,
-    (void*)getTevStage__11J2DTevBlockFUl,
-    (void*)setTevSwapModeInfo__11J2DTevBlockFUl18J2DTevSwapModeInfo,
-    (void*)setTevSwapModeTable__11J2DTevBlockFUl19J2DTevSwapModeTable,
-    (void*)getTevSwapModeTable__11J2DTevBlockFUl,
-    (void*)setIndTevStage__11J2DTevBlockFUl14J2DIndTevStage,
-    (void*)getIndTevStage__11J2DTevBlockFUl,
-    (void*)insertTexture__11J2DTevBlockFUlPC7ResTIMG,
-    (void*)insertTexture__11J2DTevBlockFUlPC7ResTIMGP10JUTPalette,
-    (void*)insertTexture__11J2DTevBlockFUlP10JUTTexture,
-    (void*)setTexture__11J2DTevBlockFUlPC7ResTIMG,
-    (void*)setTexture__11J2DTevBlockFUlP10JUTTexture,
-    (void*)removeTexture__11J2DTevBlockFUl,
-    (void*)setFont__11J2DTevBlockFP7ResFONT,
-    (void*)setFont__11J2DTevBlockFP7JUTFont,
-    (void*)setPalette__11J2DTevBlockFUlPC7ResTLUT,
-    (void*)prepareTexture__11J2DTevBlockFUc,
-    (void*)getTexture__11J2DTevBlockFUl,
-    (void*)getPalette__11J2DTevBlockFUl,
-    (void*)getFont__11J2DTevBlockFv,
-    (void*)shiftDeleteFlag__11J2DTevBlockFUcb,
-    (void*)setUndeleteFlag__11J2DTevBlockFUc,
-    (void*)setFontUndeleteFlag__11J2DTevBlockFv,
-    (void*)__dt__11J2DTevBlockFv,
-};
-
-/* 803CCF30-803CCF40 02A050 000C+04 1/1 1/1 0/0 .data            __vt__14J2DTexGenBlock */
-SECTION_DATA extern void* __vt__14J2DTexGenBlock[3 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14J2DTexGenBlockFv,
-    /* padding */
-    NULL,
-};
-
 /* 802EB620-802EB6A4 2E5F60 0084+00 1/0 1/1 0/0 .text            __dt__14J2DTexGenBlockFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J2DTexGenBlock::~J2DTexGenBlock() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/__dt__14J2DTexGenBlockFv.s"
+J2DTexGenBlock::~J2DTexGenBlock() {
+    for (int i = 0; i < 8; i++) {
+        if (mTexMtx[i] != NULL) {
+            delete mTexMtx[i];
+        }
+    }
 }
-#pragma pop
 
 /* 802EB6A4-802EB7E0 2E5FE4 013C+00 0/0 3/3 0/0 .text setTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx */
 #pragma push
@@ -780,34 +719,34 @@ asm void J2DTexGenBlock::getTexMtx(u32 param_0, J2DTexMtx& param_1) {
 #pragma pop
 
 /* 802EB87C-802EB884 2E61BC 0008+00 1/0 0/0 0/0 .text            getTexture__11J2DTevBlockFUl */
-bool J2DTevBlock::getTexture(u32 param_0) {
-    return false;
+JUTTexture* J2DTevBlock::getTexture(u32) {
+    return NULL;
 }
 
 /* 802EB884-802EB88C 2E61C4 0008+00 1/0 0/0 0/0 .text            getPalette__11J2DTevBlockFUl */
-bool J2DTevBlock::getPalette(u32 param_0) {
-    return false;
+JUTPalette* J2DTevBlock::getPalette(u32) {
+    return NULL;
 }
 
 /* 802EB88C-802EB998 2E61CC 010C+00 0/0 1/1 0/0 .text            __ct__12J2DTevBlock1Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J2DTevBlock1::J2DTevBlock1() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/__ct__12J2DTevBlock1Fv.s"
+J2DTevBlock1::J2DTevBlock1() {
+    mTexture[0] = NULL;
+    mUndeleteFlag = 0;
+    initialize();
 }
-#pragma pop
 
 /* 802EB998-802EBA50 2E62D8 00B8+00 1/0 0/0 0/0 .text            __dt__12J2DTevBlock1Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J2DTevBlock1::~J2DTevBlock1() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/__dt__12J2DTevBlock1Fv.s"
+J2DTevBlock1::~J2DTevBlock1() {
+    if (mUndeleteFlag & 1) {
+        delete mTexture[0];
+    }
+
+    delete mPalette[0];
+
+    if (mUndeleteFlag & 0x80) {
+        delete mFont;
+    }
 }
-#pragma pop
 
 /* 802EBA50-802EBC0C 2E6390 01BC+00 1/0 0/0 0/0 .text            initialize__12J2DTevBlock1Fv */
 #pragma push
@@ -822,110 +761,230 @@ extern "C" asm void initialize__12J2DTevBlock1Fv() {
 
 /* 802EBC0C-802EBCC0 2E654C 00B4+00 1/0 0/0 0/0 .text            prepareTexture__12J2DTevBlock1FUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock1::prepareTexture(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/prepareTexture__12J2DTevBlock1FUc.s"
+bool J2DTevBlock1::prepareTexture(u8 param_0) {
+    if (param_0 == 0) {
+        return true;
+    }
+
+    if (mTexture[0] == NULL) {
+        mTexture[0] = new JUTTexture();
+
+        if (mTexture[0] == NULL) {
+            return false;
+        }
+        mUndeleteFlag = (mUndeleteFlag & 0x80) | 1;
+    }
+
+    return param_0 <= 1;
 }
-#pragma pop
 
 /* 802EBCC0-802EBDE4 2E6600 0124+00 1/0 0/0 0/0 .text
  * insertTexture__12J2DTevBlock1FUlPC7ResTIMGP10JUTPalette      */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock1::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPalette* param_2) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__12J2DTevBlock1FUlPC7ResTIMGP10JUTPalette.s"
+bool J2DTevBlock1::insertTexture(u32 param_0, ResTIMG const* p_timg, JUTPalette* p_tlut) {
+    if (param_0 != 0 || p_timg == NULL) {
+        return false;
+    }
+
+    if (mTexture[0] != NULL && mTexture[0]->getTexInfo() != NULL) {
+        return false;
+    }
+
+    if (mTexture[0] == NULL) {
+        mTexture[0] = new JUTTexture(p_timg, 0);
+
+        if (mTexture[0] == NULL) {
+            return false;
+        }
+
+        if (p_tlut != NULL) {
+            mTexture[0]->storeTIMG(p_timg, p_tlut);
+        }
+    } else if (p_tlut == NULL) {
+        mTexture[0]->storeTIMG(p_timg, (u8)0);
+    } else {
+        mTexture[0]->storeTIMG(p_timg, p_tlut);
+    }
+
+    mUndeleteFlag = (mUndeleteFlag & 0x80) | 1;
+    mPalette[0] = NULL;
+    mTexNo[0] = -1;
+    return true;
 }
-#pragma pop
 
 /* 802EBDE4-802EBE8C 2E6724 00A8+00 1/0 0/0 0/0 .text
  * insertTexture__12J2DTevBlock1FUlP10JUTTexture                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock1::insertTexture(u32 param_0, JUTTexture* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__12J2DTevBlock1FUlP10JUTTexture.s"
+bool J2DTevBlock1::insertTexture(u32 param_0, JUTTexture* p_tex) {
+    if (mTexture[0] != NULL && mTexture[0]->getTexInfo() != NULL) {
+        return false;
+    }
+
+    if (param_0 != 0 || p_tex == NULL) {
+        return false;
+    }
+
+    if (mUndeleteFlag & 1) {
+        delete mTexture[0];
+    }
+
+    mTexture[0] = p_tex;
+    mUndeleteFlag &= 0x80;
+    mPalette[0] = NULL;
+    mTexNo[0] = -1;
+    return true;
 }
-#pragma pop
 
 /* 802EBE8C-802EC01C 2E67CC 0190+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock1FUlPC7ResTIMG */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock1::setTexture(u32 param_0, ResTIMG const* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTexture__12J2DTevBlock1FUlPC7ResTIMG.s"
+bool J2DTevBlock1::setTexture(u32 param_0, ResTIMG const* p_timg) {
+    if (param_0 != 0) {
+        return false;
+    }
+
+    if (mTexture[0] == NULL) {
+        if (p_timg != NULL) {
+            mTexture[0] = new JUTTexture(p_timg, 0);
+
+            if (mTexture[0] == NULL) {
+                return false;
+            }
+
+            mUndeleteFlag = (mUndeleteFlag & 0x80) | 1;
+        } else {
+            mUndeleteFlag &= 0x80;
+        }
+    } else if (mUndeleteFlag & 1) {
+        if (p_timg != NULL) {
+            mTexture[0]->storeTIMG(p_timg, (u8)0);
+        } else {
+            delete mTexture[0];
+            mTexture[0] = NULL;
+            mUndeleteFlag &= 0x80;
+        }
+    } else {
+        mTexture[0] = NULL;
+
+        if (p_timg != NULL) {
+            mTexture[0] = new JUTTexture(p_timg, 0);
+
+            if (mTexture[0] == NULL) {
+                return false;
+            }
+
+            mUndeleteFlag = (mUndeleteFlag & 0x80) | 1;
+        }
+    }
+
+    delete mPalette[0];
+    mPalette[0] = NULL;
+    mTexNo[0] = -1;
+    return true;
 }
-#pragma pop
 
 /* 802EC01C-802EC0A8 2E695C 008C+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock1FUlP10JUTTexture
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock1::setTexture(u32 param_0, JUTTexture* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTexture__12J2DTevBlock1FUlP10JUTTexture.s"
+bool J2DTevBlock1::setTexture(u32 param_0, JUTTexture* p_tex) {
+    if (param_0 != 0) {
+        return false;
+    }
+
+    if (mUndeleteFlag & 1) {
+        delete mTexture[0];
+    }
+
+    mTexture[0] = p_tex;
+    mUndeleteFlag &= 0x80;
+    delete mPalette[0];
+    mPalette[0] = NULL;
+    mTexNo[0] = -1;
+    return true;
 }
-#pragma pop
 
 /* 802EC0A8-802EC124 2E69E8 007C+00 1/0 0/0 0/0 .text            removeTexture__12J2DTevBlock1FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock1::removeTexture(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/removeTexture__12J2DTevBlock1FUl.s"
+bool J2DTevBlock1::removeTexture(u32 param_0) {
+    if (param_0 >= 1) {
+        return false;
+    }
+
+    if (mUndeleteFlag & 1) {
+        delete mTexture[0];
+    }
+
+    mTexture[0] = NULL;
+    mUndeleteFlag &= 0x80;
+    delete mPalette[0];
+    mTexNo[0] = -1;
+    return true;
 }
-#pragma pop
 
 /* 802EC124-802EC1D8 2E6A64 00B4+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock1FP7ResFONT
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock1::setFont(ResFONT* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setFont__12J2DTevBlock1FP7ResFONT.s"
+bool J2DTevBlock1::setFont(ResFONT* p_font) {
+    if (p_font == NULL) {
+        return false;
+    }
+
+    JUTResFont* resFont = new JUTResFont(p_font, NULL);
+    if (resFont == NULL) {
+        return false;
+    }
+
+    if (mUndeleteFlag & 0x80) {
+        delete mFont;
+    }
+
+    mFont = resFont;
+    mUndeleteFlag = (mUndeleteFlag & 0x7F) | 0x80;
+    return true;
 }
-#pragma pop
 
 /* 802EC1D8-802EC258 2E6B18 0080+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock1FP7JUTFont
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock1::setFont(JUTFont* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setFont__12J2DTevBlock1FP7JUTFont.s"
+bool J2DTevBlock1::setFont(JUTFont* p_font) {
+    if (p_font == NULL) {
+        return false;
+    }
+
+    if (mUndeleteFlag & 0x80) {
+        delete mFont;
+    }
+
+    mFont = (JUTResFont*)p_font;
+    mUndeleteFlag = mUndeleteFlag & 0x7F;
+    return true;
 }
-#pragma pop
 
 /* 802EC258-802EC318 2E6B98 00C0+00 1/0 0/0 0/0 .text setPalette__12J2DTevBlock1FUlPC7ResTLUT */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock1::setPalette(u32 param_0, ResTLUT const* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setPalette__12J2DTevBlock1FUlPC7ResTLUT.s"
+bool J2DTevBlock1::setPalette(u32 param_0, ResTLUT const* p_tlut) {
+    if (param_0 != 0) {
+        return false;
+    }
+
+    if (p_tlut != NULL) {
+        if (mPalette[0] == NULL) {
+            mPalette[0] = new JUTPalette(GX_TLUT0, (ResTLUT*)p_tlut);
+
+            if (mPalette[0] == NULL) {
+                return false;
+            }
+        } else {
+            mPalette[0]->storeTLUT(GX_TLUT0, (ResTLUT*)p_tlut);
+        }
+
+        if (mTexture[0] != NULL) {
+            mTexture[0]->attachPalette(mPalette[0]);
+        }
+    } else {
+        delete mPalette[0];
+        mPalette[0] = NULL;
+    }
+
+    return true;
 }
-#pragma pop
 
 /* 802EC318-802EC328 2E6C58 0010+00 1/0 0/0 0/0 .text            shiftDeleteFlag__12J2DTevBlock1FUcb
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock1::shiftDeleteFlag(u8 param_0, bool param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/shiftDeleteFlag__12J2DTevBlock1FUcb.s"
+void J2DTevBlock1::shiftDeleteFlag(u8, bool) {
+    mUndeleteFlag &= 0x80;
 }
-#pragma pop
 
 /* 802EC328-802EC570 2E6C68 0248+00 1/0 0/0 0/0 .text            setGX__12J2DTevBlock1Fv */
 #pragma push
@@ -937,36 +996,59 @@ asm void J2DTevBlock1::setGX() {
 }
 #pragma pop
 
+/* void J2DTevBlock1::setGX() {
+    loadTexture(GX_TEXMAP0, 0);
+    GXSetTevOrder(GX_TEVSTAGE0, mTevOrder[0].getTexCoord(), mTevOrder[0].getTexMap(), mTevOrder[0].getColor());
+
+    for (int i = 0; i < 4; i++) {
+        GXColorS10 color = mTevColor[i];
+
+        GXTevRegID id;
+        if (i == 3) {
+            id = 0;
+        } else {
+            id = i + 1;
+        }
+        GXSetTevColorS10(id, color);
+    }
+
+    GXSetNumTevStages(1);
+    GXSetTevColorIn(GX_TEVSTAGE0, )
+} */
+
 /* 802EC570-802EC5B8 2E6EB0 0048+00 1/0 0/0 0/0 .text loadTexture__12J2DTevBlock1F11_GXTexMapIDUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock1::loadTexture(_GXTexMapID param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/loadTexture__12J2DTevBlock1F11_GXTexMapIDUl.s"
+void J2DTevBlock1::loadTexture(GXTexMapID texmapID, u32 texIndex) {
+    if (texIndex == 0 && mTexture[texIndex] != NULL && mTexture[texIndex]->getTexInfo() != NULL) {
+        mTexture[texIndex]->load(texmapID);
+    }
 }
-#pragma pop
 
 /* 802EC5B8-802EC6C8 2E6EF8 0110+00 0/0 1/1 0/0 .text            __ct__12J2DTevBlock2Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J2DTevBlock2::J2DTevBlock2() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/__ct__12J2DTevBlock2Fv.s"
+J2DTevBlock2::J2DTevBlock2() {
+    mTexture[0] = NULL;
+    mTexture[1] = NULL;
+    mUndeleteFlag = 0;
+    initialize();
 }
-#pragma pop
 
 /* 802EC6C8-802EC7A0 2E7008 00D8+00 1/0 0/0 0/0 .text            __dt__12J2DTevBlock2Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J2DTevBlock2::~J2DTevBlock2() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/__dt__12J2DTevBlock2Fv.s"
+J2DTevBlock2::~J2DTevBlock2() {
+    if (mUndeleteFlag & 1) {
+        delete mTexture[0];
+    }
+
+    if (mUndeleteFlag & 2) {
+        delete mTexture[1];
+    }
+
+    delete mPalette[0];
+    delete mPalette[1];
+
+    if (mUndeleteFlag & 0x80) {
+        delete mFont;
+    }
 }
-#pragma pop
 
 /* 802EC7A0-802ECA18 2E70E0 0278+00 1/0 0/0 0/0 .text            initialize__12J2DTevBlock2Fv */
 #pragma push
@@ -981,14 +1063,24 @@ extern "C" asm void initialize__12J2DTevBlock2Fv() {
 
 /* 802ECA18-802ECAE8 2E7358 00D0+00 1/0 0/0 0/0 .text            prepareTexture__12J2DTevBlock2FUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock2::prepareTexture(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/prepareTexture__12J2DTevBlock2FUc.s"
+bool J2DTevBlock2::prepareTexture(u8 param_0) {
+    for (u8 i = 0; i < param_0; i++) {
+        if (i >= 2) {
+            return false;
+        }
+
+        if (mTexture[i] == NULL) {
+            mTexture[i] = new JUTTexture();
+
+            if (mTexture[i] == NULL) {
+                return false;
+            }
+            mUndeleteFlag |= (1 << i);
+        }
+    }
+
+    return true;
 }
-#pragma pop
 
 /* 802ECAE8-802ECDE8 2E7428 0300+00 1/0 0/0 0/0 .text
  * insertTexture__12J2DTevBlock2FUlPC7ResTIMGP10JUTPalette      */
@@ -1001,16 +1093,135 @@ asm bool J2DTevBlock2::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPal
 }
 #pragma pop
 
+/* bool J2DTevBlock2::insertTexture(u32 param_0, ResTIMG const* p_timg, JUTPalette* p_tlut) {
+    if (param_0 >= 2 || p_timg == NULL) {
+        return false;
+    }
+
+    u8 texNo = 0;
+    for (; texNo < 2; texNo++) {
+        if (mTexture[texNo] == NULL || mTexture[texNo]->getTexInfo() == NULL) {
+            break;
+        }
+    }
+
+    if (texNo < param_0) {
+        return false;
+    }
+    
+    if (texNo == 2) {
+        return false;
+    }
+
+    u8 tlutid = 0;
+    if (p_timg->palettesEnabled && p_tlut == NULL) {
+        JUTTexture* tex = mTexture[0];
+        if (tex != NULL && tex->getTexInfo() != NULL && tex->getTexInfo()->palettesEnabled) {
+            int tlutname = tex->getTlutName();
+            if (tlutname == GX_TLUT0 || tlutname == GX_BIGTLUT0) {
+                tlutid = 1;
+            }
+        }
+    }
+
+    JUTTexture* tex = mTexture[texNo];
+    if (tex == NULL) {
+        JUTTexture* newtex = new JUTTexture(p_timg, tlutid);
+
+        if (newtex == NULL) {
+            return false;
+        }
+
+        if (p_tlut != NULL) {
+            newtex->storeTIMG(p_timg, p_tlut);
+        }
+
+        if (param_0 == 0) {
+            mTexture[1] = mTexture[0];
+            mPalette[1] = mPalette[0];
+            mTexNo[1] = mTexNo[0];
+        }
+        mTexture[param_0] = newtex;
+        shiftDeleteFlag(param_0, true);
+        mUndeleteFlag |= (1 << param_0);
+    } else {
+        if (p_tlut == NULL) {
+            tex->storeTIMG(p_timg, tlutid);
+        } else {
+            tex->storeTIMG(p_timg, p_tlut);
+        }
+
+        bool local_28[2];
+        for (u8 i = 0; i < 2; i++) {
+            local_28[i] = mUndeleteFlag & (1 << i);
+        }
+
+        if (param_0 == 0 && texNo == 1) {
+            mTexture[1] = mTexture[0];
+            mPalette[1] = mPalette[0];
+            mTexNo[1] = mTexNo[0];
+            local_28[1] = local_28[0];
+        }
+        mTexture[param_0] = tex;
+        mUndeleteFlag &= 0x80;
+
+        for (u8 i = 0; i < 2; i++) {
+            if (local_28[i]) {
+                mUndeleteFlag |= (1 << i);
+            }
+        }
+
+        mUndeleteFlag |= (1 << param_0);
+    }
+
+    mPalette[param_0] = NULL;
+    mTexNo[param_0] = -1;
+    return true;
+} */
+
 /* 802ECDE8-802ECF48 2E7728 0160+00 1/0 0/0 0/0 .text
  * insertTexture__12J2DTevBlock2FUlP10JUTTexture                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock2::insertTexture(u32 param_0, JUTTexture* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__12J2DTevBlock2FUlP10JUTTexture.s"
+bool J2DTevBlock2::insertTexture(u32 param_0, JUTTexture* p_tex) {
+    if (param_0 >= 2 || p_tex == NULL) {
+        return false;
+    }
+
+    u8 texNo = 0;
+    for (; texNo < 2; texNo++) {
+        if (mTexture[texNo] == NULL || mTexture[texNo]->getTexInfo() == NULL) {
+            break;
+        }
+    }
+
+    if (texNo < param_0) {
+        return false;
+    }
+    
+    if (texNo == 2) {
+        return false;
+    }
+
+    if (mTexture[1] != NULL && mTexture[1]->getTexInfo() == NULL) {
+        if (mUndeleteFlag & 2) {
+            delete mTexture[1];
+        }
+        
+        mUndeleteFlag &= ~2;
+    }
+
+    if (param_0 == 0) {
+        mTexture[1] = mTexture[0];
+        mPalette[1] = mPalette[0];
+        mTexNo[1] = mTexNo[0];
+    }
+
+    mTexture[param_0] = p_tex;
+    mPalette[param_0] = NULL;
+    mTexNo[param_0] = -1;
+    shiftDeleteFlag(param_0, true);
+    mUndeleteFlag &= ~(1 << param_0);
+    return true;
 }
-#pragma pop
 
 /* 802ECF48-802ED16C 2E7888 0224+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock2FUlPC7ResTIMG */
 #pragma push
@@ -1022,58 +1233,177 @@ asm bool J2DTevBlock2::setTexture(u32 param_0, ResTIMG const* param_1) {
 }
 #pragma pop
 
+/* bool J2DTevBlock2::setTexture(u32 param_0, ResTIMG const* p_timg) {
+    if (param_0 >= 2) {
+        return false;
+    }
+
+    u8 tlutid = 0;
+    if (p_timg != NULL && p_timg->palettesEnabled) {
+        if (mTexture[param_0 == 0] != NULL) {
+            const ResTIMG* timg = mTexture[param_0 == 0]->getTexInfo();
+            if (timg != NULL && timg->palettesEnabled) {
+                int tlutname = mTexture[param_0 == 0]->getTlutName();
+                u8 var_r0 = 0;
+
+                if (tlutname >= 16) {
+                    var_r0 = 16;
+                }
+
+                if (tlutname - var_r0 == 0) {
+                    tlutid = 1;
+                }
+            }
+        }
+    }
+
+    if (mTexture[param_0] == NULL) {
+        if (p_timg != NULL) {
+            mTexture[param_0] = new JUTTexture(p_timg, tlutid);
+
+            if (mTexture[param_0] == NULL) {
+                return false;
+            }
+
+            mUndeleteFlag |= (1 << param_0);
+        } else {
+            mUndeleteFlag &= ~(1 << param_0);
+        }
+    } else if (mUndeleteFlag & (1 << param_0)) {
+        if (p_timg != NULL) {
+            mTexture[param_0]->storeTIMG(p_timg, tlutid);
+        } else {
+            delete mTexture[param_0];
+            mTexture[param_0] = NULL;
+            mUndeleteFlag &= ~(1 << param_0);
+        }
+    } else {
+        mTexture[param_0] = NULL;
+
+        if (p_timg != NULL) {
+            mTexture[param_0] = new JUTTexture(p_timg, 0);
+
+            if (mTexture[param_0] == NULL) {
+                return false;
+            }
+
+            mUndeleteFlag |= (1 << param_0);
+        }
+    }
+
+    delete mPalette[param_0];
+    mPalette[param_0] = NULL;
+    mTexNo[param_0] = -1;
+    return true;
+} */
+
 /* 802ED16C-802ED21C 2E7AAC 00B0+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock2FUlP10JUTTexture
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock2::setTexture(u32 param_0, JUTTexture* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTexture__12J2DTevBlock2FUlP10JUTTexture.s"
+bool J2DTevBlock2::setTexture(u32 param_0, JUTTexture* p_tex) {
+    if (param_0 >= 2) {
+        return false;
+    }
+
+    if (mUndeleteFlag & (1 << param_0)) {
+        delete mTexture[param_0];
+    }
+
+    mTexture[param_0] = p_tex;
+    mUndeleteFlag &= ~(1 << param_0);
+    delete mPalette[param_0];
+    mPalette[param_0] = NULL;
+    mTexNo[param_0] = -1;
+    return true;
 }
-#pragma pop
 
 /* 802ED21C-802ED2F0 2E7B5C 00D4+00 1/0 0/0 0/0 .text            removeTexture__12J2DTevBlock2FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock2::removeTexture(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/removeTexture__12J2DTevBlock2FUl.s"
+bool J2DTevBlock2::removeTexture(u32 param_0) {
+    if (param_0 >= 2) {
+        return false;
+    }
+
+    if (mUndeleteFlag & (1 << param_0)) {
+        delete mTexture[param_0];
+    }
+    delete mPalette[param_0];
+
+    if (param_0 == 0) {
+        mTexture[0] = mTexture[1];
+        mPalette[0] = mPalette[1];
+        mTexNo[0] = mTexNo[1];
+    }
+
+    mTexture[1] = NULL;
+    mPalette[1] = NULL;
+    mTexNo[1] = -1;
+    shiftDeleteFlag(param_0, false);
+    return true;
 }
-#pragma pop
 
 /* 802ED2F0-802ED3A4 2E7C30 00B4+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock2FP7ResFONT
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock2::setFont(ResFONT* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setFont__12J2DTevBlock2FP7ResFONT.s"
+bool J2DTevBlock2::setFont(ResFONT* p_font) {
+    if (p_font == NULL) {
+        return false;
+    }
+
+    JUTResFont* resFont = new JUTResFont(p_font, NULL);
+    if (resFont == NULL) {
+        return false;
+    }
+
+    if (mUndeleteFlag & 0x80) {
+        delete mFont;
+    }
+
+    mFont = resFont;
+    mUndeleteFlag = (mUndeleteFlag & 0x7F) | 0x80;
+    return true;
 }
-#pragma pop
 
 /* 802ED3A4-802ED424 2E7CE4 0080+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock2FP7JUTFont
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock2::setFont(JUTFont* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setFont__12J2DTevBlock2FP7JUTFont.s"
+bool J2DTevBlock2::setFont(JUTFont* p_font) {
+    if (p_font == NULL) {
+        return false;
+    }
+
+    if (mUndeleteFlag & 0x80) {
+        delete mFont;
+    }
+
+    mFont = (JUTResFont*)p_font;
+    mUndeleteFlag = mUndeleteFlag & 0x7F;
+    return true;
 }
-#pragma pop
 
 /* 802ED424-802ED4FC 2E7D64 00D8+00 1/0 0/0 0/0 .text setPalette__12J2DTevBlock2FUlPC7ResTLUT */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock2::setPalette(u32 param_0, ResTLUT const* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setPalette__12J2DTevBlock2FUlPC7ResTLUT.s"
+bool J2DTevBlock2::setPalette(u32 param_0, ResTLUT const* p_tlut) {
+    if (param_0 >= 2) {
+        return false;
+    }
+
+    if (p_tlut != NULL) {
+        if (mPalette[param_0] == NULL) {
+            mPalette[param_0] = new JUTPalette((GXTlut)param_0, (ResTLUT*)p_tlut);
+
+            if (mPalette[param_0] == NULL) {
+                return false;
+            }
+        } else {
+            mPalette[param_0]->storeTLUT(GX_TLUT0, (ResTLUT*)p_tlut);
+        }
+
+        if (mTexture[param_0] != NULL) {
+            mTexture[param_0]->attachPalette(mPalette[param_0]);
+        }
+    } else {
+        delete mPalette[param_0];
+        mPalette[param_0] = NULL;
+    }
+
+    return true;
 }
-#pragma pop
 
 /* 802ED4FC-802ED584 2E7E3C 0088+00 1/0 0/0 0/0 .text            shiftDeleteFlag__12J2DTevBlock2FUcb
  */
@@ -1085,6 +1415,20 @@ asm void J2DTevBlock2::shiftDeleteFlag(u8 param_0, bool param_1) {
 #include "asm/JSystem/J2DGraph/J2DMatBlock/shiftDeleteFlag__12J2DTevBlock2FUcb.s"
 }
 #pragma pop
+
+/* void J2DTevBlock2::shiftDeleteFlag(u8 param_0, bool param_1) {
+    u8 tmpFlags = mUndeleteFlag;
+    mUndeleteFlag = (u8)(tmpFlags & 0x7F);
+
+    if (param_1) {
+        int temp_r0_2 = (1 << param_0) - 1;
+        mUndeleteFlag = (mUndeleteFlag & temp_r0_2) | ((mUndeleteFlag & ~temp_r0_2) * 2);
+    } else {
+        mUndeleteFlag = (mUndeleteFlag & ((1 << param_0) - 1)) | (mUndeleteFlag & ~((1 << (param_0 + 1)) - 1));
+    }
+
+    mUndeleteFlag |= (tmpFlags & 0x80);
+} */
 
 /* 802ED584-802ED874 2E7EC4 02F0+00 1/0 0/0 0/0 .text            setGX__12J2DTevBlock2Fv */
 #pragma push
@@ -1098,34 +1442,35 @@ asm void J2DTevBlock2::setGX() {
 
 /* 802ED874-802ED8BC 2E81B4 0048+00 1/0 0/0 0/0 .text loadTexture__12J2DTevBlock2F11_GXTexMapIDUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock2::loadTexture(_GXTexMapID param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/loadTexture__12J2DTevBlock2F11_GXTexMapIDUl.s"
+void J2DTevBlock2::loadTexture(GXTexMapID texmapID, u32 texIndex) {
+    if (texIndex < 2 && mTexture[texIndex] != NULL && mTexture[texIndex]->getTexInfo() != NULL) {
+        mTexture[texIndex]->load(texmapID);
+    }
 }
-#pragma pop
 
 /* 802ED8BC-802ED9E4 2E81FC 0128+00 0/0 1/1 0/0 .text            __ct__12J2DTevBlock4Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J2DTevBlock4::J2DTevBlock4() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/__ct__12J2DTevBlock4Fv.s"
+J2DTevBlock4::J2DTevBlock4() {
+    for (int i = 0; i < 4; i++) {
+        mTexture[i] = NULL;
+    }
+
+    mUndeleteFlag = 0;
+    initialize();
 }
-#pragma pop
 
 /* 802ED9E4-802EDAC4 2E8324 00E0+00 1/0 0/0 0/0 .text            __dt__12J2DTevBlock4Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J2DTevBlock4::~J2DTevBlock4() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/__dt__12J2DTevBlock4Fv.s"
+J2DTevBlock4::~J2DTevBlock4() {
+    for (int i = 0; i < 4; i++) {
+        if (mUndeleteFlag & (1 << i)) {
+            delete mTexture[i];
+        }
+        delete mPalette[i];
+    }
+
+    if (mUndeleteFlag & 0x80) {
+        delete mFont;
+    }
 }
-#pragma pop
 
 /* 802EDAC4-802EDD34 2E8404 0270+00 1/0 0/0 0/0 .text            initialize__12J2DTevBlock4Fv */
 #pragma push
@@ -1140,14 +1485,24 @@ extern "C" asm void initialize__12J2DTevBlock4Fv() {
 
 /* 802EDD34-802EDE04 2E8674 00D0+00 1/0 0/0 0/0 .text            prepareTexture__12J2DTevBlock4FUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock4::prepareTexture(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/prepareTexture__12J2DTevBlock4FUc.s"
+bool J2DTevBlock4::prepareTexture(u8 param_0) {
+    for (u8 i = 0; i < param_0; i++) {
+        if (i >= 4) {
+            return 0;
+        }
+
+        if (mTexture[i] == NULL) {
+            mTexture[i] = new JUTTexture();
+
+            if (mTexture[i] == NULL) {
+                return false;
+            }
+            mUndeleteFlag |= (1 << i);
+        }
+    }
+
+    return true;
 }
-#pragma pop
 
 /* 802EDE04-802EE1D4 2E8744 03D0+00 1/0 0/0 0/0 .text
  * insertTexture__12J2DTevBlock4FUlPC7ResTIMGP10JUTPalette      */
@@ -1162,14 +1517,47 @@ asm bool J2DTevBlock4::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPal
 
 /* 802EE1D4-802EE364 2E8B14 0190+00 1/0 0/0 0/0 .text
  * insertTexture__12J2DTevBlock4FUlP10JUTTexture                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock4::insertTexture(u32 param_0, JUTTexture* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__12J2DTevBlock4FUlP10JUTTexture.s"
+bool J2DTevBlock4::insertTexture(u32 param_0, JUTTexture* p_tex) {
+    if (param_0 >= 4 || p_tex == NULL) {
+        return false;
+    }
+
+    u8 texNo = 0;
+    for (; texNo < 4; texNo++) {
+        if (mTexture[texNo] == NULL || mTexture[texNo]->getTexInfo() == NULL) {
+            break;
+        }
+    }
+
+    if (texNo < param_0) {
+        return false;
+    }
+    
+    if (texNo == 4) {
+        return false;
+    }
+
+    if (mTexture[3] != NULL && mTexture[3]->getTexInfo() == NULL) {
+        if (mUndeleteFlag & 8) {
+            delete mTexture[3];
+        }
+        
+        mUndeleteFlag &= ~8;
+    }
+
+    for (u8 i = 3; i > param_0; i--) {
+        mTexture[i] = mTexture[i - 1];
+        mPalette[i] = mPalette[i - 1];
+        mTexNo[i] = mTexNo[i - 1];
+    }
+
+    mTexture[param_0] = p_tex;
+    mPalette[param_0] = NULL;
+    mTexNo[param_0] = -1;
+    shiftDeleteFlag(param_0, true);
+    mUndeleteFlag &= ~(1 << param_0);
+    return true;
 }
-#pragma pop
 
 /* 802EE364-802EE5F0 2E8CA4 028C+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock4FUlPC7ResTIMG */
 #pragma push
@@ -1183,56 +1571,111 @@ asm bool J2DTevBlock4::setTexture(u32 param_0, ResTIMG const* param_1) {
 
 /* 802EE5F0-802EE6A0 2E8F30 00B0+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock4FUlP10JUTTexture
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock4::setTexture(u32 param_0, JUTTexture* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTexture__12J2DTevBlock4FUlP10JUTTexture.s"
+bool J2DTevBlock4::setTexture(u32 param_0, JUTTexture* p_tex) {
+    if (param_0 >= 4) {
+        return false;
+    }
+
+    if (mUndeleteFlag & (1 << param_0)) {
+        delete mTexture[param_0];
+    }
+
+    mTexture[param_0] = p_tex;
+    mUndeleteFlag &= ~(1 << param_0);
+    delete mPalette[param_0];
+    mPalette[param_0] = NULL;
+    mTexNo[param_0] = -1;
+    return true;
 }
-#pragma pop
 
 /* 802EE6A0-802EE798 2E8FE0 00F8+00 1/0 0/0 0/0 .text            removeTexture__12J2DTevBlock4FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock4::removeTexture(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/removeTexture__12J2DTevBlock4FUl.s"
+bool J2DTevBlock4::removeTexture(u32 param_0) {
+    if (param_0 >= 4) {
+        return false;
+    }
+
+    if (mUndeleteFlag & (1 << param_0)) {
+        delete mTexture[param_0];
+    }
+    delete mPalette[param_0];
+
+    for (u32 i = param_0; i < 3; i++) {
+        mTexture[i] = mTexture[i + 1];
+        mPalette[i] = mPalette[i + 1];
+        mTexNo[i] = mTexNo[i + 1];
+    }
+
+    mTexture[3] = NULL;
+    mPalette[3] = NULL;
+    mTexNo[3] = -1;
+    shiftDeleteFlag(param_0, false);
+    return true;
 }
-#pragma pop
 
 /* 802EE798-802EE84C 2E90D8 00B4+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock4FP7ResFONT
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock4::setFont(ResFONT* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setFont__12J2DTevBlock4FP7ResFONT.s"
+bool J2DTevBlock4::setFont(ResFONT* p_font) {
+    if (p_font == NULL) {
+        return false;
+    }
+
+    JUTResFont* resFont = new JUTResFont(p_font, NULL);
+    if (resFont == NULL) {
+        return false;
+    }
+
+    if (mUndeleteFlag & 0x80) {
+        delete mFont;
+    }
+
+    mFont = resFont;
+    mUndeleteFlag = (mUndeleteFlag & 0x7F) | 0x80;
+    return true;
 }
-#pragma pop
 
 /* 802EE84C-802EE8CC 2E918C 0080+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock4FP7JUTFont
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock4::setFont(JUTFont* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setFont__12J2DTevBlock4FP7JUTFont.s"
+bool J2DTevBlock4::setFont(JUTFont* p_font) {
+    if (p_font == NULL) {
+        return false;
+    }
+
+    if (mUndeleteFlag & 0x80) {
+        delete mFont;
+    }
+
+    mFont = (JUTResFont*)p_font;
+    mUndeleteFlag = mUndeleteFlag & 0x7F;
+    return true;
 }
-#pragma pop
 
 /* 802EE8CC-802EE9A4 2E920C 00D8+00 1/0 0/0 0/0 .text setPalette__12J2DTevBlock4FUlPC7ResTLUT */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock4::setPalette(u32 param_0, ResTLUT const* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setPalette__12J2DTevBlock4FUlPC7ResTLUT.s"
+bool J2DTevBlock4::setPalette(u32 param_0, ResTLUT const* p_tlut) {
+    if (param_0 >= 4) {
+        return false;
+    }
+
+    if (p_tlut != NULL) {
+        if (mPalette[param_0] == NULL) {
+            mPalette[param_0] = new JUTPalette((GXTlut)param_0, (ResTLUT*)p_tlut);
+
+            if (mPalette[param_0] == NULL) {
+                return false;
+            }
+        } else {
+            mPalette[param_0]->storeTLUT(GX_TLUT0, (ResTLUT*)p_tlut);
+        }
+
+        if (mTexture[param_0] != NULL) {
+            mTexture[param_0]->attachPalette(mPalette[param_0]);
+        }
+    } else {
+        delete mPalette[param_0];
+        mPalette[param_0] = NULL;
+    }
+
+    return true;
 }
-#pragma pop
 
 /* 802EE9A4-802EEA2C 2E92E4 0088+00 1/0 0/0 0/0 .text            shiftDeleteFlag__12J2DTevBlock4FUcb
  */
@@ -1257,34 +1700,35 @@ asm void J2DTevBlock4::setGX() {
 
 /* 802EED1C-802EED64 2E965C 0048+00 1/0 0/0 0/0 .text loadTexture__12J2DTevBlock4F11_GXTexMapIDUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock4::loadTexture(_GXTexMapID param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/loadTexture__12J2DTevBlock4F11_GXTexMapIDUl.s"
+void J2DTevBlock4::loadTexture(GXTexMapID texmapID, u32 texIndex) {
+    if (texIndex < 4 && mTexture[texIndex] != NULL && mTexture[texIndex]->getTexInfo() != NULL) {
+        mTexture[texIndex]->load(texmapID);
+    }
 }
-#pragma pop
 
 /* 802EED64-802EEE8C 2E96A4 0128+00 0/0 1/1 0/0 .text            __ct__12J2DTevBlock8Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J2DTevBlock8::J2DTevBlock8() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/__ct__12J2DTevBlock8Fv.s"
+J2DTevBlock8::J2DTevBlock8() {
+    for (int i = 0; i < 8; i++) {
+        mTexture[i] = NULL;
+    }
+
+    mUndeleteFlag = 0;
+    initialize();
 }
-#pragma pop
 
 /* 802EEE8C-802EEF6C 2E97CC 00E0+00 1/0 0/0 0/0 .text            __dt__12J2DTevBlock8Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J2DTevBlock8::~J2DTevBlock8() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/__dt__12J2DTevBlock8Fv.s"
+J2DTevBlock8::~J2DTevBlock8() {
+    for (int i = 0; i < 8; i++) {
+        if (mUndeleteFlag & (1 << i)) {
+            delete mTexture[i];
+        }
+        delete mPalette[i];
+    }
+
+    if (mFontUndeleteFlag) {
+        delete mFont;
+    }
 }
-#pragma pop
 
 /* 802EEF6C-802EF1E0 2E98AC 0274+00 1/0 0/0 0/0 .text            initialize__12J2DTevBlock8Fv */
 #pragma push
@@ -1299,14 +1743,24 @@ extern "C" asm void initialize__12J2DTevBlock8Fv() {
 
 /* 802EF1E0-802EF2B0 2E9B20 00D0+00 1/0 0/0 0/0 .text            prepareTexture__12J2DTevBlock8FUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock8::prepareTexture(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/prepareTexture__12J2DTevBlock8FUc.s"
+bool J2DTevBlock8::prepareTexture(u8 param_0) {
+    for (u8 i = 0; i < param_0; i++) {
+        if (i >= 8) {
+            return 0;
+        }
+
+        if (mTexture[i] == NULL) {
+            mTexture[i] = new JUTTexture();
+
+            if (mTexture[i] == NULL) {
+                return false;
+            }
+            mUndeleteFlag |= (1 << i);
+        }
+    }
+
+    return true;
 }
-#pragma pop
 
 /* 802EF2B0-802EF67C 2E9BF0 03CC+00 1/0 0/0 0/0 .text
  * insertTexture__12J2DTevBlock8FUlPC7ResTIMGP10JUTPalette      */
@@ -1321,14 +1775,47 @@ asm bool J2DTevBlock8::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPal
 
 /* 802EF67C-802EF80C 2E9FBC 0190+00 1/0 0/0 0/0 .text
  * insertTexture__12J2DTevBlock8FUlP10JUTTexture                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock8::insertTexture(u32 param_0, JUTTexture* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__12J2DTevBlock8FUlP10JUTTexture.s"
+bool J2DTevBlock8::insertTexture(u32 param_0, JUTTexture* p_tex) {
+    if (param_0 >= 8 || p_tex == NULL) {
+        return false;
+    }
+
+    u8 texNo = 0;
+    for (; texNo < 8; texNo++) {
+        if (mTexture[texNo] == NULL || mTexture[texNo]->getTexInfo() == NULL) {
+            break;
+        }
+    }
+
+    if (texNo < param_0) {
+        return false;
+    }
+    
+    if (texNo == 8) {
+        return false;
+    }
+
+    if (mTexture[7] != NULL && mTexture[7]->getTexInfo() == NULL) {
+        if (mUndeleteFlag & 0x80) {
+            delete mTexture[7];
+        }
+        
+        mUndeleteFlag &= 0x7F;
+    }
+
+    for (u8 i = 7; i > param_0; i--) {
+        mTexture[i] = mTexture[i - 1];
+        mPalette[i] = mPalette[i - 1];
+        mTexNo[i] = mTexNo[i - 1];
+    }
+
+    mTexture[param_0] = p_tex;
+    mPalette[param_0] = NULL;
+    mTexNo[param_0] = -1;
+    shiftDeleteFlag(param_0, true);
+    mUndeleteFlag &= ~(1 << param_0);
+    return true;
 }
-#pragma pop
 
 /* 802EF80C-802EFA98 2EA14C 028C+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock8FUlPC7ResTIMG */
 #pragma push
@@ -1342,56 +1829,111 @@ asm bool J2DTevBlock8::setTexture(u32 param_0, ResTIMG const* param_1) {
 
 /* 802EFA98-802EFB48 2EA3D8 00B0+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock8FUlP10JUTTexture
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock8::setTexture(u32 param_0, JUTTexture* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTexture__12J2DTevBlock8FUlP10JUTTexture.s"
+bool J2DTevBlock8::setTexture(u32 param_0, JUTTexture* p_tex) {
+    if (param_0 >= 8) {
+        return false;
+    }
+
+    if (mUndeleteFlag & (1 << param_0)) {
+        delete mTexture[param_0];
+    }
+
+    mTexture[param_0] = p_tex;
+    mUndeleteFlag &= ~(1 << param_0);
+    delete mPalette[param_0];
+    mPalette[param_0] = NULL;
+    mTexNo[param_0] = -1;
+    return true;
 }
-#pragma pop
 
 /* 802EFB48-802EFC40 2EA488 00F8+00 1/0 0/0 0/0 .text            removeTexture__12J2DTevBlock8FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock8::removeTexture(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/removeTexture__12J2DTevBlock8FUl.s"
+bool J2DTevBlock8::removeTexture(u32 param_0) {
+    if (param_0 >= 8) {
+        return false;
+    }
+
+    if (mUndeleteFlag & (1 << param_0)) {
+        delete mTexture[param_0];
+    }
+    delete mPalette[param_0];
+
+    for (u32 i = param_0; i < 7; i++) {
+        mTexture[i] = mTexture[i + 1];
+        mPalette[i] = mPalette[i + 1];
+        mTexNo[i] = mTexNo[i + 1];
+    }
+
+    mTexture[7] = NULL;
+    mPalette[7] = NULL;
+    mTexNo[7] = -1;
+    shiftDeleteFlag(param_0, false);
+    return true;
 }
-#pragma pop
 
 /* 802EFC40-802EFCEC 2EA580 00AC+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock8FP7ResFONT
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock8::setFont(ResFONT* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setFont__12J2DTevBlock8FP7ResFONT.s"
+bool J2DTevBlock8::setFont(ResFONT* p_font) {
+    if (p_font == NULL) {
+        return false;
+    }
+
+    JUTResFont* resFont = new JUTResFont(p_font, NULL);
+    if (resFont == NULL) {
+        return false;
+    }
+
+    if (mFontUndeleteFlag) {
+        delete mFont;
+    }
+
+    mFont = resFont;
+    mFontUndeleteFlag = true;
+    return true;
 }
-#pragma pop
 
 /* 802EFCEC-802EFD68 2EA62C 007C+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock8FP7JUTFont
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock8::setFont(JUTFont* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setFont__12J2DTevBlock8FP7JUTFont.s"
+bool J2DTevBlock8::setFont(JUTFont* p_font) {
+    if (p_font == NULL) {
+        return false;
+    }
+
+    if (mFontUndeleteFlag) {
+        delete mFont;
+    }
+
+    mFont = (JUTResFont*)p_font;
+    mFontUndeleteFlag = false;
+    return true;
 }
-#pragma pop
 
 /* 802EFD68-802EFE40 2EA6A8 00D8+00 1/0 0/0 0/0 .text setPalette__12J2DTevBlock8FUlPC7ResTLUT */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock8::setPalette(u32 param_0, ResTLUT const* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setPalette__12J2DTevBlock8FUlPC7ResTLUT.s"
+bool J2DTevBlock8::setPalette(u32 param_0, ResTLUT const* p_tlut) {
+    if (param_0 >= 8) {
+        return false;
+    }
+
+    if (p_tlut != NULL) {
+        if (mPalette[param_0] == NULL) {
+            mPalette[param_0] = new JUTPalette((GXTlut)param_0, (ResTLUT*)p_tlut);
+
+            if (mPalette[param_0] == NULL) {
+                return false;
+            }
+        } else {
+            mPalette[param_0]->storeTLUT(GX_TLUT0, (ResTLUT*)p_tlut);
+        }
+
+        if (mTexture[param_0] != NULL) {
+            mTexture[param_0]->attachPalette(mPalette[param_0]);
+        }
+    } else {
+        delete mPalette[param_0];
+        mPalette[param_0] = NULL;
+    }
+
+    return true;
 }
-#pragma pop
 
 /* 802EFE40-802EFEAC 2EA780 006C+00 1/0 0/0 0/0 .text            shiftDeleteFlag__12J2DTevBlock8FUcb
  */
@@ -1416,34 +1958,35 @@ asm void J2DTevBlock8::setGX() {
 
 /* 802F019C-802F01E4 2EAADC 0048+00 1/0 0/0 0/0 .text loadTexture__12J2DTevBlock8F11_GXTexMapIDUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock8::loadTexture(_GXTexMapID param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/loadTexture__12J2DTevBlock8F11_GXTexMapIDUl.s"
+void J2DTevBlock8::loadTexture(GXTexMapID texmapID, u32 texIndex) {
+    if (texIndex < 8 && mTexture[texIndex] != NULL && mTexture[texIndex]->getTexInfo() != NULL) {
+        mTexture[texIndex]->load(texmapID);
+    }
 }
-#pragma pop
 
 /* 802F01E4-802F030C 2EAB24 0128+00 0/0 1/1 0/0 .text            __ct__13J2DTevBlock16Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J2DTevBlock16::J2DTevBlock16() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/__ct__13J2DTevBlock16Fv.s"
+J2DTevBlock16::J2DTevBlock16() {
+    for (int i = 0; i < 8; i++) {
+        mTexture[i] = NULL;
+    }
+
+    mUndeleteFlag = 0;
+    initialize();
 }
-#pragma pop
 
 /* 802F030C-802F03EC 2EAC4C 00E0+00 1/0 0/0 0/0 .text            __dt__13J2DTevBlock16Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J2DTevBlock16::~J2DTevBlock16() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/__dt__13J2DTevBlock16Fv.s"
+J2DTevBlock16::~J2DTevBlock16() {
+    for (int i = 0; i < 8; i++) {
+        if (mUndeleteFlag & (1 << i)) {
+            delete mTexture[i];
+        }
+        delete mPalette[i];
+    }
+
+    if (mFontUndeleteFlag) {
+        delete mFont;
+    }
 }
-#pragma pop
 
 /* 802F03EC-802F0660 2EAD2C 0274+00 1/0 0/0 0/0 .text            initialize__13J2DTevBlock16Fv */
 #pragma push
@@ -1458,14 +2001,24 @@ extern "C" asm void initialize__13J2DTevBlock16Fv() {
 
 /* 802F0660-802F0730 2EAFA0 00D0+00 1/0 0/0 0/0 .text            prepareTexture__13J2DTevBlock16FUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock16::prepareTexture(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/prepareTexture__13J2DTevBlock16FUc.s"
+bool J2DTevBlock16::prepareTexture(u8 param_0) {
+    for (u8 i = 0; i < param_0; i++) {
+        if (i >= 8) {
+            return 0;
+        }
+
+        if (mTexture[i] == NULL) {
+            mTexture[i] = new JUTTexture();
+
+            if (mTexture[i] == NULL) {
+                return false;
+            }
+            mUndeleteFlag |= (1 << i);
+        }
+    }
+
+    return true;
 }
-#pragma pop
 
 /* 802F0730-802F0AFC 2EB070 03CC+00 1/0 0/0 0/0 .text
  * insertTexture__13J2DTevBlock16FUlPC7ResTIMGP10JUTPalette     */
@@ -1480,14 +2033,47 @@ asm bool J2DTevBlock16::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPa
 
 /* 802F0AFC-802F0C8C 2EB43C 0190+00 1/0 0/0 0/0 .text
  * insertTexture__13J2DTevBlock16FUlP10JUTTexture               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock16::insertTexture(u32 param_0, JUTTexture* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__13J2DTevBlock16FUlP10JUTTexture.s"
+bool J2DTevBlock16::insertTexture(u32 param_0, JUTTexture* p_tex) {
+    if (param_0 >= 8 || p_tex == NULL) {
+        return false;
+    }
+
+    u8 texNo = 0;
+    for (; texNo < 8; texNo++) {
+        if (mTexture[texNo] == NULL || mTexture[texNo]->getTexInfo() == NULL) {
+            break;
+        }
+    }
+
+    if (texNo < param_0) {
+        return false;
+    }
+    
+    if (texNo == 8) {
+        return false;
+    }
+
+    if (mTexture[7] != NULL && mTexture[7]->getTexInfo() == NULL) {
+        if (mUndeleteFlag & 0x80) {
+            delete mTexture[7];
+        }
+        
+        mUndeleteFlag &= 0x7F;
+    }
+
+    for (u8 i = 7; i > param_0; i--) {
+        mTexture[i] = mTexture[i - 1];
+        mPalette[i] = mPalette[i - 1];
+        mTexNo[i] = mTexNo[i - 1];
+    }
+
+    mTexture[param_0] = p_tex;
+    mPalette[param_0] = NULL;
+    mTexNo[param_0] = -1;
+    shiftDeleteFlag(param_0, true);
+    mUndeleteFlag &= ~(1 << param_0);
+    return true;
 }
-#pragma pop
 
 /* 802F0C8C-802F0F18 2EB5CC 028C+00 1/0 0/0 0/0 .text setTexture__13J2DTevBlock16FUlPC7ResTIMG */
 #pragma push
@@ -1501,57 +2087,112 @@ asm bool J2DTevBlock16::setTexture(u32 param_0, ResTIMG const* param_1) {
 
 /* 802F0F18-802F0FC8 2EB858 00B0+00 1/0 0/0 0/0 .text setTexture__13J2DTevBlock16FUlP10JUTTexture
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock16::setTexture(u32 param_0, JUTTexture* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTexture__13J2DTevBlock16FUlP10JUTTexture.s"
+bool J2DTevBlock16::setTexture(u32 param_0, JUTTexture* p_tex) {
+    if (param_0 >= 8) {
+        return false;
+    }
+
+    if (mUndeleteFlag & (1 << param_0)) {
+        delete mTexture[param_0];
+    }
+
+    mTexture[param_0] = p_tex;
+    mUndeleteFlag &= ~(1 << param_0);
+    delete mPalette[param_0];
+    mPalette[param_0] = NULL;
+    mTexNo[param_0] = -1;
+    return true;
 }
-#pragma pop
 
 /* 802F0FC8-802F10C0 2EB908 00F8+00 1/0 0/0 0/0 .text            removeTexture__13J2DTevBlock16FUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock16::removeTexture(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/removeTexture__13J2DTevBlock16FUl.s"
+bool J2DTevBlock16::removeTexture(u32 param_0) {
+    if (param_0 >= 8) {
+        return false;
+    }
+
+    if (mUndeleteFlag & (1 << param_0)) {
+        delete mTexture[param_0];
+    }
+    delete mPalette[param_0];
+
+    for (u32 i = param_0; i < 7; i++) {
+        mTexture[i] = mTexture[i + 1];
+        mPalette[i] = mPalette[i + 1];
+        mTexNo[i] = mTexNo[i + 1];
+    }
+
+    mTexture[7] = NULL;
+    mPalette[7] = NULL;
+    mTexNo[7] = -1;
+    shiftDeleteFlag(param_0, false);
+    return true;
 }
-#pragma pop
 
 /* 802F10C0-802F116C 2EBA00 00AC+00 1/0 0/0 0/0 .text            setFont__13J2DTevBlock16FP7ResFONT
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock16::setFont(ResFONT* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setFont__13J2DTevBlock16FP7ResFONT.s"
+bool J2DTevBlock16::setFont(ResFONT* p_font) {
+    if (p_font == NULL) {
+        return false;
+    }
+
+    JUTResFont* resFont = new JUTResFont(p_font, NULL);
+    if (resFont == NULL) {
+        return false;
+    }
+
+    if (mFontUndeleteFlag) {
+        delete mFont;
+    }
+
+    mFont = resFont;
+    mFontUndeleteFlag = true;
+    return true;
 }
-#pragma pop
 
 /* 802F116C-802F11E8 2EBAAC 007C+00 1/0 0/0 0/0 .text            setFont__13J2DTevBlock16FP7JUTFont
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock16::setFont(JUTFont* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setFont__13J2DTevBlock16FP7JUTFont.s"
+bool J2DTevBlock16::setFont(JUTFont* p_font) {
+    if (p_font == NULL) {
+        return false;
+    }
+
+    if (mFontUndeleteFlag) {
+        delete mFont;
+    }
+
+    mFont = (JUTResFont*)p_font;
+    mFontUndeleteFlag = false;
+    return true;
 }
-#pragma pop
 
 /* 802F11E8-802F12C0 2EBB28 00D8+00 1/0 0/0 0/0 .text setPalette__13J2DTevBlock16FUlPC7ResTLUT */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock16::setPalette(u32 param_0, ResTLUT const* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setPalette__13J2DTevBlock16FUlPC7ResTLUT.s"
+bool J2DTevBlock16::setPalette(u32 param_0, ResTLUT const* p_tlut) {
+    if (param_0 >= 8) {
+        return false;
+    }
+
+    if (p_tlut != NULL) {
+        if (mPalette[param_0] == NULL) {
+            mPalette[param_0] = new JUTPalette((GXTlut)param_0, (ResTLUT*)p_tlut);
+
+            if (mPalette[param_0] == NULL) {
+                return false;
+            }
+        } else {
+            mPalette[param_0]->storeTLUT(GX_TLUT0, (ResTLUT*)p_tlut);
+        }
+
+        if (mTexture[param_0] != NULL) {
+            mTexture[param_0]->attachPalette(mPalette[param_0]);
+        }
+    } else {
+        delete mPalette[param_0];
+        mPalette[param_0] = NULL;
+    }
+
+    return true;
 }
-#pragma pop
 
 /* 802F12C0-802F132C 2EBC00 006C+00 1/0 0/0 0/0 .text shiftDeleteFlag__13J2DTevBlock16FUcb */
 #pragma push
@@ -1575,14 +2216,11 @@ asm void J2DTevBlock16::setGX() {
 
 /* 802F161C-802F1664 2EBF5C 0048+00 1/0 0/0 0/0 .text loadTexture__13J2DTevBlock16F11_GXTexMapIDUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock16::loadTexture(_GXTexMapID param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/loadTexture__13J2DTevBlock16F11_GXTexMapIDUl.s"
+void J2DTevBlock16::loadTexture(GXTexMapID texmapID, u32 texIndex) {
+    if (texIndex < 8 && mTexture[texIndex] != NULL && mTexture[texIndex]->getTexInfo() != NULL) {
+        mTexture[texIndex]->load(texmapID);
+    }
 }
-#pragma pop
 
 /* 802F1664-802F1730 2EBFA4 00CC+00 1/0 0/0 0/0 .text            initialize__15J2DIndBlockFullFv */
 #pragma push
@@ -1635,6 +2273,10 @@ asm J2DIndTevStage::J2DIndTevStage() {
 }
 #pragma pop
 
+/* J2DIndTevStage::J2DIndTevStage() {
+    mFlags = J2DCalcIndTevStage(j2dDefaultIndTevStageInfo);
+} */
+
 /* 802F1934-802F1940 2EC274 000C+00 5/5 0/0 0/0 .text            __ct__19J2DTevSwapModeTableFv */
 #pragma push
 #pragma optimization_level 0
@@ -1682,29 +2324,19 @@ J2DGXColorS10::J2DGXColorS10() {
 }
 
 /* 802F1B94-802F1BA0 2EC4D4 000C+00 1/0 0/0 0/0 .text            getType__15J2DIndBlockFullFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DIndBlockFull::getType() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getType__15J2DIndBlockFullFv.s"
+u32 J2DIndBlockFull::getType() {
+    return 'IBLF';
 }
-#pragma pop
 
 /* 802F1BA0-802F1BA8 -00001 0008+00 0/0 0/0 0/0 .text setIndTexStageNum__15J2DIndBlockFullFUc */
-void J2DIndBlockFull::setIndTexStageNum(u8 param_0) {
-    *(u8*)(((u8*)this) + 4) /* this->field_0x4 */ = (u8)(param_0);
+void J2DIndBlockFull::setIndTexStageNum(u8 num) {
+    mIndTexStageNum = num;
 }
 
 /* 802F1BA8-802F1BB0 2EC4E8 0008+00 1/0 0/0 0/0 .text getIndTexStageNum__15J2DIndBlockFullCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DIndBlockFull::getIndTexStageNum() const {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getIndTexStageNum__15J2DIndBlockFullCFv.s"
+u8 J2DIndBlockFull::getIndTexStageNum() const {
+    return mIndTexStageNum;
 }
-#pragma pop
 
 /* 802F1BB0-802F1BCC 2EC4F0 001C+00 1/0 0/0 0/0 .text
  * setIndTexOrder__15J2DIndBlockFullFUl14J2DIndTexOrder         */
@@ -1718,14 +2350,9 @@ asm void J2DIndBlockFull::setIndTexOrder(u32 param_0, J2DIndTexOrder param_1) {
 #pragma pop
 
 /* 802F1BCC-802F1BE0 2EC50C 0014+00 1/0 0/0 0/0 .text getIndTexOrder__15J2DIndBlockFullFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DIndBlockFull::getIndTexOrder(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getIndTexOrder__15J2DIndBlockFullFUl.s"
+J2DIndTexOrder* J2DIndBlockFull::getIndTexOrder(u32 param_0) {
+    return &mIndTexOrder[param_0];
 }
-#pragma pop
 
 /* 802F1BE0-802F1C38 2EC520 0058+00 1/0 0/0 0/0 .text
  * setIndTexMtx__15J2DIndBlockFullFUl12J2DIndTexMtx             */
@@ -1740,14 +2367,9 @@ asm void J2DIndBlockFull::setIndTexMtx(u32 param_0, J2DIndTexMtx param_1) {
 
 /* 802F1C38-802F1C4C 2EC578 0014+00 1/0 0/0 0/0 .text            getIndTexMtx__15J2DIndBlockFullFUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DIndBlockFull::getIndTexMtx(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getIndTexMtx__15J2DIndBlockFullFUl.s"
+J2DIndTexMtx* J2DIndBlockFull::getIndTexMtx(u32 param_0) {
+    return &mIndTexMtx[param_0];
 }
-#pragma pop
 
 /* 802F1C4C-802F1C68 2EC58C 001C+00 1/0 0/0 0/0 .text
  * setIndTexCoordScale__15J2DIndBlockFullFUl19J2DIndTexCoordScale */
@@ -1761,34 +2383,17 @@ asm void J2DIndBlockFull::setIndTexCoordScale(u32 param_0, J2DIndTexCoordScale p
 #pragma pop
 
 /* 802F1C68-802F1C7C 2EC5A8 0014+00 1/0 0/0 0/0 .text getIndTexCoordScale__15J2DIndBlockFullFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DIndBlockFull::getIndTexCoordScale(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getIndTexCoordScale__15J2DIndBlockFullFUl.s"
+J2DIndTexCoordScale* J2DIndBlockFull::getIndTexCoordScale(u32 param_0) {
+    return &mTexCoordScale[param_0];
 }
-#pragma pop
 
 /* 802F1C7C-802F1D18 2EC5BC 009C+00 1/0 0/0 0/0 .text            __dt__15J2DIndBlockFullFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J2DIndBlockFull::~J2DIndBlockFull() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/__dt__15J2DIndBlockFullFv.s"
-}
-#pragma pop
+J2DIndBlockFull::~J2DIndBlockFull() {}
 
 /* 802F1D18-802F1D24 2EC658 000C+00 1/0 0/0 0/0 .text            getType__13J2DTevBlock16Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock16::getType() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getType__13J2DTevBlock16Fv.s"
+u32 J2DTevBlock16::getType() {
+    return 'TV16';
 }
-#pragma pop
 
 /* 802F1D24-802F1D2C 2EC664 0008+00 1/0 0/0 0/0 .text            getMaxStage__13J2DTevBlock16Fv */
 s32 J2DTevBlock16::getMaxStage() {
@@ -1796,308 +2401,181 @@ s32 J2DTevBlock16::getMaxStage() {
 }
 
 /* 802F1D2C-802F1D3C 2EC66C 0010+00 1/0 0/0 0/0 .text            setTexNo__13J2DTevBlock16FUlUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock16::setTexNo(u32 param_0, u16 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTexNo__13J2DTevBlock16FUlUs.s"
+void J2DTevBlock16::setTexNo(u32 index, u16 texNo) {
+    mTexNo[index] = texNo;
 }
-#pragma pop
 
 /* 802F1D3C-802F1D4C 2EC67C 0010+00 1/0 0/0 0/0 .text            getTexNo__13J2DTevBlock16CFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 J2DTevBlock16::getTexNo(u32 param_0) const {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTexNo__13J2DTevBlock16CFUl.s"
+u32 J2DTevBlock16::getTexNo(u32 index) const {
+    return mTexNo[index];
 }
-#pragma pop
 
 /* 802F1D4C-802F1D54 -00001 0008+00 0/0 0/0 0/0 .text            setFontNo__13J2DTevBlock16FUs */
-void J2DTevBlock16::setFontNo(u16 param_0) {
-    *(u16*)(((u8*)this) + 20) /* this->field_0x14 */ = (u16)(param_0);
+void J2DTevBlock16::setFontNo(u16 fontNo) {
+    mFontNo = fontNo;
 }
 
 /* 802F1D54-802F1D5C 2EC694 0008+00 1/0 0/0 0/0 .text            getFontNo__13J2DTevBlock16CFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 J2DTevBlock16::getFontNo() const {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getFontNo__13J2DTevBlock16CFv.s"
+u32 J2DTevBlock16::getFontNo() const {
+    return mFontNo;
 }
-#pragma pop
 
 /* 802F1D5C-802F1D80 2EC69C 0024+00 1/0 0/0 0/0 .text setTevOrder__13J2DTevBlock16FUl11J2DTevOrder
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock16::setTevOrder(u32 param_0, J2DTevOrder param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevOrder__13J2DTevBlock16FUl11J2DTevOrder.s"
+void J2DTevBlock16::setTevOrder(u32 index, J2DTevOrder order) {
+    mTevOrder[index].mTevOrderInfo.mTexCoord = order.mTevOrderInfo.mTexCoord;
+    mTevOrder[index].mTevOrderInfo.mTexMap = order.mTevOrderInfo.mTexMap;
+    mTevOrder[index].mTevOrderInfo.mColor = order.mTevOrderInfo.mColor;
 }
-#pragma pop
 
 /* 802F1D80-802F1D94 2EC6C0 0014+00 1/0 0/0 0/0 .text            getTevOrder__13J2DTevBlock16FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock16::getTevOrder(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevOrder__13J2DTevBlock16FUl.s"
+J2DTevOrder* J2DTevBlock16::getTevOrder(u32 index) {
+    return &mTevOrder[index];
 }
-#pragma pop
 
 /* 802F1D94-802F1DC0 2EC6D4 002C+00 1/0 0/0 0/0 .text
  * setTevColor__13J2DTevBlock16FUl13J2DGXColorS10               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock16::setTevColor(u32 param_0, J2DGXColorS10 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevColor__13J2DTevBlock16FUl13J2DGXColorS10.s"
+void J2DTevBlock16::setTevColor(u32 index, J2DGXColorS10 color) {
+    mTevColor[index] = color;
 }
-#pragma pop
 
 /* 802F1DC0-802F1DD4 2EC700 0014+00 1/0 0/0 0/0 .text            getTevColor__13J2DTevBlock16FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock16::getTevColor(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevColor__13J2DTevBlock16FUl.s"
+J2DGXColorS10* J2DTevBlock16::getTevColor(u32 index) {
+    return &mTevColor[index];
 }
-#pragma pop
 
 /* 802F1DD4-802F1E00 2EC714 002C+00 1/0 0/0 0/0 .text
  * setTevKColor__13J2DTevBlock16FUlQ28JUtility6TColor           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock16::setTevKColor(u32 param_0, JUtility::TColor param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevKColor__13J2DTevBlock16FUlQ28JUtility6TColor.s"
+void J2DTevBlock16::setTevKColor(u32 index, JUtility::TColor color) {
+    mTevKColor[index].r = color.r;
+    mTevKColor[index].g = color.g;
+    mTevKColor[index].b = color.b;
+    mTevKColor[index].a = color.a;
 }
-#pragma pop
 
 /* 802F1E00-802F1E14 2EC740 0014+00 1/0 0/0 0/0 .text            getTevKColor__13J2DTevBlock16FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock16::getTevKColor(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKColor__13J2DTevBlock16FUl.s"
+JUtility::TColor* J2DTevBlock16::getTevKColor(u32 index) {
+    return &mTevKColor[index];
 }
-#pragma pop
 
 /* 802F1E14-802F1E20 2EC754 000C+00 1/0 0/0 0/0 .text setTevKColorSel__13J2DTevBlock16FUlUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock16::setTevKColorSel(u32 param_0, u8 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevKColorSel__13J2DTevBlock16FUlUc.s"
+void J2DTevBlock16::setTevKColorSel(u32 index, u8 sel) {
+    mTevKColorSel[index] = sel;
 }
-#pragma pop
 
 /* 802F1E20-802F1E2C 2EC760 000C+00 1/0 0/0 0/0 .text            getTevKColorSel__13J2DTevBlock16FUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock16::getTevKColorSel(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKColorSel__13J2DTevBlock16FUl.s"
+u8 J2DTevBlock16::getTevKColorSel(u32 index) {
+    return mTevKColorSel[index];
 }
-#pragma pop
 
 /* 802F1E2C-802F1E38 2EC76C 000C+00 1/0 0/0 0/0 .text setTevKAlphaSel__13J2DTevBlock16FUlUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock16::setTevKAlphaSel(u32 param_0, u8 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevKAlphaSel__13J2DTevBlock16FUlUc.s"
+void J2DTevBlock16::setTevKAlphaSel(u32 index, u8 sel) {
+    mTevKAlphaSel[index] = sel;
 }
-#pragma pop
 
 /* 802F1E38-802F1E44 2EC778 000C+00 1/0 0/0 0/0 .text            getTevKAlphaSel__13J2DTevBlock16FUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock16::getTevKAlphaSel(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKAlphaSel__13J2DTevBlock16FUl.s"
+u8 J2DTevBlock16::getTevKAlphaSel(u32 index) {
+    return mTevKAlphaSel[index];
 }
-#pragma pop
 
 /* 802F1E44-802F1E4C -00001 0008+00 0/0 0/0 0/0 .text            setTevStageNum__13J2DTevBlock16FUc
  */
-void J2DTevBlock16::setTevStageNum(u8 param_0) {
-    *(u8*)(((u8*)this) + 118) /* this->field_0x76 */ = (u8)(param_0);
+void J2DTevBlock16::setTevStageNum(u8 stageNum) {
+    mTevStageNum = stageNum;
 }
 
 /* 802F1E4C-802F1E54 2EC78C 0008+00 1/0 0/0 0/0 .text            getTevStageNum__13J2DTevBlock16CFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock16::getTevStageNum() const {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevStageNum__13J2DTevBlock16CFv.s"
+u8 J2DTevBlock16::getTevStageNum() const {
+    return mTevStageNum;
 }
-#pragma pop
 
 /* 802F1E54-802F1E90 2EC794 003C+00 1/0 0/0 0/0 .text setTevStage__13J2DTevBlock16FUl11J2DTevStage
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock16::setTevStage(u32 param_0, J2DTevStage param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevStage__13J2DTevBlock16FUl11J2DTevStage.s"
+void J2DTevBlock16::setTevStage(u32 index, J2DTevStage stage) {
+    mTevStage[index] = stage;
 }
-#pragma pop
 
 /* 802F1E90-802F1EA4 2EC7D0 0014+00 1/0 0/0 0/0 .text            getTevStage__13J2DTevBlock16FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock16::getTevStage(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevStage__13J2DTevBlock16FUl.s"
+J2DTevStage* J2DTevBlock16::getTevStage(u32 index) {
+    return &mTevStage[index];
 }
-#pragma pop
 
 /* 802F1EA4-802F1EDC 2EC7E4 0038+00 1/0 0/0 0/0 .text
  * setTevSwapModeInfo__13J2DTevBlock16FUl18J2DTevSwapModeInfo   */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock16::setTevSwapModeInfo(u32 param_0, J2DTevSwapModeInfo param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevSwapModeInfo__13J2DTevBlock16FUl18J2DTevSwapModeInfo.s"
+void J2DTevBlock16::setTevSwapModeInfo(u32 index, J2DTevSwapModeInfo info) {
+    mTevStage[index].setTevSwapModeInfo(info);
 }
-#pragma pop
 
 /* 802F1EDC-802F1EEC 2EC81C 0010+00 1/0 0/0 0/0 .text
  * setTevSwapModeTable__13J2DTevBlock16FUl19J2DTevSwapModeTable */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock16::setTevSwapModeTable(u32 param_0, J2DTevSwapModeTable param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevSwapModeTable__13J2DTevBlock16FUl19J2DTevSwapModeTable.s"
+void J2DTevBlock16::setTevSwapModeTable(u32 index, J2DTevSwapModeTable table) {
+    mTevSwapModeTable[index] = table;
 }
-#pragma pop
 
 /* 802F1EEC-802F1EFC 2EC82C 0010+00 1/0 0/0 0/0 .text getTevSwapModeTable__13J2DTevBlock16FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock16::getTevSwapModeTable(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevSwapModeTable__13J2DTevBlock16FUl.s"
+J2DTevSwapModeTable* J2DTevBlock16::getTevSwapModeTable(u32 index) {
+    return &mTevSwapModeTable[index];
 }
-#pragma pop
 
 /* 802F1EFC-802F1F10 2EC83C 0014+00 1/0 0/0 0/0 .text
  * setIndTevStage__13J2DTevBlock16FUl14J2DIndTevStage           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock16::setIndTevStage(u32 param_0, J2DIndTevStage param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setIndTevStage__13J2DTevBlock16FUl14J2DIndTevStage.s"
+void J2DTevBlock16::setIndTevStage(u32 index, J2DIndTevStage stage) {
+    mIndTevStage[index] = stage;
 }
-#pragma pop
 
 /* 802F1F10-802F1F24 2EC850 0014+00 1/0 0/0 0/0 .text            getIndTevStage__13J2DTevBlock16FUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock16::getIndTevStage(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getIndTevStage__13J2DTevBlock16FUl.s"
+J2DIndTevStage* J2DTevBlock16::getIndTevStage(u32 index) {
+    return &mIndTevStage[index];
 }
-#pragma pop
 
 /* 802F1F24-802F1F54 2EC864 0030+00 1/0 0/0 0/0 .text insertTexture__13J2DTevBlock16FUlPC7ResTIMG
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock16::insertTexture(u32 param_0, ResTIMG const* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__13J2DTevBlock16FUlPC7ResTIMG.s"
+bool J2DTevBlock16::insertTexture(u32 index, ResTIMG const* p_timg) {
+    return insertTexture(index, p_timg, NULL);
 }
-#pragma pop
 
 /* 802F1F54-802F1F74 2EC894 0020+00 1/0 0/0 0/0 .text            getTexture__13J2DTevBlock16FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock16::getTexture(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTexture__13J2DTevBlock16FUl.s"
+JUTTexture* J2DTevBlock16::getTexture(u32 index) {
+    if (index >= 8) {
+        return NULL;
+    }
+
+    return mTexture[index];
 }
-#pragma pop
 
 /* 802F1F74-802F1F94 2EC8B4 0020+00 1/0 0/0 0/0 .text            getPalette__13J2DTevBlock16FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock16::getPalette(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getPalette__13J2DTevBlock16FUl.s"
+JUTPalette* J2DTevBlock16::getPalette(u32 index) {
+    if (index >= 8) {
+        return NULL;
+    }
+
+    return mPalette[index];
 }
-#pragma pop
 
 /* 802F1F94-802F1F9C 2EC8D4 0008+00 1/0 0/0 0/0 .text            getFont__13J2DTevBlock16Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock16::getFont() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getFont__13J2DTevBlock16Fv.s"
+JUTFont* J2DTevBlock16::getFont() {
+    return mFont;
 }
-#pragma pop
 
 /* 802F1F9C-802F1FAC 2EC8DC 0010+00 1/0 0/0 0/0 .text            setUndeleteFlag__13J2DTevBlock16FUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock16::setUndeleteFlag(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setUndeleteFlag__13J2DTevBlock16FUc.s"
+void J2DTevBlock16::setUndeleteFlag(u8 flag) {
+    mUndeleteFlag &= flag;
 }
-#pragma pop
 
 /* 802F1FAC-802F1FB8 2EC8EC 000C+00 1/0 0/0 0/0 .text setFontUndeleteFlag__13J2DTevBlock16Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock16::setFontUndeleteFlag() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setFontUndeleteFlag__13J2DTevBlock16Fv.s"
+void J2DTevBlock16::setFontUndeleteFlag() {
+    mFontUndeleteFlag = false;
 }
-#pragma pop
 
 /* 802F1FB8-802F1FC4 2EC8F8 000C+00 1/0 0/0 0/0 .text            getType__12J2DTevBlock8Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock8::getType() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getType__12J2DTevBlock8Fv.s"
+u32 J2DTevBlock8::getType() {
+    return 'TVB8';
 }
-#pragma pop
 
 /* 802F1FC4-802F1FCC 2EC904 0008+00 1/0 0/0 0/0 .text            getMaxStage__12J2DTevBlock8Fv */
 s32 J2DTevBlock8::getMaxStage() {
@@ -2105,308 +2583,181 @@ s32 J2DTevBlock8::getMaxStage() {
 }
 
 /* 802F1FCC-802F1FDC 2EC90C 0010+00 1/0 0/0 0/0 .text            setTexNo__12J2DTevBlock8FUlUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock8::setTexNo(u32 param_0, u16 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTexNo__12J2DTevBlock8FUlUs.s"
+void J2DTevBlock8::setTexNo(u32 index, u16 texNo) {
+    mTexNo[index] = texNo;
 }
-#pragma pop
 
 /* 802F1FDC-802F1FEC 2EC91C 0010+00 1/0 0/0 0/0 .text            getTexNo__12J2DTevBlock8CFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 J2DTevBlock8::getTexNo(u32 param_0) const {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTexNo__12J2DTevBlock8CFUl.s"
+u32 J2DTevBlock8::getTexNo(u32 index) const {
+    return mTexNo[index];
 }
-#pragma pop
 
 /* 802F1FEC-802F1FF4 -00001 0008+00 0/0 0/0 0/0 .text            setFontNo__12J2DTevBlock8FUs */
-void J2DTevBlock8::setFontNo(u16 param_0) {
-    *(u16*)(((u8*)this) + 20) /* this->field_0x14 */ = (u16)(param_0);
+void J2DTevBlock8::setFontNo(u16 fontNo) {
+    mFontNo = fontNo;
 }
 
 /* 802F1FF4-802F1FFC 2EC934 0008+00 1/0 0/0 0/0 .text            getFontNo__12J2DTevBlock8CFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 J2DTevBlock8::getFontNo() const {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getFontNo__12J2DTevBlock8CFv.s"
+u32 J2DTevBlock8::getFontNo() const {
+    return mFontNo;
 }
-#pragma pop
 
 /* 802F1FFC-802F2020 2EC93C 0024+00 1/0 0/0 0/0 .text setTevOrder__12J2DTevBlock8FUl11J2DTevOrder
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock8::setTevOrder(u32 param_0, J2DTevOrder param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevOrder__12J2DTevBlock8FUl11J2DTevOrder.s"
+void J2DTevBlock8::setTevOrder(u32 index, J2DTevOrder order) {
+    mTevOrder[index].mTevOrderInfo.mTexCoord = order.mTevOrderInfo.mTexCoord;
+    mTevOrder[index].mTevOrderInfo.mTexMap = order.mTevOrderInfo.mTexMap;
+    mTevOrder[index].mTevOrderInfo.mColor = order.mTevOrderInfo.mColor;
 }
-#pragma pop
 
 /* 802F2020-802F2034 2EC960 0014+00 1/0 0/0 0/0 .text            getTevOrder__12J2DTevBlock8FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock8::getTevOrder(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevOrder__12J2DTevBlock8FUl.s"
+J2DTevOrder* J2DTevBlock8::getTevOrder(u32 index) {
+    return &mTevOrder[index];
 }
-#pragma pop
 
 /* 802F2034-802F2060 2EC974 002C+00 1/0 0/0 0/0 .text
  * setTevColor__12J2DTevBlock8FUl13J2DGXColorS10                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock8::setTevColor(u32 param_0, J2DGXColorS10 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevColor__12J2DTevBlock8FUl13J2DGXColorS10.s"
+void J2DTevBlock8::setTevColor(u32 index, J2DGXColorS10 color) {
+    mTevColor[index] = color;
 }
-#pragma pop
 
 /* 802F2060-802F2074 2EC9A0 0014+00 1/0 0/0 0/0 .text            getTevColor__12J2DTevBlock8FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock8::getTevColor(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevColor__12J2DTevBlock8FUl.s"
+J2DGXColorS10* J2DTevBlock8::getTevColor(u32 index) {
+    return &mTevColor[index];
 }
-#pragma pop
 
 /* 802F2074-802F20A0 2EC9B4 002C+00 1/0 0/0 0/0 .text
  * setTevKColor__12J2DTevBlock8FUlQ28JUtility6TColor            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock8::setTevKColor(u32 param_0, JUtility::TColor param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevKColor__12J2DTevBlock8FUlQ28JUtility6TColor.s"
+void J2DTevBlock8::setTevKColor(u32 index, JUtility::TColor color) {
+    mTevKColor[index].r = color.r;
+    mTevKColor[index].g = color.g;
+    mTevKColor[index].b = color.b;
+    mTevKColor[index].a = color.a;
 }
-#pragma pop
 
 /* 802F20A0-802F20B4 2EC9E0 0014+00 1/0 0/0 0/0 .text            getTevKColor__12J2DTevBlock8FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock8::getTevKColor(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKColor__12J2DTevBlock8FUl.s"
+JUtility::TColor* J2DTevBlock8::getTevKColor(u32 index) {
+    return &mTevKColor[index];
 }
-#pragma pop
 
 /* 802F20B4-802F20C0 2EC9F4 000C+00 1/0 0/0 0/0 .text setTevKColorSel__12J2DTevBlock8FUlUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock8::setTevKColorSel(u32 param_0, u8 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevKColorSel__12J2DTevBlock8FUlUc.s"
+void J2DTevBlock8::setTevKColorSel(u32 index, u8 sel) {
+    mTevKColorSel[index] = sel;
 }
-#pragma pop
 
 /* 802F20C0-802F20CC 2ECA00 000C+00 1/0 0/0 0/0 .text            getTevKColorSel__12J2DTevBlock8FUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock8::getTevKColorSel(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKColorSel__12J2DTevBlock8FUl.s"
+u8 J2DTevBlock8::getTevKColorSel(u32 index) {
+    return mTevKColorSel[index];
 }
-#pragma pop
 
 /* 802F20CC-802F20D8 2ECA0C 000C+00 1/0 0/0 0/0 .text setTevKAlphaSel__12J2DTevBlock8FUlUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock8::setTevKAlphaSel(u32 param_0, u8 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevKAlphaSel__12J2DTevBlock8FUlUc.s"
+void J2DTevBlock8::setTevKAlphaSel(u32 index, u8 sel) {
+    mTevKAlphaSel[index] = sel;
 }
-#pragma pop
 
 /* 802F20D8-802F20E4 2ECA18 000C+00 1/0 0/0 0/0 .text            getTevKAlphaSel__12J2DTevBlock8FUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock8::getTevKAlphaSel(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKAlphaSel__12J2DTevBlock8FUl.s"
+u8 J2DTevBlock8::getTevKAlphaSel(u32 index) {
+    return mTevKAlphaSel[index];
 }
-#pragma pop
 
 /* 802F20E4-802F20EC -00001 0008+00 0/0 0/0 0/0 .text            setTevStageNum__12J2DTevBlock8FUc
  */
-void J2DTevBlock8::setTevStageNum(u8 param_0) {
-    *(u8*)(((u8*)this) + 86) /* this->field_0x56 */ = (u8)(param_0);
+void J2DTevBlock8::setTevStageNum(u8 stageNum) {
+    mTevStageNum = stageNum;
 }
 
 /* 802F20EC-802F20F4 2ECA2C 0008+00 1/0 0/0 0/0 .text            getTevStageNum__12J2DTevBlock8CFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock8::getTevStageNum() const {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevStageNum__12J2DTevBlock8CFv.s"
+u8 J2DTevBlock8::getTevStageNum() const {
+    return mTevStageNum;
 }
-#pragma pop
 
 /* 802F20F4-802F2130 2ECA34 003C+00 1/0 0/0 0/0 .text setTevStage__12J2DTevBlock8FUl11J2DTevStage
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock8::setTevStage(u32 param_0, J2DTevStage param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevStage__12J2DTevBlock8FUl11J2DTevStage.s"
+void J2DTevBlock8::setTevStage(u32 index, J2DTevStage stage) {
+    mTevStage[index] = stage;
 }
-#pragma pop
 
 /* 802F2130-802F2144 2ECA70 0014+00 1/0 0/0 0/0 .text            getTevStage__12J2DTevBlock8FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock8::getTevStage(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevStage__12J2DTevBlock8FUl.s"
+J2DTevStage* J2DTevBlock8::getTevStage(u32 index) {
+    return &mTevStage[index];
 }
-#pragma pop
 
 /* 802F2144-802F217C 2ECA84 0038+00 1/0 0/0 0/0 .text
  * setTevSwapModeInfo__12J2DTevBlock8FUl18J2DTevSwapModeInfo    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock8::setTevSwapModeInfo(u32 param_0, J2DTevSwapModeInfo param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevSwapModeInfo__12J2DTevBlock8FUl18J2DTevSwapModeInfo.s"
+void J2DTevBlock8::setTevSwapModeInfo(u32 index, J2DTevSwapModeInfo info) {
+    mTevStage[index].setTevSwapModeInfo(info);
 }
-#pragma pop
 
 /* 802F217C-802F218C 2ECABC 0010+00 1/0 0/0 0/0 .text
  * setTevSwapModeTable__12J2DTevBlock8FUl19J2DTevSwapModeTable  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock8::setTevSwapModeTable(u32 param_0, J2DTevSwapModeTable param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevSwapModeTable__12J2DTevBlock8FUl19J2DTevSwapModeTable.s"
+void J2DTevBlock8::setTevSwapModeTable(u32 index, J2DTevSwapModeTable table) {
+    mTevSwapModeTable[index] = table;
 }
-#pragma pop
 
 /* 802F218C-802F219C 2ECACC 0010+00 1/0 0/0 0/0 .text getTevSwapModeTable__12J2DTevBlock8FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock8::getTevSwapModeTable(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevSwapModeTable__12J2DTevBlock8FUl.s"
+J2DTevSwapModeTable* J2DTevBlock8::getTevSwapModeTable(u32 index) {
+    return &mTevSwapModeTable[index];
 }
-#pragma pop
 
 /* 802F219C-802F21B0 2ECADC 0014+00 1/0 0/0 0/0 .text
  * setIndTevStage__12J2DTevBlock8FUl14J2DIndTevStage            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock8::setIndTevStage(u32 param_0, J2DIndTevStage param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setIndTevStage__12J2DTevBlock8FUl14J2DIndTevStage.s"
+void J2DTevBlock8::setIndTevStage(u32 index, J2DIndTevStage stage) {
+    mIndTevStage[index] = stage;
 }
-#pragma pop
 
 /* 802F21B0-802F21C4 2ECAF0 0014+00 1/0 0/0 0/0 .text            getIndTevStage__12J2DTevBlock8FUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock8::getIndTevStage(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getIndTevStage__12J2DTevBlock8FUl.s"
+J2DIndTevStage* J2DTevBlock8::getIndTevStage(u32 index) {
+    return &mIndTevStage[index];
 }
-#pragma pop
 
 /* 802F21C4-802F21F4 2ECB04 0030+00 1/0 0/0 0/0 .text insertTexture__12J2DTevBlock8FUlPC7ResTIMG
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock8::insertTexture(u32 param_0, ResTIMG const* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__12J2DTevBlock8FUlPC7ResTIMG.s"
+bool J2DTevBlock8::insertTexture(u32 index, ResTIMG const* p_timg) {
+    return insertTexture(index, p_timg, NULL);
 }
-#pragma pop
 
 /* 802F21F4-802F2214 2ECB34 0020+00 1/0 0/0 0/0 .text            getTexture__12J2DTevBlock8FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock8::getTexture(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTexture__12J2DTevBlock8FUl.s"
+JUTTexture* J2DTevBlock8::getTexture(u32 index) {
+    if (index >= 8) {
+        return NULL;
+    }
+
+    return mTexture[index];
 }
-#pragma pop
 
 /* 802F2214-802F2234 2ECB54 0020+00 1/0 0/0 0/0 .text            getPalette__12J2DTevBlock8FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock8::getPalette(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getPalette__12J2DTevBlock8FUl.s"
+JUTPalette* J2DTevBlock8::getPalette(u32 index) {
+    if (index >= 8) {
+        return NULL;
+    }
+
+    return mPalette[index];
 }
-#pragma pop
 
 /* 802F2234-802F223C 2ECB74 0008+00 1/0 0/0 0/0 .text            getFont__12J2DTevBlock8Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock8::getFont() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getFont__12J2DTevBlock8Fv.s"
+JUTFont* J2DTevBlock8::getFont() {
+    return mFont;
 }
-#pragma pop
 
 /* 802F223C-802F224C 2ECB7C 0010+00 1/0 0/0 0/0 .text            setUndeleteFlag__12J2DTevBlock8FUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock8::setUndeleteFlag(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setUndeleteFlag__12J2DTevBlock8FUc.s"
+void J2DTevBlock8::setUndeleteFlag(u8 flag) {
+    mUndeleteFlag &= flag;
 }
-#pragma pop
 
 /* 802F224C-802F2258 2ECB8C 000C+00 1/0 0/0 0/0 .text setFontUndeleteFlag__12J2DTevBlock8Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock8::setFontUndeleteFlag() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setFontUndeleteFlag__12J2DTevBlock8Fv.s"
+void J2DTevBlock8::setFontUndeleteFlag() {
+    mFontUndeleteFlag = false;
 }
-#pragma pop
 
 /* 802F2258-802F2264 2ECB98 000C+00 1/0 0/0 0/0 .text            getType__12J2DTevBlock4Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock4::getType() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getType__12J2DTevBlock4Fv.s"
+u32 J2DTevBlock4::getType() {
+    return 'TVB4';
 }
-#pragma pop
 
 /* 802F2264-802F226C 2ECBA4 0008+00 1/0 0/0 0/0 .text            getMaxStage__12J2DTevBlock4Fv */
 s32 J2DTevBlock4::getMaxStage() {
@@ -2414,308 +2765,181 @@ s32 J2DTevBlock4::getMaxStage() {
 }
 
 /* 802F226C-802F227C 2ECBAC 0010+00 1/0 0/0 0/0 .text            setTexNo__12J2DTevBlock4FUlUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock4::setTexNo(u32 param_0, u16 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTexNo__12J2DTevBlock4FUlUs.s"
+void J2DTevBlock4::setTexNo(u32 index, u16 texNo) {
+    mTexNo[index] = texNo;
 }
-#pragma pop
 
 /* 802F227C-802F228C 2ECBBC 0010+00 1/0 0/0 0/0 .text            getTexNo__12J2DTevBlock4CFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 J2DTevBlock4::getTexNo(u32 param_0) const {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTexNo__12J2DTevBlock4CFUl.s"
+u32 J2DTevBlock4::getTexNo(u32 index) const {
+    return mTexNo[index];
 }
-#pragma pop
 
 /* 802F228C-802F2294 -00001 0008+00 0/0 0/0 0/0 .text            setFontNo__12J2DTevBlock4FUs */
-void J2DTevBlock4::setFontNo(u16 param_0) {
-    *(u16*)(((u8*)this) + 12) /* this->field_0xc */ = (u16)(param_0);
+void J2DTevBlock4::setFontNo(u16 fontNo) {
+    mFontNo = fontNo;
 }
 
 /* 802F2294-802F229C 2ECBD4 0008+00 1/0 0/0 0/0 .text            getFontNo__12J2DTevBlock4CFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 J2DTevBlock4::getFontNo() const {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getFontNo__12J2DTevBlock4CFv.s"
+u32 J2DTevBlock4::getFontNo() const {
+    return mFontNo;
 }
-#pragma pop
 
 /* 802F229C-802F22C0 2ECBDC 0024+00 1/0 0/0 0/0 .text setTevOrder__12J2DTevBlock4FUl11J2DTevOrder
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock4::setTevOrder(u32 param_0, J2DTevOrder param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevOrder__12J2DTevBlock4FUl11J2DTevOrder.s"
+void J2DTevBlock4::setTevOrder(u32 index, J2DTevOrder order) {
+    mTevOrder[index].mTevOrderInfo.mTexCoord = order.mTevOrderInfo.mTexCoord;
+    mTevOrder[index].mTevOrderInfo.mTexMap = order.mTevOrderInfo.mTexMap;
+    mTevOrder[index].mTevOrderInfo.mColor = order.mTevOrderInfo.mColor;
 }
-#pragma pop
 
 /* 802F22C0-802F22D4 2ECC00 0014+00 1/0 0/0 0/0 .text            getTevOrder__12J2DTevBlock4FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock4::getTevOrder(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevOrder__12J2DTevBlock4FUl.s"
+J2DTevOrder* J2DTevBlock4::getTevOrder(u32 index) {
+    return &mTevOrder[index];
 }
-#pragma pop
 
 /* 802F22D4-802F2300 2ECC14 002C+00 1/0 0/0 0/0 .text
  * setTevColor__12J2DTevBlock4FUl13J2DGXColorS10                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock4::setTevColor(u32 param_0, J2DGXColorS10 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevColor__12J2DTevBlock4FUl13J2DGXColorS10.s"
+void J2DTevBlock4::setTevColor(u32 index, J2DGXColorS10 color) {
+    mTevColor[index] = color;
 }
-#pragma pop
 
 /* 802F2300-802F2314 2ECC40 0014+00 1/0 0/0 0/0 .text            getTevColor__12J2DTevBlock4FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock4::getTevColor(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevColor__12J2DTevBlock4FUl.s"
+J2DGXColorS10* J2DTevBlock4::getTevColor(u32 index) {
+    return &mTevColor[index];
 }
-#pragma pop
 
 /* 802F2314-802F2340 2ECC54 002C+00 1/0 0/0 0/0 .text
  * setTevKColor__12J2DTevBlock4FUlQ28JUtility6TColor            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock4::setTevKColor(u32 param_0, JUtility::TColor param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevKColor__12J2DTevBlock4FUlQ28JUtility6TColor.s"
+void J2DTevBlock4::setTevKColor(u32 index, JUtility::TColor color) {
+    mTevKColor[index].r = color.r;
+    mTevKColor[index].g = color.g;
+    mTevKColor[index].b = color.b;
+    mTevKColor[index].a = color.a;
 }
-#pragma pop
 
 /* 802F2340-802F2354 2ECC80 0014+00 1/0 0/0 0/0 .text            getTevKColor__12J2DTevBlock4FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock4::getTevKColor(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKColor__12J2DTevBlock4FUl.s"
+JUtility::TColor* J2DTevBlock4::getTevKColor(u32 index) {
+    return &mTevKColor[index];
 }
-#pragma pop
 
 /* 802F2354-802F2360 2ECC94 000C+00 1/0 0/0 0/0 .text setTevKColorSel__12J2DTevBlock4FUlUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock4::setTevKColorSel(u32 param_0, u8 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevKColorSel__12J2DTevBlock4FUlUc.s"
+void J2DTevBlock4::setTevKColorSel(u32 index, u8 sel) {
+    mTevKColorSel[index] = sel;
 }
-#pragma pop
 
 /* 802F2360-802F236C 2ECCA0 000C+00 1/0 0/0 0/0 .text            getTevKColorSel__12J2DTevBlock4FUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock4::getTevKColorSel(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKColorSel__12J2DTevBlock4FUl.s"
+u8 J2DTevBlock4::getTevKColorSel(u32 index) {
+    return mTevKColorSel[index];
 }
-#pragma pop
 
 /* 802F236C-802F2378 2ECCAC 000C+00 1/0 0/0 0/0 .text setTevKAlphaSel__12J2DTevBlock4FUlUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock4::setTevKAlphaSel(u32 param_0, u8 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevKAlphaSel__12J2DTevBlock4FUlUc.s"
+void J2DTevBlock4::setTevKAlphaSel(u32 index, u8 sel) {
+    mTevKAlphaSel[index] = sel;
 }
-#pragma pop
 
 /* 802F2378-802F2384 2ECCB8 000C+00 1/0 0/0 0/0 .text            getTevKAlphaSel__12J2DTevBlock4FUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock4::getTevKAlphaSel(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKAlphaSel__12J2DTevBlock4FUl.s"
+u8 J2DTevBlock4::getTevKAlphaSel(u32 index) {
+    return mTevKAlphaSel[index];
 }
-#pragma pop
 
 /* 802F2384-802F238C -00001 0008+00 0/0 0/0 0/0 .text            setTevStageNum__12J2DTevBlock4FUc
  */
-void J2DTevBlock4::setTevStageNum(u8 param_0) {
-    *(u8*)(((u8*)this) + 62) /* this->field_0x3e */ = (u8)(param_0);
+void J2DTevBlock4::setTevStageNum(u8 stageNum) {
+    mTevStageNum = stageNum;
 }
 
 /* 802F238C-802F2394 2ECCCC 0008+00 1/0 0/0 0/0 .text            getTevStageNum__12J2DTevBlock4CFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock4::getTevStageNum() const {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevStageNum__12J2DTevBlock4CFv.s"
+u8 J2DTevBlock4::getTevStageNum() const {
+    return mTevStageNum;
 }
-#pragma pop
 
 /* 802F2394-802F23D0 2ECCD4 003C+00 1/0 0/0 0/0 .text setTevStage__12J2DTevBlock4FUl11J2DTevStage
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock4::setTevStage(u32 param_0, J2DTevStage param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevStage__12J2DTevBlock4FUl11J2DTevStage.s"
+void J2DTevBlock4::setTevStage(u32 index, J2DTevStage stage) {
+    mTevStage[index] = stage;
 }
-#pragma pop
 
 /* 802F23D0-802F23E4 2ECD10 0014+00 1/0 0/0 0/0 .text            getTevStage__12J2DTevBlock4FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock4::getTevStage(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevStage__12J2DTevBlock4FUl.s"
+J2DTevStage* J2DTevBlock4::getTevStage(u32 index) {
+    return &mTevStage[index];
 }
-#pragma pop
 
 /* 802F23E4-802F241C 2ECD24 0038+00 1/0 0/0 0/0 .text
  * setTevSwapModeInfo__12J2DTevBlock4FUl18J2DTevSwapModeInfo    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock4::setTevSwapModeInfo(u32 param_0, J2DTevSwapModeInfo param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevSwapModeInfo__12J2DTevBlock4FUl18J2DTevSwapModeInfo.s"
+void J2DTevBlock4::setTevSwapModeInfo(u32 index, J2DTevSwapModeInfo info) {
+    mTevStage[index].setTevSwapModeInfo(info);
 }
-#pragma pop
 
 /* 802F241C-802F242C 2ECD5C 0010+00 1/0 0/0 0/0 .text
  * setTevSwapModeTable__12J2DTevBlock4FUl19J2DTevSwapModeTable  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock4::setTevSwapModeTable(u32 param_0, J2DTevSwapModeTable param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevSwapModeTable__12J2DTevBlock4FUl19J2DTevSwapModeTable.s"
+void J2DTevBlock4::setTevSwapModeTable(u32 index, J2DTevSwapModeTable table) {
+    mTevSwapModeTable[index] = table;
 }
-#pragma pop
 
 /* 802F242C-802F243C 2ECD6C 0010+00 1/0 0/0 0/0 .text getTevSwapModeTable__12J2DTevBlock4FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock4::getTevSwapModeTable(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevSwapModeTable__12J2DTevBlock4FUl.s"
+J2DTevSwapModeTable* J2DTevBlock4::getTevSwapModeTable(u32 index) {
+    return &mTevSwapModeTable[index];
 }
-#pragma pop
 
 /* 802F243C-802F2450 2ECD7C 0014+00 1/0 0/0 0/0 .text
  * setIndTevStage__12J2DTevBlock4FUl14J2DIndTevStage            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock4::setIndTevStage(u32 param_0, J2DIndTevStage param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setIndTevStage__12J2DTevBlock4FUl14J2DIndTevStage.s"
+void J2DTevBlock4::setIndTevStage(u32 index, J2DIndTevStage stage) {
+    mIndTevStage[index] = stage;
 }
-#pragma pop
 
 /* 802F2450-802F2464 2ECD90 0014+00 1/0 0/0 0/0 .text            getIndTevStage__12J2DTevBlock4FUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock4::getIndTevStage(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getIndTevStage__12J2DTevBlock4FUl.s"
+J2DIndTevStage* J2DTevBlock4::getIndTevStage(u32 index) {
+    return &mIndTevStage[index];
 }
-#pragma pop
 
 /* 802F2464-802F2494 2ECDA4 0030+00 1/0 0/0 0/0 .text insertTexture__12J2DTevBlock4FUlPC7ResTIMG
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock4::insertTexture(u32 param_0, ResTIMG const* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__12J2DTevBlock4FUlPC7ResTIMG.s"
+bool J2DTevBlock4::insertTexture(u32 index, ResTIMG const* p_timg) {
+    return insertTexture(index, p_timg, NULL);
 }
-#pragma pop
 
 /* 802F2494-802F24B4 2ECDD4 0020+00 1/0 0/0 0/0 .text            getTexture__12J2DTevBlock4FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock4::getTexture(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTexture__12J2DTevBlock4FUl.s"
+JUTTexture* J2DTevBlock4::getTexture(u32 index) {
+    if (index >= 4) {
+        return NULL;
+    }
+
+    return mTexture[index];
 }
-#pragma pop
 
 /* 802F24B4-802F24D4 2ECDF4 0020+00 1/0 0/0 0/0 .text            getPalette__12J2DTevBlock4FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock4::getPalette(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getPalette__12J2DTevBlock4FUl.s"
+JUTPalette* J2DTevBlock4::getPalette(u32 index) {
+    if (index >= 4) {
+        return NULL;
+    }
+
+    return mPalette[index];
 }
-#pragma pop
 
 /* 802F24D4-802F24DC 2ECE14 0008+00 1/0 0/0 0/0 .text            getFont__12J2DTevBlock4Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock4::getFont() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getFont__12J2DTevBlock4Fv.s"
+JUTFont* J2DTevBlock4::getFont() {
+    return mFont;
 }
-#pragma pop
 
 /* 802F24DC-802F24EC 2ECE1C 0010+00 1/0 0/0 0/0 .text            setUndeleteFlag__12J2DTevBlock4FUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock4::setUndeleteFlag(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setUndeleteFlag__12J2DTevBlock4FUc.s"
+void J2DTevBlock4::setUndeleteFlag(u8 flag) {
+    mUndeleteFlag &= flag;
 }
-#pragma pop
 
 /* 802F24EC-802F24FC 2ECE2C 0010+00 1/0 0/0 0/0 .text setFontUndeleteFlag__12J2DTevBlock4Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock4::setFontUndeleteFlag() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setFontUndeleteFlag__12J2DTevBlock4Fv.s"
+void J2DTevBlock4::setFontUndeleteFlag() {
+    mUndeleteFlag &= 0x7F;
 }
-#pragma pop
 
 /* 802F24FC-802F2508 2ECE3C 000C+00 1/0 0/0 0/0 .text            getType__12J2DTevBlock2Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock2::getType() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getType__12J2DTevBlock2Fv.s"
+u32 J2DTevBlock2::getType() {
+    return 'TVB2';
 }
-#pragma pop
 
 /* 802F2508-802F2510 2ECE48 0008+00 1/0 0/0 0/0 .text            getMaxStage__12J2DTevBlock2Fv */
 s32 J2DTevBlock2::getMaxStage() {
@@ -2723,308 +2947,181 @@ s32 J2DTevBlock2::getMaxStage() {
 }
 
 /* 802F2510-802F2520 2ECE50 0010+00 1/0 0/0 0/0 .text            setTexNo__12J2DTevBlock2FUlUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock2::setTexNo(u32 param_0, u16 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTexNo__12J2DTevBlock2FUlUs.s"
+void J2DTevBlock2::setTexNo(u32 index, u16 texNo) {
+    mTexNo[index] = texNo;
 }
-#pragma pop
 
 /* 802F2520-802F2530 2ECE60 0010+00 1/0 0/0 0/0 .text            getTexNo__12J2DTevBlock2CFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 J2DTevBlock2::getTexNo(u32 param_0) const {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTexNo__12J2DTevBlock2CFUl.s"
+u32 J2DTevBlock2::getTexNo(u32 index) const {
+    return mTexNo[index];
 }
-#pragma pop
 
 /* 802F2530-802F2538 -00001 0008+00 0/0 0/0 0/0 .text            setFontNo__12J2DTevBlock2FUs */
-void J2DTevBlock2::setFontNo(u16 param_0) {
-    *(u16*)(((u8*)this) + 8) /* this->field_0x8 */ = (u16)(param_0);
+void J2DTevBlock2::setFontNo(u16 fontNo) {
+    mFontNo = fontNo;
 }
 
 /* 802F2538-802F2540 2ECE78 0008+00 1/0 0/0 0/0 .text            getFontNo__12J2DTevBlock2CFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 J2DTevBlock2::getFontNo() const {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getFontNo__12J2DTevBlock2CFv.s"
+u32 J2DTevBlock2::getFontNo() const {
+    return mFontNo;
 }
-#pragma pop
 
 /* 802F2540-802F2564 2ECE80 0024+00 1/0 0/0 0/0 .text setTevOrder__12J2DTevBlock2FUl11J2DTevOrder
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock2::setTevOrder(u32 param_0, J2DTevOrder param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevOrder__12J2DTevBlock2FUl11J2DTevOrder.s"
+void J2DTevBlock2::setTevOrder(u32 index, J2DTevOrder order) {
+    mTevOrder[index].mTevOrderInfo.mTexCoord = order.mTevOrderInfo.mTexCoord;
+    mTevOrder[index].mTevOrderInfo.mTexMap = order.mTevOrderInfo.mTexMap;
+    mTevOrder[index].mTevOrderInfo.mColor = order.mTevOrderInfo.mColor;
 }
-#pragma pop
 
 /* 802F2564-802F2578 2ECEA4 0014+00 1/0 0/0 0/0 .text            getTevOrder__12J2DTevBlock2FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock2::getTevOrder(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevOrder__12J2DTevBlock2FUl.s"
+J2DTevOrder* J2DTevBlock2::getTevOrder(u32 index) {
+    return &mTevOrder[index];
 }
-#pragma pop
 
 /* 802F2578-802F25A4 2ECEB8 002C+00 1/0 0/0 0/0 .text
  * setTevColor__12J2DTevBlock2FUl13J2DGXColorS10                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock2::setTevColor(u32 param_0, J2DGXColorS10 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevColor__12J2DTevBlock2FUl13J2DGXColorS10.s"
+void J2DTevBlock2::setTevColor(u32 index, J2DGXColorS10 color) {
+    mTevColor[index] = color;
 }
-#pragma pop
 
 /* 802F25A4-802F25B8 2ECEE4 0014+00 1/0 0/0 0/0 .text            getTevColor__12J2DTevBlock2FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock2::getTevColor(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevColor__12J2DTevBlock2FUl.s"
+J2DGXColorS10* J2DTevBlock2::getTevColor(u32 index) {
+    return &mTevColor[index];
 }
-#pragma pop
 
 /* 802F25B8-802F25E4 2ECEF8 002C+00 1/0 0/0 0/0 .text
  * setTevKColor__12J2DTevBlock2FUlQ28JUtility6TColor            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock2::setTevKColor(u32 param_0, JUtility::TColor param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevKColor__12J2DTevBlock2FUlQ28JUtility6TColor.s"
+void J2DTevBlock2::setTevKColor(u32 index, JUtility::TColor color) {
+    mTevKColor[index].r = color.r;
+    mTevKColor[index].g = color.g;
+    mTevKColor[index].b = color.b;
+    mTevKColor[index].a = color.a;
 }
-#pragma pop
 
 /* 802F25E4-802F25F8 2ECF24 0014+00 1/0 0/0 0/0 .text            getTevKColor__12J2DTevBlock2FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock2::getTevKColor(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKColor__12J2DTevBlock2FUl.s"
+JUtility::TColor* J2DTevBlock2::getTevKColor(u32 index) {
+    return &mTevKColor[index];
 }
-#pragma pop
 
 /* 802F25F8-802F2604 2ECF38 000C+00 1/0 0/0 0/0 .text setTevKColorSel__12J2DTevBlock2FUlUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock2::setTevKColorSel(u32 param_0, u8 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevKColorSel__12J2DTevBlock2FUlUc.s"
+void J2DTevBlock2::setTevKColorSel(u32 index, u8 sel) {
+    mTevKColorSel[index] = sel;
 }
-#pragma pop
 
 /* 802F2604-802F2610 2ECF44 000C+00 1/0 0/0 0/0 .text            getTevKColorSel__12J2DTevBlock2FUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock2::getTevKColorSel(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKColorSel__12J2DTevBlock2FUl.s"
+u8 J2DTevBlock2::getTevKColorSel(u32 index) {
+    return mTevKColorSel[index];
 }
-#pragma pop
 
 /* 802F2610-802F261C 2ECF50 000C+00 1/0 0/0 0/0 .text setTevKAlphaSel__12J2DTevBlock2FUlUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock2::setTevKAlphaSel(u32 param_0, u8 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevKAlphaSel__12J2DTevBlock2FUlUc.s"
+void J2DTevBlock2::setTevKAlphaSel(u32 index, u8 sel) {
+    mTevKAlphaSel[index] = sel;
 }
-#pragma pop
 
 /* 802F261C-802F2628 2ECF5C 000C+00 1/0 0/0 0/0 .text            getTevKAlphaSel__12J2DTevBlock2FUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock2::getTevKAlphaSel(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKAlphaSel__12J2DTevBlock2FUl.s"
+u8 J2DTevBlock2::getTevKAlphaSel(u32 index) {
+    return mTevKAlphaSel[index];
 }
-#pragma pop
 
 /* 802F2628-802F2630 -00001 0008+00 0/0 0/0 0/0 .text            setTevStageNum__12J2DTevBlock2FUc
  */
-void J2DTevBlock2::setTevStageNum(u8 param_0) {
-    *(u8*)(((u8*)this) + 50) /* this->field_0x32 */ = (u8)(param_0);
+void J2DTevBlock2::setTevStageNum(u8 stageNum) {
+    mTevStageNum = stageNum;
 }
 
 /* 802F2630-802F2638 2ECF70 0008+00 1/0 0/0 0/0 .text            getTevStageNum__12J2DTevBlock2CFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock2::getTevStageNum() const {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevStageNum__12J2DTevBlock2CFv.s"
+u8 J2DTevBlock2::getTevStageNum() const {
+    return mTevStageNum;
 }
-#pragma pop
 
 /* 802F2638-802F2674 2ECF78 003C+00 1/0 0/0 0/0 .text setTevStage__12J2DTevBlock2FUl11J2DTevStage
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock2::setTevStage(u32 param_0, J2DTevStage param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevStage__12J2DTevBlock2FUl11J2DTevStage.s"
+void J2DTevBlock2::setTevStage(u32 index, J2DTevStage stage) {
+    mTevStage[index] = stage;
 }
-#pragma pop
 
 /* 802F2674-802F2688 2ECFB4 0014+00 1/0 0/0 0/0 .text            getTevStage__12J2DTevBlock2FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock2::getTevStage(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevStage__12J2DTevBlock2FUl.s"
+J2DTevStage* J2DTevBlock2::getTevStage(u32 index) {
+    return &mTevStage[index];
 }
-#pragma pop
 
 /* 802F2688-802F26C0 2ECFC8 0038+00 1/0 0/0 0/0 .text
  * setTevSwapModeInfo__12J2DTevBlock2FUl18J2DTevSwapModeInfo    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock2::setTevSwapModeInfo(u32 param_0, J2DTevSwapModeInfo param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevSwapModeInfo__12J2DTevBlock2FUl18J2DTevSwapModeInfo.s"
+void J2DTevBlock2::setTevSwapModeInfo(u32 index, J2DTevSwapModeInfo info) {
+    mTevStage[index].setTevSwapModeInfo(info);
 }
-#pragma pop
 
 /* 802F26C0-802F26D0 2ED000 0010+00 1/0 0/0 0/0 .text
  * setTevSwapModeTable__12J2DTevBlock2FUl19J2DTevSwapModeTable  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock2::setTevSwapModeTable(u32 param_0, J2DTevSwapModeTable param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevSwapModeTable__12J2DTevBlock2FUl19J2DTevSwapModeTable.s"
+void J2DTevBlock2::setTevSwapModeTable(u32 index, J2DTevSwapModeTable table) {
+    mTevSwapModeTable[index] = table;
 }
-#pragma pop
 
 /* 802F26D0-802F26E0 2ED010 0010+00 1/0 0/0 0/0 .text getTevSwapModeTable__12J2DTevBlock2FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock2::getTevSwapModeTable(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevSwapModeTable__12J2DTevBlock2FUl.s"
+J2DTevSwapModeTable* J2DTevBlock2::getTevSwapModeTable(u32 index) {
+    return &mTevSwapModeTable[index];
 }
-#pragma pop
 
 /* 802F26E0-802F26F4 2ED020 0014+00 1/0 0/0 0/0 .text
  * setIndTevStage__12J2DTevBlock2FUl14J2DIndTevStage            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock2::setIndTevStage(u32 param_0, J2DIndTevStage param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setIndTevStage__12J2DTevBlock2FUl14J2DIndTevStage.s"
+void J2DTevBlock2::setIndTevStage(u32 index, J2DIndTevStage stage) {
+    mIndTevStage[index] = stage;
 }
-#pragma pop
 
 /* 802F26F4-802F2708 2ED034 0014+00 1/0 0/0 0/0 .text            getIndTevStage__12J2DTevBlock2FUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock2::getIndTevStage(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getIndTevStage__12J2DTevBlock2FUl.s"
+J2DIndTevStage* J2DTevBlock2::getIndTevStage(u32 index) {
+    return &mIndTevStage[index];
 }
-#pragma pop
 
 /* 802F2708-802F2738 2ED048 0030+00 1/0 0/0 0/0 .text insertTexture__12J2DTevBlock2FUlPC7ResTIMG
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock2::insertTexture(u32 param_0, ResTIMG const* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__12J2DTevBlock2FUlPC7ResTIMG.s"
+bool J2DTevBlock2::insertTexture(u32 index, ResTIMG const* p_timg) {
+    return insertTexture(index, p_timg, NULL);
 }
-#pragma pop
 
 /* 802F2738-802F2758 2ED078 0020+00 1/0 0/0 0/0 .text            getTexture__12J2DTevBlock2FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock2::getTexture(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTexture__12J2DTevBlock2FUl.s"
+JUTTexture* J2DTevBlock2::getTexture(u32 index) {
+    if (index >= 2) {
+        return NULL;
+    }
+
+    return mTexture[index];
 }
-#pragma pop
 
 /* 802F2758-802F2778 2ED098 0020+00 1/0 0/0 0/0 .text            getPalette__12J2DTevBlock2FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock2::getPalette(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getPalette__12J2DTevBlock2FUl.s"
+JUTPalette* J2DTevBlock2::getPalette(u32 index) {
+    if (index >= 2) {
+        return NULL;
+    }
+
+    return mPalette[index];
 }
-#pragma pop
 
 /* 802F2778-802F2780 2ED0B8 0008+00 1/0 0/0 0/0 .text            getFont__12J2DTevBlock2Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock2::getFont() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getFont__12J2DTevBlock2Fv.s"
+JUTFont* J2DTevBlock2::getFont() {
+    return mFont;
 }
-#pragma pop
 
 /* 802F2780-802F2790 2ED0C0 0010+00 1/0 0/0 0/0 .text            setUndeleteFlag__12J2DTevBlock2FUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock2::setUndeleteFlag(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setUndeleteFlag__12J2DTevBlock2FUc.s"
+void J2DTevBlock2::setUndeleteFlag(u8 flag) {
+    mUndeleteFlag &= flag;
 }
-#pragma pop
 
 /* 802F2790-802F27A0 2ED0D0 0010+00 1/0 0/0 0/0 .text setFontUndeleteFlag__12J2DTevBlock2Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock2::setFontUndeleteFlag() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setFontUndeleteFlag__12J2DTevBlock2Fv.s"
+void J2DTevBlock2::setFontUndeleteFlag() {
+    mUndeleteFlag &= 0x7F;
 }
-#pragma pop
 
 /* 802F27A0-802F27AC 2ED0E0 000C+00 1/0 0/0 0/0 .text            getType__12J2DTevBlock1Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock1::getType() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getType__12J2DTevBlock1Fv.s"
+u32 J2DTevBlock1::getType() {
+    return 'TVB1';
 }
-#pragma pop
 
 /* 802F27AC-802F27B4 2ED0EC 0008+00 1/0 0/0 0/0 .text            getMaxStage__12J2DTevBlock1Fv */
 s32 J2DTevBlock1::getMaxStage() {
@@ -3032,293 +3129,176 @@ s32 J2DTevBlock1::getMaxStage() {
 }
 
 /* 802F27B4-802F27C4 2ED0F4 0010+00 1/0 0/0 0/0 .text            setTexNo__12J2DTevBlock1FUlUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock1::setTexNo(u32 param_0, u16 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTexNo__12J2DTevBlock1FUlUs.s"
+void J2DTevBlock1::setTexNo(u32 index, u16 texNo) {
+    mTexNo[index] = texNo;
 }
-#pragma pop
 
 /* 802F27C4-802F27D4 2ED104 0010+00 1/0 0/0 0/0 .text            getTexNo__12J2DTevBlock1CFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 J2DTevBlock1::getTexNo(u32 param_0) const {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTexNo__12J2DTevBlock1CFUl.s"
+u32 J2DTevBlock1::getTexNo(u32 index) const {
+    return mTexNo[index];
 }
-#pragma pop
 
 /* 802F27D4-802F27DC -00001 0008+00 0/0 0/0 0/0 .text            setFontNo__12J2DTevBlock1FUs */
-void J2DTevBlock1::setFontNo(u16 param_0) {
-    *(u16*)(((u8*)this) + 6) /* this->field_0x6 */ = (u16)(param_0);
+void J2DTevBlock1::setFontNo(u16 fontNo) {
+    mFontNo = fontNo;
 }
 
 /* 802F27DC-802F27E4 2ED11C 0008+00 1/0 0/0 0/0 .text            getFontNo__12J2DTevBlock1CFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 J2DTevBlock1::getFontNo() const {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getFontNo__12J2DTevBlock1CFv.s"
+u32 J2DTevBlock1::getFontNo() const {
+    return mFontNo;
 }
-#pragma pop
 
 /* 802F27E4-802F2808 2ED124 0024+00 1/0 0/0 0/0 .text setTevOrder__12J2DTevBlock1FUl11J2DTevOrder
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock1::setTevOrder(u32 param_0, J2DTevOrder param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevOrder__12J2DTevBlock1FUl11J2DTevOrder.s"
+void J2DTevBlock1::setTevOrder(u32 index, J2DTevOrder order) {
+    mTevOrder[index].mTevOrderInfo.mTexCoord = order.mTevOrderInfo.mTexCoord;
+    mTevOrder[index].mTevOrderInfo.mTexMap = order.mTevOrderInfo.mTexMap;
+    mTevOrder[index].mTevOrderInfo.mColor = order.mTevOrderInfo.mColor;
 }
-#pragma pop
 
 /* 802F2808-802F281C 2ED148 0014+00 1/0 0/0 0/0 .text            getTevOrder__12J2DTevBlock1FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock1::getTevOrder(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevOrder__12J2DTevBlock1FUl.s"
+J2DTevOrder* J2DTevBlock1::getTevOrder(u32 index) {
+    return &mTevOrder[index];
 }
-#pragma pop
 
 /* 802F281C-802F2848 2ED15C 002C+00 1/0 0/0 0/0 .text
  * setTevColor__12J2DTevBlock1FUl13J2DGXColorS10                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock1::setTevColor(u32 param_0, J2DGXColorS10 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevColor__12J2DTevBlock1FUl13J2DGXColorS10.s"
+void J2DTevBlock1::setTevColor(u32 index, J2DGXColorS10 color) {
+    mTevColor[index] = color;
 }
-#pragma pop
 
 /* 802F2848-802F285C 2ED188 0014+00 1/0 0/0 0/0 .text            getTevColor__12J2DTevBlock1FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock1::getTevColor(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevColor__12J2DTevBlock1FUl.s"
+J2DGXColorS10* J2DTevBlock1::getTevColor(u32 index) {
+    return &mTevColor[index];
 }
-#pragma pop
 
 /* 802F285C-802F2888 2ED19C 002C+00 1/0 0/0 0/0 .text
  * setTevKColor__12J2DTevBlock1FUlQ28JUtility6TColor            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock1::setTevKColor(u32 param_0, JUtility::TColor param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevKColor__12J2DTevBlock1FUlQ28JUtility6TColor.s"
+void J2DTevBlock1::setTevKColor(u32 index, JUtility::TColor color) {
+    mTevKColor[index].r = color.r;
+    mTevKColor[index].g = color.g;
+    mTevKColor[index].b = color.b;
+    mTevKColor[index].a = color.a;
 }
-#pragma pop
 
 /* 802F2888-802F289C 2ED1C8 0014+00 1/0 0/0 0/0 .text            getTevKColor__12J2DTevBlock1FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock1::getTevKColor(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKColor__12J2DTevBlock1FUl.s"
+JUtility::TColor* J2DTevBlock1::getTevKColor(u32 index) {
+    return &mTevKColor[index];
 }
-#pragma pop
 
 /* 802F289C-802F28A8 2ED1DC 000C+00 1/0 0/0 0/0 .text setTevKColorSel__12J2DTevBlock1FUlUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock1::setTevKColorSel(u32 param_0, u8 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevKColorSel__12J2DTevBlock1FUlUc.s"
+void J2DTevBlock1::setTevKColorSel(u32 index, u8 sel) {
+    mTevKColorSel[index] = sel;
 }
-#pragma pop
 
 /* 802F28A8-802F28B4 2ED1E8 000C+00 1/0 0/0 0/0 .text            getTevKColorSel__12J2DTevBlock1FUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock1::getTevKColorSel(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKColorSel__12J2DTevBlock1FUl.s"
+u8 J2DTevBlock1::getTevKColorSel(u32 index) {
+    return mTevKColorSel[index];
 }
-#pragma pop
 
 /* 802F28B4-802F28C0 2ED1F4 000C+00 1/0 0/0 0/0 .text setTevKAlphaSel__12J2DTevBlock1FUlUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock1::setTevKAlphaSel(u32 param_0, u8 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevKAlphaSel__12J2DTevBlock1FUlUc.s"
+void J2DTevBlock1::setTevKAlphaSel(u32 index, u8 sel) {
+    mTevKAlphaSel[index] = sel;
 }
-#pragma pop
 
 /* 802F28C0-802F28CC 2ED200 000C+00 1/0 0/0 0/0 .text            getTevKAlphaSel__12J2DTevBlock1FUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock1::getTevKAlphaSel(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevKAlphaSel__12J2DTevBlock1FUl.s"
+u8 J2DTevBlock1::getTevKAlphaSel(u32 index) {
+    return mTevKAlphaSel[index];
 }
-#pragma pop
 
 /* 802F28CC-802F28D0 2ED20C 0004+00 1/0 0/0 0/0 .text            setTevStageNum__12J2DTevBlock1FUc
  */
-void J2DTevBlock1::setTevStageNum(u8 param_0) {
+void J2DTevBlock1::setTevStageNum(u8) {
     /* empty function */
 }
 
 /* 802F28D0-802F28D8 2ED210 0008+00 1/0 0/0 0/0 .text            getTevStageNum__12J2DTevBlock1CFv
  */
-bool J2DTevBlock1::getTevStageNum() const {
-    return true;
+u8 J2DTevBlock1::getTevStageNum() const {
+    return 1;
 }
 
 /* 802F28D8-802F2914 2ED218 003C+00 1/0 0/0 0/0 .text setTevStage__12J2DTevBlock1FUl11J2DTevStage
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock1::setTevStage(u32 param_0, J2DTevStage param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevStage__12J2DTevBlock1FUl11J2DTevStage.s"
+void J2DTevBlock1::setTevStage(u32 index, J2DTevStage stage) {
+    mTevStage[index] = stage;
 }
-#pragma pop
 
 /* 802F2914-802F2928 2ED254 0014+00 1/0 0/0 0/0 .text            getTevStage__12J2DTevBlock1FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock1::getTevStage(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevStage__12J2DTevBlock1FUl.s"
+J2DTevStage* J2DTevBlock1::getTevStage(u32 index) {
+    return &mTevStage[index];
 }
-#pragma pop
 
 /* 802F2928-802F2960 2ED268 0038+00 1/0 0/0 0/0 .text
  * setTevSwapModeInfo__12J2DTevBlock1FUl18J2DTevSwapModeInfo    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock1::setTevSwapModeInfo(u32 param_0, J2DTevSwapModeInfo param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevSwapModeInfo__12J2DTevBlock1FUl18J2DTevSwapModeInfo.s"
+void J2DTevBlock1::setTevSwapModeInfo(u32 index, J2DTevSwapModeInfo info) {
+    mTevStage[index].setTevSwapModeInfo(info);
 }
-#pragma pop
 
 /* 802F2960-802F2970 2ED2A0 0010+00 1/0 0/0 0/0 .text
  * setTevSwapModeTable__12J2DTevBlock1FUl19J2DTevSwapModeTable  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock1::setTevSwapModeTable(u32 param_0, J2DTevSwapModeTable param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setTevSwapModeTable__12J2DTevBlock1FUl19J2DTevSwapModeTable.s"
+void J2DTevBlock1::setTevSwapModeTable(u32 index, J2DTevSwapModeTable table) {
+    mTevSwapModeTable[index] = table;
 }
-#pragma pop
 
 /* 802F2970-802F2980 2ED2B0 0010+00 1/0 0/0 0/0 .text getTevSwapModeTable__12J2DTevBlock1FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock1::getTevSwapModeTable(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTevSwapModeTable__12J2DTevBlock1FUl.s"
+J2DTevSwapModeTable* J2DTevBlock1::getTevSwapModeTable(u32 index) {
+    return &mTevSwapModeTable[index];
 }
-#pragma pop
 
 /* 802F2980-802F2994 2ED2C0 0014+00 1/0 0/0 0/0 .text
  * setIndTevStage__12J2DTevBlock1FUl14J2DIndTevStage            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock1::setIndTevStage(u32 param_0, J2DIndTevStage param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setIndTevStage__12J2DTevBlock1FUl14J2DIndTevStage.s"
+void J2DTevBlock1::setIndTevStage(u32 index, J2DIndTevStage stage) {
+    mIndTevStage[index] = stage;
 }
-#pragma pop
 
 /* 802F2994-802F29A8 2ED2D4 0014+00 1/0 0/0 0/0 .text            getIndTevStage__12J2DTevBlock1FUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock1::getIndTevStage(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getIndTevStage__12J2DTevBlock1FUl.s"
+J2DIndTevStage* J2DTevBlock1::getIndTevStage(u32 index) {
+    return &mIndTevStage[index];
 }
-#pragma pop
 
 /* 802F29A8-802F29D8 2ED2E8 0030+00 1/0 0/0 0/0 .text insertTexture__12J2DTevBlock1FUlPC7ResTIMG
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock1::insertTexture(u32 param_0, ResTIMG const* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/insertTexture__12J2DTevBlock1FUlPC7ResTIMG.s"
+bool J2DTevBlock1::insertTexture(u32 index, ResTIMG const* p_timg) {
+    return insertTexture(index, p_timg, NULL);
 }
-#pragma pop
 
 /* 802F29D8-802F29F8 2ED318 0020+00 1/0 0/0 0/0 .text            getTexture__12J2DTevBlock1FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock1::getTexture(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getTexture__12J2DTevBlock1FUl.s"
+JUTTexture* J2DTevBlock1::getTexture(u32 index) {
+    if (index >= 1) {
+        return NULL;
+    }
+
+    return mTexture[index];
 }
-#pragma pop
 
 /* 802F29F8-802F2A18 2ED338 0020+00 1/0 0/0 0/0 .text            getPalette__12J2DTevBlock1FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock1::getPalette(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getPalette__12J2DTevBlock1FUl.s"
+JUTPalette* J2DTevBlock1::getPalette(u32 index) {
+    if (index >= 1) {
+        return NULL;
+    }
+
+    return mPalette[index];
 }
-#pragma pop
 
 /* 802F2A18-802F2A20 2ED358 0008+00 1/0 0/0 0/0 .text            getFont__12J2DTevBlock1Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTevBlock1::getFont() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/getFont__12J2DTevBlock1Fv.s"
+JUTFont* J2DTevBlock1::getFont() {
+    return mFont;
 }
-#pragma pop
 
 /* 802F2A20-802F2A30 2ED360 0010+00 1/0 0/0 0/0 .text            setUndeleteFlag__12J2DTevBlock1FUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock1::setUndeleteFlag(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setUndeleteFlag__12J2DTevBlock1FUc.s"
+void J2DTevBlock1::setUndeleteFlag(u8 flag) {
+    mUndeleteFlag &= flag;
 }
-#pragma pop
 
 /* 802F2A30-802F2A40 2ED370 0010+00 1/0 0/0 0/0 .text setFontUndeleteFlag__12J2DTevBlock1Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTevBlock1::setFontUndeleteFlag() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMatBlock/setFontUndeleteFlag__12J2DTevBlock1Fv.s"
+void J2DTevBlock1::setFontUndeleteFlag() {
+    mUndeleteFlag &= 0x7F;
 }
-#pragma pop
 
 /* 802F2A40-802F2A44 2ED380 0004+00 1/0 0/0 0/0 .text            initialize__11J2DTevBlockFv */
 void J2DTevBlock::initialize() {
@@ -3327,128 +3307,128 @@ void J2DTevBlock::initialize() {
 
 /* 802F2A44-802F2A48 2ED384 0004+00 1/0 0/0 0/0 .text loadTexture__11J2DTevBlockF11_GXTexMapIDUl
  */
-void J2DTevBlock::loadTexture(_GXTexMapID param_0, u32 param_1) {
+void J2DTevBlock::loadTexture(GXTexMapID, u32) {
     /* empty function */
 }
 
 /* 802F2A48-802F2A4C 2ED388 0004+00 1/0 0/0 0/0 .text            setFontNo__11J2DTevBlockFUs */
-void J2DTevBlock::setFontNo(u16 param_0) {
+void J2DTevBlock::setFontNo(u16) {
     /* empty function */
 }
 
 /* 802F2A4C-802F2A50 2ED38C 0004+00 1/0 0/0 0/0 .text setTevOrder__11J2DTevBlockFUl11J2DTevOrder
  */
-void J2DTevBlock::setTevOrder(u32 param_0, J2DTevOrder param_1) {
+void J2DTevBlock::setTevOrder(u32, J2DTevOrder) {
     /* empty function */
 }
 
 /* 802F2A50-802F2A54 2ED390 0004+00 1/0 0/0 0/0 .text            setTevKColorSel__11J2DTevBlockFUlUc
  */
-void J2DTevBlock::setTevKColorSel(u32 param_0, u8 param_1) {
+void J2DTevBlock::setTevKColorSel(u32, u8) {
     /* empty function */
 }
 
 /* 802F2A54-802F2A58 2ED394 0004+00 1/0 0/0 0/0 .text            setTevKAlphaSel__11J2DTevBlockFUlUc
  */
-void J2DTevBlock::setTevKAlphaSel(u32 param_0, u8 param_1) {
+void J2DTevBlock::setTevKAlphaSel(u32, u8) {
     /* empty function */
 }
 
 /* 802F2A58-802F2A5C 2ED398 0004+00 1/0 0/0 0/0 .text            setTevStageNum__11J2DTevBlockFUc */
-void J2DTevBlock::setTevStageNum(u8 param_0) {
+void J2DTevBlock::setTevStageNum(u8) {
     /* empty function */
 }
 
 /* 802F2A5C-802F2A60 2ED39C 0004+00 1/0 0/0 0/0 .text setTevStage__11J2DTevBlockFUl11J2DTevStage
  */
-void J2DTevBlock::setTevStage(u32 param_0, J2DTevStage param_1) {
+void J2DTevBlock::setTevStage(u32, J2DTevStage) {
     /* empty function */
 }
 
 /* 802F2A60-802F2A64 2ED3A0 0004+00 1/0 0/0 0/0 .text
  * setTevSwapModeInfo__11J2DTevBlockFUl18J2DTevSwapModeInfo     */
-void J2DTevBlock::setTevSwapModeInfo(u32 param_0, J2DTevSwapModeInfo param_1) {
+void J2DTevBlock::setTevSwapModeInfo(u32, J2DTevSwapModeInfo) {
     /* empty function */
 }
 
 /* 802F2A64-802F2A68 2ED3A4 0004+00 1/0 0/0 0/0 .text
  * setTevSwapModeTable__11J2DTevBlockFUl19J2DTevSwapModeTable   */
-void J2DTevBlock::setTevSwapModeTable(u32 param_0, J2DTevSwapModeTable param_1) {
+void J2DTevBlock::setTevSwapModeTable(u32, J2DTevSwapModeTable) {
     /* empty function */
 }
 
 /* 802F2A68-802F2A6C 2ED3A8 0004+00 1/0 0/0 0/0 .text
  * setIndTevStage__11J2DTevBlockFUl14J2DIndTevStage             */
-void J2DTevBlock::setIndTevStage(u32 param_0, J2DIndTevStage param_1) {
+void J2DTevBlock::setIndTevStage(u32, J2DIndTevStage) {
     /* empty function */
 }
 
 /* 802F2A6C-802F2A74 2ED3AC 0008+00 1/0 0/0 0/0 .text insertTexture__11J2DTevBlockFUlP10JUTTexture
  */
-bool J2DTevBlock::insertTexture(u32 param_0, JUTTexture* param_1) {
+bool J2DTevBlock::insertTexture(u32, JUTTexture*) {
     return false;
 }
 
 /* 802F2A74-802F2A7C 2ED3B4 0008+00 1/0 0/0 0/0 .text
  * insertTexture__11J2DTevBlockFUlPC7ResTIMGP10JUTPalette       */
-bool J2DTevBlock::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPalette* param_2) {
+bool J2DTevBlock::insertTexture(u32, ResTIMG const*, JUTPalette*) {
     return false;
 }
 
 /* 802F2A7C-802F2A84 2ED3BC 0008+00 1/0 0/0 0/0 .text insertTexture__11J2DTevBlockFUlPC7ResTIMG */
-bool J2DTevBlock::insertTexture(u32 param_0, ResTIMG const* param_1) {
+bool J2DTevBlock::insertTexture(u32, ResTIMG const*) {
     return false;
 }
 
 /* 802F2A84-802F2A8C 2ED3C4 0008+00 1/0 0/0 0/0 .text setTexture__11J2DTevBlockFUlP10JUTTexture */
-bool J2DTevBlock::setTexture(u32 param_0, JUTTexture* param_1) {
+bool J2DTevBlock::setTexture(u32, JUTTexture*) {
     return false;
 }
 
 /* 802F2A8C-802F2A94 2ED3CC 0008+00 1/0 0/0 0/0 .text setTexture__11J2DTevBlockFUlPC7ResTIMG */
-bool J2DTevBlock::setTexture(u32 param_0, ResTIMG const* param_1) {
+bool J2DTevBlock::setTexture(u32, ResTIMG const*) {
     return false;
 }
 
 /* 802F2A94-802F2A9C 2ED3D4 0008+00 1/0 0/0 0/0 .text            removeTexture__11J2DTevBlockFUl */
-bool J2DTevBlock::removeTexture(u32 param_0) {
+bool J2DTevBlock::removeTexture(u32) {
     return false;
 }
 
 /* 802F2A9C-802F2AA4 2ED3DC 0008+00 1/0 0/0 0/0 .text            setFont__11J2DTevBlockFP7JUTFont */
-bool J2DTevBlock::setFont(JUTFont* param_0) {
+bool J2DTevBlock::setFont(JUTFont*) {
     return false;
 }
 
 /* 802F2AA4-802F2AAC 2ED3E4 0008+00 1/0 0/0 0/0 .text            setFont__11J2DTevBlockFP7ResFONT */
-bool J2DTevBlock::setFont(ResFONT* param_0) {
+bool J2DTevBlock::setFont(ResFONT*) {
     return false;
 }
 
 /* 802F2AAC-802F2AB4 2ED3EC 0008+00 1/0 0/0 0/0 .text setPalette__11J2DTevBlockFUlPC7ResTLUT */
-bool J2DTevBlock::setPalette(u32 param_0, ResTLUT const* param_1) {
+bool J2DTevBlock::setPalette(u32, ResTLUT const*) {
     return false;
 }
 
 /* 802F2AB4-802F2ABC 2ED3F4 0008+00 1/0 0/0 0/0 .text            prepareTexture__11J2DTevBlockFUc */
-bool J2DTevBlock::prepareTexture(u8 param_0) {
+bool J2DTevBlock::prepareTexture(u8) {
     return false;
 }
 
 /* 802F2ABC-802F2AC4 2ED3FC 0008+00 1/0 0/0 0/0 .text            getFont__11J2DTevBlockFv */
-bool J2DTevBlock::getFont() {
-    return false;
+JUTFont* J2DTevBlock::getFont() {
+    return NULL;
 }
 
 /* 802F2AC4-802F2AC8 2ED404 0004+00 1/0 0/0 0/0 .text            shiftDeleteFlag__11J2DTevBlockFUcb
  */
-void J2DTevBlock::shiftDeleteFlag(u8 param_0, bool param_1) {
+void J2DTevBlock::shiftDeleteFlag(u8, bool) {
     /* empty function */
 }
 
 /* 802F2AC8-802F2ACC 2ED408 0004+00 1/0 0/0 0/0 .text            setUndeleteFlag__11J2DTevBlockFUc
  */
-void J2DTevBlock::setUndeleteFlag(u8 param_0) {
+void J2DTevBlock::setUndeleteFlag(u8) {
     /* empty function */
 }
 

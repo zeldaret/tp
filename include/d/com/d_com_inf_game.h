@@ -643,7 +643,6 @@ public:
     /* 0x00000 */ dSv_info_c info;
     /* 0x00F38 */ dComIfG_play_c play;
     /* 0x05F64 */ dDlst_list_c drawlist;
-    /* 0x1C104 */ u8 field_0x1C104[0x1F4];
     /* 0x1C2F8 */ dRes_control_c mResControl;
     /* 0x1DDF8 */ u8 mFadeBrightness;
     /* 0x1DDF9 */ u8 mWorldDark;

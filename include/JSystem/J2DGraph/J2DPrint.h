@@ -30,6 +30,24 @@ public:
 
     /* 802F4420 */ virtual ~J2DPrint();
 
+    void setFontSize(f32 sizeX, f32 sizeY) {
+        f32 x;
+        if (sizeX > 0.0f) {
+            x = sizeX;
+        } else {
+            x = 0.0f;
+        }
+        mFontSizeX = x;
+
+        f32 y;
+        if (sizeY > 0.0f) {
+            y = sizeY;
+        } else {
+            y = 0.0f;
+        }
+        mFontSizeY = y;
+    }
+
     static const u8* mStrBuff;
     static size_t mStrBuffSize;
 

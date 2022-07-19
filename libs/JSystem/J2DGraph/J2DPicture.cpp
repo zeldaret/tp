@@ -274,6 +274,13 @@ asm J2DPicture::J2DPicture() {
 
 /* 802FC118-802FC1D4 2F6A58 00BC+00 0/0 1/1 0/0 .text
  * __ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP10JKRArchive */
+#ifdef NONMATCHING
+J2DPicture::J2DPicture(J2DPane* p_pane, JSURandomInputStream* p_stream, JKRArchive* p_archive)
+    : field_0x10a(), field_0x12c(NULL), mWhite(), mBlack(), mCornerColor(), field_0x148(),
+      field_0x14c() {
+    private_readStream(p_pane, p_stream, p_archive);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -282,6 +289,7 @@ asm J2DPicture::J2DPicture(J2DPane* param_0, JSURandomInputStream* param_1, JKRA
 #include "asm/JSystem/J2DGraph/J2DPicture/__ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP10JKRArchive.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80456260-80456268 004860 0008+00 1/1 0/0 0/0 .sdata2          @1739 */
@@ -289,6 +297,111 @@ SECTION_SDATA2 static f64 lit_1739 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802FC1D4-802FC708 2F6B14 0534+00 0/0 1/1 0/0 .text
  * __ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP11J2DMaterial */
+#ifdef NONMATCHING
+J2DPicture::J2DPicture(J2DPane* p_pane, JSURandomInputStream* p_stream, J2DMaterial* p_material)
+    : field_0x10a(), mPalette(NULL), mWhite(), mBlack(), mCornerColor(), field_0x148(),
+      field_0x14c() {
+    int position = p_stream->getPosition();
+
+    J2DPicHeader header;
+    p_stream->read(&header, sizeof(header));
+    mKind = 'PIC1';
+
+    int position2 = p_stream->getPosition();
+
+    J2DPaneHeader panHeader;
+    p_stream->peek(&panHeader, sizeof(panHeader));
+    p_pane->makePaneExStream(p_pane, p_stream);
+    p_stream->seek(position2 + panHeader.mSize, JSUStreamSeekFrom_SET);
+
+    J2DScrnBlockPictureParameter picInfo;
+    p_stream->read(&picInfo, sizeof(picInfo));
+    u16 matNum = picInfo.field_0x4;
+
+    for (int i = 0; i < 4; i++) {
+        field_0x10a[i] = picInfo.field_0x10[i];
+        mCornerColor[i] = picInfo.mCornerColor[i];
+    }
+
+    p_stream->seek(position + header.mSize, JSUStreamSeekFrom_SET);
+
+    J2DMaterial* material = NULL;
+    if (matNum != 0xFFFF) {
+        material = &p_material[matNum];
+    }
+
+    mAlpha = 255;
+    if (material != NULL) {
+        mAlpha = material->getColorBlock()->getMatColor(0)->a;
+    }
+
+    mBlack = JUtility::TColor(0);
+    mWhite = JUtility::TColor(0xFFFFFFFF);
+    mTextureCount = 0;
+
+    if (material != NULL && material->getTevBlock() != NULL) {
+        u8 texgenNum = material->getTexGenBlock()->getTexGenNum();
+        u32 stageNum = material->getTevBlock()->getTevStageNum();
+
+        if ((texgenNum == 1 && stageNum != 1) || (texgenNum != 1 && (int)stageNum != texgenNum + 1)) {
+            J2DGXColorS10* color0p = material->getTevBlock()->getTevColor(0);
+            GXColorS10 color0;
+            color0.r = color0p->r;
+            color0.g = color0p->g;
+            color0.b = color0p->b;
+            color0.a = color0p->a;
+
+            J2DGXColorS10* color1p = material->getTevBlock()->getTevColor(1);
+            GXColorS10 color1;
+            color1.r = color1p->r;
+            color1.g = color1p->g;
+            color1.b = color1p->b;
+            color1.a = color1p->a;
+
+            mBlack = JUtility::TColor(((u8)color0.r << 0x18) | ((u8)color0.g << 0x10) |
+                                           ((u8)color0.b << 8) | (u8)color0.a);
+            mWhite = JUtility::TColor(((u8)color1.r << 0x18) | ((u8)color1.g << 0x10) |
+                                           ((u8)color1.b << 8) | (u8)color1.a);
+        }
+
+        if (texgenNum <= 2) {
+            texgenNum = 2;
+        }
+        mTextureCount = texgenNum;
+    }
+
+    field_0x109 = 0;
+
+    for (u32 i = 0; i < 2; i++) {
+        mTexture[i] = NULL;
+
+        if (material != NULL && material->getTevBlock() != NULL) {
+            JUTTexture* tex = material->getTevBlock()->getTexture(i);
+
+            if (tex != NULL) {
+                mTexture[i] = tex;
+                field_0x109 |= (1 << i);
+            }
+        }
+    }
+
+    if (material != NULL && material->getTevBlock() != NULL) {
+        material->getTevBlock()->setUndeleteFlag(0xF0);
+    }
+
+    mPalette = NULL;
+
+    JUtility::TColor color(0xFFFFFFFF);
+    JUtility::TColor alpha(0xFFFFFFFF);
+    if (material != NULL && material->getTevBlock() != NULL) {
+        color = *material->getTevBlock()->getTevKColor(3);
+        alpha = *material->getTevBlock()->getTevKColor(1);
+    }
+
+    setBlendColorRatio(color.a, color.b);
+    setBlendAlphaRatio(alpha.a, alpha.b);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -297,12 +410,31 @@ asm J2DPicture::J2DPicture(J2DPane* param_0, JSURandomInputStream* param_1, J2DM
 #include "asm/JSystem/J2DGraph/J2DPicture/__ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP11J2DMaterial.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80456268-8045626C 004868 0004+00 9/9 0/0 0/0 .sdata2          @1767 */
 SECTION_SDATA2 static f32 lit_1767 = 1.0f;
 
 /* 802FC708-802FC800 2F7048 00F8+00 0/0 20/20 1/1 .text            __ct__10J2DPictureFPC7ResTIMG */
+#ifdef NONMATCHING
+J2DPicture::J2DPicture(ResTIMG const* p_timg)
+    : field_0x10a(), mWhite(), mBlack(), mCornerColor(), field_0x148(),
+      field_0x14c() {
+    for (int i = 0; i < 2; i++) {
+        mTexture[i] = NULL;
+    }
+
+    field_0x109 = 0;
+    mTextureCount = 0;
+
+    if (p_timg != NULL) {
+        append(p_timg, 1.0f);
+    }
+    mPalette = NULL;
+    initinfo();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -311,9 +443,26 @@ asm J2DPicture::J2DPicture(ResTIMG const* param_0) {
 #include "asm/JSystem/J2DGraph/J2DPicture/__ct__10J2DPictureFPC7ResTIMG.s"
 }
 #pragma pop
+#endif
 
 /* 802FC800-802FC8E8 2F7140 00E8+00 0/0 5/5 0/0 .text
  * __ct__10J2DPictureFUxRCQ29JGeometry8TBox2<f>PC7ResTIMGPC7ResTLUT */
+#ifdef NONMATCHING
+J2DPicture::J2DPicture(u64 tag, JGeometry::TBox2<f32> const& bounds,
+                           ResTIMG const* p_timg, ResTLUT const* p_tlut)
+    : J2DPane(tag, bounds), field_0x10a(), mPalette(NULL), mWhite(), mBlack(), mCornerColor(), field_0x148(),
+      field_0x14c() {
+    for (int i = 0; i < 2; i++) {
+        mTexture[i] = NULL;
+    }
+
+    field_0x109 = 0;
+    mTextureCount = 0;
+
+    private_initiate(p_timg, p_tlut);
+    initinfo();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -323,6 +472,7 @@ asm J2DPicture::J2DPicture(u64 param_0, JGeometry::TBox2<f32> const& param_1,
 #include "asm/JSystem/J2DGraph/J2DPicture/func_802FC800.s"
 }
 #pragma pop
+#endif
 
 /* 802FC8E8-802FCCDC 2F7228 03F4+00 1/1 0/0 0/0 .text
  * private_readStream__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP10JKRArchive */
@@ -374,7 +524,7 @@ asm void J2DPicture::private_initiate(ResTIMG const* param_0, ResTLUT const* par
 // matches with real literal
 #ifdef NONMATCHING
 void J2DPicture::initinfo() {
-    id = 'PIC1';
+    mKind = 'PIC1';
     setTexCoord(NULL, BIND15, MIRROR0, false);
     setBlendRatio(lit_1767, lit_1767);
 
@@ -400,7 +550,7 @@ J2DPicture::~J2DPicture() {
             delete mTexture[i];
         }
     }
-    delete field_0x12c;
+    delete mPalette;
 }
 
 /* 802FD098-802FD168 2F79D8 00D0+00 1/0 0/0 0/0 .text            prepareTexture__10J2DPictureFUc */

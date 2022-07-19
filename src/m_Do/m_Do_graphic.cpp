@@ -762,9 +762,9 @@ static void drawItem3D() {
     dMenu_Collect3D_c::setupItem3D(item_mtx);
     setLight();
     j3dSys.setViewMtx(item_mtx);
-    GXSetClipMode(GX_ENABLE);
+    GXSetClipMode(GX_CLIP_DISABLE);
     dComIfGd_drawListItem3d();
-    GXSetClipMode(GX_DISABLE);
+    GXSetClipMode(GX_CLIP_ENABLE);
     j3dSys.reinitGX();
 }
 

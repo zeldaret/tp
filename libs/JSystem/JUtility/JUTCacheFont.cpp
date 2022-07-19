@@ -443,7 +443,7 @@ asm u16 JUTResFont::getFontType() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u16 JUTResFont::getLeading() const {
+asm int JUTResFont::getLeading() const {
     nofralloc
 #include "asm/JSystem/JUtility/JUTCacheFont/getLeading__10JUTResFontCFv.s"
 }

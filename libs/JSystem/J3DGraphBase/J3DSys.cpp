@@ -148,7 +148,7 @@ void J3DSys::drawInit() {
     GXSetCurrentMtx(GX_PNMTX0);
     GXSetCullMode(GX_CULL_BACK);
     GXSetCoPlanar(GX_FALSE);
-    GXSetClipMode(GX_FALSE);
+    GXSetClipMode(GX_CLIP_ENABLE);
     GXSetColorUpdate(GX_TRUE);
     GXSetDither(GX_TRUE);
     GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_NOOP);

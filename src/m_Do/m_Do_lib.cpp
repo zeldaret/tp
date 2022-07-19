@@ -77,7 +77,7 @@ bool mDoLib_setResTimgObj(ResTIMG const* res, _GXTexObj* o_texObj, u32 param_2,
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoLib_setResTimgObj(ResTIMG const* param_0, _GXTexObj* param_1, u32 param_2,
+asm bool mDoLib_setResTimgObj(ResTIMG const* param_0, _GXTexObj* param_1, u32 param_2,
                               _GXTlutObj* param_3) {
     nofralloc
 #include "asm/m_Do/m_Do_lib/mDoLib_setResTimgObj__FPC7ResTIMGP9_GXTexObjUlP10_GXTlutObj.s"

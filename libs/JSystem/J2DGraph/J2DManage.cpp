@@ -26,6 +26,7 @@ void* J2DDataManage::get(char const* name) {
 void* J2DDataManage::get(JSUInputStream* inputStream) {
     inputStream->skip(1);
     u8 nameLen = inputStream->readU8();
+
     if (nameLen == 0) {
         return NULL;
     } else {
@@ -45,18 +46,18 @@ s8* J2DResReference::getResReference(u16 idx) const {
     }
 }
 
-/* ############################################################################################## */
-/* 804349C0-80434AC8 0616E0 0101+07 1/1 0/0 0/0 .bss             p_name$494 */
-static char p_name[257];
-
 /* 8030CF44-8030D098 307884 0154+00 0/0 2/2 0/0 .text            getName__15J2DResReferenceCFUs */
 char* J2DResReference::getName(u16 idx) const {
+    static char p_name[257];
+
     s8* resRef = this->getResReference(idx);
+
     if (resRef == NULL) {
         p_name[0] = 0;
         return p_name;
     } else {
         s8 first = resRef[0];
+
         switch (first) {
         case 2:
         case 3:
@@ -72,6 +73,7 @@ char* J2DResReference::getName(u16 idx) const {
                     break;
                 }
             }
+
             s32 i = 0;
             pos++;
             for (; pos < resRef[1] + 2; i++, pos++) {

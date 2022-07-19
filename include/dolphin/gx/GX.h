@@ -432,6 +432,7 @@ typedef enum _GXTexFmt {
     /* 0x13 */ GX_TF_Z16 = (0x3 | _GX_TF_ZTF),
     /* 0x16 */ GX_TF_Z24X8 = (0x6 | _GX_TF_ZTF),
     /* 0x20 */ _GX_TF_CTF = 0x20,
+    /* 0x28 */ _GX_CTF_R8 = 0x28,
     /* 0x30 */ GX_CTF_Z4 = (0x0 | _GX_TF_ZTF | _GX_TF_CTF),
     /* 0x39 */ GX_CTF_Z8M = (0x9 | _GX_TF_ZTF | _GX_TF_CTF),
     /* 0x3A */ GX_CTF_Z8L = (0xA | _GX_TF_ZTF | _GX_TF_CTF),
@@ -864,6 +865,14 @@ typedef enum _GXCommand {
     GX_CMD_LOAD_XF_REG = 0x10,
 } GXCommand;
 
+typedef enum _GXClipMode {
+    /* 0x0 */ GX_CLIP_ENABLE,
+    /* 0x1 */ GX_CLIP_DISABLE,
+} GXClipMode;
+
+#define GX_LOAD_BP_REG 0x61
+#define GX_NOP 0
+
 extern "C" {
 f32 GXGetYScaleFactor(u16 efb_height, u16 xfb_height);
 u16 GXGetNumXfbLines(u32 efb_height, f32 y_scale);
@@ -934,7 +943,7 @@ void GXSetAlphaCompare(GXCompare, u8, GXAlphaOp, GXCompare, u8);
 void GXSetAlphaUpdate(GXBool);
 void GXSetChanAmbColor(GXChannelID, GXColor);
 void GXSetChanMatColor(GXChannelID, GXColor);
-void GXSetClipMode(GXBool);
+void GXSetClipMode(GXClipMode);
 void GXSetCoPlanar(GXBool);
 void GXSetColorUpdate(GXBool);
 void GXSetCopyFilter(GXBool, u8[12][2], GXBool, u8[7]);
@@ -979,6 +988,7 @@ void GXInitFifoPtrs(GXFifoObj*, void*, void*);
 void GXSaveCPUFifo(GXFifoObj*);
 void GXSetMisc(u32 opt, u32 val);
 void GXInitTexCacheRegion(GXTexRegion* region, GXBool, u32, GXTexCacheSize, u32, GXTexCacheSize);
+void GXPeekZ(u16 x, u16 y, u32* dst);
 
 #define GFX_FIFO(T) (*(volatile T*)0xCC008000)
 

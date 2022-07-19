@@ -41,9 +41,11 @@ public:
     J2DPEBlock* getPEBlock() { return &mPEBlock; }
     J2DTevBlock* getTevBlock() { return mTevBlock; }
     J2DIndBlock* getIndBlock() { return mIndBlock; }
+    bool isVisible() const { return mVisible; }
+    int getMaterialAlphaCalc() const { return mMaterialAlphaCalc; }
 
-private:
-    /* 0x04 */ int field_0x4;
+// private:
+    /* 0x04 */ void* field_0x4;
     /* 0x08 */ int field_0x8;
     /* 0x0C */ u16 mIndex;
     /* 0x0E */ bool mVisible;

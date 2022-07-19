@@ -6,40 +6,7 @@
 #include "d/d_kantera_icon_meter.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__15dKantera_icon_cFv();
-extern "C" void __dt__15dKantera_icon_cFv();
-extern "C" void initiate__15dKantera_icon_cFv();
-extern "C" void setAlphaRate__15dKantera_icon_cFf();
-extern "C" void setPos__15dKantera_icon_cFff();
-extern "C" void setScale__15dKantera_icon_cFff();
-extern "C" void setNowGauge__15dKantera_icon_cFUsUs();
-extern "C" void draw__19dDlst_KanteraIcon_cFv();
-extern "C" void __dt__19dDlst_KanteraIcon_cFv();
-extern "C" extern char const* const d_d_kantera_icon_meter__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap();
-extern "C" void dPaneClass_showNullPane__FP9J2DScreen();
-extern "C" void setAlphaRate__13CPaneMgrAlphaFf();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void __ct__9J2DScreenFv();
-extern "C" void setPriority__9J2DScreenFPCcUlP10JKRArchive();
-extern "C" void draw__9J2DScreenFffPC14J2DGrafContext();
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 g_drawHIO[3880];
-
-//
-// Declarations:
-//
+#include "d/meter/d_meter_HIO.h"
 
 /* 801AE938-801AE974 1A9278 003C+00 0/0 3/3 0/0 .text            __ct__15dKantera_icon_cFv */
 dKantera_icon_c::dKantera_icon_c() {
@@ -80,38 +47,14 @@ void dKantera_icon_c::setAlphaRate(f32 alphaRate) {
 }
 
 /* 801AEBA0-801AEBF4 1A94E0 0054+00 0/0 3/3 0/0 .text            setPos__15dKantera_icon_cFff */
-// need g_drawHIO global setup
-#ifdef NONMATCHING
 void dKantera_icon_c::setPos(f32 x, f32 y) {
-    mpParent->translate(x + g_drawHIO.mLanternIconMeterPosX, y + g_drawHIO.mLanternIconMeterPosY)
+    mpParent->translate(x + g_drawHIO.mLanternIconMeterPosX, y + g_drawHIO.mLanternIconMeterPosY);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKantera_icon_c::setPos(f32 param_0, f32 param_1) {
-    nofralloc
-#include "asm/d/d_kantera_icon_meter/setPos__15dKantera_icon_cFff.s"
-}
-#pragma pop
-#endif
 
 /* 801AEBF4-801AEC44 1A9534 0050+00 0/0 4/4 0/0 .text            setScale__15dKantera_icon_cFff */
-// need g_drawHIO global setup
-#ifdef NONMATCHING
 void dKantera_icon_c::setScale(f32 h, f32 v) {
-    mpParent->scale(h * g_drawHIO.mLanternIconMeterSize, v * g_drawHIO.mLanternIconMeterSize)
+    mpParent->scale(h * g_drawHIO.mLanternIconMeterSize, v * g_drawHIO.mLanternIconMeterSize);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKantera_icon_c::setScale(f32 param_0, f32 param_1) {
-    nofralloc
-#include "asm/d/d_kantera_icon_meter/setScale__15dKantera_icon_cFff.s"
-}
-#pragma pop
-#endif
 
 /* 801AEC44-801AECB8 1A9584 0074+00 0/0 4/4 0/0 .text            setNowGauge__15dKantera_icon_cFUsUs
  */

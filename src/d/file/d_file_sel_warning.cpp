@@ -323,7 +323,7 @@ asm void dFile_warning_c::setFontColor(JUtility::TColor param_0, JUtility::TColo
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DTextBox::setBlackWhite(JUtility::TColor param_0, JUtility::TColor param_1) {
+asm bool J2DTextBox::setBlackWhite(JUtility::TColor param_0, JUtility::TColor param_1) {
     nofralloc
 #include "asm/d/file/d_file_sel_warning/setBlackWhite__10J2DTextBoxFQ28JUtility6TColorQ28JUtility6TColor.s"
 }

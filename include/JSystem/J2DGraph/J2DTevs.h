@@ -112,6 +112,24 @@ private:
     GXIndTexAlphaSel getAlphaSel() const { return (GXIndTexAlphaSel)((mFlags >> 22) & 0x03); }
 };
 
+struct J2DIndTevStageInfo {
+    /* 0x0 */ u8 field_0x0;
+    /* 0x1 */ u8 field_0x1;
+    /* 0x2 */ u8 field_0x2;
+    /* 0x3 */ u8 field_0x3;
+    /* 0x4 */ u8 field_0x4;
+    /* 0x5 */ u8 field_0x5;
+    /* 0x6 */ u8 field_0x6;
+    /* 0x7 */ u8 field_0x7;
+    /* 0x8 */ int field_0x8;
+};
+
+inline u32 J2DCalcIndTevStage(J2DIndTevStageInfo info) {    
+    return (info.field_0x8 << 22) | (info.field_0x7 << 21) | (info.field_0x6 << 20) |
+           (info.field_0x3 << 16) | (info.field_0x5 << 11) | (info.field_0x4 << 8) |
+           (info.field_0x2 << 4)  | (info.field_0x1 << 2)  | info.field_0x0;
+}
+
 struct J2DTexCoordInfo {
     /* 0x0 */ u8 mTexGenType;
     /* 0x1 */ u8 mTexGenSrc;
@@ -137,8 +155,12 @@ class J2DTevOrder {
 public:
     /* 802F1B70 */ J2DTevOrder();
 
-private:
+    GXChannelID getColor() const { return (GXChannelID)mTevOrderInfo.mColor; }
+    GXTexMapID getTexMap() const { return (GXTexMapID)mTevOrderInfo.mTexMap; }
+    GXTexCoordID getTexCoord() const { return (GXTexCoordID)mTevOrderInfo.mTexCoord; }
+
     /* 0x0 */ J2DTevOrderInfo mTevOrderInfo;
+    /* 0x4 */ u8 field_0x4;
 };
 
 struct J2DTevStageInfo {
@@ -163,11 +185,40 @@ struct J2DTevStageInfo {
     /* 0x12 */ u8 field_0x12;
 };
 
+struct J2DTevSwapModeInfo {
+    /* 0x0 */ u8 field_0x0;
+    /* 0x1 */ u8 field_0x1;
+    /* 0x2 */ u8 field_0x2;
+    /* 0x3 */ u8 field_0x3;
+};
+
 class J2DTevStage {
 public:
     /* 802F4110 */ J2DTevStage(J2DTevStageInfo const&);
     /* 802F1940 */ J2DTevStage();
     /* 802F19A8 */ void setTevStageInfo(J2DTevStageInfo const&);
+
+    void setTevSwapModeInfo(const J2DTevSwapModeInfo& swapInfo) {
+        setTexSel(swapInfo.field_0x1);
+        setRasSel(swapInfo.field_0x0);
+    }
+
+    void setTexSel(u8 param_0) {
+        field_0x7 = (field_0x7 & ~12) | (param_0 * 4);
+    }
+
+    void setRasSel(u8 param_0) {
+        field_0x7 = (field_0x7 & ~3) | param_0;
+    }
+
+    void operator=(J2DTevStage const& other) {
+        field_0x1 = other.field_0x1;
+        field_0x2 = other.field_0x2;
+        field_0x3 = other.field_0x3;
+        field_0x5 = other.field_0x5;
+        field_0x6 = other.field_0x6;
+        field_0x7 = other.field_0x7;
+    }
 
 private:
     /* 0x0 */ u8 field_0x0;
@@ -178,13 +229,6 @@ private:
     /* 0x5 */ u8 field_0x5;
     /* 0x6 */ u8 field_0x6;
     /* 0x7 */ u8 field_0x7;
-};
-
-struct J2DTevSwapModeInfo {
-    /* 0x0 */ u8 mR;
-    /* 0x1 */ u8 mG;
-    /* 0x2 */ u8 mB;
-    /* 0x3 */ u8 mA;
 };
 
 class J2DTevSwapModeTable {

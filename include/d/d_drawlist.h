@@ -36,7 +36,7 @@ public:
 class dDlst_FileInfo_c : public dDlst_base_c {
 public:
     dDlst_FileInfo_c() {}
-    virtual void draw(void);
+    virtual void draw();
     virtual ~dDlst_FileInfo_c();  // inlined
 
     /* 0x04 */ J2DScreen* Scr;
@@ -63,15 +63,40 @@ private:
     /* 0x160 */ u8 mAlpha;
 };
 
+class dDlst_2DT2_c : public dDlst_base_c {
+public:
+    /* 80052354 */ virtual void draw();
+    /* 80052B00 */ dDlst_2DT2_c();
+    /* 80052B4C */ void init(ResTIMG*, f32, f32, f32, f32, u8, u8, u8, f32, f32);
+
+    /* 0x04 */ GXTexObj mTexObj;
+    /* 0x24 */ f32 field_0x24;
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ f32 field_0x30;
+    /* 0x34 */ f32 mScaleX;
+    /* 0x38 */ f32 mScaleY;
+    /* 0x3C */ GXColor field_0x3c;
+    /* 0x40 */ GXColor field_0x40;
+    /* 0x44 */ u8 field_0x44;
+    /* 0x45 */ u8 field_0x45;
+    /* 0x46 */ u8 field_0x46;
+};  // Size: 0x48
+
 class dDlst_peekZ_c {
 public:
-    dDlst_peekZ_c() { field_0x0 = 0; }
-    /* 80056018 */ void newData(s16, s16, u32*);
+    struct dDlst_peekZ_entry {
+        /* 0x0 */ s16 x;
+        /* 0x2 */ s16 y;
+        /* 0x4 */ u32* dst;
+    };
+
+    dDlst_peekZ_c() { mCount = 0; }
+    /* 80056018 */ int newData(s16, s16, u32*);
     /* 80056080 */ void peekData();
 
-    /* 0x0 */ u8 field_0x0;
-    /* 0x2 */ u16 field_0x2;
-    /* 0x4 */ u32* field_0x4;
+    /* 0x0 */ u8 mCount;
+    /* 0x4 */ dDlst_peekZ_entry mEntries[0x40];
 };
 
 class dDlst_shadowSimple_c {
@@ -93,7 +118,9 @@ public:
     /* 80054288 */ void set(cBgD_Vtx_t*, u16, u16, u16, cM3dGPla*);
     /* 800543B4 */ void draw();
 
-    /* 0x0 */ void* field_0x0;  // vtable
+    virtual void getTri() = 0;
+    virtual s32 getTriMax() = 0;
+
     /* 0x4 */ u16 mCount;
     /* 0x6 */ u8 field_0x6[2];
 };
@@ -106,12 +133,11 @@ public:
     /* 0x0 */ cXyz mPos[3];
 };
 
-class dDlst_shadowRealPoly_c {
+class dDlst_shadowRealPoly_c : public dDlst_shadowPoly_c {
 public:
-    /* 800569A0 */ void getTri();
-    /* 800569A8 */ s32 getTriMax();
+    /* 800569A0 */ virtual void getTri();
+    /* 800569A8 */ virtual s32 getTriMax();
 
-    /* 0x0 */ dDlst_shadowPoly_c mShadowPoly;
     /* 0x8 */ dDlst_shadowTri_c mShadowTri[256];
 };
 
@@ -123,7 +149,7 @@ public:
     /* 80054BD0 */ void setShadowRealMtx(cXyz*, cXyz*, f32, f32, f32, dKy_tevstr_c*);
     /* 80055028 */ void set(u32, J3DModel*, cXyz*, f32, f32, dKy_tevstr_c*, f32, f32);
     /* 800551D4 */ bool add(J3DModel*);
-    /* 800561F8 */ ~dDlst_shadowReal_c();
+    /* 800561F8 */ ~dDlst_shadowReal_c() {}
     /* 800562D0 */ dDlst_shadowReal_c();
 
 private:
@@ -174,33 +200,33 @@ private:
 
 class dDlst_window_c {
 public:
-    dDlst_window_c(void) {}
+    dDlst_window_c() {}
     ~dDlst_window_c() {}
     /* 80051AC0 */ void setViewPort(f32, f32, f32, f32, f32, f32);
     /* 80051ADC */ void setScissor(f32, f32, f32, f32);
 
     void setCameraID(int id) { mCameraID = id; }
     void setMode(int mode) { mMode = mode; }
-    f32 getViewPort() { return mViewport; }
+    f32 getViewPort() { return mXOrig; }
 
 private:
-    /* 0x00 */ f32 mViewport;
-    /* 0x04 */ f32 field_0x04;
-    /* 0x08 */ f32 field_0x08;
-    /* 0x0C */ f32 field_0x0C;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 mScissor;
-    /* 0x1C */ f32 field_0x1c;
-    /* 0x20 */ f32 field_0x20;
-    /* 0x24 */ f32 field_0x24;
+    /* 0x00 */ f32 mXOrig;
+    /* 0x04 */ f32 mYOrig;
+    /* 0x08 */ f32 mWidth;
+    /* 0x0C */ f32 mHeight;
+    /* 0x10 */ f32 mNearZ;
+    /* 0x14 */ f32 mFarZ;
+    /* 0x18 */ f32 mScissorXOrig;
+    /* 0x1C */ f32 mScissorYOrig;
+    /* 0x20 */ f32 mScissorWidth;
+    /* 0x24 */ f32 mScissorHeight;
     /* 0x28 */ s8 mCameraID;
     /* 0x29 */ s8 mMode;
 };
 
 STATIC_ASSERT(sizeof(dDlst_window_c) == 0x2C);
 
-extern u8 data_80450ED0;  // Wipe
+extern u8 mWipe__12dDlst_list_c;  // Wipe
 
 struct view_port_class;
 struct view_class;
@@ -222,28 +248,52 @@ public:
     /* 800568D8 */ static void wipeIn(f32);
     /* 80056900 */ void calcWipe();
 
-    void set2DOpa(dDlst_base_c* dlst) { set(field_0x1b4, field_0x1b8, dlst); }
-    void set2DOpaTop(dDlst_base_c* dlst) { set(field_0xac, field_0xb0, dlst); }
+    enum DrawBuffer {
+        /* 0x00 */ DB_OPA_LIST_SKY,
+        /* 0x01 */ DB_XLU_LIST_SKY,
+        /* 0x02 */ DB_LIST_P0,
+        /* 0x03 */ DB_OPA_LIST_BG,
+        /* 0x04 */ DB_XLU_LIST_BG,
+        /* 0x05 */ DB_OPA_LIST_DARK_BG,
+        /* 0x06 */ DB_XLU_LIST_DARK_BG,
+        /* 0x07 */ DB_OPA_LIST,
+        /* 0x08 */ DB_XLU_LIST,
+        /* 0x09 */ DB_OPA_LIST_DARK,
+        /* 0x0A */ DB_XLU_LIST_DARK,
+        /* 0x0B */ DB_OPA_LIST_PACKET,
+        /* 0x0C */ DB_LIST_FILTER,
+        /* 0x0D */ DB_OPA_LIST_ITEM3D,
+        /* 0x0E */ DB_XLU_LIST_ITEM3D,
+        /* 0x0F */ DB_OPA_LIST_INVISIBLE,
+        /* 0x10 */ DB_XLU_LIST_INVISIBLE,
+        /* 0x11 */ DB_LIST_Z_XLU,
+        /* 0x12 */ DB_LIST_2D_SCREEN,
+        /* 0x13 */ DB_LIST_MIDDLE,
+        /* 0x14 */ DB_LIST_3D_LAST,
+    };
+
+    void set2DOpa(dDlst_base_c* dlst) { set(mp2DOpaSet[0], mp2DOpaSet[1], dlst); }
+    void set2DOpaTop(dDlst_base_c* dlst) { set(mp2DOpaTopSet[0], mp2DOpaTopSet[1], dlst); }
     view_class* getView() { return mView; }
     void setView(view_class* view) { mView = view; }
     void setWindow(dDlst_window_c* window) { mWindow = window; }
     void setViewport(view_port_class* port) { mViewport = port; }
-    J3DDrawBuffer* getOpaListFilter() { return mListFilter; }
-    J3DDrawBuffer* getOpaListP0() { return mListP0; }
-    J3DDrawBuffer* getOpaListPacket() { return mOpaListPacket; }
+    J3DDrawBuffer* getOpaListFilter() { return mDrawBuffers[DB_LIST_FILTER]; }
+    J3DDrawBuffer* getOpaListP0() { return mDrawBuffers[DB_LIST_P0]; }
+    J3DDrawBuffer* getOpaListPacket() { return mDrawBuffers[DB_OPA_LIST_PACKET]; }
     void setXluDrawList(J3DDrawBuffer* buffer) { j3dSys.setDrawBuffer(buffer, XLU_BUFFER); }
     void setOpaDrawList(J3DDrawBuffer* buffer) { j3dSys.setDrawBuffer(buffer, OPA_BUFFER); }
-    void setXluListSky() { setXluDrawList(mpXluListSky); }
-    void setOpaListSky() { setOpaDrawList(mOpaListSky); }
-    void setXluListDark() { setXluDrawList(mXluListDark); }
-    void setOpaListDark() { setOpaDrawList(mOpaListDark); }
-    void setOpaList() { setOpaDrawList(mOpaList); }
-    void setXluList() { setXluDrawList(mXluList); }
-    void setOpaListItem3D() { setOpaDrawList(mOpaListItem3d); }
-    void setXluListItem3D() { setXluDrawList(mXluListItem3d); }
-    void setXluListBG() { setXluDrawList(mXluListBG); }
-    void setOpaListBG() { setOpaDrawList(mOpaListBG); }
-    void setXluList2DScreen() { setXluDrawList(mList2DScreen); }
+    void setXluListSky() { setXluDrawList(mDrawBuffers[DB_XLU_LIST_SKY]); }
+    void setOpaListSky() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST_SKY]); }
+    void setXluListDark() { setXluDrawList(mDrawBuffers[DB_XLU_LIST_DARK]); }
+    void setOpaListDark() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST_DARK]); }
+    void setOpaList() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST]); }
+    void setXluList() { setXluDrawList(mDrawBuffers[DB_XLU_LIST]); }
+    void setOpaListItem3D() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST_ITEM3D]); }
+    void setXluListItem3D() { setXluDrawList(mDrawBuffers[DB_XLU_LIST_ITEM3D]); }
+    void setXluListBG() { setXluDrawList(mDrawBuffers[DB_XLU_LIST_BG]); }
+    void setOpaListBG() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST_BG]); }
+    void setXluList2DScreen() { setXluDrawList(mDrawBuffers[DB_LIST_2D_SCREEN]); }
 
     void peekZdata() { mPeekZ.peekData(); }
 
@@ -259,52 +309,25 @@ public:
                                       param_6);
     }
 
-    static void offWipe() { data_80450ED0 = 0; }
+    static void offWipe() { mWipe = 0; }
     static f32 getWipeRate() { return mWipeRate; }
 
-    static u8 mWipeDlst[72];
-    static u8 mWipeColor[4];
+    static dDlst_2DT2_c mWipeDlst;
+    static GXColor mWipeColor;
     static f32 mWipeRate;
     static f32 mWipeSpeed[1 + 1 /* padding */];
+    static u8 mWipe;
 
 private:
-    /* 0x00000 */ J3DDrawBuffer* mOpaListSky;
-    /* 0x00004 */ J3DDrawBuffer* mpXluListSky;
-    /* 0x00008 */ J3DDrawBuffer* mListP0;
-    /* 0x0000C */ J3DDrawBuffer* mOpaListBG;
-    /* 0x00010 */ J3DDrawBuffer* mXluListBG;
-    /* 0x00014 */ J3DDrawBuffer* mOpaListDarkBG;
-    /* 0x00018 */ J3DDrawBuffer* mXluListDarkBG;
-    /* 0x0001C */ J3DDrawBuffer* mOpaList;
-    /* 0x00020 */ J3DDrawBuffer* mXluList;
-    /* 0x00024 */ J3DDrawBuffer* mOpaListDark;
-    /* 0x00028 */ J3DDrawBuffer* mXluListDark;
-    /* 0x0002C */ J3DDrawBuffer* mOpaListPacket;
-    /* 0x00030 */ J3DDrawBuffer* mListFilter;
-    /* 0x00034 */ J3DDrawBuffer* mOpaListItem3d;
-    /* 0x00038 */ J3DDrawBuffer* mXluListItem3d;
-    /* 0x0003C */ J3DDrawBuffer* mOpaListInvisible;
-    /* 0x00040 */ J3DDrawBuffer* mXluListInvisible;
-    /* 0x00044 */ J3DDrawBuffer* mListZxlu;
-    /* 0x00048 */ J3DDrawBuffer* mList2DScreen;
-    /* 0x0004C */ J3DDrawBuffer* mListMiddle;
-    /* 0x00050 */ J3DDrawBuffer* mList3Dlast;
-    /* 0x00054 */ dDlst_list_c** field_0x54;  // array?
-    /* 0x00058 */ u8 field_0x58[0xC];
-    /* 0x00064 */ dDlst_list_c* field_0x64;
-    /* 0x00068 */ dDlst_list_c** field_0x68;
-    /* 0x0006C */ dDlst_list_c** field_0x6c;  // array?
-    /* 0x00070 */ u8 field_0x70[0x3C];
-    /* 0x000AC */ dDlst_base_c** field_0xac;
-    /* 0x000B0 */ dDlst_base_c** field_0xb0;
-    /* 0x000B4 */ dDlst_list_c** field_0xb4;  // array?
-    /* 0x000B8 */ u8 field_0xb8[0xFC];
-    /* 0x001B4 */ dDlst_base_c** field_0x1b4;
-    /* 0x001B8 */ dDlst_base_c** field_0x1b8;
-    /* 0x001BC */ dDlst_list_c** field_0x1bc;  // array?
-    /* 0x001C0 */ u8 field_0x1c0[0x7C];
-    /* 0x0023C */ dDlst_list_c* field_0x23c;
-    /* 0x00240 */ dDlst_list_c** field_0x240;
+    /* 0x00000 */ J3DDrawBuffer* mDrawBuffers[21];
+    /* 0x00054 */ dDlst_base_c** mpCopy2DDraw[4];
+    /* 0x00064 */ dDlst_base_c** mpCopy2DSet[2];
+    /* 0x0006C */ dDlst_base_c** mp2DOpaTopDraw[16];
+    /* 0x000AC */ dDlst_base_c** mp2DOpaTopSet[2];
+    /* 0x000B4 */ dDlst_base_c** mp2DOpaDraw[64];
+    /* 0x001B4 */ dDlst_base_c** mp2DOpaSet[2];
+    /* 0x001BC */ dDlst_base_c** mp2DXluDraw[32];
+    /* 0x0023C */ dDlst_base_c** mp2DXluSet[2];
     /* 0x00244 */ dDlst_window_c* mWindow;
     /* 0x00248 */ view_port_class* mViewport;
     /* 0x0024C */ view_class* mView;
@@ -312,9 +335,8 @@ private:
     /* 0x0025C */ dDlst_shadowControl_c mShadowControl;
     /* 0x16154 */ mDoExt_3DlineMatSortPacket m3DLineMatSortPacket[3];
     /* 0x16190 */ dDlst_peekZ_c mPeekZ;
-    /* 0x16198 */ u8 field_0x16198[8];  // might be part of peekZ
-};                                      // Size: 0x161A0
+};  // Size: 0x16394
 
-STATIC_ASSERT(sizeof(dDlst_list_c) == 0x161A0);
+STATIC_ASSERT(sizeof(dDlst_list_c) == 0x16394);
 
 #endif /* D_D_DRAWLIST_H */

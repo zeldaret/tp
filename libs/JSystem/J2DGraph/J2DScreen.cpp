@@ -210,7 +210,7 @@ SECTION_SDATA2 static f32 lit_1563[1 + 1 /* padding */] = {
 #ifdef NONMATCHING
 J2DScreen::J2DScreen()
     : J2DPane(NULL, true, 'root', JGeometry::TBox2<f32>(0.0f, 0.0f, 0.0f, 0.0f)), mColor() {
-    _4 = -1;
+    field_0x4 = -1;
     mScissor = false;
     mMaterialNum = 0;
     mMaterials = NULL;
@@ -255,61 +255,50 @@ void J2DScreen::clean() {
 
 /* 802F8648-802F8748 2F2F88 0100+00 0/0 58/58 4/4 .text setPriority__9J2DScreenFPCcUlP10JKRArchive
  */
-#ifdef NONMATCHING
-bool J2DScreen::setPriority(char const* resName, u32 param_1, JKRArchive* archive) {
-    if (archive == NULL) {
+bool J2DScreen::setPriority(char const* resName, u32 param_1, JKRArchive* p_archive) {
+    if (p_archive == NULL) {
         return false;
     }
 
-    void* res = JKRFileLoader::getGlbResource(resName, archive);
+    void* res = JKRFileLoader::getGlbResource(resName, p_archive);
     if (res != NULL) {
-        u32 size = archive->getExpandedResSize(res);
+        u32 size = p_archive->getExpandedResSize(res);
         JSUMemoryInputStream stream(res, size);
-        return setPriority(&stream, param_1, archive);
+        return setPriority(&stream, param_1, p_archive);
     }
 
     return false;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DScreen::setPriority(char const* param_0, u32 param_1, JKRArchive* param_2) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DScreen/setPriority__9J2DScreenFPCcUlP10JKRArchive.s"
-}
-#pragma pop
-#endif
 
 /* 802F8748-802F8778 2F3088 0030+00 1/1 1/1 0/0 .text
  * setPriority__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive */
-bool J2DScreen::setPriority(JSURandomInputStream* stream, u32 param_1, JKRArchive* archive) {
-    if (archive == NULL) {
+bool J2DScreen::setPriority(JSURandomInputStream* p_stream, u32 param_1, JKRArchive* p_archive) {
+    if (p_archive == NULL) {
         return false;
     } else {
-        return private_set(stream, param_1, archive);
+        return private_set(p_stream, param_1, p_archive);
     }
 }
 
 /* 802F8778-802F8834 2F30B8 00BC+00 1/1 0/0 0/0 .text
  * private_set__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive */
-bool J2DScreen::private_set(JSURandomInputStream* stream, u32 param_1, JKRArchive* archive) {
-    if (!checkSignature(stream)) {
+bool J2DScreen::private_set(JSURandomInputStream* p_stream, u32 param_1, JKRArchive* p_archive) {
+    if (!checkSignature(p_stream)) {
         return false;
     }
 
-    if (!getScreenInformation(stream)) {
+    if (!getScreenInformation(p_stream)) {
         return false;
     }
 
-    bool make_end = makeHierarchyPanes(this, stream, param_1, archive) != 2;
+    bool make_end = makeHierarchyPanes(this, p_stream, param_1, p_archive) != 2;
 
     if (!(param_1 & 0x1F0000)) {
         clean();
     }
 
     if (make_end) {
-        return stream->isGood();
+        return p_stream->isGood();
     }
 
     return false;
@@ -317,9 +306,9 @@ bool J2DScreen::private_set(JSURandomInputStream* stream, u32 param_1, JKRArchiv
 
 /* 802F8834-802F8894 2F3174 0060+00 1/1 0/0 0/0 .text
  * checkSignature__9J2DScreenFP20JSURandomInputStream           */
-bool J2DScreen::checkSignature(JSURandomInputStream* stream) {
+bool J2DScreen::checkSignature(JSURandomInputStream* p_stream) {
     J2DScrnHeader header;
-    stream->read(&header, 32);
+    p_stream->read(&header, sizeof(J2DScrnHeader));
 
     if (header.mTag != 'SCRN' || (header.mType != 'blo1' && header.mType != 'blo2')) {
         return false;
@@ -330,9 +319,9 @@ bool J2DScreen::checkSignature(JSURandomInputStream* stream) {
 
 /* 802F8894-802F8990 2F31D4 00FC+00 1/1 0/0 0/0 .text
  * getScreenInformation__9J2DScreenFP20JSURandomInputStream     */
-bool J2DScreen::getScreenInformation(JSURandomInputStream* stream) {
+bool J2DScreen::getScreenInformation(JSURandomInputStream* p_stream) {
     J2DScrnInfoHeader info;
-    stream->read(&info, sizeof(J2DScrnInfoHeader));
+    p_stream->read(&info, sizeof(J2DScrnInfoHeader));
 
     if (info.mTag != 'INF1') {
         return false;
@@ -346,7 +335,7 @@ bool J2DScreen::getScreenInformation(JSURandomInputStream* stream) {
     mColor = color;
 
     if (info.mSize > 0x10) {
-        stream->skip(info.mSize - 0x10);
+        p_stream->skip(info.mSize - 0x10);
     }
 
     return true;
@@ -355,32 +344,32 @@ bool J2DScreen::getScreenInformation(JSURandomInputStream* stream) {
 /* 802F8990-802F8B98 2F32D0 0208+00 1/1 0/0 0/0 .text
  * makeHierarchyPanes__9J2DScreenFP7J2DPaneP20JSURandomInputStreamUlP10JKRArchive */
 // goto can probably be replaced
-s32 J2DScreen::makeHierarchyPanes(J2DPane* basePane, JSURandomInputStream* stream, u32 param_2,
-                                  JKRArchive* archive) {
+s32 J2DScreen::makeHierarchyPanes(J2DPane* p_basePane, JSURandomInputStream* p_stream, u32 param_2,
+                                  JKRArchive* p_archive) {
     J2DScrnBlockHeader header;
-    J2DPane* next_pane = basePane;
+    J2DPane* next_pane = p_basePane;
 
     do {
     loop:
-        stream->peek(&header, sizeof(J2DScrnBlockHeader));
+        p_stream->peek(&header, sizeof(J2DScrnBlockHeader));
 
         switch (header.mTag) {
         case 'EXT1':
-            stream->seek(header.mSize, JSUStreamSeekFrom_CUR);
+            p_stream->seek(header.mSize, JSUStreamSeekFrom_CUR);
             return 1;
         case 'BGN1':
-            stream->seek(header.mSize, JSUStreamSeekFrom_CUR);
+            p_stream->seek(header.mSize, JSUStreamSeekFrom_CUR);
 
-            int ret = makeHierarchyPanes(next_pane, stream, param_2, archive);
+            int ret = makeHierarchyPanes(next_pane, p_stream, param_2, p_archive);
             if (ret == 0) {
                 goto loop;
             }
             return ret;
         case 'END1':
-            stream->seek(header.mSize, JSUStreamSeekFrom_CUR);
+            p_stream->seek(header.mSize, JSUStreamSeekFrom_CUR);
             return 0;
         case 'TEX1':
-            J2DResReference* texRes = getResReference(stream, param_2);
+            J2DResReference* texRes = getResReference(p_stream, param_2);
             mTexRes = texRes;
 
             if (texRes != NULL) {
@@ -388,7 +377,7 @@ s32 J2DScreen::makeHierarchyPanes(J2DPane* basePane, JSURandomInputStream* strea
             }
             return 2;
         case 'FNT1':
-            J2DResReference* fntRes = getResReference(stream, param_2);
+            J2DResReference* fntRes = getResReference(p_stream, param_2);
             mFontRes = fntRes;
 
             if (fntRes != NULL) {
@@ -396,16 +385,16 @@ s32 J2DScreen::makeHierarchyPanes(J2DPane* basePane, JSURandomInputStream* strea
             }
             return 2;
         case 'MAT1':
-            if (createMaterial(stream, param_2, archive)) {
+            if (createMaterial(p_stream, param_2, p_archive)) {
                 goto loop;
             }
             return 2;
         }
 
-        if (archive == NULL) {
-            next_pane = createPane(header, stream, basePane, param_2);
+        if (p_archive == NULL) {
+            next_pane = createPane(header, p_stream, p_basePane, param_2);
         } else {
-            next_pane = createPane(header, stream, basePane, param_2, archive);
+            next_pane = createPane(header, p_stream, p_basePane, param_2, p_archive);
         }
     } while (next_pane != NULL);
 
@@ -414,54 +403,54 @@ s32 J2DScreen::makeHierarchyPanes(J2DPane* basePane, JSURandomInputStream* strea
 
 /* 802F8B98-802F8ED4 2F34D8 033C+00 1/0 0/0 0/0 .text
  * createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive */
-J2DPane* J2DScreen::createPane(J2DScrnBlockHeader const& header, JSURandomInputStream* stream,
-                               J2DPane* basePane, u32 param_3, JKRArchive* archive) {
+J2DPane* J2DScreen::createPane(J2DScrnBlockHeader const& header, JSURandomInputStream* p_stream,
+                               J2DPane* p_basePane, u32 param_3, JKRArchive* p_archive) {
     J2DPane* newPane;
 
     switch (header.mTag) {
     case 'PAN1':
-        newPane = new J2DPane(basePane, stream, 0);
+        newPane = new J2DPane(p_basePane, p_stream, 0);
         break;
     case 'WIN1':
-        newPane = new J2DWindow(basePane, stream, archive);
+        newPane = new J2DWindow(p_basePane, p_stream, p_archive);
         break;
     case 'PIC1':
-        newPane = new J2DPicture(basePane, stream, archive);
+        newPane = new J2DPicture(p_basePane, p_stream, p_archive);
         break;
     case 'TBX1':
-        newPane = new J2DTextBox(basePane, stream, archive);
+        newPane = new J2DTextBox(p_basePane, p_stream, p_archive);
         break;
     case 'PAN2':
-        newPane = new J2DPane(basePane, stream, 1);
+        newPane = new J2DPane(p_basePane, p_stream, 1);
         break;
     case 'WIN2':
         if (param_3 & 0x1F0000) {
-            newPane = new J2DWindowEx(basePane, stream, param_3, mMaterials);
+            newPane = new J2DWindowEx(p_basePane, p_stream, param_3, mMaterials);
             break;
         }
-        newPane = new J2DWindow(basePane, stream, mMaterials);
+        newPane = new J2DWindow(p_basePane, p_stream, mMaterials);
         break;
     case 'PIC2':
         if (param_3 & 0x1F0000) {
-            newPane = new J2DPictureEx(basePane, stream, param_3, mMaterials);
+            newPane = new J2DPictureEx(p_basePane, p_stream, param_3, mMaterials);
             break;
         }
-        newPane = new J2DPicture(basePane, stream, mMaterials);
+        newPane = new J2DPicture(p_basePane, p_stream, mMaterials);
         break;
     case 'TBX2':
         if (param_3 & 0x1F0000) {
-            newPane = new J2DTextBoxEx(basePane, stream, param_3, mMaterials);
+            newPane = new J2DTextBoxEx(p_basePane, p_stream, param_3, mMaterials);
             break;
         }
-        newPane = new J2DTextBox(basePane, stream, param_3, mMaterials);
+        newPane = new J2DTextBox(p_basePane, p_stream, param_3, mMaterials);
         break;
     default:
-        s32 position = stream->getPosition();
+        s32 position = p_stream->getPosition();
         s32 size = header.mSize;
         s32 start = size + position;
 
-        newPane = new J2DPane(basePane, stream, 0);
-        stream->seek(start, JSUStreamSeekFrom_SET);
+        newPane = new J2DPane(p_basePane, p_stream, 0);
+        p_stream->seek(start, JSUStreamSeekFrom_SET);
         break;
     }
 
@@ -478,7 +467,7 @@ SECTION_SDATA2 static f32 lit_1830 = 1.0f;
 /* 802F8ED4-802F90A0 2F3814 01CC+00 0/0 51/51 4/4 .text draw__9J2DScreenFffPC14J2DGrafContext */
 // matches with literals
 #ifdef NONMATCHING
-void J2DScreen::draw(f32 param_0, f32 param_1, J2DGrafContext const* grafCtx) {
+void J2DScreen::draw(f32 x, f32 y, J2DGrafContext const* grafCtx) {
     u32 x, y, width, height;
 
     if (mScissor) {
@@ -486,11 +475,11 @@ void J2DScreen::draw(f32 param_0, f32 param_1, J2DGrafContext const* grafCtx) {
     }
 
     if (grafCtx != NULL) {
-        J2DPane::draw(param_0, param_1, grafCtx, mScissor, true);
+        J2DPane::draw(x, y, grafCtx, mScissor, true);
     } else {
         J2DOrthoGraph ortho(0.0f, 0.0f, 640.0f, 480.0f, -1.0f, 1.0f);
         ortho.setPort();
-        J2DPane::draw(param_0, param_1, &ortho, mScissor, true);
+        J2DPane::draw(x, y, &ortho, mScissor, true);
     }
 
     if (mScissor) {
@@ -543,15 +532,15 @@ J2DPane* J2DScreen::searchUserInfo(u64 tag) {
 }
 
 /* 802F9120-802F9280 2F3A60 0160+00 1/0 0/0 0/0 .text            drawSelf__9J2DScreenFffPA3_A4_f */
-// close. issues with color
+// matches with literals
 #ifdef NONMATCHING
 void J2DScreen::drawSelf(f32 param_0, f32 param_1, Mtx* param_2) {
     JUtility::TColor color(mColor);
     u8 alpha = (color.a * mAlpha) / 255;
 
     if (alpha != 0) {
-        JUtility::TColor color2((u32)alpha);
-        color = color2;
+        JUtility::TColor sp8(alpha | ((u32)color & 0xFFFFFF00));
+        color = sp8;
 
         GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_SET);
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
@@ -588,15 +577,15 @@ asm void J2DScreen::drawSelf(f32 param_0, f32 param_1, Mtx* param_2) {
  * getResReference__9J2DScreenFP20JSURandomInputStreamUl        */
 // small regalloc
 #ifdef NONMATCHING
-J2DResReference* J2DScreen::getResReference(JSURandomInputStream* stream, u32 param_1) {
-    s32 position = stream->getPosition();
-    stream->skip(4);
+J2DResReference* J2DScreen::getResReference(JSURandomInputStream* p_stream, u32 param_1) {
+    s32 position = p_stream->getPosition();
+    p_stream->skip(4);
 
     s32 start, end;
-    start = stream->readS32();
-    stream->skip(4);
-    end = stream->readS32();
-    stream->seek(position + end, JSUStreamSeekFrom_SET);
+    start = p_stream->readS32();
+    p_stream->skip(4);
+    end = p_stream->readS32();
+    p_stream->seek(position + end, JSUStreamSeekFrom_SET);
 
     s32 size = end - start;
 
@@ -608,7 +597,7 @@ J2DResReference* J2DScreen::getResReference(JSURandomInputStream* stream, u32 pa
     }
 
     if (buffer != NULL) {
-        stream->read(buffer, size);
+        p_stream->read(buffer, size);
     }
 
     return (J2DResReference*)buffer;
@@ -628,14 +617,14 @@ asm J2DResReference* J2DScreen::getResReference(JSURandomInputStream* param_0, u
  * createMaterial__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive */
 // nametab section has issues
 #ifdef NONMATCHING
-bool J2DScreen::createMaterial(JSURandomInputStream* stream, u32 param_1, JKRArchive* archive) {
-    s32 position = stream->getPosition();
+bool J2DScreen::createMaterial(JSURandomInputStream* p_stream, u32 param_1, JKRArchive* p_archive) {
+    s32 position = p_stream->getPosition();
 
     J2DScrnBlockHeader header;
-    stream->read(&header, 8);
-    mMaterialNum = stream->readU16();
+    p_stream->read(&header, 8);
+    mMaterialNum = p_stream->readU16();
 
-    stream->skip(2);
+    p_stream->skip(2);
 
     if (param_1 & 0x1F0000) {
         mMaterials = new J2DMaterial[mMaterialNum];
@@ -645,12 +634,12 @@ bool J2DScreen::createMaterial(JSURandomInputStream* stream, u32 param_1, JKRArc
 
     u8* buffer = new (-4) u8[header.mSize];
     if (mMaterials != NULL && buffer != NULL) {
-        stream->seek(position, JSUStreamSeekFrom_SET);
-        stream->read(buffer, header.mSize);
+        p_stream->seek(position, JSUStreamSeekFrom_SET);
+        p_stream->read(buffer, header.mSize);
         J2DMaterialFactory factory(*(J2DMaterialBlock*)buffer);
 
         for (u16 i = 0; i < mMaterialNum; i++) {
-            factory.create(&mMaterials[i], i, param_1, mTexRes, mFontRes, archive);
+            factory.create(&mMaterials[i], i, param_1, mTexRes, mFontRes, p_archive);
         }
 
         if (param_1 & 0x1F0000) {
@@ -699,13 +688,13 @@ asm bool J2DScreen::createMaterial(JSURandomInputStream* param_0, u32 param_1,
 #endif
 
 /* 802F9600-802F9620 2F3F40 0020+00 1/0 0/0 0/0 .text            isUsed__9J2DScreenFPC7ResTIMG */
-bool J2DScreen::isUsed(ResTIMG const* img) {
-    return J2DPane::isUsed(img);
+bool J2DScreen::isUsed(ResTIMG const* p_timg) {
+    return J2DPane::isUsed(p_timg);
 }
 
 /* 802F9620-802F9640 2F3F60 0020+00 1/0 0/0 0/0 .text            isUsed__9J2DScreenFPC7ResFONT */
-bool J2DScreen::isUsed(ResFONT const* font) {
-    return J2DPane::isUsed(font);
+bool J2DScreen::isUsed(ResFONT const* p_font) {
+    return J2DPane::isUsed(p_font);
 }
 
 /* ############################################################################################## */
@@ -733,85 +722,85 @@ void J2DScreen::animation() {
 }
 
 /* 802F9704-802F9798 2F4044 0094+00 1/0 0/0 0/0 .text setAnimation__9J2DScreenFP11J2DAnmColor */
-void J2DScreen::setAnimation(J2DAnmColor* anmColor) {
-    anmColor->searchUpdateMaterialID(this);
-    u16 matNum = anmColor->getUpdateMaterialNum();
+void J2DScreen::setAnimation(J2DAnmColor* p_anmColor) {
+    p_anmColor->searchUpdateMaterialID(this);
+    u16 matNum = p_anmColor->getUpdateMaterialNum();
 
     for (u16 i = 0; i < matNum; i++) {
-        u16 matID = anmColor->getUpdateMaterialID(i);
+        u16 matID = p_anmColor->getUpdateMaterialID(i);
         if (matID < mMaterialNum) {
-            mMaterials[matID].setAnimation(anmColor);
+            mMaterials[matID].setAnimation(p_anmColor);
         }
     }
 }
 
 /* 802F9798-802F9838 2F40D8 00A0+00 1/0 0/0 0/0 .text
  * setAnimation__9J2DScreenFP19J2DAnmTextureSRTKey              */
-void J2DScreen::setAnimation(J2DAnmTextureSRTKey* anmSRTKey) {
-    anmSRTKey->searchUpdateMaterialID(this);
-    u16 matNum = anmSRTKey->getUpdateMaterialNum();
+void J2DScreen::setAnimation(J2DAnmTextureSRTKey* p_anmSRTKey) {
+    p_anmSRTKey->searchUpdateMaterialID(this);
+    u16 matNum = p_anmSRTKey->getUpdateMaterialNum();
 
     for (u16 i = 0; i < matNum; i++) {
-        u16 matID = anmSRTKey->getUpdateMaterialID(i);
+        u16 matID = p_anmSRTKey->getUpdateMaterialID(i);
         if (matID < mMaterialNum) {
-            mMaterials[matID].setAnimation(anmSRTKey);
+            mMaterials[matID].setAnimation(p_anmSRTKey);
         }
     }
 }
 
 /* 802F9838-802F98CC 2F4178 0094+00 1/0 0/0 0/0 .text setAnimation__9J2DScreenFP16J2DAnmTexPattern
  */
-void J2DScreen::setAnimation(J2DAnmTexPattern* anmPattern) {
-    anmPattern->searchUpdateMaterialID(this);
-    u16 matNum = anmPattern->getUpdateMaterialNum();
+void J2DScreen::setAnimation(J2DAnmTexPattern* p_anmPattern) {
+    p_anmPattern->searchUpdateMaterialID(this);
+    u16 matNum = p_anmPattern->getUpdateMaterialNum();
 
     for (u16 i = 0; i < matNum; i++) {
-        u16 matID = anmPattern->getUpdateMaterialID(i);
+        u16 matID = p_anmPattern->getUpdateMaterialID(i);
         if (matID < mMaterialNum) {
-            mMaterials[matID].setAnimation(anmPattern);
+            mMaterials[matID].setAnimation(p_anmPattern);
         }
     }
 }
 
 /* 802F98CC-802F99A8 2F420C 00DC+00 1/0 0/0 0/0 .text setAnimation__9J2DScreenFP15J2DAnmTevRegKey
  */
-void J2DScreen::setAnimation(J2DAnmTevRegKey* anmRegKey) {
-    anmRegKey->searchUpdateMaterialID(this);
+void J2DScreen::setAnimation(J2DAnmTevRegKey* p_anmRegKey) {
+    p_anmRegKey->searchUpdateMaterialID(this);
 
-    u16 cMatNum = anmRegKey->getCRegUpdateMaterialNum();
+    u16 cMatNum = p_anmRegKey->getCRegUpdateMaterialNum();
     for (u16 i = 0; i < cMatNum; i++) {
-        u16 matID = anmRegKey->getCRegUpdateMaterialID(i);
+        u16 matID = p_anmRegKey->getCRegUpdateMaterialID(i);
         if (matID < mMaterialNum) {
-            mMaterials[matID].setAnimation(anmRegKey);
+            mMaterials[matID].setAnimation(p_anmRegKey);
         }
     }
 
-    u16 kMatNum = anmRegKey->getKRegUpdateMaterialNum();
+    u16 kMatNum = p_anmRegKey->getKRegUpdateMaterialNum();
     for (u16 i = 0; i < kMatNum; i++) {
-        u16 matID = anmRegKey->getKRegUpdateMaterialID(i);
+        u16 matID = p_anmRegKey->getKRegUpdateMaterialID(i);
         if (matID < mMaterialNum) {
-            mMaterials[matID].setAnimation(anmRegKey);
+            mMaterials[matID].setAnimation(p_anmRegKey);
         }
     }
 }
 
 /* 802F99A8-802F99C8 2F42E8 0020+00 1/0 0/0 0/0 .text setAnimation__9J2DScreenFP14J2DAnmVtxColor
  */
-void J2DScreen::setAnimation(J2DAnmVtxColor* anmVtxColor) {
-    J2DPane::setVtxColorAnimation(anmVtxColor);
+void J2DScreen::setAnimation(J2DAnmVtxColor* p_anmVtxColor) {
+    J2DPane::setVtxColorAnimation(p_anmVtxColor);
 }
 
 /* 802F99C8-802F99E8 2F4308 0020+00 1/0 0/0 0/0 .text
  * setAnimation__9J2DScreenFP20J2DAnmVisibilityFull             */
-void J2DScreen::setAnimation(J2DAnmVisibilityFull* anmVisibility) {
-    J2DPane::setVisibileAnimation(anmVisibility);
+void J2DScreen::setAnimation(J2DAnmVisibilityFull* p_anmVisibility) {
+    J2DPane::setVisibileAnimation(p_anmVisibility);
 }
 
 /* 802F99E8-802F9A18 2F4328 0030+00 1/0 0/0 0/0 .text
  * createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl */
-J2DPane* J2DScreen::createPane(J2DScrnBlockHeader const& header, JSURandomInputStream* stream,
-                               J2DPane* basePane, u32 param_3) {
-    return createPane(header, stream, basePane, param_3, NULL);
+J2DPane* J2DScreen::createPane(J2DScrnBlockHeader const& header, JSURandomInputStream* p_stream,
+                               J2DPane* p_basePane, u32 param_3) {
+    return createPane(header, p_stream, p_basePane, param_3, NULL);
 }
 
 /* 802F9A18-802F9A20 2F4358 0008+00 1/0 0/0 0/0 .text            getTypeID__9J2DScreenCFv */
@@ -825,18 +814,18 @@ void J2DScreen::calcMtx() {
 }
 
 /* 802F9A54-802F9A74 2F4394 0020+00 1/0 0/0 0/0 .text setAnimation__9J2DScreenFP10J2DAnmBase */
-void J2DScreen::setAnimation(J2DAnmBase* anm) {
-    J2DPane::setAnimation(anm);
+void J2DScreen::setAnimation(J2DAnmBase* p_anm) {
+    J2DPane::setAnimation(p_anm);
 }
 
 /* 802F9A74-802F9A78 2F43B4 0004+00 1/0 0/0 0/0 .text
  * setAnimationVF__9J2DScreenFP20J2DAnmVisibilityFull           */
-void J2DScreen::setAnimationVF(J2DAnmVisibilityFull* param_0) {
+void J2DScreen::setAnimationVF(J2DAnmVisibilityFull*) {
     /* empty function */
 }
 
 /* 802F9A78-802F9A7C 2F43B8 0004+00 1/0 0/0 0/0 .text setAnimationVC__9J2DScreenFP14J2DAnmVtxColor
  */
-void J2DScreen::setAnimationVC(J2DAnmVtxColor* param_0) {
+void J2DScreen::setAnimationVC(J2DAnmVtxColor*) {
     /* empty function */
 }
