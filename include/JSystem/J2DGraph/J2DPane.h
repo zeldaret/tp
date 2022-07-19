@@ -140,6 +140,7 @@ public:
     void hide() { mVisible = false; }
 
     void setUserInfo(u64 info) { mUserInfoTag = info; }
+    const Mtx* getMtx() const { return &mPositionMtx; }
 
     const Mtx* getMtx() const { return &mPositionMtx; }
 

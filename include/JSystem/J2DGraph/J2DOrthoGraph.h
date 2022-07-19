@@ -30,6 +30,8 @@ private:
     /* 0xD0 */ f32 mFar;
 };
 
+void J2DDrawLine(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor color,
+                 int line_width);
 void J2DFillBox(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor color);
 void J2DFillBox(JGeometry::TBox2<f32> const& param_0, JUtility::TColor param_1);
 void J2DDrawFrame(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor param_4,
