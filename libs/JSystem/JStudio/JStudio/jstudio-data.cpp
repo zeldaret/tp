@@ -1,5 +1,3 @@
-namespace JStudio {
-namespace data {
-extern const char ga8cSignature[] = "jstudio";
-}  // namespace data
-}  // namespace JStudio
+#include "JSystem/JStudio/JStudio/jstudio-data.h"
+
+extern const char JStudio::data::ga8cSignature[8] = "jstudio";

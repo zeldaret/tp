@@ -23,7 +23,7 @@ struct TParseData {
     const void* getRaw() const { return raw; }
     void setRaw(const void* p) { raw = p; }
 
-    const void* raw;
+    /* 0x0 */ const void* raw;
 };
 
 template <int T>

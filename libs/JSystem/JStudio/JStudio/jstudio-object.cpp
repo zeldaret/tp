@@ -4,207 +4,8 @@
 //
 
 #include "JSystem/JStudio/JStudio/jstudio-object.h"
-#include "JSystem/JStudio/JStudio/fvb.h"
-#include "JSystem/JStudio/JStudio/stb.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct _GXColor {};
-
-struct Vec {};
-
-namespace JStudio {
-struct TControl {};
-
-struct data {
-    struct TEOperationData {};
-};
-
-struct TAdaptor {
-    struct TSetVariableValue_immediate {};
-
-    /* 80285FD0 */ ~TAdaptor();
-    /* 80286018 */ void adaptor_do_prepare();
-    /* 8028601C */ void adaptor_do_begin();
-    /* 80286020 */ void adaptor_do_end();
-    /* 80286024 */ void adaptor_do_update(u32);
-    /* 80286028 */ void adaptor_do_data(void const*, u32, void const*, u32);
-    /* 8028602C */ void adaptor_setVariableValue(JStudio::TControl*, u32,
-                                                 JStudio::data::TEOperationData, void const*, u32);
-    /* 802860CC */ void adaptor_setVariableValue_n(JStudio::TControl*, u32 const*, u32,
-                                                   JStudio::data::TEOperationData, void const*,
-                                                   u32);
-    /* 802861C0 */ void
-    adaptor_setVariableValue_immediate(JStudio::TAdaptor::TSetVariableValue_immediate const*);
-    /* 80286204 */ void adaptor_setVariableValue_Vec(u32 const*, Vec const&);
-    /* 80286274 */ void adaptor_getVariableValue_Vec(Vec*, u32 const*) const;
-    /* 802862AC */ void adaptor_setVariableValue_GXColor(u32 const*, _GXColor const&);
-    /* 8028638C */ void adaptor_getVariableValue_GXColor(_GXColor*, u32 const*) const;
-    /* 802864D8 */ void adaptor_updateVariableValue(JStudio::TControl*, u32);
-    /* 8028656C */ void adaptor_setVariableValue_VOID_(JStudio::TAdaptor*, JStudio::TControl*, u32,
-                                                       void const*, u32);
-    /* 80286584 */ void adaptor_setVariableValue_IMMEDIATE_(JStudio::TAdaptor*, JStudio::TControl*,
-                                                            u32, void const*, u32);
-    /* 802865B0 */ void adaptor_setVariableValue_TIME_(JStudio::TAdaptor*, JStudio::TControl*, u32,
-                                                       void const*, u32);
-    /* 802865DC */ void adaptor_setVariableValue_FVR_NAME_(JStudio::TAdaptor*, JStudio::TControl*,
-                                                           u32, void const*, u32);
-    /* 80286648 */ void adaptor_setVariableValue_FVR_INDEX_(JStudio::TAdaptor*, JStudio::TControl*,
-                                                            u32, void const*, u32);
-};
-
-struct TVariableValue {
-    struct TOutput {
-        /* 80285E0C */ ~TOutput();
-    };
-
-    struct TOutput_none_ {
-        /* 80285F6C */ ~TOutput_none_();
-        /* 80285FCC */ void operator()(f32, JStudio::TAdaptor*) const;
-    };
-
-    /* 80285E54 */ void update(f64, JStudio::TAdaptor*);
-    /* 80285EB8 */ void update_immediate_(JStudio::TVariableValue*, f64);
-    /* 80285ECC */ void update_time_(JStudio::TVariableValue*, f64);
-    /* 80285F08 */ void update_functionValue_(JStudio::TVariableValue*, f64);
-
-    static u8 soOutput_none_[4 + 4 /* padding */];
-};
-
-struct TObject {
-    /* 802866B0 */ ~TObject();
-    /* 80286734 */ void forward_value(u32);
-    /* 8028679C */ void do_begin();
-    /* 802867D4 */ void do_end();
-    /* 8028680C */ void do_wait(u32);
-    /* 8028682C */ void do_data(void const*, u32, void const*, u32);
-    /* 80286864 */ TObject(JStudio::stb::data::TParse_TBlock_object const&, JStudio::TAdaptor*);
-};
-
-struct TAdaptor_actor {
-    /* 802868B0 */ ~TAdaptor_actor();
-
-    static u8 const sauVariableValue_3_TRANSLATION_XYZ[12];
-    static u8 const sauVariableValue_3_ROTATION_XYZ[12];
-    static u8 const sauVariableValue_3_SCALING_XYZ[12];
-};
-
-struct TObject_actor {
-    /* 80286910 */ TObject_actor(JStudio::stb::data::TParse_TBlock_object const&,
-                                 JStudio::TAdaptor_actor*);
-    /* 8028694C */ void do_paragraph(u32, void const*, u32);
-    /* 802881A4 */ ~TObject_actor();
-};
-
-struct TAdaptor_ambientLight {
-    /* 80286C9C */ ~TAdaptor_ambientLight();
-
-    static u8 const sauVariableValue_3_COLOR_RGB[12];
-    static u8 const sauVariableValue_4_COLOR_RGBA[16];
-};
-
-struct TObject_ambientLight {
-    /* 80286CFC */ TObject_ambientLight(JStudio::stb::data::TParse_TBlock_object const&,
-                                        JStudio::TAdaptor_ambientLight*);
-    /* 80286D38 */ void do_paragraph(u32, void const*, u32);
-    /* 80288144 */ ~TObject_ambientLight();
-};
-
-struct TAdaptor_camera {
-    /* 80286E1C */ ~TAdaptor_camera();
-
-    static u8 const sauVariableValue_3_POSITION_XYZ[12];
-    static u8 const sauVariableValue_3_TARGET_POSITION_XYZ[12];
-    static u8 sauVariableValue_2_DISTANCE_NEAR_FAR[8];
-};
-
-struct TObject_camera {
-    /* 80286E7C */ TObject_camera(JStudio::stb::data::TParse_TBlock_object const&,
-                                  JStudio::TAdaptor_camera*);
-    /* 80286EB8 */ void do_paragraph(u32, void const*, u32);
-    /* 802880E4 */ ~TObject_camera();
-};
-
-struct TAdaptor_fog {
-    /* 8028717C */ ~TAdaptor_fog();
-
-    static u8 const sauVariableValue_3_COLOR_RGB[12];
-    static u8 const sauVariableValue_4_COLOR_RGBA[16];
-    static u8 sauVariableValue_2_RANGE_BEGIN_END[8];
-};
-
-struct TObject_fog {
-    /* 802871DC */ TObject_fog(JStudio::stb::data::TParse_TBlock_object const&,
-                               JStudio::TAdaptor_fog*);
-    /* 80287218 */ void do_paragraph(u32, void const*, u32);
-    /* 80288084 */ ~TObject_fog();
-};
-
-struct TAdaptor_light {
-    /* 80287308 */ ~TAdaptor_light();
-
-    static u8 const sauVariableValue_3_COLOR_RGB[12];
-    static u8 const sauVariableValue_4_COLOR_RGBA[16];
-    static u8 const sauVariableValue_3_POSITION_XYZ[12];
-    static u8 const sauVariableValue_3_TARGET_POSITION_XYZ[12];
-    static u8 sauVariableValue_2_DIRECTION_THETA_PHI[8];
-};
-
-struct TObject_light {
-    /* 80287368 */ TObject_light(JStudio::stb::data::TParse_TBlock_object const&,
-                                 JStudio::TAdaptor_light*);
-    /* 802873A4 */ void do_paragraph(u32, void const*, u32);
-    /* 80288024 */ ~TObject_light();
-};
-
-struct TAdaptor_message {
-    /* 802875E0 */ ~TAdaptor_message();
-};
-
-struct TObject_message {
-    /* 80287640 */ TObject_message(JStudio::stb::data::TParse_TBlock_object const&,
-                                   JStudio::TAdaptor_message*);
-    /* 8028767C */ void do_paragraph(u32, void const*, u32);
-    /* 80287FC4 */ ~TObject_message();
-};
-
-struct TAdaptor_particle {
-    /* 8028770C */ ~TAdaptor_particle();
-
-    static u8 const sauVariableValue_3_TRANSLATION_XYZ[12];
-    static u8 const sauVariableValue_3_ROTATION_XYZ[12];
-    static u8 const sauVariableValue_3_SCALING_XYZ[12];
-    static u8 const sauVariableValue_3_COLOR_RGB[12];
-    static u8 const sauVariableValue_4_COLOR_RGBA[16];
-    static u8 const sauVariableValue_3_COLOR1_RGB[12];
-    static u8 const sauVariableValue_4_COLOR1_RGBA[16];
-};
-
-struct TObject_particle {
-    /* 8028776C */ TObject_particle(JStudio::stb::data::TParse_TBlock_object const&,
-                                    JStudio::TAdaptor_particle*);
-    /* 802877A8 */ void do_paragraph(u32, void const*, u32);
-    /* 80287F64 */ ~TObject_particle();
-};
-
-struct TAdaptor_sound {
-    /* 80287B3C */ ~TAdaptor_sound();
-
-    static u8 const sauVariableValue_3_POSITION_XYZ[12];
-};
-
-struct TObject_sound {
-    /* 80287B9C */ TObject_sound(JStudio::stb::data::TParse_TBlock_object const&,
-                                 JStudio::TAdaptor_sound*);
-    /* 80287BD8 */ void do_paragraph(u32, void const*, u32);
-    /* 80287F04 */ ~TObject_sound();
-};
-
-};  // namespace JStudio
 
 //
 // Forward References:
@@ -1596,7 +1397,8 @@ asm JStudio::TAdaptor::~TAdaptor() {
 #pragma pop
 
 /* 80286018-8028601C 280958 0004+00 8/0 2/0 0/0 .text adaptor_do_prepare__Q27JStudio8TAdaptorFv */
-void JStudio::TAdaptor::adaptor_do_prepare() {
+// void JStudio::TAdaptor::adaptor_do_prepare() {
+extern "C" void adaptor_do_prepare__Q27JStudio8TAdaptorFv() {
     /* empty function */
 }
 
@@ -1692,7 +1494,7 @@ asm void JStudio::TAdaptor::adaptor_getVariableValue_Vec(Vec* param_0, u32 const
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm void JStudio::TAdaptor::adaptor_setVariableValue_GXColor(u32 const* param_0,
-                                                             _GXColor const& param_1) {
+                                                             GXColor const& param_1) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/jstudio-object/adaptor_setVariableValue_GXColor__Q27JStudio8TAdaptorFPCUlRC8_GXColor.s"
 }
@@ -1715,7 +1517,7 @@ SECTION_SDATA2 static f32 lit_1095 = 255.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JStudio::TAdaptor::adaptor_getVariableValue_GXColor(_GXColor* param_0,
+asm void JStudio::TAdaptor::adaptor_getVariableValue_GXColor(GXColor* param_0,
                                                              u32 const* param_1) const {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/jstudio-object/adaptor_getVariableValue_GXColor__Q27JStudio8TAdaptorCFP8_GXColorPCUl.s"
@@ -1830,7 +1632,8 @@ asm void JStudio::TObject::forward_value(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JStudio::TObject::do_begin() {
+// asm void JStudio::TObject::do_begin() {
+extern "C" asm void do_begin__Q27JStudio7TObjectFv() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/jstudio-object/do_begin__Q27JStudio7TObjectFv.s"
 }
@@ -2396,7 +2199,8 @@ asm void JStudio::TObject_sound::do_paragraph(u32 param_0, void const* param_1, 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JStudio::TObject_sound::~TObject_sound() {
+// asm JStudio::TObject_sound::~TObject_sound() {
+extern "C" asm void __dt__Q27JStudio13TObject_soundFv() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/jstudio-object/__dt__Q27JStudio13TObject_soundFv.s"
 }
@@ -2406,7 +2210,8 @@ asm JStudio::TObject_sound::~TObject_sound() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JStudio::TObject_particle::~TObject_particle() {
+// asm JStudio::TObject_particle::~TObject_particle() {
+extern "C" asm void __dt__Q27JStudio16TObject_particleFv() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/jstudio-object/__dt__Q27JStudio16TObject_particleFv.s"
 }
@@ -2417,7 +2222,8 @@ asm JStudio::TObject_particle::~TObject_particle() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JStudio::TObject_message::~TObject_message() {
+// asm JStudio::TObject_message::~TObject_message() {
+extern "C" asm void __dt__Q27JStudio15TObject_messageFv() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/jstudio-object/__dt__Q27JStudio15TObject_messageFv.s"
 }
@@ -2428,7 +2234,8 @@ asm JStudio::TObject_message::~TObject_message() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JStudio::TObject_light::~TObject_light() {
+// asm JStudio::TObject_light::~TObject_light() {
+extern "C" asm void __dt__Q27JStudio13TObject_lightFv() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/jstudio-object/__dt__Q27JStudio13TObject_lightFv.s"
 }
@@ -2438,7 +2245,8 @@ asm JStudio::TObject_light::~TObject_light() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JStudio::TObject_fog::~TObject_fog() {
+// asm JStudio::TObject_fog::~TObject_fog() {
+extern "C" asm void __dt__Q27JStudio11TObject_fogFv() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/jstudio-object/__dt__Q27JStudio11TObject_fogFv.s"
 }
@@ -2449,7 +2257,8 @@ asm JStudio::TObject_fog::~TObject_fog() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JStudio::TObject_camera::~TObject_camera() {
+// asm JStudio::TObject_camera::~TObject_camera() {
+extern "C" asm void __dt__Q27JStudio14TObject_cameraFv() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/jstudio-object/__dt__Q27JStudio14TObject_cameraFv.s"
 }
@@ -2459,7 +2268,8 @@ asm JStudio::TObject_camera::~TObject_camera() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JStudio::TObject_ambientLight::~TObject_ambientLight() {
+// asm JStudio::TObject_ambientLight::~TObject_ambientLight() {
+extern "C" asm void __dt__Q27JStudio20TObject_ambientLightFv() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/jstudio-object/__dt__Q27JStudio20TObject_ambientLightFv.s"
 }
@@ -2470,7 +2280,8 @@ asm JStudio::TObject_ambientLight::~TObject_ambientLight() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JStudio::TObject_actor::~TObject_actor() {
+// asm JStudio::TObject_actor::~TObject_actor() {
+extern "C" asm void __dt__Q27JStudio13TObject_actorFv() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/jstudio-object/__dt__Q27JStudio13TObject_actorFv.s"
 }

@@ -11,123 +11,7 @@
 // Types:
 //
 
-struct Vec {};
 
-struct JStage {
-    struct TSystem {};
-
-    struct TActor {};
-
-    struct TObject {};
-};
-
-namespace JStudio {
-struct data {
-    struct TEOperationData {};
-};
-
-struct TControl {
-    struct TTransform_translation_rotation_scaling {};
-};
-
-struct TAdaptor {
-    /* 80286204 */ void adaptor_setVariableValue_Vec(u32 const*, Vec const&);
-    /* 80286274 */ void adaptor_getVariableValue_Vec(Vec*, u32 const*) const;
-};
-
-struct TVariableValue {
-    struct TOutput {
-        /* 80285E0C */ ~TOutput();
-    };
-
-    /* 80285EB8 */ void update_immediate_(JStudio::TVariableValue*, f64);
-    /* 8028B568 */ TVariableValue();
-
-    static u8 soOutput_none_[4 + 4 /* padding */];
-};
-
-struct TFunctionValue {
-    /* 80281648 */ void toFunction_outside(int);
-};
-
-struct math {
-    /* 80285BCC */ void getFromTransformation_SRxyzT(Vec*, Vec*, Vec*, f32 const (*)[4]);
-};
-
-struct TAdaptor_actor {
-    /* 802868B0 */ ~TAdaptor_actor();
-
-    static u8 const sauVariableValue_3_TRANSLATION_XYZ[12];
-    static u8 const sauVariableValue_3_ROTATION_XYZ[12];
-    static u8 const sauVariableValue_3_SCALING_XYZ[12];
-};
-
-};  // namespace JStudio
-
-struct JStudio_JStage {
-    struct TAdaptor_actor {
-        struct TVVOutput_ANIMATION_FRAME_ {
-            /* 8028B064 */ void operator()(f32, JStudio::TAdaptor*) const;
-            /* 8028B138 */ ~TVVOutput_ANIMATION_FRAME_();
-        };
-
-        /* 8028A5F0 */ TAdaptor_actor(JStage::TSystem const*, JStage::TActor*);
-        /* 8028A6B4 */ ~TAdaptor_actor();
-        /* 8028A728 */ void adaptor_do_prepare();
-        /* 8028A7B4 */ void adaptor_do_begin();
-        /* 8028A8D8 */ void adaptor_do_end();
-        /* 8028A92C */ void adaptor_do_update(u32);
-        /* 8028A974 */ void adaptor_do_data(void const*, u32, void const*, u32);
-        /* 8028A998 */ void adaptor_do_SHAPE(JStudio::data::TEOperationData, void const*, u32);
-        /* 8028A9F0 */ void adaptor_do_ANIMATION(JStudio::data::TEOperationData, void const*, u32);
-        /* 8028AA48 */ void adaptor_do_ANIMATION_MODE(JStudio::data::TEOperationData, void const*,
-                                                      u32);
-        /* 8028AA5C */ void adaptor_do_TEXTURE_ANIMATION(JStudio::data::TEOperationData,
-                                                         void const*, u32);
-        /* 8028AAB4 */ void adaptor_do_TEXTURE_ANIMATION_MODE(JStudio::data::TEOperationData,
-                                                              void const*, u32);
-        /* 8028AAC8 */ void adaptor_do_PARENT(JStudio::data::TEOperationData, void const*, u32);
-        /* 8028AB0C */ void adaptor_do_PARENT_NODE(JStudio::data::TEOperationData, void const*,
-                                                   u32);
-        /* 8028AB68 */ void adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData, void const*,
-                                                     u32);
-        /* 8028ABF0 */ void adaptor_do_PARENT_FUNCTION(JStudio::data::TEOperationData, void const*,
-                                                       u32);
-        /* 8028AC04 */ void adaptor_do_RELATION(JStudio::data::TEOperationData, void const*, u32);
-        /* 8028AC48 */ void adaptor_do_RELATION_NODE(JStudio::data::TEOperationData, void const*,
-                                                     u32);
-        /* 8028ACA4 */ void adaptor_do_RELATION_ENABLE(JStudio::data::TEOperationData, void const*,
-                                                       u32);
-        /* 8028ACFC */ void setJSG_ID_(void (JStage::TActor::*)(u32),
-                                       JStudio::data::TEOperationData, void const*, u32);
-        /* 8028AD38 */ void setJSG_SRT_(JStudio::TControl const*);
-        /* 8028AECC */ void getJSG_SRT_(JStudio::TControl const*);
-
-        static u8 saoVVOutput_[64];
-        static u8 saoVVOutput_ANIMATION_FRAME_[144 + 4 /* padding */];
-    };
-
-    template <typename A1, typename B1>
-    struct TVariableValueOutput_object_ {};
-    /* TVariableValueOutput_object_<JStudio_JStage::TAdaptor_actor, JStage::TActor> */
-    struct TVariableValueOutput_object___template0 {
-        /* 8028B580 */ void func_8028B580(void* _this);
-        /* 8028B5E0 */ void func_8028B5E0(void* _this, f32, JStudio::TAdaptor*) /* const */;
-    };
-
-    struct TAdaptor_object_ {
-        /* 8028A470 */ void adaptor_object_data_(void const*, u32, void const*, u32);
-        /* 8028A4BC */ void adaptor_object_findJSGObject_(char const*);
-        /* 8028A50C */ void adaptor_object_findJSGObjectNode_(JStage::TObject const*, char const*);
-    };
-
-    /* 8028A1F8 */ void transform_toGlobalFromLocal(
-        f32 (*)[4], JStudio::TControl::TTransform_translation_rotation_scaling const&,
-        JStage::TObject const*, u32);
-    /* 8028A328 */ void transform_toLocalFromGlobal(
-        f32 (*)[4], JStudio::TControl::TTransform_translation_rotation_scaling const&,
-        JStage::TObject const*, u32);
-};
 
 //
 // Forward References:
@@ -199,7 +83,6 @@ extern "C" void adaptor_object_findJSGObject___Q214JStudio_JStage16TAdaptor_obje
 extern "C" void
 adaptor_object_findJSGObjectNode___Q214JStudio_JStage16TAdaptor_object_FPCQ26JStage7TObjectPCc();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXMultVec();
 extern "C" void __register_global_object();
 extern "C" void __construct_array();
 extern "C" void __ptmf_scall();
@@ -386,7 +269,8 @@ asm JStudio_JStage::TAdaptor_actor::TAdaptor_actor(JStage::TSystem const* param_
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JStudio_JStage::TAdaptor_actor::~TAdaptor_actor() {
+// asm JStudio_JStage::TAdaptor_actor::~TAdaptor_actor() {
+extern "C" asm void __dt__Q214JStudio_JStage14TAdaptor_actorFv() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio_JStage/object-actor/__dt__Q214JStudio_JStage14TAdaptor_actorFv.s"
 }

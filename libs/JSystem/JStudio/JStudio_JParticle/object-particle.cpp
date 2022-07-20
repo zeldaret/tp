@@ -11,105 +11,10 @@
 // Types:
 //
 
-struct _GXColor {};
-
-struct Vec {};
-
-struct JStage {
-    struct TObject {};
-};
-
-namespace JStudio {
-struct data {
-    struct TEOperationData {};
-};
-
-struct TAdaptor {
-    struct TSetVariableValue_immediate {};
-
-    /* 8028601C */ void adaptor_do_begin();
-    /* 80286028 */ void adaptor_do_data(void const*, u32, void const*, u32);
-    /* 802861C0 */ void
-    adaptor_setVariableValue_immediate(JStudio::TAdaptor::TSetVariableValue_immediate const*);
-    /* 80286274 */ void adaptor_getVariableValue_Vec(Vec*, u32 const*) const;
-    /* 8028638C */ void adaptor_getVariableValue_GXColor(_GXColor*, u32 const*) const;
-};
-
-struct TAdaptor_particle {
-    /* 8028770C */ ~TAdaptor_particle();
-
-    static u8 const sauVariableValue_3_TRANSLATION_XYZ[12];
-    static u8 const sauVariableValue_3_ROTATION_XYZ[12];
-    static u8 const sauVariableValue_3_SCALING_XYZ[12];
-    static u8 const sauVariableValue_4_COLOR_RGBA[16];
-};
-
-struct TControl {
-    struct TTransform_translation_rotation_scaling {};
-};
-
-struct TVariableValue {
-    /* 8028B568 */ TVariableValue();
-};
-
-};  // namespace JStudio
-
 struct JStudio_JStage {
     /* 8028A1F8 */ void transform_toGlobalFromLocal(
         f32 (*)[4], JStudio::TControl::TTransform_translation_rotation_scaling const&,
         JStage::TObject const*, u32);
-};
-
-struct JPABaseEmitter {};
-
-struct JStudio_JParticle {
-    struct TCreateObject {};
-
-    struct TAdaptor_particle {
-        struct TJPACallback_emitter_ {
-            /* 8028E700 */ ~TJPACallback_emitter_();
-            /* 8028ECC0 */ void execute(JPABaseEmitter*);
-            /* 8028F060 */ void executeAfter(JPABaseEmitter*);
-            /* 8028F098 */ void draw(JPABaseEmitter*);
-            /* 8028F0D0 */ void drawAfter(JPABaseEmitter*);
-        };
-
-        /* 8028E60C */ TAdaptor_particle(JStudio_JParticle::TCreateObject*);
-        /* 8028E760 */ ~TAdaptor_particle();
-        /* 8028E850 */ void adaptor_do_prepare();
-        /* 8028E97C */ void adaptor_do_end();
-        /* 8028E980 */ void adaptor_do_update(u32);
-        /* 8028EA68 */ void adaptor_do_PARTICLE(JStudio::data::TEOperationData, void const*, u32);
-        /* 8028EA7C */ void adaptor_do_BEGIN(JStudio::data::TEOperationData, void const*, u32);
-        /* 8028EAB0 */ void adaptor_do_BEGIN_FADE_IN(JStudio::data::TEOperationData, void const*,
-                                                     u32);
-        /* 8028EAF8 */ void adaptor_do_END(JStudio::data::TEOperationData, void const*, u32);
-        /* 8028EB24 */ void adaptor_do_END_FADE_OUT(JStudio::data::TEOperationData, void const*,
-                                                    u32);
-        /* 8028EB6C */ void adaptor_do_PARENT(JStudio::data::TEOperationData, void const*, u32);
-        /* 8028EBD8 */ void adaptor_do_PARENT_NODE(JStudio::data::TEOperationData, void const*,
-                                                   u32);
-        /* 8028EC58 */ void adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData, void const*,
-                                                     u32);
-        /* 8028EC74 */ void adaptor_do_PARENT_FUNCTION(JStudio::data::TEOperationData, void const*,
-                                                       u32);
-        /* 8028EC88 */ void adaptor_do_REPEAT(JStudio::data::TEOperationData, void const*, u32);
-        /* 8028ECA4 */ void adaptor_do_ON_EXIT_NOT_END(JStudio::data::TEOperationData, void const*,
-                                                       u32);
-        /* 8028F108 */ void beginParticle_fadeIn_();
-        /* 8028F1C0 */ void endParticle_fadeOut_(u32);
-    };
-};
-
-struct JPAEmitterCallBack {
-    /* 8027E6A4 */ ~JPAEmitterCallBack();
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
 };
 
 //
@@ -174,7 +79,6 @@ extern "C" void
 transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl();
 extern "C" void __ct__Q27JStudio14TVariableValueFv();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXMultVec();
 extern "C" void __construct_array();
 extern "C" void __cvt_fp2unsigned();
 extern "C" void _savegpr_28();

@@ -8,47 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-namespace JStudio {
-struct TObject {};
-
-namespace stb {
-struct data {
-    struct TParse_TBlock_object {};
-};
-
-};  // namespace stb
-
-struct TCreateObject {
-    /* 80285488 */ ~TCreateObject();
-};
-
-struct TAdaptor_sound {};
-
-struct TObject_sound {
-    /* 80287B9C */ TObject_sound(JStudio::stb::data::TParse_TBlock_object const&,
-                                 JStudio::TAdaptor_sound*);
-};
-
-};  // namespace JStudio
-
-struct JStudio_JAudio2 {
-    struct TCreateObject {
-        /* 8028D550 */ ~TCreateObject();
-        /* 8028D5B0 */ void create(JStudio::TObject**,
-                                   JStudio::stb::data::TParse_TBlock_object const&);
-        /* 8028D624 */ void createObject_JAI_SOUND_(JStudio::stb::data::TParse_TBlock_object const&,
-                                                    JStudio_JAudio2::TCreateObject*);
-    };
-
-    struct TAdaptor_sound {
-        /* 8028D828 */ TAdaptor_sound(JStudio_JAudio2::TCreateObject*);
-    };
-};
-
-//
 // Forward References:
 //
 

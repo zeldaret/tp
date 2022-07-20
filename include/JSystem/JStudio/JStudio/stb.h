@@ -145,7 +145,7 @@ private:
     /* 0x10 */ JGadget::TLinkList<TObject, 12> mObjectContainer;
     /* 0x1C */ u32 mStatus;
     /* 0x20 */ TObject_control mObject_control;
-    /* 0x54 */ s32 _54;  // "second per frame"?
+    /* 0x54 */ s32 _54;
 };
 
 }  // namespace stb

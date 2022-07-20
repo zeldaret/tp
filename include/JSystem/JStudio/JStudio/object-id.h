@@ -15,8 +15,8 @@ public:
     /* 80288988 */ void isEqual(JStudio::object::TIDData const&, JStudio::object::TIDData const&);
 
 private:
-    const void* mID;
-    u32 mID_size;
+    /* 0x00 */ const void* mID;
+    /* 0x04 */ u32 mID_size;
 };
 
 struct TObject_ID : public TIDData {

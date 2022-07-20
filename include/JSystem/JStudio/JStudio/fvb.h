@@ -70,9 +70,9 @@ public:
     TFactory* getFactory() const { return pFactory; }
 
 private:
-    TFactory* pFactory;
-    JGadget::TLinkList<TObject, 12> ocObject_;
-};
+    /* 0x4 */ TFactory* pFactory;
+    /* 0x8 */ JGadget::TLinkList<TObject, 12> ocObject_;
+};  // Size: 0x14
 
 class TObject_composite : public TObject {
 public:

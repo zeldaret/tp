@@ -1,7 +1,4 @@
-namespace JStudio {
-namespace fvb {
-namespace data {
-extern const char ga4cSignature[] = "FVB";
-}  // namespace data
-}  // namespace fvb
-}  // namespace JStudio
+#include "JSystem/JStudio/JStudio/fvb-data.h"
+
+extern const char JStudio::fvb::data::ga4cSignature[4] = "FVB";
+
