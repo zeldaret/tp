@@ -46,6 +46,10 @@ struct TParse_header_block {
     virtual bool parseBlock_next(const void** ppData_inout, u32* puData_out, u32 arg2) = 0;
 
     bool parse_next(const void** ppData_inout, u32 a2);
+
+    bool parse(const void* ppData_inout, u32 a2) {
+        return parse_next(&ppData_inout, a2);
+    }
 };
 
 }  // namespace binary

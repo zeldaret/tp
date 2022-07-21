@@ -9,6 +9,12 @@
 
 namespace JStudio_JAudio2 {
 struct TCreateObject : public JStudio::TCreateObject {
+    TCreateObject(JAISoundStarter* p_soundStarter, const JStage::TSystem* p_system) {
+        pJAISoundStarter_ = p_soundStarter;
+        pJSGSystem_ = p_system;
+        mPermit_onExit_notEnd = false;
+    }
+
     /* 8028D550 */ virtual ~TCreateObject();
     /* 8028D5B0 */ virtual void create(JStudio::TObject**,
                                        JStudio::stb::data::TParse_TBlock_object const&);
@@ -16,7 +22,7 @@ struct TCreateObject : public JStudio::TCreateObject {
                                                 JStudio_JAudio2::TCreateObject*);
 
     /* 0x0C */ JAISoundStarter* pJAISoundStarter_;
-    /* 0x10 */ JStage::TSystem* pJSGSystem_;
+    /* 0x10 */ const JStage::TSystem* pJSGSystem_;
     /* 0x14 */ bool mPermit_onExit_notEnd;
 };
 

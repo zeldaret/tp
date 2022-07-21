@@ -503,6 +503,55 @@ SECTION_DATA extern void* data_803A7BF4[9] = {
     (void*)func_80037E44,
 };
 
+namespace {
+/* 80037DE4-80037E44 032724 0060+00 1/0 0/0 0/0 .text
+ * __dt__Q220@unnamed@d_demo_cpp@24jstudio_tAdaptor_messageFv   */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm jstudio_tAdaptor_message::~jstudio_tAdaptor_message() {
+    nofralloc
+#include "asm/d/d_demo/func_80037DE4.s"
+}
+#pragma pop
+
+/* 80037E44-80037E74 032784 0030+00 1/0 0/0 0/0 .text
+ * adaptor_do_MESSAGE__Q220@unnamed@d_demo_cpp@24jstudio_tAdaptor_messageFQ37JStudio4data15TEOperationDataPCvUl
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jstudio_tAdaptor_message::adaptor_do_MESSAGE(JStudio::data::TEOperationData param_0, const void* param_1, u32 param_2) {
+    nofralloc
+#include "asm/d/d_demo/func_80037E44.s"
+}
+#pragma pop
+
+/* 80037E74-80037ED4 0327B4 0060+00 1/0 0/0 0/0 .text
+ * __dt__Q220@unnamed@d_demo_cpp@29jstudio_tCreateObject_messageFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm jstudio_tCreateObject_message::~jstudio_tCreateObject_message() {
+    nofralloc
+#include "asm/d/d_demo/func_80037E74.s"
+}
+#pragma pop
+
+/* 80037ED4-80038020 032814 014C+00 1/0 0/0 0/0 .text
+ * create__Q220@unnamed@d_demo_cpp@29jstudio_tCreateObject_messageFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jstudio_tCreateObject_message::create(JStudio::TObject** param_0, const JStudio::stb::data::TParse_TBlock_object& param_1) {
+    nofralloc
+#include "asm/d/d_demo/func_80037ED4.s"
+}
+#pragma pop
+
+};  // namespace
+
 /* 80037DE4-80037E44 032724 0060+00 1/0 0/0 0/0 .text
  * __dt__Q220@unnamed@d_demo_cpp@24jstudio_tAdaptor_messageFv   */
 #pragma push
@@ -575,7 +624,8 @@ asm dDemo_actor_c::dDemo_actor_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dDemo_actor_c::~dDemo_actor_c() {
+// asm dDemo_actor_c::~dDemo_actor_c() {
+extern "C" asm void __dt__13dDemo_actor_cFv() {
     nofralloc
 #include "asm/d/d_demo/__dt__13dDemo_actor_cFv.s"
 }
@@ -623,7 +673,7 @@ static u8 dummy[20];
 dDemo_system_c* dDemo_c::m_system;
 
 /* 80450E04-80450E08 000304 0004+00 6/6 3/3 0/0 .sbss            m_control__7dDemo_c */
-JStudio::stb::TControl* dDemo_c::m_control;
+JStudio::TControl* dDemo_c::m_control;
 
 /* 80450E08-80450E0C 000308 0004+00 2/2 0/0 0/0 .sbss            m_stage__7dDemo_c */
 JStudio_JStage::TCreateObject* dDemo_c::m_stage;
@@ -635,7 +685,7 @@ JStudio_JAudio2::TCreateObject* dDemo_c::m_audio;
 dDemo_particle_c* dDemo_c::m_particle;
 
 /* 80450E14-80450E18 000314 0004+00 2/2 0/0 0/0 .sbss            m_message__7dDemo_c */
-u8 dDemo_c::m_message[4];
+jstudio_tCreateObject_message* dDemo_c::m_message;
 
 /* 80450E18-80450E1C 000318 0004+00 2/2 0/0 0/0 .sbss            m_factory__7dDemo_c */
 JStudio::TFactory* dDemo_c::m_factory;
@@ -647,7 +697,7 @@ jmessage_tControl* dDemo_c::m_mesgControl;
 dDemo_object_c* dDemo_c::m_object;
 
 /* 80450E24-80450E28 000324 0004+00 4/4 0/0 0/0 .sbss            m_data__7dDemo_c */
-u8* dDemo_c::m_data;
+const u8* dDemo_c::m_data;
 
 /* 80450E28-80450E2C 000328 0004+00 2/2 0/0 1/1 .sbss            m_frame__7dDemo_c */
 int dDemo_c::m_frame;
@@ -671,7 +721,7 @@ u32 dDemo_c::m_status;
 u16 dDemo_c::m_branchType;
 
 /* 80450E44-80450E48 000344 0004+00 5/5 0/0 0/0 .sbss            m_branchData__7dDemo_c */
-u8* dDemo_c::m_branchData;
+const u8* dDemo_c::m_branchData;
 
 /* 80450E48-80450E4C -00001 0004+00 1/1 0/0 0/0 .sbss            None */
 /* 80450E48 0001+00 data_80450E48 None */
@@ -721,14 +771,9 @@ asm void dDemo_setDemoData(fopAc_ac_c* param_0, u8 param_1, mDoExt_McaMorf* para
 #pragma pop
 
 /* 800387A8-800387EC 0330E8 0044+00 1/1 0/0 0/0 .text            branchFile__FPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void branchFile(char const* param_0) {
-    nofralloc
-#include "asm/d/d_demo/branchFile__FPCc.s"
+static void branchFile(char const* resName) {
+    dDemo_c::setBranchData((u8*)dComIfG_getObjectRes(dStage_roomControl_c::getDemoArcName(), resName));
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803797F8-803797F8 005E58 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -1167,107 +1212,143 @@ asm void dDemo_fog_c::JSGSetColor(_GXColor param_0) {
 #pragma pop
 
 /* 80038F54-80038F70 033894 001C+00 1/1 0/0 0/0 .text            __ct__14dDemo_object_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dDemo_object_c::dDemo_object_c() {
-    nofralloc
-#include "asm/d/d_demo/__ct__14dDemo_object_cFv.s"
+dDemo_object_c::dDemo_object_c() {
+    mActorNum = 0;
+    mLightNum = 0;
+    mpCamera = NULL;
+    mpAmbient = NULL;
+    mpFog = NULL;
 }
-#pragma pop
 
 /* 80038F70-80038FC0 0338B0 0050+00 1/1 0/0 0/0 .text            __dt__14dDemo_object_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dDemo_object_c::~dDemo_object_c() {
-    nofralloc
-#include "asm/d/d_demo/__dt__14dDemo_object_cFv.s"
+dDemo_object_c::~dDemo_object_c() {
+    remove();
 }
-#pragma pop
 
 /* 80038FC0-80039088 033900 00C8+00 1/1 0/0 0/0 .text appendActor__14dDemo_object_cFP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDemo_object_c::appendActor(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/d_demo/appendActor__14dDemo_object_cFP10fopAc_ac_c.s"
+JStage::TObject* dDemo_object_c::appendActor(fopAc_ac_c* p_actor) {
+    dDemo_actor_c* demoActor = dDemo_c::getActor(p_actor->mDemoActorId);
+
+    if (demoActor != NULL) {
+        return demoActor;
+    }
+
+    if (mActorNum >= 32) {
+        return NULL;
+    }
+
+    demoActor = new dDemo_actor_c();
+    if (demoActor == NULL) {
+        return NULL;
+    }
+
+    u8 curActorNum = mActorNum;
+    mActorNum++;
+    mpActors[curActorNum] = demoActor;
+    demoActor->setActor(p_actor);
+    p_actor->mDemoActorId = mActorNum;
+
+    if (p_actor->field_0x524 != NULL) {
+        demoActor->setModel((J3DModel*)p_actor->field_0x524);
+    }
+
+    return demoActor;
 }
-#pragma pop
 
 /* 80039088-800390AC 0339C8 0024+00 2/2 6/6 7/7 .text            getActor__14dDemo_object_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dDemo_actor_c* dDemo_object_c::getActor(u8 param_0) {
-    nofralloc
-#include "asm/d/d_demo/getActor__14dDemo_object_cFUc.s"
+dDemo_actor_c* dDemo_object_c::getActor(u8 actorId) {
+    if (actorId == 0 || actorId > 32) {
+        return NULL;
+    }
+
+    return mpActors[actorId - 1];
 }
-#pragma pop
 
 /* 800390AC-80039128 0339EC 007C+00 1/1 0/0 0/0 .text            createCamera__14dDemo_object_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDemo_object_c::createCamera() {
-    nofralloc
-#include "asm/d/d_demo/createCamera__14dDemo_object_cFv.s"
+JStage::TObject* dDemo_object_c::createCamera() {
+    if (mpCamera != NULL) {
+        return mpCamera;
+    }
+
+    mpCamera = new dDemo_camera_c();
+    return mpCamera;
 }
-#pragma pop
 
 /* 80039128-8003913C 033A68 0014+00 0/0 3/3 0/0 .text            getActiveCamera__14dDemo_object_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDemo_object_c::getActiveCamera() {
-    nofralloc
-#include "asm/d/d_demo/getActiveCamera__14dDemo_object_cFv.s"
+JStage::TObject* dDemo_object_c::getActiveCamera() {
+    if (mpCamera != NULL) {
+        return mpCamera;
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 8003913C-800391B8 033A7C 007C+00 1/1 0/0 0/0 .text            createAmbient__14dDemo_object_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDemo_object_c::createAmbient() {
-    nofralloc
-#include "asm/d/d_demo/createAmbient__14dDemo_object_cFv.s"
+JStage::TObject* dDemo_object_c::createAmbient() {
+    if (mpAmbient != NULL) {
+        return mpAmbient;
+    }
+
+    mpAmbient = new dDemo_ambient_c();
+    return mpAmbient;
 }
-#pragma pop
 
 /* 800391B8-80039258 033AF8 00A0+00 1/1 0/0 0/0 .text            appendLight__14dDemo_object_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDemo_object_c::appendLight() {
-    nofralloc
-#include "asm/d/d_demo/appendLight__14dDemo_object_cFv.s"
+JStage::TObject* dDemo_object_c::appendLight() {
+    if (mLightNum >= 8) {
+        return NULL;
+    }
+
+    dDemo_light_c* demoLight = new dDemo_light_c();
+    if (demoLight == NULL) {
+        return NULL;
+    }
+
+    u8 curLightNum = mLightNum;
+    mLightNum++;
+    mpLights[curLightNum] = demoLight;
+
+    return demoLight;
 }
-#pragma pop
 
 /* 80039258-800392D4 033B98 007C+00 1/1 0/0 0/0 .text            createFog__14dDemo_object_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDemo_object_c::createFog() {
-    nofralloc
-#include "asm/d/d_demo/createFog__14dDemo_object_cFv.s"
+JStage::TObject* dDemo_object_c::createFog() {
+    if (mpFog != NULL) {
+        return mpFog;
+    }
+
+    mpFog = new dDemo_fog_c();
+    return mpFog;
 }
-#pragma pop
 
 /* 800392D4-80039408 033C14 0134+00 2/2 0/0 0/0 .text            remove__14dDemo_object_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDemo_object_c::remove() {
-    nofralloc
-#include "asm/d/d_demo/remove__14dDemo_object_cFv.s"
+void dDemo_object_c::remove() {
+    while (mActorNum != 0) {
+        delete mpActors[--mActorNum];
+    }
+
+    if (mpCamera != NULL) {
+        delete mpCamera;
+        mpCamera = NULL;
+    }
+
+    if (mpAmbient != NULL) {
+        delete mpAmbient;
+        mpAmbient = NULL;
+    }
+
+    while (mLightNum != 0) {
+        delete mpLights[--mLightNum];
+    }
+
+    if (mpFog != NULL) {
+        delete mpFog;
+        mpFog = NULL;
+    }
 }
-#pragma pop
 
 /* 80039408-80039468 033D48 0060+00 1/0 0/0 0/0 .text            __dt__11dDemo_fog_cFv */
 #pragma push
@@ -1302,30 +1383,73 @@ extern "C" asm void __dt__15dDemo_ambient_cFv() {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 803797F8-803797F8 005E58 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803797FA = "d_act";
-#pragma pop
-
 /* 80039528-80039678 033E68 0150+00 1/0 0/0 0/0 .text
  * JSGFindObject__14dDemo_system_cCFPPQ26JStage7TObjectPCcQ26JStage8TEObject */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dDemo_system_c::JSGFindObject(JStage::TObject** param_0, char const* param_1,
-                                       JStage::TEObject param_2) const {
-    nofralloc
-#include "asm/d/d_demo/JSGFindObject__14dDemo_system_cCFPPQ26JStage7TObjectPCcQ26JStage8TEObject.s"
+bool dDemo_system_c::JSGFindObject(JStage::TObject** p_TObj, char const* actorName,
+                                       JStage::TEObject objType) const {
+    if (mpObject == NULL) {
+        return true;
+    }
+
+    if (objType == JStage::TOBJ_ACTOR || objType == JStage::TOBJ_ACTOR_UNK) {
+        fopAc_ac_c* actor = fopAcM_searchFromName(actorName, 0, 0);
+
+        if (actor == NULL) {
+            if (objType == JStage::TOBJ_ACTOR && !strncmp(actorName, "d_act", 5)) {
+                actor = (fopAc_ac_c*)fopAcM_fastCreate(actorName, 0, NULL, -1, NULL, NULL, NULL, NULL);
+                if (actor == NULL) {
+                    return true;
+                }
+                fopAcM_setStageLayer(actor);
+            } else {
+                return true;
+            }
+        }
+
+        *p_TObj = mpObject->appendActor(actor);
+    } else if (objType == JStage::TOBJ_CAMERA) {
+        *p_TObj = mpObject->createCamera();
+    } else if (objType == JStage::TOBJ_AMBIENT) {
+        *p_TObj = mpObject->createAmbient();
+    } else if (objType == JStage::TOBJ_LIGHT) {
+        *p_TObj = mpObject->appendLight();
+    } else if (objType == JStage::TOBJ_FOG) {
+        *p_TObj = mpObject->createFog();
+    }
+
+    return *p_TObj == NULL;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451DE0-80451DE8 0003E0 0008+00 1/1 0/0 0/0 .sdata2          @5123 */
-SECTION_SDATA2 static f64 lit_5123 = 0.03333333507180214;
+SECTION_SDATA2 static f64 lit_5123 = 1.0 / 29.999998435378155;
 
 /* 80039678-80039910 033FB8 0298+00 0/0 1/1 0/0 .text            create__7dDemo_cFv */
+#ifdef NONMATCHING
+void dDemo_c::create() {
+    m_system = new dDemo_system_c();
+    m_control = new JStudio::TControl();
+    m_mesgControl = new jmessage_tControl();
+    m_stage = new JStudio_JStage::TCreateObject(m_system);
+    m_audio = new JStudio_JAudio2::TCreateObject(Z2GetSoundStarter(), m_system);
+    m_particle = new dDemo_particle_c(dPa_control_c::getEmitterManager(), m_system);
+    m_message = new jstudio_tCreateObject_message();
+    m_factory = new JStudio::TFactory();
+    m_object = new dDemo_object_c();
+
+    m_control->setSecondPerFrame(1.0 / 29.999998435378155);
+    m_control->setFactory(m_factory);
+    m_control->appendCreateObject(m_stage);
+    m_control->appendCreateObject(m_audio);
+    m_control->appendCreateObject(m_particle);
+    m_control->appendCreateObject(m_message);
+
+    m_system->setObject(m_object);
+    m_data = NULL;
+    m_mode = 0;
+    reset();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1334,6 +1458,7 @@ asm void dDemo_c::create() {
 #include "asm/d/d_demo/create__7dDemo_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80039910-80039AAC 034250 019C+00 0/0 1/1 0/0 .text            remove__7dDemo_cFv */
 #pragma push
@@ -1367,99 +1492,129 @@ extern "C" asm void __dt__17jmessage_tControlFv() {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 803797F8-803797F8 005E58 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80379800 = "デモデータ読み込みエラー！！\n";
-#pragma pop
-
-/* 8042465C-80424668 05137C 000C+00 1/1 0/0 0/0 .bss             @5233 */
-static u8 lit_5233[12];
-
-/* 80424668-80424678 051388 000C+04 1/1 0/0 0/0 .bss             l_translation$5232 */
-static f32 l_translation[3 + 1 /* padding */];
-
-/* 80450E50-80450E58 000350 0008+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_80450E50[8];
-
 /* 80039B6C-80039CF8 0344AC 018C+00 1/1 1/1 0/0 .text            start__7dDemo_cFPCUcP4cXyzf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDemo_c::start(u8 const* param_0, cXyz* param_1, f32 param_2) {
-    nofralloc
-#include "asm/d/d_demo/start__7dDemo_cFPCUcP4cXyzf.s"
+int dDemo_c::start(u8 const* p_data, cXyz* p_translation, f32 rotationY) {
+    m_control->reset();
+    JStudio::TParse parser(m_control);
+
+    if (!parser.parse(p_data, 0)) {
+        // "Demo data read error!!\n"
+        OSReport_Error("デモデータ読み込みエラー！！\n");
+        return 0;
+    }
+
+    if (m_data == NULL) {
+        m_control->setSuspend(0);
+    }
+    
+    m_control->forward(0);
+    m_translation = p_translation;
+
+    if (p_translation != NULL) {
+        static cXyz l_translation;
+        l_translation = *m_translation;
+        m_translation = &l_translation;
+        m_rotationY = rotationY;
+
+        m_control->transform_enable(true);
+        m_control->transform_setOrigin(*m_translation, m_rotationY);
+    }
+
+    m_mode = 1;
+    reset();
+
+    m_data = NULL;
+    m_branchData = (u8*)p_data;
+    return 1;
 }
-#pragma pop
 
 /* 80039CF8-80039D4C 034638 0054+00 1/1 2/2 0/0 .text            end__7dDemo_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDemo_c::end() {
-    nofralloc
-#include "asm/d/d_demo/end__7dDemo_cFv.s"
+void dDemo_c::end() {
+    m_control->destroyObject_all();
+    m_object->remove();
+    m_data = NULL;
+    m_mode = 0;
 }
-#pragma pop
 
 /* 80039D4C-80039DA4 03468C 0058+00 1/1 0/0 0/0 .text            branch__7dDemo_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDemo_c::branch() {
-    nofralloc
-#include "asm/d/d_demo/branch__7dDemo_cFv.s"
-}
-#pragma pop
+void dDemo_c::branch() {
+    m_control->destroyObject_all();
+    const u8* branchData = m_branchData;
+    m_branchData = NULL;
 
-/* ############################################################################################## */
-/* 80451DE8-80451DF0 0003E8 0004+04 1/1 0/0 0/0 .sdata2          @5322 */
-SECTION_SDATA2 static f32 lit_5322[1 + 1 /* padding */] = {
-    1.0f / 10.0f,
-    /* padding */
-    0.0f,
-};
+    start(branchData, m_translation, m_rotationY);
+}
 
 /* 80039DA4-80039EDC 0346E4 0138+00 0/0 1/1 0/0 .text            update__7dDemo_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDemo_c::update() {
-    nofralloc
-#include "asm/d/d_demo/update__7dDemo_cFv.s"
+int dDemo_c::update() {
+    if (m_data == NULL) {
+        if (m_branchData == NULL) {
+            return 0;
+        } else {
+            m_data = m_branchData;
+            m_branchData = NULL;
+            return 1;
+        }
+    } else if (isStatus(1)) {
+        daMP_c::daMP_c_THPPlayerPlay();
+        if (isStatus(1)) {
+            return 1;
+        }
+    }
+
+    if (m_control->forward(1) != 0) {
+        m_frame++;
+
+        if (m_control->getSuspend() <= 0) {
+            m_frameNoMsg++;
+        }
+    } else {
+        m_mode = 2;
+    }
+
+    if (m_branchData != NULL) {
+        branch();
+    }
+
+    if (dComIfGs_staffroll_next_go_check() != 0) {
+        dScnKy_env_light_c* env_light = &g_env_light;
+
+        if (dComIfGs_staffroll_next_go_check() > 10) {
+            env_light->field_0x130c = 0;
+            m_mode = 2;
+        } else {
+            if (dComIfGs_staffroll_next_go_check() == 1) {
+                mDoGph_gInf_c::fadeOut(0.1f, g_blackColor);
+            }
+            env_light->field_0x130c++;
+        }
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 80039EDC-80039EEC 03481C 0010+00 1/1 0/0 0/0 .text            setBranchType__7dDemo_cFUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDemo_c::setBranchType(u16 param_0) {
-    nofralloc
-#include "asm/d/d_demo/setBranchType__7dDemo_cFUs.s"
+void dDemo_c::setBranchType(u16 type) {
+    m_branchType = type;
+    m_branchId = -1;
 }
-#pragma pop
 
 /* 80039EEC-80039F04 03482C 0018+00 0/0 2/2 0/0 .text            setBranchId__7dDemo_cFUss */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDemo_c::setBranchId(u16 param_0, s16 param_1) {
-    nofralloc
-#include "asm/d/d_demo/setBranchId__7dDemo_cFUss.s"
+void dDemo_c::setBranchId(u16 param_0, s16 branchId) {
+    if (param_0 != m_branchType) {
+        return;
+    }
+
+    m_branchId = branchId;
 }
-#pragma pop
 
 /* 80039F04-80039F1C 034844 0018+00 2/2 0/0 0/0 .text            reset__7dDemo_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDemo_c::reset() {
-    nofralloc
-#include "asm/d/d_demo/reset__7dDemo_cFv.s"
+void dDemo_c::reset() {
+    m_frame = 0;
+    m_frameNoMsg = 0;
+    m_status = 0;
+    m_branchData = NULL;
 }
-#pragma pop
 
 /* 80039F1C-80039F9C 03485C 0080+00 1/0 0/0 0/0 .text emitter_create__16dDemo_particle_cFUl */
 #pragma push
@@ -1520,7 +1675,7 @@ asm void dDemo_actor_c::JSGGetNodeTransformation(u32 param_0, f32 (*param_1)[4])
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dDemo_actor_c::JSGGetAnimationFrameMax() const {
+asm f32 dDemo_actor_c::JSGGetAnimationFrameMax() const {
     nofralloc
 #include "asm/d/d_demo/JSGGetAnimationFrameMax__13dDemo_actor_cCFv.s"
 }
@@ -1531,7 +1686,7 @@ asm void dDemo_actor_c::JSGGetAnimationFrameMax() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dDemo_actor_c::JSGGetTextureAnimationFrameMax() const {
+asm f32 dDemo_actor_c::JSGGetTextureAnimationFrameMax() const {
     nofralloc
 #include "asm/d/d_demo/JSGGetTextureAnimationFrameMax__13dDemo_actor_cCFv.s"
 }

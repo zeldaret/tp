@@ -8,6 +8,8 @@ typedef void (*daMP_Func)();
 
 class daMP_c : public fopAc_ac_c {
 public:
+    /* 80031AD0 */ static void daMP_c_THPPlayerPlay();
+    /* 80031B24 */ void daMP_c_THPPlayerPause();
     /* 80031A78 */ void daMP_c_Get_MovieRestFrame();
     /* 80031AA4 */ void daMP_c_Set_PercentMovieVolume(f32);
     /* 80878BB8 */ void daMP_c_Get_arg_demoNo();

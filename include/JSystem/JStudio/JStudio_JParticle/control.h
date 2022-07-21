@@ -8,6 +8,12 @@
 
 namespace JStudio_JParticle {
 struct TCreateObject : public JStudio::TCreateObject {
+    TCreateObject(JPAEmitterManager* p_emitMgr, const JStage::TSystem* p_system) {
+        pJPAEmitterManager_ = p_emitMgr;
+        pJSGSystem_ = p_system;
+        mPermit_onExit_notEnd = false;
+    }
+
     /* 8028E3A0 */ virtual ~TCreateObject();
     /* 8028E400 */ virtual void create(JStudio::TObject**,
                                        JStudio::stb::data::TParse_TBlock_object const&);
@@ -18,7 +24,7 @@ struct TCreateObject : public JStudio::TCreateObject {
                                                    JStudio_JParticle::TCreateObject*);
 
     /* 0x0C */ JPAEmitterManager* pJPAEmitterManager_;
-    /* 0x10 */ JStage::TSystem* pJSGSystem_;
+    /* 0x10 */ const JStage::TSystem* pJSGSystem_;
     /* 0x14 */ bool mPermit_onExit_notEnd;
 };
 

@@ -397,7 +397,7 @@ asm void TControl::reset() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TControl::forward(u32 param_0) {
+asm u8 TControl::forward(u32 param_0) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/stb/forward__Q37JStudio3stb8TControlFUl.s"
 }

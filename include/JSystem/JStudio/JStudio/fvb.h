@@ -49,8 +49,9 @@ private:
 
 class TFactory {
 public:
-    /* 80284918 */ virtual ~TFactory();
+    TFactory() {}
 
+    /* 80284918 */ virtual ~TFactory();
     /* 80284960 */ virtual TObject* create(JStudio::fvb::data::TParse_TBlock const&);
     /* 80284AA0 */ virtual void destroy(JStudio::fvb::TObject*);
 };

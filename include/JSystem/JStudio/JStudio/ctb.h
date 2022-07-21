@@ -30,6 +30,8 @@ struct TObject_TxyzRy : public TObject {
 };
 
 struct TFactory {
+    TFactory() {}
+
     /* 80281274 */ virtual ~TFactory();
     /* 802812BC */ virtual void create(JStudio::ctb::data::TParse_TBlock const&);
     /* 80281320 */ virtual void destroy(JStudio::ctb::TObject*);

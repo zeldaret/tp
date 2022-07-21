@@ -796,6 +796,7 @@ BOOL dComIfGs_isStageSwitch(int i_stageNo, int i_no);
 void dComIfGs_onStageSwitch(int i_stageNo, int i_no);
 void dComIfGs_offStageSwitch(int i_stageNo, int i_no);
 void dComIfGs_PolyDamageOff_Set(s8 param_0);
+u8 dComIfGs_staffroll_next_go_check();
 
 inline void dComIfGs_init() {
     g_dComIfG_gameInfo.info.init();

@@ -11,11 +11,15 @@
 
 namespace JStudio_JStage {
 struct TCreateObject : public JStudio::TCreateObject {
+    TCreateObject(const JStage::TSystem* pSystem) {
+        pJSGSystem_ = pSystem;
+    }
+
     /* 80289B00 */ virtual ~TCreateObject();
     /* 80289B60 */ virtual void create(JStudio::TObject**,
                                        JStudio::stb::data::TParse_TBlock_object const&);
 
-    /* 0x0C */ JStage::TSystem* pJSGSystem_;
+    /* 0x0C */ const JStage::TSystem* pJSGSystem_;
 };
 
 struct TAdaptor_object_ {

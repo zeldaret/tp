@@ -9,12 +9,15 @@
 
 namespace JStudio {
 struct TCreateObject {
+    TCreateObject() {}
     /* 80285488 */ virtual ~TCreateObject() = 0;
 
     /* 0x4 */ JGadget::TLinkListNode mNode;
 };  // Size: 0xC
 
 struct TFactory : public stb::TFactory {
+    TFactory() {}
+
     /* 802854D0 */ virtual ~TFactory();
     /* 802855AC */ virtual void create(JStudio::stb::data::TParse_TBlock_object const&);
 
@@ -38,11 +41,38 @@ public:
     /* 80285368 */ void transform_setOrigin_ctb(JStudio::ctb::TObject const&);
     /* 8028543C */ void transform_setOrigin_ctb_index(u32);
 
+    void stb_destroyObject_all() { stb::TControl::destroyObject_all(); }
+    void fvb_destroyObject_all() { fvb_Control.destroyObject_all(); }
+    void ctb_destroyObject_all() { ctb_Control.destroyObject_all(); }
+
+    void destroyObject_all() {
+        stb_destroyObject_all();
+        fvb_destroyObject_all();
+        ctb_destroyObject_all();
+    }
+
+    void transformOnSet_enable(bool param_0) { mTransformOnSet = param_0; }
+    void transformOnGet_enable(bool param_0) { mTransformOnGet = param_0; }
+
+    void transform_enable(bool param_0) {
+        transformOnSet_enable(param_0);
+        transformOnGet_enable(param_0);
+    }
+
+    void transform_setOrigin_TxyzRy(const Vec& xyz, f32 rotY) {
+        transformOnSet_setOrigin_TxyzRy(xyz, rotY);
+        transformOnGet_setOrigin_TxyzRy(xyz, rotY);
+    }
+
+    void transform_setOrigin(const Vec& xyz, f32 rotY) {
+        transform_setOrigin_TxyzRy(xyz, rotY);
+    }
+
     /* 0x58 */ f64 mSecondPerFrame;
     /* 0x60 */ fvb::TControl fvb_Control;
     /* 0x74 */ ctb::TControl ctb_Control;
-    /* 0x88 */ u8 mTransformOnSet;
-    /* 0x89 */ u8 mTransformOnGet;
+    /* 0x88 */ bool mTransformOnSet;
+    /* 0x89 */ bool mTransformOnGet;
     /* 0x8C */ Vec field_0x8c;
     /* 0x98 */ Vec field_0x98;
     /* 0xA4 */ f32 mTransformOnSet_RotationY;
