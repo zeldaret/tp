@@ -18,28 +18,6 @@ struct mDoGph_gInf_c {
     /* 80878D10 */ void setFrameRate(u16);
 };
 
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct daMP_c {
-    /* 80031A78 */ void daMP_c_Get_MovieRestFrame();
-    /* 80031AA4 */ void daMP_c_Set_PercentMovieVolume(f32);
-    /* 80878BB8 */ void daMP_c_Get_arg_demoNo();
-    /* 80878C04 */ void daMP_c_Get_arg_movieNo();
-    /* 80878C28 */ void daMP_c_Init();
-    /* 80878D64 */ void daMP_c_Finish();
-    /* 80878D94 */ void daMP_c_Main();
-    /* 80878DD8 */ void daMP_c_Draw();
-    /* 80878E60 */ void daMP_c_Callback_Init(fopAc_ac_c*);
-    /* 80878ED4 */ daMP_c();
-    /* 80878F18 */ void daMP_c_Callback_Finish(daMP_c*);
-    /* 80878F38 */ void daMP_c_Callback_Main(daMP_c*);
-    /* 80878F70 */ void daMP_c_Callback_Draw(daMP_c*);
-
-    static u8 m_myObj[4];
-};
-
 struct daMP_THPReadBuffer {};
 
 struct daMP_Dlst_base_c {
@@ -65,8 +43,6 @@ struct dComIfG_play_c {
     /* 80878A64 */ void getEvent();
 };
 
-struct _GXRenderModeObj {};
-
 struct THPVideoInfo {};
 
 struct THPAudioInfo {};
@@ -78,11 +54,6 @@ struct JUTVideo {
     static u8 sManager[4];
 };
 
-struct JKRHeap {
-    /* 802CE4D4 */ void alloc(u32, int);
-    /* 802CE500 */ void free(void*, JKRHeap*);
-};
-
 struct JFWDisplay {
     /* 80878D44 */ void setFrameRate(u16);
     /* 80878D54 */ void getManager();
@@ -91,10 +62,6 @@ struct JFWDisplay {
 };
 
 struct JASMixMode {};
-
-struct JASDriver {
-    /* 8029C9DC */ void registerMixCallback(s16* (*)(s32), JASMixMode);
-};
 
 //
 // Forward References:
@@ -126,8 +93,8 @@ extern "C" void __THPHuffDecodeDCTCompY();
 extern "C" void __THPHuffDecodeTab();
 extern "C" void __THPHuffDecodeDCTCompU();
 extern "C" void __THPHuffDecodeDCTCompV();
-extern "C" static void THPInit();
 extern "C" static void OSInitFastCast();
+extern "C" static void THPInit();
 extern "C" static void daMP_PopReadedBuffer__Fv();
 extern "C" static void daMP_PushReadedBuffer__FPv();
 extern "C" static void daMP_PopFreeReadBuffer__Fv();
@@ -163,9 +130,7 @@ extern "C" static void daMP_THPGXRestore__Fv();
 extern "C" static void daMP_THPGXYuv2RgbSetup__FPC16_GXRenderModeObj();
 extern "C" static void GXSetTexCoordGen();
 extern "C" static void daMP_THPGXYuv2RgbDraw__FPUcPUcPUcssssss();
-extern "C" static void GXEnd();
 extern "C" static void GXTexCoord2u16();
-extern "C" static void GXPosition3s16();
 extern "C" static void daMP_MixAudio__FPsPsUl();
 extern "C" static void daMP_audioCallbackWithMSound__Fl();
 extern "C" static void daMP_audioInitWithMSound__Fv();
@@ -243,7 +208,6 @@ extern "C" extern char const* const d_a_movie_player__stringBase0;
 
 SECTION_INIT void memset();
 SECTION_INIT void memcpy();
-extern "C" void OSReport();
 extern "C" void fadeOut__13mDoGph_gInf_cFf();
 extern "C" void mDoExt_getArchiveHeap__Fv();
 extern "C" void __ct__10fopAc_ac_cFv();
@@ -265,69 +229,16 @@ extern "C" void LCEnable();
 extern "C" void LCDisable();
 extern "C" void LCStoreData();
 extern "C" void LCQueueWait();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSEnableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void OSInitMessageQueue();
-extern "C" void OSSendMessage();
-extern "C" void OSReceiveMessage();
-extern "C" void OSCreateThread();
-extern "C" void OSCancelThread();
-extern "C" void OSResumeThread();
-extern "C" void OSSuspendThread();
-extern "C" void OSGetTick();
-extern "C" void PSMTXIdentity();
-extern "C" void C_MTXOrtho();
-extern "C" void DVDOpen();
-extern "C" void DVDClose();
-extern "C" void DVDReadPrio();
 extern "C" void DVDCancel();
 extern "C" void VISetPostRetraceCallback();
 extern "C" void VIGetNextField();
 extern "C" void VIGetTvFormat();
 extern "C" void AIGetDSPSampleRate();
-extern "C" void GXSetVtxDesc();
 extern "C" void GXClearVtxDesc();
-extern "C" void GXSetVtxAttrFmt();
-extern "C" void GXSetTexCoordGen2();
-extern "C" void GXSetNumTexGens();
 extern "C" void GXDrawDone();
-extern "C" void GXBegin();
-extern "C" void GXSetCullMode();
-extern "C" void GXSetNumChans();
-extern "C" void GXInitTexObj();
-extern "C" void GXInitTexObjLOD();
-extern "C" void GXLoadTexObj();
 extern "C" void GXInvalidateTexAll();
-extern "C" void GXSetNumIndStages();
-extern "C" void GXSetTevOp();
-extern "C" void GXSetTevColorIn();
-extern "C" void GXSetTevAlphaIn();
-extern "C" void GXSetTevColorOp();
-extern "C" void GXSetTevAlphaOp();
-extern "C" void GXSetTevColorS10();
-extern "C" void GXSetTevKColor();
-extern "C" void GXSetTevKColorSel();
-extern "C" void GXSetTevKAlphaSel();
-extern "C" void GXSetTevSwapMode();
-extern "C" void GXSetTevSwapModeTable();
-extern "C" void GXSetAlphaCompare();
-extern "C" void GXSetTevOrder();
-extern "C" void GXSetNumTevStages();
-extern "C" void GXSetFog();
-extern "C" void GXSetFogRangeAdj();
-extern "C" void GXSetBlendMode();
-extern "C" void GXSetColorUpdate();
-extern "C" void GXSetAlphaUpdate();
-extern "C" void GXSetZMode();
-extern "C" void GXSetZCompLoc();
-extern "C" void GXSetPixelFmt();
-extern "C" void GXSetDither();
-extern "C" void GXSetProjection();
-extern "C" void GXLoadPosMtxImm();
-extern "C" void GXSetCurrentMtx();
-extern "C" void GXSetViewport();
-extern "C" void GXSetScissor();
+extern "C" static void GXEnd();
+extern "C" static void GXPosition3s16();
 extern "C" void _savegpr_21();
 extern "C" void _savegpr_22();
 extern "C" void _savegpr_23();
@@ -346,7 +257,6 @@ extern "C" void __div2i();
 extern "C" void sprintf();
 extern "C" void strcmp();
 extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_clearColor[4];
 extern "C" extern u8 mBlureFlag__13mDoGph_gInf_c[4];
@@ -2248,7 +2158,7 @@ asm daMP_c::daMP_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void* operator new(u32 param_0, void* param_1) {
+extern "C" static asm void* __nw__FUlPv() {
     nofralloc
 #include "asm/rel/d/a/d_a_movie_player/d_a_movie_player/__nw__FUlPv.s"
 }

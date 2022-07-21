@@ -1,5 +1,5 @@
-#ifndef LOCALE_H
-#define LOCALE_H
+#ifndef JMESSAGE_LOCALE_H
+#define JMESSAGE_LOCALE_H
 
 #include "dolphin/types.h"
 
@@ -12,4 +12,4 @@ struct locale {
 };
 };  // namespace JMessage
 
-#endif /* LOCALE_H */
+#endif /* JMESSAGE_LOCALE_H */

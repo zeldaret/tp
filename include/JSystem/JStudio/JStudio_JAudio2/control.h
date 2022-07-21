@@ -1,5 +1,5 @@
-#ifndef CONTROL_H
-#define CONTROL_H
+#ifndef JSTUDIO_JAUDIO2_CONTROL_H
+#define JSTUDIO_JAUDIO2_CONTROL_H
 
 #include "dolphin/types.h"
 #include "JSystem/JAudio2/JAISoundHandles.h"
@@ -72,4 +72,4 @@ struct TAdaptor_sound : public JStudio::TAdaptor_sound {
 };
 };  // namespace JStudio_JAudio2
 
-#endif /* CONTROL_H */
+#endif /* JSTUDIO_JAUDIO2_CONTROL_H */

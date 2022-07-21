@@ -1,5 +1,5 @@
-#ifndef CONTROL_H
-#define CONTROL_H
+#ifndef JMESSAGE_CONTROL_H
+#define JMESSAGE_CONTROL_H
 
 #include "dolphin/types.h"
 #include "JSystem/JMessage/processor.h"
@@ -36,4 +36,4 @@ struct jmessage_tControl : public JMessage::TControl {
     /* 80039B0C */ virtual ~jmessage_tControl();
 };
 
-#endif /* CONTROL_H */
+#endif /* JMESSAGE_CONTROL_H */

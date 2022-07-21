@@ -205,7 +205,7 @@ bool JKRAramArchive::open(s32 entryNum) {
                 mExpandedSize =
                     (s32*)JKRAllocFromHeap(mHeap, mArcInfoBlock->num_file_entries * 4, abs(align));
                 if (mExpandedSize == NULL) {
-                    JKRFree(mArcInfoBlock);
+                    i_JKRFree(mArcInfoBlock);
                     mMountMode = UNKNOWN_MOUNT_MODE;
                     goto end;
                 } else {
@@ -218,10 +218,10 @@ bool JKRAramArchive::open(s32 entryNum) {
                 mMountDirection == MOUNT_DIRECTION_HEAD ? JKRAramHeap::HEAD : JKRAramHeap::TAIL));
             if (mBlock == NULL) {
                 if (mArcInfoBlock != NULL) {
-                    JKRFree(mArcInfoBlock);
+                    i_JKRFree(mArcInfoBlock);
                 }
                 if (mExpandedSize != NULL) {
-                    JKRFree(mExpandedSize);
+                    i_JKRFree(mExpandedSize);
                 }
                 mMountMode = UNKNOWN_MOUNT_MODE;
             } else {

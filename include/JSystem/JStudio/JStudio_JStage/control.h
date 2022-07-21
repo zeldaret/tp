@@ -1,5 +1,5 @@
-#ifndef CONTROL_H
-#define CONTROL_H
+#ifndef JSTUDIO_JSTAGE_CONTROL_H
+#define JSTUDIO_JSTAGE_CONTROL_H
 
 #include "JSystem/JStage/JSGActor.h"
 #include "JSystem/JStage/JSGAmbientLight.h"
@@ -84,32 +84,34 @@ struct TAdaptor_actor : public JStudio::TAdaptor_actor, public JStudio_JStage::T
 
 struct TAdaptor_ambientLight : public JStudio::TAdaptor_ambientLight {
     /* 8028B610 */ TAdaptor_ambientLight(JStage::TSystem const*, JStage::TAmbientLight*);
-    /* 8028B6AC */ ~TAdaptor_ambientLight();
-    /* 8028B720 */ void adaptor_do_prepare();
-    /* 8028B724 */ void adaptor_do_begin();
-    /* 8028B7B0 */ void adaptor_do_end();
-    /* 8028B804 */ void adaptor_do_update(u32);
-    /* 8028B87C */ void adaptor_do_data(void const*, u32, void const*, u32);
+
+    /* 8028B6AC */ virtual ~TAdaptor_ambientLight();
+    /* 8028B720 */ virtual void adaptor_do_prepare();
+    /* 8028B724 */ virtual void adaptor_do_begin();
+    /* 8028B7B0 */ virtual void adaptor_do_end();
+    /* 8028B804 */ virtual void adaptor_do_update(u32);
+    /* 8028B87C */ virtual void adaptor_do_data(void const*, u32, void const*, u32);
 };
 
 struct TAdaptor_camera : public JStudio::TAdaptor_camera {
     /* 8028B8A0 */ TAdaptor_camera(JStage::TSystem const*, JStage::TCamera*);
-    /* 8028B960 */ ~TAdaptor_camera();
-    /* 8028B9D4 */ void adaptor_do_prepare();
-    /* 8028BA1C */ void adaptor_do_begin();
-    /* 8028BAF8 */ void adaptor_do_end();
-    /* 8028BB4C */ void adaptor_do_update(u32);
-    /* 8028BBAC */ void adaptor_do_data(void const*, u32, void const*, u32);
-    /* 8028BBD0 */ void adaptor_do_PARENT(JStudio::data::TEOperationData, void const*, u32);
-    /* 8028BC14 */ void adaptor_do_PARENT_NODE(JStudio::data::TEOperationData, void const*, u32);
-    /* 8028BC70 */ void adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData, void const*, u32);
-    /* 8028BCEC */ void adaptor_do_PARENT_FUNCTION(JStudio::data::TEOperationData, void const*,
+    /* 8028B960 */ virtual ~TAdaptor_camera();
+    /* 8028B9D4 */ virtual void adaptor_do_prepare();
+    /* 8028BA1C */ virtual void adaptor_do_begin();
+    /* 8028BAF8 */ virtual void adaptor_do_end();
+    /* 8028BB4C */ virtual void adaptor_do_update(u32);
+    /* 8028BBAC */ virtual void adaptor_do_data(void const*, u32, void const*, u32);
+    /* 8028BBD0 */ virtual void adaptor_do_PARENT(JStudio::data::TEOperationData, void const*, u32);
+    /* 8028BC14 */ virtual void adaptor_do_PARENT_NODE(JStudio::data::TEOperationData, void const*, u32);
+    /* 8028BC70 */ virtual void adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData, void const*, u32);
+    /* 8028BCEC */ virtual void adaptor_do_PARENT_FUNCTION(JStudio::data::TEOperationData, void const*,
                                                    u32);
-    /* 8028BD00 */ void adaptor_do_TARGET_PARENT(JStudio::data::TEOperationData, void const*, u32);
-    /* 8028BD44 */ void adaptor_do_TARGET_PARENT_NODE(JStudio::data::TEOperationData, void const*,
+    /* 8028BD00 */ virtual void adaptor_do_TARGET_PARENT(JStudio::data::TEOperationData, void const*, u32);
+    /* 8028BD44 */ virtual void adaptor_do_TARGET_PARENT_NODE(JStudio::data::TEOperationData, void const*,
                                                       u32);
-    /* 8028BDA0 */ void adaptor_do_TARGET_PARENT_ENABLE(JStudio::data::TEOperationData, void const*,
+    /* 8028BDA0 */ virtual void adaptor_do_TARGET_PARENT_ENABLE(JStudio::data::TEOperationData, void const*,
                                                         u32);
+
     /* 8028BDBC */ void setJSG_position_(JStudio::TControl const*);
     /* 8028BEB8 */ void getJSG_position_(JStudio::TControl const*);
     /* 8028BFBC */ void setJSG_targetPosition_(JStudio::TControl const*);
@@ -120,12 +122,12 @@ struct TAdaptor_camera : public JStudio::TAdaptor_camera {
 
 struct TAdaptor_fog : public JStudio::TAdaptor_fog {
     /* 8028C574 */ TAdaptor_fog(JStage::TSystem const*, JStage::TFog*);
-    /* 8028C610 */ ~TAdaptor_fog();
-    /* 8028C684 */ void adaptor_do_prepare();
-    /* 8028C6CC */ void adaptor_do_begin();
-    /* 8028C7B4 */ void adaptor_do_end();
-    /* 8028C808 */ void adaptor_do_update(u32);
-    /* 8028C880 */ void adaptor_do_data(void const*, u32, void const*, u32);
+    /* 8028C610 */ virtual ~TAdaptor_fog();
+    /* 8028C684 */ virtual void adaptor_do_prepare();
+    /* 8028C6CC */ virtual void adaptor_do_begin();
+    /* 8028C7B4 */ virtual void adaptor_do_end();
+    /* 8028C808 */ virtual void adaptor_do_update(u32);
+    /* 8028C880 */ virtual void adaptor_do_data(void const*, u32, void const*, u32);
 
     static u8 saoVVOutput_[96 + 4 /* padding */];
 };
@@ -137,14 +139,14 @@ struct TAdaptor_light : public JStudio::TAdaptor_light {
     };
 
     /* 8028CB50 */ TAdaptor_light(JStage::TSystem const*, JStage::TLight*);
-    /* 8028CBF4 */ ~TAdaptor_light();
-    /* 8028CC68 */ void adaptor_do_prepare();
-    /* 8028CCB0 */ void adaptor_do_begin();
-    /* 8028CF68 */ void adaptor_do_end();
-    /* 8028CFBC */ void adaptor_do_update(u32);
-    /* 8028D18C */ void adaptor_do_data(void const*, u32, void const*, u32);
-    /* 8028D1B0 */ void adaptor_do_FACULTY(JStudio::data::TEOperationData, void const*, u32);
-    /* 8028D228 */ void adaptor_do_ENABLE(JStudio::data::TEOperationData, void const*, u32);
+    /* 8028CBF4 */ virtual ~TAdaptor_light();
+    /* 8028CC68 */ virtual void adaptor_do_prepare();
+    /* 8028CCB0 */ virtual void adaptor_do_begin();
+    /* 8028CF68 */ virtual void adaptor_do_end();
+    /* 8028CFBC */ virtual void adaptor_do_update(u32);
+    /* 8028D18C */ virtual void adaptor_do_data(void const*, u32, void const*, u32);
+    /* 8028D228 */ virtual void adaptor_do_ENABLE(JStudio::data::TEOperationData, void const*, u32);
+    /* 8028D1B0 */ virtual void adaptor_do_FACULTY(JStudio::data::TEOperationData, void const*, u32);
 
     static u8 saoVVOutput_direction_[72];
 };
@@ -165,4 +167,4 @@ struct TAdaptor_light : public JStudio::TAdaptor_light {
                                                 JStage::TObject const*, u32);
 };  // namespace JStudio_JStage
 
-#endif /* CONTROL_H */
+#endif /* JSTUDIO_JSTAGE_CONTROL_H */

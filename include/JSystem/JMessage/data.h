@@ -1,5 +1,5 @@
-#ifndef DATA_H
-#define DATA_H
+#ifndef JMESSAGE_DATA_H
+#define JMESSAGE_DATA_H
 
 #include "dolphin/types.h"
 
@@ -9,4 +9,4 @@ struct data {
 };
 };  // namespace JMessage
 
-#endif /* DATA_H */
+#endif /* JMESSAGE_DATA_H */

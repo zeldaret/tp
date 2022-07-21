@@ -8,52 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct _GXColor {};
-
-struct JStage {
-    struct TSystem {};
-
-    struct TAmbientLight {};
-};
-
-struct JStudio_JStage {
-    struct TAdaptor_ambientLight {
-        /* 8028B610 */ TAdaptor_ambientLight(JStage::TSystem const*, JStage::TAmbientLight*);
-        /* 8028B6AC */ ~TAdaptor_ambientLight();
-        /* 8028B720 */ void adaptor_do_prepare();
-        /* 8028B724 */ void adaptor_do_begin();
-        /* 8028B7B0 */ void adaptor_do_end();
-        /* 8028B804 */ void adaptor_do_update(u32);
-        /* 8028B87C */ void adaptor_do_data(void const*, u32, void const*, u32);
-    };
-
-    struct TAdaptor_object_ {
-        /* 8028A470 */ void adaptor_object_data_(void const*, u32, void const*, u32);
-    };
-};
-
-namespace JStudio {
-struct TAdaptor {
-    /* 802862AC */ void adaptor_setVariableValue_GXColor(u32 const*, _GXColor const&);
-    /* 8028638C */ void adaptor_getVariableValue_GXColor(_GXColor*, u32 const*) const;
-};
-
-struct TAdaptor_ambientLight {
-    /* 80286C9C */ ~TAdaptor_ambientLight();
-
-    static u8 const sauVariableValue_4_COLOR_RGBA[16];
-};
-
-struct TVariableValue {
-    /* 8028B568 */ TVariableValue();
-};
-
-};  // namespace JStudio
-
-//
 // Forward References:
 //
 

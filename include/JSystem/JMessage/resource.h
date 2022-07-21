@@ -1,5 +1,5 @@
-#ifndef RESOURCE_H
-#define RESOURCE_H
+#ifndef JMESSAGE_RESOURCE_H
+#define JMESSAGE_RESOURCE_H
 
 #include "dolphin/types.h"
 #include "JSystem/JGadget/linklist.h"
@@ -34,4 +34,4 @@ struct TParse {
 };
 };  // namespace JMessage
 
-#endif /* RESOURCE_H */
+#endif /* JMESSAGE_RESOURCE_H */

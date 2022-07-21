@@ -559,7 +559,7 @@ void J2DScreen::drawSelf(f32 param_0, f32 param_1, Mtx* param_2) {
         GXColor1u32(color);
 
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
-        GXEnd();
+        i_GXEnd();
     }
 }
 #else

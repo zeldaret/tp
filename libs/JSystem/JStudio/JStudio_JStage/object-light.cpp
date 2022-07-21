@@ -8,80 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct _GXColor {};
-
-struct Vec {};
-
-struct JStage {
-    struct TSystem {};
-
-    struct TLight {};
-};
-
-namespace JStudio {
-struct data {
-    struct TEOperationData {};
-};
-
-struct TAdaptor {
-    /* 80286204 */ void adaptor_setVariableValue_Vec(u32 const*, Vec const&);
-    /* 80286274 */ void adaptor_getVariableValue_Vec(Vec*, u32 const*) const;
-    /* 802862AC */ void adaptor_setVariableValue_GXColor(u32 const*, _GXColor const&);
-    /* 8028638C */ void adaptor_getVariableValue_GXColor(_GXColor*, u32 const*) const;
-};
-
-struct TVariableValue {
-    struct TOutput {
-        /* 80285E0C */ ~TOutput();
-    };
-
-    /* 80285EB8 */ void update_immediate_(JStudio::TVariableValue*, f64);
-    /* 8028B568 */ TVariableValue();
-
-    static u8 soOutput_none_[4 + 4 /* padding */];
-};
-
-struct TAdaptor_light {
-    /* 80287308 */ ~TAdaptor_light();
-
-    static u8 const sauVariableValue_4_COLOR_RGBA[16];
-    static u8 const sauVariableValue_3_POSITION_XYZ[12];
-    static u8 const sauVariableValue_3_TARGET_POSITION_XYZ[12];
-};
-
-};  // namespace JStudio
-
-struct JStudio_JStage {
-    struct TAdaptor_light {
-        struct TVVOutput_direction_ {
-            /* 8028D24C */ void operator()(f32, JStudio::TAdaptor*) const;
-            /* 8028D258 */ ~TVVOutput_direction_();
-        };
-
-        /* 8028CB50 */ TAdaptor_light(JStage::TSystem const*, JStage::TLight*);
-        /* 8028CBF4 */ ~TAdaptor_light();
-        /* 8028CC68 */ void adaptor_do_prepare();
-        /* 8028CCB0 */ void adaptor_do_begin();
-        /* 8028CF68 */ void adaptor_do_end();
-        /* 8028CFBC */ void adaptor_do_update(u32);
-        /* 8028D18C */ void adaptor_do_data(void const*, u32, void const*, u32);
-        /* 8028D1B0 */ void adaptor_do_FACULTY(JStudio::data::TEOperationData, void const*, u32);
-        /* 8028D228 */ void adaptor_do_ENABLE(JStudio::data::TEOperationData, void const*, u32);
-
-        static u8 saoVVOutput_direction_[72];
-    };
-
-    struct TAdaptor_object_ {
-        /* 8028A470 */ void adaptor_object_data_(void const*, u32, void const*, u32);
-        /* 8028A550 */ void adaptor_object_ENABLE_(JStudio::data::TEOperationData, void const*,
-                                                   u32);
-    };
-};
-
-//
 // Forward References:
 //
 
@@ -118,10 +44,6 @@ extern "C" void
 adaptor_object_ENABLE___Q214JStudio_JStage16TAdaptor_object_FQ37JStudio4data15TEOperationDataPCvUl();
 extern "C" void __ct__Q27JStudio14TVariableValueFv();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXMultVec();
-extern "C" void PSMTXMultVecSR();
-extern "C" void PSVECAdd();
-extern "C" void PSVECSubtract();
 extern "C" void __register_global_object();
 extern "C" void __construct_array();
 extern "C" void _savegpr_29();

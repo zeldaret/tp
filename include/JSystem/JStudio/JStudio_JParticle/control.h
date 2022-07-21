@@ -1,5 +1,5 @@
-#ifndef CONTROL_H
-#define CONTROL_H
+#ifndef JSTUDIO_JPARTICLE_CONTROL_H
+#define JSTUDIO_JPARTICLE_CONTROL_H
 
 #include "JSystem/JParticle/JPAParticle.h"
 #include "JSystem/JStage/JSGSystem.h"
@@ -60,4 +60,4 @@ struct TAdaptor_particle : public JStudio::TAdaptor_particle {
 
 };  // namespace JStudio_JParticle
 
-#endif /* CONTROL_H */
+#endif /* JSTUDIO_JPARTICLE_CONTROL_H */

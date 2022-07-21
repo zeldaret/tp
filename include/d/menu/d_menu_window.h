@@ -58,18 +58,18 @@ public:
             GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGB8, 0);
 
             GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-            GXPosition3s16(mDoGph_gInf_c::getMinX(), mDoGph_gInf_c::getMinY(), 0);
+            i_GXPosition3s16(mDoGph_gInf_c::getMinX(), mDoGph_gInf_c::getMinY(), 0);
             GXTexCoord2s8(0, 0);
 
-            GXPosition3s16(mDoGph_gInf_c::getMaxX(), mDoGph_gInf_c::getMinY(), 0);
+            i_GXPosition3s16(mDoGph_gInf_c::getMaxX(), mDoGph_gInf_c::getMinY(), 0);
             GXTexCoord2s8(1, 0);
 
-            GXPosition3s16(mDoGph_gInf_c::getMaxX(), mDoGph_gInf_c::getMaxY(), 0);
+            i_GXPosition3s16(mDoGph_gInf_c::getMaxX(), mDoGph_gInf_c::getMaxY(), 0);
             GXTexCoord2s8(1, 1);
 
-            GXPosition3s16(mDoGph_gInf_c::getMinX(), mDoGph_gInf_c::getMaxY(), 0);
+            i_GXPosition3s16(mDoGph_gInf_c::getMinX(), mDoGph_gInf_c::getMaxY(), 0);
             GXTexCoord2s8(0, 1);
-            GXEnd();
+            i_GXEnd();
         }
     } */
     /* 801FE2E8 */ virtual ~dDlst_MENU_CAPTURE_c();

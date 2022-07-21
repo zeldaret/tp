@@ -5,7 +5,7 @@
 #include "dolphin/gx/GX.h"
 
 namespace JStage {
-    struct TELight {};
+    enum TELight {};
 
     struct TLight : public TObject {
         /* 80280D28 */ virtual ~TLight() = 0;

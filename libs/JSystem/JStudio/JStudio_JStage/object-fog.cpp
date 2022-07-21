@@ -8,69 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct _GXColor {};
-
-struct JStage {
-    struct TSystem {};
-
-    struct TFog {};
-};
-
-namespace JStudio {
-struct TAdaptor {
-    /* 802862AC */ void adaptor_setVariableValue_GXColor(u32 const*, _GXColor const&);
-    /* 8028638C */ void adaptor_getVariableValue_GXColor(_GXColor*, u32 const*) const;
-};
-
-struct TVariableValue {
-    struct TOutput {
-        /* 80285E0C */ ~TOutput();
-    };
-
-    /* 80285EB8 */ void update_immediate_(JStudio::TVariableValue*, f64);
-    /* 8028B568 */ TVariableValue();
-
-    static u8 soOutput_none_[4 + 4 /* padding */];
-};
-
-struct TAdaptor_fog {
-    /* 8028717C */ ~TAdaptor_fog();
-
-    static u8 const sauVariableValue_4_COLOR_RGBA[16];
-};
-
-};  // namespace JStudio
-
-struct JStudio_JStage {
-    struct TAdaptor_fog {
-        /* 8028C574 */ TAdaptor_fog(JStage::TSystem const*, JStage::TFog*);
-        /* 8028C610 */ ~TAdaptor_fog();
-        /* 8028C684 */ void adaptor_do_prepare();
-        /* 8028C6CC */ void adaptor_do_begin();
-        /* 8028C7B4 */ void adaptor_do_end();
-        /* 8028C808 */ void adaptor_do_update(u32);
-        /* 8028C880 */ void adaptor_do_data(void const*, u32, void const*, u32);
-
-        static u8 saoVVOutput_[96 + 4 /* padding */];
-    };
-
-    template <typename A1, typename B1>
-    struct TVariableValueOutput_object_ {};
-    /* TVariableValueOutput_object_<JStudio_JStage::TAdaptor_fog, JStage::TFog> */
-    struct TVariableValueOutput_object___template2 {
-        /* 8028CAC0 */ void func_8028CAC0(void* _this);
-        /* 8028CB20 */ void func_8028CB20(void* _this, f32, JStudio::TAdaptor*) /* const */;
-    };
-
-    struct TAdaptor_object_ {
-        /* 8028A470 */ void adaptor_object_data_(void const*, u32, void const*, u32);
-    };
-};
-
-//
 // Forward References:
 //
 
@@ -183,7 +120,8 @@ asm JStudio_JStage::TAdaptor_fog::TAdaptor_fog(JStage::TSystem const* param_0,
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JStudio_JStage::TAdaptor_fog::~TAdaptor_fog() {
+// asm JStudio_JStage::TAdaptor_fog::~TAdaptor_fog() {
+extern "C" asm void __dt__Q214JStudio_JStage12TAdaptor_fogFv() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio_JStage/object-fog/__dt__Q214JStudio_JStage12TAdaptor_fogFv.s"
 }

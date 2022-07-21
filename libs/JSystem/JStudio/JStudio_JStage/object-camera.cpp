@@ -8,106 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct Vec {};
-
-namespace JStudio {
-struct data {
-    struct TEOperationData {};
-};
-
-struct TControl {
-    struct TTransform_position {};
-};
-
-struct TAdaptor {
-    /* 80286204 */ void adaptor_setVariableValue_Vec(u32 const*, Vec const&);
-    /* 80286274 */ void adaptor_getVariableValue_Vec(Vec*, u32 const*) const;
-};
-
-struct TVariableValue {
-    struct TOutput {
-        /* 80285E0C */ ~TOutput();
-    };
-
-    /* 80285EB8 */ void update_immediate_(JStudio::TVariableValue*, f64);
-    /* 8028B568 */ TVariableValue();
-
-    static u8 soOutput_none_[4 + 4 /* padding */];
-};
-
-struct TAdaptor_camera {
-    /* 80286E1C */ ~TAdaptor_camera();
-
-    static u8 const sauVariableValue_3_POSITION_XYZ[12];
-    static u8 const sauVariableValue_3_TARGET_POSITION_XYZ[12];
-};
-
-};  // namespace JStudio
-
-struct JStage {
-    struct TSystem {};
-
-    struct TCamera {};
-
-    struct TObject {};
-};
-
-struct JStudio_JStage {
-    struct TAdaptor_camera {
-        /* 8028B8A0 */ TAdaptor_camera(JStage::TSystem const*, JStage::TCamera*);
-        /* 8028B960 */ ~TAdaptor_camera();
-        /* 8028B9D4 */ void adaptor_do_prepare();
-        /* 8028BA1C */ void adaptor_do_begin();
-        /* 8028BAF8 */ void adaptor_do_end();
-        /* 8028BB4C */ void adaptor_do_update(u32);
-        /* 8028BBAC */ void adaptor_do_data(void const*, u32, void const*, u32);
-        /* 8028BBD0 */ void adaptor_do_PARENT(JStudio::data::TEOperationData, void const*, u32);
-        /* 8028BC14 */ void adaptor_do_PARENT_NODE(JStudio::data::TEOperationData, void const*,
-                                                   u32);
-        /* 8028BC70 */ void adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData, void const*,
-                                                     u32);
-        /* 8028BCEC */ void adaptor_do_PARENT_FUNCTION(JStudio::data::TEOperationData, void const*,
-                                                       u32);
-        /* 8028BD00 */ void adaptor_do_TARGET_PARENT(JStudio::data::TEOperationData, void const*,
-                                                     u32);
-        /* 8028BD44 */ void adaptor_do_TARGET_PARENT_NODE(JStudio::data::TEOperationData,
-                                                          void const*, u32);
-        /* 8028BDA0 */ void adaptor_do_TARGET_PARENT_ENABLE(JStudio::data::TEOperationData,
-                                                            void const*, u32);
-        /* 8028BDBC */ void setJSG_position_(JStudio::TControl const*);
-        /* 8028BEB8 */ void getJSG_position_(JStudio::TControl const*);
-        /* 8028BFBC */ void setJSG_targetPosition_(JStudio::TControl const*);
-        /* 8028C09C */ void getJSG_targetPosition_(JStudio::TControl const*);
-
-        static u8 saoVVOutput_[160 + 4 /* padding */];
-    };
-
-    template <typename A1, typename B1>
-    struct TVariableValueOutput_object_ {};
-    /* TVariableValueOutput_object_<JStudio_JStage::TAdaptor_camera, JStage::TCamera> */
-    struct TVariableValueOutput_object___template1 {
-        /* 8028C4E4 */ void func_8028C4E4(void* _this);
-        /* 8028C544 */ void func_8028C544(void* _this, f32, JStudio::TAdaptor*) /* const */;
-    };
-
-    struct TAdaptor_object_ {
-        /* 8028A470 */ void adaptor_object_data_(void const*, u32, void const*, u32);
-        /* 8028A4BC */ void adaptor_object_findJSGObject_(char const*);
-        /* 8028A50C */ void adaptor_object_findJSGObjectNode_(JStage::TObject const*, char const*);
-    };
-
-    /* 8028A290 */ void transform_toGlobalFromLocal(f32 (*)[4],
-                                                    JStudio::TControl::TTransform_position const&,
-                                                    JStage::TObject const*, u32);
-    /* 8028A3CC */ void transform_toLocalFromGlobal(f32 (*)[4],
-                                                    JStudio::TControl::TTransform_position const&,
-                                                    JStage::TObject const*, u32);
-};
-
-//
 // Forward References:
 //
 
@@ -160,7 +60,6 @@ extern "C" void
 adaptor_object_findJSGObjectNode___Q214JStudio_JStage16TAdaptor_object_FPCQ26JStage7TObjectPCc();
 extern "C" void __ct__Q27JStudio14TVariableValueFv();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXMultVec();
 extern "C" void __register_global_object();
 extern "C" void __construct_array();
 extern "C" void __ptmf_scall();
@@ -301,7 +200,8 @@ asm JStudio_JStage::TAdaptor_camera::TAdaptor_camera(JStage::TSystem const* para
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JStudio_JStage::TAdaptor_camera::~TAdaptor_camera() {
+// asm JStudio_JStage::TAdaptor_camera::~TAdaptor_camera() {
+extern "C" asm void __dt__Q214JStudio_JStage15TAdaptor_cameraFv() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio_JStage/object-camera/__dt__Q214JStudio_JStage15TAdaptor_cameraFv.s"
 }

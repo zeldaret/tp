@@ -521,7 +521,7 @@ dMeter2Draw_c::dMeter2Draw_c(JKRExpHeap* p_heap) {
     mpPikariParent = new CPaneMgr(mpPikariScreen, 'pika_n', 0, NULL);
     field_0x548 = ((J2DPicture*)mpPikariScreen->search('pika00'))->getBlack();
     field_0x54c = ((J2DPicture*)mpPikariScreen->search('pika00'))->getWhite();
-    OSInitFastCast();
+    i_OSInitFastCast();
     void* pikari_bck = JKRGetNameResource("zelda_icon_pikari.bck", dComIfGp_getMain2DArchive());
     mPikariBck = (J2DAnmTransformKey*)J2DAnmLoaderDataBase::load(pikari_bck);
     playPikariBckAnimation(1.0f);
@@ -1159,7 +1159,7 @@ void dMeter2Draw_c::initMagic() {
     mpMagicFrameL = new CPaneMgr(mpKanteraScreen, 'm_w_l_n', 2, NULL);
     mpMagicFrameR = new CPaneMgr(mpKanteraScreen, 'm_w_r_n', 2, NULL);
     mpMagicMeter = new CPaneMgr(mpKanteraScreen, 'mm_00', 0, NULL);
-    OSInitFastCast();
+    i_OSInitFastCast();
 
     void* res = JKRFileLoader::getGlbResource("zelda_game_image_sanso_10percent.bpk",
                                               dComIfGp_getMain2DArchive());

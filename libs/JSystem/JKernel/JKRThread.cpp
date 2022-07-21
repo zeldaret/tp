@@ -97,7 +97,7 @@ JKRThread::~JKRThread() {
         JKRFreeToHeap(mHeap, mStackMemory);
         JKRFreeToHeap(mHeap, mThreadRecord);
     }
-    JKRFree(mMessages);
+    i_JKRFree(mMessages);
 }
 
 /* 802D1830-802D18A4 2CC170 0074+00 3/3 0/0 0/0 .text setCommon_mesgQueue__9JKRThreadFP7JKRHeapi
