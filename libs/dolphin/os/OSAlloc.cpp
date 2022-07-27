@@ -8,20 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" static void DLInsert();
-extern "C" void OSFreeToHeap();
-extern "C" void OSSetCurrentHeap();
-extern "C" void OSInitAlloc();
-extern "C" void OSCreateHeap();
-
-//
-// External References:
-//
-
-//
 // Declarations:
 //
 
@@ -29,7 +15,7 @@ extern "C" void OSCreateHeap();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void DLInsert() {
+static asm void* DLInsert(void* param_0, void* param_1) {
     nofralloc
 #include "asm/dolphin/os/OSAlloc/DLInsert.s"
 }
@@ -43,7 +29,7 @@ static u8 HeapArray[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSFreeToHeap() {
+asm void OSFreeToHeap(OSHeapHandle heap, void* ptr) {
     nofralloc
 #include "asm/dolphin/os/OSAlloc/OSFreeToHeap.s"
 }
@@ -61,7 +47,7 @@ SECTION_SDATA extern u32 __OSCurrHeap[1 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSSetCurrentHeap() {
+asm void OSSetCurrentHeap(OSHeapHandle heap) {
     nofralloc
 #include "asm/dolphin/os/OSAlloc/OSSetCurrentHeap.s"
 }
@@ -81,7 +67,7 @@ static u8 ArenaEnd[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSInitAlloc() {
+asm void* OSInitAlloc(void* lo, void* hi, s32 maxHeaps) {
     nofralloc
 #include "asm/dolphin/os/OSAlloc/OSInitAlloc.s"
 }
@@ -91,7 +77,7 @@ asm void OSInitAlloc() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSCreateHeap() {
+asm OSHeapHandle OSCreateHeap(void* start, void* end) {
     nofralloc
 #include "asm/dolphin/os/OSAlloc/OSCreateHeap.s"
 }

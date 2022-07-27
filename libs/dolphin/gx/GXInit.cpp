@@ -4,6 +4,7 @@
 //
 
 #include "dolphin/gx/GXInit.h"
+#include "dolphin/gx/GX.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -15,7 +16,6 @@ extern "C" void __GXDefaultTexRegionCallback();
 extern "C" void __GXDefaultTlutRegionCallback();
 extern "C" void __GXShutdown();
 extern "C" void __GXInitRevisionBits();
-extern "C" void GXInit();
 extern "C" void __GXInitGX();
 
 //
@@ -30,18 +30,13 @@ extern "C" void OSRegisterVersion();
 extern "C" void OSRegisterResetFunction();
 extern "C" void OSGetTime();
 extern "C" void VIGetTvFormat();
-extern "C" void GXInitFifoBase();
 extern "C" void GXSetCPUFifo();
 extern "C" void GXSetGPFifo();
 extern "C" void GXSetBreakPtCallback();
 extern "C" void __GXFifoInit();
 extern "C" void GXClearVtxDesc();
 extern "C" void GXSetVtxAttrFmtv();
-extern "C" void GXSetArray();
 extern "C" void GXInvalidateVtxCache();
-extern "C" void GXSetTexCoordGen2();
-extern "C" void GXSetNumTexGens();
-extern "C" void GXSetMisc();
 extern "C" void __GXAbort();
 extern "C" void GXPokeAlphaMode();
 extern "C" void GXPokeAlphaRead();
@@ -52,71 +47,22 @@ extern "C" void GXPokeDstAlpha();
 extern "C" void GXPokeDither();
 extern "C" void GXPokeZMode();
 extern "C" void GXSetDrawSyncCallback();
-extern "C" void GXSetDrawDoneCallback();
 extern "C" void __GXPEInit();
-extern "C" void GXSetLineWidth();
-extern "C" void GXSetPointSize();
-extern "C" void GXEnableTexOffsets();
-extern "C" void GXSetCullMode();
-extern "C" void GXSetCoPlanar();
-extern "C" void GXSetDispCopySrc();
-extern "C" void GXSetDispCopyDst();
 extern "C" void GXSetDispCopyFrame2Field();
-extern "C" void GXSetCopyClamp();
-extern "C" void GXSetDispCopyYScale();
-extern "C" void GXSetCopyClear();
-extern "C" void GXSetCopyFilter();
-extern "C" void GXSetDispCopyGamma();
 extern "C" void GXClearBoundingBox();
-extern "C" void GXSetChanAmbColor();
-extern "C" void GXSetChanMatColor();
-extern "C" void GXSetNumChans();
-extern "C" void GXSetChanCtrl();
-extern "C" void GXInitTexObj();
 extern "C" void GXGetTexObjFmt();
 extern "C" void GXGetTexObjMipMap();
-extern "C" void GXLoadTexObj();
-extern "C" void GXInitTexCacheRegion();
 extern "C" void GXInitTlutRegion();
 extern "C" void GXInvalidateTexAll();
 extern "C" void GXSetTexRegionCallback();
 extern "C" void GXSetTlutRegionCallback();
 extern "C" void __GXSetTmemConfig();
-extern "C" void GXSetIndTexCoordScale();
-extern "C" void GXSetNumIndStages();
-extern "C" void GXSetTevDirect();
 extern "C" void __GXSetIndirectMask();
 extern "C" void __GXFlushTextureState();
-extern "C" void GXSetTevOp();
-extern "C" void GXSetTevKColorSel();
-extern "C" void GXSetTevKAlphaSel();
-extern "C" void GXSetTevSwapMode();
-extern "C" void GXSetTevSwapModeTable();
-extern "C" void GXSetAlphaCompare();
-extern "C" void GXSetZTexture();
-extern "C" void GXSetTevOrder();
-extern "C" void GXSetNumTevStages();
-extern "C" void GXSetFog();
-extern "C" void GXSetFogRangeAdj();
-extern "C" void GXSetBlendMode();
-extern "C" void GXSetColorUpdate();
-extern "C" void GXSetAlphaUpdate();
-extern "C" void GXSetZMode();
-extern "C" void GXSetZCompLoc();
-extern "C" void GXSetPixelFmt();
-extern "C" void GXSetDither();
-extern "C" void GXSetDstAlpha();
 extern "C" void GXSetFieldMask();
 extern "C" void GXSetFieldMode();
 extern "C" void GXSetProjectionv();
-extern "C" void GXLoadPosMtxImm();
-extern "C" void GXLoadNrmMtxImm();
-extern "C" void GXSetCurrentMtx();
-extern "C" void GXLoadTexMtxImm();
-extern "C" void GXSetViewport();
-extern "C" void GXSetScissor();
 extern "C" void GXSetScissorBoxOffset();
-extern "C" void GXSetClipMode();
 extern "C" void GXSetGPMetric();
 extern "C" void GXClearGPMetric();
 extern "C" extern u8 GXNtsc480IntDf[60];
@@ -130,13 +76,13 @@ extern "C" extern u8 GXEurgb60Hz480IntDf[60 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 8044CE00-8044CE80 079B20 0080+00 1/1 0/0 0/0 .bss             FifoObj */
-static u8 FifoObj[128];
+static GXFifoObj FifoObj;
 
 /* 8044CE80-8044D430 079BA0 05B0+00 1/0 0/0 0/0 .bss             gxData */
-static u8 gxData[1456];
+static GXData gxData;
 
 /* 80456580-80456584 -00001 0004+00 6/6 108/108 0/0 .sdata2          __GXData */
-SECTION_SDATA2 extern void* __GXData = (void*)&gxData;
+SECTION_SDATA2 extern GXData* __GXData = &gxData;
 
 /* 8035921C-80359318 353B5C 00FC+00 1/1 0/0 0/0 .text            __GXDefaultTexRegionCallback */
 #pragma push
@@ -160,12 +106,10 @@ asm void __GXDefaultTlutRegionCallback() {
 
 /* ############################################################################################## */
 /* 80451920-80451924 000E20 0004+00 1/1 2/2 0/0 .sbss            __piReg */
-extern u8 __piReg[4];
-u8 __piReg[4];
+u32* __piReg;
 
 /* 80451924-80451928 000E24 0004+00 2/2 12/12 0/0 .sbss            __cpReg */
-extern u8 __cpReg[4];
-u8 __cpReg[4];
+u16* __cpReg;
 
 /* 80451928-8045192C 000E28 0004+00 1/1 11/11 0/0 .sbss            __peReg */
 extern u8 __peReg[4];
@@ -209,110 +153,12 @@ asm void __GXInitRevisionBits() {
 
 /* ############################################################################################## */
 /* 803D2040-803D20A0 02F160 0044+1C 2/1 0/0 0/0 .data            @1 */
-SECTION_DATA static u8 lit_1[68 + 28 /* padding */] = {
-    0x3C,
-    0x3C,
-    0x20,
-    0x44,
-    0x6F,
-    0x6C,
-    0x70,
-    0x68,
-    0x69,
-    0x6E,
-    0x20,
-    0x53,
-    0x44,
-    0x4B,
-    0x20,
-    0x2D,
-    0x20,
-    0x47,
-    0x58,
-    0x09,
-    0x72,
-    0x65,
-    0x6C,
-    0x65,
-    0x61,
-    0x73,
-    0x65,
-    0x20,
-    0x62,
-    0x75,
-    0x69,
-    0x6C,
-    0x64,
-    0x3A,
-    0x20,
-    0x4E,
-    0x6F,
-    0x76,
-    0x20,
-    0x31,
-    0x30,
-    0x20,
-    0x32,
-    0x30,
-    0x30,
-    0x34,
-    0x20,
-    0x30,
-    0x36,
-    0x3A,
-    0x32,
-    0x37,
-    0x3A,
-    0x31,
-    0x32,
-    0x20,
-    0x28,
-    0x30,
-    0x78,
-    0x32,
-    0x33,
-    0x30,
-    0x31,
-    0x29,
-    0x20,
-    0x3E,
-    0x3E,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_DATA static char lit_1[] = "<< Dolphin SDK - GX	release build: Nov 10 2004 06:27:12 (0x2301) >>";
 
 /* 803D20A0-803D20C0 02F1C0 0020+00 0/1 0/0 0/0 .data            DefaultTexData */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 DefaultTexData[32] = {
+SECTION_DATA static u8 DefaultTexData[32] ALIGN_DECL(32) = {
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
 };
@@ -374,11 +220,7 @@ SECTION_DATA static void* GXResetFuncInfo[4 + 1 /* padding */] = {
 };
 
 /* 80450A78-80450A80 -00001 0004+04 1/1 0/0 0/0 .sdata           __GXVersion */
-SECTION_SDATA static void* __GXVersion[1 + 1 /* padding */] = {
-    (void*)&lit_1,
-    /* padding */
-    NULL,
-};
+SECTION_SDATA static const char* __GXVersion = lit_1;
 
 /* 80451944-80451948 000E44 0004+00 1/1 0/0 0/0 .sbss            resetFuncRegistered$145 */
 static u8 resetFuncRegistered[4];
@@ -398,7 +240,7 @@ SECTION_SDATA2 static u8 lit_268[4] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXInit() {
+asm GXFifoObj* GXInit(void*, u32) {
     nofralloc
 #include "asm/dolphin/gx/GXInit/GXInit.s"
 }

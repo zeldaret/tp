@@ -8,18 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" static void OSNotifyLink();
-extern "C" static void OSNotifyUnlink();
-extern "C" void OSSetStringTable();
-extern "C" static void Relocate();
-extern "C" static void Link();
-extern "C" static void Undo();
-extern "C" void __OSModuleInit();
-
-//
 // External References:
 //
 
@@ -33,12 +21,12 @@ extern "C" void ICInvalidateRange();
 //
 
 /* 8033DF60-8033DF64 3388A0 0004+00 1/1 0/0 0/0 .text            OSNotifyLink */
-static void OSNotifyLink() {
+static void OSNotifyLink(void) {
     /* empty function */
 }
 
 /* 8033DF64-8033DF68 3388A4 0004+00 1/1 0/0 0/0 .text            OSNotifyUnlink */
-static void OSNotifyUnlink() {
+static void OSNotifyUnlink(void) {
     /* empty function */
 }
 
@@ -46,7 +34,7 @@ static void OSNotifyUnlink() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSSetStringTable() {
+asm void OSSetStringTable(void* string_table) {
     nofralloc
 #include "asm/dolphin/os/OSLink/OSSetStringTable.s"
 }
@@ -102,7 +90,7 @@ SECTION_DATA static u8 lit_62[37 + 3 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void Relocate() {
+static asm BOOL Relocate(OSModuleInfo* param_0, OSModuleInfo* param_1) {
     nofralloc
 #include "asm/dolphin/os/OSLink/Relocate.s"
 }
@@ -112,7 +100,7 @@ static asm void Relocate() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void Link() {
+static asm BOOL Link(OSModuleInfo* module, u32 param_1) {
     nofralloc
 #include "asm/dolphin/os/OSLink/Link.s"
 }
@@ -122,7 +110,7 @@ static asm void Link() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm BOOL OSLink(OSModuleInfo* info) {
+asm BOOL OSLink(OSModuleInfo* module) {
     nofralloc
 #include "asm/dolphin/os/OSLink/OSLink.s"
 }
@@ -132,7 +120,7 @@ extern "C" asm BOOL OSLink(OSModuleInfo* info) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm BOOL OSLinkFixed(OSModuleInfo* info, u32 unk) {
+asm BOOL OSLinkFixed(OSModuleInfo* module, u32 param_1) {
     nofralloc
 #include "asm/dolphin/os/OSLink/OSLinkFixed.s"
 }
@@ -188,7 +176,7 @@ SECTION_DATA static u8 lit_189[39 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void Undo() {
+static asm BOOL Undo(OSModuleInfo* param_0, OSModuleInfo* param_1) {
     nofralloc
 #include "asm/dolphin/os/OSLink/Undo.s"
 }
@@ -198,7 +186,7 @@ static asm void Undo() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm BOOL OSUnlink(OSModuleInfo* info) {
+asm BOOL OSUnlink(OSModuleInfo* module) {
     nofralloc
 #include "asm/dolphin/os/OSLink/OSUnlink.s"
 }
@@ -208,7 +196,7 @@ extern "C" asm BOOL OSUnlink(OSModuleInfo* info) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSModuleInit() {
+asm void __OSModuleInit(void) {
     nofralloc
 #include "asm/dolphin/os/OSLink/__OSModuleInit.s"
 }

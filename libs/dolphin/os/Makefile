@@ -53,6 +53,7 @@ LIBOS_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/os/__ppc_eabi_init.o \
 
 LIBOS_A_CFLAGS := \
+	-O4,p \
 
 LIBOS_A_LDFLAGS := \
 	-nodefaults \
@@ -69,5 +70,5 @@ $(BUILD_DIR)/libs/dolphin/os/%.o: libs/dolphin/os/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBOS_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(CFLAGS) $(LIBOS_A_CFLAGS) -c -o $@ $(basename $@).cpp
 

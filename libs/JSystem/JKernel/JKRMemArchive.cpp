@@ -134,7 +134,6 @@ extern "C" void orderSync__9JKRDecompFPUcPUcUlUl();
 extern "C" void prepend__10JSUPtrListFP10JSUPtrLink();
 extern "C" void remove__10JSUPtrListFP10JSUPtrLink();
 extern "C" void panic_f__12JUTExceptionFPCciPCce();
-extern "C" void DCInvalidateRange();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();

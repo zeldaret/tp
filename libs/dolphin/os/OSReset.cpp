@@ -8,18 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" void OSRegisterResetFunction();
-extern "C" void __OSCallResetFunctions();
-extern "C" static void Reset();
-extern "C" static void KillThreads();
-extern "C" void __OSDoHotReset();
-extern "C" void OSResetSystem();
-extern "C" void OSGetResetCode();
-
-//
 // External References:
 //
 
@@ -51,7 +39,7 @@ static u8 ResetFunctionQueue[8];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSRegisterResetFunction() {
+asm void OSRegisterResetFunction(OSResetFunctionInfo* info) {
     nofralloc
 #include "asm/dolphin/os/OSReset/OSRegisterResetFunction.s"
 }
@@ -61,7 +49,7 @@ asm void OSRegisterResetFunction() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSCallResetFunctions() {
+asm BOOL __OSCallResetFunctions(s32 param_0) {
     nofralloc
 #include "asm/dolphin/os/OSReset/__OSCallResetFunctions.s"
 }
@@ -71,7 +59,7 @@ asm void __OSCallResetFunctions() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void Reset() {
+static asm void Reset(s32 param_0) {
     nofralloc
 #include "asm/dolphin/os/OSReset/Reset.s"
 }
@@ -81,7 +69,7 @@ static asm void Reset() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void KillThreads() {
+static asm void KillThreads(void) {
     nofralloc
 #include "asm/dolphin/os/OSReset/KillThreads.s"
 }
@@ -91,7 +79,7 @@ static asm void KillThreads() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSDoHotReset() {
+asm void __OSDoHotReset(s32 param_0) {
     nofralloc
 #include "asm/dolphin/os/OSReset/__OSDoHotReset.s"
 }
@@ -190,7 +178,7 @@ static u8 bootThisDol[4 + 4 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSResetSystem() {
+asm void OSResetSystem(s32 reset, u32 resetCode, BOOL forceMenu) {
     nofralloc
 #include "asm/dolphin/os/OSReset/OSResetSystem.s"
 }
@@ -200,7 +188,7 @@ asm void OSResetSystem() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSGetResetCode() {
+asm u32 OSGetResetCode(void) {
     nofralloc
 #include "asm/dolphin/os/OSReset/OSGetResetCode.s"
 }

@@ -47,7 +47,6 @@ extern "C" void _restgpr_25();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
 extern "C" void OSYieldThread();
-extern "C" void OSProtectRange(int, void*, int, int);
 extern "C" void OSFillFPUContext(OSContext*);
 extern "C" void print_f__10JUTConsoleFPCce();
 extern "C" OSContext* OSGetCurrentContext();
@@ -111,11 +110,11 @@ OSErrorHandler JUTException::sPostUserCallback;
 /* 802E1D5C-802E1E40 2DC69C 00E4+00 1/1 0/0 0/0 .text __ct__12JUTExceptionFP14JUTDirectPrint */
 JUTException::JUTException(JUTDirectPrint* directPrint)
     : JKRThread(0x1C00 /* 0x4000 in DEBUG */, 0x10, 0), mDirectPrint(directPrint) {
-    OSSetErrorHandler(OS_ERROR_DSI, errorHandler);
-    OSSetErrorHandler(OS_ERROR_ISI, errorHandler);
-    OSSetErrorHandler(OS_ERROR_PROGRAM, errorHandler);
-    OSSetErrorHandler(OS_ERROR_ALIGNMENT, errorHandler);
-    OSSetErrorHandler(OS_ERROR_MEMORY_PROTECTION, errorHandler);
+    OSSetErrorHandler(EXCEPTION_DSI, errorHandler);
+    OSSetErrorHandler(EXCEPTION_ISI, errorHandler);
+    OSSetErrorHandler(EXCEPTION_PROGRAM, errorHandler);
+    OSSetErrorHandler(EXCEPTION_ALIGNMENT, errorHandler);
+    OSSetErrorHandler(EXCEPTION_MEMORY_PROTECTION, errorHandler);
     setFPException(0);
 
     sPreUserCallback = NULL;
@@ -199,7 +198,7 @@ u32 JUTException::fpscr;
 
 /* 802E1FCC-802E20C0 2DC90C 00F4+00 2/2 0/0 0/0 .text
  * errorHandler__12JUTExceptionFUsP9OSContextUlUl               */
-void JUTException::errorHandler(u16 error, OSContext* context, u32 param_3, u32 param_4) {
+void JUTException::errorHandler(OSError error, OSContext* context, u32 param_3, u32 param_4) {
     msr = PPCMfmsr();
     fpscr = context->fpscr;
     OSFillFPUContext(context);
@@ -234,7 +233,7 @@ void JUTException::panic_f_va(char const* file, int line, char const* format, va
     char buffer[256];
     vsnprintf(buffer, sizeof(buffer) - 1, format, args);
     if (!sErrorManager) {
-        OSPanic(file, line, buffer);
+        OSPanic((char*)file, line, buffer);
     }
 
     OSContext* current_context = OSGetCurrentContext();
@@ -274,9 +273,9 @@ void JUTException::panic_f(char const* file, int line, char const* format, ...) 
 void JUTException::setFPException(u32 fpscr_enable_bits) {
     __OSFpscrEnableBits = fpscr_enable_bits;
     if (fpscr_enable_bits) {
-        OSSetErrorHandler(OS_ERROR_FLOATING_POINT_EXCEPTION, errorHandler);
+        OSSetErrorHandler(EXCEPTION_FLOATING_POINT_EXCEPTION, errorHandler);
     } else {
-        OSSetErrorHandler(OS_ERROR_FLOATING_POINT_EXCEPTION, NULL);
+        OSSetErrorHandler(EXCEPTION_FLOATING_POINT_EXCEPTION, NULL);
     }
 }
 

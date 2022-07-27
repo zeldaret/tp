@@ -8,58 +8,15 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" static void DefaultSwitchThreadCallback();
-extern "C" void OSSetSwitchThreadCallback();
-extern "C" void __OSThreadInit();
-extern "C" void OSInitThreadQueue();
-extern "C" void OSGetCurrentThread();
-extern "C" void OSIsThreadTerminated();
-extern "C" void OSDisableScheduler();
-extern "C" void OSEnableScheduler();
-extern "C" static void UnsetRun();
-extern "C" void __OSGetEffectivePriority();
-extern "C" static void SetEffectivePriority();
-extern "C" void __OSPromoteThread();
-extern "C" static void SelectThread();
-extern "C" void __OSReschedule();
-extern "C" void OSYieldThread();
-extern "C" void OSCreateThread();
-extern "C" void OSExitThread();
-extern "C" void OSCancelThread();
-extern "C" void OSDetachThread();
-extern "C" void OSResumeThread();
-extern "C" void OSSuspendThread();
-extern "C" void OSSleepThread();
-extern "C" void OSWakeupThread();
-extern "C" void OSSetThreadPriority();
-extern "C" void OSGetThreadPriority();
-extern "C" static void CheckThreadQueue();
-extern "C" void OSCheckActiveThreads();
-extern "C" static void OSClearStack();
-extern "C" extern u8 data_804516D0[8];
-
-//
 // External References:
 //
 
 extern "C" void OSReport();
 extern "C" void OSPanic();
-extern "C" void OSSetCurrentContext();
-extern "C" void OSGetCurrentContext();
-extern "C" void OSSaveContext();
-extern "C" void OSLoadContext();
 extern "C" void OSGetStackPointer();
-extern "C" void OSClearContext();
-extern "C" void OSInitContext();
 extern "C" void OSDisableInterrupts();
 extern "C" void OSEnableInterrupts();
 extern "C" void OSRestoreInterrupts();
-extern "C" void __OSUnlockAllMutex();
-extern "C" void __OSCheckDeadLock();
-extern "C" void __OSCheckMutexes();
 extern "C" extern u8 __OSErrorTable[68 + 12 /* padding */];
 extern "C" extern u32 __OSFpscrEnableBits;
 extern "C" void _epilog();
@@ -69,7 +26,7 @@ extern "C" void _epilog();
 //
 
 /* 80340AA4-80340AA8 33B3E4 0004+00 2/1 0/0 0/0 .text            DefaultSwitchThreadCallback */
-static void DefaultSwitchThreadCallback() {
+static void DefaultSwitchThreadCallback(OSThread* from, OSThread* to) {
     /* empty function */
 }
 
@@ -81,7 +38,7 @@ SECTION_SDATA static void* SwitchThreadCallback = (void*)DefaultSwitchThreadCall
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSSetSwitchThreadCallback() {
+asm OSSwitchThreadCallback OSSetSwitchThreadCallback(OSSwitchThreadCallback func) {
     nofralloc
 #include "asm/dolphin/os/OSThread/OSSetSwitchThreadCallback.s"
 }
@@ -125,7 +82,7 @@ extern void* _stack_end;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSThreadInit() {
+asm void __OSThreadInit(void) {
     nofralloc
 #include "asm/dolphin/os/OSThread/__OSThreadInit.s"
 }
@@ -135,7 +92,7 @@ asm void __OSThreadInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSInitThreadQueue() {
+asm void OSInitThreadQueue(OSThreadQueue* queue) {
     nofralloc
 #include "asm/dolphin/os/OSThread/OSInitThreadQueue.s"
 }
@@ -145,7 +102,7 @@ asm void OSInitThreadQueue() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSGetCurrentThread() {
+asm OSThread* OSGetCurrentThread(void) {
     nofralloc
 #include "asm/dolphin/os/OSThread/OSGetCurrentThread.s"
 }
@@ -155,7 +112,7 @@ asm void OSGetCurrentThread() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSIsThreadTerminated() {
+asm BOOL OSIsThreadTerminated(OSThread* thread) {
     nofralloc
 #include "asm/dolphin/os/OSThread/OSIsThreadTerminated.s"
 }
@@ -165,7 +122,7 @@ asm void OSIsThreadTerminated() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSDisableScheduler() {
+asm s32 OSDisableScheduler(void) {
     nofralloc
 #include "asm/dolphin/os/OSThread/OSDisableScheduler.s"
 }
@@ -175,7 +132,7 @@ asm void OSDisableScheduler() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSEnableScheduler() {
+asm s32 OSEnableScheduler(void) {
     nofralloc
 #include "asm/dolphin/os/OSThread/OSEnableScheduler.s"
 }
@@ -185,7 +142,7 @@ asm void OSEnableScheduler() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void UnsetRun() {
+static asm void UnsetRun(OSThread* thread) {
     nofralloc
 #include "asm/dolphin/os/OSThread/UnsetRun.s"
 }
@@ -195,7 +152,7 @@ static asm void UnsetRun() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSGetEffectivePriority() {
+asm s32 __OSGetEffectivePriority(OSThread* thread) {
     nofralloc
 #include "asm/dolphin/os/OSThread/__OSGetEffectivePriority.s"
 }
@@ -205,7 +162,7 @@ asm void __OSGetEffectivePriority() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void SetEffectivePriority() {
+static asm void SetEffectivePriority(OSThread* thread, s32 priority) {
     nofralloc
 #include "asm/dolphin/os/OSThread/SetEffectivePriority.s"
 }
@@ -215,7 +172,7 @@ static asm void SetEffectivePriority() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSPromoteThread() {
+asm void __OSPromoteThread(OSThread* thread, s32 priority) {
     nofralloc
 #include "asm/dolphin/os/OSThread/__OSPromoteThread.s"
 }
@@ -225,7 +182,7 @@ asm void __OSPromoteThread() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void SelectThread() {
+static asm void SelectThread(OSThread* thread) {
     nofralloc
 #include "asm/dolphin/os/OSThread/SelectThread.s"
 }
@@ -235,7 +192,7 @@ static asm void SelectThread() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSReschedule() {
+asm void __OSReschedule(void) {
     nofralloc
 #include "asm/dolphin/os/OSThread/__OSReschedule.s"
 }
@@ -245,7 +202,7 @@ asm void __OSReschedule() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSYieldThread() {
+asm void OSYieldThread(void) {
     nofralloc
 #include "asm/dolphin/os/OSThread/OSYieldThread.s"
 }
@@ -255,7 +212,8 @@ asm void OSYieldThread() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSCreateThread() {
+asm BOOL OSCreateThread(OSThread* thread, void* func, void* param, void* stackBase,
+                        u32 stackSize, s32 priority, u16 attribute) {
     nofralloc
 #include "asm/dolphin/os/OSThread/OSCreateThread.s"
 }
@@ -265,7 +223,7 @@ asm void OSCreateThread() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSExitThread() {
+asm void OSExitThread(void* exitValue) {
     nofralloc
 #include "asm/dolphin/os/OSThread/OSExitThread.s"
 }
@@ -275,7 +233,7 @@ asm void OSExitThread() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSCancelThread() {
+asm void OSCancelThread(OSThread* thread) {
     nofralloc
 #include "asm/dolphin/os/OSThread/OSCancelThread.s"
 }
@@ -285,7 +243,7 @@ asm void OSCancelThread() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSDetachThread() {
+asm void OSDetachThread(OSThread* thread) {
     nofralloc
 #include "asm/dolphin/os/OSThread/OSDetachThread.s"
 }
@@ -295,7 +253,7 @@ asm void OSDetachThread() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSResumeThread() {
+asm s32 OSResumeThread(OSThread* thread) {
     nofralloc
 #include "asm/dolphin/os/OSThread/OSResumeThread.s"
 }
@@ -305,7 +263,7 @@ asm void OSResumeThread() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSSuspendThread() {
+asm s32 OSSuspendThread(OSThread* thread) {
     nofralloc
 #include "asm/dolphin/os/OSThread/OSSuspendThread.s"
 }
@@ -315,7 +273,7 @@ asm void OSSuspendThread() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSSleepThread() {
+asm void OSSleepThread(OSThreadQueue* queue) {
     nofralloc
 #include "asm/dolphin/os/OSThread/OSSleepThread.s"
 }
@@ -325,7 +283,7 @@ asm void OSSleepThread() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSWakeupThread() {
+asm void OSWakeupThread(OSThreadQueue* queue) {
     nofralloc
 #include "asm/dolphin/os/OSThread/OSWakeupThread.s"
 }
@@ -335,7 +293,7 @@ asm void OSWakeupThread() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSSetThreadPriority() {
+asm s32 OSSetThreadPriority(OSThread* thread, s32 priority) {
     nofralloc
 #include "asm/dolphin/os/OSThread/OSSetThreadPriority.s"
 }
@@ -345,7 +303,7 @@ asm void OSSetThreadPriority() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSGetThreadPriority() {
+asm s32 OSGetThreadPriority(OSThread* thread) {
     nofralloc
 #include "asm/dolphin/os/OSThread/OSGetThreadPriority.s"
 }
@@ -355,7 +313,7 @@ asm void OSGetThreadPriority() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void CheckThreadQueue() {
+static asm s32 CheckThreadQueue(OSThread* thread) {
     nofralloc
 #include "asm/dolphin/os/OSThread/CheckThreadQueue.s"
 }
@@ -2508,7 +2466,7 @@ SECTION_SDATA static u8 lit_833[1 + 3 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSCheckActiveThreads() {
+asm s32 OSCheckActiveThreads(void) {
     nofralloc
 #include "asm/dolphin/os/OSThread/OSCheckActiveThreads.s"
 }
@@ -2518,7 +2476,7 @@ asm void OSCheckActiveThreads() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void OSClearStack() {
+static asm void OSClearStack(u32 value) {
     nofralloc
 #include "asm/dolphin/os/OSThread/OSClearStack.s"
 }

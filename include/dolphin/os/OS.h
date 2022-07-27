@@ -1,236 +1,81 @@
-// at some point: we should split this up into various OS/... headers. but not
-// yet, since barely any files include this atm.
-
 #ifndef OS_H_
 #define OS_H_
 
 #include "Runtime.PPCEABI.H/__va_arg.h"
-#include "dolphin/types.h"
-
-#include "Runtime.PPCEABI.H/__va_arg.h"
+#include "dolphin/os/OSAlarm.h"
+#include "dolphin/os/OSAlloc.h"
+#include "dolphin/os/OSArena.h"
+#include "dolphin/os/OSAudioSystem.h"
+#include "dolphin/os/OSCache.h"
+#include "dolphin/os/OSContext.h"
 #include "dolphin/os/OSError.h"
+#include "dolphin/os/OSExec.h"
+#include "dolphin/os/OSFont.h"
+#include "dolphin/os/OSInterrupt.h"
 #include "dolphin/os/OSLink.h"
+#include "dolphin/os/OSMemory.h"
+#include "dolphin/os/OSMessage.h"
+#include "dolphin/os/OSMutex.h"
+#include "dolphin/os/OSReboot.h"
+#include "dolphin/os/OSReset.h"
+#include "dolphin/os/OSResetSW.h"
+#include "dolphin/os/OSRtc.h"
+#include "dolphin/os/OSSync.h"
+#include "dolphin/os/OSThread.h"
+#include "dolphin/os/OSTime.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define OS_BUS_CLOCK (*(u32*)0x800000F8)
 #define OS_CORE_CLOCK (*(u32*)0x800000FC)
 #define OS_TIMER_CLOCK (OS_BUS_CLOCK / 4)
 
-/* TODO: more structs, and get rid of the ones that are faked! */
-
 #define OS_MESSAGE_NON_BLOCKING 0
 #define OS_MESSAGE_BLOCKING 1
 
-struct OSThread;
-struct OSMutex {
-    u8 unk[24];
-};
-
-struct OSMutexLink {
-    struct OSMutex* prev;
-    struct OSMutex* next;
-};
-
-struct OSMutexQueue {
-    struct OSMutex* prev;
-    struct OSMutex* next;
-};
-
-struct OSContext {
-    u32 gpr[32];
-    u32 cr;
-    u32 lr;
-    u32 ctr;
-    u32 xer;
-    double fpr[32];
-    u32 padding_1;
-    u32 fpscr;
-    u32 srr0;
-    u32 srr1;
-    u16 mode;
-    u16 state;
-    u32 gqr[8];
-    u32 padding_2;
-    double ps[32];
-};
-
-typedef void (*OSSwitchThreadCallback)(OSThread* from, OSThread* to);
-
-struct OSThreadLink {
-    struct OSThread* prev;
-    struct OSThread* next;
-};
-
-struct OSThreadQueue {
-    struct OSThread* head;
-    struct OSThread* tail;
-};
-
-struct OSCond {
-    struct OSThreadQueue queue;
-};
-
-typedef void* OSMessage;
-
-struct OSMessageQueue {
-    struct OSThreadQueue sending_queue;
-    struct OSThreadQueue receiving_queue;
-    void** message_array;
-    s32 num_messages;
-    s32 first_index;
-    s32 num_used;
-};
-
-typedef u32 OSTick;
-
-typedef s64 OSTime;
-
-struct OSCalendarTime {
-    s32 seconds;
-    s32 minutes;
-    s32 hours;
-    s32 day_of_month;
-    s32 month;
-    s32 year;
-    s32 week_day;
-    s32 year_day;
-    s32 milliseconds;
-    s32 microseconds;
-};
-
-typedef s32 OSHeapHandle;
-
-typedef enum OSSoundMode {
-    SOUND_MODE_MONO = 0,
-    SOUND_MODE_STEREO = 1,
-} OSSoundMode;
-
-typedef u16 OSThreadState;
-#define OS_THREAD_STATE_UNINITIALIZED 0
-#define OS_THREAD_STATE_READY 1
-#define OS_THREAD_STATE_RUNNING 2
-#define OS_THREAD_STATE_WAITING 4
-#define OS_THREAD_STATE_DEAD 8
-
-struct OSThread {
-    OSContext context;
-    OSThreadState state;
-    u16 attributes;
-    s32 suspend_count;
-    u32 effective_priority;
-    u32 base_priority;
-    void* exit_value;
-    OSThreadQueue* queue;
-    OSThreadLink link;
-    OSThreadQueue join_queue;
-    OSMutex* mutex;
-    OSMutexQueue owned_mutexes;
-    OSThreadLink active_threads_link;
-    u8* stack_base;
-    u8* stack_end;
-    u8* error_code;
-    void* data[2];
-};
-
-struct OSAlarm;
-struct OSAlarmLink {
-    /* 0x0 */ OSAlarm* prev;
-    /* 0x4 */ OSAlarm* next;
-};
-
-typedef void (*OSAlarmHandler)(OSAlarm* alarm, OSContext* context);
-
-struct OSAlarm {
-    /* 0x00 */ OSAlarmHandler handler;
-    /* 0x04 */ u32 tag;
-    /* 0x08 */ OSTime fire_time;
-    /* 0x10 */ OSAlarmLink link;
-    /* 0x18 */ OSTime period_time;
-    /* 0x20 */ OSTime start_time;
-};  // Size: 0x28
-
-extern "C" {
-s32 OSEnableScheduler(void);
-s32 OSDisableScheduler(void);
-s32 OSCheckActiveThreads(void);
-OSThread* OSGetCurrentThread(void);
-
-s32 OSSuspendThread(OSThread* thread);
-s32 OSSetThreadPriority(OSThread* thread, u32 pri);
-s32 OSGetThreadPriority(OSThread* thread);
-BOOL OSCreateThread(OSThread* thread, void* func, void* param, void* stack, u32 stackSize,
-                    int priority, int attr);
-void OSCancelThread(OSThread* thread);
-void OSDetachThread(OSThread* thread);
-s32 OSResumeThread(OSThread* thread);
-void OSExitThread(void* exit_val);
 BOOL OSIsThreadSuspended(OSThread* thread);
-BOOL OSIsThreadTerminated(OSThread* thread);
-OSSwitchThreadCallback OSSetSwitchThreadCallback(OSSwitchThreadCallback callback);
 
-void OSInitMessageQueue(OSMessageQueue* queue, OSMessage* messages, int message_count);
-BOOL OSReceiveMessage(OSMessageQueue* queue, OSMessage* message, int flags);
-BOOL OSSendMessage(OSMessageQueue* queue, OSMessage message, int flags);
-BOOL OSJamMessage(OSMessageQueue* queue, OSMessage message, int flags);
+u32 OSGetConsoleType(void);
 
-s32 OSGetConsoleType(void);
-u32 OSGetResetCode(void);
-
-u32 OSGetSoundMode(void);
-void OSSetSoundMode(OSSoundMode mode);
-
-void OSAttention(const char* msg, ...);
-void OSPanic(const char* file, s32 line, const char* fmt, ...);
-void OSReport(const char* fmt, ...);
-void OSReport_Error(const char* fmt, ...);
-void OSReport_FatalError(const char* fmt, ...);
-void OSReport_System(const char* fmt, ...);
-void OSReport_Warning(const char* fmt, ...);
+void OSAttention(char* msg, ...);
+void OSPanic(char* file, s32 line, char* fmt, ...);
+void OSReport(char* fmt, ...);
+void OSReport_Error(char* fmt, ...);
+void OSReport_FatalError(char* fmt, ...);
+void OSReport_System(char* fmt, ...);
+void OSReport_Warning(char* fmt, ...);
 void OSReportDisable(void);
 void OSReportEnable(void);
 void OSReportForceEnableOff(void);
 void OSReportForceEnableOn(void);
-void OSVReport(const char* format, va_list list);
-
-void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime* out_time);
-OSTime OSGetTime(void);
-OSTick OSGetTick(void);
-
-u32 OSGetArenaLo();
-u32 OSGetArenaHi();
-u32 OSInitAlloc(u32 low, u32 high, int maxHeaps);
-void OSSetArenaLo(u32 newLo);
-void OSSetArenaHi(u32 newHi);
-void* OSAllocFromArenaLo(u32 size, int alignment);
-
-void OSInitMutex(OSMutex* mutex);
-void OSLockMutex(OSMutex* mutex);
-BOOL OSTryLockMutex(OSMutex* mutex);
-void OSUnlockMutex(OSMutex* mutex);
-
-BOOL OSDisableInterrupts();
-BOOL OSEnableInterrupts();
-BOOL OSRestoreInterrupts(s32 level);
-
-void OSResetSystem(s32 param_1, u32 param_2, s32 param_3);
-
-void OSSetSaveRegion(void* start, void* end);
-
-void LCDisable(void);
+void OSVReport(char* format, va_list list);
+void OSVAttention(char* fmt, va_list args);
+void OSReportInit(void);
 
 void OSReportInit__Fv(void);  // needed for inline asm
 
 u8* OSGetStackPointer(void);
+void __OSFPRInit(void);
+static void InquiryCallback(u32 param_0, void* param_1);
+void OSInit(void);
+static void OSExceptionInit(void);
+void __OSDBIntegrator(void);
+void __OSDBJump(void);
 
-void OSCreateAlarm(OSAlarm* alarm);
-void OSCancelAlarm(OSAlarm* alarm);
-void OSSetAlarm(OSAlarm* alarm, OSTime time, OSAlarmHandler handler);
-void OSSetPeriodicAlarm(OSAlarm*, OSTime, OSTime, OSAlarmHandler);
-
-void OSInitCond(OSCond* cond);
-void OSWaitCond(OSCond* cond, OSMutex* mutex);
-void OSSignalCond(OSCond* cond);
-
-void DCStoreRangeNoSync(void*, u32);
+typedef void (*OSExceptionHandler)(OSException, OSContext*);
+OSExceptionHandler __OSSetExceptionHandler(OSException exception, OSExceptionHandler handler);
+OSExceptionHandler __OSGetExceptionHandler(OSException exception);
+static void OSExceptionVector(void);
+void __DBVECTOR();
+void __OSEVSetNumber();
+void __OSEVEnd();
+static void OSDefaultExceptionHandler(OSException exception, OSContext* context);
+void __OSPSInit(void);
+void __OSGetDIConfig(void);
+void OSRegisterVersion(char* version);
+void OSSwitchFiberEx(u32, u32, u32, u32, u32, u32);
 
 inline s16 __OSf32tos16(register f32 inF) {
     register s16 out;
@@ -286,14 +131,6 @@ inline void i_OSInitFastCast(void) {
     }
     // clang-format on
 }
-
-};  // extern "C"
-
-void OSSwitchFiberEx(u32, u32, u32, u32, u32, u32);
-
-void OSVAttention(const char* fmt, va_list args);
-
-void OSReportInit(void);
 
 #include "dolphin/dvd/dvd.h"
 
@@ -385,5 +222,9 @@ inline void* OSPhysicalToCached(u32 offset) {
     OS_ASSERT(offset <= 0x1fffffff);
     return (void*)(offset + 0x80000000);
 }
+
+#ifdef __cplusplus
+};
+#endif
 
 #endif

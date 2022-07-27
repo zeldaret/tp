@@ -10,7 +10,6 @@
 #include "SSystem/SComponent/c_node.h"
 #include "dol2asm.h"
 #include "dolphin/dvd/dvd.h"
-#include "dolphin/os/OSThread.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_reset.h"

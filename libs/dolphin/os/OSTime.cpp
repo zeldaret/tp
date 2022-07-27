@@ -8,17 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" void OSGetTime();
-extern "C" void OSGetTick();
-extern "C" void __OSGetSystemTime();
-extern "C" void __OSTimeToSystemTime();
-extern "C" static void GetDates();
-extern "C" void OSTicksToCalendarTime();
-
-//
 // External References:
 //
 
@@ -35,14 +24,14 @@ extern "C" void __mod2i();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSGetTime() {
+asm OSTime OSGetTime(void) {
     nofralloc
 #include "asm/dolphin/os/OSTime/OSGetTime.s"
 }
 #pragma pop
 
 /* 80342714-8034271C -00001 0008+00 0/0 0/0 0/0 .text            OSGetTick */
-asm void OSGetTick() {
+asm OSTick OSGetTick(void) {
     // clang-format off
 	nofralloc
 	mftb r3, 0x10c
@@ -54,7 +43,7 @@ asm void OSGetTick() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSGetSystemTime() {
+asm OSTime __OSGetSystemTime(void) {
     nofralloc
 #include "asm/dolphin/os/OSTime/__OSGetSystemTime.s"
 }
@@ -64,7 +53,7 @@ asm void __OSGetSystemTime() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSTimeToSystemTime() {
+asm OSTime __OSTimeToSystemTime(OSTime time) {
     nofralloc
 #include "asm/dolphin/os/OSTime/__OSTimeToSystemTime.s"
 }
@@ -89,7 +78,7 @@ SECTION_DATA static u8 LeapYearDays[48] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void GetDates() {
+asm void GetDates(OSTime ticks, OSCalendarTime* ct) {
     nofralloc
 #include "asm/dolphin/os/OSTime/GetDates.s"
 }
@@ -99,7 +88,7 @@ static asm void GetDates() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSTicksToCalendarTime() {
+asm void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime* ct) {
     nofralloc
 #include "asm/dolphin/os/OSTime/OSTicksToCalendarTime.s"
 }

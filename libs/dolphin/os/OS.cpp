@@ -8,37 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct dBgW {};
-
-struct daBgObj_c {
-    /* 80459BB4 */ void regist(dBgW*);
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __OSFPRInit();
-extern "C" static void InquiryCallback();
-extern "C" void OSInit();
-extern "C" static void OSExceptionInit();
-extern "C" void __OSDBIntegrator();
-extern "C" void __OSDBJump();
-extern "C" void __OSSetExceptionHandler();
-extern "C" void __OSGetExceptionHandler();
-extern "C" static void OSExceptionVector();
-extern "C" void __DBVECTOR();
-extern "C" void __OSEVSetNumber();
-extern "C" void __OSEVEnd();
-extern "C" static void OSDefaultExceptionHandler();
-extern "C" void __OSPSInit();
-extern "C" void __OSGetDIConfig();
-extern "C" void OSRegisterVersion();
-
-//
 // External References:
 //
 
@@ -56,15 +25,8 @@ extern "C" void PPCDisableSpeculation();
 extern "C" void PPCSetFpNonIEEEMode();
 extern "C" void OSInitAlarm();
 extern "C" void __OSInitAudioSystem();
-extern "C" void DCInvalidateRange();
-extern "C" void DCFlushRangeNoSync();
-extern "C" void ICInvalidateRange();
-extern "C" void ICFlashInvalidate();
 extern "C" void __OSCacheInit();
 extern "C" void __OSContextInit();
-extern "C" void __OSUnhandledException();
-extern "C" void __OSGetExecParams();
-extern "C" void __OSSetInterruptHandler();
 extern "C" void __OSInterruptInit();
 extern "C" void __OSModuleInit();
 extern "C" void __OSInitMemoryProtection();
@@ -72,7 +34,6 @@ extern "C" void __OSResetSWInterruptHandler();
 extern "C" void __OSInitSram();
 extern "C" void __OSInitSystemCall();
 extern "C" void __OSThreadInit();
-extern "C" void __OSGetSystemTime();
 extern "C" void EXIInit();
 extern "C" void SIInit();
 extern "C" void __DBIsExceptionMarked();
@@ -113,7 +74,7 @@ static u8 ZeroPS[8];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSFPRInit() {
+asm void __OSFPRInit(void) {
     nofralloc
 #include "asm/dolphin/os/OS/__OSFPRInit.s"
 }
@@ -123,7 +84,7 @@ asm void __OSFPRInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm s32 OSGetConsoleType() {
+asm u32 OSGetConsoleType(void) {
     nofralloc
 #include "asm/dolphin/os/OS/OSGetConsoleType.s"
 }
@@ -137,7 +98,7 @@ static u8 DriveInfo[32];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void InquiryCallback() {
+static asm void InquiryCallback(u32 param_0, void* param_1) {
     nofralloc
 #include "asm/dolphin/os/OS/InquiryCallback.s"
 }
@@ -145,312 +106,84 @@ static asm void InquiryCallback() {
 
 /* ############################################################################################## */
 /* 803CF288-803CF2CC 02C3A8 0044+00 3/2 0/0 0/0 .data            @1 */
-SECTION_DATA static u8 lit_1[68] = {
-    0x3C, 0x3C, 0x20, 0x44, 0x6F, 0x6C, 0x70, 0x68, 0x69, 0x6E, 0x20, 0x53, 0x44, 0x4B,
-    0x20, 0x2D, 0x20, 0x4F, 0x53, 0x09, 0x72, 0x65, 0x6C, 0x65, 0x61, 0x73, 0x65, 0x20,
-    0x62, 0x75, 0x69, 0x6C, 0x64, 0x3A, 0x20, 0x4E, 0x6F, 0x76, 0x20, 0x31, 0x30, 0x20,
-    0x32, 0x30, 0x30, 0x34, 0x20, 0x30, 0x36, 0x3A, 0x32, 0x36, 0x3A, 0x34, 0x31, 0x20,
-    0x28, 0x30, 0x78, 0x32, 0x33, 0x30, 0x31, 0x29, 0x20, 0x3E, 0x3E, 0x00,
-};
+SECTION_DATA static char lit_1[68] = "<< Dolphin SDK - OS	release build: Nov 10 2004 06:26:41 (0x2301) >>";
 
 /* 803CF2CC-803CF2DC 02C3EC 000D+03 0/1 0/0 0/0 .data            @105 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 lit_105[13 + 3 /* padding */] = {
-    0x0A,
-    0x44,
-    0x6F,
-    0x6C,
-    0x70,
-    0x68,
-    0x69,
-    0x6E,
-    0x20,
-    0x4F,
-    0x53,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_DATA static char lit_105[13] = "\nDolphin OS\n";
 #pragma pop
 
 /* 803CF2DC-803CF2F4 02C3FC 0016+02 0/1 0/0 0/0 .data            @106 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 lit_106[22 + 2 /* padding */] = {
-    0x4B,
-    0x65,
-    0x72,
-    0x6E,
-    0x65,
-    0x6C,
-    0x20,
-    0x62,
-    0x75,
-    0x69,
-    0x6C,
-    0x74,
-    0x20,
-    0x3A,
-    0x20,
-    0x25,
-    0x73,
-    0x20,
-    0x25,
-    0x73,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-};
+SECTION_DATA static char lit_106[22] = "Kernel built : %s %s\n";
 #pragma pop
 
 /* 803CF2F4-803CF300 02C414 000C+00 0/1 0/0 0/0 .data            @107 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 lit_107[12] = {
-    0x4E, 0x6F, 0x76, 0x20, 0x31, 0x30, 0x20, 0x32, 0x30, 0x30, 0x34, 0x00,
-};
+SECTION_DATA static char lit_107[12] = "Nov 10 2004";
 #pragma pop
 
 /* 803CF300-803CF30C 02C420 0009+03 0/1 0/0 0/0 .data            @108 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 lit_108[9 + 3 /* padding */] = {
-    0x30,
-    0x36,
-    0x3A,
-    0x32,
-    0x36,
-    0x3A,
-    0x34,
-    0x31,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_DATA static char lit_108[9] = "06:26:41";
 #pragma pop
 
 /* 803CF30C-803CF31C 02C42C 0010+00 0/1 0/0 0/0 .data            @109 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 lit_109[16] = {
-    0x43, 0x6F, 0x6E, 0x73, 0x6F, 0x6C, 0x65, 0x20, 0x54, 0x79, 0x70, 0x65, 0x20, 0x3A, 0x20, 0x00,
-};
+SECTION_DATA static char lit_109[16] = "Console Type : ";
 #pragma pop
 
 /* 803CF31C-803CF328 02C43C 000B+01 0/1 0/0 0/0 .data            @110 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 lit_110[11 + 1 /* padding */] = {
-    0x52,
-    0x65,
-    0x74,
-    0x61,
-    0x69,
-    0x6C,
-    0x20,
-    0x25,
-    0x64,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-};
+SECTION_DATA static char lit_110[11] = "Retail %d\n";
 #pragma pop
 
 /* 803CF328-803CF338 02C448 000E+02 0/1 0/0 0/0 .data            @111 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 lit_111[14 + 2 /* padding */] = {
-    0x4D,
-    0x61,
-    0x63,
-    0x20,
-    0x45,
-    0x6D,
-    0x75,
-    0x6C,
-    0x61,
-    0x74,
-    0x6F,
-    0x72,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-};
+SECTION_DATA static char lit_111[14] = "Mac Emulator\n";
 #pragma pop
 
 /* 803CF338-803CF348 02C458 000D+03 0/1 0/0 0/0 .data            @112 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 lit_112[13 + 3 /* padding */] = {
-    0x50,
-    0x43,
-    0x20,
-    0x45,
-    0x6D,
-    0x75,
-    0x6C,
-    0x61,
-    0x74,
-    0x6F,
-    0x72,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_DATA static char lit_112[13] = "PC Emulator\n";
 #pragma pop
 
 /* 803CF348-803CF358 02C468 000D+03 0/1 0/0 0/0 .data            @113 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 lit_113[13 + 3 /* padding */] = {
-    0x45,
-    0x50,
-    0x50,
-    0x43,
-    0x20,
-    0x41,
-    0x72,
-    0x74,
-    0x68,
-    0x75,
-    0x72,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_DATA static char lit_113[13] = "EPPC Arthur\n";
 #pragma pop
 
 /* 803CF358-803CF368 02C478 000D+03 0/1 0/0 0/0 .data            @114 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 lit_114[13 + 3 /* padding */] = {
-    0x45,
-    0x50,
-    0x50,
-    0x43,
-    0x20,
-    0x4D,
-    0x69,
-    0x6E,
-    0x6E,
-    0x6F,
-    0x77,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_DATA static char lit_114[13] = "EPPC Minnow\n";
 #pragma pop
 
 /* 803CF368-803CF384 02C488 0019+03 0/1 0/0 0/0 .data            @115 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 lit_115[25 + 3 /* padding */] = {
-    0x44,
-    0x65,
-    0x76,
-    0x65,
-    0x6C,
-    0x6F,
-    0x70,
-    0x6D,
-    0x65,
-    0x6E,
-    0x74,
-    0x20,
-    0x48,
-    0x57,
-    0x25,
-    0x64,
-    0x20,
-    0x28,
-    0x25,
-    0x30,
-    0x38,
-    0x78,
-    0x29,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_DATA static char lit_115[25] = "Development HW%d (%08x)\n";
 #pragma pop
 
 /* 803CF384-803CF394 02C4A4 000E+02 0/1 0/0 0/0 .data            @117 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 lit_117[14 + 2 /* padding */] = {
-    0x4D,
-    0x65,
-    0x6D,
-    0x6F,
-    0x72,
-    0x79,
-    0x20,
-    0x25,
-    0x64,
-    0x20,
-    0x4D,
-    0x42,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-};
+SECTION_DATA static char lit_117[14] = "Memory %d MB\n";
 #pragma pop
 
 /* 803CF394-803CF3AC 02C4B4 0015+03 0/1 0/0 0/0 .data            @118 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 lit_118[21 + 3 /* padding */] = {
-    0x41,
-    0x72,
-    0x65,
-    0x6E,
-    0x61,
-    0x20,
-    0x3A,
-    0x20,
-    0x30,
-    0x78,
-    0x25,
-    0x78,
-    0x20,
-    0x2D,
-    0x20,
-    0x30,
-    0x78,
-    0x25,
-    0x78,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_DATA static char lit_118[21] = "Arena : 0x%x - 0x%x\n";
 #pragma pop
 
 /* 8044BA80-8044BAB0 0787A0 0030+00 0/1 0/0 0/0 .bss             DriveBlock */
@@ -467,17 +200,7 @@ u8 __OSRebootParams[28 + 4 /* padding */];
 SECTION_SDATA static void* __OSVersion = (void*)&lit_1;
 
 /* 80450984-8045098C 000404 0006+02 1/1 0/0 0/0 .sdata           @116 */
-SECTION_SDATA static u8 lit_116[6 + 2 /* padding */] = {
-    0x25,
-    0x30,
-    0x38,
-    0x78,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-};
+SECTION_SDATA static char lit_116[6] = "%08x\n";
 
 /* 80451620-80451624 000B20 0004+00 1/1 0/0 0/0 .sbss            AreWeInitialized */
 static u8 AreWeInitialized[4];
@@ -504,7 +227,7 @@ extern void* _stack_end;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSInit() {
+asm void OSInit(void) {
     nofralloc
 #include "asm/dolphin/os/OS/OSInit.s"
 }
@@ -525,192 +248,32 @@ SECTION_DATA static u8 __OSExceptionLocations[60] = {
 /* 803CF3E8-803CF404 02C508 001B+01 0/1 0/0 0/0 .data            @152 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 lit_152[27 + 1 /* padding */] = {
-    0x49,
-    0x6E,
-    0x73,
-    0x74,
-    0x61,
-    0x6C,
-    0x6C,
-    0x69,
-    0x6E,
-    0x67,
-    0x20,
-    0x4F,
-    0x53,
-    0x44,
-    0x42,
-    0x49,
-    0x6E,
-    0x74,
-    0x65,
-    0x67,
-    0x72,
-    0x61,
-    0x74,
-    0x6F,
-    0x72,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-};
+SECTION_DATA static char lit_152[27] = "Installing OSDBIntegrator\n";
 #pragma pop
 
 /* 803CF404-803CF434 02C524 002E+02 0/1 0/0 0/0 .data            @153 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 lit_153[46 + 2 /* padding */] = {
-    0x3E,
-    0x3E,
-    0x3E,
-    0x20,
-    0x4F,
-    0x53,
-    0x49,
-    0x4E,
-    0x49,
-    0x54,
-    0x3A,
-    0x20,
-    0x65,
-    0x78,
-    0x63,
-    0x65,
-    0x70,
-    0x74,
-    0x69,
-    0x6F,
-    0x6E,
-    0x20,
-    0x25,
-    0x64,
-    0x20,
-    0x63,
-    0x6F,
-    0x6D,
-    0x6D,
-    0x61,
-    0x6E,
-    0x64,
-    0x65,
-    0x65,
-    0x72,
-    0x65,
-    0x64,
-    0x20,
-    0x62,
-    0x79,
-    0x20,
-    0x54,
-    0x52,
-    0x4B,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-};
+SECTION_DATA static char lit_153[46] = ">>> OSINIT: exception %d commandeered by TRK\n";
 #pragma pop
 
 /* 803CF434-803CF464 02C554 002F+01 0/1 0/0 0/0 .data            @154 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 lit_154[47 + 1 /* padding */] = {
-    0x3E,
-    0x3E,
-    0x3E,
-    0x20,
-    0x4F,
-    0x53,
-    0x49,
-    0x4E,
-    0x49,
-    0x54,
-    0x3A,
-    0x20,
-    0x65,
-    0x78,
-    0x63,
-    0x65,
-    0x70,
-    0x74,
-    0x69,
-    0x6F,
-    0x6E,
-    0x20,
-    0x25,
-    0x64,
-    0x20,
-    0x76,
-    0x65,
-    0x63,
-    0x74,
-    0x6F,
-    0x72,
-    0x65,
-    0x64,
-    0x20,
-    0x74,
-    0x6F,
-    0x20,
-    0x64,
-    0x65,
-    0x62,
-    0x75,
-    0x67,
-    0x67,
-    0x65,
-    0x72,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-};
+SECTION_DATA static char lit_154[47] = ">>> OSINIT: exception %d vectored to debugger\n";
 #pragma pop
 
 /* 803CF464-803CF480 02C584 001B+01 0/1 0/0 0/0 .data            @155 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 lit_155[27 + 1 /* padding */] = {
-    0x45,
-    0x78,
-    0x63,
-    0x65,
-    0x70,
-    0x74,
-    0x69,
-    0x6F,
-    0x6E,
-    0x73,
-    0x20,
-    0x69,
-    0x6E,
-    0x69,
-    0x74,
-    0x69,
-    0x61,
-    0x6C,
-    0x69,
-    0x7A,
-    0x65,
-    0x64,
-    0x2E,
-    0x2E,
-    0x2E,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-};
+SECTION_DATA static char lit_155[27] = "Exceptions initialized...\n";
 #pragma pop
 
 /* 8033A440-8033A6C0 334D80 0280+00 1/1 0/0 0/0 .text            OSExceptionInit */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void OSExceptionInit() {
+static asm void OSExceptionInit(void) {
     nofralloc
 #include "asm/dolphin/os/OS/OSExceptionInit.s"
 }
@@ -720,7 +283,7 @@ static asm void OSExceptionInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSDBIntegrator() {
+asm void __OSDBIntegrator(void) {
     nofralloc
 #include "asm/dolphin/os/OS/__OSDBIntegrator.s"
 }
@@ -730,7 +293,7 @@ asm void __OSDBIntegrator() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSDBJump() {
+asm void __OSDBJump(void) {
     nofralloc
 #include "asm/dolphin/os/OS/__OSDBJump.s"
 }
@@ -740,7 +303,7 @@ asm void __OSDBJump() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSSetExceptionHandler() {
+asm OSExceptionHandler __OSSetExceptionHandler(OSException exception, OSExceptionHandler handler) {
     nofralloc
 #include "asm/dolphin/os/OS/__OSSetExceptionHandler.s"
 }
@@ -750,7 +313,7 @@ asm void __OSSetExceptionHandler() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSGetExceptionHandler() {
+asm OSExceptionHandler __OSGetExceptionHandler(OSException exception) {
     nofralloc
 #include "asm/dolphin/os/OS/__OSGetExceptionHandler.s"
 }
@@ -760,12 +323,13 @@ asm void __OSGetExceptionHandler() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void OSExceptionVector() {
+static asm void OSExceptionVector(void) {
     nofralloc
 #include "asm/dolphin/os/OS/OSExceptionVector.s"
 }
 #pragma pop
 
+// fake function?
 /* 8033A770-8033A780 3350B0 0010+00 1/1 0/0 0/0 .text            __DBVECTOR */
 #pragma push
 #pragma optimization_level 0
@@ -776,6 +340,7 @@ asm void __DBVECTOR() {
 }
 #pragma pop
 
+// fake function?
 /* 8033A780-8033A7B0 3350C0 0030+00 1/1 0/0 0/0 .text            __OSEVSetNumber */
 #pragma push
 #pragma optimization_level 0
@@ -796,11 +361,12 @@ asm void __OSEVEnd() {
 }
 #pragma pop
 
+// fake function?
 /* 8033A7B4-8033A80C 3350F4 0058+00 2/2 0/0 0/0 .text            OSDefaultExceptionHandler */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void OSDefaultExceptionHandler() {
+static asm void OSDefaultExceptionHandler(OSException exception, OSContext* context) {
     nofralloc
 #include "asm/dolphin/os/OS/OSDefaultExceptionHandler.s"
 }
@@ -810,7 +376,7 @@ static asm void OSDefaultExceptionHandler() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSPSInit() {
+asm void __OSPSInit(void) {
     nofralloc
 #include "asm/dolphin/os/OS/__OSPSInit.s"
 }
@@ -820,7 +386,7 @@ asm void __OSPSInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSGetDIConfig() {
+asm void __OSGetDIConfig(void) {
     nofralloc
 #include "asm/dolphin/os/OS/__OSGetDIConfig.s"
 }
@@ -828,13 +394,13 @@ asm void __OSGetDIConfig() {
 
 /* ############################################################################################## */
 /* 8045098C-80450990 00040C 0004+00 1/1 0/0 0/0 .sdata           @163 */
-SECTION_SDATA static u32 lit_163 = 0x25730A00;
+SECTION_SDATA static char lit_163[4] = "%s\n";
 
 /* 8033A874-8033A8A0 3351B4 002C+00 1/1 11/11 0/0 .text            OSRegisterVersion */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSRegisterVersion() {
+asm void OSRegisterVersion(char* version) {
     nofralloc
 #include "asm/dolphin/os/OS/OSRegisterVersion.s"
 }

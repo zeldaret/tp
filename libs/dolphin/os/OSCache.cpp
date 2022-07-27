@@ -9,27 +9,6 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" static void DCEnable();
-extern "C" void DCFlushRange();
-extern "C" void DCFlushRangeNoSync();
-extern "C" void DCZeroRange();
-extern "C" void ICInvalidateRange();
-extern "C" void ICFlashInvalidate();
-extern "C" static void ICEnable();
-extern "C" void __LCEnable();
-extern "C" void LCEnable();
-extern "C" void LCDisable();
-extern "C" static void LCStoreBlocks();
-extern "C" void LCStoreData();
-extern "C" void LCQueueWait();
-extern "C" static void L2GlobalInvalidate();
-extern "C" static void DMAErrorHandler();
-extern "C" void __OSCacheInit();
-
-//
 // External References:
 //
 
@@ -55,7 +34,7 @@ extern "C" void DBPrintf();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void DCEnable() {
+static asm void DCEnable(void) {
     nofralloc
 #include "asm/dolphin/os/OSCache/DCEnable.s"
 }
@@ -65,7 +44,7 @@ static asm void DCEnable() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void DCInvalidateRange(void*, u32) {
+asm void DCInvalidateRange(void* start, u32 nBytes) {
     nofralloc
 #include "asm/dolphin/os/OSCache/DCInvalidateRange.s"
 }
@@ -75,7 +54,7 @@ asm void DCInvalidateRange(void*, u32) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void DCFlushRange() {
+asm void DCFlushRange(void* start, u32 nBytes) {
     nofralloc
 #include "asm/dolphin/os/OSCache/DCFlushRange.s"
 }
@@ -85,7 +64,7 @@ asm void DCFlushRange() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void DCStoreRange(void*, u32) {
+asm void DCStoreRange(void* start, u32 nBytes) {
     nofralloc
 #include "asm/dolphin/os/OSCache/DCStoreRange.s"
 }
@@ -95,7 +74,7 @@ asm void DCStoreRange(void*, u32) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void DCFlushRangeNoSync() {
+asm void DCFlushRangeNoSync(void* start, u32 nBytes) {
     nofralloc
 #include "asm/dolphin/os/OSCache/DCFlushRangeNoSync.s"
 }
@@ -105,7 +84,7 @@ asm void DCFlushRangeNoSync() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void DCStoreRangeNoSync(void*, u32) {
+asm void DCStoreRangeNoSync(void* start, u32 nBytes) {
     nofralloc
 #include "asm/dolphin/os/OSCache/DCStoreRangeNoSync.s"
 }
@@ -115,7 +94,7 @@ asm void DCStoreRangeNoSync(void*, u32) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void DCZeroRange() {
+asm void DCZeroRange(void* start, u32 nBytes) {
     nofralloc
 #include "asm/dolphin/os/OSCache/DCZeroRange.s"
 }
@@ -125,7 +104,7 @@ asm void DCZeroRange() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void ICInvalidateRange() {
+asm void ICInvalidateRange(void* start, u32 nBytes) {
     nofralloc
 #include "asm/dolphin/os/OSCache/ICInvalidateRange.s"
 }
@@ -135,7 +114,7 @@ asm void ICInvalidateRange() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void ICFlashInvalidate() {
+asm void ICFlashInvalidate(void) {
     nofralloc
 #include "asm/dolphin/os/OSCache/ICFlashInvalidate.s"
 }
@@ -145,7 +124,7 @@ asm void ICFlashInvalidate() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void ICEnable() {
+static asm void ICEnable(void) {
     nofralloc
 #include "asm/dolphin/os/OSCache/ICEnable.s"
 }
@@ -155,7 +134,7 @@ static asm void ICEnable() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __LCEnable() {
+asm void __LCEnable(void) {
     nofralloc
 #include "asm/dolphin/os/OSCache/__LCEnable.s"
 }
@@ -175,7 +154,7 @@ asm void LCEnable() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void LCDisable() {
+asm void LCDisable(void) {
     nofralloc
 #include "asm/dolphin/os/OSCache/LCDisable.s"
 }
@@ -185,7 +164,7 @@ asm void LCDisable() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void LCStoreBlocks() {
+static asm void LCStoreBlocks(void* destAddr, void* srcAddr, u32 blockNum) {
     nofralloc
 #include "asm/dolphin/os/OSCache/LCStoreBlocks.s"
 }
@@ -195,7 +174,7 @@ static asm void LCStoreBlocks() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void LCStoreData() {
+asm u32 LCStoreData(void* destAddr, void* srcAddr, u32 nBytes) {
     nofralloc
 #include "asm/dolphin/os/OSCache/LCStoreData.s"
 }
@@ -205,7 +184,7 @@ asm void LCStoreData() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void LCQueueWait() {
+asm void LCQueueWait(u32 len) {
     nofralloc
 #include "asm/dolphin/os/OSCache/LCQueueWait.s"
 }
@@ -265,7 +244,7 @@ SECTION_DATA static u8 lit_63[41 + 3 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void L2GlobalInvalidate() {
+static asm void L2GlobalInvalidate(void) {
     nofralloc
 #include "asm/dolphin/os/OSCache/L2GlobalInvalidate.s"
 }
@@ -606,7 +585,7 @@ SECTION_DATA static u8 lit_92[25 + 3 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void DMAErrorHandler() {
+static asm void DMAErrorHandler(s32 error, OSContext* context) {
     nofralloc
 #include "asm/dolphin/os/OSCache/DMAErrorHandler.s"
 }
@@ -781,7 +760,7 @@ SECTION_DATA static u8 lit_107[46 + 6 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSCacheInit() {
+asm void __OSCacheInit(void) {
     nofralloc
 #include "asm/dolphin/os/OSCache/__OSCacheInit.s"
 }

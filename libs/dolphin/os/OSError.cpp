@@ -8,12 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" void __OSUnhandledException();
-
-//
 // External References:
 //
 
@@ -53,7 +47,7 @@ SECTION_SDATA extern u32 __OSFpscrEnableBits = 0x000000F8;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSSetErrorHandler(OSError, OSErrorHandler) {
+asm OSErrorHandler OSSetErrorHandler(OSError error, OSErrorHandler handler) {
     nofralloc
 #include "asm/dolphin/os/OSError/OSSetErrorHandler.s"
 }
@@ -645,7 +639,7 @@ SECTION_SDATA static u16 lit_76[1 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSUnhandledException() {
+asm void __OSUnhandledException(OSException exception, OSContext* context, u32 dsisr, u32 dar) {
     nofralloc
 #include "asm/dolphin/os/OSError/__OSUnhandledException.s"
 }

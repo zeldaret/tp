@@ -35,6 +35,7 @@ LIBGX_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/gx/GXPerf.o \
 
 LIBGX_A_CFLAGS := \
+	-O4,p \
 
 LIBGX_A_LDFLAGS := \
 	-nodefaults \
@@ -51,5 +52,5 @@ $(BUILD_DIR)/libs/dolphin/gx/%.o: libs/dolphin/gx/%.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBGX_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(CFLAGS) $(LIBGX_A_CFLAGS) -c -o $@ $(basename $@).cpp
 

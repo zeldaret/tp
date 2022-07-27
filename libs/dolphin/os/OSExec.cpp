@@ -8,19 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" static void PackArgs();
-extern "C" static void Run();
-extern "C" static void ReadDisc();
-extern "C" static void Callback();
-extern "C" void __OSGetExecParams();
-extern "C" static void GetApploaderPosition();
-extern "C" void __OSBootDolSimple();
-extern "C" void __OSBootDol();
-
-//
 // External References:
 //
 
@@ -63,7 +50,7 @@ extern "C" extern u8 __OSIsGcam[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void PackArgs() {
+static asm s32 PackArgs(void* param_0, u32 param_1, void* param_2) {
     nofralloc
 #include "asm/dolphin/os/OSExec/PackArgs.s"
 }
@@ -73,7 +60,7 @@ static asm void PackArgs() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void Run() {
+static asm void Run(void) {
     nofralloc
 #include "asm/dolphin/os/OSExec/Run.s"
 }
@@ -83,7 +70,7 @@ static asm void Run() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void ReadDisc() {
+static asm void ReadDisc(void* param_0, s32 param_1, s32 param_2) {
     nofralloc
 #include "asm/dolphin/os/OSExec/ReadDisc.s"
 }
@@ -97,7 +84,7 @@ static u8 Prepared[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void Callback() {
+static asm void Callback(void) {
     nofralloc
 #include "asm/dolphin/os/OSExec/Callback.s"
 }
@@ -107,7 +94,7 @@ static asm void Callback() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSGetExecParams() {
+asm void __OSGetExecParams(void* param_0) {
     nofralloc
 #include "asm/dolphin/os/OSExec/__OSGetExecParams.s"
 }
@@ -121,7 +108,7 @@ static u8 apploaderPosition[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void GetApploaderPosition() {
+static asm void GetApploaderPosition(void) {
     nofralloc
 #include "asm/dolphin/os/OSExec/GetApploaderPosition.s"
 }
@@ -153,7 +140,7 @@ SECTION_DATA static u8 lit_115[11 + 5 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSBootDolSimple() {
+asm void __OSBootDolSimple(u32 param_0, u32 param_1, void* param_2, void* param_3, s32 param_4, u32 param_5, void* param_6) {
     nofralloc
 #include "asm/dolphin/os/OSExec/__OSBootDolSimple.s"
 }
@@ -177,7 +164,7 @@ SECTION_SDATA static u8 lit_213[3 + 5 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSBootDol() {
+asm void __OSBootDol(s32 param_0, u32 param_1, s32 param_2) {
     nofralloc
 #include "asm/dolphin/os/OSExec/__OSBootDol.s"
 }
