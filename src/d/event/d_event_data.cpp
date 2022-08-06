@@ -385,11 +385,11 @@ static asm int dEvDt_Next_Stage(int param_0, int param_1) {
 #endif
 
 /* 80043D60-80043DC8 03E6A0 0068+00 3/3 0/0 0/0 .text            flagCheck__11dEvDtFlag_cFi */
-BOOL dEvDtFlag_c::flagCheck(int param_0) {
-    if (flagMaxCheck(param_0)) {
+BOOL dEvDtFlag_c::flagCheck(int flag) {
+    if (flagMaxCheck(flag)) {
         return FALSE;
     } else {
-        if (mFlags[(u32)param_0 / 0x20] & (1 << (param_0 & 0x1F))) {
+        if (mFlags[(u32)flag / 0x20] & (1 << (flag & 0x1F))) {
             return TRUE;
         } else {
             return FALSE;
@@ -398,21 +398,21 @@ BOOL dEvDtFlag_c::flagCheck(int param_0) {
 }
 
 /* 80043DC8-80043E30 03E708 0068+00 2/2 1/1 0/0 .text            flagSet__11dEvDtFlag_cFi */
-BOOL dEvDtFlag_c::flagSet(int param_0) {
-    if (flagMaxCheck(param_0)) {
+BOOL dEvDtFlag_c::flagSet(int flag) {
+    if (flagMaxCheck(flag)) {
         return FALSE;
     } else {
-        mFlags[(u32)param_0 / 0x20] |= (1 << (param_0 & 0x1F));
+        mFlags[(u32)flag / 0x20] |= (1 << (flag & 0x1F));
         return TRUE;
     }
 }
 
-BOOL dEvDtFlag_c::flagMaxCheck(int flag_id) {
-    if (flag_id == -1) {
+BOOL dEvDtFlag_c::flagMaxCheck(int flag) {
+    if (flag == -1) {
         return TRUE;
     }
 
-    if (FlagMax <= flag_id) {
+    if (FlagMax <= flag) {
         return TRUE;
     } else {
         return FALSE;
@@ -443,27 +443,27 @@ int dEvDtEvent_c::finishCheck() {
 /* 80043EFC-80043F70 03E83C 0074+00 0/0 1/1 0/0 .text            forceFinish__12dEvDtEvent_cFv */
 int dEvDtEvent_c::forceFinish() {
     for (int i = 0; i < 3; i++) {
-        int tmp = field_0x88[i];
-        if (tmp == -1) {
+        int flag = field_0x88[i];
+        if (flag == -1) {
             return 1;
         }
     
-        i_dComIfGp_getEventManager().setFlag(tmp);
+        i_dComIfGp_getEventManager().setFlag(flag);
     }
     return 1;
 }
 
 /* 80043F70-80043FD8 03E8B0 0068+00 0/0 1/1 0/0 .text
  * specialStaffProc__12dEvDtEvent_cFP12dEvDtStaff_c             */
-void dEvDtEvent_c::specialStaffProc(dEvDtStaff_c* param_0) {
+void dEvDtEvent_c::specialStaffProc(dEvDtStaff_c* p_staff) {
     for (int i = 0; i < mNStaff; i++) {
-        param_0[mStaff[i]].specialProc();
+        p_staff[mStaff[i]].specialProc();
     }
 }
 
 /* 80043FD8-8004403C 03E918 0064+00 4/4 0/0 0/0 .text specialProc_WaitStart__12dEvDtStaff_cFi */
-void dEvDtStaff_c::specialProc_WaitStart(int param_0) {
-    int* timer = dComIfGp_evmng_getMyIntegerP(param_0, "Timer");
+void dEvDtStaff_c::specialProc_WaitStart(int index) {
+    int* timer = dComIfGp_evmng_getMyIntegerP(index, "Timer");
     if (timer == NULL) {
         mWaitTimer = 0;
     } else {
@@ -1598,20 +1598,20 @@ void dEvDtBase_c::advanceCut(dEvDtEvent_c* p_event) {
 
 /* 800462FC-800463DC 040C3C 00E0+00 1/1 0/0 0/0 .text
  * advanceCutLocal__11dEvDtBase_cFP12dEvDtStaff_c               */
-BOOL dEvDtBase_c::advanceCutLocal(dEvDtStaff_c* param_0) {
-    dEvDtCut_c* cut = &mCutP[param_0->getCurrentCut()];
+BOOL dEvDtBase_c::advanceCutLocal(dEvDtStaff_c* p_staff) {
+    dEvDtCut_c* cut = &mCutP[p_staff->getCurrentCut()];
     if (dEvDtFlagCheck(cut->getFlagId()) && cut->getNext() != -1) {
         switch (mCutP[cut->getNext()].startCheck()) {
         case -1:
-            param_0->advanceCut(cut->getNext());
+            p_staff->advanceCut(cut->getNext());
             return TRUE;
         case 1:
             dEvDtFlagSet(cut->getFlagId());
-            param_0->advanceCut(cut->getNext());
+            p_staff->advanceCut(cut->getNext());
             return TRUE;
         }
     }
-    param_0->field_0x40 = false;
+    p_staff->field_0x40 = false;
     return FALSE;
 }
 

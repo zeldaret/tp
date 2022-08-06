@@ -116,11 +116,11 @@ public:
         s32 unk;
     };
 
-    void specialProc_WaitStart(int);
+    void specialProc_WaitStart(int index);
     void specialProc_WaitProc(int);
     void specialProc();
     void init();
-    void advanceCut(int);
+    void advanceCut(int cut);
     void specialProcLight();
     void specialProcMessage();
     void specialProcSound();
@@ -159,7 +159,7 @@ class dEvDtEvent_c {
 public:
     int finishCheck();
     int forceFinish();
-    void specialStaffProc(dEvDtStaff_c*);
+    void specialStaffProc(dEvDtStaff_c* p_staff);
     int getNStaff() { return mNStaff; }
     int getStaff(int idx) { return mStaff[idx]; }
     char* getName() { return mName; }
@@ -183,9 +183,9 @@ public:
 class dEvDtFlag_c {
 public:
     dEvDtFlag_c() {}
-    BOOL flagCheck(int);
-    BOOL flagSet(int);
-    BOOL flagMaxCheck(int);
+    BOOL flagCheck(int flag);
+    BOOL flagSet(int flag);
+    BOOL flagMaxCheck(int flag);
     void init();
 
 #define FlagMax 0x2800
@@ -199,9 +199,9 @@ public:
     dEvDtBase_c() { init(); }
     ~dEvDtBase_c() {}
     int init();
-    int init(char*, int);
-    void advanceCut(dEvDtEvent_c*);
-    BOOL advanceCutLocal(dEvDtStaff_c*);
+    int init(char* p_data, int roomNo);
+    void advanceCut(dEvDtEvent_c* p_event);
+    BOOL advanceCutLocal(dEvDtStaff_c* p_staff);
 
     event_binary_data_header* getHeaderP() { return mHeaderP; }
     dEvDtStaff_c* getStaffP(int i) { return &mStaffP[i]; }

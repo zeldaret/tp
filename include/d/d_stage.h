@@ -250,23 +250,22 @@ struct dStage_DMap_c {
 };
 
 struct dStage_MapEvent_dt_c {
-    u8 mType;
-    u8 field_0x1[3 - 1];
-    u8 field_0x3;
-    u8 field_0x4;
-    u8 field_0x5;
-    u8 field_0x6;
-    u8 field_0x7;
-    u8 field_0x8;
-    u8 field_0x9;
-    u8 field_0xA[0xD - 0xA];
-    char mName[6];
-    u16 field_0x14;
-    u8 field_0x16;
-    u8 field_0x17;
-    u8 field_0x18;
-    u8 field_0x19[0x1B - 0x19];
-    u8 field_0x1B;
+    /* 0x00 */ u8 mType;
+    /* 0x01 */ u8 field_0x1[3 - 1];
+    /* 0x03 */ u8 field_0x3;
+    /* 0x04 */ u8 field_0x4;
+    /* 0x05 */ u8 field_0x5;
+    /* 0x06 */ u8 mPriority;
+    /* 0x07 */ u8 field_0x7;
+    /* 0x08 */ u8 field_0x8;
+    /* 0x09 */ u8 field_0x9;
+    /* 0x0A */ u8 field_0xA[0xD - 0xA];
+    /* 0x0D */ char mName[9];
+    /* 0x16 */ u8 field_0x16;
+    /* 0x17 */ u8 field_0x17;
+    /* 0x18 */ u8 mSeType;  // 1: RIDDLE_A, 2: RIDDLE_B
+    /* 0x19 */ u8 field_0x19[0x1B - 0x19];
+    /* 0x1B */ u8 mSwitch;
 };  // SIZE = 0x1C
 
 struct dStage_MapEventInfo_c {

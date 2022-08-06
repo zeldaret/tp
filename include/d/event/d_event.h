@@ -15,7 +15,7 @@ public:
 
     /* 0x00 */ u16 mEventType;
     /* 0x02 */ u16 mFlag;
-    /* 0x04 */ u16 field_0x04;
+    /* 0x04 */ u16 mHindFlag;
     /* 0x08 */ fopAc_ac_c* mActor1;
     /* 0x0C */ fopAc_ac_c* mActor2;
     /* 0x10 */ s16 mEventId;
@@ -28,25 +28,50 @@ STATIC_ASSERT(sizeof(dEvt_order_c) == 0x18);
 
 typedef int (*SkipFunc)(void*, int);
 
+enum EventMode {
+    /* 0x0 */ EVT_MODE_NONE,
+    /* 0x1 */ EVT_MODE_TALK,
+    /* 0x2 */ EVT_MODE_DEMO,
+    /* 0x3 */
+};
+
+enum EventType {
+    /* 0x0 */ EVT_TYPE_TALK,
+    /* 0x1 */ EVT_TYPE_DOOR,
+    /* 0x2 */ EVT_TYPE_OTHER,
+    /* 0x3 */ EVT_TYPE_COMPULSORY,
+    /* 0x4 */ EVT_TYPE_POTENTIAL,
+    /* 0x5 */ EVT_TYPE_ITEM,
+    /* 0x6 */ EVT_TYPE_SHOWITEM_X,
+    /* 0x7 */ EVT_TYPE_SHOWITEM_Y,
+    /* 0xA */ EVT_TYPE_CATCH = 10,
+    /* 0xB */ EVT_TYPE_TREASURE,
+};
+
+enum EventStatus {
+    /* 0x0 */ STATUS_NONE,
+};
+
 class dEvt_control_c {
 public:
     dEvt_control_c();
-    s32 orderOld(u16, u16, u16, u16, void*, void*, void const*);
+    s32 orderOld(u16 eventType, u16 priority, u16 flag, u16 param_3, void* param_4, void* param_5,
+                 void const* param_6);
     s32 order(u16 eventType, u16 priority, u16 flag, u16 param_3, void* param_4, void* param_5,
               s16 eventID, u8 infoIdx);
-    void setParam(dEvt_order_c*);
-    s32 beforeFlagProc(dEvt_order_c*);
-    void afterFlagProc(dEvt_order_c*);
-    int commonCheck(dEvt_order_c*, u16, u16);
-    int talkCheck(dEvt_order_c*);
-    int talkXyCheck(dEvt_order_c*);
-    int catchCheck(dEvt_order_c*);
+    void setParam(dEvt_order_c* p_order);
+    s32 beforeFlagProc(dEvt_order_c* p_order);
+    void afterFlagProc(dEvt_order_c* p_order);
+    int commonCheck(dEvt_order_c* p_order, u16 condition, u16 command);
+    int talkCheck(dEvt_order_c* p_order);
+    int talkXyCheck(dEvt_order_c* p_order);
+    int catchCheck(dEvt_order_c* p_order);
     int talkEnd();
-    int demoCheck(dEvt_order_c*);
+    int demoCheck(dEvt_order_c* p_order);
     int demoEnd();
-    int potentialCheck(dEvt_order_c*);
-    int doorCheck(dEvt_order_c*);
-    int itemCheck(dEvt_order_c*);
+    int potentialCheck(dEvt_order_c* p_order);
+    int doorCheck(dEvt_order_c* p_order);
+    int itemCheck(dEvt_order_c* p_order);
     int endProc();
     int change();
     int entry();
@@ -64,20 +89,20 @@ public:
     BOOL compulsory(void*, char const*, u16);
     void remove();
     dStage_MapEvent_dt_c* getStageEventDt();
-    void sceneChange(int);
+    void sceneChange(int exitId);
     u32 getPId(void*);
     void* convPId(unsigned int);
-    void* getStbDemoData(char*);
-    static dStage_MapEvent_dt_c* searchMapEventData(u8, s32);
-    static dStage_MapEvent_dt_c* searchMapEventData(u8);
-    s16 runningEventID(s16);
-    void setPt1(void*);
-    void setPt2(void*);
-    void setPtT(void*);
-    void setPtI(void*);
-    void setPtI_Id(unsigned int);
-    void setPtD(void*);
-    void setGtItm(u8);
+    void* getStbDemoData(char* resName);
+    static dStage_MapEvent_dt_c* searchMapEventData(u8 mapToolID, s32 roomNo);
+    static dStage_MapEvent_dt_c* searchMapEventData(u8 mapToolID);
+    s16 runningEventID(s16 eventID);
+    void setPt1(void* ptr);
+    void setPt2(void* ptr);
+    void setPtT(void* ptr);
+    void setPtI(void* ptr);
+    void setPtI_Id(unsigned int id);
+    void setPtD(void* ptr);
+    void setGtItm(u8 itemNo);
     void isOrderOK();
 
     u16 chkFlag2(u16 flag) { return flag & mFlag2; }
@@ -111,9 +136,9 @@ public:
     /* 0x0DA */ u16 mFlag2;
     /* 0x0DC */ u16 mHindFlag;
     /* 0x0DE */ s16 mSpecifiedEvent;  // name maybe wrong
-    /* 0x0E0 */ s16 field_0xe0;
+    /* 0x0E0 */ s16 mEventID;
     /* 0x0E2 */ s8 mNum;
-    /* 0x0E3 */ s8 field_0xe3;
+    /* 0x0E3 */ s8 mOrderIdx;
     /* 0x0E4 */ u8 mMode;
     /* 0x0E5 */ u8 mEventStatus;
     /* 0x0E6 */ u8 field_0xe6;
@@ -137,7 +162,7 @@ public:
     /* 0x110 */ int mSkipFade;
     /* 0x114 */ char mSkipEventName[20];
     /* 0x128 */ u8 mCompulsory;
-    /* 0x129 */ bool field_0x129;
+    /* 0x129 */ bool mRoomInfoSet;
     /* 0x12C */ int mRoomNo;
 };  // Size = 0x130
 

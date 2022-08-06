@@ -148,17 +148,17 @@ void dEvent_exception_c::init() {
 }
 
 /* 800463F0-80046480 040D30 0090+00 0/0 2/2 0/0 .text setStartDemo__18dEvent_exception_cFi */
-s32 dEvent_exception_c::setStartDemo(int index) {
+s32 dEvent_exception_c::setStartDemo(int mapToolID) {
     int roomNo = dComIfGp_roomControl_getStayNo();
-    dStage_MapEvent_dt_c* eventData = dEvt_control_c::searchMapEventData(index, roomNo);
+    dStage_MapEvent_dt_c* eventData = dEvt_control_c::searchMapEventData(mapToolID, roomNo);
 
-    if (eventData != NULL && eventData->field_0x1B != 0xFF &&
-        dComIfGs_isSwitch(eventData->field_0x1B, roomNo)) {
+    if (eventData != NULL && eventData->mSwitch != 0xFF &&
+        dComIfGs_isSwitch(eventData->mSwitch, roomNo)) {
         return 0xFF;
-    } else if (mEventInfoIdx != index) {
-        mEventInfoIdx = index;
+    } else if (mEventInfoIdx != mapToolID) {
+        mEventInfoIdx = mapToolID;
     }
-    return index;
+    return mapToolID;
 }
 
 /* 80046480-800465E8 040DC0 0168+00 1/1 0/0 0/0 .text getEventName__18dEvent_exception_cFv */
@@ -177,16 +177,16 @@ const char* dEvent_exception_c::getEventName() {
         return "(!NO REGIST!)";
     }
 
-    if (0xC8 < mEventInfoIdx && mEventInfoIdx < 0xD7) {
-        if (mEventInfoIdx == 0xCB) {
+    if (200 < mEventInfoIdx && mEventInfoIdx < 215) {
+        if (mEventInfoIdx == 203) {
             dStage_stagInfo_GetSTType(dComIfGp_getStageStagInfo());
-        } else if (mEventInfoIdx == 0xD5) {
+        } else if (mEventInfoIdx == 213) {
             switch (dComIfGp_SelectWarpPt_get()) {
             case 3:
-                mEventInfoIdx = 0xD6;
+                mEventInfoIdx = 214;
             }
         }
-        return soecial_names[mEventInfoIdx - 0xC9];
+        return soecial_names[mEventInfoIdx - 201];
     } else {
         if (eventInfo == NULL) {
             return "(!NO INFO!)";
@@ -236,7 +236,9 @@ dEvent_manager_c::dEvent_manager_c() {
 /* ############################################################################################## */
 /* 80379F50-80379F60 0065B0 000F+01 6/6 0/0 0/0 .rodata
  * DataFileName__29@unnamed@d_event_manager_cpp@                */
+namespace {
 static char const DataFileName[] = "event_list.dat";
+};
 
 /* 80046710-80046800 041050 00F0+00 0/0 1/1 0/0 .text            create__16dEvent_manager_cFv */
 int dEvent_manager_c::create() {
@@ -315,9 +317,9 @@ void dEvent_manager_c::roomInit(int roomNo) {
     mRoomNo = roomNo;
 }
 
-void dEvent_manager_c::roomFinish(int param_0) {
+void dEvent_manager_c::roomFinish(int roomNo) {
     for (int i = 4; i <= 9; i++) {
-        if (mEventList[i].getHeaderP() != NULL && param_0 == mEventList[i].roomNo()) {
+        if (mEventList[i].getHeaderP() != NULL && roomNo == mEventList[i].roomNo()) {
             mEventList[i].init();
         }
     }
@@ -331,21 +333,21 @@ int dEvent_manager_c::orderStartDemo() {
     }
 
     s16 eventIdx;
-    if (0xC8 < mEventException.mEventInfoIdx && mEventException.mEventInfoIdx < 0xD7) {
-        eventIdx = this->getEventIdx(mEventException.getEventName(), -1, -1);
+    if (200 < mEventException.mEventInfoIdx && mEventException.mEventInfoIdx < 215) {
+        eventIdx = getEventIdx(mEventException.getEventName(), -1, -1);
         success = fopAcM_orderOtherEventId(NULL, eventIdx, 0xFF, 0xFFFF, 5, 1);
     } else if (mEventException.mEventInfoIdx != -1 && mEventException.mEventInfoIdx != 0xFF) {
         u8 eventInfoIdx = mEventException.mEventInfoIdx;
-        eventIdx = this->getEventIdx(NULL, eventInfoIdx, -1);
+        eventIdx = getEventIdx(NULL, eventInfoIdx, -1);
         success = fopAcM_orderMapToolAutoNextEvent(NULL, eventInfoIdx, eventIdx, 0xFFFF, 1, 5);
     } else if (dComIfGp_getStartStagePoint() == -2 || dComIfGp_getStartStagePoint() == -3) {
-        eventIdx = this->getEventIdx(
+        eventIdx = getEventIdx(
             daPy_py_c::checkNowWolf() ? "WOLF_WORLD_CHANGE_OUT" : "WORLD_CHANGE_OUT", 0xFF, -1);
         success = fopAcM_orderOtherEventId(NULL, eventIdx, 0xFF, 0xFFFF, 5, 1);
     }
 
     if (success == FALSE) {
-        eventIdx = this->getEventIdx("DEFAULT_START", 0xFF, -1);
+        eventIdx = getEventIdx("DEFAULT_START", 0xFF, -1);
         fopAcM_orderOtherEventId(NULL, eventIdx, 0xFF, 0xFFFF, 5, 1);
     }
 
@@ -384,11 +386,13 @@ static int allOffObjectCallBack(fopAc_ac_c* pActor, void* param_1) {
 void dEvent_manager_c::startProc(dEvDtEvent_c* p_evnt) {
     for (int i = 0; i < p_evnt->getNStaff(); i++) {
         dEvDtStaff_c* staff = getBase().getStaffP(p_evnt->getStaff(i));
+
         if (staff->getType() == dEvDtStaff_c::TYPE_DEFAULT) {
             fopAc_ac_c* ac = specialCast(staff->getName(), 1);
             if (ac == NULL) {
                 ac = fopAcM_searchFromName4Event(staff->getName(), -1);
             }
+
             if (ac != NULL) {
                 fopAcM_OnStatus(ac, 0x8000);
             }
@@ -411,11 +415,11 @@ void dEvent_manager_c::closeProc(dEvDtEvent_c* p_evnt) {
 }
 
 /* 80046DAC-80046E64 0416EC 00B8+00 0/0 2/2 0/0 .text            endProc__16dEvent_manager_cFsi */
-void dEvent_manager_c::endProc(s16 param_0, int param_1) {
-    dEvDtEvent_c* event = this->getEventData(param_0);
+void dEvent_manager_c::endProc(s16 eventID, int close) {
+    dEvDtEvent_c* event = getEventData(eventID);
     if (event != NULL) {
-        if (param_1 != 0) {
-            this->closeProc(event);
+        if (close != 0) {
+            closeProc(event);
         }
 
         if (event->mEventState == 2) {
@@ -434,8 +438,9 @@ void dEvent_manager_c::endProc(s16 param_0, int param_1) {
 /* 80046E64-800473FC 0417A4 0598+00 0/0 1/1 0/0 .text            Sequencer__16dEvent_manager_cFv */
 void dEvent_manager_c::Sequencer() {
     dEvt_control_c& evtControl = i_dComIfGp_getEvent();
-    dEvDtEvent_c* event = this->getEventData(mCurrentEventCompositId);
+    dEvDtEvent_c* event = getEventData(mCurrentEventCompositId);
     dStage_MapEvent_dt_c* mapEvent = evtControl.getStageEventDt();
+
     if (event != NULL) {
         if (evtControl.chkEventFlag(0x100)) {
             char* name = NULL;
@@ -454,13 +459,16 @@ void dEvent_manager_c::Sequencer() {
                     if (dStage_MapEvent_dt_c_getEventSCutType(mapEvent) == 2) {
                         evtControl.onSkipFade();
                     }
+
                     void* actor = evtControl.getPt1();
                     if (actor == NULL) {
                         actor = evtControl.getPt2();
                     }
+
                     if (actor == NULL) {
                         actor = dComIfGp_getPlayer(0);
                     }
+
                     if (actor != NULL) {
                         switch (mapEvent->mType) {
                         case 2:
@@ -479,7 +487,7 @@ void dEvent_manager_c::Sequencer() {
             Z2GetAudioMgr()->mStatusMgr.setDemoName(name);
         }
 
-        if (event->finishCheck() != 0) {
+        if (event->finishCheck()) {
             bool bVar1 = false;
             if (evtControl.chkFlag2(1)) {
                 bVar1 = true;
@@ -523,12 +531,12 @@ void dEvent_manager_c::Sequencer() {
 
                 switch (mapEvent->mType) {
                 case 0:
-                    switch (mapEvent->field_0x18) {
-                    case 1:
-                        mDoAud_seStart(0xC, NULL, 0, 0);
+                    switch (mapEvent->mSeType) {
+                    case EVT_SE_RIDDLE_A:
+                        mDoAud_seStart(Z2SE_READ_RIDDLE_A, NULL, 0, 0);
                         break;
-                    case 2:
-                        mDoAud_seStart(0xD, NULL, 0, 0);
+                    case EVT_SE_RIDDLE_B:
+                        mDoAud_seStart(Z2SE_READ_RIDDLE_B, NULL, 0, 0);
                         break;
                     }
 
@@ -590,9 +598,9 @@ void dEvent_manager_c::Sequencer() {
 
 /* 800473FC-80047454 041D3C 0058+00 0/0 1/1 0/0 .text            Experts__16dEvent_manager_cFv */
 void dEvent_manager_c::Experts() {
-    dEvDtEvent_c* event = this->getEventData(mCurrentEventCompositId);
+    dEvDtEvent_c* event = getEventData(mCurrentEventCompositId);
     if (event != NULL && event->mEventState == 1) {
-        event->specialStaffProc(this->getBase().getStaffP(0));
+        event->specialStaffProc(getBase().getStaffP(0));
     }
 }
 
@@ -619,11 +627,12 @@ dEvDtEvent_c* dEvent_manager_c::getEventData(s16 param_0, int idx) {
  */
 #ifdef NONMATCHING
 dEvDtEvent_c* dEvent_manager_c::getEventData(s16 eventCompositId) {
-    if (param_0 == -1) {
+    if (eventCompositId == -1) {
         return NULL;
     } else {
         // extsh instead of mr here
-        return this->getEventData(getIndexCompositId(param_0), getTypeCompositId(param_0));
+        return getEventData(getIndexCompositId(eventCompositId),
+                            getTypeCompositId(eventCompositId));
     }
 }
 #else
@@ -638,13 +647,13 @@ asm dEvDtEvent_c* dEvent_manager_c::getEventData(s16 eventCompositId) {
 #endif
 
 /* 80047514-80047698 041E54 0184+00 3/3 8/8 3/3 .text getEventIdx__16dEvent_manager_cFPCcUcl */
-s16 dEvent_manager_c::getEventIdx(char const* eventName, u8 param_1, s32 roomNo) {
+s16 dEvent_manager_c::getEventIdx(char const* eventName, u8 mapToolID, s32 roomNo) {
     if (roomNo == -1) {
         roomNo = dComIfGp_roomControl_getStayNo();
     }
 
-    if (param_1 != 0xFF) {
-        dStage_MapEvent_dt_c* data = dEvt_control_c::searchMapEventData(param_1, roomNo);
+    if (mapToolID != 0xFF) {
+        dStage_MapEvent_dt_c* data = dEvt_control_c::searchMapEventData(mapToolID, roomNo);
         if (data != NULL) {
             switch (data->mType) {
             case 1:
@@ -652,7 +661,7 @@ s16 dEvent_manager_c::getEventIdx(char const* eventName, u8 param_1, s32 roomNo)
                 return getEventIdx(data->mName, 0xFF, roomNo);
             case 0:
                 static char map_tool_name[17];
-                sprintf(map_tool_name, "MapToolCamera%d", param_1);
+                sprintf(map_tool_name, "MapToolCamera%d", mapToolID);
                 return getEventIdx(map_tool_name, 0xFF, roomNo);
             }
         }
@@ -682,8 +691,8 @@ s16 dEvent_manager_c::getEventIdx(char const* eventName, u8 param_1, s32 roomNo)
 
 /* 80047698-80047758 041FD8 00C0+00 0/0 3/3 25/25 .text
  * getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc              */
-s16 dEvent_manager_c::getEventIdx(fopAc_ac_c* pActor, u8 param_1) {
-    dStage_MapEvent_dt_c* data = dEvt_control_c::searchMapEventData(param_1, pActor->getRoomNo());
+s16 dEvent_manager_c::getEventIdx(fopAc_ac_c* pActor, u8 mapToolID) {
+    dStage_MapEvent_dt_c* data = dEvt_control_c::searchMapEventData(mapToolID, pActor->getRoomNo());
     if (data != NULL) {
         switch (data->mType) {
         case 1:
@@ -691,7 +700,7 @@ s16 dEvent_manager_c::getEventIdx(fopAc_ac_c* pActor, u8 param_1) {
             return getEventIdx(pActor, data->mName, 0xFF);
         case 0:
             static char map_tool_name[17];
-            sprintf(map_tool_name, "MapToolCamera%d", param_1);
+            sprintf(map_tool_name, "MapToolCamera%d", mapToolID);
             return getEventIdx(pActor, map_tool_name, 0xFF);
         }
     }
@@ -700,11 +709,11 @@ s16 dEvent_manager_c::getEventIdx(fopAc_ac_c* pActor, u8 param_1) {
 
 /* 80047758-80047930 042098 01D8+00 1/1 10/10 92/92 .text
  * getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc           */
-s16 dEvent_manager_c::getEventIdx(fopAc_ac_c* pActor, char const* eventName, u8 param_2) {
+s16 dEvent_manager_c::getEventIdx(fopAc_ac_c* pActor, char const* eventName, u8 mapToolID) {
     s8 actorRoomNo = pActor->getRoomNo();
 
-    if (param_2 != 0xFF) {
-        dStage_MapEvent_dt_c* data = dEvt_control_c::searchMapEventData(param_2, actorRoomNo);
+    if (mapToolID != 0xFF) {
+        dStage_MapEvent_dt_c* data = dEvt_control_c::searchMapEventData(mapToolID, actorRoomNo);
         if (data != NULL) {
             switch (data->mType) {
             case 1:
@@ -712,7 +721,7 @@ s16 dEvent_manager_c::getEventIdx(fopAc_ac_c* pActor, char const* eventName, u8 
                 return getEventIdx(pActor, data->mName, 0xFF);
             case 0:
                 static char map_tool_name[17];
-                sprintf(map_tool_name, "MapToolCamera%d", param_2);
+                sprintf(map_tool_name, "MapToolCamera%d", mapToolID);
                 return getEventIdx(pActor, map_tool_name, 0xFF);
             }
         }
@@ -748,12 +757,12 @@ s16 dEvent_manager_c::getEventIdx(fopAc_ac_c* pActor, char const* eventName, u8 
 }
 
 /* 80047930-80047984 042270 0054+00 0/0 0/0 1/1 .text isMapToolCamera__16dEvent_manager_cFUcl */
-int dEvent_manager_c::isMapToolCamera(u8 param_0, s32 roomNo) {
+int dEvent_manager_c::isMapToolCamera(u8 mapToolID, s32 roomNo) {
     if (roomNo == -1) {
         roomNo = dComIfGp_roomControl_getStayNo();
     }
 
-    dStage_MapEvent_dt_c* data = dEvt_control_c::searchMapEventData(param_0, roomNo);
+    dStage_MapEvent_dt_c* data = dEvt_control_c::searchMapEventData(mapToolID, roomNo);
     if (data != NULL) {
         return data->mType == 0;
     } else {
@@ -763,20 +772,20 @@ int dEvent_manager_c::isMapToolCamera(u8 param_0, s32 roomNo) {
 
 /* 80047984-800479F8 0422C4 0074+00 0/0 6/6 0/0 .text            order__16dEvent_manager_cFs */
 int dEvent_manager_c::order(s16 eventCompositId) {
-    dEvDtEvent_c* event = this->getEventData(eventCompositId);
+    dEvDtEvent_c* event = getEventData(eventCompositId);
     if (event == NULL) {
         return 0;
     } else {
         mCurrentEventType = getTypeCompositId(eventCompositId);
         mCurrentEventCompositId = eventCompositId;
-        this->startProc(event);
+        startProc(event);
         return 1;
     }
 }
 
 /* 800479F8-80047A38 042338 0040+00 1/1 0/0 9/9 .text            startCheck__16dEvent_manager_cFs */
 int dEvent_manager_c::startCheck(s16 eventCompositId) {
-    dEvDtEvent_c* event = this->getEventData(eventCompositId);
+    dEvDtEvent_c* event = getEventData(eventCompositId);
     if (event == NULL) {
         return 0;
     } else {
@@ -789,14 +798,14 @@ int dEvent_manager_c::startCheck(s16 eventCompositId) {
 }
 
 /* 80047A38-80047A78 042378 0040+00 0/0 2/2 0/0 .text startCheckOld__16dEvent_manager_cFPCc */
-int dEvent_manager_c::startCheckOld(char const* pName) {
-    return this->startCheck(this->getEventIdx(pName, 0xFF, -1));
+int dEvent_manager_c::startCheckOld(char const* name) {
+    return startCheck(getEventIdx(name, 0xFF, -1));
 }
 
 /* 80047A78-80047ADC 0423B8 0064+00 1/1 2/2 122/122 .text            endCheck__16dEvent_manager_cFs
  */
-int dEvent_manager_c::endCheck(s16 param_0) {
-    dEvDtEvent_c* event = this->getEventData(i_dComIfGp_getEvent().runningEventID(param_0));
+int dEvent_manager_c::endCheck(s16 eventID) {
+    dEvDtEvent_c* event = getEventData(i_dComIfGp_getEvent().runningEventID(eventID));
     if (event == NULL) {
         return 0;
     } else {
@@ -809,17 +818,17 @@ int dEvent_manager_c::endCheck(s16 param_0) {
 }
 
 /* 80047ADC-80047B1C 04241C 0040+00 0/0 2/2 10/10 .text endCheckOld__16dEvent_manager_cFPCc */
-int dEvent_manager_c::endCheckOld(char const* pName) {
-    return this->endCheck(this->getEventIdx(pName, 0xFF, -1));
+int dEvent_manager_c::endCheckOld(char const* name) {
+    return endCheck(getEventIdx(name, 0xFF, -1));
 }
 
 /* 80047B1C-80047D4C 04245C 0230+00 1/1 10/10 210/210 .text
  * getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci           */
-int dEvent_manager_c::getMyStaffId(char const* pStaffName, fopAc_ac_c* pActor, int tagId) {
+int dEvent_manager_c::getMyStaffId(char const* staffName, fopAc_ac_c* pActor, int tagId) {
     int staffNum;
     int i;
     int evtIdx = -1;
-    if (i_dComIfGp_getEvent().getMode() == 0) {
+    if (i_dComIfGp_getEvent().getMode() == EVT_MODE_NONE) {
         return -1;
     } else {
         if (pActor != NULL) {
@@ -828,12 +837,12 @@ int dEvent_manager_c::getMyStaffId(char const* pStaffName, fopAc_ac_c* pActor, i
         if (mCurrentEventCompositId == -1) {
             return -1;
         } else {
-            dEvDtEvent_c* event = this->getEventData(mCurrentEventCompositId);
+            dEvDtEvent_c* event = getEventData(mCurrentEventCompositId);
 
             if (event != NULL && (event->mEventState == 1 || event->mEventState == 2)) {
                 int staffCount = event->getNStaff();
                 bool hasDp = false;
-                if (strchr(pStaffName, ':') != NULL) {
+                if (strchr(staffName, ':') != NULL) {
                     hasDp = true;
                 }
 
@@ -853,7 +862,7 @@ int dEvent_manager_c::getMyStaffId(char const* pStaffName, fopAc_ac_c* pActor, i
                             }
                         }
 
-                        if (strcmp(pStaffName, buf) == 0 && (tagId < 0 || tagId == staff->mTagID)) {
+                        if (strcmp(staffName, buf) == 0 && (tagId < 0 || tagId == staff->mTagID)) {
                             s16 num = 0;
                             if (ptr != NULL) {
                                 char c;
@@ -873,7 +882,7 @@ int dEvent_manager_c::getMyStaffId(char const* pStaffName, fopAc_ac_c* pActor, i
                             }
                         }
 
-                        if (strcmp(pStaffName, "Alink") == 0 && strcmp("Link", buf) == 0 &&
+                        if (strcmp(staffName, "Alink") == 0 && strcmp("Link", buf) == 0 &&
                             tagId == staff->mTagID) {
                             return staffNum;
                         }
@@ -886,51 +895,51 @@ int dEvent_manager_c::getMyStaffId(char const* pStaffName, fopAc_ac_c* pActor, i
 }
 
 /* 80047D4C-80047DAC 04268C 0060+00 0/0 9/9 417/417 .text getIsAddvance__16dEvent_manager_cFi */
-int dEvent_manager_c::getIsAddvance(int param_0) {
-    if (i_dComIfGp_getEvent().getMode() == 0) {
+int dEvent_manager_c::getIsAddvance(int staffIdx) {
+    if (i_dComIfGp_getEvent().getMode() == EVT_MODE_NONE) {
         return 0;
-    } else if (param_0 == -1) {
+    } else if (staffIdx == -1) {
         return 0;
     } else if (mCurrentEventCompositId == -1) {
         return 0;
     } else {
-        return this->getBase().getStaffP(param_0)->field_0x40;
+        return getBase().getStaffP(staffIdx)->field_0x40;
     }
 }
 
 /* 80047DAC-80047E10 0426EC 0064+00 1/1 0/0 0/0 .text            dEvmng_strcmp__FPCcPc */
-static int dEvmng_strcmp(char const* param_0, char* param_1) {
+static int dEvmng_strcmp(char const* strA, char* strB) {
     u32 len = 0;
-    while (*param_0 != '\0') {
-        if (*param_1 == '\0') {
+    while (*strA != '\0') {
+        if (*strB == '\0') {
             return 1;
         }
         if (len >= 100) {
             return -1;
         }
-        if (*param_0 != *param_1) {
+        if (*strA != *strB) {
             return 1;
         }
         len++;
-        param_0++;
-        param_1++;
+        strA++;
+        strB++;
     }
     return 0;
 }
 
 /* 80047E10-80047F5C 042750 014C+00 1/1 1/1 118/118 .text
  * getMyActIdx__16dEvent_manager_cFiPCPCciii                    */
-int dEvent_manager_c::getMyActIdx(int param_0, char const* const* param_1, int param_2, int param_3,
-                                  int param_4) {
-    if (i_dComIfGp_getEvent().getMode() == 0) {
+int dEvent_manager_c::getMyActIdx(int staffIdx, char const* const* param_1, int param_2,
+                                  int param_3, int param_4) {
+    if (i_dComIfGp_getEvent().getMode() == EVT_MODE_NONE) {
         return 0;
-    } else if (param_0 == -1) {
+    } else if (staffIdx == -1) {
         return -1;
     } else if (mCurrentEventCompositId == -1) {
         return -1;
     }
 
-    dEvDtStaff_c* staff = getBase().getStaffP(param_0);
+    dEvDtStaff_c* staff = getBase().getStaffP(staffIdx);
     if (staff) {
         if (staff->field_0x41 != false && param_3 == 0) {
             return staff->field_0x3c;
@@ -940,7 +949,7 @@ int dEvent_manager_c::getMyActIdx(int param_0, char const* const* param_1, int p
     }
 
     int i;
-    char* nowCutName = this->getMyNowCutName(param_0);
+    char* nowCutName = getMyNowCutName(staffIdx);
     if (nowCutName == NULL) {
         staff->field_0x3c = -1;
         return -1;
@@ -965,21 +974,21 @@ int dEvent_manager_c::getMyActIdx(int param_0, char const* const* param_1, int p
 }
 
 /* 80047F5C-80047FC8 04289C 006C+00 1/1 9/9 62/62 .text getMyNowCutName__16dEvent_manager_cFi */
-char* dEvent_manager_c::getMyNowCutName(int index) {
-    if (i_dComIfGp_getEvent().getMode() == 0) {
+char* dEvent_manager_c::getMyNowCutName(int cutIndex) {
+    if (i_dComIfGp_getEvent().getMode() == EVT_MODE_NONE) {
         return NULL;
-    } else if (index == -1) {
+    } else if (cutIndex == -1) {
         return NULL;
     } else if (mCurrentEventCompositId == -1) {
         return NULL;
     } else {
-        return getBase().getCutStaffCurrentCutP(index)->getName();
+        return getBase().getCutStaffCurrentCutP(cutIndex)->getName();
     }
 }
 
 /* 80047FC8-800480EC 042908 0124+00 2/2 0/0 0/0 .text getMyDataP__16dEvent_manager_cFiPCci */
 dEvDtData_c* dEvent_manager_c::getMyDataP(int index, char const* name, int type) {
-    if (i_dComIfGp_getEvent().getMode() == 0) {
+    if (i_dComIfGp_getEvent().getMode() == EVT_MODE_NONE) {
         return NULL;
     } else if (index == -1) {
         return NULL;
@@ -1030,16 +1039,16 @@ int dEvent_manager_c::getMySubstanceNum(int index, char const* name) {
 /* 8004817C-800481F4 042ABC 0078+00 1/1 78/78 182/182 .text            cutEnd__16dEvent_manager_cFi
  */
 #ifdef NONMATCHING
-void dEvent_manager_c::cutEnd(int index) {
-    if (i_dComIfGp_getEvent().getMode() == 0) {
+void dEvent_manager_c::cutEnd(int cutIndex) {
+    if (i_dComIfGp_getEvent().getMode() == EVT_MODE_NONE) {
         return;
-    } else if (index == -1) {
+    } else if (cutIndex == -1) {
         return;
     } else if (field_0x1aa == -1) {
         return;
     } else {
         // instruction swap
-        mFlags.flagSet(getBase().getCutStaffCurrentCutP(index)->getFlagId());
+        mFlags.flagSet(getBase().getCutStaffCurrentCutP(cutIndex)->getFlagId());
     }
 }
 #else
@@ -1078,31 +1087,31 @@ int dEvent_manager_c::getEventPrio(fopAc_ac_c* pActor, s16 eventCompositId) {
 
 /* 800482CC-80048348 042C0C 007C+00 1/1 1/1 0/0 .text            issueStaff__16dEvent_manager_cFPCc
  */
-void dEvent_manager_c::issueStaff(char const* pName) {
-    if (!strcmp(pName, "ALL")) {
+void dEvent_manager_c::issueStaff(char const* name) {
+    if (!strcmp(name, "ALL")) {
         fopAcM_Search((fopAcIt_JudgeFunc)extraOnObjectCallBack, NULL);
     } else {
         char nameBuf[0x20];
-        strcpy(nameBuf, pName);
+        strcpy(nameBuf, name);
         fopAcM_OnStatus(fopAcM_searchFromName4Event(nameBuf, -1), 0x800);
     }
 }
 
 /* 80048348-800483C4 042C88 007C+00 0/0 1/1 0/0 .text            cancelStaff__16dEvent_manager_cFPCc
  */
-void dEvent_manager_c::cancelStaff(char const* pName) {
-    if (!strcmp(pName, "ALL")) {
+void dEvent_manager_c::cancelStaff(char const* name) {
+    if (!strcmp(name, "ALL")) {
         fopAcM_Search((fopAcIt_JudgeFunc)extraOffObjectCallBack, NULL);
     } else {
         char nameBuf[0x20];
-        strcpy(nameBuf, pName);
+        strcpy(nameBuf, name);
         fopAcM_OffStatus(fopAcM_searchFromName4Event(nameBuf, -1), 0x800);
     }
 }
 
 /* 800483C4-800483E0 042D04 001C+00 1/1 2/2 38/38 .text setGoal__16dEvent_manager_cFP4cXyz */
-void dEvent_manager_c::setGoal(cXyz* pGoal) {
-    mGoal = *pGoal;
+void dEvent_manager_c::setGoal(cXyz* p_goal) {
+    mGoal = *p_goal;
 }
 
 /* 800483E0-800483E8 042D20 0008+00 0/0 1/1 1/1 .text            getGoal__16dEvent_manager_cFv */
@@ -1161,7 +1170,7 @@ fopAc_ac_c* dEvent_manager_c::specialCast_Shutter(s16 bsTypeId, int param_1) {
         s16 angle = prms.mActor->mOrig.mAngle.y + 0x8000;
         goal.x += cM_ssin(angle) * 100;
         goal.z += cM_scos(angle) * 100;
-        this->setGoal(&goal);
+        setGoal(&goal);
         i_dComIfGp_getEvent().setPt2(shutterActor);
         i_dComIfGp_getEvent().setPtD(shutterActor);
     }
@@ -1169,13 +1178,13 @@ fopAc_ac_c* dEvent_manager_c::specialCast_Shutter(s16 bsTypeId, int param_1) {
 }
 
 /* 80048618-80048748 042F58 0130+00 1/1 0/0 0/0 .text specialCast__16dEvent_manager_cFPCci */
-fopAc_ac_c* dEvent_manager_c::specialCast(char const* pName, int param_1) {
+fopAc_ac_c* dEvent_manager_c::specialCast(char const* name, int param_1) {
     fopAc_ac_c* shutterActor = NULL;
-    if (pName == NULL) {
+    if (name == NULL) {
         return NULL;
     }
 
-    if (!strcmp(pName, "SHUTTER_DOOR")) {
+    if (!strcmp(name, "SHUTTER_DOOR")) {
         shutterActor = specialCast_Shutter(0x226, param_1);
         if (shutterActor == NULL) {
             shutterActor = specialCast_Shutter(0x228, param_1);
@@ -1217,7 +1226,7 @@ static int dEv_talkman_get_action(int param_0) {
             "TALK1",
         };
         int actIdx = i_dComIfGp_getEventManager().getMyActIdx(staffId, action_table,
-                                                            ARRAY_SIZE(action_table), 0, 0);
+                                                              ARRAY_SIZE(action_table), 0, 0);
         if (actIdx == param_0) {
             i_dComIfGp_getEventManager().cutEnd(staffId);
         }
