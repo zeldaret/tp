@@ -539,7 +539,7 @@ public:
 
     bool getSumouCameraMode() const {
         bool sumouCameraMode = false;
-        if (field_0x560[0xA] != 0 && field_0x560[0xA] < 0x26) {
+        if (mSpecialMode != 0 && mSpecialMode < 0x26) {
             sumouCameraMode = true;
         }
         return sumouCameraMode;

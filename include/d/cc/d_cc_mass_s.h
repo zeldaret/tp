@@ -13,11 +13,13 @@ private:
     /* 0x08 */ dCcMassS_ObjCallback mpCallback;
     /* 0x0C */ cCcD_DivideInfo mDivideInfo;
     /* 0x1C vtable */
+
 public:
     dCcMassS_Obj();
     virtual ~dCcMassS_Obj() {}
-    /* 800852E0 */ void Set(cCcD_Obj*, u8, void (*)(fopAc_ac_c*, cXyz*, u32));
-    /* 800852F0 */ void Clear();
+    void Set(cCcD_Obj* p_obj, u8 priority, dCcMassS_ObjCallback callback);
+    void Clear();
+
     cCcD_Obj* GetObj() { return mpObj; }
     u8 GetPriority() const { return mPriority; }
     dCcMassS_ObjCallback GetCallback() const { return mpCallback; }
@@ -34,7 +36,7 @@ private:
     /* 0x0C */ f32 mCoHitLen;
 
 public:
-    /* 80085334 */ void ClearPointer();
+    void ClearPointer();
     void SetAreaHitObj(cCcD_Obj* obj) { mpArea = obj; }
     void SetCoHitObj(cCcD_Obj* obj) { mpCoObj = obj; }
     void SetAtHitObj(cCcD_Obj* obj) { mpAtObj = obj; }
@@ -60,18 +62,19 @@ public:
     /* 0x0224 */ cCcD_CpsAttr mCpsAttr;
     /* 0x0264 */ cCcD_DivideInfo mDivideInfo;
     /* 0x0274 vtable */
+
 public:
-    dCcMassS_Mng(void);
+    dCcMassS_Mng();
     virtual ~dCcMassS_Mng() {}
     /* 800855E4 */ void Ct();
-    /* 80085630 */ void SetAttr(f32, f32, u8, u8);
+    /* 80085630 */ void SetAttr(f32 radius, f32 height, u8 param_2, u8 param_3);
     /* 80085690 */ void Prepare();
-    /* 800858AC */ u32 Chk(cXyz*, fopAc_ac_c**, dCcMassS_HitInf*);
+    /* 800858AC */ u32 Chk(cXyz* p_xyz, fopAc_ac_c** p_actor, dCcMassS_HitInf* p_hitInf);
     /* 80085CF0 */ void Clear();
-    /* 80085D98 */ void Set(cCcD_Obj*, u8);
-    /* 80085E6C */ void SetCam(cM3dGCps const&);
+    /* 80085D98 */ void Set(cCcD_Obj* p_obj, u8 priority);
+    /* 80085E6C */ void SetCam(cM3dGCps const& cps);
     /* 80085EB0 */ u8 GetResultCam() const;
-    /* 80085EB8 */ void GetCamTopPos(Vec*);
+    /* 80085EB8 */ void GetCamTopPos(Vec* p_out);
 };
 
 STATIC_ASSERT(sizeof(dCcMassS_Mng) == 0x278);

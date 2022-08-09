@@ -52,8 +52,64 @@ BOOL daPy_py_c::checkNowWolf() {
 /* ############################################################################################## */
 /* 803AC418-803AC500 009538 00E8+00 1/1 0/0 0/0 .data            plCutLRC */
 SECTION_DATA static int plCutLRC[58] = {
-    0, 0, 1, 1, 2, 0, 2, 1, 0, 0, 0, 2, 1, 1, 1, 2, 2, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 2, 0, 0, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 0, 0, 0, 0, 0,
+    0,  //
+    0,  // CUT_VERTICAL
+    1,  // CUT_STAB
+    1,  // CUT_SWEEP
+    2,  // CUT_HORIZONTAL
+    0,  // CUT_HEAD
+    2,  // CUT_LEFT_SWEEP_FINISH
+    1,  // CUT_DOWN_FINISH
+    0,  // CUT_TURN_RIGHT
+    0,  //
+    0,  // CUT_JUMP
+    2,  //
+    1,  //
+    1,  //
+    1,  //
+    2,  //
+    2,  // CUT_AIR
+    1,  //
+    1,  // CUT_LARGE_JUMP_INIT
+    0,  // CUT_LARGE_JUMP
+    0,  // CUT_LARGE_JUMP_FINISH
+    1,  // CUT_RIGHT_SWEEP_FINISH
+    0,  // CUT_TURN_LEFT
+    0,  // CUT_LARGE_TURN_LEFT
+    0,  // CUT_LARGE_TURN_RIGHT
+    0,  //
+    0,  // CUT_FAST_MOVE
+    0,  //
+    0,  //
+    0,  //
+    0,  // CUT_TWIRL
+    0,  // CUT_FAST
+    0,  // CUT_STAB_FINISH
+    2,  // CUT_STAB_COMBO
+    0,  //
+    0,  //
+    0,  //
+    2,  //
+    1,  //
+    0,  //
+    0,  //
+    0,  //
+    0,  //
+    0,  //
+    0,  //
+    0,  //
+    0,  //
+    0,  //
+    0,  //
+    0,  //
+    0,  //
+    2,  //
+    1,  //
+    0,  //
+    0,  //
+    0,  //
+    0,  //
+    0,  //
 };
 
 /* 800873B0-800873D4 081CF0 0024+00 0/0 0/0 3/3 .text            pl_cut_LRC__Fi */
@@ -113,31 +169,31 @@ static int getMapInfo(s8 param_0) {
 }
 
 /* 800874F0-80087514 081E30 0024+00 2/2 0/0 0/0 .text            getHitId__FP8cCcD_Obji */
-static u32 getHitId(cCcD_Obj* obj, int param_1) {
-    dCcD_GObjInf* dObj = static_cast<dCcD_GObjInf*>(obj);
-    return dObj->getHitSeID(dObj->GetAtSe(), param_1);
+static u32 getHitId(cCcD_Obj* p_obj, int useReboundSE) {
+    dCcD_GObjInf* dObj = static_cast<dCcD_GObjInf*>(p_obj);
+    return dObj->getHitSeID(dObj->GetAtSe(), useReboundSE);
 }
 
 /* 80087514-80087594 081E54 0080+00 0/0 0/0 47/47 .text
  * def_se_set__FP10Z2CreatureP8cCcD_ObjUlP10fopAc_ac_c          */
-void def_se_set(Z2Creature* sound, cCcD_Obj* collider, u32 map_info, fopAc_ac_c* actor) {
-    if (sound != NULL) {
-        int tmp;
-        if (actor != NULL && fopAcM_checkStatus(actor, 0x280000)) {
-            tmp = 0;
+void def_se_set(Z2Creature* p_sound, cCcD_Obj* p_collider, u32 map_info, fopAc_ac_c* p_actor) {
+    if (p_sound != NULL) {
+        int useReboundSE;
+        if (p_actor != NULL && fopAcM_checkStatus(p_actor, 0x280000)) {
+            useReboundSE = false;
         } else {
-            tmp = 1;
+            useReboundSE = true;
         }
-        sound->startCollisionSE(getHitId(collider, tmp), map_info);
+        p_sound->startCollisionSE(getHitId(p_collider, useReboundSE), map_info);
     }
 }
 
 /* 80087594-80087A58 081ED4 04C4+00 1/1 0/0 0/0 .text            at_power_get__FP11dCcU_AtInfo */
-static u8 at_power_get(dCcU_AtInfo* info) {
-    u8 power = info->mpCollider->GetAtAtp();
+static u8 at_power_get(dCcU_AtInfo* p_info) {
+    u8 power = p_info->mpCollider->GetAtAtp();
 
-    if (info->mPowerType == 0) {
-        if (info->mpCollider->ChkAtType(0x10000000)) {
+    if (p_info->mPowerType == 0) {
+        if (p_info->mpCollider->ChkAtType(0x10000000)) {
             power = 0;
         } else if (power == 1) {
             power = 1;
@@ -150,8 +206,8 @@ static u8 at_power_get(dCcU_AtInfo* info) {
         } else if (power >= 4) {
             power = 200;
         }
-    } else if (info->mPowerType == 6) {
-        if (info->mpCollider->ChkAtType(0x10000000)) {
+    } else if (p_info->mPowerType == 6) {
+        if (p_info->mpCollider->ChkAtType(0x10000000)) {
             power = 0;
         } else if (power == 1) {
             power = 1;
@@ -162,10 +218,10 @@ static u8 at_power_get(dCcU_AtInfo* info) {
         } else if (power >= 3) {
             power *= 10;
         }
-    } else if (info->mPowerType == 4) {
-        if (info->mpCollider->ChkAtType(0x400000)) {
+    } else if (p_info->mPowerType == 4) {
+        if (p_info->mpCollider->ChkAtType(AT_TYPE_IRON_BALL)) {
             power = 200;
-        } else if (info->mpCollider->ChkAtType(0x10000000)) {
+        } else if (p_info->mpCollider->ChkAtType(0x10000000)) {
             power = 0;
         } else if (power == 1) {
             power = 1;
@@ -178,8 +234,8 @@ static u8 at_power_get(dCcU_AtInfo* info) {
         } else if (power >= 4) {
             power = 200;
         }
-    } else if (info->mPowerType == 5) {
-        if (info->mpCollider->ChkAtType(0x2000)) {
+    } else if (p_info->mPowerType == 5) {
+        if (p_info->mpCollider->ChkAtType(AT_TYPE_ARROW)) {
             power = 0;
         } else if (power == 1) {
             power = 1;
@@ -188,8 +244,8 @@ static u8 at_power_get(dCcU_AtInfo* info) {
         } else if (power >= 3) {
             power = 4;
         }
-    } else if (info->mPowerType == 2) {
-        if (info->mpCollider->ChkAtType(0x400000)) {
+    } else if (p_info->mPowerType == 2) {
+        if (p_info->mpCollider->ChkAtType(AT_TYPE_IRON_BALL)) {
             power = 200;
         } else if (power == 1) {
             power = 1;
@@ -202,14 +258,14 @@ static u8 at_power_get(dCcU_AtInfo* info) {
         } else if (power >= 4) {
             power = 200;
         }
-    } else if (info->mPowerType == 1) {
-        if (info->mpCollider->ChkAtType(0x400000) || power >= 4) {
+    } else if (p_info->mPowerType == 1) {
+        if (p_info->mpCollider->ChkAtType(AT_TYPE_IRON_BALL) || power >= 4) {
             power = 200;
         } else {
             power *= 10;
         }
-    } else if (info->mPowerType == 3) {
-        if (info->mpCollider->ChkAtType(0x400000) || power >= 4) {
+    } else if (p_info->mPowerType == 3) {
+        if (p_info->mpCollider->ChkAtType(AT_TYPE_IRON_BALL) || power >= 4) {
             power = 200;
         } else if (power == 1) {
             power = 10;
@@ -218,10 +274,10 @@ static u8 at_power_get(dCcU_AtInfo* info) {
         } else if (power >= 3) {
             power = 40;
         }
-    } else if (info->mPowerType == 7) {
-        if (info->mpCollider->ChkAtType(0x420008)) {
+    } else if (p_info->mPowerType == 7) {
+        if (p_info->mpCollider->ChkAtType(0x420008)) {
             power = 50;
-        } else if (info->mpCollider->ChkAtType(0x2000)) {
+        } else if (p_info->mpCollider->ChkAtType(AT_TYPE_ARROW)) {
             power = 27;
         } else if (power == 1) {
             power = 1;
@@ -234,7 +290,7 @@ static u8 at_power_get(dCcU_AtInfo* info) {
         } else if (power >= 4) {
             power = 200;
         }
-    } else if (info->mPowerType == 8) {
+    } else if (p_info->mPowerType == 8) {
         if (power == 1) {
             power = 3;
         } else if (power == 2) {
@@ -244,11 +300,11 @@ static u8 at_power_get(dCcU_AtInfo* info) {
         } else if (power >= 3) {
             power *= 10;
         }
-    } else if (info->mPowerType == 9 || info->mPowerType == 10) {
-        if (info->mpCollider->ChkAtType(0x4000)) {
+    } else if (p_info->mPowerType == 9 || p_info->mPowerType == 10) {
+        if (p_info->mpCollider->ChkAtType(AT_TYPE_HOOKSHOT)) {
             power = 0;
         }
-        if (info->mpCollider->ChkAtType(0x400000)) {
+        if (p_info->mpCollider->ChkAtType(AT_TYPE_IRON_BALL)) {
             power = 19;
         }
 
@@ -263,8 +319,8 @@ static u8 at_power_get(dCcU_AtInfo* info) {
         } else if (power >= 4) {
             power = 200;
         }
-    } else if (info->mPowerType == 11) {
-        if (info->mpCollider->ChkAtType(0x4000)) {
+    } else if (p_info->mPowerType == 11) {
+        if (p_info->mpCollider->ChkAtType(AT_TYPE_HOOKSHOT)) {
             power = 0;
         }
 
@@ -277,7 +333,7 @@ static u8 at_power_get(dCcU_AtInfo* info) {
         } else if (power >= 4) {
             power = 100;
         }
-    } else if (info->mPowerType == 12) {
+    } else if (p_info->mPowerType == 12) {
         if (power == 1) {
             power = 10;
         } else if (power == 2) {
@@ -294,57 +350,59 @@ static u8 at_power_get(dCcU_AtInfo* info) {
 
 /* 80087A58-80087C04 082398 01AC+00 1/1 0/0 38/38 .text            at_power_check__FP11dCcU_AtInfo
  */
-fopAc_ac_c* at_power_check(dCcU_AtInfo* info) {
-    if (info->mpCollider == NULL) {
+fopAc_ac_c* at_power_check(dCcU_AtInfo* p_info) {
+    if (p_info->mpCollider == NULL) {
         return NULL;
     }
 
-    info->mpActor = info->mpCollider->GetAc();
-    info->mHitType = 12;
-    info->mAttackPower = 0;
-    info->mHitBit = 0;
+    p_info->mpActor = p_info->mpCollider->GetAc();
+    p_info->mHitType = 12;
+    p_info->mAttackPower = 0;
+    p_info->mHitBit = 0;
 
-    if (info->mpActor != NULL) {
-        info->mAttackPower = at_power_get(info);
+    if (p_info->mpActor != NULL) {
+        p_info->mAttackPower = at_power_get(p_info);
 
-        s16 ac_name = fopAcM_GetName(info->mpActor);
+        s16 ac_name = fopAcM_GetName(p_info->mpActor);
         if (ac_name == PROC_ALINK || ac_name == PROC_ALINK) {
-            if (info->mpCollider->ChkAtType(0x8000) || info->mpCollider->ChkAtType(0x400000)) {
-                info->mHitType = 9;
+            if (p_info->mpCollider->ChkAtType(0x8000) ||
+                p_info->mpCollider->ChkAtType(AT_TYPE_IRON_BALL)) {
+                p_info->mHitType = HIT_TYPE_LINK_HEAVY_ATTACK;
             } else {
-                info->mHitType = 1;
-                info->mHitBit = cc_pl_cut_bit_get();
+                p_info->mHitType = HIT_TYPE_LINK_NORMAL_ATTACK;
+                p_info->mHitBit = cc_pl_cut_bit_get();
             }
         } else if (ac_name == PROC_NBOMB) {
-            info->mHitType = 2;
-            info->mHitBit = 0x10000000;
+            p_info->mHitType = HIT_TYPE_BOMB;
+            p_info->mHitBit = 0x10000000;
         } else if (ac_name == PROC_BOOMERANG) {
-            info->mHitType = 10;
-            info->mHitBit = 0x40000000;
+            p_info->mHitType = HIT_TYPE_BOOMERANG;
+            p_info->mHitBit = 0x40000000;
         } else if (ac_name == PROC_ARROW) {
-            info->mHitType = 15;
-            info->mHitBit = 0x80000000;
+            p_info->mHitType = HIT_TYPE_ARROW;
+            p_info->mHitBit = 0x80000000;
         }
     }
 
-    info->mHitStatus = 0;
-    if (info->mpCollider->ChkAtType(0x40) || info->mpCollider->ChkAtType(0x10000) ||
-        info->mpCollider->ChkAtType(0x80) || info->mpCollider->ChkAtType(0x10)) {
-        info->mHitType = 0x10;
-    } else if (info->mpCollider->ChkAtType(0x4000)) {
-        info->mHitBit = 0x1000;
+    p_info->mHitStatus = 0;
+    if (p_info->mpCollider->ChkAtType(0x40) || p_info->mpCollider->ChkAtType(AT_TYPE_BOOMERANG) ||
+        p_info->mpCollider->ChkAtType(AT_TYPE_SLINGSHOT) ||
+        p_info->mpCollider->ChkAtType(AT_TYPE_SHIELD_ATTACK)) {
+        p_info->mHitType = HIT_TYPE_STUN;
+    } else if (p_info->mpCollider->ChkAtType(AT_TYPE_HOOKSHOT)) {
+        p_info->mHitBit = 0x1000;
     } else {
-        s16 ac_name = fopAcM_GetName(info->mpActor);
+        s16 ac_name = fopAcM_GetName(p_info->mpActor);
         if (ac_name == PROC_ALINK || ac_name == PROC_ALINK) {
-            if (dCcD_GetGObjInf(info->mpCollider)->GetAtSpl() == 1) {
-                info->mHitStatus = 1;
+            if (dCcD_GetGObjInf(p_info->mpCollider)->GetAtSpl() == 1) {
+                p_info->mHitStatus = 1;
             }
-        } else if (info->mAttackPower >= 3) {
-            info->mHitStatus = 1;
+        } else if (p_info->mAttackPower >= 3) {
+            p_info->mHitStatus = 1;
         }
     }
 
-    return info->mpActor;
+    return p_info->mpActor;
 }
 
 /* ############################################################################################## */
@@ -381,113 +439,115 @@ SECTION_SDATA2 static f32 lit_4218[1 + 1 /* padding */] = {
 
 /* 80087C04-80088134 082544 0530+00 0/0 0/0 84/84 .text cc_at_check__FP10fopAc_ac_cP11dCcU_AtInfo
  */
-// reg issues
+// just float reg issues
 #ifdef NONMATCHING
-fopAc_ac_c* cc_at_check(fopAc_ac_c* enemy, dCcU_AtInfo* info) {
+fopAc_ac_c* cc_at_check(fopAc_ac_c* p_enemy, dCcU_AtInfo* p_info) {
     daPy_py_c* link = (daPy_py_c*)dComIfGp_getPlayer(0);
-    info->mpActor = at_power_check(info);
+    p_info->mpActor = at_power_check(p_info);
 
-    if (info->mpActor != NULL) {
-        cXyz tmp = info->mpActor->mSpeed;
+    if (p_info->mpActor != NULL) {
+        cXyz tmp = p_info->mpActor->mSpeed;
         tmp.y = 0.0f;
         if (tmp.abs() > 100.0f) {
-            f32 x = info->mpActor->mSpeed.x;
-            f32 z = info->mpActor->mSpeed.z;
-            info->mHitDirection = cM_atan2s(-x, -z) + (s16)cM_rndFX(4000.0f);
+            f32 x = p_info->mpActor->mSpeed.x;
+            f32 z = p_info->mpActor->mSpeed.z;
+            p_info->mHitDirection = cM_atan2s(-x, -z) + (s16)cM_rndFX(4000.0f);
         } else {
-            if (fopAcM_GetName(info->mpActor) == PROC_BOOMERANG) {
-                f32 x_diff = enemy->mCurrent.mPosition.x - link->mCurrent.mPosition.x;
-                f32 z_diff = enemy->mCurrent.mPosition.z - link->mCurrent.mPosition.z;
-                info->mHitDirection = cM_atan2s(-x_diff, -z_diff) + (s16)cM_rndFX(10000.0f);
+            if (fopAcM_GetName(p_info->mpActor) == PROC_BOOMERANG) {
+                f32 x_diff = p_enemy->mCurrent.mPosition.x - link->mCurrent.mPosition.x;
+                f32 z_diff = p_enemy->mCurrent.mPosition.z - link->mCurrent.mPosition.z;
+                p_info->mHitDirection = cM_atan2s(-x_diff, -z_diff) + (s16)cM_rndFX(10000.0f);
             } else {
-                f32 x_diff = enemy->mCurrent.mPosition.x - info->mpActor->mCurrent.mPosition.x;
-                f32 z_diff = enemy->mCurrent.mPosition.z - info->mpActor->mCurrent.mPosition.z;
-                info->mHitDirection = cM_atan2s(-x_diff, -z_diff);
+                f32 x_diff = p_enemy->mCurrent.mPosition.x - p_info->mpActor->mCurrent.mPosition.x;
+                f32 z_diff = p_enemy->mCurrent.mPosition.z - p_info->mpActor->mCurrent.mPosition.z;
+                p_info->mHitDirection = cM_atan2s(-x_diff, -z_diff);
             }
         }
 
-        if (info->mHitType == 1 && link->getCutType() == daPy_py_c::TYPE_CUT_HEAD) {
-            info->mHitDirection = link->mCollisionRot.y;
+        if (p_info->mHitType == HIT_TYPE_LINK_NORMAL_ATTACK &&
+            link->getCutType() == daPy_py_c::TYPE_CUT_HEAD) {
+            p_info->mHitDirection = link->mCollisionRot.y;
         }
 
-        if (info->mpCollider->ChkAtType(0x4000) && fopAcM_checkStatus(enemy, 0x380000)) {
-            info->mAttackPower = 0;
+        if (p_info->mpCollider->ChkAtType(AT_TYPE_HOOKSHOT) &&
+            fopAcM_checkStatus(p_enemy, 0x380000)) {
+            p_info->mAttackPower = 0;
         }
 
-        if (static_cast<dCcD_GObjInf*>(info->mpCollider)->GetAtMtrl() == 4) {
-            if (fopAcM_GetName(enemy) == PROC_B_GND) {
-                info->mAttackPower = 0;
-            } else if (fopAcM_GetName(enemy) != PROC_B_ZANT) {
-                info->mAttackPower = 100;
+        if (static_cast<dCcD_GObjInf*>(p_info->mpCollider)->GetAtMtrl() == 4) {
+            if (fopAcM_GetName(p_enemy) == PROC_B_GND) {
+                p_info->mAttackPower = 0;
+            } else if (fopAcM_GetName(p_enemy) != PROC_B_ZANT) {
+                p_info->mAttackPower = 100;
             }
         }
 
-        if (info->mHitType == 1) {
+        if (p_info->mHitType == HIT_TYPE_LINK_NORMAL_ATTACK) {
             if (!daPy_py_c::checkNowWolf()) {
                 if (link->checkMasterSwordEquip()) {
-                    info->mAttackPower *= 2;
+                    p_info->mAttackPower *= 2;
                 }
 
                 if (daPy_py_c::checkWoodSwordEquip()) {
-                    // probably supposed to be some sort of division
-                    info->mAttackPower = info->mAttackPower >> 1;
+                    p_info->mAttackPower /= 2;
                 }
             }
 
             if (link->getSwordAtUpTime()) {
-                info->mAttackPower *= 2;
-                info->mHitStatus = 1;
+                p_info->mAttackPower *= 2;
+                p_info->mHitStatus = 1;
             }
         }
 
-        if (info->mAttackPower != 0) {
-            enemy->field_0x562 -= info->mAttackPower;
+        if (p_info->mAttackPower != 0) {
+            p_enemy->field_0x562 -= p_info->mAttackPower;
         }
 
         s8 pause_time = 0;
-        if (info->mAttackPower != 0 && enemy->field_0x562 <= 0) {
-            info->mHitStatus = 2;
-            enemy->field_0x562 = 0;
+        if (p_info->mAttackPower != 0 && p_enemy->field_0x562 <= 0) {
+            p_info->mHitStatus = 2;
+            p_enemy->field_0x562 = 0;
         }
 
         int uvar8;
-        if (info->mpCollider->ChkAtType(0x4000) && !fopAcM_checkStatus(enemy, 0x280000)) {
+        if (p_info->mpCollider->ChkAtType(AT_TYPE_HOOKSHOT) &&
+            !fopAcM_checkStatus(p_enemy, 0x280000)) {
             uvar8 = 1;
         } else {
             uvar8 = 0;
         }
 
-        if (info->mpSound != NULL) {
-            if (info->field_0x18 != 0) {
-                info->mpSound->startCollisionSE(getHitId(info->mpCollider, uvar8),
-                                                info->field_0x18);
+        if (p_info->mpSound != NULL) {
+            if (p_info->field_0x18 != 0) {
+                p_info->mpSound->startCollisionSE(getHitId(p_info->mpCollider, uvar8),
+                                                  p_info->field_0x18);
             } else {
-                info->mpSound->startCollisionSE(getHitId(info->mpCollider, uvar8),
-                                                getMapInfo(info->mHitStatus));
+                p_info->mpSound->startCollisionSE(getHitId(p_info->mpCollider, uvar8),
+                                                  getMapInfo(p_info->mHitStatus));
             }
         }
 
-        if (info->mHitStatus != 0) {
+        if (p_info->mHitStatus != 0) {
             pause_time = 5;
         } else {
-            if (info->mAttackPower > 1) {
+            if (p_info->mAttackPower > 1) {
                 pause_time = 2;
             }
         }
 
-        if (info->mpCollider->ChkAtType(0x8000000) ||
+        if (p_info->mpCollider->ChkAtType(AT_TYPE_MIDNA_LOCK) ||
             ((daPy_py_c*)dComIfGp_getPlayer(0))->checkHorseRide()) {
             // actor is Bulblin or Horseback Ganon
-            // add bulblin class later
-            if ((fopAcM_GetName(enemy) == PROC_E_RD && *(char*)((char*)&enemy + 0x1292) != 0) ||
-                fopAcM_GetName(enemy) == PROC_B_GND) {
+            if ((fopAcM_GetName(p_enemy) == PROC_E_RD &&
+                 static_cast<e_rd_class*>(p_enemy)->field_0x129a != 0) ||
+                fopAcM_GetName(p_enemy) == PROC_B_GND) {
                 pause_time = 3;
             } else {
                 pause_time = 0;
             }
         }
 
-        s16 ac_name = fopAcM_GetName(enemy);
+        s16 ac_name = fopAcM_GetName(p_enemy);
         // actor is Stalkin, Chu, Keese, Shadow Keese, Shadow Vermin, Baby Gohma, or Rat
         if (ac_name == PROC_E_BS || ac_name == PROC_E_SM2 || ac_name == PROC_E_BA ||
             ac_name == PROC_E_YK || ac_name == PROC_E_YG || ac_name == PROC_E_GM ||
@@ -495,15 +555,17 @@ fopAc_ac_c* cc_at_check(fopAc_ac_c* enemy, dCcU_AtInfo* info) {
             pause_time = 0;
         }
 
-        if (info->mHitType == 1 || info->mpCollider->ChkAtType(0x8)) {
-            if (!link->checkCutJumpCancelTurn() && info->mpCollider->ChkAtType(0x8)) {
+        if ((p_info->mHitType == HIT_TYPE_LINK_NORMAL_ATTACK ||
+             p_info->mpCollider->ChkAtType(AT_TYPE_THROW_OBJ)) &&
+            !link->checkCutJumpCancelTurn()) {
+            if (p_info->mpCollider->ChkAtType(AT_TYPE_THROW_OBJ)) {
                 pause_time = 4;
             }
             dScnPly_c::setPauseTimer(pause_time);
         }
     }
 
-    return info->mpActor;
+    return p_info->mpActor;
 }
 #else
 #pragma push

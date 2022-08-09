@@ -3511,7 +3511,7 @@ bool daAlink_c::checkStageName(const char* stage) {
 /* 8009DA98-8009DB64 0983D8 00CC+00 1/1 0/0 0/0 .text
  * tgHitCallback__9daAlink_cFP10fopAc_ac_cP12dCcD_GObjInfP12dCcD_GObjInf */
 void daAlink_c::tgHitCallback(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, dCcD_GObjInf* param_2) {
-    if (param_2->ChkAtType(0x40000)) {
+    if (param_2->ChkAtType(AT_TYPE_SPINNER)) {
         field_0x369c = *param_2->GetAtVecP();
         for (int i = 0; i < 3; i++) {
             if (param_1 == &field_0x850[i]) {

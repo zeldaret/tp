@@ -5,6 +5,15 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
+enum dCcU_AtType {
+    /* 0x01 */ HIT_TYPE_LINK_NORMAL_ATTACK = 1,
+    /* 0x02 */ HIT_TYPE_BOMB,
+    /* 0x09 */ HIT_TYPE_LINK_HEAVY_ATTACK = 9,
+    /* 0x0A */ HIT_TYPE_BOOMERANG,
+    /* 0x0F */ HIT_TYPE_ARROW = 15,
+    /* 0x10 */ HIT_TYPE_STUN,
+};
+
 struct dCcU_AtInfo {
     /* 0x00 */ cCcD_Obj* mpCollider;
     /* 0x04 */ fopAc_ac_c* mpActor;
