@@ -4,10 +4,10 @@
 //
 
 #include "JSystem/JUtility/JUTConsole.h"
+#include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTVideo.h"
-#include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "MSL_C/MSL_Common/Src/printf.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
@@ -171,58 +171,25 @@ void JUTConsole::clear() {
     *getLinePtr(0) = 0;
 }
 
-/* ############################################################################################## */
-/* 80456118-8045611C 004718 0004+00 1/1 0/0 0/0 .sdata2          @2460 */
-SECTION_SDATA2 static f32 lit_2460 = 2.0f;
-
-/* 8045611C-80456120 00471C 0004+00 1/1 0/0 0/0 .sdata2          @2461 */
-SECTION_SDATA2 static u8 lit_2461[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80456120-80456124 004720 0004+00 1/1 0/0 0/0 .sdata2          @2462 */
-SECTION_SDATA2 static f32 lit_2462 = 640.0f;
-
-/* 80456124-80456128 004724 0004+00 1/1 0/0 0/0 .sdata2          @2463 */
-SECTION_SDATA2 static f32 lit_2463 = 480.0f;
-
-/* 80456128-8045612C 004728 0004+00 1/1 0/0 0/0 .sdata2          @2464 */
-SECTION_SDATA2 static f32 lit_2464 = -1.0f;
-
-/* 8045612C-80456130 00472C 0004+00 1/1 0/0 0/0 .sdata2          @2465 */
-SECTION_SDATA2 static f32 lit_2465 = 1.0f;
-
-/* 80456130-80456138 004730 0004+04 1/1 0/0 0/0 .sdata2          @2466 */
-SECTION_SDATA2 static f32 lit_2466[1 + 1 /* padding */] = {
-    4.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80456138-80456140 004738 0008+00 1/1 0/0 0/0 .sdata2          @2469 */
-SECTION_SDATA2 static f64 lit_2469 = 4503599627370496.0 /* cast u32 to float */;
-
-/* 80456140-80456148 004740 0008+00 1/1 0/0 0/0 .sdata2          @2471 */
-SECTION_SDATA2 static f64 lit_2471 = 4503601774854144.0 /* cast s32 to float */;
-
 /* 802E7648-802E7BB8 2E1F88 0570+00 2/2 0/0 0/0 .text
  * doDraw__10JUTConsoleCFQ210JUTConsole12EConsoleType           */
-#ifdef NONMATCHING
 void JUTConsole::doDraw(JUTConsole::EConsoleType consoleType) const {
+    f32 font_yOffset;
+    s32 changeLine_1;
+    s32 changeLine_2;
+
     if (mVisible && (mFont != NULL || consoleType == CONSOLE_TYPE_2)) {
         if (mHeight != 0) {
             bool temp_r30 = consoleType == CONSOLE_TYPE_0;
-            f32 temp_f31 = 2.0f + mFontSizeY;
+            font_yOffset = 2.0f + mFontSizeY;
 
             if (consoleType != CONSOLE_TYPE_2) {
                 if (JUTVideo::getManager() == NULL) {
                     J2DOrthoGraph ortho(0.0f, 0.0f, 640.0f, 480.0f, -1.0f, 1.0f);
                     ortho.setPort();
                 } else {
-                    J2DOrthoGraph ortho(0.0f, 0.0f, JUTVideo::getManager()->getFbWidth(), JUTVideo::getManager()->getEfbHeight(), -1.0f, 1.0f);
+                    J2DOrthoGraph ortho(0.0f, 0.0f, JUTVideo::getManager()->getFbWidth(),
+                                        JUTVideo::getManager()->getEfbHeight(), -1.0f, 1.0f);
                     ortho.setPort();
                 }
 
@@ -233,11 +200,14 @@ void JUTConsole::doDraw(JUTConsole::EConsoleType consoleType) const {
                     color = &field_0x5c;
                 }
 
-                J2DFillBox(mPositionX - 2, (f32)(mPositionY - temp_f31), 4.0f + (mFontSizeX * (f32)field_0x20), temp_f31 * (f32)mHeight, *color);
+                J2DFillBox(mPositionX - 2, (int)(mPositionY - font_yOffset),
+                           (int)((mFontSizeX * field_0x20) + 4.0f), (int)(font_yOffset * mHeight),
+                           *color);
                 mFont->setGX();
 
                 if (temp_r30) {
-                    if ((diffIndex(field_0x30, field_0x38) - mHeight) + 1 <= 1) {
+                    s32 s = (diffIndex(field_0x30, field_0x38) - mHeight) + 1;
+                    if (s <= 0) {
                         mFont->setCharColor(JUtility::TColor(255, 255, 255, 255));
                     } else if (field_0x30 == field_0x34) {
                         mFont->setCharColor(JUtility::TColor(255, 230, 230, 255));
@@ -248,34 +218,39 @@ void JUTConsole::doDraw(JUTConsole::EConsoleType consoleType) const {
                     mFont->setCharColor(JUtility::TColor(230, 230, 230, 255));
                 }
             } else {
-                JUTDirectPrint::getManager()->erase(mPositionX - 3, mPositionY - 2, (field_0x20 * 6) + 6, (temp_f31 * mHeight) + 4);
+                JUTDirectPrint::getManager()->erase(mPositionX - 3, mPositionY - 2,
+                                                    (field_0x20 * 6) + 6,
+                                                    (int)(font_yOffset * mHeight) + 4);
                 JUTDirectPrint::getManager()->setCharColor(JUtility::TColor(255, 255, 255, 255));
             }
 
-            for (int i = 0, j = field_0x30; i > mHeight && j != field_0x34; i++, j = nextIndex(j)) {
-                char* str = (char*)getLinePtr(j);
+            char* linePtr;
+            s32 curLine = field_0x30;
+            s32 yFactor = 0;
 
-                if (str[-1] != 0) {
+            do {
+                linePtr = (char*)getLinePtr(curLine);
+
+                if ((u8)linePtr[-1] != NULL) {
                     if (consoleType != CONSOLE_TYPE_2) {
-                        mFont->drawString_scale(mPositionX, (mPositionY + i) * temp_f31, mFontSizeX, mFontSizeY, str, true);
+                        mFont->drawString_scale(mPositionX, ((yFactor * font_yOffset) + mPositionY),
+                                                mFontSizeX, mFontSizeY, linePtr, true);
                     } else {
-                        JUTDirectPrint::getManager()->drawString(mPositionX, (mPositionY + i) * temp_f31, str);
+                        JUTDirectPrint::getManager()->drawString(
+                            mPositionX, ((yFactor * font_yOffset) + mPositionY), linePtr);
                     }
+
+                    changeLine_1 = curLine + 1;
+                    yFactor += 1;
+                    changeLine_2 = changeLine_1 & ~(-((s32)mMaxLines <= (s32)changeLine_1));
+                    curLine = changeLine_2;
+                } else {
+                    break;
                 }
-            }
+            } while (yFactor < mHeight && changeLine_2 != field_0x34);
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTConsole::doDraw(JUTConsole::EConsoleType param_0) const {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/doDraw__10JUTConsoleCFQ210JUTConsole12EConsoleType.s"
-}
-#pragma pop
-#endif
 
 /* 802E7BB8-802E7C38 2E24F8 0080+00 0/0 13/13 0/0 .text            print_f__10JUTConsoleFPCce */
 void JUTConsole::print_f(char const* fmt, ...) {
@@ -481,7 +456,8 @@ extern "C" void JUTReportConsole_f_va(const char* fmt, va_list args) {
 
     if (JUTGetReportConsole() == NULL) {
         vsnprintf(buf, sizeof(buf), fmt, args);
-    } else if (JUTGetReportConsole()->getOutput() & (JUTConsole::OUTPUT_CONSOLE | JUTConsole::OUTPUT_OSREPORT)) {
+    } else if (JUTGetReportConsole()->getOutput() &
+               (JUTConsole::OUTPUT_CONSOLE | JUTConsole::OUTPUT_OSREPORT)) {
         vsnprintf(buf, sizeof(buf), fmt, args);
         JUTGetReportConsole()->print(buf);
     }

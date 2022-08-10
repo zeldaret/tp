@@ -68,7 +68,7 @@ public:
     void setVisible(bool visible) { mVisible = visible; }
 
     void setLineAttr(int param_0, u8 param_1) { mBuf[(field_0x20 + 2) * param_0] = param_1; }
-    u8* getLinePtr(int param_0) const { return &mBuf[(field_0x20 + 2) * param_0 + 1]; }
+    u8* getLinePtr(int param_0) const { return &mBuf[(field_0x20 + 2) * param_0] + 1; }
     int diffIndex(int param_0, int param_1) const {
         int diff = param_1 - param_0;
         if (diff >= 0) {
