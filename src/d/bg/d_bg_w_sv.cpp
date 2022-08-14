@@ -50,10 +50,10 @@ struct dBgW {
     /* 8007B3AC */ void GetExitId(cBgS_PolyInfo const&);
     /* 8007B3D8 */ void GetPolyColor(cBgS_PolyInfo const&);
     /* 8007B404 */ void GetHorseNoEntry(cBgS_PolyInfo const&);
-    /* 8007B430 */ void GetSpecialCode(cBgS_PolyInfo const&);
-    /* 8007B460 */ void GetSpecialCode(int);
+    /* 8007B430 */ int GetSpecialCode(cBgS_PolyInfo const&);
+    /* 8007B460 */ int GetSpecialCode(int);
     /* 8007B488 */ void GetMagnetCode(cBgS_PolyInfo const&);
-    /* 8007B4B4 */ void GetMonkeyBarsCode(cBgS_PolyInfo const&);
+    /* 8007B4B4 */ int GetMonkeyBarsCode(cBgS_PolyInfo const&);
     /* 8007B4E0 */ void GetPolyObjThrough(int);
     /* 8007B504 */ void GetPolyCamThrough(int);
     /* 8007B52C */ void GetPolyLinkThrough(int);
@@ -63,12 +63,12 @@ struct dBgW {
     /* 8007B5BC */ void GetPolyRopeThrough(int);
     /* 8007B5E0 */ void GetPolyBombThrough(int);
     /* 8007B604 */ void GetShdwThrough(int);
-    /* 8007B630 */ void GetUnderwaterRoofCode(int);
+    /* 8007B630 */ int GetUnderwaterRoofCode(int);
     /* 8007B6AC */ void GetLinkNo(cBgS_PolyInfo const&);
     /* 8007B6D8 */ void GetWallCode(cBgS_PolyInfo const&);
     /* 8007B704 */ void GetPolyAtt0(cBgS_PolyInfo const&);
     /* 8007B734 */ void GetPolyAtt1(cBgS_PolyInfo const&);
-    /* 8007B760 */ void GetGroundCode(cBgS_PolyInfo const&);
+    /* 8007B760 */ int GetGroundCode(cBgS_PolyInfo const&);
     /* 8007B7DC */ void GetIronBallThrough(int);
     /* 8007B800 */ void GetAttackThrough(int);
     /* 8007B87C */ void GetCamMoveBG(cBgS_PolyInfo const&);
@@ -78,7 +78,7 @@ struct dBgW {
     /* 8007C484 */ void WallCorrect(dBgS_Acch*);
     /* 8007C910 */ void WallCorrectSort(dBgS_Acch*);
     /* 8007D470 */ void RoofChk(dBgS_RoofChk*);
-    /* 8007D830 */ void SplGrpChk(dBgS_SplGrpChk*);
+    /* 8007D830 */ bool SplGrpChk(dBgS_SplGrpChk*);
     /* 8007DAF8 */ void CaptPoly(dBgS_CaptPoly&);
     /* 8007DF00 */ void SphChk(dBgS_SphChk*, void*);
     /* 8007DF28 */ void GetPolyGrpRoomInfId(cBgS_PolyInfo const&);
@@ -104,8 +104,8 @@ struct cBgW {
     /* 800797BC */ void ClassifyPlane();
     /* 80079EEC */ void ChkMemoryError();
     /* 80079F38 */ void Set(cBgD_t*, u32, f32 (*)[3][4]);
-    /* 8007A658 */ void LineCheck(cBgS_LinChk*);
-    /* 8007AB9C */ void GroundCross(cBgS_GndChk*);
+    /* 8007A658 */ bool LineCheck(cBgS_LinChk*);
+    /* 8007AB9C */ bool GroundCross(cBgS_GndChk*);
     /* 8007B084 */ void ShdwDraw(cBgS_ShdwDraw*);
     /* 8007B0E4 */ void GetGrpRoomIndex(cBgS_PolyInfo const&) const;
     /* 8007B164 */ void GetBnd() const;
@@ -113,7 +113,7 @@ struct cBgW {
     /* 8007B240 */ void GetTopUnder(f32*, f32*) const;
     /* 8007B270 */ void GetTriPla(cBgS_PolyInfo const&) const;
     /* 8007B2B0 */ void GetGrpInf(cBgS_PolyInfo const&) const;
-    /* 8007B948 */ void ChkNotReady() const;
+    /* 8007B948 */ bool ChkNotReady() const;
     /* 8007B958 */ void ChkLock() const;
     /* 8007B964 */ void ChkMoveBg() const;
 };

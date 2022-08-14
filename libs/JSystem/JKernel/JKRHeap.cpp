@@ -204,7 +204,7 @@ void* JKRHeap::mUserRamEnd;
 u32 JKRHeap::mMemorySize;
 
 /* 802CE378-802CE428 2C8CB8 00B0+00 0/0 1/1 0/0 .text            initArena__7JKRHeapFPPcPUli */
-bool JKRHeap::initArena(char** memory, u32* size, int param_3) {
+bool JKRHeap::initArena(char** memory, u32* size, int maxHeaps) {
     u32 ram_start;
     u32 ram_end;
     void* ram;
@@ -214,7 +214,7 @@ bool JKRHeap::initArena(char** memory, u32* size, int param_3) {
     if (low == high)
         return false;
 
-    ram = OSInitAlloc(low, high, param_3);
+    ram = OSInitAlloc(low, high, maxHeaps);
     ram_start = ALIGN_NEXT((u32)ram, 0x20);
     ram_end = ALIGN_PREV((u32)high, 0x20);
     GLOBAL_MEMORY* globalMemory = (GLOBAL_MEMORY*)OSPhysicalToCached(0);

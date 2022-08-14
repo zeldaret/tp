@@ -2347,9 +2347,9 @@ public:
     /* 8013FF90 */ void setShieldArcName();
     /* 8013FFD8 */ void setOriginalHeap(JKRExpHeap**, u32);
     /* 80140064 */ void setShieldChange();
-    /* 80140070 */ void loadModelDVD();
+    /* 80140070 */ int loadModelDVD();
     /* 801401F8 */ void setShieldModel();
-    /* 80140274 */ void loadShieldModelDVD();
+    /* 80140274 */ int loadShieldModelDVD();
     /* 80140338 */ void changeModelDataDirect(int);
     /* 80140550 */ void changeModelDataDirectWolf(int);
     /* 801406A8 */ void initStatusWindow();
@@ -2602,6 +2602,8 @@ public:
         return var_r4;
     }
 
+    J3DModel* initModel(J3DModelData* p_modelData, u32 param_1) { return initModel(p_modelData, 0x80000, param_1); }
+
     inline void startRestartRoomFromOut(int, u32, int);
     inline u16 getReadyItem();
 
@@ -2690,7 +2692,16 @@ private:
     /* 0x00770 */ hsChainShape_c* field_0x770;
     /* 0x00774 */ u8 field_0x0774[0x77C - 0x774];
     /* 0x0077C */ dBgS_ObjLinChk* mpHookshotLinChk;
-    /* 0x00780 */ u8 field_0x780[0x7C4 - 0x780];
+    /* 0x00780 */ u8 field_0x780[4];
+    /* 0x00784 */ J3DModel* field_0x784[2];
+    /* 0x0078C */ u8 field_0x78c[0x10];
+    /* 0x0079C */ u32 field_0x79c;
+    /* 0x007A0 */ u32 field_0x7a0;
+    /* 0x007A4 */ u32 field_0x7a4;
+    /* 0x007A8 */ u32 field_0x7a8;
+    /* 0x007AC */ u8 field_0x7ac[0x10];
+    /* 0x007BC */ mDoExt_bckAnm* m_sWindowBck;
+    /* 0x007C0 */ u8 field_0x7c0[4];
     /* 0x007C4 */ daPy_actorKeep_c mWolfLockAcKeep[10];
     /* 0x00814 */ dCcD_Stts field_0x814;
     /* 0x00850 */ dCcD_Cyl field_0x850[3];

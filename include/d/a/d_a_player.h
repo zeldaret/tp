@@ -220,6 +220,7 @@ public:
         FLG2_UNK_2080000 = 0x2080000,
         BOAR_SINGLE_BATTLE = 0x1800000,
         STATUS_WINDOW_DRAW = 0x400000,
+        FLG2_UNK_280000 = 0x280000,
         UNK_ARMOR = 0x80000,
         SCENE_CHANGE_START = 0x8000,
         FLG2_UNK_4000 = 0x4000,
@@ -568,6 +569,7 @@ public:
     void i_onNoResetFlg2(int pFlg) { mNoResetFlg2 |= pFlg; }
     void i_onNoResetFlg3(int pFlg) { mNoResetFlg3 |= pFlg; }
     void i_offNoResetFlg0(int pFlg) { mNoResetFlg0 &= ~pFlg; }
+    void i_offNoResetFlg2(int pFlg) { mNoResetFlg2 &= ~pFlg; }
     void i_offNoResetFlg3(int pFlg) { mNoResetFlg3 &= ~pFlg; }
     void i_offResetFlg0(int flag) { mResetFlg0 &= ~flag; }
     void i_onResetFlg0(int flag) { mResetFlg0 |= flag; }

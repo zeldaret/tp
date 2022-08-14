@@ -97,12 +97,12 @@ extern "C" u8 mErrorHandler__7JKRHeap[4];
 //
 
 /* 802CEDB4-802CEE2C 2C96F4 0078+00 0/0 1/1 0/0 .text            createRoot__10JKRExpHeapFib */
-JKRExpHeap* JKRExpHeap::createRoot(int param_0, bool errorFlag) {
+JKRExpHeap* JKRExpHeap::createRoot(int maxHeaps, bool errorFlag) {
     JKRExpHeap* heap = NULL;
     if (!sRootHeap) {
         void* memory;
         u32 memorySize;
-        initArena((char**)&memory, &memorySize, param_0);
+        initArena((char**)&memory, &memorySize, maxHeaps);
         u8* start = (u8*)memory + ALIGN_NEXT(sizeof(JKRExpHeap), 0x10);
         u32 alignedSize = memorySize - ALIGN_NEXT(sizeof(JKRExpHeap), 0x10);
         heap = new (memory) JKRExpHeap(start, alignedSize, NULL, errorFlag);

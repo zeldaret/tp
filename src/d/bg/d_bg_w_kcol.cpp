@@ -261,7 +261,7 @@ asm void dBgWKCol::getTriNrm(KC_PrismData* param_0, Vec** param_1) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgWKCol::ChkNotReady() const {
+asm bool dBgWKCol::ChkNotReady() const {
     nofralloc
 #include "asm/d/bg/d_bg_w_kcol/ChkNotReady__8dBgWKColCFv.s"
 }
@@ -286,7 +286,7 @@ bool dBgWKCol::ChkMoveFlag() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgWKCol::GetTriPla(cBgS_PolyInfo const& param_0) const {
+asm cM3dGPla dBgWKCol::GetTriPla(cBgS_PolyInfo const& param_0) const {
     nofralloc
 #include "asm/d/bg/d_bg_w_kcol/GetTriPla__8dBgWKColCFRC13cBgS_PolyInfo.s"
 }
@@ -410,7 +410,7 @@ SECTION_SDATA2 static f32 lit_4191 = -0.007499999832361937f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgWKCol::LineCheck(cBgS_LinChk* param_0) {
+asm bool dBgWKCol::LineCheck(cBgS_LinChk* param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w_kcol/LineCheck__8dBgWKColFP11cBgS_LinChk.s"
 }
@@ -424,7 +424,7 @@ SECTION_SDATA2 static f32 lit_4293 = 0.014000000432133675f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgWKCol::GroundCross(cBgS_GndChk* param_0) {
+asm bool dBgWKCol::GroundCross(cBgS_GndChk* param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w_kcol/GroundCross__8dBgWKColFP11cBgS_GndChk.s"
 }
@@ -512,7 +512,7 @@ asm void dBgWKCol::WallCorrect(dBgS_Acch* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgWKCol::RoofChk(dBgS_RoofChk* param_0) {
+asm bool dBgWKCol::RoofChk(dBgS_RoofChk* param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w_kcol/RoofChk__8dBgWKColFP12dBgS_RoofChk.s"
 }
@@ -522,7 +522,7 @@ asm void dBgWKCol::RoofChk(dBgS_RoofChk* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgWKCol::SplGrpChk(dBgS_SplGrpChk* param_0) {
+asm bool dBgWKCol::SplGrpChk(dBgS_SplGrpChk* param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w_kcol/SplGrpChk__8dBgWKColFP14dBgS_SplGrpChk.s"
 }
@@ -537,7 +537,7 @@ static u8 vtx_tbl_5950[36];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgWKCol::SphChk(dBgS_SphChk* param_0, void* param_1) {
+asm bool dBgWKCol::SphChk(dBgS_SphChk* param_0, void* param_1) {
     nofralloc
 #include "asm/d/bg/d_bg_w_kcol/SphChk__8dBgWKColFP11dBgS_SphChkPv.s"
 }
@@ -604,7 +604,7 @@ asm void dBgWKCol::GetHorseNoEntry(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgWKCol::GetSpecialCode(cBgS_PolyInfo const& param_0) {
+asm int dBgWKCol::GetSpecialCode(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w_kcol/GetSpecialCode__8dBgWKColFRC13cBgS_PolyInfo.s"
 }
@@ -614,7 +614,7 @@ asm void dBgWKCol::GetSpecialCode(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgWKCol::GetSpecialCode(int param_0) {
+asm int dBgWKCol::GetSpecialCode(int param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w_kcol/GetSpecialCode__8dBgWKColFi.s"
 }
@@ -636,7 +636,7 @@ asm int dBgWKCol::GetMagnetCode(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgWKCol::GetMonkeyBarsCode(cBgS_PolyInfo const& param_0) {
+asm int dBgWKCol::GetMonkeyBarsCode(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w_kcol/GetMonkeyBarsCode__8dBgWKColFRC13cBgS_PolyInfo.s"
 }
@@ -727,7 +727,7 @@ asm void dBgWKCol::GetPolyBombThrough(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgWKCol::GetUnderwaterRoofCode(int param_0) {
+asm int dBgWKCol::GetUnderwaterRoofCode(int param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w_kcol/GetUnderwaterRoofCode__8dBgWKColFi.s"
 }
@@ -788,7 +788,7 @@ asm int dBgWKCol::GetPolyAtt1(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgWKCol::GetGroundCode(cBgS_PolyInfo const& param_0) {
+asm int dBgWKCol::GetGroundCode(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w_kcol/GetGroundCode__8dBgWKColFRC13cBgS_PolyInfo.s"
 }
