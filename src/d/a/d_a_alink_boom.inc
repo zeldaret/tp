@@ -14,7 +14,7 @@ f32 daAlink_c::getBoomSpeed() {
         speed = daAlinkHIO_boom_c0::m.field_0x34;
     }
 
-    if (i_checkModeFlg(0x400) && mRideActor.getActor() != NULL && mSpeedF > FLOAT_LABEL(lit_6108)) {
+    if (i_checkModeFlg(0x400) && mRideAcKeep.getActor() != NULL && mSpeedF > FLOAT_LABEL(lit_6108)) {
         speed += mSpeedF;
     }
 
@@ -82,12 +82,12 @@ asm void daAlink_c::cancelBoomerangLock(fopAc_ac_c* param_0) {
 
 /* 800E0210-800E0244 0DAB50 0034+00 2/2 0/0 0/0 .text            getBoomerangActor__9daAlink_cFv */
 fopAc_ac_c* daAlink_c::getBoomerangActor() {
-    if (mThrowBoomerangActor.getID() != 0xFFFFFFFF) {
-        return mThrowBoomerangActor.getActor();
+    if (mThrowBoomerangAcKeep.getID() != 0xFFFFFFFF) {
+        return mThrowBoomerangAcKeep.getActor();
     }
 
     if (mEquipItem == BOOMERANG) {
-        return mItemActor.getActor();
+        return mItemAcKeep.getActor();
     }
 
     return NULL;

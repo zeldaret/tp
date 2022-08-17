@@ -51,17 +51,17 @@ asm void daAlink_c::procPreActionUnequip() {
 
 /* 800C3098-800C30F0 0BD9D8 0058+00 1/1 0/0 0/0 .text            procServiceWaitInit__9daAlink_cFv
  */
-bool daAlink_c::procServiceWaitInit() {
+int daAlink_c::procServiceWaitInit() {
     commonProcInit(PROC_SERVICE_WAIT);
     setSingleAnimeBase(ANM_SERVICE_WAIT);
     mNormalSpeed = FLOAT_LABEL(lit_6108);
     mCurrent.mAngle.y = mCollisionRot.y;
     field_0x2f98 = 4;
-    return true;
+    return 1;
 }
 
 /* 800C30F0-800C3224 0BDA30 0134+00 1/0 0/0 0/0 .text            procServiceWait__9daAlink_cFv */
-bool daAlink_c::procServiceWait() {
+int daAlink_c::procServiceWait() {
     J3DFrameCtrl* ctrl = &mFrameCtrl1[0];
     if ((!checkNextAction(0) && !checkFrontWallTypeAction()) &&
         (checkEventRun() || checkGuardActionChange() || mCollisionRot.y != field_0x2fe6)) {
@@ -76,7 +76,7 @@ bool daAlink_c::procServiceWait() {
             voiceStart(Z2SE_AL_V_RELAX_C);
         }
     }
-    return true;
+    return 1;
 }
 
 /* 800C3224-800C3338 0BDB64 0114+00 2/2 0/0 0/0 .text            procTiredWaitInit__9daAlink_cFv */
@@ -90,7 +90,7 @@ asm void daAlink_c::procTiredWaitInit() {
 #pragma pop
 
 /* 800C3338-800C33B8 0BDC78 0080+00 1/0 0/0 0/0 .text            procTiredWait__9daAlink_cFv */
-bool daAlink_c::procTiredWait() {
+int daAlink_c::procTiredWait() {
     daPy_frameCtrl_c* ctrl = &mFrameCtrl1[0];
     if (!checkNextAction(0)) {
         if (ctrl->checkAnmEnd()) {
@@ -99,14 +99,14 @@ bool daAlink_c::procTiredWait() {
             setTiredVoice(ctrl);
         }
     }
-    return true;
+    return 1;
 }
 
 /* 800C33B8-800C3504 0BDCF8 014C+00 26/26 0/0 0/0 .text            procWaitInit__9daAlink_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool daAlink_c::procWaitInit() {
+asm int daAlink_c::procWaitInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWaitInit__9daAlink_cFv.s"
 }
@@ -123,19 +123,19 @@ asm void daAlink_c::procWait() {
 #pragma pop
 
 /* 800C36CC-800C3730 0BE00C 0064+00 3/3 0/0 0/0 .text            procMoveInit__9daAlink_cFv */
-bool daAlink_c::procMoveInit() {
+int daAlink_c::procMoveInit() {
     if (!commonProcInitNotSameProc(PROC_MOVE)) {
         return false;
     }
     setBlendMoveAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
     setFootEffectProcType(3);
-    return true;
+    return 1;
 }
 
 /* 800C3730-800C3810 0BE070 00E0+00 1/0 0/0 0/0 .text            procMove__9daAlink_cFv */
 // results of cLib_minMaxLimit are put in r4 instead of r3
 #ifdef NONMATCHING
-bool daAlink_c::procMove() {
+int daAlink_c::procMove() {
     setFootEffectProcType(3);
     if (!checkNextAction(0) && !checkFrontWallTypeAction()) {
         if (mDemo.getDemoMode() == 2 &&
@@ -149,13 +149,13 @@ bool daAlink_c::procMove() {
                                  daAlinkHIO_basic_c0::m.mNeckMaxDown);
         }
     }
-    return true;
+    return 1;
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool daAlink_c::procMove() {
+asm int daAlink_c::procMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procMove__9daAlink_cFv.s"
 }
@@ -163,29 +163,29 @@ asm bool daAlink_c::procMove() {
 #endif
 
 /* 800C3810-800C3868 0BE150 0058+00 1/1 0/0 0/0 .text            procAtnMoveInit__9daAlink_cFv */
-bool daAlink_c::procAtnMoveInit() {
+int daAlink_c::procAtnMoveInit() {
     if (!commonProcInitNotSameProc(PROC_ATN_MOVE)) {
-        return false;
+        return 0;
     }
     setBlendAtnMoveAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
-    return true;
+    return 1;
 }
 
 /* 800C3868-800C38CC 0BE1A8 0064+00 1/0 0/0 0/0 .text            procAtnMove__9daAlink_cFv */
-bool daAlink_c::procAtnMove() {
+int daAlink_c::procAtnMove() {
     if (!checkNextAction(0)) {
         if (field_0x2f98 != 0 || !checkFrontWallTypeAction()) {
             setBlendAtnMoveAnime(lit_6041);
         }
     }
-    return true;
+    return 1;
 }
 
 /* 800C38CC-800C397C 0BE20C 00B0+00 4/4 0/0 0/0 .text            procAtnActorWaitInit__9daAlink_cFv
  */
-bool daAlink_c::procAtnActorWaitInit() {
+int daAlink_c::procAtnActorWaitInit() {
     if (!commonProcInitNotSameProc(PROC_ATN_ACTOR_WAIT)) {
-        return false;
+        return 0;
     }
 
     if (mTargetedActor != NULL) {
@@ -202,11 +202,11 @@ bool daAlink_c::procAtnActorWaitInit() {
         setBlendMoveAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
     }
 
-    return true;
+    return 1;
 }
 
 /* 800C397C-800C39EC 0BE2BC 0070+00 1/0 0/0 0/0 .text            procAtnActorWait__9daAlink_cFv */
-bool daAlink_c::procAtnActorWait() {
+int daAlink_c::procAtnActorWait() {
     if (!checkNextAction(0)) {
         if (checkAtnWaitAnime()) {
             setBlendAtnMoveAnime(lit_6041);
@@ -215,21 +215,21 @@ bool daAlink_c::procAtnActorWait() {
         }
         checkSwordTwirlAction();
     }
-    return true;
+    return 1;
 }
 
 /* 800C39EC-800C3A44 0BE32C 0058+00 3/3 0/0 0/0 .text            procAtnActorMoveInit__9daAlink_cFv
  */
-bool daAlink_c::procAtnActorMoveInit() {
+int daAlink_c::procAtnActorMoveInit() {
     if (!commonProcInitNotSameProc(PROC_ATN_ACTOR_MOVE)) {
-        return false;
+        return 0;
     }
     setBlendAtnMoveAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
-    return true;
+    return 1;
 }
 
 /* 800C3A44-800C3A94 0BE384 0050+00 1/0 0/0 0/0 .text            procAtnActorMove__9daAlink_cFv */
-bool daAlink_c::procAtnActorMove() {
+int daAlink_c::procAtnActorMove() {
     if (!checkNextAction(0)) {
         setBlendAtnMoveAnime(lit_6041);
         checkSwordTwirlAction();
@@ -238,9 +238,9 @@ bool daAlink_c::procAtnActorMove() {
 }
 
 /* 800C3A94-800C3B1C 0BE3D4 0088+00 2/2 0/0 0/0 .text            procWaitTurnInit__9daAlink_cFv */
-bool daAlink_c::procWaitTurnInit() {
+int daAlink_c::procWaitTurnInit() {
     if (!commonProcInitNotSameProc(PROC_WAIT_TURN)) {
-        return false;
+        return 0;
     }
 
     setSingleAnimeBaseSpeed(ANM_WAIT_TURN, daAlinkHIO_basic_c0::m.mWaitTurnSpeed,
@@ -250,14 +250,14 @@ bool daAlink_c::procWaitTurnInit() {
     }
     field_0x300e = field_0x2fe2;
     mCurrent.mAngle.y = mCollisionRot.y;
-    return true;
+    return 1;
 }
 
 /* 800C3B1C-800C3C3C 0BE45C 0120+00 1/0 0/0 0/0 .text            procWaitTurn__9daAlink_cFv */
-BOOL daAlink_c::procWaitTurn() {
+int daAlink_c::procWaitTurn() {
     cLib_chaseF(&mNormalSpeed, FLOAT_LABEL(lit_6108), daAlinkHIO_move_c0::m.mDeceleration);
     if (checkGroundSpecialMode()) {
-        return true;
+        return 1;
     } else {
         if (i_checkEndResetFlg0(ERFLG0_UNK_100000)) {
             return procFloorDownReboundInit();
@@ -265,7 +265,7 @@ BOOL daAlink_c::procWaitTurn() {
             s16 angle = cLib_addCalcAngleS(&mCollisionRot.y, field_0x300e, 30, 0x3CDF, 8000);
             mCurrent.mAngle.y = mCollisionRot.y;
             if (checkNextActionFromButton()) {
-                return true;
+                return 1;
             } else {
                 if (angle == 0) {
                     if (checkEventRun()) {
@@ -281,13 +281,13 @@ BOOL daAlink_c::procWaitTurn() {
             }
         }
     }
-    return true;
+    return 1;
 }
 
 /* 800C3C3C-800C3D38 0BE57C 00FC+00 2/2 0/0 0/0 .text            procMoveTurnInit__9daAlink_cFi */
-bool daAlink_c::procMoveTurnInit(int param_0) {
+int daAlink_c::procMoveTurnInit(int param_0) {
     if (!commonProcInitNotSameProc(PROC_MOVE_TURN)) {
-        return false;
+        return 0;
     }
 
     setBlendMoveAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
@@ -306,11 +306,11 @@ bool daAlink_c::procMoveTurnInit(int param_0) {
     }
     field_0x300e = daAlinkHIO_move_c0::m.mMaxTurnAngle << 1;
     field_0x3010 = daAlinkHIO_move_c0::m.mMaxTurnAngle;
-    return true;
+    return 1;
 }
 
 /* 800C3D38-800C3DA0 0BE678 0068+00 1/0 0/0 0/0 .text            procMoveTurn__9daAlink_cFv */
-bool daAlink_c::procMoveTurn() {
+int daAlink_c::procMoveTurn() {
     setSpeedAndAngleNormal();
     cLib_addCalcAngleS(&mCollisionRot.y, mCurrent.mAngle.y, field_0x300a, field_0x300e,
                        field_0x3010);
@@ -318,11 +318,11 @@ bool daAlink_c::procMoveTurn() {
     if (!checkNextAction(0)) {
         setBlendMoveAnime(lit_6041);
     }
-    return true;
+    return 1;
 }
 
 /* 800C3DA0-800C3F60 0BE6E0 01C0+00 2/2 0/0 0/0 .text            procSideStepInit__9daAlink_cFi */
-bool daAlink_c::procSideStepInit(int jump_type) {
+int daAlink_c::procSideStepInit(int jump_type) {
     if (jump_type == 1 && !checkHeavyStateOn(1, 1) &&
         (checkNoUpperAnime() || checkEquipAnime() || field_0x2fcc != 0 && checkUpperGuardAnime())) {
         return procBackJumpInit(0);
@@ -362,7 +362,7 @@ bool daAlink_c::procSideStepInit(int jump_type) {
 }
 
 /* 800C3F60-800C40F0 0BE8A0 0190+00 1/0 0/0 0/0 .text            procSideStep__9daAlink_cFv */
-bool daAlink_c::procSideStep() {
+int daAlink_c::procSideStep() {
     if (mTargetedActor != NULL && field_0x300a != 0) {
         s16 actor_angle = fopAcM_searchActorAngleY(this, mTargetedActor);
         cLib_addCalcAngleS(&mCollisionRot.y, actor_angle, 5, 0x5E8, 0x13C);
@@ -393,12 +393,12 @@ bool daAlink_c::procSideStep() {
 
     field_0x300e = 1;
     checkItemChangeFromButton();
-    return true;
+    return 1;
 }
 
 /* 800C40F0-800C4278 0BEA30 0188+00 1/1 0/0 0/0 .text            procSideStepLandInit__9daAlink_cFv
  */
-bool daAlink_c::procSideStepLandInit() {
+int daAlink_c::procSideStepLandInit() {
     commonProcInit(PROC_SIDESTEP_LAND);
     if (field_0x2f98 == 1) {
         field_0x2f9d = 4;
@@ -435,11 +435,11 @@ bool daAlink_c::procSideStepLandInit() {
     mCommonCounter = 0;
     mCurrent.mAngle.y = mCollisionRot.y;
     setStepLandVibration();
-    return true;
+    return 1;
 }
 
 /* 800C4278-800C4378 0BEBB8 0100+00 1/0 0/0 0/0 .text            procSideStepLand__9daAlink_cFv */
-bool daAlink_c::procSideStepLand() {
+int daAlink_c::procSideStepLand() {
     daPy_frameCtrl_c* ctrl = &mFrameCtrl1[0];
     i_onEndResetFlg0(ERFLG0_UNK_8000000);
     if (field_0x2fcc != 0) {
@@ -458,16 +458,16 @@ bool daAlink_c::procSideStepLand() {
         }
     } else if (ctrl->getFrame() > field_0x3478) {
         if (mCommonCounter != 0 && checkSideRollAction(field_0x2f98)) {
-            return true;
+            return 1;
         }
         checkNextAction(1);
     }
 
-    return true;
+    return 1;
 }
 
 /* 800C4378-800C4514 0BECB8 019C+00 1/1 0/0 0/0 .text            procSlideInit__9daAlink_cFs */
-bool daAlink_c::procSlideInit(s16 param_0) {
+int daAlink_c::procSlideInit(s16 param_0) {
     commonProcInit(PROC_SLIDE);
 
     field_0x814.SetWeight(255);
@@ -503,7 +503,7 @@ bool daAlink_c::procSlideInit(s16 param_0) {
     field_0x33cc = FLOAT_LABEL(lit_6108);
     mCommonCounter = 0;
     field_0x3010 = 0;
-    return true;
+    return 1;
 }
 
 /* ############################################################################################## */
@@ -521,7 +521,7 @@ asm void daAlink_c::procSlide() {
 #pragma pop
 
 /* 800C47AC-800C4894 0BF0EC 00E8+00 1/1 0/0 0/0 .text            procSlideLandInit__9daAlink_cFi */
-bool daAlink_c::procSlideLandInit(int param_0) {
+int daAlink_c::procSlideLandInit(int param_0) {
     commonProcInit(PROC_SLIDE_LAND);
 
     if (param_0 != 0) {
@@ -537,11 +537,11 @@ bool daAlink_c::procSlideLandInit(int param_0) {
     }
     field_0x814.SetWeight(255);
     mNormalSpeed *= lit_5943;
-    return true;
+    return 1;
 }
 
 /* 800C4894-800C494C 0BF1D4 00B8+00 1/0 0/0 0/0 .text            procSlideLand__9daAlink_cFv */
-bool daAlink_c::procSlideLand() {
+int daAlink_c::procSlideLand() {
     daPy_frameCtrl_c* ctrl = &mFrameCtrl1[0];
 
     cLib_chaseF(&mNormalSpeed, FLOAT_LABEL(lit_6108), lit_7450);
@@ -561,12 +561,12 @@ bool daAlink_c::procSlideLand() {
             }
         }
     }
-    return true;
+    return 1;
 }
 
 /* 800C494C-800C4B40 0BF28C 01F4+00 4/3 0/0 0/0 .text            procFrontRollInit__9daAlink_cFv */
 #ifdef NONMATCHING
-bool daAlink_c::procFrontRollInit() {
+int daAlink_c::procFrontRollInit() {
     BOOL check = checkUpperGuardAnime();
     if (mProcID == PROC_FRONT_ROLL && mDemo.getDemoMode() == 0x28) {
         return 0;
@@ -616,14 +616,14 @@ bool daAlink_c::procFrontRollInit() {
             field_0xFB8.SetR(daAlinkHIO_frontRoll_c0::m.mBootsAttackRadius);
             field_0xFB8.OnAtSetBit();
         }
-        return true;
+        return 1;
     }
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool daAlink_c::procFrontRollInit() {
+asm int daAlink_c::procFrontRollInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procFrontRollInit__9daAlink_cFv.s"
 }
@@ -685,7 +685,7 @@ asm void daAlink_c::procFrontRollSuccess() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool daAlink_c::procSideRollInit(int param_0) {
+asm int daAlink_c::procSideRollInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procSideRollInit__9daAlink_cFi.s"
 }
@@ -726,7 +726,7 @@ void daAlink_c::backJumpSpeedDec() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool daAlink_c::procBackJumpInit(int param_0) {
+asm int daAlink_c::procBackJumpInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procBackJumpInit__9daAlink_cFi.s"
 }
@@ -855,7 +855,7 @@ asm void daAlink_c::procRollJump() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool daAlink_c::procFallInit(int param_0, f32 param_1) {
+asm int daAlink_c::procFallInit(int param_0, f32 param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/procFallInit__9daAlink_cFif.s"
 }
@@ -895,7 +895,7 @@ asm void daAlink_c::procLand() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSmallJumpInit(int param_0) {
+asm int daAlink_c::procSmallJumpInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procSmallJumpInit__9daAlink_cFi.s"
 }
@@ -984,7 +984,7 @@ bool daMidna_c::checkMidnaRealBody() {
 /* 800C77F4-800C7C64 0C2134 0470+00 4/2 0/0 0/0 .text procCoMetamorphoseInit__9daAlink_cFv */
 // 1 missing instruction, lots of regalloc. maybe related
 #ifdef NONMATCHING
-bool daAlink_c::procCoMetamorphoseInit() {
+int daAlink_c::procCoMetamorphoseInit() {
     int svar8 = 0;
 
     if (i_dComIfGp_getEvent().i_isOrderOK()) {
@@ -1100,7 +1100,7 @@ bool daAlink_c::procCoMetamorphoseInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool daAlink_c::procCoMetamorphoseInit() {
+asm int daAlink_c::procCoMetamorphoseInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoMetamorphoseInit__9daAlink_cFv.s"
 }
@@ -1970,7 +1970,7 @@ fopAc_ac_c* daAlink_c::getSpinnerActor() {
     if (!checkSpinnerRide()) {
         spinnerActor = NULL;
     } else {
-        spinnerActor = mRideActor.getActor();
+        spinnerActor = mRideAcKeep.getActor();
     }
     return spinnerActor;
 }
@@ -2049,15 +2049,15 @@ s32 daAlink_c::getAtnActorID() const {
 
 /* 800D0368-800D0370 0CACA8 0008+00 1/0 0/0 0/0 .text            getItemID__9daAlink_cCFv */
 s32 daAlink_c::getItemID() const {
-    return mItemActor.getID();
+    return mItemAcKeep.getID();
 }
 
 /* 800D0370-800D038C 0CACB0 001C+00 1/0 0/0 0/0 .text            getGrabActorID__9daAlink_cCFv */
 s32 daAlink_c::getGrabActorID() const {
     if (mEquipItem == 0x102) {
-        return mItemActor.getID();
+        return mItemAcKeep.getID();
     } else {
-        return mGrabItemActor.getID();
+        return mGrabItemAcKeep.getID();
     }
 }
 
@@ -2314,20 +2314,20 @@ cXyz* daAlink_c::getMagneBootsTopVec() {
 /* 800D0884-800D08B0 0CB1C4 002C+00 1/0 0/0 0/0 .text setCargoCarry__9daAlink_cFP10fopAc_ac_c */
 void daAlink_c::setCargoCarry(fopAc_ac_c* p_actor) {
     mSpecialMode = SMODE_CARGO_CARRY;
-    mCargoCarryActor.setData(p_actor);
+    mCargoCarryAcKeep.setData(p_actor);
 }
 
 /* 800D08B0-800D08DC 0CB1F0 002C+00 1/0 0/0 0/0 .text setGoronSideMove__9daAlink_cFP10fopAc_ac_c
  */
 void daAlink_c::setGoronSideMove(fopAc_ac_c* p_actor) {
     mSpecialMode = SMODE_GORON_THROW;
-    mCargoCarryActor.setData(p_actor);
+    mCargoCarryAcKeep.setData(p_actor);
 }
 
 /* 800D08DC-800D091C 0CB21C 0040+00 1/0 0/0 0/0 .text setSumouReady__9daAlink_cFP10fopAc_ac_c */
 void daAlink_c::setSumouReady(fopAc_ac_c* p_actor) {
     mSpecialMode = SMODE_SUMO_READY;
-    mCargoCarryActor.setData(p_actor);
+    mCargoCarryAcKeep.setData(p_actor);
     mDemo.setDemoMode(1);
 }
 

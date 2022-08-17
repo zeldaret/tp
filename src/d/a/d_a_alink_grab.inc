@@ -63,7 +63,7 @@ asm void daAlink_c::setGrabCollisionOffset(f32 param_0, f32 param_1, cBgS_PolyIn
 /* 800E3A14-800E3A9C 0DE354 0088+00 1/0 0/0 0/0 .text exchangeGrabActor__9daAlink_cFP10fopAc_ac_c
  */
 bool daAlink_c::exchangeGrabActor(fopAc_ac_c* p_actor) {
-    fopAc_ac_c* actor = mGrabItemActor.getActor();
+    fopAc_ac_c* actor = mGrabItemAcKeep.getActor();
 
     if (actor == NULL) {
         return false;

@@ -3,7 +3,7 @@
 // Translation Unit: d_a_spinner
 //
 
-#include "rel/d/a/d_a_spinner/d_a_spinner.h"
+// #include "rel/d/a/d_a_spinner/d_a_spinner.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

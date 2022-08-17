@@ -316,6 +316,8 @@ public:
     /* 8000F848 */ void initOldFrameMorf(f32, u16, u16);
     /* 8000F8CC */ void decOldFrameMorfCounter();
 
+    f32 getOldFrameRate() { return mOldFrameRate; }
+
 private:
     /* 0x00 */ bool mOldFrameFlg;
     /* 0x04 */ f32 mOldFrameMorfCounter;

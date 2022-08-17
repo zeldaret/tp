@@ -167,14 +167,14 @@ asm void daAlink_c::setCopyRodReadyAnime() {
 
 /* 800E191C-800E1A30 0DC25C 0114+00 1/1 0/0 0/0 .text            throwCopyRod__9daAlink_cFv */
 void daAlink_c::throwCopyRod() {
-    daCrod_c* copy_rod = static_cast<daCrod_c*>(mItemActor.getActor());
+    daCrod_c* copy_rod = static_cast<daCrod_c*>(mItemAcKeep.getActor());
     i_onNoResetFlg1(FLG1_UNK_10000);
 
     if (checkCopyRodTopUse()) {
         copy_rod->setThrow();
-        mCopyRodAcKeep = mItemActor;
+        mCopyRodAcKeep = mItemAcKeep;
         i_onNoResetFlg3(COPY_ROD_THROW_AFTER);
-        mItemActor.clearData();
+        mItemAcKeep.clearData();
     }
     dComIfGp_clearPlayerStatus0(0, 0x80);
     mFastShotTime = -1;
@@ -206,7 +206,7 @@ asm void daAlink_c::returnCopyRod() {
     i_offNoResetFlg3(COPY_ROD_THROW_AFTER);
 
     if (mEquipItem == 0x46) {
-        mItemActor = mCopyRodAcKeep;
+        mItemAcKeep = mCopyRodAcKeep;
         i_onNoResetFlg0(FLG0_UNK_20);
         cXyz tmp(0, 1, 0);
         dComIfGp_getVibration().StartShock(1, 1, tmp);

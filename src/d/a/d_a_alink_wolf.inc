@@ -305,7 +305,7 @@ void daAlink_c::checkWolfUseAbility() {
 
 /* 80129A80-80129B44 1243C0 00C4+00 13/13 0/0 0/0 .text checkWolfGroundSpecialMode__9daAlink_cFv
  */
-bool daAlink_c::checkWolfGroundSpecialMode() {
+int daAlink_c::checkWolfGroundSpecialMode() {
     if (mLinkAcch.ChkGroundHit() && !i_checkModeFlg(MODE_PLAYER_FLY) &&
         i_checkEndResetFlg0(ERFLG0_UNK_1)) {
         return procCoMetamorphoseInit();
@@ -314,11 +314,11 @@ bool daAlink_c::checkWolfGroundSpecialMode() {
     } else if (checkCargoCarry()) {
         return procWolfCargoCarryInit();
     } else if (checkSlideAction()) {
-        return true;
+        return 1;
     } else if (i_checkEndResetFlg1(ERFLG1_UNK_1)) {
         return procWolfScreamWaitInit();
     }
-    return false;
+    return 0;
 }
 
 /* 80129B44-8012A02C 124484 04E8+00 46/46 0/0 0/0 .text            checkNextActionWolf__9daAlink_cFi
@@ -1384,7 +1384,7 @@ static asm void daAlink_searchGiantTalk(fopAc_ac_c* param_0, void* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool daAlink_c::procWolfGiantPuzzleInit() {
+asm int daAlink_c::procWolfGiantPuzzleInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfGiantPuzzleInit__9daAlink_cFv.s"
 }
@@ -1573,7 +1573,7 @@ asm void daAlink_c::setWolfScreamWaitAnime() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool daAlink_c::procWolfScreamWaitInit() {
+asm int daAlink_c::procWolfScreamWaitInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfScreamWaitInit__9daAlink_cFv.s"
 }
@@ -2464,7 +2464,7 @@ static asm void daAlink_searchEnemyCargo(fopAc_ac_c* param_0, void* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool daAlink_c::procWolfCargoCarryInit() {
+asm int daAlink_c::procWolfCargoCarryInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfCargoCarryInit__9daAlink_cFv.s"
 }

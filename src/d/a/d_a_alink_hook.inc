@@ -110,8 +110,8 @@ void daAlink_c::changeHookshotDrawModel() {
 
 /* 801088A0-801088C8 1031E0 0028+00 6/6 0/0 0/0 .text checkHookshotRoofLv7Boss__9daAlink_cFv */
 BOOL daAlink_c::checkHookshotRoofLv7Boss() {
-    return mCargoCarryActor.getActor() != NULL &&
-           fopAcM_GetName(mCargoCarryActor.getActor()) == PROC_B_DR;
+    return mCargoCarryAcKeep.getActor() != NULL &&
+           fopAcM_GetName(mCargoCarryAcKeep.getActor()) == PROC_B_DR;
 }
 
 /* 801088C8-80108980 103208 00B8+00 2/2 0/0 0/0 .text            checkChaseHookshot__9daAlink_cFv */
@@ -176,10 +176,10 @@ asm void daAlink_c::setHookshotCatchNow() {
  */
 bool daAlink_c::setHookshotCarryOffset(unsigned int actorID, cXyz const* offset) {
     if (i_dComIfGp_checkPlayerStatus1(0, 0x10000)) {
-        fopAc_ac_c* carryActor = mCargoCarryActor.getActor();
+        fopAc_ac_c* carryActor = mCargoCarryAcKeep.getActor();
 
         if (carryActor != NULL && fopAcM_checkHookCarryNow(carryActor) &&
-            actorID == mCargoCarryActor.getID()) {
+            actorID == mCargoCarryAcKeep.getID()) {
             field_0x37c8 = *offset;
             return true;
         }

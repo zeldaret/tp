@@ -74,227 +74,6 @@ struct dDemo_actor_c {
     /* 80038338 */ void getDemoIDData(int*, int*, int*, u16*, u8*);
 };
 
-struct daAlinkHIO_wolf_c {
-    /* 80140B98 */ ~daAlinkHIO_wolf_c();
-};
-
-struct daAlinkHIO_wlAtDown_c0 {
-    static u8 const m[156];
-};
-
-struct daAlinkHIO_wlAtCjump_c0 {
-    static u8 const m[100];
-};
-
-struct daAlinkHIO_wlAtBite_c0 {
-    static u8 const m[92];
-};
-
-struct daAlinkHIO_wallHang_c0 {
-    static u8 const m[28];
-};
-
-struct daAlinkHIO_wallFall_c0 {
-    static u8 const m[40];
-};
-
-struct daAlinkHIO_wallCatch_c0 {
-    static u8 const m[84];
-};
-
-struct daAlinkHIO_smallJump_c0 {
-    static u8 const m[72];
-};
-
-struct daAlinkHIO_roofHang_c0 {
-    static u8 const m[76];
-};
-
-struct daAlinkHIO_pushpull_c0 {
-    static u8 const m[60];
-};
-
-struct daAlinkHIO_pickUp_c0 {
-    static u8 const m[48];
-};
-
-struct daAlinkHIO_noActAtnMove_c0 {
-    static u8 const m[84];
-};
-
-struct daAlinkHIO_kandelaar_c0 {
-    static u8 const m[80];
-};
-
-struct daAlinkHIO_ironBall_c0 {
-    static u8 const m[140];
-};
-
-struct daAlinkHIO_huLight_c0 {
-    static u8 const m[28];
-};
-
-struct daAlinkHIO_hoCutRB_c0 {
-    static u8 const m[32];
-};
-
-struct daAlinkHIO_hoCutRA_c0 {
-    static u8 const m[32];
-};
-
-struct daAlinkHIO_hoCutLB_c0 {
-    static u8 const m[32];
-};
-
-struct daAlinkHIO_hoCutLA_c0 {
-    static u8 const m[32];
-};
-
-struct daAlinkHIO_hoCutCharge_c0 {
-    static u8 const m[84];
-};
-
-struct daAlinkHIO_guard_c0 {
-    static u8 const m[128];
-};
-
-struct daAlinkHIO_grab_c0 {
-    static u8 const m[228];
-};
-
-struct daAlinkHIO_gAtPush_c0 {
-    static u8 const m[36];
-};
-
-struct daAlinkHIO_gAtKick_c0 {
-    static u8 const m[36];
-};
-
-struct daAlinkHIO_fmChain_c0 {
-    static u8 const m[40];
-};
-
-struct daAlinkHIO_damage_c0 {
-    static u8 const m[88];
-};
-
-struct daAlinkHIO_damSwim_c0 {
-    static u8 const m[140];
-};
-
-struct daAlinkHIO_damNormal_c0 {
-    static u8 const m[100];
-};
-
-struct daAlinkHIO_damLarge_c0 {
-    static u8 const m[188];
-};
-
-struct daAlinkHIO_damHuge_c0 {
-    static u8 const m[188];
-};
-
-struct daAlinkHIO_damHorse_c0 {
-    static u8 const m[44];
-};
-
-struct daAlinkHIO_damFall_c0 {
-    static u8 const m[72];
-};
-
-struct daAlinkHIO_damCaught_c0 {
-    static u8 const m[36];
-};
-
-struct daAlinkHIO_cut_c {
-    /* 80140BD4 */ ~daAlinkHIO_cut_c();
-};
-
-struct daAlinkHIO_cutTurn_c0 {
-    static u8 const m[152];
-};
-
-struct daAlinkHIO_cutNmV_c0 {
-    static u8 const m[32];
-};
-
-struct daAlinkHIO_cutNmSR_c0 {
-    static u8 const m[32];
-};
-
-struct daAlinkHIO_cutNmSL_c0 {
-    static u8 const m[32];
-};
-
-struct daAlinkHIO_cutNmR_c0 {
-    static u8 const m[32];
-};
-
-struct daAlinkHIO_cutNmL_c0 {
-    static u8 const m[32];
-};
-
-struct daAlinkHIO_cutHead_c0 {
-    static u8 const m[96];
-};
-
-struct daAlinkHIO_cutFnV_c0 {
-    static u8 const m[44];
-};
-
-struct daAlinkHIO_cutFnSm_c0 {
-    static u8 const m[44];
-};
-
-struct daAlinkHIO_cutFnSl_c0 {
-    static u8 const m[44];
-};
-
-struct daAlinkHIO_cutFnS_c0 {
-    static u8 const m[44];
-};
-
-struct daAlinkHIO_cutFnR_c0 {
-    static u8 const m[44];
-};
-
-struct daAlinkHIO_cutFnL_c0 {
-    static u8 const m[44];
-};
-
-struct daAlinkHIO_cutFnJU_c0 {
-    static u8 const m[84];
-};
-
-struct daAlinkHIO_cutDown_c0 {
-    static u8 const m[116];
-};
-
-struct daAlinkHIO_cutDaR_c0 {
-    static u8 const m[28];
-};
-
-struct daAlinkHIO_cutDaL_c0 {
-    static u8 const m[28];
-};
-
-struct daAlinkHIO_cutDaCharge_c0 {
-    static u8 const m[28];
-};
-
-struct daAlinkHIO_crouch_c0 {
-    static u8 const m[76];
-};
-
-struct daAlinkHIO_canoe_c0 {
-    static u8 const m[72];
-};
-
-struct daAlinkHIO_c {
-    /* 80140B88 */ daAlinkHIO_c();
-    /* 80140C10 */ ~daAlinkHIO_c();
-};
-
 struct dPaPoF_c {
     /* 800512E8 */ void setEffectFour(dKy_tevstr_c const*, cXyz const*, u32, u32, cXyz const*,
                                       cXyz const*, cXyz const*, cXyz const*, cXyz const*,
@@ -14346,7 +14125,7 @@ void daAlink_c::setPlayerPosAndAngle(cXyz const* p_pos, s16 param_1, int param_2
         }
 
         if (checkHorseRide() || checkSpinnerRide()) {
-            fopAc_ac_c* rideAc = mRideActor.getActor();
+            fopAc_ac_c* rideAc = mRideAcKeep.getActor();
             rideAc->mCurrent.mPosition = mCurrent.mPosition;
             rideAc->mCollisionRot.y = mCollisionRot.y;
             rideAc->mCurrent.mAngle.y = mCollisionRot.y;
@@ -14497,12 +14276,12 @@ void daAlink_c::setStickData() {
     } else if (checkDeadHP() || dMeter2Info_getPauseStatus() == 1) {
         field_0x33a8 = 0.0f;
         field_0x33ac = 0.0f;
-        field_0x2fe0 = 0;
+        mStickAngle = 0;
         field_0x2fe2 = 0;
     } else if (checkMidnaLockJumpPoint() && getMidnaActor()->checkNoInput()) {
         field_0x33a8 = 0.0f;
         field_0x33ac = 0.0f;
-        field_0x2fe0 = 0;
+        mStickAngle = 0;
         dComIfGp_2dShowOff();
         i_onNoResetFlg2(0x80);
         var_r31 = 1;
@@ -14513,23 +14292,23 @@ void daAlink_c::setStickData() {
         }
 
         bool usingFishRod = false;
-        if (checkFishingRodAndLureItem() && mItemActor.getActor() != NULL &&
+        if (checkFishingRodAndLureItem() && mItemAcKeep.getActor() != NULL &&
             (checkCanoeRide() || mProcID == PROC_FISHING_CAST)) {
             usingFishRod = true;
         }
 
         if (usingFishRod) {
-            dmg_rod_class* mg_rod = (dmg_rod_class*)mItemActor.getActor();
+            dmg_rod_class* mg_rod = (dmg_rod_class*)mItemAcKeep.getActor();
             field_0x33a8 = JMAFastSqrt((mg_rod->getRodStickX() * mg_rod->getRodStickX()) +
                                        (mg_rod->getRodStickY() * mg_rod->getRodStickY()));
-            field_0x2fe0 = cM_atan2s(-mg_rod->getRodStickX(), mg_rod->getRodStickY());
+            mStickAngle = cM_atan2s(-mg_rod->getRodStickX(), mg_rod->getRodStickY());
         } else {
             field_0x33a8 = mDoCPd_c::getStickValue(PAD_1);
-            field_0x2fe0 = mDoCPd_c::getStickAngle3D(PAD_1) - 0x8000;
+            mStickAngle = mDoCPd_c::getStickAngle3D(PAD_1) - 0x8000;
         }
 
         field_0x33ac = field_0x33a8;
-        field_0x2fe2 = field_0x2fe0 + dCam_getControledAngleY(dComIfGp_getCamera(field_0x317c));
+        field_0x2fe2 = mStickAngle + dCam_getControledAngleY(dComIfGp_getCamera(field_0x317c));
 
         if (i_checkMagneBootsOn()) {
             if (field_0x2fb9 == 1 ||
@@ -14617,7 +14396,7 @@ void daAlink_c::setStickData() {
         }
     }
 
-    s16 sub = field_0x2fe0 - field_0x307c;
+    s16 sub = mStickAngle - field_0x307c;
     int x = abs(sub);
 
     if (x < 0x4000 && x > 0x6D4 && field_0x3180 * sub > 0) {
@@ -14726,14 +14505,21 @@ asm void daAlink_c::checkRestHPAnime() {
 #pragma pop
 
 /* 800B3494-800B3500 0ADDD4 006C+00 44/44 0/0 0/0 .text getDirectionFromAngle__9daAlink_cFs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getDirectionFromAngle(s16 param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/getDirectionFromAngle__9daAlink_cFs.s"
+int daAlink_c::getDirectionFromAngle(s16 angle) {
+    if (abs(angle) > 0x6000) {
+        return DIR_BACKWARD;
+    }
+
+    if (angle >= 0x2000) {
+        return DIR_LEFT;
+    }
+
+    if (angle <= -0x2000) {
+        return DIR_RIGHT;
+    }
+
+    return DIR_FORWARD;
 }
-#pragma pop
 
 /* 800B3500-800B3630 0ADE40 0130+00 13/13 0/0 0/0 .text            checkAttentionState__9daAlink_cFv
  */
@@ -15375,7 +15161,7 @@ asm void daAlink_c::swordUnequip() {
 
 /* 800B9640-800B96A4 0B3F80 0064+00 6/6 0/0 0/0 .text            itemEquip__9daAlink_cFUs */
 void daAlink_c::itemEquip(u16 item_id) {
-    if (mThrowBoomerangActor.getActor() == NULL || item_id != BOOMERANG) {
+    if (mThrowBoomerangAcKeep.getActor() == NULL || item_id != BOOMERANG) {
         field_0x2fde = item_id;
         dComIfGp_clearPlayerStatus0(0, 0x400000);
         i_offNoResetFlg3(0x40000);
@@ -16120,7 +15906,7 @@ BOOL daAlink_c::setItemModel() {
     if (mEquipItem == IRONBALL) {
         setIronBallModel();
         setIronBallWaitUpperAnime(1);
-        return mItemActor.getActor() != NULL ? 1 : 0;
+        return mItemAcKeep.getActor() != NULL ? 1 : 0;
     }
 
     return 0;
@@ -16138,7 +15924,7 @@ BOOL daAlink_c::setItemActor() {
             return 0;
         }
 
-        mItemActor.setData(actor);
+        mItemAcKeep.setData(actor);
         field_0x2f94 = 2;
         return 1;
     }
@@ -16151,7 +15937,7 @@ BOOL daAlink_c::setItemActor() {
             return 0;
         }
 
-        mItemActor.setData(actor);
+        mItemAcKeep.setData(actor);
         field_0x2f94 = 2;
         return 1;
     }
@@ -16167,14 +15953,14 @@ BOOL daAlink_c::setItemActor() {
             return 0;
         }
 
-        mItemActor.setData(actor);
+        mItemAcKeep.setData(actor);
         field_0x173c.SetActor(actor);
         return 1;
     }
 
     if (checkFisingRodLure()) {
         u32 id = fopAcM_create(PROC_MG_ROD, 0x10D, &mLeftHandPos, -1, NULL, NULL, 0xFF);
-        mItemActor.setID(id);
+        mItemAcKeep.setID(id);
         initFishingRodHand();
         return 1;
     }
@@ -16811,7 +16597,7 @@ void daAlink_c::commonFallInit(int param_0) {
     if (i_checkWolf()) {
         procWolfFallInit(param_0, daAlinkHIO_wlAutoJump_c0::m.field_0x54);
     } else {
-        procFallInit(param_0, daAlinkHIO_autoJump_c0::m.field_0x70);
+        procFallInit(param_0, daAlinkHIO_autoJump_c0::m.mFallInterpolation);
     }
 }
 

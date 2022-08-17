@@ -244,6 +244,7 @@ public:
     enum daPy_ERFLG1 {
         GANON_FINISH = 0x80000000,
         UNK_FORCE_PUT_POS = 0x2000,
+        ERFLG1_UNK_2 = 2,
         ERFLG1_UNK_1 = 1,
     };
     enum daPy_ERFLG2 {

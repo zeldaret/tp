@@ -523,6 +523,13 @@ inline f32 fopAcM_searchPlayerDistance(const fopAc_ac_c* actor) {
     return fopAcM_searchActorDistance(actor, (fopAc_ac_c*)dComIfGp_getPlayer(0));
 }
 
+s8 dComIfGp_getReverb(int roomNo);
+
+inline void fopAcM_seStartCurrent(const fopAc_ac_c* actor, u32 sfxID, u32 param_2) {
+    s8 roomNo = fopAcM_GetRoomNo(actor);
+    mDoAud_seStart(sfxID, &actor->mCurrent.mPosition, param_2, dComIfGp_getReverb(roomNo));
+}
+
 extern "C" {
 void fopAcM_initManager__Fv(void);
 void fopAcM_CreateAppend__Fv(void);

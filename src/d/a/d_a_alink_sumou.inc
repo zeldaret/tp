@@ -10,7 +10,7 @@ asm void daAlink_c::checkSumouVsActor() {
 
 /* 800EA8D0-800EA908 0E5210 0038+00 5/5 0/0 0/0 .text            cancelSumouMode__9daAlink_cFv */
 void daAlink_c::cancelSumouMode() {
-    mCargoCarryActor.clearData();
+    mCargoCarryAcKeep.clearData();
     mSpecialMode = 0;
 }
 
