@@ -4,7 +4,6 @@
 //
 
 #include "JSystem/JStudio/JStudio/ctb.h"
-#include "JSystem/JGadget/binary.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -12,76 +11,13 @@
 // Types:
 //
 
-namespace JStudio {
-namespace ctb {
-struct TObject {
-    /* 80280F18 */ ~TObject();
-};
-
-struct data {
-    struct TParse_TBlock {};
-
-    static u32 ga4cSignature[1 + 1 /* padding */];
-};
-
-struct TObject_TxyzRy {
-    /* 80280F60 */ TObject_TxyzRy(JStudio::ctb::data::TParse_TBlock const&);
-    /* 80280FBC */ bool getScheme() const;
-    /* 80281554 */ ~TObject_TxyzRy();
-};
-
-struct TControl {
-    /* 80280FC4 */ TControl();
-    /* 80280FF4 */ ~TControl();
-    /* 80281060 */ void appendObject(JStudio::ctb::TObject*);
-    /* 802810AC */ void removeObject(JStudio::ctb::TObject*);
-    /* 802810DC */ void destroyObject(JStudio::ctb::TObject*);
-    /* 8028112C */ void destroyObject_all();
-    /* 80281190 */ void getObject(void const*, u32);
-    /* 80281230 */ void getObject_index(u32);
-};
-
-struct TFactory {
-    /* 80281274 */ ~TFactory();
-    /* 802812BC */ void create(JStudio::ctb::data::TParse_TBlock const&);
-    /* 80281320 */ void destroy(JStudio::ctb::TObject*);
-};
-
-struct TParse {
-    /* 8028135C */ TParse(JStudio::ctb::TControl*);
-    /* 8028137C */ ~TParse();
-    /* 802813DC */ void parseHeader_next(void const**, u32*, u32);
-    /* 80281470 */ void parseBlock_next(void const**, u32*, u32);
-};
-
-};  // namespace ctb
-
-namespace object {
-struct TPRObject_ID_equal {};
-
-struct TIDData {
-    /* 80288988 */ void isEqual(JStudio::object::TIDData const&, JStudio::object::TIDData const&);
-};
-};  // namespace object
-
-};  // namespace JStudio
-
-namespace JGadget {
-template <typename A1, typename B1>
-struct TLinkList {};
-/* TLinkList<JStudio::ctb::TObject, 12> */
-struct TLinkList__template0 {
-    struct iterator {};
-};
-};  // namespace JGadget
-
 namespace std {
 template <typename A1, typename B1>
 void find_if(/* ... */);
 /* 802815B4 */ /* std::find_if<JGadget::TLinkList<JStudio::ctb::TObject, 12>::iterator,
                   JStudio::object::TPRObject_ID_equal> */
-void func_802815B4(void* _this, JGadget::TLinkList__template0::iterator,
-                   JGadget::TLinkList__template0::iterator, JStudio::object::TPRObject_ID_equal);
+void func_802815B4(void* _this, JGadget::TLinkList<JStudio::ctb::TObject, 12>::iterator,
+                   JGadget::TLinkList<JStudio::ctb::TObject, 12>::iterator, JStudio::object::TPRObject_ID_equal);
 };  // namespace std
 
 //
@@ -107,8 +43,8 @@ extern "C" void __dt__Q37JStudio3ctb6TParseFv();
 extern "C" void parseHeader_next__Q37JStudio3ctb6TParseFPPCvPUlUl();
 extern "C" void parseBlock_next__Q37JStudio3ctb6TParseFPPCvPUlUl();
 extern "C" void __dt__Q37JStudio3ctb14TObject_TxyzRyFv();
-extern "C" void func_802815B4(void* _this, JGadget::TLinkList__template0::iterator,
-                              JGadget::TLinkList__template0::iterator,
+extern "C" void func_802815B4(void* _this, JGadget::TLinkList<JStudio::ctb::TObject, 12>::iterator,
+                              JGadget::TLinkList<JStudio::ctb::TObject, 12>::iterator,
                               JStudio::object::TPRObject_ID_equal);
 
 //
@@ -222,7 +158,8 @@ asm JStudio::ctb::TControl::TControl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JStudio::ctb::TControl::~TControl() {
+// asm JStudio::ctb::TControl::~TControl() {
+extern "C" asm void __dt__Q37JStudio3ctb8TControlFv() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/ctb/__dt__Q37JStudio3ctb8TControlFv.s"
 }
@@ -297,7 +234,8 @@ asm void JStudio::ctb::TControl::getObject_index(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JStudio::ctb::TFactory::~TFactory() {
+// asm JStudio::ctb::TFactory::~TFactory() {
+extern "C" asm void __dt__Q37JStudio3ctb8TFactoryFv() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/ctb/__dt__Q37JStudio3ctb8TFactoryFv.s"
 }
@@ -340,7 +278,8 @@ asm JStudio::ctb::TParse::TParse(JStudio::ctb::TControl* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JStudio::ctb::TParse::~TParse() {
+// asm JStudio::ctb::TParse::~TParse() {
+extern "C" asm void __dt__Q37JStudio3ctb6TParseFv() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/ctb/__dt__Q37JStudio3ctb6TParseFv.s"
 }
@@ -372,7 +311,8 @@ asm void JStudio::ctb::TParse::parseBlock_next(void const** param_0, u32* param_
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JStudio::ctb::TObject_TxyzRy::~TObject_TxyzRy() {
+// asm JStudio::ctb::TObject_TxyzRy::~TObject_TxyzRy() {
+extern "C" asm void __dt__Q37JStudio3ctb14TObject_TxyzRyFv() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/ctb/__dt__Q37JStudio3ctb14TObject_TxyzRyFv.s"
 }
@@ -384,8 +324,8 @@ asm JStudio::ctb::TObject_TxyzRy::~TObject_TxyzRy() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802815B4(void* _this, JGadget::TLinkList__template0::iterator param_0,
-                                  JGadget::TLinkList__template0::iterator param_1,
+extern "C" asm void func_802815B4(void* _this, JGadget::TLinkList<JStudio::ctb::TObject, 12>::iterator param_0,
+                                  JGadget::TLinkList<JStudio::ctb::TObject, 12>::iterator param_1,
                                   JStudio::object::TPRObject_ID_equal param_2) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/ctb/func_802815B4.s"

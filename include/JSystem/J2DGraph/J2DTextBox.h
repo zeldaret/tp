@@ -17,6 +17,29 @@ enum J2DTextBoxHBinding {
     /* 0x2 */ HBIND_LEFT
 };
 
+struct J2DTbxBlockHeader {
+    /* 0x00 */ u32 mTag;
+    /* 0x04 */ s32 mSize;
+};
+
+struct J2DTextBoxInfo {
+    /* 0x00 */ u16 field_0x0;
+    /* 0x02 */ u16 field_0x2;
+    /* 0x04 */ u16 mMaterialNum;
+    /* 0x06 */ s16 mCharSpace;
+    /* 0x08 */ s16 mLineSpace;
+    /* 0x0A */ u16 mFontSizeX;
+    /* 0x0C */ u16 mFontSizeY;
+    /* 0x0E */ u8 mHBind;
+    /* 0x0F */ u8 mVBind;
+    /* 0x10 */ u32 mCharColor;
+    /* 0x14 */ u32 mGradColor;
+    /* 0x18 */ u8 mConnected;
+    /* 0x19 */ char field_0x19[3];
+    /* 0x1C */ u16 field_0x1c;
+    /* 0x1E */ u16 field_0x1e;
+};  // Size: 0x20
+
 class J2DTextBox : public J2DPane {
 public:
     struct TFontSize {
@@ -33,13 +56,13 @@ public:
     /* 80300C70 */ virtual bool isUsed(ResTIMG const*);
     /* 80300BFC */ virtual bool isUsed(ResFONT const*);
     /* 80300C90 */ virtual void rewriteAlpha();
-    /* 80300490 */ virtual void draw(f32, f32, f32, J2DTextBoxHBinding);
     /* 803002E8 */ virtual void draw(f32, f32);
+    /* 80300490 */ virtual void draw(f32, f32, f32, J2DTextBoxHBinding);
     /* 80300278 */ virtual void setFont(JUTFont*);
     /* 8021C7F4 */ virtual JUTFont* getFont() const;
     /* 80254408 */ virtual bool setBlack(JUtility::TColor);
-    /* 80186C84 */ virtual void setWhite(JUtility::TColor);
-    /* 8019230C */ virtual void setBlackWhite(JUtility::TColor, JUtility::TColor);
+    /* 80186C84 */ virtual bool setWhite(JUtility::TColor);
+    /* 8019230C */ virtual bool setBlackWhite(JUtility::TColor, JUtility::TColor);
     /* 801DFA34 */ virtual JUtility::TColor getBlack() const;
     /* 801DFA28 */ virtual JUtility::TColor getWhite() const;
     /* 8025602C */ virtual bool getMaterial() const;
@@ -63,7 +86,7 @@ public:
         } else {
             x = 0.0f;
         }
-        field_0x11c = x;
+        mFontSizeX = x;
 
         f32 y;
         if (sizeY > 0.0f) {
@@ -71,13 +94,13 @@ public:
         } else {
             y = 0.0f;
         }
-        field_0x120 = y;
+        mFontSizeY = y;
     }
 
     void setFontSize(TFontSize size) { setFontSize(size.mSizeX, size.mSizeY); }
     void getFontSize(TFontSize& size) const {
-        size.mSizeX = field_0x11c;
-        size.mSizeY = field_0x120;
+        size.mSizeX = mFontSizeX;
+        size.mSizeY = mFontSizeY;
     }
 
     void setCharSpace(f32 space) { mCharSpacing = space; }
@@ -85,7 +108,15 @@ public:
     void setLineSpace(f32 space) { mLineSpacing = space; }
     f32 getLineSpace() const { return mLineSpacing; }
 
-private:
+    J2DTextBoxVBinding getVBinding() const {
+        return (J2DTextBoxVBinding)(mFlags & 3);
+    }
+
+    J2DTextBoxHBinding getHBinding() const {
+        return (J2DTextBoxHBinding)((mFlags >> 2) & 3);
+    }
+
+// private:
     /* 0x0100 */ JUTFont* mFont;
     /* 0x0104 */ JUtility::TColor mCharColor;
     /* 0x0108 */ JUtility::TColor mGradientColor;
@@ -93,14 +124,15 @@ private:
     /* 0x0110 */ f32 field_0x110;
     /* 0x0114 */ f32 mCharSpacing;
     /* 0x0118 */ f32 mLineSpacing;
-    /* 0x011C */ f32 field_0x11c;
-    /* 0x0120 */ f32 field_0x120;
+    /* 0x011C */ f32 mFontSizeX;
+    /* 0x0120 */ f32 mFontSizeY;
     /* 0x0124 */ char* mStringPtr;
     /* 0x0128 */ JUtility::TColor mWhiteColor;
     /* 0x012C */ JUtility::TColor mBlackColor;
     /* 0x0130 */ u8 mFlags;
     /* 0x0131 */ bool mTextFontOwned;
     /* 0x0132 */ s16 mStringLength;
-};
+    /* 0x0134 */ u8 field_0x134[4];
+};  // Size: 0x138
 
 #endif /* J2DTEXTBOX_H */

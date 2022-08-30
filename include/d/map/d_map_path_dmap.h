@@ -56,13 +56,13 @@ public:
 
     /* 8003FE18 */ virtual void draw();
     /* 8002B150 */ virtual ~renderingDAmap_c();
-    /* 8003FD9C */ virtual void isSwitch(dDrawPath_c::group_class const*);
-    /* 8003FE54 */ virtual void isRenderingFloor(int);
-    /* 80040134 */ virtual void getFirstRoomPointer();
-    /* 800401E8 */ virtual void getNextRoomPointer();
+    /* 8003FD9C */ virtual bool isSwitch(dDrawPath_c::group_class const*);
+    /* 8003FE54 */ virtual bool isRenderingFloor(int);
+    /* 80040134 */ virtual dDrawPath_c::room_class* getFirstRoomPointer();
+    /* 800401E8 */ virtual dDrawPath_c::room_class* getNextRoomPointer();
     /* 8003FF14 */ virtual void preDrawPath();
     /* 8003FFC4 */ virtual void postDrawPath();
-    /* 800402C0 */ virtual void isDrawPath();
+    /* 800402C0 */ virtual bool isDrawPath();
     /* 8003FE4C */ virtual GXColor* getBackColor() const;
     /* 800402E0 */ virtual bool getFirstDrawLayerNo();
     /* 800402E8 */ virtual void getNextDrawLayerNo(int);

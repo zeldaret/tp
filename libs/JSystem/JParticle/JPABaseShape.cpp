@@ -912,7 +912,7 @@ void JPADrawPoint(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
     GXBegin(GX_POINTS, GX_VTXFMT1, 1);
     GXPosition3f32(ptcl->mPosition.x, ptcl->mPosition.y, ptcl->mPosition.z);
     GXTexCoord2f32(0.0f, 0.0f);
-    GXEnd();
+    i_GXEnd();
     GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
     GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
 }

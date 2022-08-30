@@ -1007,7 +1007,7 @@ s32 fopAcM_orderTalkEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, u16 priority, 
         priority = 0x1FF;
     }
 
-    return dComIfGp_event_order(0, priority, flag, 0x14F, actorA, actorB, -1, -1);
+    return dComIfGp_event_order(EVT_TYPE_TALK, priority, flag, 0x14F, actorA, actorB, -1, -1);
 }
 
 /* 8001B0FC-8001B19C 015A3C 00A0+00 0/0 1/1 0/0 .text
@@ -1019,7 +1019,7 @@ s32 fopAcM_orderTalkItemBtnEvent(u16 eventType, fopAc_ac_c* actorA, fopAc_ac_c* 
     }
 
     if (priority == 0) {
-        priority = 0x1F4;
+        priority = 500;
     }
 
     return dComIfGp_event_order(eventType, priority, flag, 0x14F, actorA, actorB, -1, -1);
@@ -1038,7 +1038,7 @@ s32 fopAcM_orderSpeakEvent(fopAc_ac_c* actor, u16 priority, u16 flag) {
         priority = 0x1EA;
     }
 
-    return dComIfGp_event_order(0, priority, flag, 0x14F, dComIfGp_getPlayer(0), actor, -1, -1);
+    return dComIfGp_event_order(EVT_TYPE_TALK, priority, flag, 0x14F, dComIfGp_getPlayer(0), actor, -1, -1);
 }
 #else
 #pragma push
@@ -1069,7 +1069,7 @@ s32 fopAcM_orderDoorEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, u16 priority, 
         eventID = i_dComIfGp_getEventManager().getEventIdx(actorA, NULL, toolID);
     }
 
-    return dComIfGp_event_order(1, priority, flag, -1, actorA, actorB, eventID, toolID);
+    return dComIfGp_event_order(EVT_TYPE_DOOR, priority, flag, -1, actorA, actorB, eventID, toolID);
 }
 
 /* 8001B334-8001B3CC 015C74 0098+00 0/0 1/1 0/0 .text
@@ -1083,7 +1083,7 @@ s32 fopAcM_orderCatchEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, u16 priority,
         priority = 2;
     }
 
-    return dComIfGp_event_order(10, priority, flag, -1, actorA, actorB, -1, -1);
+    return dComIfGp_event_order(EVT_TYPE_CATCH, priority, flag, -1, actorA, actorB, -1, -1);
 }
 
 /* 8001B3CC-8001B4E0 015D0C 0114+00 0/0 2/2 6/6 .text
@@ -1108,7 +1108,7 @@ s32 fopAcM_orderOtherEvent(fopAc_ac_c* actor, char const* param_1, u16 param_2, 
         eventPrio = priority;
     }
 
-    return dComIfGp_event_order(2, eventPrio, flag, param_2, actor, event_second_actor(flag), eventIdx, -1);
+    return dComIfGp_event_order(EVT_TYPE_OTHER, eventPrio, flag, param_2, actor, event_second_actor(flag), eventIdx, -1);
 }
 
 /* 8001B4E0-8001B5E4 015E20 0104+00 0/0 1/1 2/2 .text
@@ -1133,7 +1133,7 @@ s32 fopAcM_orderOtherEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, char const* p
         eventPrio = priority;
     }
 
-    return dComIfGp_event_order(2, eventPrio, flag, param_3, actorA, actorB, eventIdx, -1);
+    return dComIfGp_event_order(EVT_TYPE_OTHER, eventPrio, flag, param_3, actorA, actorB, eventIdx, -1);
 }
 
 /* 8001B5E4-8001B67C 015F24 0098+00 0/0 2/2 41/41 .text
@@ -1144,12 +1144,12 @@ s32 fopAcM_orderChangeEventId(fopAc_ac_c* actor, s16 eventID, u16 flag, u16 para
         eventPrio = 0xFF;
     }
 
-    return dComIfGp_event_order(2, eventPrio, flag | 0x400, param_3, actor, event_second_actor(flag), eventID, -1);
+    return dComIfGp_event_order(EVT_TYPE_OTHER, eventPrio, flag | 0x400, param_3, actor, event_second_actor(flag), eventID, -1);
 }
 
 /* 8001B67C-8001B7B4 015FBC 0138+00 0/0 10/10 101/101 .text
  * fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs            */
-s32 fopAcM_orderOtherEventId(fopAc_ac_c* actor, s16 eventID, u8 param_2, u16 param_3,
+s32 fopAcM_orderOtherEventId(fopAc_ac_c* actor, s16 eventID, u8 mapToolID, u16 param_3,
                                  u16 priority, u16 flag) {
     if (!i_dComIfGp_getEvent().i_isOrderOK() && (!(flag & 0x400) || !i_dComIfGp_getEvent().isChangeOK(actor))) {
         return 0;
@@ -1168,16 +1168,16 @@ s32 fopAcM_orderOtherEventId(fopAc_ac_c* actor, s16 eventID, u8 param_2, u16 par
 
         if (eventPrio != 0) {
             newPriority = eventPrio;
-        } else if (param_2 != 0xFF) {
-            dStage_MapEvent_dt_c* dt = dEvt_control_c::searchMapEventData(param_2, roomNo);
+        } else if (mapToolID != 0xFF) {
+            dStage_MapEvent_dt_c* dt = dEvt_control_c::searchMapEventData(mapToolID, roomNo);
 
             if (dt != NULL) {
-                newPriority = dt->field_0x6;
+                newPriority = dt->mPriority;
             }
         }
     }
 
-    return dComIfGp_event_order(2, newPriority, flag, param_3, actor, event_second_actor(flag), eventID, param_2);
+    return dComIfGp_event_order(EVT_TYPE_OTHER, newPriority, flag, param_3, actor, event_second_actor(flag), eventID, mapToolID);
 }
 
 /* 8001B7B4-8001B8E0 0160F4 012C+00 1/1 1/1 4/4 .text
@@ -1196,7 +1196,7 @@ s32 fopAcM_orderMapToolEvent(fopAc_ac_c* actor, u8 param_1, s16 eventID, u16 par
 
     dStage_MapEvent_dt_c* dt = dEvt_control_c::searchMapEventData(param_1, roomNo);
     if (dt != NULL) {
-        newPriority = dt->field_0x6;
+        newPriority = dt->mPriority;
 
         if (eventID == 0xFF) {
             eventID = i_dComIfGp_getEventManager().getEventIdx(actor, param_1);
@@ -1211,7 +1211,7 @@ s32 fopAcM_orderMapToolEvent(fopAc_ac_c* actor, u8 param_1, s16 eventID, u16 par
         newPriority = param_5;
     }
 
-    return dComIfGp_event_order(2, newPriority, flag, param_3, actor, event_second_actor(flag), eventID, param_1);
+    return dComIfGp_event_order(EVT_TYPE_OTHER, newPriority, flag, param_3, actor, event_second_actor(flag), eventID, param_1);
 }
 
 /* 8001B8E0-8001B908 016220 0028+00 0/0 1/1 1/1 .text
@@ -1232,7 +1232,7 @@ s32 fopAcM_orderPotentialEvent(fopAc_ac_c* actor, u16 flag, u16 param_2, u16 pri
         priority = 0xFF;
     }
 
-    return dComIfGp_event_order(4, priority, flag, param_2, actor, event_second_actor(flag), -1, -1);
+    return dComIfGp_event_order(EVT_TYPE_POTENTIAL, priority, flag, param_2, actor, event_second_actor(flag), -1, -1);
 }
 
 /* 8001B9D0-8001BA7C 016310 00AC+00 0/0 3/3 12/12 .text fopAcM_orderItemEvent__FP10fopAc_ac_cUsUs
@@ -1248,7 +1248,7 @@ s32 fopAcM_orderItemEvent(fopAc_ac_c* actor, u16 priority, u16 flag) {
         priority = 0xFF;
     }
 
-    return dComIfGp_event_order(5, priority, flag, -1, dComIfGp_getPlayer(0), actor, -1, -1);
+    return dComIfGp_event_order(EVT_TYPE_ITEM, priority, flag, -1, dComIfGp_getPlayer(0), actor, -1, -1);
 }
 #else
 #pragma push
@@ -1273,7 +1273,7 @@ s32 fopAcM_orderTreasureEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, u16 priori
         priority = 0xFF;
     }
 
-    return dComIfGp_event_order(11, priority, flag, -1, actorA, actorB, -1, -1);
+    return dComIfGp_event_order(EVT_TYPE_TREASURE, priority, flag, -1, actorA, actorB, -1, -1);
 }
 
 /* 8001BB14-8001BB44 016454 0030+00 0/0 11/11 10/10 .text

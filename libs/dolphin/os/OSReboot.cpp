@@ -8,14 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" void __OSReboot();
-extern "C" void OSSetSaveRegion();
-extern "C" void OSGetSaveRegion();
-
-//
 // External References:
 //
 
@@ -34,7 +26,7 @@ extern "C" void OSDisableInterrupts();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSReboot() {
+asm void __OSReboot(u32 param_0, u32 param_1) {
     nofralloc
 #include "asm/dolphin/os/OSReboot/__OSReboot.s"
 }
@@ -51,7 +43,7 @@ static u8 SaveEnd[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSSetSaveRegion() {
+asm void OSSetSaveRegion(void* start, void* end) {
     nofralloc
 #include "asm/dolphin/os/OSReboot/OSSetSaveRegion.s"
 }
@@ -61,7 +53,7 @@ asm void OSSetSaveRegion() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSGetSaveRegion() {
+asm void OSGetSaveRegion(void* start, void* end) {
     nofralloc
 #include "asm/dolphin/os/OSReboot/OSGetSaveRegion.s"
 }

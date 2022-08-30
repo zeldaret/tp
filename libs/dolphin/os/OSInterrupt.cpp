@@ -8,23 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" void OSDisableInterrupts();
-extern "C" void __RAS_OSDisableInterrupts_end();
-extern "C" void OSEnableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void __OSSetInterruptHandler();
-extern "C" void __OSGetInterruptHandler();
-extern "C" void __OSInterruptInit();
-extern "C" static void SetInterruptMask();
-extern "C" void __OSMaskInterrupts();
-extern "C" void __OSUnmaskInterrupts();
-extern "C" void __OSDispatchInterrupt();
-extern "C" static void ExternalInterruptHandler();
-
-//
 // External References:
 //
 
@@ -44,7 +27,7 @@ extern "C" void OSGetTime();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSDisableInterrupts() {
+asm BOOL OSDisableInterrupts(void) {
     nofralloc
 #include "asm/dolphin/os/OSInterrupt/OSDisableInterrupts.s"
 }
@@ -54,7 +37,7 @@ asm void OSDisableInterrupts() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __RAS_OSDisableInterrupts_end() {
+asm void __RAS_OSDisableInterrupts_end(void) {
     nofralloc
 #include "asm/dolphin/os/OSInterrupt/__RAS_OSDisableInterrupts_end.s"
 }
@@ -64,7 +47,7 @@ asm void __RAS_OSDisableInterrupts_end() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSEnableInterrupts() {
+asm BOOL OSEnableInterrupts(void) {
     nofralloc
 #include "asm/dolphin/os/OSInterrupt/OSEnableInterrupts.s"
 }
@@ -74,7 +57,7 @@ asm void OSEnableInterrupts() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSRestoreInterrupts() {
+asm BOOL OSRestoreInterrupts(BOOL enable) {
     nofralloc
 #include "asm/dolphin/os/OSInterrupt/OSRestoreInterrupts.s"
 }
@@ -88,7 +71,7 @@ static u8 InterruptHandlerTable[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSSetInterruptHandler() {
+asm OSInterruptHandler __OSSetInterruptHandler(OSInterrupt interrupt, OSInterruptHandler handler) {
     nofralloc
 #include "asm/dolphin/os/OSInterrupt/__OSSetInterruptHandler.s"
 }
@@ -98,7 +81,7 @@ asm void __OSSetInterruptHandler() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSGetInterruptHandler() {
+asm OSInterruptHandler __OSGetInterruptHandler(s16 index) {
     nofralloc
 #include "asm/dolphin/os/OSInterrupt/__OSGetInterruptHandler.s"
 }
@@ -108,7 +91,7 @@ asm void __OSGetInterruptHandler() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSInterruptInit() {
+asm void __OSInterruptInit(void) {
     nofralloc
 #include "asm/dolphin/os/OSInterrupt/__OSInterruptInit.s"
 }
@@ -118,7 +101,7 @@ asm void __OSInterruptInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void SetInterruptMask() {
+static asm OSInterruptMask SetInterruptMask(OSInterruptMask param_0, OSInterruptMask param_1) {
     nofralloc
 #include "asm/dolphin/os/OSInterrupt/SetInterruptMask.s"
 }
@@ -128,7 +111,7 @@ static asm void SetInterruptMask() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSMaskInterrupts() {
+asm OSInterruptMask __OSMaskInterrupts(OSInterruptMask mask) {
     nofralloc
 #include "asm/dolphin/os/OSInterrupt/__OSMaskInterrupts.s"
 }
@@ -138,7 +121,7 @@ asm void __OSMaskInterrupts() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSUnmaskInterrupts() {
+asm OSInterruptMask __OSUnmaskInterrupts(OSInterruptMask mask) {
     nofralloc
 #include "asm/dolphin/os/OSInterrupt/__OSUnmaskInterrupts.s"
 }
@@ -218,7 +201,7 @@ u8 data_80451684[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSDispatchInterrupt() {
+asm void __OSDispatchInterrupt(OSInterrupt interrupt, struct OSContext* context) {
     nofralloc
 #include "asm/dolphin/os/OSInterrupt/__OSDispatchInterrupt.s"
 }
@@ -228,7 +211,7 @@ asm void __OSDispatchInterrupt() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void ExternalInterruptHandler() {
+static asm void ExternalInterruptHandler(OSInterrupt interrupt, struct OSContext* context) {
     nofralloc
 #include "asm/dolphin/os/OSInterrupt/ExternalInterruptHandler.s"
 }

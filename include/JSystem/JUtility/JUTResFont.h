@@ -11,7 +11,7 @@ public:
     /* 802DF48C */ virtual void setGX();
     /* 802DF584 */ virtual void setGX(JUtility::TColor, JUtility::TColor);
     /* 802DF7C4 */ virtual f32 drawChar_scale(f32, f32, f32, f32, int, bool);
-    /* 802DDFEC */ virtual u16 getLeading() const;
+    /* 802DDFEC */ virtual int getLeading() const;
     /* 802DE004 */ virtual u16 getAscent() const;
     /* 802DE010 */ virtual u16 getDescent() const;
     /* 802DE01C */ virtual s32 getHeight() const;

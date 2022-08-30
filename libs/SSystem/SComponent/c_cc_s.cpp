@@ -223,7 +223,7 @@ void cCcS::SetAtTgCommonHitInf(cCcD_Obj* obj1, cCcD_Obj* obj2, cXyz* pXyz) {
             obj1->SetAtHit(obj2);
         }
         bool tmp = !(obj1->ChkAtNoTgHitInfSet() ||
-                     (obj1->ChkAtType(0x80) && obj2->ChkTgNoSlingHitInfSet()));
+                     (obj1->ChkAtType(AT_TYPE_SLINGSHOT) && obj2->ChkTgNoSlingHitInfSet()));
         if (tmp) {
             obj2->SetTgHit(obj1);
             this->CalcTgPlusDmg(obj1, obj2, obj1Stts, obj2Stts);

@@ -372,7 +372,7 @@ static void darwFilter(GXColor matColor) {
     GXPosition3s8(1, 0, -5);
     GXPosition3s8(1, 1, -5);
     GXPosition3s8(0, 1, -5);
-    GXEnd();
+    i_GXEnd();
 }
 #else
 #pragma push
@@ -637,7 +637,7 @@ void mDoGph_drawFilterQuad(s8 param_0, s8 param_1) {
     GXTexCoord2s8(1, 1);
     GXPosition2s8(0, param_1);
     GXTexCoord2s8(0, 1);
-    GXEnd();
+    i_GXEnd();
 }
 
 /* 80009544-800095F8 003E84 00B4+00 0/0 1/1 0/0 .text            create__Q213mDoGph_gInf_c7bloom_cFv
@@ -762,9 +762,9 @@ static void drawItem3D() {
     dMenu_Collect3D_c::setupItem3D(item_mtx);
     setLight();
     j3dSys.setViewMtx(item_mtx);
-    GXSetClipMode(GX_ENABLE);
+    GXSetClipMode(GX_CLIP_DISABLE);
     dComIfGd_drawListItem3d();
-    GXSetClipMode(GX_DISABLE);
+    GXSetClipMode(GX_CLIP_ENABLE);
     j3dSys.reinitGX();
 }
 

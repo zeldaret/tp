@@ -285,7 +285,6 @@ inline void fopAcM_onItem(const fopAc_ac_c* item, int bitNo) {
     dComIfGs_onItem(bitNo, fopAcM_GetHomeRoomNo(item));
 }
 
-
 inline bool dComIfGs_isItem(int bitNo, int roomNo);
 inline bool fopAcM_isItem(const fopAc_ac_c* item, int bitNo) {
     return dComIfGs_isItem(bitNo, fopAcM_GetHomeRoomNo(item));
@@ -335,8 +334,8 @@ s32 fopAcM_create(s16 procName, u32 parameter, const cXyz* p_pos, int roomNo, co
                   const cXyz* p_scale, s8 subType);
 
 void* fopAcM_fastCreate(s16 procName, u32 parameter, const cXyz* p_pos, int roomNo,
-                        const csXyz* p_angle, const cXyz* p_scale, s8 subType, createFunc p_createFunc,
-                        void* p_createFuncData);
+                        const csXyz* p_angle, const cXyz* p_scale, s8 subType,
+                        createFunc p_createFunc, void* p_createFuncData);
 
 void* fopAcM_fastCreate(const char* p_actorName, u32 parameter, const cXyz* pActorPos, int roomNo,
                         const csXyz* p_angle, const cXyz* p_scale, createFunc p_createFunc,
@@ -403,7 +402,8 @@ s32 fopAcM_orderCatchEvent(fopAc_ac_c*, fopAc_ac_c*, u16, u16);
 s32 fopAcM_orderOtherEvent(fopAc_ac_c*, const char*, u16, u16, u16);
 s32 fopAcM_orderOtherEvent(fopAc_ac_c*, fopAc_ac_c*, const char*, u16, u16, u16);
 s32 fopAcM_orderChangeEventId(fopAc_ac_c*, s16, u16, u16);
-s32 fopAcM_orderOtherEventId(fopAc_ac_c*, s16, u8, u16, u16, u16);
+s32 fopAcM_orderOtherEventId(fopAc_ac_c* actor, s16 eventID, u8 mapToolID, u16 param_3,
+                             u16 priority, u16 flag);
 s32 fopAcM_orderMapToolEvent(fopAc_ac_c*, u8, s16, u16, u16, u16);
 s32 fopAcM_orderMapToolAutoNextEvent(fopAc_ac_c*, u8, s16, u16, u16, u16);
 s32 fopAcM_orderPotentialEvent(fopAc_ac_c*, u16, u16, u16);
@@ -414,20 +414,20 @@ void* fopAcM_getItemEventPartner(const fopAc_ac_c*);
 void* fopAcM_getEventPartner(const fopAc_ac_c*);
 
 s32 fopAcM_createItemForPresentDemo(cXyz const* p_pos, int i_itemNo, u8 param_2, int i_itemBitNo,
-                                        int i_roomNo, csXyz const* p_angle, cXyz const* p_scale);
+                                    int i_roomNo, csXyz const* p_angle, cXyz const* p_scale);
 
 s32 fopAcM_createItemForTrBoxDemo(cXyz const* p_pos, int i_itemNo, int i_itemBitNo, int i_roomNo,
-                                    csXyz const* p_angle, cXyz const* p_scale);
+                                  csXyz const* p_angle, cXyz const* p_scale);
 
 u8 fopAcM_getItemNoFromTableNo(u8 i_tableNo);
 
 s32 fopAcM_createItemFromEnemyID(u8 i_enemyID, cXyz const* p_pos, int i_itemBitNo, int i_roomNo,
-                                csXyz const* p_angle, cXyz const* p_scale, f32* speedF,
-                                f32* speedY);
+                                 csXyz const* p_angle, cXyz const* p_scale, f32* speedF,
+                                 f32* speedY);
 
 s32 fopAcM_createItemFromTable(cXyz const* p_pos, int i_tableNo, int i_itemBitNo, int i_roomNo,
-                                   csXyz const* p_angle, int param_5, cXyz const* p_scale,
-                                   f32* speedF, f32* speedY, bool createDirect);
+                               csXyz const* p_angle, int param_5, cXyz const* p_scale, f32* speedF,
+                               f32* speedY, bool createDirect);
 
 s32 fopAcM_createDemoItem(const cXyz* p_pos, int itemNo, int itemBitNo, const csXyz* p_angle,
                           int roomNo, const cXyz* scale, u8 param_7);
@@ -438,18 +438,20 @@ s32 fopAcM_createItemForBoss(const cXyz* p_pos, int param_2, int roomNo, const c
 s32 fopAcM_createItemForMidBoss(const cXyz* p_pos, int i_itemNo, int i_roomNo, const csXyz* p_angle,
                                 const cXyz* p_scale, int param_6, int param_7);
 
-void* fopAcM_createItemForDirectGet(const cXyz* p_pos, int i_itemNo, int i_roomNo, const csXyz* p_angle,
-                                    const cXyz* p_scale, f32 speedF, f32 speedY);
+void* fopAcM_createItemForDirectGet(const cXyz* p_pos, int i_itemNo, int i_roomNo,
+                                    const csXyz* p_angle, const cXyz* p_scale, f32 speedF,
+                                    f32 speedY);
 
-void* fopAcM_createItemForSimpleDemo(const cXyz* p_pos, int i_itemNo, int i_roomNo, const csXyz* p_angle,
-                                     const cXyz* p_scale, f32 speedF, f32 speedY);
+void* fopAcM_createItemForSimpleDemo(const cXyz* p_pos, int i_itemNo, int i_roomNo,
+                                     const csXyz* p_angle, const cXyz* p_scale, f32 speedF,
+                                     f32 speedY);
 
 s32 fopAcM_createItem(const cXyz* p_pos, int itemNo, int param_3, int roomNo, const csXyz* p_angle,
                       const cXyz* p_scale, int param_7);
 
 void* fopAcM_fastCreateItem2(const cXyz* p_pos, int itemNo, int param_3, int roomNo, int param_5,
                              const csXyz* p_angle, const cXyz* p_scale);
-                             
+
 void* fopAcM_fastCreateItem(const cXyz* p_pos, int i_itemNo, int i_roomNo, const csXyz* p_angle,
                             const cXyz* p_scale, f32* p_speedF, f32* p_speedY, int param_8,
                             int param_9, createFunc p_createFunc);
@@ -490,7 +492,6 @@ s32 fopAcM_getWaterStream(const cXyz*, const cBgS_PolyInfo&, cXyz*, int*, int);
 s16 fopAcM_getPolygonAngle(const cBgS_PolyInfo&, s16);
 s16 fopAcM_getPolygonAngle(cM3dGPla const* param_0, s16 param_1);
 
-
 inline void make_prm_warp_hole(u32* actorParams, u8 p1, u8 p2, u8 p3) {
     u32 pp1 = (p3 << 0x8);
     u32 pp2 = (p2 << 0x10);
@@ -503,7 +504,6 @@ inline void make_prm_bokkuri(u32* pActorParams, csXyz* p_angle, u8 param_2, u8 p
     p_angle->x = (param_4 << 0x8) | (param_3 & 0xFF);
     p_angle->z = (param_6 << 0xD) | (param_2 << 0x1) | param_5;
 }
-
 
 inline void* dComIfGp_getPlayer(int);
 
@@ -521,6 +521,13 @@ inline f32 fopAcM_searchPlayerDistanceXZ2(const fopAc_ac_c* actor) {
 
 inline f32 fopAcM_searchPlayerDistance(const fopAc_ac_c* actor) {
     return fopAcM_searchActorDistance(actor, (fopAc_ac_c*)dComIfGp_getPlayer(0));
+}
+
+s8 dComIfGp_getReverb(int roomNo);
+
+inline void fopAcM_seStartCurrent(const fopAc_ac_c* actor, u32 sfxID, u32 param_2) {
+    s8 roomNo = fopAcM_GetRoomNo(actor);
+    mDoAud_seStart(sfxID, &actor->mCurrent.mPosition, param_2, dComIfGp_getReverb(roomNo));
 }
 
 extern "C" {

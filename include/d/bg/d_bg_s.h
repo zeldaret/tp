@@ -12,7 +12,7 @@ class cBgS_ChkElm {
 public:
     /* 0x00 */ dBgW_Base* m_bgw_base_ptr;
     /* 0x04 */ bool m_used;
-    /* 0x08 */ u32 field_0x8;
+    /* 0x08 */ u32 m_actor_id;
     /* 0x0C */ fopAc_ac_c* m_actor_ptr;
     /* 0x10 vtable */
 
@@ -37,7 +37,7 @@ public:
 public:
     cBgS() {}
     bool Regist(dBgW_Base*, unsigned int, void*);
-    void Release(dBgW_Base*);
+    int Release(dBgW_Base*);
     bool LineCross(cBgS_LinChk*);
     f32 GroundCross(cBgS_GndChk*);
     static void ConvDzb(void*);
@@ -75,14 +75,14 @@ public:
     s32 GetExitId(cBgS_PolyInfo const&);
     s32 GetPolyColor(cBgS_PolyInfo const&);
     BOOL GetHorseNoEntry(cBgS_PolyInfo const&);
-    bool GetSpecialCode(cBgS_PolyInfo const&);
+    int GetSpecialCode(cBgS_PolyInfo const&);
     int GetMagnetCode(cBgS_PolyInfo const&);
-    bool GetMonkeyBarsCode(cBgS_PolyInfo const&);
-    bool GetUnderwaterRoofCode(cBgS_PolyInfo const&);
+    int GetMonkeyBarsCode(cBgS_PolyInfo const&);
+    int GetUnderwaterRoofCode(cBgS_PolyInfo const&);
     s32 GetWallCode(cBgS_PolyInfo const&);
     int GetPolyAtt0(cBgS_PolyInfo const&);
     int GetPolyAtt1(cBgS_PolyInfo const&);
-    bool GetGroundCode(cBgS_PolyInfo const&);
+    int GetGroundCode(cBgS_PolyInfo const&);
     s32 GetCamMoveBG(cBgS_PolyInfo const&);
     s32 GetRoomCamId(cBgS_PolyInfo const&);
     s32 GetRoomPathId(cBgS_PolyInfo const&);
@@ -96,7 +96,7 @@ public:
     void WallCorrectSort(dBgS_Acch*);
     f32 RoofChk(dBgS_RoofChk*);
     bool SplGrpChk(dBgS_SplGrpChk*);
-    void SphChk(dBgS_SphChk*, void*);
+    bool SphChk(dBgS_SphChk*, void*);
     void MoveBgCrrPos(cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*, bool, bool);
     void MoveBgTransPos(cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
     void MoveBgMatrixCrrPos(cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);

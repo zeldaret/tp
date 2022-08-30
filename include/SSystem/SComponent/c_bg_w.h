@@ -17,6 +17,8 @@ public:
 
     cBgW_BgId() { Ct(); }
     void Ct() { m_id = 0x100; }
+
+    u16 GetId() const { return m_id; }
 };
 
 bool cBgW_CheckBGround(float a1);

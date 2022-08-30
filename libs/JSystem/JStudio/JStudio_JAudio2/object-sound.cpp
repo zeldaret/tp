@@ -6,132 +6,7 @@
 #include "JSystem/JStudio/JStudio_JAudio2/object-sound.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct Vec {};
-
-struct JStage {
-    struct TObject {};
-};
-
-namespace JStudio {
-struct data {
-    struct TEOperationData {};
-};
-
-struct TAdaptor {
-    struct TSetVariableValue_immediate {};
-
-    /* 8028601C */ void adaptor_do_begin();
-    /* 80286028 */ void adaptor_do_data(void const*, u32, void const*, u32);
-    /* 802861C0 */ void
-    adaptor_setVariableValue_immediate(JStudio::TAdaptor::TSetVariableValue_immediate const*);
-    /* 80286274 */ void adaptor_getVariableValue_Vec(Vec*, u32 const*) const;
-};
-
-struct TVariableValue {
-    struct TOutput {
-        /* 80285E0C */ ~TOutput();
-    };
-
-    /* 8028B568 */ TVariableValue();
-
-    static u8 soOutput_none_[4 + 4 /* padding */];
-};
-
-struct TAdaptor_sound {
-    /* 80287B3C */ ~TAdaptor_sound();
-
-    static u8 const sauVariableValue_3_POSITION_XYZ[12];
-};
-
-struct TControl {
-    struct TTransform_position {};
-};
-
-};  // namespace JStudio
-
-struct JStudio_JStage {
-    /* 8028A290 */ void transform_toGlobalFromLocal(f32 (*)[4],
-                                                    JStudio::TControl::TTransform_position const&,
-                                                    JStage::TObject const*, u32);
-};
-
-struct JStudio_JAudio2 {
-    struct TCreateObject {};
-
-    struct TAdaptor_sound {
-        struct TVVOSetValue_ {
-            /* 8028DECC */ void operator()(f32, JStudio::TAdaptor*) const;
-            /* 8028E094 */ ~TVVOSetValue_();
-        };
-
-        /* 8028D828 */ TAdaptor_sound(JStudio_JAudio2::TCreateObject*);
-        /* 8028D8F4 */ ~TAdaptor_sound();
-        /* 8028D9A4 */ void adaptor_do_prepare();
-        /* 8028DA74 */ void adaptor_do_end();
-        /* 8028DA78 */ void adaptor_do_update(u32);
-        /* 8028DC20 */ void adaptor_do_SOUND(JStudio::data::TEOperationData, void const*, u32);
-        /* 8028DC54 */ void adaptor_do_BEGIN(JStudio::data::TEOperationData, void const*, u32);
-        /* 8028DC88 */ void adaptor_do_BEGIN_FADE_IN(JStudio::data::TEOperationData, void const*,
-                                                     u32);
-        /* 8028DCD0 */ void adaptor_do_END(JStudio::data::TEOperationData, void const*, u32);
-        /* 8028DD00 */ void adaptor_do_END_FADE_OUT(JStudio::data::TEOperationData, void const*,
-                                                    u32);
-        /* 8028DD48 */ void adaptor_do_PARENT(JStudio::data::TEOperationData, void const*, u32);
-        /* 8028DDB4 */ void adaptor_do_PARENT_NODE(JStudio::data::TEOperationData, void const*,
-                                                   u32);
-        /* 8028DE34 */ void adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData, void const*,
-                                                     u32);
-        /* 8028DE50 */ void adaptor_do_REPEAT(JStudio::data::TEOperationData, void const*, u32);
-        /* 8028DE6C */ void adaptor_do_CONTINUOUS(JStudio::data::TEOperationData, void const*, u32);
-        /* 8028DE88 */ void adaptor_do_LOCATED(JStudio::data::TEOperationData, void const*, u32);
-        /* 8028DEB0 */ void adaptor_do_ON_EXIT_NOT_END(JStudio::data::TEOperationData, void const*,
-                                                       u32);
-        /* 8028DF04 */ void prepareSound_();
-        /* 8028DFA4 */ void beginSound_fadeIn_();
-        /* 8028E054 */ void endSound_fadeOut_(u32);
-
-        static u8 saoVVOSetValue_[72];
-    };
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
-
-struct JAISoundStatus_ {
-    /* 802A2220 */ void lockWhenPrepared();
-    /* 802A2244 */ void unlockIfLocked();
-};
-
-struct JAISoundID {};
-
-struct JAISoundHandle {
-    /* 802A2184 */ void releaseSound();
-};
-
-struct JAISoundStarter {
-    /* 802A2FEC */ void startLevelSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
-};
-
-struct JAISoundParamsMove {
-    /* 802A2DB4 */ void moveVolume(f32, u32);
-    /* 802A2E0C */ void movePitch(f32, u32);
-    /* 802A2E64 */ void moveFxMix(f32, u32);
-    /* 802A2EBC */ void movePan(f32, u32);
-};
-
-struct JAISound {
-    /* 802A2598 */ void stop();
-    /* 802A24DC */ void stop(u32);
-};
+#include "JSystem/JStudio/JStudio_JAudio2/control.h"
 
 //
 // Forward References:
@@ -204,7 +79,6 @@ extern "C" void moveFxMix__18JAISoundParamsMoveFfUl();
 extern "C" void movePan__18JAISoundParamsMoveFfUl();
 extern "C" void func_802A2FEC();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXMultVec();
 extern "C" void __register_global_object();
 extern "C" void __construct_array();
 extern "C" void __cvt_fp2unsigned();

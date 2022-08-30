@@ -87,7 +87,6 @@ extern "C" void __dt__10JSUPtrListFv();
 extern "C" void initiate__10JSUPtrListFv();
 extern "C" void append__10JSUPtrListFP10JSUPtrLink();
 extern "C" void remove__10JSUPtrListFP10JSUPtrLink();
-extern "C" s32 OSGetResetSwitchState();
 extern "C" void __register_global_object();
 extern "C" void __construct_array();
 extern "C" void _savegpr_22();

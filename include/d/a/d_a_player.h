@@ -220,6 +220,7 @@ public:
         FLG2_UNK_2080000 = 0x2080000,
         BOAR_SINGLE_BATTLE = 0x1800000,
         STATUS_WINDOW_DRAW = 0x400000,
+        FLG2_UNK_280000 = 0x280000,
         UNK_ARMOR = 0x80000,
         SCENE_CHANGE_START = 0x8000,
         FLG2_UNK_4000 = 0x4000,
@@ -243,6 +244,7 @@ public:
     enum daPy_ERFLG1 {
         GANON_FINISH = 0x80000000,
         UNK_FORCE_PUT_POS = 0x2000,
+        ERFLG1_UNK_2 = 2,
         ERFLG1_UNK_1 = 1,
     };
     enum daPy_ERFLG2 {
@@ -539,7 +541,7 @@ public:
 
     bool getSumouCameraMode() const {
         bool sumouCameraMode = false;
-        if (field_0x560[0xA] != 0 && field_0x560[0xA] < 0x26) {
+        if (mSpecialMode != 0 && mSpecialMode < 0x26) {
             sumouCameraMode = true;
         }
         return sumouCameraMode;
@@ -568,6 +570,7 @@ public:
     void i_onNoResetFlg2(int pFlg) { mNoResetFlg2 |= pFlg; }
     void i_onNoResetFlg3(int pFlg) { mNoResetFlg3 |= pFlg; }
     void i_offNoResetFlg0(int pFlg) { mNoResetFlg0 &= ~pFlg; }
+    void i_offNoResetFlg2(int pFlg) { mNoResetFlg2 &= ~pFlg; }
     void i_offNoResetFlg3(int pFlg) { mNoResetFlg3 &= ~pFlg; }
     void i_offResetFlg0(int flag) { mResetFlg0 &= ~flag; }
     void i_onResetFlg0(int flag) { mResetFlg0 |= flag; }

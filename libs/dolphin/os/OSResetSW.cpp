@@ -8,14 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" void __OSResetSWInterruptHandler();
-extern "C" static void OSGetResetButtonState();
-extern "C" void OSGetResetSwitchState();
-
-//
 // External References:
 //
 
@@ -57,7 +49,7 @@ static u8 data_804516BC[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSResetSWInterruptHandler() {
+asm void __OSResetSWInterruptHandler(void) {
     nofralloc
 #include "asm/dolphin/os/OSResetSW/__OSResetSWInterruptHandler.s"
 }
@@ -67,7 +59,7 @@ asm void __OSResetSWInterruptHandler() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void OSGetResetButtonState() {
+static asm BOOL OSGetResetButtonState(void) {
     nofralloc
 #include "asm/dolphin/os/OSResetSW/OSGetResetButtonState.s"
 }
@@ -77,7 +69,7 @@ static asm void OSGetResetButtonState() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSGetResetSwitchState() {
+asm BOOL OSGetResetSwitchState(void) {
     nofralloc
 #include "asm/dolphin/os/OSResetSW/OSGetResetSwitchState.s"
 }

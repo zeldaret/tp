@@ -8,14 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" static void SystemCallVector();
-extern "C" void __OSSystemCallVectorEnd();
-extern "C" void __OSInitSystemCall();
-
-//
 // External References:
 //
 
@@ -31,17 +23,18 @@ extern "C" void ICInvalidateRange();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void SystemCallVector() {
+static asm void SystemCallVector(void) {
     nofralloc
 #include "asm/dolphin/os/OSSync/SystemCallVector.s"
 }
 #pragma pop
 
+// fake function?
 /* 80340A3C-80340A40 33B37C 0004+00 1/1 0/0 0/0 .text            __OSSystemCallVectorEnd */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSSystemCallVectorEnd() {
+asm void __OSSystemCallVectorEnd(void) {
     nofralloc
 #include "asm/dolphin/os/OSSync/__OSSystemCallVectorEnd.s"
 }
@@ -51,7 +44,7 @@ asm void __OSSystemCallVectorEnd() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSInitSystemCall() {
+asm void __OSInitSystemCall(void) {
     nofralloc
 #include "asm/dolphin/os/OSSync/__OSInitSystemCall.s"
 }

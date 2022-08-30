@@ -8,18 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" static void GetFontCode();
-extern "C" void OSGetFontEncode();
-extern "C" static void ParseStringS();
-
-//
-// External References:
-//
-
-//
 // Declarations:
 //
 
@@ -2509,7 +2497,7 @@ SECTION_DATA static u8 Zenkaku2Code[2442 + 6 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void GetFontCode() {
+static asm u32 GetFontCode(s16 param_0, u32 param_1) {
     nofralloc
 #include "asm/dolphin/os/OSFont/GetFontCode.s"
 }
@@ -2538,7 +2526,7 @@ static u8 ParseString[4 + 4 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSGetFontEncode() {
+asm u16 OSGetFontEncode(void) {
     nofralloc
 #include "asm/dolphin/os/OSFont/OSGetFontEncode.s"
 }
@@ -2548,7 +2536,7 @@ asm void OSGetFontEncode() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void ParseStringS() {
+static asm char* ParseStringS(s16 param_0, char* param_1, void* param_2, u32* param_3, u32 param_4, void* param_5) {
     nofralloc
 #include "asm/dolphin/os/OSFont/ParseStringS.s"
 }

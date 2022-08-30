@@ -4,37 +4,16 @@
 //
 
 #include "dolphin/os/OSContext.h"
+#include "dolphin/os/OSInterrupt.h"
+#include "dolphin/os/OS.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __OSLoadFPUContext();
-extern "C" void __OSSaveFPUContext();
-extern "C" void OSSaveFPUContext();
-extern "C" void OSSetCurrentContext();
-extern "C" void OSGetCurrentContext();
-extern "C" void OSSaveContext();
-extern "C" void OSLoadContext();
-extern "C" void OSGetStackPointer();
-extern "C" void OSClearContext();
-extern "C" void OSInitContext();
-extern "C" void OSDumpContext();
-extern "C" static void OSSwitchFPUContext();
-extern "C" void __OSContextInit();
-extern "C" void OSFillFPUContext();
 
 //
 // External References:
 //
 
-extern "C" void OSReport();
-extern "C" void __OSSetExceptionHandler();
-extern "C" void OSDisableInterrupts();
 extern "C" void __RAS_OSDisableInterrupts_end();
-extern "C" void OSRestoreInterrupts();
 extern "C" void DBPrintf();
 extern "C" void __cvt_fp2unsigned();
 
@@ -46,7 +25,7 @@ extern "C" void __cvt_fp2unsigned();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSLoadFPUContext() {
+asm void __OSLoadFPUContext(void) {
     nofralloc
 #include "asm/dolphin/os/OSContext/__OSLoadFPUContext.s"
 }
@@ -56,7 +35,7 @@ asm void __OSLoadFPUContext() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSSaveFPUContext() {
+asm void __OSSaveFPUContext(OSContext* context) {
     nofralloc
 #include "asm/dolphin/os/OSContext/__OSSaveFPUContext.s"
 }
@@ -66,7 +45,7 @@ asm void __OSSaveFPUContext() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSSaveFPUContext() {
+asm void OSSaveFPUContext(OSContext* context) {
     nofralloc
 #include "asm/dolphin/os/OSContext/OSSaveFPUContext.s"
 }
@@ -76,7 +55,7 @@ asm void OSSaveFPUContext() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSSetCurrentContext() {
+asm void OSSetCurrentContext(OSContext* context) {
     nofralloc
 #include "asm/dolphin/os/OSContext/OSSetCurrentContext.s"
 }
@@ -86,7 +65,7 @@ asm void OSSetCurrentContext() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSGetCurrentContext() {
+asm OSContext* OSGetCurrentContext(void) {
     nofralloc
 #include "asm/dolphin/os/OSContext/OSGetCurrentContext.s"
 }
@@ -96,7 +75,7 @@ asm void OSGetCurrentContext() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSSaveContext() {
+asm void OSSaveContext(OSContext* context) {
     nofralloc
 #include "asm/dolphin/os/OSContext/OSSaveContext.s"
 }
@@ -106,7 +85,7 @@ asm void OSSaveContext() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSLoadContext() {
+asm void OSLoadContext(OSContext* context) {
     nofralloc
 #include "asm/dolphin/os/OSContext/OSLoadContext.s"
 }
@@ -116,7 +95,7 @@ asm void OSLoadContext() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSGetStackPointer() {
+asm u8* OSGetStackPointer(void) {
     nofralloc
 #include "asm/dolphin/os/OSContext/OSGetStackPointer.s"
 }
@@ -126,7 +105,7 @@ asm void OSGetStackPointer() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSClearContext() {
+asm void OSClearContext(OSContext* context) {
     nofralloc
 #include "asm/dolphin/os/OSContext/OSClearContext.s"
 }
@@ -136,7 +115,7 @@ asm void OSClearContext() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSInitContext() {
+asm void OSInitContext(OSContext* context, u32 pc, u32 lr) {
     nofralloc
 #include "asm/dolphin/os/OSContext/OSInitContext.s"
 }
@@ -539,7 +518,7 @@ SECTION_DATA static u8 lit_72[28] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSDumpContext() {
+asm void OSDumpContext(OSContext* context) {
     nofralloc
 #include "asm/dolphin/os/OSContext/OSDumpContext.s"
 }
@@ -549,7 +528,7 @@ asm void OSDumpContext() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void OSSwitchFPUContext() {
+static asm void OSSwitchFPUContext(OSContext* context) {
     nofralloc
 #include "asm/dolphin/os/OSContext/OSSwitchFPUContext.s"
 }
@@ -601,7 +580,7 @@ SECTION_DATA static u8 lit_76[35 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSContextInit() {
+asm void __OSContextInit(void) {
     nofralloc
 #include "asm/dolphin/os/OSContext/__OSContextInit.s"
 }
@@ -611,7 +590,7 @@ asm void __OSContextInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSFillFPUContext() {
+asm void OSFillFPUContext(OSContext* context) {
     nofralloc
 #include "asm/dolphin/os/OSContext/OSFillFPUContext.s"
 }

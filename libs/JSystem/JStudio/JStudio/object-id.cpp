@@ -8,19 +8,11 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-//
 // Forward References:
 //
 
 extern "C" void
 isEqual__Q37JStudio6object7TIDDataFRCQ37JStudio6object7TIDDataRCQ37JStudio6object7TIDData();
-
-//
-// External References:
-//
 
 //
 // Declarations:

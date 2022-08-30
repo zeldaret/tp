@@ -8,27 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
-
-struct JAISoundID {};
-
-struct JAISoundHandle {};
-
-struct JAISoundStarter {
-    /* 802A2F6C */ JAISoundStarter(bool);
-    /* 802A2F88 */ ~JAISoundStarter();
-    /* 802A2FEC */ void startLevelSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
-};
-
-//
 // Forward References:
 //
 

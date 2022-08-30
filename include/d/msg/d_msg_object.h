@@ -136,7 +136,7 @@ public:
     /* 802383A4 */ void isMouthCheck();
     /* 802383D0 */ static u32 getMessageID();
     /* 802383E4 */ void getSmellTypeMessageID();
-    /* 80238410 */ void setSmellType(u8);
+    /* 80238410 */ static void setSmellType(u8);
     /* 80238440 */ void getSelectCursorPos();
     /* 8023846C */ static void setSelectCursorPos(u8);
     /* 8023849C */ void setPortalMessageID(u16);
@@ -297,6 +297,10 @@ inline void dMsgObject_setKillMessageFlag() {
 
 inline void dMsgObject_endFlowGroup() {
     dMsgObject_c::endFlowGroup();
+}
+
+inline void dMsgObject_setSmellType(u8 type) {
+    dMsgObject_c::setSmellType(type);
 }
 
 

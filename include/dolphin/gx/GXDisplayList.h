@@ -4,9 +4,9 @@
 #include "dolphin/types.h"
 
 extern "C" {
-void GXBeginDisplayList(void* pDL, u32 capacity);
+void GXBeginDisplayList(void* list, u32 capacity);
 void GXEndDisplayList(void);
-void GXCallDisplayList(const void* pDL, u32 size);
+void GXCallDisplayList(void* list, u32 nbytes);
 };
 
 #endif /* GXDISPLAYLIST_H */

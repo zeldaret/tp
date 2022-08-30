@@ -4,22 +4,25 @@
 #include "JSystem/JUtility/JUTPalette.h"
 #include "dolphin/types.h"
 
-struct ResTIMG { /* Acts as the header to image data. Usually texture data immediately follows it,
-                    so any pointer arithmetic to go past the end of this structure is so that a
-                    variable sized allocated buffer can be accessed. */
+/*
+ * Acts as the header to image data. Usually texture data immediately follows it,
+ * so any pointer arithmetic to go past the end of this structure is so that a
+ * variable sized allocated buffer can be accessed.
+ */
+struct ResTIMG {
     /* 0x00 */ u8 format;
-    /* 0x01 */ bool alphaEnabled;
+    /* 0x01 */ u8 alphaEnabled;
     /* 0x02 */ u16 width;
     /* 0x04 */ u16 height;
     /* 0x06 */ u8 wrapS;
     /* 0x07 */ u8 wrapT;
-    /* 0x08 */ bool palettesEnabled;
+    /* 0x08 */ u8 palettesEnabled;
     /* 0x09 */ u8 paletteFormat;
     /* 0x0A */ u16 paletteCount;
     /* 0x0C */ u32 paletteOffset;
-    /* 0x10 */ bool mipmapEnabled;
-    /* 0x11 */ bool doEdgeLOD;
-    /* 0x12 */ bool biasClamp;
+    /* 0x10 */ u8 mipmapEnabled;
+    /* 0x11 */ u8 doEdgeLOD;
+    /* 0x12 */ u8 biasClamp;
     /* 0x13 */ u8 maxAnisotropy;
     /* 0x14 */ u8 minFilter;
     /* 0x15 */ u8 magFilter;
@@ -38,6 +41,13 @@ public:
         mEmbPalette = NULL;
         mTexInfo = NULL;
     }
+
+    JUTTexture(const ResTIMG* p_timg, u8 param_1) {
+        mEmbPalette = NULL;
+        storeTIMG(p_timg, param_1);
+        setCaptureFlag(false);
+    }
+
     ~JUTTexture();
     void storeTIMG(ResTIMG const*, JUTPalette*, _GXTlut);
     void storeTIMG(ResTIMG const*, u8);
@@ -52,9 +62,10 @@ public:
     void setCaptureFlag(bool flag) { mFlags &= 2 | flag; }
     u8 getCaptureFlag() const { return mFlags & 1; }
     u8 getEmbPaletteDelFlag() const { return mFlags & 2; }
+    u8 getTlutName() const { return mTlutName; }
 
 private:
-    /* 0x00 */ _GXTexObj mTexObj;
+    /* 0x00 */ GXTexObj mTexObj;
     /* 0x20 */ const ResTIMG* mTexInfo;
     /* 0x24 */ void* mTexData;
     /* 0x28 */ JUTPalette* mEmbPalette;

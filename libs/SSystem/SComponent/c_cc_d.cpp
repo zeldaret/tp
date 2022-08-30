@@ -8,10 +8,6 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-//
-// Declarations:
-//
-
 /* 80430CB4-80430CC0 05D9D4 000C+00 1/1 2/2 0/0 .bss             m_virtual_center__14cCcD_ShapeAttr
  */
 cXyz cCcD_ShapeAttr::m_virtual_center = cXyz::Zero;
@@ -25,9 +21,9 @@ void cCcD_DivideInfo::Set(u32 xDivInfo, u32 yDivInfo, u32 zDivInfo) {
 
 /* 80263368-802633A8 25DCA8 0040+00 0/0 5/5 0/0 .text Chk__15cCcD_DivideInfoCFRC15cCcD_DivideInfo
  */
-bool cCcD_DivideInfo::Chk(cCcD_DivideInfo const& param_0) const {
-    if ((mXDivInfo & param_0.mXDivInfo) == 0 || (mZDivInfo & param_0.mZDivInfo) == 0 ||
-        (mYDivInfo & param_0.mYDivInfo) == 0) {
+bool cCcD_DivideInfo::Chk(cCcD_DivideInfo const& other) const {
+    if ((mXDivInfo & other.mXDivInfo) == 0 || (mZDivInfo & other.mZDivInfo) == 0 ||
+        (mYDivInfo & other.mYDivInfo) == 0) {
         return false;
     } else {
         return true;
@@ -35,18 +31,21 @@ bool cCcD_DivideInfo::Chk(cCcD_DivideInfo const& param_0) const {
 }
 
 /* 802633A8-802634D4 25DCE8 012C+00 0/0 2/2 0/0 .text SetArea__15cCcD_DivideAreaFRC8cM3dGAab */
-void cCcD_DivideArea::SetArea(cM3dGAab const& pM3dGAab) {
-    Set(&pM3dGAab.mMin, &pM3dGAab.mMax);
+void cCcD_DivideArea::SetArea(cM3dGAab const& aab) {
+    Set(&aab.mMin, &aab.mMax);
+
     mScaledXDiff = 1.0f / 32.0f * (mMax.x - mMin.x);
     mXDiffIsZero = cM3d_IsZero(mScaledXDiff);
     if (!mXDiffIsZero) {
         mInvScaledXDiff = 1.0f / mScaledXDiff;
     }
+
     mScaledYDiff = 1.0f / 32.0f * (mMax.y - mMin.y);
     mYDiffIsZero = cM3d_IsZero(mScaledYDiff);
     if (!mYDiffIsZero) {
         mInvScaledYDiff = 1.0f / mScaledYDiff;
     }
+
     mScaledZDiff = 1.0f / 32.0f * (mMax.z - mMin.z);
     mZDiffIsZero = cM3d_IsZero(mScaledZDiff);
     if (!mZDiffIsZero) {
@@ -65,18 +64,19 @@ static u32 const l_base[32] = {
 
 /* 802634D4-802636A0 25DE14 01CC+00 0/0 2/2 0/0 .text
  * CalcDivideInfo__15cCcD_DivideAreaFP15cCcD_DivideInfoRC8cM3dGAabUl */
-void cCcD_DivideArea::CalcDivideInfo(cCcD_DivideInfo* pDivideInfo, cM3dGAab const& pM3dGAab,
+void cCcD_DivideArea::CalcDivideInfo(cCcD_DivideInfo* pDivideInfo, cM3dGAab const& aab,
                                      u32 param_2) {
     if (param_2 != 0) {
         pDivideInfo->Set(0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF);
     } else {
         u32 xDivInfo, yDivInfo, zDivInfo;
         if (!mXDiffIsZero) {
-            s32 var1 = mInvScaledXDiff * (pM3dGAab.mMin.x - mMin.x);
-            s32 var3 = mInvScaledXDiff * (pM3dGAab.mMax.x - mMin.x);
-            if (0x1F < var3) {
-                var3 = 0x1F;
+            s32 var1 = mInvScaledXDiff * (aab.mMin.x - mMin.x);
+            s32 var3 = mInvScaledXDiff * (aab.mMax.x - mMin.x);
+            if (31 < var3) {
+                var3 = 31;
             }
+
             xDivInfo = l_base[var3];
             if (0 < var1) {
                 var1--;
@@ -85,12 +85,14 @@ void cCcD_DivideArea::CalcDivideInfo(cCcD_DivideInfo* pDivideInfo, cM3dGAab cons
         } else {
             xDivInfo = 0xFFFFFFFF;
         }
+
         if (!mYDiffIsZero) {
-            s32 var1 = mInvScaledYDiff * (pM3dGAab.mMin.y - mMin.y);
-            s32 var3 = mInvScaledYDiff * (pM3dGAab.mMax.y - mMin.y);
-            if (0x1F < var3) {
-                var3 = 0x1F;
+            s32 var1 = mInvScaledYDiff * (aab.mMin.y - mMin.y);
+            s32 var3 = mInvScaledYDiff * (aab.mMax.y - mMin.y);
+            if (31 < var3) {
+                var3 = 31;
             }
+
             yDivInfo = l_base[var3];
             if (0 < var1) {
                 var1--;
@@ -99,12 +101,14 @@ void cCcD_DivideArea::CalcDivideInfo(cCcD_DivideInfo* pDivideInfo, cM3dGAab cons
         } else {
             yDivInfo = 0xFFFFFFFF;
         }
+
         if (!mZDiffIsZero) {
-            s32 var1 = mInvScaledZDiff * (pM3dGAab.mMin.z - mMin.z);
-            s32 var3 = mInvScaledZDiff * (pM3dGAab.mMax.z - mMin.z);
-            if (0x1F < var3) {
-                var3 = 0x1F;
+            s32 var1 = mInvScaledZDiff * (aab.mMin.z - mMin.z);
+            s32 var3 = mInvScaledZDiff * (aab.mMax.z - mMin.z);
+            if (31 < var3) {
+                var3 = 31;
             }
+
             zDivInfo = l_base[var3];
             if (0 < var1) {
                 var1--;
@@ -113,6 +117,7 @@ void cCcD_DivideArea::CalcDivideInfo(cCcD_DivideInfo* pDivideInfo, cM3dGAab cons
         } else {
             zDivInfo = 0xFFFFFFFF;
         }
+
         pDivideInfo->Set(xDivInfo, yDivInfo, zDivInfo);
     }
 }
@@ -120,16 +125,16 @@ void cCcD_DivideArea::CalcDivideInfo(cCcD_DivideInfo* pDivideInfo, cM3dGAab cons
 /* 802636A0-80263894 25DFE0 01F4+00 0/0 3/3 0/0 .text
  * CalcDivideInfoOverArea__15cCcD_DivideAreaFP15cCcD_DivideInfoRC8cM3dGAab */
 void cCcD_DivideArea::CalcDivideInfoOverArea(cCcD_DivideInfo* pDivideInfo,
-                                             cM3dGAab const& pM3dGAab) {
+                                             cM3dGAab const& aab) {
     u32 xDivInfo, yDivInfo, zDivInfo;
     if (!mXDiffIsZero) {
-        s32 var1 = mInvScaledXDiff * (pM3dGAab.mMin.x - mMin.x);
-        s32 var3 = mInvScaledXDiff * (pM3dGAab.mMax.x - mMin.x);
-        if (var3 < 0 || 0x1F < var1) {
+        s32 var1 = mInvScaledXDiff * (aab.mMin.x - mMin.x);
+        s32 var3 = mInvScaledXDiff * (aab.mMax.x - mMin.x);
+        if (var3 < 0 || 31 < var1) {
             xDivInfo = 0;
         } else {
-            if (0x1F < var3) {
-                var3 = 0x1F;
+            if (31 < var3) {
+                var3 = 31;
             }
             xDivInfo = l_base[var3];
             if (0 < var1) {
@@ -140,14 +145,15 @@ void cCcD_DivideArea::CalcDivideInfoOverArea(cCcD_DivideInfo* pDivideInfo,
     } else {
         xDivInfo = 0xFFFFFFFF;
     }
+
     if (!mYDiffIsZero) {
-        s32 var1 = mInvScaledYDiff * (pM3dGAab.mMin.y - mMin.y);
-        s32 var3 = mInvScaledYDiff * (pM3dGAab.mMax.y - mMin.y);
-        if (var3 < 0 || 0x1F < var1) {
+        s32 var1 = mInvScaledYDiff * (aab.mMin.y - mMin.y);
+        s32 var3 = mInvScaledYDiff * (aab.mMax.y - mMin.y);
+        if (var3 < 0 || 31 < var1) {
             yDivInfo = 0;
         } else {
-            if (0x1F < var3) {
-                var3 = 0x1F;
+            if (31 < var3) {
+                var3 = 31;
             }
             yDivInfo = l_base[var3];
             if (0 < var1) {
@@ -158,14 +164,15 @@ void cCcD_DivideArea::CalcDivideInfoOverArea(cCcD_DivideInfo* pDivideInfo,
     } else {
         yDivInfo = 0xFFFFFFFF;
     }
+
     if (!mZDiffIsZero) {
-        s32 var1 = mInvScaledZDiff * (pM3dGAab.mMin.z - mMin.z);
-        s32 var3 = mInvScaledZDiff * (pM3dGAab.mMax.z - mMin.z);
-        if (var3 < 0 || 0x1F < var1) {
+        s32 var1 = mInvScaledZDiff * (aab.mMin.z - mMin.z);
+        s32 var3 = mInvScaledZDiff * (aab.mMax.z - mMin.z);
+        if (var3 < 0 || 31 < var1) {
             zDivInfo = 0;
         } else {
-            if (0x1F < var3) {
-                var3 = 0x1F;
+            if (31 < var3) {
+                var3 = 31;
             }
             zDivInfo = l_base[var3];
             if (0 < var1) {
@@ -176,6 +183,7 @@ void cCcD_DivideArea::CalcDivideInfoOverArea(cCcD_DivideInfo* pDivideInfo,
     } else {
         zDivInfo = 0xFFFFFFFF;
     }
+
     pDivideInfo->Set(xDivInfo, yDivInfo, zDivInfo);
 }
 
@@ -191,7 +199,7 @@ cCcD_GStts* cCcD_Stts::GetGStts() {
 
 /* 802638A4-80263904 25E1E4 0060+00 0/0 1/1 0/0 .text            Init__9cCcD_SttsFiiPvUi */
 void cCcD_Stts::Init(int weight, int param_1, void* pActor, unsigned int apid) {
-    this->Ct();
+    Ct();
     mWeight = weight;
     field_0x15 = param_1;
     mActor = static_cast<fopAc_ac_c*>(pActor);
@@ -246,10 +254,10 @@ void cCcD_ObjCommonBase::ct() {
 
 /* 802639C4-80263A10 25E304 004C+00 1/1 0/0 0/0 .text Set__14cCcD_ObjHitInfFRC17cCcD_SrcObjHitInf
  */
-void cCcD_ObjHitInf::Set(cCcD_SrcObjHitInf const& pSrc) {
-    mObjAt.Set(pSrc.mObjAt);
-    mObjTg.Set(pSrc.mObjTg);
-    mObjCo.setSPrm(pSrc.mSPrm);
+void cCcD_ObjHitInf::Set(cCcD_SrcObjHitInf const& src) {
+    mObjAt.Set(src.mObjAt);
+    mObjTg.Set(src.mObjTg);
+    mObjCo.setSPrm(src.mSPrm);
 }
 
 /* 80263A10-80263A1C 25E350 000C+00 0/0 1/1 0/0 .text            ct__8cCcD_ObjFv */
@@ -258,35 +266,35 @@ void cCcD_Obj::ct() {
 }
 
 /* 80263A1C-80263A48 25E35C 002C+00 0/0 1/1 0/0 .text            Set__8cCcD_ObjFRC11cCcD_SrcObj */
-void cCcD_Obj::Set(cCcD_SrcObj const& param_0) {
-    field_0x40 = param_0.field_0x0;
-    this->cCcD_ObjHitInf::Set(param_0.mSrcObjHitInf);
+void cCcD_Obj::Set(cCcD_SrcObj const& src) {
+    field_0x40 = src.field_0x0;
+    cCcD_ObjHitInf::Set(src.mSrcObjHitInf);
 }
 
 /* 80263A48-80263A64 25E388 001C+00 0/0 9/9 87/87 .text            GetAc__8cCcD_ObjFv */
 fopAc_ac_c* cCcD_Obj::GetAc() {
-    if (this->mStts == NULL) {
+    if (mStts == NULL) {
         return NULL;
     } else {
-        return this->mStts->GetAc();
+        return mStts->GetAc();
     }
 }
 
 /* 80263A64-80263A88 25E3A4 0024+00 3/0 2/0 0/0 .text
  * getShapeAccess__14cCcD_ShapeAttrCFPQ214cCcD_ShapeAttr5Shape  */
-void cCcD_ShapeAttr::getShapeAccess(cCcD_ShapeAttr::Shape* shape) const {
-    shape->_0 = 2;
-    shape->_14 = 0.0f;
-    shape->_10 = 0.0f;
-    shape->_C = 0.0f;
-    shape->_8 = 0.0f;
-    shape->_4 = 0.0f;
+void cCcD_ShapeAttr::getShapeAccess(cCcD_ShapeAttr::Shape* p_shape) const {
+    p_shape->_0 = 2;
+    p_shape->_14 = 0.0f;
+    p_shape->_10 = 0.0f;
+    p_shape->_C = 0.0f;
+    p_shape->_8 = 0.0f;
+    p_shape->_4 = 0.0f;
 }
 
 /* 80263A88-80263B58 25E3C8 00D0+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_TriAttrCFRC12cCcD_CpsAttrP4cXyz            */
-bool cCcD_TriAttr::CrossAtTg(cCcD_CpsAttr const& cpsAttr, cXyz* xyz) const {
-    if (this->cM3dGTri::Cross(cpsAttr, xyz)) {
+bool cCcD_TriAttr::CrossAtTg(cCcD_CpsAttr const& cpsAttr, cXyz* p_xyz) const {
+    if (cM3dGTri::Cross(cpsAttr, p_xyz)) {
         return true;
     } else {
         return false;
@@ -295,8 +303,8 @@ bool cCcD_TriAttr::CrossAtTg(cCcD_CpsAttr const& cpsAttr, cXyz* xyz) const {
 
 /* 80263B58-80263B90 25E498 0038+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_TriAttrCFRC12cCcD_CylAttrP4cXyz            */
-bool cCcD_TriAttr::CrossAtTg(cCcD_CylAttr const& cylAttr, cXyz* xyz) const {
-    if (this->cM3dGTri::Cross(cylAttr, xyz)) {
+bool cCcD_TriAttr::CrossAtTg(cCcD_CylAttr const& cylAttr, cXyz* p_xyz) const {
+    if (cM3dGTri::Cross(cylAttr, p_xyz)) {
         return true;
     } else {
         return false;
@@ -305,8 +313,8 @@ bool cCcD_TriAttr::CrossAtTg(cCcD_CylAttr const& cylAttr, cXyz* xyz) const {
 
 /* 80263B90-80263BCC 25E4D0 003C+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_TriAttrCFRC12cCcD_SphAttrP4cXyz            */
-bool cCcD_TriAttr::CrossAtTg(cCcD_SphAttr const& sph, cXyz* xyz) const {
-    if (this->cM3dGTri::Cross(sph, xyz)) {
+bool cCcD_TriAttr::CrossAtTg(cCcD_SphAttr const& sphAttr, cXyz* p_xyz) const {
+    if (cM3dGTri::Cross(sphAttr, p_xyz)) {
         return true;
     } else {
         return false;
@@ -315,8 +323,8 @@ bool cCcD_TriAttr::CrossAtTg(cCcD_SphAttr const& sph, cXyz* xyz) const {
 
 /* 80263BCC-80263C04 25E50C 0038+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_TriAttrCFRC12cCcD_TriAttrP4cXyz            */
-bool cCcD_TriAttr::CrossAtTg(cCcD_TriAttr const& other, cXyz* xyz) const {
-    if (this->cM3dGTri::Cross(other, xyz)) {
+bool cCcD_TriAttr::CrossAtTg(cCcD_TriAttr const& other, cXyz* p_xyz) const {
+    if (cM3dGTri::Cross(other, p_xyz)) {
         return true;
     } else {
         return false;
@@ -333,7 +341,7 @@ void cCcD_TriAttr::CalcAabBox() {
 
 /* 80263C9C-80263D38 25E5DC 009C+00 1/0 1/0 0/0 .text GetNVec__12cCcD_TriAttrCFRC4cXyzP4cXyz */
 bool cCcD_TriAttr::GetNVec(cXyz const& param_0, cXyz* pOut) const {
-    if (this->getPlaneFunc(&param_0) >= 0.0f) {
+    if (getPlaneFunc(&param_0) >= 0.0f) {
         *pOut = mNormal;
     } else {
         *pOut = mNormal;
@@ -344,8 +352,8 @@ bool cCcD_TriAttr::GetNVec(cXyz const& param_0, cXyz* pOut) const {
 
 /* 80263D38-80263D7C 25E678 0044+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_CpsAttrP4cXyz            */
-bool cCcD_CpsAttr::CrossAtTg(cCcD_CpsAttr const& other, cXyz* xyz) const {
-    if (this->cM3dGCps::Cross(&other, xyz)) {
+bool cCcD_CpsAttr::CrossAtTg(cCcD_CpsAttr const& other, cXyz* p_xyz) const {
+    if (cM3dGCps::Cross(&other, p_xyz)) {
         return true;
     } else {
         return false;
@@ -354,8 +362,8 @@ bool cCcD_CpsAttr::CrossAtTg(cCcD_CpsAttr const& other, cXyz* xyz) const {
 
 /* 80263D7C-80263DC0 25E6BC 0044+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_CylAttrP4cXyz            */
-bool cCcD_CpsAttr::CrossAtTg(cCcD_CylAttr const& cyl, cXyz* xyz) const {
-    if (this->cM3dGCps::Cross(&cyl, xyz)) {
+bool cCcD_CpsAttr::CrossAtTg(cCcD_CylAttr const& cylAttr, cXyz* p_xyz) const {
+    if (cM3dGCps::Cross(&cylAttr, p_xyz)) {
         return true;
     } else {
         return false;
@@ -364,8 +372,8 @@ bool cCcD_CpsAttr::CrossAtTg(cCcD_CylAttr const& cyl, cXyz* xyz) const {
 
 /* 80263DC0-80263E04 25E700 0044+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_SphAttrP4cXyz            */
-bool cCcD_CpsAttr::CrossAtTg(cCcD_SphAttr const& sph, cXyz* xyz) const {
-    if (this->cM3dGCps::Cross(&sph, xyz)) {
+bool cCcD_CpsAttr::CrossAtTg(cCcD_SphAttr const& sphAttr, cXyz* p_xyz) const {
+    if (cM3dGCps::Cross(&sphAttr, p_xyz)) {
         return true;
     } else {
         return false;
@@ -374,8 +382,8 @@ bool cCcD_CpsAttr::CrossAtTg(cCcD_SphAttr const& sph, cXyz* xyz) const {
 
 /* 80263E04-80263ED4 25E744 00D0+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_TriAttrP4cXyz            */
-bool cCcD_CpsAttr::CrossAtTg(cCcD_TriAttr const& triAttr, cXyz* xyz) const {
-    if (triAttr.cM3dGTri::Cross(*this, xyz)) {
+bool cCcD_CpsAttr::CrossAtTg(cCcD_TriAttr const& triAttr, cXyz* p_xyz) const {
+    if (triAttr.cM3dGTri::Cross(*this, p_xyz)) {
         return true;
     } else {
         return false;
@@ -387,7 +395,7 @@ bool cCcD_CpsAttr::CrossAtTg(cCcD_TriAttr const& triAttr, cXyz* xyz) const {
 bool cCcD_CpsAttr::CrossCo(cCcD_CpsAttr const& other, f32* param_1) const {
     *param_1 = 0.0f;
     cXyz xyz;
-    if (this->cM3dGCps::Cross(&other, &xyz)) {
+    if (cM3dGCps::Cross(&other, &xyz)) {
         return true;
     } else {
         return false;
@@ -396,10 +404,10 @@ bool cCcD_CpsAttr::CrossCo(cCcD_CpsAttr const& other, f32* param_1) const {
 
 /* 80263F24-80263F74 25E864 0050+00 1/0 1/0 0/0 .text CrossCo__12cCcD_CpsAttrCFRC12cCcD_CylAttrPf
  */
-bool cCcD_CpsAttr::CrossCo(cCcD_CylAttr const& param_0, f32* param_1) const {
+bool cCcD_CpsAttr::CrossCo(cCcD_CylAttr const& cylAttr, f32* param_1) const {
     *param_1 = 0.0f;
     cXyz xyz;
-    if (this->cM3dGCps::Cross(&param_0, &xyz)) {
+    if (cM3dGCps::Cross(&cylAttr, &xyz)) {
         return true;
     } else {
         return false;
@@ -408,10 +416,10 @@ bool cCcD_CpsAttr::CrossCo(cCcD_CylAttr const& param_0, f32* param_1) const {
 
 /* 80263F74-80263FC4 25E8B4 0050+00 1/0 1/0 0/0 .text CrossCo__12cCcD_CpsAttrCFRC12cCcD_SphAttrPf
  */
-bool cCcD_CpsAttr::CrossCo(cCcD_SphAttr const& sph, f32* param_1) const {
+bool cCcD_CpsAttr::CrossCo(cCcD_SphAttr const& sphAttr, f32* param_1) const {
     *param_1 = 0.0f;
     cXyz xyz;
-    if (this->cM3dGCps::Cross(&sph, &xyz)) {
+    if (cM3dGCps::Cross(&sphAttr, &xyz)) {
         return true;
     } else {
         return false;
@@ -431,6 +439,7 @@ bool cCcD_CpsAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
     Vec diff;
     const cXyz& endP = GetEndP();
     PSVECSubtract(&endP, &mStart, &diff);
+
     f32 diffLen = PSVECDotProduct(&diff, &diff);
     if (cM3d_IsZero(diffLen)) {
         return false;
@@ -448,6 +457,7 @@ bool cCcD_CpsAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
                 PSVECAdd(&diff, &mStart, &vec2);
             }
         }
+
         PSVECSubtract(&param_0, &vec2, param_1);
         if (cM3d_IsZero(PSVECMag(param_1))) {
             param_1->set(0.0f, 0.0f, 0.0f);
@@ -461,8 +471,8 @@ bool cCcD_CpsAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
 
 /* 8026417C-802641C8 25EABC 004C+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CylAttrCFRC12cCcD_CpsAttrP4cXyz            */
-bool cCcD_CylAttr::CrossAtTg(cCcD_CpsAttr const& cps, cXyz* xyz) const {
-    if (this->cM3dGCyl::Cross(&cps, xyz)) {
+bool cCcD_CylAttr::CrossAtTg(cCcD_CpsAttr const& cpsAttr, cXyz* p_xyz) const {
+    if (cM3dGCyl::Cross(&cpsAttr, p_xyz)) {
         return true;
     } else {
         return false;
@@ -471,8 +481,8 @@ bool cCcD_CylAttr::CrossAtTg(cCcD_CpsAttr const& cps, cXyz* xyz) const {
 
 /* 802641C8-8026420C 25EB08 0044+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CylAttrCFRC12cCcD_CylAttrP4cXyz            */
-bool cCcD_CylAttr::CrossAtTg(cCcD_CylAttr const& other, cXyz* xyz) const {
-    if (this->cross(&other, xyz)) {
+bool cCcD_CylAttr::CrossAtTg(cCcD_CylAttr const& other, cXyz* p_xyz) const {
+    if (cross(&other, p_xyz)) {
         return true;
     } else {
         return false;
@@ -481,8 +491,8 @@ bool cCcD_CylAttr::CrossAtTg(cCcD_CylAttr const& other, cXyz* xyz) const {
 
 /* 8026420C-80264250 25EB4C 0044+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CylAttrCFRC12cCcD_SphAttrP4cXyz            */
-bool cCcD_CylAttr::CrossAtTg(cCcD_SphAttr const& sph, cXyz* xyz) const {
-    if (this->cross(&sph, xyz)) {
+bool cCcD_CylAttr::CrossAtTg(cCcD_SphAttr const& sphAttr, cXyz* p_xyz) const {
+    if (cross(&sphAttr, p_xyz)) {
         return true;
     } else {
         return false;
@@ -491,8 +501,8 @@ bool cCcD_CylAttr::CrossAtTg(cCcD_SphAttr const& sph, cXyz* xyz) const {
 
 /* 80264250-80264288 25EB90 0038+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_CylAttrCFRC12cCcD_TriAttrP4cXyz            */
-bool cCcD_CylAttr::CrossAtTg(cCcD_TriAttr const& tri, cXyz* xyz) const {
-    if (this->cM3dGCyl::Cross(tri, xyz)) {
+bool cCcD_CylAttr::CrossAtTg(cCcD_TriAttr const& triAttr, cXyz* p_xyz) const {
+    if (cM3dGCyl::Cross(triAttr, p_xyz)) {
         return true;
     } else {
         return false;
@@ -502,7 +512,7 @@ bool cCcD_CylAttr::CrossAtTg(cCcD_TriAttr const& tri, cXyz* xyz) const {
 /* 80264288-802642CC 25EBC8 0044+00 1/0 1/0 0/0 .text CrossCo__12cCcD_CylAttrCFRC12cCcD_CylAttrPf
  */
 bool cCcD_CylAttr::CrossCo(cCcD_CylAttr const& other, f32* f) const {
-    if (this->cM3dGCyl::Cross(&other, f)) {
+    if (cM3dGCyl::Cross(&other, f)) {
         return true;
     } else {
         return false;
@@ -511,8 +521,8 @@ bool cCcD_CylAttr::CrossCo(cCcD_CylAttr const& other, f32* f) const {
 
 /* 802642CC-80264310 25EC0C 0044+00 1/0 1/0 0/0 .text CrossCo__12cCcD_CylAttrCFRC12cCcD_SphAttrPf
  */
-bool cCcD_CylAttr::CrossCo(cCcD_SphAttr const& sph, f32* f) const {
-    if (this->cM3dGCyl::Cross(&sph, f)) {
+bool cCcD_CylAttr::CrossCo(cCcD_SphAttr const& sphAttr, f32* f) const {
+    if (cM3dGCyl::Cross(&sphAttr, f)) {
         return true;
     } else {
         return false;
@@ -521,10 +531,10 @@ bool cCcD_CylAttr::CrossCo(cCcD_SphAttr const& sph, f32* f) const {
 
 /* 80264310-80264368 25EC50 0058+00 1/0 1/0 0/0 .text CrossCo__12cCcD_CylAttrCFRC12cCcD_CpsAttrPf
  */
-bool cCcD_CylAttr::CrossCo(cCcD_CpsAttr const& cps, f32* f) const {
+bool cCcD_CylAttr::CrossCo(cCcD_CpsAttr const& cpsAttr, f32* f) const {
     *f = 0.0f;
     cXyz xyz;
-    if (this->cM3dGCyl::Cross(&cps, &xyz)) {
+    if (cM3dGCyl::Cross(&cpsAttr, &xyz)) {
         return true;
     } else {
         return false;
@@ -560,6 +570,7 @@ bool cCcD_CylAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
             vec.y = param_0.y;
         }
     }
+
     PSVECSubtract(&param_0, &vec, param_1);
     if (cM3d_IsZero(PSVECMag(param_1))) {
         param_1->set(0.0f, 0.0f, 0.0f);
@@ -573,23 +584,23 @@ bool cCcD_CylAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
 
 /* 802644B8-802644EC 25EDF8 0034+00 1/0 1/0 0/0 .text
  * getShapeAccess__12cCcD_CylAttrCFPQ214cCcD_ShapeAttr5Shape    */
-void cCcD_CylAttr::getShapeAccess(cCcD_ShapeAttr::Shape* shape) const {
-    shape->_0 = 1;
-    shape->_4 = mCenter.x;
-    shape->_8 = mCenter.y;
-    shape->_C = mCenter.z;
-    shape->_10 = mRadius;
-    shape->_14 = mHeight;
+void cCcD_CylAttr::getShapeAccess(cCcD_ShapeAttr::Shape* p_shape) const {
+    p_shape->_0 = 1;
+    p_shape->_4 = mCenter.x;
+    p_shape->_8 = mCenter.y;
+    p_shape->_C = mCenter.z;
+    p_shape->_10 = mRadius;
+    p_shape->_14 = mHeight;
 }
 
-inline bool inlineCross(cM3dGSph const& sph, cM3dGCps const* cps, cXyz* xyz) {
-    return cM3d_Cross_CpsSph(*cps, sph, xyz);
+inline bool inlineCross(cM3dGSph const& sph, cM3dGCps const* p_cps, cXyz* p_xyz) {
+    return cM3d_Cross_CpsSph(*p_cps, sph, p_xyz);
 }
 
 /* 802644EC-80264538 25EE2C 004C+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_SphAttrCFRC12cCcD_CpsAttrP4cXyz            */
-bool cCcD_SphAttr::CrossAtTg(cCcD_CpsAttr const& cps, cXyz* xyz) const {
-    if (inlineCross(*this, &cps, xyz)) {
+bool cCcD_SphAttr::CrossAtTg(cCcD_CpsAttr const& cpsAttr, cXyz* p_xyz) const {
+    if (inlineCross(*this, &cpsAttr, p_xyz)) {
         return true;
     } else {
         return false;
@@ -598,8 +609,8 @@ bool cCcD_SphAttr::CrossAtTg(cCcD_CpsAttr const& cps, cXyz* xyz) const {
 
 /* 80264538-8026457C 25EE78 0044+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_SphAttrCFRC12cCcD_CylAttrP4cXyz            */
-bool cCcD_SphAttr::CrossAtTg(cCcD_CylAttr const& cyl, cXyz* xyz) const {
-    if (this->cross(&cyl, xyz)) {
+bool cCcD_SphAttr::CrossAtTg(cCcD_CylAttr const& cylAttr, cXyz* p_xyz) const {
+    if (cross(&cylAttr, p_xyz)) {
         return true;
     } else {
         return false;
@@ -608,8 +619,8 @@ bool cCcD_SphAttr::CrossAtTg(cCcD_CylAttr const& cyl, cXyz* xyz) const {
 
 /* 8026457C-802645C0 25EEBC 0044+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_SphAttrCFRC12cCcD_SphAttrP4cXyz            */
-bool cCcD_SphAttr::CrossAtTg(cCcD_SphAttr const& sph, cXyz* xyz) const {
-    if (this->cross(&sph, xyz)) {
+bool cCcD_SphAttr::CrossAtTg(cCcD_SphAttr const& sphAttr, cXyz* p_xyz) const {
+    if (cross(&sphAttr, p_xyz)) {
         return true;
     } else {
         return false;
@@ -618,8 +629,8 @@ bool cCcD_SphAttr::CrossAtTg(cCcD_SphAttr const& sph, cXyz* xyz) const {
 
 /* 802645C0-802645F8 25EF00 0038+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_SphAttrCFRC12cCcD_TriAttrP4cXyz            */
-bool cCcD_SphAttr::CrossAtTg(cCcD_TriAttr const& tri, cXyz* xyz) const {
-    if (tri.cM3dGTri::Cross(*this, xyz)) {
+bool cCcD_SphAttr::CrossAtTg(cCcD_TriAttr const& triAttr, cXyz* p_xyz) const {
+    if (triAttr.cM3dGTri::Cross(*this, p_xyz)) {
         return true;
     } else {
         return false;
@@ -628,8 +639,8 @@ bool cCcD_SphAttr::CrossAtTg(cCcD_TriAttr const& tri, cXyz* xyz) const {
 
 /* 802645F8-80264644 25EF38 004C+00 1/0 1/0 0/0 .text CrossCo__12cCcD_SphAttrCFRC12cCcD_CylAttrPf
  */
-bool cCcD_SphAttr::CrossCo(cCcD_CylAttr const& cyl, f32* f) const {
-    if (this->cM3dGSph::Cross(&cyl, f)) {
+bool cCcD_SphAttr::CrossCo(cCcD_CylAttr const& cylAttr, f32* f) const {
+    if (cM3dGSph::Cross(&cylAttr, f)) {
         return true;
     } else {
         return false;
@@ -638,8 +649,8 @@ bool cCcD_SphAttr::CrossCo(cCcD_CylAttr const& cyl, f32* f) const {
 
 /* 80264644-80264688 25EF84 0044+00 1/0 1/0 0/0 .text CrossCo__12cCcD_SphAttrCFRC12cCcD_SphAttrPf
  */
-bool cCcD_SphAttr::CrossCo(cCcD_SphAttr const& sph, f32* f) const {
-    if (this->cM3dGSph::Cross(&sph, f)) {
+bool cCcD_SphAttr::CrossCo(cCcD_SphAttr const& sphAttr, f32* f) const {
+    if (cM3dGSph::Cross(&sphAttr, f)) {
         return true;
     } else {
         return false;
@@ -648,10 +659,10 @@ bool cCcD_SphAttr::CrossCo(cCcD_SphAttr const& sph, f32* f) const {
 
 /* 80264688-802646E0 25EFC8 0058+00 1/0 1/0 0/0 .text CrossCo__12cCcD_SphAttrCFRC12cCcD_CpsAttrPf
  */
-bool cCcD_SphAttr::CrossCo(cCcD_CpsAttr const& cps, f32* f) const {
+bool cCcD_SphAttr::CrossCo(cCcD_CpsAttr const& cpsAttr, f32* f) const {
     *f = 0.0f;
     cXyz xyz;
-    if (this->cM3dGSph::Cross(&cps, &xyz)) {
+    if (cM3dGSph::Cross(&cpsAttr, &xyz)) {
         return true;
     } else {
         return false;
@@ -696,13 +707,13 @@ bool cCcD_SphAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
 
 /* 80264808-8026483C 25F148 0034+00 1/0 1/0 0/0 .text
  * getShapeAccess__12cCcD_SphAttrCFPQ214cCcD_ShapeAttr5Shape    */
-void cCcD_SphAttr::getShapeAccess(cCcD_ShapeAttr::Shape* shape) const {
-    shape->_0 = 0;
-    shape->_4 = mCenter.x;
-    shape->_8 = mCenter.y;
-    shape->_C = mCenter.z;
-    shape->_10 = mRadius;
-    shape->_14 = 0.0f;
+void cCcD_SphAttr::getShapeAccess(cCcD_ShapeAttr::Shape* p_shape) const {
+    p_shape->_0 = 0;
+    p_shape->_4 = mCenter.x;
+    p_shape->_8 = mCenter.y;
+    p_shape->_C = mCenter.z;
+    p_shape->_10 = mRadius;
+    p_shape->_14 = 0.0f;
 }
 
 /* 8026483C-8026484C 25F17C 0010+00 0/0 1/1 0/0 .text            SetHit__10cCcD_ObjAtFP8cCcD_Obj */
@@ -713,10 +724,10 @@ void cCcD_ObjAt::SetHit(cCcD_Obj* pObj) {
 
 /* 8026484C-80264868 25F18C 001C+00 1/1 0/0 0/0 .text            Set__10cCcD_ObjAtFRC13cCcD_SrcObjAt
  */
-void cCcD_ObjAt::Set(cCcD_SrcObjAt const& pSrc) {
-    mSPrm = pSrc.mSPrm;
-    mType = pSrc.mType;
-    mAtp = pSrc.mAtp;
+void cCcD_ObjAt::Set(cCcD_SrcObjAt const& src) {
+    mSPrm = src.mSPrm;
+    mType = src.mType;
+    mAtp = src.mAtp;
 }
 
 /* 80264868-80264880 25F1A8 0018+00 0/0 2/2 0/0 .text            ClrHit__10cCcD_ObjAtFv */
@@ -727,9 +738,9 @@ void cCcD_ObjAt::ClrHit() {
 
 /* 80264880-80264894 25F1C0 0014+00 1/1 0/0 0/0 .text            Set__10cCcD_ObjTgFRC13cCcD_SrcObjTg
  */
-void cCcD_ObjTg::Set(cCcD_SrcObjTg const& pSrc) {
-    mSPrm = pSrc.mSPrm;
-    mType = pSrc.mType;
+void cCcD_ObjTg::Set(cCcD_SrcObjTg const& src) {
+    mSPrm = src.mSPrm;
+    mType = src.mType;
 }
 
 /* 80264894-802648B0 25F1D4 001C+00 0/0 0/0 2/2 .text            SetGrp__10cCcD_ObjTgFUl */

@@ -9,14 +9,10 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-//
-// Declarations:
-//
-
 /* 800852E0-800852F0 07FC20 0010+00 1/1 0/0 0/0 .text
  * Set__12dCcMassS_ObjFP8cCcD_ObjUcPFP10fopAc_ac_cP4cXyzUl_v    */
-void dCcMassS_Obj::Set(cCcD_Obj* obj, u8 priority, dCcMassS_ObjCallback callback) {
-    mpObj = obj;
+void dCcMassS_Obj::Set(cCcD_Obj* p_obj, u8 priority, dCcMassS_ObjCallback callback) {
+    mpObj = p_obj;
     mPriority = priority;
     mpCallback = callback;
 }
@@ -40,7 +36,7 @@ void dCcMassS_HitInf::ClearPointer() {
 
 /* 80085350-80085450 07FC90 0100+00 0/0 1/1 0/0 .text            __ct__12dCcMassS_MngFv */
 dCcMassS_Mng::dCcMassS_Mng() {
-    this->Ct();
+    Ct();
 }
 
 /* 800855C8-800855E4 07FF08 001C+00 1/1 0/0 0/0 .text            __ct__12dCcMassS_ObjFv */
@@ -52,13 +48,13 @@ void dCcMassS_Mng::Ct() {
     mResultCam = 0;
     mCamTopPos.set(0, -1000000000.0f, 0);
     mCamBottomPos.set(0, -1000000000.0f, 0);
-    this->Clear();
+    Clear();
 }
 
 /* 80085630-80085690 07FF70 0060+00 0/0 0/0 2/2 .text            SetAttr__12dCcMassS_MngFffUcUc */
-void dCcMassS_Mng::SetAttr(f32 param_0, f32 param_1, u8 param_2, u8 param_3) {
-    mCylAttr.SetR(param_0);
-    mCylAttr.SetH(param_1);
+void dCcMassS_Mng::SetAttr(f32 radius, f32 height, u8 param_2, u8 param_3) {
+    mCylAttr.SetR(radius);
+    mCylAttr.SetH(height);
     field_0x200 = param_2;
     field_0x201 = param_3;
 }
@@ -67,34 +63,41 @@ void dCcMassS_Mng::SetAttr(f32 param_0, f32 param_1, u8 param_2, u8 param_3) {
 void dCcMassS_Mng::Prepare() {
     cM3dGAab aab;
     aab.ClearForMinMax();
+
     for (dCcMassS_Obj* pObj = mMassObjs; pObj < mMassObjs + mMassObjCount; ++pObj) {
         cCcD_ShapeAttr* objShape = pObj->GetObj()->GetShapeAttr();
         objShape->CalcAabBox();
         aab.SetMinMax(objShape->GetWorkAab());
     }
+
     for (dCcMassS_Obj* pObj = mMassAreas; pObj < mMassAreas + mMassAreaCount; ++pObj) {
         cCcD_ShapeAttr* objShape = pObj->GetObj()->GetShapeAttr();
         objShape->CalcAabBox();
         aab.SetMinMax(objShape->GetWorkAab());
     }
+
     if (field_0x202 & 1) {
         mCpsAttr.CalcAabBox();
         aab.SetMinMax(mCpsAttr.GetWorkAab());
     }
+
     mDivideArea.SetArea(aab);
     for (dCcMassS_Obj* pObj = mMassObjs; pObj < mMassObjs + mMassObjCount; ++pObj) {
         cCcD_ShapeAttr* objShape = pObj->GetObj()->GetShapeAttr();
         cCcD_DivideInfo* divideInfo = &pObj->GetDivideInfo();
         mDivideArea.CalcDivideInfo(divideInfo, objShape->GetWorkAab(), 0);
     }
+
     for (dCcMassS_Obj* pObj = mMassAreas; pObj < mMassAreas + mMassAreaCount; ++pObj) {
         cCcD_ShapeAttr* objShape = pObj->GetObj()->GetShapeAttr();
         cCcD_DivideInfo* divideInfo = &pObj->GetDivideInfo();
         mDivideArea.CalcDivideInfo(divideInfo, objShape->GetWorkAab(), 0);
     }
+
     if (field_0x202 & 1) {
         mDivideArea.CalcDivideInfo(&mDivideInfo, mCpsAttr.GetWorkAab(), 0);
     }
+
     mCamTopPos.set(0, -1000000000.0f, 0);
     mCamTopDist = 1000000000.0f;
     mCamBottomPos.set(0, -1000000000.0f, 0);
@@ -103,14 +106,17 @@ void dCcMassS_Mng::Prepare() {
 
 /* 800858AC-80085CF0 0801EC 0444+00 0/0 0/0 2/2 .text
  * Chk__12dCcMassS_MngFP4cXyzPP10fopAc_ac_cP15dCcMassS_HitInf   */
-u32 dCcMassS_Mng::Chk(cXyz* xyz, fopAc_ac_c** pActor, dCcMassS_HitInf* hitInf) {
+u32 dCcMassS_Mng::Chk(cXyz* p_xyz, fopAc_ac_c** p_actor, dCcMassS_HitInf* p_hitInf) {
     cCcD_DivideInfo divideInfo;
     u32 flagsMaybe = 0;
-    *pActor = NULL;
-    mCylAttr.SetC(*xyz);
+    *p_actor = NULL;
+
+    mCylAttr.SetC(*p_xyz);
     mCylAttr.CalcAabBox();
+
     mDivideArea.CalcDivideInfoOverArea(&divideInfo, mCylAttr.GetWorkAab());
-    hitInf->ClearPointer();
+    p_hitInf->ClearPointer();
+
     if (field_0x200 & 8) {
         for (dCcMassS_Obj* massObj = mMassAreas; massObj < mMassAreas + mMassAreaCount; ++massObj) {
             if (massObj->GetDivideInfo().Chk(divideInfo)) {
@@ -119,17 +125,19 @@ u32 dCcMassS_Mng::Chk(cXyz* xyz, fopAc_ac_c** pActor, dCcMassS_HitInf* hitInf) {
                 f32 f;
                 if (obj->ChkCoSet() && mCylAttr.CrossCo(*objShape, &f)) {
                     flagsMaybe |= 4;
-                    *pActor = obj->GetStts()->GetAc();
-                    if (hitInf != NULL) {
-                        hitInf->SetAreaHitObj(obj);
+                    *p_actor = obj->GetStts()->GetAc();
+                    if (p_hitInf != NULL) {
+                        p_hitInf->SetAreaHitObj(obj);
                     }
+
                     if (massObj->GetCallback() != NULL) {
-                        massObj->GetCallback()(obj->GetStts()->GetAc(), xyz, field_0x201);
+                        massObj->GetCallback()(obj->GetStts()->GetAc(), p_xyz, field_0x201);
                     }
                 }
             }
         }
     }
+
     for (dCcMassS_Obj* massObj = mMassObjs; massObj < mMassObjs + mMassObjCount; ++massObj) {
         if (massObj->GetDivideInfo().Chk(divideInfo)) {
             cCcD_Obj* obj = massObj->GetObj();
@@ -139,18 +147,20 @@ u32 dCcMassS_Mng::Chk(cXyz* xyz, fopAc_ac_c** pActor, dCcMassS_HitInf* hitInf) {
             if (obj->ChkAtSet() && !gobjInf->ChkAtNoMass() &&
                 mCylAttr.CrossAtTg(*objShape, &unusedVec) && (field_0x200 & 1)) {
                 flagsMaybe |= 1;
-                *pActor = obj->GetStts()->GetAc();
-                if (hitInf != NULL) {
-                    hitInf->SetAtHitObj(obj);
+                *p_actor = obj->GetStts()->GetAc();
+                if (p_hitInf != NULL) {
+                    p_hitInf->SetAtHitObj(obj);
                 }
             }
+
             f32 f;
             if (obj->ChkCoSet() && mCylAttr.CrossCo(*objShape, &f) && (field_0x200 & 2)) {
                 flagsMaybe |= 2;
-                *pActor = obj->GetStts()->GetAc();
+                *p_actor = obj->GetStts()->GetAc();
+
                 if (field_0x200 & 0x10) {
                     Vec vec;
-                    PSVECSubtract(&(*pActor)->mCurrent.mPosition, xyz, &vec);
+                    PSVECSubtract(&(*p_actor)->mCurrent.mPosition, p_xyz, &vec);
                     vec.y = 0;
                     f32 vecMag = PSVECMag(&vec);
                     if (cM3d_IsZero(vecMag)) {
@@ -160,23 +170,27 @@ u32 dCcMassS_Mng::Chk(cXyz* xyz, fopAc_ac_c** pActor, dCcMassS_HitInf* hitInf) {
                     }
                     obj->GetStts()->PlusCcMove(vec.x, vec.y, vec.z);
                 }
-                if (hitInf != NULL) {
-                    hitInf->SetCoHitObj(obj);
-                    hitInf->SetCoHitLen(f);
+
+                if (p_hitInf != NULL) {
+                    p_hitInf->SetCoHitObj(obj);
+                    p_hitInf->SetCoHitLen(f);
                 }
             }
         }
     }
+
     f32 f;
     if ((field_0x202 & 1) && mDivideInfo.Chk(divideInfo) && mCylAttr.CrossCo(mCpsAttr, &f)) {
         mResultCam |= 1;
         mResultCam |= 1 << (field_0x201 + 1);
+
         if ((mResultCam & 2) || (mResultCam & 8)) {
             cXyz tmpVec;
-            f32 plusH = xyz->y + mCylAttr.GetH();
-            tmpVec.x = xyz->x;
+            f32 plusH = p_xyz->y + mCylAttr.GetH();
+            tmpVec.x = p_xyz->x;
             tmpVec.y = plusH;
-            tmpVec.z = xyz->z;
+            tmpVec.z = p_xyz->z;
+
             if (mCamTopPos.y < (20.0f + plusH)) {
                 f32 newCamTopDist = PSVECSquareDistance(&tmpVec, &mCpsAttr.GetStartP());
                 if (mCamTopDist > newCamTopDist) {
@@ -184,6 +198,7 @@ u32 dCcMassS_Mng::Chk(cXyz* xyz, fopAc_ac_c** pActor, dCcMassS_HitInf* hitInf) {
                     mCamTopPos = tmpVec;
                 }
             }
+
             if (mCamBottomPos.y < (20.0f + plusH)) {
                 f32 newCamBottomDist = PSVECSquareDistance(&tmpVec, &mCpsAttr.GetEndP());
                 if (mCamBottomDist > newCamBottomDist) {
@@ -193,6 +208,7 @@ u32 dCcMassS_Mng::Chk(cXyz* xyz, fopAc_ac_c** pActor, dCcMassS_HitInf* hitInf) {
             }
         }
     }
+
     return flagsMaybe;
 }
 
@@ -200,12 +216,15 @@ u32 dCcMassS_Mng::Chk(cXyz* xyz, fopAc_ac_c** pActor, dCcMassS_HitInf* hitInf) {
 void dCcMassS_Mng::Clear() {
     mMassObjCount = 0;
     mMassAreaCount = 0;
+
     for (int i = 0; i < (s32)ARRAY_SIZE(mMassObjs); ++i) {
         mMassObjs[i].Clear();
     }
+
     for (int i = 0; i < (s32)ARRAY_SIZE(mMassAreas); ++i) {
         mMassAreas[i].Clear();
     }
+
     mCylAttr.SetR(0.0f);
     mCylAttr.SetH(0.0f);
     field_0x200 = 0;
@@ -213,17 +232,17 @@ void dCcMassS_Mng::Clear() {
 }
 
 /* 80085D98-80085E6C 0806D8 00D4+00 0/0 4/4 7/7 .text            Set__12dCcMassS_MngFP8cCcD_ObjUc */
-void dCcMassS_Mng::Set(cCcD_Obj* obj, u8 priority) {
+void dCcMassS_Mng::Set(cCcD_Obj* p_obj, u8 priority) {
     if (mMassObjCount >= (s32)ARRAY_SIZE(mMassObjs)) {
         for (int i = 0; i < (s32)ARRAY_SIZE(mMassObjs); ++i) {
             int prevPrio = mMassObjs[i].GetPriority();
             if (prevPrio > priority || (prevPrio == priority && cM_rndF(1.0f) < 0.5f)) {
-                mMassObjs[i].Set(obj, priority, NULL);
+                mMassObjs[i].Set(p_obj, priority, NULL);
                 break;
             }
         }
     } else {
-        mMassObjs[mMassObjCount].Set(obj, priority, NULL);
+        mMassObjs[mMassObjCount].Set(p_obj, priority, NULL);
         mMassObjCount++;
     }
 }
@@ -243,6 +262,6 @@ u8 dCcMassS_Mng::GetResultCam() const {
 
 /* 80085EB8-80085ED4 0807F8 001C+00 0/0 1/1 0/0 .text            GetCamTopPos__12dCcMassS_MngFP3Vec
  */
-void dCcMassS_Mng::GetCamTopPos(Vec* out) {
-    *out = mCamTopPos;
+void dCcMassS_Mng::GetCamTopPos(Vec* p_out) {
+    *p_out = mCamTopPos;
 }

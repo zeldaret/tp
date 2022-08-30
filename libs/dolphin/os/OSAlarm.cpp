@@ -8,20 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" void OSInitAlarm();
-extern "C" void OSCreateAlarm();
-extern "C" static void InsertAlarm();
-extern "C" void OSSetAlarm();
-extern "C" void OSSetPeriodicAlarm();
-extern "C" void OSCancelAlarm();
-extern "C" static void DecrementerExceptionCallback();
-extern "C" static void DecrementerExceptionHandler();
-extern "C" static void OnReset();
-
-//
 // External References:
 //
 
@@ -37,8 +23,6 @@ extern "C" void OSRegisterResetFunction();
 extern "C" void OSDisableScheduler();
 extern "C" void OSEnableScheduler();
 extern "C" void __OSReschedule();
-extern "C" void __OSGetSystemTime();
-extern "C" void __OSTimeToSystemTime();
 extern "C" void __DVDTestAlarm();
 extern "C" void __div2i();
 
@@ -62,7 +46,7 @@ static u8 AlarmQueue[8];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSInitAlarm() {
+asm void OSInitAlarm(void) {
     nofralloc
 #include "asm/dolphin/os/OSAlarm/OSInitAlarm.s"
 }
@@ -72,7 +56,7 @@ asm void OSInitAlarm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSCreateAlarm() {
+asm void OSCreateAlarm(OSAlarm* alarm) {
     nofralloc
 #include "asm/dolphin/os/OSAlarm/OSCreateAlarm.s"
 }
@@ -82,7 +66,7 @@ asm void OSCreateAlarm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void InsertAlarm() {
+static asm void InsertAlarm(OSAlarm* alarm, s64 time, OSAlarmHandler* handler) {
     nofralloc
 #include "asm/dolphin/os/OSAlarm/InsertAlarm.s"
 }
@@ -92,7 +76,7 @@ static asm void InsertAlarm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSSetAlarm() {
+asm void OSSetAlarm(OSAlarm* alarm, s64 time, OSAlarmHandler* handler) {
     nofralloc
 #include "asm/dolphin/os/OSAlarm/OSSetAlarm.s"
 }
@@ -102,7 +86,7 @@ asm void OSSetAlarm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSSetPeriodicAlarm() {
+asm void OSSetPeriodicAlarm(OSAlarm* alarm, s64 start, s64 period, OSAlarmHandler* handler) {
     nofralloc
 #include "asm/dolphin/os/OSAlarm/OSSetPeriodicAlarm.s"
 }
@@ -112,7 +96,7 @@ asm void OSSetPeriodicAlarm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSCancelAlarm() {
+asm void OSCancelAlarm(OSAlarm* alarm) {
     nofralloc
 #include "asm/dolphin/os/OSAlarm/OSCancelAlarm.s"
 }
@@ -122,7 +106,7 @@ asm void OSCancelAlarm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void DecrementerExceptionCallback() {
+static asm void DecrementerExceptionCallback(OSException* exception, struct OSContext* context) {
     nofralloc
 #include "asm/dolphin/os/OSAlarm/DecrementerExceptionCallback.s"
 }
@@ -132,7 +116,7 @@ static asm void DecrementerExceptionCallback() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void DecrementerExceptionHandler() {
+static asm void DecrementerExceptionHandler(OSException* exception, struct OSContext* context) {
     nofralloc
 #include "asm/dolphin/os/OSAlarm/DecrementerExceptionHandler.s"
 }
@@ -142,7 +126,7 @@ static asm void DecrementerExceptionHandler() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void OnReset() {
+static asm s32 OnReset(s32 param_0) {
     nofralloc
 #include "asm/dolphin/os/OSAlarm/OnReset.s"
 }

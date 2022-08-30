@@ -2,11 +2,8 @@
 #define Z2SOUNDSTARTER_H
 
 #include "JSystem/JAudio2/JAISound.h"
+#include "JSystem/JAudio2/JAISoundStarter.h"
 #include "dolphin/types.h"
-
-struct JAISoundStarter {
-    virtual ~JAISoundStarter();
-};
 
 struct Z2SoundStarter : public JAISoundStarter {
     Z2SoundStarter(bool);

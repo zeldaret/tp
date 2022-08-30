@@ -4,73 +4,9 @@
 //
 
 #include "JSystem/JStudio/JStudio/jstudio-control.h"
-#include "JSystem/JGadget/binary.h"
-#include "JSystem/JStudio/JStudio/fvb.h"
-#include "JSystem/JStudio/JStudio/stb.h"
+#include "JSystem/JStudio/JStudio/jstudio-data.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct Vec {};
-
-namespace JStudio {
-struct TCreateObject {
-    /* 80285488 */ ~TCreateObject();
-};
-
-struct TFactory {
-    /* 802854D0 */ ~TFactory();
-    /* 80285560 */ void appendCreateObject(JStudio::TCreateObject*);
-    /* 802855AC */ void create(JStudio::stb::data::TParse_TBlock_object const&);
-};
-
-namespace ctb {
-struct TObject {};
-
-struct TControl {
-    /* 80280FC4 */ TControl();
-    /* 80280FF4 */ ~TControl();
-    /* 80281230 */ void getObject_index(u32);
-};
-
-struct TFactory {
-    /* 80281274 */ ~TFactory();
-};
-
-struct TParse {
-    /* 8028135C */ TParse(JStudio::ctb::TControl*);
-    /* 8028137C */ ~TParse();
-};
-
-};  // namespace ctb
-
-struct TControl {
-    /* 80285114 */ TControl();
-    /* 802851AC */ ~TControl();
-    /* 80285228 */ void setFactory(JStudio::TFactory*);
-    /* 80285250 */ void transformOnSet_setOrigin_TxyzRy(Vec const&, f32);
-    /* 802852D0 */ void transformOnGet_setOrigin_TxyzRy(Vec const&, f32);
-    /* 80285368 */ void transform_setOrigin_ctb(JStudio::ctb::TObject const&);
-    /* 8028543C */ void transform_setOrigin_ctb_index(u32);
-};
-
-struct TParse {
-    /* 8028566C */ TParse(JStudio::TControl*);
-    /* 802856A8 */ ~TParse();
-    /* 80285708 */ void parseHeader(JStudio::stb::data::TParse_THeader const&, u32);
-    /* 802857E4 */ void parseBlock_block(JStudio::stb::data::TParse_TBlock const&, u32);
-    /* 80285844 */ void parseBlock_block_fvb_(JStudio::stb::data::TParse_TBlock const&, u32);
-    /* 802858F0 */ void parseBlock_block_ctb_(JStudio::stb::data::TParse_TBlock const&, u32);
-};
-
-struct data {
-    static u8 ga8cSignature[8];
-};
-
-};  // namespace JStudio
 
 //
 // Forward References:
@@ -125,10 +61,6 @@ extern "C" void parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl();
 extern "C" void __dt__Q27JGadget13TNodeLinkListFv();
 extern "C" void
 Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode();
-extern "C" void PSMTXConcat();
-extern "C" void PSMTXRotRad();
-extern "C" void PSMTXTrans();
-extern "C" void PSMTXTransApply();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();
@@ -285,7 +217,8 @@ asm JStudio::TCreateObject::~TCreateObject() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JStudio::TFactory::~TFactory() {
+// asm JStudio::TFactory::~TFactory() {
+extern "C" asm void __dt__Q27JStudio8TFactoryFv() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/jstudio-control/__dt__Q27JStudio8TFactoryFv.s"
 }
@@ -328,7 +261,8 @@ asm JStudio::TParse::TParse(JStudio::TControl* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JStudio::TParse::~TParse() {
+// asm JStudio::TParse::~TParse() {
+extern "C" asm void __dt__Q27JStudio6TParseFv() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/jstudio-control/__dt__Q27JStudio6TParseFv.s"
 }

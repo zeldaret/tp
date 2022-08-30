@@ -8,62 +8,66 @@ class dEvent_exception_c {
 public:
     dEvent_exception_c() { mEventInfoIdx = -1; }
     void init();
-    s32 setStartDemo(int);
+    s32 setStartDemo(int mapToolID);
     const char* getEventName();
 
     // private:
-    s32 mEventInfoIdx;
-    u8 field_0x4;
-    u8 field_0x5;
-    u8 field_0x6;
-    u8 field_0x7;
-    s32 mState;
+    /* 0x0 */ s32 mEventInfoIdx;
+    /* 0x4 */ u8 field_0x4;
+    /* 0x5 */ u8 field_0x5;
+    /* 0x6 */ u8 field_0x6;
+    /* 0x7 */ u8 field_0x7;
+    /* 0x8 */ s32 mState;
 };
+
+#define EVT_SE_RIDDLE_A 1
+#define EVT_SE_RIDDLE_B 2
 
 class dEvent_manager_c {
 public:
-    void* getSubstance(dEvDtData_c*, int);
+    void* getSubstance(dEvDtData_c* p_data, int type);
     dEvent_manager_c();
     ~dEvent_manager_c() {}
     int create();
-    bool setObjectArchive(char*);
+    bool setObjectArchive(char* arcName);
     void demoInit();
-    void roomInit(int);
-    void roomFinish(int);
+    void roomInit(int roomNo);
+    void roomFinish(int roomNo);
     int orderStartDemo();
     void remove();
-    void startProc(dEvDtEvent_c*);
-    void closeProc(dEvDtEvent_c*);
-    void endProc(s16, int);
+    void startProc(dEvDtEvent_c* p_evnt);
+    void closeProc(dEvDtEvent_c* p_evnt);
+    void endProc(s16 eventID, int close);
     void Sequencer();
     void Experts();
-    dEvDtEvent_c* getEventData(s16);
+    dEvDtEvent_c* getEventData(s16 eventCompositId);
     dEvDtEvent_c* getEventData(s16, int);
-    s16 getEventIdx(char const*, u8, s32);
-    s16 getEventIdx(fopAc_ac_c*, u8);
-    s16 getEventIdx(fopAc_ac_c*, char const*, u8);
-    int isMapToolCamera(u8, s32);
-    int order(s16);
-    int startCheck(s16);
-    int startCheckOld(char const*);
+    s16 getEventIdx(char const* eventName, u8 mapToolID, s32 roomNo);
+    s16 getEventIdx(fopAc_ac_c* pActor, u8 mapToolID);
+    s16 getEventIdx(fopAc_ac_c* pActor, char const* eventName, u8 mapToolID);
+    int isMapToolCamera(u8 mapToolID, s32 roomNo);
+    int order(s16 eventCompositId);
+    int startCheck(s16 eventCompositId);
+    int startCheckOld(char const* name);
     int endCheck(s16);
-    int endCheckOld(char const*);
-    int getMyStaffId(char const*, fopAc_ac_c*, int);
-    int getIsAddvance(int);
-    int getMyActIdx(int, char const* const*, int, int, int);
-    char* getMyNowCutName(int);
-    dEvDtData_c* getMyDataP(int, char const*, int);
-    void* getMySubstanceP(int, char const*, int);
-    int getMySubstanceNum(int, char const*);
-    void cutEnd(int);
-    int getEventPrio(fopAc_ac_c*, s16);
-    void issueStaff(char const*);
-    void cancelStaff(char const*);
-    void setGoal(cXyz*);
+    int endCheckOld(char const* name);
+    int getMyStaffId(char const* staffName, fopAc_ac_c* pActor, int tagId);
+    int getIsAddvance(int staffIdx);
+    int getMyActIdx(int staffIdx, char const* const* param_1, int param_2, int param_3,
+                    int param_4);
+    char* getMyNowCutName(int cutIndex);
+    dEvDtData_c* getMyDataP(int index, char const* name, int type);
+    void* getMySubstanceP(int index, char const* name, int type);
+    int getMySubstanceNum(int index, char const* name);
+    void cutEnd(int cutIndex);
+    int getEventPrio(fopAc_ac_c* pActor, s16 eventCompositId);
+    void issueStaff(char const* name);
+    void cancelStaff(char const* name);
+    void setGoal(cXyz* p_goal);
     cXyz* getGoal();
     const char* getRunEventName();
-    fopAc_ac_c* specialCast_Shutter(s16, int);
-    fopAc_ac_c* specialCast(char const*, int);
+    fopAc_ac_c* specialCast_Shutter(s16 bsTypeId, int param_1);
+    fopAc_ac_c* specialCast(char const* name, int param_1);
     int ChkPresentEnd();
     int checkStartDemo();
 
@@ -71,7 +75,7 @@ public:
     void setCameraPlay(int status) { mCameraPlay = status; }
     dEvDtBase_c& getBase() { return mEventList[mCurrentEventType]; }
     void setFlag(int flag) { mFlags.flagSet(flag); }
-    bool dataLoaded() { return mDataLoaded; } 
+    bool dataLoaded() { return mDataLoaded; }
     int flagCheck(int flag) { return mFlags.flagCheck(flag); }
 
     static int getIndexCompositId(s16 param_0) { return param_0 != -1 ? (u8)param_0 : -1; }

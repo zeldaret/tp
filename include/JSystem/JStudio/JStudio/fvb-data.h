@@ -10,7 +10,7 @@ namespace JStudio {
 namespace fvb {
 namespace data {
 
-extern f32 ga4cSignature[1 + 1 /* padding */];
+extern const char ga4cSignature[4];
 
 const int PARAGRAPH_DATA = 1;
 

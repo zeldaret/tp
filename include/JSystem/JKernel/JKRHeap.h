@@ -29,7 +29,7 @@ public:
     };
 
 public:
-    JKRHeap(void*, u32, JKRHeap*, bool);
+    JKRHeap(void* data, u32 size, JKRHeap* parent, bool errorFlag);
     virtual ~JKRHeap();
 
     JKRHeap* becomeSystemHeap();
@@ -77,9 +77,9 @@ public:
     /* vt[18] */ virtual s32 do_getTotalFreeSize() = 0;
     /* vt[19] */ virtual s32 do_changeGroupID(u8 newGroupID);
     /* vt[20] */ virtual u8 do_getCurrentGroupId();
-    /* vt[21] */ virtual void state_register(JKRHeap::TState*, unsigned long) const;
-    /* vt[22] */ virtual bool state_compare(JKRHeap::TState const&, JKRHeap::TState const&) const;
-    /* vt[23] */ virtual void state_dump(JKRHeap::TState const&) const;
+    /* vt[21] */ virtual void state_register(JKRHeap::TState* p, u32 id) const;
+    /* vt[22] */ virtual bool state_compare(JKRHeap::TState const& r1, JKRHeap::TState const& r2) const;
+    /* vt[23] */ virtual void state_dump(JKRHeap::TState const& p) const;
 
     void setDebugFill(bool debugFill) { mDebugFill = debugFill; }
     bool getDebugFill() const { return mDebugFill; }
@@ -123,7 +123,7 @@ protected:
     /* 0x6A */ u8 padding_0x6a[2];
 
 public:
-    static bool initArena(char**, u32*, int);
+    static bool initArena(char** memory, u32* size, int maxHeaps);
     static void* alloc(u32 size, int alignment, JKRHeap* heap);
     static void free(void* ptr, JKRHeap* heap);
     static s32 resize(void* ptr, u32 size, JKRHeap* heap);
@@ -212,7 +212,7 @@ inline void JKRFreeToSysHeap(void* ptr) {
     systemHeap->free(ptr);
 }
 
-inline void JKRFree(void* ptr) {
+inline void i_JKRFree(void* ptr) {
     JKRHeap::free(ptr, NULL);
 }
 

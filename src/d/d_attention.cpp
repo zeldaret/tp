@@ -16,9 +16,14 @@ struct mDoCPd_c {
     static u8 m_cpadInfo[256];
 };
 
-struct dAttDrawParam_c {
+class dAttDrawParam_c {
+public:
     /* 80070158 */ dAttDrawParam_c();
-    /* 80073FC4 */ ~dAttDrawParam_c();
+    /* 80073FC4 */ virtual ~dAttDrawParam_c();
+
+    /* 0x4 */ s8 field_0x4;
+    /* 0x8 */ f32 mCursorDistance;
+    /* 0xC */ f32 field_0xc;
 };
 
 //
@@ -347,11 +352,8 @@ SECTION_DEAD static char const* const stringBase_8037A778 = "Always";
 SECTION_DEAD static char const* const pad_8037A77F = "";
 #pragma pop
 
-/* 80424B00-80424B0C 051820 000C+00 1/1 0/0 0/0 .bss             @4093 */
-static u8 lit_4093[12];
-
 /* 80424B0C-80424B20 05182C 0010+04 3/3 0/0 0/0 .bss             g_AttDwHIO */
-static u8 g_AttDwHIO[16 + 4 /* padding */];
+static dAttDrawParam_c g_AttDwHIO;
 
 /* 80070198-80070774 06AAD8 05DC+00 0/0 1/1 0/0 .text __ct__12dAttention_cFP10fopAc_ac_cUl */
 #pragma push
@@ -1093,25 +1095,11 @@ asm void dAttLook_c::request(fopAc_ac_c* param_0, f32 param_1, f32 param_2, f32 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dAttDrawParam_c::~dAttDrawParam_c() {
+// asm dAttDrawParam_c::~dAttDrawParam_c() {
+extern "C" asm void __dt__15dAttDrawParam_cFv() {
     nofralloc
 #include "asm/d/d_attention/__dt__15dAttDrawParam_cFv.s"
 }
-#pragma pop
-
-/* 8007400C-80074048 06E94C 003C+00 0/0 1/0 0/0 .text            __sinit_d_attention_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_attention_cpp() {
-    nofralloc
-#include "asm/d/d_attention/__sinit_d_attention_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x8007400C, __sinit_d_attention_cpp);
 #pragma pop
 
 /* ############################################################################################## */

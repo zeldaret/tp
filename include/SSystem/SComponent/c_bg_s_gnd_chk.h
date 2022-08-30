@@ -15,6 +15,9 @@ public:
 
     /* 80267C94 */ virtual ~cBgS_GndChk();
 
+    f32 GetNowY() const { return mNowY; }
+    void SetNowY(f32 y) { mNowY = y; }
+
 private:
     /* 0x24 */ cXyz m_pos;
     /* 0x30 */ u32 mFlags;

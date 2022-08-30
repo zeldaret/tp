@@ -38,7 +38,7 @@ void mDoDvdErr_ThdInit() {
                        sizeof(DvdErr_stack), priority - 3, 1);
         OSResumeThread(&DvdErr_thread);
         OSCreateAlarm(&Alarm);
-        OSSetPeriodicAlarm(&Alarm, time, OS_BUS_CLOCK / 4, AlarmHandler);
+        OSSetPeriodicAlarm(&Alarm, time, OS_BUS_CLOCK / 4, (OSAlarmHandler*)AlarmHandler);
 
         mDoDvdErr_initialized = true;
     }

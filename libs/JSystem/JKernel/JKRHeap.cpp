@@ -204,27 +204,27 @@ void* JKRHeap::mUserRamEnd;
 u32 JKRHeap::mMemorySize;
 
 /* 802CE378-802CE428 2C8CB8 00B0+00 0/0 1/1 0/0 .text            initArena__7JKRHeapFPPcPUli */
-bool JKRHeap::initArena(char** memory, u32* size, int param_3) {
+bool JKRHeap::initArena(char** memory, u32* size, int maxHeaps) {
     u32 ram_start;
     u32 ram_end;
-    u32 ram;
+    void* ram;
 
-    u32 low = OSGetArenaLo();
-    u32 high = OSGetArenaHi();
+    void* low = OSGetArenaLo();
+    void* high = OSGetArenaHi();
     if (low == high)
         return false;
 
-    ram = OSInitAlloc(low, high, param_3);
-    ram_start = ALIGN_NEXT(ram, 0x20);
-    ram_end = ALIGN_PREV(high, 0x20);
+    ram = OSInitAlloc(low, high, maxHeaps);
+    ram_start = ALIGN_NEXT((u32)ram, 0x20);
+    ram_end = ALIGN_PREV((u32)high, 0x20);
     GLOBAL_MEMORY* globalMemory = (GLOBAL_MEMORY*)OSPhysicalToCached(0);
     mCodeStart = globalMemory;
     mCodeEnd = (void*)ram_start;
     mUserRamStart = (void*)ram_start;
     mUserRamEnd = (void*)ram_end;
     mMemorySize = globalMemory->memory_size;
-    OSSetArenaLo(ram_end);
-    OSSetArenaHi(ram_end);
+    OSSetArenaLo((void*)ram_end);
+    OSSetArenaHi((void*)ram_end);
     *memory = (char*)ram_start;
     *size = ram_end - ram_start;
     return true;

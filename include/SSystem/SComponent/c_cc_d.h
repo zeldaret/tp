@@ -18,6 +18,28 @@ class cCcD_AabAttr;
 class cCcD_CylAttr;
 class cCcD_SphAttr;
 
+enum cCcD_ObjAtType {
+    /* 0x00000002 */ AT_TYPE_NORMAL_SWORD = (1 << 1),  // wooden or ordon
+    /* 0x00000004 */ AT_TYPE_HORSE = (1 << 2),
+    /* 0x00000008 */ AT_TYPE_THROW_OBJ = (1 << 3),
+    /* 0x00000010 */ AT_TYPE_SHIELD_ATTACK = (1 << 4),
+    /* 0x00000020 */ AT_TYPE_BOMB = (1 << 5),
+    /* 0x00000080 */ AT_TYPE_SLINGSHOT = (1 << 7),
+    /* 0x00000400 */ AT_TYPE_CSTATUE_SWING = (1 << 10),
+    /* 0x00002000 */ AT_TYPE_ARROW = (1 << 13),
+    /* 0x00004000 */ AT_TYPE_HOOKSHOT = (1 << 14),
+    /* 0x00010000 */ AT_TYPE_BOOMERANG = (1 << 16),
+    /* 0x00040000 */ AT_TYPE_SPINNER = (1 << 18),
+    /* 0x00100000 */ AT_TYPE_CSTATUE_BOSS_SWING = (1 << 20),
+    /* 0x00200000 */ AT_TYPE_HEAVY_BOOTS = (1 << 21),
+    /* 0x00400000 */ AT_TYPE_IRON_BALL = (1 << 22),
+    /* 0x00800000 */ AT_TYPE_COPY_ROD = (1 << 23),
+    /* 0x04000000 */ AT_TYPE_MASTER_SWORD = (1 << 26),
+    /* 0x08000000 */ AT_TYPE_MIDNA_LOCK = (1 << 27),
+    /* 0x40000000 */ AT_TYPE_WOLF_CUT_TURN = (1 << 30),
+    /* 0x80000000 */ AT_TYPE_WOLF_ATTACK = (1 << 31),
+};
+
 class cCcD_ShapeAttr {
 public:
     /* 0x00 */ cM3dGAab mAab;

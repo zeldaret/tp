@@ -3,12 +3,16 @@
 
 #include "dolphin/types.h"
 
-struct OSSectionInfo {
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+typedef struct OSSectionInfo {
     u32 mOffset;
     u32 mSize;
-};
+} OSSectionInfo;
 
-struct OSModuleInfo {
+typedef struct OSModuleInfo {
     u32 mId;
     u32 mNext;
     u32 mPrev;
@@ -33,10 +37,21 @@ struct OSModuleInfo {
     u32 mModuleAlignment;
     u32 mBssAlignment;
     u32 fixSize;
-};
+} OSModuleInfo;
 
-extern "C" BOOL OSLink(OSModuleInfo*);
-extern "C" BOOL OSLinkFixed(OSModuleInfo*, u32);
-extern "C" BOOL OSUnlink(OSModuleInfo*);
+BOOL OSLink(OSModuleInfo* module);
+BOOL OSLinkFixed(OSModuleInfo* module, u32 param_1);
+BOOL OSUnlink(OSModuleInfo* module);
+static void OSNotifyLink(void);
+static void OSNotifyUnlink(void);
+void OSSetStringTable(void* string_table);
+static BOOL Relocate(OSModuleInfo* param_0, OSModuleInfo* param_1);
+static BOOL Link(OSModuleInfo* module, u32 param_1);
+static BOOL Undo(OSModuleInfo* param_0, OSModuleInfo* param_1);
+void __OSModuleInit(void);
+
+#ifdef __cplusplus
+};
+#endif
 
 #endif /* OSLINK_H */

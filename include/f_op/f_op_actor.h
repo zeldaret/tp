@@ -112,15 +112,15 @@ public:
             /* 0x514 */ f32 mRadius;
         } mSphere;
     } mCull;
-    /* 0x520 */ float mCullSizeFar;
-    /* 0x524 */ void* field_0x524;  // possibly J3DModel*
+    /* 0x520 */ f32 mCullSizeFar;
+    /* 0x524 */ J3DModel* field_0x524;
     /* 0x528 */ dJntCol_c* mJntCol;
     /* 0x52C */ f32 mSpeedF;
     /* 0x530 */ f32 mGravity;
     /* 0x534 */ f32 mMaxFallSpeed;
     /* 0x538 */ cXyz mEyePos;
     /* 0x544 */ actor_attention_types mAttentionInfo;
-    /* 0x560 */ u8 field_0x560[0x2];
+    /* 0x560 */ s16 field_0x560;
     /* 0x562 */ s16 field_0x562;
     /* 0x564 */ u8 field_0x564[0x4];
 

@@ -8,56 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct Vec {};
-
-struct JStage {
-    struct TObject {};
-};
-
-namespace JStudio {
-struct TControl {
-    struct TTransform_translation_rotation_scaling {};
-
-    struct TTransform_position {};
-};
-
-struct data {
-    struct TEOperationData {};
-};
-
-struct math {
-    /* 80285B44 */ void getTransformation_SRxyzT(f32 (*)[4], Vec const&, Vec const&, Vec const&);
-};
-
-};  // namespace JStudio
-
-struct JStudio_JStage {
-    struct TAdaptor_object_ {
-        /* 8028A470 */ void adaptor_object_data_(void const*, u32, void const*, u32);
-        /* 8028A4BC */ void adaptor_object_findJSGObject_(char const*);
-        /* 8028A50C */ void adaptor_object_findJSGObjectNode_(JStage::TObject const*, char const*);
-        /* 8028A550 */ void adaptor_object_ENABLE_(JStudio::data::TEOperationData, void const*,
-                                                   u32);
-    };
-
-    /* 8028A1F8 */ void transform_toGlobalFromLocal(
-        f32 (*)[4], JStudio::TControl::TTransform_translation_rotation_scaling const&,
-        JStage::TObject const*, u32);
-    /* 8028A290 */ void transform_toGlobalFromLocal(f32 (*)[4],
-                                                    JStudio::TControl::TTransform_position const&,
-                                                    JStage::TObject const*, u32);
-    /* 8028A328 */ void transform_toLocalFromGlobal(
-        f32 (*)[4], JStudio::TControl::TTransform_translation_rotation_scaling const&,
-        JStage::TObject const*, u32);
-    /* 8028A3CC */ void transform_toLocalFromGlobal(f32 (*)[4],
-                                                    JStudio::TControl::TTransform_position const&,
-                                                    JStage::TObject const*, u32);
-};
-
-//
 // Forward References:
 //
 
@@ -81,9 +31,6 @@ adaptor_object_ENABLE___Q214JStudio_JStage16TAdaptor_object_FQ37JStudio4data15TE
 //
 
 extern "C" void getTransformation_SRxyzT__Q27JStudio4mathFPA4_fRC3VecRC3VecRC3Vec();
-extern "C" void PSMTXConcat();
-extern "C" void PSMTXInverse();
-extern "C" void PSMTXTrans();
 
 //
 // Declarations:

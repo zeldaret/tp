@@ -4,6 +4,10 @@
 #include "MSL_C/MSL_Common/Src/float.h"
 #include "dolphin/types.h"
 
+#define M_PI 3.14159265358979323846f
+
+#define DEG_TO_RAD(degrees) (degrees * (M_PI / 180.0f))
+
 #ifdef __cplusplus
 extern "C" {
 #endif

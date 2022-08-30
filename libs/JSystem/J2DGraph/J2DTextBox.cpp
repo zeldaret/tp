@@ -9,285 +9,334 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-//
-// Forward References:
-//
-
-extern "C" void __ct__10J2DTextBoxFv();
-extern "C" void __ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive();
-extern "C" void __ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial();
-extern "C" void func_802FFBC4();
-extern "C" void initiate__10J2DTextBoxFPC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding();
-extern "C" void private_readStream__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive();
-extern "C" void __dt__10J2DTextBoxFv();
-extern "C" void setFont__10J2DTextBoxFP7JUTFont();
-extern "C" void draw__10J2DTextBoxFff();
-extern "C" void draw__10J2DTextBoxFfff18J2DTextBoxHBinding();
-extern "C" void getStringPtr__10J2DTextBoxCFv();
-extern "C" void setString__10J2DTextBoxFPCce();
-extern "C" void setString__10J2DTextBoxFsPCce();
-extern "C" void setConnectParent__10J2DTextBoxFb();
-extern "C" void drawSelf__10J2DTextBoxFff();
-extern "C" void drawSelf__10J2DTextBoxFffPA3_A4_f();
-extern "C" void resize__10J2DTextBoxFff();
-extern "C" void isUsed__10J2DTextBoxFPC7ResFONT();
-extern "C" s32 getTypeID__10J2DTextBoxCFv();
-extern "C" void isUsed__10J2DTextBoxFPC7ResTIMG();
-extern "C" void rewriteAlpha__10J2DTextBoxFv();
-extern "C" extern char const* const J2DTextBox__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void setAlpha__7J2DPaneFUc();
-extern "C" void calcMtx__7J2DPaneFv();
-extern "C" void makeMatrix__7J2DPaneFff();
-extern "C" void setAnimation__7J2DPaneFP15J2DAnmTevRegKey();
-extern "C" void setAnimation__7J2DPaneFP11J2DAnmColor();
-extern "C" void setWhite__10J2DTextBoxFQ28JUtility6TColor();
-extern "C" void setAnimation__7J2DPaneFP19J2DAnmTextureSRTKey();
-extern "C" void setBlackWhite__10J2DTextBoxFQ28JUtility6TColorQ28JUtility6TColor();
-extern "C" void getWhite__10J2DTextBoxCFv();
-extern "C" void getBlack__10J2DTextBoxCFv();
-extern "C" void getFont__10J2DTextBoxCFv();
-extern "C" void setBlack__10J2DTextBoxFQ28JUtility6TColor();
-extern "C" void setAnimation__7J2DPaneFP14J2DAnmVtxColor();
-extern "C" void setAnimation__7J2DPaneFP20J2DAnmVisibilityFull();
-extern "C" void setAnimation__7J2DPaneFP16J2DAnmTexPattern();
-extern "C" bool getMaterial__10J2DTextBoxCFv();
-extern "C" void* __nw__FUl();
-extern "C" void* __nwa__FUl();
-extern "C" void __dl__FPv();
-extern "C" void __dla__FPv();
-extern "C" void read__14JSUInputStreamFPvl();
-extern "C" void peek__20JSURandomInputStreamFPvl();
-extern "C" void seek__20JSURandomInputStreamFl17JSUStreamSeekFrom();
-extern "C" void __ct__10JUTResFontFPC7ResFONTP7JKRHeap();
-extern "C" void
-__ct__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor();
-extern "C" void __dt__8J2DPrintFv();
-extern "C" void locate__8J2DPrintFff();
-extern "C" void print__8J2DPrintFffUcPCce();
-extern "C" void printReturn__8J2DPrintFPCcff18J2DTextBoxHBinding18J2DTextBoxVBindingffUc();
-extern "C" void __ct__7J2DPaneFv();
-extern "C" void func_802F5E88();
-extern "C" void makePaneStream__7J2DPaneFP7J2DPaneP20JSURandomInputStream();
-extern "C" void __dt__7J2DPaneFv();
-extern "C" void move__7J2DPaneFff();
-extern "C" void add__7J2DPaneFff();
-extern "C" void resize__7J2DPaneFff();
-extern "C" void search__7J2DPaneFUx();
-extern "C" void searchUserInfo__7J2DPaneFUx();
-extern "C" void isUsed__7J2DPaneFPC7ResTIMG();
-extern "C" void isUsed__7J2DPaneFPC7ResFONT();
-extern "C" void makeMatrix__7J2DPaneFffff();
-extern "C" void setCullBack__7J2DPaneF11_GXCullMode();
-extern "C" void makePaneExStream__7J2DPaneFP7J2DPaneP20JSURandomInputStream();
-extern "C" void getPointer__7J2DPaneFP20JSURandomInputStreamUlP10JKRArchive();
-extern "C" void setAnimation__7J2DPaneFP10J2DAnmBase();
-extern "C" void setAnimation__7J2DPaneFP15J2DAnmTransform();
-extern "C" void clearAnmTransform__7J2DPaneFv();
-extern "C" void animationTransform__7J2DPaneFPC15J2DAnmTransform();
-extern "C" void setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull();
-extern "C" void setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor();
-extern "C" void animationPane__7J2DPaneFPC15J2DAnmTransform();
-extern "C" void setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull();
-extern "C" void setAnimationVC__7J2DPaneFP14J2DAnmVtxColor();
-extern "C" void setCullBack__7J2DPaneFb();
-extern "C" void update__7J2DPaneFv();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 803CD328-803CD3E8 02A448 00BC+04 5/5 0/0 0/0 .data            __vt__10J2DTextBox */
-SECTION_DATA extern void* __vt__10J2DTextBox[47 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10J2DTextBoxFv,
-    (void*)getTypeID__10J2DTextBoxCFv,
-    (void*)move__7J2DPaneFff,
-    (void*)add__7J2DPaneFff,
-    (void*)resize__10J2DTextBoxFff,
-    (void*)setCullBack__7J2DPaneFb,
-    (void*)setCullBack__7J2DPaneF11_GXCullMode,
-    (void*)setAlpha__7J2DPaneFUc,
-    (void*)setConnectParent__10J2DTextBoxFb,
-    (void*)calcMtx__7J2DPaneFv,
-    (void*)update__7J2DPaneFv,
-    (void*)drawSelf__10J2DTextBoxFff,
-    (void*)drawSelf__10J2DTextBoxFffPA3_A4_f,
-    (void*)search__7J2DPaneFUx,
-    (void*)searchUserInfo__7J2DPaneFUx,
-    (void*)makeMatrix__7J2DPaneFff,
-    (void*)makeMatrix__7J2DPaneFffff,
-    (void*)isUsed__10J2DTextBoxFPC7ResTIMG,
-    (void*)isUsed__10J2DTextBoxFPC7ResFONT,
-    (void*)clearAnmTransform__7J2DPaneFv,
-    (void*)rewriteAlpha__10J2DTextBoxFv,
-    (void*)setAnimation__7J2DPaneFP10J2DAnmBase,
-    (void*)setAnimation__7J2DPaneFP15J2DAnmTransform,
-    (void*)setAnimation__7J2DPaneFP11J2DAnmColor,
-    (void*)setAnimation__7J2DPaneFP16J2DAnmTexPattern,
-    (void*)setAnimation__7J2DPaneFP19J2DAnmTextureSRTKey,
-    (void*)setAnimation__7J2DPaneFP15J2DAnmTevRegKey,
-    (void*)setAnimation__7J2DPaneFP20J2DAnmVisibilityFull,
-    (void*)setAnimation__7J2DPaneFP14J2DAnmVtxColor,
-    (void*)animationTransform__7J2DPaneFPC15J2DAnmTransform,
-    (void*)setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull,
-    (void*)setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull,
-    (void*)setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor,
-    (void*)setAnimationVC__7J2DPaneFP14J2DAnmVtxColor,
-    (void*)animationPane__7J2DPaneFPC15J2DAnmTransform,
-    (void*)draw__10J2DTextBoxFff,
-    (void*)draw__10J2DTextBoxFfff18J2DTextBoxHBinding,
-    (void*)setFont__10J2DTextBoxFP7JUTFont,
-    (void*)getFont__10J2DTextBoxCFv,
-    (void*)setBlack__10J2DTextBoxFQ28JUtility6TColor,
-    (void*)setWhite__10J2DTextBoxFQ28JUtility6TColor,
-    (void*)setBlackWhite__10J2DTextBoxFQ28JUtility6TColorQ28JUtility6TColor,
-    (void*)getBlack__10J2DTextBoxCFv,
-    (void*)getWhite__10J2DTextBoxCFv,
-    (void*)getMaterial__10J2DTextBoxCFv,
-    /* padding */
-    NULL,
-};
-
 /* 802FF660-802FF6D8 2F9FA0 0078+00 0/0 1/1 0/0 .text            __ct__10J2DTextBoxFv */
 J2DTextBox::J2DTextBox()
     : mFont(NULL), mCharColor(), mGradientColor(), mStringPtr(NULL), mWhiteColor(), mBlackColor() {
-    initiate(NULL, 0, 0, HBIND_LEFT, VBIND_TOP);
+    initiate(NULL, NULL, 0, HBIND_LEFT, VBIND_TOP);
 }
 
 /* 802FF6D8-802FF75C 2FA018 0084+00 0/0 1/1 0/0 .text
  * __ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive */
-J2DTextBox::J2DTextBox(J2DPane* param_0, JSURandomInputStream* param_1, JKRArchive* param_2)
+J2DTextBox::J2DTextBox(J2DPane* p_pane, JSURandomInputStream* p_stream, JKRArchive* p_archive)
     : mFont(NULL), mCharColor(), mGradientColor(), mStringPtr(NULL), mWhiteColor(), mBlackColor() {
-    private_readStream(param_0, param_1, param_2);
+    private_readStream(p_pane, p_stream, p_archive);
 }
-
-/* ############################################################################################## */
-/* 80456280-80456288 004880 0004+04 6/6 0/0 0/0 .sdata2          @1660 */
-SECTION_SDATA2 static f32 lit_1660[1 + 1 /* padding */] = {
-    0.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80456288-80456290 004888 0008+00 3/3 0/0 0/0 .sdata2          @1662 */
-SECTION_SDATA2 static f64 lit_1662 = 4503601774854144.0 /* cast s32 to float */;
-
-/* 80456290-80456298 004890 0008+00 2/2 0/0 0/0 .sdata2          @1665 */
-SECTION_SDATA2 static f64 lit_1665 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802FF75C-802FFBC4 2FA09C 0468+00 0/0 1/1 0/0 .text
  * __ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J2DTextBox::J2DTextBox(J2DPane* param_0, JSURandomInputStream* param_1, u32 param_2,
-                           J2DMaterial* param_3) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTextBox/__ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial.s"
+J2DTextBox::J2DTextBox(J2DPane* p_pane, JSURandomInputStream* p_stream, u32 param_2,
+                       J2DMaterial* p_material)
+    : mFont(NULL), mCharColor(), mGradientColor(), mStringPtr(NULL), mWhiteColor(), mBlackColor() {
+    J2DTextBoxInfo info;
+
+    int startPos = p_stream->getPosition();
+
+    J2DTbxBlockHeader header;
+    p_stream->read(&header, 8);
+    mKind = 'TBX1';
+
+    int panHeaderPos = p_stream->getPosition();
+    J2DTbxBlockHeader panHeader;
+    p_stream->peek(&panHeader, 8);
+    makePaneExStream(p_pane, p_stream);
+    p_stream->seek(panHeaderPos + panHeader.mSize, JSUStreamSeekFrom_SET);
+
+    p_stream->read(&info, 0x20);
+    J2DMaterial* mat = NULL;
+
+    if (info.mMaterialNum != 0xFFFF) {
+        mat = &p_material[info.mMaterialNum];
+
+        if (mat != NULL) {
+            if (mat->getTevBlock() != NULL) {
+                JUTFont* font = mat->getTevBlock()->getFont();
+
+                if (font != NULL) {
+                    mFont = font;
+                    mat->getTevBlock()->setFontUndeleteFlag();
+                }
+            }
+            mAlpha = mat->getColorBlock()->getMatColor(0)->a;
+        }
+    }
+
+    mCharSpacing = info.mCharSpace;
+    mLineSpacing = info.mLineSpace;
+    mFontSizeX = info.mFontSizeX;
+    mFontSizeY = info.mFontSizeY;
+    mFlags = (info.mHBind << 2) | info.mVBind;
+    mCharColor = JUtility::TColor(info.mCharColor);
+    mGradientColor = JUtility::TColor(info.mGradColor);
+    setConnectParent(info.mConnected);
+
+    u16 strLength = 0;
+    if (!(param_2 & 0x2000000)) {
+        strLength = info.field_0x1c;
+        if ((s16)info.field_0x1c == -1) {
+            strLength = info.field_0x1e + 1;
+        }
+    }
+
+    mStringLength = 0;
+    mStringPtr = NULL;
+
+    if (strLength != 0) {
+        mStringPtr = new char[strLength];
+    }
+
+    if (mStringPtr != NULL) {
+        mStringLength = strLength;
+        int temp_r0 = (u16)strLength - 1;
+        u16 var_r26_2 = info.field_0x1e;
+
+        if (temp_r0 < var_r26_2) {
+            var_r26_2 = (u16)temp_r0;
+        }
+
+        p_stream->peek(mStringPtr, var_r26_2);
+        mStringPtr[var_r26_2] = 0;
+    }
+
+    p_stream->skip(info.field_0x1e);
+    p_stream->seek(startPos + header.mSize, JSUStreamSeekFrom_SET);
+    mBlackColor = JUtility::TColor(0);
+    mWhiteColor = JUtility::TColor(0xFFFFFFFF);
+
+    if (mat != NULL && mat->getTevBlock() != NULL) {
+        if (mat->getTevBlock()->getTevStageNum() != 1) {
+            J2DGXColorS10* color0p = mat->getTevBlock()->getTevColor(0);
+            GXColorS10 color0;
+            color0.r = color0p->r;
+            color0.g = color0p->g;
+            color0.b = color0p->b;
+            color0.a = color0p->a;
+
+            J2DGXColorS10* color1p = mat->getTevBlock()->getTevColor(1);
+            GXColorS10 color1;
+            color1.r = color1p->r;
+            color1.g = color1p->g;
+            color1.b = color1p->b;
+            color1.a = color1p->a;
+
+            mBlackColor = JUtility::TColor(((u8)color0.r << 0x18) | ((u8)color0.g << 0x10) |
+                                           ((u8)color0.b << 8) | (u8)color0.a);
+            mWhiteColor = JUtility::TColor(((u8)color1.r << 0x18) | ((u8)color1.g << 0x10) |
+                                           ((u8)color1.b << 8) | (u8)color1.a);
+        }
+    }
+
+    field_0x10c = 0.0f;
+    field_0x110 = 0.0f;
+    mTextFontOwned = true;
 }
-#pragma pop
 
 /* 802FFBC4-802FFC58 2FA504 0094+00 0/0 1/1 0/0 .text
  * __ct__10J2DTextBoxFUxRCQ29JGeometry8TBox2<f>PC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding
  */
-J2DTextBox::J2DTextBox(u64 param_0, JGeometry::TBox2<f32> const& param_1, ResFONT const* param_2,
-                       char const* param_3, s16 param_4, J2DTextBoxHBinding param_5,
-                       J2DTextBoxVBinding param_6)
-    : J2DPane(param_0, param_1), mFont(NULL), mCharColor(), mGradientColor(), mStringPtr(NULL),
+J2DTextBox::J2DTextBox(u64 tag, JGeometry::TBox2<f32> const& bounds, ResFONT const* p_font,
+                       char const* string, s16 strLength, J2DTextBoxHBinding hBind,
+                       J2DTextBoxVBinding vBind)
+    : J2DPane(tag, bounds), mFont(NULL), mCharColor(), mGradientColor(), mStringPtr(NULL),
       mWhiteColor(), mBlackColor() {
-    initiate(param_2, param_3, param_4, param_5, param_6);
+    initiate(p_font, string, strLength, hBind, vBind);
 }
 
 /* 802FFC58-802FFE88 2FA598 0230+00 2/2 1/0 0/0 .text
  * initiate__10J2DTextBoxFPC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTextBox::initiate(ResFONT const* param_0, char const* param_1, s16 param_2,
-                              J2DTextBoxHBinding param_3, J2DTextBoxVBinding param_4) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTextBox/initiate__10J2DTextBoxFPC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding.s"
+void J2DTextBox::initiate(ResFONT const* p_font, char const* string, s16 length,
+                          J2DTextBoxHBinding hBind, J2DTextBoxVBinding vBind) {
+    if (p_font != NULL) {
+        mFont = new JUTResFont(p_font, NULL);
+    }
+
+    mCharColor.set(0xFFFFFFFF);
+    mGradientColor.set(0xFFFFFFFF);
+    mBlackColor = JUtility::TColor(0);
+    mWhiteColor = JUtility::TColor(0xFFFFFFFF);
+
+    mFlags = (hBind << 2) | vBind;
+    mStringLength = 0;
+    mStringPtr = NULL;
+
+    if (string != NULL && length != 0) {
+        u32 len = strlen(string);
+        u16 stringLen = length;
+
+        if (length == -1) {
+            if (len >= 0xFFFF) {
+                len = 0xFFFF - 1;
+            }
+            stringLen = len + 1;
+        }
+
+        mStringPtr = new char[stringLen];
+
+        if (stringLen != 0 && mStringPtr != NULL) {
+            strncpy(mStringPtr, string, stringLen - 1);
+            mStringPtr[stringLen - 1] = 0;
+            mStringLength = stringLen;
+        }
+    }
+
+    field_0x10c = 0.0f;
+    field_0x110 = 0.0f;
+    mCharSpacing = 0.0f;
+
+    if (mFont == NULL) {
+        mLineSpacing = 0.0f;
+        mFontSizeX = 0.0f;
+        mFontSizeY = 0.0f;
+    } else {
+        mLineSpacing = mFont->getLeading();
+        mFontSizeX = mFont->getWidth();
+        mFontSizeY = mFont->getHeight();
+    }
+
+    mKind = 'TBX1';
+    mTextFontOwned = true;
 }
-#pragma pop
 
 /* 802FFE88-803001E0 2FA7C8 0358+00 1/1 0/0 0/0 .text
  * private_readStream__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTextBox::private_readStream(J2DPane* param_0, JSURandomInputStream* param_1,
-                                        JKRArchive* param_2) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTextBox/private_readStream__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive.s"
+void J2DTextBox::private_readStream(J2DPane* p_pane, JSURandomInputStream* p_stream,
+                                    JKRArchive* p_archive) {
+    int position = p_stream->getPosition();
+
+    J2DTbxBlockHeader header;
+    p_stream->read(&header, 8);
+    mKind = header.mTag;
+
+    makePaneStream(p_pane, p_stream);
+    u8 spA = p_stream->readU8();
+
+    ResFONT* fontPtr = (ResFONT*)getPointer(p_stream, 'FONT', p_archive);
+    if (fontPtr != NULL) {
+        mFont = new JUTResFont(fontPtr, NULL);
+    }
+
+    mCharColor.set(p_stream->read32b());
+    mGradientColor.set(p_stream->read32b());
+    mFlags = p_stream->read8b();
+    mCharSpacing = p_stream->readS16();
+    mLineSpacing = p_stream->readS16();
+    mFontSizeX = p_stream->read16b();
+    mFontSizeY = p_stream->read16b();
+
+    s16 stringLen = p_stream->read16b();
+    mStringPtr = new char[stringLen + 1];
+
+    if (mStringPtr != NULL) {
+        p_stream->read(mStringPtr, stringLen);
+        mStringPtr[stringLen] = 0;
+        mStringLength = stringLen + 1;
+    } else {
+        p_stream->skip(stringLen);
+        mStringLength = 0;
+    }
+
+    spA -= 10;
+    if (spA != 0) {
+        u8 sp8 = p_stream->read8b();
+        if (sp8 != 0) {
+            setConnectParent(true);
+        }
+
+        spA--;
+    }
+
+    mBlackColor = JUtility::TColor(0);
+    mWhiteColor = JUtility::TColor(0xFFFFFFFF);
+
+    if (spA != 0) {
+        mBlackColor.set(p_stream->read32b());
+        spA--;
+    }
+
+    if (spA != 0) {
+        mWhiteColor.set(p_stream->read32b());
+    }
+
+    field_0x10c = 0.0f;
+    field_0x110 = 0.0f;
+    p_stream->seek(position + header.mSize, JSUStreamSeekFrom_SET);
+    mTextFontOwned = true;
 }
-#pragma pop
 
 /* 803001E0-80300278 2FAB20 0098+00 1/0 2/2 0/0 .text            __dt__10J2DTextBoxFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm J2DTextBox::~J2DTextBox() {
-extern "C" asm void __dt__10J2DTextBoxFv() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTextBox/__dt__10J2DTextBoxFv.s"
+J2DTextBox::~J2DTextBox() {
+    if (mTextFontOwned) {
+        delete mFont;
+    }
+
+    delete[] mStringPtr;
 }
-#pragma pop
 
 /* 80300278-803002E8 2FABB8 0070+00 1/0 0/0 0/0 .text            setFont__10J2DTextBoxFP7JUTFont */
-void J2DTextBox::setFont(JUTFont* pFont) {
-    if (pFont) {
+void J2DTextBox::setFont(JUTFont* p_font) {
+    if (p_font) {
         if (mTextFontOwned) {
             delete mFont;
         }
-        mFont = pFont;
+        mFont = p_font;
         mTextFontOwned = false;
     }
 }
 
-/* ############################################################################################## */
-/* 803A1C58-803A1C58 02E2B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803A1C58 = "%s";
-#pragma pop
-
 /* 803002E8-80300490 2FAC28 01A8+00 1/0 0/0 0/0 .text            draw__10J2DTextBoxFff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTextBox::draw(f32 param_0, f32 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTextBox/draw__10J2DTextBoxFff.s"
+void J2DTextBox::draw(f32 posX, f32 posY) {
+    Mtx m;
+
+    if (isVisible()) {
+        J2DPrint print(mFont, mCharSpacing, mLineSpacing, mCharColor, mGradientColor, mBlackColor,
+                       mWhiteColor);
+        print.setFontSize(mFontSizeX, mFontSizeY);
+        makeMatrix(posX, posY, 0.0f, 0.0f);
+
+        GXLoadPosMtxImm(mPositionMtx, GX_PNMTX0);
+        GXSetCurrentMtx(0);
+        GXSetNumIndStages(0);
+        for (int i = 0; i < 16; i++) {
+            GXSetTevDirect((GXTevStageID)i);
+        }
+        GXSetNumTexGens(1);
+        GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 60, GX_FALSE, 125);
+
+        if (mStringPtr != NULL) {
+            print.print(0.0f, 0.0f, mAlpha, "%s", mStringPtr);
+        }
+        PSMTXIdentity(m);
+        GXLoadPosMtxImm(m, 0);
+    }
 }
-#pragma pop
 
 /* 80300490-80300658 2FADD0 01C8+00 1/0 1/1 0/0 .text draw__10J2DTextBoxFfff18J2DTextBoxHBinding
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTextBox::draw(f32 param_0, f32 param_1, f32 param_2, J2DTextBoxHBinding param_3) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTextBox/draw__10J2DTextBoxFfff18J2DTextBoxHBinding.s"
+void J2DTextBox::draw(f32 posX, f32 posY, f32 param_2, J2DTextBoxHBinding hBind) {
+    Mtx m;
+
+    if (isVisible()) {
+        J2DPrint print(mFont, mCharSpacing, mLineSpacing, mCharColor, mGradientColor, mBlackColor,
+                       mWhiteColor);
+        print.setFontSize(mFontSizeX, mFontSizeY);
+        makeMatrix(posX, posY, 0.0f, 0.0f);
+
+        GXLoadPosMtxImm(mPositionMtx, GX_PNMTX0);
+        GXSetCurrentMtx(0);
+        GXSetNumIndStages(0);
+        for (int i = 0; i < 16; i++) {
+            GXSetTevDirect((GXTevStageID)i);
+        }
+        GXSetNumTexGens(1);
+        GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 60, GX_FALSE, 125);
+
+        if (mStringPtr != NULL) {
+            print.printReturn(mStringPtr, param_2, 0.0f, hBind, VBIND_TOP, 0.0f, -mFontSizeY,
+                              mAlpha);
+        }
+        PSMTXIdentity(m);
+        GXLoadPosMtxImm(m, 0);
+    }
 }
-#pragma pop
 
 /* 80300658-80300660 2FAF98 0008+00 0/0 62/62 2/2 .text            getStringPtr__10J2DTextBoxCFv */
 char* J2DTextBox::getStringPtr() const {
@@ -295,9 +344,10 @@ char* J2DTextBox::getStringPtr() const {
 }
 
 /* 80300660-8030074C 2FAFA0 00EC+00 0/0 6/6 0/0 .text            setString__10J2DTextBoxFPCce */
-// missing block of instructions before delete[]
-#ifdef NONMATCHING
 s32 J2DTextBox::setString(char const* string, ...) {
+    va_list args;
+    va_start(args, string);
+
     delete[] mStringPtr;
 
     u32 len = strlen(string);
@@ -314,115 +364,116 @@ s32 J2DTextBox::setString(char const* string, ...) {
         mStringLength = len + 1;
         strcpy(mStringPtr, string);
     }
+
+    va_end(args);
     return len;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 J2DTextBox::setString(char const* param_0, ...) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTextBox/setString__10J2DTextBoxFPCce.s"
-}
-#pragma pop
-#endif
 
 /* 8030074C-80300870 2FB08C 0124+00 0/0 41/41 2/2 .text            setString__10J2DTextBoxFsPCce */
-#ifdef NONMATCHING
-s32 J2DTextBox::setString(s16 param_0, char const* string, ...) {
+s32 J2DTextBox::setString(s16 length, char const* string, ...) {
+    va_list args;
+    va_start(args, string);
+
     delete[] mStringPtr;
     mStringPtr = NULL;
 
     u32 len = strlen(string);
+    u16 stringLen = length;
 
-    if (param_0 == -1) {
+    if (length == -1) {
         if (len >= 0xFFFF) {
             len = 0xFFFF - 1;
         }
-        param_0 = len + 1;
+        stringLen = len + 1;
     }
 
     mStringLength = 0;
 
-    if (param_0 != 0) {
-        char* tmp = new char[param_0];
-        mStringPtr = tmp;
+    if (stringLen != 0) {
+        mStringPtr = new char[stringLen];
     }
 
-    if (mStringPtr) {
-        strncpy(mStringPtr, string, param_0 - 1);
-        mStringPtr[param_0 - 1] = 0;
-        mStringLength = param_0;
+    if (mStringPtr != NULL) {
+        strncpy(mStringPtr, string, stringLen - 1);
+        mStringPtr[stringLen - 1] = 0;
+        mStringLength = stringLen;
     }
+
+    va_end(args);
     return len;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 J2DTextBox::setString(s16 param_0, char const* param_1, ...) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTextBox/setString__10J2DTextBoxFsPCce.s"
-}
-#pragma pop
-#endif
 
 /* 80300870-803008E8 2FB1B0 0078+00 1/0 1/0 0/0 .text            setConnectParent__10J2DTextBoxFb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTextBox::setConnectParent(bool param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTextBox/setConnectParent__10J2DTextBoxFb.s"
+bool J2DTextBox::setConnectParent(bool connected) {
+    if (getPaneTree()->getParent() == NULL) {
+        return false;
+    }
+
+    if ((u16)getPaneTree()->getParent()->getObject()->getTypeID() != 0x11) {
+        return false;
+    }
+
+    mConnected = connected;
+    return connected;
 }
-#pragma pop
 
 /* 803008E8-80300950 2FB228 0068+00 1/0 1/0 0/0 .text            drawSelf__10J2DTextBoxFff */
 void J2DTextBox::drawSelf(f32 param_0, f32 param_1) {
-    Mtx tmp;
-    PSMTXIdentity(tmp);
+    Mtx identity;
+    PSMTXIdentity(identity);
 
-    drawSelf(param_0, param_1, &tmp);
+    drawSelf(param_0, param_1, &identity);
 }
-
-/* ############################################################################################## */
-/* 80456298-804562A0 004898 0004+04 1/1 0/0 0/0 .sdata2          @2049 */
-SECTION_SDATA2 static f32 lit_2049[1 + 1 /* padding */] = {
-    9.999999747378752e-05f,
-    /* padding */
-    0.0f,
-};
 
 /* 80300950-80300AF8 2FB290 01A8+00 1/0 0/0 0/0 .text            drawSelf__10J2DTextBoxFffPA3_A4_f
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTextBox::drawSelf(f32 param_0, f32 param_1, f32 (*param_2)[3][4]) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTextBox/drawSelf__10J2DTextBoxFffPA3_A4_f.s"
+void J2DTextBox::drawSelf(f32 param_0, f32 param_1, Mtx* p_mtx) {
+    Mtx m;
+
+    J2DPrint print(mFont, mCharSpacing, mLineSpacing, mCharColor, mGradientColor, mBlackColor,
+                   mWhiteColor);
+    print.setFontSize(mFontSizeX, mFontSizeY);
+    PSMTXConcat(*p_mtx, mGlobalMtx, m);
+
+    GXLoadPosMtxImm(m, GX_PNMTX0);
+    GXSetNumIndStages(0);
+    for (int i = 0; i < 16; i++) {
+        GXSetTevDirect((GXTevStageID)i);
+    }
+    GXSetNumTexGens(1);
+    GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 60, GX_FALSE, 125);
+
+    print.locate(param_0 + mBounds.i.x, param_1 + mBounds.i.y);
+    if (mStringPtr != NULL) {
+        print.printReturn(mStringPtr, mBounds.getWidth() + 0.0001f, mBounds.getHeight(),
+                          getHBinding(), getVBinding(), field_0x10c, field_0x110, mColorAlpha);
+    }
 }
-#pragma pop
 
 /* 80300AF8-80300BFC 2FB438 0104+00 1/0 1/0 0/0 .text            resize__10J2DTextBoxFff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTextBox::resize(f32 param_0, f32 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTextBox/resize__10J2DTextBoxFff.s"
+void J2DTextBox::resize(f32 x, f32 y) {
+    if (mConnected && getPaneTree() != NULL && getPaneTree()->getParent() != NULL) {
+        J2DPane* obj = getPaneTree()->getParent()->getObject();
+
+        if ((u16)obj->getTypeID() == 0x11) {
+            f32 obj_x = obj->getWidth() + (x - getWidth());
+            f32 obj_y = obj->getHeight() + (y - getHeight());
+            obj->resize(obj_x, obj_y);
+            return;
+        }
+    }
+
+    J2DPane::resize(x, y);
 }
-#pragma pop
 
 /* 80300BFC-80300C68 2FB53C 006C+00 1/0 0/0 0/0 .text            isUsed__10J2DTextBoxFPC7ResFONT */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTextBox::isUsed(ResFONT const* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTextBox/isUsed__10J2DTextBoxFPC7ResFONT.s"
+bool J2DTextBox::isUsed(ResFONT const* p_font) {
+    if (mFont != NULL && mFont->getResFont() == p_font) {
+        return true;
+    }
+
+    return J2DPane::isUsed(p_font);
 }
-#pragma pop
 
 /* 80300C68-80300C70 2FB5A8 0008+00 1/0 1/0 0/0 .text            getTypeID__10J2DTextBoxCFv */
 s32 J2DTextBox::getTypeID() const {
@@ -430,8 +481,8 @@ s32 J2DTextBox::getTypeID() const {
 }
 
 /* 80300C70-80300C90 2FB5B0 0020+00 1/0 0/0 0/0 .text            isUsed__10J2DTextBoxFPC7ResTIMG */
-bool J2DTextBox::isUsed(ResTIMG const* param_0) {
-    return J2DPane::isUsed(param_0);
+bool J2DTextBox::isUsed(ResTIMG const* p_timg) {
+    return J2DPane::isUsed(p_timg);
 }
 
 /* 80300C90-80300C94 2FB5D0 0004+00 1/0 0/0 0/0 .text            rewriteAlpha__10J2DTextBoxFv */

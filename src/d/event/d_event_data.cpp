@@ -190,9 +190,11 @@ static u16 getTelopNo() {
 static u16 getStartTelopNo() {
     const char* startStageName = dComIfGp_getStartStageName();
     const char* lastPlayStateName = dComIfGp_getLastPlayStageName();
+
     if (strcmp(startStageName, lastPlayStateName) == 0) {
         return 0xFFFF;
     }
+
     TelopDataStruct* telopData = NULL;
     s32 val = ((startStageName[3] == 'B' ? 'd' : startStageName[0]) << 0x18 |
                startStageName[4] << 0x10 | startStageName[5] << 8 | startStageName[6]);
@@ -202,6 +204,7 @@ static u16 getStartTelopNo() {
             break;
         }
     }
+
     if (telopData == NULL || telopData->_8 == 0) {
         return 0xFFFF;
     } else if (telopData->_8 == 2 && telopData->_6 != 0xFFFF &&
@@ -214,12 +217,14 @@ static u16 getStartTelopNo() {
         TelopDataStruct* lastTelopData = NULL;
         val = ((lastPlayStateName[3] == 'B' ? 'd' : lastPlayStateName[0]) << 0x18 |
                lastPlayStateName[4] << 0x10 | lastPlayStateName[5] << 8 | lastPlayStateName[6]);
+
         for (s32 i = 0; i < numTelopData; i++) {
             if (val == TelopData[i].mName) {
                 lastTelopData = &TelopData[i];
                 break;
             }
         }
+
         if (lastTelopData != NULL && telopData->mTelopNo == lastTelopData->mTelopNo) {
             return 0xFFFF;
         } else {
@@ -285,6 +290,7 @@ static int dEvDt_Next_Stage(int index, int wipe_type) {
         int id = *p_id;
         s8 room_no = dComIfGp_roomControl_getStayNo();
         stage_scls_info_dummy_class* info;
+
         if (room_no == -1) {
             info = dComIfGp_getStageSclsInfo();
         } else {
@@ -379,11 +385,11 @@ static asm int dEvDt_Next_Stage(int param_0, int param_1) {
 #endif
 
 /* 80043D60-80043DC8 03E6A0 0068+00 3/3 0/0 0/0 .text            flagCheck__11dEvDtFlag_cFi */
-BOOL dEvDtFlag_c::flagCheck(int param_0) {
-    if (flagMaxCheck(param_0)) {
+BOOL dEvDtFlag_c::flagCheck(int flag) {
+    if (flagMaxCheck(flag)) {
         return FALSE;
     } else {
-        if (mFlags[(u32)param_0 / 0x20] & (1 << (param_0 & 0x1F))) {
+        if (mFlags[(u32)flag / 0x20] & (1 << (flag & 0x1F))) {
             return TRUE;
         } else {
             return FALSE;
@@ -392,21 +398,21 @@ BOOL dEvDtFlag_c::flagCheck(int param_0) {
 }
 
 /* 80043DC8-80043E30 03E708 0068+00 2/2 1/1 0/0 .text            flagSet__11dEvDtFlag_cFi */
-BOOL dEvDtFlag_c::flagSet(int param_0) {
-    if (flagMaxCheck(param_0)) {
+BOOL dEvDtFlag_c::flagSet(int flag) {
+    if (flagMaxCheck(flag)) {
         return FALSE;
     } else {
-        mFlags[(u32)param_0 / 0x20] |= (1 << (param_0 & 0x1F));
+        mFlags[(u32)flag / 0x20] |= (1 << (flag & 0x1F));
         return TRUE;
     }
 }
 
-BOOL dEvDtFlag_c::flagMaxCheck(int flag_id) {
-    if (flag_id == -1) {
+BOOL dEvDtFlag_c::flagMaxCheck(int flag) {
+    if (flag == -1) {
         return TRUE;
     }
 
-    if (FlagMax <= flag_id) {
+    if (FlagMax <= flag) {
         return TRUE;
     } else {
         return FALSE;
@@ -426,6 +432,7 @@ int dEvDtEvent_c::finishCheck() {
         if (tmp == -1) {
             return 1;
         }
+
         if (!i_dComIfGp_getEventManager().flagCheck(tmp)) {
             return 0;
         }
@@ -436,33 +443,27 @@ int dEvDtEvent_c::finishCheck() {
 /* 80043EFC-80043F70 03E83C 0074+00 0/0 1/1 0/0 .text            forceFinish__12dEvDtEvent_cFv */
 int dEvDtEvent_c::forceFinish() {
     for (int i = 0; i < 3; i++) {
-        int tmp = field_0x88[i];
-        if (tmp == -1) {
+        int flag = field_0x88[i];
+        if (flag == -1) {
             return 1;
         }
-        i_dComIfGp_getEventManager().setFlag(tmp);
+    
+        i_dComIfGp_getEventManager().setFlag(flag);
     }
     return 1;
 }
 
 /* 80043F70-80043FD8 03E8B0 0068+00 0/0 1/1 0/0 .text
  * specialStaffProc__12dEvDtEvent_cFP12dEvDtStaff_c             */
-void dEvDtEvent_c::specialStaffProc(dEvDtStaff_c* param_0) {
+void dEvDtEvent_c::specialStaffProc(dEvDtStaff_c* p_staff) {
     for (int i = 0; i < mNStaff; i++) {
-        param_0[mStaff[i]].specialProc();
+        p_staff[mStaff[i]].specialProc();
     }
 }
 
-/* ############################################################################################## */
-/* 80379DD0-80379DD0 006430 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80379E0D = "Timer";
-#pragma pop
-
 /* 80043FD8-8004403C 03E918 0064+00 4/4 0/0 0/0 .text specialProc_WaitStart__12dEvDtStaff_cFi */
-void dEvDtStaff_c::specialProc_WaitStart(int param_0) {
-    int* timer = dComIfGp_evmng_getMyIntegerP(param_0, "Timer");
+void dEvDtStaff_c::specialProc_WaitStart(int index) {
+    int* timer = dComIfGp_evmng_getMyIntegerP(index, "Timer");
     if (timer == NULL) {
         mWaitTimer = 0;
     } else {
@@ -558,14 +559,17 @@ void dEvDtStaff_c::specialProcLight() {
     int staffId = i_dComIfGp_evmng_getMyStaffId("LIGHT", NULL, 0);
     if (staffId != -1) {
         char* nowCutName = i_dComIfGp_getEventManager().getMyNowCutName(staffId);
+
         if (dComIfGp_evmng_getIsAddvance(staffId)) {
             f32* hourP;
+
             switch (*(int*)nowCutName) {
             case 'CHAN':
                 hourP = dComIfGp_evmng_getMyFloatP(staffId, "Hour");
                 if (hourP != NULL) {
                     dKy_instant_timechg(*hourP * 15.0f);
                 }
+
                 int* weatherP = dComIfGp_evmng_getMyIntegerP(staffId, "Weather");
                 if (weatherP != NULL) {
                     switch (*weatherP) {
@@ -609,6 +613,7 @@ void dEvDtStaff_c::specialProcMessage() {
     if (staffId == -1) {
         return;
     }
+
     char* nowCutName = i_dComIfGp_getEventManager().getMyNowCutName(staffId);
     if (dComIfGp_evmng_getIsAddvance(staffId)) {
         switch (*(int*)nowCutName) {
@@ -651,6 +656,7 @@ void dEvDtStaff_c::specialProcMessage() {
             break;
         case 'TELO':
             int* forStartP = dComIfGp_evmng_getMyIntegerP(staffId, "ForStart");
+
             if (forStartP != NULL && *forStartP != 0) {
                 work->mMsgNo = getStartTelopNo();
             } else {
@@ -664,12 +670,14 @@ void dEvDtStaff_c::specialProcMessage() {
                     work->mMsgNo = getTelopNo();
                 }
             }
+
             data->unk = 0;
             if (work->mMsgNo != 0xFFFF) {
                 work->_0 = fopMsgM_messageSetDemo(work->mMsgNo);
             }
         }
     }
+
     switch (*(int*)nowCutName) {
     case 'WAIT':
         specialProc_WaitProc(staffId);
@@ -715,6 +723,7 @@ void dEvDtStaff_c::specialProcMessage() {
             if (work->mLMsg == NULL) {
                 break;
             }
+
             switch (work->mLMsg->field_0xf8) {
             case 0xE:
                 work->mLMsg->field_0xf8 = 0x10;
@@ -800,6 +809,7 @@ void dEvDtStaff_c::specialProcSound() {
     if (staffId == -1) {
         return;
     }
+
     char* nowCutName = i_dComIfGp_getEventManager().getMyNowCutName(staffId);
     if (dComIfGp_evmng_getIsAddvance(staffId)) {
         switch (*(int*)nowCutName) {
@@ -827,6 +837,7 @@ void dEvDtStaff_c::specialProcSound() {
             }
         }
     }
+
     switch (*(int*)nowCutName) {
     case 'WAIT':
         specialProc_WaitProc(staffId);
@@ -874,10 +885,12 @@ void dEvDtStaff_c::specialProcCreate() {
     csXyz angle;
     cXyz scale;
     dStage_objectNameInf* objNameInf;
+
     int staffId = i_dComIfGp_evmng_getMyStaffId("CREATER", NULL, 0);
     if (staffId == -1) {
         return;
     }
+
     char* nowCutName = i_dComIfGp_getEventManager().getMyNowCutName(staffId);
     if (dComIfGp_evmng_getIsAddvance(staffId)) {
         switch (*(int*)nowCutName) {
@@ -886,30 +899,35 @@ void dEvDtStaff_c::specialProcCreate() {
         case 'CREA':
             name = dComIfGp_evmng_getMyStringP(staffId, "MAKECAST");
             objNameInf = dStage_searchName(name);
+
             int* argP = dComIfGp_evmng_getMyIntegerP(staffId, "ARG");
             if (argP == NULL) {
                 arg = UINT32_MAX;
             } else {
                 arg = *argP;
             }
+
             cXyz* posP = dComIfGp_evmng_getMyXyzP(staffId, "POS");
             if (posP == NULL) {
                 pos = ((fopAc_ac_c*)dComIfGp_getPlayer(0))->getPosition();
             } else {
                 pos = *posP;
             }
+
             int* angleP = dComIfGp_evmng_getMyIntegerP(staffId, "ANGLE");
             if (angleP == NULL) {
                 angle.setall(0);
             } else {
                 angle.set(angleP[0], angleP[1], angleP[2]);
             }
+
             cXyz* scaleP = dComIfGp_evmng_getMyXyzP(staffId, "SCALE");
             if (scaleP == NULL) {
                 scale.setAll(1.0f);
             } else {
                 scale = *scaleP;
             }
+
             fopAcM_create(objNameInf->mProcName, arg, &pos, dComIfGp_roomControl_getStayNo(),
                           &angle, &scale, objNameInf->mSubtype);
             break;
@@ -958,20 +976,24 @@ void dEvDtStaff_c::specialProcDirector() {
     DirectorData* data = (DirectorData*)mData;
     daPy_py_c* player = dComIfGp_getLinkPlayer();
     dEvt_control_c& evtControl = i_dComIfGp_getEvent();
+
     int staffId = i_dComIfGp_evmng_getMyStaffId("DIRECTOR", NULL, 0);
     if (staffId == -1) {
         return;
     }
+
     char* nowCutName = i_dComIfGp_getEventManager().getMyNowCutName(staffId);
     if (dComIfGp_evmng_getIsAddvance(staffId)) {
         int* eventFlagP = dComIfGp_evmng_getMyIntegerP(staffId, "EventFlag");
         if (eventFlagP != NULL) {
             dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[*eventFlagP]);
         }
+
         int* eventFlagOffP = dComIfGp_evmng_getMyIntegerP(staffId, "EventFlagOff");
         if (eventFlagOffP != NULL) {
             dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[*eventFlagOffP]);
         }
+
         int* switchTableP = dComIfGp_evmng_getMyIntegerP(staffId, "SwitchTable");
         int switchTable;
         if (switchTableP != NULL) {
@@ -979,22 +1001,27 @@ void dEvDtStaff_c::specialProcDirector() {
         } else {
             switchTable = i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo());
         }
+
         int* switchBitP = dComIfGp_evmng_getMyIntegerP(staffId, "SwitchBit");
         if (switchBitP != NULL) {
             dComIfGs_onStageSwitch(switchTable, *switchBitP);
         }
+
         int* switchOffP = dComIfGp_evmng_getMyIntegerP(staffId, "SwitchOff");
         if (switchOffP != NULL) {
             dComIfGs_offStageSwitch(switchTable, *switchOffP);
         }
+
         int* tmpBitP = dComIfGp_evmng_getMyIntegerP(staffId, "TmpBit");
         if (tmpBitP != NULL) {
             dComIfGs_onTmpBit(dSv_event_tmp_flag_c::tempBitLabels[*tmpBitP]);
         }
+
         int* tmpOffP = dComIfGp_evmng_getMyIntegerP(staffId, "TmpBitOff");
         if (tmpOffP != NULL) {
             dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[*tmpOffP]);
         }
+
         switch (*(int*)nowCutName) {
         case 'WAIT':
             specialProc_WaitStart(staffId);
@@ -1016,6 +1043,7 @@ void dEvDtStaff_c::specialProcDirector() {
             if (NULL == pt) {
                 pt = evtControl.getPt2();
             }
+
             if (zev != NULL) {
                 evtControl.setSkipZev(pt, zev);
             } else {
@@ -1025,6 +1053,7 @@ void dEvDtStaff_c::specialProcDirector() {
         case 'FADE':
             f32* rateP = dComIfGp_evmng_getMyFloatP(staffId, "Rate");
             int* colorP = dComIfGp_evmng_getMyIntegerP(staffId, "Color");
+
             if (*rateP > 0) {
                 mDoGph_gInf_c::setFadeRate(0);
             }
@@ -1053,6 +1082,7 @@ void dEvDtStaff_c::specialProcDirector() {
             } else {
                 data->unk = 1;
             }
+
             int* soundP = dComIfGp_evmng_getMyIntegerP(staffId, "SOUND");
             if (soundP != NULL) {
                 switch (*soundP) {
@@ -1083,6 +1113,7 @@ void dEvDtStaff_c::specialProcDirector() {
                     evtControl.setPt2(pt2);
                 }
             }
+
             char* ptTName = dComIfGp_evmng_getMyStringP(staffId, "PtT");
             if (ptTName != NULL) {
                 fopAc_ac_c* ptT = fopAcM_searchFromName4Event(ptTName, -1);
@@ -1090,6 +1121,7 @@ void dEvDtStaff_c::specialProcDirector() {
                     evtControl.setPtT(ptT);
                 }
             }
+
             char* ptIName = dComIfGp_evmng_getMyStringP(staffId, "PtI");
             if (ptIName != NULL) {
                 fopAc_ac_c* ptI = fopAcM_searchFromName4Event(ptIName, -1);
@@ -1097,6 +1129,7 @@ void dEvDtStaff_c::specialProcDirector() {
                     evtControl.setPtI(ptI);
                 }
             }
+
             char* ptDName = dComIfGp_evmng_getMyStringP(staffId, "PtD");
             if (ptDName != NULL) {
                 fopAc_ac_c* ptD = fopAcM_searchFromName4Event(ptDName, -1);
@@ -1113,6 +1146,7 @@ void dEvDtStaff_c::specialProcDirector() {
                     if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[506])) {
                         dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[566]);
                     }
+
                     if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[507])) {
                         dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[567]);
                     }
@@ -1121,6 +1155,7 @@ void dEvDtStaff_c::specialProcDirector() {
             break;
         }
     }
+
     switch (*(int*)nowCutName) {
     case 'WAIT':
         specialProc_WaitProc(staffId);
@@ -1130,6 +1165,7 @@ void dEvDtStaff_c::specialProcDirector() {
             dComIfGp_evmng_cutEnd(staffId);
             break;
         }
+
         if (mDoGph_gInf_c::getFadeRate() >= 1) {
             f32* rateP = dComIfGp_evmng_getMyFloatP(staffId, "Rate");
             if (*rateP > 0) {
@@ -1202,10 +1238,12 @@ void dEvDtStaff_c::specialProcPackage() {
     if (!!msgObj) {
         dMsgObject_demoMessageGroup();
     }
+
     int staffId = i_dComIfGp_evmng_getMyStaffId("PACKAGE", NULL, 0);
     if (staffId == -1) {
         return;
     }
+
     char* nowCutName = i_dComIfGp_getEventManager().getMyNowCutName(staffId);
     if (dComIfGp_evmng_getIsAddvance(staffId)) {
         switch (*(int*)nowCutName) {
@@ -1222,10 +1260,12 @@ void dEvDtStaff_c::specialProcPackage() {
             } else {
                 offsetAngY = 0.0f;
             }
+
             // should not save event from g_dComIfG_gameInfo to register
             u8* demoData = (u8*)i_dComIfGp_getEvent().getStbDemoData(fileName);
             dDemo_c::start(demoData, offsetPos, offsetAngY);
             dComIfGp_event_setCullRate(10.0f);
+
             int* eventFlagP = dComIfGp_evmng_getMyIntegerP(staffId, "EventFlag");
             if (eventFlagP != NULL) {
                 dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[*eventFlagP]);
@@ -1248,6 +1288,7 @@ void dEvDtStaff_c::specialProcPackage() {
                 dDemo_c::end();
             }
         }
+
         if (dDemo_c::getMode() == 0) {
             dComIfGp_evmng_cutEnd(staffId);
         }
@@ -1282,6 +1323,7 @@ void dEvDtStaff_c::specialProcTimekeeper() {
     if (staffId == -1) {
         return;
     }
+
     char* nowCutName = i_dComIfGp_getEventManager().getMyNowCutName(staffId);
     if (dComIfGp_evmng_getIsAddvance(staffId)) {
         switch (*(int*)nowCutName) {
@@ -1292,6 +1334,7 @@ void dEvDtStaff_c::specialProcTimekeeper() {
             break;
         }
     }
+
     switch (*(int*)nowCutName) {
     case 'COUN':
         if (dataP->timer > 0) {
@@ -1332,6 +1375,7 @@ void dEvDtStaff_c::specialProcEffect() {
     if (staffId == -1) {
         return;
     }
+
     char* nowCutName = i_dComIfGp_getEventManager().getMyNowCutName(staffId);
     if (dComIfGp_evmng_getIsAddvance(staffId)) {
         data->unk = 0;
@@ -1354,6 +1398,7 @@ void dEvDtStaff_c::specialProcEffect() {
             } else {
                 power = 5;
             }
+
             int* typeP = dComIfGp_evmng_getMyIntegerP(staffId, "Type");
             int type;
             if (typeP != NULL) {
@@ -1369,12 +1414,14 @@ void dEvDtStaff_c::specialProcEffect() {
             int timer;
             int random;
             u8* pattern;
+
             int* timerP = dComIfGp_evmng_getMyIntegerP(staffId, "Timer");
             if (timerP != NULL) {
                 timer = *timerP;
             } else {
                 timer = 30;
             }
+
             data->unk = timer;
             int* powerP = dComIfGp_evmng_getMyIntegerP(staffId, "Power");
             if (powerP != NULL) {
@@ -1382,12 +1429,14 @@ void dEvDtStaff_c::specialProcEffect() {
             } else {
                 power = 5;
             }
+
             int* typeP = dComIfGp_evmng_getMyIntegerP(staffId, "Type");
             if (typeP != NULL) {
                 type = *typeP;
             } else {
                 type = 0xF;
             }
+
             pattern = (u8*)dComIfGp_evmng_getMyStringP(staffId, "Pattern");
             if (pattern != NULL) {
                 int* randomP = dComIfGp_evmng_getMyIntegerP(staffId, "Random");
@@ -1410,6 +1459,7 @@ void dEvDtStaff_c::specialProcEffect() {
                 timer = 30;
             }
             int timer2 = data->unk = timer;
+
             f32* alphaP = dComIfGp_evmng_getMyFloatP(staffId, "Alpha");
             f32 alpha;
             if (alphaP != NULL) {
@@ -1417,6 +1467,7 @@ void dEvDtStaff_c::specialProcEffect() {
             } else {
                 alpha = 0.8f;
             }
+
             f32* scaleP = dComIfGp_evmng_getMyFloatP(staffId, "Scale");
             f32 scale;
             if (scaleP != NULL) {
@@ -1475,6 +1526,7 @@ int dEvDtCut_c::startCheck() {
                 return 1;
             }
         }
+
         if (!dEvDtFlagCheck(flag)) {
             return 0;
         }
@@ -1546,20 +1598,20 @@ void dEvDtBase_c::advanceCut(dEvDtEvent_c* p_event) {
 
 /* 800462FC-800463DC 040C3C 00E0+00 1/1 0/0 0/0 .text
  * advanceCutLocal__11dEvDtBase_cFP12dEvDtStaff_c               */
-BOOL dEvDtBase_c::advanceCutLocal(dEvDtStaff_c* param_0) {
-    dEvDtCut_c* cut = &mCutP[param_0->getCurrentCut()];
+BOOL dEvDtBase_c::advanceCutLocal(dEvDtStaff_c* p_staff) {
+    dEvDtCut_c* cut = &mCutP[p_staff->getCurrentCut()];
     if (dEvDtFlagCheck(cut->getFlagId()) && cut->getNext() != -1) {
         switch (mCutP[cut->getNext()].startCheck()) {
         case -1:
-            param_0->advanceCut(cut->getNext());
+            p_staff->advanceCut(cut->getNext());
             return TRUE;
         case 1:
             dEvDtFlagSet(cut->getFlagId());
-            param_0->advanceCut(cut->getNext());
+            p_staff->advanceCut(cut->getNext());
             return TRUE;
         }
     }
-    param_0->field_0x40 = false;
+    p_staff->field_0x40 = false;
     return FALSE;
 }
 

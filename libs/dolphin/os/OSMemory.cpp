@@ -8,29 +8,12 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" static void OnReset();
-extern "C" static void MEMIntrruptHandler();
-extern "C" void OSProtectRange();
-extern "C" static void Config24MB();
-extern "C" static void Config48MB();
-extern "C" static void RealMode();
-extern "C" void __OSInitMemoryProtection();
-
-//
 // External References:
 //
 
 extern "C" void DCInvalidateRange();
 extern "C" void DCFlushRange();
 extern "C" void __OSUnhandledException();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void __OSSetInterruptHandler();
-extern "C" void __OSMaskInterrupts();
-extern "C" void __OSUnmaskInterrupts();
 extern "C" void OSRegisterResetFunction();
 extern "C" extern u8 __OSErrorTable[68 + 12 /* padding */];
 
@@ -42,7 +25,7 @@ extern "C" extern u8 __OSErrorTable[68 + 12 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void OnReset() {
+static asm s32 OnReset(s32 param_0) {
     nofralloc
 #include "asm/dolphin/os/OSMemory/OnReset.s"
 }
@@ -52,7 +35,7 @@ static asm void OnReset() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void MEMIntrruptHandler() {
+static asm void MEMIntrruptHandler(OSInterrupt interrupt, struct OSContext* context) {
     nofralloc
 #include "asm/dolphin/os/OSMemory/MEMIntrruptHandler.s"
 }
@@ -62,7 +45,7 @@ static asm void MEMIntrruptHandler() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSProtectRange() {
+asm void OSProtectRange(u32 channel, void* address, u32 nBytes, u32 control) {
     nofralloc
 #include "asm/dolphin/os/OSMemory/OSProtectRange.s"
 }
@@ -72,7 +55,7 @@ asm void OSProtectRange() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void Config24MB() {
+static asm void Config24MB(void) {
     nofralloc
 #include "asm/dolphin/os/OSMemory/Config24MB.s"
 }
@@ -82,7 +65,7 @@ static asm void Config24MB() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void Config48MB() {
+static asm void Config48MB(void) {
     nofralloc
 #include "asm/dolphin/os/OSMemory/Config48MB.s"
 }
@@ -92,7 +75,7 @@ static asm void Config48MB() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void RealMode() {
+static asm void RealMode(void) {
     nofralloc
 #include "asm/dolphin/os/OSMemory/RealMode.s"
 }
@@ -111,7 +94,7 @@ SECTION_DATA static void* ResetFunctionInfo[4] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSInitMemoryProtection() {
+asm void __OSInitMemoryProtection(void) {
     nofralloc
 #include "asm/dolphin/os/OSMemory/__OSInitMemoryProtection.s"
 }

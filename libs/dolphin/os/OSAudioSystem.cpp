@@ -8,13 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" void __OSInitAudioSystem();
-extern "C" void __OSStopAudioSystem();
-
-//
 // External References:
 //
 
@@ -44,7 +37,7 @@ SECTION_DATA static u8 DSPInitCode[128] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSInitAudioSystem() {
+asm void __OSInitAudioSystem(void) {
     nofralloc
 #include "asm/dolphin/os/OSAudioSystem/__OSInitAudioSystem.s"
 }
@@ -54,7 +47,7 @@ asm void __OSInitAudioSystem() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSStopAudioSystem() {
+asm void __OSStopAudioSystem(void) {
     nofralloc
 #include "asm/dolphin/os/OSAudioSystem/__OSStopAudioSystem.s"
 }

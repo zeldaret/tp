@@ -643,7 +643,6 @@ public:
     /* 0x00000 */ dSv_info_c info;
     /* 0x00F38 */ dComIfG_play_c play;
     /* 0x05F64 */ dDlst_list_c drawlist;
-    /* 0x1C104 */ u8 field_0x1C104[0x1F4];
     /* 0x1C2F8 */ dRes_control_c mResControl;
     /* 0x1DDF8 */ u8 mFadeBrightness;
     /* 0x1DDF9 */ u8 mWorldDark;
@@ -797,6 +796,7 @@ BOOL dComIfGs_isStageSwitch(int i_stageNo, int i_no);
 void dComIfGs_onStageSwitch(int i_stageNo, int i_no);
 void dComIfGs_offStageSwitch(int i_stageNo, int i_no);
 void dComIfGs_PolyDamageOff_Set(s8 param_0);
+u8 dComIfGs_staffroll_next_go_check();
 
 inline void dComIfGs_init() {
     g_dComIfG_gameInfo.info.init();

@@ -10,26 +10,13 @@
 #include "dolphin/mtx/mtx44.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
+#include "m_Do/m_Do_mtx.h"
+#include "m_Do/m_Do_lib.h"
+#include "m_Do/m_Do_graphic.h"
 
 //
 // Types:
 //
-
-struct mDoMtx_stack_c {
-    /* 8000CE38 */ void scaleM(f32, f32, f32);
-
-    static u8 now[48];
-};
-
-struct mDoLib_clipper {
-    static u8 mClipper[92];
-    static f32 mSystemFar;
-    static f32 mFovyRate;
-};
-
-struct mDoGph_gInf_c {
-    static u8 mBackColor[4];
-};
 
 struct dDlst_effectLine_c {
     /* 80053E9C */ void draw();
@@ -50,12 +37,6 @@ struct dDlst_2DTri_c {
 
 struct dDlst_2DT_c {
     /* 80051F98 */ void draw();
-};
-
-struct dDlst_2DT2_c {
-    /* 80052354 */ void draw();
-    /* 80052B00 */ dDlst_2DT2_c();
-    /* 80052B4C */ void init(ResTIMG*, f32, f32, f32, f32, u8, u8, u8, f32, f32);
 };
 
 struct dDlst_2DQuad_c {
@@ -86,11 +67,6 @@ struct cBgS {
 
 struct ShdwDrawPoly_c {
     /* 80054A6C */ ~ShdwDrawPoly_c();
-};
-
-struct J3DUClipper {
-    /* 8027378C */ void calcViewFrustum();
-    /* 80273A44 */ void clip(f32 const (*)[4], Vec*, Vec*) const;
 };
 
 //
@@ -230,7 +206,6 @@ extern "C" void entryImm__13J3DDrawBufferFP9J3DPacketUs();
 extern "C" void draw__13J3DDrawBufferCFv();
 extern "C" void GXClearVtxDesc();
 extern "C" void GXPixModeSync();
-extern "C" void GXPeekZ();
 extern "C" void GXGetTexObjWidth();
 extern "C" void GXGetTexObjHeight();
 extern "C" void GXGetTexObjWrapS();
@@ -256,7 +231,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
 extern "C" extern void* __vt__26mDoExt_3DlineMatSortPacket[5];
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" extern void* __vt__9J3DPacket[5];
@@ -279,23 +253,23 @@ extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 //
 
 /* 80051AC0-80051ADC 04C400 001C+00 0/0 3/3 0/0 .text setViewPort__14dDlst_window_cFffffff */
-void dDlst_window_c::setViewPort(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
-                                 f32 param_5) {
-    mViewport = param_0;
-    field_0x04 = param_1;
-    field_0x08 = param_2;
-    field_0x0C = param_3;
-    field_0x10 = param_4;
-    field_0x14 = param_5;
+void dDlst_window_c::setViewPort(f32 xOrig, f32 yOrig, f32 width, f32 height, f32 nearZ,
+                                 f32 farZ) {
+    mXOrig = xOrig;
+    mYOrig = yOrig;
+    mWidth = width;
+    mHeight = height;
+    mNearZ = nearZ;
+    mFarZ = farZ;
 }
 
 /* 80051ADC-80051AF0 04C41C 0014+00 0/0 4/4 0/0 .text            setScissor__14dDlst_window_cFffff
  */
-void dDlst_window_c::setScissor(f32 param_0, f32 param_1, f32 param_2, f32 param_3) {
-    mScissor = param_0;
-    field_0x1c = param_1;
-    field_0x20 = param_2;
-    field_0x24 = param_3;
+void dDlst_window_c::setScissor(f32 xOrig, f32 yOrig, f32 width, f32 height) {
+    mScissorXOrig = xOrig;
+    mScissorYOrig = yOrig;
+    mScissorWidth = width;
+    mScissorHeight = height;
 }
 
 /* 80051AF0-80051CF0 04C430 0200+00 1/0 0/0 0/0 .text            draw__13dDlst_2DTri_cFv */
@@ -374,7 +348,8 @@ SECTION_SDATA2 static f32 lit_4270 = 1.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dDlst_2DT2_c::draw() {
+// asm void dDlst_2DT2_c::draw() {
+extern "C" asm void draw__12dDlst_2DT2_cFv() {
     nofralloc
 #include "asm/d/d_drawlist/draw__12dDlst_2DT2_cFv.s"
 }
@@ -1944,7 +1919,7 @@ SECTION_DATA static u8 l_matDL[123 + 1 /* padding */] = {
 };
 
 /* 803A8D7C-803A8D8C 005E9C 0010+00 1/1 0/0 0/0 .data            l_imageDrawColor$5405 */
-SECTION_DATA static _GXColor l_imageDrawColor[4] = {{0xFF, 0x00, 0x00, 0x00},
+SECTION_DATA static GXColor l_imageDrawColor[4] = {{0xFF, 0x00, 0x00, 0x00},
                                                     {0x00, 0xFF, 0x00, 0x00},
                                                     {0x00, 0x00, 0xFF, 0x00},
                                                     {0x00, 0x00, 0x00, 0xFF}};
@@ -2050,18 +2025,10 @@ SECTION_DATA extern void* __vt__12dDlst_2DT2_c[3] = {
     (void*)draw__12dDlst_2DT2_cFv,
 };
 
-/* 80456B68-80456B70 000008 0004+04 1/1 0/0 0/0 .sbss2           @4275 */
-SECTION_SBSS2 static u8 lit_4275[4 + 4 /* padding */];
-
 /* 80052B00-80052B4C 04D440 004C+00 1/1 0/0 0/0 .text            __ct__12dDlst_2DT2_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dDlst_2DT2_c::dDlst_2DT2_c() {
-    nofralloc
-#include "asm/d/d_drawlist/__ct__12dDlst_2DT2_cFv.s"
+dDlst_2DT2_c::dDlst_2DT2_c() {
+    field_0x40 = (GXColor){0, 0, 0, 0};
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8045202C-80452030 00062C 0004+00 1/1 0/0 0/0 .sdata2          @4284 */
@@ -2693,35 +2660,43 @@ asm void dDlst_shadowControl_c::setSimpleTex(ResTIMG const* param_0) {
 #pragma pop
 
 /* 80056018-80056080 050958 0068+00 0/0 3/3 9/9 .text            newData__13dDlst_peekZ_cFssPUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_peekZ_c::newData(s16 param_0, s16 param_1, u32* param_2) {
-    nofralloc
-#include "asm/d/d_drawlist/newData__13dDlst_peekZ_cFssPUl.s"
+int dDlst_peekZ_c::newData(s16 x, s16 y, u32* dst) {
+    if (mCount >= 0x40 || x < 0 || x > 607 || y < 0 || y > 447) {
+        return 0;
+    }
+
+    dDlst_peekZ_entry* entry = &mEntries[mCount];
+    entry->x = x;
+    entry->y = y;
+    entry->dst = dst;
+    mCount++;
+    return 1;
 }
-#pragma pop
 
 /* 80056080-800560F0 0509C0 0070+00 0/0 1/1 0/0 .text            peekData__13dDlst_peekZ_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_peekZ_c::peekData() {
-    nofralloc
-#include "asm/d/d_drawlist/peekData__13dDlst_peekZ_cFv.s"
+void dDlst_peekZ_c::peekData() {
+    dDlst_peekZ_entry* entry = mEntries;
+
+    for (int i = 0; i < mCount; i++) {
+        GXPeekZ(entry->x, entry->y, entry->dst);
+        entry++;
+    }
+
+    mCount = 0;
 }
-#pragma pop
 
 /* 800560F0-800561C8 050A30 00D8+00 0/0 1/1 0/0 .text            __ct__12dDlst_list_cFv */
 #ifdef NONMATCHING
 dDlst_list_c::dDlst_list_c() {
-    field_0x68 = &field_0x64;
-    field_0xb0 = &field_0xac;
-    field_0x1b8 = &field_0x1b4;
-    field_0x240 = &field_0x23c;
-    J3DDrawBuffer** tmp = &mOpaListSky;
-    for (int i = 0; i < 0x15; i++) {
-        *(tmp + i) = NULL;
+    mpCopy2DSet[1] = mpCopy2DSet[0];
+    mp2DOpaTopSet[1] = mp2DOpaTopSet[0];
+    mp2DOpaSet[1] = mp2DOpaSet[0];
+    mp2DXluSet[1] = mp2DXluSet[0];
+
+    J3DDrawBuffer** buffer = mDrawBuffers;
+    for (int i = 0; i < 21; i++) {
+        *buffer = NULL;
+        buffer++;
     }
 }
 #else
@@ -2749,7 +2724,8 @@ asm mDoExt_3DlineMatSortPacket::mDoExt_3DlineMatSortPacket() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dDlst_shadowReal_c::~dDlst_shadowReal_c() {
+// asm dDlst_shadowReal_c::~dDlst_shadowReal_c() {
+extern "C" asm void __dt__18dDlst_shadowReal_cFv() {
     nofralloc
 #include "asm/d/d_drawlist/__dt__18dDlst_shadowReal_cFv.s"
 }
@@ -2792,57 +2768,33 @@ dDlst_shadowSimple_c::dDlst_shadowSimple_c() {
 
 /* ############################################################################################## */
 /* 8037A178-8037A1A4 0067D8 002A+02 1/1 0/0 0/0 .rodata          l_drawlistSize$5656 */
-SECTION_RODATA static u8 const l_drawlistSize[42 + 2 /* padding */] = {
-    0x00,
-    0x01,
-    0x00,
-    0x01,
-    0x00,
-    0x01,
-    0x00,
-    0x80,
-    0x00,
-    0x01,
-    0x00,
-    0x01,
-    0x00,
-    0x01,
-    0x00,
-    0x80,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x20,
-    0x00,
-    0x10,
-    0x00,
-    0x10,
-    0x00,
-    0x20,
-    0x00,
-    0x20,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x04,
-    0x00,
-    0x04,
-    /* padding */
-    0x00,
-    0x00,
+SECTION_RODATA static u16 const l_drawlistSize[21] = {
+    0x0001,
+    0x0001,
+    0x0001,
+    0x0080,
+    0x0001,
+    0x0001,
+    0x0001,
+    0x0080,
+    0x0100,
+    0x0001,
+    0x0100,
+    0x0001,
+    0x0020,
+    0x0010,
+    0x0010,
+    0x0020,
+    0x0020,
+    0x0100,
+    0x0001,
+    0x0004,
+    0x0004,
 };
 COMPILER_STRIP_GATE(0x8037A178, &l_drawlistSize);
 
 /* 8037A1A4-8037A1B0 006804 0009+03 1/1 0/0 0/0 .rodata          l_nonSortId$5662 */
-SECTION_RODATA static u8 const l_nonSortId[9 + 3 /* padding */] = {
+SECTION_RODATA static u8 const l_nonSortId[9] = {
     0x00,
     0x01,
     0x02,
@@ -2852,27 +2804,55 @@ SECTION_RODATA static u8 const l_nonSortId[9 + 3 /* padding */] = {
     0x09,
     0x12,
     0x0D,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
 };
 COMPILER_STRIP_GATE(0x8037A1A4, &l_nonSortId);
 
 /* 804520C4-804520CC 0006C4 0006+02 1/1 0/0 0/0 .sdata2          l_zSortId$5668 */
-SECTION_SDATA2 static u8 l_zSortId[6 + 2 /* padding */] = {
+SECTION_SDATA2 static u8 l_zSortId[6] = {
     0x08,
     0x0A,
     0x0C,
     0x0E,
     0x10,
     0x11,
-    /* padding */
-    0x00,
-    0x00,
 };
 
 /* 80056390-8005648C 050CD0 00FC+00 0/0 1/1 0/0 .text            init__12dDlst_list_cFv */
+#ifdef NONMATCHING
+void dDlst_list_c::init() {
+    J3DDrawBuffer** buffer = mDrawBuffers;
+    const u16* size = l_drawlistSize;
+    
+    for (int i = 0; i < 21; i++) {
+        u32 bufSize = *size;
+        size++;
+
+        *buffer = J3DDrawBuffer__create(bufSize);
+        buffer++;
+    }
+
+    const u8* nonsortID = l_nonSortId;
+    for (int i = 0; i < 9; i++) {
+        mDrawBuffers[*nonsortID]->setNonSort();
+        nonsortID++;
+    }
+
+    u8* zsortID = l_zSortId;
+    for (int i = 0; i < 6; i++) {
+        mDrawBuffers[*zsortID]->setZSort();
+        zsortID++;
+    }
+
+    setOpaList();
+    setXluList();
+    mpCopy2DSet[0] = mpCopy2DDraw[0];
+    mp2DOpaTopSet[0] = mp2DOpaTopDraw[0];
+    mp2DOpaSet[0] = mp2DOpaDraw[0];
+    mp2DXluSet[0] = mp2DXluDraw[0];
+
+    mShadowControl.init();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2881,6 +2861,7 @@ asm void dDlst_list_c::init() {
 #include "asm/d/d_drawlist/init__12dDlst_list_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8005648C-80056538 050DCC 00AC+00 0/0 1/1 0/0 .text            __dt__12dDlst_list_cFv */
 #pragma push
@@ -2937,43 +2918,32 @@ void dDlst_list_c::drawXluDrawList(J3DDrawBuffer* pDrawBuf) {
 /* 8005674C-80056770 05108C 0024+00 0/0 1/1 0/0 .text            drawOpaListItem3d__12dDlst_list_cFv
  */
 void dDlst_list_c::drawOpaListItem3d() {
-    drawOpaDrawList(mOpaListItem3d);
+    drawOpaDrawList(mDrawBuffers[DB_OPA_LIST_ITEM3D]);
 }
 
 /* 80056770-80056794 0510B0 0024+00 0/0 1/1 0/0 .text            drawXluListItem3d__12dDlst_list_cFv
  */
 void dDlst_list_c::drawXluListItem3d() {
-    drawXluDrawList(mXluListItem3d);
+    drawXluDrawList(mDrawBuffers[DB_XLU_LIST_ITEM3D]);
 }
 
 /* 80056794-800567C4 0510D4 0030+00 2/2 35/35 6/6 .text
  * set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c */
-#ifdef NONMATCHING
-int dDlst_list_c::set(dDlst_base_c**& param_0, dDlst_base_c**& param_1, dDlst_base_c* param_2) {
-    if (*param_0 >= *param_1) {
+int dDlst_list_c::set(dDlst_base_c**& p_start, dDlst_base_c**& p_end, dDlst_base_c* p_newDlst) {
+    if (p_start >= p_end) {
         return 0;
     }
-    *param_0 = param_2;
-    *param_0++;
+    *p_start = p_newDlst;
+    *p_start++;
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dDlst_list_c::set(dDlst_base_c**& param_0, dDlst_base_c**& param_1, dDlst_base_c* param_2) {
-    nofralloc
-#include "asm/d/d_drawlist/set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c.s"
-}
-#pragma pop
-#endif
 
 /* 800567C4-8005681C 051104 0058+00 0/0 1/1 0/0 .text
  * draw__12dDlst_list_cFPP12dDlst_base_cPP12dDlst_base_c        */
-void dDlst_list_c::draw(dDlst_base_c** pStart, dDlst_base_c** pEnd) {
-    for (; pStart < pEnd; pStart++) {
-        dDlst_base_c* base = *pStart;
-        base->draw();
+void dDlst_list_c::draw(dDlst_base_c** p_start, dDlst_base_c** p_end) {
+    for (; p_start < p_end; p_start++) {
+        dDlst_base_c* dlst = *p_start;
+        dlst->draw();
     }
 }
 
@@ -2987,18 +2957,13 @@ SECTION_DEAD static char const* const pad_8037A1BC = "\0\0\0";
 #pragma pop
 
 /* 804248F0-80424938 051610 0048+00 3/3 0/0 0/0 .bss             mWipeDlst__12dDlst_list_c */
-u8 dDlst_list_c::mWipeDlst[72];
+dDlst_2DT2_c dDlst_list_c::mWipeDlst;
 
 /* 8045065C-80450660 0000DC 0004+00 1/1 0/0 0/0 .sdata           mWipeColor__12dDlst_list_c */
-SECTION_SDATA u8 dDlst_list_c::mWipeColor[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_SDATA GXColor dDlst_list_c::mWipeColor = {0, 0, 0, 0};
 
 /* 80450ED0-80450ED4 0003D0 0004+00 2/2 1/1 0/0 .sbss            None */
-u8 data_80450ED0;
+u8 dDlst_list_c::mWipe;
 
 /* 80450ED4-80450ED8 0003D4 0004+00 2/2 1/1 0/0 .sbss            mWipeRate__12dDlst_list_c */
 f32 dDlst_list_c::mWipeRate;
@@ -3055,7 +3020,8 @@ asm void dDlst_list_c::calcWipe() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dDlst_shadowRealPoly_c::getTri() {
+// asm void dDlst_shadowRealPoly_c::getTri() {
+extern "C" asm void getTri__22dDlst_shadowRealPoly_cFv() {
     nofralloc
 #include "asm/d/d_drawlist/getTri__22dDlst_shadowRealPoly_cFv.s"
 }
@@ -3072,21 +3038,6 @@ s32 dDlst_shadowRealPoly_c::getTriMax() {
 extern "C" void searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen() {
     /* empty function */
 }
-
-/* 800569B4-800569DC 0512F4 0028+00 0/0 1/0 0/0 .text            __sinit_d_drawlist_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_drawlist_cpp() {
-    nofralloc
-#include "asm/d/d_drawlist/__sinit_d_drawlist_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x800569B4, __sinit_d_drawlist_cpp);
-#pragma pop
 
 /* ############################################################################################## */
 /* 803A8E68-803A8E74 005F88 000C+00 0/0 0/0 0/0 .data            __vt__11dDlst_2DT_c */

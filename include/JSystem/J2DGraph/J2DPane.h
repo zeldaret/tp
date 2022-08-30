@@ -23,48 +23,78 @@ enum J2DRotateAxis {
 
 enum J2DBasePosition {};
 
+struct J2DPaneHeader {
+    /* 0x0 */ u32 mKind;
+    /* 0x4 */ u32 mSize;
+};
+
 class J2DPane {
 public:
     J2DPane();
     J2DPane(J2DPane*, bool, u64, const JGeometry::TBox2<f32>&);
     J2DPane(u64, const JGeometry::TBox2<f32>&);
     J2DPane(J2DPane* other, JSURandomInputStream* stream, u8 arg3);
+    void initiate();
+    void initialize(J2DPane*, bool, u64, const JGeometry::TBox2<f32>&);
+    void initialize(u64 tag, const JGeometry::TBox2<f32>& dim);
+    void makePaneStream(J2DPane* other, JSURandomInputStream* stream);
+    void changeUseTrans(J2DPane* other);
+    bool appendChild(J2DPane* child);
+    bool insertChild(J2DPane* before, J2DPane* child);
+    void draw(f32 a1, f32 a2, const J2DGrafContext* ctx, bool a4, bool a5);
+    void place(const JGeometry::TBox2<f32>& dim);
+    JGeometry::TBox2<f32>& getBounds();
+    void rotate(f32 offsetX, f32 offsetY, J2DRotateAxis axis, f32 angle);
+    void rotate(f32 angle);
+    void clip(const JGeometry::TBox2<f32>& bounds);
+    void setBasePosition(J2DBasePosition position);
+    void setInfluencedAlpha(bool arg1, bool arg2);
+    JGeometry::TVec3<f32> getGlbVtx(u8 arg1) const;
+    J2DPane* getFirstChildPane();
+    J2DPane* getNextChildPane();
+    J2DPane* getParentPane();
+    void makePaneExStream(J2DPane* other, JSURandomInputStream* stream);
+    void* getPointer(JSURandomInputStream* stream, u32 size, JKRArchive* archive);
+    void animationTransform();
+    void updateTransform(const J2DAnmTransform* transform);
+
     virtual ~J2DPane();
 
-    /* 0x0c */ virtual s32 getTypeID() const { return 16; }
-    /* 0x10 */ virtual void move(f32 x, f32 y);
-    /* 0x14 */ virtual void add(f32 x, f32 y);
-    /* 0x18 */ virtual void resize(f32 x, f32 y);
-    /* 0x1c */ virtual void setCullBack(bool cull);
-    /* 0x20 */ virtual void setCullBack(_GXCullMode cmode);
-    /* 0x24 */ virtual void setAlpha(u8);
-    /* 0x28 */ virtual bool setConnectParent(bool connected);
-    /* 0x2c */ virtual void calcMtx();
-    /* 0x30 */ virtual void update();
-    /* 0x34 */ virtual void drawSelf(f32 arg1, f32 arg2);
-    /* 0x38 */ virtual void drawSelf(f32 arg1, f32 arg2, Mtx* mtx);
-    /* 0x3c */ virtual J2DPane* search(u64 tag);
-    /* 0x40 */ virtual J2DPane* searchUserInfo(u64 tag);
-    /* 0x44 */ virtual void makeMatrix(f32, f32);
-    /* 0x48 */ virtual void makeMatrix(f32 a, f32 b, f32 c, f32 d);
-    /* 0x4c */ virtual bool isUsed(const ResTIMG* timg);
-    /* 0x50 */ virtual bool isUsed(const ResFONT* font);
-    /* 0x54 */ virtual void clearAnmTransform();
-    /* 0x58 */ virtual void rewriteAlpha();
-    /* 0x5c */ virtual void setAnimation(J2DAnmBase* anm);
-    /* 0x60 */ virtual void setAnimation(J2DAnmTransform* anm);
-    /* 0x64 */ virtual void setAnimation(J2DAnmColor* anm) {}
-    /* 0x68 */ virtual void setAnimation(J2DAnmTexPattern* anm) {}
-    /* 0x6c */ virtual void setAnimation(J2DAnmTextureSRTKey* anm) {}
-    /* 0x70 */ virtual void setAnimation(J2DAnmTevRegKey* anm) {}
-    /* 0x74 */ virtual void setAnimation(J2DAnmVisibilityFull* anm) {}
-    /* 0x78 */ virtual void setAnimation(J2DAnmVtxColor* anm) {}
-    /* 0x7c */ virtual const J2DAnmTransform* animationTransform(const J2DAnmTransform* transform);
-    /* 0x80 */ virtual void setVisibileAnimation(J2DAnmVisibilityFull* visibility);
-    /* 0x84 */ virtual void setAnimationVF(J2DAnmVisibilityFull* visibility);
-    /* 0x88 */ virtual void setVtxColorAnimation(J2DAnmVtxColor* vtx_color);
-    /* 0x8c */ virtual void setAnimationVC(J2DAnmVtxColor* vtx_color);
-    /* 0x90 */ virtual const J2DAnmTransform* animationPane(const J2DAnmTransform* transform);
+    /* vt 0x0C */ virtual s32 getTypeID() const { return 16; }
+    /* vt 0x10 */ virtual void move(f32 x, f32 y);
+    /* vt 0x14 */ virtual void add(f32 x, f32 y);
+    /* vt 0x18 */ virtual void resize(f32 x, f32 y);
+    /* vt 0x1C */ virtual void setCullBack(bool cull);
+    /* vt 0x20 */ virtual void setCullBack(_GXCullMode cmode);
+    /* vt 0x24 */ virtual void setAlpha(u8);
+    /* vt 0x28 */ virtual bool setConnectParent(bool connected);
+    /* vt 0x2C */ virtual void calcMtx();
+    /* vt 0x30 */ virtual void update();
+    /* vt 0x34 */ virtual void drawSelf(f32 arg1, f32 arg2);
+    /* vt 0x38 */ virtual void drawSelf(f32 arg1, f32 arg2, Mtx* mtx);
+    /* vt 0x3C */ virtual J2DPane* search(u64 tag);
+    /* vt 0x40 */ virtual J2DPane* searchUserInfo(u64 tag);
+    /* vt 0x44 */ virtual void makeMatrix(f32, f32);
+    /* vt 0x48 */ virtual void makeMatrix(f32 a, f32 b, f32 c, f32 d);
+    /* vt 0x4C */ virtual bool isUsed(const ResTIMG* timg);
+    /* vt 0x50 */ virtual bool isUsed(const ResFONT* font);
+    /* vt 0x54 */ virtual void clearAnmTransform();
+    /* vt 0x58 */ virtual void rewriteAlpha();
+    /* vt 0x5C */ virtual void setAnimation(J2DAnmBase* anm);
+    /* vt 0x60 */ virtual void setAnimation(J2DAnmTransform* anm);
+    /* vt 0x64 */ virtual void setAnimation(J2DAnmColor* anm) {}
+    /* vt 0x68 */ virtual void setAnimation(J2DAnmTexPattern* anm) {}
+    /* vt 0x6C */ virtual void setAnimation(J2DAnmTextureSRTKey* anm) {}
+    /* vt 0x70 */ virtual void setAnimation(J2DAnmTevRegKey* anm) {}
+    /* vt 0x74 */ virtual void setAnimation(J2DAnmVisibilityFull* anm) {}
+    /* vt 0x78 */ virtual void setAnimation(J2DAnmVtxColor* anm) {}
+    /* vt 0x7C */ virtual const J2DAnmTransform*
+    animationTransform(const J2DAnmTransform* transform);
+    /* vt 0x80 */ virtual void setVisibileAnimation(J2DAnmVisibilityFull* visibility);
+    /* vt 0x84 */ virtual void setAnimationVF(J2DAnmVisibilityFull* visibility);
+    /* vt 0x88 */ virtual void setVtxColorAnimation(J2DAnmVtxColor* vtx_color);
+    /* vt 0x8C */ virtual void setAnimationVC(J2DAnmVtxColor* vtx_color);
+    /* vt 0x90 */ virtual const J2DAnmTransform* animationPane(const J2DAnmTransform* transform);
 
     f32 getHeight() const { return mBounds.getHeight(); }
     f32 getWidth() const { return mBounds.getWidth(); }
@@ -102,47 +132,23 @@ public:
         calcMtx();
     }
 
-    int getKind() const { return id; }
+    int getKind() const { return mKind; }
 
     bool isVisible() const { return mVisible; }
 
     void show() { mVisible = true; }
     void hide() { mVisible = false; }
 
-    void initiate();
-    void initialize(J2DPane*, bool, u64, const JGeometry::TBox2<f32>&);
-    void initialize(u64 tag, const JGeometry::TBox2<f32>& dim);
-    void makePaneStream(J2DPane* other, JSURandomInputStream* stream);
-    void changeUseTrans(J2DPane* other);
-    bool appendChild(J2DPane* child);
-    bool insertChild(J2DPane* before, J2DPane* child);
-    void draw(f32 a1, f32 a2, const J2DGrafContext* ctx, bool a4, bool a5);
-    void place(const JGeometry::TBox2<f32>& dim);
-    JGeometry::TBox2<f32>& getBounds();
-    void rotate(f32 offsetX, f32 offsetY, J2DRotateAxis axis, f32 angle);
-    void rotate(f32 angle);
-    void clip(const JGeometry::TBox2<f32>& bounds);
-    void setBasePosition(J2DBasePosition position);
-    void setInfluencedAlpha(bool arg1, bool arg2);
-    JGeometry::TVec3<f32> getGlbVtx(u8 arg1) const;
-    J2DPane* getFirstChildPane();
-    J2DPane* getNextChildPane();
-    J2DPane* getParentPane();
-    void makePaneExStream(J2DPane* other, JSURandomInputStream* stream);
-    static s16 J2DCast_F32_to_S16(f32 value, u8 arg2);
-    void* getPointer(JSURandomInputStream* stream, u32 size, JKRArchive* archive);
-    void animationTransform();
-    void updateTransform(const J2DAnmTransform* transform);
     void setUserInfo(u64 info) { mUserInfoTag = info; }
     const Mtx* getMtx() const { return &mPositionMtx; }
+
+    static s16 J2DCast_F32_to_S16(f32 value, u8 arg2);
 
     static JGeometry::TBox2<f32> static_mBounds;
 
 public:
-    /* 0x04 */ u16 _4;
-    /* 0x06 */ u8 _6[2];
-    /* 0x08 */ int id;
-    /* 0x0C */ u8 _c[4];
+    /* 0x04 */ u16 field_0x4;
+    /* 0x08 */ int mKind;
     /* 0x10 */ u64 mInfoTag;
     /* 0x18 */ u64 mUserInfoTag;
     /* 0x20 */ JGeometry::TBox2<f32> mBounds;

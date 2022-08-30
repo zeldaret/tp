@@ -1,5 +1,5 @@
-#ifndef PROCESSOR_H
-#define PROCESSOR_H
+#ifndef JMESSAGE_PROCESSOR_H
+#define JMESSAGE_PROCESSOR_H
 
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
@@ -298,4 +298,4 @@ struct jmessage_tRenderingProcessor : public JMessage::TRenderingProcessor {
     /* 8022D74C */ virtual void do_tag(u32, void const*, u32);
 };
 
-#endif /* PROCESSOR_H */
+#endif /* JMESSAGE_PROCESSOR_H */

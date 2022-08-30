@@ -10,9 +10,9 @@ struct TLinkListNode {
         mPrev = NULL;
     }
 
-    TLinkListNode* mNext;
-    TLinkListNode* mPrev;
-};
+    /* 0x0 */ TLinkListNode* mNext;
+    /* 0x4 */ TLinkListNode* mPrev;
+};  // Size: 0x8
 
 struct TNodeLinkList {
     struct iterator {

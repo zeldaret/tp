@@ -107,6 +107,8 @@ private:
 
 class TFactory {
 public:
+    TFactory() {}
+
     /* 802895B4 */ virtual ~TFactory();
     /* 802895FC */ virtual TObject* create(data::TParse_TBlock_object const&);
     /* 80289604 */ virtual void destroy(TObject*);
@@ -130,13 +132,15 @@ public:
     /* 80289300 */ void destroyObject_all();
     /* 80289364 */ TObject* getObject(void const*, u32);
     /* 80289404 */ void reset();
-    /* 802894B4 */ void forward(u32);
+    /* 802894B4 */ u8 forward(u32);
 
     void setStatus_(u32 status) { mStatus = status; }
     void resetStatus_() { setStatus_(0); }
     bool isSuspended() const { return _54 > 0; }
     TFactory* getFactory() const { return pFactory; }
     TObject_control& referObject_control() { return mObject_control; }
+    int getSuspend() const { return _54; }
+    void setSuspend(s32 suspend) { mObject_control.setSuspend(suspend); }
 
 private:
     /* 0x04 */ u32 _4;
@@ -145,7 +149,7 @@ private:
     /* 0x10 */ JGadget::TLinkList<TObject, 12> mObjectContainer;
     /* 0x1C */ u32 mStatus;
     /* 0x20 */ TObject_control mObject_control;
-    /* 0x54 */ s32 _54;  // "second per frame"?
+    /* 0x54 */ s32 _54;
 };
 
 }  // namespace stb

@@ -767,7 +767,7 @@ asm void cBgW::GroundCrossGrpRp(cBgS_GndChk* param_0, int param_1, int param_2) 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cBgW::GroundCross(cBgS_GndChk* param_0) {
+asm bool cBgW::GroundCross(cBgS_GndChk* param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GroundCross__4cBgWFP11cBgS_GndChk.s"
 }
@@ -913,7 +913,7 @@ asm void cBgW::GetTopUnder(f32* param_0, f32* param_1) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cBgW::GetTriPla(cBgS_PolyInfo const& param_0) const {
+asm cM3dGPla cBgW::GetTriPla(cBgS_PolyInfo const& param_0) const {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetTriPla__4cBgWCFRC13cBgS_PolyInfo.s"
 }
@@ -995,7 +995,7 @@ asm BOOL dBgW::GetHorseNoEntry(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool dBgW::GetSpecialCode(cBgS_PolyInfo const& param_0) {
+asm int dBgW::GetSpecialCode(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetSpecialCode__4dBgWFRC13cBgS_PolyInfo.s"
 }
@@ -1005,7 +1005,7 @@ asm bool dBgW::GetSpecialCode(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::GetSpecialCode(int param_0) {
+asm int dBgW::GetSpecialCode(int param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetSpecialCode__4dBgWFi.s"
 }
@@ -1026,7 +1026,7 @@ asm int dBgW::GetMagnetCode(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool dBgW::GetMonkeyBarsCode(cBgS_PolyInfo const& param_0) {
+asm int dBgW::GetMonkeyBarsCode(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetMonkeyBarsCode__4dBgWFRC13cBgS_PolyInfo.s"
 }
@@ -1126,7 +1126,7 @@ asm void dBgW::GetShdwThrough(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool dBgW::GetUnderwaterRoofCode(int param_0) {
+asm int dBgW::GetUnderwaterRoofCode(int param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetUnderwaterRoofCode__4dBgWFi.s"
 }
@@ -1187,7 +1187,7 @@ asm int dBgW::GetPolyAtt1(cBgS_PolyInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool dBgW::GetGroundCode(cBgS_PolyInfo const& param_0) {
+asm int dBgW::GetGroundCode(cBgS_PolyInfo const& param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GetGroundCode__4dBgWFRC13cBgS_PolyInfo.s"
 }
@@ -1288,7 +1288,7 @@ asm void cBgW::GetTriGrp(int param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cBgW::ChkNotReady() const {
+asm bool cBgW::ChkNotReady() const {
     nofralloc
 #include "asm/d/bg/d_bg_w/ChkNotReady__4cBgWCFv.s"
 }
@@ -1483,7 +1483,7 @@ asm void dBgW::RoofChkGrpRp(dBgS_RoofChk* param_0, int param_1, int param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::RoofChk(dBgS_RoofChk* param_0) {
+asm bool dBgW::RoofChk(dBgS_RoofChk* param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/RoofChk__4dBgWFP12dBgS_RoofChk.s"
 }
@@ -1524,7 +1524,7 @@ asm void dBgW::SplGrpChkGrpRp(dBgS_SplGrpChk* param_0, int param_1, int param_2)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::SplGrpChk(dBgS_SplGrpChk* param_0) {
+asm bool dBgW::SplGrpChk(dBgS_SplGrpChk* param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w/SplGrpChk__4dBgWFP14dBgS_SplGrpChk.s"
 }
@@ -1607,7 +1607,7 @@ asm void dBgW::SphChkGrpRp(dBgS_SphChk* param_0, void* param_1, int param_2, int
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::SphChk(dBgS_SphChk* param_0, void* param_1) {
+asm bool dBgW::SphChk(dBgS_SphChk* param_0, void* param_1) {
     nofralloc
 #include "asm/d/bg/d_bg_w/SphChk__4dBgWFP11dBgS_SphChkPv.s"
 }

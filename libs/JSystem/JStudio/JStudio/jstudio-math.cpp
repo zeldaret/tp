@@ -8,21 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct Vec {};
-
-namespace JStudio {
-struct math {
-    /* 802859DC */ void getRotation_xyz(f32 (*)[4], f32, f32, f32);
-    /* 80285B44 */ void getTransformation_SRxyzT(f32 (*)[4], Vec const&, Vec const&, Vec const&);
-    /* 80285BCC */ void getFromTransformation_SRxyzT(Vec*, Vec*, Vec*, f32 const (*)[4]);
-};
-
-};  // namespace JStudio
-
-//
 // Forward References:
 //
 
@@ -34,10 +19,6 @@ extern "C" void getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4
 // External References:
 //
 
-extern "C" void PSMTXConcat();
-extern "C" void PSMTXTransApply();
-extern "C" void PSMTXScale();
-extern "C" void PSVECMag();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();
@@ -68,7 +49,7 @@ SECTION_SDATA2 static u8 lit_489[4] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JStudio::math::getRotation_xyz(f32 (*param_0)[4], f32 param_1, f32 param_2, f32 param_3) {
+asm void JStudio::math::getRotation_xyz(MtxP param_0, f32 param_1, f32 param_2, f32 param_3) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/jstudio-math/getRotation_xyz__Q27JStudio4mathFPA4_ffff.s"
 }
@@ -79,7 +60,7 @@ asm void JStudio::math::getRotation_xyz(f32 (*param_0)[4], f32 param_1, f32 para
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JStudio::math::getTransformation_SRxyzT(f32 (*param_0)[4], Vec const& param_1,
+asm void JStudio::math::getTransformation_SRxyzT(MtxP param_0, Vec const& param_1,
                                                  Vec const& param_2, Vec const& param_3) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/jstudio-math/getTransformation_SRxyzT__Q27JStudio4mathFPA4_fRC3VecRC3VecRC3Vec.s"
@@ -117,7 +98,7 @@ SECTION_SDATA2 static f64 lit_628 = 57.29577951308232;
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm void JStudio::math::getFromTransformation_SRxyzT(Vec* param_0, Vec* param_1, Vec* param_2,
-                                                     f32 const (*param_3)[4]) {
+                                                     CMtxP param_3) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/jstudio-math/getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4_Cf.s"
 }

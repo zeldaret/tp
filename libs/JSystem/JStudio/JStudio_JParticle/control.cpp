@@ -4,65 +4,8 @@
 //
 
 #include "JSystem/JStudio/JStudio_JParticle/control.h"
-#include "JSystem/JStudio/JStudio/stb.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-namespace JStudio {
-struct TObject {};
-
-struct TCreateObject {
-    /* 80285488 */ ~TCreateObject();
-};
-
-struct TAdaptor_particle {};
-
-struct TObject_particle {
-    /* 8028776C */ TObject_particle(JStudio::stb::data::TParse_TBlock_object const&,
-                                    JStudio::TAdaptor_particle*);
-};
-
-};  // namespace JStudio
-
-struct JPABaseEmitter {};
-
-struct JStudio_JParticle {
-    struct TCreateObject {
-        /* 8028E3A0 */ ~TCreateObject();
-        /* 8028E400 */ void create(JStudio::TObject**,
-                                   JStudio::stb::data::TParse_TBlock_object const&);
-        /* 8028E474 */ void emitter_create(u32);
-        /* 8028E4E4 */ void emitter_destroy(JPABaseEmitter*);
-        /* 8028E508 */ void
-        createObject_JPA_PARTICLE_(JStudio::stb::data::TParse_TBlock_object const&,
-                                   JStudio_JParticle::TCreateObject*);
-    };
-
-    struct TAdaptor_particle {
-        /* 8028E60C */ TAdaptor_particle(JStudio_JParticle::TCreateObject*);
-    };
-};
-
-struct JPAParticleCallBack {};
-
-struct JPAEmitterCallBack {};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
-
-struct JPAEmitterManager {
-    /* 8027DEBC */ void createSimpleEmitterID(JGeometry::TVec3<f32> const&, u16, u8, u8,
-                                              JPAEmitterCallBack*, JPAParticleCallBack*);
-    /* 8027E2D8 */ void forceDeleteEmitter(JPABaseEmitter*);
-};
 
 //
 // Forward References:

@@ -721,7 +721,7 @@ int daItem_c::_daItem_execute() {
 
     if (mCollider.ChkTgHit()) {
         cCcD_Obj* hitObj = mCollider.GetTgHitObj();
-        if (hitObj != NULL && hitObj->ChkAtType(0x4000)) {
+        if (hitObj != NULL && hitObj->ChkAtType(AT_TYPE_HOOKSHOT)) {
             field_0x978.startCollisionSE(Z2SE_HIT_HOOKSHOT_STICK, 0, NULL);
         }
     }

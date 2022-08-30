@@ -68,7 +68,7 @@ public:
     /* 0x0C */ virtual void setGX() = 0;
     /* 0x10 */ virtual void setGX(JUtility::TColor col1, JUtility::TColor col2);
     /* 0x14 */ virtual f32 drawChar_scale(f32 a1, f32 a2, f32 a3, f32 a4, int a5, bool a6) = 0;
-    /* 0x18 */ virtual u16 getLeading() const = 0;
+    /* 0x18 */ virtual int getLeading() const = 0;
     /* 0x1C */ virtual u16 getAscent() const = 0;
     /* 0x20 */ virtual u16 getDescent() const = 0;
     /* 0x24 */ virtual s32 getHeight() const = 0;

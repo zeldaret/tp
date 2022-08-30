@@ -17,9 +17,9 @@ public:
     /* 80073970 */ void proc();
 
 private:
-    u32 field_0x0;
-    u32 field_0x4;
-    u32 field_0x8;
+    /* 0x0 */ u32 mHintActorID;
+    /* 0x4 */ u32 mPriority;
+    /* 0x8 */ u32 field_0x8;
 };
 
 class dAttCatch_c {
@@ -30,52 +30,52 @@ public:
     void proc();
     void request(fopAc_ac_c*, u8, f32, f32, f32, s16, int);
 
-    s32 getCatghTarget() { return convPId(field_0x10); }
+    s32 getCatghTarget() { return convPId(mCatghTargetID); }
     u8 getChangeItem() { return mChangeItem; }
 
 private:
-    void* field_0x0;
-    u32 field_0x4;
-    float field_0x8;
-    u8 field_0xc;
-    u8 field_0xd;
-    u8 field_0xe;
-    u8 field_0xf;
-    u32 field_0x10;
-    u8 mChangeItem;
-};  // Size = 0x14
+    /* 0x00 */ void* field_0x0;
+    /* 0x04 */ f32 field_0x4;
+    /* 0x08 */ f32 field_0x8;
+    /* 0x0C */ u8 field_0xc;
+    /* 0x0D */ u8 field_0xd;
+    /* 0x0E */ u8 field_0xe;
+    /* 0x0F */ u8 field_0xf;
+    /* 0x10 */ u32 mCatghTargetID;
+    /* 0x14 */ u8 mChangeItem;
+};  // Size: 0x18
 
 class dAttParam_c {
-private:
-    /* 0x00 vtable */
-    /* 0x04 */ u8 field_0x4;
-    /* 0x05 */ u8 field_0x5;
-    /* 0x06 */ u16 mFlag;
-    /* 0x08 */ float field_0x8;
-    /* 0x0C */ float field_0xc;
-    /* 0x10 */ float field_0x10;
-    /* 0x14 */ float field_0x14;
-    /* 0x18 */ float field_0x18;
-    /* 0x1C */ float field_0x1c;
-    /* 0x20 */ float field_0x20;
-    /* 0x24 */ float field_0x24;
-    /* 0x28 */ float field_0x28;
-    /* 0x2C */ float field_0x2c;
-    /* 0x30 */ float field_0x30;
-    /* 0x34 */ float field_0x34;
-    /* 0x38 */ u8 field_0x38;
-    /* 0x39 */ u8 field_0x39;
-
 public:
     dAttParam_c() {}
     /* 80070038 */ dAttParam_c(s32);
-    /* 80070110 */ virtual ~dAttParam_c();
 
 private:
-    /* 0x3C */ float field_0x3c;
-    /* 0x40 */ float field_0x40;
-    /* 0x44 */ u32 field_0x44;
-    /* 0x48 */ u32 field_0x48;
+    /* 0x00 */ u16 field_0x0;
+    /* 0x04 */ f32 field_0x4;
+    /* 0x08 */ f32 field_0x8;
+    /* 0x0C */ f32 field_0xc;
+    /* 0x10 */ f32 mDangerBGMDistance;
+    /* 0x14 */ f32 mBGMDistMargin;
+    /* 0x18 */ f32 mSWModeDisable;
+    /* 0x1C */ f32 mSelCursorScaleX;
+    /* 0x20 */ f32 mSelCursorScaleY;
+    /* 0x24 */ f32 mAttnCursorScaleX;
+    /* 0x28 */ f32 mAttnCursorScaleY;
+    /* 0x2C */ f32 mSelCursorOffsetY;
+    /* 0x30 */ f32 mAttnCursorOffsetY;
+    /* 0x34 */ u8 mAttnCursorAppearFrames;
+    /* 0x35 */ u8 mAttnCursorDisappearFrames;
+
+public:
+    /* 80070110 */ virtual ~dAttParam_c();
+    /* 0x38 vtable */
+
+private:
+    /* 0x3C */ f32 mSelCursorAnmSpeed;
+    /* 0x40 */ f32 mAttnCursorAnmSpeed; 
+    /* 0x44 */ u32 mDispPosX;
+    /* 0x48 */ u32 mDispPosY;
 };  // Size = 0x4C
 
 class dAttLook_c {
@@ -88,11 +88,10 @@ public:
 private:
     u32 field_0x0;
     u32 field_0x4;
-    float field_0x8;
-    u32 field_0xc;
-};  // Size = 0x10
+    f32 field_0x8;
+    u32 mLookTargetID;
+};  // Size: 0x10
 
-#pragma pack(push, 1)
 class dAttList_c {
 public:
     /* 800304D0 */ ~dAttList_c() {}
@@ -101,11 +100,12 @@ public:
     /* 80073898 */ void setActor(fopAc_ac_c*);
 
 private:
-    u8 field_0x0[8];
-    cSAngle angle;
-    u8 field_0xa[10];
-};  // Size = 0x14
-#pragma pack(pop)
+    /* 0x00 */ f32 mWeight;
+    /* 0x04 */ f32 mDistance;
+    /* 0x08 */ cSAngle mAngle;
+    /* 0x0C */ u32 mType;
+    /* 0x10 */ u32 mActorID;
+};  // Size: 0x14
 
 class dAttDraw_c {
 public:
@@ -116,14 +116,7 @@ public:
     /* 80073004 */ void alphaAnm();
     /* 800732B0 */ void draw(cXyz&, f32 (*)[4]);
 
-    u8 field_0x0;
-    u8 field_0x1;
-    u8 field_0x2;
-    u8 field_0x3;
-    u8 field_0x4;
-    u8 field_0x5;
-    u8 field_0x6;
-    u8 field_0x7;
+    /* 0x000 */ J3DModel* mModel[2];
     /* 0x008 */ mDoExt_bckAnm bckAnm[2];
     /* 0x040 */ mDoExt_bpkAnm bpkAnm[2];
     /* 0x070 */ mDoExt_brkAnm brkAnm[2];
@@ -225,9 +218,9 @@ public:
     static u32 chk_type_num;
 
 public:
-    /* 0x000 */ fopAc_ac_c* field_0x0;
-    /* 0x004 */ u32 field_0x4;
-    /* 0x008 */ dAttDraw_CallBack_c dattdraw_callback;
+    /* 0x000 */ fopAc_ac_c* mpPlayer;
+    /* 0x004 */ u32 mLockTargetID;
+    /* 0x008 */ dAttDraw_CallBack_c mpDrawCallback;
     /* 0x00C */ u32 field_0xc;
     /* 0x010 */ u32 field_0x10;
     /* 0x014 */ u8 field_0x14[4];
@@ -251,11 +244,11 @@ public:
     /* 0x334 */ u32 mFlags;
     /* 0x338 */ dAttList_c mLockOnList[8];
     /* 0x3D8 */ int mLockonCount;
-    /* 0x3DC */ int field_0x3dc;
+    /* 0x3DC */ int mLockOnOffset;
     /* 0x3E0 */ dAttList_c mActionList[4];
     /* 0x430 */ int mActionCount;
-    /* 0x434 */ int field_0x434;
-    /* 0x438 */ dAttList_c attention_list3[4];
+    /* 0x434 */ int mActionOffset;
+    /* 0x438 */ dAttList_c field_0x438[4];
     /* 0x488 */ int mCheckObjectCount;
     /* 0x48C */ int field_0x48c;
     /* 0x490 */ dAttHint_c mZHintTarget;
@@ -270,7 +263,9 @@ public:
     /* 0x4CD */ u8 field_0x4cd;
     /* 0x4CE */ u8 field_0x4ce;
     /* 0x4CF */ u8 field_0x4cf;
-    /* 0x4D0 */ dAttParam_c attention_param;
-};  // Size = 0x51C
+    /* 0x4D0 */ dAttParam_c mAttParam;
+};  // Size: 0x51C
+
+STATIC_ASSERT(sizeof(dAttention_c) == 0x51C);
 
 #endif /* D_D_ATTENTION_H */

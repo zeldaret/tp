@@ -11,11 +11,6 @@
 // Types:
 //
 
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
 struct daPy_py_c {
     static u8 m_midnaActor[4];
 };
@@ -32,33 +27,9 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct dMsgFlow_c {
-    /* 80249F00 */ dMsgFlow_c();
-    /* 80249F48 */ ~dMsgFlow_c();
-    /* 80249F90 */ void init(fopAc_ac_c*, int, int, fopAc_ac_c**);
-    /* 8024A2D8 */ void doFlow(fopAc_ac_c*, fopAc_ac_c**, int);
-};
-
 struct dEvt_control_c {
     /* 80042468 */ void reset();
     /* 80042518 */ void reset(void*);
-};
-
-struct csXyz {};
-
-struct cXyz {};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 //
@@ -101,13 +72,11 @@ extern "C" void doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci();
 extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void __dl__FPv();
-extern "C" void PSVECSquareDistance();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 m_midnaActor__9daPy_py_c[4];

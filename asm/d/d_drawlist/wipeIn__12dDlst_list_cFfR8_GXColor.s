@@ -3,7 +3,7 @@ lbl_8005681C:
 /* 80056820  7C 08 02 A6 */	mflr r0
 /* 80056824  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80056828  38 00 00 01 */	li r0, 1
-/* 8005682C  98 0D 89 50 */	stb r0, data_80450ED0(r13)
+/* 8005682C  98 0D 89 50 */	stb r0, mWipe__12dDlst_list_c(r13)
 /* 80056830  D0 2D 89 58 */	stfs f1, mWipeSpeed__12dDlst_list_c(r13)
 /* 80056834  88 03 00 00 */	lbz r0, 0(r3)
 /* 80056838  98 0D 80 DC */	stb r0, mWipeColor__12dDlst_list_c(r13)

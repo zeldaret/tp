@@ -8,28 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" static void WriteSramCallback();
-extern "C" static void WriteSram();
-extern "C" void __OSInitSram();
-extern "C" void __OSLockSram();
-extern "C" void __OSLockSramEx();
-extern "C" static void UnlockSram();
-extern "C" void __OSUnlockSram();
-extern "C" void __OSUnlockSramEx();
-extern "C" void __OSSyncSram();
-extern "C" void OSGetSoundMode();
-extern "C" void OSSetSoundMode();
-extern "C" void OSGetProgressiveMode();
-extern "C" void OSSetProgressiveMode();
-extern "C" void OSGetWirelessID();
-extern "C" void OSSetWirelessID();
-extern "C" static void OSGetGbsMode();
-extern "C" static void OSSetGbsMode();
-
-//
 // External References:
 //
 
@@ -57,7 +35,7 @@ static u8 Scb[84 + 4 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void WriteSramCallback() {
+static asm void WriteSramCallback(void) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/WriteSramCallback.s"
 }
@@ -67,7 +45,7 @@ static asm void WriteSramCallback() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void WriteSram() {
+static asm u8 WriteSram(u8* param_0, u32 param_1, u32 param_2) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/WriteSram.s"
 }
@@ -77,7 +55,7 @@ static asm void WriteSram() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSInitSram() {
+asm void __OSInitSram(void) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/__OSInitSram.s"
 }
@@ -87,7 +65,7 @@ asm void __OSInitSram() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSLockSram() {
+asm u16* __OSLockSram(void) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/__OSLockSram.s"
 }
@@ -97,7 +75,7 @@ asm void __OSLockSram() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSLockSramEx() {
+asm u16* __OSLockSramEx(void) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/__OSLockSramEx.s"
 }
@@ -107,7 +85,7 @@ asm void __OSLockSramEx() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void UnlockSram() {
+static asm u32 UnlockSram(s32 param_0, u32 param_1) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/UnlockSram.s"
 }
@@ -117,7 +95,7 @@ static asm void UnlockSram() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSUnlockSram() {
+asm u32 __OSUnlockSram(s32 param_0) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/__OSUnlockSram.s"
 }
@@ -127,7 +105,7 @@ asm void __OSUnlockSram() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSUnlockSramEx() {
+asm u32 __OSUnlockSramEx(s32 param_0) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/__OSUnlockSramEx.s"
 }
@@ -137,7 +115,7 @@ asm void __OSUnlockSramEx() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSSyncSram() {
+asm u32 __OSSyncSram(void) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/__OSSyncSram.s"
 }
@@ -147,7 +125,7 @@ asm void __OSSyncSram() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSGetSoundMode() {
+asm u32 OSGetSoundMode(void) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/OSGetSoundMode.s"
 }
@@ -157,7 +135,7 @@ asm void OSGetSoundMode() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSSetSoundMode() {
+asm void OSSetSoundMode(OSSoundMode mode) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/OSSetSoundMode.s"
 }
@@ -167,7 +145,7 @@ asm void OSSetSoundMode() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSGetProgressiveMode() {
+asm u32 OSGetProgressiveMode(void) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/OSGetProgressiveMode.s"
 }
@@ -177,7 +155,7 @@ asm void OSGetProgressiveMode() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSSetProgressiveMode() {
+asm void OSSetProgressiveMode(u32 mode) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/OSSetProgressiveMode.s"
 }
@@ -187,7 +165,7 @@ asm void OSSetProgressiveMode() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSGetWirelessID() {
+asm u16 OSGetWirelessID(s32 index) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/OSGetWirelessID.s"
 }
@@ -197,7 +175,7 @@ asm void OSGetWirelessID() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSSetWirelessID() {
+asm void OSSetWirelessID(s32 index, u16 id) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/OSSetWirelessID.s"
 }
@@ -207,7 +185,7 @@ asm void OSSetWirelessID() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void OSGetGbsMode() {
+static asm u16 OSGetGbsMode(void) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/OSGetGbsMode.s"
 }
@@ -217,7 +195,7 @@ static asm void OSGetGbsMode() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void OSSetGbsMode() {
+static asm void OSSetGbsMode(u16 mode) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/OSSetGbsMode.s"
 }

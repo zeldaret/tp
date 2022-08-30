@@ -12,28 +12,49 @@ public:
         /* 0x02 */ u8 unk2;
         /* 0x03 */ u8 unk3;
         /* 0x04 */ u16* unk4;
+    };  // Size: 0x8
+
+    struct poly_class {
+        /* 0x00 */ u8 field_0x0;
+        /* 0x01 */ u8 field_0x1;
+        /* 0x04 */ u16* field_0x4;
+    };  // Size: 0x8
+
+    struct group_class {
+        /* 0x00 */ u8 field_0x0;
+        /* 0x01 */ u8 field_0x1;
+        /* 0x02 */ u8 field_0x2;
+        /* 0x03 */ u8 field_0x3;
+        /* 0x04 */ u8 field_0x4;
+        /* 0x08 */ dDrawPath_c::line_class* mpLine;
+        /* 0x0C */ u8 field_0xc[4];
+        /* 0x10 */ dDrawPath_c::poly_class* mpPoly;
+    };  // Size: 0x14
+
+    struct floor_class {
+        /* 0x0 */ s8 field_0x0;
+        /* 0x1 */ u8 field_0x1;
+        /* 0x4 */ dDrawPath_c::group_class* mpGroup;
+    };  // Size: 0x8
+
+    struct room_class {
+        /* 0x0 */ u8 field_0x0;
+        /* 0x4 */ dDrawPath_c::floor_class* mpFloor;
+        /* 0x8 */ void* field_0x8;
     };
-
-    struct poly_class {};
-
-    struct group_class {};
-
-    struct floor_class {};
-
-    struct room_class {};
 
     /* 8003CB00 */ void rendering(dDrawPath_c::group_class const*);
     /* 8003CBBC */ void rendering(dDrawPath_c::floor_class const*);
 
     /* 8002AD3C */ virtual ~dDrawPath_c();
     /* 8002ABF0 */ virtual bool isDrawType(int);
-    virtual void getColor(int) = 0;
-    /* 8002AD84 */ virtual void getLineColor(int, int);
-    virtual void getLineWidth(int) = 0;
-    virtual void isSwitch(dDrawPath_c::group_class const*) = 0;
-    virtual void isRenderingFloor(int) = 0;
-    virtual void getFirstRoomPointer() = 0;
-    virtual void getNextRoomPointer() = 0;
+    virtual GXColor* getColor(int) = 0;
+    /* 8002AD84 */ virtual GXColor* getLineColor(int, int);
+    virtual int getLineWidth(int) = 0;
+    virtual bool isSwitch(dDrawPath_c::group_class const*) = 0;
+    virtual bool isRenderingFloor(int) = 0;
+    virtual room_class* getFirstRoomPointer() = 0;
+    virtual room_class* getNextRoomPointer() = 0;
     /* 8003CCC4 */ virtual void drawPath();
     /* 8003C94C */ virtual void rendering(dDrawPath_c::line_class const*);
     /* 8003CA40 */ virtual void rendering(dDrawPath_c::poly_class const*);
@@ -55,7 +76,7 @@ public:
     virtual void afterDrawPath() = 0;
     virtual void preDrawPath() = 0;
     virtual void postDrawPath() = 0;
-    virtual void isDrawPath() = 0;
+    virtual bool isDrawPath() = 0;
     virtual void preRenderingMap() = 0;
     virtual void postRenderingMap() = 0;
     virtual GXColor* getBackColor() const = 0;
@@ -75,7 +96,7 @@ public:
     /* 8003D6B8 */ virtual s32 getDecorationLineWidth(int);
 
 private:
-    /* 0x04 */ int field_0x4;
+    /* 0x04 */ void* field_0x4;
     /* 0x08 */ f32 field_0x8;
     /* 0x0C */ f32 field_0xc;
     /* 0x10 */ f32 field_0x10;
@@ -86,5 +107,26 @@ private:
     /* 0x20 */ u16 field_0x20;
     /* 0x22 */ u16 field_0x22;
 };  // Size: 0x24
+
+struct dMpath_n {
+    class dTexObjAggregate_c {
+    public:
+        /* 8003C85C */ void create();
+        /* 8003C8F4 */ void remove();
+        /* 8003D740 */ ~dTexObjAggregate_c() { remove(); };
+
+        dTexObjAggregate_c() {
+            for (int i = 0; i < 7; i++) {
+                mp_texObj[i] = NULL;
+            }
+        }
+
+        /* 0x0 */ GXTexObj* mp_texObj[7];
+    };
+
+    static dTexObjAggregate_c m_texObjAgg;
+};
+
+STATIC_ASSERT(sizeof(dMpath_n::dTexObjAggregate_c) == 28);
 
 #endif /* D_MAP_D_MAP_PATH_H */
