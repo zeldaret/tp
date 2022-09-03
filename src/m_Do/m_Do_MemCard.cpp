@@ -8,7 +8,7 @@
 #include "MSL_C/MSL_Common/Src/string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "m_Do/m_Do_Ext.h"
+#include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_Reset.h"
 
 //

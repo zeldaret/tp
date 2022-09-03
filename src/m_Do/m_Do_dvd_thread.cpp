@@ -12,7 +12,7 @@
 #include "dolphin/dvd/dvd.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
-#include "m_Do/m_Do_reset.h"
+#include "m_Do/m_Do_Reset.h"
 
 //
 // Types:
