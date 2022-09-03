@@ -12,7 +12,7 @@
 #include "dol2asm.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
-#include "m_Do/m_Do_Audio.h"
+#include "m_Do/m_Do_audio.h"
 #include "m_Do/m_Do_DVDError.h"
 #include "m_Do/m_Do_MemCard.h"
 
