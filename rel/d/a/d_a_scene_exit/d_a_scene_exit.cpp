@@ -91,7 +91,7 @@ static int daScex_Create(fopAc_ac_c* ac) {
     scex->mScale.z *= 75.0f;
     scex->mScale.y *= 150.0f;
 
-    return 4;
+    return cPhs_COMPLEATE_e;
 }
 #else
 #pragma push

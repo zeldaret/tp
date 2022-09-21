@@ -12,24 +12,20 @@ extern "C" static void cPhs_Compleate__FP30request_of_phase_process_class();
 extern "C" static void cPhs_Next__FP30request_of_phase_process_class();
 
 //
-// External References:
-//
-
-//
 // Declarations:
 //
 
 /* 80266624-80266630 000C+00 s=1 e=2 z=0  None .text
  * cPhs_Reset__FP30request_of_phase_process_class               */
 void cPhs_Reset(request_of_phase_process_class* pPhase) {
-    pPhase->mPhaseStep = 0;
+    pPhase->mPhaseStep = cPhs_ZERO_e;
 }
 
 /* 80266630-80266640 0010+00 s=0 e=3 z=0  None .text
  * cPhs_Set__FP30request_of_phase_process_classPPFPv_i          */
 void cPhs_Set(request_of_phase_process_class* pPhase, cPhs__Handler* pHandlerTable) {
     pPhase->mpHandlerTable = pHandlerTable;
-    pPhase->mPhaseStep = 0;
+    pPhase->mPhaseStep = cPhs_ZERO_e;
 }
 
 /* 80266640-80266668 0028+00 s=1 e=0 z=0  None .text
@@ -58,7 +54,7 @@ int cPhs_Next(request_of_phase_process_class* pPhase) {
         if (handler == NULL || handler == NULL) {
             return cPhs_Compleate(pPhase);
         } else {
-            return 1;
+            return cPhs_ONE_e;
         }
     }
 
@@ -67,7 +63,7 @@ int cPhs_Next(request_of_phase_process_class* pPhase) {
 
 /* 802666D8-802667AC 00D4+00 s=1 e=3 z=0  None .text cPhs_Do__FP30request_of_phase_process_classPv
  */
-#if NON_MATCHING
+#ifdef NONMATCHING
 int cPhs_Do(request_of_phase_process_class* pPhase, void* pUserData) {
     if (const cPhs__Handler* pHandlerTable = pPhase->mpHandlerTable) {
         // the load of pUserData seems to be slightly scrambled..
@@ -75,27 +71,25 @@ int cPhs_Do(request_of_phase_process_class* pPhase, void* pUserData) {
         const int newStep = pHandler(pUserData);
 
         switch (newStep) {
-        case 1:
+        case cPhs_ONE_e:
             return cPhs_Next(pPhase);
-        case 2: {
+        case cPhs_TWO_e:
             const int step2 = cPhs_Next(pPhase);
-            return step2 == 1 ? 2 : cPhs_COMPLEATE_e;
-        }
+            return step2 == cPhs_ONE_e ? cPhs_TWO_e : cPhs_COMPLEATE_e;
         case cPhs_COMPLEATE_e:
             return cPhs_Compleate(pPhase);
-        case 3: {
+        case cPhs_UNK3_e:
             cPhs_UnCompleate(pPhase);
-            return 3;
-        }
+            return cPhs_UNK3_e;
         case cPhs_ERROR_e:
             cPhs_UnCompleate(pPhase);
             return cPhs_ERROR_e;
         }
 
         return newStep;
-    } else {
-        return cPhs_Compleate(pPhase);
     }
+    
+    return cPhs_Compleate(pPhase);
 }
 #else
 #pragma push

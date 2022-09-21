@@ -81,7 +81,7 @@ asm bool daAlink_c::checkCutFinishJumpUp() {
 
 /* 800D1088-800D10E0 0CB9C8 0058+00 2/2 0/0 0/0 .text            changeCutFast__9daAlink_cFv */
 void daAlink_c::changeCutFast() {
-    deleteEquipItem(0, 0);
+    deleteEquipItem(FALSE, FALSE);
     setSwordModel();
     mComboCutCount = 3;
     checkCutAction();
@@ -117,10 +117,10 @@ void daAlink_c::setSwordModel() {
 void daAlink_c::offSwordModel() {
     mDoAud_bgmSetSwordUsing(0);
 
-    if (mSwordModel == field_0x0668 || mSwordModel == field_0x0660) {
+    if (mSwordModel == mpSwMModel || mSwordModel == mpSwAModel) {
         mSwordModel->getModelData()->getMaterialNodePointer(0)->getShape()->hide();
-    } else if (mSwordModel == field_0x0670) {
-        field_0x0670->getModelData()->getMaterialNodePointer(1)->getShape()->show();
+    } else if (mSwordModel == mWoodSwordModel) {
+        mWoodSwordModel->getModelData()->getMaterialNodePointer(1)->getShape()->show();
     }
 }
 

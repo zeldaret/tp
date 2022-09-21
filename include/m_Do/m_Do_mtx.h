@@ -54,6 +54,7 @@ public:
     static void XrotM(s16 x) { mDoMtx_XrotM(now, x); }
     static void inverse() { PSMTXInverse(now, now); }
     static void concat(const Mtx m) { PSMTXConcat(now, m, now); }
+    static void copy(const Mtx m) { PSMTXCopy(m, now); }
 
     static Mtx now;
     static Mtx buffer[16];

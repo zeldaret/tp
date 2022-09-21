@@ -83,7 +83,7 @@ int daTag_Lv5Soup_c::create() {
 
     fopAcM_setCullSizeBox(this, -30.0f, -15.0f, -30.0f, 30.0f, 45.0f, 30.0f);
     mAttentionInfo.mFlags = 0;
-    return 4;
+    return cPhs_COMPLEATE_e;
 }
 
 /* 80D5ADEC-80D5ADF4 00010C 0008+00 1/1 0/0 0/0 .text            Delete__15daTag_Lv5Soup_cFv */

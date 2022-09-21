@@ -29,10 +29,6 @@ struct dDemo_c {
     static u8 m_mode[4];
 };
 
-struct dCamera_c {
-    /* 80174EA4 */ bool CalcSubjectAngle(s16*, s16*);
-};
-
 //
 // Forward References:
 //
@@ -484,7 +480,7 @@ int dMeter2_c::_create() {
     mpHeap->getTotalFreeSize();
     field_0x11c = NULL;
     mDoExt_setCurrentHeap(heap);
-    return 4;
+    return cPhs_COMPLEATE_e;
 }
 
 /* 8021F128-8021F370 219A68 0248+00 1/1 0/0 0/0 .text            _execute__9dMeter2_cFv */

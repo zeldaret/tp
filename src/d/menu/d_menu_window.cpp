@@ -2489,7 +2489,7 @@ int dMw_c::_create() {
     field_0x144 = 3;
 
     dMeter2Info_setWindowStatus(0);
-    return 4;
+    return cPhs_COMPLEATE_e;
 }
 
 /* 801FD2D8-801FD450 1F7C18 0178+00 1/1 0/0 0/0 .text            _execute__5dMw_cFv */

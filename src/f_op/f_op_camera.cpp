@@ -45,7 +45,7 @@ static s32 fopCam_Draw(camera_class* pCamera) {
     s32 cam_proc = 1;
 
     if (!dComIfGp_isPauseFlag()) {
-        cam_proc = fpcLf_DrawMethod(pCamera->pMthd, pCamera);
+        cam_proc = fpcLf_DrawMethod(pCamera->mpMtd, pCamera);
     }
     return cam_proc;
 }
@@ -55,7 +55,7 @@ static s32 fopCam_Draw(camera_class* pCamera) {
 #ifdef NONMATCHING
 static void fopCam_Execute(camera_class* pCamera) {
     if (!dComIfGp_isPauseFlag() && dScnPly_c::isPause()) {
-        fpcMtd_Execute((process_method_class*)pCamera->pMthd, pCamera);
+        fpcMtd_Execute((process_method_class*)pCamera->mpMtd, pCamera);
     }
 }
 #else
@@ -72,9 +72,9 @@ static asm void fopCam_Execute(camera_class* param_0) {
 /* 8001E1C8-8001E21C 018B08 0054+00 1/0 0/0 0/0 .text            fopCam_IsDelete__FP12camera_class
  */
 int fopCam_IsDelete(camera_class* pCamera) {
-    int delete_stat = fpcMtd_IsDelete((process_method_class*)pCamera->pMthd, pCamera);
+    int delete_stat = fpcMtd_IsDelete((process_method_class*)pCamera->mpMtd, pCamera);
     if (delete_stat == 1) {
-        fopDwTg_DrawQTo(&pCamera->pCreateTag);
+        fopDwTg_DrawQTo(&pCamera->mCreateTag);
     }
 
     return delete_stat;
@@ -82,9 +82,9 @@ int fopCam_IsDelete(camera_class* pCamera) {
 
 /* 8001E21C-8001E270 018B5C 0054+00 1/0 0/0 0/0 .text            fopCam_Delete__FP12camera_class */
 int fopCam_Delete(camera_class* pCamera) {
-    int delete_stat = fpcMtd_Delete((process_method_class*)pCamera->pMthd, pCamera);
+    int delete_stat = fpcMtd_Delete((process_method_class*)pCamera->mpMtd, pCamera);
     if (delete_stat == 1) {
-        fopDwTg_DrawQTo(&pCamera->pCreateTag);
+        fopDwTg_DrawQTo(&pCamera->mCreateTag);
     }
 
     return delete_stat;

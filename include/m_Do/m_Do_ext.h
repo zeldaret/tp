@@ -212,6 +212,17 @@ public:
 
     /* 8000FAE8 */ virtual ~mDoExt_morf_c();
 
+    void setPlaySpeed(f32 speed) { mFrameCtrl.setRate(speed); }
+    f32 getFrame() { return mFrameCtrl.getFrame(); }
+
+    bool isStop() {
+        bool stopped = true;
+        if (!mFrameCtrl.checkState(1) && mFrameCtrl.getRate() != 0.0f) {
+            stopped = false;
+        }
+        return stopped;
+    }
+
     /* 0x04 */ J3DModel* mpModel;
     /* 0x08 */ J3DAnmTransform* mpAnm;
     /* 0x0C */ J3DFrameCtrl mFrameCtrl;
@@ -413,6 +424,7 @@ void mDoExt_removeMesgFont();
 void mDoExt_modelUpdateDL(J3DModel*);
 J3DModel* mDoExt_J3DModel__create(J3DModelData*, u32, u32);
 void mDoExt_setAraCacheSize(u32 param_0);
+int mDoExt_resIDToIndex(JKRArchive* p_archive, u16 id);
 
 struct JUTFont;
 JUTFont* mDoExt_getMesgFont();

@@ -2273,7 +2273,7 @@ void mDoExt_restoreCurrentHeap() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoExt_resIDToIndex(JKRArchive* param_0, u16 param_1) {
+asm int mDoExt_resIDToIndex(JKRArchive* p_archive, u16 id) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/mDoExt_resIDToIndex__FP10JKRArchiveUs.s"
 }

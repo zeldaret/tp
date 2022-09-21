@@ -32,6 +32,7 @@ static void dKy_set_vrboxkumocol_ratio(f32 ratio);
 void dKy_actor_addcol_set(s16 param_0, s16 param_1, s16 param_2, f32 param_3);
 void dKy_fog_startendz_set(f32 param_0, f32 param_1, f32 param_2);
 static void dKy_vrbox_addcol_set(s16 param_0, s16 param_1, s16 param_2, f32 param_3);
+void dKy_GxFog_set();
 
 
 struct LIGHT_INFLUENCE {

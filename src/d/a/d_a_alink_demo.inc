@@ -1307,7 +1307,7 @@ int daAlink_c::procDungeonWarp() {
         }
 
         mScale.z = mScale.x;
-        field_0x0650->setBaseScale(mScale);
+        mpLinkModel->setBaseScale(mScale);
     }
 
     return 1;

@@ -69,6 +69,7 @@ public:
     Mtx33* getNrmMtxPtr() const { return mMtxBuffer->getNrmMtxPtr(); }
     void setBaseScale(const Vec& scale) { mBaseScale = scale; }
     void setUserArea(u32 area) { mUserArea = area; }
+    u32 getUserArea() const { return mUserArea; }
     Vec* getBaseScale() { return &mBaseScale; }
 
     // is there a better way to handle inlines with same name as non-inlines?

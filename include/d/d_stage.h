@@ -4,6 +4,7 @@
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "SSystem/SComponent/c_lib.h"
 #include "d/kankyo/d_kankyo.h"
+#include "d/kankyo/d_kankyo_data.h"
 #include "d/save/d_save.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
@@ -12,9 +13,15 @@ struct stage_vrboxcol_info_class {
     // VRB
 };  // Size: 0x18
 
+// Virt
 struct stage_vrbox_info_class {
-    // Virt
-};
+    /* 0x00 */ GXColor field_0x0;
+    /* 0x04 */ GXColor field_0x4;
+    /* 0x08 */ color_RGB_class field_0x8;
+    /* 0x0B */ color_RGB_class field_0xb;
+    /* 0x0E */ color_RGB_class field_0xe;
+    /* 0x11 */ color_RGB_class field_0x11;
+};  // Size: 0x15
 
 class stage_tresure_class {
 public:
@@ -80,17 +87,36 @@ struct stage_pure_lightvec_info_class {
     // LGT
 };
 
+// Col
 struct stage_pselect_info_class {
-    // Col
-};
+    /* 0x0 */ u8 mPalIdx[8];
+    /* 0x8 */ f32 mChangeRate;
+};  // Size: 0xC
 
 struct stage_plight_info_class {
     // LGHT
 };
 
+// PALE
 struct stage_palette_info_class {
-    // PAL
-};
+    /* 0x00 */ color_RGB_class mActor_C0;
+    /* 0x03 */ color_RGB_class mActor_K0;
+    /* 0x06 */ color_RGB_class mBG0_C0;
+    /* 0x09 */ color_RGB_class mBG0_K0;
+    /* 0x0C */ color_RGB_class mBG1_C0;
+    /* 0x0F */ color_RGB_class mBG1_K0;
+    /* 0x12 */ color_RGB_class mBG2_C0;
+    /* 0x15 */ color_RGB_class mBG2_K0;
+    /* 0x18 */ color_RGB_class mBG3_C0;
+    /* 0x1B */ color_RGB_class mBG3_K0;
+    /* 0x1E */ color_RGB_class mFog;
+    /* 0x21 */ u8 mVirtIdx;
+    /* 0x22 */ u8 field_0x22;
+    /* 0x23 */ u8 field_0x23;
+    /* 0x24 */ f32 mFogStartZ;
+    /* 0x28 */ f32 mFogEndZ;
+    /* 0x2C */ u8 field_0x2c[8];
+};  // Size: 0x34
 
 struct stage_map_info_class {
     /* 0x00 */ u8 field_0x0[0x35];
@@ -191,7 +217,11 @@ public:
 
 struct dStage_MemoryMap_c {};
 
-struct dStage_dPath_c {};
+struct dPath;
+struct dStage_dPath_c {
+    /* 0x0 */ int m_num;
+    /* 0x4 */ dPath* m_path;
+};
 
 struct dStage_Mult_info {
     /* 0x0 */ f32 mTransX;
@@ -222,9 +252,11 @@ public:
     /* 0x1C */ u16 mMsg;
 };  // Size: 0x20
 
+// PPNT
 struct dStage_dPnt_c {
-    // PPNT
-};
+    /* 0x0 */ int field_0x0;
+    /* 0xC */ cXyz m_position;
+};  // Size: 0x10
 
 struct dStage_FloorInfo_c {
     // FLOR

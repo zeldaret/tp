@@ -8,23 +8,10 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" void Create__12daTagMagne_cFv();
-extern "C" void create__12daTagMagne_cFv();
-extern "C" void _delete__12daTagMagne_cFv();
-extern "C" static void daTagMagne_Delete__FP12daTagMagne_c();
-extern "C" static void daTagMagne_Create__FP10fopAc_ac_c();
-extern "C" extern void* g_profile_Tag_Magne[12];
-
-//
 // External References:
 //
 
-extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" extern void* g_fopAc_Method[8];
-extern "C" u8 mTagMagne__12daTagMagne_c[4];
 
 //
 // Declarations:
@@ -52,14 +39,14 @@ int daTagMagne_c::create() {
     }
     
     if (mTagMagne != NULL && mTagMagne->mCurrent.mRoomNo != mCurrent.mRoomNo) {
-        return 0;
+        return cPhs_ZERO_e;
     }
 
     if (!Create()) {
-        return 5;
+        return cPhs_ERROR_e;
     }
 
-    return 4;
+    return cPhs_COMPLEATE_e;
 }
 
 /* 805A5578-805A558C 000158 0014+00 1/1 0/0 0/0 .text            _delete__12daTagMagne_cFv */
@@ -70,37 +57,27 @@ int daTagMagne_c::_delete() {
 
 /* 805A558C-805A55AC 00016C 0020+00 1/0 0/0 0/0 .text            daTagMagne_Delete__FP12daTagMagne_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagMagne_Delete(daTagMagne_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_magne/d_a_tag_magne/daTagMagne_Delete__FP12daTagMagne_c.s"
+static void daTagMagne_Delete(daTagMagne_c* p_tag) {
+    p_tag->_delete();
 }
-#pragma pop
 
 /* 805A55AC-805A55CC 00018C 0020+00 1/0 0/0 0/0 .text            daTagMagne_Create__FP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagMagne_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_magne/d_a_tag_magne/daTagMagne_Create__FP10fopAc_ac_c.s"
+static void daTagMagne_Create(fopAc_ac_c* p_tag) {
+    ((daTagMagne_c*)p_tag)->create();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 805A55D4-805A55F4 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagMagne_Method */
-SECTION_DATA static void* l_daTagMagne_Method[8] = {
-    (void*)daTagMagne_Create__FP10fopAc_ac_c,
-    (void*)daTagMagne_Delete__FP12daTagMagne_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+SECTION_DATA static process_method_func l_daTagMagne_Method[8] = {
+    (process_method_func)daTagMagne_Create,
+    (process_method_func)daTagMagne_Delete,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
 };
 
 /* 805A55F4-805A5624 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Magne */

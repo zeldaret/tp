@@ -1665,12 +1665,12 @@ int daNpcT_c::loadRes(s8 const* resNoList, char const** resNameList) {
             return cPhs_COMPLEATE_e;
         }
 
-        int status = dComIfG_resLoad(&field_0x8e0[i], resNameList[resNoList[i]]);
-        if (status == cPhs_COMPLEATE_e) {
+        int phase_state = dComIfG_resLoad(&field_0x8e0[i], resNameList[resNoList[i]]);
+        if (phase_state == cPhs_COMPLEATE_e) {
             resLoad_cnt++;
         }
 
-        if (status == cPhs_ERROR_e || status == 3) {
+        if (phase_state == cPhs_ERROR_e || phase_state == cPhs_UNK3_e) {
             return cPhs_ERROR_e;
         }
     }

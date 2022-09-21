@@ -20,8 +20,6 @@
 
 struct sub_kankyo__class {};
 
-struct color_RGB_class {};
-
 //
 // Forward References:
 //
@@ -2472,7 +2470,7 @@ static int dKy_Create(void*) {
     }
 
     g_env_light.mNexttime = -1.0f;
-    return 4;
+    return cPhs_COMPLEATE_e;
 }
 #else
 #pragma push

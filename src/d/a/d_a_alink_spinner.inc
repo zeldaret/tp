@@ -144,7 +144,7 @@ int daAlink_c::procSpinnerReadyInit() {
     seStartOnlyReverb(Z2SE_AL_SPINNER_START);
 
     field_0x2f99 = 15;
-    deleteEquipItem(1, 1);
+    deleteEquipItem(TRUE, TRUE);
 
     mCurrent.mAngle.y = mCollisionRot.y;
     field_0x3588 = l_waitBaseAnime;
@@ -282,10 +282,10 @@ int daAlink_c::procSpinnerWait() {
 
         if (spinner->checkPathMoveNow() == NULL) {
             seStartOnlyReverbLevel(Z2SE_AL_SPINNER_RIDE);
-            setSpinnerStatus(ACTION_STR_ATTACK, 0);
+            setSpinnerStatus(ACTION_STR_ATTACK, ACTION_FLG_DEFAULT);
         } else {
             seStartOnlyReverbLevel(Z2SE_AL_SPINNER_RAIL);
-            setSpinnerStatus(ACTION_STR_JUMP2, 0);
+            setSpinnerStatus(ACTION_STR_JUMP2, ACTION_FLG_DEFAULT);
         }
 
         mNormalSpeed = spinner->mSpeedF;
@@ -293,7 +293,7 @@ int daAlink_c::procSpinnerWait() {
 
         if (spinner->checkSpinnerTagIntoIncRot()) {
             field_0x3012 = 1;
-            setSpinnerStatus(ACTION_STR_SPIN, 4);
+            setSpinnerStatus(ACTION_STR_SPIN, ACTION_FLG_CONTINUATION);
 
             if (field_0x3198 != ANM_SPINNER_PUSH && field_0x2060->getOldFrameRate() < 0.01f) {
                 setSingleAnimeBaseSpeed(ANM_SPINNER_RIDE, daAlinkHIO_board_c0::m.mSitAnmSpeed,
@@ -303,9 +303,9 @@ int daAlink_c::procSpinnerWait() {
             }
         } else if (spinner->checkSpinnerTagInto()) {
             if (field_0x3012 != 0) {
-                setSpinnerStatus(ACTION_STR_SPIN, 4);
+                setSpinnerStatus(ACTION_STR_SPIN, ACTION_FLG_CONTINUATION);
             } else {
-                setSpinnerStatus(ACTION_STR_SPIN, 0);
+                setSpinnerStatus(ACTION_STR_SPIN, ACTION_FLG_DEFAULT);
             }
 
             if ((field_0x3198 == ANM_SPINNER_PUSH && field_0x2060->getOldFrameRate() < 0.01f) ||

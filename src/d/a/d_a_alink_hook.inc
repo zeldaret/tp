@@ -236,7 +236,7 @@ void daAlink_c::setHookshotModel() {
     field_0x122C[0].SetAtAtp(0);
     field_0x122C[0].SetR(lit_7808);
     field_0x122C[0].SetAtSe(8);
-    field_0x122C[0].SetAtType(0x4000);
+    field_0x122C[0].SetAtType(AT_TYPE_HOOKSHOT);
     field_0x122C[0].SetAtHitMark(1);
     field_0x122C[0].OnAtSetBit();
     field_0x122C[0].SetAtHitCallback(daAlink_hookshotAtHitCallBack);

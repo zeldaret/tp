@@ -460,7 +460,7 @@ public:
     /* 0x04E10 */ dDlst_window_c mWindow[1];
     /* 0x04E3C */ dComIfG_camera_info_class mCameraInfo[1];
     /* 0x04E74 */ daAlink_c* mPlayer[1];
-    /* 0x04E78 */ s8 mPlayerCameraID[4];
+    /* 0x04E78 */ s8 mPlayerCameraID[1];
     /* 0x04E7C */ fopAc_ac_c* mPlayerPtr[2];  // 0: Player, 1: Horse ; type may be wrong
     /* 0x04E84 */ dMsgObject_c* mMsgObjectClass;
     /* 0x04E88 */ f32 mItemLifeCount;
@@ -625,8 +625,8 @@ public:
     /* 0x04FE8 */ u8 field_0x4fe8[0x10];
     /* 0x04FF8 */ __d_timer_info_c mTimerInfo;
     /* 0x0500C */ dDlst_window_c* mCurrentWindow;
-    /* 0x05010 */ void* mCurrentView;
-    /* 0x05014 */ void* mCurrentViewport;
+    /* 0x05010 */ view_class* mCurrentView;
+    /* 0x05014 */ view_port_class* mCurrentViewport;
     /* 0x05018 */ J2DGrafContext* mCurrentGrafPort;
     /* 0x0501C */ void* mItemTable;
     /* 0x0501D */ u8 field_0x501d[4];
@@ -2293,6 +2293,10 @@ inline void dComIfGp_evmng_cutEnd(int param_0) {
 
 inline BOOL dComIfGp_evmng_endCheck(const char* event) {
     return g_dComIfG_gameInfo.play.getEvtManager().endCheckOld(event);
+}
+
+inline BOOL dComIfGp_evmng_endCheck(s16 eventID) {
+    return g_dComIfG_gameInfo.play.getEvtManager().endCheck(eventID);
 }
 
 inline void dComIfGp_event_setItemPartnerId(unsigned int id) {

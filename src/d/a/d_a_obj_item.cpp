@@ -658,25 +658,25 @@ int daItem_c::_daItem_create() {
     field_0x920 = daItem_prm::getItemBitNo(this);
 
     if (fopAcM_isItem(this, field_0x920)) {
-        return 5;
+        return cPhs_ERROR_e;
     } else {
-        int ret = 4;
+        int phase_state = cPhs_COMPLEATE_e;
 
         if (flag) {
             CreateInit();
         } else {
-            ret = dComIfG_resLoad(&mPhase, dItem_data::getFieldArc(m_itemNo));
+            phase_state = dComIfG_resLoad(&mPhase, dItem_data::getFieldArc(m_itemNo));
 
-            if (ret == 4) {
+            if (phase_state == cPhs_COMPLEATE_e) {
                 if (!fopAcM_entrySolidHeap(this, (heapCallbackFunc)CheckFieldItemCreateHeap, dItem_data::getFieldHeapSize(m_itemNo))) {
-                    return 5;
+                    return cPhs_ERROR_e;
                 } else {
                     CreateInit();
                 }
             }
         }
 
-        return ret;
+        return phase_state;
     }
 }
 #else

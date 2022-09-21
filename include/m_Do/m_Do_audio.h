@@ -14,8 +14,6 @@ public:
     static T* sInstance;
 };
 
-extern bool struct_80450BB8;  // sInitFlag
-
 class mDoAud_zelAudio_c {
 public:
     void reset();

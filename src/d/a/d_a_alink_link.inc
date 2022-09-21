@@ -1,7 +1,7 @@
 /* 800C2DDC-800C2EAC 0BD71C 00D0+00 17/17 0/0 0/0 .text
  * procPreActionUnequipInit__9daAlink_cFiP10fopAc_ac_c          */
 #ifdef NONMATCHING
-void daAlink_c::procPreActionUnequipInit(int param_0, fopAc_ac_c* param_1) {
+int daAlink_c::procPreActionUnequipInit(int param_0, fopAc_ac_c* param_1) {
     commonProcInit(ACT_PROC_PREACTION_UNEQUIP);
     mNormalSpeed = 0.0f;
     setBlendMoveAnime(4.0f);
@@ -31,7 +31,7 @@ void daAlink_c::procPreActionUnequipInit(int param_0, fopAc_ac_c* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procPreActionUnequipInit(int param_0, fopAc_ac_c* param_1) {
+asm int daAlink_c::procPreActionUnequipInit(int param_0, fopAc_ac_c* param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/procPreActionUnequipInit__9daAlink_cFiP10fopAc_ac_c.s"
 }
@@ -607,7 +607,7 @@ int daAlink_c::procFrontRollInit() {
             i_onNoResetFlg0(2);
         }
         if (i_checkEquipHeavyBoots()) {
-            field_0xFB8.SetAtType(0x200000);
+            field_0xFB8.SetAtType(AT_TYPE_HEAVY_BOOTS);
             field_0xFB8.SetAtHitMark(1);
             field_0xFB8.SetAtSe(9);
             field_0xFB8.SetAtAtp(2);
@@ -1016,7 +1016,7 @@ int daAlink_c::procCoMetamorphoseInit() {
             mCommonCounter = mCollisionRot.x;
         }
     } else {
-        deleteEquipItem(0, 1);
+        deleteEquipItem(FALSE, TRUE);
 
         if (i_checkEndResetFlg0(ERFLG0_UNK_2) && checkStageName("D_MN08")) {
             field_0x3010 = 1;
@@ -1671,7 +1671,7 @@ u32 daAlink_c::checkHorseRide() const {
 
 /* 800CF298-800CF2B4 0C9BD8 001C+00 1/0 0/0 0/0 .text            getLeftItemMatrix__9daAlink_cFv */
 MtxP daAlink_c::getLeftItemMatrix() {
-    return field_0x0650->i_getAnmMtx(field_0x30c0);
+    return mpLinkModel->i_getAnmMtx(field_0x30c0);
 }
 
 /* 800CF2B4-800CF2C8 0C9BF4 0014+00 1/0 0/0 0/0 .text            checkBoarRide__9daAlink_cCFv */
@@ -1686,12 +1686,12 @@ u32 daAlink_c::checkSpinnerRide() const {
 
 /* 800CF2DC-800CF2F8 0C9C1C 001C+00 1/0 0/0 0/0 .text            getLeftHandMatrix__9daAlink_cFv */
 MtxP daAlink_c::getLeftHandMatrix() {
-    return field_0x0650->i_getAnmMtx(field_0x30b8);
+    return mpLinkModel->i_getAnmMtx(field_0x30b8);
 }
 
 /* 800CF2F8-800CF314 0C9C38 001C+00 1/0 0/0 0/0 .text            getRightHandMatrix__9daAlink_cFv */
 MtxP daAlink_c::getRightHandMatrix() {
-    return field_0x0650->i_getAnmMtx(field_0x30ba);
+    return mpLinkModel->i_getAnmMtx(field_0x30ba);
 }
 
 /* 800CF314-800CF328 0C9C54 0014+00 1/0 0/0 0/0 .text
@@ -1704,7 +1704,7 @@ void daAlink_c::onSceneChangeArea(u8 exitID, u8 exitDirection, fopAc_ac_c* scexA
 
 /* 800CF328-800CF344 0C9C68 001C+00 1/0 0/0 0/0 .text            getRightItemMatrix__9daAlink_cFv */
 MtxP daAlink_c::getRightItemMatrix() {
-    return field_0x0650->i_getAnmMtx(field_0x30c2);
+    return mpLinkModel->i_getAnmMtx(field_0x30c2);
 }
 
 /* 800CF344-800CF380 0C9C84 003C+00 1/0 0/0 0/0 .text            checkPlayerNoDraw__9daAlink_cFv */
@@ -1995,7 +1995,7 @@ void daAlink_c::setMidnaMsgNum(fopAc_ac_c* param_0, u16 pMsgNum) {
 
 /* 800D0290-800D029C 0CABD0 000C+00 1/0 0/0 0/0 .text            getModelMtx__9daAlink_cFv */
 MtxP daAlink_c::getModelMtx() {
-    return field_0x0650->getBaseTRMtx();
+    return mpLinkModel->getBaseTRMtx();
 }
 
 /* 800D029C-800D02A4 0CABDC 0008+00 1/0 0/0 0/0 .text            getInvMtx__9daAlink_cFv */
@@ -2005,17 +2005,17 @@ MtxP daAlink_c::getInvMtx() {
 
 /* 800D02A4-800D02B8 0CABE4 0014+00 1/0 0/0 0/0 .text getLinkBackBone1Matrix__9daAlink_cFv */
 MtxP daAlink_c::getLinkBackBone1Matrix() {
-    return field_0x0650->i_getAnmMtx(1);
+    return mpLinkModel->i_getAnmMtx(1);
 }
 
 /* 800D02B8-800D02CC 0CABF8 0014+00 1/0 0/0 0/0 .text            getWolfMouthMatrix__9daAlink_cFv */
 MtxP daAlink_c::getWolfMouthMatrix() {
-    return field_0x0650->i_getAnmMtx(13);
+    return mpLinkModel->i_getAnmMtx(13);
 }
 
 /* 800D02CC-800D02E0 0CAC0C 0014+00 1/0 0/0 0/0 .text getWolfBackbone2Matrix__9daAlink_cFv */
 MtxP daAlink_c::getWolfBackbone2Matrix() {
-    return field_0x0650->i_getAnmMtx(2);
+    return mpLinkModel->i_getAnmMtx(2);
 }
 
 /* 800D02E0-800D0334 0CAC20 0054+00 1/0 0/0 0/0 .text            getBottleMtx__9daAlink_cFv */
@@ -2029,7 +2029,7 @@ MtxP daAlink_c::getBottleMtx() {
 
 /* 800D0334-800D0350 0CAC74 001C+00 1/0 0/0 0/0 .text            getHeadMtx__9daAlink_cFv */
 MtxP daAlink_c::getHeadMtx() {
-    return field_0x0650->i_getAnmMtx(field_0x30b4);
+    return mpLinkModel->i_getAnmMtx(field_0x30b4);
 }
 
 /* 800D0350-800D0358 0CAC90 0008+00 1/0 0/0 0/0 .text            getGroundY__9daAlink_cFv */

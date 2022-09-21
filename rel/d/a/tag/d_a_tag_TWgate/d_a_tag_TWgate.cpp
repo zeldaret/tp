@@ -4,6 +4,7 @@
 //
 
 #include "rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -11,43 +12,36 @@
 // Types:
 //
 
-struct request_of_phase_process_class {};
+class daTagTWGate_c;
+typedef void (daTagTWGate_c::*actionFunc)();
 
-struct cXyz {};
+class daTagTWGate_c : public fopAc_ac_c {
+public:
+    enum EType {
+        /* 0x0 */ TYPE_FILONE,
+        /* 0x1 */ TYPE_ORDIN,
+        /* 0x2 */ TYPE_RANAIL,
+        /* 0x3 */ TYPE_HYRAL,
+    };
 
-struct mDoMtx_stack_c {
-    /* 8000CD64 */ void transS(cXyz const&);
-    /* 8000CD9C */ void transM(f32, f32, f32);
+    enum EAction {
+        /* 0x00 */ ACT_WAIT,
+        /* 0x01 */ ACT_DEMO_FILONE_1,
+        /* 0x02 */ ACT_DEMO_FILONE_2,
+        /* 0x03 */ ACT_DEMO_FILONE_3,
+        /* 0x04 */ ACT_DEMO_ORDIN_1,
+        /* 0x05 */ ACT_DEMO_ORDIN_2,
+        /* 0x06 */ ACT_DEMO_ORDIN_3,
+        /* 0x07 */ ACT_DEMO_RANAIL_1,
+        /* 0x08 */ ACT_DEMO_RANAIL_2,
+        /* 0x09 */ ACT_DEMO_RANAIL_3,
+        /* 0x0A */ ACT_DEMO_HYRAL_1,
+        /* 0x0B */ ACT_DEMO_HYRAL_2,
+        /* 0x0C */ ACT_DEMO_HYRAL_3,
+    };
 
-    static u8 now[48];
-};
+    inline ~daTagTWGate_c();
 
-struct mDoExt_McaMorfCallBack2_c {};
-
-struct mDoExt_McaMorfCallBack1_c {};
-
-struct J3DAnmTransform {};
-
-struct J3DModelData {};
-
-struct Z2Creature {};
-
-struct mDoExt_McaMorfSO {
-    /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
-                                    mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, int, f32, int,
-                                    int, Z2Creature*, u32, u32);
-    /* 800110B0 */ void play(u32, s8);
-    /* 800111C0 */ void entryDL();
-    /* 800111EC */ void modelCalc();
-    /* 80011310 */ void stopZelAnime();
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct daTagTWGate_c {
     /* 80D525F8 */ void initWait();
     /* 80D52604 */ void executeWait();
     /* 80D528F0 */ void initDemoFilone1();
@@ -75,53 +69,64 @@ struct daTagTWGate_c {
     /* 80D54A30 */ void initDemoHyral3();
     /* 80D54AF8 */ void executeDemoHyral3();
     /* 80D54ECC */ void initBaseMtx();
-    /* 80D54F88 */ void downloadModels();
+    /* 80D54F88 */ int downloadModels();
     /* 80D5502C */ void initTalk(int, fopAc_ac_c**);
-    /* 80D55068 */ void talkProc(int*, int, fopAc_ac_c**);
-    /* 80D55160 */ void createHeapCallBack(fopAc_ac_c*);
-    /* 80D55180 */ void CreateHeap();
+    /* 80D55068 */ bool talkProc(int*, int, fopAc_ac_c**);
+    /* 80D55160 */ static int createHeapCallBack(fopAc_ac_c*);
+    /* 80D55180 */ int CreateHeap();
+
+    u8 getSwitch() { return fopAcM_GetParam(this) >> 8; }
+    u8 getType() { return fopAcM_GetParam(this); }
+
+    inline int create();
+
+    void create_init() {
+        field_0x5e0 = 0;
+        mActionID = 0;
+        mAction = &ActionTable[mActionID][0];
+        (this->**mAction)();
+    }
+
+    void callExecute() {
+        (this->*mAction[1])();
+        i_mDoAud_seStartLevel(Z2SE_OBJ_DARK_GATE, &mCurrent.mPosition, 0, 0);
+    }
+
+    int execute() {
+        callExecute();
+
+        if (field_0x5e0 != 0) {
+            mpMorf->play(0, 0);
+            mpMorf->modelCalc();
+        }
+        return 1;
+    }
+
+    int draw() {
+        if (field_0x5e0 != 0) {
+            mpMorf->entryDL();
+        }
+        return 1;
+    }
 
     static u8 const mAttr[1 + 3 /* padding */];
-    static u8 ActionTable[312];
-};
+    static actionFunc ActionTable[13][2];
 
-struct dSv_player_status_b_c {
-    /* 80032BB0 */ void isDarkClearLV(int) const;
-};
-
-struct dSv_info_c {
-    /* 80035200 */ void onSwitch(int, int);
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dSv_event_flag_c {
-    static u8 saveBitLabels[1644 + 4 /* padding */];
-};
-
-struct dSv_event_c {
-    /* 8003498C */ void onEventBit(u16);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dPa_levelEcallBack {};
-
-struct dKy_tevstr_c {};
-
-struct csXyz {
-    /* 802673F4 */ csXyz(s16, s16, s16);
-};
-
-struct _GXColor {};
-
-struct dPa_control_c {
-    /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
-                            u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
-                            cXyz const*, f32);
+private:
+    /* 0x568 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x56C */ request_of_phase_process_class mPhaseZevArc;
+    /* 0x574 */ request_of_phase_process_class mPhaseMdRes;
+    /* 0x57C */ request_of_phase_process_class mPhasePyRes;
+    /* 0x584 */ actionFunc* mAction;
+    /* 0x588 */ int mActionID;
+    /* 0x58C */ dMsgFlow_c mMsgFlow;
+    /* 0x5D8 */ u8 field_0x5d8[4];
+    /* 0x5DC */ s16 mEventID;
+    /* 0x5DE */ u8 field_0x5de;
+    /* 0x5DF */ bool mIsWolf;
+    /* 0x5E0 */ u8 field_0x5e0;
+    /* 0x5E1 */ u8 field_0x5e1;
+    /* 0x5E2 */ u8 mType;
 };
 
 struct dMsgObject_c {
@@ -129,43 +134,16 @@ struct dMsgObject_c {
     /* 802382F4 */ void isMsgSendControl();
 };
 
-struct dMsgFlow_c {
-    /* 80249F00 */ dMsgFlow_c();
-    /* 80249F48 */ ~dMsgFlow_c();
-    /* 80249F90 */ void init(fopAc_ac_c*, int, int, fopAc_ac_c**);
-    /* 8024A2D8 */ void doFlow(fopAc_ac_c*, fopAc_ac_c**, int);
-    /* 8024A538 */ void getMsgNo();
-    /* 8024A548 */ void getMsg();
-};
-
-struct dEvt_control_c {
-    /* 80042468 */ void reset();
-    /* 80042518 */ void reset(void*);
-    /* 80042914 */ void setSkipProc(void*, int (*)(void*, int), int);
-    /* 800429A8 */ void onSkipFade();
-};
-
-struct dEvent_manager_c {
-    /* 80046800 */ void setObjectArchive(char*);
-    /* 80047758 */ void getEventIdx(fopAc_ac_c*, char const*, u8);
-    /* 80047A78 */ void endCheck(s16);
-    /* 80047B1C */ void getMyStaffId(char const*, fopAc_ac_c*, int);
-    /* 80047D4C */ void getIsAddvance(int);
-    /* 80047F5C */ void getMyNowCutName(int);
-    /* 8004817C */ void cutEnd(int);
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+struct daTagTWGate_zevParam {
+    /* 0x00 */ char* mArcName;
+    /* 0x04 */ char* mEventName;
+    /* 0x08 */ char* mTalkEventName;
+    /* 0x0C */ char* mInEventName;
+    /* 0x10 */ int mLv;
+    /* 0x14 */ char* mStage;
+    /* 0x18 */ s16 mPoint;
+    /* 0x1A */ s8 mRoomNo;
+    /* 0x1B */ s8 mLayer;
 };
 
 //
@@ -268,7 +246,6 @@ extern "C" void __ct__5csXyzFsss();
 extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void* __nw__FUl();
-extern "C" void PSMTXCopy();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_27();
@@ -278,12 +255,9 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void pow();
 extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
@@ -291,14 +265,9 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* 80D525F8-80D52604 000078 000C+00 1/0 0/0 0/0 .text            initWait__13daTagTWGate_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagTWGate_c::initWait() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/initWait__13daTagTWGate_cFv.s"
+void daTagTWGate_c::initWait() {
+    mEventID = -1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D55848-80D55852 00009C 000A+00 4/3 0/0 0/0 .rodata          None */
@@ -366,35 +335,51 @@ SECTION_RODATA u8 const daTagTWGate_c::mAttr[1 + 3 /* padding */] = {
 COMPILER_STRIP_GATE(0x80D557AC, &daTagTWGate_c::mAttr);
 
 /* 80D557B0-80D55820 -00001 0070+00 14/18 0/0 0/0 .rodata          l_zevParamTbl */
-SECTION_RODATA static void* const l_zevParamTbl[28] = {
-    (void*)&d_a_tag_TWgate__stringBase0,
-    (void*)(((char*)&d_a_tag_TWgate__stringBase0) + 0xA),
-    (void*)(((char*)&d_a_tag_TWgate__stringBase0) + 0x19),
-    (void*)(((char*)&d_a_tag_TWgate__stringBase0) + 0x2D),
-    (void*)NULL,
-    (void*)(((char*)&d_a_tag_TWgate__stringBase0) + 0x3F),
-    (void*)0x0017000A,
-    (void*)(((char*)&d_a_tag_TWgate__stringBase0) + 0x47),
-    (void*)(((char*)&d_a_tag_TWgate__stringBase0) + 0x51),
-    (void*)(((char*)&d_a_tag_TWgate__stringBase0) + 0x5F),
-    (void*)(((char*)&d_a_tag_TWgate__stringBase0) + 0x72),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_tag_TWgate__stringBase0) + 0x83),
-    (void*)0x000A020E,
-    (void*)(((char*)&d_a_tag_TWgate__stringBase0) + 0x8B),
-    (void*)(((char*)&d_a_tag_TWgate__stringBase0) + 0x95),
-    (void*)(((char*)&d_a_tag_TWgate__stringBase0) + 0xA4),
-    (void*)(((char*)&d_a_tag_TWgate__stringBase0) + 0xB8),
-    (void*)0x00000002,
-    (void*)(((char*)&d_a_tag_TWgate__stringBase0) + 0x83),
-    (void*)0x000A090E,
-    (void*)(((char*)&d_a_tag_TWgate__stringBase0) + 0xCA),
-    (void*)(((char*)&d_a_tag_TWgate__stringBase0) + 0xD4),
-    (void*)(((char*)&d_a_tag_TWgate__stringBase0) + 0xE2),
-    (void*)(((char*)&d_a_tag_TWgate__stringBase0) + 0xF5),
-    (void*)0x00000004,
-    (void*)(((char*)&d_a_tag_TWgate__stringBase0) + 0x83),
-    (void*)0x000A020E,
+SECTION_RODATA static daTagTWGate_zevParam const l_zevParamTbl[4] = {
+    {
+        "TWGate_FL",
+        "TW_GATE_FILONE",
+        "TW_GATE_FILONE_TALK",
+        "TW_GATE_FILONE_IN",
+        0,
+        "F_SP108",
+        23,
+        0,
+        10,
+    },
+    {
+        "TWGate_OD",
+        "TW_GATE_ORDIN",
+        "TW_GATE_ORDIN_TALK",
+        "TW_GATE_ORDIN_IN",
+        1,
+        "F_SP121",
+        10,
+        2,
+        14,
+    },
+    {
+        "TWGate_RN",
+        "TW_GATE_RANAIL",
+        "TW_GATE_RANAIL_TALK",
+        "TW_GATE_RANAIL_IN",
+        2,
+        "F_SP121",
+        10,
+        9,
+        14,
+    },
+    {
+        "TWGate_HY",
+        "TW_GATE_HYRAL",
+        "TW_GATE_HYRAL_TALK",
+        "TW_GATE_HYRAL_IN",
+        4,
+        "F_SP121",
+        10,
+        2,
+        14,
+    },
 };
 COMPILER_STRIP_GATE(0x80D557B0, &l_zevParamTbl);
 
@@ -451,314 +436,131 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 #pragma pop
 
 /* 80D55994-80D55998 -00001 0004+00 12/12 0/0 0/0 .data            l_myName */
-SECTION_DATA static void* l_myName = (void*)(((char*)&d_a_tag_TWgate__stringBase0) + 0x106);
-
-/* 80D55998-80D559A4 -00001 000C+00 0/1 0/0 0/0 .data            @3744 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3744[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initWait__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D559A4-80D559B0 -00001 000C+00 0/1 0/0 0/0 .data            @3745 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3745[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executeWait__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D559B0-80D559BC -00001 000C+00 0/1 0/0 0/0 .data            @3746 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3746[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initDemoFilone1__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D559BC-80D559C8 -00001 000C+00 0/1 0/0 0/0 .data            @3747 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3747[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executeDemoFilone1__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D559C8-80D559D4 -00001 000C+00 0/1 0/0 0/0 .data            @3748 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3748[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initDemoFilone2__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D559D4-80D559E0 -00001 000C+00 0/1 0/0 0/0 .data            @3749 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3749[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executeDemoFilone2__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D559E0-80D559EC -00001 000C+00 0/1 0/0 0/0 .data            @3750 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3750[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initDemoFilone3__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D559EC-80D559F8 -00001 000C+00 0/1 0/0 0/0 .data            @3751 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3751[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executeDemoFilone3__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D559F8-80D55A04 -00001 000C+00 0/1 0/0 0/0 .data            @3752 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3752[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initDemoOrdin1__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D55A04-80D55A10 -00001 000C+00 0/1 0/0 0/0 .data            @3753 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3753[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executeDemoOrdin1__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D55A10-80D55A1C -00001 000C+00 0/1 0/0 0/0 .data            @3754 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3754[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initDemoOrdin2__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D55A1C-80D55A28 -00001 000C+00 0/1 0/0 0/0 .data            @3755 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3755[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executeDemoOrdin2__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D55A28-80D55A34 -00001 000C+00 0/1 0/0 0/0 .data            @3756 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3756[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initDemoOrdin3__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D55A34-80D55A40 -00001 000C+00 0/1 0/0 0/0 .data            @3757 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3757[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executeDemoOrdin3__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D55A40-80D55A4C -00001 000C+00 0/1 0/0 0/0 .data            @3758 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3758[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initDemoRanail1__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D55A4C-80D55A58 -00001 000C+00 0/1 0/0 0/0 .data            @3759 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3759[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executeDemoRanail1__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D55A58-80D55A64 -00001 000C+00 0/1 0/0 0/0 .data            @3760 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3760[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initDemoRanail2__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D55A64-80D55A70 -00001 000C+00 0/1 0/0 0/0 .data            @3761 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3761[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executeDemoRanail2__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D55A70-80D55A7C -00001 000C+00 0/1 0/0 0/0 .data            @3762 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3762[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initDemoRanail3__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D55A7C-80D55A88 -00001 000C+00 0/1 0/0 0/0 .data            @3763 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3763[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executeDemoRanail3__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D55A88-80D55A94 -00001 000C+00 0/1 0/0 0/0 .data            @3764 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3764[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initDemoHyral1__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D55A94-80D55AA0 -00001 000C+00 0/1 0/0 0/0 .data            @3765 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3765[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executeDemoHyral1__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D55AA0-80D55AAC -00001 000C+00 0/1 0/0 0/0 .data            @3766 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3766[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initDemoHyral2__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D55AAC-80D55AB8 -00001 000C+00 0/1 0/0 0/0 .data            @3767 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3767[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executeDemoHyral2__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D55AB8-80D55AC4 -00001 000C+00 0/1 0/0 0/0 .data            @3768 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3768[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initDemoHyral3__13daTagTWGate_cFv,
-};
-#pragma pop
-
-/* 80D55AC4-80D55AD0 -00001 000C+00 0/1 0/0 0/0 .data            @3769 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3769[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executeDemoHyral3__13daTagTWGate_cFv,
-};
-#pragma pop
+SECTION_DATA static const char* l_myName = "Gate";
 
 /* 80D55AD0-80D55C08 00015C 0138+00 14/15 0/0 0/0 .data            ActionTable__13daTagTWGate_c */
-SECTION_DATA u8 daTagTWGate_c::ActionTable[312] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_DATA actionFunc daTagTWGate_c::ActionTable[13][2] = {
+    {&daTagTWGate_c::initWait, &daTagTWGate_c::executeWait},
+    {&daTagTWGate_c::initDemoFilone1, &daTagTWGate_c::executeDemoFilone1},
+    {&daTagTWGate_c::initDemoFilone2, &daTagTWGate_c::executeDemoFilone2},
+    {&daTagTWGate_c::initDemoFilone3, &daTagTWGate_c::executeDemoFilone3},
+    {&daTagTWGate_c::initDemoOrdin1, &daTagTWGate_c::executeDemoOrdin1},
+    {&daTagTWGate_c::initDemoOrdin2, &daTagTWGate_c::executeDemoOrdin2},
+    {&daTagTWGate_c::initDemoOrdin3, &daTagTWGate_c::executeDemoOrdin3},
+    {&daTagTWGate_c::initDemoRanail1, &daTagTWGate_c::executeDemoRanail1},
+    {&daTagTWGate_c::initDemoRanail2, &daTagTWGate_c::executeDemoRanail2},
+    {&daTagTWGate_c::initDemoRanail3, &daTagTWGate_c::executeDemoRanail3},
+    {&daTagTWGate_c::initDemoHyral1, &daTagTWGate_c::executeDemoHyral1},
+    {&daTagTWGate_c::initDemoHyral2, &daTagTWGate_c::executeDemoHyral2},
+    {&daTagTWGate_c::initDemoHyral3, &daTagTWGate_c::executeDemoHyral3},
 };
 
 /* 80D52604-80D528F0 000084 02EC+00 1/0 0/0 0/0 .text            executeWait__13daTagTWGate_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagTWGate_c::executeWait() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/executeWait__13daTagTWGate_cFv.s"
+void daTagTWGate_c::executeWait() {
+    f32 radius = pow(mScale.x * 100.0f, 2.0f);
+    f32 distance = fopAcM_searchActorDistanceXZ2(this, (fopAc_ac_c*)dComIfGp_getPlayer(0));
+
+    if (distance < radius) {
+        if (field_0x5de == 0) {
+            field_0x5de = 1;
+
+            switch (mType) {
+            case TYPE_FILONE:
+                if (i_fopAcM_isSwitch(this, getSwitch())) {
+                    mActionID = ACT_DEMO_FILONE_2;
+                    mAction = &ActionTable[mActionID][0];
+                    (this->**mAction)();
+                } else {
+                    mActionID = ACT_DEMO_FILONE_1;
+                    mAction = &ActionTable[mActionID][0];
+                    (this->**mAction)();
+                }
+                break;
+            case TYPE_ORDIN:
+                if (i_fopAcM_isSwitch(this, getSwitch())) {
+                    mActionID = ACT_DEMO_ORDIN_2;
+                    mAction = &ActionTable[mActionID][0];
+                    (this->**mAction)();
+                } else {
+                    mActionID = ACT_DEMO_ORDIN_1;
+                    mAction = &ActionTable[mActionID][0];
+                    (this->**mAction)();
+                }
+                break;
+            case TYPE_RANAIL:
+                if (i_fopAcM_isSwitch(this, getSwitch())) {
+                    mActionID = ACT_DEMO_RANAIL_2;
+                    mAction = &ActionTable[mActionID][0];
+                    (this->**mAction)();
+                } else {
+                    mActionID = ACT_DEMO_RANAIL_1;
+                    mAction = &ActionTable[mActionID][0];
+                    (this->**mAction)();
+                }
+                break;
+            case TYPE_HYRAL:
+                if (i_fopAcM_isSwitch(this, getSwitch())) {
+                    mActionID = ACT_DEMO_HYRAL_2;
+                    mAction = &ActionTable[mActionID][0];
+                    (this->**mAction)();
+                } else {
+                    mActionID = ACT_DEMO_HYRAL_1;
+                    mAction = &ActionTable[mActionID][0];
+                    (this->**mAction)();
+                }
+                break;
+            }
+        }
+    } else {
+        field_0x5de = 0;
+    }
 }
-#pragma pop
 
 /* 80D528F0-80D5297C 000370 008C+00 1/0 0/0 0/0 .text            initDemoFilone1__13daTagTWGate_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagTWGate_c::initDemoFilone1() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/initDemoFilone1__13daTagTWGate_cFv.s"
+void daTagTWGate_c::initDemoFilone1() {
+    mEvtInfo.setArchiveName(l_zevParamTbl[mType].mArcName);
+    mEventID = i_dComIfGp_getEventManager().getEventIdx(this, l_zevParamTbl[mType].mEventName, -1);
+    fopAcM_orderOtherEventId(this, mEventID, -1, -1, 4, 1);
 }
-#pragma pop
 
 /* 80D5297C-80D52AF4 0003FC 0178+00 1/0 0/0 0/0 .text executeDemoFilone1__13daTagTWGate_cFv */
+// swapped r30 / r31
+#ifdef NONMATCHING
+void daTagTWGate_c::executeDemoFilone1() {
+    int staffId = i_dComIfGp_evmng_getMyStaffId(l_myName, NULL, 0);
+
+    if (staffId != -1) {
+        int* cutName = (int*)i_dComIfGp_getEventManager().getMyNowCutName(staffId);
+
+        if (dComIfGp_evmng_getIsAddvance(staffId)) {
+            switch (*cutName) {
+            case 0x30303031:
+                i_dComIfGp_getEvent().setSkipProc(this, dEv_noFinishSkipProc, 0);
+                break;
+            }
+        }
+
+        switch (*cutName) {
+        case 0x30303031:
+            if (i_dComIfGp_getEvent().chkFlag2(8)) {
+                i_dComIfGp_getEvent().onSkipFade();
+                mActionID = ACT_DEMO_FILONE_2;
+                mAction = ActionTable[mActionID];
+                (this->**mAction)();
+            }
+            dComIfGp_evmng_cutEnd(staffId);
+        }
+
+        if (mEvtInfo.i_checkCommandDemoAccrpt() && mEventID != -1 &&
+            dComIfGp_evmng_endCheck(mEventID)) {
+            mActionID = ACT_DEMO_FILONE_2;
+            mAction = ActionTable[mActionID];
+            (this->**mAction)();
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -767,9 +569,26 @@ asm void daTagTWGate_c::executeDemoFilone1() {
 #include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/executeDemoFilone1__13daTagTWGate_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80D52AF4-80D52BF0 000574 00FC+00 1/0 0/0 0/0 .text            initDemoFilone2__13daTagTWGate_cFv
  */
+#ifdef NONMATCHING
+void daTagTWGate_c::initDemoFilone2() {
+    i_fopAcM_onSwitch(this, getSwitch());
+    mEvtInfo.setArchiveName(l_zevParamTbl[mType].mArcName);
+    i_dComIfGp_getEventManager().setObjectArchive(mEvtInfo.getArchiveName());
+    mEventID =
+        i_dComIfGp_getEventManager().getEventIdx(this, l_zevParamTbl[mType].mTalkEventName, -1);
+
+    if (g_dComIfG_gameInfo.play.mEvent.mEventStatus != 0) {
+        i_dComIfGp_getEvent().reset(this);
+        fopAcM_orderChangeEventId(this, mEventID, 1, -1);
+    } else {
+        fopAcM_orderOtherEventId(this, mEventID, -1, -1, 4, 1);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -778,8 +597,56 @@ asm void daTagTWGate_c::initDemoFilone2() {
 #include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/initDemoFilone2__13daTagTWGate_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80D52BF0-80D52DB4 000670 01C4+00 1/0 0/0 0/0 .text executeDemoFilone2__13daTagTWGate_cFv */
+// regswap
+#ifdef NONMATCHING
+void daTagTWGate_c::executeDemoFilone2() {
+    int staffId = i_dComIfGp_evmng_getMyStaffId(l_myName, NULL, 0);
+
+    if (staffId != -1) {
+        int* cutName = (int*)i_dComIfGp_getEventManager().getMyNowCutName(staffId);
+
+        if (dComIfGp_evmng_getIsAddvance(staffId)) {
+            switch (*cutName) {
+            case 0x30303032:
+                initTalk(0xBC1, NULL);
+                break;
+            case 0x30303031:
+            case 0x30303033:
+                break;
+            }
+        }
+
+        switch (*cutName) {
+        case 0x30303031:
+        case 0x30303033:
+            dComIfGp_evmng_cutEnd(staffId);
+            break;
+        case 0x30303032:
+            if (talkProc(NULL, 1, NULL)) {
+                if (mMsgFlow.getChoiceNo() == 0) {
+                    mActionID = ACT_DEMO_FILONE_3;
+                    mAction = ActionTable[mActionID];
+                    (this->**mAction)();
+                }
+                dComIfGp_evmng_cutEnd(staffId);
+            }
+            break;
+        }
+
+        if (mEvtInfo.i_checkCommandDemoAccrpt() && mEventID != -1 &&
+            dComIfGp_evmng_endCheck(mEventID)) {
+            i_dComIfGp_getEvent().reset();
+            field_0x5e0 = 0;
+            mActionID = ACT_WAIT;
+            mAction = ActionTable[mActionID];
+            (this->**mAction)();
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -788,17 +655,20 @@ asm void daTagTWGate_c::executeDemoFilone2() {
 #include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/executeDemoFilone2__13daTagTWGate_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80D52DB4-80D52E7C 000834 00C8+00 1/0 0/0 0/0 .text            initDemoFilone3__13daTagTWGate_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagTWGate_c::initDemoFilone3() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/initDemoFilone3__13daTagTWGate_cFv.s"
+void daTagTWGate_c::initDemoFilone3() {
+    field_0x5de = 1;
+    mIsWolf = (dComIfGp_getLinkPlayer()->mNoResetFlg1 >> 25) & 1;  // checking if wolf?
+    mEvtInfo.setArchiveName(l_zevParamTbl[mType].mArcName);
+    i_dComIfGp_getEventManager().setObjectArchive(mEvtInfo.getArchiveName());
+    mEventID =
+        i_dComIfGp_getEventManager().getEventIdx(this, l_zevParamTbl[mType].mInEventName, -1);
+    i_dComIfGp_getEvent().reset(this);
+    fopAcM_orderChangeEventId(this, mEventID, 1, -1);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D5582C-80D55830 000080 0004+00 1/5 0/0 0/0 .rodata          @4079 */
@@ -833,6 +703,97 @@ SECTION_RODATA static f32 const lit_4083 = -1.0f;
 COMPILER_STRIP_GATE(0x80D5583C, &lit_4083);
 
 /* 80D52E7C-80D53250 0008FC 03D4+00 1/0 0/0 0/0 .text executeDemoFilone3__13daTagTWGate_cFv */
+// regswap
+#ifdef NONMATCHING
+void daTagTWGate_c::executeDemoFilone3() {
+    int staffId = i_dComIfGp_evmng_getMyStaffId(l_myName, NULL, 0);
+
+    if (staffId != -1) {
+        int* cutName = (int*)i_dComIfGp_getEventManager().getMyNowCutName(staffId);
+
+        if (dComIfGp_evmng_getIsAddvance(staffId)) {
+            switch (*cutName) {
+            case 0x30303031:
+                break;
+            case 0x30303032:
+                i_dComIfGp_getEvent().setSkipProc(this, dEv_noFinishSkipProc, 0);
+                field_0x5e1 = 0;
+                break;
+            case 0x30303033:
+                initBaseMtx();
+                mpMorf->setPlaySpeed(1.0f);
+                field_0x5e0 = 1;
+                break;
+            }
+        }
+
+        switch (*cutName) {
+        case 0x30303031:
+            int modelSts = downloadModels();
+            if (modelSts == 1) {
+                dComIfGp_evmng_cutEnd(staffId);
+            } else if (modelSts == -1) {
+                dComIfGp_setNextStage(l_zevParamTbl[mType].mStage,
+                                      l_zevParamTbl[mType].mPoint,
+                                      l_zevParamTbl[mType].mRoomNo,
+                                      l_zevParamTbl[mType].mLayer);
+            }
+            break;
+        case 0x30303032:
+            if (i_dComIfGp_getEvent().chkFlag2(8)) {
+                i_dComIfGp_getEvent().onSkipFade();
+                dComIfGp_setNextStage(l_zevParamTbl[mType].mStage,
+                                      l_zevParamTbl[mType].mPoint,
+                                      l_zevParamTbl[mType].mRoomNo,
+                                      l_zevParamTbl[mType].mLayer);
+            }
+
+            u8 old_5e1 = field_0x5e1;
+            field_0x5e1++;
+
+            if (old_5e1 == 43) {
+                daPy_py_c* player = daPy_getPlayerActorClass();
+                csXyz sxyz(0, player->mCollisionRot.y + 0x8000, 0);
+
+                mDoMtx_stack_c::transS(player->mCurrent.mPosition);
+                mDoMtx_stack_c::YrotM(sxyz.y);
+                mDoMtx_stack_c::transM(0.0f, 240.0f, -710.0f);
+                
+                cXyz pos;
+                pos.x = mDoMtx_stack_c::get()[0][3];
+                pos.y = mDoMtx_stack_c::get()[1][3];
+                pos.z = mDoMtx_stack_c::get()[2][3];
+                dComIfGp_particle_set(0x86C5, &pos, &sxyz, NULL);
+                mDoAud_seStart(Z2SE_OBJ_DARK_GATE_RIPPLE, &pos, 0, 0);
+                dComIfGp_evmng_cutEnd(staffId);
+            }
+            break;
+        case 0x30303033:
+            if (i_dComIfGp_getEvent().chkFlag2(8)) {
+                i_dComIfGp_getEvent().onSkipFade();
+                dComIfGp_setNextStage(l_zevParamTbl[mType].mStage,
+                                      l_zevParamTbl[mType].mPoint,
+                                      l_zevParamTbl[mType].mRoomNo,
+                                      l_zevParamTbl[mType].mLayer);
+            }
+
+            if (mpMorf->isStop()) {
+                dComIfGp_evmng_cutEnd(staffId);
+            }
+            break;
+        }
+
+        if (mEvtInfo.i_checkCommandDemoAccrpt() && mEventID != -1 &&
+            dComIfGp_evmng_endCheck(mEventID)) {
+            i_dComIfGp_getEvent().reset();
+            field_0x5e0 = 0;
+            mActionID = ACT_WAIT;
+            mAction = ActionTable[mActionID];
+            (this->**mAction)();
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -841,17 +802,15 @@ asm void daTagTWGate_c::executeDemoFilone3() {
 #include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/executeDemoFilone3__13daTagTWGate_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80D53250-80D532DC 000CD0 008C+00 1/0 0/0 0/0 .text            initDemoOrdin1__13daTagTWGate_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagTWGate_c::initDemoOrdin1() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/initDemoOrdin1__13daTagTWGate_cFv.s"
+void daTagTWGate_c::initDemoOrdin1() {
+    mEvtInfo.setArchiveName(l_zevParamTbl[mType].mArcName);
+    mEventID = i_dComIfGp_getEventManager().getEventIdx(this, l_zevParamTbl[mType].mEventName, -1);
+    fopAcM_orderOtherEventId(this, mEventID, -1, -1, 4, 1);
 }
-#pragma pop
 
 /* 80D532DC-80D53454 000D5C 0178+00 1/0 0/0 0/0 .text executeDemoOrdin1__13daTagTWGate_cFv */
 #pragma push
@@ -886,14 +845,16 @@ asm void daTagTWGate_c::executeDemoOrdin2() {
 
 /* 80D53714-80D537DC 001194 00C8+00 1/0 0/0 0/0 .text            initDemoOrdin3__13daTagTWGate_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagTWGate_c::initDemoOrdin3() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/initDemoOrdin3__13daTagTWGate_cFv.s"
+void daTagTWGate_c::initDemoOrdin3() {
+    field_0x5de = 1;
+    mIsWolf = (dComIfGp_getLinkPlayer()->mNoResetFlg1 >> 25) & 1;  // checking if wolf?
+    mEvtInfo.setArchiveName(l_zevParamTbl[mType].mArcName);
+    i_dComIfGp_getEventManager().setObjectArchive(mEvtInfo.getArchiveName());
+    mEventID =
+        i_dComIfGp_getEventManager().getEventIdx(this, l_zevParamTbl[mType].mInEventName, -1);
+    i_dComIfGp_getEvent().reset(this);
+    fopAcM_orderChangeEventId(this, mEventID, 1, -1);
 }
-#pragma pop
 
 /* 80D537DC-80D53BD0 00125C 03F4+00 1/0 0/0 0/0 .text executeDemoOrdin3__13daTagTWGate_cFv */
 #pragma push
@@ -907,14 +868,11 @@ asm void daTagTWGate_c::executeDemoOrdin3() {
 
 /* 80D53BD0-80D53C5C 001650 008C+00 1/0 0/0 0/0 .text            initDemoRanail1__13daTagTWGate_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagTWGate_c::initDemoRanail1() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/initDemoRanail1__13daTagTWGate_cFv.s"
+void daTagTWGate_c::initDemoRanail1() {
+    mEvtInfo.setArchiveName(l_zevParamTbl[mType].mArcName);
+    mEventID = i_dComIfGp_getEventManager().getEventIdx(this, l_zevParamTbl[mType].mEventName, -1);
+    fopAcM_orderOtherEventId(this, mEventID, -1, -1, 4, 1);
 }
-#pragma pop
 
 /* 80D53C5C-80D53DD4 0016DC 0178+00 1/0 0/0 0/0 .text executeDemoRanail1__13daTagTWGate_cFv */
 #pragma push
@@ -949,14 +907,17 @@ asm void daTagTWGate_c::executeDemoRanail2() {
 
 /* 80D54094-80D54178 001B14 00E4+00 1/0 0/0 0/0 .text            initDemoRanail3__13daTagTWGate_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagTWGate_c::initDemoRanail3() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/initDemoRanail3__13daTagTWGate_cFv.s"
+void daTagTWGate_c::initDemoRanail3() {
+    field_0x5de = 1;
+    mIsWolf = (dComIfGp_getLinkPlayer()->mNoResetFlg1 >> 25) & 1;  // checking if wolf?
+    mEvtInfo.setArchiveName(l_zevParamTbl[mType].mArcName);
+    i_dComIfGp_getEventManager().setObjectArchive(mEvtInfo.getArchiveName());
+    mEventID =
+        i_dComIfGp_getEventManager().getEventIdx(this, l_zevParamTbl[mType].mInEventName, -1);
+    i_dComIfGp_getEvent().reset(this);
+    fopAcM_orderChangeEventId(this, mEventID, 1, -1);
+    dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[170]);
 }
-#pragma pop
 
 /* 80D54178-80D5456C 001BF8 03F4+00 1/0 0/0 0/0 .text executeDemoRanail3__13daTagTWGate_cFv */
 #pragma push
@@ -970,14 +931,11 @@ asm void daTagTWGate_c::executeDemoRanail3() {
 
 /* 80D5456C-80D545F8 001FEC 008C+00 1/0 0/0 0/0 .text            initDemoHyral1__13daTagTWGate_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagTWGate_c::initDemoHyral1() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/initDemoHyral1__13daTagTWGate_cFv.s"
+void daTagTWGate_c::initDemoHyral1() {
+    mEvtInfo.setArchiveName(l_zevParamTbl[mType].mArcName);
+    mEventID = i_dComIfGp_getEventManager().getEventIdx(this, l_zevParamTbl[mType].mEventName, -1);
+    fopAcM_orderOtherEventId(this, mEventID, -1, -1, 4, 1);
 }
-#pragma pop
 
 /* 80D545F8-80D54770 002078 0178+00 1/0 0/0 0/0 .text executeDemoHyral1__13daTagTWGate_cFv */
 #pragma push
@@ -1012,14 +970,16 @@ asm void daTagTWGate_c::executeDemoHyral2() {
 
 /* 80D54A30-80D54AF8 0024B0 00C8+00 1/0 0/0 0/0 .text            initDemoHyral3__13daTagTWGate_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagTWGate_c::initDemoHyral3() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/initDemoHyral3__13daTagTWGate_cFv.s"
+void daTagTWGate_c::initDemoHyral3() {
+    field_0x5de = 1;
+    mIsWolf = (dComIfGp_getLinkPlayer()->mNoResetFlg1 >> 25) & 1;  // checking if wolf?
+    mEvtInfo.setArchiveName(l_zevParamTbl[mType].mArcName);
+    i_dComIfGp_getEventManager().setObjectArchive(mEvtInfo.getArchiveName());
+    mEventID =
+        i_dComIfGp_getEventManager().getEventIdx(this, l_zevParamTbl[mType].mInEventName, -1);
+    i_dComIfGp_getEvent().reset(this);
+    fopAcM_orderChangeEventId(this, mEventID, 1, -1);
 }
-#pragma pop
 
 /* 80D54AF8-80D54ECC 002578 03D4+00 1/0 0/0 0/0 .text executeDemoHyral3__13daTagTWGate_cFv */
 #pragma push
@@ -1047,6 +1007,24 @@ COMPILER_STRIP_GATE(0x80D55844, &lit_4791);
 #pragma pop
 
 /* 80D54ECC-80D54F88 00294C 00BC+00 4/4 0/0 0/0 .text            initBaseMtx__13daTagTWGate_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void daTagTWGate_c::initBaseMtx() {
+    mCullMtx = mpMorf->getModel()->getBaseTRMtx();
+    fopAc_ac_c* player = (fopAc_ac_c*)dComIfGp_getPlayer(0);
+
+    mCollisionRot.y = player->mCollisionRot.y + 0x8000;
+    mDoMtx_stack_c::transS(player->mCurrent.mPosition);
+    mDoMtx_stack_c::YrotM(mCollisionRot.y);
+    mDoMtx_stack_c::transM(0.0f, 250.0f, -840.0f);
+
+    mCurrent.mPosition.x = mDoMtx_stack_c::get()[0][3];
+    mCurrent.mPosition.y = mDoMtx_stack_c::get()[1][3];
+    mCurrent.mPosition.z = mDoMtx_stack_c::get()[2][3];
+
+    mpMorf->getModel()->i_setBaseTRMtx(mDoMtx_stack_c::get());
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1055,43 +1033,39 @@ asm void daTagTWGate_c::initBaseMtx() {
 #include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/initBaseMtx__13daTagTWGate_cFv.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 80D55848-80D55848 00009C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80D55953 = "TWGate_Md";
-SECTION_DEAD static char const* const stringBase_80D5595D = "TWGate_Wf";
-SECTION_DEAD static char const* const stringBase_80D55967 = "TWGate_Lk";
-#pragma pop
+#endif
 
 /* 80D54F88-80D5502C 002A08 00A4+00 4/4 0/0 0/0 .text            downloadModels__13daTagTWGate_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagTWGate_c::downloadModels() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/downloadModels__13daTagTWGate_cFv.s"
+int daTagTWGate_c::downloadModels() {
+    int phase_state = dComIfG_resLoad(&mPhaseMdRes, "TWGate_Md");
+
+    if (phase_state == cPhs_COMPLEATE_e) {
+        phase_state = dComIfG_resLoad(&mPhasePyRes, mIsWolf ? "TWGate_Wf" : "TWGate_Lk");
+    }
+
+    if (phase_state == cPhs_COMPLEATE_e) {
+        if (fopAcM_entrySolidHeap(this, createHeapCallBack, 0x3140)) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+
+    return phase_state == cPhs_ERROR_e ? -1 : 0;
 }
-#pragma pop
 
 /* 80D5502C-80D55068 002AAC 003C+00 4/4 0/0 0/0 .text initTalk__13daTagTWGate_cFiPP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagTWGate_c::initTalk(int param_0, fopAc_ac_c** param_1) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/initTalk__13daTagTWGate_cFiPP10fopAc_ac_c.s"
+void daTagTWGate_c::initTalk(int param_0, fopAc_ac_c** param_1) {
+    mMsgFlow.init(this, param_0, 0, param_1);
 }
-#pragma pop
 
 /* 80D55068-80D55160 002AE8 00F8+00 4/4 0/0 0/0 .text talkProc__13daTagTWGate_cFPiiPP10fopAc_ac_c
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daTagTWGate_c::talkProc(int* param_0, int param_1, fopAc_ac_c** param_2) {
+asm bool daTagTWGate_c::talkProc(int* param_0, int param_1, fopAc_ac_c** param_2) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/talkProc__13daTagTWGate_cFPiiPP10fopAc_ac_c.s"
 }
@@ -1099,47 +1073,89 @@ asm void daTagTWGate_c::talkProc(int* param_0, int param_1, fopAc_ac_c** param_2
 
 /* 80D55160-80D55180 002BE0 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__13daTagTWGate_cFP10fopAc_ac_c            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagTWGate_c::createHeapCallBack(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/createHeapCallBack__13daTagTWGate_cFP10fopAc_ac_c.s"
+int daTagTWGate_c::createHeapCallBack(fopAc_ac_c* i_actor) {
+    return ((daTagTWGate_c*)i_actor)->CreateHeap();
 }
-#pragma pop
 
 /* 80D55180-80D55288 002C00 0108+00 1/1 0/0 0/0 .text            CreateHeap__13daTagTWGate_cFv */
+#ifdef NONMATCHING
+bool daTagTWGate_c::CreateHeap() {
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("TWGate_Md", 7);
+    mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL,
+                                  (J3DAnmTransform*)dComIfG_getObjectRes("TWGate_Md", 4), 0, 0.0f,
+                                  0, -1, NULL, 0, 0x11000084);
+
+    mDoExt_McaMorfSO* morf = mpMorf;
+    if (morf != NULL && morf->getModel() == NULL) {
+        morf->stopZelAnime();
+        mpMorf = NULL;
+    }
+
+    return mpMorf != NULL;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daTagTWGate_c::CreateHeap() {
+asm int daTagTWGate_c::CreateHeap() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/CreateHeap__13daTagTWGate_cFv.s"
 }
 #pragma pop
+#endif
+
+int daTagTWGate_c::create() {
+    if (!fopAcM_CheckCondition(this, 8)) {
+        new (this) daTagTWGate_c();
+        fopAcM_OnCondition(this, 8);
+    }
+
+    mType = getType();
+
+    int phase_state;
+    if (dComIfGs_isDarkClearLV(l_zevParamTbl[mType].mLv)) {
+        phase_state = cPhs_ERROR_e;
+    } else {
+        phase_state = dComIfG_resLoad(&mPhaseZevArc, l_zevParamTbl[mType].mArcName);
+        if (phase_state == cPhs_COMPLEATE_e) {
+            create_init();
+        }
+    }
+
+    return phase_state;
+}
 
 /* 80D55288-80D55388 002D08 0100+00 1/0 0/0 0/0 .text            daTagTWGate_Create__FP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagTWGate_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/daTagTWGate_Create__FP10fopAc_ac_c.s"
+static int daTagTWGate_Create(fopAc_ac_c* i_actor) {
+    return ((daTagTWGate_c*)i_actor)->create();
 }
-#pragma pop
+
+inline daTagTWGate_c::~daTagTWGate_c() {
+    dComIfG_resDelete(&mPhaseZevArc, l_zevParamTbl[mType].mArcName);
+
+    if (mPhaseMdRes.mPhaseStep != cPhs_ZERO_e) {
+        dComIfG_resDelete(&mPhaseMdRes, "TWGate_Md");
+    }
+
+    if (mPhasePyRes.mPhaseStep != cPhs_ZERO_e) {
+        dComIfG_resDelete(&mPhasePyRes, mIsWolf ? "TWGate_Wf" : "TWGate_Lk");
+    }
+}
 
 /* 80D55388-80D5543C 002E08 00B4+00 1/0 0/0 0/0 .text daTagTWGate_Delete__FP13daTagTWGate_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagTWGate_Delete(daTagTWGate_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/daTagTWGate_Delete__FP13daTagTWGate_c.s"
+static int daTagTWGate_Delete(daTagTWGate_c* i_gate) {
+    i_gate->~daTagTWGate_c();
+    return 1;
 }
-#pragma pop
 
 /* 80D5543C-80D554E4 002EBC 00A8+00 1/0 0/0 0/0 .text daTagTWGate_Execute__FP13daTagTWGate_c */
+// matches with literals
+#ifdef NONMATCHING
+static int daTagTWGate_Execute(daTagTWGate_c* i_gate) {
+    return i_gate->execute();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1148,37 +1164,18 @@ static asm void daTagTWGate_Execute(daTagTWGate_c* param_0) {
 #include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/daTagTWGate_Execute__FP13daTagTWGate_c.s"
 }
 #pragma pop
+#endif
 
 /* 80D554E4-80D55518 002F64 0034+00 1/0 0/0 0/0 .text            daTagTWGate_Draw__FP13daTagTWGate_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagTWGate_Draw(daTagTWGate_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/daTagTWGate_Draw__FP13daTagTWGate_c.s"
+static int daTagTWGate_Draw(daTagTWGate_c* i_gate) {
+    return i_gate->draw();
 }
-#pragma pop
 
 /* 80D55518-80D55520 002F98 0008+00 1/0 0/0 0/0 .text daTagTWGate_IsDelete__FP13daTagTWGate_c */
-static bool daTagTWGate_IsDelete(daTagTWGate_c* param_0) {
-    return true;
+static int daTagTWGate_IsDelete(daTagTWGate_c*) {
+    return 1;
 }
-
-/* 80D55520-80D557A0 002FA0 0280+00 0/0 1/0 0/0 .text            __sinit_d_a_tag_TWgate_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_a_tag_TWgate_cpp() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/__sinit_d_a_tag_TWgate_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80D55520, __sinit_d_a_tag_TWgate_cpp);
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D55C08-80D55C28 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagTWGate_Method */

@@ -579,12 +579,12 @@ static int daNPC_TR_Create(fopAc_ac_c* ac) {
     }
     npc_tr_class* npc_tr = (npc_tr_class*)ac;
     
-    int load = dComIfG_resLoad(&npc_tr->mPhaseReq, "NPC_TR");
-    if (load == 4) {
+    int phase_state = dComIfG_resLoad(&npc_tr->mPhaseReq, "NPC_TR");
+    if (phase_state == cPhs_COMPLEATE_e) {
         npc_tr->field_0x5b4 = fopAcM_GetParam(npc_tr);
 
         if (!fopAcM_entrySolidHeap(npc_tr, useHeapInit, 0x4B000)) {
-            return 5;
+            return cPhs_ERROR_e;
         }
 
         if (!data_80B26678) {
@@ -598,7 +598,7 @@ static int daNPC_TR_Create(fopAc_ac_c* ac) {
         daNPC_TR_Execute(npc_tr);
     }
 
-    return load;
+    return phase_state;
 }
 #else
 #pragma push

@@ -207,6 +207,7 @@ enum {
     JPAEmtrStts_StopCalc = 0x02,
     JPAEmtrStts_FirstEmit = 0x10,
     JPAEmtrStts_RateStepEmit = 0x20,
+    JPAEmtrStts_Immortal = 0x40,
 };
 
 class JPABaseEmitter {
@@ -232,11 +233,24 @@ public:
     u8 getGroupID() const { return mGroupID; }
     u8 getDrawTimes() const { return mDrawTimes; }
     void setRate(f32 rate) { mRate = rate; }
+    void setEmitterCallBackPtr(JPAEmitterCallBack* ptr) { mpEmtrCallBack = ptr; }
 
     f32 get_r_f() { return mRndm.get_rndm_f(); }
     f32 get_r_zp() { return mRndm.get_rndm_zp(); }
     f32 get_r_zh() { return mRndm.get_rndm_zh(); }
     s16 get_r_ss() { return mRndm.get_rndm_ss(); }
+
+    void stopCreateParticle() { setStatus(JPAEmtrStts_StopEmit); }
+    void becomeImmortalEmitter() { setStatus(JPAEmtrStts_Immortal); }
+    void becomeContinuousParticle() { mMaxFrame = 0; }
+    void becomeInvalidEmitter() {
+        stopCreateParticle();
+        mMaxFrame = 1;
+    }
+
+    void quitImmortalEmitter() { clearStatus(JPAEmtrStts_Immortal); }
+    void stopCalcEmitter() { setStatus(JPAEmtrStts_StopCalc); }
+    void playCalcEmitter() { clearStatus(JPAEmtrStts_StopCalc); }
 
 public:
     /* 0x00 */ Vec mLocalScl;

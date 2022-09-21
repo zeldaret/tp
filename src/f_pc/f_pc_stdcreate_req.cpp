@@ -82,16 +82,17 @@ s32 fpcSCtRq_phase_Done(standard_create_request_class* param_0) {
 /* 80023D14-80023D84 0070+00 s=1 e=0 z=2  None .text
  * fpcSCtRq_Handler__FP29standard_create_request_class          */
 s32 fpcSCtRq_Handler(standard_create_request_class* pStdCreateReq) {
-    s32 result = cPhs_Do(&pStdCreateReq->unk_0x48, pStdCreateReq);
-    switch (result) {
-    case 2:
+    s32 phase_state = cPhs_Do(&pStdCreateReq->unk_0x48, pStdCreateReq);
+
+    switch (phase_state) {
+    case cPhs_TWO_e:
         return fpcSCtRq_Handler(pStdCreateReq);
-    case 4:
-        return 4;
-    case 1:
-    case 5:
+    case cPhs_COMPLEATE_e:
+        return cPhs_COMPLEATE_e;
+    case cPhs_ONE_e:
+    case cPhs_ERROR_e:
     default:
-        return result;
+        return phase_state;
     }
 }
 
