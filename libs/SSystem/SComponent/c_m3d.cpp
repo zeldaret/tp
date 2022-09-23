@@ -314,7 +314,7 @@ bool cM3d_Cross_AabCyl(const cM3dGAab* pAab, const cM3dGCyl* pCyl) {
 
 /* 80268BB4-80268C5C 2634F4 00A8+00 0/0 2/2 0/0 .text cM3d_Cross_AabSph__FPC8cM3dGAabPC8cM3dGSph
  */
-#ifdef NON_MATCHING
+#ifdef NONMATCHING
 bool cM3d_Cross_AabSph(const cM3dGAab* pAab, const cM3dGSph* pSph) {
     f32 radius = pSph->GetR();
     if (pAab->GetMinX() > pSph->GetC().GetX() + radius) {  // addition registers are flipped
@@ -346,7 +346,7 @@ asm bool cM3d_Cross_AabSph(cM3dGAab const* param_0, cM3dGSph const* param_1) {
 
 /* 80268C5C-80268ED4 26359C 0278+00 3/3 0/0 0/0 .text
  * cM3d_Check_LinLin__FPC8cM3dGLinPC8cM3dGLinPfPf               */
-#ifdef NON_MATCHING
+#ifdef NONMATCHING
 int cM3d_Check_LinLin(const cM3dGLin* pLinA, const cM3dGLin* pLinB, f32* pFloatA, f32* pFloatB) {
     Vec linAVec;
     Vec linBVec;
@@ -425,7 +425,7 @@ static bool cM3d_CrossInfLineVsInfPlane_proc(f32 pFloatA, f32 pFloatB, const Vec
 
 /* 80268F34-80269050 263874 011C+00 3/3 1/1 0/0 .text
  * cM3d_Cross_LinPla__FPC8cM3dGLinPC8cM3dGPlaP3Vecbb            */
-#ifdef NON_MATCHING
+#ifdef NONMATCHING
 bool cM3d_Cross_LinPla(const cM3dGLin* pLine, const cM3dGPla* pPlane, Vec* pVecOut, bool pBoolA,
                        bool pBoolB) {
     f32 startVal = pPlane->getPlaneFunc(&pLine->GetStartP());

@@ -506,7 +506,7 @@ void dEvent_manager_c::Sequencer() {
                 if (iVar5 && cutType != 1) {
                     bVar1 = true;
                     cXyz attentionPos(
-                        ((fopAc_ac_c*)dComIfGp_getPlayer(0))->mAttentionInfo.mPosition);
+                        dComIfGp_getPlayer(0)->mAttentionInfo.mPosition);
                     cXyz camCenter = dCam_getBody()->Center();
                     f32 distance = cXyz((attentionPos - camCenter)).abs();
 
@@ -1161,7 +1161,7 @@ static fopAc_ac_c* findShutterCallBack(fopAc_ac_c* pActor, void* param_1) {
 fopAc_ac_c* dEvent_manager_c::specialCast_Shutter(s16 bsTypeId, int param_1) {
     FindShtrCbPrms prms;
     prms.mBsTypeId = bsTypeId;
-    prms.mActor = (fopAc_ac_c*)dComIfGp_getPlayer(0);
+    prms.mActor = dComIfGp_getPlayer(0);
     fopAc_ac_c* shutterActor =
         (fopAc_ac_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)findShutterCallBack, &prms);
 

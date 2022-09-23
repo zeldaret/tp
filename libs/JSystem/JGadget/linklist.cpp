@@ -51,7 +51,7 @@ asm JGadget::TNodeLinkList::~TNodeLinkList() {
 
 /* 802DCA58-802DCAA0 2D7398 0048+00 0/0 2/2 0/0 .text
  * erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iterator */
-#if NONMATCHING
+#ifdef NONMATCHING
 JGadget::TNodeLinkList::iterator
 JGadget::TNodeLinkList::erase(JGadget::TNodeLinkList::iterator it) {
     TLinkListNode* node = it.node;
@@ -89,7 +89,7 @@ JGadget::TNodeLinkList::iterator JGadget::TNodeLinkList::erase(iterator start, i
 /* 802DCB08-802DCBA8 2D7448 00A0+00 1/1 0/0 0/0 .text
  * splice__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorRQ27JGadget13TNodeLinkListQ37JGadget13TNodeLinkList8iterator
  */
-#if NONMATCHING
+#ifdef NONMATCHING
 void JGadget::TNodeLinkList::splice(iterator myIt, TNodeLinkList& otherList, iterator otherIt) {
     TLinkListNode* otherNode = otherIt;
     TLinkListNode* otherNextNode = otherNode->mNext;
@@ -141,7 +141,7 @@ JGadget::TNodeLinkList::iterator JGadget::TNodeLinkList::Erase(TLinkListNode* no
 
 /* 802DCBF8-802DCCC8 2D7538 00D0+00 0/0 2/2 0/0 .text
  * Remove__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode */
-#if NONMATCHING
+#ifdef NONMATCHING
 void JGadget::TNodeLinkList::Remove(TLinkListNode* node) {
     TNodeLinkList trashList;
     TLinkListNode* myNode = this->ocObject_.mNext;

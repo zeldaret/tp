@@ -970,7 +970,7 @@ SECTION_DEAD static char const* const pad_8039D99E = "\0";
 /* 802E3C90-802E3FEC 2DE5D0 035C+00 1/1 0/0 0/0 .text
  * queryMapAddress_single__12JUTExceptionFPcUllPUlPUlPcUlbb     */
 // 2 additional instructions (addi r5,r1,8) related to section_name variable.
-#if NONMATCHING
+#ifdef NONMATCHING
 bool JUTException::queryMapAddress_single(char* mapPath, u32 address, s32 section_id, u32* out_addr,
                                           u32* out_size, char* out_line, u32 line_length,
                                           bool print, bool begin_with_newline) {

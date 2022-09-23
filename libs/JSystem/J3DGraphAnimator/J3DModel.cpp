@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
+#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/J3DGraphBase/J3DTransform.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
@@ -248,34 +249,55 @@ asm void J3DModel::newDifferedDisplayList(u32 param_0) {
 #pragma pop
 
 /* 8032767C-803276B4 321FBC 0038+00 0/0 4/4 0/0 .text            lock__8J3DModelFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DModel::lock() {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DModel/lock__8J3DModelFv.s"
+void J3DModel::lock() {
+    u16 matNum = mModelData->getMaterialNum();
+
+    for (int i = 0; i < matNum; i++) {
+        mMatPacket[i].lock();
+    }
 }
-#pragma pop
 
 /* 803276B4-803276EC 321FF4 0038+00 0/0 2/2 0/0 .text            unlock__8J3DModelFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DModel::unlock() {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DModel/unlock__8J3DModelFv.s"
+void J3DModel::unlock() {
+    u16 matNum = mModelData->getMaterialNum();
+
+    for (int i = 0; i < matNum; i++) {
+        mMatPacket[i].unlock();
+    }
 }
-#pragma pop
 
 /* 803276EC-80327858 32202C 016C+00 1/0 0/0 0/0 .text            calcMaterial__8J3DModelFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DModel::calcMaterial() {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DModel/calcMaterial__8J3DModelFv.s"
+void J3DModel::calcMaterial() {
+    j3dSys.setModel(this);
+
+    if (checkFlag(4)) {
+        j3dSys.onFlag(4);
+    } else {
+        j3dSys.offFlag(4);
+    }
+
+    if (checkFlag(8)) {
+        j3dSys.onFlag(8);
+    } else {
+        j3dSys.offFlag(8);
+    }
+
+    mModelData->syncJ3DSysFlags();
+    j3dSys.setTexture(mModelData->getTexture());
+
+    u16 matNum = mModelData->getMaterialNum();
+    for (u16 i = 0; i < matNum; i++) {
+        j3dSys.setMatPacket(&mMatPacket[i]);
+        
+        J3DMaterial* material = mModelData->getMaterialNodePointer(i);
+        if (material->getMaterialAnm() != NULL) {
+            material->getMaterialAnm()->calc(material);
+        }
+
+        int jntNo = material->getJoint()->getJntNo();
+        material->calc(i_getAnmMtx(jntNo));
+    }
 }
-#pragma pop
 
 /* 80327858-803279A0 322198 0148+00 1/0 0/0 0/0 .text            calcDiffTexMtx__8J3DModelFv */
 #pragma push
@@ -385,6 +407,13 @@ void J3DModel::calcWeightEnvelopeMtx() {
 }
 
 /* 80327CA4-80327CF0 3225E4 004C+00 1/0 0/0 0/0 .text            update__8J3DModelFv */
+// matches with vtable data
+#ifdef NONMATCHING
+void J3DModel::update() {
+    calc();
+    entry();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -394,6 +423,7 @@ extern "C" asm void update__8J3DModelFv() {
 #include "asm/JSystem/J3DGraphAnimator/J3DModel/update__8J3DModelFv.s"
 }
 #pragma pop
+#endif
 
 /* 80327CF0-80327E4C 322630 015C+00 1/0 0/0 0/0 .text            calc__8J3DModelFv */
 void J3DModel::calc() {
@@ -470,14 +500,39 @@ void J3DModel::entry() {
 }
 
 /* 80327F40-80328190 322880 0250+00 1/0 0/0 0/0 .text            viewCalc__8J3DModelFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DModel::viewCalc() {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DModel/viewCalc__8J3DModelFv.s"
+void J3DModel::viewCalc() {
+    mMtxBuffer->swapDrawMtx();
+    mMtxBuffer->swapNrmMtx();
+
+    if (mModelData->checkFlag(0x10)) {
+        if (getMtxCalcMode() == 2) {
+            J3DCalcViewBaseMtx(j3dSys.getViewMtx(), mBaseScale, mBaseTransformMtx, (MtxP)&mInternalView);
+        }
+    } else if (isCpuSkinningOn()) {
+        if (getMtxCalcMode() == 2) {
+            J3DCalcViewBaseMtx(j3dSys.getViewMtx(), mBaseScale, mBaseTransformMtx, (MtxP)&mInternalView);
+        }
+    } else if (checkFlag(4)) {
+        mMtxBuffer->calcDrawMtx(getMtxCalcMode(), mBaseScale, mBaseTransformMtx);
+        calcNrmMtx();
+        calcBumpMtx();
+        DCStoreRangeNoSync(getDrawMtxPtr(), mModelData->getDrawMtxNum() * sizeof(Mtx));
+        DCStoreRange(getNrmMtxPtr(), mModelData->getDrawMtxNum() * sizeof(Mtx33));
+    } else if (checkFlag(8)) {
+        mMtxBuffer->calcDrawMtx(getMtxCalcMode(), mBaseScale, mBaseTransformMtx);
+        calcBBoardMtx();
+        DCStoreRange(getDrawMtxPtr(), mModelData->getDrawMtxNum() * sizeof(Mtx));
+    } else {
+        mMtxBuffer->calcDrawMtx(getMtxCalcMode(), mBaseScale, mBaseTransformMtx);
+        calcNrmMtx();
+        calcBBoardMtx();
+        calcBumpMtx();
+        DCStoreRangeNoSync(getDrawMtxPtr(), mModelData->getDrawMtxNum() * sizeof(Mtx));
+        DCStoreRange(getNrmMtxPtr(), mModelData->getDrawMtxNum() * sizeof(Mtx33));
+    }
+
+    prepareShapePackets();
 }
-#pragma pop
 
 /* 80328190-803281B4 322AD0 0024+00 1/1 0/0 0/0 .text            calcNrmMtx__8J3DModelFv */
 void J3DModel::calcNrmMtx() {

@@ -793,7 +793,7 @@ inline f32 square(f32 f) {
 
 /* 8001A738-8001A79C 015078 0064+00 0/0 0/0 13/13 .text
  * fopAcM_searchActorAngleX__FPC10fopAc_ac_cPC10fopAc_ac_c      */
-#ifdef NON_MATCHING
+#ifdef NONMATCHING
 s16 fopAcM_searchActorAngleX(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB) {
     const cXyz& posA = fopAcM_GetPosition_p(p_actorA);
     const cXyz& posB = fopAcM_GetPosition_p(p_actorB);
@@ -862,7 +862,7 @@ f32 fopAcM_searchActorDistance2(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_
 
 /* 8001A964-8001AA94 0152A4 0130+00 0/0 3/3 125/125 .text
  * fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c  */
-#ifdef NON_MATCHING
+#ifdef NONMATCHING
 // matches besides data
 f32 fopAcM_searchActorDistanceXZ(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB) {
     const cXyz& posA = fopAcM_GetPosition_p(p_actorA);
@@ -882,7 +882,7 @@ asm f32 fopAcM_searchActorDistanceXZ(const fopAc_ac_c* p_actorA, const fopAc_ac_
 
 /* 8001AA94-8001AAE0 0153D4 004C+00 1/1 4/4 30/30 .text
  * fopAcM_searchActorDistanceXZ2__FPC10fopAc_ac_cPC10fopAc_ac_c */
-#ifdef NON_MATCHING
+#ifdef NONMATCHING
 // matches besides data
 f32 fopAcM_searchActorDistanceXZ2(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB) {
     const cXyz& posA = fopAcM_GetPosition_p(p_actorA);
@@ -1626,7 +1626,7 @@ SECTION_SDATA2 static f32 lit_5812 = 1.0f / 5.0f;
 /* 8001C5B0-8001C870 016EF0 02C0+00 3/3 0/0 4/4 .text
  * fopAcM_fastCreateItem__FPC4cXyziiPC5csXyzPC4cXyzPfPfiiPFPv_i */
 // issue with makeItemParams
-#ifdef NON_MATCHING
+#ifdef NONMATCHING
 void* fopAcM_fastCreateItem(const cXyz* p_pos, int i_itemNo, int i_roomNo, const csXyz* p_angle,
                             const cXyz* p_scale, f32* p_speedF, f32* p_speedY, int param_8,
                             int param_9, createFunc p_createFunc) {    
@@ -1899,7 +1899,7 @@ s32 fopAcM_wayBgCheck(fopAc_ac_c const* param_0, f32 param_1, f32 param_2) {
 
 /* 8001CFD8-8001D020 017918 0048+00 0/0 0/0 2/2 .text fopAcM_plAngleCheck__FPC10fopAc_ac_cs */
 s32 fopAcM_plAngleCheck(fopAc_ac_c const* p_actor, s16 i_angle) {
-    s16 angle = p_actor->mCollisionRot.y - ((fopAc_ac_c*)dComIfGp_getPlayer(0))->mCollisionRot.y;
+    s16 angle = p_actor->mCollisionRot.y - dComIfGp_getPlayer(0)->mCollisionRot.y;
     if (angle <= i_angle && angle >= (s16)-i_angle) {
         return 0;
     }
@@ -2013,7 +2013,7 @@ s32 fopAcM_riverStream(cXyz* param_0, s16* param_1, f32* param_2, f32 param_3) {
 
 /* 8001D1FC-8001D32C 017B3C 0130+00 0/0 0/0 12/12 .text fopAcM_carryOffRevise__FP10fopAc_ac_c */
 s32 fopAcM_carryOffRevise(fopAc_ac_c* param_0) {
-    fopAc_ac_c* player = (fopAc_ac_c*)dComIfGp_getPlayer(0);
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
     dBgS_LinChk linChk;
     cXyz tmp1;
     cXyz tmp0;

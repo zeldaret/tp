@@ -505,7 +505,7 @@ inline void make_prm_bokkuri(u32* pActorParams, csXyz* p_angle, u8 param_2, u8 p
     p_angle->z = (param_6 << 0xD) | (param_2 << 0x1) | param_5;
 }
 
-inline void* dComIfGp_getPlayer(int);
+inline fopAc_ac_c* dComIfGp_getPlayer(int);
 
 inline s16 fopAcM_searchPlayerAngleY(const fopAc_ac_c* actor) {
     return fopAcM_searchActorAngleY(actor, (fopAc_ac_c*)dComIfGp_getPlayer(0));

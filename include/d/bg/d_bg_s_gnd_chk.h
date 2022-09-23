@@ -41,6 +41,8 @@ public:
 class dBgS_ObjGndChk_All : public dBgS_ObjGndChk {
 public:
     /* 800778E8 */ virtual ~dBgS_ObjGndChk_All();
+
+    dBgS_ObjGndChk_All() { OnAll(); }
 };
 
 class dBgS_CamGndChk : public dBgS_GndChk {

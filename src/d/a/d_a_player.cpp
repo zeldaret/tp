@@ -606,7 +606,7 @@ asm void daPy_sightPacket_c::setSight() {
  * setSightImage__18daPy_sightPacket_cFP7ResTIMG                */
 void daPy_sightPacket_c::setSightImage(ResTIMG* p_img) {
     mpImg = p_img;
-    mpData = (u8*)p_img + p_img->texDataOffset;
+    mpData = (u8*)p_img + p_img->imageOffset;
 }
 
 /* 8015F398-8015F3C4 159CD8 002C+00 0/0 8/8 10/10 .text checkMasterSwordEquip__9daPy_py_cFv */

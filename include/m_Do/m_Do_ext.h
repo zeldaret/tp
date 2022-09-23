@@ -12,8 +12,9 @@
 class mDoExt_baseAnm {
 public:
     mDoExt_baseAnm() {}
-    /* 8000D320 */ void initPlay(s16, int, f32, s16, s16);
-    /* 8000D428 */ void play();
+    /* 8000D320 */ int initPlay(s16 i_frameMax, int i_attribute, f32 i_rate, s16 i_start,
+                                s16 param_4);
+    /* 8000D428 */ int play();
 
     void setPlaySpeed(f32 speed) { mFrameCtrl.setRate(speed); }
     f32 getFrame() { return mFrameCtrl.getFrame(); }
@@ -86,8 +87,9 @@ STATIC_ASSERT(sizeof(mDoExt_brkAnm) == 0x18);
 class mDoExt_bpkAnm : public mDoExt_baseAnm {
 public:
     mDoExt_bpkAnm() { mpAnm = 0; }
-    /* 8000D47C */ int init(J3DMaterialTable*, J3DAnmColor*, int, int, f32, s16, s16);
-    /* 8000D518 */ void entry(J3DMaterialTable*, f32);
+    /* 8000D47C */ int init(J3DMaterialTable* i_matTable, J3DAnmColor* i_bpk, int i_anmPlay,
+                            int i_attribute, f32 i_rate, s16 i_start, s16 param_6);
+    /* 8000D518 */ void entry(J3DMaterialTable* i_matTable, f32 i_frame);
 
     void entry(J3DModelData* data) { entry(data, getFrame()); }
     void entry(J3DModelData* data, f32 frame) { entry(&data->getMaterialTable(), frame); }
@@ -116,10 +118,10 @@ public:
     /* 8000D9E8 */ void entryJoint(J3DModelData*, u16, f32);
 
     void entry(J3DModelData* data) { entry(data, getFrame()); }
-    J3DAnmTransform* getBckAnm() { return mpAnm; }
+    J3DAnmTransform* getBckAnm() { return mAnm; }
 
 private:
-    /* 0x14 */ J3DAnmTransform* mpAnm;
+    /* 0x14 */ J3DAnmTransform* mAnm;
     /* 0x18 */ J3DMtxCalc* mpMtxCalc;
 };  // Size: 0x1C
 
@@ -128,8 +130,9 @@ STATIC_ASSERT(sizeof(mDoExt_bckAnm) == 0x1C);
 class mDoExt_btpAnm : public mDoExt_baseAnm {
 public:
     mDoExt_btpAnm() { mpAnm = NULL; }
-    /* 8000D54C */ int init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
-    /* 8000D5E8 */ void entry(J3DMaterialTable*, s16);
+    /* 8000D54C */ int init(J3DMaterialTable* i_matTable, J3DAnmTexPattern* i_btk, int i_anmPlay,
+                            int i_attribute, f32 i_rate, s16 i_start, s16 param_6);
+    /* 8000D5E8 */ void entry(J3DMaterialTable* i_matTable, s16 i_frame);
 
     void entry(J3DModelData* data) { entry(data, getFrame()); }
     void entry(J3DModelData* data, s16 frame) { entry(&data->getMaterialTable(), frame); }

@@ -60,6 +60,9 @@ public:
     void onFlag(u32 flag) { mFlags |= flag; }
     void offFlag(u32 flag) { mFlags &= ~flag; }
     bool checkFlag(u32 flag) const { return (mFlags & flag) ? true : false; }
+
+    bool isCpuSkinningOn() const { return (mFlags & 4) && (mFlags & 8); }
+
     Mtx& getBaseTRMtx() { return mBaseTransformMtx; }
     void i_setBaseTRMtx(Mtx m) { PSMTXCopy(m, mBaseTransformMtx); }
     u32 getMtxCalcMode() const { return mFlags & 0x03; }
@@ -67,6 +70,7 @@ public:
     J3DShapePacket* getShapePacket(u16 idx) const { return &mShapePacket[idx]; }
     Mtx33* getBumpMtxPtr(int idx) const { return mMtxBuffer->getBumpMtxPtr(idx); }
     Mtx33* getNrmMtxPtr() const { return mMtxBuffer->getNrmMtxPtr(); }
+    Mtx* getDrawMtxPtr() const { return mMtxBuffer->getDrawMtxPtr(); }
     void setBaseScale(const Vec& scale) { mBaseScale = scale; }
     void setUserArea(u32 area) { mUserArea = area; }
     u32 getUserArea() const { return mUserArea; }

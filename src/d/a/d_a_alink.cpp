@@ -6499,7 +6499,7 @@ J3DModel* daAlink_c::initModel(J3DModelData* i_modelData, u32 mdlFlags, u32 diff
     if (texNo >= 0) {
         ResTIMG* timg = tex->getResTIMG(texNo);
 
-        if (mpWarpTexData == (u32)timg + timg->texDataOffset) {
+        if (mpWarpTexData == (u32)timg + timg->imageOffset) {
             warpMaterial = true;
         }
     }

@@ -33,6 +33,8 @@ void dKy_actor_addcol_set(s16 param_0, s16 param_1, s16 param_2, f32 param_3);
 void dKy_fog_startendz_set(f32 param_0, f32 param_1, f32 param_2);
 static void dKy_vrbox_addcol_set(s16 param_0, s16 param_1, s16 param_2, f32 param_3);
 void dKy_GxFog_set();
+static void GxFog_set();
+static void GxXFog_set();
 
 
 struct LIGHT_INFLUENCE {
@@ -107,13 +109,13 @@ struct BOSS_LIGHT {
     /* 8019F438 */ ~BOSS_LIGHT();
     /* 8019F474 */ BOSS_LIGHT();
 
-    /* 0x00 */ cXyz field_0x0;
-    /* 0x0C */ int field_0xc;
-    /* 0x10 */ int field_0x10;
-    /* 0x14 */ int field_0x14;
-    /* 0x18 */ int field_0x18;
-    /* 0x1C */ int field_0x1c;
-    /* 0x20 */ int field_0x20;
+    /* 0x00 */ cXyz mPos;
+    /* 0x0C */ GXColor mColor;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ f32 field_0x1c;
+    /* 0x20 */ f32 field_0x20;
     /* 0x24 */ u8 field_0x24;
     /* 0x25 */ u8 field_0x25;
     /* 0x26 */ u8 field_0x26;
@@ -533,6 +535,10 @@ public:
 extern dScnKy_env_light_c g_env_light;
 
 STATIC_ASSERT(sizeof(dScnKy_env_light_c) == 4880);
+
+inline dScnKy_env_light_c* i_dKy_getEnvlight() {
+    return &g_env_light;
+}
 
 BOOL dKy_darkworld_stage_check(char const*, int);
 BOOL dKy_withwarp_capture_check();

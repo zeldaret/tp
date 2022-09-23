@@ -61,7 +61,7 @@ void JUTFont::setGradColor(JUtility::TColor col1, JUtility::TColor col2) {
 
 /* 802DEE28-802DEF48 2D9768 0120+00 0/0 3/3 0/0 .text drawString_size_scale__7JUTFontFffffPCcUlb
  */
-#ifdef NON_MATCHING
+#ifdef NONMATCHING
 f32 JUTFont::drawString_size_scale(f32 a1, f32 a2, f32 a3, f32 a4, const char* str, u32 usz,
                                    bool a7) {
     f32 temp = a1;

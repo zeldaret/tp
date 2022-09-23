@@ -59,11 +59,11 @@ bool mDoLib_setResTimgObj(ResTIMG const* res, _GXTexObj* o_texObj, u32 param_2,
     if (res->palettesEnabled) {
         GXInitTlutObj(o_tlutObj, (void*)(res + res->paletteOffset), (GXTlutFmt)res->paletteFormat,
                       res->paletteCount);
-        GXInitTexObjCI(o_texObj, (void*)(res + res->texDataOffset), res->width, res->height,
+        GXInitTexObjCI(o_texObj, (void*)(res + res->imageOffset), res->width, res->height,
                        (GXCITexFmt)res->format, (GXTexWrapMode)res->wrapS,
                        (GXTexWrapMode)res->wrapT, 1 - res->mipmapCount, param_2);
     } else {
-        GXInitTexObj(o_texObj, (void*)(res + res->texDataOffset), res->width, res->height,
+        GXInitTexObj(o_texObj, (void*)(res + res->imageOffset), res->width, res->height,
                      (GXTexFmt)res->format, (GXTexWrapMode)res->wrapS, (GXTexWrapMode)res->wrapT,
                      (s32)1 - res->mipmapCount);
     }

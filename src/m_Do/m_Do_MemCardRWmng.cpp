@@ -120,13 +120,13 @@ static void mDoMemCdRWm_BuildHeader(mDoMemCdRWm_HeaderData* header) {
     ResTIMG* icon_data =
         (ResTIMG*)g_dComIfG_gameInfo.play.mCardIconResArchive->getResource("zelda2_gc_icon.bti");
 
-    memcpy(header->mBannerTexData, (u8*)banner_data + banner_data->texDataOffset,
+    memcpy(header->mBannerTexData, (u8*)banner_data + banner_data->imageOffset,
            (banner_data->paletteCount * 2) + 0xC00);
-    memcpy(header->mIconTexData0, (u8*)icon_data + icon_data->texDataOffset, 0x400);
-    memcpy(header->mIconTexData1, (u8*)icon_data + icon_data->texDataOffset, 0x400);
-    memcpy(header->mIconTexData2, (u8*)icon_data + icon_data->texDataOffset, 0x400);
-    memcpy(header->mIconTexData3, (u8*)icon_data + icon_data->texDataOffset, 0x400);
-    memcpy(header->mIconTexData4, (u8*)icon_data + icon_data->texDataOffset,
+    memcpy(header->mIconTexData0, (u8*)icon_data + icon_data->imageOffset, 0x400);
+    memcpy(header->mIconTexData1, (u8*)icon_data + icon_data->imageOffset, 0x400);
+    memcpy(header->mIconTexData2, (u8*)icon_data + icon_data->imageOffset, 0x400);
+    memcpy(header->mIconTexData3, (u8*)icon_data + icon_data->imageOffset, 0x400);
+    memcpy(header->mIconTexData4, (u8*)icon_data + icon_data->imageOffset,
            (icon_data->paletteCount * 2) + 0x400);
     g_dComIfG_gameInfo.play.mCardIconResArchive->removeResourceAll();
 }

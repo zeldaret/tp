@@ -54,9 +54,9 @@ void JUTTexture::storeTIMG(ResTIMG const* param_0, u8 param_1) {
 
     if (param_0 && param_1 < 0x10) {
         mTexInfo = param_0;
-        mTexData = (void*)((int)mTexInfo + mTexInfo->texDataOffset);
+        mTexData = (void*)((int)mTexInfo + mTexInfo->imageOffset);
 
-        if (mTexInfo->texDataOffset == 0) {
+        if (mTexInfo->imageOffset == 0) {
             mTexData = (void*)((int)mTexInfo + 0x20);
         }
 
@@ -180,7 +180,7 @@ void JUTTexture::initTexObj() {
     int offset;
 
     if (mTexInfo->mipmapEnabled) {
-        offset = mTexInfo->texDataOffset;
+        offset = mTexInfo->imageOffset;
     } else {
         offset = 0x20;
     }

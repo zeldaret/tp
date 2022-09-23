@@ -129,7 +129,7 @@ public:
     dVibration_c& getVibration() { return mVibration; }
     camera_class* getCamera(int idx) { return mCameraInfo[idx].mCamera; }
     void* getPlayerPtr(int ptrIdx) { return mPlayerPtr[ptrIdx]; }
-    void* getPlayer(int idx) { return mPlayer[idx]; }
+    fopAc_ac_c* getPlayer(int idx) { return (fopAc_ac_c*)mPlayer[idx]; }
     dPa_control_c* getParticle() { return mParticle; }
     dEvent_manager_c& getEvtManager() { return mEvtManager; }
     dAttention_c& getAttention() { return mAttention; }
@@ -1540,7 +1540,7 @@ inline daPy_py_c* dComIfGp_getLinkPlayer() {
     return (daPy_py_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR);
 }
 
-inline void* dComIfGp_getPlayer(int idx) {
+inline fopAc_ac_c* dComIfGp_getPlayer(int idx) {
     return g_dComIfG_gameInfo.play.getPlayer(idx);
 }
 

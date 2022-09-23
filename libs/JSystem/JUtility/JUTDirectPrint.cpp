@@ -133,7 +133,7 @@ SECTION_DATA static u32 twiceBit[4] = {
 
 /* 802E431C-802E456C 2DEC5C 0250+00 1/1 0/0 0/0 .text            drawChar__14JUTDirectPrintFiii */
 // incorrect reg-alloc
-#if NONMATCHING
+#ifdef NONMATCHING
 void JUTDirectPrint::drawChar(int position_x, int position_y, int ch) {
     int codepoint;
     if (100 <= ch)

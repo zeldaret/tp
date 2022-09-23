@@ -97,8 +97,7 @@ J3DDrawBuffer::~J3DDrawBuffer() {
     mpBuf = NULL;
 }
 
-#if NON_MATCHING
-
+#ifdef NONMATCHING
 /* 80325068-8032509C 31F9A8 0034+00 2/2 1/1 0/0 .text            frameInit__13J3DDrawBufferFv */
 void J3DDrawBuffer::frameInit() {
     // can't make mwcc not generate "mtctr" for this loop
@@ -107,9 +106,7 @@ void J3DDrawBuffer::frameInit() {
 
     mpCallBackPacket = NULL;
 }
-
 #else
-
 /* 80325068-8032509C 31F9A8 0034+00 2/2 1/1 0/0 .text            frameInit__13J3DDrawBufferFv */
 #pragma push
 #pragma optimization_level 0
@@ -119,7 +116,6 @@ asm void J3DDrawBuffer::frameInit() {
 #include "asm/JSystem/J3DGraphBase/J3DDrawBuffer/frameInit__13J3DDrawBufferFv.s"
 }
 #pragma pop
-
 #endif
 
 /* 8032509C-803251E4 31F9DC 0148+00 2/1 0/0 0/0 .text

@@ -31,7 +31,7 @@ struct ResTIMG {
     /* 0x18 */ u8 mipmapCount;
     /* 0x19 */ u8 unknown;
     /* 0x1A */ s16 LODBias;
-    /* 0x1C */ u32 texDataOffset;
+    /* 0x1C */ u32 imageOffset;
 };  // Size: 0x20
 
 class JUTTexture {

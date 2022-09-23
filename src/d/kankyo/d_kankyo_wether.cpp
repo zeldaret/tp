@@ -381,7 +381,7 @@ EF_MUD_EFF::EF_MUD_EFF() {
 
 /* 8005703C-8005706C 05197C 0030+00 1/0 0/0 0/0 .text            draw__18dKankyo_mud_PacketFv */
 void dKankyo_mud_Packet::draw() {
-    dKyr_mud_draw(j3dSys.getViewMtx(), &field_0x14);
+    dKyr_mud_draw(j3dSys.getViewMtx(), &mpMoyaRes);
 }
 
 /* 8005706C-800570A8 0519AC 003C+00 2/2 0/0 0/0 .text            __dt__11EF_EVIL_EFFFv */
@@ -394,7 +394,7 @@ EF_EVIL_EFF::EF_EVIL_EFF() {
 
 /* 800570AC-800570DC 0519EC 0030+00 1/0 0/0 0/0 .text            draw__19dKankyo_evil_PacketFv */
 void dKankyo_evil_Packet::draw() {
-    dKyr_evil_draw(j3dSys.getViewMtx(), &field_0x14);
+    dKyr_evil_draw(j3dSys.getViewMtx(), &mpMoyaRes);
 }
 
 /* 800570DC-8005710C 051A1C 0030+00 1/1 0/0 0/0 .text            dKyw_drawSun__Fi */
@@ -1352,7 +1352,7 @@ static void wether_move_mud() {
     case 1:
         dKyr_mud_move();
 
-        if (g_env_light.field_0x1048 == 0 && g_env_light.mpMudPacket->field_0x10 == 0) {
+        if (g_env_light.field_0x1048 == 0 && g_env_light.mpMudPacket->mEffectNum == 0) {
             g_env_light.mMudInitialized = 0;
 
             delete g_env_light.mpMudPacket;
@@ -1379,7 +1379,7 @@ static void wether_move_evil() {
     case 1:
         dKyr_evil_move();
 
-        if (g_env_light.field_0x1054 == 0 && g_env_light.mpEvilPacket->field_0x10 == 0) {
+        if (g_env_light.field_0x1054 == 0 && g_env_light.mpEvilPacket->mEffectNum == 0) {
             g_env_light.mEvilInitialized = 0;
 
             delete g_env_light.mpEvilPacket;
