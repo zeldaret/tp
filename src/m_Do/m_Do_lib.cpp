@@ -56,9 +56,9 @@ SECTION_SDATA2 static f64 lit_3638 = 4503601774854144.0 /* cast s32 to float */;
 #ifdef NONMATCHING
 bool mDoLib_setResTimgObj(ResTIMG const* res, _GXTexObj* o_texObj, u32 param_2,
                           _GXTlutObj* o_tlutObj) {
-    if (res->palettesEnabled) {
-        GXInitTlutObj(o_tlutObj, (void*)(res + res->paletteOffset), (GXTlutFmt)res->paletteFormat,
-                      res->paletteCount);
+    if (res->indexTexture) {
+        GXInitTlutObj(o_tlutObj, (void*)(res + res->paletteOffset), (GXTlutFmt)res->colorFormat,
+                      res->numColors);
         GXInitTexObjCI(o_texObj, (void*)(res + res->imageOffset), res->width, res->height,
                        (GXCITexFmt)res->format, (GXTexWrapMode)res->wrapS,
                        (GXTexWrapMode)res->wrapT, 1 - res->mipmapCount, param_2);
@@ -71,7 +71,7 @@ bool mDoLib_setResTimgObj(ResTIMG const* res, _GXTexObj* o_texObj, u32 param_2,
                     (f32)res->minLOD * 0.125f, (f32)res->maxLOD * 0.125f, (f32)res->LODBias * 0.01f,
                     (s32)res->biasClamp, (s32)res->doEdgeLOD, (GXAnisotropy)res->maxAnisotropy);
 
-    return res->palettesEnabled;
+    return res->indexTexture;
 }
 #else
 #pragma push

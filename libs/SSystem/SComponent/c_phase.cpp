@@ -18,14 +18,14 @@ extern "C" static void cPhs_Next__FP30request_of_phase_process_class();
 /* 80266624-80266630 000C+00 s=1 e=2 z=0  None .text
  * cPhs_Reset__FP30request_of_phase_process_class               */
 void cPhs_Reset(request_of_phase_process_class* pPhase) {
-    pPhase->mPhaseStep = cPhs_ZERO_e;
+    pPhase->id = cPhs_ZERO_e;
 }
 
 /* 80266630-80266640 0010+00 s=0 e=3 z=0  None .text
  * cPhs_Set__FP30request_of_phase_process_classPPFPv_i          */
 void cPhs_Set(request_of_phase_process_class* pPhase, cPhs__Handler* pHandlerTable) {
     pPhase->mpHandlerTable = pHandlerTable;
-    pPhase->mPhaseStep = cPhs_ZERO_e;
+    pPhase->id = cPhs_ZERO_e;
 }
 
 /* 80266640-80266668 0028+00 s=1 e=0 z=0  None .text
@@ -46,8 +46,8 @@ int cPhs_Compleate(request_of_phase_process_class* pPhase) {
  */
 int cPhs_Next(request_of_phase_process_class* pPhase) {
     if (const cPhs__Handler* handlerTable = pPhase->mpHandlerTable) {
-        pPhase->mPhaseStep++;
-        cPhs__Handler handler = handlerTable[pPhase->mPhaseStep];
+        pPhase->id++;
+        cPhs__Handler handler = handlerTable[pPhase->id];
 
         // Double null check here actually matters for emitted assembly.
         // Wee old compilers.
@@ -67,7 +67,7 @@ int cPhs_Next(request_of_phase_process_class* pPhase) {
 int cPhs_Do(request_of_phase_process_class* pPhase, void* pUserData) {
     if (const cPhs__Handler* pHandlerTable = pPhase->mpHandlerTable) {
         // the load of pUserData seems to be slightly scrambled..
-        const cPhs__Handler pHandler = pHandlerTable[pPhase->mPhaseStep];
+        const cPhs__Handler pHandler = pHandlerTable[pPhase->id];
         const int newStep = pHandler(pUserData);
 
         switch (newStep) {

@@ -981,7 +981,7 @@ int cDylPhs::Link(request_of_phase_process_class* i_phase, s16 param_1) {
     static int (*l_method[3])(void*) = {cDylPhs::phase_01, (int (*)(void*))cDylPhs::phase_02,
                                         cDylPhs::phase_03};
 
-    if (i_phase->mPhaseStep == cPhs_TWO_e) {
+    if (i_phase->id == cPhs_TWO_e) {
         return cPhs_COMPLEATE_e;
     }
 
@@ -993,9 +993,9 @@ int cDylPhs::Link(request_of_phase_process_class* i_phase, s16 param_1) {
 int cDylPhs::Unlink(request_of_phase_process_class* i_phase, s16 i_ProfName) {
     int ret;
 
-    if (i_phase->mPhaseStep == cPhs_TWO_e) {
+    if (i_phase->id == cPhs_TWO_e) {
         ret = cDyl_Unlink(i_ProfName);
-        i_phase->mPhaseStep = cPhs_ZERO_e;
+        i_phase->id = cPhs_ZERO_e;
     } else {
         ret = 0;
     }

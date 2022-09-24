@@ -29,12 +29,12 @@ extern "C" void CreateItemHeap__12daItemBase_cFPCcsssssss();
 
 /* 80037C14-80037C1C 032554 0008+00 0/0 1/1 0/0 .text            getRotateP__12daShopItem_cFv */
 csXyz* daShopItem_c::getRotateP() {
-    return &mCurrent.mAngle;
+    return &current.angle;
 }
 
 /* 80037C1C-80037C24 03255C 0008+00 0/0 2/2 0/0 .text            getPosP__12daShopItem_cFv */
 cXyz* daShopItem_c::getPosP() {
-    return &mCurrent.mPosition;
+    return &current.pos;
 }
 
 /* 803792E8-80379738 -00001 0450+00 1/1 0/0 9/9 .rodata          mData__12daShopItem_c */

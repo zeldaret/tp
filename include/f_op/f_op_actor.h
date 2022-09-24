@@ -59,8 +59,8 @@ public:
 struct actor_place {
     /* 807E2468 */ //void operator=(actor_place const&);
 
-    /* 0x00 */ cXyz mPosition;
-    /* 0x0C */ csXyz mAngle;
+    /* 0x00 */ cXyz pos;
+    /* 0x0C */ csXyz angle;
     /* 0x12 */ s8 mRoomNo;
     /* 0x13 */ u8 field_0x13;
 };
@@ -95,9 +95,9 @@ public:
     /* 0x49C */ u32 mStatus;
     /* 0x4A0 */ u32 mCondition;
     /* 0x4A4 */ u32 mParentPcId;
-    /* 0x4A8 */ actor_place mOrig;
-    /* 0x4BC */ actor_place mNext;
-    /* 0x4D0 */ actor_place mCurrent;
+    /* 0x4A8 */ actor_place orig;
+    /* 0x4BC */ actor_place next;
+    /* 0x4D0 */ actor_place current;
     /* 0x4E4 */ csXyz mCollisionRot;
     /* 0x4EC */ cXyz mScale;
     /* 0x4F8 */ cXyz mSpeed;
@@ -129,9 +129,9 @@ public:
 
     static u32 stopStatus;
 
-    const cXyz& getPosition() const { return mCurrent.mPosition; }
-    const csXyz& getAngle() const { return mCurrent.mAngle; }
-    s8 getRoomNo() const { return mCurrent.mRoomNo; }
+    const cXyz& getPosition() const { return current.pos; }
+    const csXyz& getAngle() const { return current.angle; }
+    s8 getRoomNo() const { return current.mRoomNo; }
 };  // Size: 0x568
 
 s32 fopAc_IsActor(void* actor);

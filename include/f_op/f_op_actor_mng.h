@@ -105,7 +105,7 @@ struct DOUBLE_POS {
 };
 
 inline s32 fopAcM_GetRoomNo(const fopAc_ac_c* pActor) {
-    return (s8)pActor->mCurrent.mRoomNo;
+    return (s8)pActor->current.mRoomNo;
 }
 
 inline u32 fopAcM_GetID(const void* pActor) {
@@ -165,11 +165,11 @@ inline fopAc_ac_c* fopAcM_SearchByID(unsigned int id) {
 }
 
 inline cXyz& fopAcM_GetPosition_p(fopAc_ac_c* pActor) {
-    return pActor->mCurrent.mPosition;
+    return pActor->current.pos;
 }
 
 inline cXyz& fopAcM_GetOldPosition_p(fopAc_ac_c* pActor) {
-    return pActor->mNext.mPosition;
+    return pActor->next.pos;
 }
 
 inline cXyz& fopAcM_GetSpeed_p(fopAc_ac_c* pActor) {
@@ -177,7 +177,7 @@ inline cXyz& fopAcM_GetSpeed_p(fopAc_ac_c* pActor) {
 }
 
 inline csXyz& fopAcM_GetAngle_p(fopAc_ac_c* pActor) {
-    return pActor->mCurrent.mAngle;
+    return pActor->current.angle;
 }
 
 inline csXyz& fopAcM_GetShapeAngle_p(fopAc_ac_c* pActor) {
@@ -201,7 +201,7 @@ inline BOOL fopAcM_IsActor(void* actor) {
 }
 
 inline void fopAcM_SetRoomNo(fopAc_ac_c* actor, s8 roomNo) {
-    actor->mCurrent.mRoomNo = roomNo;
+    actor->current.mRoomNo = roomNo;
 }
 
 inline void fopAcM_setHookCarryNow(fopAc_ac_c* actor) {
@@ -213,7 +213,7 @@ inline void fopAcM_cancelHookCarryNow(fopAc_ac_c* actor) {
 }
 
 inline s8 fopAcM_GetHomeRoomNo(const fopAc_ac_c* pActor) {
-    return pActor->mOrig.mRoomNo;
+    return pActor->orig.mRoomNo;
 }
 
 inline void fopAcM_SetGravity(fopAc_ac_c* actor, f32 gravity) {
@@ -261,7 +261,7 @@ inline const cXyz& fopAcM_GetSpeed_p(const fopAc_ac_c* p_actor) {
 }
 
 inline const cXyz& fopAcM_GetPosition_p(const fopAc_ac_c* p_actor) {
-    return p_actor->mCurrent.mPosition;
+    return p_actor->current.pos;
 }
 
 inline void dComIfGs_onSwitch(int i_no, int i_roomNo);
@@ -291,7 +291,7 @@ inline bool fopAcM_isItem(const fopAc_ac_c* item, int bitNo) {
 }
 
 inline f32 fopAcM_searchActorDistanceY(const fopAc_ac_c* actorA, const fopAc_ac_c* actorB) {
-    return actorB->mCurrent.mPosition.y - actorA->mCurrent.mPosition.y;
+    return actorB->current.pos.y - actorA->current.pos.y;
 }
 
 inline u16 fopAcM_GetSetId(const fopAc_ac_c* p_actor) {
@@ -527,7 +527,7 @@ s8 dComIfGp_getReverb(int roomNo);
 
 inline void fopAcM_seStartCurrent(const fopAc_ac_c* actor, u32 sfxID, u32 param_2) {
     s8 roomNo = fopAcM_GetRoomNo(actor);
-    mDoAud_seStart(sfxID, &actor->mCurrent.mPosition, param_2, dComIfGp_getReverb(roomNo));
+    mDoAud_seStart(sfxID, &actor->current.pos, param_2, dComIfGp_getReverb(roomNo));
 }
 
 extern "C" {

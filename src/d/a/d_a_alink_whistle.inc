@@ -59,7 +59,7 @@ int daAlink_c::procGrassWhistleGetInit() {
 
     commonProcInit(PROC_GRASS_WHISTLE_GET);
     mNormalSpeed = 0.0f;
-    mCurrent.mAngle.y = mCollisionRot.y;
+    current.angle.y = mCollisionRot.y;
     field_0x2f98 = 4;
 
     setSingleAnimeParam(ANM_GRASS_WHISTLE_GRAB, &daAlinkHIO_bottle_c0::m.field_0x50);
@@ -71,9 +71,9 @@ int daAlink_c::procGrassWhistleGetInit() {
     field_0x300e = yobikusa->getPathID();
     field_0x3010 = yobikusa->isPlayerCorrect();
     field_0x3012 = yobikusa->mCollisionRot.y + 0x8000;
-    field_0x37c8.set(yobikusa->mCurrent.mPosition.x + cM_ssin(yobikusa->mCollisionRot.y) * 50.0f,
-                     yobikusa->mCurrent.mPosition.y + 50.0f,
-                     yobikusa->mCurrent.mPosition.z + cM_scos(yobikusa->mCollisionRot.y) * 50.0f);
+    field_0x37c8.set(yobikusa->current.pos.x + cM_ssin(yobikusa->mCollisionRot.y) * 50.0f,
+                     yobikusa->current.pos.y + 50.0f,
+                     yobikusa->current.pos.z + cM_scos(yobikusa->mCollisionRot.y) * 50.0f);
     voiceStart(Z2SE_AL_V_SWING_BOTTLE);
     return 1;
 }

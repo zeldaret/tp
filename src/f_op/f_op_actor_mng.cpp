@@ -494,7 +494,7 @@ s32 fopAcM_createChildFromOffset(s16 procName, unsigned int parentProcID, u32 ac
                                  const cXyz* p_pos, int roomNo, const csXyz* p_angle,
                                  const cXyz* p_scale, s8 subType, createFunc p_createFunc) {
     fopAc_ac_c* parentActor = fopAcM_SearchByID(parentProcID);
-    s16 parent_angleY = parentActor->mCurrent.mAngle.y;
+    s16 parent_angleY = parentActor->current.angle.y;
 
     cXyz tmpPos;
     if (p_pos == NULL) {
@@ -509,7 +509,7 @@ s32 fopAcM_createChildFromOffset(s16 procName, unsigned int parentProcID, u32 ac
     } else {
         tmpRot = *p_angle;
     }
-    cXyz parentPos = parentActor->mCurrent.mPosition;
+    cXyz parentPos = parentActor->current.pos;
     csXyz newAngle(tmpRot);
 
     newAngle.y += parent_angleY;
@@ -752,9 +752,9 @@ void fopAcM_calcSpeed(fopAc_ac_c* p_actor) {
 
 /* 8001A660-8001A6CC 014FA0 006C+00 1/1 1/1 17/17 .text fopAcM_posMove__FP10fopAc_ac_cPC4cXyz */
 void fopAcM_posMove(fopAc_ac_c* p_actor, const cXyz* p_movePos) {
-    p_actor->mCurrent.mPosition += p_actor->mSpeed;
+    p_actor->current.pos += p_actor->mSpeed;
     if (p_movePos != NULL) {
-        p_actor->mCurrent.mPosition += *p_movePos;
+        p_actor->current.pos += *p_movePos;
     }
 }
 
@@ -768,7 +768,7 @@ void fopAcM_posMoveF(fopAc_ac_c* p_actor, const cXyz* p_movePos) {
 /* 8001A710-8001A738 015050 0028+00 1/1 26/26 596/596 .text
  * fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c      */
 s16 fopAcM_searchActorAngleY(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB) {
-    return cLib_targetAngleY(&p_actorA->mCurrent.mPosition, &p_actorB->mCurrent.mPosition);
+    return cLib_targetAngleY(&p_actorA->current.pos, &p_actorB->current.pos);
 }
 
 /* ############################################################################################## */
@@ -815,7 +815,7 @@ asm s16 fopAcM_searchActorAngleX(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p
  * fopAcM_seenActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c        */
 s32 fopAcM_seenActorAngleY(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB) {
     return abs(static_cast<s16>(
-        cLib_targetAngleY(&p_actorA->mCurrent.mPosition, &p_actorB->mCurrent.mPosition) -
+        cLib_targetAngleY(&p_actorA->current.pos, &p_actorB->current.pos) -
         p_actorA->mCollisionRot.y));
 }
 
@@ -849,14 +849,14 @@ inline f32 local_sqrtf(f32 mag) {
 /* 8001A7E0-8001A914 015120 0134+00 0/0 5/5 188/188 .text
  * fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c    */
 f32 fopAcM_searchActorDistance(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB) {
-    cXyz tmp = (p_actorB->mCurrent.mPosition - p_actorA->mCurrent.mPosition);
+    cXyz tmp = (p_actorB->current.pos - p_actorA->current.pos);
     return local_sqrtf(tmp.abs2());
 }
 
 /* 8001A914-8001A964 015254 0050+00 0/0 0/0 2/2 .text
  * fopAcM_searchActorDistance2__FPC10fopAc_ac_cPC10fopAc_ac_c   */
 f32 fopAcM_searchActorDistance2(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB) {
-    cXyz tmp = (p_actorB->mCurrent.mPosition - p_actorA->mCurrent.mPosition);
+    cXyz tmp = (p_actorB->current.pos - p_actorA->current.pos);
     return tmp.abs2();
 }
 
@@ -925,7 +925,7 @@ s32 fopAcM_rollPlayerCrash(fopAc_ac_c const* actor, f32 param_1, u32 param_2, f3
         (player->checkFrontRoll() || player->checkWolfDash()) &&
         fopAcM_searchPlayerDistanceXZ2(actor) < (tmp * tmp)) {
         
-        if (cM_scos(player->mCurrent.mAngle.y - fopAcM_searchPlayerAngleY(actor)) < param_6) {
+        if (cM_scos(player->current.angle.y - fopAcM_searchPlayerAngleY(actor)) < param_6) {
             player->onFrollCrashFlg(param_2, param_5);
             return 1;
         }
@@ -1775,9 +1775,9 @@ asm void fopAcM_myRoomSearchEnemy(s8 param_0) {
  * fopAcM_createDisappear__FPC10fopAc_ac_cPC4cXyzUcUcUc         */
 s32 fopAcM_createDisappear(const fopAc_ac_c* p_actor, const cXyz* p_pos, u8 param_3, u8 param_4,
                            u8 param_5) {
-    s8 roomNo = p_actor->mCurrent.mRoomNo;
+    s8 roomNo = p_actor->current.mRoomNo;
     return fopAcM_GetID(fopAcM_fastCreate(PROC_DISAPPEAR, (param_5 << 0x10) | (param_3 << 0x8) | param_4,
-                                          p_pos, roomNo, &p_actor->mCurrent.mAngle, NULL, 0xFF, NULL,
+                                          p_pos, roomNo, &p_actor->current.angle, NULL, 0xFF, NULL,
                                           NULL));
 }
 
@@ -1824,7 +1824,7 @@ s32 fopAcM_otoCheck(fopAc_ac_c const* p_actor, f32 param_1) {
     SND_INFLUENCE* sound = dKy_Sound_get();
     
     if (sound->field_0x14 != -1 && fopAcM_GetID(p_actor) != sound->field_0x14) {
-        cXyz tmp = sound->field_0x0 - p_actor->mCurrent.mPosition;
+        cXyz tmp = sound->field_0x0 - p_actor->current.pos;
         
         if (tmp.abs() < param_1) {
             return sound->field_0xc;
@@ -1855,10 +1855,10 @@ s32 fopAcM_otherBgCheck(fopAc_ac_c const* param_0, fopAc_ac_c const* param_1) {
     cXyz tmp1;
     cXyz tmp0;
 
-    tmp0 = param_1->mCurrent.mPosition;
+    tmp0 = param_1->current.pos;
     tmp0.y += lit_6035;
 
-    tmp1 = param_0->mCurrent.mPosition;
+    tmp1 = param_0->current.pos;
     tmp1.y = param_0->mEyePos.y;
 
     linChk.Set(&tmp1, &tmp0, param_0);
@@ -1877,7 +1877,7 @@ s32 fopAcM_wayBgCheck(fopAc_ac_c const* param_0, f32 param_1, f32 param_2) {
     cXyz tmp0;
     cXyz tmp2;
 
-    tmp0 = param_0->mCurrent.mPosition;
+    tmp0 = param_0->current.pos;
     tmp0.y += param_2;
     mDoMtx_YrotS((MtxP)calc_mtx, param_0->mCollisionRot.y);
 
@@ -1886,7 +1886,7 @@ s32 fopAcM_wayBgCheck(fopAc_ac_c const* param_0, f32 param_1, f32 param_2) {
     tmp1.z = param_1;
 
     MtxPosition(&tmp1, &tmp2);
-    PSVECAdd(&tmp2, &param_0->mCurrent.mPosition, &tmp2);
+    PSVECAdd(&tmp2, &param_0->current.pos, &tmp2);
 
     linChk.Set(&tmp0, &tmp2, param_0);
 
@@ -2019,23 +2019,23 @@ s32 fopAcM_carryOffRevise(fopAc_ac_c* param_0) {
     cXyz tmp0;
     cXyz tmp2;
 
-    tmp0 = player->mCurrent.mPosition;
-    tmp0.y = param_0->mCurrent.mPosition.y;
+    tmp0 = player->current.pos;
+    tmp0.y = param_0->current.pos.y;
     mDoMtx_YrotS((MtxP)calc_mtx, player->mCollisionRot.y);
 
     tmp1.x = FLOAT_LABEL(lit_4645);
-    tmp1.y = param_0->mCurrent.mPosition.y - player->mCurrent.mPosition.y;
+    tmp1.y = param_0->current.pos.y - player->current.pos.y;
     tmp1.z = 150.0f;
 
     MtxPosition(&tmp1, &tmp2);
-    PSVECAdd(&tmp2, &player->mCurrent.mPosition, &tmp2);
+    PSVECAdd(&tmp2, &player->current.pos, &tmp2);
 
     linChk.Set(&tmp0, &tmp2, param_0);
 
     if (dComIfG_Bgsp().LineCross(&linChk)) {
-        param_0->mCurrent.mPosition.x = player->mCurrent.mPosition.x;
-        param_0->mCurrent.mPosition.z = player->mCurrent.mPosition.z;
-        param_0->mNext.mPosition = param_0->mCurrent.mPosition;
+        param_0->current.pos.x = player->current.pos.x;
+        param_0->current.pos.z = player->current.pos.z;
+        param_0->next.pos = param_0->current.pos;
         param_0->mSpeedF = FLOAT_LABEL(lit_4645);
         return 1;
     }
@@ -2230,7 +2230,7 @@ asm s32 fopAcM_getWaterY(cXyz const* param_0, f32* param_1) {
  * fpoAcM_relativePos__FPC10fopAc_ac_cPC4cXyzP4cXyz             */
 void fpoAcM_relativePos(fopAc_ac_c const* actor, cXyz const* p_inPos, cXyz* p_outPos) {
     s16 angle = -actor->mCollisionRot.y;
-    cXyz pos = *p_inPos - actor->mCurrent.mPosition;
+    cXyz pos = *p_inPos - actor->current.pos;
     
     p_outPos->x = (pos.z * cM_ssin(angle)) + (pos.x * cM_scos(angle));
     p_outPos->y = pos.y;

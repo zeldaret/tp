@@ -166,7 +166,7 @@ void daItemBase_c::settingBeforeDraw() {
 
 /* 80144D18-80144D70 13F658 0058+00 1/0 0/0 8/0 .text            setTevStr__12daItemBase_cFv */
 void daItemBase_c::setTevStr() {
-    g_env_light.settingTevStruct(0, &mCurrent.mPosition, &mTevStr);
+    g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
     g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
 }
 
@@ -176,7 +176,7 @@ void daItemBase_c::setShadow() {
 
     if (!chkFlag(0x10)) {
         if (getShadowSize() != 0.0f) {
-            dComIfGd_setSimpleShadow(&mCurrent.mPosition, mAcch.GetGroundH(), scale,
+            dComIfGd_setSimpleShadow(&current.pos, mAcch.GetGroundH(), scale,
                                      mAcch.m_gnd, 0, 1.0f,
                                      dDlst_shadowControl_c::getSimpleTex());
         }
@@ -187,8 +187,8 @@ void daItemBase_c::setShadow() {
         }
 
         field_0x91c =
-            dComIfGd_setShadow(field_0x91c, 3, mpModel, &mCurrent.mPosition, shadowSize, 0.0f,
-                               mCurrent.mPosition.y, mAcch.GetGroundH(), mAcch.m_gnd,
+            dComIfGd_setShadow(field_0x91c, 3, mpModel, &current.pos, shadowSize, 0.0f,
+                               current.pos.y, mAcch.GetGroundH(), mAcch.m_gnd,
                                &mTevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
     }
 }

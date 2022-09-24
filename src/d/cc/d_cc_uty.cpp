@@ -454,12 +454,12 @@ fopAc_ac_c* cc_at_check(fopAc_ac_c* p_enemy, dCcU_AtInfo* p_info) {
             p_info->mHitDirection = cM_atan2s(-x, -z) + (s16)cM_rndFX(4000.0f);
         } else {
             if (fopAcM_GetName(p_info->mpActor) == PROC_BOOMERANG) {
-                f32 x_diff = p_enemy->mCurrent.mPosition.x - link->mCurrent.mPosition.x;
-                f32 z_diff = p_enemy->mCurrent.mPosition.z - link->mCurrent.mPosition.z;
+                f32 x_diff = p_enemy->current.pos.x - link->current.pos.x;
+                f32 z_diff = p_enemy->current.pos.z - link->current.pos.z;
                 p_info->mHitDirection = cM_atan2s(-x_diff, -z_diff) + (s16)cM_rndFX(10000.0f);
             } else {
-                f32 x_diff = p_enemy->mCurrent.mPosition.x - p_info->mpActor->mCurrent.mPosition.x;
-                f32 z_diff = p_enemy->mCurrent.mPosition.z - p_info->mpActor->mCurrent.mPosition.z;
+                f32 x_diff = p_enemy->current.pos.x - p_info->mpActor->current.pos.x;
+                f32 z_diff = p_enemy->current.pos.z - p_info->mpActor->current.pos.z;
                 p_info->mHitDirection = cM_atan2s(-x_diff, -z_diff);
             }
         }

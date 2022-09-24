@@ -26,12 +26,12 @@ public:
     s32 getIndex(char const*) const;
     const char* getName(u16 index) const;
     u16 calcKeyCode(char const* pName) const;
-    const ResNTAB* getResNameTable() const { return mpNameTable; }
+    const ResNTAB* getResNameTable() const { return mNameTable; }
 
 private:
-    const ResNTAB* mpNameTable;
-    const char* mpStrData;
-    u16 mNameNum;
+    /* 0x4 */ const ResNTAB* mNameTable;
+    /* 0x8 */ const char* mpStrData;
+    /* 0xC */ u16 mNameNum;
 };
 
 #endif /* JUTNAMETAB_H */

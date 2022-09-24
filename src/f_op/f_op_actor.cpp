@@ -212,19 +212,19 @@ static int fopAc_Execute(void* actor) {
 
             if (!fopAcM_checkStatus(ac, 0x20000000) && (move == 2 || (move != 0 && !fopAcM_checkStatus(ac, fopAc_ac_c::stopStatus) && (!fopAcM_checkStatus(ac, 0x80) || !fopAcM_CheckCondition(ac, 4))))) {
                 fopAcM_OffCondition(ac, 2);
-                ac->mNext = ac->mCurrent;
+                ac->next = ac->current;
                 ret = fpcMtd_Execute((process_method_class*)ac->mSubMtd, ac);
             } else {
                 ac->mEvtInfo.suspendProc(ac);
                 fopAcM_OnCondition(ac, 2);
             }
 
-            if (fopAcM_checkStatus(ac, 0x20) && ac->mOrig.mPosition.y - ac->mCurrent.mPosition.y > 5000.0f) {
+            if (fopAcM_checkStatus(ac, 0x20) && ac->orig.pos.y - ac->current.pos.y > 5000.0f) {
                 fopAcM_delete(ac);
             }
 
-            if (ac->mCurrent.mPosition.y < -9.999999848243207e+30f) {
-                ac->mCurrent.mPosition.y = -9.999999848243207e+30f;
+            if (ac->current.pos.y < -9.999999848243207e+30f) {
+                ac->current.pos.y = -9.999999848243207e+30f;
             }
 
             dKy_depth_dist_set(ac);
@@ -308,19 +308,19 @@ static int fopAc_Create(void* actor) {
         fopAcM_prm_class* append = fopAcM_GetAppend(ac);
         if (append != NULL) {
             fopAcM_SetParam(ac, append->mParameter);
-            ac->mOrig.mPosition = append->mPos;
-            ac->mOrig.mAngle = append->mAngle;
+            ac->orig.pos = append->mPos;
+            ac->orig.angle = append->mAngle;
             ac->mCollisionRot = append->mAngle;
             ac->mParentPcId = append->mParentPId;
             ac->mSubtype = append->mSubtype;
             ac->mScale.set(append->mScale[0] * 0.1f, append->mScale[1] * 0.1f, append->mScale[2] * 0.1f);
             ac->mSetID = append->mEnemyNo;
-            ac->mOrig.mRoomNo = append->mRoomNo;
+            ac->orig.mRoomNo = append->mRoomNo;
         }
 
-        ac->mNext = ac->mOrig;
-        ac->mCurrent = ac->mOrig;
-        ac->mEyePos = ac->mOrig.mPosition;
+        ac->next = ac->orig;
+        ac->current = ac->orig;
+        ac->mEyePos = ac->orig.pos;
         ac->mMaxFallSpeed = -100.0f;
         ac->mAttentionInfo.field_0x0[0] = 1;
         ac->mAttentionInfo.field_0x0[1] = 2;
@@ -331,9 +331,9 @@ static int fopAc_Create(void* actor) {
         ac->mAttentionInfo.field_0x4[1] = 15;
         ac->mAttentionInfo.field_0x4[2] = 15;
         ac->mAttentionInfo.field_0x8[0] = 51;
-        ac->mAttentionInfo.mPosition = ac->mOrig.mPosition;
+        ac->mAttentionInfo.mPosition = ac->orig.pos;
         ac->mAttentionInfo.field_0xa = 30;
-        dKy_tevstr_init(&ac->mTevStr, ac->mOrig.mRoomNo, -1);
+        dKy_tevstr_init(&ac->mTevStr, ac->orig.mRoomNo, -1);
 
         int roomNo = dComIfGp_roomControl_getStayNo();
         if (roomNo >= 0) {
@@ -341,19 +341,19 @@ static int fopAc_Create(void* actor) {
         }
 
         dStage_FileList_dt_c* filelist = NULL;
-        if (ac->mOrig.mRoomNo >= 0) {
-            filelist = dComIfGp_roomControl_getStatusRoomDt(ac->mOrig.mRoomNo)->mRoomDt.getFileListInfo();
+        if (ac->orig.mRoomNo >= 0) {
+            filelist = dComIfGp_roomControl_getStatusRoomDt(ac->orig.mRoomNo)->mRoomDt.getFileListInfo();
         }
 
         if (filelist != NULL) {
             if (!dStage_FileList_dt_GetEnemyAppear1Flag(filelist)) {
                 u32 sw = dStage_FileList_dt_GetBitSw(filelist);
-                if (sw != 0xFF && dComIfGs_isSwitch(sw, ac->mOrig.mRoomNo) && profile->field_0x2c == 2) {
+                if (sw != 0xFF && dComIfGs_isSwitch(sw, ac->orig.mRoomNo) && profile->field_0x2c == 2) {
                     return 5;
                 }
             } else {
                 u32 sw = dStage_FileList_dt_GetBitSw(filelist);
-                if (sw != 0xFF && !dComIfGs_isSwitch(sw, ac->mOrig.mRoomNo) && profile->field_0x2c == 2) {
+                if (sw != 0xFF && !dComIfGs_isSwitch(sw, ac->orig.mRoomNo) && profile->field_0x2c == 2) {
                     return 5;
                 }
             }

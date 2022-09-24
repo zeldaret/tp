@@ -486,7 +486,7 @@ void daAlink_c::setCutJumpSpeed(int cut_type) {
 
     // cut_type 0 = standing jump attack
     if (mTargetedActor != NULL && cut_type == 0) {
-        mCollisionRot.y = cLib_targetAngleY(&mCurrent.mPosition, &mTargetedActor->mEyePos);
+        mCollisionRot.y = cLib_targetAngleY(&current.pos, &mTargetedActor->mEyePos);
         cXyz targetPos(mTargetedActor->mEyePos.x - (cM_ssin(mCollisionRot.y) * 70.0f),
                        mTargetedActor->mEyePos.y + 50.0f,
                        mTargetedActor->mEyePos.z - (cM_scos(mCollisionRot.y) * 70.0f));
@@ -499,14 +499,14 @@ void daAlink_c::setCutJumpSpeed(int cut_type) {
 
         f32 dvar12 = mSpeed.y + mGravity;
         f32 dvar10 = 1.0f / mGravity;
-        f32 fvar1 = targetPos.y - (mCurrent.mPosition.y - (dvar10 * (dvar12 * dvar12) * 0.5f));
+        f32 fvar1 = targetPos.y - (current.pos.y - (dvar10 * (dvar12 * dvar12) * 0.5f));
 
         if (fvar1 > 0.0f) {
             fvar1 = 0.0f;
         }
         f32 sqrt = JMAFastSqrt(fvar1 * 2.0f * dvar10);
         f32 speedDiv = sqrt - (dvar12 * dvar10);
-        f32 squareDist = mCurrent.mPosition.absXZ(targetPos);
+        f32 squareDist = current.pos.absXZ(targetPos);
 
         if (squareDist > 500.0f) {
             squareDist = 500.0f;
@@ -639,7 +639,7 @@ bool daAlink_c::procCutJumpInit(int jump_type) {
         mSpeed.y = daAlinkHIO_cutJump_c0::m.mBaseJumpSpeedV;
     }
     setCutJumpSpeed(jump_type);
-    mCurrent.mAngle.y = mCollisionRot.y;
+    current.angle.y = mCollisionRot.y;
     setSwordAtParam(dCcG_At_Spl_UNK_01, 3, 1, 3, daAlinkHIO_cut_c0::m.mSwordLength,
                     daAlinkHIO_cut_c0::m.mSwordRadius);
     setCutType(TYPE_CUT_JUMP);
@@ -652,12 +652,12 @@ bool daAlink_c::procCutJumpInit(int jump_type) {
 /* 800D43F8-800D452C 0CED38 0134+00 1/0 0/0 0/0 .text            procCutJump__9daAlink_cFv */
 #ifdef NONMATCHING
 bool daAlink_c::procCutJump() {
-    if (mCurrent.mAngle.y == mCollisionRot.y && changeCutReverseProc(ANM_CUT_JUMP)) {
-        mCurrent.mAngle.y += 0x8000;
+    if (current.angle.y == mCollisionRot.y && changeCutReverseProc(ANM_CUT_JUMP)) {
+        current.angle.y += 0x8000;
         mNormalSpeed = 27.0f;
         cXyz xyz(0.0f, 1.0f, 0.0f);
         dComIfGp_getVibration().StartShock(5, 31, xyz);
-    } else if (mCurrent.mAngle.y != mCollisionRot.y) {
+    } else if (current.angle.y != mCollisionRot.y) {
         cLib_chaseF(&mNormalSpeed, 5.0f, 1.0f);
     }
 

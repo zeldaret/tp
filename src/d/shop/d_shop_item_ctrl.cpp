@@ -68,7 +68,7 @@ cXyz dShopItemCtrl_c::getCurrentPos(int item_index) {
     if (mItemIndex[item_index] != -1) {
         fopAc_ac_c* item = fopAcM_SearchByID(mItemIndex[item_index]);
         if (item != NULL) {
-            item_pos.set(item->mCurrent.mPosition);
+            item_pos.set(item->current.pos);
         }
     }
 
@@ -81,7 +81,7 @@ bool dShopItemCtrl_c::isHomePos(int item_index) {
         daShopItem_c* item = (daShopItem_c*)fopAcM_SearchByID(mItemIndex[item_index]);
         if (item != NULL) {
             cXyz* item_pos = item->getPosP();
-            cXyz item_home = item->mOrig.mPosition;
+            cXyz item_home = item->orig.pos;
 
             if (item_pos->x == item_home.x && item_pos->y == item_home.y &&
                 item_pos->z == item_home.z) {
@@ -105,7 +105,7 @@ void dShopItemCtrl_c::setRotateAnime(int item_index) {
                 if (i == item_index - 1) {
                     item_rot->y += 0x200;
                 } else {
-                    cLib_addCalcAngleS(&item_rot->y, item->mOrig.mAngle.y, 4, 0x800, 0x80);
+                    cLib_addCalcAngleS(&item_rot->y, item->orig.angle.y, 4, 0x800, 0x80);
                 }
             }
         }

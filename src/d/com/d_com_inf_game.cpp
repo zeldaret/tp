@@ -1343,7 +1343,7 @@ int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* arc_nam
     static int (*l_method[3])(void*) = {(int (*)(void*))phase_1, (int (*)(void*))phase_2,
                                         (int (*)(void*))phase_3};
 
-    if (i_phase->mPhaseStep == cPhs_TWO_e) {
+    if (i_phase->id == cPhs_TWO_e) {
         return cPhs_COMPLEATE_e;
     }
 
@@ -1380,7 +1380,7 @@ int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* resName
     static int (*l_method[3])(void*) = {(int (*)(void*))phase_01, (int (*)(void*))phase_02,
                                         (int (*)(void*))phase_03};
 
-    if (i_phase->mPhaseStep == cPhs_TWO_e) {
+    if (i_phase->id == cPhs_TWO_e) {
         return cPhs_COMPLEATE_e;
     }
 
@@ -1391,12 +1391,12 @@ int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* resName
 /* 8002D008-8002D06C 027948 0064+00 1/1 10/10 540/540 .text
  * dComIfG_resDelete__FP30request_of_phase_process_classPCc     */
 int dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* resName) {
-    if (i_phase->mPhaseStep != cPhs_TWO_e) {
+    if (i_phase->id != cPhs_TWO_e) {
         return 0;
     }
 
     dComIfG_deleteObjectResMain(resName);
-    i_phase->mPhaseStep = cPhs_ZERO_e;
+    i_phase->id = cPhs_ZERO_e;
     return 1;
 }
 
@@ -1471,7 +1471,7 @@ void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer, f3
 
     if (dComIfGs_isPlayerFieldLastStayFieldDataExistFlag() &&
         daPy_getLinkPlayerActorClass() != NULL) {
-        s8 curPoint = (s8)daPy_getLinkPlayerActorClass()->mCurrent.mRoomNo;
+        s8 curPoint = (s8)daPy_getLinkPlayerActorClass()->current.mRoomNo;
         cXyz pos = dMapInfo_n::getMapPlayerPos();
         s16 angle = daPy_getLinkPlayerActorClass()->mCollisionRot.y;
         u8 level = dComIfGp_getNowLevel();
@@ -2235,7 +2235,7 @@ void dComIfGs_setWarpMarkFlag(u8) {
 /* 8002F314-8002F328 029C54 0014+00 0/0 0/0 1/1 .text            __ct__19dComIfG_resLoader_cFv */
 dComIfG_resLoader_c::dComIfG_resLoader_c() {
     field_0x0 = NULL;
-    field_0x4.mPhaseStep = cPhs_ZERO_e;
+    field_0x4.id = cPhs_ZERO_e;
     field_0xc = 0;
 }
 
@@ -2244,7 +2244,7 @@ dComIfG_resLoader_c::~dComIfG_resLoader_c() {
     if (field_0x0 != NULL) {
         for (int i = field_0xc; i >= 0; i--) {
             dComIfG_resDelete(&field_0x4, field_0x0[i]);
-            field_0x4.mPhaseStep = cPhs_TWO_e;
+            field_0x4.id = cPhs_TWO_e;
         }
     }
 }
@@ -2257,7 +2257,7 @@ int dComIfG_resLoader_c::load(char const** param_0, JKRHeap* heap) {
     if (phase_state == cPhs_COMPLEATE_e) {
         if (field_0x0[field_0xc + 1][0] != 0) {
             field_0xc++;
-            field_0x4.mPhaseStep = cPhs_ZERO_e;
+            field_0x4.id = cPhs_ZERO_e;
             phase_state = cPhs_ZERO_e;
         }
     }

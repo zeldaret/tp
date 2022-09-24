@@ -568,10 +568,10 @@ void J2DAnmTexPattern::searchUpdateMaterialID(J2DScreen* pScreen) {
                     }
                 }
                 mTIMGPtrArray[i].mRes = var2;
-                if (var2 != NULL && var2->palettesEnabled) {
+                if (var2 != NULL && var2->indexTexture) {
                     JUTPalette* palette =
-                        new JUTPalette(GX_TLUT0, (_GXTlutFmt)var2->paletteFormat,
-                                       (JUTTransparency)var2->alphaEnabled, var2->paletteCount,
+                        new JUTPalette(GX_TLUT0, (_GXTlutFmt)var2->colorFormat,
+                                       (JUTTransparency)var2->alphaEnabled, var2->numColors,
                                        ((u8*)var2) + var2->paletteOffset);
                     mTIMGPtrArray[i].mPalette = palette;
                 }

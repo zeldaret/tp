@@ -428,7 +428,7 @@ cBgW::cBgW() {
     pm_node_tree = NULL;
     pm_grp = NULL;
     pm_vtx_tbl = NULL;
-    pm_base_mtx = NULL;
+    pm_base = NULL;
 
     PSMTXIdentity(m_inv_mtx);
     PSMTXIdentity(field_0x4c);

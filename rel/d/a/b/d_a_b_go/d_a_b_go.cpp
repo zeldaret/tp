@@ -291,7 +291,7 @@ static int daB_GO_Draw(b_go_class* b_go) {
     if ((*(daB_GO_HIO_c*)l_HIO).mDisplayModelImage) {
         J3DModel* model = b_go->mpMorf->getModel();
 
-        g_env_light.settingTevStruct(0, &b_go->mCurrent.mPosition, &b_go->mTevStr);
+        g_env_light.settingTevStruct(0, &b_go->current.pos, &b_go->mTevStr);
         g_env_light.setLightTevColorType_MAJI(model->getModelData(), &b_go->mTevStr);
         b_go->mpMorf->entryDL();
     }
@@ -433,7 +433,7 @@ static void h_walk(b_go_class* b_go) {
     }
 
     cLib_addCalc2(&b_go->mSpeedF, speed, 1.0f, 1.0f);
-    cLib_addCalcAngleS2(&b_go->mCurrent.mAngle.y, b_go->mAngleToPlayer, 1, 0x200);
+    cLib_addCalcAngleS2(&b_go->current.angle.y, b_go->mAngleToPlayer, 1, 0x200);
 }
 #else
 #pragma push
@@ -531,8 +531,8 @@ static void action(b_go_class* b_go) {
         break;
     }
 
-    cLib_addCalcAngleS2(&b_go->mCollisionRot.y, b_go->mCurrent.mAngle.y, 4, 0x2000);
-    mDoMtx_stack_c::YrotS(b_go->mCurrent.mAngle.y);
+    cLib_addCalcAngleS2(&b_go->mCollisionRot.y, b_go->current.angle.y, 4, 0x2000);
+    mDoMtx_stack_c::YrotS(b_go->current.angle.y);
 
     cXyz speed;
     speed.x = 0.0f;
@@ -544,7 +544,7 @@ static void action(b_go_class* b_go) {
     b_go->mSpeed.x = newSpeed.x;
     b_go->mSpeed.z = newSpeed.z;
 
-    PSVECAdd(&b_go->mCurrent.mPosition, &b_go->mSpeed, &b_go->mCurrent.mPosition);
+    PSVECAdd(&b_go->current.pos, &b_go->mSpeed, &b_go->current.pos);
     b_go->mSpeed.y += b_go->mGravity;
 
     b_go->mAcch.CrrPos(dComIfG_Bgsp());
@@ -578,11 +578,11 @@ static int daB_GO_Execute(b_go_class* b_go) {
     action(b_go);
     damage_check(b_go);
 
-    mDoMtx_stack_c::transS(b_go->mCurrent.mPosition.x, b_go->mCurrent.mPosition.y, b_go->mCurrent.mPosition.z);
+    mDoMtx_stack_c::transS(b_go->current.pos.x, b_go->current.pos.y, b_go->current.pos.z);
     mDoMtx_stack_c::YrotM(b_go->mCollisionRot.y);
     mDoMtx_stack_c::scaleM((*(daB_GO_HIO_c*)l_HIO).mSmallSize, (*(daB_GO_HIO_c*)l_HIO).mSmallSize, (*(daB_GO_HIO_c*)l_HIO).mSmallSize);
     mDoMtx_stack_c::copy(b_go->mpMorf->getModel()->getBaseTRMtx());
-    b_go->mpMorf->play(0, dComIfGp_getReverb(b_go->mCurrent.mRoomNo));
+    b_go->mpMorf->play(0, dComIfGp_getReverb(b_go->current.mRoomNo));
     b_go->mpMorf->modelCalc();
 
     return 1;
@@ -718,11 +718,11 @@ static int daB_GO_Create(fopAc_ac_c* i_actor) {
         b_go->field_0x562 = 1000;
         b_go->field_0x560 = 1000;
 
-        b_go->mAcch.Set(&b_go->mCurrent.mPosition, &b_go->mNext.mPosition, b_go, 1, &b_go->mAcchCir,
+        b_go->mAcch.Set(&b_go->current.pos, &b_go->next.pos, b_go, 1, &b_go->mAcchCir,
                         &b_go->mSpeed, NULL, NULL);
         b_go->mAcchCir.SetWall(100.0f, 300.0f);
 
-        b_go->mZ2Enemy.init(&b_go->mCurrent.mPosition, &b_go->mEyePos, 3, 1);
+        b_go->mZ2Enemy.init(&b_go->current.pos, &b_go->mEyePos, 3, 1);
         b_go->field_0xc9c = &b_go->mZ2Enemy;
 
         b_go->mGravity = -7.0f;
@@ -731,13 +731,13 @@ static int daB_GO_Create(fopAc_ac_c* i_actor) {
         daB_GO_Execute(b_go);
 
         cXyz pos;
-        pos.y = b_go->mCurrent.mPosition.y;
+        pos.y = b_go->current.pos.y;
 
         csXyz angle(0, 0, 0);
 
         for (int i = 0; i < 31; i++) {
-            pos.x = cM_rndFX(500.0f) + b_go->mCurrent.mPosition.x;
-            pos.z = cM_rndFX(500.0f) + b_go->mCurrent.mPosition.z;
+            pos.x = cM_rndFX(500.0f) + b_go->current.pos.x;
+            pos.z = cM_rndFX(500.0f) + b_go->current.pos.z;
             angle.y = cM_rndF(65536.0f);
 
             b_go->mGoronAcID[i] =

@@ -12,7 +12,7 @@ void J3DTexture::loadGX(u16 idx, GXTexMapID texMapID) const {
     ResTIMG* timg = getResTIMG(idx);
     GXTexObj texObj;
 
-    if (!timg->palettesEnabled) {
+    if (!timg->indexTexture) {
         GXInitTexObj(&texObj, ((u8*)timg) + timg->imageOffset, timg->width, timg->height,
                      (GXTexFmt)timg->format, (GXTexWrapMode)timg->wrapS, (GXTexWrapMode)timg->wrapT,
                      (GXBool)timg->mipmapEnabled);
@@ -22,8 +22,8 @@ void J3DTexture::loadGX(u16 idx, GXTexMapID texMapID) const {
         GXInitTexObjCI(&texObj, ((u8*)timg) + timg->imageOffset, timg->width, timg->height,
                        (GXCITexFmt)timg->format, (GXTexWrapMode)timg->wrapS,
                        (GXTexWrapMode)timg->wrapT, (GXBool)timg->mipmapEnabled, (u32)texMapID);
-        GXInitTlutObj(&tlutObj, ((u8*)timg) + timg->paletteOffset, (GXTlutFmt)timg->paletteFormat,
-                      timg->paletteCount);
+        GXInitTlutObj(&tlutObj, ((u8*)timg) + timg->paletteOffset, (GXTlutFmt)timg->colorFormat,
+                      timg->numColors);
         GXLoadTlut(&tlutObj, texMapID);
     }
 

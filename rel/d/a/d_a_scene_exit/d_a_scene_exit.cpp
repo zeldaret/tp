@@ -84,7 +84,7 @@ static int daScex_Create(fopAc_ac_c* ac) {
     }
     daScex_c* scex = static_cast<daScex_c*>(ac);
 
-    mDoMtx_stack_c::transS(scex->mCurrent.mPosition.x, scex->mCurrent.mPosition.y, scex->mCurrent.mPosition.z);
+    mDoMtx_stack_c::transS(scex->current.pos.x, scex->current.pos.y, scex->current.pos.z);
     mDoMtx_stack_c::YrotM(scex->mCollisionRot.y);
     PSMTXInverse(mDoMtx_stack_c::get(), scex->mMatrix);
     scex->mScale.x *= 75.0f;
@@ -149,7 +149,7 @@ int daScex_c::execute() {
     daPy_py_c* player = daPy_getPlayerActorClass();
 
     if (checkWork()) {
-        PSMTXMultVec(mMatrix, &player->mCurrent.mPosition, &spC);
+        PSMTXMultVec(mMatrix, &player->current.pos, &spC);
 
         if (spC.y >= 0.0f && spC.y <= mScale.y && fabsf(spC.x) <= mScale.x && fabsf(spC.z) <= mScale.z) {
             switch (getArg1()) {

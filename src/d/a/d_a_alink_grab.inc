@@ -73,8 +73,8 @@ bool daAlink_c::exchangeGrabActor(fopAc_ac_c* p_actor) {
     actor->mCollisionRot.z = 0;
     actor->mCollisionRot.x = 0;
     if (checkGrabCarryActor()) {
-        actor->mCurrent.mAngle.z = 0;
-        actor->mCurrent.mAngle.x = 0;
+        actor->current.angle.z = 0;
+        actor->current.angle.x = 0;
     }
     setGrabItemActor(p_actor);
     return true;

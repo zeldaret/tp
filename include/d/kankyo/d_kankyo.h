@@ -49,7 +49,7 @@ struct LIGHT_INFLUENCE {
 };
 
 struct WIND_INFLUENCE {
-    /* 0x00 */ cXyz mPosition;
+    /* 0x00 */ cXyz position;
     /* 0x0C */ cXyz mDirection;
     /* 0x18 */ f32 mRadius;
     /* 0x1C */ f32 mStrength;

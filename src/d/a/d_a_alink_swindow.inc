@@ -39,7 +39,7 @@ void daAlink_c::statusWindowExecute(cXyz const* param_0, s16 param_1) {
 /* 80140984-80140AC8 13B2C4 0144+00 0/0 1/1 0/0 .text            statusWindowDraw__9daAlink_cFv */
 void daAlink_c::statusWindowDraw() {
     if (mClothesChangeWaitTimer == 0) {
-        g_env_light.settingTevStruct(12, &mCurrent.mPosition, &mTevStr);
+        g_env_light.settingTevStruct(12, &current.pos, &mTevStr);
         initTevCustomColor();
 
         if (!i_checkWolf()) {

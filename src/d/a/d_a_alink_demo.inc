@@ -1103,7 +1103,7 @@ asm void daAlink_c::procGanonFinishInit() {
 /* 8011EA78-8011EAE8 1193B8 0070+00 1/0 0/0 0/0 .text            procGanonFinish__9daAlink_cFv */
 bool daAlink_c::procGanonFinish() {
     i_onEndResetFlg1(GANON_FINISH);
-    mCurrent.mPosition = field_0x37c8;
+    current.pos = field_0x37c8;
     if (mFrameCtrl1[0].checkAnmEnd()) {
         setSingleAnimeBaseMorf(ANM_GANON_FINISH, lit_6041);
     }
@@ -1140,7 +1140,7 @@ int daAlink_c::procMasterSwordStickInit() {
     setSingleAnimeBase(ANM_MASTER_SWORD_STICK_INIT);
     voiceStart(Z2SE_AL_V_MSTR_SW_STICK);
     mNormalSpeed = FLOAT_LABEL(lit_6108);
-    mCurrent.mAngle.y = mCollisionRot.y;
+    current.angle.y = mCollisionRot.y;
     mCommonCounter = 0;
 
     return 1;
@@ -1202,9 +1202,9 @@ int daAlink_c::procDungeonWarpReadyInit() {
 
     u32 id;
     if (checkItemSetButton(DUNGEON_EXIT) != 2) {
-        id = fopAcM_create(PROC_OBJ_TKS, 0, &mCurrent.mPosition, fopAcM_GetRoomNo(this), &mCollisionRot, NULL, -1);
+        id = fopAcM_create(PROC_OBJ_TKS, 0, &current.pos, fopAcM_GetRoomNo(this), &mCollisionRot, NULL, -1);
     } else {
-        id = fopAcM_create(PROC_NPC_TKC, 2, &mCurrent.mPosition, fopAcM_GetRoomNo(this), &mCollisionRot, NULL, -1);
+        id = fopAcM_create(PROC_NPC_TKC, 2, &current.pos, fopAcM_GetRoomNo(this), &mCollisionRot, NULL, -1);
     }
 
     if (id == -1) {
@@ -1215,7 +1215,7 @@ int daAlink_c::procDungeonWarpReadyInit() {
     commonProcInit(PROC_DUNGEON_WARP_READY);
     setSingleAnimeBase(ANM_DUNGEON_WARP_READY_INIT);
     mNormalSpeed = FLOAT_LABEL(lit_6108);
-    mCurrent.mAngle.y = mCollisionRot.y;
+    current.angle.y = mCollisionRot.y;
     field_0x32cc = id;
     mCommonCounter = 0;
     keepItemData();
@@ -1268,7 +1268,7 @@ int daAlink_c::procDungeonWarp() {
     if (mCommonCounter > 0x4000) {
         mCommonCounter = 0x4000;
     } else {
-        mCurrent.mPosition.y += 1.0f;
+        current.pos.y += 1.0f;
     }
 
     f32 sin = cM_ssin(mCommonCounter);
@@ -1280,7 +1280,7 @@ int daAlink_c::procDungeonWarp() {
     } else {
         if (mCommonCounter == 0x4000) {
             if (field_0x3010 == 0) {
-                dComIfGp_particle_set(0xA61, &mCurrent.mPosition, &mTevStr, NULL, NULL);
+                dComIfGp_particle_set(0xA61, &current.pos, &mTevStr, NULL, NULL);
                 field_0x3010 = 1;
             }
 
@@ -1300,7 +1300,7 @@ int daAlink_c::procDungeonWarp() {
 
                 field_0x3012 = 1;
             }
-            mCurrent.mPosition.y += 5.0f;
+            current.pos.y += 5.0f;
             field_0x2b98 = (1.0f - mScale.y) * 100.0f;
         } else if (mCommonCounter >= 0x2000) {
             cLib_chaseF(&mScale.x, 0.8f, 0.01f);

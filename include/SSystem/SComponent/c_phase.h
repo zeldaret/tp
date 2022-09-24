@@ -17,7 +17,7 @@ enum cPhs__Step {
 
 typedef struct request_of_phase_process_class {
     cPhs__Handler* mpHandlerTable;
-    int mPhaseStep;
+    int id;
 } request_of_phase_process_class;
 
 typedef int (**request_of_phase_process_fn)(void*);

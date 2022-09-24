@@ -283,7 +283,7 @@ void daItem_c::setBaseMtx() {
 
 /* 8015B190-8015B1C8 155AD0 0038+00 1/1 0/0 0/0 .text            setBaseMtx_0__8daItem_cFv */
 void daItem_c::setBaseMtx_0() {
-    mDoMtx_stack_c::transS(mCurrent.mPosition);
+    mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(mCollisionRot);
 }
 
@@ -298,7 +298,7 @@ void daItem_c::setBaseMtx_1() {
     f32 max_y = mpModel->getModelData()->getJointNodePointer(0)->getMax()->y;
     f32 y = max_y * 0.5f * mScale.y;
 
-    mDoMtx_stack_c::transS(mCurrent.mPosition);
+    mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::transM(0.0f, y, 0.0f);
 
     mDoMtx_stack_c::ZXYrotM(mCollisionRot);
@@ -641,12 +641,12 @@ int daItem_c::_daItem_create() {
     }
 
     if (!field_0x95d) {
-        field_0x92c = mOrig.mAngle.x;
-        field_0x92e = mOrig.mAngle.z;
-        mOrig.mAngle.z = 0;
-        mOrig.mAngle.x = 0;
-        mCurrent.mAngle.z = 0;
-        mCurrent.mAngle.x = 0;
+        field_0x92c = orig.angle.x;
+        field_0x92e = orig.angle.z;
+        orig.angle.z = 0;
+        orig.angle.x = 0;
+        current.angle.z = 0;
+        current.angle.x = 0;
         mCollisionRot.z = 0;
         mCollisionRot.x = 0;
 
@@ -714,10 +714,10 @@ int daItem_c::_daItem_execute() {
     field_0x950 = mSpeed;
     CountTimer();
     
-    mEyePos = mCurrent.mPosition;
+    mEyePos = current.pos;
     mEyePos.y += (f32)dItem_data::getH(m_itemNo) * 0.5f;
 
-    mAttentionInfo.mPosition = mCurrent.mPosition;
+    mAttentionInfo.mPosition = current.pos;
 
     if (mCollider.ChkTgHit()) {
         cCcD_Obj* hitObj = mCollider.GetTgHitObj();
@@ -737,13 +737,13 @@ int daItem_c::_daItem_execute() {
     }
 
     if (fopAcM_checkHookCarryNow(this)) {
-        cXyz carry_pos = mCurrent.mPosition;
+        cXyz carry_pos = current.pos;
 
         if (mpModel != NULL) {
             carry_pos.y += 0.5f * mpModel->getModelData()->getJointNodePointer(0)->getMax()->y;
         }
 
-        mDoMtx_stack_c::transS(mCurrent.mPosition);
+        mDoMtx_stack_c::transS(current.pos);
         mDoMtx_stack_c::ZXYrotM(mCollisionRot);
         mDoMtx_stack_c::inverse();
         mDoMtx_stack_c::multVec(&carry_pos, &carry_pos);
@@ -755,11 +755,11 @@ int daItem_c::_daItem_execute() {
     setBaseMtx();
     field_0x978.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
 
-    field_0x96c = mCurrent.mPosition;
+    field_0x96c = current.pos;
     field_0x95f = (fopAcM_checkHookCarryNow(this) >> 0x14) & 1;
 
     if (m_itemNo == ORANGE_RUPEE || m_itemNo == SILVER_RUPEE) {
-        field_0x9ac = mCurrent.mPosition;
+        field_0x9ac = current.pos;
         field_0x9ac.y += 18.0f;
     }
 
@@ -832,7 +832,7 @@ void daItem_c::procMainNormal() {
         }
     }
 
-    mCollider.SetC(mCurrent.mPosition);
+    mCollider.SetC(current.pos);
     dComIfG_Ccsp()->Set(&mCollider);
 }
 
@@ -863,8 +863,8 @@ SECTION_SDATA2 static f32 lit_4404 = 15.0f;
 // literals / addi in wrong place
 #ifdef NONMATCHING
 void daItem_c::procInitSimpleGetDemo() {
-    mCurrent.mPosition = daPy_getPlayerActorClass()->getItemPos();
-    mCurrent.mPosition.y += 15.0f;
+    current.pos = daPy_getPlayerActorClass()->getItemPos();
+    current.pos.y += 15.0f;
     mCollisionRot.z = 0;
     mCollisionRot.x = 0;
     mScale = field_0x930;
@@ -910,7 +910,7 @@ void daItem_c::procInitGetDemoEvent() {
     fopAcM_orderItemEvent(this, 0, 0);
     mEvtInfo.i_onCondition(8);
 
-    m_item_id = fopAcM_createItemForTrBoxDemo(&mCurrent.mPosition, m_itemNo, -1, fopAcM_GetRoomNo(this), NULL, NULL);
+    m_item_id = fopAcM_createItemForTrBoxDemo(&current.pos, m_itemNo, -1, fopAcM_GetRoomNo(this), NULL, NULL);
     setStatus(3);
 }
 
@@ -1006,7 +1006,7 @@ void daItem_c::procMainSwOnWait() {
     if (i_fopAcM_isSwitch(this, field_0x93c)) {
         mAcch.CrrPos(dComIfG_Bgsp());
 
-        if (mAcch.ChkWaterHit() && mAcch.m_wtr.GetHeight() > lit_4070[0] + mOrig.mPosition.y) {
+        if (mAcch.ChkWaterHit() && mAcch.m_wtr.GetHeight() > lit_4070[0] + orig.pos.y) {
             field_0x9c0 = 1;
         }
 
@@ -1115,7 +1115,7 @@ void daItem_c::mode_wait() {
         break;
     }
 
-    if (field_0x9c0 == 0 && mAcch.ChkWaterHit() && mAcch.m_wtr.GetHeight() > mCurrent.mPosition.y) {
+    if (field_0x9c0 == 0 && mAcch.ChkWaterHit() && mAcch.m_wtr.GetHeight() > current.pos.y) {
         mode_water_init();
     }
 
@@ -1132,10 +1132,10 @@ SECTION_SDATA2 static f32 lit_4781 = 1.0f / 10.0f;
 void daItem_c::mode_water() {
     mAcch.CrrPos(dComIfG_Bgsp());
 
-    if (!mAcch.ChkWaterHit() || mAcch.m_wtr.GetHeight() < mCurrent.mPosition.y) {
+    if (!mAcch.ChkWaterHit() || mAcch.m_wtr.GetHeight() < current.pos.y) {
         mode_wait_init();
     } else {
-        mCurrent.mPosition.y = mAcch.m_wtr.GetHeight();
+        current.pos.y = mAcch.m_wtr.GetHeight();
     }
 
     f32 var_f1 = 1.0f;
@@ -1160,7 +1160,7 @@ void daItem_c::mode_water() {
         break;
     }
 
-    fopAcM_effHamonSet(&field_0x9b8, &mCurrent.mPosition, var_f1, 0.1f);
+    fopAcM_effHamonSet(&field_0x9b8, &current.pos, var_f1, 0.1f);
     RotateYBase();
 }
 #else
@@ -1176,7 +1176,7 @@ asm void daItem_c::mode_water() {
 
 /* 8015CE94-8015CEEC 1577D4 0058+00 1/0 0/0 0/0 .text            setTevStr__8daItem_cFv */
 void daItem_c::setTevStr() {
-    g_env_light.settingTevStruct(0, &mCurrent.mPosition, &mTevStr);
+    g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
     g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
 }
 
@@ -1323,7 +1323,7 @@ bool daItem_c::checkPlayerGet() {
 // matches with literals
 #ifdef NONMATCHING
 void daItem_c::checkYogan() {
-    if (mAcch.ChkWaterHit() && mAcch.m_wtr.GetHeight() > mCurrent.mPosition.y + 100.0f) {
+    if (mAcch.ChkWaterHit() && mAcch.m_wtr.GetHeight() > current.pos.y + 100.0f) {
         if (dComIfG_Bgsp().GetPolyAtt0(mAcch.m_wtr) == 6) {
             deleteItem();
         }
@@ -1528,8 +1528,8 @@ asm void daItem_c::initSpeed(int param_0) {
 
 /* 8015DE38-8015DE50 158778 0018+00 1/1 0/0 0/0 .text            initAngle__8daItem_cFv */
 void daItem_c::initAngle() {
-    mCurrent.mAngle.z = 0;
-    mCurrent.mAngle.x = 0;
+    current.angle.z = 0;
+    current.angle.x = 0;
     mCollisionRot.z = 0;
     mCollisionRot.x = 0;
 }

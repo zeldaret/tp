@@ -13,8 +13,8 @@ public:
     u8 getArg1() { return (fopAcM_GetParam(this) >> 8) & 0xFF; }
     u8 getArg0() { return fopAcM_GetParam(this); }
     u32 getSwNo() { return fopAcM_GetParam(this) >> 0x18; }
-    u16 getOffEventBit() { return mOrig.mAngle.z & 0xFFF; }
-    u16 getOnEventBit() { return mOrig.mAngle.x & 0xFFF; }
+    u16 getOffEventBit() { return orig.angle.z & 0xFFF; }
+    u16 getOnEventBit() { return orig.angle.x & 0xFFF; }
     void setSceneChangeOK() { mSceneChangeOK = true; }
 
     /* 0x568 */ Mtx mMatrix;

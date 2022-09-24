@@ -89,7 +89,7 @@ public:
 
     void callExecute() {
         (this->*mAction[1])();
-        i_mDoAud_seStartLevel(Z2SE_OBJ_DARK_GATE, &mCurrent.mPosition, 0, 0);
+        i_mDoAud_seStartLevel(Z2SE_OBJ_DARK_GATE, &current.pos, 0, 0);
     }
 
     int execute() {
@@ -755,7 +755,7 @@ void daTagTWGate_c::executeDemoFilone3() {
                 daPy_py_c* player = daPy_getPlayerActorClass();
                 csXyz sxyz(0, player->mCollisionRot.y + 0x8000, 0);
 
-                mDoMtx_stack_c::transS(player->mCurrent.mPosition);
+                mDoMtx_stack_c::transS(player->current.pos);
                 mDoMtx_stack_c::YrotM(sxyz.y);
                 mDoMtx_stack_c::transM(0.0f, 240.0f, -710.0f);
                 
@@ -1014,13 +1014,13 @@ void daTagTWGate_c::initBaseMtx() {
     fopAc_ac_c* player = (fopAc_ac_c*)dComIfGp_getPlayer(0);
 
     mCollisionRot.y = player->mCollisionRot.y + 0x8000;
-    mDoMtx_stack_c::transS(player->mCurrent.mPosition);
+    mDoMtx_stack_c::transS(player->current.pos);
     mDoMtx_stack_c::YrotM(mCollisionRot.y);
     mDoMtx_stack_c::transM(0.0f, 250.0f, -840.0f);
 
-    mCurrent.mPosition.x = mDoMtx_stack_c::get()[0][3];
-    mCurrent.mPosition.y = mDoMtx_stack_c::get()[1][3];
-    mCurrent.mPosition.z = mDoMtx_stack_c::get()[2][3];
+    current.pos.x = mDoMtx_stack_c::get()[0][3];
+    current.pos.y = mDoMtx_stack_c::get()[1][3];
+    current.pos.z = mDoMtx_stack_c::get()[2][3];
 
     mpMorf->getModel()->i_setBaseTRMtx(mDoMtx_stack_c::get());
 }
@@ -1134,11 +1134,11 @@ static int daTagTWGate_Create(fopAc_ac_c* i_actor) {
 inline daTagTWGate_c::~daTagTWGate_c() {
     dComIfG_resDelete(&mPhaseZevArc, l_zevParamTbl[mType].mArcName);
 
-    if (mPhaseMdRes.mPhaseStep != cPhs_ZERO_e) {
+    if (mPhaseMdRes.id != cPhs_ZERO_e) {
         dComIfG_resDelete(&mPhaseMdRes, "TWGate_Md");
     }
 
-    if (mPhasePyRes.mPhaseStep != cPhs_ZERO_e) {
+    if (mPhasePyRes.id != cPhs_ZERO_e) {
         dComIfG_resDelete(&mPhasePyRes, mIsWolf ? "TWGate_Wf" : "TWGate_Lk");
     }
 }

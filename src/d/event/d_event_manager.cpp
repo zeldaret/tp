@@ -1149,7 +1149,7 @@ static fopAc_ac_c* findShutterCallBack(fopAc_ac_c* pActor, void* param_1) {
         return NULL;
     }
 
-    cXyz diff = pActor->mOrig.mPosition - prms->mActor->mOrig.mPosition;
+    cXyz diff = pActor->orig.pos - prms->mActor->orig.pos;
     if (diff.x < 10 && diff.x > -10 && diff.y < 10 && diff.y > -10 && diff.z < 10 && diff.z > -10) {
         return pActor;
     }
@@ -1166,8 +1166,8 @@ fopAc_ac_c* dEvent_manager_c::specialCast_Shutter(s16 bsTypeId, int param_1) {
         (fopAc_ac_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)findShutterCallBack, &prms);
 
     if (shutterActor != NULL && param_1 != 0) {
-        cXyz goal(shutterActor->mOrig.mPosition);
-        s16 angle = prms.mActor->mOrig.mAngle.y + 0x8000;
+        cXyz goal(shutterActor->orig.pos);
+        s16 angle = prms.mActor->orig.angle.y + 0x8000;
         goal.x += cM_ssin(angle) * 100;
         goal.z += cM_scos(angle) * 100;
         setGoal(&goal);
