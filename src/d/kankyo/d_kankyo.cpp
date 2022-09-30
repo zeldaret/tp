@@ -5,14 +5,14 @@
 
 #include "d/kankyo/d_kankyo.h"
 #include "MSL_C/MSL_Common/Src/mem.h"
+#include "SSystem/SComponent/c_counter.h"
+#include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/kankyo/d_kankyo_data.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_audio.h"
-#include "SSystem/SComponent/c_math.h"
-#include "SSystem/SComponent/c_counter.h"
 
 //
 // Types:
@@ -835,13 +835,12 @@ SECTION_SDATA2 static f32 lit_4529 = 0.5f;
  * dKy_GXInitLightDistAttn__FP12J3DLightInfoffUc                */
 // matches with literals
 #ifdef NONMATCHING
-static void dKy_GXInitLightDistAttn(J3DLightInfo* i_info, f32 param_1, f32 param_2,
-                                        u8 param_3) {
+static void dKy_GXInitLightDistAttn(J3DLightInfo* i_info, f32 param_1, f32 param_2, u8 param_3) {
     f32 temp_f3;
     f32 var_f0;
     f32 var_f4;
     f32 var_f5;
-    
+
     if (param_1 < 0.0f) {
         param_3 = 0;
     }
@@ -850,7 +849,7 @@ static void dKy_GXInitLightDistAttn(J3DLightInfo* i_info, f32 param_1, f32 param
         param_3 = 0;
     }
 
-    switch (param_3) {                               /* irregular */
+    switch (param_3) { /* irregular */
     case 1:
         var_f4 = 1.0f;
         var_f5 = (1.0f - param_2) / (param_2 * param_1);
@@ -981,7 +980,7 @@ static f32 fl_data_ratio_set(f32 param_0, f32 param_1, f32 param_2) {
 
 /* 8019D7A0-8019D878 1980E0 00D8+00 3/3 0/0 0/0 .text float_kankyo_color_ratio_set__Fffffffff */
 static f32 float_kankyo_color_ratio_set(f32 param_0, f32 param_1, f32 param_2, f32 param_3,
-                                             f32 param_4, f32 param_5, f32 param_6, f32 param_7) {
+                                        f32 param_4, f32 param_5, f32 param_6, f32 param_7) {
     f32 temp_f1;
     f32 temp_f31;
 
@@ -1178,7 +1177,8 @@ static asm void plight_set() {
 static void bgparts_activelight_init() {
     dScnKy_env_light_c* light = i_dKy_getEnvlight();
 
-    for (int i = 0; i < 2; i++) {}
+    for (int i = 0; i < 2; i++) {
+    }
     light->mBGpartsActiveLight[0].mIndex = 0;
 }
 #else
@@ -1318,7 +1318,7 @@ static void envcolor_init() {
     g_env_light.mInitAnmTimer = 1;
     g_env_light.mSchBit = 0;
     g_env_light.mSchbitTimer = 0;
-    
+
     g_env_light.mVrboxInvisible = false;
     g_env_light.mContrastFlag = 0;
     g_env_light.mFogAdjEnable = true;
@@ -1391,7 +1391,8 @@ static void envcolor_init() {
     g_env_light.mColpatWeather = 0;
     g_env_light.field_0xecc = 0.0f;
 
-    if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") || !strcmp(dComIfGp_getStartStageName(), "R_SP127")) {
+    if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") ||
+        !strcmp(dComIfGp_getStartStageName(), "R_SP127")) {
         if (g_env_light.field_0x12cc >= 7) {
             g_env_light.mColpatWeather = 2;
         } else if (g_env_light.field_0x12cc != 0) {
@@ -1410,7 +1411,8 @@ static void envcolor_init() {
     g_env_light.mRainCountOrig = 0;
     g_env_light.field_0x12a0 = 0;
     g_env_light.mDiceWeatherMode = 0;
-    g_env_light.mDiceWeatherChangeTime = dComIfGs_getTime() + (cM_rndF(g_Counter.mCounter0 & 0x1F) * 15.0f);
+    g_env_light.mDiceWeatherChangeTime =
+        dComIfGs_getTime() + (cM_rndF(g_Counter.mCounter0 & 0x1F) * 15.0f);
     if (g_env_light.mDiceWeatherChangeTime >= 360.0f) {
         g_env_light.mDiceWeatherChangeTime -= 360.0f;
     }
@@ -1514,7 +1516,7 @@ void dKy_clear_game_init() {
     g_env_light.mNexttime = -1.0f;
     g_env_light.mTime = -1.0f;
     g_env_light.mDarkDaytime = 120.0f;
-    
+
     g_env_light.mDarktimeWeek = 0;
     g_env_light.field_0x12fe = 0;
     g_env_light.field_0x130a = 0;
@@ -2990,7 +2992,8 @@ SND_INFLUENCE* dKy_Sound_get() {
 void dKy_SordFlush_set(cXyz param_0, int param_1) {
     dScnKy_env_light_c* light = i_dKy_getEnvlight();
 
-    if (!dKy_darkworld_check() && (light->mThunderEff.mStateTimer >= 10 || light->mThunderEff.field_0x8 <= 0.0f)) {
+    if (!dKy_darkworld_check() &&
+        (light->mThunderEff.mStateTimer >= 10 || light->mThunderEff.field_0x8 <= 0.0f)) {
         if (g_env_light.mSwordLight.mState == 0) {
             g_env_light.mSwordLight.mState = 1;
             g_env_light.mSwordLight.mLightType = param_1;
@@ -3064,7 +3067,8 @@ asm void dKy_GfFog_tevstr_set(dKy_tevstr_c* param_0) {
 /* 801A87A0-801A87E4 1A30E0 0044+00 3/3 0/0 0/0 .text            GxXFog_set__Fv */
 static void GxXFog_set() {
     dKyd_xfog_table_set(g_env_light.mFogAdjTableType);
-    GXSetFogRangeAdj((GXBool)g_env_light.mFogAdjEnable, g_env_light.mFogAdjCenter, &g_env_light.mXFogTbl);
+    GXSetFogRangeAdj((GXBool)g_env_light.mFogAdjEnable, g_env_light.mFogAdjCenter,
+                     &g_env_light.mXFogTbl);
 }
 
 /* 801A87E4-801A880C 1A3124 0028+00 0/0 0/0 52/52 .text            dKy_change_colpat__FUc */
@@ -3310,8 +3314,8 @@ static asm void dKy_ParticleColor_get_base(cXyz* param_0, dKy_tevstr_c* param_1,
 /* 801A9BE4-801A9CBC 1A4524 00D8+00 0/0 3/3 0/0 .text
  * dKy_ParticleColor_get_actor__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf */
 void dKy_ParticleColor_get_actor(cXyz* param_0, dKy_tevstr_c* param_1, _GXColor* param_2,
-                                     _GXColor* param_3, _GXColor* param_4, _GXColor* param_5,
-                                     f32 param_6) {
+                                 _GXColor* param_3, _GXColor* param_4, _GXColor* param_5,
+                                 f32 param_6) {
     if (param_1 != NULL) {
         *param_2 = NewAmbColGet(&param_1->mColorC0);
     } else {
@@ -3324,8 +3328,8 @@ void dKy_ParticleColor_get_actor(cXyz* param_0, dKy_tevstr_c* param_1, _GXColor*
 /* 801A9CBC-801A9D60 1A45FC 00A4+00 0/0 6/6 0/0 .text
  * dKy_ParticleColor_get_bg__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf */
 void dKy_ParticleColor_get_bg(cXyz* param_0, dKy_tevstr_c* param_1, _GXColor* param_2,
-                                  _GXColor* param_3, _GXColor* param_4, _GXColor* param_5,
-                                  f32 param_6) {
+                              _GXColor* param_3, _GXColor* param_4, _GXColor* param_5,
+                              f32 param_6) {
     *param_2 = NewAmbColGet(&g_env_light.mTerrainAmbienceBG0);
     dKy_ParticleColor_get_base(param_0, param_1, param_2, param_3, param_4, param_5, param_6);
 }
@@ -3370,8 +3374,8 @@ SECTION_SDATA2 static f32 lit_9677 = 1.5f;
  * dKy_WolfEyeLight_set__FP4cXyzfffP8_GXColorfUcUc              */
 // matches with literals
 #ifdef NONMATCHING
-int dKy_WolfEyeLight_set(cXyz* param_0, f32 param_1, f32 param_2, f32 param_3,
-                              GXColor* param_4, f32 param_5, u8 param_6, u8 param_7) {
+int dKy_WolfEyeLight_set(cXyz* param_0, f32 param_1, f32 param_2, f32 param_3, GXColor* param_4,
+                         f32 param_5, u8 param_6, u8 param_7) {
     dScnKy_env_light_c* light = i_dKy_getEnvlight();
 
     light->field_0x0c18[0].mPos = *param_0;

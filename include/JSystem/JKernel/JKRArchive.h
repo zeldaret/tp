@@ -135,8 +135,6 @@ public:
 
     u32 getMountMode() const { return mMountMode; }
     SDIFileEntry* findNameResource(const char*) const;
-
-protected:
     bool isSameName(CArcName&, u32, u16) const;
     SDIDirEntry* findResType(u32) const;
     SDIDirEntry* findDirectory(const char*, u32) const;

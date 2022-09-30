@@ -37,6 +37,8 @@ public:
     mDoExt_transAnmBas(void* bas) { mBas = bas; }
     virtual ~mDoExt_transAnmBas();
 
+    void* getBas() { return mBas; }
+
 private:
     /* 0x28 */ void* mBas;
 };
@@ -151,7 +153,8 @@ private:
 
 class mDoExt_blkAnm : public mDoExt_baseAnm {
 public:
-    /* 8000DA08 */ void init(J3DDeformData*, J3DAnmCluster*, int, int, f32, s16, s16);
+    /* 8000DA08 */ int init(J3DDeformData* i_deformData, J3DAnmCluster* i_blk, int i_anmPlay,
+                            int i_attribute, f32 i_rate, s16 i_start, s16 param_6);
 
 private:
     /* 0x14 */ J3DAnmCluster* mpAnm;
@@ -180,6 +183,12 @@ public:
     /* 80012220 */ virtual void draw();
     /* 8000E5F8 */ virtual ~mDoExt_invJntPacket();
 
+    void setJoint(J3DModel* i_model, u16 param_1, u8 param_2) {
+        field_0x10 = i_model;
+        field_0x14 = param_1;
+        field_0x16 = param_2;
+    }
+
 private:
     /* 0x10 */ J3DModel* field_0x10;
     /* 0x14 */ u16 field_0x14;
@@ -188,12 +197,12 @@ private:
 
 class mDoExt_invisibleModel {
 public:
-    /* 8000E53C */ void create(J3DModel*, u8);
+    /* 8000E53C */ int create(J3DModel*, u8);
     /* 8000E6C8 */ void entryJoint(cXyz*);
     /* 8000E7C0 */ void entryDL(cXyz*);
 
     /* 0x0 */ J3DModel* mModel;
-    /* 0x4 */ mDoExt_invJntPacket* field_0x4;
+    /* 0x4 */ mDoExt_invJntPacket* mpPackets;
 };
 
 class mDoExt_zelAnime : public Z2SoundObjAnime {};
@@ -216,6 +225,8 @@ public:
     /* 8000FAE8 */ virtual ~mDoExt_morf_c();
 
     void setPlaySpeed(f32 speed) { mFrameCtrl.setRate(speed); }
+
+    f32 getPlaySpeed() { return mFrameCtrl.getRate(); }
     f32 getFrame() { return mFrameCtrl.getFrame(); }
 
     bool isStop() {
@@ -229,7 +240,7 @@ public:
     /* 0x04 */ J3DModel* mpModel;
     /* 0x08 */ J3DAnmTransform* mpAnm;
     /* 0x0C */ J3DFrameCtrl mFrameCtrl;
-    /* 0x20 */ J3DTransformInfo** mpTransformInfo;
+    /* 0x20 */ J3DTransformInfo* mpTransformInfo;
     /* 0x24 */ Quaternion* mpQuat;
     /* 0x28 */ f32 mCurMorf;
     /* 0x2C */ f32 mPrevMorf;
@@ -242,11 +253,10 @@ public:
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
                                     mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, int, f32, int,
                                     int, Z2Creature*, u32, u32);
-    /* 800108F0 */ void create(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
-                               mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, int, f32, int, int,
-                               Z2Creature*, u32, u32);
+    /* 800108F0 */ int create(J3DModelData*, mDoExt_McaMorfCallBack1_c*, mDoExt_McaMorfCallBack2_c*,
+                              J3DAnmTransform*, int, f32, int, int, Z2Creature*, u32, u32);
     /* 80010E70 */ void setAnm(J3DAnmTransform*, int, f32, f32, f32, f32);
-    /* 800110B0 */ void play(u32, s8);
+    /* 800110B0 */ int play(u32, s8);
     /* 80011154 */ void updateDL();
     /* 800111C0 */ void entryDL();
     /* 800111EC */ void modelCalc();
@@ -308,7 +318,7 @@ public:
     /* 800116B4 */ void ERROR_EXIT();
     /* 80011D70 */ void setAnm(J3DAnmTransform*, J3DAnmTransform*, f32, int, f32, f32, f32, f32);
     /* 80011FCC */ void setAnmRate(f32);
-    /* 800120A0 */ void play(u32, s8);
+    /* 800120A0 */ int play(u32, s8);
     /* 80012144 */ void entryDL();
     /* 80012170 */ void modelCalc();
     /* 800121E8 */ void stopZelAnime();
@@ -345,23 +355,44 @@ private:
     /* 0x20 */ Quaternion* mOldFrameQuaternion;
 };  // Size: 0x24
 
-struct mDoExt_MtxCalcAnmBlendTblOld {
-    /* 8000F4B0 */ void calc();
-    /* 80014EB0 */ ~mDoExt_MtxCalcAnmBlendTblOld();
-};
+struct mDoExt_MtxCalcAnmBlendTblOld
+    : public J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya> {
+    /* 80014EB0 */ virtual ~mDoExt_MtxCalcAnmBlendTblOld();
+    /* 8000F4B0 */ virtual void calc();
 
-struct mDoExt_MtxCalcAnmBlendTbl {
-    /* 8000F26C */ void calc();
+    /* 0x4 */ int mNum;
+    /* 0x8 */ mDoExt_AnmRatioPack* mAnmRatio;
+};  // Size: 0xC
+
+struct mDoExt_MtxCalcAnmBlendTbl : public mDoExt_MtxCalcAnmBlendTblOld {
     /* 800D00BC */ void getAnm(int);
-    /* 80014F3C */ ~mDoExt_MtxCalcAnmBlendTbl();
+
+    /* 80014F3C */ virtual ~mDoExt_MtxCalcAnmBlendTbl();
+    /* 8000F26C */ virtual void calc();
+
+    /* 0xC */ mDoExt_MtxCalcOldFrame* mOldFrame;
 };
 
-struct mDoExt_3Dline_c {
+class mDoExt_3Dline_c {
+public:
     /* 800123D0 */ void init(u16, int, int);
     /* 800126BC */ mDoExt_3Dline_c();
+
+    /* 0x00 */ cXyz* field_0x0;
+    /* 0x04 */ void* field_0x4;
+    /* 0x08 */ cXyz* field_0x8;
+    /* 0x0C */ cXyz* field_0xc;
+    /* 0x10 */ void* field_0x10;
+    /* 0x14 */ void* field_0x14;
+    /* 0x18 */ f32* field_0x18;
+    /* 0x1C */ f32* field_0x1c;
 };
 
-struct mDoExt_3DlineMat_c {};
+class mDoExt_3DlineMat_c {
+public:
+    /* 0x0 */ void* field_0x0;
+    /* 0x4 */ mDoExt_3DlineMat_c* field_0x4;
+};
 
 class mDoExt_3DlineMatSortPacket : public J3DPacket {
 public:
@@ -376,57 +407,80 @@ private:
 };
 
 class dKy_tevstr_c;
-struct mDoExt_3DlineMat1_c {
+class mDoExt_3DlineMat1_c : public mDoExt_3DlineMat_c {
+public:
     /* 80013360 */ void init(u16, u16, ResTIMG*, int);
     /* 800134F8 */ void setMaterial();
     /* 800135D0 */ void draw();
-    /* 80013FB0 */ void update(int, _GXColor&, dKy_tevstr_c*);
-    /* 8001373C */ void update(int, f32, _GXColor&, u16, dKy_tevstr_c*);
-    /* 80014E7C */ bool getMaterialID();
+    /* 80013FB0 */ void update(int, GXColor&, dKy_tevstr_c*);
+    /* 8001373C */ void update(int, f32, GXColor&, u16, dKy_tevstr_c*);
+    /* 80014E7C */ int getMaterialID();
+
+private:
+    /* 0x08 */ GXTexObj field_0x8;
+    /* 0x28 */ GXColor field_0x28;
+    /* 0x2C */ dKy_tevstr_c* field_0x2c;
+    /* 0x30 */ u16 field_0x30;
+    /* 0x32 */ u16 field_0x32;
+    /* 0x34 */ u16 field_0x34;
+    /* 0x36 */ u8 field_0x36;
+    /* 0x38 */ mDoExt_3Dline_c* field_0x38;
 };
 
-struct mDoExt_3DlineMat0_c {
+class mDoExt_3DlineMat0_c : public mDoExt_3DlineMat_c {
+public:
     /* 800125E0 */ void init(u16, u16, int);
     /* 800126C0 */ void setMaterial();
     /* 80012774 */ void draw();
     /* 80012874 */ void update(int, f32, _GXColor&, u16, dKy_tevstr_c*);
     /* 80012E3C */ void update(int, _GXColor&, dKy_tevstr_c*);
-    /* 80014E84 */ bool getMaterialID();
+    /* 80014E84 */ int getMaterialID();
+
+private:
+    /* 0x08 */ GXColor field_0x8;
+    /* 0x0C */ dKy_tevstr_c* field_0xc;
+    /* 0x10 */ u16 field_0x10;
+    /* 0x12 */ u16 field_0x12;
+    /* 0x14 */ u16 field_0x14;
+    /* 0x16 */ u8 field_0x16;
+    /* 0x18 */ mDoExt_3Dline_c* field_0x18;
 };
 
-JKRSolidHeap* mDoExt_createSolidHeapFromGame(u32, u32);
-void mDoExt_destroySolidHeap(JKRSolidHeap*);
-u32 mDoExt_adjustSolidHeap(JKRSolidHeap*);
+JKRSolidHeap* mDoExt_createSolidHeapFromGame(u32 i_size, u32 i_alignment);
+void mDoExt_destroySolidHeap(JKRSolidHeap* i_heap);
+u32 mDoExt_adjustSolidHeap(JKRSolidHeap* i_heap);
 void mDoExt_restoreCurrentHeap();
 JKRExpHeap* mDoExt_getGameHeap();
-void mDoExt_destroySolidHeap(JKRSolidHeap*);
-JKRHeap* mDoExt_setCurrentHeap(JKRHeap*);
+void mDoExt_destroySolidHeap(JKRSolidHeap* i_heap);
+JKRHeap* mDoExt_setCurrentHeap(JKRHeap* i_heap);
 JKRExpHeap* mDoExt_getArchiveHeap();
 JKRExpHeap* mDoExt_getArchiveHeapPtr();
-void mDoExt_destroyExpHeap(JKRExpHeap*);
+void mDoExt_destroyExpHeap(JKRExpHeap* i_heap);
 JKRAssertHeap* mDoExt_getAssertHeap();
 JKRExpHeap* mDoExt_getCommandHeap();
 JKRExpHeap* mDoExt_getZeldaHeap();
 JKRExpHeap* mDoExt_getJ2dHeap();
 JKRExpHeap* mDoExt_getHostIOHeap();
 JKRExpHeap* mDoExt_getDbPrintHeap();
-JKRExpHeap* mDoExt_createDbPrintHeap(u32 param_0, JKRHeap* param_1);
-JKRAssertHeap* mDoExt_createAssertHeap(JKRHeap* param_0);
-JKRExpHeap* mDoExt_createCommandHeap(u32 param_0, JKRHeap* param_1);
-JKRExpHeap* mDoExt_createArchiveHeap(u32 param_0, JKRHeap* param_1);
-JKRExpHeap* mDoExt_createJ2dHeap(u32 param_0, JKRHeap* param_1);
-JKRExpHeap* mDoExt_createZeldaHeap(u32 param_0, JKRHeap* param_1);
-JKRExpHeap* mDoExt_createGameHeap(u32 param_0, JKRHeap* param_1);
-JKRSolidHeap* mDoExt_createSolidHeapToCurrent(JKRHeap**, u32, JKRHeap*, u32);
-JKRSolidHeap* mDoExt_createSolidHeapToCurrent(u32, JKRHeap*, u32);
-JKRSolidHeap* mDoExt_createSolidHeapFromGameToCurrent(u32, u32);
-JKRSolidHeap* mDoExt_createSolidHeapFromGameToCurrent(JKRHeap**, u32, u32);
-u32 mDoExt_adjustSolidHeapToSystem(JKRSolidHeap* pHeap);
+JKRExpHeap* mDoExt_createDbPrintHeap(u32 heapSize, JKRHeap* i_heap);
+JKRAssertHeap* mDoExt_createAssertHeap(JKRHeap* i_heap);
+JKRExpHeap* mDoExt_createCommandHeap(u32 heapSize, JKRHeap* i_heap);
+JKRExpHeap* mDoExt_createArchiveHeap(u32 heapSize, JKRHeap* i_heap);
+JKRExpHeap* mDoExt_createJ2dHeap(u32 heapSize, JKRHeap* i_heap);
+JKRExpHeap* mDoExt_createZeldaHeap(u32 heapSize, JKRHeap* i_heap);
+JKRExpHeap* mDoExt_createGameHeap(u32 heapSize, JKRHeap* i_heap);
+JKRSolidHeap* mDoExt_createSolidHeapToCurrent(JKRHeap** o_heap, u32 i_size, JKRHeap* i_parent,
+                                              u32 i_alignment);
+JKRSolidHeap* mDoExt_createSolidHeapToCurrent(u32 i_size, JKRHeap* i_parent, u32 i_alignment);
+JKRSolidHeap* mDoExt_createSolidHeapFromGameToCurrent(u32 i_size, u32 i_alignment);
+JKRSolidHeap* mDoExt_createSolidHeapFromGameToCurrent(JKRHeap** o_heap, u32 i_size,
+                                                      u32 i_alignment);
+u32 mDoExt_adjustSolidHeapToSystem(JKRSolidHeap* i_heap);
 JKRHeap* mDoExt_getCurrentHeap();
 void mDoExt_removeMesgFont();
-void mDoExt_modelUpdateDL(J3DModel*);
-J3DModel* mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void mDoExt_setAraCacheSize(u32 param_0);
+void mDoExt_modelUpdateDL(J3DModel* i_model);
+J3DModel* mDoExt_J3DModel__create(J3DModelData* i_modelData, u32 param_1, u32 param_2);
+void mDoExt_setAraCacheSize(u32 size);
 int mDoExt_resIDToIndex(JKRArchive* p_archive, u16 id);
 
 struct JUTFont;

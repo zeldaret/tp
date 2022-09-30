@@ -306,6 +306,9 @@ public:
     void setXluList2DScreen() { setXluDrawList(mDrawBuffers[DB_LIST_2D_SCREEN]); }
 
     void peekZdata() { mPeekZ.peekData(); }
+    void entryZSortListZxlu(J3DPacket* i_packet, cXyz& param_1) {
+        entryZSortXluDrawList(mDrawBuffers[DB_LIST_Z_XLU], i_packet, param_1);
+    }
 
     int setSimpleShadow(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3, s16 param_4,
                         f32 param_5, _GXTexObj* param_6) {

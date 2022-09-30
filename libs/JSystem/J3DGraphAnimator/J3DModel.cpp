@@ -242,7 +242,7 @@ asm s32 J3DModel::createMatPacket(J3DModelData* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DModel::newDifferedDisplayList(u32 param_0) {
+asm s32 J3DModel::newDifferedDisplayList(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DModel/newDifferedDisplayList__8J3DModelFUl.s"
 }

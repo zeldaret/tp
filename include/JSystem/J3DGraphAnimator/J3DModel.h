@@ -28,12 +28,16 @@ typedef void (*J3DCalcCallBack)(J3DModel*, u32 timing);
 
 class J3DModel {
 public:
+    J3DModel() {
+        initialize();
+    }
+
     /* 800CFFF4 */ void setBaseTRMtx(f32 (*)[4]);
     /* 80327100 */ void initialize();
     /* 80327184 */ s32 entryModelData(J3DModelData*, u32, u32);
     /* 80327300 */ s32 createShapePacket(J3DModelData*);
     /* 803273CC */ s32 createMatPacket(J3DModelData*, u32);
-    /* 803275FC */ void newDifferedDisplayList(u32);
+    /* 803275FC */ s32 newDifferedDisplayList(u32);
     /* 8032767C */ void lock();
     /* 803276B4 */ void unlock();
     /* 803279A0 */ void diff();

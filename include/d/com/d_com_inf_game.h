@@ -1744,6 +1744,14 @@ inline void dComIfGp_setLastPlayStageName(char* name) {
     g_dComIfG_gameInfo.play.setLastPlayStageName(name);
 }
 
+inline char* dComIfGp_getLastPlayStageName() {
+    return g_dComIfG_gameInfo.play.getLastPlayStageName();
+}
+
+inline u8 dComIfGp_getGameoverStatus() {
+    return g_dComIfG_gameInfo.play.getGameoverStatus();
+}
+
 inline u32 dComIfGp_getNowVibration() {
     return g_dComIfG_gameInfo.play.getNowVibration();
 }
@@ -2587,6 +2595,10 @@ inline void dComIfGd_setViewport(view_port_class* port) {
     g_dComIfG_gameInfo.drawlist.setViewport(port);
 }
 
+inline void dComIfGd_entryZSortListZxlu(J3DPacket* i_packet, cXyz& param_1) {
+    g_dComIfG_gameInfo.drawlist.entryZSortListZxlu(i_packet, param_1);
+}
+
 inline daPy_py_c* daPy_getLinkPlayerActorClass() {
     return dComIfGp_getLinkPlayer();
 }
@@ -2597,14 +2609,6 @@ inline daPy_py_c* daPy_getPlayerActorClass() {
 
 inline daAlink_c* daAlink_getAlinkActorClass() {
     return (daAlink_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR);
-}
-
-inline char* dComIfGp_getLastPlayStageName() {
-    return g_dComIfG_gameInfo.play.getLastPlayStageName();
-}
-
-inline u8 dComIfGp_getGameoverStatus() {
-    return g_dComIfG_gameInfo.play.getGameoverStatus();
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

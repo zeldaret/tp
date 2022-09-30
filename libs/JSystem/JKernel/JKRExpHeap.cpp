@@ -226,7 +226,7 @@ SECTION_DATA extern void* __vt__10JKRExpHeap[24] = {
  */
 JKRExpHeap::JKRExpHeap(void* data, u32 size, JKRHeap* parent, bool errorFlag)
     : JKRHeap(data, size, parent, errorFlag) {
-    field_0x6c = 0;
+    mAllocMode = 0;
     mCurrentGroupId = 0xff;
     mHeadFreeList = (CMemBlock*)data;
     mTailFreeList = mHeadFreeList;
@@ -308,7 +308,7 @@ void* JKRExpHeap::allocFromHead(u32 size, int align) {
         foundSize = block->getSize();
         foundBlock = block;
         foundOffset = offset;
-        if (field_0x6c != 0) {
+        if (mAllocMode != 0) {
             break;
         }
         u32 blockSize = block->getSize();
@@ -397,7 +397,7 @@ void* JKRExpHeap::allocFromHead(u32 size) {
         }
         foundSize = block->getSize();
         foundBlock = block;
-        if (field_0x6c != 0) {
+        if (mAllocMode != 0) {
             break;
         }
         if (foundSize == size) {
