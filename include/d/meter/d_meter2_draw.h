@@ -9,6 +9,12 @@
 #include "d/pane/d_pane_class.h"
 #include "dolphin/types.h"
 
+enum dMeter2Draw_actionFlag {
+    /* 0x0 */ ACTION_FLG_DEFAULT,
+    /* 0x2 */ ACTION_FLG_EMPHASIS = 2,
+    /* 0x4 */ ACTION_FLG_CONTINUATION = 4,
+};
+
 enum dMeter2Draw_actionID {
     /* 0x00 */ ACTION_STR_NONE,
     /* 0x01 */ ACTION_STR_LET_GO,

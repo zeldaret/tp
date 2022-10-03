@@ -73,7 +73,7 @@ public:
     /* 0x20 */ virtual u16 getDescent() const = 0;
     /* 0x24 */ virtual s32 getHeight() const = 0;
     /* 0x28 */ virtual s32 getWidth() const = 0;
-    /* 0x2C */ virtual void getWidthEntry(int i_no, TWidth* width) const;
+    /* 0x2C */ virtual void getWidthEntry(int i_no, TWidth* width) const = 0;
     /* 0x30 */ virtual int getCellWidth() const;
     /* 0x34 */ virtual u16 getCellHeight() const;
     /* 0x38 */ virtual u16 getFontType() const = 0;

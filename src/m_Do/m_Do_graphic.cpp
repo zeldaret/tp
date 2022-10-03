@@ -176,7 +176,7 @@ static ResTIMG* createTimg(u16 width, u16 height, u32 format) {
         timg->minFilter = GX_LINEAR;
         timg->magFilter = GX_LINEAR;
         timg->mipmapCount = 1;
-        timg->texDataOffset = 0x20;
+        timg->imageOffset = 0x20;
     }
     return timg;
 }

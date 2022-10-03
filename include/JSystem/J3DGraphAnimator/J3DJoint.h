@@ -63,6 +63,7 @@ public:
     Vec* getMax() { return &mMax; }
     Vec* getMin() { return &mMin; }
     void setCallBack(J3DJointCallBack callback) { mCallBack = callback; }
+    void setMtxCalc(J3DMtxCalc* i_mtxCalc) { mMtxCalc = i_mtxCalc; }
 
     static J3DMtxCalc* mCurrentMtxCalc;
 

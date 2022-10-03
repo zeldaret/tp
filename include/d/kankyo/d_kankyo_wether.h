@@ -21,6 +21,7 @@ f32 dKyw_get_wind_pow();
 static void squal_proc();
 void dKyw_rain_set(int count);
 void dKyw_wind_set();
+cXyz dKyw_get_wind_vecpow();
 
 class dKankyo_sun_Packet : public J3DPacket {
 public:
@@ -92,7 +93,6 @@ public:
     virtual void draw();
     virtual ~dKankyo_rain_Packet();
 
-private:
     /* 0x0010 */ u8* mpTex;
     /* 0x0014 */ u8* mpTex2;
     /* 0x0018 */ RAIN_EFF mRainEff[250];
@@ -145,7 +145,9 @@ struct STAR_EFF {
     /* 0x00 */ u8 field_0x0[4];
     /* 0x04 */ cXyz field_0x04;
     /* 0x10 */ cXyz field_0x10;
-    /* 0x1C */ u8 field_0x1c[0x18];
+    /* 0x1C */ u8 field_0x1c[12];
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ u8 field_0x2c[8];
 };  // Size: 0x34
 
 class dKankyo_star_Packet : public J3DPacket {
@@ -153,9 +155,9 @@ public:
     virtual void draw();
     virtual ~dKankyo_star_Packet();
 
-private:
     /* 0x10 */ u8* field_0x10;
-    /* 0x14 */ STAR_EFF field_0x14[1];
+    /* 0x14 */ STAR_EFF mEffect[1];
+    /* 0x48 */ s16 mEffectNum;
 };
 
 struct HOUSI_EFF {
@@ -273,10 +275,11 @@ public:
     virtual void draw();
     virtual ~dKankyo_mud_Packet();
 
-    /* 0x0010 */ int field_0x10;
-    /* 0x0014 */ u8* field_0x14;
-    /* 0x0018 */ EF_MUD_EFF field_0x18[100];
-    /* 0x13C8 */ u8 field_0x13c8[8];
+    /* 0x0010 */ int mEffectNum;
+    /* 0x0014 */ u8* mpMoyaRes;
+    /* 0x0018 */ EF_MUD_EFF mEffect[100];
+    /* 0x1C38 */ u8 field_0x1c38[4];
+    /* 0x1C3C */ f32 field_0x1c3c;
 };
 
 struct EF_EVIL_EFF {
@@ -295,10 +298,10 @@ public:
     virtual void draw();
     virtual ~dKankyo_evil_Packet();
 
-    /* 0x00010 */ int field_0x10;
-    /* 0x00014 */ u8* field_0x14;
-    /* 0x00018 */ u8 field_0x18[4];
-    /* 0x0001C */ EF_EVIL_EFF field_0x1c[2000];
+    /* 0x00010 */ int mEffectNum;
+    /* 0x00014 */ u8* mpMoyaRes;
+    /* 0x00018 */ u8* mpKumoLightRes;
+    /* 0x0001C */ EF_EVIL_EFF mEffect[2000];
     /* 0x2135C */ u8 field_0x2135c[8];
 };
 

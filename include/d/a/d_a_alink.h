@@ -174,32 +174,153 @@ struct daAlink_WlAnmData {
     /* 0x7 */ u8 field_0x7;
 };  // Size: 0x8
 
+class daAlinkHIO_wolf_c {
+public:
+    /* 80140B98 */ ~daAlinkHIO_wolf_c();
+};
+
+class daAlinkHIO_cut_c {
+public:
+    /* 80140BD4 */ ~daAlinkHIO_cut_c();
+};
+
+class daAlinkHIO_c {
+public:
+    /* 80140B88 */ daAlinkHIO_c();
+    /* 80140C10 */ ~daAlinkHIO_c();
+};
+
 class daAlink_c;
 typedef int (daAlink_c::*daAlink_procFunc)();
 
 class daAlink_c : public daPy_py_c {
 public:
     enum daAlink_ANM {
-        /* 0x013 */ ANM_DASH = 19,
+        /* 0x001 */ ANM_ATN_L_WALK_FORWARD = 1,
+
+        /* 0x003 */ ANM_ATN_WALK_BACK = 3,
+
+        /* 0x005 */ ANM_ATN_L_WALK_BACK = 5,
+        /* 0x006 */ ANM_ATN_HEAVY_WALK_LEFT,
+        /* 0x007 */ ANM_ATN_READY_LEFT,
+        /* 0x008 */ ANM_ATN_HEAVY_WALK_RIGHT,
+        /* 0x009 */ ANM_ATN_READY_RIGHT,
+        /* 0x00A */ ANM_ATN_WALK_LEFT,
+        /* 0x00B */ ANM_ATN_L_WALK_LEFT,
+        /* 0x00C */ ANM_ATN_WALK_RIGHT,
+        /* 0x00D */ ANM_ATN_L_WALK_RIGHT,
+        /* 0x00E */ ANM_HEAVY_WALK,
+        /* 0x00F */ ANM_ATN_HEAVY_WALK_BACK,
+        /* 0x010 */ ANM_HOOKSHOT_AIM,
+        /* 0x011 */ ANM_BOW_AIM,
+
+        /* 0x013 */ ANM_RUN = 19,
+
         /* 0x015 */ ANM_WAIT_TURN = 0x15,
-        /* 0x019 */ ANM_IDLE = 0x19,  // name might be inaccurate
+
+        /* 0x019 */ ANM_IDLE = 0x19,  // name might be inaccurate, subjectivity
+
         /* 0x01B */ ANM_WAIT_INIT = 0x1B,
+
         /* 0x01D */ ANM_SIDE_STEP_LEFT = 0x1D,
         /* 0x01E */ ANM_SIDE_STEP_RIGHT,
         /* 0x01F */ ANM_SIDE_STEP_LEFT_LAND,
         /* 0x020 */ ANM_SIDE_STEP_RIGHT_LAND,
-        /* 0x021 */ ANM_BACK_JUMP = 0x21,
+        /* 0x021 */ ANM_BACK_JUMP,
         /* 0x022 */ ANM_BACK_JUMP_LAND,
         /* 0x023 */ ANM_FRONT_ROLL,
         /* 0x024 */ ANM_ROLL_CRASH,
-        /* 0x071 */ ANM_CUT_JUMP = 0x71,
+        /* 0x025 */ ANM_BARRIER_RECOIL,
+        /* 0x026 */ ANM_BACKFLIP,
+        /* 0x027 */ ANM_BACKFLIP_LAND,
+
+        /* 0x02C */ ANM_SHIELD_GUARD = 0x2C,
+
+        /* 0x02E */ ANM_SHIELD_ATTACK = 0x2E,
+        /* 0x02F */ ANM_SHIELD_ATTACK_RECOIL,
+
+        /* 0x033 */ ANM_FALL_LAND = 0x33, // ?
+
+        /* 0x036 */ ANM_PUSH_PULL_READY = 0x36,
+        /* 0x037 */ ANM_PUSH,
+
+        /* 0x03A */ ANM_PULL = 0x3A,
+
+        /* 0x062 */ ANM_CUT_NM_VERTICAL = 0x62,
+        /* 0x063 */ ANM_CUT_NM_LEFT,
+        /* 0x064 */ ANM_CUT_NM_RIGHT,
+        /* 0x065 */ ANM_CUT_COMBO_STAB,
+        /* 0x066 */ ANM_CUT_NM_STAB,
+        /* 0x067 */ ANM_CUT_FINISH_LEFT,
+        /* 0x068 */ ANM_CUT_FINISH_VERTICAL,
+        /* 0x069 */ ANM_CUT_FINISH_STAB,
+
+        /* 0x06C */ ANM_CUT_FINISH_RIGHT = 0x6C,
+        /* 0x06D */ ANM_CUT_TWIRL,
+        /* 0x06E */ ANM_CUT_TWIRL_LAND,
+        /* 0x06F */ ANM_CUT_RECOIL_1,
+        /* 0x070 */ ANM_CUT_RECOIL_2,
+        /* 0x071 */ ANM_CUT_JUMP,
+        /* 0x072 */ ANM_CUT_JUMP_LAND,
+        /* 0x073 */ ANM_CUT_TURN_LEFT,
+        /* 0x074 */ ANM_CUT_TURN_RIGHT,
+        /* 0x075 */ ANM_CUT_TURN_CHARGE_INIT,
+        /* 0x076 */ ANM_CUT_TURN_CHARGE,
+
+        /* 0x078 */ ANM_CUT_FINISHING_BLOW_JUMP = 0x78,
+        /* 0x079 */ ANM_CUT_FINISHING_BLOW_FALL,
+        /* 0x07A */ ANM_CUT_FINISHING_BLOW_STAB,
+
+        /* 0x07C */ ANM_CUT_HEAD_JUMP = 0x7C,
+        /* 0x07D */ ANM_CUT_HEAD,
+        /* 0x07E */ ANM_CUT_HEAD_LAND,
+        /* 0x07F */ ANM_DMG_SMALL,
+
+        /* 0x083 */ ANM_DMG_AIR = 0x83,
+        /* 0x084 */ ANM_DMG_LARGE,
+
+        /* 0x087 */ ANM_DMG_AIR_LAND = 0x87,
+        /* 0x088 */ ANM_DMG_LARGE_LAND,
+
+        /* 0x08C */ ANM_DMG_LARGE_UP_INIT = 0x8C,
+        /* 0x08D */ ANM_DMG_LARGE_UP,
+
         /* 0x090 */ ANM_SERVICE_WAIT = 0x90,
+        /* 0x091 */ ANM_CLIMB_JUMP,
+        /* 0x092 */ ANM_HANG_READY,
+        /* 0x093 */ ANM_CLIMB_TOP_SMALL,
+        /* 0x094 */ ANM_HANG_CLIMB_TOP,
+        /* 0x095 */ ANM_HANG_ONE_HAND,
+        /* 0x096 */ ANM_HANG_ONE_HAND_MOVE,
+        /* 0x097 */ ANM_HANG_MOVE_LEFT,
+        /* 0x098 */ ANM_HANG_MOVE_RIGHT,
+
+        /* 0x0A2 */ ANM_CLIMB_READY = 0xA2,
+        /* 0x0A3 */ ANM_CLIMB_UP_RIGHT,
+        /* 0x0A4 */ ANM_CLIMB_UP_LEFT,
+        /* 0x0A5 */ ANM_CLIMB_MOVE_LEFT,
+        /* 0x0A6 */ ANM_CLIMB_MOVE_RIGHT,
+        /* 0x0A7 */ ANM_FALL_ONE_HAND_GRAB,
+
+        /* 0x0AF */ ANM_PICK_UP_INIT = 0xAF,
+        /* 0x0B0 */ ANM_PICK_UP,
+        /* 0x0B1 */ ANM_THROW_SMALL,
+        /* 0x0B2 */ ANM_THROW_LARGE,
+        /* 0x0B3 */ ANM_PICK_UP_LARGE_INIT,
+        /* 0x0B4 */ ANM_PICK_UP_LARGE,
+
         /* 0x0B6 */ ANM_TIRED_WAIT = 0xB6,
         /* 0x0B7 */ ANM_TIRED_WAIT_INIT,
+        /* 0x0B8 */ ANM_NPC_SPEAK,
+
+        /* 0x0BB */ ANM_BOOMERANG_CATCH = 0xBB,
+
         /* 0x0BD */ ANM_FORWARD_SLIDE = 0xBD,
         /* 0x0BE */ ANM_BACKWARD_SLIDE,
         /* 0x0BF */ ANM_BACKWARD_SLIDE_LAND,
         /* 0x0C0 */ ANM_FORWARD_SLIDE_LAND,
+
+        /* 0x0CE */ ANM_SWIM_FREEZE = 0xCE,
 
         /* 0x0D7 */ ANM_BOARD_SPINNER = 0xD7,
 
@@ -213,12 +334,41 @@ public:
 
         /* 0x0FD */ ANM_TRANSFORM_WOLF = 0xFD,  // verify
 
+        /* 0x100 */ ANM_BOTTLE_DRINK_OPEN = 0x100,
+        /* 0x101 */ ANM_BOTTLE_DRINK,
+        /* 0x102 */ ANM_BOTTLE_DRINK_END,
+
+        /* 0x107 */ ANM_BOTTLE_SWING = 0x107,
+        /* 0x108 */ ANM_GRASS_WHISTLE_GRAB,
+
+        /* 0x10B */ ANM_LANTERN_SWING = 0x10B,
+        /* 0x10C */ ANM_OIL_BOTTLE_POUR_INIT,
+        /* 0x10D */ ANM_OIL_BOTTLE_POUR,
+        /* 0x10E */ ANM_OIL_BOTTLE_POUR_END,
+
+        /* 0x110 */ ANM_GRASS_WHISTLE_PLAY = 0x110,
+        /* 0x111 */ ANM_HAWK_CATCH,
+        /* 0x112 */ ANM_HAWK_SUBJECT,
+
+        /* 0x129 */ ANM_HOOKSHOT_PULL_TO = 0x129,
+
+        /* 0x12B */ ANM_HOOKSHOT_SHOOT = 0x12B,
+
+        /* 0x13E */ ANM_BOOTS_EQUIP = 0x13E,
+
+        /* 0x181 */ ANM_CHAIN_PICK_UP = 0x181,
+        /* 0x182 */ ANM_CHAIN_PULL,
+
         /* 0x188 */ ANM_DUNGEON_WARP_READY_INIT = 0x188,
 
-        /* 0x18D */ ANM_CUT_JUMP_LARGE = 0x18D,  // verify
-        /* 0x18F */ ANM_MASTER_SWORD_STICK_INIT = 0x18F,
+        /* 0x18B */ ANM_CUT_JUMP_LARGE_CHARGE = 0x18B,
+        /* 0x18C */ ANM_CUT_JUMP_LARGE_INIT,
+        /* 0x18D */ ANM_CUT_JUMP_LARGE,
+        /* 0x18E */ ANM_CUT_JUMP_LARGE_LAND,
+        /* 0x18F */ ANM_MASTER_SWORD_STICK_INIT,
         /* 0x190 */ ANM_MASTER_SWORD_STICK,
         /* 0x191 */ ANM_MASTER_SWORD_PULL_INIT,
+
         /* 0x198 */ ANM_GANON_FINISH = 408,  // name probably wrong, fix later
     };
 
@@ -690,7 +840,7 @@ public:
     /* 8009FFF8 */ void calcHairAngle(s16*);
     /* 800A002C */ void setHairAngle(cXyz*, f32, f32);
     /* 800A0744 */ void setLookPosFromOut(cXyz*);
-    /* 800A07D8 */ void checkAttentionPosAngle(cXyz*);
+    /* 800A07D8 */ bool checkAttentionPosAngle(cXyz*);
     /* 800A0868 */ void checkActorPosAngle(fopAc_ac_c*, cXyz**);
     /* 800A093C */ void getNeckAimPos(cXyz*, int*, int);
     /* 800A142C */ void getNeckAimAngle(cXyz*, s16*, s16*, s16*, s16*);
@@ -710,10 +860,10 @@ public:
     /* 800A3CE4 */ void setIdxMask(u16*, u16*);
     /* 800A3D0C */ void* getAnimeResource(daPy_anmHeap_c*, u16, u32);
     /* 800A3D7C */ J3DModel* initModel(J3DModelData*, u32, u32);
-    /* 800A3E30 */ void initModel(u16, u32);
-    /* 800A3E98 */ void initModelEnv(u16, u32);
-    /* 800A3F00 */ void initDemoModel(J3DModel**, char const*, u32);
-    /* 800A3F98 */ void initDemoBck(mDoExt_bckAnm**, char const*);
+    /* 800A3E30 */ J3DModel* initModel(u16, u32);
+    /* 800A3E98 */ J3DModel* initModelEnv(u16, u32);
+    /* 800A3F00 */ int initDemoModel(J3DModel**, char const*, u32);
+    /* 800A3F98 */ static int initDemoBck(mDoExt_bckAnm**, char const*);
     /* 800A4068 */ int createHeap();
     /* 800A4910 */ void setSelectEquipItem(int);
     /* 800A4BC8 */ BOOL checkBoarStart();
@@ -971,13 +1121,13 @@ public:
     /* 800C0678 */ static bool checkCastleTownUseItem(u16);
     /* 800C077C */ void changeItemTriggerKeepProc(u8, int);
     /* 800C0A9C */ void checkNewItemChange(u8);
-    /* 800C12DC */ void deleteEquipItem(int, int);
+    /* 800C12DC */ void deleteEquipItem(int playSound, int deleteKantera);
     /* 800C1704 */ void setLight();
     /* 800C1CEC */ void setFrontRollCrashShock(u8);
     /* 800C1E0C */ void changeWarpMaterial(daAlink_c::daAlink_WARP_MAT_MODE);
-    /* 800C1F6C */ void commonProcInit(daAlink_c::daAlink_PROC);
-    /* 800C2DA4 */ BOOL commonProcInitNotSameProc(daAlink_PROC);
-    /* 800C2DDC */ void procPreActionUnequipInit(int, fopAc_ac_c*);
+    /* 800C1F6C */ void commonProcInit(daAlink_c::daAlink_PROC procID);
+    /* 800C2DA4 */ BOOL commonProcInitNotSameProc(daAlink_PROC procID);
+    /* 800C2DDC */ int procPreActionUnequipInit(int, fopAc_ac_c*);
     /* 800C2EAC */ void procPreActionUnequip();
     /* 800C3098 */ int procServiceWaitInit();
     /* 800C30F0 */ int procServiceWait();
@@ -1910,8 +2060,8 @@ public:
     /* 80111724 */ void procKandelaarPour();
     /* 80111784 */ void setGrassWhistleModel(int);
     /* 8011181C */ void setHorseWhistleModel();
-    /* 80111894 */ void procGrassWhistleGetInit();
-    /* 801119D8 */ void procGrassWhistleGet();
+    /* 80111894 */ int procGrassWhistleGetInit();
+    /* 801119D8 */ int procGrassWhistleGet();
     /* 80111A9C */ void procGrassWhistleWaitInit(int, int, int, s16, cXyz*);
     /* 80111CA4 */ void procGrassWhistleWait();
     /* 80111FF0 */ void procCoHorseCallWaitInit(int);
@@ -2590,6 +2740,7 @@ public:
     const daAlink_AnmData* getAnmData(daAlink_ANM anmID) const { return &m_anmDataTable[anmID]; }
 
     BOOL i_checkReinRide() const { return mRideStatus == 1 || mRideStatus == 2; }
+    int getGrassHowlEventActor() const { return field_0x3198; }
 
     bool checkFishingCastMode() const {
         bool var_r5;
@@ -2627,7 +2778,13 @@ public:
         return initModel(p_modelData, 0x80000, param_1);
     }
 
+    J3DModel* initModelEnv(J3DModelData* p_modelData, u32 param_1) {
+        return initModel(p_modelData, 0, param_1);
+    }
+
     bool checkWindSpeedOnXZ() const { return field_0x35b8.abs2XZ() > 1.0f; }
+
+    bool checkResetRootMtx(int param_0) const { return field_0x2f90 != 0 && param_0 == 1; }
 
     inline void startRestartRoomFromOut(int, u32, int);
     inline u16 getReadyItem();
@@ -2654,34 +2811,34 @@ private:
     /* 0x00644 */ char* mShieldArcName;
     /* 0x00648 */ JKRExpHeap* field_0x0648;
     /* 0x0064C */ J3DModelData* field_0x064C;
-    /* 0x00650 */ J3DModel* field_0x0650;
-    /* 0x00654 */ J3DModel* field_0x0654;
-    /* 0x00658 */ J3DModel* field_0x0658;
+    /* 0x00650 */ J3DModel* mpLinkModel;
+    /* 0x00654 */ J3DModel* mpLinkFaceModel;
+    /* 0x00658 */ J3DModel* mpLinkHatModel;
     /* 0x0065C */ J3DModel* field_0x065c;
-    /* 0x00660 */ J3DModel* field_0x0660;
-    /* 0x00664 */ J3DModel* field_0x0664;
-    /* 0x00668 */ J3DModel* field_0x0668;
-    /* 0x0066C */ J3DModel* field_0x066c;
-    /* 0x00670 */ J3DModel* field_0x0670;
-    /* 0x00674 */ J3DModel* field_0x0674;
+    /* 0x00660 */ J3DModel* mpSwAModel;  // Ordon Sword model
+    /* 0x00664 */ J3DModel* mpSwASheathModel;  // Ordon Sword sheath model
+    /* 0x00668 */ J3DModel* mpSwMModel;  // Master Sword model
+    /* 0x0066C */ J3DModel* mpSwMSheathModel;  // Master Sword sheath model
+    /* 0x00670 */ J3DModel* mWoodSwordModel;
+    /* 0x00674 */ J3DModel* mpWlChangeModel;
     /* 0x00678 */ J3DModel* mShieldModel;
     /* 0x0067C */ J3DAnmBase* field_0x067c;
     /* 0x00680 */ J3DAnmBase* field_0x0680;
-    /* 0x00684 */ J3DModel* field_0x0684;
-    /* 0x00688 */ J3DModel* field_0x0688;
+    /* 0x00684 */ J3DModel* mpDemoFCBlendModel;
+    /* 0x00688 */ J3DModel* mpDemoFCTongueModel;
     /* 0x0068C */ J3DAnmBase* field_0x068c;
-    /* 0x00690 */ mDoExt_baseAnm** field_0x0690;
-    /* 0x00694 */ J3DDeformData* field_0x0694;
+    /* 0x00690 */ mDoExt_bckAnm* mpDemoFCTmpBck;
+    /* 0x00694 */ J3DDeformData* mpDemoFCTmpBls;
     /* 0x00698 */ void* field_0x0698;
     /* 0x0069C */ void* field_0x069c;
-    /* 0x006A0 */ J3DModel* field_0x06a0;
-    /* 0x006A4 */ mDoExt_bckAnm* field_0x06a4;
-    /* 0x006A8 */ J3DModel* field_0x06a8;
-    /* 0x006AC */ mDoExt_bckAnm* field_0x06ac;
-    /* 0x006B0 */ mDoExt_bckAnm* field_0x06b0;
+    /* 0x006A0 */ J3DModel* mpDemoHLTmpModel;
+    /* 0x006A4 */ mDoExt_bckAnm* mpDemoHLTmpBck;
+    /* 0x006A8 */ J3DModel* mpDemoHRTmpModel;
+    /* 0x006AC */ mDoExt_bckAnm* mpDemoHRTmpBck;
+    /* 0x006B0 */ mDoExt_bckAnm* mpDemoHDTmpBck;
     /* 0x006B4 */ J3DAnmTransform* field_0x06b4;
     /* 0x006B8 */ J3DModel* mSwordModel;
-    /* 0x006BC */ J3DModel* field_0x06bc;
+    /* 0x006BC */ J3DModel* mSheathModel;
     /* 0x006C0 */ J3DModelData* field_0x06c0;
     /* 0x006C4 */ J3DAnmTextureSRTKey* m_nSwordBtk;
     /* 0x006C8 */ J3DAnmTextureSRTKey* m_mSwordBtk;
@@ -2697,13 +2854,13 @@ private:
     /* 0x006F0 */ J3DShape* field_0x06f0;
     /* 0x006F4 */ J3DAnmBase* field_0x06f4;
     /* 0x006F8 */ J3DAnmBase* field_0x06f8;
-    /* 0x006FC */ J3DModel* field_0x06fc;
+    /* 0x006FC */ J3DModel* field_0x06fc;  // related to human link
     /* 0x00700 */ J3DModel* field_0x0700;
     /* 0x00704 */ J3DAnmBase* field_0x0704;
     /* 0x00708 */ J3DModel* mHeldItemModel;
-    /* 0x0070C */ J3DModel* field_0x070c;
-    /* 0x00710 */ J3DModel* field_0x0710;
-    /* 0x00714 */ J3DModel* field_0x0714;
+    /* 0x0070C */ J3DModel* field_0x070c;  // related to held item
+    /* 0x00710 */ J3DModel* field_0x0710;  // related to held item
+    /* 0x00714 */ J3DModel* field_0x0714;  // related to held item
     /* 0x00718 */ J3DAnmBase* field_0x0718;
     /* 0x0071C */ J3DAnmBase* field_0x071c;
     /* 0x00720 */ J3DAnmBase* field_0x0720;
@@ -2719,14 +2876,17 @@ private:
     /* 0x0077C */ dBgS_ObjLinChk* mpHookshotLinChk;
     /* 0x00780 */ u8 field_0x780[4];
     /* 0x00784 */ J3DModel* field_0x784[2];
-    /* 0x0078C */ u8 field_0x78c[0x10];
-    /* 0x0079C */ u32 field_0x79c;
-    /* 0x007A0 */ u32 field_0x7a0;
-    /* 0x007A4 */ u32 field_0x7a4;
-    /* 0x007A8 */ u32 field_0x7a8;
+    /* 0x0078C */ J3DModel* mpWlChain1Model;
+    /* 0x00790 */ J3DModel* mpWlChain2Model;
+    /* 0x00794 */ J3DModel* mpWlChain3Model;
+    /* 0x00798 */ J3DModel* mpWlChain4Model;
+    /* 0x0079C */ J3DModel* field_0x79c;  // related to wolf
+    /* 0x007A0 */ J3DModel* mpWlMidnaHatModel;
+    /* 0x007A4 */ J3DModel* field_0x7a4;  // related to wolf
+    /* 0x007A8 */ J3DModel* mpWlMidnaHairModel;
     /* 0x007AC */ u8 field_0x7ac[0x10];
     /* 0x007BC */ mDoExt_bckAnm* m_sWindowBck;
-    /* 0x007C0 */ u8 field_0x7c0[4];
+    /* 0x007C0 */ u32 mpWarpTexData;
     /* 0x007C4 */ daPy_actorKeep_c mWolfLockAcKeep[10];
     /* 0x00814 */ dCcD_Stts field_0x814;
     /* 0x00850 */ dCcD_Cyl field_0x850[3];
@@ -2734,8 +2894,8 @@ private:
     /* 0x00FB8 */ dCcD_Sph field_0xFB8;
     /* 0x010F0 */ dCcD_Cyl field_0x10F0;
     /* 0x0122C */ dCcD_Cps field_0x122C[3];
-    /* 0x015F8 */ dCcD_Cps field_0x15F8;
-    /* 0x0173C */ dCcD_Stts field_0x173c;
+    /* 0x015F8 */ dCcD_Cps mGuardAttackAtCps;
+    /* 0x0173C */ dCcD_Stts field_0x173c;  // related to ball and chain
     /* 0x01778 */ dCcD_Sph field_0x1778;
     /* 0x018B0 */ dBgS_AcchCir field_0x18B0[3];
     /* 0x01970 */ dBgS_LinkAcch mLinkAcch;
@@ -2752,7 +2912,8 @@ private:
     /* 0x01E4C */ cBgS_PolyInfo mPolyInfo4;
     /* 0x01E5C */ dBgS_ObjLinChk mObjLinChk;
     /* 0x01ECC */ dBgS_ObjGndChk mObjGndChk;
-    /* 0x01F20 */ u8 field_0x1f20[8];
+    /* 0x01F20 */ mDoExt_MtxCalcAnmBlendTblOld* field_0x1f20;
+    /* 0x01F24 */ mDoExt_MtxCalcAnmBlendTblOld* field_0x1f24;
     /* 0x01F28 */ mDoExt_AnmRatioPack field_0x1f28[3];
     /* 0x01F40 */ mDoExt_AnmRatioPack mNowAnmPack[3];
     /* 0x01F58 */ daPy_anmHeap_c mUnderAnime[3];
@@ -2767,12 +2928,13 @@ private:
     /* 0x0212C */ daPy_anmHeap_c mAnmHeap6;
     /* 0x02140 */ daPy_anmHeap_c mAnmHeap7;
     /* 0x02154 */ mDoExt_bckAnm field_0x2154;
-    /* 0x02170 */ u8 field_0x2170[0x18];
+    /* 0x02170 */ u8 field_0x2170[0x10];
+    /* 0x02180 */ daAlink_matAnm_c* field_0x2180[2];
     /* 0x02188 */ dEyeHL_c mEyeHL1;
     /* 0x0219C */ dEyeHL_c mEyeHL2;
     /* 0x021B0 */ daPy_anmHeap_c mItemHeap[2];
     /* 0x021D8 */ daPy_anmHeap_c mAnmHeap9;
-    /* 0x021EC */ u8 field_0x21ec[4];
+    /* 0x021EC */ daAlinkHIO_c* mpHIO;
     /* 0x021F0 */ daAlink_blur_c m_swordBlur;
     /* 0x027C8 */ dAlink_bottleWaterPcallBack_c field_0x27c8;
     /* 0x027E0 */ dAttention_c* mAttention;
@@ -2780,7 +2942,7 @@ private:
     /* 0x027E8 */ dAttList_c* mAttList2;
     /* 0x027EC */ fopAc_ac_c* mTargetedActor;
     /* 0x027F0 */ fopAc_ac_c* field_0x27f0;
-    /* 0x027F4 */ kytag05_class* field_0x27f4;
+    /* 0x027F4 */ fopAc_ac_c* field_0x27f4;
     /* 0x027F8 */ fopAc_ac_c* field_0x27f8;
     /* 0x027FC */ fopAc_ac_c* field_0x27fc;
     /* 0x02800 */ daTagMmsg_c* mMidnaMsg;
@@ -3298,22 +3460,6 @@ struct daAlinkHIO_basic_c1 {
     /* 0x4C */ f32 mSandSurfaceSpeed;
     /* 0x50 */ f32 mTransformBlockNearDis;
     /* 0x54 */ f32 mTransformBlockFarDis;
-};
-
-class daAlinkHIO_wolf_c {
-public:
-    /* 80140B98 */ ~daAlinkHIO_wolf_c();
-};
-
-class daAlinkHIO_cut_c {
-public:
-    /* 80140BD4 */ ~daAlinkHIO_cut_c();
-};
-
-class daAlinkHIO_c {
-public:
-    /* 80140B88 */ daAlinkHIO_c();
-    /* 80140C10 */ ~daAlinkHIO_c();
 };
 
 class daAlinkHIO_basic_c0 {

@@ -111,11 +111,11 @@ asm bool daAlink_c::checkSpinnerTriggerAttack() {
 void daAlink_c::setSpinnerSyncPos() {
     daSpinner_c* spinner = (daSpinner_c*)mRideAcKeep.getActor();
 
-    mDoMtx_multVecZero(spinner->getModelMtx(), &mCurrent.mPosition);
+    mDoMtx_multVecZero(spinner->getModelMtx(), &current.pos);
     mDoMtx_stack_c::ZXYrotS(spinner->mCollisionRot);
     mDoMtx_stack_c::YrotM(mCollisionRot.y - spinner->mCollisionRot.y);
     mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &mCollisionRot);
-    field_0x37a4 = spinner->mCurrent.mPosition;
+    field_0x37a4 = spinner->current.pos;
 }
 
 /* 8010DC64-8010DDCC 1085A4 0168+00 1/1 0/0 0/0 .text            procSpinnerReadyInit__9daAlink_cFv
@@ -124,7 +124,7 @@ void daAlink_c::setSpinnerSyncPos() {
 #ifdef NONMATCHING
 int daAlink_c::procSpinnerReadyInit() {
     fopAc_ac_c* spinner = (fopAc_ac_c*)fopAcM_fastCreate(
-        PROC_SPINNER, daSpinner_c::getWaitArg(), &mCurrent.mPosition, fopAcM_GetRoomNo(this),
+        PROC_SPINNER, daSpinner_c::getWaitArg(), &current.pos, fopAcM_GetRoomNo(this),
         &mCollisionRot, NULL, -1, NULL, NULL);
 
     if (spinner == NULL) {
@@ -144,9 +144,9 @@ int daAlink_c::procSpinnerReadyInit() {
     seStartOnlyReverb(Z2SE_AL_SPINNER_START);
 
     field_0x2f99 = 15;
-    deleteEquipItem(1, 1);
+    deleteEquipItem(TRUE, TRUE);
 
-    mCurrent.mAngle.y = mCollisionRot.y;
+    current.angle.y = mCollisionRot.y;
     field_0x3588 = l_waitBaseAnime;
     field_0x33b0 = field_0x3588.y;
     field_0x34d4 = l_waitBaseAnime;
@@ -173,15 +173,15 @@ int daAlink_c::procSpinnerReady() {
         return checkNextAction(0);
     }
 
-    mCurrent.mPosition.x = spinner->mCurrent.mPosition.x;
-    mCurrent.mPosition.z = spinner->mCurrent.mPosition.z;
+    current.pos.x = spinner->current.pos.x;
+    current.pos.z = spinner->current.pos.z;
 
     mCommonCounter--;
     field_0x2f99 = 15;
 
-    if ((mCommonCounter < 0 && mCurrent.mPosition.y <= spinner->getModelMtx()[1][3]) ||
+    if ((mCommonCounter < 0 && current.pos.y <= spinner->getModelMtx()[1][3]) ||
         mCommonCounter < -30) {
-        mCurrent.mPosition.y = spinner->getModelMtx()[1][3];
+        current.pos.y = spinner->getModelMtx()[1][3];
         procSpinnerWaitInit();
     }
 
@@ -216,7 +216,7 @@ int daAlink_c::procSpinnerWaitInit() {
     field_0x3198 = ANM_SPINNER_RIDE;
     field_0x33b0 = 70.0f;
     field_0x3012 = 0;
-    field_0x37a4 = mRideAcKeep.getActor()->mCurrent.mPosition;
+    field_0x37a4 = mRideAcKeep.getActor()->current.pos;
 
     return 1;
 }
@@ -264,7 +264,7 @@ int daAlink_c::procSpinnerWait() {
                 mCollisionRot.y -= angle;
             }
 
-            mCurrent.mAngle.y = mCollisionRot.y;
+            current.angle.y = mCollisionRot.y;
             field_0x300e = mCollisionRot.y;
         }
     } else {
@@ -282,18 +282,18 @@ int daAlink_c::procSpinnerWait() {
 
         if (spinner->checkPathMoveNow() == NULL) {
             seStartOnlyReverbLevel(Z2SE_AL_SPINNER_RIDE);
-            setSpinnerStatus(ACTION_STR_ATTACK, 0);
+            setSpinnerStatus(ACTION_STR_ATTACK, ACTION_FLG_DEFAULT);
         } else {
             seStartOnlyReverbLevel(Z2SE_AL_SPINNER_RAIL);
-            setSpinnerStatus(ACTION_STR_JUMP2, 0);
+            setSpinnerStatus(ACTION_STR_JUMP2, ACTION_FLG_DEFAULT);
         }
 
         mNormalSpeed = spinner->mSpeedF;
-        mCurrent.mAngle.y = spinner->mCurrent.mAngle.y;
+        current.angle.y = spinner->current.angle.y;
 
         if (spinner->checkSpinnerTagIntoIncRot()) {
             field_0x3012 = 1;
-            setSpinnerStatus(ACTION_STR_SPIN, 4);
+            setSpinnerStatus(ACTION_STR_SPIN, ACTION_FLG_CONTINUATION);
 
             if (field_0x3198 != ANM_SPINNER_PUSH && field_0x2060->getOldFrameRate() < 0.01f) {
                 setSingleAnimeBaseSpeed(ANM_SPINNER_RIDE, daAlinkHIO_board_c0::m.mSitAnmSpeed,
@@ -303,9 +303,9 @@ int daAlink_c::procSpinnerWait() {
             }
         } else if (spinner->checkSpinnerTagInto()) {
             if (field_0x3012 != 0) {
-                setSpinnerStatus(ACTION_STR_SPIN, 4);
+                setSpinnerStatus(ACTION_STR_SPIN, ACTION_FLG_CONTINUATION);
             } else {
-                setSpinnerStatus(ACTION_STR_SPIN, 0);
+                setSpinnerStatus(ACTION_STR_SPIN, ACTION_FLG_DEFAULT);
             }
 
             if ((field_0x3198 == ANM_SPINNER_PUSH && field_0x2060->getOldFrameRate() < 0.01f) ||

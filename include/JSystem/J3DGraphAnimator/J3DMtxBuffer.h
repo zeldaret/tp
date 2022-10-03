@@ -30,10 +30,23 @@ public:
     u32* getCurrentViewNoPtr() { return &mCurrentViewNo; }
     u8* getScaleFlagArray() const { return mScaleFlagArray; }
     Mtx** getDrawMtxPtrPtr() const { return mpDrawMtxArr; }
+    Mtx* getDrawMtxPtr() const { return mpDrawMtxArr[mCurrentViewNo]; }
     Mtx33** getNrmMtxPtrPtr() const { return mpNrmMtxArr; }
     Mtx33* getNrmMtxPtr() const { return mpNrmMtxArr[mCurrentViewNo]; }
     Mtx33** getBumpMtxPtrPtr() const { return mpBumpMtxArr; }
     Mtx33* getBumpMtxPtr(int idx) const { return mpBumpMtxArr[idx]; }
+
+    void swapDrawMtx() {
+        Mtx* tmp = mpOldDrawMtxArr[mCurrentViewNo];
+        mpOldDrawMtxArr[mCurrentViewNo] = mpDrawMtxArr[mCurrentViewNo];
+        mpDrawMtxArr[mCurrentViewNo] = tmp;
+    }
+
+    void swapNrmMtx() {
+        Mtx33* tmp = mpOldNrmMtxArr[mCurrentViewNo];
+        mpOldNrmMtxArr[mCurrentViewNo] = mpNrmMtxArr[mCurrentViewNo];
+        mpNrmMtxArr[mCurrentViewNo] = tmp;
+    }
 
     static Mtx sNoUseDrawMtx;
     static Mtx33 sNoUseNrmMtx;
@@ -59,5 +72,8 @@ private:
 public:
     /* 803283B4 */ virtual ~J3DMtxBuffer();
 };
+
+void J3DCalcViewBaseMtx(f32 (*param_0)[4], Vec const& param_1, f32 const (&param_2)[3][4],
+                            f32 (*param_3)[4]);
 
 #endif /* J3DMTXBUFFER_H */

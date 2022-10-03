@@ -196,9 +196,9 @@ void dRenderingMap_c::makeResTIMG(ResTIMG* p_image, u16 width, u16 height, u8* p
     p_image->height = height;
     p_image->wrapS = GX_CLAMP;
     p_image->wrapT = GX_CLAMP;
-    p_image->palettesEnabled = true;
-    p_image->paletteFormat = 2;
-    p_image->paletteCount = param_5 * 4;
+    p_image->indexTexture = true;
+    p_image->colorFormat = 2;
+    p_image->numColors = param_5 * 4;
     p_image->paletteOffset = p_palette - (u8*)p_image;
     p_image->mipmapEnabled = false;
     p_image->doEdgeLOD = false;
@@ -210,7 +210,7 @@ void dRenderingMap_c::makeResTIMG(ResTIMG* p_image, u16 width, u16 height, u8* p
     p_image->maxLOD = 0;
     p_image->mipmapCount = 1;
     p_image->LODBias = 0;
-    p_image->texDataOffset = p_data - (u8*)p_image;
+    p_image->imageOffset = p_data - (u8*)p_image;
 }
 
 /* 8003CDAC-8003CE78 0376EC 00CC+00 0/0 2/2 0/0 .text            renderingMap__15dRenderingMap_cFv

@@ -23,7 +23,7 @@ public:
     /* 804A3FD4 */ void draw();
 
     static fopAc_ac_c* makeIronBallDummy(fopAc_ac_c* p_actor) {
-        return (fopAc_ac_c*)fopAcM_fastCreate(0x2F4, 6, &p_actor->mCurrent.mPosition,
+        return (fopAc_ac_c*)fopAcM_fastCreate(0x2F4, 6, &p_actor->current.pos,
                                               fopAcM_GetRoomNo(p_actor), NULL, NULL, -1, NULL,
                                               NULL);
     }

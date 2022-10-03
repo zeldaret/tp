@@ -33,7 +33,7 @@ static int daTagEscape_Create(fopAc_ac_c* tag) {
         fopAcM_OnCondition(tag, 8);
     }
 
-    return 4;
+    return cPhs_COMPLEATE_e;
 }
 
 /* 80D58828-80D58858 0000C8 0030+00 1/0 0/0 0/0 .text daTagEscape_Delete__FP13daTagEscape_c */

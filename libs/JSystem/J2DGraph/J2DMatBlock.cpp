@@ -1108,9 +1108,9 @@ bool J2DTevBlock2::insertTexture(u32 param_0, ResTIMG const* p_timg, JUTPalette*
     }
 
     u8 tlutid = 0;
-    if (p_timg->palettesEnabled && p_tlut == NULL) {
+    if (p_timg->indexTexture && p_tlut == NULL) {
         JUTTexture* tex = mTexture[0];
-        if (tex != NULL && tex->getTexInfo() != NULL && tex->getTexInfo()->palettesEnabled) {
+        if (tex != NULL && tex->getTexInfo() != NULL && tex->getTexInfo()->indexTexture) {
             int tlutname = tex->getTlutName();
             if (tlutname == GX_TLUT0 || tlutname == GX_BIGTLUT0) {
                 tlutid = 1;
@@ -1235,10 +1235,10 @@ bool J2DTevBlock2::setTexture(u32 param_0, ResTIMG const* p_timg) {
     }
 
     u8 tlutid = 0;
-    if (p_timg != NULL && p_timg->palettesEnabled) {
+    if (p_timg != NULL && p_timg->indexTexture) {
         if (mTexture[param_0 == 0] != NULL) {
             const ResTIMG* timg = mTexture[param_0 == 0]->getTexInfo();
-            if (timg != NULL && timg->palettesEnabled) {
+            if (timg != NULL && timg->indexTexture) {
                 int tlutname = mTexture[param_0 == 0]->getTlutName();
                 u8 var_r0 = 0;
 

@@ -18,11 +18,6 @@
 // Types:
 //
 
-struct dDlst_effectLine_c {
-    /* 80053E9C */ void draw();
-    /* 800541F4 */ void update(cXyz&, _GXColor&, u16, u16, u16, u16, f32, f32, f32, f32);
-};
-
 struct dDlst_blo_c {
     /* 80053B64 */ void draw();
 };
@@ -2259,7 +2254,8 @@ SECTION_SDATA2 static f32 lit_4876 = 32767.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dDlst_effectLine_c::draw() {
+// asm void dDlst_effectLine_c::draw() {
+extern "C" asm void draw__18dDlst_effectLine_cFv() {
     nofralloc
 #include "asm/d/d_drawlist/draw__18dDlst_effectLine_cFv.s"
 }

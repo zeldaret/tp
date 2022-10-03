@@ -9,7 +9,7 @@
 class dBgS_LinChk : public cBgS_LinChk, public dBgS_Chk {
 public:
     /* 80077C68 */ dBgS_LinChk();
-    /* 80077D64 */ void Set(cXyz const*, cXyz const*, fopAc_ac_c const*);
+    /* 80077D64 */ void Set(cXyz const* pi_start, cXyz const* pi_end, fopAc_ac_c const*);
 
     /* 80077CDC */ virtual ~dBgS_LinChk();
 

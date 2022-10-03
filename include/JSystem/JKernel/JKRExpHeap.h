@@ -6,6 +6,10 @@
 
 class JKRExpHeap : public JKRHeap {
 public:
+    enum EAllocMode {
+        ALLOC_MODE_1 = 1,
+    };
+
     class CMemBlock {
         friend class JKRExpHeap;
 
@@ -18,25 +22,25 @@ public:
         int free(JKRExpHeap* heap);
         static CMemBlock* getHeapBlock(void* ptr);
 
-        void newGroupId(u8 groupId) { this->mGroupId = groupId; }
-        bool isValid() const { return this->mMagic == 'HM'; }
-        bool _isTempMemBlock() const { return (this->mFlags & 0x80) ? true : false; }
-        int getAlignment() const { return this->mFlags & 0x7f; }
+        void newGroupId(u8 groupId) { mGroupId = groupId; }
+        bool isValid() const { return mMagic == 'HM'; }
+        bool _isTempMemBlock() const { return (mFlags & 0x80) ? true : false; }
+        int getAlignment() const { return mFlags & 0x7f; }
         void* getContent() const { return (void*)(this + 1); }
-        CMemBlock* getPrevBlock() const { return this->mPrev; }
-        CMemBlock* getNextBlock() const { return this->mNext; }
-        u32 getSize() const { return this->size; }
-        u8 getGroupId() const { return this->mGroupId; }
+        CMemBlock* getPrevBlock() const { return mPrev; }
+        CMemBlock* getNextBlock() const { return mNext; }
+        u32 getSize() const { return size; }
+        u8 getGroupId() const { return mGroupId; }
         static CMemBlock* getBlock(void* data) { return (CMemBlock*)((u32)data + -0x10); }
 
     private:
-        u16 mMagic;
-        u8 mFlags;  // a|bbbbbbb a=temporary b=alignment
-        u8 mGroupId;
-        u32 size;
-        CMemBlock* mPrev;
-        CMemBlock* mNext;
-    };
+        /* 0x0 */ u16 mMagic;
+        /* 0x2 */ u8 mFlags;  // a|bbbbbbb a=temporary b=alignment
+        /* 0x3 */ u8 mGroupId;
+        /* 0x4 */ u32 size;
+        /* 0x8 */ CMemBlock* mPrev;
+        /* 0xC */ CMemBlock* mNext;
+    };  // Size: 0x10
     friend class CMemBlock;
 
 protected:
@@ -57,7 +61,11 @@ protected:
 public:
     s32 getUsedSize(u8 groupId) const;
     s32 getTotalUsedSize(void) const;
+    
     CMemBlock* getHeadUsedList() const { return mHeadUsedList; }
+    void setAllocationMode(EAllocMode mode) {
+        mAllocMode = mode;
+    }
 
 public:
     /* vt[04] */ virtual u32 getHeapType();                                     /* override */
@@ -81,17 +89,17 @@ public:
     /* vt[22] */ virtual bool state_compare(JKRHeap::TState const& r1,
                                             JKRHeap::TState const& r2) const; /* override */
 
-    u8 field_0x6c;
-    u8 mCurrentGroupId;
-    bool field_0x6e;
+    /* 0x6C */ u8 mAllocMode;
+    /* 0x6D */ u8 mCurrentGroupId;
+    /* 0x6E */ bool field_0x6e;
 
 private:
-    void* field_0x70;
-    u32 field_0x74;
-    CMemBlock* mHeadFreeList;
-    CMemBlock* mTailFreeList;
-    CMemBlock* mHeadUsedList;
-    CMemBlock* mTailUsedList;
+    /* 0x70 */ void* field_0x70;
+    /* 0x74 */ u32 field_0x74;
+    /* 0x78 */ CMemBlock* mHeadFreeList;
+    /* 0x7C */ CMemBlock* mTailFreeList;
+    /* 0x80 */ CMemBlock* mHeadUsedList;
+    /* 0x84 */ CMemBlock* mTailUsedList;
 
 public:
     static JKRExpHeap* createRoot(int maxHeaps, bool errorFlag);

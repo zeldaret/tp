@@ -14,12 +14,12 @@ class JKRHeap : public JKRDisposer {
 public:
     class TState {
     public:
-        u32 mUsedSize;
-        u32 mCheckCode;
-        u32 mBuf;
-        u32 field_0xc;
-        JKRHeap* mHeap;
-        u32 mId;
+        /* 0x00 */ u32 mUsedSize;
+        /* 0x04 */ u32 mCheckCode;
+        /* 0x08 */ u32 mBuf;
+        /* 0x0C */ u32 field_0xc;
+        /* 0x10 */ JKRHeap* mHeap;
+        /* 0x14 */ u32 mId;
 
     public:
         u32 getUsedSize() const { return mUsedSize; }

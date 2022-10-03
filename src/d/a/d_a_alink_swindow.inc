@@ -23,10 +23,10 @@ void daAlink_c::statusWindowExecute(cXyz const* param_0, s16 param_1) {
 
         mDoMtx_stack_c::transS(*param_0);
         mDoMtx_stack_c::YrotM(param_1);
-        field_0x0650->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpLinkModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
         m_sWindowBck->play();
         m_sWindowBck->entry(field_0x064C);
-        field_0x0650->calc();
+        mpLinkModel->calc();
 
         if (i_checkWolf()) {
             setWolfItemMatrix();
@@ -39,7 +39,7 @@ void daAlink_c::statusWindowExecute(cXyz const* param_0, s16 param_1) {
 /* 80140984-80140AC8 13B2C4 0144+00 0/0 1/1 0/0 .text            statusWindowDraw__9daAlink_cFv */
 void daAlink_c::statusWindowDraw() {
     if (mClothesChangeWaitTimer == 0) {
-        g_env_light.settingTevStruct(12, &mCurrent.mPosition, &mTevStr);
+        g_env_light.settingTevStruct(12, &current.pos, &mTevStr);
         initTevCustomColor();
 
         if (!i_checkWolf()) {
@@ -47,12 +47,12 @@ void daAlink_c::statusWindowDraw() {
             setDrawHand();
         }
 
-        basicModelDraw(field_0x0650);
+        basicModelDraw(mpLinkModel);
 
         if (!i_checkWolf()) {
             basicModelDraw(field_0x065c);
-            basicModelDraw(field_0x0658);
-            basicModelDraw(field_0x0654);
+            basicModelDraw(mpLinkHatModel);
+            basicModelDraw(mpLinkFaceModel);
 
             if (i_checkEquipHeavyBoots()) {
                 for (int i = 0; i < 2; i++) {
@@ -64,7 +64,7 @@ void daAlink_c::statusWindowDraw() {
         if (checkSwordDraw()) {
             basicModelDraw(mSwordModel);
             if (!checkWoodSwordEquip()) {
-                basicModelDraw(field_0x06bc);
+                basicModelDraw(mSheathModel);
             }
         }
 
@@ -85,7 +85,7 @@ void daAlink_c::resetStatusWindow() {
     }
 
     setMatrix();
-    field_0x0650->calc();
+    mpLinkModel->calc();
     i_onNoResetFlg2(0x400000);
     setSelectEquipItem(0);
 

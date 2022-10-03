@@ -54,9 +54,9 @@ void JUTTexture::storeTIMG(ResTIMG const* param_0, u8 param_1) {
 
     if (param_0 && param_1 < 0x10) {
         mTexInfo = param_0;
-        mTexData = (void*)((int)mTexInfo + mTexInfo->texDataOffset);
+        mTexData = (void*)((int)mTexInfo + mTexInfo->imageOffset);
 
-        if (mTexInfo->texDataOffset == 0) {
+        if (mTexInfo->imageOffset == 0) {
             mTexData = (void*)((int)mTexInfo + 0x20);
         }
 
@@ -72,10 +72,10 @@ void JUTTexture::storeTIMG(ResTIMG const* param_0, u8 param_1) {
 
         ResTIMG* tmp = (ResTIMG*)mTexInfo;
 
-        if (mTexInfo->paletteCount == 0) {
+        if (mTexInfo->numColors == 0) {
             initTexObj();
         } else {
-            if (mTexInfo->paletteCount > 0x100) {
+            if (mTexInfo->numColors > 0x100) {
                 tlut = (_GXTlut)param_1;
             } else {
                 tlut = (_GXTlut)((param_1 & 3) + GX_BIGTLUT0);
@@ -84,15 +84,15 @@ void JUTTexture::storeTIMG(ResTIMG const* param_0, u8 param_1) {
             if (mEmbPalette == NULL || !getEmbPaletteDelFlag()) {
                 JUTPalette* palette = new JUTPalette();
                 if (palette) {
-                    palette->storeTLUT(tlut, (_GXTlutFmt)tmp->paletteFormat,
-                                       (JUTTransparency)tmp->alphaEnabled, tmp->paletteCount,
+                    palette->storeTLUT(tlut, (_GXTlutFmt)tmp->colorFormat,
+                                       (JUTTransparency)tmp->alphaEnabled, tmp->numColors,
                                        (void*)(tmp->format + tmp->paletteOffset));
                 }
                 mEmbPalette = palette;
                 mFlags = mFlags & 1 | 2;
             } else {
-                mEmbPalette->storeTLUT(tlut, (_GXTlutFmt)tmp->paletteFormat,
-                                       (JUTTransparency)tmp->alphaEnabled, tmp->paletteCount,
+                mEmbPalette->storeTLUT(tlut, (_GXTlutFmt)tmp->colorFormat,
+                                       (JUTTransparency)tmp->alphaEnabled, tmp->numColors,
                                        (void*)(tmp->format + tmp->paletteOffset));
             }
             attachPalette(mEmbPalette);
@@ -136,7 +136,7 @@ asm void JUTTexture::storeTIMG(ResTIMG const* param_0, JUTPalette* param_1, _GXT
 
 /* 802DE5B0-802DE608 2D8EF0 0058+00 1/1 7/7 0/0 .text attachPalette__10JUTTextureFP10JUTPalette */
 void JUTTexture::attachPalette(JUTPalette* param_0) {
-    if (mTexInfo->palettesEnabled) {
+    if (mTexInfo->indexTexture) {
         if (param_0 == NULL && mEmbPalette != NULL) {
             field_0x2c = mEmbPalette;
         } else {
@@ -149,7 +149,7 @@ void JUTTexture::attachPalette(JUTPalette* param_0) {
 
 /* 802DE608-802DE658 2D8F48 0050+00 1/1 0/0 0/0 .text            init__10JUTTextureFv */
 void JUTTexture::init() {
-    if (mTexInfo->paletteCount == 0) {
+    if (mTexInfo->numColors == 0) {
         initTexObj();
     } else {
         if (mEmbPalette != NULL) {
@@ -180,7 +180,7 @@ void JUTTexture::initTexObj() {
     int offset;
 
     if (mTexInfo->mipmapEnabled) {
-        offset = mTexInfo->texDataOffset;
+        offset = mTexInfo->imageOffset;
     } else {
         offset = 0x20;
     }

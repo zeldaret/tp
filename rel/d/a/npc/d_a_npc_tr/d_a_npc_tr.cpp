@@ -224,7 +224,7 @@ static asm int nodeCallBack(J3DJoint* param_0, int param_1) {
 
 /* 80B25B78-80B25BDC 000258 0064+00 1/0 0/0 0/0 .text            daNPC_TR_Draw__FP12npc_tr_class */
 static int daNPC_TR_Draw(npc_tr_class* npc_tr) {
-    g_env_light.settingTevStruct(0, &npc_tr->mCurrent.mPosition, &npc_tr->mTevStr);
+    g_env_light.settingTevStruct(0, &npc_tr->current.pos, &npc_tr->mTevStr);
     g_env_light.setLightTevColorType_MAJI(npc_tr->field_0x5b8->mModelData, &npc_tr->mTevStr);
     mDoExt_modelUpdateDL(npc_tr->field_0x5b8);
     return 1;
@@ -390,11 +390,11 @@ static void npc_tr_move(npc_tr_class* npc_tr) {
     case 0:
         if (npc_tr->field_0x5dc[0] == 0) {
             for (int i = 0; i < 100; i++) {
-                npc_tr->field_0x5c4.x = npc_tr->mOrig.mPosition.x + cM_rndFX(1000.0f);
-                npc_tr->field_0x5c4.y = npc_tr->mOrig.mPosition.y + cM_rndFX(200.0f);
-                npc_tr->field_0x5c4.z = npc_tr->mOrig.mPosition.z + cM_rndFX(1000.0f);
+                npc_tr->field_0x5c4.x = npc_tr->orig.pos.x + cM_rndFX(1000.0f);
+                npc_tr->field_0x5c4.y = npc_tr->orig.pos.y + cM_rndFX(200.0f);
+                npc_tr->field_0x5c4.z = npc_tr->orig.pos.z + cM_rndFX(1000.0f);
 
-                cXyz distance = npc_tr->field_0x5c4 - npc_tr->mCurrent.mPosition;
+                cXyz distance = npc_tr->field_0x5c4 - npc_tr->current.pos;
                 distance.y = 0.0f;
 
                 if (distance.abs() > 500.0f) {
@@ -431,14 +431,14 @@ static void npc_tr_move(npc_tr_class* npc_tr) {
         }
     }
 
-    cXyz distance = npc_tr->field_0x5c4 - npc_tr->mCurrent.mPosition;
-    s16 angle = npc_tr->mCurrent.mAngle.y;
-    cLib_addCalcAngleS2(&npc_tr->mCurrent.mAngle.y, cM_atan2s(distance.x, distance.z), 4, var_r29);
+    cXyz distance = npc_tr->field_0x5c4 - npc_tr->current.pos;
+    s16 angle = npc_tr->current.angle.y;
+    cLib_addCalcAngleS2(&npc_tr->current.angle.y, cM_atan2s(distance.x, distance.z), 4, var_r29);
     
     f32 var_f2 = JMAFastSqrt((distance.x * distance.x) + (distance.z * distance.z));
-    cLib_addCalcAngleS2(&npc_tr->mCurrent.mAngle.x, -cM_atan2s(distance.y, var_f2), 4, var_r29);
+    cLib_addCalcAngleS2(&npc_tr->current.angle.x, -cM_atan2s(distance.y, var_f2), 4, var_r29);
 
-    f32 var_f1_2 = (f32)(angle - npc_tr->mCurrent.mAngle.y) * 5.0f;
+    f32 var_f1_2 = (f32)(angle - npc_tr->current.angle.y) * 5.0f;
     if (var_f1_2 > 4000.0f) {
         var_f1_2 = 4000.0f;
     } else if (var_f1_2 < -4000.0f) {
@@ -520,7 +520,7 @@ static int daNPC_TR_Execute(npc_tr_class* npc_tr) {
     }
     action(npc_tr);
 
-    mDoMtx_stack_c::transS(npc_tr->mCurrent.mPosition.x, npc_tr->mCurrent.mPosition.y, npc_tr->mCurrent.mPosition.z);
+    mDoMtx_stack_c::transS(npc_tr->current.pos.x, npc_tr->current.pos.y, npc_tr->current.pos.z);
     mDoMtx_stack_c::YrotM(npc_tr->mCollisionRot.y + npc_tr->field_0x5f0);
     mDoMtx_stack_c::XrotM(npc_tr->mCollisionRot.x);
 
@@ -579,12 +579,12 @@ static int daNPC_TR_Create(fopAc_ac_c* ac) {
     }
     npc_tr_class* npc_tr = (npc_tr_class*)ac;
     
-    int load = dComIfG_resLoad(&npc_tr->mPhaseReq, "NPC_TR");
-    if (load == 4) {
+    int phase_state = dComIfG_resLoad(&npc_tr->mPhaseReq, "NPC_TR");
+    if (phase_state == cPhs_COMPLEATE_e) {
         npc_tr->field_0x5b4 = fopAcM_GetParam(npc_tr);
 
         if (!fopAcM_entrySolidHeap(npc_tr, useHeapInit, 0x4B000)) {
-            return 5;
+            return cPhs_ERROR_e;
         }
 
         if (!data_80B26678) {
@@ -598,7 +598,7 @@ static int daNPC_TR_Create(fopAc_ac_c* ac) {
         daNPC_TR_Execute(npc_tr);
     }
 
-    return load;
+    return phase_state;
 }
 #else
 #pragma push

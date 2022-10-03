@@ -132,21 +132,22 @@ request_base_class* fopOvlpReq_Request(overlap_request_class* pOvlpReq, s16 para
 /* 8001E9F0-8001EA88 019330 0098+00 0/0 1/1 0/0 .text
  * fopOvlpReq_Handler__FP21overlap_request_class                */
 int fopOvlpReq_Handler(overlap_request_class* pOvlpReq) {
-    int phsDo = cPhs_Do(&pOvlpReq->field_0x18, pOvlpReq);
-    switch (phsDo) {
-    case 2:
+    int phase_state = cPhs_Do(&pOvlpReq->field_0x18, pOvlpReq);
+
+    switch (phase_state) {
+    case cPhs_TWO_e:
         return fopOvlpReq_Handler(pOvlpReq);
-    case 0:
-        return 0;
-    case 1:
-        return 0;
-    case 4:
-        return 4;
-    case 3:
-    case 5:
-        return 5;
+    case cPhs_ZERO_e:
+        return cPhs_ZERO_e;
+    case cPhs_ONE_e:
+        return cPhs_ZERO_e;
+    case cPhs_COMPLEATE_e:
+        return cPhs_COMPLEATE_e;
+    case cPhs_UNK3_e:
+    case cPhs_ERROR_e:
+        return cPhs_ERROR_e;
     default:
-        return 5;
+        return cPhs_ERROR_e;
     }
 }
 

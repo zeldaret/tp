@@ -26,7 +26,7 @@ public:
     /* 0x5 */ u8 mFileSelWaitTime;
 };
 
-class dScnName_camera_c : public camera_class {
+class dScnName_camera_c : public camera_process_class {
 public:
     dScnName_camera_c() { field_0x22f = 84; }
     /* 80259294 */ virtual ~dScnName_camera_c() {}
@@ -313,8 +313,8 @@ SECTION_SDATA2 static f64 lit_3930 = 4503599627370496.0 /* cast u32 to float */;
 /* 802588A0-80258B2C 2531E0 028C+00 1/1 0/0 0/0 .text            create__10dScnName_cFv */
 #ifdef NONMATCHING
 s32 dScnName_c::create() {
-    int loadStat = resLoad(&field_0x1c4, "fileSel");
-    if (loadStat == 4) {
+    int phase_state = resLoad(&field_0x1c4, "fileSel");
+    if (phase_state == cPhs_COMPLEATE_e) {
         mHeap = JKRExpHeap::create(0x180000, mDoExt_getGameHeap(), false);
         JKRExpHeap* heap = mHeap;
         mDoExt_setCurrentHeap(heap);
@@ -371,7 +371,7 @@ s32 dScnName_c::create() {
         mDoGph_gInf_c::setTickRate((OS_BUS_CLOCK / 4) / 30);
         dComIfGp_getVibration().Init();
     }
-    return loadStat;
+    return phase_state;
 }
 #else
 #pragma push
@@ -386,18 +386,18 @@ asm s32 dScnName_c::create() {
 
 /* 80258B2C-80258BC8 25346C 009C+00 1/1 0/0 0/0 .text            setView__10dScnName_cFv */
 void dScnName_c::setView() {
-    C_MTXPerspective(mCamera.field_0x100, mCamera.mFovy, mCamera.mAspect, mCamera.mNear,
+    C_MTXPerspective(mCamera.mProjMtx, mCamera.mFovy, mCamera.mAspect, mCamera.mNear,
                      mCamera.mFar);
-    mDoMtx_lookAt(mCamera.field_0x140, &mCamera.field_0xd8.mEye, &mCamera.field_0xd8.mCenter,
+    mDoMtx_lookAt(mCamera.mViewMtx, &mCamera.mLookat.mEye, &mCamera.mLookat.mCenter,
                   mCamera.mBank);
-    PSMTXInverse(mCamera.field_0x140, mCamera.field_0x170);
-    PSMTXCopy(mCamera.field_0x140, mCamera.field_0x1e0);
+    PSMTXInverse(mCamera.mViewMtx, mCamera.mInvViewMtx);
+    PSMTXCopy(mCamera.mViewMtx, mCamera.mViewMtxNoTrans);
     f32 tmp_0 = FLOAT_LABEL(lit_3923);
-    mCamera.field_0x1e0[0][3] = tmp_0;
-    mCamera.field_0x1e0[1][3] = tmp_0;
-    mCamera.field_0x1e0[2][3] = tmp_0;
-    PSMTXCopy(mCamera.field_0x140, j3dSys.mViewMtx);
-    mDoMtx_concatProjView(mCamera.field_0x100, mCamera.field_0x140, mCamera.field_0x1a0);
+    mCamera.mViewMtxNoTrans[0][3] = tmp_0;
+    mCamera.mViewMtxNoTrans[1][3] = tmp_0;
+    mCamera.mViewMtxNoTrans[2][3] = tmp_0;
+    PSMTXCopy(mCamera.mViewMtx, j3dSys.mViewMtx);
+    mDoMtx_concatProjView(mCamera.mProjMtx, mCamera.mViewMtx, mCamera.field_0x1a0);
 }
 
 /* 80258BC8-80258C5C 253508 0094+00 1/1 0/0 0/0 .text            execute__10dScnName_cFv */

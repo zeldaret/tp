@@ -54,6 +54,8 @@ private:
 
 class J3DVertexBuffer {
 public:
+    J3DVertexBuffer() { init(); }
+
     /* 80310F78 */ void setVertexData(J3DVertexData*);
     /* 80310FD8 */ void init();
     /* 80311030 */ ~J3DVertexBuffer();

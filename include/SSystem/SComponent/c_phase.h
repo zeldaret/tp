@@ -6,18 +6,18 @@
 typedef int (*cPhs__Handler)(void*);
 
 enum cPhs__Step {
-    cPhs_ZERO_e = 0x00,
-    cPhs_UNK_1 = 0x01,
-    cPhs_UNK_2 = 0x02,
-    // names from Wind Waker debug strings
-    cPhs_COMPLEATE_e = 0x04,
-    cPhs_ERROR_e = 0x05,
-    cPhs_NEXT_e = 0x06,
+    /* 0x0 */ cPhs_ZERO_e,
+    /* 0x1 */ cPhs_ONE_e,  // next?
+    /* 0x2 */ cPhs_TWO_e,  // ready?
+    /* 0x3 */ cPhs_UNK3_e,
+    /* 0x4 */ cPhs_COMPLEATE_e,
+    /* 0x5 */ cPhs_ERROR_e,
+    /* 0x6 */ cPhs_NEXT_e,
 };
 
 typedef struct request_of_phase_process_class {
     cPhs__Handler* mpHandlerTable;
-    int mPhaseStep;
+    int id;
 } request_of_phase_process_class;
 
 typedef int (**request_of_phase_process_fn)(void*);

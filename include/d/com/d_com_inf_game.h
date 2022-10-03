@@ -129,7 +129,7 @@ public:
     dVibration_c& getVibration() { return mVibration; }
     camera_class* getCamera(int idx) { return mCameraInfo[idx].mCamera; }
     void* getPlayerPtr(int ptrIdx) { return mPlayerPtr[ptrIdx]; }
-    void* getPlayer(int idx) { return mPlayer[idx]; }
+    fopAc_ac_c* getPlayer(int idx) { return (fopAc_ac_c*)mPlayer[idx]; }
     dPa_control_c* getParticle() { return mParticle; }
     dEvent_manager_c& getEvtManager() { return mEvtManager; }
     dAttention_c& getAttention() { return mAttention; }
@@ -460,7 +460,7 @@ public:
     /* 0x04E10 */ dDlst_window_c mWindow[1];
     /* 0x04E3C */ dComIfG_camera_info_class mCameraInfo[1];
     /* 0x04E74 */ daAlink_c* mPlayer[1];
-    /* 0x04E78 */ s8 mPlayerCameraID[4];
+    /* 0x04E78 */ s8 mPlayerCameraID[1];
     /* 0x04E7C */ fopAc_ac_c* mPlayerPtr[2];  // 0: Player, 1: Horse ; type may be wrong
     /* 0x04E84 */ dMsgObject_c* mMsgObjectClass;
     /* 0x04E88 */ f32 mItemLifeCount;
@@ -625,8 +625,8 @@ public:
     /* 0x04FE8 */ u8 field_0x4fe8[0x10];
     /* 0x04FF8 */ __d_timer_info_c mTimerInfo;
     /* 0x0500C */ dDlst_window_c* mCurrentWindow;
-    /* 0x05010 */ void* mCurrentView;
-    /* 0x05014 */ void* mCurrentViewport;
+    /* 0x05010 */ view_class* mCurrentView;
+    /* 0x05014 */ view_port_class* mCurrentViewport;
     /* 0x05018 */ J2DGrafContext* mCurrentGrafPort;
     /* 0x0501C */ void* mItemTable;
     /* 0x0501D */ u8 field_0x501d[4];
@@ -1540,7 +1540,7 @@ inline daPy_py_c* dComIfGp_getLinkPlayer() {
     return (daPy_py_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR);
 }
 
-inline void* dComIfGp_getPlayer(int idx) {
+inline fopAc_ac_c* dComIfGp_getPlayer(int idx) {
     return g_dComIfG_gameInfo.play.getPlayer(idx);
 }
 
@@ -1742,6 +1742,14 @@ inline s16 dComIfGp_getNextStagePoint() {
 
 inline void dComIfGp_setLastPlayStageName(char* name) {
     g_dComIfG_gameInfo.play.setLastPlayStageName(name);
+}
+
+inline char* dComIfGp_getLastPlayStageName() {
+    return g_dComIfG_gameInfo.play.getLastPlayStageName();
+}
+
+inline u8 dComIfGp_getGameoverStatus() {
+    return g_dComIfG_gameInfo.play.getGameoverStatus();
 }
 
 inline u32 dComIfGp_getNowVibration() {
@@ -2295,6 +2303,10 @@ inline BOOL dComIfGp_evmng_endCheck(const char* event) {
     return g_dComIfG_gameInfo.play.getEvtManager().endCheckOld(event);
 }
 
+inline BOOL dComIfGp_evmng_endCheck(s16 eventID) {
+    return g_dComIfG_gameInfo.play.getEvtManager().endCheck(eventID);
+}
+
 inline void dComIfGp_event_setItemPartnerId(unsigned int id) {
     g_dComIfG_gameInfo.play.getEvent().setPtI_Id(id);
 }
@@ -2583,6 +2595,10 @@ inline void dComIfGd_setViewport(view_port_class* port) {
     g_dComIfG_gameInfo.drawlist.setViewport(port);
 }
 
+inline void dComIfGd_entryZSortListZxlu(J3DPacket* i_packet, cXyz& param_1) {
+    g_dComIfG_gameInfo.drawlist.entryZSortListZxlu(i_packet, param_1);
+}
+
 inline daPy_py_c* daPy_getLinkPlayerActorClass() {
     return dComIfGp_getLinkPlayer();
 }
@@ -2593,14 +2609,6 @@ inline daPy_py_c* daPy_getPlayerActorClass() {
 
 inline daAlink_c* daAlink_getAlinkActorClass() {
     return (daAlink_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR);
-}
-
-inline char* dComIfGp_getLastPlayStageName() {
-    return g_dComIfG_gameInfo.play.getLastPlayStageName();
-}
-
-inline u8 dComIfGp_getGameoverStatus() {
-    return g_dComIfG_gameInfo.play.getGameoverStatus();
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

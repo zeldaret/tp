@@ -6,63 +6,7 @@
 #include "d/d_cam_param.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
-};
-
-struct dCstick_c {
-    /* 80088434 */ dCstick_c();
-    /* 8008845C */ bool Shift(u32);
-    /* 800889B0 */ ~dCstick_c();
-};
-
-struct dCamera_c {
-    /* 80180A40 */ void EventRecoverNotime();
-};
-
-struct dCamSetup_c {
-    /* 80088668 */ dCamSetup_c();
-    /* 800888B8 */ ~dCamSetup_c();
-    /* 80088918 */ void CheckLatitudeRange(s16*);
-    /* 80088988 */ void PlayerHideDist();
-};
-
-struct dCamParam_c {
-    /* 800884F0 */ dCamParam_c(s32);
-    /* 8008858C */ ~dCamParam_c();
-    /* 800885D4 */ void Change(s32);
-    /* 80088620 */ void SearchStyle(u32);
-};
-
-struct cSAngle {};
-
-struct cXyz {};
-
-struct dCamMath {
-    /* 8008813C */ void rationalBezierRatio(f32, f32);
-    /* 80088284 */ void zoomFovy(f32, f32);
-    /* 8008831C */ void xyzRotateX(cXyz&, cSAngle);
-    /* 80088384 */ void xyzRotateY(cXyz&, cSAngle);
-    /* 800883EC */ void xyzHorizontalDistance(cXyz&, cXyz&);
-};
-
-struct dCamBGChk_c {
-    /* 80088464 */ dCamBGChk_c();
-};
-
-struct cDegree {
-    /* 800882E0 */ ~cDegree();
-    /* 8027134C */ cDegree(f32);
-    /* 802713F0 */ void Sin() const;
-    /* 80271418 */ void Cos() const;
-};
+#include "d/com/d_com_inf_game.h"
 
 //
 // Forward References:
@@ -102,9 +46,6 @@ extern "C" void __ct__7cDegreeFf();
 extern "C" void Sin__7cDegreeCFv();
 extern "C" void Cos__7cDegreeCFv();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXMultVec();
-extern "C" void sqrt();
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
 // Declarations:
@@ -176,7 +117,8 @@ asm void dCamMath::zoomFovy(f32 param_0, f32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cDegree::~cDegree() {
+// asm cDegree::~cDegree() {
+extern "C" asm void __dt__7cDegreeFv() {
     nofralloc
 #include "asm/d/d_cam_param/__dt__7cDegreeFv.s"
 }
@@ -334,7 +276,8 @@ asm dCamParam_c::dCamParam_c(s32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCamParam_c::~dCamParam_c() {
+// asm dCamParam_c::~dCamParam_c() {
+extern "C" asm void __dt__11dCamParam_cFv() {
     nofralloc
 #include "asm/d/d_cam_param/__dt__11dCamParam_cFv.s"
 }
@@ -444,7 +387,8 @@ asm dCamSetup_c::dCamSetup_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCamSetup_c::~dCamSetup_c() {
+// asm dCamSetup_c::~dCamSetup_c() {
+extern "C" asm void __dt__11dCamSetup_cFv() {
     nofralloc
 #include "asm/d/d_cam_param/__dt__11dCamSetup_cFv.s"
 }

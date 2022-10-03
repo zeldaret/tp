@@ -33,6 +33,7 @@ public:
     JUTNameTab* getTextureName() const { return mTextureName; }
 
     u16 getMaterialNum() const { return mMaterialNum; }
+    bool isLocked() const { return field_0x1c == 1; }
 
 private:
     /* 0x04 */ u16 mMaterialNum;

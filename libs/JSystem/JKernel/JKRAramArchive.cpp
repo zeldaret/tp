@@ -154,7 +154,7 @@ inline u32 alignNext(u32 var, u32 align) {
 }
 
 /* 802D72A8-802D75E0 2D1BE8 0338+00 1/1 0/0 0/0 .text            open__14JKRAramArchiveFl */
-#ifdef NON_MATCHING
+#ifdef NONMATCHING
 // r30 <-> r29
 bool JKRAramArchive::open(s32 entryNum) {
     mArcInfoBlock = NULL;
@@ -288,7 +288,7 @@ void* JKRAramArchive::fetchResource(JKRArchive::SDIFileEntry* pEntry, u32* pOutS
 
 /* 802D76F4-802D77F8 2D2034 0104+00 1/0 0/0 0/0 .text
  * fetchResource__14JKRAramArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl */
-#ifdef NON_MATCHING
+#ifdef NONMATCHING
 void* JKRAramArchive::fetchResource(void* buffer, u32 bufferSize, JKRArchive::SDIFileEntry* pEntry,
                                     u32* resourceSize) {
     u32 size = pEntry->data_size;
@@ -373,7 +373,7 @@ u32 JKRAramArchive::fetchResource_subroutine(u32 src, u32 srcLength, u8* dst, u3
 
 /* 802D7914-802D7A64 2D2254 0150+00 1/1 1/1 0/0 .text
  * fetchResource_subroutine__14JKRAramArchiveFUlUlP7JKRHeapiPPUc */
-#ifdef NON_MATCHING
+#ifdef NONMATCHING
 u32 JKRAramArchive::fetchResource_subroutine(u32 entryNum, u32 length, JKRHeap* pHeap,
                                              int compression, u8** out) {
     // r28 -> r29, r29 -> r30, r30 -> r31, r31 -> r28

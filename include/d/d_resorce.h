@@ -13,8 +13,8 @@ public:
     /* 8003A260 */ dRes_info_c();
     /* 8003A280 */ ~dRes_info_c();
     /* 8003A348 */ int set(char const*, char const*, u8, JKRHeap*);
-    /* 8003AB30 */ void onWarpMaterial(J3DModelData*);
-    /* 8003AC1C */ void offWarpMaterial(J3DModelData*);
+    /* 8003AB30 */ static void onWarpMaterial(J3DModelData*);
+    /* 8003AC1C */ static void offWarpMaterial(J3DModelData*);
     /* 8003AD08 */ void setWarpSRT(J3DModelData*, cXyz const&, f32, f32);
     /* 8003AE14 */ void loaderBasicBmd(u32, void*);
     /* 8003B30C */ int loadResource();

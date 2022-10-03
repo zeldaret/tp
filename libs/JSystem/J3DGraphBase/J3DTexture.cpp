@@ -12,18 +12,18 @@ void J3DTexture::loadGX(u16 idx, GXTexMapID texMapID) const {
     ResTIMG* timg = getResTIMG(idx);
     GXTexObj texObj;
 
-    if (!timg->palettesEnabled) {
-        GXInitTexObj(&texObj, ((u8*)timg) + timg->texDataOffset, timg->width, timg->height,
+    if (!timg->indexTexture) {
+        GXInitTexObj(&texObj, ((u8*)timg) + timg->imageOffset, timg->width, timg->height,
                      (GXTexFmt)timg->format, (GXTexWrapMode)timg->wrapS, (GXTexWrapMode)timg->wrapT,
                      (GXBool)timg->mipmapEnabled);
     } else {
         GXTlutObj tlutObj;
 
-        GXInitTexObjCI(&texObj, ((u8*)timg) + timg->texDataOffset, timg->width, timg->height,
+        GXInitTexObjCI(&texObj, ((u8*)timg) + timg->imageOffset, timg->width, timg->height,
                        (GXCITexFmt)timg->format, (GXTexWrapMode)timg->wrapS,
                        (GXTexWrapMode)timg->wrapT, (GXBool)timg->mipmapEnabled, (u32)texMapID);
-        GXInitTlutObj(&tlutObj, ((u8*)timg) + timg->paletteOffset, (GXTlutFmt)timg->paletteFormat,
-                      timg->paletteCount);
+        GXInitTlutObj(&tlutObj, ((u8*)timg) + timg->paletteOffset, (GXTlutFmt)timg->colorFormat,
+                      timg->numColors);
         GXLoadTlut(&tlutObj, texMapID);
     }
 
@@ -43,7 +43,7 @@ void J3DTexture::entryNum(u16 num) {
 
     for (s32 i = 0; i < mNum; i++) {
         mpRes[i].paletteOffset = 0;
-        mpRes[i].texDataOffset = 0;
+        mpRes[i].imageOffset = 0;
     }
 }
 
@@ -59,13 +59,13 @@ void J3DTexture::addResTIMG(u16 newNum, ResTIMG const* newRes) {
 
     for (u16 i = 0; i < oldNum; i++) {
         mpRes[i] = oldRes[i];
-        mpRes[i].texDataOffset = (u32)(&oldRes[i]) + mpRes[i].texDataOffset - (u32)(&mpRes[i]);
+        mpRes[i].imageOffset = (u32)(&oldRes[i]) + mpRes[i].imageOffset - (u32)(&mpRes[i]);
         mpRes[i].paletteOffset = (u32)(&oldRes[i]) + mpRes[i].paletteOffset - (u32)(&mpRes[i]);
     }
 
     for (u16 i = oldNum; i < mNum; i++) {
         mpRes[i] = newRes[i];
-        mpRes[i].texDataOffset = (u32)(&newRes[i]) + mpRes[i].texDataOffset - (u32)(&mpRes[i]);
+        mpRes[i].imageOffset = (u32)(&newRes[i]) + mpRes[i].imageOffset - (u32)(&mpRes[i]);
         mpRes[i].paletteOffset = (u32)(&newRes[i]) + mpRes[i].paletteOffset - (u32)(&mpRes[i]);
     }
 }
