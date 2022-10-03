@@ -299,13 +299,13 @@ int daTitle_c::create() {
         fopAcM_OnCondition(this, 8);
     }
     
-    int load = dComIfG_resLoad(&mPhaseReq, l_arcName);
-    if (load != 4) {
-        return load;
+    int phase_state = dComIfG_resLoad(&mPhaseReq, l_arcName);
+    if (phase_state != cPhs_COMPLEATE_e) {
+        return phase_state;
     }
 
     if (!fopAcM_entrySolidHeap(this, createHeapCallBack, 0x4000)) {
-        return 5;
+        return cPhs_ERROR_e;
     }
 
     mpMount = mDoDvdThd_mountArchive_c::create("/res/Layout/Title2D.arc", 0, NULL);
@@ -316,7 +316,7 @@ int daTitle_c::create() {
     loadWait_init();
     g_daTitHIO.field_0x4 = -1;
 
-    return load;
+    return phase_state;
 }
 
 /* 80D66E7C-80D66E9C 00045C 0020+00 1/1 0/0 0/0 .text createHeapCallBack__9daTitle_cFP10fopAc_ac_c

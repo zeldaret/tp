@@ -123,6 +123,8 @@ struct J3DSys {
 
     void setViewMtx(Mtx m) { PSMTXCopy(m, mViewMtx); }
 
+    J3DModel* getModel() { return mModel; }
+
     static Mtx mCurrentMtx;
     static Vec mCurrentS;
     static Vec mParentS;

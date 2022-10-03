@@ -1314,10 +1314,10 @@ BOOL dComIfG_resetToOpening(scene_class* scene) {
 static int phase_1(char* arc_name) {
     if (!dComIfG_setObjectRes(arc_name, 0, NULL)) {
         OSReport_Error("%s.arc Read Error !!\n", arc_name);
-        return 5;
+        return cPhs_ERROR_e;
     }
 
-    return 2;
+    return cPhs_TWO_e;
 }
 
 /* 8002CE38-8002CEB4 027778 007C+00 1/0 0/0 0/0 .text            phase_2__FPc */
@@ -1326,7 +1326,7 @@ static int phase_2(char* arc_name) {
 
     if (syncStatus < 0) {
         OSReport_Error("%s.arc Sync Read Error !!\n", arc_name);
-        return 5;
+        return cPhs_ERROR_e;
     } else {
         return syncStatus > 0 ? 0 : 2;
     }
@@ -1334,7 +1334,7 @@ static int phase_2(char* arc_name) {
 
 /* 8002CEB4-8002CEBC 0277F4 0008+00 1/0 0/0 0/0 .text            phase_3__FPc */
 static int phase_3(char*) {
-    return 4;
+    return cPhs_COMPLEATE_e;
 }
 
 /* 8002CEBC-8002CEFC 0277FC 0040+00 0/0 7/7 550/550 .text
@@ -1343,8 +1343,8 @@ int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* arc_nam
     static int (*l_method[3])(void*) = {(int (*)(void*))phase_1, (int (*)(void*))phase_2,
                                         (int (*)(void*))phase_3};
 
-    if (i_phase->mPhaseStep == 2) {
-        return 4;
+    if (i_phase->id == cPhs_TWO_e) {
+        return cPhs_COMPLEATE_e;
     }
 
     return dComLbG_PhaseHandler(i_phase, l_method, (void*)arc_name);
@@ -1380,8 +1380,8 @@ int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* resName
     static int (*l_method[3])(void*) = {(int (*)(void*))phase_01, (int (*)(void*))phase_02,
                                         (int (*)(void*))phase_03};
 
-    if (i_phase->mPhaseStep == 2) {
-        return 4;
+    if (i_phase->id == cPhs_TWO_e) {
+        return cPhs_COMPLEATE_e;
     }
 
     phaseParam_c param(resName, heap);
@@ -1391,12 +1391,12 @@ int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* resName
 /* 8002D008-8002D06C 027948 0064+00 1/1 10/10 540/540 .text
  * dComIfG_resDelete__FP30request_of_phase_process_classPCc     */
 int dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* resName) {
-    if (i_phase->mPhaseStep != 2) {
+    if (i_phase->id != cPhs_TWO_e) {
         return 0;
     }
 
     dComIfG_deleteObjectResMain(resName);
-    i_phase->mPhaseStep = 0;
+    i_phase->id = cPhs_ZERO_e;
     return 1;
 }
 
@@ -1471,7 +1471,7 @@ void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer, f3
 
     if (dComIfGs_isPlayerFieldLastStayFieldDataExistFlag() &&
         daPy_getLinkPlayerActorClass() != NULL) {
-        s8 curPoint = (s8)daPy_getLinkPlayerActorClass()->mCurrent.mRoomNo;
+        s8 curPoint = (s8)daPy_getLinkPlayerActorClass()->current.mRoomNo;
         cXyz pos = dMapInfo_n::getMapPlayerPos();
         s16 angle = daPy_getLinkPlayerActorClass()->mCollisionRot.y;
         u8 level = dComIfGp_getNowLevel();
@@ -2235,7 +2235,7 @@ void dComIfGs_setWarpMarkFlag(u8) {
 /* 8002F314-8002F328 029C54 0014+00 0/0 0/0 1/1 .text            __ct__19dComIfG_resLoader_cFv */
 dComIfG_resLoader_c::dComIfG_resLoader_c() {
     field_0x0 = NULL;
-    field_0x4.mPhaseStep = 0;
+    field_0x4.id = cPhs_ZERO_e;
     field_0xc = 0;
 }
 
@@ -2244,7 +2244,7 @@ dComIfG_resLoader_c::~dComIfG_resLoader_c() {
     if (field_0x0 != NULL) {
         for (int i = field_0xc; i >= 0; i--) {
             dComIfG_resDelete(&field_0x4, field_0x0[i]);
-            field_0x4.mPhaseStep = 2;
+            field_0x4.id = cPhs_TWO_e;
         }
     }
 }
@@ -2253,16 +2253,16 @@ dComIfG_resLoader_c::~dComIfG_resLoader_c() {
 int dComIfG_resLoader_c::load(char const** param_0, JKRHeap* heap) {
     field_0x0 = param_0;
 
-    int ret = dComIfG_resLoad(&field_0x4, field_0x0[field_0xc], heap);
-    if (ret == 4) {
+    int phase_state = dComIfG_resLoad(&field_0x4, field_0x0[field_0xc], heap);
+    if (phase_state == cPhs_COMPLEATE_e) {
         if (field_0x0[field_0xc + 1][0] != 0) {
             field_0xc++;
-            field_0x4.mPhaseStep = 0;
-            ret = 0;
+            field_0x4.id = cPhs_ZERO_e;
+            phase_state = cPhs_ZERO_e;
         }
     }
 
-    return ret;
+    return phase_state;
 }
 
 /* 8002F434-8002F478 029D74 0044+00 0/0 12/12 12/12 .text            dComIfG_getStageRes__FPCc */

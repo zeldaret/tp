@@ -245,7 +245,7 @@ Vec dMapInfo_n::getMapPlayerPos() {
     Vec pos;
     fopAc_ac_c* player = daPy_getPlayerActorClass();
     if (player != NULL) {
-        pos = player->mCurrent.mPosition;
+        pos = player->current.pos;
     } else {
         f32 tmp = FLOAT_LABEL(lit_3796);
         pos.x = tmp;

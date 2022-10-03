@@ -114,7 +114,7 @@ JKRExpHeap* JKRExpHeap::createRoot(int maxHeaps, bool errorFlag) {
 
 /* 802CEE2C-802CEF00 2C976C 00D4+00 0/0 19/19 1/1 .text            create__10JKRExpHeapFUlP7JKRHeapb
  */
-#if NONMATCHING
+#ifdef NONMATCHING
 JKRExpHeap* JKRExpHeap::create(u32 size, JKRHeap* parent, bool errorFlag) {
     if (!parent) {
         parent = sRootHeap;
@@ -226,7 +226,7 @@ SECTION_DATA extern void* __vt__10JKRExpHeap[24] = {
  */
 JKRExpHeap::JKRExpHeap(void* data, u32 size, JKRHeap* parent, bool errorFlag)
     : JKRHeap(data, size, parent, errorFlag) {
-    field_0x6c = 0;
+    mAllocMode = 0;
     mCurrentGroupId = 0xff;
     mHeadFreeList = (CMemBlock*)data;
     mTailFreeList = mHeadFreeList;
@@ -289,7 +289,7 @@ static JKRExpHeap::CMemBlock* DBnewFreeBlock;
 static JKRExpHeap::CMemBlock* DBnewUsedBlock;
 
 /* 802CF234-802CF490 2C9B74 025C+00 1/1 0/0 0/0 .text            allocFromHead__10JKRExpHeapFUli */
-#if NONMATCHING
+#ifdef NONMATCHING
 void* JKRExpHeap::allocFromHead(u32 size, int align) {
     size = ALIGN_NEXT(size, 4);
     s32 foundSize = -1;
@@ -308,7 +308,7 @@ void* JKRExpHeap::allocFromHead(u32 size, int align) {
         foundSize = block->getSize();
         foundBlock = block;
         foundOffset = offset;
-        if (field_0x6c != 0) {
+        if (mAllocMode != 0) {
             break;
         }
         u32 blockSize = block->getSize();
@@ -397,7 +397,7 @@ void* JKRExpHeap::allocFromHead(u32 size) {
         }
         foundSize = block->getSize();
         foundBlock = block;
-        if (field_0x6c != 0) {
+        if (mAllocMode != 0) {
             break;
         }
         if (foundSize == size) {
@@ -418,7 +418,7 @@ void* JKRExpHeap::allocFromHead(u32 size) {
 }
 
 /* 802CF574-802CF6D4 2C9EB4 0160+00 1/1 0/0 0/0 .text            allocFromTail__10JKRExpHeapFUli */
-#if NONMATCHING
+#ifdef NONMATCHING
 void* JKRExpHeap::allocFromTail(u32 size, int align) {
     u32 offset = 0;
     CMemBlock* foundBlock = NULL;
@@ -524,7 +524,7 @@ void JKRExpHeap::do_freeAll() {
 }
 
 /* 802CF89C-802CF924 2CA1DC 0088+00 1/0 0/0 0/0 .text            do_freeTail__10JKRExpHeapFv */
-#if NONMATCHING
+#ifdef NONMATCHING
 void JKRExpHeap::do_freeTail() {
     lock();
     CMemBlock* block = mHeadUsedList;
@@ -567,7 +567,7 @@ s32 JKRExpHeap::do_changeGroupID(u8 param_0) {
 }
 
 /* 802CF978-802CFB24 2CA2B8 01AC+00 1/0 0/0 0/0 .text            do_resize__10JKRExpHeapFPvUl */
-#if NONMATCHING
+#ifdef NONMATCHING
 s32 JKRExpHeap::do_resize(void* ptr, u32 size) {
     lock();
     CMemBlock* block = CMemBlock::getHeapBlock(ptr);
@@ -788,7 +788,7 @@ void JKRExpHeap::removeUsedBlock(JKRExpHeap::CMemBlock* block) {
 
 /* 802CFF1C-802D00B4 2CA85C 0198+00 2/2 0/0 0/0 .text
  * recycleFreeBlock__10JKRExpHeapFPQ210JKRExpHeap9CMemBlock     */
-#if NONMATCHING
+#ifdef NONMATCHING
 void JKRExpHeap::recycleFreeBlock(JKRExpHeap::CMemBlock* block) {
     u32 size = block->size;
     void* blockEnd = (u8*)block + size;
@@ -857,7 +857,7 @@ SECTION_DEAD static char const* const stringBase_8039CB5F = "Bad Block\n";
 
 /* 802D00B4-802D0190 2CA9F4 00DC+00 1/1 0/0 0/0 .text
  * joinTwoBlocks__10JKRExpHeapFPQ210JKRExpHeap9CMemBlock        */
-#if NONMATCHING
+#ifdef NONMATCHING
 void JKRExpHeap::joinTwoBlocks(CMemBlock* block) {
     u32 endAddr = (u32)block->getContent() + block->getSize();
     CMemBlock* next = block->getNextBlock();
@@ -903,7 +903,7 @@ SECTION_DEAD static char const* const stringBase_8039CC67 =
 #pragma pop
 
 /* 802D0190-802D03B8 2CAAD0 0228+00 1/0 0/0 0/0 .text            check__10JKRExpHeapFv */
-#if NONMATCHING
+#ifdef NONMATCHING
 bool JKRExpHeap::check() {
     lock();
     int totalBytes = 0;
@@ -1011,7 +1011,7 @@ SECTION_SDATA2 static f32 lit_1121[1 + 1 /* padding */] = {
 SECTION_SDATA2 static f64 lit_1123 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802D03B8-802D05CC 2CACF8 0214+00 1/0 0/0 0/0 .text            dump__10JKRExpHeapFv */
-#if NONMATCHING
+#ifdef NONMATCHING
 bool JKRExpHeap::dump() {
     lock();
     bool result = check();
@@ -1067,7 +1067,7 @@ asm bool JKRExpHeap::dump() {
 #endif
 
 /* 802D05CC-802D0810 2CAF0C 0244+00 1/0 0/0 0/0 .text            dump_sort__10JKRExpHeapFv */
-#if NONMATCHING
+#ifdef NONMATCHING
 bool JKRExpHeap::dump_sort() {
     lock();
     bool result = check();
@@ -1147,7 +1147,7 @@ void JKRExpHeap::CMemBlock::initiate(JKRExpHeap::CMemBlock* prev, JKRExpHeap::CM
 
 /* 802D0830-802D0874 2CB170 0044+00 3/3 0/0 0/0 .text
  * allocFore__Q210JKRExpHeap9CMemBlockFUlUcUcUcUc               */
-#if NONMATCHING
+#ifdef NONMATCHING
 JKRExpHeap::CMemBlock* JKRExpHeap::CMemBlock::allocFore(u32 size, u8 groupId1, u8 alignment1,
                                                         u8 groupId2, u8 alignment2) {
     CMemBlock* block = NULL;

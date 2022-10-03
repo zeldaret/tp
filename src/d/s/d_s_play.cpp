@@ -203,6 +203,7 @@ extern "C" u8 sManager__10JFWDisplay[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" u8 sCallback__Q210JUTGamePad13C3ButtonReset[4];
 extern "C" u8 sCallbackArg__Q210JUTGamePad13C3ButtonReset[4 + 4 /* padding */];
+extern "C" u8 mStatus__13dPa_control_c;
 
 //
 // Declarations:
@@ -586,10 +587,10 @@ void dScnPly_c::offReset() {
 /* 80259C70-80259CAC 2545B0 003C+00 1/0 0/0 0/0 .text            phase_00__FP9dScnPly_c */
 static int phase_00(dScnPly_c* scn) {
     if (!scn->resetGame()) {
-        return 0;
+        return cPhs_ZERO_e;
     } else {
         mDoGph_gInf_c::offBlure();
-        return 2;
+        return cPhs_TWO_e;
     }
 }
 
@@ -612,15 +613,15 @@ static int phase_01(dScnPly_c* scn) {
     mDoAud_setSceneName(dComIfGp_getStartStageName(), start_room, layer);
 
     if (!mDoAud_load1stDynamicWave()) {
-        return 0;
+        return cPhs_ZERO_e;
     } else {
-        return 2;
+        return cPhs_TWO_e;
     }
 }
 
 /* 80259D7C-80259D84 2546BC 0008+00 1/0 0/0 0/0 .text            phase_0__FP9dScnPly_c */
 static int phase_0(dScnPly_c* param_0) {
-    return 2;
+    return cPhs_TWO_e;
 }
 
 /* 80259D84-8025A438 2546C4 06B4+00 1/0 0/0 0/0 .text            phase_1__FP9dScnPly_c */
@@ -755,19 +756,19 @@ static int phase_1(dScnPly_c* scn) {
     if (dComIfG_syncStageRes("Stg_00") < 0) {
         dComIfG_setStageRes("Stg_00", NULL);
     }
-    return 2;
+    return cPhs_TWO_e;
 }
 
 /* 8025A438-8025A4F8 254D78 00C0+00 1/0 0/0 0/0 .text            phase_1_0__FP9dScnPly_c */
 static int phase_1_0(dScnPly_c* param_0) {
     if (dComIfG_syncStageRes("Stg_00")) {
-        return 0;
+        return cPhs_ZERO_e;
     } else {
         dStage_infoCreate();
         dComIfG_setObjectRes("Event", 0, NULL);
         dComIfGp_setCameraParamFileName(0, camparamarc);
         dComIfG_setObjectRes("CamParam", 0, NULL);
-        return 2;
+        return cPhs_TWO_e;
     }
 }
 
@@ -777,7 +778,7 @@ static int phase_1_0(dScnPly_c* param_0) {
 static int phase_2(dScnPly_c* scn) {
     int tmp = dComIfG_syncAllObjectRes();
     if (tmp >= 0 && tmp != 0) {
-        return 0;
+        return cPhs_ZERO_e;
     }
     int layer = dComIfG_play_c::getLayerNo(0);
     stage_stag_info_class* stag_info = i_dComIfGp_getStage()->getStagInfo();
@@ -789,7 +790,7 @@ static int phase_2(dScnPly_c* scn) {
 
     dComIfGp_particle_readScene(particle_no, &scn->sceneCommand);
     dMsgObject_readMessageGroup(&scn->field_0x1d0);
-    return 2;
+    return cPhs_TWO_e;
 }
 #else
 #pragma push
@@ -805,11 +806,11 @@ static asm int phase_2(dScnPly_c* param_0) {
 /* 8025A5D4-8025A654 254F14 0080+00 1/0 0/0 0/0 .text            phase_3__FP9dScnPly_c */
 static int phase_3(dScnPly_c* scn) {
     if ((scn->sceneCommand != NULL && !scn->sceneCommand->sync()) || mDoAud_check1stDynamicWave()) {
-        return 0;
+        return cPhs_ZERO_e;
     } else if (!scn->field_0x1d0 == NULL && !scn->field_0x1d0->sync()) {
-        return 0;
+        return cPhs_ZERO_e;
     } else {
-        return 2;
+        return cPhs_TWO_e;
     }
 }
 
@@ -850,12 +851,15 @@ class daYkgr_c {
 public:
     static void init() {
         m_emitter = 0;
-        *struct_80450D8C = 0;
-        *(struct_80450D8C + 1) = 1;
-        *(struct_80450D8C + 2) = 0xFF;
+        m_flag = false;
+        m_alpha_flag = true;
+        m_alpha = 255;
     }
 
     static u32 m_emitter;
+    static bool m_flag;
+    static bool m_alpha_flag;
+    static u8 m_alpha;
 };
 
 /* 8025A654-8025A9F4 254F94 03A0+00 1/0 0/0 0/0 .text            phase_4__FP9dScnPly_c */
@@ -916,7 +920,7 @@ static int phase_4(dScnPly_c* i_this) {
     mDoGph_gInf_c::setTickRate((OS_BUS_CLOCK / 4) / 30);
     g_envHIO[4] = -1;
     g_save_bit_HIO.field_0x4 = -1;
-    new (&dComIfGp_getAttention()) dAttention_c((fopAc_ac_c*)dComIfGp_getPlayer(0), 0);
+    new (&dComIfGp_getAttention()) dAttention_c(dComIfGp_getPlayer(0), 0);
     dComIfGp_getVibration().Init();
     daYkgr_c::init();
     
@@ -932,11 +936,11 @@ static int phase_4(dScnPly_c* i_this) {
     }
 
     if (preLoadNo < 0) {
-        return 4;
+        return cPhs_COMPLEATE_e;
     }
 
     resPreLoadTime0 = OSGetTime();
-    return 2;
+    return cPhs_TWO_e;
 }
 #else
 #pragma push
@@ -971,7 +975,7 @@ static asm void phase_6(dScnPly_c* param_0) {
 
 /* 8025AB8C-8025AB94 2554CC 0008+00 1/0 0/0 0/0 .text            phase_compleate__FPv */
 static int phase_compleate(void* param_0) {
-    return 4;
+    return cPhs_COMPLEATE_e;
 }
 
 /* 8025AB94-8025ABC4 2554D4 0030+00 1/0 0/0 0/0 .text            dScnPly_Create__FP11scene_class */

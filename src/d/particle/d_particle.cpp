@@ -4,172 +4,10 @@
 //
 
 #include "d/particle/d_particle.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct mDoLib_clipper {
-    static u8 mClipper[92];
-};
-
-struct mDoGph_gInf_c {
-    static u8 mFrameBufferTimg[4];
-};
-
-struct mDoDvdThd_toMainRam_c {
-    /* 80016394 */ void create(char const*, u8, JKRHeap*);
-};
-
-struct fopAcM_wt_c {
-    /* 8001DD84 */ void waterCheck(cXyz const*);
-
-    static f32 mWaterY[1 + 1 /* padding */];
-};
-
-struct daPy_py_c {
-    /* 8015F424 */ void checkNowWolfEyeUp();
-};
-
-struct dPa_windPcallBack {
-    /* 8004B4E0 */ void execute(JPABaseEmitter*, JPABaseParticle*);
-    /* 8004FF2C */ ~dPa_windPcallBack();
-};
-
-struct dPa_wbPcallBack_c {
-    /* 8004DC28 */ void execute(JPABaseEmitter*, JPABaseParticle*);
-    /* 8004FECC */ ~dPa_wbPcallBack_c();
-};
-
-struct dPa_simpleData_c {
-    /* 8004B024 */ ~dPa_simpleData_c();
-    /* 8004B060 */ dPa_simpleData_c();
-};
-
-struct dPa_setColorEcallBack {
-    /* 800502B0 */ void draw(JPABaseEmitter*);
-    /* 800502E0 */ void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
-    /* 800502E4 */ ~dPa_setColorEcallBack();
-};
-
-struct dPa_selectTexEcallBack {
-    /* 8004ADC4 */ void draw(JPABaseEmitter*);
-    /* 8004FF8C */ ~dPa_selectTexEcallBack();
-    /* 80050010 */ void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
-};
-
-struct dPa_particleTracePcallBack_c {
-    /* 8004FAD4 */ void execute(JPABaseEmitter*, JPABaseParticle*);
-    /* 8004FC68 */ ~dPa_particleTracePcallBack_c();
-};
-
-struct dPa_name {
-    static u8 j_o_id[10 + 2 /* padding */];
-    static u8 s_o_id[28];
-};
-
-struct dPa_modelPcallBack {
-    /* 8004A460 */ void draw(JPABaseEmitter*, JPABaseParticle*);
-    /* 80050038 */ ~dPa_modelPcallBack();
-};
-
-struct dPa_modelEcallBack {
-    struct model_c {
-        /* 8004A608 */ void set(J3DModelData*, dKy_tevstr_c const&, u8, void*, u8, u8);
-        /* 8004A7AC */ void setup();
-        /* 8004A88C */ void cleanup();
-        /* 8004A8DC */ void draw(f32 (*)[4]);
-        /* 8004AB88 */ ~model_c();
-        /* 8004FB90 */ model_c();
-    };
-
-    /* 8004AA34 */ void draw(JPABaseEmitter*);
-    /* 8004AAA8 */ void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
-    /* 8004AB1C */ void create(u8);
-    /* 8004ABC4 */ void remove();
-    /* 8004AC00 */ void setModel(JPABaseEmitter*, J3DModelData*, dKy_tevstr_c const&, u8, void*, u8,
-                                 u8);
-    /* 8004AC90 */ void resetModel(JPABaseEmitter*);
-    /* 8004ACC0 */ void setupModel(JPABaseEmitter*);
-    /* 8004ACEC */ void drawModel(JPABaseEmitter*, f32 (*)[4]);
-    /* 8004AD28 */ void cleanupModel(JPABaseEmitter*);
-    /* 8004AD58 */ void getModel(JPABaseEmitter*);
-    /* 8004AD90 */ void getRotAxis(JPABaseEmitter*);
-    /* 80050014 */ void drawAfter(JPABaseEmitter*);
-    /* 80050378 */ ~dPa_modelEcallBack();
-
-    static u8 mEcallback[4];
-    static u8 mPcallback[4];
-    static u8 mModel[4];
-};
-
-struct dPa_light8PcallBack {
-    /* 8004DD10 */ void execute(JPABaseEmitter*, JPABaseParticle*);
-    /* 8004DD1C */ void draw(JPABaseEmitter*, JPABaseParticle*);
-    /* 8004FE0C */ ~dPa_light8PcallBack();
-};
-
-struct dPa_light8EcallBack {
-    /* 8004979C */ void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
-    /* 8004A340 */ void draw(JPABaseEmitter*);
-    /* 8005015C */ ~dPa_light8EcallBack();
-    /* 800501E0 */ void drawAfter(JPABaseEmitter*);
-};
-
-struct dPa_gen_d_light8PcallBack {
-    /* 8004DD18 */ void execute(JPABaseEmitter*, JPABaseParticle*);
-    /* 8004ED44 */ void draw(JPABaseEmitter*, JPABaseParticle*);
-    /* 8004FD4C */ ~dPa_gen_d_light8PcallBack();
-};
-
-struct dPa_gen_d_light8EcallBack {
-    /* 800497CC */ void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
-    /* 8004A388 */ void draw(JPABaseEmitter*);
-    /* 80050098 */ void drawAfter(JPABaseEmitter*);
-    /* 800503FC */ ~dPa_gen_d_light8EcallBack();
-};
-
-struct dPa_gen_b_light8PcallBack {
-    /* 8004DD14 */ void execute(JPABaseEmitter*, JPABaseParticle*);
-    /* 8004E6A8 */ void draw(JPABaseEmitter*, JPABaseParticle*);
-    /* 8004FDAC */ ~dPa_gen_b_light8PcallBack();
-};
-
-struct dPa_gen_b_light8EcallBack {
-    /* 800497B0 */ void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
-    /* 8004A364 */ void draw(JPABaseEmitter*);
-    /* 800500B8 */ ~dPa_gen_b_light8EcallBack();
-    /* 8005013C */ void drawAfter(JPABaseEmitter*);
-};
-
-struct dPa_fsenthPcallBack {
-    /* 8004DCA0 */ void execute(JPABaseEmitter*, JPABaseParticle*);
-    /* 8004DD0C */ void draw(JPABaseEmitter*, JPABaseParticle*);
-    /* 8004FE6C */ ~dPa_fsenthPcallBack();
-};
-
-struct cBgS_PolyInfo {};
-
-struct dJntCol_c {
-    /* 80036C44 */ void getHitmarkPosAndAngle(cXyz const*, csXyz const*, cXyz*, csXyz*, int) const;
-};
-
-struct dBgS {
-    /* 80074E50 */ void GetPolyAtt0(cBgS_PolyInfo const&);
-};
-
-struct cM3dGPla {};
-
-struct cBgS {
-    /* 80074660 */ void ChkPolySafe(cBgS_PolyInfo const&);
-    /* 80074744 */ void GetTriPla(cBgS_PolyInfo const&, cM3dGPla*) const;
-};
-
-struct J3DUClipper {
-    /* 802738FC */ void clip(f32 const (*)[4], Vec, f32) const;
-};
+#include "m_Do/m_Do_lib.h"
 
 //
 // Forward References:
@@ -340,6 +178,7 @@ extern "C" u8 m_b_Light8PcallBack__13dPa_control_c[4];
 extern "C" u8 m_d_Light8EcallBack__13dPa_control_c[4];
 extern "C" u8 m_d_Light8PcallBack__13dPa_control_c[4];
 extern "C" u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
+extern "C" u8 mStatus__13dPa_control_c;
 
 //
 // External References:
@@ -457,19 +296,15 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void sprintf();
 extern "C" extern void* __vt__19JPAParticleCallBack[5];
 extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" u8 j_o_id__8dPa_name[10 + 2 /* padding */];
 extern "C" u8 s_o_id__8dPa_name[28];
 extern "C" u8 mClipper__14mDoLib_clipper[92];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 g_whiteColor;
 extern "C" u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
 extern "C" extern u8 JPTracePCB4[4];
 extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
-extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 
 //
@@ -477,14 +312,28 @@ extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 //
 
 /* 80049420-80049580 043D60 0160+00 4/4 0/0 0/0 .text            dPa_cleanupGX__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dPa_cleanupGX() {
-    nofralloc
-#include "asm/d/particle/d_particle/dPa_cleanupGX__Fv.s"
+static void dPa_cleanupGX() {
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+    GXEnableTexOffsets(GX_TEXCOORD0, GX_ENABLE, GX_ENABLE);
+    GXEnableTexOffsets(GX_TEXCOORD1, GX_ENABLE, GX_ENABLE);
+    GXEnableTexOffsets(GX_TEXCOORD2, GX_ENABLE, GX_ENABLE);
+    GXSetCullMode(GX_CULL_NONE);
+    GXSetCoPlanar(GX_FALSE);
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
+    GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGB8, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGB8, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT1, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT1, GX_VA_TEX0, GX_CLR_RGBA, GX_F32, 0);
+    GXSetCurrentMtx(0);
+    GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE,
+                  GX_AF_NONE);
+    GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE,
+                  GX_AF_NONE);
+    GXSetNumChans(0);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803A8308-803A8314 005428 000C+00 1/1 0/0 0/0 .data            l_lifeBallColor */
@@ -720,14 +569,12 @@ SECTION_DATA extern void* __vt__18JPAEmitterCallBack[7] = {
 };
 
 /* 80049580-800495BC 043EC0 003C+00 0/0 1/1 8/8 .text            __ct__19dPa_followEcallBackFUcUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dPa_followEcallBack::dPa_followEcallBack(u8 param_0, u8 param_1) {
-    nofralloc
-#include "asm/d/particle/d_particle/__ct__19dPa_followEcallBackFUcUc.s"
+dPa_followEcallBack::dPa_followEcallBack(u8 param_0, u8 param_1) {
+    field_0x11 = param_0;
+    field_0x12 = param_1;
+    field_0x13 = 0;
+    mpEmitter = NULL;
 }
-#pragma pop
 
 /* 800495BC-800496B0 043EFC 00F4+00 1/0 0/0 0/0 .text
  * execute__19dPa_followEcallBackFP14JPABaseEmitter             */
@@ -742,31 +589,39 @@ asm void dPa_followEcallBack::execute(JPABaseEmitter* param_0) {
 
 /* 800496B0-800496B4 043FF0 0004+00 1/0 0/0 0/0 .text
  * draw__19dPa_followEcallBackFP14JPABaseEmitter                */
-void dPa_followEcallBack::draw(JPABaseEmitter* param_0) {
-    /* empty function */
-}
+void dPa_followEcallBack::draw(JPABaseEmitter*) {}
 
 /* 800496B4-8004974C 043FF4 0098+00 1/0 0/0 0/0 .text
  * setup__19dPa_followEcallBackFP14JPABaseEmitterPC4cXyzPC5csXyzSc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dPa_followEcallBack::setup(JPABaseEmitter* param_0, cXyz const* param_1,
-                                    csXyz const* param_2, s8 param_3) {
-    nofralloc
-#include "asm/d/particle/d_particle/setup__19dPa_followEcallBackFP14JPABaseEmitterPC4cXyzPC5csXyzSc.s"
+void dPa_followEcallBack::setup(JPABaseEmitter* i_emitter, cXyz const* param_1,
+                                csXyz const* param_2, s8) {
+    remove();
+
+    if (field_0x13 == 0) {
+        mpEmitter = i_emitter;
+        i_emitter->becomeImmortalEmitter();
+    }
+
+    if (field_0x12 == 0) {
+        if (field_0x11 != 0) {
+            i_emitter->becomeContinuousParticle();
+        }
+        field_0x8 = param_1;
+        field_0xc = param_2;
+        field_0x10 = 0;
+    }
 }
-#pragma pop
 
 /* 8004974C-8004979C 04408C 0050+00 1/0 0/0 0/0 .text            end__19dPa_followEcallBackFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dPa_followEcallBack::end() {
-    nofralloc
-#include "asm/d/particle/d_particle/end__19dPa_followEcallBackFv.s"
+void dPa_followEcallBack::end() {
+    if (mpEmitter != NULL) {
+        mpEmitter->becomeInvalidEmitter();
+        mpEmitter->quitImmortalEmitter();
+        mpEmitter->setEmitterCallBackPtr(NULL);
+        field_0x10 |= 1;
+        mpEmitter = NULL;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450E90-80450E94 000390 0004+00 2/2 1/1 11/11 .sbss            mEcallback__18dPa_modelEcallBack
@@ -777,7 +632,7 @@ u8 dPa_modelEcallBack::mEcallback[4];
 u8 dPa_modelEcallBack::mPcallback[4];
 
 /* 80450E98-80450E9C 000398 0004+00 5/5 0/0 0/0 .sbss            mModel__18dPa_modelEcallBack */
-u8 dPa_modelEcallBack::mModel[4];
+J3DModel* dPa_modelEcallBack::mModel;
 
 /* 80450E9C-80450EA0 -00001 0004+00 3/3 0/0 0/0 .sbss            None */
 /* 80450E9C 0001+00 data_80450E9C None */
@@ -786,7 +641,7 @@ u8 dPa_modelEcallBack::mModel[4];
 static u8 struct_80450E9C[4];
 
 /* 80450EA0-80450EA4 0003A0 0004+00 14/14 1/1 0/0 .sbss            mEmitterMng__13dPa_control_c */
-u8 dPa_control_c::mEmitterMng[4];
+JPAEmitterManager* dPa_control_c::mEmitterMng;
 
 /* 80450EA4-80450EA8 0003A4 0004+00 1/1 1/1 0/0 .sbss mWaterBubblePcallBack__13dPa_control_c */
 u8 dPa_control_c::mWaterBubblePcallBack[4];
@@ -1369,30 +1224,33 @@ asm void dPa_windPcallBack::execute(JPABaseEmitter* param_0, JPABaseParticle* pa
 
 /* 8004B504-8004B544 045E44 0040+00 3/3 0/0 0/0 .text
  * onActive__Q313dPa_control_c7level_c9emitter_cFv              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dPa_control_c::level_c::emitter_c::onActive() {
-    nofralloc
-#include "asm/d/particle/d_particle/onActive__Q313dPa_control_c7level_c9emitter_cFv.s"
+void dPa_control_c::level_c::emitter_c::onActive() {
+    mStatus |= 1;
+
+    if (i_dComIfGp_event_runCheck()) {
+        onEventMove();
+    } else {
+        offEventMove();
+    }
 }
-#pragma pop
 
 /* 8004B544-8004B5AC 045E84 0068+00 1/1 0/0 0/0 .text
  * entry__Q313dPa_control_c7level_c9emitter_cFUlUsP14JPABaseEmitterP18dPa_levelEcallBack */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dPa_control_c::level_c::emitter_c::entry(u32 param_0, u16 param_1, JPABaseEmitter* param_2,
-                                                  dPa_levelEcallBack* param_3) {
-    nofralloc
-#include "asm/d/particle/d_particle/entry__Q313dPa_control_c7level_c9emitter_cFUlUsP14JPABaseEmitterP18dPa_levelEcallBack.s"
+void dPa_control_c::level_c::emitter_c::entry(u32 id, u16 name, JPABaseEmitter* i_emitter,
+                                              dPa_levelEcallBack* p_callback) {
+    mId = id;
+    mNameId = name;
+    onActive();
+    mEmitter = i_emitter;
+    mCallback = p_callback;
+    mPre = NULL;
+    mNext = NULL;
+    mEmitter->becomeImmortalEmitter();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450EC4-80450EC8 0003C4 0004+00 1/1 2/2 0/0 .sbss            None */
-u8 data_80450EC4;
+u8 dPa_control_c::mStatus;
 
 /* 80450EC8-80450ED0 0003C8 0004+04 2/2 1/1 17/17 .sbss mParticleTracePCB__13dPa_control_c */
 u8 dPa_control_c::mParticleTracePCB[4 + 4 /* padding */];
@@ -1407,126 +1265,180 @@ asm void dPa_control_c::level_c::emitter_c::cleanup() {
 #include "asm/d/particle/d_particle/cleanup__Q313dPa_control_c7level_c9emitter_cFv.s"
 }
 #pragma pop
+/* 
+void dPa_control_c::level_c::emitter_c::cleanup() {
+    JPAEmitterCallBack* callback = mEmitter->getEmitterCallBackPtr();
+
+    if (mCallback != NULL) {
+        mCallback->cleanup();
+    }
+
+
+} */
 
 /* 8004B688-8004B6F8 045FC8 0070+00 1/1 0/0 0/0 .text            __ct__Q213dPa_control_c7level_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dPa_control_c::level_c::level_c() {
-    nofralloc
-#include "asm/d/particle/d_particle/__ct__Q213dPa_control_c7level_cFv.s"
+dPa_control_c::level_c::level_c() {
+    field_0x0 = 0;
+    mFreeNo = 0;
+
+    for (int i = 0; i < 0x100; i++) {
+        mTable[i] = NULL;
+    }
 }
-#pragma pop
 
 /* 8004B6F8-8004B7A8 046038 00B0+00 1/1 0/0 0/0 .text
  * execute__Q213dPa_control_c7level_cFPQ313dPa_control_c7level_c9emitter_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dPa_control_c::level_c::execute(dPa_control_c::level_c::emitter_c* param_0) {
-    nofralloc
-#include "asm/d/particle/d_particle/execute__Q213dPa_control_c7level_cFPQ313dPa_control_c7level_c9emitter_c.s"
+void dPa_control_c::level_c::execute(dPa_control_c::level_c::emitter_c* i_emitter) {
+    if (!i_emitter->isActive()) {
+        if (i_emitter->isEventMove() || !i_dComIfGp_event_runCheck()) {
+            i_emitter->getEmitter()->playCalcEmitter();
+            cutTable(i_emitter);
+            mFreeNo = ((i_emitter - mEmitter) / sizeof(emitter_c));
+        } else {
+            i_emitter->getEmitter()->stopCalcEmitter();
+        }
+    } else {
+        i_emitter->offActive();
+    }
 }
-#pragma pop
 
 /* 8004B7A8-8004B808 0460E8 0060+00 1/1 0/0 0/0 .text execute__Q213dPa_control_c7level_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dPa_control_c::level_c::execute() {
-    nofralloc
-#include "asm/d/particle/d_particle/execute__Q213dPa_control_c7level_cFv.s"
+void dPa_control_c::level_c::execute() {
+    emitter_c* emitter = mEmitter;
+    
+    for (int i = 0; i < EMITTER_MAX; i++) {
+        if (emitter->getId() != 0) {
+            execute(emitter);
+        }
+        emitter++;
+    }
 }
-#pragma pop
 
 /* 8004B808-8004B874 046148 006C+00 2/2 0/0 0/0 .text cleanup__Q213dPa_control_c7level_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dPa_control_c::level_c::cleanup() {
-    nofralloc
-#include "asm/d/particle/d_particle/cleanup__Q213dPa_control_c7level_cFv.s"
+void dPa_control_c::level_c::cleanup() {
+    emitter_c* emitter = mEmitter;
+    
+    for (int i = 0; i < EMITTER_MAX; i++) {
+        if (emitter->getId() != 0) {
+            emitter->clearStatus();
+            cutTable(emitter);
+            mFreeNo = i;
+        }
+        emitter++;
+    }
 }
-#pragma pop
 
 /* 8004B874-8004B8B4 0461B4 0040+00 4/4 0/0 0/0 .text            get__Q213dPa_control_c7level_cFUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dPa_control_c::level_c::get(u32 param_0) {
-    nofralloc
-#include "asm/d/particle/d_particle/get__Q213dPa_control_c7level_cFUl.s"
+dPa_control_c::level_c::emitter_c* dPa_control_c::level_c::get(u32 id) {
+    if (id == 0) {
+        return NULL;
+    }
+
+    for (emitter_c* emitter = mTable[id & 0xFF]; emitter != NULL; emitter = emitter->getNext()) {
+        if (id == emitter->getId()) {
+            return emitter;
+        }
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 8004B8B4-8004B8E8 0461F4 0034+00 1/1 5/5 40/40 .text
  * forceOnEventMove__Q213dPa_control_c7level_cFUl               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dPa_control_c::level_c::forceOnEventMove(u32 param_0) {
-    nofralloc
-#include "asm/d/particle/d_particle/forceOnEventMove__Q213dPa_control_c7level_cFUl.s"
+void dPa_control_c::level_c::forceOnEventMove(u32 id) {
+    emitter_c* emitter = get(id);
+
+    if (emitter != NULL) {
+        emitter->onEventMove();
+    }
 }
-#pragma pop
 
 /* 8004B8E8-8004B918 046228 0030+00 0/0 1/1 0/0 .text
  * allForceOnEventMove__Q213dPa_control_c7level_cFv             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dPa_control_c::level_c::allForceOnEventMove() {
-    nofralloc
-#include "asm/d/particle/d_particle/allForceOnEventMove__Q213dPa_control_c7level_cFv.s"
+void dPa_control_c::level_c::allForceOnEventMove() {
+    emitter_c* emitter = mEmitter;
+
+    for (int i = 0; i < EMITTER_MAX; i++) {
+        if (emitter->getId() != 0) {
+            emitter->onEventMove();
+        }
+        emitter++;
+    }
 }
-#pragma pop
 
 /* 8004B918-8004B94C 046258 0034+00 1/1 22/22 181/181 .text
  * getEmitter__Q213dPa_control_c7level_cFUl                     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JPABaseEmitter* dPa_control_c::level_c::getEmitter(u32 param_0) {
-    nofralloc
-#include "asm/d/particle/d_particle/getEmitter__Q213dPa_control_c7level_cFUl.s"
+JPABaseEmitter* dPa_control_c::level_c::getEmitter(u32 id) {
+    emitter_c* emitter = get(id);
+    
+    if (emitter == NULL) {
+        return NULL;
+    }
+
+    return emitter->getEmitter();
 }
-#pragma pop
 
 /* 8004B94C-8004BA40 04628C 00F4+00 1/1 0/0 0/0 .text
  * entry__Q213dPa_control_c7level_cFUsP14JPABaseEmitterP18dPa_levelEcallBack */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dPa_control_c::level_c::entry(u16 param_0, JPABaseEmitter* param_1,
-                                       dPa_levelEcallBack* param_2) {
-    nofralloc
-#include "asm/d/particle/d_particle/entry__Q213dPa_control_c7level_cFUsP14JPABaseEmitterP18dPa_levelEcallBack.s"
+u32 dPa_control_c::level_c::entry(u16 i_name, JPABaseEmitter* i_emitter,
+                                       dPa_levelEcallBack* i_callback) {
+    for (int i = 0; i < EMITTER_MAX; i++) {
+        if (mEmitter[mFreeNo].getId() == 0) {
+            u32 uvar1 = field_0x0 + 1;
+            field_0x0 = uvar1;
+
+            if (uvar1 == 0) {
+                field_0x0++;
+            }
+
+            mEmitter[mFreeNo].entry(field_0x0, i_name, i_emitter, i_callback);
+            addTable(&mEmitter[mFreeNo]);
+            return field_0x0;
+        }
+
+        mFreeNo = (mFreeNo + 1) % EMITTER_MAX;
+    }
+
+    i_emitter->becomeInvalidEmitter();
+    i_emitter->quitImmortalEmitter();
+    return 0;
 }
-#pragma pop
 
 /* 8004BA40-8004BA74 046380 0034+00 1/1 0/0 0/0 .text
  * addTable__Q213dPa_control_c7level_cFPQ313dPa_control_c7level_c9emitter_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dPa_control_c::level_c::addTable(dPa_control_c::level_c::emitter_c* param_0) {
-    nofralloc
-#include "asm/d/particle/d_particle/addTable__Q213dPa_control_c7level_cFPQ313dPa_control_c7level_c9emitter_c.s"
+void dPa_control_c::level_c::addTable(dPa_control_c::level_c::emitter_c* i_emitter) {
+    u32 id = i_emitter->getId() & 0xFF;
+
+    if (mTable[id] == NULL) {
+        mTable[id] = i_emitter;
+        return;
+    }
+
+    mTable[id]->setPre(i_emitter);
+    i_emitter->setNext(mTable[id]);
+    mTable[id] = i_emitter;
 }
-#pragma pop
 
 /* 8004BA74-8004BACC 0463B4 0058+00 3/3 0/0 0/0 .text
  * cutTable__Q213dPa_control_c7level_cFPQ313dPa_control_c7level_c9emitter_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dPa_control_c::level_c::cutTable(dPa_control_c::level_c::emitter_c* param_0) {
-    nofralloc
-#include "asm/d/particle/d_particle/cutTable__Q213dPa_control_c7level_cFPQ313dPa_control_c7level_c9emitter_c.s"
+void dPa_control_c::level_c::cutTable(dPa_control_c::level_c::emitter_c* i_emitter) {
+    emitter_c* pre = i_emitter->getPre();
+    emitter_c* next = i_emitter->getNext();
+
+    if (pre == NULL) {
+        mTable[i_emitter->getId() & 0xFF] = next;
+    } else {
+        pre->setNext(next);
+    }
+
+    if (next != NULL) {
+        next->setPre(pre);
+    }
+
+    i_emitter->cleanup();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80424734-80424740 051454 000C+00 0/1 0/0 0/0 .bss             @4723 */
@@ -1579,6 +1491,17 @@ static u8 lit_4730[12];
 
 /* 80424794-804247D4 0514B4 0040+00 0/1 1/1 1/1 .bss             mTsubo__13dPa_control_c */
 u8 dPa_control_c::mTsubo[64];
+
+/* dPa_selectTexEcallBack dPa_control_c::mTsubo[] = {
+    dPa_selectTexEcallBack(0),
+    dPa_selectTexEcallBack(1),
+    dPa_selectTexEcallBack(2),
+    dPa_selectTexEcallBack(3),
+    dPa_selectTexEcallBack(4),
+    dPa_selectTexEcallBack(5),
+    dPa_selectTexEcallBack(6),
+    dPa_selectTexEcallBack(7),
+}; */
 
 /* 804247D4-804247E0 0514F4 000C+00 0/1 0/0 0/0 .bss             @4731 */
 #pragma push
@@ -1653,27 +1576,27 @@ static u8 lit_4741[12];
 #pragma pop
 
 /* 80424870-804248A0 051590 0030+00 1/1 0/0 0/0 .bss             mWindViewMatrix__13dPa_control_c */
-u8 dPa_control_c::mWindViewMatrix[48];
+Mtx dPa_control_c::mWindViewMatrix;
 
 /* 8004BACC-8004BB70 04640C 00A4+00 0/0 1/1 0/0 .text            __ct__13dPa_control_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dPa_control_c::dPa_control_c() {
-    nofralloc
-#include "asm/d/particle/d_particle/__ct__13dPa_control_cFv.s"
+dPa_control_c::dPa_control_c() {
+    m_resHeap = JKRCreateExpHeap(0x96000, mDoExt_getArchiveHeap(), false);
+    mHeap = NULL;
+    m_sceneHeap = NULL;
+    field_0x18 = 0xFF;
+    mEmitterMng = NULL;
+    field_0x19 = 0;
+    mCommonResMng = NULL;
+    mSceneResMng = NULL;
+    m_sceneRes = NULL;
+
+    PSMTXIdentity(mWindViewMatrix);
 }
-#pragma pop
 
 /* 8004BB70-8004BB78 0464B0 0008+00 4/4 0/0 0/0 .text            getRM_ID__13dPa_control_cFUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dPa_control_c::getRM_ID(u16 param_0) {
-    nofralloc
-#include "asm/d/particle/d_particle/getRM_ID__13dPa_control_cFUs.s"
+bool dPa_control_c::getRM_ID(u16 param_0) {
+    return param_0 & 0x8000;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037A12C-8037A12C 00678C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -1763,54 +1686,54 @@ asm void dPa_control_c::removeScene(bool param_0) {
 #pragma pop
 
 /* 8004C054-8004C078 046994 0024+00 0/0 2/2 0/0 .text            cleanup__13dPa_control_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dPa_control_c::cleanup() {
-    nofralloc
-#include "asm/d/particle/d_particle/cleanup__13dPa_control_cFv.s"
+void dPa_control_c::cleanup() {
+    field_0x210.cleanup();
 }
-#pragma pop
 
 /* 8004C078-8004C0EC 0469B8 0074+00 0/0 1/1 0/0 .text            calc3D__13dPa_control_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dPa_control_c::calc3D() {
-    nofralloc
-#include "asm/d/particle/d_particle/calc3D__13dPa_control_cFv.s"
+void dPa_control_c::calc3D() {
+    if (isStatus(2)) {
+        offStatus(2);
+    } else {
+        for (u8 i = 0; i <= 13; i++) {
+            mEmitterMng->calc(i);
+        }
+        field_0x210.execute();
+    }
 }
-#pragma pop
 
 /* 8004C0EC-8004C134 046A2C 0048+00 0/0 1/1 0/0 .text            calc2D__13dPa_control_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dPa_control_c::calc2D() {
-    nofralloc
-#include "asm/d/particle/d_particle/calc2D__13dPa_control_cFv.s"
+void dPa_control_c::calc2D() {
+    for (u8 i = 14; i <= 16; i++) {
+        mEmitterMng->calc(i);
+    }
 }
-#pragma pop
 
 /* 8004C134-8004C188 046A74 0054+00 0/0 1/1 0/0 .text            calcMenu__13dPa_control_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dPa_control_c::calcMenu() {
-    nofralloc
-#include "asm/d/particle/d_particle/calcMenu__13dPa_control_cFv.s"
+void dPa_control_c::calcMenu() {
+    if (mEmitterMng != NULL) {
+        for (u8 i = 17; i <= 18; i++) {
+            mEmitterMng->calc(i);
+        }
+    }
 }
-#pragma pop
 
 /* 8004C188-8004C218 046AC8 0090+00 0/0 1/1 0/0 .text draw__13dPa_control_cFP11JPADrawInfoUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dPa_control_c::draw(JPADrawInfo* param_0, u8 param_1) {
-    nofralloc
-#include "asm/d/particle/d_particle/draw__13dPa_control_cFP11JPADrawInfoUc.s"
+void dPa_control_c::draw(JPADrawInfo* param_0, u8 param_1) {
+    if (mEmitterMng != NULL) {
+        j3dSys.reinitGX();
+        dKy_setLight_again();
+
+        if (param_1 >= 6 && param_1 <= 11) {
+            dKy_GxFog_set();
+        }
+
+        mEmitterMng->draw(param_0, param_1);
+        GXSetAlphaUpdate(GX_FALSE);
+        GXSetNumIndStages(0);
+        GXSetClipMode(GX_CLIP_ENABLE);
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451F8C-80451F90 00058C 0004+00 5/5 0/0 0/0 .sdata2          @5066 */
@@ -2287,7 +2210,8 @@ extern "C" asm void __dt__19dPa_simpleEcallBackFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dPa_particleTracePcallBack_c::~dPa_particleTracePcallBack_c() {
+// asm dPa_particleTracePcallBack_c::~dPa_particleTracePcallBack_c() {
+extern "C" asm void __dt__28dPa_particleTracePcallBack_cFv() {
     nofralloc
 #include "asm/d/particle/d_particle/__dt__28dPa_particleTracePcallBack_cFv.s"
 }
@@ -2309,7 +2233,8 @@ extern "C" asm void __dt__22dPa_hermiteEcallBack_cFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dPa_gen_d_light8PcallBack::~dPa_gen_d_light8PcallBack() {
+// asm dPa_gen_d_light8PcallBack::~dPa_gen_d_light8PcallBack() {
+extern "C" asm void __dt__25dPa_gen_d_light8PcallBackFv() {
     nofralloc
 #include "asm/d/particle/d_particle/__dt__25dPa_gen_d_light8PcallBackFv.s"
 }
@@ -2320,7 +2245,8 @@ asm dPa_gen_d_light8PcallBack::~dPa_gen_d_light8PcallBack() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dPa_gen_b_light8PcallBack::~dPa_gen_b_light8PcallBack() {
+// asm dPa_gen_b_light8PcallBack::~dPa_gen_b_light8PcallBack() {
+extern "C" asm void __dt__25dPa_gen_b_light8PcallBackFv() {
     nofralloc
 #include "asm/d/particle/d_particle/__dt__25dPa_gen_b_light8PcallBackFv.s"
 }
@@ -2330,7 +2256,8 @@ asm dPa_gen_b_light8PcallBack::~dPa_gen_b_light8PcallBack() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dPa_light8PcallBack::~dPa_light8PcallBack() {
+// asm dPa_light8PcallBack::~dPa_light8PcallBack() {
+extern "C" asm void __dt__19dPa_light8PcallBackFv() {
     nofralloc
 #include "asm/d/particle/d_particle/__dt__19dPa_light8PcallBackFv.s"
 }
@@ -2340,7 +2267,8 @@ asm dPa_light8PcallBack::~dPa_light8PcallBack() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dPa_fsenthPcallBack::~dPa_fsenthPcallBack() {
+// asm dPa_fsenthPcallBack::~dPa_fsenthPcallBack() {
+extern "C" asm void __dt__19dPa_fsenthPcallBackFv() {
     nofralloc
 #include "asm/d/particle/d_particle/__dt__19dPa_fsenthPcallBackFv.s"
 }
@@ -2350,7 +2278,8 @@ asm dPa_fsenthPcallBack::~dPa_fsenthPcallBack() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dPa_wbPcallBack_c::~dPa_wbPcallBack_c() {
+// asm dPa_wbPcallBack_c::~dPa_wbPcallBack_c() {
+extern "C" asm void __dt__17dPa_wbPcallBack_cFv() {
     nofralloc
 #include "asm/d/particle/d_particle/__dt__17dPa_wbPcallBack_cFv.s"
 }
@@ -2360,7 +2289,8 @@ asm dPa_wbPcallBack_c::~dPa_wbPcallBack_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dPa_windPcallBack::~dPa_windPcallBack() {
+// asm dPa_windPcallBack::~dPa_windPcallBack() {
+extern "C" asm void __dt__17dPa_windPcallBackFv() {
     nofralloc
 #include "asm/d/particle/d_particle/__dt__17dPa_windPcallBackFv.s"
 }
@@ -2370,7 +2300,8 @@ asm dPa_windPcallBack::~dPa_windPcallBack() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dPa_selectTexEcallBack::~dPa_selectTexEcallBack() {
+// asm dPa_selectTexEcallBack::~dPa_selectTexEcallBack() {
+extern "C" asm void __dt__22dPa_selectTexEcallBackFv() {
     nofralloc
 #include "asm/d/particle/d_particle/__dt__22dPa_selectTexEcallBackFv.s"
 }
@@ -2398,7 +2329,8 @@ asm void dPa_modelEcallBack::drawAfter(JPABaseEmitter* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dPa_modelPcallBack::~dPa_modelPcallBack() {
+// asm dPa_modelPcallBack::~dPa_modelPcallBack() {
+extern "C" asm void __dt__18dPa_modelPcallBackFv() {
     nofralloc
 #include "asm/d/particle/d_particle/__dt__18dPa_modelPcallBackFv.s"
 }
@@ -2420,7 +2352,8 @@ asm void dPa_gen_d_light8EcallBack::drawAfter(JPABaseEmitter* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dPa_gen_b_light8EcallBack::~dPa_gen_b_light8EcallBack() {
+// asm dPa_gen_b_light8EcallBack::~dPa_gen_b_light8EcallBack() {
+extern "C" asm void __dt__25dPa_gen_b_light8EcallBackFv() {
     nofralloc
 #include "asm/d/particle/d_particle/__dt__25dPa_gen_b_light8EcallBackFv.s"
 }
@@ -2441,7 +2374,8 @@ asm void dPa_gen_b_light8EcallBack::drawAfter(JPABaseEmitter* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dPa_light8EcallBack::~dPa_light8EcallBack() {
+// asm dPa_light8EcallBack::~dPa_light8EcallBack() {
+extern "C" asm void __dt__19dPa_light8EcallBackFv() {
     nofralloc
 #include "asm/d/particle/d_particle/__dt__19dPa_light8EcallBackFv.s"
 }
@@ -2522,7 +2456,8 @@ SECTION_DATA extern void* __vt__21dPa_setColorEcallBack[9 + 6 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dPa_setColorEcallBack::~dPa_setColorEcallBack() {
+// asm dPa_setColorEcallBack::~dPa_setColorEcallBack() {
+extern "C" asm void __dt__21dPa_setColorEcallBackFv() {
     nofralloc
 #include "asm/d/particle/d_particle/__dt__21dPa_setColorEcallBackFv.s"
 }
@@ -2556,7 +2491,8 @@ void JPAEmitterCallBack::executeAfter(JPABaseEmitter* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dPa_modelEcallBack::~dPa_modelEcallBack() {
+// asm dPa_modelEcallBack::~dPa_modelEcallBack() {
+extern "C" asm void __dt__18dPa_modelEcallBackFv() {
     nofralloc
 #include "asm/d/particle/d_particle/__dt__18dPa_modelEcallBackFv.s"
 }
@@ -2567,7 +2503,8 @@ asm dPa_modelEcallBack::~dPa_modelEcallBack() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dPa_gen_d_light8EcallBack::~dPa_gen_d_light8EcallBack() {
+// asm dPa_gen_d_light8EcallBack::~dPa_gen_d_light8EcallBack() {
+extern "C" asm void __dt__25dPa_gen_d_light8EcallBackFv() {
     nofralloc
 #include "asm/d/particle/d_particle/__dt__25dPa_gen_d_light8EcallBackFv.s"
 }
@@ -2577,8 +2514,7 @@ asm dPa_gen_d_light8EcallBack::~dPa_gen_d_light8EcallBack() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __sinit_d_particle_cpp() {
-    nofralloc
+asm void __sinit_d_particle_cpp(){nofralloc
 #include "asm/d/particle/d_particle/__sinit_d_particle_cpp.s"
 }
 #pragma pop

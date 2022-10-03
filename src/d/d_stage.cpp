@@ -2492,6 +2492,20 @@ static asm int dStage_pathInfoInit(dStage_dt_c* param_0, void* param_1, int para
 }
 #pragma pop
 
+/* static int dStage_pathInfoInit(dStage_dt_c* stageDt, void* i_data, int entryNum, void* param_3) {
+    dStage_dPath_c* path_c = ((char*)i_data + 4);
+    dPath* path = path_c->m_path;
+
+    stageDt->setPathInfo(path_c);
+
+    for (int i = 0; i < path_c->m_num; i++) {
+        if ((u32)path->m_points < 0x80000000) {
+            path->m_points += path_c->m_num
+        }
+        path++;
+    }
+} */
+
 /* 80025F44-80025F78 020884 0034+00 2/0 0/0 0/0 .text dStage_rppnInfoInit__FP11dStage_dt_cPviPv */
 static int dStage_rppnInfoInit(dStage_dt_c* stageDt, void* i_data, int entryNum, void* param_3) {
     stageDt->setPnt2Info((dStage_dPnt_c*)((char*)i_data + 4));

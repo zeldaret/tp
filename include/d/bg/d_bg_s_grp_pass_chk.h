@@ -21,6 +21,7 @@ public:
     void OnNormalGrp() { mGrp |= NORMAL_GRP; }
     void OffNormalGrp() { mGrp &= ~NORMAL_GRP; }
     void OffFullGrp() { mGrp &= ~FULL_GRP; }
+    void OnAll() { mGrp |= FULL_GRP; }
 
 private:
     /* 0x4 */ u32 mGrp;

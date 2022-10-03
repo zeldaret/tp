@@ -19,6 +19,11 @@ public:
 
     u16 getNum() const { return mNum; }
     ResTIMG* getResTIMG(u16 entry) const { return &mpRes[entry]; }
+    void setResTIMG(u16 entry, const ResTIMG& timg) {
+        mpRes[entry] = timg;
+        mpRes[entry].imageOffset = ((mpRes[entry].imageOffset - (u32)(mpRes + entry))) + (u32)&timg;
+        mpRes[entry].paletteOffset = ((mpRes[entry].paletteOffset - (u32)(mpRes + entry))) + (u32)&timg;
+    }
 };
 
 struct J3DTextureSRTInfo {

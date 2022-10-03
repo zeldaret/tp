@@ -3,6 +3,12 @@
 
 #include "dolphin/types.h"
 
+struct color_RGB_class {
+    u8 r;
+    u8 g;
+    u8 b;
+};
+
 // Invented name; Used as u8 `darkLv` in dKydata_darkworldInfo_c.
 enum dKyd_DARKLV {
     FARON = 0,

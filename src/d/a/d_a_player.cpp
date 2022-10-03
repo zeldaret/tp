@@ -269,10 +269,10 @@ SECTION_SDATA2 static u8 lit_4381[8] = {
 void daPy_boomerangMove_c::bgCheckAfterOffset(cXyz const* param_0) {
     daBoomerang_c* boomerang = daPy_py_c::getThrowBoomerangActor();
     if (boomerang != NULL) {
-        field_0x4 = param_0->y - boomerang->mCurrent.mPosition.y;
-        field_0x8 = boomerang->mCurrent.mPosition.absXZ(*param_0);
-        field_0x2 = cM_atan2s(param_0->x - boomerang->mCurrent.mPosition.x,
-                              param_0->z - boomerang->mCurrent.mPosition.z);
+        field_0x4 = param_0->y - boomerang->current.pos.y;
+        field_0x8 = boomerang->current.pos.absXZ(*param_0);
+        field_0x2 = cM_atan2s(param_0->x - boomerang->current.pos.x,
+                              param_0->z - boomerang->current.pos.z);
     }
 }
 #else
@@ -606,7 +606,7 @@ asm void daPy_sightPacket_c::setSight() {
  * setSightImage__18daPy_sightPacket_cFP7ResTIMG                */
 void daPy_sightPacket_c::setSightImage(ResTIMG* p_img) {
     mpImg = p_img;
-    mpData = (u8*)p_img + p_img->texDataOffset;
+    mpData = (u8*)p_img + p_img->imageOffset;
 }
 
 /* 8015F398-8015F3C4 159CD8 002C+00 0/0 8/8 10/10 .text checkMasterSwordEquip__9daPy_py_cFv */

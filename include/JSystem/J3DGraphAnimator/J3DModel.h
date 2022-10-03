@@ -28,12 +28,16 @@ typedef void (*J3DCalcCallBack)(J3DModel*, u32 timing);
 
 class J3DModel {
 public:
+    J3DModel() {
+        initialize();
+    }
+
     /* 800CFFF4 */ void setBaseTRMtx(f32 (*)[4]);
     /* 80327100 */ void initialize();
     /* 80327184 */ s32 entryModelData(J3DModelData*, u32, u32);
     /* 80327300 */ s32 createShapePacket(J3DModelData*);
     /* 803273CC */ s32 createMatPacket(J3DModelData*, u32);
-    /* 803275FC */ void newDifferedDisplayList(u32);
+    /* 803275FC */ s32 newDifferedDisplayList(u32);
     /* 8032767C */ void lock();
     /* 803276B4 */ void unlock();
     /* 803279A0 */ void diff();
@@ -60,6 +64,9 @@ public:
     void onFlag(u32 flag) { mFlags |= flag; }
     void offFlag(u32 flag) { mFlags &= ~flag; }
     bool checkFlag(u32 flag) const { return (mFlags & flag) ? true : false; }
+
+    bool isCpuSkinningOn() const { return (mFlags & 4) && (mFlags & 8); }
+
     Mtx& getBaseTRMtx() { return mBaseTransformMtx; }
     void i_setBaseTRMtx(Mtx m) { PSMTXCopy(m, mBaseTransformMtx); }
     u32 getMtxCalcMode() const { return mFlags & 0x03; }
@@ -67,8 +74,10 @@ public:
     J3DShapePacket* getShapePacket(u16 idx) const { return &mShapePacket[idx]; }
     Mtx33* getBumpMtxPtr(int idx) const { return mMtxBuffer->getBumpMtxPtr(idx); }
     Mtx33* getNrmMtxPtr() const { return mMtxBuffer->getNrmMtxPtr(); }
+    Mtx* getDrawMtxPtr() const { return mMtxBuffer->getDrawMtxPtr(); }
     void setBaseScale(const Vec& scale) { mBaseScale = scale; }
     void setUserArea(u32 area) { mUserArea = area; }
+    u32 getUserArea() const { return mUserArea; }
     Vec* getBaseScale() { return &mBaseScale; }
 
     // is there a better way to handle inlines with same name as non-inlines?

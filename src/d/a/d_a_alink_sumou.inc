@@ -22,7 +22,7 @@ void daAlink_c::sumouPunchTrigger() {
 /* 800EA92C-800EA950 0E526C 0024+00 5/5 0/0 0/0 .text            setSumouPunchStatus__9daAlink_cFv
  */
 void daAlink_c::setSumouPunchStatus() {
-    setBStatus(0x44);
+    setBStatus(ACTION_STR_SLAP);
 }
 
 /* 800EA950-800EAA28 0E5290 00D8+00 4/4 0/0 0/0 .text            procSumouReadyInit__9daAlink_cFv */

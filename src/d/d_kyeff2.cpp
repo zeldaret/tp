@@ -66,7 +66,7 @@ static bool dKyeff2_Delete(dKyeff2_c* ptr) {
 
 static int dKyeff2_Create(kankyo_class* ptr) {
     dKyw_wether_init2();
-    return 4;
+    return cPhs_COMPLEATE_e;
 }
 
 /* ############################################################################################## */

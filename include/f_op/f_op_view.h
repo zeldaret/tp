@@ -14,7 +14,16 @@ public:
 };
 
 struct view_port_class {
-    f32 field_0x0;
+    /* 0x00 */ f32 mXOrig;
+    /* 0x04 */ f32 mYOrig;
+    /* 0x08 */ f32 mWidth;
+    /* 0x0C */ f32 mHeight;
+    /* 0x10 */ f32 mNearZ;
+    /* 0x14 */ f32 mFarZ;
+    /* 0x18 */ f32 mScissorXOrig;
+    /* 0x1C */ f32 mScissorYOrig;
+    /* 0x20 */ f32 mScissorWidth;
+    /* 0x24 */ f32 mScissorHeight;
 };
 
 struct view_class : public leafdraw_class {
@@ -24,11 +33,10 @@ struct view_class : public leafdraw_class {
     /* 0x0CC */ f32 mFar;
     /* 0x0D0 */ f32 mFovy;
     /* 0x0D4 */ f32 mAspect;
-    /* 0x0D8 */ lookat_class field_0xd8;
+    /* 0x0D8 */ lookat_class mLookat;
     /* 0x0FC */ s16 mBank;
-    /* 0x100 */ Mtx field_0x100;
-    /* 0x130 */ u8 field_0x130[0x10];
-    /* 0x140 */ Mtx field_0x140;
+    /* 0x100 */ Mtx44 mProjMtx;
+    /* 0x140 */ Mtx mViewMtx;
 };
 
 #endif

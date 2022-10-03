@@ -265,7 +265,7 @@ asm void JKRDecomp::decodeSZP(u8* param_0, u8* param_1, u32 param_2, u32 param_3
 #endif
 
 /* 802DBC14-802DBCF8 2D6554 00E4+00 1/1 0/0 0/0 .text            decodeSZS__9JKRDecompFPUcPUcUlUl */
-#ifdef NON_MATCHING
+#ifdef NONMATCHING
 void JKRDecomp::decodeSZS(u8* src_buffer, u8* dst_buffer, u32 param_3, u32 param_4) {
     int copyByteCount;
     u8* decompEnd;

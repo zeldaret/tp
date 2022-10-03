@@ -1665,12 +1665,12 @@ int daNpcT_c::loadRes(s8 const* resNoList, char const** resNameList) {
             return cPhs_COMPLEATE_e;
         }
 
-        int status = dComIfG_resLoad(&field_0x8e0[i], resNameList[resNoList[i]]);
-        if (status == cPhs_COMPLEATE_e) {
+        int phase_state = dComIfG_resLoad(&field_0x8e0[i], resNameList[resNoList[i]]);
+        if (phase_state == cPhs_COMPLEATE_e) {
             resLoad_cnt++;
         }
 
-        if (status == cPhs_ERROR_e || status == 3) {
+        if (phase_state == cPhs_ERROR_e || phase_state == cPhs_UNK3_e) {
             return cPhs_ERROR_e;
         }
     }
@@ -1702,7 +1702,7 @@ int daNpcT_c::execute() {
     fopAcM_posMoveF(this, field_0x864.GetCCMoveP());
     field_0x68c.CrrPos(dComIfG_Bgsp());
     field_0x930 = field_0x68c.m_gnd;
-    field_0xdca = fopAcM_getPolygonAngle(field_0x930, mCurrent.mAngle.y);
+    field_0xdca = fopAcM_getPolygonAngle(field_0x930, current.angle.y);
     field_0xdf4 = field_0x68c.GetGroundH();
     if (field_0xdf4 != -1000000000.0f) {
         field_0xda8 = dKy_pol_sound_get(&field_0x68c.m_gnd);
@@ -1819,13 +1819,13 @@ int daNpcT_c::draw(int param_0, int param_1, f32 param_2, GXColorS10* color, f32
     if (param_5 != 0) {
         drawGhost();
     } else if (field_0xa89 != 0) {
-        g_env_light.settingTevStruct(4, &mCurrent.mPosition, &mTevStr);
+        g_env_light.settingTevStruct(4, &current.pos, &mTevStr);
         g_env_light.setLightTevColorType_MAJI(modelData, &mTevStr);
         dComIfGd_setListDark();
         mMcaMorfAnm[0]->entryDL();
         dComIfGd_setList();
     } else {
-        g_env_light.settingTevStruct(0, &mCurrent.mPosition, &mTevStr);
+        g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
         g_env_light.setLightTevColorType_MAJI(modelData, &mTevStr);
         mMcaMorfAnm[0]->entryDL();
     }
@@ -1849,10 +1849,10 @@ int daNpcT_c::draw(int param_0, int param_1, f32 param_2, GXColorS10* color, f32
     if (param_6 == 0) {
         if (param_7 == 0) {
             field_0xd94 = dComIfGd_setShadow(
-                field_0xd94, 1, model, &mCurrent.mPosition, param_2, param_4, mCurrent.mPosition.y,
+                field_0xd94, 1, model, &current.pos, param_2, param_4, current.pos.y,
                 field_0xdf4, field_0x930, &mTevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
         } else {
-            dComIfGd_setSimpleShadow(&mCurrent.mPosition, field_0xdf4, param_4, field_0x930, 0,
+            dComIfGd_setSimpleShadow(&current.pos, field_0xdf4, param_4, field_0x930, 0,
                                      1.0f, dDlst_shadowControl_c::getSimpleTex());
         }
     }
@@ -1931,7 +1931,7 @@ void daNpcT_c::setMtx() {
     J3DModel* model = mMcaMorfAnm[0]->getModel();
     J3DModelData* modelData = model->getModelData();
 
-    mDoMtx_stack_c::transS(mCurrent.mPosition);
+    mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(field_0xd78);
     mDoMtx_stack_c::scaleM(mScale);
 
@@ -2102,26 +2102,26 @@ void daNpcT_c::setPos(cXyz i_pos) {
     field_0x930.SetPos(&i_pos);
     i_pos.y = dComIfG_Bgsp().GroundCross(&field_0x930);
 
-    mCurrent.mPosition = i_pos;
-    mNext.mPosition = mCurrent.mPosition;
+    current.pos = i_pos;
+    next.pos = current.pos;
 }
 
 /* 8014A99C-8014AA18 1452DC 007C+00 0/0 0/0 29/29 .text            setAngle__8daNpcT_cF5csXyz */
 void daNpcT_c::setAngle(csXyz i_angle) {
-    mCurrent.mAngle = i_angle;
-    mCollisionRot = mCurrent.mAngle;
-    field_0xd78 = mCurrent.mAngle;
+    current.angle = i_angle;
+    mCollisionRot = current.angle;
+    field_0xd78 = current.angle;
     field_0xd7e = field_0xd78;
-    mNext.mAngle = mCurrent.mAngle;
+    next.angle = current.angle;
 }
 
 /* 8014AA18-8014AA40 145358 0028+00 0/0 0/0 138/138 .text            setAngle__8daNpcT_cFs */
 void daNpcT_c::setAngle(s16 i_angle) {
-    mCurrent.mAngle.y = i_angle;
-    mCollisionRot.y = mCurrent.mAngle.y;
-    field_0xd78.y = mCurrent.mAngle.y;
+    current.angle.y = i_angle;
+    mCollisionRot.y = current.angle.y;
+    field_0xd78.y = current.angle.y;
     field_0xd7e.y = field_0xd78.y;
-    mNext.mAngle.y = mCurrent.mAngle.y;
+    next.angle.y = current.angle.y;
 }
 
 /* 8014AA40-8014AAD0 145380 0090+00 0/0 0/0 33/33 .text hitChk__8daNpcT_cFP12dCcD_GObjInfUl */

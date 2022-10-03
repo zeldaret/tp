@@ -1806,10 +1806,10 @@ int dMsgFlow_c::event018(mesg_flow_node_event* flow_node, fopAc_ac_c* actor) {
     if (actor != NULL) {
         int stayNo = dComIfGp_roomControl_getStayNo();
         if (stayNo != 0) {
-            mDoAud_messageSePlay(field_0x45, &actor->mCurrent.mPosition,
+            mDoAud_messageSePlay(field_0x45, &actor->current.pos,
                                  dComIfGp_getReverb(stayNo));
         } else {
-            mDoAud_messageSePlay(field_0x45, &actor->mCurrent.mPosition, 0);
+            mDoAud_messageSePlay(field_0x45, &actor->current.pos, 0);
         }
     } else {
         int stayNo = dComIfGp_roomControl_getStayNo();
@@ -1839,7 +1839,7 @@ int dMsgFlow_c::event020(mesg_flow_node_event* flow_node, fopAc_ac_c* actor) {
 
     for (int i = 0; i < room->mRoomDt.getPlayerNum(); i++, actor_data++) {
         if ((u8)actor_data->mAngle.z == prm0) {
-            player->setPlayerPosAndAngle(&actor_data->mSpawnPos, player->mCurrent.mAngle.y, 0);
+            player->setPlayerPosAndAngle(&actor_data->mSpawnPos, player->current.angle.y, 0);
             break;
         }
     }

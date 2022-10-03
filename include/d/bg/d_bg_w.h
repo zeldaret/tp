@@ -146,10 +146,10 @@ public:
     /* 8007B0DC */ virtual bool ChkGrpThrough(int, cBgS_GrpPassChk*, int);
 
     u32 GetOldInvMtx(Mtx m) { return PSMTXInverse(m_inv_mtx, m); }
-    MtxP GetBaseMtxP() { return pm_base_mtx; }
+    MtxP GetBaseMtxP() { return pm_base; }
 
 public:
-    /* 0x18 */ MtxP pm_base_mtx;
+    /* 0x18 */ MtxP pm_base;
     /* 0x1C */ Mtx m_inv_mtx;
     /* 0x4C */ Mtx field_0x4c;
     /* 0x7C */ cXyz field_0x7c;
@@ -177,7 +177,7 @@ class dBgW : public cBgW {
 public:
     /* 8007B970 */ dBgW();
     /* 8007B9C0 */ void Move();
-    /* 8007B9EC */ void positionWallCorrect(dBgS_Acch*, f32, cM3dGPla&, cXyz*, f32);
+    /* 8007B9EC */ void positionWallCorrect(dBgS_Acch*, f32, cM3dGPla&, cXyz* pupper_pos, f32);
     /* 8007BA40 */ void RwgWallCorrect(dBgS_Acch*, u16);
     /* 8007C234 */ void WallCorrectRp(dBgS_Acch*, int);
     /* 8007C360 */ void WallCorrectGrpRp(dBgS_Acch*, int, int);

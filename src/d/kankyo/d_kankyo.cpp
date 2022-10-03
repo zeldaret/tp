@@ -5,22 +5,20 @@
 
 #include "d/kankyo/d_kankyo.h"
 #include "MSL_C/MSL_Common/Src/mem.h"
+#include "SSystem/SComponent/c_counter.h"
+#include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/kankyo/d_kankyo_data.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_audio.h"
-#include "SSystem/SComponent/c_math.h"
-#include "SSystem/SComponent/c_counter.h"
 
 //
 // Types:
 //
 
 struct sub_kankyo__class {};
-
-struct color_RGB_class {};
 
 //
 // Forward References:
@@ -835,6 +833,52 @@ SECTION_SDATA2 static f32 lit_4529 = 0.5f;
 
 /* 8019D44C-8019D520 197D8C 00D4+00 2/2 0/0 0/0 .text
  * dKy_GXInitLightDistAttn__FP12J3DLightInfoffUc                */
+// matches with literals
+#ifdef NONMATCHING
+static void dKy_GXInitLightDistAttn(J3DLightInfo* i_info, f32 param_1, f32 param_2, u8 param_3) {
+    f32 temp_f3;
+    f32 var_f0;
+    f32 var_f4;
+    f32 var_f5;
+
+    if (param_1 < 0.0f) {
+        param_3 = 0;
+    }
+
+    if (param_2 <= 0.0f || param_2 >= 1.0f) {
+        param_3 = 0;
+    }
+
+    switch (param_3) { /* irregular */
+    case 1:
+        var_f4 = 1.0f;
+        var_f5 = (1.0f - param_2) / (param_2 * param_1);
+        var_f0 = 0.0f;
+        break;
+    case 2:
+        var_f4 = 1.0f;
+        temp_f3 = (1.0f - param_2) * 0.5f;
+        var_f5 = temp_f3 / (param_2 * param_1);
+        var_f0 = temp_f3 / (param_1 * param_2 * param_1);
+        break;
+    case 3:
+        var_f4 = 1.0f;
+        var_f5 = 0.0f;
+        var_f0 = (1.0f - param_2) / (param_1 * (param_2 * param_1));
+        break;
+    default:
+    case 0:
+        var_f4 = 1.0f;
+        var_f5 = 0.0f;
+        var_f0 = var_f5;
+        break;
+    }
+
+    i_info->mDistAtten.x = var_f4;
+    i_info->mDistAtten.y = var_f5;
+    i_info->mDistAtten.z = var_f0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -844,48 +888,79 @@ static asm void dKy_GXInitLightDistAttn(J3DLightInfo* param_0, f32 param_1, f32 
 #include "asm/d/kankyo/d_kankyo/dKy_GXInitLightDistAttn__FP12J3DLightInfoffUc.s"
 }
 #pragma pop
+#endif
 
 /* 8019D520-8019D56C 197E60 004C+00 1/1 0/0 0/0 .text            u8_data_ratio_set__FUcUcf */
+// matches with literals
+#ifdef NONMATCHING
+static s16 u8_data_ratio_set(u8 param_0, u8 param_1, f32 param_2) {
+    return param_0 + (int)(param_2 * (param_1 - param_0));
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void u8_data_ratio_set(u8 param_0, u8 param_1, f32 param_2) {
+static asm s16 u8_data_ratio_set(u8 param_0, u8 param_1, f32 param_2) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/u8_data_ratio_set__FUcUcf.s"
 }
 #pragma pop
+#endif
 
 /* 8019D56C-8019D5BC 197EAC 0050+00 1/1 0/0 0/0 .text            s16_data_ratio_set__Fssf */
+// matches with literals
+#ifdef NONMATCHING
+static s16 s16_data_ratio_set(s16 param_0, s16 param_1, f32 param_2) {
+    return param_0 + (s16)(param_2 * (param_1 - param_0));
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void s16_data_ratio_set(s16 param_0, s16 param_1, f32 param_2) {
+static asm s16 s16_data_ratio_set(s16 param_0, s16 param_1, f32 param_2) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/s16_data_ratio_set__Fssf.s"
 }
 #pragma pop
+#endif
 
 /* 8019D5BC-8019D61C 197EFC 0060+00 1/1 0/0 0/0 .text            kankyo_color_ratio_calc_common__Fsf
  */
+// matches with literals
+#ifdef NONMATCHING
+static u8 kankyo_color_ratio_calc_common(s16 param_0, f32 param_1) {
+    s16 color = param_0 * param_1;
+
+    if (color < 0) {
+        color = 0;
+    } else if (color > 255) {
+        color = 255;
+    }
+
+    return color;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void kankyo_color_ratio_calc_common(s16 param_0, f32 param_1) {
+static asm u8 kankyo_color_ratio_calc_common(s16 param_0, f32 param_1) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/kankyo_color_ratio_calc_common__Fsf.s"
 }
 #pragma pop
+#endif
 
 /* 8019D61C-8019D68C 197F5C 0070+00 1/1 0/0 0/0 .text
  * kankyo_color_ratio_calc__FP8_GXColor11_GXColorS10f           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void kankyo_color_ratio_calc(_GXColor* param_0, _GXColorS10 param_1, f32 param_2) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/kankyo_color_ratio_calc__FP8_GXColor11_GXColorS10f.s"
+static void kankyo_color_ratio_calc(GXColor* o_color, GXColorS10 param_1, f32 param_2) {
+    f32 ratio = param_2;
+    s16 g = param_1.g;
+    s16 b = param_1.b;
+
+    o_color->r = kankyo_color_ratio_calc_common(param_1.r, ratio);
+    o_color->g = kankyo_color_ratio_calc_common(g, ratio);
+    o_color->b = kankyo_color_ratio_calc_common(b, ratio);
 }
-#pragma pop
 
 /* 8019D68C-8019D790 197FCC 0104+00 2/2 0/0 0/0 .text kankyo_color_ratio_set__FUcUcfUcUcfsf */
 #pragma push
@@ -899,27 +974,38 @@ static asm void kankyo_color_ratio_set(u8 param_0, u8 param_1, f32 param_2, u8 p
 #pragma pop
 
 /* 8019D790-8019D7A0 1980D0 0010+00 1/1 0/0 0/0 .text            fl_data_ratio_set__Ffff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void fl_data_ratio_set(f32 param_0, f32 param_1, f32 param_2) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/fl_data_ratio_set__Ffff.s"
+static f32 fl_data_ratio_set(f32 param_0, f32 param_1, f32 param_2) {
+    return param_0 + param_2 * (param_1 - param_0);
 }
-#pragma pop
 
 /* 8019D7A0-8019D878 1980E0 00D8+00 3/3 0/0 0/0 .text float_kankyo_color_ratio_set__Fffffffff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void float_kankyo_color_ratio_set(f32 param_0, f32 param_1, f32 param_2, f32 param_3,
-                                             f32 param_4, f32 param_5, f32 param_6, f32 param_7) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/float_kankyo_color_ratio_set__Fffffffff.s"
+static f32 float_kankyo_color_ratio_set(f32 param_0, f32 param_1, f32 param_2, f32 param_3,
+                                        f32 param_4, f32 param_5, f32 param_6, f32 param_7) {
+    f32 temp_f1;
+    f32 temp_f31;
+
+    temp_f31 = fl_data_ratio_set(param_0, param_1, param_2);
+    temp_f1 = fl_data_ratio_set(temp_f31, fl_data_ratio_set(param_3, param_4, param_2), param_5);
+    return temp_f1 + (param_7 * (param_6 - temp_f1));
 }
-#pragma pop
 
 /* 8019D878-8019D8AC 1981B8 0034+00 3/3 0/0 0/0 .text            get_parcent__Ffff */
+// matches with literals
+#ifdef NONMATCHING
+static f32 get_parcent(f32 param_0, f32 param_1, f32 param_2) {
+    f32 temp_f1;
+    f32 temp_f2;
+    f32 temp_f4 = param_0 - param_1;
+
+    if (0.0f != temp_f4) {
+        temp_f1 = 1.0f - (param_0 - param_2) / temp_f4;
+        if (!(temp_f1 >= 1.0f)) {
+            return temp_f1;
+        }
+    }
+    return 1.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -928,6 +1014,7 @@ static asm f32 get_parcent(f32 param_0, f32 param_1, f32 param_2) {
 #include "asm/d/kankyo/d_kankyo/get_parcent__Ffff.s"
 }
 #pragma pop
+#endif
 
 /* 8019D8AC-8019D8CC 1981EC 0020+00 0/0 1/1 1/1 .text            dKy_get_parcent__Ffff */
 f32 dKy_get_parcent(f32 param_0, f32 param_1, f32 param_2) {
@@ -1086,6 +1173,15 @@ static asm void plight_set() {
 #pragma pop
 
 /* 8019E854-8019E874 199194 0020+00 1/1 0/0 0/0 .text            bgparts_activelight_init__Fv */
+#ifdef NONMATCHING
+static void bgparts_activelight_init() {
+    dScnKy_env_light_c* light = i_dKy_getEnvlight();
+
+    for (int i = 0; i < 2; i++) {
+    }
+    light->mBGpartsActiveLight[0].mIndex = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1094,6 +1190,7 @@ static asm void bgparts_activelight_init() {
 #include "asm/d/kankyo/d_kankyo/bgparts_activelight_init__Fv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803BBF58-803BBFB8 019078 0060+00 1/1 0/0 0/0 .data            test_pos_tbl$5126 */
@@ -1221,7 +1318,7 @@ static void envcolor_init() {
     g_env_light.mInitAnmTimer = 1;
     g_env_light.mSchBit = 0;
     g_env_light.mSchbitTimer = 0;
-    
+
     g_env_light.mVrboxInvisible = false;
     g_env_light.mContrastFlag = 0;
     g_env_light.mFogAdjEnable = true;
@@ -1294,7 +1391,8 @@ static void envcolor_init() {
     g_env_light.mColpatWeather = 0;
     g_env_light.field_0xecc = 0.0f;
 
-    if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") || !strcmp(dComIfGp_getStartStageName(), "R_SP127")) {
+    if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") ||
+        !strcmp(dComIfGp_getStartStageName(), "R_SP127")) {
         if (g_env_light.field_0x12cc >= 7) {
             g_env_light.mColpatWeather = 2;
         } else if (g_env_light.field_0x12cc != 0) {
@@ -1313,7 +1411,8 @@ static void envcolor_init() {
     g_env_light.mRainCountOrig = 0;
     g_env_light.field_0x12a0 = 0;
     g_env_light.mDiceWeatherMode = 0;
-    g_env_light.mDiceWeatherChangeTime = dComIfGs_getTime() + (cM_rndF(g_Counter.mCounter0 & 0x1F) * 15.0f);
+    g_env_light.mDiceWeatherChangeTime =
+        dComIfGs_getTime() + (cM_rndF(g_Counter.mCounter0 & 0x1F) * 15.0f);
     if (g_env_light.mDiceWeatherChangeTime >= 360.0f) {
         g_env_light.mDiceWeatherChangeTime -= 360.0f;
     }
@@ -1417,7 +1516,7 @@ void dKy_clear_game_init() {
     g_env_light.mNexttime = -1.0f;
     g_env_light.mTime = -1.0f;
     g_env_light.mDarkDaytime = 120.0f;
-    
+
     g_env_light.mDarktimeWeek = 0;
     g_env_light.field_0x12fe = 0;
     g_env_light.field_0x130a = 0;
@@ -2472,7 +2571,7 @@ static int dKy_Create(void*) {
     }
 
     g_env_light.mNexttime = -1.0f;
-    return 4;
+    return cPhs_COMPLEATE_e;
 }
 #else
 #pragma push
@@ -2825,6 +2924,23 @@ SECTION_DEAD static char const* const stringBase_80394E90 =
 #pragma pop
 
 /* 801A80D0-801A8168 1A2A10 0098+00 1/1 0/0 2/2 .text            dKy_fog_startendz_set__Ffff */
+// matches with literals
+#ifdef NONMATCHING
+void dKy_fog_startendz_set(f32 param_0, f32 param_1, f32 ratio) {
+    if (ratio < 0.0f || ratio > 1.0f) {
+        OSReport_Warning("\ndKy_fog_startendz_set ratio error!\n");
+        ratio = 0.0f;
+    }
+
+    if (ratio < 9.999999747378752e-05f) {
+        ratio = 0.0f;
+    }
+
+    g_env_light.field_0x11ec = param_0;
+    g_env_light.field_0x11f0 = param_1;
+    g_env_light.field_0x11f4 = ratio;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2833,6 +2949,7 @@ asm void dKy_fog_startendz_set(f32 param_0, f32 param_1, f32 param_2) {
 #include "asm/d/kankyo/d_kankyo/dKy_fog_startendz_set__Ffff.s"
 }
 #pragma pop
+#endif
 
 /* 801A8168-801A8190 1A2AA8 0028+00 0/0 1/1 0/0 .text            dKy_Itemgetcol_chg_on__Fv */
 void dKy_Itemgetcol_chg_on() {
@@ -2870,6 +2987,23 @@ SND_INFLUENCE* dKy_Sound_get() {
 }
 
 /* 801A8484-801A8538 1A2DC4 00B4+00 0/0 2/2 0/0 .text            dKy_SordFlush_set__F4cXyzi */
+// matches with literals
+#ifdef NONMATCHING
+void dKy_SordFlush_set(cXyz param_0, int param_1) {
+    dScnKy_env_light_c* light = i_dKy_getEnvlight();
+
+    if (!dKy_darkworld_check() &&
+        (light->mThunderEff.mStateTimer >= 10 || light->mThunderEff.field_0x8 <= 0.0f)) {
+        if (g_env_light.mSwordLight.mState == 0) {
+            g_env_light.mSwordLight.mState = 1;
+            g_env_light.mSwordLight.mLightType = param_1;
+            g_env_light.mSwordLight.field_0x8.mPosition = param_0;
+        } else if (g_env_light.mSwordLight.mState == 2) {
+            g_env_light.mSwordLight.mState = 4;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2878,6 +3012,7 @@ asm void dKy_SordFlush_set(cXyz param_0, int param_1) {
 #include "asm/d/kankyo/d_kankyo/dKy_SordFlush_set__F4cXyzi.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80453DA8-80453DAC 0023A8 0004+00 3/3 0/0 0/0 .sdata2          @8647 */
@@ -2894,24 +3029,20 @@ static asm void GxFogSet_Sub(_GXColor* param_0) {
 #pragma pop
 
 /* 801A85E8-801A862C 1A2F28 0044+00 1/1 0/0 0/0 .text            GxFog_set__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void GxFog_set() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/GxFog_set__Fv.s"
+static void GxFog_set() {
+    GXColor color;
+    color.r = g_env_light.mFogColor.r;
+    color.g = g_env_light.mFogColor.g;
+    color.b = g_env_light.mFogColor.b;
+
+    GxFogSet_Sub(&color);
 }
-#pragma pop
 
 /* 801A862C-801A8650 1A2F6C 0024+00 0/0 7/7 2/2 .text            dKy_GxFog_set__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_GxFog_set() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_GxFog_set__Fv.s"
+void dKy_GxFog_set() {
+    GxFog_set();
+    GxXFog_set();
 }
-#pragma pop
 
 /* 801A8650-801A86F8 1A2F90 00A8+00 0/0 3/3 6/6 .text dKy_GxFog_tevstr_set__FP12dKy_tevstr_c */
 #pragma push
@@ -2934,14 +3065,11 @@ asm void dKy_GfFog_tevstr_set(dKy_tevstr_c* param_0) {
 #pragma pop
 
 /* 801A87A0-801A87E4 1A30E0 0044+00 3/3 0/0 0/0 .text            GxXFog_set__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void GxXFog_set() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/GxXFog_set__Fv.s"
+static void GxXFog_set() {
+    dKyd_xfog_table_set(g_env_light.mFogAdjTableType);
+    GXSetFogRangeAdj((GXBool)g_env_light.mFogAdjEnable, g_env_light.mFogAdjCenter,
+                     &g_env_light.mXFogTbl);
 }
-#pragma pop
 
 /* 801A87E4-801A880C 1A3124 0028+00 0/0 0/0 52/52 .text            dKy_change_colpat__FUc */
 void dKy_change_colpat(u8 colpat) {
@@ -3136,7 +3264,7 @@ void dKy_instant_rainchg() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void NewAmbColGet(_GXColorS10* param_0) {
+static asm GXColor NewAmbColGet(_GXColorS10* param_0) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/NewAmbColGet__FP11_GXColorS10.s"
 }
@@ -3185,29 +3313,26 @@ static asm void dKy_ParticleColor_get_base(cXyz* param_0, dKy_tevstr_c* param_1,
 
 /* 801A9BE4-801A9CBC 1A4524 00D8+00 0/0 3/3 0/0 .text
  * dKy_ParticleColor_get_actor__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_ParticleColor_get_actor(cXyz* param_0, dKy_tevstr_c* param_1, _GXColor* param_2,
-                                     _GXColor* param_3, _GXColor* param_4, _GXColor* param_5,
-                                     f32 param_6) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_ParticleColor_get_actor__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf.s"
+void dKy_ParticleColor_get_actor(cXyz* param_0, dKy_tevstr_c* param_1, _GXColor* param_2,
+                                 _GXColor* param_3, _GXColor* param_4, _GXColor* param_5,
+                                 f32 param_6) {
+    if (param_1 != NULL) {
+        *param_2 = NewAmbColGet(&param_1->mColorC0);
+    } else {
+        *param_2 = NewAmbColGet(&g_env_light.mActorAmbience);
+    }
+
+    dKy_ParticleColor_get_base(param_0, param_1, param_2, param_3, param_4, param_5, param_6);
 }
-#pragma pop
 
 /* 801A9CBC-801A9D60 1A45FC 00A4+00 0/0 6/6 0/0 .text
  * dKy_ParticleColor_get_bg__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_ParticleColor_get_bg(cXyz* param_0, dKy_tevstr_c* param_1, _GXColor* param_2,
-                                  _GXColor* param_3, _GXColor* param_4, _GXColor* param_5,
-                                  f32 param_6) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_ParticleColor_get_bg__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf.s"
+void dKy_ParticleColor_get_bg(cXyz* param_0, dKy_tevstr_c* param_1, _GXColor* param_2,
+                              _GXColor* param_3, _GXColor* param_4, _GXColor* param_5,
+                              f32 param_6) {
+    *param_2 = NewAmbColGet(&g_env_light.mTerrainAmbienceBG0);
+    dKy_ParticleColor_get_base(param_0, param_1, param_2, param_3, param_4, param_5, param_6);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -3247,6 +3372,60 @@ SECTION_SDATA2 static f32 lit_9677 = 1.5f;
 
 /* 801AAC5C-801AAD50 1A559C 00F4+00 0/0 1/1 0/0 .text
  * dKy_WolfEyeLight_set__FP4cXyzfffP8_GXColorfUcUc              */
+// matches with literals
+#ifdef NONMATCHING
+int dKy_WolfEyeLight_set(cXyz* param_0, f32 param_1, f32 param_2, f32 param_3, GXColor* param_4,
+                         f32 param_5, u8 param_6, u8 param_7) {
+    dScnKy_env_light_c* light = i_dKy_getEnvlight();
+
+    light->field_0x0c18[0].mPos = *param_0;
+
+    light->field_0x0c18[0].mColor.r = param_4->r;
+    light->field_0x0c18[0].mColor.g = param_4->g;
+    light->field_0x0c18[0].mColor.b = param_4->b;
+    light->field_0x0c18[0].mColor.a = 255;
+
+    light->field_0x0c18[0].field_0x10 = param_5;
+    light->field_0x0c18[0].field_0x14 = 0.99f;
+    light->field_0x0c18[0].field_0x18 = param_3;
+    light->field_0x0c18[0].field_0x1c = param_1;
+    light->field_0x0c18[0].field_0x20 = param_2 + 90.0f;
+    light->field_0x0c18[0].field_0x24 = param_6;
+    light->field_0x0c18[0].field_0x25 = param_7;
+
+    f32 fvar0;
+    f32 fvar1;
+    f32 fvar2;
+    switch (light->field_0x1309) {
+    case 0:
+        fvar0 = 50.0f;
+        fvar1 = 1.0f;
+        fvar2 = 0.9f;
+        break;
+    case 1:
+        fvar0 = 200.0f;
+        fvar1 = 1.0f;
+        fvar2 = fvar1;
+        break;
+    case 2:
+        fvar0 = 350.0f;
+        fvar1 = 1.5f;
+        fvar2 = fvar1;
+        break;
+    case 3:
+    default:
+        fvar0 = 1500.0f;
+        fvar1 = 4.0f;
+        fvar2 = 1.5f;
+    }
+
+    light->field_0x127c = fvar0;
+    light->field_0x0c18[0].field_0x10 *= fvar1;
+    light->field_0x0c18[0].field_0x18 *= fvar2;
+    light->field_0x0c18[0].field_0x26 = 1;
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3256,6 +3435,7 @@ asm void dKy_WolfEyeLight_set(cXyz* param_0, f32 param_1, f32 param_2, f32 param
 #include "asm/d/kankyo/d_kankyo/dKy_WolfEyeLight_set__FP4cXyzfffP8_GXColorfUcUc.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80453DD0-80453DD4 0023D0 0004+00 3/3 0/0 0/0 .sdata2          @9722 */
@@ -3355,14 +3535,33 @@ asm void dKy_pol_efftype2_get(cBgS_PolyInfo const* param_0) {
 #pragma pop
 
 /* 801AB4C0-801AB59C 1A5E00 00DC+00 0/0 9/9 21/21 .text dKy_pol_sound_get__FPC13cBgS_PolyInfo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u8 dKy_pol_sound_get(cBgS_PolyInfo const* param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_pol_sound_get__FPC13cBgS_PolyInfo.s"
+u8 dKy_pol_sound_get(cBgS_PolyInfo const* p_poly) {
+    dScnKy_env_light_c* envLight = i_dKy_getEnvlight();
+
+    if (p_poly == NULL || &dComIfG_Bgsp() == NULL) {
+        return 0;
+    }
+
+    int att0 = dComIfG_Bgsp().GetPolyAtt0(*p_poly);
+    if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") && g_env_light.field_0x12fe == 4 &&
+        att0 == 4) {
+        att0 = 13;
+    }
+
+    int att1 = dComIfG_Bgsp().GetPolyAtt1(*p_poly);
+    u8 uvar3;
+    if (envLight->mResPolSound != NULL) {
+        uvar3 = envLight->mResPolSound[att0].data[att1];
+    } else {
+        uvar3 = 0;
+    }
+
+    if (uvar3 == 0xFF) {
+        uvar3 = 0;
+    }
+
+    return uvar3;
 }
-#pragma pop
 
 /* 801AB59C-801AB668 1A5EDC 00CC+00 0/0 5/5 0/0 .text dKy_pol_argument_get__FPC13cBgS_PolyInfo */
 u8 dKy_pol_argument_get(cBgS_PolyInfo const* p_poly) {

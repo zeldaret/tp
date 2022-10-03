@@ -13,6 +13,7 @@
 #include "dolphin/mtx/mtx44.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_view.h"
 
 class cM_rnd_c {
 public:
@@ -32,6 +33,25 @@ public:
     dDlst_base_c() {}
     virtual void draw();
 };
+
+class dDlst_effectLine_c : public dDlst_base_c {
+public:
+    /* 80053E9C */ virtual void draw();
+    /* 800541F4 */ void update(cXyz&, _GXColor&, u16, u16, u16, u16, f32, f32, f32, f32);
+
+private:
+    /* 0x04 */ cM_rnd_c mRnd;
+    /* 0x10 */ cXyz field_0x10;
+    /* 0x1C */ GXColor mLineColor;
+    /* 0x20 */ u16 field_0x20;
+    /* 0x22 */ u16 field_0x22;
+    /* 0x24 */ u16 field_0x24;
+    /* 0x26 */ u16 field_0x26;
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ f32 field_0x30;
+    /* 0x34 */ f32 field_0x34;
+};  // Size: 0x38
 
 class dDlst_FileInfo_c : public dDlst_base_c {
 public:
@@ -198,7 +218,7 @@ private:
     /* 0x15EF4 */ void* field_0x15ef4;
 };
 
-class dDlst_window_c {
+class dDlst_window_c : public view_port_class {
 public:
     dDlst_window_c() {}
     ~dDlst_window_c() {}
@@ -210,16 +230,6 @@ public:
     f32 getViewPort() { return mXOrig; }
 
 private:
-    /* 0x00 */ f32 mXOrig;
-    /* 0x04 */ f32 mYOrig;
-    /* 0x08 */ f32 mWidth;
-    /* 0x0C */ f32 mHeight;
-    /* 0x10 */ f32 mNearZ;
-    /* 0x14 */ f32 mFarZ;
-    /* 0x18 */ f32 mScissorXOrig;
-    /* 0x1C */ f32 mScissorYOrig;
-    /* 0x20 */ f32 mScissorWidth;
-    /* 0x24 */ f32 mScissorHeight;
     /* 0x28 */ s8 mCameraID;
     /* 0x29 */ s8 mMode;
 };
@@ -296,6 +306,9 @@ public:
     void setXluList2DScreen() { setXluDrawList(mDrawBuffers[DB_LIST_2D_SCREEN]); }
 
     void peekZdata() { mPeekZ.peekData(); }
+    void entryZSortListZxlu(J3DPacket* i_packet, cXyz& param_1) {
+        entryZSortXluDrawList(mDrawBuffers[DB_LIST_Z_XLU], i_packet, param_1);
+    }
 
     int setSimpleShadow(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3, s16 param_4,
                         f32 param_5, _GXTexObj* param_6) {

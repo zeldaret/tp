@@ -8,15 +8,15 @@
 #include "f_op/f_op_draw_tag.h"
 #include "f_op/f_op_view.h"
 #include "f_pc/f_pc_leaf.h"
+#include "d/d_camera.h"
 
-class camera_class : public view_class {
+class camera_process_class : public view_class {
 public:
-    /* 0x170 */ Mtx field_0x170;
-    /* 0x1A0 */ Mtx field_0x1a0;
-    /* 0x1D0 */ u8 field_0x1d0[0x10];
-    /* 0x1E0 */ Mtx field_0x1e0;
-    /* 0x210 */ create_tag_class pCreateTag;
-    /* 0x224 */ leafdraw_method_class* pMthd;
+    /* 0x170 */ Mtx mInvViewMtx;
+    /* 0x1A0 */ Mtx44 field_0x1a0;
+    /* 0x1E0 */ Mtx mViewMtxNoTrans;
+    /* 0x210 */ create_tag_class mCreateTag;
+    /* 0x224 */ leafdraw_method_class* mpMtd;
     /* 0x228 */ u8 field_0x228[4];
     /* 0x22C */ s8 mPrm1;
     /* 0x22D */ s8 mPrm2;
@@ -24,6 +24,13 @@ public:
     /* 0x22F */ u8 field_0x22f;
     /* 0x230 */ csXyz mAngle;
     /* 0x238 */ int field_0x238;
+};
+
+class camera_class : public camera_process_class {
+public:
+    /* 0x23C */ int field_0x23c;
+    /* 0x240 */ request_of_phase_process_class mPhaseReq;
+    /* 0x248 */ dCamera_c mCamera;
 };
 
 /* void fopCamM_SetNear(camera_class* cam, f32 near) {

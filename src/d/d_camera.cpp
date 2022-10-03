@@ -7,6 +7,7 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "SSystem/SComponent/c_m3d_g_pla.h"
+#include "d/com/d_com_inf_game.h"
 
 //
 // Types:
@@ -17,27 +18,8 @@ namespace std {
 /* 80182D10 */ void fabs(f32);
 };  // namespace std
 
-struct mDoMtx_stack_c {
-    /* 8000CD9C */ void transM(f32, f32, f32);
-    /* 8000CE70 */ void scaleM(cXyz const&);
-
-    static u8 now[48];
-};
-
 struct mDoLib_clipper {
     /* 8001528C */ void setup(f32, f32, f32, f32);
-};
-
-struct mDoGph_gInf_c {
-    /* 80008078 */ void onBlure();
-    /* 800080A0 */ void onBlure(f32 const (*)[4]);
-};
-
-struct mDoCPd_c {
-    /* 8016C314 */ void getHoldA(u32);
-    /* 80182BF8 */ void getTrigA(u32);
-
-    static u8 m_cpadInfo[256];
 };
 
 struct daTagMwait_c {
@@ -52,73 +34,10 @@ struct daTagMhint_c {
     /* 80182D78 */ void checkNoAttention() const;
 };
 
-struct daPy_py_c {
-    /* 801414CC */ void checkMagneBootsOn() const;
-    /* 8015DFF4 */ void getLeftHandPos() const;
-    /* 8015F8D0 */ void getThrowBoomerangActor();
-    /* 801829E0 */ void checkThrowDamage() const;
-    /* 80182A10 */ void checkGoronSideMove() const;
-    /* 80182AAC */ void getRightFootPosP();
-    /* 80182AB4 */ void getLeftFootPosP();
-    /* 80182ABC */ u32 getMidnaActor();
-    /* 80182AC4 */ void checkCopyRodThrowAfter() const;
-    /* 80182AD8 */ void checkRide() const;
-    /* 80182B9C */ void getRightHandPos() const;
-
-    static u8 m_midnaActor[4];
-};
-
 struct daHorse_c {
     /* 80182D04 */ void getLashDashStart() const;
     /* 80182D1C */ void checkTurnStandCamera() const;
     /* 80182D48 */ void checkJump() const;
-};
-
-struct daAlink_c {
-    /* 8009D87C */ bool getE3Zhint();
-    /* 800D2ABC */ void checkCutLargeTurnState() const;
-    /* 800DE884 */ void checkBowCameraArrowPosP(s16*, s16*);
-    /* 800E1390 */ void getCopyRodCameraActor();
-    /* 800F3CF8 */ void checkCanoeRideTandem();
-    /* 80112474 */ void checkIronBallThrowMode() const;
-    /* 801124B4 */ void checkIronBallThrowReturnMode() const;
-    /* 80133EF0 */ void checkMidnaLockJumpPoint() const;
-    /* 8018280C */ void getChainGrabActor();
-    /* 80182814 */ void checkCokkoGlide() const;
-    /* 8018283C */ void checkCameraLargeDamage() const;
-    /* 80182870 */ void getHsSubChainTopPos() const;
-    /* 80182888 */ void checkCutHeadProc() const;
-    /* 8018289C */ void getRideActor();
-};
-
-struct dVibration_c {
-    /* 8006FA24 */ void StartShock(int, int, cXyz);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
-};
-
-struct dEvt_control_c {
-    /* 800434D8 */ void searchMapEventData(u8);
-};
-
-struct dEvent_manager_c {
-    /* 80047B1C */ void getMyStaffId(char const*, fopAc_ac_c*, int);
-    /* 80047D4C */ void getIsAddvance(int);
-    /* 80047E10 */ void getMyActIdx(int, char const* const*, int, int, int);
-    /* 8004817C */ void cutEnd(int);
-};
-
-struct dDlst_window_c {
-    /* 80051AC0 */ void setViewPort(f32, f32, f32, f32, f32, f32);
-    /* 80051ADC */ void setScissor(f32, f32, f32, f32);
-};
-
-struct dDlst_effectLine_c {
-    /* 800541F4 */ void update(cXyz&, _GXColor&, u16, u16, u16, u16, f32, f32, f32, f32);
 };
 
 struct dDemo_object_c {
@@ -129,156 +48,8 @@ struct dDemo_c {
     static u8 m_object[4];
 };
 
-struct dCstick_c {
-    /* 8008845C */ bool Shift(u32);
-};
-
-struct cCcD_ShapeAttr {
-    struct Shape {
-        /* 80167BBC */ ~Shape();
-    };
-};
-
-struct dCcS {
-    /* 80086D8C */ void ChkCamera(cXyz&, cXyz&, f32, fopAc_ac_c*, fopAc_ac_c*, fopAc_ac_c*);
-    /* 80086FBC */ void chkCameraPoint(cXyz const&, cCcD_ShapeAttr::Shape*, fopAc_ac_c*,
-                                       fopAc_ac_c*);
-};
-
-struct cM3dGCps {
-    /* 8026EF88 */ cM3dGCps();
-    /* 8026EFA4 */ ~cM3dGCps();
-    /* 8026F000 */ void Set(cXyz const&, cXyz const&, f32);
-};
-
-struct dCcMassS_Mng {
-    /* 80085E6C */ void SetCam(cM3dGCps const&);
-    /* 80085EB0 */ void GetResultCam() const;
-    /* 80085EB8 */ void GetCamTopPos(Vec*);
-};
-
-struct dCamSetup_c {
-    /* 80088668 */ dCamSetup_c();
-    /* 800888B8 */ ~dCamSetup_c();
-    /* 80088918 */ void CheckLatitudeRange(s16*);
-    /* 80088988 */ void PlayerHideDist();
-    /* 80182BB8 */ void CheckFlag2(u16);
-    /* 80182BD0 */ void CheckFlag(u16);
-    /* 80182BE8 */ void WaitRollSpeed();
-    /* 80182BF0 */ void WaitRollTimer();
-    /* 80182C1C */ void ThrowTimer();
-    /* 80182C24 */ void ThrowCushion();
-    /* 80182C2C */ void ThrowVAngle();
-    /* 80182C34 */ void ThrowCtrAdjust();
-    /* 80182CEC */ void ChargeBRatio();
-    /* 80182CF4 */ void ChargeTimer();
-    /* 80182CFC */ void ChargeLatitude();
-};
-
-struct dCamParam_c {
-    /* 800884F0 */ dCamParam_c(s32);
-    /* 8008858C */ ~dCamParam_c();
-    /* 800885D4 */ void Change(s32);
-    /* 80088620 */ void SearchStyle(u32);
-    /* 80182C60 */ void Arg2(s16);
-    /* 80182C3C */ void Arg2();
-    /* 80182C48 */ void Arg1();
-    /* 80182C6C */ void Arg1(u8);
-    /* 80182C50 */ void Arg0();
-    /* 80182C74 */ void Arg0(u8);
-    /* 80182C7C */ void Fovy(u8);
-    /* 80182C58 */ void Fovy();
-    /* 80182C8C */ void Flag(s32, u16);
-    /* 80182CB4 */ void CheckFlag(u16);
-    /* 80182CD0 */ void Val(s32, int);
-};
-
-struct dCamMath {
-    /* 8008813C */ void rationalBezierRatio(f32, f32);
-    /* 80088284 */ void zoomFovy(f32, f32);
-    /* 8008831C */ void xyzRotateX(cXyz&, cSAngle);
-    /* 80088384 */ void xyzRotateY(cXyz&, cSAngle);
-    /* 800883EC */ void xyzHorizontalDistance(cXyz&, cXyz&);
-};
-
-struct dCamForcusLine {
-    /* 801824C8 */ void Init();
-    /* 80182560 */ void Draw();
-    /* 801825E4 */ void Off();
-};
-
-struct dBgS_SphChk {
-    /* 80078A14 */ dBgS_SphChk();
-    /* 80078AC0 */ ~dBgS_SphChk();
-};
-
-struct dBgS_RoofChk {
-    /* 80078FF4 */ dBgS_RoofChk();
-    /* 80079090 */ ~dBgS_RoofChk();
-};
-
-struct dBgS_GndChk {
-    /* 8007757C */ dBgS_GndChk();
-    /* 800775F0 */ ~dBgS_GndChk();
-};
-
 struct dBgS_CamSphChk {
     /* 80165E74 */ ~dBgS_CamSphChk();
-};
-
-struct cBgD_Vtx_t;
-
-struct dBgS_CamGndChk_Wtr {
-    /* 80077A00 */ dBgS_CamGndChk_Wtr();
-    /* 80077A98 */ ~dBgS_CamGndChk_Wtr();
-};
-
-struct dBgS_CamGndChk {
-    /* 80077988 */ ~dBgS_CamGndChk();
-};
-
-struct dBgS {
-    /* 80074ABC */ void ChkMoveBG(cBgS_PolyInfo const&);
-    /* 80074EF0 */ void GetGroundCode(cBgS_PolyInfo const&);
-    /* 80074F40 */ void GetCamMoveBG(cBgS_PolyInfo const&);
-    /* 80074F90 */ void GetRoomCamId(cBgS_PolyInfo const&);
-    /* 80075080 */ void GetGrpSoundId(cBgS_PolyInfo const&);
-    /* 800750D0 */ void ChkGrpInf(cBgS_PolyInfo const&, u32);
-    /* 8007549C */ void RoofChk(dBgS_RoofChk*);
-    /* 80075688 */ void SphChk(dBgS_SphChk*, void*);
-    /* 8007595C */ void MoveBgMatrixCrrPos(cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
-};
-
-struct dAttention_c {
-    /* 8007353C */ void LockonTarget(s32);
-    /* 800735DC */ void LockonReleaseDistanse();
-    /* 80073734 */ void ActionTarget(s32);
-    /* 8007378C */ void CheckObjectTarget(s32);
-    /* 800737E4 */ void LockonTruth();
-    /* 8016E424 */ void LockEdge();
-    /* 80182994 */ void GetCheckObjectCount();
-    /* 80182AD0 */ void keepLock(int);
-};
-
-struct d2DBSplinePath {
-    /* 80097878 */ void Init(s32, s32);
-    /* 80097B68 */ void Spot(f32*, f32);
-    /* 801828D4 */ ~d2DBSplinePath();
-};
-
-struct camera_process_class {};
-
-struct cM_rnd_c {
-    /* 80053CDC */ void init(int, int, int);
-};
-
-struct cM3dGSph {
-    /* 8026F664 */ void Set(cXyz const&, f32);
-};
-
-struct cM3dGCyl {
-    /* 80030E3C */ ~cM3dGCyl();
-    /* 8026F0A8 */ cM3dGCyl(cXyz const*, f32, f32);
 };
 
 //
@@ -800,7 +571,6 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
-extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
 extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" extern void* g_fopCam_Method[5 + 1 /* padding */];
 extern "C" extern void* g_fopVw_Method[5 + 1 /* padding */];
@@ -811,12 +581,10 @@ extern "C" extern void* __vt__18dDlst_effectLine_c[3];
 extern "C" extern void* __vt__14dBgS_CamGndChk[12];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" f32 Zero__4cXyz[3];
 extern "C" u8 BaseY__4cXyz[12];
 extern "C" extern u8 g_dComIfGoat_gameInfo[4 + 4 /* padding */];
 extern "C" extern u8 data_80450B44[4];
-extern "C" extern u8 mBlureFlag__13mDoGph_gInf_c[4];
 extern "C" u8 stopStatus__10fopAc_ac_c[4];
 extern "C" u8 m_object__7dDemo_c[4];
 extern "C" u8 m_midnaActor__9daPy_py_c[4];
@@ -1854,10 +1622,10 @@ asm dCamera_c::~dCamera_c() {
 
 /* ############################################################################################## */
 /* 8042C8F8-8042C9A0 059618 00A8+00 12/12 0/0 0/0 .bss specialType__22@unnamed@d_camera_cpp@ */
-static u8 data_8042C8F8[168];
+static int data_8042C8F8[42];
 
 /* 80451020-80451024 000520 0004+00 4/4 0/0 0/0 .sbss            Stage__22@unnamed@d_camera_cpp@ */
-static u8 data_80451020[4];
+static int data_80451020;
 
 /* 804536A0-804536A4 001CA0 0004+00 39/39 0/0 0/0 .sdata2          @5656 */
 SECTION_SDATA2 static u8 lit_5656[4] = {
@@ -2854,7 +2622,8 @@ static asm void func_8016C2D4() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoCPd_c::getHoldA(u32 param_0) {
+// asm void mDoCPd_c::getHoldA(u32 param_0) {
+extern "C" asm void getHoldA__8mDoCPd_cFUl() {
     nofralloc
 #include "asm/d/d_camera/getHoldA__8mDoCPd_cFUl.s"
 }
@@ -4077,7 +3846,8 @@ asm void daAlink_c::getHsSubChainTopPos() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daAlink_getAlinkActorClass() {
+// static asm void daAlink_getAlinkActorClass() {
+extern "C" asm void daAlink_getAlinkActorClass__Fv() {
     nofralloc
 #include "asm/d/d_camera/daAlink_getAlinkActorClass__Fv.s"
 }
@@ -4107,7 +3877,8 @@ asm void daAlink_c::getRideActor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGs_isTmpBit(u16 param_0) {
+// static asm void dComIfGs_isTmpBit(u16 param_0) {
+extern "C" asm void dComIfGs_isTmpBit__FUs() {
     nofralloc
 #include "asm/d/d_camera/dComIfGs_isTmpBit__FUs.s"
 }
@@ -4117,7 +3888,8 @@ static asm void dComIfGs_isTmpBit(u16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm d2DBSplinePath::~d2DBSplinePath() {
+// asm d2DBSplinePath::~d2DBSplinePath() {
+extern "C" asm void __dt__14d2DBSplinePathFv() {
     nofralloc
 #include "asm/d/d_camera/__dt__14d2DBSplinePathFv.s"
 }
@@ -4192,7 +3964,8 @@ asm void dAttention_c::GetCheckObjectCount() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_getAttention() {
+// static asm void dComIfGp_getAttention() {
+extern "C" asm void dComIfGp_getAttention__Fv() {
     nofralloc
 #include "asm/d/d_camera/dComIfGp_getAttention__Fv.s"
 }
@@ -4237,7 +4010,8 @@ asm void cBgS_LinChk::GetCross() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfG_Bgsp() {
+// static asm void dComIfG_Bgsp() {
+extern "C" asm void dComIfG_Bgsp__Fv() {
     nofralloc
 #include "asm/d/d_camera/dComIfG_Bgsp__Fv.s"
 }
@@ -4366,8 +4140,8 @@ asm void daPy_py_c::getLeftFootPosP() {
 #pragma pop
 
 /* 80182ABC-80182AC4 -00001 0008+00 0/0 0/0 0/0 .text            getMidnaActor__9daPy_py_cFv */
-u32 daPy_py_c::getMidnaActor() {
-    return *(u32*)(&daPy_py_c::m_midnaActor);
+extern "C" u32 getMidnaActor__9daPy_py_cFv() {
+    return *(u32*)(m_midnaActor__9daPy_py_c);
 }
 
 /* 80182AC4-80182AD0 17D404 000C+00 1/1 0/0 0/0 .text checkCopyRodThrowAfter__9daPy_py_cCFv */
@@ -4449,7 +4223,8 @@ asm void dCamSetup_c::WaitRollTimer() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoCPd_c::getTrigA(u32 param_0) {
+// asm void mDoCPd_c::getTrigA(u32 param_0) {
+extern "C" asm void getTrigA__8mDoCPd_cFUl() {
     nofralloc
 #include "asm/d/d_camera/getTrigA__8mDoCPd_cFUl.s"
 }

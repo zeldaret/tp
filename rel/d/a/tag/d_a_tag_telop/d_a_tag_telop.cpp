@@ -52,7 +52,7 @@ int daTag_Telop_c::create() {
         mMessageStatus = 99;
     }
 
-    return 4;
+    return cPhs_COMPLEATE_e;
 }
 
 /* 80490AF8-80490B5C 000118 0064+00 1/1 0/0 0/0 .text            execute__13daTag_Telop_cFv */

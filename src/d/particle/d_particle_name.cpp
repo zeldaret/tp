@@ -7,50 +7,14 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-//
-// Types:
-//
-
-struct dPa_name {
-    static u8 j_o_id[10 + 2 /* padding */];
-    static u8 s_o_id[28];
-};
-
-//
-// Forward References:
-//
-
-extern "C" u8 j_o_id__8dPa_name[10 + 2 /* padding */];
-extern "C" u8 s_o_id__8dPa_name[28];
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
-
 /* ############################################################################################## */
 /* 803A85D0-803A85DC 0056F0 000A+02 0/0 1/1 0/0 .data            j_o_id__8dPa_name */
-SECTION_DATA u8 dPa_name::j_o_id[10 + 2 /* padding */] = {
-    0x07,
-    0x0F,
-    0x07,
-    0x3D,
-    0x01,
-    0x00,
-    0x01,
-    0x01,
-    0x01,
-    0x03,
-    /* padding */
-    0x00,
-    0x00,
+SECTION_DATA u16 dPa_name::j_o_id[5] = {
+    0x070F, 0x073D, 0x0100, 0x0101, 0x0103,
 };
 
 /* 803A85DC-803A85F8 0056FC 001C+00 0/0 1/1 0/0 .data            s_o_id__8dPa_name */
-SECTION_DATA u8 dPa_name::s_o_id[28] = {
-    0x81, 0x10, 0x81, 0x11, 0x81, 0x12, 0x89, 0xD6, 0x89, 0xD7, 0x89, 0xD8, 0x83, 0xA6,
-    0x83, 0xA7, 0x81, 0x04, 0x81, 0x05, 0x81, 0x06, 0x81, 0x74, 0x81, 0x75, 0x81, 0x76,
+SECTION_DATA u16 dPa_name::s_o_id[14] = {
+    0x8110, 0x8111, 0x8112, 0x89D6, 0x89D7, 0x89D8, 0x83A6,
+    0x83A7, 0x8104, 0x8105, 0x8106, 0x8174, 0x8175, 0x8176,
 };

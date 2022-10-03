@@ -116,7 +116,7 @@ static int dKyeff_Create(kankyo_class* kankyo) {
         g_env_light.mWind.pow = 0.7f;
         g_env_light.mDaytime = time.hours * 15.0f;
     }
-    return 4;
+    return cPhs_COMPLEATE_e;
 }
 #else
 #pragma push

@@ -364,7 +364,7 @@ asm void JUTResFont::getWidthEntry(int param_0, JUTFont::TWidth* param_1) const 
 
 /* 802DFD0C-802DFD58 2DA64C 004C+00 1/0 1/0 0/0 .text            getCellWidth__10JUTResFontCFv */
 // regalloc
-#ifdef NONMATCING
+#ifdef NONMATCHING
 u16 JUTResFont::getCellWidth() const {
     u16 width;
 
