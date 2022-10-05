@@ -7,7 +7,6 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
 #include "JSystem/J3DGraphBase/J3DPacket.h"
 
 //
@@ -255,14 +254,10 @@ SECTION_DATA drawFunc J3DDrawBuffer::drawFuncTable[2] = {
 };
 
 /* 803254AC-80325500 31FDEC 0054+00 0/0 2/2 0/0 .text            draw__13J3DDrawBufferCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DDrawBuffer::draw() const {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DDrawBuffer/draw__13J3DDrawBufferCFv.s"
+void J3DDrawBuffer::draw() const {
+    drawFunc func = drawFuncTable[mDrawType];
+    (this->*func)();
 }
-#pragma pop
 
 /* 80325500-80325578 31FE40 0078+00 1/0 0/0 0/0 .text            drawHead__13J3DDrawBufferCFv */
 void J3DDrawBuffer::drawHead() const {
@@ -277,28 +272,15 @@ void J3DDrawBuffer::drawHead() const {
 }
 
 /* 80325578-803255F0 31FEB8 0078+00 1/0 0/0 0/0 .text            drawTail__13J3DDrawBufferCFv */
-// flipped regs
-#ifdef NONMATCHING
 void J3DDrawBuffer::drawTail() const {
-    int i = mBufSize - 1;
-    J3DPacket** buf = mpBuf;
+    int num = mBufSize - 1;
 
-    for (; i >= 0; i--) {
-        for (J3DPacket* packet = buf[i]; packet != NULL; packet = packet->getNextPacket()) {
+    for (int i = num; i >= 0; i--) {
+        for (J3DPacket* packet = mpBuf[i]; packet != NULL; packet = packet->getNextPacket()) {
             packet->draw();
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DDrawBuffer::drawTail() const {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DDrawBuffer/drawTail__13J3DDrawBufferCFv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 804515E0-804515E8 000AE0 0004+04 0/0 1/1 0/0 .sbss            entryNum__13J3DDrawBuffer */

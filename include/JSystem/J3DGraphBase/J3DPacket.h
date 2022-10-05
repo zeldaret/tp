@@ -51,29 +51,29 @@ public:
 class J3DPacket {
 public:
     J3DPacket() {
-        mpNextSibling = NULL;
+        mpNextPacket = NULL;
         mpFirstChild = NULL;
         mpUserData = NULL;
     }
 
     void addChildPacket(J3DPacket*);
     
-    J3DPacket* getNextPacket() const { return mpNextSibling; }
-    void setNextPacket(J3DPacket* i_packet) { mpNextSibling = i_packet; }
+    J3DPacket* getNextPacket() const { return mpNextPacket; }
+    void setNextPacket(J3DPacket* i_packet) { mpNextPacket = i_packet; }
 
     void drawClear() {
-        mpNextSibling = NULL;
+        mpNextPacket = NULL;
         mpFirstChild = NULL;
     }
 
     void setUserArea(u32 area) { mpUserData = (void*)area; }
 
-    virtual bool entry(J3DDrawBuffer*);
+    virtual int entry(J3DDrawBuffer*);
     virtual void draw();
     virtual ~J3DPacket() {}
 
 public:
-    /* 0x04 */ J3DPacket* mpNextSibling;
+    /* 0x04 */ J3DPacket* mpNextPacket;
     /* 0x08 */ J3DPacket* mpFirstChild;
     /* 0x0C */ void* mpUserData;
 };  // Size: 0x10
@@ -145,19 +145,21 @@ public:
     void endDiff();
     bool isSame(J3DMatPacket*) const;
 
+    J3DMaterial* getMaterial() const { return mpMaterial; }
     J3DShapePacket* getShapePacket() const { return mpShapePacket; }
     void setShapePacket(J3DShapePacket* packet) { mpShapePacket = packet; }
     void setInitShapePacket(J3DShapePacket* packet) { mpInitShapePacket = packet; }
+    bool isChanged() const { return mDiffFlag < 0; }
 
     virtual ~J3DMatPacket();
-    virtual bool entry(J3DDrawBuffer*);
+    virtual int entry(J3DDrawBuffer*);
     virtual void draw();
 
 public:
     /* 0x28 */ J3DShapePacket* mpInitShapePacket;
     /* 0x2C */ J3DShapePacket* mpShapePacket;
     /* 0x30 */ J3DMaterial* mpMaterial;
-    /* 0x34 */ u32 mSortFlags;
+    /* 0x34 */ u32 mDiffFlag;
     /* 0x38 */ J3DTexture* mpTexture;
     /* 0x3C */ J3DMaterialAnm* mpMaterialAnm;
 };  // Size: 0x40

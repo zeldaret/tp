@@ -5,6 +5,7 @@
 
 #include "JSystem/J3DGraphBase/J3DPacket.h"
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
+#include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/J3DGraphBase/J3DShape.h"
 #include "JSystem/J3DGraphBase/J3DShapeMtx.h"
@@ -17,14 +18,6 @@
 #include "dolphin/os/OSCache.h"
 #include "dolphin/types.h"
 #include "global.h"
-
-//
-// Types:
-//
-
-struct J3DDrawBuffer {
-    static u8 sortFuncTable[72];
-};
 
 //
 // Forward References:
@@ -97,8 +90,10 @@ J3DError J3DDisplayListObj::newDisplayList(u32 capacity) {
     mpData[0] = new (0x20) char[mCapacity];
     mpData[1] = new (0x20) char[mCapacity];
     mSize = 0;
+
     if (mpData[0] == NULL || mpData[1] == NULL)
         return kJ3DError_Alloc;
+
     return kJ3DError_Success;
 }
 
@@ -107,8 +102,10 @@ J3DError J3DDisplayListObj::newSingleDisplayList(u32 capacity) {
     mpData[0] = new (0x20) char[mCapacity];
     mpData[1] = mpData[0];
     mSize = 0;
+
     if (mpData[0] == NULL)
         return kJ3DError_Alloc;
+
     return kJ3DError_Success;
 }
 
@@ -116,8 +113,10 @@ J3DError J3DDisplayListObj::newSingleDisplayList(u32 capacity) {
 J3DError J3DDisplayListObj::single_To_Double() {
     if (mpData[0] == mpData[1]) {
         mpData[1] = new (0x20) char[mCapacity];
+
         if (mpData[1] == NULL)
             return kJ3DError_Alloc;
+
         memcpy(mpData[1], mpData[0], mCapacity);
         DCStoreRange(mpData[1], mCapacity);
     }
@@ -182,61 +181,28 @@ u32 J3DDisplayListObj::endPatch() {
 }
 
 /* 80312750-80312758 30D090 0008+00 3/0 16/0 10/0 .text entry__9J3DPacketFP13J3DDrawBuffer */
-bool J3DPacket::entry(J3DDrawBuffer* param_0) {
-    return true;
+int J3DPacket::entry(J3DDrawBuffer*) {
+    return 1;
 }
 
 void J3DPacket::addChildPacket(J3DPacket* pPacket) {
     if (mpFirstChild == NULL) {
         mpFirstChild = pPacket;
     } else {
-        pPacket->mpNextSibling = mpFirstChild;
+        pPacket->mpNextPacket = mpFirstChild;
         mpFirstChild = pPacket;
     }
 }
 
 /* ############################################################################################## */
 /* 803CD900-803CD920 02AA20 0020+00 1/1 0/0 0/0 .data            sDifferedRegister */
-SECTION_DATA static u32 sDifferedRegister[8] = {0x00000004, 0x00000001, 0x00000002, 0x01000000,
-                                                0x10000000, 0x20000000, 0x02000000, 0x08000000};
+SECTION_DATA static u32 sDifferedRegister[8] = {
+    0x00000004, 0x00000001, 0x00000002, 0x01000000, 0x10000000, 0x20000000, 0x02000000, 0x08000000,
+};
 
 /* 803CD920-803CD940 02AA40 0020+00 1/1 0/0 0/0 .data            sSizeOfDiffered */
-SECTION_DATA static s32 sSizeOfDiffered[8] = {13, 13, 21, 120, 55, 15, 19, 45};
-
-/* 803CD940-803CD954 02AA60 0014+00 2/2 0/0 0/0 .data            __vt__14J3DShapePacket */
-SECTION_DATA extern void* __vt__14J3DShapePacket[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)entry__9J3DPacketFP13J3DDrawBuffer,
-    (void*)draw__14J3DShapePacketFv,
-    (void*)__dt__14J3DShapePacketFv,
-};
-
-/* 803CD954-803CD968 02AA74 0014+00 2/2 0/0 0/0 .data            __vt__12J3DMatPacket */
-SECTION_DATA extern void* __vt__12J3DMatPacket[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)entry__12J3DMatPacketFP13J3DDrawBuffer,
-    (void*)draw__12J3DMatPacketFv,
-    (void*)__dt__12J3DMatPacketFv,
-};
-
-/* 803CD968-803CD97C 02AA88 0014+00 2/2 0/0 0/0 .data            __vt__13J3DDrawPacket */
-SECTION_DATA extern void* __vt__13J3DDrawPacket[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)entry__9J3DPacketFP13J3DDrawBuffer,
-    (void*)draw__13J3DDrawPacketFv,
-    (void*)__dt__13J3DDrawPacketFv,
-};
-
-/* 803CD97C-803CD990 02AA9C 0014+00 2/2 34/34 23/23 .data            __vt__9J3DPacket */
-SECTION_DATA extern void* __vt__9J3DPacket[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)entry__9J3DPacketFP13J3DDrawBuffer,
-    (void*)draw__9J3DPacketFv,
-    (void*)__dt__9J3DPacketFv,
+SECTION_DATA static s32 sSizeOfDiffered[8] = {
+    13, 13, 21, 120, 55, 15, 19, 45,
 };
 
 /* 80312778-803127B0 30D0B8 0038+00 2/2 0/0 0/0 .text            __ct__13J3DDrawPacketFv */
@@ -287,7 +253,7 @@ J3DMatPacket::J3DMatPacket() {
     mpInitShapePacket = NULL;
     mpShapePacket = NULL;
     mpMaterial = NULL;
-    mSortFlags = -1;
+    mDiffFlag = -1;
     mpTexture = NULL;
     mpMaterialAnm = NULL;
 }
@@ -299,7 +265,7 @@ void J3DMatPacket::addShapePacket(J3DShapePacket* pShape) {
     if (mpShapePacket == NULL) {
         mpShapePacket = pShape;
     } else {
-        pShape->mpNextSibling = mpShapePacket;
+        pShape->mpNextPacket = mpShapePacket;
         mpShapePacket = pShape;
     }
 }
@@ -316,7 +282,7 @@ void J3DMatPacket::endDiff() {
 bool J3DMatPacket::isSame(J3DMatPacket* pOther) const {
     bool isSame = false;
 
-    if (mSortFlags == pOther->mSortFlags && !(mSortFlags >> 0x1F)) {
+    if (mDiffFlag == pOther->mDiffFlag && !(mDiffFlag >> 0x1F)) {
         isSame = true;
     }
     return isSame;
@@ -430,6 +396,7 @@ asm void J3DShapePacket::prepareDraw() const {
 void J3DShapePacket::draw() {
     if (!checkFlag(J3DShpFlag_Hidden) && mpShape != NULL) {
         prepareDraw();
+
         if (mpTexMtx != NULL) {
             J3DMaterial* material = mpShape->getMaterial();
             J3DDifferedTexMtx::sTexGenBlock = material->getTexGenBlock();
@@ -437,9 +404,11 @@ void J3DShapePacket::draw() {
         } else {
             J3DDifferedTexMtx::sTexGenBlock = NULL;
         }
+
         if (mpDisplayListObj != NULL) {
             mpDisplayListObj->callDL();
         }
+
         mpShape->draw();
     }
 }
@@ -448,6 +417,7 @@ void J3DShapePacket::draw() {
 void J3DShapePacket::drawFast() {
     if (!checkFlag(J3DShpFlag_Hidden) && mpShape != NULL) {
         prepareDraw();
+
         if (mpTexMtx != NULL) {
             J3DMaterial* material = mpShape->getMaterial();
             J3DDifferedTexMtx::sTexGenBlock = material->getTexGenBlock();
@@ -455,21 +425,16 @@ void J3DShapePacket::drawFast() {
         } else {
             J3DDifferedTexMtx::sTexGenBlock = NULL;
         }
+
         mpShape->drawFast();
     }
 }
 
 /* 80313044-80313048 30D984 0004+00 1/0 0/0 0/0 .text            draw__9J3DPacketFv */
-void J3DPacket::draw() {
-    /* empty function */
-}
+void J3DPacket::draw() {}
 
 /* 80313048-803130A8 30D988 0060+00 1/0 0/0 0/0 .text entry__12J3DMatPacketFP13J3DDrawBuffer */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J3DMatPacket::entry(J3DDrawBuffer* param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/entry__12J3DMatPacketFP13J3DDrawBuffer.s"
+int J3DMatPacket::entry(J3DDrawBuffer* i_buffer) {
+    sortFunc func = J3DDrawBuffer::sortFuncTable[i_buffer->mSortType];
+    return (i_buffer->*func)(this);
 }
-#pragma pop

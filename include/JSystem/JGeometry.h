@@ -20,6 +20,18 @@ struct TVec3 {
 };
 
 template <>
+struct TVec3<s16> {
+    s16 x, y, z;
+
+    TVec3& operator=(const TVec3& b) {
+        // Force copies to use lwz/lha
+        *((s32*)this) = *((s32*)&b);
+        z = b.z;
+        return *this;
+    }
+};
+
+template <>
 struct TVec3<f32> {
     f32 x;
     f32 y;
@@ -46,6 +58,20 @@ struct TVec3<f32> {
         x = a.x * b.x;
         y = a.y * b.y;
         z = a.z * b.z;
+    }
+
+    inline TVec3<f32>& operator=(const TVec3<f32>& b) {
+        register f32* dst = &x;
+        const register f32* src = &b.x;
+        register f32 x_y;
+        register f32 z;
+        asm {
+            psq_l  x_y, 0(src), 0, 0
+            psq_st x_y, 0(dst), 0, 0
+            lfs    z,   8(src)
+            stfs   z,   8(dst)
+        };
+        return *this;
     }
 };
 

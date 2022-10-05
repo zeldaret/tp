@@ -68,13 +68,15 @@ public:
     static J3DMtxCalc* mCurrentMtxCalc;
 
 private:
+    friend struct J3DJointFactory;
+
     /* 0x00 */ void* mCallBackUserData;
     /* 0x04 */ J3DJointCallBack mCallBack;
     /* 0x08 */ void* field_0x8;
     /* 0x0C */ J3DJoint* mChild;
     /* 0x10 */ J3DJoint* mYounger;
     /* 0x14 */ u16 mJntNo;
-    /* 0x16 */ u8 mMtxType;
+    /* 0x16 */ u8 mKind;
     /* 0x17 */ u8 mScaleCompensate;
     /* 0x18 */ J3DTransformInfo mTransformInfo;
     /* 0x38 */ f32 mBoundingSphereRadius;
