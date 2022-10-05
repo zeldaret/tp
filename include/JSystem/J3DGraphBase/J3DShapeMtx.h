@@ -24,6 +24,10 @@ extern u8 struct_804515B0[4];
 
 class J3DShapeMtx {
 public:
+    J3DShapeMtx(u16 useMtxIndex)
+        : mUseMtxIndex(useMtxIndex)
+    {}
+
     /* 803130A8 */ void resetMtxLoadCache();
     /* 803130E4 */ void loadMtxIndx_PNGP(int, u16) const;
     /* 80313128 */ void loadMtxIndx_PCPU(int, u16) const;
@@ -54,6 +58,10 @@ private:
 
 class J3DShapeMtxConcatView : public J3DShapeMtx {
 public:
+    J3DShapeMtxConcatView(u16 useMtxIndex)
+        : J3DShapeMtx(useMtxIndex)
+    {}
+
     /* 80314730 */ virtual ~J3DShapeMtxConcatView();
     /* 803147E0 */ virtual u32 getType() const;
     /* 80313C54 */ virtual void load() const;
@@ -73,6 +81,10 @@ public:
 
 class J3DShapeMtxYBBoardConcatView : public J3DShapeMtxConcatView {
 public:
+    J3DShapeMtxYBBoardConcatView(u16 useMtxIndex)
+        : J3DShapeMtxConcatView(useMtxIndex)
+    {}
+
     /* 80314520 */ virtual ~J3DShapeMtxYBBoardConcatView();
     /* 803147E0 */ virtual u32 getType() const;
     /* 803143E4 */ virtual void load() const;
@@ -80,6 +92,10 @@ public:
 
 class J3DShapeMtxBBoardConcatView : public J3DShapeMtxConcatView {
 public:
+    J3DShapeMtxBBoardConcatView(u16 useMtxIndex)
+        : J3DShapeMtxConcatView(useMtxIndex)
+    {}
+
     /* 803145A4 */ virtual ~J3DShapeMtxBBoardConcatView();
     /* 803147E0 */ virtual u32 getType() const;
     /* 803142D4 */ virtual void load() const;
@@ -87,6 +103,12 @@ public:
 
 class J3DShapeMtxMulti : public J3DShapeMtx {
 public:
+    J3DShapeMtxMulti(u16 useMtxIndex, u16 useMtxNum, u16* useMtxIndexTable)
+        : J3DShapeMtx(useMtxIndex)
+        , mUseMtxNum(useMtxNum)
+        , mUseMtxIndexTable(useMtxIndexTable)
+    {}
+
     /* 803146B0 */ virtual ~J3DShapeMtxMulti();
     /* 803147E0 */ virtual u32 getType() const;
     /* 80273E08 */ virtual u32 getUseMtxNum() const;
@@ -96,11 +118,17 @@ public:
 
 private:
     /* 0x6 */ u16 mUseMtxNum;
-    /* 0x8 */ u16* mUseMtxIndex;
+    /* 0x8 */ u16* mUseMtxIndexTable;
 };
 
-class J3DShapeMtxMultiConcatView : public J3DShapeMtx {
+class J3DShapeMtxMultiConcatView : public J3DShapeMtxConcatView {
 public:
+    J3DShapeMtxMultiConcatView(u16 useMtxIndex, u16 useMtxNum, u16* useMtxIndexTable)
+        : J3DShapeMtxConcatView(useMtxIndex)
+        , mUseMtxNum(useMtxNum)
+        , mUseMtxIndexTable(useMtxIndexTable)
+    {}
+
     /* 8031461C */ virtual ~J3DShapeMtxMultiConcatView();
     /* 803147E0 */ virtual u32 getType() const;
     /* 80273E08 */ virtual u32 getUseMtxNum() const;
@@ -111,7 +139,7 @@ public:
 
 private:
     /* 0x6 */ u16 mUseMtxNum;
-    /* 0x8 */ u16* mUseMtxIndex;
+    /* 0x8 */ u16* mUseMtxIndexTable;
 };
 
 #endif /* J3DSHAPEMTX_H */

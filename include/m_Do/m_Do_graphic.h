@@ -36,6 +36,7 @@ public:
     /* 80007F90 */ static void beginRender();
     /* 800080D0 */ static void fadeOut(f32);
     /* 80007FD8 */ static void fadeOut(f32, _GXColor&);
+    /* 807DFAB4 */ static void fadeIn(f32, _GXColor&);
     /* 80008028 */ static void fadeOut_f(f32, _GXColor&);
     /* 800080A0 */ static void onBlure(const Mtx);
     /* 80008078 */ static void onBlure();

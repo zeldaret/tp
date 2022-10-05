@@ -27,6 +27,11 @@ static inline void J3DFifoWriteXFCmd(u16 cmd, u16 len) {
 
 class J3DCurrentMtx : public J3DCurrentMtxInfo {
 public:
+    J3DCurrentMtx() {
+        mMtxIdxRegA = 0x3cf3cf00;
+        mMtxIdxRegB = 0x00f3cf3c;
+    }
+
     u32 getMtxIdxRegA() const { return mMtxIdxRegA; }
     u32 getMtxIdxRegB() const { return mMtxIdxRegB; }
 
@@ -54,6 +59,14 @@ enum J3DShpFlag {
 
 class J3DShape {
 public:
+    J3DShape() {
+        initialize();
+    }
+
+    enum {
+        kVcdVatDLSize = 0xC0,
+    };
+
     /* 80314B48 */ void initialize();
     /* 80314BB8 */ void addTexMtxIndexInDL(_GXAttr, u32);
     /* 80314CBC */ void addTexMtxIndexInVcd(_GXAttr);
@@ -93,11 +106,14 @@ public:
     inline u32 getMtxGroupNum() const { return mMtxGroupNum; }
     inline J3DShapeDraw* getShapeDraw(u32 idx) const { return mShapeDraw[idx]; }
     inline J3DShapeMtx* getShapeMtx(u32 idx) const { return mShapeMtx[idx]; }
+
     static void resetVcdVatCache() { sOldVcdVatCmd = NULL; }
 
     static void* sOldVcdVatCmd;
 
 private:
+    friend struct J3DShapeFactory;
+
     /* 0x04 */ J3DMaterial* mMaterial;
     /* 0x08 */ u16 mIndex;
     /* 0x0A */ u16 mMtxGroupNum;

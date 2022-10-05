@@ -33,8 +33,6 @@
 // Types:
 //
 
-struct fopEn_enemy_c {};
-
 struct daTagMist_c {
     /* 80031CF0 */ void getPlayerNo();
 };
@@ -3094,7 +3092,7 @@ extern "C" u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
 extern "C" extern u8 struct_80450FB8[4];
 extern "C" extern u8 struct_80450FBC[4];
 extern "C" u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 struct_8045101C[4];
+extern "C" extern u8 m_dropAngleY__20daPy_boomerangMove_c[4];
 extern "C" u8 Zero__5csXyz[4];
 extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];

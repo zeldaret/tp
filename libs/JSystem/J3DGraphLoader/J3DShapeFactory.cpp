@@ -4,35 +4,12 @@
 //
 
 #include "JSystem/J3DGraphLoader/J3DShapeFactory.h"
+#include "JSystem/J3DGraphBase/J3DShape.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JSupport/JSupport.h"
 #include "dol2asm.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct _GXVtxDescList {};
-
-struct J3DShapeBlock {};
-
-struct J3DShapeFactory {
-    /* 80337350 */ J3DShapeFactory(J3DShapeBlock const&);
-    /* 80337400 */ void create(int, u32, _GXVtxDescList*);
-    /* 803375BC */ void newShapeMtx(u32, int, int) const;
-    /* 8033784C */ void newShapeDraw(int, int) const;
-    /* 803378D8 */ void allocVcdVatCmdBuffer(u32);
-    /* 80337944 */ void calcSize(int, u32);
-    /* 803379D8 */ void calcSizeVcdVatCmdBuffer(u32);
-    /* 803379E8 */ void calcSizeShapeMtx(u32, int, int) const;
-};
-
-struct J3DShapeDraw {
-    /* 80314ABC */ J3DShapeDraw(u8 const*, u32);
-};
-
-struct J3DShape {
-    /* 80314B48 */ void initialize();
-};
 
 //
 // Forward References:
@@ -56,14 +33,15 @@ extern "C" extern char const* const J3DShapeFactory__stringBase0;
 // External References:
 //
 
-extern "C" void OSReport();
+extern "C" J3DShapeInitData* func_80336764(const void*,
+                                           const void*);  // JSUConvertOffsetToPtr<J3DShapeInitData>
+extern "C" u16* func_8033677C(const void*, const void*);  // JSUConvertOffsetToPtr<u16>
+
 extern "C" void* __nw__FUl();
 extern "C" void* __nwa__FUl();
 extern "C" void* __nwa__FUli();
 extern "C" void __ct__12J3DShapeDrawFPCUcUl();
 extern "C" void initialize__8J3DShapeFv();
-extern "C" void func_80336764(void* _this, void const*, u32);
-extern "C" void func_8033677C(void* _this, void const*, u32);
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_26();
@@ -81,141 +59,203 @@ extern "C" extern void* __vt__8J3DShape[6];
 //
 
 /* 80337350-80337400 331C90 00B0+00 0/0 2/2 0/0 .text __ct__15J3DShapeFactoryFRC13J3DShapeBlock */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DShapeFactory::J3DShapeFactory(J3DShapeBlock const& param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphLoader/J3DShapeFactory/__ct__15J3DShapeFactoryFRC13J3DShapeBlock.s"
+J3DShapeFactory::J3DShapeFactory(J3DShapeBlock const& block) {
+    // mShapeInitData = JSUConvertOffsetToPtr<J3DShapeInitData>(&block, block.mShapeInitData);
+    mShapeInitData = func_80336764(&block, block.mShapeInitData);
+    // mIndexTable = JSUConvertOffsetToPtr<u16>(&block, block.mIndexTable);
+    mIndexTable = func_8033677C(&block, block.mIndexTable);
+    mVtxDescList = JSUConvertOffsetToPtr<GXVtxDescList>(&block, block.mVtxDescList);
+    // mMtxTable = JSUConvertOffsetToPtr<u16>(&block, block.mMtxTable);
+    mMtxTable = func_8033677C(&block, block.mMtxTable);
+    mDisplayListData = JSUConvertOffsetToPtr<u8>(&block, block.mDisplayListData);
+    mMtxInitData = JSUConvertOffsetToPtr<J3DShapeMtxInitData>(&block, block.mMtxInitData);
+    mDrawInitData = JSUConvertOffsetToPtr<J3DShapeDrawInitData>(&block, block.mDrawInitData);
+    mVcdVatCmdBuffer = NULL;
 }
-#pragma pop
 
 /* 80337400-803375BC 331D40 01BC+00 0/0 1/1 0/0 .text
  * create__15J3DShapeFactoryFiUlP14_GXVtxDescList               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DShapeFactory::create(int param_0, u32 param_1, _GXVtxDescList* param_2) {
-    nofralloc
-#include "asm/JSystem/J3DGraphLoader/J3DShapeFactory/create__15J3DShapeFactoryFiUlP14_GXVtxDescList.s"
-}
-#pragma pop
+J3DShape* J3DShapeFactory::create(int no, u32 flag, GXVtxDescList* vtxDesc) {
+    J3DShape* shape = new J3DShape;
+    shape->mMtxGroupNum = getMtxGroupNum(no);
+    shape->mRadius = getRadius(no);
+    shape->mVtxDesc = getVtxDescList(no);
+    shape->mShapeMtx = new J3DShapeMtx*[shape->mMtxGroupNum];
+    shape->mShapeDraw = new J3DShapeDraw*[shape->mMtxGroupNum];
+    shape->mMin = getMin(no);
+    shape->mMax = getMax(no);
+    shape->mVcdVatCmd = mVcdVatCmdBuffer + no * J3DShape::kVcdVatDLSize;
 
-/* ############################################################################################## */
-/* 803A2100-803A2100 02E760 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803A2100 =
-    "WRONG SHAPE MATRIX TYPE (J3DModelInit.cpp)\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803A212C = "\0\0\0";
-#pragma pop
+    for (s32 i = 0; i < shape->mMtxGroupNum; i++) {
+        shape->mShapeMtx[i] = newShapeMtx(flag, no, i);
+        shape->mShapeDraw[i] = newShapeDraw(no, i);
+    }
+
+    shape->mIndex = no;
+    return shape;
+}
+
+static inline u32 getMdlDataFlag_MtxLoadType(u32 flag) {
+    return flag & 0x10;
+}
+
+enum {
+    J3DMdlDataFlag_ConcatView = 0x10,
+};
+
+enum {
+    J3DShapeMtxType_Mtx = 0x00,
+    J3DShapeMtxType_BBoard = 0x01,
+    J3DShapeMtxType_YBBoard = 0x02,
+    J3DShapeMtxType_Multi = 0x03,
+};
 
 /* 803375BC-8033784C 331EFC 0290+00 1/1 0/0 0/0 .text newShapeMtx__15J3DShapeFactoryCFUlii */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DShapeFactory::newShapeMtx(u32 param_0, int param_1, int param_2) const {
-    nofralloc
-#include "asm/JSystem/J3DGraphLoader/J3DShapeFactory/newShapeMtx__15J3DShapeFactoryCFUlii.s"
+J3DShapeMtx* J3DShapeFactory::newShapeMtx(u32 flag, int shapeNo, int mtxGroupNo) const {
+    J3DShapeMtx* ret = NULL;
+    const J3DShapeInitData& shapeInitData = mShapeInitData[mIndexTable[shapeNo]];
+    const J3DShapeMtxInitData& mtxInitData =
+        (&mMtxInitData[shapeInitData.mMtxInitDataIndex])[mtxGroupNo];
+
+    switch (getMdlDataFlag_MtxLoadType(flag)) {
+    case J3DMdlDataFlag_ConcatView:
+        switch (shapeInitData.mShapeMtxType) {
+        case J3DShapeMtxType_Mtx:
+            ret = new J3DShapeMtxConcatView(mtxInitData.mUseMtxIndex);
+            break;
+        case J3DShapeMtxType_BBoard:
+            ret = new J3DShapeMtxBBoardConcatView(mtxInitData.mUseMtxIndex);
+            break;
+        case J3DShapeMtxType_YBBoard:
+            ret = new J3DShapeMtxYBBoardConcatView(mtxInitData.mUseMtxIndex);
+            break;
+        case J3DShapeMtxType_Multi:
+            ret = new J3DShapeMtxMultiConcatView(mtxInitData.mUseMtxIndex, mtxInitData.mUseMtxCount,
+                                                 &mMtxTable[mtxInitData.mFirstUseMtxIndex]);
+            break;
+        default:
+            OSReport("WRONG SHAPE MATRIX TYPE (J3DModelInit.cpp)\n");
+            break;
+        }
+        break;
+
+    case 0:
+    default:
+        switch (shapeInitData.mShapeMtxType) {
+        case J3DShapeMtxType_Mtx:
+        case J3DShapeMtxType_BBoard:
+        case J3DShapeMtxType_YBBoard:
+            ret = new J3DShapeMtx(mtxInitData.mUseMtxIndex);
+            break;
+        case J3DShapeMtxType_Multi:
+            ret = new J3DShapeMtxMulti(mtxInitData.mUseMtxIndex, mtxInitData.mUseMtxCount,
+                                       &mMtxTable[mtxInitData.mFirstUseMtxIndex]);
+            break;
+        default:
+            OSReport("WRONG SHAPE MATRIX TYPE (J3DModelInit.cpp)\n");
+            break;
+        }
+        break;
+    }
+
+    return ret;
 }
-#pragma pop
 
 /* 8033784C-803378D8 33218C 008C+00 1/1 0/0 0/0 .text            newShapeDraw__15J3DShapeFactoryCFii
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DShapeFactory::newShapeDraw(int param_0, int param_1) const {
-    nofralloc
-#include "asm/JSystem/J3DGraphLoader/J3DShapeFactory/newShapeDraw__15J3DShapeFactoryCFii.s"
+J3DShapeDraw* J3DShapeFactory::newShapeDraw(int shapeNo, int mtxGroupNo) const {
+    const J3DShapeInitData& shapeInitData = mShapeInitData[mIndexTable[shapeNo]];
+    const J3DShapeDrawInitData& drawInitData =
+        (&mDrawInitData[shapeInitData.mDrawInitDataIndex])[mtxGroupNo];
+    return new J3DShapeDraw(&mDisplayListData[drawInitData.mDisplayListIndex],
+                            drawInitData.mDisplayListSize);
 }
-#pragma pop
 
 /* 803378D8-80337944 332218 006C+00 0/0 1/1 0/0 .text allocVcdVatCmdBuffer__15J3DShapeFactoryFUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DShapeFactory::allocVcdVatCmdBuffer(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphLoader/J3DShapeFactory/allocVcdVatCmdBuffer__15J3DShapeFactoryFUl.s"
+void J3DShapeFactory::allocVcdVatCmdBuffer(u32 count) {
+    mVcdVatCmdBuffer = new (0x20) u8[J3DShape::kVcdVatDLSize * count];
+    for (u32 i = 0; i < (J3DShape::kVcdVatDLSize * count) / 4; i++)
+        ((u32*)mVcdVatCmdBuffer)[i] = 0;
 }
-#pragma pop
 
 /* 80337944-803379D8 332284 0094+00 0/0 1/1 0/0 .text            calcSize__15J3DShapeFactoryFiUl */
+#ifdef NONMATCHING
+s32 J3DShapeFactory::calcSize(int shapeNo, u32 flag) {
+    s32 size = 0x68;
+
+    // regalloc
+    u32 mtxGroupNo = getMtxGroupNum(shapeNo);
+    size += mtxGroupNo * 4;
+    size += mtxGroupNo * 4;
+
+    for (u32 i = 0; i < mtxGroupNo; i++) {
+        s32 shapeMtxSize = calcSizeShapeMtx(flag, shapeNo, i);
+        size += shapeMtxSize;
+        size += 0x0C;
+    }
+
+    return size;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DShapeFactory::calcSize(int param_0, u32 param_1) {
+asm s32 J3DShapeFactory::calcSize(int param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DShapeFactory/calcSize__15J3DShapeFactoryFiUl.s"
 }
 #pragma pop
+#endif
 
 /* 803379D8-803379E8 332318 0010+00 0/0 1/1 0/0 .text
  * calcSizeVcdVatCmdBuffer__15J3DShapeFactoryFUl                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DShapeFactory::calcSizeVcdVatCmdBuffer(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphLoader/J3DShapeFactory/calcSizeVcdVatCmdBuffer__15J3DShapeFactoryFUl.s"
+s32 J3DShapeFactory::calcSizeVcdVatCmdBuffer(u32 count) {
+    return ALIGN_NEXT(count * J3DShape::kVcdVatDLSize, 0x20);
 }
-#pragma pop
 
 /* 803379E8-80337AE0 332328 00F8+00 1/1 0/0 0/0 .text calcSizeShapeMtx__15J3DShapeFactoryCFUlii */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DShapeFactory::calcSizeShapeMtx(u32 param_0, int param_1, int param_2) const {
-    nofralloc
-#include "asm/JSystem/J3DGraphLoader/J3DShapeFactory/calcSizeShapeMtx__15J3DShapeFactoryCFUlii.s"
-}
-#pragma pop
+s32 J3DShapeFactory::calcSizeShapeMtx(u32 flag, int shapeNo, int mtxGroupNo) const {
+    const J3DShapeInitData& shapeInitData = mShapeInitData[mIndexTable[shapeNo]];
+    u32 ret = 0;
 
-/* 80337AE0-80337AF8 332420 0018+00 1/1 0/0 0/0 .text
- * JSUConvertOffsetToPtr<20J3DShapeDrawInitData>__FPCvUl        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void func_80337AE0(void* _this, void const* param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/J3DGraphLoader/J3DShapeFactory/func_80337AE0.s"
-}
-#pragma pop
+    u32 mtxLoadType = getMdlDataFlag_MtxLoadType(flag);
+    switch (mtxLoadType) {
+    case J3DMdlDataFlag_ConcatView:
+        switch (shapeInitData.mShapeMtxType) {
+        case J3DShapeMtxType_Mtx:
+            ret = 0x08;
+            break;
+        case J3DShapeMtxType_BBoard:
+            ret = 0x08;
+            break;
+        case J3DShapeMtxType_YBBoard:
+            ret = 0x08;
+            break;
+        case J3DShapeMtxType_Multi:
+            ret = 0x10;
+            break;
+        default:
+            OSReport("WRONG SHAPE MATRIX TYPE (J3DModelInit.cpp)\n");
+        }
+        break;
 
-/* 80337AF8-80337B10 332438 0018+00 1/1 0/0 0/0 .text
- * JSUConvertOffsetToPtr<19J3DShapeMtxInitData>__FPCvUl         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void func_80337AF8(void* _this, void const* param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/J3DGraphLoader/J3DShapeFactory/func_80337AF8.s"
-}
-#pragma pop
+    case 0:
+    default:
+        switch (shapeInitData.mShapeMtxType) {
+        case J3DShapeMtxType_Mtx:
+        case J3DShapeMtxType_BBoard:
+        case J3DShapeMtxType_YBBoard:
+            ret = 0x08;
+            break;
+        case J3DShapeMtxType_Multi:
+            ret = 0x10;
+            break;
+        default:
+            OSReport("WRONG SHAPE MATRIX TYPE (J3DModelInit.cpp)\n");
+        }
+        break;
+    }
 
-/* 80337B10-80337B28 332450 0018+00 1/1 0/0 0/0 .text            JSUConvertOffsetToPtr<Uc>__FPCvUl
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void func_80337B10(void* _this, void const* param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/J3DGraphLoader/J3DShapeFactory/func_80337B10.s"
+    return ret;
 }
-#pragma pop
-
-/* 80337B28-80337B40 332468 0018+00 1/1 0/0 0/0 .text
- * JSUConvertOffsetToPtr<14_GXVtxDescList>__FPCvUl              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void func_80337B28(void* _this, void const* param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/J3DGraphLoader/J3DShapeFactory/func_80337B28.s"
-}
-#pragma pop
-
-/* 803A2100-803A2100 02E760 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

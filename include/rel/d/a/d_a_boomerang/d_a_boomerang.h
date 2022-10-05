@@ -90,6 +90,8 @@ public:
 
     void onStateFlg0(daBoomerang_FLG0 flag) { mStateFlg0 |= flag; }
     void onWindCatch() { onStateFlg0(WIND_CATCH); }
+    bool checkForceDelete() const { return mForceDelete; }
+    bool checkCharge() const { return true; }
 
 private:
     /* 0x568 */ daMirror_c* field_0x568;
@@ -114,7 +116,7 @@ private:
     /* 0x953 */ u8 field_0x953;
     /* 0x954 */ u8 field_0x954;
     /* 0x955 */ u8 field_0x955;
-    /* 0x956 */ u8 field_0x956;
+    /* 0x956 */ bool mForceDelete;
     /* 0x957 */ u8 field_0x957;
     /* 0x958 */ s16 field_0x958;
     /* 0x95A */ s16 field_0x95a;

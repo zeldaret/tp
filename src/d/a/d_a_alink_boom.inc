@@ -1,3 +1,5 @@
+#include "rel/d/a/d_a_boomerang/d_a_boomerang.h"
+
 /* 800DFFE0-800E0010 0DA920 0030+00 0/0 0/0 1/1 .text checkBoomerangLockAccept__9daAlink_cFv */
 BOOL daAlink_c::checkBoomerangLockAccept() {
     return mSight.getDrawFlg() && i_dComIfGp_checkPlayerStatus0(0, 0x80000);
@@ -9,9 +11,9 @@ BOOL daAlink_c::checkBoomerangLockAccept() {
 f32 daAlink_c::getBoomSpeed() {
     f32 speed;
     if (checkBoomerangChargeEndWait()) {
-        speed = daAlinkHIO_boom_c0::m.field_0x38;
+        speed = daAlinkHIO_boom_c0::m.mFlySpeed2;
     } else {
-        speed = daAlinkHIO_boom_c0::m.field_0x34;
+        speed = daAlinkHIO_boom_c0::m.mFlySpeed;
     }
 
     if (i_checkModeFlg(0x400) && mRideAcKeep.getActor() != NULL && mSpeedF > FLOAT_LABEL(lit_6108)) {
@@ -39,22 +41,22 @@ f32 daAlink_c::getBoomCatchSpeed() const {
 /* 800E00C0-800E011C 0DAA00 005C+00 1/1 0/0 1/1 .text            getBoomFlyMax__9daAlink_cCFv */
 f32 daAlink_c::getBoomFlyMax() const {
     if (i_checkModeFlg(0x400) && !checkCanoeRide()) {
-        return daAlinkHIO_boom_c0::m.field_0x40;
+        return daAlinkHIO_boom_c0::m.mHorsebackFlyDistMax;
     } else {
-        return daAlinkHIO_boom_c0::m.field_0x3c;
+        return daAlinkHIO_boom_c0::m.mFlyDistMax;
     }
 }
 
 /* 800E011C-800E0190 0DAA5C 0074+00 1/1 0/0 2/2 .text            getBoomLockMax__9daAlink_cFv */
 f32 daAlink_c::getBoomLockMax() {
-    f32 max = getBoomFlyMax();
+    f32 fly_max = getBoomFlyMax();
 
     if (checkBossBabaRoom()) {
         return lit_12475;
-    } else if (daAlinkHIO_boom_c0::m.field_0x44 > max) {
-        return daAlinkHIO_boom_c0::m.field_0x44;
+    } else if (daAlinkHIO_boom_c0::m.mLockDistMax > fly_max) {
+        return daAlinkHIO_boom_c0::m.mLockDistMax;
     } else {
-        return max;
+        return fly_max;
     }
 }
 
@@ -94,21 +96,25 @@ fopAc_ac_c* daAlink_c::getBoomerangActor() {
 }
 
 /* 800E0244-800E02B8 0DAB84 0074+00 0/0 1/1 0/0 .text checkBoomerangChargeEnd__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool daAlink_c::checkBoomerangChargeEnd() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkBoomerangChargeEnd__9daAlink_cFv.s"
+bool daAlink_c::checkBoomerangChargeEnd() {
+    if (checkBoomerangChargeEndWait()) {
+        return true;
+    }
+
+    daBoomerang_c* boomerang = (daBoomerang_c*)getBoomerangActor();
+    if (boomerang != NULL && boomerang->checkCharge()) {
+        return true;
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 800E02B8-800E03D0 0DABF8 0118+00 0/0 1/1 0/0 .text
  * checkBoomerangCarry__9daAlink_cFP10fopAc_ac_c                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkBoomerangCarry(fopAc_ac_c* param_0) {
+asm BOOL daAlink_c::checkBoomerangCarry(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/checkBoomerangCarry__9daAlink_cFP10fopAc_ac_c.s"
 }
@@ -124,7 +130,7 @@ void daAlink_c::initBoomerangUpperAnimeSpeed(int param_0) {
             mFrameCtrl2[2].setFrame(tmp);
             getNowAnmPackUpper(UPPER_NOW)->setFrame(tmp);
         } else {
-            mFrameCtrl2[2].setRate(daAlinkHIO_boom_c0::m.field_0x2c);
+            mFrameCtrl2[2].setRate(daAlinkHIO_boom_c0::m.mIdleAnmSpeed);
         }
     }
 }
@@ -136,14 +142,9 @@ BOOL daAlink_c::checkBoomerangAnime() const {
 }
 
 /* 800E04AC-800E04E8 0DADEC 003C+00 13/13 0/0 0/0 .text checkBoomerangThrowAnime__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL daAlink_c::checkBoomerangThrowAnime() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkBoomerangThrowAnime__9daAlink_cCFv.s"
+BOOL daAlink_c::checkBoomerangThrowAnime() const {
+    return (mEquipItem == BOOMERANG || i_checkNoResetFlg1(FLG1_UNK_2) || mEquipItem == 0x102) && checkUpperAnime(0x53);
 }
-#pragma pop
 
 /* 800E04E8-800E055C 0DAE28 0074+00 1/1 0/0 0/0 .text setBoomerangReadyQuake__9daAlink_cFv */
 #pragma push

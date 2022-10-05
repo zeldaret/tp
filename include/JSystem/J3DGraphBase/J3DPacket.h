@@ -57,9 +57,11 @@ public:
     }
 
     void addChildPacket(J3DPacket*);
+    
     J3DPacket* getNextPacket() const { return mpNextSibling; }
+    void setNextPacket(J3DPacket* i_packet) { mpNextSibling = i_packet; }
 
-    inline void clear() {
+    void drawClear() {
         mpNextSibling = NULL;
         mpFirstChild = NULL;
     }

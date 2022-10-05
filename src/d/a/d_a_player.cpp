@@ -12,7 +12,9 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_iter.h"
 #include "f_op/f_op_actor_mng.h"
+#include "m_Do/m_Do_lib.h"
 #include "rel/d/a/d_a_boomerang/d_a_boomerang.h"
+#include "rel/d/a/d_a_spinner/d_a_spinner.h"
 
 //
 // Forward References:
@@ -77,6 +79,7 @@ extern "C" void setMidnaFaceNum__9daPy_py_cFi();
 extern "C" void daPy_addCalcShort__FPsssss();
 extern "C" extern void* __vt__18daPy_sightPacket_c[4 + 1 /* padding */];
 extern "C" u8 m_midnaActor__9daPy_py_c[4];
+extern "C" u8 m_dropAngleY__20daPy_boomerangMove_c[4];
 
 //
 // External References:
@@ -143,10 +146,12 @@ bool daPy_frameCtrl_c::checkAnmEnd() {
     if (getEndFlg() != 0 && getNowSetFlg() == 0) {
         return true;
     }
+
     if (getRate() == lit_4215[0]) {
         onEndFlg();
         onNowSetFlg();
     }
+
     return false;
 }
 
@@ -155,63 +160,38 @@ void daPy_frameCtrl_c::updateFrame() {
     offNowSetFlg();
 }
 
-/* ############################################################################################## */
-/* 80453608-80453610 001C08 0008+00 2/2 0/0 0/0 .sdata2          @4237 */
-SECTION_SDATA2 static f64 lit_4237 = 4503601774854144.0 /* cast s32 to float */;
-
 /* 8015E544-8015E5B0 158E84 006C+00 0/0 1/1 6/6 .text setFrameCtrl__16daPy_frameCtrl_cFUcssff */
-// compiler generated literal from short to float conversion
-#ifdef NONMATCHING
-void daPy_frameCtrl_c::setFrameCtrl(u8 pAttribute, s16 pStart, s16 pEnd, f32 pRate, f32 pFrame) {
-    setAttribute(pAttribute);
-    setEnd(pEnd);
-    setRate(pRate);
-    setStart(pStart);
-    setFrame(pFrame);
-    if (pRate >= lit_4215[0]) {
-        setLoop(pStart);
+void daPy_frameCtrl_c::setFrameCtrl(u8 i_attribute, s16 i_start, s16 i_end, f32 i_rate,
+                                    f32 i_frame) {
+    setAttribute(i_attribute);
+    setEnd(i_end);
+    setRate(i_rate);
+    setStart(i_start);
+    setFrame(i_frame);
+
+    if (i_rate >= lit_4215[0]) {
+        setLoop(i_start);
     } else {
-        setLoop(pEnd);
+        setLoop(i_end);
     }
+
     offEndFlg();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daPy_frameCtrl_c::setFrameCtrl(u8 param_0, s16 param_1, s16 param_2, f32 param_3,
-                                        f32 param_4) {
-    nofralloc
-#include "asm/d/a/d_a_player/setFrameCtrl__16daPy_frameCtrl_cFUcssff.s"
-}
-#pragma pop
-#endif
-
-/* ############################################################################################## */
-/* 80453610-80453614 001C10 0004+00 1/1 0/0 0/0 .sdata2          @4247 */
-SECTION_SDATA2 static f32 lit_4247 = 30.0f;
-
-/* 80453614-80453618 001C14 0004+00 1/1 0/0 0/0 .sdata2          @4248 */
-SECTION_SDATA2 static f32 lit_4248 = 70.0f;
-
-/* 80453618-8045361C 001C18 0004+00 2/2 0/0 0/0 .sdata2          @4249 */
-SECTION_SDATA2 static f32 lit_4249 = 50.0f;
-
-/* 8045361C-80453620 001C1C 0004+00 1/1 0/0 0/0 .sdata2          @4250 */
-SECTION_SDATA2 static f32 lit_4250 = 65536.0f;
 
 /* 8015E5B0-8015E654 158EF0 00A4+00 0/0 1/1 18/18 .text initOffset__20daPy_boomerangMove_cFPC4cXyz
  */
 void daPy_boomerangMove_c::initOffset(cXyz const* param_0) {
     daBoomerang_c* boomerang = daPy_py_c::getThrowBoomerangActor();
+
     if (boomerang != NULL) {
         bgCheckAfterOffset(param_0);
         boomerang->onWindCatch();
     } else {
-        field_0x4 = cM_rndF(lit_4248) + lit_4247;
-        field_0x8 = cM_rndF(lit_4249) + lit_4249;
-        field_0x2 = cM_rndF(lit_4250);
+        field_0x4 = cM_rndF(70.0f) + 30.0f;
+        field_0x8 = cM_rndF(50.0f) + 50.0f;
+        field_0x2 = cM_rndF(65536.0f);
     }
+
     field_0x0 = 0;
 }
 
@@ -221,34 +201,59 @@ daMidna_c* daPy_py_c::m_midnaActor;
 
 /* 8045101C-80451020 -00001 0004+00 1/1 1/1 1/1 .sbss            None */
 /* 8045101C 0002+00 data_8045101C m_dropAngleY__20daPy_boomerangMove_c */
+s16 daPy_boomerangMove_c::m_dropAngleY;
+
 /* 8045101E 0002+00 data_8045101E m_eventKeepFlg__20daPy_boomerangMove_c */
-extern u8 struct_8045101C[4];
-u8 struct_8045101C[4];
-
-/* 80453620-80453624 001C20 0004+00 1/1 0/0 0/0 .sdata2          @4332 */
-SECTION_SDATA2 static f32 lit_4332 = 300.0f;
-
-/* 80453624-80453628 001C24 0004+00 1/1 0/0 0/0 .sdata2          @4333 */
-SECTION_SDATA2 static f32 lit_4333 = -700.0f;
-
-/* 80453628-80453630 001C28 0004+04 1/1 0/0 0/0 .sdata2          @4334 */
-SECTION_SDATA2 static f32 lit_4334[1 + 1 /* padding */] = {
-    2048.0f,
-    /* padding */
-    0.0f,
-};
+s16 daPy_boomerangMove_c::m_eventKeepFlg;
 
 /* 8015E654-8015E87C 158F94 0228+00 0/0 1/1 17/17 .text
  * posMove__20daPy_boomerangMove_cFP4cXyzPsP10fopAc_ac_cs       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daPy_boomerangMove_c::posMove(cXyz* param_0, s16* param_1, fopAc_ac_c* param_2,
-                                       s16 param_3) {
-    nofralloc
-#include "asm/d/a/d_a_player/posMove__20daPy_boomerangMove_cFP4cXyzPsP10fopAc_ac_cs.s"
+int daPy_boomerangMove_c::posMove(cXyz* param_0, s16* param_1, fopAc_ac_c* param_2, s16 param_3) {
+    daBoomerang_c* boomerang = daPy_py_c::getThrowBoomerangActor();
+
+    field_0x2 -= param_3;
+    *param_1 -= param_3;
+
+    if (field_0x8 > 300.0f) {
+        field_0x8 = 300.0f;
+    }
+
+    if (field_0x4 < -700.0f) {
+        field_0x4 = -700.0f;
+    } else if (field_0x4 > 50.0f) {
+        field_0x4 = 50.0f;
+    }
+
+    if (boomerang != NULL) {
+        if (boomerang->checkForceDelete()) {
+            return 0;
+        }
+
+        if (i_dComIfGp_event_runCheck()) {
+            field_0x0 = 1;
+        } else if (m_eventKeepFlg != 0 && field_0x0 == 0) {
+            return 0;
+        }
+
+        param_0->set(boomerang->current.pos.x + field_0x8 * cM_ssin(field_0x2),
+                     boomerang->current.pos.y + field_0x4,
+                     boomerang->current.pos.z + field_0x8 * cM_scos(field_0x2));
+        boomerang->onWindCatch();
+        return 1;
+    }
+
+    daAlink_c* link = daAlink_getAlinkActorClass();
+    if ((param_2 == NULL || !link->checkBoomerangCarry(param_2)) &&
+        (m_eventKeepFlg == 0 || field_0x0 != 0)) {
+        s16 tmp = (m_dropAngleY + link->mCollisionRot.y) + cM_rndF(2048.0f);
+
+        param_0->x = link->current.pos.x + field_0x8 * cM_ssin(tmp);
+        param_0->z = link->current.pos.z + field_0x8 * cM_scos(tmp);
+        m_dropAngleY += 0x2000;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80453630-80453638 001C30 0008+00 1/1 0/0 0/0 .sdata2          @4379 */
@@ -271,8 +276,8 @@ void daPy_boomerangMove_c::bgCheckAfterOffset(cXyz const* param_0) {
     if (boomerang != NULL) {
         field_0x4 = param_0->y - boomerang->current.pos.y;
         field_0x8 = boomerang->current.pos.absXZ(*param_0);
-        field_0x2 = cM_atan2s(param_0->x - boomerang->current.pos.x,
-                              param_0->z - boomerang->current.pos.z);
+        field_0x2 =
+            cM_atan2s(param_0->x - boomerang->current.pos.x, param_0->z - boomerang->current.pos.z);
     }
 }
 #else
@@ -375,10 +380,10 @@ void daPy_actorKeep_c::setActor() {
 
 /* 8015ECB8-8015ECFC 1595F8 0044+00 0/0 59/59 4/4 .text setData__16daPy_actorKeep_cFP10fopAc_ac_c
  */
-void daPy_actorKeep_c::setData(fopAc_ac_c* pActor) {
-    if (pActor != NULL) {
-        mActor = pActor;
-        mID = fopAcM_GetID(pActor);
+void daPy_actorKeep_c::setData(fopAc_ac_c* i_actor) {
+    if (i_actor != NULL) {
+        mActor = i_actor;
+        mID = fopAcM_GetID(i_actor);
     } else {
         clearData();
     }
@@ -389,9 +394,9 @@ void daPy_actorKeep_c::clearData() {
     mActor = NULL;
 }
 
-daPy_anmHeap_c::daPy_anmHeap_c(u32 pBufferSize) {
+daPy_anmHeap_c::daPy_anmHeap_c(u32 i_bufferSize) {
     initData();
-    mBufferSize = pBufferSize;
+    mBufferSize = i_bufferSize;
 }
 
 daPy_anmHeap_c::~daPy_anmHeap_c() {
@@ -414,16 +419,16 @@ void* daPy_anmHeap_c::mallocBuffer() {
 
 /* 8015EE00-8015EF84 159740 0184+00 0/0 1/1 1/1 .text
  * createHeap__14daPy_anmHeap_cFQ214daPy_anmHeap_c16daAlinkHEAP_TYPE */
-void daPy_anmHeap_c::createHeap(daPy_anmHeap_c::daAlinkHEAP_TYPE heap_type) {
+void daPy_anmHeap_c::createHeap(daPy_anmHeap_c::daAlinkHEAP_TYPE i_heapType) {
     u32 size;
 
-    if (heap_type == 4) {
+    if (i_heapType == 4) {
         size = mBufferSize;
-    } else if (heap_type == 3) {
+    } else if (i_heapType == 3) {
         size = 0x50;
-    } else if (heap_type == 0) {
+    } else if (i_heapType == 0) {
         size = 0x40;
-    } else if (heap_type == 1) {
+    } else if (i_heapType == 1) {
         size = 0x40;
     } else {
         size = 0xA0;
@@ -432,13 +437,13 @@ void daPy_anmHeap_c::createHeap(daPy_anmHeap_c::daAlinkHEAP_TYPE heap_type) {
     JKRHeap* tmp;
     mAnimeHeap = mDoExt_createSolidHeapFromGameToCurrent(&tmp, size, 0x20);
 
-    if (heap_type == 4) {
+    if (i_heapType == 4) {
         char* tmpWork = new char[size];
-    } else if (heap_type == 3) {
+    } else if (i_heapType == 3) {
         mDoExt_transAnmBas* tmpTransBas = new mDoExt_transAnmBas(NULL);
-    } else if (heap_type == 0) {
+    } else if (i_heapType == 0) {
         J3DAnmTransformKey* tmpTrans = new J3DAnmTransformKey();
-    } else if (heap_type == 1) {
+    } else if (i_heapType == 1) {
         J3DAnmTexPattern* tmpTp = new J3DAnmTexPattern();
     } else {
         J3DAnmTextureSRTKey* tmpTk = new J3DAnmTextureSRTKey();
@@ -448,50 +453,24 @@ void daPy_anmHeap_c::createHeap(daPy_anmHeap_c::daAlinkHEAP_TYPE heap_type) {
     mDoExt_adjustSolidHeap(mAnimeHeap);
 }
 
-/* ############################################################################################## */
-/* 80453648-80453650 001C48 0008+00 1/0 0/0 0/0 .sdata2          sumouArcName$4614 */
-extern "C" char sumouArcName[8];
-
-/* 80453650-80453658 001C50 0005+03 1/0 0/0 0/0 .sdata2          ocArcName$4615 */
-extern "C" char ocArcName[8];
-
-/* 80453658-80453660 001C58 0005+03 1/0 0/0 0/0 .sdata2          drArcName$4618 */
-extern "C" char drArcName[8];
-
-/* 80453660-80453668 001C60 0008+00 1/0 0/0 0/0 .sdata2          msDemoArcName$4619 */
-extern "C" char msDemoArcName[8];
-
-/* 80453668-80453670 001C68 0006+02 1/0 0/0 0/0 .sdata2          lastGanonArcName$4620 */
-extern "C" char lastGanonArcName[8];
-
-/* 80453670-80453678 001C70 0006+02 1/0 0/0 0/0 .sdata2          pigGanonArcName$4621 */
-extern "C" char pigGanonArcName[8];
-
-SECTION_RODATA static char const twglArcName[12] = "TWGate_Lk";
-
-SECTION_RODATA static char const twgwArcName[12] = "TWGate_Wf";
-
-SECTION_DATA static char* arcName[8] = {
-    (char*)&sumouArcName, (char*)&ocArcName,     (char*)&twglArcName,      (char*)&twgwArcName,
-    (char*)&drArcName,    (char*)&msDemoArcName, (char*)&lastGanonArcName, (char*)&pigGanonArcName,
-};
-
-SECTION_SDATA2 static char sumouArcName[8] = "alSumou";
-
-SECTION_SDATA2 static char ocArcName[8] = "B_oh";
-
-SECTION_SDATA2 static char drArcName[8] = "B_DR";
-
-SECTION_SDATA2 static char msDemoArcName[8] = "Lv6Gate";
-
-SECTION_SDATA2 static char lastGanonArcName[8] = "B_gnd";
-
-SECTION_SDATA2 static char pigGanonArcName[8] = "B_mgn";
-
 /* 8015EF84-8015F068 1598C4 00E4+00 3/3 0/0 0/0 .text            loadData__14daPy_anmHeap_cFUs */
-void* daPy_anmHeap_c::loadData(u16 id) {
+void* daPy_anmHeap_c::loadData(u16 i_resId) {
+    static const char twglArcName[12] = "TWGate_Lk";
+    static const char twgwArcName[12] = "TWGate_Wf";
+    static const char sumouArcName[8] = "alSumou";
+    static const char ocArcName[8] = "B_oh";
+    static const char drArcName[8] = "B_DR";
+    static const char msDemoArcName[8] = "Lv6Gate";
+    static const char lastGanonArcName[8] = "B_gnd";
+    static const char pigGanonArcName[8] = "B_mgn";
+
+    static const char* arcName[8] = {
+        sumouArcName, ocArcName,     twglArcName,      twgwArcName,
+        drArcName,    msDemoArcName, lastGanonArcName, pigGanonArcName,
+    };
+
     if (mArcNo == 0xFFFF) {
-        dComIfGp_getAnmArchive()->readIdxResource(mBuffer, mBufferSize, id);
+        dComIfGp_getAnmArchive()->readIdxResource(mBuffer, mBufferSize, i_resId);
         JKRHeap* heap = setAnimeHeap();
         void* data = J3DAnmLoaderDataBase::load(mBuffer, UNK_FLAG0);
         mDoExt_setCurrentHeap(heap);
@@ -499,10 +478,10 @@ void* daPy_anmHeap_c::loadData(u16 id) {
     }
 
     if (mArcNo == 0) {
-        return dComIfG_getObjectIDRes(dStage_roomControl_c::getDemoArcName(), id);
+        return dComIfG_getObjectIDRes(dStage_roomControl_c::getDemoArcName(), i_resId);
     }
 
-    return dComIfG_getObjectRes(arcName[mArcNo - 1], id);
+    return dComIfG_getObjectRes(arcName[mArcNo - 1], i_resId);
 }
 
 /* 8015F068-8015F0D0 1599A8 0068+00 0/0 9/9 5/5 .text            loadDataIdx__14daPy_anmHeap_cFUs */
@@ -520,6 +499,7 @@ void* daPy_anmHeap_c::loadDataIdx(u16 id) {
             data = NULL;
         }
     }
+
     return data;
 }
 
@@ -534,6 +514,7 @@ void* daPy_anmHeap_c::loadDataPriIdx(u16 id) {
         mPriIdx = id;
         data = loadData(id);
     }
+
     return data;
 }
 
@@ -548,6 +529,7 @@ void* daPy_anmHeap_c::loadDataDemoRID(u16 id, u16 arc_no) {
         mArcNo = arc_no;
         data = loadData(id);
     }
+
     return data;
 }
 
@@ -578,29 +560,56 @@ SECTION_SDATA2 static u32 lit_4668 = 0xFF8000FF;
 SECTION_SDATA2 static u32 lit_4669 = 0x321400FF;
 
 /* 8015F1A0-8015F2FC 159AE0 015C+00 1/0 1/1 0/0 .text            draw__18daPy_sightPacket_cFv */
+// dumb instruction block out of order
+#ifdef NONMATCHING
+void daPy_sightPacket_c::draw() {
+    GXTexObj texObj;
+
+    j3dSys.reinitGX();
+    GXSetNumIndStages(0);
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGB8, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGB565, 0);
+
+    GXColor reg0 = {255, 128, 0, 255};
+    GXColor reg1 = {50, 20, 0, 255};
+
+    GXSetTevColor(GX_TEVREG0, reg0);
+    GXSetTevColor(GX_TEVREG1, reg1);
+    GXInitTexObj(&texObj, mpData, mpImg->width, mpImg->height, (GXTexFmt)mpImg->format,
+                 (GXTexWrapMode)mpImg->wrapS, (GXTexWrapMode)mpImg->wrapT,
+                 (GXBool)(mpImg->mipmapCount > 1));
+    GXInitTexObjLOD(&texObj, GX_LINEAR, GX_LINEAR, 0.0, 0.0, 0.0, GX_FALSE, GX_FALSE, GX_ANISO_1);
+    GXLoadTexObj(&texObj, GX_TEXMAP0);
+    GXLoadPosMtxImm(field_0x14, GX_PNMTX0);
+    GXSetCurrentMtx(0);
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
+    GXCallDisplayList(l_sightDL, 0x80);
+    J3DShape::resetVcdVatCache();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void draw__18daPy_sightPacket_cFv() {
-    // asm void daPy_sightPacket_c::draw() {
+asm void daPy_sightPacket_c::draw() {
     nofralloc
 #include "asm/d/a/d_a_player/draw__18daPy_sightPacket_cFv.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 80453680-80453684 001C80 0004+00 1/1 0/0 0/0 .sdata2          @4699 */
-SECTION_SDATA2 static f32 lit_4699 = 32.0f;
+#endif
 
 /* 8015F2FC-8015F384 159C3C 0088+00 0/0 1/1 0/0 .text            setSight__18daPy_sightPacket_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daPy_sightPacket_c::setSight() {
-    nofralloc
-#include "asm/d/a/d_a_player/setSight__18daPy_sightPacket_cFv.s"
+void daPy_sightPacket_c::setSight() {
+    Vec tmp;
+
+    mDoLib_project(&mPos, &tmp);
+    mDoMtx_stack_c::transS(tmp.x, tmp.y, tmp.z);
+    mDoMtx_stack_c::scaleM(32.0f, 32.0f, 32.0f);
+    mDoMtx_stack_c::copy(field_0x14);
+    dComIfGd_set2DXlu(this);
 }
-#pragma pop
 
 /* 8015F384-8015F398 159CC4 0014+00 0/0 1/1 0/0 .text
  * setSightImage__18daPy_sightPacket_cFP7ResTIMG                */
@@ -617,6 +626,7 @@ BOOL daPy_py_c::checkMasterSwordEquip() {
     if (equipSword == MASTER_SWORD || equipSword == LIGHT_SWORD) {
         isMasterSword = true;
     }
+
     return isMasterSword;
 }
 
@@ -625,8 +635,7 @@ BOOL daPy_py_c::checkMasterSwordEquip() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::checkWoodShieldEquip() {
-    nofralloc
+asm void daPy_py_c::checkWoodShieldEquip(){nofralloc
 #include "asm/d/a/d_a_player/checkWoodShieldEquip__9daPy_py_cFv.s"
 }
 #pragma pop
@@ -641,6 +650,7 @@ f32 daPy_py_c::getAttentionOffsetY() {
     if (checkNowWolf()) {
         return -12.5f;
     }
+
     return 57.5f;
 }
 
@@ -678,8 +688,8 @@ void daPy_py_c::setLookPos(cXyz* p_pos) {
 }
 
 /* 8015F520-8015F55C 159E60 003C+00 0/0 0/0 4/4 .text            setPlayerSe__9daPy_py_cFUl */
-void daPy_py_c::setPlayerSe(u32 se_id) {
-    daAlink_getAlinkActorClass()->seStartOnlyReverb(se_id);
+void daPy_py_c::setPlayerSe(u32 i_sfxID) {
+    daAlink_getAlinkActorClass()->seStartOnlyReverb(i_sfxID);
 }
 
 /* 8015F55C-8015F60C 159E9C 00B0+00 1/1 0/0 2/2 .text
@@ -696,7 +706,8 @@ bool daPy_py_c::linkGrabSubjectNoDraw(fopAc_ac_c* p_ac) {
         }
     }
 
-    if (check_carry && dComIfGp_checkCameraAttentionStatus(i_dComIfGp_getPlayerCameraID(0), 2) != 0) {
+    if (check_carry &&
+        dComIfGp_checkCameraAttentionStatus(i_dComIfGp_getPlayerCameraID(0), 2) != 0) {
         ret = true;
     }
 
@@ -718,8 +729,7 @@ asm bool daPy_py_c::linkGrabSubjectNoDraw(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::wolfGrabSubjectNoDraw(fopAc_ac_c* param_0) {
-    nofralloc
+asm void daPy_py_c::wolfGrabSubjectNoDraw(fopAc_ac_c* param_0){nofralloc
 #include "asm/d/a/d_a_player/wolfGrabSubjectNoDraw__9daPy_py_cFP10fopAc_ac_c.s"
 }
 #pragma pop
@@ -735,48 +745,67 @@ bool daPy_py_c::checkRoomRestartStart() {
 
     if (mode == 4 || mode == 8 || mode == 5) {
         return true;
-    } else {
-        return false;
     }
+
+    return false;
 }
 
 /* 8015F698-8015F730 159FD8 0098+00 0/0 2/2 1/1 .text checkCarryStartLightBallA__9daPy_py_cFv */
 u32 daPy_py_c::checkCarryStartLightBallA() {
-    if (checkRoomRestartStart() || !i_dComIfGp_getStage() || !i_dComIfGp_getStage()->getStagInfo() ||
+    if (checkRoomRestartStart() || !i_dComIfGp_getStage() ||
+        !i_dComIfGp_getStage()->getStagInfo() ||
         i_dStage_stagInfo_GetSaveTbl(i_dComIfGp_getStage()->getStagInfo()) != 0x17) {
         return FALSE;
     }
+
     return dComIfGs_getLastSceneMode() & 0x100000;
 }
 
 /* 8015F730-8015F7C8 15A070 0098+00 0/0 2/2 1/1 .text checkCarryStartLightBallB__9daPy_py_cFv */
 u32 daPy_py_c::checkCarryStartLightBallB() {
-    if (checkRoomRestartStart() || !i_dComIfGp_getStage() || !i_dComIfGp_getStage()->getStagInfo() ||
+    if (checkRoomRestartStart() || !i_dComIfGp_getStage() ||
+        !i_dComIfGp_getStage()->getStagInfo() ||
         i_dStage_stagInfo_GetSaveTbl(i_dComIfGp_getStage()->getStagInfo()) != 0x17) {
         return FALSE;
     }
+
     return dComIfGs_getLastSceneMode() & 0x80000;
 }
 
-float daPy_py_c::getSpinnerRideSpeed() const {
-    float rideSpeed;
+f32 daPy_py_c::getSpinnerRideSpeed() const {
+    f32 rideSpeed;
+
     if (checkSpinnerRide()) {
         rideSpeed = mSpeedF;
     } else {
         rideSpeed = lit_4215[0];
     }
+
     return rideSpeed;
 }
 
 /* 8015F814-8015F89C 15A154 0088+00 0/0 0/0 1/1 .text checkSpinnerReflectEffect__9daPy_py_cFv */
+// matches with literals
+#ifdef NONMATCHING
+bool daPy_py_c::checkSpinnerReflectEffect() {
+    daSpinner_c* spinner = (daSpinner_c*)getSpinnerActor();
+
+    if (spinner != NULL && spinner->reflectAccept()) {
+        return true;
+    }
+
+    return false;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::checkSpinnerReflectEffect() {
+asm bool daPy_py_c::checkSpinnerReflectEffect() {
     nofralloc
 #include "asm/d/a/d_a_player/checkSpinnerReflectEffect__9daPy_py_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8015F89C-8015F8C8 15A1DC 002C+00 0/0 0/0 7/7 .text            checkBoomerangCharge__9daPy_py_cFv
  */
@@ -874,14 +903,3 @@ asm void daPy_addCalcShort(s16* param_0, s16 param_1, s16 param_2, s16 param_3, 
 }
 #pragma pop
 #endif
-
-/* ############################################################################################## */
-/* 803BA14C-803BA160 01726C 0010+04 0/0 4/4 0/0 .data            __vt__18daPy_sightPacket_c */
-SECTION_DATA extern void* __vt__18daPy_sightPacket_c[4 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__18daPy_sightPacket_cFv,
-    (void*)__dt__18daPy_sightPacket_cFv,
-    /* padding */
-    NULL,
-};

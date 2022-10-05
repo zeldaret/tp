@@ -2,9 +2,9 @@
 #define D_PARTICLE_D_PARTICLE_H
 
 #include "JSystem/JParticle/JPAParticle.h"
+#include "d/particle/d_particle_name.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
-#include "d/particle/d_particle_name.h"
 
 class dPa_levelEcallBack : public JPAEmitterCallBack {
 public:
@@ -138,8 +138,8 @@ public:
 
     /* 8004AB1C */ void create(u8);
     /* 8004ABC4 */ void remove();
-    /* 8004AC00 */ void setModel(JPABaseEmitter*, J3DModelData*, dKy_tevstr_c const&, u8, void*, u8,
-                                 u8);
+    /* 8004AC00 */ static void setModel(JPABaseEmitter*, J3DModelData*, dKy_tevstr_c const&, u8,
+                                        void*, u8, u8);
     /* 8004AC90 */ void resetModel(JPABaseEmitter*);
     /* 8004ACC0 */ void setupModel(JPABaseEmitter*);
     /* 8004ACEC */ void drawModel(JPABaseEmitter*, f32 (*)[4]);
@@ -152,7 +152,15 @@ public:
     /* 80050014 */ virtual void drawAfter(JPABaseEmitter*);
     /* 8004AAA8 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 
-    static u8 mEcallback[4];
+    static void setModel(JPABaseEmitter* param_0, J3DModelData* param_1,
+                         const dKy_tevstr_c& param_2, u8 param_3, J3DAnmTexPattern* param_4,
+                         u8 param_5) {
+        setModel(param_0, param_1, param_2, param_3, param_4, param_5);
+    }
+
+    static dPa_modelEcallBack* getEcallback() { return mEcallback; }
+
+    static dPa_modelEcallBack* mEcallback;
     static u8 mPcallback[4];
     static J3DModel* mModel;
 };
@@ -207,7 +215,6 @@ public:
     /* 8004FE6C */ virtual ~dPa_fsenthPcallBack();
     /* 8004DCA0 */ virtual void execute(JPABaseEmitter*, JPABaseParticle*);
     /* 8004DD0C */ virtual void draw(JPABaseEmitter*, JPABaseParticle*);
-    
 };
 
 class dPa_simpleData_c {
@@ -244,7 +251,7 @@ public:
 
             void offActive() { mStatus &= ~1; }
             bool isActive() { return mStatus & 1; }
-            
+
         private:
             /* 0x00 */ u32 mId;
             /* 0x04 */ u16 mNameId;
@@ -340,6 +347,10 @@ public:
     static void onStatus(u8 status) { mStatus |= status; }
     static void offStatus(u8 status) { mStatus &= ~status; }
     static bool isStatus(u8 status) { return mStatus & status; }
+
+    static dPa_selectTexEcallBack* getTsuboSelectTexEcallBack(int idx) {
+        return ((dPa_selectTexEcallBack*)mTsubo) + idx;
+    }
 
     static u8 mTsubo[64];
     static u8 mLifeBall[24];
