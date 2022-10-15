@@ -4,6 +4,8 @@
 //
 
 #include "JSystem/J3DGraphLoader/J3DJointFactory.h"
+#include "JSystem/J3DGraphAnimator/J3DJoint.h"
+#include "JSystem/JSupport/JSupport.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -11,64 +13,31 @@
 // Types:
 //
 
-struct J3DJointBlock {};
-
-struct J3DJointFactory {
-    /* 80337178 */ J3DJointFactory(J3DJointBlock const&);
-    /* 803371D0 */ void create(int);
-};
-
-struct J3DJoint {
-    /* 8032F170 */ J3DJoint();
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__15J3DJointFactoryFRC13J3DJointBlock();
-extern "C" void create__15J3DJointFactoryFi();
-extern "C" void func_80337338(void* _this, void const*, u32);
-
-//
-// External References:
-//
-
-extern "C" void* __nw__FUl();
-extern "C" void __ct__8J3DJointFv();
-extern "C" void func_8033677C(void* _this, void const*, u32);
-
-//
-// Declarations:
-//
+extern "C" u16* func_8033677C(const void*, const void*);  // JSUConvertOffsetToPtr<u16>
 
 /* 80337178-803371D0 331AB8 0058+00 0/0 1/1 0/0 .text __ct__15J3DJointFactoryFRC13J3DJointBlock */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DJointFactory::J3DJointFactory(J3DJointBlock const& param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphLoader/J3DJointFactory/__ct__15J3DJointFactoryFRC13J3DJointBlock.s"
+J3DJointFactory::J3DJointFactory(J3DJointBlock const& block) {
+    mJointInitData = JSUConvertOffsetToPtr<J3DJointInitData>(&block, block.mJointInitData);
+
+    // Fix when we have our ODR working.
+    // mIndexTable = JSUConvertOffsetToPtr<u16>(&block, block.mIndexTable);
+    mIndexTable = func_8033677C(&block, block.mIndexTable);
 }
-#pragma pop
 
 /* 803371D0-80337338 331B10 0168+00 0/0 1/1 0/0 .text            create__15J3DJointFactoryFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DJointFactory::create(int param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphLoader/J3DJointFactory/create__15J3DJointFactoryFi.s"
-}
-#pragma pop
+J3DJoint* J3DJointFactory::create(int no) {
+    J3DJoint* joint = new J3DJoint();
+    joint->mJntNo = no;
+    joint->mKind = getKind(no);
+    joint->mScaleCompensate = getScaleCompensate(no);
+    joint->mTransformInfo = getTransformInfo(no);
+    joint->mBoundingSphereRadius = getRadius(no);
+    joint->mMin = getMin(no);
+    joint->mMax = getMax(no);
+    joint->mMtxCalc = NULL;
 
-/* 80337338-80337350 331C78 0018+00 1/1 0/0 0/0 .text
- * JSUConvertOffsetToPtr<16J3DJointInitData>__FPCvUl            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void func_80337338(void* _this, void const* param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/J3DGraphLoader/J3DJointFactory/func_80337338.s"
+    if (joint->mScaleCompensate == 0xFF)
+        joint->mScaleCompensate = 0;
+
+    return joint;
 }
-#pragma pop

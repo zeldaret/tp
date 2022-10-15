@@ -218,7 +218,7 @@ lbl_8033DE90:
 /* 8033DEA8  40 81 00 1C */	ble lbl_8033DEC4
 /* 8033DEAC  B3 AD 90 F8 */	sth r29, __OSLastInterrupt(r13)
 /* 8033DEB0  48 00 48 4D */	bl OSGetTime
-/* 8033DEB4  90 8D 91 04 */	stw r4, data_80451684(r13)
+/* 8033DEB4  90 8D 91 04 */	stw r4, __OSLastInterruptTime+0x4(r13)
 /* 8033DEB8  90 6D 91 00 */	stw r3, __OSLastInterruptTime(r13)
 /* 8033DEBC  80 1E 01 98 */	lwz r0, 0x198(r30)
 /* 8033DEC0  90 0D 90 F4 */	stw r0, __OSLastInterruptSrr0(r13)

@@ -121,6 +121,8 @@ LIBMSL_C_PPCEABI_BARE_H_A_O_FILES := \
 LIBMSL_C_PPCEABI_BARE_H_A_CFLAGS := \
 	-O4,p \
 	-lang=c \
+	-fp_contract on \
+	-use_lmw_stmw on \
 
 LIBMSL_C_PPCEABI_BARE_H_A_LDFLAGS := \
 	-nodefaults \

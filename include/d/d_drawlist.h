@@ -226,6 +226,7 @@ public:
     /* 80051ADC */ void setScissor(f32, f32, f32, f32);
 
     void setCameraID(int id) { mCameraID = id; }
+    s8 getCameraID() { return mCameraID; }
     void setMode(int mode) { mMode = mode; }
     f32 getViewPort() { return mXOrig; }
 
@@ -284,6 +285,7 @@ public:
 
     void set2DOpa(dDlst_base_c* dlst) { set(mp2DOpaSet[0], mp2DOpaSet[1], dlst); }
     void set2DOpaTop(dDlst_base_c* dlst) { set(mp2DOpaTopSet[0], mp2DOpaTopSet[1], dlst); }
+    void set2DXlu(dDlst_base_c* dlst) { set(mp2DXluSet[0], mp2DXluSet[1], dlst); }
     view_class* getView() { return mView; }
     void setView(view_class* view) { mView = view; }
     void setWindow(dDlst_window_c* window) { mWindow = window; }
@@ -303,6 +305,8 @@ public:
     void setXluListItem3D() { setXluDrawList(mDrawBuffers[DB_XLU_LIST_ITEM3D]); }
     void setXluListBG() { setXluDrawList(mDrawBuffers[DB_XLU_LIST_BG]); }
     void setOpaListBG() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST_BG]); }
+    void setOpaList3Dlast() { setOpaDrawList(mDrawBuffers[DB_LIST_3D_LAST]); }
+    void setXluList3Dlast() { setXluDrawList(mDrawBuffers[DB_LIST_3D_LAST]); }
     void setXluList2DScreen() { setXluDrawList(mDrawBuffers[DB_LIST_2D_SCREEN]); }
 
     void peekZdata() { mPeekZ.peekData(); }

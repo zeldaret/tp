@@ -41,8 +41,8 @@ lbl_8049CF14:
 /* 8049CF38  48 00 01 60 */	b lbl_8049D098
 lbl_8049CF3C:
 /* 8049CF3C  A8 9F 09 4E */	lha r4, 0x94e(r31)
-/* 8049CF40  3C 60 80 45 */	lis r3, struct_80450D88+0x0@ha /* 0x80450D88@ha */
-/* 8049CF44  A8 03 0D 88 */	lha r0, struct_80450D88+0x0@l(r3)  /* 0x80450D88@l */
+/* 8049CF40  3C 60 80 45 */	lis r3, m_count__9daArrow_c+0x0@ha /* 0x80450D88@ha */
+/* 8049CF44  A8 03 0D 88 */	lha r0, m_count__9daArrow_c+0x0@l(r3)  /* 0x80450D88@l */
 /* 8049CF48  7C 04 00 00 */	cmpw r4, r0
 /* 8049CF4C  40 82 00 0C */	bne lbl_8049CF58
 /* 8049CF50  38 00 00 01 */	li r0, 1

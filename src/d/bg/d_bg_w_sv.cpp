@@ -5,118 +5,6 @@
 
 #include "d/bg/d_bg_w_sv.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct fopAc_ac_c {};
-
-struct cBgD_t {};
-
-struct cBgS_PolyInfo {};
-
-struct csXyz {};
-
-struct cXyz {};
-
-struct dBgWSv {
-    /* 80082F98 */ void Set(cBgD_t*, u32);
-    /* 80083020 */ void CopyBackVtx();
-    /* 8008308C */ void CrrPosWork(cXyz*, int, int, int);
-    /* 80083244 */ void CrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*, csXyz*);
-    /* 80083300 */ void TransPosWork(cXyz*, int, int, int);
-    /* 8008351C */ void TransPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*, csXyz*);
-    /* 800835D8 */ void MatrixCrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*, csXyz*);
-    /* 800835DC */ ~dBgWSv();
-};
-
-struct cBgS_GrpPassChk {};
-
-struct cBgS_PolyPassChk {};
-
-struct dBgS_SplGrpChk {};
-
-struct dBgS_Acch {};
-
-struct dBgS_SphChk {};
-
-struct dBgS_RoofChk {};
-
-struct dBgS_CaptPoly {};
-
-struct dBgW {
-    /* 8007B3AC */ void GetExitId(cBgS_PolyInfo const&);
-    /* 8007B3D8 */ void GetPolyColor(cBgS_PolyInfo const&);
-    /* 8007B404 */ void GetHorseNoEntry(cBgS_PolyInfo const&);
-    /* 8007B430 */ int GetSpecialCode(cBgS_PolyInfo const&);
-    /* 8007B460 */ int GetSpecialCode(int);
-    /* 8007B488 */ void GetMagnetCode(cBgS_PolyInfo const&);
-    /* 8007B4B4 */ int GetMonkeyBarsCode(cBgS_PolyInfo const&);
-    /* 8007B4E0 */ void GetPolyObjThrough(int);
-    /* 8007B504 */ void GetPolyCamThrough(int);
-    /* 8007B52C */ void GetPolyLinkThrough(int);
-    /* 8007B550 */ void GetPolyArrowThrough(int);
-    /* 8007B574 */ void GetPolyHSStick(int);
-    /* 8007B598 */ void GetPolyBoomerangThrough(int);
-    /* 8007B5BC */ void GetPolyRopeThrough(int);
-    /* 8007B5E0 */ void GetPolyBombThrough(int);
-    /* 8007B604 */ void GetShdwThrough(int);
-    /* 8007B630 */ int GetUnderwaterRoofCode(int);
-    /* 8007B6AC */ void GetLinkNo(cBgS_PolyInfo const&);
-    /* 8007B6D8 */ void GetWallCode(cBgS_PolyInfo const&);
-    /* 8007B704 */ void GetPolyAtt0(cBgS_PolyInfo const&);
-    /* 8007B734 */ void GetPolyAtt1(cBgS_PolyInfo const&);
-    /* 8007B760 */ int GetGroundCode(cBgS_PolyInfo const&);
-    /* 8007B7DC */ void GetIronBallThrough(int);
-    /* 8007B800 */ void GetAttackThrough(int);
-    /* 8007B87C */ void GetCamMoveBG(cBgS_PolyInfo const&);
-    /* 8007B8A8 */ void GetRoomCamId(cBgS_PolyInfo const&);
-    /* 8007B8D8 */ void GetRoomPathId(cBgS_PolyInfo const&);
-    /* 8007B904 */ void GetRoomPathPntNo(cBgS_PolyInfo const&);
-    /* 8007C484 */ void WallCorrect(dBgS_Acch*);
-    /* 8007C910 */ void WallCorrectSort(dBgS_Acch*);
-    /* 8007D470 */ void RoofChk(dBgS_RoofChk*);
-    /* 8007D830 */ bool SplGrpChk(dBgS_SplGrpChk*);
-    /* 8007DAF8 */ void CaptPoly(dBgS_CaptPoly&);
-    /* 8007DF00 */ void SphChk(dBgS_SphChk*, void*);
-    /* 8007DF28 */ void GetPolyGrpRoomInfId(cBgS_PolyInfo const&);
-    /* 8007DF58 */ void GetGrpSoundId(cBgS_PolyInfo const&);
-    /* 8007E02C */ void ChkPolyThrough(int, cBgS_PolyPassChk*);
-    /* 8007E360 */ void ChkShdwDrawThrough(int, cBgS_PolyPassChk*);
-    /* 8007E3D8 */ void ChkGrpThrough(int, cBgS_GrpPassChk*, int);
-    /* 8007E444 */ void CallRideCallBack(fopAc_ac_c*, fopAc_ac_c*);
-    /* 8007E474 */ void CallArrowStickCallBack(fopAc_ac_c*, fopAc_ac_c*, cXyz&);
-    /* 8007E4A4 */ void OffMoveFlag();
-    /* 8007E4B4 */ void ChkMoveFlag() const;
-};
-
-struct cBgS_ShdwDraw {};
-
-struct cBgS_LinChk {};
-
-struct cBgS_GndChk {};
-
-struct cBgW {
-    /* 8007933C */ ~cBgW();
-    /* 80079564 */ void CalcPlane();
-    /* 800797BC */ void ClassifyPlane();
-    /* 80079EEC */ void ChkMemoryError();
-    /* 80079F38 */ void Set(cBgD_t*, u32, f32 (*)[3][4]);
-    /* 8007A658 */ bool LineCheck(cBgS_LinChk*);
-    /* 8007AB9C */ bool GroundCross(cBgS_GndChk*);
-    /* 8007B084 */ void ShdwDraw(cBgS_ShdwDraw*);
-    /* 8007B0E4 */ void GetGrpRoomIndex(cBgS_PolyInfo const&) const;
-    /* 8007B164 */ void GetBnd() const;
-    /* 8007B1B4 */ void GetTriPnt(cBgS_PolyInfo const&, cXyz*, cXyz*, cXyz*) const;
-    /* 8007B240 */ void GetTopUnder(f32*, f32*) const;
-    /* 8007B270 */ void GetTriPla(cBgS_PolyInfo const&) const;
-    /* 8007B2B0 */ void GetGrpInf(cBgS_PolyInfo const&) const;
-    /* 8007B948 */ bool ChkNotReady() const;
-    /* 8007B958 */ void ChkLock() const;
-    /* 8007B964 */ void ChkMoveBg() const;
-};
 
 //
 // Forward References:
@@ -201,31 +89,36 @@ extern "C" void __dl__FPv();
 extern "C" void _savegpr_27();
 extern "C" void _restgpr_27();
 extern "C" extern void* __vt__4dBgW[65];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 //
 // Declarations:
 //
 
 /* 80082F98-80083020 07D8D8 0088+00 0/0 0/0 2/2 .text            Set__6dBgWSvFP6cBgD_tUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgWSv::Set(cBgD_t* param_0, u32 param_1) {
-    nofralloc
-#include "asm/d/bg/d_bg_w_sv/Set__6dBgWSvFP6cBgD_tUl.s"
+u8 dBgWSv::Set(cBgD_t* pbgd, u32 param_1) {
+    if (cBgW::Set(pbgd, 99, NULL)) {
+        return 1;
+    }
+
+    field_0xc4 = param_1;
+    if (field_0xc4 & 1) {
+        return 0;
+    }
+
+    field_0xc0 = new Vec[pm_bgd->m_v_num];
+    return field_0xc0 == NULL;
 }
-#pragma pop
 
 /* 80083020-8008308C 07D960 006C+00 0/0 0/0 3/3 .text            CopyBackVtx__6dBgWSvFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgWSv::CopyBackVtx() {
-    nofralloc
-#include "asm/d/bg/d_bg_w_sv/CopyBackVtx__6dBgWSvFv.s"
+void dBgWSv::CopyBackVtx() {
+    if (field_0xc0 == NULL || pm_vtx_tbl == NULL) {
+        return;
+    }
+
+    for (int i = 0; i < pm_bgd->m_v_num; i++) {
+        field_0xc0[i] = pm_vtx_tbl[i];
+    }
 }
-#pragma pop
 
 /* 8008308C-80083244 07D9CC 01B8+00 1/1 0/0 0/0 .text            CrrPosWork__6dBgWSvFP4cXyziii */
 #pragma push
@@ -366,7 +259,8 @@ SECTION_DATA extern void* __vt__6dBgWSv[65 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgWSv::~dBgWSv() {
+// asm dBgWSv::~dBgWSv() {
+extern "C" asm void __dt__6dBgWSvFv() {
     nofralloc
 #include "asm/d/bg/d_bg_w_sv/__dt__6dBgWSvFv.s"
 }

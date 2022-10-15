@@ -4,6 +4,7 @@
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/mtx/mtx.h"
+#include "dolphin/mtx/mtxvec.h"
 #include "dolphin/mtx/quat.h"
 #include "dolphin/types.h"
 
@@ -54,7 +55,7 @@ public:
     static void XrotM(s16 x) { mDoMtx_XrotM(now, x); }
     static void inverse() { PSMTXInverse(now, now); }
     static void concat(const Mtx m) { PSMTXConcat(now, m, now); }
-    static void copy(const Mtx m) { PSMTXCopy(m, now); }
+    static void copy(Mtx m) { PSMTXCopy(now, m); }
 
     static Mtx now;
     static Mtx buffer[16];

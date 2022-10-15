@@ -85,7 +85,7 @@ asm void daAlink_c::checkCanoeRideTandem() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkFishingRodAndLureItem() const {
+asm BOOL daAlink_c::checkFishingRodAndLureItem() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkFishingRodAndLureItem__9daAlink_cCFv.s"
 }

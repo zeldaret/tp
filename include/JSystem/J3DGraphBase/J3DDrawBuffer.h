@@ -11,22 +11,37 @@ class J3DDrawPacket;
 class J3DMatPacket;
 class J3DShapePacket;
 
-typedef void (*J3DDrawBuffer_DrawFunc)(const J3DDrawBuffer* this_);
+typedef int (J3DDrawBuffer::*sortFunc)(J3DMatPacket*);
+typedef void (J3DDrawBuffer::*drawFunc)() const;
 
 class J3DDrawBuffer {
 public:
+    enum EDrawType {
+        DRAW_HEAD,
+        DRAW_TAIL,
+    };
+
+    enum ESortType {
+        SORT_MAT,
+        SORT_MAT_ANM,
+        SORT_Z,
+        SORT_MODEL,
+        SORT_INVALID,
+        SORT_NON,
+    };
+
     J3DDrawBuffer() { initialize(); }
     ~J3DDrawBuffer();
     void initialize();
     J3DError allocBuffer(u32);
     void frameInit();
-    void entryMatSort(J3DMatPacket*);
-    void entryMatAnmSort(J3DMatPacket*);
-    void entryZSort(J3DMatPacket*);
-    void entryModelSort(J3DMatPacket*);
-    void entryInvalidSort(J3DMatPacket*);
-    bool entryNonSort(J3DMatPacket*);
-    bool entryImm(J3DPacket* pPacket, u16 index);
+    int entryMatSort(J3DMatPacket*);
+    int entryMatAnmSort(J3DMatPacket*);
+    int entryZSort(J3DMatPacket*);
+    int entryModelSort(J3DMatPacket*);
+    int entryInvalidSort(J3DMatPacket*);
+    int entryNonSort(J3DMatPacket*);
+    int entryImm(J3DPacket* pPacket, u16 index);
     void draw() const;
     void drawHead() const;
     void drawTail() const;
@@ -43,12 +58,12 @@ public:
     /* 0x10 */ f32 mZNear;
     /* 0x14 */ f32 mZFar;
     /* 0x18 */ f32 mZRatio;
-    /* 0x1C */ Mtx* mpZMtx;
+    /* 0x1C */ MtxP mpZMtx;
     /* 0x20 */ J3DPacket* mpCallBackPacket;
 
-    static u8 sortFuncTable[72];
-    static u8 drawFuncTable[24];
-    static u8 entryNum[4 + 4 /* padding */];
+    static sortFunc sortFuncTable[6];
+    static drawFunc drawFuncTable[2];
+    static int entryNum;
 };
 
 #endif /* J3DDRAWBUFFER_H */

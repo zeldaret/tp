@@ -46,7 +46,7 @@ lbl_80070038:
 /* 800700E8  48 2F 88 AD */	bl strcmp
 /* 800700EC  7C 60 00 34 */	cntlzw r0, r3
 /* 800700F0  54 00 D9 7E */	srwi r0, r0, 5
-/* 800700F4  98 0D 89 D8 */	stb r0, data_80450F58(r13)
+/* 800700F4  98 0D 89 D8 */	stb r0, on_final_boss_stg(r13)
 /* 800700F8  7F E3 FB 78 */	mr r3, r31
 /* 800700FC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80070100  80 01 00 14 */	lwz r0, 0x14(r1)

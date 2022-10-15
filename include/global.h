@@ -31,11 +31,6 @@
 #define STATIC_ASSERT(...)
 #endif
 
-struct JUTWarn {
-    JUTWarn& operator<<(const char*) { return *this; }
-    JUTWarn& operator<<(long) { return *this; }
-};
-
 // hack to make functions that return comparisons as int match
 extern int __cntlzw(unsigned int);
 inline BOOL checkEqual(s32 a, s32 b) {

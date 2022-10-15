@@ -43,13 +43,13 @@ lbl_800E0734:
 /* 800E0758  64 03 00 40 */	oris r3, r0, 0x40
 /* 800E075C  90 64 5F 18 */	stw r3, 0x5f18(r4)
 /* 800E0760  38 00 40 00 */	li r0, 0x4000
-/* 800E0764  B0 0D 8A 9C */	sth r0, struct_8045101C+0x0(r13)
+/* 800E0764  B0 0D 8A 9C */	sth r0, m_dropAngleY__20daPy_boomerangMove_c+0x0(r13)
 /* 800E0768  54 60 03 56 */	rlwinm r0, r3, 0, 0xd, 0xb
 /* 800E076C  90 04 5F 18 */	stw r0, 0x5f18(r4)
 /* 800E0770  38 00 FF FF */	li r0, -1
 /* 800E0774  B0 1D 30 8E */	sth r0, 0x308e(r29)
 /* 800E0778  38 00 00 00 */	li r0, 0
-/* 800E077C  B0 0D 8A 9E */	sth r0, struct_8045101C+0x2(r13)
+/* 800E077C  B0 0D 8A 9E */	sth r0, m_dropAngleY__20daPy_boomerangMove_c+0x2(r13)
 /* 800E0780  48 00 00 44 */	b lbl_800E07C4
 lbl_800E0784:
 /* 800E0784  3C 60 80 39 */	lis r3, m__20daAlinkHIO_pickUp_c0@ha /* 0x8038E840@ha */

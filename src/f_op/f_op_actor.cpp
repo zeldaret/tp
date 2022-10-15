@@ -16,17 +16,6 @@
 #include "d/d_demo.h"
 
 //
-// Types:
-//
-
-struct fopEn_enemy_c {
-    /* 80019404 */ void initBallModel();
-    /* 800194FC */ void checkBallModelDraw();
-    /* 80019520 */ void setBallModelEffect(dKy_tevstr_c*);
-    /* 800196A0 */ void drawBallModel(dKy_tevstr_c*);
-};
-
-//
 // Forward References:
 //
 

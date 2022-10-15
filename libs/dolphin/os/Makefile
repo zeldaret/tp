@@ -3,29 +3,29 @@
 #
 
 LIBOS_A_CPP_FILES := \
-	libs/dolphin/os/OS.cpp \
-	libs/dolphin/os/OSAlarm.cpp \
-	libs/dolphin/os/OSAlloc.cpp \
-	libs/dolphin/os/OSArena.cpp \
-	libs/dolphin/os/OSAudioSystem.cpp \
-	libs/dolphin/os/OSCache.cpp \
-	libs/dolphin/os/OSContext.cpp \
-	libs/dolphin/os/OSError.cpp \
-	libs/dolphin/os/OSExec.cpp \
-	libs/dolphin/os/OSFont.cpp \
-	libs/dolphin/os/OSInterrupt.cpp \
-	libs/dolphin/os/OSLink.cpp \
-	libs/dolphin/os/OSMessage.cpp \
-	libs/dolphin/os/OSMemory.cpp \
-	libs/dolphin/os/OSMutex.cpp \
-	libs/dolphin/os/OSReboot.cpp \
-	libs/dolphin/os/OSReset.cpp \
-	libs/dolphin/os/OSResetSW.cpp \
-	libs/dolphin/os/OSRtc.cpp \
-	libs/dolphin/os/OSSync.cpp \
-	libs/dolphin/os/OSThread.cpp \
-	libs/dolphin/os/OSTime.cpp \
-	libs/dolphin/os/__ppc_eabi_init.cpp \
+	libs/dolphin/os/OS.c \
+	libs/dolphin/os/OSAlarm.c \
+	libs/dolphin/os/OSAlloc.c \
+	libs/dolphin/os/OSArena.c \
+	libs/dolphin/os/OSAudioSystem.c \
+	libs/dolphin/os/OSCache.c \
+	libs/dolphin/os/OSContext.c \
+	libs/dolphin/os/OSError.c \
+	libs/dolphin/os/OSExec.c \
+	libs/dolphin/os/OSFont.c \
+	libs/dolphin/os/OSInterrupt.c \
+	libs/dolphin/os/OSLink.c \
+	libs/dolphin/os/OSMessage.c \
+	libs/dolphin/os/OSMemory.c \
+	libs/dolphin/os/OSMutex.c \
+	libs/dolphin/os/OSReboot.c \
+	libs/dolphin/os/OSReset.c \
+	libs/dolphin/os/OSResetSW.c \
+	libs/dolphin/os/OSRtc.c \
+	libs/dolphin/os/OSSync.c \
+	libs/dolphin/os/OSThread.c \
+	libs/dolphin/os/OSTime.c \
+	libs/dolphin/os/__ppc_eabi_init.c \
 
 LIBOS_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/os/OS.o \
@@ -54,6 +54,7 @@ LIBOS_A_O_FILES := \
 
 LIBOS_A_CFLAGS := \
 	-O4,p \
+	-lang=c \
 
 LIBOS_A_LDFLAGS := \
 	-nodefaults \
@@ -66,9 +67,9 @@ $(BUILD_DIR)/libos.a: $(LIBOS_A_O_FILES)
 	@echo $(LIBOS_A_O_FILES) > build/LIBOS_A_ofiles
 	@$(LD) -xm l $(LIBOS_A_LDFLAGS) -o $(BUILD_DIR)/libos.a @build/LIBOS_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/os/%.o: libs/dolphin/os/%.cpp
+$(BUILD_DIR)/libs/dolphin/os/%.o: libs/dolphin/os/%.c
 	@mkdir -p $(@D)
 	@echo building... $<
-	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(CFLAGS) $(LIBOS_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
+	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(CFLAGS) $(LIBOS_A_CFLAGS) -c -o $@ $(basename $@).c
 

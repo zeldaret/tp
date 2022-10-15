@@ -1,8 +1,6 @@
 #ifndef OSTHREAD_H
 #define OSTHREAD_H
 
-#include "dolphin/types.h"
-#include "dolphin/os/OSMutex.h"
 #include "dolphin/os/OSContext.h"
 
 #ifdef __cplusplus
@@ -16,24 +14,6 @@ typedef u16 OSThreadState;
 #define OS_THREAD_STATE_WAITING 4
 #define OS_THREAD_STATE_DEAD 8
 
-typedef struct OSMutexLink {
-    struct OSMutex* prev;
-    struct OSMutex* next;
-} OSMutexLink;
-
-typedef struct OSMutexQueue {
-    struct OSMutex* prev;
-    struct OSMutex* next;
-} OSMutexQueue;
-
-typedef struct OSMutex {
-    /* 0x00 */ //OSThreadQueue queue;
-    /* 0x08 */ //OSThread* thread;
-    /* 0x0C */ //s32 count;
-    /* 0x10 */ //OSMutexLink link;
-    u8 unk[24];
-} OSMutex;  // Size: 0x18
-
 typedef struct OSThreadLink {
     struct OSThread* prev;
     struct OSThread* next;
@@ -44,31 +24,44 @@ typedef struct OSThreadQueue {
     /* 0x4 */ struct OSThread* tail;
 } OSThreadQueue;
 
+typedef struct OSMutexLink {
+    struct OSMutex* prev;
+    struct OSMutex* next;
+} OSMutexLink;
+
+typedef struct OSMutexQueue {
+    struct OSMutex* prev;
+    struct OSMutex* next;
+} OSMutexQueue;
+
 typedef struct OSCond {
-    struct OSThreadQueue queue;
+    OSThreadQueue queue;
 } OSCond;
 
-typedef void (*OSSwitchThreadCallback)(struct OSThread* from, struct OSThread* to);
-
 typedef struct OSThread {
-    struct OSContext context;
+    OSContext context;
     OSThreadState state;
     u16 attributes;
     s32 suspend_count;
-    u32 effective_priority;
+    s32 effective_priority;
     u32 base_priority;
     void* exit_value;
-    struct OSThreadQueue* queue;
-    struct OSThreadLink link;
-    struct OSThreadQueue join_queue;
+    OSThreadQueue* queue;
+    OSThreadLink link;
+    OSThreadQueue join_queue;
     struct OSMutex* mutex;
     OSMutexQueue owned_mutexes;
-    struct OSThreadLink active_threads_link;
+    OSThreadLink active_threads_link;
     u8* stack_base;
     u8* stack_end;
     u8* error_code;
     void* data[2];
 } OSThread;
+
+typedef void (*OSSwitchThreadCallback)(OSThread* from, OSThread* to);
+
+OSThreadQueue OS_THREAD_QUEUE : 0x800000DC;
+OSThread* OS_CURRENT_THREAD : 0x800000E4;
 
 static void DefaultSwitchThreadCallback(OSThread* from, OSThread* to);
 OSSwitchThreadCallback OSSetSwitchThreadCallback(OSSwitchThreadCallback func);

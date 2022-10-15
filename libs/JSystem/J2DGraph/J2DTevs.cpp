@@ -159,7 +159,7 @@ void J2DIndTevStage::load(u8 tevStage) {
 
 /* 802EA098-802EA0CC 2E49D8 0034+00 0/0 1/1 0/0 .text            load__12J2DIndTexMtxFUc */
 void J2DIndTexMtx::load(u8 indTexMtx) {
-    GXSetIndTexMtx((GXIndTexMtxID)(GX_ITM_0 + indTexMtx), mIndTexMtxInfo.mMtx,
+    GXSetIndTexMtx((GXIndTexMtxID)(GX_ITM_0 + indTexMtx), (f32*)mIndTexMtxInfo.mMtx,
                    mIndTexMtxInfo.mScaleExp);
 }
 

@@ -3,14 +3,16 @@
 #
 
 LIBSI_A_CPP_FILES := \
-	libs/dolphin/si/SIBios.cpp \
-	libs/dolphin/si/SISamplingRate.cpp \
+	libs/dolphin/si/SIBios.c \
+	libs/dolphin/si/SISamplingRate.c \
 
 LIBSI_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/si/SIBios.o \
 	$(BUILD_DIR)/libs/dolphin/si/SISamplingRate.o \
 
 LIBSI_A_CFLAGS := \
+	-O4,p \
+	-lang=c \
 
 LIBSI_A_LDFLAGS := \
 	-nodefaults \
@@ -23,9 +25,9 @@ $(BUILD_DIR)/libsi.a: $(LIBSI_A_O_FILES)
 	@echo $(LIBSI_A_O_FILES) > build/LIBSI_A_ofiles
 	@$(LD) -xm l $(LIBSI_A_LDFLAGS) -o $(BUILD_DIR)/libsi.a @build/LIBSI_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/si/%.o: libs/dolphin/si/%.cpp
+$(BUILD_DIR)/libs/dolphin/si/%.o: libs/dolphin/si/%.c
 	@mkdir -p $(@D)
 	@echo building... $<
-	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBSI_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
+	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(CFLAGS) $(LIBSI_A_CFLAGS) -c -o $@ $(basename $@).c
 

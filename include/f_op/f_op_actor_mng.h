@@ -116,6 +116,10 @@ inline s16 fopAcM_GetName(void* pActor) {
     return fpcM_GetName(pActor);
 }
 
+inline MtxP fopAcM_GetMtx(const fopAc_ac_c* pActor) {
+    return pActor->mCullMtx;
+}
+
 inline u32 fopAcM_checkStatus(fopAc_ac_c* pActor, u32 status) {
     return pActor->mStatus & status;
 }
@@ -412,6 +416,7 @@ s32 fopAcM_orderTreasureEvent(fopAc_ac_c*, fopAc_ac_c*, u16, u16);
 void* fopAcM_getTalkEventPartner(const fopAc_ac_c*);
 void* fopAcM_getItemEventPartner(const fopAc_ac_c*);
 void* fopAcM_getEventPartner(const fopAc_ac_c*);
+static void fopAcM_onSwitch(fopAc_ac_c const* param_0, int param_1);
 
 s32 fopAcM_createItemForPresentDemo(cXyz const* p_pos, int i_itemNo, u8 param_2, int i_itemBitNo,
                                     int i_roomNo, csXyz const* p_angle, cXyz const* p_scale);
@@ -459,7 +464,7 @@ void* fopAcM_fastCreateItem(const cXyz* p_pos, int i_itemNo, int i_roomNo, const
 s32 fopAcM_createBokkuri(u16, const cXyz*, int, int, int, const cXyz*, int, int);
 s32 fopAcM_createWarpHole(const cXyz*, const csXyz*, int, u8, u8, u8);
 
-void fopAcM_myRoomSearchEnemy(s8 roomNo);
+fopAc_ac_c* fopAcM_myRoomSearchEnemy(s8 roomNo);
 
 s32 fopAcM_createDisappear(const fopAc_ac_c*, const cXyz*, u8, u8, u8);
 void fopAcM_setCarryNow(fopAc_ac_c*, int);

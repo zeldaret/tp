@@ -4,211 +4,202 @@
 //
 
 #include "rel/d/a/tag/d_a_tag_hstop/d_a_tag_hstop.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct daTagHstop_c {
-    /* 805A43EC */ void create();
-    /* 805A45F8 */ ~daTagHstop_c();
-    /* 805A46B8 */ void setActive();
-    /* 805A475C */ void execute();
-
-    static u8 m_top[4 + 4 /* padding */];
-    static u8 m_msgFlow[76];
-};
-
-struct daPy_py_c {
-    /* 8015F660 */ void checkRoomRestartStart();
-};
-
-struct dSv_info_c {
-    /* 80035200 */ void onSwitch(int, int);
-    /* 800352B0 */ void offSwitch(int, int);
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dMsgFlow_c {
-    /* 80249F00 */ dMsgFlow_c();
-    /* 80249F48 */ ~dMsgFlow_c();
-    /* 80249F90 */ void init(fopAc_ac_c*, int, int, fopAc_ac_c**);
-    /* 8024A2D8 */ void doFlow(fopAc_ac_c*, fopAc_ac_c**, int);
-};
-
-struct dMeter2Info_c {
-    /* 8021C11C */ void setFloatingFlow(u16, s16, bool);
-};
-
-struct dEvt_control_c {
-    /* 80042468 */ void reset();
-};
-
-//
-// Forward References:
-//
-
-extern "C" void create__12daTagHstop_cFv();
-extern "C" static void daTagHstop_Create__FP10fopAc_ac_c();
-extern "C" void __dt__12daTagHstop_cFv();
-extern "C" static void daTagHstop_Delete__FP12daTagHstop_c();
-extern "C" void setActive__12daTagHstop_cFv();
-extern "C" void execute__12daTagHstop_cFv();
-extern "C" static void daTagHstop_Execute__FP12daTagHstop_c();
-extern "C" static bool daTagHstop_Draw__FP12daTagHstop_c();
-extern "C" void __sinit_d_a_tag_hstop_cpp();
-extern "C" extern void* g_profile_Tag_Hstop[12];
-extern "C" u8 m_msgFlow__12daTagHstop_c[76];
+#include "rel/d/a/d_a_horse/d_a_horse.h"
 
 //
 // External References:
 //
 
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAcM_orderSpeakEvent__FP10fopAc_ac_cUsUs();
-extern "C" void onSwitch__10dSv_info_cFii();
-extern "C" void offSwitch__10dSv_info_cFii();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void checkRoomRestartStart__9daPy_py_cFv();
-extern "C" void setFloatingFlow__13dMeter2Info_cFUssb();
-extern "C" void __ct__10dMsgFlow_cFv();
-extern "C" void __dt__10dMsgFlow_cFv();
-extern "C" void init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c();
-extern "C" void doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci();
-extern "C" void __dl__FPv();
 extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" u8 m_top__12daTagHstop_c[4 + 4 /* padding */];
-extern "C" void __register_global_object();
 
 //
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 805A4B20-805A4B24 000000 0004+00 1/1 0/0 0/0 .rodata          @3782 */
-SECTION_RODATA static f32 const lit_3782 = 100.0f;
-COMPILER_STRIP_GATE(0x805A4B20, &lit_3782);
-
 /* 805A43EC-805A45D8 0000EC 01EC+00 1/1 0/0 0/0 .text            create__12daTagHstop_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagHstop_c::create() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_hstop/d_a_tag_hstop/create__12daTagHstop_cFv.s"
+int daTagHstop_c::create() {
+    if (!fopAcM_CheckCondition(this, 8)) {
+        new (this) daTagHstop_c();
+        fopAcM_OnCondition(this, 8);
+    }
+
+    mScale.x *= 100.0f;
+    mScale.y *= 100.0f;
+    mScale.z *= 100.0f;
+
+    if (m_top != NULL) {
+        daTagHstop_c* last = m_top;
+
+        while (last->mNext != NULL) {
+            last = last->mNext;
+        }
+
+        last->mNext = this;
+        mPrev = last;
+    } else {
+        m_top = this;
+    }
+
+    mPrm0 = fopAcM_GetParam(this);
+    mPrm1 = (fopAcM_GetParam(this) >> 8) & 0xF;
+
+    if (mPrm1 == 15) {
+        mPrm1 = 0;
+    }
+
+    setActive();
+
+    if (mPrm1 == 2) {
+        if (daPy_py_c::checkRoomRestartStart()) {
+            if (!dComIfGs_isSwitch(0x8A, fopAcM_GetHomeRoomNo(this))) {
+                dComIfGs_onSwitch(0x8A, fopAcM_GetHomeRoomNo(this));
+            } else if (!dComIfGs_isSwitch(0x8B, fopAcM_GetHomeRoomNo(this))) {
+                dComIfGs_onSwitch(0x8B, fopAcM_GetHomeRoomNo(this));
+            } else if (!dComIfGs_isSwitch(0x8C, fopAcM_GetHomeRoomNo(this))) {
+                dComIfGs_onSwitch(0x8C, fopAcM_GetHomeRoomNo(this));
+            }
+        }
+
+        if (dComIfGs_isSwitch(0x8C, fopAcM_GetHomeRoomNo(this))) {
+            field_0x574 = 0;
+        } else {
+            field_0x574 = 1200;
+        }
+    } else {
+        field_0x574 = 0;
+    }
+
+    return cPhs_COMPLEATE_e;
 }
-#pragma pop
 
 /* 805A45D8-805A45F8 0002D8 0020+00 1/0 0/0 0/0 .text            daTagHstop_Create__FP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagHstop_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_hstop/d_a_tag_hstop/daTagHstop_Create__FP10fopAc_ac_c.s"
+static int daTagHstop_Create(fopAc_ac_c* i_this) {
+    return static_cast<daTagHstop_c*>(i_this)->create();
 }
-#pragma pop
 
 /* 805A45F8-805A4690 0002F8 0098+00 1/1 0/0 0/0 .text            __dt__12daTagHstop_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm daTagHstop_c::~daTagHstop_c() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_hstop/d_a_tag_hstop/__dt__12daTagHstop_cFv.s"
+daTagHstop_c::~daTagHstop_c() {
+    if (mPrev != NULL) {
+        mPrev->mNext = mNext;
+    }
+
+    if (mNext != NULL) {
+        mNext->mPrev = mPrev;
+    }
+
+    if (m_top == this) {
+        m_top = mNext;
+    }
 }
-#pragma pop
 
 /* 805A4690-805A46B8 000390 0028+00 1/0 0/0 0/0 .text            daTagHstop_Delete__FP12daTagHstop_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagHstop_Delete(daTagHstop_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_hstop/d_a_tag_hstop/daTagHstop_Delete__FP12daTagHstop_c.s"
+static int daTagHstop_Delete(daTagHstop_c* i_this) {
+    static_cast<daTagHstop_c*>(i_this)->~daTagHstop_c();
+    return 1;
 }
-#pragma pop
 
 /* 805A46B8-805A475C 0003B8 00A4+00 2/2 0/0 0/0 .text            setActive__12daTagHstop_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagHstop_c::setActive() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_hstop/d_a_tag_hstop/setActive__12daTagHstop_cFv.s"
+void daTagHstop_c::setActive() {
+    if (mPrm0 == 0xFF || mPrm1 == 2 ||
+        (mPrm1 == 0 && dComIfGs_isSwitch(mPrm0, fopAcM_GetHomeRoomNo(this))) ||
+        (mPrm1 == 1 && !dComIfGs_isSwitch(mPrm0, fopAcM_GetHomeRoomNo(this)))) {
+        mActive = true;
+    } else {
+        mActive = false;
+    }
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 805A4B80-805A4B8C 000008 000C+00 1/1 0/0 0/0 .bss             @3686 */
-static u8 lit_3686[12];
 
 /* 805A4B8C-805A4BD8 000014 004C+00 2/2 0/0 0/0 .bss             m_msgFlow__12daTagHstop_c */
-u8 daTagHstop_c::m_msgFlow[76];
+dMsgFlow_c daTagHstop_c::m_msgFlow;
 
 /* 805A475C-805A4AA8 00045C 034C+00 1/1 0/0 0/0 .text            execute__12daTagHstop_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagHstop_c::execute() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_hstop/d_a_tag_hstop/execute__12daTagHstop_cFv.s"
+int daTagHstop_c::execute() {
+    if (mEvtInfo.checkCommandTalk()) {
+        if (field_0x573 == 2) {
+            m_msgFlow.init(this, (u16)mCollisionRot.z, 0, NULL);
+            field_0x573 = 3;
+        } else if (m_msgFlow.doFlow(this, NULL, 0)) {
+            i_dComIfGp_getEvent().reset();
+            field_0x573 = 0;
+
+            s16 arrow_num = dComIfGp_getItemMaxArrowNumCount();
+            dComIfGp_setItemArrowNumCount(arrow_num);
+            dComIfGs_onSwitch(0x8D, fopAcM_GetHomeRoomNo(this));
+        }
+    } else {
+        if (field_0x574 != 0) {
+            if (dComIfGs_isSwitch(0x8F, fopAcM_GetHomeRoomNo(this))) {
+                field_0x574 = 0;
+            } else if (dComIfGp_getLinkPlayer()->checkSingleBoarBattleSecondBowReady()) {
+                dComIfGs_onSwitch(0x8F, fopAcM_GetHomeRoomNo(this));
+                field_0x574 = 0;
+            } else {
+                field_0x574--;
+            }
+        }
+
+        setActive();
+
+        if (field_0x573) {
+            daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+
+            if (mPrm1 != 2 || dComIfGs_getArrowNum() != 0 || horse_p == NULL) {
+                field_0x573 = 0;
+            } else if (field_0x573 == 1) {
+                if (i_dComIfGp_getHorseActor()->checkTurnStand() &&
+                    !i_dComIfGp_getHorseActor()->checkTurnStandCamera()) {
+                    field_0x573 = 2;
+                }
+            } else if (field_0x573 == 2 && !i_dComIfGp_getHorseActor()->checkTurnStand()) {
+                fopAcM_orderSpeakEvent(this, 0, 0);
+                mEvtInfo.i_onCondition(1);
+            }
+        } else if (mPrm1 == 2 && !i_dComIfGp_event_runCheck()) {
+            if (dComIfGs_getArrowNum() == 0 &&
+                !dComIfGs_isSwitch(0x8D, fopAcM_GetHomeRoomNo(this))) {
+                dComIfGs_onSwitch(0x8D, fopAcM_GetHomeRoomNo(this));
+                dMeter2Info_setFloatingFlow(43, 90, true);
+
+                if (!dComIfGs_isSwitch(0x8F, fopAcM_GetHomeRoomNo(this))) {
+                    field_0x574 = 1200;
+                    dComIfGs_offSwitch(0x8A, fopAcM_GetHomeRoomNo(this));
+                    dComIfGs_offSwitch(0x8B, fopAcM_GetHomeRoomNo(this));
+                    dComIfGs_offSwitch(0x8C, fopAcM_GetHomeRoomNo(this));
+                }
+            } else if (field_0x574 == 0 && !dComIfGs_isSwitch(0x8F, fopAcM_GetHomeRoomNo(this))) {
+                dComIfGs_onSwitch(0x8F, fopAcM_GetHomeRoomNo(this));
+                dComIfGs_onSwitch(0x8E, fopAcM_GetHomeRoomNo(this));
+            }
+        }
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 805A4AA8-805A4AC8 0007A8 0020+00 1/0 0/0 0/0 .text daTagHstop_Execute__FP12daTagHstop_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagHstop_Execute(daTagHstop_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_hstop/d_a_tag_hstop/daTagHstop_Execute__FP12daTagHstop_c.s"
+static int daTagHstop_Execute(daTagHstop_c* i_this) {
+    return i_this->execute();
 }
-#pragma pop
 
 /* 805A4AC8-805A4AD0 0007C8 0008+00 1/0 0/0 0/0 .text            daTagHstop_Draw__FP12daTagHstop_c
  */
-static bool daTagHstop_Draw(daTagHstop_c* param_0) {
-    return true;
+static int daTagHstop_Draw(daTagHstop_c*) {
+    return 1;
 }
-
-/* 805A4AD0-805A4B0C 0007D0 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_tag_hstop_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_a_tag_hstop_cpp() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_hstop/d_a_tag_hstop/__sinit_d_a_tag_hstop_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x805A4AD0, __sinit_d_a_tag_hstop_cpp);
-#pragma pop
 
 /* ############################################################################################## */
 /* 805A4B24-805A4B44 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagHstop_Method */
 SECTION_DATA static void* l_daTagHstop_Method[8] = {
-    (void*)daTagHstop_Create__FP10fopAc_ac_c,
-    (void*)daTagHstop_Delete__FP12daTagHstop_c,
-    (void*)daTagHstop_Execute__FP12daTagHstop_c,
+    (void*)daTagHstop_Create,
+    (void*)daTagHstop_Delete,
+    (void*)daTagHstop_Execute,
     (void*)NULL,
-    (void*)daTagHstop_Draw__FP12daTagHstop_c,
+    (void*)daTagHstop_Draw,
     (void*)NULL,
     (void*)NULL,
     (void*)NULL,

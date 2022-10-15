@@ -3,9 +3,9 @@
 #
 
 LIBDSP_A_CPP_FILES := \
-	libs/dolphin/dsp/dsp.cpp \
-	libs/dolphin/dsp/dsp_debug.cpp \
-	libs/dolphin/dsp/dsp_task.cpp \
+	libs/dolphin/dsp/dsp.c \
+	libs/dolphin/dsp/dsp_debug.c \
+	libs/dolphin/dsp/dsp_task.c \
 
 LIBDSP_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/dsp/dsp.o \
@@ -13,6 +13,8 @@ LIBDSP_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/dsp/dsp_task.o \
 
 LIBDSP_A_CFLAGS := \
+	-O4,p \
+	-lang=c \
 
 LIBDSP_A_LDFLAGS := \
 	-nodefaults \
@@ -25,9 +27,9 @@ $(BUILD_DIR)/libdsp.a: $(LIBDSP_A_O_FILES)
 	@echo $(LIBDSP_A_O_FILES) > build/LIBDSP_A_ofiles
 	@$(LD) -xm l $(LIBDSP_A_LDFLAGS) -o $(BUILD_DIR)/libdsp.a @build/LIBDSP_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/dsp/%.o: libs/dolphin/dsp/%.cpp
+$(BUILD_DIR)/libs/dolphin/dsp/%.o: libs/dolphin/dsp/%.c
 	@mkdir -p $(@D)
 	@echo building... $<
-	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBDSP_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
+	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(CFLAGS) $(LIBDSP_A_CFLAGS) -c -o $@ $(basename $@).c
 

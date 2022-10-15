@@ -20,12 +20,14 @@ typedef enum _GXCullMode {
     /* 0x3 */ GX_CULL_ALL
 } GXCullMode;
 
-typedef enum _GXBool {
+typedef enum _GXBoolVal {
     /* 0x0 */ GX_FALSE,
     /* 0x1 */ GX_TRUE,
     /* 0x0 */ GX_DISABLE = 0,
     /* 0x1 */ GX_ENABLE
-} GXBool;
+} GXBoolVal;
+
+typedef u8 GXBool;
 
 typedef enum _GXTexMapID {
     /* 0x000 */ GX_TEXMAP0,
@@ -429,11 +431,11 @@ typedef enum _GXAnisotropy {
     /* 0x3 */ GX_MAX_ANISOTROPY,
 } GXAnisotropy;
 
-enum GXCITexFmt {
+typedef enum _GXCITexFmt {
     /* 0x8 */ GX_TF_C4 = 8,
     /* 0x8 */ GX_TF_C8,
     /* 0xA */ GX_TF_C14X2
-};
+} GXCITexFmt;
 
 typedef enum _GXTexMtxType {
     /* 0x0 */ GX_MTX3x4,
@@ -619,9 +621,11 @@ typedef enum _GXIndTexMtxID {
     /* 0x1 */ GX_ITM_0,
     /* 0x2 */ GX_ITM_1,
     /* 0x3 */ GX_ITM_2,
+    /* 0x4 */ GX_ITM_3,
     /* 0x5 */ GX_ITM_S0 = 5,
     /* 0x6 */ GX_ITM_S1,
     /* 0x7 */ GX_ITM_S2,
+    /* 0x8 */ GX_ITM_S3,
     /* 0x9 */ GX_ITM_T0 = 9,
     /* 0xA */ GX_ITM_T1,
     /* 0xB */ GX_ITM_T2,
@@ -711,7 +715,7 @@ typedef enum _GXTexMtx {
     GX_TEXMTX8 = 30 + 8 * 3,
     GX_TEXMTX9 = 30 + 9 * 3,
     GX_IDENTITY = 60,
-};
+} GXTexMtx;
 
 typedef enum _GXPTTexMtx {
     GX_PTTEXMTX0 = 64 + 0 * 3,
@@ -735,7 +739,7 @@ typedef enum _GXPTTexMtx {
     GX_PTTEXMTX18 = 64 + 18 * 3,
     GX_PTTEXMTX19 = 64 + 19 * 3,
     GX_PTIDENTITY = 125,
-};
+} GXPTTexMtx;
 
 typedef enum _GXFBClamp {
     /* 0x0 */ GX_CLAMP_NONE,
@@ -775,5 +779,31 @@ typedef enum _GXClipMode {
     /* 0x0 */ GX_CLIP_ENABLE,
     /* 0x1 */ GX_CLIP_DISABLE,
 } GXClipMode;
+
+typedef enum _GXCopyMode {
+    /* 0x0 */ GX_COPY_PROGRESSIVE,
+    /* 0x1 */ GX_COPY_INTLC_EVEN,
+    /* 0x2 */ GX_COPY_INTLC_ODD,
+} GXCopyMode;
+
+typedef enum _GXAlphaReadMode {
+    /* 0x0 */ GX_READ_00,
+    /* 0x1 */ GX_READ_FF,
+    /* 0x2 */ GX_READ_NONE,
+} GXAlphaReadMode;
+
+typedef enum _GXTlutSize {
+    /* 0x001 */ GX_TLUT_16 = 1,
+    /* 0x002 */ GX_TLUT_32 = 2,
+    /* 0x004 */ GX_TLUT_64 = 4,
+    /* 0x008 */ GX_TLUT_128 = 8,
+    /* 0x010 */ GX_TLUT_256 = 16,
+    /* 0x020 */ GX_TLUT_512 = 32,
+    /* 0x040 */ GX_TLUT_1K = 64,
+    /* 0x080 */ GX_TLUT_2K = 128,
+    /* 0x100 */ GX_TLUT_4K = 256,
+    /* 0x200 */ GX_TLUT_8K = 512,
+    /* 0x400 */ GX_TLUT_16K = 1024,
+} GXTlutSize;
 
 #endif /* GXENUM_H */

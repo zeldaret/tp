@@ -47,7 +47,7 @@ public:
     bool ChkWallHit() { return m_flags & WALL_HIT; }
 
     void SetCir(cXyz& pos) { m_cir.Set(pos.x, pos.z, pos.y + GetWallH(), m_wall_r); }
-};
+};  // Size: 0x40
 
 class dBgS;
 class dBgS_Acch : public cBgS_Chk, public dBgS_Chk {
@@ -149,6 +149,7 @@ public:
     void SetGrndNone() { m_flags |= GRND_NONE; }
     void ClrGrndNone() { m_flags &= ~GRND_NONE; }
     bool ChkMoveBGOnly() const { return m_flags & MOVE_BG_ONLY; }
+    void SetWallHit() { m_flags |= WALL_HIT; }
 
     // inline dupe
     void i_ClrGroundHit() { m_flags &= ~GROUND_HIT; }

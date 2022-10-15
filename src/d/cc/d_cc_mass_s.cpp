@@ -46,8 +46,14 @@ dCcMassS_Obj::dCcMassS_Obj() {}
 void dCcMassS_Mng::Ct() {
     field_0x202 = 0;
     mResultCam = 0;
-    mCamTopPos.set(0, -1000000000.0f, 0);
-    mCamBottomPos.set(0, -1000000000.0f, 0);
+    mCamTopPos.x = 0.0f;
+    mCamTopPos.y = -1000000000.0f;
+    mCamTopPos.z = 0.0f;
+
+    mCamBottomPos.x = 0.0f;
+    mCamBottomPos.y = -1000000000.0f;
+    mCamBottomPos.z = 0.0f;
+
     Clear();
 }
 
@@ -98,9 +104,14 @@ void dCcMassS_Mng::Prepare() {
         mDivideArea.CalcDivideInfo(&mDivideInfo, mCpsAttr.GetWorkAab(), 0);
     }
 
-    mCamTopPos.set(0, -1000000000.0f, 0);
+    mCamTopPos.x = 0.0f;
+    mCamTopPos.y = -1000000000.0f;
+    mCamTopPos.z = 0.0f;
     mCamTopDist = 1000000000.0f;
-    mCamBottomPos.set(0, -1000000000.0f, 0);
+
+    mCamBottomPos.x = 0.0f;
+    mCamBottomPos.y = -1000000000.0f;
+    mCamBottomPos.z = 0.0f;
     mCamBottomDist = 1000000000.0f;
 }
 

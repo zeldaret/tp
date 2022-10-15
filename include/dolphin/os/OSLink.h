@@ -7,6 +7,14 @@
 extern "C" {
 #endif
 
+typedef struct OSModuleQueue {
+	int* first;
+	int* last;
+} OSModuleQueue;
+
+OSModuleQueue __OSModuleList : 0x800030C8;
+void* __OSStringTable : 0x800030D0;
+
 typedef struct OSSectionInfo {
     u32 mOffset;
     u32 mSize;

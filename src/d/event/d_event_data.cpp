@@ -825,9 +825,9 @@ void dEvDtStaff_c::specialProcSound() {
         case 'RIDD':
             int* typeP = dComIfGp_evmng_getMyIntegerP(staffId, "Type");
             if (typeP != NULL && *typeP == 1) {
-                mDoAud_seStart(0xC, NULL, 0, 0);
+                mDoAud_seStart(Z2SE_READ_RIDDLE_A, NULL, 0, 0);
             } else {
-                mDoAud_seStart(0xD, NULL, 0, 0);
+                mDoAud_seStart(Z2SE_READ_RIDDLE_B, NULL, 0, 0);
             }
             break;
         case 'BGMS':
@@ -1087,7 +1087,7 @@ void dEvDtStaff_c::specialProcDirector() {
             if (soundP != NULL) {
                 switch (*soundP) {
                 case 0:
-                    mDoAud_seStart(0, NULL, 0, 0);
+                    mDoAud_seStart(Z2SE_SY_DUMMY, NULL, 0, 0);
                 }
             }
             break;

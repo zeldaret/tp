@@ -62,7 +62,7 @@ int daAlink_c::procGrassWhistleGetInit() {
     current.angle.y = mCollisionRot.y;
     field_0x2f98 = 4;
 
-    setSingleAnimeParam(ANM_GRASS_WHISTLE_GRAB, &daAlinkHIO_bottle_c0::m.field_0x50);
+    setSingleAnimeParam(ANM_BOTTLE_SWING_DOWN, &daAlinkHIO_bottle_c0::m.field_0x50);
     field_0x2f92 = 0xFE;
     field_0x280c.setData(field_0x27f4);
 
@@ -91,7 +91,7 @@ asm int daAlink_c::procGrassWhistleGetInit() {
 /* 801119D8-80111A9C 10C318 00C4+00 1/0 0/0 0/0 .text            procGrassWhistleGet__9daAlink_cFv
  */
 int daAlink_c::procGrassWhistleGet() {
-    daPy_frameCtrl_c* frameCtrl = mFrameCtrl1;
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
     
     if (frameCtrl->checkAnmEnd()) {
         procGrassWhistleWaitInit(mCommonCounter, field_0x300e, field_0x3010, field_0x3012, &field_0x37c8);

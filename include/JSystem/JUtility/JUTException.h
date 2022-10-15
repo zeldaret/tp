@@ -127,4 +127,9 @@ private:
 
 STATIC_ASSERT(sizeof(JUTException) == 0xA4);
 
+struct JUTWarn {
+    JUTWarn& operator<<(const char*) { return *this; }
+    JUTWarn& operator<<(long) { return *this; }
+};
+
 #endif /* JUTEXCEPTION_H */

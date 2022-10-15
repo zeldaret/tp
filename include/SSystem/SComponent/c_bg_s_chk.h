@@ -27,6 +27,7 @@ public:
     u32 GetActorPid() const { return mActorPid; }
     void SetPolyPassChk(cBgS_PolyPassChk* p_chk) { mPolyPassChk = p_chk; }
     void SetGrpPassChk(cBgS_GrpPassChk* p_chk) { mGrpPassChk = p_chk; }
+    cBgS_PolyPassChk* GetPolyPassChk() const { return mPolyPassChk; }
 
     virtual ~cBgS_Chk(void);
 };  // Size: 0x14

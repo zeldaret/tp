@@ -2,6 +2,7 @@
 #define D_D_LIB_H
 
 #include "dolphin/types.h"
+#include "dolphin/os/OS.h"
 
 struct JKRAramArchive;
 u32 dLib_getExpandSizeFromAramArchive(JKRAramArchive* arc, char const* resName);
@@ -71,12 +72,13 @@ struct CSTControl : public STControl {
 };
 
 struct dLib_time_c {
-    /* 80032804 */ void getTime();
+    /* 80032804 */ static OSTime getTime();
     /* 80032880 */ static void stopTime();
     /* 800328BC */ static void startTime();
 
-    static u8 m_diffTime[4];
-    static u8 m_stopTime[4];
+    static OSTime m_diffTime;
+    static OSTime m_stopTime;
+    static bool m_timeStopped;
 };
 
 #endif /* D_D_LIB_H */

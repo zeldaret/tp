@@ -46,17 +46,21 @@ private:
 class mDoExt_btkAnm : public mDoExt_baseAnm {
 public:
     mDoExt_btkAnm() { mpAnm = 0; }
-    /* 8000D63C */ int init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
-    /* 8000D6D8 */ void entry(J3DMaterialTable*, f32);
+    /* 8000D63C */ int init(J3DMaterialTable* i_matTable, J3DAnmTextureSRTKey* i_btk, int i_anmPlay,
+                            int i_attribute, f32 i_rate, s16 i_start, s16 param_6);
+    /* 8000D6D8 */ void entry(J3DMaterialTable* i_matTable, f32 i_frame);
 
-    void entry(J3DModelData* data) { entry(data, getFrame()); }
-    void entry(J3DModelData* data, f32 frame) { entry(&data->getMaterialTable(), frame); }
-    int init(J3DModelData* data, J3DAnmTextureSRTKey* key, int param_2, int param_3, f32 param_4,
-             s16 param_5, s16 param_6) {
-        return init(&data->getMaterialTable(), key, param_2, param_3, param_4, param_5, param_6);
+    void entry(J3DModelData* i_modelData) { entry(i_modelData, getFrame()); }
+    void entry(J3DModelData* i_modelData, f32 i_frame) {
+        entry(&i_modelData->getMaterialTable(), i_frame);
+    }
+    int init(J3DModelData* i_modelData, J3DAnmTextureSRTKey* i_btk, int i_anmPlay, int i_attribute,
+             f32 i_rate, s16 i_start, s16 param_6) {
+        return init(&i_modelData->getMaterialTable(), i_btk, i_anmPlay, i_attribute, i_rate,
+                    i_start, param_6);
     }
 
-    int remove(J3DModelData* data) { return data->removeTexMtxAnimator(mpAnm); }
+    int remove(J3DModelData* i_modelData) { return i_modelData->removeTexMtxAnimator(mpAnm); }
 
 private:
     /* 0x14 */ J3DAnmTextureSRTKey* mpAnm;
@@ -67,18 +71,22 @@ STATIC_ASSERT(sizeof(mDoExt_btkAnm) == 0x18);
 class mDoExt_brkAnm : public mDoExt_baseAnm {
 public:
     mDoExt_brkAnm() { mpAnm = 0; }
-    /* 8000D70C */ int init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
-    /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
+    /* 8000D70C */ int init(J3DMaterialTable* i_matTable, J3DAnmTevRegKey* i_brk, int i_anmPlay,
+                            int i_attribute, f32 i_rate, s16 i_start, s16 param_6);
+    /* 8000D7A8 */ void entry(J3DMaterialTable* i_matTable, f32 i_frame);
 
-    void entry(J3DModelData* data) { entry(data, getFrame()); }
-    void entry(J3DModelData* data, f32 frame) { entry(&data->getMaterialTable(), frame); }
-
-    int init(J3DModelData* data, J3DAnmTevRegKey* anmKey, int param_2, int param_3, f32 param_4,
-             s16 param_5, s16 param_6) {
-        return init(&data->getMaterialTable(), anmKey, param_2, param_3, param_4, param_5, param_6);
+    void entry(J3DModelData* i_modelData) { entry(i_modelData, getFrame()); }
+    void entry(J3DModelData* i_modelData, f32 i_frame) {
+        entry(&i_modelData->getMaterialTable(), i_frame);
     }
 
-    int remove(J3DModelData* data) { return data->removeTevRegAnimator(mpAnm); }
+    int init(J3DModelData* i_modelData, J3DAnmTevRegKey* i_brk, int i_anmPlay, int i_attribute,
+             f32 i_rate, s16 i_start, s16 param_6) {
+        return init(&i_modelData->getMaterialTable(), i_brk, i_anmPlay, i_attribute, i_rate,
+                    i_start, param_6);
+    }
+
+    int remove(J3DModelData* i_modelData) { return i_modelData->removeTevRegAnimator(mpAnm); }
 
 private:
     /* 0x14 */ J3DAnmTevRegKey* mpAnm;
@@ -93,16 +101,18 @@ public:
                             int i_attribute, f32 i_rate, s16 i_start, s16 param_6);
     /* 8000D518 */ void entry(J3DMaterialTable* i_matTable, f32 i_frame);
 
-    void entry(J3DModelData* data) { entry(data, getFrame()); }
-    void entry(J3DModelData* data, f32 frame) { entry(&data->getMaterialTable(), frame); }
-
-    int init(J3DModelData* data, J3DAnmColor* anmColor, int param_2, int param_3, f32 param_4,
-             s16 param_5, s16 param_6) {
-        return init(&data->getMaterialTable(), anmColor, param_2, param_3, param_4, param_5,
-                    param_6);
+    void entry(J3DModelData* i_modelData) { entry(i_modelData, getFrame()); }
+    void entry(J3DModelData* i_modelData, f32 i_frame) {
+        entry(&i_modelData->getMaterialTable(), i_frame);
     }
 
-    int remove(J3DModelData* data) { return data->removeMatColorAnimator(mpAnm); }
+    int init(J3DModelData* i_modelData, J3DAnmColor* i_bpk, int i_anmPlay, int i_attribute,
+             f32 i_rate, s16 i_start, s16 param_6) {
+        return init(&i_modelData->getMaterialTable(), i_bpk, i_anmPlay, i_attribute, i_rate,
+                    i_start, param_6);
+    }
+
+    int remove(J3DModelData* i_modelData) { return i_modelData->removeMatColorAnimator(mpAnm); }
 
 private:
     /* 0x14 */ J3DAnmColor* mpAnm;
@@ -115,12 +125,16 @@ public:
     mDoExt_bckAnm() { mpMtxCalc = NULL; }
     /* 8000D7DC */ int init(J3DAnmTransform* i_bck, int i_play, int i_attr, f32 i_rate,
                             s16 i_startF, s16 i_endF, bool i_modify);
-    /* 8000D990 */ void changeBckOnly(J3DAnmTransform*);
-    /* 8000D9CC */ void entry(J3DModelData*, f32);
-    /* 8000D9E8 */ void entryJoint(J3DModelData*, u16, f32);
+    /* 8000D990 */ void changeBckOnly(J3DAnmTransform* i_bck);
+    /* 8000D9CC */ void entry(J3DModelData* i_modelData, f32 i_frame);
+    /* 8000D9E8 */ void entryJoint(J3DModelData* i_modelData, u16 i_jntNo, f32 i_frame);
 
-    void entry(J3DModelData* data) { entry(data, getFrame()); }
+    void entry(J3DModelData* i_modelData) { entry(i_modelData, getFrame()); }
     J3DAnmTransform* getBckAnm() { return mAnm; }
+    void removeJoint (J3DModelData* i_modelData, u16 i_idx) {
+        J3DJoint* mpJnt = i_modelData->getJointNodePointer(i_idx);
+        mpJnt->setMtxCalc(0);
+    }
 
 private:
     /* 0x14 */ J3DAnmTransform* mAnm;
@@ -136,16 +150,18 @@ public:
                             int i_attribute, f32 i_rate, s16 i_start, s16 param_6);
     /* 8000D5E8 */ void entry(J3DMaterialTable* i_matTable, s16 i_frame);
 
-    void entry(J3DModelData* data) { entry(data, getFrame()); }
-    void entry(J3DModelData* data, s16 frame) { entry(&data->getMaterialTable(), frame); }
-
-    int init(J3DModelData* data, J3DAnmTexPattern* anmPattern, int param_2, int param_3,
-             f32 param_4, s16 param_5, s16 param_6) {
-        return init(&data->getMaterialTable(), anmPattern, param_2, param_3, param_4, param_5,
-                    param_6);
+    void entry(J3DModelData* i_modelData) { entry(i_modelData, getFrame()); }
+    void entry(J3DModelData* i_modelData, s16 i_frame) {
+        entry(&i_modelData->getMaterialTable(), i_frame);
     }
 
-    int remove(J3DModelData* data) { return data->removeTexNoAnimator(mpAnm); }
+    int init(J3DModelData* i_modelData, J3DAnmTexPattern* i_btk, int i_anmPlay, int i_attribute,
+             f32 i_rate, s16 i_start, s16 param_6) {
+        return init(&i_modelData->getMaterialTable(), i_btk, i_anmPlay, i_attribute, i_rate,
+                    i_start, param_6);
+    }
+
+    int remove(J3DModelData* i_modelData) { return i_modelData->removeTexNoAnimator(mpAnm); }
 
 private:
     /* 0x14 */ J3DAnmTexPattern* mpAnm;
@@ -155,6 +171,8 @@ class mDoExt_blkAnm : public mDoExt_baseAnm {
 public:
     /* 8000DA08 */ int init(J3DDeformData* i_deformData, J3DAnmCluster* i_blk, int i_anmPlay,
                             int i_attribute, f32 i_rate, s16 i_start, s16 param_6);
+
+    J3DAnmCluster* getBlkAnm() { return mpAnm; }
 
 private:
     /* 0x14 */ J3DAnmCluster* mpAnm;
@@ -197,7 +215,7 @@ private:
 
 class mDoExt_invisibleModel {
 public:
-    /* 8000E53C */ int create(J3DModel*, u8);
+    /* 8000E53C */ int create(J3DModel* i_model, u8 param_1);
     /* 8000E6C8 */ void entryJoint(cXyz*);
     /* 8000E7C0 */ void entryDL(cXyz*);
 
@@ -219,15 +237,18 @@ class mDoExt_morf_c {
     // inheritance causing issues, fix later
 public:
     /* 8000F950 */ mDoExt_morf_c();
-    /* 8000FB7C */ void setMorf(f32);
+    /* 8000FB7C */ void setMorf(f32 i_morf);
     /* 8000FBC0 */ void frameUpdate();
 
     /* 8000FAE8 */ virtual ~mDoExt_morf_c();
 
     void setPlaySpeed(f32 speed) { mFrameCtrl.setRate(speed); }
-
     f32 getPlaySpeed() { return mFrameCtrl.getRate(); }
     f32 getFrame() { return mFrameCtrl.getFrame(); }
+    u8 getPlayMode() { return mFrameCtrl.getAttribute(); }
+    bool isLoop() { return mFrameCtrl.checkState(2); }
+    void setFrame(f32 frame) { mFrameCtrl.setFrame((s16)frame); }
+    f32 getEndFrame() { return mFrameCtrl.getEnd(); } 
 
     bool isStop() {
         bool stopped = true;
@@ -297,6 +318,8 @@ public:
     /* 8000FD10 */ virtual ~mDoExt_McaMorf();
     /* 80010074 */ virtual void calc();
 
+    J3DModel* getModel() { return mpModel; }
+
 private:
     /* 0x38 */ mDoExt_McaMorfCallBack1_c* mpCallback1;
     /* 0x3C */ mDoExt_McaMorfCallBack2_c* mpCallback2;
@@ -365,7 +388,7 @@ struct mDoExt_MtxCalcAnmBlendTblOld
 };  // Size: 0xC
 
 struct mDoExt_MtxCalcAnmBlendTbl : public mDoExt_MtxCalcAnmBlendTblOld {
-    /* 800D00BC */ void getAnm(int);
+    /* 800D00BC */ J3DAnmTransform* getAnm(int);
 
     /* 80014F3C */ virtual ~mDoExt_MtxCalcAnmBlendTbl();
     /* 8000F26C */ virtual void calc();

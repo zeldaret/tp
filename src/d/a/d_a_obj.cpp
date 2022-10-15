@@ -4,110 +4,25 @@
 //
 
 #include "d/a/d_a_obj.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
 //
 // Types:
 //
-
-struct fopAc_ac_c {};
-
-struct daPy_py_c {
-    /* 8015F398 */ void checkMasterSwordEquip();
-};
-
-struct dCcD_GObjInf {
-    /* 800844F8 */ void GetTgHitObj();
-    /* 8008457C */ void GetTgHitObjSe();
-};
-
-struct Quaternion {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80009184 */ ~cXyz();
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 80266C18 */ void operator/(f32) const;
-    /* 80266CBC */ void outprod(Vec const&) const;
-
-    static f32 Zero[3];
-    static u8 BaseY[12];
-};
-
-struct daObj {
-    /* 80037038 */ void eff_break_tsubo(fopAc_ac_c*, cXyz, int);
-    /* 80037180 */ void make_eff_break_kotubo(fopAc_ac_c*);
-    /* 80037210 */ void make_eff_break_kotubo2(fopAc_ac_c*);
-    /* 800372A0 */ void make_eff_break_gm_kotubo(fopAc_ac_c*);
-    /* 80037330 */ void make_eff_break_gm_ootubo(fopAc_ac_c*);
-    /* 800373C0 */ void posMoveF_stream(fopAc_ac_c*, cXyz const*, cXyz const*, f32, f32);
-    /* 80037620 */ void posMoveF_grade(fopAc_ac_c*, cXyz const*, cXyz const*, f32, f32, cXyz const*,
-                                       f32, f32, cXyz const*);
-    /* 80037788 */ void quat_rotBaseY(Quaternion*, cXyz const&);
-    /* 80037900 */ void HitSeStart(cXyz const*, int, dCcD_GObjInf const*, u32);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
-struct JPABaseEmitter {};
-
-struct dPa_modelEcallBack {
-    /* 8004AC00 */ void setModel(JPABaseEmitter*, J3DModelData*, dKy_tevstr_c const&, u8, void*, u8,
-                                 u8);
-
-    static u8 mEcallback[4];
-};
-
-struct dPa_levelEcallBack {};
-
-struct csXyz {};
-
-struct _GXColor {};
-
-struct dPa_control_c {
-    /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
-                            u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
-                            cXyz const*, f32);
-
-    static u8 mTsubo[64];
-};
-
-struct dCcD_GAtTgCoCommonBase {
-    /* 80083688 */ void GetAc();
-};
-
-struct cCcD_SphAttr {
-    /* 80037A54 */ void GetCoCP();
-};
-
-struct cCcD_CylAttr {
-    /* 80037A4C */ void GetCoCP();
-};
-
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
+namespace daObj {
+/* 80037038 */ void eff_break_tsubo(fopAc_ac_c*, cXyz, int);
+/* 80037180 */ void make_eff_break_kotubo(fopAc_ac_c*);
+/* 80037210 */ void make_eff_break_kotubo2(fopAc_ac_c*);
+/* 800372A0 */ void make_eff_break_gm_kotubo(fopAc_ac_c*);
+/* 80037330 */ void make_eff_break_gm_ootubo(fopAc_ac_c*);
+/* 800373C0 */ void posMoveF_stream(fopAc_ac_c*, cXyz const*, cXyz const*, f32, f32);
+/* 80037620 */ void posMoveF_grade(fopAc_ac_c*, cXyz const*, cXyz const*, f32, f32, cXyz const*,
+                                   f32, f32, cXyz const*);
+/* 80037788 */ void quat_rotBaseY(Quaternion*, cXyz const&);
+/* 80037900 */ void HitSeStart(cXyz const*, int, dCcD_GObjInf const*, u32);
+};  // namespace daObj
 
 //
 // Forward References:
@@ -151,12 +66,6 @@ extern "C" void outprod__4cXyzCFRC3Vec();
 extern "C" void cM_atan2s__Fff();
 extern "C" void cM3d_CrawVec__FRC3VecRC3VecP3Vec();
 extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void PSVECAdd();
-extern "C" void PSVECSubtract();
-extern "C" void PSVECScale();
-extern "C" void PSVECSquareMag();
-extern "C" void PSVECDotProduct();
-extern "C" void C_QUATRotAxisRad();
 extern "C" void __register_global_object();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_26();
@@ -166,8 +75,6 @@ extern "C" void _restgpr_25();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void acos();
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mTsubo__13dPa_control_c[64];
 extern "C" f32 Zero__4cXyz[3];
 extern "C" u8 BaseY__4cXyz[12];
@@ -194,6 +101,22 @@ SECTION_SDATA2 static f32 lit_3671 = 1.0f;
 
 /* 80037038-80037180 031978 0148+00 4/4 0/0 0/0 .text eff_break_tsubo__5daObjFP10fopAc_ac_c4cXyzi
  */
+#ifdef NONMATCHING
+void daObj::eff_break_tsubo(fopAc_ac_c* param_0, cXyz param_1, int param_2) {
+    J3DModelData* tubo_bmd = (J3DModelData*)dComIfG_getObjectRes("Always", 0x20);
+    J3DAnmTexPattern* tubo_btp = (J3DAnmTexPattern*)dComIfG_getObjectRes("Always", 0x42);
+
+    JPABaseEmitter* emitter = (JPABaseEmitter*)dComIfGp_particle_set(
+        0x15C, &param_0->current.pos, NULL, NULL, 0xFF, dPa_modelEcallBack::getEcallback(),
+        fopAcM_GetRoomNo(param_0), NULL, NULL, &param_1);
+
+    dPa_modelEcallBack::setModel(emitter, tubo_bmd, param_0->mTevStr, 3, tubo_btp, 0, param_2);
+
+    dComIfGp_particle_set(0x15D, &param_0->current.pos, NULL, NULL, 0xFF,
+                          dPa_control_c::getTsuboSelectTexEcallBack(param_2),
+                          fopAcM_GetRoomNo(param_0), NULL, NULL, &param_1);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -202,6 +125,7 @@ asm void daObj::eff_break_tsubo(fopAc_ac_c* param_0, cXyz param_1, int param_2) 
 #include "asm/d/a/d_a_obj/eff_break_tsubo__5daObjFP10fopAc_ac_c4cXyzi.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804245E8-804245F4 051308 000C+00 1/1 0/0 0/0 .bss             @3677 */
@@ -212,6 +136,14 @@ static f32 scale_3676[3];
 
 /* 80037180-80037210 031AC0 0090+00 0/0 0/0 2/2 .text make_eff_break_kotubo__5daObjFP10fopAc_ac_c
  */
+// matches with literals
+#ifdef NONMATCHING
+void daObj::make_eff_break_kotubo(fopAc_ac_c* param_0) {
+    static cXyz scale(1.0f, 1.0f, 1.0f);
+
+    eff_break_tsubo(param_0, scale, 0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -220,6 +152,7 @@ asm void daObj::make_eff_break_kotubo(fopAc_ac_c* param_0) {
 #include "asm/d/a/d_a_obj/make_eff_break_kotubo__5daObjFP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80424600-8042460C 051320 000C+00 1/1 0/0 0/0 .bss             @3692 */
@@ -230,6 +163,14 @@ static f32 scale_3691[3];
 
 /* 80037210-800372A0 031B50 0090+00 0/0 0/0 2/2 .text make_eff_break_kotubo2__5daObjFP10fopAc_ac_c
  */
+// matches with literals
+#ifdef NONMATCHING
+void daObj::make_eff_break_kotubo2(fopAc_ac_c* param_0) {
+    static cXyz scale(1.0f, 1.0f, 1.0f);
+
+    eff_break_tsubo(param_0, scale, 1);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -238,6 +179,7 @@ asm void daObj::make_eff_break_kotubo2(fopAc_ac_c* param_0) {
 #include "asm/d/a/d_a_obj/make_eff_break_kotubo2__5daObjFP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80424618-80424624 051338 000C+00 1/1 0/0 0/0 .bss             @3719 */
@@ -248,6 +190,14 @@ static f32 scale_3718[3];
 
 /* 800372A0-80037330 031BE0 0090+00 0/0 0/0 1/1 .text
  * make_eff_break_gm_kotubo__5daObjFP10fopAc_ac_c               */
+// matches with literals
+#ifdef NONMATCHING
+void daObj::make_eff_break_gm_kotubo(fopAc_ac_c* param_0) {
+    static cXyz scale(1.0f, 1.0f, 1.0f);
+
+    eff_break_tsubo(param_0, scale, 3);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -256,6 +206,7 @@ asm void daObj::make_eff_break_gm_kotubo(fopAc_ac_c* param_0) {
 #include "asm/d/a/d_a_obj/make_eff_break_gm_kotubo__5daObjFP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80424630-8042463C 051350 000C+00 1/1 0/0 0/0 .bss             @3732 */
@@ -269,6 +220,14 @@ SECTION_SDATA2 static f32 lit_3714 = 2.0f;
 
 /* 80037330-800373C0 031C70 0090+00 0/0 0/0 1/1 .text
  * make_eff_break_gm_ootubo__5daObjFP10fopAc_ac_c               */
+// matches with literals
+#ifdef NONMATCHING
+void daObj::make_eff_break_gm_ootubo(fopAc_ac_c* param_0) {
+    static cXyz scale(2.0f, 2.0f, 2.0f);
+
+    eff_break_tsubo(param_0, scale, 4);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -277,6 +236,7 @@ asm void daObj::make_eff_break_gm_ootubo(fopAc_ac_c* param_0) {
 #include "asm/d/a/d_a_obj/make_eff_break_gm_ootubo__5daObjFP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80451DA0-80451DA4 0003A0 0004+00 4/4 0/0 0/0 .sdata2          @3801 */
@@ -383,7 +343,8 @@ asm void daObj::HitSeStart(cXyz const* param_0, int param_1, dCcD_GObjInf const*
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_CylAttr::GetCoCP() {
+// asm void cCcD_CylAttr::GetCoCP() {
+extern "C" asm void GetCoCP__12cCcD_CylAttrFv() {
     nofralloc
 #include "asm/d/a/d_a_obj/GetCoCP__12cCcD_CylAttrFv.s"
 }
@@ -393,7 +354,8 @@ asm void cCcD_CylAttr::GetCoCP() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cCcD_SphAttr::GetCoCP() {
+// asm void cCcD_SphAttr::GetCoCP() {
+extern "C" asm void GetCoCP__12cCcD_SphAttrFv() {
     nofralloc
 #include "asm/d/a/d_a_obj/GetCoCP__12cCcD_SphAttrFv.s"
 }

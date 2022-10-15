@@ -2,14 +2,18 @@
 #define MTXVEC_H
 
 #include "dolphin/mtx/mtx.h"
-#include "dolphin/mtx/vec.h"
-#include "dolphin/types.h"
 
+#ifdef __cplusplus
 extern "C" {
-void PSMTXMultVec(const Mtx matrix, const Vec* src, Vec* dst);
-void PSMTXMultVecArray(const Mtx matrix, const Vec* src, Vec* dst, u32 count);
-void PSMTXMultVecSR(const Mtx matrix, const Vec* src, Vec* dst);
-void PSMTXMultVecArraySR(const Mtx matrix, const Vec* src, Vec* dst, u32 count);
-}
+#endif
+
+void PSMTXMultVec(const Mtx m, const Vec* src, Vec* dst);
+void PSMTXMultVecSR(const Mtx m, const Vec* src, Vec* dst);
+void PSMTXMultVecArray(const Mtx m, const Vec* srcBase, Vec* dstBase, u32 count);
+void PSMTXMultVecArraySR(const Mtx m, const Vec* srcBase, Vec* dstBase, u32 count);
+
+#ifdef __cplusplus
+};
+#endif
 
 #endif /* MTXVEC_H */

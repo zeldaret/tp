@@ -10,6 +10,8 @@ extern "C" {
 typedef s64 OSTime;
 typedef u32 OSTick;
 
+OSTime OS_SYSTEM_TIME : 0x800030D8;
+
 typedef struct OSCalendarTime {
     /* 0x00 */ s32 seconds;
     /* 0x04 */ s32 minutes;

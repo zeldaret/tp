@@ -76,7 +76,7 @@ void daAlink_c::statusWindowDraw() {
 
 /* 80140AC8-80140B88 13B408 00C0+00 0/0 1/1 0/0 .text            resetStatusWindow__9daAlink_cFv */
 void daAlink_c::resetStatusWindow() {
-    i_offNoResetFlg2(0x400000);
+    i_offNoResetFlg2(FLG2_STATUS_WINDOW_DRAW);
 
     if (i_checkWolf()) {
         changeModelDataDirectWolf(1);
@@ -86,7 +86,7 @@ void daAlink_c::resetStatusWindow() {
 
     setMatrix();
     mpLinkModel->calc();
-    i_onNoResetFlg2(0x400000);
+    i_onNoResetFlg2(FLG2_STATUS_WINDOW_DRAW);
     setSelectEquipItem(0);
 
     if (i_checkWolf()) {
@@ -95,6 +95,6 @@ void daAlink_c::resetStatusWindow() {
         setItemMatrix(0);
     }
 
-    i_offNoResetFlg2(0x400000);
+    i_offNoResetFlg2(FLG2_STATUS_WINDOW_DRAW);
     m_sWindowBck = NULL;
 }

@@ -3,20 +3,20 @@
 #
 
 LIBGX_A_CPP_FILES := \
-	libs/dolphin/gx/GXInit.cpp \
-	libs/dolphin/gx/GXFifo.cpp \
-	libs/dolphin/gx/GXAttr.cpp \
-	libs/dolphin/gx/GXMisc.cpp \
-	libs/dolphin/gx/GXGeometry.cpp \
-	libs/dolphin/gx/GXFrameBuf.cpp \
-	libs/dolphin/gx/GXLight.cpp \
-	libs/dolphin/gx/GXTexture.cpp \
-	libs/dolphin/gx/GXBump.cpp \
-	libs/dolphin/gx/GXTev.cpp \
-	libs/dolphin/gx/GXPixel.cpp \
-	libs/dolphin/gx/GXDisplayList.cpp \
-	libs/dolphin/gx/GXTransform.cpp \
-	libs/dolphin/gx/GXPerf.cpp \
+	libs/dolphin/gx/GXInit.c \
+	libs/dolphin/gx/GXFifo.c \
+	libs/dolphin/gx/GXAttr.c \
+	libs/dolphin/gx/GXMisc.c \
+	libs/dolphin/gx/GXGeometry.c \
+	libs/dolphin/gx/GXFrameBuf.c \
+	libs/dolphin/gx/GXLight.c \
+	libs/dolphin/gx/GXTexture.c \
+	libs/dolphin/gx/GXBump.c \
+	libs/dolphin/gx/GXTev.c \
+	libs/dolphin/gx/GXPixel.c \
+	libs/dolphin/gx/GXDisplayList.c \
+	libs/dolphin/gx/GXTransform.c \
+	libs/dolphin/gx/GXPerf.c \
 
 LIBGX_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/gx/GXInit.o \
@@ -36,6 +36,7 @@ LIBGX_A_O_FILES := \
 
 LIBGX_A_CFLAGS := \
 	-O4,p \
+	-lang=c \
 
 LIBGX_A_LDFLAGS := \
 	-nodefaults \
@@ -48,9 +49,9 @@ $(BUILD_DIR)/libgx.a: $(LIBGX_A_O_FILES)
 	@echo $(LIBGX_A_O_FILES) > build/LIBGX_A_ofiles
 	@$(LD) -xm l $(LIBGX_A_LDFLAGS) -o $(BUILD_DIR)/libgx.a @build/LIBGX_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/gx/%.o: libs/dolphin/gx/%.cpp
+$(BUILD_DIR)/libs/dolphin/gx/%.o: libs/dolphin/gx/%.c
 	@mkdir -p $(@D)
 	@echo building... $<
-	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(CFLAGS) $(LIBGX_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
+	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(CFLAGS) $(LIBGX_A_CFLAGS) -c -o $@ $(basename $@).c
 

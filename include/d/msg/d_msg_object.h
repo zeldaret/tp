@@ -133,7 +133,7 @@ public:
     /* 80238320 */ static void onMsgSend();
     /* 8023834C */ void offMsgSend();
     /* 80238378 */ void isMsgSend();
-    /* 802383A4 */ void isMouthCheck();
+    /* 802383A4 */ bool isMouthCheck();
     /* 802383D0 */ static u32 getMessageID();
     /* 802383E4 */ void getSmellTypeMessageID();
     /* 80238410 */ static void setSmellType(u8);
@@ -271,6 +271,10 @@ inline u32 dMsgObject_getMessageID() {
 
 inline void dMsgObject_readMessageGroup(mDoDvdThd_mountXArchive_c** param_0) {
     dMsgObject_getMsgObjectClass()->readMessageGroup(param_0);
+}
+
+inline void dMsgObject_setDemoMessage(u32 param_0) {
+    dMsgObject_getMsgObjectClass()->setDemoMessage(param_0);
 }
 
 inline void dMsgObject_setShopWaitTimer(u8 timer) {

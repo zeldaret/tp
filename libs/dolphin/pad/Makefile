@@ -3,14 +3,16 @@
 #
 
 LIBPAD_A_CPP_FILES := \
-	libs/dolphin/pad/Padclamp.cpp \
-	libs/dolphin/pad/Pad.cpp \
+	libs/dolphin/pad/Padclamp.c \
+	libs/dolphin/pad/Pad.c \
 
 LIBPAD_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/pad/Padclamp.o \
 	$(BUILD_DIR)/libs/dolphin/pad/Pad.o \
 
 LIBPAD_A_CFLAGS := \
+	-O4,p \
+	-lang=c \
 
 LIBPAD_A_LDFLAGS := \
 	-nodefaults \
@@ -23,9 +25,9 @@ $(BUILD_DIR)/libpad.a: $(LIBPAD_A_O_FILES)
 	@echo $(LIBPAD_A_O_FILES) > build/LIBPAD_A_ofiles
 	@$(LD) -xm l $(LIBPAD_A_LDFLAGS) -o $(BUILD_DIR)/libpad.a @build/LIBPAD_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/pad/%.o: libs/dolphin/pad/%.cpp
+$(BUILD_DIR)/libs/dolphin/pad/%.o: libs/dolphin/pad/%.c
 	@mkdir -p $(@D)
 	@echo building... $<
-	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBPAD_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
+	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(CFLAGS) $(LIBPAD_A_CFLAGS) -c -o $@ $(basename $@).c
 

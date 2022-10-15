@@ -26,6 +26,7 @@ public:
     void setMapToolId(u8 id) { mMapToolId = id; }
     void setEventId(s16 id) { mEventId = id; }
     void setCondition(u16 condition) { mCondition = condition; }
+    u16 getCondition() { return mCondition; }
     void setArchiveName(char* name) { mArchiveName = name; }
     u8 getMapToolId() { return mMapToolId; }
     s16 getEventId() { return mEventId; }
@@ -133,6 +134,28 @@ public:
     const csXyz& getAngle() const { return current.angle; }
     s8 getRoomNo() const { return current.mRoomNo; }
 };  // Size: 0x568
+
+class fopEn_enemy_c : public fopAc_ac_c {
+public:
+    /* 80019404 */ void initBallModel();
+    /* 800194FC */ void checkBallModelDraw();
+    /* 80019520 */ void setBallModelEffect(dKy_tevstr_c*);
+    /* 800196A0 */ void drawBallModel(dKy_tevstr_c*);
+
+    /* 0x568 */ cXyz mDownPos;
+    /* 0x574 */ cXyz mHeadLockPos;
+    /* 0x580 */ J3DModel* mBallModel;
+    /* 0x584 */ J3DAnmTextureSRTKey* mBtk;
+    /* 0x588 */ J3DAnmTevRegKey* mBrk;
+    /* 0x58C */ u8 field_0x58c;
+    /* 0x58D */ u8 mThrowMode;
+    /* 0x58E */ u16 mFlags;
+    /* 0x590 */ f32 field_0x590;
+    /* 0x594 */ u32 mEffectID1;
+    /* 0x598 */ u32 mEffectID2;
+    /* 0x59C */ u32 mMidnaBindID[3];
+    /* 0x5A8 */ u8 field_0x5a8;
+};  // Size: 0x5AC
 
 s32 fopAc_IsActor(void* actor);
 

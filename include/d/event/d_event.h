@@ -103,7 +103,9 @@ public:
     void setPtI_Id(unsigned int id);
     void setPtD(void* ptr);
     void setGtItm(u8 itemNo);
-    void isOrderOK();
+    BOOL isOrderOK();
+    /* 807DFAD8 */ void checkSkipEdge();
+    /* 807E2908 */ void startCheckSkipEdge(void*);
 
     u16 chkFlag2(u16 flag) { return flag & mFlag2; }
     bool runCheck() { return mEventStatus != 0; }

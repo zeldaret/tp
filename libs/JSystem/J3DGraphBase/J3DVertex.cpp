@@ -97,7 +97,7 @@ void J3DVertexBuffer::setArray() const {
 s32 J3DVertexBuffer::copyLocalVtxPosArray(u32 flag) {
     if (flag & 1) {
         for (int i = 0; i < 2; i++) {
-            mVtxPosArray[i] = new (0x20) VertexPosition[mVtxData->getVtxNum()];
+            mVtxPosArray[i] = new (0x20) Vec[mVtxData->getVtxNum()];
 
             if (mVtxPosArray[i] == NULL) {
                 return kJ3DError_Alloc;
@@ -109,7 +109,7 @@ s32 J3DVertexBuffer::copyLocalVtxPosArray(u32 flag) {
         mVtxPosArray[0] = mVtxData->getVtxPosArray();
 
         if (mVtxPosArray[1] == NULL) {
-            mVtxPosArray[1] = new (0x20) VertexPosition[mVtxData->getVtxNum()];
+            mVtxPosArray[1] = new (0x20) Vec[mVtxData->getVtxNum()];
             if (mVtxPosArray[1] == NULL) {
                 return kJ3DError_Alloc;
             }
@@ -209,7 +209,7 @@ s32 J3DVertexBuffer::allocTransformedVtxPosArray() {
 
     for (int i = 0; i < 2; i++) {
         if (i == 0 || mTransformedVtxPosArray[i] == NULL) {
-            mTransformedVtxPosArray[i] = new (0x20) VertexPosition[mVtxData->getVtxNum()];
+            mTransformedVtxPosArray[i] = new (0x20) Vec[mVtxData->getVtxNum()];
             if (mTransformedVtxPosArray[i] == NULL)
                 return kJ3DError_Alloc;
         }

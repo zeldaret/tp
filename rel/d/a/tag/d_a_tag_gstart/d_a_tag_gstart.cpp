@@ -4,132 +4,81 @@
 //
 
 #include "rel/d/a/tag/d_a_tag_gstart/d_a_tag_gstart.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct daTagGstart_c {
-    /* 805A3478 */ void create();
-    /* 805A3514 */ ~daTagGstart_c();
-    /* 805A3590 */ void execute();
-};
-
-struct dSv_info_c {
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-//
-// Forward References:
-//
-
-extern "C" void create__13daTagGstart_cFv();
-extern "C" static void daTagGstart_Create__FP10fopAc_ac_c();
-extern "C" void __dt__13daTagGstart_cFv();
-extern "C" static void daTagGstart_Delete__FP13daTagGstart_c();
-extern "C" void execute__13daTagGstart_cFv();
-extern "C" static void daTagGstart_Execute__FP13daTagGstart_c();
-extern "C" static bool daTagGstart_Draw__FP13daTagGstart_c();
-extern "C" extern void* g_profile_Tag_Gstart[12];
 
 //
 // External References:
 //
 
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void __dl__FPv();
 extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
 // Declarations:
 //
 
 /* 805A3478-805A34F4 000078 007C+00 1/1 0/0 0/0 .text            create__13daTagGstart_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagGstart_c::create() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_gstart/d_a_tag_gstart/create__13daTagGstart_cFv.s"
+int daTagGstart_c::create() {
+    if (!fopAcM_CheckCondition(this, 8)) {
+        new (this) daTagGstart_c();
+        fopAcM_OnCondition(this, 8);
+    }
+
+    mSwNo = fopAcM_GetParam(this);
+    mSwNo2 = fopAcM_GetParam(this) >> 8;
+    field_0x56a = fopAcM_GetParam(this) >> 0x10;
+    mType = (fopAcM_GetParam(this) >> 0x18) & 0xF;
+
+    return cPhs_COMPLEATE_e;
 }
-#pragma pop
 
 /* 805A34F4-805A3514 0000F4 0020+00 1/0 0/0 0/0 .text            daTagGstart_Create__FP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagGstart_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_gstart/d_a_tag_gstart/daTagGstart_Create__FP10fopAc_ac_c.s"
+static int daTagGstart_Create(fopAc_ac_c* i_this) {
+    return static_cast<daTagGstart_c*>(i_this)->create();
 }
-#pragma pop
 
 /* 805A3514-805A3568 000114 0054+00 1/1 0/0 0/0 .text            __dt__13daTagGstart_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm daTagGstart_c::~daTagGstart_c() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_gstart/d_a_tag_gstart/__dt__13daTagGstart_cFv.s"
-}
-#pragma pop
+daTagGstart_c::~daTagGstart_c() {}
 
 /* 805A3568-805A3590 000168 0028+00 1/0 0/0 0/0 .text daTagGstart_Delete__FP13daTagGstart_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagGstart_Delete(daTagGstart_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_gstart/d_a_tag_gstart/daTagGstart_Delete__FP13daTagGstart_c.s"
+static int daTagGstart_Delete(daTagGstart_c* i_this) {
+    i_this->~daTagGstart_c();
+    return 1;
 }
-#pragma pop
 
 /* 805A3590-805A3658 000190 00C8+00 1/1 0/0 0/0 .text            execute__13daTagGstart_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagGstart_c::execute() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_gstart/d_a_tag_gstart/execute__13daTagGstart_cFv.s"
+int daTagGstart_c::execute() {
+    if ((mSwNo == 0xFF || dComIfGs_isSwitch(mSwNo, fopAcM_GetHomeRoomNo(this))) &&
+        (mSwNo2 == 0xFF || !dComIfGs_isSwitch(mSwNo2, fopAcM_GetHomeRoomNo(this)))) {
+        if (mType != 0 || dComIfGp_getLinkPlayer()->i_checkWolf()) {
+            dComIfGp_getLinkPlayer()->onSceneChangeDead(field_0x56a, fopAcM_GetRoomNo(this));
+        }
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 805A3658-805A3678 000258 0020+00 1/0 0/0 0/0 .text daTagGstart_Execute__FP13daTagGstart_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagGstart_Execute(daTagGstart_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_gstart/d_a_tag_gstart/daTagGstart_Execute__FP13daTagGstart_c.s"
+static int daTagGstart_Execute(daTagGstart_c* i_this) {
+    return i_this->execute();
 }
-#pragma pop
 
 /* 805A3678-805A3680 000278 0008+00 1/0 0/0 0/0 .text            daTagGstart_Draw__FP13daTagGstart_c
  */
-static bool daTagGstart_Draw(daTagGstart_c* param_0) {
-    return true;
+static int daTagGstart_Draw(daTagGstart_c*) {
+    return 1;
 }
 
 /* ############################################################################################## */
 /* 805A3688-805A36A8 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagGstart_Method */
 SECTION_DATA static void* l_daTagGstart_Method[8] = {
-    (void*)daTagGstart_Create__FP10fopAc_ac_c,
-    (void*)daTagGstart_Delete__FP13daTagGstart_c,
-    (void*)daTagGstart_Execute__FP13daTagGstart_c,
+    (void*)daTagGstart_Create,
+    (void*)daTagGstart_Delete,
+    (void*)daTagGstart_Execute,
     (void*)NULL,
-    (void*)daTagGstart_Draw__FP13daTagGstart_c,
+    (void*)daTagGstart_Draw,
     (void*)NULL,
     (void*)NULL,
     (void*)NULL,

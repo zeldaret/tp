@@ -4,11 +4,13 @@
 //
 
 #include "d/com/d_com_static.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_demo.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.h"
+#include "rel/d/a/d_a_movie_player/d_a_movie_player.h"
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
-#include "d/com/d_com_inf_game.h"
+#include "rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.h"
 
 //
 // Types:
@@ -27,11 +29,13 @@ struct daTagStream_c {
 };
 
 struct daTagMist_c {
-    /* 80031CF0 */ void getPlayerNo();
+    /* 80031CF0 */ static u8 getPlayerNo();
+
+    static u8 mPlayerNo;
 };
 
 struct daSetBgObj_c {
-    /* 80031870 */ void getArcName(fopAc_ac_c*);
+    /* 80031870 */ static const char* getArcName(fopAc_ac_c*);
 };
 
 struct daObjMovebox {
@@ -48,15 +52,6 @@ struct daMirror_c {
     static u8 m_myObj[4];
 };
 
-struct daMP_c {
-    /* 80031A78 */ void daMP_c_Get_MovieRestFrame();
-    /* 80031AA4 */ void daMP_c_Set_PercentMovieVolume(f32);
-    /* 80031AD0 */ void daMP_c_THPPlayerPlay();
-    /* 80031B24 */ void daMP_c_THPPlayerPause();
-
-    static u8 m_myObj[4];
-};
-
 struct daGrass_c {
     /* 800319C8 */ void deleteRoomGrass(int);
     /* 80031A20 */ void deleteRoomFlower(int);
@@ -67,7 +62,7 @@ struct daGrass_c {
 };
 
 struct daDsh_c {
-    static u32 OPEN_SIZE;
+    static f32 OPEN_SIZE;
     static f32 OPEN_ACCEL;
     static f32 OPEN_SPEED;
     static f32 OPEN_BOUND_SPEED;
@@ -84,10 +79,6 @@ struct dGrass_packet_c {
 
 struct dFlower_packet_c {
     static u8 m_deleteRoom[12];
-};
-
-struct dDemo_c {
-    static u8 m_status[4];
 };
 
 //
@@ -205,6 +196,7 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
 extern "C" u8 m_status__7dDemo_c[4];
+extern "C" extern u8 mPlayerNo__11daTagMist_c[4];
 
 //
 // Declarations:
@@ -212,67 +204,102 @@ extern "C" u8 m_status__7dDemo_c[4];
 
 /* 80030F14-80030FBC 02B854 00A8+00 1/1 0/0 0/0 .text
  * set__Q27daSus_c6data_cFScRC4cXyzRC4cXyzUcUcUc                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daSus_c::data_c::set(s8 param_0, cXyz const& param_1, cXyz const& param_2, u8 param_3,
-                              u8 param_4, u8 param_5) {
-    nofralloc
-#include "asm/d/com/d_com_static/set__Q27daSus_c6data_cFScRC4cXyzRC4cXyzUcUcUc.s"
+void daSus_c::data_c::set(s8 i_roomNo, cXyz const& param_1, cXyz const& param_2, u8 param_3,
+                          u8 param_4, u8 i_type) {
+    mRoomNo = i_roomNo;
+    field_0x8.set(param_1.x - param_2.x, param_1.y, param_1.z - param_2.z);
+    field_0x14.set(param_1.x + param_2.x, param_1.y + param_2.y, param_1.z + param_2.z);
+    field_0x2 = param_3;
+    field_0x1 = param_4 != 0;
+    field_0x3 = isSwitch() == false;
+    mType = i_type;
 }
-#pragma pop
 
 /* 80030FBC-80030FCC 02B8FC 0010+00 3/3 0/0 0/0 .text            reset__Q27daSus_c6data_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daSus_c::data_c::reset() {
-    nofralloc
-#include "asm/d/com/d_com_static/reset__Q27daSus_c6data_cFv.s"
+daSus_c::data_c* daSus_c::data_c::reset() {
+    mRoomNo = -1;
+    return mpNext;
 }
-#pragma pop
 
 /* 80030FCC-80031038 02B90C 006C+00 2/2 0/0 0/0 .text            isSwitch__Q27daSus_c6data_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daSus_c::data_c::isSwitch() {
-    nofralloc
-#include "asm/d/com/d_com_static/isSwitch__Q27daSus_c6data_cFv.s"
+u8 daSus_c::data_c::isSwitch() {
+    if (field_0x1 & 1) {
+        return dComIfGs_isSwitch(field_0x2, mRoomNo);
+    } else {
+        return dComIfGs_isSwitch(field_0x2, mRoomNo) == false;
+    }
 }
-#pragma pop
 
 /* 80031038-800310C8 02B978 0090+00 2/2 0/0 0/0 .text            check__Q27daSus_c6data_cFRC4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daSus_c::data_c::check(cXyz const& param_0) {
-    nofralloc
-#include "asm/d/com/d_com_static/check__Q27daSus_c6data_cFRC4cXyz.s"
+bool daSus_c::data_c::check(cXyz const& i_pos) {
+    if (field_0x3 != 0) {
+        return false;
+    }
+
+    if ((field_0x8.x <= i_pos.x && i_pos.x <= field_0x14.x) &&
+        (field_0x8.y <= i_pos.y && i_pos.y <= field_0x14.y) &&
+        (field_0x8.z <= i_pos.z && i_pos.z <= field_0x14.z)) {
+        return true;
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 800310C8-80031150 02BA08 0088+00 1/1 0/0 0/0 .text check__Q27daSus_c6data_cFP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daSus_c::data_c::check(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/com/d_com_static/check__Q27daSus_c6data_cFP10fopAc_ac_c.s"
+u8 daSus_c::data_c::check(fopAc_ac_c* i_actor) {
+    if (field_0x3) {
+        return 0x80;
+    }
+
+    u8 tmp = 0x80;
+    
+    if (check(i_actor->orig.pos)) {
+        tmp |= 1;
+    }
+
+    if (check(i_actor->current.pos)) {
+        tmp |= 2;
+        return tmp;
+    }
+
+    return tmp;
 }
-#pragma pop
 
 /* 80031150-80031190 02BA90 0040+00 1/1 0/0 0/0 .text            execute__Q27daSus_c6data_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daSus_c::data_c::execute() {
-    nofralloc
-#include "asm/d/com/d_com_static/execute__Q27daSus_c6data_cFv.s"
+void daSus_c::data_c::execute() {
+    u8 sw = isSwitch();
+    if (sw != field_0x3) {
+        field_0x3 = sw;
+    }
 }
-#pragma pop
 
 /* 80031190-800311FC 02BAD0 006C+00 1/1 0/0 0/0 .text add__Q27daSus_c6room_cFPQ27daSus_c6data_c */
+// instruction reorder
+#ifdef NONMATCHING
+void daSus_c::room_c::add(daSus_c::data_c* i_data) {
+    if (mpData == NULL) {
+        mpData = i_data;
+        i_data->setNext(NULL);
+        return;
+    }
+
+    if (i_data->getType() == 0) {
+        i_data->setNext(mpData);
+        mpData = i_data;
+        return;
+    }
+
+    daSus_c::data_c* data1 = mpData;
+    daSus_c::data_c* data2 = data1->getNext();
+    while (data1->getType() == 0 && data2 != NULL) {
+        data1 = data2;
+        data2 = data2->getNext();
+    }
+
+    i_data->setNext(data1->getNext());
+    data1->setNext(i_data);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -281,16 +308,14 @@ asm void daSus_c::room_c::add(daSus_c::data_c* param_0) {
 #include "asm/d/com/d_com_static/add__Q27daSus_c6room_cFPQ27daSus_c6data_c.s"
 }
 #pragma pop
+#endif
 
 /* 800311FC-80031248 02BB3C 004C+00 0/0 0/0 1/1 .text            reset__Q27daSus_c6room_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daSus_c::room_c::reset() {
-    nofralloc
-#include "asm/d/com/d_com_static/reset__Q27daSus_c6room_cFv.s"
+void daSus_c::room_c::reset() {
+    while (mpData != NULL && mpData->getType() == 0) {
+        mpData = mpData->reset();
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80423FF0-80423FFC 050D10 000C+00 1/1 0/0 0/0 .bss             @3840 */
@@ -304,9 +329,11 @@ u8 daSus_c::mRoom[256];
 
 /* 80450D88-80450D8C -00001 0004+00 1/1 0/0 2/2 .sbss            None */
 /* 80450D88 0002+00 data_80450D88 m_count__9daArrow_c */
+extern s16 m_count__9daArrow_c;
+s16 m_count__9daArrow_c;
+
 /* 80450D8A 0002+00 data_80450D8A mSetTop__7daSus_c */
-extern u8 struct_80450D88[4];
-u8 struct_80450D88[4];
+s16 daSus_c::mSetTop;
 
 /* 80031248-800313BC 02BB88 0174+00 0/0 0/0 1/1 .text newData__7daSus_cFScRC4cXyzRC4cXyzUcUcUc */
 #pragma push
@@ -333,7 +360,7 @@ asm void daSus_c::reset() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool daSus_c::check(s8 param_0, cXyz const& param_1) {
+asm bool daSus_c::check(s8 i_roomNo, cXyz const& i_pos) {
     nofralloc
 #include "asm/d/com/d_com_static/check__7daSus_cFScRC4cXyz.s"
 }
@@ -360,102 +387,55 @@ asm void daSus_c::execute() {
 #pragma pop
 
 /* 8003160C-80031648 02BF4C 003C+00 0/0 0/0 1/1 .text            daNpcMsg_setEvtNum__FUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcMsg_setEvtNum(u8 param_0) {
-    nofralloc
-#include "asm/d/com/d_com_static/daNpcMsg_setEvtNum__FUc.s"
+int daNpcMsg_setEvtNum(u8 iEvtNum) {
+    dComIfGs_setTmpReg(0xFDFF, iEvtNum);
+    return 1;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 803790B0-803790B0 005710 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803790B0 = "F_SP103";
-#pragma pop
 
 /* 80031648-800316A8 02BF88 0060+00 0/0 0/0 6/6 .text daNpcKakashi_chkSwdTutorialStage__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcKakashi_chkSwdTutorialStage() {
-    nofralloc
-#include "asm/d/com/d_com_static/daNpcKakashi_chkSwdTutorialStage__Fv.s"
+BOOL daNpcKakashi_chkSwdTutorialStage() {
+    return !strcmp(dComIfGp_getStartStageName(), "F_SP103") && dComIfG_play_c::getLayerNo(0) == 8;
 }
-#pragma pop
 
 /* 800316A8-800316E0 02BFE8 0038+00 0/0 0/0 3/3 .text daNpcKakashi_setSwdTutorialStep__FUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcKakashi_setSwdTutorialStep(u8 param_0) {
-    nofralloc
-#include "asm/d/com/d_com_static/daNpcKakashi_setSwdTutorialStep__FUc.s"
+void daNpcKakashi_setSwdTutorialStep(u8 iEvtNum) {
+    dComIfGs_setTmpReg(0xFF0F, iEvtNum);
 }
-#pragma pop
 
 /* 800316E0-80031718 02C020 0038+00 0/0 1/1 4/4 .text            daNpcKakashi_getSwdTutorialStep__Fv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daNpcKakashi_getSwdTutorialStep() {
-    nofralloc
-#include "asm/d/com/d_com_static/daNpcKakashi_getSwdTutorialStep__Fv.s"
+int daNpcKakashi_getSwdTutorialStep() {
+    return dComIfGs_getTmpReg(0xFF0F);
 }
-#pragma pop
 
 /* 80031718-80031754 02C058 003C+00 0/0 1/1 0/0 .text daNpcKakashi_getSwdTutorialResult__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcKakashi_getSwdTutorialResult() {
-    nofralloc
-#include "asm/d/com/d_com_static/daNpcKakashi_getSwdTutorialResult__Fv.s"
+bool daNpcKakashi_getSwdTutorialResult() {
+    return dComIfGs_isTmpBit(0x40);
 }
-#pragma pop
 
 /* 80031754-800317A4 02C094 0050+00 0/0 0/0 1/1 .text daNpcKakashi_setSwdTutorialResult__Fb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcKakashi_setSwdTutorialResult(bool param_0) {
-    nofralloc
-#include "asm/d/com/d_com_static/daNpcKakashi_setSwdTutorialResult__Fb.s"
+void daNpcKakashi_setSwdTutorialResult(bool param_0) {
+    if (param_0) {
+        dComIfGs_onTmpBit(0x40);
+    } else {
+        dComIfGs_offTmpBit(0x40);
+    }
 }
-#pragma pop
 
 /* 800317A4-800317DC 02C0E4 0038+00 0/0 1/1 1/1 .text            daNpcKakashi_getSuccessCount__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcKakashi_getSuccessCount() {
-    nofralloc
-#include "asm/d/com/d_com_static/daNpcKakashi_getSuccessCount__Fv.s"
+int daNpcKakashi_getSuccessCount() {
+    return dComIfGs_getTmpReg(0xFEFF);
 }
-#pragma pop
 
 /* 800317DC-80031838 02C11C 005C+00 0/0 0/0 1/1 .text            daNpcKakashi_incSuccessCount__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcKakashi_incSuccessCount() {
-    nofralloc
-#include "asm/d/com/d_com_static/daNpcKakashi_incSuccessCount__Fv.s"
+void daNpcKakashi_incSuccessCount() {
+    dComIfGs_setTmpReg(0xFEFF, dComIfGs_getTmpReg(0xFEFF) + 1);
 }
-#pragma pop
 
 /* 80031838-80031870 02C178 0038+00 0/0 0/0 4/4 .text            daNpcKakashi_clrSuccessCount__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcKakashi_clrSuccessCount() {
-    nofralloc
-#include "asm/d/com/d_com_static/daNpcKakashi_clrSuccessCount__Fv.s"
+void daNpcKakashi_clrSuccessCount() {
+    dComIfGs_setTmpReg(0xFEFF, 0);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803790B0-803790B0 005710 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -480,19 +460,14 @@ u8 daYkgr_c::m_path[4];
 /* 80450D98-80450D9C 000298 0004+00 0/0 1/1 2/2 .sbss            m_emitter__8daYkgr_c */
 u8 daYkgr_c::m_emitter[4];
 
-/* 80450D9C-80450DA4 00029C 0008+00 1/1 0/0 0/0 .sbss            arcName$4309 */
-static u8 arcName[8];
-
 /* 80031870-800318B4 02C1B0 0044+00 0/0 0/0 19/19 .text getArcName__12daSetBgObj_cFP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daSetBgObj_c::getArcName(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/com/d_com_static/getArcName__12daSetBgObj_cFP10fopAc_ac_c.s"
+const char* daSetBgObj_c::getArcName(fopAc_ac_c* param_0) {
+    static char arcName[8];
+
+    sprintf(arcName, "@bg%04x", (u16)fopAcM_GetParam(param_0));
+    return arcName;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451D28-80451D30 -00001 0008+00 0/0 0/0 3/3 .sdata2          M_dir_base__Q212daObjMovebox5Act_c
@@ -503,7 +478,7 @@ SECTION_SDATA2 void* daObjMovebox::Act_c::M_dir_base[2] = {
 };
 
 /* 80451D30-80451D34 000330 0004+00 0/0 0/0 3/3 .sdata2          OPEN_SIZE__7daDsh_c */
-SECTION_SDATA2 u32 daDsh_c::OPEN_SIZE = 0x43870CCD;
+SECTION_SDATA2 f32 daDsh_c::OPEN_SIZE = 270.1f;
 
 /* 80451D34-80451D38 000334 0004+00 0/0 0/0 1/1 .sdata2          OPEN_ACCEL__7daDsh_c */
 SECTION_SDATA2 f32 daDsh_c::OPEN_ACCEL = 10.0f;
@@ -515,7 +490,7 @@ SECTION_SDATA2 f32 daDsh_c::OPEN_SPEED = -40.0f;
 SECTION_SDATA2 f32 daDsh_c::OPEN_BOUND_SPEED = -30.0f;
 
 /* 80451D40-80451D44 000340 0004+00 0/0 0/0 1/1 .sdata2          OPEN_BOUND_RATIO__7daDsh_c */
-SECTION_SDATA2 f32 daDsh_c::OPEN_BOUND_RATIO = -2.0f / 5.0f;
+SECTION_SDATA2 f32 daDsh_c::OPEN_BOUND_RATIO = -0.4f;
 
 /* 80451D44-80451D48 000344 0004+00 0/0 0/0 1/1 .sdata2          CLOSE_ACCEL__7daDsh_c */
 SECTION_SDATA2 f32 daDsh_c::CLOSE_ACCEL = 10.0f;
@@ -527,7 +502,7 @@ SECTION_SDATA2 f32 daDsh_c::CLOSE_SPEED = 40.0f;
 SECTION_SDATA2 f32 daDsh_c::CLOSE_BOUND_SPEED = 30.0f;
 
 /* 80451D50-80451D54 000350 0004+00 0/0 0/0 1/1 .sdata2          CLOSE_BOUND_RATIO__7daDsh_c */
-SECTION_SDATA2 f32 daDsh_c::CLOSE_BOUND_RATIO = -2.0f / 5.0f;
+SECTION_SDATA2 f32 daDsh_c::CLOSE_BOUND_RATIO = -0.4f;
 
 /* 80451D54-80451D58 000354 0004+00 1/1 0/0 0/0 .sdata2          @4338 */
 SECTION_SDATA2 static u8 lit_4338[4] = {
@@ -617,47 +592,33 @@ asm void daGrass_c::deleteRoomFlower(int param_0) {
 
 /* ############################################################################################## */
 /* 80450DB8-80450DBC 0002B8 0004+00 4/4 0/0 2/2 .sbss            m_myObj__6daMP_c */
-u8 daMP_c::m_myObj[4];
+daMP_c* daMP_c::m_myObj;
 
 /* 80031A78-80031AA4 02C3B8 002C+00 0/0 0/0 1/1 .text daMP_c_Get_MovieRestFrame__6daMP_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMP_c::daMP_c_Get_MovieRestFrame() {
-    nofralloc
-#include "asm/d/com/d_com_static/daMP_c_Get_MovieRestFrame__6daMP_cFv.s"
+int daMP_c::daMP_c_Get_MovieRestFrame() {
+    return m_myObj->mpGetMovieRestFrame();
 }
-#pragma pop
 
 /* 80031AA4-80031AD0 02C3E4 002C+00 0/0 0/0 1/1 .text daMP_c_Set_PercentMovieVolume__6daMP_cFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMP_c::daMP_c_Set_PercentMovieVolume(f32 param_0) {
-    nofralloc
-#include "asm/d/com/d_com_static/daMP_c_Set_PercentMovieVolume__6daMP_cFf.s"
+void daMP_c::daMP_c_Set_PercentMovieVolume(f32 i_volume) {
+    m_myObj->mpSetPercentMovieVol(i_volume);
 }
-#pragma pop
 
 /* 80031AD0-80031B24 02C410 0054+00 0/0 1/1 1/1 .text            daMP_c_THPPlayerPlay__6daMP_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMP_c::daMP_c_THPPlayerPlay() {
-    nofralloc
-#include "asm/d/com/d_com_static/daMP_c_THPPlayerPlay__6daMP_cFv.s"
+int daMP_c::daMP_c_THPPlayerPlay() {
+    if (m_myObj == NULL) {
+        dDemo_c::onStatus(1);
+        return 0;
+    } else {
+        dDemo_c::offStatus(1);
+        return m_myObj->mpTHPPlay();
+    }
 }
-#pragma pop
 
 /* 80031B24-80031B50 02C464 002C+00 0/0 0/0 1/1 .text            daMP_c_THPPlayerPause__6daMP_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMP_c::daMP_c_THPPlayerPause() {
-    nofralloc
-#include "asm/d/com/d_com_static/daMP_c_THPPlayerPause__6daMP_cFv.s"
+void daMP_c::daMP_c_THPPlayerPause() {
+    m_myObj->mpTHPPause();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450DBC-80450DC0 0002BC 0004+00 1/1 0/0 3/3 .sbss            mTagMagne__12daTagMagne_c */
@@ -671,8 +632,7 @@ int daTagMagne_c::checkMagnetCode(cBgS_PolyInfo& poly) {
     }
 
     int magCode = dComIfG_Bgsp().GetMagnetCode(poly);
-    if ((magCode == 1 && mTagMagne->checkMagneA()) || 
-        (magCode == 2 && mTagMagne->checkMagneB()) || 
+    if ((magCode == 1 && mTagMagne->checkMagneA()) || (magCode == 2 && mTagMagne->checkMagneB()) ||
         (magCode == 3 && mTagMagne->checkMagneC())) {
         return 1;
     }
@@ -710,21 +670,15 @@ int daTagMagne_c::checkMagneC() {
 /* ############################################################################################## */
 /* 80450DC0-80450DC4 -00001 0004+00 4/4 0/0 2/2 .sbss            None */
 /* 80450DC0 0001+00 data_80450DC0 None */
-extern u8 struct_80450DC0;
-u8 struct_80450DC0;
+u8 daTagMist_c::mPlayerNo;
 
 /* 80450DC1 0003+00 data_80450DC1 None */
 bool daObjCarry_c::mSaveFlag;
 
 /* 80031CF0-80031CF8 02C630 0008+00 0/0 1/1 0/0 .text            getPlayerNo__11daTagMist_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagMist_c::getPlayerNo() {
-    nofralloc
-#include "asm/d/com/d_com_static/getPlayerNo__11daTagMist_cFv.s"
+u8 daTagMist_c::getPlayerNo() {
+    return mPlayerNo;
 }
-#pragma pop
 
 /* 80031CF8-80031D04 02C638 000C+00 0/0 1/1 0/0 .text            clrSaveFlag__12daObjCarry_cFv */
 void daObjCarry_c::clrSaveFlag() {

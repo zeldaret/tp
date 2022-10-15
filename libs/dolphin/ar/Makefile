@@ -3,14 +3,16 @@
 #
 
 LIBAR_A_CPP_FILES := \
-	libs/dolphin/ar/ar.cpp \
-	libs/dolphin/ar/arq.cpp \
+	libs/dolphin/ar/ar.c \
+	libs/dolphin/ar/arq.c \
 
 LIBAR_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/ar/ar.o \
 	$(BUILD_DIR)/libs/dolphin/ar/arq.o \
 
 LIBAR_A_CFLAGS := \
+	-O4,p \
+	-lang=c \
 
 LIBAR_A_LDFLAGS := \
 	-nodefaults \
@@ -23,9 +25,9 @@ $(BUILD_DIR)/libar.a: $(LIBAR_A_O_FILES)
 	@echo $(LIBAR_A_O_FILES) > build/LIBAR_A_ofiles
 	@$(LD) -xm l $(LIBAR_A_LDFLAGS) -o $(BUILD_DIR)/libar.a @build/LIBAR_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/ar/%.o: libs/dolphin/ar/%.cpp
+$(BUILD_DIR)/libs/dolphin/ar/%.o: libs/dolphin/ar/%.c
 	@mkdir -p $(@D)
 	@echo building... $<
-	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBAR_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
+	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(CFLAGS) $(LIBAR_A_CFLAGS) -c -o $@ $(basename $@).c
 

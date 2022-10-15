@@ -6,221 +6,218 @@
 #include "rel/d/a/d_a_alldie/d_a_alldie.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct daAlldie_c {
-    /* 804D5818 */ void getEventNo();
-    /* 804D5824 */ void getSwbit();
-    /* 804D5830 */ bool actionWait();
-    /* 804D5838 */ void actionCheck();
-    /* 804D5888 */ void actionTimer();
-    /* 804D5938 */ void actionOrder();
-    /* 804D59A0 */ void actionEvent();
-    /* 804D5A44 */ void actionNext();
-    /* 804D5B10 */ void execute();
-};
-
-struct dSv_info_c {
-    /* 80035200 */ void onSwitch(int, int);
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dEvt_control_c {
-    /* 80042468 */ void reset();
-    /* 80043500 */ void searchMapEventData(u8, s32);
-};
-
-struct dEvent_manager_c {
-    /* 80047698 */ void getEventIdx(fopAc_ac_c*, u8);
-    /* 80047A78 */ void endCheck(s16);
-};
-
-//
-// Forward References:
-//
-
-extern "C" void getEventNo__10daAlldie_cFv();
-extern "C" void getSwbit__10daAlldie_cFv();
-extern "C" bool actionWait__10daAlldie_cFv();
-extern "C" void actionCheck__10daAlldie_cFv();
-extern "C" void actionTimer__10daAlldie_cFv();
-extern "C" void actionOrder__10daAlldie_cFv();
-extern "C" void actionEvent__10daAlldie_cFv();
-extern "C" void actionNext__10daAlldie_cFv();
-extern "C" void execute__10daAlldie_cFv();
-extern "C" static bool daAlldie_Draw__FP10daAlldie_c();
-extern "C" static void daAlldie_Execute__FP10daAlldie_c();
-extern "C" static bool daAlldie_IsDelete__FP10daAlldie_c();
-extern "C" static void daAlldie_Delete__FP10daAlldie_c();
-extern "C" static void daAlldie_Create__FP10fopAc_ac_c();
-extern "C" extern void* g_profile_ALLDIE[12];
+#include "d/com/d_com_inf_game.h"
 
 //
 // External References:
 //
 
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs();
-extern "C" void fopAcM_myRoomSearchEnemy__FSc();
-extern "C" void onSwitch__10dSv_info_cFii();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void searchMapEventData__14dEvt_control_cFUcl();
-extern "C" void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc();
-extern "C" void endCheck__16dEvent_manager_cFs();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
 extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
 // Declarations:
 //
 
 /* 804D5818-804D5824 000078 000C+00 2/2 0/0 0/0 .text            getEventNo__10daAlldie_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlldie_c::getEventNo() {
-    nofralloc
-#include "asm/rel/d/a/d_a_alldie/d_a_alldie/getEventNo__10daAlldie_cFv.s"
+u8 daAlldie_c::getEventNo() {
+    return fopAcM_GetParam(this) >> 0x18;
 }
-#pragma pop
 
 /* 804D5824-804D5830 000084 000C+00 2/2 0/0 0/0 .text            getSwbit__10daAlldie_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlldie_c::getSwbit() {
-    nofralloc
-#include "asm/rel/d/a/d_a_alldie/d_a_alldie/getSwbit__10daAlldie_cFv.s"
+u8 daAlldie_c::getSwbit() {
+    return fopAcM_GetParam(this) >> 0x8;
 }
-#pragma pop
 
 /* 804D5830-804D5838 000090 0008+00 1/1 0/0 0/0 .text            actionWait__10daAlldie_cFv */
-bool daAlldie_c::actionWait() {
-    return true;
+int daAlldie_c::actionWait() {
+    return 1;
 }
 
 /* 804D5838-804D5888 000098 0050+00 1/1 0/0 0/0 .text            actionCheck__10daAlldie_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlldie_c::actionCheck() {
-    nofralloc
-#include "asm/rel/d/a/d_a_alldie/d_a_alldie/actionCheck__10daAlldie_cFv.s"
+int daAlldie_c::actionCheck() {
+    s8 roomNo = fopAcM_GetRoomNo(this);
+
+    if (fopAcM_myRoomSearchEnemy(roomNo) == NULL) {
+        mAction = ACT_TIMER;
+        mTimer = 65;
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 804D5888-804D5938 0000E8 00B0+00 1/1 0/0 0/0 .text            actionTimer__10daAlldie_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlldie_c::actionTimer() {
-    nofralloc
-#include "asm/rel/d/a/d_a_alldie/d_a_alldie/actionTimer__10daAlldie_cFv.s"
+int daAlldie_c::actionTimer() {
+    s8 roomNo = fopAcM_GetRoomNo(this);
+
+    if (fopAcM_myRoomSearchEnemy(roomNo) != NULL) {
+        mAction = ACT_CHECK;
+    } else {
+        if (mTimer > 0) {
+            mTimer--;
+        } else {
+            if (mEventIdx == -1) {
+                mAction = ACT_WAIT;
+            } else {
+                mAction = ACT_ORDER;
+            }
+
+            dComIfGs_onSwitch(getSwbit(), fopAcM_GetRoomNo(this));
+        }
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 804D5938-804D59A0 000198 0068+00 1/1 0/0 0/0 .text            actionOrder__10daAlldie_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlldie_c::actionOrder() {
-    nofralloc
-#include "asm/rel/d/a/d_a_alldie/d_a_alldie/actionOrder__10daAlldie_cFv.s"
+int daAlldie_c::actionOrder() {
+    if (mEvtInfo.checkCommandDemoAccrpt()) {
+        mAction = ACT_EVENT;
+    } else {
+        fopAcM_orderOtherEventId(this, mEventIdx, getEventNo(), -1, 0, 1);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 804D59A0-804D5A44 000200 00A4+00 2/2 0/0 0/0 .text            actionEvent__10daAlldie_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlldie_c::actionEvent() {
-    nofralloc
-#include "asm/rel/d/a/d_a_alldie/d_a_alldie/actionEvent__10daAlldie_cFv.s"
+int daAlldie_c::actionEvent() {
+    if (dComIfGp_evmng_endCheck(mEventIdx)) {
+        i_dComIfGp_getEvent().reset();
+
+        if (mNextEventIdx != -1) {
+            mAction = ACT_NEXT;
+            fopAcM_orderOtherEventId(this, mNextEventIdx, mMapToolID, -1, 0, 1);
+        } else {
+            mAction = ACT_WAIT;
+            mMapToolID = -1;
+        }
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 804D5A44-804D5B10 0002A4 00CC+00 1/1 0/0 0/0 .text            actionNext__10daAlldie_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlldie_c::actionNext() {
-    nofralloc
-#include "asm/rel/d/a/d_a_alldie/d_a_alldie/actionNext__10daAlldie_cFv.s"
+int daAlldie_c::actionNext() {
+    if (mEvtInfo.checkCommandDemoAccrpt()) {
+        mEventIdx = mNextEventIdx;
+        s8 roomNo = fopAcM_GetRoomNo(this);
+
+        mNextEventIdx = -1;
+        dStage_MapEvent_dt_c* map_evt = dEvt_control_c::searchMapEventData(mMapToolID, roomNo);
+
+        if (map_evt != NULL) {
+            mMapToolID = map_evt->field_0x5;
+            mNextEventIdx = i_dComIfGp_getEventManager().getEventIdx(this, mMapToolID);
+        } else {
+            mMapToolID = -1;
+        }
+
+        mAction = ACT_EVENT;
+        actionEvent();
+    } else {
+        fopAcM_orderOtherEventId(this, mNextEventIdx, mMapToolID, -1, 0, 1);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 804D5B10-804D5B8C 000370 007C+00 1/1 0/0 0/0 .text            execute__10daAlldie_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlldie_c::execute() {
-    nofralloc
-#include "asm/rel/d/a/d_a_alldie/d_a_alldie/execute__10daAlldie_cFv.s"
+int daAlldie_c::execute() {
+    switch (mAction) {
+    case ACT_CHECK:
+        actionCheck();
+        break;
+    case ACT_TIMER:
+        actionTimer();
+        break;
+    case ACT_ORDER:
+        actionOrder();
+        break;
+    case ACT_EVENT:
+        actionEvent();
+        break;
+    case ACT_NEXT:
+        actionNext();
+        break;
+    default:
+        actionWait();
+        break;
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 804D5B8C-804D5B94 0003EC 0008+00 1/0 0/0 0/0 .text            daAlldie_Draw__FP10daAlldie_c */
-static bool daAlldie_Draw(daAlldie_c* param_0) {
-    return true;
+static int daAlldie_Draw(daAlldie_c*) {
+    return 1;
 }
 
 /* 804D5B94-804D5BB8 0003F4 0024+00 1/0 0/0 0/0 .text            daAlldie_Execute__FP10daAlldie_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daAlldie_Execute(daAlldie_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_alldie/d_a_alldie/daAlldie_Execute__FP10daAlldie_c.s"
+static int daAlldie_Execute(daAlldie_c* i_this) {
+    i_this->execute();
+    return 1;
 }
-#pragma pop
 
 /* 804D5BB8-804D5BC0 000418 0008+00 1/0 0/0 0/0 .text            daAlldie_IsDelete__FP10daAlldie_c
  */
-static bool daAlldie_IsDelete(daAlldie_c* param_0) {
-    return true;
+static int daAlldie_IsDelete(daAlldie_c*) {
+    return 1;
 }
 
 /* 804D5BC0-804D5BF0 000420 0030+00 1/0 0/0 0/0 .text            daAlldie_Delete__FP10daAlldie_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daAlldie_Delete(daAlldie_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_alldie/d_a_alldie/daAlldie_Delete__FP10daAlldie_c.s"
+static int daAlldie_Delete(daAlldie_c* i_this) {
+    i_this->~daAlldie_c();
+    return 1;
 }
-#pragma pop
 
 /* 804D5BF0-804D5D1C 000450 012C+00 1/0 0/0 0/0 .text            daAlldie_Create__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daAlldie_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_alldie/d_a_alldie/daAlldie_Create__FP10fopAc_ac_c.s"
+int daAlldie_c::create() {
+    if (!fopAcM_CheckCondition(this, 8)) {
+        new (this) daAlldie_c();
+        fopAcM_OnCondition(this, 8);
+    }
+
+    s8 roomNo = fopAcM_GetRoomNo(this);
+
+    if (!dComIfGs_isSwitch(getSwbit(), roomNo)) {
+        mAction = ACT_CHECK;
+    } else {
+        mAction = ACT_WAIT;
+    }
+
+    mCollisionRot.z = 0;
+    mCollisionRot.x = 0;
+    current.angle.z = 0;
+    current.angle.x = 0;
+
+    mEventIdx = i_dComIfGp_getEventManager().getEventIdx(this, getEventNo());
+    mMapToolID = -1;
+    mNextEventIdx = -1;
+
+    dStage_MapEvent_dt_c* map_evt = dEvt_control_c::searchMapEventData(getEventNo(), roomNo);
+    if (map_evt != NULL) {
+        mMapToolID = map_evt->field_0x5;
+        mNextEventIdx = i_dComIfGp_getEventManager().getEventIdx(this, mMapToolID);
+    }
+
+    mEvtInfo.setEventId(mEventIdx);
+    mEvtInfo.setMapToolId(getEventNo());
+
+    return cPhs_COMPLEATE_e;
 }
-#pragma pop
+
+static int daAlldie_Create(fopAc_ac_c* i_this) {
+    return static_cast<daAlldie_c*>(i_this)->create();
+}
 
 /* ############################################################################################## */
 /* 804D5D24-804D5D44 -00001 0020+00 1/0 0/0 0/0 .data            l_daAlldie_Method */
 SECTION_DATA static void* l_daAlldie_Method[8] = {
-    (void*)daAlldie_Create__FP10fopAc_ac_c,
-    (void*)daAlldie_Delete__FP10daAlldie_c,
-    (void*)daAlldie_Execute__FP10daAlldie_c,
-    (void*)daAlldie_IsDelete__FP10daAlldie_c,
-    (void*)daAlldie_Draw__FP10daAlldie_c,
+    (void*)daAlldie_Create,
+    (void*)daAlldie_Delete,
+    (void*)daAlldie_Execute,
+    (void*)daAlldie_IsDelete,
+    (void*)daAlldie_Draw,
     (void*)NULL,
     (void*)NULL,
     (void*)NULL,

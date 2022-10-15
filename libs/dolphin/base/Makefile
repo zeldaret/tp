@@ -3,12 +3,14 @@
 #
 
 LIBBASE_A_CPP_FILES := \
-	libs/dolphin/base/PPCArch.cpp \
+	libs/dolphin/base/PPCArch.c \
 
 LIBBASE_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/base/PPCArch.o \
 
 LIBBASE_A_CFLAGS := \
+	-O4,p \
+	-lang=c \
 
 LIBBASE_A_LDFLAGS := \
 	-nodefaults \
@@ -16,14 +18,16 @@ LIBBASE_A_LDFLAGS := \
 	-proc gekko \
 	-linkmode moreram \
 
+$(BUILD_DIR)/libs/dolphin/base/PPCArch.o: MWCC_VERSION := 1.2.5
+
 $(BUILD_DIR)/libbase.a: $(LIBBASE_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libbase.a
 	@echo $(LIBBASE_A_O_FILES) > build/LIBBASE_A_ofiles
 	@$(LD) -xm l $(LIBBASE_A_LDFLAGS) -o $(BUILD_DIR)/libbase.a @build/LIBBASE_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/base/%.o: libs/dolphin/base/%.cpp
+$(BUILD_DIR)/libs/dolphin/base/%.o: libs/dolphin/base/%.c
 	@mkdir -p $(@D)
 	@echo building... $<
-	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBBASE_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
+	@$(CC) $(CFLAGS) $(LIBBASE_A_CFLAGS) -c -o $@ $(basename $@).c
 

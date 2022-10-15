@@ -42,13 +42,24 @@ void mDoAud_resetProcess();
 bool mDoAud_resetRecover();
 void mDoAud_setSceneName(char const* spot, s32 room, s32 layer);
 s32 mDoAud_load1stDynamicWave();
+static void mDoAud_setLinkGroupInfo(u8 param_0);
+static void mDoAud_setLinkHp(s32 param_0, s32 param_1);
+static void mDoAud_seStartLevel(u32 param_0, Vec const* param_1, u32 param_2, s8 param_3);
 
 inline void mDoAud_bgmSetSwordUsing(s32 id) {
     Z2AudioMgr::getInterface()->mSeqMgr.bgmSetSwordUsing(id);
 }
 
-inline void mDoAud_bgmStart(u32 id) {
-    Z2AudioMgr::getInterface()->mSeqMgr.bgmStart(id, 0, 0);
+inline void mDoAud_bgmStart(u32 i_bgmID) {
+    Z2AudioMgr::getInterface()->mSeqMgr.bgmStart(i_bgmID, 0, 0);
+}
+
+inline void mDoAud_subBgmStart(u32 i_bgmID) {
+    Z2AudioMgr::getInterface()->mSeqMgr.subBgmStart(i_bgmID);
+}
+
+inline void mDoAud_bgmNowBattle(f32 param_0) {
+    Z2AudioMgr::getInterface()->mSeqMgr.bgmNowBattle(param_0);
 }
 
 inline void mDoAud_bgmStreamPrepare(u32 param_0) {
@@ -75,13 +86,13 @@ inline void mDoAud_setInDarkness(bool state) {
     Z2AudioMgr::getInterface()->mSceneMgr.setInDarkness(state);
 }
 
-inline void mDoAud_seStart(u32 sfx_id, const Vec* param_1, u32 param_2, s8 param_3) {
-    Z2AudioMgr::getInterface()->mSeMgr.seStart(sfx_id, param_1, param_2, param_3, 1.0f, 1.0f, -1.0f,
+inline void mDoAud_seStart(u32 i_sfxID, const Vec* i_sePos, u32 param_2, s8 i_reverb) {
+    Z2AudioMgr::getInterface()->mSeMgr.seStart(i_sfxID, i_sePos, param_2, i_reverb, 1.0f, 1.0f, -1.0f,
                                                -1.0f, 0);
 }
 
-inline void i_mDoAud_seStartLevel(u32 sfx_id, const Vec* param_1, u32 param_2, s8 param_3) {
-    Z2AudioMgr::getInterface()->mSeMgr.seStartLevel(sfx_id, param_1, param_2, param_3, 1.0f, 1.0f,
+inline void i_mDoAud_seStartLevel(u32 i_sfxID, const Vec* i_sePos, u32 param_2, s8 i_reverb) {
+    Z2AudioMgr::getInterface()->mSeMgr.seStartLevel(i_sfxID, i_sePos, param_2, i_reverb, 1.0f, 1.0f,
                                                     -1.0f, -1.0f, 0);
 }
 

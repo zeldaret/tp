@@ -4,17 +4,17 @@ Ghidra Setup
 -----
 1. Install [Java 11 64-bit Runtime and Development Kit](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html).
 2. Download Ghidra from [here](https://github.com/NationalSecurityAgency/ghidra/releases).
-3. Request an account from Pheenoh#0001 on Discord (either ping him in one of the [Discord](https://discord.gg/Nshw5pHS4h) channels or DM directly).
+3. Open a pull request against [this repo](), adding your desired username and permissions level into users.yaml
 4. Login using the following server info:  
 
 ```
 Server: ghidra.tpgz.io
 Port: 13100
 Username: <your_username>
-Password: <your_password>
+Password: changeme
 ```
 
-After logging in you will see a list of all the Twilight Princess DOLs for each version.  
+You will be prompted to change your password at login. After logging in, you will see a list of all the Twilight Princess DOLs for each version.
 
 ![](./ghidra.png) 
 
