@@ -73,7 +73,7 @@ struct TParse_TParagraph_data : public TParseData_aligned<4> {
     };
 
     TParse_TParagraph_data(const void* content) : TParseData_aligned<4>(content) {}
-    /* 80289A80 */ void getData(TData*) const;
+    /* 80289A80 */ void getData(TData* pData) const;
 };
 
 // Parses a TObject ("demo object")

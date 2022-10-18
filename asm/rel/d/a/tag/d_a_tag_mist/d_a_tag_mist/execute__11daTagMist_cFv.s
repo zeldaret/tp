@@ -69,8 +69,8 @@ lbl_8048F63C:
 /* 8048F65C  4B FF FC 69 */	bl onMySw__11daTagMist_cFv
 /* 8048F660  80 1F 00 B0 */	lwz r0, 0xb0(r31)
 /* 8048F664  54 00 46 BE */	rlwinm r0, r0, 8, 0x1a, 0x1f
-/* 8048F668  3C 60 80 45 */	lis r3, struct_80450DC0+0x0@ha /* 0x80450DC0@ha */
-/* 8048F66C  98 03 0D C0 */	stb r0, struct_80450DC0+0x0@l(r3)  /* 0x80450DC0@l */
+/* 8048F668  3C 60 80 45 */	lis r3, mPlayerNo__11daTagMist_c+0x0@ha /* 0x80450DC0@ha */
+/* 8048F66C  98 03 0D C0 */	stb r0, mPlayerNo__11daTagMist_c+0x0@l(r3)  /* 0x80450DC0@l */
 lbl_8048F670:
 /* 8048F670  9B DF 05 A0 */	stb r30, 0x5a0(r31)
 /* 8048F674  38 60 00 01 */	li r3, 1

@@ -11,28 +11,28 @@
 // Forward References:
 //
 
-extern "C" void PPCMfmsr();
-extern "C" void PPCMtmsr();
-extern "C" void PPCMfhid0();
-extern "C" void PPCMthid0();
-extern "C" void PPCMfl2cr();
-extern "C" void PPCMtl2cr();
-extern "C" void PPCMtdec();
-extern "C" void PPCSync();
-extern "C" void PPCHalt();
-extern "C" void PPCMtmmcr0();
-extern "C" void PPCMtmmcr1();
-extern "C" void PPCMtpmc1();
-extern "C" void PPCMtpmc2();
-extern "C" void PPCMtpmc3();
-extern "C" void PPCMtpmc4();
-extern "C" void PPCMffpscr();
-extern "C" void PPCMtfpscr();
-extern "C" void PPCMfhid2();
-extern "C" void PPCMthid2();
-extern "C" void PPCMtwpar();
-extern "C" void PPCDisableSpeculation();
-extern "C" void PPCSetFpNonIEEEMode();
+extern void PPCMfmsr();
+extern void PPCMtmsr();
+extern void PPCMfhid0();
+extern void PPCMthid0();
+extern void PPCMfl2cr();
+extern void PPCMtl2cr();
+extern void PPCMtdec();
+extern void PPCSync();
+extern void PPCHalt();
+extern void PPCMtmmcr0();
+extern void PPCMtmmcr1();
+extern void PPCMtpmc1();
+extern void PPCMtpmc2();
+extern void PPCMtpmc3();
+extern void PPCMtpmc4();
+extern u32 PPCMffpscr();
+extern void PPCMtfpscr();
+extern void PPCMfhid2();
+extern void PPCMthid2();
+extern void PPCMtwpar();
+extern void PPCDisableSpeculation();
+extern void PPCSetFpNonIEEEMode();
 
 //
 // External References:
@@ -115,14 +115,17 @@ asm void PPCSync() {
 }
 
 /* 80339D00-80339D14 334640 0014+00 0/0 7/7 0/0 .text            PPCHalt */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void PPCHalt() {
+asm void PPCHalt(void) {
+	// clang-format off
     nofralloc
-#include "asm/dolphin/base/PPCArch/PPCHalt.s"
+    sync
+_spin:
+    nop
+    li r3, 0
+    nop
+    b _spin
+	// clang-format on
 }
-#pragma pop
 
 /* 80339D14-80339D1C -00001 0008+00 0/0 0/0 0/0 .text            PPCMtmmcr0 */
 asm void PPCMtmmcr0() {
@@ -182,7 +185,7 @@ asm void PPCMtpmc4() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PPCMffpscr() {
+asm u32 PPCMffpscr() {
     nofralloc
 #include "asm/dolphin/base/PPCArch/PPCMffpscr.s"
 }

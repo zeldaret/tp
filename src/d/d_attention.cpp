@@ -4,6 +4,8 @@
 //
 
 #include "d/d_attention.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
@@ -11,10 +13,6 @@
 //
 // Types:
 //
-
-struct mDoCPd_c {
-    static u8 m_cpadInfo[256];
-};
 
 class dAttDrawParam_c {
 public:
@@ -30,7 +28,6 @@ public:
 // Forward References:
 //
 
-extern "C" static void func_80070018();
 extern "C" void __ct__11dAttParam_cFl();
 extern "C" void __dt__11dAttParam_cFv();
 extern "C" void __ct__15dAttDrawParam_cFv();
@@ -171,8 +168,6 @@ extern "C" extern void* __vt__25mDoExt_McaMorfCallBack1_c[3];
 extern "C" u8 dist_table__12dAttention_c[6552];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 data_80450F58[8];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
@@ -181,14 +176,11 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 /* 80070018-80070038 06A958 0020+00 2/2 0/0 0/0 .text padLockButton__25@unnamed@d_attention_cpp@Fl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_80070018() {
-    nofralloc
-#include "asm/d/d_attention/func_80070018.s"
+namespace {
+static bool padLockButton(s32 i_padNo) {
+    return mDoCPd_c::getHoldLockL(i_padNo) != 0;
 }
-#pragma pop
+}  // namespace
 
 /* ############################################################################################## */
 /* 8037A770-8037A770 006DD0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -198,26 +190,25 @@ SECTION_DEAD static char const* const stringBase_8037A770 = "D_MN09B";
 #pragma pop
 
 /* 803A9BF8-803A9C04 006D18 000C+00 2/2 0/0 0/0 .data            loc_type_tbl__12dAttention_c */
-SECTION_DATA u8 dAttention_c::loc_type_tbl[12] = {
-    0x00, 0x00, 0x00, 0x01, 0x00, 0x01, 0x00, 0x02, 0x00, 0x02, 0x00, 0x04,
+SECTION_DATA type_tbl_entry dAttention_c::loc_type_tbl[3] = {
+    {0, 1},
+    {1, 2},
+    {2, 4},
 };
 
 /* 803A9C04-803A9C18 006D24 0014+00 1/1 0/0 0/0 .data            act_type_tbl__12dAttention_c */
-SECTION_DATA u8 dAttention_c::act_type_tbl[20] = {
-    0x00, 0x03, 0x00, 0x08, 0x00, 0x04, 0x00, 0x10, 0x00, 0x05,
-    0x00, 0x20, 0x00, 0x06, 0x00, 0x40, 0x00, 0x07, 0x00, 0x80,
+SECTION_DATA type_tbl_entry dAttention_c::act_type_tbl[5] = {
+    {3, 8}, {4, 16}, {5, 32}, {6, 64}, {7, 128},
 };
 
 /* 803A9C18-803A9C3C 006D38 0024+00 1/1 0/0 0/0 .data            ftp_table$4417 */
-SECTION_DATA static u8 ftp_table[36] = {
-    0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02,
-    0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x20,
-    0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0x80, 0x00, 0x00, 0x01, 0x00,
+SECTION_DATA static int ftp_table[9] = {
+    4, 1, 2, 8, 16, 32, 64, 128, 256,
 };
 
 /* 803A9C3C-803A9C48 006D5C 000C+00 1/1 0/0 0/0 .data            ang_table2$4419 */
-SECTION_DATA static u8 ang_table2[12] = {
-    0x0A, 0xAA, 0x20, 0x00, 0x2A, 0xAA, 0x40, 0x00, 0x4E, 0x38, 0x60, 0x00,
+SECTION_DATA static s16 ang_table2[6] = {
+    0x0AAA, 0x2000, 0x2AAA, 0x4000, 0x4E38, 0x6000,
 };
 
 /* 803A9C48-803A9C54 006D68 000C+00 1/1 1/1 0/0 .data            __vt__19dAttDraw_CallBack_c */
@@ -287,45 +278,60 @@ SECTION_SDATA2 static f32 lit_4072 = 17.0f / 10.0f;
 /* 80452658-8045265C 000C58 0004+00 10/10 0/0 0/0 .sdata2          @4073 */
 SECTION_SDATA2 static f32 lit_4073 = 1.0f;
 
+/* ############################################################################################## */
+/* 80450F58-80450F60 000458 0008+00 0/0 2/2 0/0 .sbss            None */
+extern bool on_final_boss_stg;
+bool on_final_boss_stg;
+
 /* 80070038-80070110 06A978 00D8+00 1/1 0/0 0/0 .text            __ct__11dAttParam_cFl */
+// matches with literals
+#ifdef NONMATCHING
+dAttParam_c::dAttParam_c(s32 param_0) {
+    field_0x4 = 45.0f;
+    field_0x8 = 30.0f;
+    field_0xc = 90.0f;
+    mFlags = 1;
+    mSWModeDisable = -0.9f;
+
+    mDangerBGMDistance = 3000.0f;
+    mBGMDistMargin = 1000.0f;
+
+    mSelCursorScaleX = 6.0f;
+    mSelCursorScaleY = 4.5f;
+
+    mAttnCursorScaleX = 14.0f;
+    mAttnCursorScaleY = 14.0f;
+
+    mSelCursorOffsetY = 10.0f;
+    mAttnCursorOffsetY = 0.0f;
+
+    mAttnCursorAppearFrames = 1;
+    mAttnCursorDisappearFrames = 1;
+
+    field_0x38 = 1.7f;
+    field_0x3c = 1.0f;
+
+    on_final_boss_stg = strcmp(dComIfGp_getStartStageName(), "D_MN09B") == 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-// asm dAttParam_c::dAttParam_c(s32 param_0) {
-extern "C" asm void __ct__11dAttParam_cFl() {
+asm dAttParam_c::dAttParam_c(s32 param_0) {
     nofralloc
 #include "asm/d/d_attention/__ct__11dAttParam_cFl.s"
 }
 #pragma pop
+#endif
 
 /* 80070110-80070158 06AA50 0048+00 2/1 0/0 0/0 .text            __dt__11dAttParam_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dAttParam_c::~dAttParam_c() {
-extern "C" asm void __dt__11dAttParam_cFv() {
-    nofralloc
-#include "asm/d/d_attention/__dt__11dAttParam_cFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 8045265C-80452660 000C5C 0004+00 1/1 0/0 0/0 .sdata2          @4084 */
-SECTION_SDATA2 static f32 lit_4084 = 250.0f;
-
-/* 80452660-80452664 000C60 0004+00 1/1 0/0 0/0 .sdata2          @4085 */
-SECTION_SDATA2 static f32 lit_4085 = 2.0f;
+dAttParam_c::~dAttParam_c() {}
 
 /* 80070158-80070178 06AA98 0020+00 1/1 0/0 0/0 .text            __ct__15dAttDrawParam_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dAttDrawParam_c::dAttDrawParam_c() {
-extern "C" asm void __ct__15dAttDrawParam_cFv() {
-    nofralloc
-#include "asm/d/d_attention/__ct__15dAttDrawParam_cFv.s"
+dAttDrawParam_c::dAttDrawParam_c() {
+    mCursorDistance = 250.0f;
+    field_0xc = 2.0f;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80452664-80452668 000C64 0004+00 1/1 0/0 0/0 .sdata2          @4092 */
@@ -356,6 +362,105 @@ SECTION_DEAD static char const* const pad_8037A77F = "";
 static dAttDrawParam_c g_AttDwHIO;
 
 /* 80070198-80070774 06AAD8 05DC+00 0/0 1/1 0/0 .text __ct__12dAttention_cFP10fopAc_ac_cUl */
+// matches with literals
+#ifdef NONMATCHING
+dAttention_c::dAttention_c(fopAc_ac_c* i_player, u32 i_padNo) {
+    mpPlayer = i_player;
+    mPadNo = i_padNo;
+
+    mLockTargetID = -1;
+    field_0x32e = 0;
+    field_0x32f = 0;
+
+    mCheckObjectOffset = 0;
+    mActionOffset = 0;
+    mLockOnOffset = 0;
+    initList(-1);
+
+    field_0x10 = 0;
+    field_0x32a = 0;
+    mAttnStatus = ST_NONE;
+    field_0x32b = 4;
+    field_0x32c = 0;
+    mAttnBlockTimer = 0;
+
+    heap = mDoExt_createSolidHeapFromGameToCurrent(0x9000, 0);
+
+    J3DModelData* modelDataR = (J3DModelData*)dComIfG_getObjectRes("Always", 0x25);
+    J3DModelData* modelDataY = (J3DModelData*)dComIfG_getObjectRes("Always", 0x26);
+
+    for (int i = 0; i < 2; i++) {
+        draw[i].mModel[0] = mDoExt_J3DModel__create(modelDataY, 0x80000, 0x11000285);
+        draw[i].mModel[1] = mDoExt_J3DModel__create(modelDataR, 0x80000, 0x11000285);
+
+        void* res = dComIfG_getObjectRes("Always", 0x11);
+        draw[i].mNoticeCursorBck[0].init((J3DAnmTransform*)res, TRUE, 2, 1.0f, 0, -1, false);
+
+        res = dComIfG_getObjectRes("Always", 0x2B);
+        draw[i].mNoticeCursorBpk[0].init(modelDataY, (J3DAnmColor*)res, TRUE, 2, 1.0f, 0, -1);
+
+        res = dComIfG_getObjectRes("Always", 0x37);
+        draw[i].mNoticeCursorBrk[0].init(modelDataY, (J3DAnmTevRegKey*)res, TRUE, 2, 1.0f, 0, -1);
+
+        res = dComIfG_getObjectRes("Always", 0x3F);
+        draw[i].mNoticeCursorBtk[0].init(modelDataY, (J3DAnmTextureSRTKey*)res, TRUE, 2, 1.0f, 0,
+                                         -1);
+
+        res = dComIfG_getObjectRes("Always", 0x38);
+        draw[i].mNoticeCursor02Brk[0].init(modelDataY, (J3DAnmTevRegKey*)res, TRUE, 2, 1.0f, 0, -1);
+
+        res = dComIfG_getObjectRes("Always", 0x10);
+        draw[i].mNoticeCursorBck[1].init((J3DAnmTransform*)res, TRUE, 2, 1.0f, 0, -1, false);
+
+        res = dComIfG_getObjectRes("Always", 0x2A);
+        draw[i].mNoticeCursorBpk[1].init(modelDataR, (J3DAnmColor*)res, TRUE, 2, 1.0f, 0, -1);
+
+        res = dComIfG_getObjectRes("Always", 0x35);
+        draw[i].mNoticeCursorBrk[1].init(modelDataR, (J3DAnmTevRegKey*)res, TRUE, 2, 1.0f, 0, -1);
+
+        res = dComIfG_getObjectRes("Always", 0x3E);
+        draw[i].mNoticeCursorBtk[1].init(modelDataR, (J3DAnmTextureSRTKey*)res, TRUE, 2, 1.0f, 0,
+                                         -1);
+
+        res = dComIfG_getObjectRes("Always", 0x36);
+        draw[i].mNoticeCursor02Brk[1].init(modelDataR, (J3DAnmTevRegKey*)res, TRUE, 2, 1.0f, 0, -1);
+
+        res = dComIfG_getObjectRes("Always", 0xC);
+        draw[i].mImpactBck.init((J3DAnmTransform*)res, TRUE, 0, 1.0f, 0, -1, false);
+
+        res = dComIfG_getObjectRes("Always", 0x29);
+        draw[i].mImpactBpk.init(modelDataR, (J3DAnmColor*)res, TRUE, 0, 1.0f, 0, -1);
+
+        res = dComIfG_getObjectRes("Always", 0x32);
+        draw[i].mImpactBrk.init(modelDataR, (J3DAnmTevRegKey*)res, TRUE, 0, 1.0f, 0, -1);
+
+        res = dComIfG_getObjectRes("Always", 0x3D);
+        draw[i].mImpactBtk.init(modelDataR, (J3DAnmTextureSRTKey*)res, TRUE, 0, 1.0f, 0, -1);
+
+        draw[i].field_0x170 = 0;
+        draw[i].field_0x171 = 1;
+        draw[i].field_0x172 = 0;
+        draw[i].field_0x174 = 1;
+        draw[i].field_0x173 = 2;
+        draw[i].field_0x175 = 0;
+    }
+
+    mDoExt_restoreCurrentHeap();
+    if ((int)mDoExt_adjustSolidHeap(heap) >= 0) {
+        DCStoreRangeNoSync(heap->getStartAddr(), heap->getHeapSize());
+    }
+
+    field_0x328 = -1;
+    mFlags = 0;
+
+    mZHintTarget.init();
+    mCatghTarget.init();
+    mLookTarget.init();
+    new (&mAttParam) dAttParam_c(0);
+
+    g_AttDwHIO.field_0x4 = -1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -364,106 +469,171 @@ asm dAttention_c::dAttention_c(fopAc_ac_c* param_0, u32 param_1) {
 #include "asm/d/d_attention/__ct__12dAttention_cFP10fopAc_ac_cUl.s"
 }
 #pragma pop
+#endif
 
 /* 80070774-80070844 06B0B4 00D0+00 0/0 2/2 0/0 .text            __dt__12dAttention_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dAttention_c::~dAttention_c() {
-    nofralloc
-#include "asm/d/d_attention/__dt__12dAttention_cFv.s"
+dAttention_c::~dAttention_c() {
+    if (heap != NULL) {
+        mDoExt_destroySolidHeap(heap);
+        heap = NULL;
+    }
 }
-#pragma pop
 
 /* 80070844-80070880 06B184 003C+00 2/2 2/2 8/8 .text            GetLockonList__12dAttention_cFl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::GetLockonList(s32 param_0) {
-    nofralloc
-#include "asm/d/d_attention/GetLockonList__12dAttention_cFl.s"
+dAttList_c* dAttention_c::GetLockonList(s32 param_0) {
+    if (mLockonCount != 0) {
+        return &mLockOnList[(mLockOnOffset + param_0) % mLockonCount];
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 80070880-80070974 06B1C0 00F4+00 0/0 5/5 2/2 .text            getActionBtnB__12dAttention_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::getActionBtnB() {
-    nofralloc
-#include "asm/d/d_attention/getActionBtnB__12dAttention_cFv.s"
+dAttList_c* dAttention_c::getActionBtnB() {
+    int i;
+    dAttList_c* list = GetLockonList(0);
+
+    if (list != NULL && list->getActor() != NULL && list->mType == 1 && LockonTruth() &&
+        !(list->getActor()->mAttentionInfo.mFlags & 0x2000000)) {
+        return list;
+    }
+
+    if (mActionCount == 0) {
+        return NULL;
+    }
+
+    for (i = 0; i < mActionCount; i++) {
+        if (mActionList[i].mType == 3) {
+            if (!(mActionList[i].getActor()->mAttentionInfo.mFlags & 0x2000000)) {
+                return &mActionList[i];
+            }
+            continue;
+        }
+        return &mActionList[i];
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 80070974-80070A70 06B2B4 00FC+00 0/0 1/1 0/0 .text            getActionBtnXY__12dAttention_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::getActionBtnXY() {
-    nofralloc
-#include "asm/d/d_attention/getActionBtnXY__12dAttention_cFv.s"
+dAttList_c* dAttention_c::getActionBtnXY() {
+    int i;
+    dAttList_c* list = GetLockonList(0);
+
+    if (list != NULL && list->getActor() != NULL && list->mType == 1 && LockonTruth()) {
+        if (list->getActor()->mEvtInfo.chkCondition(0x20)) {
+            return list;
+        }
+
+        return NULL;
+    }
+
+    if (mActionCount == 0) {
+        return NULL;
+    }
+
+    for (i = 0; i < mActionCount; i++) {
+        if (mActionList[i].mType == 3) {
+            if (mActionList[i].getActor()->mEvtInfo.chkCondition(0x20)) {
+                return &mActionList[i];
+            }
+        }
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450660-80450664 0000E0 0004+00 2/2 0/0 0/0 .sdata           loc_type_num__12dAttention_c */
-SECTION_SDATA u32 dAttention_c::loc_type_num = 0x00000003;
+SECTION_SDATA int dAttention_c::loc_type_num = 3;
 
 /* 80070A70-80070AC0 06B3B0 0050+00 1/1 0/0 0/0 .text            chkAttMask__12dAttention_cFUlUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::chkAttMask(u32 param_0, u32 param_1) {
-    nofralloc
-#include "asm/d/d_attention/chkAttMask__12dAttention_cFUlUl.s"
+int dAttention_c::chkAttMask(u32 param_0, u32 param_1) {
+    for (int i = 0; i < loc_type_num; i++) {
+        if (param_0 == loc_type_tbl[i].field_0x0) {
+            return param_1 & loc_type_tbl[i].field_0x2;
+        }
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 80070AC0-80070B2C 06B400 006C+00 2/2 0/0 0/0 .text            check_event_condition__FUlUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void check_event_condition(u32 param_0, u16 param_1) {
-    nofralloc
-#include "asm/d/d_attention/check_event_condition__FUlUs.s"
+static int check_event_condition(u32 i_listType, u16 i_condition) {
+    switch (i_listType) {
+    case 3:
+    case 1:
+        if (!(i_condition & 1)) {
+            return true;
+        }
+        break;
+    case 4:
+    case 2:
+        break;
+    case 5:
+        if (!(i_condition & 4)) {
+            return true;
+        }
+        break;
+    case 6:
+        if (!(i_condition & 4)) {
+            return true;
+        }
+        break;
+    }
+
+    return false;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450664-80450668 0000E4 0004+00 1/1 0/0 0/0 .sdata           act_type_num__12dAttention_c */
-SECTION_SDATA u32 dAttention_c::act_type_num = 0x00000005;
+SECTION_SDATA int dAttention_c::act_type_num = 5;
 
 /* 80450668-8045066C 0000E8 0004+00 1/1 0/0 0/0 .sdata           chk_type_tbl__12dAttention_c */
-SECTION_SDATA u32 dAttention_c::chk_type_tbl = 0x00080100;
-
-/* 8045066C-80450670 0000EC 0004+00 1/1 0/0 0/0 .sdata           chk_type_num__12dAttention_c */
-SECTION_SDATA u32 dAttention_c::chk_type_num = 0x00000001;
-
-/* 80450670-80450674 0000F0 0004+00 2/2 0/0 0/0 .sdata           None */
-SECTION_SDATA static u32 data_80450670 = 0x01000000;
-
-/* 80450674-8045067C 0000F4 0006+02 1/1 0/0 0/0 .sdata           ang_table$4418 */
-SECTION_SDATA static u8 ang_table[6 + 2 /* padding */] = {
-    0x40,
-    0x00,
-    0x20,
-    0x00,
-    0x0A,
-    0xAA,
-    /* padding */
-    0x00,
-    0x00,
+SECTION_SDATA type_tbl_entry dAttention_c::chk_type_tbl[1] = {
+    {8, 256},
 };
 
+/* 8045066C-80450670 0000EC 0004+00 1/1 0/0 0/0 .sdata           chk_type_num__12dAttention_c */
+SECTION_SDATA int dAttention_c::chk_type_num = 1;
+
+/* 80450670-80450674 0000F0 0004+00 2/2 0/0 0/0 .sdata           None */
+SECTION_SDATA static bool attn_opt_hold = true;
+
 /* 80070B2C-80070BF4 06B46C 00C8+00 2/2 0/0 0/0 .text            check_flontofplayer__FUlss */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void check_flontofplayer(u32 param_0, s16 param_1, s16 param_2) {
-    nofralloc
-#include "asm/d/d_attention/check_flontofplayer__FUlss.s"
+static int check_flontofplayer(u32 param_0, s16 param_1, s16 param_2) {
+    static s16 ang_table[3] = {
+        0x4000,
+        0x2000,
+        0x0AAA,
+    };
+
+    if (param_1 < 0) {
+        param_1 = -param_1;
+    }
+
+    if (param_2 < 0) {
+        param_2 = -param_2;
+    }
+
+    for (int i = 0; i < 3; i++) {
+        if (param_0 & ftp_table[i]) {
+            if (param_1 > ang_table[i]) {
+                return true;
+            }
+        }
+    }
+
+    for (int i = 8; i > 2; i--) {
+        if (param_0 & ftp_table[i]) {
+            if (param_2 > ang_table2[i - 3]) {
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80452668-80452670 000C68 0004+04 2/2 0/0 0/0 .sdata2          @4448 */
@@ -477,24 +647,44 @@ SECTION_SDATA2 static f32 lit_4448[1 + 1 /* padding */] = {
 SECTION_SDATA2 static f64 lit_4450 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80070BF4-80070C40 06B534 004C+00 2/2 0/0 0/0 .text            distace_weight__Ffsf */
+// matches with literals
+#ifdef NONMATCHING
+static f32 distace_weight(f32 param_0, s16 param_1, f32 param_2) {
+    f32 tmp = param_1 / 32768.0f;
+    return param_0 * ((1.0f - param_2) + (param_2 * (tmp * tmp)));
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void distace_weight(f32 param_0, s16 param_1, f32 param_2) {
+static asm f32 distace_weight(f32 param_0, s16 param_1, f32 param_2) {
     nofralloc
 #include "asm/d/d_attention/distace_weight__Ffsf.s"
 }
 #pragma pop
+#endif
 
 /* 80070C40-80070CA0 06B580 0060+00 2/2 0/0 0/0 .text            distace_angle_adjust__Ffsf */
+// matches with literals
+#ifdef NONMATCHING
+static f32 distace_angle_adjust(f32 param_0, s16 param_1, f32 param_2) {
+    f32 tmp = param_1 / 32768.0f;
+    if (tmp < 0.0f) {
+        tmp = -tmp;
+    }
+
+    return param_0 * ((1.0f - param_2) + (param_2 * ((1.0f - tmp) * (1.0f - tmp))));
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void distace_angle_adjust(f32 param_0, s16 param_1, f32 param_2) {
+static asm f32 distace_angle_adjust(f32 param_0, s16 param_1, f32 param_2) {
     nofralloc
 #include "asm/d/d_attention/distace_angle_adjust__Ffsf.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80452678-80452680 000C78 0008+00 3/3 0/0 0/0 .sdata2          @4514 */
@@ -510,15 +700,34 @@ SECTION_SDATA2 static u8 lit_4516[8] = {
 
 /* 80070CA0-80070E90 06B5E0 01F0+00 3/3 0/0 0/0 .text            check_distace__FP4cXyzsP4cXyzffff
  */
+// matches with literals
+#ifdef NONMATCHING
+static bool check_distace(cXyz* param_0, s16 param_1, cXyz* param_2, f32 param_3, f32 param_4,
+                          f32 param_5, f32 param_6) {
+    cXyz tmp = *param_2 - *param_0;
+
+    if (tmp.y <= param_6 || tmp.y >= param_5) {
+        return false;
+    }
+
+    f32 adjust = param_3 + distace_angle_adjust(param_4, param_1, 1.0f);
+    if (adjust < tmp.absXZ()) {
+        return false;
+    }
+
+    return true;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void check_distace(cXyz* param_0, s16 param_1, cXyz* param_2, f32 param_3, f32 param_4,
-                              f32 param_5, f32 param_6) {
+static asm int check_distace(cXyz* param_0, s16 param_1, cXyz* param_2, f32 param_3, f32 param_4,
+                             f32 param_5, f32 param_6) {
     nofralloc
 #include "asm/d/d_attention/check_distace__FP4cXyzsP4cXyzffff.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80452690-80452694 000C90 0004+00 3/3 0/0 0/0 .sdata2          @4562 */
@@ -529,18 +738,152 @@ SECTION_SDATA2 static f32 lit_4563 = 0.5f;
 
 /* 80070E90-800710C0 06B7D0 0230+00 2/2 0/0 0/0 .text
  * calcWeight__12dAttention_cFiP10fopAc_ac_cfssPUl              */
+// matches with literals
+#ifdef NONMATCHING
+f32 dAttention_c::calcWeight(int param_0, fopAc_ac_c* param_1, f32 param_2, s16 param_3,
+                             s16 param_4, u32* param_5) {
+    int i;
+    int num;
+    type_tbl_entry* table;
+
+    switch (param_0) {
+    case 0x4C:
+        if (chkFlag(0x4000)) {
+            return 0.0f;
+        }
+
+        num = loc_type_num;
+        table = loc_type_tbl;
+        break;
+    default:
+    case 0x41:
+        num = act_type_num;
+        table = act_type_tbl;
+        break;
+    case 0x43:
+        num = chk_type_num;
+        table = chk_type_tbl;
+        break;
+    }
+
+    f32 weight = 0.0f;
+    f32 dvar14 = -1.0f;
+
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    if (player != NULL) {
+        if (param_1 == fopAcM_SearchByID(player->getGrabActorID())) {
+            return 0.0f;
+        }
+    }
+
+    for (i = 0; i < num; i++) {
+        f32 dvar12;
+        type_tbl_entry* entry = &table[i];
+
+        if (field_0x10 & entry->field_0x2 & param_1->mAttentionInfo.mFlags) {
+            u8 index = param_1->mAttentionInfo.field_0x0[entry->field_0x0];
+            dist_entry* d_entry = &dist_table[index];
+
+            if (fopAcM_checkStatus(param_1, 0x20000000) ||
+                check_event_condition(entry->field_0x0, param_1->mEvtInfo.getCondition())) {
+                dvar12 = 0.0f;
+            } else if (check_flontofplayer(d_entry->field_0x18, param_3, param_4)) {
+                dvar12 = 0.0f;
+            } else if (!check_distace(&mOwnerAttnPos, param_3, &param_1->mAttentionInfo.mPosition,
+                                      d_entry->field_0x0, d_entry->field_0x8, d_entry->field_0xc,
+                                      d_entry->field_0x10)) {
+                dvar12 = 0.0f;
+            } else {
+                dvar12 = distace_weight(param_2, param_3, 0.5f);
+            }
+
+            f32 dvar13 = d_entry->field_0x14;
+            if (dvar12 > 0.0f && dvar13 > dvar14) {
+                dvar14 = dvar13;
+                weight = dvar12 / dvar13;
+                *param_5 = entry->field_0x0;
+            }
+        }
+    }
+
+    return weight;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dAttention_c::calcWeight(int param_0, fopAc_ac_c* param_1, f32 param_2, s16 param_3,
-                                  s16 param_4, u32* param_5) {
+asm f32 dAttention_c::calcWeight(int param_0, fopAc_ac_c* param_1, f32 param_2, s16 param_3,
+                                 s16 param_4, u32* param_5) {
     nofralloc
 #include "asm/d/d_attention/calcWeight__12dAttention_cFiP10fopAc_ac_cfssPUl.s"
 }
 #pragma pop
+#endif
 
 /* 800710C0-80071240 06BA00 0180+00 1/1 0/0 0/0 .text
  * setList__12dAttention_cFiP10fopAc_ac_cff7cSAngleUl           */
+#ifdef NONMATCHING
+void dAttention_c::setList(int param_0, fopAc_ac_c* param_1, f32 param_2, f32 param_3,
+                           cSAngle param_4, u32 param_5) {
+    int i;
+    int max;
+    int* num;
+    dAttList_c* list;
+
+    switch (param_0) {
+    case 0x4C:
+        if (!chkFlag(0x4000) && (mLockonCount < 1 || param_1 != mLockOnList[0].getActor() || param_5 != mLockOnList[0].mType)) {
+            max = 8;
+            num = &mLockonCount;
+            list = mLockOnList;
+            break;
+        }
+
+        return;
+    default:
+    case 0x41:
+        max = 4;
+        num = &mActionCount;
+        list = mActionList;
+        break;
+    case 0x43:
+        max = 4;
+        num = &mCheckObjectCount;
+        list = mCheckObjectList;
+        break;
+    }
+
+    f32 weight = 0.0f;
+
+    if (param_2 > weight) {
+        int temp_r3 = *num;
+        int var_r5;
+
+        if (temp_r3 < max) {
+            var_r5 = temp_r3;
+            *num = temp_r3 + 1;
+        } else {
+            f32 var_f1 = weight;
+            var_r5 = 0;
+            for (i = 0; i < max; i++) {
+                if (list[i].mWeight > var_f1) {
+                    var_f1 = list[i].mWeight;
+                    var_r5 = i;
+                }
+            }
+        }
+
+        list = &list[var_r5];
+        if (list->mWeight > param_2) {
+            list->setActor(param_1);
+            list->mWeight = param_2;
+            list->mDistance = param_3;
+            list->mAngle = param_4;
+            list->mType = param_5;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -550,6 +893,7 @@ asm void dAttention_c::setList(int param_0, fopAc_ac_c* param_1, f32 param_2, f3
 #include "asm/d/d_attention/setList__12dAttention_cFiP10fopAc_ac_cff7cSAngleUl.s"
 }
 #pragma pop
+#endif
 
 /* 80071240-8007138C 06BB80 014C+00 6/6 0/0 0/0 .text            initList__12dAttention_cFUl */
 #pragma push
@@ -563,41 +907,36 @@ asm void dAttention_c::initList(u32 param_0) {
 
 /* 8007138C-800713CC 06BCCC 0040+00 1/1 0/0 0/0 .text            select_attention__FP10fopAc_ac_cPv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void select_attention(fopAc_ac_c* param_0, void* param_1) {
-    nofralloc
-#include "asm/d/d_attention/select_attention__FP10fopAc_ac_cPv.s"
+static int select_attention(fopAc_ac_c* param_0, void* i_attention) {
+    if (param_0->mAttentionInfo.mFlags == 0) {
+        return 0;
+    }
+
+    return ((dAttention_c*)i_attention)->SelectAttention(param_0);
 }
-#pragma pop
 
 /* 800713CC-80071424 06BD0C 0058+00 4/4 0/0 0/0 .text            makeList__12dAttention_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::makeList() {
-    nofralloc
-#include "asm/d/d_attention/makeList__12dAttention_cFv.s"
+int dAttention_c::makeList() {
+    fopAcIt_Executor((fopAcIt_ExecutorFunc)select_attention, this);
+    setFlag(0x2000);
+    return mLockonCount + mActionCount + mCheckObjectCount;
 }
-#pragma pop
 
 /* 80071424-80071488 06BD64 0064+00 1/1 0/0 0/0 .text setOwnerAttentionPos__12dAttention_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::setOwnerAttentionPos() {
-    nofralloc
-#include "asm/d/d_attention/setOwnerAttentionPos__12dAttention_cFv.s"
+void dAttention_c::setOwnerAttentionPos() {
+    mOwnerAttnPos = mpPlayer->mAttentionInfo.mPosition;
+
+    if (fopAcM_GetName(mpPlayer) == PROC_ALINK) {
+        mOwnerAttnPos.y -= ((daPy_py_c*)mpPlayer)->getAttentionOffsetY();
+    }
 }
-#pragma pop
 
 /* 80071488-8007167C 06BDC8 01F4+00 1/1 0/0 0/0 .text
  * SelectAttention__12dAttention_cFP10fopAc_ac_c                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dAttention_c::SelectAttention(fopAc_ac_c* param_0) {
+asm int dAttention_c::SelectAttention(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/d/d_attention/SelectAttention__12dAttention_cFP10fopAc_ac_c.s"
 }
@@ -614,6 +953,52 @@ extern "C" asm void __dt__7cSGlobeFv() {
 #pragma pop
 
 /* 800716B8-800718A4 06BFF8 01EC+00 4/4 0/0 0/0 .text            sortList__12dAttention_cFv */
+#ifdef NONMATCHING
+void dAttention_c::sortList() {
+    dAttList_c list;
+
+    if (!chkFlag(0x4000)) {
+        for (int i = (mLockTargetID != -1); i < mLockonCount - 1; i++) {
+            dAttList_c* list_1 = &mLockOnList[i];
+            for (int j = i + 1; j < mLockonCount; j++) {
+                dAttList_c* list_2 = &mLockOnList[j];
+
+                if (list_2->mWeight < list_1->mWeight) {
+                    memcpy(&list, list_2, sizeof(dAttList_c));
+                    memcpy(list_2, list_1, sizeof(dAttList_c));
+                    memcpy(list_1, &list, sizeof(dAttList_c));
+                }
+            }
+        }
+    }
+
+    for (int i = 0; i < mActionCount - 1; i++) {
+        dAttList_c* list_1 = &mActionList[i];
+        for (int j = i + 1; j < mActionCount; j++) {
+            dAttList_c* list_2 = &mActionList[j];
+
+            if (list_2->mWeight < list_1->mWeight) {
+                memcpy(&list, list_2, sizeof(dAttList_c));
+                memcpy(list_2, list_1, sizeof(dAttList_c));
+                memcpy(list_1, &list, sizeof(dAttList_c));
+            }
+        }
+    }
+
+    for (int i = 0; i < mCheckObjectCount - 1; i++) {
+        dAttList_c* list_1 = &mCheckObjectList[i];
+        for (int j = i + 1; j < mCheckObjectCount; j++) {
+            dAttList_c* list_2 = &mCheckObjectList[j];
+
+            if (list_2->mWeight < list_1->mWeight) {
+                memcpy(&list, list_2, sizeof(dAttList_c));
+                memcpy(list_2, list_1, sizeof(dAttList_c));
+                memcpy(list_1, &list, sizeof(dAttList_c));
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -622,162 +1007,674 @@ asm void dAttention_c::sortList() {
 #include "asm/d/d_attention/sortList__12dAttention_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 800718A4-80071960 06C1E4 00BC+00 2/2 0/0 0/0 .text            stockAttention__12dAttention_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::stockAttention() {
-    nofralloc
-#include "asm/d/d_attention/stockAttention__12dAttention_cFv.s"
+void dAttention_c::stockAttention() {
+    fopAc_ac_c* target = LockonTarget(0);
+
+    initList(-1);
+    if (makeList()) {
+        sortList();
+    }
+
+    if (target != mLockOnList[0].getActor()) {
+        if (target != NULL) {
+            if (mLockOnList[0].getActor() != NULL) {
+                setFlag(2);
+            }
+        } else {
+            setFlag(1);
+        }
+        setFlag(4);
+    }
+
+    LockonTarget(0);
 }
-#pragma pop
 
 /* 80071960-80071A68 06C2A0 0108+00 2/2 0/0 0/0 .text            nextAttention__12dAttention_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::nextAttention() {
-    nofralloc
-#include "asm/d/d_attention/nextAttention__12dAttention_cFv.s"
+fopAc_ac_c* dAttention_c::nextAttention() {
+    if (!attn_opt_hold && mLockonCount == 1) {
+        field_0x32e = 0;
+        return NULL;
+    }
+
+    if (field_0x32e != 0) {
+        mLockOnOffset++;
+
+        if (mLockOnOffset >= mLockonCount) {
+            mLockOnOffset = 0;
+        }
+        return LockonTarget(0);
+    }
+
+    fopAc_ac_c* actor = fopAcM_SearchByID(mLockTargetID);
+    initList(-1);
+
+    if (makeList()) {
+        sortList();
+    }
+
+    if (actor == mLockOnList[0].getActor() && mLockonCount > 1) {
+        mLockOnOffset = 1;
+    }
+
+    return LockonTarget(0);
 }
-#pragma pop
 
 /* 80071A68-80071A98 06C3A8 0030+00 3/3 0/0 0/0 .text            freeAttention__12dAttention_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::freeAttention() {
-    nofralloc
-#include "asm/d/d_attention/freeAttention__12dAttention_cFv.s"
+int dAttention_c::freeAttention() {
+    mLockTargetID = -1;
+    initList(-1);
+    return 0;
 }
-#pragma pop
 
 /* 80071A98-80071CC0 06C3D8 0228+00 2/2 0/0 0/0 .text            chaseAttention__12dAttention_cFv */
+#ifdef NONMATCHING
+bool dAttention_c::chaseAttention() {
+    int offset = mLockOnOffset;
+    fopAc_ac_c* actor = mLockOnList[offset].getActor();
+
+    if (actor == NULL) {
+        return false;
+    }
+
+    if (!chkFlag(0x4000)) {
+        cSGlobe g1(actor->mAttentionInfo.mPosition - mOwnerAttnPos);
+        cSAngle a1(g1.U() - mpPlayer->mCollisionRot.y);
+
+        cSGlobe g2(mOwnerAttnPos - actor->mAttentionInfo.mPosition);
+        cSAngle a2(g2.U() - actor->mCollisionRot.y);
+
+        u32 type;
+        f32 weight = calcWeight(0x4C, actor, g1.R(), a1.Val(), a2.Val(), &type);
+        if (weight >= 0.0f) {
+            int type = mLockOnList[offset].mType;
+            int tbl_idx = actor->mAttentionInfo.field_0x0[type];
+
+            if (!chkAttMask(type, actor->mAttentionInfo.mFlags)) {
+                return false;
+            } else if (check_event_condition(type, actor->mEvtInfo.getCondition())) {
+                return false;
+            } else if (check_flontofplayer(dist_table[tbl_idx].field_0x18, a1.Val(), a2.Val())) {
+                return false;
+            } else if (check_distace(&mOwnerAttnPos, a1.Val(), &actor->mAttentionInfo.mPosition,
+                                     dist_table[tbl_idx].field_0x4, dist_table[tbl_idx].field_0x8,
+                                     dist_table[tbl_idx].field_0xc,
+                                     dist_table[tbl_idx].field_0x10)) {
+                mLockOnList[offset].mWeight = distace_weight(g1.R(), a1.Val(), 0.5f);
+                return true;
+            }
+
+            return false;
+        }
+
+        mLockOnList[offset].setActor(actor);
+        mLockOnList[offset].mWeight = weight;
+        mLockOnList[offset].mDistance = g1.R();
+        mLockOnList[offset].mType = type;
+        return true;
+    }
+
+    return (actor->mAttentionInfo.mFlags & 7) != false;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dAttention_c::chaseAttention() {
+asm bool dAttention_c::chaseAttention() {
     nofralloc
 #include "asm/d/d_attention/chaseAttention__12dAttention_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80071CC0-80071D6C 06C600 00AC+00 1/1 0/0 0/0 .text EnemyDistance__12dAttention_cFP10fopAc_ac_c
  */
+// matches with literals
+#ifdef NONMATCHING
+f32 dAttention_c::EnemyDistance(fopAc_ac_c* i_actor) {
+    f32 distance;
+
+    if (i_actor == mpPlayer || mpPlayer == NULL) {
+        distance = -1.0f;
+    } else if (fopAcM_GetProfName(i_actor) == PROC_ALINK) {
+        distance = -1.0f;
+    } else if (!(i_actor->mAttentionInfo.mFlags & 4) &&
+               !(i_actor->mAttentionInfo.mFlags & 0x4000000)) {
+        distance = -1.0f;
+    } else {
+        distance = fopAcM_searchActorDistance(mpPlayer, i_actor);
+        u8 tmp = i_actor->mAttentionInfo.field_0x0[2];
+
+        if (distance < dist_table[tmp].field_0x0 + dist_table[tmp].field_0x8) {
+            return distance;
+        }
+
+        distance = -1.0f;
+    }
+
+    return distance;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dAttention_c::EnemyDistance(fopAc_ac_c* param_0) {
+asm f32 dAttention_c::EnemyDistance(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/d/d_attention/EnemyDistance__12dAttention_cFP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* 80071D6C-80071DEC 06C6AC 0080+00 1/1 0/0 0/0 .text            sound_attention__FP10fopAc_ac_cPv
  */
+// matches with literals
+#ifdef NONMATCHING
+static int sound_attention(fopAc_ac_c* param_0, void* i_attention) {
+    f32 dist = ((dAttention_c*)i_attention)->EnemyDistance(param_0);
+
+    if (dist < 0.0f) {
+        return 0;
+    }
+
+    if (dist < ((dAttention_c*)i_attention)->mEnemyDist) {
+        ((dAttention_c*)i_attention)->mEnemyActorID = fopAcM_GetID(param_0);
+        ((dAttention_c*)i_attention)->mEnemyDist = dist;
+    }
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void sound_attention(fopAc_ac_c* param_0, void* param_1) {
+static asm int sound_attention(fopAc_ac_c* param_0, void* param_1) {
     nofralloc
 #include "asm/d/d_attention/sound_attention__FP10fopAc_ac_cPv.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 80452698-8045269C 000C98 0004+00 1/1 0/0 0/0 .sdata2          @5137 */
-SECTION_SDATA2 static f32 lit_5137 = 10000.0f;
-
-/* 8045269C-804526A0 000C9C 0004+00 1/1 0/0 0/0 .sdata2          @5138 */
-SECTION_SDATA2 static f32 lit_5138 = 1.0f / 10.0f;
+#endif
 
 /* 80071DEC-80071E84 06C72C 0098+00 1/1 0/0 0/0 .text            runSoundProc__12dAttention_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::runSoundProc() {
-    nofralloc
-#include "asm/d/d_attention/runSoundProc__12dAttention_cFv.s"
+void dAttention_c::runSoundProc() {
+    mEnemyActorID = -1;
+    mEnemyDist = 10000.0f;
+
+    if (!chkFlag(0x80000000)) {
+        fopAcIt_Executor((fopAcIt_ExecutorFunc)sound_attention, this);
+
+        if (fopAcM_SearchByID(mEnemyActorID) != NULL) {
+            mDoAud_bgmNowBattle(mEnemyDist * 0.1f);
+            setFlag(0x100);
+        }
+    }
 }
-#pragma pop
 
 /* 80071E84-800720F4 06C7C4 0270+00 1/1 0/0 0/0 .text            runDrawProc__12dAttention_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::runDrawProc() {
-    nofralloc
-#include "asm/d/d_attention/runDrawProc__12dAttention_cFv.s"
+void dAttention_c::runDrawProc() {
+    if ((mFlags >> 3) & 1) {
+        draw[0].setAlphaAnm(mAttParam.mAttnCursorAppearFrames, 0);
+        draw[0].setAnm(1, mAttParam.field_0x3c);
+        draw[0].field_0x164.x = mAttParam.mAttnCursorScaleX;
+        draw[0].field_0x164.y = mAttParam.mAttnCursorScaleY;
+        draw[0].field_0x164.z = mAttParam.mAttnCursorOffsetY;
+        draw[0].field_0x175 = 1;
+
+        if (!i_dComIfGp_checkPlayerStatus0(0, 0x36a02311) ||
+            i_dComIfGp_checkPlayerStatus1(0, 0x11)) {
+            lockSoundStart(Z2SE_SY_L_FOCUS_SET);
+        }
+    } else if (chkFlag(0x10)) {
+        draw[0].setAlphaAnm(mAttParam.mAttnCursorDisappearFrames, 1);
+        if (field_0x328 >= 0) {
+            field_0x328 = 1;
+            setFlag(0x40000000);
+        }
+
+        if (!i_dComIfGp_checkPlayerStatus0(0, 0x36a02311) ||
+            i_dComIfGp_checkPlayerStatus1(0, 0x11)) {
+            lockSoundStart(Z2SE_SY_L_FOCUS_RESET);
+        }
+    } else if (chkFlag(0x1)) {
+        draw[0].setAnm(0, mAttParam.field_0x38);
+        draw[0].setAlphaAnm(mAttParam.mAttnCursorAppearFrames, 0);
+
+        draw[0].field_0x164.x = mAttParam.mSelCursorScaleX;
+        draw[0].field_0x164.y = mAttParam.mSelCursorScaleY;
+        draw[0].field_0x164.z = mAttParam.mSelCursorOffsetY;
+        draw[0].field_0x175 = 0;
+        setFlag(0x40000000);
+    } else if (chkFlag(0x2)) {
+        draw[0].setAlphaAnm(mAttParam.mAttnCursorAppearFrames, 0);
+        draw[1].setAnm(0, mAttParam.field_0x38);
+        draw[1].setAlphaAnm(mAttParam.mAttnCursorDisappearFrames, 1);
+
+        draw[1].field_0x164.x = mAttParam.mSelCursorScaleX;
+        draw[1].field_0x164.y = mAttParam.mSelCursorScaleY;
+        draw[1].field_0x164.z = mAttParam.mSelCursorOffsetY;
+        draw[1].field_0x175 = 0;
+        setFlag(0x40000000);
+    } else if (mLockonCount <= 0 && field_0x328 == 0) {
+        draw[0].setAlphaAnm(mAttParam.mAttnCursorDisappearFrames, 1);
+        field_0x328 = 1;
+        setFlag(0x40000000);
+    }
+
+    if (mAttnStatus == ST_LOCK) {
+        if (draw[0].field_0x173 == 3) {
+            draw[0].field_0x173 = 4;
+            clrFlag(0x40000000);
+        }
+    } else if (draw[0].field_0x173 == 3) {
+        draw[0].field_0x173 = 4;
+        clrFlag(0x40000000);
+        field_0x328 = -1;
+    }
 }
-#pragma pop
 
 /* 800720F4-800720F8 06CA34 0004+00 1/1 0/0 0/0 .text            runDebugDisp__12dAttention_cFv */
-void dAttention_c::runDebugDisp() {
-    /* empty function */
-}
+void dAttention_c::runDebugDisp() {}
 
 /* 800720F8-800722A0 06CA38 01A8+00 1/1 0/0 0/0 .text            checkButton__12dAttention_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::checkButton() {
-    nofralloc
-#include "asm/d/d_attention/checkButton__12dAttention_cFv.s"
+void dAttention_c::checkButton() {
+    if (on_final_boss_stg && dComIfGp_roomControl_getStayNo() == 0 &&
+        !dComIfGs_isSaveDunSwitch(1)) {
+        if (field_0x32b == 1 && LockonTarget(0) != NULL && chkFlag(0x20000000)) {
+            setFlag(0x1000000);
+        }
+    }
+
+    if (i_dComIfGp_checkPlayerStatus0(0, 0x36a02311) || i_dComIfGp_checkPlayerStatus1(0, 0x11)) {
+        switch (field_0x32b) {
+        case 0:
+        case 1:
+            clrFlag(0x1000000);
+            field_0x32b = 4;
+            break;
+        }
+
+        return;
+    }
+
+    switch (field_0x32b) {
+    case 4:
+        if (padLockButton(mPadNo) || chkFlag(0x1000000)) {
+            field_0x32b = 0;
+            setFlag(0x200);
+            clrFlag(0x1000000);
+        }
+        return;
+    case 0:
+        field_0x32b = 1;
+    case 1:
+        if (chkFlag(0x1000000)) {
+            field_0x32b = 0;
+            field_0x32e = 0x3C;
+            setFlag(0x200);
+            clrFlag(0x1000000);
+            return;
+        }
+
+        if (!padLockButton(mPadNo)) {
+            field_0x32b = 4;
+        }
+    }
 }
-#pragma pop
 
 /* 800722A0-800722EC 06CBE0 004C+00 2/2 0/0 0/0 .text            triggerProc__12dAttention_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::triggerProc() {
-    nofralloc
-#include "asm/d/d_attention/triggerProc__12dAttention_cFv.s"
+bool dAttention_c::triggerProc() {
+    if (chaseAttention()) {
+        setFlag(0x8);
+        return true;
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 800722EC-80072344 06CC2C 0058+00 2/2 0/0 0/0 .text            lostCheck__12dAttention_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::lostCheck() {
-    nofralloc
-#include "asm/d/d_attention/lostCheck__12dAttention_cFv.s"
+int dAttention_c::lostCheck() {
+    if (chaseAttention()) {
+        return false;
+    }
+
+    setFlag(0x10);
+    setFlag(0x40);
+    return true;
 }
-#pragma pop
 
 /* 80072344-800725F0 06CC84 02AC+00 1/1 0/0 0/0 .text judgementStatus4Hold__12dAttention_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::judgementStatus4Hold() {
-    nofralloc
-#include "asm/d/d_attention/judgementStatus4Hold__12dAttention_cFv.s"
+void dAttention_c::judgementStatus4Hold() {
+    switch (mAttnStatus) {
+    case ST_NONE:
+        field_0x32f = 0;
+        field_0x32e = 0;
+        mLockTargetID = -1;
+        stockAttention();
+
+        if (field_0x32b == 0 && triggerProc()) {
+            mAttnStatus = ST_LOCK;
+            field_0x32e = 15;
+        }
+        break;
+    case ST_LOCK:
+        mLockTargetID = LockonTargetPId(0);
+        field_0x32f = 0;
+
+        if (lostCheck()) {
+            mLockTargetID = -1;
+            stockAttention();
+
+            if (triggerProc()) {
+                mAttnStatus = ST_LOCK;
+            } else {
+                mAttnStatus = ST_NONE;
+                freeAttention();
+                setFlag(0x800000);
+            }
+        } else if (field_0x32b == 4) {
+            mAttnStatus = ST_RELEASE;
+            setFlag(0x10);
+            field_0x32f = 10;
+        } else if (field_0x32e == 0) {
+            initList(-1);
+
+            if (makeList()) {
+                sortList();
+            }
+        }
+
+        if (field_0x32e != 0) {
+            field_0x32e--;
+        }
+
+        break;
+    case ST_RELEASE:
+        setFlag(0x40);
+
+        if (lostCheck()) {
+            mLockTargetID = -1;
+            stockAttention();
+
+            if (triggerProc()) {
+                mAttnStatus = ST_LOCK;
+            } else {
+                mAttnStatus = ST_NONE;
+                freeAttention();
+                setFlag(0x800000);
+            }
+        } else if (field_0x32b == 0) {
+            if (nextAttention()) {
+                setFlag(0x8);
+                mAttnStatus = ST_LOCK;
+                field_0x32e = 15;
+            } else {
+                mAttnStatus = ST_NONE;
+                freeAttention();
+            }
+        } else if (LockonTarget(0) == NULL || field_0x32f == 0) {
+            mAttnStatus = ST_NONE;
+            freeAttention();
+        }
+
+        if (field_0x32f != 0) {
+            field_0x32f--;
+        }
+
+        break;
+    }
+
+    if (!chkFlag(0x1000)) {
+        setFlag(0x4000);
+        initList(-1);
+
+        if (makeList()) {
+            sortList();
+        }
+    }
 }
-#pragma pop
 
 /* 800725F0-80072924 06CF30 0334+00 1/1 0/0 0/0 .text judgementStatus4Switch__12dAttention_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::judgementStatus4Switch() {
-    nofralloc
-#include "asm/d/d_attention/judgementStatus4Switch__12dAttention_cFv.s"
+void dAttention_c::judgementStatus4Switch() {
+    switch (mAttnStatus) {
+    case ST_NONE:
+        mLockTargetID = -1;
+        stockAttention();
+        field_0x32f = 0;
+        field_0x32e = 0;
+
+        if (field_0x32b == 0 && triggerProc()) {
+            mAttnStatus = ST_LOCK;
+            field_0x32e = 15;
+            field_0x32f = 15;
+        }
+        break;
+    case ST_LOCK:
+        mLockTargetID = LockonTargetPId(0);
+
+        if (field_0x32f == 0) {
+            mAttnStatus = ST_NONE;
+            freeAttention();
+        } else if (lostCheck()) {
+            mLockTargetID = -1;
+            stockAttention();
+
+            if (triggerProc()) {
+                mAttnStatus = ST_LOCK;
+            } else {
+                mAttnStatus = ST_NONE;
+                freeAttention();
+                setFlag(0x800000);
+            }
+        } else if (field_0x32b == 0) {
+            if (mDoCPd_c::getStickY(mPadNo) < lit_4064) {
+                mAttnStatus = ST_NONE;
+                freeAttention();
+            } else if (nextAttention()) {
+                setFlag(0x8);
+                mAttnStatus = ST_LOCK;
+                field_0x32e = 15;
+            } else {
+                mAttnStatus = ST_NONE;
+                freeAttention();
+            }
+        } else if (field_0x32e == 0) {
+            initList(-1);
+
+            if (makeList()) {
+                sortList();
+            }
+        }
+
+        if (!chkFlag(0x8) && field_0x32e != 0) {
+            field_0x32e--;
+        }
+
+        if (field_0x32b == 1) {
+            if (field_0x32f != 0) {
+                field_0x32f--;
+            }
+        } else {
+            field_0x32f = 15;
+        }
+
+        break;
+    case ST_RELEASE:
+        setFlag(0x40);
+
+        if (lostCheck()) {
+            mLockTargetID = -1;
+            stockAttention();
+
+            if (triggerProc()) {
+                mAttnStatus = ST_LOCK;
+            } else {
+                mAttnStatus = ST_NONE;
+                freeAttention();
+                setFlag(0x800000);
+            }
+        } else if (field_0x32b == 0) {
+            mAttnStatus = ST_NONE;
+
+            if (triggerProc()) {
+                mAttnStatus = ST_LOCK;
+                field_0x32e = 15;
+                field_0x32f = 15;
+            }
+        } else if (LockonTarget(0) == NULL || field_0x32f == 0) {
+            mAttnStatus = ST_NONE;
+            freeAttention();
+        }
+
+        break;
+    }
+
+    if (!chkFlag(0x1000)) {
+        setFlag(0x4000);
+        initList(-1);
+
+        if (makeList()) {
+            sortList();
+        }
+    }
 }
-#pragma pop
 
 /* 80072924-80072BD4 06D264 02B0+00 0/0 1/1 0/0 .text            Run__12dAttention_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::Run() {
-    nofralloc
-#include "asm/d/d_attention/Run__12dAttention_cFv.s"
+int dAttention_c::Run() {
+    clrFlag(0x3FFFFF);
+
+    bool usingHold = dComIfGs_getOptAttentionType() == 0;
+    if (attn_opt_hold != usingHold) {
+        setFlag(0x10000);
+    }
+
+    attn_opt_hold = usingHold;
+
+    if (mAttnBlockTimer != 0) {
+        mAttnBlockTimer--;
+        return 1;
+    }
+
+    if (chkFlag(0x80)) {
+        mpPlayer = dComIfGp_getPlayer(0);
+        mPadNo = PAD_1;
+    }
+
+    setOwnerAttentionPos();
+
+    if (i_dComIfGp_event_runCheck() || chkFlag(0x10000)) {
+        mAttnStatus = ST_NONE;
+        field_0x32b = 4;
+        field_0x32c = 0;
+        clrFlag(0x20000000);
+        clrFlag(0x10000000);
+        mLockTargetID = -1;
+        freeAttention();
+    } else {
+        checkButton();
+
+        if (attn_opt_hold) {
+            judgementStatus4Hold();
+        } else {
+            judgementStatus4Switch();
+        }
+
+        if ((mFlags >> 0x17) & 1) {
+            freeAttention();
+            if (LockonTarget(0) == NULL) {
+                setFlag(0x20000020);
+            }
+            setFlag(0x10000000);
+            clrFlag(0x800000);
+        } else if (chkFlag(0x10000000)) {
+            if (!padLockButton(mPadNo)) {
+                if (chkFlag(0x20000000)) {
+                    lockSoundStart(Z2SE_SY_CAMERA_L_CANCEL);
+                    clrFlag(0x20000000);
+                }
+
+                clrFlag(0x10000000);
+            }
+        } else {
+            if (padLockButton(mPadNo)) {
+                if (LockonTarget(0) == NULL) {
+                    lockSoundStart(Z2SE_SY_CAMERA_L_MOVE);
+                    setFlag(0x20000020);
+                }
+
+                setFlag(0x10000000);
+            }
+        }
+    }
+
+    field_0x32a = mAttnStatus;
+
+    runSoundProc();
+    runDrawProc();
+    runDebugDisp();
+
+    if (mAttnStatus == ST_LOCK) {
+        dComIfGp_onCameraAttentionStatus(mPadNo, 1);
+    } else {
+        dComIfGp_offCameraAttentionStatus(mPadNo, 1);
+    }
+
+    mZHintTarget.proc();
+    mCatghTarget.proc();
+    mLookTarget.proc();
+
+    return 1;
 }
-#pragma pop
 
 /* 80072BD4-80072D80 06D514 01AC+00 0/0 1/1 0/0 .text            Draw__12dAttention_cFv */
+// reg stuff
+#ifdef NONMATCHING
+void dAttention_c::Draw() {
+    if (mAttParam.CheckFlag(0x10)) {
+        draw[0].field_0x173 = 3;
+        draw[1].field_0x173 = 3;
+        return;
+    }
+
+    Mtx tmp;
+    PSMTXInverse(dComIfGd_getViewRotMtx(), tmp);
+    fopAc_ac_c* target = LockonTarget(0);
+
+    if (!i_dComIfGp_event_runCheck()) {
+        if (target != NULL) {
+            draw[0].draw(target->mAttentionInfo.mPosition, tmp);
+
+            if (mLockonCount >= 2 && draw[1].field_0x173 == 2) {
+                int listIdx = mLockOnOffset;
+
+                if (listIdx == 0) {
+                    listIdx = mLockonCount - 1;
+                } else {
+                    listIdx--;
+                }
+
+                if (mLockOnList[listIdx].getActor() != NULL) {
+                    fopAc_ac_c* actor = mLockOnList[listIdx].getActor();
+                    draw[1].draw(actor->mAttentionInfo.mPosition, tmp);
+                }
+            }
+
+            mTargetActorID = fopAcM_GetID(target);
+            mDrawAttnPos = target->mAttentionInfo.mPosition;
+            field_0x328 = 0;
+        } else if (field_0x328 > 0) {
+            fopAc_ac_c* actor = fopAcM_SearchByID(mTargetActorID);
+
+            if (actor != NULL) {
+                draw[0].draw(actor->mAttentionInfo.mPosition, tmp);
+                mDrawAttnPos = actor->mAttentionInfo.mPosition;
+            } else {
+                draw[0].draw(mDrawAttnPos, tmp);
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -786,9 +1683,18 @@ asm void dAttention_c::Draw() {
 #include "asm/d/d_attention/Draw__12dAttention_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80072D80-80072DD8 06D6C0 0058+00 2/2 0/0 0/0 .text            lockSoundStart__12dAttention_cFUl
  */
+// matches with literals
+#ifdef NONMATCHING
+void dAttention_c::lockSoundStart(u32 i_sfxID) {
+    if (!chkFlag(0x400000)) {
+        mDoAud_seStart(i_sfxID, NULL, 0, 0);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -797,6 +1703,7 @@ asm void dAttention_c::lockSoundStart(u32 param_0) {
 #include "asm/d/d_attention/lockSoundStart__12dAttention_cFUl.s"
 }
 #pragma pop
+#endif
 
 /* 80072DD8-80072FE8 06D718 0210+00 1/1 0/0 0/0 .text            setAnm__10dAttDraw_cFUcf */
 #pragma push
@@ -809,14 +1716,12 @@ asm void dAttDraw_c::setAnm(u8 param_0, f32 param_1) {
 #pragma pop
 
 /* 80072FE8-80073004 06D928 001C+00 1/1 0/0 0/0 .text            setAlphaAnm__10dAttDraw_cFUcUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttDraw_c::setAlphaAnm(u8 param_0, u8 param_1) {
-    nofralloc
-#include "asm/d/d_attention/setAlphaAnm__10dAttDraw_cFUcUc.s"
+void dAttDraw_c::setAlphaAnm(u8 param_0, u8 param_1) {
+    field_0x171 = param_0;
+    field_0x172 = 0;
+    field_0x173 = 2;
+    field_0x174 = param_1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804526A0-804526A8 000CA0 0004+04 1/1 0/0 0/0 .sdata2          @5668 */
@@ -853,190 +1758,243 @@ SECTION_SDATA2 static f32 lit_5784 = 0.01745329238474369f;
 SECTION_SDATA2 static f32 lit_5785 = -100.0f;
 
 /* 800732B0-8007353C 06DBF0 028C+00 1/1 0/0 0/0 .text            draw__10dAttDraw_cFR4cXyzPA4_f */
+// matches with literals
+#ifdef NONMATCHING
+void dAttDraw_c::draw(cXyz& param_0, Mtx param_1) {
+    J3DModelData* modelData = mModel[field_0x170]->getModelData();
+
+    mDoMtx_stack_c::transS(param_0.x, param_0.y + field_0x164.z, param_0.z);
+    mDoMtx_stack_c::concat(param_1);
+    mModel[field_0x170]->i_setBaseTRMtx(mDoMtx_stack_c::get());
+
+    view_class* view = dComIfGd_getView();
+    f32 temp_f31 = tan(0.01745329238474369f * (0.5f * view->mFovy));
+    f32 temp_f30 = (-100.0f - g_AttDwHIO.mCursorDistance) / temp_f31;
+
+    cXyz tmp;
+    PSMTXMultVec(dComIfGd_getViewMtx(), &param_0, &tmp);
+
+    f32 var_f2 = 1.0f;
+    if (tmp.z < temp_f30) {
+        var_f2 = (tmp.z * temp_f31) / (-100.0f - g_AttDwHIO.mCursorDistance);
+    }
+
+    mModel[field_0x170]->setBaseScale(
+        cXyz(field_0x164.x * var_f2, field_0x164.y * var_f2, field_0x164.x * var_f2));
+
+    alphaAnm();
+
+    if (field_0x175 != 0) {
+        mImpactBck.entry(modelData);
+        mImpactBpk.entry(modelData);
+        mImpactBrk.entry(modelData);
+        mImpactBtk.entry(modelData);
+    } else {
+        mNoticeCursorBck[field_0x170].entry(modelData);
+        mNoticeCursorBpk[field_0x170].entry(modelData);
+        mNoticeCursorBrk[field_0x170].entry(modelData);
+        mNoticeCursorBtk[field_0x170].entry(modelData);
+        mNoticeCursor02Brk[field_0x170].entry(modelData);
+    }
+
+    dComIfGd_setList3Dlast();
+    mDoExt_modelUpdateDL(mModel[field_0x170]);
+    dComIfGd_setList();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dAttDraw_c::draw(cXyz& param_0, f32 (*param_1)[4]) {
+asm void dAttDraw_c::draw(cXyz& param_0, Mtx param_1) {
     nofralloc
 #include "asm/d/d_attention/draw__10dAttDraw_cFR4cXyzPA4_f.s"
 }
 #pragma pop
+#endif
 
 /* 8007353C-800735DC 06DE7C 00A0+00 8/8 13/13 21/21 .text            LockonTarget__12dAttention_cFl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::LockonTarget(s32 param_0) {
-    nofralloc
-#include "asm/d/d_attention/LockonTarget__12dAttention_cFl.s"
+fopAc_ac_c* dAttention_c::LockonTarget(s32 param_0) {
+    if (i_dComIfGp_checkPlayerStatus0(0, 0x36A02311) || i_dComIfGp_checkPlayerStatus1(0, 0x11)) {
+        return NULL;
+    }
+
+    if (param_0 >= mLockonCount) {
+        return NULL;
+    }
+
+    int listIdx = mLockOnOffset + param_0;
+    if (listIdx >= mLockonCount) {
+        listIdx -= mLockonCount;
+    }
+
+    fopAc_ac_c* actor = mLockOnList[listIdx].getActor();
+    if (actor == NULL || !(actor->mAttentionInfo.mFlags & 7)) {
+        return NULL;
+    }
+
+    return actor;
 }
-#pragma pop
 
 /* 800735DC-800736CC 06DF1C 00F0+00 0/0 1/1 0/0 .text LockonReleaseDistanse__12dAttention_cFv */
+#ifdef NONMATCHING
+f32 dAttention_c::LockonReleaseDistanse() {
+    if (!LockonTruth()) {
+        return 0.0f;
+    }
+
+    fopAc_ac_c* actor = mLockOnList[mLockOnOffset].getActor();
+    if (actor == NULL) {
+        return 0.0f;
+    }
+
+    int idx = mLockOnList[mLockOnOffset].mType + actor->mAttentionInfo.field_0x0[0];
+    cSGlobe tmp_g(actor->mAttentionInfo.mPosition - mOwnerAttnPos);
+    cSAngle tmp_a(tmp_g.U() - mpPlayer->mCollisionRot.y);
+
+    return distace_angle_adjust(dist_table[idx].field_0x8, tmp_a, 1.0f) + dist_table[idx].field_0x4;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dAttention_c::LockonReleaseDistanse() {
+asm f32 dAttention_c::LockonReleaseDistanse() {
     nofralloc
 #include "asm/d/d_attention/LockonReleaseDistanse__12dAttention_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 800736CC-80073734 06E00C 0068+00 2/2 0/0 0/0 .text            LockonTargetPId__12dAttention_cFl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::LockonTargetPId(s32 param_0) {
-    nofralloc
-#include "asm/d/d_attention/LockonTargetPId__12dAttention_cFl.s"
+u32 dAttention_c::LockonTargetPId(s32 param_0) {
+    if (i_dComIfGp_checkPlayerStatus0(0, 0x36A02311) || i_dComIfGp_checkPlayerStatus1(0, 0x11)) {
+        return -1;
+    }
+
+    if (param_0 >= mLockonCount) {
+        return -1;
+    }
+
+    int listIdx = mLockOnOffset + param_0;
+    if (listIdx >= mLockonCount) {
+        listIdx -= mLockonCount;
+    }
+
+    return mLockOnList[listIdx].getPid();
 }
-#pragma pop
 
 /* 80073734-8007378C 06E074 0058+00 0/0 3/3 2/2 .text            ActionTarget__12dAttention_cFl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::ActionTarget(s32 param_0) {
-    nofralloc
-#include "asm/d/d_attention/ActionTarget__12dAttention_cFl.s"
+fopAc_ac_c* dAttention_c::ActionTarget(s32 param_0) {
+    if (param_0 >= mActionCount) {
+        return NULL;
+    }
+
+    int listIdx = mActionOffset + param_0;
+    if (listIdx >= mActionCount) {
+        listIdx -= mActionCount;
+    }
+
+    return mActionList[listIdx].getActor();
 }
-#pragma pop
 
 /* 8007378C-800737E4 06E0CC 0058+00 0/0 3/3 0/0 .text            CheckObjectTarget__12dAttention_cFl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::CheckObjectTarget(s32 param_0) {
-    nofralloc
-#include "asm/d/d_attention/CheckObjectTarget__12dAttention_cFl.s"
+fopAc_ac_c* dAttention_c::CheckObjectTarget(s32 param_0) {
+    if (param_0 >= mCheckObjectCount) {
+        return NULL;
+    }
+
+    int listIdx = mCheckObjectOffset + param_0;
+    if (listIdx >= mCheckObjectCount) {
+        listIdx -= mCheckObjectCount;
+    }
+
+    return mCheckObjectList[listIdx].getActor();
 }
-#pragma pop
 
 /* 800737E4-80073838 06E124 0054+00 3/3 53/53 37/37 .text            LockonTruth__12dAttention_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dAttention_c::LockonTruth() {
-    nofralloc
-#include "asm/d/d_attention/LockonTruth__12dAttention_cFv.s"
+bool dAttention_c::LockonTruth() {
+    return (mAttnStatus == ST_LOCK || mAttnStatus == ST_RELEASE) && LockonTarget(0);
 }
-#pragma pop
 
 /* 80073838-80073864 06E178 002C+00 0/0 1/1 0/0 .text
  * checkDistance__12dAttention_cFP4cXyzsP4cXyzffff              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::checkDistance(cXyz* param_0, s16 param_1, cXyz* param_2, f32 param_3,
-                                     f32 param_4, f32 param_5, f32 param_6) {
-    nofralloc
-#include "asm/d/d_attention/checkDistance__12dAttention_cFP4cXyzsP4cXyzffff.s"
+int dAttention_c::checkDistance(cXyz* param_0, s16 param_1, cXyz* param_2, f32 param_3, f32 param_4,
+                                f32 param_5, f32 param_6) {
+    return check_distace(param_0, param_1, param_2, param_3, param_4, param_5, param_6);
 }
-#pragma pop
 
 /* 80073864-80073898 06E1A4 0034+00 11/11 3/3 8/8 .text            getActor__10dAttList_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttList_c::getActor() {
-    nofralloc
-#include "asm/d/d_attention/getActor__10dAttList_cFv.s"
+fopAc_ac_c* dAttList_c::getActor() {
+    return fopAcM_SearchByID(mActorID);
 }
-#pragma pop
 
 /* 80073898-800738B4 06E1D8 001C+00 3/3 0/0 0/0 .text setActor__10dAttList_cFP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttList_c::setActor(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/d_attention/setActor__10dAttList_cFP10fopAc_ac_c.s"
+void dAttList_c::setActor(fopAc_ac_c* i_actor) {
+    mActorID = fopAcM_GetID(i_actor);
 }
-#pragma pop
 
 /* 800738B4-800738CC 06E1F4 0018+00 1/1 0/0 0/0 .text            getPId__10dAttHint_cFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttHint_c::getPId(void* param_0) {
-    nofralloc
-#include "asm/d/d_attention/getPId__10dAttHint_cFPv.s"
+u32 dAttHint_c::getPId(void* i_actor) {
+    return fopAcM_GetID(i_actor);
 }
-#pragma pop
 
 /* 800738CC-800738FC 06E20C 0030+00 0/0 1/1 0/0 .text            convPId__10dAttHint_cFUi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttHint_c::convPId(unsigned int param_0) {
-    nofralloc
-#include "asm/d/d_attention/convPId__10dAttHint_cFUi.s"
+fopAc_ac_c* dAttHint_c::convPId(unsigned int i_id) {
+    return fopAcM_SearchByID(i_id);
 }
-#pragma pop
 
 /* 800738FC-80073958 06E23C 005C+00 0/0 0/0 6/6 .text request__10dAttHint_cFP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttHint_c::request(fopAc_ac_c* param_0, int param_1) {
-    nofralloc
-#include "asm/d/d_attention/request__10dAttHint_cFP10fopAc_ac_ci.s"
+int dAttHint_c::request(fopAc_ac_c* i_actor, int i_priority) {
+    if (i_priority < 0) {
+        i_priority = 0x1FF;
+    }
+
+    if (i_priority <= mPriority) {
+        mHintActorID = getPId(i_actor);
+        mPriority = i_priority;
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 80073958-80073970 06E298 0018+00 1/1 0/0 0/0 .text            init__10dAttHint_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttHint_c::init() {
-    nofralloc
-#include "asm/d/d_attention/init__10dAttHint_cFv.s"
+void dAttHint_c::init() {
+    mHintActorID = -1;
+    field_0x8 = -1;
+    mPriority = 0x200;
 }
-#pragma pop
 
 /* 80073970-8007398C 06E2B0 001C+00 1/1 0/0 0/0 .text            proc__10dAttHint_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttHint_c::proc() {
-    nofralloc
-#include "asm/d/d_attention/proc__10dAttHint_cFv.s"
+void dAttHint_c::proc() {
+    field_0x8 = mHintActorID;
+    mHintActorID = -1;
+    mPriority = 0x200;
 }
-#pragma pop
 
 /* 8007398C-800739BC 06E2CC 0030+00 0/0 4/4 0/0 .text            convPId__11dAttCatch_cFUi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 dAttCatch_c::convPId(unsigned int param_0) {
-    nofralloc
-#include "asm/d/d_attention/convPId__11dAttCatch_cFUi.s"
+fopAc_ac_c* dAttCatch_c::convPId(unsigned int i_id) {
+    return fopAcM_SearchByID(i_id);
 }
-#pragma pop
 
 /* 800739BC-800739DC 06E2FC 0020+00 1/1 0/0 0/0 .text            init__11dAttCatch_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttCatch_c::init() {
-    nofralloc
-#include "asm/d/d_attention/init__11dAttCatch_cFv.s"
+void dAttCatch_c::init() {
+    field_0xc = 0x67;
+    field_0x0 = -1;
+    mCatghTargetID = -1;
+    field_0x4 = 3;
 }
-#pragma pop
 
 /* 800739DC-80073A08 06E31C 002C+00 1/1 0/0 0/0 .text            proc__11dAttCatch_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttCatch_c::proc() {
-    nofralloc
-#include "asm/d/d_attention/proc__11dAttCatch_cFv.s"
+void dAttCatch_c::proc() {
+    mCatghTargetID = field_0x0;
+    mChangeItem = field_0xc;
+    field_0x0 = -1;
+    field_0x4 = 3;
+    field_0xc = 0x67;
 }
-#pragma pop
 
 /* 80073A08-80073CA4 06E348 029C+00 0/0 0/0 10/10 .text
  * request__11dAttCatch_cFP10fopAc_ac_cUcfffsi                  */
@@ -1051,34 +2009,23 @@ asm void dAttCatch_c::request(fopAc_ac_c* param_0, u8 param_1, f32 param_2, f32 
 #pragma pop
 
 /* 80073CA4-80073CD4 06E5E4 0030+00 0/0 1/1 0/0 .text            convPId__10dAttLook_cFUi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttLook_c::convPId(unsigned int param_0) {
-    nofralloc
-#include "asm/d/d_attention/convPId__10dAttLook_cFUi.s"
+fopAc_ac_c* dAttLook_c::convPId(unsigned int i_id) {
+    return fopAcM_SearchByID(i_id);
 }
-#pragma pop
 
 /* 80073CD4-80073CEC 06E614 0018+00 1/1 0/0 0/0 .text            init__10dAttLook_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttLook_c::init() {
-    nofralloc
-#include "asm/d/d_attention/init__10dAttLook_cFv.s"
+void dAttLook_c::init() {
+    field_0x0 = -1;
+    mLookTargetID = -1;
+    field_0x4 = 3;
 }
-#pragma pop
 
 /* 80073CEC-80073D08 06E62C 001C+00 1/1 0/0 0/0 .text            proc__10dAttLook_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttLook_c::proc() {
-    nofralloc
-#include "asm/d/d_attention/proc__10dAttLook_cFv.s"
+void dAttLook_c::proc() {
+    mLookTargetID = field_0x0;
+    field_0x0 = -1;
+    field_0x4 = 3;
 }
-#pragma pop
 
 /* 80073D08-80073FC4 06E648 02BC+00 0/0 0/0 7/7 .text request__10dAttLook_cFP10fopAc_ac_cfffsi */
 #pragma push
@@ -1092,15 +2039,7 @@ asm void dAttLook_c::request(fopAc_ac_c* param_0, f32 param_1, f32 param_2, f32 
 #pragma pop
 
 /* 80073FC4-8007400C 06E904 0048+00 2/1 0/0 0/0 .text            __dt__15dAttDrawParam_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dAttDrawParam_c::~dAttDrawParam_c() {
-extern "C" asm void __dt__15dAttDrawParam_cFv() {
-    nofralloc
-#include "asm/d/d_attention/__dt__15dAttDrawParam_cFv.s"
-}
-#pragma pop
+dAttDrawParam_c::~dAttDrawParam_c() {}
 
 /* ############################################################################################## */
 /* 8045067A-8045067E -00001 0004+00 0/0 0/0 0/0 .sdata           None */

@@ -226,6 +226,7 @@ public:
     /* 80051ADC */ void setScissor(f32, f32, f32, f32);
 
     void setCameraID(int id) { mCameraID = id; }
+    s8 getCameraID() { return mCameraID; }
     void setMode(int mode) { mMode = mode; }
     f32 getViewPort() { return mXOrig; }
 
@@ -304,6 +305,8 @@ public:
     void setXluListItem3D() { setXluDrawList(mDrawBuffers[DB_XLU_LIST_ITEM3D]); }
     void setXluListBG() { setXluDrawList(mDrawBuffers[DB_XLU_LIST_BG]); }
     void setOpaListBG() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST_BG]); }
+    void setOpaList3Dlast() { setOpaDrawList(mDrawBuffers[DB_LIST_3D_LAST]); }
+    void setXluList3Dlast() { setXluDrawList(mDrawBuffers[DB_LIST_3D_LAST]); }
     void setXluList2DScreen() { setXluDrawList(mDrawBuffers[DB_LIST_2D_SCREEN]); }
 
     void peekZdata() { mPeekZ.peekData(); }

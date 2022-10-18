@@ -4,14 +4,12 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
-typedef void (*daMP_Func)();
-
 class daMP_c : public fopAc_ac_c {
 public:
-    /* 80031AD0 */ static void daMP_c_THPPlayerPlay();
-    /* 80031B24 */ void daMP_c_THPPlayerPause();
-    /* 80031A78 */ void daMP_c_Get_MovieRestFrame();
-    /* 80031AA4 */ void daMP_c_Set_PercentMovieVolume(f32);
+    /* 80031AD0 */ static int daMP_c_THPPlayerPlay();
+    /* 80031B24 */ static void daMP_c_THPPlayerPause();
+    /* 80031A78 */ static int daMP_c_Get_MovieRestFrame();
+    /* 80031AA4 */ static void daMP_c_Set_PercentMovieVolume(f32);
     /* 80878BB8 */ void daMP_c_Get_arg_demoNo();
     /* 80878C04 */ void daMP_c_Get_arg_movieNo();
     /* 80878C28 */ void daMP_c_Init();
@@ -24,15 +22,15 @@ public:
     /* 80878F38 */ void daMP_c_Callback_Main(daMP_c*);
     /* 80878F70 */ void daMP_c_Callback_Draw(daMP_c*);
 
-    static u8 m_myObj[4];
+    static daMP_c* m_myObj;
 
 private:
-    /* 0x568 */ daMP_Func mpGetMovieRestFrame;
-    /* 0x56C */ daMP_Func mpSetPercentMovieVol;
-    /* 0x570 */ daMP_Func mpTHPGetTotalFrame;
-    /* 0x574 */ daMP_Func mpTHPPlay;
-    /* 0x578 */ daMP_Func mpTHPStop;
-    /* 0x57C */ daMP_Func mpTHPPause;
+    /* 0x568 */ int (*mpGetMovieRestFrame)(void);
+    /* 0x56C */ void (*mpSetPercentMovieVol)(f32);
+    /* 0x570 */ int (*mpTHPGetTotalFrame)(void);
+    /* 0x574 */ int (*mpTHPPlay)(void);
+    /* 0x578 */ void (*mpTHPStop)(void);
+    /* 0x57C */ int (*mpTHPPause)(void);
 };  // Size: 0x580
 
 #endif /* D_A_MOVIE_PLAYER_H */

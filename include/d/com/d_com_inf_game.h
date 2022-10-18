@@ -380,6 +380,8 @@ public:
         return mCameraInfo[i].mCameraAttentionStatus & flag;
     }
     void setCameraAttentionStatus(int i, u32 flag) { mCameraInfo[i].mCameraAttentionStatus = flag; }
+    void onCameraAttentionStatus(int i, u32 flag) { mCameraInfo[i].mCameraAttentionStatus |= flag; }
+    void offCameraAttentionStatus(int i, u32 flag) { mCameraInfo[i].mCameraAttentionStatus &= ~flag; }
     void setCameraInfo(int camIdx, camera_class* p_cam, int param_2, int param_3, int param_4) {
         mCameraInfo[camIdx].mCamera = p_cam;
         mCameraInfo[camIdx].field_0x4 = param_2;
@@ -400,6 +402,7 @@ public:
     int getMessageCountNumber() { return mMessageCountNum; }
 
     void setWindowNum(u8 num) { mWindowNum = num; }
+    int getWindowNum() { return mWindowNum; }
     dDlst_window_c* getWindow(int i) { return &mWindow[i]; }
     void setWindow(int i, f32 param_1, f32 param_2, f32 param_3, f32 param_4, f32 param_5,
                    f32 param_6, int camID, int mode) {
@@ -1062,6 +1065,10 @@ inline u8 dComIfGs_getOptVibration() {
     return g_dComIfG_gameInfo.info.getPlayer().getConfig().getVibration();
 }
 
+inline u8 dComIfGs_getOptAttentionType() {
+    return g_dComIfG_gameInfo.info.getPlayer().getConfig().getAttentionType();
+}
+
 inline BOOL dComIfGs_isTbox(int i_no) {
     return g_dComIfG_gameInfo.info.getMemory().getBit().isTbox(i_no);
 }
@@ -1400,7 +1407,7 @@ inline void dComIfGs_setTmpReg(u16 reg, u8 flag) {
     g_dComIfG_gameInfo.info.getTmp().setEventReg(reg, flag);
 }
 
-inline u8 dComIfGs_getTmpReg(u16 reg) {
+inline int dComIfGs_getTmpReg(u16 reg) {
     return g_dComIfG_gameInfo.info.getTmp().getEventReg(reg);
 }
 
@@ -2026,6 +2033,14 @@ inline BOOL dComIfGp_checkCameraAttentionStatus(int i, u32 flag) {
     return g_dComIfG_gameInfo.play.checkCameraAttentionStatus(i, flag);
 }
 
+inline void dComIfGp_onCameraAttentionStatus(int i, u32 flag) {
+    g_dComIfG_gameInfo.play.onCameraAttentionStatus(i, flag);
+}
+
+inline void dComIfGp_offCameraAttentionStatus(int i, u32 flag) {
+    g_dComIfG_gameInfo.play.offCameraAttentionStatus(i, flag);
+}
+
 inline void dComIfGp_setCameraInfo(int camIdx, camera_class* p_cam, int param_2, int param_3,
                                    int param_4) {
     g_dComIfG_gameInfo.play.setCameraInfo(camIdx, p_cam, param_2, param_3, param_4);
@@ -2169,6 +2184,10 @@ inline const char* dComIfGp_getCameraParamFileName(int i) {
 
 inline void dComIfGp_setWindowNum(int num) {
     g_dComIfG_gameInfo.play.setWindowNum(num);
+}
+
+inline int dComIfGp_getWindowNum() {
+    return g_dComIfG_gameInfo.play.getWindowNum();
 }
 
 inline dDlst_window_c* dComIfGp_getWindow(int i) {
@@ -2546,6 +2565,13 @@ inline view_class* dComIfGd_getView() {
     return g_dComIfG_gameInfo.drawlist.getView();
 }
 
+inline MtxP dComIfGd_getViewRotMtx() {
+    return ((camera_process_class*)g_dComIfG_gameInfo.drawlist.getView())->mViewMtxNoTrans;
+}
+inline MtxP dComIfGd_getViewMtx() {
+    return ((camera_process_class*)g_dComIfG_gameInfo.drawlist.getView())->mViewMtx;
+}
+
 inline J3DDrawBuffer* dComIfGd_getListFilter() {
     return g_dComIfG_gameInfo.drawlist.getOpaListFilter();
 }
@@ -2576,6 +2602,11 @@ inline void dComIfGd_setList() {
 inline void dComIfGd_setListItem3D() {
     g_dComIfG_gameInfo.drawlist.setOpaListItem3D();
     g_dComIfG_gameInfo.drawlist.setXluListItem3D();
+}
+
+inline void dComIfGd_setList3Dlast() {
+    g_dComIfG_gameInfo.drawlist.setOpaList3Dlast();
+    g_dComIfG_gameInfo.drawlist.setXluList3Dlast();
 }
 
 inline void dComIfGd_setXluList2DScreen() {

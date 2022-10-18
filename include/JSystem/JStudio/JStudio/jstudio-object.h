@@ -9,7 +9,9 @@
 
 namespace JStudio {
 namespace data {
-    struct TEOperationData {};
+    enum TEOperationData {
+        UNK_0x19 = 0x19,
+    };
 };
 
 struct TAdaptor;
@@ -50,6 +52,26 @@ public:
     /* 8028680C */ virtual void do_wait(u32);
     /* 8028682C */ virtual void do_data(void const*, u32, void const*, u32);
 
+    void prepareAdaptor() {
+        if (mpAdaptor != NULL) {
+            // mpAdaptor->adaptor_setObject_(this);
+            // mpAdaptor->adaptor_do_begin();
+        }
+    }
+
+    template<class T>
+    T* createFromAdaptor(const stb::data::TParse_TBlock_object& param_0, T* param_1) {
+        T* n = new T(param_0, param_1);
+
+        if (n == NULL) {
+            return NULL;
+        }
+
+        n->prepareAdaptor();
+
+        return n;
+    }
+
     /* 0x34 */ TAdaptor* mpAdaptor;
 };
 
@@ -86,7 +108,11 @@ struct TAdaptor {
     /* 80286648 */ void adaptor_setVariableValue_FVR_INDEX_(JStudio::TAdaptor*, JStudio::TControl*,
                                                             u32, void const*, u32);
 
-    /* 0x4 */ TObject* pObject_;
+    void adaptor_setObject_(const TObject* pObject) {
+        pObject_ = pObject;
+    }
+
+    /* 0x4 */ const TObject* pObject_;
     /* 0x8 */ TVariableValue* pValue_;
     /* 0xC */ u32 u;
 };

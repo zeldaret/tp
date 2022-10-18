@@ -152,6 +152,46 @@ private:
     /* 0x54 */ s32 _54;
 };
 
+template <int T>
+struct TParseData {
+    TParseData(const void* pContent) {
+        data::TParse_TParagraph_data data(pContent);
+        set(data);
+    }
+
+    void set(const data::TParse_TParagraph_data& data) {
+        //data::TParse_TParagraph_data::TData* p = (data::TParse_TParagraph_data::TData*)this;
+        data.getData(m_data);
+    }
+
+    bool isEnd() const {
+        return m_data->_0 == 0;
+    }
+
+    bool empty() const {
+        return m_data->_c == NULL;
+    }
+
+    bool isValid() const {
+        return !empty() && m_data->_0 == 50;
+    }
+
+    data::TParse_TParagraph_data::TData* m_data;
+};
+
+template <int T>
+struct TParseData_fixed : public TParseData<T> {
+    TParseData_fixed(const void* pContent) : TParseData(pContent) {}
+
+    const void* getNext() const {
+        return m_data->_c;
+    }
+
+    bool isValid() const {
+        return TParseData::isValid() && getNext() != NULL;
+    }
+};
+
 }  // namespace stb
 }  // namespace JStudio
 

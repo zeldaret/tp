@@ -357,49 +357,41 @@ asm u32 dLib_getExpandSizeFromAramArchive(JKRAramArchive* param_0, char const* p
 
 /* ############################################################################################## */
 /* 80450DD8-80450DDC 0002D8 0004+00 2/2 0/0 0/0 .sbss            m_diffTime__11dLib_time_c */
-u8 dLib_time_c::m_diffTime[4];
-
-/* 80450DDC-80450DE0 0002DC 0004+00 2/2 0/0 0/0 .sbss            None */
-static u8 data_80450DDC[4];
+OSTime dLib_time_c::m_diffTime;
 
 /* 80450DE0-80450DE4 0002E0 0004+00 3/3 0/0 0/0 .sbss            m_stopTime__11dLib_time_c */
-u8 dLib_time_c::m_stopTime[4];
-
-/* 80450DE4-80450DE8 0002E4 0004+00 3/3 0/0 0/0 .sbss            None */
-static u8 data_80450DE4[4];
+OSTime dLib_time_c::m_stopTime;
 
 /* 80450DE8-80450DF0 0002E8 0008+00 3/3 0/0 0/0 .sbss            None */
-static u8 data_80450DE8[8];
+bool dLib_time_c::m_timeStopped;
 
 /* 80032804-80032880 02D144 007C+00 0/0 8/8 0/0 .text            getTime__11dLib_time_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dLib_time_c::getTime() {
-    nofralloc
-#include "asm/d/d_lib/getTime__11dLib_time_cFv.s"
+OSTime dLib_time_c::getTime() {
+    if (!m_timeStopped) {
+        return OSGetTime() - m_diffTime;
+    }
+
+    OSTime time = OSGetTime();
+    m_diffTime += (time - m_stopTime);
+    m_stopTime = time;
+    return time - m_diffTime;
 }
-#pragma pop
 
 /* 80032880-800328BC 02D1C0 003C+00 0/0 1/1 0/0 .text            stopTime__11dLib_time_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dLib_time_c::stopTime() {
-    nofralloc
-#include "asm/d/d_lib/stopTime__11dLib_time_cFv.s"
+void dLib_time_c::stopTime() {
+    if (!m_timeStopped) {
+        m_stopTime = OSGetTime();
+        m_timeStopped = true;
+    }
 }
-#pragma pop
 
 /* 800328BC-80032918 02D1FC 005C+00 0/0 1/1 0/0 .text            startTime__11dLib_time_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dLib_time_c::startTime() {
-    nofralloc
-#include "asm/d/d_lib/startTime__11dLib_time_cFv.s"
+void dLib_time_c::startTime() {
+    if (m_timeStopped) {
+        m_diffTime += OSGetTime() - m_stopTime;
+        m_timeStopped = false;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450DF0-80450DF8 -00001 0008+00 0/0 4/4 0/0 .sbss            None */
@@ -408,4 +400,4 @@ asm void dLib_time_c::startTime() {
 /* 80450DF2 0001+00 data_80450DF2 None */
 /* 80450DF3 0005+00 data_80450DF3 None */
 extern u8 struct_80450DF0[8];
-u8 struct_80450DF0[8];
+u8 struct_80450DF0[8] ALIGN_DECL(8);

@@ -105,7 +105,7 @@ lbl_80072A9C:
 /* 80072A9C  54 60 00 C7 */	rlwinm. r0, r3, 0, 3, 3
 /* 80072AA0  41 82 00 48 */	beq lbl_80072AE8
 /* 80072AA4  80 7F 00 0C */	lwz r3, 0xc(r31)
-/* 80072AA8  4B FF D5 71 */	bl func_80070018
+/* 80072AA8  4B FF D5 71 */	bl padLockButton
 /* 80072AAC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80072AB0  40 82 00 84 */	bne lbl_80072B34
 /* 80072AB4  80 1F 03 34 */	lwz r0, 0x334(r31)
@@ -124,7 +124,7 @@ lbl_80072AD8:
 /* 80072AE4  48 00 00 50 */	b lbl_80072B34
 lbl_80072AE8:
 /* 80072AE8  80 7F 00 0C */	lwz r3, 0xc(r31)
-/* 80072AEC  4B FF D5 2D */	bl func_80070018
+/* 80072AEC  4B FF D5 2D */	bl padLockButton
 /* 80072AF0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80072AF4  41 82 00 40 */	beq lbl_80072B34
 /* 80072AF8  7F E3 FB 78 */	mr r3, r31

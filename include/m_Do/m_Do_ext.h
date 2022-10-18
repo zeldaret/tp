@@ -237,9 +237,11 @@ public:
     /* 8000FAE8 */ virtual ~mDoExt_morf_c();
 
     void setPlaySpeed(f32 speed) { mFrameCtrl.setRate(speed); }
+    void setFrame(f32 frame) { mFrameCtrl.setFrame((s16)frame); }
 
     f32 getPlaySpeed() { return mFrameCtrl.getRate(); }
     f32 getFrame() { return mFrameCtrl.getFrame(); }
+    f32 getEndFrame() { return mFrameCtrl.getEnd(); } 
 
     bool isStop() {
         bool stopped = true;
@@ -308,6 +310,8 @@ public:
 
     /* 8000FD10 */ virtual ~mDoExt_McaMorf();
     /* 80010074 */ virtual void calc();
+
+    J3DModel* getModel() { return mpModel; }
 
 private:
     /* 0x38 */ mDoExt_McaMorfCallBack1_c* mpCallback1;

@@ -10,7 +10,7 @@ lbl_80031248:
 /* 80031268  7C CA 33 78 */	mr r10, r6
 /* 8003126C  7C E0 3B 78 */	mr r0, r7
 /* 80031270  7D 09 43 78 */	mr r9, r8
-/* 80031274  A8 AD 88 0A */	lha r5, struct_80450D88+0x2(r13)
+/* 80031274  A8 AD 88 0A */	lha r5, m_count__9daArrow_c+0x2(r13)
 /* 80031278  1C 85 00 24 */	mulli r4, r5, 0x24
 /* 8003127C  3C 60 80 42 */	lis r3, mData__7daSus_c@ha /* 0x80423FFC@ha */
 /* 80031280  38 63 3F FC */	addi r3, r3, mData__7daSus_c@l /* 0x80423FFC@l */
@@ -42,7 +42,7 @@ lbl_80031290:
 /* 800312E4  7C 03 00 50 */	subf r0, r3, r0
 /* 800312E8  54 00 28 3E */	rotlwi r0, r0, 5
 /* 800312EC  7C 00 1A 14 */	add r0, r0, r3
-/* 800312F0  B0 0D 88 0A */	sth r0, struct_80450D88+0x2(r13)
+/* 800312F0  B0 0D 88 0A */	sth r0, m_count__9daArrow_c+0x2(r13)
 /* 800312F4  38 60 00 01 */	li r3, 1
 /* 800312F8  48 00 00 AC */	b lbl_800313A4
 lbl_800312FC:
@@ -81,7 +81,7 @@ lbl_80031320:
 /* 80031374  7C 03 00 50 */	subf r0, r3, r0
 /* 80031378  54 00 28 3E */	rotlwi r0, r0, 5
 /* 8003137C  7C 00 1A 14 */	add r0, r0, r3
-/* 80031380  B0 0D 88 0A */	sth r0, struct_80450D88+0x2(r13)
+/* 80031380  B0 0D 88 0A */	sth r0, m_count__9daArrow_c+0x2(r13)
 /* 80031384  38 60 00 01 */	li r3, 1
 /* 80031388  48 00 00 1C */	b lbl_800313A4
 lbl_8003138C:

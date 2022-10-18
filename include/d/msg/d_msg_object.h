@@ -273,6 +273,10 @@ inline void dMsgObject_readMessageGroup(mDoDvdThd_mountXArchive_c** param_0) {
     dMsgObject_getMsgObjectClass()->readMessageGroup(param_0);
 }
 
+inline void dMsgObject_setDemoMessage(u32 param_0) {
+    dMsgObject_getMsgObjectClass()->setDemoMessage(param_0);
+}
+
 inline void dMsgObject_setShopWaitTimer(u8 timer) {
     dMsgObject_c::setShopWaitTimer(timer);
 }

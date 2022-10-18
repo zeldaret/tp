@@ -26,6 +26,7 @@ public:
     void setMapToolId(u8 id) { mMapToolId = id; }
     void setEventId(s16 id) { mEventId = id; }
     void setCondition(u16 condition) { mCondition = condition; }
+    u16 getCondition() { return mCondition; }
     void setArchiveName(char* name) { mArchiveName = name; }
     u8 getMapToolId() { return mMapToolId; }
     s16 getEventId() { return mEventId; }

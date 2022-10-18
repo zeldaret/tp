@@ -34,6 +34,7 @@ public:
     u16 getWEvlpMtxNum() const { return mWEvlpMtxNum; }
     u16 getJointNum() const { return mJointNum; }
     u16 getDrawMtxNum() const { return mDrawMtxData.mEntryNum; }
+    JUTNameTab* getJointName() const { return mJointName; }
     J3DJoint* getRootNode() { return mRootNode; }
     J3DJoint* getJointNodePointer(u16 idx) const { return mJointNodePointer[idx]; }
     J3DMtxCalc* getBasicMtxCalc() const { return mBasicMtxCalc; }
