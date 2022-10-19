@@ -719,7 +719,7 @@ u32 J3DShapeMtxMultiConcatView::getUseMtxNum() const {
 /* 8031469C-803146AC 30EFDC 0010+00 1/0 0/0 0/0 .text
  * getUseMtxIndex__26J3DShapeMtxMultiConcatViewCFUs             */
 u32 J3DShapeMtxMultiConcatView::getUseMtxIndex(u16 no) const {
-    return mUseMtxIndex[no];
+    return mUseMtxIndexTable[no];
 }
 
 /* 803146AC-803146B0 30EFEC 0004+00 1/0 0/0 0/0 .text
@@ -752,7 +752,7 @@ u32 J3DShapeMtxMulti::getUseMtxNum() const {
 
 /* 80314720-80314730 30F060 0010+00 1/0 0/0 0/0 .text getUseMtxIndex__16J3DShapeMtxMultiCFUs */
 u32 J3DShapeMtxMulti::getUseMtxIndex(u16 no) const {
-    return mUseMtxIndex[no];
+    return mUseMtxIndexTable[no];
 }
 
 /* 80314730-8031478C 30F070 005C+00 1/0 0/0 0/0 .text            __dt__21J3DShapeMtxConcatViewFv */

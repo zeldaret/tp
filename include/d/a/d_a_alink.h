@@ -1430,7 +1430,7 @@ public:
     /* 800E01CC */ void cancelBoomerangLock(fopAc_ac_c*);
     /* 800E0210 */ fopAc_ac_c* getBoomerangActor();
     /* 800E0244 */ bool checkBoomerangChargeEnd();
-    /* 800E02B8 */ void checkBoomerangCarry(fopAc_ac_c*);
+    /* 800E02B8 */ BOOL checkBoomerangCarry(fopAc_ac_c*);
     /* 800E03D0 */ void initBoomerangUpperAnimeSpeed(int);
     /* 800E0440 */ BOOL checkBoomerangAnime() const;
     /* 800E04AC */ BOOL checkBoomerangThrowAnime() const;
@@ -5596,17 +5596,17 @@ class daAlinkHIO_boom_c1 {
 public:
     /* 0x00 */ daAlinkHIO_anm_c mThrowAnm;
     /* 0x14 */ daAlinkHIO_anm_c mCatchAnm;
-    /* 0x28 */ s16 field_0x28;
+    /* 0x28 */ s16 field_0x28;  // return time?
     /* 0x2A */ s16 mBgThroughTime;
-    /* 0x2C */ f32 field_0x2c;
-    /* 0x30 */ f32 field_0x30;
-    /* 0x34 */ f32 field_0x34;
-    /* 0x38 */ f32 field_0x38;
-    /* 0x3C */ f32 field_0x3c;
-    /* 0x40 */ f32 field_0x40;
-    /* 0x44 */ f32 field_0x44;
+    /* 0x2C */ f32 mIdleAnmSpeed;
+    /* 0x30 */ f32 mStartInterpolation;
+    /* 0x34 */ f32 mFlySpeed;
+    /* 0x38 */ f32 mFlySpeed2;  // return speed?
+    /* 0x3C */ f32 mFlyDistMax;
+    /* 0x40 */ f32 mHorsebackFlyDistMax;
+    /* 0x44 */ f32 mLockDistMax;
     /* 0x48 */ f32 mCatchSpeed;
-};  // Size: 0x4c
+};  // Size: 0x4C
 
 class daAlinkHIO_boom_c0 {
 public:

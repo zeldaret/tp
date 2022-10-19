@@ -3,6 +3,7 @@
 // Translation Unit: d_a_e_wb
 //
 
+
 #include "rel/d/a/e/d_a_e_wb/d_a_e_wb.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
@@ -13,24 +14,6 @@
 
 namespace std {
 /* 807E2350 */ void fabsf(f32);
-};
-
-struct mDoMtx_stack_c {
-    /* 8000CD9C */ void transM(f32, f32, f32);
-    /* 8000CE38 */ void scaleM(f32, f32, f32);
-    /* 807E2858 */ void multVec(Vec const*, Vec*);
-    /* 807E288C */ void YrotS(s16);
-
-    static u8 now[48];
-};
-
-struct mDoGph_gInf_c {
-    /* 80007FD8 */ void fadeOut(f32, _GXColor&);
-    /* 807DFAB4 */ void fadeIn(f32, _GXColor&);
-};
-
-struct mDoCPd_c {
-    static u8 m_cpadInfo[256];
 };
 
 struct himo_s {
@@ -52,69 +35,8 @@ struct daE_WB_HIO_c {
     /* 807E20DC */ ~daE_WB_HIO_c();
 };
 
-struct daAlink_c {
-    /* 800ED0D4 */ void getHorseReinHandPos(cXyz*, cXyz*);
-    /* 800ED1F0 */ void checkHorseNotGrab() const;
-};
-
-struct dVibration_c {
-    /* 8006FA24 */ void StartShock(int, int, cXyz);
-    /* 8006FB10 */ void StartQuake(int, int, cXyz);
-    /* 8006FD94 */ void StopQuake(int);
-};
-
-struct dPa_levelEcallBack {};
-
-struct dPa_control_c {
-    struct level_c {
-        /* 8004B918 */ void getEmitter(u32);
-    };
-
-    /* 8004C218 */ void setHitMark(u16, fopAc_ac_c*, cXyz const*, csXyz const*, cXyz const*, u32);
-    /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
-                            cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
-                            _GXColor const*, cXyz const*, f32);
-    /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
-                            u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
-                            cXyz const*, f32);
-};
-
 struct dMsgObject_c {
     /* 8023822C */ void getStatus();
-};
-
-struct dEvt_control_c {
-    /* 80042468 */ void reset();
-    /* 80042914 */ void setSkipProc(void*, int (*)(void*, int), int);
-    /* 807DFAD8 */ void checkSkipEdge();
-    /* 807E2908 */ void startCheckSkipEdge(void*);
-};
-
-struct dEvent_manager_c {
-    /* 80047B1C */ void getMyStaffId(char const*, fopAc_ac_c*, int);
-    /* 800480EC */ void getMySubstanceP(int, char const*, int);
-    /* 8004817C */ void cutEnd(int);
-};
-
-struct dComIfG_play_c {
-    /* 8002C97C */ void getLayerNo(int);
-};
-
-struct dCcU_AtInfo {};
-
-struct dCamera_c {
-    /* 801614AC */ void Start();
-    /* 801614D0 */ void Stop();
-    /* 8016300C */ void SetTrimSize(s32);
-    /* 80180B40 */ void Set(cXyz, cXyz, s16, f32);
-    /* 80180BA0 */ void Reset(cXyz, cXyz, f32, s16);
-    /* 80180C18 */ void Reset(cXyz, cXyz);
-};
-
-struct camera_class {};
-
-struct cCcS {
-    /* 80264BA8 */ void Set(cCcD_Obj*);
 };
 
 //
@@ -211,8 +133,8 @@ extern "C" void changeDemoParam2__9daPy_py_cFs();
 extern "C" void fabsf__3stdFf();
 extern "C" void __ct__4cXyzFRC4cXyz();
 extern "C" static void cMtx_YrotS__FPA4_fs();
-extern "C" static void fopAcM_searchPlayerAngleY__FPC10fopAc_ac_c();
-extern "C" static void dComIfGs_onEventBit__FUs();
+extern "C" static void fopAcM_searchPlayerAngleY__FPC10fopAc_ac_c(fopAc_ac_c const* param_0);
+extern "C" static void dComIfGs_onEventBit__FUs(u16);
 extern "C" static void Z2GetAudioMgr__Fv();
 extern "C" void cancelOriginalDemo__9daPy_py_cFv();
 extern "C" static void dComIfGp_event_reset__Fv();
@@ -227,14 +149,15 @@ extern "C" void __ct__4cXyzFv();
 extern "C" static void fopAcM_SearchByName__Fs();
 extern "C" static void fopAcM_SearchByID__FUi(unsigned int);
 extern "C" static void dComIfGp_getHorseActor__Fv();
-extern "C" static void dComIfGp_getPlayer__Fi();
-extern "C" static void dComIfGp_getCamera__Fi();
+extern "C" static void dComIfGp_getPlayer__Fi(int);
+extern "C" static void dComIfGp_getCamera__Fi(int);
 extern "C" static void dComIfGp_getPlayerCameraID__Fi();
 extern "C" static void dMsgObject_isTalkNowCheck__Fv();
 extern "C" void abs__4cXyzCFv();
 extern "C" static void cMtx_XrotM__FPA4_fs();
 extern "C" static void JMAFastSqrt__Ff();
-extern "C" static void dComIfGp_particle_set__FUlUsPC4cXyzPC5csXyzPC4cXyz();
+extern "C" static void dComIfGp_particle_set__FUlUsPC4cXyzPC5csXyzPC4cXyz(u32 param_0, u16 param_1, cXyz const* param_2,
+                                      csXyz const* param_3, cXyz const* param_4);
 extern "C" void cancelOriginalDemo__9daHorse_cFv();
 extern "C" void __ct__10JAISoundIDFUl(u32* this_replacement, u32 param_0);
 extern "C" static void dComIfGp_getVibration__Fv();
@@ -242,8 +165,8 @@ extern "C" void __ct__4cXyzFfff();
 extern "C" void onDemoJumpDistance__9daHorse_cFff();
 extern "C" void __as__4cXyzFRC4cXyz();
 extern "C" void __apl__4cXyzFRC3Vec();
-extern "C" void multVec__14mDoMtx_stack_cFPC3VecP3Vec();
-extern "C" void YrotS__14mDoMtx_stack_cFs();
+extern "C" void multVec__14mDoMtx_stack_cFPC3VecP3Vec(Vec const* param_0, Vec* param_1);
+extern "C" void YrotS__14mDoMtx_stack_cFs(s16);
 extern "C" void changeDemoPos0__9daHorse_cFPC4cXyz();
 extern "C" void changeDemoMode__9daHorse_cFUli();
 extern "C" void setHorsePosAndAngle__9daHorse_cFPC4cXyzs();
@@ -437,11 +360,9 @@ extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 g_blackColor;
 //extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 extern "C" extern u8 struct_80450C98[4];
 extern "C" f32 mGroundY__11fopAcM_gc_c;
@@ -4679,7 +4600,7 @@ static asm void cMtx_YrotS(f32 (*param_0)[4], s16 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void fopAcM_searchPlayerAngleY(fopAc_ac_c const* param_0) {
+static asm void fopAcM_searchPlayerAngleY__FPC10fopAc_ac_c(fopAc_ac_c const* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/fopAcM_searchPlayerAngleY__FPC10fopAc_ac_c.s"
 }
@@ -4689,7 +4610,7 @@ static asm void fopAcM_searchPlayerAngleY(fopAc_ac_c const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGs_onEventBit(u16 param_0) {
+static asm void dComIfGs_onEventBit__FUs(u16 param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/dComIfGs_onEventBit__FUs.s"
 }
@@ -4740,7 +4661,7 @@ asm void daPy_py_c::changeOriginalDemo() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daPy_getPlayerActorClass() {
+static asm void daPy_getPlayerActorClass__Fv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/daPy_getPlayerActorClass__Fv.s"
 }
@@ -4841,7 +4762,7 @@ static asm void dComIfGp_getHorseActor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_getPlayer(int param_0) {
+static asm void dComIfGp_getPlayer__Fi(int param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/dComIfGp_getPlayer__Fi.s"
 }
@@ -4851,7 +4772,7 @@ static asm void dComIfGp_getPlayer(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_getCamera(int param_0) {
+static asm void dComIfGp_getCamera__Fi(int param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/dComIfGp_getCamera__Fi.s"
 }
@@ -4913,7 +4834,7 @@ static asm void JMAFastSqrt(f32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_particle_set(u32 param_0, u16 param_1, cXyz const* param_2,
+static asm void dComIfGp_particle_set__FUlUsPC4cXyzPC5csXyzPC4cXyz(u32 param_0, u16 param_1, cXyz const* param_2,
                                       csXyz const* param_3, cXyz const* param_4) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/dComIfGp_particle_set__FUlUsPC4cXyzPC5csXyzPC4cXyz.s"
@@ -4939,7 +4860,7 @@ extern "C" void __ct__10JAISoundIDFUl(u32* this_replacement, u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_getVibration() {
+static asm void dComIfGp_getVibration__Fv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/dComIfGp_getVibration__Fv.s"
 }
@@ -4993,7 +4914,7 @@ extern "C" asm void __apl__4cXyzFRC3Vec() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoMtx_stack_c::multVec(Vec const* param_0, Vec* param_1) {
+asm void multVec__14mDoMtx_stack_cFPC3VecP3Vec(Vec const* param_0, Vec* param_1) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/multVec__14mDoMtx_stack_cFPC3VecP3Vec.s"
 }
@@ -5003,7 +4924,7 @@ asm void mDoMtx_stack_c::multVec(Vec const* param_0, Vec* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoMtx_stack_c::YrotS(s16 param_0) {
+asm void YrotS__14mDoMtx_stack_cFs(s16 param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/YrotS__14mDoMtx_stack_cFs.s"
 }

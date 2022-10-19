@@ -626,7 +626,7 @@ void dPa_followEcallBack::end() {
 /* ############################################################################################## */
 /* 80450E90-80450E94 000390 0004+00 2/2 1/1 11/11 .sbss            mEcallback__18dPa_modelEcallBack
  */
-u8 dPa_modelEcallBack::mEcallback[4];
+dPa_modelEcallBack* dPa_modelEcallBack::mEcallback;
 
 /* 80450E94-80450E98 000394 0004+00 2/2 0/0 0/0 .sbss            mPcallback__18dPa_modelEcallBack */
 u8 dPa_modelEcallBack::mPcallback[4];

@@ -50,7 +50,7 @@ extern "C" void setDefault__12dVibration_cFv();
 extern "C" void Init__12dVibration_cFv();
 extern "C" void Pause__12dVibration_cFv();
 extern "C" void Remove__12dVibration_cFv();
-extern "C" extern u8 data_80450F58[8];
+extern "C" extern u8 on_final_boss_stg[8];
 
 //
 // External References:
@@ -244,8 +244,3 @@ asm void dVibration_c::Remove() {
 #include "asm/d/d_vibration/Remove__12dVibration_cFv.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 80450F58-80450F60 000458 0008+00 0/0 2/2 0/0 .sbss            None */
-extern u8 data_80450F58[8];
-u8 data_80450F58[8];

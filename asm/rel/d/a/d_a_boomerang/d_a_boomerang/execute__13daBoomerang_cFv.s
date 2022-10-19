@@ -244,8 +244,8 @@ lbl_804A1B68:
 /* 804A1B9C  28 00 00 00 */	cmplwi r0, 0
 /* 804A1BA0  41 82 00 10 */	beq lbl_804A1BB0
 /* 804A1BA4  38 00 00 01 */	li r0, 1
-/* 804A1BA8  3C 60 80 45 */	lis r3, struct_8045101C+0x2@ha /* 0x8045101E@ha */
-/* 804A1BAC  B0 03 10 1E */	sth r0, struct_8045101C+0x2@l(r3)  /* 0x8045101E@l */
+/* 804A1BA8  3C 60 80 45 */	lis r3, m_dropAngleY__20daPy_boomerangMove_c+0x2@ha /* 0x8045101E@ha */
+/* 804A1BAC  B0 03 10 1E */	sth r0, m_dropAngleY__20daPy_boomerangMove_c+0x2@l(r3)  /* 0x8045101E@l */
 lbl_804A1BB0:
 /* 804A1BB0  38 60 00 01 */	li r3, 1
 lbl_804A1BB4:

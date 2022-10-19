@@ -26,7 +26,7 @@ u32 J3DShapeDraw::countVertex(u32 stride) {
     u32 count = 0;
     u32 dlStart = (u32)getDisplayList();
     for (u8* dl = (u8*)dlStart; ((u32)dl - dlStart) < getDisplayListSize();) {
-        if (*dl != 0xA0 && *dl != 0x98)
+        if (*dl != GX_TRIANGLEFAN && *dl != GX_TRIANGLESTRIP)
             break;
         u16 vtxNum = *((u16*)(dl + 1));
         count += vtxNum;
@@ -50,7 +50,7 @@ void J3DShapeDraw::addTexMtxIndexInDL(u32 stride, u32 attrOffs, u32 valueBase) {
         u8 h = *oldDL;
         *newDL++ = h;
 
-        if (h != 0xA0 && h != 0x98)
+        if (h != GX_TRIANGLEFAN && h != GX_TRIANGLESTRIP)
             break;
 
         // Copy count
@@ -82,7 +82,6 @@ void J3DShapeDraw::addTexMtxIndexInDL(u32 stride, u32 attrOffs, u32 valueBase) {
     DCStoreRange(newDLStart, mDisplayListSize);
 }
 #else
-
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -91,7 +90,6 @@ asm void J3DShapeDraw::addTexMtxIndexInDL(u32 param_0, u32 param_1, u32 param_2)
 #include "asm/JSystem/J3DGraphBase/J3DShapeDraw/addTexMtxIndexInDL__12J3DShapeDrawFUlUlUl.s"
 }
 #pragma pop
-
 #endif
 
 /* 80314ABC-80314AD4 30F3FC 0018+00 0/0 1/1 0/0 .text            __ct__12J3DShapeDrawFPCUcUl */

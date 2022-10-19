@@ -25,8 +25,8 @@ class Z2SeqMgr {
 public:
     Z2SeqMgr();
 
-    void bgmStart(u32, u32, s32);
-    void bgmStop(u32, s32);
+    void bgmStart(u32 i_bgmID, u32, s32);
+    void bgmStop(u32 i_bgmID, s32);
     void subBgmStart(u32);
     void subBgmStop();
     void subBgmStopInner();
@@ -79,12 +79,12 @@ public:
 
     void i_setTwilightGateVol(f32 vol) { mTwilightGateVol = vol; }
 
-    void i_setWindStoneVol(f32 vol, u32 count) { field_0x94.move(vol, count); }
+    void i_setWindStoneVol(f32 vol, u32 count) { mWindStone.move(vol, count); }
 
-    void i_bgmAllUnMute(u32 count) { field_0x74.move(1.0f, count); }
+    void i_bgmAllUnMute(u32 count) { mAllBgmMaster.move(1.0f, count); }
 
     void i_unMuteSceneBgm(u32 count) {
-        field_0x34.move(1.0f, 0);
+        mBgmPause.move(1.0f, 0);
         field_0x44.move(1.0f, count);
     }
 
@@ -94,15 +94,15 @@ private:
     /* 0x08 */ JAISoundHandle field_0x08;
     /* 0x0C */ JAISoundHandle field_0x0c;
     /* 0x10 */ JAISoundID field_0x10;
-    /* 0x14 */ Z2SoundFader field_0x14;
-    /* 0x24 */ Z2SoundFader field_0x24;
-    /* 0x34 */ Z2SoundFader field_0x34;
+    /* 0x14 */ Z2SoundFader mMainBgmMaster;
+    /* 0x24 */ Z2SoundFader mSubBgmMaster;
+    /* 0x34 */ Z2SoundFader mBgmPause;
     /* 0x44 */ Z2SoundFader field_0x44;
-    /* 0x54 */ Z2SoundFader field_0x54;
+    /* 0x54 */ Z2SoundFader mFanfareMute;
     /* 0x64 */ Z2SoundFader field_0x64;
-    /* 0x74 */ Z2SoundFader field_0x74;
+    /* 0x74 */ Z2SoundFader mAllBgmMaster;
     /* 0x84 */ Z2SoundFader field_0x84;
-    /* 0x94 */ Z2SoundFader field_0x94;
+    /* 0x94 */ Z2SoundFader mWindStone;
     /* 0xA4 */ Z2SoundFader field_0xa4;
     /* 0xB4 */ f32 mTwilightGateVol;
     /* 0xB8 */ u16 field_0xb8;

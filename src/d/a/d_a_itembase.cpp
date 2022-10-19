@@ -99,14 +99,14 @@ int daItemBase_c::CreateItemHeap(char const* arcName, s16 bmdName, s16 btkName, 
         if (brkName > 0) {
             J3DAnmTevRegKey* pbrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(arcName, brkName);
             s8 tevFrm = getTevFrm();
-            int tmp = 1;
+            int anmPlay = 1;
             if (tevFrm != -1) {
-                tmp = 0;
+                anmPlay = 0;
             }
 
             mpBrkAnm = new mDoExt_brkAnm();
 
-            if (mpBrkAnm == NULL || !mpBrkAnm->init(modelData, pbrk, tmp, 2, 1.0f, 0, -1)) {
+            if (mpBrkAnm == NULL || !mpBrkAnm->init(modelData, pbrk, anmPlay, 2, 1.0f, 0, -1)) {
                 return 0;
             }
         }
@@ -176,8 +176,7 @@ void daItemBase_c::setShadow() {
 
     if (!chkFlag(0x10)) {
         if (getShadowSize() != 0.0f) {
-            dComIfGd_setSimpleShadow(&current.pos, mAcch.GetGroundH(), scale,
-                                     mAcch.m_gnd, 0, 1.0f,
+            dComIfGd_setSimpleShadow(&current.pos, mAcch.GetGroundH(), scale, mAcch.m_gnd, 0, 1.0f,
                                      dDlst_shadowControl_c::getSimpleTex());
         }
     } else {
@@ -186,10 +185,9 @@ void daItemBase_c::setShadow() {
             shadowSize = 150.0f;
         }
 
-        field_0x91c =
-            dComIfGd_setShadow(field_0x91c, 3, mpModel, &current.pos, shadowSize, 0.0f,
-                               current.pos.y, mAcch.GetGroundH(), mAcch.m_gnd,
-                               &mTevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
+        field_0x91c = dComIfGd_setShadow(field_0x91c, 3, mpModel, &current.pos, shadowSize, 0.0f,
+                                         current.pos.y, mAcch.GetGroundH(), mAcch.m_gnd, &mTevStr,
+                                         0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
     }
 }
 

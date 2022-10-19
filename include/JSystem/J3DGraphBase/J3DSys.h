@@ -93,6 +93,9 @@ struct J3DSys {
     void setMaterialMode(u32 mode) { mMaterialMode = mode; }
 
     void setTexture(J3DTexture* pTex) { mTexture = pTex; }
+    J3DTexture* getTexture() { return mTexture; }
+
+    void setNBTScale(Vec* scale) { mNBTScale = scale; }
 
     void onFlag(u32 flag) { mFlags |= flag; }
 

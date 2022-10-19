@@ -52,15 +52,15 @@ public:
 class dDemo_actor_c : public JStage::TActor {
 public:
     /* 80038020 */ dDemo_actor_c();
-    /* 80038128 */ void getActor();
+    /* 80038128 */ fopAc_ac_c* getActor();
     /* 8003815C */ void setActor(fopAc_ac_c*);
-    /* 8003819C */ void getPrm_Morf();
+    /* 8003819C */ f32 getPrm_Morf();
     /* 80038338 */ void getDemoIDData(int*, int*, int*, u16*, u8*);
     
     /* 80038098 */ virtual ~dDemo_actor_c();
     /* 800387EC */ virtual void JSGSetData(u32, void const*, u32);
-    /* 8003A05C */ virtual void JSGFindNodeID(char const*) const;
-    /* 8003A088 */ virtual void JSGGetNodeTransformation(u32, f32 (*)[4]) const;
+    /* 8003A05C */ virtual s32 JSGFindNodeID(char const*) const;
+    /* 8003A088 */ virtual int JSGGetNodeTransformation(u32, f32 (*)[4]) const;
     /* 8003A0D8 */ virtual void JSGGetTranslation(Vec*) const;
     /* 80038920 */ virtual void JSGSetTranslation(Vec const&);
     /* 8003A0F4 */ virtual void JSGGetScaling(Vec*) const;
@@ -77,6 +77,16 @@ public:
     /* 8003A0D0 */ virtual f32 JSGGetTextureAnimationFrameMax() const;
 
     void setModel(J3DModel* p_model) { mModel = p_model; }
+    u8 checkEnable(u16 flag) { return mFlags & flag; }
+    void onEnable(u16 flag) { mFlags |= flag; }
+    cXyz& getTrans() { return mTrans; }
+    cXyz& getScale() { return mScale; }
+    csXyz& getRatate() { return mRotate; }
+    u32 getAnmId() { return mAnmId; }
+    u32 getOldAnmId() { return mOldAnmId; }
+    void setOldAnmId(u32 id) { mOldAnmId = id; }
+    void setAnmFrameMax(f32 max) { mAnmFrameMax = max; }
+    f32 getAnmFrame() { return mAnmFrame; }
 
 private:
     /* 0x04 */ u16 mFlags;
@@ -136,6 +146,8 @@ public:
     /* 80038EA8 */ virtual void JSGSetAngleAttenuation(f32, GXSpotFn);
     /* 80038EC0 */ virtual void JSGSetDirection(Vec const&);
 
+    void onEnable(u8 flag) { mFlags |= flag; }
+
 private:
     /* 0x04 */ u8 mFlags;
     /* 0x08 */ JStage::TELight mLightType;
@@ -160,6 +172,8 @@ public:
     /* 80038EFC */ virtual void JSGSetStartZ(f32);
     /* 80038F10 */ virtual void JSGSetEndZ(f32);
     /* 80038F24 */ virtual void JSGSetColor(GXColor);
+
+    void onEnable(u8 flag) { mFlags |= flag; }
 
 private:
     /* 0x04 */ u8 mFlags;
@@ -193,6 +207,8 @@ public:
     /* 80038D84 */ virtual f32 JSGGetViewRoll() const;
     /* 80038DDC */ virtual void JSGSetViewRoll(f32);
 
+    void onEnable(u8 flag) { mFlags |= flag; }
+
 private:
     /* 0x04 */ u8 mFlags;
     /* 0x08 */ f32 mProjNear;
@@ -213,6 +229,8 @@ public:
 
     /* 800394C8 */ virtual ~dDemo_ambient_c();
     /* 80038DF0 */ virtual void JSGSetColor(GXColor);
+
+    void onEnable(u8 flag) { mFlags |= flag; }
 
 private:
     /* 0x04 */ u8 mFlags;
@@ -255,6 +273,8 @@ public:
     static s32 getMode() { return m_mode; }
     static JStudio::stb::TControl* getControl() { return m_control; }
     static bool isStatus(u32 status) { return m_status & status; }
+    static void onStatus(u32 status) { m_status |= status; }
+    static void offStatus(u32 status) { m_status &= ~status; }
     static void setBranchData(const u8* p_data) { m_branchData = p_data; }
 
     static s16 m_branchId;

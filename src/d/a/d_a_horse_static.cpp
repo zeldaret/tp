@@ -12,13 +12,13 @@ BOOL e_wb_class::checkWait() {
 }
 
 void e_wb_class::setPlayerRideNow() {
-    field_0x690 = 0x67;
+    mActionID = ACT_PL_RIDE_NOW;
     field_0x5b4 = 0;
     field_0x6be |= 3;
 }
 
 void e_wb_class::setPlayerRide() {
-    field_0x690 = 0x65;
+    mActionID = ACT_PL_RIDE;
     field_0x5b4 = 0;
     field_0x6be |= 3;
 
@@ -26,28 +26,29 @@ void e_wb_class::setPlayerRide() {
 }
 
 void e_wb_class::getOff() {
-    if (!checkDownDamage() || field_0x690 == 0x67) {
-        field_0x690 = 0;
+    if (!checkDownDamage() || mActionID == ACT_PL_RIDE_NOW) {
+        mActionID = 0;
     } else {
         field_0x692 = 0;
     }
+
     field_0x5b4 = 0;
-    field_0x6be &= 0xfffc;
+    field_0x6be &= ~3;
     mZ2Ride.setLinkRiding(false);
 }
 
 BOOL e_wb_class::checkDownDamage() {
-    return field_0x690 != 0x65 && field_0x690 != 0x66 && field_0x690 != 0x15;
+    return mActionID != ACT_PL_RIDE && mActionID != 0x66 && mActionID != ACT_S_DAMAGE;
 }
 
 u8 e_wb_class::checkNormalRideMode() const {
-    return field_0x690 != 0x66 || field_0x5b4 < 1;
+    return mActionID != 0x66 || field_0x5b4 < 1;
 }
 
 void e_wb_class::setRunRideMode() {
-    if (field_0x690 == 0x65) {
+    if (mActionID == ACT_PL_RIDE) {
         field_0x5b4 = 0;
-        field_0x690 = 0x15;
+        mActionID = ACT_S_DAMAGE;
         field_0x692 = 0x65;
     }
 }

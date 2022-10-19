@@ -34,12 +34,15 @@ private:
 class daPy_boomerangMove_c {
 public:
     /* 8015E5B0 */ void initOffset(cXyz const*);
-    /* 8015E654 */ void posMove(cXyz*, s16*, fopAc_ac_c*, s16);
+    /* 8015E654 */ int posMove(cXyz*, s16*, fopAc_ac_c*, s16);
     /* 8015E87C */ void bgCheckAfterOffset(cXyz const*);
+
+    static s16 m_dropAngleY;
+    static s16 m_eventKeepFlg;
 
 private:
     /* 0x0 */ u8 field_0x0;
-    /* 0x2 */ u16 field_0x2;
+    /* 0x2 */ s16 field_0x2;
     /* 0x4 */ f32 field_0x4;
     /* 0x8 */ f32 field_0x8;
 };  // Size: 0xC
@@ -213,7 +216,15 @@ public:
 
         HEAVY_STATE_BOOTS = FLG0_UNK_40000000 | EQUIP_HEAVY_BOOTS | FLG0_UNK_20000,
     };
-    enum daPy_FLG1 { IS_WOLF = 0x2000000, FLG1_UNK_10000 = 0x10000, THROW_DAMAGE = 0x4000, FLG1_UNK_4 = 4, };
+
+    enum daPy_FLG1 {
+        IS_WOLF = 0x2000000,
+        FLG1_UNK_10000 = 0x10000,
+        THROW_DAMAGE = 0x4000,
+        FLG1_UNK_4 = 4,
+        FLG1_UNK_2 = 2,
+    };
+
     enum daPy_FLG2 {
         FLG2_UNK_20000000 = 0x20000000,
         FLG2_UNK_4080000 = 0x4080000,
@@ -227,12 +238,14 @@ public:
         UNK_FLG2_2 = 2,
         UNK_DAPY_FLG2_1 = 1
     };
+
     enum daPy_FLG3 {
         FLG3_UNK_2000000 = 0x2000000,
         FLG3_UNK_1000000 = 0x1000000,
         FLG3_UNK_100000 = 0x100000,
         COPY_ROD_THROW_AFTER = 0x40000
     };
+
     enum daPy_ERFLG0 {
         ERFLG0_UNK_8000000 = 0x8000000,
         ERFLG0_UNK_1000000 = 0x1000000,
@@ -243,15 +256,18 @@ public:
         ERFLG0_UNK_2 = 2,
         ERFLG0_UNK_1 = 1,
     };
+
     enum daPy_ERFLG1 {
         GANON_FINISH = 0x80000000,
         UNK_FORCE_PUT_POS = 0x2000,
         ERFLG1_UNK_2 = 2,
         ERFLG1_UNK_1 = 1,
     };
+
     enum daPy_ERFLG2 {
         ERFLG2_UNK_100 = 0x100,
     };
+
     enum daPy_RFLG0 {
         RFLG0_UNK_8000000 = 0x8000000,
         RFLG0_UNK_4000 = 0x4000,
@@ -321,7 +337,7 @@ public:
     static u32 checkCarryStartLightBallA();
     static u32 checkCarryStartLightBallB();
     float getSpinnerRideSpeed() const;
-    void checkSpinnerReflectEffect();
+    bool checkSpinnerReflectEffect();
     static bool checkBoomerangCharge();
     bool checkBoomerangChargeTime();
     static daBoomerang_c* getThrowBoomerangActor();
