@@ -282,6 +282,7 @@ public:
     void setItemOilCount(s32 oil) { mItemOilCount += oil; }
     s16 getItemMaxLifeCount() { return mItemMaxLifeCount; }
     f32 getItemLifeCount() { return mItemLifeCount; }
+    s16 getItemMaxArrowNumCount() { return mItemMaxArrowNumCount; }
     void clearItemMaxLifeCount() { mItemMaxLifeCount = 0; }
     void clearItemLifeCount() {
         mItemLifeCount = 0.0f;
@@ -2152,6 +2153,10 @@ inline s16 dComIfGp_getItemMaxLifeCount() {
 
 inline f32 dComIfGp_getItemLifeCount() {
     return g_dComIfG_gameInfo.play.getItemLifeCount();
+}
+
+inline s16 dComIfGp_getItemMaxArrowNumCount() {
+    return g_dComIfG_gameInfo.play.getItemMaxArrowNumCount();
 }
 
 inline void dComIfGp_clearItemMaxLifeCount() {

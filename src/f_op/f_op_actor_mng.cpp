@@ -1764,7 +1764,7 @@ void fopAcM_myRoomSearchEnemy(s8 roomNo) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fopAcM_myRoomSearchEnemy(s8 param_0) {
+asm fopAc_ac_c* fopAcM_myRoomSearchEnemy(s8 param_0) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_myRoomSearchEnemy__FSc.s"
 }

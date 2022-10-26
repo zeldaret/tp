@@ -45,7 +45,7 @@ public:
     /* 80031248 */ void newData(s8, cXyz const&, cXyz const&, u8, u8, u8);
     /* 800313BC */ void reset();
     /* 800314D4 */ static void check(fopAc_ac_c*);
-    /* 80031434 */ static bool check(s8, cXyz const&);
+    /* 80031434 */ static bool check(s8 i_roomNo, cXyz const& i_pos);
     /* 800315A4 */ static void execute();
 
     static u8 mData[1152];

@@ -495,6 +495,10 @@ inline void dMeter2Info_onDirectUseItem(int param_0) {
     g_meter2_info.onDirectUseItem(param_0);
 }
 
+inline void dMeter2Info_setFloatingFlow(u16 param_0, s16 param_1, bool param_2) {
+    g_meter2_info.setFloatingFlow(param_0, param_1, param_2);
+}
+
 char* dMeter2Info_getNumberTextureName(int pIndex);
 void dMeter2Info_recieveLetter();
 u8 dMeter2Info_getNewLetterNum();

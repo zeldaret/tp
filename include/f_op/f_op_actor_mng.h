@@ -459,7 +459,7 @@ void* fopAcM_fastCreateItem(const cXyz* p_pos, int i_itemNo, int i_roomNo, const
 s32 fopAcM_createBokkuri(u16, const cXyz*, int, int, int, const cXyz*, int, int);
 s32 fopAcM_createWarpHole(const cXyz*, const csXyz*, int, u8, u8, u8);
 
-void fopAcM_myRoomSearchEnemy(s8 roomNo);
+fopAc_ac_c* fopAcM_myRoomSearchEnemy(s8 roomNo);
 
 s32 fopAcM_createDisappear(const fopAc_ac_c*, const cXyz*, u8, u8, u8);
 void fopAcM_setCarryNow(fopAc_ac_c*, int);
